@@ -6,7 +6,8 @@ import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowRight, Clock, Infinity as InfinityIcon, Sparkles } from 'lucide-react';
-import type { Locale } from '@/types/panchang';
+import type { Locale, LocaleText } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ═══════════════════════════════════════════════════════════════
@@ -20,26 +21,26 @@ const L = {
   },
 
   /* Section 1 */
-  s1Title: { en: 'The Scale That Awed Scientists', hi: 'वह पैमाना जिसने वैज्ञानिकों को चकित किया' },
+  s1Title: { en: 'The Scale That Awed Scientists', hi: 'वह पैमाना जिसने वैज्ञानिकों को चकित किया', sa: 'वह पैमाना जिसने वैज्ञानिकों को चकित किया', mai: 'वह पैमाना जिसने वैज्ञानिकों को चकित किया', mr: 'वह पैमाना जिसने वैज्ञानिकों को चकित किया', ta: 'The Scale That Awed Scientists', te: 'The Scale That Awed Scientists', bn: 'The Scale That Awed Scientists', kn: 'The Scale That Awed Scientists', gu: 'The Scale That Awed Scientists' },
   s1Quote: {
     en: '"The Hindu religion is the only one of the world\'s great faiths dedicated to the idea that the Cosmos itself undergoes an immense, indeed an infinite, number of deaths and rebirths."',
     hi: '"हिन्दू धर्म विश्व के महान धर्मों में एकमात्र है जो इस विचार को समर्पित है कि ब्रह्माण्ड स्वयं असीम मृत्यु और पुनर्जन्मों से गुजरता है।"',
   },
-  s1Attr: { en: '— Carl Sagan, Cosmos (1980)', hi: '— कार्ल सेगन, कॉस्मॉस (1980)' },
+  s1Attr: { en: '— Carl Sagan, Cosmos (1980)', hi: '— कार्ल सेगन, कॉस्मॉस (1980)', sa: '— कार्ल सेगन, कॉस्मॉस (1980)', mai: '— कार्ल सेगन, कॉस्मॉस (1980)', mr: '— कार्ल सेगन, कॉस्मॉस (1980)', ta: '— Carl Sagan, Cosmos (1980)', te: '— Carl Sagan, Cosmos (1980)', bn: '— Carl Sagan, Cosmos (1980)', kn: '— Carl Sagan, Cosmos (1980)', gu: '— Carl Sagan, Cosmos (1980)' },
   s1Body: {
     en: 'No other ancient civilization conceived of time on this scale. While Greek, Roman, and Biblical traditions measured creation in thousands of years, Vedic cosmology spoke of billions — with a cyclic model of creation and dissolution that resonates with cutting-edge physics today.',
     hi: 'किसी अन्य प्राचीन सभ्यता ने इस पैमाने पर समय की कल्पना नहीं की। जहाँ ग्रीक, रोमन और बाइबिल परम्पराओं ने सृष्टि को हजारों वर्षों में मापा, वैदिक ब्रह्माण्ड विज्ञान ने अरबों की बात की — सृष्टि और प्रलय के चक्रीय मॉडल के साथ जो आज के अत्याधुनिक भौतिकी से मेल खाता है।',
   },
 
   /* Section 2 */
-  s2Title: { en: 'From Truti to Brahma — The Full Scale', hi: 'त्रुटि से ब्रह्मा तक — सम्पूर्ण पैमाना' },
+  s2Title: { en: 'From Truti to Brahma — The Full Scale', hi: 'त्रुटि से ब्रह्मा तक — सम्पूर्ण पैमाना', sa: 'त्रुटि से ब्रह्मा तक — सम्पूर्ण पैमाना', mai: 'त्रुटि से ब्रह्मा तक — सम्पूर्ण पैमाना', mr: 'त्रुटि से ब्रह्मा तक — सम्पूर्ण पैमाना', ta: 'From Truti to Brahma — The Full Scale', te: 'From Truti to Brahma — The Full Scale', bn: 'From Truti to Brahma — The Full Scale', kn: 'From Truti to Brahma — The Full Scale', gu: 'From Truti to Brahma — The Full Scale' },
   s2Intro: {
     en: 'The Surya Siddhanta (~400 CE) defined time units ranging from microseconds to trillions of years. The smallest unit, Truti, is in the range of atomic clock precision — defined over 1,600 years ago.',
     hi: 'सूर्य सिद्धान्त (~400 ई.) ने माइक्रोसेकंड से लेकर खरबों वर्षों तक की समय इकाइयाँ परिभाषित कीं। सबसे छोटी इकाई, त्रुटि, परमाणु घड़ी की सटीकता की सीमा में है — 1,600 वर्ष पहले परिभाषित।',
   },
 
   /* Section 3 */
-  s3Title: { en: 'The Four Yugas — Ages of Humanity', hi: 'चार युग — मानवता की अवस्थाएँ' },
+  s3Title: { en: 'The Four Yugas — Ages of Humanity', hi: 'चार युग — मानवता की अवस्थाएँ', sa: 'चार युग — मानवता की अवस्थाएँ', mai: 'चार युग — मानवता की अवस्थाएँ', mr: 'चार युग — मानवता की अवस्थाएँ', ta: 'The Four Yugas — Ages of Humanity', te: 'The Four Yugas — Ages of Humanity', bn: 'The Four Yugas — Ages of Humanity', kn: 'The Four Yugas — Ages of Humanity', gu: 'The Four Yugas — Ages of Humanity' },
   s3Intro: {
     en: 'Time cycles through four ages (Yugas) in a mathematically perfect 4:3:2:1 ratio. Each successive age sees a decline in dharma, lifespan, and human virtue. Together they form one Maha Yuga of 4,320,000 years.',
     hi: 'समय चार युगों में गणितीय रूप से सटीक 4:3:2:1 अनुपात में चक्रित होता है। प्रत्येक आगामी युग में धर्म, आयु और मानवीय सद्गुणों में ह्रास होता है। मिलकर ये एक महायुग 43,20,000 वर्ष बनाते हैं।',
@@ -56,18 +57,18 @@ const L = {
   s5Title: { en: 'Brahma\'s Lifespan — The Ultimate Scale', hi: 'ब्रह्मा की आयु — चरम पैमाना' },
 
   /* Section 6 */
-  s6Title: { en: 'Why This Matters for Jyotish', hi: 'ज्योतिष के लिए यह क्यों महत्वपूर्ण है' },
+  s6Title: { en: 'Why This Matters for Jyotish', hi: 'ज्योतिष के लिए यह क्यों महत्वपूर्ण है', sa: 'ज्योतिष के लिए यह क्यों महत्वपूर्ण है', mai: 'ज्योतिष के लिए यह क्यों महत्वपूर्ण है', mr: 'ज्योतिष के लिए यह क्यों महत्वपूर्ण है', ta: 'Why This Matters for Jyotish', te: 'Why This Matters for Jyotish', bn: 'Why This Matters for Jyotish', kn: 'Why This Matters for Jyotish', gu: 'Why This Matters for Jyotish' },
   s6Body: {
     en: 'The Sankalpa (puja resolution) places you precisely in this cosmic timeline. When a priest recites "Shri Shveta Varaha Kalpe, Vaivasvata Manvantare, Ashtavimshatitame Kaliyuge..." — he is specifying your exact position across billions of years of cosmic time. The Kali Ahargana (days elapsed since the start of Kali Yuga) is the mathematical foundation for all Panchang calculations.',
     hi: 'सङ्कल्प (पूजा संकल्प) आपको इस ब्रह्माण्डीय समयरेखा में सटीक रूप से स्थापित करता है। जब पुरोहित "श्री श्वेतवाराहकल्पे, वैवस्वतमन्वन्तरे, अष्टाविंशतितमे कलियुगे..." का पाठ करते हैं — वे अरबों वर्षों में आपकी सटीक स्थिति निर्दिष्ट कर रहे हैं। कलि अहर्गण (कलियुग आरम्भ से बीते दिन) सभी पंचांग गणनाओं का गणितीय आधार है।',
   },
 
   /* Section 7 */
-  s7Title: { en: 'What No Other Civilization Conceived', hi: 'जो किसी अन्य सभ्यता ने नहीं सोचा' },
+  s7Title: { en: 'What No Other Civilization Conceived', hi: 'जो किसी अन्य सभ्यता ने नहीं सोचा', sa: 'जो किसी अन्य सभ्यता ने नहीं सोचा', mai: 'जो किसी अन्य सभ्यता ने नहीं सोचा', mr: 'जो किसी अन्य सभ्यता ने नहीं सोचा', ta: 'What No Other Civilization Conceived', te: 'What No Other Civilization Conceived', bn: 'What No Other Civilization Conceived', kn: 'What No Other Civilization Conceived', gu: 'What No Other Civilization Conceived' },
 
   /* Navigation */
-  backToLearn: { en: 'Back to Learn', hi: 'सीखने पर वापस' },
-  exploreMore: { en: 'Continue Exploring', hi: 'और जानें' },
+  backToLearn: { en: 'Back to Learn', hi: 'सीखने पर वापस', sa: 'सीखने पर वापस', mai: 'सीखने पर वापस', mr: 'सीखने पर वापस', ta: 'Back to Learn', te: 'Back to Learn', bn: 'Back to Learn', kn: 'Back to Learn', gu: 'Back to Learn' },
+  exploreMore: { en: 'Continue Exploring', hi: 'और जानें', sa: 'और जानें', mai: 'और जानें', mr: 'और जानें', ta: 'Continue Exploring', te: 'Continue Exploring', bn: 'Continue Exploring', kn: 'Continue Exploring', gu: 'Continue Exploring' },
 };
 
 /* ═══════════════════════════════════════════════════════════════
@@ -75,48 +76,48 @@ const L = {
    ═══════════════════════════════════════════════════════════════ */
 
 const TIME_UNITS = [
-  { unit: 'Truti (त्रुटि)', duration: '29.6 microseconds', modern: 'Atomic clock range', wow: { en: 'Surya Siddhanta defined this ~1,600 years ago', hi: 'सूर्य सिद्धान्त ने ~1,600 वर्ष पहले परिभाषित किया' } },
+  { unit: 'Truti (त्रुटि)', duration: '29.6 microseconds', modern: 'Atomic clock range', wow: { en: 'Surya Siddhanta defined this ~1,600 years ago', hi: 'सूर्य सिद्धान्त ने ~1,600 वर्ष पहले परिभाषित किया', sa: 'सूर्य सिद्धान्त ने ~1,600 वर्ष पहले परिभाषित किया', mai: 'सूर्य सिद्धान्त ने ~1,600 वर्ष पहले परिभाषित किया', mr: 'सूर्य सिद्धान्त ने ~1,600 वर्ष पहले परिभाषित किया', ta: 'Surya Siddhanta defined this ~1,600 years ago', te: 'Surya Siddhanta defined this ~1,600 years ago', bn: 'Surya Siddhanta defined this ~1,600 years ago', kn: 'Surya Siddhanta defined this ~1,600 years ago', gu: 'Surya Siddhanta defined this ~1,600 years ago' } },
   { unit: 'Tatpara (तत्पर)', duration: '100 Trutis = 2.96 ms', modern: 'Reflex speed', wow: null },
-  { unit: 'Nimesha (निमेष)', duration: '45 Tatparas = 133 ms', modern: 'Eye blink', wow: { en: '"Nimesha" literally means "blink"', hi: '"निमेष" का शाब्दिक अर्थ "पलक झपकना" है' } },
+  { unit: 'Nimesha (निमेष)', duration: '45 Tatparas = 133 ms', modern: 'Eye blink', wow: { en: '"Nimesha" literally means "blink"', hi: '"निमेष" का शाब्दिक अर्थ "पलक झपकना" है', sa: '"निमेष" का शाब्दिक अर्थ "पलक झपकना" है', mai: '"निमेष" का शाब्दिक अर्थ "पलक झपकना" है', mr: '"निमेष" का शाब्दिक अर्थ "पलक झपकना" है', ta: '"Nimesha" literally means "blink"', te: '"Nimesha" literally means "blink"', bn: '"Nimesha" literally means "blink"', kn: '"Nimesha" literally means "blink"', gu: '"Nimesha" literally means "blink"' } },
   { unit: 'Kashtha (काष्ठा)', duration: '18 Nimeshas = 2.4 s', modern: '', wow: null },
   { unit: 'Kala (कला)', duration: '30 Kashthas = 72 s', modern: '~1 minute', wow: null },
-  { unit: 'Nadika (नाडिका)', duration: '15 Kalas = 1,080 s', modern: '18 minutes', wow: { en: 'Used in muhurta calculations', hi: 'मुहूर्त गणना में प्रयुक्त' } },
-  { unit: 'Muhurta (मुहूर्त)', duration: '2 Nadis = 2,160 s', modern: '48 minutes', wow: { en: '30 muhurtas per day', hi: 'प्रतिदिन 30 मुहूर्त' } },
-  { unit: 'Prahara (प्रहर)', duration: '7.5 Muhurtas', modern: '3 hours', wow: { en: '8 praharas per day', hi: 'प्रतिदिन 8 प्रहर' } },
-  { unit: 'Ahoratra (अहोरात्र)', duration: '8 Praharas', modern: '24 hours', wow: { en: '"Aho" (day) + "Ratra" (night)', hi: '"अहो" (दिन) + "रात्र" (रात)' } },
-  { unit: 'Paksha (पक्ष)', duration: '15 Ahoratras', modern: 'Fortnight', wow: { en: 'Shukla / Krishna', hi: 'शुक्ल / कृष्ण' } },
+  { unit: 'Nadika (नाडिका)', duration: '15 Kalas = 1,080 s', modern: '18 minutes', wow: { en: 'Used in muhurta calculations', hi: 'मुहूर्त गणना में प्रयुक्त', sa: 'मुहूर्त गणना में प्रयुक्त', mai: 'मुहूर्त गणना में प्रयुक्त', mr: 'मुहूर्त गणना में प्रयुक्त', ta: 'Used in muhurta calculations', te: 'Used in muhurta calculations', bn: 'Used in muhurta calculations', kn: 'Used in muhurta calculations', gu: 'Used in muhurta calculations' } },
+  { unit: 'Muhurta (मुहूर्त)', duration: '2 Nadis = 2,160 s', modern: '48 minutes', wow: { en: '30 muhurtas per day', hi: 'प्रतिदिन 30 मुहूर्त', sa: 'प्रतिदिन 30 मुहूर्त', mai: 'प्रतिदिन 30 मुहूर्त', mr: 'प्रतिदिन 30 मुहूर्त', ta: '30 muhurtas per day', te: '30 muhurtas per day', bn: '30 muhurtas per day', kn: '30 muhurtas per day', gu: '30 muhurtas per day' } },
+  { unit: 'Prahara (प्रहर)', duration: '7.5 Muhurtas', modern: '3 hours', wow: { en: '8 praharas per day', hi: 'प्रतिदिन 8 प्रहर', sa: 'प्रतिदिन 8 प्रहर', mai: 'प्रतिदिन 8 प्रहर', mr: 'प्रतिदिन 8 प्रहर', ta: '8 praharas per day', te: '8 praharas per day', bn: '8 praharas per day', kn: '8 praharas per day', gu: '8 praharas per day' } },
+  { unit: 'Ahoratra (अहोरात्र)', duration: '8 Praharas', modern: '24 hours', wow: { en: '"Aho" (day) + "Ratra" (night)', hi: '"अहो" (दिन) + "रात्र" (रात)', sa: '"अहो" (दिन) + "रात्र" (रात)', mai: '"अहो" (दिन) + "रात्र" (रात)', mr: '"अहो" (दिन) + "रात्र" (रात)', ta: '"Aho" (day) + "Ratra" (night)', te: '"Aho" (day) + "Ratra" (night)', bn: '"Aho" (day) + "Ratra" (night)', kn: '"Aho" (day) + "Ratra" (night)', gu: '"Aho" (day) + "Ratra" (night)' } },
+  { unit: 'Paksha (पक्ष)', duration: '15 Ahoratras', modern: 'Fortnight', wow: { en: 'Shukla / Krishna', hi: 'शुक्ल / कृष्ण', sa: 'शुक्ल / कृष्ण', mai: 'शुक्ल / कृष्ण', mr: 'शुक्ल / कृष्ण', ta: 'Shukla / Krishna', te: 'Shukla / Krishna', bn: 'Shukla / Krishna', kn: 'Shukla / Krishna', gu: 'Shukla / Krishna' } },
   { unit: 'Masa (मास)', duration: '2 Pakshas', modern: 'Month', wow: null },
-  { unit: 'Ritu (ऋतु)', duration: '2 Masas', modern: 'Season', wow: { en: '6 ritus per year', hi: 'प्रतिवर्ष 6 ऋतुएँ' } },
-  { unit: 'Ayana (अयन)', duration: '3 Ritus', modern: 'Half-year', wow: { en: 'Uttara / Dakshina', hi: 'उत्तर / दक्षिण' } },
+  { unit: 'Ritu (ऋतु)', duration: '2 Masas', modern: 'Season', wow: { en: '6 ritus per year', hi: 'प्रतिवर्ष 6 ऋतुएँ', sa: 'प्रतिवर्ष 6 ऋतुएँ', mai: 'प्रतिवर्ष 6 ऋतुएँ', mr: 'प्रतिवर्ष 6 ऋतुएँ', ta: '6 ritus per year', te: '6 ritus per year', bn: '6 ritus per year', kn: '6 ritus per year', gu: '6 ritus per year' } },
+  { unit: 'Ayana (अयन)', duration: '3 Ritus', modern: 'Half-year', wow: { en: 'Uttara / Dakshina', hi: 'उत्तर / दक्षिण', sa: 'उत्तर / दक्षिण', mai: 'उत्तर / दक्षिण', mr: 'उत्तर / दक्षिण', ta: 'Uttara / Dakshina', te: 'Uttara / Dakshina', bn: 'Uttara / Dakshina', kn: 'Uttara / Dakshina', gu: 'Uttara / Dakshina' } },
   { unit: 'Varsha (वर्ष)', duration: '2 Ayanas', modern: 'Year', wow: null },
 ];
 
 const YUGAS = [
-  { name: 'Satya (Krita)', nameHi: 'सत्य (कृत)', years: '1,728,000', ratio: 4, dharma: 100, color: 'from-yellow-300 to-amber-400', barColor: 'bg-gradient-to-r from-yellow-300/80 to-amber-400/80', desc: { en: 'Golden age. Truth prevails. Humans live 100,000 years.', hi: 'स्वर्ण युग। सत्य प्रबल। मानव 1,00,000 वर्ष जीते हैं।' } },
-  { name: 'Treta', nameHi: 'त्रेता', years: '1,296,000', ratio: 3, dharma: 75, color: 'from-gray-200 to-gray-400', barColor: 'bg-gradient-to-r from-gray-200/70 to-gray-400/70', desc: { en: 'Silver age. Dharma on 3 legs. Age of Ramayana.', hi: 'रजत युग। धर्म 3 पैरों पर। रामायण काल।' } },
-  { name: 'Dwapara', nameHi: 'द्वापर', years: '864,000', ratio: 2, dharma: 50, color: 'from-amber-600 to-amber-800', barColor: 'bg-gradient-to-r from-amber-600/60 to-amber-800/60', desc: { en: 'Bronze age. Dharma on 2 legs. Mahabharata era.', hi: 'कांस्य युग। धर्म 2 पैरों पर। महाभारत काल।' } },
-  { name: 'Kali', nameHi: 'कलि', years: '432,000', ratio: 1, dharma: 25, color: 'from-red-500 to-red-700', barColor: 'bg-gradient-to-r from-red-500/50 to-red-700/50', desc: { en: 'Iron age. Dharma on 1 leg. WE ARE HERE (started 3102 BCE).', hi: 'लौह युग। धर्म 1 पैर पर। हम यहाँ हैं (3102 ई.पू. से)।' } },
+  { name: 'Satya (Krita)', nameHi: 'सत्य (कृत)', years: '1,728,000', ratio: 4, dharma: 100, color: 'from-yellow-300 to-amber-400', barColor: 'bg-gradient-to-r from-yellow-300/80 to-amber-400/80', desc: { en: 'Golden age. Truth prevails. Humans live 100,000 years.', hi: 'स्वर्ण युग। सत्य प्रबल। मानव 1,00,000 वर्ष जीते हैं।', sa: 'स्वर्ण युग। सत्य प्रबल। मानव 1,00,000 वर्ष जीते हैं।', mai: 'स्वर्ण युग। सत्य प्रबल। मानव 1,00,000 वर्ष जीते हैं।', mr: 'स्वर्ण युग। सत्य प्रबल। मानव 1,00,000 वर्ष जीते हैं।', ta: 'Golden age. Truth prevails. Humans live 100,000 years.', te: 'Golden age. Truth prevails. Humans live 100,000 years.', bn: 'Golden age. Truth prevails. Humans live 100,000 years.', kn: 'Golden age. Truth prevails. Humans live 100,000 years.', gu: 'Golden age. Truth prevails. Humans live 100,000 years.' } },
+  { name: 'Treta', nameHi: 'त्रेता', years: '1,296,000', ratio: 3, dharma: 75, color: 'from-gray-200 to-gray-400', barColor: 'bg-gradient-to-r from-gray-200/70 to-gray-400/70', desc: { en: 'Silver age. Dharma on 3 legs. Age of Ramayana.', hi: 'रजत युग। धर्म 3 पैरों पर। रामायण काल।', sa: 'रजत युग। धर्म 3 पैरों पर। रामायण काल।', mai: 'रजत युग। धर्म 3 पैरों पर। रामायण काल।', mr: 'रजत युग। धर्म 3 पैरों पर। रामायण काल।', ta: 'Silver age. Dharma on 3 legs. Age of Ramayana.', te: 'Silver age. Dharma on 3 legs. Age of Ramayana.', bn: 'Silver age. Dharma on 3 legs. Age of Ramayana.', kn: 'Silver age. Dharma on 3 legs. Age of Ramayana.', gu: 'Silver age. Dharma on 3 legs. Age of Ramayana.' } },
+  { name: 'Dwapara', nameHi: 'द्वापर', years: '864,000', ratio: 2, dharma: 50, color: 'from-amber-600 to-amber-800', barColor: 'bg-gradient-to-r from-amber-600/60 to-amber-800/60', desc: { en: 'Bronze age. Dharma on 2 legs. Mahabharata era.', hi: 'कांस्य युग। धर्म 2 पैरों पर। महाभारत काल।', sa: 'कांस्य युग। धर्म 2 पैरों पर। महाभारत काल।', mai: 'कांस्य युग। धर्म 2 पैरों पर। महाभारत काल।', mr: 'कांस्य युग। धर्म 2 पैरों पर। महाभारत काल।', ta: 'Bronze age. Dharma on 2 legs. Mahabharata era.', te: 'Bronze age. Dharma on 2 legs. Mahabharata era.', bn: 'Bronze age. Dharma on 2 legs. Mahabharata era.', kn: 'Bronze age. Dharma on 2 legs. Mahabharata era.', gu: 'Bronze age. Dharma on 2 legs. Mahabharata era.' } },
+  { name: 'Kali', nameHi: 'कलि', years: '432,000', ratio: 1, dharma: 25, color: 'from-red-500 to-red-700', barColor: 'bg-gradient-to-r from-red-500/50 to-red-700/50', desc: { en: 'Iron age. Dharma on 1 leg. WE ARE HERE (started 3102 BCE).', hi: 'लौह युग। धर्म 1 पैर पर। हम यहाँ हैं (3102 ई.पू. से)।', sa: 'लौह युग। धर्म 1 पैर पर। हम यहाँ हैं (3102 ई.पू. से)।', mai: 'लौह युग। धर्म 1 पैर पर। हम यहाँ हैं (3102 ई.पू. से)।', mr: 'लौह युग। धर्म 1 पैर पर। हम यहाँ हैं (3102 ई.पू. से)।', ta: 'Iron age. Dharma on 1 leg. WE ARE HERE (started 3102 BCE).', te: 'Iron age. Dharma on 1 leg. WE ARE HERE (started 3102 BCE).', bn: 'Iron age. Dharma on 1 leg. WE ARE HERE (started 3102 BCE).', kn: 'Iron age. Dharma on 1 leg. WE ARE HERE (started 3102 BCE).', gu: 'Iron age. Dharma on 1 leg. WE ARE HERE (started 3102 BCE).' } },
 ];
 
 const SCALE_BARS = [
-  { label: { en: 'Biblical Creation', hi: 'बाइबिल सृष्टि' }, years: 6000, display: '~6,000 yrs', color: 'bg-slate-500/60' },
-  { label: { en: 'Greek/Roman Cosmos', hi: 'ग्रीक/रोमन सृष्टि' }, years: 5000, display: '~5,000 yrs', color: 'bg-blue-500/50' },
-  { label: { en: 'Kali Yuga alone', hi: 'केवल कलियुग' }, years: 432000, display: '432,000 yrs', color: 'bg-red-500/50' },
-  { label: { en: 'One Maha Yuga', hi: 'एक महायुग' }, years: 4320000, display: '4.32M yrs', color: 'bg-amber-500/50' },
+  { label: { en: 'Biblical Creation', hi: 'बाइबिल सृष्टि', sa: 'बाइबिल सृष्टि', mai: 'बाइबिल सृष्टि', mr: 'बाइबिल सृष्टि', ta: 'Biblical Creation', te: 'Biblical Creation', bn: 'Biblical Creation', kn: 'Biblical Creation', gu: 'Biblical Creation' }, years: 6000, display: '~6,000 yrs', color: 'bg-slate-500/60' },
+  { label: { en: 'Greek/Roman Cosmos', hi: 'ग्रीक/रोमन सृष्टि', sa: 'ग्रीक/रोमन सृष्टि', mai: 'ग्रीक/रोमन सृष्टि', mr: 'ग्रीक/रोमन सृष्टि', ta: 'Greek/Roman Cosmos', te: 'Greek/Roman Cosmos', bn: 'Greek/Roman Cosmos', kn: 'Greek/Roman Cosmos', gu: 'Greek/Roman Cosmos' }, years: 5000, display: '~5,000 yrs', color: 'bg-blue-500/50' },
+  { label: { en: 'Kali Yuga alone', hi: 'केवल कलियुग', sa: 'केवल कलियुग', mai: 'केवल कलियुग', mr: 'केवल कलियुग', ta: 'Kali Yuga alone', te: 'Kali Yuga alone', bn: 'Kali Yuga alone', kn: 'Kali Yuga alone', gu: 'Kali Yuga alone' }, years: 432000, display: '432,000 yrs', color: 'bg-red-500/50' },
+  { label: { en: 'One Maha Yuga', hi: 'एक महायुग', sa: 'एक महायुग', mai: 'एक महायुग', mr: 'एक महायुग', ta: 'One Maha Yuga', te: 'One Maha Yuga', bn: 'One Maha Yuga', kn: 'One Maha Yuga', gu: 'One Maha Yuga' }, years: 4320000, display: '4.32M yrs', color: 'bg-amber-500/50' },
   { label: { en: 'One Kalpa (Brahma\'s Day)', hi: 'एक कल्प (ब्रह्मा का दिन)' }, years: 4320000000, display: '4.32B yrs', color: 'bg-gradient-to-r from-gold-primary/60 to-amber-500/60' },
   { label: { en: 'Earth\'s Age (Science)', hi: 'पृथ्वी की आयु (विज्ञान)' }, years: 4540000000, display: '4.54B yrs', color: 'bg-emerald-500/50' },
-  { label: { en: 'Universe Age (Science)', hi: 'ब्रह्माण्ड आयु (विज्ञान)' }, years: 13800000000, display: '13.8B yrs', color: 'bg-violet-500/50' },
+  { label: { en: 'Universe Age (Science)', hi: 'ब्रह्माण्ड आयु (विज्ञान)', sa: 'ब्रह्माण्ड आयु (विज्ञान)', mai: 'ब्रह्माण्ड आयु (विज्ञान)', mr: 'ब्रह्माण्ड आयु (विज्ञान)', ta: 'Universe Age (Science)', te: 'Universe Age (Science)', bn: 'Universe Age (Science)', kn: 'Universe Age (Science)', gu: 'Universe Age (Science)' }, years: 13800000000, display: '13.8B yrs', color: 'bg-violet-500/50' },
   { label: { en: 'Brahma\'s Lifespan', hi: 'ब्रह्मा की आयु' }, years: 311040000000000, display: '311 Trillion yrs', color: 'bg-gradient-to-r from-gold-primary/80 to-yellow-300/80' },
 ];
 
 const SANKALPA_LINE = 'श्रीश्वेतवाराहकल्पे वैवस्वतमन्वन्तरे अष्टाविंशतितमे कलियुगे';
 
 const CURRENT_POSITION = [
-  { label: { en: 'Kalpa', hi: 'कल्प' }, value: { en: 'Shveta Varaha Kalpa', hi: 'श्वेतवाराह कल्प' } },
-  { label: { en: 'Manvantara', hi: 'मन्वन्तर' }, value: { en: '7th — Vaivasvata', hi: '7वाँ — वैवस्वत' } },
-  { label: { en: 'Maha Yuga', hi: 'महायुग' }, value: { en: '28th of this Manvantara', hi: 'इस मन्वन्तर का 28वाँ' } },
-  { label: { en: 'Yuga', hi: 'युग' }, value: { en: 'Kali Yuga', hi: 'कलियुग' } },
-  { label: { en: 'Year in Kali Yuga', hi: 'कलियुग में वर्ष' }, value: { en: '~5,128', hi: '~5,128' } },
+  { label: { en: 'Kalpa', hi: 'कल्प', sa: 'कल्प', mai: 'कल्प', mr: 'कल्प', ta: 'Kalpa', te: 'Kalpa', bn: 'Kalpa', kn: 'Kalpa', gu: 'Kalpa' }, value: { en: 'Shveta Varaha Kalpa', hi: 'श्वेतवाराह कल्प', sa: 'श्वेतवाराह कल्प', mai: 'श्वेतवाराह कल्प', mr: 'श्वेतवाराह कल्प', ta: 'Shveta Varaha Kalpa', te: 'Shveta Varaha Kalpa', bn: 'Shveta Varaha Kalpa', kn: 'Shveta Varaha Kalpa', gu: 'Shveta Varaha Kalpa' } },
+  { label: { en: 'Manvantara', hi: 'मन्वन्तर', sa: 'मन्वन्तर', mai: 'मन्वन्तर', mr: 'मन्वन्तर', ta: 'Manvantara', te: 'Manvantara', bn: 'Manvantara', kn: 'Manvantara', gu: 'Manvantara' }, value: { en: '7th — Vaivasvata', hi: '7वाँ — वैवस्वत', sa: '7वाँ — वैवस्वत', mai: '7वाँ — वैवस्वत', mr: '7वाँ — वैवस्वत', ta: '7th — Vaivasvata', te: '7th — Vaivasvata', bn: '7th — Vaivasvata', kn: '7th — Vaivasvata', gu: '7th — Vaivasvata' } },
+  { label: { en: 'Maha Yuga', hi: 'महायुग', sa: 'महायुग', mai: 'महायुग', mr: 'महायुग', ta: 'Maha Yuga', te: 'Maha Yuga', bn: 'Maha Yuga', kn: 'Maha Yuga', gu: 'Maha Yuga' }, value: { en: '28th of this Manvantara', hi: 'इस मन्वन्तर का 28वाँ', sa: 'इस मन्वन्तर का 28वाँ', mai: 'इस मन्वन्तर का 28वाँ', mr: 'इस मन्वन्तर का 28वाँ', ta: '28th of this Manvantara', te: '28th of this Manvantara', bn: '28th of this Manvantara', kn: '28th of this Manvantara', gu: '28th of this Manvantara' } },
+  { label: { en: 'Yuga', hi: 'युग', sa: 'युग', mai: 'युग', mr: 'युग', ta: 'Yuga', te: 'Yuga', bn: 'Yuga', kn: 'Yuga', gu: 'Yuga' }, value: { en: 'Kali Yuga', hi: 'कलियुग', sa: 'कलियुग', mai: 'कलियुग', mr: 'कलियुग', ta: 'Kali Yuga', te: 'Kali Yuga', bn: 'Kali Yuga', kn: 'Kali Yuga', gu: 'Kali Yuga' } },
+  { label: { en: 'Year in Kali Yuga', hi: 'कलियुग में वर्ष', sa: 'कलियुग में वर्ष', mai: 'कलियुग में वर्ष', mr: 'कलियुग में वर्ष', ta: 'Year in Kali Yuga', te: 'Year in Kali Yuga', bn: 'Year in Kali Yuga', kn: 'Year in Kali Yuga', gu: 'Year in Kali Yuga' }, value: { en: '~5,128', hi: '~5,128', sa: '~5,128', mai: '~5,128', mr: '~5,128', ta: '~5,128', te: '~5,128', bn: '~5,128', kn: '~5,128', gu: '~5,128' } },
 ];
 
 /* ═══════════════════════════════════════════════════════════════
@@ -126,7 +127,7 @@ export default function CosmologyPage() {
   const locale = useLocale() as Locale;
   const hi = isDevanagariLocale(locale);
 
-  const t = (obj: Record<string, string>) => hi ? obj.hi : obj.en;
+  const t = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
 
   /* log scale helper for the comparison bars */
   const logWidth = (years: number) => {
@@ -345,10 +346,10 @@ export default function CosmologyPage() {
           {/* Key mathematical facts */}
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
-              { n: '4:3:2:1', d: { en: 'Perfectly mathematical ratio of the four Yugas', hi: 'चार युगों का पूर्णतः गणितीय अनुपात' } },
-              { n: '4,320,000', d: { en: 'Total years in one Maha Yuga (Chatur Yuga)', hi: 'एक महायुग (चतुर्युग) में कुल वर्ष' } },
-              { n: '10%', d: { en: 'Each yuga has a Sandhya (dawn) + Sandhyamsha (dusk)', hi: 'प्रत्येक युग में सन्ध्या + सन्ध्यांश = 10%' } },
-              { n: '~5,128', d: { en: 'Years elapsed in current Kali Yuga (started 3102 BCE)', hi: 'वर्तमान कलियुग में बीते वर्ष (3102 ई.पू. से)' } },
+              { n: '4:3:2:1', d: { en: 'Perfectly mathematical ratio of the four Yugas', hi: 'चार युगों का पूर्णतः गणितीय अनुपात', sa: 'चार युगों का पूर्णतः गणितीय अनुपात', mai: 'चार युगों का पूर्णतः गणितीय अनुपात', mr: 'चार युगों का पूर्णतः गणितीय अनुपात', ta: 'Perfectly mathematical ratio of the four Yugas', te: 'Perfectly mathematical ratio of the four Yugas', bn: 'Perfectly mathematical ratio of the four Yugas', kn: 'Perfectly mathematical ratio of the four Yugas', gu: 'Perfectly mathematical ratio of the four Yugas' } },
+              { n: '4,320,000', d: { en: 'Total years in one Maha Yuga (Chatur Yuga)', hi: 'एक महायुग (चतुर्युग) में कुल वर्ष', sa: 'एक महायुग (चतुर्युग) में कुल वर्ष', mai: 'एक महायुग (चतुर्युग) में कुल वर्ष', mr: 'एक महायुग (चतुर्युग) में कुल वर्ष', ta: 'Total years in one Maha Yuga (Chatur Yuga)', te: 'Total years in one Maha Yuga (Chatur Yuga)', bn: 'Total years in one Maha Yuga (Chatur Yuga)', kn: 'Total years in one Maha Yuga (Chatur Yuga)', gu: 'Total years in one Maha Yuga (Chatur Yuga)' } },
+              { n: '10%', d: { en: 'Each yuga has a Sandhya (dawn) + Sandhyamsha (dusk)', hi: 'प्रत्येक युग में सन्ध्या + सन्ध्यांश = 10%', sa: 'प्रत्येक युग में सन्ध्या + सन्ध्यांश = 10%', mai: 'प्रत्येक युग में सन्ध्या + सन्ध्यांश = 10%', mr: 'प्रत्येक युग में सन्ध्या + सन्ध्यांश = 10%', ta: 'Each yuga has a Sandhya (dawn) + Sandhyamsha (dusk)', te: 'Each yuga has a Sandhya (dawn) + Sandhyamsha (dusk)', bn: 'Each yuga has a Sandhya (dawn) + Sandhyamsha (dusk)', kn: 'Each yuga has a Sandhya (dawn) + Sandhyamsha (dusk)', gu: 'Each yuga has a Sandhya (dawn) + Sandhyamsha (dusk)' } },
+              { n: '~5,128', d: { en: 'Years elapsed in current Kali Yuga (started 3102 BCE)', hi: 'वर्तमान कलियुग में बीते वर्ष (3102 ई.पू. से)', sa: 'वर्तमान कलियुग में बीते वर्ष (3102 ई.पू. से)', mai: 'वर्तमान कलियुग में बीते वर्ष (3102 ई.पू. से)', mr: 'वर्तमान कलियुग में बीते वर्ष (3102 ई.पू. से)', ta: 'Years elapsed in current Kali Yuga (started 3102 BCE)', te: 'Years elapsed in current Kali Yuga (started 3102 BCE)', bn: 'Years elapsed in current Kali Yuga (started 3102 BCE)', kn: 'Years elapsed in current Kali Yuga (started 3102 BCE)', gu: 'Years elapsed in current Kali Yuga (started 3102 BCE)' } },
             ].map((fact, i) => (
               <motion.div
                 key={i}
@@ -370,10 +371,10 @@ export default function CosmologyPage() {
           {/* Nested hierarchy boxes */}
           <div className="mt-4 space-y-3">
             {[
-              { label: { en: 'One Maha Yuga', hi: 'एक महायुग' }, formula: 'Satya + Treta + Dwapara + Kali', value: '4.32 million years', depth: 0, border: 'border-amber-500/20', bg: 'bg-amber-500/[0.04]' },
-              { label: { en: 'One Manvantara', hi: 'एक मन्वन्तर' }, formula: '71 Maha Yugas + 1 Sandhya', value: '~306.72 million years', depth: 1, border: 'border-blue-400/20', bg: 'bg-blue-400/[0.04]' },
+              { label: { en: 'One Maha Yuga', hi: 'एक महायुग', sa: 'एक महायुग', mai: 'एक महायुग', mr: 'एक महायुग', ta: 'One Maha Yuga', te: 'One Maha Yuga', bn: 'One Maha Yuga', kn: 'One Maha Yuga', gu: 'One Maha Yuga' }, formula: 'Satya + Treta + Dwapara + Kali', value: '4.32 million years', depth: 0, border: 'border-amber-500/20', bg: 'bg-amber-500/[0.04]' },
+              { label: { en: 'One Manvantara', hi: 'एक मन्वन्तर', sa: 'एक मन्वन्तर', mai: 'एक मन्वन्तर', mr: 'एक मन्वन्तर', ta: 'One Manvantara', te: 'One Manvantara', bn: 'One Manvantara', kn: 'One Manvantara', gu: 'One Manvantara' }, formula: '71 Maha Yugas + 1 Sandhya', value: '~306.72 million years', depth: 1, border: 'border-blue-400/20', bg: 'bg-blue-400/[0.04]' },
               { label: { en: 'One Kalpa (Brahma\'s Day)', hi: 'एक कल्प (ब्रह्मा का दिन)' }, formula: '14 Manvantaras + 15 Sandhyas', value: '4.32 BILLION years', depth: 2, border: 'border-gold-primary/25', bg: 'bg-gold-primary/[0.06]' },
-              { label: { en: 'One Ahoratra of Brahma', hi: 'ब्रह्मा का एक अहोरात्र' }, formula: '2 Kalpas (day + night)', value: '8.64 BILLION years', depth: 3, border: 'border-purple-400/20', bg: 'bg-purple-400/[0.04]' },
+              { label: { en: 'One Ahoratra of Brahma', hi: 'ब्रह्मा का एक अहोरात्र', sa: 'ब्रह्मा का एक अहोरात्र', mai: 'ब्रह्मा का एक अहोरात्र', mr: 'ब्रह्मा का एक अहोरात्र', ta: 'One Ahoratra of Brahma', te: 'One Ahoratra of Brahma', bn: 'One Ahoratra of Brahma', kn: 'One Ahoratra of Brahma', gu: 'One Ahoratra of Brahma' }, formula: '2 Kalpas (day + night)', value: '8.64 BILLION years', depth: 3, border: 'border-purple-400/20', bg: 'bg-purple-400/[0.04]' },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -470,10 +471,10 @@ export default function CosmologyPage() {
           <div className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
-                { label: { en: 'Brahma lives', hi: 'ब्रह्मा जीते हैं' }, value: { en: '100 Brahma-years', hi: '100 ब्रह्मा-वर्ष' } },
-                { label: { en: 'Each Brahma-year', hi: 'प्रत्येक ब्रह्मा-वर्ष' }, value: { en: '360 Brahma-days (Kalpas)', hi: '360 ब्रह्मा-दिन (कल्प)' } },
-                { label: { en: 'Each Brahma-day', hi: 'प्रत्येक ब्रह्मा-दिन' }, value: { en: '2 Kalpas (day + night)', hi: '2 कल्प (दिन + रात)' } },
-                { label: { en: 'Total lifespan', hi: 'कुल आयु' }, value: { en: '100 x 360 x 2 x 4.32B', hi: '100 x 360 x 2 x 4.32 अरब' } },
+                { label: { en: 'Brahma lives', hi: 'ब्रह्मा जीते हैं', sa: 'ब्रह्मा जीते हैं', mai: 'ब्रह्मा जीते हैं', mr: 'ब्रह्मा जीते हैं', ta: 'Brahma lives', te: 'Brahma lives', bn: 'Brahma lives', kn: 'Brahma lives', gu: 'Brahma lives' }, value: { en: '100 Brahma-years', hi: '100 ब्रह्मा-वर्ष', sa: '100 ब्रह्मा-वर्ष', mai: '100 ब्रह्मा-वर्ष', mr: '100 ब्रह्मा-वर्ष', ta: '100 Brahma-years', te: '100 Brahma-years', bn: '100 Brahma-years', kn: '100 Brahma-years', gu: '100 Brahma-years' } },
+                { label: { en: 'Each Brahma-year', hi: 'प्रत्येक ब्रह्मा-वर्ष', sa: 'प्रत्येक ब्रह्मा-वर्ष', mai: 'प्रत्येक ब्रह्मा-वर्ष', mr: 'प्रत्येक ब्रह्मा-वर्ष', ta: 'Each Brahma-year', te: 'Each Brahma-year', bn: 'Each Brahma-year', kn: 'Each Brahma-year', gu: 'Each Brahma-year' }, value: { en: '360 Brahma-days (Kalpas)', hi: '360 ब्रह्मा-दिन (कल्प)', sa: '360 ब्रह्मा-दिन (कल्प)', mai: '360 ब्रह्मा-दिन (कल्प)', mr: '360 ब्रह्मा-दिन (कल्प)', ta: '360 Brahma-days (Kalpas)', te: '360 Brahma-days (Kalpas)', bn: '360 Brahma-days (Kalpas)', kn: '360 Brahma-days (Kalpas)', gu: '360 Brahma-days (Kalpas)' } },
+                { label: { en: 'Each Brahma-day', hi: 'प्रत्येक ब्रह्मा-दिन', sa: 'प्रत्येक ब्रह्मा-दिन', mai: 'प्रत्येक ब्रह्मा-दिन', mr: 'प्रत्येक ब्रह्मा-दिन', ta: 'Each Brahma-day', te: 'Each Brahma-day', bn: 'Each Brahma-day', kn: 'Each Brahma-day', gu: 'Each Brahma-day' }, value: { en: '2 Kalpas (day + night)', hi: '2 कल्प (दिन + रात)', sa: '2 कल्प (दिन + रात)', mai: '2 कल्प (दिन + रात)', mr: '2 कल्प (दिन + रात)', ta: '2 Kalpas (day + night)', te: '2 Kalpas (day + night)', bn: '2 Kalpas (day + night)', kn: '2 Kalpas (day + night)', gu: '2 Kalpas (day + night)' } },
+                { label: { en: 'Total lifespan', hi: 'कुल आयु', sa: 'कुल आयु', mai: 'कुल आयु', mr: 'कुल आयु', ta: 'Total lifespan', te: 'Total lifespan', bn: 'Total lifespan', kn: 'Total lifespan', gu: 'Total lifespan' }, value: { en: '100 x 360 x 2 x 4.32B', hi: '100 x 360 x 2 x 4.32 अरब', sa: '100 x 360 x 2 x 4.32 अरब', mai: '100 x 360 x 2 x 4.32 अरब', mr: '100 x 360 x 2 x 4.32 अरब', ta: '100 x 360 x 2 x 4.32B', te: '100 x 360 x 2 x 4.32B', bn: '100 x 360 x 2 x 4.32B', kn: '100 x 360 x 2 x 4.32B', gu: '100 x 360 x 2 x 4.32B' } },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -522,8 +523,8 @@ export default function CosmologyPage() {
 
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
-              { icon: Clock, title: { en: 'Kali Ahargana', hi: 'कलि अहर्गण' }, desc: { en: 'Days elapsed since Kali Yuga start (3102 BCE Feb 17/18) — the mathematical basis for all astronomical calculations in this app.', hi: 'कलियुग आरम्भ (3102 ई.पू. फ़रवरी 17/18) से बीते दिन — इस ऐप में सभी खगोलीय गणनाओं का गणितीय आधार।' } },
-              { icon: Clock, title: { en: 'Samvatsara Cycle', hi: 'संवत्सर चक्र' }, desc: { en: 'The 60-year cycle (Jupiter\'s orbit x 5) is a practical sub-unit within the Yuga framework. Vikram & Shaka Samvat are "small" cycles within Kali Yuga.', hi: '60-वर्ष चक्र (बृहस्पति कक्षा x 5) युग ढाँचे के भीतर एक व्यावहारिक उप-इकाई। विक्रम और शक संवत् कलियुग के भीतर "छोटे" चक्र हैं।' } },
+              { icon: Clock, title: { en: 'Kali Ahargana', hi: 'कलि अहर्गण', sa: 'कलि अहर्गण', mai: 'कलि अहर्गण', mr: 'कलि अहर्गण', ta: 'Kali Ahargana', te: 'Kali Ahargana', bn: 'Kali Ahargana', kn: 'Kali Ahargana', gu: 'Kali Ahargana' }, desc: { en: 'Days elapsed since Kali Yuga start (3102 BCE Feb 17/18) — the mathematical basis for all astronomical calculations in this app.', hi: 'कलियुग आरम्भ (3102 ई.पू. फ़रवरी 17/18) से बीते दिन — इस ऐप में सभी खगोलीय गणनाओं का गणितीय आधार।', sa: 'कलियुग आरम्भ (3102 ई.पू. फ़रवरी 17/18) से बीते दिन — इस ऐप में सभी खगोलीय गणनाओं का गणितीय आधार।', mai: 'कलियुग आरम्भ (3102 ई.पू. फ़रवरी 17/18) से बीते दिन — इस ऐप में सभी खगोलीय गणनाओं का गणितीय आधार।', mr: 'कलियुग आरम्भ (3102 ई.पू. फ़रवरी 17/18) से बीते दिन — इस ऐप में सभी खगोलीय गणनाओं का गणितीय आधार।', ta: 'Days elapsed since Kali Yuga start (3102 BCE Feb 17/18) — the mathematical basis for all astronomical calculations in this app.', te: 'Days elapsed since Kali Yuga start (3102 BCE Feb 17/18) — the mathematical basis for all astronomical calculations in this app.', bn: 'Days elapsed since Kali Yuga start (3102 BCE Feb 17/18) — the mathematical basis for all astronomical calculations in this app.', kn: 'Days elapsed since Kali Yuga start (3102 BCE Feb 17/18) — the mathematical basis for all astronomical calculations in this app.', gu: 'Days elapsed since Kali Yuga start (3102 BCE Feb 17/18) — the mathematical basis for all astronomical calculations in this app.' } },
+              { icon: Clock, title: { en: 'Samvatsara Cycle', hi: 'संवत्सर चक्र', sa: 'संवत्सर चक्र', mai: 'संवत्सर चक्र', mr: 'संवत्सर चक्र', ta: 'Samvatsara Cycle', te: 'Samvatsara Cycle', bn: 'Samvatsara Cycle', kn: 'Samvatsara Cycle', gu: 'Samvatsara Cycle' }, desc: { en: 'The 60-year cycle (Jupiter\'s orbit x 5) is a practical sub-unit within the Yuga framework. Vikram & Shaka Samvat are "small" cycles within Kali Yuga.', hi: '60-वर्ष चक्र (बृहस्पति कक्षा x 5) युग ढाँचे के भीतर एक व्यावहारिक उप-इकाई। विक्रम और शक संवत् कलियुग के भीतर "छोटे" चक्र हैं।' } },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -548,11 +549,11 @@ export default function CosmologyPage() {
           {/* Comparison facts */}
           <div className="space-y-4 mt-2">
             {[
-              { fact: { en: 'Archbishop Ussher (1650 CE) calculated Biblical creation at 4004 BCE = ~6,030 years ago. Hindu Kali Yuga ALONE started 5,128 years ago — and that is the SMALLEST yuga.', hi: 'आर्कबिशप अशर (1650 ई.) ने बाइबिल सृष्टि 4004 ई.पू. = ~6,030 वर्ष पहले आँकी। केवल हिन्दू कलियुग 5,128 वर्ष पहले शुरू हुआ — और वह सबसे छोटा युग है।' } },
-              { fact: { en: 'The Big Bang theory (13.8 billion years) was proposed in 1931. Hindu texts described comparable timescales over 2,000 years earlier.', hi: 'बिग बैंग सिद्धान्त (13.8 अरब वर्ष) 1931 में प्रस्तावित हुआ। हिन्दू ग्रन्थों ने 2,000 वर्ष पहले तुलनीय कालमान वर्णित किए।' } },
+              { fact: { en: 'Archbishop Ussher (1650 CE) calculated Biblical creation at 4004 BCE = ~6,030 years ago. Hindu Kali Yuga ALONE started 5,128 years ago — and that is the SMALLEST yuga.', hi: 'आर्कबिशप अशर (1650 ई.) ने बाइबिल सृष्टि 4004 ई.पू. = ~6,030 वर्ष पहले आँकी। केवल हिन्दू कलियुग 5,128 वर्ष पहले शुरू हुआ — और वह सबसे छोटा युग है।', sa: 'आर्कबिशप अशर (1650 ई.) ने बाइबिल सृष्टि 4004 ई.पू. = ~6,030 वर्ष पहले आँकी। केवल हिन्दू कलियुग 5,128 वर्ष पहले शुरू हुआ — और वह सबसे छोटा युग है।', mai: 'आर्कबिशप अशर (1650 ई.) ने बाइबिल सृष्टि 4004 ई.पू. = ~6,030 वर्ष पहले आँकी। केवल हिन्दू कलियुग 5,128 वर्ष पहले शुरू हुआ — और वह सबसे छोटा युग है।', mr: 'आर्कबिशप अशर (1650 ई.) ने बाइबिल सृष्टि 4004 ई.पू. = ~6,030 वर्ष पहले आँकी। केवल हिन्दू कलियुग 5,128 वर्ष पहले शुरू हुआ — और वह सबसे छोटा युग है।', ta: 'Archbishop Ussher (1650 CE) calculated Biblical creation at 4004 BCE = ~6,030 years ago. Hindu Kali Yuga ALONE started 5,128 years ago — and that is the SMALLEST yuga.', te: 'Archbishop Ussher (1650 CE) calculated Biblical creation at 4004 BCE = ~6,030 years ago. Hindu Kali Yuga ALONE started 5,128 years ago — and that is the SMALLEST yuga.', bn: 'Archbishop Ussher (1650 CE) calculated Biblical creation at 4004 BCE = ~6,030 years ago. Hindu Kali Yuga ALONE started 5,128 years ago — and that is the SMALLEST yuga.', kn: 'Archbishop Ussher (1650 CE) calculated Biblical creation at 4004 BCE = ~6,030 years ago. Hindu Kali Yuga ALONE started 5,128 years ago — and that is the SMALLEST yuga.', gu: 'Archbishop Ussher (1650 CE) calculated Biblical creation at 4004 BCE = ~6,030 years ago. Hindu Kali Yuga ALONE started 5,128 years ago — and that is the SMALLEST yuga.' } },
+              { fact: { en: 'The Big Bang theory (13.8 billion years) was proposed in 1931. Hindu texts described comparable timescales over 2,000 years earlier.', hi: 'बिग बैंग सिद्धान्त (13.8 अरब वर्ष) 1931 में प्रस्तावित हुआ। हिन्दू ग्रन्थों ने 2,000 वर्ष पहले तुलनीय कालमान वर्णित किए।', sa: 'बिग बैंग सिद्धान्त (13.8 अरब वर्ष) 1931 में प्रस्तावित हुआ। हिन्दू ग्रन्थों ने 2,000 वर्ष पहले तुलनीय कालमान वर्णित किए।', mai: 'बिग बैंग सिद्धान्त (13.8 अरब वर्ष) 1931 में प्रस्तावित हुआ। हिन्दू ग्रन्थों ने 2,000 वर्ष पहले तुलनीय कालमान वर्णित किए।', mr: 'बिग बैंग सिद्धान्त (13.8 अरब वर्ष) 1931 में प्रस्तावित हुआ। हिन्दू ग्रन्थों ने 2,000 वर्ष पहले तुलनीय कालमान वर्णित किए।', ta: 'The Big Bang theory (13.8 billion years) was proposed in 1931. Hindu texts described comparable timescales over 2,000 years earlier.', te: 'The Big Bang theory (13.8 billion years) was proposed in 1931. Hindu texts described comparable timescales over 2,000 years earlier.', bn: 'The Big Bang theory (13.8 billion years) was proposed in 1931. Hindu texts described comparable timescales over 2,000 years earlier.', kn: 'The Big Bang theory (13.8 billion years) was proposed in 1931. Hindu texts described comparable timescales over 2,000 years earlier.', gu: 'The Big Bang theory (13.8 billion years) was proposed in 1931. Hindu texts described comparable timescales over 2,000 years earlier.' } },
               { fact: { en: 'Roger Penrose\'s Conformal Cyclic Cosmology proposes infinite cycles of Big Bangs — structurally identical to the Hindu model of Srishti (creation) and Pralaya (dissolution).', hi: 'रोजर पेनरोज़ का कॉन्फ़ॉर्मल चक्रीय ब्रह्माण्ड विज्ञान अनन्त बिग बैंग चक्रों का प्रस्ताव करता है — हिन्दू सृष्टि और प्रलय मॉडल के संरचनात्मक रूप से समरूप।' } },
-              { fact: { en: 'The concept of entropy and heat death leading to dissolution and new creation is structurally identical to Hindu cosmological cycles.', hi: 'एन्ट्रॉपी और ऊष्मा मृत्यु से प्रलय और नई सृष्टि की अवधारणा हिन्दू ब्रह्माण्डीय चक्रों के संरचनात्मक रूप से समरूप है।' } },
-              { fact: { en: 'Greek cosmos: eternal but spatially limited. Hindu cosmos: eternal AND temporally vast — infinite in both space and time.', hi: 'ग्रीक ब्रह्माण्ड: शाश्वत पर स्थानिक रूप से सीमित। हिन्दू ब्रह्माण्ड: शाश्वत और कालिक रूप से विशाल — स्थान और समय दोनों में अनन्त।' } },
+              { fact: { en: 'The concept of entropy and heat death leading to dissolution and new creation is structurally identical to Hindu cosmological cycles.', hi: 'एन्ट्रॉपी और ऊष्मा मृत्यु से प्रलय और नई सृष्टि की अवधारणा हिन्दू ब्रह्माण्डीय चक्रों के संरचनात्मक रूप से समरूप है।', sa: 'एन्ट्रॉपी और ऊष्मा मृत्यु से प्रलय और नई सृष्टि की अवधारणा हिन्दू ब्रह्माण्डीय चक्रों के संरचनात्मक रूप से समरूप है।', mai: 'एन्ट्रॉपी और ऊष्मा मृत्यु से प्रलय और नई सृष्टि की अवधारणा हिन्दू ब्रह्माण्डीय चक्रों के संरचनात्मक रूप से समरूप है।', mr: 'एन्ट्रॉपी और ऊष्मा मृत्यु से प्रलय और नई सृष्टि की अवधारणा हिन्दू ब्रह्माण्डीय चक्रों के संरचनात्मक रूप से समरूप है।', ta: 'The concept of entropy and heat death leading to dissolution and new creation is structurally identical to Hindu cosmological cycles.', te: 'The concept of entropy and heat death leading to dissolution and new creation is structurally identical to Hindu cosmological cycles.', bn: 'The concept of entropy and heat death leading to dissolution and new creation is structurally identical to Hindu cosmological cycles.', kn: 'The concept of entropy and heat death leading to dissolution and new creation is structurally identical to Hindu cosmological cycles.', gu: 'The concept of entropy and heat death leading to dissolution and new creation is structurally identical to Hindu cosmological cycles.' } },
+              { fact: { en: 'Greek cosmos: eternal but spatially limited. Hindu cosmos: eternal AND temporally vast — infinite in both space and time.', hi: 'ग्रीक ब्रह्माण्ड: शाश्वत पर स्थानिक रूप से सीमित। हिन्दू ब्रह्माण्ड: शाश्वत और कालिक रूप से विशाल — स्थान और समय दोनों में अनन्त।', sa: 'ग्रीक ब्रह्माण्ड: शाश्वत पर स्थानिक रूप से सीमित। हिन्दू ब्रह्माण्ड: शाश्वत और कालिक रूप से विशाल — स्थान और समय दोनों में अनन्त।', mai: 'ग्रीक ब्रह्माण्ड: शाश्वत पर स्थानिक रूप से सीमित। हिन्दू ब्रह्माण्ड: शाश्वत और कालिक रूप से विशाल — स्थान और समय दोनों में अनन्त।', mr: 'ग्रीक ब्रह्माण्ड: शाश्वत पर स्थानिक रूप से सीमित। हिन्दू ब्रह्माण्ड: शाश्वत और कालिक रूप से विशाल — स्थान और समय दोनों में अनन्त।', ta: 'Greek cosmos: eternal but spatially limited. Hindu cosmos: eternal AND temporally vast — infinite in both space and time.', te: 'Greek cosmos: eternal but spatially limited. Hindu cosmos: eternal AND temporally vast — infinite in both space and time.', bn: 'Greek cosmos: eternal but spatially limited. Hindu cosmos: eternal AND temporally vast — infinite in both space and time.', kn: 'Greek cosmos: eternal but spatially limited. Hindu cosmos: eternal AND temporally vast — infinite in both space and time.', gu: 'Greek cosmos: eternal but spatially limited. Hindu cosmos: eternal AND temporally vast — infinite in both space and time.' } },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -652,9 +653,9 @@ export default function CosmologyPage() {
           <h3 className="text-gold-light font-semibold text-sm uppercase tracking-wider mb-4">{t(L.exploreMore)}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
-              { href: '/learn/modules/0-2' as const, label: { en: 'The Hindu Calendar', hi: 'हिन्दू पंचांग' } },
-              { href: '/sankalpa' as const, label: { en: 'Sankalpa Generator', hi: 'संकल्प जनरेटर' } },
-              { href: '/learn/calculations' as const, label: { en: 'Astronomical Calculations', hi: 'खगोलीय गणनाएँ' } },
+              { href: '/learn/modules/0-2' as const, label: { en: 'The Hindu Calendar', hi: 'हिन्दू पंचांग', sa: 'हिन्दू पंचांग', mai: 'हिन्दू पंचांग', mr: 'हिन्दू पंचांग', ta: 'The Hindu Calendar', te: 'The Hindu Calendar', bn: 'The Hindu Calendar', kn: 'The Hindu Calendar', gu: 'The Hindu Calendar' } },
+              { href: '/sankalpa' as const, label: { en: 'Sankalpa Generator', hi: 'संकल्प जनरेटर', sa: 'संकल्प जनरेटर', mai: 'संकल्प जनरेटर', mr: 'संकल्प जनरेटर', ta: 'Sankalpa Generator', te: 'Sankalpa Generator', bn: 'Sankalpa Generator', kn: 'Sankalpa Generator', gu: 'Sankalpa Generator' } },
+              { href: '/learn/calculations' as const, label: { en: 'Astronomical Calculations', hi: 'खगोलीय गणनाएँ', sa: 'खगोलीय गणनाएँ', mai: 'खगोलीय गणनाएँ', mr: 'खगोलीय गणनाएँ', ta: 'Astronomical Calculations', te: 'Astronomical Calculations', bn: 'Astronomical Calculations', kn: 'Astronomical Calculations', gu: 'Astronomical Calculations' } },
               { href: '/panchang' as const, label: { en: 'Today\'s Panchang', hi: 'आज का पंचांग' } },
             ].map((link, i) => (
               <Link

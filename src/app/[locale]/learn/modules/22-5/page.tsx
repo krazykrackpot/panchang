@@ -5,17 +5,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_22_5', phase: 9, topic: 'Astronomy', moduleNumber: '22.5',
-  title: { en: 'Moonrise — Parallax, Latitude & Binary Search', hi: 'चन्द्रोदय — लम्बन, अक्षांश एवं द्विआधारी खोज' },
+  title: { en: 'Moonrise — Parallax, Latitude & Binary Search', hi: 'चन्द्रोदय — लम्बन, अक्षांश एवं द्विआधारी खोज', sa: 'चन्द्रोदय — लम्बन, अक्षांश एवं द्विआधारी खोज', mai: 'चन्द्रोदय — लम्बन, अक्षांश एवं द्विआधारी खोज', mr: 'चन्द्रोदय — लम्बन, अक्षांश एवं द्विआधारी खोज', ta: 'Moonrise — Parallax, Latitude & Binary Search', te: 'Moonrise — Parallax, Latitude & Binary Search', bn: 'Moonrise — Parallax, Latitude & Binary Search', kn: 'Moonrise — Parallax, Latitude & Binary Search', gu: 'Moonrise — Parallax, Latitude & Binary Search' },
   subtitle: {
     en: 'Why the Moon is too fast for hour-angle formulas, and how iterative scanning with parallax correction finds moonrise to 2-minute accuracy',
     hi: 'चन्द्रमा घण्टा-कोण सूत्रों के लिए अत्यधिक तेज़ क्यों है, और लम्बन सुधार सहित पुनरावृत्तीय अन्वेषण 2-मिनट सटीकता तक चन्द्रोदय कैसे ढूँढता है',
   },
   estimatedMinutes: 14,
   crossRefs: [
-    { label: { en: 'Module 22-3: Finding the Moon', hi: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति' }, href: '/learn/modules/22-3' },
-    { label: { en: 'Module 22-4: Sunrise Calculation', hi: 'मॉड्यूल 22-4: सूर्योदय गणना' }, href: '/learn/modules/22-4' },
-    { label: { en: 'Module 22-6: Equation of Time', hi: 'मॉड्यूल 22-6: समय का समीकरण' }, href: '/learn/modules/22-6' },
-    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग' }, href: '/panchang' },
+    { label: { en: 'Module 22-3: Finding the Moon', hi: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', sa: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', mai: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', mr: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', ta: 'Module 22-3: Finding the Moon', te: 'Module 22-3: Finding the Moon', bn: 'Module 22-3: Finding the Moon', kn: 'Module 22-3: Finding the Moon', gu: 'Module 22-3: Finding the Moon' }, href: '/learn/modules/22-3' },
+    { label: { en: 'Module 22-4: Sunrise Calculation', hi: 'मॉड्यूल 22-4: सूर्योदय गणना', sa: 'मॉड्यूल 22-4: सूर्योदय गणना', mai: 'मॉड्यूल 22-4: सूर्योदय गणना', mr: 'मॉड्यूल 22-4: सूर्योदय गणना', ta: 'Module 22-4: Sunrise Calculation', te: 'Module 22-4: Sunrise Calculation', bn: 'Module 22-4: Sunrise Calculation', kn: 'Module 22-4: Sunrise Calculation', gu: 'Module 22-4: Sunrise Calculation' }, href: '/learn/modules/22-4' },
+    { label: { en: 'Module 22-6: Equation of Time', hi: 'मॉड्यूल 22-6: समय का समीकरण', sa: 'मॉड्यूल 22-6: समय का समीकरण', mai: 'मॉड्यूल 22-6: समय का समीकरण', mr: 'मॉड्यूल 22-6: समय का समीकरण', ta: 'Module 22-6: Equation of Time', te: 'Module 22-6: Equation of Time', bn: 'Module 22-6: Equation of Time', kn: 'Module 22-6: Equation of Time', gu: 'Module 22-6: Equation of Time' }, href: '/learn/modules/22-6' },
+    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग', mai: 'दैनिक पंचांग', mr: 'दैनिक पंचांग', ta: 'Daily Panchang', te: 'Daily Panchang', bn: 'Daily Panchang', kn: 'Daily Panchang', gu: 'Daily Panchang' }, href: '/panchang' },
   ],
 };
 
@@ -27,10 +27,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्रोदय के लिए सूर्योदय वाला घण्टा-कोण सूत्र क्यों नहीं उपयोग कर सकते?',
     },
     options: [
-      { en: 'The Moon has no declination', hi: 'चन्द्रमा की कोई क्रान्ति नहीं है' },
-      { en: 'The Moon moves ~13°/day, changing position significantly during the computation', hi: 'चन्द्रमा ~13°/दिन चलता है, गणना के दौरान स्थिति महत्त्वपूर्ण रूप से बदलती है' },
-      { en: 'The Moon has no atmosphere', hi: 'चन्द्रमा का कोई वायुमण्डल नहीं है' },
-      { en: 'The Moon is always above the horizon', hi: 'चन्द्रमा सदैव क्षितिज से ऊपर है' },
+      { en: 'The Moon has no declination', hi: 'चन्द्रमा की कोई क्रान्ति नहीं है', sa: 'चन्द्रमा की कोई क्रान्ति नहीं है', mai: 'चन्द्रमा की कोई क्रान्ति नहीं है', mr: 'चन्द्रमा की कोई क्रान्ति नहीं है', ta: 'The Moon has no declination', te: 'The Moon has no declination', bn: 'The Moon has no declination', kn: 'The Moon has no declination', gu: 'The Moon has no declination' },
+      { en: 'The Moon moves ~13°/day, changing position significantly during the computation', hi: 'चन्द्रमा ~13°/दिन चलता है, गणना के दौरान स्थिति महत्त्वपूर्ण रूप से बदलती है', sa: 'चन्द्रमा ~13°/दिन चलता है, गणना के दौरान स्थिति महत्त्वपूर्ण रूप से बदलती है', mai: 'चन्द्रमा ~13°/दिन चलता है, गणना के दौरान स्थिति महत्त्वपूर्ण रूप से बदलती है', mr: 'चन्द्रमा ~13°/दिन चलता है, गणना के दौरान स्थिति महत्त्वपूर्ण रूप से बदलती है', ta: 'The Moon moves ~13°/day, changing position significantly during the computation', te: 'The Moon moves ~13°/day, changing position significantly during the computation', bn: 'The Moon moves ~13°/day, changing position significantly during the computation', kn: 'The Moon moves ~13°/day, changing position significantly during the computation', gu: 'The Moon moves ~13°/day, changing position significantly during the computation' },
+      { en: 'The Moon has no atmosphere', hi: 'चन्द्रमा का कोई वायुमण्डल नहीं है', sa: 'चन्द्रमा का कोई वायुमण्डल नहीं है', mai: 'चन्द्रमा का कोई वायुमण्डल नहीं है', mr: 'चन्द्रमा का कोई वायुमण्डल नहीं है', ta: 'The Moon has no atmosphere', te: 'The Moon has no atmosphere', bn: 'The Moon has no atmosphere', kn: 'The Moon has no atmosphere', gu: 'The Moon has no atmosphere' },
+      { en: 'The Moon is always above the horizon', hi: 'चन्द्रमा सदैव क्षितिज से ऊपर है', sa: 'चन्द्रमा सदैव क्षितिज से ऊपर है', mai: 'चन्द्रमा सदैव क्षितिज से ऊपर है', mr: 'चन्द्रमा सदैव क्षितिज से ऊपर है', ta: 'The Moon is always above the horizon', te: 'The Moon is always above the horizon', bn: 'The Moon is always above the horizon', kn: 'The Moon is always above the horizon', gu: 'The Moon is always above the horizon' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -45,10 +45,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'हमारा इंजन चन्द्रोदय कैसे ढूँढता है?',
     },
     options: [
-      { en: 'Direct hour-angle formula like sunrise', hi: 'सूर्योदय जैसा प्रत्यक्ष घण्टा-कोण सूत्र' },
-      { en: 'Scan Moon altitude every 5 minutes for 24 hours, then binary search the crossing', hi: '24 घण्टे प्रत्येक 5 मिनट पर चन्द्र ऊँचाई जाँचें, फिर क्रॉसिंग पर द्विआधारी खोज' },
-      { en: 'Look up a pre-computed table', hi: 'पूर्व-गणित सारणी देखें' },
-      { en: 'Use the same algorithm as sunrise with different refraction', hi: 'भिन्न अपवर्तन के साथ सूर्योदय का एल्गोरिदम उपयोग करें' },
+      { en: 'Direct hour-angle formula like sunrise', hi: 'सूर्योदय जैसा प्रत्यक्ष घण्टा-कोण सूत्र', sa: 'सूर्योदय जैसा प्रत्यक्ष घण्टा-कोण सूत्र', mai: 'सूर्योदय जैसा प्रत्यक्ष घण्टा-कोण सूत्र', mr: 'सूर्योदय जैसा प्रत्यक्ष घण्टा-कोण सूत्र', ta: 'Direct hour-angle formula like sunrise', te: 'Direct hour-angle formula like sunrise', bn: 'Direct hour-angle formula like sunrise', kn: 'Direct hour-angle formula like sunrise', gu: 'Direct hour-angle formula like sunrise' },
+      { en: 'Scan Moon altitude every 5 minutes for 24 hours, then binary search the crossing', hi: '24 घण्टे प्रत्येक 5 मिनट पर चन्द्र ऊँचाई जाँचें, फिर क्रॉसिंग पर द्विआधारी खोज', sa: '24 घण्टे प्रत्येक 5 मिनट पर चन्द्र ऊँचाई जाँचें, फिर क्रॉसिंग पर द्विआधारी खोज', mai: '24 घण्टे प्रत्येक 5 मिनट पर चन्द्र ऊँचाई जाँचें, फिर क्रॉसिंग पर द्विआधारी खोज', mr: '24 घण्टे प्रत्येक 5 मिनट पर चन्द्र ऊँचाई जाँचें, फिर क्रॉसिंग पर द्विआधारी खोज', ta: 'Scan Moon altitude every 5 minutes for 24 hours, then binary search the crossing', te: 'Scan Moon altitude every 5 minutes for 24 hours, then binary search the crossing', bn: 'Scan Moon altitude every 5 minutes for 24 hours, then binary search the crossing', kn: 'Scan Moon altitude every 5 minutes for 24 hours, then binary search the crossing', gu: 'Scan Moon altitude every 5 minutes for 24 hours, then binary search the crossing' },
+      { en: 'Look up a pre-computed table', hi: 'पूर्व-गणित सारणी देखें', sa: 'पूर्व-गणित सारणी देखें', mai: 'पूर्व-गणित सारणी देखें', mr: 'पूर्व-गणित सारणी देखें', ta: 'Look up a pre-computed table', te: 'Look up a pre-computed table', bn: 'Look up a pre-computed table', kn: 'Look up a pre-computed table', gu: 'Look up a pre-computed table' },
+      { en: 'Use the same algorithm as sunrise with different refraction', hi: 'भिन्न अपवर्तन के साथ सूर्योदय का एल्गोरिदम उपयोग करें', sa: 'भिन्न अपवर्तन के साथ सूर्योदय का एल्गोरिदम उपयोग करें', mai: 'भिन्न अपवर्तन के साथ सूर्योदय का एल्गोरिदम उपयोग करें', mr: 'भिन्न अपवर्तन के साथ सूर्योदय का एल्गोरिदम उपयोग करें', ta: 'Use the same algorithm as sunrise with different refraction', te: 'Use the same algorithm as sunrise with different refraction', bn: 'Use the same algorithm as sunrise with different refraction', kn: 'Use the same algorithm as sunrise with different refraction', gu: 'Use the same algorithm as sunrise with different refraction' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -63,10 +63,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्रोदय ऊँचाई सीमा h₀ लगभग है:',
     },
     options: [
-      { en: '-0.8333° (same as sunrise)', hi: '-0.8333° (सूर्योदय के समान)' },
-      { en: '0° (geometric horizon)', hi: '0° (ज्यामितीय क्षितिज)' },
-      { en: '-0.3° (semi-diameter minus refraction, with parallax applied separately)', hi: '-0.3° (अर्ध-व्यास ऋण अपवर्तन, लम्बन अलग से लागू)' },
-      { en: '-6° (civil twilight)', hi: '-6° (नागरिक गोधूलि)' },
+      { en: '-0.8333° (same as sunrise)', hi: '-0.8333° (सूर्योदय के समान)', sa: '-0.8333° (सूर्योदय के समान)', mai: '-0.8333° (सूर्योदय के समान)', mr: '-0.8333° (सूर्योदय के समान)', ta: '-0.8333° (same as sunrise)', te: '-0.8333° (same as sunrise)', bn: '-0.8333° (same as sunrise)', kn: '-0.8333° (same as sunrise)', gu: '-0.8333° (same as sunrise)' },
+      { en: '0° (geometric horizon)', hi: '0° (ज्यामितीय क्षितिज)', sa: '0° (ज्यामितीय क्षितिज)', mai: '0° (ज्यामितीय क्षितिज)', mr: '0° (ज्यामितीय क्षितिज)', ta: '0° (geometric horizon)', te: '0° (geometric horizon)', bn: '0° (geometric horizon)', kn: '0° (geometric horizon)', gu: '0° (geometric horizon)' },
+      { en: '-0.3° (semi-diameter minus refraction, with parallax applied separately)', hi: '-0.3° (अर्ध-व्यास ऋण अपवर्तन, लम्बन अलग से लागू)', sa: '-0.3° (अर्ध-व्यास ऋण अपवर्तन, लम्बन अलग से लागू)', mai: '-0.3° (अर्ध-व्यास ऋण अपवर्तन, लम्बन अलग से लागू)', mr: '-0.3° (अर्ध-व्यास ऋण अपवर्तन, लम्बन अलग से लागू)', ta: '-0.3° (semi-diameter minus refraction, with parallax applied separately)', te: '-0.3° (semi-diameter minus refraction, with parallax applied separately)', bn: '-0.3° (semi-diameter minus refraction, with parallax applied separately)', kn: '-0.3° (semi-diameter minus refraction, with parallax applied separately)', gu: '-0.3° (semi-diameter minus refraction, with parallax applied separately)' },
+      { en: '-6° (civil twilight)', hi: '-6° (नागरिक गोधूलि)', sa: '-6° (नागरिक गोधूलि)', mai: '-6° (नागरिक गोधूलि)', mr: '-6° (नागरिक गोधूलि)', ta: '-6° (civil twilight)', te: '-6° (civil twilight)', bn: '-6° (civil twilight)', kn: '-6° (civil twilight)', gu: '-6° (civil twilight)' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -93,10 +93,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्र ऊँचाई का स्थलकेन्द्रीय सुधार है:',
     },
     options: [
-      { en: 'alt_topo = alt_geo + HP x cos(alt)', hi: 'alt_topo = alt_geo + HP × cos(alt)' },
-      { en: 'alt_topo = alt_geo - HP x cos(alt)', hi: 'alt_topo = alt_geo - HP × cos(alt)' },
-      { en: 'alt_topo = alt_geo - HP x sin(alt)', hi: 'alt_topo = alt_geo - HP × sin(alt)' },
-      { en: 'alt_topo = alt_geo / HP', hi: 'alt_topo = alt_geo / HP' },
+      { en: 'alt_topo = alt_geo + HP x cos(alt)', hi: 'alt_topo = alt_geo + HP × cos(alt)', sa: 'alt_topo = alt_geo + HP × cos(alt)', mai: 'alt_topo = alt_geo + HP × cos(alt)', mr: 'alt_topo = alt_geo + HP × cos(alt)', ta: 'alt_topo = alt_geo + HP x cos(alt)', te: 'alt_topo = alt_geo + HP x cos(alt)', bn: 'alt_topo = alt_geo + HP x cos(alt)', kn: 'alt_topo = alt_geo + HP x cos(alt)', gu: 'alt_topo = alt_geo + HP x cos(alt)' },
+      { en: 'alt_topo = alt_geo - HP x cos(alt)', hi: 'alt_topo = alt_geo - HP × cos(alt)', sa: 'alt_topo = alt_geo - HP × cos(alt)', mai: 'alt_topo = alt_geo - HP × cos(alt)', mr: 'alt_topo = alt_geo - HP × cos(alt)', ta: 'alt_topo = alt_geo - HP x cos(alt)', te: 'alt_topo = alt_geo - HP x cos(alt)', bn: 'alt_topo = alt_geo - HP x cos(alt)', kn: 'alt_topo = alt_geo - HP x cos(alt)', gu: 'alt_topo = alt_geo - HP x cos(alt)' },
+      { en: 'alt_topo = alt_geo - HP x sin(alt)', hi: 'alt_topo = alt_geo - HP × sin(alt)', sa: 'alt_topo = alt_geo - HP × sin(alt)', mai: 'alt_topo = alt_geo - HP × sin(alt)', mr: 'alt_topo = alt_geo - HP × sin(alt)', ta: 'alt_topo = alt_geo - HP x sin(alt)', te: 'alt_topo = alt_geo - HP x sin(alt)', bn: 'alt_topo = alt_geo - HP x sin(alt)', kn: 'alt_topo = alt_geo - HP x sin(alt)', gu: 'alt_topo = alt_geo - HP x sin(alt)' },
+      { en: 'alt_topo = alt_geo / HP', hi: 'alt_topo = alt_geo / HP', sa: 'alt_topo = alt_geo / HP', mai: 'alt_topo = alt_geo / HP', mr: 'alt_topo = alt_geo / HP', ta: 'alt_topo = alt_geo / HP', te: 'alt_topo = alt_geo / HP', bn: 'alt_topo = alt_geo / HP', kn: 'alt_topo = alt_geo / HP', gu: 'alt_topo = alt_geo / HP' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -113,7 +113,7 @@ const QUESTIONS: ModuleQuestion[] = [
     options: [
       { en: 'Earth\'s radius changes with latitude', hi: 'पृथ्वी की त्रिज्या अक्षांश से बदलती है' },
       { en: 'The Moon\'s distance varies between perigee (356k km) and apogee (407k km)', hi: 'चन्द्र दूरी उपभू (356k किमी) और अपभू (407k किमी) के बीच भिन्न होती है' },
-      { en: 'Atmospheric pressure changes', hi: 'वायुमण्डलीय दाब परिवर्तन' },
+      { en: 'Atmospheric pressure changes', hi: 'वायुमण्डलीय दाब परिवर्तन', sa: 'वायुमण्डलीय दाब परिवर्तन', mai: 'वायुमण्डलीय दाब परिवर्तन', mr: 'वायुमण्डलीय दाब परिवर्तन', ta: 'Atmospheric pressure changes', te: 'Atmospheric pressure changes', bn: 'Atmospheric pressure changes', kn: 'Atmospheric pressure changes', gu: 'Atmospheric pressure changes' },
       { en: 'The Moon\'s diameter changes', hi: 'चन्द्रमा का व्यास बदलता है' },
     ],
     correctAnswer: 1,
@@ -129,10 +129,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'हमारा इंजन कितनी द्विआधारी खोज पुनरावृत्तियाँ करता है, और इससे कितनी सटीकता प्राप्त होती है?',
     },
     options: [
-      { en: '5 iterations, ~10 second precision', hi: '5 पुनरावृत्तियाँ, ~10 सेकण्ड सटीकता' },
-      { en: '15 iterations, ~0.03 second precision', hi: '15 पुनरावृत्तियाँ, ~0.03 सेकण्ड सटीकता' },
-      { en: '100 iterations, ~0.001 second precision', hi: '100 पुनरावृत्तियाँ, ~0.001 सेकण्ड सटीकता' },
-      { en: '3 iterations, ~1 minute precision', hi: '3 पुनरावृत्तियाँ, ~1 मिनट सटीकता' },
+      { en: '5 iterations, ~10 second precision', hi: '5 पुनरावृत्तियाँ, ~10 सेकण्ड सटीकता', sa: '5 पुनरावृत्तियाँ, ~10 सेकण्ड सटीकता', mai: '5 पुनरावृत्तियाँ, ~10 सेकण्ड सटीकता', mr: '5 पुनरावृत्तियाँ, ~10 सेकण्ड सटीकता', ta: '5 iterations, ~10 second precision', te: '5 iterations, ~10 second precision', bn: '5 iterations, ~10 second precision', kn: '5 iterations, ~10 second precision', gu: '5 iterations, ~10 second precision' },
+      { en: '15 iterations, ~0.03 second precision', hi: '15 पुनरावृत्तियाँ, ~0.03 सेकण्ड सटीकता', sa: '15 पुनरावृत्तियाँ, ~0.03 सेकण्ड सटीकता', mai: '15 पुनरावृत्तियाँ, ~0.03 सेकण्ड सटीकता', mr: '15 पुनरावृत्तियाँ, ~0.03 सेकण्ड सटीकता', ta: '15 iterations, ~0.03 second precision', te: '15 iterations, ~0.03 second precision', bn: '15 iterations, ~0.03 second precision', kn: '15 iterations, ~0.03 second precision', gu: '15 iterations, ~0.03 second precision' },
+      { en: '100 iterations, ~0.001 second precision', hi: '100 पुनरावृत्तियाँ, ~0.001 सेकण्ड सटीकता', sa: '100 पुनरावृत्तियाँ, ~0.001 सेकण्ड सटीकता', mai: '100 पुनरावृत्तियाँ, ~0.001 सेकण्ड सटीकता', mr: '100 पुनरावृत्तियाँ, ~0.001 सेकण्ड सटीकता', ta: '100 iterations, ~0.001 second precision', te: '100 iterations, ~0.001 second precision', bn: '100 iterations, ~0.001 second precision', kn: '100 iterations, ~0.001 second precision', gu: '100 iterations, ~0.001 second precision' },
+      { en: '3 iterations, ~1 minute precision', hi: '3 पुनरावृत्तियाँ, ~1 मिनट सटीकता', sa: '3 पुनरावृत्तियाँ, ~1 मिनट सटीकता', mai: '3 पुनरावृत्तियाँ, ~1 मिनट सटीकता', mr: '3 पुनरावृत्तियाँ, ~1 मिनट सटीकता', ta: '3 iterations, ~1 minute precision', te: '3 iterations, ~1 minute precision', bn: '3 iterations, ~1 minute precision', kn: '3 iterations, ~1 minute precision', gu: '3 iterations, ~1 minute precision' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -159,10 +159,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'हमारा चन्द्रोदय परिणाम दृक् पंचांग से सामान्यतः कितने मिनटों के भीतर है?',
     },
     options: [
-      { en: 'Within 10 seconds', hi: '10 सेकण्ड के भीतर' },
-      { en: 'Within 2 minutes', hi: '2 मिनट के भीतर' },
-      { en: 'Within 15 minutes', hi: '15 मिनट के भीतर' },
-      { en: 'Within 1 hour', hi: '1 घण्टे के भीतर' },
+      { en: 'Within 10 seconds', hi: '10 सेकण्ड के भीतर', sa: '10 सेकण्ड के भीतर', mai: '10 सेकण्ड के भीतर', mr: '10 सेकण्ड के भीतर', ta: 'Within 10 seconds', te: 'Within 10 seconds', bn: 'Within 10 seconds', kn: 'Within 10 seconds', gu: 'Within 10 seconds' },
+      { en: 'Within 2 minutes', hi: '2 मिनट के भीतर', sa: '2 मिनट के भीतर', mai: '2 मिनट के भीतर', mr: '2 मिनट के भीतर', ta: 'Within 2 minutes', te: 'Within 2 minutes', bn: 'Within 2 minutes', kn: 'Within 2 minutes', gu: 'Within 2 minutes' },
+      { en: 'Within 15 minutes', hi: '15 मिनट के भीतर', sa: '15 मिनट के भीतर', mai: '15 मिनट के भीतर', mr: '15 मिनट के भीतर', ta: 'Within 15 minutes', te: 'Within 15 minutes', bn: 'Within 15 minutes', kn: 'Within 15 minutes', gu: 'Within 15 minutes' },
+      { en: 'Within 1 hour', hi: '1 घण्टे के भीतर', sa: '1 घण्टे के भीतर', mai: '1 घण्टे के भीतर', mr: '1 घण्टे के भीतर', ta: 'Within 1 hour', te: 'Within 1 hour', bn: 'Within 1 hour', kn: 'Within 1 hour', gu: 'Within 1 hour' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -177,10 +177,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्रमा प्रत्येक अगले दिन लगभग 50 मिनट देर से क्यों उदित होता है?',
     },
     options: [
-      { en: 'Because the Moon orbits retrograde', hi: 'क्योंकि चन्द्रमा वक्री कक्षा में है' },
+      { en: 'Because the Moon orbits retrograde', hi: 'क्योंकि चन्द्रमा वक्री कक्षा में है', sa: 'क्योंकि चन्द्रमा वक्री कक्षा में है', mai: 'क्योंकि चन्द्रमा वक्री कक्षा में है', mr: 'क्योंकि चन्द्रमा वक्री कक्षा में है', ta: 'Because the Moon orbits retrograde', te: 'Because the Moon orbits retrograde', bn: 'Because the Moon orbits retrograde', kn: 'Because the Moon orbits retrograde', gu: 'Because the Moon orbits retrograde' },
       { en: 'Because Earth\'s rotation slows down each day', hi: 'क्योंकि पृथ्वी का घूर्णन प्रतिदिन धीमा होता है' },
-      { en: 'Because the Moon moves ~13° eastward daily, and Earth must rotate an extra ~50 minutes to catch up', hi: 'क्योंकि चन्द्रमा प्रतिदिन ~13° पूर्व की ओर चलता है, और पृथ्वी को पकड़ने के लिए अतिरिक्त ~50 मिनट घूमना पड़ता है' },
-      { en: 'Because of tidal forces', hi: 'ज्वारीय बलों के कारण' },
+      { en: 'Because the Moon moves ~13° eastward daily, and Earth must rotate an extra ~50 minutes to catch up', hi: 'क्योंकि चन्द्रमा प्रतिदिन ~13° पूर्व की ओर चलता है, और पृथ्वी को पकड़ने के लिए अतिरिक्त ~50 मिनट घूमना पड़ता है', sa: 'क्योंकि चन्द्रमा प्रतिदिन ~13° पूर्व की ओर चलता है, और पृथ्वी को पकड़ने के लिए अतिरिक्त ~50 मिनट घूमना पड़ता है', mai: 'क्योंकि चन्द्रमा प्रतिदिन ~13° पूर्व की ओर चलता है, और पृथ्वी को पकड़ने के लिए अतिरिक्त ~50 मिनट घूमना पड़ता है', mr: 'क्योंकि चन्द्रमा प्रतिदिन ~13° पूर्व की ओर चलता है, और पृथ्वी को पकड़ने के लिए अतिरिक्त ~50 मिनट घूमना पड़ता है', ta: 'Because the Moon moves ~13° eastward daily, and Earth must rotate an extra ~50 minutes to catch up', te: 'Because the Moon moves ~13° eastward daily, and Earth must rotate an extra ~50 minutes to catch up', bn: 'Because the Moon moves ~13° eastward daily, and Earth must rotate an extra ~50 minutes to catch up', kn: 'Because the Moon moves ~13° eastward daily, and Earth must rotate an extra ~50 minutes to catch up', gu: 'Because the Moon moves ~13° eastward daily, and Earth must rotate an extra ~50 minutes to catch up' },
+      { en: 'Because of tidal forces', hi: 'ज्वारीय बलों के कारण', sa: 'ज्वारीय बलों के कारण', mai: 'ज्वारीय बलों के कारण', mr: 'ज्वारीय बलों के कारण', ta: 'Because of tidal forces', te: 'Because of tidal forces', bn: 'Because of tidal forces', kn: 'Because of tidal forces', gu: 'Because of tidal forces' },
     ],
     correctAnswer: 2,
     explanation: {

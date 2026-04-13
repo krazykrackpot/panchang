@@ -5,9 +5,9 @@
 
 import { RASHIS } from '@/lib/constants/rashis';
 import type { MunthaInfo } from '@/types/varshaphal';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
-const MUNTHA_HOUSE_INTERPRETATIONS: Record<number, Trilingual> = {
+const MUNTHA_HOUSE_INTERPRETATIONS: Record<number, LocaleText> = {
   1: {
     en: 'Muntha in 1st house: A year of personal growth, new beginnings, and strong vitality. Favorable for self-improvement.',
     hi: 'मुन्था प्रथम भाव में: व्यक्तिगत विकास, नई शुरुआत और मजबूत स्वास्थ्य का वर्ष।',

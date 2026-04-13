@@ -6,17 +6,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_20_2', phase: 7, topic: 'KP System', moduleNumber: '20.2',
-  title: { en: 'The 249 Sub-Lord Table', hi: '249 उप-स्वामी सारणी' },
+  title: { en: 'The 249 Sub-Lord Table', hi: '249 उप-स्वामी सारणी', sa: '249 उप-स्वामी सारणी', mai: '249 उप-स्वामी सारणी', mr: '249 उप-स्वामी सारणी', ta: 'The 249 Sub-Lord Table', te: 'The 249 Sub-Lord Table', bn: 'The 249 Sub-Lord Table', kn: 'The 249 Sub-Lord Table', gu: 'The 249 Sub-Lord Table' },
   subtitle: {
     en: 'How KP divides each nakshatra into 9 unequal sub-divisions using Vimshottari proportions, creating 249 sub-lords that govern every degree of the zodiac',
     hi: 'केपी कैसे विंशोत्तरी अनुपात से प्रत्येक नक्षत्र को 9 असमान उप-विभागों में बाँटता है, जिससे राशिचक्र के हर अंश पर शासन करने वाले 249 उप-स्वामी बनते हैं',
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Module 20-1: Placidus Houses', hi: 'मॉड्यूल 20-1: प्लेसिडस भाव' }, href: '/learn/modules/20-1' },
-    { label: { en: 'Module 20-3: Significators', hi: 'मॉड्यूल 20-3: कारकत्व' }, href: '/learn/modules/20-3' },
-    { label: { en: 'Module 20-4: Ruling Planets', hi: 'मॉड्यूल 20-4: शासक ग्रह' }, href: '/learn/modules/20-4' },
-    { label: { en: 'KP System Tool', hi: 'केपी पद्धति उपकरण' }, href: '/kp-system' },
+    { label: { en: 'Module 20-1: Placidus Houses', hi: 'मॉड्यूल 20-1: प्लेसिडस भाव', sa: 'मॉड्यूल 20-1: प्लेसिडस भाव', mai: 'मॉड्यूल 20-1: प्लेसिडस भाव', mr: 'मॉड्यूल 20-1: प्लेसिडस भाव', ta: 'Module 20-1: Placidus Houses', te: 'Module 20-1: Placidus Houses', bn: 'Module 20-1: Placidus Houses', kn: 'Module 20-1: Placidus Houses', gu: 'Module 20-1: Placidus Houses' }, href: '/learn/modules/20-1' },
+    { label: { en: 'Module 20-3: Significators', hi: 'मॉड्यूल 20-3: कारकत्व', sa: 'मॉड्यूल 20-3: कारकत्व', mai: 'मॉड्यूल 20-3: कारकत्व', mr: 'मॉड्यूल 20-3: कारकत्व', ta: 'Module 20-3: Significators', te: 'Module 20-3: Significators', bn: 'Module 20-3: Significators', kn: 'Module 20-3: Significators', gu: 'Module 20-3: Significators' }, href: '/learn/modules/20-3' },
+    { label: { en: 'Module 20-4: Ruling Planets', hi: 'मॉड्यूल 20-4: शासक ग्रह', sa: 'मॉड्यूल 20-4: शासक ग्रह', mai: 'मॉड्यूल 20-4: शासक ग्रह', mr: 'मॉड्यूल 20-4: शासक ग्रह', ta: 'Module 20-4: Ruling Planets', te: 'Module 20-4: Ruling Planets', bn: 'Module 20-4: Ruling Planets', kn: 'Module 20-4: Ruling Planets', gu: 'Module 20-4: Ruling Planets' }, href: '/learn/modules/20-4' },
+    { label: { en: 'KP System Tool', hi: 'केपी पद्धति उपकरण', sa: 'केपी पद्धति उपकरण', mai: 'केपी पद्धति उपकरण', mr: 'केपी पद्धति उपकरण', ta: 'KP System Tool', te: 'KP System Tool', bn: 'KP System Tool', kn: 'KP System Tool', gu: 'KP System Tool' }, href: '/kp-system' },
   ],
 };
 
@@ -28,10 +28,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'केपी पद्धति में 360 अंश राशिचक्र को कुल कितने उप-विभाग आवृत करते हैं?',
     },
     options: [
-      { en: '108', hi: '108' },
-      { en: '249', hi: '249' },
-      { en: '360', hi: '360' },
-      { en: '27', hi: '27' },
+      { en: '108', hi: '108', sa: '108', mai: '108', mr: '108', ta: '108', te: '108', bn: '108', kn: '108', gu: '108' },
+      { en: '249', hi: '249', sa: '249', mai: '249', mr: '249', ta: '249', te: '249', bn: '249', kn: '249', gu: '249' },
+      { en: '360', hi: '360', sa: '360', mai: '360', mr: '360', ta: '360', te: '360', bn: '360', kn: '360', gu: '360' },
+      { en: '27', hi: '27', sa: '27', mai: '27', mr: '27', ta: '27', te: '27', bn: '27', kn: '27', gu: '27' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -46,10 +46,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'एक नक्षत्र के भीतर प्रत्येक उप-विभाग का आकार क्या निर्धारित करता है?',
     },
     options: [
-      { en: 'Equal division (each sub is the same size)', hi: 'समान विभाजन (प्रत्येक उप-भाग समान आकार)' },
-      { en: 'Vimshottari dasha proportions of the 9 planets', hi: '9 ग्रहों के विंशोत्तरी दशा अनुपात' },
-      { en: 'The brightness of the nakshatra star', hi: 'नक्षत्र तारे की चमक' },
-      { en: 'Random assignment by Krishnamurti', hi: 'कृष्णमूर्ति द्वारा यादृच्छिक आवंटन' },
+      { en: 'Equal division (each sub is the same size)', hi: 'समान विभाजन (प्रत्येक उप-भाग समान आकार)', sa: 'समान विभाजन (प्रत्येक उप-भाग समान आकार)', mai: 'समान विभाजन (प्रत्येक उप-भाग समान आकार)', mr: 'समान विभाजन (प्रत्येक उप-भाग समान आकार)', ta: 'Equal division (each sub is the same size)', te: 'Equal division (each sub is the same size)', bn: 'Equal division (each sub is the same size)', kn: 'Equal division (each sub is the same size)', gu: 'Equal division (each sub is the same size)' },
+      { en: 'Vimshottari dasha proportions of the 9 planets', hi: '9 ग्रहों के विंशोत्तरी दशा अनुपात', sa: '9 ग्रहों के विंशोत्तरी दशा अनुपात', mai: '9 ग्रहों के विंशोत्तरी दशा अनुपात', mr: '9 ग्रहों के विंशोत्तरी दशा अनुपात', ta: 'Vimshottari dasha proportions of the 9 planets', te: 'Vimshottari dasha proportions of the 9 planets', bn: 'Vimshottari dasha proportions of the 9 planets', kn: 'Vimshottari dasha proportions of the 9 planets', gu: 'Vimshottari dasha proportions of the 9 planets' },
+      { en: 'The brightness of the nakshatra star', hi: 'नक्षत्र तारे की चमक', sa: 'नक्षत्र तारे की चमक', mai: 'नक्षत्र तारे की चमक', mr: 'नक्षत्र तारे की चमक', ta: 'The brightness of the nakshatra star', te: 'The brightness of the nakshatra star', bn: 'The brightness of the nakshatra star', kn: 'The brightness of the nakshatra star', gu: 'The brightness of the nakshatra star' },
+      { en: 'Random assignment by Krishnamurti', hi: 'कृष्णमूर्ति द्वारा यादृच्छिक आवंटन', sa: 'कृष्णमूर्ति द्वारा यादृच्छिक आवंटन', mai: 'कृष्णमूर्ति द्वारा यादृच्छिक आवंटन', mr: 'कृष्णमूर्ति द्वारा यादृच्छिक आवंटन', ta: 'Random assignment by Krishnamurti', te: 'Random assignment by Krishnamurti', bn: 'Random assignment by Krishnamurti', kn: 'Random assignment by Krishnamurti', gu: 'Random assignment by Krishnamurti' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -76,10 +76,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'केपी शब्दावली में किसी भी राशिचक्र अंश के लिए स्वामित्व के तीन स्तर क्या हैं?',
     },
     options: [
-      { en: 'Lagna Lord, Moon Lord, Sun Lord', hi: 'लग्न स्वामी, चन्द्र स्वामी, सूर्य स्वामी' },
-      { en: 'Sign Lord, Star Lord, Sub Lord', hi: 'राशि स्वामी, नक्षत्र स्वामी, उप स्वामी' },
-      { en: 'Dasha Lord, Bhukti Lord, Antara Lord', hi: 'दशा स्वामी, भुक्ति स्वामी, अन्तरा स्वामी' },
-      { en: 'House Lord, Aspect Lord, Yoga Lord', hi: 'भाव स्वामी, दृष्टि स्वामी, योग स्वामी' },
+      { en: 'Lagna Lord, Moon Lord, Sun Lord', hi: 'लग्न स्वामी, चन्द्र स्वामी, सूर्य स्वामी', sa: 'लग्न स्वामी, चन्द्र स्वामी, सूर्य स्वामी', mai: 'लग्न स्वामी, चन्द्र स्वामी, सूर्य स्वामी', mr: 'लग्न स्वामी, चन्द्र स्वामी, सूर्य स्वामी', ta: 'Lagna Lord, Moon Lord, Sun Lord', te: 'Lagna Lord, Moon Lord, Sun Lord', bn: 'Lagna Lord, Moon Lord, Sun Lord', kn: 'Lagna Lord, Moon Lord, Sun Lord', gu: 'Lagna Lord, Moon Lord, Sun Lord' },
+      { en: 'Sign Lord, Star Lord, Sub Lord', hi: 'राशि स्वामी, नक्षत्र स्वामी, उप स्वामी', sa: 'राशि स्वामी, नक्षत्र स्वामी, उप स्वामी', mai: 'राशि स्वामी, नक्षत्र स्वामी, उप स्वामी', mr: 'राशि स्वामी, नक्षत्र स्वामी, उप स्वामी', ta: 'Sign Lord, Star Lord, Sub Lord', te: 'Sign Lord, Star Lord, Sub Lord', bn: 'Sign Lord, Star Lord, Sub Lord', kn: 'Sign Lord, Star Lord, Sub Lord', gu: 'Sign Lord, Star Lord, Sub Lord' },
+      { en: 'Dasha Lord, Bhukti Lord, Antara Lord', hi: 'दशा स्वामी, भुक्ति स्वामी, अन्तरा स्वामी', sa: 'दशा स्वामी, भुक्ति स्वामी, अन्तरा स्वामी', mai: 'दशा स्वामी, भुक्ति स्वामी, अन्तरा स्वामी', mr: 'दशा स्वामी, भुक्ति स्वामी, अन्तरा स्वामी', ta: 'Dasha Lord, Bhukti Lord, Antara Lord', te: 'Dasha Lord, Bhukti Lord, Antara Lord', bn: 'Dasha Lord, Bhukti Lord, Antara Lord', kn: 'Dasha Lord, Bhukti Lord, Antara Lord', gu: 'Dasha Lord, Bhukti Lord, Antara Lord' },
+      { en: 'House Lord, Aspect Lord, Yoga Lord', hi: 'भाव स्वामी, दृष्टि स्वामी, योग स्वामी', sa: 'भाव स्वामी, दृष्टि स्वामी, योग स्वामी', mai: 'भाव स्वामी, दृष्टि स्वामी, योग स्वामी', mr: 'भाव स्वामी, दृष्टि स्वामी, योग स्वामी', ta: 'House Lord, Aspect Lord, Yoga Lord', te: 'House Lord, Aspect Lord, Yoga Lord', bn: 'House Lord, Aspect Lord, Yoga Lord', kn: 'House Lord, Aspect Lord, Yoga Lord', gu: 'House Lord, Aspect Lord, Yoga Lord' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -94,10 +94,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: '15 अंश 30 कला मेष पर स्थित सन्धि किस नक्षत्र में आती है?',
     },
     options: [
-      { en: 'Ashwini (0 to 13 degrees 20 minutes)', hi: 'अश्विनी (0 से 13 अंश 20 कला)' },
-      { en: 'Bharani (13 degrees 20 minutes to 26 degrees 40 minutes)', hi: 'भरणी (13 अंश 20 कला से 26 अंश 40 कला)' },
-      { en: 'Krittika (26 degrees 40 minutes to 40 degrees)', hi: 'कृत्तिका (26 अंश 40 कला से 40 अंश)' },
-      { en: 'Rohini (40 degrees to 53 degrees 20 minutes)', hi: 'रोहिणी (40 अंश से 53 अंश 20 कला)' },
+      { en: 'Ashwini (0 to 13 degrees 20 minutes)', hi: 'अश्विनी (0 से 13 अंश 20 कला)', sa: 'अश्विनी (0 से 13 अंश 20 कला)', mai: 'अश्विनी (0 से 13 अंश 20 कला)', mr: 'अश्विनी (0 से 13 अंश 20 कला)', ta: 'Ashwini (0 to 13 degrees 20 minutes)', te: 'Ashwini (0 to 13 degrees 20 minutes)', bn: 'Ashwini (0 to 13 degrees 20 minutes)', kn: 'Ashwini (0 to 13 degrees 20 minutes)', gu: 'Ashwini (0 to 13 degrees 20 minutes)' },
+      { en: 'Bharani (13 degrees 20 minutes to 26 degrees 40 minutes)', hi: 'भरणी (13 अंश 20 कला से 26 अंश 40 कला)', sa: 'भरणी (13 अंश 20 कला से 26 अंश 40 कला)', mai: 'भरणी (13 अंश 20 कला से 26 अंश 40 कला)', mr: 'भरणी (13 अंश 20 कला से 26 अंश 40 कला)', ta: 'Bharani (13 degrees 20 minutes to 26 degrees 40 minutes)', te: 'Bharani (13 degrees 20 minutes to 26 degrees 40 minutes)', bn: 'Bharani (13 degrees 20 minutes to 26 degrees 40 minutes)', kn: 'Bharani (13 degrees 20 minutes to 26 degrees 40 minutes)', gu: 'Bharani (13 degrees 20 minutes to 26 degrees 40 minutes)' },
+      { en: 'Krittika (26 degrees 40 minutes to 40 degrees)', hi: 'कृत्तिका (26 अंश 40 कला से 40 अंश)', sa: 'कृत्तिका (26 अंश 40 कला से 40 अंश)', mai: 'कृत्तिका (26 अंश 40 कला से 40 अंश)', mr: 'कृत्तिका (26 अंश 40 कला से 40 अंश)', ta: 'Krittika (26 degrees 40 minutes to 40 degrees)', te: 'Krittika (26 degrees 40 minutes to 40 degrees)', bn: 'Krittika (26 degrees 40 minutes to 40 degrees)', kn: 'Krittika (26 degrees 40 minutes to 40 degrees)', gu: 'Krittika (26 degrees 40 minutes to 40 degrees)' },
+      { en: 'Rohini (40 degrees to 53 degrees 20 minutes)', hi: 'रोहिणी (40 अंश से 53 अंश 20 कला)', sa: 'रोहिणी (40 अंश से 53 अंश 20 कला)', mai: 'रोहिणी (40 अंश से 53 अंश 20 कला)', mr: 'रोहिणी (40 अंश से 53 अंश 20 कला)', ta: 'Rohini (40 degrees to 53 degrees 20 minutes)', te: 'Rohini (40 degrees to 53 degrees 20 minutes)', bn: 'Rohini (40 degrees to 53 degrees 20 minutes)', kn: 'Rohini (40 degrees to 53 degrees 20 minutes)', gu: 'Rohini (40 degrees to 53 degrees 20 minutes)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -124,10 +124,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'प्रत्येक नक्षत्र के भीतर किस ग्रह का उप-विभाग सबसे बड़ा है?',
     },
     options: [
-      { en: 'Sun (6 years)', hi: 'सूर्य (6 वर्ष)' },
-      { en: 'Saturn (19 years)', hi: 'शनि (19 वर्ष)' },
-      { en: 'Venus (20 years)', hi: 'शुक्र (20 वर्ष)' },
-      { en: 'Jupiter (16 years)', hi: 'गुरु (16 वर्ष)' },
+      { en: 'Sun (6 years)', hi: 'सूर्य (6 वर्ष)', sa: 'सूर्य (6 वर्ष)', mai: 'सूर्य (6 वर्ष)', mr: 'सूर्य (6 वर्ष)', ta: 'Sun (6 years)', te: 'Sun (6 years)', bn: 'Sun (6 years)', kn: 'Sun (6 years)', gu: 'Sun (6 years)' },
+      { en: 'Saturn (19 years)', hi: 'शनि (19 वर्ष)', sa: 'शनि (19 वर्ष)', mai: 'शनि (19 वर्ष)', mr: 'शनि (19 वर्ष)', ta: 'Saturn (19 years)', te: 'Saturn (19 years)', bn: 'Saturn (19 years)', kn: 'Saturn (19 years)', gu: 'Saturn (19 years)' },
+      { en: 'Venus (20 years)', hi: 'शुक्र (20 वर्ष)', sa: 'शुक्र (20 वर्ष)', mai: 'शुक्र (20 वर्ष)', mr: 'शुक्र (20 वर्ष)', ta: 'Venus (20 years)', te: 'Venus (20 years)', bn: 'Venus (20 years)', kn: 'Venus (20 years)', gu: 'Venus (20 years)' },
+      { en: 'Jupiter (16 years)', hi: 'गुरु (16 वर्ष)', sa: 'गुरु (16 वर्ष)', mai: 'गुरु (16 वर्ष)', mr: 'गुरु (16 वर्ष)', ta: 'Jupiter (16 years)', te: 'Jupiter (16 years)', bn: 'Jupiter (16 years)', kn: 'Jupiter (16 years)', gu: 'Jupiter (16 years)' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -142,10 +142,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'एक नक्षत्र के भीतर उप-विभाग किस ग्रह के उप-भाग से आरम्भ होते हैं?',
     },
     options: [
-      { en: 'Always from Sun', hi: 'सदैव सूर्य से' },
-      { en: 'Always from Ketu', hi: 'सदैव केतु से' },
-      { en: 'From the nakshatra lord itself', hi: 'स्वयं नक्षत्र स्वामी से' },
-      { en: 'From the sign lord', hi: 'राशि स्वामी से' },
+      { en: 'Always from Sun', hi: 'सदैव सूर्य से', sa: 'सदैव सूर्य से', mai: 'सदैव सूर्य से', mr: 'सदैव सूर्य से', ta: 'Always from Sun', te: 'Always from Sun', bn: 'Always from Sun', kn: 'Always from Sun', gu: 'Always from Sun' },
+      { en: 'Always from Ketu', hi: 'सदैव केतु से', sa: 'सदैव केतु से', mai: 'सदैव केतु से', mr: 'सदैव केतु से', ta: 'Always from Ketu', te: 'Always from Ketu', bn: 'Always from Ketu', kn: 'Always from Ketu', gu: 'Always from Ketu' },
+      { en: 'From the nakshatra lord itself', hi: 'स्वयं नक्षत्र स्वामी से', sa: 'स्वयं नक्षत्र स्वामी से', mai: 'स्वयं नक्षत्र स्वामी से', mr: 'स्वयं नक्षत्र स्वामी से', ta: 'From the nakshatra lord itself', te: 'From the nakshatra lord itself', bn: 'From the nakshatra lord itself', kn: 'From the nakshatra lord itself', gu: 'From the nakshatra lord itself' },
+      { en: 'From the sign lord', hi: 'राशि स्वामी से', sa: 'राशि स्वामी से', mai: 'राशि स्वामी से', mr: 'राशि स्वामी से', ta: 'From the sign lord', te: 'From the sign lord', bn: 'From the sign lord', kn: 'From the sign lord', gu: 'From the sign lord' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -172,10 +172,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'एक नक्षत्र के भीतर सूर्य के उप-विभाग का कोणीय विस्तार कितना है?',
     },
     options: [
-      { en: 'About 0 degrees 40 minutes', hi: 'लगभग 0 अंश 40 कला' },
-      { en: 'About 1 degree 20 minutes', hi: 'लगभग 1 अंश 20 कला' },
-      { en: 'About 2 degrees 13 minutes', hi: 'लगभग 2 अंश 13 कला' },
-      { en: 'About 3 degrees', hi: 'लगभग 3 अंश' },
+      { en: 'About 0 degrees 40 minutes', hi: 'लगभग 0 अंश 40 कला', sa: 'लगभग 0 अंश 40 कला', mai: 'लगभग 0 अंश 40 कला', mr: 'लगभग 0 अंश 40 कला', ta: 'About 0 degrees 40 minutes', te: 'About 0 degrees 40 minutes', bn: 'About 0 degrees 40 minutes', kn: 'About 0 degrees 40 minutes', gu: 'About 0 degrees 40 minutes' },
+      { en: 'About 1 degree 20 minutes', hi: 'लगभग 1 अंश 20 कला', sa: 'लगभग 1 अंश 20 कला', mai: 'लगभग 1 अंश 20 कला', mr: 'लगभग 1 अंश 20 कला', ta: 'About 1 degree 20 minutes', te: 'About 1 degree 20 minutes', bn: 'About 1 degree 20 minutes', kn: 'About 1 degree 20 minutes', gu: 'About 1 degree 20 minutes' },
+      { en: 'About 2 degrees 13 minutes', hi: 'लगभग 2 अंश 13 कला', sa: 'लगभग 2 अंश 13 कला', mai: 'लगभग 2 अंश 13 कला', mr: 'लगभग 2 अंश 13 कला', ta: 'About 2 degrees 13 minutes', te: 'About 2 degrees 13 minutes', bn: 'About 2 degrees 13 minutes', kn: 'About 2 degrees 13 minutes', gu: 'About 2 degrees 13 minutes' },
+      { en: 'About 3 degrees', hi: 'लगभग 3 अंश', sa: 'लगभग 3 अंश', mai: 'लगभग 3 अंश', mr: 'लगभग 3 अंश', ta: 'About 3 degrees', te: 'About 3 degrees', bn: 'About 3 degrees', kn: 'About 3 degrees', gu: 'About 3 degrees' },
     ],
     correctAnswer: 0,
     explanation: {

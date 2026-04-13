@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 /**
  * Chakra Systems — Sudarsana, Sarvatobhadra, Kota
  * Reference: BPHS Ch.22, Tajika Neelakanthi
@@ -6,7 +7,7 @@
 import { RASHIS } from '@/lib/constants/rashis';
 import type { PlanetPosition } from '@/types/kundali';
 
-type Tri = { en: string; hi: string; sa: string };
+type Tri = LocaleText;
 
 // ─── SUDARSANA CHAKRA ───────────────────────────────────────────────────────
 // Three concentric rings: Lagna, Moon, Sun — each showing 12 houses

@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
@@ -105,7 +106,7 @@ export async function GET(req: NextRequest) {
     let currentDasha = null;
     if (snapshot.dasha_timeline && Array.isArray(snapshot.dasha_timeline)) {
       const now = new Date().toISOString();
-      const mahaDasha = (snapshot.dasha_timeline as { startDate: string; endDate: string; planetName?: { en: string; hi: string; sa: string }; planet?: string; subPeriods?: { startDate: string; endDate: string; planetName?: { en: string; hi: string; sa: string }; planet?: string }[] }[])
+      const mahaDasha = (snapshot.dasha_timeline as { startDate: string; endDate: string; planetName?: LocaleText; planet?: string; subPeriods?: { startDate: string; endDate: string; planetName?: LocaleText; planet?: string }[] }[])
         .find(d => d.startDate <= now && d.endDate >= now);
       if (mahaDasha) {
         const antarDasha = mahaDasha.subPeriods?.find(s => s.startDate <= now && s.endDate >= now);

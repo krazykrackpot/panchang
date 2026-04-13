@@ -1,5 +1,7 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
+
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
@@ -21,7 +23,7 @@ export default function LearnPage() {
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   /** Safe trilingual access — falls back to en for unknown locales */
-  const tri = (obj: Record<string, string>) => lt(obj as LocaleText, locale);
+  const tri = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
 
   // 3 Mega Tracks
   const TRACKS = [

@@ -12,11 +12,11 @@ const META: ModuleMeta = {
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 0-5: What is a Kundali?', hi: 'मॉड्यूल 0-5: कुण्डली क्या है?' }, href: '/learn/modules/0-5' },
-    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग' }, href: '/panchang' },
-    { label: { en: 'Module 5-1: Tithi Deep Dive', hi: 'मॉड्यूल 5-1: तिथि विस्तार' }, href: '/learn/modules/5-1' },
-    { label: { en: 'Module 7-1: Yoga System', hi: 'मॉड्यूल 7-1: योग पद्धति' }, href: '/learn/modules/7-1' },
-    { label: { en: 'Module 8-1: Karana System', hi: 'मॉड्यूल 8-1: करण पद्धति' }, href: '/learn/modules/8-1' },
+    { label: { en: 'Module 0-5: What is a Kundali?', hi: 'मॉड्यूल 0-5: कुण्डली क्या है?', sa: 'मॉड्यूल 0-5: कुण्डली क्या है?', mai: 'मॉड्यूल 0-5: कुण्डली क्या है?', mr: 'मॉड्यूल 0-5: कुण्डली क्या है?', ta: 'Module 0-5: What is a Kundali?', te: 'Module 0-5: What is a Kundali?', bn: 'Module 0-5: What is a Kundali?', kn: 'Module 0-5: What is a Kundali?', gu: 'Module 0-5: What is a Kundali?' }, href: '/learn/modules/0-5' },
+    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग', mai: 'दैनिक पंचांग', mr: 'दैनिक पंचांग', ta: 'Daily Panchang', te: 'Daily Panchang', bn: 'Daily Panchang', kn: 'Daily Panchang', gu: 'Daily Panchang' }, href: '/panchang' },
+    { label: { en: 'Module 5-1: Tithi Deep Dive', hi: 'मॉड्यूल 5-1: तिथि विस्तार', sa: 'मॉड्यूल 5-1: तिथि विस्तार', mai: 'मॉड्यूल 5-1: तिथि विस्तार', mr: 'मॉड्यूल 5-1: तिथि विस्तार', ta: 'Module 5-1: Tithi Deep Dive', te: 'Module 5-1: Tithi Deep Dive', bn: 'Module 5-1: Tithi Deep Dive', kn: 'Module 5-1: Tithi Deep Dive', gu: 'Module 5-1: Tithi Deep Dive' }, href: '/learn/modules/5-1' },
+    { label: { en: 'Module 7-1: Yoga System', hi: 'मॉड्यूल 7-1: योग पद्धति', sa: 'मॉड्यूल 7-1: योग पद्धति', mai: 'मॉड्यूल 7-1: योग पद्धति', mr: 'मॉड्यूल 7-1: योग पद्धति', ta: 'Module 7-1: Yoga System', te: 'Module 7-1: Yoga System', bn: 'Module 7-1: Yoga System', kn: 'Module 7-1: Yoga System', gu: 'Module 7-1: Yoga System' }, href: '/learn/modules/7-1' },
+    { label: { en: 'Module 8-1: Karana System', hi: 'मॉड्यूल 8-1: करण पद्धति', sa: 'मॉड्यूल 8-1: करण पद्धति', mai: 'मॉड्यूल 8-1: करण पद्धति', mr: 'मॉड्यूल 8-1: करण पद्धति', ta: 'Module 8-1: Karana System', te: 'Module 8-1: Karana System', bn: 'Module 8-1: Karana System', kn: 'Module 8-1: Karana System', gu: 'Module 8-1: Karana System' }, href: '/learn/modules/8-1' },
   ],
 };
 
@@ -28,10 +28,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'एक पूर्ण चान्द्र मास में कितनी तिथियाँ होती हैं?',
     },
     options: [
-      { en: '15', hi: '15' },
-      { en: '27', hi: '27' },
-      { en: '30', hi: '30' },
-      { en: '12', hi: '12' },
+      { en: '15', hi: '15', sa: '15', mai: '15', mr: '15', ta: '15', te: '15', bn: '15', kn: '15', gu: '15' },
+      { en: '27', hi: '27', sa: '27', mai: '27', mr: '27', ta: '27', te: '27', bn: '27', kn: '27', gu: '27' },
+      { en: '30', hi: '30', sa: '30', mai: '30', mr: '30', ta: '30', te: '30', bn: '30', kn: '30', gu: '30' },
+      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -58,10 +58,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: '"शुक्ल पक्ष" का क्या अर्थ है?',
     },
     options: [
-      { en: 'The waning (dark) fortnight', hi: 'घटता (अँधेरा) पखवाड़ा' },
-      { en: 'The waxing (bright) fortnight', hi: 'बढ़ता (उज्ज्वल) पखवाड़ा' },
-      { en: 'The eclipse period', hi: 'ग्रहण काल' },
-      { en: 'The full moon day', hi: 'पूर्णिमा का दिन' },
+      { en: 'The waning (dark) fortnight', hi: 'घटता (अँधेरा) पखवाड़ा', sa: 'घटता (अँधेरा) पखवाड़ा', mai: 'घटता (अँधेरा) पखवाड़ा', mr: 'घटता (अँधेरा) पखवाड़ा', ta: 'The waning (dark) fortnight', te: 'The waning (dark) fortnight', bn: 'The waning (dark) fortnight', kn: 'The waning (dark) fortnight', gu: 'The waning (dark) fortnight' },
+      { en: 'The waxing (bright) fortnight', hi: 'बढ़ता (उज्ज्वल) पखवाड़ा', sa: 'बढ़ता (उज्ज्वल) पखवाड़ा', mai: 'बढ़ता (उज्ज्वल) पखवाड़ा', mr: 'बढ़ता (उज्ज्वल) पखवाड़ा', ta: 'The waxing (bright) fortnight', te: 'The waxing (bright) fortnight', bn: 'The waxing (bright) fortnight', kn: 'The waxing (bright) fortnight', gu: 'The waxing (bright) fortnight' },
+      { en: 'The eclipse period', hi: 'ग्रहण काल', sa: 'ग्रहण काल', mai: 'ग्रहण काल', mr: 'ग्रहण काल', ta: 'The eclipse period', te: 'The eclipse period', bn: 'The eclipse period', kn: 'The eclipse period', gu: 'The eclipse period' },
+      { en: 'The full moon day', hi: 'पूर्णिमा का दिन', sa: 'पूर्णिमा का दिन', mai: 'पूर्णिमा का दिन', mr: 'पूर्णिमा का दिन', ta: 'The full moon day', te: 'The full moon day', bn: 'The full moon day', kn: 'The full moon day', gu: 'The full moon day' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -76,10 +76,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्रमा लगभग 27 दिनों में कितने नक्षत्रों से होकर गुजरता है?',
     },
     options: [
-      { en: '12', hi: '12' },
-      { en: '27', hi: '27' },
-      { en: '30', hi: '30' },
-      { en: '9', hi: '9' },
+      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
+      { en: '27', hi: '27', sa: '27', mai: '27', mr: '27', ta: '27', te: '27', bn: '27', kn: '27', gu: '27' },
+      { en: '30', hi: '30', sa: '30', mai: '30', mr: '30', ta: '30', te: '30', bn: '30', kn: '30', gu: '30' },
+      { en: '9', hi: '9', sa: '9', mai: '9', mr: '9', ta: '9', te: '9', bn: '9', kn: '9', gu: '9' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -94,9 +94,9 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पंचांग में "योग" का अर्थ है:',
     },
     options: [
-      { en: 'Physical stretching exercises', hi: 'शारीरिक खिंचाव व्यायाम' },
-      { en: 'The combined longitude of Sun + Moon divided into 27 segments', hi: 'सूर्य + चन्द्र का संयुक्त देशान्तर 27 खण्डों में विभक्त' },
-      { en: 'A type of meditation', hi: 'एक प्रकार का ध्यान' },
+      { en: 'Physical stretching exercises', hi: 'शारीरिक खिंचाव व्यायाम', sa: 'शारीरिक खिंचाव व्यायाम', mai: 'शारीरिक खिंचाव व्यायाम', mr: 'शारीरिक खिंचाव व्यायाम', ta: 'Physical stretching exercises', te: 'Physical stretching exercises', bn: 'Physical stretching exercises', kn: 'Physical stretching exercises', gu: 'Physical stretching exercises' },
+      { en: 'The combined longitude of Sun + Moon divided into 27 segments', hi: 'सूर्य + चन्द्र का संयुक्त देशान्तर 27 खण्डों में विभक्त', sa: 'सूर्य + चन्द्र का संयुक्त देशान्तर 27 खण्डों में विभक्त', mai: 'सूर्य + चन्द्र का संयुक्त देशान्तर 27 खण्डों में विभक्त', mr: 'सूर्य + चन्द्र का संयुक्त देशान्तर 27 खण्डों में विभक्त', ta: 'The combined longitude of Sun + Moon divided into 27 segments', te: 'The combined longitude of Sun + Moon divided into 27 segments', bn: 'The combined longitude of Sun + Moon divided into 27 segments', kn: 'The combined longitude of Sun + Moon divided into 27 segments', gu: 'The combined longitude of Sun + Moon divided into 27 segments' },
+      { en: 'A type of meditation', hi: 'एक प्रकार का ध्यान', sa: 'एक प्रकार का ध्यान', mai: 'एक प्रकार का ध्यान', mr: 'एक प्रकार का ध्यान', ta: 'A type of meditation', te: 'A type of meditation', bn: 'A type of meditation', kn: 'A type of meditation', gu: 'A type of meditation' },
       { en: 'The Moon\'s distance from Earth', hi: 'चन्द्रमा की पृथ्वी से दूरी' },
     ],
     correctAnswer: 1,
@@ -124,10 +124,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विष्टि (भद्रा) करण किसलिए जाना जाता है?',
     },
     options: [
-      { en: 'Most auspicious for starting new ventures', hi: 'नए कार्य आरम्भ करने के लिए सर्वाधिक शुभ' },
-      { en: 'Best for marriages', hi: 'विवाह के लिए सर्वोत्तम' },
-      { en: 'Inauspicious — avoid new beginnings', hi: 'अशुभ — नए कार्य टालें' },
-      { en: 'Ideal for travel', hi: 'यात्रा के लिए आदर्श' },
+      { en: 'Most auspicious for starting new ventures', hi: 'नए कार्य आरम्भ करने के लिए सर्वाधिक शुभ', sa: 'नए कार्य आरम्भ करने के लिए सर्वाधिक शुभ', mai: 'नए कार्य आरम्भ करने के लिए सर्वाधिक शुभ', mr: 'नए कार्य आरम्भ करने के लिए सर्वाधिक शुभ', ta: 'Most auspicious for starting new ventures', te: 'Most auspicious for starting new ventures', bn: 'Most auspicious for starting new ventures', kn: 'Most auspicious for starting new ventures', gu: 'Most auspicious for starting new ventures' },
+      { en: 'Best for marriages', hi: 'विवाह के लिए सर्वोत्तम', sa: 'विवाह के लिए सर्वोत्तम', mai: 'विवाह के लिए सर्वोत्तम', mr: 'विवाह के लिए सर्वोत्तम', ta: 'Best for marriages', te: 'Best for marriages', bn: 'Best for marriages', kn: 'Best for marriages', gu: 'Best for marriages' },
+      { en: 'Inauspicious — avoid new beginnings', hi: 'अशुभ — नए कार्य टालें', sa: 'अशुभ — नए कार्य टालें', mai: 'अशुभ — नए कार्य टालें', mr: 'अशुभ — नए कार्य टालें', ta: 'Inauspicious — avoid new beginnings', te: 'Inauspicious — avoid new beginnings', bn: 'Inauspicious — avoid new beginnings', kn: 'Inauspicious — avoid new beginnings', gu: 'Inauspicious — avoid new beginnings' },
+      { en: 'Ideal for travel', hi: 'यात्रा के लिए आदर्श', sa: 'यात्रा के लिए आदर्श', mai: 'यात्रा के लिए आदर्श', mr: 'यात्रा के लिए आदर्श', ta: 'Ideal for travel', te: 'Ideal for travel', bn: 'Ideal for travel', kn: 'Ideal for travel', gu: 'Ideal for travel' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -142,10 +142,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'राहु काल प्रतिदिन लगभग कितना लम्बा होता है?',
     },
     options: [
-      { en: 'About 30 minutes', hi: 'लगभग 30 मिनट' },
-      { en: 'About 1.5 hours', hi: 'लगभग 1.5 घण्टे' },
-      { en: 'About 3 hours', hi: 'लगभग 3 घण्टे' },
-      { en: 'About 6 hours', hi: 'लगभग 6 घण्टे' },
+      { en: 'About 30 minutes', hi: 'लगभग 30 मिनट', sa: 'लगभग 30 मिनट', mai: 'लगभग 30 मिनट', mr: 'लगभग 30 मिनट', ta: 'About 30 minutes', te: 'About 30 minutes', bn: 'About 30 minutes', kn: 'About 30 minutes', gu: 'About 30 minutes' },
+      { en: 'About 1.5 hours', hi: 'लगभग 1.5 घण्टे', sa: 'लगभग 1.5 घण्टे', mai: 'लगभग 1.5 घण्टे', mr: 'लगभग 1.5 घण्टे', ta: 'About 1.5 hours', te: 'About 1.5 hours', bn: 'About 1.5 hours', kn: 'About 1.5 hours', gu: 'About 1.5 hours' },
+      { en: 'About 3 hours', hi: 'लगभग 3 घण्टे', sa: 'लगभग 3 घण्टे', mai: 'लगभग 3 घण्टे', mr: 'लगभग 3 घण्टे', ta: 'About 3 hours', te: 'About 3 hours', bn: 'About 3 hours', kn: 'About 3 hours', gu: 'About 3 hours' },
+      { en: 'About 6 hours', hi: 'लगभग 6 घण्टे', sa: 'लगभग 6 घण्टे', mai: 'लगभग 6 घण्टे', mr: 'लगभग 6 घण्टे', ta: 'About 6 hours', te: 'About 6 hours', bn: 'About 6 hours', kn: 'About 6 hours', gu: 'About 6 hours' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -172,10 +172,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'दिन का प्रत्येक मुहूर्त (समय विभाजन) लगभग कितना लम्बा होता है?',
     },
     options: [
-      { en: 'About 24 minutes', hi: 'लगभग 24 मिनट' },
-      { en: 'About 48 minutes', hi: 'लगभग 48 मिनट' },
-      { en: 'About 90 minutes', hi: 'लगभग 90 मिनट' },
-      { en: 'About 2 hours', hi: 'लगभग 2 घण्टे' },
+      { en: 'About 24 minutes', hi: 'लगभग 24 मिनट', sa: 'लगभग 24 मिनट', mai: 'लगभग 24 मिनट', mr: 'लगभग 24 मिनट', ta: 'About 24 minutes', te: 'About 24 minutes', bn: 'About 24 minutes', kn: 'About 24 minutes', gu: 'About 24 minutes' },
+      { en: 'About 48 minutes', hi: 'लगभग 48 मिनट', sa: 'लगभग 48 मिनट', mai: 'लगभग 48 मिनट', mr: 'लगभग 48 मिनट', ta: 'About 48 minutes', te: 'About 48 minutes', bn: 'About 48 minutes', kn: 'About 48 minutes', gu: 'About 48 minutes' },
+      { en: 'About 90 minutes', hi: 'लगभग 90 मिनट', sa: 'लगभग 90 मिनट', mai: 'लगभग 90 मिनट', mr: 'लगभग 90 मिनट', ta: 'About 90 minutes', te: 'About 90 minutes', bn: 'About 90 minutes', kn: 'About 90 minutes', gu: 'About 90 minutes' },
+      { en: 'About 2 hours', hi: 'लगभग 2 घण्टे', sa: 'लगभग 2 घण्टे', mai: 'लगभग 2 घण्टे', mr: 'लगभग 2 घण्टे', ta: 'About 2 hours', te: 'About 2 hours', bn: 'About 2 hours', kn: 'About 2 hours', gu: 'About 2 hours' },
     ],
     correctAnswer: 1,
     explanation: {

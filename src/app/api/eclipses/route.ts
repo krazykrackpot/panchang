@@ -2,18 +2,18 @@ import { NextRequest, NextResponse } from 'next/server';
 import { generateEclipseCalendar, type EclipseEvent } from '@/lib/calendar/eclipses';
 import { getEclipsesForYear, ECLIPSE_TABLE } from '@/lib/calendar/eclipse-data';
 import { computeLocalEclipse, type LocalEclipseResult } from '@/lib/calendar/eclipse-compute';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 interface EnrichedEclipse extends EclipseEvent {
   local?: LocalEclipseResult;
 }
 
-const ECLIPSE_TYPE_NAMES: Record<string, Trilingual> = {
+const ECLIPSE_TYPE_NAMES: Record<string, LocaleText> = {
   solar: { en: 'Solar Eclipse', hi: 'सूर्य ग्रहण', sa: 'सूर्यग्रहणम्' },
   lunar: { en: 'Lunar Eclipse', hi: 'चन्द्र ग्रहण', sa: 'चन्द्रग्रहणम्' },
 };
 
-const MAG_NAMES: Record<string, Trilingual> = {
+const MAG_NAMES: Record<string, LocaleText> = {
   total: { en: 'Total', hi: 'पूर्ण', sa: 'पूर्णम्' },
   partial: { en: 'Partial', hi: 'आंशिक', sa: 'आंशिकम्' },
   annular: { en: 'Annular', hi: 'वलयाकार', sa: 'वलयाकारम्' },

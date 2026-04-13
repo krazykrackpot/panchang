@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -499,7 +500,7 @@ export default function RemediesPage() {
           {RELATED_LINKS.map((link, i) => (
             <Link key={i} href={link.href}
               className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 hover:border-gold-primary/30 transition-colors flex items-center justify-between group">
-              <span className="text-sm text-text-primary font-medium" style={bodyFont}>{link.label[locale]}</span>
+              <span className="text-sm text-text-primary font-medium" style={bodyFont}>{tl(link.label, locale)}</span>
               <ArrowRight className="w-4 h-4 text-gold-primary/50 group-hover:text-gold-primary transition-colors" />
             </Link>
           ))}

@@ -5,15 +5,15 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_13_3', phase: 3, topic: 'Yogas', moduleNumber: '13.3',
-  title: { en: 'Dosha Detection & Cancellation', hi: 'दोष पहचान एवं निवारण' },
+  title: { en: 'Dosha Detection & Cancellation', hi: 'दोष पहचान एवं निवारण', sa: 'दोष पहचान एवं निवारण', mai: 'दोष पहचान एवं निवारण', mr: 'दोष पहचान एवं निवारण', ta: 'Dosha Detection & Cancellation', te: 'Dosha Detection & Cancellation', bn: 'Dosha Detection & Cancellation', kn: 'Dosha Detection & Cancellation', gu: 'Dosha Detection & Cancellation' },
   subtitle: {
     en: 'Mangal Dosha, Kala Sarpa Dosha, Pitra Dosha — detection criteria, severity scoring, cancellation rules, and remedial measures',
     hi: 'मंगल दोष, काल सर्प दोष, पितृ दोष — पहचान मानदण्ड, तीव्रता अंकन, निवारण नियम और उपचारात्मक उपाय',
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Module 13-1: Yogas Overview', hi: 'मॉड्यूल 13-1: योग अवलोकन' }, href: '/learn/modules/13-1' },
-    { label: { en: 'Module 13-2: Dhana & Arishta Yogas', hi: 'मॉड्यूल 13-2: धन और अरिष्ट योग' }, href: '/learn/modules/13-2' },
+    { label: { en: 'Module 13-1: Yogas Overview', hi: 'मॉड्यूल 13-1: योग अवलोकन', sa: 'मॉड्यूल 13-1: योग अवलोकन', mai: 'मॉड्यूल 13-1: योग अवलोकन', mr: 'मॉड्यूल 13-1: योग अवलोकन', ta: 'Module 13-1: Yogas Overview', te: 'Module 13-1: Yogas Overview', bn: 'Module 13-1: Yogas Overview', kn: 'Module 13-1: Yogas Overview', gu: 'Module 13-1: Yogas Overview' }, href: '/learn/modules/13-1' },
+    { label: { en: 'Module 13-2: Dhana & Arishta Yogas', hi: 'मॉड्यूल 13-2: धन और अरिष्ट योग', sa: 'मॉड्यूल 13-2: धन और अरिष्ट योग', mai: 'मॉड्यूल 13-2: धन और अरिष्ट योग', mr: 'मॉड्यूल 13-2: धन और अरिष्ट योग', ta: 'Module 13-2: Dhana & Arishta Yogas', te: 'Module 13-2: Dhana & Arishta Yogas', bn: 'Module 13-2: Dhana & Arishta Yogas', kn: 'Module 13-2: Dhana & Arishta Yogas', gu: 'Module 13-2: Dhana & Arishta Yogas' }, href: '/learn/modules/13-2' },
   ],
 };
 
@@ -25,10 +25,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मंगल दोष तब बनता है जब मंगल लग्न, चन्द्र या शुक्र से किन भावों में स्थित हो?',
     },
     options: [
-      { en: '3, 6, 10, 11', hi: '3, 6, 10, 11' },
-      { en: '1, 2, 4, 7, 8, 12', hi: '1, 2, 4, 7, 8, 12' },
-      { en: '5, 9 only', hi: 'केवल 5, 9' },
-      { en: '2, 7 only', hi: 'केवल 2, 7' },
+      { en: '3, 6, 10, 11', hi: '3, 6, 10, 11', sa: '3, 6, 10, 11', mai: '3, 6, 10, 11', mr: '3, 6, 10, 11', ta: '3, 6, 10, 11', te: '3, 6, 10, 11', bn: '3, 6, 10, 11', kn: '3, 6, 10, 11', gu: '3, 6, 10, 11' },
+      { en: '1, 2, 4, 7, 8, 12', hi: '1, 2, 4, 7, 8, 12', sa: '1, 2, 4, 7, 8, 12', mai: '1, 2, 4, 7, 8, 12', mr: '1, 2, 4, 7, 8, 12', ta: '1, 2, 4, 7, 8, 12', te: '1, 2, 4, 7, 8, 12', bn: '1, 2, 4, 7, 8, 12', kn: '1, 2, 4, 7, 8, 12', gu: '1, 2, 4, 7, 8, 12' },
+      { en: '5, 9 only', hi: 'केवल 5, 9', sa: 'केवल 5, 9', mai: 'केवल 5, 9', mr: 'केवल 5, 9', ta: '5, 9 only', te: '5, 9 only', bn: '5, 9 only', kn: '5, 9 only', gu: '5, 9 only' },
+      { en: '2, 7 only', hi: 'केवल 2, 7', sa: 'केवल 2, 7', mai: 'केवल 2, 7', mr: 'केवल 2, 7', ta: '2, 7 only', te: '2, 7 only', bn: '2, 7 only', kn: '2, 7 only', gu: '2, 7 only' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -55,10 +55,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मंगल दोष के कितने मानक निवारण नियम हैं?',
     },
     options: [
-      { en: '2', hi: '2' },
-      { en: '6', hi: '6' },
-      { en: '12', hi: '12' },
-      { en: 'None — it can never be cancelled', hi: 'कोई नहीं — इसे कभी निरस्त नहीं किया जा सकता' },
+      { en: '2', hi: '2', sa: '2', mai: '2', mr: '2', ta: '2', te: '2', bn: '2', kn: '2', gu: '2' },
+      { en: '6', hi: '6', sa: '6', mai: '6', mr: '6', ta: '6', te: '6', bn: '6', kn: '6', gu: '6' },
+      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
+      { en: 'None — it can never be cancelled', hi: 'कोई नहीं — इसे कभी निरस्त नहीं किया जा सकता', sa: 'कोई नहीं — इसे कभी निरस्त नहीं किया जा सकता', mai: 'कोई नहीं — इसे कभी निरस्त नहीं किया जा सकता', mr: 'कोई नहीं — इसे कभी निरस्त नहीं किया जा सकता', ta: 'None — it can never be cancelled', te: 'None — it can never be cancelled', bn: 'None — it can never be cancelled', kn: 'None — it can never be cancelled', gu: 'None — it can never be cancelled' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -73,10 +73,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'काल सर्प दोष तब बनता है जब:',
     },
     options: [
-      { en: 'Saturn aspects Mars', hi: 'शनि मंगल को दृष्टि करे' },
-      { en: 'All 7 planets are hemmed between the Rahu-Ketu axis', hi: 'सभी 7 ग्रह राहु-केतु अक्ष के बीच घिरे हों' },
-      { en: 'Jupiter is debilitated', hi: 'गुरु नीच हो' },
-      { en: 'Moon is in the 8th house', hi: 'चन्द्रमा 8वें भाव में हो' },
+      { en: 'Saturn aspects Mars', hi: 'शनि मंगल को दृष्टि करे', sa: 'शनि मंगल को दृष्टि करे', mai: 'शनि मंगल को दृष्टि करे', mr: 'शनि मंगल को दृष्टि करे', ta: 'Saturn aspects Mars', te: 'Saturn aspects Mars', bn: 'Saturn aspects Mars', kn: 'Saturn aspects Mars', gu: 'Saturn aspects Mars' },
+      { en: 'All 7 planets are hemmed between the Rahu-Ketu axis', hi: 'सभी 7 ग्रह राहु-केतु अक्ष के बीच घिरे हों', sa: 'सभी 7 ग्रह राहु-केतु अक्ष के बीच घिरे हों', mai: 'सभी 7 ग्रह राहु-केतु अक्ष के बीच घिरे हों', mr: 'सभी 7 ग्रह राहु-केतु अक्ष के बीच घिरे हों', ta: 'All 7 planets are hemmed between the Rahu-Ketu axis', te: 'All 7 planets are hemmed between the Rahu-Ketu axis', bn: 'All 7 planets are hemmed between the Rahu-Ketu axis', kn: 'All 7 planets are hemmed between the Rahu-Ketu axis', gu: 'All 7 planets are hemmed between the Rahu-Ketu axis' },
+      { en: 'Jupiter is debilitated', hi: 'गुरु नीच हो', sa: 'गुरु नीच हो', mai: 'गुरु नीच हो', mr: 'गुरु नीच हो', ta: 'Jupiter is debilitated', te: 'Jupiter is debilitated', bn: 'Jupiter is debilitated', kn: 'Jupiter is debilitated', gu: 'Jupiter is debilitated' },
+      { en: 'Moon is in the 8th house', hi: 'चन्द्रमा 8वें भाव में हो', sa: 'चन्द्रमा 8वें भाव में हो', mai: 'चन्द्रमा 8वें भाव में हो', mr: 'चन्द्रमा 8वें भाव में हो', ta: 'Moon is in the 8th house', te: 'Moon is in the 8th house', bn: 'Moon is in the 8th house', kn: 'Moon is in the 8th house', gu: 'Moon is in the 8th house' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -103,10 +103,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पितृ दोष मुख्यतः किससे सम्बन्धित है?',
     },
     options: [
-      { en: 'Marital discord', hi: 'वैवाहिक कलह' },
-      { en: 'Ancestral karmic debts and unfulfilled obligations to forefathers', hi: 'पैतृक कार्मिक ऋण और पूर्वजों के प्रति अपूर्ण दायित्व' },
-      { en: 'Career obstacles only', hi: 'केवल करियर बाधा' },
-      { en: 'Educational failure', hi: 'शैक्षिक असफलता' },
+      { en: 'Marital discord', hi: 'वैवाहिक कलह', sa: 'वैवाहिक कलह', mai: 'वैवाहिक कलह', mr: 'वैवाहिक कलह', ta: 'Marital discord', te: 'Marital discord', bn: 'Marital discord', kn: 'Marital discord', gu: 'Marital discord' },
+      { en: 'Ancestral karmic debts and unfulfilled obligations to forefathers', hi: 'पैतृक कार्मिक ऋण और पूर्वजों के प्रति अपूर्ण दायित्व', sa: 'पैतृक कार्मिक ऋण और पूर्वजों के प्रति अपूर्ण दायित्व', mai: 'पैतृक कार्मिक ऋण और पूर्वजों के प्रति अपूर्ण दायित्व', mr: 'पैतृक कार्मिक ऋण और पूर्वजों के प्रति अपूर्ण दायित्व', ta: 'Ancestral karmic debts and unfulfilled obligations to forefathers', te: 'Ancestral karmic debts and unfulfilled obligations to forefathers', bn: 'Ancestral karmic debts and unfulfilled obligations to forefathers', kn: 'Ancestral karmic debts and unfulfilled obligations to forefathers', gu: 'Ancestral karmic debts and unfulfilled obligations to forefathers' },
+      { en: 'Career obstacles only', hi: 'केवल करियर बाधा', sa: 'केवल करियर बाधा', mai: 'केवल करियर बाधा', mr: 'केवल करियर बाधा', ta: 'Career obstacles only', te: 'Career obstacles only', bn: 'Career obstacles only', kn: 'Career obstacles only', gu: 'Career obstacles only' },
+      { en: 'Educational failure', hi: 'शैक्षिक असफलता', sa: 'शैक्षिक असफलता', mai: 'शैक्षिक असफलता', mr: 'शैक्षिक असफलता', ta: 'Educational failure', te: 'Educational failure', bn: 'Educational failure', kn: 'Educational failure', gu: 'Educational failure' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -121,10 +121,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'गुरु चाण्डाल दोष किससे बनता है?',
     },
     options: [
-      { en: 'Jupiter conjunct Rahu', hi: 'गुरु और राहु का संयोग' },
-      { en: 'Jupiter conjunct Saturn', hi: 'गुरु और शनि का संयोग' },
-      { en: 'Jupiter in the 12th house', hi: 'गुरु 12वें भाव में' },
-      { en: 'Jupiter debilitated in Capricorn', hi: 'गुरु मकर में नीच' },
+      { en: 'Jupiter conjunct Rahu', hi: 'गुरु और राहु का संयोग', sa: 'गुरु और राहु का संयोग', mai: 'गुरु और राहु का संयोग', mr: 'गुरु और राहु का संयोग', ta: 'Jupiter conjunct Rahu', te: 'Jupiter conjunct Rahu', bn: 'Jupiter conjunct Rahu', kn: 'Jupiter conjunct Rahu', gu: 'Jupiter conjunct Rahu' },
+      { en: 'Jupiter conjunct Saturn', hi: 'गुरु और शनि का संयोग', sa: 'गुरु और शनि का संयोग', mai: 'गुरु और शनि का संयोग', mr: 'गुरु और शनि का संयोग', ta: 'Jupiter conjunct Saturn', te: 'Jupiter conjunct Saturn', bn: 'Jupiter conjunct Saturn', kn: 'Jupiter conjunct Saturn', gu: 'Jupiter conjunct Saturn' },
+      { en: 'Jupiter in the 12th house', hi: 'गुरु 12वें भाव में', sa: 'गुरु 12वें भाव में', mai: 'गुरु 12वें भाव में', mr: 'गुरु 12वें भाव में', ta: 'Jupiter in the 12th house', te: 'Jupiter in the 12th house', bn: 'Jupiter in the 12th house', kn: 'Jupiter in the 12th house', gu: 'Jupiter in the 12th house' },
+      { en: 'Jupiter debilitated in Capricorn', hi: 'गुरु मकर में नीच', sa: 'गुरु मकर में नीच', mai: 'गुरु मकर में नीच', mr: 'गुरु मकर में नीच', ta: 'Jupiter debilitated in Capricorn', te: 'Jupiter debilitated in Capricorn', bn: 'Jupiter debilitated in Capricorn', kn: 'Jupiter debilitated in Capricorn', gu: 'Jupiter debilitated in Capricorn' },
     ],
     correctAnswer: 0,
     explanation: {
@@ -139,10 +139,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'शापित दोष किससे सूचित होता है?',
     },
     options: [
-      { en: 'Moon with Ketu', hi: 'चन्द्रमा और केतु' },
-      { en: 'Saturn conjunct Rahu', hi: 'शनि और राहु का संयोग' },
-      { en: 'Mars in the 7th', hi: 'मंगल 7वें में' },
-      { en: 'Venus combust', hi: 'शुक्र अस्त' },
+      { en: 'Moon with Ketu', hi: 'चन्द्रमा और केतु', sa: 'चन्द्रमा और केतु', mai: 'चन्द्रमा और केतु', mr: 'चन्द्रमा और केतु', ta: 'Moon with Ketu', te: 'Moon with Ketu', bn: 'Moon with Ketu', kn: 'Moon with Ketu', gu: 'Moon with Ketu' },
+      { en: 'Saturn conjunct Rahu', hi: 'शनि और राहु का संयोग', sa: 'शनि और राहु का संयोग', mai: 'शनि और राहु का संयोग', mr: 'शनि और राहु का संयोग', ta: 'Saturn conjunct Rahu', te: 'Saturn conjunct Rahu', bn: 'Saturn conjunct Rahu', kn: 'Saturn conjunct Rahu', gu: 'Saturn conjunct Rahu' },
+      { en: 'Mars in the 7th', hi: 'मंगल 7वें में', sa: 'मंगल 7वें में', mai: 'मंगल 7वें में', mr: 'मंगल 7वें में', ta: 'Mars in the 7th', te: 'Mars in the 7th', bn: 'Mars in the 7th', kn: 'Mars in the 7th', gu: 'Mars in the 7th' },
+      { en: 'Venus combust', hi: 'शुक्र अस्त', sa: 'शुक्र अस्त', mai: 'शुक्र अस्त', mr: 'शुक्र अस्त', ta: 'Venus combust', te: 'Venus combust', bn: 'Venus combust', kn: 'Venus combust', gu: 'Venus combust' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -169,10 +169,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वैदिक ज्योतिष में दोषों के पीछे मूलभूत सिद्धान्त यह है कि वे प्रतिनिधित्व करते हैं:',
     },
     options: [
-      { en: 'Permanent curses that cannot be changed', hi: 'स्थायी शाप जो बदले नहीं जा सकते' },
-      { en: 'Karmic patterns that can be understood, mitigated, and worked through', hi: 'कार्मिक प्रतिमान जिन्हें समझा, शमित और साधा जा सकता है' },
-      { en: 'Random misfortune', hi: 'यादृच्छिक दुर्भाग्य' },
-      { en: 'Punishments from deities', hi: 'देवताओं से दण्ड' },
+      { en: 'Permanent curses that cannot be changed', hi: 'स्थायी शाप जो बदले नहीं जा सकते', sa: 'स्थायी शाप जो बदले नहीं जा सकते', mai: 'स्थायी शाप जो बदले नहीं जा सकते', mr: 'स्थायी शाप जो बदले नहीं जा सकते', ta: 'Permanent curses that cannot be changed', te: 'Permanent curses that cannot be changed', bn: 'Permanent curses that cannot be changed', kn: 'Permanent curses that cannot be changed', gu: 'Permanent curses that cannot be changed' },
+      { en: 'Karmic patterns that can be understood, mitigated, and worked through', hi: 'कार्मिक प्रतिमान जिन्हें समझा, शमित और साधा जा सकता है', sa: 'कार्मिक प्रतिमान जिन्हें समझा, शमित और साधा जा सकता है', mai: 'कार्मिक प्रतिमान जिन्हें समझा, शमित और साधा जा सकता है', mr: 'कार्मिक प्रतिमान जिन्हें समझा, शमित और साधा जा सकता है', ta: 'Karmic patterns that can be understood, mitigated, and worked through', te: 'Karmic patterns that can be understood, mitigated, and worked through', bn: 'Karmic patterns that can be understood, mitigated, and worked through', kn: 'Karmic patterns that can be understood, mitigated, and worked through', gu: 'Karmic patterns that can be understood, mitigated, and worked through' },
+      { en: 'Random misfortune', hi: 'यादृच्छिक दुर्भाग्य', sa: 'यादृच्छिक दुर्भाग्य', mai: 'यादृच्छिक दुर्भाग्य', mr: 'यादृच्छिक दुर्भाग्य', ta: 'Random misfortune', te: 'Random misfortune', bn: 'Random misfortune', kn: 'Random misfortune', gu: 'Random misfortune' },
+      { en: 'Punishments from deities', hi: 'देवताओं से दण्ड', sa: 'देवताओं से दण्ड', mai: 'देवताओं से दण्ड', mr: 'देवताओं से दण्ड', ta: 'Punishments from deities', te: 'Punishments from deities', bn: 'Punishments from deities', kn: 'Punishments from deities', gu: 'Punishments from deities' },
     ],
     correctAnswer: 1,
     explanation: {

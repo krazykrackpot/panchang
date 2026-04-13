@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Share2, Check, Copy, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ════════════════════════════════════════════════════════════════
@@ -53,7 +53,7 @@ export default function ShareButton({ title, text, url, locale, variant = 'inlin
   const [open, setOpen] = useState(false);
   const [hasNativeShare, setHasNativeShare] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
-  const l = (obj: { en: string; hi: string; sa: string }) => obj[locale] || obj.en;
+  const l = (obj: LocaleText) => obj[locale] || obj.en;
 
   const shareUrl = url || (typeof window !== 'undefined' ? window.location.href : '');
 

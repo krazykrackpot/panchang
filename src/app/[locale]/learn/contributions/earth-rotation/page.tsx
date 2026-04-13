@@ -1,5 +1,6 @@
+import { tl } from '@/lib/utils/trilingual';
 import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
+import type { LocaleText, Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
@@ -16,7 +17,7 @@ const L = {
     hi: '499 ई. में, जब यूरोप अंधकार युग में था, एक 23 वर्षीय भारतीय गणितज्ञ ने लिखा: "तारों का गोला नहीं घूमता; पृथ्वी अपनी धुरी पर घूमती है, जिससे तारे उगते और डूबते प्रतीत होते हैं।" उनका नाम था आर्यभट — और यह कोई अनुमान नहीं था।',
   },
 
-  s1Title: { en: 'The Exact Quote — Aryabhatiya, Golapada', hi: 'सटीक उद्धरण — आर्यभटीय, गोलपाद' },
+  s1Title: { en: 'The Exact Quote — Aryabhatiya, Golapada', hi: 'सटीक उद्धरण — आर्यभटीय, गोलपाद', sa: 'सटीक उद्धरण — आर्यभटीय, गोलपाद', mai: 'सटीक उद्धरण — आर्यभटीय, गोलपाद', mr: 'सटीक उद्धरण — आर्यभटीय, गोलपाद', ta: 'The Exact Quote — Aryabhatiya, Golapada', te: 'The Exact Quote — Aryabhatiya, Golapada', bn: 'The Exact Quote — Aryabhatiya, Golapada', kn: 'The Exact Quote — Aryabhatiya, Golapada', gu: 'The Exact Quote — Aryabhatiya, Golapada' },
   s1Body: {
     en: 'The Aryabhatiya contains two critical verses in the Golapada (Celestial Sphere section) that state Earth\'s rotation with mathematical precision. These are not poetic metaphors — they are technical astronomical statements embedded in a work of applied mathematics.',
     hi: 'आर्यभटीय के गोलपाद (आकाशीय गोल खंड) में दो महत्वपूर्ण श्लोक हैं जो पृथ्वी के घूर्णन को गणितीय सटीकता के साथ बताते हैं। ये काव्यात्मक रूपक नहीं हैं — ये अनुप्रयुक्त गणित के कार्य में एम्बेड किए गए तकनीकी खगोलीय कथन हैं।',
@@ -73,18 +74,18 @@ const L = {
     hi: 'आर्यभट की अन्य खगोलीय उपलब्धियाँ',
   },
 
-  backLink: { en: '← Back to Learn', hi: '← सीखने पर वापस' },
-  prevPage: { en: 'Sine — Sanskrit Origin', hi: 'Sine — संस्कृत उत्पत्ति' },
-  nextPage: { en: 'Calculus in Kerala', hi: 'केरल में कलनशास्त्र' },
+  backLink: { en: '← Back to Learn', hi: '← सीखने पर वापस', sa: '← सीखने पर वापस', mai: '← सीखने पर वापस', mr: '← सीखने पर वापस', ta: '← Back to Learn', te: '← Back to Learn', bn: '← Back to Learn', kn: '← Back to Learn', gu: '← Back to Learn' },
+  prevPage: { en: 'Sine — Sanskrit Origin', hi: 'Sine — संस्कृत उत्पत्ति', sa: 'Sine — संस्कृत उत्पत्ति', mai: 'Sine — संस्कृत उत्पत्ति', mr: 'Sine — संस्कृत उत्पत्ति', ta: 'Sine — Sanskrit Origin', te: 'Sine — Sanskrit Origin', bn: 'Sine — Sanskrit Origin', kn: 'Sine — Sanskrit Origin', gu: 'Sine — Sanskrit Origin' },
+  nextPage: { en: 'Calculus in Kerala', hi: 'केरल में कलनशास्त्र', sa: 'केरल में कलनशास्त्र', mai: 'केरल में कलनशास्त्र', mr: 'केरल में कलनशास्त्र', ta: 'Calculus in Kerala', te: 'Calculus in Kerala', bn: 'Calculus in Kerala', kn: 'Calculus in Kerala', gu: 'Calculus in Kerala' },
 };
 
 const TIMELINE = [
-  { year: '499 CE', person: 'Aryabhata', event: { en: 'States Earth rotates on its axis, in Aryabhatiya Golapada', hi: 'आर्यभटीय गोलपाद में पृथ्वी के अक्षीय घूर्णन का कथन' }, color: '#f0d48a' },
-  { year: '628 CE', person: 'Brahmagupta', event: { en: 'Disputes Aryabhata — active scientific debate', hi: 'आर्यभट का विरोध — सक्रिय वैज्ञानिक बहस' }, color: '#60a5fa' },
-  { year: '1000 CE', person: 'Al-Biruni', event: { en: 'Arab scholar visits India, translates Aryabhatiya', hi: 'अरब विद्वान भारत आए, आर्यभटीय का अनुवाद किया' }, color: '#a78bfa' },
-  { year: '1543 CE', person: 'Copernicus', event: { en: 'Publishes heliocentric model in Europe', hi: 'यूरोप में सौर-केंद्रित मॉडल प्रकाशित किया' }, color: '#f87171' },
-  { year: '1632 CE', person: 'Galileo', event: { en: 'Imprisoned for teaching Earth moves', hi: 'पृथ्वी के गतिशील होने का पाठ पढ़ाने पर कारावास' }, color: '#f87171' },
-  { year: '1687 CE', person: 'Newton', event: { en: 'Resolves the "thrown stone" objection with inertia', hi: 'जड़त्व से "फेंके गए पत्थर" की आपत्ति हल की' }, color: '#34d399' },
+  { year: '499 CE', person: 'Aryabhata', event: { en: 'States Earth rotates on its axis, in Aryabhatiya Golapada', hi: 'आर्यभटीय गोलपाद में पृथ्वी के अक्षीय घूर्णन का कथन', sa: 'आर्यभटीय गोलपाद में पृथ्वी के अक्षीय घूर्णन का कथन', mai: 'आर्यभटीय गोलपाद में पृथ्वी के अक्षीय घूर्णन का कथन', mr: 'आर्यभटीय गोलपाद में पृथ्वी के अक्षीय घूर्णन का कथन', ta: 'States Earth rotates on its axis, in Aryabhatiya Golapada', te: 'States Earth rotates on its axis, in Aryabhatiya Golapada', bn: 'States Earth rotates on its axis, in Aryabhatiya Golapada', kn: 'States Earth rotates on its axis, in Aryabhatiya Golapada', gu: 'States Earth rotates on its axis, in Aryabhatiya Golapada' }, color: '#f0d48a' },
+  { year: '628 CE', person: 'Brahmagupta', event: { en: 'Disputes Aryabhata — active scientific debate', hi: 'आर्यभट का विरोध — सक्रिय वैज्ञानिक बहस', sa: 'आर्यभट का विरोध — सक्रिय वैज्ञानिक बहस', mai: 'आर्यभट का विरोध — सक्रिय वैज्ञानिक बहस', mr: 'आर्यभट का विरोध — सक्रिय वैज्ञानिक बहस', ta: 'Disputes Aryabhata — active scientific debate', te: 'Disputes Aryabhata — active scientific debate', bn: 'Disputes Aryabhata — active scientific debate', kn: 'Disputes Aryabhata — active scientific debate', gu: 'Disputes Aryabhata — active scientific debate' }, color: '#60a5fa' },
+  { year: '1000 CE', person: 'Al-Biruni', event: { en: 'Arab scholar visits India, translates Aryabhatiya', hi: 'अरब विद्वान भारत आए, आर्यभटीय का अनुवाद किया', sa: 'अरब विद्वान भारत आए, आर्यभटीय का अनुवाद किया', mai: 'अरब विद्वान भारत आए, आर्यभटीय का अनुवाद किया', mr: 'अरब विद्वान भारत आए, आर्यभटीय का अनुवाद किया', ta: 'Arab scholar visits India, translates Aryabhatiya', te: 'Arab scholar visits India, translates Aryabhatiya', bn: 'Arab scholar visits India, translates Aryabhatiya', kn: 'Arab scholar visits India, translates Aryabhatiya', gu: 'Arab scholar visits India, translates Aryabhatiya' }, color: '#a78bfa' },
+  { year: '1543 CE', person: 'Copernicus', event: { en: 'Publishes heliocentric model in Europe', hi: 'यूरोप में सौर-केंद्रित मॉडल प्रकाशित किया', sa: 'यूरोप में सौर-केंद्रित मॉडल प्रकाशित किया', mai: 'यूरोप में सौर-केंद्रित मॉडल प्रकाशित किया', mr: 'यूरोप में सौर-केंद्रित मॉडल प्रकाशित किया', ta: 'Publishes heliocentric model in Europe', te: 'Publishes heliocentric model in Europe', bn: 'Publishes heliocentric model in Europe', kn: 'Publishes heliocentric model in Europe', gu: 'Publishes heliocentric model in Europe' }, color: '#f87171' },
+  { year: '1632 CE', person: 'Galileo', event: { en: 'Imprisoned for teaching Earth moves', hi: 'पृथ्वी के गतिशील होने का पाठ पढ़ाने पर कारावास', sa: 'पृथ्वी के गतिशील होने का पाठ पढ़ाने पर कारावास', mai: 'पृथ्वी के गतिशील होने का पाठ पढ़ाने पर कारावास', mr: 'पृथ्वी के गतिशील होने का पाठ पढ़ाने पर कारावास', ta: 'Imprisoned for teaching Earth moves', te: 'Imprisoned for teaching Earth moves', bn: 'Imprisoned for teaching Earth moves', kn: 'Imprisoned for teaching Earth moves', gu: 'Imprisoned for teaching Earth moves' }, color: '#f87171' },
+  { year: '1687 CE', person: 'Newton', event: { en: 'Resolves the "thrown stone" objection with inertia', hi: 'जड़त्व से "फेंके गए पत्थर" की आपत्ति हल की', sa: 'जड़त्व से "फेंके गए पत्थर" की आपत्ति हल की', mai: 'जड़त्व से "फेंके गए पत्थर" की आपत्ति हल की', mr: 'जड़त्व से "फेंके गए पत्थर" की आपत्ति हल की', ta: 'Resolves the "thrown stone" objection with inertia', te: 'Resolves the "thrown stone" objection with inertia', bn: 'Resolves the "thrown stone" objection with inertia', kn: 'Resolves the "thrown stone" objection with inertia', gu: 'Resolves the "thrown stone" objection with inertia' }, color: '#34d399' },
 ];
 
 const ACHIEVEMENTS = [
@@ -99,7 +100,7 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
   const { locale } = await params as { locale: Locale };
   const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const l = (obj: Record<string, string>) => (isHi ? obj.hi : obj.en);
+  const l = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
 
   return (
     <div className="space-y-10">

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, BookOpen, Flame, Star, Clock, AlertTriangle, Sun, Moon, Check, Copy, ChevronDown } from 'lucide-react';
-import type { Locale, Trilingual } from '@/types/panchang';
+import type { Locale,  LocaleText} from '@/types/panchang';
 import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-details';
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 import type { PujaVidhi, MantraDetail as MantraType } from '@/lib/constants/puja-vidhi/types';
@@ -14,7 +14,7 @@ interface FestivalDetailModalProps {
   isOpen: boolean;
   onClose: () => void;
   locale: Locale;
-  festivalName: Trilingual;
+  festivalName: LocaleText;
   festivalDate: string;
   festivalCategory: string;
   detail: FestivalDetail | null;
@@ -23,7 +23,7 @@ interface FestivalDetailModalProps {
   paranaDate?: string;
   paranaStart?: string;
   paranaEnd?: string;
-  paranaNote?: Trilingual;
+  paranaNote?: LocaleText;
   paranaSunrise?: string;
   paranaHariVasaraEnd?: string;
   paranaDwadashiEnd?: string;
@@ -37,7 +37,7 @@ interface FestivalDetailModalProps {
   sutakStart?: string;
   sutakEnd?: string;
   sutakApplicable?: boolean;
-  eclipsePhases?: { name: Trilingual; time: string }[];
+  eclipsePhases?: { name: LocaleText; time: string }[];
   festivalSlug?: string;
 }
 
@@ -520,7 +520,7 @@ function InlineMantra({ mantra, locale, bodyFont }: { mantra: MantraType; locale
 
 function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidhi; locale: Locale; headingFont: React.CSSProperties; bodyFont: React.CSSProperties }) {
   const key = dataLocale(locale);
-  const t = (tri: { en: string; hi: string; sa: string }) => tri[locale] || tri.en;
+  const t = (tri: LocaleText) => tri[locale] || tri.en;
 
   return (
     <div className="space-y-4">

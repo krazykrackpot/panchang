@@ -5,16 +5,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_25_5', phase: 5, topic: 'Indian Mathematics', moduleNumber: '25.5',
-  title: { en: 'Binary Code — 1800 Years Before Computers', hi: 'द्विआधारी संकेत — कम्प्यूटर से 1800 वर्ष पहले' },
+  title: { en: 'Binary Code — 1800 Years Before Computers', hi: 'द्विआधारी संकेत — कम्प्यूटर से 1800 वर्ष पहले', sa: 'द्विआधारी संकेत — कम्प्यूटर से 1800 वर्ष पहले', mai: 'द्विआधारी संकेत — कम्प्यूटर से 1800 वर्ष पहले', mr: 'द्विआधारी संकेत — कम्प्यूटर से 1800 वर्ष पहले', ta: 'Binary Code — 1800 Years Before Computers', te: 'Binary Code — 1800 Years Before Computers', bn: 'Binary Code — 1800 Years Before Computers', kn: 'Binary Code — 1800 Years Before Computers', gu: 'Binary Code — 1800 Years Before Computers' },
   subtitle: {
     en: 'How Pingala encoded poetic meters in binary notation around 200 BCE — inventing what we now call binary arithmetic, Pascal\'s triangle, and combinatorics',
     hi: 'पिंगल ने ~200 BCE में काव्य छन्दों को द्विआधारी संकेत में कैसे एन्कोड किया — जिसे हम अब द्विआधारी अंकगणित, पास्कल त्रिभुज, और क्रमचय-संचय कहते हैं',
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 25-1: Zero', hi: 'मॉड्यूल 25-1: शून्य' }, href: '/learn/modules/25-1' },
-    { label: { en: 'Module 25-4: Negative Numbers', hi: 'मॉड्यूल 25-4: ऋण संख्याएँ' }, href: '/learn/modules/25-4' },
-    { label: { en: 'Module 25-7: Kerala Calculus', hi: 'मॉड्यूल 25-7: केरल गणित' }, href: '/learn/modules/25-7' },
+    { label: { en: 'Module 25-1: Zero', hi: 'मॉड्यूल 25-1: शून्य', sa: 'मॉड्यूल 25-1: शून्य', mai: 'मॉड्यूल 25-1: शून्य', mr: 'मॉड्यूल 25-1: शून्य', ta: 'Module 25-1: Zero', te: 'Module 25-1: Zero', bn: 'Module 25-1: Zero', kn: 'Module 25-1: Zero', gu: 'Module 25-1: Zero' }, href: '/learn/modules/25-1' },
+    { label: { en: 'Module 25-4: Negative Numbers', hi: 'मॉड्यूल 25-4: ऋण संख्याएँ', sa: 'मॉड्यूल 25-4: ऋण संख्याएँ', mai: 'मॉड्यूल 25-4: ऋण संख्याएँ', mr: 'मॉड्यूल 25-4: ऋण संख्याएँ', ta: 'Module 25-4: Negative Numbers', te: 'Module 25-4: Negative Numbers', bn: 'Module 25-4: Negative Numbers', kn: 'Module 25-4: Negative Numbers', gu: 'Module 25-4: Negative Numbers' }, href: '/learn/modules/25-4' },
+    { label: { en: 'Module 25-7: Kerala Calculus', hi: 'मॉड्यूल 25-7: केरल गणित', sa: 'मॉड्यूल 25-7: केरल गणित', mai: 'मॉड्यूल 25-7: केरल गणित', mr: 'मॉड्यूल 25-7: केरल गणित', ta: 'Module 25-7: Kerala Calculus', te: 'Module 25-7: Kerala Calculus', bn: 'Module 25-7: Kerala Calculus', kn: 'Module 25-7: Kerala Calculus', gu: 'Module 25-7: Kerala Calculus' }, href: '/learn/modules/25-7' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'प्राचीन भारत में अनुक्रमों के द्विआधारी एन्कोडिंग का आविष्कार किसने किया?',
     },
     options: [
-      { en: 'Aryabhata', hi: 'आर्यभट' },
-      { en: 'Pingala', hi: 'पिंगल' },
-      { en: 'Panini', hi: 'पाणिनि' },
-      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त' },
+      { en: 'Aryabhata', hi: 'आर्यभट', sa: 'आर्यभट', mai: 'आर्यभट', mr: 'आर्यभट', ta: 'Aryabhata', te: 'Aryabhata', bn: 'Aryabhata', kn: 'Aryabhata', gu: 'Aryabhata' },
+      { en: 'Pingala', hi: 'पिंगल', sa: 'पिंगल', mai: 'पिंगल', mr: 'पिंगल', ta: 'Pingala', te: 'Pingala', bn: 'Pingala', kn: 'Pingala', gu: 'Pingala' },
+      { en: 'Panini', hi: 'पाणिनि', sa: 'पाणिनि', mai: 'पाणिनि', mr: 'पाणिनि', ta: 'Panini', te: 'Panini', bn: 'Panini', kn: 'Panini', gu: 'Panini' },
+      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त', sa: 'ब्रह्मगुप्त', mai: 'ब्रह्मगुप्त', mr: 'ब्रह्मगुप्त', ta: 'Brahmagupta', te: 'Brahmagupta', bn: 'Brahmagupta', kn: 'Brahmagupta', gu: 'Brahmagupta' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -44,10 +44,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पिंगल के उस ग्रन्थ का नाम क्या था जिसमें द्विआधारी एन्कोडिंग है?',
     },
     options: [
-      { en: 'Ashtadhyayi', hi: 'अष्टाध्यायी' },
-      { en: 'Chandahshastra', hi: 'छन्दःशास्त्र' },
-      { en: 'Natya Shastra', hi: 'नाट्यशास्त्र' },
-      { en: 'Arthashastra', hi: 'अर्थशास्त्र' },
+      { en: 'Ashtadhyayi', hi: 'अष्टाध्यायी', sa: 'अष्टाध्यायी', mai: 'अष्टाध्यायी', mr: 'अष्टाध्यायी', ta: 'Ashtadhyayi', te: 'Ashtadhyayi', bn: 'Ashtadhyayi', kn: 'Ashtadhyayi', gu: 'Ashtadhyayi' },
+      { en: 'Chandahshastra', hi: 'छन्दःशास्त्र', sa: 'छन्दःशास्त्र', mai: 'छन्दःशास्त्र', mr: 'छन्दःशास्त्र', ta: 'Chandahshastra', te: 'Chandahshastra', bn: 'Chandahshastra', kn: 'Chandahshastra', gu: 'Chandahshastra' },
+      { en: 'Natya Shastra', hi: 'नाट्यशास्त्र', sa: 'नाट्यशास्त्र', mai: 'नाट्यशास्त्र', mr: 'नाट्यशास्त्र', ta: 'Natya Shastra', te: 'Natya Shastra', bn: 'Natya Shastra', kn: 'Natya Shastra', gu: 'Natya Shastra' },
+      { en: 'Arthashastra', hi: 'अर्थशास्त्र', sa: 'अर्थशास्त्र', mai: 'अर्थशास्त्र', mr: 'अर्थशास्त्र', ta: 'Arthashastra', te: 'Arthashastra', bn: 'Arthashastra', kn: 'Arthashastra', gu: 'Arthashastra' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -62,10 +62,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पिंगल ने छन्दःशास्त्र लगभग किस शताब्दी में लिखा?',
     },
     options: [
-      { en: '6th century BCE', hi: '6वीं शताब्दी BCE' },
-      { en: '~3rd–2nd century BCE (~200 BCE)', hi: '~3री-2री शताब्दी BCE (~200 BCE)' },
-      { en: '1st century CE', hi: '1ली शताब्दी CE' },
-      { en: '5th century CE', hi: '5वीं शताब्दी CE' },
+      { en: '6th century BCE', hi: '6वीं शताब्दी BCE', sa: '6वीं शताब्दी BCE', mai: '6वीं शताब्दी BCE', mr: '6वीं शताब्दी BCE', ta: '6th century BCE', te: '6th century BCE', bn: '6th century BCE', kn: '6th century BCE', gu: '6th century BCE' },
+      { en: '~3rd–2nd century BCE (~200 BCE)', hi: '~3री-2री शताब्दी BCE (~200 BCE)', sa: '~3री-2री शताब्दी BCE (~200 BCE)', mai: '~3री-2री शताब्दी BCE (~200 BCE)', mr: '~3री-2री शताब्दी BCE (~200 BCE)', ta: '~3rd–2nd century BCE (~200 BCE)', te: '~3rd–2nd century BCE (~200 BCE)', bn: '~3rd–2nd century BCE (~200 BCE)', kn: '~3rd–2nd century BCE (~200 BCE)', gu: '~3rd–2nd century BCE (~200 BCE)' },
+      { en: '1st century CE', hi: '1ली शताब्दी CE', sa: '1ली शताब्दी CE', mai: '1ली शताब्दी CE', mr: '1ली शताब्दी CE', ta: '1st century CE', te: '1st century CE', bn: '1st century CE', kn: '1st century CE', gu: '1st century CE' },
+      { en: '5th century CE', hi: '5वीं शताब्दी CE', sa: '5वीं शताब्दी CE', mai: '5वीं शताब्दी CE', mr: '5वीं शताब्दी CE', ta: '5th century CE', te: '5th century CE', bn: '5th century CE', kn: '5th century CE', gu: '5th century CE' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -80,10 +80,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पिंगल किस विषय को द्विआधारी में एन्कोड कर रहे थे?',
     },
     options: [
-      { en: 'Astronomical positions of planets', hi: 'ग्रहों की खगोलीय स्थितियाँ' },
-      { en: 'Poetic meters — patterns of short (laghu) and long (guru) syllables', hi: 'काव्य छन्द — लघु और गुरु अक्षरों के पैटर्न' },
-      { en: 'Musical notes and rhythms', hi: 'संगीत के स्वर और ताल' },
-      { en: 'Temple construction measurements', hi: 'मन्दिर निर्माण माप' },
+      { en: 'Astronomical positions of planets', hi: 'ग्रहों की खगोलीय स्थितियाँ', sa: 'ग्रहों की खगोलीय स्थितियाँ', mai: 'ग्रहों की खगोलीय स्थितियाँ', mr: 'ग्रहों की खगोलीय स्थितियाँ', ta: 'Astronomical positions of planets', te: 'Astronomical positions of planets', bn: 'Astronomical positions of planets', kn: 'Astronomical positions of planets', gu: 'Astronomical positions of planets' },
+      { en: 'Poetic meters — patterns of short (laghu) and long (guru) syllables', hi: 'काव्य छन्द — लघु और गुरु अक्षरों के पैटर्न', sa: 'काव्य छन्द — लघु और गुरु अक्षरों के पैटर्न', mai: 'काव्य छन्द — लघु और गुरु अक्षरों के पैटर्न', mr: 'काव्य छन्द — लघु और गुरु अक्षरों के पैटर्न', ta: 'Poetic meters — patterns of short (laghu) and long (guru) syllables', te: 'Poetic meters — patterns of short (laghu) and long (guru) syllables', bn: 'Poetic meters — patterns of short (laghu) and long (guru) syllables', kn: 'Poetic meters — patterns of short (laghu) and long (guru) syllables', gu: 'Poetic meters — patterns of short (laghu) and long (guru) syllables' },
+      { en: 'Musical notes and rhythms', hi: 'संगीत के स्वर और ताल', sa: 'संगीत के स्वर और ताल', mai: 'संगीत के स्वर और ताल', mr: 'संगीत के स्वर और ताल', ta: 'Musical notes and rhythms', te: 'Musical notes and rhythms', bn: 'Musical notes and rhythms', kn: 'Musical notes and rhythms', gu: 'Musical notes and rhythms' },
+      { en: 'Temple construction measurements', hi: 'मन्दिर निर्माण माप', sa: 'मन्दिर निर्माण माप', mai: 'मन्दिर निर्माण माप', mr: 'मन्दिर निर्माण माप', ta: 'Temple construction measurements', te: 'Temple construction measurements', bn: 'Temple construction measurements', kn: 'Temple construction measurements', gu: 'Temple construction measurements' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -98,10 +98,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मेरुप्रस्तार क्या है — पिंगल द्वारा छन्दःशास्त्र में वर्णित त्रिभुजाकार व्यवस्था?',
     },
     options: [
-      { en: 'A triangular arrangement of Sanskrit syllables', hi: 'संस्कृत अक्षरों की त्रिभुजाकार व्यवस्था' },
+      { en: 'A triangular arrangement of Sanskrit syllables', hi: 'संस्कृत अक्षरों की त्रिभुजाकार व्यवस्था', sa: 'संस्कृत अक्षरों की त्रिभुजाकार व्यवस्था', mai: 'संस्कृत अक्षरों की त्रिभुजाकार व्यवस्था', mr: 'संस्कृत अक्षरों की त्रिभुजाकार व्यवस्था', ta: 'A triangular arrangement of Sanskrit syllables', te: 'A triangular arrangement of Sanskrit syllables', bn: 'A triangular arrangement of Sanskrit syllables', kn: 'A triangular arrangement of Sanskrit syllables', gu: 'A triangular arrangement of Sanskrit syllables' },
       { en: 'Pascal\'s triangle — a triangular array where each number is the sum of the two above', hi: 'पास्कल त्रिभुज — एक त्रिभुजाकार सरणी जहाँ प्रत्येक संख्या ऊपर की दो का योग है' },
-      { en: 'A temple layout plan', hi: 'एक मन्दिर लेआउट योजना' },
-      { en: 'A constellation chart', hi: 'एक नक्षत्र चार्ट' },
+      { en: 'A temple layout plan', hi: 'एक मन्दिर लेआउट योजना', sa: 'एक मन्दिर लेआउट योजना', mai: 'एक मन्दिर लेआउट योजना', mr: 'एक मन्दिर लेआउट योजना', ta: 'A temple layout plan', te: 'A temple layout plan', bn: 'A temple layout plan', kn: 'A temple layout plan', gu: 'A temple layout plan' },
+      { en: 'A constellation chart', hi: 'एक नक्षत्र चार्ट', sa: 'एक नक्षत्र चार्ट', mai: 'एक नक्षत्र चार्ट', mr: 'एक नक्षत्र चार्ट', ta: 'A constellation chart', te: 'A constellation chart', bn: 'A constellation chart', kn: 'A constellation chart', gu: 'A constellation chart' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -116,10 +116,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मेरुप्रस्तार का वर्णन पास्कल त्रिभुज से लगभग कितने वर्ष पहले पिंगल ने किया?',
     },
     options: [
-      { en: 'About 500 years', hi: 'लगभग 500 वर्ष' },
-      { en: 'About 1200 years', hi: 'लगभग 1200 वर्ष' },
-      { en: 'About 1800 years', hi: 'लगभग 1800 वर्ष' },
-      { en: 'About 2200 years', hi: 'लगभग 2200 वर्ष' },
+      { en: 'About 500 years', hi: 'लगभग 500 वर्ष', sa: 'लगभग 500 वर्ष', mai: 'लगभग 500 वर्ष', mr: 'लगभग 500 वर्ष', ta: 'About 500 years', te: 'About 500 years', bn: 'About 500 years', kn: 'About 500 years', gu: 'About 500 years' },
+      { en: 'About 1200 years', hi: 'लगभग 1200 वर्ष', sa: 'लगभग 1200 वर्ष', mai: 'लगभग 1200 वर्ष', mr: 'लगभग 1200 वर्ष', ta: 'About 1200 years', te: 'About 1200 years', bn: 'About 1200 years', kn: 'About 1200 years', gu: 'About 1200 years' },
+      { en: 'About 1800 years', hi: 'लगभग 1800 वर्ष', sa: 'लगभग 1800 वर्ष', mai: 'लगभग 1800 वर्ष', mr: 'लगभग 1800 वर्ष', ta: 'About 1800 years', te: 'About 1800 years', bn: 'About 1800 years', kn: 'About 1800 years', gu: 'About 1800 years' },
+      { en: 'About 2200 years', hi: 'लगभग 2200 वर्ष', sa: 'लगभग 2200 वर्ष', mai: 'लगभग 2200 वर्ष', mr: 'लगभग 2200 वर्ष', ta: 'About 2200 years', te: 'About 2200 years', bn: 'About 2200 years', kn: 'About 2200 years', gu: 'About 2200 years' },
     ],
     correctAnswer: 3,
     explanation: {
@@ -134,10 +134,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'द्विआधारी गणना के संदर्भ में छन्दःशास्त्र के नियम "द्विः शून्ये" का क्या अर्थ है?',
     },
     options: [
-      { en: 'When the count reaches zero, double it', hi: 'जब गणना शून्य पर पहुँचे, उसे दोगुना करें' },
-      { en: 'When you reach an odd number, subtract 1 and note it; when even, halve it — effectively binary decomposition', hi: 'विषम पर 1 घटाकर नोट करें; सम पर आधा करें — वस्तुतः द्विआधारी विघटन' },
-      { en: 'Multiply by two and set to zero', hi: 'दो से गुणा करके शून्य करें' },
-      { en: 'A rule for counting syllables in a poem', hi: 'कविता में अक्षर गिनने का नियम' },
+      { en: 'When the count reaches zero, double it', hi: 'जब गणना शून्य पर पहुँचे, उसे दोगुना करें', sa: 'जब गणना शून्य पर पहुँचे, उसे दोगुना करें', mai: 'जब गणना शून्य पर पहुँचे, उसे दोगुना करें', mr: 'जब गणना शून्य पर पहुँचे, उसे दोगुना करें', ta: 'When the count reaches zero, double it', te: 'When the count reaches zero, double it', bn: 'When the count reaches zero, double it', kn: 'When the count reaches zero, double it', gu: 'When the count reaches zero, double it' },
+      { en: 'When you reach an odd number, subtract 1 and note it; when even, halve it — effectively binary decomposition', hi: 'विषम पर 1 घटाकर नोट करें; सम पर आधा करें — वस्तुतः द्विआधारी विघटन', sa: 'विषम पर 1 घटाकर नोट करें; सम पर आधा करें — वस्तुतः द्विआधारी विघटन', mai: 'विषम पर 1 घटाकर नोट करें; सम पर आधा करें — वस्तुतः द्विआधारी विघटन', mr: 'विषम पर 1 घटाकर नोट करें; सम पर आधा करें — वस्तुतः द्विआधारी विघटन', ta: 'When you reach an odd number, subtract 1 and note it; when even, halve it — effectively binary decomposition', te: 'When you reach an odd number, subtract 1 and note it; when even, halve it — effectively binary decomposition', bn: 'When you reach an odd number, subtract 1 and note it; when even, halve it — effectively binary decomposition', kn: 'When you reach an odd number, subtract 1 and note it; when even, halve it — effectively binary decomposition', gu: 'When you reach an odd number, subtract 1 and note it; when even, halve it — effectively binary decomposition' },
+      { en: 'Multiply by two and set to zero', hi: 'दो से गुणा करके शून्य करें', sa: 'दो से गुणा करके शून्य करें', mai: 'दो से गुणा करके शून्य करें', mr: 'दो से गुणा करके शून्य करें', ta: 'Multiply by two and set to zero', te: 'Multiply by two and set to zero', bn: 'Multiply by two and set to zero', kn: 'Multiply by two and set to zero', gu: 'Multiply by two and set to zero' },
+      { en: 'A rule for counting syllables in a poem', hi: 'कविता में अक्षर गिनने का नियम', sa: 'कविता में अक्षर गिनने का नियम', mai: 'कविता में अक्षर गिनने का नियम', mr: 'कविता में अक्षर गिनने का नियम', ta: 'A rule for counting syllables in a poem', te: 'A rule for counting syllables in a poem', bn: 'A rule for counting syllables in a poem', kn: 'A rule for counting syllables in a poem', gu: 'A rule for counting syllables in a poem' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -152,10 +152,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पश्चिमी परम्परा में द्विआधारी अंकगणित का आविष्कार करने का श्रेय किसे और किस वर्ष में दिया जाता है?',
     },
     options: [
-      { en: 'George Boole, 1854', hi: 'जॉर्ज बूल, 1854' },
-      { en: 'Gottfried Leibniz, 1703', hi: 'गॉटफ्रीड लाइबनित्ज़, 1703' },
-      { en: 'Claude Shannon, 1937', hi: 'क्लॉड शैनन, 1937' },
-      { en: 'Charles Babbage, 1833', hi: 'चार्ल्स बैबेज, 1833' },
+      { en: 'George Boole, 1854', hi: 'जॉर्ज बूल, 1854', sa: 'जॉर्ज बूल, 1854', mai: 'जॉर्ज बूल, 1854', mr: 'जॉर्ज बूल, 1854', ta: 'George Boole, 1854', te: 'George Boole, 1854', bn: 'George Boole, 1854', kn: 'George Boole, 1854', gu: 'George Boole, 1854' },
+      { en: 'Gottfried Leibniz, 1703', hi: 'गॉटफ्रीड लाइबनित्ज़, 1703', sa: 'गॉटफ्रीड लाइबनित्ज़, 1703', mai: 'गॉटफ्रीड लाइबनित्ज़, 1703', mr: 'गॉटफ्रीड लाइबनित्ज़, 1703', ta: 'Gottfried Leibniz, 1703', te: 'Gottfried Leibniz, 1703', bn: 'Gottfried Leibniz, 1703', kn: 'Gottfried Leibniz, 1703', gu: 'Gottfried Leibniz, 1703' },
+      { en: 'Claude Shannon, 1937', hi: 'क्लॉड शैनन, 1937', sa: 'क्लॉड शैनन, 1937', mai: 'क्लॉड शैनन, 1937', mr: 'क्लॉड शैनन, 1937', ta: 'Claude Shannon, 1937', te: 'Claude Shannon, 1937', bn: 'Claude Shannon, 1937', kn: 'Claude Shannon, 1937', gu: 'Claude Shannon, 1937' },
+      { en: 'Charles Babbage, 1833', hi: 'चार्ल्स बैबेज, 1833', sa: 'चार्ल्स बैबेज, 1833', mai: 'चार्ल्स बैबेज, 1833', mr: 'चार्ल्स बैबेज, 1833', ta: 'Charles Babbage, 1833', te: 'Charles Babbage, 1833', bn: 'Charles Babbage, 1833', kn: 'Charles Babbage, 1833', gu: 'Charles Babbage, 1833' },
     ],
     correctAnswer: 1,
     explanation: {

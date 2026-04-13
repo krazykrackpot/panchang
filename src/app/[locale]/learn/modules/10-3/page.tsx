@@ -6,16 +6,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_10_3', phase: 3, topic: 'Vargas', moduleNumber: '10.3',
-  title: { en: 'Dasamsha & Other Key Vargas (D10, D7, D12)', hi: 'दशांश एवं अन्य प्रमुख वर्ग (D10, D7, D12)' },
+  title: { en: 'Dasamsha & Other Key Vargas (D10, D7, D12)', hi: 'दशांश एवं अन्य प्रमुख वर्ग (D10, D7, D12)', sa: 'दशांश एवं अन्य प्रमुख वर्ग (D10, D7, D12)', mai: 'दशांश एवं अन्य प्रमुख वर्ग (D10, D7, D12)', mr: 'दशांश एवं अन्य प्रमुख वर्ग (D10, D7, D12)', ta: 'Dasamsha & Other Key Vargas (D10, D7, D12)', te: 'Dasamsha & Other Key Vargas (D10, D7, D12)', bn: 'Dasamsha & Other Key Vargas (D10, D7, D12)', kn: 'Dasamsha & Other Key Vargas (D10, D7, D12)', gu: 'Dasamsha & Other Key Vargas (D10, D7, D12)' },
   subtitle: {
     en: 'Career through D10, children through D7, parents through D12 — each varga illuminates a distinct life domain',
     hi: 'D10 से व्यवसाय, D7 से सन्तान, D12 से माता-पिता — प्रत्येक वर्ग एक विशिष्ट जीवन क्षेत्र को प्रकाशित करता है',
   },
   estimatedMinutes: 17,
   crossRefs: [
-    { label: { en: 'Module 10-1: Varga Charts Overview', hi: 'मॉड्यूल 10-1: वर्ग कुण्डली अवलोकन' }, href: '/learn/modules/10-1' },
-    { label: { en: 'Module 10-2: Navamsha Deep Dive', hi: 'मॉड्यूल 10-2: नवांश गहन अध्ययन' }, href: '/learn/modules/10-2' },
-    { label: { en: 'Vargas Reference', hi: 'वर्ग सन्दर्भ' }, href: '/learn/vargas' },
+    { label: { en: 'Module 10-1: Varga Charts Overview', hi: 'मॉड्यूल 10-1: वर्ग कुण्डली अवलोकन', sa: 'मॉड्यूल 10-1: वर्ग कुण्डली अवलोकन', mai: 'मॉड्यूल 10-1: वर्ग कुण्डली अवलोकन', mr: 'मॉड्यूल 10-1: वर्ग कुण्डली अवलोकन', ta: 'Module 10-1: Varga Charts Overview', te: 'Module 10-1: Varga Charts Overview', bn: 'Module 10-1: Varga Charts Overview', kn: 'Module 10-1: Varga Charts Overview', gu: 'Module 10-1: Varga Charts Overview' }, href: '/learn/modules/10-1' },
+    { label: { en: 'Module 10-2: Navamsha Deep Dive', hi: 'मॉड्यूल 10-2: नवांश गहन अध्ययन', sa: 'मॉड्यूल 10-2: नवांश गहन अध्ययन', mai: 'मॉड्यूल 10-2: नवांश गहन अध्ययन', mr: 'मॉड्यूल 10-2: नवांश गहन अध्ययन', ta: 'Module 10-2: Navamsha Deep Dive', te: 'Module 10-2: Navamsha Deep Dive', bn: 'Module 10-2: Navamsha Deep Dive', kn: 'Module 10-2: Navamsha Deep Dive', gu: 'Module 10-2: Navamsha Deep Dive' }, href: '/learn/modules/10-2' },
+    { label: { en: 'Vargas Reference', hi: 'वर्ग सन्दर्भ', sa: 'वर्ग सन्दर्भ', mai: 'वर्ग सन्दर्भ', mr: 'वर्ग सन्दर्भ', ta: 'Vargas Reference', te: 'Vargas Reference', bn: 'Vargas Reference', kn: 'Vargas Reference', gu: 'Vargas Reference' }, href: '/learn/vargas' },
   ],
 };
 
@@ -45,10 +45,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मेष जैसी विषम राशि के लिए दशांश गणना कहाँ से आरम्भ होती है?',
     },
     options: [
-      { en: 'The 9th sign from Aries (Sagittarius)', hi: 'मेष से 9वीं राशि (धनु)' },
-      { en: 'Aries itself (same sign)', hi: 'स्वयं मेष से (उसी राशि से)' },
-      { en: 'The 7th sign from Aries (Libra)', hi: 'मेष से 7वीं राशि (तुला)' },
-      { en: 'Always from Aries regardless', hi: 'सदैव मेष से, राशि कोई भी हो' },
+      { en: 'The 9th sign from Aries (Sagittarius)', hi: 'मेष से 9वीं राशि (धनु)', sa: 'मेष से 9वीं राशि (धनु)', mai: 'मेष से 9वीं राशि (धनु)', mr: 'मेष से 9वीं राशि (धनु)', ta: 'The 9th sign from Aries (Sagittarius)', te: 'The 9th sign from Aries (Sagittarius)', bn: 'The 9th sign from Aries (Sagittarius)', kn: 'The 9th sign from Aries (Sagittarius)', gu: 'The 9th sign from Aries (Sagittarius)' },
+      { en: 'Aries itself (same sign)', hi: 'स्वयं मेष से (उसी राशि से)', sa: 'स्वयं मेष से (उसी राशि से)', mai: 'स्वयं मेष से (उसी राशि से)', mr: 'स्वयं मेष से (उसी राशि से)', ta: 'Aries itself (same sign)', te: 'Aries itself (same sign)', bn: 'Aries itself (same sign)', kn: 'Aries itself (same sign)', gu: 'Aries itself (same sign)' },
+      { en: 'The 7th sign from Aries (Libra)', hi: 'मेष से 7वीं राशि (तुला)', sa: 'मेष से 7वीं राशि (तुला)', mai: 'मेष से 7वीं राशि (तुला)', mr: 'मेष से 7वीं राशि (तुला)', ta: 'The 7th sign from Aries (Libra)', te: 'The 7th sign from Aries (Libra)', bn: 'The 7th sign from Aries (Libra)', kn: 'The 7th sign from Aries (Libra)', gu: 'The 7th sign from Aries (Libra)' },
+      { en: 'Always from Aries regardless', hi: 'सदैव मेष से, राशि कोई भी हो', sa: 'सदैव मेष से, राशि कोई भी हो', mai: 'सदैव मेष से, राशि कोई भी हो', mr: 'सदैव मेष से, राशि कोई भी हो', ta: 'Always from Aries regardless', te: 'Always from Aries regardless', bn: 'Always from Aries regardless', kn: 'Always from Aries regardless', gu: 'Always from Aries regardless' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -64,9 +64,9 @@ const QUESTIONS: ModuleQuestion[] = [
     },
     options: [
       { en: 'The native\'s spiritual path', hi: 'जातक का आध्यात्मिक मार्ग' },
-      { en: 'The nature and direction of the career', hi: 'व्यवसाय की प्रकृति और दिशा' },
-      { en: 'The quality of marriage', hi: 'विवाह की गुणवत्ता' },
-      { en: 'The health of the father', hi: 'पिता का स्वास्थ्य' },
+      { en: 'The nature and direction of the career', hi: 'व्यवसाय की प्रकृति और दिशा', sa: 'व्यवसाय की प्रकृति और दिशा', mai: 'व्यवसाय की प्रकृति और दिशा', mr: 'व्यवसाय की प्रकृति और दिशा', ta: 'The nature and direction of the career', te: 'The nature and direction of the career', bn: 'The nature and direction of the career', kn: 'The nature and direction of the career', gu: 'The nature and direction of the career' },
+      { en: 'The quality of marriage', hi: 'विवाह की गुणवत्ता', sa: 'विवाह की गुणवत्ता', mai: 'विवाह की गुणवत्ता', mr: 'विवाह की गुणवत्ता', ta: 'The quality of marriage', te: 'The quality of marriage', bn: 'The quality of marriage', kn: 'The quality of marriage', gu: 'The quality of marriage' },
+      { en: 'The health of the father', hi: 'पिता का स्वास्थ्य', sa: 'पिता का स्वास्थ्य', mai: 'पिता का स्वास्थ्य', mr: 'पिता का स्वास्थ्य', ta: 'The health of the father', te: 'The health of the father', bn: 'The health of the father', kn: 'The health of the father', gu: 'The health of the father' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -93,10 +93,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'D7 (सप्तांश) कुण्डली में कौन सा भाव प्रथम सन्तान का प्रतिनिधित्व करता है?',
     },
     options: [
-      { en: '1st house', hi: 'प्रथम भाव' },
-      { en: '7th house', hi: 'सप्तम भाव' },
-      { en: '5th house', hi: 'पञ्चम भाव' },
-      { en: '9th house', hi: 'नवम भाव' },
+      { en: '1st house', hi: 'प्रथम भाव', sa: 'प्रथम भाव', mai: 'प्रथम भाव', mr: 'प्रथम भाव', ta: '1st house', te: '1st house', bn: '1st house', kn: '1st house', gu: '1st house' },
+      { en: '7th house', hi: 'सप्तम भाव', sa: 'सप्तम भाव', mai: 'सप्तम भाव', mr: 'सप्तम भाव', ta: '7th house', te: '7th house', bn: '7th house', kn: '7th house', gu: '7th house' },
+      { en: '5th house', hi: 'पञ्चम भाव', sa: 'पञ्चम भाव', mai: 'पञ्चम भाव', mr: 'पञ्चम भाव', ta: '5th house', te: '5th house', bn: '5th house', kn: '5th house', gu: '5th house' },
+      { en: '9th house', hi: 'नवम भाव', sa: 'नवम भाव', mai: 'नवम भाव', mr: 'नवम भाव', ta: '9th house', te: '9th house', bn: '9th house', kn: '9th house', gu: '9th house' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -111,10 +111,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'D7 में बृहस्पति का बल किसके लिए अत्यन्त महत्त्वपूर्ण माना जाता है?',
     },
     options: [
-      { en: 'Career advancement and promotions', hi: 'व्यावसायिक उन्नति और पदोन्नति' },
-      { en: 'Marital compatibility', hi: 'वैवाहिक अनुकूलता' },
-      { en: 'Childbirth timing and progeny prospects', hi: 'सन्तान प्राप्ति का समय और वंशवृद्धि की सम्भावनाएँ' },
-      { en: 'Financial investments', hi: 'वित्तीय निवेश' },
+      { en: 'Career advancement and promotions', hi: 'व्यावसायिक उन्नति और पदोन्नति', sa: 'व्यावसायिक उन्नति और पदोन्नति', mai: 'व्यावसायिक उन्नति और पदोन्नति', mr: 'व्यावसायिक उन्नति और पदोन्नति', ta: 'Career advancement and promotions', te: 'Career advancement and promotions', bn: 'Career advancement and promotions', kn: 'Career advancement and promotions', gu: 'Career advancement and promotions' },
+      { en: 'Marital compatibility', hi: 'वैवाहिक अनुकूलता', sa: 'वैवाहिक अनुकूलता', mai: 'वैवाहिक अनुकूलता', mr: 'वैवाहिक अनुकूलता', ta: 'Marital compatibility', te: 'Marital compatibility', bn: 'Marital compatibility', kn: 'Marital compatibility', gu: 'Marital compatibility' },
+      { en: 'Childbirth timing and progeny prospects', hi: 'सन्तान प्राप्ति का समय और वंशवृद्धि की सम्भावनाएँ', sa: 'सन्तान प्राप्ति का समय और वंशवृद्धि की सम्भावनाएँ', mai: 'सन्तान प्राप्ति का समय और वंशवृद्धि की सम्भावनाएँ', mr: 'सन्तान प्राप्ति का समय और वंशवृद्धि की सम्भावनाएँ', ta: 'Childbirth timing and progeny prospects', te: 'Childbirth timing and progeny prospects', bn: 'Childbirth timing and progeny prospects', kn: 'Childbirth timing and progeny prospects', gu: 'Childbirth timing and progeny prospects' },
+      { en: 'Financial investments', hi: 'वित्तीय निवेश', sa: 'वित्तीय निवेश', mai: 'वित्तीय निवेश', mr: 'वित्तीय निवेश', ta: 'Financial investments', te: 'Financial investments', bn: 'Financial investments', kn: 'Financial investments', gu: 'Financial investments' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -159,10 +159,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'D10 लग्न कन्या राशि में हो तो सम्भवतः व्यवसाय किस दिशा में होगा?',
     },
     options: [
-      { en: 'Entertainment, performance, and creative arts', hi: 'मनोरंजन, प्रदर्शन और सृजनात्मक कलाएँ' },
-      { en: 'Analytical work, service, healthcare, or detail-oriented professions', hi: 'विश्लेषणात्मक कार्य, सेवा, स्वास्थ्य या विवरण-प्रधान पेशे' },
-      { en: 'Military, sports, and competitive fields', hi: 'सैन्य, खेल और प्रतिस्पर्धी क्षेत्र' },
-      { en: 'Judiciary, law, and diplomacy', hi: 'न्यायपालिका, कानून और कूटनीति' },
+      { en: 'Entertainment, performance, and creative arts', hi: 'मनोरंजन, प्रदर्शन और सृजनात्मक कलाएँ', sa: 'मनोरंजन, प्रदर्शन और सृजनात्मक कलाएँ', mai: 'मनोरंजन, प्रदर्शन और सृजनात्मक कलाएँ', mr: 'मनोरंजन, प्रदर्शन और सृजनात्मक कलाएँ', ta: 'Entertainment, performance, and creative arts', te: 'Entertainment, performance, and creative arts', bn: 'Entertainment, performance, and creative arts', kn: 'Entertainment, performance, and creative arts', gu: 'Entertainment, performance, and creative arts' },
+      { en: 'Analytical work, service, healthcare, or detail-oriented professions', hi: 'विश्लेषणात्मक कार्य, सेवा, स्वास्थ्य या विवरण-प्रधान पेशे', sa: 'विश्लेषणात्मक कार्य, सेवा, स्वास्थ्य या विवरण-प्रधान पेशे', mai: 'विश्लेषणात्मक कार्य, सेवा, स्वास्थ्य या विवरण-प्रधान पेशे', mr: 'विश्लेषणात्मक कार्य, सेवा, स्वास्थ्य या विवरण-प्रधान पेशे', ta: 'Analytical work, service, healthcare, or detail-oriented professions', te: 'Analytical work, service, healthcare, or detail-oriented professions', bn: 'Analytical work, service, healthcare, or detail-oriented professions', kn: 'Analytical work, service, healthcare, or detail-oriented professions', gu: 'Analytical work, service, healthcare, or detail-oriented professions' },
+      { en: 'Military, sports, and competitive fields', hi: 'सैन्य, खेल और प्रतिस्पर्धी क्षेत्र', sa: 'सैन्य, खेल और प्रतिस्पर्धी क्षेत्र', mai: 'सैन्य, खेल और प्रतिस्पर्धी क्षेत्र', mr: 'सैन्य, खेल और प्रतिस्पर्धी क्षेत्र', ta: 'Military, sports, and competitive fields', te: 'Military, sports, and competitive fields', bn: 'Military, sports, and competitive fields', kn: 'Military, sports, and competitive fields', gu: 'Military, sports, and competitive fields' },
+      { en: 'Judiciary, law, and diplomacy', hi: 'न्यायपालिका, कानून और कूटनीति', sa: 'न्यायपालिका, कानून और कूटनीति', mai: 'न्यायपालिका, कानून और कूटनीति', mr: 'न्यायपालिका, कानून और कूटनीति', ta: 'Judiciary, law, and diplomacy', te: 'Judiciary, law, and diplomacy', bn: 'Judiciary, law, and diplomacy', kn: 'Judiciary, law, and diplomacy', gu: 'Judiciary, law, and diplomacy' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -177,10 +177,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'D12 कुण्डली किस प्रकार के कार्मिक प्रतिरूपों को समझने में प्रयुक्त होती है?',
     },
     options: [
-      { en: 'Professional karma from past work efforts', hi: 'पूर्व कार्य प्रयासों से व्यावसायिक कर्म' },
-      { en: 'Inherited karma from parents and ancestral lineage', hi: 'माता-पिता और पैतृक वंश से विरासत में मिला कर्म' },
-      { en: 'Romantic karma from past-life relationships', hi: 'पूर्वजन्म के सम्बन्धों से रोमांटिक कर्म' },
-      { en: 'Financial karma related to debts and assets', hi: 'ऋण और सम्पत्ति से सम्बन्धित वित्तीय कर्म' },
+      { en: 'Professional karma from past work efforts', hi: 'पूर्व कार्य प्रयासों से व्यावसायिक कर्म', sa: 'पूर्व कार्य प्रयासों से व्यावसायिक कर्म', mai: 'पूर्व कार्य प्रयासों से व्यावसायिक कर्म', mr: 'पूर्व कार्य प्रयासों से व्यावसायिक कर्म', ta: 'Professional karma from past work efforts', te: 'Professional karma from past work efforts', bn: 'Professional karma from past work efforts', kn: 'Professional karma from past work efforts', gu: 'Professional karma from past work efforts' },
+      { en: 'Inherited karma from parents and ancestral lineage', hi: 'माता-पिता और पैतृक वंश से विरासत में मिला कर्म', sa: 'माता-पिता और पैतृक वंश से विरासत में मिला कर्म', mai: 'माता-पिता और पैतृक वंश से विरासत में मिला कर्म', mr: 'माता-पिता और पैतृक वंश से विरासत में मिला कर्म', ta: 'Inherited karma from parents and ancestral lineage', te: 'Inherited karma from parents and ancestral lineage', bn: 'Inherited karma from parents and ancestral lineage', kn: 'Inherited karma from parents and ancestral lineage', gu: 'Inherited karma from parents and ancestral lineage' },
+      { en: 'Romantic karma from past-life relationships', hi: 'पूर्वजन्म के सम्बन्धों से रोमांटिक कर्म', sa: 'पूर्वजन्म के सम्बन्धों से रोमांटिक कर्म', mai: 'पूर्वजन्म के सम्बन्धों से रोमांटिक कर्म', mr: 'पूर्वजन्म के सम्बन्धों से रोमांटिक कर्म', ta: 'Romantic karma from past-life relationships', te: 'Romantic karma from past-life relationships', bn: 'Romantic karma from past-life relationships', kn: 'Romantic karma from past-life relationships', gu: 'Romantic karma from past-life relationships' },
+      { en: 'Financial karma related to debts and assets', hi: 'ऋण और सम्पत्ति से सम्बन्धित वित्तीय कर्म', sa: 'ऋण और सम्पत्ति से सम्बन्धित वित्तीय कर्म', mai: 'ऋण और सम्पत्ति से सम्बन्धित वित्तीय कर्म', mr: 'ऋण और सम्पत्ति से सम्बन्धित वित्तीय कर्म', ta: 'Financial karma related to debts and assets', te: 'Financial karma related to debts and assets', bn: 'Financial karma related to debts and assets', kn: 'Financial karma related to debts and assets', gu: 'Financial karma related to debts and assets' },
     ],
     correctAnswer: 1,
     explanation: {

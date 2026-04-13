@@ -5,7 +5,7 @@ import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { dateToJD, sunLongitude, toSidereal, getRashiNumber, moonLongitude, calculateTithi } from '@/lib/ephem/astronomical';
-import type { Locale, Trilingual } from '@/types/panchang';
+import type { LocaleText, Locale} from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
@@ -15,13 +15,13 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface RegionalCalendar {
   id: string;
-  name: Trilingual;
+  name: LocaleText;
   type: 'solar' | 'lunisolar';
   script: string;
   months: { name: string; approxGregorian: string }[];
   newYear: { name: string; approxDate: string };
-  description: Trilingual;
-  festivals: { name: string; month: number; description: Trilingual }[];
+  description: LocaleText;
+  festivals: { name: string; month: number; description: LocaleText }[];
 }
 
 const REGIONAL_CALENDARS: RegionalCalendar[] = [

@@ -11,7 +11,7 @@ import {
 } from './ai-recommender';
 import { getExtendedActivity } from './activity-rules-extended';
 import type { ScoredTimeWindow, ScoreBreakdown, ExtendedActivityId } from '@/types/muhurta-ai';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 interface ScanOptions {
   startDate: string; // YYYY-MM-DD

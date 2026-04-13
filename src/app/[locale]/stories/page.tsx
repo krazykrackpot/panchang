@@ -6,7 +6,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { WEB_STORIES } from '@/lib/stories/story-data';
 import { ChevronRight, Sparkles } from 'lucide-react';
 import { ShareRow } from '@/components/ui/ShareButton';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const STORY_COLORS = [
@@ -95,7 +95,7 @@ export default function StoriesIndexPage() {
       {/* Story grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {WEB_STORIES.map((story, i) => {
-          const t = (v: { en: string; hi: string }) => isDevanagariLocale(locale) ? v.hi : v.en;
+          const t = (v: LocaleText) => isDevanagariLocale(locale) ? v.hi : v.en;
           return (
             <motion.div
               key={story.slug}

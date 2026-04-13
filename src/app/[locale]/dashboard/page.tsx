@@ -32,7 +32,7 @@ import LevelBadge from '@/components/learn/LevelBadge';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import ChartNorth from '@/components/kundali/ChartNorth';
-import type { Locale, PanchangData } from '@/types/panchang';
+import type { Locale, PanchangData , LocaleText} from '@/types/panchang';
 import type { PersonalizedDay, UserSnapshot, TransitAlert } from '@/lib/personalization/types';
 import type { ChartData, DashaEntry } from '@/types/kundali';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -604,7 +604,7 @@ const QUALITY_COLORS: Record<PersonalizedDay['dayQuality'], { bg: string; border
   challenging: { bg: 'from-red-500/20 to-red-700/10', border: 'border-red-500/40', text: 'text-red-400', glow: 'shadow-red-500/20' },
 };
 
-const QUALITY_LABEL: Record<PersonalizedDay['dayQuality'], { en: string; hi: string; sa: string }> = {
+const QUALITY_LABEL: Record<PersonalizedDay['dayQuality'], LocaleText> = {
   excellent: { en: 'Excellent', hi: 'उत्कृष्ट', sa: 'उत्कृष्टम्' },
   good: { en: 'Good', hi: 'शुभ', sa: 'शुभम्' },
   neutral: { en: 'Neutral', hi: 'सामान्य', sa: 'सामान्यम्' },

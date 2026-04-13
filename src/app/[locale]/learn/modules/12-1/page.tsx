@@ -6,16 +6,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_12_1', phase: 3, topic: 'Transits', moduleNumber: '12.1',
-  title: { en: 'Transits (Gochar) — Planets in Motion', hi: 'गोचर — गतिमान ग्रह' },
+  title: { en: 'Transits (Gochar) — Planets in Motion', hi: 'गोचर — गतिमान ग्रह', sa: 'गोचर — गतिमान ग्रह', mai: 'गोचर — गतिमान ग्रह', mr: 'गोचर — गतिमान ग्रह', ta: 'Transits (Gochar) — Planets in Motion', te: 'Transits (Gochar) — Planets in Motion', bn: 'Transits (Gochar) — Planets in Motion', kn: 'Transits (Gochar) — Planets in Motion', gu: 'Transits (Gochar) — Planets in Motion' },
   subtitle: {
     en: 'How current planetary positions overlay the birth chart, creating evolving life themes through slow and fast planet transits',
     hi: 'वर्तमान ग्रह स्थितियाँ जन्म कुण्डली पर कैसे आच्छादित होती हैं, धीमे और तीव्र ग्रह गोचर से जीवन विषय कैसे बनते हैं',
   },
   estimatedMinutes: 14,
   crossRefs: [
-    { label: { en: 'Module 12-2: Sade Sati', hi: 'मॉड्यूल 12-2: साढ़े साती' }, href: '/learn/modules/12-2' },
-    { label: { en: 'Module 12-3: Jupiter & Rahu-Ketu Transit', hi: 'मॉड्यूल 12-3: गुरु एवं राहु-केतु गोचर' }, href: '/learn/modules/12-3' },
-    { label: { en: 'Transit Calendar', hi: 'गोचर पञ्चाङ्ग' }, href: '/transits' },
+    { label: { en: 'Module 12-2: Sade Sati', hi: 'मॉड्यूल 12-2: साढ़े साती', sa: 'मॉड्यूल 12-2: साढ़े साती', mai: 'मॉड्यूल 12-2: साढ़े साती', mr: 'मॉड्यूल 12-2: साढ़े साती', ta: 'Module 12-2: Sade Sati', te: 'Module 12-2: Sade Sati', bn: 'Module 12-2: Sade Sati', kn: 'Module 12-2: Sade Sati', gu: 'Module 12-2: Sade Sati' }, href: '/learn/modules/12-2' },
+    { label: { en: 'Module 12-3: Jupiter & Rahu-Ketu Transit', hi: 'मॉड्यूल 12-3: गुरु एवं राहु-केतु गोचर', sa: 'मॉड्यूल 12-3: गुरु एवं राहु-केतु गोचर', mai: 'मॉड्यूल 12-3: गुरु एवं राहु-केतु गोचर', mr: 'मॉड्यूल 12-3: गुरु एवं राहु-केतु गोचर', ta: 'Module 12-3: Jupiter & Rahu-Ketu Transit', te: 'Module 12-3: Jupiter & Rahu-Ketu Transit', bn: 'Module 12-3: Jupiter & Rahu-Ketu Transit', kn: 'Module 12-3: Jupiter & Rahu-Ketu Transit', gu: 'Module 12-3: Jupiter & Rahu-Ketu Transit' }, href: '/learn/modules/12-3' },
+    { label: { en: 'Transit Calendar', hi: 'गोचर पञ्चाङ्ग', sa: 'गोचर पञ्चाङ्ग', mai: 'गोचर पञ्चाङ्ग', mr: 'गोचर पञ्चाङ्ग', ta: 'Transit Calendar', te: 'Transit Calendar', bn: 'Transit Calendar', kn: 'Transit Calendar', gu: 'Transit Calendar' }, href: '/transits' },
   ],
 };
 
@@ -27,10 +27,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'शनि लगभग कितने समय तक एक राशि में रहता है?',
     },
     options: [
-      { en: 'About 1 month', hi: 'लगभग 1 मास' },
-      { en: 'About 2.5 years', hi: 'लगभग 2.5 वर्ष' },
-      { en: 'About 12 years', hi: 'लगभग 12 वर्ष' },
-      { en: 'About 18 months', hi: 'लगभग 18 मास' },
+      { en: 'About 1 month', hi: 'लगभग 1 मास', sa: 'लगभग 1 मास', mai: 'लगभग 1 मास', mr: 'लगभग 1 मास', ta: 'About 1 month', te: 'About 1 month', bn: 'About 1 month', kn: 'About 1 month', gu: 'About 1 month' },
+      { en: 'About 2.5 years', hi: 'लगभग 2.5 वर्ष', sa: 'लगभग 2.5 वर्ष', mai: 'लगभग 2.5 वर्ष', mr: 'लगभग 2.5 वर्ष', ta: 'About 2.5 years', te: 'About 2.5 years', bn: 'About 2.5 years', kn: 'About 2.5 years', gu: 'About 2.5 years' },
+      { en: 'About 12 years', hi: 'लगभग 12 वर्ष', sa: 'लगभग 12 वर्ष', mai: 'लगभग 12 वर्ष', mr: 'लगभग 12 वर्ष', ta: 'About 12 years', te: 'About 12 years', bn: 'About 12 years', kn: 'About 12 years', gu: 'About 12 years' },
+      { en: 'About 18 months', hi: 'लगभग 18 मास', sa: 'लगभग 18 मास', mai: 'लगभग 18 मास', mr: 'लगभग 18 मास', ta: 'About 18 months', te: 'About 18 months', bn: 'About 18 months', kn: 'About 18 months', gu: 'About 18 months' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -57,10 +57,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कौन-से ग्रह "मन्द ग्रह" माने जाते हैं और प्रमुख जीवन विषय निर्मित करते हैं?',
     },
     options: [
-      { en: 'Sun, Moon, Mercury', hi: 'सूर्य, चन्द्र, बुध' },
-      { en: 'Saturn, Jupiter, Rahu/Ketu', hi: 'शनि, गुरु, राहु/केतु' },
-      { en: 'Mars, Venus, Mercury', hi: 'मंगल, शुक्र, बुध' },
-      { en: 'Only Saturn', hi: 'केवल शनि' },
+      { en: 'Sun, Moon, Mercury', hi: 'सूर्य, चन्द्र, बुध', sa: 'सूर्य, चन्द्र, बुध', mai: 'सूर्य, चन्द्र, बुध', mr: 'सूर्य, चन्द्र, बुध', ta: 'Sun, Moon, Mercury', te: 'Sun, Moon, Mercury', bn: 'Sun, Moon, Mercury', kn: 'Sun, Moon, Mercury', gu: 'Sun, Moon, Mercury' },
+      { en: 'Saturn, Jupiter, Rahu/Ketu', hi: 'शनि, गुरु, राहु/केतु', sa: 'शनि, गुरु, राहु/केतु', mai: 'शनि, गुरु, राहु/केतु', mr: 'शनि, गुरु, राहु/केतु', ta: 'Saturn, Jupiter, Rahu/Ketu', te: 'Saturn, Jupiter, Rahu/Ketu', bn: 'Saturn, Jupiter, Rahu/Ketu', kn: 'Saturn, Jupiter, Rahu/Ketu', gu: 'Saturn, Jupiter, Rahu/Ketu' },
+      { en: 'Mars, Venus, Mercury', hi: 'मंगल, शुक्र, बुध', sa: 'मंगल, शुक्र, बुध', mai: 'मंगल, शुक्र, बुध', mr: 'मंगल, शुक्र, बुध', ta: 'Mars, Venus, Mercury', te: 'Mars, Venus, Mercury', bn: 'Mars, Venus, Mercury', kn: 'Mars, Venus, Mercury', gu: 'Mars, Venus, Mercury' },
+      { en: 'Only Saturn', hi: 'केवल शनि', sa: 'केवल शनि', mai: 'केवल शनि', mr: 'केवल शनि', ta: 'Only Saturn', te: 'Only Saturn', bn: 'Only Saturn', kn: 'Only Saturn', gu: 'Only Saturn' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -75,10 +75,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्र राशि से गुरु का गोचर किन भावों में शुभ माना जाता है?',
     },
     options: [
-      { en: '1, 3, 6, 8', hi: '1, 3, 6, 8' },
-      { en: '2, 5, 7, 9, 11', hi: '2, 5, 7, 9, 11' },
-      { en: '4, 6, 10, 12', hi: '4, 6, 10, 12' },
-      { en: '3, 6, 11 only', hi: 'केवल 3, 6, 11' },
+      { en: '1, 3, 6, 8', hi: '1, 3, 6, 8', sa: '1, 3, 6, 8', mai: '1, 3, 6, 8', mr: '1, 3, 6, 8', ta: '1, 3, 6, 8', te: '1, 3, 6, 8', bn: '1, 3, 6, 8', kn: '1, 3, 6, 8', gu: '1, 3, 6, 8' },
+      { en: '2, 5, 7, 9, 11', hi: '2, 5, 7, 9, 11', sa: '2, 5, 7, 9, 11', mai: '2, 5, 7, 9, 11', mr: '2, 5, 7, 9, 11', ta: '2, 5, 7, 9, 11', te: '2, 5, 7, 9, 11', bn: '2, 5, 7, 9, 11', kn: '2, 5, 7, 9, 11', gu: '2, 5, 7, 9, 11' },
+      { en: '4, 6, 10, 12', hi: '4, 6, 10, 12', sa: '4, 6, 10, 12', mai: '4, 6, 10, 12', mr: '4, 6, 10, 12', ta: '4, 6, 10, 12', te: '4, 6, 10, 12', bn: '4, 6, 10, 12', kn: '4, 6, 10, 12', gu: '4, 6, 10, 12' },
+      { en: '3, 6, 11 only', hi: 'केवल 3, 6, 11', sa: 'केवल 3, 6, 11', mai: 'केवल 3, 6, 11', mr: 'केवल 3, 6, 11', ta: '3, 6, 11 only', te: '3, 6, 11 only', bn: '3, 6, 11 only', kn: '3, 6, 11 only', gu: '3, 6, 11 only' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -105,10 +105,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'अष्टकवर्ग पद्धति में कितने बिन्दु वाली राशि गोचर के लिए शुभ मानी जाती है?',
     },
     options: [
-      { en: '1 or more', hi: '1 या अधिक' },
-      { en: '4 or more', hi: '4 या अधिक' },
-      { en: '8 or more', hi: '8 या अधिक' },
-      { en: 'Exactly 7', hi: 'ठीक 7' },
+      { en: '1 or more', hi: '1 या अधिक', sa: '1 या अधिक', mai: '1 या अधिक', mr: '1 या अधिक', ta: '1 or more', te: '1 or more', bn: '1 or more', kn: '1 or more', gu: '1 or more' },
+      { en: '4 or more', hi: '4 या अधिक', sa: '4 या अधिक', mai: '4 या अधिक', mr: '4 या अधिक', ta: '4 or more', te: '4 or more', bn: '4 or more', kn: '4 or more', gu: '4 or more' },
+      { en: '8 or more', hi: '8 या अधिक', sa: '8 या अधिक', mai: '8 या अधिक', mr: '8 या अधिक', ta: '8 or more', te: '8 or more', bn: '8 or more', kn: '8 or more', gu: '8 or more' },
+      { en: 'Exactly 7', hi: 'ठीक 7', sa: 'ठीक 7', mai: 'ठीक 7', mr: 'ठीक 7', ta: 'Exactly 7', te: 'Exactly 7', bn: 'Exactly 7', kn: 'Exactly 7', gu: 'Exactly 7' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -123,10 +123,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सर्वाष्टकवर्ग (SAV) क्या है?',
     },
     options: [
-      { en: 'A type of dasha system', hi: 'एक प्रकार की दशा पद्धति' },
-      { en: 'The total bindus of all 7 planets combined for each sign', hi: 'प्रत्येक राशि के लिए सभी 7 ग्रहों के कुल बिन्दुओं का योग' },
-      { en: 'The number of yogas in a chart', hi: 'कुण्डली में योगों की संख्या' },
-      { en: 'A nakshatra classification', hi: 'एक नक्षत्र वर्गीकरण' },
+      { en: 'A type of dasha system', hi: 'एक प्रकार की दशा पद्धति', sa: 'एक प्रकार की दशा पद्धति', mai: 'एक प्रकार की दशा पद्धति', mr: 'एक प्रकार की दशा पद्धति', ta: 'A type of dasha system', te: 'A type of dasha system', bn: 'A type of dasha system', kn: 'A type of dasha system', gu: 'A type of dasha system' },
+      { en: 'The total bindus of all 7 planets combined for each sign', hi: 'प्रत्येक राशि के लिए सभी 7 ग्रहों के कुल बिन्दुओं का योग', sa: 'प्रत्येक राशि के लिए सभी 7 ग्रहों के कुल बिन्दुओं का योग', mai: 'प्रत्येक राशि के लिए सभी 7 ग्रहों के कुल बिन्दुओं का योग', mr: 'प्रत्येक राशि के लिए सभी 7 ग्रहों के कुल बिन्दुओं का योग', ta: 'The total bindus of all 7 planets combined for each sign', te: 'The total bindus of all 7 planets combined for each sign', bn: 'The total bindus of all 7 planets combined for each sign', kn: 'The total bindus of all 7 planets combined for each sign', gu: 'The total bindus of all 7 planets combined for each sign' },
+      { en: 'The number of yogas in a chart', hi: 'कुण्डली में योगों की संख्या', sa: 'कुण्डली में योगों की संख्या', mai: 'कुण्डली में योगों की संख्या', mr: 'कुण्डली में योगों की संख्या', ta: 'The number of yogas in a chart', te: 'The number of yogas in a chart', bn: 'The number of yogas in a chart', kn: 'The number of yogas in a chart', gu: 'The number of yogas in a chart' },
+      { en: 'A nakshatra classification', hi: 'एक नक्षत्र वर्गीकरण', sa: 'एक नक्षत्र वर्गीकरण', mai: 'एक नक्षत्र वर्गीकरण', mr: 'एक नक्षत्र वर्गीकरण', ta: 'A nakshatra classification', te: 'A nakshatra classification', bn: 'A nakshatra classification', kn: 'A nakshatra classification', gu: 'A nakshatra classification' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -153,10 +153,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मंगल एक राशि में लगभग कितने समय रहता है?',
     },
     options: [
-      { en: '1 week', hi: '1 सप्ताह' },
-      { en: '45 days', hi: '45 दिन' },
-      { en: '6 months', hi: '6 मास' },
-      { en: '1 year', hi: '1 वर्ष' },
+      { en: '1 week', hi: '1 सप्ताह', sa: '1 सप्ताह', mai: '1 सप्ताह', mr: '1 सप्ताह', ta: '1 week', te: '1 week', bn: '1 week', kn: '1 week', gu: '1 week' },
+      { en: '45 days', hi: '45 दिन', sa: '45 दिन', mai: '45 दिन', mr: '45 दिन', ta: '45 days', te: '45 days', bn: '45 days', kn: '45 days', gu: '45 days' },
+      { en: '6 months', hi: '6 मास', sa: '6 मास', mai: '6 मास', mr: '6 मास', ta: '6 months', te: '6 months', bn: '6 months', kn: '6 months', gu: '6 months' },
+      { en: '1 year', hi: '1 वर्ष', sa: '1 वर्ष', mai: '1 वर्ष', mr: '1 वर्ष', ta: '1 year', te: '1 year', bn: '1 year', kn: '1 year', gu: '1 year' },
     ],
     correctAnswer: 1,
     explanation: {

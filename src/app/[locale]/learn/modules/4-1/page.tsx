@@ -6,16 +6,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_4_1', phase: 1, topic: 'Ayanamsha', moduleNumber: '4.1',
-  title: { en: 'Precession & Ayanamsha — Where Tropical Meets Sidereal', hi: 'अयनांश एवं पुरस्सरण — जहाँ सायन और निरयन मिलते हैं' },
+  title: { en: 'Precession & Ayanamsha — Where Tropical Meets Sidereal', hi: 'अयनांश एवं पुरस्सरण — जहाँ सायन और निरयन मिलते हैं', sa: 'अयनांश एवं पुरस्सरण — जहाँ सायन और निरयन मिलते हैं', mai: 'अयनांश एवं पुरस्सरण — जहाँ सायन और निरयन मिलते हैं', mr: 'अयनांश एवं पुरस्सरण — जहाँ सायन और निरयन मिलते हैं', ta: 'Precession & Ayanamsha — Where Tropical Meets Sidereal', te: 'Precession & Ayanamsha — Where Tropical Meets Sidereal', bn: 'Precession & Ayanamsha — Where Tropical Meets Sidereal', kn: 'Precession & Ayanamsha — Where Tropical Meets Sidereal', gu: 'Precession & Ayanamsha — Where Tropical Meets Sidereal' },
   subtitle: {
     en: 'Every 72 years your zodiac shifts by 1 degree. The physics, history, and great debate behind the ayanamsha.',
     hi: 'प्रत्येक 72 वर्ष में आपकी राशि 1 अंश खिसकती है। अयनांश के पीछे का भौतिकशास्त्र, इतिहास और महान वाद-विवाद।',
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Module 4-2: Tropical vs Sidereal Zodiac', hi: 'मॉड्यूल 4-2: सायन बनाम निरयन राशिचक्र' }, href: '/learn/modules/4-2' },
-    { label: { en: 'Module 4-3: Coordinate Systems', hi: 'मॉड्यूल 4-3: निर्देशांक पद्धतियाँ' }, href: '/learn/modules/4-3' },
-    { label: { en: 'Ayanamsha Deep Dive', hi: 'अयनांश विस्तार' }, href: '/learn/ayanamsha' },
+    { label: { en: 'Module 4-2: Tropical vs Sidereal Zodiac', hi: 'मॉड्यूल 4-2: सायन बनाम निरयन राशिचक्र', sa: 'मॉड्यूल 4-2: सायन बनाम निरयन राशिचक्र', mai: 'मॉड्यूल 4-2: सायन बनाम निरयन राशिचक्र', mr: 'मॉड्यूल 4-2: सायन बनाम निरयन राशिचक्र', ta: 'Module 4-2: Tropical vs Sidereal Zodiac', te: 'Module 4-2: Tropical vs Sidereal Zodiac', bn: 'Module 4-2: Tropical vs Sidereal Zodiac', kn: 'Module 4-2: Tropical vs Sidereal Zodiac', gu: 'Module 4-2: Tropical vs Sidereal Zodiac' }, href: '/learn/modules/4-2' },
+    { label: { en: 'Module 4-3: Coordinate Systems', hi: 'मॉड्यूल 4-3: निर्देशांक पद्धतियाँ', sa: 'मॉड्यूल 4-3: निर्देशांक पद्धतियाँ', mai: 'मॉड्यूल 4-3: निर्देशांक पद्धतियाँ', mr: 'मॉड्यूल 4-3: निर्देशांक पद्धतियाँ', ta: 'Module 4-3: Coordinate Systems', te: 'Module 4-3: Coordinate Systems', bn: 'Module 4-3: Coordinate Systems', kn: 'Module 4-3: Coordinate Systems', gu: 'Module 4-3: Coordinate Systems' }, href: '/learn/modules/4-3' },
+    { label: { en: 'Ayanamsha Deep Dive', hi: 'अयनांश विस्तार', sa: 'अयनांश विस्तार', mai: 'अयनांश विस्तार', mr: 'अयनांश विस्तार', ta: 'Ayanamsha Deep Dive', te: 'Ayanamsha Deep Dive', bn: 'Ayanamsha Deep Dive', kn: 'Ayanamsha Deep Dive', gu: 'Ayanamsha Deep Dive' }, href: '/learn/ayanamsha' },
   ],
 };
 
@@ -30,7 +30,7 @@ const QUESTIONS: ModuleQuestion[] = [
       { en: 'Earth\'s magnetic field reversals', hi: 'पृथ्वी के चुम्बकीय क्षेत्र का उत्क्रमण' },
       { en: 'Gravitational pull of Sun and Moon on Earth\'s equatorial bulge', hi: 'पृथ्वी के भूमध्यरेखीय उभार पर सूर्य और चन्द्रमा का गुरुत्वाकर्षण' },
       { en: 'Jupiter\'s orbital resonance', hi: 'बृहस्पति की कक्षीय अनुनाद' },
-      { en: 'Solar wind pressure on the magnetosphere', hi: 'चुम्बकमण्डल पर सौर पवन का दबाव' },
+      { en: 'Solar wind pressure on the magnetosphere', hi: 'चुम्बकमण्डल पर सौर पवन का दबाव', sa: 'चुम्बकमण्डल पर सौर पवन का दबाव', mai: 'चुम्बकमण्डल पर सौर पवन का दबाव', mr: 'चुम्बकमण्डल पर सौर पवन का दबाव', ta: 'Solar wind pressure on the magnetosphere', te: 'Solar wind pressure on the magnetosphere', bn: 'Solar wind pressure on the magnetosphere', kn: 'Solar wind pressure on the magnetosphere', gu: 'Solar wind pressure on the magnetosphere' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -57,10 +57,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वर्तमान लहिरी अयनांश (2026) लगभग कितना है?',
     },
     options: [
-      { en: '12 degrees', hi: '12 अंश' },
-      { en: '24.2 degrees', hi: '24.2 अंश' },
-      { en: '36 degrees', hi: '36 अंश' },
-      { en: '0 degrees', hi: '0 अंश' },
+      { en: '12 degrees', hi: '12 अंश', sa: '12 अंश', mai: '12 अंश', mr: '12 अंश', ta: '12 degrees', te: '12 degrees', bn: '12 degrees', kn: '12 degrees', gu: '12 degrees' },
+      { en: '24.2 degrees', hi: '24.2 अंश', sa: '24.2 अंश', mai: '24.2 अंश', mr: '24.2 अंश', ta: '24.2 degrees', te: '24.2 degrees', bn: '24.2 degrees', kn: '24.2 degrees', gu: '24.2 degrees' },
+      { en: '36 degrees', hi: '36 अंश', sa: '36 अंश', mai: '36 अंश', mr: '36 अंश', ta: '36 degrees', te: '36 degrees', bn: '36 degrees', kn: '36 degrees', gu: '36 degrees' },
+      { en: '0 degrees', hi: '0 अंश', sa: '0 अंश', mai: '0 अंश', mr: '0 अंश', ta: '0 degrees', te: '0 degrees', bn: '0 degrees', kn: '0 degrees', gu: '0 degrees' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -87,10 +87,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सायन देशान्तर को निरयन में बदलने के लिए आप:',
     },
     options: [
-      { en: 'Add the ayanamsha', hi: 'अयनांश जोड़ते हैं' },
-      { en: 'Subtract the ayanamsha', hi: 'अयनांश घटाते हैं' },
-      { en: 'Multiply by the ayanamsha', hi: 'अयनांश से गुणा करते हैं' },
-      { en: 'Divide by the ayanamsha', hi: 'अयनांश से भाग देते हैं' },
+      { en: 'Add the ayanamsha', hi: 'अयनांश जोड़ते हैं', sa: 'अयनांश जोड़ते हैं', mai: 'अयनांश जोड़ते हैं', mr: 'अयनांश जोड़ते हैं', ta: 'Add the ayanamsha', te: 'Add the ayanamsha', bn: 'Add the ayanamsha', kn: 'Add the ayanamsha', gu: 'Add the ayanamsha' },
+      { en: 'Subtract the ayanamsha', hi: 'अयनांश घटाते हैं', sa: 'अयनांश घटाते हैं', mai: 'अयनांश घटाते हैं', mr: 'अयनांश घटाते हैं', ta: 'Subtract the ayanamsha', te: 'Subtract the ayanamsha', bn: 'Subtract the ayanamsha', kn: 'Subtract the ayanamsha', gu: 'Subtract the ayanamsha' },
+      { en: 'Multiply by the ayanamsha', hi: 'अयनांश से गुणा करते हैं', sa: 'अयनांश से गुणा करते हैं', mai: 'अयनांश से गुणा करते हैं', mr: 'अयनांश से गुणा करते हैं', ta: 'Multiply by the ayanamsha', te: 'Multiply by the ayanamsha', bn: 'Multiply by the ayanamsha', kn: 'Multiply by the ayanamsha', gu: 'Multiply by the ayanamsha' },
+      { en: 'Divide by the ayanamsha', hi: 'अयनांश से भाग देते हैं', sa: 'अयनांश से भाग देते हैं', mai: 'अयनांश से भाग देते हैं', mr: 'अयनांश से भाग देते हैं', ta: 'Divide by the ayanamsha', te: 'Divide by the ayanamsha', bn: 'Divide by the ayanamsha', kn: 'Divide by the ayanamsha', gu: 'Divide by the ayanamsha' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -105,10 +105,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कौन-सा तारा लहिरी (चित्रापक्ष) अयनांश को ठीक 180 अंश निरयन देशान्तर पर स्थापित करता है?',
     },
     options: [
-      { en: 'Polaris (Dhruva)', hi: 'पोलारिस (ध्रुव)' },
-      { en: 'Spica (Chitra)', hi: 'स्पाइका (चित्रा)' },
-      { en: 'Regulus (Magha)', hi: 'रेगुलस (मघा)' },
-      { en: 'Aldebaran (Rohini)', hi: 'एल्डेबरान (रोहिणी)' },
+      { en: 'Polaris (Dhruva)', hi: 'पोलारिस (ध्रुव)', sa: 'पोलारिस (ध्रुव)', mai: 'पोलारिस (ध्रुव)', mr: 'पोलारिस (ध्रुव)', ta: 'Polaris (Dhruva)', te: 'Polaris (Dhruva)', bn: 'Polaris (Dhruva)', kn: 'Polaris (Dhruva)', gu: 'Polaris (Dhruva)' },
+      { en: 'Spica (Chitra)', hi: 'स्पाइका (चित्रा)', sa: 'स्पाइका (चित्रा)', mai: 'स्पाइका (चित्रा)', mr: 'स्पाइका (चित्रा)', ta: 'Spica (Chitra)', te: 'Spica (Chitra)', bn: 'Spica (Chitra)', kn: 'Spica (Chitra)', gu: 'Spica (Chitra)' },
+      { en: 'Regulus (Magha)', hi: 'रेगुलस (मघा)', sa: 'रेगुलस (मघा)', mai: 'रेगुलस (मघा)', mr: 'रेगुलस (मघा)', ta: 'Regulus (Magha)', te: 'Regulus (Magha)', bn: 'Regulus (Magha)', kn: 'Regulus (Magha)', gu: 'Regulus (Magha)' },
+      { en: 'Aldebaran (Rohini)', hi: 'एल्डेबरान (रोहिणी)', sa: 'एल्डेबरान (रोहिणी)', mai: 'एल्डेबरान (रोहिणी)', mr: 'एल्डेबरान (रोहिणी)', ta: 'Aldebaran (Rohini)', te: 'Aldebaran (Rohini)', bn: 'Aldebaran (Rohini)', kn: 'Aldebaran (Rohini)', gu: 'Aldebaran (Rohini)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -123,10 +123,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पश्चिमी परम्परा में पुरस्सरण को सर्वप्रथम किसने मापा?',
     },
     options: [
-      { en: 'Ptolemy (~150 CE)', hi: 'टॉलेमी (~150 ई.)' },
-      { en: 'Hipparchus (~150 BCE)', hi: 'हिपार्कस (~150 ई.पू.)' },
-      { en: 'Copernicus (1543 CE)', hi: 'कोपर्निकस (1543 ई.)' },
-      { en: 'Newton (1687 CE)', hi: 'न्यूटन (1687 ई.)' },
+      { en: 'Ptolemy (~150 CE)', hi: 'टॉलेमी (~150 ई.)', sa: 'टॉलेमी (~150 ई.)', mai: 'टॉलेमी (~150 ई.)', mr: 'टॉलेमी (~150 ई.)', ta: 'Ptolemy (~150 CE)', te: 'Ptolemy (~150 CE)', bn: 'Ptolemy (~150 CE)', kn: 'Ptolemy (~150 CE)', gu: 'Ptolemy (~150 CE)' },
+      { en: 'Hipparchus (~150 BCE)', hi: 'हिपार्कस (~150 ई.पू.)', sa: 'हिपार्कस (~150 ई.पू.)', mai: 'हिपार्कस (~150 ई.पू.)', mr: 'हिपार्कस (~150 ई.पू.)', ta: 'Hipparchus (~150 BCE)', te: 'Hipparchus (~150 BCE)', bn: 'Hipparchus (~150 BCE)', kn: 'Hipparchus (~150 BCE)', gu: 'Hipparchus (~150 BCE)' },
+      { en: 'Copernicus (1543 CE)', hi: 'कोपर्निकस (1543 ई.)', sa: 'कोपर्निकस (1543 ई.)', mai: 'कोपर्निकस (1543 ई.)', mr: 'कोपर्निकस (1543 ई.)', ta: 'Copernicus (1543 CE)', te: 'Copernicus (1543 CE)', bn: 'Copernicus (1543 CE)', kn: 'Copernicus (1543 CE)', gu: 'Copernicus (1543 CE)' },
+      { en: 'Newton (1687 CE)', hi: 'न्यूटन (1687 ई.)', sa: 'न्यूटन (1687 ई.)', mai: 'न्यूटन (1687 ई.)', mr: 'न्यूटन (1687 ई.)', ta: 'Newton (1687 CE)', te: 'Newton (1687 CE)', bn: 'Newton (1687 CE)', kn: 'Newton (1687 CE)', gu: 'Newton (1687 CE)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -153,10 +153,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'एक ग्रह 24.5 अंश सायन देशान्तर पर है। लहिरी अयनांश (24.22 अंश) से यह 0.28 अंश मेष में आता है। फ़गन-ब्रैडली (25.10 अंश) से यह कहाँ आएगा?',
     },
     options: [
-      { en: '0.60 degrees Aries', hi: '0.60 अंश मेष' },
-      { en: '29.40 degrees Pisces — a different sign!', hi: '29.40 अंश मीन — भिन्न राशि!' },
-      { en: '24.50 degrees Pisces', hi: '24.50 अंश मीन' },
-      { en: '1.10 degrees Aries', hi: '1.10 अंश मेष' },
+      { en: '0.60 degrees Aries', hi: '0.60 अंश मेष', sa: '0.60 अंश मेष', mai: '0.60 अंश मेष', mr: '0.60 अंश मेष', ta: '0.60 degrees Aries', te: '0.60 degrees Aries', bn: '0.60 degrees Aries', kn: '0.60 degrees Aries', gu: '0.60 degrees Aries' },
+      { en: '29.40 degrees Pisces — a different sign!', hi: '29.40 अंश मीन — भिन्न राशि!', sa: '29.40 अंश मीन — भिन्न राशि!', mai: '29.40 अंश मीन — भिन्न राशि!', mr: '29.40 अंश मीन — भिन्न राशि!', ta: '29.40 degrees Pisces — a different sign!', te: '29.40 degrees Pisces — a different sign!', bn: '29.40 degrees Pisces — a different sign!', kn: '29.40 degrees Pisces — a different sign!', gu: '29.40 degrees Pisces — a different sign!' },
+      { en: '24.50 degrees Pisces', hi: '24.50 अंश मीन', sa: '24.50 अंश मीन', mai: '24.50 अंश मीन', mr: '24.50 अंश मीन', ta: '24.50 degrees Pisces', te: '24.50 degrees Pisces', bn: '24.50 degrees Pisces', kn: '24.50 degrees Pisces', gu: '24.50 degrees Pisces' },
+      { en: '1.10 degrees Aries', hi: '1.10 अंश मेष', sa: '1.10 अंश मेष', mai: '1.10 अंश मेष', mr: '1.10 अंश मेष', ta: '1.10 degrees Aries', te: '1.10 degrees Aries', bn: '1.10 degrees Aries', kn: '1.10 degrees Aries', gu: '1.10 degrees Aries' },
     ],
     correctAnswer: 1,
     explanation: {

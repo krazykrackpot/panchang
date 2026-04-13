@@ -5,17 +5,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_7_4', phase: 2, topic: 'Yoga Karana', moduleNumber: '7.4',
-  title: { en: 'Why 7 Days? — Chaldean Order & Indian Origins', hi: '7 दिन क्यों? — कैल्डियन क्रम और भारतीय उत्पत्ति' },
+  title: { en: 'Why 7 Days? — Chaldean Order & Indian Origins', hi: '7 दिन क्यों? — कैल्डियन क्रम और भारतीय उत्पत्ति', sa: '7 दिन क्यों? — कैल्डियन क्रम और भारतीय उत्पत्ति', mai: '7 दिन क्यों? — कैल्डियन क्रम और भारतीय उत्पत्ति', mr: '7 दिन क्यों? — कैल्डियन क्रम और भारतीय उत्पत्ति', ta: 'Why 7 Days? — Chaldean Order & Indian Origins', te: 'Why 7 Days? — Chaldean Order & Indian Origins', bn: 'Why 7 Days? — Chaldean Order & Indian Origins', kn: 'Why 7 Days? — Chaldean Order & Indian Origins', gu: 'Why 7 Days? — Chaldean Order & Indian Origins' },
   subtitle: {
     en: 'Hora from Ahoratra — how 7 planets ranked by orbital speed create the weekday sequence through 24 planetary hours',
     hi: 'अहोरात्र से होरा — कैसे कक्षीय गति से क्रमित 7 ग्रह 24 ग्रहीय घण्टों द्वारा वार-क्रम बनाते हैं',
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Hora Deep Dive', hi: 'होरा विस्तार' }, href: '/learn/hora' },
-    { label: { en: 'Vara Deep Dive', hi: 'वार विस्तार' }, href: '/learn/vara' },
-    { label: { en: 'Vedic Time', hi: 'वैदिक समय' }, href: '/vedic-time' },
-    { label: { en: 'Module 7-3: Vara', hi: 'मॉड्यूल 7-3: वार' }, href: '/learn/modules/7-3' },
+    { label: { en: 'Hora Deep Dive', hi: 'होरा विस्तार', sa: 'होरा विस्तार', mai: 'होरा विस्तार', mr: 'होरा विस्तार', ta: 'Hora Deep Dive', te: 'Hora Deep Dive', bn: 'Hora Deep Dive', kn: 'Hora Deep Dive', gu: 'Hora Deep Dive' }, href: '/learn/hora' },
+    { label: { en: 'Vara Deep Dive', hi: 'वार विस्तार', sa: 'वार विस्तार', mai: 'वार विस्तार', mr: 'वार विस्तार', ta: 'Vara Deep Dive', te: 'Vara Deep Dive', bn: 'Vara Deep Dive', kn: 'Vara Deep Dive', gu: 'Vara Deep Dive' }, href: '/learn/vara' },
+    { label: { en: 'Vedic Time', hi: 'वैदिक समय', sa: 'वैदिक समय', mai: 'वैदिक समय', mr: 'वैदिक समय', ta: 'Vedic Time', te: 'Vedic Time', bn: 'Vedic Time', kn: 'Vedic Time', gu: 'Vedic Time' }, href: '/vedic-time' },
+    { label: { en: 'Module 7-3: Vara', hi: 'मॉड्यूल 7-3: वार', sa: 'मॉड्यूल 7-3: वार', mai: 'मॉड्यूल 7-3: वार', mr: 'मॉड्यूल 7-3: वार', ta: 'Module 7-3: Vara', te: 'Module 7-3: Vara', bn: 'Module 7-3: Vara', kn: 'Module 7-3: Vara', gu: 'Module 7-3: Vara' }, href: '/learn/modules/7-3' },
   ],
 };
 
@@ -27,10 +27,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: '"होरा" शब्द किससे व्युत्पन्न है?',
     },
     options: [
-      { en: 'Horoscope (Greek)', hi: 'होरोस्कोप (यूनानी)' },
-      { en: 'Ahoratra (Sanskrit)', hi: 'अहोरात्र (संस्कृत)' },
-      { en: 'Horus (Egyptian)', hi: 'होरस (मिस्री)' },
-      { en: 'Hara (Shiva)', hi: 'हर (शिव)' },
+      { en: 'Horoscope (Greek)', hi: 'होरोस्कोप (यूनानी)', sa: 'होरोस्कोप (यूनानी)', mai: 'होरोस्कोप (यूनानी)', mr: 'होरोस्कोप (यूनानी)', ta: 'Horoscope (Greek)', te: 'Horoscope (Greek)', bn: 'Horoscope (Greek)', kn: 'Horoscope (Greek)', gu: 'Horoscope (Greek)' },
+      { en: 'Ahoratra (Sanskrit)', hi: 'अहोरात्र (संस्कृत)', sa: 'अहोरात्र (संस्कृत)', mai: 'अहोरात्र (संस्कृत)', mr: 'अहोरात्र (संस्कृत)', ta: 'Ahoratra (Sanskrit)', te: 'Ahoratra (Sanskrit)', bn: 'Ahoratra (Sanskrit)', kn: 'Ahoratra (Sanskrit)', gu: 'Ahoratra (Sanskrit)' },
+      { en: 'Horus (Egyptian)', hi: 'होरस (मिस्री)', sa: 'होरस (मिस्री)', mai: 'होरस (मिस्री)', mr: 'होरस (मिस्री)', ta: 'Horus (Egyptian)', te: 'Horus (Egyptian)', bn: 'Horus (Egyptian)', kn: 'Horus (Egyptian)', gu: 'Horus (Egyptian)' },
+      { en: 'Hara (Shiva)', hi: 'हर (शिव)', sa: 'हर (शिव)', mai: 'हर (शिव)', mr: 'हर (शिव)', ta: 'Hara (Shiva)', te: 'Hara (Shiva)', bn: 'Hara (Shiva)', kn: 'Hara (Shiva)', gu: 'Hara (Shiva)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -45,10 +45,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: '"अहोरात्र" का क्या अर्थ है?',
     },
     options: [
-      { en: 'Sun and Moon', hi: 'सूर्य और चन्द्र' },
-      { en: 'Day and Night (a full 24-hour cycle)', hi: 'दिन और रात (पूर्ण 24 घण्टे का चक्र)' },
-      { en: 'Light and Shadow', hi: 'प्रकाश और छाया' },
-      { en: 'Dawn and Dusk', hi: 'उषा और सन्ध्या' },
+      { en: 'Sun and Moon', hi: 'सूर्य और चन्द्र', sa: 'सूर्य और चन्द्र', mai: 'सूर्य और चन्द्र', mr: 'सूर्य और चन्द्र', ta: 'Sun and Moon', te: 'Sun and Moon', bn: 'Sun and Moon', kn: 'Sun and Moon', gu: 'Sun and Moon' },
+      { en: 'Day and Night (a full 24-hour cycle)', hi: 'दिन और रात (पूर्ण 24 घण्टे का चक्र)', sa: 'दिन और रात (पूर्ण 24 घण्टे का चक्र)', mai: 'दिन और रात (पूर्ण 24 घण्टे का चक्र)', mr: 'दिन और रात (पूर्ण 24 घण्टे का चक्र)', ta: 'Day and Night (a full 24-hour cycle)', te: 'Day and Night (a full 24-hour cycle)', bn: 'Day and Night (a full 24-hour cycle)', kn: 'Day and Night (a full 24-hour cycle)', gu: 'Day and Night (a full 24-hour cycle)' },
+      { en: 'Light and Shadow', hi: 'प्रकाश और छाया', sa: 'प्रकाश और छाया', mai: 'प्रकाश और छाया', mr: 'प्रकाश और छाया', ta: 'Light and Shadow', te: 'Light and Shadow', bn: 'Light and Shadow', kn: 'Light and Shadow', gu: 'Light and Shadow' },
+      { en: 'Dawn and Dusk', hi: 'उषा और सन्ध्या', sa: 'उषा और सन्ध्या', mai: 'उषा और सन्ध्या', mr: 'उषा और सन्ध्या', ta: 'Dawn and Dusk', te: 'Dawn and Dusk', bn: 'Dawn and Dusk', kn: 'Dawn and Dusk', gu: 'Dawn and Dusk' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -63,10 +63,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कैल्डियन क्रम में सबसे धीमा (सबसे लम्बी कक्षीय अवधि वाला) ग्रह कौन है?',
     },
     options: [
-      { en: 'Jupiter', hi: 'बृहस्पति' },
-      { en: 'Mars', hi: 'मंगल' },
-      { en: 'Saturn', hi: 'शनि' },
-      { en: 'Sun', hi: 'सूर्य' },
+      { en: 'Jupiter', hi: 'बृहस्पति', sa: 'बृहस्पति', mai: 'बृहस्पति', mr: 'बृहस्पति', ta: 'Jupiter', te: 'Jupiter', bn: 'Jupiter', kn: 'Jupiter', gu: 'Jupiter' },
+      { en: 'Mars', hi: 'मंगल', sa: 'मंगल', mai: 'मंगल', mr: 'मंगल', ta: 'Mars', te: 'Mars', bn: 'Mars', kn: 'Mars', gu: 'Mars' },
+      { en: 'Saturn', hi: 'शनि', sa: 'शनि', mai: 'शनि', mr: 'शनि', ta: 'Saturn', te: 'Saturn', bn: 'Saturn', kn: 'Saturn', gu: 'Saturn' },
+      { en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', mai: 'सूर्य', mr: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -81,10 +81,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कैल्डियन क्रम में सबसे तेज़ (सबसे छोटी कक्षीय अवधि वाला) ग्रह कौन है?',
     },
     options: [
-      { en: 'Mercury', hi: 'बुध' },
-      { en: 'Venus', hi: 'शुक्र' },
-      { en: 'Moon', hi: 'चन्द्र' },
-      { en: 'Sun', hi: 'सूर्य' },
+      { en: 'Mercury', hi: 'बुध', sa: 'बुध', mai: 'बुध', mr: 'बुध', ta: 'Mercury', te: 'Mercury', bn: 'Mercury', kn: 'Mercury', gu: 'Mercury' },
+      { en: 'Venus', hi: 'शुक्र', sa: 'शुक्र', mai: 'शुक्र', mr: 'शुक्र', ta: 'Venus', te: 'Venus', bn: 'Venus', kn: 'Venus', gu: 'Venus' },
+      { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', mai: 'चन्द्र', mr: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon' },
+      { en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', mai: 'सूर्य', mr: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -99,10 +99,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'एक अहोरात्र (पूर्ण दिन-रात चक्र) में कितनी होराएँ होती हैं?',
     },
     options: [
-      { en: '7', hi: '7' },
-      { en: '12', hi: '12' },
-      { en: '24', hi: '24' },
-      { en: '30', hi: '30' },
+      { en: '7', hi: '7', sa: '7', mai: '7', mr: '7', ta: '7', te: '7', bn: '7', kn: '7', gu: '7' },
+      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
+      { en: '24', hi: '24', sa: '24', mai: '24', mr: '24', ta: '24', te: '24', bn: '24', kn: '24', gu: '24' },
+      { en: '30', hi: '30', sa: '30', mai: '30', mr: '30', ta: '30', te: '30', bn: '30', kn: '30', gu: '30' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -117,10 +117,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: '24 mod 7 क्या है, और यह संख्या वारों के लिए क्यों महत्त्वपूर्ण है?',
     },
     options: [
-      { en: '2 — it skips 2 planets each day', hi: '2 — प्रत्येक दिन 2 ग्रह छोड़ता है' },
-      { en: '3 — it creates the "jump of 3" that generates the weekday sequence', hi: '3 — यह "3 का छलांग" बनाता है जो वार-क्रम उत्पन्न करता है' },
-      { en: '4 — it divides the week into halves', hi: '4 — यह सप्ताह को आधे में विभाजित करता है' },
-      { en: '5 — it corresponds to the Panchangas', hi: '5 — यह पंचांगों से सम्बन्धित है' },
+      { en: '2 — it skips 2 planets each day', hi: '2 — प्रत्येक दिन 2 ग्रह छोड़ता है', sa: '2 — प्रत्येक दिन 2 ग्रह छोड़ता है', mai: '2 — प्रत्येक दिन 2 ग्रह छोड़ता है', mr: '2 — प्रत्येक दिन 2 ग्रह छोड़ता है', ta: '2 — it skips 2 planets each day', te: '2 — it skips 2 planets each day', bn: '2 — it skips 2 planets each day', kn: '2 — it skips 2 planets each day', gu: '2 — it skips 2 planets each day' },
+      { en: '3 — it creates the "jump of 3" that generates the weekday sequence', hi: '3 — यह "3 का छलांग" बनाता है जो वार-क्रम उत्पन्न करता है', sa: '3 — यह "3 का छलांग" बनाता है जो वार-क्रम उत्पन्न करता है', mai: '3 — यह "3 का छलांग" बनाता है जो वार-क्रम उत्पन्न करता है', mr: '3 — यह "3 का छलांग" बनाता है जो वार-क्रम उत्पन्न करता है', ta: '3 — it creates the "jump of 3" that generates the weekday sequence', te: '3 — it creates the "jump of 3" that generates the weekday sequence', bn: '3 — it creates the "jump of 3" that generates the weekday sequence', kn: '3 — it creates the "jump of 3" that generates the weekday sequence', gu: '3 — it creates the "jump of 3" that generates the weekday sequence' },
+      { en: '4 — it divides the week into halves', hi: '4 — यह सप्ताह को आधे में विभाजित करता है', sa: '4 — यह सप्ताह को आधे में विभाजित करता है', mai: '4 — यह सप्ताह को आधे में विभाजित करता है', mr: '4 — यह सप्ताह को आधे में विभाजित करता है', ta: '4 — it divides the week into halves', te: '4 — it divides the week into halves', bn: '4 — it divides the week into halves', kn: '4 — it divides the week into halves', gu: '4 — it divides the week into halves' },
+      { en: '5 — it corresponds to the Panchangas', hi: '5 — यह पंचांगों से सम्बन्धित है', sa: '5 — यह पंचांगों से सम्बन्धित है', mai: '5 — यह पंचांगों से सम्बन्धित है', mr: '5 — यह पंचांगों से सम्बन्धित है', ta: '5 — it corresponds to the Panchangas', te: '5 — it corresponds to the Panchangas', bn: '5 — it corresponds to the Panchangas', kn: '5 — it corresponds to the Panchangas', gu: '5 — it corresponds to the Panchangas' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -135,10 +135,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कौन-सा शास्त्रीय ग्रन्थ कहता है कि "प्रथम होरा का स्वामी ही दिन का स्वामी है"?',
     },
     options: [
-      { en: 'Rigveda', hi: 'ऋग्वेद' },
-      { en: 'Brihat Samhita (Varahamihira)', hi: 'बृहत् संहिता (वराहमिहिर)' },
-      { en: 'Manusmriti', hi: 'मनुस्मृति' },
-      { en: 'Ramayana', hi: 'रामायण' },
+      { en: 'Rigveda', hi: 'ऋग्वेद', sa: 'ऋग्वेद', mai: 'ऋग्वेद', mr: 'ऋग्वेद', ta: 'Rigveda', te: 'Rigveda', bn: 'Rigveda', kn: 'Rigveda', gu: 'Rigveda' },
+      { en: 'Brihat Samhita (Varahamihira)', hi: 'बृहत् संहिता (वराहमिहिर)', sa: 'बृहत् संहिता (वराहमिहिर)', mai: 'बृहत् संहिता (वराहमिहिर)', mr: 'बृहत् संहिता (वराहमिहिर)', ta: 'Brihat Samhita (Varahamihira)', te: 'Brihat Samhita (Varahamihira)', bn: 'Brihat Samhita (Varahamihira)', kn: 'Brihat Samhita (Varahamihira)', gu: 'Brihat Samhita (Varahamihira)' },
+      { en: 'Manusmriti', hi: 'मनुस्मृति', sa: 'मनुस्मृति', mai: 'मनुस्मृति', mr: 'मनुस्मृति', ta: 'Manusmriti', te: 'Manusmriti', bn: 'Manusmriti', kn: 'Manusmriti', gu: 'Manusmriti' },
+      { en: 'Ramayana', hi: 'रामायण', sa: 'रामायण', mai: 'रामायण', mr: 'रामायण', ta: 'Ramayana', te: 'Ramayana', bn: 'Ramayana', kn: 'Ramayana', gu: 'Ramayana' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -153,10 +153,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'शनिवार का संस्कृत नाम क्या है?',
     },
     options: [
-      { en: 'Ravivara', hi: 'रविवार' },
-      { en: 'Shukravara', hi: 'शुक्रवार' },
-      { en: 'Shanivara', hi: 'शनिवार' },
-      { en: 'Guruvara', hi: 'गुरुवार' },
+      { en: 'Ravivara', hi: 'रविवार', sa: 'रविवार', mai: 'रविवार', mr: 'रविवार', ta: 'Ravivara', te: 'Ravivara', bn: 'Ravivara', kn: 'Ravivara', gu: 'Ravivara' },
+      { en: 'Shukravara', hi: 'शुक्रवार', sa: 'शुक्रवार', mai: 'शुक्रवार', mr: 'शुक्रवार', ta: 'Shukravara', te: 'Shukravara', bn: 'Shukravara', kn: 'Shukravara', gu: 'Shukravara' },
+      { en: 'Shanivara', hi: 'शनिवार', sa: 'शनिवार', mai: 'शनिवार', mr: 'शनिवार', ta: 'Shanivara', te: 'Shanivara', bn: 'Shanivara', kn: 'Shanivara', gu: 'Shanivara' },
+      { en: 'Guruvara', hi: 'गुरुवार', sa: 'गुरुवार', mai: 'गुरुवार', mr: 'गुरुवार', ta: 'Guruvara', te: 'Guruvara', bn: 'Guruvara', kn: 'Guruvara', gu: 'Guruvara' },
     ],
     correctAnswer: 2,
     explanation: {

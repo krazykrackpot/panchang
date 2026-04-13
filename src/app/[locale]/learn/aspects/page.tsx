@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -291,7 +292,7 @@ function AspectWheel({ selectedPlanet, locale }: { selectedPlanet: typeof PLANET
       {selectedPlanet && (
         <text x={cx} y={cy} textAnchor="middle" dominantBaseline="central"
           className="text-xs font-bold" fill={selectedPlanet.color}>
-          {selectedPlanet.name[locale]}
+          {tl(selectedPlanet.name, locale)}
         </text>
       )}
     </svg>
@@ -352,7 +353,7 @@ export default function AspectsPage() {
               }`}
               style={{ color: p.color }}
             >
-              {p.name[locale]}
+              {tl(p.name, locale)}
             </button>
           ))}
         </div>
@@ -362,7 +363,7 @@ export default function AspectsPage() {
         {selected && (
           <div className="mt-4 text-center">
             <p className="text-xs text-text-secondary" style={bodyFont}>
-              <span style={{ color: selected.color }} className="font-bold">{selected.name[locale]}</span>
+              <span style={{ color: selected.color }} className="font-bold">{tl(selected.name, locale)}</span>
               {' '}{t('placedIn')}
               {' \u2192 '}{t('aspectsHouses')}{': '}
               <span style={{ color: selected.color }} className="font-bold">
@@ -395,7 +396,7 @@ export default function AspectsPage() {
             <tbody>
               {ASPECT_RULES.map((row, i) => (
                 <tr key={i} className="border-b border-white/5">
-                  <td className="py-2.5 px-3 text-text-primary font-medium" style={bodyFont}>{row.planet[locale]}</td>
+                  <td className="py-2.5 px-3 text-text-primary font-medium" style={bodyFont}>{tl(row.planet, locale)}</td>
                   <td className="py-2.5 px-3 text-text-secondary">{row.aspects}</td>
                   <td className="py-2.5 px-3 text-center text-emerald-400">{row.full}</td>
                   <td className="py-2.5 px-3 text-center text-yellow-400">{row.threeQ}</td>
@@ -422,9 +423,9 @@ export default function AspectsPage() {
           ].map((item, i) => (
             <div key={i} className="rounded-xl border border-white/5 p-4 bg-white/2">
               <h4 className="text-sm font-bold mb-2" style={{ color: item.color, ...headingFont }}>
-                {item.label[locale]}
+                {tl(item.label, locale)}
               </h4>
-              <p className="text-text-secondary text-sm leading-relaxed">{item.text[locale]}</p>
+              <p className="text-text-secondary text-sm leading-relaxed">{tl(item.text, locale)}</p>
             </div>
           ))}
         </div>
@@ -442,10 +443,10 @@ export default function AspectsPage() {
               }`}>
               <div className="flex items-center gap-2 mb-1.5">
                 <span className={`w-2 h-2 rounded-full ${combo.nature === 'benefic' ? 'bg-emerald-400' : 'bg-red-400'}`} />
-                <h4 className="text-sm font-bold text-text-primary" style={headingFont}>{combo.combo[locale]}</h4>
+                <h4 className="text-sm font-bold text-text-primary" style={headingFont}>{tl(combo.combo, locale)}</h4>
               </div>
               <p className="text-text-secondary text-sm leading-relaxed ml-4" style={bodyFont}>
-                {combo.effect[locale]}
+                {tl(combo.effect, locale)}
               </p>
             </div>
           ))}
@@ -466,7 +467,7 @@ export default function AspectsPage() {
           {RELATED_LINKS.map((link, i) => (
             <Link key={i} href={link.href}
               className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 hover:border-gold-primary/30 transition-colors flex items-center justify-between group">
-              <span className="text-sm text-text-primary font-medium" style={bodyFont}>{link.label[locale]}</span>
+              <span className="text-sm text-text-primary font-medium" style={bodyFont}>{tl(link.label, locale)}</span>
               <ArrowRight className="w-4 h-4 text-gold-primary/50 group-hover:text-gold-primary transition-colors" />
             </Link>
           ))}

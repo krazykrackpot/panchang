@@ -7,7 +7,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import type { PlanetPosition } from '@/types/kundali';
 import type { VarsheshvaraInfo } from '@/types/varshaphal';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 // Weekday to planet mapping for Varsheshvara candidates
 // Sunday=0(Sun), Monday=1(Moon), Tue=2(Mars), Wed=3(Mercury), Thu=4(Jupiter), Fri=5(Venus), Sat=6(Saturn)
@@ -25,7 +25,7 @@ const VARSHESHVARA_CANDIDATES: Record<number, number[]> = {
   6: [6, 2, 4, 0, 3], // Saturday: Saturn, Mars, Jupiter, Sun, Mercury
 };
 
-const VARSHESHVARA_DESCRIPTIONS: Record<number, Trilingual> = {
+const VARSHESHVARA_DESCRIPTIONS: Record<number, LocaleText> = {
   0: {
     en: 'Sun as Year Lord brings authority, government favor, father\'s influence, and health focus.',
     hi: 'वर्षेश्वर सूर्य: अधिकार, सरकारी कृपा, पिता का प्रभाव और स्वास्थ्य पर ध्यान।',

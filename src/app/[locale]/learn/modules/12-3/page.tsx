@@ -6,16 +6,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_12_3', phase: 3, topic: 'Transits', moduleNumber: '12.3',
-  title: { en: 'Jupiter Transit & Rahu-Ketu Axis', hi: 'गुरु गोचर एवं राहु-केतु अक्ष' },
+  title: { en: 'Jupiter Transit & Rahu-Ketu Axis', hi: 'गुरु गोचर एवं राहु-केतु अक्ष', sa: 'गुरु गोचर एवं राहु-केतु अक्ष', mai: 'गुरु गोचर एवं राहु-केतु अक्ष', mr: 'गुरु गोचर एवं राहु-केतु अक्ष', ta: 'Jupiter Transit & Rahu-Ketu Axis', te: 'Jupiter Transit & Rahu-Ketu Axis', bn: 'Jupiter Transit & Rahu-Ketu Axis', kn: 'Jupiter Transit & Rahu-Ketu Axis', gu: 'Jupiter Transit & Rahu-Ketu Axis' },
   subtitle: {
     en: 'Jupiter\'s annual sign change, the 18-month nodal cycle, and the double-transit theory for timing major life events',
     hi: 'गुरु का वार्षिक राशि परिवर्तन, 18-मासिक नोडल चक्र, और प्रमुख जीवन घटनाओं के समय निर्धारण हेतु दोहरे गोचर सिद्धान्त',
   },
   estimatedMinutes: 14,
   crossRefs: [
-    { label: { en: 'Module 12-1: Transits (Gochar)', hi: 'मॉड्यूल 12-1: गोचर' }, href: '/learn/modules/12-1' },
-    { label: { en: 'Module 12-2: Sade Sati', hi: 'मॉड्यूल 12-2: साढ़े साती' }, href: '/learn/modules/12-2' },
-    { label: { en: 'Transit Calendar', hi: 'गोचर पञ्चाङ्ग' }, href: '/transits' },
+    { label: { en: 'Module 12-1: Transits (Gochar)', hi: 'मॉड्यूल 12-1: गोचर', sa: 'मॉड्यूल 12-1: गोचर', mai: 'मॉड्यूल 12-1: गोचर', mr: 'मॉड्यूल 12-1: गोचर', ta: 'Module 12-1: Transits (Gochar)', te: 'Module 12-1: Transits (Gochar)', bn: 'Module 12-1: Transits (Gochar)', kn: 'Module 12-1: Transits (Gochar)', gu: 'Module 12-1: Transits (Gochar)' }, href: '/learn/modules/12-1' },
+    { label: { en: 'Module 12-2: Sade Sati', hi: 'मॉड्यूल 12-2: साढ़े साती', sa: 'मॉड्यूल 12-2: साढ़े साती', mai: 'मॉड्यूल 12-2: साढ़े साती', mr: 'मॉड्यूल 12-2: साढ़े साती', ta: 'Module 12-2: Sade Sati', te: 'Module 12-2: Sade Sati', bn: 'Module 12-2: Sade Sati', kn: 'Module 12-2: Sade Sati', gu: 'Module 12-2: Sade Sati' }, href: '/learn/modules/12-2' },
+    { label: { en: 'Transit Calendar', hi: 'गोचर पञ्चाङ्ग', sa: 'गोचर पञ्चाङ्ग', mai: 'गोचर पञ्चाङ्ग', mr: 'गोचर पञ्चाङ्ग', ta: 'Transit Calendar', te: 'Transit Calendar', bn: 'Transit Calendar', kn: 'Transit Calendar', gu: 'Transit Calendar' }, href: '/transits' },
   ],
 };
 
@@ -27,10 +27,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'गुरु लगभग कितने समय तक एक राशि में रहता है?',
     },
     options: [
-      { en: 'About 1 month', hi: 'लगभग 1 मास' },
-      { en: 'About 13 months', hi: 'लगभग 13 मास' },
-      { en: 'About 2.5 years', hi: 'लगभग 2.5 वर्ष' },
-      { en: 'About 7 years', hi: 'लगभग 7 वर्ष' },
+      { en: 'About 1 month', hi: 'लगभग 1 मास', sa: 'लगभग 1 मास', mai: 'लगभग 1 मास', mr: 'लगभग 1 मास', ta: 'About 1 month', te: 'About 1 month', bn: 'About 1 month', kn: 'About 1 month', gu: 'About 1 month' },
+      { en: 'About 13 months', hi: 'लगभग 13 मास', sa: 'लगभग 13 मास', mai: 'लगभग 13 मास', mr: 'लगभग 13 मास', ta: 'About 13 months', te: 'About 13 months', bn: 'About 13 months', kn: 'About 13 months', gu: 'About 13 months' },
+      { en: 'About 2.5 years', hi: 'लगभग 2.5 वर्ष', sa: 'लगभग 2.5 वर्ष', mai: 'लगभग 2.5 वर्ष', mr: 'लगभग 2.5 वर्ष', ta: 'About 2.5 years', te: 'About 2.5 years', bn: 'About 2.5 years', kn: 'About 2.5 years', gu: 'About 2.5 years' },
+      { en: 'About 7 years', hi: 'लगभग 7 वर्ष', sa: 'लगभग 7 वर्ष', mai: 'लगभग 7 वर्ष', mr: 'लगभग 7 वर्ष', ta: 'About 7 years', te: 'About 7 years', bn: 'About 7 years', kn: 'About 7 years', gu: 'About 7 years' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -45,10 +45,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्रमा से त्रिकोण भावों (1, 5, 9) में गुरु गोचर माना जाता है:',
     },
     options: [
-      { en: 'Highly auspicious', hi: 'अत्यन्त शुभ' },
-      { en: 'Neutral', hi: 'तटस्थ' },
-      { en: 'Challenging', hi: 'कठिन' },
-      { en: 'Depends entirely on dasha', hi: 'पूर्णतः दशा पर निर्भर' },
+      { en: 'Highly auspicious', hi: 'अत्यन्त शुभ', sa: 'अत्यन्त शुभ', mai: 'अत्यन्त शुभ', mr: 'अत्यन्त शुभ', ta: 'Highly auspicious', te: 'Highly auspicious', bn: 'Highly auspicious', kn: 'Highly auspicious', gu: 'Highly auspicious' },
+      { en: 'Neutral', hi: 'तटस्थ', sa: 'तटस्थ', mai: 'तटस्थ', mr: 'तटस्थ', ta: 'Neutral', te: 'Neutral', bn: 'Neutral', kn: 'Neutral', gu: 'Neutral' },
+      { en: 'Challenging', hi: 'कठिन', sa: 'कठिन', mai: 'कठिन', mr: 'कठिन', ta: 'Challenging', te: 'Challenging', bn: 'Challenging', kn: 'Challenging', gu: 'Challenging' },
+      { en: 'Depends entirely on dasha', hi: 'पूर्णतः दशा पर निर्भर', sa: 'पूर्णतः दशा पर निर्भर', mai: 'पूर्णतः दशा पर निर्भर', mr: 'पूर्णतः दशा पर निर्भर', ta: 'Depends entirely on dasha', te: 'Depends entirely on dasha', bn: 'Depends entirely on dasha', kn: 'Depends entirely on dasha', gu: 'Depends entirely on dasha' },
     ],
     correctAnswer: 0,
     explanation: {
@@ -75,10 +75,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्र से राहु का गोचर किन भावों में सामान्यतः शुभ होता है?',
     },
     options: [
-      { en: '2, 5, 7, 9', hi: '2, 5, 7, 9' },
-      { en: '3, 6, 10, 11', hi: '3, 6, 10, 11' },
-      { en: '1, 4, 8, 12', hi: '1, 4, 8, 12' },
-      { en: 'No house is favorable', hi: 'कोई भाव शुभ नहीं' },
+      { en: '2, 5, 7, 9', hi: '2, 5, 7, 9', sa: '2, 5, 7, 9', mai: '2, 5, 7, 9', mr: '2, 5, 7, 9', ta: '2, 5, 7, 9', te: '2, 5, 7, 9', bn: '2, 5, 7, 9', kn: '2, 5, 7, 9', gu: '2, 5, 7, 9' },
+      { en: '3, 6, 10, 11', hi: '3, 6, 10, 11', sa: '3, 6, 10, 11', mai: '3, 6, 10, 11', mr: '3, 6, 10, 11', ta: '3, 6, 10, 11', te: '3, 6, 10, 11', bn: '3, 6, 10, 11', kn: '3, 6, 10, 11', gu: '3, 6, 10, 11' },
+      { en: '1, 4, 8, 12', hi: '1, 4, 8, 12', sa: '1, 4, 8, 12', mai: '1, 4, 8, 12', mr: '1, 4, 8, 12', ta: '1, 4, 8, 12', te: '1, 4, 8, 12', bn: '1, 4, 8, 12', kn: '1, 4, 8, 12', gu: '1, 4, 8, 12' },
+      { en: 'No house is favorable', hi: 'कोई भाव शुभ नहीं', sa: 'कोई भाव शुभ नहीं', mai: 'कोई भाव शुभ नहीं', mr: 'कोई भाव शुभ नहीं', ta: 'No house is favorable', te: 'No house is favorable', bn: 'No house is favorable', kn: 'No house is favorable', gu: 'No house is favorable' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -93,10 +93,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: '"दोहरा गोचर" (द्विग्रह गोचर) सिद्धान्त क्या है?',
     },
     options: [
-      { en: 'Two planets in the same sign', hi: 'दो ग्रह एक ही राशि में' },
-      { en: 'Both Jupiter and Saturn must aspect a house for its significations to manifest', hi: 'किसी भाव के फल प्रकट होने के लिए गुरु और शनि दोनों को उस भाव को दृष्टि करनी चाहिए' },
-      { en: 'Sun and Moon in opposition', hi: 'सूर्य और चन्द्रमा विपरीत में' },
-      { en: 'Rahu and Ketu in the same axis', hi: 'राहु और केतु एक ही अक्ष में' },
+      { en: 'Two planets in the same sign', hi: 'दो ग्रह एक ही राशि में', sa: 'दो ग्रह एक ही राशि में', mai: 'दो ग्रह एक ही राशि में', mr: 'दो ग्रह एक ही राशि में', ta: 'Two planets in the same sign', te: 'Two planets in the same sign', bn: 'Two planets in the same sign', kn: 'Two planets in the same sign', gu: 'Two planets in the same sign' },
+      { en: 'Both Jupiter and Saturn must aspect a house for its significations to manifest', hi: 'किसी भाव के फल प्रकट होने के लिए गुरु और शनि दोनों को उस भाव को दृष्टि करनी चाहिए', sa: 'किसी भाव के फल प्रकट होने के लिए गुरु और शनि दोनों को उस भाव को दृष्टि करनी चाहिए', mai: 'किसी भाव के फल प्रकट होने के लिए गुरु और शनि दोनों को उस भाव को दृष्टि करनी चाहिए', mr: 'किसी भाव के फल प्रकट होने के लिए गुरु और शनि दोनों को उस भाव को दृष्टि करनी चाहिए', ta: 'Both Jupiter and Saturn must aspect a house for its significations to manifest', te: 'Both Jupiter and Saturn must aspect a house for its significations to manifest', bn: 'Both Jupiter and Saturn must aspect a house for its significations to manifest', kn: 'Both Jupiter and Saturn must aspect a house for its significations to manifest', gu: 'Both Jupiter and Saturn must aspect a house for its significations to manifest' },
+      { en: 'Sun and Moon in opposition', hi: 'सूर्य और चन्द्रमा विपरीत में', sa: 'सूर्य और चन्द्रमा विपरीत में', mai: 'सूर्य और चन्द्रमा विपरीत में', mr: 'सूर्य और चन्द्रमा विपरीत में', ta: 'Sun and Moon in opposition', te: 'Sun and Moon in opposition', bn: 'Sun and Moon in opposition', kn: 'Sun and Moon in opposition', gu: 'Sun and Moon in opposition' },
+      { en: 'Rahu and Ketu in the same axis', hi: 'राहु और केतु एक ही अक्ष में', sa: 'राहु और केतु एक ही अक्ष में', mai: 'राहु और केतु एक ही अक्ष में', mr: 'राहु और केतु एक ही अक्ष में', ta: 'Rahu and Ketu in the same axis', te: 'Rahu and Ketu in the same axis', bn: 'Rahu and Ketu in the same axis', kn: 'Rahu and Ketu in the same axis', gu: 'Rahu and Ketu in the same axis' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -123,10 +123,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पूर्ण राशिचक्र में राहु-केतु गोचर चक्र लगभग कितना समय लेता है?',
     },
     options: [
-      { en: '7 years', hi: '7 वर्ष' },
-      { en: '12 years', hi: '12 वर्ष' },
-      { en: '18 years', hi: '18 वर्ष' },
-      { en: '29 years', hi: '29 वर्ष' },
+      { en: '7 years', hi: '7 वर्ष', sa: '7 वर्ष', mai: '7 वर्ष', mr: '7 वर्ष', ta: '7 years', te: '7 years', bn: '7 years', kn: '7 years', gu: '7 years' },
+      { en: '12 years', hi: '12 वर्ष', sa: '12 वर्ष', mai: '12 वर्ष', mr: '12 वर्ष', ta: '12 years', te: '12 years', bn: '12 years', kn: '12 years', gu: '12 years' },
+      { en: '18 years', hi: '18 वर्ष', sa: '18 वर्ष', mai: '18 वर्ष', mr: '18 वर्ष', ta: '18 years', te: '18 years', bn: '18 years', kn: '18 years', gu: '18 years' },
+      { en: '29 years', hi: '29 वर्ष', sa: '29 वर्ष', mai: '29 वर्ष', mr: '29 वर्ष', ta: '29 years', te: '29 years', bn: '29 years', kn: '29 years', gu: '29 years' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -141,10 +141,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'केतु का जन्मकालिक राहु पर गोचर (या इसके विपरीत) कहलाता है:',
     },
     options: [
-      { en: 'Grahan Yoga', hi: 'ग्रहण योग' },
-      { en: 'Karmic activation of the nodal axis', hi: 'नोडल अक्ष की कार्मिक सक्रियता' },
-      { en: 'Guru Chandal', hi: 'गुरु चाण्डाल' },
-      { en: 'Shrapit Dosha', hi: 'शापित दोष' },
+      { en: 'Grahan Yoga', hi: 'ग्रहण योग', sa: 'ग्रहण योग', mai: 'ग्रहण योग', mr: 'ग्रहण योग', ta: 'Grahan Yoga', te: 'Grahan Yoga', bn: 'Grahan Yoga', kn: 'Grahan Yoga', gu: 'Grahan Yoga' },
+      { en: 'Karmic activation of the nodal axis', hi: 'नोडल अक्ष की कार्मिक सक्रियता', sa: 'नोडल अक्ष की कार्मिक सक्रियता', mai: 'नोडल अक्ष की कार्मिक सक्रियता', mr: 'नोडल अक्ष की कार्मिक सक्रियता', ta: 'Karmic activation of the nodal axis', te: 'Karmic activation of the nodal axis', bn: 'Karmic activation of the nodal axis', kn: 'Karmic activation of the nodal axis', gu: 'Karmic activation of the nodal axis' },
+      { en: 'Guru Chandal', hi: 'गुरु चाण्डाल', sa: 'गुरु चाण्डाल', mai: 'गुरु चाण्डाल', mr: 'गुरु चाण्डाल', ta: 'Guru Chandal', te: 'Guru Chandal', bn: 'Guru Chandal', kn: 'Guru Chandal', gu: 'Guru Chandal' },
+      { en: 'Shrapit Dosha', hi: 'शापित दोष', sa: 'शापित दोष', mai: 'शापित दोष', mr: 'शापित दोष', ta: 'Shrapit Dosha', te: 'Shrapit Dosha', bn: 'Shrapit Dosha', kn: 'Shrapit Dosha', gu: 'Shrapit Dosha' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -171,10 +171,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'दोहरे गोचर सिद्धान्त के अनुसार विवाह प्रकट होने के लिए गुरु और शनि दोनों को किसे प्रभावित करना चाहिए?',
     },
     options: [
-      { en: 'The 5th house', hi: '5वाँ भाव' },
-      { en: 'The 10th house', hi: '10वाँ भाव' },
-      { en: 'The 7th house', hi: '7वाँ भाव' },
-      { en: 'The 2nd house only', hi: 'केवल 2रा भाव' },
+      { en: 'The 5th house', hi: '5वाँ भाव', sa: '5वाँ भाव', mai: '5वाँ भाव', mr: '5वाँ भाव', ta: 'The 5th house', te: 'The 5th house', bn: 'The 5th house', kn: 'The 5th house', gu: 'The 5th house' },
+      { en: 'The 10th house', hi: '10वाँ भाव', sa: '10वाँ भाव', mai: '10वाँ भाव', mr: '10वाँ भाव', ta: 'The 10th house', te: 'The 10th house', bn: 'The 10th house', kn: 'The 10th house', gu: 'The 10th house' },
+      { en: 'The 7th house', hi: '7वाँ भाव', sa: '7वाँ भाव', mai: '7वाँ भाव', mr: '7वाँ भाव', ta: 'The 7th house', te: 'The 7th house', bn: 'The 7th house', kn: 'The 7th house', gu: 'The 7th house' },
+      { en: 'The 2nd house only', hi: 'केवल 2रा भाव', sa: 'केवल 2रा भाव', mai: 'केवल 2रा भाव', mr: 'केवल 2रा भाव', ta: 'The 2nd house only', te: 'The 2nd house only', bn: 'The 2nd house only', kn: 'The 2nd house only', gu: 'The 2nd house only' },
     ],
     correctAnswer: 2,
     explanation: {

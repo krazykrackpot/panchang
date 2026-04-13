@@ -1,17 +1,17 @@
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 export interface NakshatraDetail {
   id: number;
-  meaning: Trilingual;
-  mythology: Trilingual;
-  significance: Trilingual;
-  characteristics: Trilingual;
-  compatibleActivities: Trilingual;
-  remedies: Trilingual;
-  associatedAnimal: Trilingual;
-  guna: Trilingual;
-  tattva: Trilingual;
-  gana: Trilingual;
+  meaning: LocaleText;
+  mythology: LocaleText;
+  significance: LocaleText;
+  characteristics: LocaleText;
+  compatibleActivities: LocaleText;
+  remedies: LocaleText;
+  associatedAnimal: LocaleText;
+  guna: LocaleText;
+  tattva: LocaleText;
+  gana: LocaleText;
 }
 
 export const NAKSHATRA_DETAILS: NakshatraDetail[] = [

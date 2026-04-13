@@ -1,10 +1,11 @@
+import type { LocaleText } from '@/types/panchang';
 /**
  * Dasha Prognosis Engine — layered text generation for divisional chart analysis
  * Combines planet nature, domain affinity, and house effects for ~1500 unique combinations
  * Reference: BPHS, Phaladeepika, Jataka Parijata, Saravali
  */
 
-type Bi = { en: string; hi: string };
+type Bi = LocaleText;
 
 // ─── Layer 1: Planet Dasha Lord Nature ──────────────────────────────────────
 
@@ -849,7 +850,7 @@ export function generateDashaPrognosis(params: {
   ascendantSign: number;
   beneficsInKendra: number;
   maleficsInDusthana: number;
-}): { en: string; hi: string } {
+}): LocaleText {
   const {
     chartKey, domainEn, domainHi,
     mahaPlanetId, mahaPlanetNameEn, mahaPlanetNameHi, mahaHouse,
@@ -873,7 +874,7 @@ export function generateDashaPrognosis(params: {
   if (mahaNature) {
     // Take just the first sentence to keep it concise
     const enFirst = mahaNature.en.split('. ')[0] + '.';
-    const hiFirst = mahaNature.hi.split('। ')[0] + '।';
+    const hiFirst = mahaNature.hi!.split('। ')[0] + '।';
     enParts.push(enFirst);
     hiParts.push(hiFirst);
   }

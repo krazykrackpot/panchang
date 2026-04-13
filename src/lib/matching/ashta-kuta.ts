@@ -16,7 +16,7 @@
  * Total                       — 36 points
  */
 
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 export interface MatchInput {
   moonNakshatra: number; // 1-27
@@ -24,10 +24,10 @@ export interface MatchInput {
 }
 
 export interface KutaResult {
-  name: Trilingual;
+  name: LocaleText;
   maxPoints: number;
   scored: number;
-  description: Trilingual;
+  description: LocaleText;
 }
 
 export interface MatchResult {
@@ -35,9 +35,9 @@ export interface MatchResult {
   maxScore: 36;
   percentage: number;
   verdict: 'excellent' | 'good' | 'average' | 'below_average' | 'not_recommended';
-  verdictText: Trilingual;
+  verdictText: LocaleText;
   kutas: KutaResult[];
-  manglikWarning?: Trilingual;
+  manglikWarning?: LocaleText;
   nadiDoshaPresent: boolean;
 }
 
@@ -337,7 +337,7 @@ export function computeAshtaKuta(boy: MatchInput, girl: MatchInput): MatchResult
   const nadiDoshaPresent = kutas[7].scored === 0;
 
   let verdict: MatchResult['verdict'];
-  let verdictText: Trilingual;
+  let verdictText: LocaleText;
 
   if (totalScore >= 28) {
     verdict = 'excellent';

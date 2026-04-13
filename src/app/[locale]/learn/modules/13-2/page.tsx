@@ -5,16 +5,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_13_2', phase: 3, topic: 'Yogas', moduleNumber: '13.2',
-  title: { en: 'Dhana Yogas & Arishta Yogas', hi: 'धन योग एवं अरिष्ट योग' },
+  title: { en: 'Dhana Yogas & Arishta Yogas', hi: 'धन योग एवं अरिष्ट योग', sa: 'धन योग एवं अरिष्ट योग', mai: 'धन योग एवं अरिष्ट योग', mr: 'धन योग एवं अरिष्ट योग', ta: 'Dhana Yogas & Arishta Yogas', te: 'Dhana Yogas & Arishta Yogas', bn: 'Dhana Yogas & Arishta Yogas', kn: 'Dhana Yogas & Arishta Yogas', gu: 'Dhana Yogas & Arishta Yogas' },
   subtitle: {
     en: 'Wealth-producing combinations (Dhana/Lakshmi) and suffering-indicating configurations (Daridra/Balarishta) with cancellation conditions',
     hi: 'धन उत्पन्न करने वाले संयोग (धन/लक्ष्मी) और कष्ट-सूचक विन्यास (दारिद्र/बालारिष्ट) निवारण शर्तों सहित',
   },
   estimatedMinutes: 14,
   crossRefs: [
-    { label: { en: 'Module 13-1: Yogas Overview', hi: 'मॉड्यूल 13-1: योग अवलोकन' }, href: '/learn/modules/13-1' },
-    { label: { en: 'Module 13-3: Dosha Detection', hi: 'मॉड्यूल 13-3: दोष पहचान' }, href: '/learn/modules/13-3' },
-    { label: { en: 'Yogas Deep Dive', hi: 'योग विस्तार' }, href: '/learn/yogas' },
+    { label: { en: 'Module 13-1: Yogas Overview', hi: 'मॉड्यूल 13-1: योग अवलोकन', sa: 'मॉड्यूल 13-1: योग अवलोकन', mai: 'मॉड्यूल 13-1: योग अवलोकन', mr: 'मॉड्यूल 13-1: योग अवलोकन', ta: 'Module 13-1: Yogas Overview', te: 'Module 13-1: Yogas Overview', bn: 'Module 13-1: Yogas Overview', kn: 'Module 13-1: Yogas Overview', gu: 'Module 13-1: Yogas Overview' }, href: '/learn/modules/13-1' },
+    { label: { en: 'Module 13-3: Dosha Detection', hi: 'मॉड्यूल 13-3: दोष पहचान', sa: 'मॉड्यूल 13-3: दोष पहचान', mai: 'मॉड्यूल 13-3: दोष पहचान', mr: 'मॉड्यूल 13-3: दोष पहचान', ta: 'Module 13-3: Dosha Detection', te: 'Module 13-3: Dosha Detection', bn: 'Module 13-3: Dosha Detection', kn: 'Module 13-3: Dosha Detection', gu: 'Module 13-3: Dosha Detection' }, href: '/learn/modules/13-3' },
+    { label: { en: 'Yogas Deep Dive', hi: 'योग विस्तार', sa: 'योग विस्तार', mai: 'योग विस्तार', mr: 'योग विस्तार', ta: 'Yogas Deep Dive', te: 'Yogas Deep Dive', bn: 'Yogas Deep Dive', kn: 'Yogas Deep Dive', gu: 'Yogas Deep Dive' }, href: '/learn/yogas' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वैदिक ज्योतिष में "धन अक्ष" मुख्यतः किन भावों से सम्बन्धित है?',
     },
     options: [
-      { en: '1, 4, 7, 10', hi: '1, 4, 7, 10' },
-      { en: '2, 5, 9, 11', hi: '2, 5, 9, 11' },
-      { en: '3, 6, 8, 12', hi: '3, 6, 8, 12' },
-      { en: '4, 8, 12', hi: '4, 8, 12' },
+      { en: '1, 4, 7, 10', hi: '1, 4, 7, 10', sa: '1, 4, 7, 10', mai: '1, 4, 7, 10', mr: '1, 4, 7, 10', ta: '1, 4, 7, 10', te: '1, 4, 7, 10', bn: '1, 4, 7, 10', kn: '1, 4, 7, 10', gu: '1, 4, 7, 10' },
+      { en: '2, 5, 9, 11', hi: '2, 5, 9, 11', sa: '2, 5, 9, 11', mai: '2, 5, 9, 11', mr: '2, 5, 9, 11', ta: '2, 5, 9, 11', te: '2, 5, 9, 11', bn: '2, 5, 9, 11', kn: '2, 5, 9, 11', gu: '2, 5, 9, 11' },
+      { en: '3, 6, 8, 12', hi: '3, 6, 8, 12', sa: '3, 6, 8, 12', mai: '3, 6, 8, 12', mr: '3, 6, 8, 12', ta: '3, 6, 8, 12', te: '3, 6, 8, 12', bn: '3, 6, 8, 12', kn: '3, 6, 8, 12', gu: '3, 6, 8, 12' },
+      { en: '4, 8, 12', hi: '4, 8, 12', sa: '4, 8, 12', mai: '4, 8, 12', mr: '4, 8, 12', ta: '4, 8, 12', te: '4, 8, 12', bn: '4, 8, 12', kn: '4, 8, 12', gu: '4, 8, 12' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -44,10 +44,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'लक्ष्मी योग तब बनता है जब 9वें भाव का स्वामी:',
     },
     options: [
-      { en: 'Debilitated in the 12th house', hi: '12वें भाव में नीच हो' },
-      { en: 'Strong (own/exalted sign) and placed in a Kendra', hi: 'बलवान (स्वराशि/उच्च) और केन्द्र में स्थित हो' },
-      { en: 'Combust with the Sun', hi: 'सूर्य के साथ अस्त हो' },
-      { en: 'In the 8th house', hi: '8वें भाव में हो' },
+      { en: 'Debilitated in the 12th house', hi: '12वें भाव में नीच हो', sa: '12वें भाव में नीच हो', mai: '12वें भाव में नीच हो', mr: '12वें भाव में नीच हो', ta: 'Debilitated in the 12th house', te: 'Debilitated in the 12th house', bn: 'Debilitated in the 12th house', kn: 'Debilitated in the 12th house', gu: 'Debilitated in the 12th house' },
+      { en: 'Strong (own/exalted sign) and placed in a Kendra', hi: 'बलवान (स्वराशि/उच्च) और केन्द्र में स्थित हो', sa: 'बलवान (स्वराशि/उच्च) और केन्द्र में स्थित हो', mai: 'बलवान (स्वराशि/उच्च) और केन्द्र में स्थित हो', mr: 'बलवान (स्वराशि/उच्च) और केन्द्र में स्थित हो', ta: 'Strong (own/exalted sign) and placed in a Kendra', te: 'Strong (own/exalted sign) and placed in a Kendra', bn: 'Strong (own/exalted sign) and placed in a Kendra', kn: 'Strong (own/exalted sign) and placed in a Kendra', gu: 'Strong (own/exalted sign) and placed in a Kendra' },
+      { en: 'Combust with the Sun', hi: 'सूर्य के साथ अस्त हो', sa: 'सूर्य के साथ अस्त हो', mai: 'सूर्य के साथ अस्त हो', mr: 'सूर्य के साथ अस्त हो', ta: 'Combust with the Sun', te: 'Combust with the Sun', bn: 'Combust with the Sun', kn: 'Combust with the Sun', gu: 'Combust with the Sun' },
+      { en: 'In the 8th house', hi: '8वें भाव में हो', sa: '8वें भाव में हो', mai: '8वें भाव में हो', mr: '8वें भाव में हो', ta: 'In the 8th house', te: 'In the 8th house', bn: 'In the 8th house', kn: 'In the 8th house', gu: 'In the 8th house' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -74,10 +74,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'दारिद्र योग (दरिद्रता सूचक) तब बनता है जब 11वें भाव का स्वामी स्थित हो:',
     },
     options: [
-      { en: 'A Kendra house', hi: 'केन्द्र भाव में' },
-      { en: 'The 6th, 8th, or 12th house', hi: '6वें, 8वें या 12वें भाव में' },
-      { en: 'The 5th house', hi: '5वें भाव में' },
-      { en: 'The 9th house', hi: '9वें भाव में' },
+      { en: 'A Kendra house', hi: 'केन्द्र भाव में', sa: 'केन्द्र भाव में', mai: 'केन्द्र भाव में', mr: 'केन्द्र भाव में', ta: 'A Kendra house', te: 'A Kendra house', bn: 'A Kendra house', kn: 'A Kendra house', gu: 'A Kendra house' },
+      { en: 'The 6th, 8th, or 12th house', hi: '6वें, 8वें या 12वें भाव में', sa: '6वें, 8वें या 12वें भाव में', mai: '6वें, 8वें या 12वें भाव में', mr: '6वें, 8वें या 12वें भाव में', ta: 'The 6th, 8th, or 12th house', te: 'The 6th, 8th, or 12th house', bn: 'The 6th, 8th, or 12th house', kn: 'The 6th, 8th, or 12th house', gu: 'The 6th, 8th, or 12th house' },
+      { en: 'The 5th house', hi: '5वें भाव में', sa: '5वें भाव में', mai: '5वें भाव में', mr: '5वें भाव में', ta: 'The 5th house', te: 'The 5th house', bn: 'The 5th house', kn: 'The 5th house', gu: 'The 5th house' },
+      { en: 'The 9th house', hi: '9वें भाव में', sa: '9वें भाव में', mai: '9वें भाव में', mr: '9वें भाव में', ta: 'The 9th house', te: 'The 9th house', bn: 'The 9th house', kn: 'The 9th house', gu: 'The 9th house' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -104,10 +104,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'बालारिष्ट योग (शिशु/बालकों को खतरा) किससे सूचित होता है?',
     },
     options: [
-      { en: 'Jupiter in the 5th house', hi: 'गुरु 5वें भाव में' },
-      { en: 'Moon with malefics without benefic aspect', hi: 'शुभ दृष्टि बिना पापी ग्रहों के साथ चन्द्रमा' },
-      { en: 'Venus in own sign', hi: 'शुक्र स्वराशि में' },
-      { en: 'Mercury in the 9th house', hi: 'बुध 9वें भाव में' },
+      { en: 'Jupiter in the 5th house', hi: 'गुरु 5वें भाव में', sa: 'गुरु 5वें भाव में', mai: 'गुरु 5वें भाव में', mr: 'गुरु 5वें भाव में', ta: 'Jupiter in the 5th house', te: 'Jupiter in the 5th house', bn: 'Jupiter in the 5th house', kn: 'Jupiter in the 5th house', gu: 'Jupiter in the 5th house' },
+      { en: 'Moon with malefics without benefic aspect', hi: 'शुभ दृष्टि बिना पापी ग्रहों के साथ चन्द्रमा', sa: 'शुभ दृष्टि बिना पापी ग्रहों के साथ चन्द्रमा', mai: 'शुभ दृष्टि बिना पापी ग्रहों के साथ चन्द्रमा', mr: 'शुभ दृष्टि बिना पापी ग्रहों के साथ चन्द्रमा', ta: 'Moon with malefics without benefic aspect', te: 'Moon with malefics without benefic aspect', bn: 'Moon with malefics without benefic aspect', kn: 'Moon with malefics without benefic aspect', gu: 'Moon with malefics without benefic aspect' },
+      { en: 'Venus in own sign', hi: 'शुक्र स्वराशि में', sa: 'शुक्र स्वराशि में', mai: 'शुक्र स्वराशि में', mr: 'शुक्र स्वराशि में', ta: 'Venus in own sign', te: 'Venus in own sign', bn: 'Venus in own sign', kn: 'Venus in own sign', gu: 'Venus in own sign' },
+      { en: 'Mercury in the 9th house', hi: 'बुध 9वें भाव में', sa: 'बुध 9वें भाव में', mai: 'बुध 9वें भाव में', mr: 'बुध 9वें भाव में', ta: 'Mercury in the 9th house', te: 'Mercury in the 9th house', bn: 'Mercury in the 9th house', kn: 'Mercury in the 9th house', gu: 'Mercury in the 9th house' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -122,10 +122,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: '2रे भाव में शुक्र स्वराशि या उच्च में कौन-सा योग बनाता है?',
     },
     options: [
-      { en: 'Arishta Yoga', hi: 'अरिष्ट योग' },
-      { en: 'Dhana Yoga', hi: 'धन योग' },
-      { en: 'Kala Sarpa Yoga', hi: 'काल सर्प योग' },
-      { en: 'Grahan Dosha', hi: 'ग्रहण दोष' },
+      { en: 'Arishta Yoga', hi: 'अरिष्ट योग', sa: 'अरिष्ट योग', mai: 'अरिष्ट योग', mr: 'अरिष्ट योग', ta: 'Arishta Yoga', te: 'Arishta Yoga', bn: 'Arishta Yoga', kn: 'Arishta Yoga', gu: 'Arishta Yoga' },
+      { en: 'Dhana Yoga', hi: 'धन योग', sa: 'धन योग', mai: 'धन योग', mr: 'धन योग', ta: 'Dhana Yoga', te: 'Dhana Yoga', bn: 'Dhana Yoga', kn: 'Dhana Yoga', gu: 'Dhana Yoga' },
+      { en: 'Kala Sarpa Yoga', hi: 'काल सर्प योग', sa: 'काल सर्प योग', mai: 'काल सर्प योग', mr: 'काल सर्प योग', ta: 'Kala Sarpa Yoga', te: 'Kala Sarpa Yoga', bn: 'Kala Sarpa Yoga', kn: 'Kala Sarpa Yoga', gu: 'Kala Sarpa Yoga' },
+      { en: 'Grahan Dosha', hi: 'ग्रहण दोष', sa: 'ग्रहण दोष', mai: 'ग्रहण दोष', mr: 'ग्रहण दोष', ta: 'Grahan Dosha', te: 'Grahan Dosha', bn: 'Grahan Dosha', kn: 'Grahan Dosha', gu: 'Grahan Dosha' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -140,10 +140,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: '8वें भाव का स्वामी लग्न (1ले भाव) में किसका सूचक है?',
     },
     options: [
-      { en: 'Great wealth and fame', hi: 'महान धन और प्रसिद्धि' },
-      { en: 'Arishta Yoga — health vulnerabilities and life challenges', hi: 'अरिष्ट योग — स्वास्थ्य सम्वेदनशीलता और जीवन चुनौतियाँ' },
-      { en: 'Spiritual liberation', hi: 'आध्यात्मिक मुक्ति' },
-      { en: 'Foreign settlement', hi: 'विदेश बसावट' },
+      { en: 'Great wealth and fame', hi: 'महान धन और प्रसिद्धि', sa: 'महान धन और प्रसिद्धि', mai: 'महान धन और प्रसिद्धि', mr: 'महान धन और प्रसिद्धि', ta: 'Great wealth and fame', te: 'Great wealth and fame', bn: 'Great wealth and fame', kn: 'Great wealth and fame', gu: 'Great wealth and fame' },
+      { en: 'Arishta Yoga — health vulnerabilities and life challenges', hi: 'अरिष्ट योग — स्वास्थ्य सम्वेदनशीलता और जीवन चुनौतियाँ', sa: 'अरिष्ट योग — स्वास्थ्य सम्वेदनशीलता और जीवन चुनौतियाँ', mai: 'अरिष्ट योग — स्वास्थ्य सम्वेदनशीलता और जीवन चुनौतियाँ', mr: 'अरिष्ट योग — स्वास्थ्य सम्वेदनशीलता और जीवन चुनौतियाँ', ta: 'Arishta Yoga — health vulnerabilities and life challenges', te: 'Arishta Yoga — health vulnerabilities and life challenges', bn: 'Arishta Yoga — health vulnerabilities and life challenges', kn: 'Arishta Yoga — health vulnerabilities and life challenges', gu: 'Arishta Yoga — health vulnerabilities and life challenges' },
+      { en: 'Spiritual liberation', hi: 'आध्यात्मिक मुक्ति', sa: 'आध्यात्मिक मुक्ति', mai: 'आध्यात्मिक मुक्ति', mr: 'आध्यात्मिक मुक्ति', ta: 'Spiritual liberation', te: 'Spiritual liberation', bn: 'Spiritual liberation', kn: 'Spiritual liberation', gu: 'Spiritual liberation' },
+      { en: 'Foreign settlement', hi: 'विदेश बसावट', sa: 'विदेश बसावट', mai: 'विदेश बसावट', mr: 'विदेश बसावट', ta: 'Foreign settlement', te: 'Foreign settlement', bn: 'Foreign settlement', kn: 'Foreign settlement', gu: 'Foreign settlement' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -170,10 +170,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: '8वें भाव में शनि और मंगल साथ किसका संकेत करते हैं?',
     },
     options: [
-      { en: 'Dhana Yoga for hidden wealth', hi: 'गुप्त धन के लिए धन योग' },
-      { en: 'Arishta Yoga — accidents, surgeries, or chronic illness risk', hi: 'अरिष्ट योग — दुर्घटना, शल्य चिकित्सा या जीर्ण रोग का जोखिम' },
-      { en: 'Pancha Mahapurusha Yoga', hi: 'पञ्च महापुरुष योग' },
-      { en: 'Neecha Bhanga Raja Yoga', hi: 'नीच भंग राज योग' },
+      { en: 'Dhana Yoga for hidden wealth', hi: 'गुप्त धन के लिए धन योग', sa: 'गुप्त धन के लिए धन योग', mai: 'गुप्त धन के लिए धन योग', mr: 'गुप्त धन के लिए धन योग', ta: 'Dhana Yoga for hidden wealth', te: 'Dhana Yoga for hidden wealth', bn: 'Dhana Yoga for hidden wealth', kn: 'Dhana Yoga for hidden wealth', gu: 'Dhana Yoga for hidden wealth' },
+      { en: 'Arishta Yoga — accidents, surgeries, or chronic illness risk', hi: 'अरिष्ट योग — दुर्घटना, शल्य चिकित्सा या जीर्ण रोग का जोखिम', sa: 'अरिष्ट योग — दुर्घटना, शल्य चिकित्सा या जीर्ण रोग का जोखिम', mai: 'अरिष्ट योग — दुर्घटना, शल्य चिकित्सा या जीर्ण रोग का जोखिम', mr: 'अरिष्ट योग — दुर्घटना, शल्य चिकित्सा या जीर्ण रोग का जोखिम', ta: 'Arishta Yoga — accidents, surgeries, or chronic illness risk', te: 'Arishta Yoga — accidents, surgeries, or chronic illness risk', bn: 'Arishta Yoga — accidents, surgeries, or chronic illness risk', kn: 'Arishta Yoga — accidents, surgeries, or chronic illness risk', gu: 'Arishta Yoga — accidents, surgeries, or chronic illness risk' },
+      { en: 'Pancha Mahapurusha Yoga', hi: 'पञ्च महापुरुष योग', sa: 'पञ्च महापुरुष योग', mai: 'पञ्च महापुरुष योग', mr: 'पञ्च महापुरुष योग', ta: 'Pancha Mahapurusha Yoga', te: 'Pancha Mahapurusha Yoga', bn: 'Pancha Mahapurusha Yoga', kn: 'Pancha Mahapurusha Yoga', gu: 'Pancha Mahapurusha Yoga' },
+      { en: 'Neecha Bhanga Raja Yoga', hi: 'नीच भंग राज योग', sa: 'नीच भंग राज योग', mai: 'नीच भंग राज योग', mr: 'नीच भंग राज योग', ta: 'Neecha Bhanga Raja Yoga', te: 'Neecha Bhanga Raja Yoga', bn: 'Neecha Bhanga Raja Yoga', kn: 'Neecha Bhanga Raja Yoga', gu: 'Neecha Bhanga Raja Yoga' },
     ],
     correctAnswer: 1,
     explanation: {

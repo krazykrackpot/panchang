@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 /**
  * Core astronomical calculation functions.
  * Uses Swiss Ephemeris (sweph) when available for sub-arcsecond accuracy.
@@ -238,7 +239,7 @@ export function getAyanamsha(jd: number, type: AyanamshaType = 'lahiri'): number
   }
 }
 
-export const AYANAMSHA_OPTIONS: { value: AyanamshaType; label: { en: string; hi: string; sa: string } }[] = [
+export const AYANAMSHA_OPTIONS: { value: AyanamshaType; label: LocaleText }[] = [
   { value: 'lahiri', label: { en: 'Lahiri (Chitrapaksha)', hi: 'लाहिरी (चित्रपक्ष)', sa: 'लाहिरी (चित्रपक्षः)' } },
   { value: 'kp', label: { en: 'KP (Krishnamurti)', hi: 'केपी (कृष्णमूर्ति)', sa: 'केपी (कृष्णमूर्तिः)' } },
   { value: 'raman', label: { en: 'CV Raman', hi: 'सी.वी. रमन', sa: 'सी.वी. रमणः' } },
@@ -611,7 +612,7 @@ export function getRitu(masaIndex: number): number {
   return Math.floor(masaIndex / 2);
 }
 
-export function getAyana(sunSidLong: number): { en: string; hi: string; sa: string } {
+export function getAyana(sunSidLong: number): LocaleText {
   // Uttarayana: Sun moves northward from Makar Sankranti (Capricorn, ~270°)
   // to Karka Sankranti (Cancer, ~90°). i.e., 270° → 360°/0° → 90°
   // Dakshinayana: Sun moves southward from Cancer (90°) to Capricorn (270°)

@@ -4,7 +4,7 @@ import { useState, useEffect, createContext, useContext, type ReactNode } from '
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, CheckCircle, XCircle, BookOpen, HelpCircle, Users } from 'lucide-react';
-import type { Locale } from '@/types/panchang';
+import type { LocaleText, Locale } from '@/types/panchang';
 import { Link } from '@/lib/i18n/navigation';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { getNextModuleId, getModuleRef, isLastInPhase } from '@/lib/learn/module-sequence';
@@ -28,7 +28,7 @@ export interface ModuleQuestion {
   id: string;
   type: 'mcq' | 'true_false';
   question: Record<string, string>;
-  options?: Record<string, string>[];
+  options?: LocaleText[];
   correctAnswer: number | boolean; // index for mcq, true/false for t/f
   explanation: Record<string, string>;
   classicalRef?: string;

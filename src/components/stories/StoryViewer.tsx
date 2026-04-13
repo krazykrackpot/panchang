@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { getStoryBySlug, type StorySlide } from '@/lib/stories/story-data';
 import { ChevronLeft, ChevronRight, X, Share2, Play, Pause } from 'lucide-react';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const AUTO_ADVANCE_MS = 5000;
@@ -242,7 +242,7 @@ function SlideContent({
   bf: React.CSSProperties;
   ctaUrl: string;
 }) {
-  const l = (v: { en: string; hi: string }) => isDevanagariLocale(locale) ? v.hi : v.en;
+  const l = (v: LocaleText) => isDevanagariLocale(locale) ? v.hi : v.en;
 
   switch (slide.type) {
     case 'title':

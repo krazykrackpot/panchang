@@ -5,6 +5,7 @@ import { Clock, MapPin } from 'lucide-react';
 import type { ComputedMuhurta } from '@/lib/puja/muhurta-compute';
 import { formatMuhurtaTime, muhurtaDurationMinutes } from '@/lib/puja/muhurta-compute';
 import type { Locale } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
 
 interface MuhurtaCountdownProps {
   muhurta: ComputedMuhurta;
@@ -106,7 +107,7 @@ export default function MuhurtaCountdown({
         <div className="flex items-center gap-2">
           <Clock className="w-4 h-4 text-gold-primary/70" />
           <span className="text-gold-light text-sm font-semibold tracking-wide">
-            {LABELS.title[loc]}
+            {tl(LABELS.title, loc)}
           </span>
         </div>
 
@@ -117,13 +118,13 @@ export default function MuhurtaCountdown({
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
             </span>
-            {LABELS.happeningNow[loc]}
+            {tl(LABELS.happeningNow, loc)}
           </span>
         )}
 
         {status === 'passed' && (
           <span className="text-xs text-text-secondary/65 font-medium">
-            {LABELS.passed[loc]}
+            {tl(LABELS.passed, loc)}
           </span>
         )}
       </div>
@@ -150,7 +151,7 @@ export default function MuhurtaCountdown({
       {/* Duration + Location row */}
       <div className="flex items-center flex-wrap gap-x-4 gap-y-1.5 text-xs text-text-secondary/75">
         <span>
-          {LABELS.duration[loc]}: <span className="text-text-secondary/80 font-medium">{duration}</span>
+          {tl(LABELS.duration, loc)}: <span className="text-text-secondary/80 font-medium">{duration}</span>
         </span>
         <span className="inline-flex items-center gap-1">
           <MapPin className="w-3 h-3" />
@@ -165,7 +166,7 @@ export default function MuhurtaCountdown({
         if (!isWithin24h) return null;
         return (
           <div className="mt-4 pt-3 border-t border-gold-primary/10">
-            <span className="text-xs text-text-secondary/70">{LABELS.startsIn[loc]}: </span>
+            <span className="text-xs text-text-secondary/70">{tl(LABELS.startsIn, loc)}: </span>
             <span className="text-sm font-bold text-gold-primary">
               {formatCountdown(msUntil)}
             </span>

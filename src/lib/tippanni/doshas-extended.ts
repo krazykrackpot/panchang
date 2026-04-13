@@ -7,7 +7,7 @@
  */
 
 import type { PlanetPosition, HouseCusp } from '@/types/kundali';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import type { DoshaInsight } from '@/lib/kundali/tippanni-types';
 import { getHouseLord, isKendra, isDusthana, isBenefic, houseDistance } from './utils';
 
@@ -24,58 +24,58 @@ function getP(planets: PlanetPosition[], id: number): PlanetPosition | undefined
 // 6 nakshatras at water-fire sign junctions — birth in these requires shanti
 const GANDA_MULA_NAKSHATRAS: {
   id: number;
-  name: { en: string; hi: string; sa: string };
+  name: LocaleText;
   junction: string;
   ruler: string;
-  affectedRelation: { en: string; hi: string };
-  effect: { en: string; hi: string };
+  affectedRelation: LocaleText;
+  effect: LocaleText;
   criticalPadas: number[]; // Most inauspicious padas
 }[] = [
   {
     id: 1, name: { en: 'Ashwini', hi: 'अश्विनी', sa: 'अश्विनी' },
     junction: 'Pisces→Aries (water→fire)',
     ruler: 'Ketu',
-    affectedRelation: { en: 'father', hi: 'पिता' },
-    effect: { en: 'May cause health concerns for father. The native is dynamic but restless, prone to impulsive decisions.', hi: 'पिता के स्वास्थ्य में चिन्ता। जातक गतिशील किन्तु अस्थिर, आवेगपूर्ण निर्णय की प्रवृत्ति।' },
+    affectedRelation: { en: 'father', hi: 'पिता', sa: 'पिता', mai: 'पिता', mr: 'पिता', ta: 'father', te: 'father', bn: 'father', kn: 'father', gu: 'father' },
+    effect: { en: 'May cause health concerns for father. The native is dynamic but restless, prone to impulsive decisions.', hi: 'पिता के स्वास्थ्य में चिन्ता। जातक गतिशील किन्तु अस्थिर, आवेगपूर्ण निर्णय की प्रवृत्ति।', sa: 'पिता के स्वास्थ्य में चिन्ता। जातक गतिशील किन्तु अस्थिर, आवेगपूर्ण निर्णय की प्रवृत्ति।', mai: 'पिता के स्वास्थ्य में चिन्ता। जातक गतिशील किन्तु अस्थिर, आवेगपूर्ण निर्णय की प्रवृत्ति।', mr: 'पिता के स्वास्थ्य में चिन्ता। जातक गतिशील किन्तु अस्थिर, आवेगपूर्ण निर्णय की प्रवृत्ति।', ta: 'May cause health concerns for father. The native is dynamic but restless, prone to impulsive decisions.', te: 'May cause health concerns for father. The native is dynamic but restless, prone to impulsive decisions.', bn: 'May cause health concerns for father. The native is dynamic but restless, prone to impulsive decisions.', kn: 'May cause health concerns for father. The native is dynamic but restless, prone to impulsive decisions.', gu: 'May cause health concerns for father. The native is dynamic but restless, prone to impulsive decisions.' },
     criticalPadas: [1, 2],
   },
   {
     id: 9, name: { en: 'Ashlesha', hi: 'आश्लेषा', sa: 'आश्लेषा' },
     junction: 'Cancer→Leo (water→fire)',
     ruler: 'Mercury',
-    affectedRelation: { en: 'mother-in-law', hi: 'सास' },
-    effect: { en: 'Associated with serpent energy (Naga). May create tension with in-laws. Native has deep intuition but can be manipulative or secretive.', hi: 'सर्प ऊर्जा (नाग) से सम्बद्ध। ससुराल में तनाव। जातक में गहन अन्तर्ज्ञान किन्तु छलपूर्ण या गोपनीय प्रवृत्ति।' },
+    affectedRelation: { en: 'mother-in-law', hi: 'सास', sa: 'सास', mai: 'सास', mr: 'सास', ta: 'mother-in-law', te: 'mother-in-law', bn: 'mother-in-law', kn: 'mother-in-law', gu: 'mother-in-law' },
+    effect: { en: 'Associated with serpent energy (Naga). May create tension with in-laws. Native has deep intuition but can be manipulative or secretive.', hi: 'सर्प ऊर्जा (नाग) से सम्बद्ध। ससुराल में तनाव। जातक में गहन अन्तर्ज्ञान किन्तु छलपूर्ण या गोपनीय प्रवृत्ति।', sa: 'सर्प ऊर्जा (नाग) से सम्बद्ध। ससुराल में तनाव। जातक में गहन अन्तर्ज्ञान किन्तु छलपूर्ण या गोपनीय प्रवृत्ति।', mai: 'सर्प ऊर्जा (नाग) से सम्बद्ध। ससुराल में तनाव। जातक में गहन अन्तर्ज्ञान किन्तु छलपूर्ण या गोपनीय प्रवृत्ति।', mr: 'सर्प ऊर्जा (नाग) से सम्बद्ध। ससुराल में तनाव। जातक में गहन अन्तर्ज्ञान किन्तु छलपूर्ण या गोपनीय प्रवृत्ति।', ta: 'Associated with serpent energy (Naga). May create tension with in-laws. Native has deep intuition but can be manipulative or secretive.', te: 'Associated with serpent energy (Naga). May create tension with in-laws. Native has deep intuition but can be manipulative or secretive.', bn: 'Associated with serpent energy (Naga). May create tension with in-laws. Native has deep intuition but can be manipulative or secretive.', kn: 'Associated with serpent energy (Naga). May create tension with in-laws. Native has deep intuition but can be manipulative or secretive.', gu: 'Associated with serpent energy (Naga). May create tension with in-laws. Native has deep intuition but can be manipulative or secretive.' },
     criticalPadas: [3, 4],
   },
   {
     id: 10, name: { en: 'Magha', hi: 'मघा', sa: 'मघा' },
     junction: 'Cancer→Leo (water→fire)',
     ruler: 'Ketu',
-    affectedRelation: { en: 'mother', hi: 'माता' },
-    effect: { en: 'Royal nakshatra with ancestral karma. May cause health concerns for mother. Native carries strong past-life imprints and authority issues.', hi: 'पूर्वज कर्म वाला राजसी नक्षत्र। माता के स्वास्थ्य में चिन्ता। जातक में दृढ़ पूर्वजन्म संस्कार और अधिकार सम्बन्धी विषय।' },
+    affectedRelation: { en: 'mother', hi: 'माता', sa: 'माता', mai: 'माता', mr: 'माता', ta: 'mother', te: 'mother', bn: 'mother', kn: 'mother', gu: 'mother' },
+    effect: { en: 'Royal nakshatra with ancestral karma. May cause health concerns for mother. Native carries strong past-life imprints and authority issues.', hi: 'पूर्वज कर्म वाला राजसी नक्षत्र। माता के स्वास्थ्य में चिन्ता। जातक में दृढ़ पूर्वजन्म संस्कार और अधिकार सम्बन्धी विषय।', sa: 'पूर्वज कर्म वाला राजसी नक्षत्र। माता के स्वास्थ्य में चिन्ता। जातक में दृढ़ पूर्वजन्म संस्कार और अधिकार सम्बन्धी विषय।', mai: 'पूर्वज कर्म वाला राजसी नक्षत्र। माता के स्वास्थ्य में चिन्ता। जातक में दृढ़ पूर्वजन्म संस्कार और अधिकार सम्बन्धी विषय।', mr: 'पूर्वज कर्म वाला राजसी नक्षत्र। माता के स्वास्थ्य में चिन्ता। जातक में दृढ़ पूर्वजन्म संस्कार और अधिकार सम्बन्धी विषय।', ta: 'Royal nakshatra with ancestral karma. May cause health concerns for mother. Native carries strong past-life imprints and authority issues.', te: 'Royal nakshatra with ancestral karma. May cause health concerns for mother. Native carries strong past-life imprints and authority issues.', bn: 'Royal nakshatra with ancestral karma. May cause health concerns for mother. Native carries strong past-life imprints and authority issues.', kn: 'Royal nakshatra with ancestral karma. May cause health concerns for mother. Native carries strong past-life imprints and authority issues.', gu: 'Royal nakshatra with ancestral karma. May cause health concerns for mother. Native carries strong past-life imprints and authority issues.' },
     criticalPadas: [1, 2],
   },
   {
     id: 18, name: { en: 'Jyeshtha', hi: 'ज्येष्ठा', sa: 'ज्येष्ठा' },
     junction: 'Scorpio→Sagittarius (water→fire)',
     ruler: 'Mercury',
-    affectedRelation: { en: 'elder brother/sister', hi: 'बड़ा भाई/बहन' },
-    effect: { en: 'The "eldest" nakshatra. May create rivalry with elder siblings or separation from them. Native is fiercely independent with leadership qualities.', hi: '"ज्येष्ठ" नक्षत्र। बड़े भाई-बहन से प्रतिद्वंद्विता या अलगाव। जातक में प्रबल स्वतन्त्रता और नेतृत्व गुण।' },
+    affectedRelation: { en: 'elder brother/sister', hi: 'बड़ा भाई/बहन', sa: 'बड़ा भाई/बहन', mai: 'बड़ा भाई/बहन', mr: 'बड़ा भाई/बहन', ta: 'elder brother/sister', te: 'elder brother/sister', bn: 'elder brother/sister', kn: 'elder brother/sister', gu: 'elder brother/sister' },
+    effect: { en: 'The "eldest" nakshatra. May create rivalry with elder siblings or separation from them. Native is fiercely independent with leadership qualities.', hi: '"ज्येष्ठ" नक्षत्र। बड़े भाई-बहन से प्रतिद्वंद्विता या अलगाव। जातक में प्रबल स्वतन्त्रता और नेतृत्व गुण।', sa: '"ज्येष्ठ" नक्षत्र। बड़े भाई-बहन से प्रतिद्वंद्विता या अलगाव। जातक में प्रबल स्वतन्त्रता और नेतृत्व गुण।', mai: '"ज्येष्ठ" नक्षत्र। बड़े भाई-बहन से प्रतिद्वंद्विता या अलगाव। जातक में प्रबल स्वतन्त्रता और नेतृत्व गुण।', mr: '"ज्येष्ठ" नक्षत्र। बड़े भाई-बहन से प्रतिद्वंद्विता या अलगाव। जातक में प्रबल स्वतन्त्रता और नेतृत्व गुण।', ta: 'The "eldest" nakshatra. May create rivalry with elder siblings or separation from them. Native is fiercely independent with leadership qualities.', te: 'The "eldest" nakshatra. May create rivalry with elder siblings or separation from them. Native is fiercely independent with leadership qualities.', bn: 'The "eldest" nakshatra. May create rivalry with elder siblings or separation from them. Native is fiercely independent with leadership qualities.', kn: 'The "eldest" nakshatra. May create rivalry with elder siblings or separation from them. Native is fiercely independent with leadership qualities.', gu: 'The "eldest" nakshatra. May create rivalry with elder siblings or separation from them. Native is fiercely independent with leadership qualities.' },
     criticalPadas: [3, 4],
   },
   {
     id: 19, name: { en: 'Moola', hi: 'मूल', sa: 'मूलम्' },
     junction: 'Scorpio→Sagittarius (water→fire)',
     ruler: 'Ketu',
-    affectedRelation: { en: 'father / family prosperity', hi: 'पिता / पारिवारिक समृद्धि' },
-    effect: { en: 'The "root" nakshatra ruled by Nirriti (goddess of destruction). Most feared among Ganda Mula. May bring hardship to father or family wealth in early years. However, natives become deeply philosophical, truth-seeking, and often achieve great spiritual heights.', hi: '"मूल" नक्षत्र, निर्ऋति (विनाश की देवी) द्वारा शासित। गण्ड मूल में सबसे भयंकर। प्रारम्भिक वर्षों में पिता या पारिवारिक सम्पत्ति में कठिनाई। परन्तु जातक गहन दार्शनिक, सत्यान्वेषी और प्रायः महान आध्यात्मिक ऊँचाई प्राप्त करते हैं।' },
+    affectedRelation: { en: 'father / family prosperity', hi: 'पिता / पारिवारिक समृद्धि', sa: 'पिता / पारिवारिक समृद्धि', mai: 'पिता / पारिवारिक समृद्धि', mr: 'पिता / पारिवारिक समृद्धि', ta: 'father / family prosperity', te: 'father / family prosperity', bn: 'father / family prosperity', kn: 'father / family prosperity', gu: 'father / family prosperity' },
+    effect: { en: 'The "root" nakshatra ruled by Nirriti (goddess of destruction). Most feared among Ganda Mula. May bring hardship to father or family wealth in early years. However, natives become deeply philosophical, truth-seeking, and often achieve great spiritual heights.', hi: '"मूल" नक्षत्र, निर्ऋति (विनाश की देवी) द्वारा शासित। गण्ड मूल में सबसे भयंकर। प्रारम्भिक वर्षों में पिता या पारिवारिक सम्पत्ति में कठिनाई। परन्तु जातक गहन दार्शनिक, सत्यान्वेषी और प्रायः महान आध्यात्मिक ऊँचाई प्राप्त करते हैं।', sa: '"मूल" नक्षत्र, निर्ऋति (विनाश की देवी) द्वारा शासित। गण्ड मूल में सबसे भयंकर। प्रारम्भिक वर्षों में पिता या पारिवारिक सम्पत्ति में कठिनाई। परन्तु जातक गहन दार्शनिक, सत्यान्वेषी और प्रायः महान आध्यात्मिक ऊँचाई प्राप्त करते हैं।', mai: '"मूल" नक्षत्र, निर्ऋति (विनाश की देवी) द्वारा शासित। गण्ड मूल में सबसे भयंकर। प्रारम्भिक वर्षों में पिता या पारिवारिक सम्पत्ति में कठिनाई। परन्तु जातक गहन दार्शनिक, सत्यान्वेषी और प्रायः महान आध्यात्मिक ऊँचाई प्राप्त करते हैं।', mr: '"मूल" नक्षत्र, निर्ऋति (विनाश की देवी) द्वारा शासित। गण्ड मूल में सबसे भयंकर। प्रारम्भिक वर्षों में पिता या पारिवारिक सम्पत्ति में कठिनाई। परन्तु जातक गहन दार्शनिक, सत्यान्वेषी और प्रायः महान आध्यात्मिक ऊँचाई प्राप्त करते हैं।', ta: 'The "root" nakshatra ruled by Nirriti (goddess of destruction). Most feared among Ganda Mula. May bring hardship to father or family wealth in early years. However, natives become deeply philosophical, truth-seeking, and often achieve great spiritual heights.', te: 'The "root" nakshatra ruled by Nirriti (goddess of destruction). Most feared among Ganda Mula. May bring hardship to father or family wealth in early years. However, natives become deeply philosophical, truth-seeking, and often achieve great spiritual heights.', bn: 'The "root" nakshatra ruled by Nirriti (goddess of destruction). Most feared among Ganda Mula. May bring hardship to father or family wealth in early years. However, natives become deeply philosophical, truth-seeking, and often achieve great spiritual heights.', kn: 'The "root" nakshatra ruled by Nirriti (goddess of destruction). Most feared among Ganda Mula. May bring hardship to father or family wealth in early years. However, natives become deeply philosophical, truth-seeking, and often achieve great spiritual heights.', gu: 'The "root" nakshatra ruled by Nirriti (goddess of destruction). Most feared among Ganda Mula. May bring hardship to father or family wealth in early years. However, natives become deeply philosophical, truth-seeking, and often achieve great spiritual heights.' },
     criticalPadas: [1], // Pada 1 is especially inauspicious
   },
   {
     id: 27, name: { en: 'Revati', hi: 'रेवती', sa: 'रेवती' },
     junction: 'Pisces→Aries (water→fire)',
     ruler: 'Mercury',
-    affectedRelation: { en: 'younger sibling', hi: 'छोटा भाई/बहन' },
+    affectedRelation: { en: 'younger sibling', hi: 'छोटा भाई/बहन', sa: 'छोटा भाई/बहन', mai: 'छोटा भाई/बहन', mr: 'छोटा भाई/बहन', ta: 'younger sibling', te: 'younger sibling', bn: 'younger sibling', kn: 'younger sibling', gu: 'younger sibling' },
     effect: { en: 'The gentlest among Ganda Mula. Associated with Pushan (nourisher). May delay younger siblings\' welfare. Native is compassionate, creative, and spiritually inclined.', hi: 'गण्ड मूल में सबसे सौम्य। पूषन (पोषक) से सम्बद्ध। छोटे भाई-बहन के कल्याण में विलम्ब। जातक दयालु, सृजनशील और आध्यात्मिक प्रवृत्ति।' },
     criticalPadas: [4],
   },

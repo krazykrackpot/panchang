@@ -1,11 +1,12 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import GoldDivider from '@/components/ui/GoldDivider';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { GrahanIcon } from '@/components/icons/PanchangIcons';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -79,7 +80,7 @@ const PHASE_LABELS = {
 function AnimatedEclipseSequence({ locale }: { locale: Locale }) {
   const isDevanagari = isDevanagariLocale(locale);
   const [activePhase, setActivePhase] = useState<number | null>(null);
-  const labels = PHASE_LABELS[locale];
+  const labels = (PHASE_LABELS as Record<string, string[]>)[locale] || PHASE_LABELS.en;
 
   // Moon x-offsets for each phase: far right -> overlap -> aligned -> overlap -> far left
   const moonOffsets = [28, 12, 0, -12, -28];
@@ -511,9 +512,9 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
 const UPCOMING_ECLIPSES: {
   type: 'solar' | 'lunar';
   date: string;
-  name: { en: string; hi: string; sa: string };
-  visibility: { en: string; hi: string; sa: string };
-  kind: { en: string; hi: string; sa: string };
+  name: LocaleText;
+  visibility: LocaleText;
+  kind: LocaleText;
 }[] = [
   {
     type: 'lunar',

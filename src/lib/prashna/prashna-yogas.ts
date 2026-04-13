@@ -6,7 +6,7 @@
 import { GRAHAS } from '@/lib/constants/grahas';
 import type { PlanetPosition } from '@/types/kundali';
 import type { PrashnaYoga } from '@/types/prashna';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText} from '@/types/panchang';
 
 /** Sign lord planet ID lookup: sign (1-12) -> planet id (0-8) */
 const SIGN_LORD_IDS: Record<number, number> = {
@@ -106,7 +106,7 @@ export function detectPrashnaYogas(
   }
 
   // --- 3. Subha Yoga: Benefics in kendra houses ---
-  const beneficsInKendra: Trilingual[] = [];
+  const beneficsInKendra: LocaleText[] = [];
   for (const bId of beneficIds) {
     const planet = planetMap.get(bId);
     if (planet) {
@@ -135,7 +135,7 @@ export function detectPrashnaYogas(
   }
 
   // --- 4. Asubha Yoga: Malefics in kendra houses ---
-  const maleficsInKendra: Trilingual[] = [];
+  const maleficsInKendra: LocaleText[] = [];
   for (const mId of maleficIds) {
     const planet = planetMap.get(mId);
     if (planet) {

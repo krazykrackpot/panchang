@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Flame, Sun, Shield, BookOpen } from 'lucide-react';
@@ -105,7 +106,7 @@ function CombustionDiagram({ locale }: { locale: Locale }) {
           <g key={p.name.en}>
             <circle cx={cx} cy={cy} r={r} fill="none" stroke={p.color} strokeWidth="1.5" strokeDasharray="6 4" opacity="0.6" />
             <text x={lx} y={ly} fill={p.color} fontSize="11" fontWeight="600" textAnchor="middle" dominantBaseline="middle">
-              {p.name[locale]} {p.deg}{p.retroDeg ? `/${p.retroDeg}R` : ''}
+              {tl(p.name, locale)} {p.deg}{p.retroDeg ? `/${p.retroDeg}R` : ''}
             </text>
           </g>
         );
@@ -179,17 +180,17 @@ export default function CombustionPage() {
               >
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-bold text-lg" style={{ color: p.color }}>
-                    {p.name[locale]}
+                    {tl(p.name, locale)}
                   </h4>
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-text-tertiary font-mono">{p.deg}{p.retroDeg ? `/${p.retroDeg}R` : ''}</span>
                     <SeverityStars rating={p.rating} />
                   </div>
                 </div>
-                <p className="text-sm text-text-secondary leading-relaxed mb-3">{p.effect[locale]}</p>
+                <p className="text-sm text-text-secondary leading-relaxed mb-3">{tl(p.effect, locale)}</p>
                 <div className="flex items-start gap-2 pt-2 border-t border-white/5">
                   <Shield className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                  <p className="text-xs text-emerald-300/80">{p.remedy[locale]}</p>
+                  <p className="text-xs text-emerald-300/80">{tl(p.remedy, locale)}</p>
                 </div>
               </motion.div>
             ))}
@@ -215,7 +216,7 @@ export default function CombustionPage() {
             ].map(link => (
               <Link key={link.href} href={link.href as '/'} className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-gold-primary/20 bg-gold-primary/5 text-gold-light text-sm hover:bg-gold-primary/15 transition-colors">
                 <BookOpen className="w-3.5 h-3.5" />
-                {link.label[locale]}
+                {tl(link.label, locale)}
               </Link>
             ))}
           </div>

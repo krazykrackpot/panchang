@@ -84,24 +84,24 @@ import { MAJOR_FESTIVALS, EKADASHI_DEFS, MONTHLY_VRATS, defToTithiNumber, type F
 import { getEkadashiName, getNextHinduMonth, getPreviousHinduMonth, ADHIKA_MASA_EKADASHI } from '@/lib/constants/festival-details';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateEclipseCalendar } from './eclipses';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText} from '@/types/panchang';
 
 // Re-export FestivalEntry from the old module for compatibility
 export interface FestivalEntry {
-  name: Trilingual;
+  name: LocaleText;
   date: string;
   tithi?: string;
   masa?: { amanta: string; purnimanta: string; isAdhika: boolean };
   paksha?: 'shukla' | 'krishna';
   type: 'major' | 'vrat' | 'regional' | 'eclipse';
   category: string;
-  description: Trilingual;
+  description: LocaleText;
   pujaMuhurat?: { start: string; end: string; name: string };
   slug?: string;
   paranaDate?: string;
   paranaStart?: string;
   paranaEnd?: string;
-  paranaNote?: Trilingual;
+  paranaNote?: LocaleText;
   paranaSunrise?: string;
   paranaHariVasaraEnd?: string;
   paranaDwadashiEnd?: string;
@@ -114,7 +114,7 @@ export interface FestivalEntry {
   sutakStart?: string;
   sutakEnd?: string;
   sutakApplicable?: boolean;
-  eclipsePhases?: { name: Trilingual; time: string }[];
+  eclipsePhases?: { name: LocaleText; time: string }[];
   paranaMadhyahnaStart2?: string;
   paranaMadhyahnaEnd2?: string;
   ekadashiStart?: string;
@@ -134,7 +134,7 @@ import {
 
 // ─── Ekadashi Name Resolution ───
 
-function resolveEkadashiName(entry: TithiEntry): { name: Trilingual; detail?: EkadashiDetail } {
+function resolveEkadashiName(entry: TithiEntry): { name: LocaleText; detail?: EkadashiDetail } {
   const { paksha, masa } = entry;
 
   if (masa.isAdhika) {

@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 /**
  * Pancha Pakshi Shastra — Five Bird System
  * Source: Prasna Marga (Kerala tradition), Kalaprakasika
@@ -15,16 +16,16 @@ export type Activity = 'ruling' | 'eating' | 'walking' | 'sleeping' | 'dying';
 
 export interface BirdActivity {
   bird: Bird;
-  birdName: { en: string; hi: string; sa: string };
+  birdName: LocaleText;
   activity: Activity;
-  activityName: { en: string; hi: string; sa: string };
+  activityName: LocaleText;
   auspicious: 'excellent' | 'good' | 'neutral' | 'avoid';
-  interpretation: { en: string; hi: string };
+  interpretation: LocaleText;
   periodStart: string; // HH:MM
   periodEnd: string;   // HH:MM
 }
 
-const BIRD_NAMES: Record<Bird, { en: string; hi: string; sa: string }> = {
+const BIRD_NAMES: Record<Bird, LocaleText> = {
   vulture: { en: 'Vulture (Gridhra)', hi: 'गृध्र', sa: 'गृध्रः' },
   owl:     { en: 'Owl (Uluka)',      hi: 'उलूक', sa: 'उलूकः' },
   crow:    { en: 'Crow (Kaka)',      hi: 'काक',  sa: 'काकः'  },
@@ -32,7 +33,7 @@ const BIRD_NAMES: Record<Bird, { en: string; hi: string; sa: string }> = {
   peacock: { en: 'Peacock (Mayura)', hi: 'मयूर', sa: 'मयूरः' },
 };
 
-const ACTIVITY_NAMES: Record<Activity, { en: string; hi: string; sa: string }> = {
+const ACTIVITY_NAMES: Record<Activity, LocaleText> = {
   ruling:   { en: 'Ruling',   hi: 'राज्य',   sa: 'राज्यम्'  },
   eating:   { en: 'Eating',   hi: 'भोजन',   sa: 'भोजनम्'  },
   walking:  { en: 'Walking',  hi: 'गमन',    sa: 'गमनम्'   },
@@ -48,7 +49,7 @@ const AUSPICIOUSNESS: Record<Activity, 'excellent' | 'good' | 'neutral' | 'avoid
   dying:    'avoid',
 };
 
-const INTERPRETATIONS: Record<Activity, { en: string; hi: string }> = {
+const INTERPRETATIONS: Record<Activity, LocaleText> = {
   ruling: {
     en: 'Your bird is Ruling — supreme period for any action. Decisions made now succeed. Start new ventures, sign agreements, make important requests.',
     hi: 'आपका पक्षी राज्य कर रहा है — किसी भी कार्य के लिए श्रेष्ठ काल। अभी लिए निर्णय सफल होते हैं। नए कार्य, समझौते, महत्वपूर्ण अनुरोध करें।',
@@ -141,7 +142,7 @@ function formatHHMM(date: Date): string {
 
 export interface PanchaPakshiResult {
   birthBird: Bird;
-  birthBirdName: { en: string; hi: string; sa: string };
+  birthBirdName: LocaleText;
   currentPeriod: BirdActivity;
   allPeriods: BirdActivity[];
   isDay: boolean;

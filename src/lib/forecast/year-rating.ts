@@ -6,12 +6,12 @@
 import type { KundaliData } from '@/types/kundali';
 import type { VarshaphalData } from '@/types/varshaphal';
 import type { MonthlyTransitSnapshot } from './monthly-transit';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 export interface YearRatingFactor {
-  name: Trilingual;
+  name: LocaleText;
   score: number;      // 1-5
-  description: Trilingual;
+  description: LocaleText;
 }
 
 export interface YearRating {

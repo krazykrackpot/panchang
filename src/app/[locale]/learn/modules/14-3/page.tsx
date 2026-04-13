@@ -5,17 +5,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_14_3', phase: 4, topic: 'Compatibility', moduleNumber: '14.3',
-  title: { en: 'Timing Marriage & Relationship Events', hi: 'विवाह एवं सम्बन्ध घटनाओं का समय' },
+  title: { en: 'Timing Marriage & Relationship Events', hi: 'विवाह एवं सम्बन्ध घटनाओं का समय', sa: 'विवाह एवं सम्बन्ध घटनाओं का समय', mai: 'विवाह एवं सम्बन्ध घटनाओं का समय', mr: 'विवाह एवं सम्बन्ध घटनाओं का समय', ta: 'Timing Marriage & Relationship Events', te: 'Timing Marriage & Relationship Events', bn: 'Timing Marriage & Relationship Events', kn: 'Timing Marriage & Relationship Events', gu: 'Timing Marriage & Relationship Events' },
   subtitle: {
     en: 'Dasha triggers, double transits on the 7th house, delay indicators, and post-marriage predictions from the Navamsha',
     hi: 'दशा प्रेरक, सप्तम भाव पर दोहरा गोचर, विलम्ब संकेतक, और नवांश से विवाहोत्तर भविष्यवाणियाँ',
   },
   estimatedMinutes: 16,
   crossRefs: [
-    { label: { en: 'Module 14-1: Kundali Milan', hi: 'मॉड्यूल 14-1: कुण्डली मिलान' }, href: '/learn/modules/14-1' },
-    { label: { en: 'Module 14-2: Mangal Dosha', hi: 'मॉड्यूल 14-2: मंगल दोष' }, href: '/learn/modules/14-2' },
-    { label: { en: 'Matching Deep Dive', hi: 'मिलान विस्तार' }, href: '/learn/matching' },
-    { label: { en: 'Kundali Generator', hi: 'कुण्डली निर्माता' }, href: '/kundali' },
+    { label: { en: 'Module 14-1: Kundali Milan', hi: 'मॉड्यूल 14-1: कुण्डली मिलान', sa: 'मॉड्यूल 14-1: कुण्डली मिलान', mai: 'मॉड्यूल 14-1: कुण्डली मिलान', mr: 'मॉड्यूल 14-1: कुण्डली मिलान', ta: 'Module 14-1: Kundali Milan', te: 'Module 14-1: Kundali Milan', bn: 'Module 14-1: Kundali Milan', kn: 'Module 14-1: Kundali Milan', gu: 'Module 14-1: Kundali Milan' }, href: '/learn/modules/14-1' },
+    { label: { en: 'Module 14-2: Mangal Dosha', hi: 'मॉड्यूल 14-2: मंगल दोष', sa: 'मॉड्यूल 14-2: मंगल दोष', mai: 'मॉड्यूल 14-2: मंगल दोष', mr: 'मॉड्यूल 14-2: मंगल दोष', ta: 'Module 14-2: Mangal Dosha', te: 'Module 14-2: Mangal Dosha', bn: 'Module 14-2: Mangal Dosha', kn: 'Module 14-2: Mangal Dosha', gu: 'Module 14-2: Mangal Dosha' }, href: '/learn/modules/14-2' },
+    { label: { en: 'Matching Deep Dive', hi: 'मिलान विस्तार', sa: 'मिलान विस्तार', mai: 'मिलान विस्तार', mr: 'मिलान विस्तार', ta: 'Matching Deep Dive', te: 'Matching Deep Dive', bn: 'Matching Deep Dive', kn: 'Matching Deep Dive', gu: 'Matching Deep Dive' }, href: '/learn/matching' },
+    { label: { en: 'Kundali Generator', hi: 'कुण्डली निर्माता', sa: 'कुण्डली निर्माता', mai: 'कुण्डली निर्माता', mr: 'कुण्डली निर्माता', ta: 'Kundali Generator', te: 'Kundali Generator', bn: 'Kundali Generator', kn: 'Kundali Generator', gu: 'Kundali Generator' }, href: '/kundali' },
   ],
 };
 
@@ -27,10 +27,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वैदिक ज्योतिष में विवाह के लिए सबसे शक्तिशाली समय प्रेरक क्या है?',
     },
     options: [
-      { en: 'Sun transiting the 7th house', hi: 'सूर्य का सप्तम भाव में गोचर' },
-      { en: 'Double transit — Jupiter AND Saturn both influencing the 7th house simultaneously', hi: 'दोहरा गोचर — बृहस्पति और शनि दोनों एक साथ सप्तम भाव को प्रभावित करते हुए' },
-      { en: 'Mercury retrograde ending', hi: 'बुध वक्री का समाप्त होना' },
-      { en: 'Full Moon in the 7th house', hi: 'सप्तम भाव में पूर्णिमा' },
+      { en: 'Sun transiting the 7th house', hi: 'सूर्य का सप्तम भाव में गोचर', sa: 'सूर्य का सप्तम भाव में गोचर', mai: 'सूर्य का सप्तम भाव में गोचर', mr: 'सूर्य का सप्तम भाव में गोचर', ta: 'Sun transiting the 7th house', te: 'Sun transiting the 7th house', bn: 'Sun transiting the 7th house', kn: 'Sun transiting the 7th house', gu: 'Sun transiting the 7th house' },
+      { en: 'Double transit — Jupiter AND Saturn both influencing the 7th house simultaneously', hi: 'दोहरा गोचर — बृहस्पति और शनि दोनों एक साथ सप्तम भाव को प्रभावित करते हुए', sa: 'दोहरा गोचर — बृहस्पति और शनि दोनों एक साथ सप्तम भाव को प्रभावित करते हुए', mai: 'दोहरा गोचर — बृहस्पति और शनि दोनों एक साथ सप्तम भाव को प्रभावित करते हुए', mr: 'दोहरा गोचर — बृहस्पति और शनि दोनों एक साथ सप्तम भाव को प्रभावित करते हुए', ta: 'Double transit — Jupiter AND Saturn both influencing the 7th house simultaneously', te: 'Double transit — Jupiter AND Saturn both influencing the 7th house simultaneously', bn: 'Double transit — Jupiter AND Saturn both influencing the 7th house simultaneously', kn: 'Double transit — Jupiter AND Saturn both influencing the 7th house simultaneously', gu: 'Double transit — Jupiter AND Saturn both influencing the 7th house simultaneously' },
+      { en: 'Mercury retrograde ending', hi: 'बुध वक्री का समाप्त होना', sa: 'बुध वक्री का समाप्त होना', mai: 'बुध वक्री का समाप्त होना', mr: 'बुध वक्री का समाप्त होना', ta: 'Mercury retrograde ending', te: 'Mercury retrograde ending', bn: 'Mercury retrograde ending', kn: 'Mercury retrograde ending', gu: 'Mercury retrograde ending' },
+      { en: 'Full Moon in the 7th house', hi: 'सप्तम भाव में पूर्णिमा', sa: 'सप्तम भाव में पूर्णिमा', mai: 'सप्तम भाव में पूर्णिमा', mr: 'सप्तम भाव में पूर्णिमा', ta: 'Full Moon in the 7th house', te: 'Full Moon in the 7th house', bn: 'Full Moon in the 7th house', kn: 'Full Moon in the 7th house', gu: 'Full Moon in the 7th house' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -45,10 +45,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कौन-सा दशा काल विवाह के समय से सबसे अधिक सम्बद्ध है?',
     },
     options: [
-      { en: 'Saturn Mahadasha always', hi: 'शनि महादशा सदैव' },
-      { en: 'Dasha of the 7th lord, Venus dasha, or Navamsha lagna lord dasha', hi: 'सप्तमेश दशा, शुक्र दशा, या नवांश लग्नेश दशा' },
-      { en: 'Only Rahu Mahadasha', hi: 'केवल राहु महादशा' },
-      { en: 'Mars Antardasha exclusively', hi: 'केवल मंगल अन्तर्दशा' },
+      { en: 'Saturn Mahadasha always', hi: 'शनि महादशा सदैव', sa: 'शनि महादशा सदैव', mai: 'शनि महादशा सदैव', mr: 'शनि महादशा सदैव', ta: 'Saturn Mahadasha always', te: 'Saturn Mahadasha always', bn: 'Saturn Mahadasha always', kn: 'Saturn Mahadasha always', gu: 'Saturn Mahadasha always' },
+      { en: 'Dasha of the 7th lord, Venus dasha, or Navamsha lagna lord dasha', hi: 'सप्तमेश दशा, शुक्र दशा, या नवांश लग्नेश दशा', sa: 'सप्तमेश दशा, शुक्र दशा, या नवांश लग्नेश दशा', mai: 'सप्तमेश दशा, शुक्र दशा, या नवांश लग्नेश दशा', mr: 'सप्तमेश दशा, शुक्र दशा, या नवांश लग्नेश दशा', ta: 'Dasha of the 7th lord, Venus dasha, or Navamsha lagna lord dasha', te: 'Dasha of the 7th lord, Venus dasha, or Navamsha lagna lord dasha', bn: 'Dasha of the 7th lord, Venus dasha, or Navamsha lagna lord dasha', kn: 'Dasha of the 7th lord, Venus dasha, or Navamsha lagna lord dasha', gu: 'Dasha of the 7th lord, Venus dasha, or Navamsha lagna lord dasha' },
+      { en: 'Only Rahu Mahadasha', hi: 'केवल राहु महादशा', sa: 'केवल राहु महादशा', mai: 'केवल राहु महादशा', mr: 'केवल राहु महादशा', ta: 'Only Rahu Mahadasha', te: 'Only Rahu Mahadasha', bn: 'Only Rahu Mahadasha', kn: 'Only Rahu Mahadasha', gu: 'Only Rahu Mahadasha' },
+      { en: 'Mars Antardasha exclusively', hi: 'केवल मंगल अन्तर्दशा', sa: 'केवल मंगल अन्तर्दशा', mai: 'केवल मंगल अन्तर्दशा', mr: 'केवल मंगल अन्तर्दशा', ta: 'Mars Antardasha exclusively', te: 'Mars Antardasha exclusively', bn: 'Mars Antardasha exclusively', kn: 'Mars Antardasha exclusively', gu: 'Mars Antardasha exclusively' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -75,10 +75,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सप्तम भाव में राहु सामान्यतः दर्शाता है:',
     },
     options: [
-      { en: 'Early marriage before age 21', hi: '21 वर्ष से पूर्व शीघ्र विवाह' },
-      { en: 'Delayed marriage, or marriage to a foreigner/person from different cultural background', hi: 'विलम्बित विवाह, या विदेशी/भिन्न सांस्कृतिक पृष्ठभूमि के व्यक्ति से विवाह' },
-      { en: 'No possibility of marriage', hi: 'विवाह की कोई सम्भावना नहीं' },
-      { en: 'Marriage to a childhood friend', hi: 'बचपन के मित्र से विवाह' },
+      { en: 'Early marriage before age 21', hi: '21 वर्ष से पूर्व शीघ्र विवाह', sa: '21 वर्ष से पूर्व शीघ्र विवाह', mai: '21 वर्ष से पूर्व शीघ्र विवाह', mr: '21 वर्ष से पूर्व शीघ्र विवाह', ta: 'Early marriage before age 21', te: 'Early marriage before age 21', bn: 'Early marriage before age 21', kn: 'Early marriage before age 21', gu: 'Early marriage before age 21' },
+      { en: 'Delayed marriage, or marriage to a foreigner/person from different cultural background', hi: 'विलम्बित विवाह, या विदेशी/भिन्न सांस्कृतिक पृष्ठभूमि के व्यक्ति से विवाह', sa: 'विलम्बित विवाह, या विदेशी/भिन्न सांस्कृतिक पृष्ठभूमि के व्यक्ति से विवाह', mai: 'विलम्बित विवाह, या विदेशी/भिन्न सांस्कृतिक पृष्ठभूमि के व्यक्ति से विवाह', mr: 'विलम्बित विवाह, या विदेशी/भिन्न सांस्कृतिक पृष्ठभूमि के व्यक्ति से विवाह', ta: 'Delayed marriage, or marriage to a foreigner/person from different cultural background', te: 'Delayed marriage, or marriage to a foreigner/person from different cultural background', bn: 'Delayed marriage, or marriage to a foreigner/person from different cultural background', kn: 'Delayed marriage, or marriage to a foreigner/person from different cultural background', gu: 'Delayed marriage, or marriage to a foreigner/person from different cultural background' },
+      { en: 'No possibility of marriage', hi: 'विवाह की कोई सम्भावना नहीं', sa: 'विवाह की कोई सम्भावना नहीं', mai: 'विवाह की कोई सम्भावना नहीं', mr: 'विवाह की कोई सम्भावना नहीं', ta: 'No possibility of marriage', te: 'No possibility of marriage', bn: 'No possibility of marriage', kn: 'No possibility of marriage', gu: 'No possibility of marriage' },
+      { en: 'Marriage to a childhood friend', hi: 'बचपन के मित्र से विवाह', sa: 'बचपन के मित्र से विवाह', mai: 'बचपन के मित्र से विवाह', mr: 'बचपन के मित्र से विवाह', ta: 'Marriage to a childhood friend', te: 'Marriage to a childhood friend', bn: 'Marriage to a childhood friend', kn: 'Marriage to a childhood friend', gu: 'Marriage to a childhood friend' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -93,10 +93,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सप्तम भाव पर शनि की दृष्टि या गोचर सामान्यतः कारण बनता है:',
     },
     options: [
-      { en: 'Immediate romantic opportunities', hi: 'तत्काल रोमांटिक अवसर' },
-      { en: 'Delay in marriage, but eventual stability once it happens', hi: 'विवाह में विलम्ब, परन्तु होने पर अन्ततः स्थिरता' },
-      { en: 'Divorce inevitably', hi: 'अनिवार्यतः तलाक' },
-      { en: 'Multiple marriages', hi: 'बहुविवाह' },
+      { en: 'Immediate romantic opportunities', hi: 'तत्काल रोमांटिक अवसर', sa: 'तत्काल रोमांटिक अवसर', mai: 'तत्काल रोमांटिक अवसर', mr: 'तत्काल रोमांटिक अवसर', ta: 'Immediate romantic opportunities', te: 'Immediate romantic opportunities', bn: 'Immediate romantic opportunities', kn: 'Immediate romantic opportunities', gu: 'Immediate romantic opportunities' },
+      { en: 'Delay in marriage, but eventual stability once it happens', hi: 'विवाह में विलम्ब, परन्तु होने पर अन्ततः स्थिरता', sa: 'विवाह में विलम्ब, परन्तु होने पर अन्ततः स्थिरता', mai: 'विवाह में विलम्ब, परन्तु होने पर अन्ततः स्थिरता', mr: 'विवाह में विलम्ब, परन्तु होने पर अन्ततः स्थिरता', ta: 'Delay in marriage, but eventual stability once it happens', te: 'Delay in marriage, but eventual stability once it happens', bn: 'Delay in marriage, but eventual stability once it happens', kn: 'Delay in marriage, but eventual stability once it happens', gu: 'Delay in marriage, but eventual stability once it happens' },
+      { en: 'Divorce inevitably', hi: 'अनिवार्यतः तलाक', sa: 'अनिवार्यतः तलाक', mai: 'अनिवार्यतः तलाक', mr: 'अनिवार्यतः तलाक', ta: 'Divorce inevitably', te: 'Divorce inevitably', bn: 'Divorce inevitably', kn: 'Divorce inevitably', gu: 'Divorce inevitably' },
+      { en: 'Multiple marriages', hi: 'बहुविवाह', sa: 'बहुविवाह', mai: 'बहुविवाह', mr: 'बहुविवाह', ta: 'Multiple marriages', te: 'Multiple marriages', bn: 'Multiple marriages', kn: 'Multiple marriages', gu: 'Multiple marriages' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -123,10 +123,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'जीवनसाथी के व्यक्तित्व और विवाह गुणवत्ता का आकलन करने के लिए मुख्य रूप से कौन-सी वर्ग कुण्डली उपयोग की जाती है?',
     },
     options: [
-      { en: 'Dashamsha (D-10)', hi: 'दशमांश (डी-10)' },
-      { en: 'Navamsha (D-9)', hi: 'नवांश (डी-9)' },
-      { en: 'Saptamsha (D-7)', hi: 'सप्तमांश (डी-7)' },
-      { en: 'Hora (D-2)', hi: 'होरा (डी-2)' },
+      { en: 'Dashamsha (D-10)', hi: 'दशमांश (डी-10)', sa: 'दशमांश (डी-10)', mai: 'दशमांश (डी-10)', mr: 'दशमांश (डी-10)', ta: 'Dashamsha (D-10)', te: 'Dashamsha (D-10)', bn: 'Dashamsha (D-10)', kn: 'Dashamsha (D-10)', gu: 'Dashamsha (D-10)' },
+      { en: 'Navamsha (D-9)', hi: 'नवांश (डी-9)', sa: 'नवांश (डी-9)', mai: 'नवांश (डी-9)', mr: 'नवांश (डी-9)', ta: 'Navamsha (D-9)', te: 'Navamsha (D-9)', bn: 'Navamsha (D-9)', kn: 'Navamsha (D-9)', gu: 'Navamsha (D-9)' },
+      { en: 'Saptamsha (D-7)', hi: 'सप्तमांश (डी-7)', sa: 'सप्तमांश (डी-7)', mai: 'सप्तमांश (डी-7)', mr: 'सप्तमांश (डी-7)', ta: 'Saptamsha (D-7)', te: 'Saptamsha (D-7)', bn: 'Saptamsha (D-7)', kn: 'Saptamsha (D-7)', gu: 'Saptamsha (D-7)' },
+      { en: 'Hora (D-2)', hi: 'होरा (डी-2)', sa: 'होरा (डी-2)', mai: 'होरा (डी-2)', mr: 'होरा (डी-2)', ta: 'Hora (D-2)', te: 'Hora (D-2)', bn: 'Hora (D-2)', kn: 'Hora (D-2)', gu: 'Hora (D-2)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -141,10 +141,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'जन्म कुण्डली में सन्तान के समय का शासन कौन-सा भाव करता है?',
     },
     options: [
-      { en: '2nd house', hi: 'द्वितीय भाव' },
-      { en: '5th house', hi: 'पंचम भाव' },
-      { en: '9th house', hi: 'नवम भाव' },
-      { en: '11th house', hi: 'एकादश भाव' },
+      { en: '2nd house', hi: 'द्वितीय भाव', sa: 'द्वितीय भाव', mai: 'द्वितीय भाव', mr: 'द्वितीय भाव', ta: '2nd house', te: '2nd house', bn: '2nd house', kn: '2nd house', gu: '2nd house' },
+      { en: '5th house', hi: 'पंचम भाव', sa: 'पंचम भाव', mai: 'पंचम भाव', mr: 'पंचम भाव', ta: '5th house', te: '5th house', bn: '5th house', kn: '5th house', gu: '5th house' },
+      { en: '9th house', hi: 'नवम भाव', sa: 'नवम भाव', mai: 'नवम भाव', mr: 'नवम भाव', ta: '9th house', te: '9th house', bn: '9th house', kn: '9th house', gu: '9th house' },
+      { en: '11th house', hi: 'एकादश भाव', sa: 'एकादश भाव', mai: 'एकादश भाव', mr: 'एकादश भाव', ta: '11th house', te: '11th house', bn: '11th house', kn: '11th house', gu: '11th house' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -171,10 +171,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ज्योतिष के अनुसार विद्यमान विवाह में "चुनौतीपूर्ण काल" क्या है?',
     },
     options: [
-      { en: 'Any period when Mercury is retrograde', hi: 'कोई भी काल जब बुध वक्री हो' },
-      { en: '7th lord dasha running through dusthana, or Saturn transiting over Venus/7th house', hi: 'दुःस्थान में सप्तमेश दशा, या शुक्र/सप्तम भाव पर शनि गोचर' },
-      { en: 'When both partners are in Jupiter dasha', hi: 'जब दोनों साथी बृहस्पति दशा में हों' },
-      { en: 'Full Moon days only', hi: 'केवल पूर्णिमा के दिन' },
+      { en: 'Any period when Mercury is retrograde', hi: 'कोई भी काल जब बुध वक्री हो', sa: 'कोई भी काल जब बुध वक्री हो', mai: 'कोई भी काल जब बुध वक्री हो', mr: 'कोई भी काल जब बुध वक्री हो', ta: 'Any period when Mercury is retrograde', te: 'Any period when Mercury is retrograde', bn: 'Any period when Mercury is retrograde', kn: 'Any period when Mercury is retrograde', gu: 'Any period when Mercury is retrograde' },
+      { en: '7th lord dasha running through dusthana, or Saturn transiting over Venus/7th house', hi: 'दुःस्थान में सप्तमेश दशा, या शुक्र/सप्तम भाव पर शनि गोचर', sa: 'दुःस्थान में सप्तमेश दशा, या शुक्र/सप्तम भाव पर शनि गोचर', mai: 'दुःस्थान में सप्तमेश दशा, या शुक्र/सप्तम भाव पर शनि गोचर', mr: 'दुःस्थान में सप्तमेश दशा, या शुक्र/सप्तम भाव पर शनि गोचर', ta: '7th lord dasha running through dusthana, or Saturn transiting over Venus/7th house', te: '7th lord dasha running through dusthana, or Saturn transiting over Venus/7th house', bn: '7th lord dasha running through dusthana, or Saturn transiting over Venus/7th house', kn: '7th lord dasha running through dusthana, or Saturn transiting over Venus/7th house', gu: '7th lord dasha running through dusthana, or Saturn transiting over Venus/7th house' },
+      { en: 'When both partners are in Jupiter dasha', hi: 'जब दोनों साथी बृहस्पति दशा में हों', sa: 'जब दोनों साथी बृहस्पति दशा में हों', mai: 'जब दोनों साथी बृहस्पति दशा में हों', mr: 'जब दोनों साथी बृहस्पति दशा में हों', ta: 'When both partners are in Jupiter dasha', te: 'When both partners are in Jupiter dasha', bn: 'When both partners are in Jupiter dasha', kn: 'When both partners are in Jupiter dasha', gu: 'When both partners are in Jupiter dasha' },
+      { en: 'Full Moon days only', hi: 'केवल पूर्णिमा के दिन', sa: 'केवल पूर्णिमा के दिन', mai: 'केवल पूर्णिमा के दिन', mr: 'केवल पूर्णिमा के दिन', ta: 'Full Moon days only', te: 'Full Moon days only', bn: 'Full Moon days only', kn: 'Full Moon days only', gu: 'Full Moon days only' },
     ],
     correctAnswer: 1,
     explanation: {

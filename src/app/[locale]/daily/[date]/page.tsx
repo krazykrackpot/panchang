@@ -106,7 +106,7 @@ export default async function DailyPanchangArticle({ params }: { params: Promise
 
         {/* Render markdown-ish body as HTML sections */}
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-          {body.split('\n').map((line, i) => {
+          {body!.split('\n').map((line, i) => {
             if (line.startsWith('### ')) return <h3 key={i} className="text-gold-light font-bold text-lg mt-6 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>{line.slice(4)}</h3>;
             if (line.startsWith('## ')) return <h2 key={i} className="text-gold-primary text-xs uppercase tracking-widest font-bold mt-8 mb-3">{line.slice(3)}</h2>;
             if (line.startsWith('- **')) return <div key={i} className="flex gap-2"><span className="text-gold-dark">&#9670;</span><span dangerouslySetInnerHTML={{ __html: line.slice(2).replace(/\*\*(.*?)\*\*/g, '<strong class="text-gold-light">$1</strong>') }} /></div>;

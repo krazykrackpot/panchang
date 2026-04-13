@@ -1,21 +1,21 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { ChevronRight, Sparkles, BookOpen, ExternalLink } from 'lucide-react';
-import type { Locale } from '@/types/panchang';
+import type { Locale ,LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ── Section data ─────────────────────────────────────────────────
-type Tri = Record<string, string>;
 interface Section {
   id: string;
   icon: string;
-  title: Tri;
-  subtitle: Tri;
-  modules: { id: string; title: Tri; href?: string }[];
-  refs: { label: Tri; href: string }[];
+  title: LocaleText;
+  subtitle: LocaleText;
+  modules: { id: string; title: LocaleText; href?: string }[];
+  refs: { label: LocaleText; href: string }[];
 }
 
 const SECTIONS: Section[] = [
@@ -173,7 +173,7 @@ export default function CosmologyTrackPage() {
   const isDevanagari = isDevanagariLocale(locale);
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
-  const l = L[locale] || L.en;
+  const l = (L as Record<string, typeof L.en>)[locale] || L.en;
 
   return (
     <div>

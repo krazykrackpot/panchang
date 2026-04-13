@@ -1,5 +1,7 @@
 'use client';
 
+import type { LocaleText } from '@/types/panchang';
+
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/stores/auth-store';
@@ -12,10 +14,10 @@ interface ProfileBannerData {
   display_name: string;
   moon_sign: number;
   ascendant_sign: number;
-  moonRashiName: { en: string; hi: string; sa: string } | null;
-  lagnaRashiName: { en: string; hi: string; sa: string } | null;
-  moonNakshatraName: { en: string; hi: string; sa: string } | null;
-  currentDasha: { maha: { planetName: { en: string; hi: string; sa: string } } } | null;
+  moonRashiName: LocaleText | null;
+  lagnaRashiName: LocaleText | null;
+  moonNakshatraName: LocaleText | null;
+  currentDasha: { maha: { planetName: LocaleText } } | null;
   spiActive: boolean;
 }
 
@@ -55,8 +57,8 @@ export default function ProfileBanner({ locale, bf }: { locale: string; bf: Reac
 
   if (!data) return null;
 
-  const t = (texts: { en: string; hi: string; ta?: string }) =>
-    isIndic ? texts.hi : texts.en;
+  const t = (texts: LocaleText | Record<string, string>) =>
+    (texts as Record<string, string>)[locale] || texts.en;
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
@@ -70,22 +72,22 @@ export default function ProfileBanner({ locale, bf }: { locale: string; bf: Reac
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
                   <span className="text-gold-light font-semibold text-sm truncate" style={bf}>
-                    {data.display_name || t({ en: 'Your Vedic Profile', hi: 'आपकी वैदिक कुंडली' })}
+                    {data.display_name || t({ en: 'Your Vedic Profile', hi: 'आपकी वैदिक कुंडली', sa: 'आपकी वैदिक कुंडली', mai: 'आपकी वैदिक कुंडली', mr: 'आपकी वैदिक कुंडली', ta: 'Your Vedic Profile', te: 'Your Vedic Profile', bn: 'Your Vedic Profile', kn: 'Your Vedic Profile', gu: 'Your Vedic Profile' })}
                   </span>
                   {data.spiActive && (
                     <span className="text-xs px-1.5 py-0.5 rounded-md bg-amber-500/15 text-amber-400 border border-amber-500/20 font-medium shrink-0">
-                      {t({ en: 'Sade Sati', hi: 'साढ़े साती' })}
+                      {t({ en: 'Sade Sati', hi: 'साढ़े साती', sa: 'साढ़े साती', mai: 'साढ़े साती', mr: 'साढ़े साती', ta: 'Sade Sati', te: 'Sade Sati', bn: 'Sade Sati', kn: 'Sade Sati', gu: 'Sade Sati' })}
                     </span>
                   )}
                 </div>
                 <div className="flex items-center gap-3 mt-0.5 text-xs text-text-secondary/70" style={bf}>
-                  <span>{t({ en: 'Moon', hi: 'चन्द्र' })}: <span className="text-gold-primary/80">{data.moonRashiName?.[locale as 'en' | 'hi' | 'sa'] || data.moonRashiName?.en}</span></span>
+                  <span>{t({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', mai: 'चन्द्र', mr: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon' })}: <span className="text-gold-primary/80">{data.moonRashiName?.[locale as 'en' | 'hi' | 'sa'] || data.moonRashiName?.en}</span></span>
                   <span className="text-gold-primary/20">|</span>
-                  <span>{t({ en: 'Lagna', hi: 'लग्न' })}: <span className="text-gold-primary/80">{data.lagnaRashiName?.[locale as 'en' | 'hi' | 'sa'] || data.lagnaRashiName?.en}</span></span>
+                  <span>{t({ en: 'Lagna', hi: 'लग्न', sa: 'लग्न', mai: 'लग्न', mr: 'लग्न', ta: 'Lagna', te: 'Lagna', bn: 'Lagna', kn: 'Lagna', gu: 'Lagna' })}: <span className="text-gold-primary/80">{data.lagnaRashiName?.[locale as 'en' | 'hi' | 'sa'] || data.lagnaRashiName?.en}</span></span>
                   {data.currentDasha && (
                     <>
                       <span className="text-gold-primary/20">|</span>
-                      <span>{t({ en: 'Dasha', hi: 'दशा' })}: <span className="text-gold-primary/80">{data.currentDasha.maha.planetName?.[locale as 'en' | 'hi' | 'sa'] || data.currentDasha.maha.planetName?.en}</span></span>
+                      <span>{t({ en: 'Dasha', hi: 'दशा', sa: 'दशा', mai: 'दशा', mr: 'दशा', ta: 'Dasha', te: 'Dasha', bn: 'Dasha', kn: 'Dasha', gu: 'Dasha' })}: <span className="text-gold-primary/80">{data.currentDasha.maha.planetName?.[locale as 'en' | 'hi' | 'sa'] || data.currentDasha.maha.planetName?.en}</span></span>
                     </>
                   )}
                 </div>

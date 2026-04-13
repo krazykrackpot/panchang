@@ -4,7 +4,7 @@
  */
 
 import type { MuddaDashaPeriod } from '@/types/varshaphal';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 const TOTAL_YEARS = 120;
 const YEAR_DAYS = 365.25;
@@ -30,7 +30,7 @@ const MUDDA_DAYS: Record<string, number> = {
   Mercury: (17 / TOTAL_YEARS) * YEAR_DAYS,   // ~51.76 days
 };
 
-const PLANET_NAMES: Record<string, Trilingual> = {
+const PLANET_NAMES: Record<string, LocaleText> = {
   Sun: { en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' },
   Moon: { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्रः' },
   Mars: { en: 'Mars', hi: 'मंगल', sa: 'मङ्गलः' },

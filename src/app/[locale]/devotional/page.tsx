@@ -6,21 +6,21 @@ import { motion } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { NakshatraIconById } from '@/components/icons/NakshatraIcons';
-import type { Locale, Trilingual } from '@/types/panchang';
+import type { Locale,  LocaleText} from '@/types/panchang';
 import { dateToJD, calculateTithi, moonLongitude, toSidereal, getNakshatraNumber } from '@/lib/ephem/astronomical';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface Recommendation {
-  title: Trilingual;
+  title: LocaleText;
   mantra: string;
-  deity: Trilingual;
-  description: Trilingual;
+  deity: LocaleText;
+  description: LocaleText;
 }
 
 // Day-of-week deity associations
-const VARA_DEITIES: Record<number, { deity: Trilingual; mantra: string; color: string }> = {
+const VARA_DEITIES: Record<number, { deity: LocaleText; mantra: string; color: string }> = {
   0: { deity: { en: 'Surya (Sun)', hi: 'सूर्य', sa: 'सूर्यः' }, mantra: 'ॐ सूर्याय नमः', color: '#e67e22' },
   1: { deity: { en: 'Chandra (Moon)', hi: 'चन्द्रमा', sa: 'चन्द्रः' }, mantra: 'ॐ सोमाय नमः', color: '#ecf0f1' },
   2: { deity: { en: 'Mangal (Mars)/Hanuman', hi: 'मंगल/हनुमान', sa: 'मङ्गलः/हनुमान्' }, mantra: 'ॐ हनुमते नमः', color: '#e74c3c' },
@@ -31,7 +31,7 @@ const VARA_DEITIES: Record<number, { deity: Trilingual; mantra: string; color: s
 };
 
 // Tithi-based suggestions
-const TITHI_SUGGESTIONS: Record<number, Trilingual> = {
+const TITHI_SUGGESTIONS: Record<number, LocaleText> = {
   1: { en: 'Pratipada — Worship Agni. Good for new beginnings.', hi: 'प्रतिपदा — अग्नि पूजा। नई शुरुआत के लिए शुभ।', sa: 'प्रतिपदा — अग्निपूजा। नवारम्भाय शुभम्।' },
   4: { en: 'Chaturthi — Worship Ganesha. Vinayaka Chaturthi day.', hi: 'चतुर्थी — गणेश पूजा। विनायक चतुर्थी दिन।', sa: 'चतुर्थी — गणेशपूजा। विनायकचतुर्थीदिनम्।' },
   8: { en: 'Ashtami — Worship Durga/Krishna. Sacred fasting day.', hi: 'अष्टमी — दुर्गा/कृष्ण पूजा। पवित्र उपवास दिन।', sa: 'अष्टमी — दुर्गा/कृष्णपूजा। पवित्रोपवासदिनम्।' },
@@ -158,11 +158,11 @@ export default function DevotionalPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {Object.entries(VARA_DEITIES).map(([day, info]) => {
             const dayNum = parseInt(day);
-            const dayNames: Record<number, { en: string; hi: string }> = {
-              0: { en: 'Sunday', hi: 'रविवार' }, 1: { en: 'Monday', hi: 'सोमवार' },
-              2: { en: 'Tuesday', hi: 'मंगलवार' }, 3: { en: 'Wednesday', hi: 'बुधवार' },
-              4: { en: 'Thursday', hi: 'गुरुवार' }, 5: { en: 'Friday', hi: 'शुक्रवार' },
-              6: { en: 'Saturday', hi: 'शनिवार' },
+            const dayNames: Record<number, LocaleText> = {
+              0: { en: 'Sunday', hi: 'रविवार', sa: 'रविवार', mai: 'रविवार', mr: 'रविवार', ta: 'Sunday', te: 'Sunday', bn: 'Sunday', kn: 'Sunday', gu: 'Sunday' }, 1: { en: 'Monday', hi: 'सोमवार', sa: 'सोमवार', mai: 'सोमवार', mr: 'सोमवार', ta: 'Monday', te: 'Monday', bn: 'Monday', kn: 'Monday', gu: 'Monday' },
+              2: { en: 'Tuesday', hi: 'मंगलवार', sa: 'मंगलवार', mai: 'मंगलवार', mr: 'मंगलवार', ta: 'Tuesday', te: 'Tuesday', bn: 'Tuesday', kn: 'Tuesday', gu: 'Tuesday' }, 3: { en: 'Wednesday', hi: 'बुधवार', sa: 'बुधवार', mai: 'बुधवार', mr: 'बुधवार', ta: 'Wednesday', te: 'Wednesday', bn: 'Wednesday', kn: 'Wednesday', gu: 'Wednesday' },
+              4: { en: 'Thursday', hi: 'गुरुवार', sa: 'गुरुवार', mai: 'गुरुवार', mr: 'गुरुवार', ta: 'Thursday', te: 'Thursday', bn: 'Thursday', kn: 'Thursday', gu: 'Thursday' }, 5: { en: 'Friday', hi: 'शुक्रवार', sa: 'शुक्रवार', mai: 'शुक्रवार', mr: 'शुक्रवार', ta: 'Friday', te: 'Friday', bn: 'Friday', kn: 'Friday', gu: 'Friday' },
+              6: { en: 'Saturday', hi: 'शनिवार', sa: 'शनिवार', mai: 'शनिवार', mr: 'शनिवार', ta: 'Saturday', te: 'Saturday', bn: 'Saturday', kn: 'Saturday', gu: 'Saturday' },
             };
             const isToday = dayNum === today.weekday;
 

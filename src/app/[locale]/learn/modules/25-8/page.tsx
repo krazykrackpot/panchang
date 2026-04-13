@@ -15,9 +15,9 @@ const META: ModuleMeta = {
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 25-1: Zero', hi: 'मॉड्यूल 25-1: शून्य' }, href: '/learn/modules/25-1' },
-    { label: { en: 'Module 25-2: Sine (Sanskrit)', hi: 'मॉड्यूल 25-2: ज्या' }, href: '/learn/modules/25-2' },
-    { label: { en: 'Module 25-3: π = 3.1416', hi: 'मॉड्यूल 25-3: π' }, href: '/learn/modules/25-3' },
+    { label: { en: 'Module 25-1: Zero', hi: 'मॉड्यूल 25-1: शून्य', sa: 'मॉड्यूल 25-1: शून्य', mai: 'मॉड्यूल 25-1: शून्य', mr: 'मॉड्यूल 25-1: शून्य', ta: 'Module 25-1: Zero', te: 'Module 25-1: Zero', bn: 'Module 25-1: Zero', kn: 'Module 25-1: Zero', gu: 'Module 25-1: Zero' }, href: '/learn/modules/25-1' },
+    { label: { en: 'Module 25-2: Sine (Sanskrit)', hi: 'मॉड्यूल 25-2: ज्या', sa: 'मॉड्यूल 25-2: ज्या', mai: 'मॉड्यूल 25-2: ज्या', mr: 'मॉड्यूल 25-2: ज्या', ta: 'Module 25-2: Sine (Sanskrit)', te: 'Module 25-2: Sine (Sanskrit)', bn: 'Module 25-2: Sine (Sanskrit)', kn: 'Module 25-2: Sine (Sanskrit)', gu: 'Module 25-2: Sine (Sanskrit)' }, href: '/learn/modules/25-2' },
+    { label: { en: 'Module 25-3: π = 3.1416', hi: 'मॉड्यूल 25-3: π', sa: 'मॉड्यूल 25-3: π', mai: 'मॉड्यूल 25-3: π', mr: 'मॉड्यूल 25-3: π', ta: 'Module 25-3: π = 3.1416', te: 'Module 25-3: π = 3.1416', bn: 'Module 25-3: π = 3.1416', kn: 'Module 25-3: π = 3.1416', gu: 'Module 25-3: π = 3.1416' }, href: '/learn/modules/25-3' },
   ],
 };
 
@@ -29,10 +29,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सबसे पहले किसने सामान्य प्रमेय कही कि आयत का विकर्ण = √(लम्बाई² + चौड़ाई²)?',
     },
     options: [
-      { en: 'Pythagoras', hi: 'पाइथागोरस' },
-      { en: 'Euclid', hi: 'यूक्लिड' },
-      { en: 'Baudhayana', hi: 'बौधायन' },
-      { en: 'Aryabhata', hi: 'आर्यभट' },
+      { en: 'Pythagoras', hi: 'पाइथागोरस', sa: 'पाइथागोरस', mai: 'पाइथागोरस', mr: 'पाइथागोरस', ta: 'Pythagoras', te: 'Pythagoras', bn: 'Pythagoras', kn: 'Pythagoras', gu: 'Pythagoras' },
+      { en: 'Euclid', hi: 'यूक्लिड', sa: 'यूक्लिड', mai: 'यूक्लिड', mr: 'यूक्लिड', ta: 'Euclid', te: 'Euclid', bn: 'Euclid', kn: 'Euclid', gu: 'Euclid' },
+      { en: 'Baudhayana', hi: 'बौधायन', sa: 'बौधायन', mai: 'बौधायन', mr: 'बौधायन', ta: 'Baudhayana', te: 'Baudhayana', bn: 'Baudhayana', kn: 'Baudhayana', gu: 'Baudhayana' },
+      { en: 'Aryabhata', hi: 'आर्यभट', sa: 'आर्यभट', mai: 'आर्यभट', mr: 'आर्यभट', ta: 'Aryabhata', te: 'Aryabhata', bn: 'Aryabhata', kn: 'Aryabhata', gu: 'Aryabhata' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -47,10 +47,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'बौधायन की प्रमेय किस ग्रन्थ में मिलती है?',
     },
     options: [
-      { en: 'Aryabhatiya', hi: 'आर्यभटीय' },
-      { en: 'Baudhayana Sulba Sutra', hi: 'बौधायन शुल्ब सूत्र' },
-      { en: 'Brahmasphutasiddhanta', hi: 'ब्रह्मस्फुटसिद्धान्त' },
-      { en: 'Rigveda', hi: 'ऋग्वेद' },
+      { en: 'Aryabhatiya', hi: 'आर्यभटीय', sa: 'आर्यभटीय', mai: 'आर्यभटीय', mr: 'आर्यभटीय', ta: 'Aryabhatiya', te: 'Aryabhatiya', bn: 'Aryabhatiya', kn: 'Aryabhatiya', gu: 'Aryabhatiya' },
+      { en: 'Baudhayana Sulba Sutra', hi: 'बौधायन शुल्ब सूत्र', sa: 'बौधायन शुल्ब सूत्र', mai: 'बौधायन शुल्ब सूत्र', mr: 'बौधायन शुल्ब सूत्र', ta: 'Baudhayana Sulba Sutra', te: 'Baudhayana Sulba Sutra', bn: 'Baudhayana Sulba Sutra', kn: 'Baudhayana Sulba Sutra', gu: 'Baudhayana Sulba Sutra' },
+      { en: 'Brahmasphutasiddhanta', hi: 'ब्रह्मस्फुटसिद्धान्त', sa: 'ब्रह्मस्फुटसिद्धान्त', mai: 'ब्रह्मस्फुटसिद्धान्त', mr: 'ब्रह्मस्फुटसिद्धान्त', ta: 'Brahmasphutasiddhanta', te: 'Brahmasphutasiddhanta', bn: 'Brahmasphutasiddhanta', kn: 'Brahmasphutasiddhanta', gu: 'Brahmasphutasiddhanta' },
+      { en: 'Rigveda', hi: 'ऋग्वेद', sa: 'ऋग्वेद', mai: 'ऋग्वेद', mr: 'ऋग्वेद', ta: 'Rigveda', te: 'Rigveda', bn: 'Rigveda', kn: 'Rigveda', gu: 'Rigveda' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -65,10 +65,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'बौधायन शुल्ब सूत्र लगभग कब लिखा गया?',
     },
     options: [
-      { en: '~300 BCE', hi: '~300 ईपू' },
-      { en: '~500 BCE', hi: '~500 ईपू' },
-      { en: '~800 BCE', hi: '~800 ईपू' },
-      { en: '~1200 BCE', hi: '~1200 ईपू' },
+      { en: '~300 BCE', hi: '~300 ईपू', sa: '~300 ईपू', mai: '~300 ईपू', mr: '~300 ईपू', ta: '~300 BCE', te: '~300 BCE', bn: '~300 BCE', kn: '~300 BCE', gu: '~300 BCE' },
+      { en: '~500 BCE', hi: '~500 ईपू', sa: '~500 ईपू', mai: '~500 ईपू', mr: '~500 ईपू', ta: '~500 BCE', te: '~500 BCE', bn: '~500 BCE', kn: '~500 BCE', gu: '~500 BCE' },
+      { en: '~800 BCE', hi: '~800 ईपू', sa: '~800 ईपू', mai: '~800 ईपू', mr: '~800 ईपू', ta: '~800 BCE', te: '~800 BCE', bn: '~800 BCE', kn: '~800 BCE', gu: '~800 BCE' },
+      { en: '~1200 BCE', hi: '~1200 ईपू', sa: '~1200 ईपू', mai: '~1200 ईपू', mr: '~1200 ईपू', ta: '~1200 BCE', te: '~1200 BCE', bn: '~1200 BCE', kn: '~1200 BCE', gu: '~1200 BCE' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -83,10 +83,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: "'शुल्ब' संस्कृत शब्द का क्या अर्थ है?",
     },
     options: [
-      { en: 'Geometry', hi: 'ज्यामिति' },
-      { en: 'Cord or rope', hi: 'रस्सी या डोरी' },
-      { en: 'Fire altar', hi: 'अग्निकुण्ड' },
-      { en: 'Measurement', hi: 'मापन' },
+      { en: 'Geometry', hi: 'ज्यामिति', sa: 'ज्यामिति', mai: 'ज्यामिति', mr: 'ज्यामिति', ta: 'Geometry', te: 'Geometry', bn: 'Geometry', kn: 'Geometry', gu: 'Geometry' },
+      { en: 'Cord or rope', hi: 'रस्सी या डोरी', sa: 'रस्सी या डोरी', mai: 'रस्सी या डोरी', mr: 'रस्सी या डोरी', ta: 'Cord or rope', te: 'Cord or rope', bn: 'Cord or rope', kn: 'Cord or rope', gu: 'Cord or rope' },
+      { en: 'Fire altar', hi: 'अग्निकुण्ड', sa: 'अग्निकुण्ड', mai: 'अग्निकुण्ड', mr: 'अग्निकुण्ड', ta: 'Fire altar', te: 'Fire altar', bn: 'Fire altar', kn: 'Fire altar', gu: 'Fire altar' },
+      { en: 'Measurement', hi: 'मापन', sa: 'मापन', mai: 'मापन', mr: 'मापन', ta: 'Measurement', te: 'Measurement', bn: 'Measurement', kn: 'Measurement', gu: 'Measurement' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -101,10 +101,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'शुल्ब सूत्रों का मुख्य उपयोग किस लिए था?',
     },
     options: [
-      { en: 'Teaching arithmetic to students', hi: 'विद्यार्थियों को अंकगणित पढ़ाना' },
-      { en: 'Astronomical calculations', hi: 'खगोलीय गणनाएँ' },
-      { en: 'Constructing Vedic fire altars of precise shapes and areas', hi: 'सटीक आकार और क्षेत्रफल की वैदिक अग्निकुण्ड बनाना' },
-      { en: 'Navigation by sea', hi: 'समुद्री नेविगेशन' },
+      { en: 'Teaching arithmetic to students', hi: 'विद्यार्थियों को अंकगणित पढ़ाना', sa: 'विद्यार्थियों को अंकगणित पढ़ाना', mai: 'विद्यार्थियों को अंकगणित पढ़ाना', mr: 'विद्यार्थियों को अंकगणित पढ़ाना', ta: 'Teaching arithmetic to students', te: 'Teaching arithmetic to students', bn: 'Teaching arithmetic to students', kn: 'Teaching arithmetic to students', gu: 'Teaching arithmetic to students' },
+      { en: 'Astronomical calculations', hi: 'खगोलीय गणनाएँ', sa: 'खगोलीय गणनाएँ', mai: 'खगोलीय गणनाएँ', mr: 'खगोलीय गणनाएँ', ta: 'Astronomical calculations', te: 'Astronomical calculations', bn: 'Astronomical calculations', kn: 'Astronomical calculations', gu: 'Astronomical calculations' },
+      { en: 'Constructing Vedic fire altars of precise shapes and areas', hi: 'सटीक आकार और क्षेत्रफल की वैदिक अग्निकुण्ड बनाना', sa: 'सटीक आकार और क्षेत्रफल की वैदिक अग्निकुण्ड बनाना', mai: 'सटीक आकार और क्षेत्रफल की वैदिक अग्निकुण्ड बनाना', mr: 'सटीक आकार और क्षेत्रफल की वैदिक अग्निकुण्ड बनाना', ta: 'Constructing Vedic fire altars of precise shapes and areas', te: 'Constructing Vedic fire altars of precise shapes and areas', bn: 'Constructing Vedic fire altars of precise shapes and areas', kn: 'Constructing Vedic fire altars of precise shapes and areas', gu: 'Constructing Vedic fire altars of precise shapes and areas' },
+      { en: 'Navigation by sea', hi: 'समुद्री नेविगेशन', sa: 'समुद्री नेविगेशन', mai: 'समुद्री नेविगेशन', mr: 'समुद्री नेविगेशन', ta: 'Navigation by sea', te: 'Navigation by sea', bn: 'Navigation by sea', kn: 'Navigation by sea', gu: 'Navigation by sea' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -119,10 +119,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'बौधायन √2 का सन्निकटन देते हैं। यह कितने दशमलव स्थानों तक सटीक है?',
     },
     options: [
-      { en: '2 decimal places', hi: '2 दशमलव स्थान' },
-      { en: '3 decimal places', hi: '3 दशमलव स्थान' },
-      { en: '5 decimal places', hi: '5 दशमलव स्थान' },
-      { en: '10 decimal places', hi: '10 दशमलव स्थान' },
+      { en: '2 decimal places', hi: '2 दशमलव स्थान', sa: '2 दशमलव स्थान', mai: '2 दशमलव स्थान', mr: '2 दशमलव स्थान', ta: '2 decimal places', te: '2 decimal places', bn: '2 decimal places', kn: '2 decimal places', gu: '2 decimal places' },
+      { en: '3 decimal places', hi: '3 दशमलव स्थान', sa: '3 दशमलव स्थान', mai: '3 दशमलव स्थान', mr: '3 दशमलव स्थान', ta: '3 decimal places', te: '3 decimal places', bn: '3 decimal places', kn: '3 decimal places', gu: '3 decimal places' },
+      { en: '5 decimal places', hi: '5 दशमलव स्थान', sa: '5 दशमलव स्थान', mai: '5 दशमलव स्थान', mr: '5 दशमलव स्थान', ta: '5 decimal places', te: '5 decimal places', bn: '5 decimal places', kn: '5 decimal places', gu: '5 decimal places' },
+      { en: '10 decimal places', hi: '10 दशमलव स्थान', sa: '10 दशमलव स्थान', mai: '10 दशमलव स्थान', mr: '10 दशमलव स्थान', ta: '10 decimal places', te: '10 decimal places', bn: '10 decimal places', kn: '10 decimal places', gu: '10 decimal places' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -137,10 +137,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'बौधायन शुल्ब सूत्र में सूचीबद्ध निम्नलिखित में से कौन सा पाइथागोरीय त्रिक है?',
     },
     options: [
-      { en: '(2, 3, 4)', hi: '(2, 3, 4)' },
-      { en: '(3, 4, 5)', hi: '(3, 4, 5)' },
-      { en: '(4, 6, 8)', hi: '(4, 6, 8)' },
-      { en: '(1, 2, 3)', hi: '(1, 2, 3)' },
+      { en: '(2, 3, 4)', hi: '(2, 3, 4)', sa: '(2, 3, 4)', mai: '(2, 3, 4)', mr: '(2, 3, 4)', ta: '(2, 3, 4)', te: '(2, 3, 4)', bn: '(2, 3, 4)', kn: '(2, 3, 4)', gu: '(2, 3, 4)' },
+      { en: '(3, 4, 5)', hi: '(3, 4, 5)', sa: '(3, 4, 5)', mai: '(3, 4, 5)', mr: '(3, 4, 5)', ta: '(3, 4, 5)', te: '(3, 4, 5)', bn: '(3, 4, 5)', kn: '(3, 4, 5)', gu: '(3, 4, 5)' },
+      { en: '(4, 6, 8)', hi: '(4, 6, 8)', sa: '(4, 6, 8)', mai: '(4, 6, 8)', mr: '(4, 6, 8)', ta: '(4, 6, 8)', te: '(4, 6, 8)', bn: '(4, 6, 8)', kn: '(4, 6, 8)', gu: '(4, 6, 8)' },
+      { en: '(1, 2, 3)', hi: '(1, 2, 3)', sa: '(1, 2, 3)', mai: '(1, 2, 3)', mr: '(1, 2, 3)', ta: '(1, 2, 3)', te: '(1, 2, 3)', bn: '(1, 2, 3)', kn: '(1, 2, 3)', gu: '(1, 2, 3)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -155,10 +155,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पाइथागोरस का जन्म लगभग कब हुआ?',
     },
     options: [
-      { en: '~900 BCE', hi: '~900 ईपू' },
-      { en: '~700 BCE', hi: '~700 ईपू' },
-      { en: '~570 BCE', hi: '~570 ईपू' },
-      { en: '~400 BCE', hi: '~400 ईपू' },
+      { en: '~900 BCE', hi: '~900 ईपू', sa: '~900 ईपू', mai: '~900 ईपू', mr: '~900 ईपू', ta: '~900 BCE', te: '~900 BCE', bn: '~900 BCE', kn: '~900 BCE', gu: '~900 BCE' },
+      { en: '~700 BCE', hi: '~700 ईपू', sa: '~700 ईपू', mai: '~700 ईपू', mr: '~700 ईपू', ta: '~700 BCE', te: '~700 BCE', bn: '~700 BCE', kn: '~700 BCE', gu: '~700 BCE' },
+      { en: '~570 BCE', hi: '~570 ईपू', sa: '~570 ईपू', mai: '~570 ईपू', mr: '~570 ईपू', ta: '~570 BCE', te: '~570 BCE', bn: '~570 BCE', kn: '~570 BCE', gu: '~570 BCE' },
+      { en: '~400 BCE', hi: '~400 ईपू', sa: '~400 ईपू', mai: '~400 ईपू', mr: '~400 ईपू', ta: '~400 BCE', te: '~400 BCE', bn: '~400 BCE', kn: '~400 BCE', gu: '~400 BCE' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -173,8 +173,8 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सत्य या असत्य: बौधायन ने प्रमेय केवल विशेष त्रिभुजों (जैसे 3-4-5) के लिए कही, सामान्य नियम के रूप में नहीं।',
     },
     options: [
-      { en: 'True', hi: 'सत्य' },
-      { en: 'False', hi: 'असत्य' },
+      { en: 'True', hi: 'सत्य', sa: 'सत्य', mai: 'सत्य', mr: 'सत्य', ta: 'True', te: 'True', bn: 'True', kn: 'True', gu: 'True' },
+      { en: 'False', hi: 'असत्य', sa: 'असत्य', mai: 'असत्य', mr: 'असत्य', ta: 'False', te: 'False', bn: 'False', kn: 'False', gu: 'False' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -189,8 +189,8 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सत्य या असत्य: पाइथागोरस का कोई लिखित कार्य स्वयं नहीं बचा — सभी आरोपण बाद के अनुयायियों और लेखकों से आते हैं।',
     },
     options: [
-      { en: 'True', hi: 'सत्य' },
-      { en: 'False', hi: 'असत्य' },
+      { en: 'True', hi: 'सत्य', sa: 'सत्य', mai: 'सत्य', mr: 'सत्य', ta: 'True', te: 'True', bn: 'True', kn: 'True', gu: 'True' },
+      { en: 'False', hi: 'असत्य', sa: 'असत्य', mai: 'असत्य', mr: 'असत्य', ta: 'False', te: 'False', bn: 'False', kn: 'False', gu: 'False' },
     ],
     correctAnswer: 0,
     explanation: {
@@ -230,9 +230,9 @@ function Page1() {
         </p>
         <div className="space-y-2">
           {[
-            { name: 'Baudhayana', date: '~800 BCE', note: { en: 'Oldest — contains verse 1.48, the general theorem', hi: 'सबसे पुराना — श्लोक 1.48, सामान्य प्रमेय' }, accent: '#f0d48a' },
-            { name: 'Apastamba', date: '~600 BCE', note: { en: 'Refined √2, additional constructions', hi: 'परिष्कृत √2' }, accent: '#fbbf24' },
-            { name: 'Katyayana', date: '~300 BCE', note: { en: 'Generalised geometric transformations', hi: 'सामान्यीकृत रूपांतरण' }, accent: '#a78bfa' },
+            { name: 'Baudhayana', date: '~800 BCE', note: { en: 'Oldest — contains verse 1.48, the general theorem', hi: 'सबसे पुराना — श्लोक 1.48, सामान्य प्रमेय', sa: 'सबसे पुराना — श्लोक 1.48, सामान्य प्रमेय', mai: 'सबसे पुराना — श्लोक 1.48, सामान्य प्रमेय', mr: 'सबसे पुराना — श्लोक 1.48, सामान्य प्रमेय', ta: 'Oldest — contains verse 1.48, the general theorem', te: 'Oldest — contains verse 1.48, the general theorem', bn: 'Oldest — contains verse 1.48, the general theorem', kn: 'Oldest — contains verse 1.48, the general theorem', gu: 'Oldest — contains verse 1.48, the general theorem' }, accent: '#f0d48a' },
+            { name: 'Apastamba', date: '~600 BCE', note: { en: 'Refined √2, additional constructions', hi: 'परिष्कृत √2', sa: 'परिष्कृत √2', mai: 'परिष्कृत √2', mr: 'परिष्कृत √2', ta: 'Refined √2, additional constructions', te: 'Refined √2, additional constructions', bn: 'Refined √2, additional constructions', kn: 'Refined √2, additional constructions', gu: 'Refined √2, additional constructions' }, accent: '#fbbf24' },
+            { name: 'Katyayana', date: '~300 BCE', note: { en: 'Generalised geometric transformations', hi: 'सामान्यीकृत रूपांतरण', sa: 'सामान्यीकृत रूपांतरण', mai: 'सामान्यीकृत रूपांतरण', mr: 'सामान्यीकृत रूपांतरण', ta: 'Generalised geometric transformations', te: 'Generalised geometric transformations', bn: 'Generalised geometric transformations', kn: 'Generalised geometric transformations', gu: 'Generalised geometric transformations' }, accent: '#a78bfa' },
           ].map((s, i) => (
             <div key={i} className="flex items-center gap-3 p-2 rounded-lg bg-white/[0.02] border border-white/[0.04]">
               <span className="text-xs font-mono w-16 flex-shrink-0" style={{ color: s.accent }}>{s.date}</span>
@@ -359,11 +359,11 @@ function Page3() {
         </h4>
         <div className="space-y-3">
           {[
-            { year: '~800 BCE', event: { en: 'Baudhayana Sulba Sutra — general theorem, √2, and triples', hi: 'बौधायन शुल्ब सूत्र — सामान्य प्रमेय, √2, और त्रिक' }, color: '#f0d48a' },
-            { year: '~600 BCE', event: { en: 'Apastamba Sulba Sutra — refined √2', hi: 'आपस्तम्ब शुल्ब सूत्र — परिष्कृत √2' }, color: '#d4a853' },
-            { year: '~570 BCE', event: { en: 'Pythagoras born in Samos, Greece', hi: 'पाइथागोरस का जन्म सामोस, ग्रीस में' }, color: '#a78bfa' },
-            { year: '~300 BCE', event: { en: "Euclid's Elements — first surviving formal Greek proof", hi: 'यूक्लिड के Elements — पहला जीवित औपचारिक ग्रीक प्रमाण' }, color: '#34d399' },
-            { year: '499 CE', event: { en: 'Aryabhatiya — theorem used for astronomical calculations', hi: 'आर्यभटीय — खगोलीय गणनाओं में प्रमेय' }, color: '#fbbf24' },
+            { year: '~800 BCE', event: { en: 'Baudhayana Sulba Sutra — general theorem, √2, and triples', hi: 'बौधायन शुल्ब सूत्र — सामान्य प्रमेय, √2, और त्रिक', sa: 'बौधायन शुल्ब सूत्र — सामान्य प्रमेय, √2, और त्रिक', mai: 'बौधायन शुल्ब सूत्र — सामान्य प्रमेय, √2, और त्रिक', mr: 'बौधायन शुल्ब सूत्र — सामान्य प्रमेय, √2, और त्रिक', ta: 'Baudhayana Sulba Sutra — general theorem, √2, and triples', te: 'Baudhayana Sulba Sutra — general theorem, √2, and triples', bn: 'Baudhayana Sulba Sutra — general theorem, √2, and triples', kn: 'Baudhayana Sulba Sutra — general theorem, √2, and triples', gu: 'Baudhayana Sulba Sutra — general theorem, √2, and triples' }, color: '#f0d48a' },
+            { year: '~600 BCE', event: { en: 'Apastamba Sulba Sutra — refined √2', hi: 'आपस्तम्ब शुल्ब सूत्र — परिष्कृत √2', sa: 'आपस्तम्ब शुल्ब सूत्र — परिष्कृत √2', mai: 'आपस्तम्ब शुल्ब सूत्र — परिष्कृत √2', mr: 'आपस्तम्ब शुल्ब सूत्र — परिष्कृत √2', ta: 'Apastamba Sulba Sutra — refined √2', te: 'Apastamba Sulba Sutra — refined √2', bn: 'Apastamba Sulba Sutra — refined √2', kn: 'Apastamba Sulba Sutra — refined √2', gu: 'Apastamba Sulba Sutra — refined √2' }, color: '#d4a853' },
+            { year: '~570 BCE', event: { en: 'Pythagoras born in Samos, Greece', hi: 'पाइथागोरस का जन्म सामोस, ग्रीस में', sa: 'पाइथागोरस का जन्म सामोस, ग्रीस में', mai: 'पाइथागोरस का जन्म सामोस, ग्रीस में', mr: 'पाइथागोरस का जन्म सामोस, ग्रीस में', ta: 'Pythagoras born in Samos, Greece', te: 'Pythagoras born in Samos, Greece', bn: 'Pythagoras born in Samos, Greece', kn: 'Pythagoras born in Samos, Greece', gu: 'Pythagoras born in Samos, Greece' }, color: '#a78bfa' },
+            { year: '~300 BCE', event: { en: "Euclid's Elements — first surviving formal Greek proof", hi: 'यूक्लिड के Elements — पहला जीवित औपचारिक ग्रीक प्रमाण', sa: 'यूक्लिड के Elements — पहला जीवित औपचारिक ग्रीक प्रमाण', mai: 'यूक्लिड के Elements — पहला जीवित औपचारिक ग्रीक प्रमाण', mr: 'यूक्लिड के Elements — पहला जीवित औपचारिक ग्रीक प्रमाण', ta: "Euclid's Elements — first surviving formal Greek proof", te: "Euclid's Elements — first surviving formal Greek proof", bn: "Euclid's Elements — first surviving formal Greek proof", kn: "Euclid's Elements — first surviving formal Greek proof", gu: "Euclid's Elements — first surviving formal Greek proof" }, color: '#34d399' },
+            { year: '499 CE', event: { en: 'Aryabhatiya — theorem used for astronomical calculations', hi: 'आर्यभटीय — खगोलीय गणनाओं में प्रमेय', sa: 'आर्यभटीय — खगोलीय गणनाओं में प्रमेय', mai: 'आर्यभटीय — खगोलीय गणनाओं में प्रमेय', mr: 'आर्यभटीय — खगोलीय गणनाओं में प्रमेय', ta: 'Aryabhatiya — theorem used for astronomical calculations', te: 'Aryabhatiya — theorem used for astronomical calculations', bn: 'Aryabhatiya — theorem used for astronomical calculations', kn: 'Aryabhatiya — theorem used for astronomical calculations', gu: 'Aryabhatiya — theorem used for astronomical calculations' }, color: '#fbbf24' },
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-3">
               <span className="text-xs font-mono w-16 flex-shrink-0 mt-0.5" style={{ color: item.color }}>{item.year}</span>

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 import GoldDivider from '@/components/ui/GoldDivider';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const LABELS = {
@@ -143,7 +143,7 @@ function PujaCard({
   index,
   viewLabel,
 }: {
-  deity: { en: string; hi: string; sa: string };
+  deity: LocaleText;
   slug: string;
   category: string;
   locale: Locale;

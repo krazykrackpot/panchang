@@ -8,7 +8,7 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import InfoBlock from '@/components/ui/InfoBlock';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
-import type { Locale, Trilingual } from '@/types/panchang';
+import type { Locale,  LocaleText} from '@/types/panchang';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { sunLongitude, toSidereal, dateToJD, jdToDate, normalizeDeg } from '@/lib/ephem/astronomical';
 import { tl } from '@/lib/utils/trilingual';
@@ -16,12 +16,12 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface TransitEvent {
   planetId: number;
-  planetName: Trilingual;
+  planetName: LocaleText;
   planetColor: string;
   fromSign: number;
-  fromSignName: Trilingual;
+  fromSignName: LocaleText;
   toSign: number;
-  toSignName: Trilingual;
+  toSignName: LocaleText;
   date: string;
   significance: 'major' | 'moderate' | 'minor';
 }
@@ -95,7 +95,7 @@ export default function TransitsPage() {
         return null;
       }
       return { planetId: pid, sign: latest.toSign, signName: latest.toSignName, planetName: latest.planetName };
-    }).filter(Boolean) as { planetId: number; sign: number; signName: Trilingual; planetName: Trilingual }[];
+    }).filter(Boolean) as { planetId: number; sign: number; signName: LocaleText; planetName: LocaleText }[];
   }, [events]);
 
   // Stats
@@ -150,18 +150,18 @@ export default function TransitsPage() {
     const dateResult = jdToDate(jdResult);
     // House themes for mundane astrology
     const SANKRANTI_HOUSES = [
-      { en: '1H — World — Global identity, new world-era theme for the solar year', hi: '1H — विश्व — वार्षिक सौर-काल का वैश्विक विषय' },
-      { en: '2H — Wealth — Global economy, food production, financial trends', hi: '2H — धन — वैश्विक अर्थव्यवस्था, खाद्य उत्पादन' },
-      { en: '3H — Communication — Media, transport, trade, neighbouring nations', hi: '3H — संचार — मीडिया, परिवहन, व्यापार' },
-      { en: '4H — Land — Agriculture, crops, weather, masses, and real estate', hi: '4H — भूमि — कृषि, फसल, मौसम, जनता' },
-      { en: '5H — Creativity — Children, arts, entertainment, stock markets', hi: '5H — रचना — बच्चे, कला, मनोरंजन, शेयर बाज़ार' },
-      { en: '6H — Health — Epidemics, public health, labour disputes, military', hi: '6H — स्वास्थ्य — महामारी, सार्वजनिक स्वास्थ्य, सेना' },
-      { en: '7H — Alliances — Wars, treaties, international relations', hi: '7H — संधि — युद्ध, सन्धियाँ, अन्तर्राष्ट्रीय सम्बन्ध' },
-      { en: '8H — Transformation — Deaths, natural disasters, hidden powers', hi: '8H — रूपांतरण — मृत्यु, प्राकृतिक आपदाएँ, गुप्त शक्तियाँ' },
-      { en: '9H — Dharma — Religion, law, higher education, long journeys', hi: '9H — धर्म — धर्म, कानून, उच्च शिक्षा' },
-      { en: '10H — Governments — Rulers, leadership, national authority', hi: '10H — सरकार — शासक, नेतृत्व, राष्ट्रीय अधिकार' },
-      { en: '11H — Gains — Profits for nations, social movements, aspirations', hi: '11H — लाभ — राष्ट्रीय लाभ, सामाजिक आन्दोलन' },
-      { en: '12H — Liberation — Foreign influence, losses, spirituality, hidden enemies', hi: '12H — मोक्ष — विदेशी प्रभाव, हानि, आध्यात्मिकता' },
+      { en: '1H — World — Global identity, new world-era theme for the solar year', hi: '1H — विश्व — वार्षिक सौर-काल का वैश्विक विषय', sa: '1H — विश्व — वार्षिक सौर-काल का वैश्विक विषय', mai: '1H — विश्व — वार्षिक सौर-काल का वैश्विक विषय', mr: '1H — विश्व — वार्षिक सौर-काल का वैश्विक विषय', ta: '1H — World — Global identity, new world-era theme for the solar year', te: '1H — World — Global identity, new world-era theme for the solar year', bn: '1H — World — Global identity, new world-era theme for the solar year', kn: '1H — World — Global identity, new world-era theme for the solar year', gu: '1H — World — Global identity, new world-era theme for the solar year' },
+      { en: '2H — Wealth — Global economy, food production, financial trends', hi: '2H — धन — वैश्विक अर्थव्यवस्था, खाद्य उत्पादन', sa: '2H — धन — वैश्विक अर्थव्यवस्था, खाद्य उत्पादन', mai: '2H — धन — वैश्विक अर्थव्यवस्था, खाद्य उत्पादन', mr: '2H — धन — वैश्विक अर्थव्यवस्था, खाद्य उत्पादन', ta: '2H — Wealth — Global economy, food production, financial trends', te: '2H — Wealth — Global economy, food production, financial trends', bn: '2H — Wealth — Global economy, food production, financial trends', kn: '2H — Wealth — Global economy, food production, financial trends', gu: '2H — Wealth — Global economy, food production, financial trends' },
+      { en: '3H — Communication — Media, transport, trade, neighbouring nations', hi: '3H — संचार — मीडिया, परिवहन, व्यापार', sa: '3H — संचार — मीडिया, परिवहन, व्यापार', mai: '3H — संचार — मीडिया, परिवहन, व्यापार', mr: '3H — संचार — मीडिया, परिवहन, व्यापार', ta: '3H — Communication — Media, transport, trade, neighbouring nations', te: '3H — Communication — Media, transport, trade, neighbouring nations', bn: '3H — Communication — Media, transport, trade, neighbouring nations', kn: '3H — Communication — Media, transport, trade, neighbouring nations', gu: '3H — Communication — Media, transport, trade, neighbouring nations' },
+      { en: '4H — Land — Agriculture, crops, weather, masses, and real estate', hi: '4H — भूमि — कृषि, फसल, मौसम, जनता', sa: '4H — भूमि — कृषि, फसल, मौसम, जनता', mai: '4H — भूमि — कृषि, फसल, मौसम, जनता', mr: '4H — भूमि — कृषि, फसल, मौसम, जनता', ta: '4H — Land — Agriculture, crops, weather, masses, and real estate', te: '4H — Land — Agriculture, crops, weather, masses, and real estate', bn: '4H — Land — Agriculture, crops, weather, masses, and real estate', kn: '4H — Land — Agriculture, crops, weather, masses, and real estate', gu: '4H — Land — Agriculture, crops, weather, masses, and real estate' },
+      { en: '5H — Creativity — Children, arts, entertainment, stock markets', hi: '5H — रचना — बच्चे, कला, मनोरंजन, शेयर बाज़ार', sa: '5H — रचना — बच्चे, कला, मनोरंजन, शेयर बाज़ार', mai: '5H — रचना — बच्चे, कला, मनोरंजन, शेयर बाज़ार', mr: '5H — रचना — बच्चे, कला, मनोरंजन, शेयर बाज़ार', ta: '5H — Creativity — Children, arts, entertainment, stock markets', te: '5H — Creativity — Children, arts, entertainment, stock markets', bn: '5H — Creativity — Children, arts, entertainment, stock markets', kn: '5H — Creativity — Children, arts, entertainment, stock markets', gu: '5H — Creativity — Children, arts, entertainment, stock markets' },
+      { en: '6H — Health — Epidemics, public health, labour disputes, military', hi: '6H — स्वास्थ्य — महामारी, सार्वजनिक स्वास्थ्य, सेना', sa: '6H — स्वास्थ्य — महामारी, सार्वजनिक स्वास्थ्य, सेना', mai: '6H — स्वास्थ्य — महामारी, सार्वजनिक स्वास्थ्य, सेना', mr: '6H — स्वास्थ्य — महामारी, सार्वजनिक स्वास्थ्य, सेना', ta: '6H — Health — Epidemics, public health, labour disputes, military', te: '6H — Health — Epidemics, public health, labour disputes, military', bn: '6H — Health — Epidemics, public health, labour disputes, military', kn: '6H — Health — Epidemics, public health, labour disputes, military', gu: '6H — Health — Epidemics, public health, labour disputes, military' },
+      { en: '7H — Alliances — Wars, treaties, international relations', hi: '7H — संधि — युद्ध, सन्धियाँ, अन्तर्राष्ट्रीय सम्बन्ध', sa: '7H — संधि — युद्ध, सन्धियाँ, अन्तर्राष्ट्रीय सम्बन्ध', mai: '7H — संधि — युद्ध, सन्धियाँ, अन्तर्राष्ट्रीय सम्बन्ध', mr: '7H — संधि — युद्ध, सन्धियाँ, अन्तर्राष्ट्रीय सम्बन्ध', ta: '7H — Alliances — Wars, treaties, international relations', te: '7H — Alliances — Wars, treaties, international relations', bn: '7H — Alliances — Wars, treaties, international relations', kn: '7H — Alliances — Wars, treaties, international relations', gu: '7H — Alliances — Wars, treaties, international relations' },
+      { en: '8H — Transformation — Deaths, natural disasters, hidden powers', hi: '8H — रूपांतरण — मृत्यु, प्राकृतिक आपदाएँ, गुप्त शक्तियाँ', sa: '8H — रूपांतरण — मृत्यु, प्राकृतिक आपदाएँ, गुप्त शक्तियाँ', mai: '8H — रूपांतरण — मृत्यु, प्राकृतिक आपदाएँ, गुप्त शक्तियाँ', mr: '8H — रूपांतरण — मृत्यु, प्राकृतिक आपदाएँ, गुप्त शक्तियाँ', ta: '8H — Transformation — Deaths, natural disasters, hidden powers', te: '8H — Transformation — Deaths, natural disasters, hidden powers', bn: '8H — Transformation — Deaths, natural disasters, hidden powers', kn: '8H — Transformation — Deaths, natural disasters, hidden powers', gu: '8H — Transformation — Deaths, natural disasters, hidden powers' },
+      { en: '9H — Dharma — Religion, law, higher education, long journeys', hi: '9H — धर्म — धर्म, कानून, उच्च शिक्षा', sa: '9H — धर्म — धर्म, कानून, उच्च शिक्षा', mai: '9H — धर्म — धर्म, कानून, उच्च शिक्षा', mr: '9H — धर्म — धर्म, कानून, उच्च शिक्षा', ta: '9H — Dharma — Religion, law, higher education, long journeys', te: '9H — Dharma — Religion, law, higher education, long journeys', bn: '9H — Dharma — Religion, law, higher education, long journeys', kn: '9H — Dharma — Religion, law, higher education, long journeys', gu: '9H — Dharma — Religion, law, higher education, long journeys' },
+      { en: '10H — Governments — Rulers, leadership, national authority', hi: '10H — सरकार — शासक, नेतृत्व, राष्ट्रीय अधिकार', sa: '10H — सरकार — शासक, नेतृत्व, राष्ट्रीय अधिकार', mai: '10H — सरकार — शासक, नेतृत्व, राष्ट्रीय अधिकार', mr: '10H — सरकार — शासक, नेतृत्व, राष्ट्रीय अधिकार', ta: '10H — Governments — Rulers, leadership, national authority', te: '10H — Governments — Rulers, leadership, national authority', bn: '10H — Governments — Rulers, leadership, national authority', kn: '10H — Governments — Rulers, leadership, national authority', gu: '10H — Governments — Rulers, leadership, national authority' },
+      { en: '11H — Gains — Profits for nations, social movements, aspirations', hi: '11H — लाभ — राष्ट्रीय लाभ, सामाजिक आन्दोलन', sa: '11H — लाभ — राष्ट्रीय लाभ, सामाजिक आन्दोलन', mai: '11H — लाभ — राष्ट्रीय लाभ, सामाजिक आन्दोलन', mr: '11H — लाभ — राष्ट्रीय लाभ, सामाजिक आन्दोलन', ta: '11H — Gains — Profits for nations, social movements, aspirations', te: '11H — Gains — Profits for nations, social movements, aspirations', bn: '11H — Gains — Profits for nations, social movements, aspirations', kn: '11H — Gains — Profits for nations, social movements, aspirations', gu: '11H — Gains — Profits for nations, social movements, aspirations' },
+      { en: '12H — Liberation — Foreign influence, losses, spirituality, hidden enemies', hi: '12H — मोक्ष — विदेशी प्रभाव, हानि, आध्यात्मिकता', sa: '12H — मोक्ष — विदेशी प्रभाव, हानि, आध्यात्मिकता', mai: '12H — मोक्ष — विदेशी प्रभाव, हानि, आध्यात्मिकता', mr: '12H — मोक्ष — विदेशी प्रभाव, हानि, आध्यात्मिकता', ta: '12H — Liberation — Foreign influence, losses, spirituality, hidden enemies', te: '12H — Liberation — Foreign influence, losses, spirituality, hidden enemies', bn: '12H — Liberation — Foreign influence, losses, spirituality, hidden enemies', kn: '12H — Liberation — Foreign influence, losses, spirituality, hidden enemies', gu: '12H — Liberation — Foreign influence, losses, spirituality, hidden enemies' },
     ];
     // Planets in each house at Sankranti (approximate — use current transits)
     return { date: dateResult, jd: jdResult, houseThemes: SANKRANTI_HOUSES };
@@ -189,10 +189,10 @@ export default function TransitsPage() {
     minor: 'text-text-tertiary bg-bg-tertiary/30',
   };
 
-  const sigLabel: Record<string, { en: string; hi: string }> = {
-    major: { en: 'MAJOR', hi: 'प्रमुख' },
-    moderate: { en: 'MODERATE', hi: 'मध्यम' },
-    minor: { en: 'MINOR', hi: 'गौण' },
+  const sigLabel: Record<string, LocaleText> = {
+    major: { en: 'MAJOR', hi: 'प्रमुख', sa: 'प्रमुख', mai: 'प्रमुख', mr: 'प्रमुख', ta: 'MAJOR', te: 'MAJOR', bn: 'MAJOR', kn: 'MAJOR', gu: 'MAJOR' },
+    moderate: { en: 'MODERATE', hi: 'मध्यम', sa: 'मध्यम', mai: 'मध्यम', mr: 'मध्यम', ta: 'MODERATE', te: 'MODERATE', bn: 'MODERATE', kn: 'MODERATE', gu: 'MODERATE' },
+    minor: { en: 'MINOR', hi: 'गौण', sa: 'गौण', mai: 'गौण', mr: 'गौण', ta: 'MINOR', te: 'MINOR', bn: 'MINOR', kn: 'MINOR', gu: 'MINOR' },
   };
 
   return (

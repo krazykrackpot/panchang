@@ -2,14 +2,14 @@
 
 import { motion } from 'framer-motion';
 import type { PujaVidhi, MuhurtaWindowType } from '@/lib/constants/puja-vidhi/types';
-import type { Locale } from '@/types/panchang';
+import type { Locale ,LocaleText} from '@/types/panchang';
 import type { ComputedMuhurta } from '@/lib/puja/muhurta-compute';
 import MuhurtaCountdown from '@/components/puja/MuhurtaCountdown';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ── Trilingual labels ─────────────────────────────────────── */
 
-const CATEGORY_LABELS: Record<PujaVidhi['category'], Record<Locale, string>> = {
+const CATEGORY_LABELS: Record<PujaVidhi['category'], LocaleText> = {
   festival:     { en: 'Festival',      hi: 'त्योहार',      sa: 'उत्सवः' },
   vrat:         { en: 'Vrat',          hi: 'व्रत',         sa: 'व्रतम्' },
   graha_shanti: { en: 'Graha Shanti',  hi: 'ग्रह शान्ति',  sa: 'ग्रहशान्तिः' },
@@ -21,7 +21,7 @@ const CATEGORY_COLORS: Record<PujaVidhi['category'], string> = {
   graha_shanti: 'bg-purple-500/15 text-purple-400 border-purple-500/30',
 };
 
-const MUHURTA_WINDOW_LABELS: Record<MuhurtaWindowType, Record<Locale, string>> = {
+const MUHURTA_WINDOW_LABELS: Record<MuhurtaWindowType, LocaleText> = {
   madhyahna:      { en: 'Madhyahna Kaal',  hi: 'मध्याह्न काल',    sa: 'मध्याह्नकालः' },
   aparahna:       { en: 'Aparahna Kaal',    hi: 'अपराह्न काल',     sa: 'अपराह्णकालः' },
   pradosh:        { en: 'Pradosh Kaal',     hi: 'प्रदोष काल',      sa: 'प्रदोषकालः' },

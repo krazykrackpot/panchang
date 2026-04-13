@@ -6,16 +6,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_5_2', phase: 2, topic: 'Tithi', moduleNumber: '5.2',
-  title: { en: 'Paksha — The Lunar Fortnight', hi: 'पक्ष — चान्द्र पखवाड़ा' },
+  title: { en: 'Paksha — The Lunar Fortnight', hi: 'पक्ष — चान्द्र पखवाड़ा', sa: 'पक्ष — चान्द्र पखवाड़ा', mai: 'पक्ष — चान्द्र पखवाड़ा', mr: 'पक्ष — चान्द्र पखवाड़ा', ta: 'Paksha — The Lunar Fortnight', te: 'Paksha — The Lunar Fortnight', bn: 'Paksha — The Lunar Fortnight', kn: 'Paksha — The Lunar Fortnight', gu: 'Paksha — The Lunar Fortnight' },
   subtitle: {
     en: 'Shukla and Krishna Paksha divide the lunar month into bright and dark halves, shaping rituals and calendars',
     hi: 'शुक्ल और कृष्ण पक्ष चान्द्र मास को उज्ज्वल और अन्धकार अर्धों में विभक्त करते हैं, जो अनुष्ठानों और पंचांगों को आकार देते हैं',
   },
   estimatedMinutes: 13,
   crossRefs: [
-    { label: { en: 'Module 5-1: Tithi', hi: 'मॉड्यूल 5-1: तिथि' }, href: '/learn/modules/5-1' },
-    { label: { en: 'Module 5-3: Tithi Calculations', hi: 'मॉड्यूल 5-3: तिथि गणना' }, href: '/learn/modules/5-3' },
-    { label: { en: 'Festival Calendar', hi: 'त्योहार पंचांग' }, href: '/calendar' },
+    { label: { en: 'Module 5-1: Tithi', hi: 'मॉड्यूल 5-1: तिथि', sa: 'मॉड्यूल 5-1: तिथि', mai: 'मॉड्यूल 5-1: तिथि', mr: 'मॉड्यूल 5-1: तिथि', ta: 'Module 5-1: Tithi', te: 'Module 5-1: Tithi', bn: 'Module 5-1: Tithi', kn: 'Module 5-1: Tithi', gu: 'Module 5-1: Tithi' }, href: '/learn/modules/5-1' },
+    { label: { en: 'Module 5-3: Tithi Calculations', hi: 'मॉड्यूल 5-3: तिथि गणना', sa: 'मॉड्यूल 5-3: तिथि गणना', mai: 'मॉड्यूल 5-3: तिथि गणना', mr: 'मॉड्यूल 5-3: तिथि गणना', ta: 'Module 5-3: Tithi Calculations', te: 'Module 5-3: Tithi Calculations', bn: 'Module 5-3: Tithi Calculations', kn: 'Module 5-3: Tithi Calculations', gu: 'Module 5-3: Tithi Calculations' }, href: '/learn/modules/5-3' },
+    { label: { en: 'Festival Calendar', hi: 'त्योहार पंचांग', sa: 'त्योहार पंचांग', mai: 'त्योहार पंचांग', mr: 'त्योहार पंचांग', ta: 'Festival Calendar', te: 'Festival Calendar', bn: 'Festival Calendar', kn: 'Festival Calendar', gu: 'Festival Calendar' }, href: '/calendar' },
   ],
 };
 
@@ -27,10 +27,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'शुक्ल पक्ष किस तिथि के पश्चात् आरम्भ होता है?',
     },
     options: [
-      { en: 'Purnima (Full Moon)', hi: 'पूर्णिमा' },
-      { en: 'Amavasya (New Moon)', hi: 'अमावस्या' },
-      { en: 'Ashtami (8th)', hi: 'अष्टमी' },
-      { en: 'Ekadashi (11th)', hi: 'एकादशी' },
+      { en: 'Purnima (Full Moon)', hi: 'पूर्णिमा', sa: 'पूर्णिमा', mai: 'पूर्णिमा', mr: 'पूर्णिमा', ta: 'Purnima (Full Moon)', te: 'Purnima (Full Moon)', bn: 'Purnima (Full Moon)', kn: 'Purnima (Full Moon)', gu: 'Purnima (Full Moon)' },
+      { en: 'Amavasya (New Moon)', hi: 'अमावस्या', sa: 'अमावस्या', mai: 'अमावस्या', mr: 'अमावस्या', ta: 'Amavasya (New Moon)', te: 'Amavasya (New Moon)', bn: 'Amavasya (New Moon)', kn: 'Amavasya (New Moon)', gu: 'Amavasya (New Moon)' },
+      { en: 'Ashtami (8th)', hi: 'अष्टमी', sa: 'अष्टमी', mai: 'अष्टमी', mr: 'अष्टमी', ta: 'Ashtami (8th)', te: 'Ashtami (8th)', bn: 'Ashtami (8th)', kn: 'Ashtami (8th)', gu: 'Ashtami (8th)' },
+      { en: 'Ekadashi (11th)', hi: 'एकादशी', sa: 'एकादशी', mai: 'एकादशी', mr: 'एकादशी', ta: 'Ekadashi (11th)', te: 'Ekadashi (11th)', bn: 'Ekadashi (11th)', kn: 'Ekadashi (11th)', gu: 'Ekadashi (11th)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -57,10 +57,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'अमान्त पद्धति में चान्द्र मास किस दिन समाप्त होता है?',
     },
     options: [
-      { en: 'Purnima', hi: 'पूर्णिमा' },
-      { en: 'Ekadashi', hi: 'एकादशी' },
-      { en: 'Amavasya', hi: 'अमावस्या' },
-      { en: 'Chaturdashi', hi: 'चतुर्दशी' },
+      { en: 'Purnima', hi: 'पूर्णिमा', sa: 'पूर्णिमा', mai: 'पूर्णिमा', mr: 'पूर्णिमा', ta: 'Purnima', te: 'Purnima', bn: 'Purnima', kn: 'Purnima', gu: 'Purnima' },
+      { en: 'Ekadashi', hi: 'एकादशी', sa: 'एकादशी', mai: 'एकादशी', mr: 'एकादशी', ta: 'Ekadashi', te: 'Ekadashi', bn: 'Ekadashi', kn: 'Ekadashi', gu: 'Ekadashi' },
+      { en: 'Amavasya', hi: 'अमावस्या', sa: 'अमावस्या', mai: 'अमावस्या', mr: 'अमावस्या', ta: 'Amavasya', te: 'Amavasya', bn: 'Amavasya', kn: 'Amavasya', gu: 'Amavasya' },
+      { en: 'Chaturdashi', hi: 'चतुर्दशी', sa: 'चतुर्दशी', mai: 'चतुर्दशी', mr: 'चतुर्दशी', ta: 'Chaturdashi', te: 'Chaturdashi', bn: 'Chaturdashi', kn: 'Chaturdashi', gu: 'Chaturdashi' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -75,9 +75,9 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'शुक्ल पक्ष में चन्द्रमा क्यों बढ़ता है?',
     },
     options: [
-      { en: 'The Moon produces its own light that increases cyclically', hi: 'चन्द्रमा अपना प्रकाश स्वयं उत्पन्न करता है जो चक्रीय रूप से बढ़ता है' },
-      { en: 'The Sun moves closer to the Moon during this period', hi: 'इस अवधि में सूर्य चन्द्रमा के निकट आता है' },
-      { en: 'The Moon-Sun angular separation increases, revealing more of the illuminated surface', hi: 'चन्द्र-सूर्य कोणीय दूरी बढ़ती है, जिससे प्रकाशित सतह अधिक दिखती है' },
+      { en: 'The Moon produces its own light that increases cyclically', hi: 'चन्द्रमा अपना प्रकाश स्वयं उत्पन्न करता है जो चक्रीय रूप से बढ़ता है', sa: 'चन्द्रमा अपना प्रकाश स्वयं उत्पन्न करता है जो चक्रीय रूप से बढ़ता है', mai: 'चन्द्रमा अपना प्रकाश स्वयं उत्पन्न करता है जो चक्रीय रूप से बढ़ता है', mr: 'चन्द्रमा अपना प्रकाश स्वयं उत्पन्न करता है जो चक्रीय रूप से बढ़ता है', ta: 'The Moon produces its own light that increases cyclically', te: 'The Moon produces its own light that increases cyclically', bn: 'The Moon produces its own light that increases cyclically', kn: 'The Moon produces its own light that increases cyclically', gu: 'The Moon produces its own light that increases cyclically' },
+      { en: 'The Sun moves closer to the Moon during this period', hi: 'इस अवधि में सूर्य चन्द्रमा के निकट आता है', sa: 'इस अवधि में सूर्य चन्द्रमा के निकट आता है', mai: 'इस अवधि में सूर्य चन्द्रमा के निकट आता है', mr: 'इस अवधि में सूर्य चन्द्रमा के निकट आता है', ta: 'The Sun moves closer to the Moon during this period', te: 'The Sun moves closer to the Moon during this period', bn: 'The Sun moves closer to the Moon during this period', kn: 'The Sun moves closer to the Moon during this period', gu: 'The Sun moves closer to the Moon during this period' },
+      { en: 'The Moon-Sun angular separation increases, revealing more of the illuminated surface', hi: 'चन्द्र-सूर्य कोणीय दूरी बढ़ती है, जिससे प्रकाशित सतह अधिक दिखती है', sa: 'चन्द्र-सूर्य कोणीय दूरी बढ़ती है, जिससे प्रकाशित सतह अधिक दिखती है', mai: 'चन्द्र-सूर्य कोणीय दूरी बढ़ती है, जिससे प्रकाशित सतह अधिक दिखती है', mr: 'चन्द्र-सूर्य कोणीय दूरी बढ़ती है, जिससे प्रकाशित सतह अधिक दिखती है', ta: 'The Moon-Sun angular separation increases, revealing more of the illuminated surface', te: 'The Moon-Sun angular separation increases, revealing more of the illuminated surface', bn: 'The Moon-Sun angular separation increases, revealing more of the illuminated surface', kn: 'The Moon-Sun angular separation increases, revealing more of the illuminated surface', gu: 'The Moon-Sun angular separation increases, revealing more of the illuminated surface' },
       { en: 'Earth\'s shadow gradually recedes from the Moon', hi: 'पृथ्वी की छाया चन्द्रमा से धीरे-धीरे हटती है' },
     ],
     correctAnswer: 2,
@@ -105,10 +105,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'श्राद्ध (पितृ कर्म) परम्परागत रूप से किस पक्ष में किए जाते हैं?',
     },
     options: [
-      { en: 'Shukla Paksha only', hi: 'केवल शुक्ल पक्ष' },
-      { en: 'Krishna Paksha, especially in Pitru Paksha', hi: 'कृष्ण पक्ष, विशेषतः पितृ पक्ष में' },
-      { en: 'On any Purnima', hi: 'किसी भी पूर्णिमा को' },
-      { en: 'Only during eclipses', hi: 'केवल ग्रहण के समय' },
+      { en: 'Shukla Paksha only', hi: 'केवल शुक्ल पक्ष', sa: 'केवल शुक्ल पक्ष', mai: 'केवल शुक्ल पक्ष', mr: 'केवल शुक्ल पक्ष', ta: 'Shukla Paksha only', te: 'Shukla Paksha only', bn: 'Shukla Paksha only', kn: 'Shukla Paksha only', gu: 'Shukla Paksha only' },
+      { en: 'Krishna Paksha, especially in Pitru Paksha', hi: 'कृष्ण पक्ष, विशेषतः पितृ पक्ष में', sa: 'कृष्ण पक्ष, विशेषतः पितृ पक्ष में', mai: 'कृष्ण पक्ष, विशेषतः पितृ पक्ष में', mr: 'कृष्ण पक्ष, विशेषतः पितृ पक्ष में', ta: 'Krishna Paksha, especially in Pitru Paksha', te: 'Krishna Paksha, especially in Pitru Paksha', bn: 'Krishna Paksha, especially in Pitru Paksha', kn: 'Krishna Paksha, especially in Pitru Paksha', gu: 'Krishna Paksha, especially in Pitru Paksha' },
+      { en: 'On any Purnima', hi: 'किसी भी पूर्णिमा को', sa: 'किसी भी पूर्णिमा को', mai: 'किसी भी पूर्णिमा को', mr: 'किसी भी पूर्णिमा को', ta: 'On any Purnima', te: 'On any Purnima', bn: 'On any Purnima', kn: 'On any Purnima', gu: 'On any Purnima' },
+      { en: 'Only during eclipses', hi: 'केवल ग्रहण के समय', sa: 'केवल ग्रहण के समय', mai: 'केवल ग्रहण के समय', mr: 'केवल ग्रहण के समय', ta: 'Only during eclipses', te: 'Only during eclipses', bn: 'Only during eclipses', kn: 'Only during eclipses', gu: 'Only during eclipses' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -135,10 +135,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पूर्णिमान्त पद्धति में फाल्गुन कृष्ण पक्ष अमान्त पद्धति में किस मास के समतुल्य है?',
     },
     options: [
-      { en: 'Phalguna', hi: 'फाल्गुन' },
-      { en: 'Magha', hi: 'माघ' },
-      { en: 'Chaitra', hi: 'चैत्र' },
-      { en: 'Pausha', hi: 'पौष' },
+      { en: 'Phalguna', hi: 'फाल्गुन', sa: 'फाल्गुन', mai: 'फाल्गुन', mr: 'फाल्गुन', ta: 'Phalguna', te: 'Phalguna', bn: 'Phalguna', kn: 'Phalguna', gu: 'Phalguna' },
+      { en: 'Magha', hi: 'माघ', sa: 'माघ', mai: 'माघ', mr: 'माघ', ta: 'Magha', te: 'Magha', bn: 'Magha', kn: 'Magha', gu: 'Magha' },
+      { en: 'Chaitra', hi: 'चैत्र', sa: 'चैत्र', mai: 'चैत्र', mr: 'चैत्र', ta: 'Chaitra', te: 'Chaitra', bn: 'Chaitra', kn: 'Chaitra', gu: 'Chaitra' },
+      { en: 'Pausha', hi: 'पौष', sa: 'पौष', mai: 'पौष', mr: 'पौष', ta: 'Pausha', te: 'Pausha', bn: 'Pausha', kn: 'Pausha', gu: 'Pausha' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -153,10 +153,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विवाह और नये कार्यों के आरम्भ हेतु कौन-सा पक्ष अधिक अनुकूल माना जाता है?',
     },
     options: [
-      { en: 'Krishna Paksha — the waning Moon brings purification', hi: 'कृष्ण पक्ष — घटता चन्द्रमा शुद्धि लाता है' },
-      { en: 'Shukla Paksha — the waxing Moon symbolizes growth', hi: 'शुक्ल पक्ष — बढ़ता चन्द्रमा वृद्धि का प्रतीक है' },
-      { en: 'Both are equally favorable', hi: 'दोनों समान रूप से अनुकूल हैं' },
-      { en: 'Neither — only nakshatra matters', hi: 'दोनों नहीं — केवल नक्षत्र ही महत्वपूर्ण है' },
+      { en: 'Krishna Paksha — the waning Moon brings purification', hi: 'कृष्ण पक्ष — घटता चन्द्रमा शुद्धि लाता है', sa: 'कृष्ण पक्ष — घटता चन्द्रमा शुद्धि लाता है', mai: 'कृष्ण पक्ष — घटता चन्द्रमा शुद्धि लाता है', mr: 'कृष्ण पक्ष — घटता चन्द्रमा शुद्धि लाता है', ta: 'Krishna Paksha — the waning Moon brings purification', te: 'Krishna Paksha — the waning Moon brings purification', bn: 'Krishna Paksha — the waning Moon brings purification', kn: 'Krishna Paksha — the waning Moon brings purification', gu: 'Krishna Paksha — the waning Moon brings purification' },
+      { en: 'Shukla Paksha — the waxing Moon symbolizes growth', hi: 'शुक्ल पक्ष — बढ़ता चन्द्रमा वृद्धि का प्रतीक है', sa: 'शुक्ल पक्ष — बढ़ता चन्द्रमा वृद्धि का प्रतीक है', mai: 'शुक्ल पक्ष — बढ़ता चन्द्रमा वृद्धि का प्रतीक है', mr: 'शुक्ल पक्ष — बढ़ता चन्द्रमा वृद्धि का प्रतीक है', ta: 'Shukla Paksha — the waxing Moon symbolizes growth', te: 'Shukla Paksha — the waxing Moon symbolizes growth', bn: 'Shukla Paksha — the waxing Moon symbolizes growth', kn: 'Shukla Paksha — the waxing Moon symbolizes growth', gu: 'Shukla Paksha — the waxing Moon symbolizes growth' },
+      { en: 'Both are equally favorable', hi: 'दोनों समान रूप से अनुकूल हैं', sa: 'दोनों समान रूप से अनुकूल हैं', mai: 'दोनों समान रूप से अनुकूल हैं', mr: 'दोनों समान रूप से अनुकूल हैं', ta: 'Both are equally favorable', te: 'Both are equally favorable', bn: 'Both are equally favorable', kn: 'Both are equally favorable', gu: 'Both are equally favorable' },
+      { en: 'Neither — only nakshatra matters', hi: 'दोनों नहीं — केवल नक्षत्र ही महत्वपूर्ण है', sa: 'दोनों नहीं — केवल नक्षत्र ही महत्वपूर्ण है', mai: 'दोनों नहीं — केवल नक्षत्र ही महत्वपूर्ण है', mr: 'दोनों नहीं — केवल नक्षत्र ही महत्वपूर्ण है', ta: 'Neither — only nakshatra matters', te: 'Neither — only nakshatra matters', bn: 'Neither — only nakshatra matters', kn: 'Neither — only nakshatra matters', gu: 'Neither — only nakshatra matters' },
     ],
     correctAnswer: 1,
     explanation: {

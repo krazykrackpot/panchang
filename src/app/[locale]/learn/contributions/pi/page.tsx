@@ -2,7 +2,7 @@ import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowRight, Sigma } from 'lucide-react';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
@@ -10,30 +10,30 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
    LABELS — bilingual (en / hi)
    ═══════════════════════════════════════════════════════════════ */
 const L = {
-  title: { en: 'π = 3.1416 — How Aryabhata Nailed It in 499 CE', hi: 'π = 3.1416 — आर्यभट ने 499 ईस्वी में इसे कैसे सिद्ध किया' },
+  title: { en: 'π = 3.1416 — How Aryabhata Nailed It in 499 CE', hi: 'π = 3.1416 — आर्यभट ने 499 ईस्वी में इसे कैसे सिद्ध किया', sa: 'π = 3.1416 — आर्यभट ने 499 ईस्वी में इसे कैसे सिद्ध किया', mai: 'π = 3.1416 — आर्यभट ने 499 ईस्वी में इसे कैसे सिद्ध किया', mr: 'π = 3.1416 — आर्यभट ने 499 ईस्वी में इसे कैसे सिद्ध किया', ta: 'π = 3.1416 — How Aryabhata Nailed It in 499 CE', te: 'π = 3.1416 — How Aryabhata Nailed It in 499 CE', bn: 'π = 3.1416 — How Aryabhata Nailed It in 499 CE', kn: 'π = 3.1416 — How Aryabhata Nailed It in 499 CE', gu: 'π = 3.1416 — How Aryabhata Nailed It in 499 CE' },
   subtitle: {
     en: 'Almost nobody says Aryabhata — but in 499 CE, he gave a value of π accurate to 4 decimal places, and he even hinted it was irrational. That hint waited 1,100 years for European mathematicians to catch up.',
     hi: 'लगभग कोई भी आर्यभट का नाम नहीं लेता — लेकिन 499 ईस्वी में, उन्होंने π का मान 4 दशमलव स्थानों तक सटीक दिया, और यह भी संकेत दिया कि यह अपरिमेय है।',
   },
 
-  s1Title: { en: 'The Verse That Contains 3.14159...', hi: 'वह श्लोक जिसमें 3.14159... छिपा है' },
+  s1Title: { en: 'The Verse That Contains 3.14159...', hi: 'वह श्लोक जिसमें 3.14159... छिपा है', sa: 'वह श्लोक जिसमें 3.14159... छिपा है', mai: 'वह श्लोक जिसमें 3.14159... छिपा है', mr: 'वह श्लोक जिसमें 3.14159... छिपा है', ta: 'The Verse That Contains 3.14159...', te: 'The Verse That Contains 3.14159...', bn: 'The Verse That Contains 3.14159...', kn: 'The Verse That Contains 3.14159...', gu: 'The Verse That Contains 3.14159...' },
   s1Body: {
     en: 'Aryabhatiya, Ganitapada, verse 10. Written in the compact sutra style, where a single line encodes an entire mathematical truth. No working shown. No proof. Just the answer — correct to 4 decimal places, 1,100 years before Europe.',
     hi: 'आर्यभटीय, गणितपाद, श्लोक 10। संक्षिप्त सूत्र शैली में लिखा गया, जहाँ एक पंक्ति एक पूरी गणितीय सत्य को एन्कोड करती है। यूरोप से 1,100 साल पहले।',
   },
-  s1Sanskrit: { en: 'चतुरधिकं शतमष्टगुणं द्वाषष्टिस्तथा सहस्राणाम्।\nअयुतद्वयविष्कम्भस्यासन्नो वृत्तपरिणाहः॥', hi: 'चतुरधिकं शतमष्टगुणं द्वाषष्टिस्तथा सहस्राणाम्।\nअयुतद्वयविष्कम्भस्यासन्नो वृत्तपरिणाहः॥' },
+  s1Sanskrit: { en: 'चतुरधिकं शतमष्टगुणं द्वाषष्टिस्तथा सहस्राणाम्।\nअयुतद्वयविष्कम्भस्यासन्नो वृत्तपरिणाहः॥', hi: 'चतुरधिकं शतमष्टगुणं द्वाषष्टिस्तथा सहस्राणाम्।\nअयुतद्वयविष्कम्भस्यासन्नो वृत्तपरिणाहः॥', sa: 'चतुरधिकं शतमष्टगुणं द्वाषष्टिस्तथा सहस्राणाम्।\nअयुतद्वयविष्कम्भस्यासन्नो वृत्तपरिणाहः॥', mai: 'चतुरधिकं शतमष्टगुणं द्वाषष्टिस्तथा सहस्राणाम्।\nअयुतद्वयविष्कम्भस्यासन्नो वृत्तपरिणाहः॥', mr: 'चतुरधिकं शतमष्टगुणं द्वाषष्टिस्तथा सहस्राणाम्।\nअयुतद्वयविष्कम्भस्यासन्नो वृत्तपरिणाहः॥', ta: 'चतुरधिकं शतमष्टगुणं द्वाषष्टिस्तथा सहस्राणाम्।\nअयुतद्वयविष्कम्भस्यासन्नो वृत्तपरिणाहः॥', te: 'चतुरधिकं शतमष्टगुणं द्वाषष्टिस्तथा सहस्राणाम्।\nअयुतद्वयविष्कम्भस्यासन्नो वृत्तपरिणाहः॥', bn: 'चतुरधिकं शतमष्टगुणं द्वाषष्टिस्तथा सहस्राणाम्।\nअयुतद्वयविष्कम्भस्यासन्नो वृत्तपरिणाहः॥', kn: 'चतुरधिकं शतमष्टगुणं द्वाषष्टिस्तथा सहस्राणाम्।\nअयुतद्वयविष्कम्भस्यासन्नो वृत्तपरिणाहः॥', gu: 'चतुरधिकं शतमष्टगुणं द्वाषष्टिस्तथा सहस्राणाम्।\nअयुतद्वयविष्कम्भस्यासन्नो वृत्तपरिणाहः॥' },
   s1Trans: {
     en: '"Add 4 to 100, multiply by 8, add 62,000. This is approximately the circumference of a circle whose diameter is 20,000."',
     hi: '"100 में 4 जोड़ें, 8 से गुणा करें, 62,000 जोड़ें। यह 20,000 व्यास वाले वृत्त की परिधि है — लगभग।"',
   },
 
-  s2Title: { en: 'The Calculation — Step by Step', hi: 'गणना — चरण दर चरण' },
+  s2Title: { en: 'The Calculation — Step by Step', hi: 'गणना — चरण दर चरण', sa: 'गणना — चरण दर चरण', mai: 'गणना — चरण दर चरण', mr: 'गणना — चरण दर चरण', ta: 'The Calculation — Step by Step', te: 'The Calculation — Step by Step', bn: 'The Calculation — Step by Step', kn: 'The Calculation — Step by Step', gu: 'The Calculation — Step by Step' },
   s2Body: {
     en: 'The math is elegant. (100 + 4) × 8 + 62,000 = 62,832. Circumference ÷ Diameter = 62,832 ÷ 20,000 = 3.1416. Modern π = 3.14159265... Aryabhata: 3.14160000... Error: 0.0001%. This is not a coincidence. This is precision engineering of a mathematical constant.',
     hi: 'गणित सुंदर है। (100 + 4) × 8 + 62,000 = 62,832। परिधि ÷ व्यास = 62,832 ÷ 20,000 = 3.1416। आधुनिक π = 3.14159265... आर्यभट: 3.14160000... त्रुटि: 0.0001%।',
   },
 
-  s3Title: { en: 'Āsannaḥ — The Most Important Word in the Verse', hi: 'आसन्नः — श्लोक में सबसे महत्वपूर्ण शब्द' },
+  s3Title: { en: 'Āsannaḥ — The Most Important Word in the Verse', hi: 'आसन्नः — श्लोक में सबसे महत्वपूर्ण शब्द', sa: 'आसन्नः — श्लोक में सबसे महत्वपूर्ण शब्द', mai: 'आसन्नः — श्लोक में सबसे महत्वपूर्ण शब्द', mr: 'आसन्नः — श्लोक में सबसे महत्वपूर्ण शब्द', ta: 'Āsannaḥ — The Most Important Word in the Verse', te: 'Āsannaḥ — The Most Important Word in the Verse', bn: 'Āsannaḥ — The Most Important Word in the Verse', kn: 'Āsannaḥ — The Most Important Word in the Verse', gu: 'Āsannaḥ — The Most Important Word in the Verse' },
   s3Body: {
     en: 'The last word of Aryabhata\'s verse is "āsannaḥ" — meaning "approaching" or "approximate." He did NOT say "this IS π." He said "this APPROACHES π." This single word implies he knew π could not be expressed exactly as a fraction. The irrationality of π was not proven in Europe until Lambert in 1761. Aryabhata hinted at it in 499 CE.',
     hi: 'आर्यभट के श्लोक का अंतिम शब्द "आसन्नः" है — जिसका अर्थ है "निकट" या "लगभग।" उन्होंने यह नहीं कहा "यह π है।" उन्होंने कहा "यह π के निकट है।" यह एकल शब्द दर्शाता है कि वे जानते थे कि π को एक भिन्न के रूप में सटीक रूप से व्यक्त नहीं किया जा सकता।',
@@ -45,28 +45,28 @@ const L = {
     hi: 'संगमग्राम के माधव (~1350 ईस्वी, केरल) ने वह श्रृंखला व्युत्पन्न की जिसे यूरोप "लाइबनिज सूत्र" कहता है: π/4 = 1 - 1/3 + 1/5 - 1/7 + 1/9... उन्होंने π को 11 दशमलव स्थानों तक गणना की। लाइबनिज ने 1676 ईस्वी में, 326 साल बाद वही श्रृंखला प्रकाशित की।',
   },
 
-  s5Title: { en: 'The Timeline — Who Computed What, When', hi: 'समयरेखा — किसने क्या, कब गणना की' },
+  s5Title: { en: 'The Timeline — Who Computed What, When', hi: 'समयरेखा — किसने क्या, कब गणना की', sa: 'समयरेखा — किसने क्या, कब गणना की', mai: 'समयरेखा — किसने क्या, कब गणना की', mr: 'समयरेखा — किसने क्या, कब गणना की', ta: 'The Timeline — Who Computed What, When', te: 'The Timeline — Who Computed What, When', bn: 'The Timeline — Who Computed What, When', kn: 'The Timeline — Who Computed What, When', gu: 'The Timeline — Who Computed What, When' },
 
-  s6Title: { en: 'Ramanujan — The Tradition Continues', hi: 'रामानुजन — परम्परा जारी रहती है' },
+  s6Title: { en: 'Ramanujan — The Tradition Continues', hi: 'रामानुजन — परम्परा जारी रहती है', sa: 'रामानुजन — परम्परा जारी रहती है', mai: 'रामानुजन — परम्परा जारी रहती है', mr: 'रामानुजन — परम्परा जारी रहती है', ta: 'Ramanujan — The Tradition Continues', te: 'Ramanujan — The Tradition Continues', bn: 'Ramanujan — The Tradition Continues', kn: 'Ramanujan — The Tradition Continues', gu: 'Ramanujan — The Tradition Continues' },
   s6Body: {
     en: "In 1914, Srinivasa Ramanujan published extraordinary formulas for π that converged far faster than anything known. One formula: 1/π = (2√2/9801) Σ [(4n)!(1103+26390n)] / [(n!)⁴ × 396⁴ⁿ]. Each term adds roughly 8 correct decimal digits. It was the basis for William Gosper's 1985 computation of 17 million digits of π. The thread from Aryabhata (499 CE) to Ramanujan (1914 CE) to modern supercomputers is unbroken.",
     hi: '1914 में, श्रीनिवास रामानुजन ने π के लिए असाधारण सूत्र प्रकाशित किए जो किसी भी ज्ञात चीज़ से कहीं तेज़ अभिसरण करते थे। प्रत्येक पद लगभग 8 सही दशमलव अंक जोड़ता है। आर्यभट (499 ईस्वी) से रामानुजन (1914 ईस्वी) तक का धागा अटूट है।',
   },
 
-  s7Title: { en: 'π in Vedic Geometry — Before Aryabhata', hi: 'वैदिक ज्यामिति में π — आर्यभट से पहले' },
+  s7Title: { en: 'π in Vedic Geometry — Before Aryabhata', hi: 'वैदिक ज्यामिति में π — आर्यभट से पहले', sa: 'वैदिक ज्यामिति में π — आर्यभट से पहले', mai: 'वैदिक ज्यामिति में π — आर्यभट से पहले', mr: 'वैदिक ज्यामिति में π — आर्यभट से पहले', ta: 'π in Vedic Geometry — Before Aryabhata', te: 'π in Vedic Geometry — Before Aryabhata', bn: 'π in Vedic Geometry — Before Aryabhata', kn: 'π in Vedic Geometry — Before Aryabhata', gu: 'π in Vedic Geometry — Before Aryabhata' },
   s7Body: {
     en: "The Sulbasutras (800–200 BCE) — construction manuals for Vedic fire altars — required approximations of π for circular-to-square area conversions. Baudhayana (~800 BCE) used π ≈ 3.088. Apastamba (~600 BCE) improved to 3.0966. Manava (~750 BCE) used 3.16. These are engineering approximations, not mathematical constants — but they show India was computing circles for rituals 1,300 years before Aryabhata.",
     hi: 'शुल्बसूत्र (800–200 ईसा पूर्व) — वैदिक अग्नि वेदियों के लिए निर्माण नियमावली — को वृत्त-से-वर्ग क्षेत्र रूपांतरण के लिए π के सन्निकटन की आवश्यकता थी। ये इंजीनियरिंग सन्निकटन हैं — लेकिन दिखाते हैं कि भारत आर्यभट से 1,300 साल पहले अनुष्ठानों के लिए वृत्तों की गणना कर रहा था।',
   },
 
-  s8Title: { en: 'π in Jyotish Calculations', hi: 'ज्योतिष गणनाओं में π' },
+  s8Title: { en: 'π in Jyotish Calculations', hi: 'ज्योतिष गणनाओं में π', sa: 'ज्योतिष गणनाओं में π', mai: 'ज्योतिष गणनाओं में π', mr: 'ज्योतिष गणनाओं में π', ta: 'π in Jyotish Calculations', te: 'π in Jyotish Calculations', bn: 'π in Jyotish Calculations', kn: 'π in Jyotish Calculations', gu: 'π in Jyotish Calculations' },
   s8Body: {
     en: "Every arc-length calculation in Vedic astronomy uses π. The ecliptic (360° circle of the sky) is a circle. Planetary longitudes are arc-measurements. Sine tables — the engine of all Indian astronomy — are based on the unit circle with radius R = 3438 (chosen because 2πR ≈ 21,600 arcminutes = 360°). Without Aryabhata's π, there is no sine table. Without the sine table, there is no Panchang.",
     hi: 'वैदिक खगोल विज्ञान में प्रत्येक चाप-लंबाई गणना π का उपयोग करती है। साइन तालिकाएँ — सभी भारतीय खगोल विज्ञान का इंजन — R = 3438 त्रिज्या वाले इकाई वृत्त पर आधारित हैं। आर्यभट के π के बिना, कोई साइन तालिका नहीं। साइन तालिका के बिना, कोई पंचांग नहीं।',
   },
 
-  backToContributions: { en: 'Back to Contributions', hi: 'योगदान पर वापस' },
-  next: { en: 'Next: Binary Code', hi: 'अगला: बाइनरी कोड' },
+  backToContributions: { en: 'Back to Contributions', hi: 'योगदान पर वापस', sa: 'योगदान पर वापस', mai: 'योगदान पर वापस', mr: 'योगदान पर वापस', ta: 'Back to Contributions', te: 'Back to Contributions', bn: 'Back to Contributions', kn: 'Back to Contributions', gu: 'Back to Contributions' },
+  next: { en: 'Next: Binary Code', hi: 'अगला: बाइनरी कोड', sa: 'अगला: बाइनरी कोड', mai: 'अगला: बाइनरी कोड', mr: 'अगला: बाइनरी कोड', ta: 'Next: Binary Code', te: 'Next: Binary Code', bn: 'Next: Binary Code', kn: 'Next: Binary Code', gu: 'Next: Binary Code' },
 };
 
 /* ═══════════════════════════════════════════════════════════════
@@ -74,13 +74,13 @@ const L = {
    ═══════════════════════════════════════════════════════════════ */
 
 const TIMELINE = [
-  { year: '~800 BCE', who: { en: 'Baudhayana (India)', hi: 'बौधायन (भारत)' }, value: '≈ 3.088', decimals: 1, color: 'bg-amber-700/50' },
-  { year: '~250 BCE', who: { en: 'Archimedes (Greece)', hi: 'आर्किमिडीज (ग्रीस)' }, value: '3.14163', decimals: 2, color: 'bg-blue-700/50' },
-  { year: '263 CE', who: { en: 'Liu Hui (China)', hi: 'लियू हुई (चीन)' }, value: '3.14159', decimals: 3, color: 'bg-red-700/50' },
-  { year: '499 CE', who: { en: 'Aryabhata (India)', hi: 'आर्यभट (भारत)' }, value: '3.14160', decimals: 4, color: 'bg-gold-primary/50', highlight: true },
-  { year: '~1350 CE', who: { en: 'Madhava (India)', hi: 'माधव (भारत)' }, value: '3.14159265358...', decimals: 11, color: 'bg-emerald-700/50', highlight: true },
-  { year: '1424 CE', who: { en: 'Al-Kashi (Persia)', hi: 'अल-काशी (फ़ारस)' }, value: '3.14159265358979...', decimals: 16, color: 'bg-violet-700/50' },
-  { year: '1761 CE', who: { en: 'Lambert (Europe)', hi: 'लैम्बर्ट (यूरोप)' }, value: 'Proved irrational', decimals: 0, color: 'bg-slate-600/50' },
+  { year: '~800 BCE', who: { en: 'Baudhayana (India)', hi: 'बौधायन (भारत)', sa: 'बौधायन (भारत)', mai: 'बौधायन (भारत)', mr: 'बौधायन (भारत)', ta: 'Baudhayana (India)', te: 'Baudhayana (India)', bn: 'Baudhayana (India)', kn: 'Baudhayana (India)', gu: 'Baudhayana (India)' }, value: '≈ 3.088', decimals: 1, color: 'bg-amber-700/50' },
+  { year: '~250 BCE', who: { en: 'Archimedes (Greece)', hi: 'आर्किमिडीज (ग्रीस)', sa: 'आर्किमिडीज (ग्रीस)', mai: 'आर्किमिडीज (ग्रीस)', mr: 'आर्किमिडीज (ग्रीस)', ta: 'Archimedes (Greece)', te: 'Archimedes (Greece)', bn: 'Archimedes (Greece)', kn: 'Archimedes (Greece)', gu: 'Archimedes (Greece)' }, value: '3.14163', decimals: 2, color: 'bg-blue-700/50' },
+  { year: '263 CE', who: { en: 'Liu Hui (China)', hi: 'लियू हुई (चीन)', sa: 'लियू हुई (चीन)', mai: 'लियू हुई (चीन)', mr: 'लियू हुई (चीन)', ta: 'Liu Hui (China)', te: 'Liu Hui (China)', bn: 'Liu Hui (China)', kn: 'Liu Hui (China)', gu: 'Liu Hui (China)' }, value: '3.14159', decimals: 3, color: 'bg-red-700/50' },
+  { year: '499 CE', who: { en: 'Aryabhata (India)', hi: 'आर्यभट (भारत)', sa: 'आर्यभट (भारत)', mai: 'आर्यभट (भारत)', mr: 'आर्यभट (भारत)', ta: 'Aryabhata (India)', te: 'Aryabhata (India)', bn: 'Aryabhata (India)', kn: 'Aryabhata (India)', gu: 'Aryabhata (India)' }, value: '3.14160', decimals: 4, color: 'bg-gold-primary/50', highlight: true },
+  { year: '~1350 CE', who: { en: 'Madhava (India)', hi: 'माधव (भारत)', sa: 'माधव (भारत)', mai: 'माधव (भारत)', mr: 'माधव (भारत)', ta: 'Madhava (India)', te: 'Madhava (India)', bn: 'Madhava (India)', kn: 'Madhava (India)', gu: 'Madhava (India)' }, value: '3.14159265358...', decimals: 11, color: 'bg-emerald-700/50', highlight: true },
+  { year: '1424 CE', who: { en: 'Al-Kashi (Persia)', hi: 'अल-काशी (फ़ारस)', sa: 'अल-काशी (फ़ारस)', mai: 'अल-काशी (फ़ारस)', mr: 'अल-काशी (फ़ारस)', ta: 'Al-Kashi (Persia)', te: 'Al-Kashi (Persia)', bn: 'Al-Kashi (Persia)', kn: 'Al-Kashi (Persia)', gu: 'Al-Kashi (Persia)' }, value: '3.14159265358979...', decimals: 16, color: 'bg-violet-700/50' },
+  { year: '1761 CE', who: { en: 'Lambert (Europe)', hi: 'लैम्बर्ट (यूरोप)', sa: 'लैम्बर्ट (यूरोप)', mai: 'लैम्बर्ट (यूरोप)', mr: 'लैम्बर्ट (यूरोप)', ta: 'Lambert (Europe)', te: 'Lambert (Europe)', bn: 'Lambert (Europe)', kn: 'Lambert (Europe)', gu: 'Lambert (Europe)' }, value: 'Proved irrational', decimals: 0, color: 'bg-slate-600/50' },
 ];
 
 const SANSKRIT_TERMS = [
@@ -97,7 +97,7 @@ const SANSKRIT_TERMS = [
 export default async function PiPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params as { locale: Locale };
   const hi = isDevanagariLocale(locale);
-  const t = (obj: { en: string; hi: string }) => hi ? obj.hi : obj.en;
+  const t = (obj: LocaleText | Record<string, string>) => (hi ? (obj as Record<string, string>).hi : obj.en) || obj.en;
 
   return (
     <div className="min-h-screen">
@@ -183,10 +183,10 @@ export default async function PiPage({ params }: { params: Promise<{ locale: str
           <p>{t(L.s2Body)}</p>
           <div className="mt-6 space-y-3">
             {[
-              { step: { en: '100 + 4 = 104', hi: '100 + 4 = 104' }, note: { en: '"Add 4 to 100"', hi: '"100 में 4 जोड़ें"' } },
-              { step: { en: '104 × 8 = 832', hi: '104 × 8 = 832' }, note: { en: '"Multiply by 8"', hi: '"8 से गुणा करें"' } },
-              { step: { en: '832 + 62,000 = 62,832', hi: '832 + 62,000 = 62,832' }, note: { en: '"Add 62,000" = circumference for diameter 20,000', hi: '"62,000 जोड़ें" = 20,000 व्यास के लिए परिधि' } },
-              { step: { en: '62,832 ÷ 20,000 = 3.1416', hi: '62,832 ÷ 20,000 = 3.1416' }, note: { en: 'Circumference ÷ Diameter = π', hi: 'परिधि ÷ व्यास = π' }, highlight: true },
+              { step: { en: '100 + 4 = 104', hi: '100 + 4 = 104', sa: '100 + 4 = 104', mai: '100 + 4 = 104', mr: '100 + 4 = 104', ta: '100 + 4 = 104', te: '100 + 4 = 104', bn: '100 + 4 = 104', kn: '100 + 4 = 104', gu: '100 + 4 = 104' }, note: { en: '"Add 4 to 100"', hi: '"100 में 4 जोड़ें"', sa: '"100 में 4 जोड़ें"', mai: '"100 में 4 जोड़ें"', mr: '"100 में 4 जोड़ें"', ta: '"Add 4 to 100"', te: '"Add 4 to 100"', bn: '"Add 4 to 100"', kn: '"Add 4 to 100"', gu: '"Add 4 to 100"' } },
+              { step: { en: '104 × 8 = 832', hi: '104 × 8 = 832', sa: '104 × 8 = 832', mai: '104 × 8 = 832', mr: '104 × 8 = 832', ta: '104 × 8 = 832', te: '104 × 8 = 832', bn: '104 × 8 = 832', kn: '104 × 8 = 832', gu: '104 × 8 = 832' }, note: { en: '"Multiply by 8"', hi: '"8 से गुणा करें"', sa: '"8 से गुणा करें"', mai: '"8 से गुणा करें"', mr: '"8 से गुणा करें"', ta: '"Multiply by 8"', te: '"Multiply by 8"', bn: '"Multiply by 8"', kn: '"Multiply by 8"', gu: '"Multiply by 8"' } },
+              { step: { en: '832 + 62,000 = 62,832', hi: '832 + 62,000 = 62,832', sa: '832 + 62,000 = 62,832', mai: '832 + 62,000 = 62,832', mr: '832 + 62,000 = 62,832', ta: '832 + 62,000 = 62,832', te: '832 + 62,000 = 62,832', bn: '832 + 62,000 = 62,832', kn: '832 + 62,000 = 62,832', gu: '832 + 62,000 = 62,832' }, note: { en: '"Add 62,000" = circumference for diameter 20,000', hi: '"62,000 जोड़ें" = 20,000 व्यास के लिए परिधि', sa: '"62,000 जोड़ें" = 20,000 व्यास के लिए परिधि', mai: '"62,000 जोड़ें" = 20,000 व्यास के लिए परिधि', mr: '"62,000 जोड़ें" = 20,000 व्यास के लिए परिधि', ta: '"Add 62,000" = circumference for diameter 20,000', te: '"Add 62,000" = circumference for diameter 20,000', bn: '"Add 62,000" = circumference for diameter 20,000', kn: '"Add 62,000" = circumference for diameter 20,000', gu: '"Add 62,000" = circumference for diameter 20,000' } },
+              { step: { en: '62,832 ÷ 20,000 = 3.1416', hi: '62,832 ÷ 20,000 = 3.1416', sa: '62,832 ÷ 20,000 = 3.1416', mai: '62,832 ÷ 20,000 = 3.1416', mr: '62,832 ÷ 20,000 = 3.1416', ta: '62,832 ÷ 20,000 = 3.1416', te: '62,832 ÷ 20,000 = 3.1416', bn: '62,832 ÷ 20,000 = 3.1416', kn: '62,832 ÷ 20,000 = 3.1416', gu: '62,832 ÷ 20,000 = 3.1416' }, note: { en: 'Circumference ÷ Diameter = π', hi: 'परिधि ÷ व्यास = π', sa: 'परिधि ÷ व्यास = π', mai: 'परिधि ÷ व्यास = π', mr: 'परिधि ÷ व्यास = π', ta: 'Circumference ÷ Diameter = π', te: 'Circumference ÷ Diameter = π', bn: 'Circumference ÷ Diameter = π', kn: 'Circumference ÷ Diameter = π', gu: 'Circumference ÷ Diameter = π' }, highlight: true },
             ].map((row, i) => (
               <div
                 key={i}

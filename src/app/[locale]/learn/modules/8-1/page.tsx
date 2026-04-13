@@ -6,20 +6,20 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_8_1', phase: 2, topic: 'Muhurta', moduleNumber: '8.1',
-  title: { en: 'Panchang Integration — The Five Limbs Together', hi: 'पंचांग समन्वय — पाँच अंगों का समग्र विश्लेषण' },
+  title: { en: 'Panchang Integration — The Five Limbs Together', hi: 'पंचांग समन्वय — पाँच अंगों का समग्र विश्लेषण', sa: 'पंचांग समन्वय — पाँच अंगों का समग्र विश्लेषण', mai: 'पंचांग समन्वय — पाँच अंगों का समग्र विश्लेषण', mr: 'पंचांग समन्वय — पाँच अंगों का समग्र विश्लेषण', ta: 'Panchang Integration — The Five Limbs Together', te: 'Panchang Integration — The Five Limbs Together', bn: 'Panchang Integration — The Five Limbs Together', kn: 'Panchang Integration — The Five Limbs Together', gu: 'Panchang Integration — The Five Limbs Together' },
   subtitle: {
     en: 'Tithi, Vara, Nakshatra, Yoga, and Karana unite to form the Panchang — a five-dimensional lens on the quality of any moment',
     hi: 'तिथि, वार, नक्षत्र, योग और करण मिलकर पंचांग बनाते हैं — किसी भी क्षण की गुणवत्ता को देखने का पंच-आयामी दृष्टिकोण',
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Module 7-1: Yoga', hi: 'मॉड्यूल 7-1: योग' }, href: '/learn/modules/7-1' },
-    { label: { en: 'Module 7-2: Karana', hi: 'मॉड्यूल 7-2: करण' }, href: '/learn/modules/7-2' },
-    { label: { en: 'Module 7-3: Vara', hi: 'मॉड्यूल 7-3: वार' }, href: '/learn/modules/7-3' },
-    { label: { en: 'Module 5-1: Tithi', hi: 'मॉड्यूल 5-1: तिथि' }, href: '/learn/modules/5-1' },
-    { label: { en: 'Module 6-1: Nakshatra', hi: 'मॉड्यूल 6-1: नक्षत्र' }, href: '/learn/modules/6-1' },
-    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग' }, href: '/panchang' },
-    { label: { en: 'Muhurta AI', hi: 'मुहूर्त AI' }, href: '/muhurta-ai' },
+    { label: { en: 'Module 7-1: Yoga', hi: 'मॉड्यूल 7-1: योग', sa: 'मॉड्यूल 7-1: योग', mai: 'मॉड्यूल 7-1: योग', mr: 'मॉड्यूल 7-1: योग', ta: 'Module 7-1: Yoga', te: 'Module 7-1: Yoga', bn: 'Module 7-1: Yoga', kn: 'Module 7-1: Yoga', gu: 'Module 7-1: Yoga' }, href: '/learn/modules/7-1' },
+    { label: { en: 'Module 7-2: Karana', hi: 'मॉड्यूल 7-2: करण', sa: 'मॉड्यूल 7-2: करण', mai: 'मॉड्यूल 7-2: करण', mr: 'मॉड्यूल 7-2: करण', ta: 'Module 7-2: Karana', te: 'Module 7-2: Karana', bn: 'Module 7-2: Karana', kn: 'Module 7-2: Karana', gu: 'Module 7-2: Karana' }, href: '/learn/modules/7-2' },
+    { label: { en: 'Module 7-3: Vara', hi: 'मॉड्यूल 7-3: वार', sa: 'मॉड्यूल 7-3: वार', mai: 'मॉड्यूल 7-3: वार', mr: 'मॉड्यूल 7-3: वार', ta: 'Module 7-3: Vara', te: 'Module 7-3: Vara', bn: 'Module 7-3: Vara', kn: 'Module 7-3: Vara', gu: 'Module 7-3: Vara' }, href: '/learn/modules/7-3' },
+    { label: { en: 'Module 5-1: Tithi', hi: 'मॉड्यूल 5-1: तिथि', sa: 'मॉड्यूल 5-1: तिथि', mai: 'मॉड्यूल 5-1: तिथि', mr: 'मॉड्यूल 5-1: तिथि', ta: 'Module 5-1: Tithi', te: 'Module 5-1: Tithi', bn: 'Module 5-1: Tithi', kn: 'Module 5-1: Tithi', gu: 'Module 5-1: Tithi' }, href: '/learn/modules/5-1' },
+    { label: { en: 'Module 6-1: Nakshatra', hi: 'मॉड्यूल 6-1: नक्षत्र', sa: 'मॉड्यूल 6-1: नक्षत्र', mai: 'मॉड्यूल 6-1: नक्षत्र', mr: 'मॉड्यूल 6-1: नक्षत्र', ta: 'Module 6-1: Nakshatra', te: 'Module 6-1: Nakshatra', bn: 'Module 6-1: Nakshatra', kn: 'Module 6-1: Nakshatra', gu: 'Module 6-1: Nakshatra' }, href: '/learn/modules/6-1' },
+    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग', mai: 'दैनिक पंचांग', mr: 'दैनिक पंचांग', ta: 'Daily Panchang', te: 'Daily Panchang', bn: 'Daily Panchang', kn: 'Daily Panchang', gu: 'Daily Panchang' }, href: '/panchang' },
+    { label: { en: 'Muhurta AI', hi: 'मुहूर्त AI', sa: 'मुहूर्त AI', mai: 'मुहूर्त AI', mr: 'मुहूर्त AI', ta: 'Muhurta AI', te: 'Muhurta AI', bn: 'Muhurta AI', kn: 'Muhurta AI', gu: 'Muhurta AI' }, href: '/muhurta-ai' },
   ],
 };
 
@@ -31,10 +31,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: '"पंचांग" शब्द का शाब्दिक अर्थ क्या है?',
     },
     options: [
-      { en: 'Five planets', hi: 'पाँच ग्रह' },
-      { en: 'Five limbs', hi: 'पाँच अंग' },
-      { en: 'Five houses', hi: 'पाँच भाव' },
-      { en: 'Five signs', hi: 'पाँच राशियाँ' },
+      { en: 'Five planets', hi: 'पाँच ग्रह', sa: 'पाँच ग्रह', mai: 'पाँच ग्रह', mr: 'पाँच ग्रह', ta: 'Five planets', te: 'Five planets', bn: 'Five planets', kn: 'Five planets', gu: 'Five planets' },
+      { en: 'Five limbs', hi: 'पाँच अंग', sa: 'पाँच अंग', mai: 'पाँच अंग', mr: 'पाँच अंग', ta: 'Five limbs', te: 'Five limbs', bn: 'Five limbs', kn: 'Five limbs', gu: 'Five limbs' },
+      { en: 'Five houses', hi: 'पाँच भाव', sa: 'पाँच भाव', mai: 'पाँच भाव', mr: 'पाँच भाव', ta: 'Five houses', te: 'Five houses', bn: 'Five houses', kn: 'Five houses', gu: 'Five houses' },
+      { en: 'Five signs', hi: 'पाँच राशियाँ', sa: 'पाँच राशियाँ', mai: 'पाँच राशियाँ', mr: 'पाँच राशियाँ', ta: 'Five signs', te: 'Five signs', bn: 'Five signs', kn: 'Five signs', gu: 'Five signs' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -49,10 +49,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कौन-सा पंचांग तत्व केवल चन्द्रमा की सायन स्थिति को ट्रैक करता है?',
     },
     options: [
-      { en: 'Tithi (Moon-Sun elongation)', hi: 'तिथि (चन्द्र-सूर्य कोणीय दूरी)' },
+      { en: 'Tithi (Moon-Sun elongation)', hi: 'तिथि (चन्द्र-सूर्य कोणीय दूरी)', sa: 'तिथि (चन्द्र-सूर्य कोणीय दूरी)', mai: 'तिथि (चन्द्र-सूर्य कोणीय दूरी)', mr: 'तिथि (चन्द्र-सूर्य कोणीय दूरी)', ta: 'Tithi (Moon-Sun elongation)', te: 'Tithi (Moon-Sun elongation)', bn: 'Tithi (Moon-Sun elongation)', kn: 'Tithi (Moon-Sun elongation)', gu: 'Tithi (Moon-Sun elongation)' },
       { en: 'Nakshatra (Moon\'s sidereal longitude)', hi: 'नक्षत्र (चन्द्रमा का सायन अंश)' },
-      { en: 'Yoga (Sun+Moon sum)', hi: 'योग (सूर्य+चन्द्र योग)' },
-      { en: 'Vara (weekday)', hi: 'वार (सप्ताह का दिन)' },
+      { en: 'Yoga (Sun+Moon sum)', hi: 'योग (सूर्य+चन्द्र योग)', sa: 'योग (सूर्य+चन्द्र योग)', mai: 'योग (सूर्य+चन्द्र योग)', mr: 'योग (सूर्य+चन्द्र योग)', ta: 'Yoga (Sun+Moon sum)', te: 'Yoga (Sun+Moon sum)', bn: 'Yoga (Sun+Moon sum)', kn: 'Yoga (Sun+Moon sum)', gu: 'Yoga (Sun+Moon sum)' },
+      { en: 'Vara (weekday)', hi: 'वार (सप्ताह का दिन)', sa: 'वार (सप्ताह का दिन)', mai: 'वार (सप्ताह का दिन)', mr: 'वार (सप्ताह का दिन)', ta: 'Vara (weekday)', te: 'Vara (weekday)', bn: 'Vara (weekday)', kn: 'Vara (weekday)', gu: 'Vara (weekday)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -79,10 +79,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पंचांग के पाँच अंगों के अतिरिक्त, दैनिक पंचांग में इनमें से क्या सामान्यतः सूचीबद्ध होता है?',
     },
     options: [
-      { en: 'Only the five limbs, nothing else', hi: 'केवल पाँच अंग, और कुछ नहीं' },
-      { en: 'Rahu Kaal, Yamaganda, Gulika Kaal, and Choghadiya', hi: 'राहु काल, यमगण्ड, गुलिक काल, और चौघड़िया' },
-      { en: 'Only planetary positions', hi: 'केवल ग्रह स्थितियाँ' },
-      { en: 'Only festival dates', hi: 'केवल त्योहार तिथियाँ' },
+      { en: 'Only the five limbs, nothing else', hi: 'केवल पाँच अंग, और कुछ नहीं', sa: 'केवल पाँच अंग, और कुछ नहीं', mai: 'केवल पाँच अंग, और कुछ नहीं', mr: 'केवल पाँच अंग, और कुछ नहीं', ta: 'Only the five limbs, nothing else', te: 'Only the five limbs, nothing else', bn: 'Only the five limbs, nothing else', kn: 'Only the five limbs, nothing else', gu: 'Only the five limbs, nothing else' },
+      { en: 'Rahu Kaal, Yamaganda, Gulika Kaal, and Choghadiya', hi: 'राहु काल, यमगण्ड, गुलिक काल, और चौघड़िया', sa: 'राहु काल, यमगण्ड, गुलिक काल, और चौघड़िया', mai: 'राहु काल, यमगण्ड, गुलिक काल, और चौघड़िया', mr: 'राहु काल, यमगण्ड, गुलिक काल, और चौघड़िया', ta: 'Rahu Kaal, Yamaganda, Gulika Kaal, and Choghadiya', te: 'Rahu Kaal, Yamaganda, Gulika Kaal, and Choghadiya', bn: 'Rahu Kaal, Yamaganda, Gulika Kaal, and Choghadiya', kn: 'Rahu Kaal, Yamaganda, Gulika Kaal, and Choghadiya', gu: 'Rahu Kaal, Yamaganda, Gulika Kaal, and Choghadiya' },
+      { en: 'Only planetary positions', hi: 'केवल ग्रह स्थितियाँ', sa: 'केवल ग्रह स्थितियाँ', mai: 'केवल ग्रह स्थितियाँ', mr: 'केवल ग्रह स्थितियाँ', ta: 'Only planetary positions', te: 'Only planetary positions', bn: 'Only planetary positions', kn: 'Only planetary positions', gu: 'Only planetary positions' },
+      { en: 'Only festival dates', hi: 'केवल त्योहार तिथियाँ', sa: 'केवल त्योहार तिथियाँ', mai: 'केवल त्योहार तिथियाँ', mr: 'केवल त्योहार तिथियाँ', ta: 'Only festival dates', te: 'Only festival dates', bn: 'Only festival dates', kn: 'Only festival dates', gu: 'Only festival dates' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -97,10 +97,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विवाह मुहूर्त हेतु पंचांग तत्वों का कौन-सा संयोग आदर्श है?',
     },
     options: [
-      { en: 'Any nakshatra, Rikta tithi, Vishti karana, Saturday', hi: 'कोई भी नक्षत्र, रिक्ता तिथि, विष्टि करण, शनिवार' },
-      { en: 'Shubha nakshatra, non-Rikta tithi, auspicious yoga, good vara (Mon/Wed/Thu/Fri), non-Vishti karana', hi: 'शुभ नक्षत्र, अ-रिक्ता तिथि, शुभ योग, अच्छा वार (सोम/बुध/गुरु/शुक्र), अ-विष्टि करण' },
-      { en: 'Only check the nakshatra, ignore everything else', hi: 'केवल नक्षत्र देखें, बाकी सब अनदेखा करें' },
-      { en: 'Vyatipata yoga with any other combination', hi: 'व्यतीपात योग किसी भी अन्य संयोग के साथ' },
+      { en: 'Any nakshatra, Rikta tithi, Vishti karana, Saturday', hi: 'कोई भी नक्षत्र, रिक्ता तिथि, विष्टि करण, शनिवार', sa: 'कोई भी नक्षत्र, रिक्ता तिथि, विष्टि करण, शनिवार', mai: 'कोई भी नक्षत्र, रिक्ता तिथि, विष्टि करण, शनिवार', mr: 'कोई भी नक्षत्र, रिक्ता तिथि, विष्टि करण, शनिवार', ta: 'Any nakshatra, Rikta tithi, Vishti karana, Saturday', te: 'Any nakshatra, Rikta tithi, Vishti karana, Saturday', bn: 'Any nakshatra, Rikta tithi, Vishti karana, Saturday', kn: 'Any nakshatra, Rikta tithi, Vishti karana, Saturday', gu: 'Any nakshatra, Rikta tithi, Vishti karana, Saturday' },
+      { en: 'Shubha nakshatra, non-Rikta tithi, auspicious yoga, good vara (Mon/Wed/Thu/Fri), non-Vishti karana', hi: 'शुभ नक्षत्र, अ-रिक्ता तिथि, शुभ योग, अच्छा वार (सोम/बुध/गुरु/शुक्र), अ-विष्टि करण', sa: 'शुभ नक्षत्र, अ-रिक्ता तिथि, शुभ योग, अच्छा वार (सोम/बुध/गुरु/शुक्र), अ-विष्टि करण', mai: 'शुभ नक्षत्र, अ-रिक्ता तिथि, शुभ योग, अच्छा वार (सोम/बुध/गुरु/शुक्र), अ-विष्टि करण', mr: 'शुभ नक्षत्र, अ-रिक्ता तिथि, शुभ योग, अच्छा वार (सोम/बुध/गुरु/शुक्र), अ-विष्टि करण', ta: 'Shubha nakshatra, non-Rikta tithi, auspicious yoga, good vara (Mon/Wed/Thu/Fri), non-Vishti karana', te: 'Shubha nakshatra, non-Rikta tithi, auspicious yoga, good vara (Mon/Wed/Thu/Fri), non-Vishti karana', bn: 'Shubha nakshatra, non-Rikta tithi, auspicious yoga, good vara (Mon/Wed/Thu/Fri), non-Vishti karana', kn: 'Shubha nakshatra, non-Rikta tithi, auspicious yoga, good vara (Mon/Wed/Thu/Fri), non-Vishti karana', gu: 'Shubha nakshatra, non-Rikta tithi, auspicious yoga, good vara (Mon/Wed/Thu/Fri), non-Vishti karana' },
+      { en: 'Only check the nakshatra, ignore everything else', hi: 'केवल नक्षत्र देखें, बाकी सब अनदेखा करें', sa: 'केवल नक्षत्र देखें, बाकी सब अनदेखा करें', mai: 'केवल नक्षत्र देखें, बाकी सब अनदेखा करें', mr: 'केवल नक्षत्र देखें, बाकी सब अनदेखा करें', ta: 'Only check the nakshatra, ignore everything else', te: 'Only check the nakshatra, ignore everything else', bn: 'Only check the nakshatra, ignore everything else', kn: 'Only check the nakshatra, ignore everything else', gu: 'Only check the nakshatra, ignore everything else' },
+      { en: 'Vyatipata yoga with any other combination', hi: 'व्यतीपात योग किसी भी अन्य संयोग के साथ', sa: 'व्यतीपात योग किसी भी अन्य संयोग के साथ', mai: 'व्यतीपात योग किसी भी अन्य संयोग के साथ', mr: 'व्यतीपात योग किसी भी अन्य संयोग के साथ', ta: 'Vyatipata yoga with any other combination', te: 'Vyatipata yoga with any other combination', bn: 'Vyatipata yoga with any other combination', kn: 'Vyatipata yoga with any other combination', gu: 'Vyatipata yoga with any other combination' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -127,10 +127,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कौन-सा पंचांग तत्व सूर्य और चन्द्रमा के अंशों के योग से गणित होता है?',
     },
     options: [
-      { en: 'Tithi', hi: 'तिथि' },
-      { en: 'Nakshatra', hi: 'नक्षत्र' },
-      { en: 'Yoga', hi: 'योग' },
-      { en: 'Karana', hi: 'करण' },
+      { en: 'Tithi', hi: 'तिथि', sa: 'तिथि', mai: 'तिथि', mr: 'तिथि', ta: 'Tithi', te: 'Tithi', bn: 'Tithi', kn: 'Tithi', gu: 'Tithi' },
+      { en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्र', mai: 'नक्षत्र', mr: 'नक्षत्र', ta: 'Nakshatra', te: 'Nakshatra', bn: 'Nakshatra', kn: 'Nakshatra', gu: 'Nakshatra' },
+      { en: 'Yoga', hi: 'योग', sa: 'योग', mai: 'योग', mr: 'योग', ta: 'Yoga', te: 'Yoga', bn: 'Yoga', kn: 'Yoga', gu: 'Yoga' },
+      { en: 'Karana', hi: 'करण', sa: 'करण', mai: 'करण', mr: 'करण', ta: 'Karana', te: 'Karana', bn: 'Karana', kn: 'Karana', gu: 'Karana' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -157,10 +157,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पंचांग में प्रत्येक तत्व विशिष्ट रूप से क्या मापता है?',
     },
     options: [
-      { en: 'All five measure the same thing from different angles', hi: 'पाँचों एक ही चीज़ को विभिन्न कोणों से मापते हैं' },
+      { en: 'All five measure the same thing from different angles', hi: 'पाँचों एक ही चीज़ को विभिन्न कोणों से मापते हैं', sa: 'पाँचों एक ही चीज़ को विभिन्न कोणों से मापते हैं', mai: 'पाँचों एक ही चीज़ को विभिन्न कोणों से मापते हैं', mr: 'पाँचों एक ही चीज़ को विभिन्न कोणों से मापते हैं', ta: 'All five measure the same thing from different angles', te: 'All five measure the same thing from different angles', bn: 'All five measure the same thing from different angles', kn: 'All five measure the same thing from different angles', gu: 'All five measure the same thing from different angles' },
       { en: 'Tithi: Moon-Sun angle; Vara: weekday; Nakshatra: Moon\'s star; Yoga: Sun+Moon sum; Karana: half-tithi', hi: 'तिथि: चन्द्र-सूर्य कोण; वार: सप्ताह का दिन; नक्षत्र: चन्द्रमा का तारा; योग: सूर्य+चन्द्र योग; करण: अर्ध-तिथि' },
-      { en: 'They all measure planetary positions', hi: 'सभी ग्रह स्थितियाँ मापते हैं' },
-      { en: 'They measure the 12 zodiac signs', hi: 'वे 12 राशियाँ मापते हैं' },
+      { en: 'They all measure planetary positions', hi: 'सभी ग्रह स्थितियाँ मापते हैं', sa: 'सभी ग्रह स्थितियाँ मापते हैं', mai: 'सभी ग्रह स्थितियाँ मापते हैं', mr: 'सभी ग्रह स्थितियाँ मापते हैं', ta: 'They all measure planetary positions', te: 'They all measure planetary positions', bn: 'They all measure planetary positions', kn: 'They all measure planetary positions', gu: 'They all measure planetary positions' },
+      { en: 'They measure the 12 zodiac signs', hi: 'वे 12 राशियाँ मापते हैं', sa: 'वे 12 राशियाँ मापते हैं', mai: 'वे 12 राशियाँ मापते हैं', mr: 'वे 12 राशियाँ मापते हैं', ta: 'They measure the 12 zodiac signs', te: 'They measure the 12 zodiac signs', bn: 'They measure the 12 zodiac signs', kn: 'They measure the 12 zodiac signs', gu: 'They measure the 12 zodiac signs' },
     ],
     correctAnswer: 1,
     explanation: {

@@ -19,16 +19,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
  */
 
 const LIFE_EVENTS = [
-  { key: 'marriage', label: { en: 'Marriage', hi: 'विवाह' }, houses: [7, 2], weight: 3 },
-  { key: 'first_child', label: { en: 'First Child Born', hi: 'प्रथम संतान' }, houses: [5, 9], weight: 3 },
-  { key: 'job', label: { en: 'First Job/Career Start', hi: 'प्रथम नौकरी' }, houses: [10, 6], weight: 2 },
-  { key: 'education', label: { en: 'Major Education Milestone', hi: 'शिक्षा उपलब्धि' }, houses: [4, 5], weight: 2 },
-  { key: 'travel', label: { en: 'Foreign Travel/Relocation', hi: 'विदेश यात्रा' }, houses: [9, 12], weight: 2 },
-  { key: 'health', label: { en: 'Major Health Event', hi: 'स्वास्थ्य घटना' }, houses: [6, 8], weight: 2 },
-  { key: 'property', label: { en: 'Property Purchase/Vehicle', hi: 'संपत्ति/वाहन' }, houses: [4], weight: 1 },
-  { key: 'father_event', label: { en: "Father's Major Event", hi: 'पिता की घटना' }, houses: [9, 10], weight: 1 },
-  { key: 'mother_event', label: { en: "Mother's Major Event", hi: 'माता की घटना' }, houses: [4], weight: 1 },
-  { key: 'sibling_event', label: { en: 'Sibling Major Event', hi: 'भाई-बहन घटना' }, houses: [3, 11], weight: 1 },
+  { key: 'marriage', label: { en: 'Marriage', hi: 'विवाह', sa: 'विवाह', mai: 'विवाह', mr: 'विवाह', ta: 'Marriage', te: 'Marriage', bn: 'Marriage', kn: 'Marriage', gu: 'Marriage' }, houses: [7, 2], weight: 3 },
+  { key: 'first_child', label: { en: 'First Child Born', hi: 'प्रथम संतान', sa: 'प्रथम संतान', mai: 'प्रथम संतान', mr: 'प्रथम संतान', ta: 'First Child Born', te: 'First Child Born', bn: 'First Child Born', kn: 'First Child Born', gu: 'First Child Born' }, houses: [5, 9], weight: 3 },
+  { key: 'job', label: { en: 'First Job/Career Start', hi: 'प्रथम नौकरी', sa: 'प्रथम नौकरी', mai: 'प्रथम नौकरी', mr: 'प्रथम नौकरी', ta: 'First Job/Career Start', te: 'First Job/Career Start', bn: 'First Job/Career Start', kn: 'First Job/Career Start', gu: 'First Job/Career Start' }, houses: [10, 6], weight: 2 },
+  { key: 'education', label: { en: 'Major Education Milestone', hi: 'शिक्षा उपलब्धि', sa: 'शिक्षा उपलब्धि', mai: 'शिक्षा उपलब्धि', mr: 'शिक्षा उपलब्धि', ta: 'Major Education Milestone', te: 'Major Education Milestone', bn: 'Major Education Milestone', kn: 'Major Education Milestone', gu: 'Major Education Milestone' }, houses: [4, 5], weight: 2 },
+  { key: 'travel', label: { en: 'Foreign Travel/Relocation', hi: 'विदेश यात्रा', sa: 'विदेश यात्रा', mai: 'विदेश यात्रा', mr: 'विदेश यात्रा', ta: 'Foreign Travel/Relocation', te: 'Foreign Travel/Relocation', bn: 'Foreign Travel/Relocation', kn: 'Foreign Travel/Relocation', gu: 'Foreign Travel/Relocation' }, houses: [9, 12], weight: 2 },
+  { key: 'health', label: { en: 'Major Health Event', hi: 'स्वास्थ्य घटना', sa: 'स्वास्थ्य घटना', mai: 'स्वास्थ्य घटना', mr: 'स्वास्थ्य घटना', ta: 'Major Health Event', te: 'Major Health Event', bn: 'Major Health Event', kn: 'Major Health Event', gu: 'Major Health Event' }, houses: [6, 8], weight: 2 },
+  { key: 'property', label: { en: 'Property Purchase/Vehicle', hi: 'संपत्ति/वाहन', sa: 'संपत्ति/वाहन', mai: 'संपत्ति/वाहन', mr: 'संपत्ति/वाहन', ta: 'Property Purchase/Vehicle', te: 'Property Purchase/Vehicle', bn: 'Property Purchase/Vehicle', kn: 'Property Purchase/Vehicle', gu: 'Property Purchase/Vehicle' }, houses: [4], weight: 1 },
+  { key: 'father_event', label: { en: "Father's Major Event", hi: 'पिता की घटना', sa: 'पिता की घटना', mai: 'पिता की घटना', mr: 'पिता की घटना', ta: "Father's Major Event", te: "Father's Major Event", bn: "Father's Major Event", kn: "Father's Major Event", gu: "Father's Major Event" }, houses: [9, 10], weight: 1 },
+  { key: 'mother_event', label: { en: "Mother's Major Event", hi: 'माता की घटना', sa: 'माता की घटना', mai: 'माता की घटना', mr: 'माता की घटना', ta: "Mother's Major Event", te: "Mother's Major Event", bn: "Mother's Major Event", kn: "Mother's Major Event", gu: "Mother's Major Event" }, houses: [4], weight: 1 },
+  { key: 'sibling_event', label: { en: 'Sibling Major Event', hi: 'भाई-बहन घटना', sa: 'भाई-बहन घटना', mai: 'भाई-बहन घटना', mr: 'भाई-बहन घटना', ta: 'Sibling Major Event', te: 'Sibling Major Event', bn: 'Sibling Major Event', kn: 'Sibling Major Event', gu: 'Sibling Major Event' }, houses: [3, 11], weight: 1 },
 ];
 
 interface EventEntry {

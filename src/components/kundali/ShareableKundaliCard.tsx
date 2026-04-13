@@ -8,7 +8,7 @@ import { NakshatraIconById } from '@/components/icons/NakshatraIcons';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import ShareButton from '@/components/ui/ShareButton';
 import type { KundaliData } from '@/types/kundali';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
 
 /* ════════════════════════════════════════════════════════════════
@@ -73,7 +73,7 @@ interface Props {
 
 export default function ShareableKundaliCard({ kundali, locale }: Props) {
   const [open, setOpen] = useState(false);
-  const l = (obj: { en: string; hi: string; sa: string }) => obj[locale] || obj.en;
+  const l = (obj: LocaleText) => obj[locale] || obj.en;
 
   const moonP = kundali.planets.find(p => p.planet.id === 1);
   const sunP = kundali.planets.find(p => p.planet.id === 0);

@@ -5,17 +5,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_25_9', phase: 11, topic: 'Mathematics', moduleNumber: '25.9',
-  title: { en: 'Kerala School \u2014 When India Invented Calculus', hi: 'केरल स्कूल \u2014 जब भारत ने कलनशास्त्र की खोज की' },
+  title: { en: 'Kerala School \u2014 When India Invented Calculus', hi: 'केरल स्कूल \u2014 जब भारत ने कलनशास्त्र की खोज की', sa: 'केरल स्कूल \u2014 जब भारत ने कलनशास्त्र की खोज की', mai: 'केरल स्कूल \u2014 जब भारत ने कलनशास्त्र की खोज की', mr: 'केरल स्कूल \u2014 जब भारत ने कलनशास्त्र की खोज की', ta: 'Kerala School \u2014 When India Invented Calculus', te: 'Kerala School \u2014 When India Invented Calculus', bn: 'Kerala School \u2014 When India Invented Calculus', kn: 'Kerala School \u2014 When India Invented Calculus', gu: 'Kerala School \u2014 When India Invented Calculus' },
   subtitle: {
     en: 'Madhava\'s infinite series for \u03C0, sine, cosine, and arctangent \u2014 with correction terms, worked examples, and the story of the world\'s first calculus textbook',
     hi: 'माधव की \u03C0, sine, cosine और arctangent के लिए अनन्त श्रेणी \u2014 सुधार पदों, हल किए गए उदाहरणों, और विश्व की पहली कलनशास्त्र पाठ्यपुस्तक की कहानी',
   },
   estimatedMinutes: 16,
   crossRefs: [
-    { label: { en: 'Module 25-7: Calculus Overview', hi: 'मॉड्यूल 25-7: कलन सारांश' }, href: '/learn/modules/25-7' },
-    { label: { en: 'Module 25-3: Pi = 3.1416', hi: 'मॉड्यूल 25-3: \u03C0 = 3.1416' }, href: '/learn/modules/25-3' },
-    { label: { en: 'Module 25-2: Sine Is Sanskrit', hi: 'मॉड्यूल 25-2: ज्या से Sine' }, href: '/learn/modules/25-2' },
-    { label: { en: 'Deep Dive: Kerala School', hi: 'गहन अध्ययन: केरल स्कूल' }, href: '/learn/contributions/kerala-school' },
+    { label: { en: 'Module 25-7: Calculus Overview', hi: 'मॉड्यूल 25-7: कलन सारांश', sa: 'मॉड्यूल 25-7: कलन सारांश', mai: 'मॉड्यूल 25-7: कलन सारांश', mr: 'मॉड्यूल 25-7: कलन सारांश', ta: 'Module 25-7: Calculus Overview', te: 'Module 25-7: Calculus Overview', bn: 'Module 25-7: Calculus Overview', kn: 'Module 25-7: Calculus Overview', gu: 'Module 25-7: Calculus Overview' }, href: '/learn/modules/25-7' },
+    { label: { en: 'Module 25-3: Pi = 3.1416', hi: 'मॉड्यूल 25-3: \u03C0 = 3.1416', sa: 'मॉड्यूल 25-3: \u03C0 = 3.1416', mai: 'मॉड्यूल 25-3: \u03C0 = 3.1416', mr: 'मॉड्यूल 25-3: \u03C0 = 3.1416', ta: 'Module 25-3: Pi = 3.1416', te: 'Module 25-3: Pi = 3.1416', bn: 'Module 25-3: Pi = 3.1416', kn: 'Module 25-3: Pi = 3.1416', gu: 'Module 25-3: Pi = 3.1416' }, href: '/learn/modules/25-3' },
+    { label: { en: 'Module 25-2: Sine Is Sanskrit', hi: 'मॉड्यूल 25-2: ज्या से Sine', sa: 'मॉड्यूल 25-2: ज्या से Sine', mai: 'मॉड्यूल 25-2: ज्या से Sine', mr: 'मॉड्यूल 25-2: ज्या से Sine', ta: 'Module 25-2: Sine Is Sanskrit', te: 'Module 25-2: Sine Is Sanskrit', bn: 'Module 25-2: Sine Is Sanskrit', kn: 'Module 25-2: Sine Is Sanskrit', gu: 'Module 25-2: Sine Is Sanskrit' }, href: '/learn/modules/25-2' },
+    { label: { en: 'Deep Dive: Kerala School', hi: 'गहन अध्ययन: केरल स्कूल', sa: 'गहन अध्ययन: केरल स्कूल', mai: 'गहन अध्ययन: केरल स्कूल', mr: 'गहन अध्ययन: केरल स्कूल', ta: 'Deep Dive: Kerala School', te: 'Deep Dive: Kerala School', bn: 'Deep Dive: Kerala School', kn: 'Deep Dive: Kerala School', gu: 'Deep Dive: Kerala School' }, href: '/learn/contributions/kerala-school' },
   ],
 };
 
@@ -27,10 +27,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'केरल गणित विद्यालय के संस्थापक कौन माने जाते हैं, और उन्होंने लगभग कब कार्य किया?',
     },
     options: [
-      { en: 'Aryabhata, ~500 CE', hi: 'आर्यभट, ~500 ई.' },
-      { en: 'Madhava of Sangamagrama, ~1350 CE', hi: 'संगमग्राम के माधव, ~1350 ई.' },
-      { en: 'Nilakantha Somayaji, ~1500 CE', hi: 'नीलकण्ठ सोमयाजी, ~1500 ई.' },
-      { en: 'Brahmagupta, ~628 CE', hi: 'ब्रह्मगुप्त, ~628 ई.' },
+      { en: 'Aryabhata, ~500 CE', hi: 'आर्यभट, ~500 ई.', sa: 'आर्यभट, ~500 ई.', mai: 'आर्यभट, ~500 ई.', mr: 'आर्यभट, ~500 ई.', ta: 'Aryabhata, ~500 CE', te: 'Aryabhata, ~500 CE', bn: 'Aryabhata, ~500 CE', kn: 'Aryabhata, ~500 CE', gu: 'Aryabhata, ~500 CE' },
+      { en: 'Madhava of Sangamagrama, ~1350 CE', hi: 'संगमग्राम के माधव, ~1350 ई.', sa: 'संगमग्राम के माधव, ~1350 ई.', mai: 'संगमग्राम के माधव, ~1350 ई.', mr: 'संगमग्राम के माधव, ~1350 ई.', ta: 'Madhava of Sangamagrama, ~1350 CE', te: 'Madhava of Sangamagrama, ~1350 CE', bn: 'Madhava of Sangamagrama, ~1350 CE', kn: 'Madhava of Sangamagrama, ~1350 CE', gu: 'Madhava of Sangamagrama, ~1350 CE' },
+      { en: 'Nilakantha Somayaji, ~1500 CE', hi: 'नीलकण्ठ सोमयाजी, ~1500 ई.', sa: 'नीलकण्ठ सोमयाजी, ~1500 ई.', mai: 'नीलकण्ठ सोमयाजी, ~1500 ई.', mr: 'नीलकण्ठ सोमयाजी, ~1500 ई.', ta: 'Nilakantha Somayaji, ~1500 CE', te: 'Nilakantha Somayaji, ~1500 CE', bn: 'Nilakantha Somayaji, ~1500 CE', kn: 'Nilakantha Somayaji, ~1500 CE', gu: 'Nilakantha Somayaji, ~1500 CE' },
+      { en: 'Brahmagupta, ~628 CE', hi: 'ब्रह्मगुप्त, ~628 ई.', sa: 'ब्रह्मगुप्त, ~628 ई.', mai: 'ब्रह्मगुप्त, ~628 ई.', mr: 'ब्रह्मगुप्त, ~628 ई.', ta: 'Brahmagupta, ~628 CE', te: 'Brahmagupta, ~628 CE', bn: 'Brahmagupta, ~628 CE', kn: 'Brahmagupta, ~628 CE', gu: 'Brahmagupta, ~628 CE' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -45,10 +45,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: '\u03C0/4 = 1 \u2212 1/3 + 1/5 \u2212 1/7 + ... श्रेणी को पश्चिमी पाठ्यपुस्तकों में कहा जाता है:',
     },
     options: [
-      { en: 'Euler formula', hi: 'ऑयलर सूत्र' },
-      { en: 'Leibniz formula', hi: 'लाइबनिज सूत्र' },
-      { en: 'Newton formula', hi: 'न्यूटन सूत्र' },
-      { en: 'Gauss formula', hi: 'गाउस सूत्र' },
+      { en: 'Euler formula', hi: 'ऑयलर सूत्र', sa: 'ऑयलर सूत्र', mai: 'ऑयलर सूत्र', mr: 'ऑयलर सूत्र', ta: 'Euler formula', te: 'Euler formula', bn: 'Euler formula', kn: 'Euler formula', gu: 'Euler formula' },
+      { en: 'Leibniz formula', hi: 'लाइबनिज सूत्र', sa: 'लाइबनिज सूत्र', mai: 'लाइबनिज सूत्र', mr: 'लाइबनिज सूत्र', ta: 'Leibniz formula', te: 'Leibniz formula', bn: 'Leibniz formula', kn: 'Leibniz formula', gu: 'Leibniz formula' },
+      { en: 'Newton formula', hi: 'न्यूटन सूत्र', sa: 'न्यूटन सूत्र', mai: 'न्यूटन सूत्र', mr: 'न्यूटन सूत्र', ta: 'Newton formula', te: 'Newton formula', bn: 'Newton formula', kn: 'Newton formula', gu: 'Newton formula' },
+      { en: 'Gauss formula', hi: 'गाउस सूत्र', sa: 'गाउस सूत्र', mai: 'गाउस सूत्र', mr: 'गाउस सूत्र', ta: 'Gauss formula', te: 'Gauss formula', bn: 'Gauss formula', kn: 'Gauss formula', gu: 'Gauss formula' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -63,10 +63,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: '\u03C0 श्रेणी के लिए माधव द्वारा सुधार पदों की खोज को श्रेणी से भी अधिक उल्लेखनीय क्यों माना जाता है?',
     },
     options: [
-      { en: 'The correction terms make the series exact after 3 terms', hi: 'सुधार पद 3 पदों के बाद श्रेणी को सटीक बनाते हैं' },
-      { en: 'They accelerate convergence, giving 11-decimal \u03C0 from just 50 terms', hi: 'वे अभिसरण को तेज़ करते हैं, केवल 50 पदों से 11-दशमलव \u03C0 देते हैं' },
-      { en: 'They convert the series from alternating to monotone', hi: 'वे श्रेणी को प्रत्यावर्ती से एकदिशीय बनाते हैं' },
-      { en: 'They allow computing \u03C0 without knowing its value', hi: 'वे \u03C0 के मान के बिना गणना करने देते हैं' },
+      { en: 'The correction terms make the series exact after 3 terms', hi: 'सुधार पद 3 पदों के बाद श्रेणी को सटीक बनाते हैं', sa: 'सुधार पद 3 पदों के बाद श्रेणी को सटीक बनाते हैं', mai: 'सुधार पद 3 पदों के बाद श्रेणी को सटीक बनाते हैं', mr: 'सुधार पद 3 पदों के बाद श्रेणी को सटीक बनाते हैं', ta: 'The correction terms make the series exact after 3 terms', te: 'The correction terms make the series exact after 3 terms', bn: 'The correction terms make the series exact after 3 terms', kn: 'The correction terms make the series exact after 3 terms', gu: 'The correction terms make the series exact after 3 terms' },
+      { en: 'They accelerate convergence, giving 11-decimal \u03C0 from just 50 terms', hi: 'वे अभिसरण को तेज़ करते हैं, केवल 50 पदों से 11-दशमलव \u03C0 देते हैं', sa: 'वे अभिसरण को तेज़ करते हैं, केवल 50 पदों से 11-दशमलव \u03C0 देते हैं', mai: 'वे अभिसरण को तेज़ करते हैं, केवल 50 पदों से 11-दशमलव \u03C0 देते हैं', mr: 'वे अभिसरण को तेज़ करते हैं, केवल 50 पदों से 11-दशमलव \u03C0 देते हैं', ta: 'They accelerate convergence, giving 11-decimal \u03C0 from just 50 terms', te: 'They accelerate convergence, giving 11-decimal \u03C0 from just 50 terms', bn: 'They accelerate convergence, giving 11-decimal \u03C0 from just 50 terms', kn: 'They accelerate convergence, giving 11-decimal \u03C0 from just 50 terms', gu: 'They accelerate convergence, giving 11-decimal \u03C0 from just 50 terms' },
+      { en: 'They convert the series from alternating to monotone', hi: 'वे श्रेणी को प्रत्यावर्ती से एकदिशीय बनाते हैं', sa: 'वे श्रेणी को प्रत्यावर्ती से एकदिशीय बनाते हैं', mai: 'वे श्रेणी को प्रत्यावर्ती से एकदिशीय बनाते हैं', mr: 'वे श्रेणी को प्रत्यावर्ती से एकदिशीय बनाते हैं', ta: 'They convert the series from alternating to monotone', te: 'They convert the series from alternating to monotone', bn: 'They convert the series from alternating to monotone', kn: 'They convert the series from alternating to monotone', gu: 'They convert the series from alternating to monotone' },
+      { en: 'They allow computing \u03C0 without knowing its value', hi: 'वे \u03C0 के मान के बिना गणना करने देते हैं', sa: 'वे \u03C0 के मान के बिना गणना करने देते हैं', mai: 'वे \u03C0 के मान के बिना गणना करने देते हैं', mr: 'वे \u03C0 के मान के बिना गणना करने देते हैं', ta: 'They allow computing \u03C0 without knowing its value', te: 'They allow computing \u03C0 without knowing its value', bn: 'They allow computing \u03C0 without knowing its value', kn: 'They allow computing \u03C0 without knowing its value', gu: 'They allow computing \u03C0 without knowing its value' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -81,10 +81,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'युक्तिभाषा (~1530 ई.) महत्त्वपूर्ण है क्योंकि:',
     },
     options: [
-      { en: 'Was the first mathematical text written in Sanskrit', hi: 'यह संस्कृत में लिखा गया पहला गणितीय ग्रन्थ था' },
+      { en: 'Was the first mathematical text written in Sanskrit', hi: 'यह संस्कृत में लिखा गया पहला गणितीय ग्रन्थ था', sa: 'यह संस्कृत में लिखा गया पहला गणितीय ग्रन्थ था', mai: 'यह संस्कृत में लिखा गया पहला गणितीय ग्रन्थ था', mr: 'यह संस्कृत में लिखा गया पहला गणितीय ग्रन्थ था', ta: 'Was the first mathematical text written in Sanskrit', te: 'Was the first mathematical text written in Sanskrit', bn: 'Was the first mathematical text written in Sanskrit', kn: 'Was the first mathematical text written in Sanskrit', gu: 'Was the first mathematical text written in Sanskrit' },
       { en: 'Contains the world\'s first complete proofs of infinite series results, written in Malayalam', hi: 'इसमें अनन्त श्रेणी परिणामों के विश्व के प्रथम पूर्ण प्रमाण हैं, मलयालम में' },
-      { en: 'Was translated directly into Latin by Jesuits', hi: 'जेसुइट ने इसका सीधे लैटिन में अनुवाद किया' },
-      { en: 'Contains only astronomical tables without derivations', hi: 'इसमें केवल खगोलीय सारणियाँ हैं, व्युत्पत्ति नहीं' },
+      { en: 'Was translated directly into Latin by Jesuits', hi: 'जेसुइट ने इसका सीधे लैटिन में अनुवाद किया', sa: 'जेसुइट ने इसका सीधे लैटिन में अनुवाद किया', mai: 'जेसुइट ने इसका सीधे लैटिन में अनुवाद किया', mr: 'जेसुइट ने इसका सीधे लैटिन में अनुवाद किया', ta: 'Was translated directly into Latin by Jesuits', te: 'Was translated directly into Latin by Jesuits', bn: 'Was translated directly into Latin by Jesuits', kn: 'Was translated directly into Latin by Jesuits', gu: 'Was translated directly into Latin by Jesuits' },
+      { en: 'Contains only astronomical tables without derivations', hi: 'इसमें केवल खगोलीय सारणियाँ हैं, व्युत्पत्ति नहीं', sa: 'इसमें केवल खगोलीय सारणियाँ हैं, व्युत्पत्ति नहीं', mai: 'इसमें केवल खगोलीय सारणियाँ हैं, व्युत्पत्ति नहीं', mr: 'इसमें केवल खगोलीय सारणियाँ हैं, व्युत्पत्ति नहीं', ta: 'Contains only astronomical tables without derivations', te: 'Contains only astronomical tables without derivations', bn: 'Contains only astronomical tables without derivations', kn: 'Contains only astronomical tables without derivations', gu: 'Contains only astronomical tables without derivations' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -99,10 +99,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'नीलकण्ठ सोमयाजी के तन्त्रसंग्रह (1500 ई.) ने एक ग्रहीय मॉडल प्रस्तावित किया जिसमें:',
     },
     options: [
-      { en: 'All planets orbit Earth (fully geocentric)', hi: 'सभी ग्रह पृथ्वी की परिक्रमा करते हैं (पूर्ण भूकेन्द्री)' },
-      { en: 'All planets orbit the Sun (fully heliocentric)', hi: 'सभी ग्रह सूर्य की परिक्रमा करते हैं (पूर्ण सौरकेन्द्री)' },
-      { en: 'Mercury and Venus orbit the Sun, which orbits Earth', hi: 'बुध और शुक्र सूर्य की, सूर्य पृथ्वी की परिक्रमा करते हैं' },
-      { en: 'Earth and Mars orbit the Sun, others orbit Earth', hi: 'पृथ्वी और मंगल सूर्य की, अन्य पृथ्वी की परिक्रमा करते हैं' },
+      { en: 'All planets orbit Earth (fully geocentric)', hi: 'सभी ग्रह पृथ्वी की परिक्रमा करते हैं (पूर्ण भूकेन्द्री)', sa: 'सभी ग्रह पृथ्वी की परिक्रमा करते हैं (पूर्ण भूकेन्द्री)', mai: 'सभी ग्रह पृथ्वी की परिक्रमा करते हैं (पूर्ण भूकेन्द्री)', mr: 'सभी ग्रह पृथ्वी की परिक्रमा करते हैं (पूर्ण भूकेन्द्री)', ta: 'All planets orbit Earth (fully geocentric)', te: 'All planets orbit Earth (fully geocentric)', bn: 'All planets orbit Earth (fully geocentric)', kn: 'All planets orbit Earth (fully geocentric)', gu: 'All planets orbit Earth (fully geocentric)' },
+      { en: 'All planets orbit the Sun (fully heliocentric)', hi: 'सभी ग्रह सूर्य की परिक्रमा करते हैं (पूर्ण सौरकेन्द्री)', sa: 'सभी ग्रह सूर्य की परिक्रमा करते हैं (पूर्ण सौरकेन्द्री)', mai: 'सभी ग्रह सूर्य की परिक्रमा करते हैं (पूर्ण सौरकेन्द्री)', mr: 'सभी ग्रह सूर्य की परिक्रमा करते हैं (पूर्ण सौरकेन्द्री)', ta: 'All planets orbit the Sun (fully heliocentric)', te: 'All planets orbit the Sun (fully heliocentric)', bn: 'All planets orbit the Sun (fully heliocentric)', kn: 'All planets orbit the Sun (fully heliocentric)', gu: 'All planets orbit the Sun (fully heliocentric)' },
+      { en: 'Mercury and Venus orbit the Sun, which orbits Earth', hi: 'बुध और शुक्र सूर्य की, सूर्य पृथ्वी की परिक्रमा करते हैं', sa: 'बुध और शुक्र सूर्य की, सूर्य पृथ्वी की परिक्रमा करते हैं', mai: 'बुध और शुक्र सूर्य की, सूर्य पृथ्वी की परिक्रमा करते हैं', mr: 'बुध और शुक्र सूर्य की, सूर्य पृथ्वी की परिक्रमा करते हैं', ta: 'Mercury and Venus orbit the Sun, which orbits Earth', te: 'Mercury and Venus orbit the Sun, which orbits Earth', bn: 'Mercury and Venus orbit the Sun, which orbits Earth', kn: 'Mercury and Venus orbit the Sun, which orbits Earth', gu: 'Mercury and Venus orbit the Sun, which orbits Earth' },
+      { en: 'Earth and Mars orbit the Sun, others orbit Earth', hi: 'पृथ्वी और मंगल सूर्य की, अन्य पृथ्वी की परिक्रमा करते हैं', sa: 'पृथ्वी और मंगल सूर्य की, अन्य पृथ्वी की परिक्रमा करते हैं', mai: 'पृथ्वी और मंगल सूर्य की, अन्य पृथ्वी की परिक्रमा करते हैं', mr: 'पृथ्वी और मंगल सूर्य की, अन्य पृथ्वी की परिक्रमा करते हैं', ta: 'Earth and Mars orbit the Sun, others orbit Earth', te: 'Earth and Mars orbit the Sun, others orbit Earth', bn: 'Earth and Mars orbit the Sun, others orbit Earth', kn: 'Earth and Mars orbit the Sun, others orbit Earth', gu: 'Earth and Mars orbit the Sun, others orbit Earth' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -117,10 +117,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'sine श्रेणी sin(x) = x \u2212 x\u00B3/3! + x\u2075/5! \u2212 ... का श्रेय पश्चिमी गणित में किसे दिया जाता है:',
     },
     options: [
-      { en: 'Leibniz and Gregory', hi: 'लाइबनिज और ग्रेगरी' },
-      { en: 'Taylor and Maclaurin', hi: 'टेलर और मैक्लॉरिन' },
-      { en: 'Euler and Bernoulli', hi: 'ऑयलर और बरनूली' },
-      { en: 'Descartes and Fermat', hi: 'देकार्त और फ़र्मा' },
+      { en: 'Leibniz and Gregory', hi: 'लाइबनिज और ग्रेगरी', sa: 'लाइबनिज और ग्रेगरी', mai: 'लाइबनिज और ग्रेगरी', mr: 'लाइबनिज और ग्रेगरी', ta: 'Leibniz and Gregory', te: 'Leibniz and Gregory', bn: 'Leibniz and Gregory', kn: 'Leibniz and Gregory', gu: 'Leibniz and Gregory' },
+      { en: 'Taylor and Maclaurin', hi: 'टेलर और मैक्लॉरिन', sa: 'टेलर और मैक्लॉरिन', mai: 'टेलर और मैक्लॉरिन', mr: 'टेलर और मैक्लॉरिन', ta: 'Taylor and Maclaurin', te: 'Taylor and Maclaurin', bn: 'Taylor and Maclaurin', kn: 'Taylor and Maclaurin', gu: 'Taylor and Maclaurin' },
+      { en: 'Euler and Bernoulli', hi: 'ऑयलर और बरनूली', sa: 'ऑयलर और बरनूली', mai: 'ऑयलर और बरनूली', mr: 'ऑयलर और बरनूली', ta: 'Euler and Bernoulli', te: 'Euler and Bernoulli', bn: 'Euler and Bernoulli', kn: 'Euler and Bernoulli', gu: 'Euler and Bernoulli' },
+      { en: 'Descartes and Fermat', hi: 'देकार्त और फ़र्मा', sa: 'देकार्त और फ़र्मा', mai: 'देकार्त और फ़र्मा', mr: 'देकार्त और फ़र्मा', ta: 'Descartes and Fermat', te: 'Descartes and Fermat', bn: 'Descartes and Fermat', kn: 'Descartes and Fermat', gu: 'Descartes and Fermat' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -159,10 +159,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'परमेश्वर (~1360\u20131455 ई.) दूरबीन-पूर्व इतिहास में सबसे लम्बा व्यवस्थित खगोलीय प्रेक्षण कार्यक्रम चलाने के लिए उल्लेखनीय हैं। यह कितने वर्षों तक चला?',
     },
     options: [
-      { en: '10 years', hi: '10 वर्ष' },
-      { en: '25 years', hi: '25 वर्ष' },
-      { en: '55 years', hi: '55 वर्ष' },
-      { en: '100 years', hi: '100 वर्ष' },
+      { en: '10 years', hi: '10 वर्ष', sa: '10 वर्ष', mai: '10 वर्ष', mr: '10 वर्ष', ta: '10 years', te: '10 years', bn: '10 years', kn: '10 years', gu: '10 years' },
+      { en: '25 years', hi: '25 वर्ष', sa: '25 वर्ष', mai: '25 वर्ष', mr: '25 वर्ष', ta: '25 years', te: '25 years', bn: '25 years', kn: '25 years', gu: '25 years' },
+      { en: '55 years', hi: '55 वर्ष', sa: '55 वर्ष', mai: '55 वर्ष', mr: '55 वर्ष', ta: '55 years', te: '55 years', bn: '55 years', kn: '55 years', gu: '55 years' },
+      { en: '100 years', hi: '100 वर्ष', sa: '100 वर्ष', mai: '100 वर्ष', mr: '100 वर्ष', ta: '100 years', te: '100 years', bn: '100 years', kn: '100 years', gu: '100 years' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -177,10 +177,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'माधव की sine श्रेणी के पहले तीन पदों (x, \u2212x\u00B3/3!, +x\u2075/5!) से sin(30\u00B0) की गणना का परिणाम क्या है?',
     },
     options: [
-      { en: '0.47 (not very close)', hi: '0.47 (बहुत करीब नहीं)' },
-      { en: '0.50001 (nearly exact)', hi: '0.50001 (लगभग सटीक)' },
-      { en: '0.52 (too high)', hi: '0.52 (बहुत अधिक)' },
-      { en: '0.49 (close but needs more terms)', hi: '0.49 (करीब लेकिन और पदों की ज़रूरत)' },
+      { en: '0.47 (not very close)', hi: '0.47 (बहुत करीब नहीं)', sa: '0.47 (बहुत करीब नहीं)', mai: '0.47 (बहुत करीब नहीं)', mr: '0.47 (बहुत करीब नहीं)', ta: '0.47 (not very close)', te: '0.47 (not very close)', bn: '0.47 (not very close)', kn: '0.47 (not very close)', gu: '0.47 (not very close)' },
+      { en: '0.50001 (nearly exact)', hi: '0.50001 (लगभग सटीक)', sa: '0.50001 (लगभग सटीक)', mai: '0.50001 (लगभग सटीक)', mr: '0.50001 (लगभग सटीक)', ta: '0.50001 (nearly exact)', te: '0.50001 (nearly exact)', bn: '0.50001 (nearly exact)', kn: '0.50001 (nearly exact)', gu: '0.50001 (nearly exact)' },
+      { en: '0.52 (too high)', hi: '0.52 (बहुत अधिक)', sa: '0.52 (बहुत अधिक)', mai: '0.52 (बहुत अधिक)', mr: '0.52 (बहुत अधिक)', ta: '0.52 (too high)', te: '0.52 (too high)', bn: '0.52 (too high)', kn: '0.52 (too high)', gu: '0.52 (too high)' },
+      { en: '0.49 (close but needs more terms)', hi: '0.49 (करीब लेकिन और पदों की ज़रूरत)', sa: '0.49 (करीब लेकिन और पदों की ज़रूरत)', mai: '0.49 (करीब लेकिन और पदों की ज़रूरत)', mr: '0.49 (करीब लेकिन और पदों की ज़रूरत)', ta: '0.49 (close but needs more terms)', te: '0.49 (close but needs more terms)', bn: '0.49 (close but needs more terms)', kn: '0.49 (close but needs more terms)', gu: '0.49 (close but needs more terms)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -278,10 +278,10 @@ function Page2() {
       </section>
 
       {[
-        { name: { en: 'Parameshvara', hi: 'परमेश्वर' }, years: '~1360\u20131455', fact: { en: '55 years of systematic astronomical observations \u2014 longest pre-telescopic program', hi: '55 वर्ष व्यवस्थित खगोलीय प्रेक्षण \u2014 दूरबीन-पूर्व सबसे लम्बा कार्यक्रम' } },
-        { name: { en: 'Nilakantha Somayaji', hi: 'नीलकण्ठ सोमयाजी' }, years: '~1444\u20131544', fact: { en: 'Tantrasangraha (1500 CE): partial heliocentric model \u2014 Mercury & Venus orbit Sun. Identical to Brahe\'s model, 88 years before Brahe.', hi: 'तन्त्रसंग्रह (1500 ई.): आंशिक सौर-केन्द्रीय मॉडल \u2014 बुध और शुक्र सूर्य की परिक्रमा। ब्राहे से 88 वर्ष पहले।' } },
-        { name: { en: 'Jyeshthadeva', hi: 'ज्येष्ठदेव' }, years: '~1500\u20131575', fact: { en: 'Yuktibhasha (~1530 CE): world\'s first calculus textbook. Full proofs in Malayalam. Derives series using geometric limits (Riemann sums).', hi: 'युक्तिभाषा (~1530 ई.): विश्व की पहली कलन पाठ्यपुस्तक। मलयालम में पूर्ण प्रमाण। ज्यामितीय सीमाओं (रीमान योग) से श्रेणी व्युत्पत्ति।' } },
-        { name: { en: 'Achyuta Pisharati', hi: 'अच्युत पिशारटि' }, years: '~1550\u20131621', fact: { en: 'Last major figure. Applied tropical corrections. Extended the tradition before colonial pressures caused its decline.', hi: 'अन्तिम प्रमुख व्यक्ति। उष्णकटिबन्धीय सुधार लागू किए। औपनिवेशिक दबावों से पतन से पहले परम्परा बढ़ाई।' } },
+        { name: { en: 'Parameshvara', hi: 'परमेश्वर', sa: 'परमेश्वर', mai: 'परमेश्वर', mr: 'परमेश्वर', ta: 'Parameshvara', te: 'Parameshvara', bn: 'Parameshvara', kn: 'Parameshvara', gu: 'Parameshvara' }, years: '~1360\u20131455', fact: { en: '55 years of systematic astronomical observations \u2014 longest pre-telescopic program', hi: '55 वर्ष व्यवस्थित खगोलीय प्रेक्षण \u2014 दूरबीन-पूर्व सबसे लम्बा कार्यक्रम', sa: '55 वर्ष व्यवस्थित खगोलीय प्रेक्षण \u2014 दूरबीन-पूर्व सबसे लम्बा कार्यक्रम', mai: '55 वर्ष व्यवस्थित खगोलीय प्रेक्षण \u2014 दूरबीन-पूर्व सबसे लम्बा कार्यक्रम', mr: '55 वर्ष व्यवस्थित खगोलीय प्रेक्षण \u2014 दूरबीन-पूर्व सबसे लम्बा कार्यक्रम', ta: '55 years of systematic astronomical observations \u2014 longest pre-telescopic program', te: '55 years of systematic astronomical observations \u2014 longest pre-telescopic program', bn: '55 years of systematic astronomical observations \u2014 longest pre-telescopic program', kn: '55 years of systematic astronomical observations \u2014 longest pre-telescopic program', gu: '55 years of systematic astronomical observations \u2014 longest pre-telescopic program' } },
+        { name: { en: 'Nilakantha Somayaji', hi: 'नीलकण्ठ सोमयाजी', sa: 'नीलकण्ठ सोमयाजी', mai: 'नीलकण्ठ सोमयाजी', mr: 'नीलकण्ठ सोमयाजी', ta: 'Nilakantha Somayaji', te: 'Nilakantha Somayaji', bn: 'Nilakantha Somayaji', kn: 'Nilakantha Somayaji', gu: 'Nilakantha Somayaji' }, years: '~1444\u20131544', fact: { en: 'Tantrasangraha (1500 CE): partial heliocentric model \u2014 Mercury & Venus orbit Sun. Identical to Brahe\'s model, 88 years before Brahe.', hi: 'तन्त्रसंग्रह (1500 ई.): आंशिक सौर-केन्द्रीय मॉडल \u2014 बुध और शुक्र सूर्य की परिक्रमा। ब्राहे से 88 वर्ष पहले।' } },
+        { name: { en: 'Jyeshthadeva', hi: 'ज्येष्ठदेव', sa: 'ज्येष्ठदेव', mai: 'ज्येष्ठदेव', mr: 'ज्येष्ठदेव', ta: 'Jyeshthadeva', te: 'Jyeshthadeva', bn: 'Jyeshthadeva', kn: 'Jyeshthadeva', gu: 'Jyeshthadeva' }, years: '~1500\u20131575', fact: { en: 'Yuktibhasha (~1530 CE): world\'s first calculus textbook. Full proofs in Malayalam. Derives series using geometric limits (Riemann sums).', hi: 'युक्तिभाषा (~1530 ई.): विश्व की पहली कलन पाठ्यपुस्तक। मलयालम में पूर्ण प्रमाण। ज्यामितीय सीमाओं (रीमान योग) से श्रेणी व्युत्पत्ति।' } },
+        { name: { en: 'Achyuta Pisharati', hi: 'अच्युत पिशारटि', sa: 'अच्युत पिशारटि', mai: 'अच्युत पिशारटि', mr: 'अच्युत पिशारटि', ta: 'Achyuta Pisharati', te: 'Achyuta Pisharati', bn: 'Achyuta Pisharati', kn: 'Achyuta Pisharati', gu: 'Achyuta Pisharati' }, years: '~1550\u20131621', fact: { en: 'Last major figure. Applied tropical corrections. Extended the tradition before colonial pressures caused its decline.', hi: 'अन्तिम प्रमुख व्यक्ति। उष्णकटिबन्धीय सुधार लागू किए। औपनिवेशिक दबावों से पतन से पहले परम्परा बढ़ाई।', sa: 'अन्तिम प्रमुख व्यक्ति। उष्णकटिबन्धीय सुधार लागू किए। औपनिवेशिक दबावों से पतन से पहले परम्परा बढ़ाई।', mai: 'अन्तिम प्रमुख व्यक्ति। उष्णकटिबन्धीय सुधार लागू किए। औपनिवेशिक दबावों से पतन से पहले परम्परा बढ़ाई।', mr: 'अन्तिम प्रमुख व्यक्ति। उष्णकटिबन्धीय सुधार लागू किए। औपनिवेशिक दबावों से पतन से पहले परम्परा बढ़ाई।', ta: 'Last major figure. Applied tropical corrections. Extended the tradition before colonial pressures caused its decline.', te: 'Last major figure. Applied tropical corrections. Extended the tradition before colonial pressures caused its decline.', bn: 'Last major figure. Applied tropical corrections. Extended the tradition before colonial pressures caused its decline.', kn: 'Last major figure. Applied tropical corrections. Extended the tradition before colonial pressures caused its decline.', gu: 'Last major figure. Applied tropical corrections. Extended the tradition before colonial pressures caused its decline.' } },
       ].map((person, i) => (
         <section key={i} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
           <div className="flex items-center gap-2 mb-2">

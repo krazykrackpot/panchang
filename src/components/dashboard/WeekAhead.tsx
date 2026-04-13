@@ -1,4 +1,5 @@
 'use client';
+import { tl } from '@/lib/utils/trilingual';
 
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
@@ -6,7 +7,7 @@ import { Moon, ArrowRight, CalendarDays } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { dateToJD, moonLongitude, toSidereal, getRashiNumber } from '@/lib/ephem/astronomical';
 import { RASHIS } from '@/lib/constants/rashis';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ---------------------------------------------------------------------------
@@ -45,7 +46,7 @@ const LABELS = {
 // ---------------------------------------------------------------------------
 // Moon-house forecast texts (trilingual)
 // ---------------------------------------------------------------------------
-const HOUSE_FORECASTS: Record<number, { en: string; hi: string; sa: string }> = {
+const HOUSE_FORECASTS: Record<number, LocaleText> = {
   1:  { en: 'Focus on self, health, personal projects', hi: 'स्वास्थ्य, व्यक्तिगत परियोजनाओं पर ध्यान', sa: 'आत्मनः आरोग्यं व्यक्तिगतकार्याणि च' },
   2:  { en: 'Good for finances, family matters, speech', hi: 'धन, परिवार और वाणी के लिए शुभ', sa: 'धनं कुटुम्बं वाक् च शुभम्' },
   3:  { en: 'Communication, short trips, courage', hi: 'संवाद, लघु यात्रा, साहस', sa: 'सम्वादः लघुयात्रा पराक्रमश्च' },
@@ -167,7 +168,7 @@ interface WeekAheadProps {
 // Component
 // ---------------------------------------------------------------------------
 export default function WeekAhead({ ascendantSign, locale, hasBirthData }: WeekAheadProps) {
-  const L = LABELS[locale] || LABELS.en;
+  const L = (LABELS as Record<string, typeof LABELS.en>)[locale] || LABELS.en;
 
   const weekDays = useMemo(() => {
     if (!hasBirthData || !ascendantSign) return [];

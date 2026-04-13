@@ -5,16 +5,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_26_3', phase: 6, topic: 'Indian Contributions', moduleNumber: '26.3',
-  title: { en: 'Speed of Light — 14th Century Text', hi: 'प्रकाश की गति — 14वीं शताब्दी का ग्रन्थ' },
+  title: { en: 'Speed of Light — 14th Century Text', hi: 'प्रकाश की गति — 14वीं शताब्दी का ग्रन्थ', sa: 'प्रकाश की गति — 14वीं शताब्दी का ग्रन्थ', mai: 'प्रकाश की गति — 14वीं शताब्दी का ग्रन्थ', mr: 'प्रकाश की गति — 14वीं शताब्दी का ग्रन्थ', ta: 'Speed of Light — 14th Century Text', te: 'Speed of Light — 14th Century Text', bn: 'Speed of Light — 14th Century Text', kn: 'Speed of Light — 14th Century Text', gu: 'Speed of Light — 14th Century Text' },
   subtitle: {
     en: 'A 14th century CE Sanskrit commentary on the Rig Veda contains a value for the speed of light accurate to 0.14% — 300 years before Ole Rømer',
     hi: 'ऋग्वेद पर 14वीं शताब्दी की एक संस्कृत टिप्पणी में प्रकाश की गति का एक मान है जो 0.14% सटीक है — ओले रोमर से 300 वर्ष पहले',
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 26-1: Earth Rotates', hi: 'मॉड्यूल 26-1: पृथ्वी घूमती है' }, href: '/learn/modules/26-1' },
-    { label: { en: 'Module 26-2: Gravity Before Newton', hi: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण' }, href: '/learn/modules/26-2' },
-    { label: { en: 'Module 26-4: Cosmic Time', hi: 'मॉड्यूल 26-4: ब्रह्मांडीय समय' }, href: '/learn/modules/26-4' },
+    { label: { en: 'Module 26-1: Earth Rotates', hi: 'मॉड्यूल 26-1: पृथ्वी घूमती है', sa: 'मॉड्यूल 26-1: पृथ्वी घूमती है', mai: 'मॉड्यूल 26-1: पृथ्वी घूमती है', mr: 'मॉड्यूल 26-1: पृथ्वी घूमती है', ta: 'Module 26-1: Earth Rotates', te: 'Module 26-1: Earth Rotates', bn: 'Module 26-1: Earth Rotates', kn: 'Module 26-1: Earth Rotates', gu: 'Module 26-1: Earth Rotates' }, href: '/learn/modules/26-1' },
+    { label: { en: 'Module 26-2: Gravity Before Newton', hi: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण', sa: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण', mai: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण', mr: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण', ta: 'Module 26-2: Gravity Before Newton', te: 'Module 26-2: Gravity Before Newton', bn: 'Module 26-2: Gravity Before Newton', kn: 'Module 26-2: Gravity Before Newton', gu: 'Module 26-2: Gravity Before Newton' }, href: '/learn/modules/26-2' },
+    { label: { en: 'Module 26-4: Cosmic Time', hi: 'मॉड्यूल 26-4: ब्रह्मांडीय समय', sa: 'मॉड्यूल 26-4: ब्रह्मांडीय समय', mai: 'मॉड्यूल 26-4: ब्रह्मांडीय समय', mr: 'मॉड्यूल 26-4: ब्रह्मांडीय समय', ta: 'Module 26-4: Cosmic Time', te: 'Module 26-4: Cosmic Time', bn: 'Module 26-4: Cosmic Time', kn: 'Module 26-4: Cosmic Time', gu: 'Module 26-4: Cosmic Time' }, href: '/learn/modules/26-4' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किसने 14वीं शताब्दी के एक संस्कृत ग्रन्थ में प्रकाश की गति का एक मान दिया?',
     },
     options: [
-      { en: 'Aryabhata', hi: 'आर्यभट' },
-      { en: 'Sayana', hi: 'सायण' },
-      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त' },
-      { en: 'Bhaskaracharya', hi: 'भास्कराचार्य' },
+      { en: 'Aryabhata', hi: 'आर्यभट', sa: 'आर्यभट', mai: 'आर्यभट', mr: 'आर्यभट', ta: 'Aryabhata', te: 'Aryabhata', bn: 'Aryabhata', kn: 'Aryabhata', gu: 'Aryabhata' },
+      { en: 'Sayana', hi: 'सायण', sa: 'सायण', mai: 'सायण', mr: 'सायण', ta: 'Sayana', te: 'Sayana', bn: 'Sayana', kn: 'Sayana', gu: 'Sayana' },
+      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त', sa: 'ब्रह्मगुप्त', mai: 'ब्रह्मगुप्त', mr: 'ब्रह्मगुप्त', ta: 'Brahmagupta', te: 'Brahmagupta', bn: 'Brahmagupta', kn: 'Brahmagupta', gu: 'Brahmagupta' },
+      { en: 'Bhaskaracharya', hi: 'भास्कराचार्य', sa: 'भास्कराचार्य', mai: 'भास्कराचार्य', mr: 'भास्कराचार्य', ta: 'Bhaskaracharya', te: 'Bhaskaracharya', bn: 'Bhaskaracharya', kn: 'Bhaskaracharya', gu: 'Bhaskaracharya' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -44,10 +44,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किस ग्रन्थ में सायण ने प्रकाश की गति का मान दिया?',
     },
     options: [
-      { en: 'Arthashastra', hi: 'अर्थशास्त्र' },
+      { en: 'Arthashastra', hi: 'अर्थशास्त्र', sa: 'अर्थशास्त्र', mai: 'अर्थशास्त्र', mr: 'अर्थशास्त्र', ta: 'Arthashastra', te: 'Arthashastra', bn: 'Arthashastra', kn: 'Arthashastra', gu: 'Arthashastra' },
       { en: 'Sayana\'s commentary on the Rig Veda', hi: 'ऋग्वेद पर सायण की टिप्पणी' },
-      { en: 'Surya Siddhanta', hi: 'सूर्य सिद्धान्त' },
-      { en: 'Pancha Siddhantika', hi: 'पञ्च सिद्धान्तिका' },
+      { en: 'Surya Siddhanta', hi: 'सूर्य सिद्धान्त', sa: 'सूर्य सिद्धान्त', mai: 'सूर्य सिद्धान्त', mr: 'सूर्य सिद्धान्त', ta: 'Surya Siddhanta', te: 'Surya Siddhanta', bn: 'Surya Siddhanta', kn: 'Surya Siddhanta', gu: 'Surya Siddhanta' },
+      { en: 'Pancha Siddhantika', hi: 'पञ्च सिद्धान्तिका', sa: 'पञ्च सिद्धान्तिका', mai: 'पञ्च सिद्धान्तिका', mr: 'पञ्च सिद्धान्तिका', ta: 'Pancha Siddhantika', te: 'Pancha Siddhantika', bn: 'Pancha Siddhantika', kn: 'Pancha Siddhantika', gu: 'Pancha Siddhantika' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -62,10 +62,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ऋग्वेद के किस विशिष्ट भजन में वह अंश है जिस पर सायण ने प्रकाश की गति के संबंध में टिप्पणी की?',
     },
     options: [
-      { en: 'Rig Veda 1.1.1 — hymn to Agni', hi: 'ऋग्वेद 1.1.1 — अग्नि को भजन' },
-      { en: 'Rig Veda 1.50.4 — hymn to Surya', hi: 'ऋग्वेद 1.50.4 — सूर्य को भजन' },
-      { en: 'Rig Veda 10.90 — Purusha Sukta', hi: 'ऋग्वेद 10.90 — पुरुष सूक्त' },
-      { en: 'Rig Veda 9.114 — Soma hymn', hi: 'ऋग्वेद 9.114 — सोम भजन' },
+      { en: 'Rig Veda 1.1.1 — hymn to Agni', hi: 'ऋग्वेद 1.1.1 — अग्नि को भजन', sa: 'ऋग्वेद 1.1.1 — अग्नि को भजन', mai: 'ऋग्वेद 1.1.1 — अग्नि को भजन', mr: 'ऋग्वेद 1.1.1 — अग्नि को भजन', ta: 'Rig Veda 1.1.1 — hymn to Agni', te: 'Rig Veda 1.1.1 — hymn to Agni', bn: 'Rig Veda 1.1.1 — hymn to Agni', kn: 'Rig Veda 1.1.1 — hymn to Agni', gu: 'Rig Veda 1.1.1 — hymn to Agni' },
+      { en: 'Rig Veda 1.50.4 — hymn to Surya', hi: 'ऋग्वेद 1.50.4 — सूर्य को भजन', sa: 'ऋग्वेद 1.50.4 — सूर्य को भजन', mai: 'ऋग्वेद 1.50.4 — सूर्य को भजन', mr: 'ऋग्वेद 1.50.4 — सूर्य को भजन', ta: 'Rig Veda 1.50.4 — hymn to Surya', te: 'Rig Veda 1.50.4 — hymn to Surya', bn: 'Rig Veda 1.50.4 — hymn to Surya', kn: 'Rig Veda 1.50.4 — hymn to Surya', gu: 'Rig Veda 1.50.4 — hymn to Surya' },
+      { en: 'Rig Veda 10.90 — Purusha Sukta', hi: 'ऋग्वेद 10.90 — पुरुष सूक्त', sa: 'ऋग्वेद 10.90 — पुरुष सूक्त', mai: 'ऋग्वेद 10.90 — पुरुष सूक्त', mr: 'ऋग्वेद 10.90 — पुरुष सूक्त', ta: 'Rig Veda 10.90 — Purusha Sukta', te: 'Rig Veda 10.90 — Purusha Sukta', bn: 'Rig Veda 10.90 — Purusha Sukta', kn: 'Rig Veda 10.90 — Purusha Sukta', gu: 'Rig Veda 10.90 — Purusha Sukta' },
+      { en: 'Rig Veda 9.114 — Soma hymn', hi: 'ऋग्वेद 9.114 — सोम भजन', sa: 'ऋग्वेद 9.114 — सोम भजन', mai: 'ऋग्वेद 9.114 — सोम भजन', mr: 'ऋग्वेद 9.114 — सोम भजन', ta: 'Rig Veda 9.114 — Soma hymn', te: 'Rig Veda 9.114 — Soma hymn', bn: 'Rig Veda 9.114 — Soma hymn', kn: 'Rig Veda 9.114 — Soma hymn', gu: 'Rig Veda 9.114 — Soma hymn' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -80,10 +80,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ऋग्वेद टिप्पणी में सायण ने प्रकाश की गति के लिए क्या मान दिया?',
     },
     options: [
-      { en: '1,000 yojanas per half-nimesha', hi: '1,000 योजन प्रति अर्ध-निमेष' },
-      { en: '2,202 yojanas per half-nimesha', hi: '2,202 योजन प्रति अर्ध-निमेष' },
-      { en: '4,404 yojanas per nimesha', hi: '4,404 योजन प्रति निमेष' },
-      { en: '10,000 yojanas per muhurta', hi: '10,000 योजन प्रति मुहूर्त' },
+      { en: '1,000 yojanas per half-nimesha', hi: '1,000 योजन प्रति अर्ध-निमेष', sa: '1,000 योजन प्रति अर्ध-निमेष', mai: '1,000 योजन प्रति अर्ध-निमेष', mr: '1,000 योजन प्रति अर्ध-निमेष', ta: '1,000 yojanas per half-nimesha', te: '1,000 yojanas per half-nimesha', bn: '1,000 yojanas per half-nimesha', kn: '1,000 yojanas per half-nimesha', gu: '1,000 yojanas per half-nimesha' },
+      { en: '2,202 yojanas per half-nimesha', hi: '2,202 योजन प्रति अर्ध-निमेष', sa: '2,202 योजन प्रति अर्ध-निमेष', mai: '2,202 योजन प्रति अर्ध-निमेष', mr: '2,202 योजन प्रति अर्ध-निमेष', ta: '2,202 yojanas per half-nimesha', te: '2,202 yojanas per half-nimesha', bn: '2,202 yojanas per half-nimesha', kn: '2,202 yojanas per half-nimesha', gu: '2,202 yojanas per half-nimesha' },
+      { en: '4,404 yojanas per nimesha', hi: '4,404 योजन प्रति निमेष', sa: '4,404 योजन प्रति निमेष', mai: '4,404 योजन प्रति निमेष', mr: '4,404 योजन प्रति निमेष', ta: '4,404 yojanas per nimesha', te: '4,404 yojanas per nimesha', bn: '4,404 yojanas per nimesha', kn: '4,404 yojanas per nimesha', gu: '4,404 yojanas per nimesha' },
+      { en: '10,000 yojanas per muhurta', hi: '10,000 योजन प्रति मुहूर्त', sa: '10,000 योजन प्रति मुहूर्त', mai: '10,000 योजन प्रति मुहूर्त', mr: '10,000 योजन प्रति मुहूर्त', ta: '10,000 yojanas per muhurta', te: '10,000 yojanas per muhurta', bn: '10,000 yojanas per muhurta', kn: '10,000 yojanas per muhurta', gu: '10,000 yojanas per muhurta' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -98,10 +98,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मील प्रति सेकंड में प्रकाश की आधुनिक गति क्या है?',
     },
     options: [
-      { en: '150,000 miles per second', hi: '150,000 मील प्रति सेकंड' },
-      { en: '186,282 miles per second', hi: '186,282 मील प्रति सेकंड' },
-      { en: '200,000 miles per second', hi: '200,000 मील प्रति सेकंड' },
-      { en: '225,000 miles per second', hi: '225,000 मील प्रति सेकंड' },
+      { en: '150,000 miles per second', hi: '150,000 मील प्रति सेकंड', sa: '150,000 मील प्रति सेकंड', mai: '150,000 मील प्रति सेकंड', mr: '150,000 मील प्रति सेकंड', ta: '150,000 miles per second', te: '150,000 miles per second', bn: '150,000 miles per second', kn: '150,000 miles per second', gu: '150,000 miles per second' },
+      { en: '186,282 miles per second', hi: '186,282 मील प्रति सेकंड', sa: '186,282 मील प्रति सेकंड', mai: '186,282 मील प्रति सेकंड', mr: '186,282 मील प्रति सेकंड', ta: '186,282 miles per second', te: '186,282 miles per second', bn: '186,282 miles per second', kn: '186,282 miles per second', gu: '186,282 miles per second' },
+      { en: '200,000 miles per second', hi: '200,000 मील प्रति सेकंड', sa: '200,000 मील प्रति सेकंड', mai: '200,000 मील प्रति सेकंड', mr: '200,000 मील प्रति सेकंड', ta: '200,000 miles per second', te: '200,000 miles per second', bn: '200,000 miles per second', kn: '200,000 miles per second', gu: '200,000 miles per second' },
+      { en: '225,000 miles per second', hi: '225,000 मील प्रति सेकंड', sa: '225,000 मील प्रति सेकंड', mai: '225,000 मील प्रति सेकंड', mr: '225,000 मील प्रति सेकंड', ta: '225,000 miles per second', te: '225,000 miles per second', bn: '225,000 miles per second', kn: '225,000 miles per second', gu: '225,000 miles per second' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -116,10 +116,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'आधुनिक मान की तुलना में सायण की गणना की गई प्रकाश की गति कितनी सटीक है?',
     },
     options: [
-      { en: 'About 85% accurate (15% error)', hi: 'लगभग 85% सटीक (15% त्रुटि)' },
-      { en: 'About 95% accurate (5% error)', hi: 'लगभग 95% सटीक (5% त्रुटि)' },
-      { en: 'About 99.86% accurate (0.14% error)', hi: 'लगभग 99.86% सटीक (0.14% त्रुटि)' },
-      { en: 'Exactly 100% accurate (0% error)', hi: 'बिल्कुल 100% सटीक (0% त्रुटि)' },
+      { en: 'About 85% accurate (15% error)', hi: 'लगभग 85% सटीक (15% त्रुटि)', sa: 'लगभग 85% सटीक (15% त्रुटि)', mai: 'लगभग 85% सटीक (15% त्रुटि)', mr: 'लगभग 85% सटीक (15% त्रुटि)', ta: 'About 85% accurate (15% error)', te: 'About 85% accurate (15% error)', bn: 'About 85% accurate (15% error)', kn: 'About 85% accurate (15% error)', gu: 'About 85% accurate (15% error)' },
+      { en: 'About 95% accurate (5% error)', hi: 'लगभग 95% सटीक (5% त्रुटि)', sa: 'लगभग 95% सटीक (5% त्रुटि)', mai: 'लगभग 95% सटीक (5% त्रुटि)', mr: 'लगभग 95% सटीक (5% त्रुटि)', ta: 'About 95% accurate (5% error)', te: 'About 95% accurate (5% error)', bn: 'About 95% accurate (5% error)', kn: 'About 95% accurate (5% error)', gu: 'About 95% accurate (5% error)' },
+      { en: 'About 99.86% accurate (0.14% error)', hi: 'लगभग 99.86% सटीक (0.14% त्रुटि)', sa: 'लगभग 99.86% सटीक (0.14% त्रुटि)', mai: 'लगभग 99.86% सटीक (0.14% त्रुटि)', mr: 'लगभग 99.86% सटीक (0.14% त्रुटि)', ta: 'About 99.86% accurate (0.14% error)', te: 'About 99.86% accurate (0.14% error)', bn: 'About 99.86% accurate (0.14% error)', kn: 'About 99.86% accurate (0.14% error)', gu: 'About 99.86% accurate (0.14% error)' },
+      { en: 'Exactly 100% accurate (0% error)', hi: 'बिल्कुल 100% सटीक (0% त्रुटि)', sa: 'बिल्कुल 100% सटीक (0% त्रुटि)', mai: 'बिल्कुल 100% सटीक (0% त्रुटि)', mr: 'बिल्कुल 100% सटीक (0% त्रुटि)', ta: 'Exactly 100% accurate (0% error)', te: 'Exactly 100% accurate (0% error)', bn: 'Exactly 100% accurate (0% error)', kn: 'Exactly 100% accurate (0% error)', gu: 'Exactly 100% accurate (0% error)' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -134,10 +134,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सायण की प्रकाश की गति की गणना में कौन सी माप इकाई केन्द्रीय है?',
     },
     options: [
-      { en: 'Hasta (cubit ≈ 18 inches)', hi: 'हस्त (हाथ ≈ 18 इंच)' },
-      { en: 'Yojana (≈ 9.09 miles)', hi: 'योजन (≈ 9.09 मील)' },
-      { en: 'Gavyuti (≈ 4 miles)', hi: 'गव्यूति (≈ 4 मील)' },
-      { en: 'Krosa (≈ 2.25 miles)', hi: 'क्रोस (≈ 2.25 मील)' },
+      { en: 'Hasta (cubit ≈ 18 inches)', hi: 'हस्त (हाथ ≈ 18 इंच)', sa: 'हस्त (हाथ ≈ 18 इंच)', mai: 'हस्त (हाथ ≈ 18 इंच)', mr: 'हस्त (हाथ ≈ 18 इंच)', ta: 'Hasta (cubit ≈ 18 inches)', te: 'Hasta (cubit ≈ 18 inches)', bn: 'Hasta (cubit ≈ 18 inches)', kn: 'Hasta (cubit ≈ 18 inches)', gu: 'Hasta (cubit ≈ 18 inches)' },
+      { en: 'Yojana (≈ 9.09 miles)', hi: 'योजन (≈ 9.09 मील)', sa: 'योजन (≈ 9.09 मील)', mai: 'योजन (≈ 9.09 मील)', mr: 'योजन (≈ 9.09 मील)', ta: 'Yojana (≈ 9.09 miles)', te: 'Yojana (≈ 9.09 miles)', bn: 'Yojana (≈ 9.09 miles)', kn: 'Yojana (≈ 9.09 miles)', gu: 'Yojana (≈ 9.09 miles)' },
+      { en: 'Gavyuti (≈ 4 miles)', hi: 'गव्यूति (≈ 4 मील)', sa: 'गव्यूति (≈ 4 मील)', mai: 'गव्यूति (≈ 4 मील)', mr: 'गव्यूति (≈ 4 मील)', ta: 'Gavyuti (≈ 4 miles)', te: 'Gavyuti (≈ 4 miles)', bn: 'Gavyuti (≈ 4 miles)', kn: 'Gavyuti (≈ 4 miles)', gu: 'Gavyuti (≈ 4 miles)' },
+      { en: 'Krosa (≈ 2.25 miles)', hi: 'क्रोस (≈ 2.25 मील)', sa: 'क्रोस (≈ 2.25 मील)', mai: 'क्रोस (≈ 2.25 मील)', mr: 'क्रोस (≈ 2.25 मील)', ta: 'Krosa (≈ 2.25 miles)', te: 'Krosa (≈ 2.25 miles)', bn: 'Krosa (≈ 2.25 miles)', kn: 'Krosa (≈ 2.25 miles)', gu: 'Krosa (≈ 2.25 miles)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -152,10 +152,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ओले रोमर ने प्रकाश की गति का पहला निश्चित माप किस वर्ष किया?',
     },
     options: [
-      { en: '1543 CE', hi: '1543 ईस्वी' },
-      { en: '1609 CE', hi: '1609 ईस्वी' },
-      { en: '1676 CE', hi: '1676 ईस्वी' },
-      { en: '1729 CE', hi: '1729 ईस्वी' },
+      { en: '1543 CE', hi: '1543 ईस्वी', sa: '1543 ईस्वी', mai: '1543 ईस्वी', mr: '1543 ईस्वी', ta: '1543 CE', te: '1543 CE', bn: '1543 CE', kn: '1543 CE', gu: '1543 CE' },
+      { en: '1609 CE', hi: '1609 ईस्वी', sa: '1609 ईस्वी', mai: '1609 ईस्वी', mr: '1609 ईस्वी', ta: '1609 CE', te: '1609 CE', bn: '1609 CE', kn: '1609 CE', gu: '1609 CE' },
+      { en: '1676 CE', hi: '1676 ईस्वी', sa: '1676 ईस्वी', mai: '1676 ईस्वी', mr: '1676 ईस्वी', ta: '1676 CE', te: '1676 CE', bn: '1676 CE', kn: '1676 CE', gu: '1676 CE' },
+      { en: '1729 CE', hi: '1729 ईस्वी', sa: '1729 ईस्वी', mai: '1729 ईस्वी', mr: '1729 ईस्वी', ta: '1729 CE', te: '1729 CE', bn: '1729 CE', kn: '1729 CE', gu: '1729 CE' },
     ],
     correctAnswer: 2,
     explanation: {

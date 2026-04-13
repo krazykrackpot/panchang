@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
@@ -273,8 +274,8 @@ export default function LearnKundaliPage() {
                 {item.icon}
               </span>
               <div>
-                <div className="text-gold-light font-semibold text-sm mb-1">{item.label[locale]}</div>
-                <p className="text-text-secondary text-sm">{item.text[locale]}</p>
+                <div className="text-gold-light font-semibold text-sm mb-1">{tl(item.label, locale)}</div>
+                <p className="text-text-secondary text-sm">{tl(item.text, locale)}</p>
               </div>
             </div>
           ))}
@@ -382,10 +383,10 @@ export default function LearnKundaliPage() {
             <tbody>
               {EXAMPLE_PLANETS.map((p) => (
                 <tr key={p.id} className="border-b border-gold-primary/5">
-                  <td className="py-2 text-xs font-semibold" style={{ color: p.color }}>{p.name[locale]}</td>
+                  <td className="py-2 text-xs font-semibold" style={{ color: p.color }}>{tl(p.name, locale)}</td>
                   <td className="py-2 text-gold-light/70 font-mono text-xs">{p.sidereal}</td>
-                  <td className="py-2 text-text-secondary text-xs">{p.rashi[locale]}</td>
-                  <td className="py-2 text-text-secondary/75 text-xs hidden sm:table-cell" style={(isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{p.nak[locale]}</td>
+                  <td className="py-2 text-text-secondary text-xs">{tl(p.rashi, locale)}</td>
+                  <td className="py-2 text-text-secondary/75 text-xs hidden sm:table-cell" style={(isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(p.nak, locale)}</td>
                 </tr>
               ))}
             </tbody>
@@ -416,14 +417,14 @@ export default function LearnKundaliPage() {
           {EXAMPLE_HOUSES.map((h) => (
             <div
               key={h.house}
-              className={`rounded-lg p-3 border ${h.planets[locale] !== '—' ? 'border-gold-primary/20 bg-gold-primary/5' : 'border-gold-primary/5 bg-bg-primary/30'}`}
+              className={`rounded-lg p-3 border ${tl(h.planets, locale) !== '—' ? 'border-gold-primary/20 bg-gold-primary/5' : 'border-gold-primary/5 bg-bg-primary/30'}`}
             >
               <div className="flex items-center gap-2 mb-1">
                 <span className="w-6 h-6 rounded-full bg-gold-primary/10 flex items-center justify-center text-gold-light text-xs font-bold">{h.house}</span>
-                <span className="text-text-secondary/75 text-xs">{h.rashi[locale]}</span>
+                <span className="text-text-secondary/75 text-xs">{tl(h.rashi, locale)}</span>
               </div>
-              <div className={`text-xs font-semibold ${h.planets[locale] !== '—' ? 'text-gold-light' : 'text-text-secondary/55'}`}>
-                {h.planets[locale]}
+              <div className={`text-xs font-semibold ${tl(h.planets, locale) !== '—' ? 'text-gold-light' : 'text-text-secondary/55'}`}>
+                {tl(h.planets, locale)}
               </div>
             </div>
           ))}
@@ -463,9 +464,9 @@ export default function LearnKundaliPage() {
             <div key={d.planet.en} className="flex items-center gap-3 p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/5">
               <div className="w-2 h-8 rounded-full flex-shrink-0" style={{ backgroundColor: d.color }} />
               <div className="flex-1">
-                <span className="text-gold-light text-sm font-semibold">{d.planet[locale]}</span>
+                <span className="text-gold-light text-sm font-semibold">{tl(d.planet, locale)}</span>
                 <span className="text-text-secondary/75 text-sm"> — </span>
-                <span className="text-sm" style={{ color: d.color }}>{d.status[locale]}</span>
+                <span className="text-sm" style={{ color: d.color }}>{tl(d.status, locale)}</span>
               </div>
             </div>
           ))}
@@ -491,8 +492,8 @@ export default function LearnKundaliPage() {
             { planet: { en: 'Saturn (special)', hi: 'शनि (विशेष)', sa: 'शनिः (विशेषः)' }, aspect: { en: '+ 3rd and 10th houses', hi: '+ 3रे और 10वें भाव पर', sa: '+ तृतीयदशमभावयोः' }, color: '#3b82f6' },
           ].map((a) => (
             <div key={a.planet.en} className="rounded-lg p-3 border border-gold-primary/10 bg-bg-primary/30">
-              <div className="text-sm font-semibold mb-1" style={{ color: a.color }}>{a.planet[locale]}</div>
-              <div className="text-text-secondary text-xs">{a.aspect[locale]}</div>
+              <div className="text-sm font-semibold mb-1" style={{ color: a.color }}>{tl(a.planet, locale)}</div>
+              <div className="text-text-secondary text-xs">{tl(a.aspect, locale)}</div>
             </div>
           ))}
         </div>
@@ -600,8 +601,8 @@ export default function LearnKundaliPage() {
               href={link.href}
               className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 hover:border-gold-primary/30 transition-colors group"
             >
-              <div className="text-gold-light font-semibold text-sm group-hover:text-gold-primary transition-colors">{link.label[locale]}</div>
-              <p className="text-text-secondary/75 text-xs mt-1">{link.desc[locale]}</p>
+              <div className="text-gold-light font-semibold text-sm group-hover:text-gold-primary transition-colors">{tl(link.label, locale)}</div>
+              <p className="text-text-secondary/75 text-xs mt-1">{tl(link.desc, locale)}</p>
             </Link>
           ))}
         </div>

@@ -1,27 +1,27 @@
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 export interface PersonalizedDay {
   // Tara Bala
   taraBala: {
     taraNumber: number;        // 1-9
-    taraName: Trilingual;
+    taraName: LocaleText;
     isFavorable: boolean;
-    description: Trilingual;
+    description: LocaleText;
   };
   // Chandra Bala
   chandraBala: {
     houseFromMoon: number;     // 1-12
     isFavorable: boolean;
-    description: Trilingual;
+    description: LocaleText;
   };
   // Day quality
   dayQuality: 'excellent' | 'good' | 'neutral' | 'caution' | 'challenging';
-  dayQualityDescription: Trilingual;
+  dayQualityDescription: LocaleText;
 
   // Current dasha
   currentDasha: {
-    maha: { planet: string; planetName: Trilingual; startDate: string; endDate: string };
-    antar?: { planet: string; planetName: Trilingual; startDate: string; endDate: string };
+    maha: { planet: string; planetName: LocaleText; startDate: string; endDate: string };
+    antar?: { planet: string; planetName: LocaleText; startDate: string; endDate: string };
   } | null;
 
   // Transit alerts
@@ -32,7 +32,7 @@ export interface TransitAlert {
   type: 'sade_sati' | 'jupiter_transit' | 'rahu_ketu_transit' | 'retrograde' | 'planet_return';
   severity: 'info' | 'notable' | 'significant';
   planet: string;
-  description: Trilingual;
+  description: LocaleText;
 }
 
 export interface UserSnapshot {

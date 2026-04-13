@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
@@ -82,14 +83,14 @@ const L = {
 };
 
 const SIGNS_SHORT = [
-  { en: 'Ari', hi: 'मे' }, { en: 'Tau', hi: 'वृ' }, { en: 'Gem', hi: 'मि' },
-  { en: 'Can', hi: 'क' }, { en: 'Leo', hi: 'सिं' }, { en: 'Vir', hi: 'कन्' },
-  { en: 'Lib', hi: 'तु' }, { en: 'Sco', hi: 'वृश्' }, { en: 'Sag', hi: 'ध' },
-  { en: 'Cap', hi: 'म' }, { en: 'Aqu', hi: 'कुं' }, { en: 'Pis', hi: 'मी' },
+  { en: 'Ari', hi: 'मे', sa: 'मे', mai: 'मे', mr: 'मे', ta: 'Ari', te: 'Ari', bn: 'Ari', kn: 'Ari', gu: 'Ari' }, { en: 'Tau', hi: 'वृ', sa: 'वृ', mai: 'वृ', mr: 'वृ', ta: 'Tau', te: 'Tau', bn: 'Tau', kn: 'Tau', gu: 'Tau' }, { en: 'Gem', hi: 'मि', sa: 'मि', mai: 'मि', mr: 'मि', ta: 'Gem', te: 'Gem', bn: 'Gem', kn: 'Gem', gu: 'Gem' },
+  { en: 'Can', hi: 'क', sa: 'क', mai: 'क', mr: 'क', ta: 'Can', te: 'Can', bn: 'Can', kn: 'Can', gu: 'Can' }, { en: 'Leo', hi: 'सिं', sa: 'सिं', mai: 'सिं', mr: 'सिं', ta: 'Leo', te: 'Leo', bn: 'Leo', kn: 'Leo', gu: 'Leo' }, { en: 'Vir', hi: 'कन्', sa: 'कन्', mai: 'कन्', mr: 'कन्', ta: 'Vir', te: 'Vir', bn: 'Vir', kn: 'Vir', gu: 'Vir' },
+  { en: 'Lib', hi: 'तु', sa: 'तु', mai: 'तु', mr: 'तु', ta: 'Lib', te: 'Lib', bn: 'Lib', kn: 'Lib', gu: 'Lib' }, { en: 'Sco', hi: 'वृश्', sa: 'वृश्', mai: 'वृश्', mr: 'वृश्', ta: 'Sco', te: 'Sco', bn: 'Sco', kn: 'Sco', gu: 'Sco' }, { en: 'Sag', hi: 'ध', sa: 'ध', mai: 'ध', mr: 'ध', ta: 'Sag', te: 'Sag', bn: 'Sag', kn: 'Sag', gu: 'Sag' },
+  { en: 'Cap', hi: 'म', sa: 'म', mai: 'म', mr: 'म', ta: 'Cap', te: 'Cap', bn: 'Cap', kn: 'Cap', gu: 'Cap' }, { en: 'Aqu', hi: 'कुं', sa: 'कुं', mai: 'कुं', mr: 'कुं', ta: 'Aqu', te: 'Aqu', bn: 'Aqu', kn: 'Aqu', gu: 'Aqu' }, { en: 'Pis', hi: 'मी', sa: 'मी', mai: 'मी', mr: 'मी', ta: 'Pis', te: 'Pis', bn: 'Pis', kn: 'Pis', gu: 'Pis' },
 ];
 
 const EXAMPLE_BAV = {
-  planet: { en: 'Saturn', hi: 'शनि' },
+  planet: { en: 'Saturn', hi: 'शनि', sa: 'शनि', mai: 'शनि', mr: 'शनि', ta: 'Saturn', te: 'Saturn', bn: 'Saturn', kn: 'Saturn', gu: 'Saturn' },
   color: '#3b82f6',
   scores: [3, 2, 4, 5, 3, 6, 5, 1, 4, 6, 3, 7],
   total: 49,
@@ -137,14 +138,14 @@ export default function LearnAshtakavargaPage() {
         {/* 8 sources visual */}
         <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
           {[
-            { name: { en: 'Sun', hi: 'सूर्य' }, color: '#f59e0b' },
-            { name: { en: 'Moon', hi: 'चन्द्र' }, color: '#e2e8f0' },
-            { name: { en: 'Mars', hi: 'मंगल' }, color: '#ef4444' },
-            { name: { en: 'Mercury', hi: 'बुध' }, color: '#22c55e' },
-            { name: { en: 'Jupiter', hi: 'गुरु' }, color: '#f0d48a' },
-            { name: { en: 'Venus', hi: 'शुक्र' }, color: '#ec4899' },
-            { name: { en: 'Saturn', hi: 'शनि' }, color: '#3b82f6' },
-            { name: { en: 'Lagna', hi: 'लग्न' }, color: '#a855f7' },
+            { name: { en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', mai: 'सूर्य', mr: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun' }, color: '#f59e0b' },
+            { name: { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', mai: 'चन्द्र', mr: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon' }, color: '#e2e8f0' },
+            { name: { en: 'Mars', hi: 'मंगल', sa: 'मंगल', mai: 'मंगल', mr: 'मंगल', ta: 'Mars', te: 'Mars', bn: 'Mars', kn: 'Mars', gu: 'Mars' }, color: '#ef4444' },
+            { name: { en: 'Mercury', hi: 'बुध', sa: 'बुध', mai: 'बुध', mr: 'बुध', ta: 'Mercury', te: 'Mercury', bn: 'Mercury', kn: 'Mercury', gu: 'Mercury' }, color: '#22c55e' },
+            { name: { en: 'Jupiter', hi: 'गुरु', sa: 'गुरु', mai: 'गुरु', mr: 'गुरु', ta: 'Jupiter', te: 'Jupiter', bn: 'Jupiter', kn: 'Jupiter', gu: 'Jupiter' }, color: '#f0d48a' },
+            { name: { en: 'Venus', hi: 'शुक्र', sa: 'शुक्र', mai: 'शुक्र', mr: 'शुक्र', ta: 'Venus', te: 'Venus', bn: 'Venus', kn: 'Venus', gu: 'Venus' }, color: '#ec4899' },
+            { name: { en: 'Saturn', hi: 'शनि', sa: 'शनि', mai: 'शनि', mr: 'शनि', ta: 'Saturn', te: 'Saturn', bn: 'Saturn', kn: 'Saturn', gu: 'Saturn' }, color: '#3b82f6' },
+            { name: { en: 'Lagna', hi: 'लग्न', sa: 'लग्न', mai: 'लग्न', mr: 'लग्न', ta: 'Lagna', te: 'Lagna', bn: 'Lagna', kn: 'Lagna', gu: 'Lagna' }, color: '#a855f7' },
           ].map((src, i) => (
             <motion.div
               key={src.name.en}
@@ -315,11 +316,11 @@ export default function LearnAshtakavargaPage() {
         {/* Ekadhipati pairs */}
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {[
-            { lord: { en: 'Mars', hi: 'मंगल' }, pair: { en: 'Aries & Scorpio', hi: 'मेष & वृश्चिक' }, color: '#ef4444' },
-            { lord: { en: 'Jupiter', hi: 'गुरु' }, pair: { en: 'Sagittarius & Pisces', hi: 'धनु & मीन' }, color: '#f0d48a' },
-            { lord: { en: 'Saturn', hi: 'शनि' }, pair: { en: 'Capricorn & Aquarius', hi: 'मकर & कुम्भ' }, color: '#3b82f6' },
-            { lord: { en: 'Mercury', hi: 'बुध' }, pair: { en: 'Gemini & Virgo', hi: 'मिथुन & कन्या' }, color: '#22c55e' },
-            { lord: { en: 'Venus', hi: 'शुक्र' }, pair: { en: 'Taurus & Libra', hi: 'वृषभ & तुला' }, color: '#ec4899' },
+            { lord: { en: 'Mars', hi: 'मंगल', sa: 'मंगल', mai: 'मंगल', mr: 'मंगल', ta: 'Mars', te: 'Mars', bn: 'Mars', kn: 'Mars', gu: 'Mars' }, pair: { en: 'Aries & Scorpio', hi: 'मेष & वृश्चिक', sa: 'मेष & वृश्चिक', mai: 'मेष & वृश्चिक', mr: 'मेष & वृश्चिक', ta: 'Aries & Scorpio', te: 'Aries & Scorpio', bn: 'Aries & Scorpio', kn: 'Aries & Scorpio', gu: 'Aries & Scorpio' }, color: '#ef4444' },
+            { lord: { en: 'Jupiter', hi: 'गुरु', sa: 'गुरु', mai: 'गुरु', mr: 'गुरु', ta: 'Jupiter', te: 'Jupiter', bn: 'Jupiter', kn: 'Jupiter', gu: 'Jupiter' }, pair: { en: 'Sagittarius & Pisces', hi: 'धनु & मीन', sa: 'धनु & मीन', mai: 'धनु & मीन', mr: 'धनु & मीन', ta: 'Sagittarius & Pisces', te: 'Sagittarius & Pisces', bn: 'Sagittarius & Pisces', kn: 'Sagittarius & Pisces', gu: 'Sagittarius & Pisces' }, color: '#f0d48a' },
+            { lord: { en: 'Saturn', hi: 'शनि', sa: 'शनि', mai: 'शनि', mr: 'शनि', ta: 'Saturn', te: 'Saturn', bn: 'Saturn', kn: 'Saturn', gu: 'Saturn' }, pair: { en: 'Capricorn & Aquarius', hi: 'मकर & कुम्भ', sa: 'मकर & कुम्भ', mai: 'मकर & कुम्भ', mr: 'मकर & कुम्भ', ta: 'Capricorn & Aquarius', te: 'Capricorn & Aquarius', bn: 'Capricorn & Aquarius', kn: 'Capricorn & Aquarius', gu: 'Capricorn & Aquarius' }, color: '#3b82f6' },
+            { lord: { en: 'Mercury', hi: 'बुध', sa: 'बुध', mai: 'बुध', mr: 'बुध', ta: 'Mercury', te: 'Mercury', bn: 'Mercury', kn: 'Mercury', gu: 'Mercury' }, pair: { en: 'Gemini & Virgo', hi: 'मिथुन & कन्या', sa: 'मिथुन & कन्या', mai: 'मिथुन & कन्या', mr: 'मिथुन & कन्या', ta: 'Gemini & Virgo', te: 'Gemini & Virgo', bn: 'Gemini & Virgo', kn: 'Gemini & Virgo', gu: 'Gemini & Virgo' }, color: '#22c55e' },
+            { lord: { en: 'Venus', hi: 'शुक्र', sa: 'शुक्र', mai: 'शुक्र', mr: 'शुक्र', ta: 'Venus', te: 'Venus', bn: 'Venus', kn: 'Venus', gu: 'Venus' }, pair: { en: 'Taurus & Libra', hi: 'वृषभ & तुला', sa: 'वृषभ & तुला', mai: 'वृषभ & तुला', mr: 'वृषभ & तुला', ta: 'Taurus & Libra', te: 'Taurus & Libra', bn: 'Taurus & Libra', kn: 'Taurus & Libra', gu: 'Taurus & Libra' }, color: '#ec4899' },
           ].map((item) => (
             <div key={item.lord.en} className="rounded-lg p-3 border border-gold-primary/10 bg-bg-primary/50">
               <div className="text-sm font-bold mb-1" style={{ color: item.color }}>
@@ -359,14 +360,14 @@ export default function LearnAshtakavargaPage() {
             </thead>
             <tbody className="divide-y divide-gold-primary/5">
               {[
-                { n: 1, ruler: { en: 'Saturn', hi: 'शनि' }, range: '0\u00b0 - 3\u00b045\u2032', color: '#3b82f6' },
-                { n: 2, ruler: { en: 'Jupiter', hi: 'गुरु' }, range: '3\u00b045\u2032 - 7\u00b030\u2032', color: '#f0d48a' },
-                { n: 3, ruler: { en: 'Mars', hi: 'मंगल' }, range: '7\u00b030\u2032 - 11\u00b015\u2032', color: '#ef4444' },
-                { n: 4, ruler: { en: 'Sun', hi: 'सूर्य' }, range: '11\u00b015\u2032 - 15\u00b0', color: '#f59e0b' },
-                { n: 5, ruler: { en: 'Venus', hi: 'शुक्र' }, range: '15\u00b0 - 18\u00b045\u2032', color: '#ec4899' },
-                { n: 6, ruler: { en: 'Mercury', hi: 'बुध' }, range: '18\u00b045\u2032 - 22\u00b030\u2032', color: '#22c55e' },
-                { n: 7, ruler: { en: 'Moon', hi: 'चन्द्र' }, range: '22\u00b030\u2032 - 26\u00b015\u2032', color: '#e2e8f0' },
-                { n: 8, ruler: { en: 'Lagna', hi: 'लग्न' }, range: '26\u00b015\u2032 - 30\u00b0', color: '#a855f7' },
+                { n: 1, ruler: { en: 'Saturn', hi: 'शनि', sa: 'शनि', mai: 'शनि', mr: 'शनि', ta: 'Saturn', te: 'Saturn', bn: 'Saturn', kn: 'Saturn', gu: 'Saturn' }, range: '0\u00b0 - 3\u00b045\u2032', color: '#3b82f6' },
+                { n: 2, ruler: { en: 'Jupiter', hi: 'गुरु', sa: 'गुरु', mai: 'गुरु', mr: 'गुरु', ta: 'Jupiter', te: 'Jupiter', bn: 'Jupiter', kn: 'Jupiter', gu: 'Jupiter' }, range: '3\u00b045\u2032 - 7\u00b030\u2032', color: '#f0d48a' },
+                { n: 3, ruler: { en: 'Mars', hi: 'मंगल', sa: 'मंगल', mai: 'मंगल', mr: 'मंगल', ta: 'Mars', te: 'Mars', bn: 'Mars', kn: 'Mars', gu: 'Mars' }, range: '7\u00b030\u2032 - 11\u00b015\u2032', color: '#ef4444' },
+                { n: 4, ruler: { en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', mai: 'सूर्य', mr: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun' }, range: '11\u00b015\u2032 - 15\u00b0', color: '#f59e0b' },
+                { n: 5, ruler: { en: 'Venus', hi: 'शुक्र', sa: 'शुक्र', mai: 'शुक्र', mr: 'शुक्र', ta: 'Venus', te: 'Venus', bn: 'Venus', kn: 'Venus', gu: 'Venus' }, range: '15\u00b0 - 18\u00b045\u2032', color: '#ec4899' },
+                { n: 6, ruler: { en: 'Mercury', hi: 'बुध', sa: 'बुध', mai: 'बुध', mr: 'बुध', ta: 'Mercury', te: 'Mercury', bn: 'Mercury', kn: 'Mercury', gu: 'Mercury' }, range: '18\u00b045\u2032 - 22\u00b030\u2032', color: '#22c55e' },
+                { n: 7, ruler: { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', mai: 'चन्द्र', mr: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon' }, range: '22\u00b030\u2032 - 26\u00b015\u2032', color: '#e2e8f0' },
+                { n: 8, ruler: { en: 'Lagna', hi: 'लग्न', sa: 'लग्न', mai: 'लग्न', mr: 'लग्न', ta: 'Lagna', te: 'Lagna', bn: 'Lagna', kn: 'Lagna', gu: 'Lagna' }, range: '26\u00b015\u2032 - 30\u00b0', color: '#a855f7' },
               ].map((k) => (
                 <tr key={k.n} className="hover:bg-gold-primary/3">
                   <td className="py-2 px-2 font-mono text-text-secondary">{k.n}</td>
@@ -397,7 +398,7 @@ export default function LearnAshtakavargaPage() {
               className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 hover:border-gold-primary/30 transition-colors block"
             >
               <span className="text-gold-light text-xs font-medium" style={headingFont}>
-                {mod.label[locale]}
+                {tl(mod.label, locale)}
               </span>
             </Link>
           ))}

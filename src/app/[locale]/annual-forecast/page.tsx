@@ -334,10 +334,10 @@ const LABELS: Record<string, {
 };
 
 const DIGNITY_LABELS: Record<string, Record<string, string>> = {
-  exalted: { en: 'Exalted', hi: 'उच्च' },
-  debilitated: { en: 'Debilitated', hi: 'नीच' },
-  own: { en: 'Own Sign', hi: 'स्वगृही' },
-  neutral: { en: 'Neutral', hi: 'सामान्य' },
+  exalted: { en: 'Exalted', hi: 'उच्च', sa: 'उच्च', mai: 'उच्च', mr: 'उच्च', ta: 'Exalted', te: 'Exalted', bn: 'Exalted', kn: 'Exalted', gu: 'Exalted' },
+  debilitated: { en: 'Debilitated', hi: 'नीच', sa: 'नीच', mai: 'नीच', mr: 'नीच', ta: 'Debilitated', te: 'Debilitated', bn: 'Debilitated', kn: 'Debilitated', gu: 'Debilitated' },
+  own: { en: 'Own Sign', hi: 'स्वगृही', sa: 'स्वगृही', mai: 'स्वगृही', mr: 'स्वगृही', ta: 'Own Sign', te: 'Own Sign', bn: 'Own Sign', kn: 'Own Sign', gu: 'Own Sign' },
+  neutral: { en: 'Neutral', hi: 'सामान्य', sa: 'सामान्य', mai: 'सामान्य', mr: 'सामान्य', ta: 'Neutral', te: 'Neutral', bn: 'Neutral', kn: 'Neutral', gu: 'Neutral' },
 };
 
 const OUTLOOK_COLORS: Record<string, string> = {
@@ -347,9 +347,9 @@ const OUTLOOK_COLORS: Record<string, string> = {
 };
 
 const OUTLOOK_LABELS: Record<string, Record<string, string>> = {
-  favorable: { en: 'Favorable', hi: 'अनुकूल' },
-  mixed: { en: 'Mixed', hi: 'मिश्रित' },
-  challenging: { en: 'Challenging', hi: 'चुनौतीपूर्ण' },
+  favorable: { en: 'Favorable', hi: 'अनुकूल', sa: 'अनुकूल', mai: 'अनुकूल', mr: 'अनुकूल', ta: 'Favorable', te: 'Favorable', bn: 'Favorable', kn: 'Favorable', gu: 'Favorable' },
+  mixed: { en: 'Mixed', hi: 'मिश्रित', sa: 'मिश्रित', mai: 'मिश्रित', mr: 'मिश्रित', ta: 'Mixed', te: 'Mixed', bn: 'Mixed', kn: 'Mixed', gu: 'Mixed' },
+  challenging: { en: 'Challenging', hi: 'चुनौतीपूर्ण', sa: 'चुनौतीपूर्ण', mai: 'चुनौतीपूर्ण', mr: 'चुनौतीपूर्ण', ta: 'Challenging', te: 'Challenging', bn: 'Challenging', kn: 'Challenging', gu: 'Challenging' },
 };
 
 const KEY_DATE_ICONS: Record<string, typeof Star> = {
@@ -1105,9 +1105,9 @@ function RemediesSection({ forecast, locale, t, headingFont, bodyFont }: {
 }) {
   const isDevanagari = isDevanagariLocale(locale);
   const typeLabels: Record<string, Record<string, string>> = {
-    gemstone: { en: 'Gemstone', hi: 'रत्न' },
-    mantra: { en: 'Mantra', hi: 'मंत्र' },
-    practice: { en: 'Practice', hi: 'अभ्यास' },
+    gemstone: { en: 'Gemstone', hi: 'रत्न', sa: 'रत्न', mai: 'रत्न', mr: 'रत्न', ta: 'Gemstone', te: 'Gemstone', bn: 'Gemstone', kn: 'Gemstone', gu: 'Gemstone' },
+    mantra: { en: 'Mantra', hi: 'मंत्र', sa: 'मंत्र', mai: 'मंत्र', mr: 'मंत्र', ta: 'Mantra', te: 'Mantra', bn: 'Mantra', kn: 'Mantra', gu: 'Mantra' },
+    practice: { en: 'Practice', hi: 'अभ्यास', sa: 'अभ्यास', mai: 'अभ्यास', mr: 'अभ्यास', ta: 'Practice', te: 'Practice', bn: 'Practice', kn: 'Practice', gu: 'Practice' },
   };
 
   const typeColors: Record<string, string> = {

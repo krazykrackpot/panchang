@@ -1,4 +1,5 @@
-import { Trilingual } from './panchang';
+;
+import type { LocaleText } from '@/types/panchang';
 import { BirthData } from './kundali';
 
 export interface ScoreBreakdown {
@@ -14,7 +15,7 @@ export interface ScoredTimeWindow {
   endTime: string;
   totalScore: number;
   breakdown: ScoreBreakdown;
-  keyFactors: Trilingual[];
+  keyFactors: LocaleText[];
   panchangaShuddhi?: number; // 0-5 count of favorable panchanga elements
   taraBala?: { tara: number; name: string; auspicious: boolean };
   chandraBala?: boolean;
@@ -29,7 +30,7 @@ export type ExtendedActivityId =
 
 export interface ExtendedActivity {
   id: ExtendedActivityId;
-  label: Trilingual;
+  label: LocaleText;
   goodTithis: number[];
   goodNakshatras: number[];
   goodWeekdays: number[];
@@ -41,8 +42,8 @@ export interface ExtendedActivity {
 
 export interface MuhurtaAIResult {
   activity: ExtendedActivityId;
-  activityLabel: Trilingual;
+  activityLabel: LocaleText;
   dateRange: { start: string; end: string };
   topRecommendations: ScoredTimeWindow[];
-  summary: Trilingual;
+  summary: LocaleText;
 }

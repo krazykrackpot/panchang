@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 /**
  * Compute exact Hindu month start/end dates for a given Gregorian year.
  * Hindu months (Amant/Purnimant) are lunar — each begins on Amavasya (new moon)
@@ -16,24 +17,24 @@ interface HinduMonth {
   sa: string;
   startDate: string;   // YYYY-MM-DD
   endDate: string;      // YYYY-MM-DD
-  ritu: { en: string; hi: string };
-  ayana: { en: string; hi: string };
+  ritu: LocaleText;
+  ayana: LocaleText;
   isAdhika: boolean;    // intercalary month
 }
 
-const MASA_DATA: { en: string; hi: string; sa: string; ritu: { en: string; hi: string }; ayana: { en: string; hi: string } }[] = [
-  { en: 'Chaitra', hi: 'चैत्र', sa: 'चैत्रः', ritu: { en: 'Vasanta (Spring)', hi: 'वसन्त' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण' } },
-  { en: 'Vaishakha', hi: 'वैशाख', sa: 'वैशाखः', ritu: { en: 'Vasanta (Spring)', hi: 'वसन्त' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण' } },
-  { en: 'Jyeshtha', hi: 'ज्येष्ठ', sa: 'ज्येष्ठः', ritu: { en: 'Grishma (Summer)', hi: 'ग्रीष्म' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण' } },
-  { en: 'Ashadha', hi: 'आषाढ़', sa: 'आषाढः', ritu: { en: 'Grishma (Summer)', hi: 'ग्रीष्म' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन' } },
-  { en: 'Shravana', hi: 'श्रावण', sa: 'श्रावणः', ritu: { en: 'Varsha (Monsoon)', hi: 'वर्षा' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन' } },
-  { en: 'Bhadrapada', hi: 'भाद्रपद', sa: 'भाद्रपदः', ritu: { en: 'Varsha (Monsoon)', hi: 'वर्षा' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन' } },
-  { en: 'Ashvina', hi: 'आश्विन', sa: 'आश्विनः', ritu: { en: 'Sharad (Autumn)', hi: 'शरद्' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन' } },
-  { en: 'Kartika', hi: 'कार्तिक', sa: 'कार्तिकः', ritu: { en: 'Sharad (Autumn)', hi: 'शरद्' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन' } },
-  { en: 'Margashirsha', hi: 'मार्गशीर्ष', sa: 'मार्गशीर्षः', ritu: { en: 'Hemanta (Pre-Winter)', hi: 'हेमन्त' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन' } },
-  { en: 'Pausha', hi: 'पौष', sa: 'पौषः', ritu: { en: 'Hemanta (Pre-Winter)', hi: 'हेमन्त' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण' } },
-  { en: 'Magha', hi: 'माघ', sa: 'माघः', ritu: { en: 'Shishira (Winter)', hi: 'शिशिर' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण' } },
-  { en: 'Phalguna', hi: 'फाल्गुन', sa: 'फाल्गुनः', ritu: { en: 'Shishira (Winter)', hi: 'शिशिर' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण' } },
+const MASA_DATA: { en: string; hi: string; sa: string; ritu: LocaleText; ayana: LocaleText }[] = [
+  { en: 'Chaitra', hi: 'चैत्र', sa: 'चैत्रः', ritu: { en: 'Vasanta (Spring)', hi: 'वसन्त', sa: 'वसन्त', mai: 'वसन्त', mr: 'वसन्त', ta: 'Vasanta (Spring)', te: 'Vasanta (Spring)', bn: 'Vasanta (Spring)', kn: 'Vasanta (Spring)', gu: 'Vasanta (Spring)' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण', sa: 'उत्तरायण', mai: 'उत्तरायण', mr: 'उत्तरायण', ta: 'Uttarayana', te: 'Uttarayana', bn: 'Uttarayana', kn: 'Uttarayana', gu: 'Uttarayana' } },
+  { en: 'Vaishakha', hi: 'वैशाख', sa: 'वैशाखः', ritu: { en: 'Vasanta (Spring)', hi: 'वसन्त', sa: 'वसन्त', mai: 'वसन्त', mr: 'वसन्त', ta: 'Vasanta (Spring)', te: 'Vasanta (Spring)', bn: 'Vasanta (Spring)', kn: 'Vasanta (Spring)', gu: 'Vasanta (Spring)' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण', sa: 'उत्तरायण', mai: 'उत्तरायण', mr: 'उत्तरायण', ta: 'Uttarayana', te: 'Uttarayana', bn: 'Uttarayana', kn: 'Uttarayana', gu: 'Uttarayana' } },
+  { en: 'Jyeshtha', hi: 'ज्येष्ठ', sa: 'ज्येष्ठः', ritu: { en: 'Grishma (Summer)', hi: 'ग्रीष्म', sa: 'ग्रीष्म', mai: 'ग्रीष्म', mr: 'ग्रीष्म', ta: 'Grishma (Summer)', te: 'Grishma (Summer)', bn: 'Grishma (Summer)', kn: 'Grishma (Summer)', gu: 'Grishma (Summer)' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण', sa: 'उत्तरायण', mai: 'उत्तरायण', mr: 'उत्तरायण', ta: 'Uttarayana', te: 'Uttarayana', bn: 'Uttarayana', kn: 'Uttarayana', gu: 'Uttarayana' } },
+  { en: 'Ashadha', hi: 'आषाढ़', sa: 'आषाढः', ritu: { en: 'Grishma (Summer)', hi: 'ग्रीष्म', sa: 'ग्रीष्म', mai: 'ग्रीष्म', mr: 'ग्रीष्म', ta: 'Grishma (Summer)', te: 'Grishma (Summer)', bn: 'Grishma (Summer)', kn: 'Grishma (Summer)', gu: 'Grishma (Summer)' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन', sa: 'दक्षिणायन', mai: 'दक्षिणायन', mr: 'दक्षिणायन', ta: 'Dakshinayana', te: 'Dakshinayana', bn: 'Dakshinayana', kn: 'Dakshinayana', gu: 'Dakshinayana' } },
+  { en: 'Shravana', hi: 'श्रावण', sa: 'श्रावणः', ritu: { en: 'Varsha (Monsoon)', hi: 'वर्षा', sa: 'वर्षा', mai: 'वर्षा', mr: 'वर्षा', ta: 'Varsha (Monsoon)', te: 'Varsha (Monsoon)', bn: 'Varsha (Monsoon)', kn: 'Varsha (Monsoon)', gu: 'Varsha (Monsoon)' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन', sa: 'दक्षिणायन', mai: 'दक्षिणायन', mr: 'दक्षिणायन', ta: 'Dakshinayana', te: 'Dakshinayana', bn: 'Dakshinayana', kn: 'Dakshinayana', gu: 'Dakshinayana' } },
+  { en: 'Bhadrapada', hi: 'भाद्रपद', sa: 'भाद्रपदः', ritu: { en: 'Varsha (Monsoon)', hi: 'वर्षा', sa: 'वर्षा', mai: 'वर्षा', mr: 'वर्षा', ta: 'Varsha (Monsoon)', te: 'Varsha (Monsoon)', bn: 'Varsha (Monsoon)', kn: 'Varsha (Monsoon)', gu: 'Varsha (Monsoon)' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन', sa: 'दक्षिणायन', mai: 'दक्षिणायन', mr: 'दक्षिणायन', ta: 'Dakshinayana', te: 'Dakshinayana', bn: 'Dakshinayana', kn: 'Dakshinayana', gu: 'Dakshinayana' } },
+  { en: 'Ashvina', hi: 'आश्विन', sa: 'आश्विनः', ritu: { en: 'Sharad (Autumn)', hi: 'शरद्', sa: 'शरद्', mai: 'शरद्', mr: 'शरद्', ta: 'Sharad (Autumn)', te: 'Sharad (Autumn)', bn: 'Sharad (Autumn)', kn: 'Sharad (Autumn)', gu: 'Sharad (Autumn)' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन', sa: 'दक्षिणायन', mai: 'दक्षिणायन', mr: 'दक्षिणायन', ta: 'Dakshinayana', te: 'Dakshinayana', bn: 'Dakshinayana', kn: 'Dakshinayana', gu: 'Dakshinayana' } },
+  { en: 'Kartika', hi: 'कार्तिक', sa: 'कार्तिकः', ritu: { en: 'Sharad (Autumn)', hi: 'शरद्', sa: 'शरद्', mai: 'शरद्', mr: 'शरद्', ta: 'Sharad (Autumn)', te: 'Sharad (Autumn)', bn: 'Sharad (Autumn)', kn: 'Sharad (Autumn)', gu: 'Sharad (Autumn)' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन', sa: 'दक्षिणायन', mai: 'दक्षिणायन', mr: 'दक्षिणायन', ta: 'Dakshinayana', te: 'Dakshinayana', bn: 'Dakshinayana', kn: 'Dakshinayana', gu: 'Dakshinayana' } },
+  { en: 'Margashirsha', hi: 'मार्गशीर्ष', sa: 'मार्गशीर्षः', ritu: { en: 'Hemanta (Pre-Winter)', hi: 'हेमन्त', sa: 'हेमन्त', mai: 'हेमन्त', mr: 'हेमन्त', ta: 'Hemanta (Pre-Winter)', te: 'Hemanta (Pre-Winter)', bn: 'Hemanta (Pre-Winter)', kn: 'Hemanta (Pre-Winter)', gu: 'Hemanta (Pre-Winter)' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन', sa: 'दक्षिणायन', mai: 'दक्षिणायन', mr: 'दक्षिणायन', ta: 'Dakshinayana', te: 'Dakshinayana', bn: 'Dakshinayana', kn: 'Dakshinayana', gu: 'Dakshinayana' } },
+  { en: 'Pausha', hi: 'पौष', sa: 'पौषः', ritu: { en: 'Hemanta (Pre-Winter)', hi: 'हेमन्त', sa: 'हेमन्त', mai: 'हेमन्त', mr: 'हेमन्त', ta: 'Hemanta (Pre-Winter)', te: 'Hemanta (Pre-Winter)', bn: 'Hemanta (Pre-Winter)', kn: 'Hemanta (Pre-Winter)', gu: 'Hemanta (Pre-Winter)' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण', sa: 'उत्तरायण', mai: 'उत्तरायण', mr: 'उत्तरायण', ta: 'Uttarayana', te: 'Uttarayana', bn: 'Uttarayana', kn: 'Uttarayana', gu: 'Uttarayana' } },
+  { en: 'Magha', hi: 'माघ', sa: 'माघः', ritu: { en: 'Shishira (Winter)', hi: 'शिशिर', sa: 'शिशिर', mai: 'शिशिर', mr: 'शिशिर', ta: 'Shishira (Winter)', te: 'Shishira (Winter)', bn: 'Shishira (Winter)', kn: 'Shishira (Winter)', gu: 'Shishira (Winter)' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण', sa: 'उत्तरायण', mai: 'उत्तरायण', mr: 'उत्तरायण', ta: 'Uttarayana', te: 'Uttarayana', bn: 'Uttarayana', kn: 'Uttarayana', gu: 'Uttarayana' } },
+  { en: 'Phalguna', hi: 'फाल्गुन', sa: 'फाल्गुनः', ritu: { en: 'Shishira (Winter)', hi: 'शिशिर', sa: 'शिशिर', mai: 'शिशिर', mr: 'शिशिर', ta: 'Shishira (Winter)', te: 'Shishira (Winter)', bn: 'Shishira (Winter)', kn: 'Shishira (Winter)', gu: 'Shishira (Winter)' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण', sa: 'उत्तरायण', mai: 'उत्तरायण', mr: 'उत्तरायण', ta: 'Uttarayana', te: 'Uttarayana', bn: 'Uttarayana', kn: 'Uttarayana', gu: 'Uttarayana' } },
 ];
 
 /**

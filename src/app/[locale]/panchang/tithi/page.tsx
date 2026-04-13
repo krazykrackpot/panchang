@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -537,10 +538,10 @@ export default function TithiPage() {
             >
               <div className="mb-3">{special.svgIcon}</div>
               <h3 className="text-gold-light font-bold text-lg mb-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                {special.name[locale]}
+                {tl(special.name, locale)}
               </h3>
               <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {special.desc[locale]}
+                {tl(special.desc, locale)}
               </p>
             </motion.div>
           ))}

@@ -10,7 +10,7 @@
  */
 
 import type { PlanetPosition } from '@/types/kundali';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { PLANET_NAMES, triLocale } from './utils';
 
 export interface AspectInfo {
@@ -113,8 +113,8 @@ function ordinal(n: number): string {
 /**
  * Get the nature of a planet's aspectual influence
  */
-function getAspectInfluence(planetId: number): { en: string; hi: string; sa: string } {
-  const influences: Record<number, { en: string; hi: string; sa: string }> = {
+function getAspectInfluence(planetId: number): LocaleText {
+  const influences: Record<number, LocaleText> = {
     0: { en: 'brings authority and vitality', hi: 'अधिकार और जीवन शक्ति लाता है', sa: 'अधिकारं जीवनशक्तिं च आनयति' },
     1: { en: 'brings emotional sensitivity and nurturing', hi: 'भावनात्मक संवेदनशीलता और पोषण लाता है', sa: 'भावनात्मिकसंवेदनशीलतां पोषणं च आनयति' },
     2: { en: 'brings energy, courage, and assertiveness', hi: 'ऊर्जा, साहस और दृढ़ता लाता है', sa: 'ऊर्जां शौर्यं दृढतां च आनयति' },

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, AlertTriangle, Sparkles, ArrowRightLeft, Clock, Shield, Heart, Briefcase, Coins, Activity, Star, Users } from 'lucide-react';
 import type { ConvergenceResult, PatternTheme, Tone, FlagIcon, TemporalFrame, ExecutiveInsight } from '@/lib/tippanni/convergence/types';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { dataLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Labels ─────────────────────────────────────────────────────────────────
@@ -23,7 +23,7 @@ const LABELS = {
   matchStrength: { en: 'Match Strength', hi: 'मिलान शक्ति', sa: 'सामञ्जस्य बलम्' },
 };
 
-const TONE_LABELS: Record<Tone, { en: string; hi: string; sa: string }> = {
+const TONE_LABELS: Record<Tone, LocaleText> = {
   growth: { en: 'Growth', hi: 'विकास', sa: 'वृद्धिः' },
   pressure: { en: 'Pressure', hi: 'दबाव', sa: 'पीडनम्' },
   transformation: { en: 'Transformation', hi: 'परिवर्तन', sa: 'रूपान्तरणम्' },
@@ -31,14 +31,14 @@ const TONE_LABELS: Record<Tone, { en: string; hi: string; sa: string }> = {
   mixed: { en: 'Mixed', hi: 'मिश्रित', sa: 'मिश्रम्' },
 };
 
-const TEMPORAL_LABELS: Record<TemporalFrame, { en: string; hi: string; sa: string }> = {
+const TEMPORAL_LABELS: Record<TemporalFrame, LocaleText> = {
   lifetime: { en: 'Lifetime', hi: 'जीवनकाल', sa: 'आजीवनम्' },
   'multi-year': { en: 'Multi-Year', hi: 'बहु-वर्षीय', sa: 'बहुवार्षिकम्' },
   'this-year': { en: 'This Year', hi: 'इस वर्ष', sa: 'अस्मिन् वर्षे' },
   'this-month': { en: 'This Month', hi: 'इस माह', sa: 'अस्मिन् मासे' },
 };
 
-const THEME_LABELS: Record<PatternTheme, { en: string; hi: string; sa: string }> = {
+const THEME_LABELS: Record<PatternTheme, LocaleText> = {
   career: { en: 'Career', hi: 'करियर', sa: 'वृत्तिः' },
   relationship: { en: 'Relationship', hi: 'सम्बन्ध', sa: 'सम्बन्धः' },
   wealth: { en: 'Wealth', hi: 'धन', sa: 'धनम्' },
@@ -89,13 +89,13 @@ const FLAG_COLORS: Record<FlagIcon, string> = {
 
 // ─── Helper ─────────────────────────────────────────────────────────────────
 
-function pickText(obj: { en: string; hi: string } | undefined, locale: Locale): string {
+function pickText(obj: LocaleText | undefined, locale: Locale): string {
   if (!obj) return '';
   const key = dataLocale(locale);
   return obj[key as 'en' | 'hi'] || obj.en;
 }
 
-function pickLabel(obj: { en: string; hi: string; sa: string }, locale: Locale): string {
+function pickLabel(obj: LocaleText, locale: Locale): string {
   return obj[locale] || obj.en;
 }
 

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { RASHIS } from '@/lib/constants/rashis';
-import type { Rashi, Locale } from '@/types/panchang';
+import type { Rashi, Locale ,LocaleText} from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { RashiIcon } from '@/components/icons/PanchangIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
@@ -38,7 +38,7 @@ const elementBorders: Record<string, string> = {
   Air: 'border-cyan-500/20',
   Water: 'border-blue-500/20',
 };
-const ELEMENT_LABELS: { key: string; label: Record<Locale, string> }[] = [
+const ELEMENT_LABELS: { key: string; label: LocaleText }[] = [
   { key: 'Fire', label: { en: 'Fire', hi: 'अग्नि', sa: 'अग्निः' } },
   { key: 'Earth', label: { en: 'Earth', hi: 'पृथ्वी', sa: 'पृथिवी' } },
   { key: 'Air', label: { en: 'Air', hi: 'वायु', sa: 'वायुः' } },

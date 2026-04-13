@@ -1,6 +1,6 @@
 // src/lib/tippanni/convergence/types.ts
 
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText} from '@/types/panchang';
 
 // ─── Enums ───────────────────────────────────────────────────────────────────
 
@@ -86,11 +86,11 @@ export interface ConvergencePattern {
   conditions: PatternCondition[];
   mutuallyExclusive?: string[];
   text: {
-    full: { en: string; hi: string };
-    mild: { en: string; hi: string };
+    full: LocaleText;
+    mild: LocaleText;
   };
-  advice: { en: string; hi: string };
-  laypersonNote: { en: string; hi: string };
+  advice: LocaleText;
+  laypersonNote: LocaleText;
   relatedSections: TippanniSection[];
 }
 
@@ -103,9 +103,9 @@ export interface MatchedPattern {
   totalConditions: number;
   isFullMatch: boolean;
   finalScore: number;
-  text: { en: string; hi: string };
-  advice: { en: string; hi: string };
-  laypersonNote: { en: string; hi: string };
+  text: LocaleText;
+  advice: LocaleText;
+  laypersonNote: LocaleText;
   relatedSections: TippanniSection[];
 }
 
@@ -119,7 +119,7 @@ export interface MetaRule {
 
 export interface MetaInsight {
   ruleId: string;
-  text: { en: string; hi: string };
+  text: LocaleText;
   severity: FlagSeverity;
 }
 
@@ -128,19 +128,19 @@ export interface MetaInsight {
 export interface ExecutiveInsight {
   theme: string;
   themeIcon: PatternTheme;
-  summary: { en: string; hi: string };
-  laypersonNote: { en: string; hi: string };
+  summary: LocaleText;
+  laypersonNote: LocaleText;
   temporalFrame: TemporalFrame;
   matchCount: string;
   relatedPatterns: string[];
-  expandedDetail: { en: string; hi: string };
-  advice: { en: string; hi: string };
+  expandedDetail: LocaleText;
+  advice: LocaleText;
 }
 
 export interface UrgentFlag {
   severity: FlagSeverity;
   icon: FlagIcon;
-  message: { en: string; hi: string };
+  message: LocaleText;
   expiresAt: string;
   relatedPatterns: string[];
 }
@@ -151,14 +151,14 @@ export interface TransitInsight {
   houseFromMoon: number;
   isRetrograde: boolean;
   ashtakavargaBindus: number;
-  effect: { en: string; hi: string };
+  effect: LocaleText;
 }
 
 export interface AshtakHighlight {
   planetId: number;
   sign: number;
   bindus: number;
-  text: { en: string; hi: string };
+  text: LocaleText;
 }
 
 export interface ConvergenceResult {
@@ -179,8 +179,8 @@ export interface ConvergenceResult {
 
   transitOverlay: {
     snapshot: TransitInsight[];
-    retroStatus: { planetId: number; effect: { en: string; hi: string } }[];
-    combustStatus: { planetId: number; effect: { en: string; hi: string } }[];
+    retroStatus: { planetId: number; effect: LocaleText }[];
+    combustStatus: { planetId: number; effect: LocaleText }[];
     ashtakavargaHighlights: AshtakHighlight[];
   };
 }

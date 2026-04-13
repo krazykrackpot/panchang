@@ -9,10 +9,10 @@ import {
 } from '@/lib/ephem/astronomical';
 import { resolveTimezone } from '@/lib/utils/timezone';
 import type { BirthData } from '@/types/kundali';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 // Tarabalam — Moon's transit nakshatra counted from birth nakshatra
-const TARA_RESULTS: Record<number, { favorable: boolean; name: Trilingual }> = {
+const TARA_RESULTS: Record<number, { favorable: boolean; name: LocaleText }> = {
   1: { favorable: true, name: { en: 'Janma', hi: 'जन्म', sa: 'जन्म' } },
   2: { favorable: false, name: { en: 'Sampat', hi: 'सम्पत्', sa: 'सम्पत्' } },
   3: { favorable: true, name: { en: 'Vipat', hi: 'विपत्', sa: 'विपत्' } },
@@ -30,9 +30,9 @@ const CHANDRABALAM_GOOD_HOUSES = [1, 3, 6, 7, 10, 11]; // Good positions
 export function computePersonalScore(
   birthData: BirthData,
   targetJD: number,
-): { score: number; factors: Trilingual[] } {
+): { score: number; factors: LocaleText[] } {
   let score = 0;
-  const factors: Trilingual[] = [];
+  const factors: LocaleText[] = [];
 
   // Parse birth data
   const [year, month, day] = birthData.date.split('-').map(Number);

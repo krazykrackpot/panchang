@@ -29,24 +29,24 @@ import AdUnit from '@/components/ads/AdUnit';
 import FestivalDetailModal from '@/components/calendar/FestivalDetailModal';
 import { FESTIVAL_DETAILS, CATEGORY_DETAILS, EKADASHI_NAMES, getHinduMonth } from '@/lib/constants/festival-details';
 import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-details';
-import type { Locale, Trilingual } from '@/types/panchang';
+import type { LocaleText, Locale} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface FestivalEntry {
-  name: Trilingual;
+  name: LocaleText;
   date: string;
   tithi?: string;
   masa?: { amanta: string; purnimanta: string; isAdhika: boolean };
   paksha?: 'shukla' | 'krishna';
   type: 'major' | 'vrat' | 'regional' | 'eclipse';
   category: string;
-  description: Trilingual;
+  description: LocaleText;
   slug?: string;
   // Parana
   paranaDate?: string;
   paranaStart?: string;
   paranaEnd?: string;
-  paranaNote?: Trilingual;
+  paranaNote?: LocaleText;
   paranaSunrise?: string;
   paranaHariVasaraEnd?: string;
   paranaDwadashiEnd?: string;
@@ -60,19 +60,19 @@ interface FestivalEntry {
   sutakStart?: string;
   sutakEnd?: string;
   sutakApplicable?: boolean;
-  eclipsePhases?: { name: Trilingual; time: string }[];
+  eclipsePhases?: { name: LocaleText; time: string }[];
 }
 
 const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const MONTH_NAMES_HI = ['जनवरी','फरवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितम्बर','अक्टूबर','नवम्बर','दिसम्बर'];
 
 const HINDU_MONTHS = [
-  { en: 'Chaitra', hi: 'चैत्र' }, { en: 'Vaishakha', hi: 'वैशाख' },
-  { en: 'Jyeshtha', hi: 'ज्येष्ठ' }, { en: 'Ashadha', hi: 'आषाढ़' },
-  { en: 'Shravana', hi: 'श्रावण' }, { en: 'Bhadrapada', hi: 'भाद्रपद' },
-  { en: 'Ashwina', hi: 'आश्विन' }, { en: 'Kartika', hi: 'कार्तिक' },
-  { en: 'Margashirsha', hi: 'मार्गशीर्ष' }, { en: 'Pausha', hi: 'पौष' },
-  { en: 'Magha', hi: 'माघ' }, { en: 'Phalguna', hi: 'फाल्गुन' },
+  { en: 'Chaitra', hi: 'चैत्र', sa: 'चैत्र', mai: 'चैत्र', mr: 'चैत्र', ta: 'Chaitra', te: 'Chaitra', bn: 'Chaitra', kn: 'Chaitra', gu: 'Chaitra' }, { en: 'Vaishakha', hi: 'वैशाख', sa: 'वैशाख', mai: 'वैशाख', mr: 'वैशाख', ta: 'Vaishakha', te: 'Vaishakha', bn: 'Vaishakha', kn: 'Vaishakha', gu: 'Vaishakha' },
+  { en: 'Jyeshtha', hi: 'ज्येष्ठ', sa: 'ज्येष्ठ', mai: 'ज्येष्ठ', mr: 'ज्येष्ठ', ta: 'Jyeshtha', te: 'Jyeshtha', bn: 'Jyeshtha', kn: 'Jyeshtha', gu: 'Jyeshtha' }, { en: 'Ashadha', hi: 'आषाढ़', sa: 'आषाढ़', mai: 'आषाढ़', mr: 'आषाढ़', ta: 'Ashadha', te: 'Ashadha', bn: 'Ashadha', kn: 'Ashadha', gu: 'Ashadha' },
+  { en: 'Shravana', hi: 'श्रावण', sa: 'श्रावण', mai: 'श्रावण', mr: 'श्रावण', ta: 'Shravana', te: 'Shravana', bn: 'Shravana', kn: 'Shravana', gu: 'Shravana' }, { en: 'Bhadrapada', hi: 'भाद्रपद', sa: 'भाद्रपद', mai: 'भाद्रपद', mr: 'भाद्रपद', ta: 'Bhadrapada', te: 'Bhadrapada', bn: 'Bhadrapada', kn: 'Bhadrapada', gu: 'Bhadrapada' },
+  { en: 'Ashwina', hi: 'आश्विन', sa: 'आश्विन', mai: 'आश्विन', mr: 'आश्विन', ta: 'Ashwina', te: 'Ashwina', bn: 'Ashwina', kn: 'Ashwina', gu: 'Ashwina' }, { en: 'Kartika', hi: 'कार्तिक', sa: 'कार्तिक', mai: 'कार्तिक', mr: 'कार्तिक', ta: 'Kartika', te: 'Kartika', bn: 'Kartika', kn: 'Kartika', gu: 'Kartika' },
+  { en: 'Margashirsha', hi: 'मार्गशीर्ष', sa: 'मार्गशीर्ष', mai: 'मार्गशीर्ष', mr: 'मार्गशीर्ष', ta: 'Margashirsha', te: 'Margashirsha', bn: 'Margashirsha', kn: 'Margashirsha', gu: 'Margashirsha' }, { en: 'Pausha', hi: 'पौष', sa: 'पौष', mai: 'पौष', mr: 'पौष', ta: 'Pausha', te: 'Pausha', bn: 'Pausha', kn: 'Pausha', gu: 'Pausha' },
+  { en: 'Magha', hi: 'माघ', sa: 'माघ', mai: 'माघ', mr: 'माघ', ta: 'Magha', te: 'Magha', bn: 'Magha', kn: 'Magha', gu: 'Magha' }, { en: 'Phalguna', hi: 'फाल्गुन', sa: 'फाल्गुन', mai: 'फाल्गुन', mr: 'फाल्गुन', ta: 'Phalguna', te: 'Phalguna', bn: 'Phalguna', kn: 'Phalguna', gu: 'Phalguna' },
 ];
 
 type Filter = 'all' | 'major' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham' | 'vrat' | 'eclipse';
@@ -529,11 +529,11 @@ export default function CalendarPage() {
         <div className="flex flex-wrap gap-2 justify-center mt-4 pt-4 border-t border-gold-primary/10">
           <span className="text-text-secondary text-xs mr-2 self-center">{!isDevanagariLocale(locale) ? 'Subscribe:' : 'सदस्यता:'}</span>
           {([
-            { cat: 'all', label: { en: 'All Events', hi: 'सभी' } },
-            { cat: 'major', label: { en: 'Festivals', hi: 'त्योहार' } },
-            { cat: 'ekadashi', label: { en: 'Ekadashi', hi: 'एकादशी' } },
-            { cat: 'purnima', label: { en: 'Purnima', hi: 'पूर्णिमा' } },
-            { cat: 'amavasya', label: { en: 'Amavasya', hi: 'अमावस्या' } },
+            { cat: 'all', label: { en: 'All Events', hi: 'सभी', sa: 'सभी', mai: 'सभी', mr: 'सभी', ta: 'All Events', te: 'All Events', bn: 'All Events', kn: 'All Events', gu: 'All Events' } },
+            { cat: 'major', label: { en: 'Festivals', hi: 'त्योहार', sa: 'त्योहार', mai: 'त्योहार', mr: 'त्योहार', ta: 'Festivals', te: 'Festivals', bn: 'Festivals', kn: 'Festivals', gu: 'Festivals' } },
+            { cat: 'ekadashi', label: { en: 'Ekadashi', hi: 'एकादशी', sa: 'एकादशी', mai: 'एकादशी', mr: 'एकादशी', ta: 'Ekadashi', te: 'Ekadashi', bn: 'Ekadashi', kn: 'Ekadashi', gu: 'Ekadashi' } },
+            { cat: 'purnima', label: { en: 'Purnima', hi: 'पूर्णिमा', sa: 'पूर्णिमा', mai: 'पूर्णिमा', mr: 'पूर्णिमा', ta: 'Purnima', te: 'Purnima', bn: 'Purnima', kn: 'Purnima', gu: 'Purnima' } },
+            { cat: 'amavasya', label: { en: 'Amavasya', hi: 'अमावस्या', sa: 'अमावस्या', mai: 'अमावस्या', mr: 'अमावस्या', ta: 'Amavasya', te: 'Amavasya', bn: 'Amavasya', kn: 'Amavasya', gu: 'Amavasya' } },
           ] as const).map(e => (
             <a
               key={e.cat}

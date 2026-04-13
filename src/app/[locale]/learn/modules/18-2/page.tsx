@@ -16,9 +16,9 @@ const META: ModuleMeta = {
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 18-1: Shadbala — Planetary Strength', hi: 'मॉड्यूल 18-1: षड्बल — ग्रह शक्ति' }, href: '/learn/modules/18-1' },
-    { label: { en: 'Module 18-3: Ashtakavarga — Bindu Scoring', hi: 'मॉड्यूल 18-3: अष्टकवर्ग — बिन्दु अंकन' }, href: '/learn/modules/18-3' },
-    { label: { en: 'Kundali Tool', hi: 'कुण्डली उपकरण' }, href: '/kundali' },
+    { label: { en: 'Module 18-1: Shadbala — Planetary Strength', hi: 'मॉड्यूल 18-1: षड्बल — ग्रह शक्ति', sa: 'मॉड्यूल 18-1: षड्बल — ग्रह शक्ति', mai: 'मॉड्यूल 18-1: षड्बल — ग्रह शक्ति', mr: 'मॉड्यूल 18-1: षड्बल — ग्रह शक्ति', ta: 'Module 18-1: Shadbala — Planetary Strength', te: 'Module 18-1: Shadbala — Planetary Strength', bn: 'Module 18-1: Shadbala — Planetary Strength', kn: 'Module 18-1: Shadbala — Planetary Strength', gu: 'Module 18-1: Shadbala — Planetary Strength' }, href: '/learn/modules/18-1' },
+    { label: { en: 'Module 18-3: Ashtakavarga — Bindu Scoring', hi: 'मॉड्यूल 18-3: अष्टकवर्ग — बिन्दु अंकन', sa: 'मॉड्यूल 18-3: अष्टकवर्ग — बिन्दु अंकन', mai: 'मॉड्यूल 18-3: अष्टकवर्ग — बिन्दु अंकन', mr: 'मॉड्यूल 18-3: अष्टकवर्ग — बिन्दु अंकन', ta: 'Module 18-3: Ashtakavarga — Bindu Scoring', te: 'Module 18-3: Ashtakavarga — Bindu Scoring', bn: 'Module 18-3: Ashtakavarga — Bindu Scoring', kn: 'Module 18-3: Ashtakavarga — Bindu Scoring', gu: 'Module 18-3: Ashtakavarga — Bindu Scoring' }, href: '/learn/modules/18-3' },
+    { label: { en: 'Kundali Tool', hi: 'कुण्डली उपकरण', sa: 'कुण्डली उपकरण', mai: 'कुण्डली उपकरण', mr: 'कुण्डली उपकरण', ta: 'Kundali Tool', te: 'Kundali Tool', bn: 'Kundali Tool', kn: 'Kundali Tool', gu: 'Kundali Tool' }, href: '/kundali' },
   ],
 };
 
@@ -30,10 +30,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'भावबल के तीन घटक क्या हैं?',
     },
     options: [
-      { en: 'Uccha, Dig, Kala', hi: 'उच्च, दिक्, काल' },
-      { en: 'Bhavadhipati Bala, Bhava Dig Bala, Bhava Drishti Bala', hi: 'भावाधिपति बल, भाव दिग्बल, भाव दृष्टि बल' },
-      { en: 'Sthana, Cheshta, Naisargika', hi: 'स्थान, चेष्टा, नैसर्गिक' },
-      { en: 'Rashi, Nakshatra, Navamsha', hi: 'राशि, नक्षत्र, नवमांश' },
+      { en: 'Uccha, Dig, Kala', hi: 'उच्च, दिक्, काल', sa: 'उच्च, दिक्, काल', mai: 'उच्च, दिक्, काल', mr: 'उच्च, दिक्, काल', ta: 'Uccha, Dig, Kala', te: 'Uccha, Dig, Kala', bn: 'Uccha, Dig, Kala', kn: 'Uccha, Dig, Kala', gu: 'Uccha, Dig, Kala' },
+      { en: 'Bhavadhipati Bala, Bhava Dig Bala, Bhava Drishti Bala', hi: 'भावाधिपति बल, भाव दिग्बल, भाव दृष्टि बल', sa: 'भावाधिपति बल, भाव दिग्बल, भाव दृष्टि बल', mai: 'भावाधिपति बल, भाव दिग्बल, भाव दृष्टि बल', mr: 'भावाधिपति बल, भाव दिग्बल, भाव दृष्टि बल', ta: 'Bhavadhipati Bala, Bhava Dig Bala, Bhava Drishti Bala', te: 'Bhavadhipati Bala, Bhava Dig Bala, Bhava Drishti Bala', bn: 'Bhavadhipati Bala, Bhava Dig Bala, Bhava Drishti Bala', kn: 'Bhavadhipati Bala, Bhava Dig Bala, Bhava Drishti Bala', gu: 'Bhavadhipati Bala, Bhava Dig Bala, Bhava Drishti Bala' },
+      { en: 'Sthana, Cheshta, Naisargika', hi: 'स्थान, चेष्टा, नैसर्गिक', sa: 'स्थान, चेष्टा, नैसर्गिक', mai: 'स्थान, चेष्टा, नैसर्गिक', mr: 'स्थान, चेष्टा, नैसर्गिक', ta: 'Sthana, Cheshta, Naisargika', te: 'Sthana, Cheshta, Naisargika', bn: 'Sthana, Cheshta, Naisargika', kn: 'Sthana, Cheshta, Naisargika', gu: 'Sthana, Cheshta, Naisargika' },
+      { en: 'Rashi, Nakshatra, Navamsha', hi: 'राशि, नक्षत्र, नवमांश', sa: 'राशि, नक्षत्र, नवमांश', mai: 'राशि, नक्षत्र, नवमांश', mr: 'राशि, नक्षत्र, नवमांश', ta: 'Rashi, Nakshatra, Navamsha', te: 'Rashi, Nakshatra, Navamsha', bn: 'Rashi, Nakshatra, Navamsha', kn: 'Rashi, Nakshatra, Navamsha', gu: 'Rashi, Nakshatra, Navamsha' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -60,10 +60,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'भाव दिग्बल में कौन-से भाव अन्तर्निहित रूप से सबसे बलवान माने जाते हैं?',
     },
     options: [
-      { en: '3rd and 6th houses', hi: 'तृतीय और षष्ठ भाव' },
-      { en: '1st and 7th houses (kendra axis)', hi: 'प्रथम और सप्तम भाव (केन्द्र अक्ष)' },
-      { en: '8th and 12th houses', hi: 'अष्टम और द्वादश भाव' },
-      { en: '2nd and 11th houses', hi: 'द्वितीय और एकादश भाव' },
+      { en: '3rd and 6th houses', hi: 'तृतीय और षष्ठ भाव', sa: 'तृतीय और षष्ठ भाव', mai: 'तृतीय और षष्ठ भाव', mr: 'तृतीय और षष्ठ भाव', ta: '3rd and 6th houses', te: '3rd and 6th houses', bn: '3rd and 6th houses', kn: '3rd and 6th houses', gu: '3rd and 6th houses' },
+      { en: '1st and 7th houses (kendra axis)', hi: 'प्रथम और सप्तम भाव (केन्द्र अक्ष)', sa: 'प्रथम और सप्तम भाव (केन्द्र अक्ष)', mai: 'प्रथम और सप्तम भाव (केन्द्र अक्ष)', mr: 'प्रथम और सप्तम भाव (केन्द्र अक्ष)', ta: '1st and 7th houses (kendra axis)', te: '1st and 7th houses (kendra axis)', bn: '1st and 7th houses (kendra axis)', kn: '1st and 7th houses (kendra axis)', gu: '1st and 7th houses (kendra axis)' },
+      { en: '8th and 12th houses', hi: 'अष्टम और द्वादश भाव', sa: 'अष्टम और द्वादश भाव', mai: 'अष्टम और द्वादश भाव', mr: 'अष्टम और द्वादश भाव', ta: '8th and 12th houses', te: '8th and 12th houses', bn: '8th and 12th houses', kn: '8th and 12th houses', gu: '8th and 12th houses' },
+      { en: '2nd and 11th houses', hi: 'द्वितीय और एकादश भाव', sa: 'द्वितीय और एकादश भाव', mai: 'द्वितीय और एकादश भाव', mr: 'द्वितीय और एकादश भाव', ta: '2nd and 11th houses', te: '2nd and 11th houses', bn: '2nd and 11th houses', kn: '2nd and 11th houses', gu: '2nd and 11th houses' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -79,9 +79,9 @@ const QUESTIONS: ModuleQuestion[] = [
     },
     options: [
       { en: 'It equals the house lord\'s total Shadbala multiplied by a proportionality factor', hi: 'यह भाव स्वामी के कुल षड्बल को आनुपातिकता गुणक से गुणा करके प्राप्त होता है' },
-      { en: 'It is always 60 shashtiamsas for every house', hi: 'यह प्रत्येक भाव के लिए सदैव 60 षष्ट्यंश होता है' },
+      { en: 'It is always 60 shashtiamsas for every house', hi: 'यह प्रत्येक भाव के लिए सदैव 60 षष्ट्यंश होता है', sa: 'यह प्रत्येक भाव के लिए सदैव 60 षष्ट्यंश होता है', mai: 'यह प्रत्येक भाव के लिए सदैव 60 षष्ट्यंश होता है', mr: 'यह प्रत्येक भाव के लिए सदैव 60 षष्ट्यंश होता है', ta: 'It is always 60 shashtiamsas for every house', te: 'It is always 60 shashtiamsas for every house', bn: 'It is always 60 shashtiamsas for every house', kn: 'It is always 60 shashtiamsas for every house', gu: 'It is always 60 shashtiamsas for every house' },
       { en: 'It depends only on the house lord\'s sign placement', hi: 'यह केवल भाव स्वामी की राशि स्थिति पर निर्भर करता है' },
-      { en: 'It is the average of all planets in the house', hi: 'यह भाव में सभी ग्रहों का औसत है' },
+      { en: 'It is the average of all planets in the house', hi: 'यह भाव में सभी ग्रहों का औसत है', sa: 'यह भाव में सभी ग्रहों का औसत है', mai: 'यह भाव में सभी ग्रहों का औसत है', mr: 'यह भाव में सभी ग्रहों का औसत है', ta: 'It is the average of all planets in the house', te: 'It is the average of all planets in the house', bn: 'It is the average of all planets in the house', kn: 'It is the average of all planets in the house', gu: 'It is the average of all planets in the house' },
     ],
     correctAnswer: 0,
     explanation: {
@@ -108,10 +108,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कुण्डली में सबसे बलवान भाव इंगित करता है:',
     },
     options: [
-      { en: 'The life area that will cause the most problems', hi: 'वह जीवन क्षेत्र जो सबसे अधिक समस्याएँ देगा' },
-      { en: 'The life area of greatest natural success and ease', hi: 'सबसे अधिक स्वाभाविक सफलता और सहजता का जीवन क्षेत्र' },
-      { en: 'The planet that is most malefic', hi: 'सबसे पापी ग्रह' },
-      { en: 'Nothing meaningful without dasha analysis', hi: 'दशा विश्लेषण के बिना कुछ भी अर्थपूर्ण नहीं' },
+      { en: 'The life area that will cause the most problems', hi: 'वह जीवन क्षेत्र जो सबसे अधिक समस्याएँ देगा', sa: 'वह जीवन क्षेत्र जो सबसे अधिक समस्याएँ देगा', mai: 'वह जीवन क्षेत्र जो सबसे अधिक समस्याएँ देगा', mr: 'वह जीवन क्षेत्र जो सबसे अधिक समस्याएँ देगा', ta: 'The life area that will cause the most problems', te: 'The life area that will cause the most problems', bn: 'The life area that will cause the most problems', kn: 'The life area that will cause the most problems', gu: 'The life area that will cause the most problems' },
+      { en: 'The life area of greatest natural success and ease', hi: 'सबसे अधिक स्वाभाविक सफलता और सहजता का जीवन क्षेत्र', sa: 'सबसे अधिक स्वाभाविक सफलता और सहजता का जीवन क्षेत्र', mai: 'सबसे अधिक स्वाभाविक सफलता और सहजता का जीवन क्षेत्र', mr: 'सबसे अधिक स्वाभाविक सफलता और सहजता का जीवन क्षेत्र', ta: 'The life area of greatest natural success and ease', te: 'The life area of greatest natural success and ease', bn: 'The life area of greatest natural success and ease', kn: 'The life area of greatest natural success and ease', gu: 'The life area of greatest natural success and ease' },
+      { en: 'The planet that is most malefic', hi: 'सबसे पापी ग्रह', sa: 'सबसे पापी ग्रह', mai: 'सबसे पापी ग्रह', mr: 'सबसे पापी ग्रह', ta: 'The planet that is most malefic', te: 'The planet that is most malefic', bn: 'The planet that is most malefic', kn: 'The planet that is most malefic', gu: 'The planet that is most malefic' },
+      { en: 'Nothing meaningful without dasha analysis', hi: 'दशा विश्लेषण के बिना कुछ भी अर्थपूर्ण नहीं', sa: 'दशा विश्लेषण के बिना कुछ भी अर्थपूर्ण नहीं', mai: 'दशा विश्लेषण के बिना कुछ भी अर्थपूर्ण नहीं', mr: 'दशा विश्लेषण के बिना कुछ भी अर्थपूर्ण नहीं', ta: 'Nothing meaningful without dasha analysis', te: 'Nothing meaningful without dasha analysis', bn: 'Nothing meaningful without dasha analysis', kn: 'Nothing meaningful without dasha analysis', gu: 'Nothing meaningful without dasha analysis' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -126,10 +126,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'भाव पर शनि की पूर्ण दृष्टि भाव दृष्टि बल को कैसे प्रभावित करती है?',
     },
     options: [
-      { en: 'Adding +60 shashtiamsas', hi: '+60 षष्ट्यंश जोड़कर' },
-      { en: 'Subtracting approximately 60 shashtiamsas', hi: 'लगभग 60 षष्ट्यंश घटाकर' },
-      { en: 'No effect at all', hi: 'कोई प्रभाव नहीं' },
-      { en: 'Doubling the house strength', hi: 'भाव शक्ति दोगुनी करके' },
+      { en: 'Adding +60 shashtiamsas', hi: '+60 षष्ट्यंश जोड़कर', sa: '+60 षष्ट्यंश जोड़कर', mai: '+60 षष्ट्यंश जोड़कर', mr: '+60 षष्ट्यंश जोड़कर', ta: 'Adding +60 shashtiamsas', te: 'Adding +60 shashtiamsas', bn: 'Adding +60 shashtiamsas', kn: 'Adding +60 shashtiamsas', gu: 'Adding +60 shashtiamsas' },
+      { en: 'Subtracting approximately 60 shashtiamsas', hi: 'लगभग 60 षष्ट्यंश घटाकर', sa: 'लगभग 60 षष्ट्यंश घटाकर', mai: 'लगभग 60 षष्ट्यंश घटाकर', mr: 'लगभग 60 षष्ट्यंश घटाकर', ta: 'Subtracting approximately 60 shashtiamsas', te: 'Subtracting approximately 60 shashtiamsas', bn: 'Subtracting approximately 60 shashtiamsas', kn: 'Subtracting approximately 60 shashtiamsas', gu: 'Subtracting approximately 60 shashtiamsas' },
+      { en: 'No effect at all', hi: 'कोई प्रभाव नहीं', sa: 'कोई प्रभाव नहीं', mai: 'कोई प्रभाव नहीं', mr: 'कोई प्रभाव नहीं', ta: 'No effect at all', te: 'No effect at all', bn: 'No effect at all', kn: 'No effect at all', gu: 'No effect at all' },
+      { en: 'Doubling the house strength', hi: 'भाव शक्ति दोगुनी करके', sa: 'भाव शक्ति दोगुनी करके', mai: 'भाव शक्ति दोगुनी करके', mr: 'भाव शक्ति दोगुनी करके', ta: 'Doubling the house strength', te: 'Doubling the house strength', bn: 'Doubling the house strength', kn: 'Doubling the house strength', gu: 'Doubling the house strength' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -156,10 +156,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विवाह सम्भावनाओं के विश्लेषण के लिए किस भाव का भावबल सबसे प्रासंगिक है?',
     },
     options: [
-      { en: '5th house', hi: 'पंचम भाव' },
-      { en: '7th house', hi: 'सप्तम भाव' },
-      { en: '10th house', hi: 'दशम भाव' },
-      { en: '12th house', hi: 'द्वादश भाव' },
+      { en: '5th house', hi: 'पंचम भाव', sa: 'पंचम भाव', mai: 'पंचम भाव', mr: 'पंचम भाव', ta: '5th house', te: '5th house', bn: '5th house', kn: '5th house', gu: '5th house' },
+      { en: '7th house', hi: 'सप्तम भाव', sa: 'सप्तम भाव', mai: 'सप्तम भाव', mr: 'सप्तम भाव', ta: '7th house', te: '7th house', bn: '7th house', kn: '7th house', gu: '7th house' },
+      { en: '10th house', hi: 'दशम भाव', sa: 'दशम भाव', mai: 'दशम भाव', mr: 'दशम भाव', ta: '10th house', te: '10th house', bn: '10th house', kn: '10th house', gu: '10th house' },
+      { en: '12th house', hi: 'द्वादश भाव', sa: 'द्वादश भाव', mai: 'द्वादश भाव', mr: 'द्वादश भाव', ta: '12th house', te: '12th house', bn: '12th house', kn: '12th house', gu: '12th house' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -174,10 +174,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'भावबल दशा भविष्यवाणियों को प्राथमिकता देने में कैसे सहायता करता है?',
     },
     options: [
-      { en: 'It replaces dasha analysis entirely', hi: 'यह दशा विश्लेषण को पूरी तरह प्रतिस्थापित करता है' },
-      { en: 'Stronger houses manifest their significations more prominently during relevant dashas', hi: 'बलवान भाव सम्बन्धित दशाओं में अपने कारकत्वों को अधिक प्रमुखता से प्रकट करते हैं' },
-      { en: 'It only affects Ketu dasha', hi: 'यह केवल केतु दशा को प्रभावित करता है' },
-      { en: 'Bhavabala and dasha are completely unrelated', hi: 'भावबल और दशा पूर्णतया असम्बद्ध हैं' },
+      { en: 'It replaces dasha analysis entirely', hi: 'यह दशा विश्लेषण को पूरी तरह प्रतिस्थापित करता है', sa: 'यह दशा विश्लेषण को पूरी तरह प्रतिस्थापित करता है', mai: 'यह दशा विश्लेषण को पूरी तरह प्रतिस्थापित करता है', mr: 'यह दशा विश्लेषण को पूरी तरह प्रतिस्थापित करता है', ta: 'It replaces dasha analysis entirely', te: 'It replaces dasha analysis entirely', bn: 'It replaces dasha analysis entirely', kn: 'It replaces dasha analysis entirely', gu: 'It replaces dasha analysis entirely' },
+      { en: 'Stronger houses manifest their significations more prominently during relevant dashas', hi: 'बलवान भाव सम्बन्धित दशाओं में अपने कारकत्वों को अधिक प्रमुखता से प्रकट करते हैं', sa: 'बलवान भाव सम्बन्धित दशाओं में अपने कारकत्वों को अधिक प्रमुखता से प्रकट करते हैं', mai: 'बलवान भाव सम्बन्धित दशाओं में अपने कारकत्वों को अधिक प्रमुखता से प्रकट करते हैं', mr: 'बलवान भाव सम्बन्धित दशाओं में अपने कारकत्वों को अधिक प्रमुखता से प्रकट करते हैं', ta: 'Stronger houses manifest their significations more prominently during relevant dashas', te: 'Stronger houses manifest their significations more prominently during relevant dashas', bn: 'Stronger houses manifest their significations more prominently during relevant dashas', kn: 'Stronger houses manifest their significations more prominently during relevant dashas', gu: 'Stronger houses manifest their significations more prominently during relevant dashas' },
+      { en: 'It only affects Ketu dasha', hi: 'यह केवल केतु दशा को प्रभावित करता है', sa: 'यह केवल केतु दशा को प्रभावित करता है', mai: 'यह केवल केतु दशा को प्रभावित करता है', mr: 'यह केवल केतु दशा को प्रभावित करता है', ta: 'It only affects Ketu dasha', te: 'It only affects Ketu dasha', bn: 'It only affects Ketu dasha', kn: 'It only affects Ketu dasha', gu: 'It only affects Ketu dasha' },
+      { en: 'Bhavabala and dasha are completely unrelated', hi: 'भावबल और दशा पूर्णतया असम्बद्ध हैं', sa: 'भावबल और दशा पूर्णतया असम्बद्ध हैं', mai: 'भावबल और दशा पूर्णतया असम्बद्ध हैं', mr: 'भावबल और दशा पूर्णतया असम्बद्ध हैं', ta: 'Bhavabala and dasha are completely unrelated', te: 'Bhavabala and dasha are completely unrelated', bn: 'Bhavabala and dasha are completely unrelated', kn: 'Bhavabala and dasha are completely unrelated', gu: 'Bhavabala and dasha are completely unrelated' },
     ],
     correctAnswer: 1,
     explanation: {

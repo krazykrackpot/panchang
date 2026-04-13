@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
@@ -87,7 +88,7 @@ export async function GET(request: Request) {
     } catch { /* tithi table enrichment is optional — don't fail the API */ }
 
     // Enrich with festivals/vrats for this date
-    let festivals: { name: { en: string; hi: string; sa: string }; type: string; category: string; description: { en: string; hi: string; sa: string }; slug?: string; pujaMuhurat?: { start: string; end: string; name: string }; paranaStart?: string; paranaEnd?: string; paranaDate?: string }[] | undefined;
+    let festivals: { name: LocaleText; type: string; category: string; description: LocaleText; slug?: string; pujaMuhurat?: { start: string; end: string; name: string }; paranaStart?: string; paranaEnd?: string; paranaDate?: string }[] | undefined;
     try {
       if (timezone) {
         const dateStr = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;

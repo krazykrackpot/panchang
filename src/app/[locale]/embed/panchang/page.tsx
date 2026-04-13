@@ -2,16 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface WidgetData {
   date: string;
-  tithi: { name: { en: string; hi: string; sa: string } };
-  nakshatra: { name: { en: string; hi: string; sa: string }; pada: number };
-  yoga: { name: { en: string; hi: string; sa: string } };
-  karana: { name: { en: string; hi: string; sa: string } };
-  vara: { name: { en: string; hi: string; sa: string } };
+  tithi: { name: LocaleText };
+  nakshatra: { name: LocaleText; pada: number };
+  yoga: { name: LocaleText };
+  karana: { name: LocaleText };
+  vara: { name: LocaleText };
   sunrise: string;
   sunset: string;
   rahuKaal: { start: string; end: string };
@@ -54,7 +54,7 @@ export default function PanchangWidget() {
     </div>
   );
 
-  const L = (obj: { en: string; hi: string; sa: string }) => obj[locale] || obj.en;
+  const L = (obj: LocaleText) => obj[locale] || obj.en;
   const gold = '#d4a853';
   const goldLight = '#f0d48a';
   const textSec = '#8a8478';

@@ -6,33 +6,33 @@
 import { dateToJD, getPlanetaryPositions, toSidereal, lahiriAyanamsha, normalizeDeg } from '@/lib/ephem/astronomical';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText} from '@/types/panchang';
 
 export interface RetroEvent {
   planetId: number;
-  planetName: Trilingual;
+  planetName: LocaleText;
   type: 'retrograde_start' | 'retrograde_end';
   date: string;         // YYYY-MM-DD
   sign: number;         // rashi at event
-  signName: Trilingual;
+  signName: LocaleText;
 }
 
 export interface RetroPeriod {
   planetId: number;
-  planetName: Trilingual;
+  planetName: LocaleText;
   planetColor: string;
   startDate: string;
   endDate: string;
   startSign: number;
-  startSignName: Trilingual;
+  startSignName: LocaleText;
   endSign: number;
-  endSignName: Trilingual;
+  endSignName: LocaleText;
   durationDays: number;
 }
 
 export interface CombustEvent {
   planetId: number;
-  planetName: Trilingual;
+  planetName: LocaleText;
   planetColor: string;
   startDate: string;
   endDate: string;

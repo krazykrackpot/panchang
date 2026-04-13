@@ -14,7 +14,7 @@ import { detectTajikaYogas } from './tajika-aspects';
 import { calculateMuddaDasha } from './mudda-dasha';
 import type { BirthData } from '@/types/kundali';
 import type { VarshaphalData } from '@/types/varshaphal';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 export function generateVarshaphal(birthData: BirthData, year: number): VarshaphalData {
   // 1. Generate natal chart
@@ -98,9 +98,9 @@ export function generateVarshaphal(birthData: BirthData, year: number): Varshaph
 
 function generateYearSummary(
   muntha: { house: number },
-  varsheshvara: { planetName: Trilingual },
+  varsheshvara: { planetName: LocaleText },
   yogas: { favorable: boolean }[],
-): Trilingual {
+): LocaleText {
   const favorable = yogas.filter(y => y.favorable).length;
   const total = yogas.length;
   const mHouse = muntha.house;

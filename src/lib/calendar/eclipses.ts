@@ -32,17 +32,17 @@
 import { getPlanetaryPositions, sunLongitude, moonLongitude, normalizeDeg, dateToJD, toSidereal } from '@/lib/ephem/astronomical';
 import { buildYearlyTithiTable, lookupAllTithiByNumber, type TithiEntry } from './tithi-table';
 import { getEclipsesForYear } from './eclipse-data';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 export interface EclipseEvent {
   type: 'solar' | 'lunar';
-  typeName: Trilingual;
+  typeName: LocaleText;
   date: string;
   magnitude: 'total' | 'partial' | 'annular' | 'penumbral';
-  magnitudeName: Trilingual;
-  description: Trilingual;
+  magnitudeName: LocaleText;
+  description: LocaleText;
   node: 'rahu' | 'ketu';     // Which node the eclipse occurs at
-  nodeName: Trilingual;       // Localized node name
+  nodeName: LocaleText;       // Localized node name
   eclipseLongitude: number;   // Sidereal longitude of the eclipse point (Sun for solar, Moon for lunar)
 }
 
@@ -56,7 +56,7 @@ const NODE_NAMES = {
   ketu: { en: 'Ketu (☋ Descending Node)', hi: 'केतु (☋ अवरोही पात)', sa: 'केतुः (☋)' },
 };
 
-const MAG_NAMES: Record<string, Trilingual> = {
+const MAG_NAMES: Record<string, LocaleText> = {
   total: { en: 'Total', hi: 'पूर्ण', sa: 'पूर्णम्' },
   partial: { en: 'Partial', hi: 'आंशिक', sa: 'आंशिकम्' },
   annular: { en: 'Annular', hi: 'वलयाकार', sa: 'वलयाकारम्' },

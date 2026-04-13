@@ -6,17 +6,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_15_3', phase: 4, topic: 'Prashna & Advanced', moduleNumber: '15.3',
-  title: { en: 'Prashna (Horary) Astrology', hi: 'प्रश्न (होरेरी) ज्योतिष' },
+  title: { en: 'Prashna (Horary) Astrology', hi: 'प्रश्न (होरेरी) ज्योतिष', sa: 'प्रश्न (होरेरी) ज्योतिष', mai: 'प्रश्न (होरेरी) ज्योतिष', mr: 'प्रश्न (होरेरी) ज्योतिष', ta: 'Prashna (Horary) Astrology', te: 'Prashna (Horary) Astrology', bn: 'Prashna (Horary) Astrology', kn: 'Prashna (Horary) Astrology', gu: 'Prashna (Horary) Astrology' },
   subtitle: {
     en: 'Chart cast for the moment a question arises — no birth data needed, the cosmic moment answers',
     hi: 'प्रश्न उत्पन्न होने के क्षण की कुण्डली — जन्म डेटा की आवश्यकता नहीं, ब्रह्माण्डीय क्षण उत्तर देता है',
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Module 15-1: Gemstones', hi: 'मॉड्यूल 15-1: रत्न' }, href: '/learn/modules/15-1' },
-    { label: { en: 'Module 15-4: Varshaphal & KP', hi: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.' }, href: '/learn/modules/15-4' },
-    { label: { en: 'Prashna Tool', hi: 'प्रश्न टूल' }, href: '/prashna' },
-    { label: { en: 'Ashtamangala Prashna', hi: 'अष्टमंगल प्रश्न' }, href: '/prashna-ashtamangala' },
+    { label: { en: 'Module 15-1: Gemstones', hi: 'मॉड्यूल 15-1: रत्न', sa: 'मॉड्यूल 15-1: रत्न', mai: 'मॉड्यूल 15-1: रत्न', mr: 'मॉड्यूल 15-1: रत्न', ta: 'Module 15-1: Gemstones', te: 'Module 15-1: Gemstones', bn: 'Module 15-1: Gemstones', kn: 'Module 15-1: Gemstones', gu: 'Module 15-1: Gemstones' }, href: '/learn/modules/15-1' },
+    { label: { en: 'Module 15-4: Varshaphal & KP', hi: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.', sa: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.', mai: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.', mr: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.', ta: 'Module 15-4: Varshaphal & KP', te: 'Module 15-4: Varshaphal & KP', bn: 'Module 15-4: Varshaphal & KP', kn: 'Module 15-4: Varshaphal & KP', gu: 'Module 15-4: Varshaphal & KP' }, href: '/learn/modules/15-4' },
+    { label: { en: 'Prashna Tool', hi: 'प्रश्न टूल', sa: 'प्रश्न टूल', mai: 'प्रश्न टूल', mr: 'प्रश्न टूल', ta: 'Prashna Tool', te: 'Prashna Tool', bn: 'Prashna Tool', kn: 'Prashna Tool', gu: 'Prashna Tool' }, href: '/prashna' },
+    { label: { en: 'Ashtamangala Prashna', hi: 'अष्टमंगल प्रश्न', sa: 'अष्टमंगल प्रश्न', mai: 'अष्टमंगल प्रश्न', mr: 'अष्टमंगल प्रश्न', ta: 'Ashtamangala Prashna', te: 'Ashtamangala Prashna', bn: 'Ashtamangala Prashna', kn: 'Ashtamangala Prashna', gu: 'Ashtamangala Prashna' }, href: '/prashna-ashtamangala' },
   ],
 };
 
@@ -28,10 +28,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'प्रश्न ज्योतिष में कुण्डली किसके लिए बनाई जाती है?',
     },
     options: [
-      { en: 'The birth time of the querent', hi: 'प्रश्नकर्ता का जन्म समय' },
+      { en: 'The birth time of the querent', hi: 'प्रश्नकर्ता का जन्म समय', sa: 'प्रश्नकर्ता का जन्म समय', mai: 'प्रश्नकर्ता का जन्म समय', mr: 'प्रश्नकर्ता का जन्म समय', ta: 'The birth time of the querent', te: 'The birth time of the querent', bn: 'The birth time of the querent', kn: 'The birth time of the querent', gu: 'The birth time of the querent' },
       { en: 'The exact moment the question arises in the querent\'s mind', hi: 'प्रश्नकर्ता के मन में प्रश्न उत्पन्न होने का सटीक क्षण' },
-      { en: 'The next sunrise after the question', hi: 'प्रश्न के बाद अगला सूर्योदय' },
-      { en: 'A randomly chosen auspicious time', hi: 'यादृच्छिक रूप से चुना गया शुभ समय' },
+      { en: 'The next sunrise after the question', hi: 'प्रश्न के बाद अगला सूर्योदय', sa: 'प्रश्न के बाद अगला सूर्योदय', mai: 'प्रश्न के बाद अगला सूर्योदय', mr: 'प्रश्न के बाद अगला सूर्योदय', ta: 'The next sunrise after the question', te: 'The next sunrise after the question', bn: 'The next sunrise after the question', kn: 'The next sunrise after the question', gu: 'The next sunrise after the question' },
+      { en: 'A randomly chosen auspicious time', hi: 'यादृच्छिक रूप से चुना गया शुभ समय', sa: 'यादृच्छिक रूप से चुना गया शुभ समय', mai: 'यादृच्छिक रूप से चुना गया शुभ समय', mr: 'यादृच्छिक रूप से चुना गया शुभ समय', ta: 'A randomly chosen auspicious time', te: 'A randomly chosen auspicious time', bn: 'A randomly chosen auspicious time', kn: 'A randomly chosen auspicious time', gu: 'A randomly chosen auspicious time' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -58,10 +58,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'प्रश्न कुण्डली में लग्न (उदयलग्न) किसका प्रतिनिधित्व करता है?',
     },
     options: [
-      { en: 'The astrologer', hi: 'ज्योतिषी' },
-      { en: 'The querent (person asking the question)', hi: 'प्रश्नकर्ता (प्रश्न पूछने वाला व्यक्ति)' },
-      { en: 'The subject of the question', hi: 'प्रश्न का विषय' },
-      { en: 'The weather conditions', hi: 'मौसम की स्थिति' },
+      { en: 'The astrologer', hi: 'ज्योतिषी', sa: 'ज्योतिषी', mai: 'ज्योतिषी', mr: 'ज्योतिषी', ta: 'The astrologer', te: 'The astrologer', bn: 'The astrologer', kn: 'The astrologer', gu: 'The astrologer' },
+      { en: 'The querent (person asking the question)', hi: 'प्रश्नकर्ता (प्रश्न पूछने वाला व्यक्ति)', sa: 'प्रश्नकर्ता (प्रश्न पूछने वाला व्यक्ति)', mai: 'प्रश्नकर्ता (प्रश्न पूछने वाला व्यक्ति)', mr: 'प्रश्नकर्ता (प्रश्न पूछने वाला व्यक्ति)', ta: 'The querent (person asking the question)', te: 'The querent (person asking the question)', bn: 'The querent (person asking the question)', kn: 'The querent (person asking the question)', gu: 'The querent (person asking the question)' },
+      { en: 'The subject of the question', hi: 'प्रश्न का विषय', sa: 'प्रश्न का विषय', mai: 'प्रश्न का विषय', mr: 'प्रश्न का विषय', ta: 'The subject of the question', te: 'The subject of the question', bn: 'The subject of the question', kn: 'The subject of the question', gu: 'The subject of the question' },
+      { en: 'The weather conditions', hi: 'मौसम की स्थिति', sa: 'मौसम की स्थिति', mai: 'मौसम की स्थिति', mr: 'मौसम की स्थिति', ta: 'The weather conditions', te: 'The weather conditions', bn: 'The weather conditions', kn: 'The weather conditions', gu: 'The weather conditions' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -76,10 +76,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'प्रश्न कुण्डली में "चन्द्रमा शून्य गति" (Moon void of course) का क्या अर्थ है?',
     },
     options: [
-      { en: 'The question will be answered favorably', hi: 'प्रश्न का उत्तर अनुकूल होगा' },
-      { en: 'The matter will not come to fruition — no definitive result', hi: 'मामला फलीभूत नहीं होगा — कोई निश्चित परिणाम नहीं' },
-      { en: 'The Moon is very strong in the chart', hi: 'कुण्डली में चन्द्रमा बहुत बलवान है' },
-      { en: 'The querent should ask again tomorrow', hi: 'प्रश्नकर्ता को कल फिर पूछना चाहिए' },
+      { en: 'The question will be answered favorably', hi: 'प्रश्न का उत्तर अनुकूल होगा', sa: 'प्रश्न का उत्तर अनुकूल होगा', mai: 'प्रश्न का उत्तर अनुकूल होगा', mr: 'प्रश्न का उत्तर अनुकूल होगा', ta: 'The question will be answered favorably', te: 'The question will be answered favorably', bn: 'The question will be answered favorably', kn: 'The question will be answered favorably', gu: 'The question will be answered favorably' },
+      { en: 'The matter will not come to fruition — no definitive result', hi: 'मामला फलीभूत नहीं होगा — कोई निश्चित परिणाम नहीं', sa: 'मामला फलीभूत नहीं होगा — कोई निश्चित परिणाम नहीं', mai: 'मामला फलीभूत नहीं होगा — कोई निश्चित परिणाम नहीं', mr: 'मामला फलीभूत नहीं होगा — कोई निश्चित परिणाम नहीं', ta: 'The matter will not come to fruition — no definitive result', te: 'The matter will not come to fruition — no definitive result', bn: 'The matter will not come to fruition — no definitive result', kn: 'The matter will not come to fruition — no definitive result', gu: 'The matter will not come to fruition — no definitive result' },
+      { en: 'The Moon is very strong in the chart', hi: 'कुण्डली में चन्द्रमा बहुत बलवान है', sa: 'कुण्डली में चन्द्रमा बहुत बलवान है', mai: 'कुण्डली में चन्द्रमा बहुत बलवान है', mr: 'कुण्डली में चन्द्रमा बहुत बलवान है', ta: 'The Moon is very strong in the chart', te: 'The Moon is very strong in the chart', bn: 'The Moon is very strong in the chart', kn: 'The Moon is very strong in the chart', gu: 'The Moon is very strong in the chart' },
+      { en: 'The querent should ask again tomorrow', hi: 'प्रश्नकर्ता को कल फिर पूछना चाहिए', sa: 'प्रश्नकर्ता को कल फिर पूछना चाहिए', mai: 'प्रश्नकर्ता को कल फिर पूछना चाहिए', mr: 'प्रश्नकर्ता को कल फिर पूछना चाहिए', ta: 'The querent should ask again tomorrow', te: 'The querent should ask again tomorrow', bn: 'The querent should ask again tomorrow', kn: 'The querent should ask again tomorrow', gu: 'The querent should ask again tomorrow' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -94,10 +94,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'प्रश्न में अनुप्रयुक्त (applying) और पृथक्करण (separating) दृष्टियों में क्या अन्तर है?',
     },
     options: [
-      { en: 'There is no difference, both give the same result', hi: 'कोई अन्तर नहीं, दोनों एक ही परिणाम देते हैं' },
-      { en: 'Applying = event will happen; Separating = event was possible but the window has passed', hi: 'अनुप्रयुक्त = घटना होगी; पृथक्करण = घटना सम्भव थी परन्तु अवसर बीत गया' },
-      { en: 'Applying = past event; Separating = future event', hi: 'अनुप्रयुक्त = भूतकालीन घटना; पृथक्करण = भविष्य की घटना' },
-      { en: 'Only applies in Western astrology, not Vedic', hi: 'केवल पश्चिमी ज्योतिष में लागू, वैदिक में नहीं' },
+      { en: 'There is no difference, both give the same result', hi: 'कोई अन्तर नहीं, दोनों एक ही परिणाम देते हैं', sa: 'कोई अन्तर नहीं, दोनों एक ही परिणाम देते हैं', mai: 'कोई अन्तर नहीं, दोनों एक ही परिणाम देते हैं', mr: 'कोई अन्तर नहीं, दोनों एक ही परिणाम देते हैं', ta: 'There is no difference, both give the same result', te: 'There is no difference, both give the same result', bn: 'There is no difference, both give the same result', kn: 'There is no difference, both give the same result', gu: 'There is no difference, both give the same result' },
+      { en: 'Applying = event will happen; Separating = event was possible but the window has passed', hi: 'अनुप्रयुक्त = घटना होगी; पृथक्करण = घटना सम्भव थी परन्तु अवसर बीत गया', sa: 'अनुप्रयुक्त = घटना होगी; पृथक्करण = घटना सम्भव थी परन्तु अवसर बीत गया', mai: 'अनुप्रयुक्त = घटना होगी; पृथक्करण = घटना सम्भव थी परन्तु अवसर बीत गया', mr: 'अनुप्रयुक्त = घटना होगी; पृथक्करण = घटना सम्भव थी परन्तु अवसर बीत गया', ta: 'Applying = event will happen; Separating = event was possible but the window has passed', te: 'Applying = event will happen; Separating = event was possible but the window has passed', bn: 'Applying = event will happen; Separating = event was possible but the window has passed', kn: 'Applying = event will happen; Separating = event was possible but the window has passed', gu: 'Applying = event will happen; Separating = event was possible but the window has passed' },
+      { en: 'Applying = past event; Separating = future event', hi: 'अनुप्रयुक्त = भूतकालीन घटना; पृथक्करण = भविष्य की घटना', sa: 'अनुप्रयुक्त = भूतकालीन घटना; पृथक्करण = भविष्य की घटना', mai: 'अनुप्रयुक्त = भूतकालीन घटना; पृथक्करण = भविष्य की घटना', mr: 'अनुप्रयुक्त = भूतकालीन घटना; पृथक्करण = भविष्य की घटना', ta: 'Applying = past event; Separating = future event', te: 'Applying = past event; Separating = future event', bn: 'Applying = past event; Separating = future event', kn: 'Applying = past event; Separating = future event', gu: 'Applying = past event; Separating = future event' },
+      { en: 'Only applies in Western astrology, not Vedic', hi: 'केवल पश्चिमी ज्योतिष में लागू, वैदिक में नहीं', sa: 'केवल पश्चिमी ज्योतिष में लागू, वैदिक में नहीं', mai: 'केवल पश्चिमी ज्योतिष में लागू, वैदिक में नहीं', mr: 'केवल पश्चिमी ज्योतिष में लागू, वैदिक में नहीं', ta: 'Only applies in Western astrology, not Vedic', te: 'Only applies in Western astrology, not Vedic', bn: 'Only applies in Western astrology, not Vedic', kn: 'Only applies in Western astrology, not Vedic', gu: 'Only applies in Western astrology, not Vedic' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -124,10 +124,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'अष्टमंगल प्रश्न (केरल परम्परा) में कितनी शुभ वस्तुओं का प्रयोग होता है?',
     },
     options: [
-      { en: '5', hi: '5' },
-      { en: '7', hi: '7' },
-      { en: '8', hi: '8' },
-      { en: '9', hi: '9' },
+      { en: '5', hi: '5', sa: '5', mai: '5', mr: '5', ta: '5', te: '5', bn: '5', kn: '5', gu: '5' },
+      { en: '7', hi: '7', sa: '7', mai: '7', mr: '7', ta: '7', te: '7', bn: '7', kn: '7', gu: '7' },
+      { en: '8', hi: '8', sa: '8', mai: '8', mr: '8', ta: '8', te: '8', bn: '8', kn: '8', gu: '8' },
+      { en: '9', hi: '9', sa: '9', mai: '9', mr: '9', ta: '9', te: '9', bn: '9', kn: '9', gu: '9' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -142,10 +142,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'प्रश्न पूछने के लिए कौन-से मुहूर्त सर्वोत्तम माने जाते हैं?',
     },
     options: [
-      { en: 'Rahu Kalam and Yamagandam', hi: 'राहु काल और यमगण्डम' },
-      { en: 'Brahma Muhurta and Abhijit Muhurta', hi: 'ब्रह्म मुहूर्त और अभिजित मुहूर्त' },
-      { en: 'Midnight and noon only', hi: 'केवल मध्यरात्रि और मध्याह्न' },
-      { en: 'Any time on Amavasya (new moon)', hi: 'अमावस्या (नवचन्द्र) पर कोई भी समय' },
+      { en: 'Rahu Kalam and Yamagandam', hi: 'राहु काल और यमगण्डम', sa: 'राहु काल और यमगण्डम', mai: 'राहु काल और यमगण्डम', mr: 'राहु काल और यमगण्डम', ta: 'Rahu Kalam and Yamagandam', te: 'Rahu Kalam and Yamagandam', bn: 'Rahu Kalam and Yamagandam', kn: 'Rahu Kalam and Yamagandam', gu: 'Rahu Kalam and Yamagandam' },
+      { en: 'Brahma Muhurta and Abhijit Muhurta', hi: 'ब्रह्म मुहूर्त और अभिजित मुहूर्त', sa: 'ब्रह्म मुहूर्त और अभिजित मुहूर्त', mai: 'ब्रह्म मुहूर्त और अभिजित मुहूर्त', mr: 'ब्रह्म मुहूर्त और अभिजित मुहूर्त', ta: 'Brahma Muhurta and Abhijit Muhurta', te: 'Brahma Muhurta and Abhijit Muhurta', bn: 'Brahma Muhurta and Abhijit Muhurta', kn: 'Brahma Muhurta and Abhijit Muhurta', gu: 'Brahma Muhurta and Abhijit Muhurta' },
+      { en: 'Midnight and noon only', hi: 'केवल मध्यरात्रि और मध्याह्न', sa: 'केवल मध्यरात्रि और मध्याह्न', mai: 'केवल मध्यरात्रि और मध्याह्न', mr: 'केवल मध्यरात्रि और मध्याह्न', ta: 'Midnight and noon only', te: 'Midnight and noon only', bn: 'Midnight and noon only', kn: 'Midnight and noon only', gu: 'Midnight and noon only' },
+      { en: 'Any time on Amavasya (new moon)', hi: 'अमावस्या (नवचन्द्र) पर कोई भी समय', sa: 'अमावस्या (नवचन्द्र) पर कोई भी समय', mai: 'अमावस्या (नवचन्द्र) पर कोई भी समय', mr: 'अमावस्या (नवचन्द्र) पर कोई भी समय', ta: 'Any time on Amavasya (new moon)', te: 'Any time on Amavasya (new moon)', bn: 'Any time on Amavasya (new moon)', kn: 'Any time on Amavasya (new moon)', gu: 'Any time on Amavasya (new moon)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -172,10 +172,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'जब प्रश्न कुण्डली में चन्द्रमा विवाह प्रस्ताव के बारे में 7वें भाव में हो तो क्या अर्थ है?',
     },
     options: [
-      { en: 'The marriage will never happen', hi: 'विवाह कभी नहीं होगा' },
+      { en: 'The marriage will never happen', hi: 'विवाह कभी नहीं होगा', sa: 'विवाह कभी नहीं होगा', mai: 'विवाह कभी नहीं होगा', mr: 'विवाह कभी नहीं होगा', ta: 'The marriage will never happen', te: 'The marriage will never happen', bn: 'The marriage will never happen', kn: 'The marriage will never happen', gu: 'The marriage will never happen' },
       { en: 'Strong positive indication — the querent\'s mind (Moon) is focused on the subject of inquiry (7th house)', hi: 'प्रबल सकारात्मक संकेत — प्रश्नकर्ता का मन (चन्द्र) पूछताछ के विषय (7वें भाव) पर केन्द्रित है' },
-      { en: 'The Moon is debilitated', hi: 'चन्द्रमा नीच है' },
-      { en: 'It has no significance', hi: 'इसका कोई महत्त्व नहीं' },
+      { en: 'The Moon is debilitated', hi: 'चन्द्रमा नीच है', sa: 'चन्द्रमा नीच है', mai: 'चन्द्रमा नीच है', mr: 'चन्द्रमा नीच है', ta: 'The Moon is debilitated', te: 'The Moon is debilitated', bn: 'The Moon is debilitated', kn: 'The Moon is debilitated', gu: 'The Moon is debilitated' },
+      { en: 'It has no significance', hi: 'इसका कोई महत्त्व नहीं', sa: 'इसका कोई महत्त्व नहीं', mai: 'इसका कोई महत्त्व नहीं', mr: 'इसका कोई महत्त्व नहीं', ta: 'It has no significance', te: 'It has no significance', bn: 'It has no significance', kn: 'It has no significance', gu: 'It has no significance' },
     ],
     correctAnswer: 1,
     explanation: {

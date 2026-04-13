@@ -1,76 +1,69 @@
-export interface Trilingual {
+/** Multilingual text map. en is required, all others optional.
+ *  Use tl(obj, locale) to access safely with fallback to en. */
+export interface LocaleText {
   en: string;
-  hi: string;
-  sa: string;
-  ta?: string;  // Tamil — optional for incremental rollout
-  te?: string;  // Telugu — optional for incremental rollout
-  bn?: string;  // Bengali — optional for incremental rollout
-  kn?: string;  // Kannada — optional for incremental rollout
-  mr?: string;  // Marathi — optional for incremental rollout
-  gu?: string;  // Gujarati — optional for incremental rollout
-  mai?: string; // Maithili — optional for incremental rollout
+  [key: string]: string | undefined;
 }
 
-/**
- * Locale type for Trilingual data access (en/hi/sa).
- * Tamil ('ta') is handled at the routing/i18n layer (see @/lib/i18n/config)
- * and falls back to English for Trilingual data via the `lk` pattern:
- *   const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
- */
-/** Data locale — used to index into Trilingual objects (en/hi/sa only).
- * Tamil routing uses 'ta' at the i18n layer but falls back to 'en' for data. */
-export type Locale = 'en' | 'hi' | 'sa';
+/** Constants data with en/hi/sa guaranteed. Extends LocaleText for compatibility. */
+export interface Trilingual extends LocaleText {
+  hi: string;
+  sa: string;
+}
+
+/** Locale — re-exported from i18n config. All 10 supported locales. */
+export type { Locale } from '@/lib/i18n/config';
 
 export interface Tithi {
   number: number;
-  name: Trilingual;
+  name: LocaleText;
   paksha: 'shukla' | 'krishna';
-  deity: Trilingual;
+  deity: LocaleText;
   endTime?: Date;
 }
 
 export interface Nakshatra {
   id: number;
-  name: Trilingual;
-  deity: Trilingual;
+  name: LocaleText;
+  deity: LocaleText;
   ruler: string;
-  rulerName: Trilingual;
+  rulerName: LocaleText;
   startDeg: number;
   endDeg: number;
   pada?: number;
   symbol: string;
-  nature: Trilingual;
+  nature: LocaleText;
 }
 
 export interface Yoga {
   number: number;
-  name: Trilingual;
+  name: LocaleText;
   nature: 'auspicious' | 'inauspicious' | 'neutral';
-  meaning: Trilingual;
+  meaning: LocaleText;
 }
 
 export interface Karana {
   number: number;
-  name: Trilingual;
+  name: LocaleText;
   type: 'chara' | 'sthira' | 'special';
 }
 
 export interface Rashi {
   id: number;
   slug: string;
-  name: Trilingual;
+  name: LocaleText;
   symbol: string;
-  element: Trilingual;
+  element: LocaleText;
   ruler: string;
-  rulerName: Trilingual;
+  rulerName: LocaleText;
   startDeg: number;
   endDeg: number;
-  quality: Trilingual;
+  quality: LocaleText;
 }
 
 export interface Graha {
   id: number;
-  name: Trilingual;
+  name: LocaleText;
   symbol: string;
   color: string;
   longitude?: number;
@@ -86,7 +79,7 @@ export interface TransitionInfo {
   startDate: string;     // "YYYY-MM-DD" date of start
   endTime: string;       // "HH:MM" when current element ends
   endDate: string;       // "YYYY-MM-DD" date of end
-  nextName: Trilingual;  // name of the next element
+  nextName: LocaleText;  // name of the next element
   nextNumber: number;    // index/number of the next element
   startJD?: number;      // raw Julian Day of start (for internal calculations)
   endJD?: number;        // raw Julian Day of end (for internal calculations)
@@ -99,7 +92,7 @@ export interface PanchangData {
   nakshatra: Nakshatra;
   yoga: Yoga;
   karana: Karana;
-  vara: { day: number; name: Trilingual; ruler: Trilingual };
+  vara: { day: number; name: LocaleText; ruler: LocaleText };
   sunrise: string;
   sunset: string;
   moonrise: string;
@@ -110,10 +103,10 @@ export interface PanchangData {
   muhurtas: Muhurta[];
   abhijitMuhurta: { start: string; end: string };
   planets: Graha[];
-  masa: Trilingual;
-  samvatsara: Trilingual;
-  ritu: Trilingual;
-  ayana: Trilingual;
+  masa: LocaleText;
+  samvatsara: LocaleText;
+  ritu: LocaleText;
+  ayana: LocaleText;
   // Transition times
   tithiTransition?: TransitionInfo;
   nakshatraTransition?: TransitionInfo;
@@ -139,8 +132,8 @@ export interface PanchangData {
   // Enhanced Drikpanchang-style fields
   vikramSamvat?: number;
   shakaSamvat?: number;
-  purnimantMasa?: Trilingual;
-  amantMasa?: Trilingual;
+  purnimantMasa?: LocaleText;
+  amantMasa?: LocaleText;
   ayanamsha?: number;
   sunLongitude?: number;  // sidereal Sun longitude 0-360
   sunSign?: { rashi: number; nakshatra: number };
@@ -152,21 +145,21 @@ export interface PanchangData {
   vijayaMuhurta?: { start: string; end: string };
   durMuhurtam?: { start: string; end: string }[];
   durMuhurtamAlt?: { start: string; end: string }[]; // Nirṇaya Sindhu tradition (alternate)
-  gandaMoola?: { active: boolean; nakshatra?: Trilingual };
-  anandadiYoga?: { number: number; name: Trilingual; nature: 'auspicious' | 'inauspicious' };
+  gandaMoola?: { active: boolean; nakshatra?: LocaleText };
+  anandadiYoga?: { number: number; name: LocaleText; nature: 'auspicious' | 'inauspicious' };
   raviYoga?: boolean;
   kaliAhargana?: number;
   kaliyugaYear?: number;
   julianDay?: number;
-  panchaka?: { active: boolean; type?: Trilingual };
-  shivaVaas?: { name: Trilingual; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed'; tithis: number[] };
-  agniVaas?: { name: Trilingual; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed'; validUntil?: string };
-  chandraVaas?: { name: Trilingual; direction: Trilingual; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed' };
-  rahuVaas?: { direction: Trilingual };
-  udayaLagna?: { rashi: number; name: Trilingual; start: string; end: string }[];
-  tamilYoga?: { name: Trilingual; nature: 'auspicious' | 'inauspicious' };
-  mantriMandala?: { king: { planet: number; role: Trilingual }; minister: { planet: number; role: Trilingual }; horas?: { planet: number; start: string; end: string; isDay: boolean }[] };
-  homahuti?: { direction: Trilingual; deity: Trilingual };
+  panchaka?: { active: boolean; type?: LocaleText };
+  shivaVaas?: { name: LocaleText; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed'; tithis: number[] };
+  agniVaas?: { name: LocaleText; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed'; validUntil?: string };
+  chandraVaas?: { name: LocaleText; direction: LocaleText; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed' };
+  rahuVaas?: { direction: LocaleText };
+  udayaLagna?: { rashi: number; name: LocaleText; start: string; end: string }[];
+  tamilYoga?: { name: LocaleText; nature: 'auspicious' | 'inauspicious' };
+  mantriMandala?: { king: { planet: number; role: LocaleText }; minister: { planet: number; role: LocaleText }; horas?: { planet: number; start: string; end: string; isDay: boolean }[] };
+  homahuti?: { direction: LocaleText; deity: LocaleText };
   dagdhaTithi?: boolean;
   amritSiddhiYoga?: boolean;
   vishaGhatika?: { start: string; end: string };
@@ -177,10 +170,10 @@ export interface PanchangData {
   raviYogaWindow?: { active: boolean; start?: string; end?: string; endDate?: string };
   // Festivals & Vrats for this date
   festivals?: {
-    name: Trilingual;
+    name: LocaleText;
     type: string;
     category: string;
-    description: Trilingual;
+    description: LocaleText;
     slug?: string;
     pujaMuhurat?: { start: string; end: string; name: string };
     paranaStart?: string;
@@ -190,7 +183,7 @@ export interface PanchangData {
 }
 
 export interface ChoghadiyaSlot {
-  name: Trilingual;
+  name: LocaleText;
   type: 'amrit' | 'shubh' | 'labh' | 'char' | 'rog' | 'kaal' | 'udveg';
   nature: 'auspicious' | 'inauspicious' | 'neutral';
   startTime: string;
@@ -199,7 +192,7 @@ export interface ChoghadiyaSlot {
 }
 
 export interface HoraSlot {
-  planet: Trilingual;
+  planet: LocaleText;
   planetId: number;
   startTime: string;
   endTime: string;
@@ -207,27 +200,27 @@ export interface HoraSlot {
 }
 
 export interface DishaShoolInfo {
-  direction: Trilingual;
-  remedy: Trilingual;
+  direction: LocaleText;
+  remedy: LocaleText;
 }
 
 export interface BalamResult {
   chandrabalam: {
     house: number;
     favorable: boolean;
-    description: Trilingual;
+    description: LocaleText;
   };
   tarabalam: {
     tara: number;
-    taraName: Trilingual;
+    taraName: LocaleText;
     favorable: boolean;
-    description: Trilingual;
+    description: LocaleText;
   };
 }
 
 export interface Muhurta {
   number: number;
-  name: Trilingual;
+  name: LocaleText;
   startTime: string;
   endTime: string;
   nature: 'auspicious' | 'inauspicious' | 'neutral';
@@ -239,11 +232,11 @@ export interface Eclipse {
   maxTime: string;
   magnitude: number;
   visibility: string;
-  description: Trilingual;
+  description: LocaleText;
 }
 
 export interface Samvatsara {
   number: number;
-  name: Trilingual;
+  name: LocaleText;
   startYear: number;
 }

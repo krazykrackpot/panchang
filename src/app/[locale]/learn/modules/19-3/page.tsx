@@ -6,16 +6,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_19_3', phase: 6, topic: 'Jaimini', moduleNumber: '19.3',
-  title: { en: 'Argala — Planetary Intervention System', hi: 'अर्गला — ग्रहीय हस्तक्षेप पद्धति' },
+  title: { en: 'Argala — Planetary Intervention System', hi: 'अर्गला — ग्रहीय हस्तक्षेप पद्धति', sa: 'अर्गला — ग्रहीय हस्तक्षेप पद्धति', mai: 'अर्गला — ग्रहीय हस्तक्षेप पद्धति', mr: 'अर्गला — ग्रहीय हस्तक्षेप पद्धति', ta: 'Argala — Planetary Intervention System', te: 'Argala — Planetary Intervention System', bn: 'Argala — Planetary Intervention System', kn: 'Argala — Planetary Intervention System', gu: 'Argala — Planetary Intervention System' },
   subtitle: {
     en: 'How planets in the 2nd, 4th, and 11th "bolt" a house with support — and how counter-planets in the 3rd, 10th, and 12th can obstruct that intervention',
     hi: 'कैसे दूसरे, चौथे और ग्यारहवें भाव के ग्रह किसी भाव को सहायता से "बन्द" करते हैं — और कैसे तीसरे, दसवें और बारहवें के प्रतिग्रह उस हस्तक्षेप को बाधित कर सकते हैं',
   },
   estimatedMinutes: 13,
   crossRefs: [
-    { label: { en: 'Module 19-1: Chara Karakas', hi: 'मॉड्यूल 19-1: चर कारक' }, href: '/learn/modules/19-1' },
-    { label: { en: 'Module 19-2: Rashi Drishti', hi: 'मॉड्यूल 19-2: राशि दृष्टि' }, href: '/learn/modules/19-2' },
-    { label: { en: 'Module 19-4: Special Lagnas', hi: 'मॉड्यूल 19-4: विशेष लग्न' }, href: '/learn/modules/19-4' },
+    { label: { en: 'Module 19-1: Chara Karakas', hi: 'मॉड्यूल 19-1: चर कारक', sa: 'मॉड्यूल 19-1: चर कारक', mai: 'मॉड्यूल 19-1: चर कारक', mr: 'मॉड्यूल 19-1: चर कारक', ta: 'Module 19-1: Chara Karakas', te: 'Module 19-1: Chara Karakas', bn: 'Module 19-1: Chara Karakas', kn: 'Module 19-1: Chara Karakas', gu: 'Module 19-1: Chara Karakas' }, href: '/learn/modules/19-1' },
+    { label: { en: 'Module 19-2: Rashi Drishti', hi: 'मॉड्यूल 19-2: राशि दृष्टि', sa: 'मॉड्यूल 19-2: राशि दृष्टि', mai: 'मॉड्यूल 19-2: राशि दृष्टि', mr: 'मॉड्यूल 19-2: राशि दृष्टि', ta: 'Module 19-2: Rashi Drishti', te: 'Module 19-2: Rashi Drishti', bn: 'Module 19-2: Rashi Drishti', kn: 'Module 19-2: Rashi Drishti', gu: 'Module 19-2: Rashi Drishti' }, href: '/learn/modules/19-2' },
+    { label: { en: 'Module 19-4: Special Lagnas', hi: 'मॉड्यूल 19-4: विशेष लग्न', sa: 'मॉड्यूल 19-4: विशेष लग्न', mai: 'मॉड्यूल 19-4: विशेष लग्न', mr: 'मॉड्यूल 19-4: विशेष लग्न', ta: 'Module 19-4: Special Lagnas', te: 'Module 19-4: Special Lagnas', bn: 'Module 19-4: Special Lagnas', kn: 'Module 19-4: Special Lagnas', gu: 'Module 19-4: Special Lagnas' }, href: '/learn/modules/19-4' },
   ],
 };
 
@@ -27,10 +27,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किसी भाव पर अर्गला किन भावों के ग्रहों द्वारा बनती है?',
     },
     options: [
-      { en: '1st, 5th, and 9th from that house', hi: 'उस भाव से पहले, पाँचवें और नौवें' },
-      { en: '2nd, 4th, and 11th from that house', hi: 'उस भाव से दूसरे, चौथे और ग्यारहवें' },
-      { en: '3rd, 7th, and 10th from that house', hi: 'उस भाव से तीसरे, सातवें और दसवें' },
-      { en: '6th, 8th, and 12th from that house', hi: 'उस भाव से छठे, आठवें और बारहवें' },
+      { en: '1st, 5th, and 9th from that house', hi: 'उस भाव से पहले, पाँचवें और नौवें', sa: 'उस भाव से पहले, पाँचवें और नौवें', mai: 'उस भाव से पहले, पाँचवें और नौवें', mr: 'उस भाव से पहले, पाँचवें और नौवें', ta: '1st, 5th, and 9th from that house', te: '1st, 5th, and 9th from that house', bn: '1st, 5th, and 9th from that house', kn: '1st, 5th, and 9th from that house', gu: '1st, 5th, and 9th from that house' },
+      { en: '2nd, 4th, and 11th from that house', hi: 'उस भाव से दूसरे, चौथे और ग्यारहवें', sa: 'उस भाव से दूसरे, चौथे और ग्यारहवें', mai: 'उस भाव से दूसरे, चौथे और ग्यारहवें', mr: 'उस भाव से दूसरे, चौथे और ग्यारहवें', ta: '2nd, 4th, and 11th from that house', te: '2nd, 4th, and 11th from that house', bn: '2nd, 4th, and 11th from that house', kn: '2nd, 4th, and 11th from that house', gu: '2nd, 4th, and 11th from that house' },
+      { en: '3rd, 7th, and 10th from that house', hi: 'उस भाव से तीसरे, सातवें और दसवें', sa: 'उस भाव से तीसरे, सातवें और दसवें', mai: 'उस भाव से तीसरे, सातवें और दसवें', mr: 'उस भाव से तीसरे, सातवें और दसवें', ta: '3rd, 7th, and 10th from that house', te: '3rd, 7th, and 10th from that house', bn: '3rd, 7th, and 10th from that house', kn: '3rd, 7th, and 10th from that house', gu: '3rd, 7th, and 10th from that house' },
+      { en: '6th, 8th, and 12th from that house', hi: 'उस भाव से छठे, आठवें और बारहवें', sa: 'उस भाव से छठे, आठवें और बारहवें', mai: 'उस भाव से छठे, आठवें और बारहवें', mr: 'उस भाव से छठे, आठवें और बारहवें', ta: '6th, 8th, and 12th from that house', te: '6th, 8th, and 12th from that house', bn: '6th, 8th, and 12th from that house', kn: '6th, 8th, and 12th from that house', gu: '6th, 8th, and 12th from that house' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -45,10 +45,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विरोध अर्गला (बाधा) किसी भाव पर किन भावों के ग्रहों से होती है?',
     },
     options: [
-      { en: '2nd, 4th, and 11th', hi: 'दूसरे, चौथे और ग्यारहवें' },
-      { en: '3rd, 10th, and 12th', hi: 'तीसरे, दसवें और बारहवें' },
-      { en: '6th, 8th, and 12th', hi: 'छठे, आठवें और बारहवें' },
-      { en: '1st, 7th, and 10th', hi: 'पहले, सातवें और दसवें' },
+      { en: '2nd, 4th, and 11th', hi: 'दूसरे, चौथे और ग्यारहवें', sa: 'दूसरे, चौथे और ग्यारहवें', mai: 'दूसरे, चौथे और ग्यारहवें', mr: 'दूसरे, चौथे और ग्यारहवें', ta: '2nd, 4th, and 11th', te: '2nd, 4th, and 11th', bn: '2nd, 4th, and 11th', kn: '2nd, 4th, and 11th', gu: '2nd, 4th, and 11th' },
+      { en: '3rd, 10th, and 12th', hi: 'तीसरे, दसवें और बारहवें', sa: 'तीसरे, दसवें और बारहवें', mai: 'तीसरे, दसवें और बारहवें', mr: 'तीसरे, दसवें और बारहवें', ta: '3rd, 10th, and 12th', te: '3rd, 10th, and 12th', bn: '3rd, 10th, and 12th', kn: '3rd, 10th, and 12th', gu: '3rd, 10th, and 12th' },
+      { en: '6th, 8th, and 12th', hi: 'छठे, आठवें और बारहवें', sa: 'छठे, आठवें और बारहवें', mai: 'छठे, आठवें और बारहवें', mr: 'छठे, आठवें और बारहवें', ta: '6th, 8th, and 12th', te: '6th, 8th, and 12th', bn: '6th, 8th, and 12th', kn: '6th, 8th, and 12th', gu: '6th, 8th, and 12th' },
+      { en: '1st, 7th, and 10th', hi: 'पहले, सातवें और दसवें', sa: 'पहले, सातवें और दसवें', mai: 'पहले, सातवें और दसवें', mr: 'पहले, सातवें और दसवें', ta: '1st, 7th, and 10th', te: '1st, 7th, and 10th', bn: '1st, 7th, and 10th', kn: '1st, 7th, and 10th', gu: '1st, 7th, and 10th' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -75,10 +75,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'दूसरे भाव की अर्गला किससे सम्बन्धित है?',
     },
     options: [
-      { en: 'Emotional and property intervention', hi: 'भावनात्मक और सम्पत्ति हस्तक्षेप' },
-      { en: 'Wealth and resource intervention', hi: 'धन और संसाधन हस्तक्षेप' },
-      { en: 'Gains and fulfillment intervention', hi: 'लाभ और पूर्णता हस्तक्षेप' },
-      { en: 'Children and creativity intervention', hi: 'सन्तान और सृजनशीलता हस्तक्षेप' },
+      { en: 'Emotional and property intervention', hi: 'भावनात्मक और सम्पत्ति हस्तक्षेप', sa: 'भावनात्मक और सम्पत्ति हस्तक्षेप', mai: 'भावनात्मक और सम्पत्ति हस्तक्षेप', mr: 'भावनात्मक और सम्पत्ति हस्तक्षेप', ta: 'Emotional and property intervention', te: 'Emotional and property intervention', bn: 'Emotional and property intervention', kn: 'Emotional and property intervention', gu: 'Emotional and property intervention' },
+      { en: 'Wealth and resource intervention', hi: 'धन और संसाधन हस्तक्षेप', sa: 'धन और संसाधन हस्तक्षेप', mai: 'धन और संसाधन हस्तक्षेप', mr: 'धन और संसाधन हस्तक्षेप', ta: 'Wealth and resource intervention', te: 'Wealth and resource intervention', bn: 'Wealth and resource intervention', kn: 'Wealth and resource intervention', gu: 'Wealth and resource intervention' },
+      { en: 'Gains and fulfillment intervention', hi: 'लाभ और पूर्णता हस्तक्षेप', sa: 'लाभ और पूर्णता हस्तक्षेप', mai: 'लाभ और पूर्णता हस्तक्षेप', mr: 'लाभ और पूर्णता हस्तक्षेप', ta: 'Gains and fulfillment intervention', te: 'Gains and fulfillment intervention', bn: 'Gains and fulfillment intervention', kn: 'Gains and fulfillment intervention', gu: 'Gains and fulfillment intervention' },
+      { en: 'Children and creativity intervention', hi: 'सन्तान और सृजनशीलता हस्तक्षेप', sa: 'सन्तान और सृजनशीलता हस्तक्षेप', mai: 'सन्तान और सृजनशीलता हस्तक्षेप', mr: 'सन्तान और सृजनशीलता हस्तक्षेप', ta: 'Children and creativity intervention', te: 'Children and creativity intervention', bn: 'Children and creativity intervention', kn: 'Children and creativity intervention', gu: 'Children and creativity intervention' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -93,10 +93,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कौन-सा भाव विशेष "पुत्र अर्गला" बनाता है?',
     },
     options: [
-      { en: '2nd house', hi: 'दूसरा भाव' },
-      { en: '4th house', hi: 'चौथा भाव' },
-      { en: '5th house', hi: 'पाँचवाँ भाव' },
-      { en: '9th house', hi: 'नौवाँ भाव' },
+      { en: '2nd house', hi: 'दूसरा भाव', sa: 'दूसरा भाव', mai: 'दूसरा भाव', mr: 'दूसरा भाव', ta: '2nd house', te: '2nd house', bn: '2nd house', kn: '2nd house', gu: '2nd house' },
+      { en: '4th house', hi: 'चौथा भाव', sa: 'चौथा भाव', mai: 'चौथा भाव', mr: 'चौथा भाव', ta: '4th house', te: '4th house', bn: '4th house', kn: '4th house', gu: '4th house' },
+      { en: '5th house', hi: 'पाँचवाँ भाव', sa: 'पाँचवाँ भाव', mai: 'पाँचवाँ भाव', mr: 'पाँचवाँ भाव', ta: '5th house', te: '5th house', bn: '5th house', kn: '5th house', gu: '5th house' },
+      { en: '9th house', hi: 'नौवाँ भाव', sa: 'नौवाँ भाव', mai: 'नौवाँ भाव', mr: 'नौवाँ भाव', ta: '9th house', te: '9th house', bn: '9th house', kn: '9th house', gu: '9th house' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -123,10 +123,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चौथे भाव की अर्गला किस प्रकार का हस्तक्षेप प्रदान करती है?',
     },
     options: [
-      { en: 'Wealth and speech support', hi: 'धन और वाणी सहायता' },
-      { en: 'Emotional comfort, property, and happiness support', hi: 'भावनात्मक सुख, सम्पत्ति और आनन्द सहायता' },
-      { en: 'Gains and network support', hi: 'लाभ और जाल सहायता' },
-      { en: 'Spiritual and father support', hi: 'आध्यात्मिक और पितृ सहायता' },
+      { en: 'Wealth and speech support', hi: 'धन और वाणी सहायता', sa: 'धन और वाणी सहायता', mai: 'धन और वाणी सहायता', mr: 'धन और वाणी सहायता', ta: 'Wealth and speech support', te: 'Wealth and speech support', bn: 'Wealth and speech support', kn: 'Wealth and speech support', gu: 'Wealth and speech support' },
+      { en: 'Emotional comfort, property, and happiness support', hi: 'भावनात्मक सुख, सम्पत्ति और आनन्द सहायता', sa: 'भावनात्मक सुख, सम्पत्ति और आनन्द सहायता', mai: 'भावनात्मक सुख, सम्पत्ति और आनन्द सहायता', mr: 'भावनात्मक सुख, सम्पत्ति और आनन्द सहायता', ta: 'Emotional comfort, property, and happiness support', te: 'Emotional comfort, property, and happiness support', bn: 'Emotional comfort, property, and happiness support', kn: 'Emotional comfort, property, and happiness support', gu: 'Emotional comfort, property, and happiness support' },
+      { en: 'Gains and network support', hi: 'लाभ और जाल सहायता', sa: 'लाभ और जाल सहायता', mai: 'लाभ और जाल सहायता', mr: 'लाभ और जाल सहायता', ta: 'Gains and network support', te: 'Gains and network support', bn: 'Gains and network support', kn: 'Gains and network support', gu: 'Gains and network support' },
+      { en: 'Spiritual and father support', hi: 'आध्यात्मिक और पितृ सहायता', sa: 'आध्यात्मिक और पितृ सहायता', mai: 'आध्यात्मिक और पितृ सहायता', mr: 'आध्यात्मिक और पितृ सहायता', ta: 'Spiritual and father support', te: 'Spiritual and father support', bn: 'Spiritual and father support', kn: 'Spiritual and father support', gu: 'Spiritual and father support' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -141,10 +141,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चौथे भाव की अर्गला के लिए विरोध (बाधा) कौन-सी स्थिति बनाती है?',
     },
     options: [
-      { en: '3rd from the reference house', hi: 'सन्दर्भ भाव से तीसरा' },
-      { en: '10th from the reference house', hi: 'सन्दर्भ भाव से दसवाँ' },
-      { en: '12th from the reference house', hi: 'सन्दर्भ भाव से बारहवाँ' },
-      { en: '8th from the reference house', hi: 'सन्दर्भ भाव से आठवाँ' },
+      { en: '3rd from the reference house', hi: 'सन्दर्भ भाव से तीसरा', sa: 'सन्दर्भ भाव से तीसरा', mai: 'सन्दर्भ भाव से तीसरा', mr: 'सन्दर्भ भाव से तीसरा', ta: '3rd from the reference house', te: '3rd from the reference house', bn: '3rd from the reference house', kn: '3rd from the reference house', gu: '3rd from the reference house' },
+      { en: '10th from the reference house', hi: 'सन्दर्भ भाव से दसवाँ', sa: 'सन्दर्भ भाव से दसवाँ', mai: 'सन्दर्भ भाव से दसवाँ', mr: 'सन्दर्भ भाव से दसवाँ', ta: '10th from the reference house', te: '10th from the reference house', bn: '10th from the reference house', kn: '10th from the reference house', gu: '10th from the reference house' },
+      { en: '12th from the reference house', hi: 'सन्दर्भ भाव से बारहवाँ', sa: 'सन्दर्भ भाव से बारहवाँ', mai: 'सन्दर्भ भाव से बारहवाँ', mr: 'सन्दर्भ भाव से बारहवाँ', ta: '12th from the reference house', te: '12th from the reference house', bn: '12th from the reference house', kn: '12th from the reference house', gu: '12th from the reference house' },
+      { en: '8th from the reference house', hi: 'सन्दर्भ भाव से आठवाँ', sa: 'सन्दर्भ भाव से आठवाँ', mai: 'सन्दर्भ भाव से आठवाँ', mr: 'सन्दर्भ भाव से आठवाँ', ta: '8th from the reference house', te: '8th from the reference house', bn: '8th from the reference house', kn: '8th from the reference house', gu: '8th from the reference house' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -171,10 +171,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'बृहस्पति आठवें भाव (सातवें से दूसरा) में है। नौवें भाव (सातवें से तीसरा) में कोई ग्रह नहीं। यह सातवें भाव के लिए क्या दर्शाता है?',
     },
     options: [
-      { en: 'No effect on the 7th house', hi: 'सातवें भाव पर कोई प्रभाव नहीं' },
-      { en: 'Unobstructed wealth Argala on marriage — marriage brings prosperity', hi: 'विवाह पर अबाधित धन अर्गला — विवाह समृद्धि लाता है' },
-      { en: 'Virodha Argala blocks marriage', hi: 'विरोध अर्गला विवाह को अवरुद्ध करती है' },
-      { en: 'Jupiter causes delay in marriage', hi: 'बृहस्पति विवाह में विलम्ब करता है' },
+      { en: 'No effect on the 7th house', hi: 'सातवें भाव पर कोई प्रभाव नहीं', sa: 'सातवें भाव पर कोई प्रभाव नहीं', mai: 'सातवें भाव पर कोई प्रभाव नहीं', mr: 'सातवें भाव पर कोई प्रभाव नहीं', ta: 'No effect on the 7th house', te: 'No effect on the 7th house', bn: 'No effect on the 7th house', kn: 'No effect on the 7th house', gu: 'No effect on the 7th house' },
+      { en: 'Unobstructed wealth Argala on marriage — marriage brings prosperity', hi: 'विवाह पर अबाधित धन अर्गला — विवाह समृद्धि लाता है', sa: 'विवाह पर अबाधित धन अर्गला — विवाह समृद्धि लाता है', mai: 'विवाह पर अबाधित धन अर्गला — विवाह समृद्धि लाता है', mr: 'विवाह पर अबाधित धन अर्गला — विवाह समृद्धि लाता है', ta: 'Unobstructed wealth Argala on marriage — marriage brings prosperity', te: 'Unobstructed wealth Argala on marriage — marriage brings prosperity', bn: 'Unobstructed wealth Argala on marriage — marriage brings prosperity', kn: 'Unobstructed wealth Argala on marriage — marriage brings prosperity', gu: 'Unobstructed wealth Argala on marriage — marriage brings prosperity' },
+      { en: 'Virodha Argala blocks marriage', hi: 'विरोध अर्गला विवाह को अवरुद्ध करती है', sa: 'विरोध अर्गला विवाह को अवरुद्ध करती है', mai: 'विरोध अर्गला विवाह को अवरुद्ध करती है', mr: 'विरोध अर्गला विवाह को अवरुद्ध करती है', ta: 'Virodha Argala blocks marriage', te: 'Virodha Argala blocks marriage', bn: 'Virodha Argala blocks marriage', kn: 'Virodha Argala blocks marriage', gu: 'Virodha Argala blocks marriage' },
+      { en: 'Jupiter causes delay in marriage', hi: 'बृहस्पति विवाह में विलम्ब करता है', sa: 'बृहस्पति विवाह में विलम्ब करता है', mai: 'बृहस्पति विवाह में विलम्ब करता है', mr: 'बृहस्पति विवाह में विलम्ब करता है', ta: 'Jupiter causes delay in marriage', te: 'Jupiter causes delay in marriage', bn: 'Jupiter causes delay in marriage', kn: 'Jupiter causes delay in marriage', gu: 'Jupiter causes delay in marriage' },
     ],
     correctAnswer: 1,
     explanation: {

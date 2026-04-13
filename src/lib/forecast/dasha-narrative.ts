@@ -4,13 +4,13 @@
  */
 
 import type { KundaliData, DashaEntry } from '@/types/kundali';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText} from '@/types/panchang';
 import { GRAHAS } from '@/lib/constants/grahas';
 
 export interface DashaNarrativeEntry {
   level: 'maha' | 'antar';
   planet: string;
-  planetName: Trilingual;
+  planetName: LocaleText;
   planetId: number;
   startDate: string;
   endDate: string;
@@ -18,8 +18,8 @@ export interface DashaNarrativeEntry {
   house: number;
   dignity: string;
   isRetrograde: boolean;
-  themes: Trilingual;
-  crossReference: Trilingual | null; // how dasha lord relates to active transits
+  themes: LocaleText;
+  crossReference: LocaleText | null; // how dasha lord relates to active transits
 }
 
 export interface DashaNarrative {
@@ -33,7 +33,7 @@ const PLANET_NAME_TO_ID: Record<string, number> = {
   Sun: 0, Moon: 1, Mars: 2, Mercury: 3, Jupiter: 4, Venus: 5, Saturn: 6, Rahu: 7, Ketu: 8,
 };
 
-const HOUSE_THEMES: Record<number, Trilingual> = {
+const HOUSE_THEMES: Record<number, LocaleText> = {
   1:  { en: 'self, identity, new beginnings', hi: 'आत्म, पहचान, नई शुरुआत', sa: 'आत्मन्, स्वरूपम्' },
   2:  { en: 'wealth, family bonds, speech', hi: 'धन, पारिवारिक बंधन, वाणी', sa: 'धनम्, कुटुम्बम्' },
   3:  { en: 'courage, communication, short travel', hi: 'साहस, संवाद, लघु यात्रा', sa: 'शौर्यम्, सम्भाषणम्' },

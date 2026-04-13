@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 /**
  * Argala — Planetary Intervention System (Jaimini)
  * Determines which planets actively support or obstruct each house.
@@ -6,7 +7,7 @@
 
 import type { PlanetPosition } from '@/types/kundali';
 
-type Tri = { en: string; hi: string; sa: string };
+type Tri = LocaleText;
 
 export interface ArgalaResult {
   house: number;

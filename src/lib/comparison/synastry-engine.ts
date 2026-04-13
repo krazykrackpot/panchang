@@ -4,7 +4,7 @@
  */
 
 import type { KundaliData, PlanetPosition, DashaEntry, ChartData } from '@/types/kundali';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText} from '@/types/panchang';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 
@@ -23,7 +23,7 @@ const GRAHA_MAITRI: Record<number, Record<number, number>> = {
 // Rashi lords: 1=Ari(Mars), 2=Tau(Venus), ... 12=Pis(Jupiter)
 const RASHI_LORD = [2, 5, 3, 1, 0, 3, 5, 2, 4, 6, 6, 4];
 
-export function getFriendshipLabel(planetA: number, planetB: number): { level: number; label: Trilingual } {
+export function getFriendshipLabel(planetA: number, planetB: number): { level: number; label: LocaleText } {
   if (planetA === planetB) return { level: 2, label: { en: 'Same', hi: 'समान', sa: 'समानः' } };
   // Rahu(7)/Ketu(8) — use Saturn for friendship
   const a = planetA >= 7 ? 6 : planetA;
@@ -39,7 +39,7 @@ export function getFriendshipLabel(planetA: number, planetB: number): { level: n
 
 export type SignRelation = 'same' | 'trine' | 'neutral' | 'difficult';
 
-export function getSignRelation(signA: number, signB: number): { relation: SignRelation; label: Trilingual; color: string } {
+export function getSignRelation(signA: number, signB: number): { relation: SignRelation; label: LocaleText; color: string } {
   if (signA === signB) return { relation: 'same', label: { en: 'Same Sign', hi: 'एक राशि', sa: 'एकराशिः' }, color: 'emerald' };
   const diff = ((signB - signA + 12) % 12);
   // Trine: 5th or 9th from each other (diff = 4 or 8)
@@ -58,7 +58,7 @@ export interface SynastryAspect {
   symbol: string;
   orb: number;
   isHarmonious: boolean;
-  interpretation: Trilingual;
+  interpretation: LocaleText;
 }
 
 const ASPECT_TYPES = [
@@ -72,7 +72,7 @@ const ASPECT_TYPES = [
 // Malefics: Sun(0), Mars(2), Saturn(6), Rahu(7), Ketu(8)
 const MALEFIC_IDS = new Set([0, 2, 6, 7, 8]);
 
-function getAspectInterpretation(planetA: number, planetB: number, type: string, isHarmonious: boolean): Trilingual {
+function getAspectInterpretation(planetA: number, planetB: number, type: string, isHarmonious: boolean): LocaleText {
   const nameA = GRAHAS[planetA]?.name?.en || 'Planet';
   const nameB = GRAHAS[planetB]?.name?.en || 'Planet';
   const nameAHi = GRAHAS[planetA]?.name?.hi || 'ग्रह';
@@ -131,7 +131,7 @@ export interface SynastrySummary {
   total: number;
   harmonious: number;
   tense: number;
-  dominantPattern: Trilingual;
+  dominantPattern: LocaleText;
 }
 
 export function computeSynastrySummary(aspects: SynastryAspect[]): SynastrySummary {
@@ -139,7 +139,7 @@ export function computeSynastrySummary(aspects: SynastryAspect[]): SynastrySumma
   const tense = aspects.length - harmonious;
   const ratio = aspects.length > 0 ? harmonious / aspects.length : 0.5;
 
-  let dominantPattern: Trilingual;
+  let dominantPattern: LocaleText;
   if (ratio >= 0.7) {
     dominantPattern = { en: 'Strongly harmonious — natural ease and support', hi: 'अत्यधिक सामंजस्यपूर्ण — स्वाभाविक सहजता', sa: 'अत्यन्तं सामञ्जस्यम्' };
   } else if (ratio >= 0.5) {
@@ -156,12 +156,12 @@ export function computeSynastrySummary(aspects: SynastryAspect[]): SynastrySumma
 // ─── Dasha Alignment ────────────────────────────────────────────────────────
 
 export interface DashaAlignmentEntry {
-  chartAMaha: { planet: string; planetName: Trilingual; start: string; end: string };
-  chartAAntar: { planet: string; planetName: Trilingual; start: string; end: string } | null;
-  chartBMaha: { planet: string; planetName: Trilingual; start: string; end: string };
-  chartBAntar: { planet: string; planetName: Trilingual; start: string; end: string } | null;
+  chartAMaha: { planet: string; planetName: LocaleText; start: string; end: string };
+  chartAAntar: { planet: string; planetName: LocaleText; start: string; end: string } | null;
+  chartBMaha: { planet: string; planetName: LocaleText; start: string; end: string };
+  chartBAntar: { planet: string; planetName: LocaleText; start: string; end: string } | null;
   sameMahaPlanet: boolean;
-  friendship: { level: number; label: Trilingual };
+  friendship: { level: number; label: LocaleText };
 }
 
 function findCurrentDasha(dashas: DashaEntry[], date: Date): { maha: DashaEntry | null; antar: DashaEntry | null } {
@@ -192,7 +192,7 @@ const PLANET_NAME_TO_ID: Record<string, number> = {
   'सूर्य': 0, 'चन्द्र': 1, 'मंगल': 2, 'बुध': 3, 'बृहस्पति': 4, 'शुक्र': 5, 'शनि': 6, 'राहु': 7, 'केतु': 8,
 };
 
-function dashaEntryToCompact(d: DashaEntry | null): { planet: string; planetName: Trilingual; start: string; end: string } | null {
+function dashaEntryToCompact(d: DashaEntry | null): { planet: string; planetName: LocaleText; start: string; end: string } | null {
   if (!d) return null;
   return { planet: d.planet, planetName: d.planetName, start: d.startDate, end: d.endDate };
 }
@@ -236,7 +236,7 @@ export function computeDashaAlignment(a: KundaliData, b: KundaliData): DashaAlig
 
 export interface HouseLordComparison {
   house: number;
-  houseName: Trilingual;
+  houseName: LocaleText;
   chartALord: { planetId: number; sign: number; house: number; dignity: string };
   chartBLord: { planetId: number; sign: number; house: number; dignity: string };
   relationship: SignRelation;
@@ -250,7 +250,7 @@ function getPlanetDignity(p: PlanetPosition): string {
 }
 
 export function compareHouseLords(a: KundaliData, b: KundaliData, houses: number[] = [1, 5, 7, 9, 10]): HouseLordComparison[] {
-  const HOUSE_NAMES: Record<number, Trilingual> = {
+  const HOUSE_NAMES: Record<number, LocaleText> = {
     1: { en: '1st (Self)', hi: '1 (लग्न)', sa: 'लग्नम्' },
     2: { en: '2nd (Wealth)', hi: '2 (धन)', sa: 'धनम्' },
     5: { en: '5th (Children)', hi: '5 (संतान)', sa: 'सन्तानम्' },

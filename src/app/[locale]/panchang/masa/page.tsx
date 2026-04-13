@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
@@ -114,7 +115,7 @@ function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 1.2 + i * 0.08 }}
             >
-              {ritu[locale]}
+              {tl(ritu, locale)}
             </motion.text>
           </g>
         );
@@ -155,7 +156,7 @@ function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: 1.0 + i * 0.05 }}
             >
-              {masa[locale]}
+              {tl(masa, locale)}
             </motion.text>
           </g>
         );
@@ -366,13 +367,13 @@ export default function MasaPage() {
                       : undefined
                   }
                 >
-                  {masa[locale]}
+                  {tl(masa, locale)}
                 </div>
                 <div className="text-text-secondary text-xs mt-1 font-mono">
                   {MASA_DETAILS[i].gregApprox}
                 </div>
                 <div className="text-xs mt-1" style={{ color: rituColors[rituIndex] }}>
-                  {RITU_NAMES[rituIndex][locale]}
+                  {tl(RITU_NAMES[rituIndex], locale)}
                 </div>
               </motion.div>
             );
@@ -405,7 +406,7 @@ export default function MasaPage() {
                     : undefined
                 }
               >
-                {ritu[locale]}
+                {tl(ritu, locale)}
               </div>
               <div
                 className="text-text-secondary text-xs mt-2"
@@ -415,7 +416,7 @@ export default function MasaPage() {
                     : undefined
                 }
               >
-                {MASA_NAMES[i * 2][locale]} &ndash; {MASA_NAMES[i * 2 + 1][locale]}
+                {tl(MASA_NAMES[i * 2], locale)} &ndash; {tl(MASA_NAMES[i * 2 + 1], locale)}
               </div>
             </motion.div>
           ))}

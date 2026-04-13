@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -12,8 +13,7 @@ import type { LocaleText } from '@/lib/learn/translations';
 import LT from '@/messages/learn/advanced-houses.json';
 
 /* ── Trilingual Labels ──────────────────────────────────────────────── */
-type Tri = Record<string, string>;
-const L: Record<string, Tri> = {
+const L: Record<string, LocaleText> = {
   title:    { en: 'Advanced House Concepts', hi: 'उन्नत भाव सिद्धान्त', sa: 'उन्नतभावसिद्धान्ताः' , ta: 'மேம்பட்ட பாவ கருத்துக்கள்' },
   subtitle: { en: 'MKS, Badhaka, Maraka, and Functional Nature of Planets', hi: 'मारक कारक स्थान, बाधक, मारक, एवं ग्रहों की कार्यात्मक प्रकृति', sa: 'मारककारकस्थानं, बाधकः, मारकः, ग्रहाणां कार्यात्मकस्वभावश्च' },
   mksTitle: { en: 'Marana Karaka Sthana (MKS) --- The Death Place', hi: 'मारक कारक स्थान (MKS) --- मृत्यु स्थान', sa: 'मारककारकस्थानम् --- मृत्युस्थानम्' },
@@ -41,7 +41,7 @@ const L: Record<string, Tri> = {
 };
 
 /* ── Data ───────────────────────────────────────────────────────────── */
-const MKS_DATA: { planet: Tri; house: number; why: Tri; remedy: Tri }[] = [
+const MKS_DATA: { planet: LocaleText; house: number; why: LocaleText; remedy: LocaleText }[] = [
   { planet: { en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' }, house: 12, why: { en: 'Authority dissolves in house of loss and isolation', hi: 'हानि और एकान्त के भाव में अधिकार विलीन हो जाता है', sa: 'हानिएकान्तभावे अधिकारः विलीयते' }, remedy: { en: 'Surya Namaskar at dawn, donate wheat on Sundays', hi: 'सूर्योदय पर सूर्य नमस्कार, रविवार को गेहूँ दान', sa: 'प्रातःकाले सूर्यनमस्कारः, रविवासरे गोधूमदानम्' } },
   { planet: { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्रः' }, house: 8, why: { en: 'Mind tortured in house of secrets and death', hi: 'रहस्य और मृत्यु के भाव में मन पीड़ित', sa: 'रहस्यमृत्युभावे मनः पीड्यते' }, remedy: { en: 'Worship Devi on Mondays, donate rice and milk', hi: 'सोमवार को देवी पूजा, चावल और दूध दान', sa: 'सोमवासरे देवीपूजा, तण्डुलक्षीरदानम्' } },
   { planet: { en: 'Mars', hi: 'मंगल', sa: 'मङ्गलः' }, house: 7, why: { en: 'Warrior energy misplaced in house of diplomacy', hi: 'कूटनीति के भाव में योद्धा ऊर्जा अनुपयुक्त', sa: 'कूटनीतिभावे योद्धृशक्तिः अनुचिता' }, remedy: { en: 'Hanuman Chalisa on Tuesdays, donate red lentils', hi: 'मंगलवार को हनुमान चालीसा, मसूर दाल दान', sa: 'मङ्गलवासरे हनुमच्चालीसा, रक्तमसूरदानम्' } },
@@ -53,13 +53,13 @@ const MKS_DATA: { planet: Tri; house: number; why: Tri; remedy: Tri }[] = [
   { planet: { en: 'Ketu', hi: 'केतु', sa: 'केतुः' }, house: 5, why: { en: 'Detachment harms children and creativity', hi: 'वैराग्य सन्तान और सृजनशीलता को हानि पहुँचाता है', sa: 'वैराग्यं सन्तानं सृजनशीलतां च हिनस्ति' }, remedy: { en: 'Ganesh worship, donate blankets, chant Om Namah Shivaya', hi: 'गणेश पूजा, कम्बल दान, ॐ नमः शिवाय जप', sa: 'गणेशपूजा, कम्बलदानं, ॐ नमः शिवाय जपः' } },
 ];
 
-const BADHAKA_DATA: { type: Tri; lagnas: Tri; house: Tri }[] = [
+const BADHAKA_DATA: { type: LocaleText; lagnas: LocaleText; house: LocaleText }[] = [
   { type: { en: 'Movable (Chara)', hi: 'चर', sa: 'चरः' }, lagnas: { en: 'Aries, Cancer, Libra, Capricorn', hi: 'मेष, कर्क, तुला, मकर', sa: 'मेषः, कर्कटः, तुला, मकरः' }, house: { en: '11th house lord', hi: '11वें भाव स्वामी', sa: 'एकादशभावस्वामी' } },
   { type: { en: 'Fixed (Sthira)', hi: 'स्थिर', sa: 'स्थिरः' }, lagnas: { en: 'Taurus, Leo, Scorpio, Aquarius', hi: 'वृषभ, सिंह, वृश्चिक, कुम्भ', sa: 'वृषभः, सिंहः, वृश्चिकः, कुम्भः' }, house: { en: '9th house lord', hi: '9वें भाव स्वामी', sa: 'नवमभावस्वामी' } },
   { type: { en: 'Dual (Dwiswabhava)', hi: 'द्विस्वभाव', sa: 'द्विस्वभावः' }, lagnas: { en: 'Gemini, Virgo, Sagittarius, Pisces', hi: 'मिथुन, कन्या, धनु, मीन', sa: 'मिथुनं, कन्या, धनुः, मीनः' }, house: { en: '7th house lord', hi: '7वें भाव स्वामी', sa: 'सप्तमभावस्वामी' } },
 ];
 
-const BADHAKESH_TABLE: { lagna: Tri; badhakesh: Tri }[] = [
+const BADHAKESH_TABLE: { lagna: LocaleText; badhakesh: LocaleText }[] = [
   { lagna: { en: 'Aries', hi: 'मेष', sa: 'मेषः' }, badhakesh: { en: 'Saturn (Aquarius 11H)', hi: 'शनि (कुम्भ 11भ)', sa: 'शनिः (कुम्भः 11भा)' } },
   { lagna: { en: 'Taurus', hi: 'वृषभ', sa: 'वृषभः' }, badhakesh: { en: 'Saturn (Capricorn 9H)', hi: 'शनि (मकर 9भ)', sa: 'शनिः (मकरः 9भा)' } },
   { lagna: { en: 'Gemini', hi: 'मिथुन', sa: 'मिथुनम्' }, badhakesh: { en: 'Jupiter (Sagittarius 7H)', hi: 'गुरु (धनु 7भ)', sa: 'गुरुः (धनुः 7भा)' } },
@@ -74,7 +74,7 @@ const BADHAKESH_TABLE: { lagna: Tri; badhakesh: Tri }[] = [
   { lagna: { en: 'Pisces', hi: 'मीन', sa: 'मीनः' }, badhakesh: { en: 'Mercury (Virgo 7H)', hi: 'बुध (कन्या 7भ)', sa: 'बुधः (कन्या 7भा)' } },
 ];
 
-const MARAKA_TABLE: { lagna: Tri; lord2: Tri; lord7: Tri }[] = [
+const MARAKA_TABLE: { lagna: LocaleText; lord2: LocaleText; lord7: LocaleText }[] = [
   { lagna: { en: 'Aries', hi: 'मेष', sa: 'मेषः' }, lord2: { en: 'Venus (Taurus)', hi: 'शुक्र (वृषभ)', sa: 'शुक्रः (वृषभः)' }, lord7: { en: 'Venus (Libra)', hi: 'शुक्र (तुला)', sa: 'शुक्रः (तुला)' } },
   { lagna: { en: 'Taurus', hi: 'वृषभ', sa: 'वृषभः' }, lord2: { en: 'Mercury (Gemini)', hi: 'बुध (मिथुन)', sa: 'बुधः (मिथुनम्)' }, lord7: { en: 'Mars (Scorpio)', hi: 'मंगल (वृश्चिक)', sa: 'मङ्गलः (वृश्चिकः)' } },
   { lagna: { en: 'Gemini', hi: 'मिथुन', sa: 'मिथुनम्' }, lord2: { en: 'Moon (Cancer)', hi: 'चन्द्र (कर्क)', sa: 'चन्द्रः (कर्कटः)' }, lord7: { en: 'Jupiter (Sagittarius)', hi: 'गुरु (धनु)', sa: 'गुरुः (धनुः)' } },
@@ -89,7 +89,7 @@ const MARAKA_TABLE: { lagna: Tri; lord2: Tri; lord7: Tri }[] = [
   { lagna: { en: 'Pisces', hi: 'मीन', sa: 'मीनः' }, lord2: { en: 'Mars (Aries)', hi: 'मंगल (मेष)', sa: 'मङ्गलः (मेषः)' }, lord7: { en: 'Mercury (Virgo)', hi: 'बुध (कन्या)', sa: 'बुधः (कन्या)' } },
 ];
 
-const FUNC_TABLE: { lagna: Tri; yogakaraka: Tri; benefic: Tri; malefic: Tri }[] = [
+const FUNC_TABLE: { lagna: LocaleText; yogakaraka: LocaleText; benefic: LocaleText; malefic: LocaleText }[] = [
   { lagna: { en: 'Aries', hi: 'मेष', sa: 'मेषः' }, yogakaraka: { en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' }, benefic: { en: 'Jupiter, Mars', hi: 'गुरु, मंगल', sa: 'गुरुः, मङ्गलः' }, malefic: { en: 'Mercury, Venus, Saturn', hi: 'बुध, शुक्र, शनि', sa: 'बुधः, शुक्रः, शनिः' } },
   { lagna: { en: 'Taurus', hi: 'वृषभ', sa: 'वृषभः' }, yogakaraka: { en: 'Saturn', hi: 'शनि', sa: 'शनिः' }, benefic: { en: 'Sun, Mercury, Saturn', hi: 'सूर्य, बुध, शनि', sa: 'सूर्यः, बुधः, शनिः' }, malefic: { en: 'Jupiter, Venus, Moon', hi: 'गुरु, शुक्र, चन्द्र', sa: 'गुरुः, शुक्रः, चन्द्रः' } },
   { lagna: { en: 'Gemini', hi: 'मिथुन', sa: 'मिथुनम्' }, yogakaraka: { en: 'Venus', hi: 'शुक्र', sa: 'शुक्रः' }, benefic: { en: 'Venus, Saturn', hi: 'शुक्र, शनि', sa: 'शुक्रः, शनिः' }, malefic: { en: 'Mars, Jupiter, Sun', hi: 'मंगल, गुरु, सूर्य', sa: 'मङ्गलः, गुरुः, सूर्यः' } },
@@ -114,7 +114,7 @@ const SECTIONS = [
 const sectionKeys = ['mks', 'badhaka', 'maraka', 'func'] as const;
 type SectionId = typeof sectionKeys[number];
 
-const SECTION_TITLES: Record<SectionId, Tri> = {
+const SECTION_TITLES: Record<SectionId, LocaleText> = {
   mks: L.mksTitle, badhaka: L.badhakaTitle, maraka: L.marakaTitle, func: L.funcTitle,
 };
 
@@ -292,7 +292,7 @@ export default function AdvancedHousesPage() {
             { href: '/learn/planet-in-house', label: { en: 'Planet in House', hi: 'भाव में ग्रह', sa: 'भावे ग्रहः' } },
           ].map((link) => (
             <Link key={link.href} href={link.href} className="px-4 py-2 rounded-lg bg-gold-primary/8 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/15 transition-colors">
-              {link.label[locale]}
+              {tl(link.label, locale)}
             </Link>
           ))}
         </div>

@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 /**
  * Daily Horoscope Article Generator
  * Produces SEO-optimized, Google Discover-friendly content from panchang data.
@@ -8,24 +9,24 @@ import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { RASHIS } from '@/lib/constants/rashis';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 
-const RASHI_THEMES: Record<number, { en: string; hi: string }> = {
-  1:  { en: 'energy and initiative', hi: 'ऊर्जा और पहल' },
-  2:  { en: 'stability and finances', hi: 'स्थिरता और वित्त' },
-  3:  { en: 'communication and learning', hi: 'संचार और शिक्षा' },
-  4:  { en: 'home and emotions', hi: 'घर और भावनाएं' },
-  5:  { en: 'creativity and romance', hi: 'रचनात्मकता और प्रेम' },
-  6:  { en: 'health and service', hi: 'स्वास्थ्य और सेवा' },
-  7:  { en: 'partnerships and balance', hi: 'साझेदारी और संतुलन' },
-  8:  { en: 'transformation and depth', hi: 'परिवर्तन और गहराई' },
-  9:  { en: 'wisdom and travel', hi: 'ज्ञान और यात्रा' },
-  10: { en: 'career and ambition', hi: 'करियर और महत्वाकांक्षा' },
-  11: { en: 'community and gains', hi: 'समुदाय और लाभ' },
-  12: { en: 'spirituality and rest', hi: 'आध्यात्मिकता और विश्राम' },
+const RASHI_THEMES: Record<number, LocaleText> = {
+  1:  { en: 'energy and initiative', hi: 'ऊर्जा और पहल', sa: 'ऊर्जा और पहल', mai: 'ऊर्जा और पहल', mr: 'ऊर्जा और पहल', ta: 'energy and initiative', te: 'energy and initiative', bn: 'energy and initiative', kn: 'energy and initiative', gu: 'energy and initiative' },
+  2:  { en: 'stability and finances', hi: 'स्थिरता और वित्त', sa: 'स्थिरता और वित्त', mai: 'स्थिरता और वित्त', mr: 'स्थिरता और वित्त', ta: 'stability and finances', te: 'stability and finances', bn: 'stability and finances', kn: 'stability and finances', gu: 'stability and finances' },
+  3:  { en: 'communication and learning', hi: 'संचार और शिक्षा', sa: 'संचार और शिक्षा', mai: 'संचार और शिक्षा', mr: 'संचार और शिक्षा', ta: 'communication and learning', te: 'communication and learning', bn: 'communication and learning', kn: 'communication and learning', gu: 'communication and learning' },
+  4:  { en: 'home and emotions', hi: 'घर और भावनाएं', sa: 'घर और भावनाएं', mai: 'घर और भावनाएं', mr: 'घर और भावनाएं', ta: 'home and emotions', te: 'home and emotions', bn: 'home and emotions', kn: 'home and emotions', gu: 'home and emotions' },
+  5:  { en: 'creativity and romance', hi: 'रचनात्मकता और प्रेम', sa: 'रचनात्मकता और प्रेम', mai: 'रचनात्मकता और प्रेम', mr: 'रचनात्मकता और प्रेम', ta: 'creativity and romance', te: 'creativity and romance', bn: 'creativity and romance', kn: 'creativity and romance', gu: 'creativity and romance' },
+  6:  { en: 'health and service', hi: 'स्वास्थ्य और सेवा', sa: 'स्वास्थ्य और सेवा', mai: 'स्वास्थ्य और सेवा', mr: 'स्वास्थ्य और सेवा', ta: 'health and service', te: 'health and service', bn: 'health and service', kn: 'health and service', gu: 'health and service' },
+  7:  { en: 'partnerships and balance', hi: 'साझेदारी और संतुलन', sa: 'साझेदारी और संतुलन', mai: 'साझेदारी और संतुलन', mr: 'साझेदारी और संतुलन', ta: 'partnerships and balance', te: 'partnerships and balance', bn: 'partnerships and balance', kn: 'partnerships and balance', gu: 'partnerships and balance' },
+  8:  { en: 'transformation and depth', hi: 'परिवर्तन और गहराई', sa: 'परिवर्तन और गहराई', mai: 'परिवर्तन और गहराई', mr: 'परिवर्तन और गहराई', ta: 'transformation and depth', te: 'transformation and depth', bn: 'transformation and depth', kn: 'transformation and depth', gu: 'transformation and depth' },
+  9:  { en: 'wisdom and travel', hi: 'ज्ञान और यात्रा', sa: 'ज्ञान और यात्रा', mai: 'ज्ञान और यात्रा', mr: 'ज्ञान और यात्रा', ta: 'wisdom and travel', te: 'wisdom and travel', bn: 'wisdom and travel', kn: 'wisdom and travel', gu: 'wisdom and travel' },
+  10: { en: 'career and ambition', hi: 'करियर और महत्वाकांक्षा', sa: 'करियर और महत्वाकांक्षा', mai: 'करियर और महत्वाकांक्षा', mr: 'करियर और महत्वाकांक्षा', ta: 'career and ambition', te: 'career and ambition', bn: 'career and ambition', kn: 'career and ambition', gu: 'career and ambition' },
+  11: { en: 'community and gains', hi: 'समुदाय और लाभ', sa: 'समुदाय और लाभ', mai: 'समुदाय और लाभ', mr: 'समुदाय और लाभ', ta: 'community and gains', te: 'community and gains', bn: 'community and gains', kn: 'community and gains', gu: 'community and gains' },
+  12: { en: 'spirituality and rest', hi: 'आध्यात्मिकता और विश्राम', sa: 'आध्यात्मिकता और विश्राम', mai: 'आध्यात्मिकता और विश्राम', mr: 'आध्यात्मिकता और विश्राम', ta: 'spirituality and rest', te: 'spirituality and rest', bn: 'spirituality and rest', kn: 'spirituality and rest', gu: 'spirituality and rest' },
 };
 
-const TITHI_ENERGY: Record<string, { en: string; hi: string }> = {
-  shukla: { en: 'waxing energy favors new beginnings and growth', hi: 'शुक्ल पक्ष की बढ़ती ऊर्जा नई शुरुआत के लिए अनुकूल' },
-  krishna: { en: 'waning energy supports reflection and completion', hi: 'कृष्ण पक्ष की घटती ऊर्जा चिंतन और पूर्णता के लिए अनुकूल' },
+const TITHI_ENERGY: Record<string, LocaleText> = {
+  shukla: { en: 'waxing energy favors new beginnings and growth', hi: 'शुक्ल पक्ष की बढ़ती ऊर्जा नई शुरुआत के लिए अनुकूल', sa: 'शुक्ल पक्ष की बढ़ती ऊर्जा नई शुरुआत के लिए अनुकूल', mai: 'शुक्ल पक्ष की बढ़ती ऊर्जा नई शुरुआत के लिए अनुकूल', mr: 'शुक्ल पक्ष की बढ़ती ऊर्जा नई शुरुआत के लिए अनुकूल', ta: 'waxing energy favors new beginnings and growth', te: 'waxing energy favors new beginnings and growth', bn: 'waxing energy favors new beginnings and growth', kn: 'waxing energy favors new beginnings and growth', gu: 'waxing energy favors new beginnings and growth' },
+  krishna: { en: 'waning energy supports reflection and completion', hi: 'कृष्ण पक्ष की घटती ऊर्जा चिंतन और पूर्णता के लिए अनुकूल', sa: 'कृष्ण पक्ष की घटती ऊर्जा चिंतन और पूर्णता के लिए अनुकूल', mai: 'कृष्ण पक्ष की घटती ऊर्जा चिंतन और पूर्णता के लिए अनुकूल', mr: 'कृष्ण पक्ष की घटती ऊर्जा चिंतन और पूर्णता के लिए अनुकूल', ta: 'waning energy supports reflection and completion', te: 'waning energy supports reflection and completion', bn: 'waning energy supports reflection and completion', kn: 'waning energy supports reflection and completion', gu: 'waning energy supports reflection and completion' },
 };
 
 export interface ArticleCityConfig {
@@ -43,9 +44,9 @@ const DELHI_DEFAULT: ArticleCityConfig = {
 
 interface DailyArticle {
   slug: string;
-  title: { en: string; hi: string };
-  description: { en: string; hi: string };
-  body: { en: string; hi: string };
+  title: LocaleText;
+  description: LocaleText;
+  body: LocaleText;
   date: string;
   publishedAt: string;
   cityName?: string;

@@ -6,18 +6,18 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_22_4', phase: 9, topic: 'Astronomy', moduleNumber: '22.4',
-  title: { en: 'Sunrise — 2-Pass Hour Angle Method', hi: 'सूर्योदय — 2-पास घण्टा कोण विधि' },
+  title: { en: 'Sunrise — 2-Pass Hour Angle Method', hi: 'सूर्योदय — 2-पास घण्टा कोण विधि', sa: 'सूर्योदय — 2-पास घण्टा कोण विधि', mai: 'सूर्योदय — 2-पास घण्टा कोण विधि', mr: 'सूर्योदय — 2-पास घण्टा कोण विधि', ta: 'Sunrise — 2-Pass Hour Angle Method', te: 'Sunrise — 2-Pass Hour Angle Method', bn: 'Sunrise — 2-Pass Hour Angle Method', kn: 'Sunrise — 2-Pass Hour Angle Method', gu: 'Sunrise — 2-Pass Hour Angle Method' },
   subtitle: {
     en: 'How refraction, the Equation of Time, and a clever 2-pass algorithm give us sunrise accurate to the minute',
     hi: 'कैसे अपवर्तन, समय का समीकरण और एक चतुर 2-पास एल्गोरिदम हमें मिनट-सटीक सूर्योदय देते हैं',
   },
   estimatedMinutes: 14,
   crossRefs: [
-    { label: { en: 'Module 22-1: Julian Day', hi: 'मॉड्यूल 22-1: जूलियन दिवस' }, href: '/learn/modules/22-1' },
-    { label: { en: 'Module 22-2: Finding the Sun', hi: 'मॉड्यूल 22-2: सूर्य की स्थिति' }, href: '/learn/modules/22-2' },
-    { label: { en: 'Module 22-5: Moonrise', hi: 'मॉड्यूल 22-5: चन्द्रोदय' }, href: '/learn/modules/22-5' },
-    { label: { en: 'Module 22-6: Equation of Time', hi: 'मॉड्यूल 22-6: समय का समीकरण' }, href: '/learn/modules/22-6' },
-    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग' }, href: '/panchang' },
+    { label: { en: 'Module 22-1: Julian Day', hi: 'मॉड्यूल 22-1: जूलियन दिवस', sa: 'मॉड्यूल 22-1: जूलियन दिवस', mai: 'मॉड्यूल 22-1: जूलियन दिवस', mr: 'मॉड्यूल 22-1: जूलियन दिवस', ta: 'Module 22-1: Julian Day', te: 'Module 22-1: Julian Day', bn: 'Module 22-1: Julian Day', kn: 'Module 22-1: Julian Day', gu: 'Module 22-1: Julian Day' }, href: '/learn/modules/22-1' },
+    { label: { en: 'Module 22-2: Finding the Sun', hi: 'मॉड्यूल 22-2: सूर्य की स्थिति', sa: 'मॉड्यूल 22-2: सूर्य की स्थिति', mai: 'मॉड्यूल 22-2: सूर्य की स्थिति', mr: 'मॉड्यूल 22-2: सूर्य की स्थिति', ta: 'Module 22-2: Finding the Sun', te: 'Module 22-2: Finding the Sun', bn: 'Module 22-2: Finding the Sun', kn: 'Module 22-2: Finding the Sun', gu: 'Module 22-2: Finding the Sun' }, href: '/learn/modules/22-2' },
+    { label: { en: 'Module 22-5: Moonrise', hi: 'मॉड्यूल 22-5: चन्द्रोदय', sa: 'मॉड्यूल 22-5: चन्द्रोदय', mai: 'मॉड्यूल 22-5: चन्द्रोदय', mr: 'मॉड्यूल 22-5: चन्द्रोदय', ta: 'Module 22-5: Moonrise', te: 'Module 22-5: Moonrise', bn: 'Module 22-5: Moonrise', kn: 'Module 22-5: Moonrise', gu: 'Module 22-5: Moonrise' }, href: '/learn/modules/22-5' },
+    { label: { en: 'Module 22-6: Equation of Time', hi: 'मॉड्यूल 22-6: समय का समीकरण', sa: 'मॉड्यूल 22-6: समय का समीकरण', mai: 'मॉड्यूल 22-6: समय का समीकरण', mr: 'मॉड्यूल 22-6: समय का समीकरण', ta: 'Module 22-6: Equation of Time', te: 'Module 22-6: Equation of Time', bn: 'Module 22-6: Equation of Time', kn: 'Module 22-6: Equation of Time', gu: 'Module 22-6: Equation of Time' }, href: '/learn/modules/22-6' },
+    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग', mai: 'दैनिक पंचांग', mr: 'दैनिक पंचांग', ta: 'Daily Panchang', te: 'Daily Panchang', bn: 'Daily Panchang', kn: 'Daily Panchang', gu: 'Daily Panchang' }, href: '/panchang' },
   ],
 };
 
@@ -29,10 +29,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सूर्योदय (सूर्य का ऊपरी अंग क्षितिज को छूता है) को कौन-सी ज्यामितीय ऊँचाई परिभाषित करती है?',
     },
     options: [
-      { en: '0° (geometric horizon)', hi: '0° (ज्यामितीय क्षितिज)' },
+      { en: '0° (geometric horizon)', hi: '0° (ज्यामितीय क्षितिज)', sa: '0° (ज्यामितीय क्षितिज)', mai: '0° (ज्यामितीय क्षितिज)', mr: '0° (ज्यामितीय क्षितिज)', ta: '0° (geometric horizon)', te: '0° (geometric horizon)', bn: '0° (geometric horizon)', kn: '0° (geometric horizon)', gu: '0° (geometric horizon)' },
       { en: '-0.8333° (34\' refraction + 16\' semi-diameter)', hi: '-0.8333° (34\' अपवर्तन + 16\' अर्ध-व्यास)' },
-      { en: '-6° (civil twilight)', hi: '-6° (नागरिक गोधूलि)' },
-      { en: '-0.5667° (refraction only)', hi: '-0.5667° (केवल अपवर्तन)' },
+      { en: '-6° (civil twilight)', hi: '-6° (नागरिक गोधूलि)', sa: '-6° (नागरिक गोधूलि)', mai: '-6° (नागरिक गोधूलि)', mr: '-6° (नागरिक गोधूलि)', ta: '-6° (civil twilight)', te: '-6° (civil twilight)', bn: '-6° (civil twilight)', kn: '-6° (civil twilight)', gu: '-6° (civil twilight)' },
+      { en: '-0.5667° (refraction only)', hi: '-0.5667° (केवल अपवर्तन)', sa: '-0.5667° (केवल अपवर्तन)', mai: '-0.5667° (केवल अपवर्तन)', mr: '-0.5667° (केवल अपवर्तन)', ta: '-0.5667° (refraction only)', te: '-0.5667° (refraction only)', bn: '-0.5667° (refraction only)', kn: '-0.5667° (refraction only)', gu: '-0.5667° (refraction only)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -47,10 +47,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सूर्योदय पर घण्टा कोण H₀ की गणना किससे होती है?',
     },
     options: [
-      { en: 'H₀ = arccos([sin(-0.8333°) - sin(lat) x sin(decl)] / [cos(lat) x cos(decl)])', hi: 'H₀ = arccos([sin(-0.8333°) - sin(अक्षांश) × sin(क्रान्ति)] / [cos(अक्षांश) × cos(क्रान्ति)])' },
-      { en: 'H₀ = arctan(sin(decl) / cos(lat))', hi: 'H₀ = arctan(sin(क्रान्ति) / cos(अक्षांश))' },
-      { en: 'H₀ = 15° x (12 - sunrise hour)', hi: 'H₀ = 15° × (12 - सूर्योदय घण्टा)' },
-      { en: 'H₀ = 360° / 24 x EoT', hi: 'H₀ = 360° / 24 × EoT' },
+      { en: 'H₀ = arccos([sin(-0.8333°) - sin(lat) x sin(decl)] / [cos(lat) x cos(decl)])', hi: 'H₀ = arccos([sin(-0.8333°) - sin(अक्षांश) × sin(क्रान्ति)] / [cos(अक्षांश) × cos(क्रान्ति)])', sa: 'H₀ = arccos([sin(-0.8333°) - sin(अक्षांश) × sin(क्रान्ति)] / [cos(अक्षांश) × cos(क्रान्ति)])', mai: 'H₀ = arccos([sin(-0.8333°) - sin(अक्षांश) × sin(क्रान्ति)] / [cos(अक्षांश) × cos(क्रान्ति)])', mr: 'H₀ = arccos([sin(-0.8333°) - sin(अक्षांश) × sin(क्रान्ति)] / [cos(अक्षांश) × cos(क्रान्ति)])', ta: 'H₀ = arccos([sin(-0.8333°) - sin(lat) x sin(decl)] / [cos(lat) x cos(decl)])', te: 'H₀ = arccos([sin(-0.8333°) - sin(lat) x sin(decl)] / [cos(lat) x cos(decl)])', bn: 'H₀ = arccos([sin(-0.8333°) - sin(lat) x sin(decl)] / [cos(lat) x cos(decl)])', kn: 'H₀ = arccos([sin(-0.8333°) - sin(lat) x sin(decl)] / [cos(lat) x cos(decl)])', gu: 'H₀ = arccos([sin(-0.8333°) - sin(lat) x sin(decl)] / [cos(lat) x cos(decl)])' },
+      { en: 'H₀ = arctan(sin(decl) / cos(lat))', hi: 'H₀ = arctan(sin(क्रान्ति) / cos(अक्षांश))', sa: 'H₀ = arctan(sin(क्रान्ति) / cos(अक्षांश))', mai: 'H₀ = arctan(sin(क्रान्ति) / cos(अक्षांश))', mr: 'H₀ = arctan(sin(क्रान्ति) / cos(अक्षांश))', ta: 'H₀ = arctan(sin(decl) / cos(lat))', te: 'H₀ = arctan(sin(decl) / cos(lat))', bn: 'H₀ = arctan(sin(decl) / cos(lat))', kn: 'H₀ = arctan(sin(decl) / cos(lat))', gu: 'H₀ = arctan(sin(decl) / cos(lat))' },
+      { en: 'H₀ = 15° x (12 - sunrise hour)', hi: 'H₀ = 15° × (12 - सूर्योदय घण्टा)', sa: 'H₀ = 15° × (12 - सूर्योदय घण्टा)', mai: 'H₀ = 15° × (12 - सूर्योदय घण्टा)', mr: 'H₀ = 15° × (12 - सूर्योदय घण्टा)', ta: 'H₀ = 15° x (12 - sunrise hour)', te: 'H₀ = 15° x (12 - sunrise hour)', bn: 'H₀ = 15° x (12 - sunrise hour)', kn: 'H₀ = 15° x (12 - sunrise hour)', gu: 'H₀ = 15° x (12 - sunrise hour)' },
+      { en: 'H₀ = 360° / 24 x EoT', hi: 'H₀ = 360° / 24 × EoT', sa: 'H₀ = 360° / 24 × EoT', mai: 'H₀ = 360° / 24 × EoT', mr: 'H₀ = 360° / 24 × EoT', ta: 'H₀ = 360° / 24 x EoT', te: 'H₀ = 360° / 24 x EoT', bn: 'H₀ = 360° / 24 x EoT', kn: 'H₀ = 360° / 24 x EoT', gu: 'H₀ = 360° / 24 x EoT' },
     ],
     correctAnswer: 0,
     explanation: {
@@ -78,8 +78,8 @@ const QUESTIONS: ModuleQuestion[] = [
     },
     options: [
       { en: 'Because the Sun\'s declination is constant throughout the day', hi: 'क्योंकि सूर्य की क्रान्ति दिन भर स्थिर रहती है' },
-      { en: 'Because declination changes ~0.4°/12h near equinoxes, shifting sunrise by ~4 minutes', hi: 'क्योंकि विषुवों के निकट क्रान्ति ~0.4°/12 घण्टे बदलती है, सूर्योदय ~4 मिनट खिसकाती है' },
-      { en: 'To account for atmospheric refraction changes', hi: 'वायुमण्डलीय अपवर्तन परिवर्तनों के लिए' },
+      { en: 'Because declination changes ~0.4°/12h near equinoxes, shifting sunrise by ~4 minutes', hi: 'क्योंकि विषुवों के निकट क्रान्ति ~0.4°/12 घण्टे बदलती है, सूर्योदय ~4 मिनट खिसकाती है', sa: 'क्योंकि विषुवों के निकट क्रान्ति ~0.4°/12 घण्टे बदलती है, सूर्योदय ~4 मिनट खिसकाती है', mai: 'क्योंकि विषुवों के निकट क्रान्ति ~0.4°/12 घण्टे बदलती है, सूर्योदय ~4 मिनट खिसकाती है', mr: 'क्योंकि विषुवों के निकट क्रान्ति ~0.4°/12 घण्टे बदलती है, सूर्योदय ~4 मिनट खिसकाती है', ta: 'Because declination changes ~0.4°/12h near equinoxes, shifting sunrise by ~4 minutes', te: 'Because declination changes ~0.4°/12h near equinoxes, shifting sunrise by ~4 minutes', bn: 'Because declination changes ~0.4°/12h near equinoxes, shifting sunrise by ~4 minutes', kn: 'Because declination changes ~0.4°/12h near equinoxes, shifting sunrise by ~4 minutes', gu: 'Because declination changes ~0.4°/12h near equinoxes, shifting sunrise by ~4 minutes' },
+      { en: 'To account for atmospheric refraction changes', hi: 'वायुमण्डलीय अपवर्तन परिवर्तनों के लिए', sa: 'वायुमण्डलीय अपवर्तन परिवर्तनों के लिए', mai: 'वायुमण्डलीय अपवर्तन परिवर्तनों के लिए', mr: 'वायुमण्डलीय अपवर्तन परिवर्तनों के लिए', ta: 'To account for atmospheric refraction changes', te: 'To account for atmospheric refraction changes', bn: 'To account for atmospheric refraction changes', kn: 'To account for atmospheric refraction changes', gu: 'To account for atmospheric refraction changes' },
       { en: 'To correct for the observer\'s altitude', hi: 'प्रेक्षक की ऊँचाई सुधारने के लिए' },
     ],
     correctAnswer: 1,
@@ -95,10 +95,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'समय का समीकरण (EoT) वर्ष भर में कितने मिनट तक झूल सकता है?',
     },
     options: [
-      { en: '±2 minutes', hi: '±2 मिनट' },
-      { en: '±8 minutes', hi: '±8 मिनट' },
-      { en: '+14 to -16 minutes (30-minute total range)', hi: '+14 से -16 मिनट (30 मिनट कुल परास)' },
-      { en: '±60 minutes', hi: '±60 मिनट' },
+      { en: '±2 minutes', hi: '±2 मिनट', sa: '±2 मिनट', mai: '±2 मिनट', mr: '±2 मिनट', ta: '±2 minutes', te: '±2 minutes', bn: '±2 minutes', kn: '±2 minutes', gu: '±2 minutes' },
+      { en: '±8 minutes', hi: '±8 मिनट', sa: '±8 मिनट', mai: '±8 मिनट', mr: '±8 मिनट', ta: '±8 minutes', te: '±8 minutes', bn: '±8 minutes', kn: '±8 minutes', gu: '±8 minutes' },
+      { en: '+14 to -16 minutes (30-minute total range)', hi: '+14 से -16 मिनट (30 मिनट कुल परास)', sa: '+14 से -16 मिनट (30 मिनट कुल परास)', mai: '+14 से -16 मिनट (30 मिनट कुल परास)', mr: '+14 से -16 मिनट (30 मिनट कुल परास)', ta: '+14 to -16 minutes (30-minute total range)', te: '+14 to -16 minutes (30-minute total range)', bn: '+14 to -16 minutes (30-minute total range)', kn: '+14 to -16 minutes (30-minute total range)', gu: '+14 to -16 minutes (30-minute total range)' },
+      { en: '±60 minutes', hi: '±60 मिनट', sa: '±60 मिनट', mai: '±60 मिनट', mr: '±60 मिनट', ta: '±60 minutes', te: '±60 minutes', bn: '±60 minutes', kn: '±60 minutes', gu: '±60 minutes' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -125,10 +125,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कौन-से दो भौतिक प्रभाव मिलकर समय का समीकरण बनाते हैं?',
     },
     options: [
-      { en: 'Refraction and parallax', hi: 'अपवर्तन और लम्बन' },
-      { en: 'Nutation and precession', hi: 'अयन-चलन और पुरस्सरण' },
-      { en: 'Obliquity of the ecliptic and orbital eccentricity', hi: 'क्रान्तिवृत्त की तिर्यकता और कक्षीय उत्केन्द्रता' },
-      { en: 'Aberration and parallax', hi: 'विपथन और लम्बन' },
+      { en: 'Refraction and parallax', hi: 'अपवर्तन और लम्बन', sa: 'अपवर्तन और लम्बन', mai: 'अपवर्तन और लम्बन', mr: 'अपवर्तन और लम्बन', ta: 'Refraction and parallax', te: 'Refraction and parallax', bn: 'Refraction and parallax', kn: 'Refraction and parallax', gu: 'Refraction and parallax' },
+      { en: 'Nutation and precession', hi: 'अयन-चलन और पुरस्सरण', sa: 'अयन-चलन और पुरस्सरण', mai: 'अयन-चलन और पुरस्सरण', mr: 'अयन-चलन और पुरस्सरण', ta: 'Nutation and precession', te: 'Nutation and precession', bn: 'Nutation and precession', kn: 'Nutation and precession', gu: 'Nutation and precession' },
+      { en: 'Obliquity of the ecliptic and orbital eccentricity', hi: 'क्रान्तिवृत्त की तिर्यकता और कक्षीय उत्केन्द्रता', sa: 'क्रान्तिवृत्त की तिर्यकता और कक्षीय उत्केन्द्रता', mai: 'क्रान्तिवृत्त की तिर्यकता और कक्षीय उत्केन्द्रता', mr: 'क्रान्तिवृत्त की तिर्यकता और कक्षीय उत्केन्द्रता', ta: 'Obliquity of the ecliptic and orbital eccentricity', te: 'Obliquity of the ecliptic and orbital eccentricity', bn: 'Obliquity of the ecliptic and orbital eccentricity', kn: 'Obliquity of the ecliptic and orbital eccentricity', gu: 'Obliquity of the ecliptic and orbital eccentricity' },
+      { en: 'Aberration and parallax', hi: 'विपथन और लम्बन', sa: 'विपथन और लम्बन', mai: 'विपथन और लम्बन', mr: 'विपथन और लम्बन', ta: 'Aberration and parallax', te: 'Aberration and parallax', bn: 'Aberration and parallax', kn: 'Aberration and parallax', gu: 'Aberration and parallax' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -143,10 +143,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सौर मध्याह्न की गणना कैसे होती है?',
     },
     options: [
-      { en: 'Always at 12:00 local time', hi: 'सदैव स्थानीय समय 12:00 पर' },
-      { en: '12:00 UT + longitude/15 - EoT/60', hi: '12:00 UT + देशान्तर/15 - EoT/60' },
-      { en: '12:00 + timezone offset only', hi: '12:00 + केवल समयक्षेत्र ऑफ़सेट' },
-      { en: 'When the Moon is at the zenith', hi: 'जब चन्द्रमा शीर्षबिन्दु पर हो' },
+      { en: 'Always at 12:00 local time', hi: 'सदैव स्थानीय समय 12:00 पर', sa: 'सदैव स्थानीय समय 12:00 पर', mai: 'सदैव स्थानीय समय 12:00 पर', mr: 'सदैव स्थानीय समय 12:00 पर', ta: 'Always at 12:00 local time', te: 'Always at 12:00 local time', bn: 'Always at 12:00 local time', kn: 'Always at 12:00 local time', gu: 'Always at 12:00 local time' },
+      { en: '12:00 UT + longitude/15 - EoT/60', hi: '12:00 UT + देशान्तर/15 - EoT/60', sa: '12:00 UT + देशान्तर/15 - EoT/60', mai: '12:00 UT + देशान्तर/15 - EoT/60', mr: '12:00 UT + देशान्तर/15 - EoT/60', ta: '12:00 UT + longitude/15 - EoT/60', te: '12:00 UT + longitude/15 - EoT/60', bn: '12:00 UT + longitude/15 - EoT/60', kn: '12:00 UT + longitude/15 - EoT/60', gu: '12:00 UT + longitude/15 - EoT/60' },
+      { en: '12:00 + timezone offset only', hi: '12:00 + केवल समयक्षेत्र ऑफ़सेट', sa: '12:00 + केवल समयक्षेत्र ऑफ़सेट', mai: '12:00 + केवल समयक्षेत्र ऑफ़सेट', mr: '12:00 + केवल समयक्षेत्र ऑफ़सेट', ta: '12:00 + timezone offset only', te: '12:00 + timezone offset only', bn: '12:00 + timezone offset only', kn: '12:00 + timezone offset only', gu: '12:00 + timezone offset only' },
+      { en: 'When the Moon is at the zenith', hi: 'जब चन्द्रमा शीर्षबिन्दु पर हो', sa: 'जब चन्द्रमा शीर्षबिन्दु पर हो', mai: 'जब चन्द्रमा शीर्षबिन्दु पर हो', mr: 'जब चन्द्रमा शीर्षबिन्दु पर हो', ta: 'When the Moon is at the zenith', te: 'When the Moon is at the zenith', bn: 'When the Moon is at the zenith', kn: 'When the Moon is at the zenith', gu: 'When the Moon is at the zenith' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -173,10 +173,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'हमारे ऐप का सूर्योदय दृक् पंचांग से मिनट-मिलान मुख्यतः किसके कारण करता है:',
     },
     options: [
-      { en: 'Using 60 sine terms for the Sun', hi: 'सूर्य के लिए 60 ज्या पद उपयोग करने से' },
-      { en: 'The 2-pass algorithm with EoT correction at the estimated sunrise JD', hi: 'अनुमानित सूर्योदय JD पर EoT सुधार सहित 2-पास एल्गोरिदम' },
-      { en: 'Using Swiss Ephemeris for the Sun', hi: 'सूर्य के लिए स्विस एफेमेरिस उपयोग करने से' },
-      { en: 'Ignoring atmospheric refraction', hi: 'वायुमण्डलीय अपवर्तन की अनदेखी से' },
+      { en: 'Using 60 sine terms for the Sun', hi: 'सूर्य के लिए 60 ज्या पद उपयोग करने से', sa: 'सूर्य के लिए 60 ज्या पद उपयोग करने से', mai: 'सूर्य के लिए 60 ज्या पद उपयोग करने से', mr: 'सूर्य के लिए 60 ज्या पद उपयोग करने से', ta: 'Using 60 sine terms for the Sun', te: 'Using 60 sine terms for the Sun', bn: 'Using 60 sine terms for the Sun', kn: 'Using 60 sine terms for the Sun', gu: 'Using 60 sine terms for the Sun' },
+      { en: 'The 2-pass algorithm with EoT correction at the estimated sunrise JD', hi: 'अनुमानित सूर्योदय JD पर EoT सुधार सहित 2-पास एल्गोरिदम', sa: 'अनुमानित सूर्योदय JD पर EoT सुधार सहित 2-पास एल्गोरिदम', mai: 'अनुमानित सूर्योदय JD पर EoT सुधार सहित 2-पास एल्गोरिदम', mr: 'अनुमानित सूर्योदय JD पर EoT सुधार सहित 2-पास एल्गोरिदम', ta: 'The 2-pass algorithm with EoT correction at the estimated sunrise JD', te: 'The 2-pass algorithm with EoT correction at the estimated sunrise JD', bn: 'The 2-pass algorithm with EoT correction at the estimated sunrise JD', kn: 'The 2-pass algorithm with EoT correction at the estimated sunrise JD', gu: 'The 2-pass algorithm with EoT correction at the estimated sunrise JD' },
+      { en: 'Using Swiss Ephemeris for the Sun', hi: 'सूर्य के लिए स्विस एफेमेरिस उपयोग करने से', sa: 'सूर्य के लिए स्विस एफेमेरिस उपयोग करने से', mai: 'सूर्य के लिए स्विस एफेमेरिस उपयोग करने से', mr: 'सूर्य के लिए स्विस एफेमेरिस उपयोग करने से', ta: 'Using Swiss Ephemeris for the Sun', te: 'Using Swiss Ephemeris for the Sun', bn: 'Using Swiss Ephemeris for the Sun', kn: 'Using Swiss Ephemeris for the Sun', gu: 'Using Swiss Ephemeris for the Sun' },
+      { en: 'Ignoring atmospheric refraction', hi: 'वायुमण्डलीय अपवर्तन की अनदेखी से', sa: 'वायुमण्डलीय अपवर्तन की अनदेखी से', mai: 'वायुमण्डलीय अपवर्तन की अनदेखी से', mr: 'वायुमण्डलीय अपवर्तन की अनदेखी से', ta: 'Ignoring atmospheric refraction', te: 'Ignoring atmospheric refraction', bn: 'Ignoring atmospheric refraction', kn: 'Ignoring atmospheric refraction', gu: 'Ignoring atmospheric refraction' },
     ],
     correctAnswer: 1,
     explanation: {

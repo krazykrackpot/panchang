@@ -7,9 +7,8 @@
  */
 
 import type { Locale } from '@/lib/i18n/config';
-
-/** A single translatable string with all 10 locale variants. */
-export type LocaleText = Partial<Record<Locale, string>> & { en: string };
+import type { LocaleText } from '@/types/panchang';
+export type { LocaleText };
 
 /**
  * Resolve a LocaleText to the best string for `locale`.

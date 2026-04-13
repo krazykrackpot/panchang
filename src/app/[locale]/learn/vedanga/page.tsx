@@ -1,12 +1,14 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
+
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowRight, BookOpen, Star, Sparkles, Globe, Route } from 'lucide-react';
-import type { Locale } from '@/types/panchang';
+import type { LocaleText, Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ═══════════════════════════════════════════════════════════════
@@ -19,12 +21,12 @@ const L = {
     hi: 'विश्व की सबसे प्राचीन खगोलीय परम्परा — जहाँ अनुष्ठान की सूक्ष्मता ने वैज्ञानिक खोज को जन्म दिया।',
   },
   s1Title: { en: 'Vedanga Jyotisha — The World\'s Oldest Astronomical Text', hi: 'वेदाङ्ग ज्योतिष — विश्व का सबसे प्राचीन खगोलशास्त्रीय ग्रन्थ' },
-  s2Title: { en: 'The Great Astronomers of India', hi: 'भारत के महान खगोलशास्त्री' },
-  s3Title: { en: 'Key Texts Timeline', hi: 'प्रमुख ग्रन्थों की समयरेखा' },
-  s4Title: { en: 'What India Knew Before the West', hi: 'जो भारत ने पश्चिम से पहले जाना' },
-  s5Title: { en: 'The Transmission Chain', hi: 'ज्ञान का संचरण मार्ग' },
-  backToLearn: { en: 'Back to Learn', hi: 'सीखने पर वापस' },
-  exploreMore: { en: 'Continue Exploring', hi: 'और जानें' },
+  s2Title: { en: 'The Great Astronomers of India', hi: 'भारत के महान खगोलशास्त्री', sa: 'भारत के महान खगोलशास्त्री', mai: 'भारत के महान खगोलशास्त्री', mr: 'भारत के महान खगोलशास्त्री', ta: 'The Great Astronomers of India', te: 'The Great Astronomers of India', bn: 'The Great Astronomers of India', kn: 'The Great Astronomers of India', gu: 'The Great Astronomers of India' },
+  s3Title: { en: 'Key Texts Timeline', hi: 'प्रमुख ग्रन्थों की समयरेखा', sa: 'प्रमुख ग्रन्थों की समयरेखा', mai: 'प्रमुख ग्रन्थों की समयरेखा', mr: 'प्रमुख ग्रन्थों की समयरेखा', ta: 'Key Texts Timeline', te: 'Key Texts Timeline', bn: 'Key Texts Timeline', kn: 'Key Texts Timeline', gu: 'Key Texts Timeline' },
+  s4Title: { en: 'What India Knew Before the West', hi: 'जो भारत ने पश्चिम से पहले जाना', sa: 'जो भारत ने पश्चिम से पहले जाना', mai: 'जो भारत ने पश्चिम से पहले जाना', mr: 'जो भारत ने पश्चिम से पहले जाना', ta: 'What India Knew Before the West', te: 'What India Knew Before the West', bn: 'What India Knew Before the West', kn: 'What India Knew Before the West', gu: 'What India Knew Before the West' },
+  s5Title: { en: 'The Transmission Chain', hi: 'ज्ञान का संचरण मार्ग', sa: 'ज्ञान का संचरण मार्ग', mai: 'ज्ञान का संचरण मार्ग', mr: 'ज्ञान का संचरण मार्ग', ta: 'The Transmission Chain', te: 'The Transmission Chain', bn: 'The Transmission Chain', kn: 'The Transmission Chain', gu: 'The Transmission Chain' },
+  backToLearn: { en: 'Back to Learn', hi: 'सीखने पर वापस', sa: 'सीखने पर वापस', mai: 'सीखने पर वापस', mr: 'सीखने पर वापस', ta: 'Back to Learn', te: 'Back to Learn', bn: 'Back to Learn', kn: 'Back to Learn', gu: 'Back to Learn' },
+  exploreMore: { en: 'Continue Exploring', hi: 'और जानें', sa: 'और जानें', mai: 'और जानें', mr: 'और जानें', ta: 'Continue Exploring', te: 'Continue Exploring', bn: 'Continue Exploring', kn: 'Continue Exploring', gu: 'Continue Exploring' },
 };
 
 /* ═══════════════════════════════════════════════════════════════
@@ -32,12 +34,12 @@ const L = {
    ═══════════════════════════════════════════════════════════════ */
 
 const VEDANGAS = [
-  { name: 'Shiksha', nameHi: 'शिक्षा', meaning: { en: 'Phonetics', hi: 'उच्चारण विद्या' }, icon: '1' },
-  { name: 'Kalpa', nameHi: 'कल्प', meaning: { en: 'Ritual procedure', hi: 'अनुष्ठान विधि' }, icon: '2' },
-  { name: 'Vyakarana', nameHi: 'व्याकरण', meaning: { en: 'Grammar', hi: 'व्याकरण' }, icon: '3' },
-  { name: 'Nirukta', nameHi: 'निरुक्त', meaning: { en: 'Etymology', hi: 'शब्द व्युत्पत्ति' }, icon: '4' },
-  { name: 'Chhandas', nameHi: 'छन्दस्', meaning: { en: 'Metre', hi: 'छन्द शास्त्र' }, icon: '5' },
-  { name: 'Jyotisha', nameHi: 'ज्योतिष', meaning: { en: 'Astronomy', hi: 'खगोल विद्या' }, icon: '6', highlight: true },
+  { name: 'Shiksha', nameHi: 'शिक्षा', meaning: { en: 'Phonetics', hi: 'उच्चारण विद्या', sa: 'उच्चारण विद्या', mai: 'उच्चारण विद्या', mr: 'उच्चारण विद्या', ta: 'Phonetics', te: 'Phonetics', bn: 'Phonetics', kn: 'Phonetics', gu: 'Phonetics' }, icon: '1' },
+  { name: 'Kalpa', nameHi: 'कल्प', meaning: { en: 'Ritual procedure', hi: 'अनुष्ठान विधि', sa: 'अनुष्ठान विधि', mai: 'अनुष्ठान विधि', mr: 'अनुष्ठान विधि', ta: 'Ritual procedure', te: 'Ritual procedure', bn: 'Ritual procedure', kn: 'Ritual procedure', gu: 'Ritual procedure' }, icon: '2' },
+  { name: 'Vyakarana', nameHi: 'व्याकरण', meaning: { en: 'Grammar', hi: 'व्याकरण', sa: 'व्याकरण', mai: 'व्याकरण', mr: 'व्याकरण', ta: 'Grammar', te: 'Grammar', bn: 'Grammar', kn: 'Grammar', gu: 'Grammar' }, icon: '3' },
+  { name: 'Nirukta', nameHi: 'निरुक्त', meaning: { en: 'Etymology', hi: 'शब्द व्युत्पत्ति', sa: 'शब्द व्युत्पत्ति', mai: 'शब्द व्युत्पत्ति', mr: 'शब्द व्युत्पत्ति', ta: 'Etymology', te: 'Etymology', bn: 'Etymology', kn: 'Etymology', gu: 'Etymology' }, icon: '4' },
+  { name: 'Chhandas', nameHi: 'छन्दस्', meaning: { en: 'Metre', hi: 'छन्द शास्त्र', sa: 'छन्द शास्त्र', mai: 'छन्द शास्त्र', mr: 'छन्द शास्त्र', ta: 'Metre', te: 'Metre', bn: 'Metre', kn: 'Metre', gu: 'Metre' }, icon: '5' },
+  { name: 'Jyotisha', nameHi: 'ज्योतिष', meaning: { en: 'Astronomy', hi: 'खगोल विद्या', sa: 'खगोल विद्या', mai: 'खगोल विद्या', mr: 'खगोल विद्या', ta: 'Astronomy', te: 'Astronomy', bn: 'Astronomy', kn: 'Astronomy', gu: 'Astronomy' }, icon: '6', highlight: true },
 ];
 
 interface Astronomer {
@@ -46,7 +48,7 @@ interface Astronomer {
   era: string;
   color: string;
   border: string;
-  achievements: Record<string, string>[];
+  achievements: LocaleText[];
   quote?: Record<string, string>;
 }
 
@@ -55,21 +57,21 @@ const ASTRONOMERS: Astronomer[] = [
     name: 'Aryabhata', nameHi: 'आर्यभट', era: '476 CE',
     color: 'from-emerald-500/20 to-emerald-900/10', border: 'border-emerald-500/25',
     achievements: [
-      { en: 'Declared Earth rotates on its axis — 1,044 years before Copernicus', hi: 'घोषणा की कि पृथ्वी अपनी धुरी पर घूमती है — कॉपरनिकस से 1,044 वर्ष पूर्व' },
+      { en: 'Declared Earth rotates on its axis — 1,044 years before Copernicus', hi: 'घोषणा की कि पृथ्वी अपनी धुरी पर घूमती है — कॉपरनिकस से 1,044 वर्ष पूर्व', sa: 'घोषणा की कि पृथ्वी अपनी धुरी पर घूमती है — कॉपरनिकस से 1,044 वर्ष पूर्व', mai: 'घोषणा की कि पृथ्वी अपनी धुरी पर घूमती है — कॉपरनिकस से 1,044 वर्ष पूर्व', mr: 'घोषणा की कि पृथ्वी अपनी धुरी पर घूमती है — कॉपरनिकस से 1,044 वर्ष पूर्व', ta: 'Declared Earth rotates on its axis — 1,044 years before Copernicus', te: 'Declared Earth rotates on its axis — 1,044 years before Copernicus', bn: 'Declared Earth rotates on its axis — 1,044 years before Copernicus', kn: 'Declared Earth rotates on its axis — 1,044 years before Copernicus', gu: 'Declared Earth rotates on its axis — 1,044 years before Copernicus' },
       { en: 'Calculated Earth\'s circumference to 99.8% accuracy (39,736 km vs 40,075 km)', hi: 'पृथ्वी की परिधि 99.8% सटीकता से आँकी (39,736 km बनाम 40,075 km)' },
-      { en: 'Created the first sine tables (ardha-jya) — the word "sine" IS Sanskrit', hi: 'प्रथम ज्या सारणी बनाई (अर्ध-ज्या) — "sine" शब्द संस्कृत से ही आया है' },
-      { en: 'Pi = 3.1416 — most accurate ancient value. Wrote Aryabhatiya at age 23.', hi: 'पाई = 3.1416 — प्राचीन विश्व का सबसे सटीक मान। 23 वर्ष की आयु में आर्यभटीय लिखी।' },
+      { en: 'Created the first sine tables (ardha-jya) — the word "sine" IS Sanskrit', hi: 'प्रथम ज्या सारणी बनाई (अर्ध-ज्या) — "sine" शब्द संस्कृत से ही आया है', sa: 'प्रथम ज्या सारणी बनाई (अर्ध-ज्या) — "sine" शब्द संस्कृत से ही आया है', mai: 'प्रथम ज्या सारणी बनाई (अर्ध-ज्या) — "sine" शब्द संस्कृत से ही आया है', mr: 'प्रथम ज्या सारणी बनाई (अर्ध-ज्या) — "sine" शब्द संस्कृत से ही आया है', ta: 'Created the first sine tables (ardha-jya) — the word "sine" IS Sanskrit', te: 'Created the first sine tables (ardha-jya) — the word "sine" IS Sanskrit', bn: 'Created the first sine tables (ardha-jya) — the word "sine" IS Sanskrit', kn: 'Created the first sine tables (ardha-jya) — the word "sine" IS Sanskrit', gu: 'Created the first sine tables (ardha-jya) — the word "sine" IS Sanskrit' },
+      { en: 'Pi = 3.1416 — most accurate ancient value. Wrote Aryabhatiya at age 23.', hi: 'पाई = 3.1416 — प्राचीन विश्व का सबसे सटीक मान। 23 वर्ष की आयु में आर्यभटीय लिखी।', sa: 'पाई = 3.1416 — प्राचीन विश्व का सबसे सटीक मान। 23 वर्ष की आयु में आर्यभटीय लिखी।', mai: 'पाई = 3.1416 — प्राचीन विश्व का सबसे सटीक मान। 23 वर्ष की आयु में आर्यभटीय लिखी।', mr: 'पाई = 3.1416 — प्राचीन विश्व का सबसे सटीक मान। 23 वर्ष की आयु में आर्यभटीय लिखी।', ta: 'Pi = 3.1416 — most accurate ancient value. Wrote Aryabhatiya at age 23.', te: 'Pi = 3.1416 — most accurate ancient value. Wrote Aryabhatiya at age 23.', bn: 'Pi = 3.1416 — most accurate ancient value. Wrote Aryabhatiya at age 23.', kn: 'Pi = 3.1416 — most accurate ancient value. Wrote Aryabhatiya at age 23.', gu: 'Pi = 3.1416 — most accurate ancient value. Wrote Aryabhatiya at age 23.' },
       { en: 'First to explain eclipses as Earth\'s shadow on the Moon — not Rahu swallowing the luminaries.', hi: 'ग्रहण को पृथ्वी की छाया के रूप में समझाने वाले पहले व्यक्ति — राहु द्वारा ग्रास नहीं।' },
     ],
-    quote: { en: '"As a man in a boat sees stationary objects moving backward, so the stationary stars are seen as moving westward."', hi: '"जैसे नाव में बैठा व्यक्ति स्थिर वस्तुओं को पीछे जाते देखता है, वैसे ही स्थिर तारे पश्चिम की ओर गतिमान दिखते हैं।"' },
+    quote: { en: '"As a man in a boat sees stationary objects moving backward, so the stationary stars are seen as moving westward."', hi: '"जैसे नाव में बैठा व्यक्ति स्थिर वस्तुओं को पीछे जाते देखता है, वैसे ही स्थिर तारे पश्चिम की ओर गतिमान दिखते हैं।"', sa: '"जैसे नाव में बैठा व्यक्ति स्थिर वस्तुओं को पीछे जाते देखता है, वैसे ही स्थिर तारे पश्चिम की ओर गतिमान दिखते हैं।"', mai: '"जैसे नाव में बैठा व्यक्ति स्थिर वस्तुओं को पीछे जाते देखता है, वैसे ही स्थिर तारे पश्चिम की ओर गतिमान दिखते हैं।"', mr: '"जैसे नाव में बैठा व्यक्ति स्थिर वस्तुओं को पीछे जाते देखता है, वैसे ही स्थिर तारे पश्चिम की ओर गतिमान दिखते हैं।"', ta: '"As a man in a boat sees stationary objects moving backward, so the stationary stars are seen as moving westward."', te: '"As a man in a boat sees stationary objects moving backward, so the stationary stars are seen as moving westward."', bn: '"As a man in a boat sees stationary objects moving backward, so the stationary stars are seen as moving westward."', kn: '"As a man in a boat sees stationary objects moving backward, so the stationary stars are seen as moving westward."', gu: '"As a man in a boat sees stationary objects moving backward, so the stationary stars are seen as moving westward."' },
   },
   {
     name: 'Varahamihira', nameHi: 'वराहमिहिर', era: '505 CE',
     color: 'from-amber-500/20 to-amber-900/10', border: 'border-amber-500/25',
     achievements: [
-      { en: 'Pancha Siddhantika — compared and synthesized 5 astronomical systems', hi: 'पञ्चसिद्धान्तिका — 5 खगोलीय प्रणालियों की तुलना और संश्लेषण' },
-      { en: 'Brihat Samhita — an encyclopedia covering astronomy, weather, architecture, gems, agriculture', hi: 'बृहत्संहिता — खगोल, मौसम, वास्तु, रत्न, कृषि का विश्वकोश' },
-      { en: 'Brihat Jataka — the foundational text of predictive Jyotish still studied today', hi: 'बृहज्जातक — भविष्यवाणी ज्योतिष का मूल ग्रन्थ जो आज भी अध्ययन किया जाता है' },
+      { en: 'Pancha Siddhantika — compared and synthesized 5 astronomical systems', hi: 'पञ्चसिद्धान्तिका — 5 खगोलीय प्रणालियों की तुलना और संश्लेषण', sa: 'पञ्चसिद्धान्तिका — 5 खगोलीय प्रणालियों की तुलना और संश्लेषण', mai: 'पञ्चसिद्धान्तिका — 5 खगोलीय प्रणालियों की तुलना और संश्लेषण', mr: 'पञ्चसिद्धान्तिका — 5 खगोलीय प्रणालियों की तुलना और संश्लेषण', ta: 'Pancha Siddhantika — compared and synthesized 5 astronomical systems', te: 'Pancha Siddhantika — compared and synthesized 5 astronomical systems', bn: 'Pancha Siddhantika — compared and synthesized 5 astronomical systems', kn: 'Pancha Siddhantika — compared and synthesized 5 astronomical systems', gu: 'Pancha Siddhantika — compared and synthesized 5 astronomical systems' },
+      { en: 'Brihat Samhita — an encyclopedia covering astronomy, weather, architecture, gems, agriculture', hi: 'बृहत्संहिता — खगोल, मौसम, वास्तु, रत्न, कृषि का विश्वकोश', sa: 'बृहत्संहिता — खगोल, मौसम, वास्तु, रत्न, कृषि का विश्वकोश', mai: 'बृहत्संहिता — खगोल, मौसम, वास्तु, रत्न, कृषि का विश्वकोश', mr: 'बृहत्संहिता — खगोल, मौसम, वास्तु, रत्न, कृषि का विश्वकोश', ta: 'Brihat Samhita — an encyclopedia covering astronomy, weather, architecture, gems, agriculture', te: 'Brihat Samhita — an encyclopedia covering astronomy, weather, architecture, gems, agriculture', bn: 'Brihat Samhita — an encyclopedia covering astronomy, weather, architecture, gems, agriculture', kn: 'Brihat Samhita — an encyclopedia covering astronomy, weather, architecture, gems, agriculture', gu: 'Brihat Samhita — an encyclopedia covering astronomy, weather, architecture, gems, agriculture' },
+      { en: 'Brihat Jataka — the foundational text of predictive Jyotish still studied today', hi: 'बृहज्जातक — भविष्यवाणी ज्योतिष का मूल ग्रन्थ जो आज भी अध्ययन किया जाता है', sa: 'बृहज्जातक — भविष्यवाणी ज्योतिष का मूल ग्रन्थ जो आज भी अध्ययन किया जाता है', mai: 'बृहज्जातक — भविष्यवाणी ज्योतिष का मूल ग्रन्थ जो आज भी अध्ययन किया जाता है', mr: 'बृहज्जातक — भविष्यवाणी ज्योतिष का मूल ग्रन्थ जो आज भी अध्ययन किया जाता है', ta: 'Brihat Jataka — the foundational text of predictive Jyotish still studied today', te: 'Brihat Jataka — the foundational text of predictive Jyotish still studied today', bn: 'Brihat Jataka — the foundational text of predictive Jyotish still studied today', kn: 'Brihat Jataka — the foundational text of predictive Jyotish still studied today', gu: 'Brihat Jataka — the foundational text of predictive Jyotish still studied today' },
       { en: 'Called "the Indian Ptolemy" — but his breadth exceeded Ptolemy\'s', hi: '"भारतीय टॉलमी" कहे गए — किन्तु उनका विस्तार टॉलमी से अधिक था' },
     ],
   },
@@ -77,47 +79,47 @@ const ASTRONOMERS: Astronomer[] = [
     name: 'Brahmagupta', nameHi: 'ब्रह्मगुप्त', era: '598 CE',
     color: 'from-blue-500/20 to-blue-900/10', border: 'border-blue-500/25',
     achievements: [
-      { en: 'First in human history to define rules for zero: a + 0 = a, a x 0 = 0', hi: 'मानव इतिहास में पहली बार शून्य के नियम परिभाषित किए: a + 0 = a, a x 0 = 0' },
+      { en: 'First in human history to define rules for zero: a + 0 = a, a x 0 = 0', hi: 'मानव इतिहास में पहली बार शून्य के नियम परिभाषित किए: a + 0 = a, a x 0 = 0', sa: 'मानव इतिहास में पहली बार शून्य के नियम परिभाषित किए: a + 0 = a, a x 0 = 0', mai: 'मानव इतिहास में पहली बार शून्य के नियम परिभाषित किए: a + 0 = a, a x 0 = 0', mr: 'मानव इतिहास में पहली बार शून्य के नियम परिभाषित किए: a + 0 = a, a x 0 = 0', ta: 'First in human history to define rules for zero: a + 0 = a, a x 0 = 0', te: 'First in human history to define rules for zero: a + 0 = a, a x 0 = 0', bn: 'First in human history to define rules for zero: a + 0 = a, a x 0 = 0', kn: 'First in human history to define rules for zero: a + 0 = a, a x 0 = 0', gu: 'First in human history to define rules for zero: a + 0 = a, a x 0 = 0' },
       { en: 'Defined negative numbers and their arithmetic — Europe wouldn\'t accept these for 1,000 years', hi: 'ऋण संख्याओं और उनके अंकगणित को परिभाषित किया — यूरोप ने 1,000 वर्षों तक इन्हें स्वीकार नहीं किया' },
-      { en: 'Brahmasphutasiddhanta (628 CE) — calculated lunar and solar eclipse durations', hi: 'ब्राह्मस्फुटसिद्धान्त (628 ई.) — चन्द्र और सूर्य ग्रहण की अवधि गणना' },
+      { en: 'Brahmasphutasiddhanta (628 CE) — calculated lunar and solar eclipse durations', hi: 'ब्राह्मस्फुटसिद्धान्त (628 ई.) — चन्द्र और सूर्य ग्रहण की अवधि गणना', sa: 'ब्राह्मस्फुटसिद्धान्त (628 ई.) — चन्द्र और सूर्य ग्रहण की अवधि गणना', mai: 'ब्राह्मस्फुटसिद्धान्त (628 ई.) — चन्द्र और सूर्य ग्रहण की अवधि गणना', mr: 'ब्राह्मस्फुटसिद्धान्त (628 ई.) — चन्द्र और सूर्य ग्रहण की अवधि गणना', ta: 'Brahmasphutasiddhanta (628 CE) — calculated lunar and solar eclipse durations', te: 'Brahmasphutasiddhanta (628 CE) — calculated lunar and solar eclipse durations', bn: 'Brahmasphutasiddhanta (628 CE) — calculated lunar and solar eclipse durations', kn: 'Brahmasphutasiddhanta (628 CE) — calculated lunar and solar eclipse durations', gu: 'Brahmasphutasiddhanta (628 CE) — calculated lunar and solar eclipse durations' },
       { en: 'His work reached Baghdad, becoming the foundation for Al-Khwarizmi\'s algebra', hi: 'उनका कार्य बग़दाद पहुँचा, अल-ख़्वारिज़्मी के बीजगणित का आधार बना' },
     ],
-    quote: { en: '"Bodies fall towards the Earth as it is in the nature of the Earth to attract bodies, just as it is the nature of water to flow."', hi: '"वस्तुएँ पृथ्वी की ओर गिरती हैं क्योंकि पृथ्वी का स्वभाव वस्तुओं को आकर्षित करना है, जैसे जल का स्वभाव बहना है।"' },
+    quote: { en: '"Bodies fall towards the Earth as it is in the nature of the Earth to attract bodies, just as it is the nature of water to flow."', hi: '"वस्तुएँ पृथ्वी की ओर गिरती हैं क्योंकि पृथ्वी का स्वभाव वस्तुओं को आकर्षित करना है, जैसे जल का स्वभाव बहना है।"', sa: '"वस्तुएँ पृथ्वी की ओर गिरती हैं क्योंकि पृथ्वी का स्वभाव वस्तुओं को आकर्षित करना है, जैसे जल का स्वभाव बहना है।"', mai: '"वस्तुएँ पृथ्वी की ओर गिरती हैं क्योंकि पृथ्वी का स्वभाव वस्तुओं को आकर्षित करना है, जैसे जल का स्वभाव बहना है।"', mr: '"वस्तुएँ पृथ्वी की ओर गिरती हैं क्योंकि पृथ्वी का स्वभाव वस्तुओं को आकर्षित करना है, जैसे जल का स्वभाव बहना है।"', ta: '"Bodies fall towards the Earth as it is in the nature of the Earth to attract bodies, just as it is the nature of water to flow."', te: '"Bodies fall towards the Earth as it is in the nature of the Earth to attract bodies, just as it is the nature of water to flow."', bn: '"Bodies fall towards the Earth as it is in the nature of the Earth to attract bodies, just as it is the nature of water to flow."', kn: '"Bodies fall towards the Earth as it is in the nature of the Earth to attract bodies, just as it is the nature of water to flow."', gu: '"Bodies fall towards the Earth as it is in the nature of the Earth to attract bodies, just as it is the nature of water to flow."' },
   },
   {
     name: 'Bhaskara I', nameHi: 'भास्कर प्रथम', era: '600 CE',
     color: 'from-violet-500/20 to-violet-900/10', border: 'border-violet-500/25',
     achievements: [
-      { en: 'First to use the decimal number system in a scientific manuscript', hi: 'वैज्ञानिक पाण्डुलिपि में दशमलव संख्या पद्धति का प्रथम प्रयोग' },
+      { en: 'First to use the decimal number system in a scientific manuscript', hi: 'वैज्ञानिक पाण्डुलिपि में दशमलव संख्या पद्धति का प्रथम प्रयोग', sa: 'वैज्ञानिक पाण्डुलिपि में दशमलव संख्या पद्धति का प्रथम प्रयोग', mai: 'वैज्ञानिक पाण्डुलिपि में दशमलव संख्या पद्धति का प्रथम प्रयोग', mr: 'वैज्ञानिक पाण्डुलिपि में दशमलव संख्या पद्धति का प्रथम प्रयोग', ta: 'First to use the decimal number system in a scientific manuscript', te: 'First to use the decimal number system in a scientific manuscript', bn: 'First to use the decimal number system in a scientific manuscript', kn: 'First to use the decimal number system in a scientific manuscript', gu: 'First to use the decimal number system in a scientific manuscript' },
       { en: 'Wrote the earliest known commentary on Aryabhata\'s work', hi: 'आर्यभट के कार्य पर ज्ञात सबसे प्राचीन भाष्य लिखा' },
-      { en: 'Remarkable rational approximation for the sine function', hi: 'ज्या फलन का उल्लेखनीय परिमेय सन्निकटन' },
+      { en: 'Remarkable rational approximation for the sine function', hi: 'ज्या फलन का उल्लेखनीय परिमेय सन्निकटन', sa: 'ज्या फलन का उल्लेखनीय परिमेय सन्निकटन', mai: 'ज्या फलन का उल्लेखनीय परिमेय सन्निकटन', mr: 'ज्या फलन का उल्लेखनीय परिमेय सन्निकटन', ta: 'Remarkable rational approximation for the sine function', te: 'Remarkable rational approximation for the sine function', bn: 'Remarkable rational approximation for the sine function', kn: 'Remarkable rational approximation for the sine function', gu: 'Remarkable rational approximation for the sine function' },
     ],
   },
   {
     name: 'Bhaskaracharya II', nameHi: 'भास्कराचार्य', era: '1150 CE',
     color: 'from-rose-500/20 to-rose-900/10', border: 'border-rose-500/25',
     achievements: [
-      { en: 'Siddhanta Shiromani — contained calculus-like concepts (derivatives, differentials) 500 years before Newton', hi: 'सिद्धान्त शिरोमणि — न्यूटन से 500 वर्ष पहले कलनशास्त्र जैसी अवधारणाएँ' },
-      { en: 'Calculated the sidereal year as 365.2588 days — accurate to 3.5 minutes', hi: 'नाक्षत्रिक वर्ष 365.2588 दिन आँका — 3.5 मिनट तक सटीक' },
+      { en: 'Siddhanta Shiromani — contained calculus-like concepts (derivatives, differentials) 500 years before Newton', hi: 'सिद्धान्त शिरोमणि — न्यूटन से 500 वर्ष पहले कलनशास्त्र जैसी अवधारणाएँ', sa: 'सिद्धान्त शिरोमणि — न्यूटन से 500 वर्ष पहले कलनशास्त्र जैसी अवधारणाएँ', mai: 'सिद्धान्त शिरोमणि — न्यूटन से 500 वर्ष पहले कलनशास्त्र जैसी अवधारणाएँ', mr: 'सिद्धान्त शिरोमणि — न्यूटन से 500 वर्ष पहले कलनशास्त्र जैसी अवधारणाएँ', ta: 'Siddhanta Shiromani — contained calculus-like concepts (derivatives, differentials) 500 years before Newton', te: 'Siddhanta Shiromani — contained calculus-like concepts (derivatives, differentials) 500 years before Newton', bn: 'Siddhanta Shiromani — contained calculus-like concepts (derivatives, differentials) 500 years before Newton', kn: 'Siddhanta Shiromani — contained calculus-like concepts (derivatives, differentials) 500 years before Newton', gu: 'Siddhanta Shiromani — contained calculus-like concepts (derivatives, differentials) 500 years before Newton' },
+      { en: 'Calculated the sidereal year as 365.2588 days — accurate to 3.5 minutes', hi: 'नाक्षत्रिक वर्ष 365.2588 दिन आँका — 3.5 मिनट तक सटीक', sa: 'नाक्षत्रिक वर्ष 365.2588 दिन आँका — 3.5 मिनट तक सटीक', mai: 'नाक्षत्रिक वर्ष 365.2588 दिन आँका — 3.5 मिनट तक सटीक', mr: 'नाक्षत्रिक वर्ष 365.2588 दिन आँका — 3.5 मिनट तक सटीक', ta: 'Calculated the sidereal year as 365.2588 days — accurate to 3.5 minutes', te: 'Calculated the sidereal year as 365.2588 days — accurate to 3.5 minutes', bn: 'Calculated the sidereal year as 365.2588 days — accurate to 3.5 minutes', kn: 'Calculated the sidereal year as 365.2588 days — accurate to 3.5 minutes', gu: 'Calculated the sidereal year as 365.2588 days — accurate to 3.5 minutes' },
       { en: 'Described gravitational attraction: "objects fall to Earth due to Earth\'s attractive force"', hi: 'गुरुत्वाकर्षण का वर्णन: "वस्तुएँ पृथ्वी के आकर्षण बल से गिरती हैं"' },
-      { en: 'His Lilavati (mathematics) and Bijaganita (algebra) — named after his daughter', hi: 'लीलावती (गणित) और बीजगणित — अपनी पुत्री के नाम पर' },
+      { en: 'His Lilavati (mathematics) and Bijaganita (algebra) — named after his daughter', hi: 'लीलावती (गणित) और बीजगणित — अपनी पुत्री के नाम पर', sa: 'लीलावती (गणित) और बीजगणित — अपनी पुत्री के नाम पर', mai: 'लीलावती (गणित) और बीजगणित — अपनी पुत्री के नाम पर', mr: 'लीलावती (गणित) और बीजगणित — अपनी पुत्री के नाम पर', ta: 'His Lilavati (mathematics) and Bijaganita (algebra) — named after his daughter', te: 'His Lilavati (mathematics) and Bijaganita (algebra) — named after his daughter', bn: 'His Lilavati (mathematics) and Bijaganita (algebra) — named after his daughter', kn: 'His Lilavati (mathematics) and Bijaganita (algebra) — named after his daughter', gu: 'His Lilavati (mathematics) and Bijaganita (algebra) — named after his daughter' },
     ],
   },
   {
     name: 'Madhava of Sangamagrama', nameHi: 'माधव सङ्गमग्राम', era: '1340 CE',
     color: 'from-teal-500/20 to-teal-900/10', border: 'border-teal-500/25',
     achievements: [
-      { en: 'Founded the Kerala School of mathematics — 300 years before European calculus', hi: 'केरल गणित सम्प्रदाय की स्थापना — यूरोपीय कलनशास्त्र से 300 वर्ष पूर्व' },
-      { en: 'Discovered infinite series for pi, sine, cosine, and arctangent', hi: 'पाई, ज्या, कोज्या और प्रतिलोम स्पर्शज्या के अनन्त श्रेणी की खोज' },
-      { en: 'His pi series: pi/4 = 1 - 1/3 + 1/5 - 1/7 + ... (known in Europe as Leibniz series, 1670s)', hi: 'उनकी पाई श्रेणी: pi/4 = 1 - 1/3 + 1/5 - 1/7 + ... (यूरोप में लाइबनित्स श्रेणी, 1670 दशक)' },
-      { en: 'Taylor series expansions — three centuries before Brook Taylor', hi: 'टेलर श्रेणी प्रसार — ब्रुक टेलर से तीन शताब्दी पहले' },
+      { en: 'Founded the Kerala School of mathematics — 300 years before European calculus', hi: 'केरल गणित सम्प्रदाय की स्थापना — यूरोपीय कलनशास्त्र से 300 वर्ष पूर्व', sa: 'केरल गणित सम्प्रदाय की स्थापना — यूरोपीय कलनशास्त्र से 300 वर्ष पूर्व', mai: 'केरल गणित सम्प्रदाय की स्थापना — यूरोपीय कलनशास्त्र से 300 वर्ष पूर्व', mr: 'केरल गणित सम्प्रदाय की स्थापना — यूरोपीय कलनशास्त्र से 300 वर्ष पूर्व', ta: 'Founded the Kerala School of mathematics — 300 years before European calculus', te: 'Founded the Kerala School of mathematics — 300 years before European calculus', bn: 'Founded the Kerala School of mathematics — 300 years before European calculus', kn: 'Founded the Kerala School of mathematics — 300 years before European calculus', gu: 'Founded the Kerala School of mathematics — 300 years before European calculus' },
+      { en: 'Discovered infinite series for pi, sine, cosine, and arctangent', hi: 'पाई, ज्या, कोज्या और प्रतिलोम स्पर्शज्या के अनन्त श्रेणी की खोज', sa: 'पाई, ज्या, कोज्या और प्रतिलोम स्पर्शज्या के अनन्त श्रेणी की खोज', mai: 'पाई, ज्या, कोज्या और प्रतिलोम स्पर्शज्या के अनन्त श्रेणी की खोज', mr: 'पाई, ज्या, कोज्या और प्रतिलोम स्पर्शज्या के अनन्त श्रेणी की खोज', ta: 'Discovered infinite series for pi, sine, cosine, and arctangent', te: 'Discovered infinite series for pi, sine, cosine, and arctangent', bn: 'Discovered infinite series for pi, sine, cosine, and arctangent', kn: 'Discovered infinite series for pi, sine, cosine, and arctangent', gu: 'Discovered infinite series for pi, sine, cosine, and arctangent' },
+      { en: 'His pi series: pi/4 = 1 - 1/3 + 1/5 - 1/7 + ... (known in Europe as Leibniz series, 1670s)', hi: 'उनकी पाई श्रेणी: pi/4 = 1 - 1/3 + 1/5 - 1/7 + ... (यूरोप में लाइबनित्स श्रेणी, 1670 दशक)', sa: 'उनकी पाई श्रेणी: pi/4 = 1 - 1/3 + 1/5 - 1/7 + ... (यूरोप में लाइबनित्स श्रेणी, 1670 दशक)', mai: 'उनकी पाई श्रेणी: pi/4 = 1 - 1/3 + 1/5 - 1/7 + ... (यूरोप में लाइबनित्स श्रेणी, 1670 दशक)', mr: 'उनकी पाई श्रेणी: pi/4 = 1 - 1/3 + 1/5 - 1/7 + ... (यूरोप में लाइबनित्स श्रेणी, 1670 दशक)', ta: 'His pi series: pi/4 = 1 - 1/3 + 1/5 - 1/7 + ... (known in Europe as Leibniz series, 1670s)', te: 'His pi series: pi/4 = 1 - 1/3 + 1/5 - 1/7 + ... (known in Europe as Leibniz series, 1670s)', bn: 'His pi series: pi/4 = 1 - 1/3 + 1/5 - 1/7 + ... (known in Europe as Leibniz series, 1670s)', kn: 'His pi series: pi/4 = 1 - 1/3 + 1/5 - 1/7 + ... (known in Europe as Leibniz series, 1670s)', gu: 'His pi series: pi/4 = 1 - 1/3 + 1/5 - 1/7 + ... (known in Europe as Leibniz series, 1670s)' },
+      { en: 'Taylor series expansions — three centuries before Brook Taylor', hi: 'टेलर श्रेणी प्रसार — ब्रुक टेलर से तीन शताब्दी पहले', sa: 'टेलर श्रेणी प्रसार — ब्रुक टेलर से तीन शताब्दी पहले', mai: 'टेलर श्रेणी प्रसार — ब्रुक टेलर से तीन शताब्दी पहले', mr: 'टेलर श्रेणी प्रसार — ब्रुक टेलर से तीन शताब्दी पहले', ta: 'Taylor series expansions — three centuries before Brook Taylor', te: 'Taylor series expansions — three centuries before Brook Taylor', bn: 'Taylor series expansions — three centuries before Brook Taylor', kn: 'Taylor series expansions — three centuries before Brook Taylor', gu: 'Taylor series expansions — three centuries before Brook Taylor' },
     ],
   },
   {
     name: 'Nilakantha Somayaji', nameHi: 'नीलकण्ठ सोमयाजी', era: '1444 CE',
     color: 'from-cyan-500/20 to-cyan-900/10', border: 'border-cyan-500/25',
     achievements: [
-      { en: 'Tantrasangraha (1501 CE) — semi-heliocentric model: all planets orbit the Sun, Sun orbits Earth', hi: 'तन्त्रसंग्रह (1501 ई.) — अर्ध-सूर्यकेन्द्रित मॉडल: सभी ग्रह सूर्य की, सूर्य पृथ्वी की परिक्रमा' },
+      { en: 'Tantrasangraha (1501 CE) — semi-heliocentric model: all planets orbit the Sun, Sun orbits Earth', hi: 'तन्त्रसंग्रह (1501 ई.) — अर्ध-सूर्यकेन्द्रित मॉडल: सभी ग्रह सूर्य की, सूर्य पृथ्वी की परिक्रमा', sa: 'तन्त्रसंग्रह (1501 ई.) — अर्ध-सूर्यकेन्द्रित मॉडल: सभी ग्रह सूर्य की, सूर्य पृथ्वी की परिक्रमा', mai: 'तन्त्रसंग्रह (1501 ई.) — अर्ध-सूर्यकेन्द्रित मॉडल: सभी ग्रह सूर्य की, सूर्य पृथ्वी की परिक्रमा', mr: 'तन्त्रसंग्रह (1501 ई.) — अर्ध-सूर्यकेन्द्रित मॉडल: सभी ग्रह सूर्य की, सूर्य पृथ्वी की परिक्रमा', ta: 'Tantrasangraha (1501 CE) — semi-heliocentric model: all planets orbit the Sun, Sun orbits Earth', te: 'Tantrasangraha (1501 CE) — semi-heliocentric model: all planets orbit the Sun, Sun orbits Earth', bn: 'Tantrasangraha (1501 CE) — semi-heliocentric model: all planets orbit the Sun, Sun orbits Earth', kn: 'Tantrasangraha (1501 CE) — semi-heliocentric model: all planets orbit the Sun, Sun orbits Earth', gu: 'Tantrasangraha (1501 CE) — semi-heliocentric model: all planets orbit the Sun, Sun orbits Earth' },
       { en: 'Nearly identical to Tycho Brahe\'s model — but 87 years earlier', hi: 'टाइको ब्राहे के मॉडल से लगभग समरूप — किन्तु 87 वर्ष पहले' },
       { en: 'Improved Madhava\'s series with faster-converging correction terms', hi: 'माधव की श्रेणी को तीव्र अभिसरण सुधार पदों से बेहतर बनाया' },
     ],
@@ -125,27 +127,27 @@ const ASTRONOMERS: Astronomer[] = [
 ];
 
 const TIMELINE = [
-  { year: '~1500 BCE', text: { en: 'Rigveda', hi: 'ऋग्वेद' }, detail: { en: 'Earliest nakshatra references', hi: 'सबसे प्राचीन नक्षत्र सन्दर्भ' }, color: 'bg-yellow-500' },
-  { year: '~1400 BCE', text: { en: 'Vedanga Jyotisha', hi: 'वेदाङ्ग ज्योतिष' }, detail: { en: 'First astronomical text', hi: 'प्रथम खगोलीय ग्रन्थ' }, color: 'bg-amber-500' },
-  { year: '~400 CE', text: { en: 'Surya Siddhanta', hi: 'सूर्य सिद्धान्त' }, detail: { en: 'Comprehensive planetary theory', hi: 'व्यापक ग्रहीय सिद्धान्त' }, color: 'bg-orange-500' },
-  { year: '499 CE', text: { en: 'Aryabhatiya', hi: 'आर्यभटीय' }, detail: { en: 'Revolutionary calculations', hi: 'क्रान्तिकारी गणनाएँ' }, color: 'bg-emerald-500' },
-  { year: '505 CE', text: { en: 'Pancha Siddhantika', hi: 'पञ्चसिद्धान्तिका' }, detail: { en: 'Comparison of 5 systems', hi: '5 प्रणालियों की तुलना' }, color: 'bg-amber-400' },
-  { year: '628 CE', text: { en: 'Brahmasphutasiddhanta', hi: 'ब्राह्मस्फुटसिद्धान्त' }, detail: { en: 'Zero, algebra, astronomy', hi: 'शून्य, बीजगणित, खगोल' }, color: 'bg-blue-500' },
-  { year: '1150 CE', text: { en: 'Siddhanta Shiromani', hi: 'सिद्धान्त शिरोमणि' }, detail: { en: 'Advanced calculus-like methods', hi: 'उन्नत कलनशास्त्र जैसी विधियाँ' }, color: 'bg-rose-500' },
-  { year: '1501 CE', text: { en: 'Tantrasangraha', hi: 'तन्त्रसंग्रह' }, detail: { en: 'Kerala School breakthroughs', hi: 'केरल सम्प्रदाय की सफलताएँ' }, color: 'bg-cyan-500' },
+  { year: '~1500 BCE', text: { en: 'Rigveda', hi: 'ऋग्वेद', sa: 'ऋग्वेद', mai: 'ऋग्वेद', mr: 'ऋग्वेद', ta: 'Rigveda', te: 'Rigveda', bn: 'Rigveda', kn: 'Rigveda', gu: 'Rigveda' }, detail: { en: 'Earliest nakshatra references', hi: 'सबसे प्राचीन नक्षत्र सन्दर्भ', sa: 'सबसे प्राचीन नक्षत्र सन्दर्भ', mai: 'सबसे प्राचीन नक्षत्र सन्दर्भ', mr: 'सबसे प्राचीन नक्षत्र सन्दर्भ', ta: 'Earliest nakshatra references', te: 'Earliest nakshatra references', bn: 'Earliest nakshatra references', kn: 'Earliest nakshatra references', gu: 'Earliest nakshatra references' }, color: 'bg-yellow-500' },
+  { year: '~1400 BCE', text: { en: 'Vedanga Jyotisha', hi: 'वेदाङ्ग ज्योतिष', sa: 'वेदाङ्ग ज्योतिष', mai: 'वेदाङ्ग ज्योतिष', mr: 'वेदाङ्ग ज्योतिष', ta: 'Vedanga Jyotisha', te: 'Vedanga Jyotisha', bn: 'Vedanga Jyotisha', kn: 'Vedanga Jyotisha', gu: 'Vedanga Jyotisha' }, detail: { en: 'First astronomical text', hi: 'प्रथम खगोलीय ग्रन्थ', sa: 'प्रथम खगोलीय ग्रन्थ', mai: 'प्रथम खगोलीय ग्रन्थ', mr: 'प्रथम खगोलीय ग्रन्थ', ta: 'First astronomical text', te: 'First astronomical text', bn: 'First astronomical text', kn: 'First astronomical text', gu: 'First astronomical text' }, color: 'bg-amber-500' },
+  { year: '~400 CE', text: { en: 'Surya Siddhanta', hi: 'सूर्य सिद्धान्त', sa: 'सूर्य सिद्धान्त', mai: 'सूर्य सिद्धान्त', mr: 'सूर्य सिद्धान्त', ta: 'Surya Siddhanta', te: 'Surya Siddhanta', bn: 'Surya Siddhanta', kn: 'Surya Siddhanta', gu: 'Surya Siddhanta' }, detail: { en: 'Comprehensive planetary theory', hi: 'व्यापक ग्रहीय सिद्धान्त', sa: 'व्यापक ग्रहीय सिद्धान्त', mai: 'व्यापक ग्रहीय सिद्धान्त', mr: 'व्यापक ग्रहीय सिद्धान्त', ta: 'Comprehensive planetary theory', te: 'Comprehensive planetary theory', bn: 'Comprehensive planetary theory', kn: 'Comprehensive planetary theory', gu: 'Comprehensive planetary theory' }, color: 'bg-orange-500' },
+  { year: '499 CE', text: { en: 'Aryabhatiya', hi: 'आर्यभटीय', sa: 'आर्यभटीय', mai: 'आर्यभटीय', mr: 'आर्यभटीय', ta: 'Aryabhatiya', te: 'Aryabhatiya', bn: 'Aryabhatiya', kn: 'Aryabhatiya', gu: 'Aryabhatiya' }, detail: { en: 'Revolutionary calculations', hi: 'क्रान्तिकारी गणनाएँ', sa: 'क्रान्तिकारी गणनाएँ', mai: 'क्रान्तिकारी गणनाएँ', mr: 'क्रान्तिकारी गणनाएँ', ta: 'Revolutionary calculations', te: 'Revolutionary calculations', bn: 'Revolutionary calculations', kn: 'Revolutionary calculations', gu: 'Revolutionary calculations' }, color: 'bg-emerald-500' },
+  { year: '505 CE', text: { en: 'Pancha Siddhantika', hi: 'पञ्चसिद्धान्तिका', sa: 'पञ्चसिद्धान्तिका', mai: 'पञ्चसिद्धान्तिका', mr: 'पञ्चसिद्धान्तिका', ta: 'Pancha Siddhantika', te: 'Pancha Siddhantika', bn: 'Pancha Siddhantika', kn: 'Pancha Siddhantika', gu: 'Pancha Siddhantika' }, detail: { en: 'Comparison of 5 systems', hi: '5 प्रणालियों की तुलना', sa: '5 प्रणालियों की तुलना', mai: '5 प्रणालियों की तुलना', mr: '5 प्रणालियों की तुलना', ta: 'Comparison of 5 systems', te: 'Comparison of 5 systems', bn: 'Comparison of 5 systems', kn: 'Comparison of 5 systems', gu: 'Comparison of 5 systems' }, color: 'bg-amber-400' },
+  { year: '628 CE', text: { en: 'Brahmasphutasiddhanta', hi: 'ब्राह्मस्फुटसिद्धान्त', sa: 'ब्राह्मस्फुटसिद्धान्त', mai: 'ब्राह्मस्फुटसिद्धान्त', mr: 'ब्राह्मस्फुटसिद्धान्त', ta: 'Brahmasphutasiddhanta', te: 'Brahmasphutasiddhanta', bn: 'Brahmasphutasiddhanta', kn: 'Brahmasphutasiddhanta', gu: 'Brahmasphutasiddhanta' }, detail: { en: 'Zero, algebra, astronomy', hi: 'शून्य, बीजगणित, खगोल', sa: 'शून्य, बीजगणित, खगोल', mai: 'शून्य, बीजगणित, खगोल', mr: 'शून्य, बीजगणित, खगोल', ta: 'Zero, algebra, astronomy', te: 'Zero, algebra, astronomy', bn: 'Zero, algebra, astronomy', kn: 'Zero, algebra, astronomy', gu: 'Zero, algebra, astronomy' }, color: 'bg-blue-500' },
+  { year: '1150 CE', text: { en: 'Siddhanta Shiromani', hi: 'सिद्धान्त शिरोमणि', sa: 'सिद्धान्त शिरोमणि', mai: 'सिद्धान्त शिरोमणि', mr: 'सिद्धान्त शिरोमणि', ta: 'Siddhanta Shiromani', te: 'Siddhanta Shiromani', bn: 'Siddhanta Shiromani', kn: 'Siddhanta Shiromani', gu: 'Siddhanta Shiromani' }, detail: { en: 'Advanced calculus-like methods', hi: 'उन्नत कलनशास्त्र जैसी विधियाँ', sa: 'उन्नत कलनशास्त्र जैसी विधियाँ', mai: 'उन्नत कलनशास्त्र जैसी विधियाँ', mr: 'उन्नत कलनशास्त्र जैसी विधियाँ', ta: 'Advanced calculus-like methods', te: 'Advanced calculus-like methods', bn: 'Advanced calculus-like methods', kn: 'Advanced calculus-like methods', gu: 'Advanced calculus-like methods' }, color: 'bg-rose-500' },
+  { year: '1501 CE', text: { en: 'Tantrasangraha', hi: 'तन्त्रसंग्रह', sa: 'तन्त्रसंग्रह', mai: 'तन्त्रसंग्रह', mr: 'तन्त्रसंग्रह', ta: 'Tantrasangraha', te: 'Tantrasangraha', bn: 'Tantrasangraha', kn: 'Tantrasangraha', gu: 'Tantrasangraha' }, detail: { en: 'Kerala School breakthroughs', hi: 'केरल सम्प्रदाय की सफलताएँ', sa: 'केरल सम्प्रदाय की सफलताएँ', mai: 'केरल सम्प्रदाय की सफलताएँ', mr: 'केरल सम्प्रदाय की सफलताएँ', ta: 'Kerala School breakthroughs', te: 'Kerala School breakthroughs', bn: 'Kerala School breakthroughs', kn: 'Kerala School breakthroughs', gu: 'Kerala School breakthroughs' }, color: 'bg-cyan-500' },
 ];
 
 const PRIORITY_TABLE = [
-  { concept: { en: 'Earth rotates on axis', hi: 'पृथ्वी धुरी पर घूमती है' }, india: 'Aryabhata, 499 CE', west: 'Copernicus, 1543 CE', gap: '1,044 yrs' },
+  { concept: { en: 'Earth rotates on axis', hi: 'पृथ्वी धुरी पर घूमती है', sa: 'पृथ्वी धुरी पर घूमती है', mai: 'पृथ्वी धुरी पर घूमती है', mr: 'पृथ्वी धुरी पर घूमती है', ta: 'Earth rotates on axis', te: 'Earth rotates on axis', bn: 'Earth rotates on axis', kn: 'Earth rotates on axis', gu: 'Earth rotates on axis' }, india: 'Aryabhata, 499 CE', west: 'Copernicus, 1543 CE', gap: '1,044 yrs' },
   { concept: { en: 'Earth\'s circumference (99.8%)', hi: 'पृथ्वी की परिधि (99.8%)' }, india: 'Aryabhata, 499 CE', west: 'Eratosthenes, 240 BCE', gap: 'Parallel' },
-  { concept: { en: 'Sine function', hi: 'ज्या (Sine) फलन' }, india: 'Aryabhata, 499 CE', west: 'Latin sinus via Arabic', gap: 'Origin' },
-  { concept: { en: 'Zero as a number', hi: 'शून्य एक संख्या के रूप में' }, india: 'Brahmagupta, 628 CE', west: 'Europe via Al-Khwarizmi, ~825 CE', gap: '~200 yrs' },
-  { concept: { en: 'Infinite series for pi', hi: 'पाई की अनन्त श्रेणी' }, india: 'Madhava, ~1400 CE', west: 'Gregory-Leibniz, ~1670 CE', gap: '270 yrs' },
-  { concept: { en: 'Negative numbers', hi: 'ऋण संख्याएँ' }, india: 'Brahmagupta, 628 CE', west: 'Europe, ~1200s CE', gap: '~600 yrs' },
-  { concept: { en: 'Gravity concept', hi: 'गुरुत्वाकर्षण अवधारणा' }, india: 'Brahmagupta, 628 CE', west: 'Newton, 1687 CE', gap: '1,059 yrs' },
-  { concept: { en: 'Calculus concepts', hi: 'कलनशास्त्र अवधारणाएँ' }, india: 'Madhava, ~1400 CE', west: 'Newton/Leibniz, ~1680 CE', gap: '~280 yrs' },
-  { concept: { en: 'Semi-heliocentric model', hi: 'अर्ध-सूर्यकेन्द्रित मॉडल' }, india: 'Nilakantha, ~1500 CE', west: 'Copernicus, 1543 CE', gap: '~40 yrs' },
-  { concept: { en: 'Decimal system', hi: 'दशमलव प्रणाली' }, india: 'Bhaskara I, ~600 CE', west: 'Fibonacci, 1202 CE', gap: '~600 yrs' },
+  { concept: { en: 'Sine function', hi: 'ज्या (Sine) फलन', sa: 'ज्या (Sine) फलन', mai: 'ज्या (Sine) फलन', mr: 'ज्या (Sine) फलन', ta: 'Sine function', te: 'Sine function', bn: 'Sine function', kn: 'Sine function', gu: 'Sine function' }, india: 'Aryabhata, 499 CE', west: 'Latin sinus via Arabic', gap: 'Origin' },
+  { concept: { en: 'Zero as a number', hi: 'शून्य एक संख्या के रूप में', sa: 'शून्य एक संख्या के रूप में', mai: 'शून्य एक संख्या के रूप में', mr: 'शून्य एक संख्या के रूप में', ta: 'Zero as a number', te: 'Zero as a number', bn: 'Zero as a number', kn: 'Zero as a number', gu: 'Zero as a number' }, india: 'Brahmagupta, 628 CE', west: 'Europe via Al-Khwarizmi, ~825 CE', gap: '~200 yrs' },
+  { concept: { en: 'Infinite series for pi', hi: 'पाई की अनन्त श्रेणी', sa: 'पाई की अनन्त श्रेणी', mai: 'पाई की अनन्त श्रेणी', mr: 'पाई की अनन्त श्रेणी', ta: 'Infinite series for pi', te: 'Infinite series for pi', bn: 'Infinite series for pi', kn: 'Infinite series for pi', gu: 'Infinite series for pi' }, india: 'Madhava, ~1400 CE', west: 'Gregory-Leibniz, ~1670 CE', gap: '270 yrs' },
+  { concept: { en: 'Negative numbers', hi: 'ऋण संख्याएँ', sa: 'ऋण संख्याएँ', mai: 'ऋण संख्याएँ', mr: 'ऋण संख्याएँ', ta: 'Negative numbers', te: 'Negative numbers', bn: 'Negative numbers', kn: 'Negative numbers', gu: 'Negative numbers' }, india: 'Brahmagupta, 628 CE', west: 'Europe, ~1200s CE', gap: '~600 yrs' },
+  { concept: { en: 'Gravity concept', hi: 'गुरुत्वाकर्षण अवधारणा', sa: 'गुरुत्वाकर्षण अवधारणा', mai: 'गुरुत्वाकर्षण अवधारणा', mr: 'गुरुत्वाकर्षण अवधारणा', ta: 'Gravity concept', te: 'Gravity concept', bn: 'Gravity concept', kn: 'Gravity concept', gu: 'Gravity concept' }, india: 'Brahmagupta, 628 CE', west: 'Newton, 1687 CE', gap: '1,059 yrs' },
+  { concept: { en: 'Calculus concepts', hi: 'कलनशास्त्र अवधारणाएँ', sa: 'कलनशास्त्र अवधारणाएँ', mai: 'कलनशास्त्र अवधारणाएँ', mr: 'कलनशास्त्र अवधारणाएँ', ta: 'Calculus concepts', te: 'Calculus concepts', bn: 'Calculus concepts', kn: 'Calculus concepts', gu: 'Calculus concepts' }, india: 'Madhava, ~1400 CE', west: 'Newton/Leibniz, ~1680 CE', gap: '~280 yrs' },
+  { concept: { en: 'Semi-heliocentric model', hi: 'अर्ध-सूर्यकेन्द्रित मॉडल', sa: 'अर्ध-सूर्यकेन्द्रित मॉडल', mai: 'अर्ध-सूर्यकेन्द्रित मॉडल', mr: 'अर्ध-सूर्यकेन्द्रित मॉडल', ta: 'Semi-heliocentric model', te: 'Semi-heliocentric model', bn: 'Semi-heliocentric model', kn: 'Semi-heliocentric model', gu: 'Semi-heliocentric model' }, india: 'Nilakantha, ~1500 CE', west: 'Copernicus, 1543 CE', gap: '~40 yrs' },
+  { concept: { en: 'Decimal system', hi: 'दशमलव प्रणाली', sa: 'दशमलव प्रणाली', mai: 'दशमलव प्रणाली', mr: 'दशमलव प्रणाली', ta: 'Decimal system', te: 'Decimal system', bn: 'Decimal system', kn: 'Decimal system', gu: 'Decimal system' }, india: 'Bhaskara I, ~600 CE', west: 'Fibonacci, 1202 CE', gap: '~600 yrs' },
 ];
 
 /* ═══════════════════════════════════════════════════════════════
@@ -154,7 +156,7 @@ const PRIORITY_TABLE = [
 export default function VedangaPage() {
   const locale = useLocale() as Locale;
   const hi = isDevanagariLocale(locale);
-  const t = (obj: Record<string, string>) => (hi ? obj.hi : obj.en);
+  const t = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
 
   return (
     <div className="min-h-screen py-8 sm:py-12 px-4 sm:px-6 max-w-4xl mx-auto">
@@ -372,19 +374,19 @@ export default function VedangaPage() {
             {[
               {
                 icon: <Sparkles className="w-5 h-5 text-amber-400" />,
-                title: { en: 'Indian Mathematicians', hi: 'भारतीय गणितज्ञ' },
-                detail: { en: 'Aryabhata, Brahmagupta, Bhaskara — decimal system, zero, algebra, trigonometry, astronomy', hi: 'आर्यभट, ब्रह्मगुप्त, भास्कर — दशमलव, शून्य, बीजगणित, त्रिकोणमिति, खगोल' },
+                title: { en: 'Indian Mathematicians', hi: 'भारतीय गणितज्ञ', sa: 'भारतीय गणितज्ञ', mai: 'भारतीय गणितज्ञ', mr: 'भारतीय गणितज्ञ', ta: 'Indian Mathematicians', te: 'Indian Mathematicians', bn: 'Indian Mathematicians', kn: 'Indian Mathematicians', gu: 'Indian Mathematicians' },
+                detail: { en: 'Aryabhata, Brahmagupta, Bhaskara — decimal system, zero, algebra, trigonometry, astronomy', hi: 'आर्यभट, ब्रह्मगुप्त, भास्कर — दशमलव, शून्य, बीजगणित, त्रिकोणमिति, खगोल', sa: 'आर्यभट, ब्रह्मगुप्त, भास्कर — दशमलव, शून्य, बीजगणित, त्रिकोणमिति, खगोल', mai: 'आर्यभट, ब्रह्मगुप्त, भास्कर — दशमलव, शून्य, बीजगणित, त्रिकोणमिति, खगोल', mr: 'आर्यभट, ब्रह्मगुप्त, भास्कर — दशमलव, शून्य, बीजगणित, त्रिकोणमिति, खगोल', ta: 'Aryabhata, Brahmagupta, Bhaskara — decimal system, zero, algebra, trigonometry, astronomy', te: 'Aryabhata, Brahmagupta, Bhaskara — decimal system, zero, algebra, trigonometry, astronomy', bn: 'Aryabhata, Brahmagupta, Bhaskara — decimal system, zero, algebra, trigonometry, astronomy', kn: 'Aryabhata, Brahmagupta, Bhaskara — decimal system, zero, algebra, trigonometry, astronomy', gu: 'Aryabhata, Brahmagupta, Bhaskara — decimal system, zero, algebra, trigonometry, astronomy' },
                 color: 'border-amber-500/30 bg-amber-500/[0.06]',
               },
               {
                 icon: <Route className="w-5 h-5 text-emerald-400" />,
-                title: { en: 'Arabic Scholars (8th-11th c.)', hi: 'अरब विद्वान (8वीं-11वीं सदी)' },
-                detail: { en: 'Al-Khwarizmi learned from Indian texts — his name gave us "algorithm." Al-Biruni (1030 CE) traveled to India, wrote Tarikh al-Hind.', hi: 'अल-ख़्वारिज़्मी ने भारतीय ग्रन्थों से सीखा — उनके नाम से "algorithm" बना। अल-बिरूनी (1030 ई.) ने भारत यात्रा की, तारीख़-उल-हिन्द लिखी।' },
+                title: { en: 'Arabic Scholars (8th-11th c.)', hi: 'अरब विद्वान (8वीं-11वीं सदी)', sa: 'अरब विद्वान (8वीं-11वीं सदी)', mai: 'अरब विद्वान (8वीं-11वीं सदी)', mr: 'अरब विद्वान (8वीं-11वीं सदी)', ta: 'Arabic Scholars (8th-11th c.)', te: 'Arabic Scholars (8th-11th c.)', bn: 'Arabic Scholars (8th-11th c.)', kn: 'Arabic Scholars (8th-11th c.)', gu: 'Arabic Scholars (8th-11th c.)' },
+                detail: { en: 'Al-Khwarizmi learned from Indian texts — his name gave us "algorithm." Al-Biruni (1030 CE) traveled to India, wrote Tarikh al-Hind.', hi: 'अल-ख़्वारिज़्मी ने भारतीय ग्रन्थों से सीखा — उनके नाम से "algorithm" बना। अल-बिरूनी (1030 ई.) ने भारत यात्रा की, तारीख़-उल-हिन्द लिखी।', sa: 'अल-ख़्वारिज़्मी ने भारतीय ग्रन्थों से सीखा — उनके नाम से "algorithm" बना। अल-बिरूनी (1030 ई.) ने भारत यात्रा की, तारीख़-उल-हिन्द लिखी।', mai: 'अल-ख़्वारिज़्मी ने भारतीय ग्रन्थों से सीखा — उनके नाम से "algorithm" बना। अल-बिरूनी (1030 ई.) ने भारत यात्रा की, तारीख़-उल-हिन्द लिखी।', mr: 'अल-ख़्वारिज़्मी ने भारतीय ग्रन्थों से सीखा — उनके नाम से "algorithm" बना। अल-बिरूनी (1030 ई.) ने भारत यात्रा की, तारीख़-उल-हिन्द लिखी।', ta: 'Al-Khwarizmi learned from Indian texts — his name gave us "algorithm." Al-Biruni (1030 CE) traveled to India, wrote Tarikh al-Hind.', te: 'Al-Khwarizmi learned from Indian texts — his name gave us "algorithm." Al-Biruni (1030 CE) traveled to India, wrote Tarikh al-Hind.', bn: 'Al-Khwarizmi learned from Indian texts — his name gave us "algorithm." Al-Biruni (1030 CE) traveled to India, wrote Tarikh al-Hind.', kn: 'Al-Khwarizmi learned from Indian texts — his name gave us "algorithm." Al-Biruni (1030 CE) traveled to India, wrote Tarikh al-Hind.', gu: 'Al-Khwarizmi learned from Indian texts — his name gave us "algorithm." Al-Biruni (1030 CE) traveled to India, wrote Tarikh al-Hind.' },
                 color: 'border-emerald-500/30 bg-emerald-500/[0.06]',
               },
               {
                 icon: <Globe className="w-5 h-5 text-blue-400" />,
-                title: { en: 'Medieval Europe (12th-13th c.)', hi: 'मध्यकालीन यूरोप (12वीं-13वीं सदी)' },
+                title: { en: 'Medieval Europe (12th-13th c.)', hi: 'मध्यकालीन यूरोप (12वीं-13वीं सदी)', sa: 'मध्यकालीन यूरोप (12वीं-13वीं सदी)', mai: 'मध्यकालीन यूरोप (12वीं-13वीं सदी)', mr: 'मध्यकालीन यूरोप (12वीं-13वीं सदी)', ta: 'Medieval Europe (12th-13th c.)', te: 'Medieval Europe (12th-13th c.)', bn: 'Medieval Europe (12th-13th c.)', kn: 'Medieval Europe (12th-13th c.)', gu: 'Medieval Europe (12th-13th c.)' },
                 detail: { en: 'Fibonacci\'s Liber Abaci (1202) introduced "Arabic" numerals — which were Indian numerals transmitted via Arabia. Europe finally abandoned Roman numerals.', hi: 'फ़िबोनाची की लिबेर अबाची (1202) ने "अरबी" अंक प्रस्तुत किए — जो वास्तव में अरब के माध्यम से आए भारतीय अंक थे।' },
                 color: 'border-blue-500/30 bg-blue-500/[0.06]',
               },
@@ -453,10 +455,10 @@ export default function VedangaPage() {
           <h3 className="text-gold-light font-semibold text-sm uppercase tracking-wider mb-4">{t(L.exploreMore)}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
-              { href: '/learn/observatories' as const, label: { en: 'Jantar Mantar — Stone Observatories', hi: 'जन्तर मन्तर — पाषाण वेधशालाएँ' } },
-              { href: '/learn/cosmology' as const, label: { en: 'Hindu Cosmological Time Scales', hi: 'हिन्दू ब्रह्माण्डीय कालमान' } },
-              { href: '/learn/classical-texts' as const, label: { en: 'Classical Astronomical Texts', hi: 'शास्त्रीय खगोलीय ग्रन्थ' } },
-              { href: '/learn/calculations' as const, label: { en: 'How We Calculate', hi: 'हम कैसे गणना करते हैं' } },
+              { href: '/learn/observatories' as const, label: { en: 'Jantar Mantar — Stone Observatories', hi: 'जन्तर मन्तर — पाषाण वेधशालाएँ', sa: 'जन्तर मन्तर — पाषाण वेधशालाएँ', mai: 'जन्तर मन्तर — पाषाण वेधशालाएँ', mr: 'जन्तर मन्तर — पाषाण वेधशालाएँ', ta: 'Jantar Mantar — Stone Observatories', te: 'Jantar Mantar — Stone Observatories', bn: 'Jantar Mantar — Stone Observatories', kn: 'Jantar Mantar — Stone Observatories', gu: 'Jantar Mantar — Stone Observatories' } },
+              { href: '/learn/cosmology' as const, label: { en: 'Hindu Cosmological Time Scales', hi: 'हिन्दू ब्रह्माण्डीय कालमान', sa: 'हिन्दू ब्रह्माण्डीय कालमान', mai: 'हिन्दू ब्रह्माण्डीय कालमान', mr: 'हिन्दू ब्रह्माण्डीय कालमान', ta: 'Hindu Cosmological Time Scales', te: 'Hindu Cosmological Time Scales', bn: 'Hindu Cosmological Time Scales', kn: 'Hindu Cosmological Time Scales', gu: 'Hindu Cosmological Time Scales' } },
+              { href: '/learn/classical-texts' as const, label: { en: 'Classical Astronomical Texts', hi: 'शास्त्रीय खगोलीय ग्रन्थ', sa: 'शास्त्रीय खगोलीय ग्रन्थ', mai: 'शास्त्रीय खगोलीय ग्रन्थ', mr: 'शास्त्रीय खगोलीय ग्रन्थ', ta: 'Classical Astronomical Texts', te: 'Classical Astronomical Texts', bn: 'Classical Astronomical Texts', kn: 'Classical Astronomical Texts', gu: 'Classical Astronomical Texts' } },
+              { href: '/learn/calculations' as const, label: { en: 'How We Calculate', hi: 'हम कैसे गणना करते हैं', sa: 'हम कैसे गणना करते हैं', mai: 'हम कैसे गणना करते हैं', mr: 'हम कैसे गणना करते हैं', ta: 'How We Calculate', te: 'How We Calculate', bn: 'How We Calculate', kn: 'How We Calculate', gu: 'How We Calculate' } },
             ].map((link, i) => (
               <Link
                 key={i}

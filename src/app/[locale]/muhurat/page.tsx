@@ -5,7 +5,7 @@ import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
-import type { Locale, Trilingual } from '@/types/panchang';
+import type { LocaleText, Locale} from '@/types/panchang';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
@@ -23,10 +23,10 @@ interface MuhuratDate {
 
 interface ActivityOption {
   key: string;
-  label: Trilingual;
+  label: LocaleText;
 }
 
-const WEEKDAY_NAMES: Record<string, Trilingual> = {
+const WEEKDAY_NAMES: Record<string, LocaleText> = {
   '0': { en: 'Sunday', hi: 'रविवार', sa: 'रविवासरः' },
   '1': { en: 'Monday', hi: 'सोमवार', sa: 'सोमवासरः' },
   '2': { en: 'Tuesday', hi: 'मंगलवार', sa: 'मङ्गलवासरः' },
@@ -45,7 +45,7 @@ const QUALITY_COLORS = {
   acceptable: 'border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]',
 };
 
-const QUALITY_LABELS: Record<string, Trilingual> = {
+const QUALITY_LABELS: Record<string, LocaleText> = {
   excellent: { en: 'Excellent', hi: 'उत्तम', sa: 'उत्तमम्' },
   good: { en: 'Good', hi: 'शुभ', sa: 'शुभम्' },
   acceptable: { en: 'Acceptable', hi: 'स्वीकार्य', sa: 'स्वीकार्यम्' },

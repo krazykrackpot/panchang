@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 'use client';
 
 import { motion } from 'framer-motion';
@@ -7,7 +8,7 @@ interface ChartProps {
   houses: Array<{
     number: number;
     sign: number;
-    signName: { en: string; hi: string; sa: string };
+    signName: LocaleText;
     signSymbol: string;
     planets: string[];
   }>;

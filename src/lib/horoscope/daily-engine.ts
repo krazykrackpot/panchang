@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 /**
  * Daily Horoscope Engine — pure, deterministic computation.
  * No external API calls, no LLM. Same (moonSign + date) = same result.
@@ -31,17 +32,17 @@ import {
 export interface DailyHoroscope {
   date: string;
   moonSign: number;          // 1-12
-  moonSignName: { en: string; hi: string };
+  moonSignName: LocaleText;
   overallScore: number;      // 1-10
   areas: {
-    career:       { score: number; text: { en: string; hi: string } };
-    love:         { score: number; text: { en: string; hi: string } };
-    health:       { score: number; text: { en: string; hi: string } };
-    finance:      { score: number; text: { en: string; hi: string } };
-    spirituality: { score: number; text: { en: string; hi: string } };
+    career:       { score: number; text: LocaleText };
+    love:         { score: number; text: LocaleText };
+    health:       { score: number; text: LocaleText };
+    finance:      { score: number; text: LocaleText };
+    spirituality: { score: number; text: LocaleText };
   };
-  insight: { en: string; hi: string };
-  luckyColor: { en: string; hi: string };
+  insight: LocaleText;
+  luckyColor: LocaleText;
   luckyNumber: number;
   luckyTime: string;          // e.g. "10:00 AM - 12:00 PM"
 }
@@ -304,7 +305,7 @@ export function generateDailyHoroscope(input: DailyEngineInput): DailyHoroscope 
   const rashi = RASHIS[moonSign - 1];
   const moonSignName = rashi
     ? { en: rashi.name.en, hi: rashi.name.hi }
-    : { en: 'Unknown', hi: 'अज्ञात' };
+    : { en: 'Unknown', hi: 'अज्ञात', sa: 'अज्ञात', mai: 'अज्ञात', mr: 'अज्ञात', ta: 'Unknown', te: 'Unknown', bn: 'Unknown', kn: 'Unknown', gu: 'Unknown' };
 
   return {
     date,

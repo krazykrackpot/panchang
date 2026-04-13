@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 // src/lib/tippanni/convergence/interactions.ts
 // 12 meta-interaction rules that fire AFTER pattern matching for cross-pattern synthesis
 
@@ -25,13 +26,13 @@ const NEGATIVE_PATTERNS: Record<string, string[]> = {
 
 // ─── Helper: Theme display names ─────────────────────────────────────────────
 
-const THEME_NAMES: Record<string, { en: string; hi: string }> = {
-  career: { en: 'career', hi: 'करियर' },
-  relationship: { en: 'relationship', hi: 'संबंध' },
-  wealth: { en: 'wealth', hi: 'धन' },
-  health: { en: 'health', hi: 'स्वास्थ्य' },
-  spiritual: { en: 'spirituality', hi: 'आध्यात्म' },
-  family: { en: 'family', hi: 'परिवार' },
+const THEME_NAMES: Record<string, LocaleText> = {
+  career: { en: 'career', hi: 'करियर', sa: 'करियर', mai: 'करियर', mr: 'करियर', ta: 'career', te: 'career', bn: 'career', kn: 'career', gu: 'career' },
+  relationship: { en: 'relationship', hi: 'संबंध', sa: 'संबंध', mai: 'संबंध', mr: 'संबंध', ta: 'relationship', te: 'relationship', bn: 'relationship', kn: 'relationship', gu: 'relationship' },
+  wealth: { en: 'wealth', hi: 'धन', sa: 'धन', mai: 'धन', mr: 'धन', ta: 'wealth', te: 'wealth', bn: 'wealth', kn: 'wealth', gu: 'wealth' },
+  health: { en: 'health', hi: 'स्वास्थ्य', sa: 'स्वास्थ्य', mai: 'स्वास्थ्य', mr: 'स्वास्थ्य', ta: 'health', te: 'health', bn: 'health', kn: 'health', gu: 'health' },
+  spiritual: { en: 'spirituality', hi: 'आध्यात्म', sa: 'आध्यात्म', mai: 'आध्यात्म', mr: 'आध्यात्म', ta: 'spirituality', te: 'spirituality', bn: 'spirituality', kn: 'spirituality', gu: 'spirituality' },
+  family: { en: 'family', hi: 'परिवार', sa: 'परिवार', mai: 'परिवार', mr: 'परिवार', ta: 'family', te: 'family', bn: 'family', kn: 'family', gu: 'family' },
 };
 
 // ─── Helper predicates ───────────────────────────────────────────────────────

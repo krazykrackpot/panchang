@@ -4,7 +4,7 @@
  * into a coherent period-by-period forecast.
  */
 
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 export type PeriodAssessment = 'very_favorable' | 'favorable' | 'mixed' | 'challenging' | 'difficult';
 
@@ -15,7 +15,7 @@ export interface DashaSynthesis {
 
 export interface MahadashaOverview {
   planet: string;
-  planetName: Trilingual;
+  planetName: LocaleText;
   startDate: string;
   endDate: string;
   years: number;
@@ -26,7 +26,7 @@ export interface MahadashaOverview {
 
 export interface MahadashaSynthesis {
   planet: string;
-  planetName: Trilingual;
+  planetName: LocaleText;
   startDate: string;
   endDate: string;
   years: number;
@@ -39,7 +39,7 @@ export interface MahadashaSynthesis {
 
 export interface AntardashaSynthesis {
   planet: string;
-  planetName: Trilingual;
+  planetName: LocaleText;
   startDate: string;
   endDate: string;
   durationMonths: number;
@@ -61,7 +61,7 @@ export interface AntardashaSynthesis {
 
 export interface PratyantardashaSynthesis {
   planet: string;
-  planetName: Trilingual;
+  planetName: LocaleText;
   startDate: string;
   endDate: string;
   durationDays: number;

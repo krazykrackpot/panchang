@@ -1,13 +1,13 @@
 import type { PersonalizedDay, UserSnapshot, TransitAlert } from './types';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 // ---------------------------------------------------------------------------
 // Tara Bala — 9 tara names with favorability
 // ---------------------------------------------------------------------------
 interface TaraInfo {
-  name: Trilingual;
+  name: LocaleText;
   favorable: boolean;
-  description: Trilingual;
+  description: LocaleText;
 }
 
 const TARA_MAP: TaraInfo[] = [
@@ -108,12 +108,12 @@ const TARA_MAP: TaraInfo[] = [
 // ---------------------------------------------------------------------------
 // Chandra Bala descriptions
 // ---------------------------------------------------------------------------
-const CHANDRA_FAVORABLE: Trilingual = {
+const CHANDRA_FAVORABLE: LocaleText = {
   en: 'Moon is well-placed today — emotional balance and mental clarity',
   hi: 'आज चन्द्र शुभ स्थान पर — मानसिक सन्तुलन और स्पष्टता',
   sa: 'अद्य चन्द्रः शुभस्थाने — मानसिकसन्तुलनं स्पष्टता च',
 };
-const CHANDRA_UNFAVORABLE: Trilingual = {
+const CHANDRA_UNFAVORABLE: LocaleText = {
   en: 'Moon is in a challenging position — mind may feel restless',
   hi: 'चन्द्र कठिन स्थान पर — मन अशान्त हो सकता है',
   sa: 'चन्द्रः कठिनस्थाने — मनः अशान्तं भवेत्',
@@ -122,7 +122,7 @@ const CHANDRA_UNFAVORABLE: Trilingual = {
 // ---------------------------------------------------------------------------
 // Day quality descriptions
 // ---------------------------------------------------------------------------
-const DAY_QUALITY_DESC: Record<PersonalizedDay['dayQuality'], Trilingual> = {
+const DAY_QUALITY_DESC: Record<PersonalizedDay['dayQuality'], LocaleText> = {
   excellent: {
     en: 'Excellent day for important activities and new beginnings',
     hi: 'महत्वपूर्ण कार्यों और नई शुरुआत के लिए उत्कृष्ट दिन',
@@ -190,7 +190,7 @@ function computeDayQuality(taraFavorable: boolean, chandraFavorable: boolean): P
 
 interface DashaLike {
   planet: string;
-  planetName: Trilingual;
+  planetName: LocaleText;
   startDate: string;
   endDate: string;
   level: string;

@@ -6,16 +6,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_22_1', phase: 9, topic: 'Astronomy', moduleNumber: '22.1',
-  title: { en: 'Julian Day — The Universal Clock', hi: 'जूलियन दिवस — सार्वभौमिक घड़ी' },
+  title: { en: 'Julian Day — The Universal Clock', hi: 'जूलियन दिवस — सार्वभौमिक घड़ी', sa: 'जूलियन दिवस — सार्वभौमिक घड़ी', mai: 'जूलियन दिवस — सार्वभौमिक घड़ी', mr: 'जूलियन दिवस — सार्वभौमिक घड़ी', ta: 'Julian Day — The Universal Clock', te: 'Julian Day — The Universal Clock', bn: 'Julian Day — The Universal Clock', kn: 'Julian Day — The Universal Clock', gu: 'Julian Day — The Universal Clock' },
   subtitle: {
     en: 'Why astronomers count days from 4713 BCE, and how every Panchang calculation begins with converting a date to a single number',
     hi: 'खगोलविद 4713 ई.पू. से दिनों की गणना क्यों करते हैं, और प्रत्येक पंचांग गणना एक तिथि को एकल संख्या में बदलने से कैसे आरम्भ होती है',
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 22-2: Finding the Sun', hi: 'मॉड्यूल 22-2: सूर्य की स्थिति' }, href: '/learn/modules/22-2' },
-    { label: { en: 'Module 22-3: Finding the Moon', hi: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति' }, href: '/learn/modules/22-3' },
-    { label: { en: 'Module 22-4: Sunrise Calculation', hi: 'मॉड्यूल 22-4: सूर्योदय गणना' }, href: '/learn/modules/22-4' },
+    { label: { en: 'Module 22-2: Finding the Sun', hi: 'मॉड्यूल 22-2: सूर्य की स्थिति', sa: 'मॉड्यूल 22-2: सूर्य की स्थिति', mai: 'मॉड्यूल 22-2: सूर्य की स्थिति', mr: 'मॉड्यूल 22-2: सूर्य की स्थिति', ta: 'Module 22-2: Finding the Sun', te: 'Module 22-2: Finding the Sun', bn: 'Module 22-2: Finding the Sun', kn: 'Module 22-2: Finding the Sun', gu: 'Module 22-2: Finding the Sun' }, href: '/learn/modules/22-2' },
+    { label: { en: 'Module 22-3: Finding the Moon', hi: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', sa: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', mai: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', mr: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', ta: 'Module 22-3: Finding the Moon', te: 'Module 22-3: Finding the Moon', bn: 'Module 22-3: Finding the Moon', kn: 'Module 22-3: Finding the Moon', gu: 'Module 22-3: Finding the Moon' }, href: '/learn/modules/22-3' },
+    { label: { en: 'Module 22-4: Sunrise Calculation', hi: 'मॉड्यूल 22-4: सूर्योदय गणना', sa: 'मॉड्यूल 22-4: सूर्योदय गणना', mai: 'मॉड्यूल 22-4: सूर्योदय गणना', mr: 'मॉड्यूल 22-4: सूर्योदय गणना', ta: 'Module 22-4: Sunrise Calculation', te: 'Module 22-4: Sunrise Calculation', bn: 'Module 22-4: Sunrise Calculation', kn: 'Module 22-4: Sunrise Calculation', gu: 'Module 22-4: Sunrise Calculation' }, href: '/learn/modules/22-4' },
   ],
 };
 
@@ -27,10 +27,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'जूलियन दिवस का युगारम्भ — वह तिथि जब JD = 0 — क्या है?',
     },
     options: [
-      { en: 'January 1, 1 CE', hi: '1 जनवरी, 1 ई.' },
-      { en: 'January 1, 4713 BCE (noon UT)', hi: '1 जनवरी, 4713 ई.पू. (मध्याह्न UT)' },
-      { en: 'January 1, 2000 CE', hi: '1 जनवरी, 2000 ई.' },
-      { en: 'March 21, 0 CE (vernal equinox)', hi: '21 मार्च, 0 ई. (वसन्त विषुव)' },
+      { en: 'January 1, 1 CE', hi: '1 जनवरी, 1 ई.', sa: '1 जनवरी, 1 ई.', mai: '1 जनवरी, 1 ई.', mr: '1 जनवरी, 1 ई.', ta: 'January 1, 1 CE', te: 'January 1, 1 CE', bn: 'January 1, 1 CE', kn: 'January 1, 1 CE', gu: 'January 1, 1 CE' },
+      { en: 'January 1, 4713 BCE (noon UT)', hi: '1 जनवरी, 4713 ई.पू. (मध्याह्न UT)', sa: '1 जनवरी, 4713 ई.पू. (मध्याह्न UT)', mai: '1 जनवरी, 4713 ई.पू. (मध्याह्न UT)', mr: '1 जनवरी, 4713 ई.पू. (मध्याह्न UT)', ta: 'January 1, 4713 BCE (noon UT)', te: 'January 1, 4713 BCE (noon UT)', bn: 'January 1, 4713 BCE (noon UT)', kn: 'January 1, 4713 BCE (noon UT)', gu: 'January 1, 4713 BCE (noon UT)' },
+      { en: 'January 1, 2000 CE', hi: '1 जनवरी, 2000 ई.', sa: '1 जनवरी, 2000 ई.', mai: '1 जनवरी, 2000 ई.', mr: '1 जनवरी, 2000 ई.', ta: 'January 1, 2000 CE', te: 'January 1, 2000 CE', bn: 'January 1, 2000 CE', kn: 'January 1, 2000 CE', gu: 'January 1, 2000 CE' },
+      { en: 'March 21, 0 CE (vernal equinox)', hi: '21 मार्च, 0 ई. (वसन्त विषुव)', sa: '21 मार्च, 0 ई. (वसन्त विषुव)', mai: '21 मार्च, 0 ई. (वसन्त विषुव)', mr: '21 मार्च, 0 ई. (वसन्त विषुव)', ta: 'March 21, 0 CE (vernal equinox)', te: 'March 21, 0 CE (vernal equinox)', bn: 'March 21, 0 CE (vernal equinox)', kn: 'March 21, 0 CE (vernal equinox)', gu: 'March 21, 0 CE (vernal equinox)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -45,10 +45,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'J2000.0 युगारम्भ (1 जनवरी, 2000, 12:00 UT) का JD मान क्या है?',
     },
     options: [
-      { en: '2,400,000.0', hi: '2,400,000.0' },
-      { en: '2,451,545.0', hi: '2,451,545.0' },
-      { en: '2,440,000.5', hi: '2,440,000.5' },
-      { en: '2,460,000.0', hi: '2,460,000.0' },
+      { en: '2,400,000.0', hi: '2,400,000.0', sa: '2,400,000.0', mai: '2,400,000.0', mr: '2,400,000.0', ta: '2,400,000.0', te: '2,400,000.0', bn: '2,400,000.0', kn: '2,400,000.0', gu: '2,400,000.0' },
+      { en: '2,451,545.0', hi: '2,451,545.0', sa: '2,451,545.0', mai: '2,451,545.0', mr: '2,451,545.0', ta: '2,451,545.0', te: '2,451,545.0', bn: '2,451,545.0', kn: '2,451,545.0', gu: '2,451,545.0' },
+      { en: '2,440,000.5', hi: '2,440,000.5', sa: '2,440,000.5', mai: '2,440,000.5', mr: '2,440,000.5', ta: '2,440,000.5', te: '2,440,000.5', bn: '2,440,000.5', kn: '2,440,000.5', gu: '2,440,000.5' },
+      { en: '2,460,000.0', hi: '2,460,000.0', sa: '2,460,000.0', mai: '2,460,000.0', mr: '2,460,000.0', ta: '2,460,000.0', te: '2,460,000.0', bn: '2,460,000.0', kn: '2,460,000.0', gu: '2,460,000.0' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -75,10 +75,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'JD रूपान्तरण एल्गोरिदम में जनवरी और फरवरी को पिछले वर्ष के महीने 13 और 14 क्यों माना जाता है?',
     },
     options: [
-      { en: 'To account for the Gregorian leap year correction', hi: 'ग्रेगोरियन अधिवर्ष सुधार के लिए' },
-      { en: 'Because the Roman calendar originally started in March', hi: 'क्योंकि रोमन कैलेण्डर मूलतः मार्च से आरम्भ होता था' },
-      { en: 'To simplify the floor(30.6001 x (M+1)) term', hi: 'floor(30.6001 × (M+1)) पद को सरल बनाने के लिए' },
-      { en: 'Both B and C are correct', hi: 'B और C दोनों सही हैं' },
+      { en: 'To account for the Gregorian leap year correction', hi: 'ग्रेगोरियन अधिवर्ष सुधार के लिए', sa: 'ग्रेगोरियन अधिवर्ष सुधार के लिए', mai: 'ग्रेगोरियन अधिवर्ष सुधार के लिए', mr: 'ग्रेगोरियन अधिवर्ष सुधार के लिए', ta: 'To account for the Gregorian leap year correction', te: 'To account for the Gregorian leap year correction', bn: 'To account for the Gregorian leap year correction', kn: 'To account for the Gregorian leap year correction', gu: 'To account for the Gregorian leap year correction' },
+      { en: 'Because the Roman calendar originally started in March', hi: 'क्योंकि रोमन कैलेण्डर मूलतः मार्च से आरम्भ होता था', sa: 'क्योंकि रोमन कैलेण्डर मूलतः मार्च से आरम्भ होता था', mai: 'क्योंकि रोमन कैलेण्डर मूलतः मार्च से आरम्भ होता था', mr: 'क्योंकि रोमन कैलेण्डर मूलतः मार्च से आरम्भ होता था', ta: 'Because the Roman calendar originally started in March', te: 'Because the Roman calendar originally started in March', bn: 'Because the Roman calendar originally started in March', kn: 'Because the Roman calendar originally started in March', gu: 'Because the Roman calendar originally started in March' },
+      { en: 'To simplify the floor(30.6001 x (M+1)) term', hi: 'floor(30.6001 × (M+1)) पद को सरल बनाने के लिए', sa: 'floor(30.6001 × (M+1)) पद को सरल बनाने के लिए', mai: 'floor(30.6001 × (M+1)) पद को सरल बनाने के लिए', mr: 'floor(30.6001 × (M+1)) पद को सरल बनाने के लिए', ta: 'To simplify the floor(30.6001 x (M+1)) term', te: 'To simplify the floor(30.6001 x (M+1)) term', bn: 'To simplify the floor(30.6001 x (M+1)) term', kn: 'To simplify the floor(30.6001 x (M+1)) term', gu: 'To simplify the floor(30.6001 x (M+1)) term' },
+      { en: 'Both B and C are correct', hi: 'B और C दोनों सही हैं', sa: 'B और C दोनों सही हैं', mai: 'B और C दोनों सही हैं', mr: 'B और C दोनों सही हैं', ta: 'Both B and C are correct', te: 'Both B and C are correct', bn: 'Both B and C are correct', kn: 'Both B and C are correct', gu: 'Both B and C are correct' },
     ],
     correctAnswer: 3,
     explanation: {
@@ -93,10 +93,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ग्रेगोरियन सुधार पद B = 2 - A + floor(A/4) किसके लिए है?',
     },
     options: [
-      { en: 'The precession of equinoxes', hi: 'अयनांश गति' },
-      { en: 'The difference between the Julian and Gregorian calendars (dropped leap days)', hi: 'जूलियन और ग्रेगोरियन कैलेण्डर के बीच अन्तर (हटाए गए अधिवर्ष दिन)' },
-      { en: 'Nutation corrections', hi: 'अयन-चलन सुधार' },
-      { en: 'The equation of time', hi: 'समय का समीकरण' },
+      { en: 'The precession of equinoxes', hi: 'अयनांश गति', sa: 'अयनांश गति', mai: 'अयनांश गति', mr: 'अयनांश गति', ta: 'The precession of equinoxes', te: 'The precession of equinoxes', bn: 'The precession of equinoxes', kn: 'The precession of equinoxes', gu: 'The precession of equinoxes' },
+      { en: 'The difference between the Julian and Gregorian calendars (dropped leap days)', hi: 'जूलियन और ग्रेगोरियन कैलेण्डर के बीच अन्तर (हटाए गए अधिवर्ष दिन)', sa: 'जूलियन और ग्रेगोरियन कैलेण्डर के बीच अन्तर (हटाए गए अधिवर्ष दिन)', mai: 'जूलियन और ग्रेगोरियन कैलेण्डर के बीच अन्तर (हटाए गए अधिवर्ष दिन)', mr: 'जूलियन और ग्रेगोरियन कैलेण्डर के बीच अन्तर (हटाए गए अधिवर्ष दिन)', ta: 'The difference between the Julian and Gregorian calendars (dropped leap days)', te: 'The difference between the Julian and Gregorian calendars (dropped leap days)', bn: 'The difference between the Julian and Gregorian calendars (dropped leap days)', kn: 'The difference between the Julian and Gregorian calendars (dropped leap days)', gu: 'The difference between the Julian and Gregorian calendars (dropped leap days)' },
+      { en: 'Nutation corrections', hi: 'अयन-चलन सुधार', sa: 'अयन-चलन सुधार', mai: 'अयन-चलन सुधार', mr: 'अयन-चलन सुधार', ta: 'Nutation corrections', te: 'Nutation corrections', bn: 'Nutation corrections', kn: 'Nutation corrections', gu: 'Nutation corrections' },
+      { en: 'The equation of time', hi: 'समय का समीकरण', sa: 'समय का समीकरण', mai: 'समय का समीकरण', mr: 'समय का समीकरण', ta: 'The equation of time', te: 'The equation of time', bn: 'The equation of time', kn: 'The equation of time', gu: 'The equation of time' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -123,10 +123,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'जूलियन शताब्दी (T) क्या है और इसकी गणना कैसे होती है?',
     },
     options: [
-      { en: 'T = (JD - 2451545.0) / 365.25', hi: 'T = (JD - 2451545.0) / 365.25' },
-      { en: 'T = (JD - 2451545.0) / 36525', hi: 'T = (JD - 2451545.0) / 36525' },
-      { en: 'T = (JD - 2400000.5) / 36525', hi: 'T = (JD - 2400000.5) / 36525' },
-      { en: 'T = JD / 36525', hi: 'T = JD / 36525' },
+      { en: 'T = (JD - 2451545.0) / 365.25', hi: 'T = (JD - 2451545.0) / 365.25', sa: 'T = (JD - 2451545.0) / 365.25', mai: 'T = (JD - 2451545.0) / 365.25', mr: 'T = (JD - 2451545.0) / 365.25', ta: 'T = (JD - 2451545.0) / 365.25', te: 'T = (JD - 2451545.0) / 365.25', bn: 'T = (JD - 2451545.0) / 365.25', kn: 'T = (JD - 2451545.0) / 365.25', gu: 'T = (JD - 2451545.0) / 365.25' },
+      { en: 'T = (JD - 2451545.0) / 36525', hi: 'T = (JD - 2451545.0) / 36525', sa: 'T = (JD - 2451545.0) / 36525', mai: 'T = (JD - 2451545.0) / 36525', mr: 'T = (JD - 2451545.0) / 36525', ta: 'T = (JD - 2451545.0) / 36525', te: 'T = (JD - 2451545.0) / 36525', bn: 'T = (JD - 2451545.0) / 36525', kn: 'T = (JD - 2451545.0) / 36525', gu: 'T = (JD - 2451545.0) / 36525' },
+      { en: 'T = (JD - 2400000.5) / 36525', hi: 'T = (JD - 2400000.5) / 36525', sa: 'T = (JD - 2400000.5) / 36525', mai: 'T = (JD - 2400000.5) / 36525', mr: 'T = (JD - 2400000.5) / 36525', ta: 'T = (JD - 2400000.5) / 36525', te: 'T = (JD - 2400000.5) / 36525', bn: 'T = (JD - 2400000.5) / 36525', kn: 'T = (JD - 2400000.5) / 36525', gu: 'T = (JD - 2400000.5) / 36525' },
+      { en: 'T = JD / 36525', hi: 'T = JD / 36525', sa: 'T = JD / 36525', mai: 'T = JD / 36525', mr: 'T = JD / 36525', ta: 'T = JD / 36525', te: 'T = JD / 36525', bn: 'T = JD / 36525', kn: 'T = JD / 36525', gu: 'T = JD / 36525' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -153,10 +153,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'आधुनिक खगोलशास्त्र के मानक युगारम्भ के रूप में J2000.0 क्यों चुना गया?',
     },
     options: [
-      { en: 'It marks a total solar eclipse visible from Greenwich', hi: 'यह ग्रीनविच से दृश्य पूर्ण सूर्यग्रहण चिह्नित करता है' },
-      { en: 'It is the start of a Mayan calendar cycle', hi: 'यह माया कैलेण्डर चक्र का आरम्भ है' },
-      { en: 'It is a round date near the present with well-determined star positions and precession', hi: 'यह वर्तमान के निकट एक सुविधाजनक तिथि है जिसके तारा-स्थान और अयनांश सटीक रूप से ज्ञात हैं' },
-      { en: 'It is when the ayanamsha equals exactly zero', hi: 'यह वह समय है जब अयनांश ठीक शून्य होता है' },
+      { en: 'It marks a total solar eclipse visible from Greenwich', hi: 'यह ग्रीनविच से दृश्य पूर्ण सूर्यग्रहण चिह्नित करता है', sa: 'यह ग्रीनविच से दृश्य पूर्ण सूर्यग्रहण चिह्नित करता है', mai: 'यह ग्रीनविच से दृश्य पूर्ण सूर्यग्रहण चिह्नित करता है', mr: 'यह ग्रीनविच से दृश्य पूर्ण सूर्यग्रहण चिह्नित करता है', ta: 'It marks a total solar eclipse visible from Greenwich', te: 'It marks a total solar eclipse visible from Greenwich', bn: 'It marks a total solar eclipse visible from Greenwich', kn: 'It marks a total solar eclipse visible from Greenwich', gu: 'It marks a total solar eclipse visible from Greenwich' },
+      { en: 'It is the start of a Mayan calendar cycle', hi: 'यह माया कैलेण्डर चक्र का आरम्भ है', sa: 'यह माया कैलेण्डर चक्र का आरम्भ है', mai: 'यह माया कैलेण्डर चक्र का आरम्भ है', mr: 'यह माया कैलेण्डर चक्र का आरम्भ है', ta: 'It is the start of a Mayan calendar cycle', te: 'It is the start of a Mayan calendar cycle', bn: 'It is the start of a Mayan calendar cycle', kn: 'It is the start of a Mayan calendar cycle', gu: 'It is the start of a Mayan calendar cycle' },
+      { en: 'It is a round date near the present with well-determined star positions and precession', hi: 'यह वर्तमान के निकट एक सुविधाजनक तिथि है जिसके तारा-स्थान और अयनांश सटीक रूप से ज्ञात हैं', sa: 'यह वर्तमान के निकट एक सुविधाजनक तिथि है जिसके तारा-स्थान और अयनांश सटीक रूप से ज्ञात हैं', mai: 'यह वर्तमान के निकट एक सुविधाजनक तिथि है जिसके तारा-स्थान और अयनांश सटीक रूप से ज्ञात हैं', mr: 'यह वर्तमान के निकट एक सुविधाजनक तिथि है जिसके तारा-स्थान और अयनांश सटीक रूप से ज्ञात हैं', ta: 'It is a round date near the present with well-determined star positions and precession', te: 'It is a round date near the present with well-determined star positions and precession', bn: 'It is a round date near the present with well-determined star positions and precession', kn: 'It is a round date near the present with well-determined star positions and precession', gu: 'It is a round date near the present with well-determined star positions and precession' },
+      { en: 'It is when the ayanamsha equals exactly zero', hi: 'यह वह समय है जब अयनांश ठीक शून्य होता है', sa: 'यह वह समय है जब अयनांश ठीक शून्य होता है', mai: 'यह वह समय है जब अयनांश ठीक शून्य होता है', mr: 'यह वह समय है जब अयनांश ठीक शून्य होता है', ta: 'It is when the ayanamsha equals exactly zero', te: 'It is when the ayanamsha equals exactly zero', bn: 'It is when the ayanamsha equals exactly zero', kn: 'It is when the ayanamsha equals exactly zero', gu: 'It is when the ayanamsha equals exactly zero' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -171,10 +171,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'हमारे पंचांग ऐप में किसी भी खगोलीय मात्रा की गणना का सबसे पहला चरण कौन-सा फ़ंक्शन कॉल है?',
     },
     options: [
-      { en: 'sunLongitude(jd)', hi: 'sunLongitude(jd)' },
-      { en: 'calculateTithi(jd)', hi: 'calculateTithi(jd)' },
-      { en: 'dateToJD(year, month, day, hour)', hi: 'dateToJD(year, month, day, hour)' },
-      { en: 'getLahiriAyanamsha(jd)', hi: 'getLahiriAyanamsha(jd)' },
+      { en: 'sunLongitude(jd)', hi: 'sunLongitude(jd)', sa: 'sunLongitude(jd)', mai: 'sunLongitude(jd)', mr: 'sunLongitude(jd)', ta: 'sunLongitude(jd)', te: 'sunLongitude(jd)', bn: 'sunLongitude(jd)', kn: 'sunLongitude(jd)', gu: 'sunLongitude(jd)' },
+      { en: 'calculateTithi(jd)', hi: 'calculateTithi(jd)', sa: 'calculateTithi(jd)', mai: 'calculateTithi(jd)', mr: 'calculateTithi(jd)', ta: 'calculateTithi(jd)', te: 'calculateTithi(jd)', bn: 'calculateTithi(jd)', kn: 'calculateTithi(jd)', gu: 'calculateTithi(jd)' },
+      { en: 'dateToJD(year, month, day, hour)', hi: 'dateToJD(year, month, day, hour)', sa: 'dateToJD(year, month, day, hour)', mai: 'dateToJD(year, month, day, hour)', mr: 'dateToJD(year, month, day, hour)', ta: 'dateToJD(year, month, day, hour)', te: 'dateToJD(year, month, day, hour)', bn: 'dateToJD(year, month, day, hour)', kn: 'dateToJD(year, month, day, hour)', gu: 'dateToJD(year, month, day, hour)' },
+      { en: 'getLahiriAyanamsha(jd)', hi: 'getLahiriAyanamsha(jd)', sa: 'getLahiriAyanamsha(jd)', mai: 'getLahiriAyanamsha(jd)', mr: 'getLahiriAyanamsha(jd)', ta: 'getLahiriAyanamsha(jd)', te: 'getLahiriAyanamsha(jd)', bn: 'getLahiriAyanamsha(jd)', kn: 'getLahiriAyanamsha(jd)', gu: 'getLahiriAyanamsha(jd)' },
     ],
     correctAnswer: 2,
     explanation: {

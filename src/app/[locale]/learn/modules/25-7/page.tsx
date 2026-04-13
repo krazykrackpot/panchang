@@ -5,16 +5,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_25_7', phase: 5, topic: 'Indian Mathematics', moduleNumber: '25.7',
-  title: { en: 'Calculus — Kerala, Not Cambridge', hi: 'कलन — केम्ब्रिज नहीं, केरल में' },
+  title: { en: 'Calculus — Kerala, Not Cambridge', hi: 'कलन — केम्ब्रिज नहीं, केरल में', sa: 'कलन — केम्ब्रिज नहीं, केरल में', mai: 'कलन — केम्ब्रिज नहीं, केरल में', mr: 'कलन — केम्ब्रिज नहीं, केरल में', ta: 'Calculus — Kerala, Not Cambridge', te: 'Calculus — Kerala, Not Cambridge', bn: 'Calculus — Kerala, Not Cambridge', kn: 'Calculus — Kerala, Not Cambridge', gu: 'Calculus — Kerala, Not Cambridge' },
   subtitle: {
     en: 'How Madhava of Sangamagrama discovered infinite series, proto-calculus, and convergence acceleration ~250 years before Newton and Leibniz',
     hi: 'संगमग्राम के माधव ने Newton और Leibniz से ~250 वर्ष पहले अनन्त श्रृंखला, प्रोटो-कलन और अभिसरण त्वरण की खोज कैसे की',
   },
   estimatedMinutes: 14,
   crossRefs: [
-    { label: { en: 'Module 25-3: Pi = 3.1416', hi: 'मॉड्यूल 25-3: π = 3.1416' }, href: '/learn/modules/25-3' },
-    { label: { en: 'Module 25-2: Sine Is Sanskrit', hi: 'मॉड्यूल 25-2: ज्या से Sine' }, href: '/learn/modules/25-2' },
-    { label: { en: 'Module 25-1: Zero', hi: 'मॉड्यूल 25-1: शून्य' }, href: '/learn/modules/25-1' },
+    { label: { en: 'Module 25-3: Pi = 3.1416', hi: 'मॉड्यूल 25-3: π = 3.1416', sa: 'मॉड्यूल 25-3: π = 3.1416', mai: 'मॉड्यूल 25-3: π = 3.1416', mr: 'मॉड्यूल 25-3: π = 3.1416', ta: 'Module 25-3: Pi = 3.1416', te: 'Module 25-3: Pi = 3.1416', bn: 'Module 25-3: Pi = 3.1416', kn: 'Module 25-3: Pi = 3.1416', gu: 'Module 25-3: Pi = 3.1416' }, href: '/learn/modules/25-3' },
+    { label: { en: 'Module 25-2: Sine Is Sanskrit', hi: 'मॉड्यूल 25-2: ज्या से Sine', sa: 'मॉड्यूल 25-2: ज्या से Sine', mai: 'मॉड्यूल 25-2: ज्या से Sine', mr: 'मॉड्यूल 25-2: ज्या से Sine', ta: 'Module 25-2: Sine Is Sanskrit', te: 'Module 25-2: Sine Is Sanskrit', bn: 'Module 25-2: Sine Is Sanskrit', kn: 'Module 25-2: Sine Is Sanskrit', gu: 'Module 25-2: Sine Is Sanskrit' }, href: '/learn/modules/25-2' },
+    { label: { en: 'Module 25-1: Zero', hi: 'मॉड्यूल 25-1: शून्य', sa: 'मॉड्यूल 25-1: शून्य', mai: 'मॉड्यूल 25-1: शून्य', mr: 'मॉड्यूल 25-1: शून्य', ta: 'Module 25-1: Zero', te: 'Module 25-1: Zero', bn: 'Module 25-1: Zero', kn: 'Module 25-1: Zero', gu: 'Module 25-1: Zero' }, href: '/learn/modules/25-1' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'केरल गणित स्कूल के संस्थापक और त्रिकोणमितीय फलनों के लिए अनन्त श्रृंखलाओं की खोज किसने की?',
     },
     options: [
-      { en: 'Nilakantha Somayaji', hi: 'नीलकण्ठ सोमयाजी' },
-      { en: 'Madhava of Sangamagrama', hi: 'संगमग्राम के माधव' },
-      { en: 'Jyeshthadeva', hi: 'ज्येष्ठदेव' },
-      { en: 'Parameshvara', hi: 'परमेश्वर' },
+      { en: 'Nilakantha Somayaji', hi: 'नीलकण्ठ सोमयाजी', sa: 'नीलकण्ठ सोमयाजी', mai: 'नीलकण्ठ सोमयाजी', mr: 'नीलकण्ठ सोमयाजी', ta: 'Nilakantha Somayaji', te: 'Nilakantha Somayaji', bn: 'Nilakantha Somayaji', kn: 'Nilakantha Somayaji', gu: 'Nilakantha Somayaji' },
+      { en: 'Madhava of Sangamagrama', hi: 'संगमग्राम के माधव', sa: 'संगमग्राम के माधव', mai: 'संगमग्राम के माधव', mr: 'संगमग्राम के माधव', ta: 'Madhava of Sangamagrama', te: 'Madhava of Sangamagrama', bn: 'Madhava of Sangamagrama', kn: 'Madhava of Sangamagrama', gu: 'Madhava of Sangamagrama' },
+      { en: 'Jyeshthadeva', hi: 'ज्येष्ठदेव', sa: 'ज्येष्ठदेव', mai: 'ज्येष्ठदेव', mr: 'ज्येष्ठदेव', ta: 'Jyeshthadeva', te: 'Jyeshthadeva', bn: 'Jyeshthadeva', kn: 'Jyeshthadeva', gu: 'Jyeshthadeva' },
+      { en: 'Parameshvara', hi: 'परमेश्वर', sa: 'परमेश्वर', mai: 'परमेश्वर', mr: 'परमेश्वर', ta: 'Parameshvara', te: 'Parameshvara', bn: 'Parameshvara', kn: 'Parameshvara', gu: 'Parameshvara' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -44,10 +44,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'संगमग्राम के माधव लगभग किस शताब्दी में रहे और काम किया?',
     },
     options: [
-      { en: '10th century CE', hi: '10वीं शताब्दी ई.' },
-      { en: '12th century CE', hi: '12वीं शताब्दी ई.' },
-      { en: '14th century CE (~1350 CE)', hi: '14वीं शताब्दी ई. (~1350 ई.)' },
-      { en: '16th century CE', hi: '16वीं शताब्दी ई.' },
+      { en: '10th century CE', hi: '10वीं शताब्दी ई.', sa: '10वीं शताब्दी ई.', mai: '10वीं शताब्दी ई.', mr: '10वीं शताब्दी ई.', ta: '10th century CE', te: '10th century CE', bn: '10th century CE', kn: '10th century CE', gu: '10th century CE' },
+      { en: '12th century CE', hi: '12वीं शताब्दी ई.', sa: '12वीं शताब्दी ई.', mai: '12वीं शताब्दी ई.', mr: '12वीं शताब्दी ई.', ta: '12th century CE', te: '12th century CE', bn: '12th century CE', kn: '12th century CE', gu: '12th century CE' },
+      { en: '14th century CE (~1350 CE)', hi: '14वीं शताब्दी ई. (~1350 ई.)', sa: '14वीं शताब्दी ई. (~1350 ई.)', mai: '14वीं शताब्दी ई. (~1350 ई.)', mr: '14वीं शताब्दी ई. (~1350 ई.)', ta: '14th century CE (~1350 CE)', te: '14th century CE (~1350 CE)', bn: '14th century CE (~1350 CE)', kn: '14th century CE (~1350 CE)', gu: '14th century CE (~1350 CE)' },
+      { en: '16th century CE', hi: '16वीं शताब्दी ई.', sa: '16वीं शताब्दी ई.', mai: '16वीं शताब्दी ई.', mr: '16वीं शताब्दी ई.', ta: '16th century CE', te: '16th century CE', bn: '16th century CE', kn: '16th century CE', gu: '16th century CE' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -62,10 +62,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'π/4 के लिए माधव-लाइबनित्ज़ श्रृंखला क्या है?',
     },
     options: [
-      { en: 'π/4 = 1 + 1/2 + 1/4 + 1/8 + ...', hi: 'π/4 = 1 + 1/2 + 1/4 + 1/8 + ...' },
-      { en: 'π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...', hi: 'π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...' },
-      { en: 'π/4 = 1/1² + 1/2² + 1/3² + ...', hi: 'π/4 = 1/1² + 1/2² + 1/3² + ...' },
-      { en: 'π/4 = 2 × 4/3 × 4/5 × 6/5 × ...', hi: 'π/4 = 2 × 4/3 × 4/5 × 6/5 × ...' },
+      { en: 'π/4 = 1 + 1/2 + 1/4 + 1/8 + ...', hi: 'π/4 = 1 + 1/2 + 1/4 + 1/8 + ...', sa: 'π/4 = 1 + 1/2 + 1/4 + 1/8 + ...', mai: 'π/4 = 1 + 1/2 + 1/4 + 1/8 + ...', mr: 'π/4 = 1 + 1/2 + 1/4 + 1/8 + ...', ta: 'π/4 = 1 + 1/2 + 1/4 + 1/8 + ...', te: 'π/4 = 1 + 1/2 + 1/4 + 1/8 + ...', bn: 'π/4 = 1 + 1/2 + 1/4 + 1/8 + ...', kn: 'π/4 = 1 + 1/2 + 1/4 + 1/8 + ...', gu: 'π/4 = 1 + 1/2 + 1/4 + 1/8 + ...' },
+      { en: 'π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...', hi: 'π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...', sa: 'π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...', mai: 'π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...', mr: 'π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...', ta: 'π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...', te: 'π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...', bn: 'π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...', kn: 'π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...', gu: 'π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...' },
+      { en: 'π/4 = 1/1² + 1/2² + 1/3² + ...', hi: 'π/4 = 1/1² + 1/2² + 1/3² + ...', sa: 'π/4 = 1/1² + 1/2² + 1/3² + ...', mai: 'π/4 = 1/1² + 1/2² + 1/3² + ...', mr: 'π/4 = 1/1² + 1/2² + 1/3² + ...', ta: 'π/4 = 1/1² + 1/2² + 1/3² + ...', te: 'π/4 = 1/1² + 1/2² + 1/3² + ...', bn: 'π/4 = 1/1² + 1/2² + 1/3² + ...', kn: 'π/4 = 1/1² + 1/2² + 1/3² + ...', gu: 'π/4 = 1/1² + 1/2² + 1/3² + ...' },
+      { en: 'π/4 = 2 × 4/3 × 4/5 × 6/5 × ...', hi: 'π/4 = 2 × 4/3 × 4/5 × 6/5 × ...', sa: 'π/4 = 2 × 4/3 × 4/5 × 6/5 × ...', mai: 'π/4 = 2 × 4/3 × 4/5 × 6/5 × ...', mr: 'π/4 = 2 × 4/3 × 4/5 × 6/5 × ...', ta: 'π/4 = 2 × 4/3 × 4/5 × 6/5 × ...', te: 'π/4 = 2 × 4/3 × 4/5 × 6/5 × ...', bn: 'π/4 = 2 × 4/3 × 4/5 × 6/5 × ...', kn: 'π/4 = 2 × 4/3 × 4/5 × 6/5 × ...', gu: 'π/4 = 2 × 4/3 × 4/5 × 6/5 × ...' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -80,10 +80,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'युक्तिभाषा — केरल स्कूल के परिणामों के औपचारिक प्रमाण वाला ग्रन्थ — किसने लिखा?',
     },
     options: [
-      { en: 'Madhava of Sangamagrama', hi: 'संगमग्राम के माधव' },
-      { en: 'Jyeshthadeva', hi: 'ज्येष्ठदेव' },
-      { en: 'Nilakantha Somayaji', hi: 'नीलकण्ठ सोमयाजी' },
-      { en: 'Narayana Pandita', hi: 'नारायण पण्डित' },
+      { en: 'Madhava of Sangamagrama', hi: 'संगमग्राम के माधव', sa: 'संगमग्राम के माधव', mai: 'संगमग्राम के माधव', mr: 'संगमग्राम के माधव', ta: 'Madhava of Sangamagrama', te: 'Madhava of Sangamagrama', bn: 'Madhava of Sangamagrama', kn: 'Madhava of Sangamagrama', gu: 'Madhava of Sangamagrama' },
+      { en: 'Jyeshthadeva', hi: 'ज्येष्ठदेव', sa: 'ज्येष्ठदेव', mai: 'ज्येष्ठदेव', mr: 'ज्येष्ठदेव', ta: 'Jyeshthadeva', te: 'Jyeshthadeva', bn: 'Jyeshthadeva', kn: 'Jyeshthadeva', gu: 'Jyeshthadeva' },
+      { en: 'Nilakantha Somayaji', hi: 'नीलकण्ठ सोमयाजी', sa: 'नीलकण्ठ सोमयाजी', mai: 'नीलकण्ठ सोमयाजी', mr: 'नीलकण्ठ सोमयाजी', ta: 'Nilakantha Somayaji', te: 'Nilakantha Somayaji', bn: 'Nilakantha Somayaji', kn: 'Nilakantha Somayaji', gu: 'Nilakantha Somayaji' },
+      { en: 'Narayana Pandita', hi: 'नारायण पण्डित', sa: 'नारायण पण्डित', mai: 'नारायण पण्डित', mr: 'नारायण पण्डित', ta: 'Narayana Pandita', te: 'Narayana Pandita', bn: 'Narayana Pandita', kn: 'Narayana Pandita', gu: 'Narayana Pandita' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -98,10 +98,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'युक्तिभाषा लगभग किस वर्ष लिखी गई?',
     },
     options: [
-      { en: '~1350 CE', hi: '~1350 ई.' },
-      { en: '~1450 CE', hi: '~1450 ई.' },
-      { en: '~1530 CE', hi: '~1530 ई.' },
-      { en: '~1620 CE', hi: '~1620 ई.' },
+      { en: '~1350 CE', hi: '~1350 ई.', sa: '~1350 ई.', mai: '~1350 ई.', mr: '~1350 ई.', ta: '~1350 CE', te: '~1350 CE', bn: '~1350 CE', kn: '~1350 CE', gu: '~1350 CE' },
+      { en: '~1450 CE', hi: '~1450 ई.', sa: '~1450 ई.', mai: '~1450 ई.', mr: '~1450 ई.', ta: '~1450 CE', te: '~1450 CE', bn: '~1450 CE', kn: '~1450 CE', gu: '~1450 CE' },
+      { en: '~1530 CE', hi: '~1530 ई.', sa: '~1530 ई.', mai: '~1530 ई.', mr: '~1530 ई.', ta: '~1530 CE', te: '~1530 CE', bn: '~1530 CE', kn: '~1530 CE', gu: '~1530 CE' },
+      { en: '~1620 CE', hi: '~1620 ई.', sa: '~1620 ई.', mai: '~1620 ई.', mr: '~1620 ई.', ta: '~1620 CE', te: '~1620 CE', bn: '~1620 CE', kn: '~1620 CE', gu: '~1620 CE' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -116,10 +116,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'माधव ने Newton से कितने वर्ष पहले अपनी अनन्त श्रृंखला के परिणाम विकसित किए?',
     },
     options: [
-      { en: 'About 50 years', hi: 'लगभग 50 वर्ष' },
-      { en: 'About 100 years', hi: 'लगभग 100 वर्ष' },
-      { en: 'About 250–340 years', hi: 'लगभग 250–340 वर्ष' },
-      { en: 'About 500 years', hi: 'लगभग 500 वर्ष' },
+      { en: 'About 50 years', hi: 'लगभग 50 वर्ष', sa: 'लगभग 50 वर्ष', mai: 'लगभग 50 वर्ष', mr: 'लगभग 50 वर्ष', ta: 'About 50 years', te: 'About 50 years', bn: 'About 50 years', kn: 'About 50 years', gu: 'About 50 years' },
+      { en: 'About 100 years', hi: 'लगभग 100 वर्ष', sa: 'लगभग 100 वर्ष', mai: 'लगभग 100 वर्ष', mr: 'लगभग 100 वर्ष', ta: 'About 100 years', te: 'About 100 years', bn: 'About 100 years', kn: 'About 100 years', gu: 'About 100 years' },
+      { en: 'About 250–340 years', hi: 'लगभग 250–340 वर्ष', sa: 'लगभग 250–340 वर्ष', mai: 'लगभग 250–340 वर्ष', mr: 'लगभग 250–340 वर्ष', ta: 'About 250–340 years', te: 'About 250–340 years', bn: 'About 250–340 years', kn: 'About 250–340 years', gu: 'About 250–340 years' },
+      { en: 'About 500 years', hi: 'लगभग 500 वर्ष', sa: 'लगभग 500 वर्ष', mai: 'लगभग 500 वर्ष', mr: 'लगभग 500 वर्ष', ta: 'About 500 years', te: 'About 500 years', bn: 'About 500 years', kn: 'About 500 years', gu: 'About 500 years' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -134,10 +134,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'Newton का वह यूरोपीय समकालीन कौन था जिसने उसी समय स्वतन्त्र रूप से कलन विकसित किया?',
     },
     options: [
-      { en: 'René Descartes', hi: 'रेने देकार्त' },
-      { en: 'Gottfried Leibniz', hi: 'गॉटफ्रीड लाइबनित्ज़' },
-      { en: 'Blaise Pascal', hi: 'ब्लेज़ पास्कल' },
-      { en: 'Pierre de Fermat', hi: 'पियर डे फर्मा' },
+      { en: 'René Descartes', hi: 'रेने देकार्त', sa: 'रेने देकार्त', mai: 'रेने देकार्त', mr: 'रेने देकार्त', ta: 'René Descartes', te: 'René Descartes', bn: 'René Descartes', kn: 'René Descartes', gu: 'René Descartes' },
+      { en: 'Gottfried Leibniz', hi: 'गॉटफ्रीड लाइबनित्ज़', sa: 'गॉटफ्रीड लाइबनित्ज़', mai: 'गॉटफ्रीड लाइबनित्ज़', mr: 'गॉटफ्रीड लाइबनित्ज़', ta: 'Gottfried Leibniz', te: 'Gottfried Leibniz', bn: 'Gottfried Leibniz', kn: 'Gottfried Leibniz', gu: 'Gottfried Leibniz' },
+      { en: 'Blaise Pascal', hi: 'ब्लेज़ पास्कल', sa: 'ब्लेज़ पास्कल', mai: 'ब्लेज़ पास्कल', mr: 'ब्लेज़ पास्कल', ta: 'Blaise Pascal', te: 'Blaise Pascal', bn: 'Blaise Pascal', kn: 'Blaise Pascal', gu: 'Blaise Pascal' },
+      { en: 'Pierre de Fermat', hi: 'पियर डे फर्मा', sa: 'पियर डे फर्मा', mai: 'पियर डे फर्मा', mr: 'पियर डे फर्मा', ta: 'Pierre de Fermat', te: 'Pierre de Fermat', bn: 'Pierre de Fermat', kn: 'Pierre de Fermat', gu: 'Pierre de Fermat' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -152,10 +152,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'केरल स्कूल के पास क्या था जिसने उनकी श्रृंखलाओं को केवल मूल माधव-लाइबनित्ज़ श्रृंखला से अधिक व्यावहारिक रूप से उपयोगी बनाया?',
     },
     options: [
-      { en: 'Negative number arithmetic', hi: 'ऋण संख्या गणित' },
-      { en: 'Correction terms for faster convergence', hi: 'तेज़ अभिसरण के लिए सुधार पद' },
-      { en: 'Logarithm tables', hi: 'लघुगणक सारणियाँ' },
-      { en: 'A mechanical calculator', hi: 'एक यांत्रिक गणना यन्त्र' },
+      { en: 'Negative number arithmetic', hi: 'ऋण संख्या गणित', sa: 'ऋण संख्या गणित', mai: 'ऋण संख्या गणित', mr: 'ऋण संख्या गणित', ta: 'Negative number arithmetic', te: 'Negative number arithmetic', bn: 'Negative number arithmetic', kn: 'Negative number arithmetic', gu: 'Negative number arithmetic' },
+      { en: 'Correction terms for faster convergence', hi: 'तेज़ अभिसरण के लिए सुधार पद', sa: 'तेज़ अभिसरण के लिए सुधार पद', mai: 'तेज़ अभिसरण के लिए सुधार पद', mr: 'तेज़ अभिसरण के लिए सुधार पद', ta: 'Correction terms for faster convergence', te: 'Correction terms for faster convergence', bn: 'Correction terms for faster convergence', kn: 'Correction terms for faster convergence', gu: 'Correction terms for faster convergence' },
+      { en: 'Logarithm tables', hi: 'लघुगणक सारणियाँ', sa: 'लघुगणक सारणियाँ', mai: 'लघुगणक सारणियाँ', mr: 'लघुगणक सारणियाँ', ta: 'Logarithm tables', te: 'Logarithm tables', bn: 'Logarithm tables', kn: 'Logarithm tables', gu: 'Logarithm tables' },
+      { en: 'A mechanical calculator', hi: 'एक यांत्रिक गणना यन्त्र', sa: 'एक यांत्रिक गणना यन्त्र', mai: 'एक यांत्रिक गणना यन्त्र', mr: 'एक यांत्रिक गणना यन्त्र', ta: 'A mechanical calculator', te: 'A mechanical calculator', bn: 'A mechanical calculator', kn: 'A mechanical calculator', gu: 'A mechanical calculator' },
     ],
     correctAnswer: 1,
     explanation: {

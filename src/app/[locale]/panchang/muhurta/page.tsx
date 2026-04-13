@@ -8,12 +8,12 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
 import MuhurtaCard from '@/components/muhurta/MuhurtaCard';
 import ConflictSection from '@/components/muhurta/ConflictSection';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { MuhurtaIcon } from '@/components/icons/PanchangIcons';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-const MUHURTAS: { number: number; name: { en: string; hi: string; sa: string }; nature: 'auspicious' | 'inauspicious' | 'neutral' }[] = [
+const MUHURTAS: { number: number; name: LocaleText; nature: 'auspicious' | 'inauspicious' | 'neutral' }[] = [
   { number: 1, name: { en: 'Rudra', hi: 'रुद्र', sa: 'रुद्रः' }, nature: 'inauspicious' },
   { number: 2, name: { en: 'Ahi', hi: 'अहि', sa: 'अहिः' }, nature: 'inauspicious' },
   { number: 3, name: { en: 'Mitra', hi: 'मित्र', sa: 'मित्रः' }, nature: 'auspicious' },

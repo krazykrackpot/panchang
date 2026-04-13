@@ -6,7 +6,7 @@
 
 import type { KundaliData } from '@/types/kundali';
 import type { VarshaphalData } from '@/types/varshaphal';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText} from '@/types/panchang';
 import { computeMonthlyTransits, type MonthlyTransitSnapshot } from './monthly-transit';
 import { computeYearRating, type YearRating } from './year-rating';
 import { generateDashaNarrative, type DashaNarrative } from './dasha-narrative';
@@ -15,7 +15,7 @@ export interface KeyDate {
   date: string;
   quarter: 1 | 2 | 3 | 4;
   type: 'dasha_transition' | 'sign_change' | 'retrograde' | 'eclipse';
-  description: Trilingual;
+  description: LocaleText;
 }
 
 export interface AnnualForecast {
@@ -32,12 +32,12 @@ export interface AnnualForecast {
 export interface RemedyRecommendation {
   type: 'gemstone' | 'mantra' | 'practice';
   planetId: number;
-  planetName: Trilingual;
-  recommendation: Trilingual;
+  planetName: LocaleText;
+  recommendation: LocaleText;
 }
 
 // Gemstone map
-const GEMSTONE_MAP: Record<number, Trilingual> = {
+const GEMSTONE_MAP: Record<number, LocaleText> = {
   0: { en: 'Ruby (Manikya)', hi: 'माणिक्य', sa: 'माणिक्यम्' },
   1: { en: 'Pearl (Moti)', hi: 'मोती', sa: 'मुक्ता' },
   2: { en: 'Red Coral (Moonga)', hi: 'मूंगा', sa: 'प्रवालम्' },
@@ -49,7 +49,7 @@ const GEMSTONE_MAP: Record<number, Trilingual> = {
   8: { en: 'Cat\'s Eye (Lehsunia)', hi: 'लहसुनिया', sa: 'वैदूर्यम्' },
 };
 
-const MANTRA_MAP: Record<number, Trilingual> = {
+const MANTRA_MAP: Record<number, LocaleText> = {
   0: { en: 'Om Hraam Hreem Hraum Sah Suryaya Namah', hi: 'ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः', sa: 'ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः' },
   1: { en: 'Om Shraam Shreem Shraum Sah Chandraya Namah', hi: 'ॐ श्रां श्रीं श्रौं सः चन्द्राय नमः', sa: 'ॐ श्रां श्रीं श्रौं सः चन्द्राय नमः' },
   2: { en: 'Om Kraam Kreem Kraum Sah Bhaumaya Namah', hi: 'ॐ क्रां क्रीं क्रौं सः भौमाय नमः', sa: 'ॐ क्रां क्रीं क्रौं सः भौमाय नमः' },

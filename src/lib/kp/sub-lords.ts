@@ -15,7 +15,7 @@
  */
 
 import { GRAHAS } from '@/lib/constants/grahas';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText} from '@/types/panchang';
 import type { SubLordInfo } from '@/types/kp';
 
 // ---------------------------------------------------------------------------
@@ -133,7 +133,7 @@ export const SUB_LORD_TABLE: SubLordTableEntry[] = buildSubLordTable();
 // Lookup helpers
 // ---------------------------------------------------------------------------
 
-function grahaName(id: number): Trilingual {
+function grahaName(id: number): LocaleText {
   return GRAHAS[id]?.name ?? { en: '', hi: '', sa: '' };
 }
 

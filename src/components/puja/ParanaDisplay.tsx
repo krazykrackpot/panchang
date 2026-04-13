@@ -1,4 +1,5 @@
 'use client';
+import { tl } from '@/lib/utils/trilingual';
 
 import { useMemo } from 'react';
 import { Sunrise, MapPin } from 'lucide-react';
@@ -98,19 +99,19 @@ export default function ParanaDisplay({
         <div className="flex items-center gap-2">
           <Sunrise className="w-4 h-4 text-amber-400/70" />
           <span className="text-amber-300 text-sm font-semibold tracking-wide">
-            {LABELS.title[locale]}
+            {tl(LABELS.title, locale)}
           </span>
         </div>
 
         {/* Next-day date badge */}
         <span className="text-xs font-medium text-amber-400/60 bg-amber-500/10 border border-amber-500/15 px-2.5 py-1 rounded-full">
-          {LABELS.nextDay[locale]} &middot; {nextDayStr}
+          {tl(LABELS.nextDay, locale)} &middot; {nextDayStr}
         </span>
       </div>
 
       {/* Instruction text */}
       <p className="text-xs text-text-secondary/70 mb-2">
-        {LABELS.breakFastBetween[locale]}
+        {tl(LABELS.breakFastBetween, locale)}
       </p>
 
       {/* Big time display */}
@@ -127,7 +128,7 @@ export default function ParanaDisplay({
       {/* Duration + Location row */}
       <div className="flex items-center flex-wrap gap-x-4 gap-y-1.5 text-xs text-text-secondary/75">
         <span>
-          {LABELS.duration[locale]}:{' '}
+          {tl(LABELS.duration, locale)}:{' '}
           <span className="text-text-secondary/80 font-medium">{duration}</span>
         </span>
         <span className="inline-flex items-center gap-1">

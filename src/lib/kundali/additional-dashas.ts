@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 /**
  * Additional Dasha Systems — Narayana, Kalachakra, Shoola, Sthira, Sudarsana
  * Reference: BPHS Ch.19-21, Jaimini Sutras
@@ -5,7 +6,7 @@
 
 import type { PlanetPosition } from '@/types/kundali';
 
-type Tri = { en: string; hi: string; sa: string };
+type Tri = LocaleText;
 
 export interface RasiDashaEntry {
   sign: number;
@@ -340,7 +341,7 @@ export function calculateShoolaLords(ascSign: number, planets: PlanetPosition[])
 
 // ─── Additional Graha (Nakshatra-based) Dasha Systems ────────────────────────
 
-const PLANET_NAME_MAP: Record<string, { en: string; hi: string; sa: string }> = {
+const PLANET_NAME_MAP: Record<string, LocaleText> = {
   'Sun': { en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' },
   'Moon': { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्रः' },
   'Mars': { en: 'Mars', hi: 'मंगल', sa: 'मङ्गलः' },
@@ -354,7 +355,7 @@ const PLANET_NAME_MAP: Record<string, { en: string; hi: string; sa: string }> = 
 
 export interface GrahaDashaEntry {
   planet: string;
-  planetName: { en: string; hi: string; sa: string };
+  planetName: LocaleText;
   years: number;
   startDate: string;
   endDate: string;

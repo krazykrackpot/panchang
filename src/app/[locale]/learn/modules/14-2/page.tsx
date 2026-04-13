@@ -5,16 +5,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_14_2', phase: 4, topic: 'Compatibility', moduleNumber: '14.2',
-  title: { en: 'Mangal Dosha in Marriage', hi: 'विवाह में मंगल दोष' },
+  title: { en: 'Mangal Dosha in Marriage', hi: 'विवाह में मंगल दोष', sa: 'विवाह में मंगल दोष', mai: 'विवाह में मंगल दोष', mr: 'विवाह में मंगल दोष', ta: 'Mangal Dosha in Marriage', te: 'Mangal Dosha in Marriage', bn: 'Mangal Dosha in Marriage', kn: 'Mangal Dosha in Marriage', gu: 'Mangal Dosha in Marriage' },
   subtitle: {
     en: 'Mars in houses 1, 2, 4, 7, 8, 12 from Lagna/Moon/Venus — its real impact, cancellations, and modern perspective',
     hi: 'लग्न/चन्द्र/शुक्र से भाव 1, 2, 4, 7, 8, 12 में मंगल — वास्तविक प्रभाव, निरस्तीकरण, और आधुनिक दृष्टिकोण',
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Module 14-1: Kundali Milan', hi: 'मॉड्यूल 14-1: कुण्डली मिलान' }, href: '/learn/modules/14-1' },
-    { label: { en: 'Module 14-3: Timing Marriage Events', hi: 'मॉड्यूल 14-3: विवाह समय निर्धारण' }, href: '/learn/modules/14-3' },
-    { label: { en: 'Doshas Deep Dive', hi: 'दोष विस्तार' }, href: '/learn/doshas' },
+    { label: { en: 'Module 14-1: Kundali Milan', hi: 'मॉड्यूल 14-1: कुण्डली मिलान', sa: 'मॉड्यूल 14-1: कुण्डली मिलान', mai: 'मॉड्यूल 14-1: कुण्डली मिलान', mr: 'मॉड्यूल 14-1: कुण्डली मिलान', ta: 'Module 14-1: Kundali Milan', te: 'Module 14-1: Kundali Milan', bn: 'Module 14-1: Kundali Milan', kn: 'Module 14-1: Kundali Milan', gu: 'Module 14-1: Kundali Milan' }, href: '/learn/modules/14-1' },
+    { label: { en: 'Module 14-3: Timing Marriage Events', hi: 'मॉड्यूल 14-3: विवाह समय निर्धारण', sa: 'मॉड्यूल 14-3: विवाह समय निर्धारण', mai: 'मॉड्यूल 14-3: विवाह समय निर्धारण', mr: 'मॉड्यूल 14-3: विवाह समय निर्धारण', ta: 'Module 14-3: Timing Marriage Events', te: 'Module 14-3: Timing Marriage Events', bn: 'Module 14-3: Timing Marriage Events', kn: 'Module 14-3: Timing Marriage Events', gu: 'Module 14-3: Timing Marriage Events' }, href: '/learn/modules/14-3' },
+    { label: { en: 'Doshas Deep Dive', hi: 'दोष विस्तार', sa: 'दोष विस्तार', mai: 'दोष विस्तार', mr: 'दोष विस्तार', ta: 'Doshas Deep Dive', te: 'Doshas Deep Dive', bn: 'Doshas Deep Dive', kn: 'Doshas Deep Dive', gu: 'Doshas Deep Dive' }, href: '/learn/doshas' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मंगल दोष पारम्परिक रूप से किन सन्दर्भ बिन्दुओं से जाँचा जाता है?',
     },
     options: [
-      { en: 'Only from Lagna (Ascendant)', hi: 'केवल लग्न से' },
-      { en: 'From Lagna, Moon, and Venus', hi: 'लग्न, चन्द्र, और शुक्र से' },
-      { en: 'Only from Moon', hi: 'केवल चन्द्र से' },
-      { en: 'From Sun and Jupiter', hi: 'सूर्य और बृहस्पति से' },
+      { en: 'Only from Lagna (Ascendant)', hi: 'केवल लग्न से', sa: 'केवल लग्न से', mai: 'केवल लग्न से', mr: 'केवल लग्न से', ta: 'Only from Lagna (Ascendant)', te: 'Only from Lagna (Ascendant)', bn: 'Only from Lagna (Ascendant)', kn: 'Only from Lagna (Ascendant)', gu: 'Only from Lagna (Ascendant)' },
+      { en: 'From Lagna, Moon, and Venus', hi: 'लग्न, चन्द्र, और शुक्र से', sa: 'लग्न, चन्द्र, और शुक्र से', mai: 'लग्न, चन्द्र, और शुक्र से', mr: 'लग्न, चन्द्र, और शुक्र से', ta: 'From Lagna, Moon, and Venus', te: 'From Lagna, Moon, and Venus', bn: 'From Lagna, Moon, and Venus', kn: 'From Lagna, Moon, and Venus', gu: 'From Lagna, Moon, and Venus' },
+      { en: 'Only from Moon', hi: 'केवल चन्द्र से', sa: 'केवल चन्द्र से', mai: 'केवल चन्द्र से', mr: 'केवल चन्द्र से', ta: 'Only from Moon', te: 'Only from Moon', bn: 'Only from Moon', kn: 'Only from Moon', gu: 'Only from Moon' },
+      { en: 'From Sun and Jupiter', hi: 'सूर्य और बृहस्पति से', sa: 'सूर्य और बृहस्पति से', mai: 'सूर्य और बृहस्पति से', mr: 'सूर्य और बृहस्पति से', ta: 'From Sun and Jupiter', te: 'From Sun and Jupiter', bn: 'From Sun and Jupiter', kn: 'From Sun and Jupiter', gu: 'From Sun and Jupiter' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -44,10 +44,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'लगभग कितने प्रतिशत कुण्डलियों में किसी प्रकार का मंगल दोष होता है?',
     },
     options: [
-      { en: 'About 10%', hi: 'लगभग 10%' },
-      { en: 'About 25%', hi: 'लगभग 25%' },
-      { en: 'About 40%', hi: 'लगभग 40%' },
-      { en: 'About 75%', hi: 'लगभग 75%' },
+      { en: 'About 10%', hi: 'लगभग 10%', sa: 'लगभग 10%', mai: 'लगभग 10%', mr: 'लगभग 10%', ta: 'About 10%', te: 'About 10%', bn: 'About 10%', kn: 'About 10%', gu: 'About 10%' },
+      { en: 'About 25%', hi: 'लगभग 25%', sa: 'लगभग 25%', mai: 'लगभग 25%', mr: 'लगभग 25%', ta: 'About 25%', te: 'About 25%', bn: 'About 25%', kn: 'About 25%', gu: 'About 25%' },
+      { en: 'About 40%', hi: 'लगभग 40%', sa: 'लगभग 40%', mai: 'लगभग 40%', mr: 'लगभग 40%', ta: 'About 40%', te: 'About 40%', bn: 'About 40%', kn: 'About 40%', gu: 'About 40%' },
+      { en: 'About 75%', hi: 'लगभग 75%', sa: 'लगभग 75%', mai: 'लगभग 75%', mr: 'लगभग 75%', ta: 'About 75%', te: 'About 75%', bn: 'About 75%', kn: 'About 75%', gu: 'About 75%' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -74,10 +74,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'जब दोनों साथियों को मंगल दोष हो तो क्या होता है?',
     },
     options: [
-      { en: 'The dosha doubles in severity', hi: 'दोष की गम्भीरता दोगुनी हो जाती है' },
-      { en: 'It cancels out — mutual Mangal Dosha is considered a cancellation', hi: 'यह निरस्त हो जाता है — पारस्परिक मंगल दोष निरस्तीकरण माना जाता है' },
+      { en: 'The dosha doubles in severity', hi: 'दोष की गम्भीरता दोगुनी हो जाती है', sa: 'दोष की गम्भीरता दोगुनी हो जाती है', mai: 'दोष की गम्भीरता दोगुनी हो जाती है', mr: 'दोष की गम्भीरता दोगुनी हो जाती है', ta: 'The dosha doubles in severity', te: 'The dosha doubles in severity', bn: 'The dosha doubles in severity', kn: 'The dosha doubles in severity', gu: 'The dosha doubles in severity' },
+      { en: 'It cancels out — mutual Mangal Dosha is considered a cancellation', hi: 'यह निरस्त हो जाता है — पारस्परिक मंगल दोष निरस्तीकरण माना जाता है', sa: 'यह निरस्त हो जाता है — पारस्परिक मंगल दोष निरस्तीकरण माना जाता है', mai: 'यह निरस्त हो जाता है — पारस्परिक मंगल दोष निरस्तीकरण माना जाता है', mr: 'यह निरस्त हो जाता है — पारस्परिक मंगल दोष निरस्तीकरण माना जाता है', ta: 'It cancels out — mutual Mangal Dosha is considered a cancellation', te: 'It cancels out — mutual Mangal Dosha is considered a cancellation', bn: 'It cancels out — mutual Mangal Dosha is considered a cancellation', kn: 'It cancels out — mutual Mangal Dosha is considered a cancellation', gu: 'It cancels out — mutual Mangal Dosha is considered a cancellation' },
       { en: 'Only the male partner\'s dosha counts', hi: 'केवल पुरुष साथी का दोष गिना जाता है' },
-      { en: 'The marriage must happen on Tuesday', hi: 'विवाह मंगलवार को होना चाहिए' },
+      { en: 'The marriage must happen on Tuesday', hi: 'विवाह मंगलवार को होना चाहिए', sa: 'विवाह मंगलवार को होना चाहिए', mai: 'विवाह मंगलवार को होना चाहिए', mr: 'विवाह मंगलवार को होना चाहिए', ta: 'The marriage must happen on Tuesday', te: 'The marriage must happen on Tuesday', bn: 'The marriage must happen on Tuesday', kn: 'The marriage must happen on Tuesday', gu: 'The marriage must happen on Tuesday' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -92,10 +92,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'इनमें से कौन मंगल दोष की शास्त्रीय निरस्तीकरण शर्त नहीं है?',
     },
     options: [
-      { en: 'Mars in Capricorn (exalted)', hi: 'मकर में मंगल (उच्च)' },
-      { en: 'Jupiter aspects the dosha house', hi: 'बृहस्पति की दोष भाव पर दृष्टि' },
-      { en: 'Mercury is retrograde in the chart', hi: 'कुण्डली में बुध वक्री है' },
-      { en: 'Partner also has Mangal Dosha', hi: 'साथी को भी मंगल दोष है' },
+      { en: 'Mars in Capricorn (exalted)', hi: 'मकर में मंगल (उच्च)', sa: 'मकर में मंगल (उच्च)', mai: 'मकर में मंगल (उच्च)', mr: 'मकर में मंगल (उच्च)', ta: 'Mars in Capricorn (exalted)', te: 'Mars in Capricorn (exalted)', bn: 'Mars in Capricorn (exalted)', kn: 'Mars in Capricorn (exalted)', gu: 'Mars in Capricorn (exalted)' },
+      { en: 'Jupiter aspects the dosha house', hi: 'बृहस्पति की दोष भाव पर दृष्टि', sa: 'बृहस्पति की दोष भाव पर दृष्टि', mai: 'बृहस्पति की दोष भाव पर दृष्टि', mr: 'बृहस्पति की दोष भाव पर दृष्टि', ta: 'Jupiter aspects the dosha house', te: 'Jupiter aspects the dosha house', bn: 'Jupiter aspects the dosha house', kn: 'Jupiter aspects the dosha house', gu: 'Jupiter aspects the dosha house' },
+      { en: 'Mercury is retrograde in the chart', hi: 'कुण्डली में बुध वक्री है', sa: 'कुण्डली में बुध वक्री है', mai: 'कुण्डली में बुध वक्री है', mr: 'कुण्डली में बुध वक्री है', ta: 'Mercury is retrograde in the chart', te: 'Mercury is retrograde in the chart', bn: 'Mercury is retrograde in the chart', kn: 'Mercury is retrograde in the chart', gu: 'Mercury is retrograde in the chart' },
+      { en: 'Partner also has Mangal Dosha', hi: 'साथी को भी मंगल दोष है', sa: 'साथी को भी मंगल दोष है', mai: 'साथी को भी मंगल दोष है', mr: 'साथी को भी मंगल दोष है', ta: 'Partner also has Mangal Dosha', te: 'Partner also has Mangal Dosha', bn: 'Partner also has Mangal Dosha', kn: 'Partner also has Mangal Dosha', gu: 'Partner also has Mangal Dosha' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -122,10 +122,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मंगल दोष वास्तव में व्यक्ति के व्यक्तित्व के बारे में क्या दर्शाता है?',
     },
     options: [
-      { en: 'The person is cursed and will harm their spouse', hi: 'व्यक्ति शापित है और अपने जीवनसाथी को हानि पहुँचाएगा' },
-      { en: 'Assertive personality with passion and potential for arguments', hi: 'जुनून और वाद-विवाद की सम्भावना सहित दृढ़ व्यक्तित्व' },
-      { en: 'The person should never marry', hi: 'व्यक्ति को कभी विवाह नहीं करना चाहिए' },
-      { en: 'No personality significance — purely medical', hi: 'कोई व्यक्तित्व महत्व नहीं — पूर्णतया चिकित्सीय' },
+      { en: 'The person is cursed and will harm their spouse', hi: 'व्यक्ति शापित है और अपने जीवनसाथी को हानि पहुँचाएगा', sa: 'व्यक्ति शापित है और अपने जीवनसाथी को हानि पहुँचाएगा', mai: 'व्यक्ति शापित है और अपने जीवनसाथी को हानि पहुँचाएगा', mr: 'व्यक्ति शापित है और अपने जीवनसाथी को हानि पहुँचाएगा', ta: 'The person is cursed and will harm their spouse', te: 'The person is cursed and will harm their spouse', bn: 'The person is cursed and will harm their spouse', kn: 'The person is cursed and will harm their spouse', gu: 'The person is cursed and will harm their spouse' },
+      { en: 'Assertive personality with passion and potential for arguments', hi: 'जुनून और वाद-विवाद की सम्भावना सहित दृढ़ व्यक्तित्व', sa: 'जुनून और वाद-विवाद की सम्भावना सहित दृढ़ व्यक्तित्व', mai: 'जुनून और वाद-विवाद की सम्भावना सहित दृढ़ व्यक्तित्व', mr: 'जुनून और वाद-विवाद की सम्भावना सहित दृढ़ व्यक्तित्व', ta: 'Assertive personality with passion and potential for arguments', te: 'Assertive personality with passion and potential for arguments', bn: 'Assertive personality with passion and potential for arguments', kn: 'Assertive personality with passion and potential for arguments', gu: 'Assertive personality with passion and potential for arguments' },
+      { en: 'The person should never marry', hi: 'व्यक्ति को कभी विवाह नहीं करना चाहिए', sa: 'व्यक्ति को कभी विवाह नहीं करना चाहिए', mai: 'व्यक्ति को कभी विवाह नहीं करना चाहिए', mr: 'व्यक्ति को कभी विवाह नहीं करना चाहिए', ta: 'The person should never marry', te: 'The person should never marry', bn: 'The person should never marry', kn: 'The person should never marry', gu: 'The person should never marry' },
+      { en: 'No personality significance — purely medical', hi: 'कोई व्यक्तित्व महत्व नहीं — पूर्णतया चिकित्सीय', sa: 'कोई व्यक्तित्व महत्व नहीं — पूर्णतया चिकित्सीय', mai: 'कोई व्यक्तित्व महत्व नहीं — पूर्णतया चिकित्सीय', mr: 'कोई व्यक्तित्व महत्व नहीं — पूर्णतया चिकित्सीय', ta: 'No personality significance — purely medical', te: 'No personality significance — purely medical', bn: 'No personality significance — purely medical', kn: 'No personality significance — purely medical', gu: 'No personality significance — purely medical' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -140,10 +140,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कुम्भ विवाह क्या है?',
     },
     options: [
-      { en: 'A marriage ceremony performed during Kumbh Mela', hi: 'कुम्भ मेला के दौरान की जाने वाली विवाह उपचार' },
-      { en: 'A symbolic marriage to a clay pot or tree to neutralize Mars dosha', hi: 'मंगल दोष निष्प्रभाव करने के लिए मिट्टी के घड़े या वृक्ष से प्रतीकात्मक विवाह' },
-      { en: 'A type of Vedic wedding ceremony', hi: 'एक प्रकार का वैदिक विवाह संस्कार' },
-      { en: 'Marriage in Aquarius (Kumbha) season', hi: 'कुम्भ ऋतु में विवाह' },
+      { en: 'A marriage ceremony performed during Kumbh Mela', hi: 'कुम्भ मेला के दौरान की जाने वाली विवाह उपचार', sa: 'कुम्भ मेला के दौरान की जाने वाली विवाह उपचार', mai: 'कुम्भ मेला के दौरान की जाने वाली विवाह उपचार', mr: 'कुम्भ मेला के दौरान की जाने वाली विवाह उपचार', ta: 'A marriage ceremony performed during Kumbh Mela', te: 'A marriage ceremony performed during Kumbh Mela', bn: 'A marriage ceremony performed during Kumbh Mela', kn: 'A marriage ceremony performed during Kumbh Mela', gu: 'A marriage ceremony performed during Kumbh Mela' },
+      { en: 'A symbolic marriage to a clay pot or tree to neutralize Mars dosha', hi: 'मंगल दोष निष्प्रभाव करने के लिए मिट्टी के घड़े या वृक्ष से प्रतीकात्मक विवाह', sa: 'मंगल दोष निष्प्रभाव करने के लिए मिट्टी के घड़े या वृक्ष से प्रतीकात्मक विवाह', mai: 'मंगल दोष निष्प्रभाव करने के लिए मिट्टी के घड़े या वृक्ष से प्रतीकात्मक विवाह', mr: 'मंगल दोष निष्प्रभाव करने के लिए मिट्टी के घड़े या वृक्ष से प्रतीकात्मक विवाह', ta: 'A symbolic marriage to a clay pot or tree to neutralize Mars dosha', te: 'A symbolic marriage to a clay pot or tree to neutralize Mars dosha', bn: 'A symbolic marriage to a clay pot or tree to neutralize Mars dosha', kn: 'A symbolic marriage to a clay pot or tree to neutralize Mars dosha', gu: 'A symbolic marriage to a clay pot or tree to neutralize Mars dosha' },
+      { en: 'A type of Vedic wedding ceremony', hi: 'एक प्रकार का वैदिक विवाह संस्कार', sa: 'एक प्रकार का वैदिक विवाह संस्कार', mai: 'एक प्रकार का वैदिक विवाह संस्कार', mr: 'एक प्रकार का वैदिक विवाह संस्कार', ta: 'A type of Vedic wedding ceremony', te: 'A type of Vedic wedding ceremony', bn: 'A type of Vedic wedding ceremony', kn: 'A type of Vedic wedding ceremony', gu: 'A type of Vedic wedding ceremony' },
+      { en: 'Marriage in Aquarius (Kumbha) season', hi: 'कुम्भ ऋतु में विवाह', sa: 'कुम्भ ऋतु में विवाह', mai: 'कुम्भ ऋतु में विवाह', mr: 'कुम्भ ऋतु में विवाह', ta: 'Marriage in Aquarius (Kumbha) season', te: 'Marriage in Aquarius (Kumbha) season', bn: 'Marriage in Aquarius (Kumbha) season', kn: 'Marriage in Aquarius (Kumbha) season', gu: 'Marriage in Aquarius (Kumbha) season' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -170,10 +170,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'लग्न से किस भाव में मंगल को मंगल दोष का सर्वाधिक गम्भीर रूप माना जाता है?',
     },
     options: [
-      { en: '1st house (Lagna itself)', hi: 'प्रथम भाव (लग्न स्वयं)' },
-      { en: '7th house (house of marriage)', hi: 'सप्तम भाव (विवाह का भाव)' },
-      { en: '8th house (house of longevity/transformation)', hi: 'अष्टम भाव (दीर्घायु/रूपान्तरण का भाव)' },
-      { en: '12th house (house of losses)', hi: 'द्वादश भाव (हानि का भाव)' },
+      { en: '1st house (Lagna itself)', hi: 'प्रथम भाव (लग्न स्वयं)', sa: 'प्रथम भाव (लग्न स्वयं)', mai: 'प्रथम भाव (लग्न स्वयं)', mr: 'प्रथम भाव (लग्न स्वयं)', ta: '1st house (Lagna itself)', te: '1st house (Lagna itself)', bn: '1st house (Lagna itself)', kn: '1st house (Lagna itself)', gu: '1st house (Lagna itself)' },
+      { en: '7th house (house of marriage)', hi: 'सप्तम भाव (विवाह का भाव)', sa: 'सप्तम भाव (विवाह का भाव)', mai: 'सप्तम भाव (विवाह का भाव)', mr: 'सप्तम भाव (विवाह का भाव)', ta: '7th house (house of marriage)', te: '7th house (house of marriage)', bn: '7th house (house of marriage)', kn: '7th house (house of marriage)', gu: '7th house (house of marriage)' },
+      { en: '8th house (house of longevity/transformation)', hi: 'अष्टम भाव (दीर्घायु/रूपान्तरण का भाव)', sa: 'अष्टम भाव (दीर्घायु/रूपान्तरण का भाव)', mai: 'अष्टम भाव (दीर्घायु/रूपान्तरण का भाव)', mr: 'अष्टम भाव (दीर्घायु/रूपान्तरण का भाव)', ta: '8th house (house of longevity/transformation)', te: '8th house (house of longevity/transformation)', bn: '8th house (house of longevity/transformation)', kn: '8th house (house of longevity/transformation)', gu: '8th house (house of longevity/transformation)' },
+      { en: '12th house (house of losses)', hi: 'द्वादश भाव (हानि का भाव)', sa: 'द्वादश भाव (हानि का भाव)', mai: 'द्वादश भाव (हानि का भाव)', mr: 'द्वादश भाव (हानि का भाव)', ta: '12th house (house of losses)', te: '12th house (house of losses)', bn: '12th house (house of losses)', kn: '12th house (house of losses)', gu: '12th house (house of losses)' },
     ],
     correctAnswer: 2,
     explanation: {

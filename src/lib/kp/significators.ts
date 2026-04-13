@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 /**
  * KP Significator Calculation
  *
@@ -195,7 +196,7 @@ export function calculateCuspalAnalysis(
     }
   }
 
-  const HOUSE_MATTERS: Record<number, { en: string; hi: string; sa: string }> = {
+  const HOUSE_MATTERS: Record<number, LocaleText> = {
     1:  { en: 'Self & Health', hi: 'स्वास्थ्य और व्यक्तित्व', sa: 'स्वास्थ्यं व्यक्तित्वञ्च' },
     2:  { en: 'Wealth & Family', hi: 'धन और परिवार', sa: 'धनं परिवारश्च' },
     3:  { en: 'Siblings & Courage', hi: 'भाई-बहन और साहस', sa: 'भ्रातृः साहसञ्च' },

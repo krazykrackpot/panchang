@@ -16,9 +16,9 @@ const META: ModuleMeta = {
   },
   estimatedMinutes: 13,
   crossRefs: [
-    { label: { en: 'Module 18-1: Shadbala Overview', hi: 'मॉड्यूल 18-1: षड्बल अवलोकन' }, href: '/learn/modules/18-1' },
-    { label: { en: 'Module 18-5: Vimshopaka Bala', hi: 'मॉड्यूल 18-5: विंशोपक बल' }, href: '/learn/modules/18-5' },
-    { label: { en: 'Kundali Tool', hi: 'कुण्डली उपकरण' }, href: '/kundali' },
+    { label: { en: 'Module 18-1: Shadbala Overview', hi: 'मॉड्यूल 18-1: षड्बल अवलोकन', sa: 'मॉड्यूल 18-1: षड्बल अवलोकन', mai: 'मॉड्यूल 18-1: षड्बल अवलोकन', mr: 'मॉड्यूल 18-1: षड्बल अवलोकन', ta: 'Module 18-1: Shadbala Overview', te: 'Module 18-1: Shadbala Overview', bn: 'Module 18-1: Shadbala Overview', kn: 'Module 18-1: Shadbala Overview', gu: 'Module 18-1: Shadbala Overview' }, href: '/learn/modules/18-1' },
+    { label: { en: 'Module 18-5: Vimshopaka Bala', hi: 'मॉड्यूल 18-5: विंशोपक बल', sa: 'मॉड्यूल 18-5: विंशोपक बल', mai: 'मॉड्यूल 18-5: विंशोपक बल', mr: 'मॉड्यूल 18-5: विंशोपक बल', ta: 'Module 18-5: Vimshopaka Bala', te: 'Module 18-5: Vimshopaka Bala', bn: 'Module 18-5: Vimshopaka Bala', kn: 'Module 18-5: Vimshopaka Bala', gu: 'Module 18-5: Vimshopaka Bala' }, href: '/learn/modules/18-5' },
+    { label: { en: 'Kundali Tool', hi: 'कुण्डली उपकरण', sa: 'कुण्डली उपकरण', mai: 'कुण्डली उपकरण', mr: 'कुण्डली उपकरण', ta: 'Kundali Tool', te: 'Kundali Tool', bn: 'Kundali Tool', kn: 'Kundali Tool', gu: 'Kundali Tool' }, href: '/kundali' },
   ],
 };
 
@@ -30,10 +30,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'बाल-पञ्चक पद्धति में कौन-सी अवस्था सर्वाधिक बलवान परिणाम देती है?',
     },
     options: [
-      { en: 'Bala (infant)', hi: 'बाल (शिशु)' },
-      { en: 'Kumara (youth)', hi: 'कुमार (युवा)' },
-      { en: 'Yuva (prime)', hi: 'युवा (प्रौढ़)' },
-      { en: 'Vriddha (old)', hi: 'वृद्ध (वृद्ध)' },
+      { en: 'Bala (infant)', hi: 'बाल (शिशु)', sa: 'बाल (शिशु)', mai: 'बाल (शिशु)', mr: 'बाल (शिशु)', ta: 'Bala (infant)', te: 'Bala (infant)', bn: 'Bala (infant)', kn: 'Bala (infant)', gu: 'Bala (infant)' },
+      { en: 'Kumara (youth)', hi: 'कुमार (युवा)', sa: 'कुमार (युवा)', mai: 'कुमार (युवा)', mr: 'कुमार (युवा)', ta: 'Kumara (youth)', te: 'Kumara (youth)', bn: 'Kumara (youth)', kn: 'Kumara (youth)', gu: 'Kumara (youth)' },
+      { en: 'Yuva (prime)', hi: 'युवा (प्रौढ़)', sa: 'युवा (प्रौढ़)', mai: 'युवा (प्रौढ़)', mr: 'युवा (प्रौढ़)', ta: 'Yuva (prime)', te: 'Yuva (prime)', bn: 'Yuva (prime)', kn: 'Yuva (prime)', gu: 'Yuva (prime)' },
+      { en: 'Vriddha (old)', hi: 'वृद्ध (वृद्ध)', sa: 'वृद्ध (वृद्ध)', mai: 'वृद्ध (वृद्ध)', mr: 'वृद्ध (वृद्ध)', ta: 'Vriddha (old)', te: 'Vriddha (old)', bn: 'Vriddha (old)', kn: 'Vriddha (old)', gu: 'Vriddha (old)' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -48,10 +48,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मेष (विषम राशि) में 3° पर स्थित ग्रह किस बाल-पञ्चक अवस्था में है?',
     },
     options: [
-      { en: 'Yuva (prime)', hi: 'युवा (प्रौढ़)' },
-      { en: 'Bala (infant)', hi: 'बाल (शिशु)' },
-      { en: 'Kumara (youth)', hi: 'कुमार (युवा)' },
-      { en: 'Mrita (dead)', hi: 'मृत (मृत)' },
+      { en: 'Yuva (prime)', hi: 'युवा (प्रौढ़)', sa: 'युवा (प्रौढ़)', mai: 'युवा (प्रौढ़)', mr: 'युवा (प्रौढ़)', ta: 'Yuva (prime)', te: 'Yuva (prime)', bn: 'Yuva (prime)', kn: 'Yuva (prime)', gu: 'Yuva (prime)' },
+      { en: 'Bala (infant)', hi: 'बाल (शिशु)', sa: 'बाल (शिशु)', mai: 'बाल (शिशु)', mr: 'बाल (शिशु)', ta: 'Bala (infant)', te: 'Bala (infant)', bn: 'Bala (infant)', kn: 'Bala (infant)', gu: 'Bala (infant)' },
+      { en: 'Kumara (youth)', hi: 'कुमार (युवा)', sa: 'कुमार (युवा)', mai: 'कुमार (युवा)', mr: 'कुमार (युवा)', ta: 'Kumara (youth)', te: 'Kumara (youth)', bn: 'Kumara (youth)', kn: 'Kumara (youth)', gu: 'Kumara (youth)' },
+      { en: 'Mrita (dead)', hi: 'मृत (मृत)', sa: 'मृत (मृत)', mai: 'मृत (मृत)', mr: 'मृत (मृत)', ta: 'Mrita (dead)', te: 'Mrita (dead)', bn: 'Mrita (dead)', kn: 'Mrita (dead)', gu: 'Mrita (dead)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -78,10 +78,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'दीप्तादि पद्धति में, उच्च ग्रह की अवस्था क्या होती है?',
     },
     options: [
-      { en: 'Swastha (content)', hi: 'स्वस्थ (सन्तुष्ट)' },
-      { en: 'Deepta (brilliant)', hi: 'दीप्त (उज्ज्वल)' },
-      { en: 'Shakta (powerful)', hi: 'शक्त (शक्तिशाली)' },
-      { en: 'Mudita (happy)', hi: 'मुदित (प्रसन्न)' },
+      { en: 'Swastha (content)', hi: 'स्वस्थ (सन्तुष्ट)', sa: 'स्वस्थ (सन्तुष्ट)', mai: 'स्वस्थ (सन्तुष्ट)', mr: 'स्वस्थ (सन्तुष्ट)', ta: 'Swastha (content)', te: 'Swastha (content)', bn: 'Swastha (content)', kn: 'Swastha (content)', gu: 'Swastha (content)' },
+      { en: 'Deepta (brilliant)', hi: 'दीप्त (उज्ज्वल)', sa: 'दीप्त (उज्ज्वल)', mai: 'दीप्त (उज्ज्वल)', mr: 'दीप्त (उज्ज्वल)', ta: 'Deepta (brilliant)', te: 'Deepta (brilliant)', bn: 'Deepta (brilliant)', kn: 'Deepta (brilliant)', gu: 'Deepta (brilliant)' },
+      { en: 'Shakta (powerful)', hi: 'शक्त (शक्तिशाली)', sa: 'शक्त (शक्तिशाली)', mai: 'शक्त (शक्तिशाली)', mr: 'शक्त (शक्तिशाली)', ta: 'Shakta (powerful)', te: 'Shakta (powerful)', bn: 'Shakta (powerful)', kn: 'Shakta (powerful)', gu: 'Shakta (powerful)' },
+      { en: 'Mudita (happy)', hi: 'मुदित (प्रसन्न)', sa: 'मुदित (प्रसन्न)', mai: 'मुदित (प्रसन्न)', mr: 'मुदित (प्रसन्न)', ta: 'Mudita (happy)', te: 'Mudita (happy)', bn: 'Mudita (happy)', kn: 'Mudita (happy)', gu: 'Mudita (happy)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -96,10 +96,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कौन-सी दीप्तादि अवस्था वक्री ग्रह का वर्णन करती है?',
     },
     options: [
-      { en: 'Vikala (disabled)', hi: 'विकल (अशक्त)' },
-      { en: 'Dina (miserable)', hi: 'दीन (दुःखी)' },
-      { en: 'Shakta (powerful)', hi: 'शक्त (शक्तिशाली)' },
-      { en: 'Bhita (fearful)', hi: 'भीत (भयभीत)' },
+      { en: 'Vikala (disabled)', hi: 'विकल (अशक्त)', sa: 'विकल (अशक्त)', mai: 'विकल (अशक्त)', mr: 'विकल (अशक्त)', ta: 'Vikala (disabled)', te: 'Vikala (disabled)', bn: 'Vikala (disabled)', kn: 'Vikala (disabled)', gu: 'Vikala (disabled)' },
+      { en: 'Dina (miserable)', hi: 'दीन (दुःखी)', sa: 'दीन (दुःखी)', mai: 'दीन (दुःखी)', mr: 'दीन (दुःखी)', ta: 'Dina (miserable)', te: 'Dina (miserable)', bn: 'Dina (miserable)', kn: 'Dina (miserable)', gu: 'Dina (miserable)' },
+      { en: 'Shakta (powerful)', hi: 'शक्त (शक्तिशाली)', sa: 'शक्त (शक्तिशाली)', mai: 'शक्त (शक्तिशाली)', mr: 'शक्त (शक्तिशाली)', ta: 'Shakta (powerful)', te: 'Shakta (powerful)', bn: 'Shakta (powerful)', kn: 'Shakta (powerful)', gu: 'Shakta (powerful)' },
+      { en: 'Bhita (fearful)', hi: 'भीत (भयभीत)', sa: 'भीत (भयभीत)', mai: 'भीत (भयभीत)', mr: 'भीत (भयभीत)', ta: 'Bhita (fearful)', te: 'Bhita (fearful)', bn: 'Bhita (fearful)', kn: 'Bhita (fearful)', gu: 'Bhita (fearful)' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -114,10 +114,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'अस्त ग्रह (सूर्य के अत्यन्त निकट) किस दीप्तादि अवस्था में होता है?',
     },
     options: [
-      { en: 'Khala (wicked)', hi: 'खल (दुष्ट)' },
-      { en: 'Bhita (fearful)', hi: 'भीत (भयभीत)' },
-      { en: 'Vikala (disabled)', hi: 'विकल (अशक्त)' },
-      { en: 'Dina (miserable)', hi: 'दीन (दुःखी)' },
+      { en: 'Khala (wicked)', hi: 'खल (दुष्ट)', sa: 'खल (दुष्ट)', mai: 'खल (दुष्ट)', mr: 'खल (दुष्ट)', ta: 'Khala (wicked)', te: 'Khala (wicked)', bn: 'Khala (wicked)', kn: 'Khala (wicked)', gu: 'Khala (wicked)' },
+      { en: 'Bhita (fearful)', hi: 'भीत (भयभीत)', sa: 'भीत (भयभीत)', mai: 'भीत (भयभीत)', mr: 'भीत (भयभीत)', ta: 'Bhita (fearful)', te: 'Bhita (fearful)', bn: 'Bhita (fearful)', kn: 'Bhita (fearful)', gu: 'Bhita (fearful)' },
+      { en: 'Vikala (disabled)', hi: 'विकल (अशक्त)', sa: 'विकल (अशक्त)', mai: 'विकल (अशक्त)', mr: 'विकल (अशक्त)', ta: 'Vikala (disabled)', te: 'Vikala (disabled)', bn: 'Vikala (disabled)', kn: 'Vikala (disabled)', gu: 'Vikala (disabled)' },
+      { en: 'Dina (miserable)', hi: 'दीन (दुःखी)', sa: 'दीन (दुःखी)', mai: 'दीन (दुःखी)', mr: 'दीन (दुःखी)', ta: 'Dina (miserable)', te: 'Dina (miserable)', bn: 'Dina (miserable)', kn: 'Dina (miserable)', gu: 'Dina (miserable)' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -133,9 +133,9 @@ const QUESTIONS: ModuleQuestion[] = [
     },
     options: [
       { en: 'In its enemy\'s sign', hi: 'शत्रु की राशि में हो' },
-      { en: 'In exaltation or moolatrikona', hi: 'उच्च या मूलत्रिकोण में हो' },
-      { en: 'In a watery sign aspected by an enemy', hi: 'जलीय राशि में शत्रु की दृष्टि से हो' },
-      { en: 'In the 5th house with Rahu', hi: '5वें भाव में राहु के साथ हो' },
+      { en: 'In exaltation or moolatrikona', hi: 'उच्च या मूलत्रिकोण में हो', sa: 'उच्च या मूलत्रिकोण में हो', mai: 'उच्च या मूलत्रिकोण में हो', mr: 'उच्च या मूलत्रिकोण में हो', ta: 'In exaltation or moolatrikona', te: 'In exaltation or moolatrikona', bn: 'In exaltation or moolatrikona', kn: 'In exaltation or moolatrikona', gu: 'In exaltation or moolatrikona' },
+      { en: 'In a watery sign aspected by an enemy', hi: 'जलीय राशि में शत्रु की दृष्टि से हो', sa: 'जलीय राशि में शत्रु की दृष्टि से हो', mai: 'जलीय राशि में शत्रु की दृष्टि से हो', mr: 'जलीय राशि में शत्रु की दृष्टि से हो', ta: 'In a watery sign aspected by an enemy', te: 'In a watery sign aspected by an enemy', bn: 'In a watery sign aspected by an enemy', kn: 'In a watery sign aspected by an enemy', gu: 'In a watery sign aspected by an enemy' },
+      { en: 'In the 5th house with Rahu', hi: '5वें भाव में राहु के साथ हो', sa: '5वें भाव में राहु के साथ हो', mai: '5वें भाव में राहु के साथ हो', mr: '5वें भाव में राहु के साथ हो', ta: 'In the 5th house with Rahu', te: 'In the 5th house with Rahu', bn: 'In the 5th house with Rahu', kn: 'In the 5th house with Rahu', gu: 'In the 5th house with Rahu' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -150,10 +150,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'लज्जित (लज्जा) तब होती है जब 5वें भाव का ग्रह किनके साथ युति में हो:',
     },
     options: [
-      { en: 'Jupiter and Venus', hi: 'बृहस्पति और शुक्र' },
-      { en: 'Moon and Mercury', hi: 'चन्द्रमा और बुध' },
-      { en: 'Rahu/Ketu, Saturn, or Mars', hi: 'राहु/केतु, शनि, या मंगल' },
-      { en: 'Sun only', hi: 'केवल सूर्य' },
+      { en: 'Jupiter and Venus', hi: 'बृहस्पति और शुक्र', sa: 'बृहस्पति और शुक्र', mai: 'बृहस्पति और शुक्र', mr: 'बृहस्पति और शुक्र', ta: 'Jupiter and Venus', te: 'Jupiter and Venus', bn: 'Jupiter and Venus', kn: 'Jupiter and Venus', gu: 'Jupiter and Venus' },
+      { en: 'Moon and Mercury', hi: 'चन्द्रमा और बुध', sa: 'चन्द्रमा और बुध', mai: 'चन्द्रमा और बुध', mr: 'चन्द्रमा और बुध', ta: 'Moon and Mercury', te: 'Moon and Mercury', bn: 'Moon and Mercury', kn: 'Moon and Mercury', gu: 'Moon and Mercury' },
+      { en: 'Rahu/Ketu, Saturn, or Mars', hi: 'राहु/केतु, शनि, या मंगल', sa: 'राहु/केतु, शनि, या मंगल', mai: 'राहु/केतु, शनि, या मंगल', mr: 'राहु/केतु, शनि, या मंगल', ta: 'Rahu/Ketu, Saturn, or Mars', te: 'Rahu/Ketu, Saturn, or Mars', bn: 'Rahu/Ketu, Saturn, or Mars', kn: 'Rahu/Ketu, Saturn, or Mars', gu: 'Rahu/Ketu, Saturn, or Mars' },
+      { en: 'Sun only', hi: 'केवल सूर्य', sa: 'केवल सूर्य', mai: 'केवल सूर्य', mr: 'केवल सूर्य', ta: 'Sun only', te: 'Sun only', bn: 'Sun only', kn: 'Sun only', gu: 'Sun only' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -180,10 +180,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'शास्त्रीय ज्योतिष ग्रन्थों में कितनी भिन्न अवस्था पद्धतियाँ वर्णित हैं?',
     },
     options: [
-      { en: 'One — only Deeptadi', hi: 'एक — केवल दीप्तादि' },
-      { en: 'Two — Bala-Panchaka and Deeptadi', hi: 'दो — बाल-पञ्चक और दीप्तादि' },
-      { en: 'Three — Bala-Panchaka, Deeptadi, and Lajjitadi', hi: 'तीन — बाल-पञ्चक, दीप्तादि, और लज्जितादि' },
-      { en: 'Five — one for each element', hi: 'पाँच — प्रत्येक तत्व के लिए एक' },
+      { en: 'One — only Deeptadi', hi: 'एक — केवल दीप्तादि', sa: 'एक — केवल दीप्तादि', mai: 'एक — केवल दीप्तादि', mr: 'एक — केवल दीप्तादि', ta: 'One — only Deeptadi', te: 'One — only Deeptadi', bn: 'One — only Deeptadi', kn: 'One — only Deeptadi', gu: 'One — only Deeptadi' },
+      { en: 'Two — Bala-Panchaka and Deeptadi', hi: 'दो — बाल-पञ्चक और दीप्तादि', sa: 'दो — बाल-पञ्चक और दीप्तादि', mai: 'दो — बाल-पञ्चक और दीप्तादि', mr: 'दो — बाल-पञ्चक और दीप्तादि', ta: 'Two — Bala-Panchaka and Deeptadi', te: 'Two — Bala-Panchaka and Deeptadi', bn: 'Two — Bala-Panchaka and Deeptadi', kn: 'Two — Bala-Panchaka and Deeptadi', gu: 'Two — Bala-Panchaka and Deeptadi' },
+      { en: 'Three — Bala-Panchaka, Deeptadi, and Lajjitadi', hi: 'तीन — बाल-पञ्चक, दीप्तादि, और लज्जितादि', sa: 'तीन — बाल-पञ्चक, दीप्तादि, और लज्जितादि', mai: 'तीन — बाल-पञ्चक, दीप्तादि, और लज्जितादि', mr: 'तीन — बाल-पञ्चक, दीप्तादि, और लज्जितादि', ta: 'Three — Bala-Panchaka, Deeptadi, and Lajjitadi', te: 'Three — Bala-Panchaka, Deeptadi, and Lajjitadi', bn: 'Three — Bala-Panchaka, Deeptadi, and Lajjitadi', kn: 'Three — Bala-Panchaka, Deeptadi, and Lajjitadi', gu: 'Three — Bala-Panchaka, Deeptadi, and Lajjitadi' },
+      { en: 'Five — one for each element', hi: 'पाँच — प्रत्येक तत्व के लिए एक', sa: 'पाँच — प्रत्येक तत्व के लिए एक', mai: 'पाँच — प्रत्येक तत्व के लिए एक', mr: 'पाँच — प्रत्येक तत्व के लिए एक', ta: 'Five — one for each element', te: 'Five — one for each element', bn: 'Five — one for each element', kn: 'Five — one for each element', gu: 'Five — one for each element' },
     ],
     correctAnswer: 2,
     explanation: {

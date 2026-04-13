@@ -6,16 +6,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_10_2', phase: 3, topic: 'Vargas', moduleNumber: '10.2',
-  title: { en: 'Navamsha Deep Dive (D9)', hi: 'नवांश गहन अध्ययन (D9)' },
+  title: { en: 'Navamsha Deep Dive (D9)', hi: 'नवांश गहन अध्ययन (D9)', sa: 'नवांश गहन अध्ययन (D9)', mai: 'नवांश गहन अध्ययन (D9)', mr: 'नवांश गहन अध्ययन (D9)', ta: 'Navamsha Deep Dive (D9)', te: 'Navamsha Deep Dive (D9)', bn: 'Navamsha Deep Dive (D9)', kn: 'Navamsha Deep Dive (D9)', gu: 'Navamsha Deep Dive (D9)' },
   subtitle: {
     en: 'Each sign divided into 9 parts of 3°20\' — the most important divisional chart for marriage, dharma, and inner planetary strength',
     hi: 'प्रत्येक राशि 3°20\' के 9 भागों में विभक्त — विवाह, धर्म और ग्रहों के आन्तरिक बल के लिए सर्वाधिक महत्त्वपूर्ण विभागीय कुण्डली',
   },
   estimatedMinutes: 18,
   crossRefs: [
-    { label: { en: 'Module 10-1: Varga Charts Overview', hi: 'मॉड्यूल 10-1: वर्ग कुण्डली अवलोकन' }, href: '/learn/modules/10-1' },
-    { label: { en: 'Module 10-3: Dasamsha & Other Vargas', hi: 'मॉड्यूल 10-3: दशांश एवं अन्य वर्ग' }, href: '/learn/modules/10-3' },
-    { label: { en: 'Vargas Reference', hi: 'वर्ग सन्दर्भ' }, href: '/learn/vargas' },
+    { label: { en: 'Module 10-1: Varga Charts Overview', hi: 'मॉड्यूल 10-1: वर्ग कुण्डली अवलोकन', sa: 'मॉड्यूल 10-1: वर्ग कुण्डली अवलोकन', mai: 'मॉड्यूल 10-1: वर्ग कुण्डली अवलोकन', mr: 'मॉड्यूल 10-1: वर्ग कुण्डली अवलोकन', ta: 'Module 10-1: Varga Charts Overview', te: 'Module 10-1: Varga Charts Overview', bn: 'Module 10-1: Varga Charts Overview', kn: 'Module 10-1: Varga Charts Overview', gu: 'Module 10-1: Varga Charts Overview' }, href: '/learn/modules/10-1' },
+    { label: { en: 'Module 10-3: Dasamsha & Other Vargas', hi: 'मॉड्यूल 10-3: दशांश एवं अन्य वर्ग', sa: 'मॉड्यूल 10-3: दशांश एवं अन्य वर्ग', mai: 'मॉड्यूल 10-3: दशांश एवं अन्य वर्ग', mr: 'मॉड्यूल 10-3: दशांश एवं अन्य वर्ग', ta: 'Module 10-3: Dasamsha & Other Vargas', te: 'Module 10-3: Dasamsha & Other Vargas', bn: 'Module 10-3: Dasamsha & Other Vargas', kn: 'Module 10-3: Dasamsha & Other Vargas', gu: 'Module 10-3: Dasamsha & Other Vargas' }, href: '/learn/modules/10-3' },
+    { label: { en: 'Vargas Reference', hi: 'वर्ग सन्दर्भ', sa: 'वर्ग सन्दर्भ', mai: 'वर्ग सन्दर्भ', mr: 'वर्ग सन्दर्भ', ta: 'Vargas Reference', te: 'Vargas Reference', bn: 'Vargas Reference', kn: 'Vargas Reference', gu: 'Vargas Reference' }, href: '/learn/vargas' },
   ],
 };
 
@@ -45,10 +45,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'अग्नि तत्त्व राशियों (मेष, सिंह, धनु) के लिए नवांश गणना किस राशि से आरम्भ होती है?',
     },
     options: [
-      { en: 'Cancer', hi: 'कर्क' },
-      { en: 'Libra', hi: 'तुला' },
-      { en: 'Aries', hi: 'मेष' },
-      { en: 'Capricorn', hi: 'मकर' },
+      { en: 'Cancer', hi: 'कर्क', sa: 'कर्क', mai: 'कर्क', mr: 'कर्क', ta: 'Cancer', te: 'Cancer', bn: 'Cancer', kn: 'Cancer', gu: 'Cancer' },
+      { en: 'Libra', hi: 'तुला', sa: 'तुला', mai: 'तुला', mr: 'तुला', ta: 'Libra', te: 'Libra', bn: 'Libra', kn: 'Libra', gu: 'Libra' },
+      { en: 'Aries', hi: 'मेष', sa: 'मेष', mai: 'मेष', mr: 'मेष', ta: 'Aries', te: 'Aries', bn: 'Aries', kn: 'Aries', gu: 'Aries' },
+      { en: 'Capricorn', hi: 'मकर', sa: 'मकर', mai: 'मकर', mr: 'मकर', ta: 'Capricorn', te: 'Capricorn', bn: 'Capricorn', kn: 'Capricorn', gu: 'Capricorn' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -63,10 +63,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: '15° मेष पर स्थित ग्रह किस नवांश में आता है? (मेष का नवांश मेष से आरम्भ होता है)',
     },
     options: [
-      { en: '4th Navamsha — Cancer', hi: 'चतुर्थ नवांश — कर्क' },
-      { en: '5th Navamsha — Leo', hi: 'पञ्चम नवांश — सिंह' },
-      { en: '6th Navamsha — Virgo', hi: 'षष्ठ नवांश — कन्या' },
-      { en: '3rd Navamsha — Gemini', hi: 'तृतीय नवांश — मिथुन' },
+      { en: '4th Navamsha — Cancer', hi: 'चतुर्थ नवांश — कर्क', sa: 'चतुर्थ नवांश — कर्क', mai: 'चतुर्थ नवांश — कर्क', mr: 'चतुर्थ नवांश — कर्क', ta: '4th Navamsha — Cancer', te: '4th Navamsha — Cancer', bn: '4th Navamsha — Cancer', kn: '4th Navamsha — Cancer', gu: '4th Navamsha — Cancer' },
+      { en: '5th Navamsha — Leo', hi: 'पञ्चम नवांश — सिंह', sa: 'पञ्चम नवांश — सिंह', mai: 'पञ्चम नवांश — सिंह', mr: 'पञ्चम नवांश — सिंह', ta: '5th Navamsha — Leo', te: '5th Navamsha — Leo', bn: '5th Navamsha — Leo', kn: '5th Navamsha — Leo', gu: '5th Navamsha — Leo' },
+      { en: '6th Navamsha — Virgo', hi: 'षष्ठ नवांश — कन्या', sa: 'षष्ठ नवांश — कन्या', mai: 'षष्ठ नवांश — कन्या', mr: 'षष्ठ नवांश — कन्या', ta: '6th Navamsha — Virgo', te: '6th Navamsha — Virgo', bn: '6th Navamsha — Virgo', kn: '6th Navamsha — Virgo', gu: '6th Navamsha — Virgo' },
+      { en: '3rd Navamsha — Gemini', hi: 'तृतीय नवांश — मिथुन', sa: 'तृतीय नवांश — मिथुन', mai: 'तृतीय नवांश — मिथुन', mr: 'तृतीय नवांश — मिथुन', ta: '3rd Navamsha — Gemini', te: '3rd Navamsha — Gemini', bn: '3rd Navamsha — Gemini', kn: '3rd Navamsha — Gemini', gu: '3rd Navamsha — Gemini' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -93,10 +93,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'नवांश में शुक्र की स्थिति मुख्य रूप से क्या प्रकट करती है?',
     },
     options: [
-      { en: 'Career ambitions', hi: 'व्यावसायिक महत्त्वाकांक्षाएँ' },
+      { en: 'Career ambitions', hi: 'व्यावसायिक महत्त्वाकांक्षाएँ', sa: 'व्यावसायिक महत्त्वाकांक्षाएँ', mai: 'व्यावसायिक महत्त्वाकांक्षाएँ', mr: 'व्यावसायिक महत्त्वाकांक्षाएँ', ta: 'Career ambitions', te: 'Career ambitions', bn: 'Career ambitions', kn: 'Career ambitions', gu: 'Career ambitions' },
       { en: 'The native\'s romantic nature, capacity for love, and marital harmony', hi: 'जातक का रोमांटिक स्वभाव, प्रेम की क्षमता और वैवाहिक सौहार्द' },
-      { en: 'Physical health and longevity', hi: 'शारीरिक स्वास्थ्य और दीर्घायु' },
-      { en: 'Relationship with father', hi: 'पिता से सम्बन्ध' },
+      { en: 'Physical health and longevity', hi: 'शारीरिक स्वास्थ्य और दीर्घायु', sa: 'शारीरिक स्वास्थ्य और दीर्घायु', mai: 'शारीरिक स्वास्थ्य और दीर्घायु', mr: 'शारीरिक स्वास्थ्य और दीर्घायु', ta: 'Physical health and longevity', te: 'Physical health and longevity', bn: 'Physical health and longevity', kn: 'Physical health and longevity', gu: 'Physical health and longevity' },
+      { en: 'Relationship with father', hi: 'पिता से सम्बन्ध', sa: 'पिता से सम्बन्ध', mai: 'पिता से सम्बन्ध', mr: 'पिता से सम्बन्ध', ta: 'Relationship with father', te: 'Relationship with father', bn: 'Relationship with father', kn: 'Relationship with father', gu: 'Relationship with father' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -124,8 +124,8 @@ const QUESTIONS: ModuleQuestion[] = [
     },
     options: [
       { en: 'The native\'s wealth accumulation pattern', hi: 'जातक का धन संचय प्रतिरूप' },
-      { en: 'The overall quality and happiness of married life', hi: 'वैवाहिक जीवन की समग्र गुणवत्ता और सुख' },
-      { en: 'The number of children the native will have', hi: 'जातक की सन्तानों की संख्या' },
+      { en: 'The overall quality and happiness of married life', hi: 'वैवाहिक जीवन की समग्र गुणवत्ता और सुख', sa: 'वैवाहिक जीवन की समग्र गुणवत्ता और सुख', mai: 'वैवाहिक जीवन की समग्र गुणवत्ता और सुख', mr: 'वैवाहिक जीवन की समग्र गुणवत्ता और सुख', ta: 'The overall quality and happiness of married life', te: 'The overall quality and happiness of married life', bn: 'The overall quality and happiness of married life', kn: 'The overall quality and happiness of married life', gu: 'The overall quality and happiness of married life' },
+      { en: 'The number of children the native will have', hi: 'जातक की सन्तानों की संख्या', sa: 'जातक की सन्तानों की संख्या', mai: 'जातक की सन्तानों की संख्या', mr: 'जातक की सन्तानों की संख्या', ta: 'The number of children the native will have', te: 'The number of children the native will have', bn: 'The number of children the native will have', kn: 'The number of children the native will have', gu: 'The number of children the native will have' },
       { en: 'The native\'s spiritual guru', hi: 'जातक के आध्यात्मिक गुरु' },
     ],
     correctAnswer: 1,
@@ -141,10 +141,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पृथ्वी तत्त्व राशियों (वृषभ, कन्या, मकर) के लिए नवांश गणना किससे आरम्भ होती है?',
     },
     options: [
-      { en: 'Aries', hi: 'मेष' },
-      { en: 'Libra', hi: 'तुला' },
-      { en: 'Cancer', hi: 'कर्क' },
-      { en: 'Capricorn', hi: 'मकर' },
+      { en: 'Aries', hi: 'मेष', sa: 'मेष', mai: 'मेष', mr: 'मेष', ta: 'Aries', te: 'Aries', bn: 'Aries', kn: 'Aries', gu: 'Aries' },
+      { en: 'Libra', hi: 'तुला', sa: 'तुला', mai: 'तुला', mr: 'तुला', ta: 'Libra', te: 'Libra', bn: 'Libra', kn: 'Libra', gu: 'Libra' },
+      { en: 'Cancer', hi: 'कर्क', sa: 'कर्क', mai: 'कर्क', mr: 'कर्क', ta: 'Cancer', te: 'Cancer', bn: 'Cancer', kn: 'Cancer', gu: 'Cancer' },
+      { en: 'Capricorn', hi: 'मकर', sa: 'मकर', mai: 'मकर', mr: 'मकर', ta: 'Capricorn', te: 'Capricorn', bn: 'Capricorn', kn: 'Capricorn', gu: 'Capricorn' },
     ],
     correctAnswer: 3,
     explanation: {
@@ -171,10 +171,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पुष्कर नवांश स्थितियाँ सदैव किनके स्वामित्व वाली राशियों में आती हैं?',
     },
     options: [
-      { en: 'Mars and Saturn (malefics)', hi: 'मंगल और शनि (पापग्रह)' },
-      { en: 'Sun and Mars (fiery planets)', hi: 'सूर्य और मंगल (अग्नि ग्रह)' },
-      { en: 'Benefics — Jupiter, Venus, Moon, Mercury', hi: 'शुभ ग्रह — बृहस्पति, शुक्र, चन्द्रमा, बुध' },
-      { en: 'Only Jupiter and Venus', hi: 'केवल बृहस्पति और शुक्र' },
+      { en: 'Mars and Saturn (malefics)', hi: 'मंगल और शनि (पापग्रह)', sa: 'मंगल और शनि (पापग्रह)', mai: 'मंगल और शनि (पापग्रह)', mr: 'मंगल और शनि (पापग्रह)', ta: 'Mars and Saturn (malefics)', te: 'Mars and Saturn (malefics)', bn: 'Mars and Saturn (malefics)', kn: 'Mars and Saturn (malefics)', gu: 'Mars and Saturn (malefics)' },
+      { en: 'Sun and Mars (fiery planets)', hi: 'सूर्य और मंगल (अग्नि ग्रह)', sa: 'सूर्य और मंगल (अग्नि ग्रह)', mai: 'सूर्य और मंगल (अग्नि ग्रह)', mr: 'सूर्य और मंगल (अग्नि ग्रह)', ta: 'Sun and Mars (fiery planets)', te: 'Sun and Mars (fiery planets)', bn: 'Sun and Mars (fiery planets)', kn: 'Sun and Mars (fiery planets)', gu: 'Sun and Mars (fiery planets)' },
+      { en: 'Benefics — Jupiter, Venus, Moon, Mercury', hi: 'शुभ ग्रह — बृहस्पति, शुक्र, चन्द्रमा, बुध', sa: 'शुभ ग्रह — बृहस्पति, शुक्र, चन्द्रमा, बुध', mai: 'शुभ ग्रह — बृहस्पति, शुक्र, चन्द्रमा, बुध', mr: 'शुभ ग्रह — बृहस्पति, शुक्र, चन्द्रमा, बुध', ta: 'Benefics — Jupiter, Venus, Moon, Mercury', te: 'Benefics — Jupiter, Venus, Moon, Mercury', bn: 'Benefics — Jupiter, Venus, Moon, Mercury', kn: 'Benefics — Jupiter, Venus, Moon, Mercury', gu: 'Benefics — Jupiter, Venus, Moon, Mercury' },
+      { en: 'Only Jupiter and Venus', hi: 'केवल बृहस्पति और शुक्र', sa: 'केवल बृहस्पति और शुक्र', mai: 'केवल बृहस्पति और शुक्र', mr: 'केवल बृहस्पति और शुक्र', ta: 'Only Jupiter and Venus', te: 'Only Jupiter and Venus', bn: 'Only Jupiter and Venus', kn: 'Only Jupiter and Venus', gu: 'Only Jupiter and Venus' },
     ],
     correctAnswer: 2,
     explanation: {

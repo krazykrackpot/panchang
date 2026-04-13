@@ -16,10 +16,10 @@ const META: ModuleMeta = {
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 18-1: Shadbala Overview', hi: 'मॉड्यूल 18-1: षड्बल अवलोकन' }, href: '/learn/modules/18-1' },
-    { label: { en: 'Module 18-4: Avasthas', hi: 'मॉड्यूल 18-4: अवस्थाएँ' }, href: '/learn/modules/18-4' },
-    { label: { en: 'Module 10-1: Divisional Charts', hi: 'मॉड्यूल 10-1: वर्ग कुण्डलियाँ' }, href: '/learn/modules/10-1' },
-    { label: { en: 'Kundali Tool', hi: 'कुण्डली उपकरण' }, href: '/kundali' },
+    { label: { en: 'Module 18-1: Shadbala Overview', hi: 'मॉड्यूल 18-1: षड्बल अवलोकन', sa: 'मॉड्यूल 18-1: षड्बल अवलोकन', mai: 'मॉड्यूल 18-1: षड्बल अवलोकन', mr: 'मॉड्यूल 18-1: षड्बल अवलोकन', ta: 'Module 18-1: Shadbala Overview', te: 'Module 18-1: Shadbala Overview', bn: 'Module 18-1: Shadbala Overview', kn: 'Module 18-1: Shadbala Overview', gu: 'Module 18-1: Shadbala Overview' }, href: '/learn/modules/18-1' },
+    { label: { en: 'Module 18-4: Avasthas', hi: 'मॉड्यूल 18-4: अवस्थाएँ', sa: 'मॉड्यूल 18-4: अवस्थाएँ', mai: 'मॉड्यूल 18-4: अवस्थाएँ', mr: 'मॉड्यूल 18-4: अवस्थाएँ', ta: 'Module 18-4: Avasthas', te: 'Module 18-4: Avasthas', bn: 'Module 18-4: Avasthas', kn: 'Module 18-4: Avasthas', gu: 'Module 18-4: Avasthas' }, href: '/learn/modules/18-4' },
+    { label: { en: 'Module 10-1: Divisional Charts', hi: 'मॉड्यूल 10-1: वर्ग कुण्डलियाँ', sa: 'मॉड्यूल 10-1: वर्ग कुण्डलियाँ', mai: 'मॉड्यूल 10-1: वर्ग कुण्डलियाँ', mr: 'मॉड्यूल 10-1: वर्ग कुण्डलियाँ', ta: 'Module 10-1: Divisional Charts', te: 'Module 10-1: Divisional Charts', bn: 'Module 10-1: Divisional Charts', kn: 'Module 10-1: Divisional Charts', gu: 'Module 10-1: Divisional Charts' }, href: '/learn/modules/10-1' },
+    { label: { en: 'Kundali Tool', hi: 'कुण्डली उपकरण', sa: 'कुण्डली उपकरण', mai: 'कुण्डली उपकरण', mr: 'कुण्डली उपकरण', ta: 'Kundali Tool', te: 'Kundali Tool', bn: 'Kundali Tool', kn: 'Kundali Tool', gu: 'Kundali Tool' }, href: '/kundali' },
   ],
 };
 
@@ -31,10 +31,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: '"विंशोपक" का शाब्दिक अर्थ क्या है?',
     },
     options: [
-      { en: 'Six-fold strength', hi: 'छह-गुना बल' },
-      { en: 'Twenty-pointed', hi: 'बीस-अंकीय' },
-      { en: 'Twelve divisions', hi: 'बारह विभाजन' },
-      { en: 'Hundred-fold power', hi: 'सौ-गुना शक्ति' },
+      { en: 'Six-fold strength', hi: 'छह-गुना बल', sa: 'छह-गुना बल', mai: 'छह-गुना बल', mr: 'छह-गुना बल', ta: 'Six-fold strength', te: 'Six-fold strength', bn: 'Six-fold strength', kn: 'Six-fold strength', gu: 'Six-fold strength' },
+      { en: 'Twenty-pointed', hi: 'बीस-अंकीय', sa: 'बीस-अंकीय', mai: 'बीस-अंकीय', mr: 'बीस-अंकीय', ta: 'Twenty-pointed', te: 'Twenty-pointed', bn: 'Twenty-pointed', kn: 'Twenty-pointed', gu: 'Twenty-pointed' },
+      { en: 'Twelve divisions', hi: 'बारह विभाजन', sa: 'बारह विभाजन', mai: 'बारह विभाजन', mr: 'बारह विभाजन', ta: 'Twelve divisions', te: 'Twelve divisions', bn: 'Twelve divisions', kn: 'Twelve divisions', gu: 'Twelve divisions' },
+      { en: 'Hundred-fold power', hi: 'सौ-गुना शक्ति', sa: 'सौ-गुना शक्ति', mai: 'सौ-गुना शक्ति', mr: 'सौ-गुना शक्ति', ta: 'Hundred-fold power', te: 'Hundred-fold power', bn: 'Hundred-fold power', kn: 'Hundred-fold power', gu: 'Hundred-fold power' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -49,10 +49,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'षोडशवर्ग योजना में कितनी वर्ग कुण्डलियों का उपयोग होता है?',
     },
     options: [
-      { en: '7', hi: '7' },
-      { en: '12', hi: '12' },
-      { en: '16', hi: '16' },
-      { en: '20', hi: '20' },
+      { en: '7', hi: '7', sa: '7', mai: '7', mr: '7', ta: '7', te: '7', bn: '7', kn: '7', gu: '7' },
+      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
+      { en: '16', hi: '16', sa: '16', mai: '16', mr: '16', ta: '16', te: '16', bn: '16', kn: '16', gu: '16' },
+      { en: '20', hi: '20', sa: '20', mai: '20', mr: '20', ta: '20', te: '20', bn: '20', kn: '20', gu: '20' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -67,10 +67,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'षोडशवर्ग विंशोपक योजना में किस वर्ग कुण्डली का भार सर्वाधिक है?',
     },
     options: [
-      { en: 'D1 (Rashi) — weight 3.5', hi: 'D1 (राशि) — भार 3.5' },
-      { en: 'D9 (Navamsha) — weight 3.0', hi: 'D9 (नवांश) — भार 3.0' },
-      { en: 'D60 (Shashtiamsha) — weight 4.0', hi: 'D60 (षष्ट्यंश) — भार 4.0' },
-      { en: 'D16 (Shodashamsha) — weight 2.0', hi: 'D16 (षोडशांश) — भार 2.0' },
+      { en: 'D1 (Rashi) — weight 3.5', hi: 'D1 (राशि) — भार 3.5', sa: 'D1 (राशि) — भार 3.5', mai: 'D1 (राशि) — भार 3.5', mr: 'D1 (राशि) — भार 3.5', ta: 'D1 (Rashi) — weight 3.5', te: 'D1 (Rashi) — weight 3.5', bn: 'D1 (Rashi) — weight 3.5', kn: 'D1 (Rashi) — weight 3.5', gu: 'D1 (Rashi) — weight 3.5' },
+      { en: 'D9 (Navamsha) — weight 3.0', hi: 'D9 (नवांश) — भार 3.0', sa: 'D9 (नवांश) — भार 3.0', mai: 'D9 (नवांश) — भार 3.0', mr: 'D9 (नवांश) — भार 3.0', ta: 'D9 (Navamsha) — weight 3.0', te: 'D9 (Navamsha) — weight 3.0', bn: 'D9 (Navamsha) — weight 3.0', kn: 'D9 (Navamsha) — weight 3.0', gu: 'D9 (Navamsha) — weight 3.0' },
+      { en: 'D60 (Shashtiamsha) — weight 4.0', hi: 'D60 (षष्ट्यंश) — भार 4.0', sa: 'D60 (षष्ट्यंश) — भार 4.0', mai: 'D60 (षष्ट्यंश) — भार 4.0', mr: 'D60 (षष्ट्यंश) — भार 4.0', ta: 'D60 (Shashtiamsha) — weight 4.0', te: 'D60 (Shashtiamsha) — weight 4.0', bn: 'D60 (Shashtiamsha) — weight 4.0', kn: 'D60 (Shashtiamsha) — weight 4.0', gu: 'D60 (Shashtiamsha) — weight 4.0' },
+      { en: 'D16 (Shodashamsha) — weight 2.0', hi: 'D16 (षोडशांश) — भार 2.0', sa: 'D16 (षोडशांश) — भार 2.0', mai: 'D16 (षोडशांश) — भार 2.0', mr: 'D16 (षोडशांश) — भार 2.0', ta: 'D16 (Shodashamsha) — weight 2.0', te: 'D16 (Shodashamsha) — weight 2.0', bn: 'D16 (Shodashamsha) — weight 2.0', kn: 'D16 (Shodashamsha) — weight 2.0', gu: 'D16 (Shodashamsha) — weight 2.0' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -85,10 +85,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'यदि कोई ग्रह किसी विशेष वर्ग में उच्च है, तो उसे उस वर्ग के भार का कितना अंश प्राप्त होता है?',
     },
     options: [
-      { en: '3/4 of the weight', hi: 'भार का 3/4' },
-      { en: 'Full weight', hi: 'पूर्ण भार' },
-      { en: '1/2 of the weight', hi: 'भार का 1/2' },
-      { en: '1/4 of the weight', hi: 'भार का 1/4' },
+      { en: '3/4 of the weight', hi: 'भार का 3/4', sa: 'भार का 3/4', mai: 'भार का 3/4', mr: 'भार का 3/4', ta: '3/4 of the weight', te: '3/4 of the weight', bn: '3/4 of the weight', kn: '3/4 of the weight', gu: '3/4 of the weight' },
+      { en: 'Full weight', hi: 'पूर्ण भार', sa: 'पूर्ण भार', mai: 'पूर्ण भार', mr: 'पूर्ण भार', ta: 'Full weight', te: 'Full weight', bn: 'Full weight', kn: 'Full weight', gu: 'Full weight' },
+      { en: '1/2 of the weight', hi: 'भार का 1/2', sa: 'भार का 1/2', mai: 'भार का 1/2', mr: 'भार का 1/2', ta: '1/2 of the weight', te: '1/2 of the weight', bn: '1/2 of the weight', kn: '1/2 of the weight', gu: '1/2 of the weight' },
+      { en: '1/4 of the weight', hi: 'भार का 1/4', sa: 'भार का 1/4', mai: 'भार का 1/4', mr: 'भार का 1/4', ta: '1/4 of the weight', te: '1/4 of the weight', bn: '1/4 of the weight', kn: '1/4 of the weight', gu: '1/4 of the weight' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -115,10 +115,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विंशोपक में 20 में से 16 अंक प्राप्त करने वाले ग्रह को किस रूप में वर्गीकृत किया जाएगा?',
     },
     options: [
-      { en: 'Weak — needs remedial measures', hi: 'दुर्बल — उपाय आवश्यक' },
-      { en: 'Mixed — inconsistent results', hi: 'मिश्रित — असंगत परिणाम' },
-      { en: 'Highly auspicious — excellent inherent quality', hi: 'अत्यन्त शुभ — उत्कृष्ट अन्तर्निहित गुणवत्ता' },
-      { en: 'Average — no special significance', hi: 'सामान्य — कोई विशेष महत्व नहीं' },
+      { en: 'Weak — needs remedial measures', hi: 'दुर्बल — उपाय आवश्यक', sa: 'दुर्बल — उपाय आवश्यक', mai: 'दुर्बल — उपाय आवश्यक', mr: 'दुर्बल — उपाय आवश्यक', ta: 'Weak — needs remedial measures', te: 'Weak — needs remedial measures', bn: 'Weak — needs remedial measures', kn: 'Weak — needs remedial measures', gu: 'Weak — needs remedial measures' },
+      { en: 'Mixed — inconsistent results', hi: 'मिश्रित — असंगत परिणाम', sa: 'मिश्रित — असंगत परिणाम', mai: 'मिश्रित — असंगत परिणाम', mr: 'मिश्रित — असंगत परिणाम', ta: 'Mixed — inconsistent results', te: 'Mixed — inconsistent results', bn: 'Mixed — inconsistent results', kn: 'Mixed — inconsistent results', gu: 'Mixed — inconsistent results' },
+      { en: 'Highly auspicious — excellent inherent quality', hi: 'अत्यन्त शुभ — उत्कृष्ट अन्तर्निहित गुणवत्ता', sa: 'अत्यन्त शुभ — उत्कृष्ट अन्तर्निहित गुणवत्ता', mai: 'अत्यन्त शुभ — उत्कृष्ट अन्तर्निहित गुणवत्ता', mr: 'अत्यन्त शुभ — उत्कृष्ट अन्तर्निहित गुणवत्ता', ta: 'Highly auspicious — excellent inherent quality', te: 'Highly auspicious — excellent inherent quality', bn: 'Highly auspicious — excellent inherent quality', kn: 'Highly auspicious — excellent inherent quality', gu: 'Highly auspicious — excellent inherent quality' },
+      { en: 'Average — no special significance', hi: 'सामान्य — कोई विशेष महत्व नहीं', sa: 'सामान्य — कोई विशेष महत्व नहीं', mai: 'सामान्य — कोई विशेष महत्व नहीं', mr: 'सामान्य — कोई विशेष महत्व नहीं', ta: 'Average — no special significance', te: 'Average — no special significance', bn: 'Average — no special significance', kn: 'Average — no special significance', gu: 'Average — no special significance' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -133,10 +133,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विंशोपक और षड्बल में मुख्य अन्तर क्या है?',
     },
     options: [
-      { en: 'They measure the same thing using different scales', hi: 'वे समान वस्तु को भिन्न पैमानों से मापते हैं' },
-      { en: 'Vimshopaka measures inherent dignity across vargas; Shadbala measures functional ability in the rashi chart', hi: 'विंशोपक वर्गों में अन्तर्निहित गरिमा मापता है; षड्बल राशि कुण्डली में कार्यात्मक क्षमता मापता है' },
-      { en: 'Shadbala is more important than Vimshopaka', hi: 'षड्बल विंशोपक से अधिक महत्वपूर्ण है' },
-      { en: 'Vimshopaka only uses the D9 chart', hi: 'विंशोपक केवल D9 कुण्डली का उपयोग करता है' },
+      { en: 'They measure the same thing using different scales', hi: 'वे समान वस्तु को भिन्न पैमानों से मापते हैं', sa: 'वे समान वस्तु को भिन्न पैमानों से मापते हैं', mai: 'वे समान वस्तु को भिन्न पैमानों से मापते हैं', mr: 'वे समान वस्तु को भिन्न पैमानों से मापते हैं', ta: 'They measure the same thing using different scales', te: 'They measure the same thing using different scales', bn: 'They measure the same thing using different scales', kn: 'They measure the same thing using different scales', gu: 'They measure the same thing using different scales' },
+      { en: 'Vimshopaka measures inherent dignity across vargas; Shadbala measures functional ability in the rashi chart', hi: 'विंशोपक वर्गों में अन्तर्निहित गरिमा मापता है; षड्बल राशि कुण्डली में कार्यात्मक क्षमता मापता है', sa: 'विंशोपक वर्गों में अन्तर्निहित गरिमा मापता है; षड्बल राशि कुण्डली में कार्यात्मक क्षमता मापता है', mai: 'विंशोपक वर्गों में अन्तर्निहित गरिमा मापता है; षड्बल राशि कुण्डली में कार्यात्मक क्षमता मापता है', mr: 'विंशोपक वर्गों में अन्तर्निहित गरिमा मापता है; षड्बल राशि कुण्डली में कार्यात्मक क्षमता मापता है', ta: 'Vimshopaka measures inherent dignity across vargas; Shadbala measures functional ability in the rashi chart', te: 'Vimshopaka measures inherent dignity across vargas; Shadbala measures functional ability in the rashi chart', bn: 'Vimshopaka measures inherent dignity across vargas; Shadbala measures functional ability in the rashi chart', kn: 'Vimshopaka measures inherent dignity across vargas; Shadbala measures functional ability in the rashi chart', gu: 'Vimshopaka measures inherent dignity across vargas; Shadbala measures functional ability in the rashi chart' },
+      { en: 'Shadbala is more important than Vimshopaka', hi: 'षड्बल विंशोपक से अधिक महत्वपूर्ण है', sa: 'षड्बल विंशोपक से अधिक महत्वपूर्ण है', mai: 'षड्बल विंशोपक से अधिक महत्वपूर्ण है', mr: 'षड्बल विंशोपक से अधिक महत्वपूर्ण है', ta: 'Shadbala is more important than Vimshopaka', te: 'Shadbala is more important than Vimshopaka', bn: 'Shadbala is more important than Vimshopaka', kn: 'Shadbala is more important than Vimshopaka', gu: 'Shadbala is more important than Vimshopaka' },
+      { en: 'Vimshopaka only uses the D9 chart', hi: 'विंशोपक केवल D9 कुण्डली का उपयोग करता है', sa: 'विंशोपक केवल D9 कुण्डली का उपयोग करता है', mai: 'विंशोपक केवल D9 कुण्डली का उपयोग करता है', mr: 'विंशोपक केवल D9 कुण्डली का उपयोग करता है', ta: 'Vimshopaka only uses the D9 chart', te: 'Vimshopaka only uses the D9 chart', bn: 'Vimshopaka only uses the D9 chart', kn: 'Vimshopaka only uses the D9 chart', gu: 'Vimshopaka only uses the D9 chart' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -163,10 +163,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'यदि कोई ग्रह 2.0 भार वाले वर्ग में सम राशि में है, तो उस वर्ग से कितने अंक योगदान करता है?',
     },
     options: [
-      { en: '2.0', hi: '2.0' },
-      { en: '1.0', hi: '1.0' },
-      { en: '0.5', hi: '0.5' },
-      { en: '0.25', hi: '0.25' },
+      { en: '2.0', hi: '2.0', sa: '2.0', mai: '2.0', mr: '2.0', ta: '2.0', te: '2.0', bn: '2.0', kn: '2.0', gu: '2.0' },
+      { en: '1.0', hi: '1.0', sa: '1.0', mai: '1.0', mr: '1.0', ta: '1.0', te: '1.0', bn: '1.0', kn: '1.0', gu: '1.0' },
+      { en: '0.5', hi: '0.5', sa: '0.5', mai: '0.5', mr: '0.5', ta: '0.5', te: '0.5', bn: '0.5', kn: '0.5', gu: '0.5' },
+      { en: '0.25', hi: '0.25', sa: '0.25', mai: '0.25', mr: '0.25', ta: '0.25', te: '0.25', bn: '0.25', kn: '0.25', gu: '0.25' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -181,10 +181,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'D60 (षष्ट्यंश) को सबसे सूक्ष्म विभाजन होने के बावजूद सर्वाधिक भार (4.0) क्यों दिया गया है?',
     },
     options: [
-      { en: 'It is the easiest to calculate', hi: 'इसकी गणना सबसे सरल है' },
-      { en: 'It represents deep karmic and past-life indicators', hi: 'यह गहन कार्मिक और पूर्वजन्म संकेतकों को दर्शाता है' },
-      { en: 'It was invented most recently', hi: 'इसका आविष्कार सबसे हाल में हुआ' },
-      { en: 'It only applies to benefic planets', hi: 'यह केवल शुभ ग्रहों पर लागू होता है' },
+      { en: 'It is the easiest to calculate', hi: 'इसकी गणना सबसे सरल है', sa: 'इसकी गणना सबसे सरल है', mai: 'इसकी गणना सबसे सरल है', mr: 'इसकी गणना सबसे सरल है', ta: 'It is the easiest to calculate', te: 'It is the easiest to calculate', bn: 'It is the easiest to calculate', kn: 'It is the easiest to calculate', gu: 'It is the easiest to calculate' },
+      { en: 'It represents deep karmic and past-life indicators', hi: 'यह गहन कार्मिक और पूर्वजन्म संकेतकों को दर्शाता है', sa: 'यह गहन कार्मिक और पूर्वजन्म संकेतकों को दर्शाता है', mai: 'यह गहन कार्मिक और पूर्वजन्म संकेतकों को दर्शाता है', mr: 'यह गहन कार्मिक और पूर्वजन्म संकेतकों को दर्शाता है', ta: 'It represents deep karmic and past-life indicators', te: 'It represents deep karmic and past-life indicators', bn: 'It represents deep karmic and past-life indicators', kn: 'It represents deep karmic and past-life indicators', gu: 'It represents deep karmic and past-life indicators' },
+      { en: 'It was invented most recently', hi: 'इसका आविष्कार सबसे हाल में हुआ', sa: 'इसका आविष्कार सबसे हाल में हुआ', mai: 'इसका आविष्कार सबसे हाल में हुआ', mr: 'इसका आविष्कार सबसे हाल में हुआ', ta: 'It was invented most recently', te: 'It was invented most recently', bn: 'It was invented most recently', kn: 'It was invented most recently', gu: 'It was invented most recently' },
+      { en: 'It only applies to benefic planets', hi: 'यह केवल शुभ ग्रहों पर लागू होता है', sa: 'यह केवल शुभ ग्रहों पर लागू होता है', mai: 'यह केवल शुभ ग्रहों पर लागू होता है', mr: 'यह केवल शुभ ग्रहों पर लागू होता है', ta: 'It only applies to benefic planets', te: 'It only applies to benefic planets', bn: 'It only applies to benefic planets', kn: 'It only applies to benefic planets', gu: 'It only applies to benefic planets' },
     ],
     correctAnswer: 1,
     explanation: {

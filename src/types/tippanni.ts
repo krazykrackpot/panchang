@@ -1,32 +1,32 @@
-import { Trilingual } from './panchang';
+import type { LocaleText } from '@/types/panchang';
 
 export interface InterpretationSection {
-  title: Trilingual;
-  content: Trilingual;
+  title: LocaleText;
+  content: LocaleText;
   importance: 'high' | 'medium' | 'low';
 }
 
 export interface YogaResult {
-  name: Trilingual;
+  name: LocaleText;
   type: 'raja' | 'dhana' | 'arishta' | 'special';
   present: boolean;
-  description: Trilingual;
+  description: LocaleText;
   planets: string[];
   strength: number; // 0-100
 }
 
 export interface DoshaResult {
-  name: Trilingual;
+  name: LocaleText;
   present: boolean;
   severity: 'mild' | 'moderate' | 'severe' | 'none';
-  description: Trilingual;
-  remedies: Trilingual[];
+  description: LocaleText;
+  remedies: LocaleText[];
 }
 
 export interface LifeAreaAnalysis {
-  area: Trilingual;
+  area: LocaleText;
   icon: string;
-  summary: Trilingual;
+  summary: LocaleText;
   details: InterpretationSection[];
   rating: number; // 1-10
 }
@@ -36,21 +36,21 @@ export interface TippanniData {
     lagnaAnalysis: InterpretationSection;
     moonSignAnalysis: InterpretationSection;
     sunSignAnalysis: InterpretationSection;
-    summary: Trilingual;
+    summary: LocaleText;
   };
   houseAnalysis: {
     house: number;
-    name: Trilingual;
-    signLord: Trilingual;
+    name: LocaleText;
+    signLord: LocaleText;
     planets: string[];
-    interpretation: Trilingual;
+    interpretation: LocaleText;
   }[];
   yogas: YogaResult[];
   doshas: DoshaResult[];
   dashaAnalysis: {
-    currentDasha: Trilingual;
-    currentAnalysis: Trilingual;
-    upcomingTransitions: { period: Trilingual; analysis: Trilingual }[];
+    currentDasha: LocaleText;
+    currentAnalysis: LocaleText;
+    upcomingTransitions: { period: LocaleText; analysis: LocaleText }[];
   };
   lifeAreas: {
     career: LifeAreaAnalysis;
@@ -60,8 +60,8 @@ export interface TippanniData {
     education: LifeAreaAnalysis;
   };
   remedies: {
-    gemstones: { name: Trilingual; planet: string; description: Trilingual }[];
-    mantras: { text: Trilingual; planet: string; count: number }[];
-    charities: { description: Trilingual; planet: string; day: Trilingual }[];
+    gemstones: { name: LocaleText; planet: string; description: LocaleText }[];
+    mantras: { text: LocaleText; planet: string; count: number }[];
+    charities: { description: LocaleText; planet: string; day: LocaleText }[];
   };
 }

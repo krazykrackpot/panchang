@@ -104,9 +104,9 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
                       className={`text-[9px] font-medium leading-tight ${isHighlighted ? 'text-gold-light' : 'text-text-secondary/75'}`}
                       style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
                     >
-                      {a.nakshatra.name[locale].length > 9
-                        ? a.nakshatra.name[locale].substring(0, 8) + '…'
-                        : a.nakshatra.name[locale]}
+                      {(a.nakshatra.name[locale] || a.nakshatra.name.en)!.length > 9
+                        ? (a.nakshatra.name[locale] || a.nakshatra.name.en)!.substring(0, 8) + '…'
+                        : (a.nakshatra.name[locale] || a.nakshatra.name.en)}
                     </div>
                     {/* Planet name */}
                     <div

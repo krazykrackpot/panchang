@@ -5,16 +5,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_26_2', phase: 6, topic: 'Indian Contributions', moduleNumber: '26.2',
-  title: { en: 'Gravity — 500 Years Before Newton', hi: 'गुरुत्वाकर्षण — न्यूटन से 500 वर्ष पहले' },
+  title: { en: 'Gravity — 500 Years Before Newton', hi: 'गुरुत्वाकर्षण — न्यूटन से 500 वर्ष पहले', sa: 'गुरुत्वाकर्षण — न्यूटन से 500 वर्ष पहले', mai: 'गुरुत्वाकर्षण — न्यूटन से 500 वर्ष पहले', mr: 'गुरुत्वाकर्षण — न्यूटन से 500 वर्ष पहले', ta: 'Gravity — 500 Years Before Newton', te: 'Gravity — 500 Years Before Newton', bn: 'Gravity — 500 Years Before Newton', kn: 'Gravity — 500 Years Before Newton', gu: 'Gravity — 500 Years Before Newton' },
   subtitle: {
     en: 'Bhaskaracharya\'s 1150 CE description of Earth\'s gravitational force, and earlier precedents in Brahmagupta and Varahamihira',
     hi: 'भास्कराचार्य का 1150 ईस्वी में पृथ्वी के गुरुत्वाकर्षण बल का वर्णन, और ब्रह्मगुप्त तथा वराहमिहिर में पहले के पूर्वाभास',
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 26-1: Earth Rotates', hi: 'मॉड्यूल 26-1: पृथ्वी घूमती है' }, href: '/learn/modules/26-1' },
-    { label: { en: 'Module 26-3: Speed of Light', hi: 'मॉड्यूल 26-3: प्रकाश की गति' }, href: '/learn/modules/26-3' },
-    { label: { en: 'Module 26-4: Cosmic Time', hi: 'मॉड्यूल 26-4: ब्रह्मांडीय समय' }, href: '/learn/modules/26-4' },
+    { label: { en: 'Module 26-1: Earth Rotates', hi: 'मॉड्यूल 26-1: पृथ्वी घूमती है', sa: 'मॉड्यूल 26-1: पृथ्वी घूमती है', mai: 'मॉड्यूल 26-1: पृथ्वी घूमती है', mr: 'मॉड्यूल 26-1: पृथ्वी घूमती है', ta: 'Module 26-1: Earth Rotates', te: 'Module 26-1: Earth Rotates', bn: 'Module 26-1: Earth Rotates', kn: 'Module 26-1: Earth Rotates', gu: 'Module 26-1: Earth Rotates' }, href: '/learn/modules/26-1' },
+    { label: { en: 'Module 26-3: Speed of Light', hi: 'मॉड्यूल 26-3: प्रकाश की गति', sa: 'मॉड्यूल 26-3: प्रकाश की गति', mai: 'मॉड्यूल 26-3: प्रकाश की गति', mr: 'मॉड्यूल 26-3: प्रकाश की गति', ta: 'Module 26-3: Speed of Light', te: 'Module 26-3: Speed of Light', bn: 'Module 26-3: Speed of Light', kn: 'Module 26-3: Speed of Light', gu: 'Module 26-3: Speed of Light' }, href: '/learn/modules/26-3' },
+    { label: { en: 'Module 26-4: Cosmic Time', hi: 'मॉड्यूल 26-4: ब्रह्मांडीय समय', sa: 'मॉड्यूल 26-4: ब्रह्मांडीय समय', mai: 'मॉड्यूल 26-4: ब्रह्मांडीय समय', mr: 'मॉड्यूल 26-4: ब्रह्मांडीय समय', ta: 'Module 26-4: Cosmic Time', te: 'Module 26-4: Cosmic Time', bn: 'Module 26-4: Cosmic Time', kn: 'Module 26-4: Cosmic Time', gu: 'Module 26-4: Cosmic Time' }, href: '/learn/modules/26-4' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पृथ्वी के आकर्षण बल के बारे में किसने लिखा जो वस्तुओं को अपने केन्द्र की ओर खींचता है?',
     },
     options: [
-      { en: 'Aryabhata', hi: 'आर्यभट' },
-      { en: 'Varahamihira', hi: 'वराहमिहिर' },
-      { en: 'Bhaskaracharya II (Bhaskara)', hi: 'भास्कराचार्य द्वितीय (भास्कर)' },
-      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त' },
+      { en: 'Aryabhata', hi: 'आर्यभट', sa: 'आर्यभट', mai: 'आर्यभट', mr: 'आर्यभट', ta: 'Aryabhata', te: 'Aryabhata', bn: 'Aryabhata', kn: 'Aryabhata', gu: 'Aryabhata' },
+      { en: 'Varahamihira', hi: 'वराहमिहिर', sa: 'वराहमिहिर', mai: 'वराहमिहिर', mr: 'वराहमिहिर', ta: 'Varahamihira', te: 'Varahamihira', bn: 'Varahamihira', kn: 'Varahamihira', gu: 'Varahamihira' },
+      { en: 'Bhaskaracharya II (Bhaskara)', hi: 'भास्कराचार्य द्वितीय (भास्कर)', sa: 'भास्कराचार्य द्वितीय (भास्कर)', mai: 'भास्कराचार्य द्वितीय (भास्कर)', mr: 'भास्कराचार्य द्वितीय (भास्कर)', ta: 'Bhaskaracharya II (Bhaskara)', te: 'Bhaskaracharya II (Bhaskara)', bn: 'Bhaskaracharya II (Bhaskara)', kn: 'Bhaskaracharya II (Bhaskara)', gu: 'Bhaskaracharya II (Bhaskara)' },
+      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त', sa: 'ब्रह्मगुप्त', mai: 'ब्रह्मगुप्त', mr: 'ब्रह्मगुप्त', ta: 'Brahmagupta', te: 'Brahmagupta', bn: 'Brahmagupta', kn: 'Brahmagupta', gu: 'Brahmagupta' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -44,10 +44,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किस ग्रन्थ में भास्कराचार्य ने पृथ्वी के गुरुत्वाकर्षण आकर्षण का वर्णन किया?',
     },
     options: [
-      { en: 'Aryabhatiya', hi: 'आर्यभटीय' },
-      { en: 'Brahmasphutasiddhanta', hi: 'ब्रह्मस्फुटसिद्धान्त' },
-      { en: 'Siddhanta Shiromani', hi: 'सिद्धान्त शिरोमणि' },
-      { en: 'Pancha Siddhantika', hi: 'पञ्च सिद्धान्तिका' },
+      { en: 'Aryabhatiya', hi: 'आर्यभटीय', sa: 'आर्यभटीय', mai: 'आर्यभटीय', mr: 'आर्यभटीय', ta: 'Aryabhatiya', te: 'Aryabhatiya', bn: 'Aryabhatiya', kn: 'Aryabhatiya', gu: 'Aryabhatiya' },
+      { en: 'Brahmasphutasiddhanta', hi: 'ब्रह्मस्फुटसिद्धान्त', sa: 'ब्रह्मस्फुटसिद्धान्त', mai: 'ब्रह्मस्फुटसिद्धान्त', mr: 'ब्रह्मस्फुटसिद्धान्त', ta: 'Brahmasphutasiddhanta', te: 'Brahmasphutasiddhanta', bn: 'Brahmasphutasiddhanta', kn: 'Brahmasphutasiddhanta', gu: 'Brahmasphutasiddhanta' },
+      { en: 'Siddhanta Shiromani', hi: 'सिद्धान्त शिरोमणि', sa: 'सिद्धान्त शिरोमणि', mai: 'सिद्धान्त शिरोमणि', mr: 'सिद्धान्त शिरोमणि', ta: 'Siddhanta Shiromani', te: 'Siddhanta Shiromani', bn: 'Siddhanta Shiromani', kn: 'Siddhanta Shiromani', gu: 'Siddhanta Shiromani' },
+      { en: 'Pancha Siddhantika', hi: 'पञ्च सिद्धान्तिका', sa: 'पञ्च सिद्धान्तिका', mai: 'पञ्च सिद्धान्तिका', mr: 'पञ्च सिद्धान्तिका', ta: 'Pancha Siddhantika', te: 'Pancha Siddhantika', bn: 'Pancha Siddhantika', kn: 'Pancha Siddhantika', gu: 'Pancha Siddhantika' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -62,10 +62,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'भास्कराचार्य ने सिद्धान्त शिरोमणि कब लिखी?',
     },
     options: [
-      { en: '628 CE', hi: '628 ईस्वी' },
-      { en: '1114 CE', hi: '1114 ईस्वी' },
-      { en: '1150 CE', hi: '1150 ईस्वी' },
-      { en: '1185 CE', hi: '1185 ईस्वी' },
+      { en: '628 CE', hi: '628 ईस्वी', sa: '628 ईस्वी', mai: '628 ईस्वी', mr: '628 ईस्वी', ta: '628 CE', te: '628 CE', bn: '628 CE', kn: '628 CE', gu: '628 CE' },
+      { en: '1114 CE', hi: '1114 ईस्वी', sa: '1114 ईस्वी', mai: '1114 ईस्वी', mr: '1114 ईस्वी', ta: '1114 CE', te: '1114 CE', bn: '1114 CE', kn: '1114 CE', gu: '1114 CE' },
+      { en: '1150 CE', hi: '1150 ईस्वी', sa: '1150 ईस्वी', mai: '1150 ईस्वी', mr: '1150 ईस्वी', ta: '1150 CE', te: '1150 CE', bn: '1150 CE', kn: '1150 CE', gu: '1150 CE' },
+      { en: '1185 CE', hi: '1185 ईस्वी', sa: '1185 ईस्वी', mai: '1185 ईस्वी', mr: '1185 ईस्वी', ta: '1185 CE', te: '1185 CE', bn: '1185 CE', kn: '1185 CE', gu: '1185 CE' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -80,10 +80,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सिद्धान्त शिरोमणि के किस खंड में गुरुत्वाकर्षण की चर्चा आती है?',
     },
     options: [
-      { en: 'Lilavati (arithmetic)', hi: 'लीलावती (अंकगणित)' },
-      { en: 'Bijaganita (algebra)', hi: 'बीजगणित (बीजगणित)' },
-      { en: 'Ganitadhyaya (mathematical astronomy)', hi: 'गणिताध्याय (गणितीय खगोल विज्ञान)' },
-      { en: 'Goladhyaya (celestial sphere)', hi: 'गोलाध्याय (खगोलीय गोला)' },
+      { en: 'Lilavati (arithmetic)', hi: 'लीलावती (अंकगणित)', sa: 'लीलावती (अंकगणित)', mai: 'लीलावती (अंकगणित)', mr: 'लीलावती (अंकगणित)', ta: 'Lilavati (arithmetic)', te: 'Lilavati (arithmetic)', bn: 'Lilavati (arithmetic)', kn: 'Lilavati (arithmetic)', gu: 'Lilavati (arithmetic)' },
+      { en: 'Bijaganita (algebra)', hi: 'बीजगणित (बीजगणित)', sa: 'बीजगणित (बीजगणित)', mai: 'बीजगणित (बीजगणित)', mr: 'बीजगणित (बीजगणित)', ta: 'Bijaganita (algebra)', te: 'Bijaganita (algebra)', bn: 'Bijaganita (algebra)', kn: 'Bijaganita (algebra)', gu: 'Bijaganita (algebra)' },
+      { en: 'Ganitadhyaya (mathematical astronomy)', hi: 'गणिताध्याय (गणितीय खगोल विज्ञान)', sa: 'गणिताध्याय (गणितीय खगोल विज्ञान)', mai: 'गणिताध्याय (गणितीय खगोल विज्ञान)', mr: 'गणिताध्याय (गणितीय खगोल विज्ञान)', ta: 'Ganitadhyaya (mathematical astronomy)', te: 'Ganitadhyaya (mathematical astronomy)', bn: 'Ganitadhyaya (mathematical astronomy)', kn: 'Ganitadhyaya (mathematical astronomy)', gu: 'Ganitadhyaya (mathematical astronomy)' },
+      { en: 'Goladhyaya (celestial sphere)', hi: 'गोलाध्याय (खगोलीय गोला)', sa: 'गोलाध्याय (खगोलीय गोला)', mai: 'गोलाध्याय (खगोलीय गोला)', mr: 'गोलाध्याय (खगोलीय गोला)', ta: 'Goladhyaya (celestial sphere)', te: 'Goladhyaya (celestial sphere)', bn: 'Goladhyaya (celestial sphere)', kn: 'Goladhyaya (celestial sphere)', gu: 'Goladhyaya (celestial sphere)' },
     ],
     correctAnswer: 3,
     explanation: {
@@ -98,10 +98,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किसने 628 ईस्वी में पहले पृथ्वी के गुरुत्वाकर्षण आकर्षण का उल्लेख किया?',
     },
     options: [
-      { en: 'Aryabhata in Aryabhatiya', hi: 'आर्यभटीय में आर्यभट' },
-      { en: 'Brahmagupta in Brahmasphutasiddhanta', hi: 'ब्रह्मस्फुटसिद्धान्त में ब्रह्मगुप्त' },
-      { en: 'Varahamihira in Brihat Samhita', hi: 'बृहत् संहिता में वराहमिहिर' },
-      { en: 'Pingala in Chandahshastra', hi: 'छन्दःशास्त्र में पिंगल' },
+      { en: 'Aryabhata in Aryabhatiya', hi: 'आर्यभटीय में आर्यभट', sa: 'आर्यभटीय में आर्यभट', mai: 'आर्यभटीय में आर्यभट', mr: 'आर्यभटीय में आर्यभट', ta: 'Aryabhata in Aryabhatiya', te: 'Aryabhata in Aryabhatiya', bn: 'Aryabhata in Aryabhatiya', kn: 'Aryabhata in Aryabhatiya', gu: 'Aryabhata in Aryabhatiya' },
+      { en: 'Brahmagupta in Brahmasphutasiddhanta', hi: 'ब्रह्मस्फुटसिद्धान्त में ब्रह्मगुप्त', sa: 'ब्रह्मस्फुटसिद्धान्त में ब्रह्मगुप्त', mai: 'ब्रह्मस्फुटसिद्धान्त में ब्रह्मगुप्त', mr: 'ब्रह्मस्फुटसिद्धान्त में ब्रह्मगुप्त', ta: 'Brahmagupta in Brahmasphutasiddhanta', te: 'Brahmagupta in Brahmasphutasiddhanta', bn: 'Brahmagupta in Brahmasphutasiddhanta', kn: 'Brahmagupta in Brahmasphutasiddhanta', gu: 'Brahmagupta in Brahmasphutasiddhanta' },
+      { en: 'Varahamihira in Brihat Samhita', hi: 'बृहत् संहिता में वराहमिहिर', sa: 'बृहत् संहिता में वराहमिहिर', mai: 'बृहत् संहिता में वराहमिहिर', mr: 'बृहत् संहिता में वराहमिहिर', ta: 'Varahamihira in Brihat Samhita', te: 'Varahamihira in Brihat Samhita', bn: 'Varahamihira in Brihat Samhita', kn: 'Varahamihira in Brihat Samhita', gu: 'Varahamihira in Brihat Samhita' },
+      { en: 'Pingala in Chandahshastra', hi: 'छन्दःशास्त्र में पिंगल', sa: 'छन्दःशास्त्र में पिंगल', mai: 'छन्दःशास्त्र में पिंगल', mr: 'छन्दःशास्त्र में पिंगल', ta: 'Pingala in Chandahshastra', te: 'Pingala in Chandahshastra', bn: 'Pingala in Chandahshastra', kn: 'Pingala in Chandahshastra', gu: 'Pingala in Chandahshastra' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -116,10 +116,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'गुरुत्वाकर्षण की अवधारणा में न्यूटन ने क्या महत्त्वपूर्ण तत्त्व जोड़ा जो भारतीय ग्रन्थों में नहीं था?',
     },
     options: [
-      { en: 'The idea that Earth attracts objects', hi: 'यह विचार कि पृथ्वी वस्तुओं को आकर्षित करती है' },
-      { en: 'The observation that objects fall when dropped', hi: 'यह अवलोकन कि छोड़ने पर वस्तुएँ गिरती हैं' },
-      { en: 'The mathematical formula F = Gm₁m₂/r² and the unification of celestial and terrestrial gravity', hi: 'गणितीय सूत्र F = Gm₁m₂/r² और खगोलीय और स्थलीय गुरुत्वाकर्षण का एकीकरण' },
-      { en: 'The concept that gravity weakens with distance', hi: 'यह अवधारणा कि दूरी के साथ गुरुत्वाकर्षण कमज़ोर होता है' },
+      { en: 'The idea that Earth attracts objects', hi: 'यह विचार कि पृथ्वी वस्तुओं को आकर्षित करती है', sa: 'यह विचार कि पृथ्वी वस्तुओं को आकर्षित करती है', mai: 'यह विचार कि पृथ्वी वस्तुओं को आकर्षित करती है', mr: 'यह विचार कि पृथ्वी वस्तुओं को आकर्षित करती है', ta: 'The idea that Earth attracts objects', te: 'The idea that Earth attracts objects', bn: 'The idea that Earth attracts objects', kn: 'The idea that Earth attracts objects', gu: 'The idea that Earth attracts objects' },
+      { en: 'The observation that objects fall when dropped', hi: 'यह अवलोकन कि छोड़ने पर वस्तुएँ गिरती हैं', sa: 'यह अवलोकन कि छोड़ने पर वस्तुएँ गिरती हैं', mai: 'यह अवलोकन कि छोड़ने पर वस्तुएँ गिरती हैं', mr: 'यह अवलोकन कि छोड़ने पर वस्तुएँ गिरती हैं', ta: 'The observation that objects fall when dropped', te: 'The observation that objects fall when dropped', bn: 'The observation that objects fall when dropped', kn: 'The observation that objects fall when dropped', gu: 'The observation that objects fall when dropped' },
+      { en: 'The mathematical formula F = Gm₁m₂/r² and the unification of celestial and terrestrial gravity', hi: 'गणितीय सूत्र F = Gm₁m₂/r² और खगोलीय और स्थलीय गुरुत्वाकर्षण का एकीकरण', sa: 'गणितीय सूत्र F = Gm₁m₂/r² और खगोलीय और स्थलीय गुरुत्वाकर्षण का एकीकरण', mai: 'गणितीय सूत्र F = Gm₁m₂/r² और खगोलीय और स्थलीय गुरुत्वाकर्षण का एकीकरण', mr: 'गणितीय सूत्र F = Gm₁m₂/r² और खगोलीय और स्थलीय गुरुत्वाकर्षण का एकीकरण', ta: 'The mathematical formula F = Gm₁m₂/r² and the unification of celestial and terrestrial gravity', te: 'The mathematical formula F = Gm₁m₂/r² and the unification of celestial and terrestrial gravity', bn: 'The mathematical formula F = Gm₁m₂/r² and the unification of celestial and terrestrial gravity', kn: 'The mathematical formula F = Gm₁m₂/r² and the unification of celestial and terrestrial gravity', gu: 'The mathematical formula F = Gm₁m₂/r² and the unification of celestial and terrestrial gravity' },
+      { en: 'The concept that gravity weakens with distance', hi: 'यह अवधारणा कि दूरी के साथ गुरुत्वाकर्षण कमज़ोर होता है', sa: 'यह अवधारणा कि दूरी के साथ गुरुत्वाकर्षण कमज़ोर होता है', mai: 'यह अवधारणा कि दूरी के साथ गुरुत्वाकर्षण कमज़ोर होता है', mr: 'यह अवधारणा कि दूरी के साथ गुरुत्वाकर्षण कमज़ोर होता है', ta: 'The concept that gravity weakens with distance', te: 'The concept that gravity weakens with distance', bn: 'The concept that gravity weakens with distance', kn: 'The concept that gravity weakens with distance', gu: 'The concept that gravity weakens with distance' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -134,10 +134,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'न्यूटन ने अपना सार्वत्रिक गुरुत्वाकर्षण नियम किस वर्ष प्रकाशित किया?',
     },
     options: [
-      { en: '1665 CE', hi: '1665 ईस्वी' },
-      { en: '1676 CE', hi: '1676 ईस्वी' },
-      { en: '1687 CE', hi: '1687 ईस्वी' },
-      { en: '1705 CE', hi: '1705 ईस्वी' },
+      { en: '1665 CE', hi: '1665 ईस्वी', sa: '1665 ईस्वी', mai: '1665 ईस्वी', mr: '1665 ईस्वी', ta: '1665 CE', te: '1665 CE', bn: '1665 CE', kn: '1665 CE', gu: '1665 CE' },
+      { en: '1676 CE', hi: '1676 ईस्वी', sa: '1676 ईस्वी', mai: '1676 ईस्वी', mr: '1676 ईस्वी', ta: '1676 CE', te: '1676 CE', bn: '1676 CE', kn: '1676 CE', gu: '1676 CE' },
+      { en: '1687 CE', hi: '1687 ईस्वी', sa: '1687 ईस्वी', mai: '1687 ईस्वी', mr: '1687 ईस्वी', ta: '1687 CE', te: '1687 CE', bn: '1687 CE', kn: '1687 CE', gu: '1687 CE' },
+      { en: '1705 CE', hi: '1705 ईस्वी', sa: '1705 ईस्वी', mai: '1705 ईस्वी', mr: '1705 ईस्वी', ta: '1705 CE', te: '1705 CE', bn: '1705 CE', kn: '1705 CE', gu: '1705 CE' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -152,10 +152,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'भास्कराचार्य के सिद्धान्त शिरोमणि (1150 ईस्वी) और न्यूटन के प्रिन्सिपिया (1687 ईस्वी) के बीच कितने वर्षों का अंतर है?',
     },
     options: [
-      { en: '337 years', hi: '337 वर्ष' },
-      { en: '437 years', hi: '437 वर्ष' },
-      { en: '537 years', hi: '537 वर्ष' },
-      { en: '637 years', hi: '637 वर्ष' },
+      { en: '337 years', hi: '337 वर्ष', sa: '337 वर्ष', mai: '337 वर्ष', mr: '337 वर्ष', ta: '337 years', te: '337 years', bn: '337 years', kn: '337 years', gu: '337 years' },
+      { en: '437 years', hi: '437 वर्ष', sa: '437 वर्ष', mai: '437 वर्ष', mr: '437 वर्ष', ta: '437 years', te: '437 years', bn: '437 years', kn: '437 years', gu: '437 years' },
+      { en: '537 years', hi: '537 वर्ष', sa: '537 वर्ष', mai: '537 वर्ष', mr: '537 वर्ष', ta: '537 years', te: '537 years', bn: '537 years', kn: '537 years', gu: '537 years' },
+      { en: '637 years', hi: '637 वर्ष', sa: '637 वर्ष', mai: '637 वर्ष', mr: '637 वर्ष', ta: '637 years', te: '637 years', bn: '637 years', kn: '637 years', gu: '637 years' },
     ],
     correctAnswer: 2,
     explanation: {

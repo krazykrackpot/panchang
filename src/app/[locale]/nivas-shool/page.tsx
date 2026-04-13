@@ -1,13 +1,14 @@
 'use client';
 
+import type { LocaleText } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { Compass, ArrowRight, AlertTriangle, Star, Flame, Moon } from 'lucide-react';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-type Tri = Record<string, string>;
-const t = (obj: Tri, locale: string) => obj[locale] ?? obj.hi ?? obj.en ?? '';
+const t = (obj: LocaleText, locale: string) => tl(obj, locale);
 
 // ─── Inline multilingual labels ──────────────────────────────────────────────
 const L = {
@@ -485,7 +486,7 @@ const SUMMARY_ROWS = [
 
 // ─── Small helpers ──────────────────────────────────────────────────────────
 const NatureBadge = ({ nature, locale }: { nature: string; locale: string }) => {
-  const map: Record<string, { label: Tri; cls: string }> = {
+  const map: Record<string, { label: LocaleText; cls: string }> = {
     auspicious: { label: L.auspicious, cls: 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/25' },
     inauspicious: { label: L.inauspicious, cls: 'bg-red-500/15 text-red-400 border border-red-500/25' },
     neutral: { label: L.neutral, cls: 'bg-blue-500/15 text-blue-300 border border-blue-500/25' },
@@ -495,7 +496,7 @@ const NatureBadge = ({ nature, locale }: { nature: string; locale: string }) => 
   return <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${cls}`}>{t(label, locale)}</span>;
 };
 
-const SectionHeader = ({ icon, title, subtitle, locale }: { icon: React.ReactNode; title: Tri; subtitle: Tri; locale: string }) => (
+const SectionHeader = ({ icon, title, subtitle, locale }: { icon: React.ReactNode; title: LocaleText; subtitle: LocaleText; locale: string }) => (
   <div className="text-center mb-10">
     <div className="flex justify-center mb-3">{icon}</div>
     <h2 className="text-3xl font-bold text-gold-gradient mb-2">{t(title, locale)}</h2>

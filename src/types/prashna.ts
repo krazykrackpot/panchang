@@ -1,21 +1,22 @@
-import { Trilingual } from './panchang';
+;
+import type { LocaleText } from '@/types/panchang';
 import { KundaliData } from './kundali';
 
 export interface AshtamangalaObject {
   id: number;
-  name: Trilingual;
+  name: LocaleText;
   planetRuler: number; // planet id
-  planetName: Trilingual;
-  element: Trilingual;
-  symbolism: Trilingual;
+  planetName: LocaleText;
+  element: LocaleText;
+  symbolism: LocaleText;
 }
 
 export interface PrashnaYoga {
-  name: Trilingual;
+  name: LocaleText;
   type: 'mrityu' | 'bandha' | 'subha' | 'asubha' | 'chandra';
-  planets: Trilingual[];
+  planets: LocaleText[];
   favorable: boolean;
-  description: Trilingual;
+  description: LocaleText;
 }
 
 export type QuestionCategory =
@@ -24,9 +25,9 @@ export type QuestionCategory =
 
 export interface PrashnaInterpretation {
   verdict: 'favorable' | 'unfavorable' | 'mixed';
-  summary: Trilingual;
-  timing: Trilingual;
-  remedies: Trilingual[];
+  summary: LocaleText;
+  timing: LocaleText;
+  remedies: LocaleText[];
 }
 
 export interface AshtamangalaPrashnaData {

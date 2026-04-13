@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect, useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -15,7 +16,7 @@ import { TITHIS } from '@/lib/constants/tithis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { YOGAS } from '@/lib/constants/yogas';
 import { VARA_DATA } from '@/lib/constants/grahas';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Constants ──────────────────────────────────────────────────
@@ -57,7 +58,7 @@ const MUHURTA_NAMES: { en: string; hi: string; nature: 'good' | 'bad' | 'mixed' 
 ];
 
 // 5 Dinamana Kalas — day divided into 5 × 6 ghati (30-ghati clock only)
-const DINAMANA_KALAS: { en: string; hi: string; sa: string }[] = [
+const DINAMANA_KALAS: LocaleText[] = [
   { en: 'Pratah Kala', hi: 'प्रातःकाल', sa: 'प्रातःकालः' },
   { en: 'Sangava Kala', hi: 'सङ्गवकाल', sa: 'सङ्गवकालः' },
   { en: 'Madhyahna', hi: 'मध्याह्न', sa: 'मध्याह्नः' },
@@ -66,7 +67,7 @@ const DINAMANA_KALAS: { en: string; hi: string; sa: string }[] = [
 ];
 
 // 5 Ratrimana Kalas — night divided into 5 × 6 ghati
-const RATRIMANA_KALAS: { en: string; hi: string; sa: string }[] = [
+const RATRIMANA_KALAS: LocaleText[] = [
   { en: 'Pradosha Kala', hi: 'प्रदोषकाल', sa: 'प्रदोषकालः' },
   { en: 'Nisha Kala', hi: 'निशाकाल', sa: 'निशाकालः' },
   { en: 'Madhya Ratri', hi: 'मध्यरात्रि', sa: 'मध्यरात्रिः' },
@@ -75,15 +76,15 @@ const RATRIMANA_KALAS: { en: string; hi: string; sa: string }[] = [
 ];
 
 // 8 Prahar names (used in 60-ghati Ishtakala clock)
-const PRAHAR_NAMES: { en: string; hi: string }[] = [
-  { en: 'Pratah Kaal', hi: 'प्रातःकाल' },
-  { en: 'Sangava Kaal', hi: 'सङ्गवकाल' },
-  { en: 'Madhyahna Kaal', hi: 'मध्याह्नकाल' },
-  { en: 'Aparahna Kaal', hi: 'अपराह्णकाल' },
-  { en: 'Sayahna Kaal', hi: 'सायंकाल' },
-  { en: 'Pradosha Kaal', hi: 'प्रदोषकाल' },
-  { en: 'Nisha Kaal', hi: 'निशाकाल' },
-  { en: 'Usha Kaal', hi: 'ऊषाकाल' },
+const PRAHAR_NAMES: LocaleText[] = [
+  { en: 'Pratah Kaal', hi: 'प्रातःकाल', sa: 'प्रातःकाल', mai: 'प्रातःकाल', mr: 'प्रातःकाल', ta: 'Pratah Kaal', te: 'Pratah Kaal', bn: 'Pratah Kaal', kn: 'Pratah Kaal', gu: 'Pratah Kaal' },
+  { en: 'Sangava Kaal', hi: 'सङ्गवकाल', sa: 'सङ्गवकाल', mai: 'सङ्गवकाल', mr: 'सङ्गवकाल', ta: 'Sangava Kaal', te: 'Sangava Kaal', bn: 'Sangava Kaal', kn: 'Sangava Kaal', gu: 'Sangava Kaal' },
+  { en: 'Madhyahna Kaal', hi: 'मध्याह्नकाल', sa: 'मध्याह्नकाल', mai: 'मध्याह्नकाल', mr: 'मध्याह्नकाल', ta: 'Madhyahna Kaal', te: 'Madhyahna Kaal', bn: 'Madhyahna Kaal', kn: 'Madhyahna Kaal', gu: 'Madhyahna Kaal' },
+  { en: 'Aparahna Kaal', hi: 'अपराह्णकाल', sa: 'अपराह्णकाल', mai: 'अपराह्णकाल', mr: 'अपराह्णकाल', ta: 'Aparahna Kaal', te: 'Aparahna Kaal', bn: 'Aparahna Kaal', kn: 'Aparahna Kaal', gu: 'Aparahna Kaal' },
+  { en: 'Sayahna Kaal', hi: 'सायंकाल', sa: 'सायंकाल', mai: 'सायंकाल', mr: 'सायंकाल', ta: 'Sayahna Kaal', te: 'Sayahna Kaal', bn: 'Sayahna Kaal', kn: 'Sayahna Kaal', gu: 'Sayahna Kaal' },
+  { en: 'Pradosha Kaal', hi: 'प्रदोषकाल', sa: 'प्रदोषकाल', mai: 'प्रदोषकाल', mr: 'प्रदोषकाल', ta: 'Pradosha Kaal', te: 'Pradosha Kaal', bn: 'Pradosha Kaal', kn: 'Pradosha Kaal', gu: 'Pradosha Kaal' },
+  { en: 'Nisha Kaal', hi: 'निशाकाल', sa: 'निशाकाल', mai: 'निशाकाल', mr: 'निशाकाल', ta: 'Nisha Kaal', te: 'Nisha Kaal', bn: 'Nisha Kaal', kn: 'Nisha Kaal', gu: 'Nisha Kaal' },
+  { en: 'Usha Kaal', hi: 'ऊषाकाल', sa: 'ऊषाकाल', mai: 'ऊषाकाल', mr: 'ऊषाकाल', ta: 'Usha Kaal', te: 'Usha Kaal', bn: 'Usha Kaal', kn: 'Usha Kaal', gu: 'Usha Kaal' },
 ];
 
 // ─── Computation ────────────────────────────────────────────────
@@ -91,9 +92,9 @@ const PRAHAR_NAMES: { en: string; hi: string }[] = [
 interface VedicTimeResult {
   ghati: number; pala: number; vipala: number;
   prahar: number; muhurta: number;
-  praharName: { en: string; hi: string } | undefined;
+  praharName: LocaleText | undefined;
   muhurtaName: { en: string; hi: string; nature: 'good' | 'bad' | 'mixed' } | undefined;
-  kalaName: { en: string; hi: string; sa: string } | undefined;
+  kalaName: LocaleText | undefined;
   isDaytime: boolean;
   praharDurationMin: number;
   muhurtaDurationMin: number;
@@ -185,7 +186,7 @@ function computeVedicTime(
   }
 
   // Kala name (30-ghati clock: 5 kalas of 6 ghati each for day & night)
-  let kalaName: { en: string; hi: string; sa: string } | undefined;
+  let kalaName: LocaleText | undefined;
   if (mode === '30') {
     if (isDaytime) {
       const dayElapsed = nowMs - sunriseMs;
@@ -324,9 +325,9 @@ export default function VedicTimePage() {
 
   const locationName = locationStore.name || userTimezone;
   const timeUnits = vedic ? [
-    { label: { en: 'Ghati', hi: 'घटी' }, value: vedic.ghati, max: clockMode === '60' ? 60 : 60, desc: { en: `= ${Math.round(vedic.ghatiDurationSec / 60 * 10) / 10} min`, hi: `= ${Math.round(vedic.ghatiDurationSec / 60 * 10) / 10} मिनट` } },
-    { label: { en: 'Pala', hi: 'पल' }, value: vedic.pala, max: 60, desc: { en: `= ${(vedic.ghatiDurationSec / 60).toFixed(1)} sec`, hi: `= ${(vedic.ghatiDurationSec / 60).toFixed(1)} सेकंड` } },
-    { label: { en: 'Vipala', hi: 'विपल' }, value: vedic.vipala, max: 60, desc: { en: `= ${(vedic.ghatiDurationSec / 3600).toFixed(2)} sec`, hi: `= ${(vedic.ghatiDurationSec / 3600).toFixed(2)} सेकंड` } },
+    { label: { en: 'Ghati', hi: 'घटी', sa: 'घटी', mai: 'घटी', mr: 'घटी', ta: 'Ghati', te: 'Ghati', bn: 'Ghati', kn: 'Ghati', gu: 'Ghati' }, value: vedic.ghati, max: clockMode === '60' ? 60 : 60, desc: { en: `= ${Math.round(vedic.ghatiDurationSec / 60 * 10) / 10} min`, hi: `= ${Math.round(vedic.ghatiDurationSec / 60 * 10) / 10} मिनट`, sa: `= ${Math.round(vedic.ghatiDurationSec / 60 * 10) / 10} मिनट`, mai: `= ${Math.round(vedic.ghatiDurationSec / 60 * 10) / 10} मिनट`, mr: `= ${Math.round(vedic.ghatiDurationSec / 60 * 10) / 10} मिनट`, ta: `= ${Math.round(vedic.ghatiDurationSec / 60 * 10) / 10} min`, te: `= ${Math.round(vedic.ghatiDurationSec / 60 * 10) / 10} min`, bn: `= ${Math.round(vedic.ghatiDurationSec / 60 * 10) / 10} min`, kn: `= ${Math.round(vedic.ghatiDurationSec / 60 * 10) / 10} min`, gu: `= ${Math.round(vedic.ghatiDurationSec / 60 * 10) / 10} min` } },
+    { label: { en: 'Pala', hi: 'पल', sa: 'पल', mai: 'पल', mr: 'पल', ta: 'Pala', te: 'Pala', bn: 'Pala', kn: 'Pala', gu: 'Pala' }, value: vedic.pala, max: 60, desc: { en: `= ${(vedic.ghatiDurationSec / 60).toFixed(1)} sec`, hi: `= ${(vedic.ghatiDurationSec / 60).toFixed(1)} सेकंड`, sa: `= ${(vedic.ghatiDurationSec / 60).toFixed(1)} सेकंड`, mai: `= ${(vedic.ghatiDurationSec / 60).toFixed(1)} सेकंड`, mr: `= ${(vedic.ghatiDurationSec / 60).toFixed(1)} सेकंड`, ta: `= ${(vedic.ghatiDurationSec / 60).toFixed(1)} sec`, te: `= ${(vedic.ghatiDurationSec / 60).toFixed(1)} sec`, bn: `= ${(vedic.ghatiDurationSec / 60).toFixed(1)} sec`, kn: `= ${(vedic.ghatiDurationSec / 60).toFixed(1)} sec`, gu: `= ${(vedic.ghatiDurationSec / 60).toFixed(1)} sec` } },
+    { label: { en: 'Vipala', hi: 'विपल', sa: 'विपल', mai: 'विपल', mr: 'विपल', ta: 'Vipala', te: 'Vipala', bn: 'Vipala', kn: 'Vipala', gu: 'Vipala' }, value: vedic.vipala, max: 60, desc: { en: `= ${(vedic.ghatiDurationSec / 3600).toFixed(2)} sec`, hi: `= ${(vedic.ghatiDurationSec / 3600).toFixed(2)} सेकंड`, sa: `= ${(vedic.ghatiDurationSec / 3600).toFixed(2)} सेकंड`, mai: `= ${(vedic.ghatiDurationSec / 3600).toFixed(2)} सेकंड`, mr: `= ${(vedic.ghatiDurationSec / 3600).toFixed(2)} सेकंड`, ta: `= ${(vedic.ghatiDurationSec / 3600).toFixed(2)} sec`, te: `= ${(vedic.ghatiDurationSec / 3600).toFixed(2)} sec`, bn: `= ${(vedic.ghatiDurationSec / 3600).toFixed(2)} sec`, kn: `= ${(vedic.ghatiDurationSec / 3600).toFixed(2)} sec`, gu: `= ${(vedic.ghatiDurationSec / 3600).toFixed(2)} sec` } },
   ] : [];
 
   return (
@@ -495,17 +496,17 @@ export default function VedicTimePage() {
       {panchangCtx && (
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-5 py-3 mb-4 text-center" style={bodyFont}>
           <div className="text-gold-light text-sm font-semibold">
-            {panchangCtx.masa?.[locale] || panchangCtx.masa?.en},{' '}
+            {tl(panchangCtx.masa, locale)},{' '}
             {panchangCtx.tithi?.paksha === 'krishna'
               ? (!isDevanagariLocale(locale) ? 'Krishna' : 'कृष्ण')
               : (!isDevanagariLocale(locale) ? 'Shukla' : 'शुक्ल')}{' '}
-            {panchangCtx.tithi?.name?.[locale] || panchangCtx.tithi?.name?.en},{' '}
+            {tl(panchangCtx.tithi?.name, locale)},{' '}
             {panchangCtx.vikramSamvat} {!isDevanagariLocale(locale) ? 'Vikram' : 'विक्रम'} / {panchangCtx.shakaSamvat} {!isDevanagariLocale(locale) ? 'Shaka' : 'शक'}
           </div>
           <div className="text-text-secondary/75 text-xs mt-1">
-            {panchangCtx.vara?.name?.[locale] || panchangCtx.vara?.name?.en}
+            {tl(panchangCtx.vara?.name, locale)}
             {' — '}
-            {panchangCtx.samvatsara?.[locale] || panchangCtx.samvatsara?.en}{' '}
+            {tl(panchangCtx.samvatsara, locale)}{' '}
             {!isDevanagariLocale(locale) ? 'Samvatsara' : 'संवत्सर'}
           </div>
           <div className="text-text-secondary/65 text-xs mt-0.5">
@@ -664,15 +665,15 @@ export default function VedicTimePage() {
         </h3>
         <div className="space-y-2 text-sm text-text-secondary" style={bodyFont}>
           {[
-            { en: '1 Truti = 29.6 microseconds', hi: '1 त्रुटि = 29.6 माइक्रोसेकंड' },
-            { en: '1 Tatpara = 100 Truti', hi: '1 तत्पर = 100 त्रुटि' },
-            { en: '1 Nimesha = 45 Tatpara (blink of an eye)', hi: '1 निमेष = 45 तत्पर (पलक झपकना)' },
-            { en: '1 Kashtha = 18 Nimesha', hi: '1 काष्ठ = 18 निमेष' },
-            { en: '1 Kala = 30 Kashtha', hi: '1 कला = 30 काष्ठ' },
-            { en: '1 Nadika/Ghati = 15 Kala ≈ 24 minutes', hi: '1 नाड़िका/घटी = 15 कला ≈ 24 मिनट' },
-            { en: '1 Muhurta = 2 Ghati ≈ 48 minutes', hi: '1 मुहूर्त = 2 घटी ≈ 48 मिनट' },
-            { en: '1 Prahar/Yama = 7.5 Ghati ≈ 3 hours', hi: '1 प्रहर/याम = 7.5 घटी ≈ 3 घण्टे' },
-            { en: '1 Ahoratra = 60 Ghati = 30 Muhurta = 8 Prahar', hi: '1 अहोरात्र = 60 घटी = 30 मुहूर्त = 8 प्रहर' },
+            { en: '1 Truti = 29.6 microseconds', hi: '1 त्रुटि = 29.6 माइक्रोसेकंड', sa: '1 त्रुटि = 29.6 माइक्रोसेकंड', mai: '1 त्रुटि = 29.6 माइक्रोसेकंड', mr: '1 त्रुटि = 29.6 माइक्रोसेकंड', ta: '1 Truti = 29.6 microseconds', te: '1 Truti = 29.6 microseconds', bn: '1 Truti = 29.6 microseconds', kn: '1 Truti = 29.6 microseconds', gu: '1 Truti = 29.6 microseconds' },
+            { en: '1 Tatpara = 100 Truti', hi: '1 तत्पर = 100 त्रुटि', sa: '1 तत्पर = 100 त्रुटि', mai: '1 तत्पर = 100 त्रुटि', mr: '1 तत्पर = 100 त्रुटि', ta: '1 Tatpara = 100 Truti', te: '1 Tatpara = 100 Truti', bn: '1 Tatpara = 100 Truti', kn: '1 Tatpara = 100 Truti', gu: '1 Tatpara = 100 Truti' },
+            { en: '1 Nimesha = 45 Tatpara (blink of an eye)', hi: '1 निमेष = 45 तत्पर (पलक झपकना)', sa: '1 निमेष = 45 तत्पर (पलक झपकना)', mai: '1 निमेष = 45 तत्पर (पलक झपकना)', mr: '1 निमेष = 45 तत्पर (पलक झपकना)', ta: '1 Nimesha = 45 Tatpara (blink of an eye)', te: '1 Nimesha = 45 Tatpara (blink of an eye)', bn: '1 Nimesha = 45 Tatpara (blink of an eye)', kn: '1 Nimesha = 45 Tatpara (blink of an eye)', gu: '1 Nimesha = 45 Tatpara (blink of an eye)' },
+            { en: '1 Kashtha = 18 Nimesha', hi: '1 काष्ठ = 18 निमेष', sa: '1 काष्ठ = 18 निमेष', mai: '1 काष्ठ = 18 निमेष', mr: '1 काष्ठ = 18 निमेष', ta: '1 Kashtha = 18 Nimesha', te: '1 Kashtha = 18 Nimesha', bn: '1 Kashtha = 18 Nimesha', kn: '1 Kashtha = 18 Nimesha', gu: '1 Kashtha = 18 Nimesha' },
+            { en: '1 Kala = 30 Kashtha', hi: '1 कला = 30 काष्ठ', sa: '1 कला = 30 काष्ठ', mai: '1 कला = 30 काष्ठ', mr: '1 कला = 30 काष्ठ', ta: '1 Kala = 30 Kashtha', te: '1 Kala = 30 Kashtha', bn: '1 Kala = 30 Kashtha', kn: '1 Kala = 30 Kashtha', gu: '1 Kala = 30 Kashtha' },
+            { en: '1 Nadika/Ghati = 15 Kala ≈ 24 minutes', hi: '1 नाड़िका/घटी = 15 कला ≈ 24 मिनट', sa: '1 नाड़िका/घटी = 15 कला ≈ 24 मिनट', mai: '1 नाड़िका/घटी = 15 कला ≈ 24 मिनट', mr: '1 नाड़िका/घटी = 15 कला ≈ 24 मिनट', ta: '1 Nadika/Ghati = 15 Kala ≈ 24 minutes', te: '1 Nadika/Ghati = 15 Kala ≈ 24 minutes', bn: '1 Nadika/Ghati = 15 Kala ≈ 24 minutes', kn: '1 Nadika/Ghati = 15 Kala ≈ 24 minutes', gu: '1 Nadika/Ghati = 15 Kala ≈ 24 minutes' },
+            { en: '1 Muhurta = 2 Ghati ≈ 48 minutes', hi: '1 मुहूर्त = 2 घटी ≈ 48 मिनट', sa: '1 मुहूर्त = 2 घटी ≈ 48 मिनट', mai: '1 मुहूर्त = 2 घटी ≈ 48 मिनट', mr: '1 मुहूर्त = 2 घटी ≈ 48 मिनट', ta: '1 Muhurta = 2 Ghati ≈ 48 minutes', te: '1 Muhurta = 2 Ghati ≈ 48 minutes', bn: '1 Muhurta = 2 Ghati ≈ 48 minutes', kn: '1 Muhurta = 2 Ghati ≈ 48 minutes', gu: '1 Muhurta = 2 Ghati ≈ 48 minutes' },
+            { en: '1 Prahar/Yama = 7.5 Ghati ≈ 3 hours', hi: '1 प्रहर/याम = 7.5 घटी ≈ 3 घण्टे', sa: '1 प्रहर/याम = 7.5 घटी ≈ 3 घण्टे', mai: '1 प्रहर/याम = 7.5 घटी ≈ 3 घण्टे', mr: '1 प्रहर/याम = 7.5 घटी ≈ 3 घण्टे', ta: '1 Prahar/Yama = 7.5 Ghati ≈ 3 hours', te: '1 Prahar/Yama = 7.5 Ghati ≈ 3 hours', bn: '1 Prahar/Yama = 7.5 Ghati ≈ 3 hours', kn: '1 Prahar/Yama = 7.5 Ghati ≈ 3 hours', gu: '1 Prahar/Yama = 7.5 Ghati ≈ 3 hours' },
+            { en: '1 Ahoratra = 60 Ghati = 30 Muhurta = 8 Prahar', hi: '1 अहोरात्र = 60 घटी = 30 मुहूर्त = 8 प्रहर', sa: '1 अहोरात्र = 60 घटी = 30 मुहूर्त = 8 प्रहर', mai: '1 अहोरात्र = 60 घटी = 30 मुहूर्त = 8 प्रहर', mr: '1 अहोरात्र = 60 घटी = 30 मुहूर्त = 8 प्रहर', ta: '1 Ahoratra = 60 Ghati = 30 Muhurta = 8 Prahar', te: '1 Ahoratra = 60 Ghati = 30 Muhurta = 8 Prahar', bn: '1 Ahoratra = 60 Ghati = 30 Muhurta = 8 Prahar', kn: '1 Ahoratra = 60 Ghati = 30 Muhurta = 8 Prahar', gu: '1 Ahoratra = 60 Ghati = 30 Muhurta = 8 Prahar' },
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-2">
               <span className="text-gold-primary/40 mt-0.5">&#9672;</span>

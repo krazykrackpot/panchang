@@ -2,16 +2,16 @@
  * Rich trilingual content for festivals, vrats, and Ekadashis.
  * Keyed by slug (festival-engine generates matching slugs).
  */
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 export interface FestivalDetail {
-  name: Trilingual;
-  mythology: Trilingual;
-  observance: Trilingual;
-  significance: Trilingual;
-  deity?: Trilingual;
+  name: LocaleText;
+  mythology: LocaleText;
+  observance: LocaleText;
+  significance: LocaleText;
+  deity?: LocaleText;
   isFast?: boolean;
-  fastNote?: Trilingual;
+  fastNote?: LocaleText;
 }
 
 /* ═══════════════════════════════════════════
@@ -742,9 +742,9 @@ export const FESTIVAL_DETAILS: Record<string, FestivalDetail> = {
    ═══════════════════════════════════════════ */
 
 export interface EkadashiDetail {
-  name: Trilingual;
-  story: Trilingual;
-  benefit: Trilingual;
+  name: LocaleText;
+  story: LocaleText;
+  benefit: LocaleText;
 }
 
 // Keyed by Hindu month name + paksha

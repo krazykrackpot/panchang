@@ -6,17 +6,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_7_3', phase: 2, topic: 'Yoga Karana', moduleNumber: '7.3',
-  title: { en: 'Vara — The Weekday', hi: 'वार — सप्ताह का दिन' },
+  title: { en: 'Vara — The Weekday', hi: 'वार — सप्ताह का दिन', sa: 'वार — सप्ताह का दिन', mai: 'वार — सप्ताह का दिन', mr: 'वार — सप्ताह का दिन', ta: 'Vara — The Weekday', te: 'Vara — The Weekday', bn: 'Vara — The Weekday', kn: 'Vara — The Weekday', gu: 'Vara — The Weekday' },
   subtitle: {
     en: 'Seven weekdays ruled by seven grahas, their sequence explained by the Hora system, and their role in Panchang muhurta selection',
     hi: 'सात ग्रहों द्वारा शासित सात वार, होरा प्रणाली से उनका क्रम, और पंचांग मुहूर्त चयन में उनकी भूमिका',
   },
   estimatedMinutes: 13,
   crossRefs: [
-    { label: { en: 'Module 7-1: Yoga', hi: 'मॉड्यूल 7-1: योग' }, href: '/learn/modules/7-1' },
-    { label: { en: 'Module 7-2: Karana', hi: 'मॉड्यूल 7-2: करण' }, href: '/learn/modules/7-2' },
-    { label: { en: 'Vara Deep Dive', hi: 'वार विस्तार' }, href: '/learn/vara' },
-    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग' }, href: '/panchang' },
+    { label: { en: 'Module 7-1: Yoga', hi: 'मॉड्यूल 7-1: योग', sa: 'मॉड्यूल 7-1: योग', mai: 'मॉड्यूल 7-1: योग', mr: 'मॉड्यूल 7-1: योग', ta: 'Module 7-1: Yoga', te: 'Module 7-1: Yoga', bn: 'Module 7-1: Yoga', kn: 'Module 7-1: Yoga', gu: 'Module 7-1: Yoga' }, href: '/learn/modules/7-1' },
+    { label: { en: 'Module 7-2: Karana', hi: 'मॉड्यूल 7-2: करण', sa: 'मॉड्यूल 7-2: करण', mai: 'मॉड्यूल 7-2: करण', mr: 'मॉड्यूल 7-2: करण', ta: 'Module 7-2: Karana', te: 'Module 7-2: Karana', bn: 'Module 7-2: Karana', kn: 'Module 7-2: Karana', gu: 'Module 7-2: Karana' }, href: '/learn/modules/7-2' },
+    { label: { en: 'Vara Deep Dive', hi: 'वार विस्तार', sa: 'वार विस्तार', mai: 'वार विस्तार', mr: 'वार विस्तार', ta: 'Vara Deep Dive', te: 'Vara Deep Dive', bn: 'Vara Deep Dive', kn: 'Vara Deep Dive', gu: 'Vara Deep Dive' }, href: '/learn/vara' },
+    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग', mai: 'दैनिक पंचांग', mr: 'दैनिक पंचांग', ta: 'Daily Panchang', te: 'Daily Panchang', bn: 'Daily Panchang', kn: 'Daily Panchang', gu: 'Daily Panchang' }, href: '/panchang' },
   ],
 };
 
@@ -28,10 +28,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कैल्डियन ग्रह क्रम (घटती कक्षीय अवधि) शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, चन्द्र है। वार क्रम में प्रत्येक बार दो ग्रह क्यों छोड़े जाते हैं?',
     },
     options: [
-      { en: 'It is arbitrary with no mathematical basis', hi: 'यह यादृच्छिक है, कोई गणितीय आधार नहीं' },
+      { en: 'It is arbitrary with no mathematical basis', hi: 'यह यादृच्छिक है, कोई गणितीय आधार नहीं', sa: 'यह यादृच्छिक है, कोई गणितीय आधार नहीं', mai: 'यह यादृच्छिक है, कोई गणितीय आधार नहीं', mr: 'यह यादृच्छिक है, कोई गणितीय आधार नहीं', ta: 'It is arbitrary with no mathematical basis', te: 'It is arbitrary with no mathematical basis', bn: 'It is arbitrary with no mathematical basis', kn: 'It is arbitrary with no mathematical basis', gu: 'It is arbitrary with no mathematical basis' },
       { en: 'Because 24 hours mod 7 = 3, each day\'s ruler is 3 steps forward in the Chaldean sequence', hi: 'क्योंकि 24 घण्टे mod 7 = 3, प्रत्येक दिन का स्वामी कैल्डियन क्रम में 3 स्थान आगे होता है' },
-      { en: 'The planets are ordered by brightness', hi: 'ग्रह चमक के अनुसार क्रमित हैं' },
-      { en: 'It follows the zodiac sign order', hi: 'यह राशि क्रम का अनुसरण करता है' },
+      { en: 'The planets are ordered by brightness', hi: 'ग्रह चमक के अनुसार क्रमित हैं', sa: 'ग्रह चमक के अनुसार क्रमित हैं', mai: 'ग्रह चमक के अनुसार क्रमित हैं', mr: 'ग्रह चमक के अनुसार क्रमित हैं', ta: 'The planets are ordered by brightness', te: 'The planets are ordered by brightness', bn: 'The planets are ordered by brightness', kn: 'The planets are ordered by brightness', gu: 'The planets are ordered by brightness' },
+      { en: 'It follows the zodiac sign order', hi: 'यह राशि क्रम का अनुसरण करता है', sa: 'यह राशि क्रम का अनुसरण करता है', mai: 'यह राशि क्रम का अनुसरण करता है', mr: 'यह राशि क्रम का अनुसरण करता है', ta: 'It follows the zodiac sign order', te: 'It follows the zodiac sign order', bn: 'It follows the zodiac sign order', kn: 'It follows the zodiac sign order', gu: 'It follows the zodiac sign order' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -46,10 +46,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'बुधवार का संस्कृत नाम क्या है?',
     },
     options: [
-      { en: 'Mangalavara', hi: 'मंगलवार' },
-      { en: 'Budhavara', hi: 'बुधवार' },
-      { en: 'Guruvara', hi: 'गुरुवार' },
-      { en: 'Shukravara', hi: 'शुक्रवार' },
+      { en: 'Mangalavara', hi: 'मंगलवार', sa: 'मंगलवार', mai: 'मंगलवार', mr: 'मंगलवार', ta: 'Mangalavara', te: 'Mangalavara', bn: 'Mangalavara', kn: 'Mangalavara', gu: 'Mangalavara' },
+      { en: 'Budhavara', hi: 'बुधवार', sa: 'बुधवार', mai: 'बुधवार', mr: 'बुधवार', ta: 'Budhavara', te: 'Budhavara', bn: 'Budhavara', kn: 'Budhavara', gu: 'Budhavara' },
+      { en: 'Guruvara', hi: 'गुरुवार', sa: 'गुरुवार', mai: 'गुरुवार', mr: 'गुरुवार', ta: 'Guruvara', te: 'Guruvara', bn: 'Guruvara', kn: 'Guruvara', gu: 'Guruvara' },
+      { en: 'Shukravara', hi: 'शुक्रवार', sa: 'शुक्रवार', mai: 'शुक्रवार', mr: 'शुक्रवार', ta: 'Shukravara', te: 'Shukravara', bn: 'Shukravara', kn: 'Shukravara', gu: 'Shukravara' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -76,10 +76,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वैदिक परम्परा में कौन-सा वार सर्वाधिक शुभ माना जाता है?',
     },
     options: [
-      { en: 'Ravivara (Sunday)', hi: 'रविवार' },
-      { en: 'Somavara (Monday)', hi: 'सोमवार' },
-      { en: 'Guruvara (Thursday)', hi: 'गुरुवार' },
-      { en: 'Shukravara (Friday)', hi: 'शुक्रवार' },
+      { en: 'Ravivara (Sunday)', hi: 'रविवार', sa: 'रविवार', mai: 'रविवार', mr: 'रविवार', ta: 'Ravivara (Sunday)', te: 'Ravivara (Sunday)', bn: 'Ravivara (Sunday)', kn: 'Ravivara (Sunday)', gu: 'Ravivara (Sunday)' },
+      { en: 'Somavara (Monday)', hi: 'सोमवार', sa: 'सोमवार', mai: 'सोमवार', mr: 'सोमवार', ta: 'Somavara (Monday)', te: 'Somavara (Monday)', bn: 'Somavara (Monday)', kn: 'Somavara (Monday)', gu: 'Somavara (Monday)' },
+      { en: 'Guruvara (Thursday)', hi: 'गुरुवार', sa: 'गुरुवार', mai: 'गुरुवार', mr: 'गुरुवार', ta: 'Guruvara (Thursday)', te: 'Guruvara (Thursday)', bn: 'Guruvara (Thursday)', kn: 'Guruvara (Thursday)', gu: 'Guruvara (Thursday)' },
+      { en: 'Shukravara (Friday)', hi: 'शुक्रवार', sa: 'शुक्रवार', mai: 'शुक्रवार', mr: 'शुक्रवार', ta: 'Shukravara (Friday)', te: 'Shukravara (Friday)', bn: 'Shukravara (Friday)', kn: 'Shukravara (Friday)', gu: 'Shukravara (Friday)' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -94,10 +94,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'जूलियन दिवस संख्या से वार की गणना इस प्रकार होती है:',
     },
     options: [
-      { en: 'floor(JD) mod 12', hi: 'floor(JD) mod 12' },
-      { en: 'floor(JD + 1.5) mod 7', hi: 'floor(JD + 1.5) mod 7' },
-      { en: 'floor(JD) mod 30', hi: 'floor(JD) mod 30' },
-      { en: 'floor(JD - 0.5) mod 7', hi: 'floor(JD - 0.5) mod 7' },
+      { en: 'floor(JD) mod 12', hi: 'floor(JD) mod 12', sa: 'floor(JD) mod 12', mai: 'floor(JD) mod 12', mr: 'floor(JD) mod 12', ta: 'floor(JD) mod 12', te: 'floor(JD) mod 12', bn: 'floor(JD) mod 12', kn: 'floor(JD) mod 12', gu: 'floor(JD) mod 12' },
+      { en: 'floor(JD + 1.5) mod 7', hi: 'floor(JD + 1.5) mod 7', sa: 'floor(JD + 1.5) mod 7', mai: 'floor(JD + 1.5) mod 7', mr: 'floor(JD + 1.5) mod 7', ta: 'floor(JD + 1.5) mod 7', te: 'floor(JD + 1.5) mod 7', bn: 'floor(JD + 1.5) mod 7', kn: 'floor(JD + 1.5) mod 7', gu: 'floor(JD + 1.5) mod 7' },
+      { en: 'floor(JD) mod 30', hi: 'floor(JD) mod 30', sa: 'floor(JD) mod 30', mai: 'floor(JD) mod 30', mr: 'floor(JD) mod 30', ta: 'floor(JD) mod 30', te: 'floor(JD) mod 30', bn: 'floor(JD) mod 30', kn: 'floor(JD) mod 30', gu: 'floor(JD) mod 30' },
+      { en: 'floor(JD - 0.5) mod 7', hi: 'floor(JD - 0.5) mod 7', sa: 'floor(JD - 0.5) mod 7', mai: 'floor(JD - 0.5) mod 7', mr: 'floor(JD - 0.5) mod 7', ta: 'floor(JD - 0.5) mod 7', te: 'floor(JD - 0.5) mod 7', bn: 'floor(JD - 0.5) mod 7', kn: 'floor(JD - 0.5) mod 7', gu: 'floor(JD - 0.5) mod 7' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -124,10 +124,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सर्वार्थ सिद्धि योग किन विशिष्ट संयोगों से बनता है?',
     },
     options: [
-      { en: 'Vara and Nakshatra', hi: 'वार और नक्षत्र' },
-      { en: 'Tithi and Karana only', hi: 'केवल तिथि और करण' },
-      { en: 'Yoga and Graha only', hi: 'केवल योग और ग्रह' },
-      { en: 'Rashi and Lagna only', hi: 'केवल राशि और लग्न' },
+      { en: 'Vara and Nakshatra', hi: 'वार और नक्षत्र', sa: 'वार और नक्षत्र', mai: 'वार और नक्षत्र', mr: 'वार और नक्षत्र', ta: 'Vara and Nakshatra', te: 'Vara and Nakshatra', bn: 'Vara and Nakshatra', kn: 'Vara and Nakshatra', gu: 'Vara and Nakshatra' },
+      { en: 'Tithi and Karana only', hi: 'केवल तिथि और करण', sa: 'केवल तिथि और करण', mai: 'केवल तिथि और करण', mr: 'केवल तिथि और करण', ta: 'Tithi and Karana only', te: 'Tithi and Karana only', bn: 'Tithi and Karana only', kn: 'Tithi and Karana only', gu: 'Tithi and Karana only' },
+      { en: 'Yoga and Graha only', hi: 'केवल योग और ग्रह', sa: 'केवल योग और ग्रह', mai: 'केवल योग और ग्रह', mr: 'केवल योग और ग्रह', ta: 'Yoga and Graha only', te: 'Yoga and Graha only', bn: 'Yoga and Graha only', kn: 'Yoga and Graha only', gu: 'Yoga and Graha only' },
+      { en: 'Rashi and Lagna only', hi: 'केवल राशि और लग्न', sa: 'केवल राशि और लग्न', mai: 'केवल राशि और लग्न', mr: 'केवल राशि और लग्न', ta: 'Rashi and Lagna only', te: 'Rashi and Lagna only', bn: 'Rashi and Lagna only', kn: 'Rashi and Lagna only', gu: 'Rashi and Lagna only' },
     ],
     correctAnswer: 0,
     explanation: {
@@ -154,10 +154,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'नये कार्यारम्भ के लिए शुभ दिनों में कौन-सा समूह सर्वाधिक अनुकूल माना जाता है?',
     },
     options: [
-      { en: 'Tuesday, Saturday, Sunday', hi: 'मंगलवार, शनिवार, रविवार' },
-      { en: 'Monday, Wednesday, Thursday, Friday', hi: 'सोमवार, बुधवार, गुरुवार, शुक्रवार' },
-      { en: 'Only Sunday', hi: 'केवल रविवार' },
-      { en: 'Only Saturday', hi: 'केवल शनिवार' },
+      { en: 'Tuesday, Saturday, Sunday', hi: 'मंगलवार, शनिवार, रविवार', sa: 'मंगलवार, शनिवार, रविवार', mai: 'मंगलवार, शनिवार, रविवार', mr: 'मंगलवार, शनिवार, रविवार', ta: 'Tuesday, Saturday, Sunday', te: 'Tuesday, Saturday, Sunday', bn: 'Tuesday, Saturday, Sunday', kn: 'Tuesday, Saturday, Sunday', gu: 'Tuesday, Saturday, Sunday' },
+      { en: 'Monday, Wednesday, Thursday, Friday', hi: 'सोमवार, बुधवार, गुरुवार, शुक्रवार', sa: 'सोमवार, बुधवार, गुरुवार, शुक्रवार', mai: 'सोमवार, बुधवार, गुरुवार, शुक्रवार', mr: 'सोमवार, बुधवार, गुरुवार, शुक्रवार', ta: 'Monday, Wednesday, Thursday, Friday', te: 'Monday, Wednesday, Thursday, Friday', bn: 'Monday, Wednesday, Thursday, Friday', kn: 'Monday, Wednesday, Thursday, Friday', gu: 'Monday, Wednesday, Thursday, Friday' },
+      { en: 'Only Sunday', hi: 'केवल रविवार', sa: 'केवल रविवार', mai: 'केवल रविवार', mr: 'केवल रविवार', ta: 'Only Sunday', te: 'Only Sunday', bn: 'Only Sunday', kn: 'Only Sunday', gu: 'Only Sunday' },
+      { en: 'Only Saturday', hi: 'केवल शनिवार', sa: 'केवल शनिवार', mai: 'केवल शनिवार', mr: 'केवल शनिवार', ta: 'Only Saturday', te: 'Only Saturday', bn: 'Only Saturday', kn: 'Only Saturday', gu: 'Only Saturday' },
     ],
     correctAnswer: 1,
     explanation: {

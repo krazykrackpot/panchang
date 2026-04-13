@@ -1,6 +1,6 @@
 'use client';
 
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale, getBodyFont } from '@/lib/utils/locale-fonts';
 
 // ---------------------------------------------------------------------------
@@ -41,7 +41,7 @@ const TITHI_CATEGORY_MAP: Record<string, number> = {
 // ---------------------------------------------------------------------------
 export interface RelevanceMatch {
   type: 'birth-tithi' | 'janma-nakshatra' | 'dasha-festival';
-  label: { en: string; hi: string };
+  label: LocaleText;
 }
 
 export interface PersonalRelevanceData {

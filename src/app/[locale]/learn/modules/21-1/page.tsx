@@ -6,17 +6,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_21_1', phase: 8, topic: 'Varshaphal', moduleNumber: '21.1',
-  title: { en: 'Tajika Aspects — Ithasala, Easarapha, Nakta', hi: 'ताजिक दृष्टि — इत्थशाल, ईषराफ, नक्त' },
+  title: { en: 'Tajika Aspects — Ithasala, Easarapha, Nakta', hi: 'ताजिक दृष्टि — इत्थशाल, ईषराफ, नक्त', sa: 'ताजिक दृष्टि — इत्थशाल, ईषराफ, नक्त', mai: 'ताजिक दृष्टि — इत्थशाल, ईषराफ, नक्त', mr: 'ताजिक दृष्टि — इत्थशाल, ईषराफ, नक्त', ta: 'Tajika Aspects — Ithasala, Easarapha, Nakta', te: 'Tajika Aspects — Ithasala, Easarapha, Nakta', bn: 'Tajika Aspects — Ithasala, Easarapha, Nakta', kn: 'Tajika Aspects — Ithasala, Easarapha, Nakta', gu: 'Tajika Aspects — Ithasala, Easarapha, Nakta' },
   subtitle: {
     en: 'The Perso-Arabic aspect system that determines whether events promised in the annual chart will actually manifest through applying and separating yogas',
     hi: 'फारसी-अरबी दृष्टि पद्धति जो निर्धारित करती है कि वार्षिक कुण्डली में वादित घटनाएँ आवेदक और पृथक्करण योगों द्वारा वास्तव में प्रकट होंगी या नहीं',
   },
   estimatedMinutes: 14,
   crossRefs: [
-    { label: { en: 'Module 21-2: Sahams', hi: 'मॉड्यूल 21-2: सहम' }, href: '/learn/modules/21-2' },
-    { label: { en: 'Module 21-3: Mudda Dasha', hi: 'मॉड्यूल 21-3: मुद्दा दशा' }, href: '/learn/modules/21-3' },
-    { label: { en: 'Module 21-4: Tithi Pravesha', hi: 'मॉड्यूल 21-4: तिथि प्रवेश' }, href: '/learn/modules/21-4' },
-    { label: { en: 'Varshaphal Tool', hi: 'वर्षफल उपकरण' }, href: '/varshaphal' },
+    { label: { en: 'Module 21-2: Sahams', hi: 'मॉड्यूल 21-2: सहम', sa: 'मॉड्यूल 21-2: सहम', mai: 'मॉड्यूल 21-2: सहम', mr: 'मॉड्यूल 21-2: सहम', ta: 'Module 21-2: Sahams', te: 'Module 21-2: Sahams', bn: 'Module 21-2: Sahams', kn: 'Module 21-2: Sahams', gu: 'Module 21-2: Sahams' }, href: '/learn/modules/21-2' },
+    { label: { en: 'Module 21-3: Mudda Dasha', hi: 'मॉड्यूल 21-3: मुद्दा दशा', sa: 'मॉड्यूल 21-3: मुद्दा दशा', mai: 'मॉड्यूल 21-3: मुद्दा दशा', mr: 'मॉड्यूल 21-3: मुद्दा दशा', ta: 'Module 21-3: Mudda Dasha', te: 'Module 21-3: Mudda Dasha', bn: 'Module 21-3: Mudda Dasha', kn: 'Module 21-3: Mudda Dasha', gu: 'Module 21-3: Mudda Dasha' }, href: '/learn/modules/21-3' },
+    { label: { en: 'Module 21-4: Tithi Pravesha', hi: 'मॉड्यूल 21-4: तिथि प्रवेश', sa: 'मॉड्यूल 21-4: तिथि प्रवेश', mai: 'मॉड्यूल 21-4: तिथि प्रवेश', mr: 'मॉड्यूल 21-4: तिथि प्रवेश', ta: 'Module 21-4: Tithi Pravesha', te: 'Module 21-4: Tithi Pravesha', bn: 'Module 21-4: Tithi Pravesha', kn: 'Module 21-4: Tithi Pravesha', gu: 'Module 21-4: Tithi Pravesha' }, href: '/learn/modules/21-4' },
+    { label: { en: 'Varshaphal Tool', hi: 'वर्षफल उपकरण', sa: 'वर्षफल उपकरण', mai: 'वर्षफल उपकरण', mr: 'वर्षफल उपकरण', ta: 'Varshaphal Tool', te: 'Varshaphal Tool', bn: 'Varshaphal Tool', kn: 'Varshaphal Tool', gu: 'Varshaphal Tool' }, href: '/varshaphal' },
   ],
 };
 
@@ -28,10 +28,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ताजिक पद्धति भारतीय ज्योतिष में कब समाहित हुई?',
     },
     options: [
-      { en: 'Vedic period (c. 1500 BCE)', hi: 'वैदिक काल (लगभग 1500 ई.पू.)' },
-      { en: 'Around 12th century CE', hi: 'लगभग 12वीं शताब्दी ई.' },
-      { en: '20th century', hi: '20वीं शताब्दी' },
-      { en: '5th century BCE', hi: '5वीं शताब्दी ई.पू.' },
+      { en: 'Vedic period (c. 1500 BCE)', hi: 'वैदिक काल (लगभग 1500 ई.पू.)', sa: 'वैदिक काल (लगभग 1500 ई.पू.)', mai: 'वैदिक काल (लगभग 1500 ई.पू.)', mr: 'वैदिक काल (लगभग 1500 ई.पू.)', ta: 'Vedic period (c. 1500 BCE)', te: 'Vedic period (c. 1500 BCE)', bn: 'Vedic period (c. 1500 BCE)', kn: 'Vedic period (c. 1500 BCE)', gu: 'Vedic period (c. 1500 BCE)' },
+      { en: 'Around 12th century CE', hi: 'लगभग 12वीं शताब्दी ई.', sa: 'लगभग 12वीं शताब्दी ई.', mai: 'लगभग 12वीं शताब्दी ई.', mr: 'लगभग 12वीं शताब्दी ई.', ta: 'Around 12th century CE', te: 'Around 12th century CE', bn: 'Around 12th century CE', kn: 'Around 12th century CE', gu: 'Around 12th century CE' },
+      { en: '20th century', hi: '20वीं शताब्दी', sa: '20वीं शताब्दी', mai: '20वीं शताब्दी', mr: '20वीं शताब्दी', ta: '20th century', te: '20th century', bn: '20th century', kn: '20th century', gu: '20th century' },
+      { en: '5th century BCE', hi: '5वीं शताब्दी ई.पू.', sa: '5वीं शताब्दी ई.पू.', mai: '5वीं शताब्दी ई.पू.', mr: '5वीं शताब्दी ई.पू.', ta: '5th century BCE', te: '5th century BCE', bn: '5th century BCE', kn: '5th century BCE', gu: '5th century BCE' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -46,10 +46,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ताजिक में इत्थशाल (आवेदन) क्या संकेत करता है?',
     },
     options: [
-      { en: 'The event window has passed', hi: 'घटना का अवसर बीत चुका है' },
-      { en: 'The event WILL happen — a faster planet is applying to a slower one within orb', hi: 'घटना होगी — तेज़ ग्रह कक्षा में धीमे ग्रह की ओर बढ़ रहा है' },
-      { en: 'A third planet blocks the event', hi: 'एक तीसरा ग्रह घटना को अवरुद्ध करता है' },
-      { en: 'Neither planet forms an aspect', hi: 'कोई भी ग्रह दृष्टि नहीं बनाता' },
+      { en: 'The event window has passed', hi: 'घटना का अवसर बीत चुका है', sa: 'घटना का अवसर बीत चुका है', mai: 'घटना का अवसर बीत चुका है', mr: 'घटना का अवसर बीत चुका है', ta: 'The event window has passed', te: 'The event window has passed', bn: 'The event window has passed', kn: 'The event window has passed', gu: 'The event window has passed' },
+      { en: 'The event WILL happen — a faster planet is applying to a slower one within orb', hi: 'घटना होगी — तेज़ ग्रह कक्षा में धीमे ग्रह की ओर बढ़ रहा है', sa: 'घटना होगी — तेज़ ग्रह कक्षा में धीमे ग्रह की ओर बढ़ रहा है', mai: 'घटना होगी — तेज़ ग्रह कक्षा में धीमे ग्रह की ओर बढ़ रहा है', mr: 'घटना होगी — तेज़ ग्रह कक्षा में धीमे ग्रह की ओर बढ़ रहा है', ta: 'The event WILL happen — a faster planet is applying to a slower one within orb', te: 'The event WILL happen — a faster planet is applying to a slower one within orb', bn: 'The event WILL happen — a faster planet is applying to a slower one within orb', kn: 'The event WILL happen — a faster planet is applying to a slower one within orb', gu: 'The event WILL happen — a faster planet is applying to a slower one within orb' },
+      { en: 'A third planet blocks the event', hi: 'एक तीसरा ग्रह घटना को अवरुद्ध करता है', sa: 'एक तीसरा ग्रह घटना को अवरुद्ध करता है', mai: 'एक तीसरा ग्रह घटना को अवरुद्ध करता है', mr: 'एक तीसरा ग्रह घटना को अवरुद्ध करता है', ta: 'A third planet blocks the event', te: 'A third planet blocks the event', bn: 'A third planet blocks the event', kn: 'A third planet blocks the event', gu: 'A third planet blocks the event' },
+      { en: 'Neither planet forms an aspect', hi: 'कोई भी ग्रह दृष्टि नहीं बनाता', sa: 'कोई भी ग्रह दृष्टि नहीं बनाता', mai: 'कोई भी ग्रह दृष्टि नहीं बनाता', mr: 'कोई भी ग्रह दृष्टि नहीं बनाता', ta: 'Neither planet forms an aspect', te: 'Neither planet forms an aspect', bn: 'Neither planet forms an aspect', kn: 'Neither planet forms an aspect', gu: 'Neither planet forms an aspect' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -76,10 +76,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ईषराफ (पृथक्करण) क्या संकेत करता है?',
     },
     options: [
-      { en: 'The event will happen this year', hi: 'घटना इस वर्ष होगी' },
-      { en: 'The event was possible but the window has passed', hi: 'घटना सम्भव थी किन्तु अवसर बीत चुका है' },
-      { en: 'A third planet helps the event', hi: 'एक तीसरा ग्रह घटना में सहायता करता है' },
-      { en: 'The event will happen next year', hi: 'घटना अगले वर्ष होगी' },
+      { en: 'The event will happen this year', hi: 'घटना इस वर्ष होगी', sa: 'घटना इस वर्ष होगी', mai: 'घटना इस वर्ष होगी', mr: 'घटना इस वर्ष होगी', ta: 'The event will happen this year', te: 'The event will happen this year', bn: 'The event will happen this year', kn: 'The event will happen this year', gu: 'The event will happen this year' },
+      { en: 'The event was possible but the window has passed', hi: 'घटना सम्भव थी किन्तु अवसर बीत चुका है', sa: 'घटना सम्भव थी किन्तु अवसर बीत चुका है', mai: 'घटना सम्भव थी किन्तु अवसर बीत चुका है', mr: 'घटना सम्भव थी किन्तु अवसर बीत चुका है', ta: 'The event was possible but the window has passed', te: 'The event was possible but the window has passed', bn: 'The event was possible but the window has passed', kn: 'The event was possible but the window has passed', gu: 'The event was possible but the window has passed' },
+      { en: 'A third planet helps the event', hi: 'एक तीसरा ग्रह घटना में सहायता करता है', sa: 'एक तीसरा ग्रह घटना में सहायता करता है', mai: 'एक तीसरा ग्रह घटना में सहायता करता है', mr: 'एक तीसरा ग्रह घटना में सहायता करता है', ta: 'A third planet helps the event', te: 'A third planet helps the event', bn: 'A third planet helps the event', kn: 'A third planet helps the event', gu: 'A third planet helps the event' },
+      { en: 'The event will happen next year', hi: 'घटना अगले वर्ष होगी', sa: 'घटना अगले वर्ष होगी', mai: 'घटना अगले वर्ष होगी', mr: 'घटना अगले वर्ष होगी', ta: 'The event will happen next year', te: 'The event will happen next year', bn: 'The event will happen next year', kn: 'The event will happen next year', gu: 'The event will happen next year' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -94,10 +94,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ताजिक में नक्त (प्रकाश स्थानान्तरण) क्या है?',
     },
     options: [
-      { en: 'Two planets forming a direct aspect', hi: 'दो ग्रहों की प्रत्यक्ष दृष्टि' },
-      { en: 'A third planet transferring light between two non-aspecting planets', hi: 'एक तीसरा ग्रह दो गैर-दृष्टि ग्रहों के बीच प्रकाश स्थानान्तरित करता है' },
+      { en: 'Two planets forming a direct aspect', hi: 'दो ग्रहों की प्रत्यक्ष दृष्टि', sa: 'दो ग्रहों की प्रत्यक्ष दृष्टि', mai: 'दो ग्रहों की प्रत्यक्ष दृष्टि', mr: 'दो ग्रहों की प्रत्यक्ष दृष्टि', ta: 'Two planets forming a direct aspect', te: 'Two planets forming a direct aspect', bn: 'Two planets forming a direct aspect', kn: 'Two planets forming a direct aspect', gu: 'Two planets forming a direct aspect' },
+      { en: 'A third planet transferring light between two non-aspecting planets', hi: 'एक तीसरा ग्रह दो गैर-दृष्टि ग्रहों के बीच प्रकाश स्थानान्तरित करता है', sa: 'एक तीसरा ग्रह दो गैर-दृष्टि ग्रहों के बीच प्रकाश स्थानान्तरित करता है', mai: 'एक तीसरा ग्रह दो गैर-दृष्टि ग्रहों के बीच प्रकाश स्थानान्तरित करता है', mr: 'एक तीसरा ग्रह दो गैर-दृष्टि ग्रहों के बीच प्रकाश स्थानान्तरित करता है', ta: 'A third planet transferring light between two non-aspecting planets', te: 'A third planet transferring light between two non-aspecting planets', bn: 'A third planet transferring light between two non-aspecting planets', kn: 'A third planet transferring light between two non-aspecting planets', gu: 'A third planet transferring light between two non-aspecting planets' },
       { en: 'A planet blocking another\'s application', hi: 'एक ग्रह दूसरे के आवेदन को अवरुद्ध करता है' },
-      { en: 'No aspect between any planets', hi: 'किसी भी ग्रह के बीच कोई दृष्टि नहीं' },
+      { en: 'No aspect between any planets', hi: 'किसी भी ग्रह के बीच कोई दृष्टि नहीं', sa: 'किसी भी ग्रह के बीच कोई दृष्टि नहीं', mai: 'किसी भी ग्रह के बीच कोई दृष्टि नहीं', mr: 'किसी भी ग्रह के बीच कोई दृष्टि नहीं', ta: 'No aspect between any planets', te: 'No aspect between any planets', bn: 'No aspect between any planets', kn: 'No aspect between any planets', gu: 'No aspect between any planets' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -112,10 +112,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ताजिक में यमया (निषेध) का क्या अर्थ है?',
     },
     options: [
-      { en: 'The event is guaranteed', hi: 'घटना निश्चित है' },
-      { en: 'A third planet intervenes to block the applying aspect', hi: 'एक तीसरा ग्रह आवेदक दृष्टि को अवरुद्ध करने हेतु हस्तक्षेप करता है' },
-      { en: 'Two planets are in the same sign', hi: 'दो ग्रह एक ही राशि में हैं' },
-      { en: 'The year lord is debilitated', hi: 'वर्ष स्वामी नीच है' },
+      { en: 'The event is guaranteed', hi: 'घटना निश्चित है', sa: 'घटना निश्चित है', mai: 'घटना निश्चित है', mr: 'घटना निश्चित है', ta: 'The event is guaranteed', te: 'The event is guaranteed', bn: 'The event is guaranteed', kn: 'The event is guaranteed', gu: 'The event is guaranteed' },
+      { en: 'A third planet intervenes to block the applying aspect', hi: 'एक तीसरा ग्रह आवेदक दृष्टि को अवरुद्ध करने हेतु हस्तक्षेप करता है', sa: 'एक तीसरा ग्रह आवेदक दृष्टि को अवरुद्ध करने हेतु हस्तक्षेप करता है', mai: 'एक तीसरा ग्रह आवेदक दृष्टि को अवरुद्ध करने हेतु हस्तक्षेप करता है', mr: 'एक तीसरा ग्रह आवेदक दृष्टि को अवरुद्ध करने हेतु हस्तक्षेप करता है', ta: 'A third planet intervenes to block the applying aspect', te: 'A third planet intervenes to block the applying aspect', bn: 'A third planet intervenes to block the applying aspect', kn: 'A third planet intervenes to block the applying aspect', gu: 'A third planet intervenes to block the applying aspect' },
+      { en: 'Two planets are in the same sign', hi: 'दो ग्रह एक ही राशि में हैं', sa: 'दो ग्रह एक ही राशि में हैं', mai: 'दो ग्रह एक ही राशि में हैं', mr: 'दो ग्रह एक ही राशि में हैं', ta: 'Two planets are in the same sign', te: 'Two planets are in the same sign', bn: 'Two planets are in the same sign', kn: 'Two planets are in the same sign', gu: 'Two planets are in the same sign' },
+      { en: 'The year lord is debilitated', hi: 'वर्ष स्वामी नीच है', sa: 'वर्ष स्वामी नीच है', mai: 'वर्ष स्वामी नीच है', mr: 'वर्ष स्वामी नीच है', ta: 'The year lord is debilitated', te: 'The year lord is debilitated', bn: 'The year lord is debilitated', kn: 'The year lord is debilitated', gu: 'The year lord is debilitated' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -142,10 +142,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'घटना अभिव्यक्ति निर्धारित करने वाले प्रमुख ताजिक योग कितने हैं?',
     },
     options: [
-      { en: '3', hi: '3' },
-      { en: '5', hi: '5' },
-      { en: '7', hi: '7' },
-      { en: '16', hi: '16' },
+      { en: '3', hi: '3', sa: '3', mai: '3', mr: '3', ta: '3', te: '3', bn: '3', kn: '3', gu: '3' },
+      { en: '5', hi: '5', sa: '5', mai: '5', mr: '5', ta: '5', te: '5', bn: '5', kn: '5', gu: '5' },
+      { en: '7', hi: '7', sa: '7', mai: '7', mr: '7', ta: '7', te: '7', bn: '7', kn: '7', gu: '7' },
+      { en: '16', hi: '16', sa: '16', mai: '16', mr: '16', ta: '16', te: '16', bn: '16', kn: '16', gu: '16' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -160,10 +160,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वर्षफल कुण्डली में शुक्र 10 अंश वृषभ पर और गुरु 15 अंश वृषभ पर — शुक्र तेज़ है। कौन-सा ताजिक योग बनता है?',
     },
     options: [
-      { en: 'Easarapha — they are separating', hi: 'ईषराफ — वे पृथक हो रहे हैं' },
-      { en: 'Ithasala — Venus is applying to Jupiter within 5 degrees', hi: 'इत्थशाल — शुक्र 5 अंश के भीतर गुरु पर आवेदन कर रहा है' },
-      { en: 'Manaoo — no connection', hi: 'मनऊ — कोई सम्बन्ध नहीं' },
-      { en: 'Yamaya — a third planet blocks them', hi: 'यमया — एक तीसरा ग्रह उन्हें अवरुद्ध करता है' },
+      { en: 'Easarapha — they are separating', hi: 'ईषराफ — वे पृथक हो रहे हैं', sa: 'ईषराफ — वे पृथक हो रहे हैं', mai: 'ईषराफ — वे पृथक हो रहे हैं', mr: 'ईषराफ — वे पृथक हो रहे हैं', ta: 'Easarapha — they are separating', te: 'Easarapha — they are separating', bn: 'Easarapha — they are separating', kn: 'Easarapha — they are separating', gu: 'Easarapha — they are separating' },
+      { en: 'Ithasala — Venus is applying to Jupiter within 5 degrees', hi: 'इत्थशाल — शुक्र 5 अंश के भीतर गुरु पर आवेदन कर रहा है', sa: 'इत्थशाल — शुक्र 5 अंश के भीतर गुरु पर आवेदन कर रहा है', mai: 'इत्थशाल — शुक्र 5 अंश के भीतर गुरु पर आवेदन कर रहा है', mr: 'इत्थशाल — शुक्र 5 अंश के भीतर गुरु पर आवेदन कर रहा है', ta: 'Ithasala — Venus is applying to Jupiter within 5 degrees', te: 'Ithasala — Venus is applying to Jupiter within 5 degrees', bn: 'Ithasala — Venus is applying to Jupiter within 5 degrees', kn: 'Ithasala — Venus is applying to Jupiter within 5 degrees', gu: 'Ithasala — Venus is applying to Jupiter within 5 degrees' },
+      { en: 'Manaoo — no connection', hi: 'मनऊ — कोई सम्बन्ध नहीं', sa: 'मनऊ — कोई सम्बन्ध नहीं', mai: 'मनऊ — कोई सम्बन्ध नहीं', mr: 'मनऊ — कोई सम्बन्ध नहीं', ta: 'Manaoo — no connection', te: 'Manaoo — no connection', bn: 'Manaoo — no connection', kn: 'Manaoo — no connection', gu: 'Manaoo — no connection' },
+      { en: 'Yamaya — a third planet blocks them', hi: 'यमया — एक तीसरा ग्रह उन्हें अवरुद्ध करता है', sa: 'यमया — एक तीसरा ग्रह उन्हें अवरुद्ध करता है', mai: 'यमया — एक तीसरा ग्रह उन्हें अवरुद्ध करता है', mr: 'यमया — एक तीसरा ग्रह उन्हें अवरुद्ध करता है', ta: 'Yamaya — a third planet blocks them', te: 'Yamaya — a third planet blocks them', bn: 'Yamaya — a third planet blocks them', kn: 'Yamaya — a third planet blocks them', gu: 'Yamaya — a third planet blocks them' },
     ],
     correctAnswer: 1,
     explanation: {

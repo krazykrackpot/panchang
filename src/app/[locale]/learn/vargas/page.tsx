@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
@@ -536,19 +537,19 @@ export default function LearnVargasPage() {
                     {/* Title row */}
                     <div className="flex flex-wrap items-center gap-2 mb-2">
                       <h4 className="text-gold-light font-bold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-                        {v.name[locale]}
+                        {tl(v.name, locale)}
                       </h4>
-                      <span className="text-text-secondary/75 text-xs">({v.fullName[locale]})</span>
+                      <span className="text-text-secondary/75 text-xs">({tl(v.fullName, locale)})</span>
                       <span className={`text-xs px-2 py-0.5 rounded-full border ${tier.bg} ${tier.text} ${tier.border}`}>
                         {tier.label[locale] || tier.label.en}
                       </span>
                     </div>
 
                     {/* Domain */}
-                    <p className="text-gold-primary text-sm font-medium mb-2">{v.domain[locale]}</p>
+                    <p className="text-gold-primary text-sm font-medium mb-2">{tl(v.domain, locale)}</p>
 
                     {/* Description */}
-                    <p className="text-text-secondary text-sm mb-3">{v.desc[locale]}</p>
+                    <p className="text-text-secondary text-sm mb-3">{tl(v.desc, locale)}</p>
 
                     {/* Rule + Key Houses */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -556,13 +557,13 @@ export default function LearnVargasPage() {
                         <div className="text-gold-primary/60 text-xs uppercase tracking-wider mb-1">
                           {!isDevanagariLocale(locale) ? 'Division Rule' : 'विभाजन नियम'}
                         </div>
-                        <p className="text-gold-light/70 font-mono text-xs">{v.rule[locale]}</p>
+                        <p className="text-gold-light/70 font-mono text-xs">{tl(v.rule, locale)}</p>
                       </div>
                       <div className="p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/5">
                         <div className="text-gold-primary/60 text-xs uppercase tracking-wider mb-1">
                           {!isDevanagariLocale(locale) ? 'Key Houses to Analyze' : 'विश्लेषण हेतु प्रमुख भाव'}
                         </div>
-                        <p className="text-gold-light/70 text-xs">{v.keyHouses[locale]}</p>
+                        <p className="text-gold-light/70 text-xs">{tl(v.keyHouses, locale)}</p>
                       </div>
                     </div>
                   </div>
@@ -824,8 +825,8 @@ export default function LearnVargasPage() {
                 {s.step}
               </span>
               <div>
-                <div className="text-gold-light font-semibold text-sm mb-1">{s.title[locale]}</div>
-                <p className="text-text-secondary text-sm">{s.desc[locale]}</p>
+                <div className="text-gold-light font-semibold text-sm mb-1">{tl(s.title, locale)}</div>
+                <p className="text-text-secondary text-sm">{tl(s.desc, locale)}</p>
               </div>
             </div>
           ))}
@@ -851,8 +852,8 @@ export default function LearnVargasPage() {
                 style={{ backgroundColor: r.color }}
               />
               <div>
-                <div className="font-bold text-sm mb-1" style={{ color: r.color }}>{r.rule[locale]}</div>
-                <p className="text-text-secondary text-sm">{r.desc[locale]}</p>
+                <div className="font-bold text-sm mb-1" style={{ color: r.color }}>{tl(r.rule, locale)}</div>
+                <p className="text-text-secondary text-sm">{tl(r.desc, locale)}</p>
               </div>
             </motion.div>
           ))}
@@ -932,11 +933,11 @@ export default function LearnVargasPage() {
             <div key={i} className="p-4 rounded-lg bg-bg-primary/50 border border-red-500/10">
               <div className="flex items-start gap-3 mb-2">
                 <span className="text-red-400 text-lg font-bold leading-none mt-0.5">✗</span>
-                <div className="text-red-400/80 font-semibold text-sm">{m.mistake[locale]}</div>
+                <div className="text-red-400/80 font-semibold text-sm">{tl(m.mistake, locale)}</div>
               </div>
               <div className="flex items-start gap-3 ml-0">
                 <span className="text-emerald-400 text-lg font-bold leading-none mt-0.5">✓</span>
-                <p className="text-text-secondary text-sm">{m.fix[locale]}</p>
+                <p className="text-text-secondary text-sm">{tl(m.fix, locale)}</p>
               </div>
             </div>
           ))}
@@ -956,9 +957,9 @@ export default function LearnVargasPage() {
               className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 hover:border-gold-primary/30 transition-all group"
             >
               <div className="text-gold-light font-semibold text-sm group-hover:text-gold-primary transition-colors">
-                {link.label[locale]}
+                {tl(link.label, locale)}
               </div>
-              <p className="text-text-secondary/75 text-xs mt-1">{link.desc[locale]}</p>
+              <p className="text-text-secondary/75 text-xs mt-1">{tl(link.desc, locale)}</p>
             </Link>
           ))}
         </div>

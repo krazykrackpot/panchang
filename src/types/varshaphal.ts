@@ -1,33 +1,34 @@
-import { Trilingual } from './panchang';
+;
+import type { LocaleText } from '@/types/panchang';
 import { KundaliData, PlanetPosition } from './kundali';
 
 export interface MunthaInfo {
   sign: number;
-  signName: Trilingual;
+  signName: LocaleText;
   house: number;
-  interpretation: Trilingual;
+  interpretation: LocaleText;
 }
 
 export interface SahamData {
-  name: Trilingual;
+  name: LocaleText;
   degree: number;
   sign: number;
-  signName: Trilingual;
+  signName: LocaleText;
   house: number;
 }
 
 export interface TajikaYoga {
-  name: Trilingual;
+  name: LocaleText;
   type: 'ithasala' | 'ishrafa' | 'nakta' | 'yamaya' | 'manau' | 'conjunction' | 'khallasara' | 'dutthottha';
-  planet1: Trilingual;
-  planet2: Trilingual;
+  planet1: LocaleText;
+  planet2: LocaleText;
   favorable: boolean;
-  description: Trilingual;
+  description: LocaleText;
 }
 
 export interface MuddaDashaPeriod {
   planet: string;
-  planetName: Trilingual;
+  planetName: LocaleText;
   startDate: string;
   endDate: string;
   durationDays: number;
@@ -35,10 +36,10 @@ export interface MuddaDashaPeriod {
 
 export interface VarsheshvaraInfo {
   planet: string;
-  planetName: Trilingual;
+  planetName: LocaleText;
   planetId: number;
   strength: number;
-  description: Trilingual;
+  description: LocaleText;
 }
 
 export interface VarshaphalData {
@@ -53,5 +54,5 @@ export interface VarshaphalData {
   sahams: SahamData[];
   tajikaYogas: TajikaYoga[];
   muddaDasha: MuddaDashaPeriod[];
-  yearSummary: Trilingual;
+  yearSummary: LocaleText;
 }

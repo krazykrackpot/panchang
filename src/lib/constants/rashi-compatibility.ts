@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 /**
  * Rashi Compatibility Content — 78 unique pair entries
  *
@@ -33,19 +34,19 @@ export interface RashiPairContent {
 // Foundational Data
 // ──────────────────────────────────────────────────────────────
 
-const RASHI_NAMES: Record<number, { en: string; hi: string }> = {
-  1:  { en: 'Aries', hi: 'मेष' },
-  2:  { en: 'Taurus', hi: 'वृषभ' },
-  3:  { en: 'Gemini', hi: 'मिथुन' },
-  4:  { en: 'Cancer', hi: 'कर्क' },
-  5:  { en: 'Leo', hi: 'सिंह' },
-  6:  { en: 'Virgo', hi: 'कन्या' },
-  7:  { en: 'Libra', hi: 'तुला' },
-  8:  { en: 'Scorpio', hi: 'वृश्चिक' },
-  9:  { en: 'Sagittarius', hi: 'धनु' },
-  10: { en: 'Capricorn', hi: 'मकर' },
-  11: { en: 'Aquarius', hi: 'कुम्भ' },
-  12: { en: 'Pisces', hi: 'मीन' },
+const RASHI_NAMES: Record<number, LocaleText> = {
+  1:  { en: 'Aries', hi: 'मेष', sa: 'मेष', mai: 'मेष', mr: 'मेष', ta: 'Aries', te: 'Aries', bn: 'Aries', kn: 'Aries', gu: 'Aries' },
+  2:  { en: 'Taurus', hi: 'वृषभ', sa: 'वृषभ', mai: 'वृषभ', mr: 'वृषभ', ta: 'Taurus', te: 'Taurus', bn: 'Taurus', kn: 'Taurus', gu: 'Taurus' },
+  3:  { en: 'Gemini', hi: 'मिथुन', sa: 'मिथुन', mai: 'मिथुन', mr: 'मिथुन', ta: 'Gemini', te: 'Gemini', bn: 'Gemini', kn: 'Gemini', gu: 'Gemini' },
+  4:  { en: 'Cancer', hi: 'कर्क', sa: 'कर्क', mai: 'कर्क', mr: 'कर्क', ta: 'Cancer', te: 'Cancer', bn: 'Cancer', kn: 'Cancer', gu: 'Cancer' },
+  5:  { en: 'Leo', hi: 'सिंह', sa: 'सिंह', mai: 'सिंह', mr: 'सिंह', ta: 'Leo', te: 'Leo', bn: 'Leo', kn: 'Leo', gu: 'Leo' },
+  6:  { en: 'Virgo', hi: 'कन्या', sa: 'कन्या', mai: 'कन्या', mr: 'कन्या', ta: 'Virgo', te: 'Virgo', bn: 'Virgo', kn: 'Virgo', gu: 'Virgo' },
+  7:  { en: 'Libra', hi: 'तुला', sa: 'तुला', mai: 'तुला', mr: 'तुला', ta: 'Libra', te: 'Libra', bn: 'Libra', kn: 'Libra', gu: 'Libra' },
+  8:  { en: 'Scorpio', hi: 'वृश्चिक', sa: 'वृश्चिक', mai: 'वृश्चिक', mr: 'वृश्चिक', ta: 'Scorpio', te: 'Scorpio', bn: 'Scorpio', kn: 'Scorpio', gu: 'Scorpio' },
+  9:  { en: 'Sagittarius', hi: 'धनु', sa: 'धनु', mai: 'धनु', mr: 'धनु', ta: 'Sagittarius', te: 'Sagittarius', bn: 'Sagittarius', kn: 'Sagittarius', gu: 'Sagittarius' },
+  10: { en: 'Capricorn', hi: 'मकर', sa: 'मकर', mai: 'मकर', mr: 'मकर', ta: 'Capricorn', te: 'Capricorn', bn: 'Capricorn', kn: 'Capricorn', gu: 'Capricorn' },
+  11: { en: 'Aquarius', hi: 'कुम्भ', sa: 'कुम्भ', mai: 'कुम्भ', mr: 'कुम्भ', ta: 'Aquarius', te: 'Aquarius', bn: 'Aquarius', kn: 'Aquarius', gu: 'Aquarius' },
+  12: { en: 'Pisces', hi: 'मीन', sa: 'मीन', mai: 'मीन', mr: 'मीन', ta: 'Pisces', te: 'Pisces', bn: 'Pisces', kn: 'Pisces', gu: 'Pisces' },
 };
 
 type Element = 'fire' | 'earth' | 'air' | 'water';

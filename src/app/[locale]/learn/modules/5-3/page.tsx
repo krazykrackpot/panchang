@@ -6,16 +6,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_5_3', phase: 2, topic: 'Tithi', moduleNumber: '5.3',
-  title: { en: 'Tithi Calculations — Parana, Kshaya, Vriddhi', hi: 'तिथि गणना — पारण, क्षय, वृद्धि' },
+  title: { en: 'Tithi Calculations — Parana, Kshaya, Vriddhi', hi: 'तिथि गणना — पारण, क्षय, वृद्धि', sa: 'तिथि गणना — पारण, क्षय, वृद्धि', mai: 'तिथि गणना — पारण, क्षय, वृद्धि', mr: 'तिथि गणना — पारण, क्षय, वृद्धि', ta: 'Tithi Calculations — Parana, Kshaya, Vriddhi', te: 'Tithi Calculations — Parana, Kshaya, Vriddhi', bn: 'Tithi Calculations — Parana, Kshaya, Vriddhi', kn: 'Tithi Calculations — Parana, Kshaya, Vriddhi', gu: 'Tithi Calculations — Parana, Kshaya, Vriddhi' },
   subtitle: {
     en: 'Understanding variable tithi duration, skipped and repeated tithis, and the critical rules for breaking Ekadashi fasts',
     hi: 'तिथि की परिवर्तनशील अवधि, छूटी और दोहरी तिथियों तथा एकादशी उपवास तोड़ने के महत्वपूर्ण नियमों को समझना',
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Module 5-1: Tithi', hi: 'मॉड्यूल 5-1: तिथि' }, href: '/learn/modules/5-1' },
-    { label: { en: 'Module 5-2: Paksha', hi: 'मॉड्यूल 5-2: पक्ष' }, href: '/learn/modules/5-2' },
-    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग' }, href: '/panchang' },
+    { label: { en: 'Module 5-1: Tithi', hi: 'मॉड्यूल 5-1: तिथि', sa: 'मॉड्यूल 5-1: तिथि', mai: 'मॉड्यूल 5-1: तिथि', mr: 'मॉड्यूल 5-1: तिथि', ta: 'Module 5-1: Tithi', te: 'Module 5-1: Tithi', bn: 'Module 5-1: Tithi', kn: 'Module 5-1: Tithi', gu: 'Module 5-1: Tithi' }, href: '/learn/modules/5-1' },
+    { label: { en: 'Module 5-2: Paksha', hi: 'मॉड्यूल 5-2: पक्ष', sa: 'मॉड्यूल 5-2: पक्ष', mai: 'मॉड्यूल 5-2: पक्ष', mr: 'मॉड्यूल 5-2: पक्ष', ta: 'Module 5-2: Paksha', te: 'Module 5-2: Paksha', bn: 'Module 5-2: Paksha', kn: 'Module 5-2: Paksha', gu: 'Module 5-2: Paksha' }, href: '/learn/modules/5-2' },
+    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग', mai: 'दैनिक पंचांग', mr: 'दैनिक पंचांग', ta: 'Daily Panchang', te: 'Daily Panchang', bn: 'Daily Panchang', kn: 'Daily Panchang', gu: 'Daily Panchang' }, href: '/panchang' },
   ],
 };
 
@@ -27,10 +27,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्रमा की दैनिक गति लगभग कितने के बीच बदलती है?',
     },
     options: [
-      { en: '5 degrees/day to 8 degrees/day', hi: '5 अंश/दिन से 8 अंश/दिन' },
-      { en: '11.8 degrees/day to 15.4 degrees/day', hi: '11.8 अंश/दिन से 15.4 अंश/दिन' },
-      { en: '20 degrees/day to 25 degrees/day', hi: '20 अंश/दिन से 25 अंश/दिन' },
-      { en: '1 degree/day to 3 degrees/day', hi: '1 अंश/दिन से 3 अंश/दिन' },
+      { en: '5 degrees/day to 8 degrees/day', hi: '5 अंश/दिन से 8 अंश/दिन', sa: '5 अंश/दिन से 8 अंश/दिन', mai: '5 अंश/दिन से 8 अंश/दिन', mr: '5 अंश/दिन से 8 अंश/दिन', ta: '5 degrees/day to 8 degrees/day', te: '5 degrees/day to 8 degrees/day', bn: '5 degrees/day to 8 degrees/day', kn: '5 degrees/day to 8 degrees/day', gu: '5 degrees/day to 8 degrees/day' },
+      { en: '11.8 degrees/day to 15.4 degrees/day', hi: '11.8 अंश/दिन से 15.4 अंश/दिन', sa: '11.8 अंश/दिन से 15.4 अंश/दिन', mai: '11.8 अंश/दिन से 15.4 अंश/दिन', mr: '11.8 अंश/दिन से 15.4 अंश/दिन', ta: '11.8 degrees/day to 15.4 degrees/day', te: '11.8 degrees/day to 15.4 degrees/day', bn: '11.8 degrees/day to 15.4 degrees/day', kn: '11.8 degrees/day to 15.4 degrees/day', gu: '11.8 degrees/day to 15.4 degrees/day' },
+      { en: '20 degrees/day to 25 degrees/day', hi: '20 अंश/दिन से 25 अंश/दिन', sa: '20 अंश/दिन से 25 अंश/दिन', mai: '20 अंश/दिन से 25 अंश/दिन', mr: '20 अंश/दिन से 25 अंश/दिन', ta: '20 degrees/day to 25 degrees/day', te: '20 degrees/day to 25 degrees/day', bn: '20 degrees/day to 25 degrees/day', kn: '20 degrees/day to 25 degrees/day', gu: '20 degrees/day to 25 degrees/day' },
+      { en: '1 degree/day to 3 degrees/day', hi: '1 अंश/दिन से 3 अंश/दिन', sa: '1 अंश/दिन से 3 अंश/दिन', mai: '1 अंश/दिन से 3 अंश/दिन', mr: '1 अंश/दिन से 3 अंश/दिन', ta: '1 degree/day to 3 degrees/day', te: '1 degree/day to 3 degrees/day', bn: '1 degree/day to 3 degrees/day', kn: '1 degree/day to 3 degrees/day', gu: '1 degree/day to 3 degrees/day' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -57,10 +57,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वृद्धि (अतिरिक्त/दोहरी) तिथि कब होती है?',
     },
     options: [
-      { en: 'The Moon is at perigee and moves very fast', hi: 'चन्द्रमा उपभू पर है और अत्यन्त तीव्र गति से चलता है' },
-      { en: 'A slow-moving Moon causes a tithi to span three sunrises', hi: 'मन्दगति चन्द्रमा के कारण एक तिथि तीन सूर्योदयों तक फैल जाती है' },
-      { en: 'An eclipse occurs during the tithi', hi: 'तिथि के दौरान ग्रहण होता है' },
-      { en: 'Two tithis start at the same time', hi: 'दो तिथियाँ एक ही समय आरम्भ होती हैं' },
+      { en: 'The Moon is at perigee and moves very fast', hi: 'चन्द्रमा उपभू पर है और अत्यन्त तीव्र गति से चलता है', sa: 'चन्द्रमा उपभू पर है और अत्यन्त तीव्र गति से चलता है', mai: 'चन्द्रमा उपभू पर है और अत्यन्त तीव्र गति से चलता है', mr: 'चन्द्रमा उपभू पर है और अत्यन्त तीव्र गति से चलता है', ta: 'The Moon is at perigee and moves very fast', te: 'The Moon is at perigee and moves very fast', bn: 'The Moon is at perigee and moves very fast', kn: 'The Moon is at perigee and moves very fast', gu: 'The Moon is at perigee and moves very fast' },
+      { en: 'A slow-moving Moon causes a tithi to span three sunrises', hi: 'मन्दगति चन्द्रमा के कारण एक तिथि तीन सूर्योदयों तक फैल जाती है', sa: 'मन्दगति चन्द्रमा के कारण एक तिथि तीन सूर्योदयों तक फैल जाती है', mai: 'मन्दगति चन्द्रमा के कारण एक तिथि तीन सूर्योदयों तक फैल जाती है', mr: 'मन्दगति चन्द्रमा के कारण एक तिथि तीन सूर्योदयों तक फैल जाती है', ta: 'A slow-moving Moon causes a tithi to span three sunrises', te: 'A slow-moving Moon causes a tithi to span three sunrises', bn: 'A slow-moving Moon causes a tithi to span three sunrises', kn: 'A slow-moving Moon causes a tithi to span three sunrises', gu: 'A slow-moving Moon causes a tithi to span three sunrises' },
+      { en: 'An eclipse occurs during the tithi', hi: 'तिथि के दौरान ग्रहण होता है', sa: 'तिथि के दौरान ग्रहण होता है', mai: 'तिथि के दौरान ग्रहण होता है', mr: 'तिथि के दौरान ग्रहण होता है', ta: 'An eclipse occurs during the tithi', te: 'An eclipse occurs during the tithi', bn: 'An eclipse occurs during the tithi', kn: 'An eclipse occurs during the tithi', gu: 'An eclipse occurs during the tithi' },
+      { en: 'Two tithis start at the same time', hi: 'दो तिथियाँ एक ही समय आरम्भ होती हैं', sa: 'दो तिथियाँ एक ही समय आरम्भ होती हैं', mai: 'दो तिथियाँ एक ही समय आरम्भ होती हैं', mr: 'दो तिथियाँ एक ही समय आरम्भ होती हैं', ta: 'Two tithis start at the same time', te: 'Two tithis start at the same time', bn: 'Two tithis start at the same time', kn: 'Two tithis start at the same time', gu: 'Two tithis start at the same time' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -75,10 +75,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पारण (एकादशी उपवास तोड़ना) आदर्श रूप से कब करना चाहिए?',
     },
     options: [
-      { en: 'Immediately at sunrise on Dwadashi day', hi: 'द्वादशी दिवस पर सूर्योदय के तुरन्त बाद' },
-      { en: 'After Dwadashi tithi begins but before it ends, within the prescribed window', hi: 'द्वादशी तिथि आरम्भ होने के बाद किन्तु समाप्त होने से पहले, निर्धारित समय-सीमा में' },
-      { en: 'Any time on the day after Ekadashi', hi: 'एकादशी के अगले दिन कभी भी' },
-      { en: 'Only at midnight', hi: 'केवल मध्यरात्रि में' },
+      { en: 'Immediately at sunrise on Dwadashi day', hi: 'द्वादशी दिवस पर सूर्योदय के तुरन्त बाद', sa: 'द्वादशी दिवस पर सूर्योदय के तुरन्त बाद', mai: 'द्वादशी दिवस पर सूर्योदय के तुरन्त बाद', mr: 'द्वादशी दिवस पर सूर्योदय के तुरन्त बाद', ta: 'Immediately at sunrise on Dwadashi day', te: 'Immediately at sunrise on Dwadashi day', bn: 'Immediately at sunrise on Dwadashi day', kn: 'Immediately at sunrise on Dwadashi day', gu: 'Immediately at sunrise on Dwadashi day' },
+      { en: 'After Dwadashi tithi begins but before it ends, within the prescribed window', hi: 'द्वादशी तिथि आरम्भ होने के बाद किन्तु समाप्त होने से पहले, निर्धारित समय-सीमा में', sa: 'द्वादशी तिथि आरम्भ होने के बाद किन्तु समाप्त होने से पहले, निर्धारित समय-सीमा में', mai: 'द्वादशी तिथि आरम्भ होने के बाद किन्तु समाप्त होने से पहले, निर्धारित समय-सीमा में', mr: 'द्वादशी तिथि आरम्भ होने के बाद किन्तु समाप्त होने से पहले, निर्धारित समय-सीमा में', ta: 'After Dwadashi tithi begins but before it ends, within the prescribed window', te: 'After Dwadashi tithi begins but before it ends, within the prescribed window', bn: 'After Dwadashi tithi begins but before it ends, within the prescribed window', kn: 'After Dwadashi tithi begins but before it ends, within the prescribed window', gu: 'After Dwadashi tithi begins but before it ends, within the prescribed window' },
+      { en: 'Any time on the day after Ekadashi', hi: 'एकादशी के अगले दिन कभी भी', sa: 'एकादशी के अगले दिन कभी भी', mai: 'एकादशी के अगले दिन कभी भी', mr: 'एकादशी के अगले दिन कभी भी', ta: 'Any time on the day after Ekadashi', te: 'Any time on the day after Ekadashi', bn: 'Any time on the day after Ekadashi', kn: 'Any time on the day after Ekadashi', gu: 'Any time on the day after Ekadashi' },
+      { en: 'Only at midnight', hi: 'केवल मध्यरात्रि में', sa: 'केवल मध्यरात्रि में', mai: 'केवल मध्यरात्रि में', mr: 'केवल मध्यरात्रि में', ta: 'Only at midnight', te: 'Only at midnight', bn: 'Only at midnight', kn: 'Only at midnight', gu: 'Only at midnight' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -93,10 +93,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सूर्योदय पर चन्द्रमा 167 अंश और सूर्य 348 अंश पर हो, तो तिथि ज्ञात करें:',
     },
     options: [
-      { en: 'Chaturdashi (14th)', hi: 'चतुर्दशी (14वीं)' },
-      { en: 'Purnima (15th)', hi: 'पूर्णिमा (15वीं)' },
-      { en: 'Pratipada (1st)', hi: 'प्रतिपदा (1ली)' },
-      { en: 'Trayodashi (13th)', hi: 'त्रयोदशी (13वीं)' },
+      { en: 'Chaturdashi (14th)', hi: 'चतुर्दशी (14वीं)', sa: 'चतुर्दशी (14वीं)', mai: 'चतुर्दशी (14वीं)', mr: 'चतुर्दशी (14वीं)', ta: 'Chaturdashi (14th)', te: 'Chaturdashi (14th)', bn: 'Chaturdashi (14th)', kn: 'Chaturdashi (14th)', gu: 'Chaturdashi (14th)' },
+      { en: 'Purnima (15th)', hi: 'पूर्णिमा (15वीं)', sa: 'पूर्णिमा (15वीं)', mai: 'पूर्णिमा (15वीं)', mr: 'पूर्णिमा (15वीं)', ta: 'Purnima (15th)', te: 'Purnima (15th)', bn: 'Purnima (15th)', kn: 'Purnima (15th)', gu: 'Purnima (15th)' },
+      { en: 'Pratipada (1st)', hi: 'प्रतिपदा (1ली)', sa: 'प्रतिपदा (1ली)', mai: 'प्रतिपदा (1ली)', mr: 'प्रतिपदा (1ली)', ta: 'Pratipada (1st)', te: 'Pratipada (1st)', bn: 'Pratipada (1st)', kn: 'Pratipada (1st)', gu: 'Pratipada (1st)' },
+      { en: 'Trayodashi (13th)', hi: 'त्रयोदशी (13वीं)', sa: 'त्रयोदशी (13वीं)', mai: 'त्रयोदशी (13वीं)', mr: 'त्रयोदशी (13वीं)', ta: 'Trayodashi (13th)', te: 'Trayodashi (13th)', bn: 'Trayodashi (13th)', kn: 'Trayodashi (13th)', gu: 'Trayodashi (13th)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -123,10 +123,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'यदि सूर्योदय पर चन्द्र-सूर्य कोणीय दूरी ठीक 180 अंश हो, तो कौन-सी तिथि समाप्त होने वाली है?',
     },
     options: [
-      { en: 'Chaturdashi (14th)', hi: 'चतुर्दशी (14वीं)' },
-      { en: 'Purnima (15th)', hi: 'पूर्णिमा (15वीं)' },
-      { en: 'Amavasya (30th)', hi: 'अमावस्या (30वीं)' },
-      { en: 'Krishna Pratipada (16th)', hi: 'कृष्ण प्रतिपदा (16वीं)' },
+      { en: 'Chaturdashi (14th)', hi: 'चतुर्दशी (14वीं)', sa: 'चतुर्दशी (14वीं)', mai: 'चतुर्दशी (14वीं)', mr: 'चतुर्दशी (14वीं)', ta: 'Chaturdashi (14th)', te: 'Chaturdashi (14th)', bn: 'Chaturdashi (14th)', kn: 'Chaturdashi (14th)', gu: 'Chaturdashi (14th)' },
+      { en: 'Purnima (15th)', hi: 'पूर्णिमा (15वीं)', sa: 'पूर्णिमा (15वीं)', mai: 'पूर्णिमा (15वीं)', mr: 'पूर्णिमा (15वीं)', ta: 'Purnima (15th)', te: 'Purnima (15th)', bn: 'Purnima (15th)', kn: 'Purnima (15th)', gu: 'Purnima (15th)' },
+      { en: 'Amavasya (30th)', hi: 'अमावस्या (30वीं)', sa: 'अमावस्या (30वीं)', mai: 'अमावस्या (30वीं)', mr: 'अमावस्या (30वीं)', ta: 'Amavasya (30th)', te: 'Amavasya (30th)', bn: 'Amavasya (30th)', kn: 'Amavasya (30th)', gu: 'Amavasya (30th)' },
+      { en: 'Krishna Pratipada (16th)', hi: 'कृष्ण प्रतिपदा (16वीं)', sa: 'कृष्ण प्रतिपदा (16वीं)', mai: 'कृष्ण प्रतिपदा (16वीं)', mr: 'कृष्ण प्रतिपदा (16वीं)', ta: 'Krishna Pratipada (16th)', te: 'Krishna Pratipada (16th)', bn: 'Krishna Pratipada (16th)', kn: 'Krishna Pratipada (16th)', gu: 'Krishna Pratipada (16th)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -141,10 +141,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किसी तिथि के ठीक समाप्ति समय को ज्ञात करने हेतु कौन-सी गणना विधि प्रयुक्त होती है?',
     },
     options: [
-      { en: 'Simple linear interpolation between two known points', hi: 'दो ज्ञात बिन्दुओं के बीच सरल रैखिक प्रक्षेप' },
-      { en: 'Binary search (iterative bisection) to find the exact moment Moon-Sun elongation crosses a 12-degree boundary', hi: 'द्विभाजन खोज (पुनरावर्ती विभाजन) द्वारा चन्द्र-सूर्य कोणीय दूरी के 12-अंश सीमा पार करने का ठीक क्षण ज्ञात करना' },
-      { en: 'Looking up a pre-printed table from the previous year', hi: 'पिछले वर्ष की छपी तालिका देखना' },
-      { en: 'Counting 24 hours from the tithi start', hi: 'तिथि आरम्भ से 24 घण्टे गिनना' },
+      { en: 'Simple linear interpolation between two known points', hi: 'दो ज्ञात बिन्दुओं के बीच सरल रैखिक प्रक्षेप', sa: 'दो ज्ञात बिन्दुओं के बीच सरल रैखिक प्रक्षेप', mai: 'दो ज्ञात बिन्दुओं के बीच सरल रैखिक प्रक्षेप', mr: 'दो ज्ञात बिन्दुओं के बीच सरल रैखिक प्रक्षेप', ta: 'Simple linear interpolation between two known points', te: 'Simple linear interpolation between two known points', bn: 'Simple linear interpolation between two known points', kn: 'Simple linear interpolation between two known points', gu: 'Simple linear interpolation between two known points' },
+      { en: 'Binary search (iterative bisection) to find the exact moment Moon-Sun elongation crosses a 12-degree boundary', hi: 'द्विभाजन खोज (पुनरावर्ती विभाजन) द्वारा चन्द्र-सूर्य कोणीय दूरी के 12-अंश सीमा पार करने का ठीक क्षण ज्ञात करना', sa: 'द्विभाजन खोज (पुनरावर्ती विभाजन) द्वारा चन्द्र-सूर्य कोणीय दूरी के 12-अंश सीमा पार करने का ठीक क्षण ज्ञात करना', mai: 'द्विभाजन खोज (पुनरावर्ती विभाजन) द्वारा चन्द्र-सूर्य कोणीय दूरी के 12-अंश सीमा पार करने का ठीक क्षण ज्ञात करना', mr: 'द्विभाजन खोज (पुनरावर्ती विभाजन) द्वारा चन्द्र-सूर्य कोणीय दूरी के 12-अंश सीमा पार करने का ठीक क्षण ज्ञात करना', ta: 'Binary search (iterative bisection) to find the exact moment Moon-Sun elongation crosses a 12-degree boundary', te: 'Binary search (iterative bisection) to find the exact moment Moon-Sun elongation crosses a 12-degree boundary', bn: 'Binary search (iterative bisection) to find the exact moment Moon-Sun elongation crosses a 12-degree boundary', kn: 'Binary search (iterative bisection) to find the exact moment Moon-Sun elongation crosses a 12-degree boundary', gu: 'Binary search (iterative bisection) to find the exact moment Moon-Sun elongation crosses a 12-degree boundary' },
+      { en: 'Looking up a pre-printed table from the previous year', hi: 'पिछले वर्ष की छपी तालिका देखना', sa: 'पिछले वर्ष की छपी तालिका देखना', mai: 'पिछले वर्ष की छपी तालिका देखना', mr: 'पिछले वर्ष की छपी तालिका देखना', ta: 'Looking up a pre-printed table from the previous year', te: 'Looking up a pre-printed table from the previous year', bn: 'Looking up a pre-printed table from the previous year', kn: 'Looking up a pre-printed table from the previous year', gu: 'Looking up a pre-printed table from the previous year' },
+      { en: 'Counting 24 hours from the tithi start', hi: 'तिथि आरम्भ से 24 घण्टे गिनना', sa: 'तिथि आरम्भ से 24 घण्टे गिनना', mai: 'तिथि आरम्भ से 24 घण्टे गिनना', mr: 'तिथि आरम्भ से 24 घण्टे गिनना', ta: 'Counting 24 hours from the tithi start', te: 'Counting 24 hours from the tithi start', bn: 'Counting 24 hours from the tithi start', kn: 'Counting 24 hours from the tithi start', gu: 'Counting 24 hours from the tithi start' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -171,10 +171,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कार्यान्वित उदाहरण (चन्द्र=167, सूर्य=348) में पूर्णिमा कब समाप्त होती है?',
     },
     options: [
-      { en: 'When elongation reaches 168 degrees', hi: 'जब कोणीय दूरी 168 अंश तक पहुँचे' },
-      { en: 'When elongation reaches 180 degrees', hi: 'जब कोणीय दूरी 180 अंश तक पहुँचे' },
-      { en: 'When elongation reaches 192 degrees', hi: 'जब कोणीय दूरी 192 अंश तक पहुँचे' },
-      { en: 'Exactly 24 hours after it began', hi: 'आरम्भ होने के ठीक 24 घण्टे बाद' },
+      { en: 'When elongation reaches 168 degrees', hi: 'जब कोणीय दूरी 168 अंश तक पहुँचे', sa: 'जब कोणीय दूरी 168 अंश तक पहुँचे', mai: 'जब कोणीय दूरी 168 अंश तक पहुँचे', mr: 'जब कोणीय दूरी 168 अंश तक पहुँचे', ta: 'When elongation reaches 168 degrees', te: 'When elongation reaches 168 degrees', bn: 'When elongation reaches 168 degrees', kn: 'When elongation reaches 168 degrees', gu: 'When elongation reaches 168 degrees' },
+      { en: 'When elongation reaches 180 degrees', hi: 'जब कोणीय दूरी 180 अंश तक पहुँचे', sa: 'जब कोणीय दूरी 180 अंश तक पहुँचे', mai: 'जब कोणीय दूरी 180 अंश तक पहुँचे', mr: 'जब कोणीय दूरी 180 अंश तक पहुँचे', ta: 'When elongation reaches 180 degrees', te: 'When elongation reaches 180 degrees', bn: 'When elongation reaches 180 degrees', kn: 'When elongation reaches 180 degrees', gu: 'When elongation reaches 180 degrees' },
+      { en: 'When elongation reaches 192 degrees', hi: 'जब कोणीय दूरी 192 अंश तक पहुँचे', sa: 'जब कोणीय दूरी 192 अंश तक पहुँचे', mai: 'जब कोणीय दूरी 192 अंश तक पहुँचे', mr: 'जब कोणीय दूरी 192 अंश तक पहुँचे', ta: 'When elongation reaches 192 degrees', te: 'When elongation reaches 192 degrees', bn: 'When elongation reaches 192 degrees', kn: 'When elongation reaches 192 degrees', gu: 'When elongation reaches 192 degrees' },
+      { en: 'Exactly 24 hours after it began', hi: 'आरम्भ होने के ठीक 24 घण्टे बाद', sa: 'आरम्भ होने के ठीक 24 घण्टे बाद', mai: 'आरम्भ होने के ठीक 24 घण्टे बाद', mr: 'आरम्भ होने के ठीक 24 घण्टे बाद', ta: 'Exactly 24 hours after it began', te: 'Exactly 24 hours after it began', bn: 'Exactly 24 hours after it began', kn: 'Exactly 24 hours after it began', gu: 'Exactly 24 hours after it began' },
     ],
     correctAnswer: 1,
     explanation: {

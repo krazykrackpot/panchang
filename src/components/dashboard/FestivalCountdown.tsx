@@ -1,4 +1,5 @@
 'use client';
+import { tl } from '@/lib/utils/trilingual';
 
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
@@ -6,7 +7,7 @@ import { motion } from 'framer-motion';
 import { Calendar, ChevronRight, Sparkles } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { useLocationStore } from '@/stores/location-store';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
 
 // ---------------------------------------------------------------------------
@@ -14,7 +15,7 @@ import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/loc
 // ---------------------------------------------------------------------------
 
 interface FestivalRaw {
-  name: { en: string; hi: string; sa: string };
+  name: LocaleText;
   date: string;        // YYYY-MM-DD
   type: 'major' | 'vrat' | 'regional' | 'eclipse';
   category: string;
@@ -22,7 +23,7 @@ interface FestivalRaw {
 }
 
 interface UpcomingFestival {
-  name: { en: string; hi: string; sa: string };
+  name: LocaleText;
   date: string;
   daysUntil: number;
   type: 'major' | 'vrat' | 'regional' | 'eclipse';
@@ -142,7 +143,7 @@ function formatCountdown(days: number, L: (typeof LABELS)['en']): string {
 
 export default function FestivalCountdown() {
   const locale = useLocale() as Locale;
-  const L = LABELS[locale] || (isDevanagariLocale(locale) ? LABELS.hi : LABELS.en);
+  const L = (LABELS as Record<string, typeof LABELS.en>)[locale] || (isDevanagariLocale(locale) ? LABELS.hi : LABELS.en);
   const isHi = isDevanagariLocale(locale);
   const headingFont = getHeadingFont(locale);
   const bodyFont = getBodyFont(locale);

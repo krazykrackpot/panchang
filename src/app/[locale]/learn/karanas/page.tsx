@@ -24,70 +24,70 @@ const KARANA_DETAILS: Record<string, {
   bestFor: Record<string, string>;
 }> = {
   Bava: {
-    deity: { en: 'Indra', hi: 'इन्द्र' },
+    deity: { en: 'Indra', hi: 'इन्द्र', sa: 'इन्द्र', mai: 'इन्द्र', mr: 'इन्द्र', ta: 'Indra', te: 'Indra', bn: 'Indra', kn: 'Indra', gu: 'Indra' },
     nature: 'auspicious',
-    meaning: { en: 'Power & authority', hi: 'शक्ति और अधिकार' },
-    bestFor: { en: 'Government work, ceremonies, construction, leadership tasks', hi: 'शासकीय कार्य, संस्कार, निर्माण, नेतृत्व कार्य' },
+    meaning: { en: 'Power & authority', hi: 'शक्ति और अधिकार', sa: 'शक्ति और अधिकार', mai: 'शक्ति और अधिकार', mr: 'शक्ति और अधिकार', ta: 'Power & authority', te: 'Power & authority', bn: 'Power & authority', kn: 'Power & authority', gu: 'Power & authority' },
+    bestFor: { en: 'Government work, ceremonies, construction, leadership tasks', hi: 'शासकीय कार्य, संस्कार, निर्माण, नेतृत्व कार्य', sa: 'शासकीय कार्य, संस्कार, निर्माण, नेतृत्व कार्य', mai: 'शासकीय कार्य, संस्कार, निर्माण, नेतृत्व कार्य', mr: 'शासकीय कार्य, संस्कार, निर्माण, नेतृत्व कार्य', ta: 'Government work, ceremonies, construction, leadership tasks', te: 'Government work, ceremonies, construction, leadership tasks', bn: 'Government work, ceremonies, construction, leadership tasks', kn: 'Government work, ceremonies, construction, leadership tasks', gu: 'Government work, ceremonies, construction, leadership tasks' },
   },
   Balava: {
-    deity: { en: 'Brahma', hi: 'ब्रह्मा' },
+    deity: { en: 'Brahma', hi: 'ब्रह्मा', sa: 'ब्रह्मा', mai: 'ब्रह्मा', mr: 'ब्रह्मा', ta: 'Brahma', te: 'Brahma', bn: 'Brahma', kn: 'Brahma', gu: 'Brahma' },
     nature: 'auspicious',
-    meaning: { en: 'Creative energy', hi: 'सृजन ऊर्जा' },
-    bestFor: { en: 'Education, marriage, writing, artistic pursuits, worship', hi: 'शिक्षा, विवाह, लेखन, कलात्मक कार्य, पूजा' },
+    meaning: { en: 'Creative energy', hi: 'सृजन ऊर्जा', sa: 'सृजन ऊर्जा', mai: 'सृजन ऊर्जा', mr: 'सृजन ऊर्जा', ta: 'Creative energy', te: 'Creative energy', bn: 'Creative energy', kn: 'Creative energy', gu: 'Creative energy' },
+    bestFor: { en: 'Education, marriage, writing, artistic pursuits, worship', hi: 'शिक्षा, विवाह, लेखन, कलात्मक कार्य, पूजा', sa: 'शिक्षा, विवाह, लेखन, कलात्मक कार्य, पूजा', mai: 'शिक्षा, विवाह, लेखन, कलात्मक कार्य, पूजा', mr: 'शिक्षा, विवाह, लेखन, कलात्मक कार्य, पूजा', ta: 'Education, marriage, writing, artistic pursuits, worship', te: 'Education, marriage, writing, artistic pursuits, worship', bn: 'Education, marriage, writing, artistic pursuits, worship', kn: 'Education, marriage, writing, artistic pursuits, worship', gu: 'Education, marriage, writing, artistic pursuits, worship' },
   },
   Kaulava: {
-    deity: { en: 'Mitra', hi: 'मित्र' },
+    deity: { en: 'Mitra', hi: 'मित्र', sa: 'मित्र', mai: 'मित्र', mr: 'मित्र', ta: 'Mitra', te: 'Mitra', bn: 'Mitra', kn: 'Mitra', gu: 'Mitra' },
     nature: 'auspicious',
-    meaning: { en: 'Friendship & harmony', hi: 'मित्रता और सामंजस्य' },
-    bestFor: { en: 'Friendships, partnerships, social gatherings, reconciliation', hi: 'मित्रता, साझेदारी, सामाजिक सभा, मेल-मिलाप' },
+    meaning: { en: 'Friendship & harmony', hi: 'मित्रता और सामंजस्य', sa: 'मित्रता और सामंजस्य', mai: 'मित्रता और सामंजस्य', mr: 'मित्रता और सामंजस्य', ta: 'Friendship & harmony', te: 'Friendship & harmony', bn: 'Friendship & harmony', kn: 'Friendship & harmony', gu: 'Friendship & harmony' },
+    bestFor: { en: 'Friendships, partnerships, social gatherings, reconciliation', hi: 'मित्रता, साझेदारी, सामाजिक सभा, मेल-मिलाप', sa: 'मित्रता, साझेदारी, सामाजिक सभा, मेल-मिलाप', mai: 'मित्रता, साझेदारी, सामाजिक सभा, मेल-मिलाप', mr: 'मित्रता, साझेदारी, सामाजिक सभा, मेल-मिलाप', ta: 'Friendships, partnerships, social gatherings, reconciliation', te: 'Friendships, partnerships, social gatherings, reconciliation', bn: 'Friendships, partnerships, social gatherings, reconciliation', kn: 'Friendships, partnerships, social gatherings, reconciliation', gu: 'Friendships, partnerships, social gatherings, reconciliation' },
   },
   Taitila: {
-    deity: { en: 'Aryaman', hi: 'अर्यमन्' },
+    deity: { en: 'Aryaman', hi: 'अर्यमन्', sa: 'अर्यमन्', mai: 'अर्यमन्', mr: 'अर्यमन्', ta: 'Aryaman', te: 'Aryaman', bn: 'Aryaman', kn: 'Aryaman', gu: 'Aryaman' },
     nature: 'auspicious',
-    meaning: { en: 'Wealth & prosperity', hi: 'धन और समृद्धि' },
-    bestFor: { en: 'Financial matters, property, jewelry, investments', hi: 'वित्तीय कार्य, सम्पत्ति, आभूषण, निवेश' },
+    meaning: { en: 'Wealth & prosperity', hi: 'धन और समृद्धि', sa: 'धन और समृद्धि', mai: 'धन और समृद्धि', mr: 'धन और समृद्धि', ta: 'Wealth & prosperity', te: 'Wealth & prosperity', bn: 'Wealth & prosperity', kn: 'Wealth & prosperity', gu: 'Wealth & prosperity' },
+    bestFor: { en: 'Financial matters, property, jewelry, investments', hi: 'वित्तीय कार्य, सम्पत्ति, आभूषण, निवेश', sa: 'वित्तीय कार्य, सम्पत्ति, आभूषण, निवेश', mai: 'वित्तीय कार्य, सम्पत्ति, आभूषण, निवेश', mr: 'वित्तीय कार्य, सम्पत्ति, आभूषण, निवेश', ta: 'Financial matters, property, jewelry, investments', te: 'Financial matters, property, jewelry, investments', bn: 'Financial matters, property, jewelry, investments', kn: 'Financial matters, property, jewelry, investments', gu: 'Financial matters, property, jewelry, investments' },
   },
   Garaja: {
-    deity: { en: 'Prithvi (Earth)', hi: 'पृथ्वी' },
+    deity: { en: 'Prithvi (Earth)', hi: 'पृथ्वी', sa: 'पृथ्वी', mai: 'पृथ्वी', mr: 'पृथ्वी', ta: 'Prithvi (Earth)', te: 'Prithvi (Earth)', bn: 'Prithvi (Earth)', kn: 'Prithvi (Earth)', gu: 'Prithvi (Earth)' },
     nature: 'auspicious',
-    meaning: { en: 'Stability & grounding', hi: 'स्थिरता और आधार' },
-    bestFor: { en: 'Agriculture, house construction, land purchase, housewarming', hi: 'कृषि, गृह निर्माण, भूमि क्रय, गृहप्रवेश' },
+    meaning: { en: 'Stability & grounding', hi: 'स्थिरता और आधार', sa: 'स्थिरता और आधार', mai: 'स्थिरता और आधार', mr: 'स्थिरता और आधार', ta: 'Stability & grounding', te: 'Stability & grounding', bn: 'Stability & grounding', kn: 'Stability & grounding', gu: 'Stability & grounding' },
+    bestFor: { en: 'Agriculture, house construction, land purchase, housewarming', hi: 'कृषि, गृह निर्माण, भूमि क्रय, गृहप्रवेश', sa: 'कृषि, गृह निर्माण, भूमि क्रय, गृहप्रवेश', mai: 'कृषि, गृह निर्माण, भूमि क्रय, गृहप्रवेश', mr: 'कृषि, गृह निर्माण, भूमि क्रय, गृहप्रवेश', ta: 'Agriculture, house construction, land purchase, housewarming', te: 'Agriculture, house construction, land purchase, housewarming', bn: 'Agriculture, house construction, land purchase, housewarming', kn: 'Agriculture, house construction, land purchase, housewarming', gu: 'Agriculture, house construction, land purchase, housewarming' },
   },
   Vanija: {
-    deity: { en: 'Lakshmi', hi: 'लक्ष्मी' },
+    deity: { en: 'Lakshmi', hi: 'लक्ष्मी', sa: 'लक्ष्मी', mai: 'लक्ष्मी', mr: 'लक्ष्मी', ta: 'Lakshmi', te: 'Lakshmi', bn: 'Lakshmi', kn: 'Lakshmi', gu: 'Lakshmi' },
     nature: 'neutral',
-    meaning: { en: 'Commerce & trade', hi: 'वाणिज्य और व्यापार' },
-    bestFor: { en: 'Business deals, trade, sales, market activities, sowing crops', hi: 'व्यापारिक सौदे, विक्रय, बाजार गतिविधियां, बुआई' },
+    meaning: { en: 'Commerce & trade', hi: 'वाणिज्य और व्यापार', sa: 'वाणिज्य और व्यापार', mai: 'वाणिज्य और व्यापार', mr: 'वाणिज्य और व्यापार', ta: 'Commerce & trade', te: 'Commerce & trade', bn: 'Commerce & trade', kn: 'Commerce & trade', gu: 'Commerce & trade' },
+    bestFor: { en: 'Business deals, trade, sales, market activities, sowing crops', hi: 'व्यापारिक सौदे, विक्रय, बाजार गतिविधियां, बुआई', sa: 'व्यापारिक सौदे, विक्रय, बाजार गतिविधियां, बुआई', mai: 'व्यापारिक सौदे, विक्रय, बाजार गतिविधियां, बुआई', mr: 'व्यापारिक सौदे, विक्रय, बाजार गतिविधियां, बुआई', ta: 'Business deals, trade, sales, market activities, sowing crops', te: 'Business deals, trade, sales, market activities, sowing crops', bn: 'Business deals, trade, sales, market activities, sowing crops', kn: 'Business deals, trade, sales, market activities, sowing crops', gu: 'Business deals, trade, sales, market activities, sowing crops' },
   },
   Vishti: {
-    deity: { en: 'Yama', hi: 'यम' },
+    deity: { en: 'Yama', hi: 'यम', sa: 'यम', mai: 'यम', mr: 'यम', ta: 'Yama', te: 'Yama', bn: 'Yama', kn: 'Yama', gu: 'Yama' },
     nature: 'inauspicious',
-    meaning: { en: 'Obstruction & destruction', hi: 'बाधा और विनाश' },
-    bestFor: { en: 'AVOID for all auspicious work. Only suitable for demolition, confrontation, warfare, or acts of destruction', hi: 'सभी शुभ कार्यों में त्याज्य। केवल ध्वंस, संघर्ष, युद्ध या विनाश के कार्यों में उपयुक्त' },
+    meaning: { en: 'Obstruction & destruction', hi: 'बाधा और विनाश', sa: 'बाधा और विनाश', mai: 'बाधा और विनाश', mr: 'बाधा और विनाश', ta: 'Obstruction & destruction', te: 'Obstruction & destruction', bn: 'Obstruction & destruction', kn: 'Obstruction & destruction', gu: 'Obstruction & destruction' },
+    bestFor: { en: 'AVOID for all auspicious work. Only suitable for demolition, confrontation, warfare, or acts of destruction', hi: 'सभी शुभ कार्यों में त्याज्य। केवल ध्वंस, संघर्ष, युद्ध या विनाश के कार्यों में उपयुक्त', sa: 'सभी शुभ कार्यों में त्याज्य। केवल ध्वंस, संघर्ष, युद्ध या विनाश के कार्यों में उपयुक्त', mai: 'सभी शुभ कार्यों में त्याज्य। केवल ध्वंस, संघर्ष, युद्ध या विनाश के कार्यों में उपयुक्त', mr: 'सभी शुभ कार्यों में त्याज्य। केवल ध्वंस, संघर्ष, युद्ध या विनाश के कार्यों में उपयुक्त', ta: 'AVOID for all auspicious work. Only suitable for demolition, confrontation, warfare, or acts of destruction', te: 'AVOID for all auspicious work. Only suitable for demolition, confrontation, warfare, or acts of destruction', bn: 'AVOID for all auspicious work. Only suitable for demolition, confrontation, warfare, or acts of destruction', kn: 'AVOID for all auspicious work. Only suitable for demolition, confrontation, warfare, or acts of destruction', gu: 'AVOID for all auspicious work. Only suitable for demolition, confrontation, warfare, or acts of destruction' },
   },
   Shakuni: {
-    deity: { en: 'Garuda', hi: 'गरुड़' },
+    deity: { en: 'Garuda', hi: 'गरुड़', sa: 'गरुड़', mai: 'गरुड़', mr: 'गरुड़', ta: 'Garuda', te: 'Garuda', bn: 'Garuda', kn: 'Garuda', gu: 'Garuda' },
     nature: 'neutral',
-    meaning: { en: 'Omen-reading, divination', hi: 'शकुन-विचार, भविष्यवाणी' },
-    bestFor: { en: 'Preparing medicines, poison-related work, divination, tantric practices', hi: 'औषधि निर्माण, विष सम्बन्धी कार्य, भविष्यवाणी, तान्त्रिक साधना' },
+    meaning: { en: 'Omen-reading, divination', hi: 'शकुन-विचार, भविष्यवाणी', sa: 'शकुन-विचार, भविष्यवाणी', mai: 'शकुन-विचार, भविष्यवाणी', mr: 'शकुन-विचार, भविष्यवाणी', ta: 'Omen-reading, divination', te: 'Omen-reading, divination', bn: 'Omen-reading, divination', kn: 'Omen-reading, divination', gu: 'Omen-reading, divination' },
+    bestFor: { en: 'Preparing medicines, poison-related work, divination, tantric practices', hi: 'औषधि निर्माण, विष सम्बन्धी कार्य, भविष्यवाणी, तान्त्रिक साधना', sa: 'औषधि निर्माण, विष सम्बन्धी कार्य, भविष्यवाणी, तान्त्रिक साधना', mai: 'औषधि निर्माण, विष सम्बन्धी कार्य, भविष्यवाणी, तान्त्रिक साधना', mr: 'औषधि निर्माण, विष सम्बन्धी कार्य, भविष्यवाणी, तान्त्रिक साधना', ta: 'Preparing medicines, poison-related work, divination, tantric practices', te: 'Preparing medicines, poison-related work, divination, tantric practices', bn: 'Preparing medicines, poison-related work, divination, tantric practices', kn: 'Preparing medicines, poison-related work, divination, tantric practices', gu: 'Preparing medicines, poison-related work, divination, tantric practices' },
   },
   Chatushpada: {
-    deity: { en: 'Rudra', hi: 'रुद्र' },
+    deity: { en: 'Rudra', hi: 'रुद्र', sa: 'रुद्र', mai: 'रुद्र', mr: 'रुद्र', ta: 'Rudra', te: 'Rudra', bn: 'Rudra', kn: 'Rudra', gu: 'Rudra' },
     nature: 'neutral',
-    meaning: { en: 'Four-footed, stability', hi: 'चतुष्पद, स्थिरता' },
-    bestFor: { en: 'Animal husbandry, cattle purchase, veterinary work, stable foundations', hi: 'पशुपालन, पशु क्रय, पशु चिकित्सा, स्थिर आधार कार्य' },
+    meaning: { en: 'Four-footed, stability', hi: 'चतुष्पद, स्थिरता', sa: 'चतुष्पद, स्थिरता', mai: 'चतुष्पद, स्थिरता', mr: 'चतुष्पद, स्थिरता', ta: 'Four-footed, stability', te: 'Four-footed, stability', bn: 'Four-footed, stability', kn: 'Four-footed, stability', gu: 'Four-footed, stability' },
+    bestFor: { en: 'Animal husbandry, cattle purchase, veterinary work, stable foundations', hi: 'पशुपालन, पशु क्रय, पशु चिकित्सा, स्थिर आधार कार्य', sa: 'पशुपालन, पशु क्रय, पशु चिकित्सा, स्थिर आधार कार्य', mai: 'पशुपालन, पशु क्रय, पशु चिकित्सा, स्थिर आधार कार्य', mr: 'पशुपालन, पशु क्रय, पशु चिकित्सा, स्थिर आधार कार्य', ta: 'Animal husbandry, cattle purchase, veterinary work, stable foundations', te: 'Animal husbandry, cattle purchase, veterinary work, stable foundations', bn: 'Animal husbandry, cattle purchase, veterinary work, stable foundations', kn: 'Animal husbandry, cattle purchase, veterinary work, stable foundations', gu: 'Animal husbandry, cattle purchase, veterinary work, stable foundations' },
   },
   Nagava: {
-    deity: { en: 'Naga (Serpent)', hi: 'नाग' },
+    deity: { en: 'Naga (Serpent)', hi: 'नाग', sa: 'नाग', mai: 'नाग', mr: 'नाग', ta: 'Naga (Serpent)', te: 'Naga (Serpent)', bn: 'Naga (Serpent)', kn: 'Naga (Serpent)', gu: 'Naga (Serpent)' },
     nature: 'inauspicious',
-    meaning: { en: 'Hidden dangers, underworld', hi: 'छिपे हुए संकट, पाताल' },
-    bestFor: { en: 'Cruel acts, destructive tasks, underground work. Avoid travel and ceremonies', hi: 'क्रूर कर्म, विध्वंसक कार्य, भूमिगत कार्य। यात्रा और संस्कारों में त्याज्य' },
+    meaning: { en: 'Hidden dangers, underworld', hi: 'छिपे हुए संकट, पाताल', sa: 'छिपे हुए संकट, पाताल', mai: 'छिपे हुए संकट, पाताल', mr: 'छिपे हुए संकट, पाताल', ta: 'Hidden dangers, underworld', te: 'Hidden dangers, underworld', bn: 'Hidden dangers, underworld', kn: 'Hidden dangers, underworld', gu: 'Hidden dangers, underworld' },
+    bestFor: { en: 'Cruel acts, destructive tasks, underground work. Avoid travel and ceremonies', hi: 'क्रूर कर्म, विध्वंसक कार्य, भूमिगत कार्य। यात्रा और संस्कारों में त्याज्य', sa: 'क्रूर कर्म, विध्वंसक कार्य, भूमिगत कार्य। यात्रा और संस्कारों में त्याज्य', mai: 'क्रूर कर्म, विध्वंसक कार्य, भूमिगत कार्य। यात्रा और संस्कारों में त्याज्य', mr: 'क्रूर कर्म, विध्वंसक कार्य, भूमिगत कार्य। यात्रा और संस्कारों में त्याज्य', ta: 'Cruel acts, destructive tasks, underground work. Avoid travel and ceremonies', te: 'Cruel acts, destructive tasks, underground work. Avoid travel and ceremonies', bn: 'Cruel acts, destructive tasks, underground work. Avoid travel and ceremonies', kn: 'Cruel acts, destructive tasks, underground work. Avoid travel and ceremonies', gu: 'Cruel acts, destructive tasks, underground work. Avoid travel and ceremonies' },
   },
   Kimstughna: {
-    deity: { en: 'Vayu', hi: 'वायु' },
+    deity: { en: 'Vayu', hi: 'वायु', sa: 'वायु', mai: 'वायु', mr: 'वायु', ta: 'Vayu', te: 'Vayu', bn: 'Vayu', kn: 'Vayu', gu: 'Vayu' },
     nature: 'auspicious',
-    meaning: { en: 'Destroyer of negativity', hi: 'नकारात्मकता का नाशक' },
-    bestFor: { en: 'Charity, spiritual practices, Shraddha, overcoming obstacles. A surprisingly auspicious fixed karana', hi: 'दान, आध्यात्मिक साधना, श्राद्ध, बाधा निवारण। एक आश्चर्यजनक शुभ स्थिर करण' },
+    meaning: { en: 'Destroyer of negativity', hi: 'नकारात्मकता का नाशक', sa: 'नकारात्मकता का नाशक', mai: 'नकारात्मकता का नाशक', mr: 'नकारात्मकता का नाशक', ta: 'Destroyer of negativity', te: 'Destroyer of negativity', bn: 'Destroyer of negativity', kn: 'Destroyer of negativity', gu: 'Destroyer of negativity' },
+    bestFor: { en: 'Charity, spiritual practices, Shraddha, overcoming obstacles. A surprisingly auspicious fixed karana', hi: 'दान, आध्यात्मिक साधना, श्राद्ध, बाधा निवारण। एक आश्चर्यजनक शुभ स्थिर करण', sa: 'दान, आध्यात्मिक साधना, श्राद्ध, बाधा निवारण। एक आश्चर्यजनक शुभ स्थिर करण', mai: 'दान, आध्यात्मिक साधना, श्राद्ध, बाधा निवारण। एक आश्चर्यजनक शुभ स्थिर करण', mr: 'दान, आध्यात्मिक साधना, श्राद्ध, बाधा निवारण। एक आश्चर्यजनक शुभ स्थिर करण', ta: 'Charity, spiritual practices, Shraddha, overcoming obstacles. A surprisingly auspicious fixed karana', te: 'Charity, spiritual practices, Shraddha, overcoming obstacles. A surprisingly auspicious fixed karana', bn: 'Charity, spiritual practices, Shraddha, overcoming obstacles. A surprisingly auspicious fixed karana', kn: 'Charity, spiritual practices, Shraddha, overcoming obstacles. A surprisingly auspicious fixed karana', gu: 'Charity, spiritual practices, Shraddha, overcoming obstacles. A surprisingly auspicious fixed karana' },
   },
 };
 
@@ -325,10 +325,10 @@ export default function LearnKaranasPage() {
             const detail = KARANA_DETAILS[k.name.en];
             if (!detail) return null;
             const positions: Record<string, { pos: string; tithi: Record<string, string> }> = {
-              Kimstughna: { pos: '1', tithi: { en: 'Shukla Pratipada, 1st half', hi: 'शुक्ल प्रतिपदा, प्रथम भाग' } },
-              Shakuni: { pos: '58', tithi: { en: 'Krishna Chaturdashi, 2nd half', hi: 'कृष्ण चतुर्दशी, द्वितीय भाग' } },
-              Chatushpada: { pos: '59', tithi: { en: 'Amavasya, 1st half', hi: 'अमावस्या, प्रथम भाग' } },
-              Nagava: { pos: '60', tithi: { en: 'Amavasya, 2nd half', hi: 'अमावस्या, द्वितीय भाग' } },
+              Kimstughna: { pos: '1', tithi: { en: 'Shukla Pratipada, 1st half', hi: 'शुक्ल प्रतिपदा, प्रथम भाग', sa: 'शुक्ल प्रतिपदा, प्रथम भाग', mai: 'शुक्ल प्रतिपदा, प्रथम भाग', mr: 'शुक्ल प्रतिपदा, प्रथम भाग', ta: 'Shukla Pratipada, 1st half', te: 'Shukla Pratipada, 1st half', bn: 'Shukla Pratipada, 1st half', kn: 'Shukla Pratipada, 1st half', gu: 'Shukla Pratipada, 1st half' } },
+              Shakuni: { pos: '58', tithi: { en: 'Krishna Chaturdashi, 2nd half', hi: 'कृष्ण चतुर्दशी, द्वितीय भाग', sa: 'कृष्ण चतुर्दशी, द्वितीय भाग', mai: 'कृष्ण चतुर्दशी, द्वितीय भाग', mr: 'कृष्ण चतुर्दशी, द्वितीय भाग', ta: 'Krishna Chaturdashi, 2nd half', te: 'Krishna Chaturdashi, 2nd half', bn: 'Krishna Chaturdashi, 2nd half', kn: 'Krishna Chaturdashi, 2nd half', gu: 'Krishna Chaturdashi, 2nd half' } },
+              Chatushpada: { pos: '59', tithi: { en: 'Amavasya, 1st half', hi: 'अमावस्या, प्रथम भाग', sa: 'अमावस्या, प्रथम भाग', mai: 'अमावस्या, प्रथम भाग', mr: 'अमावस्या, प्रथम भाग', ta: 'Amavasya, 1st half', te: 'Amavasya, 1st half', bn: 'Amavasya, 1st half', kn: 'Amavasya, 1st half', gu: 'Amavasya, 1st half' } },
+              Nagava: { pos: '60', tithi: { en: 'Amavasya, 2nd half', hi: 'अमावस्या, द्वितीय भाग', sa: 'अमावस्या, द्वितीय भाग', mai: 'अमावस्या, द्वितीय भाग', mr: 'अमावस्या, द्वितीय भाग', ta: 'Amavasya, 2nd half', te: 'Amavasya, 2nd half', bn: 'Amavasya, 2nd half', kn: 'Amavasya, 2nd half', gu: 'Amavasya, 2nd half' } },
             };
             const posInfo = positions[k.name.en];
             return (

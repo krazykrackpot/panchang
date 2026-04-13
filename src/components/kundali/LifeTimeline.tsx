@@ -792,7 +792,7 @@ function computeTimeline(kundali: KundaliData): TimelineData {
           yogaNamesByPlanetHi[pn] = yogaNamesByPlanetHi[pn] || [];
           if (!yogaNamesByPlanet[pn].includes(yoga.name.en)) {
             yogaNamesByPlanet[pn].push(yoga.name.en.replace(' Yoga','').slice(0,12));
-            yogaNamesByPlanetHi[pn].push(yoga.name.hi.slice(0, 8));
+            yogaNamesByPlanetHi[pn].push(yoga.name.hi!.slice(0, 8));
           }
         }
       }

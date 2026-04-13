@@ -16,10 +16,10 @@ const META: ModuleMeta = {
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Module 18-1: Shadbala — Planetary Strength', hi: 'मॉड्यूल 18-1: षड्बल — ग्रह शक्ति' }, href: '/learn/modules/18-1' },
-    { label: { en: 'Module 18-2: Bhavabala — House Strength', hi: 'मॉड्यूल 18-2: भावबल — भाव शक्ति' }, href: '/learn/modules/18-2' },
-    { label: { en: 'Module 12-1: Transits (Gochara)', hi: 'मॉड्यूल 12-1: गोचर' }, href: '/learn/modules/12-1' },
-    { label: { en: 'Kundali Tool', hi: 'कुण्डली उपकरण' }, href: '/kundali' },
+    { label: { en: 'Module 18-1: Shadbala — Planetary Strength', hi: 'मॉड्यूल 18-1: षड्बल — ग्रह शक्ति', sa: 'मॉड्यूल 18-1: षड्बल — ग्रह शक्ति', mai: 'मॉड्यूल 18-1: षड्बल — ग्रह शक्ति', mr: 'मॉड्यूल 18-1: षड्बल — ग्रह शक्ति', ta: 'Module 18-1: Shadbala — Planetary Strength', te: 'Module 18-1: Shadbala — Planetary Strength', bn: 'Module 18-1: Shadbala — Planetary Strength', kn: 'Module 18-1: Shadbala — Planetary Strength', gu: 'Module 18-1: Shadbala — Planetary Strength' }, href: '/learn/modules/18-1' },
+    { label: { en: 'Module 18-2: Bhavabala — House Strength', hi: 'मॉड्यूल 18-2: भावबल — भाव शक्ति', sa: 'मॉड्यूल 18-2: भावबल — भाव शक्ति', mai: 'मॉड्यूल 18-2: भावबल — भाव शक्ति', mr: 'मॉड्यूल 18-2: भावबल — भाव शक्ति', ta: 'Module 18-2: Bhavabala — House Strength', te: 'Module 18-2: Bhavabala — House Strength', bn: 'Module 18-2: Bhavabala — House Strength', kn: 'Module 18-2: Bhavabala — House Strength', gu: 'Module 18-2: Bhavabala — House Strength' }, href: '/learn/modules/18-2' },
+    { label: { en: 'Module 12-1: Transits (Gochara)', hi: 'मॉड्यूल 12-1: गोचर', sa: 'मॉड्यूल 12-1: गोचर', mai: 'मॉड्यूल 12-1: गोचर', mr: 'मॉड्यूल 12-1: गोचर', ta: 'Module 12-1: Transits (Gochara)', te: 'Module 12-1: Transits (Gochara)', bn: 'Module 12-1: Transits (Gochara)', kn: 'Module 12-1: Transits (Gochara)', gu: 'Module 12-1: Transits (Gochara)' }, href: '/learn/modules/12-1' },
+    { label: { en: 'Kundali Tool', hi: 'कुण्डली उपकरण', sa: 'कुण्डली उपकरण', mai: 'कुण्डली उपकरण', mr: 'कुण्डली उपकरण', ta: 'Kundali Tool', te: 'Kundali Tool', bn: 'Kundali Tool', kn: 'Kundali Tool', gu: 'Kundali Tool' }, href: '/kundali' },
   ],
 };
 
@@ -31,10 +31,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'अष्टकवर्ग में प्रत्येक ग्रह के लिए कितने स्रोत बिन्दु (अंक) योगदान करते हैं?',
     },
     options: [
-      { en: '5 (5 planets)', hi: '5 (5 ग्रह)' },
-      { en: '7 (7 planets)', hi: '7 (7 ग्रह)' },
-      { en: '8 (7 planets + lagna)', hi: '8 (7 ग्रह + लग्न)' },
-      { en: '12 (12 houses)', hi: '12 (12 भाव)' },
+      { en: '5 (5 planets)', hi: '5 (5 ग्रह)', sa: '5 (5 ग्रह)', mai: '5 (5 ग्रह)', mr: '5 (5 ग्रह)', ta: '5 (5 planets)', te: '5 (5 planets)', bn: '5 (5 planets)', kn: '5 (5 planets)', gu: '5 (5 planets)' },
+      { en: '7 (7 planets)', hi: '7 (7 ग्रह)', sa: '7 (7 ग्रह)', mai: '7 (7 ग्रह)', mr: '7 (7 ग्रह)', ta: '7 (7 planets)', te: '7 (7 planets)', bn: '7 (7 planets)', kn: '7 (7 planets)', gu: '7 (7 planets)' },
+      { en: '8 (7 planets + lagna)', hi: '8 (7 ग्रह + लग्न)', sa: '8 (7 ग्रह + लग्न)', mai: '8 (7 ग्रह + लग्न)', mr: '8 (7 ग्रह + लग्न)', ta: '8 (7 planets + lagna)', te: '8 (7 planets + lagna)', bn: '8 (7 planets + lagna)', kn: '8 (7 planets + lagna)', gu: '8 (7 planets + lagna)' },
+      { en: '12 (12 houses)', hi: '12 (12 भाव)', sa: '12 (12 भाव)', mai: '12 (12 भाव)', mr: '12 (12 भाव)', ta: '12 (12 houses)', te: '12 (12 houses)', bn: '12 (12 houses)', kn: '12 (12 houses)', gu: '12 (12 houses)' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -49,10 +49,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'भिन्न अष्टकवर्ग (BAV) में एक ग्रह एक राशि में अधिकतम कितने बिन्दु प्राप्त कर सकता है?',
     },
     options: [
-      { en: '4', hi: '4' },
-      { en: '7', hi: '7' },
-      { en: '8', hi: '8' },
-      { en: '12', hi: '12' },
+      { en: '4', hi: '4', sa: '4', mai: '4', mr: '4', ta: '4', te: '4', bn: '4', kn: '4', gu: '4' },
+      { en: '7', hi: '7', sa: '7', mai: '7', mr: '7', ta: '7', te: '7', bn: '7', kn: '7', gu: '7' },
+      { en: '8', hi: '8', sa: '8', mai: '8', mr: '8', ta: '8', te: '8', bn: '8', kn: '8', gu: '8' },
+      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -79,10 +79,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'एकल राशि के लिए अधिकतम सम्भव SAV (सर्वाष्टकवर्ग) अंक क्या है?',
     },
     options: [
-      { en: '28', hi: '28' },
-      { en: '42', hi: '42' },
-      { en: '56', hi: '56' },
-      { en: '108', hi: '108' },
+      { en: '28', hi: '28', sa: '28', mai: '28', mr: '28', ta: '28', te: '28', bn: '28', kn: '28', gu: '28' },
+      { en: '42', hi: '42', sa: '42', mai: '42', mr: '42', ta: '42', te: '42', bn: '42', kn: '42', gu: '42' },
+      { en: '56', hi: '56', sa: '56', mai: '56', mr: '56', ta: '56', te: '56', bn: '56', kn: '56', gu: '56' },
+      { en: '108', hi: '108', sa: '108', mai: '108', mr: '108', ta: '108', te: '108', bn: '108', kn: '108', gu: '108' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -97,10 +97,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किसी राशि में 28+ का SAV अंक इंगित करता है:',
     },
     options: [
-      { en: 'The sign is completely inauspicious', hi: 'राशि पूर्णतया अशुभ है' },
-      { en: 'A strong location where planets transiting give positive results', hi: 'एक बलवान स्थान जहाँ गोचर करने वाले ग्रह सकारात्मक परिणाम देते हैं' },
-      { en: 'The sign has no significance', hi: 'राशि का कोई महत्व नहीं' },
-      { en: 'Only Rahu benefits in this sign', hi: 'केवल राहु को इस राशि में लाभ है' },
+      { en: 'The sign is completely inauspicious', hi: 'राशि पूर्णतया अशुभ है', sa: 'राशि पूर्णतया अशुभ है', mai: 'राशि पूर्णतया अशुभ है', mr: 'राशि पूर्णतया अशुभ है', ta: 'The sign is completely inauspicious', te: 'The sign is completely inauspicious', bn: 'The sign is completely inauspicious', kn: 'The sign is completely inauspicious', gu: 'The sign is completely inauspicious' },
+      { en: 'A strong location where planets transiting give positive results', hi: 'एक बलवान स्थान जहाँ गोचर करने वाले ग्रह सकारात्मक परिणाम देते हैं', sa: 'एक बलवान स्थान जहाँ गोचर करने वाले ग्रह सकारात्मक परिणाम देते हैं', mai: 'एक बलवान स्थान जहाँ गोचर करने वाले ग्रह सकारात्मक परिणाम देते हैं', mr: 'एक बलवान स्थान जहाँ गोचर करने वाले ग्रह सकारात्मक परिणाम देते हैं', ta: 'A strong location where planets transiting give positive results', te: 'A strong location where planets transiting give positive results', bn: 'A strong location where planets transiting give positive results', kn: 'A strong location where planets transiting give positive results', gu: 'A strong location where planets transiting give positive results' },
+      { en: 'The sign has no significance', hi: 'राशि का कोई महत्व नहीं', sa: 'राशि का कोई महत्व नहीं', mai: 'राशि का कोई महत्व नहीं', mr: 'राशि का कोई महत्व नहीं', ta: 'The sign has no significance', te: 'The sign has no significance', bn: 'The sign has no significance', kn: 'The sign has no significance', gu: 'The sign has no significance' },
+      { en: 'Only Rahu benefits in this sign', hi: 'केवल राहु को इस राशि में लाभ है', sa: 'केवल राहु को इस राशि में लाभ है', mai: 'केवल राहु को इस राशि में लाभ है', mr: 'केवल राहु को इस राशि में लाभ है', ta: 'Only Rahu benefits in this sign', te: 'Only Rahu benefits in this sign', bn: 'Only Rahu benefits in this sign', kn: 'Only Rahu benefits in this sign', gu: 'Only Rahu benefits in this sign' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -127,10 +127,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'अष्टकवर्ग में कक्षा पद्धति क्या है?',
     },
     options: [
-      { en: 'A type of yoga', hi: 'एक प्रकार का योग' },
-      { en: '8 sub-divisions of each sign, each ruled by one of the 8 sources', hi: 'प्रत्येक राशि के 8 उप-विभाजन, प्रत्येक 8 स्रोतों में से एक द्वारा शासित' },
-      { en: 'A method of calculating dasha periods', hi: 'दशा अवधि गणना की एक विधि' },
-      { en: 'The total of all BAV tables', hi: 'सभी BAV तालिकाओं का कुल' },
+      { en: 'A type of yoga', hi: 'एक प्रकार का योग', sa: 'एक प्रकार का योग', mai: 'एक प्रकार का योग', mr: 'एक प्रकार का योग', ta: 'A type of yoga', te: 'A type of yoga', bn: 'A type of yoga', kn: 'A type of yoga', gu: 'A type of yoga' },
+      { en: '8 sub-divisions of each sign, each ruled by one of the 8 sources', hi: 'प्रत्येक राशि के 8 उप-विभाजन, प्रत्येक 8 स्रोतों में से एक द्वारा शासित', sa: 'प्रत्येक राशि के 8 उप-विभाजन, प्रत्येक 8 स्रोतों में से एक द्वारा शासित', mai: 'प्रत्येक राशि के 8 उप-विभाजन, प्रत्येक 8 स्रोतों में से एक द्वारा शासित', mr: 'प्रत्येक राशि के 8 उप-विभाजन, प्रत्येक 8 स्रोतों में से एक द्वारा शासित', ta: '8 sub-divisions of each sign, each ruled by one of the 8 sources', te: '8 sub-divisions of each sign, each ruled by one of the 8 sources', bn: '8 sub-divisions of each sign, each ruled by one of the 8 sources', kn: '8 sub-divisions of each sign, each ruled by one of the 8 sources', gu: '8 sub-divisions of each sign, each ruled by one of the 8 sources' },
+      { en: 'A method of calculating dasha periods', hi: 'दशा अवधि गणना की एक विधि', sa: 'दशा अवधि गणना की एक विधि', mai: 'दशा अवधि गणना की एक विधि', mr: 'दशा अवधि गणना की एक विधि', ta: 'A method of calculating dasha periods', te: 'A method of calculating dasha periods', bn: 'A method of calculating dasha periods', kn: 'A method of calculating dasha periods', gu: 'A method of calculating dasha periods' },
+      { en: 'The total of all BAV tables', hi: 'सभी BAV तालिकाओं का कुल', sa: 'सभी BAV तालिकाओं का कुल', mai: 'सभी BAV तालिकाओं का कुल', mr: 'सभी BAV तालिकाओं का कुल', ta: 'The total of all BAV tables', te: 'The total of all BAV tables', bn: 'The total of all BAV tables', kn: 'The total of all BAV tables', gu: 'The total of all BAV tables' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -145,10 +145,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'शनि जो उस राशि में गोचर कर रहा है जहाँ उसके स्वयं के BAV में 6 बिन्दु हैं, इंगित करता है:',
     },
     options: [
-      { en: 'A very difficult and obstructive period', hi: 'बहुत कठिन और बाधक अवधि' },
-      { en: 'A productive and relatively smooth period for Saturn-related matters', hi: 'शनि-सम्बन्धित मामलों के लिए उत्पादक और अपेक्षाकृत सहज अवधि' },
-      { en: 'No effect at all', hi: 'कोई प्रभाव नहीं' },
-      { en: 'Only financial losses', hi: 'केवल आर्थिक हानि' },
+      { en: 'A very difficult and obstructive period', hi: 'बहुत कठिन और बाधक अवधि', sa: 'बहुत कठिन और बाधक अवधि', mai: 'बहुत कठिन और बाधक अवधि', mr: 'बहुत कठिन और बाधक अवधि', ta: 'A very difficult and obstructive period', te: 'A very difficult and obstructive period', bn: 'A very difficult and obstructive period', kn: 'A very difficult and obstructive period', gu: 'A very difficult and obstructive period' },
+      { en: 'A productive and relatively smooth period for Saturn-related matters', hi: 'शनि-सम्बन्धित मामलों के लिए उत्पादक और अपेक्षाकृत सहज अवधि', sa: 'शनि-सम्बन्धित मामलों के लिए उत्पादक और अपेक्षाकृत सहज अवधि', mai: 'शनि-सम्बन्धित मामलों के लिए उत्पादक और अपेक्षाकृत सहज अवधि', mr: 'शनि-सम्बन्धित मामलों के लिए उत्पादक और अपेक्षाकृत सहज अवधि', ta: 'A productive and relatively smooth period for Saturn-related matters', te: 'A productive and relatively smooth period for Saturn-related matters', bn: 'A productive and relatively smooth period for Saturn-related matters', kn: 'A productive and relatively smooth period for Saturn-related matters', gu: 'A productive and relatively smooth period for Saturn-related matters' },
+      { en: 'No effect at all', hi: 'कोई प्रभाव नहीं', sa: 'कोई प्रभाव नहीं', mai: 'कोई प्रभाव नहीं', mr: 'कोई प्रभाव नहीं', ta: 'No effect at all', te: 'No effect at all', bn: 'No effect at all', kn: 'No effect at all', gu: 'No effect at all' },
+      { en: 'Only financial losses', hi: 'केवल आर्थिक हानि', sa: 'केवल आर्थिक हानि', mai: 'केवल आर्थिक हानि', mr: 'केवल आर्थिक हानि', ta: 'Only financial losses', te: 'Only financial losses', bn: 'Only financial losses', kn: 'Only financial losses', gu: 'Only financial losses' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -175,10 +175,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'निम्नलिखित में से कौन सर्वाष्टकवर्ग (SAV) का सर्वोत्तम वर्णन करता है?',
     },
     options: [
-      { en: 'The BAV table for Sun only', hi: 'केवल सूर्य की BAV तालिका' },
+      { en: 'The BAV table for Sun only', hi: 'केवल सूर्य की BAV तालिका', sa: 'केवल सूर्य की BAV तालिका', mai: 'केवल सूर्य की BAV तालिका', mr: 'केवल सूर्य की BAV तालिका', ta: 'The BAV table for Sun only', te: 'The BAV table for Sun only', bn: 'The BAV table for Sun only', kn: 'The BAV table for Sun only', gu: 'The BAV table for Sun only' },
       { en: 'The combined total of all 7 planets\' BAV bindus for each sign', hi: 'प्रत्येक राशि के लिए सभी 7 ग्रहों के BAV बिन्दुओं का संयुक्त कुल' },
-      { en: 'A prediction technique for marriage', hi: 'विवाह के लिए भविष्यवाणी तकनीक' },
-      { en: 'The sum of Shadbala and Bhavabala', hi: 'षड्बल और भावबल का योग' },
+      { en: 'A prediction technique for marriage', hi: 'विवाह के लिए भविष्यवाणी तकनीक', sa: 'विवाह के लिए भविष्यवाणी तकनीक', mai: 'विवाह के लिए भविष्यवाणी तकनीक', mr: 'विवाह के लिए भविष्यवाणी तकनीक', ta: 'A prediction technique for marriage', te: 'A prediction technique for marriage', bn: 'A prediction technique for marriage', kn: 'A prediction technique for marriage', gu: 'A prediction technique for marriage' },
+      { en: 'The sum of Shadbala and Bhavabala', hi: 'षड्बल और भावबल का योग', sa: 'षड्बल और भावबल का योग', mai: 'षड्बल और भावबल का योग', mr: 'षड्बल और भावबल का योग', ta: 'The sum of Shadbala and Bhavabala', te: 'The sum of Shadbala and Bhavabala', bn: 'The sum of Shadbala and Bhavabala', kn: 'The sum of Shadbala and Bhavabala', gu: 'The sum of Shadbala and Bhavabala' },
     ],
     correctAnswer: 1,
     explanation: {

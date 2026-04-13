@@ -15,10 +15,10 @@ const META: ModuleMeta = {
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Module 17-1: The Science of Timing', hi: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान' }, href: '/learn/modules/17-1' },
-    { label: { en: 'Module 17-2: Muhurta for Marriage', hi: 'मॉड्यूल 17-2: विवाह मुहूर्त' }, href: '/learn/modules/17-2' },
-    { label: { en: 'Module 17-3: Muhurta for Property & Travel', hi: 'मॉड्यूल 17-3: सम्पत्ति एवं यात्रा मुहूर्त' }, href: '/learn/modules/17-3' },
-    { label: { en: 'Baby Names Tool', hi: 'शिशु नाम उपकरण' }, href: '/baby-names' },
+    { label: { en: 'Module 17-1: The Science of Timing', hi: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान', sa: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान', mai: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान', mr: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान', ta: 'Module 17-1: The Science of Timing', te: 'Module 17-1: The Science of Timing', bn: 'Module 17-1: The Science of Timing', kn: 'Module 17-1: The Science of Timing', gu: 'Module 17-1: The Science of Timing' }, href: '/learn/modules/17-1' },
+    { label: { en: 'Module 17-2: Muhurta for Marriage', hi: 'मॉड्यूल 17-2: विवाह मुहूर्त', sa: 'मॉड्यूल 17-2: विवाह मुहूर्त', mai: 'मॉड्यूल 17-2: विवाह मुहूर्त', mr: 'मॉड्यूल 17-2: विवाह मुहूर्त', ta: 'Module 17-2: Muhurta for Marriage', te: 'Module 17-2: Muhurta for Marriage', bn: 'Module 17-2: Muhurta for Marriage', kn: 'Module 17-2: Muhurta for Marriage', gu: 'Module 17-2: Muhurta for Marriage' }, href: '/learn/modules/17-2' },
+    { label: { en: 'Module 17-3: Muhurta for Property & Travel', hi: 'मॉड्यूल 17-3: सम्पत्ति एवं यात्रा मुहूर्त', sa: 'मॉड्यूल 17-3: सम्पत्ति एवं यात्रा मुहूर्त', mai: 'मॉड्यूल 17-3: सम्पत्ति एवं यात्रा मुहूर्त', mr: 'मॉड्यूल 17-3: सम्पत्ति एवं यात्रा मुहूर्त', ta: 'Module 17-3: Muhurta for Property & Travel', te: 'Module 17-3: Muhurta for Property & Travel', bn: 'Module 17-3: Muhurta for Property & Travel', kn: 'Module 17-3: Muhurta for Property & Travel', gu: 'Module 17-3: Muhurta for Property & Travel' }, href: '/learn/modules/17-3' },
+    { label: { en: 'Baby Names Tool', hi: 'शिशु नाम उपकरण', sa: 'शिशु नाम उपकरण', mai: 'शिशु नाम उपकरण', mr: 'शिशु नाम उपकरण', ta: 'Baby Names Tool', te: 'Baby Names Tool', bn: 'Baby Names Tool', kn: 'Baby Names Tool', gu: 'Baby Names Tool' }, href: '/baby-names' },
   ],
 };
 
@@ -30,10 +30,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विद्यारम्भ (शिक्षा आरम्भ) के लिए सप्ताह के कौन-से दिन आदर्श हैं?',
     },
     options: [
-      { en: 'Saturday and Tuesday', hi: 'शनिवार और मंगलवार' },
-      { en: 'Wednesday and Thursday', hi: 'बुधवार और गुरुवार' },
-      { en: 'Sunday and Monday', hi: 'रविवार और सोमवार' },
-      { en: 'Friday only', hi: 'केवल शुक्रवार' },
+      { en: 'Saturday and Tuesday', hi: 'शनिवार और मंगलवार', sa: 'शनिवार और मंगलवार', mai: 'शनिवार और मंगलवार', mr: 'शनिवार और मंगलवार', ta: 'Saturday and Tuesday', te: 'Saturday and Tuesday', bn: 'Saturday and Tuesday', kn: 'Saturday and Tuesday', gu: 'Saturday and Tuesday' },
+      { en: 'Wednesday and Thursday', hi: 'बुधवार और गुरुवार', sa: 'बुधवार और गुरुवार', mai: 'बुधवार और गुरुवार', mr: 'बुधवार और गुरुवार', ta: 'Wednesday and Thursday', te: 'Wednesday and Thursday', bn: 'Wednesday and Thursday', kn: 'Wednesday and Thursday', gu: 'Wednesday and Thursday' },
+      { en: 'Sunday and Monday', hi: 'रविवार और सोमवार', sa: 'रविवार और सोमवार', mai: 'रविवार और सोमवार', mr: 'रविवार और सोमवार', ta: 'Sunday and Monday', te: 'Sunday and Monday', bn: 'Sunday and Monday', kn: 'Sunday and Monday', gu: 'Sunday and Monday' },
+      { en: 'Friday only', hi: 'केवल शुक्रवार', sa: 'केवल शुक्रवार', mai: 'केवल शुक्रवार', mr: 'केवल शुक्रवार', ta: 'Friday only', te: 'Friday only', bn: 'Friday only', kn: 'Friday only', gu: 'Friday only' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -48,10 +48,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विद्यारम्भ मुहूर्त के लिए कौन-से ग्रह बलवान होने चाहिएँ?',
     },
     options: [
-      { en: 'Mars and Saturn', hi: 'मंगल और शनि' },
-      { en: 'Mercury and Jupiter', hi: 'बुध और बृहस्पति' },
-      { en: 'Venus and Rahu', hi: 'शुक्र और राहु' },
-      { en: 'Sun and Ketu', hi: 'सूर्य और केतु' },
+      { en: 'Mars and Saturn', hi: 'मंगल और शनि', sa: 'मंगल और शनि', mai: 'मंगल और शनि', mr: 'मंगल और शनि', ta: 'Mars and Saturn', te: 'Mars and Saturn', bn: 'Mars and Saturn', kn: 'Mars and Saturn', gu: 'Mars and Saturn' },
+      { en: 'Mercury and Jupiter', hi: 'बुध और बृहस्पति', sa: 'बुध और बृहस्पति', mai: 'बुध और बृहस्पति', mr: 'बुध और बृहस्पति', ta: 'Mercury and Jupiter', te: 'Mercury and Jupiter', bn: 'Mercury and Jupiter', kn: 'Mercury and Jupiter', gu: 'Mercury and Jupiter' },
+      { en: 'Venus and Rahu', hi: 'शुक्र और राहु', sa: 'शुक्र और राहु', mai: 'शुक्र और राहु', mr: 'शुक्र और राहु', ta: 'Venus and Rahu', te: 'Venus and Rahu', bn: 'Venus and Rahu', kn: 'Venus and Rahu', gu: 'Venus and Rahu' },
+      { en: 'Sun and Ketu', hi: 'सूर्य और केतु', sa: 'सूर्य और केतु', mai: 'सूर्य और केतु', mr: 'सूर्य और केतु', ta: 'Sun and Ketu', te: 'Sun and Ketu', bn: 'Sun and Ketu', kn: 'Sun and Ketu', gu: 'Sun and Ketu' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -78,10 +78,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मुहूर्त कुण्डली में विद्यारम्भ के लिए कौन-से भावों पर बल दिया जाना चाहिए?',
     },
     options: [
-      { en: '6th and 8th', hi: '6वाँ और 8वाँ' },
-      { en: '2nd and 5th', hi: '2रा और 5वाँ' },
-      { en: '7th and 12th', hi: '7वाँ और 12वाँ' },
-      { en: '3rd and 11th', hi: '3रा और 11वाँ' },
+      { en: '6th and 8th', hi: '6वाँ और 8वाँ', sa: '6वाँ और 8वाँ', mai: '6वाँ और 8वाँ', mr: '6वाँ और 8वाँ', ta: '6th and 8th', te: '6th and 8th', bn: '6th and 8th', kn: '6th and 8th', gu: '6th and 8th' },
+      { en: '2nd and 5th', hi: '2रा और 5वाँ', sa: '2रा और 5वाँ', mai: '2रा और 5वाँ', mr: '2रा और 5वाँ', ta: '2nd and 5th', te: '2nd and 5th', bn: '2nd and 5th', kn: '2nd and 5th', gu: '2nd and 5th' },
+      { en: '7th and 12th', hi: '7वाँ और 12वाँ', sa: '7वाँ और 12वाँ', mai: '7वाँ और 12वाँ', mr: '7वाँ और 12वाँ', ta: '7th and 12th', te: '7th and 12th', bn: '7th and 12th', kn: '7th and 12th', gu: '7th and 12th' },
+      { en: '3rd and 11th', hi: '3रा और 11वाँ', sa: '3रा और 11वाँ', mai: '3रा और 11वाँ', mr: '3रा और 11वाँ', ta: '3rd and 11th', te: '3rd and 11th', bn: '3rd and 11th', kn: '3rd and 11th', gu: '3rd and 11th' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -96,10 +96,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'नामकरण संस्कार पारम्परिक रूप से कब सम्पन्न किया जाता है?',
     },
     options: [
-      { en: 'Immediately at birth', hi: 'जन्म के तुरन्त बाद' },
-      { en: 'On the 11th or 12th day after birth', hi: 'जन्म के 11वें या 12वें दिन' },
-      { en: 'On the first birthday', hi: 'प्रथम जन्मदिन पर' },
-      { en: 'On the 40th day', hi: '40वें दिन' },
+      { en: 'Immediately at birth', hi: 'जन्म के तुरन्त बाद', sa: 'जन्म के तुरन्त बाद', mai: 'जन्म के तुरन्त बाद', mr: 'जन्म के तुरन्त बाद', ta: 'Immediately at birth', te: 'Immediately at birth', bn: 'Immediately at birth', kn: 'Immediately at birth', gu: 'Immediately at birth' },
+      { en: 'On the 11th or 12th day after birth', hi: 'जन्म के 11वें या 12वें दिन', sa: 'जन्म के 11वें या 12वें दिन', mai: 'जन्म के 11वें या 12वें दिन', mr: 'जन्म के 11वें या 12वें दिन', ta: 'On the 11th or 12th day after birth', te: 'On the 11th or 12th day after birth', bn: 'On the 11th or 12th day after birth', kn: 'On the 11th or 12th day after birth', gu: 'On the 11th or 12th day after birth' },
+      { en: 'On the first birthday', hi: 'प्रथम जन्मदिन पर', sa: 'प्रथम जन्मदिन पर', mai: 'प्रथम जन्मदिन पर', mr: 'प्रथम जन्मदिन पर', ta: 'On the first birthday', te: 'On the first birthday', bn: 'On the first birthday', kn: 'On the first birthday', gu: 'On the first birthday' },
+      { en: 'On the 40th day', hi: '40वें दिन', sa: '40वें दिन', mai: '40वें दिन', mr: '40वें दिन', ta: 'On the 40th day', te: 'On the 40th day', bn: 'On the 40th day', kn: 'On the 40th day', gu: 'On the 40th day' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -116,8 +116,8 @@ const QUESTIONS: ModuleQuestion[] = [
     options: [
       { en: 'The father\'s name', hi: 'पिता के नाम से' },
       { en: 'The birth nakshatra\'s pada (4 syllables per nakshatra)', hi: 'जन्म नक्षत्र के पाद से (प्रत्येक नक्षत्र में 4 अक्षर)' },
-      { en: 'Random selection by the priest', hi: 'पुरोहित द्वारा यादृच्छिक चयन' },
-      { en: 'The weekday of birth', hi: 'जन्म के वार से' },
+      { en: 'Random selection by the priest', hi: 'पुरोहित द्वारा यादृच्छिक चयन', sa: 'पुरोहित द्वारा यादृच्छिक चयन', mai: 'पुरोहित द्वारा यादृच्छिक चयन', mr: 'पुरोहित द्वारा यादृच्छिक चयन', ta: 'Random selection by the priest', te: 'Random selection by the priest', bn: 'Random selection by the priest', kn: 'Random selection by the priest', gu: 'Random selection by the priest' },
+      { en: 'The weekday of birth', hi: 'जन्म के वार से', sa: 'जन्म के वार से', mai: 'जन्म के वार से', mr: 'जन्म के वार से', ta: 'The weekday of birth', te: 'The weekday of birth', bn: 'The weekday of birth', kn: 'The weekday of birth', gu: 'The weekday of birth' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -144,10 +144,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'उपनयन (यज्ञोपवीत संस्कार) आदर्श रूप से तब सम्पन्न होना चाहिए जब सूर्य किसमें हो:',
     },
     options: [
-      { en: 'Dakshinayana (Sun moving southward)', hi: 'दक्षिणायन (सूर्य दक्षिणगामी)' },
-      { en: 'Uttarayana (Sun moving northward, January-June)', hi: 'उत्तरायण (सूर्य उत्तरगामी, जनवरी-जून)' },
-      { en: 'During an eclipse', hi: 'ग्रहण के दौरान' },
-      { en: 'Any time of year', hi: 'वर्ष का कोई भी समय' },
+      { en: 'Dakshinayana (Sun moving southward)', hi: 'दक्षिणायन (सूर्य दक्षिणगामी)', sa: 'दक्षिणायन (सूर्य दक्षिणगामी)', mai: 'दक्षिणायन (सूर्य दक्षिणगामी)', mr: 'दक्षिणायन (सूर्य दक्षिणगामी)', ta: 'Dakshinayana (Sun moving southward)', te: 'Dakshinayana (Sun moving southward)', bn: 'Dakshinayana (Sun moving southward)', kn: 'Dakshinayana (Sun moving southward)', gu: 'Dakshinayana (Sun moving southward)' },
+      { en: 'Uttarayana (Sun moving northward, January-June)', hi: 'उत्तरायण (सूर्य उत्तरगामी, जनवरी-जून)', sa: 'उत्तरायण (सूर्य उत्तरगामी, जनवरी-जून)', mai: 'उत्तरायण (सूर्य उत्तरगामी, जनवरी-जून)', mr: 'उत्तरायण (सूर्य उत्तरगामी, जनवरी-जून)', ta: 'Uttarayana (Sun moving northward, January-June)', te: 'Uttarayana (Sun moving northward, January-June)', bn: 'Uttarayana (Sun moving northward, January-June)', kn: 'Uttarayana (Sun moving northward, January-June)', gu: 'Uttarayana (Sun moving northward, January-June)' },
+      { en: 'During an eclipse', hi: 'ग्रहण के दौरान', sa: 'ग्रहण के दौरान', mai: 'ग्रहण के दौरान', mr: 'ग्रहण के दौरान', ta: 'During an eclipse', te: 'During an eclipse', bn: 'During an eclipse', kn: 'During an eclipse', gu: 'During an eclipse' },
+      { en: 'Any time of year', hi: 'वर्ष का कोई भी समय', sa: 'वर्ष का कोई भी समय', mai: 'वर्ष का कोई भी समय', mr: 'वर्ष का कोई भी समय', ta: 'Any time of year', te: 'Any time of year', bn: 'Any time of year', kn: 'Any time of year', gu: 'Any time of year' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -162,10 +162,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'उपनयन के लिए कौन-से नक्षत्र अनुशंसित हैं?',
     },
     options: [
-      { en: 'Ardra, Ashlesha, Bharani', hi: 'आर्द्रा, आश्लेषा, भरणी' },
-      { en: 'Hasta, Chitra, Swati, Pushya, Dhanishtha, Shravana', hi: 'हस्त, चित्रा, स्वाति, पुष्य, धनिष्ठा, श्रवण' },
-      { en: 'Mula, Jyeshtha, Uttara Bhadrapada', hi: 'मूल, ज्येष्ठा, उत्तरा भाद्रपद' },
-      { en: 'Only Revati', hi: 'केवल रेवती' },
+      { en: 'Ardra, Ashlesha, Bharani', hi: 'आर्द्रा, आश्लेषा, भरणी', sa: 'आर्द्रा, आश्लेषा, भरणी', mai: 'आर्द्रा, आश्लेषा, भरणी', mr: 'आर्द्रा, आश्लेषा, भरणी', ta: 'Ardra, Ashlesha, Bharani', te: 'Ardra, Ashlesha, Bharani', bn: 'Ardra, Ashlesha, Bharani', kn: 'Ardra, Ashlesha, Bharani', gu: 'Ardra, Ashlesha, Bharani' },
+      { en: 'Hasta, Chitra, Swati, Pushya, Dhanishtha, Shravana', hi: 'हस्त, चित्रा, स्वाति, पुष्य, धनिष्ठा, श्रवण', sa: 'हस्त, चित्रा, स्वाति, पुष्य, धनिष्ठा, श्रवण', mai: 'हस्त, चित्रा, स्वाति, पुष्य, धनिष्ठा, श्रवण', mr: 'हस्त, चित्रा, स्वाति, पुष्य, धनिष्ठा, श्रवण', ta: 'Hasta, Chitra, Swati, Pushya, Dhanishtha, Shravana', te: 'Hasta, Chitra, Swati, Pushya, Dhanishtha, Shravana', bn: 'Hasta, Chitra, Swati, Pushya, Dhanishtha, Shravana', kn: 'Hasta, Chitra, Swati, Pushya, Dhanishtha, Shravana', gu: 'Hasta, Chitra, Swati, Pushya, Dhanishtha, Shravana' },
+      { en: 'Mula, Jyeshtha, Uttara Bhadrapada', hi: 'मूल, ज्येष्ठा, उत्तरा भाद्रपद', sa: 'मूल, ज्येष्ठा, उत्तरा भाद्रपद', mai: 'मूल, ज्येष्ठा, उत्तरा भाद्रपद', mr: 'मूल, ज्येष्ठा, उत्तरा भाद्रपद', ta: 'Mula, Jyeshtha, Uttara Bhadrapada', te: 'Mula, Jyeshtha, Uttara Bhadrapada', bn: 'Mula, Jyeshtha, Uttara Bhadrapada', kn: 'Mula, Jyeshtha, Uttara Bhadrapada', gu: 'Mula, Jyeshtha, Uttara Bhadrapada' },
+      { en: 'Only Revati', hi: 'केवल रेवती', sa: 'केवल रेवती', mai: 'केवल रेवती', mr: 'केवल रेवती', ta: 'Only Revati', te: 'Only Revati', bn: 'Only Revati', kn: 'Only Revati', gu: 'Only Revati' },
     ],
     correctAnswer: 1,
     explanation: {

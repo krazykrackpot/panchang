@@ -12,9 +12,9 @@ const META: ModuleMeta = {
   },
   estimatedMinutes: 14,
   crossRefs: [
-    { label: { en: 'Module 12-1: Transits (Gochar)', hi: 'मॉड्यूल 12-1: गोचर' }, href: '/learn/modules/12-1' },
-    { label: { en: 'Module 12-3: Jupiter & Rahu-Ketu Transit', hi: 'मॉड्यूल 12-3: गुरु एवं राहु-केतु गोचर' }, href: '/learn/modules/12-3' },
-    { label: { en: 'Sade Sati Calculator', hi: 'साढ़े साती गणक' }, href: '/sade-sati' },
+    { label: { en: 'Module 12-1: Transits (Gochar)', hi: 'मॉड्यूल 12-1: गोचर', sa: 'मॉड्यूल 12-1: गोचर', mai: 'मॉड्यूल 12-1: गोचर', mr: 'मॉड्यूल 12-1: गोचर', ta: 'Module 12-1: Transits (Gochar)', te: 'Module 12-1: Transits (Gochar)', bn: 'Module 12-1: Transits (Gochar)', kn: 'Module 12-1: Transits (Gochar)', gu: 'Module 12-1: Transits (Gochar)' }, href: '/learn/modules/12-1' },
+    { label: { en: 'Module 12-3: Jupiter & Rahu-Ketu Transit', hi: 'मॉड्यूल 12-3: गुरु एवं राहु-केतु गोचर', sa: 'मॉड्यूल 12-3: गुरु एवं राहु-केतु गोचर', mai: 'मॉड्यूल 12-3: गुरु एवं राहु-केतु गोचर', mr: 'मॉड्यूल 12-3: गुरु एवं राहु-केतु गोचर', ta: 'Module 12-3: Jupiter & Rahu-Ketu Transit', te: 'Module 12-3: Jupiter & Rahu-Ketu Transit', bn: 'Module 12-3: Jupiter & Rahu-Ketu Transit', kn: 'Module 12-3: Jupiter & Rahu-Ketu Transit', gu: 'Module 12-3: Jupiter & Rahu-Ketu Transit' }, href: '/learn/modules/12-3' },
+    { label: { en: 'Sade Sati Calculator', hi: 'साढ़े साती गणक', sa: 'साढ़े साती गणक', mai: 'साढ़े साती गणक', mr: 'साढ़े साती गणक', ta: 'Sade Sati Calculator', te: 'Sade Sati Calculator', bn: 'Sade Sati Calculator', kn: 'Sade Sati Calculator', gu: 'Sade Sati Calculator' }, href: '/sade-sati' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'साढ़े साती तब होती है जब शनि जन्म चन्द्रमा से किन भावों में गोचर करता है?',
     },
     options: [
-      { en: '6th, 7th, and 8th', hi: '6वाँ, 7वाँ और 8वाँ' },
-      { en: '12th, 1st, and 2nd', hi: '12वाँ, 1ला और 2रा' },
-      { en: '4th, 5th, and 6th', hi: '4था, 5वाँ और 6वाँ' },
-      { en: '10th, 11th, and 12th', hi: '10वाँ, 11वाँ और 12वाँ' },
+      { en: '6th, 7th, and 8th', hi: '6वाँ, 7वाँ और 8वाँ', sa: '6वाँ, 7वाँ और 8वाँ', mai: '6वाँ, 7वाँ और 8वाँ', mr: '6वाँ, 7वाँ और 8वाँ', ta: '6th, 7th, and 8th', te: '6th, 7th, and 8th', bn: '6th, 7th, and 8th', kn: '6th, 7th, and 8th', gu: '6th, 7th, and 8th' },
+      { en: '12th, 1st, and 2nd', hi: '12वाँ, 1ला और 2रा', sa: '12वाँ, 1ला और 2रा', mai: '12वाँ, 1ला और 2रा', mr: '12वाँ, 1ला और 2रा', ta: '12th, 1st, and 2nd', te: '12th, 1st, and 2nd', bn: '12th, 1st, and 2nd', kn: '12th, 1st, and 2nd', gu: '12th, 1st, and 2nd' },
+      { en: '4th, 5th, and 6th', hi: '4था, 5वाँ और 6वाँ', sa: '4था, 5वाँ और 6वाँ', mai: '4था, 5वाँ और 6वाँ', mr: '4था, 5वाँ और 6वाँ', ta: '4th, 5th, and 6th', te: '4th, 5th, and 6th', bn: '4th, 5th, and 6th', kn: '4th, 5th, and 6th', gu: '4th, 5th, and 6th' },
+      { en: '10th, 11th, and 12th', hi: '10वाँ, 11वाँ और 12वाँ', sa: '10वाँ, 11वाँ और 12वाँ', mai: '10वाँ, 11वाँ और 12वाँ', mr: '10वाँ, 11वाँ और 12वाँ', ta: '10th, 11th, and 12th', te: '10th, 11th, and 12th', bn: '10th, 11th, and 12th', kn: '10th, 11th, and 12th', gu: '10th, 11th, and 12th' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -44,10 +44,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'साढ़े साती के "आरोही चरण" (चन्द्र से 12वाँ) की विशेषता क्या है?',
     },
     options: [
-      { en: 'Maximum financial prosperity', hi: 'अधिकतम आर्थिक समृद्धि' },
-      { en: 'Anxiety, sleeplessness, and subtle preparation for change', hi: 'चिन्ता, अनिद्रा और परिवर्तन की सूक्ष्म तैयारी' },
-      { en: 'Sudden fame and recognition', hi: 'अचानक प्रसिद्धि और मान्यता' },
-      { en: 'Health improvement', hi: 'स्वास्थ्य सुधार' },
+      { en: 'Maximum financial prosperity', hi: 'अधिकतम आर्थिक समृद्धि', sa: 'अधिकतम आर्थिक समृद्धि', mai: 'अधिकतम आर्थिक समृद्धि', mr: 'अधिकतम आर्थिक समृद्धि', ta: 'Maximum financial prosperity', te: 'Maximum financial prosperity', bn: 'Maximum financial prosperity', kn: 'Maximum financial prosperity', gu: 'Maximum financial prosperity' },
+      { en: 'Anxiety, sleeplessness, and subtle preparation for change', hi: 'चिन्ता, अनिद्रा और परिवर्तन की सूक्ष्म तैयारी', sa: 'चिन्ता, अनिद्रा और परिवर्तन की सूक्ष्म तैयारी', mai: 'चिन्ता, अनिद्रा और परिवर्तन की सूक्ष्म तैयारी', mr: 'चिन्ता, अनिद्रा और परिवर्तन की सूक्ष्म तैयारी', ta: 'Anxiety, sleeplessness, and subtle preparation for change', te: 'Anxiety, sleeplessness, and subtle preparation for change', bn: 'Anxiety, sleeplessness, and subtle preparation for change', kn: 'Anxiety, sleeplessness, and subtle preparation for change', gu: 'Anxiety, sleeplessness, and subtle preparation for change' },
+      { en: 'Sudden fame and recognition', hi: 'अचानक प्रसिद्धि और मान्यता', sa: 'अचानक प्रसिद्धि और मान्यता', mai: 'अचानक प्रसिद्धि और मान्यता', mr: 'अचानक प्रसिद्धि और मान्यता', ta: 'Sudden fame and recognition', te: 'Sudden fame and recognition', bn: 'Sudden fame and recognition', kn: 'Sudden fame and recognition', gu: 'Sudden fame and recognition' },
+      { en: 'Health improvement', hi: 'स्वास्थ्य सुधार', sa: 'स्वास्थ्य सुधार', mai: 'स्वास्थ्य सुधार', mr: 'स्वास्थ्य सुधार', ta: 'Health improvement', te: 'Health improvement', bn: 'Health improvement', kn: 'Health improvement', gu: 'Health improvement' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -74,10 +74,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किस दशा काल में साढ़े साती सामान्यतः सबसे कठिन मानी जाती है?',
     },
     options: [
-      { en: 'Jupiter or Venus dasha', hi: 'गुरु या शुक्र दशा' },
-      { en: 'Saturn or Rahu dasha', hi: 'शनि या राहु दशा' },
-      { en: 'Mercury dasha', hi: 'बुध दशा' },
-      { en: 'Moon dasha', hi: 'चन्द्र दशा' },
+      { en: 'Jupiter or Venus dasha', hi: 'गुरु या शुक्र दशा', sa: 'गुरु या शुक्र दशा', mai: 'गुरु या शुक्र दशा', mr: 'गुरु या शुक्र दशा', ta: 'Jupiter or Venus dasha', te: 'Jupiter or Venus dasha', bn: 'Jupiter or Venus dasha', kn: 'Jupiter or Venus dasha', gu: 'Jupiter or Venus dasha' },
+      { en: 'Saturn or Rahu dasha', hi: 'शनि या राहु दशा', sa: 'शनि या राहु दशा', mai: 'शनि या राहु दशा', mr: 'शनि या राहु दशा', ta: 'Saturn or Rahu dasha', te: 'Saturn or Rahu dasha', bn: 'Saturn or Rahu dasha', kn: 'Saturn or Rahu dasha', gu: 'Saturn or Rahu dasha' },
+      { en: 'Mercury dasha', hi: 'बुध दशा', sa: 'बुध दशा', mai: 'बुध दशा', mr: 'बुध दशा', ta: 'Mercury dasha', te: 'Mercury dasha', bn: 'Mercury dasha', kn: 'Mercury dasha', gu: 'Mercury dasha' },
+      { en: 'Moon dasha', hi: 'चन्द्र दशा', sa: 'चन्द्र दशा', mai: 'चन्द्र दशा', mr: 'चन्द्र दशा', ta: 'Moon dasha', te: 'Moon dasha', bn: 'Moon dasha', kn: 'Moon dasha', gu: 'Moon dasha' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -92,10 +92,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'एक सामान्य मानव जीवनकाल में साढ़े साती प्रायः कितनी बार आती है?',
     },
     options: [
-      { en: 'Once', hi: 'एक बार' },
-      { en: '2-3 times', hi: '2-3 बार' },
-      { en: '5-6 times', hi: '5-6 बार' },
-      { en: '12 times', hi: '12 बार' },
+      { en: 'Once', hi: 'एक बार', sa: 'एक बार', mai: 'एक बार', mr: 'एक बार', ta: 'Once', te: 'Once', bn: 'Once', kn: 'Once', gu: 'Once' },
+      { en: '2-3 times', hi: '2-3 बार', sa: '2-3 बार', mai: '2-3 बार', mr: '2-3 बार', ta: '2-3 times', te: '2-3 times', bn: '2-3 times', kn: '2-3 times', gu: '2-3 times' },
+      { en: '5-6 times', hi: '5-6 बार', sa: '5-6 बार', mai: '5-6 बार', mr: '5-6 बार', ta: '5-6 times', te: '5-6 times', bn: '5-6 times', kn: '5-6 times', gu: '5-6 times' },
+      { en: '12 times', hi: '12 बार', sa: '12 बार', mai: '12 बार', mr: '12 बार', ta: '12 times', te: '12 times', bn: '12 times', kn: '12 times', gu: '12 times' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -122,10 +122,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'साढ़े साती का "अवरोही चरण" (चन्द्र से 2रा) मुख्यतः किसे प्रभावित करता है?',
     },
     options: [
-      { en: 'Career and fame', hi: 'करियर और प्रसिद्धि' },
-      { en: 'Finances, family, and speech', hi: 'वित्त, परिवार और वाणी' },
-      { en: 'Foreign travel', hi: 'विदेश यात्रा' },
-      { en: 'Education only', hi: 'केवल शिक्षा' },
+      { en: 'Career and fame', hi: 'करियर और प्रसिद्धि', sa: 'करियर और प्रसिद्धि', mai: 'करियर और प्रसिद्धि', mr: 'करियर और प्रसिद्धि', ta: 'Career and fame', te: 'Career and fame', bn: 'Career and fame', kn: 'Career and fame', gu: 'Career and fame' },
+      { en: 'Finances, family, and speech', hi: 'वित्त, परिवार और वाणी', sa: 'वित्त, परिवार और वाणी', mai: 'वित्त, परिवार और वाणी', mr: 'वित्त, परिवार और वाणी', ta: 'Finances, family, and speech', te: 'Finances, family, and speech', bn: 'Finances, family, and speech', kn: 'Finances, family, and speech', gu: 'Finances, family, and speech' },
+      { en: 'Foreign travel', hi: 'विदेश यात्रा', sa: 'विदेश यात्रा', mai: 'विदेश यात्रा', mr: 'विदेश यात्रा', ta: 'Foreign travel', te: 'Foreign travel', bn: 'Foreign travel', kn: 'Foreign travel', gu: 'Foreign travel' },
+      { en: 'Education only', hi: 'केवल शिक्षा', sa: 'केवल शिक्षा', mai: 'केवल शिक्षा', mr: 'केवल शिक्षा', ta: 'Education only', te: 'Education only', bn: 'Education only', kn: 'Education only', gu: 'Education only' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -140,10 +140,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पहली साढ़े साती (आयु ~22-30) प्रायः किससे सम्बन्धित चुनौतियाँ लाती है?',
     },
     options: [
-      { en: 'Retirement planning', hi: 'सेवानिवृत्ति योजना' },
-      { en: 'Career establishment and identity formation', hi: 'करियर स्थापना और पहचान निर्माण' },
-      { en: 'Grandchildren', hi: 'पोते-पोतियाँ' },
-      { en: 'Spiritual renunciation', hi: 'आध्यात्मिक वैराग्य' },
+      { en: 'Retirement planning', hi: 'सेवानिवृत्ति योजना', sa: 'सेवानिवृत्ति योजना', mai: 'सेवानिवृत्ति योजना', mr: 'सेवानिवृत्ति योजना', ta: 'Retirement planning', te: 'Retirement planning', bn: 'Retirement planning', kn: 'Retirement planning', gu: 'Retirement planning' },
+      { en: 'Career establishment and identity formation', hi: 'करियर स्थापना और पहचान निर्माण', sa: 'करियर स्थापना और पहचान निर्माण', mai: 'करियर स्थापना और पहचान निर्माण', mr: 'करियर स्थापना और पहचान निर्माण', ta: 'Career establishment and identity formation', te: 'Career establishment and identity formation', bn: 'Career establishment and identity formation', kn: 'Career establishment and identity formation', gu: 'Career establishment and identity formation' },
+      { en: 'Grandchildren', hi: 'पोते-पोतियाँ', sa: 'पोते-पोतियाँ', mai: 'पोते-पोतियाँ', mr: 'पोते-पोतियाँ', ta: 'Grandchildren', te: 'Grandchildren', bn: 'Grandchildren', kn: 'Grandchildren', gu: 'Grandchildren' },
+      { en: 'Spiritual renunciation', hi: 'आध्यात्मिक वैराग्य', sa: 'आध्यात्मिक वैराग्य', mai: 'आध्यात्मिक वैराग्य', mr: 'आध्यात्मिक वैराग्य', ta: 'Spiritual renunciation', te: 'Spiritual renunciation', bn: 'Spiritual renunciation', kn: 'Spiritual renunciation', gu: 'Spiritual renunciation' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -170,10 +170,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'दूसरी साढ़े साती (आयु ~52-60) सबसे अधिक किससे जुड़ी है?',
     },
     options: [
-      { en: 'Starting education', hi: 'शिक्षा आरम्भ' },
-      { en: 'Marriage', hi: 'विवाह' },
-      { en: 'Health challenges and loss of parents/elders', hi: 'स्वास्थ्य चुनौतियाँ और माता-पिता/बड़ों का वियोग' },
-      { en: 'Childbirth', hi: 'सन्तान जन्म' },
+      { en: 'Starting education', hi: 'शिक्षा आरम्भ', sa: 'शिक्षा आरम्भ', mai: 'शिक्षा आरम्भ', mr: 'शिक्षा आरम्भ', ta: 'Starting education', te: 'Starting education', bn: 'Starting education', kn: 'Starting education', gu: 'Starting education' },
+      { en: 'Marriage', hi: 'विवाह', sa: 'विवाह', mai: 'विवाह', mr: 'विवाह', ta: 'Marriage', te: 'Marriage', bn: 'Marriage', kn: 'Marriage', gu: 'Marriage' },
+      { en: 'Health challenges and loss of parents/elders', hi: 'स्वास्थ्य चुनौतियाँ और माता-पिता/बड़ों का वियोग', sa: 'स्वास्थ्य चुनौतियाँ और माता-पिता/बड़ों का वियोग', mai: 'स्वास्थ्य चुनौतियाँ और माता-पिता/बड़ों का वियोग', mr: 'स्वास्थ्य चुनौतियाँ और माता-पिता/बड़ों का वियोग', ta: 'Health challenges and loss of parents/elders', te: 'Health challenges and loss of parents/elders', bn: 'Health challenges and loss of parents/elders', kn: 'Health challenges and loss of parents/elders', gu: 'Health challenges and loss of parents/elders' },
+      { en: 'Childbirth', hi: 'सन्तान जन्म', sa: 'सन्तान जन्म', mai: 'सन्तान जन्म', mr: 'सन्तान जन्म', ta: 'Childbirth', te: 'Childbirth', bn: 'Childbirth', kn: 'Childbirth', gu: 'Childbirth' },
     ],
     correctAnswer: 2,
     explanation: {

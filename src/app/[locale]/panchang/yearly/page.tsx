@@ -5,24 +5,24 @@ import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const MONTHS = [
-  { en: 'January', hi: 'जनवरी' }, { en: 'February', hi: 'फरवरी' },
-  { en: 'March', hi: 'मार्च' }, { en: 'April', hi: 'अप्रैल' },
-  { en: 'May', hi: 'मई' }, { en: 'June', hi: 'जून' },
-  { en: 'July', hi: 'जुलाई' }, { en: 'August', hi: 'अगस्त' },
-  { en: 'September', hi: 'सितम्बर' }, { en: 'October', hi: 'अक्टूबर' },
-  { en: 'November', hi: 'नवम्बर' }, { en: 'December', hi: 'दिसम्बर' },
+  { en: 'January', hi: 'जनवरी', sa: 'जनवरी', mai: 'जनवरी', mr: 'जनवरी', ta: 'January', te: 'January', bn: 'January', kn: 'January', gu: 'January' }, { en: 'February', hi: 'फरवरी', sa: 'फरवरी', mai: 'फरवरी', mr: 'फरवरी', ta: 'February', te: 'February', bn: 'February', kn: 'February', gu: 'February' },
+  { en: 'March', hi: 'मार्च', sa: 'मार्च', mai: 'मार्च', mr: 'मार्च', ta: 'March', te: 'March', bn: 'March', kn: 'March', gu: 'March' }, { en: 'April', hi: 'अप्रैल', sa: 'अप्रैल', mai: 'अप्रैल', mr: 'अप्रैल', ta: 'April', te: 'April', bn: 'April', kn: 'April', gu: 'April' },
+  { en: 'May', hi: 'मई', sa: 'मई', mai: 'मई', mr: 'मई', ta: 'May', te: 'May', bn: 'May', kn: 'May', gu: 'May' }, { en: 'June', hi: 'जून', sa: 'जून', mai: 'जून', mr: 'जून', ta: 'June', te: 'June', bn: 'June', kn: 'June', gu: 'June' },
+  { en: 'July', hi: 'जुलाई', sa: 'जुलाई', mai: 'जुलाई', mr: 'जुलाई', ta: 'July', te: 'July', bn: 'July', kn: 'July', gu: 'July' }, { en: 'August', hi: 'अगस्त', sa: 'अगस्त', mai: 'अगस्त', mr: 'अगस्त', ta: 'August', te: 'August', bn: 'August', kn: 'August', gu: 'August' },
+  { en: 'September', hi: 'सितम्बर', sa: 'सितम्बर', mai: 'सितम्बर', mr: 'सितम्बर', ta: 'September', te: 'September', bn: 'September', kn: 'September', gu: 'September' }, { en: 'October', hi: 'अक्टूबर', sa: 'अक्टूबर', mai: 'अक्टूबर', mr: 'अक्टूबर', ta: 'October', te: 'October', bn: 'October', kn: 'October', gu: 'October' },
+  { en: 'November', hi: 'नवम्बर', sa: 'नवम्बर', mai: 'नवम्बर', mr: 'नवम्बर', ta: 'November', te: 'November', bn: 'November', kn: 'November', gu: 'November' }, { en: 'December', hi: 'दिसम्बर', sa: 'दिसम्बर', mai: 'दिसम्बर', mr: 'दिसम्बर', ta: 'December', te: 'December', bn: 'December', kn: 'December', gu: 'December' },
 ];
 const WEEKDAYS_EN = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 const WEEKDAYS_HI = ['र', 'सो', 'मं', 'बु', 'गु', 'शु', 'श'];
 
 interface DayData {
   date: string;
-  tithi?: { name: { en: string; hi: string; sa: string }; paksha: string; number: number };
-  nakshatra?: { name: { en: string; hi: string; sa: string } };
+  tithi?: { name: LocaleText; paksha: string; number: number };
+  nakshatra?: { name: LocaleText };
   isFestival?: boolean;
   festivalName?: string;
 }

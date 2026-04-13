@@ -88,7 +88,7 @@ export default function SankalpaDisplay({
   lng,
   timezoneOffset,
 }: SankalpaDisplayProps) {
-  const l = LABELS[locale];
+  const l = (LABELS as Record<string, typeof LABELS.en>)[locale] || LABELS.en;
   const isDevanagari = isDevanagariLocale(locale);
   const bodyFont = isDevanagari ? 'var(--font-devanagari-body)' : undefined;
 
@@ -109,7 +109,7 @@ export default function SankalpaDisplay({
         timezoneOffset,
         userName: userName || undefined,
         gotra: gotra || undefined,
-        pujaDeity: puja.deity.sa,
+        pujaDeity: puja.deity.sa || "",
         festivalSlug: puja.festivalSlug,
       });
     } catch {
@@ -118,7 +118,7 @@ export default function SankalpaDisplay({
   }, [canCompute, date, lat, lng, timezoneOffset, userName, gotra, puja.deity.sa, puja.festivalSlug]);
 
   const handleCopy = useCallback(async () => {
-    const text = generated?.devanagari ?? puja.sankalpa[locale];
+    const text = generated?.devanagari ?? puja.sankalpa[locale] ?? puja.sankalpa.en;
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);

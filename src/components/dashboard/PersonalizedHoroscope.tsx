@@ -153,7 +153,7 @@ export default function PersonalizedHoroscope({
   timezone,
 }: PersonalizedHoroscopeProps) {
   const loc = (locale || 'en') as Locale;
-  const L = LABELS[loc] || LABELS.en;
+  const L = (LABELS as Record<string, typeof LABELS.en>)[loc] || LABELS.en;
 
   const [kundali, setKundali] = useState<KundaliData | null>(null);
   const [forecast, setForecast] = useState<ForecastData | null>(null);

@@ -5,16 +5,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_15_2', phase: 4, topic: 'Remedial Measures', moduleNumber: '15.2',
-  title: { en: 'Remedial Measures — Mantras & Pujas', hi: 'उपचार — मन्त्र एवं पूजा' },
+  title: { en: 'Remedial Measures — Mantras & Pujas', hi: 'उपचार — मन्त्र एवं पूजा', sa: 'उपचार — मन्त्र एवं पूजा', mai: 'उपचार — मन्त्र एवं पूजा', mr: 'उपचार — मन्त्र एवं पूजा', ta: 'Remedial Measures — Mantras & Pujas', te: 'Remedial Measures — Mantras & Pujas', bn: 'Remedial Measures — Mantras & Pujas', kn: 'Remedial Measures — Mantras & Pujas', gu: 'Remedial Measures — Mantras & Pujas' },
   subtitle: {
     en: 'Beej mantras, Gayatri mantras, Navagraha puja, homa, and charity remedies for each planet',
     hi: 'बीज मन्त्र, गायत्री मन्त्र, नवग्रह पूजा, होम और प्रत्येक ग्रह के लिए दान उपचार',
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Module 15-1: Gemstones', hi: 'मॉड्यूल 15-1: रत्न' }, href: '/learn/modules/15-1' },
-    { label: { en: 'Module 15-3: Prashna Astrology', hi: 'मॉड्यूल 15-3: प्रश्न ज्योतिष' }, href: '/learn/modules/15-3' },
-    { label: { en: 'Module 15-4: Varshaphal & KP', hi: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.' }, href: '/learn/modules/15-4' },
+    { label: { en: 'Module 15-1: Gemstones', hi: 'मॉड्यूल 15-1: रत्न', sa: 'मॉड्यूल 15-1: रत्न', mai: 'मॉड्यूल 15-1: रत्न', mr: 'मॉड्यूल 15-1: रत्न', ta: 'Module 15-1: Gemstones', te: 'Module 15-1: Gemstones', bn: 'Module 15-1: Gemstones', kn: 'Module 15-1: Gemstones', gu: 'Module 15-1: Gemstones' }, href: '/learn/modules/15-1' },
+    { label: { en: 'Module 15-3: Prashna Astrology', hi: 'मॉड्यूल 15-3: प्रश्न ज्योतिष', sa: 'मॉड्यूल 15-3: प्रश्न ज्योतिष', mai: 'मॉड्यूल 15-3: प्रश्न ज्योतिष', mr: 'मॉड्यूल 15-3: प्रश्न ज्योतिष', ta: 'Module 15-3: Prashna Astrology', te: 'Module 15-3: Prashna Astrology', bn: 'Module 15-3: Prashna Astrology', kn: 'Module 15-3: Prashna Astrology', gu: 'Module 15-3: Prashna Astrology' }, href: '/learn/modules/15-3' },
+    { label: { en: 'Module 15-4: Varshaphal & KP', hi: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.', sa: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.', mai: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.', mr: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.', ta: 'Module 15-4: Varshaphal & KP', te: 'Module 15-4: Varshaphal & KP', bn: 'Module 15-4: Varshaphal & KP', kn: 'Module 15-4: Varshaphal & KP', gu: 'Module 15-4: Varshaphal & KP' }, href: '/learn/modules/15-4' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सूर्य का बीज मन्त्र क्या है?',
     },
     options: [
-      { en: 'Om Shraam Shreem Shraum Sah Chandraya Namah', hi: 'ॐ श्रां श्रीं श्रौं सः चन्द्राय नमः' },
-      { en: 'Om Hraam Hreem Hraum Sah Suryaya Namah', hi: 'ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः' },
-      { en: 'Om Braam Breem Braum Sah Budhaya Namah', hi: 'ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः' },
-      { en: 'Om Graam Greem Graum Sah Gurave Namah', hi: 'ॐ ग्रां ग्रीं ग्रौं सः गुरवे नमः' },
+      { en: 'Om Shraam Shreem Shraum Sah Chandraya Namah', hi: 'ॐ श्रां श्रीं श्रौं सः चन्द्राय नमः', sa: 'ॐ श्रां श्रीं श्रौं सः चन्द्राय नमः', mai: 'ॐ श्रां श्रीं श्रौं सः चन्द्राय नमः', mr: 'ॐ श्रां श्रीं श्रौं सः चन्द्राय नमः', ta: 'Om Shraam Shreem Shraum Sah Chandraya Namah', te: 'Om Shraam Shreem Shraum Sah Chandraya Namah', bn: 'Om Shraam Shreem Shraum Sah Chandraya Namah', kn: 'Om Shraam Shreem Shraum Sah Chandraya Namah', gu: 'Om Shraam Shreem Shraum Sah Chandraya Namah' },
+      { en: 'Om Hraam Hreem Hraum Sah Suryaya Namah', hi: 'ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः', sa: 'ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः', mai: 'ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः', mr: 'ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः', ta: 'Om Hraam Hreem Hraum Sah Suryaya Namah', te: 'Om Hraam Hreem Hraum Sah Suryaya Namah', bn: 'Om Hraam Hreem Hraum Sah Suryaya Namah', kn: 'Om Hraam Hreem Hraum Sah Suryaya Namah', gu: 'Om Hraam Hreem Hraum Sah Suryaya Namah' },
+      { en: 'Om Braam Breem Braum Sah Budhaya Namah', hi: 'ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः', sa: 'ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः', mai: 'ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः', mr: 'ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः', ta: 'Om Braam Breem Braum Sah Budhaya Namah', te: 'Om Braam Breem Braum Sah Budhaya Namah', bn: 'Om Braam Breem Braum Sah Budhaya Namah', kn: 'Om Braam Breem Braum Sah Budhaya Namah', gu: 'Om Braam Breem Braum Sah Budhaya Namah' },
+      { en: 'Om Graam Greem Graum Sah Gurave Namah', hi: 'ॐ ग्रां ग्रीं ग्रौं सः गुरवे नमः', sa: 'ॐ ग्रां ग्रीं ग्रौं सः गुरवे नमः', mai: 'ॐ ग्रां ग्रीं ग्रौं सः गुरवे नमः', mr: 'ॐ ग्रां ग्रीं ग्रौं सः गुरवे नमः', ta: 'Om Graam Greem Graum Sah Gurave Namah', te: 'Om Graam Greem Graum Sah Gurave Namah', bn: 'Om Graam Greem Graum Sah Gurave Namah', kn: 'Om Graam Greem Graum Sah Gurave Namah', gu: 'Om Graam Greem Graum Sah Gurave Namah' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -44,10 +44,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ग्रह मन्त्र एक चक्र में सामान्यतः कितनी बार जपा जाता है?',
     },
     options: [
-      { en: '21 times', hi: '21 बार' },
-      { en: '108 times (one mala)', hi: '108 बार (एक माला)' },
-      { en: '1000 times', hi: '1000 बार' },
-      { en: 'Any random number', hi: 'कोई भी यादृच्छिक संख्या' },
+      { en: '21 times', hi: '21 बार', sa: '21 बार', mai: '21 बार', mr: '21 बार', ta: '21 times', te: '21 times', bn: '21 times', kn: '21 times', gu: '21 times' },
+      { en: '108 times (one mala)', hi: '108 बार (एक माला)', sa: '108 बार (एक माला)', mai: '108 बार (एक माला)', mr: '108 बार (एक माला)', ta: '108 times (one mala)', te: '108 times (one mala)', bn: '108 times (one mala)', kn: '108 times (one mala)', gu: '108 times (one mala)' },
+      { en: '1000 times', hi: '1000 बार', sa: '1000 बार', mai: '1000 बार', mr: '1000 बार', ta: '1000 times', te: '1000 times', bn: '1000 times', kn: '1000 times', gu: '1000 times' },
+      { en: 'Any random number', hi: 'कोई भी यादृच्छिक संख्या', sa: 'कोई भी यादृच्छिक संख्या', mai: 'कोई भी यादृच्छिक संख्या', mr: 'कोई भी यादृच्छिक संख्या', ta: 'Any random number', te: 'Any random number', bn: 'Any random number', kn: 'Any random number', gu: 'Any random number' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -74,10 +74,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'साढ़े साती जैसी शनि सम्बन्धी पीड़ाओं के लिए विशेष रूप से कौन-सी पूजा/होम निर्धारित है?',
     },
     options: [
-      { en: 'Chandi Path', hi: 'चण्डी पाठ' },
-      { en: 'Rudrabhishek and Shani Shingnapur puja', hi: 'रुद्राभिषेक और शनि शिंगणापुर पूजा' },
-      { en: 'Satyanarayan Katha', hi: 'सत्यनारायण कथा' },
-      { en: 'Hanuman Chalisa only', hi: 'केवल हनुमान चालीसा' },
+      { en: 'Chandi Path', hi: 'चण्डी पाठ', sa: 'चण्डी पाठ', mai: 'चण्डी पाठ', mr: 'चण्डी पाठ', ta: 'Chandi Path', te: 'Chandi Path', bn: 'Chandi Path', kn: 'Chandi Path', gu: 'Chandi Path' },
+      { en: 'Rudrabhishek and Shani Shingnapur puja', hi: 'रुद्राभिषेक और शनि शिंगणापुर पूजा', sa: 'रुद्राभिषेक और शनि शिंगणापुर पूजा', mai: 'रुद्राभिषेक और शनि शिंगणापुर पूजा', mr: 'रुद्राभिषेक और शनि शिंगणापुर पूजा', ta: 'Rudrabhishek and Shani Shingnapur puja', te: 'Rudrabhishek and Shani Shingnapur puja', bn: 'Rudrabhishek and Shani Shingnapur puja', kn: 'Rudrabhishek and Shani Shingnapur puja', gu: 'Rudrabhishek and Shani Shingnapur puja' },
+      { en: 'Satyanarayan Katha', hi: 'सत्यनारायण कथा', sa: 'सत्यनारायण कथा', mai: 'सत्यनारायण कथा', mr: 'सत्यनारायण कथा', ta: 'Satyanarayan Katha', te: 'Satyanarayan Katha', bn: 'Satyanarayan Katha', kn: 'Satyanarayan Katha', gu: 'Satyanarayan Katha' },
+      { en: 'Hanuman Chalisa only', hi: 'केवल हनुमान चालीसा', sa: 'केवल हनुमान चालीसा', mai: 'केवल हनुमान चालीसा', mr: 'केवल हनुमान चालीसा', ta: 'Hanuman Chalisa only', te: 'Hanuman Chalisa only', bn: 'Hanuman Chalisa only', kn: 'Hanuman Chalisa only', gu: 'Hanuman Chalisa only' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -92,10 +92,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'शनि से सम्बन्धित दान की वस्तुएँ कौन-सी हैं?',
     },
     options: [
-      { en: 'Red lentils and jaggery on Tuesday', hi: 'मंगलवार को लाल मसूर और गुड़' },
-      { en: 'Mustard oil, black sesame, iron tools on Saturday', hi: 'शनिवार को सरसों का तेल, काले तिल, लोहे के उपकरण' },
-      { en: 'Green moong dal and emeralds on Wednesday', hi: 'बुधवार को हरी मूँग दाल और पन्ने' },
-      { en: 'White rice and pearls on Monday', hi: 'सोमवार को सफ़ेद चावल और मोती' },
+      { en: 'Red lentils and jaggery on Tuesday', hi: 'मंगलवार को लाल मसूर और गुड़', sa: 'मंगलवार को लाल मसूर और गुड़', mai: 'मंगलवार को लाल मसूर और गुड़', mr: 'मंगलवार को लाल मसूर और गुड़', ta: 'Red lentils and jaggery on Tuesday', te: 'Red lentils and jaggery on Tuesday', bn: 'Red lentils and jaggery on Tuesday', kn: 'Red lentils and jaggery on Tuesday', gu: 'Red lentils and jaggery on Tuesday' },
+      { en: 'Mustard oil, black sesame, iron tools on Saturday', hi: 'शनिवार को सरसों का तेल, काले तिल, लोहे के उपकरण', sa: 'शनिवार को सरसों का तेल, काले तिल, लोहे के उपकरण', mai: 'शनिवार को सरसों का तेल, काले तिल, लोहे के उपकरण', mr: 'शनिवार को सरसों का तेल, काले तिल, लोहे के उपकरण', ta: 'Mustard oil, black sesame, iron tools on Saturday', te: 'Mustard oil, black sesame, iron tools on Saturday', bn: 'Mustard oil, black sesame, iron tools on Saturday', kn: 'Mustard oil, black sesame, iron tools on Saturday', gu: 'Mustard oil, black sesame, iron tools on Saturday' },
+      { en: 'Green moong dal and emeralds on Wednesday', hi: 'बुधवार को हरी मूँग दाल और पन्ने', sa: 'बुधवार को हरी मूँग दाल और पन्ने', mai: 'बुधवार को हरी मूँग दाल और पन्ने', mr: 'बुधवार को हरी मूँग दाल और पन्ने', ta: 'Green moong dal and emeralds on Wednesday', te: 'Green moong dal and emeralds on Wednesday', bn: 'Green moong dal and emeralds on Wednesday', kn: 'Green moong dal and emeralds on Wednesday', gu: 'Green moong dal and emeralds on Wednesday' },
+      { en: 'White rice and pearls on Monday', hi: 'सोमवार को सफ़ेद चावल और मोती', sa: 'सोमवार को सफ़ेद चावल और मोती', mai: 'सोमवार को सफ़ेद चावल और मोती', mr: 'सोमवार को सफ़ेद चावल और मोती', ta: 'White rice and pearls on Monday', te: 'White rice and pearls on Monday', bn: 'White rice and pearls on Monday', kn: 'White rice and pearls on Monday', gu: 'White rice and pearls on Monday' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -122,10 +122,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'अधिकतम प्रभाव के लिए ग्रह मन्त्र आदर्श रूप से कब जपना चाहिए?',
     },
     options: [
-      { en: 'Any time, it makes no difference', hi: 'कभी भी, इससे कोई अन्तर नहीं पड़ता' },
+      { en: 'Any time, it makes no difference', hi: 'कभी भी, इससे कोई अन्तर नहीं पड़ता', sa: 'कभी भी, इससे कोई अन्तर नहीं पड़ता', mai: 'कभी भी, इससे कोई अन्तर नहीं पड़ता', mr: 'कभी भी, इससे कोई अन्तर नहीं पड़ता', ta: 'Any time, it makes no difference', te: 'Any time, it makes no difference', bn: 'Any time, it makes no difference', kn: 'Any time, it makes no difference', gu: 'Any time, it makes no difference' },
       { en: 'During that planet\'s hora on that planet\'s day', hi: 'उस ग्रह के दिन उस ग्रह की होरा में' },
-      { en: 'Only during eclipses', hi: 'केवल ग्रहण के समय' },
-      { en: 'Only during retrograde periods', hi: 'केवल वक्री काल में' },
+      { en: 'Only during eclipses', hi: 'केवल ग्रहण के समय', sa: 'केवल ग्रहण के समय', mai: 'केवल ग्रहण के समय', mr: 'केवल ग्रहण के समय', ta: 'Only during eclipses', te: 'Only during eclipses', bn: 'Only during eclipses', kn: 'Only during eclipses', gu: 'Only during eclipses' },
+      { en: 'Only during retrograde periods', hi: 'केवल वक्री काल में', sa: 'केवल वक्री काल में', mai: 'केवल वक्री काल में', mr: 'केवल वक्री काल में', ta: 'Only during retrograde periods', te: 'Only during retrograde periods', bn: 'Only during retrograde periods', kn: 'Only during retrograde periods', gu: 'Only during retrograde periods' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -140,10 +140,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मंगल दोष जैसी मंगल सम्बन्धी पीड़ाओं के लिए विशेष रूप से कौन-सा होम (अग्नि अनुष्ठान) निर्धारित है?',
     },
     options: [
-      { en: 'Navagraha Homa', hi: 'नवग्रह होम' },
-      { en: 'Mangal Shanti Homa and Chandi Path', hi: 'मंगल शान्ति होम और चण्डी पाठ' },
-      { en: 'Ganapati Homa', hi: 'गणपति होम' },
-      { en: 'Sudarshana Homa', hi: 'सुदर्शन होम' },
+      { en: 'Navagraha Homa', hi: 'नवग्रह होम', sa: 'नवग्रह होम', mai: 'नवग्रह होम', mr: 'नवग्रह होम', ta: 'Navagraha Homa', te: 'Navagraha Homa', bn: 'Navagraha Homa', kn: 'Navagraha Homa', gu: 'Navagraha Homa' },
+      { en: 'Mangal Shanti Homa and Chandi Path', hi: 'मंगल शान्ति होम और चण्डी पाठ', sa: 'मंगल शान्ति होम और चण्डी पाठ', mai: 'मंगल शान्ति होम और चण्डी पाठ', mr: 'मंगल शान्ति होम और चण्डी पाठ', ta: 'Mangal Shanti Homa and Chandi Path', te: 'Mangal Shanti Homa and Chandi Path', bn: 'Mangal Shanti Homa and Chandi Path', kn: 'Mangal Shanti Homa and Chandi Path', gu: 'Mangal Shanti Homa and Chandi Path' },
+      { en: 'Ganapati Homa', hi: 'गणपति होम', sa: 'गणपति होम', mai: 'गणपति होम', mr: 'गणपति होम', ta: 'Ganapati Homa', te: 'Ganapati Homa', bn: 'Ganapati Homa', kn: 'Ganapati Homa', gu: 'Ganapati Homa' },
+      { en: 'Sudarshana Homa', hi: 'सुदर्शन होम', sa: 'सुदर्शन होम', mai: 'सुदर्शन होम', mr: 'सुदर्शन होम', ta: 'Sudarshana Homa', te: 'Sudarshana Homa', bn: 'Sudarshana Homa', kn: 'Sudarshana Homa', gu: 'Sudarshana Homa' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -170,10 +170,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मंगलवार को दान की जाने वाली मंगल की वस्तुएँ कौन-सी हैं?',
     },
     options: [
-      { en: 'White rice, silver, milk', hi: 'सफ़ेद चावल, चाँदी, दूध' },
-      { en: 'Red lentils (masoor dal), jaggery (gur), red cloth', hi: 'लाल मसूर दाल, गुड़, लाल वस्त्र' },
-      { en: 'Yellow cloth, turmeric, bananas', hi: 'पीला वस्त्र, हल्दी, केले' },
-      { en: 'Black sesame, mustard oil, iron', hi: 'काले तिल, सरसों का तेल, लोहा' },
+      { en: 'White rice, silver, milk', hi: 'सफ़ेद चावल, चाँदी, दूध', sa: 'सफ़ेद चावल, चाँदी, दूध', mai: 'सफ़ेद चावल, चाँदी, दूध', mr: 'सफ़ेद चावल, चाँदी, दूध', ta: 'White rice, silver, milk', te: 'White rice, silver, milk', bn: 'White rice, silver, milk', kn: 'White rice, silver, milk', gu: 'White rice, silver, milk' },
+      { en: 'Red lentils (masoor dal), jaggery (gur), red cloth', hi: 'लाल मसूर दाल, गुड़, लाल वस्त्र', sa: 'लाल मसूर दाल, गुड़, लाल वस्त्र', mai: 'लाल मसूर दाल, गुड़, लाल वस्त्र', mr: 'लाल मसूर दाल, गुड़, लाल वस्त्र', ta: 'Red lentils (masoor dal), jaggery (gur), red cloth', te: 'Red lentils (masoor dal), jaggery (gur), red cloth', bn: 'Red lentils (masoor dal), jaggery (gur), red cloth', kn: 'Red lentils (masoor dal), jaggery (gur), red cloth', gu: 'Red lentils (masoor dal), jaggery (gur), red cloth' },
+      { en: 'Yellow cloth, turmeric, bananas', hi: 'पीला वस्त्र, हल्दी, केले', sa: 'पीला वस्त्र, हल्दी, केले', mai: 'पीला वस्त्र, हल्दी, केले', mr: 'पीला वस्त्र, हल्दी, केले', ta: 'Yellow cloth, turmeric, bananas', te: 'Yellow cloth, turmeric, bananas', bn: 'Yellow cloth, turmeric, bananas', kn: 'Yellow cloth, turmeric, bananas', gu: 'Yellow cloth, turmeric, bananas' },
+      { en: 'Black sesame, mustard oil, iron', hi: 'काले तिल, सरसों का तेल, लोहा', sa: 'काले तिल, सरसों का तेल, लोहा', mai: 'काले तिल, सरसों का तेल, लोहा', mr: 'काले तिल, सरसों का तेल, लोहा', ta: 'Black sesame, mustard oil, iron', te: 'Black sesame, mustard oil, iron', bn: 'Black sesame, mustard oil, iron', kn: 'Black sesame, mustard oil, iron', gu: 'Black sesame, mustard oil, iron' },
     ],
     correctAnswer: 1,
     explanation: {

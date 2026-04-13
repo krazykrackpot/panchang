@@ -6,17 +6,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_5_1', phase: 2, topic: 'Tithi', moduleNumber: '5.1',
-  title: { en: 'Tithi — The Lunar Day', hi: 'तिथि — चान्द्र दिवस' },
+  title: { en: 'Tithi — The Lunar Day', hi: 'तिथि — चान्द्र दिवस', sa: 'तिथि — चान्द्र दिवस', mai: 'तिथि — चान्द्र दिवस', mr: 'तिथि — चान्द्र दिवस', ta: 'Tithi — The Lunar Day', te: 'Tithi — The Lunar Day', bn: 'Tithi — The Lunar Day', kn: 'Tithi — The Lunar Day', gu: 'Tithi — The Lunar Day' },
   subtitle: {
     en: 'The angular separation between Moon and Sun, divided into 12-degree segments, forms the 30 tithis of a lunar month',
     hi: 'चन्द्रमा और सूर्य के बीच का कोणीय अन्तर, 12 अंश के खण्डों में विभक्त, चान्द्र मास की 30 तिथियाँ बनाता है',
   },
   estimatedMinutes: 14,
   crossRefs: [
-    { label: { en: 'Module 5-2: Paksha', hi: 'मॉड्यूल 5-2: पक्ष' }, href: '/learn/modules/5-2' },
-    { label: { en: 'Module 5-3: Tithi Calculations', hi: 'मॉड्यूल 5-3: तिथि गणना' }, href: '/learn/modules/5-3' },
-    { label: { en: 'Tithis Deep Dive', hi: 'तिथि विस्तार' }, href: '/learn/tithis' },
-    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग' }, href: '/panchang' },
+    { label: { en: 'Module 5-2: Paksha', hi: 'मॉड्यूल 5-2: पक्ष', sa: 'मॉड्यूल 5-2: पक्ष', mai: 'मॉड्यूल 5-2: पक्ष', mr: 'मॉड्यूल 5-2: पक्ष', ta: 'Module 5-2: Paksha', te: 'Module 5-2: Paksha', bn: 'Module 5-2: Paksha', kn: 'Module 5-2: Paksha', gu: 'Module 5-2: Paksha' }, href: '/learn/modules/5-2' },
+    { label: { en: 'Module 5-3: Tithi Calculations', hi: 'मॉड्यूल 5-3: तिथि गणना', sa: 'मॉड्यूल 5-3: तिथि गणना', mai: 'मॉड्यूल 5-3: तिथि गणना', mr: 'मॉड्यूल 5-3: तिथि गणना', ta: 'Module 5-3: Tithi Calculations', te: 'Module 5-3: Tithi Calculations', bn: 'Module 5-3: Tithi Calculations', kn: 'Module 5-3: Tithi Calculations', gu: 'Module 5-3: Tithi Calculations' }, href: '/learn/modules/5-3' },
+    { label: { en: 'Tithis Deep Dive', hi: 'तिथि विस्तार', sa: 'तिथि विस्तार', mai: 'तिथि विस्तार', mr: 'तिथि विस्तार', ta: 'Tithis Deep Dive', te: 'Tithis Deep Dive', bn: 'Tithis Deep Dive', kn: 'Tithis Deep Dive', gu: 'Tithis Deep Dive' }, href: '/learn/tithis' },
+    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग', mai: 'दैनिक पंचांग', mr: 'दैनिक पंचांग', ta: 'Daily Panchang', te: 'Daily Panchang', bn: 'Daily Panchang', kn: 'Daily Panchang', gu: 'Daily Panchang' }, href: '/panchang' },
   ],
 };
 
@@ -28,10 +28,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'तिथि की परिभाषा किन दो खगोलीय पिण्डों के कोणीय अन्तर से होती है?',
     },
     options: [
-      { en: 'Sun and Mars', hi: 'सूर्य और मंगल' },
-      { en: 'Moon and Sun', hi: 'चन्द्रमा और सूर्य' },
-      { en: 'Jupiter and Saturn', hi: 'बृहस्पति और शनि' },
-      { en: 'Moon and Rahu', hi: 'चन्द्रमा और राहु' },
+      { en: 'Sun and Mars', hi: 'सूर्य और मंगल', sa: 'सूर्य और मंगल', mai: 'सूर्य और मंगल', mr: 'सूर्य और मंगल', ta: 'Sun and Mars', te: 'Sun and Mars', bn: 'Sun and Mars', kn: 'Sun and Mars', gu: 'Sun and Mars' },
+      { en: 'Moon and Sun', hi: 'चन्द्रमा और सूर्य', sa: 'चन्द्रमा और सूर्य', mai: 'चन्द्रमा और सूर्य', mr: 'चन्द्रमा और सूर्य', ta: 'Moon and Sun', te: 'Moon and Sun', bn: 'Moon and Sun', kn: 'Moon and Sun', gu: 'Moon and Sun' },
+      { en: 'Jupiter and Saturn', hi: 'बृहस्पति और शनि', sa: 'बृहस्पति और शनि', mai: 'बृहस्पति और शनि', mr: 'बृहस्पति और शनि', ta: 'Jupiter and Saturn', te: 'Jupiter and Saturn', bn: 'Jupiter and Saturn', kn: 'Jupiter and Saturn', gu: 'Jupiter and Saturn' },
+      { en: 'Moon and Rahu', hi: 'चन्द्रमा और राहु', sa: 'चन्द्रमा और राहु', mai: 'चन्द्रमा और राहु', mr: 'चन्द्रमा और राहु', ta: 'Moon and Rahu', te: 'Moon and Rahu', bn: 'Moon and Rahu', kn: 'Moon and Rahu', gu: 'Moon and Rahu' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -46,10 +46,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'एक पूर्ण चान्द्र मास (अमावस्या से अमावस्या) में कितनी तिथियाँ होती हैं?',
     },
     options: [
-      { en: '15', hi: '15' },
-      { en: '27', hi: '27' },
-      { en: '30', hi: '30' },
-      { en: '28', hi: '28' },
+      { en: '15', hi: '15', sa: '15', mai: '15', mr: '15', ta: '15', te: '15', bn: '15', kn: '15', gu: '15' },
+      { en: '27', hi: '27', sa: '27', mai: '27', mr: '27', ta: '27', te: '27', bn: '27', kn: '27', gu: '27' },
+      { en: '30', hi: '30', sa: '30', mai: '30', mr: '30', ta: '30', te: '30', bn: '30', kn: '30', gu: '30' },
+      { en: '28', hi: '28', sa: '28', mai: '28', mr: '28', ta: '28', te: '28', bn: '28', kn: '28', gu: '28' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -76,10 +76,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'शुक्ल पक्ष चन्द्रमा की किस कला से सम्बन्धित है?',
     },
     options: [
-      { en: 'Waning (decreasing) Moon', hi: 'ह्रासमान (घटता) चन्द्रमा' },
-      { en: 'Waxing (increasing) Moon', hi: 'वर्धमान (बढ़ता) चन्द्रमा' },
-      { en: 'Eclipsed Moon', hi: 'ग्रहण-ग्रस्त चन्द्रमा' },
-      { en: 'Retrograde Moon', hi: 'वक्री चन्द्रमा' },
+      { en: 'Waning (decreasing) Moon', hi: 'ह्रासमान (घटता) चन्द्रमा', sa: 'ह्रासमान (घटता) चन्द्रमा', mai: 'ह्रासमान (घटता) चन्द्रमा', mr: 'ह्रासमान (घटता) चन्द्रमा', ta: 'Waning (decreasing) Moon', te: 'Waning (decreasing) Moon', bn: 'Waning (decreasing) Moon', kn: 'Waning (decreasing) Moon', gu: 'Waning (decreasing) Moon' },
+      { en: 'Waxing (increasing) Moon', hi: 'वर्धमान (बढ़ता) चन्द्रमा', sa: 'वर्धमान (बढ़ता) चन्द्रमा', mai: 'वर्धमान (बढ़ता) चन्द्रमा', mr: 'वर्धमान (बढ़ता) चन्द्रमा', ta: 'Waxing (increasing) Moon', te: 'Waxing (increasing) Moon', bn: 'Waxing (increasing) Moon', kn: 'Waxing (increasing) Moon', gu: 'Waxing (increasing) Moon' },
+      { en: 'Eclipsed Moon', hi: 'ग्रहण-ग्रस्त चन्द्रमा', sa: 'ग्रहण-ग्रस्त चन्द्रमा', mai: 'ग्रहण-ग्रस्त चन्द्रमा', mr: 'ग्रहण-ग्रस्त चन्द्रमा', ta: 'Eclipsed Moon', te: 'Eclipsed Moon', bn: 'Eclipsed Moon', kn: 'Eclipsed Moon', gu: 'Eclipsed Moon' },
+      { en: 'Retrograde Moon', hi: 'वक्री चन्द्रमा', sa: 'वक्री चन्द्रमा', mai: 'वक्री चन्द्रमा', mr: 'वक्री चन्द्रमा', ta: 'Retrograde Moon', te: 'Retrograde Moon', bn: 'Retrograde Moon', kn: 'Retrograde Moon', gu: 'Retrograde Moon' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -94,10 +94,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'प्रत्येक तिथि चन्द्र-सूर्य कोणीय दूरी के कितने अंशों में फैली होती है?',
     },
     options: [
-      { en: '13 degrees 20 minutes', hi: '13 अंश 20 कला' },
-      { en: '12 degrees', hi: '12 अंश' },
-      { en: '15 degrees', hi: '15 अंश' },
-      { en: '10 degrees', hi: '10 अंश' },
+      { en: '13 degrees 20 minutes', hi: '13 अंश 20 कला', sa: '13 अंश 20 कला', mai: '13 अंश 20 कला', mr: '13 अंश 20 कला', ta: '13 degrees 20 minutes', te: '13 degrees 20 minutes', bn: '13 degrees 20 minutes', kn: '13 degrees 20 minutes', gu: '13 degrees 20 minutes' },
+      { en: '12 degrees', hi: '12 अंश', sa: '12 अंश', mai: '12 अंश', mr: '12 अंश', ta: '12 degrees', te: '12 degrees', bn: '12 degrees', kn: '12 degrees', gu: '12 degrees' },
+      { en: '15 degrees', hi: '15 अंश', sa: '15 अंश', mai: '15 अंश', mr: '15 अंश', ta: '15 degrees', te: '15 degrees', bn: '15 degrees', kn: '15 degrees', gu: '15 degrees' },
+      { en: '10 degrees', hi: '10 अंश', sa: '10 अंश', mai: '10 अंश', mr: '10 अंश', ta: '10 degrees', te: '10 degrees', bn: '10 degrees', kn: '10 degrees', gu: '10 degrees' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -124,10 +124,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कौन-सा तिथि समूह "नन्दा" (आनन्ददायक) कहलाता है?',
     },
     options: [
-      { en: 'Pratipada, Shashthi, Ekadashi', hi: 'प्रतिपदा, षष्ठी, एकादशी' },
-      { en: 'Dwitiya, Saptami, Dwadashi', hi: 'द्वितीया, सप्तमी, द्वादशी' },
-      { en: 'Tritiya, Ashtami, Trayodashi', hi: 'तृतीया, अष्टमी, त्रयोदशी' },
-      { en: 'Chaturthi, Navami, Chaturdashi', hi: 'चतुर्थी, नवमी, चतुर्दशी' },
+      { en: 'Pratipada, Shashthi, Ekadashi', hi: 'प्रतिपदा, षष्ठी, एकादशी', sa: 'प्रतिपदा, षष्ठी, एकादशी', mai: 'प्रतिपदा, षष्ठी, एकादशी', mr: 'प्रतिपदा, षष्ठी, एकादशी', ta: 'Pratipada, Shashthi, Ekadashi', te: 'Pratipada, Shashthi, Ekadashi', bn: 'Pratipada, Shashthi, Ekadashi', kn: 'Pratipada, Shashthi, Ekadashi', gu: 'Pratipada, Shashthi, Ekadashi' },
+      { en: 'Dwitiya, Saptami, Dwadashi', hi: 'द्वितीया, सप्तमी, द्वादशी', sa: 'द्वितीया, सप्तमी, द्वादशी', mai: 'द्वितीया, सप्तमी, द्वादशी', mr: 'द्वितीया, सप्तमी, द्वादशी', ta: 'Dwitiya, Saptami, Dwadashi', te: 'Dwitiya, Saptami, Dwadashi', bn: 'Dwitiya, Saptami, Dwadashi', kn: 'Dwitiya, Saptami, Dwadashi', gu: 'Dwitiya, Saptami, Dwadashi' },
+      { en: 'Tritiya, Ashtami, Trayodashi', hi: 'तृतीया, अष्टमी, त्रयोदशी', sa: 'तृतीया, अष्टमी, त्रयोदशी', mai: 'तृतीया, अष्टमी, त्रयोदशी', mr: 'तृतीया, अष्टमी, त्रयोदशी', ta: 'Tritiya, Ashtami, Trayodashi', te: 'Tritiya, Ashtami, Trayodashi', bn: 'Tritiya, Ashtami, Trayodashi', kn: 'Tritiya, Ashtami, Trayodashi', gu: 'Tritiya, Ashtami, Trayodashi' },
+      { en: 'Chaturthi, Navami, Chaturdashi', hi: 'चतुर्थी, नवमी, चतुर्दशी', sa: 'चतुर्थी, नवमी, चतुर्दशी', mai: 'चतुर्थी, नवमी, चतुर्दशी', mr: 'चतुर्थी, नवमी, चतुर्दशी', ta: 'Chaturthi, Navami, Chaturdashi', te: 'Chaturthi, Navami, Chaturdashi', bn: 'Chaturthi, Navami, Chaturdashi', kn: 'Chaturthi, Navami, Chaturdashi', gu: 'Chaturthi, Navami, Chaturdashi' },
     ],
     correctAnswer: 0,
     explanation: {
@@ -154,10 +154,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'तिथियों की अवधि लगभग 19 से 26 घण्टे तक क्यों भिन्न होती है?',
     },
     options: [
-      { en: 'Because the Earth rotates at different speeds', hi: 'क्योंकि पृथ्वी भिन्न-भिन्न गति से घूमती है' },
+      { en: 'Because the Earth rotates at different speeds', hi: 'क्योंकि पृथ्वी भिन्न-भिन्न गति से घूमती है', sa: 'क्योंकि पृथ्वी भिन्न-भिन्न गति से घूमती है', mai: 'क्योंकि पृथ्वी भिन्न-भिन्न गति से घूमती है', mr: 'क्योंकि पृथ्वी भिन्न-भिन्न गति से घूमती है', ta: 'Because the Earth rotates at different speeds', te: 'Because the Earth rotates at different speeds', bn: 'Because the Earth rotates at different speeds', kn: 'Because the Earth rotates at different speeds', gu: 'Because the Earth rotates at different speeds' },
       { en: 'Because the Moon\'s orbital speed varies due to its elliptical orbit', hi: 'क्योंकि चन्द्रमा की कक्षीय गति उसकी दीर्घवृत्ताकार कक्षा के कारण बदलती रहती है' },
-      { en: 'Because the Sun changes size', hi: 'क्योंकि सूर्य का आकार बदलता है' },
-      { en: 'Because tithis are arbitrarily assigned by astrologers', hi: 'क्योंकि तिथियाँ ज्योतिषियों द्वारा मनमाने ढंग से निर्धारित की जाती हैं' },
+      { en: 'Because the Sun changes size', hi: 'क्योंकि सूर्य का आकार बदलता है', sa: 'क्योंकि सूर्य का आकार बदलता है', mai: 'क्योंकि सूर्य का आकार बदलता है', mr: 'क्योंकि सूर्य का आकार बदलता है', ta: 'Because the Sun changes size', te: 'Because the Sun changes size', bn: 'Because the Sun changes size', kn: 'Because the Sun changes size', gu: 'Because the Sun changes size' },
+      { en: 'Because tithis are arbitrarily assigned by astrologers', hi: 'क्योंकि तिथियाँ ज्योतिषियों द्वारा मनमाने ढंग से निर्धारित की जाती हैं', sa: 'क्योंकि तिथियाँ ज्योतिषियों द्वारा मनमाने ढंग से निर्धारित की जाती हैं', mai: 'क्योंकि तिथियाँ ज्योतिषियों द्वारा मनमाने ढंग से निर्धारित की जाती हैं', mr: 'क्योंकि तिथियाँ ज्योतिषियों द्वारा मनमाने ढंग से निर्धारित की जाती हैं', ta: 'Because tithis are arbitrarily assigned by astrologers', te: 'Because tithis are arbitrarily assigned by astrologers', bn: 'Because tithis are arbitrarily assigned by astrologers', kn: 'Because tithis are arbitrarily assigned by astrologers', gu: 'Because tithis are arbitrarily assigned by astrologers' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -172,10 +172,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'अमावस्या (नव चन्द्र तिथि) के अधिष्ठाता देवता हैं:',
     },
     options: [
-      { en: 'Brahma', hi: 'ब्रह्मा' },
-      { en: 'Vishnu', hi: 'विष्णु' },
-      { en: 'Pitris (ancestors)', hi: 'पितर (पूर्वज)' },
-      { en: 'Indra', hi: 'इन्द्र' },
+      { en: 'Brahma', hi: 'ब्रह्मा', sa: 'ब्रह्मा', mai: 'ब्रह्मा', mr: 'ब्रह्मा', ta: 'Brahma', te: 'Brahma', bn: 'Brahma', kn: 'Brahma', gu: 'Brahma' },
+      { en: 'Vishnu', hi: 'विष्णु', sa: 'विष्णु', mai: 'विष्णु', mr: 'विष्णु', ta: 'Vishnu', te: 'Vishnu', bn: 'Vishnu', kn: 'Vishnu', gu: 'Vishnu' },
+      { en: 'Pitris (ancestors)', hi: 'पितर (पूर्वज)', sa: 'पितर (पूर्वज)', mai: 'पितर (पूर्वज)', mr: 'पितर (पूर्वज)', ta: 'Pitris (ancestors)', te: 'Pitris (ancestors)', bn: 'Pitris (ancestors)', kn: 'Pitris (ancestors)', gu: 'Pitris (ancestors)' },
+      { en: 'Indra', hi: 'इन्द्र', sa: 'इन्द्र', mai: 'इन्द्र', mr: 'इन्द्र', ta: 'Indra', te: 'Indra', bn: 'Indra', kn: 'Indra', gu: 'Indra' },
     ],
     correctAnswer: 2,
     explanation: {

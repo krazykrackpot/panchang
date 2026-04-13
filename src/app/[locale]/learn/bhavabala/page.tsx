@@ -1,5 +1,7 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
+
 import { useState } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -14,7 +16,7 @@ export default function LearnBhavabalaPage() {
   const locale = useLocale();
   const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
   const isHi = isDevanagariLocale(locale);
-  const tl2 = (obj: Record<string, string>) => obj[locale] || obj.en || '';
+  const tl2 = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedComponent, setExpandedComponent] = useState<number | null>(0);
   const [expandedClass, setExpandedClass] = useState<string | null>('kendra');
@@ -211,9 +213,9 @@ export default function LearnBhavabalaPage() {
         <h3 className="text-gold-light font-bold text-lg" style={headingFont}>{t('linksTitle')}</h3>
         <div className="flex flex-wrap justify-center gap-3">
           {[
-            { href: '/kundali', label: { en: 'Generate Kundali', hi: 'कुण्डली बनाएं' } },
-            { href: '/learn/modules/18-2', label: { en: 'Module 18-2: Bhavabala Deep Dive', hi: 'मॉड्यूल 18-2: भावबल विस्तार' } },
-            { href: '/learn/shadbala', label: { en: 'Shadbala (Planet Strength)', hi: 'षड्बल (ग्रह शक्ति)' } },
+            { href: '/kundali', label: { en: 'Generate Kundali', hi: 'कुण्डली बनाएं', sa: 'कुण्डली बनाएं', mai: 'कुण्डली बनाएं', mr: 'कुण्डली बनाएं', ta: 'Generate Kundali', te: 'Generate Kundali', bn: 'Generate Kundali', kn: 'Generate Kundali', gu: 'Generate Kundali' } },
+            { href: '/learn/modules/18-2', label: { en: 'Module 18-2: Bhavabala Deep Dive', hi: 'मॉड्यूल 18-2: भावबल विस्तार', sa: 'मॉड्यूल 18-2: भावबल विस्तार', mai: 'मॉड्यूल 18-2: भावबल विस्तार', mr: 'मॉड्यूल 18-2: भावबल विस्तार', ta: 'Module 18-2: Bhavabala Deep Dive', te: 'Module 18-2: Bhavabala Deep Dive', bn: 'Module 18-2: Bhavabala Deep Dive', kn: 'Module 18-2: Bhavabala Deep Dive', gu: 'Module 18-2: Bhavabala Deep Dive' } },
+            { href: '/learn/shadbala', label: { en: 'Shadbala (Planet Strength)', hi: 'षड्बल (ग्रह शक्ति)', sa: 'षड्बल (ग्रह शक्ति)', mai: 'षड्बल (ग्रह शक्ति)', mr: 'षड्बल (ग्रह शक्ति)', ta: 'Shadbala (Planet Strength)', te: 'Shadbala (Planet Strength)', bn: 'Shadbala (Planet Strength)', kn: 'Shadbala (Planet Strength)', gu: 'Shadbala (Planet Strength)' } },
           ].map((link) => (
             <Link key={link.href} href={link.href}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium">

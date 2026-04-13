@@ -5,15 +5,15 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_25_6', phase: 6, topic: 'Indian Contributions', moduleNumber: '25.6',
-  title: { en: 'Fibonacci Started With Music', hi: 'फिबोनाची की शुरुआत संगीत से हुई' },
+  title: { en: 'Fibonacci Started With Music', hi: 'फिबोनाची की शुरुआत संगीत से हुई', sa: 'फिबोनाची की शुरुआत संगीत से हुई', mai: 'फिबोनाची की शुरुआत संगीत से हुई', mr: 'फिबोनाची की शुरुआत संगीत से हुई', ta: 'Fibonacci Started With Music', te: 'Fibonacci Started With Music', bn: 'Fibonacci Started With Music', kn: 'Fibonacci Started With Music', gu: 'Fibonacci Started With Music' },
   subtitle: {
     en: 'How Indian musicians discovered the Fibonacci sequence 1,000 years before Fibonacci — through the mathematics of rhythm and tala',
     hi: 'कैसे भारतीय संगीतज्ञों ने फिबोनाची से 1,000 वर्ष पहले ताल के गणित से फिबोनाची अनुक्रम की खोज की',
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 25-1: Zero & Place Value', hi: 'मॉड्यूल 25-1: शून्य और स्थानमान' }, href: '/learn/modules/25-1' },
-    { label: { en: 'Module 25-2: Decimal System', hi: 'मॉड्यूल 25-2: दशमलव प्रणाली' }, href: '/learn/modules/25-2' },
+    { label: { en: 'Module 25-1: Zero & Place Value', hi: 'मॉड्यूल 25-1: शून्य और स्थानमान', sa: 'मॉड्यूल 25-1: शून्य और स्थानमान', mai: 'मॉड्यूल 25-1: शून्य और स्थानमान', mr: 'मॉड्यूल 25-1: शून्य और स्थानमान', ta: 'Module 25-1: Zero & Place Value', te: 'Module 25-1: Zero & Place Value', bn: 'Module 25-1: Zero & Place Value', kn: 'Module 25-1: Zero & Place Value', gu: 'Module 25-1: Zero & Place Value' }, href: '/learn/modules/25-1' },
+    { label: { en: 'Module 25-2: Decimal System', hi: 'मॉड्यूल 25-2: दशमलव प्रणाली', sa: 'मॉड्यूल 25-2: दशमलव प्रणाली', mai: 'मॉड्यूल 25-2: दशमलव प्रणाली', mr: 'मॉड्यूल 25-2: दशमलव प्रणाली', ta: 'Module 25-2: Decimal System', te: 'Module 25-2: Decimal System', bn: 'Module 25-2: Decimal System', kn: 'Module 25-2: Decimal System', gu: 'Module 25-2: Decimal System' }, href: '/learn/modules/25-2' },
   ],
 };
 
@@ -25,10 +25,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'संगीत के संदर्भ में फिबोनाची पैटर्न का प्रथम वर्णन किसने किया?',
     },
     options: [
-      { en: 'Aryabhata', hi: 'आर्यभट' },
-      { en: 'Bharata Muni', hi: 'भरत मुनि' },
-      { en: 'Virahanka', hi: 'विरहांक' },
-      { en: 'Hemachandra', hi: 'हेमचन्द्र' },
+      { en: 'Aryabhata', hi: 'आर्यभट', sa: 'आर्यभट', mai: 'आर्यभट', mr: 'आर्यभट', ta: 'Aryabhata', te: 'Aryabhata', bn: 'Aryabhata', kn: 'Aryabhata', gu: 'Aryabhata' },
+      { en: 'Bharata Muni', hi: 'भरत मुनि', sa: 'भरत मुनि', mai: 'भरत मुनि', mr: 'भरत मुनि', ta: 'Bharata Muni', te: 'Bharata Muni', bn: 'Bharata Muni', kn: 'Bharata Muni', gu: 'Bharata Muni' },
+      { en: 'Virahanka', hi: 'विरहांक', sa: 'विरहांक', mai: 'विरहांक', mr: 'विरहांक', ta: 'Virahanka', te: 'Virahanka', bn: 'Virahanka', kn: 'Virahanka', gu: 'Virahanka' },
+      { en: 'Hemachandra', hi: 'हेमचन्द्र', sa: 'हेमचन्द्र', mai: 'हेमचन्द्र', mr: 'हेमचन्द्र', ta: 'Hemachandra', te: 'Hemachandra', bn: 'Hemachandra', kn: 'Hemachandra', gu: 'Hemachandra' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -43,10 +43,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किस ग्रन्थ में भरत मुनि ने फिबोनाची अनुक्रम को एन्कोड करने वाले तालबद्ध पैटर्न का वर्णन किया?',
     },
     options: [
-      { en: 'Arthashastra', hi: 'अर्थशास्त्र' },
-      { en: 'Chandahshastra', hi: 'छन्दःशास्त्र' },
-      { en: 'Natyashastra', hi: 'नाट्यशास्त्र' },
-      { en: 'Aryabhatiya', hi: 'आर्यभटीय' },
+      { en: 'Arthashastra', hi: 'अर्थशास्त्र', sa: 'अर्थशास्त्र', mai: 'अर्थशास्त्र', mr: 'अर्थशास्त्र', ta: 'Arthashastra', te: 'Arthashastra', bn: 'Arthashastra', kn: 'Arthashastra', gu: 'Arthashastra' },
+      { en: 'Chandahshastra', hi: 'छन्दःशास्त्र', sa: 'छन्दःशास्त्र', mai: 'छन्दःशास्त्र', mr: 'छन्दःशास्त्र', ta: 'Chandahshastra', te: 'Chandahshastra', bn: 'Chandahshastra', kn: 'Chandahshastra', gu: 'Chandahshastra' },
+      { en: 'Natyashastra', hi: 'नाट्यशास्त्र', sa: 'नाट्यशास्त्र', mai: 'नाट्यशास्त्र', mr: 'नाट्यशास्त्र', ta: 'Natyashastra', te: 'Natyashastra', bn: 'Natyashastra', kn: 'Natyashastra', gu: 'Natyashastra' },
+      { en: 'Aryabhatiya', hi: 'आर्यभटीय', sa: 'आर्यभटीय', mai: 'आर्यभटीय', mr: 'आर्यभटीय', ta: 'Aryabhatiya', te: 'Aryabhatiya', bn: 'Aryabhatiya', kn: 'Aryabhatiya', gu: 'Aryabhatiya' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -61,10 +61,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'भरत मुनि ने नाट्यशास्त्र लगभग कब लिखा?',
     },
     options: [
-      { en: '200 CE', hi: '200 ईस्वी' },
-      { en: '200 BCE', hi: '200 ईसा पूर्व' },
-      { en: '500 CE', hi: '500 ईस्वी' },
-      { en: '800 BCE', hi: '800 ईसा पूर्व' },
+      { en: '200 CE', hi: '200 ईस्वी', sa: '200 ईस्वी', mai: '200 ईस्वी', mr: '200 ईस्वी', ta: '200 CE', te: '200 CE', bn: '200 CE', kn: '200 CE', gu: '200 CE' },
+      { en: '200 BCE', hi: '200 ईसा पूर्व', sa: '200 ईसा पूर्व', mai: '200 ईसा पूर्व', mr: '200 ईसा पूर्व', ta: '200 BCE', te: '200 BCE', bn: '200 BCE', kn: '200 BCE', gu: '200 BCE' },
+      { en: '500 CE', hi: '500 ईस्वी', sa: '500 ईस्वी', mai: '500 ईस्वी', mr: '500 ईस्वी', ta: '500 CE', te: '500 CE', bn: '500 CE', kn: '500 CE', gu: '500 CE' },
+      { en: '800 BCE', hi: '800 ईसा पूर्व', sa: '800 ईसा पूर्व', mai: '800 ईसा पूर्व', mr: '800 ईसा पूर्व', ta: '800 BCE', te: '800 BCE', bn: '800 BCE', kn: '800 BCE', gu: '800 BCE' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -79,10 +79,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किस संगीत अवधारणा ने, तालबद्ध पैटर्न से जुड़कर, भारतीय गणित में फिबोनाची संख्याओं को जन्म दिया?',
     },
     options: [
-      { en: 'Raga — melodic frameworks', hi: 'राग — मेलोडिक ढाँचे' },
-      { en: 'Shruti — microtonal intervals', hi: 'श्रुति — माइक्रोटोनल अंतराल' },
-      { en: 'Tala — rhythmic patterns using short and long syllables', hi: 'ताल — लघु और दीर्घ अक्षरों का उपयोग करके तालबद्ध पैटर्न' },
-      { en: 'Swara — the seven notes of the scale', hi: 'स्वर — सप्तक के सात स्वर' },
+      { en: 'Raga — melodic frameworks', hi: 'राग — मेलोडिक ढाँचे', sa: 'राग — मेलोडिक ढाँचे', mai: 'राग — मेलोडिक ढाँचे', mr: 'राग — मेलोडिक ढाँचे', ta: 'Raga — melodic frameworks', te: 'Raga — melodic frameworks', bn: 'Raga — melodic frameworks', kn: 'Raga — melodic frameworks', gu: 'Raga — melodic frameworks' },
+      { en: 'Shruti — microtonal intervals', hi: 'श्रुति — माइक्रोटोनल अंतराल', sa: 'श्रुति — माइक्रोटोनल अंतराल', mai: 'श्रुति — माइक्रोटोनल अंतराल', mr: 'श्रुति — माइक्रोटोनल अंतराल', ta: 'Shruti — microtonal intervals', te: 'Shruti — microtonal intervals', bn: 'Shruti — microtonal intervals', kn: 'Shruti — microtonal intervals', gu: 'Shruti — microtonal intervals' },
+      { en: 'Tala — rhythmic patterns using short and long syllables', hi: 'ताल — लघु और दीर्घ अक्षरों का उपयोग करके तालबद्ध पैटर्न', sa: 'ताल — लघु और दीर्घ अक्षरों का उपयोग करके तालबद्ध पैटर्न', mai: 'ताल — लघु और दीर्घ अक्षरों का उपयोग करके तालबद्ध पैटर्न', mr: 'ताल — लघु और दीर्घ अक्षरों का उपयोग करके तालबद्ध पैटर्न', ta: 'Tala — rhythmic patterns using short and long syllables', te: 'Tala — rhythmic patterns using short and long syllables', bn: 'Tala — rhythmic patterns using short and long syllables', kn: 'Tala — rhythmic patterns using short and long syllables', gu: 'Tala — rhythmic patterns using short and long syllables' },
+      { en: 'Swara — the seven notes of the scale', hi: 'स्वर — सप्तक के सात स्वर', sa: 'स्वर — सप्तक के सात स्वर', mai: 'स्वर — सप्तक के सात स्वर', mr: 'स्वर — सप्तक के सात स्वर', ta: 'Swara — the seven notes of the scale', te: 'Swara — the seven notes of the scale', bn: 'Swara — the seven notes of the scale', kn: 'Swara — the seven notes of the scale', gu: 'Swara — the seven notes of the scale' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -97,10 +97,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'स्पष्ट फिबोनाची पुनरावृत्ति संबंध (कि प्रत्येक संख्या पिछली दो का योग है) किसने बताया?',
     },
     options: [
-      { en: 'Pingala', hi: 'पिंगल' },
-      { en: 'Bharata Muni', hi: 'भरत मुनि' },
-      { en: 'Virahanka', hi: 'विरहांक' },
-      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त' },
+      { en: 'Pingala', hi: 'पिंगल', sa: 'पिंगल', mai: 'पिंगल', mr: 'पिंगल', ta: 'Pingala', te: 'Pingala', bn: 'Pingala', kn: 'Pingala', gu: 'Pingala' },
+      { en: 'Bharata Muni', hi: 'भरत मुनि', sa: 'भरत मुनि', mai: 'भरत मुनि', mr: 'भरत मुनि', ta: 'Bharata Muni', te: 'Bharata Muni', bn: 'Bharata Muni', kn: 'Bharata Muni', gu: 'Bharata Muni' },
+      { en: 'Virahanka', hi: 'विरहांक', sa: 'विरहांक', mai: 'विरहांक', mr: 'विरहांक', ta: 'Virahanka', te: 'Virahanka', bn: 'Virahanka', kn: 'Virahanka', gu: 'Virahanka' },
+      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त', sa: 'ब्रह्मगुप्त', mai: 'ब्रह्मगुप्त', mr: 'ब्रह्मगुप्त', ta: 'Brahmagupta', te: 'Brahmagupta', bn: 'Brahmagupta', kn: 'Brahmagupta', gu: 'Brahmagupta' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -115,10 +115,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विरहांक ने फिबोनाची पुनरावृत्ति को लगभग किस शताब्दी ईस्वी में व्यक्त किया?',
     },
     options: [
-      { en: '2nd century CE', hi: '2री शताब्दी ईस्वी' },
-      { en: '4th century CE', hi: '4थी शताब्दी ईस्वी' },
-      { en: '6th century CE', hi: '6ठी शताब्दी ईस्वी' },
-      { en: '10th century CE', hi: '10वीं शताब्दी ईस्वी' },
+      { en: '2nd century CE', hi: '2री शताब्दी ईस्वी', sa: '2री शताब्दी ईस्वी', mai: '2री शताब्दी ईस्वी', mr: '2री शताब्दी ईस्वी', ta: '2nd century CE', te: '2nd century CE', bn: '2nd century CE', kn: '2nd century CE', gu: '2nd century CE' },
+      { en: '4th century CE', hi: '4थी शताब्दी ईस्वी', sa: '4थी शताब्दी ईस्वी', mai: '4थी शताब्दी ईस्वी', mr: '4थी शताब्दी ईस्वी', ta: '4th century CE', te: '4th century CE', bn: '4th century CE', kn: '4th century CE', gu: '4th century CE' },
+      { en: '6th century CE', hi: '6ठी शताब्दी ईस्वी', sa: '6ठी शताब्दी ईस्वी', mai: '6ठी शताब्दी ईस्वी', mr: '6ठी शताब्दी ईस्वी', ta: '6th century CE', te: '6th century CE', bn: '6th century CE', kn: '6th century CE', gu: '6th century CE' },
+      { en: '10th century CE', hi: '10वीं शताब्दी ईस्वी', sa: '10वीं शताब्दी ईस्वी', mai: '10वीं शताब्दी ईस्वी', mr: '10वीं शताब्दी ईस्वी', ta: '10th century CE', te: '10th century CE', bn: '10th century CE', kn: '10th century CE', gu: '10th century CE' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -133,10 +133,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'फिबोनाची से 52 वर्ष पहले किसने फिबोनाची अनुक्रम के समकक्ष परिणाम प्रकाशित किए, और कब?',
     },
     options: [
-      { en: 'Virahanka in 600 CE', hi: 'विरहांक, 600 ईस्वी में' },
-      { en: 'Brahmagupta in 628 CE', hi: 'ब्रह्मगुप्त, 628 ईस्वी में' },
-      { en: 'Hemachandra in 1150 CE', hi: 'हेमचन्द्र, 1150 ईस्वी में' },
-      { en: 'Aryabhata in 499 CE', hi: 'आर्यभट, 499 ईस्वी में' },
+      { en: 'Virahanka in 600 CE', hi: 'विरहांक, 600 ईस्वी में', sa: 'विरहांक, 600 ईस्वी में', mai: 'विरहांक, 600 ईस्वी में', mr: 'विरहांक, 600 ईस्वी में', ta: 'Virahanka in 600 CE', te: 'Virahanka in 600 CE', bn: 'Virahanka in 600 CE', kn: 'Virahanka in 600 CE', gu: 'Virahanka in 600 CE' },
+      { en: 'Brahmagupta in 628 CE', hi: 'ब्रह्मगुप्त, 628 ईस्वी में', sa: 'ब्रह्मगुप्त, 628 ईस्वी में', mai: 'ब्रह्मगुप्त, 628 ईस्वी में', mr: 'ब्रह्मगुप्त, 628 ईस्वी में', ta: 'Brahmagupta in 628 CE', te: 'Brahmagupta in 628 CE', bn: 'Brahmagupta in 628 CE', kn: 'Brahmagupta in 628 CE', gu: 'Brahmagupta in 628 CE' },
+      { en: 'Hemachandra in 1150 CE', hi: 'हेमचन्द्र, 1150 ईस्वी में', sa: 'हेमचन्द्र, 1150 ईस्वी में', mai: 'हेमचन्द्र, 1150 ईस्वी में', mr: 'हेमचन्द्र, 1150 ईस्वी में', ta: 'Hemachandra in 1150 CE', te: 'Hemachandra in 1150 CE', bn: 'Hemachandra in 1150 CE', kn: 'Hemachandra in 1150 CE', gu: 'Hemachandra in 1150 CE' },
+      { en: 'Aryabhata in 499 CE', hi: 'आर्यभट, 499 ईस्वी में', sa: 'आर्यभट, 499 ईस्वी में', mai: 'आर्यभट, 499 ईस्वी में', mr: 'आर्यभट, 499 ईस्वी में', ta: 'Aryabhata in 499 CE', te: 'Aryabhata in 499 CE', bn: 'Aryabhata in 499 CE', kn: 'Aryabhata in 499 CE', gu: 'Aryabhata in 499 CE' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -151,10 +151,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'फिबोनाची ने उस अनुक्रम को कैसे सीखा जो अब उनके नाम पर है?',
     },
     options: [
-      { en: 'He discovered it independently by studying rabbit populations', hi: 'उन्होंने खरगोश की आबादी का अध्ययन करके इसे स्वतंत्र रूप से खोजा' },
-      { en: 'He learned it from Arab mathematicians who had translated Indian mathematical texts', hi: 'उन्होंने इसे अरब गणितज्ञों से सीखा जिन्होंने भारतीय गणितीय ग्रन्थों का अनुवाद किया था' },
-      { en: 'He found it in ancient Greek texts by Euclid', hi: 'उन्होंने इसे यूक्लिड की प्राचीन ग्रीक रचनाओं में पाया' },
-      { en: 'He invented it himself to solve a puzzle posed by the Holy Roman Emperor', hi: 'उन्होंने इसे पवित्र रोमन सम्राट द्वारा प्रस्तुत पहेली हल करने के लिए स्वयं आविष्कार किया' },
+      { en: 'He discovered it independently by studying rabbit populations', hi: 'उन्होंने खरगोश की आबादी का अध्ययन करके इसे स्वतंत्र रूप से खोजा', sa: 'उन्होंने खरगोश की आबादी का अध्ययन करके इसे स्वतंत्र रूप से खोजा', mai: 'उन्होंने खरगोश की आबादी का अध्ययन करके इसे स्वतंत्र रूप से खोजा', mr: 'उन्होंने खरगोश की आबादी का अध्ययन करके इसे स्वतंत्र रूप से खोजा', ta: 'He discovered it independently by studying rabbit populations', te: 'He discovered it independently by studying rabbit populations', bn: 'He discovered it independently by studying rabbit populations', kn: 'He discovered it independently by studying rabbit populations', gu: 'He discovered it independently by studying rabbit populations' },
+      { en: 'He learned it from Arab mathematicians who had translated Indian mathematical texts', hi: 'उन्होंने इसे अरब गणितज्ञों से सीखा जिन्होंने भारतीय गणितीय ग्रन्थों का अनुवाद किया था', sa: 'उन्होंने इसे अरब गणितज्ञों से सीखा जिन्होंने भारतीय गणितीय ग्रन्थों का अनुवाद किया था', mai: 'उन्होंने इसे अरब गणितज्ञों से सीखा जिन्होंने भारतीय गणितीय ग्रन्थों का अनुवाद किया था', mr: 'उन्होंने इसे अरब गणितज्ञों से सीखा जिन्होंने भारतीय गणितीय ग्रन्थों का अनुवाद किया था', ta: 'He learned it from Arab mathematicians who had translated Indian mathematical texts', te: 'He learned it from Arab mathematicians who had translated Indian mathematical texts', bn: 'He learned it from Arab mathematicians who had translated Indian mathematical texts', kn: 'He learned it from Arab mathematicians who had translated Indian mathematical texts', gu: 'He learned it from Arab mathematicians who had translated Indian mathematical texts' },
+      { en: 'He found it in ancient Greek texts by Euclid', hi: 'उन्होंने इसे यूक्लिड की प्राचीन ग्रीक रचनाओं में पाया', sa: 'उन्होंने इसे यूक्लिड की प्राचीन ग्रीक रचनाओं में पाया', mai: 'उन्होंने इसे यूक्लिड की प्राचीन ग्रीक रचनाओं में पाया', mr: 'उन्होंने इसे यूक्लिड की प्राचीन ग्रीक रचनाओं में पाया', ta: 'He found it in ancient Greek texts by Euclid', te: 'He found it in ancient Greek texts by Euclid', bn: 'He found it in ancient Greek texts by Euclid', kn: 'He found it in ancient Greek texts by Euclid', gu: 'He found it in ancient Greek texts by Euclid' },
+      { en: 'He invented it himself to solve a puzzle posed by the Holy Roman Emperor', hi: 'उन्होंने इसे पवित्र रोमन सम्राट द्वारा प्रस्तुत पहेली हल करने के लिए स्वयं आविष्कार किया', sa: 'उन्होंने इसे पवित्र रोमन सम्राट द्वारा प्रस्तुत पहेली हल करने के लिए स्वयं आविष्कार किया', mai: 'उन्होंने इसे पवित्र रोमन सम्राट द्वारा प्रस्तुत पहेली हल करने के लिए स्वयं आविष्कार किया', mr: 'उन्होंने इसे पवित्र रोमन सम्राट द्वारा प्रस्तुत पहेली हल करने के लिए स्वयं आविष्कार किया', ta: 'He invented it himself to solve a puzzle posed by the Holy Roman Emperor', te: 'He invented it himself to solve a puzzle posed by the Holy Roman Emperor', bn: 'He invented it himself to solve a puzzle posed by the Holy Roman Emperor', kn: 'He invented it himself to solve a puzzle posed by the Holy Roman Emperor', gu: 'He invented it himself to solve a puzzle posed by the Holy Roman Emperor' },
     ],
     correctAnswer: 1,
     explanation: {

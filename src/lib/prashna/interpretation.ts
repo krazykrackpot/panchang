@@ -12,7 +12,7 @@ import type {
   QuestionCategory,
   PrashnaInterpretation,
 } from '@/types/prashna';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 import { QUESTION_CATEGORIES } from './question-categories';
 
 /** Sign lord planet ID lookup: sign (1-12) -> planet id (0-8) */
@@ -71,7 +71,7 @@ function isRulerStrong(
  * Derive fructification timing from the third number.
  * Small number (1-3) = days, medium (4-6) = weeks, large (7+) = months.
  */
-function deriveTiming(thirdNumber: number): Trilingual {
+function deriveTiming(thirdNumber: number): LocaleText {
   const reduced = ((thirdNumber - 1) % 12) + 1;
 
   if (reduced <= 3) {
@@ -113,8 +113,8 @@ function generateRemedies(
   verdict: 'favorable' | 'unfavorable' | 'mixed',
   category: QuestionCategory,
   objects: AshtamangalaObject[]
-): Trilingual[] {
-  const remedies: Trilingual[] = [];
+): LocaleText[] {
+  const remedies: LocaleText[] = [];
   const primaryRuler = objects[0].planetRuler;
   const rulerName = GRAHAS[primaryRuler]?.name || { en: 'the ruling planet', hi: 'शासक ग्रह', sa: 'अधिपतिग्रहः' };
 
@@ -149,7 +149,7 @@ function generateRemedies(
   }
 
   // Category-specific remedy
-  const categoryRemedies: Partial<Record<QuestionCategory, Trilingual>> = {
+  const categoryRemedies: Partial<Record<QuestionCategory, LocaleText>> = {
     health: {
       en: 'Recite the Maha Mrityunjaya Mantra 108 times daily for health and protection.',
       hi: 'स्वास्थ्य और सुरक्षा के लिए प्रतिदिन महामृत्युंजय मन्त्र का 108 बार जाप करें।',
@@ -273,7 +273,7 @@ export function generateInterpretation(
   const supportingName = objects[1].name;
   const timingName = objects[2].name;
 
-  let summary: Trilingual;
+  let summary: LocaleText;
 
   if (verdict === 'favorable') {
     summary = {

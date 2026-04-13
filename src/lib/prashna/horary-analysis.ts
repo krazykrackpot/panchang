@@ -13,7 +13,7 @@
  */
 
 import type { KundaliData, PlanetPosition } from '@/types/kundali';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 // ──────────────────────────────────────────────────────────────
 // Types
@@ -22,40 +22,40 @@ import type { Trilingual } from '@/types/panchang';
 export type PrashnaCategory = 'general' | 'career' | 'marriage' | 'health' | 'finance' | 'travel' | 'education' | 'legal';
 
 export interface PrashnaInsight {
-  label: Trilingual;
-  finding: Trilingual;
+  label: LocaleText;
+  finding: LocaleText;
   nature: 'positive' | 'negative' | 'neutral';
   score: number;
 }
 
 export interface PlanetDigest {
   planetId: number;
-  planetName: Trilingual;
+  planetName: LocaleText;
   planetColor: string;
   sign: number;
-  signName: Trilingual;
+  signName: LocaleText;
   house: number;
   dignity: string | null;
   retrograde: boolean;
   strength: 'strong' | 'moderate' | 'weak';
-  role: Trilingual;
+  role: LocaleText;
 }
 
 export interface PrashnaAnalysis {
   category: PrashnaCategory;
-  categoryLabel: Trilingual;
+  categoryLabel: LocaleText;
   verdict: {
     outcome: 'very_favorable' | 'favorable' | 'mixed' | 'challenging' | 'difficult';
     score: number; // -100 to +100
-    summary: Trilingual;
+    summary: LocaleText;
   };
   lagnaInsight: PrashnaInsight;
   moonInsight: PrashnaInsight;
   relevantHouseInsight: PrashnaInsight;
   keyFactors: PrashnaInsight[];
-  timing: Trilingual;
-  guidance: Trilingual;
-  remedies: Trilingual[];
+  timing: LocaleText;
+  guidance: LocaleText;
+  remedies: LocaleText[];
   planetDigest: PlanetDigest[];
 }
 
@@ -64,10 +64,10 @@ export interface PrashnaAnalysis {
 // ──────────────────────────────────────────────────────────────
 
 const CATEGORY_CONFIG: Record<PrashnaCategory, {
-  label: Trilingual;
+  label: LocaleText;
   houses: number[];       // primary + secondary relevant houses
   karaka: number[];       // natural significator planet IDs
-  houseLabel: Trilingual; // label for the relevant house card
+  houseLabel: LocaleText; // label for the relevant house card
 }> = {
   general: {
     label: { en: 'General', hi: 'सामान्य', sa: 'सामान्यम्' },
@@ -145,7 +145,7 @@ function dignityLabel(p: PlanetPosition): string | null {
   return null;
 }
 
-function dignityTri(p: PlanetPosition): Trilingual {
+function dignityTri(p: PlanetPosition): LocaleText {
   if (p.isExalted) return { en: 'exalted', hi: 'उच्च', sa: 'उच्चम्' };
   if (p.isOwnSign) return { en: 'in own sign', hi: 'स्वराशि में', sa: 'स्वराशौ' };
   if (p.isDebilitated) return { en: 'debilitated', hi: 'नीच', sa: 'नीचम्' };
@@ -416,7 +416,7 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
     const isKaraka = cfg.karaka.includes(p.planet.id);
     const isLagnaLord = p.planet.id === ascLordId;
     const isRelLord = p.planet.id === relLordId;
-    let role: Trilingual;
+    let role: LocaleText;
     if (isLagnaLord) role = { en: 'Ascendant Lord (You)', hi: 'लग्नेश (आप)', sa: 'लग्नेशः (त्वम्)' };
     else if (isRelLord) role = { en: `House ${primaryHouse} Lord (Matter)`, hi: `भाव ${primaryHouse} स्वामी (विषय)`, sa: `भाव ${primaryHouse} ईशः (विषयः)` };
     else if (isKaraka) role = { en: 'Natural Significator', hi: 'नैसर्गिक कारक', sa: 'नैसर्गिककारकः' };
@@ -463,7 +463,7 @@ function buildVerdictSummary(
   moon: PlanetPosition,
   relLord: PlanetPosition,
   cfg: typeof CATEGORY_CONFIG[PrashnaCategory],
-): Trilingual {
+): LocaleText {
   const catEn = cfg.label.en.toLowerCase();
   const catHi = cfg.label.hi;
 
@@ -501,7 +501,7 @@ function buildVerdictSummary(
   }
 }
 
-function buildTiming(moon: PlanetPosition, dashas: KundaliData['dashas'], score: number): Trilingual {
+function buildTiming(moon: PlanetPosition, dashas: KundaliData['dashas'], score: number): LocaleText {
   // Moon speed indicates timing — fast Moon = quicker results
   const moonSpeed = Math.abs(moon.speed);
   let timingEn: string, timingHi: string;
@@ -544,7 +544,7 @@ function buildGuidance(
   moon: PlanetPosition,
   relLord: PlanetPosition,
   cfg: typeof CATEGORY_CONFIG[PrashnaCategory],
-): Trilingual {
+): LocaleText {
   const catEn = cfg.label.en.toLowerCase();
 
   const base = outcome === 'very_favorable' || outcome === 'favorable'
@@ -575,11 +575,11 @@ function buildRemedies(
   moon: PlanetPosition,
   ascLord: PlanetPosition,
   cfg: typeof CATEGORY_CONFIG[PrashnaCategory],
-): Trilingual[] {
-  const remedies: Trilingual[] = [];
+): LocaleText[] {
+  const remedies: LocaleText[] = [];
 
   // Always suggest worship of the relevant house lord's deity
-  const lordRemedies: Record<number, Trilingual> = {
+  const lordRemedies: Record<number, LocaleText> = {
     0: { en: 'Offer water to the Sun at sunrise (Surya Arghya) and chant Aditya Hridayam.', hi: 'सूर्योदय पर सूर्य को अर्घ्य दें और आदित्य हृदयम् का पाठ करें।', sa: 'सूर्योदये सूर्याय अर्घ्यं दत्त्वा आदित्यहृदयं पठेत्।' },
     1: { en: 'Worship on Monday. Offer milk to Shiva Linga. Chant Om Chandraya Namah 108 times.', hi: 'सोमवार को पूजा करें। शिवलिंग पर दूध चढ़ाएं। ॐ चन्द्राय नमः 108 बार जपें।', sa: 'सोमवासरे पूजनं कुर्यात्। शिवलिङ्गे दुग्धं समर्पयेत्। ॐ चन्द्राय नमः 108 वारं जपेत्।' },
     2: { en: 'Worship Hanuman on Tuesdays. Chant Hanuman Chalisa. Donate red items.', hi: 'मंगलवार को हनुमान पूजा करें। हनुमान चालीसा पढ़ें। लाल वस्तुएं दान करें।', sa: 'मङ्गलवासरे हनुमत्पूजनम्। हनुमच्चालीसा पठनम्। रक्तवस्तूनि दानम्।' },
@@ -600,7 +600,7 @@ function buildRemedies(
   }
 
   // Category-specific remedies
-  const catRemedies: Record<PrashnaCategory, Trilingual> = {
+  const catRemedies: Record<PrashnaCategory, LocaleText> = {
     general: { en: 'Perform Ganesha Puja to remove obstacles. Chant Om Gam Ganapataye Namah 108 times before starting any new endeavor.', hi: 'बाधा दूर करने के लिए गणेश पूजा करें। किसी नए कार्य से पहले ॐ गं गणपतये नमः 108 बार जपें।', sa: 'विघ्ननिवारणार्थं गणेशपूजनं कुर्यात्। ॐ गं गणपतये नमः 108 वारं जपेत्।' },
     career: { en: 'Light a lamp before Surya Yantra or Sun image every morning. Wear Ruby or Manik if Sun is your Lagna lord.', hi: 'प्रतिदिन सूर्य यन्त्र या सूर्य प्रतिमा के सामने दीपक जलाएं। यदि सूर्य लग्नेश है तो माणिक्य धारण करें।', sa: 'प्रतिदिनं सूर्ययन्त्रसमक्षं दीपं प्रज्वालयेत्।' },
     marriage: { en: 'Worship Gauri-Shankar together. Keep a pair of SwayamVar Parvati images. Chant Swayamvara Parvathi Mantra.', hi: 'गौरी-शंकर की जोड़ी पूजा करें। स्वयंवर पार्वती मन्त्र का जप करें।', sa: 'गौरीशङ्करपूजनं कुर्यात्। स्वयंवरपार्वतीमन्त्रं जपेत्।' },

@@ -1,16 +1,16 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Eye, Sparkles, Moon, Timer, Flame, ListChecks } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
+import type { Locale ,LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ── Trilingual Labels ──────────────────────────────────────────────── */
-type Tri = Record<string, string>;
-const L: Record<string, Tri> = {
+const L: Record<string, LocaleText> = {
   title:    { en: 'Advanced Compatibility Analysis', hi: 'उन्नत अनुकूलता विश्लेषण', sa: 'उन्नतानुकूलताविश्लेषणम्' , ta: 'மேம்பட்ட பொருத்த பகுப்பாய்வு' },
   subtitle: { en: 'Beyond Ashta Kuta --- chart-level factors that determine real compatibility', hi: 'अष्ट कूट से परे --- वास्तविक अनुकूलता निर्धारित करने वाले कुण्डली-स्तरीय कारक', sa: 'अष्टकूटात् परं --- वास्तविकानुकूलतां निर्धारयन्तः कुण्डलीस्तरीयकारकाः' },
   s1Title:  { en: 'Beyond Ashta Kuta --- Chart-Level Analysis', hi: 'अष्ट कूट से परे --- कुण्डली-स्तरीय विश्लेषण', sa: 'अष्टकूटात् परम् --- कुण्डलीस्तरीयविश्लेषणम्' },
@@ -64,28 +64,28 @@ function KeyInsight({ children, color = '#d4a853' }: { children: React.ReactNode
 }
 
 /* ── 7th House Points ───────────────────────────────────────────────── */
-const HOUSE7_POINTS: Record<string, string>[] = [
+const HOUSE7_POINTS: LocaleText[] = [
   { en: 'Compare both charts\' 7th house signs, lords, and occupants for harmony or friction.', hi: 'दोनों कुण्डलियों के 7वें भाव की राशि, स्वामी और ग्रहों की तुलना करें।', sa: 'उभयोः कुण्डल्योः सप्तमभावराशिं, स्वामिनं, ग्रहान् च तुलयतु।' },
   { en: 'His 7th lord in her Lagna (or vice versa) = strong natural attraction.', hi: 'उसका 7वाँ स्वामी उसके लग्न में (या इसके विपरीत) = प्रबल स्वाभाविक आकर्षण।', sa: 'तस्य सप्तमस्वामी तस्याः लग्ने (विपरीतं वा) = प्रबलं स्वाभाविकम् आकर्षणम्।' },
   { en: 'Malefics in 7th of BOTH charts = shared friction zone requiring conscious effort.', hi: 'दोनों कुण्डलियों के 7वें में पाप ग्रह = साझा घर्षण क्षेत्र, सचेत प्रयास आवश्यक।', sa: 'उभयोः कुण्डल्योः सप्तमे पापग्रहाः = साझं घर्षणक्षेत्रम्।' },
   { en: '7th lord in 6/8/12 in EITHER chart = area of concern for partnership longevity.', hi: 'किसी भी कुण्डली में 7वाँ स्वामी 6/8/12 में = साझेदारी दीर्घायु के लिए चिन्ता।', sa: 'कस्याञ्चित् कुण्डल्यां सप्तमस्वामी 6/8/12 भावे = साझेदारीदीर्घायुषे चिन्ता।' },
 ];
 
-const VENUS_POINTS: Tri[] = [
+const VENUS_POINTS: LocaleText[] = [
   { en: 'Venus is the karaka (significator) of marriage for BOTH genders --- its condition is paramount.', hi: 'शुक्र दोनों लिंगों के लिए विवाह का कारक है --- इसकी स्थिति सर्वोपरि है।', sa: 'शुक्रः उभयलिङ्गयोः विवाहकारकः --- तस्य स्थितिः सर्वोपरि।' },
   { en: 'If EITHER partner has Venus combust, debilitated, or in 6/8/12, expect relationship challenges.', hi: 'यदि किसी भी साथी का शुक्र अस्त, नीच, या 6/8/12 में हो तो सम्बन्ध चुनौतियाँ।', sa: 'यदि कस्यचित् साथिनः शुक्रः अस्तः, नीचः, 6/8/12 भावे वा, सम्बन्धचुनौत्यः।' },
   { en: 'Venus in the other person\'s 7th sign = powerful natural magnetic attraction.', hi: 'शुक्र दूसरे व्यक्ति की 7वीं राशि में = शक्तिशाली स्वाभाविक चुम्बकीय आकर्षण।', sa: 'शुक्रः अपरस्य सप्तमराशौ = प्रबलं स्वाभाविकं चुम्बकीयम् आकर्षणम्।' },
   { en: 'Venus Mahadasha alignment: if both are in Venus-related periods, the relationship peaks.', hi: 'शुक्र महादशा संरेखण: दोनों शुक्र-सम्बन्धित अवधि में हों तो सम्बन्ध शिखर पर।', sa: 'शुक्रमहादशासंरेखणम्: उभौ शुक्रसम्बद्धकाले चेत्, सम्बन्धः शिखरे।' },
 ];
 
-const NAVAMSHA_POINTS: Tri[] = [
+const NAVAMSHA_POINTS: LocaleText[] = [
   { en: 'D9 (Navamsha) is THE marriage chart --- it reveals the true quality of married life.', hi: 'D9 (नवांश) विवाह कुण्डली है --- यह वैवाहिक जीवन की वास्तविक गुणवत्ता दर्शाता है।', sa: 'D9 (नवांशः) विवाहकुण्डली --- वैवाहिकजीवनस्य वास्तविकगुणवत्तां दर्शयति।' },
   { en: 'Compare D9 lagnas: same or friendly signs = compatible wavelengths. Enemy signs = friction.', hi: 'D9 लग्नों की तुलना करें: समान या मित्र राशि = अनुकूल। शत्रु राशि = घर्षण।', sa: 'D9 लग्नानि तुलयतु: समानानि मित्रराशयो वा = अनुकूलाः। शत्रुराशयः = घर्षणम्।' },
   { en: 'Benefics in both D9 7th houses = harmonious married life. Malefics = ongoing adjustments.', hi: 'दोनों D9 सप्तम में शुभ ग्रह = सामंजस्यपूर्ण वैवाहिक जीवन। पाप ग्रह = निरन्तर समायोजन।', sa: 'उभयोः D9 सप्तमे शुभग्रहाः = सामञ्जस्यपूर्णं वैवाहिकजीवनम्। पापग्रहाः = निरन्तरसमायोजनम्।' },
   { en: 'Vargottama planets shared by both D9 charts indicate deep shared strengths and karmic bonds.', hi: 'दोनों D9 में वर्गोत्तम ग्रह गहन साझा शक्ति और कार्मिक बन्धन दर्शाते हैं।', sa: 'उभयोः D9 कुण्डल्योः वर्गोत्तमग्रहाः गहनां साझां शक्तिं कार्मिकबन्धनं च दर्शयन्ति।' },
 ];
 
-const DASHA_COMBOS: { combo: Tri; effect: Tri; quality: 'good' | 'mixed' | 'hard' }[] = [
+const DASHA_COMBOS: { combo: LocaleText; effect: LocaleText; quality: 'good' | 'mixed' | 'hard' }[] = [
   { combo: { en: 'Both in Jupiter dasha', hi: 'दोनों गुरु दशा में', sa: 'उभौ गुरुदशायाम्' }, effect: { en: 'Expansion together, ideal for building family and wealth', hi: 'एक साथ विस्तार, परिवार और धन निर्माण के लिए आदर्श', sa: 'सह विस्तारः, कुटुम्बधननिर्माणाय आदर्शः' }, quality: 'good' },
   { combo: { en: 'One Venus, one Jupiter', hi: 'एक शुक्र, एक गुरु', sa: 'एकः शुक्रदशायां, एकः गुरुदशायाम्' }, effect: { en: 'Complementary --- one enjoys, one expands. Harmonious balance.', hi: 'पूरक --- एक आनन्द लेता है, एक विस्तार करता है। सामंजस्यपूर्ण।', sa: 'पूरकम् --- एकः आनन्दति, एकः विस्तारयति। सामञ्जस्यम्।' }, quality: 'good' },
   { combo: { en: 'One Saturn, one Venus', hi: 'एक शनि, एक शुक्र', sa: 'एकः शनिदशायां, एकः शुक्रदशायाम्' }, effect: { en: 'Different life rhythms --- one in restriction, other in pleasure. Needs patience.', hi: 'भिन्न जीवन लय --- एक प्रतिबन्ध में, दूसरा आनन्द में। धैर्य चाहिए।', sa: 'भिन्नजीवनतालः --- एकः प्रतिबन्धे, अपरः आनन्दे। धैर्यम् आवश्यकम्।' }, quality: 'mixed' },
@@ -94,7 +94,7 @@ const DASHA_COMBOS: { combo: Tri; effect: Tri; quality: 'good' | 'mixed' | 'hard
 ];
 
 const MANGAL_HOUSES = [1, 2, 4, 7, 8, 12];
-const MANGAL_CANCELLATIONS: Tri[] = [
+const MANGAL_CANCELLATIONS: LocaleText[] = [
   { en: 'Mars is in own sign (Aries/Scorpio) or exalted (Capricorn) --- weakens the dosha.', hi: 'मंगल स्वराशि (मेष/वृश्चिक) या उच्च (मकर) में --- दोष कमज़ोर।', sa: 'मङ्गलः स्वराशौ (मेषः/वृश्चिकः) उच्चे (मकरः) वा --- दोषः दुर्बलः।' },
   { en: 'Jupiter aspects the 7th house, providing divine protection to marriage.', hi: 'गुरु सप्तम भाव पर दृष्टि डालता है, विवाह को दैवी सुरक्षा देता है।', sa: 'गुरुः सप्तमभावं पश्यति, विवाहाय दैवीसुरक्षां ददाति।' },
   { en: 'Partner ALSO has Mangal Dosha --- mutual cancellation (most common fix).', hi: 'साथी को भी मंगल दोष है --- पारस्परिक निरसन (सबसे सामान्य समाधान)।', sa: 'साथिनः अपि मङ्गलदोषः --- पारस्परिकनिरसनम् (प्रचलिततमः समाधानम्)।' },
@@ -103,7 +103,7 @@ const MANGAL_CANCELLATIONS: Tri[] = [
   { en: 'Mars is in specific nakshatras that mitigate its aggression (e.g., Chitra, Mrigashira, Dhanishtha).', hi: 'मंगल विशिष्ट नक्षत्रों में है जो उसकी आक्रामकता कम करते हैं (चित्रा, मृगशिरा, धनिष्ठा)।', sa: 'मङ्गलः विशिष्टनक्षत्रेषु अस्ति ये तस्य आक्रामकतां शमयन्ति।' },
 ];
 
-const PRACTICAL_STEPS: { step: number; text: Tri; minScore?: string }[] = [
+const PRACTICAL_STEPS: { step: number; text: LocaleText; minScore?: string }[] = [
   { step: 1, text: { en: 'Start with Ashta Kuta score (minimum 18 out of 36 to proceed).', hi: 'अष्ट कूट अंक से शुरू करें (आगे बढ़ने के लिए न्यूनतम 18/36)।', sa: 'अष्टकूटाङ्केन आरभत (अग्रे गन्तुं न्यूनतमम् 18/36)।' }, minScore: '18/36' },
   { step: 2, text: { en: 'Check for Nadi Dosha (0/8 is a red flag unless specific cancellation conditions apply).', hi: 'नाडी दोष जाँचें (0/8 चेतावनी, जब तक विशिष्ट निरसन शर्तें न हों)।', sa: 'नाडीदोषं परीक्षतु (0/8 सावधानता, विशिष्टनिरसनशर्ताः चेत् न)।' } },
   { step: 3, text: { en: 'Check Mangal Dosha in both charts from Lagna, Moon, AND Venus.', hi: 'दोनों कुण्डलियों में लग्न, चन्द्र, और शुक्र से मंगल दोष जाँचें।', sa: 'उभयोः कुण्डल्योः लग्नात्, चन्द्रात्, शुक्रात् च मङ्गलदोषं परीक्षतु।' } },
@@ -135,7 +135,7 @@ export default function CompatibilityPage() {
           <button key={id} onClick={() => setActive(id)} className={`flex items-center gap-2 px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all ${active === id ? 'border-2 text-gold-light scale-105' : 'border border-white/10 text-text-secondary hover:text-text-primary'}`} style={active === id ? { borderColor: color, backgroundColor: `${color}18` } : {}}>
             <Icon size={14} style={{ color }} />
             <span className="hidden md:inline">{L[titleKey][locale]}</span>
-            <span className="md:hidden">{(id === 'beyond' ? (!isDevanagariLocale(locale) ? 'Kuta+' : 'कूट+') : id === 'approach' ? (!isDevanagariLocale(locale) ? 'Steps' : 'चरण') : L[titleKey][locale].split(' ')[0])}</span>
+            <span className="md:hidden">{(id === 'beyond' ? (!isDevanagariLocale(locale) ? 'Kuta+' : 'कूट+') : id === 'approach' ? (!isDevanagariLocale(locale) ? 'Steps' : 'चरण') : (L[titleKey][locale] || L[titleKey].en || '').split(' ')[0])}</span>
           </button>
         ))}
       </div>
@@ -156,7 +156,7 @@ export default function CompatibilityPage() {
                 ].map((item, i) => (
                   <div key={i} className="text-center p-4 rounded-xl border border-white/5 bg-white/3">
                     <div className="text-3xl font-bold mb-1" style={{ color: item.color }}>{item.score}</div>
-                    <div className="text-text-secondary text-xs">{item.label[locale]}</div>
+                    <div className="text-text-secondary text-xs">{tl(item.label, locale)}</div>
                   </div>
                 ))}
               </div>
@@ -286,7 +286,7 @@ export default function CompatibilityPage() {
             { href: '/learn/marriage', label: { en: 'Learn: Marriage', hi: 'सीखें: विवाह', sa: 'शिक्षा: विवाहः' } },
           ].map((link) => (
             <Link key={link.href} href={link.href} className="px-4 py-2 rounded-lg bg-gold-primary/8 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/15 transition-colors">
-              {link.label[locale]}
+              {tl(link.label, locale)}
             </Link>
           ))}
         </div>

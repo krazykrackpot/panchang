@@ -6,18 +6,18 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_6_1', phase: 2, topic: 'Nakshatra', moduleNumber: '6.1',
-  title: { en: 'Nakshatra System — The 27 Lunar Mansions', hi: 'नक्षत्र पद्धति — 27 चान्द्र भवन' },
+  title: { en: 'Nakshatra System — The 27 Lunar Mansions', hi: 'नक्षत्र पद्धति — 27 चान्द्र भवन', sa: 'नक्षत्र पद्धति — 27 चान्द्र भवन', mai: 'नक्षत्र पद्धति — 27 चान्द्र भवन', mr: 'नक्षत्र पद्धति — 27 चान्द्र भवन', ta: 'Nakshatra System — The 27 Lunar Mansions', te: 'Nakshatra System — The 27 Lunar Mansions', bn: 'Nakshatra System — The 27 Lunar Mansions', kn: 'Nakshatra System — The 27 Lunar Mansions', gu: 'Nakshatra System — The 27 Lunar Mansions' },
   subtitle: {
     en: 'The ecliptic divided into 27 equal segments of 13°20\', each tied to a junction star, a deity, and a ruling planet',
     hi: 'क्रान्तिवृत्त को 13°20\' के 27 समान खण्डों में विभक्त किया गया है, प्रत्येक एक योगतारा, देवता और स्वामी ग्रह से जुड़ा है',
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Module 6-2: Nakshatra Padas', hi: 'मॉड्यूल 6-2: नक्षत्र पाद' }, href: '/learn/modules/6-2' },
-    { label: { en: 'Module 6-3: Nakshatra Compatibility', hi: 'मॉड्यूल 6-3: नक्षत्र मेलापक' }, href: '/learn/modules/6-3' },
-    { label: { en: 'Module 6-4: Nakshatra Lords & Dasha', hi: 'मॉड्यूल 6-4: नक्षत्र स्वामी एवं दशा' }, href: '/learn/modules/6-4' },
-    { label: { en: 'Nakshatras Deep Dive', hi: 'नक्षत्र विस्तार' }, href: '/learn/nakshatras' },
-    { label: { en: 'Daily Nakshatra', hi: 'दैनिक नक्षत्र' }, href: '/panchang/nakshatra' },
+    { label: { en: 'Module 6-2: Nakshatra Padas', hi: 'मॉड्यूल 6-2: नक्षत्र पाद', sa: 'मॉड्यूल 6-2: नक्षत्र पाद', mai: 'मॉड्यूल 6-2: नक्षत्र पाद', mr: 'मॉड्यूल 6-2: नक्षत्र पाद', ta: 'Module 6-2: Nakshatra Padas', te: 'Module 6-2: Nakshatra Padas', bn: 'Module 6-2: Nakshatra Padas', kn: 'Module 6-2: Nakshatra Padas', gu: 'Module 6-2: Nakshatra Padas' }, href: '/learn/modules/6-2' },
+    { label: { en: 'Module 6-3: Nakshatra Compatibility', hi: 'मॉड्यूल 6-3: नक्षत्र मेलापक', sa: 'मॉड्यूल 6-3: नक्षत्र मेलापक', mai: 'मॉड्यूल 6-3: नक्षत्र मेलापक', mr: 'मॉड्यूल 6-3: नक्षत्र मेलापक', ta: 'Module 6-3: Nakshatra Compatibility', te: 'Module 6-3: Nakshatra Compatibility', bn: 'Module 6-3: Nakshatra Compatibility', kn: 'Module 6-3: Nakshatra Compatibility', gu: 'Module 6-3: Nakshatra Compatibility' }, href: '/learn/modules/6-3' },
+    { label: { en: 'Module 6-4: Nakshatra Lords & Dasha', hi: 'मॉड्यूल 6-4: नक्षत्र स्वामी एवं दशा', sa: 'मॉड्यूल 6-4: नक्षत्र स्वामी एवं दशा', mai: 'मॉड्यूल 6-4: नक्षत्र स्वामी एवं दशा', mr: 'मॉड्यूल 6-4: नक्षत्र स्वामी एवं दशा', ta: 'Module 6-4: Nakshatra Lords & Dasha', te: 'Module 6-4: Nakshatra Lords & Dasha', bn: 'Module 6-4: Nakshatra Lords & Dasha', kn: 'Module 6-4: Nakshatra Lords & Dasha', gu: 'Module 6-4: Nakshatra Lords & Dasha' }, href: '/learn/modules/6-4' },
+    { label: { en: 'Nakshatras Deep Dive', hi: 'नक्षत्र विस्तार', sa: 'नक्षत्र विस्तार', mai: 'नक्षत्र विस्तार', mr: 'नक्षत्र विस्तार', ta: 'Nakshatras Deep Dive', te: 'Nakshatras Deep Dive', bn: 'Nakshatras Deep Dive', kn: 'Nakshatras Deep Dive', gu: 'Nakshatras Deep Dive' }, href: '/learn/nakshatras' },
+    { label: { en: 'Daily Nakshatra', hi: 'दैनिक नक्षत्र', sa: 'दैनिक नक्षत्र', mai: 'दैनिक नक्षत्र', mr: 'दैनिक नक्षत्र', ta: 'Daily Nakshatra', te: 'Daily Nakshatra', bn: 'Daily Nakshatra', kn: 'Daily Nakshatra', gu: 'Daily Nakshatra' }, href: '/panchang/nakshatra' },
   ],
 };
 
@@ -29,10 +29,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वैदिक पद्धति में क्रान्तिवृत्त को कितने नक्षत्रों में विभक्त किया गया है?',
     },
     options: [
-      { en: '12', hi: '12' },
-      { en: '27', hi: '27' },
-      { en: '28', hi: '28' },
-      { en: '30', hi: '30' },
+      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
+      { en: '27', hi: '27', sa: '27', mai: '27', mr: '27', ta: '27', te: '27', bn: '27', kn: '27', gu: '27' },
+      { en: '28', hi: '28', sa: '28', mai: '28', mr: '28', ta: '28', te: '28', bn: '28', kn: '28', gu: '28' },
+      { en: '30', hi: '30', sa: '30', mai: '30', mr: '30', ta: '30', te: '30', bn: '30', kn: '30', gu: '30' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -47,10 +47,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'प्रत्येक नक्षत्र का कोणीय विस्तार कितना है?',
     },
     options: [
-      { en: '12 degrees', hi: '12 अंश' },
-      { en: '13 degrees 20 minutes', hi: '13 अंश 20 कला' },
-      { en: '15 degrees', hi: '15 अंश' },
-      { en: '10 degrees', hi: '10 अंश' },
+      { en: '12 degrees', hi: '12 अंश', sa: '12 अंश', mai: '12 अंश', mr: '12 अंश', ta: '12 degrees', te: '12 degrees', bn: '12 degrees', kn: '12 degrees', gu: '12 degrees' },
+      { en: '13 degrees 20 minutes', hi: '13 अंश 20 कला', sa: '13 अंश 20 कला', mai: '13 अंश 20 कला', mr: '13 अंश 20 कला', ta: '13 degrees 20 minutes', te: '13 degrees 20 minutes', bn: '13 degrees 20 minutes', kn: '13 degrees 20 minutes', gu: '13 degrees 20 minutes' },
+      { en: '15 degrees', hi: '15 अंश', sa: '15 अंश', mai: '15 अंश', mr: '15 अंश', ta: '15 degrees', te: '15 degrees', bn: '15 degrees', kn: '15 degrees', gu: '15 degrees' },
+      { en: '10 degrees', hi: '10 अंश', sa: '10 अंश', mai: '10 अंश', mr: '10 अंश', ta: '10 degrees', te: '10 degrees', bn: '10 degrees', kn: '10 degrees', gu: '10 degrees' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -77,10 +77,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'नाक्षत्र सायन मेष (0°) से कौन-सा नक्षत्र आरम्भ होता है?',
     },
     options: [
-      { en: 'Rohini', hi: 'रोहिणी' },
-      { en: 'Bharani', hi: 'भरणी' },
-      { en: 'Ashwini', hi: 'अश्विनी' },
-      { en: 'Krittika', hi: 'कृत्तिका' },
+      { en: 'Rohini', hi: 'रोहिणी', sa: 'रोहिणी', mai: 'रोहिणी', mr: 'रोहिणी', ta: 'Rohini', te: 'Rohini', bn: 'Rohini', kn: 'Rohini', gu: 'Rohini' },
+      { en: 'Bharani', hi: 'भरणी', sa: 'भरणी', mai: 'भरणी', mr: 'भरणी', ta: 'Bharani', te: 'Bharani', bn: 'Bharani', kn: 'Bharani', gu: 'Bharani' },
+      { en: 'Ashwini', hi: 'अश्विनी', sa: 'अश्विनी', mai: 'अश्विनी', mr: 'अश्विनी', ta: 'Ashwini', te: 'Ashwini', bn: 'Ashwini', kn: 'Ashwini', gu: 'Ashwini' },
+      { en: 'Krittika', hi: 'कृत्तिका', sa: 'कृत्तिका', mai: 'कृत्तिका', mr: 'कृत्तिका', ta: 'Krittika', te: 'Krittika', bn: 'Krittika', kn: 'Krittika', gu: 'Krittika' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -95,10 +95,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्रमा एक नक्षत्र में लगभग कितने समय तक रहता है?',
     },
     options: [
-      { en: 'About 12 hours', hi: 'लगभग 12 घण्टे' },
-      { en: 'About 1 day (24 hours)', hi: 'लगभग 1 दिन (24 घण्टे)' },
-      { en: 'About 2.5 days', hi: 'लगभग 2.5 दिन' },
-      { en: 'About 7 days', hi: 'लगभग 7 दिन' },
+      { en: 'About 12 hours', hi: 'लगभग 12 घण्टे', sa: 'लगभग 12 घण्टे', mai: 'लगभग 12 घण्टे', mr: 'लगभग 12 घण्टे', ta: 'About 12 hours', te: 'About 12 hours', bn: 'About 12 hours', kn: 'About 12 hours', gu: 'About 12 hours' },
+      { en: 'About 1 day (24 hours)', hi: 'लगभग 1 दिन (24 घण्टे)', sa: 'लगभग 1 दिन (24 घण्टे)', mai: 'लगभग 1 दिन (24 घण्टे)', mr: 'लगभग 1 दिन (24 घण्टे)', ta: 'About 1 day (24 hours)', te: 'About 1 day (24 hours)', bn: 'About 1 day (24 hours)', kn: 'About 1 day (24 hours)', gu: 'About 1 day (24 hours)' },
+      { en: 'About 2.5 days', hi: 'लगभग 2.5 दिन', sa: 'लगभग 2.5 दिन', mai: 'लगभग 2.5 दिन', mr: 'लगभग 2.5 दिन', ta: 'About 2.5 days', te: 'About 2.5 days', bn: 'About 2.5 days', kn: 'About 2.5 days', gu: 'About 2.5 days' },
+      { en: 'About 7 days', hi: 'लगभग 7 दिन', sa: 'लगभग 7 दिन', mai: 'लगभग 7 दिन', mr: 'लगभग 7 दिन', ta: 'About 7 days', te: 'About 7 days', bn: 'About 7 days', kn: 'About 7 days', gu: 'About 7 days' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -125,10 +125,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'नक्षत्र पद्धति में कौन-सा गण (स्वभाव) वर्गीकरण विद्यमान नहीं है?',
     },
     options: [
-      { en: 'Deva (divine)', hi: 'देव (दिव्य)' },
-      { en: 'Manushya (human)', hi: 'मनुष्य (मानव)' },
-      { en: 'Rakshasa (demonic)', hi: 'राक्षस (आसुरी)' },
-      { en: 'Pishach (ghostly)', hi: 'पिशाच (प्रेत)' },
+      { en: 'Deva (divine)', hi: 'देव (दिव्य)', sa: 'देव (दिव्य)', mai: 'देव (दिव्य)', mr: 'देव (दिव्य)', ta: 'Deva (divine)', te: 'Deva (divine)', bn: 'Deva (divine)', kn: 'Deva (divine)', gu: 'Deva (divine)' },
+      { en: 'Manushya (human)', hi: 'मनुष्य (मानव)', sa: 'मनुष्य (मानव)', mai: 'मनुष्य (मानव)', mr: 'मनुष्य (मानव)', ta: 'Manushya (human)', te: 'Manushya (human)', bn: 'Manushya (human)', kn: 'Manushya (human)', gu: 'Manushya (human)' },
+      { en: 'Rakshasa (demonic)', hi: 'राक्षस (आसुरी)', sa: 'राक्षस (आसुरी)', mai: 'राक्षस (आसुरी)', mr: 'राक्षस (आसुरी)', ta: 'Rakshasa (demonic)', te: 'Rakshasa (demonic)', bn: 'Rakshasa (demonic)', kn: 'Rakshasa (demonic)', gu: 'Rakshasa (demonic)' },
+      { en: 'Pishach (ghostly)', hi: 'पिशाच (प्रेत)', sa: 'पिशाच (प्रेत)', mai: 'पिशाच (प्रेत)', mr: 'पिशाच (प्रेत)', ta: 'Pishach (ghostly)', te: 'Pishach (ghostly)', bn: 'Pishach (ghostly)', kn: 'Pishach (ghostly)', gu: 'Pishach (ghostly)' },
     ],
     correctAnswer: 3,
     explanation: {
@@ -143,10 +143,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'तीक्ष्ण (उग्र) नक्षत्र जैसे आर्द्रा और मूल किस कार्य के लिए सर्वाधिक उपयुक्त हैं?',
     },
     options: [
-      { en: 'Weddings and engagements', hi: 'विवाह और सगाई' },
-      { en: 'Filing lawsuits, surgery, demolition', hi: 'मुकदमा दायर करना, शल्य चिकित्सा, विध्वंस' },
-      { en: 'Starting a new business', hi: 'नया व्यापार आरम्भ करना' },
-      { en: 'Naming ceremonies for children', hi: 'बच्चों का नामकरण संस्कार' },
+      { en: 'Weddings and engagements', hi: 'विवाह और सगाई', sa: 'विवाह और सगाई', mai: 'विवाह और सगाई', mr: 'विवाह और सगाई', ta: 'Weddings and engagements', te: 'Weddings and engagements', bn: 'Weddings and engagements', kn: 'Weddings and engagements', gu: 'Weddings and engagements' },
+      { en: 'Filing lawsuits, surgery, demolition', hi: 'मुकदमा दायर करना, शल्य चिकित्सा, विध्वंस', sa: 'मुकदमा दायर करना, शल्य चिकित्सा, विध्वंस', mai: 'मुकदमा दायर करना, शल्य चिकित्सा, विध्वंस', mr: 'मुकदमा दायर करना, शल्य चिकित्सा, विध्वंस', ta: 'Filing lawsuits, surgery, demolition', te: 'Filing lawsuits, surgery, demolition', bn: 'Filing lawsuits, surgery, demolition', kn: 'Filing lawsuits, surgery, demolition', gu: 'Filing lawsuits, surgery, demolition' },
+      { en: 'Starting a new business', hi: 'नया व्यापार आरम्भ करना', sa: 'नया व्यापार आरम्भ करना', mai: 'नया व्यापार आरम्भ करना', mr: 'नया व्यापार आरम्भ करना', ta: 'Starting a new business', te: 'Starting a new business', bn: 'Starting a new business', kn: 'Starting a new business', gu: 'Starting a new business' },
+      { en: 'Naming ceremonies for children', hi: 'बच्चों का नामकरण संस्कार', sa: 'बच्चों का नामकरण संस्कार', mai: 'बच्चों का नामकरण संस्कार', mr: 'बच्चों का नामकरण संस्कार', ta: 'Naming ceremonies for children', te: 'Naming ceremonies for children', bn: 'Naming ceremonies for children', kn: 'Naming ceremonies for children', gu: 'Naming ceremonies for children' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -173,10 +173,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'देव गण में कितने नक्षत्र आते हैं?',
     },
     options: [
-      { en: '7', hi: '7' },
-      { en: '9', hi: '9' },
-      { en: '11', hi: '11' },
-      { en: '12', hi: '12' },
+      { en: '7', hi: '7', sa: '7', mai: '7', mr: '7', ta: '7', te: '7', bn: '7', kn: '7', gu: '7' },
+      { en: '9', hi: '9', sa: '9', mai: '9', mr: '9', ta: '9', te: '9', bn: '9', kn: '9', gu: '9' },
+      { en: '11', hi: '11', sa: '11', mai: '11', mr: '11', ta: '11', te: '11', bn: '11', kn: '11', gu: '11' },
+      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
     ],
     correctAnswer: 1,
     explanation: {

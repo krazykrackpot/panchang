@@ -8,7 +8,7 @@ import {
   calculateTithi, calculateYoga, sunLongitude, moonLongitude,
   toSidereal, approximateSunrise, approximateSunset,
 } from '@/lib/ephem/astronomical';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 export interface MuhuratDate {
   date: string;           // YYYY-MM-DD
@@ -31,7 +31,7 @@ export type MuhuratActivity =
   | 'education';
 
 interface ActivityRules {
-  label: Trilingual;
+  label: LocaleText;
   goodTithis: number[];       // 1-30
   goodNakshatras: number[];   // 1-27
   goodWeekdays: number[];     // 0-6
@@ -110,7 +110,7 @@ export function getActivityRules(activity: MuhuratActivity): ActivityRules {
   return ACTIVITY_RULES[activity];
 }
 
-export function getAllActivities(): { key: MuhuratActivity; label: Trilingual }[] {
+export function getAllActivities(): { key: MuhuratActivity; label: LocaleText }[] {
   return (Object.entries(ACTIVITY_RULES) as [MuhuratActivity, ActivityRules][]).map(
     ([key, rules]) => ({ key, label: rules.label })
   );

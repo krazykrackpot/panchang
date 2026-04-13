@@ -1,17 +1,18 @@
 'use client';
+import { tl } from '@/lib/utils/trilingual';
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Check, Share2, Printer } from 'lucide-react';
 import type { SamagriItem } from '@/lib/constants/puja-vidhi/types';
-import type { Locale } from '@/types/panchang';
+import type { Locale ,LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ── Trilingual labels ─────────────────────────────────────── */
 
 type CategoryKey = NonNullable<SamagriItem['category']> | 'uncategorized';
 
-const CATEGORY_LABELS: Record<CategoryKey, Record<Locale, string>> = {
+const CATEGORY_LABELS: Record<CategoryKey, LocaleText> = {
   flowers:       { en: 'Flowers & Leaves',    hi: 'पुष्प एवं पत्र',      sa: 'पुष्पाणि पत्राणि च' },
   food:          { en: 'Food & Offerings',     hi: 'खाद्य एवं नैवेद्य',    sa: 'भोज्यं नैवेद्यं च' },
   puja_items:    { en: 'Puja Items',           hi: 'पूजा सामग्री',         sa: 'पूजाद्रव्याणि' },
@@ -143,7 +144,7 @@ export default function SamagriList({ items, slug, locale }: SamagriListProps) {
               className="text-sm text-text-secondary/75"
               style={bodyFont ? { fontFamily: bodyFont } : undefined}
             >
-              {UI_LABELS.ready[locale]}
+              {tl(UI_LABELS.ready, locale)}
             </span>
           </div>
           {/* Progress bar */}
@@ -162,23 +163,23 @@ export default function SamagriList({ items, slug, locale }: SamagriListProps) {
           <button
             onClick={handleShare}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-gold-primary/10 hover:bg-gold-primary/20 border border-gold-primary/15 text-gold-primary/80 hover:text-gold-primary transition-colors"
-            aria-label={UI_LABELS.share[locale]}
+            aria-label={tl(UI_LABELS.share, locale)}
           >
             <Share2 className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">{UI_LABELS.share[locale]}</span>
+            <span className="hidden sm:inline">{tl(UI_LABELS.share, locale)}</span>
           </button>
           <button
             onClick={handlePrint}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-gold-primary/10 hover:bg-gold-primary/20 border border-gold-primary/15 text-gold-primary/80 hover:text-gold-primary transition-colors"
-            aria-label={UI_LABELS.print[locale]}
+            aria-label={tl(UI_LABELS.print, locale)}
           >
             <Printer className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">{UI_LABELS.print[locale]}</span>
+            <span className="hidden sm:inline">{tl(UI_LABELS.print, locale)}</span>
           </button>
           {/* Copied toast */}
           {showCopied && (
             <span className="absolute -bottom-7 right-0 text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 whitespace-nowrap">
-              {UI_LABELS.copied[locale]}
+              {tl(UI_LABELS.copied, locale)}
             </span>
           )}
         </div>
@@ -237,7 +238,7 @@ export default function SamagriList({ items, slug, locale }: SamagriListProps) {
                           </span>
                           {item.essential === false && (
                             <span className="text-xs px-1.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 font-medium">
-                              {UI_LABELS.optional[locale]}
+                              {tl(UI_LABELS.optional, locale)}
                             </span>
                           )}
                           {item.quantity && (
@@ -263,7 +264,7 @@ export default function SamagriList({ items, slug, locale }: SamagriListProps) {
                             className={`text-xs leading-relaxed ${isChecked ? 'text-blue-400/25' : 'text-blue-400/70'}`}
                             style={bodyFont ? { fontFamily: bodyFont } : undefined}
                           >
-                            <span className="font-semibold">{UI_LABELS.prep[locale]}</span>{' '}
+                            <span className="font-semibold">{tl(UI_LABELS.prep, locale)}</span>{' '}
                             {item.prepNote[locale]}
                           </p>
                         )}
@@ -278,7 +279,7 @@ export default function SamagriList({ items, slug, locale }: SamagriListProps) {
                                 style={bodyFont ? { fontFamily: bodyFont } : undefined}
                               >
                                 <span className="text-gold-primary/70 font-semibold">
-                                  {UI_LABELS.substitute[locale]}
+                                  {tl(UI_LABELS.substitute, locale)}
                                 </span>{' '}
                                 {sub.item[locale]}
                                 {sub.note && (

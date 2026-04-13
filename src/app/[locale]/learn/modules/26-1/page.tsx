@@ -5,16 +5,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_26_1', phase: 6, topic: 'Indian Contributions', moduleNumber: '26.1',
-  title: { en: 'Earth Rotates — 1000 Years Before Europe', hi: 'पृथ्वी घूमती है — यूरोप से 1000 वर्ष पहले' },
+  title: { en: 'Earth Rotates — 1000 Years Before Europe', hi: 'पृथ्वी घूमती है — यूरोप से 1000 वर्ष पहले', sa: 'पृथ्वी घूमती है — यूरोप से 1000 वर्ष पहले', mai: 'पृथ्वी घूमती है — यूरोप से 1000 वर्ष पहले', mr: 'पृथ्वी घूमती है — यूरोप से 1000 वर्ष पहले', ta: 'Earth Rotates — 1000 Years Before Europe', te: 'Earth Rotates — 1000 Years Before Europe', bn: 'Earth Rotates — 1000 Years Before Europe', kn: 'Earth Rotates — 1000 Years Before Europe', gu: 'Earth Rotates — 1000 Years Before Europe' },
   subtitle: {
     en: 'Aryabhata\'s 499 CE declaration that Earth rotates on its axis — a millennium before Copernicus shocked Europe with the same idea',
     hi: '499 ईस्वी में आर्यभट की घोषणा कि पृथ्वी अपनी धुरी पर घूमती है — कोपर्निकस से एक सहस्राब्दी पहले',
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 26-2: Gravity Before Newton', hi: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण' }, href: '/learn/modules/26-2' },
-    { label: { en: 'Module 26-3: Speed of Light', hi: 'मॉड्यूल 26-3: प्रकाश की गति' }, href: '/learn/modules/26-3' },
-    { label: { en: 'Module 25-1: Zero & Place Value', hi: 'मॉड्यूल 25-1: शून्य और स्थानमान' }, href: '/learn/modules/25-1' },
+    { label: { en: 'Module 26-2: Gravity Before Newton', hi: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण', sa: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण', mai: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण', mr: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण', ta: 'Module 26-2: Gravity Before Newton', te: 'Module 26-2: Gravity Before Newton', bn: 'Module 26-2: Gravity Before Newton', kn: 'Module 26-2: Gravity Before Newton', gu: 'Module 26-2: Gravity Before Newton' }, href: '/learn/modules/26-2' },
+    { label: { en: 'Module 26-3: Speed of Light', hi: 'मॉड्यूल 26-3: प्रकाश की गति', sa: 'मॉड्यूल 26-3: प्रकाश की गति', mai: 'मॉड्यूल 26-3: प्रकाश की गति', mr: 'मॉड्यूल 26-3: प्रकाश की गति', ta: 'Module 26-3: Speed of Light', te: 'Module 26-3: Speed of Light', bn: 'Module 26-3: Speed of Light', kn: 'Module 26-3: Speed of Light', gu: 'Module 26-3: Speed of Light' }, href: '/learn/modules/26-3' },
+    { label: { en: 'Module 25-1: Zero & Place Value', hi: 'मॉड्यूल 25-1: शून्य और स्थानमान', sa: 'मॉड्यूल 25-1: शून्य और स्थानमान', mai: 'मॉड्यूल 25-1: शून्य और स्थानमान', mr: 'मॉड्यूल 25-1: शून्य और स्थानमान', ta: 'Module 25-1: Zero & Place Value', te: 'Module 25-1: Zero & Place Value', bn: 'Module 25-1: Zero & Place Value', kn: 'Module 25-1: Zero & Place Value', gu: 'Module 25-1: Zero & Place Value' }, href: '/learn/modules/25-1' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किसने कोपर्निकस से लगभग 1,000 वर्ष पहले कहा कि पृथ्वी अपनी धुरी पर घूमती है?',
     },
     options: [
-      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त' },
-      { en: 'Bhaskaracharya', hi: 'भास्कराचार्य' },
-      { en: 'Aryabhata', hi: 'आर्यभट' },
-      { en: 'Varahamihira', hi: 'वराहमिहिर' },
+      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त', sa: 'ब्रह्मगुप्त', mai: 'ब्रह्मगुप्त', mr: 'ब्रह्मगुप्त', ta: 'Brahmagupta', te: 'Brahmagupta', bn: 'Brahmagupta', kn: 'Brahmagupta', gu: 'Brahmagupta' },
+      { en: 'Bhaskaracharya', hi: 'भास्कराचार्य', sa: 'भास्कराचार्य', mai: 'भास्कराचार्य', mr: 'भास्कराचार्य', ta: 'Bhaskaracharya', te: 'Bhaskaracharya', bn: 'Bhaskaracharya', kn: 'Bhaskaracharya', gu: 'Bhaskaracharya' },
+      { en: 'Aryabhata', hi: 'आर्यभट', sa: 'आर्यभट', mai: 'आर्यभट', mr: 'आर्यभट', ta: 'Aryabhata', te: 'Aryabhata', bn: 'Aryabhata', kn: 'Aryabhata', gu: 'Aryabhata' },
+      { en: 'Varahamihira', hi: 'वराहमिहिर', sa: 'वराहमिहिर', mai: 'वराहमिहिर', mr: 'वराहमिहिर', ta: 'Varahamihira', te: 'Varahamihira', bn: 'Varahamihira', kn: 'Varahamihira', gu: 'Varahamihira' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -44,10 +44,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'आर्यभट ने आर्यभटीय कब लिखी?',
     },
     options: [
-      { en: '476 CE', hi: '476 ईस्वी' },
-      { en: '499 CE', hi: '499 ईस्वी' },
-      { en: '550 CE', hi: '550 ईस्वी' },
-      { en: '628 CE', hi: '628 ईस्वी' },
+      { en: '476 CE', hi: '476 ईस्वी', sa: '476 ईस्वी', mai: '476 ईस्वी', mr: '476 ईस्वी', ta: '476 CE', te: '476 CE', bn: '476 CE', kn: '476 CE', gu: '476 CE' },
+      { en: '499 CE', hi: '499 ईस्वी', sa: '499 ईस्वी', mai: '499 ईस्वी', mr: '499 ईस्वी', ta: '499 CE', te: '499 CE', bn: '499 CE', kn: '499 CE', gu: '499 CE' },
+      { en: '550 CE', hi: '550 ईस्वी', sa: '550 ईस्वी', mai: '550 ईस्वी', mr: '550 ईस्वी', ta: '550 CE', te: '550 CE', bn: '550 CE', kn: '550 CE', gu: '550 CE' },
+      { en: '628 CE', hi: '628 ईस्वी', sa: '628 ईस्वी', mai: '628 ईस्वी', mr: '628 ईस्वी', ta: '628 CE', te: '628 CE', bn: '628 CE', kn: '628 CE', gu: '628 CE' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -62,10 +62,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'आर्यभटीय के किस खंड में आर्यभट ने कहा कि पृथ्वी घूमती है?',
     },
     options: [
-      { en: 'Ganitapada (mathematics)', hi: 'गणितपाद (गणित)' },
-      { en: 'Kalakriyapada (time reckoning)', hi: 'कालक्रियापाद (कालगणना)' },
-      { en: 'Golapada (celestial sphere)', hi: 'गोलपाद (खगोलीय गोला)' },
-      { en: 'Dasagitika (numerical data)', hi: 'दशगीतिका (संख्यात्मक डेटा)' },
+      { en: 'Ganitapada (mathematics)', hi: 'गणितपाद (गणित)', sa: 'गणितपाद (गणित)', mai: 'गणितपाद (गणित)', mr: 'गणितपाद (गणित)', ta: 'Ganitapada (mathematics)', te: 'Ganitapada (mathematics)', bn: 'Ganitapada (mathematics)', kn: 'Ganitapada (mathematics)', gu: 'Ganitapada (mathematics)' },
+      { en: 'Kalakriyapada (time reckoning)', hi: 'कालक्रियापाद (कालगणना)', sa: 'कालक्रियापाद (कालगणना)', mai: 'कालक्रियापाद (कालगणना)', mr: 'कालक्रियापाद (कालगणना)', ta: 'Kalakriyapada (time reckoning)', te: 'Kalakriyapada (time reckoning)', bn: 'Kalakriyapada (time reckoning)', kn: 'Kalakriyapada (time reckoning)', gu: 'Kalakriyapada (time reckoning)' },
+      { en: 'Golapada (celestial sphere)', hi: 'गोलपाद (खगोलीय गोला)', sa: 'गोलपाद (खगोलीय गोला)', mai: 'गोलपाद (खगोलीय गोला)', mr: 'गोलपाद (खगोलीय गोला)', ta: 'Golapada (celestial sphere)', te: 'Golapada (celestial sphere)', bn: 'Golapada (celestial sphere)', kn: 'Golapada (celestial sphere)', gu: 'Golapada (celestial sphere)' },
+      { en: 'Dasagitika (numerical data)', hi: 'दशगीतिका (संख्यात्मक डेटा)', sa: 'दशगीतिका (संख्यात्मक डेटा)', mai: 'दशगीतिका (संख्यात्मक डेटा)', mr: 'दशगीतिका (संख्यात्मक डेटा)', ta: 'Dasagitika (numerical data)', te: 'Dasagitika (numerical data)', bn: 'Dasagitika (numerical data)', kn: 'Dasagitika (numerical data)', gu: 'Dasagitika (numerical data)' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -80,10 +80,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'प्रमुख भारतीय खगोलशास्त्रियों में से किसने पृथ्वी के घूमने के आर्यभट के विचार का खंडन किया?',
     },
     options: [
-      { en: 'Varahamihira', hi: 'वराहमिहिर' },
-      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त' },
-      { en: 'Bhaskaracharya', hi: 'भास्कराचार्य' },
-      { en: 'Lalla', hi: 'लल्ल' },
+      { en: 'Varahamihira', hi: 'वराहमिहिर', sa: 'वराहमिहिर', mai: 'वराहमिहिर', mr: 'वराहमिहिर', ta: 'Varahamihira', te: 'Varahamihira', bn: 'Varahamihira', kn: 'Varahamihira', gu: 'Varahamihira' },
+      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त', sa: 'ब्रह्मगुप्त', mai: 'ब्रह्मगुप्त', mr: 'ब्रह्मगुप्त', ta: 'Brahmagupta', te: 'Brahmagupta', bn: 'Brahmagupta', kn: 'Brahmagupta', gu: 'Brahmagupta' },
+      { en: 'Bhaskaracharya', hi: 'भास्कराचार्य', sa: 'भास्कराचार्य', mai: 'भास्कराचार्य', mr: 'भास्कराचार्य', ta: 'Bhaskaracharya', te: 'Bhaskaracharya', bn: 'Bhaskaracharya', kn: 'Bhaskaracharya', gu: 'Bhaskaracharya' },
+      { en: 'Lalla', hi: 'लल्ल', sa: 'लल्ल', mai: 'लल्ल', mr: 'लल्ल', ta: 'Lalla', te: 'Lalla', bn: 'Lalla', kn: 'Lalla', gu: 'Lalla' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -98,10 +98,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पृथ्वी की परिधि की आर्यभट की गणना कितनी सटीक थी?',
     },
     options: [
-      { en: 'About 85% accurate', hi: 'लगभग 85% सटीक' },
-      { en: 'About 92% accurate', hi: 'लगभग 92% सटीक' },
-      { en: 'About 99.7% accurate', hi: 'लगभग 99.7% सटीक' },
-      { en: 'About 75% accurate', hi: 'लगभग 75% सटीक' },
+      { en: 'About 85% accurate', hi: 'लगभग 85% सटीक', sa: 'लगभग 85% सटीक', mai: 'लगभग 85% सटीक', mr: 'लगभग 85% सटीक', ta: 'About 85% accurate', te: 'About 85% accurate', bn: 'About 85% accurate', kn: 'About 85% accurate', gu: 'About 85% accurate' },
+      { en: 'About 92% accurate', hi: 'लगभग 92% सटीक', sa: 'लगभग 92% सटीक', mai: 'लगभग 92% सटीक', mr: 'लगभग 92% सटीक', ta: 'About 92% accurate', te: 'About 92% accurate', bn: 'About 92% accurate', kn: 'About 92% accurate', gu: 'About 92% accurate' },
+      { en: 'About 99.7% accurate', hi: 'लगभग 99.7% सटीक', sa: 'लगभग 99.7% सटीक', mai: 'लगभग 99.7% सटीक', mr: 'लगभग 99.7% सटीक', ta: 'About 99.7% accurate', te: 'About 99.7% accurate', bn: 'About 99.7% accurate', kn: 'About 99.7% accurate', gu: 'About 99.7% accurate' },
+      { en: 'About 75% accurate', hi: 'लगभग 75% सटीक', sa: 'लगभग 75% सटीक', mai: 'लगभग 75% सटीक', mr: 'लगभग 75% सटीक', ta: 'About 75% accurate', te: 'About 75% accurate', bn: 'About 75% accurate', kn: 'About 75% accurate', gu: 'About 75% accurate' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -116,10 +116,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ब्रह्मांड का कौन सा यूरोपीय मॉडल था जिसका आर्यभट की अंतर्दृष्टि ने खंडन किया?',
     },
     options: [
-      { en: 'The Copernican heliocentric model', hi: 'कोपर्निकन सूर्यकेन्द्रीय मॉडल' },
-      { en: 'The Ptolemaic geocentric model', hi: 'टॉलेमिक भूकेन्द्रीय मॉडल' },
-      { en: 'The Newtonian gravitational model', hi: 'न्यूटोनियन गुरुत्वाकर्षण मॉडल' },
-      { en: 'The Einsteinian relativistic model', hi: 'आइंस्टीनियन सापेक्षतावादी मॉडल' },
+      { en: 'The Copernican heliocentric model', hi: 'कोपर्निकन सूर्यकेन्द्रीय मॉडल', sa: 'कोपर्निकन सूर्यकेन्द्रीय मॉडल', mai: 'कोपर्निकन सूर्यकेन्द्रीय मॉडल', mr: 'कोपर्निकन सूर्यकेन्द्रीय मॉडल', ta: 'The Copernican heliocentric model', te: 'The Copernican heliocentric model', bn: 'The Copernican heliocentric model', kn: 'The Copernican heliocentric model', gu: 'The Copernican heliocentric model' },
+      { en: 'The Ptolemaic geocentric model', hi: 'टॉलेमिक भूकेन्द्रीय मॉडल', sa: 'टॉलेमिक भूकेन्द्रीय मॉडल', mai: 'टॉलेमिक भूकेन्द्रीय मॉडल', mr: 'टॉलेमिक भूकेन्द्रीय मॉडल', ta: 'The Ptolemaic geocentric model', te: 'The Ptolemaic geocentric model', bn: 'The Ptolemaic geocentric model', kn: 'The Ptolemaic geocentric model', gu: 'The Ptolemaic geocentric model' },
+      { en: 'The Newtonian gravitational model', hi: 'न्यूटोनियन गुरुत्वाकर्षण मॉडल', sa: 'न्यूटोनियन गुरुत्वाकर्षण मॉडल', mai: 'न्यूटोनियन गुरुत्वाकर्षण मॉडल', mr: 'न्यूटोनियन गुरुत्वाकर्षण मॉडल', ta: 'The Newtonian gravitational model', te: 'The Newtonian gravitational model', bn: 'The Newtonian gravitational model', kn: 'The Newtonian gravitational model', gu: 'The Newtonian gravitational model' },
+      { en: 'The Einsteinian relativistic model', hi: 'आइंस्टीनियन सापेक्षतावादी मॉडल', sa: 'आइंस्टीनियन सापेक्षतावादी मॉडल', mai: 'आइंस्टीनियन सापेक्षतावादी मॉडल', mr: 'आइंस्टीनियन सापेक्षतावादी मॉडल', ta: 'The Einsteinian relativistic model', te: 'The Einsteinian relativistic model', bn: 'The Einsteinian relativistic model', kn: 'The Einsteinian relativistic model', gu: 'The Einsteinian relativistic model' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -134,10 +134,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'यूरोप में सूर्यकेन्द्रवाद किसने प्रस्तावित किया, और किस वर्ष में?',
     },
     options: [
-      { en: 'Galileo Galilei in 1610', hi: 'गैलीलियो गैलीलेई, 1610 में' },
-      { en: 'Johannes Kepler in 1609', hi: 'जोहान्स केपलर, 1609 में' },
-      { en: 'Nicolaus Copernicus in 1543', hi: 'निकोलस कोपर्निकस, 1543 में' },
-      { en: 'Isaac Newton in 1687', hi: 'आइज़क न्यूटन, 1687 में' },
+      { en: 'Galileo Galilei in 1610', hi: 'गैलीलियो गैलीलेई, 1610 में', sa: 'गैलीलियो गैलीलेई, 1610 में', mai: 'गैलीलियो गैलीलेई, 1610 में', mr: 'गैलीलियो गैलीलेई, 1610 में', ta: 'Galileo Galilei in 1610', te: 'Galileo Galilei in 1610', bn: 'Galileo Galilei in 1610', kn: 'Galileo Galilei in 1610', gu: 'Galileo Galilei in 1610' },
+      { en: 'Johannes Kepler in 1609', hi: 'जोहान्स केपलर, 1609 में', sa: 'जोहान्स केपलर, 1609 में', mai: 'जोहान्स केपलर, 1609 में', mr: 'जोहान्स केपलर, 1609 में', ta: 'Johannes Kepler in 1609', te: 'Johannes Kepler in 1609', bn: 'Johannes Kepler in 1609', kn: 'Johannes Kepler in 1609', gu: 'Johannes Kepler in 1609' },
+      { en: 'Nicolaus Copernicus in 1543', hi: 'निकोलस कोपर्निकस, 1543 में', sa: 'निकोलस कोपर्निकस, 1543 में', mai: 'निकोलस कोपर्निकस, 1543 में', mr: 'निकोलस कोपर्निकस, 1543 में', ta: 'Nicolaus Copernicus in 1543', te: 'Nicolaus Copernicus in 1543', bn: 'Nicolaus Copernicus in 1543', kn: 'Nicolaus Copernicus in 1543', gu: 'Nicolaus Copernicus in 1543' },
+      { en: 'Isaac Newton in 1687', hi: 'आइज़क न्यूटन, 1687 में', sa: 'आइज़क न्यूटन, 1687 में', mai: 'आइज़क न्यूटन, 1687 में', mr: 'आइज़क न्यूटन, 1687 में', ta: 'Isaac Newton in 1687', te: 'Isaac Newton in 1687', bn: 'Isaac Newton in 1687', kn: 'Isaac Newton in 1687', gu: 'Isaac Newton in 1687' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -152,10 +152,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'आर्यभट ने भी उल्लेखनीय सटीकता के साथ नाक्षत्र दिन की लम्बाई गणना की। उन्होंने कौन सा मान दिया?',
     },
     options: [
-      { en: '23 hours, 56 minutes, 4.1 seconds', hi: '23 घण्टे, 56 मिनट, 4.1 सेकंड' },
-      { en: '24 hours exactly', hi: 'ठीक 24 घण्टे' },
-      { en: '23 hours, 50 minutes, 12 seconds', hi: '23 घण्टे, 50 मिनट, 12 सेकंड' },
-      { en: '24 hours, 3 minutes, 56 seconds', hi: '24 घण्टे, 3 मिनट, 56 सेकंड' },
+      { en: '23 hours, 56 minutes, 4.1 seconds', hi: '23 घण्टे, 56 मिनट, 4.1 सेकंड', sa: '23 घण्टे, 56 मिनट, 4.1 सेकंड', mai: '23 घण्टे, 56 मिनट, 4.1 सेकंड', mr: '23 घण्टे, 56 मिनट, 4.1 सेकंड', ta: '23 hours, 56 minutes, 4.1 seconds', te: '23 hours, 56 minutes, 4.1 seconds', bn: '23 hours, 56 minutes, 4.1 seconds', kn: '23 hours, 56 minutes, 4.1 seconds', gu: '23 hours, 56 minutes, 4.1 seconds' },
+      { en: '24 hours exactly', hi: 'ठीक 24 घण्टे', sa: 'ठीक 24 घण्टे', mai: 'ठीक 24 घण्टे', mr: 'ठीक 24 घण्टे', ta: '24 hours exactly', te: '24 hours exactly', bn: '24 hours exactly', kn: '24 hours exactly', gu: '24 hours exactly' },
+      { en: '23 hours, 50 minutes, 12 seconds', hi: '23 घण्टे, 50 मिनट, 12 सेकंड', sa: '23 घण्टे, 50 मिनट, 12 सेकंड', mai: '23 घण्टे, 50 मिनट, 12 सेकंड', mr: '23 घण्टे, 50 मिनट, 12 सेकंड', ta: '23 hours, 50 minutes, 12 seconds', te: '23 hours, 50 minutes, 12 seconds', bn: '23 hours, 50 minutes, 12 seconds', kn: '23 hours, 50 minutes, 12 seconds', gu: '23 hours, 50 minutes, 12 seconds' },
+      { en: '24 hours, 3 minutes, 56 seconds', hi: '24 घण्टे, 3 मिनट, 56 सेकंड', sa: '24 घण्टे, 3 मिनट, 56 सेकंड', mai: '24 घण्टे, 3 मिनट, 56 सेकंड', mr: '24 घण्टे, 3 मिनट, 56 सेकंड', ta: '24 hours, 3 minutes, 56 seconds', te: '24 hours, 3 minutes, 56 seconds', bn: '24 hours, 3 minutes, 56 seconds', kn: '24 hours, 3 minutes, 56 seconds', gu: '24 hours, 3 minutes, 56 seconds' },
     ],
     correctAnswer: 0,
     explanation: {

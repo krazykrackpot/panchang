@@ -5,16 +5,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_22_2', phase: 9, topic: 'Astronomy', moduleNumber: '22.2',
-  title: { en: 'Finding the Sun — Meeus Algorithm Step by Step', hi: 'सूर्य की खोज — मीयस एल्गोरिदम चरणबद्ध' },
+  title: { en: 'Finding the Sun — Meeus Algorithm Step by Step', hi: 'सूर्य की खोज — मीयस एल्गोरिदम चरणबद्ध', sa: 'सूर्य की खोज — मीयस एल्गोरिदम चरणबद्ध', mai: 'सूर्य की खोज — मीयस एल्गोरिदम चरणबद्ध', mr: 'सूर्य की खोज — मीयस एल्गोरिदम चरणबद्ध', ta: 'Finding the Sun — Meeus Algorithm Step by Step', te: 'Finding the Sun — Meeus Algorithm Step by Step', bn: 'Finding the Sun — Meeus Algorithm Step by Step', kn: 'Finding the Sun — Meeus Algorithm Step by Step', gu: 'Finding the Sun — Meeus Algorithm Step by Step' },
   subtitle: {
     en: 'How 3 sine terms, an elliptical orbit correction, and nutation give us the Sun\'s apparent longitude to 0.01-degree accuracy',
     hi: 'कैसे 3 ज्या पद, दीर्घवृत्तीय कक्षा सुधार और अयन-चलन हमें सूर्य का दृश्य भोगांश 0.01 अंश सटीकता तक देते हैं',
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Module 22-1: Julian Day', hi: 'मॉड्यूल 22-1: जूलियन दिवस' }, href: '/learn/modules/22-1' },
-    { label: { en: 'Module 22-3: Finding the Moon', hi: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति' }, href: '/learn/modules/22-3' },
-    { label: { en: 'Module 22-4: Sunrise Calculation', hi: 'मॉड्यूल 22-4: सूर्योदय गणना' }, href: '/learn/modules/22-4' },
+    { label: { en: 'Module 22-1: Julian Day', hi: 'मॉड्यूल 22-1: जूलियन दिवस', sa: 'मॉड्यूल 22-1: जूलियन दिवस', mai: 'मॉड्यूल 22-1: जूलियन दिवस', mr: 'मॉड्यूल 22-1: जूलियन दिवस', ta: 'Module 22-1: Julian Day', te: 'Module 22-1: Julian Day', bn: 'Module 22-1: Julian Day', kn: 'Module 22-1: Julian Day', gu: 'Module 22-1: Julian Day' }, href: '/learn/modules/22-1' },
+    { label: { en: 'Module 22-3: Finding the Moon', hi: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', sa: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', mai: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', mr: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', ta: 'Module 22-3: Finding the Moon', te: 'Module 22-3: Finding the Moon', bn: 'Module 22-3: Finding the Moon', kn: 'Module 22-3: Finding the Moon', gu: 'Module 22-3: Finding the Moon' }, href: '/learn/modules/22-3' },
+    { label: { en: 'Module 22-4: Sunrise Calculation', hi: 'मॉड्यूल 22-4: सूर्योदय गणना', sa: 'मॉड्यूल 22-4: सूर्योदय गणना', mai: 'मॉड्यूल 22-4: सूर्योदय गणना', mr: 'मॉड्यूल 22-4: सूर्योदय गणना', ta: 'Module 22-4: Sunrise Calculation', te: 'Module 22-4: Sunrise Calculation', bn: 'Module 22-4: Sunrise Calculation', kn: 'Module 22-4: Sunrise Calculation', gu: 'Module 22-4: Sunrise Calculation' }, href: '/learn/modules/22-4' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सूर्य क्रान्तिवृत्त पर असमान रूप से क्यों गतिमान दिखता है?',
     },
     options: [
-      { en: 'Because the Sun orbits the Earth in a circle', hi: 'क्योंकि सूर्य पृथ्वी की वृत्ताकार कक्षा में है' },
+      { en: 'Because the Sun orbits the Earth in a circle', hi: 'क्योंकि सूर्य पृथ्वी की वृत्ताकार कक्षा में है', sa: 'क्योंकि सूर्य पृथ्वी की वृत्ताकार कक्षा में है', mai: 'क्योंकि सूर्य पृथ्वी की वृत्ताकार कक्षा में है', mr: 'क्योंकि सूर्य पृथ्वी की वृत्ताकार कक्षा में है', ta: 'Because the Sun orbits the Earth in a circle', te: 'Because the Sun orbits the Earth in a circle', bn: 'Because the Sun orbits the Earth in a circle', kn: 'Because the Sun orbits the Earth in a circle', gu: 'Because the Sun orbits the Earth in a circle' },
       { en: 'Because Earth\'s orbit is elliptical — faster at perihelion, slower at aphelion', hi: 'क्योंकि पृथ्वी की कक्षा दीर्घवृत्तीय है — उपसौर पर तेज़, अपसौर पर धीमी' },
       { en: 'Because of the Moon\'s gravitational pull on the Sun', hi: 'चन्द्रमा के सूर्य पर गुरुत्वाकर्षण खिंचाव के कारण' },
-      { en: 'Because of atmospheric refraction', hi: 'वायुमण्डलीय अपवर्तन के कारण' },
+      { en: 'Because of atmospheric refraction', hi: 'वायुमण्डलीय अपवर्तन के कारण', sa: 'वायुमण्डलीय अपवर्तन के कारण', mai: 'वायुमण्डलीय अपवर्तन के कारण', mr: 'वायुमण्डलीय अपवर्तन के कारण', ta: 'Because of atmospheric refraction', te: 'Because of atmospheric refraction', bn: 'Because of atmospheric refraction', kn: 'Because of atmospheric refraction', gu: 'Because of atmospheric refraction' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -47,7 +47,7 @@ const QUESTIONS: ModuleQuestion[] = [
       { en: 'The Sun\'s true position at any instant', hi: 'किसी क्षण सूर्य की सत्य स्थिति' },
       { en: 'The Sun\'s average position if the orbit were circular', hi: 'सूर्य की औसत स्थिति यदि कक्षा वृत्ताकार होती' },
       { en: 'The Moon\'s mean longitude', hi: 'चन्द्रमा का माध्य भोगांश' },
-      { en: 'The ecliptic longitude of the ascending node', hi: 'आरोही पात का क्रान्तिवृत्तीय भोगांश' },
+      { en: 'The ecliptic longitude of the ascending node', hi: 'आरोही पात का क्रान्तिवृत्तीय भोगांश', sa: 'आरोही पात का क्रान्तिवृत्तीय भोगांश', mai: 'आरोही पात का क्रान्तिवृत्तीय भोगांश', mr: 'आरोही पात का क्रान्तिवृत्तीय भोगांश', ta: 'The ecliptic longitude of the ascending node', te: 'The ecliptic longitude of the ascending node', bn: 'The ecliptic longitude of the ascending node', kn: 'The ecliptic longitude of the ascending node', gu: 'The ecliptic longitude of the ascending node' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -62,10 +62,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'माध्य विलम्बिका M दर्शाती है:',
     },
     options: [
-      { en: 'The angle between the Sun and Moon', hi: 'सूर्य और चन्द्रमा के बीच का कोण' },
-      { en: 'The angle from perihelion along the orbit, as if motion were uniform', hi: 'कक्षा में उपसौर से कोण, मानो गति समान हो' },
-      { en: 'The declination of the Sun', hi: 'सूर्य का क्रान्ति' },
-      { en: 'The hour angle of the Sun', hi: 'सूर्य का घण्टा कोण' },
+      { en: 'The angle between the Sun and Moon', hi: 'सूर्य और चन्द्रमा के बीच का कोण', sa: 'सूर्य और चन्द्रमा के बीच का कोण', mai: 'सूर्य और चन्द्रमा के बीच का कोण', mr: 'सूर्य और चन्द्रमा के बीच का कोण', ta: 'The angle between the Sun and Moon', te: 'The angle between the Sun and Moon', bn: 'The angle between the Sun and Moon', kn: 'The angle between the Sun and Moon', gu: 'The angle between the Sun and Moon' },
+      { en: 'The angle from perihelion along the orbit, as if motion were uniform', hi: 'कक्षा में उपसौर से कोण, मानो गति समान हो', sa: 'कक्षा में उपसौर से कोण, मानो गति समान हो', mai: 'कक्षा में उपसौर से कोण, मानो गति समान हो', mr: 'कक्षा में उपसौर से कोण, मानो गति समान हो', ta: 'The angle from perihelion along the orbit, as if motion were uniform', te: 'The angle from perihelion along the orbit, as if motion were uniform', bn: 'The angle from perihelion along the orbit, as if motion were uniform', kn: 'The angle from perihelion along the orbit, as if motion were uniform', gu: 'The angle from perihelion along the orbit, as if motion were uniform' },
+      { en: 'The declination of the Sun', hi: 'सूर्य का क्रान्ति', sa: 'सूर्य का क्रान्ति', mai: 'सूर्य का क्रान्ति', mr: 'सूर्य का क्रान्ति', ta: 'The declination of the Sun', te: 'The declination of the Sun', bn: 'The declination of the Sun', kn: 'The declination of the Sun', gu: 'The declination of the Sun' },
+      { en: 'The hour angle of the Sun', hi: 'सूर्य का घण्टा कोण', sa: 'सूर्य का घण्टा कोण', mai: 'सूर्य का घण्टा कोण', mr: 'सूर्य का घण्टा कोण', ta: 'The hour angle of the Sun', te: 'The hour angle of the Sun', bn: 'The hour angle of the Sun', kn: 'The hour angle of the Sun', gu: 'The hour angle of the Sun' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -80,10 +80,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सूर्य के केन्द्र समीकरण में सबसे बड़ा पद लगभग कितना है?',
     },
     options: [
-      { en: '0.020° x sin(2M)', hi: '0.020° × sin(2M)' },
-      { en: '1.915° x sin(M)', hi: '1.915° × sin(M)' },
+      { en: '0.020° x sin(2M)', hi: '0.020° × sin(2M)', sa: '0.020° × sin(2M)', mai: '0.020° × sin(2M)', mr: '0.020° × sin(2M)', ta: '0.020° x sin(2M)', te: '0.020° x sin(2M)', bn: '0.020° x sin(2M)', kn: '0.020° x sin(2M)', gu: '0.020° x sin(2M)' },
+      { en: '1.915° x sin(M)', hi: '1.915° × sin(M)', sa: '1.915° × sin(M)', mai: '1.915° × sin(M)', mr: '1.915° × sin(M)', ta: '1.915° x sin(M)', te: '1.915° x sin(M)', bn: '1.915° x sin(M)', kn: '1.915° x sin(M)', gu: '1.915° x sin(M)' },
       { en: '6.289° x sin(M\')', hi: '6.289° × sin(M\')' },
-      { en: '0.00478° x sin(Ω)', hi: '0.00478° × sin(Ω)' },
+      { en: '0.00478° x sin(Ω)', hi: '0.00478° × sin(Ω)', sa: '0.00478° × sin(Ω)', mai: '0.00478° × sin(Ω)', mr: '0.00478° × sin(Ω)', ta: '0.00478° x sin(Ω)', te: '0.00478° x sin(Ω)', bn: '0.00478° x sin(Ω)', kn: '0.00478° x sin(Ω)', gu: '0.00478° x sin(Ω)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -110,10 +110,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सूर्य के सत्य भोगांश पर लागू विपथन सुधार क्या है?',
     },
     options: [
-      { en: '-0.00569°', hi: '-0.00569°' },
-      { en: '+1.915°', hi: '+1.915°' },
-      { en: '-24.22°', hi: '-24.22°' },
-      { en: '+0.5°', hi: '+0.5°' },
+      { en: '-0.00569°', hi: '-0.00569°', sa: '-0.00569°', mai: '-0.00569°', mr: '-0.00569°', ta: '-0.00569°', te: '-0.00569°', bn: '-0.00569°', kn: '-0.00569°', gu: '-0.00569°' },
+      { en: '+1.915°', hi: '+1.915°', sa: '+1.915°', mai: '+1.915°', mr: '+1.915°', ta: '+1.915°', te: '+1.915°', bn: '+1.915°', kn: '+1.915°', gu: '+1.915°' },
+      { en: '-24.22°', hi: '-24.22°', sa: '-24.22°', mai: '-24.22°', mr: '-24.22°', ta: '-24.22°', te: '-24.22°', bn: '-24.22°', kn: '-24.22°', gu: '-24.22°' },
+      { en: '+0.5°', hi: '+0.5°', sa: '+0.5°', mai: '+0.5°', mr: '+0.5°', ta: '+0.5°', te: '+0.5°', bn: '+0.5°', kn: '+0.5°', gu: '+0.5°' },
     ],
     correctAnswer: 0,
     explanation: {
@@ -128,10 +128,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मीयस एल्गोरिदम सूर्य भोगांश के लिए कितनी सटीकता प्राप्त करता है?',
     },
     options: [
-      { en: '~1° (3600 arcseconds)', hi: '~1° (3600 कला-सेकण्ड)' },
-      { en: '~0.01° (36 arcseconds)', hi: '~0.01° (36 कला-सेकण्ड)' },
-      { en: '~0.001° (3.6 arcseconds)', hi: '~0.001° (3.6 कला-सेकण्ड)' },
-      { en: '~0.0001° (0.36 arcseconds)', hi: '~0.0001° (0.36 कला-सेकण्ड)' },
+      { en: '~1° (3600 arcseconds)', hi: '~1° (3600 कला-सेकण्ड)', sa: '~1° (3600 कला-सेकण्ड)', mai: '~1° (3600 कला-सेकण्ड)', mr: '~1° (3600 कला-सेकण्ड)', ta: '~1° (3600 arcseconds)', te: '~1° (3600 arcseconds)', bn: '~1° (3600 arcseconds)', kn: '~1° (3600 arcseconds)', gu: '~1° (3600 arcseconds)' },
+      { en: '~0.01° (36 arcseconds)', hi: '~0.01° (36 कला-सेकण्ड)', sa: '~0.01° (36 कला-सेकण्ड)', mai: '~0.01° (36 कला-सेकण्ड)', mr: '~0.01° (36 कला-सेकण्ड)', ta: '~0.01° (36 arcseconds)', te: '~0.01° (36 arcseconds)', bn: '~0.01° (36 arcseconds)', kn: '~0.01° (36 arcseconds)', gu: '~0.01° (36 arcseconds)' },
+      { en: '~0.001° (3.6 arcseconds)', hi: '~0.001° (3.6 कला-सेकण्ड)', sa: '~0.001° (3.6 कला-सेकण्ड)', mai: '~0.001° (3.6 कला-सेकण्ड)', mr: '~0.001° (3.6 कला-सेकण्ड)', ta: '~0.001° (3.6 arcseconds)', te: '~0.001° (3.6 arcseconds)', bn: '~0.001° (3.6 arcseconds)', kn: '~0.001° (3.6 arcseconds)', gu: '~0.001° (3.6 arcseconds)' },
+      { en: '~0.0001° (0.36 arcseconds)', hi: '~0.0001° (0.36 कला-सेकण्ड)', sa: '~0.0001° (0.36 कला-सेकण्ड)', mai: '~0.0001° (0.36 कला-सेकण्ड)', mr: '~0.0001° (0.36 कला-सेकण्ड)', ta: '~0.0001° (0.36 arcseconds)', te: '~0.0001° (0.36 arcseconds)', bn: '~0.0001° (0.36 arcseconds)', kn: '~0.0001° (0.36 arcseconds)', gu: '~0.0001° (0.36 arcseconds)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -158,10 +158,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सूर्य के सायन भोगांश को निरयन (वैदिक) में बदलने के लिए आप:',
     },
     options: [
-      { en: 'Add the Lahiri ayanamsha (~24.22° in 2026)', hi: 'लाहिरी अयनांश (~24.22° 2026 में) जोड़ते हैं' },
-      { en: 'Subtract the Lahiri ayanamsha (~24.22° in 2026)', hi: 'लाहिरी अयनांश (~24.22° 2026 में) घटाते हैं' },
-      { en: 'Multiply by 12/13.333', hi: '12/13.333 से गुणा करते हैं' },
-      { en: 'Add 180°', hi: '180° जोड़ते हैं' },
+      { en: 'Add the Lahiri ayanamsha (~24.22° in 2026)', hi: 'लाहिरी अयनांश (~24.22° 2026 में) जोड़ते हैं', sa: 'लाहिरी अयनांश (~24.22° 2026 में) जोड़ते हैं', mai: 'लाहिरी अयनांश (~24.22° 2026 में) जोड़ते हैं', mr: 'लाहिरी अयनांश (~24.22° 2026 में) जोड़ते हैं', ta: 'Add the Lahiri ayanamsha (~24.22° in 2026)', te: 'Add the Lahiri ayanamsha (~24.22° in 2026)', bn: 'Add the Lahiri ayanamsha (~24.22° in 2026)', kn: 'Add the Lahiri ayanamsha (~24.22° in 2026)', gu: 'Add the Lahiri ayanamsha (~24.22° in 2026)' },
+      { en: 'Subtract the Lahiri ayanamsha (~24.22° in 2026)', hi: 'लाहिरी अयनांश (~24.22° 2026 में) घटाते हैं', sa: 'लाहिरी अयनांश (~24.22° 2026 में) घटाते हैं', mai: 'लाहिरी अयनांश (~24.22° 2026 में) घटाते हैं', mr: 'लाहिरी अयनांश (~24.22° 2026 में) घटाते हैं', ta: 'Subtract the Lahiri ayanamsha (~24.22° in 2026)', te: 'Subtract the Lahiri ayanamsha (~24.22° in 2026)', bn: 'Subtract the Lahiri ayanamsha (~24.22° in 2026)', kn: 'Subtract the Lahiri ayanamsha (~24.22° in 2026)', gu: 'Subtract the Lahiri ayanamsha (~24.22° in 2026)' },
+      { en: 'Multiply by 12/13.333', hi: '12/13.333 से गुणा करते हैं', sa: '12/13.333 से गुणा करते हैं', mai: '12/13.333 से गुणा करते हैं', mr: '12/13.333 से गुणा करते हैं', ta: 'Multiply by 12/13.333', te: 'Multiply by 12/13.333', bn: 'Multiply by 12/13.333', kn: 'Multiply by 12/13.333', gu: 'Multiply by 12/13.333' },
+      { en: 'Add 180°', hi: '180° जोड़ते हैं', sa: '180° जोड़ते हैं', mai: '180° जोड़ते हैं', mr: '180° जोड़ते हैं', ta: 'Add 180°', te: 'Add 180°', bn: 'Add 180°', kn: 'Add 180°', gu: 'Add 180°' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -176,10 +176,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'अपनी कक्षा में किस बिन्दु पर पृथ्वी सबसे तेज़ चलती है (और सूर्य क्रान्तिवृत्त पर सबसे तेज़ गतिमान दिखता है)?',
     },
     options: [
-      { en: 'Aphelion (July)', hi: 'अपसौर (जुलाई)' },
-      { en: 'Perihelion (January)', hi: 'उपसौर (जनवरी)' },
-      { en: 'Vernal equinox (March)', hi: 'वसन्त विषुव (मार्च)' },
-      { en: 'Summer solstice (June)', hi: 'ग्रीष्म अयनान्त (जून)' },
+      { en: 'Aphelion (July)', hi: 'अपसौर (जुलाई)', sa: 'अपसौर (जुलाई)', mai: 'अपसौर (जुलाई)', mr: 'अपसौर (जुलाई)', ta: 'Aphelion (July)', te: 'Aphelion (July)', bn: 'Aphelion (July)', kn: 'Aphelion (July)', gu: 'Aphelion (July)' },
+      { en: 'Perihelion (January)', hi: 'उपसौर (जनवरी)', sa: 'उपसौर (जनवरी)', mai: 'उपसौर (जनवरी)', mr: 'उपसौर (जनवरी)', ta: 'Perihelion (January)', te: 'Perihelion (January)', bn: 'Perihelion (January)', kn: 'Perihelion (January)', gu: 'Perihelion (January)' },
+      { en: 'Vernal equinox (March)', hi: 'वसन्त विषुव (मार्च)', sa: 'वसन्त विषुव (मार्च)', mai: 'वसन्त विषुव (मार्च)', mr: 'वसन्त विषुव (मार्च)', ta: 'Vernal equinox (March)', te: 'Vernal equinox (March)', bn: 'Vernal equinox (March)', kn: 'Vernal equinox (March)', gu: 'Vernal equinox (March)' },
+      { en: 'Summer solstice (June)', hi: 'ग्रीष्म अयनान्त (जून)', sa: 'ग्रीष्म अयनान्त (जून)', mai: 'ग्रीष्म अयनान्त (जून)', mr: 'ग्रीष्म अयनान्त (जून)', ta: 'Summer solstice (June)', te: 'Summer solstice (June)', bn: 'Summer solstice (June)', kn: 'Summer solstice (June)', gu: 'Summer solstice (June)' },
     ],
     correctAnswer: 1,
     explanation: {

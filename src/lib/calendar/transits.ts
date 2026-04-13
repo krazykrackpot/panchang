@@ -8,16 +8,16 @@
 import { dateToJD, toSidereal, getRashiNumber, getPlanetaryPositions } from '@/lib/ephem/astronomical';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText} from '@/types/panchang';
 
 export interface TransitEvent {
   planetId: number;
-  planetName: Trilingual;
+  planetName: LocaleText;
   planetColor: string;
   fromSign: number;
-  fromSignName: Trilingual;
+  fromSignName: LocaleText;
   toSign: number;
-  toSignName: Trilingual;
+  toSignName: LocaleText;
   date: string; // YYYY-MM-DD
   significance: 'major' | 'moderate' | 'minor';
 }

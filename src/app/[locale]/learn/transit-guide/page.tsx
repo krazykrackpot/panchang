@@ -1,12 +1,14 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
+
 import { useState } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Orbit, Star, BookOpen, ChevronRight } from 'lucide-react';
 import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
+import type { LocaleText, Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ── Trilingual labels ────────────────────────────────────────────── */
@@ -108,7 +110,7 @@ const PLANET_TABS: { key: PlanetKey; label: Record<string, string>; color: strin
 export default function TransitGuidePage() {
   const locale = useLocale() as Locale;
   const [selected, setSelected] = useState<PlanetKey>('saturn');
-  const t = (obj: Record<string, string>) => obj[locale] || obj.en;
+  const t = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
 
   const houseData = selected === 'saturn' ? SATURN : selected === 'jupiter' ? JUPITER : null;
   const axisData = selected === 'rahu_ketu' ? RAHU_KETU : null;

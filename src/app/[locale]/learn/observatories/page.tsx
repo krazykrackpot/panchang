@@ -1,12 +1,14 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
+
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowRight, BookOpen, Ruler, Eye, Mountain, MapPin, Star } from 'lucide-react';
-import type { Locale } from '@/types/panchang';
+import type { LocaleText, Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ═══════════════════════════════════════════════════════════════
@@ -18,13 +20,13 @@ const L = {
     en: 'Stone instruments that rival modern accuracy — built when Europe still relied on tiny brass gadgets.',
     hi: 'पत्थर के यन्त्र जो आधुनिक सटीकता की बराबरी करते हैं — जब यूरोप अभी भी छोटे पीतल के उपकरणों पर निर्भर था।',
   },
-  s1Title: { en: 'Maharaja Jai Singh II — The Astronomer King', hi: 'महाराजा जयसिंह द्वितीय — खगोलशास्त्री सम्राट' },
-  s2Title: { en: 'The Instruments', hi: 'यन्त्र' },
-  s3Title: { en: 'Why Stone Beats Brass', hi: 'पत्थर पीतल से श्रेष्ठ क्यों' },
-  s4Title: { en: 'Legacy', hi: 'विरासत' },
-  s5Title: { en: 'Visit', hi: 'दर्शन करें' },
-  backToLearn: { en: 'Back to Learn', hi: 'सीखने पर वापस' },
-  exploreMore: { en: 'Continue Exploring', hi: 'और जानें' },
+  s1Title: { en: 'Maharaja Jai Singh II — The Astronomer King', hi: 'महाराजा जयसिंह द्वितीय — खगोलशास्त्री सम्राट', sa: 'महाराजा जयसिंह द्वितीय — खगोलशास्त्री सम्राट', mai: 'महाराजा जयसिंह द्वितीय — खगोलशास्त्री सम्राट', mr: 'महाराजा जयसिंह द्वितीय — खगोलशास्त्री सम्राट', ta: 'Maharaja Jai Singh II — The Astronomer King', te: 'Maharaja Jai Singh II — The Astronomer King', bn: 'Maharaja Jai Singh II — The Astronomer King', kn: 'Maharaja Jai Singh II — The Astronomer King', gu: 'Maharaja Jai Singh II — The Astronomer King' },
+  s2Title: { en: 'The Instruments', hi: 'यन्त्र', sa: 'यन्त्र', mai: 'यन्त्र', mr: 'यन्त्र', ta: 'The Instruments', te: 'The Instruments', bn: 'The Instruments', kn: 'The Instruments', gu: 'The Instruments' },
+  s3Title: { en: 'Why Stone Beats Brass', hi: 'पत्थर पीतल से श्रेष्ठ क्यों', sa: 'पत्थर पीतल से श्रेष्ठ क्यों', mai: 'पत्थर पीतल से श्रेष्ठ क्यों', mr: 'पत्थर पीतल से श्रेष्ठ क्यों', ta: 'Why Stone Beats Brass', te: 'Why Stone Beats Brass', bn: 'Why Stone Beats Brass', kn: 'Why Stone Beats Brass', gu: 'Why Stone Beats Brass' },
+  s4Title: { en: 'Legacy', hi: 'विरासत', sa: 'विरासत', mai: 'विरासत', mr: 'विरासत', ta: 'Legacy', te: 'Legacy', bn: 'Legacy', kn: 'Legacy', gu: 'Legacy' },
+  s5Title: { en: 'Visit', hi: 'दर्शन करें', sa: 'दर्शन करें', mai: 'दर्शन करें', mr: 'दर्शन करें', ta: 'Visit', te: 'Visit', bn: 'Visit', kn: 'Visit', gu: 'Visit' },
+  backToLearn: { en: 'Back to Learn', hi: 'सीखने पर वापस', sa: 'सीखने पर वापस', mai: 'सीखने पर वापस', mr: 'सीखने पर वापस', ta: 'Back to Learn', te: 'Back to Learn', bn: 'Back to Learn', kn: 'Back to Learn', gu: 'Back to Learn' },
+  exploreMore: { en: 'Continue Exploring', hi: 'और जानें', sa: 'और जानें', mai: 'और जानें', mr: 'और जानें', ta: 'Continue Exploring', te: 'Continue Exploring', bn: 'Continue Exploring', kn: 'Continue Exploring', gu: 'Continue Exploring' },
 };
 
 /* ═══════════════════════════════════════════════════════════════
@@ -45,7 +47,7 @@ const INSTRUMENTS: Instrument[] = [
   {
     name: 'Samrat Yantra',
     nameHi: 'सम्राट यन्त्र',
-    purpose: { en: 'Giant Sundial', hi: 'विशाल धूपघड़ी' },
+    purpose: { en: 'Giant Sundial', hi: 'विशाल धूपघड़ी', sa: 'विशाल धूपघड़ी', mai: 'विशाल धूपघड़ी', mr: 'विशाल धूपघड़ी', ta: 'Giant Sundial', te: 'Giant Sundial', bn: 'Giant Sundial', kn: 'Giant Sundial', gu: 'Giant Sundial' },
     description: {
       en: 'The Jaipur version stands 27 meters tall — the height of a 9-story building. The world\'s largest sundial. Its shadow moves approximately 1mm per second across the graduated scale, making it readable by the naked eye to an accuracy of 2 seconds of time.',
       hi: 'जयपुर का संस्करण 27 मीटर ऊँचा है — 9 मंजिल इमारत जितना। विश्व की सबसे बड़ी धूपघड़ी। इसकी छाया अंशांकित पैमाने पर लगभग 1 मिमी प्रति सेकंड चलती है, जिसे नग्न आँखों से 2 सेकंड की सटीकता तक पढ़ा जा सकता है।',
@@ -60,7 +62,7 @@ const INSTRUMENTS: Instrument[] = [
   {
     name: 'Jai Prakash Yantra',
     nameHi: 'जयप्रकाश यन्त्र',
-    purpose: { en: 'Inverted Celestial Sphere', hi: 'उलटा खगोलीय गोला' },
+    purpose: { en: 'Inverted Celestial Sphere', hi: 'उलटा खगोलीय गोला', sa: 'उलटा खगोलीय गोला', mai: 'उलटा खगोलीय गोला', mr: 'उलटा खगोलीय गोला', ta: 'Inverted Celestial Sphere', te: 'Inverted Celestial Sphere', bn: 'Inverted Celestial Sphere', kn: 'Inverted Celestial Sphere', gu: 'Inverted Celestial Sphere' },
     description: {
       en: 'A hemispherical bowl carved from marble — the entire sky mapped onto a concave surface. The observer walks INSIDE the bowl to read celestial positions. A genius inversion: instead of looking up at the sky, you look down at the sky projected at your feet.',
       hi: 'संगमरमर से तराशा गया अर्धगोलाकार कटोरा — सम्पूर्ण आकाश एक अवतल सतह पर अंकित। प्रेक्षक कटोरे के भीतर चलकर खगोलीय स्थिति पढ़ता है। एक प्रतिभाशाली उलटफेर: आकाश को ऊपर देखने के बजाय, आप अपने पैरों पर प्रक्षेपित आकाश को नीचे देखते हैं।',
@@ -75,7 +77,7 @@ const INSTRUMENTS: Instrument[] = [
   {
     name: 'Ram Yantra',
     nameHi: 'राम यन्त्र',
-    purpose: { en: 'Altitude-Azimuth Instrument', hi: 'उन्नतांश-दिगंश यन्त्र' },
+    purpose: { en: 'Altitude-Azimuth Instrument', hi: 'उन्नतांश-दिगंश यन्त्र', sa: 'उन्नतांश-दिगंश यन्त्र', mai: 'उन्नतांश-दिगंश यन्त्र', mr: 'उन्नतांश-दिगंश यन्त्र', ta: 'Altitude-Azimuth Instrument', te: 'Altitude-Azimuth Instrument', bn: 'Altitude-Azimuth Instrument', kn: 'Altitude-Azimuth Instrument', gu: 'Altitude-Azimuth Instrument' },
     description: {
       en: 'Two complementary cylindrical structures, open to the sky. Where one has walls, the other has gaps — together they cover every point of the sky without obstruction. Measures altitude and azimuth of any celestial body, day or night.',
       hi: 'दो पूरक बेलनाकार संरचनाएँ, आकाश की ओर खुली। जहाँ एक में दीवारें हैं, वहाँ दूसरे में अन्तराल — मिलकर ये आकाश के हर बिन्दु को बिना अवरोध मापते हैं। किसी भी खगोलीय पिण्ड का उन्नतांश और दिगंश, दिन या रात।',
@@ -90,7 +92,7 @@ const INSTRUMENTS: Instrument[] = [
   {
     name: 'Rashivalaya Yantra',
     nameHi: 'राशिवलय यन्त्र',
-    purpose: { en: 'Zodiac Sign Measurer', hi: 'राशि मापक' },
+    purpose: { en: 'Zodiac Sign Measurer', hi: 'राशि मापक', sa: 'राशि मापक', mai: 'राशि मापक', mr: 'राशि मापक', ta: 'Zodiac Sign Measurer', te: 'Zodiac Sign Measurer', bn: 'Zodiac Sign Measurer', kn: 'Zodiac Sign Measurer', gu: 'Zodiac Sign Measurer' },
     description: {
       en: 'A set of 12 instruments — one for EACH zodiac sign. Each is angled precisely to measure when the Sun enters that particular sign. This is a mechanical ayanamsha computer from 1730 — hardware doing what our software does digitally today.',
       hi: '12 यन्त्रों का समूह — प्रत्येक राशि के लिए एक। प्रत्येक को ठीक उस कोण पर बनाया गया है जब सूर्य उस विशेष राशि में प्रवेश करता है। यह 1730 का यान्त्रिक अयनांश कम्प्यूटर है — वही कार्य जो आज हमारा सॉफ़्टवेयर करता है।',
@@ -105,7 +107,7 @@ const INSTRUMENTS: Instrument[] = [
   {
     name: 'Chakra Yantra',
     nameHi: 'चक्र यन्त्र',
-    purpose: { en: 'Declination & Hour Angle', hi: 'क्रान्ति एवं कालांश' },
+    purpose: { en: 'Declination & Hour Angle', hi: 'क्रान्ति एवं कालांश', sa: 'क्रान्ति एवं कालांश', mai: 'क्रान्ति एवं कालांश', mr: 'क्रान्ति एवं कालांश', ta: 'Declination & Hour Angle', te: 'Declination & Hour Angle', bn: 'Declination & Hour Angle', kn: 'Declination & Hour Angle', gu: 'Declination & Hour Angle' },
     description: {
       en: 'A large brass ring aligned with the celestial meridian. Uses a pinhole gnomon to project a spot of light onto the graduated ring. Measures declination and hour angle of celestial bodies with precision.',
       hi: 'खगोलीय याम्योत्तर के साथ संरेखित एक बड़ा पीतल का वलय। एक सूच्यग्र शंकु प्रकाश का बिन्दु अंशांकित वलय पर प्रक्षेपित करता है। खगोलीय पिण्डों की क्रान्ति और कालांश सटीकता से मापता है।',
@@ -120,7 +122,7 @@ const INSTRUMENTS: Instrument[] = [
   {
     name: 'Mishra Yantra (Delhi)',
     nameHi: 'मिश्र यन्त्र (दिल्ली)',
-    purpose: { en: 'Multi-function Instrument', hi: 'बहु-कार्य यन्त्र' },
+    purpose: { en: 'Multi-function Instrument', hi: 'बहु-कार्य यन्त्र', sa: 'बहु-कार्य यन्त्र', mai: 'बहु-कार्य यन्त्र', mr: 'बहु-कार्य यन्त्र', ta: 'Multi-function Instrument', te: 'Multi-function Instrument', bn: 'Multi-function Instrument', kn: 'Multi-function Instrument', gu: 'Multi-function Instrument' },
     description: {
       en: 'Five instruments merged into one massive stone structure — the Swiss Army knife of 18th century astronomy. Only found at the Delhi observatory. Includes a Niyat Chakra that identifies the shortest and longest days of the year.',
       hi: 'पाँच यन्त्र एक विशाल पत्थर संरचना में विलीन — 18वीं शताब्दी के खगोल विज्ञान का स्विस आर्मी चाकू। केवल दिल्ली वेधशाला में। इसमें एक नियत चक्र है जो वर्ष के सबसे छोटे और सबसे लम्बे दिन पहचानता है।',
@@ -136,10 +138,10 @@ const INSTRUMENTS: Instrument[] = [
 
 const OBSERVATORIES = [
   { city: 'Jaipur', cityHi: 'जयपुर', instruments: 19, status: { en: 'UNESCO World Heritage Site (2010). Largest, best preserved. 19 instruments including the world\'s largest stone sundial.', hi: 'यूनेस्को विश्व धरोहर स्थल (2010)। सबसे बड़ी, सबसे सुरक्षित। विश्व की सबसे बड़ी पत्थर धूपघड़ी सहित 19 यन्त्र।' }, color: 'text-amber-400' },
-  { city: 'Delhi', cityHi: 'दिल्ली', instruments: 13, status: { en: 'Most accessible. 13 instruments near Connaught Place. Home to the unique Mishra Yantra.', hi: 'सबसे सुलभ। कनॉट प्लेस के निकट 13 यन्त्र। अद्वितीय मिश्र यन्त्र का स्थान।' }, color: 'text-emerald-400' },
+  { city: 'Delhi', cityHi: 'दिल्ली', instruments: 13, status: { en: 'Most accessible. 13 instruments near Connaught Place. Home to the unique Mishra Yantra.', hi: 'सबसे सुलभ। कनॉट प्लेस के निकट 13 यन्त्र। अद्वितीय मिश्र यन्त्र का स्थान।', sa: 'सबसे सुलभ। कनॉट प्लेस के निकट 13 यन्त्र। अद्वितीय मिश्र यन्त्र का स्थान।', mai: 'सबसे सुलभ। कनॉट प्लेस के निकट 13 यन्त्र। अद्वितीय मिश्र यन्त्र का स्थान।', mr: 'सबसे सुलभ। कनॉट प्लेस के निकट 13 यन्त्र। अद्वितीय मिश्र यन्त्र का स्थान।', ta: 'Most accessible. 13 instruments near Connaught Place. Home to the unique Mishra Yantra.', te: 'Most accessible. 13 instruments near Connaught Place. Home to the unique Mishra Yantra.', bn: 'Most accessible. 13 instruments near Connaught Place. Home to the unique Mishra Yantra.', kn: 'Most accessible. 13 instruments near Connaught Place. Home to the unique Mishra Yantra.', gu: 'Most accessible. 13 instruments near Connaught Place. Home to the unique Mishra Yantra.' }, color: 'text-emerald-400' },
   { city: 'Ujjain', cityHi: 'उज्जैन', instruments: 13, status: { en: 'On the Tropic of Cancer — astronomically ideal. Ujjain was India\'s prime meridian for centuries.', hi: 'कर्क रेखा पर — खगोलीय रूप से आदर्श। उज्जैन शताब्दियों तक भारत की प्रधान याम्योत्तर रेखा रही।' }, color: 'text-violet-400' },
-  { city: 'Varanasi', cityHi: 'वाराणसी', instruments: 6, status: { en: 'Smaller but significant. On the rooftop of Man Singh Observatory near the ghats.', hi: 'छोटी किन्तु महत्वपूर्ण। घाटों के निकट मानसिंह वेधशाला की छत पर।' }, color: 'text-cyan-400' },
-  { city: 'Mathura', cityHi: 'मथुरा', instruments: 0, status: { en: 'No longer extant — destroyed over the centuries. Only historical references remain.', hi: 'अब अस्तित्व में नहीं — शताब्दियों में नष्ट। केवल ऐतिहासिक सन्दर्भ शेष।' }, color: 'text-text-secondary/70' },
+  { city: 'Varanasi', cityHi: 'वाराणसी', instruments: 6, status: { en: 'Smaller but significant. On the rooftop of Man Singh Observatory near the ghats.', hi: 'छोटी किन्तु महत्वपूर्ण। घाटों के निकट मानसिंह वेधशाला की छत पर।', sa: 'छोटी किन्तु महत्वपूर्ण। घाटों के निकट मानसिंह वेधशाला की छत पर।', mai: 'छोटी किन्तु महत्वपूर्ण। घाटों के निकट मानसिंह वेधशाला की छत पर।', mr: 'छोटी किन्तु महत्वपूर्ण। घाटों के निकट मानसिंह वेधशाला की छत पर।', ta: 'Smaller but significant. On the rooftop of Man Singh Observatory near the ghats.', te: 'Smaller but significant. On the rooftop of Man Singh Observatory near the ghats.', bn: 'Smaller but significant. On the rooftop of Man Singh Observatory near the ghats.', kn: 'Smaller but significant. On the rooftop of Man Singh Observatory near the ghats.', gu: 'Smaller but significant. On the rooftop of Man Singh Observatory near the ghats.' }, color: 'text-cyan-400' },
+  { city: 'Mathura', cityHi: 'मथुरा', instruments: 0, status: { en: 'No longer extant — destroyed over the centuries. Only historical references remain.', hi: 'अब अस्तित्व में नहीं — शताब्दियों में नष्ट। केवल ऐतिहासिक सन्दर्भ शेष।', sa: 'अब अस्तित्व में नहीं — शताब्दियों में नष्ट। केवल ऐतिहासिक सन्दर्भ शेष।', mai: 'अब अस्तित्व में नहीं — शताब्दियों में नष्ट। केवल ऐतिहासिक सन्दर्भ शेष।', mr: 'अब अस्तित्व में नहीं — शताब्दियों में नष्ट। केवल ऐतिहासिक सन्दर्भ शेष।', ta: 'No longer extant — destroyed over the centuries. Only historical references remain.', te: 'No longer extant — destroyed over the centuries. Only historical references remain.', bn: 'No longer extant — destroyed over the centuries. Only historical references remain.', kn: 'No longer extant — destroyed over the centuries. Only historical references remain.', gu: 'No longer extant — destroyed over the centuries. Only historical references remain.' }, color: 'text-text-secondary/70' },
 ];
 
 /* ═══════════════════════════════════════════════════════════════
@@ -148,7 +150,7 @@ const OBSERVATORIES = [
 export default function ObservatoriesPage() {
   const locale = useLocale() as Locale;
   const hi = isDevanagariLocale(locale);
-  const t = (obj: Record<string, string>) => (hi ? obj.hi : obj.en);
+  const t = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
 
   return (
     <div className="min-h-screen py-8 sm:py-12 px-4 sm:px-6 max-w-4xl mx-auto">
@@ -283,20 +285,20 @@ export default function ObservatoriesPage() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
                 {
-                  problem: { en: 'Too Small', hi: 'बहुत छोटे' },
+                  problem: { en: 'Too Small', hi: 'बहुत छोटे', sa: 'बहुत छोटे', mai: 'बहुत छोटे', mr: 'बहुत छोटे', ta: 'Too Small', te: 'Too Small', bn: 'Too Small', kn: 'Too Small', gu: 'Too Small' },
                   detail: { en: 'A 30cm quadrant can only resolve to ~1 arcminute. Jai Singh\'s 27m Samrat Yantra resolves to 2 arcseconds — 30x better.', hi: '30 सेमी का चतुर्थांश केवल ~1 कलांश तक पढ़ सकता है। जयसिंह का 27 मीटर सम्राट यन्त्र 2 कलांश तक — 30 गुना बेहतर।' },
                   color: 'border-red-500/20 bg-red-500/[0.04]',
                   icon: <Ruler className="w-4 h-4 text-red-400" />,
                 },
                 {
-                  problem: { en: 'Metal Expands', hi: 'धातु फैलती है' },
-                  detail: { en: 'Brass expands with heat — readings drift from morning to afternoon. Stone is thermally stable. No expansion, no drift, no recalibration needed.', hi: 'पीतल ताप से फैलता है — प्रातः से अपराह्न तक माप बदलते हैं। पत्थर ताप-स्थिर है। न फैलाव, न विचलन, न पुनः अंशांकन।' },
+                  problem: { en: 'Metal Expands', hi: 'धातु फैलती है', sa: 'धातु फैलती है', mai: 'धातु फैलती है', mr: 'धातु फैलती है', ta: 'Metal Expands', te: 'Metal Expands', bn: 'Metal Expands', kn: 'Metal Expands', gu: 'Metal Expands' },
+                  detail: { en: 'Brass expands with heat — readings drift from morning to afternoon. Stone is thermally stable. No expansion, no drift, no recalibration needed.', hi: 'पीतल ताप से फैलता है — प्रातः से अपराह्न तक माप बदलते हैं। पत्थर ताप-स्थिर है। न फैलाव, न विचलन, न पुनः अंशांकन।', sa: 'पीतल ताप से फैलता है — प्रातः से अपराह्न तक माप बदलते हैं। पत्थर ताप-स्थिर है। न फैलाव, न विचलन, न पुनः अंशांकन।', mai: 'पीतल ताप से फैलता है — प्रातः से अपराह्न तक माप बदलते हैं। पत्थर ताप-स्थिर है। न फैलाव, न विचलन, न पुनः अंशांकन।', mr: 'पीतल ताप से फैलता है — प्रातः से अपराह्न तक माप बदलते हैं। पत्थर ताप-स्थिर है। न फैलाव, न विचलन, न पुनः अंशांकन।', ta: 'Brass expands with heat — readings drift from morning to afternoon. Stone is thermally stable. No expansion, no drift, no recalibration needed.', te: 'Brass expands with heat — readings drift from morning to afternoon. Stone is thermally stable. No expansion, no drift, no recalibration needed.', bn: 'Brass expands with heat — readings drift from morning to afternoon. Stone is thermally stable. No expansion, no drift, no recalibration needed.', kn: 'Brass expands with heat — readings drift from morning to afternoon. Stone is thermally stable. No expansion, no drift, no recalibration needed.', gu: 'Brass expands with heat — readings drift from morning to afternoon. Stone is thermally stable. No expansion, no drift, no recalibration needed.' },
                   color: 'border-orange-500/20 bg-orange-500/[0.04]',
                   icon: <Star className="w-4 h-4 text-orange-400" />,
                 },
                 {
-                  problem: { en: 'Parts Wear Out', hi: 'पुर्ज़े घिसते हैं' },
-                  detail: { en: 'Pivot joints, hinges, rotating parts — all accumulate error over years. Stone instruments have ZERO moving parts. Nothing to wear, nothing to break.', hi: 'कीलक जोड़, टिका, घूमने वाले भाग — सब वर्षों में त्रुटि संचित करते हैं। पत्थर यन्त्रों में शून्य चल भाग। न घिसाव, न टूट-फूट।' },
+                  problem: { en: 'Parts Wear Out', hi: 'पुर्ज़े घिसते हैं', sa: 'पुर्ज़े घिसते हैं', mai: 'पुर्ज़े घिसते हैं', mr: 'पुर्ज़े घिसते हैं', ta: 'Parts Wear Out', te: 'Parts Wear Out', bn: 'Parts Wear Out', kn: 'Parts Wear Out', gu: 'Parts Wear Out' },
+                  detail: { en: 'Pivot joints, hinges, rotating parts — all accumulate error over years. Stone instruments have ZERO moving parts. Nothing to wear, nothing to break.', hi: 'कीलक जोड़, टिका, घूमने वाले भाग — सब वर्षों में त्रुटि संचित करते हैं। पत्थर यन्त्रों में शून्य चल भाग। न घिसाव, न टूट-फूट।', sa: 'कीलक जोड़, टिका, घूमने वाले भाग — सब वर्षों में त्रुटि संचित करते हैं। पत्थर यन्त्रों में शून्य चल भाग। न घिसाव, न टूट-फूट।', mai: 'कीलक जोड़, टिका, घूमने वाले भाग — सब वर्षों में त्रुटि संचित करते हैं। पत्थर यन्त्रों में शून्य चल भाग। न घिसाव, न टूट-फूट।', mr: 'कीलक जोड़, टिका, घूमने वाले भाग — सब वर्षों में त्रुटि संचित करते हैं। पत्थर यन्त्रों में शून्य चल भाग। न घिसाव, न टूट-फूट।', ta: 'Pivot joints, hinges, rotating parts — all accumulate error over years. Stone instruments have ZERO moving parts. Nothing to wear, nothing to break.', te: 'Pivot joints, hinges, rotating parts — all accumulate error over years. Stone instruments have ZERO moving parts. Nothing to wear, nothing to break.', bn: 'Pivot joints, hinges, rotating parts — all accumulate error over years. Stone instruments have ZERO moving parts. Nothing to wear, nothing to break.', kn: 'Pivot joints, hinges, rotating parts — all accumulate error over years. Stone instruments have ZERO moving parts. Nothing to wear, nothing to break.', gu: 'Pivot joints, hinges, rotating parts — all accumulate error over years. Stone instruments have ZERO moving parts. Nothing to wear, nothing to break.' },
                   color: 'border-yellow-500/20 bg-yellow-500/[0.04]',
                   icon: <Eye className="w-4 h-4 text-yellow-400" />,
                 },
@@ -339,11 +341,11 @@ export default function ObservatoriesPage() {
           <div className="space-y-4">
             {[
               {
-                text: { en: 'The Jaipur Jantar Mantar was declared a UNESCO World Heritage Site in 2010 — recognized as "the most significant, comprehensive, and well-preserved collection of architectural astronomical instruments in the world."', hi: 'जयपुर जन्तर मन्तर को 2010 में यूनेस्को विश्व धरोहर स्थल घोषित किया गया — "विश्व में वास्तुशिल्पीय खगोलीय यन्त्रों का सबसे महत्वपूर्ण, व्यापक और सुरक्षित संग्रह" के रूप में मान्यता प्राप्त।' },
+                text: { en: 'The Jaipur Jantar Mantar was declared a UNESCO World Heritage Site in 2010 — recognized as "the most significant, comprehensive, and well-preserved collection of architectural astronomical instruments in the world."', hi: 'जयपुर जन्तर मन्तर को 2010 में यूनेस्को विश्व धरोहर स्थल घोषित किया गया — "विश्व में वास्तुशिल्पीय खगोलीय यन्त्रों का सबसे महत्वपूर्ण, व्यापक और सुरक्षित संग्रह" के रूप में मान्यता प्राप्त।', sa: 'जयपुर जन्तर मन्तर को 2010 में यूनेस्को विश्व धरोहर स्थल घोषित किया गया — "विश्व में वास्तुशिल्पीय खगोलीय यन्त्रों का सबसे महत्वपूर्ण, व्यापक और सुरक्षित संग्रह" के रूप में मान्यता प्राप्त।', mai: 'जयपुर जन्तर मन्तर को 2010 में यूनेस्को विश्व धरोहर स्थल घोषित किया गया — "विश्व में वास्तुशिल्पीय खगोलीय यन्त्रों का सबसे महत्वपूर्ण, व्यापक और सुरक्षित संग्रह" के रूप में मान्यता प्राप्त।', mr: 'जयपुर जन्तर मन्तर को 2010 में यूनेस्को विश्व धरोहर स्थल घोषित किया गया — "विश्व में वास्तुशिल्पीय खगोलीय यन्त्रों का सबसे महत्वपूर्ण, व्यापक और सुरक्षित संग्रह" के रूप में मान्यता प्राप्त।', ta: 'The Jaipur Jantar Mantar was declared a UNESCO World Heritage Site in 2010 — recognized as "the most significant, comprehensive, and well-preserved collection of architectural astronomical instruments in the world."', te: 'The Jaipur Jantar Mantar was declared a UNESCO World Heritage Site in 2010 — recognized as "the most significant, comprehensive, and well-preserved collection of architectural astronomical instruments in the world."', bn: 'The Jaipur Jantar Mantar was declared a UNESCO World Heritage Site in 2010 — recognized as "the most significant, comprehensive, and well-preserved collection of architectural astronomical instruments in the world."', kn: 'The Jaipur Jantar Mantar was declared a UNESCO World Heritage Site in 2010 — recognized as "the most significant, comprehensive, and well-preserved collection of architectural astronomical instruments in the world."', gu: 'The Jaipur Jantar Mantar was declared a UNESCO World Heritage Site in 2010 — recognized as "the most significant, comprehensive, and well-preserved collection of architectural astronomical instruments in the world."' },
                 color: 'border-amber-500/20 bg-amber-500/[0.04]',
               },
               {
-                text: { en: 'Traditional pandits still use these instruments for calendar calculations. The Rashivalaya Yantra predicted Makar Sankranti within MINUTES of modern astronomical computation — and it was built in 1730, nearly 300 years ago.', hi: 'परम्परागत पण्डित आज भी इन यन्त्रों का उपयोग पञ्चाङ्ग गणना के लिए करते हैं। राशिवलय यन्त्र ने मकर सङ्क्रान्ति की भविष्यवाणी आधुनिक खगोलीय गणना से केवल मिनटों के अन्तर से की — और यह 1730 में बना था।' },
+                text: { en: 'Traditional pandits still use these instruments for calendar calculations. The Rashivalaya Yantra predicted Makar Sankranti within MINUTES of modern astronomical computation — and it was built in 1730, nearly 300 years ago.', hi: 'परम्परागत पण्डित आज भी इन यन्त्रों का उपयोग पञ्चाङ्ग गणना के लिए करते हैं। राशिवलय यन्त्र ने मकर सङ्क्रान्ति की भविष्यवाणी आधुनिक खगोलीय गणना से केवल मिनटों के अन्तर से की — और यह 1730 में बना था।', sa: 'परम्परागत पण्डित आज भी इन यन्त्रों का उपयोग पञ्चाङ्ग गणना के लिए करते हैं। राशिवलय यन्त्र ने मकर सङ्क्रान्ति की भविष्यवाणी आधुनिक खगोलीय गणना से केवल मिनटों के अन्तर से की — और यह 1730 में बना था।', mai: 'परम्परागत पण्डित आज भी इन यन्त्रों का उपयोग पञ्चाङ्ग गणना के लिए करते हैं। राशिवलय यन्त्र ने मकर सङ्क्रान्ति की भविष्यवाणी आधुनिक खगोलीय गणना से केवल मिनटों के अन्तर से की — और यह 1730 में बना था।', mr: 'परम्परागत पण्डित आज भी इन यन्त्रों का उपयोग पञ्चाङ्ग गणना के लिए करते हैं। राशिवलय यन्त्र ने मकर सङ्क्रान्ति की भविष्यवाणी आधुनिक खगोलीय गणना से केवल मिनटों के अन्तर से की — और यह 1730 में बना था।', ta: 'Traditional pandits still use these instruments for calendar calculations. The Rashivalaya Yantra predicted Makar Sankranti within MINUTES of modern astronomical computation — and it was built in 1730, nearly 300 years ago.', te: 'Traditional pandits still use these instruments for calendar calculations. The Rashivalaya Yantra predicted Makar Sankranti within MINUTES of modern astronomical computation — and it was built in 1730, nearly 300 years ago.', bn: 'Traditional pandits still use these instruments for calendar calculations. The Rashivalaya Yantra predicted Makar Sankranti within MINUTES of modern astronomical computation — and it was built in 1730, nearly 300 years ago.', kn: 'Traditional pandits still use these instruments for calendar calculations. The Rashivalaya Yantra predicted Makar Sankranti within MINUTES of modern astronomical computation — and it was built in 1730, nearly 300 years ago.', gu: 'Traditional pandits still use these instruments for calendar calculations. The Rashivalaya Yantra predicted Makar Sankranti within MINUTES of modern astronomical computation — and it was built in 1730, nearly 300 years ago.' },
                 color: 'border-emerald-500/20 bg-emerald-500/[0.04]',
               },
               {
@@ -443,10 +445,10 @@ export default function ObservatoriesPage() {
           <h3 className="text-gold-light font-semibold text-sm uppercase tracking-wider mb-4">{t(L.exploreMore)}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
-              { href: '/learn/vedanga' as const, label: { en: 'Vedanga Jyotisha & Indian Astronomy', hi: 'वेदाङ्ग ज्योतिष एवं भारतीय खगोल' } },
-              { href: '/learn/cosmology' as const, label: { en: 'Hindu Cosmological Time Scales', hi: 'हिन्दू ब्रह्माण्डीय कालमान' } },
-              { href: '/learn/classical-texts' as const, label: { en: 'Classical Astronomical Texts', hi: 'शास्त्रीय खगोलीय ग्रन्थ' } },
-              { href: '/learn/calculations' as const, label: { en: 'How We Calculate', hi: 'हम कैसे गणना करते हैं' } },
+              { href: '/learn/vedanga' as const, label: { en: 'Vedanga Jyotisha & Indian Astronomy', hi: 'वेदाङ्ग ज्योतिष एवं भारतीय खगोल', sa: 'वेदाङ्ग ज्योतिष एवं भारतीय खगोल', mai: 'वेदाङ्ग ज्योतिष एवं भारतीय खगोल', mr: 'वेदाङ्ग ज्योतिष एवं भारतीय खगोल', ta: 'Vedanga Jyotisha & Indian Astronomy', te: 'Vedanga Jyotisha & Indian Astronomy', bn: 'Vedanga Jyotisha & Indian Astronomy', kn: 'Vedanga Jyotisha & Indian Astronomy', gu: 'Vedanga Jyotisha & Indian Astronomy' } },
+              { href: '/learn/cosmology' as const, label: { en: 'Hindu Cosmological Time Scales', hi: 'हिन्दू ब्रह्माण्डीय कालमान', sa: 'हिन्दू ब्रह्माण्डीय कालमान', mai: 'हिन्दू ब्रह्माण्डीय कालमान', mr: 'हिन्दू ब्रह्माण्डीय कालमान', ta: 'Hindu Cosmological Time Scales', te: 'Hindu Cosmological Time Scales', bn: 'Hindu Cosmological Time Scales', kn: 'Hindu Cosmological Time Scales', gu: 'Hindu Cosmological Time Scales' } },
+              { href: '/learn/classical-texts' as const, label: { en: 'Classical Astronomical Texts', hi: 'शास्त्रीय खगोलीय ग्रन्थ', sa: 'शास्त्रीय खगोलीय ग्रन्थ', mai: 'शास्त्रीय खगोलीय ग्रन्थ', mr: 'शास्त्रीय खगोलीय ग्रन्थ', ta: 'Classical Astronomical Texts', te: 'Classical Astronomical Texts', bn: 'Classical Astronomical Texts', kn: 'Classical Astronomical Texts', gu: 'Classical Astronomical Texts' } },
+              { href: '/learn/calculations' as const, label: { en: 'How We Calculate', hi: 'हम कैसे गणना करते हैं', sa: 'हम कैसे गणना करते हैं', mai: 'हम कैसे गणना करते हैं', mr: 'हम कैसे गणना करते हैं', ta: 'How We Calculate', te: 'How We Calculate', bn: 'How We Calculate', kn: 'How We Calculate', gu: 'How We Calculate' } },
             ].map((link, i) => (
               <Link
                 key={i}

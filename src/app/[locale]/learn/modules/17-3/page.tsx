@@ -15,10 +15,10 @@ const META: ModuleMeta = {
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Module 17-1: The Science of Timing', hi: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान' }, href: '/learn/modules/17-1' },
-    { label: { en: 'Module 17-2: Muhurta for Marriage', hi: 'मॉड्यूल 17-2: विवाह मुहूर्त' }, href: '/learn/modules/17-2' },
-    { label: { en: 'Module 17-4: Muhurta for Education & Naming', hi: 'मॉड्यूल 17-4: शिक्षा एवं नामकरण मुहूर्त' }, href: '/learn/modules/17-4' },
-    { label: { en: 'Muhurta AI Tool', hi: 'मुहूर्त AI उपकरण' }, href: '/muhurta-ai' },
+    { label: { en: 'Module 17-1: The Science of Timing', hi: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान', sa: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान', mai: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान', mr: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान', ta: 'Module 17-1: The Science of Timing', te: 'Module 17-1: The Science of Timing', bn: 'Module 17-1: The Science of Timing', kn: 'Module 17-1: The Science of Timing', gu: 'Module 17-1: The Science of Timing' }, href: '/learn/modules/17-1' },
+    { label: { en: 'Module 17-2: Muhurta for Marriage', hi: 'मॉड्यूल 17-2: विवाह मुहूर्त', sa: 'मॉड्यूल 17-2: विवाह मुहूर्त', mai: 'मॉड्यूल 17-2: विवाह मुहूर्त', mr: 'मॉड्यूल 17-2: विवाह मुहूर्त', ta: 'Module 17-2: Muhurta for Marriage', te: 'Module 17-2: Muhurta for Marriage', bn: 'Module 17-2: Muhurta for Marriage', kn: 'Module 17-2: Muhurta for Marriage', gu: 'Module 17-2: Muhurta for Marriage' }, href: '/learn/modules/17-2' },
+    { label: { en: 'Module 17-4: Muhurta for Education & Naming', hi: 'मॉड्यूल 17-4: शिक्षा एवं नामकरण मुहूर्त', sa: 'मॉड्यूल 17-4: शिक्षा एवं नामकरण मुहूर्त', mai: 'मॉड्यूल 17-4: शिक्षा एवं नामकरण मुहूर्त', mr: 'मॉड्यूल 17-4: शिक्षा एवं नामकरण मुहूर्त', ta: 'Module 17-4: Muhurta for Education & Naming', te: 'Module 17-4: Muhurta for Education & Naming', bn: 'Module 17-4: Muhurta for Education & Naming', kn: 'Module 17-4: Muhurta for Education & Naming', gu: 'Module 17-4: Muhurta for Education & Naming' }, href: '/learn/modules/17-4' },
+    { label: { en: 'Muhurta AI Tool', hi: 'मुहूर्त AI उपकरण', sa: 'मुहूर्त AI उपकरण', mai: 'मुहूर्त AI उपकरण', mr: 'मुहूर्त AI उपकरण', ta: 'Muhurta AI Tool', te: 'Muhurta AI Tool', bn: 'Muhurta AI Tool', kn: 'Muhurta AI Tool', gu: 'Muhurta AI Tool' }, href: '/muhurta-ai' },
   ],
 };
 
@@ -30,10 +30,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'गृह प्रवेश के लिए कौन-से नक्षत्र विशेष रूप से अनुशंसित हैं?',
     },
     options: [
-      { en: 'Ardra, Ashlesha, Bharani', hi: 'आर्द्रा, आश्लेषा, भरणी' },
-      { en: 'Dhanishtha, Uttara Phalguni, Uttarabhadrapada, Rohini', hi: 'धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद, रोहिणी' },
-      { en: 'Mula, Jyeshtha, Ashwini', hi: 'मूल, ज्येष्ठा, अश्विनी' },
-      { en: 'Any nakshatra is acceptable', hi: 'कोई भी नक्षत्र स्वीकार्य है' },
+      { en: 'Ardra, Ashlesha, Bharani', hi: 'आर्द्रा, आश्लेषा, भरणी', sa: 'आर्द्रा, आश्लेषा, भरणी', mai: 'आर्द्रा, आश्लेषा, भरणी', mr: 'आर्द्रा, आश्लेषा, भरणी', ta: 'Ardra, Ashlesha, Bharani', te: 'Ardra, Ashlesha, Bharani', bn: 'Ardra, Ashlesha, Bharani', kn: 'Ardra, Ashlesha, Bharani', gu: 'Ardra, Ashlesha, Bharani' },
+      { en: 'Dhanishtha, Uttara Phalguni, Uttarabhadrapada, Rohini', hi: 'धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद, रोहिणी', sa: 'धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद, रोहिणी', mai: 'धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद, रोहिणी', mr: 'धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद, रोहिणी', ta: 'Dhanishtha, Uttara Phalguni, Uttarabhadrapada, Rohini', te: 'Dhanishtha, Uttara Phalguni, Uttarabhadrapada, Rohini', bn: 'Dhanishtha, Uttara Phalguni, Uttarabhadrapada, Rohini', kn: 'Dhanishtha, Uttara Phalguni, Uttarabhadrapada, Rohini', gu: 'Dhanishtha, Uttara Phalguni, Uttarabhadrapada, Rohini' },
+      { en: 'Mula, Jyeshtha, Ashwini', hi: 'मूल, ज्येष्ठा, अश्विनी', sa: 'मूल, ज्येष्ठा, अश्विनी', mai: 'मूल, ज्येष्ठा, अश्विनी', mr: 'मूल, ज्येष्ठा, अश्विनी', ta: 'Mula, Jyeshtha, Ashwini', te: 'Mula, Jyeshtha, Ashwini', bn: 'Mula, Jyeshtha, Ashwini', kn: 'Mula, Jyeshtha, Ashwini', gu: 'Mula, Jyeshtha, Ashwini' },
+      { en: 'Any nakshatra is acceptable', hi: 'कोई भी नक्षत्र स्वीकार्य है', sa: 'कोई भी नक्षत्र स्वीकार्य है', mai: 'कोई भी नक्षत्र स्वीकार्य है', mr: 'कोई भी नक्षत्र स्वीकार्य है', ta: 'Any nakshatra is acceptable', te: 'Any nakshatra is acceptable', bn: 'Any nakshatra is acceptable', kn: 'Any nakshatra is acceptable', gu: 'Any nakshatra is acceptable' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -48,10 +48,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'गृह प्रवेश के लिए गोचर चन्द्रमा जन्म चन्द्रमा से आदर्श रूप से किन भावों में होना चाहिए?',
     },
     options: [
-      { en: 'Only in the 1st house', hi: 'केवल 1ले भाव में' },
-      { en: '2nd, 4th, 6th, 7th, 9th, 10th, or 11th from natal Moon', hi: 'जन्म चन्द्र से 2, 4, 6, 7, 9, 10, या 11वें भाव में' },
-      { en: '8th and 12th from natal Moon', hi: 'जन्म चन्द्र से 8वें और 12वें भाव में' },
-      { en: 'Moon position does not matter', hi: 'चन्द्रमा की स्थिति महत्वपूर्ण नहीं है' },
+      { en: 'Only in the 1st house', hi: 'केवल 1ले भाव में', sa: 'केवल 1ले भाव में', mai: 'केवल 1ले भाव में', mr: 'केवल 1ले भाव में', ta: 'Only in the 1st house', te: 'Only in the 1st house', bn: 'Only in the 1st house', kn: 'Only in the 1st house', gu: 'Only in the 1st house' },
+      { en: '2nd, 4th, 6th, 7th, 9th, 10th, or 11th from natal Moon', hi: 'जन्म चन्द्र से 2, 4, 6, 7, 9, 10, या 11वें भाव में', sa: 'जन्म चन्द्र से 2, 4, 6, 7, 9, 10, या 11वें भाव में', mai: 'जन्म चन्द्र से 2, 4, 6, 7, 9, 10, या 11वें भाव में', mr: 'जन्म चन्द्र से 2, 4, 6, 7, 9, 10, या 11वें भाव में', ta: '2nd, 4th, 6th, 7th, 9th, 10th, or 11th from natal Moon', te: '2nd, 4th, 6th, 7th, 9th, 10th, or 11th from natal Moon', bn: '2nd, 4th, 6th, 7th, 9th, 10th, or 11th from natal Moon', kn: '2nd, 4th, 6th, 7th, 9th, 10th, or 11th from natal Moon', gu: '2nd, 4th, 6th, 7th, 9th, 10th, or 11th from natal Moon' },
+      { en: '8th and 12th from natal Moon', hi: 'जन्म चन्द्र से 8वें और 12वें भाव में', sa: 'जन्म चन्द्र से 8वें और 12वें भाव में', mai: 'जन्म चन्द्र से 8वें और 12वें भाव में', mr: 'जन्म चन्द्र से 8वें और 12वें भाव में', ta: '8th and 12th from natal Moon', te: '8th and 12th from natal Moon', bn: '8th and 12th from natal Moon', kn: '8th and 12th from natal Moon', gu: '8th and 12th from natal Moon' },
+      { en: 'Moon position does not matter', hi: 'चन्द्रमा की स्थिति महत्वपूर्ण नहीं है', sa: 'चन्द्रमा की स्थिति महत्वपूर्ण नहीं है', mai: 'चन्द्रमा की स्थिति महत्वपूर्ण नहीं है', mr: 'चन्द्रमा की स्थिति महत्वपूर्ण नहीं है', ta: 'Moon position does not matter', te: 'Moon position does not matter', bn: 'Moon position does not matter', kn: 'Moon position does not matter', gu: 'Moon position does not matter' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -78,10 +78,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'गृह प्रवेश के लिए सप्ताह के कौन-से दिन अनुशंसित हैं?',
     },
     options: [
-      { en: 'Saturday and Tuesday', hi: 'शनिवार और मंगलवार' },
-      { en: 'Monday, Wednesday, Thursday, Friday', hi: 'सोमवार, बुधवार, गुरुवार, शुक्रवार' },
-      { en: 'Only Sunday', hi: 'केवल रविवार' },
-      { en: 'Any day is equally suitable', hi: 'कोई भी दिन समान रूप से उपयुक्त है' },
+      { en: 'Saturday and Tuesday', hi: 'शनिवार और मंगलवार', sa: 'शनिवार और मंगलवार', mai: 'शनिवार और मंगलवार', mr: 'शनिवार और मंगलवार', ta: 'Saturday and Tuesday', te: 'Saturday and Tuesday', bn: 'Saturday and Tuesday', kn: 'Saturday and Tuesday', gu: 'Saturday and Tuesday' },
+      { en: 'Monday, Wednesday, Thursday, Friday', hi: 'सोमवार, बुधवार, गुरुवार, शुक्रवार', sa: 'सोमवार, बुधवार, गुरुवार, शुक्रवार', mai: 'सोमवार, बुधवार, गुरुवार, शुक्रवार', mr: 'सोमवार, बुधवार, गुरुवार, शुक्रवार', ta: 'Monday, Wednesday, Thursday, Friday', te: 'Monday, Wednesday, Thursday, Friday', bn: 'Monday, Wednesday, Thursday, Friday', kn: 'Monday, Wednesday, Thursday, Friday', gu: 'Monday, Wednesday, Thursday, Friday' },
+      { en: 'Only Sunday', hi: 'केवल रविवार', sa: 'केवल रविवार', mai: 'केवल रविवार', mr: 'केवल रविवार', ta: 'Only Sunday', te: 'Only Sunday', bn: 'Only Sunday', kn: 'Only Sunday', gu: 'Only Sunday' },
+      { en: 'Any day is equally suitable', hi: 'कोई भी दिन समान रूप से उपयुक्त है', sa: 'कोई भी दिन समान रूप से उपयुक्त है', mai: 'कोई भी दिन समान रूप से उपयुक्त है', mr: 'कोई भी दिन समान रूप से उपयुक्त है', ta: 'Any day is equally suitable', te: 'Any day is equally suitable', bn: 'Any day is equally suitable', kn: 'Any day is equally suitable', gu: 'Any day is equally suitable' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -96,10 +96,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वाहन क्रय मुहूर्त में लग्न कुण्डली में कौन-सा भाव बलवान होना चाहिए?',
     },
     options: [
-      { en: '7th house', hi: '7वाँ भाव' },
-      { en: '4th house', hi: '4वाँ भाव' },
-      { en: '12th house', hi: '12वाँ भाव' },
-      { en: '6th house', hi: '6वाँ भाव' },
+      { en: '7th house', hi: '7वाँ भाव', sa: '7वाँ भाव', mai: '7वाँ भाव', mr: '7वाँ भाव', ta: '7th house', te: '7th house', bn: '7th house', kn: '7th house', gu: '7th house' },
+      { en: '4th house', hi: '4वाँ भाव', sa: '4वाँ भाव', mai: '4वाँ भाव', mr: '4वाँ भाव', ta: '4th house', te: '4th house', bn: '4th house', kn: '4th house', gu: '4th house' },
+      { en: '12th house', hi: '12वाँ भाव', sa: '12वाँ भाव', mai: '12वाँ भाव', mr: '12वाँ भाव', ta: '12th house', te: '12th house', bn: '12th house', kn: '12th house', gu: '12th house' },
+      { en: '6th house', hi: '6वाँ भाव', sa: '6वाँ भाव', mai: '6वाँ भाव', mr: '6वाँ भाव', ta: '6th house', te: '6th house', bn: '6th house', kn: '6th house', gu: '6th house' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -126,10 +126,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'यात्रा मुहूर्त के सन्दर्भ में दिशा शूल क्या है?',
     },
     options: [
-      { en: 'A type of yoga combination', hi: 'एक प्रकार का योग संयोजन' },
-      { en: 'A directional defect based on the weekday — certain directions are inauspicious on specific days', hi: 'वार पर आधारित दिशात्मक दोष — विशिष्ट दिनों में कुछ दिशाएँ अशुभ हैं' },
-      { en: 'A planetary dasha transition', hi: 'ग्रह दशा संक्रमण' },
-      { en: 'A type of eclipse', hi: 'एक प्रकार का ग्रहण' },
+      { en: 'A type of yoga combination', hi: 'एक प्रकार का योग संयोजन', sa: 'एक प्रकार का योग संयोजन', mai: 'एक प्रकार का योग संयोजन', mr: 'एक प्रकार का योग संयोजन', ta: 'A type of yoga combination', te: 'A type of yoga combination', bn: 'A type of yoga combination', kn: 'A type of yoga combination', gu: 'A type of yoga combination' },
+      { en: 'A directional defect based on the weekday — certain directions are inauspicious on specific days', hi: 'वार पर आधारित दिशात्मक दोष — विशिष्ट दिनों में कुछ दिशाएँ अशुभ हैं', sa: 'वार पर आधारित दिशात्मक दोष — विशिष्ट दिनों में कुछ दिशाएँ अशुभ हैं', mai: 'वार पर आधारित दिशात्मक दोष — विशिष्ट दिनों में कुछ दिशाएँ अशुभ हैं', mr: 'वार पर आधारित दिशात्मक दोष — विशिष्ट दिनों में कुछ दिशाएँ अशुभ हैं', ta: 'A directional defect based on the weekday — certain directions are inauspicious on specific days', te: 'A directional defect based on the weekday — certain directions are inauspicious on specific days', bn: 'A directional defect based on the weekday — certain directions are inauspicious on specific days', kn: 'A directional defect based on the weekday — certain directions are inauspicious on specific days', gu: 'A directional defect based on the weekday — certain directions are inauspicious on specific days' },
+      { en: 'A planetary dasha transition', hi: 'ग्रह दशा संक्रमण', sa: 'ग्रह दशा संक्रमण', mai: 'ग्रह दशा संक्रमण', mr: 'ग्रह दशा संक्रमण', ta: 'A planetary dasha transition', te: 'A planetary dasha transition', bn: 'A planetary dasha transition', kn: 'A planetary dasha transition', gu: 'A planetary dasha transition' },
+      { en: 'A type of eclipse', hi: 'एक प्रकार का ग्रहण', sa: 'एक प्रकार का ग्रहण', mai: 'एक प्रकार का ग्रहण', mr: 'एक प्रकार का ग्रहण', ta: 'A type of eclipse', te: 'A type of eclipse', bn: 'A type of eclipse', kn: 'A type of eclipse', gu: 'A type of eclipse' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -145,9 +145,9 @@ const QUESTIONS: ModuleQuestion[] = [
     },
     options: [
       { en: 'The Sun\'s current position', hi: 'सूर्य की वर्तमान स्थिति' },
-      { en: 'The birth nakshatra of the traveller', hi: 'यात्री के जन्म नक्षत्र से' },
-      { en: 'The lagna at departure time', hi: 'प्रस्थान समय का लग्न' },
-      { en: 'The nakshatra of the destination city', hi: 'गन्तव्य नगर का नक्षत्र' },
+      { en: 'The birth nakshatra of the traveller', hi: 'यात्री के जन्म नक्षत्र से', sa: 'यात्री के जन्म नक्षत्र से', mai: 'यात्री के जन्म नक्षत्र से', mr: 'यात्री के जन्म नक्षत्र से', ta: 'The birth nakshatra of the traveller', te: 'The birth nakshatra of the traveller', bn: 'The birth nakshatra of the traveller', kn: 'The birth nakshatra of the traveller', gu: 'The birth nakshatra of the traveller' },
+      { en: 'The lagna at departure time', hi: 'प्रस्थान समय का लग्न', sa: 'प्रस्थान समय का लग्न', mai: 'प्रस्थान समय का लग्न', mr: 'प्रस्थान समय का लग्न', ta: 'The lagna at departure time', te: 'The lagna at departure time', bn: 'The lagna at departure time', kn: 'The lagna at departure time', gu: 'The lagna at departure time' },
+      { en: 'The nakshatra of the destination city', hi: 'गन्तव्य नगर का नक्षत्र', sa: 'गन्तव्य नगर का नक्षत्र', mai: 'गन्तव्य नगर का नक्षत्र', mr: 'गन्तव्य नगर का नक्षत्र', ta: 'The nakshatra of the destination city', te: 'The nakshatra of the destination city', bn: 'The nakshatra of the destination city', kn: 'The nakshatra of the destination city', gu: 'The nakshatra of the destination city' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -174,10 +174,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वाहन क्रय के लिए कौन-से नक्षत्र अनुशंसित हैं?',
     },
     options: [
-      { en: 'Mula, Ardra, Ashlesha', hi: 'मूल, आर्द्रा, आश्लेषा' },
-      { en: 'Ashwini, Rohini, Pushya, Hasta, Chitra', hi: 'अश्विनी, रोहिणी, पुष्य, हस्त, चित्रा' },
-      { en: 'Bharani, Krittika, Vishakha', hi: 'भरणी, कृत्तिका, विशाखा' },
-      { en: 'Only Revati', hi: 'केवल रेवती' },
+      { en: 'Mula, Ardra, Ashlesha', hi: 'मूल, आर्द्रा, आश्लेषा', sa: 'मूल, आर्द्रा, आश्लेषा', mai: 'मूल, आर्द्रा, आश्लेषा', mr: 'मूल, आर्द्रा, आश्लेषा', ta: 'Mula, Ardra, Ashlesha', te: 'Mula, Ardra, Ashlesha', bn: 'Mula, Ardra, Ashlesha', kn: 'Mula, Ardra, Ashlesha', gu: 'Mula, Ardra, Ashlesha' },
+      { en: 'Ashwini, Rohini, Pushya, Hasta, Chitra', hi: 'अश्विनी, रोहिणी, पुष्य, हस्त, चित्रा', sa: 'अश्विनी, रोहिणी, पुष्य, हस्त, चित्रा', mai: 'अश्विनी, रोहिणी, पुष्य, हस्त, चित्रा', mr: 'अश्विनी, रोहिणी, पुष्य, हस्त, चित्रा', ta: 'Ashwini, Rohini, Pushya, Hasta, Chitra', te: 'Ashwini, Rohini, Pushya, Hasta, Chitra', bn: 'Ashwini, Rohini, Pushya, Hasta, Chitra', kn: 'Ashwini, Rohini, Pushya, Hasta, Chitra', gu: 'Ashwini, Rohini, Pushya, Hasta, Chitra' },
+      { en: 'Bharani, Krittika, Vishakha', hi: 'भरणी, कृत्तिका, विशाखा', sa: 'भरणी, कृत्तिका, विशाखा', mai: 'भरणी, कृत्तिका, विशाखा', mr: 'भरणी, कृत्तिका, विशाखा', ta: 'Bharani, Krittika, Vishakha', te: 'Bharani, Krittika, Vishakha', bn: 'Bharani, Krittika, Vishakha', kn: 'Bharani, Krittika, Vishakha', gu: 'Bharani, Krittika, Vishakha' },
+      { en: 'Only Revati', hi: 'केवल रेवती', sa: 'केवल रेवती', mai: 'केवल रेवती', mr: 'केवल रेवती', ta: 'Only Revati', te: 'Only Revati', bn: 'Only Revati', kn: 'Only Revati', gu: 'Only Revati' },
     ],
     correctAnswer: 1,
     explanation: {

@@ -115,7 +115,7 @@ export default function RashiNakshatraWheel({ locale }: Props) {
                 <text x={labelPos.x} y={labelPos.y} textAnchor="middle" dominantBaseline="middle"
                   fill={isHovered ? '#f0d48a' : 'rgba(212,168,83,0.5)'} fontSize={isHovered ? 8 : 6.5} fontWeight={isHovered ? 700 : 400}
                   style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {n.name[locale].length > 8 ? n.name[locale].substring(0, 7) + '…' : n.name[locale]}
+                  {(n.name[locale] || n.name.en).length > 8 ? (n.name[locale] || n.name.en).substring(0, 7) + '…' : (n.name[locale] || n.name.en)}
                 </text>
               </g>
             );

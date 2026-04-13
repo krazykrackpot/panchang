@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-type Locale = 'en' | 'hi' | 'sa';
-interface Props { locale: Locale }
+interface Props { locale: string }
 
 /**
  * Static diagrams showing:

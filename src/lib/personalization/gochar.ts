@@ -3,7 +3,7 @@
  * Computes how current planetary transits affect the user's natal chart.
  */
 
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText} from '@/types/panchang';
 import { dateToJD, getPlanetaryPositions, toSidereal, getRashiNumber } from '@/lib/ephem/astronomical';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -15,12 +15,12 @@ import { RASHIS } from '@/lib/constants/rashis';
 export interface GocharResult {
   planet: string;
   planetId: number;
-  planetName: Trilingual;
+  planetName: LocaleText;
   transitSign: number;       // Current sidereal sign (1-12)
-  transitSignName: Trilingual;
+  transitSignName: LocaleText;
   natalHouse: number;        // Which natal house this transit falls in
   isRetrograde: boolean;
-  effect: Trilingual;        // Effect of this planet transiting this house
+  effect: LocaleText;        // Effect of this planet transiting this house
   isPositive: boolean;
 }
 
@@ -28,7 +28,7 @@ export interface GocharResult {
 // House effect texts (trilingual)
 // ---------------------------------------------------------------------------
 
-const HOUSE_EFFECTS: Record<number, { en: string; hi: string; sa: string }> = {
+const HOUSE_EFFECTS: Record<number, LocaleText> = {
   1: {
     en: 'Transiting your ascendant — personal vitality and appearance affected',
     hi: 'आपके लग्न में गोचर — व्यक्तिगत ऊर्जा और रूप प्रभावित',

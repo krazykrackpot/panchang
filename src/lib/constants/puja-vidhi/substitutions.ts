@@ -1,9 +1,9 @@
-import type { Trilingual } from './types';
+import type { LocaleText } from '@/types/panchang';
 
 export interface SubstitutionEntry {
-  original: Trilingual;
-  substitute: Trilingual;
-  note: Trilingual;
+  original: LocaleText;
+  substitute: LocaleText;
+  note: LocaleText;
   availability: 'grocery' | 'health_store' | 'indian_store' | 'online' | 'any';
 }
 

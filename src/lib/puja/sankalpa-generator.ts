@@ -185,9 +185,9 @@ export function generateSankalpa(input: SankalpaInput): GeneratedSankalpa {
     // Vikram era + Samvatsara
     `देवब्राह्मणानां सन्निधौ श्रीमन्नृपतिवीरविक्रमादित्यसमयतः ${vikramSamvat} संख्या-परिमिते प्रवर्त्तमानसंवत्सरे प्रभवादिषष्ठि-संवत्सराणां मध्ये ${samvatsaraSa} नामसंवत्सरे`,
     // Ayana, Ritu, Masa, Paksha, Tithi
-    `${ayanaSa.replace('म्', '')} अयने ${rituSa.replace('ः', '')} ऋतौ ${masaSa.replace('ः', '')} मासे ${pakshaSa} पक्षे ${tithiSa} तिथौ`,
+    `${ayanaSa!.replace('म्', '')} अयने ${rituSa.replace('ः', '')} ऋतौ ${masaSa.replace('ः', '')} मासे ${pakshaSa} पक्षे ${tithiSa} तिथौ`,
     // Vara, Nakshatra, Yoga, Karana
-    `${varaSa}वार वासरे ${nakshatraSa.replace('ः', '')} नक्षत्रे ${yogaSa.replace('ः', '')} योगे ${karanaSa.replace('ः', '')} करणे`,
+    `${varaSa}वार वासरे ${nakshatraSa!.replace('ः', '')} नक्षत्रे ${yogaSa!.replace('ः', '')} योगे ${karanaSa.replace('ः', '')} करणे`,
     // Graha positions
     `${moonRashiSa} राशिस्थिते चन्द्रे ${sunRashiSa} राशिस्थितेश्रीसूर्ये शेषेशु ग्रहेषु यथायथा राशिस्थानस्थितेषु सत्सु`,
     // Auspicious time declaration
@@ -203,14 +203,14 @@ export function generateSankalpa(input: SankalpaInput): GeneratedSankalpa {
     devanagari,
     fields: {
       samvatsara: samvatsaraSa,
-      ayana: ayanaSa,
+      ayana: ayanaSa || '',
       ritu: rituSa,
       masa: masaSa,
       paksha: pakshaSa,
-      tithi: tithiSa,
+      tithi: tithiSa || '',
       vara: varaSa,
-      nakshatra: nakshatraSa,
-      yoga: yogaSa,
+      nakshatra: nakshatraSa || '',
+      yoga: yogaSa || '',
       karana: karanaSa,
       moonRashi: moonRashiSa,
       sunRashi: sunRashiSa,

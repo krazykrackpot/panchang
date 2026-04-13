@@ -7,7 +7,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
-import type { Locale } from '@/types/panchang';
+import type { Locale, LocaleText } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
 import { RASHIS } from '@/lib/constants/rashis';
 import {
   analyzeSadeSati,
@@ -83,25 +84,13 @@ const LABELS = {
   intense: L('Intense', 'तीव्र', 'तीव्रम्'),
 };
 
-type Tri = { en: string; hi: string; sa?: string; ta?: string; te?: string; bn?: string; kn?: string; mr?: string; gu?: string; mai?: string };
-const t = (label: Tri, locale: Locale): string => {
-  const loc = String(locale);
-  if (loc === 'mr' && (label as Record<string, string>).mr) return (label as Record<string, string>).mr;
-  if (loc === 'gu' && (label as Record<string, string>).gu) return (label as Record<string, string>).gu;
-  if (loc === 'mai' && (label as Record<string, string>).mai) return (label as Record<string, string>).mai;
-  if (loc === 'te' && (label as Record<string, string>).te) return (label as Record<string, string>).te;
-  if (loc === 'bn' && (label as Record<string, string>).bn) return (label as Record<string, string>).bn;
-  if (loc === 'kn' && (label as Record<string, string>).kn) return (label as Record<string, string>).kn;
-  if (loc === 'ta') return (label as Record<string, string>).ta ?? label.en;
-  const k = isDevanagariLocale(locale) ? 'hi' as const : 'en' as const;
-  return (label as Record<string, string>)[k] ?? label.en;
-};
+const t = (label: LocaleText, locale: Locale): string => tl(label, locale);
 
 // ---------------------------------------------------------------------------
 // Generic remedies for quick mode
 // ---------------------------------------------------------------------------
 
-const GENERIC_REMEDIES: { title: Tri; description: Tri; priority: 'essential' | 'recommended' | 'optional' }[] = [
+const GENERIC_REMEDIES: { title: LocaleText; description: LocaleText; priority: 'essential' | 'recommended' | 'optional' }[] = [
   { title: L('Hanuman Chalisa', 'हनुमान चालीसा'), description: L('Recite Hanuman Chalisa daily, especially on Saturdays', 'प्रतिदिन हनुमान चालीसा पढ़ें, विशेषकर शनिवार को'), priority: 'essential' },
   { title: L('Saturday Donations', 'शनिवार दान'), description: L('Donate black items — sesame, iron, mustard oil — on Saturdays', 'शनिवार को काली वस्तुएं — तिल, लोहा, सरसों का तेल — दान करें'), priority: 'essential' },
   { title: L('Peepal Tree Lamp', 'पीपल दीपक'), description: L('Light mustard oil lamp under a Peepal tree every Saturday evening', 'प्रत्येक शनिवार संध्या को पीपल वृक्ष के नीचे सरसों के तेल का दीपक जलाएं'), priority: 'recommended' },

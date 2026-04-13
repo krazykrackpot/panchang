@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -370,10 +371,10 @@ export default function SamvatsaraPage() {
                       : { fontFamily: 'var(--font-heading)' }
                   }
                 >
-                  {SAMVATSARA_NAMES[selectedIndex][locale]}
+                  {tl(SAMVATSARA_NAMES[selectedIndex], locale)}
                 </div>
                 <div className="text-text-secondary text-sm mt-2">
-                  {yugaNames[Math.floor(selectedIndex / 12)][locale]}
+                  {tl(yugaNames[Math.floor(selectedIndex / 12)], locale)}
                 </div>
               </motion.div>
             )}
@@ -392,7 +393,7 @@ export default function SamvatsaraPage() {
         {yugaNames.map((yuga, yugaIdx) => (
           <div key={yugaIdx} className="mb-8">
             <h3 className="text-xl text-gold-light mb-4" style={headingFont}>
-              {yuga[locale]}
+              {tl(yuga, locale)}
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
               {SAMVATSARA_NAMES.slice(yugaIdx * 12, (yugaIdx + 1) * 12).map((s, i) => {
@@ -425,7 +426,7 @@ export default function SamvatsaraPage() {
                           : undefined
                       }
                     >
-                      {s[locale]}
+                      {tl(s, locale)}
                     </div>
                   </motion.div>
                 );

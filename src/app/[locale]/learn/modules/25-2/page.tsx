@@ -5,16 +5,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_25_2', phase: 5, topic: 'Indian Mathematics', moduleNumber: '25.2',
-  title: { en: 'Sine Is Sanskrit — Jya to Sine', hi: 'ज्या से Sine — एक शब्द की यात्रा' },
+  title: { en: 'Sine Is Sanskrit — Jya to Sine', hi: 'ज्या से Sine — एक शब्द की यात्रा', sa: 'ज्या से Sine — एक शब्द की यात्रा', mai: 'ज्या से Sine — एक शब्द की यात्रा', mr: 'ज्या से Sine — एक शब्द की यात्रा', ta: 'Sine Is Sanskrit — Jya to Sine', te: 'Sine Is Sanskrit — Jya to Sine', bn: 'Sine Is Sanskrit — Jya to Sine', kn: 'Sine Is Sanskrit — Jya to Sine', gu: 'Sine Is Sanskrit — Jya to Sine' },
   subtitle: {
     en: 'How Aryabhata created the world\'s first sine table in 499 CE, what "jya" means, and the mistranslation chain that gave English the word "sine"',
     hi: 'आर्यभट ने 499 ई. में विश्व की पहली ज्या सारणी कैसे बनाई, "ज्या" का क्या अर्थ है, और किस अनुवाद-श्रृंखला से अंग्रेजी को "sine" शब्द मिला',
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 25-3: Pi = 3.1416', hi: 'मॉड्यूल 25-3: π = 3.1416' }, href: '/learn/modules/25-3' },
-    { label: { en: 'Module 25-7: Kerala Calculus', hi: 'मॉड्यूल 25-7: केरल गणित' }, href: '/learn/modules/25-7' },
-    { label: { en: 'Module 25-1: Zero', hi: 'मॉड्यूल 25-1: शून्य' }, href: '/learn/modules/25-1' },
+    { label: { en: 'Module 25-3: Pi = 3.1416', hi: 'मॉड्यूल 25-3: π = 3.1416', sa: 'मॉड्यूल 25-3: π = 3.1416', mai: 'मॉड्यूल 25-3: π = 3.1416', mr: 'मॉड्यूल 25-3: π = 3.1416', ta: 'Module 25-3: Pi = 3.1416', te: 'Module 25-3: Pi = 3.1416', bn: 'Module 25-3: Pi = 3.1416', kn: 'Module 25-3: Pi = 3.1416', gu: 'Module 25-3: Pi = 3.1416' }, href: '/learn/modules/25-3' },
+    { label: { en: 'Module 25-7: Kerala Calculus', hi: 'मॉड्यूल 25-7: केरल गणित', sa: 'मॉड्यूल 25-7: केरल गणित', mai: 'मॉड्यूल 25-7: केरल गणित', mr: 'मॉड्यूल 25-7: केरल गणित', ta: 'Module 25-7: Kerala Calculus', te: 'Module 25-7: Kerala Calculus', bn: 'Module 25-7: Kerala Calculus', kn: 'Module 25-7: Kerala Calculus', gu: 'Module 25-7: Kerala Calculus' }, href: '/learn/modules/25-7' },
+    { label: { en: 'Module 25-1: Zero', hi: 'मॉड्यूल 25-1: शून्य', sa: 'मॉड्यूल 25-1: शून्य', mai: 'मॉड्यूल 25-1: शून्य', mr: 'मॉड्यूल 25-1: शून्य', ta: 'Module 25-1: Zero', te: 'Module 25-1: Zero', bn: 'Module 25-1: Zero', kn: 'Module 25-1: Zero', gu: 'Module 25-1: Zero' }, href: '/learn/modules/25-1' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विश्व की पहली व्यवस्थित ज्या सारणी किसने बनाई?',
     },
     options: [
-      { en: 'Hipparchus of Nicaea', hi: 'हिप्पार्कस' },
-      { en: 'Aryabhata', hi: 'आर्यभट' },
-      { en: 'Ptolemy', hi: 'टॉलेमी' },
-      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त' },
+      { en: 'Hipparchus of Nicaea', hi: 'हिप्पार्कस', sa: 'हिप्पार्कस', mai: 'हिप्पार्कस', mr: 'हिप्पार्कस', ta: 'Hipparchus of Nicaea', te: 'Hipparchus of Nicaea', bn: 'Hipparchus of Nicaea', kn: 'Hipparchus of Nicaea', gu: 'Hipparchus of Nicaea' },
+      { en: 'Aryabhata', hi: 'आर्यभट', sa: 'आर्यभट', mai: 'आर्यभट', mr: 'आर्यभट', ta: 'Aryabhata', te: 'Aryabhata', bn: 'Aryabhata', kn: 'Aryabhata', gu: 'Aryabhata' },
+      { en: 'Ptolemy', hi: 'टॉलेमी', sa: 'टॉलेमी', mai: 'टॉलेमी', mr: 'टॉलेमी', ta: 'Ptolemy', te: 'Ptolemy', bn: 'Ptolemy', kn: 'Ptolemy', gu: 'Ptolemy' },
+      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त', sa: 'ब्रह्मगुप्त', mai: 'ब्रह्मगुप्त', mr: 'ब्रह्मगुप्त', ta: 'Brahmagupta', te: 'Brahmagupta', bn: 'Brahmagupta', kn: 'Brahmagupta', gu: 'Brahmagupta' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -44,10 +44,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'आर्यभट ने अपनी ज्या सारणी सहित आर्यभटीय किस वर्ष लिखी?',
     },
     options: [
-      { en: '376 CE', hi: '376 ई.' },
-      { en: '499 CE', hi: '499 ई.' },
-      { en: '628 CE', hi: '628 ई.' },
-      { en: '830 CE', hi: '830 ई.' },
+      { en: '376 CE', hi: '376 ई.', sa: '376 ई.', mai: '376 ई.', mr: '376 ई.', ta: '376 CE', te: '376 CE', bn: '376 CE', kn: '376 CE', gu: '376 CE' },
+      { en: '499 CE', hi: '499 ई.', sa: '499 ई.', mai: '499 ई.', mr: '499 ई.', ta: '499 CE', te: '499 CE', bn: '499 CE', kn: '499 CE', gu: '499 CE' },
+      { en: '628 CE', hi: '628 ई.', sa: '628 ई.', mai: '628 ई.', mr: '628 ई.', ta: '628 CE', te: '628 CE', bn: '628 CE', kn: '628 CE', gu: '628 CE' },
+      { en: '830 CE', hi: '830 ई.', sa: '830 ई.', mai: '830 ई.', mr: '830 ई.', ta: '830 CE', te: '830 CE', bn: '830 CE', kn: '830 CE', gu: '830 CE' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -62,10 +62,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'आर्यभट ने "sine" के लिए कौन सा संस्कृत शब्द प्रयोग किया?',
     },
     options: [
-      { en: 'Trijya', hi: 'त्रिज्या' },
-      { en: 'Jya', hi: 'ज्या' },
-      { en: 'Bhuja', hi: 'भुज' },
-      { en: 'Karna', hi: 'कर्ण' },
+      { en: 'Trijya', hi: 'त्रिज्या', sa: 'त्रिज्या', mai: 'त्रिज्या', mr: 'त्रिज्या', ta: 'Trijya', te: 'Trijya', bn: 'Trijya', kn: 'Trijya', gu: 'Trijya' },
+      { en: 'Jya', hi: 'ज्या', sa: 'ज्या', mai: 'ज्या', mr: 'ज्या', ta: 'Jya', te: 'Jya', bn: 'Jya', kn: 'Jya', gu: 'Jya' },
+      { en: 'Bhuja', hi: 'भुज', sa: 'भुज', mai: 'भुज', mr: 'भुज', ta: 'Bhuja', te: 'Bhuja', bn: 'Bhuja', kn: 'Bhuja', gu: 'Bhuja' },
+      { en: 'Karna', hi: 'कर्ण', sa: 'कर्ण', mai: 'कर्ण', mr: 'कर्ण', ta: 'Karna', te: 'Karna', bn: 'Karna', kn: 'Karna', gu: 'Karna' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -80,10 +80,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'संस्कृत शब्द "ज्या" का शाब्दिक अर्थ क्या है?',
     },
     options: [
-      { en: 'Shadow', hi: 'छाया' },
+      { en: 'Shadow', hi: 'छाया', sa: 'छाया', mai: 'छाया', mr: 'छाया', ta: 'Shadow', te: 'Shadow', bn: 'Shadow', kn: 'Shadow', gu: 'Shadow' },
       { en: 'Bowstring', hi: 'धनुष की डोरी' },
-      { en: 'Circle', hi: 'वृत्त' },
-      { en: 'Horizon', hi: 'क्षितिज' },
+      { en: 'Circle', hi: 'वृत्त', sa: 'वृत्त', mai: 'वृत्त', mr: 'वृत्त', ta: 'Circle', te: 'Circle', bn: 'Circle', kn: 'Circle', gu: 'Circle' },
+      { en: 'Horizon', hi: 'क्षितिज', sa: 'क्षितिज', mai: 'क्षितिज', mr: 'क्षितिज', ta: 'Horizon', te: 'Horizon', bn: 'Horizon', kn: 'Horizon', gu: 'Horizon' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -98,10 +98,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'अंग्रेजी शब्द "sine" देने वाली गलत-अनुवाद श्रृंखला का सही क्रम क्या है?',
     },
     options: [
-      { en: 'Jya → Sinus → Jiba → Sine', hi: 'ज्या → Sinus → जिबा → Sine' },
-      { en: 'Jya → Jiba → Sinus → Sine', hi: 'ज्या → जिबा → Sinus → Sine' },
-      { en: 'Jya → Chord → Sinus → Sine', hi: 'ज्या → Chord → Sinus → Sine' },
-      { en: 'Ardha-jya → Jiba → Sine → Sinus', hi: 'अर्धज्या → जिबा → Sine → Sinus' },
+      { en: 'Jya → Sinus → Jiba → Sine', hi: 'ज्या → Sinus → जिबा → Sine', sa: 'ज्या → Sinus → जिबा → Sine', mai: 'ज्या → Sinus → जिबा → Sine', mr: 'ज्या → Sinus → जिबा → Sine', ta: 'Jya → Sinus → Jiba → Sine', te: 'Jya → Sinus → Jiba → Sine', bn: 'Jya → Sinus → Jiba → Sine', kn: 'Jya → Sinus → Jiba → Sine', gu: 'Jya → Sinus → Jiba → Sine' },
+      { en: 'Jya → Jiba → Sinus → Sine', hi: 'ज्या → जिबा → Sinus → Sine', sa: 'ज्या → जिबा → Sinus → Sine', mai: 'ज्या → जिबा → Sinus → Sine', mr: 'ज्या → जिबा → Sinus → Sine', ta: 'Jya → Jiba → Sinus → Sine', te: 'Jya → Jiba → Sinus → Sine', bn: 'Jya → Jiba → Sinus → Sine', kn: 'Jya → Jiba → Sinus → Sine', gu: 'Jya → Jiba → Sinus → Sine' },
+      { en: 'Jya → Chord → Sinus → Sine', hi: 'ज्या → Chord → Sinus → Sine', sa: 'ज्या → Chord → Sinus → Sine', mai: 'ज्या → Chord → Sinus → Sine', mr: 'ज्या → Chord → Sinus → Sine', ta: 'Jya → Chord → Sinus → Sine', te: 'Jya → Chord → Sinus → Sine', bn: 'Jya → Chord → Sinus → Sine', kn: 'Jya → Chord → Sinus → Sine', gu: 'Jya → Chord → Sinus → Sine' },
+      { en: 'Ardha-jya → Jiba → Sine → Sinus', hi: 'अर्धज्या → जिबा → Sine → Sinus', sa: 'अर्धज्या → जिबा → Sine → Sinus', mai: 'अर्धज्या → जिबा → Sine → Sinus', mr: 'अर्धज्या → जिबा → Sine → Sinus', ta: 'Ardha-jya → Jiba → Sine → Sinus', te: 'Ardha-jya → Jiba → Sine → Sinus', bn: 'Ardha-jya → Jiba → Sine → Sinus', kn: 'Ardha-jya → Jiba → Sine → Sinus', gu: 'Ardha-jya → Jiba → Sine → Sinus' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -117,10 +117,10 @@ const QUESTIONS: ModuleQuestion[] = [
     },
     correctAnswer: 1,
     options: [
-      { en: '12', hi: '12' },
-      { en: '24', hi: '24' },
-      { en: '36', hi: '36' },
-      { en: '90', hi: '90' },
+      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
+      { en: '24', hi: '24', sa: '24', mai: '24', mr: '24', ta: '24', te: '24', bn: '24', kn: '24', gu: '24' },
+      { en: '36', hi: '36', sa: '36', mai: '36', mr: '36', ta: '36', te: '36', bn: '36', kn: '36', gu: '36' },
+      { en: '90', hi: '90', sa: '90', mai: '90', mr: '90', ta: '90', te: '90', bn: '90', kn: '90', gu: '90' },
     ],
     explanation: {
       en: 'Aryabhata\'s sine table contains 24 values, covering angles from 3.75° to 90° in steps of 3.75° (which is 90°/24). He gave these as first-order differences — a compact way to encode the full table. From these 24 differences, one can reconstruct all 24 sine values. The table appears in just 4 Sanskrit verses in the Aryabhatiya, using a clever encoding in consonant-vowel pairs. It is one of the most elegant mathematical encodings in history.',
@@ -134,10 +134,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'आर्यभट की ज्या सारणी की प्रत्येक प्रविष्टि के बीच कितने अंशों का अन्तराल है?',
     },
     options: [
-      { en: '1°', hi: '1°' },
-      { en: '3°', hi: '3°' },
-      { en: '3.75°', hi: '3.75°' },
-      { en: '5°', hi: '5°' },
+      { en: '1°', hi: '1°', sa: '1°', mai: '1°', mr: '1°', ta: '1°', te: '1°', bn: '1°', kn: '1°', gu: '1°' },
+      { en: '3°', hi: '3°', sa: '3°', mai: '3°', mr: '3°', ta: '3°', te: '3°', bn: '3°', kn: '3°', gu: '3°' },
+      { en: '3.75°', hi: '3.75°', sa: '3.75°', mai: '3.75°', mr: '3.75°', ta: '3.75°', te: '3.75°', bn: '3.75°', kn: '3.75°', gu: '3.75°' },
+      { en: '5°', hi: '5°', sa: '5°', mai: '5°', mr: '5°', ta: '5°', te: '5°', bn: '5°', kn: '5°', gu: '5°' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -152,10 +152,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'आधुनिक त्रिकोणमिति में संस्कृत शब्द "कोज्या" किसके समतुल्य है?',
     },
     options: [
-      { en: 'Tangent', hi: 'स्पर्शज्या (Tangent)' },
-      { en: 'Cosine', hi: 'कोज्या (Cosine)' },
-      { en: 'Secant', hi: 'छेदक (Secant)' },
-      { en: 'Cotangent', hi: 'कोटिज्या (Cotangent)' },
+      { en: 'Tangent', hi: 'स्पर्शज्या (Tangent)', sa: 'स्पर्शज्या (Tangent)', mai: 'स्पर्शज्या (Tangent)', mr: 'स्पर्शज्या (Tangent)', ta: 'Tangent', te: 'Tangent', bn: 'Tangent', kn: 'Tangent', gu: 'Tangent' },
+      { en: 'Cosine', hi: 'कोज्या (Cosine)', sa: 'कोज्या (Cosine)', mai: 'कोज्या (Cosine)', mr: 'कोज्या (Cosine)', ta: 'Cosine', te: 'Cosine', bn: 'Cosine', kn: 'Cosine', gu: 'Cosine' },
+      { en: 'Secant', hi: 'छेदक (Secant)', sa: 'छेदक (Secant)', mai: 'छेदक (Secant)', mr: 'छेदक (Secant)', ta: 'Secant', te: 'Secant', bn: 'Secant', kn: 'Secant', gu: 'Secant' },
+      { en: 'Cotangent', hi: 'कोटिज्या (Cotangent)', sa: 'कोटिज्या (Cotangent)', mai: 'कोटिज्या (Cotangent)', mr: 'कोटिज्या (Cotangent)', ta: 'Cotangent', te: 'Cotangent', bn: 'Cotangent', kn: 'Cotangent', gu: 'Cotangent' },
     ],
     correctAnswer: 1,
     explanation: {

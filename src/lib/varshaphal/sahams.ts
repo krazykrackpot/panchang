@@ -7,10 +7,10 @@ import { normalizeDeg, getRashiNumber } from '@/lib/ephem/astronomical';
 import { RASHIS } from '@/lib/constants/rashis';
 import type { PlanetPosition, HouseCusp } from '@/types/kundali';
 import type { SahamData } from '@/types/varshaphal';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 interface SahamFormula {
-  name: Trilingual;
+  name: LocaleText;
   a: number; // planet id or -1 for Asc
   b: number; // planet id or -1 for Asc
   reverse: boolean; // swap A/B for night birth

@@ -161,6 +161,6 @@ export const PLANET_IN_SIGN: Record<number, Record<number, Tri>> = {
 export function getPlanetInSignText(planetId: number, signIndex: number, locale: Locale): string {
   const entry = PLANET_IN_SIGN[planetId]?.[signIndex];
   if (!entry) return '';
-  if (locale === 'sa') return entry.sa || entry.hi;
-  return locale === 'hi' ? entry.hi : entry.en;
+  if (locale === 'sa') return entry.sa || entry.hi || "";
+  return locale === 'hi' ? entry.hi || "" : entry.en;
 }

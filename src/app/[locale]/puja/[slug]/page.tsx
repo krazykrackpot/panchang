@@ -585,7 +585,7 @@ export default function PujaVidhiPage() {
             </Link>
           )}
           <Link
-            href={`/${locale}/sankalpa?puja=${encodeURIComponent(puja.deity[!isDevanagariLocale(locale) ? 'en' : 'hi'])}`}
+            href={`/${locale}/sankalpa?puja=${encodeURIComponent(puja.deity[!isDevanagariLocale(locale) ? 'en' : 'hi'] || puja.deity.en)}`}
             className="inline-flex items-center gap-2 px-5 py-2 rounded-lg border border-amber-500/20 bg-amber-500/5 text-amber-400 text-sm hover:bg-amber-500/10 transition-colors"
           >
             {!isDevanagariLocale(locale) ? 'Generate Sankalpa' : isDevanagari ? 'सङ्कल्प बनाएं' : 'सङ्कल्पं रचयतु'} &rarr;

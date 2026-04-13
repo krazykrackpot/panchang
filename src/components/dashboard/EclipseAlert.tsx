@@ -6,17 +6,17 @@ import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { Eye, Calendar, ChevronRight } from 'lucide-react';
 import { useLocationStore } from '@/stores/location-store';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import type { LocalEclipseResult } from '@/lib/calendar/eclipse-compute';
 import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
 
 interface EclipseEvent {
   type: 'solar' | 'lunar';
-  typeName: { en: string; hi: string; sa: string };
+  typeName: LocaleText;
   date: string;
   magnitude: string;
   node?: 'rahu' | 'ketu';
-  nodeName?: { en: string; hi: string; sa: string };
+  nodeName?: LocaleText;
   local?: LocalEclipseResult;
 }
 

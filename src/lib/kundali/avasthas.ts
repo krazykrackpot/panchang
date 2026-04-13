@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 /**
  * Avasthas — 5 Planetary State Systems
  * Determines HOW a planet expresses its energy based on its position.
@@ -6,7 +7,7 @@
 
 import type { PlanetPosition } from '@/types/kundali';
 
-type Tri = { en: string; hi: string; sa: string };
+type Tri = LocaleText;
 
 export interface PlanetAvasthas {
   planetId: number;

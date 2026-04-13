@@ -5,9 +5,9 @@
  * Tarabalam: Nakshatra transit strength from birth nakshatra
  */
 
-import type { Trilingual, BalamResult } from '@/types/panchang';
+import type { LocaleText, BalamResult } from '@/types/panchang';
 
-const TARA_NAMES: Trilingual[] = [
+const TARA_NAMES: LocaleText[] = [
   { en: 'Janma', hi: 'जन्म', sa: 'जन्मा' },
   { en: 'Sampat', hi: 'सम्पत्', sa: 'सम्पत्' },
   { en: 'Vipat', hi: 'विपत्', sa: 'विपत्' },
@@ -25,7 +25,7 @@ const FAVORABLE_TARAS = new Set([2, 4, 6, 8, 9]);
 // Chandrabalam: favorable houses from natal Moon
 const FAVORABLE_HOUSES = new Set([1, 3, 6, 7, 10, 11]);
 
-const CHANDRABALAM_DESC: Record<string, { fav: Trilingual; unfav: Trilingual }> = {
+const CHANDRABALAM_DESC: Record<string, { fav: LocaleText; unfav: LocaleText }> = {
   default: {
     fav: {
       en: 'Moon transit is favorable — good for new activities',

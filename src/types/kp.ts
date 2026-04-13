@@ -1,21 +1,22 @@
-import { Trilingual } from './panchang';
+;
+import type { LocaleText } from '@/types/panchang';
 import { BirthData, PlanetPosition, HouseCusp, ChartData, DashaEntry } from './kundali';
 
 export interface SubLordInfo {
   degree: number;
-  signLord: { id: number; name: Trilingual };
-  starLord: { id: number; name: Trilingual };
-  subLord: { id: number; name: Trilingual };
-  subSubLord: { id: number; name: Trilingual };
+  signLord: { id: number; name: LocaleText };
+  starLord: { id: number; name: LocaleText };
+  subLord: { id: number; name: LocaleText };
+  subSubLord: { id: number; name: LocaleText };
 }
 
 export interface CuspalSubLordAnalysis {
   house: number;
-  subLordName: Trilingual;
-  subSubLordName: Trilingual;
+  subLordName: LocaleText;
+  subSubLordName: LocaleText;
   signifiedHouses: number[];
   favorable: boolean;
-  interpretation: Trilingual;
+  interpretation: LocaleText;
 }
 
 export interface KPCusp extends HouseCusp {
@@ -36,11 +37,11 @@ export interface SignificatorEntry {
 }
 
 export interface RulingPlanets {
-  ascSignLord: { id: number; name: Trilingual };
-  ascStarLord: { id: number; name: Trilingual };
-  moonSignLord: { id: number; name: Trilingual };
-  moonStarLord: { id: number; name: Trilingual };
-  dayLord: { id: number; name: Trilingual };
+  ascSignLord: { id: number; name: LocaleText };
+  ascStarLord: { id: number; name: LocaleText };
+  moonSignLord: { id: number; name: LocaleText };
+  moonStarLord: { id: number; name: LocaleText };
+  dayLord: { id: number; name: LocaleText };
 }
 
 export interface KPChartData {

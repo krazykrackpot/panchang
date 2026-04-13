@@ -4,15 +4,15 @@
  * relevant houses, and conditions for favorable/unfavorable outcomes.
  */
 
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 import type { QuestionCategory } from '@/types/prashna';
 
 export interface CategoryData {
-  label: Trilingual;
+  label: LocaleText;
   house: number;
   relevantHouses: number[];
-  favorableConditions: Trilingual;
-  unfavorableConditions: Trilingual;
+  favorableConditions: LocaleText;
+  unfavorableConditions: LocaleText;
 }
 
 export const QUESTION_CATEGORIES: Record<QuestionCategory, CategoryData> = {

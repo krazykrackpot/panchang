@@ -5,16 +5,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_25_1', phase: 5, topic: 'Indian Mathematics', moduleNumber: '25.1',
-  title: { en: 'Zero — The Most Dangerous Idea', hi: 'शून्य — सबसे साहसी विचार' },
+  title: { en: 'Zero — The Most Dangerous Idea', hi: 'शून्य — सबसे साहसी विचार', sa: 'शून्य — सबसे साहसी विचार', mai: 'शून्य — सबसे साहसी विचार', mr: 'शून्य — सबसे साहसी विचार', ta: 'Zero — The Most Dangerous Idea', te: 'Zero — The Most Dangerous Idea', bn: 'Zero — The Most Dangerous Idea', kn: 'Zero — The Most Dangerous Idea', gu: 'Zero — The Most Dangerous Idea' },
   subtitle: {
     en: 'How Brahmagupta defined zero arithmetic in 628 CE, why it terrified medieval Europe, and how it became the foundation of all modern computing',
     hi: 'ब्रह्मगुप्त ने 628 ई. में शून्य गणित की परिभाषा कैसे दी, यह मध्ययुगीन यूरोप को क्यों डराता था, और यह आधुनिक संगणना की नींव कैसे बना',
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 25-4: Negative Numbers', hi: 'मॉड्यूल 25-4: ऋण संख्याएँ' }, href: '/learn/modules/25-4' },
-    { label: { en: 'Module 25-5: Binary Code', hi: 'मॉड्यूल 25-5: द्विआधारी संकेत' }, href: '/learn/modules/25-5' },
-    { label: { en: 'Module 25-7: Kerala Calculus', hi: 'मॉड्यूल 25-7: केरल गणित' }, href: '/learn/modules/25-7' },
+    { label: { en: 'Module 25-4: Negative Numbers', hi: 'मॉड्यूल 25-4: ऋण संख्याएँ', sa: 'मॉड्यूल 25-4: ऋण संख्याएँ', mai: 'मॉड्यूल 25-4: ऋण संख्याएँ', mr: 'मॉड्यूल 25-4: ऋण संख्याएँ', ta: 'Module 25-4: Negative Numbers', te: 'Module 25-4: Negative Numbers', bn: 'Module 25-4: Negative Numbers', kn: 'Module 25-4: Negative Numbers', gu: 'Module 25-4: Negative Numbers' }, href: '/learn/modules/25-4' },
+    { label: { en: 'Module 25-5: Binary Code', hi: 'मॉड्यूल 25-5: द्विआधारी संकेत', sa: 'मॉड्यूल 25-5: द्विआधारी संकेत', mai: 'मॉड्यूल 25-5: द्विआधारी संकेत', mr: 'मॉड्यूल 25-5: द्विआधारी संकेत', ta: 'Module 25-5: Binary Code', te: 'Module 25-5: Binary Code', bn: 'Module 25-5: Binary Code', kn: 'Module 25-5: Binary Code', gu: 'Module 25-5: Binary Code' }, href: '/learn/modules/25-5' },
+    { label: { en: 'Module 25-7: Kerala Calculus', hi: 'मॉड्यूल 25-7: केरल गणित', sa: 'मॉड्यूल 25-7: केरल गणित', mai: 'मॉड्यूल 25-7: केरल गणित', mr: 'मॉड्यूल 25-7: केरल गणित', ta: 'Module 25-7: Kerala Calculus', te: 'Module 25-7: Kerala Calculus', bn: 'Module 25-7: Kerala Calculus', kn: 'Module 25-7: Kerala Calculus', gu: 'Module 25-7: Kerala Calculus' }, href: '/learn/modules/25-7' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'शून्य के साथ जोड़, घटाव और गुणा के नियम सबसे पहले किसने परिभाषित किए?',
     },
     options: [
-      { en: 'Aryabhata', hi: 'आर्यभट' },
-      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त' },
-      { en: 'Fibonacci', hi: 'फिबोनाची' },
-      { en: 'Bhaskara II', hi: 'भास्कर द्वितीय' },
+      { en: 'Aryabhata', hi: 'आर्यभट', sa: 'आर्यभट', mai: 'आर्यभट', mr: 'आर्यभट', ta: 'Aryabhata', te: 'Aryabhata', bn: 'Aryabhata', kn: 'Aryabhata', gu: 'Aryabhata' },
+      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त', sa: 'ब्रह्मगुप्त', mai: 'ब्रह्मगुप्त', mr: 'ब्रह्मगुप्त', ta: 'Brahmagupta', te: 'Brahmagupta', bn: 'Brahmagupta', kn: 'Brahmagupta', gu: 'Brahmagupta' },
+      { en: 'Fibonacci', hi: 'फिबोनाची', sa: 'फिबोनाची', mai: 'फिबोनाची', mr: 'फिबोनाची', ta: 'Fibonacci', te: 'Fibonacci', bn: 'Fibonacci', kn: 'Fibonacci', gu: 'Fibonacci' },
+      { en: 'Bhaskara II', hi: 'भास्कर द्वितीय', sa: 'भास्कर द्वितीय', mai: 'भास्कर द्वितीय', mr: 'भास्कर द्वितीय', ta: 'Bhaskara II', te: 'Bhaskara II', bn: 'Bhaskara II', kn: 'Bhaskara II', gu: 'Bhaskara II' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -44,10 +44,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ब्रह्मगुप्त ने किस ग्रन्थ में शून्य गणित का पहली बार संहिताकरण किया?',
     },
     options: [
-      { en: 'Aryabhatiya', hi: 'आर्यभटीय' },
-      { en: 'Lilavati', hi: 'लीलावती' },
-      { en: 'Brahmasphutasiddhanta', hi: 'ब्रह्मस्फुटसिद्धान्त' },
-      { en: 'Surya Siddhanta', hi: 'सूर्यसिद्धान्त' },
+      { en: 'Aryabhatiya', hi: 'आर्यभटीय', sa: 'आर्यभटीय', mai: 'आर्यभटीय', mr: 'आर्यभटीय', ta: 'Aryabhatiya', te: 'Aryabhatiya', bn: 'Aryabhatiya', kn: 'Aryabhatiya', gu: 'Aryabhatiya' },
+      { en: 'Lilavati', hi: 'लीलावती', sa: 'लीलावती', mai: 'लीलावती', mr: 'लीलावती', ta: 'Lilavati', te: 'Lilavati', bn: 'Lilavati', kn: 'Lilavati', gu: 'Lilavati' },
+      { en: 'Brahmasphutasiddhanta', hi: 'ब्रह्मस्फुटसिद्धान्त', sa: 'ब्रह्मस्फुटसिद्धान्त', mai: 'ब्रह्मस्फुटसिद्धान्त', mr: 'ब्रह्मस्फुटसिद्धान्त', ta: 'Brahmasphutasiddhanta', te: 'Brahmasphutasiddhanta', bn: 'Brahmasphutasiddhanta', kn: 'Brahmasphutasiddhanta', gu: 'Brahmasphutasiddhanta' },
+      { en: 'Surya Siddhanta', hi: 'सूर्यसिद्धान्त', sa: 'सूर्यसिद्धान्त', mai: 'सूर्यसिद्धान्त', mr: 'सूर्यसिद्धान्त', ta: 'Surya Siddhanta', te: 'Surya Siddhanta', bn: 'Surya Siddhanta', kn: 'Surya Siddhanta', gu: 'Surya Siddhanta' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -62,10 +62,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ब्रह्मस्फुटसिद्धान्त के किस अध्याय में ब्रह्मगुप्त ने शून्य क्रियाएँ परिभाषित कीं?',
     },
     options: [
-      { en: 'Chapter 1', hi: 'अध्याय 1' },
-      { en: 'Chapter 7', hi: 'अध्याय 7' },
-      { en: 'Chapter 12', hi: 'अध्याय 12' },
-      { en: 'Chapter 18', hi: 'अध्याय 18' },
+      { en: 'Chapter 1', hi: 'अध्याय 1', sa: 'अध्याय 1', mai: 'अध्याय 1', mr: 'अध्याय 1', ta: 'Chapter 1', te: 'Chapter 1', bn: 'Chapter 1', kn: 'Chapter 1', gu: 'Chapter 1' },
+      { en: 'Chapter 7', hi: 'अध्याय 7', sa: 'अध्याय 7', mai: 'अध्याय 7', mr: 'अध्याय 7', ta: 'Chapter 7', te: 'Chapter 7', bn: 'Chapter 7', kn: 'Chapter 7', gu: 'Chapter 7' },
+      { en: 'Chapter 12', hi: 'अध्याय 12', sa: 'अध्याय 12', mai: 'अध्याय 12', mr: 'अध्याय 12', ta: 'Chapter 12', te: 'Chapter 12', bn: 'Chapter 12', kn: 'Chapter 12', gu: 'Chapter 12' },
+      { en: 'Chapter 18', hi: 'अध्याय 18', sa: 'अध्याय 18', mai: 'अध्याय 18', mr: 'अध्याय 18', ta: 'Chapter 18', te: 'Chapter 18', bn: 'Chapter 18', kn: 'Chapter 18', gu: 'Chapter 18' },
     ],
     correctAnswer: 3,
     explanation: {
@@ -80,10 +80,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ब्रह्मगुप्त द्वारा शून्य के लिए प्रयुक्त संस्कृत शब्द क्या है?',
     },
     options: [
-      { en: 'Akasha', hi: 'आकाश' },
-      { en: 'Shunya', hi: 'शून्य' },
-      { en: 'Bindu', hi: 'बिन्दु' },
-      { en: 'Viyat', hi: 'वियत्' },
+      { en: 'Akasha', hi: 'आकाश', sa: 'आकाश', mai: 'आकाश', mr: 'आकाश', ta: 'Akasha', te: 'Akasha', bn: 'Akasha', kn: 'Akasha', gu: 'Akasha' },
+      { en: 'Shunya', hi: 'शून्य', sa: 'शून्य', mai: 'शून्य', mr: 'शून्य', ta: 'Shunya', te: 'Shunya', bn: 'Shunya', kn: 'Shunya', gu: 'Shunya' },
+      { en: 'Bindu', hi: 'बिन्दु', sa: 'बिन्दु', mai: 'बिन्दु', mr: 'बिन्दु', ta: 'Bindu', te: 'Bindu', bn: 'Bindu', kn: 'Bindu', gu: 'Bindu' },
+      { en: 'Viyat', hi: 'वियत्', sa: 'वियत्', mai: 'वियत्', mr: 'वियत्', ta: 'Viyat', te: 'Viyat', bn: 'Viyat', kn: 'Viyat', gu: 'Viyat' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -98,10 +98,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'अपनी पुस्तक लिबर अबाची (1202 ई.) के माध्यम से भारतीय अंकों (शून्य सहित) को यूरोप में कौन लाया?',
     },
     options: [
-      { en: 'Al-Khwarizmi', hi: 'अल-ख्वारिज़्मी' },
-      { en: 'Fibonacci (Leonardo of Pisa)', hi: 'फिबोनाची (पीसा के लियोनार्डो)' },
-      { en: 'Pope Sylvester II', hi: 'पोप सिल्वेस्टर द्वितीय' },
-      { en: 'Roger Bacon', hi: 'रोजर बेकन' },
+      { en: 'Al-Khwarizmi', hi: 'अल-ख्वारिज़्मी', sa: 'अल-ख्वारिज़्मी', mai: 'अल-ख्वारिज़्मी', mr: 'अल-ख्वारिज़्मी', ta: 'Al-Khwarizmi', te: 'Al-Khwarizmi', bn: 'Al-Khwarizmi', kn: 'Al-Khwarizmi', gu: 'Al-Khwarizmi' },
+      { en: 'Fibonacci (Leonardo of Pisa)', hi: 'फिबोनाची (पीसा के लियोनार्डो)', sa: 'फिबोनाची (पीसा के लियोनार्डो)', mai: 'फिबोनाची (पीसा के लियोनार्डो)', mr: 'फिबोनाची (पीसा के लियोनार्डो)', ta: 'Fibonacci (Leonardo of Pisa)', te: 'Fibonacci (Leonardo of Pisa)', bn: 'Fibonacci (Leonardo of Pisa)', kn: 'Fibonacci (Leonardo of Pisa)', gu: 'Fibonacci (Leonardo of Pisa)' },
+      { en: 'Pope Sylvester II', hi: 'पोप सिल्वेस्टर द्वितीय', sa: 'पोप सिल्वेस्टर द्वितीय', mai: 'पोप सिल्वेस्टर द्वितीय', mr: 'पोप सिल्वेस्टर द्वितीय', ta: 'Pope Sylvester II', te: 'Pope Sylvester II', bn: 'Pope Sylvester II', kn: 'Pope Sylvester II', gu: 'Pope Sylvester II' },
+      { en: 'Roger Bacon', hi: 'रोजर बेकन', sa: 'रोजर बेकन', mai: 'रोजर बेकन', mr: 'रोजर बेकन', ta: 'Roger Bacon', te: 'Roger Bacon', bn: 'Roger Bacon', kn: 'Roger Bacon', gu: 'Roger Bacon' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -116,10 +116,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किस यूरोपीय शहर ने 1299 ई. में धोखाधड़ी के डर से अरबी अंकों (शून्य सहित) पर प्रतिबन्ध लगाया?',
     },
     options: [
-      { en: 'Rome', hi: 'रोम' },
-      { en: 'Paris', hi: 'पेरिस' },
-      { en: 'Florence', hi: 'फ्लोरेंस' },
-      { en: 'Venice', hi: 'वेनिस' },
+      { en: 'Rome', hi: 'रोम', sa: 'रोम', mai: 'रोम', mr: 'रोम', ta: 'Rome', te: 'Rome', bn: 'Rome', kn: 'Rome', gu: 'Rome' },
+      { en: 'Paris', hi: 'पेरिस', sa: 'पेरिस', mai: 'पेरिस', mr: 'पेरिस', ta: 'Paris', te: 'Paris', bn: 'Paris', kn: 'Paris', gu: 'Paris' },
+      { en: 'Florence', hi: 'फ्लोरेंस', sa: 'फ्लोरेंस', mai: 'फ्लोरेंस', mr: 'फ्लोरेंस', ta: 'Florence', te: 'Florence', bn: 'Florence', kn: 'Florence', gu: 'Florence' },
+      { en: 'Venice', hi: 'वेनिस', sa: 'वेनिस', mai: 'वेनिस', mr: 'वेनिस', ta: 'Venice', te: 'Venice', bn: 'Venice', kn: 'Venice', gu: 'Venice' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -134,10 +134,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: '0÷0 के बारे में ब्रह्मगुप्त ने क्या गलत दावा किया?',
     },
     options: [
-      { en: 'He said 0÷0 is undefined', hi: 'उन्होंने कहा 0÷0 अपरिभाषित है' },
-      { en: 'He said 0÷0 = 0', hi: 'उन्होंने कहा 0÷0 = 0' },
-      { en: 'He said 0÷0 = 1', hi: 'उन्होंने कहा 0÷0 = 1' },
-      { en: 'He said 0÷0 = infinity', hi: 'उन्होंने कहा 0÷0 = अनन्त' },
+      { en: 'He said 0÷0 is undefined', hi: 'उन्होंने कहा 0÷0 अपरिभाषित है', sa: 'उन्होंने कहा 0÷0 अपरिभाषित है', mai: 'उन्होंने कहा 0÷0 अपरिभाषित है', mr: 'उन्होंने कहा 0÷0 अपरिभाषित है', ta: 'He said 0÷0 is undefined', te: 'He said 0÷0 is undefined', bn: 'He said 0÷0 is undefined', kn: 'He said 0÷0 is undefined', gu: 'He said 0÷0 is undefined' },
+      { en: 'He said 0÷0 = 0', hi: 'उन्होंने कहा 0÷0 = 0', sa: 'उन्होंने कहा 0÷0 = 0', mai: 'उन्होंने कहा 0÷0 = 0', mr: 'उन्होंने कहा 0÷0 = 0', ta: 'He said 0÷0 = 0', te: 'He said 0÷0 = 0', bn: 'He said 0÷0 = 0', kn: 'He said 0÷0 = 0', gu: 'He said 0÷0 = 0' },
+      { en: 'He said 0÷0 = 1', hi: 'उन्होंने कहा 0÷0 = 1', sa: 'उन्होंने कहा 0÷0 = 1', mai: 'उन्होंने कहा 0÷0 = 1', mr: 'उन्होंने कहा 0÷0 = 1', ta: 'He said 0÷0 = 1', te: 'He said 0÷0 = 1', bn: 'He said 0÷0 = 1', kn: 'He said 0÷0 = 1', gu: 'He said 0÷0 = 1' },
+      { en: 'He said 0÷0 = infinity', hi: 'उन्होंने कहा 0÷0 = अनन्त', sa: 'उन्होंने कहा 0÷0 = अनन्त', mai: 'उन्होंने कहा 0÷0 = अनन्त', mr: 'उन्होंने कहा 0÷0 = अनन्त', ta: 'He said 0÷0 = infinity', te: 'He said 0÷0 = infinity', bn: 'He said 0÷0 = infinity', kn: 'He said 0÷0 = infinity', gu: 'He said 0÷0 = infinity' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -152,10 +152,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ब्रह्मगुप्त ने अपने शून्य नियम ब्रह्मस्फुटसिद्धान्त में किस वर्ष प्रकाशित किए?',
     },
     options: [
-      { en: '499 CE', hi: '499 ई.' },
-      { en: '628 CE', hi: '628 ई.' },
-      { en: '776 CE', hi: '776 ई.' },
-      { en: '820 CE', hi: '820 ई.' },
+      { en: '499 CE', hi: '499 ई.', sa: '499 ई.', mai: '499 ई.', mr: '499 ई.', ta: '499 CE', te: '499 CE', bn: '499 CE', kn: '499 CE', gu: '499 CE' },
+      { en: '628 CE', hi: '628 ई.', sa: '628 ई.', mai: '628 ई.', mr: '628 ई.', ta: '628 CE', te: '628 CE', bn: '628 CE', kn: '628 CE', gu: '628 CE' },
+      { en: '776 CE', hi: '776 ई.', sa: '776 ई.', mai: '776 ई.', mr: '776 ई.', ta: '776 CE', te: '776 CE', bn: '776 CE', kn: '776 CE', gu: '776 CE' },
+      { en: '820 CE', hi: '820 ई.', sa: '820 ई.', mai: '820 ई.', mr: '820 ई.', ta: '820 CE', te: '820 CE', bn: '820 CE', kn: '820 CE', gu: '820 CE' },
     ],
     correctAnswer: 1,
     explanation: {

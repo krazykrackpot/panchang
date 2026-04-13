@@ -5,16 +5,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_11_2', phase: 3, topic: 'Dashas', moduleNumber: '11.2',
-  title: { en: 'Yogini and Char Dasha — Alternative Systems', hi: 'योगिनी एवं चर दशा — वैकल्पिक पद्धतियाँ' },
+  title: { en: 'Yogini and Char Dasha — Alternative Systems', hi: 'योगिनी एवं चर दशा — वैकल्पिक पद्धतियाँ', sa: 'योगिनी एवं चर दशा — वैकल्पिक पद्धतियाँ', mai: 'योगिनी एवं चर दशा — वैकल्पिक पद्धतियाँ', mr: 'योगिनी एवं चर दशा — वैकल्पिक पद्धतियाँ', ta: 'Yogini and Char Dasha — Alternative Systems', te: 'Yogini and Char Dasha — Alternative Systems', bn: 'Yogini and Char Dasha — Alternative Systems', kn: 'Yogini and Char Dasha — Alternative Systems', gu: 'Yogini and Char Dasha — Alternative Systems' },
   subtitle: {
     en: 'Beyond Vimshottari: the 36-year Yogini cycle and Jaimini\'s sign-based Char Dasha for event confirmation',
     hi: 'विंशोत्तरी से परे: 36 वर्षीय योगिनी चक्र और घटना पुष्टि के लिए जैमिनी की राशि-आधारित चर दशा',
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Module 11-1: Vimshottari Dasha', hi: 'मॉड्यूल 11-1: विंशोत्तरी दशा' }, href: '/learn/modules/11-1' },
-    { label: { en: 'Module 11-3: Dasha & Transit Overlay', hi: 'मॉड्यूल 11-3: दशा एवं गोचर आच्छादन' }, href: '/learn/modules/11-3' },
-    { label: { en: 'Dashas Deep Dive', hi: 'दशा विस्तार' }, href: '/learn/dashas' },
+    { label: { en: 'Module 11-1: Vimshottari Dasha', hi: 'मॉड्यूल 11-1: विंशोत्तरी दशा', sa: 'मॉड्यूल 11-1: विंशोत्तरी दशा', mai: 'मॉड्यूल 11-1: विंशोत्तरी दशा', mr: 'मॉड्यूल 11-1: विंशोत्तरी दशा', ta: 'Module 11-1: Vimshottari Dasha', te: 'Module 11-1: Vimshottari Dasha', bn: 'Module 11-1: Vimshottari Dasha', kn: 'Module 11-1: Vimshottari Dasha', gu: 'Module 11-1: Vimshottari Dasha' }, href: '/learn/modules/11-1' },
+    { label: { en: 'Module 11-3: Dasha & Transit Overlay', hi: 'मॉड्यूल 11-3: दशा एवं गोचर आच्छादन', sa: 'मॉड्यूल 11-3: दशा एवं गोचर आच्छादन', mai: 'मॉड्यूल 11-3: दशा एवं गोचर आच्छादन', mr: 'मॉड्यूल 11-3: दशा एवं गोचर आच्छादन', ta: 'Module 11-3: Dasha & Transit Overlay', te: 'Module 11-3: Dasha & Transit Overlay', bn: 'Module 11-3: Dasha & Transit Overlay', kn: 'Module 11-3: Dasha & Transit Overlay', gu: 'Module 11-3: Dasha & Transit Overlay' }, href: '/learn/modules/11-3' },
+    { label: { en: 'Dashas Deep Dive', hi: 'दशा विस्तार', sa: 'दशा विस्तार', mai: 'दशा विस्तार', mr: 'दशा विस्तार', ta: 'Dashas Deep Dive', te: 'Dashas Deep Dive', bn: 'Dashas Deep Dive', kn: 'Dashas Deep Dive', gu: 'Dashas Deep Dive' }, href: '/learn/dashas' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'योगिनी दशा पद्धति के चक्र की कुल अवधि कितनी है?',
     },
     options: [
-      { en: '27 years', hi: '27 वर्ष' },
-      { en: '36 years', hi: '36 वर्ष' },
-      { en: '60 years', hi: '60 वर्ष' },
-      { en: '120 years', hi: '120 वर्ष' },
+      { en: '27 years', hi: '27 वर्ष', sa: '27 वर्ष', mai: '27 वर्ष', mr: '27 वर्ष', ta: '27 years', te: '27 years', bn: '27 years', kn: '27 years', gu: '27 years' },
+      { en: '36 years', hi: '36 वर्ष', sa: '36 वर्ष', mai: '36 वर्ष', mr: '36 वर्ष', ta: '36 years', te: '36 years', bn: '36 years', kn: '36 years', gu: '36 years' },
+      { en: '60 years', hi: '60 वर्ष', sa: '60 वर्ष', mai: '60 वर्ष', mr: '60 वर्ष', ta: '60 years', te: '60 years', bn: '60 years', kn: '60 years', gu: '60 years' },
+      { en: '120 years', hi: '120 वर्ष', sa: '120 वर्ष', mai: '120 वर्ष', mr: '120 वर्ष', ta: '120 years', te: '120 years', bn: '120 years', kn: '120 years', gu: '120 years' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -44,10 +44,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'योगिनी दशा पद्धति में कितनी योगिनियाँ हैं?',
     },
     options: [
-      { en: '7', hi: '7' },
-      { en: '8', hi: '8' },
-      { en: '9', hi: '9' },
-      { en: '12', hi: '12' },
+      { en: '7', hi: '7', sa: '7', mai: '7', mr: '7', ta: '7', te: '7', bn: '7', kn: '7', gu: '7' },
+      { en: '8', hi: '8', sa: '8', mai: '8', mr: '8', ta: '8', te: '8', bn: '8', kn: '8', gu: '8' },
+      { en: '9', hi: '9', sa: '9', mai: '9', mr: '9', ta: '9', te: '9', bn: '9', kn: '9', gu: '9' },
+      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -74,10 +74,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किस योगिनी की दशा अवधि सबसे लम्बी है?',
     },
     options: [
-      { en: 'Siddha (7 years)', hi: 'सिद्धा (7 वर्ष)' },
-      { en: 'Sankata (8 years)', hi: 'संकटा (8 वर्ष)' },
-      { en: 'Ulka (6 years)', hi: 'उल्का (6 वर्ष)' },
-      { en: 'Bhadrika (5 years)', hi: 'भद्रिका (5 वर्ष)' },
+      { en: 'Siddha (7 years)', hi: 'सिद्धा (7 वर्ष)', sa: 'सिद्धा (7 वर्ष)', mai: 'सिद्धा (7 वर्ष)', mr: 'सिद्धा (7 वर्ष)', ta: 'Siddha (7 years)', te: 'Siddha (7 years)', bn: 'Siddha (7 years)', kn: 'Siddha (7 years)', gu: 'Siddha (7 years)' },
+      { en: 'Sankata (8 years)', hi: 'संकटा (8 वर्ष)', sa: 'संकटा (8 वर्ष)', mai: 'संकटा (8 वर्ष)', mr: 'संकटा (8 वर्ष)', ta: 'Sankata (8 years)', te: 'Sankata (8 years)', bn: 'Sankata (8 years)', kn: 'Sankata (8 years)', gu: 'Sankata (8 years)' },
+      { en: 'Ulka (6 years)', hi: 'उल्का (6 वर्ष)', sa: 'उल्का (6 वर्ष)', mai: 'उल्का (6 वर्ष)', mr: 'उल्का (6 वर्ष)', ta: 'Ulka (6 years)', te: 'Ulka (6 years)', bn: 'Ulka (6 years)', kn: 'Ulka (6 years)', gu: 'Ulka (6 years)' },
+      { en: 'Bhadrika (5 years)', hi: 'भद्रिका (5 वर्ष)', sa: 'भद्रिका (5 वर्ष)', mai: 'भद्रिका (5 वर्ष)', mr: 'भद्रिका (5 वर्ष)', ta: 'Bhadrika (5 years)', te: 'Bhadrika (5 years)', bn: 'Bhadrika (5 years)', kn: 'Bhadrika (5 years)', gu: 'Bhadrika (5 years)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -92,10 +92,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'जैमिनी पद्धति में पारम्परिक पाराशरी दृष्टि (ग्रह दृष्टि) के स्थान पर क्या है?',
     },
     options: [
-      { en: 'No aspects are used', hi: 'कोई दृष्टि प्रयुक्त नहीं' },
-      { en: 'Rashi Drishti (sign-based aspects)', hi: 'राशि दृष्टि (राशि-आधारित दृष्टि)' },
-      { en: 'Only conjunctions matter', hi: 'केवल युति महत्त्वपूर्ण है' },
-      { en: 'Western-style orb aspects', hi: 'पाश्चात्य शैली की ओर्ब दृष्टि' },
+      { en: 'No aspects are used', hi: 'कोई दृष्टि प्रयुक्त नहीं', sa: 'कोई दृष्टि प्रयुक्त नहीं', mai: 'कोई दृष्टि प्रयुक्त नहीं', mr: 'कोई दृष्टि प्रयुक्त नहीं', ta: 'No aspects are used', te: 'No aspects are used', bn: 'No aspects are used', kn: 'No aspects are used', gu: 'No aspects are used' },
+      { en: 'Rashi Drishti (sign-based aspects)', hi: 'राशि दृष्टि (राशि-आधारित दृष्टि)', sa: 'राशि दृष्टि (राशि-आधारित दृष्टि)', mai: 'राशि दृष्टि (राशि-आधारित दृष्टि)', mr: 'राशि दृष्टि (राशि-आधारित दृष्टि)', ta: 'Rashi Drishti (sign-based aspects)', te: 'Rashi Drishti (sign-based aspects)', bn: 'Rashi Drishti (sign-based aspects)', kn: 'Rashi Drishti (sign-based aspects)', gu: 'Rashi Drishti (sign-based aspects)' },
+      { en: 'Only conjunctions matter', hi: 'केवल युति महत्त्वपूर्ण है', sa: 'केवल युति महत्त्वपूर्ण है', mai: 'केवल युति महत्त्वपूर्ण है', mr: 'केवल युति महत्त्वपूर्ण है', ta: 'Only conjunctions matter', te: 'Only conjunctions matter', bn: 'Only conjunctions matter', kn: 'Only conjunctions matter', gu: 'Only conjunctions matter' },
+      { en: 'Western-style orb aspects', hi: 'पाश्चात्य शैली की ओर्ब दृष्टि', sa: 'पाश्चात्य शैली की ओर्ब दृष्टि', mai: 'पाश्चात्य शैली की ओर्ब दृष्टि', mr: 'पाश्चात्य शैली की ओर्ब दृष्टि', ta: 'Western-style orb aspects', te: 'Western-style orb aspects', bn: 'Western-style orb aspects', kn: 'Western-style orb aspects', gu: 'Western-style orb aspects' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -122,10 +122,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विंशोत्तरी की अपेक्षा योगिनी दशा को कब प्राथमिकता दी जानी चाहिए?',
     },
     options: [
-      { en: 'Always — it is more accurate', hi: 'सदैव — यह अधिक सटीक है' },
-      { en: 'Never — only Vimshottari is valid', hi: 'कभी नहीं — केवल विंशोत्तरी वैध है' },
-      { en: 'As a secondary confirmation tool alongside Vimshottari', hi: 'विंशोत्तरी के साथ द्वितीयक पुष्टि उपकरण के रूप में' },
-      { en: 'Only for female charts', hi: 'केवल स्त्री कुण्डली के लिए' },
+      { en: 'Always — it is more accurate', hi: 'सदैव — यह अधिक सटीक है', sa: 'सदैव — यह अधिक सटीक है', mai: 'सदैव — यह अधिक सटीक है', mr: 'सदैव — यह अधिक सटीक है', ta: 'Always — it is more accurate', te: 'Always — it is more accurate', bn: 'Always — it is more accurate', kn: 'Always — it is more accurate', gu: 'Always — it is more accurate' },
+      { en: 'Never — only Vimshottari is valid', hi: 'कभी नहीं — केवल विंशोत्तरी वैध है', sa: 'कभी नहीं — केवल विंशोत्तरी वैध है', mai: 'कभी नहीं — केवल विंशोत्तरी वैध है', mr: 'कभी नहीं — केवल विंशोत्तरी वैध है', ta: 'Never — only Vimshottari is valid', te: 'Never — only Vimshottari is valid', bn: 'Never — only Vimshottari is valid', kn: 'Never — only Vimshottari is valid', gu: 'Never — only Vimshottari is valid' },
+      { en: 'As a secondary confirmation tool alongside Vimshottari', hi: 'विंशोत्तरी के साथ द्वितीयक पुष्टि उपकरण के रूप में', sa: 'विंशोत्तरी के साथ द्वितीयक पुष्टि उपकरण के रूप में', mai: 'विंशोत्तरी के साथ द्वितीयक पुष्टि उपकरण के रूप में', mr: 'विंशोत्तरी के साथ द्वितीयक पुष्टि उपकरण के रूप में', ta: 'As a secondary confirmation tool alongside Vimshottari', te: 'As a secondary confirmation tool alongside Vimshottari', bn: 'As a secondary confirmation tool alongside Vimshottari', kn: 'As a secondary confirmation tool alongside Vimshottari', gu: 'As a secondary confirmation tool alongside Vimshottari' },
+      { en: 'Only for female charts', hi: 'केवल स्त्री कुण्डली के लिए', sa: 'केवल स्त्री कुण्डली के लिए', mai: 'केवल स्त्री कुण्डली के लिए', mr: 'केवल स्त्री कुण्डली के लिए', ta: 'Only for female charts', te: 'Only for female charts', bn: 'Only for female charts', kn: 'Only for female charts', gu: 'Only for female charts' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -140,10 +140,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'इस मॉड्यूल के अनुसार भविष्यवाणी में विश्वास बढ़ाने वाला सिद्धान्त कौन-सा है?',
     },
     options: [
-      { en: 'Using only one dasha system consistently', hi: 'सदा केवल एक दशा पद्धति का उपयोग' },
-      { en: 'If 3 dashas agree, the event is certain', hi: 'यदि 3 दशाएँ सहमत हों, तो घटना निश्चित है' },
-      { en: 'Only planetary transits matter', hi: 'केवल ग्रह गोचर महत्त्वपूर्ण हैं' },
-      { en: 'Birth time rectification eliminates the need for multiple systems', hi: 'जन्म समय शोधन से बहु-पद्धति की आवश्यकता समाप्त हो जाती है' },
+      { en: 'Using only one dasha system consistently', hi: 'सदा केवल एक दशा पद्धति का उपयोग', sa: 'सदा केवल एक दशा पद्धति का उपयोग', mai: 'सदा केवल एक दशा पद्धति का उपयोग', mr: 'सदा केवल एक दशा पद्धति का उपयोग', ta: 'Using only one dasha system consistently', te: 'Using only one dasha system consistently', bn: 'Using only one dasha system consistently', kn: 'Using only one dasha system consistently', gu: 'Using only one dasha system consistently' },
+      { en: 'If 3 dashas agree, the event is certain', hi: 'यदि 3 दशाएँ सहमत हों, तो घटना निश्चित है', sa: 'यदि 3 दशाएँ सहमत हों, तो घटना निश्चित है', mai: 'यदि 3 दशाएँ सहमत हों, तो घटना निश्चित है', mr: 'यदि 3 दशाएँ सहमत हों, तो घटना निश्चित है', ta: 'If 3 dashas agree, the event is certain', te: 'If 3 dashas agree, the event is certain', bn: 'If 3 dashas agree, the event is certain', kn: 'If 3 dashas agree, the event is certain', gu: 'If 3 dashas agree, the event is certain' },
+      { en: 'Only planetary transits matter', hi: 'केवल ग्रह गोचर महत्त्वपूर्ण हैं', sa: 'केवल ग्रह गोचर महत्त्वपूर्ण हैं', mai: 'केवल ग्रह गोचर महत्त्वपूर्ण हैं', mr: 'केवल ग्रह गोचर महत्त्वपूर्ण हैं', ta: 'Only planetary transits matter', te: 'Only planetary transits matter', bn: 'Only planetary transits matter', kn: 'Only planetary transits matter', gu: 'Only planetary transits matter' },
+      { en: 'Birth time rectification eliminates the need for multiple systems', hi: 'जन्म समय शोधन से बहु-पद्धति की आवश्यकता समाप्त हो जाती है', sa: 'जन्म समय शोधन से बहु-पद्धति की आवश्यकता समाप्त हो जाती है', mai: 'जन्म समय शोधन से बहु-पद्धति की आवश्यकता समाप्त हो जाती है', mr: 'जन्म समय शोधन से बहु-पद्धति की आवश्यकता समाप्त हो जाती है', ta: 'Birth time rectification eliminates the need for multiple systems', te: 'Birth time rectification eliminates the need for multiple systems', bn: 'Birth time rectification eliminates the need for multiple systems', kn: 'Birth time rectification eliminates the need for multiple systems', gu: 'Birth time rectification eliminates the need for multiple systems' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -170,10 +170,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चर दशा किस प्रकार के विश्लेषण के लिए सर्वाधिक उपयोगी है?',
     },
     options: [
-      { en: 'Personality assessment', hi: 'व्यक्तित्व आकलन' },
-      { en: 'Event-based prediction and timing', hi: 'घटना-आधारित भविष्यवाणी और समय-निर्धारण' },
-      { en: 'Gemstone recommendation', hi: 'रत्न संस्तुति' },
-      { en: 'Naming ceremony', hi: 'नामकरण संस्कार' },
+      { en: 'Personality assessment', hi: 'व्यक्तित्व आकलन', sa: 'व्यक्तित्व आकलन', mai: 'व्यक्तित्व आकलन', mr: 'व्यक्तित्व आकलन', ta: 'Personality assessment', te: 'Personality assessment', bn: 'Personality assessment', kn: 'Personality assessment', gu: 'Personality assessment' },
+      { en: 'Event-based prediction and timing', hi: 'घटना-आधारित भविष्यवाणी और समय-निर्धारण', sa: 'घटना-आधारित भविष्यवाणी और समय-निर्धारण', mai: 'घटना-आधारित भविष्यवाणी और समय-निर्धारण', mr: 'घटना-आधारित भविष्यवाणी और समय-निर्धारण', ta: 'Event-based prediction and timing', te: 'Event-based prediction and timing', bn: 'Event-based prediction and timing', kn: 'Event-based prediction and timing', gu: 'Event-based prediction and timing' },
+      { en: 'Gemstone recommendation', hi: 'रत्न संस्तुति', sa: 'रत्न संस्तुति', mai: 'रत्न संस्तुति', mr: 'रत्न संस्तुति', ta: 'Gemstone recommendation', te: 'Gemstone recommendation', bn: 'Gemstone recommendation', kn: 'Gemstone recommendation', gu: 'Gemstone recommendation' },
+      { en: 'Naming ceremony', hi: 'नामकरण संस्कार', sa: 'नामकरण संस्कार', mai: 'नामकरण संस्कार', mr: 'नामकरण संस्कार', ta: 'Naming ceremony', te: 'Naming ceremony', bn: 'Naming ceremony', kn: 'Naming ceremony', gu: 'Naming ceremony' },
     ],
     correctAnswer: 1,
     explanation: {

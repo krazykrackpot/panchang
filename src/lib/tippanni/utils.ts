@@ -3,23 +3,19 @@
  * Utility functions for Vedic astrology calculations
  */
 
-import type { Locale } from '@/types/panchang';
+import type { Locale,  LocaleText } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
 
-export interface Tri {
-  en: string;
-  hi: string;
-  sa: string;
-}
+export type Tri = LocaleText;
 
 /** Create a trilingual object */
 export function tri(en: string, hi: string, sa: string): Tri {
   return { en, hi, sa };
 }
 
-/** Resolve a Tri to a locale string */
-export function triLocale(t: Tri, locale: Locale): string {
-  if (locale === 'sa') return t.sa || t.hi;
-  return locale === 'hi' ? t.hi : t.en;
+/** Resolve a Tri/LocaleText to a locale string */
+export function triLocale(t: LocaleText, locale: Locale): string {
+  return tl(t, locale);
 }
 
 // Sign lords: 1-based sign index -> planet ID (0-based)

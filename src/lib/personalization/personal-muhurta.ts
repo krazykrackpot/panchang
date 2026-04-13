@@ -1,14 +1,14 @@
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
 export interface PersonalMuhurta {
-  activity: Trilingual;
+  activity: LocaleText;
   activityKey: string;
   recommendation: 'excellent' | 'good' | 'neutral' | 'avoid';
-  reason: Trilingual;
+  reason: LocaleText;
   taraBala: { favorable: boolean; taraName: string };
   chandraBala: { favorable: boolean; houseFromMoon: number };
 }
@@ -19,7 +19,7 @@ export interface PersonalMuhurta {
 
 interface ActivityDef {
   key: string;
-  name: Trilingual;
+  name: LocaleText;
 }
 
 const ACTIVITIES: ActivityDef[] = [
@@ -91,7 +91,7 @@ function buildReason(
   taraFav: boolean,
   house: number,
   chandraFav: boolean,
-): Trilingual {
+): LocaleText {
   const taraStatus = taraFav ? 'favorable' : 'unfavorable';
   const chandraStatus = chandraFav ? 'favorable' : 'unfavorable';
 

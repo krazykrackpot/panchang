@@ -5,17 +5,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_13_4', phase: 3, topic: 'Transits', moduleNumber: '13.4',
-  title: { en: 'Eclipses — Grahan & the Rahu-Ketu Axis', hi: 'ग्रहण — राहु-केतु अक्ष' },
+  title: { en: 'Eclipses — Grahan & the Rahu-Ketu Axis', hi: 'ग्रहण — राहु-केतु अक्ष', sa: 'ग्रहण — राहु-केतु अक्ष', mai: 'ग्रहण — राहु-केतु अक्ष', mr: 'ग्रहण — राहु-केतु अक्ष', ta: 'Eclipses — Grahan & the Rahu-Ketu Axis', te: 'Eclipses — Grahan & the Rahu-Ketu Axis', bn: 'Eclipses — Grahan & the Rahu-Ketu Axis', kn: 'Eclipses — Grahan & the Rahu-Ketu Axis', gu: 'Eclipses — Grahan & the Rahu-Ketu Axis' },
   subtitle: {
     en: 'How eclipses occur at the lunar nodes, their astronomical mechanics, Sutak rules, and how we compute them from first principles',
     hi: 'चन्द्र पातों पर ग्रहण कैसे होते हैं, उनका खगोलीय यन्त्र, सूतक नियम, और हम उन्हें मूल सिद्धान्तों से कैसे गणना करते हैं',
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Eclipse Calendar', hi: 'ग्रहण पञ्चाङ्ग' }, href: '/eclipses' },
-    { label: { en: 'Module 13-1: How Transits Work', hi: 'मॉड्यूल 13-1: गोचर' }, href: '/learn/modules/13-1' },
-    { label: { en: 'Deep Dive: Eclipses in Jyotish', hi: 'विस्तृत: ज्योतिष में ग्रहण' }, href: '/learn/eclipses' },
-    { label: { en: 'Tithis — Amavasya & Purnima', hi: 'तिथियाँ — अमावस्या और पूर्णिमा' }, href: '/learn/tithis' },
+    { label: { en: 'Eclipse Calendar', hi: 'ग्रहण पञ्चाङ्ग', sa: 'ग्रहण पञ्चाङ्ग', mai: 'ग्रहण पञ्चाङ्ग', mr: 'ग्रहण पञ्चाङ्ग', ta: 'Eclipse Calendar', te: 'Eclipse Calendar', bn: 'Eclipse Calendar', kn: 'Eclipse Calendar', gu: 'Eclipse Calendar' }, href: '/eclipses' },
+    { label: { en: 'Module 13-1: How Transits Work', hi: 'मॉड्यूल 13-1: गोचर', sa: 'मॉड्यूल 13-1: गोचर', mai: 'मॉड्यूल 13-1: गोचर', mr: 'मॉड्यूल 13-1: गोचर', ta: 'Module 13-1: How Transits Work', te: 'Module 13-1: How Transits Work', bn: 'Module 13-1: How Transits Work', kn: 'Module 13-1: How Transits Work', gu: 'Module 13-1: How Transits Work' }, href: '/learn/modules/13-1' },
+    { label: { en: 'Deep Dive: Eclipses in Jyotish', hi: 'विस्तृत: ज्योतिष में ग्रहण', sa: 'विस्तृत: ज्योतिष में ग्रहण', mai: 'विस्तृत: ज्योतिष में ग्रहण', mr: 'विस्तृत: ज्योतिष में ग्रहण', ta: 'Deep Dive: Eclipses in Jyotish', te: 'Deep Dive: Eclipses in Jyotish', bn: 'Deep Dive: Eclipses in Jyotish', kn: 'Deep Dive: Eclipses in Jyotish', gu: 'Deep Dive: Eclipses in Jyotish' }, href: '/learn/eclipses' },
+    { label: { en: 'Tithis — Amavasya & Purnima', hi: 'तिथियाँ — अमावस्या और पूर्णिमा', sa: 'तिथियाँ — अमावस्या और पूर्णिमा', mai: 'तिथियाँ — अमावस्या और पूर्णिमा', mr: 'तिथियाँ — अमावस्या और पूर्णिमा', ta: 'Tithis — Amavasya & Purnima', te: 'Tithis — Amavasya & Purnima', bn: 'Tithis — Amavasya & Purnima', kn: 'Tithis — Amavasya & Purnima', gu: 'Tithis — Amavasya & Purnima' }, href: '/learn/tithis' },
   ],
 };
 
@@ -27,10 +27,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'खगोलीय शब्दों में राहु (आरोही चन्द्र पात) क्या है?',
     },
     options: [
-      { en: 'The point where the Moon crosses the ecliptic moving northward', hi: 'वह बिन्दु जहाँ चन्द्रमा उत्तर की ओर क्रान्तिवृत्त पार करता है' },
-      { en: 'A shadowy planet between Mars and Jupiter', hi: 'मंगल और गुरु के बीच एक छाया ग्रह' },
-      { en: 'The north pole of the Moon', hi: 'चन्द्रमा का उत्तरी ध्रुव' },
-      { en: 'The point of maximum lunar latitude', hi: 'अधिकतम चन्द्र अक्षांश का बिन्दु' },
+      { en: 'The point where the Moon crosses the ecliptic moving northward', hi: 'वह बिन्दु जहाँ चन्द्रमा उत्तर की ओर क्रान्तिवृत्त पार करता है', sa: 'वह बिन्दु जहाँ चन्द्रमा उत्तर की ओर क्रान्तिवृत्त पार करता है', mai: 'वह बिन्दु जहाँ चन्द्रमा उत्तर की ओर क्रान्तिवृत्त पार करता है', mr: 'वह बिन्दु जहाँ चन्द्रमा उत्तर की ओर क्रान्तिवृत्त पार करता है', ta: 'The point where the Moon crosses the ecliptic moving northward', te: 'The point where the Moon crosses the ecliptic moving northward', bn: 'The point where the Moon crosses the ecliptic moving northward', kn: 'The point where the Moon crosses the ecliptic moving northward', gu: 'The point where the Moon crosses the ecliptic moving northward' },
+      { en: 'A shadowy planet between Mars and Jupiter', hi: 'मंगल और गुरु के बीच एक छाया ग्रह', sa: 'मंगल और गुरु के बीच एक छाया ग्रह', mai: 'मंगल और गुरु के बीच एक छाया ग्रह', mr: 'मंगल और गुरु के बीच एक छाया ग्रह', ta: 'A shadowy planet between Mars and Jupiter', te: 'A shadowy planet between Mars and Jupiter', bn: 'A shadowy planet between Mars and Jupiter', kn: 'A shadowy planet between Mars and Jupiter', gu: 'A shadowy planet between Mars and Jupiter' },
+      { en: 'The north pole of the Moon', hi: 'चन्द्रमा का उत्तरी ध्रुव', sa: 'चन्द्रमा का उत्तरी ध्रुव', mai: 'चन्द्रमा का उत्तरी ध्रुव', mr: 'चन्द्रमा का उत्तरी ध्रुव', ta: 'The north pole of the Moon', te: 'The north pole of the Moon', bn: 'The north pole of the Moon', kn: 'The north pole of the Moon', gu: 'The north pole of the Moon' },
+      { en: 'The point of maximum lunar latitude', hi: 'अधिकतम चन्द्र अक्षांश का बिन्दु', sa: 'अधिकतम चन्द्र अक्षांश का बिन्दु', mai: 'अधिकतम चन्द्र अक्षांश का बिन्दु', mr: 'अधिकतम चन्द्र अक्षांश का बिन्दु', ta: 'The point of maximum lunar latitude', te: 'The point of maximum lunar latitude', bn: 'The point of maximum lunar latitude', kn: 'The point of maximum lunar latitude', gu: 'The point of maximum lunar latitude' },
     ],
     correctAnswer: 0,
     explanation: {
@@ -45,10 +45,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्रमा की कक्षीय तल क्रान्तिवृत्त के सापेक्ष कितने अंश झुकी है?',
     },
     options: [
-      { en: '1.5°', hi: '1.5°' },
-      { en: '5.15°', hi: '5.15°' },
-      { en: '23.5°', hi: '23.5°' },
-      { en: '18.6°', hi: '18.6°' },
+      { en: '1.5°', hi: '1.5°', sa: '1.5°', mai: '1.5°', mr: '1.5°', ta: '1.5°', te: '1.5°', bn: '1.5°', kn: '1.5°', gu: '1.5°' },
+      { en: '5.15°', hi: '5.15°', sa: '5.15°', mai: '5.15°', mr: '5.15°', ta: '5.15°', te: '5.15°', bn: '5.15°', kn: '5.15°', gu: '5.15°' },
+      { en: '23.5°', hi: '23.5°', sa: '23.5°', mai: '23.5°', mr: '23.5°', ta: '23.5°', te: '23.5°', bn: '23.5°', kn: '23.5°', gu: '23.5°' },
+      { en: '18.6°', hi: '18.6°', sa: '18.6°', mai: '18.6°', mr: '18.6°', ta: '18.6°', te: '18.6°', bn: '18.6°', kn: '18.6°', gu: '18.6°' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -63,10 +63,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सूर्य ग्रहण (सूर्य ग्रहण) केवल किस तिथि को हो सकता है?',
     },
     options: [
-      { en: 'Purnima (15th tithi — Full Moon)', hi: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)' },
-      { en: 'Amavasya (30th tithi — New Moon)', hi: 'अमावस्या (30वीं तिथि — नया चन्द्र)' },
-      { en: 'Ekadashi (11th tithi)', hi: 'एकादशी (11वीं तिथि)' },
-      { en: 'Chaturdashi (14th tithi)', hi: 'चतुर्दशी (14वीं तिथि)' },
+      { en: 'Purnima (15th tithi — Full Moon)', hi: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)', sa: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)', mai: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)', mr: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)', ta: 'Purnima (15th tithi — Full Moon)', te: 'Purnima (15th tithi — Full Moon)', bn: 'Purnima (15th tithi — Full Moon)', kn: 'Purnima (15th tithi — Full Moon)', gu: 'Purnima (15th tithi — Full Moon)' },
+      { en: 'Amavasya (30th tithi — New Moon)', hi: 'अमावस्या (30वीं तिथि — नया चन्द्र)', sa: 'अमावस्या (30वीं तिथि — नया चन्द्र)', mai: 'अमावस्या (30वीं तिथि — नया चन्द्र)', mr: 'अमावस्या (30वीं तिथि — नया चन्द्र)', ta: 'Amavasya (30th tithi — New Moon)', te: 'Amavasya (30th tithi — New Moon)', bn: 'Amavasya (30th tithi — New Moon)', kn: 'Amavasya (30th tithi — New Moon)', gu: 'Amavasya (30th tithi — New Moon)' },
+      { en: 'Ekadashi (11th tithi)', hi: 'एकादशी (11वीं तिथि)', sa: 'एकादशी (11वीं तिथि)', mai: 'एकादशी (11वीं तिथि)', mr: 'एकादशी (11वीं तिथि)', ta: 'Ekadashi (11th tithi)', te: 'Ekadashi (11th tithi)', bn: 'Ekadashi (11th tithi)', kn: 'Ekadashi (11th tithi)', gu: 'Ekadashi (11th tithi)' },
+      { en: 'Chaturdashi (14th tithi)', hi: 'चतुर्दशी (14वीं तिथि)', sa: 'चतुर्दशी (14वीं तिथि)', mai: 'चतुर्दशी (14वीं तिथि)', mr: 'चतुर्दशी (14वीं तिथि)', ta: 'Chaturdashi (14th tithi)', te: 'Chaturdashi (14th tithi)', bn: 'Chaturdashi (14th tithi)', kn: 'Chaturdashi (14th tithi)', gu: 'Chaturdashi (14th tithi)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -81,10 +81,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्र ग्रहण (चन्द्र ग्रहण) केवल किस तिथि को हो सकता है?',
     },
     options: [
-      { en: 'Amavasya (30th tithi — New Moon)', hi: 'अमावस्या (30वीं तिथि — नया चन्द्र)' },
-      { en: 'Purnima (15th tithi — Full Moon)', hi: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)' },
-      { en: 'Tritiya (3rd tithi)', hi: 'तृतीया (3री तिथि)' },
-      { en: 'Ashtami (8th tithi)', hi: 'अष्टमी (8वीं तिथि)' },
+      { en: 'Amavasya (30th tithi — New Moon)', hi: 'अमावस्या (30वीं तिथि — नया चन्द्र)', sa: 'अमावस्या (30वीं तिथि — नया चन्द्र)', mai: 'अमावस्या (30वीं तिथि — नया चन्द्र)', mr: 'अमावस्या (30वीं तिथि — नया चन्द्र)', ta: 'Amavasya (30th tithi — New Moon)', te: 'Amavasya (30th tithi — New Moon)', bn: 'Amavasya (30th tithi — New Moon)', kn: 'Amavasya (30th tithi — New Moon)', gu: 'Amavasya (30th tithi — New Moon)' },
+      { en: 'Purnima (15th tithi — Full Moon)', hi: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)', sa: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)', mai: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)', mr: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)', ta: 'Purnima (15th tithi — Full Moon)', te: 'Purnima (15th tithi — Full Moon)', bn: 'Purnima (15th tithi — Full Moon)', kn: 'Purnima (15th tithi — Full Moon)', gu: 'Purnima (15th tithi — Full Moon)' },
+      { en: 'Tritiya (3rd tithi)', hi: 'तृतीया (3री तिथि)', sa: 'तृतीया (3री तिथि)', mai: 'तृतीया (3री तिथि)', mr: 'तृतीया (3री तिथि)', ta: 'Tritiya (3rd tithi)', te: 'Tritiya (3rd tithi)', bn: 'Tritiya (3rd tithi)', kn: 'Tritiya (3rd tithi)', gu: 'Tritiya (3rd tithi)' },
+      { en: 'Ashtami (8th tithi)', hi: 'अष्टमी (8वीं तिथि)', sa: 'अष्टमी (8वीं तिथि)', mai: 'अष्टमी (8वीं तिथि)', mr: 'अष्टमी (8वीं तिथि)', ta: 'Ashtami (8th tithi)', te: 'Ashtami (8th tithi)', bn: 'Ashtami (8th tithi)', kn: 'Ashtami (8th tithi)', gu: 'Ashtami (8th tithi)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -101,8 +101,8 @@ const QUESTIONS: ModuleQuestion[] = [
     options: [
       { en: 'The Moon\'s phase at the time of the eclipse', hi: 'ग्रहण के समय चन्द्रमा की कला' },
       { en: 'The Moon\'s distance from Earth and its ecliptic latitude', hi: 'पृथ्वी से चन्द्रमा की दूरी और उसका क्रान्तिक अक्षांश' },
-      { en: 'The position of Jupiter in the natal chart', hi: 'जन्म कुण्डली में गुरु की स्थिति' },
-      { en: 'The day of the week on which the eclipse falls', hi: 'जिस सप्ताह के दिन ग्रहण पड़े' },
+      { en: 'The position of Jupiter in the natal chart', hi: 'जन्म कुण्डली में गुरु की स्थिति', sa: 'जन्म कुण्डली में गुरु की स्थिति', mai: 'जन्म कुण्डली में गुरु की स्थिति', mr: 'जन्म कुण्डली में गुरु की स्थिति', ta: 'The position of Jupiter in the natal chart', te: 'The position of Jupiter in the natal chart', bn: 'The position of Jupiter in the natal chart', kn: 'The position of Jupiter in the natal chart', gu: 'The position of Jupiter in the natal chart' },
+      { en: 'The day of the week on which the eclipse falls', hi: 'जिस सप्ताह के दिन ग्रहण पड़े', sa: 'जिस सप्ताह के दिन ग्रहण पड़े', mai: 'जिस सप्ताह के दिन ग्रहण पड़े', mr: 'जिस सप्ताह के दिन ग्रहण पड़े', ta: 'The day of the week on which the eclipse falls', te: 'The day of the week on which the eclipse falls', bn: 'The day of the week on which the eclipse falls', kn: 'The day of the week on which the eclipse falls', gu: 'The day of the week on which the eclipse falls' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -119,8 +119,8 @@ const QUESTIONS: ModuleQuestion[] = [
     options: [
       { en: 'A partial lunar eclipse where only the edge of the Moon enters Earth\'s shadow', hi: 'आंशिक चन्द्र ग्रहण जिसमें चन्द्रमा का केवल किनारा पृथ्वी की छाया में प्रवेश करता है' },
       { en: 'A total lunar eclipse where the Moon appears red-orange due to Earth\'s atmospheric refraction', hi: 'पूर्ण चन्द्र ग्रहण जिसमें पृथ्वी के वायुमण्डलीय अपवर्तन के कारण चन्द्रमा लाल-नारंगी दिखता है' },
-      { en: 'A penumbral lunar eclipse visible only through telescopes', hi: 'दूरदर्शी से ही दृश्य उपछाया चन्द्र ग्रहण' },
-      { en: 'A supermoon coinciding with a lunar eclipse', hi: 'चन्द्र ग्रहण के साथ संयोग वाला सुपरमून' },
+      { en: 'A penumbral lunar eclipse visible only through telescopes', hi: 'दूरदर्शी से ही दृश्य उपछाया चन्द्र ग्रहण', sa: 'दूरदर्शी से ही दृश्य उपछाया चन्द्र ग्रहण', mai: 'दूरदर्शी से ही दृश्य उपछाया चन्द्र ग्रहण', mr: 'दूरदर्शी से ही दृश्य उपछाया चन्द्र ग्रहण', ta: 'A penumbral lunar eclipse visible only through telescopes', te: 'A penumbral lunar eclipse visible only through telescopes', bn: 'A penumbral lunar eclipse visible only through telescopes', kn: 'A penumbral lunar eclipse visible only through telescopes', gu: 'A penumbral lunar eclipse visible only through telescopes' },
+      { en: 'A supermoon coinciding with a lunar eclipse', hi: 'चन्द्र ग्रहण के साथ संयोग वाला सुपरमून', sa: 'चन्द्र ग्रहण के साथ संयोग वाला सुपरमून', mai: 'चन्द्र ग्रहण के साथ संयोग वाला सुपरमून', mr: 'चन्द्र ग्रहण के साथ संयोग वाला सुपरमून', ta: 'A supermoon coinciding with a lunar eclipse', te: 'A supermoon coinciding with a lunar eclipse', bn: 'A supermoon coinciding with a lunar eclipse', kn: 'A supermoon coinciding with a lunar eclipse', gu: 'A supermoon coinciding with a lunar eclipse' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -135,10 +135,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'निर्णय सिन्धु परम्परा के अनुसार, सूर्य ग्रहण से कितने समय पहले सूतक आरम्भ होता है?',
     },
     options: [
-      { en: '3 hours', hi: '3 घण्टे' },
-      { en: '4 hours', hi: '4 घण्टे' },
-      { en: '12 hours', hi: '12 घण्टे' },
-      { en: '24 hours', hi: '24 घण्टे' },
+      { en: '3 hours', hi: '3 घण्टे', sa: '3 घण्टे', mai: '3 घण्टे', mr: '3 घण्टे', ta: '3 hours', te: '3 hours', bn: '3 hours', kn: '3 hours', gu: '3 hours' },
+      { en: '4 hours', hi: '4 घण्टे', sa: '4 घण्टे', mai: '4 घण्टे', mr: '4 घण्टे', ta: '4 hours', te: '4 hours', bn: '4 hours', kn: '4 hours', gu: '4 hours' },
+      { en: '12 hours', hi: '12 घण्टे', sa: '12 घण्टे', mai: '12 घण्टे', mr: '12 घण्टे', ta: '12 hours', te: '12 hours', bn: '12 hours', kn: '12 hours', gu: '12 hours' },
+      { en: '24 hours', hi: '24 घण्टे', sa: '24 घण्टे', mai: '24 घण्टे', mr: '24 घण्टे', ta: '24 hours', te: '24 hours', bn: '24 hours', kn: '24 hours', gu: '24 hours' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -153,10 +153,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सारोस चक्र — जिसके बाद ग्रहण लगभग उसी ज्यामिति में दोहराते हैं — लगभग कितने समय का होता है?',
     },
     options: [
-      { en: '9 years, 5 months, 12 days', hi: '9 वर्ष, 5 माह, 12 दिन' },
-      { en: '18 years, 11 days, 8 hours', hi: '18 वर्ष, 11 दिन, 8 घण्टे' },
-      { en: '33 years exactly', hi: 'ठीक 33 वर्ष' },
-      { en: '54 years, 1 month', hi: '54 वर्ष, 1 माह' },
+      { en: '9 years, 5 months, 12 days', hi: '9 वर्ष, 5 माह, 12 दिन', sa: '9 वर्ष, 5 माह, 12 दिन', mai: '9 वर्ष, 5 माह, 12 दिन', mr: '9 वर्ष, 5 माह, 12 दिन', ta: '9 years, 5 months, 12 days', te: '9 years, 5 months, 12 days', bn: '9 years, 5 months, 12 days', kn: '9 years, 5 months, 12 days', gu: '9 years, 5 months, 12 days' },
+      { en: '18 years, 11 days, 8 hours', hi: '18 वर्ष, 11 दिन, 8 घण्टे', sa: '18 वर्ष, 11 दिन, 8 घण्टे', mai: '18 वर्ष, 11 दिन, 8 घण्टे', mr: '18 वर्ष, 11 दिन, 8 घण्टे', ta: '18 years, 11 days, 8 hours', te: '18 years, 11 days, 8 hours', bn: '18 years, 11 days, 8 hours', kn: '18 years, 11 days, 8 hours', gu: '18 years, 11 days, 8 hours' },
+      { en: '33 years exactly', hi: 'ठीक 33 वर्ष', sa: 'ठीक 33 वर्ष', mai: 'ठीक 33 वर्ष', mr: 'ठीक 33 वर्ष', ta: '33 years exactly', te: '33 years exactly', bn: '33 years exactly', kn: '33 years exactly', gu: '33 years exactly' },
+      { en: '54 years, 1 month', hi: '54 वर्ष, 1 माह', sa: '54 वर्ष, 1 माह', mai: '54 वर्ष, 1 माह', mr: '54 वर्ष, 1 माह', ta: '54 years, 1 month', te: '54 years, 1 month', bn: '54 years, 1 month', kn: '54 years, 1 month', gu: '54 years, 1 month' },
     ],
     correctAnswer: 1,
     explanation: {

@@ -5,17 +5,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_22_6', phase: 9, topic: 'Astronomy', moduleNumber: '22.6',
-  title: { en: 'Equation of Time — Why Clocks Disagree With Sundials', hi: 'समय का समीकरण — घड़ियाँ धूपघड़ियों से क्यों असहमत हैं' },
+  title: { en: 'Equation of Time — Why Clocks Disagree With Sundials', hi: 'समय का समीकरण — घड़ियाँ धूपघड़ियों से क्यों असहमत हैं', sa: 'समय का समीकरण — घड़ियाँ धूपघड़ियों से क्यों असहमत हैं', mai: 'समय का समीकरण — घड़ियाँ धूपघड़ियों से क्यों असहमत हैं', mr: 'समय का समीकरण — घड़ियाँ धूपघड़ियों से क्यों असहमत हैं', ta: 'Equation of Time — Why Clocks Disagree With Sundials', te: 'Equation of Time — Why Clocks Disagree With Sundials', bn: 'Equation of Time — Why Clocks Disagree With Sundials', kn: 'Equation of Time — Why Clocks Disagree With Sundials', gu: 'Equation of Time — Why Clocks Disagree With Sundials' },
   subtitle: {
     en: 'Two causes, one formula, and a figure-8 in the sky that shifts solar noon by up to 16 minutes',
     hi: 'दो कारण, एक सूत्र, और आकाश में एक अंक-8 आकृति जो सौर मध्याह्न को 16 मिनट तक खिसकाती है',
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 22-1: Julian Day', hi: 'मॉड्यूल 22-1: जूलियन दिवस' }, href: '/learn/modules/22-1' },
-    { label: { en: 'Module 22-2: Finding the Sun', hi: 'मॉड्यूल 22-2: सूर्य की स्थिति' }, href: '/learn/modules/22-2' },
-    { label: { en: 'Module 22-4: Sunrise Calculation', hi: 'मॉड्यूल 22-4: सूर्योदय गणना' }, href: '/learn/modules/22-4' },
-    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग' }, href: '/panchang' },
+    { label: { en: 'Module 22-1: Julian Day', hi: 'मॉड्यूल 22-1: जूलियन दिवस', sa: 'मॉड्यूल 22-1: जूलियन दिवस', mai: 'मॉड्यूल 22-1: जूलियन दिवस', mr: 'मॉड्यूल 22-1: जूलियन दिवस', ta: 'Module 22-1: Julian Day', te: 'Module 22-1: Julian Day', bn: 'Module 22-1: Julian Day', kn: 'Module 22-1: Julian Day', gu: 'Module 22-1: Julian Day' }, href: '/learn/modules/22-1' },
+    { label: { en: 'Module 22-2: Finding the Sun', hi: 'मॉड्यूल 22-2: सूर्य की स्थिति', sa: 'मॉड्यूल 22-2: सूर्य की स्थिति', mai: 'मॉड्यूल 22-2: सूर्य की स्थिति', mr: 'मॉड्यूल 22-2: सूर्य की स्थिति', ta: 'Module 22-2: Finding the Sun', te: 'Module 22-2: Finding the Sun', bn: 'Module 22-2: Finding the Sun', kn: 'Module 22-2: Finding the Sun', gu: 'Module 22-2: Finding the Sun' }, href: '/learn/modules/22-2' },
+    { label: { en: 'Module 22-4: Sunrise Calculation', hi: 'मॉड्यूल 22-4: सूर्योदय गणना', sa: 'मॉड्यूल 22-4: सूर्योदय गणना', mai: 'मॉड्यूल 22-4: सूर्योदय गणना', mr: 'मॉड्यूल 22-4: सूर्योदय गणना', ta: 'Module 22-4: Sunrise Calculation', te: 'Module 22-4: Sunrise Calculation', bn: 'Module 22-4: Sunrise Calculation', kn: 'Module 22-4: Sunrise Calculation', gu: 'Module 22-4: Sunrise Calculation' }, href: '/learn/modules/22-4' },
+    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग', mai: 'दैनिक पंचांग', mr: 'दैनिक पंचांग', ta: 'Daily Panchang', te: 'Daily Panchang', bn: 'Daily Panchang', kn: 'Daily Panchang', gu: 'Daily Panchang' }, href: '/panchang' },
   ],
 };
 
@@ -27,10 +27,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'समय का समीकरण (EoT) क्या है?',
     },
     options: [
-      { en: 'The formula for converting UTC to local time', hi: 'UTC को स्थानीय समय में बदलने का सूत्र' },
-      { en: 'The difference between apparent solar time (sundial) and mean solar time (clock)', hi: 'दृश्य सौर समय (धूपघड़ी) और माध्य सौर समय (घड़ी) के बीच अन्तर' },
-      { en: 'The formula for leap second corrections', hi: 'अधिसेकण्ड सुधार का सूत्र' },
-      { en: 'The relationship between sidereal and solar time', hi: 'नाक्षत्र और सौर समय का सम्बन्ध' },
+      { en: 'The formula for converting UTC to local time', hi: 'UTC को स्थानीय समय में बदलने का सूत्र', sa: 'UTC को स्थानीय समय में बदलने का सूत्र', mai: 'UTC को स्थानीय समय में बदलने का सूत्र', mr: 'UTC को स्थानीय समय में बदलने का सूत्र', ta: 'The formula for converting UTC to local time', te: 'The formula for converting UTC to local time', bn: 'The formula for converting UTC to local time', kn: 'The formula for converting UTC to local time', gu: 'The formula for converting UTC to local time' },
+      { en: 'The difference between apparent solar time (sundial) and mean solar time (clock)', hi: 'दृश्य सौर समय (धूपघड़ी) और माध्य सौर समय (घड़ी) के बीच अन्तर', sa: 'दृश्य सौर समय (धूपघड़ी) और माध्य सौर समय (घड़ी) के बीच अन्तर', mai: 'दृश्य सौर समय (धूपघड़ी) और माध्य सौर समय (घड़ी) के बीच अन्तर', mr: 'दृश्य सौर समय (धूपघड़ी) और माध्य सौर समय (घड़ी) के बीच अन्तर', ta: 'The difference between apparent solar time (sundial) and mean solar time (clock)', te: 'The difference between apparent solar time (sundial) and mean solar time (clock)', bn: 'The difference between apparent solar time (sundial) and mean solar time (clock)', kn: 'The difference between apparent solar time (sundial) and mean solar time (clock)', gu: 'The difference between apparent solar time (sundial) and mean solar time (clock)' },
+      { en: 'The formula for leap second corrections', hi: 'अधिसेकण्ड सुधार का सूत्र', sa: 'अधिसेकण्ड सुधार का सूत्र', mai: 'अधिसेकण्ड सुधार का सूत्र', mr: 'अधिसेकण्ड सुधार का सूत्र', ta: 'The formula for leap second corrections', te: 'The formula for leap second corrections', bn: 'The formula for leap second corrections', kn: 'The formula for leap second corrections', gu: 'The formula for leap second corrections' },
+      { en: 'The relationship between sidereal and solar time', hi: 'नाक्षत्र और सौर समय का सम्बन्ध', sa: 'नाक्षत्र और सौर समय का सम्बन्ध', mai: 'नाक्षत्र और सौर समय का सम्बन्ध', mr: 'नाक्षत्र और सौर समय का सम्बन्ध', ta: 'The relationship between sidereal and solar time', te: 'The relationship between sidereal and solar time', bn: 'The relationship between sidereal and solar time', kn: 'The relationship between sidereal and solar time', gu: 'The relationship between sidereal and solar time' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -45,10 +45,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कौन-से दो प्रभाव समय का समीकरण उत्पन्न करते हैं?',
     },
     options: [
-      { en: 'Precession and nutation', hi: 'पुरस्सरण और अयन-चलन' },
-      { en: 'Obliquity of the ecliptic and orbital eccentricity', hi: 'क्रान्तिवृत्त की तिर्यकता और कक्षीय उत्केन्द्रता' },
-      { en: 'Parallax and refraction', hi: 'लम्बन और अपवर्तन' },
-      { en: 'Tidal friction and continental drift', hi: 'ज्वारीय घर्षण और महाद्वीपीय विस्थापन' },
+      { en: 'Precession and nutation', hi: 'पुरस्सरण और अयन-चलन', sa: 'पुरस्सरण और अयन-चलन', mai: 'पुरस्सरण और अयन-चलन', mr: 'पुरस्सरण और अयन-चलन', ta: 'Precession and nutation', te: 'Precession and nutation', bn: 'Precession and nutation', kn: 'Precession and nutation', gu: 'Precession and nutation' },
+      { en: 'Obliquity of the ecliptic and orbital eccentricity', hi: 'क्रान्तिवृत्त की तिर्यकता और कक्षीय उत्केन्द्रता', sa: 'क्रान्तिवृत्त की तिर्यकता और कक्षीय उत्केन्द्रता', mai: 'क्रान्तिवृत्त की तिर्यकता और कक्षीय उत्केन्द्रता', mr: 'क्रान्तिवृत्त की तिर्यकता और कक्षीय उत्केन्द्रता', ta: 'Obliquity of the ecliptic and orbital eccentricity', te: 'Obliquity of the ecliptic and orbital eccentricity', bn: 'Obliquity of the ecliptic and orbital eccentricity', kn: 'Obliquity of the ecliptic and orbital eccentricity', gu: 'Obliquity of the ecliptic and orbital eccentricity' },
+      { en: 'Parallax and refraction', hi: 'लम्बन और अपवर्तन', sa: 'लम्बन और अपवर्तन', mai: 'लम्बन और अपवर्तन', mr: 'लम्बन और अपवर्तन', ta: 'Parallax and refraction', te: 'Parallax and refraction', bn: 'Parallax and refraction', kn: 'Parallax and refraction', gu: 'Parallax and refraction' },
+      { en: 'Tidal friction and continental drift', hi: 'ज्वारीय घर्षण और महाद्वीपीय विस्थापन', sa: 'ज्वारीय घर्षण और महाद्वीपीय विस्थापन', mai: 'ज्वारीय घर्षण और महाद्वीपीय विस्थापन', mr: 'ज्वारीय घर्षण और महाद्वीपीय विस्थापन', ta: 'Tidal friction and continental drift', te: 'Tidal friction and continental drift', bn: 'Tidal friction and continental drift', kn: 'Tidal friction and continental drift', gu: 'Tidal friction and continental drift' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -63,10 +63,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'EoT अपना सर्वाधिक ऋणात्मक मान (धूपघड़ी घड़ी से पीछे) लगभग -16 मिनट किसके आसपास पहुँचता है:',
     },
     options: [
-      { en: 'February', hi: 'फरवरी' },
-      { en: 'June', hi: 'जून' },
-      { en: 'November', hi: 'नवम्बर' },
-      { en: 'September', hi: 'सितम्बर' },
+      { en: 'February', hi: 'फरवरी', sa: 'फरवरी', mai: 'फरवरी', mr: 'फरवरी', ta: 'February', te: 'February', bn: 'February', kn: 'February', gu: 'February' },
+      { en: 'June', hi: 'जून', sa: 'जून', mai: 'जून', mr: 'जून', ta: 'June', te: 'June', bn: 'June', kn: 'June', gu: 'June' },
+      { en: 'November', hi: 'नवम्बर', sa: 'नवम्बर', mai: 'नवम्बर', mr: 'नवम्बर', ta: 'November', te: 'November', bn: 'November', kn: 'November', gu: 'November' },
+      { en: 'September', hi: 'सितम्बर', sa: 'सितम्बर', mai: 'सितम्बर', mr: 'सितम्बर', ta: 'September', te: 'September', bn: 'September', kn: 'September', gu: 'September' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -93,10 +93,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'EoT सूत्र में, y = tan²(ε/2) पद किसका प्रभाव दर्शाता है:',
     },
     options: [
-      { en: 'Orbital eccentricity', hi: 'कक्षीय उत्केन्द्रता' },
-      { en: 'Obliquity of the ecliptic (ε ≈ 23.4°)', hi: 'क्रान्तिवृत्त की तिर्यकता (ε ≈ 23.4°)' },
-      { en: 'Lunar parallax', hi: 'चन्द्र लम्बन' },
-      { en: 'Atmospheric refraction', hi: 'वायुमण्डलीय अपवर्तन' },
+      { en: 'Orbital eccentricity', hi: 'कक्षीय उत्केन्द्रता', sa: 'कक्षीय उत्केन्द्रता', mai: 'कक्षीय उत्केन्द्रता', mr: 'कक्षीय उत्केन्द्रता', ta: 'Orbital eccentricity', te: 'Orbital eccentricity', bn: 'Orbital eccentricity', kn: 'Orbital eccentricity', gu: 'Orbital eccentricity' },
+      { en: 'Obliquity of the ecliptic (ε ≈ 23.4°)', hi: 'क्रान्तिवृत्त की तिर्यकता (ε ≈ 23.4°)', sa: 'क्रान्तिवृत्त की तिर्यकता (ε ≈ 23.4°)', mai: 'क्रान्तिवृत्त की तिर्यकता (ε ≈ 23.4°)', mr: 'क्रान्तिवृत्त की तिर्यकता (ε ≈ 23.4°)', ta: 'Obliquity of the ecliptic (ε ≈ 23.4°)', te: 'Obliquity of the ecliptic (ε ≈ 23.4°)', bn: 'Obliquity of the ecliptic (ε ≈ 23.4°)', kn: 'Obliquity of the ecliptic (ε ≈ 23.4°)', gu: 'Obliquity of the ecliptic (ε ≈ 23.4°)' },
+      { en: 'Lunar parallax', hi: 'चन्द्र लम्बन', sa: 'चन्द्र लम्बन', mai: 'चन्द्र लम्बन', mr: 'चन्द्र लम्बन', ta: 'Lunar parallax', te: 'Lunar parallax', bn: 'Lunar parallax', kn: 'Lunar parallax', gu: 'Lunar parallax' },
+      { en: 'Atmospheric refraction', hi: 'वायुमण्डलीय अपवर्तन', sa: 'वायुमण्डलीय अपवर्तन', mai: 'वायुमण्डलीय अपवर्तन', mr: 'वायुमण्डलीय अपवर्तन', ta: 'Atmospheric refraction', te: 'Atmospheric refraction', bn: 'Atmospheric refraction', kn: 'Atmospheric refraction', gu: 'Atmospheric refraction' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -111,10 +111,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'EoT रेडियन से समय के मिनटों में कैसे बदला जाता है?',
     },
     options: [
-      { en: 'Multiply by 60', hi: '60 से गुणा' },
-      { en: 'Multiply by (180/π) x 4', hi: '(180/π) × 4 से गुणा' },
-      { en: 'Divide by 15', hi: '15 से विभाजन' },
-      { en: 'Multiply by 24', hi: '24 से गुणा' },
+      { en: 'Multiply by 60', hi: '60 से गुणा', sa: '60 से गुणा', mai: '60 से गुणा', mr: '60 से गुणा', ta: 'Multiply by 60', te: 'Multiply by 60', bn: 'Multiply by 60', kn: 'Multiply by 60', gu: 'Multiply by 60' },
+      { en: 'Multiply by (180/π) x 4', hi: '(180/π) × 4 से गुणा', sa: '(180/π) × 4 से गुणा', mai: '(180/π) × 4 से गुणा', mr: '(180/π) × 4 से गुणा', ta: 'Multiply by (180/π) x 4', te: 'Multiply by (180/π) x 4', bn: 'Multiply by (180/π) x 4', kn: 'Multiply by (180/π) x 4', gu: 'Multiply by (180/π) x 4' },
+      { en: 'Divide by 15', hi: '15 से विभाजन', sa: '15 से विभाजन', mai: '15 से विभाजन', mr: '15 से विभाजन', ta: 'Divide by 15', te: 'Divide by 15', bn: 'Divide by 15', kn: 'Divide by 15', gu: 'Divide by 15' },
+      { en: 'Multiply by 24', hi: '24 से गुणा', sa: '24 से गुणा', mai: '24 से गुणा', mr: '24 से गुणा', ta: 'Multiply by 24', te: 'Multiply by 24', bn: 'Multiply by 24', kn: 'Multiply by 24', gu: 'Multiply by 24' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -141,10 +141,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'EoT प्रतिवर्ष लगभग कितनी बार शून्य पार करता है (धूपघड़ी घड़ी से मिलती है)?',
     },
     options: [
-      { en: '1 time', hi: '1 बार' },
-      { en: '2 times', hi: '2 बार' },
-      { en: '4 times', hi: '4 बार' },
-      { en: '12 times', hi: '12 बार' },
+      { en: '1 time', hi: '1 बार', sa: '1 बार', mai: '1 बार', mr: '1 बार', ta: '1 time', te: '1 time', bn: '1 time', kn: '1 time', gu: '1 time' },
+      { en: '2 times', hi: '2 बार', sa: '2 बार', mai: '2 बार', mr: '2 बार', ta: '2 times', te: '2 times', bn: '2 times', kn: '2 times', gu: '2 times' },
+      { en: '4 times', hi: '4 बार', sa: '4 बार', mai: '4 बार', mr: '4 बार', ta: '4 times', te: '4 times', bn: '4 times', kn: '4 times', gu: '4 times' },
+      { en: '12 times', hi: '12 बार', sa: '12 बार', mai: '12 बार', mr: '12 बार', ta: '12 times', te: '12 times', bn: '12 times', kn: '12 times', gu: '12 times' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -159,10 +159,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'EoT का उत्केन्द्रता घटक किसके निकट सबसे बड़ा प्रभाव रखता है:',
     },
     options: [
-      { en: 'Perihelion (January) and aphelion (July)', hi: 'उपसौर (जनवरी) और अपसौर (जुलाई)' },
-      { en: 'The equinoxes (March and September)', hi: 'विषुव (मार्च और सितम्बर)' },
-      { en: 'The solstices (June and December)', hi: 'अयनान्त (जून और दिसम्बर)' },
-      { en: 'Quadrature points (45° from perihelion)', hi: 'अभिलम्ब बिन्दु (उपसौर से 45°)' },
+      { en: 'Perihelion (January) and aphelion (July)', hi: 'उपसौर (जनवरी) और अपसौर (जुलाई)', sa: 'उपसौर (जनवरी) और अपसौर (जुलाई)', mai: 'उपसौर (जनवरी) और अपसौर (जुलाई)', mr: 'उपसौर (जनवरी) और अपसौर (जुलाई)', ta: 'Perihelion (January) and aphelion (July)', te: 'Perihelion (January) and aphelion (July)', bn: 'Perihelion (January) and aphelion (July)', kn: 'Perihelion (January) and aphelion (July)', gu: 'Perihelion (January) and aphelion (July)' },
+      { en: 'The equinoxes (March and September)', hi: 'विषुव (मार्च और सितम्बर)', sa: 'विषुव (मार्च और सितम्बर)', mai: 'विषुव (मार्च और सितम्बर)', mr: 'विषुव (मार्च और सितम्बर)', ta: 'The equinoxes (March and September)', te: 'The equinoxes (March and September)', bn: 'The equinoxes (March and September)', kn: 'The equinoxes (March and September)', gu: 'The equinoxes (March and September)' },
+      { en: 'The solstices (June and December)', hi: 'अयनान्त (जून और दिसम्बर)', sa: 'अयनान्त (जून और दिसम्बर)', mai: 'अयनान्त (जून और दिसम्बर)', mr: 'अयनान्त (जून और दिसम्बर)', ta: 'The solstices (June and December)', te: 'The solstices (June and December)', bn: 'The solstices (June and December)', kn: 'The solstices (June and December)', gu: 'The solstices (June and December)' },
+      { en: 'Quadrature points (45° from perihelion)', hi: 'अभिलम्ब बिन्दु (उपसौर से 45°)', sa: 'अभिलम्ब बिन्दु (उपसौर से 45°)', mai: 'अभिलम्ब बिन्दु (उपसौर से 45°)', mr: 'अभिलम्ब बिन्दु (उपसौर से 45°)', ta: 'Quadrature points (45° from perihelion)', te: 'Quadrature points (45° from perihelion)', bn: 'Quadrature points (45° from perihelion)', kn: 'Quadrature points (45° from perihelion)', gu: 'Quadrature points (45° from perihelion)' },
     ],
     correctAnswer: 0,
     explanation: {
@@ -177,10 +177,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'हमारे पंचांग ऐप में EoT किसकी गणना में लागू होता है:',
     },
     options: [
-      { en: 'Only moonrise', hi: 'केवल चन्द्रोदय' },
-      { en: 'Only the calendar date', hi: 'केवल कैलेण्डर तिथि' },
-      { en: 'Both sunrise and sunset (and hence all sunrise-dependent timings)', hi: 'सूर्योदय और सूर्यास्त दोनों (और इसलिए सभी सूर्योदय-निर्भर समय)' },
-      { en: 'Only Tithi calculations', hi: 'केवल तिथि गणना' },
+      { en: 'Only moonrise', hi: 'केवल चन्द्रोदय', sa: 'केवल चन्द्रोदय', mai: 'केवल चन्द्रोदय', mr: 'केवल चन्द्रोदय', ta: 'Only moonrise', te: 'Only moonrise', bn: 'Only moonrise', kn: 'Only moonrise', gu: 'Only moonrise' },
+      { en: 'Only the calendar date', hi: 'केवल कैलेण्डर तिथि', sa: 'केवल कैलेण्डर तिथि', mai: 'केवल कैलेण्डर तिथि', mr: 'केवल कैलेण्डर तिथि', ta: 'Only the calendar date', te: 'Only the calendar date', bn: 'Only the calendar date', kn: 'Only the calendar date', gu: 'Only the calendar date' },
+      { en: 'Both sunrise and sunset (and hence all sunrise-dependent timings)', hi: 'सूर्योदय और सूर्यास्त दोनों (और इसलिए सभी सूर्योदय-निर्भर समय)', sa: 'सूर्योदय और सूर्यास्त दोनों (और इसलिए सभी सूर्योदय-निर्भर समय)', mai: 'सूर्योदय और सूर्यास्त दोनों (और इसलिए सभी सूर्योदय-निर्भर समय)', mr: 'सूर्योदय और सूर्यास्त दोनों (और इसलिए सभी सूर्योदय-निर्भर समय)', ta: 'Both sunrise and sunset (and hence all sunrise-dependent timings)', te: 'Both sunrise and sunset (and hence all sunrise-dependent timings)', bn: 'Both sunrise and sunset (and hence all sunrise-dependent timings)', kn: 'Both sunrise and sunset (and hence all sunrise-dependent timings)', gu: 'Both sunrise and sunset (and hence all sunrise-dependent timings)' },
+      { en: 'Only Tithi calculations', hi: 'केवल तिथि गणना', sa: 'केवल तिथि गणना', mai: 'केवल तिथि गणना', mr: 'केवल तिथि गणना', ta: 'Only Tithi calculations', te: 'Only Tithi calculations', bn: 'Only Tithi calculations', kn: 'Only Tithi calculations', gu: 'Only Tithi calculations' },
     ],
     correctAnswer: 2,
     explanation: {

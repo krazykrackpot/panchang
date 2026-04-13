@@ -9,7 +9,7 @@
  */
 
 import type { KundaliData, PlanetPosition, DashaEntry } from '@/types/kundali';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import type { YogaInsight, DoshaInsight } from '@/lib/kundali/tippanni-types';
 import type {
   DashaSynthesis,
@@ -37,31 +37,31 @@ const SIGN_LORDS: Record<number, number> = {
   7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
 };
 
-const HOUSE_THEMES: Record<number, { en: string; hi: string }> = {
-  1:  { en: 'Self, personality, health', hi: 'स्वयं, व्यक्तित्व, स्वास्थ्य' },
-  2:  { en: 'Wealth, family, speech', hi: 'धन, परिवार, वाणी' },
-  3:  { en: 'Siblings, courage, communication', hi: 'भाई-बहन, साहस, संवाद' },
-  4:  { en: 'Mother, home, property, peace', hi: 'माता, घर, सम्पत्ति, शान्ति' },
-  5:  { en: 'Children, creativity, education, romance', hi: 'सन्तान, सृजनात्मकता, शिक्षा' },
-  6:  { en: 'Enemies, disease, debts, service', hi: 'शत्रु, रोग, ऋण, सेवा' },
-  7:  { en: 'Marriage, partnerships, business', hi: 'विवाह, साझेदारी, व्यापार' },
-  8:  { en: 'Transformation, occult, inheritance', hi: 'परिवर्तन, गुप्त विद्या, विरासत' },
-  9:  { en: 'Fortune, dharma, higher education', hi: 'भाग्य, धर्म, उच्च शिक्षा' },
-  10: { en: 'Career, authority, reputation', hi: 'कैरियर, अधिकार, प्रतिष्ठा' },
-  11: { en: 'Gains, income, social circle', hi: 'लाभ, आय, सामाजिक वृत्त' },
-  12: { en: 'Expenses, foreign lands, moksha', hi: 'व्यय, विदेश, मोक्ष' },
+const HOUSE_THEMES: Record<number, LocaleText> = {
+  1:  { en: 'Self, personality, health', hi: 'स्वयं, व्यक्तित्व, स्वास्थ्य', sa: 'स्वयं, व्यक्तित्व, स्वास्थ्य', mai: 'स्वयं, व्यक्तित्व, स्वास्थ्य', mr: 'स्वयं, व्यक्तित्व, स्वास्थ्य', ta: 'Self, personality, health', te: 'Self, personality, health', bn: 'Self, personality, health', kn: 'Self, personality, health', gu: 'Self, personality, health' },
+  2:  { en: 'Wealth, family, speech', hi: 'धन, परिवार, वाणी', sa: 'धन, परिवार, वाणी', mai: 'धन, परिवार, वाणी', mr: 'धन, परिवार, वाणी', ta: 'Wealth, family, speech', te: 'Wealth, family, speech', bn: 'Wealth, family, speech', kn: 'Wealth, family, speech', gu: 'Wealth, family, speech' },
+  3:  { en: 'Siblings, courage, communication', hi: 'भाई-बहन, साहस, संवाद', sa: 'भाई-बहन, साहस, संवाद', mai: 'भाई-बहन, साहस, संवाद', mr: 'भाई-बहन, साहस, संवाद', ta: 'Siblings, courage, communication', te: 'Siblings, courage, communication', bn: 'Siblings, courage, communication', kn: 'Siblings, courage, communication', gu: 'Siblings, courage, communication' },
+  4:  { en: 'Mother, home, property, peace', hi: 'माता, घर, सम्पत्ति, शान्ति', sa: 'माता, घर, सम्पत्ति, शान्ति', mai: 'माता, घर, सम्पत्ति, शान्ति', mr: 'माता, घर, सम्पत्ति, शान्ति', ta: 'Mother, home, property, peace', te: 'Mother, home, property, peace', bn: 'Mother, home, property, peace', kn: 'Mother, home, property, peace', gu: 'Mother, home, property, peace' },
+  5:  { en: 'Children, creativity, education, romance', hi: 'सन्तान, सृजनात्मकता, शिक्षा', sa: 'सन्तान, सृजनात्मकता, शिक्षा', mai: 'सन्तान, सृजनात्मकता, शिक्षा', mr: 'सन्तान, सृजनात्मकता, शिक्षा', ta: 'Children, creativity, education, romance', te: 'Children, creativity, education, romance', bn: 'Children, creativity, education, romance', kn: 'Children, creativity, education, romance', gu: 'Children, creativity, education, romance' },
+  6:  { en: 'Enemies, disease, debts, service', hi: 'शत्रु, रोग, ऋण, सेवा', sa: 'शत्रु, रोग, ऋण, सेवा', mai: 'शत्रु, रोग, ऋण, सेवा', mr: 'शत्रु, रोग, ऋण, सेवा', ta: 'Enemies, disease, debts, service', te: 'Enemies, disease, debts, service', bn: 'Enemies, disease, debts, service', kn: 'Enemies, disease, debts, service', gu: 'Enemies, disease, debts, service' },
+  7:  { en: 'Marriage, partnerships, business', hi: 'विवाह, साझेदारी, व्यापार', sa: 'विवाह, साझेदारी, व्यापार', mai: 'विवाह, साझेदारी, व्यापार', mr: 'विवाह, साझेदारी, व्यापार', ta: 'Marriage, partnerships, business', te: 'Marriage, partnerships, business', bn: 'Marriage, partnerships, business', kn: 'Marriage, partnerships, business', gu: 'Marriage, partnerships, business' },
+  8:  { en: 'Transformation, occult, inheritance', hi: 'परिवर्तन, गुप्त विद्या, विरासत', sa: 'परिवर्तन, गुप्त विद्या, विरासत', mai: 'परिवर्तन, गुप्त विद्या, विरासत', mr: 'परिवर्तन, गुप्त विद्या, विरासत', ta: 'Transformation, occult, inheritance', te: 'Transformation, occult, inheritance', bn: 'Transformation, occult, inheritance', kn: 'Transformation, occult, inheritance', gu: 'Transformation, occult, inheritance' },
+  9:  { en: 'Fortune, dharma, higher education', hi: 'भाग्य, धर्म, उच्च शिक्षा', sa: 'भाग्य, धर्म, उच्च शिक्षा', mai: 'भाग्य, धर्म, उच्च शिक्षा', mr: 'भाग्य, धर्म, उच्च शिक्षा', ta: 'Fortune, dharma, higher education', te: 'Fortune, dharma, higher education', bn: 'Fortune, dharma, higher education', kn: 'Fortune, dharma, higher education', gu: 'Fortune, dharma, higher education' },
+  10: { en: 'Career, authority, reputation', hi: 'कैरियर, अधिकार, प्रतिष्ठा', sa: 'कैरियर, अधिकार, प्रतिष्ठा', mai: 'कैरियर, अधिकार, प्रतिष्ठा', mr: 'कैरियर, अधिकार, प्रतिष्ठा', ta: 'Career, authority, reputation', te: 'Career, authority, reputation', bn: 'Career, authority, reputation', kn: 'Career, authority, reputation', gu: 'Career, authority, reputation' },
+  11: { en: 'Gains, income, social circle', hi: 'लाभ, आय, सामाजिक वृत्त', sa: 'लाभ, आय, सामाजिक वृत्त', mai: 'लाभ, आय, सामाजिक वृत्त', mr: 'लाभ, आय, सामाजिक वृत्त', ta: 'Gains, income, social circle', te: 'Gains, income, social circle', bn: 'Gains, income, social circle', kn: 'Gains, income, social circle', gu: 'Gains, income, social circle' },
+  12: { en: 'Expenses, foreign lands, moksha', hi: 'व्यय, विदेश, मोक्ष', sa: 'व्यय, विदेश, मोक्ष', mai: 'व्यय, विदेश, मोक्ष', mr: 'व्यय, विदेश, मोक्ष', ta: 'Expenses, foreign lands, moksha', te: 'Expenses, foreign lands, moksha', bn: 'Expenses, foreign lands, moksha', kn: 'Expenses, foreign lands, moksha', gu: 'Expenses, foreign lands, moksha' },
 };
 
-const PLANET_THEMES: Record<number, { en: string; hi: string }> = {
-  0: { en: 'authority, vitality, government, father', hi: 'अधिकार, जीवनशक्ति, सरकार, पिता' },
-  1: { en: 'emotions, mother, mind, public life', hi: 'भावनाएँ, माता, मन, सार्वजनिक जीवन' },
-  2: { en: 'energy, courage, property, competition', hi: 'ऊर्जा, साहस, सम्पत्ति, प्रतिस्पर्धा' },
-  3: { en: 'intellect, communication, business, learning', hi: 'बुद्धि, संवाद, व्यापार, शिक्षा' },
-  4: { en: 'wisdom, expansion, fortune, children, dharma', hi: 'ज्ञान, विस्तार, भाग्य, सन्तान, धर्म' },
-  5: { en: 'relationships, luxury, arts, comfort', hi: 'सम्बन्ध, विलासिता, कला, सुख' },
-  6: { en: 'discipline, karma, delays, hard work, longevity', hi: 'अनुशासन, कर्म, विलम्ब, परिश्रम' },
-  7: { en: 'worldly desires, unconventional paths, foreign connections', hi: 'सांसारिक इच्छाएँ, अपरम्परागत, विदेशी सम्बन्ध' },
-  8: { en: 'spirituality, detachment, liberation, past life', hi: 'आध्यात्मिकता, वैराग्य, मोक्ष, पूर्वजन्म' },
+const PLANET_THEMES: Record<number, LocaleText> = {
+  0: { en: 'authority, vitality, government, father', hi: 'अधिकार, जीवनशक्ति, सरकार, पिता', sa: 'अधिकार, जीवनशक्ति, सरकार, पिता', mai: 'अधिकार, जीवनशक्ति, सरकार, पिता', mr: 'अधिकार, जीवनशक्ति, सरकार, पिता', ta: 'authority, vitality, government, father', te: 'authority, vitality, government, father', bn: 'authority, vitality, government, father', kn: 'authority, vitality, government, father', gu: 'authority, vitality, government, father' },
+  1: { en: 'emotions, mother, mind, public life', hi: 'भावनाएँ, माता, मन, सार्वजनिक जीवन', sa: 'भावनाएँ, माता, मन, सार्वजनिक जीवन', mai: 'भावनाएँ, माता, मन, सार्वजनिक जीवन', mr: 'भावनाएँ, माता, मन, सार्वजनिक जीवन', ta: 'emotions, mother, mind, public life', te: 'emotions, mother, mind, public life', bn: 'emotions, mother, mind, public life', kn: 'emotions, mother, mind, public life', gu: 'emotions, mother, mind, public life' },
+  2: { en: 'energy, courage, property, competition', hi: 'ऊर्जा, साहस, सम्पत्ति, प्रतिस्पर्धा', sa: 'ऊर्जा, साहस, सम्पत्ति, प्रतिस्पर्धा', mai: 'ऊर्जा, साहस, सम्पत्ति, प्रतिस्पर्धा', mr: 'ऊर्जा, साहस, सम्पत्ति, प्रतिस्पर्धा', ta: 'energy, courage, property, competition', te: 'energy, courage, property, competition', bn: 'energy, courage, property, competition', kn: 'energy, courage, property, competition', gu: 'energy, courage, property, competition' },
+  3: { en: 'intellect, communication, business, learning', hi: 'बुद्धि, संवाद, व्यापार, शिक्षा', sa: 'बुद्धि, संवाद, व्यापार, शिक्षा', mai: 'बुद्धि, संवाद, व्यापार, शिक्षा', mr: 'बुद्धि, संवाद, व्यापार, शिक्षा', ta: 'intellect, communication, business, learning', te: 'intellect, communication, business, learning', bn: 'intellect, communication, business, learning', kn: 'intellect, communication, business, learning', gu: 'intellect, communication, business, learning' },
+  4: { en: 'wisdom, expansion, fortune, children, dharma', hi: 'ज्ञान, विस्तार, भाग्य, सन्तान, धर्म', sa: 'ज्ञान, विस्तार, भाग्य, सन्तान, धर्म', mai: 'ज्ञान, विस्तार, भाग्य, सन्तान, धर्म', mr: 'ज्ञान, विस्तार, भाग्य, सन्तान, धर्म', ta: 'wisdom, expansion, fortune, children, dharma', te: 'wisdom, expansion, fortune, children, dharma', bn: 'wisdom, expansion, fortune, children, dharma', kn: 'wisdom, expansion, fortune, children, dharma', gu: 'wisdom, expansion, fortune, children, dharma' },
+  5: { en: 'relationships, luxury, arts, comfort', hi: 'सम्बन्ध, विलासिता, कला, सुख', sa: 'सम्बन्ध, विलासिता, कला, सुख', mai: 'सम्बन्ध, विलासिता, कला, सुख', mr: 'सम्बन्ध, विलासिता, कला, सुख', ta: 'relationships, luxury, arts, comfort', te: 'relationships, luxury, arts, comfort', bn: 'relationships, luxury, arts, comfort', kn: 'relationships, luxury, arts, comfort', gu: 'relationships, luxury, arts, comfort' },
+  6: { en: 'discipline, karma, delays, hard work, longevity', hi: 'अनुशासन, कर्म, विलम्ब, परिश्रम', sa: 'अनुशासन, कर्म, विलम्ब, परिश्रम', mai: 'अनुशासन, कर्म, विलम्ब, परिश्रम', mr: 'अनुशासन, कर्म, विलम्ब, परिश्रम', ta: 'discipline, karma, delays, hard work, longevity', te: 'discipline, karma, delays, hard work, longevity', bn: 'discipline, karma, delays, hard work, longevity', kn: 'discipline, karma, delays, hard work, longevity', gu: 'discipline, karma, delays, hard work, longevity' },
+  7: { en: 'worldly desires, unconventional paths, foreign connections', hi: 'सांसारिक इच्छाएँ, अपरम्परागत, विदेशी सम्बन्ध', sa: 'सांसारिक इच्छाएँ, अपरम्परागत, विदेशी सम्बन्ध', mai: 'सांसारिक इच्छाएँ, अपरम्परागत, विदेशी सम्बन्ध', mr: 'सांसारिक इच्छाएँ, अपरम्परागत, विदेशी सम्बन्ध', ta: 'worldly desires, unconventional paths, foreign connections', te: 'worldly desires, unconventional paths, foreign connections', bn: 'worldly desires, unconventional paths, foreign connections', kn: 'worldly desires, unconventional paths, foreign connections', gu: 'worldly desires, unconventional paths, foreign connections' },
+  8: { en: 'spirituality, detachment, liberation, past life', hi: 'आध्यात्मिकता, वैराग्य, मोक्ष, पूर्वजन्म', sa: 'आध्यात्मिकता, वैराग्य, मोक्ष, पूर्वजन्म', mai: 'आध्यात्मिकता, वैराग्य, मोक्ष, पूर्वजन्म', mr: 'आध्यात्मिकता, वैराग्य, मोक्ष, पूर्वजन्म', ta: 'spirituality, detachment, liberation, past life', te: 'spirituality, detachment, liberation, past life', bn: 'spirituality, detachment, liberation, past life', kn: 'spirituality, detachment, liberation, past life', gu: 'spirituality, detachment, liberation, past life' },
 };
 
 // Benefic houses from Moon for Jupiter (2,5,7,9,11) and Saturn (3,6,11)
@@ -172,7 +172,7 @@ function getDignityForPlanet(planet: PlanetPosition, planetId: number): string {
 function getHouseTheme(house: number, locale: Locale): string {
   const theme = HOUSE_THEMES[house];
   if (!theme) return '';
-  return t(locale, theme.en, theme.hi);
+  return t(locale, theme.en, theme.hi || "");
 }
 
 /** Find planet's house in a divisional chart (ChartData) */
@@ -244,14 +244,14 @@ function assessPeriod(factors: {
 }
 
 function assessmentToLabel(assessment: PeriodAssessment, locale: Locale): string {
-  const labels: Record<PeriodAssessment, { en: string; hi: string }> = {
-    very_favorable: { en: 'Very Favorable', hi: 'अत्यन्त अनुकूल' },
-    favorable: { en: 'Favorable', hi: 'अनुकूल' },
-    mixed: { en: 'Mixed', hi: 'मिश्रित' },
-    challenging: { en: 'Challenging', hi: 'चुनौतीपूर्ण' },
-    difficult: { en: 'Difficult', hi: 'कठिन' },
+  const labels: Record<PeriodAssessment, LocaleText> = {
+    very_favorable: { en: 'Very Favorable', hi: 'अत्यन्त अनुकूल', sa: 'अत्यन्त अनुकूल', mai: 'अत्यन्त अनुकूल', mr: 'अत्यन्त अनुकूल', ta: 'Very Favorable', te: 'Very Favorable', bn: 'Very Favorable', kn: 'Very Favorable', gu: 'Very Favorable' },
+    favorable: { en: 'Favorable', hi: 'अनुकूल', sa: 'अनुकूल', mai: 'अनुकूल', mr: 'अनुकूल', ta: 'Favorable', te: 'Favorable', bn: 'Favorable', kn: 'Favorable', gu: 'Favorable' },
+    mixed: { en: 'Mixed', hi: 'मिश्रित', sa: 'मिश्रित', mai: 'मिश्रित', mr: 'मिश्रित', ta: 'Mixed', te: 'Mixed', bn: 'Mixed', kn: 'Mixed', gu: 'Mixed' },
+    challenging: { en: 'Challenging', hi: 'चुनौतीपूर्ण', sa: 'चुनौतीपूर्ण', mai: 'चुनौतीपूर्ण', mr: 'चुनौतीपूर्ण', ta: 'Challenging', te: 'Challenging', bn: 'Challenging', kn: 'Challenging', gu: 'Challenging' },
+    difficult: { en: 'Difficult', hi: 'कठिन', sa: 'कठिन', mai: 'कठिन', mr: 'कठिन', ta: 'Difficult', te: 'Difficult', bn: 'Difficult', kn: 'Difficult', gu: 'Difficult' },
   };
-  return t(locale, labels[assessment].en, labels[assessment].hi);
+  return t(locale, labels[assessment].en, labels[assessment].hi || '');
 }
 
 // ─── Yoga/Dosha Activation ────────────────────────────────────────────────────
@@ -411,7 +411,7 @@ function getDivisionalInsights(
       maleficsInDusthana,
     });
 
-    results[key] = t(locale, prognosis.en, prognosis.hi);
+    results[key] = t(locale, prognosis.en, prognosis.hi || "");
   }
 
   return {
@@ -530,7 +530,7 @@ export function generateDashaSynthesis(
       if (pTheme && owned.length > 0) {
         const houseDescs = owned.map(h => {
           const ht = HOUSE_THEMES[h];
-          return ht ? `${h} (${t(locale, ht.en, ht.hi)})` : `${h}`;
+          return ht ? `${h} (${t(locale, ht.en, ht.hi || "")})` : `${h}`;
         }).join(', ');
 
         const dignityNote = planet

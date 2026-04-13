@@ -1,4 +1,5 @@
-import { Graha, Nakshatra, Rashi, Trilingual } from './panchang';
+import type { LocaleText } from '@/types/panchang';
+import { Graha, Nakshatra, Rashi } from './panchang';
 
 export interface BirthData {
   name: string;
@@ -15,9 +16,9 @@ export interface HouseCusp {
   house: number;
   degree: number;
   sign: number;
-  signName: Trilingual;
+  signName: LocaleText;
   lord: string;
-  lordName: Trilingual;
+  lordName: LocaleText;
 }
 
 export interface PlanetPosition {
@@ -26,7 +27,7 @@ export interface PlanetPosition {
   latitude: number;
   speed: number;
   sign: number;
-  signName: Trilingual;
+  signName: LocaleText;
   house: number;
   nakshatra: Nakshatra;
   pada: number;
@@ -50,7 +51,7 @@ export interface BhriguBindu {
 
 export interface DashaEntry {
   planet: string;
-  planetName: Trilingual;
+  planetName: LocaleText;
   startDate: string;
   endDate: string;
   level: 'maha' | 'antar' | 'pratyantar';
@@ -59,7 +60,7 @@ export interface DashaEntry {
 
 export interface ShadBala {
   planet: string;
-  planetName: Trilingual;
+  planetName: LocaleText;
   totalStrength: number;
   sthanaBala: number;
   digBala: number;
@@ -77,7 +78,7 @@ export interface ChartData {
 
 export interface KundaliData {
   birthData: BirthData;
-  ascendant: { degree: number; sign: number; signName: Trilingual };
+  ascendant: { degree: number; sign: number; signName: LocaleText };
   planets: PlanetPosition[];
   houses: HouseCusp[];
   chart: ChartData;
@@ -128,19 +129,19 @@ export interface KundaliData {
   grahaYuddha?: import('@/lib/kundali/graha-yuddha').GrahaYuddhaResult[];
   functionalNature?: import('@/lib/kundali/functional-nature').FunctionalNatureResult;
   jaimini?: {
-    charaKarakas: { planet: number; planetName: { en: string; hi: string; sa: string }; karaka: string; karakaName: { en: string; hi: string; sa: string }; degree: number }[];
-    karakamsha: { sign: number; signName: { en: string; hi: string; sa: string } };
-    arudhaPadas: { house: number; sign: number; signName: { en: string; hi: string; sa: string }; label: { en: string; hi: string; sa: string } }[];
-    charaDasha: { sign: number; signName: { en: string; hi: string; sa: string }; years: number; startDate: string; endDate: string }[];
-    grahaArudhas?: { planetId: number; planetName: { en: string; hi: string; sa: string }; arudhaSign: number; arudhaSignName: { en: string; hi: string; sa: string } }[];
+    charaKarakas: { planet: number; planetName: LocaleText; karaka: string; karakaName: LocaleText; degree: number }[];
+    karakamsha: { sign: number; signName: LocaleText };
+    arudhaPadas: { house: number; sign: number; signName: LocaleText; label: LocaleText }[];
+    charaDasha: { sign: number; signName: LocaleText; years: number; startDate: string; endDate: string }[];
+    grahaArudhas?: { planetId: number; planetName: LocaleText; arudhaSign: number; arudhaSignName: LocaleText }[];
     rajayogas?: import('@/lib/jaimini/jaimini-calc').JaiminiRajayoga[];
   };
 }
 
 export interface DivisionalChart extends ChartData {
   division: string;
-  label: { en: string; hi: string; sa: string };
-  meaning?: { en: string; hi: string };
+  label: LocaleText;
+  meaning?: LocaleText;
 }
 
 export interface AshtakavargaData {
@@ -158,16 +159,16 @@ export type { YogaComplete } from '@/lib/kundali/yogas-complete';
 
 export interface GrahaDetail {
   planetId: number;
-  planetName: Trilingual;
+  planetName: LocaleText;
   isRetrograde: boolean;
   isCombust: boolean;
   longitude: number;
   signDegree: string;
   sign: number;
-  signName: Trilingual;
+  signName: LocaleText;
   nakshatra: number;
-  nakshatraName: Trilingual;
-  nakshatraLord: Trilingual;
+  nakshatraName: LocaleText;
+  nakshatraLord: LocaleText;
   nakshatraPada: number;
   latitude: number;
   rightAscension: number;
@@ -176,10 +177,10 @@ export interface GrahaDetail {
 }
 
 export interface UpagrahaPosition {
-  name: Trilingual;
+  name: LocaleText;
   longitude: number;
   sign: number;
-  signName: Trilingual;
+  signName: LocaleText;
   degree: string;
-  nakshatra: Trilingual;
+  nakshatra: LocaleText;
 }

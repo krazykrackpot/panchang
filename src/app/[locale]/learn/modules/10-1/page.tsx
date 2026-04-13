@@ -5,16 +5,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_10_1', phase: 3, topic: 'Vargas', moduleNumber: '10.1',
-  title: { en: 'Varga Charts — Divisional Analysis', hi: 'वर्ग कुण्डली — विभागीय विश्लेषण' },
+  title: { en: 'Varga Charts — Divisional Analysis', hi: 'वर्ग कुण्डली — विभागीय विश्लेषण', sa: 'वर्ग कुण्डली — विभागीय विश्लेषण', mai: 'वर्ग कुण्डली — विभागीय विश्लेषण', mr: 'वर्ग कुण्डली — विभागीय विश्लेषण', ta: 'Varga Charts — Divisional Analysis', te: 'Varga Charts — Divisional Analysis', bn: 'Varga Charts — Divisional Analysis', kn: 'Varga Charts — Divisional Analysis', gu: 'Varga Charts — Divisional Analysis' },
   subtitle: {
     en: 'The rashi chart is the trunk of the tree — varga charts are its branches, each revealing a specific life domain',
     hi: 'राशि कुण्डली वृक्ष का तना है — वर्ग कुण्डलियाँ उसकी शाखाएँ हैं, प्रत्येक एक विशिष्ट जीवन क्षेत्र को प्रकट करती है',
   },
   estimatedMinutes: 16,
   crossRefs: [
-    { label: { en: 'Module 10-2: Navamsha Deep Dive', hi: 'मॉड्यूल 10-2: नवांश विस्तार' }, href: '/learn/modules/10-2' },
-    { label: { en: 'Module 10-3: Dasamsha & Other Vargas', hi: 'मॉड्यूल 10-3: दशांश एवं अन्य वर्ग' }, href: '/learn/modules/10-3' },
-    { label: { en: 'Vargas Reference', hi: 'वर्ग सन्दर्भ' }, href: '/learn/vargas' },
+    { label: { en: 'Module 10-2: Navamsha Deep Dive', hi: 'मॉड्यूल 10-2: नवांश विस्तार', sa: 'मॉड्यूल 10-2: नवांश विस्तार', mai: 'मॉड्यूल 10-2: नवांश विस्तार', mr: 'मॉड्यूल 10-2: नवांश विस्तार', ta: 'Module 10-2: Navamsha Deep Dive', te: 'Module 10-2: Navamsha Deep Dive', bn: 'Module 10-2: Navamsha Deep Dive', kn: 'Module 10-2: Navamsha Deep Dive', gu: 'Module 10-2: Navamsha Deep Dive' }, href: '/learn/modules/10-2' },
+    { label: { en: 'Module 10-3: Dasamsha & Other Vargas', hi: 'मॉड्यूल 10-3: दशांश एवं अन्य वर्ग', sa: 'मॉड्यूल 10-3: दशांश एवं अन्य वर्ग', mai: 'मॉड्यूल 10-3: दशांश एवं अन्य वर्ग', mr: 'मॉड्यूल 10-3: दशांश एवं अन्य वर्ग', ta: 'Module 10-3: Dasamsha & Other Vargas', te: 'Module 10-3: Dasamsha & Other Vargas', bn: 'Module 10-3: Dasamsha & Other Vargas', kn: 'Module 10-3: Dasamsha & Other Vargas', gu: 'Module 10-3: Dasamsha & Other Vargas' }, href: '/learn/modules/10-3' },
+    { label: { en: 'Vargas Reference', hi: 'वर्ग सन्दर्भ', sa: 'वर्ग सन्दर्भ', mai: 'वर्ग सन्दर्भ', mr: 'वर्ग सन्दर्भ', ta: 'Vargas Reference', te: 'Vargas Reference', bn: 'Vargas Reference', kn: 'Vargas Reference', gu: 'Vargas Reference' }, href: '/learn/vargas' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कौन सी विभागीय कुण्डली विशेष रूप से विवाह, धर्म और ग्रहों के आन्तरिक स्वभाव के विश्लेषण में प्रयुक्त होती है?',
     },
     options: [
-      { en: 'D10 — Dasamsha', hi: 'D10 — दशांश' },
-      { en: 'D9 — Navamsha', hi: 'D9 — नवांश' },
-      { en: 'D7 — Saptamsha', hi: 'D7 — सप्तांश' },
-      { en: 'D12 — Dwadashamsha', hi: 'D12 — द्वादशांश' },
+      { en: 'D10 — Dasamsha', hi: 'D10 — दशांश', sa: 'D10 — दशांश', mai: 'D10 — दशांश', mr: 'D10 — दशांश', ta: 'D10 — Dasamsha', te: 'D10 — Dasamsha', bn: 'D10 — Dasamsha', kn: 'D10 — Dasamsha', gu: 'D10 — Dasamsha' },
+      { en: 'D9 — Navamsha', hi: 'D9 — नवांश', sa: 'D9 — नवांश', mai: 'D9 — नवांश', mr: 'D9 — नवांश', ta: 'D9 — Navamsha', te: 'D9 — Navamsha', bn: 'D9 — Navamsha', kn: 'D9 — Navamsha', gu: 'D9 — Navamsha' },
+      { en: 'D7 — Saptamsha', hi: 'D7 — सप्तांश', sa: 'D7 — सप्तांश', mai: 'D7 — सप्तांश', mr: 'D7 — सप्तांश', ta: 'D7 — Saptamsha', te: 'D7 — Saptamsha', bn: 'D7 — Saptamsha', kn: 'D7 — Saptamsha', gu: 'D7 — Saptamsha' },
+      { en: 'D12 — Dwadashamsha', hi: 'D12 — द्वादशांश', sa: 'D12 — द्वादशांश', mai: 'D12 — द्वादशांश', mr: 'D12 — द्वादशांश', ta: 'D12 — Dwadashamsha', te: 'D12 — Dwadashamsha', bn: 'D12 — Dwadashamsha', kn: 'D12 — Dwadashamsha', gu: 'D12 — Dwadashamsha' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -44,10 +44,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'षोडशवर्ग पद्धति में कितनी विभागीय कुण्डलियाँ होती हैं?',
     },
     options: [
-      { en: '7', hi: '7' },
-      { en: '12', hi: '12' },
-      { en: '16', hi: '16' },
-      { en: '20', hi: '20' },
+      { en: '7', hi: '7', sa: '7', mai: '7', mr: '7', ta: '7', te: '7', bn: '7', kn: '7', gu: '7' },
+      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
+      { en: '16', hi: '16', sa: '16', mai: '16', mr: '16', ta: '16', te: '16', bn: '16', kn: '16', gu: '16' },
+      { en: '20', hi: '20', sa: '20', mai: '20', mr: '20', ta: '20', te: '20', bn: '20', kn: '20', gu: '20' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -74,10 +74,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'D10 (दशांश) कुण्डली मुख्य रूप से किस जीवन क्षेत्र के विश्लेषण में प्रयुक्त होती है?',
     },
     options: [
-      { en: 'Children and progeny', hi: 'सन्तान और वंश' },
-      { en: 'Parents and ancestry', hi: 'माता-पिता और पूर्वज' },
-      { en: 'Career, profession, and public standing', hi: 'व्यवसाय, पेशा और सामाजिक प्रतिष्ठा' },
-      { en: 'Spiritual progress and moksha', hi: 'आध्यात्मिक प्रगति और मोक्ष' },
+      { en: 'Children and progeny', hi: 'सन्तान और वंश', sa: 'सन्तान और वंश', mai: 'सन्तान और वंश', mr: 'सन्तान और वंश', ta: 'Children and progeny', te: 'Children and progeny', bn: 'Children and progeny', kn: 'Children and progeny', gu: 'Children and progeny' },
+      { en: 'Parents and ancestry', hi: 'माता-पिता और पूर्वज', sa: 'माता-पिता और पूर्वज', mai: 'माता-पिता और पूर्वज', mr: 'माता-पिता और पूर्वज', ta: 'Parents and ancestry', te: 'Parents and ancestry', bn: 'Parents and ancestry', kn: 'Parents and ancestry', gu: 'Parents and ancestry' },
+      { en: 'Career, profession, and public standing', hi: 'व्यवसाय, पेशा और सामाजिक प्रतिष्ठा', sa: 'व्यवसाय, पेशा और सामाजिक प्रतिष्ठा', mai: 'व्यवसाय, पेशा और सामाजिक प्रतिष्ठा', mr: 'व्यवसाय, पेशा और सामाजिक प्रतिष्ठा', ta: 'Career, profession, and public standing', te: 'Career, profession, and public standing', bn: 'Career, profession, and public standing', kn: 'Career, profession, and public standing', gu: 'Career, profession, and public standing' },
+      { en: 'Spiritual progress and moksha', hi: 'आध्यात्मिक प्रगति और मोक्ष', sa: 'आध्यात्मिक प्रगति और मोक्ष', mai: 'आध्यात्मिक प्रगति और मोक्ष', mr: 'आध्यात्मिक प्रगति और मोक्ष', ta: 'Spiritual progress and moksha', te: 'Spiritual progress and moksha', bn: 'Spiritual progress and moksha', kn: 'Spiritual progress and moksha', gu: 'Spiritual progress and moksha' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -92,10 +92,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ज्योतिष में "वर्गोत्तम" का क्या अर्थ है?',
     },
     options: [
-      { en: 'A planet in its exaltation sign', hi: 'उच्च राशि में स्थित ग्रह' },
-      { en: 'A planet occupying the same sign in both D1 and D9', hi: 'D1 और D9 दोनों में एक ही राशि में स्थित ग्रह' },
-      { en: 'A planet in retrograde motion', hi: 'वक्री गति में ग्रह' },
-      { en: 'A planet conjunct its dispositor', hi: 'अपने राशि स्वामी के साथ युत ग्रह' },
+      { en: 'A planet in its exaltation sign', hi: 'उच्च राशि में स्थित ग्रह', sa: 'उच्च राशि में स्थित ग्रह', mai: 'उच्च राशि में स्थित ग्रह', mr: 'उच्च राशि में स्थित ग्रह', ta: 'A planet in its exaltation sign', te: 'A planet in its exaltation sign', bn: 'A planet in its exaltation sign', kn: 'A planet in its exaltation sign', gu: 'A planet in its exaltation sign' },
+      { en: 'A planet occupying the same sign in both D1 and D9', hi: 'D1 और D9 दोनों में एक ही राशि में स्थित ग्रह', sa: 'D1 और D9 दोनों में एक ही राशि में स्थित ग्रह', mai: 'D1 और D9 दोनों में एक ही राशि में स्थित ग्रह', mr: 'D1 और D9 दोनों में एक ही राशि में स्थित ग्रह', ta: 'A planet occupying the same sign in both D1 and D9', te: 'A planet occupying the same sign in both D1 and D9', bn: 'A planet occupying the same sign in both D1 and D9', kn: 'A planet occupying the same sign in both D1 and D9', gu: 'A planet occupying the same sign in both D1 and D9' },
+      { en: 'A planet in retrograde motion', hi: 'वक्री गति में ग्रह', sa: 'वक्री गति में ग्रह', mai: 'वक्री गति में ग्रह', mr: 'वक्री गति में ग्रह', ta: 'A planet in retrograde motion', te: 'A planet in retrograde motion', bn: 'A planet in retrograde motion', kn: 'A planet in retrograde motion', gu: 'A planet in retrograde motion' },
+      { en: 'A planet conjunct its dispositor', hi: 'अपने राशि स्वामी के साथ युत ग्रह', sa: 'अपने राशि स्वामी के साथ युत ग्रह', mai: 'अपने राशि स्वामी के साथ युत ग्रह', mr: 'अपने राशि स्वामी के साथ युत ग्रह', ta: 'A planet conjunct its dispositor', te: 'A planet conjunct its dispositor', bn: 'A planet conjunct its dispositor', kn: 'A planet conjunct its dispositor', gu: 'A planet conjunct its dispositor' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -122,10 +122,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'षोडशवर्ग विंशोपक बल पद्धति में किस वर्ग को सर्वाधिक भारांक मिलता है?',
     },
     options: [
-      { en: 'D9 (Navamsha) — 3 points', hi: 'D9 (नवांश) — 3 अंक' },
-      { en: 'D1 (Rashi) — 3.5 points', hi: 'D1 (राशि) — 3.5 अंक' },
-      { en: 'D60 (Shashtiamsha) — 4 points', hi: 'D60 (षष्ट्यंश) — 4 अंक' },
-      { en: 'D10 (Dasamsha) — 3 points', hi: 'D10 (दशांश) — 3 अंक' },
+      { en: 'D9 (Navamsha) — 3 points', hi: 'D9 (नवांश) — 3 अंक', sa: 'D9 (नवांश) — 3 अंक', mai: 'D9 (नवांश) — 3 अंक', mr: 'D9 (नवांश) — 3 अंक', ta: 'D9 (Navamsha) — 3 points', te: 'D9 (Navamsha) — 3 points', bn: 'D9 (Navamsha) — 3 points', kn: 'D9 (Navamsha) — 3 points', gu: 'D9 (Navamsha) — 3 points' },
+      { en: 'D1 (Rashi) — 3.5 points', hi: 'D1 (राशि) — 3.5 अंक', sa: 'D1 (राशि) — 3.5 अंक', mai: 'D1 (राशि) — 3.5 अंक', mr: 'D1 (राशि) — 3.5 अंक', ta: 'D1 (Rashi) — 3.5 points', te: 'D1 (Rashi) — 3.5 points', bn: 'D1 (Rashi) — 3.5 points', kn: 'D1 (Rashi) — 3.5 points', gu: 'D1 (Rashi) — 3.5 points' },
+      { en: 'D60 (Shashtiamsha) — 4 points', hi: 'D60 (षष्ट्यंश) — 4 अंक', sa: 'D60 (षष्ट्यंश) — 4 अंक', mai: 'D60 (षष्ट्यंश) — 4 अंक', mr: 'D60 (षष्ट्यंश) — 4 अंक', ta: 'D60 (Shashtiamsha) — 4 points', te: 'D60 (Shashtiamsha) — 4 points', bn: 'D60 (Shashtiamsha) — 4 points', kn: 'D60 (Shashtiamsha) — 4 points', gu: 'D60 (Shashtiamsha) — 4 points' },
+      { en: 'D10 (Dasamsha) — 3 points', hi: 'D10 (दशांश) — 3 अंक', sa: 'D10 (दशांश) — 3 अंक', mai: 'D10 (दशांश) — 3 अंक', mr: 'D10 (दशांश) — 3 अंक', ta: 'D10 (Dasamsha) — 3 points', te: 'D10 (Dasamsha) — 3 points', bn: 'D10 (Dasamsha) — 3 points', kn: 'D10 (Dasamsha) — 3 points', gu: 'D10 (Dasamsha) — 3 points' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -140,10 +140,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'D12 (द्वादशांश) कुण्डली मुख्यतः किसके विश्लेषण में प्रयुक्त होती है?',
     },
     options: [
-      { en: 'Vehicles and conveyances', hi: 'वाहन और यातायात साधन' },
-      { en: 'Parents, ancestry, and inherited karma', hi: 'माता-पिता, पूर्वज और विरासत में मिला कर्म' },
-      { en: 'Spouse and partnerships', hi: 'पति/पत्नी और साझेदारी' },
-      { en: 'Education and learning', hi: 'शिक्षा और विद्या' },
+      { en: 'Vehicles and conveyances', hi: 'वाहन और यातायात साधन', sa: 'वाहन और यातायात साधन', mai: 'वाहन और यातायात साधन', mr: 'वाहन और यातायात साधन', ta: 'Vehicles and conveyances', te: 'Vehicles and conveyances', bn: 'Vehicles and conveyances', kn: 'Vehicles and conveyances', gu: 'Vehicles and conveyances' },
+      { en: 'Parents, ancestry, and inherited karma', hi: 'माता-पिता, पूर्वज और विरासत में मिला कर्म', sa: 'माता-पिता, पूर्वज और विरासत में मिला कर्म', mai: 'माता-पिता, पूर्वज और विरासत में मिला कर्म', mr: 'माता-पिता, पूर्वज और विरासत में मिला कर्म', ta: 'Parents, ancestry, and inherited karma', te: 'Parents, ancestry, and inherited karma', bn: 'Parents, ancestry, and inherited karma', kn: 'Parents, ancestry, and inherited karma', gu: 'Parents, ancestry, and inherited karma' },
+      { en: 'Spouse and partnerships', hi: 'पति/पत्नी और साझेदारी', sa: 'पति/पत्नी और साझेदारी', mai: 'पति/पत्नी और साझेदारी', mr: 'पति/पत्नी और साझेदारी', ta: 'Spouse and partnerships', te: 'Spouse and partnerships', bn: 'Spouse and partnerships', kn: 'Spouse and partnerships', gu: 'Spouse and partnerships' },
+      { en: 'Education and learning', hi: 'शिक्षा और विद्या', sa: 'शिक्षा और विद्या', mai: 'शिक्षा और विद्या', mr: 'शिक्षा और विद्या', ta: 'Education and learning', te: 'Education and learning', bn: 'Education and learning', kn: 'Education and learning', gu: 'Education and learning' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -170,10 +170,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विंशोपक बल क्या है?',
     },
     options: [
-      { en: 'The strength of a planet based on its speed of motion', hi: 'गति के आधार पर ग्रह का बल' },
+      { en: 'The strength of a planet based on its speed of motion', hi: 'गति के आधार पर ग्रह का बल', sa: 'गति के आधार पर ग्रह का बल', mai: 'गति के आधार पर ग्रह का बल', mr: 'गति के आधार पर ग्रह का बल', ta: 'The strength of a planet based on its speed of motion', te: 'The strength of a planet based on its speed of motion', bn: 'The strength of a planet based on its speed of motion', kn: 'The strength of a planet based on its speed of motion', gu: 'The strength of a planet based on its speed of motion' },
       { en: 'A composite strength score derived from a planet\'s dignity across multiple varga charts', hi: 'अनेक वर्ग कुण्डलियों में ग्रह की गरिमा से प्राप्त समग्र बल अंक' },
-      { en: 'The strength of a planet based on its distance from the Sun', hi: 'सूर्य से दूरी के आधार पर ग्रह का बल' },
-      { en: 'The number of benefic aspects a planet receives', hi: 'ग्रह पर पड़ने वाली शुभ दृष्टियों की संख्या' },
+      { en: 'The strength of a planet based on its distance from the Sun', hi: 'सूर्य से दूरी के आधार पर ग्रह का बल', sa: 'सूर्य से दूरी के आधार पर ग्रह का बल', mai: 'सूर्य से दूरी के आधार पर ग्रह का बल', mr: 'सूर्य से दूरी के आधार पर ग्रह का बल', ta: 'The strength of a planet based on its distance from the Sun', te: 'The strength of a planet based on its distance from the Sun', bn: 'The strength of a planet based on its distance from the Sun', kn: 'The strength of a planet based on its distance from the Sun', gu: 'The strength of a planet based on its distance from the Sun' },
+      { en: 'The number of benefic aspects a planet receives', hi: 'ग्रह पर पड़ने वाली शुभ दृष्टियों की संख्या', sa: 'ग्रह पर पड़ने वाली शुभ दृष्टियों की संख्या', mai: 'ग्रह पर पड़ने वाली शुभ दृष्टियों की संख्या', mr: 'ग्रह पर पड़ने वाली शुभ दृष्टियों की संख्या', ta: 'The number of benefic aspects a planet receives', te: 'The number of benefic aspects a planet receives', bn: 'The number of benefic aspects a planet receives', kn: 'The number of benefic aspects a planet receives', gu: 'The number of benefic aspects a planet receives' },
     ],
     correctAnswer: 1,
     explanation: {

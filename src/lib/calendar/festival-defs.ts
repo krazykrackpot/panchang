@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 /**
  * Declarative Festival & Vrat Definitions
  *
@@ -15,7 +16,7 @@ export interface FestivalDef {
   paksha?: 'shukla' | 'krishna';
   tithi: number;           // 1-15 within the paksha
   slug: string;            // key for detail lookup
-  name?: { en: string; hi: string; sa: string }; // override name (for entries not in FESTIVAL_DETAILS)
+  name?: LocaleText; // override name (for entries not in FESTIVAL_DETAILS)
   type: 'major' | 'vrat' | 'regional';
   category: 'festival' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham' | 'sankranti' | 'jayanti' | 'vrat';
   recurring?: boolean;     // true = applies to ALL months

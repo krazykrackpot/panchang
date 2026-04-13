@@ -1,5 +1,6 @@
+import { tl } from '@/lib/utils/trilingual';
 import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
+import type { LocaleText, Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
@@ -44,7 +45,7 @@ const L = {
     hi: 'जब अरब गणितज्ञों ने भारतीय ग्रंथों का अनुवाद किया (~800 ई.), उन्होंने "जीवा" को "जिबा" के रूप में ध्वन्यात्मक रूप से लिप्यंतरित किया। चूँकि अरबी बिना स्वरों के लिखी जाती है, "जिबा" को बाद में "जैब" (جيب) पढ़ा गया — एक अरबी शब्द जिसका अर्थ है "मोड़, जेब, या वक्ष।" जब 12वीं सदी के यूरोपीय अनुवादक जेरार्ड ऑफ क्रेमोना ने इसे लैटिन में अनुवाद किया, उन्होंने "जैब" को "Sinus" — मोड़ या खाड़ी के लिए लैटिन शब्द — के रूप में प्रस्तुत किया। "Sinus" फिर अंग्रेजी "Sine" बन गया। एक शुद्ध नामकरण दुर्घटना। गणित हमेशा भारतीय था।',
   },
 
-  s4Title: { en: 'Accuracy Comparison: Aryabhata vs Modern Values', hi: 'सटीकता तुलना: आर्यभट बनाम आधुनिक मान' },
+  s4Title: { en: 'Accuracy Comparison: Aryabhata vs Modern Values', hi: 'सटीकता तुलना: आर्यभट बनाम आधुनिक मान', sa: 'सटीकता तुलना: आर्यभट बनाम आधुनिक मान', mai: 'सटीकता तुलना: आर्यभट बनाम आधुनिक मान', mr: 'सटीकता तुलना: आर्यभट बनाम आधुनिक मान', ta: 'Accuracy Comparison: Aryabhata vs Modern Values', te: 'Accuracy Comparison: Aryabhata vs Modern Values', bn: 'Accuracy Comparison: Aryabhata vs Modern Values', kn: 'Accuracy Comparison: Aryabhata vs Modern Values', gu: 'Accuracy Comparison: Aryabhata vs Modern Values' },
   s4Body: {
     en: 'Aryabhata\'s values, computed in 499 CE, hold up remarkably well against IEEE 754 double-precision floating point. The worst-case deviation is under 0.2%. For most values, the error is under 0.05% — achieved with no calculators, no computers, and no earlier mathematical tradition to build on.',
     hi: 'आर्यभट के मान, 499 ई. में गणित किए गए, IEEE 754 डबल-प्रिसिजन फ्लोटिंग पॉइंट के मुकाबले उल्लेखनीय रूप से सही हैं। सबसे खराब विचलन 0.2% से कम है। अधिकांश मानों के लिए त्रुटि 0.05% से कम — बिना कैलकुलेटर, बिना कंप्यूटर, और बिना किसी पूर्ववर्ती गणितीय परंपरा के हासिल।',
@@ -73,10 +74,10 @@ const L = {
     hi: 'श्रृंखला सारांश — एक प्रवाह में 1,500 वर्ष',
   },
 
-  backLink: { en: '← Back to Learn', hi: '← सीखने पर वापस' },
-  exploreMore: { en: 'Continue Exploring', hi: 'और जानें' },
-  calculus: { en: 'Calculus in Kerala', hi: 'केरल में कलनशास्त्र' },
-  earthRotation: { en: 'Earth Rotation (499 CE)', hi: 'पृथ्वी का घूर्णन (499 ई.)' },
+  backLink: { en: '← Back to Learn', hi: '← सीखने पर वापस', sa: '← सीखने पर वापस', mai: '← सीखने पर वापस', mr: '← सीखने पर वापस', ta: '← Back to Learn', te: '← Back to Learn', bn: '← Back to Learn', kn: '← Back to Learn', gu: '← Back to Learn' },
+  exploreMore: { en: 'Continue Exploring', hi: 'और जानें', sa: 'और जानें', mai: 'और जानें', mr: 'और जानें', ta: 'Continue Exploring', te: 'Continue Exploring', bn: 'Continue Exploring', kn: 'Continue Exploring', gu: 'Continue Exploring' },
+  calculus: { en: 'Calculus in Kerala', hi: 'केरल में कलनशास्त्र', sa: 'केरल में कलनशास्त्र', mai: 'केरल में कलनशास्त्र', mr: 'केरल में कलनशास्त्र', ta: 'Calculus in Kerala', te: 'Calculus in Kerala', bn: 'Calculus in Kerala', kn: 'Calculus in Kerala', gu: 'Calculus in Kerala' },
+  earthRotation: { en: 'Earth Rotation (499 CE)', hi: 'पृथ्वी का घूर्णन (499 ई.)', sa: 'पृथ्वी का घूर्णन (499 ई.)', mai: 'पृथ्वी का घूर्णन (499 ई.)', mr: 'पृथ्वी का घूर्णन (499 ई.)', ta: 'Earth Rotation (499 CE)', te: 'Earth Rotation (499 CE)', bn: 'Earth Rotation (499 CE)', kn: 'Earth Rotation (499 CE)', gu: 'Earth Rotation (499 CE)' },
 };
 
 const JYA_TABLE = [
@@ -94,24 +95,24 @@ const JYA_TABLE = [
 
 const TRANSLATION_CHAIN = [
   { lang: 'Sanskrit', word: 'Jya / Jiva (ज्या / जीवा)', meaning: { en: 'Bowstring', hi: 'धनुष की प्रत्यंचा' }, year: '499 CE', color: '#f0d48a' },
-  { lang: 'Arabic', word: 'Jiba (جيب)', meaning: { en: 'Transliteration of Jiva', hi: 'जीवा का ध्वन्यात्मक लिप्यंतरण' }, year: '~800 CE', color: '#60a5fa' },
-  { lang: 'Arabic (misread)', word: 'Jaib (جيب)', meaning: { en: 'Fold / Pocket / Bosom', hi: 'मोड़ / जेब / वक्ष' }, year: '~900 CE', color: '#f87171' },
-  { lang: 'Latin', word: 'Sinus', meaning: { en: 'Bay / Fold / Curve', hi: 'खाड़ी / मोड़ / वक्र' }, year: '~1150 CE', color: '#a78bfa' },
-  { lang: 'English', word: 'Sine', meaning: { en: 'Mathematical function', hi: 'गणितीय फ़ंक्शन' }, year: '~1600 CE', color: '#34d399' },
+  { lang: 'Arabic', word: 'Jiba (جيب)', meaning: { en: 'Transliteration of Jiva', hi: 'जीवा का ध्वन्यात्मक लिप्यंतरण', sa: 'जीवा का ध्वन्यात्मक लिप्यंतरण', mai: 'जीवा का ध्वन्यात्मक लिप्यंतरण', mr: 'जीवा का ध्वन्यात्मक लिप्यंतरण', ta: 'Transliteration of Jiva', te: 'Transliteration of Jiva', bn: 'Transliteration of Jiva', kn: 'Transliteration of Jiva', gu: 'Transliteration of Jiva' }, year: '~800 CE', color: '#60a5fa' },
+  { lang: 'Arabic (misread)', word: 'Jaib (جيب)', meaning: { en: 'Fold / Pocket / Bosom', hi: 'मोड़ / जेब / वक्ष', sa: 'मोड़ / जेब / वक्ष', mai: 'मोड़ / जेब / वक्ष', mr: 'मोड़ / जेब / वक्ष', ta: 'Fold / Pocket / Bosom', te: 'Fold / Pocket / Bosom', bn: 'Fold / Pocket / Bosom', kn: 'Fold / Pocket / Bosom', gu: 'Fold / Pocket / Bosom' }, year: '~900 CE', color: '#f87171' },
+  { lang: 'Latin', word: 'Sinus', meaning: { en: 'Bay / Fold / Curve', hi: 'खाड़ी / मोड़ / वक्र', sa: 'खाड़ी / मोड़ / वक्र', mai: 'खाड़ी / मोड़ / वक्र', mr: 'खाड़ी / मोड़ / वक्र', ta: 'Bay / Fold / Curve', te: 'Bay / Fold / Curve', bn: 'Bay / Fold / Curve', kn: 'Bay / Fold / Curve', gu: 'Bay / Fold / Curve' }, year: '~1150 CE', color: '#a78bfa' },
+  { lang: 'English', word: 'Sine', meaning: { en: 'Mathematical function', hi: 'गणितीय फ़ंक्शन', sa: 'गणितीय फ़ंक्शन', mai: 'गणितीय फ़ंक्शन', mr: 'गणितीय फ़ंक्शन', ta: 'Mathematical function', te: 'Mathematical function', bn: 'Mathematical function', kn: 'Mathematical function', gu: 'Mathematical function' }, year: '~1600 CE', color: '#34d399' },
 ];
 
 const FUNCTIONS = [
-  { sanskrit: 'Jya (ज्या)', english: 'Sine', formula: 'sin(θ)', desc: { en: 'Half the chord — the original definition', hi: 'आधी जीवा — मूल परिभाषा' } },
-  { sanskrit: 'Kojya (कोज्या)', english: 'Cosine', formula: 'cos(θ)', desc: { en: 'Complement-jya — defined by Aryabhata', hi: 'पूरक-ज्या — आर्यभट द्वारा परिभाषित' } },
-  { sanskrit: 'Utkrama-jya (उत्क्रमज्या)', english: 'Versine', formula: '1 − cos(θ)', desc: { en: 'Reverse jya — used in eclipse geometry', hi: 'उलटी ज्या — ग्रहण ज्यामिति में उपयोग' } },
-  { sanskrit: 'Trijya (त्रिज्या)', english: 'Radius / R = 3438', formula: 'R = 3438\'', desc: { en: 'The base radius in arc-minutes', hi: 'चाप-मिनट में आधार त्रिज्या' } },
+  { sanskrit: 'Jya (ज्या)', english: 'Sine', formula: 'sin(θ)', desc: { en: 'Half the chord — the original definition', hi: 'आधी जीवा — मूल परिभाषा', sa: 'आधी जीवा — मूल परिभाषा', mai: 'आधी जीवा — मूल परिभाषा', mr: 'आधी जीवा — मूल परिभाषा', ta: 'Half the chord — the original definition', te: 'Half the chord — the original definition', bn: 'Half the chord — the original definition', kn: 'Half the chord — the original definition', gu: 'Half the chord — the original definition' } },
+  { sanskrit: 'Kojya (कोज्या)', english: 'Cosine', formula: 'cos(θ)', desc: { en: 'Complement-jya — defined by Aryabhata', hi: 'पूरक-ज्या — आर्यभट द्वारा परिभाषित', sa: 'पूरक-ज्या — आर्यभट द्वारा परिभाषित', mai: 'पूरक-ज्या — आर्यभट द्वारा परिभाषित', mr: 'पूरक-ज्या — आर्यभट द्वारा परिभाषित', ta: 'Complement-jya — defined by Aryabhata', te: 'Complement-jya — defined by Aryabhata', bn: 'Complement-jya — defined by Aryabhata', kn: 'Complement-jya — defined by Aryabhata', gu: 'Complement-jya — defined by Aryabhata' } },
+  { sanskrit: 'Utkrama-jya (उत्क्रमज्या)', english: 'Versine', formula: '1 − cos(θ)', desc: { en: 'Reverse jya — used in eclipse geometry', hi: 'उलटी ज्या — ग्रहण ज्यामिति में उपयोग', sa: 'उलटी ज्या — ग्रहण ज्यामिति में उपयोग', mai: 'उलटी ज्या — ग्रहण ज्यामिति में उपयोग', mr: 'उलटी ज्या — ग्रहण ज्यामिति में उपयोग', ta: 'Reverse jya — used in eclipse geometry', te: 'Reverse jya — used in eclipse geometry', bn: 'Reverse jya — used in eclipse geometry', kn: 'Reverse jya — used in eclipse geometry', gu: 'Reverse jya — used in eclipse geometry' } },
+  { sanskrit: 'Trijya (त्रिज्या)', english: 'Radius / R = 3438', formula: 'R = 3438\'', desc: { en: 'The base radius in arc-minutes', hi: 'चाप-मिनट में आधार त्रिज्या', sa: 'चाप-मिनट में आधार त्रिज्या', mai: 'चाप-मिनट में आधार त्रिज्या', mr: 'चाप-मिनट में आधार त्रिज्या', ta: 'The base radius in arc-minutes', te: 'The base radius in arc-minutes', bn: 'The base radius in arc-minutes', kn: 'The base radius in arc-minutes', gu: 'The base radius in arc-minutes' } },
 ];
 
 export default async function SinePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params as { locale: Locale };
   const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const l = (obj: Record<string, string>) => (isHi ? obj.hi : obj.en);
+  const l = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
 
   return (
     <div className="space-y-10">
@@ -316,10 +317,10 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
         {/* Stat cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
-            { label: { en: 'Year computed', hi: 'गणना वर्ष' }, value: '499 CE' },
-            { label: { en: 'Values given', hi: 'दिए गए मान' }, value: '24' },
-            { label: { en: 'Interval', hi: 'अंतराल' }, value: '3.75°' },
-            { label: { en: 'Worst error', hi: 'सर्वाधिक त्रुटि' }, value: '< 0.2%' },
+            { label: { en: 'Year computed', hi: 'गणना वर्ष', sa: 'गणना वर्ष', mai: 'गणना वर्ष', mr: 'गणना वर्ष', ta: 'Year computed', te: 'Year computed', bn: 'Year computed', kn: 'Year computed', gu: 'Year computed' }, value: '499 CE' },
+            { label: { en: 'Values given', hi: 'दिए गए मान', sa: 'दिए गए मान', mai: 'दिए गए मान', mr: 'दिए गए मान', ta: 'Values given', te: 'Values given', bn: 'Values given', kn: 'Values given', gu: 'Values given' }, value: '24' },
+            { label: { en: 'Interval', hi: 'अंतराल', sa: 'अंतराल', mai: 'अंतराल', mr: 'अंतराल', ta: 'Interval', te: 'Interval', bn: 'Interval', kn: 'Interval', gu: 'Interval' }, value: '3.75°' },
+            { label: { en: 'Worst error', hi: 'सर्वाधिक त्रुटि', sa: 'सर्वाधिक त्रुटि', mai: 'सर्वाधिक त्रुटि', mr: 'सर्वाधिक त्रुटि', ta: 'Worst error', te: 'Worst error', bn: 'Worst error', kn: 'Worst error', gu: 'Worst error' }, value: '< 0.2%' },
           ].map((stat, i) => (
             <div key={i} className="p-3 rounded-xl bg-gold-primary/8 border border-gold-primary/15 text-center">
               <div className="text-gold-light text-xl font-bold">{stat.value}</div>
@@ -358,9 +359,9 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {[
-            { icon: '🪐', label: { en: 'Planet Longitudes', hi: 'ग्रह देशान्तर' }, detail: { en: 'Ecliptic ↔ Equatorial conversion uses sin/cos', hi: 'क्रांतिवृत्त ↔ भूमध्यरेखीय रूपांतरण sin/cos उपयोग' } },
-            { icon: '🌅', label: { en: 'Sunrise / Sunset', hi: 'सूर्योदय / सूर्यास्त' }, detail: { en: 'Spherical triangle solved via sine rule', hi: 'गोलाकार त्रिकोण ज्या नियम से हल' } },
-            { icon: '🌑', label: { en: 'Eclipse Geometry', hi: 'ग्रहण ज्यामिति' }, detail: { en: 'Magnitude computed with versine formula', hi: 'परिमाण उत्क्रमज्या सूत्र से गणित' } },
+            { icon: '🪐', label: { en: 'Planet Longitudes', hi: 'ग्रह देशान्तर', sa: 'ग्रह देशान्तर', mai: 'ग्रह देशान्तर', mr: 'ग्रह देशान्तर', ta: 'Planet Longitudes', te: 'Planet Longitudes', bn: 'Planet Longitudes', kn: 'Planet Longitudes', gu: 'Planet Longitudes' }, detail: { en: 'Ecliptic ↔ Equatorial conversion uses sin/cos', hi: 'क्रांतिवृत्त ↔ भूमध्यरेखीय रूपांतरण sin/cos उपयोग', sa: 'क्रांतिवृत्त ↔ भूमध्यरेखीय रूपांतरण sin/cos उपयोग', mai: 'क्रांतिवृत्त ↔ भूमध्यरेखीय रूपांतरण sin/cos उपयोग', mr: 'क्रांतिवृत्त ↔ भूमध्यरेखीय रूपांतरण sin/cos उपयोग', ta: 'Ecliptic ↔ Equatorial conversion uses sin/cos', te: 'Ecliptic ↔ Equatorial conversion uses sin/cos', bn: 'Ecliptic ↔ Equatorial conversion uses sin/cos', kn: 'Ecliptic ↔ Equatorial conversion uses sin/cos', gu: 'Ecliptic ↔ Equatorial conversion uses sin/cos' } },
+            { icon: '🌅', label: { en: 'Sunrise / Sunset', hi: 'सूर्योदय / सूर्यास्त', sa: 'सूर्योदय / सूर्यास्त', mai: 'सूर्योदय / सूर्यास्त', mr: 'सूर्योदय / सूर्यास्त', ta: 'Sunrise / Sunset', te: 'Sunrise / Sunset', bn: 'Sunrise / Sunset', kn: 'Sunrise / Sunset', gu: 'Sunrise / Sunset' }, detail: { en: 'Spherical triangle solved via sine rule', hi: 'गोलाकार त्रिकोण ज्या नियम से हल', sa: 'गोलाकार त्रिकोण ज्या नियम से हल', mai: 'गोलाकार त्रिकोण ज्या नियम से हल', mr: 'गोलाकार त्रिकोण ज्या नियम से हल', ta: 'Spherical triangle solved via sine rule', te: 'Spherical triangle solved via sine rule', bn: 'Spherical triangle solved via sine rule', kn: 'Spherical triangle solved via sine rule', gu: 'Spherical triangle solved via sine rule' } },
+            { icon: '🌑', label: { en: 'Eclipse Geometry', hi: 'ग्रहण ज्यामिति', sa: 'ग्रहण ज्यामिति', mai: 'ग्रहण ज्यामिति', mr: 'ग्रहण ज्यामिति', ta: 'Eclipse Geometry', te: 'Eclipse Geometry', bn: 'Eclipse Geometry', kn: 'Eclipse Geometry', gu: 'Eclipse Geometry' }, detail: { en: 'Magnitude computed with versine formula', hi: 'परिमाण उत्क्रमज्या सूत्र से गणित', sa: 'परिमाण उत्क्रमज्या सूत्र से गणित', mai: 'परिमाण उत्क्रमज्या सूत्र से गणित', mr: 'परिमाण उत्क्रमज्या सूत्र से गणित', ta: 'Magnitude computed with versine formula', te: 'Magnitude computed with versine formula', bn: 'Magnitude computed with versine formula', kn: 'Magnitude computed with versine formula', gu: 'Magnitude computed with versine formula' } },
           ].map((item, i) => (
             <div key={i} className="p-4 rounded-xl bg-white/[0.03] border border-gold-primary/10 flex items-start gap-3">
               <span className="text-2xl flex-shrink-0">{item.icon}</span>

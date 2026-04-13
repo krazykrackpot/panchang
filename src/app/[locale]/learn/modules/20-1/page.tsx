@@ -6,17 +6,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_20_1', phase: 7, topic: 'KP System', moduleNumber: '20.1',
-  title: { en: 'Placidus Houses — Why KP Uses Unequal Houses', hi: 'प्लेसिडस भाव — केपी असमान भावों का उपयोग क्यों करता है' },
+  title: { en: 'Placidus Houses — Why KP Uses Unequal Houses', hi: 'प्लेसिडस भाव — केपी असमान भावों का उपयोग क्यों करता है', sa: 'प्लेसिडस भाव — केपी असमान भावों का उपयोग क्यों करता है', mai: 'प्लेसिडस भाव — केपी असमान भावों का उपयोग क्यों करता है', mr: 'प्लेसिडस भाव — केपी असमान भावों का उपयोग क्यों करता है', ta: 'Placidus Houses — Why KP Uses Unequal Houses', te: 'Placidus Houses — Why KP Uses Unequal Houses', bn: 'Placidus Houses — Why KP Uses Unequal Houses', kn: 'Placidus Houses — Why KP Uses Unequal Houses', gu: 'Placidus Houses — Why KP Uses Unequal Houses' },
   subtitle: {
     en: 'How the KP system replaced equal-house divisions with latitude-sensitive Placidus cusps for more accurate planet-house assignments',
     hi: 'केपी पद्धति ने कैसे समान भाव विभाजन को अक्षांश-संवेदी प्लेसिडस भाव-सन्धियों से प्रतिस्थापित किया ताकि ग्रह-भाव आवंटन अधिक सटीक हो',
   },
   estimatedMinutes: 13,
   crossRefs: [
-    { label: { en: 'Module 20-2: The 249 Sub-Lord Table', hi: 'मॉड्यूल 20-2: 249 उप-स्वामी सारणी' }, href: '/learn/modules/20-2' },
-    { label: { en: 'Module 20-3: Significators', hi: 'मॉड्यूल 20-3: कारकत्व' }, href: '/learn/modules/20-3' },
-    { label: { en: 'Module 20-4: Ruling Planets', hi: 'मॉड्यूल 20-4: शासक ग्रह' }, href: '/learn/modules/20-4' },
-    { label: { en: 'KP System Tool', hi: 'केपी पद्धति उपकरण' }, href: '/kp-system' },
+    { label: { en: 'Module 20-2: The 249 Sub-Lord Table', hi: 'मॉड्यूल 20-2: 249 उप-स्वामी सारणी', sa: 'मॉड्यूल 20-2: 249 उप-स्वामी सारणी', mai: 'मॉड्यूल 20-2: 249 उप-स्वामी सारणी', mr: 'मॉड्यूल 20-2: 249 उप-स्वामी सारणी', ta: 'Module 20-2: The 249 Sub-Lord Table', te: 'Module 20-2: The 249 Sub-Lord Table', bn: 'Module 20-2: The 249 Sub-Lord Table', kn: 'Module 20-2: The 249 Sub-Lord Table', gu: 'Module 20-2: The 249 Sub-Lord Table' }, href: '/learn/modules/20-2' },
+    { label: { en: 'Module 20-3: Significators', hi: 'मॉड्यूल 20-3: कारकत्व', sa: 'मॉड्यूल 20-3: कारकत्व', mai: 'मॉड्यूल 20-3: कारकत्व', mr: 'मॉड्यूल 20-3: कारकत्व', ta: 'Module 20-3: Significators', te: 'Module 20-3: Significators', bn: 'Module 20-3: Significators', kn: 'Module 20-3: Significators', gu: 'Module 20-3: Significators' }, href: '/learn/modules/20-3' },
+    { label: { en: 'Module 20-4: Ruling Planets', hi: 'मॉड्यूल 20-4: शासक ग्रह', sa: 'मॉड्यूल 20-4: शासक ग्रह', mai: 'मॉड्यूल 20-4: शासक ग्रह', mr: 'मॉड्यूल 20-4: शासक ग्रह', ta: 'Module 20-4: Ruling Planets', te: 'Module 20-4: Ruling Planets', bn: 'Module 20-4: Ruling Planets', kn: 'Module 20-4: Ruling Planets', gu: 'Module 20-4: Ruling Planets' }, href: '/learn/modules/20-4' },
+    { label: { en: 'KP System Tool', hi: 'केपी पद्धति उपकरण', sa: 'केपी पद्धति उपकरण', mai: 'केपी पद्धति उपकरण', mr: 'केपी पद्धति उपकरण', ta: 'KP System Tool', te: 'KP System Tool', bn: 'KP System Tool', kn: 'KP System Tool', gu: 'KP System Tool' }, href: '/kp-system' },
   ],
 };
 
@@ -28,10 +28,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पारम्परिक वैदिक समान-भाव पद्धति में प्रत्येक भाव कितना चौड़ा होता है?',
     },
     options: [
-      { en: '30 degrees', hi: '30 अंश' },
-      { en: 'Varies by latitude', hi: 'अक्षांश के अनुसार भिन्न' },
-      { en: '13 degrees 20 minutes', hi: '13 अंश 20 कला' },
-      { en: '15 degrees', hi: '15 अंश' },
+      { en: '30 degrees', hi: '30 अंश', sa: '30 अंश', mai: '30 अंश', mr: '30 अंश', ta: '30 degrees', te: '30 degrees', bn: '30 degrees', kn: '30 degrees', gu: '30 degrees' },
+      { en: 'Varies by latitude', hi: 'अक्षांश के अनुसार भिन्न', sa: 'अक्षांश के अनुसार भिन्न', mai: 'अक्षांश के अनुसार भिन्न', mr: 'अक्षांश के अनुसार भिन्न', ta: 'Varies by latitude', te: 'Varies by latitude', bn: 'Varies by latitude', kn: 'Varies by latitude', gu: 'Varies by latitude' },
+      { en: '13 degrees 20 minutes', hi: '13 अंश 20 कला', sa: '13 अंश 20 कला', mai: '13 अंश 20 कला', mr: '13 अंश 20 कला', ta: '13 degrees 20 minutes', te: '13 degrees 20 minutes', bn: '13 degrees 20 minutes', kn: '13 degrees 20 minutes', gu: '13 degrees 20 minutes' },
+      { en: '15 degrees', hi: '15 अंश', sa: '15 अंश', mai: '15 अंश', mr: '15 अंश', ta: '15 degrees', te: '15 degrees', bn: '15 degrees', kn: '15 degrees', gu: '15 degrees' },
     ],
     correctAnswer: 0,
     explanation: {
@@ -46,10 +46,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'केपी पद्धति किस भाव पद्धति का उपयोग करती है?',
     },
     options: [
-      { en: 'Whole Sign houses', hi: 'पूर्ण राशि भाव' },
-      { en: 'Equal houses', hi: 'समान भाव' },
-      { en: 'Placidus houses', hi: 'प्लेसिडस भाव' },
-      { en: 'Campanus houses', hi: 'कैम्पेनस भाव' },
+      { en: 'Whole Sign houses', hi: 'पूर्ण राशि भाव', sa: 'पूर्ण राशि भाव', mai: 'पूर्ण राशि भाव', mr: 'पूर्ण राशि भाव', ta: 'Whole Sign houses', te: 'Whole Sign houses', bn: 'Whole Sign houses', kn: 'Whole Sign houses', gu: 'Whole Sign houses' },
+      { en: 'Equal houses', hi: 'समान भाव', sa: 'समान भाव', mai: 'समान भाव', mr: 'समान भाव', ta: 'Equal houses', te: 'Equal houses', bn: 'Equal houses', kn: 'Equal houses', gu: 'Equal houses' },
+      { en: 'Placidus houses', hi: 'प्लेसिडस भाव', sa: 'प्लेसिडस भाव', mai: 'प्लेसिडस भाव', mr: 'प्लेसिडस भाव', ta: 'Placidus houses', te: 'Placidus houses', bn: 'Placidus houses', kn: 'Placidus houses', gu: 'Placidus houses' },
+      { en: 'Campanus houses', hi: 'कैम्पेनस भाव', sa: 'कैम्पेनस भाव', mai: 'कैम्पेनस भाव', mr: 'कैम्पेनस भाव', ta: 'Campanus houses', te: 'Campanus houses', bn: 'Campanus houses', kn: 'Campanus houses', gu: 'Campanus houses' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -76,10 +76,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'प्लेसिडस मध्यवर्ती भाव सन्धियों की गणना कैसे करता है?',
     },
     options: [
-      { en: 'Divides the ecliptic into equal arcs', hi: 'क्रान्तिवृत्त को समान चापों में विभक्त करता है' },
-      { en: 'Trisects the diurnal and nocturnal semi-arcs', hi: 'दिवसीय और रात्रिकालीन अर्ध-चापों को त्रिभाजित करता है' },
-      { en: 'Uses fixed star positions', hi: 'स्थिर तारा स्थितियों का उपयोग करता है' },
-      { en: 'Divides houses by planetary speed', hi: 'ग्रह गति के अनुसार भाव विभाजित करता है' },
+      { en: 'Divides the ecliptic into equal arcs', hi: 'क्रान्तिवृत्त को समान चापों में विभक्त करता है', sa: 'क्रान्तिवृत्त को समान चापों में विभक्त करता है', mai: 'क्रान्तिवृत्त को समान चापों में विभक्त करता है', mr: 'क्रान्तिवृत्त को समान चापों में विभक्त करता है', ta: 'Divides the ecliptic into equal arcs', te: 'Divides the ecliptic into equal arcs', bn: 'Divides the ecliptic into equal arcs', kn: 'Divides the ecliptic into equal arcs', gu: 'Divides the ecliptic into equal arcs' },
+      { en: 'Trisects the diurnal and nocturnal semi-arcs', hi: 'दिवसीय और रात्रिकालीन अर्ध-चापों को त्रिभाजित करता है', sa: 'दिवसीय और रात्रिकालीन अर्ध-चापों को त्रिभाजित करता है', mai: 'दिवसीय और रात्रिकालीन अर्ध-चापों को त्रिभाजित करता है', mr: 'दिवसीय और रात्रिकालीन अर्ध-चापों को त्रिभाजित करता है', ta: 'Trisects the diurnal and nocturnal semi-arcs', te: 'Trisects the diurnal and nocturnal semi-arcs', bn: 'Trisects the diurnal and nocturnal semi-arcs', kn: 'Trisects the diurnal and nocturnal semi-arcs', gu: 'Trisects the diurnal and nocturnal semi-arcs' },
+      { en: 'Uses fixed star positions', hi: 'स्थिर तारा स्थितियों का उपयोग करता है', sa: 'स्थिर तारा स्थितियों का उपयोग करता है', mai: 'स्थिर तारा स्थितियों का उपयोग करता है', mr: 'स्थिर तारा स्थितियों का उपयोग करता है', ta: 'Uses fixed star positions', te: 'Uses fixed star positions', bn: 'Uses fixed star positions', kn: 'Uses fixed star positions', gu: 'Uses fixed star positions' },
+      { en: 'Divides houses by planetary speed', hi: 'ग्रह गति के अनुसार भाव विभाजित करता है', sa: 'ग्रह गति के अनुसार भाव विभाजित करता है', mai: 'ग्रह गति के अनुसार भाव विभाजित करता है', mr: 'ग्रह गति के अनुसार भाव विभाजित करता है', ta: 'Divides houses by planetary speed', te: 'Divides houses by planetary speed', bn: 'Divides houses by planetary speed', kn: 'Divides houses by planetary speed', gu: 'Divides houses by planetary speed' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -94,10 +94,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किस प्रकार के स्थान पर प्लेसिडस भाव समान भावों से सर्वाधिक भिन्न होते हैं?',
     },
     options: [
-      { en: 'At the equator (0 degrees latitude)', hi: 'भूमध्य रेखा पर (0 अंश अक्षांश)' },
-      { en: 'At moderate latitudes (20-30 degrees)', hi: 'मध्यम अक्षांशों पर (20-30 अंश)' },
-      { en: 'At high latitudes (50+ degrees)', hi: 'उच्च अक्षांशों पर (50+ अंश)' },
-      { en: 'It makes no difference', hi: 'कोई अन्तर नहीं पड़ता' },
+      { en: 'At the equator (0 degrees latitude)', hi: 'भूमध्य रेखा पर (0 अंश अक्षांश)', sa: 'भूमध्य रेखा पर (0 अंश अक्षांश)', mai: 'भूमध्य रेखा पर (0 अंश अक्षांश)', mr: 'भूमध्य रेखा पर (0 अंश अक्षांश)', ta: 'At the equator (0 degrees latitude)', te: 'At the equator (0 degrees latitude)', bn: 'At the equator (0 degrees latitude)', kn: 'At the equator (0 degrees latitude)', gu: 'At the equator (0 degrees latitude)' },
+      { en: 'At moderate latitudes (20-30 degrees)', hi: 'मध्यम अक्षांशों पर (20-30 अंश)', sa: 'मध्यम अक्षांशों पर (20-30 अंश)', mai: 'मध्यम अक्षांशों पर (20-30 अंश)', mr: 'मध्यम अक्षांशों पर (20-30 अंश)', ta: 'At moderate latitudes (20-30 degrees)', te: 'At moderate latitudes (20-30 degrees)', bn: 'At moderate latitudes (20-30 degrees)', kn: 'At moderate latitudes (20-30 degrees)', gu: 'At moderate latitudes (20-30 degrees)' },
+      { en: 'At high latitudes (50+ degrees)', hi: 'उच्च अक्षांशों पर (50+ अंश)', sa: 'उच्च अक्षांशों पर (50+ अंश)', mai: 'उच्च अक्षांशों पर (50+ अंश)', mr: 'उच्च अक्षांशों पर (50+ अंश)', ta: 'At high latitudes (50+ degrees)', te: 'At high latitudes (50+ degrees)', bn: 'At high latitudes (50+ degrees)', kn: 'At high latitudes (50+ degrees)', gu: 'At high latitudes (50+ degrees)' },
+      { en: 'It makes no difference', hi: 'कोई अन्तर नहीं पड़ता', sa: 'कोई अन्तर नहीं पड़ता', mai: 'कोई अन्तर नहीं पड़ता', mr: 'कोई अन्तर नहीं पड़ता', ta: 'It makes no difference', te: 'It makes no difference', bn: 'It makes no difference', kn: 'It makes no difference', gu: 'It makes no difference' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -124,10 +124,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'भारतीय ज्योतिष हेतु प्लेसिडस भावों को अपनाने वाली केपी पद्धति किसने विकसित की?',
     },
     options: [
-      { en: 'Varahamihira', hi: 'वराहमिहिर' },
-      { en: 'K.S. Krishnamurti', hi: 'के.एस. कृष्णमूर्ति' },
-      { en: 'Parashara', hi: 'पराशर' },
-      { en: 'B.V. Raman', hi: 'बी.वी. रमण' },
+      { en: 'Varahamihira', hi: 'वराहमिहिर', sa: 'वराहमिहिर', mai: 'वराहमिहिर', mr: 'वराहमिहिर', ta: 'Varahamihira', te: 'Varahamihira', bn: 'Varahamihira', kn: 'Varahamihira', gu: 'Varahamihira' },
+      { en: 'K.S. Krishnamurti', hi: 'के.एस. कृष्णमूर्ति', sa: 'के.एस. कृष्णमूर्ति', mai: 'के.एस. कृष्णमूर्ति', mr: 'के.एस. कृष्णमूर्ति', ta: 'K.S. Krishnamurti', te: 'K.S. Krishnamurti', bn: 'K.S. Krishnamurti', kn: 'K.S. Krishnamurti', gu: 'K.S. Krishnamurti' },
+      { en: 'Parashara', hi: 'पराशर', sa: 'पराशर', mai: 'पराशर', mr: 'पराशर', ta: 'Parashara', te: 'Parashara', bn: 'Parashara', kn: 'Parashara', gu: 'Parashara' },
+      { en: 'B.V. Raman', hi: 'बी.वी. रमण', sa: 'बी.वी. रमण', mai: 'बी.वी. रमण', mr: 'बी.वी. रमण', ta: 'B.V. Raman', te: 'B.V. Raman', bn: 'B.V. Raman', kn: 'B.V. Raman', gu: 'B.V. Raman' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -154,10 +154,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'प्लेसिडस पद्धति में कौन-से दो बिन्दु सदैव स्थिर रहते हैं?',
     },
     options: [
-      { en: 'Ascendant and 7th cusp', hi: 'लग्न और सप्तम सन्धि' },
-      { en: 'MC (10th) and IC (4th)', hi: 'MC (दशम) और IC (चतुर्थ)' },
-      { en: 'Both Ascendant/Descendant and MC/IC', hi: 'लग्न/अस्त और MC/IC दोनों' },
-      { en: 'Only the Ascendant', hi: 'केवल लग्न' },
+      { en: 'Ascendant and 7th cusp', hi: 'लग्न और सप्तम सन्धि', sa: 'लग्न और सप्तम सन्धि', mai: 'लग्न और सप्तम सन्धि', mr: 'लग्न और सप्तम सन्धि', ta: 'Ascendant and 7th cusp', te: 'Ascendant and 7th cusp', bn: 'Ascendant and 7th cusp', kn: 'Ascendant and 7th cusp', gu: 'Ascendant and 7th cusp' },
+      { en: 'MC (10th) and IC (4th)', hi: 'MC (दशम) और IC (चतुर्थ)', sa: 'MC (दशम) और IC (चतुर्थ)', mai: 'MC (दशम) और IC (चतुर्थ)', mr: 'MC (दशम) और IC (चतुर्थ)', ta: 'MC (10th) and IC (4th)', te: 'MC (10th) and IC (4th)', bn: 'MC (10th) and IC (4th)', kn: 'MC (10th) and IC (4th)', gu: 'MC (10th) and IC (4th)' },
+      { en: 'Both Ascendant/Descendant and MC/IC', hi: 'लग्न/अस्त और MC/IC दोनों', sa: 'लग्न/अस्त और MC/IC दोनों', mai: 'लग्न/अस्त और MC/IC दोनों', mr: 'लग्न/अस्त और MC/IC दोनों', ta: 'Both Ascendant/Descendant and MC/IC', te: 'Both Ascendant/Descendant and MC/IC', bn: 'Both Ascendant/Descendant and MC/IC', kn: 'Both Ascendant/Descendant and MC/IC', gu: 'Both Ascendant/Descendant and MC/IC' },
+      { en: 'Only the Ascendant', hi: 'केवल लग्न', sa: 'केवल लग्न', mai: 'केवल लग्न', mr: 'केवल लग्न', ta: 'Only the Ascendant', te: 'Only the Ascendant', bn: 'Only the Ascendant', kn: 'Only the Ascendant', gu: 'Only the Ascendant' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -172,10 +172,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'केपी अभ्यासकर्ता क्यों तर्क देते हैं कि प्लेसिडस समान भावों से बेहतर परिणाम देता है?',
     },
     options: [
-      { en: 'It uses more planets', hi: 'यह अधिक ग्रहों का उपयोग करता है' },
-      { en: 'It accounts for geographic latitude in house sizes', hi: 'यह भाव आकार में भौगोलिक अक्षांश को ध्यान में रखता है' },
-      { en: 'It was invented more recently', hi: 'यह अधिक हाल में आविष्कृत हुआ' },
-      { en: 'It uses tropical zodiac', hi: 'यह सायन राशिचक्र का उपयोग करता है' },
+      { en: 'It uses more planets', hi: 'यह अधिक ग्रहों का उपयोग करता है', sa: 'यह अधिक ग्रहों का उपयोग करता है', mai: 'यह अधिक ग्रहों का उपयोग करता है', mr: 'यह अधिक ग्रहों का उपयोग करता है', ta: 'It uses more planets', te: 'It uses more planets', bn: 'It uses more planets', kn: 'It uses more planets', gu: 'It uses more planets' },
+      { en: 'It accounts for geographic latitude in house sizes', hi: 'यह भाव आकार में भौगोलिक अक्षांश को ध्यान में रखता है', sa: 'यह भाव आकार में भौगोलिक अक्षांश को ध्यान में रखता है', mai: 'यह भाव आकार में भौगोलिक अक्षांश को ध्यान में रखता है', mr: 'यह भाव आकार में भौगोलिक अक्षांश को ध्यान में रखता है', ta: 'It accounts for geographic latitude in house sizes', te: 'It accounts for geographic latitude in house sizes', bn: 'It accounts for geographic latitude in house sizes', kn: 'It accounts for geographic latitude in house sizes', gu: 'It accounts for geographic latitude in house sizes' },
+      { en: 'It was invented more recently', hi: 'यह अधिक हाल में आविष्कृत हुआ', sa: 'यह अधिक हाल में आविष्कृत हुआ', mai: 'यह अधिक हाल में आविष्कृत हुआ', mr: 'यह अधिक हाल में आविष्कृत हुआ', ta: 'It was invented more recently', te: 'It was invented more recently', bn: 'It was invented more recently', kn: 'It was invented more recently', gu: 'It was invented more recently' },
+      { en: 'It uses tropical zodiac', hi: 'यह सायन राशिचक्र का उपयोग करता है', sa: 'यह सायन राशिचक्र का उपयोग करता है', mai: 'यह सायन राशिचक्र का उपयोग करता है', mr: 'यह सायन राशिचक्र का उपयोग करता है', ta: 'It uses tropical zodiac', te: 'It uses tropical zodiac', bn: 'It uses tropical zodiac', kn: 'It uses tropical zodiac', gu: 'It uses tropical zodiac' },
     ],
     correctAnswer: 1,
     explanation: {

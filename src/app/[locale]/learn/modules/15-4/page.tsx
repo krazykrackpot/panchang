@@ -5,17 +5,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_15_4', phase: 4, topic: 'Prashna & Advanced', moduleNumber: '15.4',
-  title: { en: 'Varshaphal (Annual Chart) & KP System', hi: 'वर्षफल (वार्षिक कुण्डली) एवं के.पी. पद्धति' },
+  title: { en: 'Varshaphal (Annual Chart) & KP System', hi: 'वर्षफल (वार्षिक कुण्डली) एवं के.पी. पद्धति', sa: 'वर्षफल (वार्षिक कुण्डली) एवं के.पी. पद्धति', mai: 'वर्षफल (वार्षिक कुण्डली) एवं के.पी. पद्धति', mr: 'वर्षफल (वार्षिक कुण्डली) एवं के.पी. पद्धति', ta: 'Varshaphal (Annual Chart) & KP System', te: 'Varshaphal (Annual Chart) & KP System', bn: 'Varshaphal (Annual Chart) & KP System', kn: 'Varshaphal (Annual Chart) & KP System', gu: 'Varshaphal (Annual Chart) & KP System' },
   subtitle: {
     en: 'Solar Return charts with Tajika yogas, and the Krishnamurti Paddhati sub-lord system',
     hi: 'ताजिक योगों सहित सौर प्रत्यावर्तन कुण्डली, और कृष्णमूर्ति पद्धति उप-स्वामी प्रणाली',
   },
   estimatedMinutes: 16,
   crossRefs: [
-    { label: { en: 'Module 15-1: Gemstones', hi: 'मॉड्यूल 15-1: रत्न' }, href: '/learn/modules/15-1' },
-    { label: { en: 'Module 15-3: Prashna Astrology', hi: 'मॉड्यूल 15-3: प्रश्न ज्योतिष' }, href: '/learn/modules/15-3' },
-    { label: { en: 'Varshaphal Tool', hi: 'वर्षफल टूल' }, href: '/varshaphal' },
-    { label: { en: 'KP System Tool', hi: 'के.पी. पद्धति टूल' }, href: '/kp-system' },
+    { label: { en: 'Module 15-1: Gemstones', hi: 'मॉड्यूल 15-1: रत्न', sa: 'मॉड्यूल 15-1: रत्न', mai: 'मॉड्यूल 15-1: रत्न', mr: 'मॉड्यूल 15-1: रत्न', ta: 'Module 15-1: Gemstones', te: 'Module 15-1: Gemstones', bn: 'Module 15-1: Gemstones', kn: 'Module 15-1: Gemstones', gu: 'Module 15-1: Gemstones' }, href: '/learn/modules/15-1' },
+    { label: { en: 'Module 15-3: Prashna Astrology', hi: 'मॉड्यूल 15-3: प्रश्न ज्योतिष', sa: 'मॉड्यूल 15-3: प्रश्न ज्योतिष', mai: 'मॉड्यूल 15-3: प्रश्न ज्योतिष', mr: 'मॉड्यूल 15-3: प्रश्न ज्योतिष', ta: 'Module 15-3: Prashna Astrology', te: 'Module 15-3: Prashna Astrology', bn: 'Module 15-3: Prashna Astrology', kn: 'Module 15-3: Prashna Astrology', gu: 'Module 15-3: Prashna Astrology' }, href: '/learn/modules/15-3' },
+    { label: { en: 'Varshaphal Tool', hi: 'वर्षफल टूल', sa: 'वर्षफल टूल', mai: 'वर्षफल टूल', mr: 'वर्षफल टूल', ta: 'Varshaphal Tool', te: 'Varshaphal Tool', bn: 'Varshaphal Tool', kn: 'Varshaphal Tool', gu: 'Varshaphal Tool' }, href: '/varshaphal' },
+    { label: { en: 'KP System Tool', hi: 'के.पी. पद्धति टूल', sa: 'के.पी. पद्धति टूल', mai: 'के.पी. पद्धति टूल', mr: 'के.पी. पद्धति टूल', ta: 'KP System Tool', te: 'KP System Tool', bn: 'KP System Tool', kn: 'KP System Tool', gu: 'KP System Tool' }, href: '/kp-system' },
   ],
 };
 
@@ -27,10 +27,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वर्षफल कुण्डली उस सटीक क्षण के लिए बनाई जाती है जब:',
     },
     options: [
-      { en: 'January 1st of each year begins', hi: 'प्रत्येक वर्ष 1 जनवरी आरम्भ होती है' },
-      { en: 'The Sun returns to its exact natal sidereal longitude each year', hi: 'सूर्य प्रत्येक वर्ष अपने सटीक जन्मकालीन निरयन देशान्तर पर लौटता है' },
-      { en: 'The Moon returns to its natal position', hi: 'चन्द्रमा अपनी जन्मकालीन स्थिति पर लौटता है' },
-      { en: 'The birthday falls on the calendar', hi: 'कैलेंडर पर जन्मदिन आता है' },
+      { en: 'January 1st of each year begins', hi: 'प्रत्येक वर्ष 1 जनवरी आरम्भ होती है', sa: 'प्रत्येक वर्ष 1 जनवरी आरम्भ होती है', mai: 'प्रत्येक वर्ष 1 जनवरी आरम्भ होती है', mr: 'प्रत्येक वर्ष 1 जनवरी आरम्भ होती है', ta: 'January 1st of each year begins', te: 'January 1st of each year begins', bn: 'January 1st of each year begins', kn: 'January 1st of each year begins', gu: 'January 1st of each year begins' },
+      { en: 'The Sun returns to its exact natal sidereal longitude each year', hi: 'सूर्य प्रत्येक वर्ष अपने सटीक जन्मकालीन निरयन देशान्तर पर लौटता है', sa: 'सूर्य प्रत्येक वर्ष अपने सटीक जन्मकालीन निरयन देशान्तर पर लौटता है', mai: 'सूर्य प्रत्येक वर्ष अपने सटीक जन्मकालीन निरयन देशान्तर पर लौटता है', mr: 'सूर्य प्रत्येक वर्ष अपने सटीक जन्मकालीन निरयन देशान्तर पर लौटता है', ta: 'The Sun returns to its exact natal sidereal longitude each year', te: 'The Sun returns to its exact natal sidereal longitude each year', bn: 'The Sun returns to its exact natal sidereal longitude each year', kn: 'The Sun returns to its exact natal sidereal longitude each year', gu: 'The Sun returns to its exact natal sidereal longitude each year' },
+      { en: 'The Moon returns to its natal position', hi: 'चन्द्रमा अपनी जन्मकालीन स्थिति पर लौटता है', sa: 'चन्द्रमा अपनी जन्मकालीन स्थिति पर लौटता है', mai: 'चन्द्रमा अपनी जन्मकालीन स्थिति पर लौटता है', mr: 'चन्द्रमा अपनी जन्मकालीन स्थिति पर लौटता है', ta: 'The Moon returns to its natal position', te: 'The Moon returns to its natal position', bn: 'The Moon returns to its natal position', kn: 'The Moon returns to its natal position', gu: 'The Moon returns to its natal position' },
+      { en: 'The birthday falls on the calendar', hi: 'कैलेंडर पर जन्मदिन आता है', sa: 'कैलेंडर पर जन्मदिन आता है', mai: 'कैलेंडर पर जन्मदिन आता है', mr: 'कैलेंडर पर जन्मदिन आता है', ta: 'The birthday falls on the calendar', te: 'The birthday falls on the calendar', bn: 'The birthday falls on the calendar', kn: 'The birthday falls on the calendar', gu: 'The birthday falls on the calendar' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -45,10 +45,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वर्षफल में ताजिक पद्धति का मूल कहाँ है?',
     },
     options: [
-      { en: 'Pure Vedic tradition from the Rigveda', hi: 'ऋग्वेद से शुद्ध वैदिक परम्परा' },
-      { en: 'Perso-Arabic astrological influences that were integrated into Indian astrology', hi: 'फ़ारसी-अरबी ज्योतिषीय प्रभाव जो भारतीय ज्योतिष में समाहित किए गए' },
-      { en: 'Chinese astrology', hi: 'चीनी ज्योतिष' },
-      { en: 'Greek Ptolemaic astrology only', hi: 'केवल यूनानी टोलेमिक ज्योतिष' },
+      { en: 'Pure Vedic tradition from the Rigveda', hi: 'ऋग्वेद से शुद्ध वैदिक परम्परा', sa: 'ऋग्वेद से शुद्ध वैदिक परम्परा', mai: 'ऋग्वेद से शुद्ध वैदिक परम्परा', mr: 'ऋग्वेद से शुद्ध वैदिक परम्परा', ta: 'Pure Vedic tradition from the Rigveda', te: 'Pure Vedic tradition from the Rigveda', bn: 'Pure Vedic tradition from the Rigveda', kn: 'Pure Vedic tradition from the Rigveda', gu: 'Pure Vedic tradition from the Rigveda' },
+      { en: 'Perso-Arabic astrological influences that were integrated into Indian astrology', hi: 'फ़ारसी-अरबी ज्योतिषीय प्रभाव जो भारतीय ज्योतिष में समाहित किए गए', sa: 'फ़ारसी-अरबी ज्योतिषीय प्रभाव जो भारतीय ज्योतिष में समाहित किए गए', mai: 'फ़ारसी-अरबी ज्योतिषीय प्रभाव जो भारतीय ज्योतिष में समाहित किए गए', mr: 'फ़ारसी-अरबी ज्योतिषीय प्रभाव जो भारतीय ज्योतिष में समाहित किए गए', ta: 'Perso-Arabic astrological influences that were integrated into Indian astrology', te: 'Perso-Arabic astrological influences that were integrated into Indian astrology', bn: 'Perso-Arabic astrological influences that were integrated into Indian astrology', kn: 'Perso-Arabic astrological influences that were integrated into Indian astrology', gu: 'Perso-Arabic astrological influences that were integrated into Indian astrology' },
+      { en: 'Chinese astrology', hi: 'चीनी ज्योतिष', sa: 'चीनी ज्योतिष', mai: 'चीनी ज्योतिष', mr: 'चीनी ज्योतिष', ta: 'Chinese astrology', te: 'Chinese astrology', bn: 'Chinese astrology', kn: 'Chinese astrology', gu: 'Chinese astrology' },
+      { en: 'Greek Ptolemaic astrology only', hi: 'केवल यूनानी टोलेमिक ज्योतिष', sa: 'केवल यूनानी टोलेमिक ज्योतिष', mai: 'केवल यूनानी टोलेमिक ज्योतिष', mr: 'केवल यूनानी टोलेमिक ज्योतिष', ta: 'Greek Ptolemaic astrology only', te: 'Greek Ptolemaic astrology only', bn: 'Greek Ptolemaic astrology only', kn: 'Greek Ptolemaic astrology only', gu: 'Greek Ptolemaic astrology only' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -75,10 +75,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ताजिक में इत्थसाल योग क्या दर्शाता है?',
     },
     options: [
-      { en: 'An event that was possible but has passed (separating aspect)', hi: 'एक घटना जो सम्भव थी परन्तु बीत गई (पृथक्करण दृष्टि)' },
-      { en: 'An event will happen — two planets are in applying aspect', hi: 'घटना होगी — दो ग्रह अनुप्रयुक्त दृष्टि में हैं' },
-      { en: 'Transfer of light between planets', hi: 'ग्रहों के बीच प्रकाश का हस्तान्तरण' },
-      { en: 'Prohibition of an event by a third planet', hi: 'तीसरे ग्रह द्वारा घटना का निषेध' },
+      { en: 'An event that was possible but has passed (separating aspect)', hi: 'एक घटना जो सम्भव थी परन्तु बीत गई (पृथक्करण दृष्टि)', sa: 'एक घटना जो सम्भव थी परन्तु बीत गई (पृथक्करण दृष्टि)', mai: 'एक घटना जो सम्भव थी परन्तु बीत गई (पृथक्करण दृष्टि)', mr: 'एक घटना जो सम्भव थी परन्तु बीत गई (पृथक्करण दृष्टि)', ta: 'An event that was possible but has passed (separating aspect)', te: 'An event that was possible but has passed (separating aspect)', bn: 'An event that was possible but has passed (separating aspect)', kn: 'An event that was possible but has passed (separating aspect)', gu: 'An event that was possible but has passed (separating aspect)' },
+      { en: 'An event will happen — two planets are in applying aspect', hi: 'घटना होगी — दो ग्रह अनुप्रयुक्त दृष्टि में हैं', sa: 'घटना होगी — दो ग्रह अनुप्रयुक्त दृष्टि में हैं', mai: 'घटना होगी — दो ग्रह अनुप्रयुक्त दृष्टि में हैं', mr: 'घटना होगी — दो ग्रह अनुप्रयुक्त दृष्टि में हैं', ta: 'An event will happen — two planets are in applying aspect', te: 'An event will happen — two planets are in applying aspect', bn: 'An event will happen — two planets are in applying aspect', kn: 'An event will happen — two planets are in applying aspect', gu: 'An event will happen — two planets are in applying aspect' },
+      { en: 'Transfer of light between planets', hi: 'ग्रहों के बीच प्रकाश का हस्तान्तरण', sa: 'ग्रहों के बीच प्रकाश का हस्तान्तरण', mai: 'ग्रहों के बीच प्रकाश का हस्तान्तरण', mr: 'ग्रहों के बीच प्रकाश का हस्तान्तरण', ta: 'Transfer of light between planets', te: 'Transfer of light between planets', bn: 'Transfer of light between planets', kn: 'Transfer of light between planets', gu: 'Transfer of light between planets' },
+      { en: 'Prohibition of an event by a third planet', hi: 'तीसरे ग्रह द्वारा घटना का निषेध', sa: 'तीसरे ग्रह द्वारा घटना का निषेध', mai: 'तीसरे ग्रह द्वारा घटना का निषेध', mr: 'तीसरे ग्रह द्वारा घटना का निषेध', ta: 'Prohibition of an event by a third planet', te: 'Prohibition of an event by a third planet', bn: 'Prohibition of an event by a third planet', kn: 'Prohibition of an event by a third planet', gu: 'Prohibition of an event by a third planet' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -93,10 +93,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'के.पी. (कृष्णमूर्ति पद्धति) में वैदिक समभाव पद्धति के स्थान पर कौन-सी भाव पद्धति प्रयुक्त होती है?',
     },
     options: [
-      { en: 'Whole sign houses', hi: 'सम्पूर्ण राशि भाव' },
-      { en: 'Placidus house system', hi: 'प्लेसिडस भाव पद्धति' },
-      { en: 'Koch house system', hi: 'कोख भाव पद्धति' },
-      { en: 'Campanus house system', hi: 'कैम्पनस भाव पद्धति' },
+      { en: 'Whole sign houses', hi: 'सम्पूर्ण राशि भाव', sa: 'सम्पूर्ण राशि भाव', mai: 'सम्पूर्ण राशि भाव', mr: 'सम्पूर्ण राशि भाव', ta: 'Whole sign houses', te: 'Whole sign houses', bn: 'Whole sign houses', kn: 'Whole sign houses', gu: 'Whole sign houses' },
+      { en: 'Placidus house system', hi: 'प्लेसिडस भाव पद्धति', sa: 'प्लेसिडस भाव पद्धति', mai: 'प्लेसिडस भाव पद्धति', mr: 'प्लेसिडस भाव पद्धति', ta: 'Placidus house system', te: 'Placidus house system', bn: 'Placidus house system', kn: 'Placidus house system', gu: 'Placidus house system' },
+      { en: 'Koch house system', hi: 'कोख भाव पद्धति', sa: 'कोख भाव पद्धति', mai: 'कोख भाव पद्धति', mr: 'कोख भाव पद्धति', ta: 'Koch house system', te: 'Koch house system', bn: 'Koch house system', kn: 'Koch house system', gu: 'Koch house system' },
+      { en: 'Campanus house system', hi: 'कैम्पनस भाव पद्धति', sa: 'कैम्पनस भाव पद्धति', mai: 'कैम्पनस भाव पद्धति', mr: 'कैम्पनस भाव पद्धति', ta: 'Campanus house system', te: 'Campanus house system', bn: 'Campanus house system', kn: 'Campanus house system', gu: 'Campanus house system' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -111,10 +111,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'के.पी. ज्योतिष में प्रत्येक भावमुख के तीन स्तरीय स्वामित्व होते हैं। वे कौन-से हैं?',
     },
     options: [
-      { en: 'Sun lord, Moon lord, Ascendant lord', hi: 'सूर्य स्वामी, चन्द्र स्वामी, लग्न स्वामी' },
-      { en: 'Sign Lord, Star Lord, and Sub Lord', hi: 'राशि स्वामी, नक्षत्र स्वामी और उप स्वामी' },
-      { en: 'Dasha lord, Bhukti lord, Antara lord', hi: 'दशा स्वामी, भुक्ति स्वामी, अन्तरा स्वामी' },
-      { en: 'Day lord, Hora lord, Yoga lord', hi: 'वार स्वामी, होरा स्वामी, योग स्वामी' },
+      { en: 'Sun lord, Moon lord, Ascendant lord', hi: 'सूर्य स्वामी, चन्द्र स्वामी, लग्न स्वामी', sa: 'सूर्य स्वामी, चन्द्र स्वामी, लग्न स्वामी', mai: 'सूर्य स्वामी, चन्द्र स्वामी, लग्न स्वामी', mr: 'सूर्य स्वामी, चन्द्र स्वामी, लग्न स्वामी', ta: 'Sun lord, Moon lord, Ascendant lord', te: 'Sun lord, Moon lord, Ascendant lord', bn: 'Sun lord, Moon lord, Ascendant lord', kn: 'Sun lord, Moon lord, Ascendant lord', gu: 'Sun lord, Moon lord, Ascendant lord' },
+      { en: 'Sign Lord, Star Lord, and Sub Lord', hi: 'राशि स्वामी, नक्षत्र स्वामी और उप स्वामी', sa: 'राशि स्वामी, नक्षत्र स्वामी और उप स्वामी', mai: 'राशि स्वामी, नक्षत्र स्वामी और उप स्वामी', mr: 'राशि स्वामी, नक्षत्र स्वामी और उप स्वामी', ta: 'Sign Lord, Star Lord, and Sub Lord', te: 'Sign Lord, Star Lord, and Sub Lord', bn: 'Sign Lord, Star Lord, and Sub Lord', kn: 'Sign Lord, Star Lord, and Sub Lord', gu: 'Sign Lord, Star Lord, and Sub Lord' },
+      { en: 'Dasha lord, Bhukti lord, Antara lord', hi: 'दशा स्वामी, भुक्ति स्वामी, अन्तरा स्वामी', sa: 'दशा स्वामी, भुक्ति स्वामी, अन्तरा स्वामी', mai: 'दशा स्वामी, भुक्ति स्वामी, अन्तरा स्वामी', mr: 'दशा स्वामी, भुक्ति स्वामी, अन्तरा स्वामी', ta: 'Dasha lord, Bhukti lord, Antara lord', te: 'Dasha lord, Bhukti lord, Antara lord', bn: 'Dasha lord, Bhukti lord, Antara lord', kn: 'Dasha lord, Bhukti lord, Antara lord', gu: 'Dasha lord, Bhukti lord, Antara lord' },
+      { en: 'Day lord, Hora lord, Yoga lord', hi: 'वार स्वामी, होरा स्वामी, योग स्वामी', sa: 'वार स्वामी, होरा स्वामी, योग स्वामी', mai: 'वार स्वामी, होरा स्वामी, योग स्वामी', mr: 'वार स्वामी, होरा स्वामी, योग स्वामी', ta: 'Day lord, Hora lord, Yoga lord', te: 'Day lord, Hora lord, Yoga lord', bn: 'Day lord, Hora lord, Yoga lord', kn: 'Day lord, Hora lord, Yoga lord', gu: 'Day lord, Hora lord, Yoga lord' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -141,10 +141,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वर्षफल में वर्षेश्वर (वर्ष स्वामी) क्या है?',
     },
     options: [
-      { en: 'The Sun, because Varshaphal is a Solar Return', hi: 'सूर्य, क्योंकि वर्षफल सौर प्रत्यावर्तन है' },
-      { en: 'The planet that rules the day of the week on which the solar return falls', hi: 'वह ग्रह जो सौर प्रत्यावर्तन वाले सप्ताह के दिन का स्वामी है' },
-      { en: 'Always Jupiter', hi: 'सदैव बृहस्पति' },
-      { en: 'The natal lagna lord', hi: 'जन्म लग्नेश' },
+      { en: 'The Sun, because Varshaphal is a Solar Return', hi: 'सूर्य, क्योंकि वर्षफल सौर प्रत्यावर्तन है', sa: 'सूर्य, क्योंकि वर्षफल सौर प्रत्यावर्तन है', mai: 'सूर्य, क्योंकि वर्षफल सौर प्रत्यावर्तन है', mr: 'सूर्य, क्योंकि वर्षफल सौर प्रत्यावर्तन है', ta: 'The Sun, because Varshaphal is a Solar Return', te: 'The Sun, because Varshaphal is a Solar Return', bn: 'The Sun, because Varshaphal is a Solar Return', kn: 'The Sun, because Varshaphal is a Solar Return', gu: 'The Sun, because Varshaphal is a Solar Return' },
+      { en: 'The planet that rules the day of the week on which the solar return falls', hi: 'वह ग्रह जो सौर प्रत्यावर्तन वाले सप्ताह के दिन का स्वामी है', sa: 'वह ग्रह जो सौर प्रत्यावर्तन वाले सप्ताह के दिन का स्वामी है', mai: 'वह ग्रह जो सौर प्रत्यावर्तन वाले सप्ताह के दिन का स्वामी है', mr: 'वह ग्रह जो सौर प्रत्यावर्तन वाले सप्ताह के दिन का स्वामी है', ta: 'The planet that rules the day of the week on which the solar return falls', te: 'The planet that rules the day of the week on which the solar return falls', bn: 'The planet that rules the day of the week on which the solar return falls', kn: 'The planet that rules the day of the week on which the solar return falls', gu: 'The planet that rules the day of the week on which the solar return falls' },
+      { en: 'Always Jupiter', hi: 'सदैव बृहस्पति', sa: 'सदैव बृहस्पति', mai: 'सदैव बृहस्पति', mr: 'सदैव बृहस्पति', ta: 'Always Jupiter', te: 'Always Jupiter', bn: 'Always Jupiter', kn: 'Always Jupiter', gu: 'Always Jupiter' },
+      { en: 'The natal lagna lord', hi: 'जन्म लग्नेश', sa: 'जन्म लग्नेश', mai: 'जन्म लग्नेश', mr: 'जन्म लग्नेश', ta: 'The natal lagna lord', te: 'The natal lagna lord', bn: 'The natal lagna lord', kn: 'The natal lagna lord', gu: 'The natal lagna lord' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -159,10 +159,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'के.पी. में "शासक ग्रह" (Ruling Planets) विधि का प्रयोग किसके लिए होता है?',
     },
     options: [
-      { en: 'Determining the birth chart only', hi: 'केवल जन्म कुण्डली निर्धारण' },
-      { en: 'Timing events — identifying when a signified event will actually manifest', hi: 'घटनाओं का समयनिर्धारण — पहचानना कि एक सूचित घटना वास्तव में कब प्रकट होगी' },
-      { en: 'Choosing gemstones', hi: 'रत्न चयन' },
-      { en: 'Calculating ayanamsa', hi: 'अयनांश गणना' },
+      { en: 'Determining the birth chart only', hi: 'केवल जन्म कुण्डली निर्धारण', sa: 'केवल जन्म कुण्डली निर्धारण', mai: 'केवल जन्म कुण्डली निर्धारण', mr: 'केवल जन्म कुण्डली निर्धारण', ta: 'Determining the birth chart only', te: 'Determining the birth chart only', bn: 'Determining the birth chart only', kn: 'Determining the birth chart only', gu: 'Determining the birth chart only' },
+      { en: 'Timing events — identifying when a signified event will actually manifest', hi: 'घटनाओं का समयनिर्धारण — पहचानना कि एक सूचित घटना वास्तव में कब प्रकट होगी', sa: 'घटनाओं का समयनिर्धारण — पहचानना कि एक सूचित घटना वास्तव में कब प्रकट होगी', mai: 'घटनाओं का समयनिर्धारण — पहचानना कि एक सूचित घटना वास्तव में कब प्रकट होगी', mr: 'घटनाओं का समयनिर्धारण — पहचानना कि एक सूचित घटना वास्तव में कब प्रकट होगी', ta: 'Timing events — identifying when a signified event will actually manifest', te: 'Timing events — identifying when a signified event will actually manifest', bn: 'Timing events — identifying when a signified event will actually manifest', kn: 'Timing events — identifying when a signified event will actually manifest', gu: 'Timing events — identifying when a signified event will actually manifest' },
+      { en: 'Choosing gemstones', hi: 'रत्न चयन', sa: 'रत्न चयन', mai: 'रत्न चयन', mr: 'रत्न चयन', ta: 'Choosing gemstones', te: 'Choosing gemstones', bn: 'Choosing gemstones', kn: 'Choosing gemstones', gu: 'Choosing gemstones' },
+      { en: 'Calculating ayanamsa', hi: 'अयनांश गणना', sa: 'अयनांश गणना', mai: 'अयनांश गणना', mr: 'अयनांश गणना', ta: 'Calculating ayanamsa', te: 'Calculating ayanamsa', bn: 'Calculating ayanamsa', kn: 'Calculating ayanamsa', gu: 'Calculating ayanamsa' },
     ],
     correctAnswer: 1,
     explanation: {

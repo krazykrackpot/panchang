@@ -6,17 +6,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_21_3', phase: 8, topic: 'Varshaphal', moduleNumber: '21.3',
-  title: { en: 'Mudda Dasha — Compressed Annual Dasha', hi: 'मुद्दा दशा — संकुचित वार्षिक दशा' },
+  title: { en: 'Mudda Dasha — Compressed Annual Dasha', hi: 'मुद्दा दशा — संकुचित वार्षिक दशा', sa: 'मुद्दा दशा — संकुचित वार्षिक दशा', mai: 'मुद्दा दशा — संकुचित वार्षिक दशा', mr: 'मुद्दा दशा — संकुचित वार्षिक दशा', ta: 'Mudda Dasha — Compressed Annual Dasha', te: 'Mudda Dasha — Compressed Annual Dasha', bn: 'Mudda Dasha — Compressed Annual Dasha', kn: 'Mudda Dasha — Compressed Annual Dasha', gu: 'Mudda Dasha — Compressed Annual Dasha' },
   subtitle: {
     en: 'Vimshottari dasha compressed into one year — the same planetary proportions scaled from 120 years to 365 days for month-level annual predictions',
     hi: 'विंशोत्तरी दशा को एक वर्ष में संकुचित किया गया — वही ग्रह अनुपात 120 वर्ष से 365 दिनों में मापित, मास-स्तरीय वार्षिक फलादेश हेतु',
   },
   estimatedMinutes: 13,
   crossRefs: [
-    { label: { en: 'Module 21-1: Tajika Aspects', hi: 'मॉड्यूल 21-1: ताजिक दृष्टि' }, href: '/learn/modules/21-1' },
-    { label: { en: 'Module 21-2: Sahams', hi: 'मॉड्यूल 21-2: सहम' }, href: '/learn/modules/21-2' },
-    { label: { en: 'Module 21-4: Tithi Pravesha', hi: 'मॉड्यूल 21-4: तिथि प्रवेश' }, href: '/learn/modules/21-4' },
-    { label: { en: 'Varshaphal Tool', hi: 'वर्षफल उपकरण' }, href: '/varshaphal' },
+    { label: { en: 'Module 21-1: Tajika Aspects', hi: 'मॉड्यूल 21-1: ताजिक दृष्टि', sa: 'मॉड्यूल 21-1: ताजिक दृष्टि', mai: 'मॉड्यूल 21-1: ताजिक दृष्टि', mr: 'मॉड्यूल 21-1: ताजिक दृष्टि', ta: 'Module 21-1: Tajika Aspects', te: 'Module 21-1: Tajika Aspects', bn: 'Module 21-1: Tajika Aspects', kn: 'Module 21-1: Tajika Aspects', gu: 'Module 21-1: Tajika Aspects' }, href: '/learn/modules/21-1' },
+    { label: { en: 'Module 21-2: Sahams', hi: 'मॉड्यूल 21-2: सहम', sa: 'मॉड्यूल 21-2: सहम', mai: 'मॉड्यूल 21-2: सहम', mr: 'मॉड्यूल 21-2: सहम', ta: 'Module 21-2: Sahams', te: 'Module 21-2: Sahams', bn: 'Module 21-2: Sahams', kn: 'Module 21-2: Sahams', gu: 'Module 21-2: Sahams' }, href: '/learn/modules/21-2' },
+    { label: { en: 'Module 21-4: Tithi Pravesha', hi: 'मॉड्यूल 21-4: तिथि प्रवेश', sa: 'मॉड्यूल 21-4: तिथि प्रवेश', mai: 'मॉड्यूल 21-4: तिथि प्रवेश', mr: 'मॉड्यूल 21-4: तिथि प्रवेश', ta: 'Module 21-4: Tithi Pravesha', te: 'Module 21-4: Tithi Pravesha', bn: 'Module 21-4: Tithi Pravesha', kn: 'Module 21-4: Tithi Pravesha', gu: 'Module 21-4: Tithi Pravesha' }, href: '/learn/modules/21-4' },
+    { label: { en: 'Varshaphal Tool', hi: 'वर्षफल उपकरण', sa: 'वर्षफल उपकरण', mai: 'वर्षफल उपकरण', mr: 'वर्षफल उपकरण', ta: 'Varshaphal Tool', te: 'Varshaphal Tool', bn: 'Varshaphal Tool', kn: 'Varshaphal Tool', gu: 'Varshaphal Tool' }, href: '/varshaphal' },
   ],
 };
 
@@ -28,10 +28,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मुद्दा दशा क्या है?',
     },
     options: [
-      { en: 'A new dasha system unrelated to Vimshottari', hi: 'विंशोत्तरी से असम्बन्धित एक नई दशा पद्धति' },
-      { en: 'Vimshottari dasha compressed into one year (365.25 days)', hi: 'विंशोत्तरी दशा को एक वर्ष (365.25 दिन) में संकुचित किया गया' },
+      { en: 'A new dasha system unrelated to Vimshottari', hi: 'विंशोत्तरी से असम्बन्धित एक नई दशा पद्धति', sa: 'विंशोत्तरी से असम्बन्धित एक नई दशा पद्धति', mai: 'विंशोत्तरी से असम्बन्धित एक नई दशा पद्धति', mr: 'विंशोत्तरी से असम्बन्धित एक नई दशा पद्धति', ta: 'A new dasha system unrelated to Vimshottari', te: 'A new dasha system unrelated to Vimshottari', bn: 'A new dasha system unrelated to Vimshottari', kn: 'A new dasha system unrelated to Vimshottari', gu: 'A new dasha system unrelated to Vimshottari' },
+      { en: 'Vimshottari dasha compressed into one year (365.25 days)', hi: 'विंशोत्तरी दशा को एक वर्ष (365.25 दिन) में संकुचित किया गया', sa: 'विंशोत्तरी दशा को एक वर्ष (365.25 दिन) में संकुचित किया गया', mai: 'विंशोत्तरी दशा को एक वर्ष (365.25 दिन) में संकुचित किया गया', mr: 'विंशोत्तरी दशा को एक वर्ष (365.25 दिन) में संकुचित किया गया', ta: 'Vimshottari dasha compressed into one year (365.25 days)', te: 'Vimshottari dasha compressed into one year (365.25 days)', bn: 'Vimshottari dasha compressed into one year (365.25 days)', kn: 'Vimshottari dasha compressed into one year (365.25 days)', gu: 'Vimshottari dasha compressed into one year (365.25 days)' },
       { en: 'A dasha based on the Sun\'s position only', hi: 'केवल सूर्य की स्थिति पर आधारित दशा' },
-      { en: 'A transit-based timing system', hi: 'गोचर-आधारित समय पद्धति' },
+      { en: 'A transit-based timing system', hi: 'गोचर-आधारित समय पद्धति', sa: 'गोचर-आधारित समय पद्धति', mai: 'गोचर-आधारित समय पद्धति', mr: 'गोचर-आधारित समय पद्धति', ta: 'A transit-based timing system', te: 'A transit-based timing system', bn: 'A transit-based timing system', kn: 'A transit-based timing system', gu: 'A transit-based timing system' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -46,10 +46,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सूर्य मुद्दा दशा कितने दिन चलती है?',
     },
     options: [
-      { en: 'About 6 days', hi: 'लगभग 6 दिन' },
-      { en: 'About 18.25 days', hi: 'लगभग 18.25 दिन' },
-      { en: 'About 30 days', hi: 'लगभग 30 दिन' },
-      { en: 'About 60 days', hi: 'लगभग 60 दिन' },
+      { en: 'About 6 days', hi: 'लगभग 6 दिन', sa: 'लगभग 6 दिन', mai: 'लगभग 6 दिन', mr: 'लगभग 6 दिन', ta: 'About 6 days', te: 'About 6 days', bn: 'About 6 days', kn: 'About 6 days', gu: 'About 6 days' },
+      { en: 'About 18.25 days', hi: 'लगभग 18.25 दिन', sa: 'लगभग 18.25 दिन', mai: 'लगभग 18.25 दिन', mr: 'लगभग 18.25 दिन', ta: 'About 18.25 days', te: 'About 18.25 days', bn: 'About 18.25 days', kn: 'About 18.25 days', gu: 'About 18.25 days' },
+      { en: 'About 30 days', hi: 'लगभग 30 दिन', sa: 'लगभग 30 दिन', mai: 'लगभग 30 दिन', mr: 'लगभग 30 दिन', ta: 'About 30 days', te: 'About 30 days', bn: 'About 30 days', kn: 'About 30 days', gu: 'About 30 days' },
+      { en: 'About 60 days', hi: 'लगभग 60 दिन', sa: 'लगभग 60 दिन', mai: 'लगभग 60 दिन', mr: 'लगभग 60 दिन', ta: 'About 60 days', te: 'About 60 days', bn: 'About 60 days', kn: 'About 60 days', gu: 'About 60 days' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -64,10 +64,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किस ग्रह की मुद्दा दशा अवधि सबसे लम्बी है?',
     },
     options: [
-      { en: 'Saturn (about 57.8 days)', hi: 'शनि (लगभग 57.8 दिन)' },
-      { en: 'Venus (about 60.9 days)', hi: 'शुक्र (लगभग 60.9 दिन)' },
-      { en: 'Rahu (about 54.8 days)', hi: 'राहु (लगभग 54.8 दिन)' },
-      { en: 'Jupiter (about 48.7 days)', hi: 'गुरु (लगभग 48.7 दिन)' },
+      { en: 'Saturn (about 57.8 days)', hi: 'शनि (लगभग 57.8 दिन)', sa: 'शनि (लगभग 57.8 दिन)', mai: 'शनि (लगभग 57.8 दिन)', mr: 'शनि (लगभग 57.8 दिन)', ta: 'Saturn (about 57.8 days)', te: 'Saturn (about 57.8 days)', bn: 'Saturn (about 57.8 days)', kn: 'Saturn (about 57.8 days)', gu: 'Saturn (about 57.8 days)' },
+      { en: 'Venus (about 60.9 days)', hi: 'शुक्र (लगभग 60.9 दिन)', sa: 'शुक्र (लगभग 60.9 दिन)', mai: 'शुक्र (लगभग 60.9 दिन)', mr: 'शुक्र (लगभग 60.9 दिन)', ta: 'Venus (about 60.9 days)', te: 'Venus (about 60.9 days)', bn: 'Venus (about 60.9 days)', kn: 'Venus (about 60.9 days)', gu: 'Venus (about 60.9 days)' },
+      { en: 'Rahu (about 54.8 days)', hi: 'राहु (लगभग 54.8 दिन)', sa: 'राहु (लगभग 54.8 दिन)', mai: 'राहु (लगभग 54.8 दिन)', mr: 'राहु (लगभग 54.8 दिन)', ta: 'Rahu (about 54.8 days)', te: 'Rahu (about 54.8 days)', bn: 'Rahu (about 54.8 days)', kn: 'Rahu (about 54.8 days)', gu: 'Rahu (about 54.8 days)' },
+      { en: 'Jupiter (about 48.7 days)', hi: 'गुरु (लगभग 48.7 दिन)', sa: 'गुरु (लगभग 48.7 दिन)', mai: 'गुरु (लगभग 48.7 दिन)', mr: 'गुरु (लगभग 48.7 दिन)', ta: 'Jupiter (about 48.7 days)', te: 'Jupiter (about 48.7 days)', bn: 'Jupiter (about 48.7 days)', kn: 'Jupiter (about 48.7 days)', gu: 'Jupiter (about 48.7 days)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -94,10 +94,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'यदि वर्षफल लग्न 25 अंश कर्क (आश्लेषा नक्षत्र) पर है, तो किस ग्रह की मुद्दा दशा पहले आरम्भ होती है?',
     },
     options: [
-      { en: 'Moon (Cancer lord)', hi: 'चन्द्र (कर्क स्वामी)' },
-      { en: 'Mercury (Ashlesha lord)', hi: 'बुध (आश्लेषा स्वामी)' },
+      { en: 'Moon (Cancer lord)', hi: 'चन्द्र (कर्क स्वामी)', sa: 'चन्द्र (कर्क स्वामी)', mai: 'चन्द्र (कर्क स्वामी)', mr: 'चन्द्र (कर्क स्वामी)', ta: 'Moon (Cancer lord)', te: 'Moon (Cancer lord)', bn: 'Moon (Cancer lord)', kn: 'Moon (Cancer lord)', gu: 'Moon (Cancer lord)' },
+      { en: 'Mercury (Ashlesha lord)', hi: 'बुध (आश्लेषा स्वामी)', sa: 'बुध (आश्लेषा स्वामी)', mai: 'बुध (आश्लेषा स्वामी)', mr: 'बुध (आश्लेषा स्वामी)', ta: 'Mercury (Ashlesha lord)', te: 'Mercury (Ashlesha lord)', bn: 'Mercury (Ashlesha lord)', kn: 'Mercury (Ashlesha lord)', gu: 'Mercury (Ashlesha lord)' },
       { en: 'Ketu (Ashlesha\'s Vimshottari ruler)', hi: 'केतु (आश्लेषा का विंशोत्तरी शासक)' },
-      { en: 'Jupiter (natural benefic)', hi: 'गुरु (प्राकृतिक शुभ)' },
+      { en: 'Jupiter (natural benefic)', hi: 'गुरु (प्राकृतिक शुभ)', sa: 'गुरु (प्राकृतिक शुभ)', mai: 'गुरु (प्राकृतिक शुभ)', mr: 'गुरु (प्राकृतिक शुभ)', ta: 'Jupiter (natural benefic)', te: 'Jupiter (natural benefic)', bn: 'Jupiter (natural benefic)', kn: 'Jupiter (natural benefic)', gu: 'Jupiter (natural benefic)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -114,7 +114,7 @@ const QUESTIONS: ModuleQuestion[] = [
     options: [
       { en: 'From the Moon\'s position in the nakshatra', hi: 'नक्षत्र में चन्द्रमा की स्थिति से' },
       { en: 'From the Varshaphal lagna\'s position within its nakshatra', hi: 'वर्षफल लग्न की उसके नक्षत्र के भीतर स्थिति से' },
-      { en: 'Always starts at zero balance', hi: 'सदैव शून्य शेष से आरम्भ' },
+      { en: 'Always starts at zero balance', hi: 'सदैव शून्य शेष से आरम्भ', sa: 'सदैव शून्य शेष से आरम्भ', mai: 'सदैव शून्य शेष से आरम्भ', mr: 'सदैव शून्य शेष से आरम्भ', ta: 'Always starts at zero balance', te: 'Always starts at zero balance', bn: 'Always starts at zero balance', kn: 'Always starts at zero balance', gu: 'Always starts at zero balance' },
       { en: 'From the Sun\'s position at solar return', hi: 'सौर प्रत्यावर्तन पर सूर्य की स्थिति से' },
     ],
     correctAnswer: 1,
@@ -142,10 +142,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मंगल मुद्दा दशा कितने दिन चलती है?',
     },
     options: [
-      { en: 'About 7 days', hi: 'लगभग 7 दिन' },
-      { en: 'About 14 days', hi: 'लगभग 14 दिन' },
-      { en: 'About 21.3 days', hi: 'लगभग 21.3 दिन' },
-      { en: 'About 30 days', hi: 'लगभग 30 दिन' },
+      { en: 'About 7 days', hi: 'लगभग 7 दिन', sa: 'लगभग 7 दिन', mai: 'लगभग 7 दिन', mr: 'लगभग 7 दिन', ta: 'About 7 days', te: 'About 7 days', bn: 'About 7 days', kn: 'About 7 days', gu: 'About 7 days' },
+      { en: 'About 14 days', hi: 'लगभग 14 दिन', sa: 'लगभग 14 दिन', mai: 'लगभग 14 दिन', mr: 'लगभग 14 दिन', ta: 'About 14 days', te: 'About 14 days', bn: 'About 14 days', kn: 'About 14 days', gu: 'About 14 days' },
+      { en: 'About 21.3 days', hi: 'लगभग 21.3 दिन', sa: 'लगभग 21.3 दिन', mai: 'लगभग 21.3 दिन', mr: 'लगभग 21.3 दिन', ta: 'About 21.3 days', te: 'About 21.3 days', bn: 'About 21.3 days', kn: 'About 21.3 days', gu: 'About 21.3 days' },
+      { en: 'About 30 days', hi: 'लगभग 30 दिन', sa: 'लगभग 30 दिन', mai: 'लगभग 30 दिन', mr: 'लगभग 30 दिन', ta: 'About 30 days', te: 'About 30 days', bn: 'About 30 days', kn: 'About 30 days', gu: 'About 30 days' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -160,10 +160,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विवाह भविष्यवाणी के अभिसारी प्रमाणीकरण के लिए, मुद्दा दशा को किससे क्रॉस-चेक करना चाहिए?',
     },
     options: [
-      { en: 'Only the transit chart', hi: 'केवल गोचर कुण्डली' },
-      { en: 'The natal Vimshottari dasha', hi: 'जन्म विंशोत्तरी दशा' },
-      { en: 'The lunar calendar', hi: 'चान्द्र पंचांग' },
-      { en: 'The D-9 Navamsha only', hi: 'केवल D-9 नवांश' },
+      { en: 'Only the transit chart', hi: 'केवल गोचर कुण्डली', sa: 'केवल गोचर कुण्डली', mai: 'केवल गोचर कुण्डली', mr: 'केवल गोचर कुण्डली', ta: 'Only the transit chart', te: 'Only the transit chart', bn: 'Only the transit chart', kn: 'Only the transit chart', gu: 'Only the transit chart' },
+      { en: 'The natal Vimshottari dasha', hi: 'जन्म विंशोत्तरी दशा', sa: 'जन्म विंशोत्तरी दशा', mai: 'जन्म विंशोत्तरी दशा', mr: 'जन्म विंशोत्तरी दशा', ta: 'The natal Vimshottari dasha', te: 'The natal Vimshottari dasha', bn: 'The natal Vimshottari dasha', kn: 'The natal Vimshottari dasha', gu: 'The natal Vimshottari dasha' },
+      { en: 'The lunar calendar', hi: 'चान्द्र पंचांग', sa: 'चान्द्र पंचांग', mai: 'चान्द्र पंचांग', mr: 'चान्द्र पंचांग', ta: 'The lunar calendar', te: 'The lunar calendar', bn: 'The lunar calendar', kn: 'The lunar calendar', gu: 'The lunar calendar' },
+      { en: 'The D-9 Navamsha only', hi: 'केवल D-9 नवांश', sa: 'केवल D-9 नवांश', mai: 'केवल D-9 नवांश', mr: 'केवल D-9 नवांश', ta: 'The D-9 Navamsha only', te: 'The D-9 Navamsha only', bn: 'The D-9 Navamsha only', kn: 'The D-9 Navamsha only', gu: 'The D-9 Navamsha only' },
     ],
     correctAnswer: 1,
     explanation: {

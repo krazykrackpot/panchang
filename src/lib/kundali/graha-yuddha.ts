@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 // graha-yuddha.ts — Planetary War (Graha Yuddha) Analysis
 // Source: BPHS Ch. 3, Brihat Jataka
 // Two planets within 1° of each other engage in war.
@@ -6,18 +7,18 @@
 
 export interface GrahaYuddhaResult {
   planet1Id: number;
-  planet1Name: { en: string; hi: string; sa: string };
+  planet1Name: LocaleText;
   planet2Id: number;
-  planet2Name: { en: string; hi: string; sa: string };
+  planet2Name: LocaleText;
   separation: number;          // degrees
   winnerId: number;
-  winnerName: { en: string; hi: string; sa: string };
+  winnerName: LocaleText;
   loserId: number;
-  loserName: { en: string; hi: string; sa: string };
-  interpretation: { en: string; hi: string; sa: string };
+  loserName: LocaleText;
+  interpretation: LocaleText;
 }
 
-const PLANET_NAMES: { en: string; hi: string; sa: string }[] = [
+const PLANET_NAMES: LocaleText[] = [
   { en: 'Sun',     hi: 'सूर्य',      sa: 'सूर्यः'      },
   { en: 'Moon',    hi: 'चन्द्र',     sa: 'चन्द्रः'     },
   { en: 'Mars',    hi: 'मंगल',       sa: 'मङ्गलः'      },
@@ -28,12 +29,12 @@ const PLANET_NAMES: { en: string; hi: string; sa: string }[] = [
 ];
 
 // Domain themes for each planet (what they govern)
-const PLANET_DOMAINS: Record<number, { en: string; hi: string }> = {
-  2: { en: 'energy, courage, and physical vitality',          hi: 'ऊर्जा, साहस और शारीरिक शक्ति' },
-  3: { en: 'intellect, communication, and business acumen',   hi: 'बुद्धि, संचार और व्यापार कुशलता' },
-  4: { en: 'wisdom, higher learning, and spiritual guidance', hi: 'ज्ञान, उच्च शिक्षा और आध्यात्मिक मार्गदर्शन' },
-  5: { en: 'love, luxury, creativity, and relationships',     hi: 'प्रेम, विलासिता, रचनात्मकता और संबंध' },
-  6: { en: 'discipline, karma, patience, and perseverance',   hi: 'अनुशासन, कर्म, धैर्य और दृढ़ता' },
+const PLANET_DOMAINS: Record<number, LocaleText> = {
+  2: { en: 'energy, courage, and physical vitality', hi: 'ऊर्जा, साहस और शारीरिक शक्ति', sa: 'ऊर्जा, साहस और शारीरिक शक्ति', mai: 'ऊर्जा, साहस और शारीरिक शक्ति', mr: 'ऊर्जा, साहस और शारीरिक शक्ति', ta: 'energy, courage, and physical vitality', te: 'energy, courage, and physical vitality', bn: 'energy, courage, and physical vitality', kn: 'energy, courage, and physical vitality', gu: 'energy, courage, and physical vitality' },
+  3: { en: 'intellect, communication, and business acumen', hi: 'बुद्धि, संचार और व्यापार कुशलता', sa: 'बुद्धि, संचार और व्यापार कुशलता', mai: 'बुद्धि, संचार और व्यापार कुशलता', mr: 'बुद्धि, संचार और व्यापार कुशलता', ta: 'intellect, communication, and business acumen', te: 'intellect, communication, and business acumen', bn: 'intellect, communication, and business acumen', kn: 'intellect, communication, and business acumen', gu: 'intellect, communication, and business acumen' },
+  4: { en: 'wisdom, higher learning, and spiritual guidance', hi: 'ज्ञान, उच्च शिक्षा और आध्यात्मिक मार्गदर्शन', sa: 'ज्ञान, उच्च शिक्षा और आध्यात्मिक मार्गदर्शन', mai: 'ज्ञान, उच्च शिक्षा और आध्यात्मिक मार्गदर्शन', mr: 'ज्ञान, उच्च शिक्षा और आध्यात्मिक मार्गदर्शन', ta: 'wisdom, higher learning, and spiritual guidance', te: 'wisdom, higher learning, and spiritual guidance', bn: 'wisdom, higher learning, and spiritual guidance', kn: 'wisdom, higher learning, and spiritual guidance', gu: 'wisdom, higher learning, and spiritual guidance' },
+  5: { en: 'love, luxury, creativity, and relationships', hi: 'प्रेम, विलासिता, रचनात्मकता और संबंध', sa: 'प्रेम, विलासिता, रचनात्मकता और संबंध', mai: 'प्रेम, विलासिता, रचनात्मकता और संबंध', mr: 'प्रेम, विलासिता, रचनात्मकता और संबंध', ta: 'love, luxury, creativity, and relationships', te: 'love, luxury, creativity, and relationships', bn: 'love, luxury, creativity, and relationships', kn: 'love, luxury, creativity, and relationships', gu: 'love, luxury, creativity, and relationships' },
+  6: { en: 'discipline, karma, patience, and perseverance', hi: 'अनुशासन, कर्म, धैर्य और दृढ़ता', sa: 'अनुशासन, कर्म, धैर्य और दृढ़ता', mai: 'अनुशासन, कर्म, धैर्य और दृढ़ता', mr: 'अनुशासन, कर्म, धैर्य और दृढ़ता', ta: 'discipline, karma, patience, and perseverance', te: 'discipline, karma, patience, and perseverance', bn: 'discipline, karma, patience, and perseverance', kn: 'discipline, karma, patience, and perseverance', gu: 'discipline, karma, patience, and perseverance' },
 };
 
 // Planets eligible for war (not Sun, Moon, Rahu, Ketu)

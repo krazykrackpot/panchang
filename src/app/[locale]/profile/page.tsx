@@ -1,5 +1,7 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
+
 import { useState, useEffect, useCallback } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,11 +12,11 @@ import ChartNorth from '@/components/kundali/ChartNorth';
 import ChartSouth from '@/components/kundali/ChartSouth';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { NakshatraIconById } from '@/components/icons/NakshatraIcons';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import type { ChartData } from '@/types/kundali';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-interface Trilingual { en: string; hi: string; sa: string }
+type Trilingual = LocaleText;
 
 interface SnapshotData {
   ascendant_sign: number;
@@ -29,24 +31,24 @@ interface SnapshotData {
     overallIntensity: number;
     cycleStart: string;
     cycleEnd: string;
-    interpretation?: { summary?: Trilingual };
+    interpretation?: { summary?: LocaleText };
   } | null;
-  moonRashiName: Trilingual | null;
-  sunRashiName: Trilingual | null;
-  lagnaRashiName: Trilingual | null;
-  moonNakshatraName: Trilingual | null;
-  moonNakshatraRuler: Trilingual | null;
+  moonRashiName: LocaleText | null;
+  sunRashiName: LocaleText | null;
+  lagnaRashiName: LocaleText | null;
+  moonNakshatraName: LocaleText | null;
+  moonNakshatraRuler: LocaleText | null;
   currentDasha: {
-    maha: { planet: string; planetName: Trilingual; startDate: string; endDate: string };
-    antar: { planet: string; planetName: Trilingual; startDate: string; endDate: string } | null;
+    maha: { planet: string; planetName: LocaleText; startDate: string; endDate: string };
+    antar: { planet: string; planetName: LocaleText; startDate: string; endDate: string } | null;
   } | null;
   computed_at: string;
 }
 
 interface BirthPanchang {
-  tithi: { number: number; name: Trilingual; paksha: string };
-  yoga: { number: number; name: Trilingual; meaning: Trilingual };
-  masa: { index: number; name: Trilingual };
+  tithi: { number: number; name: LocaleText; paksha: string };
+  yoga: { number: number; name: LocaleText; meaning: LocaleText };
+  masa: { index: number; name: LocaleText };
 }
 
 interface ProfileInfo {
@@ -174,7 +176,7 @@ const L = {
 
 export default function ProfilePage() {
   const locale = useLocale() as Locale;
-  const T = L[locale] || L.en;
+  const T = (L as Record<string, typeof L.en>)[locale] || L.en;
   const { user, initialized } = useAuthStore();
 
   const [loading, setLoading] = useState(true);

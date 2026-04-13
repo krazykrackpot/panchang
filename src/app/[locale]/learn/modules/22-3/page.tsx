@@ -5,16 +5,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_22_3', phase: 9, topic: 'Astronomy', moduleNumber: '22.3',
-  title: { en: 'Finding the Moon — 60 Sine Terms', hi: 'चन्द्रमा की खोज — 60 ज्या पद' },
+  title: { en: 'Finding the Moon — 60 Sine Terms', hi: 'चन्द्रमा की खोज — 60 ज्या पद', sa: 'चन्द्रमा की खोज — 60 ज्या पद', mai: 'चन्द्रमा की खोज — 60 ज्या पद', mr: 'चन्द्रमा की खोज — 60 ज्या पद', ta: 'Finding the Moon — 60 Sine Terms', te: 'Finding the Moon — 60 Sine Terms', bn: 'Finding the Moon — 60 Sine Terms', kn: 'Finding the Moon — 60 Sine Terms', gu: 'Finding the Moon — 60 Sine Terms' },
   subtitle: {
     en: 'Why the Moon is the hardest object to track, and how five fundamental arguments and 60 correction terms give us its position',
     hi: 'चन्द्रमा सबसे कठिन पिण्ड क्यों है ट्रैक करने में, और पाँच मूलभूत तर्क तथा 60 सुधार पद इसकी स्थिति कैसे देते हैं',
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Module 22-1: Julian Day', hi: 'मॉड्यूल 22-1: जूलियन दिवस' }, href: '/learn/modules/22-1' },
-    { label: { en: 'Module 22-2: Finding the Sun', hi: 'मॉड्यूल 22-2: सूर्य की स्थिति' }, href: '/learn/modules/22-2' },
-    { label: { en: 'Module 22-5: Moonrise', hi: 'मॉड्यूल 22-5: चन्द्रोदय' }, href: '/learn/modules/22-5' },
+    { label: { en: 'Module 22-1: Julian Day', hi: 'मॉड्यूल 22-1: जूलियन दिवस', sa: 'मॉड्यूल 22-1: जूलियन दिवस', mai: 'मॉड्यूल 22-1: जूलियन दिवस', mr: 'मॉड्यूल 22-1: जूलियन दिवस', ta: 'Module 22-1: Julian Day', te: 'Module 22-1: Julian Day', bn: 'Module 22-1: Julian Day', kn: 'Module 22-1: Julian Day', gu: 'Module 22-1: Julian Day' }, href: '/learn/modules/22-1' },
+    { label: { en: 'Module 22-2: Finding the Sun', hi: 'मॉड्यूल 22-2: सूर्य की स्थिति', sa: 'मॉड्यूल 22-2: सूर्य की स्थिति', mai: 'मॉड्यूल 22-2: सूर्य की स्थिति', mr: 'मॉड्यूल 22-2: सूर्य की स्थिति', ta: 'Module 22-2: Finding the Sun', te: 'Module 22-2: Finding the Sun', bn: 'Module 22-2: Finding the Sun', kn: 'Module 22-2: Finding the Sun', gu: 'Module 22-2: Finding the Sun' }, href: '/learn/modules/22-2' },
+    { label: { en: 'Module 22-5: Moonrise', hi: 'मॉड्यूल 22-5: चन्द्रोदय', sa: 'मॉड्यूल 22-5: चन्द्रोदय', mai: 'मॉड्यूल 22-5: चन्द्रोदय', mr: 'मॉड्यूल 22-5: चन्द्रोदय', ta: 'Module 22-5: Moonrise', te: 'Module 22-5: Moonrise', bn: 'Module 22-5: Moonrise', kn: 'Module 22-5: Moonrise', gu: 'Module 22-5: Moonrise' }, href: '/learn/modules/22-5' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्रमा की स्थिति की गणना सूर्य से बहुत कठिन क्यों है?',
     },
     options: [
-      { en: 'The Moon is farther away than the Sun', hi: 'चन्द्रमा सूर्य से दूर है' },
+      { en: 'The Moon is farther away than the Sun', hi: 'चन्द्रमा सूर्य से दूर है', sa: 'चन्द्रमा सूर्य से दूर है', mai: 'चन्द्रमा सूर्य से दूर है', mr: 'चन्द्रमा सूर्य से दूर है', ta: 'The Moon is farther away than the Sun', te: 'The Moon is farther away than the Sun', bn: 'The Moon is farther away than the Sun', kn: 'The Moon is farther away than the Sun', gu: 'The Moon is farther away than the Sun' },
       { en: 'The Moon is close, fast-moving, and strongly perturbed by the Sun\'s gravity', hi: 'चन्द्रमा निकट, तेज़ गतिमान और सूर्य के गुरुत्वाकर्षण से प्रबल रूप से विक्षुब्ध है' },
-      { en: 'The Moon has an atmosphere that distorts observations', hi: 'चन्द्रमा का वायुमण्डल प्रेक्षणों को विकृत करता है' },
-      { en: 'The Moon changes shape each month', hi: 'चन्द्रमा प्रतिमास आकार बदलता है' },
+      { en: 'The Moon has an atmosphere that distorts observations', hi: 'चन्द्रमा का वायुमण्डल प्रेक्षणों को विकृत करता है', sa: 'चन्द्रमा का वायुमण्डल प्रेक्षणों को विकृत करता है', mai: 'चन्द्रमा का वायुमण्डल प्रेक्षणों को विकृत करता है', mr: 'चन्द्रमा का वायुमण्डल प्रेक्षणों को विकृत करता है', ta: 'The Moon has an atmosphere that distorts observations', te: 'The Moon has an atmosphere that distorts observations', bn: 'The Moon has an atmosphere that distorts observations', kn: 'The Moon has an atmosphere that distorts observations', gu: 'The Moon has an atmosphere that distorts observations' },
+      { en: 'The Moon changes shape each month', hi: 'चन्द्रमा प्रतिमास आकार बदलता है', sa: 'चन्द्रमा प्रतिमास आकार बदलता है', mai: 'चन्द्रमा प्रतिमास आकार बदलता है', mr: 'चन्द्रमा प्रतिमास आकार बदलता है', ta: 'The Moon changes shape each month', te: 'The Moon changes shape each month', bn: 'The Moon changes shape each month', kn: 'The Moon changes shape each month', gu: 'The Moon changes shape each month' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -44,10 +44,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्र स्थिति गणना में प्रयुक्त पाँच मूलभूत तर्क कौन-से हैं?',
     },
     options: [
-      { en: 'L₀, M, C, Ω, ε', hi: 'L₀, M, C, Ω, ε' },
+      { en: 'L₀, M, C, Ω, ε', hi: 'L₀, M, C, Ω, ε', sa: 'L₀, M, C, Ω, ε', mai: 'L₀, M, C, Ω, ε', mr: 'L₀, M, C, Ω, ε', ta: 'L₀, M, C, Ω, ε', te: 'L₀, M, C, Ω, ε', bn: 'L₀, M, C, Ω, ε', kn: 'L₀, M, C, Ω, ε', gu: 'L₀, M, C, Ω, ε' },
       { en: 'L\', D, M, M\', F', hi: 'L\', D, M, M\', F' },
-      { en: 'α, δ, H, φ, λ', hi: 'α, δ, H, φ, λ' },
-      { en: 'T, JD, UT, TT, TAI', hi: 'T, JD, UT, TT, TAI' },
+      { en: 'α, δ, H, φ, λ', hi: 'α, δ, H, φ, λ', sa: 'α, δ, H, φ, λ', mai: 'α, δ, H, φ, λ', mr: 'α, δ, H, φ, λ', ta: 'α, δ, H, φ, λ', te: 'α, δ, H, φ, λ', bn: 'α, δ, H, φ, λ', kn: 'α, δ, H, φ, λ', gu: 'α, δ, H, φ, λ' },
+      { en: 'T, JD, UT, TT, TAI', hi: 'T, JD, UT, TT, TAI', sa: 'T, JD, UT, TT, TAI', mai: 'T, JD, UT, TT, TAI', mr: 'T, JD, UT, TT, TAI', ta: 'T, JD, UT, TT, TAI', te: 'T, JD, UT, TT, TAI', bn: 'T, JD, UT, TT, TAI', kn: 'T, JD, UT, TT, TAI', gu: 'T, JD, UT, TT, TAI' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -62,10 +62,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्र भोगांश का सबसे बड़ा सुधार पद (+6.289° × sin(M\')) कहलाता है:',
     },
     options: [
-      { en: 'Evection', hi: 'उपवर्तन (इवेक्शन)' },
-      { en: 'The main inequality (equation of center)', hi: 'मुख्य असमता (केन्द्र समीकरण)' },
-      { en: 'Variation', hi: 'विचरण (वेरिएशन)' },
-      { en: 'Annual inequality', hi: 'वार्षिक असमता' },
+      { en: 'Evection', hi: 'उपवर्तन (इवेक्शन)', sa: 'उपवर्तन (इवेक्शन)', mai: 'उपवर्तन (इवेक्शन)', mr: 'उपवर्तन (इवेक्शन)', ta: 'Evection', te: 'Evection', bn: 'Evection', kn: 'Evection', gu: 'Evection' },
+      { en: 'The main inequality (equation of center)', hi: 'मुख्य असमता (केन्द्र समीकरण)', sa: 'मुख्य असमता (केन्द्र समीकरण)', mai: 'मुख्य असमता (केन्द्र समीकरण)', mr: 'मुख्य असमता (केन्द्र समीकरण)', ta: 'The main inequality (equation of center)', te: 'The main inequality (equation of center)', bn: 'The main inequality (equation of center)', kn: 'The main inequality (equation of center)', gu: 'The main inequality (equation of center)' },
+      { en: 'Variation', hi: 'विचरण (वेरिएशन)', sa: 'विचरण (वेरिएशन)', mai: 'विचरण (वेरिएशन)', mr: 'विचरण (वेरिएशन)', ta: 'Variation', te: 'Variation', bn: 'Variation', kn: 'Variation', gu: 'Variation' },
+      { en: 'Annual inequality', hi: 'वार्षिक असमता', sa: 'वार्षिक असमता', mai: 'वार्षिक असमता', mr: 'वार्षिक असमता', ta: 'Annual inequality', te: 'Annual inequality', bn: 'Annual inequality', kn: 'Annual inequality', gu: 'Annual inequality' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -83,7 +83,7 @@ const QUESTIONS: ModuleQuestion[] = [
       { en: 'Jupiter\'s gravitational pull on the Moon', hi: 'बृहस्पति का चन्द्रमा पर गुरुत्वाकर्षण' },
       { en: 'The Sun\'s gravity modulating the Moon\'s orbital eccentricity', hi: 'सूर्य का गुरुत्वाकर्षण चन्द्र कक्षा की उत्केन्द्रता को नियन्त्रित करता है' },
       { en: 'Earth\'s oblateness', hi: 'पृथ्वी की चपटाई' },
-      { en: 'Tidal friction', hi: 'ज्वारीय घर्षण' },
+      { en: 'Tidal friction', hi: 'ज्वारीय घर्षण', sa: 'ज्वारीय घर्षण', mai: 'ज्वारीय घर्षण', mr: 'ज्वारीय घर्षण', ta: 'Tidal friction', te: 'Tidal friction', bn: 'Tidal friction', kn: 'Tidal friction', gu: 'Tidal friction' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -110,10 +110,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्रमा प्रतिदिन क्रान्तिवृत्त पर कितना चलता है?',
     },
     options: [
-      { en: '~1°/day', hi: '~1°/दिन' },
-      { en: '~5°/day', hi: '~5°/दिन' },
-      { en: '~13.2°/day', hi: '~13.2°/दिन' },
-      { en: '~30°/day', hi: '~30°/दिन' },
+      { en: '~1°/day', hi: '~1°/दिन', sa: '~1°/दिन', mai: '~1°/दिन', mr: '~1°/दिन', ta: '~1°/day', te: '~1°/day', bn: '~1°/day', kn: '~1°/day', gu: '~1°/day' },
+      { en: '~5°/day', hi: '~5°/दिन', sa: '~5°/दिन', mai: '~5°/दिन', mr: '~5°/दिन', ta: '~5°/day', te: '~5°/day', bn: '~5°/day', kn: '~5°/day', gu: '~5°/day' },
+      { en: '~13.2°/day', hi: '~13.2°/दिन', sa: '~13.2°/दिन', mai: '~13.2°/दिन', mr: '~13.2°/दिन', ta: '~13.2°/day', te: '~13.2°/day', bn: '~13.2°/day', kn: '~13.2°/day', gu: '~13.2°/day' },
+      { en: '~30°/day', hi: '~30°/दिन', sa: '~30°/दिन', mai: '~30°/दिन', mr: '~30°/दिन', ta: '~30°/day', te: '~30°/day', bn: '~30°/day', kn: '~30°/day', gu: '~30°/day' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -128,10 +128,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्रमा का अक्षांश अधिकतम कितना हो सकता है:',
     },
     options: [
-      { en: '±1.3°', hi: '±1.3°' },
-      { en: '±5.3°', hi: '±5.3°' },
-      { en: '±23.4°', hi: '±23.4°' },
-      { en: '±0.5°', hi: '±0.5°' },
+      { en: '±1.3°', hi: '±1.3°', sa: '±1.3°', mai: '±1.3°', mr: '±1.3°', ta: '±1.3°', te: '±1.3°', bn: '±1.3°', kn: '±1.3°', gu: '±1.3°' },
+      { en: '±5.3°', hi: '±5.3°', sa: '±5.3°', mai: '±5.3°', mr: '±5.3°', ta: '±5.3°', te: '±5.3°', bn: '±5.3°', kn: '±5.3°', gu: '±5.3°' },
+      { en: '±23.4°', hi: '±23.4°', sa: '±23.4°', mai: '±23.4°', mr: '±23.4°', ta: '±23.4°', te: '±23.4°', bn: '±23.4°', kn: '±23.4°', gu: '±23.4°' },
+      { en: '±0.5°', hi: '±0.5°', sa: '±0.5°', mai: '±0.5°', mr: '±0.5°', ta: '±0.5°', te: '±0.5°', bn: '±0.5°', kn: '±0.5°', gu: '±0.5°' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -158,10 +158,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मीयस एल्गोरिदम चन्द्र भोगांश के लिए कितनी सटीकता प्राप्त करता है?',
     },
     options: [
-      { en: '~0.01° (same as Sun)', hi: '~0.01° (सूर्य के समान)' },
-      { en: '~0.3° (about 10 arcminutes)', hi: '~0.3° (लगभग 10 कला)' },
-      { en: '~1° (about 1 degree)', hi: '~1° (लगभग 1 अंश)' },
-      { en: '~0.001°', hi: '~0.001°' },
+      { en: '~0.01° (same as Sun)', hi: '~0.01° (सूर्य के समान)', sa: '~0.01° (सूर्य के समान)', mai: '~0.01° (सूर्य के समान)', mr: '~0.01° (सूर्य के समान)', ta: '~0.01° (same as Sun)', te: '~0.01° (same as Sun)', bn: '~0.01° (same as Sun)', kn: '~0.01° (same as Sun)', gu: '~0.01° (same as Sun)' },
+      { en: '~0.3° (about 10 arcminutes)', hi: '~0.3° (लगभग 10 कला)', sa: '~0.3° (लगभग 10 कला)', mai: '~0.3° (लगभग 10 कला)', mr: '~0.3° (लगभग 10 कला)', ta: '~0.3° (about 10 arcminutes)', te: '~0.3° (about 10 arcminutes)', bn: '~0.3° (about 10 arcminutes)', kn: '~0.3° (about 10 arcminutes)', gu: '~0.3° (about 10 arcminutes)' },
+      { en: '~1° (about 1 degree)', hi: '~1° (लगभग 1 अंश)', sa: '~1° (लगभग 1 अंश)', mai: '~1° (लगभग 1 अंश)', mr: '~1° (लगभग 1 अंश)', ta: '~1° (about 1 degree)', te: '~1° (about 1 degree)', bn: '~1° (about 1 degree)', kn: '~1° (about 1 degree)', gu: '~1° (about 1 degree)' },
+      { en: '~0.001°', hi: '~0.001°', sa: '~0.001°', mai: '~0.001°', mr: '~0.001°', ta: '~0.001°', te: '~0.001°', bn: '~0.001°', kn: '~0.001°', gu: '~0.001°' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -176,10 +176,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्रमा का क्षैतिज लम्बन (HP) sin(HP) = 6378/दूरी से गणित होता है। इसका सामान्य मान क्या है?',
     },
     options: [
-      { en: '~8.8 arcseconds (like the Sun)', hi: '~8.8 कला-सेकण्ड (सूर्य की तरह)' },
-      { en: '~57 arcminutes (about 1°)', hi: '~57 कला (लगभग 1°)' },
-      { en: '~5 degrees', hi: '~5 अंश' },
-      { en: '~0.1 arcseconds', hi: '~0.1 कला-सेकण्ड' },
+      { en: '~8.8 arcseconds (like the Sun)', hi: '~8.8 कला-सेकण्ड (सूर्य की तरह)', sa: '~8.8 कला-सेकण्ड (सूर्य की तरह)', mai: '~8.8 कला-सेकण्ड (सूर्य की तरह)', mr: '~8.8 कला-सेकण्ड (सूर्य की तरह)', ta: '~8.8 arcseconds (like the Sun)', te: '~8.8 arcseconds (like the Sun)', bn: '~8.8 arcseconds (like the Sun)', kn: '~8.8 arcseconds (like the Sun)', gu: '~8.8 arcseconds (like the Sun)' },
+      { en: '~57 arcminutes (about 1°)', hi: '~57 कला (लगभग 1°)', sa: '~57 कला (लगभग 1°)', mai: '~57 कला (लगभग 1°)', mr: '~57 कला (लगभग 1°)', ta: '~57 arcminutes (about 1°)', te: '~57 arcminutes (about 1°)', bn: '~57 arcminutes (about 1°)', kn: '~57 arcminutes (about 1°)', gu: '~57 arcminutes (about 1°)' },
+      { en: '~5 degrees', hi: '~5 अंश', sa: '~5 अंश', mai: '~5 अंश', mr: '~5 अंश', ta: '~5 degrees', te: '~5 degrees', bn: '~5 degrees', kn: '~5 degrees', gu: '~5 degrees' },
+      { en: '~0.1 arcseconds', hi: '~0.1 कला-सेकण्ड', sa: '~0.1 कला-सेकण्ड', mai: '~0.1 कला-सेकण्ड', mr: '~0.1 कला-सेकण्ड', ta: '~0.1 arcseconds', te: '~0.1 arcseconds', bn: '~0.1 arcseconds', kn: '~0.1 arcseconds', gu: '~0.1 arcseconds' },
     ],
     correctAnswer: 1,
     explanation: {

@@ -15,8 +15,8 @@ const META: ModuleMeta = {
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Module 16-1: Brihat Parashara Hora Shastra', hi: 'मॉड्यूल 16-1: बृहत् पाराशर होरा शास्त्र' }, href: '/learn/modules/16-1' },
-    { label: { en: 'Module 16-3: Surya Siddhanta & Mathematical Texts', hi: 'मॉड्यूल 16-3: सूर्य सिद्धान्त एवं गणितीय ग्रन्थ' }, href: '/learn/modules/16-3' },
+    { label: { en: 'Module 16-1: Brihat Parashara Hora Shastra', hi: 'मॉड्यूल 16-1: बृहत् पाराशर होरा शास्त्र', sa: 'मॉड्यूल 16-1: बृहत् पाराशर होरा शास्त्र', mai: 'मॉड्यूल 16-1: बृहत् पाराशर होरा शास्त्र', mr: 'मॉड्यूल 16-1: बृहत् पाराशर होरा शास्त्र', ta: 'Module 16-1: Brihat Parashara Hora Shastra', te: 'Module 16-1: Brihat Parashara Hora Shastra', bn: 'Module 16-1: Brihat Parashara Hora Shastra', kn: 'Module 16-1: Brihat Parashara Hora Shastra', gu: 'Module 16-1: Brihat Parashara Hora Shastra' }, href: '/learn/modules/16-1' },
+    { label: { en: 'Module 16-3: Surya Siddhanta & Mathematical Texts', hi: 'मॉड्यूल 16-3: सूर्य सिद्धान्त एवं गणितीय ग्रन्थ', sa: 'मॉड्यूल 16-3: सूर्य सिद्धान्त एवं गणितीय ग्रन्थ', mai: 'मॉड्यूल 16-3: सूर्य सिद्धान्त एवं गणितीय ग्रन्थ', mr: 'मॉड्यूल 16-3: सूर्य सिद्धान्त एवं गणितीय ग्रन्थ', ta: 'Module 16-3: Surya Siddhanta & Mathematical Texts', te: 'Module 16-3: Surya Siddhanta & Mathematical Texts', bn: 'Module 16-3: Surya Siddhanta & Mathematical Texts', kn: 'Module 16-3: Surya Siddhanta & Mathematical Texts', gu: 'Module 16-3: Surya Siddhanta & Mathematical Texts' }, href: '/learn/modules/16-3' },
   ],
 };
 
@@ -28,10 +28,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'फलदीपिका के रचयिता कौन हैं?',
     },
     options: [
-      { en: 'Parashara', hi: 'पराशर' },
-      { en: 'Varahamihira', hi: 'वराहमिहिर' },
-      { en: 'Mantreshwara', hi: 'मन्त्रेश्वर' },
-      { en: 'Vaidyanatha', hi: 'वैद्यनाथ' },
+      { en: 'Parashara', hi: 'पराशर', sa: 'पराशर', mai: 'पराशर', mr: 'पराशर', ta: 'Parashara', te: 'Parashara', bn: 'Parashara', kn: 'Parashara', gu: 'Parashara' },
+      { en: 'Varahamihira', hi: 'वराहमिहिर', sa: 'वराहमिहिर', mai: 'वराहमिहिर', mr: 'वराहमिहिर', ta: 'Varahamihira', te: 'Varahamihira', bn: 'Varahamihira', kn: 'Varahamihira', gu: 'Varahamihira' },
+      { en: 'Mantreshwara', hi: 'मन्त्रेश्वर', sa: 'मन्त्रेश्वर', mai: 'मन्त्रेश्वर', mr: 'मन्त्रेश्वर', ta: 'Mantreshwara', te: 'Mantreshwara', bn: 'Mantreshwara', kn: 'Mantreshwara', gu: 'Mantreshwara' },
+      { en: 'Vaidyanatha', hi: 'वैद्यनाथ', sa: 'वैद्यनाथ', mai: 'वैद्यनाथ', mr: 'वैद्यनाथ', ta: 'Vaidyanatha', te: 'Vaidyanatha', bn: 'Vaidyanatha', kn: 'Vaidyanatha', gu: 'Vaidyanatha' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -46,10 +46,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'फलदीपिका में कितने अध्याय हैं?',
     },
     options: [
-      { en: '18', hi: '18' },
-      { en: '28', hi: '28' },
-      { en: '97', hi: '97' },
-      { en: '42', hi: '42' },
+      { en: '18', hi: '18', sa: '18', mai: '18', mr: '18', ta: '18', te: '18', bn: '18', kn: '18', gu: '18' },
+      { en: '28', hi: '28', sa: '28', mai: '28', mr: '28', ta: '28', te: '28', bn: '28', kn: '28', gu: '28' },
+      { en: '97', hi: '97', sa: '97', mai: '97', mr: '97', ta: '97', te: '97', bn: '97', kn: '97', gu: '97' },
+      { en: '42', hi: '42', sa: '42', mai: '42', mr: '42', ta: '42', te: '42', bn: '42', kn: '42', gu: '42' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -76,10 +76,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'फलदीपिका किसके स्पष्ट वर्णन के लिए सर्वाधिक प्रसिद्ध है?',
     },
     options: [
-      { en: 'Eclipse calculations', hi: 'ग्रहण गणना' },
-      { en: 'Yoga descriptions and planet-in-house results', hi: 'योग वर्णन और भाव में ग्रह फल' },
-      { en: 'Remedial gemstones only', hi: 'केवल उपचारात्मक रत्न' },
-      { en: 'Mundane astrology', hi: 'मेदिनी ज्योतिष' },
+      { en: 'Eclipse calculations', hi: 'ग्रहण गणना', sa: 'ग्रहण गणना', mai: 'ग्रहण गणना', mr: 'ग्रहण गणना', ta: 'Eclipse calculations', te: 'Eclipse calculations', bn: 'Eclipse calculations', kn: 'Eclipse calculations', gu: 'Eclipse calculations' },
+      { en: 'Yoga descriptions and planet-in-house results', hi: 'योग वर्णन और भाव में ग्रह फल', sa: 'योग वर्णन और भाव में ग्रह फल', mai: 'योग वर्णन और भाव में ग्रह फल', mr: 'योग वर्णन और भाव में ग्रह फल', ta: 'Yoga descriptions and planet-in-house results', te: 'Yoga descriptions and planet-in-house results', bn: 'Yoga descriptions and planet-in-house results', kn: 'Yoga descriptions and planet-in-house results', gu: 'Yoga descriptions and planet-in-house results' },
+      { en: 'Remedial gemstones only', hi: 'केवल उपचारात्मक रत्न', sa: 'केवल उपचारात्मक रत्न', mai: 'केवल उपचारात्मक रत्न', mr: 'केवल उपचारात्मक रत्न', ta: 'Remedial gemstones only', te: 'Remedial gemstones only', bn: 'Remedial gemstones only', kn: 'Remedial gemstones only', gu: 'Remedial gemstones only' },
+      { en: 'Mundane astrology', hi: 'मेदिनी ज्योतिष', sa: 'मेदिनी ज्योतिष', mai: 'मेदिनी ज्योतिष', mr: 'मेदिनी ज्योतिष', ta: 'Mundane astrology', te: 'Mundane astrology', bn: 'Mundane astrology', kn: 'Mundane astrology', gu: 'Mundane astrology' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -94,10 +94,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'जातक पारिजात विशेष रूप से किसके विवेचन के लिए प्रसिद्ध है?',
     },
     options: [
-      { en: 'Only Ashtakavarga', hi: 'केवल अष्टकवर्ग' },
-      { en: 'Raja Yoga definitions and Nabhasa Yogas', hi: 'राज योग परिभाषाएँ और नाभस योग' },
-      { en: 'Only remedial measures', hi: 'केवल उपचारात्मक उपाय' },
-      { en: 'Only transit analysis', hi: 'केवल गोचर विश्लेषण' },
+      { en: 'Only Ashtakavarga', hi: 'केवल अष्टकवर्ग', sa: 'केवल अष्टकवर्ग', mai: 'केवल अष्टकवर्ग', mr: 'केवल अष्टकवर्ग', ta: 'Only Ashtakavarga', te: 'Only Ashtakavarga', bn: 'Only Ashtakavarga', kn: 'Only Ashtakavarga', gu: 'Only Ashtakavarga' },
+      { en: 'Raja Yoga definitions and Nabhasa Yogas', hi: 'राज योग परिभाषाएँ और नाभस योग', sa: 'राज योग परिभाषाएँ और नाभस योग', mai: 'राज योग परिभाषाएँ और नाभस योग', mr: 'राज योग परिभाषाएँ और नाभस योग', ta: 'Raja Yoga definitions and Nabhasa Yogas', te: 'Raja Yoga definitions and Nabhasa Yogas', bn: 'Raja Yoga definitions and Nabhasa Yogas', kn: 'Raja Yoga definitions and Nabhasa Yogas', gu: 'Raja Yoga definitions and Nabhasa Yogas' },
+      { en: 'Only remedial measures', hi: 'केवल उपचारात्मक उपाय', sa: 'केवल उपचारात्मक उपाय', mai: 'केवल उपचारात्मक उपाय', mr: 'केवल उपचारात्मक उपाय', ta: 'Only remedial measures', te: 'Only remedial measures', bn: 'Only remedial measures', kn: 'Only remedial measures', gu: 'Only remedial measures' },
+      { en: 'Only transit analysis', hi: 'केवल गोचर विश्लेषण', sa: 'केवल गोचर विश्लेषण', mai: 'केवल गोचर विश्लेषण', mr: 'केवल गोचर विश्लेषण', ta: 'Only transit analysis', te: 'Only transit analysis', bn: 'Only transit analysis', kn: 'Only transit analysis', gu: 'Only transit analysis' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -124,10 +124,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'जातक पारिजात में कितने अध्याय हैं?',
     },
     options: [
-      { en: '12', hi: '12' },
-      { en: '18', hi: '18' },
-      { en: '28', hi: '28' },
-      { en: '36', hi: '36' },
+      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
+      { en: '18', hi: '18', sa: '18', mai: '18', mr: '18', ta: '18', te: '18', bn: '18', kn: '18', gu: '18' },
+      { en: '28', hi: '28', sa: '28', mai: '28', mr: '28', ta: '28', te: '28', bn: '28', kn: '28', gu: '28' },
+      { en: '36', hi: '36', sa: '36', mai: '36', mr: '36', ta: '36', te: '36', bn: '36', kn: '36', gu: '36' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -142,10 +142,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'शास्त्रीय ग्रन्थों के उपयोग का व्यावहारिक दृष्टिकोण है:',
     },
     options: [
-      { en: 'Read only one text and ignore all others', hi: 'केवल एक ग्रन्थ पढ़ें और शेष सभी को अनदेखा करें' },
-      { en: 'BPHS for foundations, Phaladeepika for interpretation, Jataka Parijata for yogas', hi: 'बृहत् पाराशर होरा शास्त्र आधार के लिए, फलदीपिका फलकथन के लिए, जातक पारिजात योगों के लिए' },
-      { en: 'Only use modern textbooks', hi: 'केवल आधुनिक पाठ्यपुस्तकों का प्रयोग करें' },
-      { en: 'Texts are irrelevant to modern practice', hi: 'ग्रन्थ आधुनिक अभ्यास से अप्रासंगिक हैं' },
+      { en: 'Read only one text and ignore all others', hi: 'केवल एक ग्रन्थ पढ़ें और शेष सभी को अनदेखा करें', sa: 'केवल एक ग्रन्थ पढ़ें और शेष सभी को अनदेखा करें', mai: 'केवल एक ग्रन्थ पढ़ें और शेष सभी को अनदेखा करें', mr: 'केवल एक ग्रन्थ पढ़ें और शेष सभी को अनदेखा करें', ta: 'Read only one text and ignore all others', te: 'Read only one text and ignore all others', bn: 'Read only one text and ignore all others', kn: 'Read only one text and ignore all others', gu: 'Read only one text and ignore all others' },
+      { en: 'BPHS for foundations, Phaladeepika for interpretation, Jataka Parijata for yogas', hi: 'बृहत् पाराशर होरा शास्त्र आधार के लिए, फलदीपिका फलकथन के लिए, जातक पारिजात योगों के लिए', sa: 'बृहत् पाराशर होरा शास्त्र आधार के लिए, फलदीपिका फलकथन के लिए, जातक पारिजात योगों के लिए', mai: 'बृहत् पाराशर होरा शास्त्र आधार के लिए, फलदीपिका फलकथन के लिए, जातक पारिजात योगों के लिए', mr: 'बृहत् पाराशर होरा शास्त्र आधार के लिए, फलदीपिका फलकथन के लिए, जातक पारिजात योगों के लिए', ta: 'BPHS for foundations, Phaladeepika for interpretation, Jataka Parijata for yogas', te: 'BPHS for foundations, Phaladeepika for interpretation, Jataka Parijata for yogas', bn: 'BPHS for foundations, Phaladeepika for interpretation, Jataka Parijata for yogas', kn: 'BPHS for foundations, Phaladeepika for interpretation, Jataka Parijata for yogas', gu: 'BPHS for foundations, Phaladeepika for interpretation, Jataka Parijata for yogas' },
+      { en: 'Only use modern textbooks', hi: 'केवल आधुनिक पाठ्यपुस्तकों का प्रयोग करें', sa: 'केवल आधुनिक पाठ्यपुस्तकों का प्रयोग करें', mai: 'केवल आधुनिक पाठ्यपुस्तकों का प्रयोग करें', mr: 'केवल आधुनिक पाठ्यपुस्तकों का प्रयोग करें', ta: 'Only use modern textbooks', te: 'Only use modern textbooks', bn: 'Only use modern textbooks', kn: 'Only use modern textbooks', gu: 'Only use modern textbooks' },
+      { en: 'Texts are irrelevant to modern practice', hi: 'ग्रन्थ आधुनिक अभ्यास से अप्रासंगिक हैं', sa: 'ग्रन्थ आधुनिक अभ्यास से अप्रासंगिक हैं', mai: 'ग्रन्थ आधुनिक अभ्यास से अप्रासंगिक हैं', mr: 'ग्रन्थ आधुनिक अभ्यास से अप्रासंगिक हैं', ta: 'Texts are irrelevant to modern practice', te: 'Texts are irrelevant to modern practice', bn: 'Texts are irrelevant to modern practice', kn: 'Texts are irrelevant to modern practice', gu: 'Texts are irrelevant to modern practice' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -172,10 +172,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: '"फलदीपिका" शीर्षक का शाब्दिक अर्थ क्या है?',
     },
     options: [
-      { en: 'The Great Treatise', hi: 'महान ग्रन्थ' },
-      { en: 'Lamp of Results', hi: 'फलों का दीपक' },
-      { en: 'Celestial Tree', hi: 'कल्पवृक्ष' },
-      { en: 'Book of Stars', hi: 'तारों की पुस्तक' },
+      { en: 'The Great Treatise', hi: 'महान ग्रन्थ', sa: 'महान ग्रन्थ', mai: 'महान ग्रन्थ', mr: 'महान ग्रन्थ', ta: 'The Great Treatise', te: 'The Great Treatise', bn: 'The Great Treatise', kn: 'The Great Treatise', gu: 'The Great Treatise' },
+      { en: 'Lamp of Results', hi: 'फलों का दीपक', sa: 'फलों का दीपक', mai: 'फलों का दीपक', mr: 'फलों का दीपक', ta: 'Lamp of Results', te: 'Lamp of Results', bn: 'Lamp of Results', kn: 'Lamp of Results', gu: 'Lamp of Results' },
+      { en: 'Celestial Tree', hi: 'कल्पवृक्ष', sa: 'कल्पवृक्ष', mai: 'कल्पवृक्ष', mr: 'कल्पवृक्ष', ta: 'Celestial Tree', te: 'Celestial Tree', bn: 'Celestial Tree', kn: 'Celestial Tree', gu: 'Celestial Tree' },
+      { en: 'Book of Stars', hi: 'तारों की पुस्तक', sa: 'तारों की पुस्तक', mai: 'तारों की पुस्तक', mr: 'तारों की पुस्तक', ta: 'Book of Stars', te: 'Book of Stars', bn: 'Book of Stars', kn: 'Book of Stars', gu: 'Book of Stars' },
     ],
     correctAnswer: 1,
     explanation: {

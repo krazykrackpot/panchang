@@ -6,17 +6,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_6_3', phase: 2, topic: 'Nakshatra', moduleNumber: '6.3',
-  title: { en: 'Nakshatra Compatibility (Melapaka)', hi: 'नक्षत्र अनुकूलता (मेलापक)' },
+  title: { en: 'Nakshatra Compatibility (Melapaka)', hi: 'नक्षत्र अनुकूलता (मेलापक)', sa: 'नक्षत्र अनुकूलता (मेलापक)', mai: 'नक्षत्र अनुकूलता (मेलापक)', mr: 'नक्षत्र अनुकूलता (मेलापक)', ta: 'Nakshatra Compatibility (Melapaka)', te: 'Nakshatra Compatibility (Melapaka)', bn: 'Nakshatra Compatibility (Melapaka)', kn: 'Nakshatra Compatibility (Melapaka)', gu: 'Nakshatra Compatibility (Melapaka)' },
   subtitle: {
     en: 'The Ashta Kuta system scores 8 compatibility factors totaling 36 points between two birth nakshatras',
     hi: 'अष्ट कूट पद्धति दो जन्म नक्षत्रों के बीच 36 अंकों की 8 अनुकूलता कारकों का मूल्यांकन करती है',
   },
   estimatedMinutes: 16,
   crossRefs: [
-    { label: { en: 'Module 6-1: Nakshatra System', hi: 'मॉड्यूल 6-1: नक्षत्र पद्धति' }, href: '/learn/modules/6-1' },
-    { label: { en: 'Module 6-2: Nakshatra Padas', hi: 'मॉड्यूल 6-2: नक्षत्र पाद' }, href: '/learn/modules/6-2' },
-    { label: { en: 'Matching Deep Dive', hi: 'मिलान विस्तार' }, href: '/learn/matching' },
-    { label: { en: 'Kundali Matching Tool', hi: 'कुण्डली मिलान उपकरण' }, href: '/matching' },
+    { label: { en: 'Module 6-1: Nakshatra System', hi: 'मॉड्यूल 6-1: नक्षत्र पद्धति', sa: 'मॉड्यूल 6-1: नक्षत्र पद्धति', mai: 'मॉड्यूल 6-1: नक्षत्र पद्धति', mr: 'मॉड्यूल 6-1: नक्षत्र पद्धति', ta: 'Module 6-1: Nakshatra System', te: 'Module 6-1: Nakshatra System', bn: 'Module 6-1: Nakshatra System', kn: 'Module 6-1: Nakshatra System', gu: 'Module 6-1: Nakshatra System' }, href: '/learn/modules/6-1' },
+    { label: { en: 'Module 6-2: Nakshatra Padas', hi: 'मॉड्यूल 6-2: नक्षत्र पाद', sa: 'मॉड्यूल 6-2: नक्षत्र पाद', mai: 'मॉड्यूल 6-2: नक्षत्र पाद', mr: 'मॉड्यूल 6-2: नक्षत्र पाद', ta: 'Module 6-2: Nakshatra Padas', te: 'Module 6-2: Nakshatra Padas', bn: 'Module 6-2: Nakshatra Padas', kn: 'Module 6-2: Nakshatra Padas', gu: 'Module 6-2: Nakshatra Padas' }, href: '/learn/modules/6-2' },
+    { label: { en: 'Matching Deep Dive', hi: 'मिलान विस्तार', sa: 'मिलान विस्तार', mai: 'मिलान विस्तार', mr: 'मिलान विस्तार', ta: 'Matching Deep Dive', te: 'Matching Deep Dive', bn: 'Matching Deep Dive', kn: 'Matching Deep Dive', gu: 'Matching Deep Dive' }, href: '/learn/matching' },
+    { label: { en: 'Kundali Matching Tool', hi: 'कुण्डली मिलान उपकरण', sa: 'कुण्डली मिलान उपकरण', mai: 'कुण्डली मिलान उपकरण', mr: 'कुण्डली मिलान उपकरण', ta: 'Kundali Matching Tool', te: 'Kundali Matching Tool', bn: 'Kundali Matching Tool', kn: 'Kundali Matching Tool', gu: 'Kundali Matching Tool' }, href: '/matching' },
   ],
 };
 
@@ -28,10 +28,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'अष्ट कूट मिलान पद्धति में कितने कारकों (कूटों) का मूल्यांकन किया जाता है?',
     },
     options: [
-      { en: '5', hi: '5' },
-      { en: '7', hi: '7' },
-      { en: '8', hi: '8' },
-      { en: '10', hi: '10' },
+      { en: '5', hi: '5', sa: '5', mai: '5', mr: '5', ta: '5', te: '5', bn: '5', kn: '5', gu: '5' },
+      { en: '7', hi: '7', sa: '7', mai: '7', mr: '7', ta: '7', te: '7', bn: '7', kn: '7', gu: '7' },
+      { en: '8', hi: '8', sa: '8', mai: '8', mr: '8', ta: '8', te: '8', bn: '8', kn: '8', gu: '8' },
+      { en: '10', hi: '10', sa: '10', mai: '10', mr: '10', ta: '10', te: '10', bn: '10', kn: '10', gu: '10' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -46,10 +46,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'अष्ट कूट मिलान में अधिकतम कुल अंक कितने हैं?',
     },
     options: [
-      { en: '18', hi: '18' },
-      { en: '27', hi: '27' },
-      { en: '36', hi: '36' },
-      { en: '108', hi: '108' },
+      { en: '18', hi: '18', sa: '18', mai: '18', mr: '18', ta: '18', te: '18', bn: '18', kn: '18', gu: '18' },
+      { en: '27', hi: '27', sa: '27', mai: '27', mr: '27', ta: '27', te: '27', bn: '27', kn: '27', gu: '27' },
+      { en: '36', hi: '36', sa: '36', mai: '36', mr: '36', ta: '36', te: '36', bn: '36', kn: '36', gu: '36' },
+      { en: '108', hi: '108', sa: '108', mai: '108', mr: '108', ta: '108', te: '108', bn: '108', kn: '108', gu: '108' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -76,10 +76,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'तारा कूट में वधू के नक्षत्र से वर के नक्षत्र तक गिनकर किससे भाग देते हैं?',
     },
     options: [
-      { en: '3', hi: '3' },
-      { en: '7', hi: '7' },
-      { en: '9', hi: '9' },
-      { en: '12', hi: '12' },
+      { en: '3', hi: '3', sa: '3', mai: '3', mr: '3', ta: '3', te: '3', bn: '3', kn: '3', gu: '3' },
+      { en: '7', hi: '7', sa: '7', mai: '7', mr: '7', ta: '7', te: '7', bn: '7', kn: '7', gu: '7' },
+      { en: '9', hi: '9', sa: '9', mai: '9', mr: '9', ta: '9', te: '9', bn: '9', kn: '9', gu: '9' },
+      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -94,10 +94,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'नाड़ी दोष क्या इंगित करता है?',
     },
     options: [
-      { en: 'The couple has the same birth star', hi: 'दम्पति का जन्म नक्षत्र समान है' },
-      { en: 'Both partners share the same nadi (Ayurvedic constitution)', hi: 'दोनों साथियों की समान नाड़ी (आयुर्वेदिक प्रकृति) है' },
+      { en: 'The couple has the same birth star', hi: 'दम्पति का जन्म नक्षत्र समान है', sa: 'दम्पति का जन्म नक्षत्र समान है', mai: 'दम्पति का जन्म नक्षत्र समान है', mr: 'दम्पति का जन्म नक्षत्र समान है', ta: 'The couple has the same birth star', te: 'The couple has the same birth star', bn: 'The couple has the same birth star', kn: 'The couple has the same birth star', gu: 'The couple has the same birth star' },
+      { en: 'Both partners share the same nadi (Ayurvedic constitution)', hi: 'दोनों साथियों की समान नाड़ी (आयुर्वेदिक प्रकृति) है', sa: 'दोनों साथियों की समान नाड़ी (आयुर्वेदिक प्रकृति) है', mai: 'दोनों साथियों की समान नाड़ी (आयुर्वेदिक प्रकृति) है', mr: 'दोनों साथियों की समान नाड़ी (आयुर्वेदिक प्रकृति) है', ta: 'Both partners share the same nadi (Ayurvedic constitution)', te: 'Both partners share the same nadi (Ayurvedic constitution)', bn: 'Both partners share the same nadi (Ayurvedic constitution)', kn: 'Both partners share the same nadi (Ayurvedic constitution)', gu: 'Both partners share the same nadi (Ayurvedic constitution)' },
       { en: 'The couple\'s planets are in mutual enmity', hi: 'दम्पति के ग्रह परस्पर शत्रुता में हैं' },
-      { en: 'The gana of both partners is Rakshasa', hi: 'दोनों साथियों का गण राक्षस है' },
+      { en: 'The gana of both partners is Rakshasa', hi: 'दोनों साथियों का गण राक्षस है', sa: 'दोनों साथियों का गण राक्षस है', mai: 'दोनों साथियों का गण राक्षस है', mr: 'दोनों साथियों का गण राक्षस है', ta: 'The gana of both partners is Rakshasa', te: 'The gana of both partners is Rakshasa', bn: 'The gana of both partners is Rakshasa', kn: 'The gana of both partners is Rakshasa', gu: 'The gana of both partners is Rakshasa' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -124,10 +124,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'भकूट कूट, जो 7 अंक वहन करता है, मुख्यतः किसका मूल्यांकन करता है?',
     },
     options: [
-      { en: 'Physical attraction', hi: 'शारीरिक आकर्षण' },
-      { en: 'Rashi (sign) compatibility of Moon signs', hi: 'चन्द्र राशियों की राशि अनुकूलता' },
-      { en: 'Intellectual compatibility', hi: 'बौद्धिक अनुकूलता' },
-      { en: 'Spiritual alignment', hi: 'आध्यात्मिक सामंजस्य' },
+      { en: 'Physical attraction', hi: 'शारीरिक आकर्षण', sa: 'शारीरिक आकर्षण', mai: 'शारीरिक आकर्षण', mr: 'शारीरिक आकर्षण', ta: 'Physical attraction', te: 'Physical attraction', bn: 'Physical attraction', kn: 'Physical attraction', gu: 'Physical attraction' },
+      { en: 'Rashi (sign) compatibility of Moon signs', hi: 'चन्द्र राशियों की राशि अनुकूलता', sa: 'चन्द्र राशियों की राशि अनुकूलता', mai: 'चन्द्र राशियों की राशि अनुकूलता', mr: 'चन्द्र राशियों की राशि अनुकूलता', ta: 'Rashi (sign) compatibility of Moon signs', te: 'Rashi (sign) compatibility of Moon signs', bn: 'Rashi (sign) compatibility of Moon signs', kn: 'Rashi (sign) compatibility of Moon signs', gu: 'Rashi (sign) compatibility of Moon signs' },
+      { en: 'Intellectual compatibility', hi: 'बौद्धिक अनुकूलता', sa: 'बौद्धिक अनुकूलता', mai: 'बौद्धिक अनुकूलता', mr: 'बौद्धिक अनुकूलता', ta: 'Intellectual compatibility', te: 'Intellectual compatibility', bn: 'Intellectual compatibility', kn: 'Intellectual compatibility', gu: 'Intellectual compatibility' },
+      { en: 'Spiritual alignment', hi: 'आध्यात्मिक सामंजस्य', sa: 'आध्यात्मिक सामंजस्य', mai: 'आध्यात्मिक सामंजस्य', mr: 'आध्यात्मिक सामंजस्य', ta: 'Spiritual alignment', te: 'Spiritual alignment', bn: 'Spiritual alignment', kn: 'Spiritual alignment', gu: 'Spiritual alignment' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -142,10 +142,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कौन-सा तारा सर्वाधिक खतरनाक माना जाता है?',
     },
     options: [
-      { en: 'Sampat (2nd) — wealth', hi: 'सम्पत् (2रा) — धन' },
-      { en: 'Kshema (4th) — prosperity', hi: 'क्षेम (4था) — समृद्धि' },
-      { en: 'Vadha (7th) — death', hi: 'वध (7वाँ) — मृत्यु' },
-      { en: 'Mitra (8th) — friend', hi: 'मित्र (8वाँ) — मित्र' },
+      { en: 'Sampat (2nd) — wealth', hi: 'सम्पत् (2रा) — धन', sa: 'सम्पत् (2रा) — धन', mai: 'सम्पत् (2रा) — धन', mr: 'सम्पत् (2रा) — धन', ta: 'Sampat (2nd) — wealth', te: 'Sampat (2nd) — wealth', bn: 'Sampat (2nd) — wealth', kn: 'Sampat (2nd) — wealth', gu: 'Sampat (2nd) — wealth' },
+      { en: 'Kshema (4th) — prosperity', hi: 'क्षेम (4था) — समृद्धि', sa: 'क्षेम (4था) — समृद्धि', mai: 'क्षेम (4था) — समृद्धि', mr: 'क्षेम (4था) — समृद्धि', ta: 'Kshema (4th) — prosperity', te: 'Kshema (4th) — prosperity', bn: 'Kshema (4th) — prosperity', kn: 'Kshema (4th) — prosperity', gu: 'Kshema (4th) — prosperity' },
+      { en: 'Vadha (7th) — death', hi: 'वध (7वाँ) — मृत्यु', sa: 'वध (7वाँ) — मृत्यु', mai: 'वध (7वाँ) — मृत्यु', mr: 'वध (7वाँ) — मृत्यु', ta: 'Vadha (7th) — death', te: 'Vadha (7th) — death', bn: 'Vadha (7th) — death', kn: 'Vadha (7th) — death', gu: 'Vadha (7th) — death' },
+      { en: 'Mitra (8th) — friend', hi: 'मित्र (8वाँ) — मित्र', sa: 'मित्र (8वाँ) — मित्र', mai: 'मित्र (8वाँ) — मित्र', mr: 'मित्र (8वाँ) — मित्र', ta: 'Mitra (8th) — friend', te: 'Mitra (8th) — friend', bn: 'Mitra (8th) — friend', kn: 'Mitra (8th) — friend', gu: 'Mitra (8th) — friend' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -172,10 +172,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'योनि कूट (4 अंक) किसके द्वारा अनुकूलता का मूल्यांकन करता है?',
     },
     options: [
-      { en: 'Planetary friendship', hi: 'ग्रह मैत्री' },
-      { en: 'Animal symbolism representing sexual and instinctual compatibility', hi: 'पशु प्रतीकवाद जो यौन और सहजवृत्तिक अनुकूलता दर्शाता है' },
-      { en: 'Caste hierarchy', hi: 'जाति अनुक्रम' },
-      { en: 'Star count between partners', hi: 'साथियों के बीच तारा गणना' },
+      { en: 'Planetary friendship', hi: 'ग्रह मैत्री', sa: 'ग्रह मैत्री', mai: 'ग्रह मैत्री', mr: 'ग्रह मैत्री', ta: 'Planetary friendship', te: 'Planetary friendship', bn: 'Planetary friendship', kn: 'Planetary friendship', gu: 'Planetary friendship' },
+      { en: 'Animal symbolism representing sexual and instinctual compatibility', hi: 'पशु प्रतीकवाद जो यौन और सहजवृत्तिक अनुकूलता दर्शाता है', sa: 'पशु प्रतीकवाद जो यौन और सहजवृत्तिक अनुकूलता दर्शाता है', mai: 'पशु प्रतीकवाद जो यौन और सहजवृत्तिक अनुकूलता दर्शाता है', mr: 'पशु प्रतीकवाद जो यौन और सहजवृत्तिक अनुकूलता दर्शाता है', ta: 'Animal symbolism representing sexual and instinctual compatibility', te: 'Animal symbolism representing sexual and instinctual compatibility', bn: 'Animal symbolism representing sexual and instinctual compatibility', kn: 'Animal symbolism representing sexual and instinctual compatibility', gu: 'Animal symbolism representing sexual and instinctual compatibility' },
+      { en: 'Caste hierarchy', hi: 'जाति अनुक्रम', sa: 'जाति अनुक्रम', mai: 'जाति अनुक्रम', mr: 'जाति अनुक्रम', ta: 'Caste hierarchy', te: 'Caste hierarchy', bn: 'Caste hierarchy', kn: 'Caste hierarchy', gu: 'Caste hierarchy' },
+      { en: 'Star count between partners', hi: 'साथियों के बीच तारा गणना', sa: 'साथियों के बीच तारा गणना', mai: 'साथियों के बीच तारा गणना', mr: 'साथियों के बीच तारा गणना', ta: 'Star count between partners', te: 'Star count between partners', bn: 'Star count between partners', kn: 'Star count between partners', gu: 'Star count between partners' },
     ],
     correctAnswer: 1,
     explanation: {

@@ -1,15 +1,17 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
+
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { BookOpen, ChevronRight } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
+import type { LocaleText, Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ── Bilingual labels ─────────────────────────────────────────────── */
 const L = {
-  badge: { en: 'Reference', hi: 'सन्दर्भ' },
+  badge: { en: 'Reference', hi: 'सन्दर्भ', sa: 'सन्दर्भ', mai: 'सन्दर्भ', mr: 'सन्दर्भ', ta: 'Reference', te: 'Reference', bn: 'Reference', kn: 'Reference', gu: 'Reference' },
   title: {
     en: 'Why Exactly 7 Days in a Week?',
     hi: 'सप्ताह में ठीक 7 दिन क्यों?',
@@ -147,58 +149,58 @@ const L = {
   },
 
   /* Related */
-  related: { en: 'Explore Further', hi: 'और जानें' },
+  related: { en: 'Explore Further', hi: 'और जानें', sa: 'और जानें', mai: 'और जानें', mr: 'और जानें', ta: 'Explore Further', te: 'Explore Further', bn: 'Explore Further', kn: 'Explore Further', gu: 'Explore Further' },
 };
 
 /* ── Planet speed data ────────────────────────────────────────────── */
 const SPEED_TABLE = [
   {
-    rank: 1, label: { en: 'Slowest', hi: 'सबसे धीमा' },
-    planet: { en: 'Saturn', hi: 'शनि' },
-    period: { en: '29.46 years', hi: '29.46 वर्ष' },
-    note: { en: 'Takes longest to traverse the entire zodiac', hi: 'राशिचक्र पूरा करने में सबसे अधिक समय' },
+    rank: 1, label: { en: 'Slowest', hi: 'सबसे धीमा', sa: 'सबसे धीमा', mai: 'सबसे धीमा', mr: 'सबसे धीमा', ta: 'Slowest', te: 'Slowest', bn: 'Slowest', kn: 'Slowest', gu: 'Slowest' },
+    planet: { en: 'Saturn', hi: 'शनि', sa: 'शनि', mai: 'शनि', mr: 'शनि', ta: 'Saturn', te: 'Saturn', bn: 'Saturn', kn: 'Saturn', gu: 'Saturn' },
+    period: { en: '29.46 years', hi: '29.46 वर्ष', sa: '29.46 वर्ष', mai: '29.46 वर्ष', mr: '29.46 वर्ष', ta: '29.46 years', te: '29.46 years', bn: '29.46 years', kn: '29.46 years', gu: '29.46 years' },
+    note: { en: 'Takes longest to traverse the entire zodiac', hi: 'राशिचक्र पूरा करने में सबसे अधिक समय', sa: 'राशिचक्र पूरा करने में सबसे अधिक समय', mai: 'राशिचक्र पूरा करने में सबसे अधिक समय', mr: 'राशिचक्र पूरा करने में सबसे अधिक समय', ta: 'Takes longest to traverse the entire zodiac', te: 'Takes longest to traverse the entire zodiac', bn: 'Takes longest to traverse the entire zodiac', kn: 'Takes longest to traverse the entire zodiac', gu: 'Takes longest to traverse the entire zodiac' },
     color: '#60a5fa', border: 'border-blue-500/30', bg: 'bg-blue-500/8',
   },
   {
-    rank: 2, label: { en: '', hi: '' },
-    planet: { en: 'Jupiter', hi: 'बृहस्पति' },
-    period: { en: '11.86 years', hi: '11.86 वर्ष' },
+    rank: 2, label: { en: '', hi: '', sa: '', mai: '', mr: '', ta: '', te: '', bn: '', kn: '', gu: '' },
+    planet: { en: 'Jupiter', hi: 'बृहस्पति', sa: 'बृहस्पति', mai: 'बृहस्पति', mr: 'बृहस्पति', ta: 'Jupiter', te: 'Jupiter', bn: 'Jupiter', kn: 'Jupiter', gu: 'Jupiter' },
+    period: { en: '11.86 years', hi: '11.86 वर्ष', sa: '11.86 वर्ष', mai: '11.86 वर्ष', mr: '11.86 वर्ष', ta: '11.86 years', te: '11.86 years', bn: '11.86 years', kn: '11.86 years', gu: '11.86 years' },
     note: { en: 'Completes ~2.4 circuits in Saturn\'s one orbit', hi: 'शनि के एक चक्र में ~2.4 परिक्रमाएँ' },
     color: '#facc15', border: 'border-yellow-500/30', bg: 'bg-yellow-500/8',
   },
   {
-    rank: 3, label: { en: '', hi: '' },
-    planet: { en: 'Mars', hi: 'मंगल' },
-    period: { en: '1.88 years', hi: '1.88 वर्ष' },
-    note: { en: 'Completes ~2 years per zodiac circuit', hi: 'राशिचक्र में ~2 वर्ष प्रति परिक्रमा' },
+    rank: 3, label: { en: '', hi: '', sa: '', mai: '', mr: '', ta: '', te: '', bn: '', kn: '', gu: '' },
+    planet: { en: 'Mars', hi: 'मंगल', sa: 'मंगल', mai: 'मंगल', mr: 'मंगल', ta: 'Mars', te: 'Mars', bn: 'Mars', kn: 'Mars', gu: 'Mars' },
+    period: { en: '1.88 years', hi: '1.88 वर्ष', sa: '1.88 वर्ष', mai: '1.88 वर्ष', mr: '1.88 वर्ष', ta: '1.88 years', te: '1.88 years', bn: '1.88 years', kn: '1.88 years', gu: '1.88 years' },
+    note: { en: 'Completes ~2 years per zodiac circuit', hi: 'राशिचक्र में ~2 वर्ष प्रति परिक्रमा', sa: 'राशिचक्र में ~2 वर्ष प्रति परिक्रमा', mai: 'राशिचक्र में ~2 वर्ष प्रति परिक्रमा', mr: 'राशिचक्र में ~2 वर्ष प्रति परिक्रमा', ta: 'Completes ~2 years per zodiac circuit', te: 'Completes ~2 years per zodiac circuit', bn: 'Completes ~2 years per zodiac circuit', kn: 'Completes ~2 years per zodiac circuit', gu: 'Completes ~2 years per zodiac circuit' },
     color: '#ef4444', border: 'border-red-500/30', bg: 'bg-red-500/8',
   },
   {
-    rank: 4, label: { en: '', hi: '' },
-    planet: { en: 'Sun', hi: 'सूर्य' },
-    period: { en: '1 year', hi: '1 वर्ष' },
+    rank: 4, label: { en: '', hi: '', sa: '', mai: '', mr: '', ta: '', te: '', bn: '', kn: '', gu: '' },
+    planet: { en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', mai: 'सूर्य', mr: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun' },
+    period: { en: '1 year', hi: '1 वर्ष', sa: '1 वर्ष', mai: '1 वर्ष', mr: '1 वर्ष', ta: '1 year', te: '1 year', bn: '1 year', kn: '1 year', gu: '1 year' },
     note: { en: 'Earth\'s orbit defines the tropical year', hi: 'पृथ्वी की कक्षा उष्णकटिबंधीय वर्ष परिभाषित करती है' },
     color: '#f59e0b', border: 'border-amber-500/30', bg: 'bg-amber-500/8',
   },
   {
-    rank: 5, label: { en: '', hi: '' },
-    planet: { en: 'Venus', hi: 'शुक्र' },
-    period: { en: '224.7 days', hi: '224.7 दिन' },
-    note: { en: 'Completes ~1.6 orbits per Earth year', hi: 'प्रति पृथ्वी वर्ष ~1.6 कक्षाएँ' },
+    rank: 5, label: { en: '', hi: '', sa: '', mai: '', mr: '', ta: '', te: '', bn: '', kn: '', gu: '' },
+    planet: { en: 'Venus', hi: 'शुक्र', sa: 'शुक्र', mai: 'शुक्र', mr: 'शुक्र', ta: 'Venus', te: 'Venus', bn: 'Venus', kn: 'Venus', gu: 'Venus' },
+    period: { en: '224.7 days', hi: '224.7 दिन', sa: '224.7 दिन', mai: '224.7 दिन', mr: '224.7 दिन', ta: '224.7 days', te: '224.7 days', bn: '224.7 days', kn: '224.7 days', gu: '224.7 days' },
+    note: { en: 'Completes ~1.6 orbits per Earth year', hi: 'प्रति पृथ्वी वर्ष ~1.6 कक्षाएँ', sa: 'प्रति पृथ्वी वर्ष ~1.6 कक्षाएँ', mai: 'प्रति पृथ्वी वर्ष ~1.6 कक्षाएँ', mr: 'प्रति पृथ्वी वर्ष ~1.6 कक्षाएँ', ta: 'Completes ~1.6 orbits per Earth year', te: 'Completes ~1.6 orbits per Earth year', bn: 'Completes ~1.6 orbits per Earth year', kn: 'Completes ~1.6 orbits per Earth year', gu: 'Completes ~1.6 orbits per Earth year' },
     color: '#f472b6', border: 'border-pink-500/30', bg: 'bg-pink-500/8',
   },
   {
-    rank: 6, label: { en: '', hi: '' },
-    planet: { en: 'Mercury', hi: 'बुध' },
-    period: { en: '87.97 days', hi: '87.97 दिन' },
-    note: { en: 'Fastest of the classical planets; ~4 orbits per year', hi: 'शास्त्रीय ग्रहों में सबसे तेज़; ~4 कक्षाएँ प्रति वर्ष' },
+    rank: 6, label: { en: '', hi: '', sa: '', mai: '', mr: '', ta: '', te: '', bn: '', kn: '', gu: '' },
+    planet: { en: 'Mercury', hi: 'बुध', sa: 'बुध', mai: 'बुध', mr: 'बुध', ta: 'Mercury', te: 'Mercury', bn: 'Mercury', kn: 'Mercury', gu: 'Mercury' },
+    period: { en: '87.97 days', hi: '87.97 दिन', sa: '87.97 दिन', mai: '87.97 दिन', mr: '87.97 दिन', ta: '87.97 days', te: '87.97 days', bn: '87.97 days', kn: '87.97 days', gu: '87.97 days' },
+    note: { en: 'Fastest of the classical planets; ~4 orbits per year', hi: 'शास्त्रीय ग्रहों में सबसे तेज़; ~4 कक्षाएँ प्रति वर्ष', sa: 'शास्त्रीय ग्रहों में सबसे तेज़; ~4 कक्षाएँ प्रति वर्ष', mai: 'शास्त्रीय ग्रहों में सबसे तेज़; ~4 कक्षाएँ प्रति वर्ष', mr: 'शास्त्रीय ग्रहों में सबसे तेज़; ~4 कक्षाएँ प्रति वर्ष', ta: 'Fastest of the classical planets; ~4 orbits per year', te: 'Fastest of the classical planets; ~4 orbits per year', bn: 'Fastest of the classical planets; ~4 orbits per year', kn: 'Fastest of the classical planets; ~4 orbits per year', gu: 'Fastest of the classical planets; ~4 orbits per year' },
     color: '#4ade80', border: 'border-emerald-500/30', bg: 'bg-emerald-500/8',
   },
   {
-    rank: 7, label: { en: 'Fastest', hi: 'सबसे तेज़' },
-    planet: { en: 'Moon', hi: 'चन्द्र' },
-    period: { en: '27.32 days', hi: '27.32 दिन' },
-    note: { en: 'Completes one orbit in under a month', hi: 'एक महीने से कम में एक कक्षा पूरी करता है' },
+    rank: 7, label: { en: 'Fastest', hi: 'सबसे तेज़', sa: 'सबसे तेज़', mai: 'सबसे तेज़', mr: 'सबसे तेज़', ta: 'Fastest', te: 'Fastest', bn: 'Fastest', kn: 'Fastest', gu: 'Fastest' },
+    planet: { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', mai: 'चन्द्र', mr: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon' },
+    period: { en: '27.32 days', hi: '27.32 दिन', sa: '27.32 दिन', mai: '27.32 दिन', mr: '27.32 दिन', ta: '27.32 days', te: '27.32 days', bn: '27.32 days', kn: '27.32 days', gu: '27.32 days' },
+    note: { en: 'Completes one orbit in under a month', hi: 'एक महीने से कम में एक कक्षा पूरी करता है', sa: 'एक महीने से कम में एक कक्षा पूरी करता है', mai: 'एक महीने से कम में एक कक्षा पूरी करता है', mr: 'एक महीने से कम में एक कक्षा पूरी करता है', ta: 'Completes one orbit in under a month', te: 'Completes one orbit in under a month', bn: 'Completes one orbit in under a month', kn: 'Completes one orbit in under a month', gu: 'Completes one orbit in under a month' },
     color: '#94a3b8', border: 'border-slate-400/30', bg: 'bg-slate-400/8',
   },
 ];
@@ -206,59 +208,59 @@ const SPEED_TABLE = [
 /* ── Hora → weekday derivation ────────────────────────────────────── */
 const WEEKDAY_DERIVATION = [
   {
-    day: { en: 'Saturday', hi: 'शनिवार' },
-    lord: { en: 'Saturn', hi: 'शनि' },
+    day: { en: 'Saturday', hi: 'शनिवार', sa: 'शनिवार', mai: 'शनिवार', mr: 'शनिवार', ta: 'Saturday', te: 'Saturday', bn: 'Saturday', kn: 'Saturday', gu: 'Saturday' },
+    lord: { en: 'Saturn', hi: 'शनि', sa: 'शनि', mai: 'शनि', mr: 'शनि', ta: 'Saturn', te: 'Saturn', bn: 'Saturn', kn: 'Saturn', gu: 'Saturn' },
     color: '#60a5fa',
-    hora25: { en: 'Sun', hi: 'सूर्य' },
-    next: { en: 'Sunday', hi: 'रविवार' },
+    hora25: { en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', mai: 'सूर्य', mr: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun' },
+    next: { en: 'Sunday', hi: 'रविवार', sa: 'रविवार', mai: 'रविवार', mr: 'रविवार', ta: 'Sunday', te: 'Sunday', bn: 'Sunday', kn: 'Sunday', gu: 'Sunday' },
     nextColor: '#f59e0b',
   },
   {
-    day: { en: 'Sunday', hi: 'रविवार' },
-    lord: { en: 'Sun', hi: 'सूर्य' },
+    day: { en: 'Sunday', hi: 'रविवार', sa: 'रविवार', mai: 'रविवार', mr: 'रविवार', ta: 'Sunday', te: 'Sunday', bn: 'Sunday', kn: 'Sunday', gu: 'Sunday' },
+    lord: { en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', mai: 'सूर्य', mr: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun' },
     color: '#f59e0b',
-    hora25: { en: 'Moon', hi: 'चन्द्र' },
-    next: { en: 'Monday', hi: 'सोमवार' },
+    hora25: { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', mai: 'चन्द्र', mr: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon' },
+    next: { en: 'Monday', hi: 'सोमवार', sa: 'सोमवार', mai: 'सोमवार', mr: 'सोमवार', ta: 'Monday', te: 'Monday', bn: 'Monday', kn: 'Monday', gu: 'Monday' },
     nextColor: '#94a3b8',
   },
   {
-    day: { en: 'Monday', hi: 'सोमवार' },
-    lord: { en: 'Moon', hi: 'चन्द्र' },
+    day: { en: 'Monday', hi: 'सोमवार', sa: 'सोमवार', mai: 'सोमवार', mr: 'सोमवार', ta: 'Monday', te: 'Monday', bn: 'Monday', kn: 'Monday', gu: 'Monday' },
+    lord: { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', mai: 'चन्द्र', mr: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon' },
     color: '#94a3b8',
-    hora25: { en: 'Mars', hi: 'मंगल' },
-    next: { en: 'Tuesday', hi: 'मंगलवार' },
+    hora25: { en: 'Mars', hi: 'मंगल', sa: 'मंगल', mai: 'मंगल', mr: 'मंगल', ta: 'Mars', te: 'Mars', bn: 'Mars', kn: 'Mars', gu: 'Mars' },
+    next: { en: 'Tuesday', hi: 'मंगलवार', sa: 'मंगलवार', mai: 'मंगलवार', mr: 'मंगलवार', ta: 'Tuesday', te: 'Tuesday', bn: 'Tuesday', kn: 'Tuesday', gu: 'Tuesday' },
     nextColor: '#ef4444',
   },
   {
-    day: { en: 'Tuesday', hi: 'मंगलवार' },
-    lord: { en: 'Mars', hi: 'मंगल' },
+    day: { en: 'Tuesday', hi: 'मंगलवार', sa: 'मंगलवार', mai: 'मंगलवार', mr: 'मंगलवार', ta: 'Tuesday', te: 'Tuesday', bn: 'Tuesday', kn: 'Tuesday', gu: 'Tuesday' },
+    lord: { en: 'Mars', hi: 'मंगल', sa: 'मंगल', mai: 'मंगल', mr: 'मंगल', ta: 'Mars', te: 'Mars', bn: 'Mars', kn: 'Mars', gu: 'Mars' },
     color: '#ef4444',
-    hora25: { en: 'Mercury', hi: 'बुध' },
-    next: { en: 'Wednesday', hi: 'बुधवार' },
+    hora25: { en: 'Mercury', hi: 'बुध', sa: 'बुध', mai: 'बुध', mr: 'बुध', ta: 'Mercury', te: 'Mercury', bn: 'Mercury', kn: 'Mercury', gu: 'Mercury' },
+    next: { en: 'Wednesday', hi: 'बुधवार', sa: 'बुधवार', mai: 'बुधवार', mr: 'बुधवार', ta: 'Wednesday', te: 'Wednesday', bn: 'Wednesday', kn: 'Wednesday', gu: 'Wednesday' },
     nextColor: '#4ade80',
   },
   {
-    day: { en: 'Wednesday', hi: 'बुधवार' },
-    lord: { en: 'Mercury', hi: 'बुध' },
+    day: { en: 'Wednesday', hi: 'बुधवार', sa: 'बुधवार', mai: 'बुधवार', mr: 'बुधवार', ta: 'Wednesday', te: 'Wednesday', bn: 'Wednesday', kn: 'Wednesday', gu: 'Wednesday' },
+    lord: { en: 'Mercury', hi: 'बुध', sa: 'बुध', mai: 'बुध', mr: 'बुध', ta: 'Mercury', te: 'Mercury', bn: 'Mercury', kn: 'Mercury', gu: 'Mercury' },
     color: '#4ade80',
-    hora25: { en: 'Jupiter', hi: 'गुरु' },
-    next: { en: 'Thursday', hi: 'गुरुवार' },
+    hora25: { en: 'Jupiter', hi: 'गुरु', sa: 'गुरु', mai: 'गुरु', mr: 'गुरु', ta: 'Jupiter', te: 'Jupiter', bn: 'Jupiter', kn: 'Jupiter', gu: 'Jupiter' },
+    next: { en: 'Thursday', hi: 'गुरुवार', sa: 'गुरुवार', mai: 'गुरुवार', mr: 'गुरुवार', ta: 'Thursday', te: 'Thursday', bn: 'Thursday', kn: 'Thursday', gu: 'Thursday' },
     nextColor: '#facc15',
   },
   {
-    day: { en: 'Thursday', hi: 'गुरुवार' },
-    lord: { en: 'Jupiter', hi: 'गुरु' },
+    day: { en: 'Thursday', hi: 'गुरुवार', sa: 'गुरुवार', mai: 'गुरुवार', mr: 'गुरुवार', ta: 'Thursday', te: 'Thursday', bn: 'Thursday', kn: 'Thursday', gu: 'Thursday' },
+    lord: { en: 'Jupiter', hi: 'गुरु', sa: 'गुरु', mai: 'गुरु', mr: 'गुरु', ta: 'Jupiter', te: 'Jupiter', bn: 'Jupiter', kn: 'Jupiter', gu: 'Jupiter' },
     color: '#facc15',
-    hora25: { en: 'Venus', hi: 'शुक्र' },
-    next: { en: 'Friday', hi: 'शुक्रवार' },
+    hora25: { en: 'Venus', hi: 'शुक्र', sa: 'शुक्र', mai: 'शुक्र', mr: 'शुक्र', ta: 'Venus', te: 'Venus', bn: 'Venus', kn: 'Venus', gu: 'Venus' },
+    next: { en: 'Friday', hi: 'शुक्रवार', sa: 'शुक्रवार', mai: 'शुक्रवार', mr: 'शुक्रवार', ta: 'Friday', te: 'Friday', bn: 'Friday', kn: 'Friday', gu: 'Friday' },
     nextColor: '#f472b6',
   },
   {
-    day: { en: 'Friday', hi: 'शुक्रवार' },
-    lord: { en: 'Venus', hi: 'शुक्र' },
+    day: { en: 'Friday', hi: 'शुक्रवार', sa: 'शुक्रवार', mai: 'शुक्रवार', mr: 'शुक्रवार', ta: 'Friday', te: 'Friday', bn: 'Friday', kn: 'Friday', gu: 'Friday' },
+    lord: { en: 'Venus', hi: 'शुक्र', sa: 'शुक्र', mai: 'शुक्र', mr: 'शुक्र', ta: 'Venus', te: 'Venus', bn: 'Venus', kn: 'Venus', gu: 'Venus' },
     color: '#f472b6',
-    hora25: { en: 'Saturn', hi: 'शनि' },
-    next: { en: 'Saturday', hi: 'शनिवार' },
+    hora25: { en: 'Saturn', hi: 'शनि', sa: 'शनि', mai: 'शनि', mr: 'शनि', ta: 'Saturn', te: 'Saturn', bn: 'Saturn', kn: 'Saturn', gu: 'Saturn' },
+    next: { en: 'Saturday', hi: 'शनिवार', sa: 'शनिवार', mai: 'शनिवार', mr: 'शनिवार', ta: 'Saturday', te: 'Saturday', bn: 'Saturday', kn: 'Saturday', gu: 'Saturday' },
     nextColor: '#60a5fa',
   },
 ];
@@ -268,43 +270,43 @@ const WEEKDAYS = [
   {
     num: 1,
     sanskrit: 'Ravivara', hi: 'रविवार', en: 'Sunday', latin: 'Dies Solis',
-    planet: { en: 'Sun', hi: 'सूर्य' }, color: '#f59e0b',
+    planet: { en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', mai: 'सूर्य', mr: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun' }, color: '#f59e0b',
     norse: { en: '(Sun\'s day)', hi: '(सूर्य का दिन)' },
   },
   {
     num: 2,
     sanskrit: 'Somavara', hi: 'सोमवार', en: 'Monday', latin: 'Dies Lunae',
-    planet: { en: 'Moon', hi: 'चन्द्र' }, color: '#94a3b8',
+    planet: { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', mai: 'चन्द्र', mr: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon' }, color: '#94a3b8',
     norse: { en: '(Moon\'s day)', hi: '(चंद्र का दिन)' },
   },
   {
     num: 3,
     sanskrit: 'Mangalavara', hi: 'मंगलवार', en: 'Tuesday', latin: 'Dies Martis',
-    planet: { en: 'Mars', hi: 'मंगल' }, color: '#ef4444',
+    planet: { en: 'Mars', hi: 'मंगल', sa: 'मंगल', mai: 'मंगल', mr: 'मंगल', ta: 'Mars', te: 'Mars', bn: 'Mars', kn: 'Mars', gu: 'Mars' }, color: '#ef4444',
     norse: { en: '(Tyr\'s day = Mars)', hi: '(Tyr = मंगल)' },
   },
   {
     num: 4,
     sanskrit: 'Budhavara', hi: 'बुधवार', en: 'Wednesday', latin: 'Dies Mercurii',
-    planet: { en: 'Mercury', hi: 'बुध' }, color: '#4ade80',
+    planet: { en: 'Mercury', hi: 'बुध', sa: 'बुध', mai: 'बुध', mr: 'बुध', ta: 'Mercury', te: 'Mercury', bn: 'Mercury', kn: 'Mercury', gu: 'Mercury' }, color: '#4ade80',
     norse: { en: '(Woden\'s day = Mercury)', hi: '(Woden = बुध)' },
   },
   {
     num: 5,
     sanskrit: 'Brihaspativara', hi: 'बृहस्पतिवार / गुरुवार', en: 'Thursday', latin: 'Dies Jovis',
-    planet: { en: 'Jupiter', hi: 'बृहस्पति' }, color: '#facc15',
+    planet: { en: 'Jupiter', hi: 'बृहस्पति', sa: 'बृहस्पति', mai: 'बृहस्पति', mr: 'बृहस्पति', ta: 'Jupiter', te: 'Jupiter', bn: 'Jupiter', kn: 'Jupiter', gu: 'Jupiter' }, color: '#facc15',
     norse: { en: '(Thor\'s day = Jupiter)', hi: '(Thor = बृहस्पति)' },
   },
   {
     num: 6,
     sanskrit: 'Shukravara', hi: 'शुक्रवार', en: 'Friday', latin: 'Dies Veneris',
-    planet: { en: 'Venus', hi: 'शुक्र' }, color: '#f472b6',
+    planet: { en: 'Venus', hi: 'शुक्र', sa: 'शुक्र', mai: 'शुक्र', mr: 'शुक्र', ta: 'Venus', te: 'Venus', bn: 'Venus', kn: 'Venus', gu: 'Venus' }, color: '#f472b6',
     norse: { en: '(Freya\'s day = Venus)', hi: '(Freya = शुक्र)' },
   },
   {
     num: 7,
     sanskrit: 'Shanivara', hi: 'शनिवार', en: 'Saturday', latin: 'Dies Saturni',
-    planet: { en: 'Saturn', hi: 'शनि' }, color: '#60a5fa',
+    planet: { en: 'Saturn', hi: 'शनि', sa: 'शनि', mai: 'शनि', mr: 'शनि', ta: 'Saturn', te: 'Saturn', bn: 'Saturn', kn: 'Saturn', gu: 'Saturn' }, color: '#60a5fa',
     norse: { en: '(Saturn\'s day)', hi: '(शनि का दिन)' },
   },
 ];
@@ -312,49 +314,49 @@ const WEEKDAYS = [
 /* ── Hora practice data ───────────────────────────────────────────── */
 const HORA_PRACTICE = [
   {
-    planet: { en: 'Sun Hora', hi: 'सूर्य होरा' }, color: '#f59e0b', bg: 'bg-amber-500/8', border: 'border-amber-500/25',
+    planet: { en: 'Sun Hora', hi: 'सूर्य होरा', sa: 'सूर्य होरा', mai: 'सूर्य होरा', mr: 'सूर्य होरा', ta: 'Sun Hora', te: 'Sun Hora', bn: 'Sun Hora', kn: 'Sun Hora', gu: 'Sun Hora' }, color: '#f59e0b', bg: 'bg-amber-500/8', border: 'border-amber-500/25',
     activities: {
       en: 'Authority, government work, meetings with officials, leadership tasks, father-related matters, self-expression and command',
       hi: 'अधिकार, सरकारी कार्य, अधिकारियों से मिलना, नेतृत्व, पिता सम्बन्धित, आत्म-अभिव्यक्ति',
     },
   },
   {
-    planet: { en: 'Moon Hora', hi: 'चन्द्र होरा' }, color: '#94a3b8', bg: 'bg-slate-400/8', border: 'border-slate-400/25',
+    planet: { en: 'Moon Hora', hi: 'चन्द्र होरा', sa: 'चन्द्र होरा', mai: 'चन्द्र होरा', mr: 'चन्द्र होरा', ta: 'Moon Hora', te: 'Moon Hora', bn: 'Moon Hora', kn: 'Moon Hora', gu: 'Moon Hora' }, color: '#94a3b8', bg: 'bg-slate-400/8', border: 'border-slate-400/25',
     activities: {
       en: 'Travel, emotional conversations, mother-related, public dealings, water work, starting creative projects',
       hi: 'यात्रा, भावनात्मक बातचीत, माता सम्बन्धित, सार्वजनिक व्यवहार, जल कार्य, रचनात्मक परियोजना',
     },
   },
   {
-    planet: { en: 'Mars Hora', hi: 'मंगल होरा' }, color: '#ef4444', bg: 'bg-red-500/8', border: 'border-red-500/25',
+    planet: { en: 'Mars Hora', hi: 'मंगल होरा', sa: 'मंगल होरा', mai: 'मंगल होरा', mr: 'मंगल होरा', ta: 'Mars Hora', te: 'Mars Hora', bn: 'Mars Hora', kn: 'Mars Hora', gu: 'Mars Hora' }, color: '#ef4444', bg: 'bg-red-500/8', border: 'border-red-500/25',
     activities: {
       en: 'Surgery, property work, sports, engineering and machinery, military or police matters, unavoidable confrontation',
       hi: 'शल्यक्रिया, सम्पत्ति कार्य, खेल, यन्त्र-अभियान्त्रिकी, सेना/पुलिस, अपरिहार्य संघर्ष',
     },
   },
   {
-    planet: { en: 'Mercury Hora', hi: 'बुध होरा' }, color: '#4ade80', bg: 'bg-emerald-500/8', border: 'border-emerald-500/25',
+    planet: { en: 'Mercury Hora', hi: 'बुध होरा', sa: 'बुध होरा', mai: 'बुध होरा', mr: 'बुध होरा', ta: 'Mercury Hora', te: 'Mercury Hora', bn: 'Mercury Hora', kn: 'Mercury Hora', gu: 'Mercury Hora' }, color: '#4ade80', bg: 'bg-emerald-500/8', border: 'border-emerald-500/25',
     activities: {
       en: 'Business deals, contract signing, communication, education, writing, accounting, banking, technology, short trips',
       hi: 'व्यापारिक सौदे, अनुबन्ध, संचार, शिक्षा, लेखन, लेखांकन, बैंकिंग, प्रौद्योगिकी, छोटी यात्रा',
     },
   },
   {
-    planet: { en: 'Jupiter Hora', hi: 'गुरु होरा' }, color: '#facc15', bg: 'bg-yellow-500/8', border: 'border-yellow-500/25',
+    planet: { en: 'Jupiter Hora', hi: 'गुरु होरा', sa: 'गुरु होरा', mai: 'गुरु होरा', mr: 'गुरु होरा', ta: 'Jupiter Hora', te: 'Jupiter Hora', bn: 'Jupiter Hora', kn: 'Jupiter Hora', gu: 'Jupiter Hora' }, color: '#facc15', bg: 'bg-yellow-500/8', border: 'border-yellow-500/25',
     activities: {
       en: 'Spiritual work, teaching, consulting advisors, charity, legal proceedings, religious ceremonies, financial expansion',
       hi: 'आध्यात्मिक कार्य, अध्यापन, सलाहकार परामर्श, दान, कानूनी कार्यवाही, धार्मिक अनुष्ठान, वित्त',
     },
   },
   {
-    planet: { en: 'Venus Hora', hi: 'शुक्र होरा' }, color: '#f472b6', bg: 'bg-pink-500/8', border: 'border-pink-500/25',
+    planet: { en: 'Venus Hora', hi: 'शुक्र होरा', sa: 'शुक्र होरा', mai: 'शुक्र होरा', mr: 'शुक्र होरा', ta: 'Venus Hora', te: 'Venus Hora', bn: 'Venus Hora', kn: 'Venus Hora', gu: 'Venus Hora' }, color: '#f472b6', bg: 'bg-pink-500/8', border: 'border-pink-500/25',
     activities: {
       en: 'Romance, marriage-related, arts and music, buying luxury items, beauty treatments, fashion, jewelry purchase',
       hi: 'प्रेम-प्रणय, विवाह सम्बन्धित, कला-संगीत, विलासिता वस्तुएँ, सौन्दर्य उपचार, आभूषण',
     },
   },
   {
-    planet: { en: 'Saturn Hora', hi: 'शनि होरा' }, color: '#60a5fa', bg: 'bg-blue-500/8', border: 'border-blue-500/25',
+    planet: { en: 'Saturn Hora', hi: 'शनि होरा', sa: 'शनि होरा', mai: 'शनि होरा', mr: 'शनि होरा', ta: 'Saturn Hora', te: 'Saturn Hora', bn: 'Saturn Hora', kn: 'Saturn Hora', gu: 'Saturn Hora' }, color: '#60a5fa', bg: 'bg-blue-500/8', border: 'border-blue-500/25',
     activities: {
       en: 'Completing unfinished work, agriculture, iron/steel, deep meditation, dealing with laborers, mining, oil — AVOID starting new ventures',
       hi: 'अधूरा कार्य पूरा करें, कृषि, लोहा/इस्पात, गहन ध्यान, श्रमिकों से व्यवहार — नई शुरुआत से बचें',
@@ -372,7 +374,7 @@ export default function HoraChaldeanPage() {
     : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
-  const t = (obj: Record<string, string>) => (isHi ? obj.hi : obj.en);
+  const t = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
 
   return (
     <main className="min-h-screen px-4 py-12 max-w-4xl mx-auto" style={bodyFont}>
@@ -844,12 +846,12 @@ export default function HoraChaldeanPage() {
         </h3>
         <div className="space-y-5">
           {[
-            { label: { en: 'Surya Siddhanta (Ch. 12)', hi: 'सूर्य सिद्धान्त (अ.12)' }, text: L.srcSurya, color: 'border-amber-500/20' },
-            { label: { en: 'Aryabhatiya (499 CE)', hi: 'आर्यभटीय (499 ई.)' }, text: L.srcAryabhata, color: 'border-emerald-500/20' },
-            { label: { en: 'Brihat Samhita (Ch. 2)', hi: 'बृहत् संहिता (अ.2)' }, text: L.srcBrihat, color: 'border-violet-500/20' },
-            { label: { en: 'Arthashastra (~300 BCE)', hi: 'अर्थशास्त्र (~300 ई.पू.)' }, text: L.srcArthashastra, color: 'border-blue-500/20' },
-            { label: { en: 'Yajnavalkya Smriti (Ch. 1)', hi: 'याज्ञवल्क्य स्मृति (अ.1)' }, text: L.srcYajnavalkya, color: 'border-gold-primary/20' },
-            { label: { en: 'Romaka Siddhanta', hi: 'रोमक सिद्धान्त' }, text: L.srcRomaka, color: 'border-red-500/20' },
+            { label: { en: 'Surya Siddhanta (Ch. 12)', hi: 'सूर्य सिद्धान्त (अ.12)', sa: 'सूर्य सिद्धान्त (अ.12)', mai: 'सूर्य सिद्धान्त (अ.12)', mr: 'सूर्य सिद्धान्त (अ.12)', ta: 'Surya Siddhanta (Ch. 12)', te: 'Surya Siddhanta (Ch. 12)', bn: 'Surya Siddhanta (Ch. 12)', kn: 'Surya Siddhanta (Ch. 12)', gu: 'Surya Siddhanta (Ch. 12)' }, text: L.srcSurya, color: 'border-amber-500/20' },
+            { label: { en: 'Aryabhatiya (499 CE)', hi: 'आर्यभटीय (499 ई.)', sa: 'आर्यभटीय (499 ई.)', mai: 'आर्यभटीय (499 ई.)', mr: 'आर्यभटीय (499 ई.)', ta: 'Aryabhatiya (499 CE)', te: 'Aryabhatiya (499 CE)', bn: 'Aryabhatiya (499 CE)', kn: 'Aryabhatiya (499 CE)', gu: 'Aryabhatiya (499 CE)' }, text: L.srcAryabhata, color: 'border-emerald-500/20' },
+            { label: { en: 'Brihat Samhita (Ch. 2)', hi: 'बृहत् संहिता (अ.2)', sa: 'बृहत् संहिता (अ.2)', mai: 'बृहत् संहिता (अ.2)', mr: 'बृहत् संहिता (अ.2)', ta: 'Brihat Samhita (Ch. 2)', te: 'Brihat Samhita (Ch. 2)', bn: 'Brihat Samhita (Ch. 2)', kn: 'Brihat Samhita (Ch. 2)', gu: 'Brihat Samhita (Ch. 2)' }, text: L.srcBrihat, color: 'border-violet-500/20' },
+            { label: { en: 'Arthashastra (~300 BCE)', hi: 'अर्थशास्त्र (~300 ई.पू.)', sa: 'अर्थशास्त्र (~300 ई.पू.)', mai: 'अर्थशास्त्र (~300 ई.पू.)', mr: 'अर्थशास्त्र (~300 ई.पू.)', ta: 'Arthashastra (~300 BCE)', te: 'Arthashastra (~300 BCE)', bn: 'Arthashastra (~300 BCE)', kn: 'Arthashastra (~300 BCE)', gu: 'Arthashastra (~300 BCE)' }, text: L.srcArthashastra, color: 'border-blue-500/20' },
+            { label: { en: 'Yajnavalkya Smriti (Ch. 1)', hi: 'याज्ञवल्क्य स्मृति (अ.1)', sa: 'याज्ञवल्क्य स्मृति (अ.1)', mai: 'याज्ञवल्क्य स्मृति (अ.1)', mr: 'याज्ञवल्क्य स्मृति (अ.1)', ta: 'Yajnavalkya Smriti (Ch. 1)', te: 'Yajnavalkya Smriti (Ch. 1)', bn: 'Yajnavalkya Smriti (Ch. 1)', kn: 'Yajnavalkya Smriti (Ch. 1)', gu: 'Yajnavalkya Smriti (Ch. 1)' }, text: L.srcYajnavalkya, color: 'border-gold-primary/20' },
+            { label: { en: 'Romaka Siddhanta', hi: 'रोमक सिद्धान्त', sa: 'रोमक सिद्धान्त', mai: 'रोमक सिद्धान्त', mr: 'रोमक सिद्धान्त', ta: 'Romaka Siddhanta', te: 'Romaka Siddhanta', bn: 'Romaka Siddhanta', kn: 'Romaka Siddhanta', gu: 'Romaka Siddhanta' }, text: L.srcRomaka, color: 'border-red-500/20' },
           ].map((src, i) => (
             <div key={i} className={`border ${src.color} rounded-xl p-4 bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27]`}>
               <div className="text-gold-light font-bold text-sm mb-2" style={headingFont}>{t(src.label)}</div>
@@ -872,12 +874,12 @@ export default function HoraChaldeanPage() {
         </h3>
         <div className="flex flex-wrap gap-3">
           {[
-            { href: '/vedic-time', label: { en: 'Vedic Time', hi: 'वैदिक समय' } },
-            { href: '/learn/vara', label: { en: 'Learn: Vara (Weekdays)', hi: 'सीखें: वार' } },
-            { href: '/learn/muhurtas', label: { en: 'Learn: Muhurtas', hi: 'सीखें: मुहूर्त' } },
-            { href: '/learn/eclipses', label: { en: 'Learn: Eclipses', hi: 'सीखें: ग्रहण' } },
-            { href: '/learn/grahas', label: { en: 'Learn: The Nine Grahas', hi: 'सीखें: नवग्रह' } },
-            { href: '/muhurta-ai', label: { en: 'Muhurta AI', hi: 'मुहूर्त AI' } },
+            { href: '/vedic-time', label: { en: 'Vedic Time', hi: 'वैदिक समय', sa: 'वैदिक समय', mai: 'वैदिक समय', mr: 'वैदिक समय', ta: 'Vedic Time', te: 'Vedic Time', bn: 'Vedic Time', kn: 'Vedic Time', gu: 'Vedic Time' } },
+            { href: '/learn/vara', label: { en: 'Learn: Vara (Weekdays)', hi: 'सीखें: वार', sa: 'सीखें: वार', mai: 'सीखें: वार', mr: 'सीखें: वार', ta: 'Learn: Vara (Weekdays)', te: 'Learn: Vara (Weekdays)', bn: 'Learn: Vara (Weekdays)', kn: 'Learn: Vara (Weekdays)', gu: 'Learn: Vara (Weekdays)' } },
+            { href: '/learn/muhurtas', label: { en: 'Learn: Muhurtas', hi: 'सीखें: मुहूर्त', sa: 'सीखें: मुहूर्त', mai: 'सीखें: मुहूर्त', mr: 'सीखें: मुहूर्त', ta: 'Learn: Muhurtas', te: 'Learn: Muhurtas', bn: 'Learn: Muhurtas', kn: 'Learn: Muhurtas', gu: 'Learn: Muhurtas' } },
+            { href: '/learn/eclipses', label: { en: 'Learn: Eclipses', hi: 'सीखें: ग्रहण', sa: 'सीखें: ग्रहण', mai: 'सीखें: ग्रहण', mr: 'सीखें: ग्रहण', ta: 'Learn: Eclipses', te: 'Learn: Eclipses', bn: 'Learn: Eclipses', kn: 'Learn: Eclipses', gu: 'Learn: Eclipses' } },
+            { href: '/learn/grahas', label: { en: 'Learn: The Nine Grahas', hi: 'सीखें: नवग्रह', sa: 'सीखें: नवग्रह', mai: 'सीखें: नवग्रह', mr: 'सीखें: नवग्रह', ta: 'Learn: The Nine Grahas', te: 'Learn: The Nine Grahas', bn: 'Learn: The Nine Grahas', kn: 'Learn: The Nine Grahas', gu: 'Learn: The Nine Grahas' } },
+            { href: '/muhurta-ai', label: { en: 'Muhurta AI', hi: 'मुहूर्त AI', sa: 'मुहूर्त AI', mai: 'मुहूर्त AI', mr: 'मुहूर्त AI', ta: 'Muhurta AI', te: 'Muhurta AI', bn: 'Muhurta AI', kn: 'Muhurta AI', gu: 'Muhurta AI' } },
           ].map((link) => (
             <Link
               key={link.href}

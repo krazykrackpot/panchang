@@ -6,17 +6,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_7_2', phase: 2, topic: 'Yoga Karana', moduleNumber: '7.2',
-  title: { en: 'Karana — The Half-Tithi', hi: 'करण — अर्ध-तिथि' },
+  title: { en: 'Karana — The Half-Tithi', hi: 'करण — अर्ध-तिथि', sa: 'करण — अर्ध-तिथि', mai: 'करण — अर्ध-तिथि', mr: 'करण — अर्ध-तिथि', ta: 'Karana — The Half-Tithi', te: 'Karana — The Half-Tithi', bn: 'Karana — The Half-Tithi', kn: 'Karana — The Half-Tithi', gu: 'Karana — The Half-Tithi' },
   subtitle: {
     en: 'Each tithi splits into two karanas (6° of elongation each), yielding 60 karanas per lunar month from 7 movable and 4 fixed types',
     hi: 'प्रत्येक तिथि दो करणों (प्रत्येक 6° कोणीय दूरी) में विभक्त होती है, जिससे 7 चर और 4 स्थिर प्रकारों से प्रति चान्द्र मास 60 करण बनते हैं',
   },
   estimatedMinutes: 13,
   crossRefs: [
-    { label: { en: 'Module 7-1: Yoga', hi: 'मॉड्यूल 7-1: योग' }, href: '/learn/modules/7-1' },
-    { label: { en: 'Module 7-3: Vara', hi: 'मॉड्यूल 7-3: वार' }, href: '/learn/modules/7-3' },
-    { label: { en: 'Karanas Deep Dive', hi: 'करण विस्तार' }, href: '/learn/karanas' },
-    { label: { en: 'Daily Karana', hi: 'दैनिक करण' }, href: '/panchang/karana' },
+    { label: { en: 'Module 7-1: Yoga', hi: 'मॉड्यूल 7-1: योग', sa: 'मॉड्यूल 7-1: योग', mai: 'मॉड्यूल 7-1: योग', mr: 'मॉड्यूल 7-1: योग', ta: 'Module 7-1: Yoga', te: 'Module 7-1: Yoga', bn: 'Module 7-1: Yoga', kn: 'Module 7-1: Yoga', gu: 'Module 7-1: Yoga' }, href: '/learn/modules/7-1' },
+    { label: { en: 'Module 7-3: Vara', hi: 'मॉड्यूल 7-3: वार', sa: 'मॉड्यूल 7-3: वार', mai: 'मॉड्यूल 7-3: वार', mr: 'मॉड्यूल 7-3: वार', ta: 'Module 7-3: Vara', te: 'Module 7-3: Vara', bn: 'Module 7-3: Vara', kn: 'Module 7-3: Vara', gu: 'Module 7-3: Vara' }, href: '/learn/modules/7-3' },
+    { label: { en: 'Karanas Deep Dive', hi: 'करण विस्तार', sa: 'करण विस्तार', mai: 'करण विस्तार', mr: 'करण विस्तार', ta: 'Karanas Deep Dive', te: 'Karanas Deep Dive', bn: 'Karanas Deep Dive', kn: 'Karanas Deep Dive', gu: 'Karanas Deep Dive' }, href: '/learn/karanas' },
+    { label: { en: 'Daily Karana', hi: 'दैनिक करण', sa: 'दैनिक करण', mai: 'दैनिक करण', mr: 'दैनिक करण', ta: 'Daily Karana', te: 'Daily Karana', bn: 'Daily Karana', kn: 'Daily Karana', gu: 'Daily Karana' }, href: '/panchang/karana' },
   ],
 };
 
@@ -28,10 +28,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'करण, तिथि का कितना भाग होता है?',
     },
     options: [
-      { en: 'One-third of a tithi', hi: 'तिथि का एक-तिहाई' },
-      { en: 'One-half of a tithi', hi: 'तिथि का आधा भाग' },
-      { en: 'One-quarter of a tithi', hi: 'तिथि का एक-चौथाई' },
-      { en: 'Two tithis combined', hi: 'दो तिथियों का संयोग' },
+      { en: 'One-third of a tithi', hi: 'तिथि का एक-तिहाई', sa: 'तिथि का एक-तिहाई', mai: 'तिथि का एक-तिहाई', mr: 'तिथि का एक-तिहाई', ta: 'One-third of a tithi', te: 'One-third of a tithi', bn: 'One-third of a tithi', kn: 'One-third of a tithi', gu: 'One-third of a tithi' },
+      { en: 'One-half of a tithi', hi: 'तिथि का आधा भाग', sa: 'तिथि का आधा भाग', mai: 'तिथि का आधा भाग', mr: 'तिथि का आधा भाग', ta: 'One-half of a tithi', te: 'One-half of a tithi', bn: 'One-half of a tithi', kn: 'One-half of a tithi', gu: 'One-half of a tithi' },
+      { en: 'One-quarter of a tithi', hi: 'तिथि का एक-चौथाई', sa: 'तिथि का एक-चौथाई', mai: 'तिथि का एक-चौथाई', mr: 'तिथि का एक-चौथाई', ta: 'One-quarter of a tithi', te: 'One-quarter of a tithi', bn: 'One-quarter of a tithi', kn: 'One-quarter of a tithi', gu: 'One-quarter of a tithi' },
+      { en: 'Two tithis combined', hi: 'दो तिथियों का संयोग', sa: 'दो तिथियों का संयोग', mai: 'दो तिथियों का संयोग', mr: 'दो तिथियों का संयोग', ta: 'Two tithis combined', te: 'Two tithis combined', bn: 'Two tithis combined', kn: 'Two tithis combined', gu: 'Two tithis combined' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -46,10 +46,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कितने चर (गतिशील) करण होते हैं?',
     },
     options: [
-      { en: '4', hi: '4' },
-      { en: '7', hi: '7' },
-      { en: '11', hi: '11' },
-      { en: '27', hi: '27' },
+      { en: '4', hi: '4', sa: '4', mai: '4', mr: '4', ta: '4', te: '4', bn: '4', kn: '4', gu: '4' },
+      { en: '7', hi: '7', sa: '7', mai: '7', mr: '7', ta: '7', te: '7', bn: '7', kn: '7', gu: '7' },
+      { en: '11', hi: '11', sa: '11', mai: '11', mr: '11', ta: '11', te: '11', bn: '11', kn: '11', gu: '11' },
+      { en: '27', hi: '27', sa: '27', mai: '27', mr: '27', ta: '27', te: '27', bn: '27', kn: '27', gu: '27' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -76,10 +76,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विष्टि (भद्र) करण महत्वपूर्ण है क्योंकि यह है:',
     },
     options: [
-      { en: 'The most auspicious karana for marriage', hi: 'विवाह हेतु सर्वाधिक शुभ करण' },
-      { en: 'The most inauspicious Chara karana, occurring 8 times per month', hi: 'सर्वाधिक अशुभ चर करण, मास में 8 बार आता है' },
-      { en: 'A fixed karana appearing once per month', hi: 'एक स्थिर करण जो मास में एक बार आता है' },
-      { en: 'Identical to Vyatipata yoga', hi: 'व्यतीपात योग के समान' },
+      { en: 'The most auspicious karana for marriage', hi: 'विवाह हेतु सर्वाधिक शुभ करण', sa: 'विवाह हेतु सर्वाधिक शुभ करण', mai: 'विवाह हेतु सर्वाधिक शुभ करण', mr: 'विवाह हेतु सर्वाधिक शुभ करण', ta: 'The most auspicious karana for marriage', te: 'The most auspicious karana for marriage', bn: 'The most auspicious karana for marriage', kn: 'The most auspicious karana for marriage', gu: 'The most auspicious karana for marriage' },
+      { en: 'The most inauspicious Chara karana, occurring 8 times per month', hi: 'सर्वाधिक अशुभ चर करण, मास में 8 बार आता है', sa: 'सर्वाधिक अशुभ चर करण, मास में 8 बार आता है', mai: 'सर्वाधिक अशुभ चर करण, मास में 8 बार आता है', mr: 'सर्वाधिक अशुभ चर करण, मास में 8 बार आता है', ta: 'The most inauspicious Chara karana, occurring 8 times per month', te: 'The most inauspicious Chara karana, occurring 8 times per month', bn: 'The most inauspicious Chara karana, occurring 8 times per month', kn: 'The most inauspicious Chara karana, occurring 8 times per month', gu: 'The most inauspicious Chara karana, occurring 8 times per month' },
+      { en: 'A fixed karana appearing once per month', hi: 'एक स्थिर करण जो मास में एक बार आता है', sa: 'एक स्थिर करण जो मास में एक बार आता है', mai: 'एक स्थिर करण जो मास में एक बार आता है', mr: 'एक स्थिर करण जो मास में एक बार आता है', ta: 'A fixed karana appearing once per month', te: 'A fixed karana appearing once per month', bn: 'A fixed karana appearing once per month', kn: 'A fixed karana appearing once per month', gu: 'A fixed karana appearing once per month' },
+      { en: 'Identical to Vyatipata yoga', hi: 'व्यतीपात योग के समान', sa: 'व्यतीपात योग के समान', mai: 'व्यतीपात योग के समान', mr: 'व्यतीपात योग के समान', ta: 'Identical to Vyatipata yoga', te: 'Identical to Vyatipata yoga', bn: 'Identical to Vyatipata yoga', kn: 'Identical to Vyatipata yoga', gu: 'Identical to Vyatipata yoga' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -106,10 +106,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'यदि चन्द्र-सूर्य कोणीय दूरी 179° है, तो करण सूचकांक क्या होगा?',
     },
     options: [
-      { en: '28', hi: '28' },
-      { en: '29', hi: '29' },
-      { en: '30', hi: '30' },
-      { en: '14', hi: '14' },
+      { en: '28', hi: '28', sa: '28', mai: '28', mr: '28', ta: '28', te: '28', bn: '28', kn: '28', gu: '28' },
+      { en: '29', hi: '29', sa: '29', mai: '29', mr: '29', ta: '29', te: '29', bn: '29', kn: '29', gu: '29' },
+      { en: '30', hi: '30', sa: '30', mai: '30', mr: '30', ta: '30', te: '30', bn: '30', kn: '30', gu: '30' },
+      { en: '14', hi: '14', sa: '14', mai: '14', mr: '14', ta: '14', te: '14', bn: '14', kn: '14', gu: '14' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -124,10 +124,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'एक पूर्ण चान्द्र मास में कुल कितने करण होते हैं?',
     },
     options: [
-      { en: '30', hi: '30' },
-      { en: '54', hi: '54' },
-      { en: '60', hi: '60' },
-      { en: '27', hi: '27' },
+      { en: '30', hi: '30', sa: '30', mai: '30', mr: '30', ta: '30', te: '30', bn: '30', kn: '30', gu: '30' },
+      { en: '54', hi: '54', sa: '54', mai: '54', mr: '54', ta: '54', te: '54', bn: '54', kn: '54', gu: '54' },
+      { en: '60', hi: '60', sa: '60', mai: '60', mr: '60', ta: '60', te: '60', bn: '60', kn: '60', gu: '60' },
+      { en: '27', hi: '27', sa: '27', mai: '27', mr: '27', ta: '27', te: '27', bn: '27', kn: '27', gu: '27' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -154,10 +154,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'प्रत्येक करण चन्द्र-सूर्य कोणीय दूरी के कितने अंशों का होता है?',
     },
     options: [
-      { en: '12°', hi: '12°' },
-      { en: '6°', hi: '6°' },
-      { en: '13°20\u2032', hi: '13°20\u2032' },
-      { en: '3°', hi: '3°' },
+      { en: '12°', hi: '12°', sa: '12°', mai: '12°', mr: '12°', ta: '12°', te: '12°', bn: '12°', kn: '12°', gu: '12°' },
+      { en: '6°', hi: '6°', sa: '6°', mai: '6°', mr: '6°', ta: '6°', te: '6°', bn: '6°', kn: '6°', gu: '6°' },
+      { en: '13°20\u2032', hi: '13°20\u2032', sa: '13°20\u2032', mai: '13°20\u2032', mr: '13°20\u2032', ta: '13°20\u2032', te: '13°20\u2032', bn: '13°20\u2032', kn: '13°20\u2032', gu: '13°20\u2032' },
+      { en: '3°', hi: '3°', sa: '3°', mai: '3°', mr: '3°', ta: '3°', te: '3°', bn: '3°', kn: '3°', gu: '3°' },
     ],
     correctAnswer: 1,
     explanation: {

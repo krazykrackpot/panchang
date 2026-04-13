@@ -1,9 +1,11 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
+
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
+import type { LocaleText, Locale } from '@/types/panchang';
 import EclipseAnimation from '@/components/learn/EclipseAnimation';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
@@ -16,7 +18,7 @@ const L = {
   },
 
   /* Mythology */
-  mythTitle: { en: 'The Mythology — Rahu, Ketu & the Samudra Manthan',       hi: 'पौराणिक कथा — राहु, केतु और समुद्र मन्थन' },
+  mythTitle: { en: 'The Mythology — Rahu, Ketu & the Samudra Manthan', hi: 'पौराणिक कथा — राहु, केतु और समुद्र मन्थन', sa: 'पौराणिक कथा — राहु, केतु और समुद्र मन्थन', mai: 'पौराणिक कथा — राहु, केतु और समुद्र मन्थन', mr: 'पौराणिक कथा — राहु, केतु और समुद्र मन्थन', ta: 'The Mythology — Rahu, Ketu & the Samudra Manthan', te: 'The Mythology — Rahu, Ketu & the Samudra Manthan', bn: 'The Mythology — Rahu, Ketu & the Samudra Manthan', kn: 'The Mythology — Rahu, Ketu & the Samudra Manthan', gu: 'The Mythology — Rahu, Ketu & the Samudra Manthan' },
   myth1: {
     en: 'During the Samudra Manthan (churning of the cosmic ocean), a demon named Svarbhanu disguised himself as a god and sat between the Sun and Moon to drink the amrita (nectar of immortality). The Sun and Moon recognised the imposter and alerted Lord Vishnu, who immediately hurled his Sudarshan Chakra — severing Svarbhanu\'s head from his body at the precise moment the amrita reached his throat.',
     hi: 'समुद्र मन्थन के दौरान, स्वर्भानु नामक एक असुर देवता के वेश में सूर्य और चन्द्र के बीच बैठ कर अमृत पी गया। सूर्य और चन्द्र ने उसे पहचाना और भगवान विष्णु को सूचित किया, जिन्होंने तुरन्त अपना सुदर्शन चक्र फेंका — जिससे स्वर्भानु का सिर उसके धड़ से उस क्षण अलग हो गया जब अमृत उसके गले तक पहुँचा था।',
@@ -31,7 +33,7 @@ const L = {
   },
 
   /* Astronomy */
-  astroTitle: { en: 'The Astronomy — Why Eclipses Happen',                    hi: 'खगोल विज्ञान — ग्रहण क्यों होते हैं' },
+  astroTitle: { en: 'The Astronomy — Why Eclipses Happen', hi: 'खगोल विज्ञान — ग्रहण क्यों होते हैं', sa: 'खगोल विज्ञान — ग्रहण क्यों होते हैं', mai: 'खगोल विज्ञान — ग्रहण क्यों होते हैं', mr: 'खगोल विज्ञान — ग्रहण क्यों होते हैं', ta: 'The Astronomy — Why Eclipses Happen', te: 'The Astronomy — Why Eclipses Happen', bn: 'The Astronomy — Why Eclipses Happen', kn: 'The Astronomy — Why Eclipses Happen', gu: 'The Astronomy — Why Eclipses Happen' },
   astro1: {
     en: 'The Moon\'s orbit is tilted approximately 5.15° with respect to the ecliptic (the plane of Earth\'s orbit around the Sun). This tilt means the Moon is usually above or below the ecliptic — so most New Moons and Full Moons pass without an eclipse.',
     hi: 'चन्द्रमा की कक्षा क्रान्तिवृत्त (पृथ्वी की सूर्य के चारों ओर कक्षा का तल) के सापेक्ष लगभग 5.15° झुकी हुई है। इस झुकाव का अर्थ है कि चन्द्रमा सामान्यतः क्रान्तिवृत्त के ऊपर या नीचे रहता है — इसलिए अधिकांश अमावस्या और पूर्णिमा बिना ग्रहण के गुजर जाती हैं।',
@@ -46,12 +48,12 @@ const L = {
   },
 
   /* Calculation Engine */
-  calcTitle: { en: 'How We Calculate Eclipses — Our Engine',                  hi: 'हम ग्रहण की गणना कैसे करते हैं — हमारा इंजन' },
+  calcTitle: { en: 'How We Calculate Eclipses — Our Engine', hi: 'हम ग्रहण की गणना कैसे करते हैं — हमारा इंजन', sa: 'हम ग्रहण की गणना कैसे करते हैं — हमारा इंजन', mai: 'हम ग्रहण की गणना कैसे करते हैं — हमारा इंजन', mr: 'हम ग्रहण की गणना कैसे करते हैं — हमारा इंजन', ta: 'How We Calculate Eclipses — Our Engine', te: 'How We Calculate Eclipses — Our Engine', bn: 'How We Calculate Eclipses — Our Engine', kn: 'How We Calculate Eclipses — Our Engine', gu: 'How We Calculate Eclipses — Our Engine' },
   calcIntro: {
     en: 'Our eclipse engine finds all eclipses for any year by building on top of the tithi table we already compute for the Panchang calendar. Here is the full pipeline, step by step:',
     hi: 'हमारा ग्रहण इंजन किसी भी वर्ष के सभी ग्रहणों को खोजने के लिए उस तिथि तालिका पर आधारित है जिसकी गणना हम पंचांग कैलेण्डर के लिए पहले से करते हैं। यहाँ चरण-दर-चरण पूरी प्रक्रिया है:',
   },
-  step1Title: { en: 'Step 1 — Find All Lunations from the Tithi Table',       hi: 'चरण 1 — तिथि तालिका से सभी लुनेशन खोजें' },
+  step1Title: { en: 'Step 1 — Find All Lunations from the Tithi Table', hi: 'चरण 1 — तिथि तालिका से सभी लुनेशन खोजें', sa: 'चरण 1 — तिथि तालिका से सभी लुनेशन खोजें', mai: 'चरण 1 — तिथि तालिका से सभी लुनेशन खोजें', mr: 'चरण 1 — तिथि तालिका से सभी लुनेशन खोजें', ta: 'Step 1 — Find All Lunations from the Tithi Table', te: 'Step 1 — Find All Lunations from the Tithi Table', bn: 'Step 1 — Find All Lunations from the Tithi Table', kn: 'Step 1 — Find All Lunations from the Tithi Table', gu: 'Step 1 — Find All Lunations from the Tithi Table' },
   step1: {
     en: 'Our Panchang calendar pre-computes ~370 tithi entries per year with precise start/end Julian Day numbers. Every Amavasya (tithi #30 — the New Moon) is a solar eclipse candidate. Every Purnima (tithi #15 — the Full Moon) is a lunar eclipse candidate. Because we already compute exact tithi times, we need no separate lunation scanning — we simply filter for tithis #15 and #30 and extract their midpoint times.',
     hi: 'हमारा पंचांग कैलेण्डर प्रत्येक वर्ष के लिए ~370 तिथि प्रविष्टियाँ सटीक प्रारम्भ/समाप्ति जूलियन दिन संख्याओं के साथ पूर्व-गणना करता है। प्रत्येक अमावस्या (तिथि #30 — नया चन्द्र) सूर्य ग्रहण का उम्मीदवार है। प्रत्येक पूर्णिमा (तिथि #15 — पूर्ण चन्द्र) चन्द्र ग्रहण का उम्मीदवार है। हम केवल तिथि #15 और #30 के लिए फ़िल्टर करते हैं और उनके मध्यबिन्दु समय निकालते हैं।',
@@ -61,33 +63,33 @@ const L = {
     en: 'At each lunation midpoint, we query the ephemeris for the Moon\'s ecliptic latitude (β). This value tells us precisely how far above or below the ecliptic the Moon is at that moment. At a node (Rahu or Ketu), β = 0°, which would produce the deepest possible eclipse. As the Moon moves away from the nodes, |β| grows toward ±5.15°. If |β| is large enough, no eclipse occurs even at New Moon or Full Moon — the shadows simply miss.',
     hi: 'प्रत्येक लुनेशन मध्यबिन्दु पर, हम इफेमेरिस से चन्द्रमा का क्रान्तिवृत्त अक्षांश (β) प्राप्त करते हैं। यह मान बताता है कि उस क्षण चन्द्रमा क्रान्तिवृत्त से कितना ऊपर या नीचे है। पात (राहु या केतु) पर β = 0° होता है, जो सबसे गहरा ग्रहण देता है। जैसे-जैसे चन्द्रमा पातों से दूर जाता है, |β| ±5.15° की ओर बढ़ता है।',
   },
-  step3Title: { en: 'Step 3 — Apply Distance-Scaled Eclipse Limits',          hi: 'चरण 3 — दूरी-स्केल ग्रहण सीमाएँ लागू करें' },
+  step3Title: { en: 'Step 3 — Apply Distance-Scaled Eclipse Limits', hi: 'चरण 3 — दूरी-स्केल ग्रहण सीमाएँ लागू करें', sa: 'चरण 3 — दूरी-स्केल ग्रहण सीमाएँ लागू करें', mai: 'चरण 3 — दूरी-स्केल ग्रहण सीमाएँ लागू करें', mr: 'चरण 3 — दूरी-स्केल ग्रहण सीमाएँ लागू करें', ta: 'Step 3 — Apply Distance-Scaled Eclipse Limits', te: 'Step 3 — Apply Distance-Scaled Eclipse Limits', bn: 'Step 3 — Apply Distance-Scaled Eclipse Limits', kn: 'Step 3 — Apply Distance-Scaled Eclipse Limits', gu: 'Step 3 — Apply Distance-Scaled Eclipse Limits' },
   step3: {
     en: 'Whether an eclipse occurs depends on the Moon\'s latitude and its distance from Earth (which determines its apparent size). We use the Moon\'s angular velocity as a proxy for distance — a faster Moon is closer (larger apparent disk). The thresholds are:',
     hi: 'ग्रहण होगा या नहीं यह चन्द्रमा के अक्षांश और पृथ्वी से उसकी दूरी (जो उसके प्रत्यक्ष आकार को निर्धारित करती है) पर निर्भर करता है। हम चन्द्रमा की कोणीय गति को दूरी के प्रतिनिधि के रूप में उपयोग करते हैं — तेज़ चन्द्रमा निकट (बड़ा प्रत्यक्ष बिम्ब) है। सीमाएँ इस प्रकार हैं:',
   },
-  step4Title: { en: 'Step 4 — Compute Local Circumstances',                   hi: 'चरण 4 — स्थानीय परिस्थितियाँ गणना करें' },
+  step4Title: { en: 'Step 4 — Compute Local Circumstances', hi: 'चरण 4 — स्थानीय परिस्थितियाँ गणना करें', sa: 'चरण 4 — स्थानीय परिस्थितियाँ गणना करें', mai: 'चरण 4 — स्थानीय परिस्थितियाँ गणना करें', mr: 'चरण 4 — स्थानीय परिस्थितियाँ गणना करें', ta: 'Step 4 — Compute Local Circumstances', te: 'Step 4 — Compute Local Circumstances', bn: 'Step 4 — Compute Local Circumstances', kn: 'Step 4 — Compute Local Circumstances', gu: 'Step 4 — Compute Local Circumstances' },
   step4: {
     en: 'For lunar eclipses, the contact times are universal — Earth\'s shadow is so large that the eclipse is seen from the entire night-side hemisphere simultaneously. We simply convert UTC contact times to the user\'s local timezone. For solar eclipses, the situation is more complex: the Moon\'s shadow is a narrow cone, and the contact times, totality path, and local magnitude all depend on the observer\'s geographic coordinates. We compute this using a standard geometric approach based on the Besselian elements of the eclipse. Sutak is then computed from the first contact (sparsha) time using classical timing rules.',
     hi: 'चन्द्र ग्रहण के लिए, सम्पर्क समय सार्वभौमिक हैं — पृथ्वी की छाया इतनी बड़ी है कि ग्रहण पूरे रात्रि-पक्ष से एक साथ दिखता है। हम केवल UTC सम्पर्क समयों को उपयोगकर्ता के स्थानीय टाइमज़ोन में बदलते हैं। सूर्य ग्रहण के लिए, चन्द्रमा की छाया एक संकीर्ण शंकु है, और सम्पर्क समय, पूर्णता पथ और स्थानीय परिमाण सभी पर्यवेक्षक के भौगोलिक निर्देशांकों पर निर्भर करते हैं। सूतक को तब शास्त्रीय नियमों के अनुसार स्पर्श (प्रथम सम्पर्क) समय से गणना की जाती है।',
   },
 
   /* Eclipse Types */
-  typesTitle: { en: 'Types of Eclipses',                                       hi: 'ग्रहण के प्रकार' },
+  typesTitle: { en: 'Types of Eclipses', hi: 'ग्रहण के प्रकार', sa: 'ग्रहण के प्रकार', mai: 'ग्रहण के प्रकार', mr: 'ग्रहण के प्रकार', ta: 'Types of Eclipses', te: 'Types of Eclipses', bn: 'Types of Eclipses', kn: 'Types of Eclipses', gu: 'Types of Eclipses' },
   typesIntro: {
     en: 'Not all eclipses are equal. The type depends on the Moon\'s distance from the node, its distance from Earth, and the observer\'s location.',
     hi: 'सभी ग्रहण समान नहीं होते। प्रकार चन्द्रमा की पात से दूरी, पृथ्वी से उसकी दूरी और पर्यवेक्षक के स्थान पर निर्भर करता है।',
   },
 
   /* Phases */
-  phasesTitle: { en: 'Eclipse Phases & Sanskrit Terminology',                  hi: 'ग्रहण के चरण एवं संस्कृत शब्दावली' },
+  phasesTitle: { en: 'Eclipse Phases & Sanskrit Terminology', hi: 'ग्रहण के चरण एवं संस्कृत शब्दावली', sa: 'ग्रहण के चरण एवं संस्कृत शब्दावली', mai: 'ग्रहण के चरण एवं संस्कृत शब्दावली', mr: 'ग्रहण के चरण एवं संस्कृत शब्दावली', ta: 'Eclipse Phases & Sanskrit Terminology', te: 'Eclipse Phases & Sanskrit Terminology', bn: 'Eclipse Phases & Sanskrit Terminology', kn: 'Eclipse Phases & Sanskrit Terminology', gu: 'Eclipse Phases & Sanskrit Terminology' },
   phasesIntro: {
     en: 'Every eclipse passes through defined phases, each with a Sanskrit name used in classical texts and modern Panchang calculations:',
     hi: 'प्रत्येक ग्रहण निर्धारित चरणों से गुज़रता है, जिनमें से प्रत्येक का शास्त्रीय ग्रन्थों और आधुनिक पंचांग गणनाओं में उपयोग किया जाने वाला संस्कृत नाम है:',
   },
 
   /* Sutak */
-  sutakTitle: { en: 'Sutak — The Restriction Period',                          hi: 'सूतक — निषेध काल' },
+  sutakTitle: { en: 'Sutak — The Restriction Period', hi: 'सूतक — निषेध काल', sa: 'सूतक — निषेध काल', mai: 'सूतक — निषेध काल', mr: 'सूतक — निषेध काल', ta: 'Sutak — The Restriction Period', te: 'Sutak — The Restriction Period', bn: 'Sutak — The Restriction Period', kn: 'Sutak — The Restriction Period', gu: 'Sutak — The Restriction Period' },
   sutakIntro: {
     en: 'Sutak (also spelled Soothak or Sutak) is the period of ritual restriction that precedes and includes an eclipse. It is considered spiritually polluted time when certain activities are forbidden. Sutak only applies when the eclipse is visible from your location — an eclipse on the other side of Earth carries no Sutak obligation.',
     hi: 'सूतक वह अनुष्ठान-प्रतिबन्ध काल है जो ग्रहण से पहले और उसे सम्मिलित करते हुए आता है। यह आध्यात्मिक रूप से अशुद्ध समय माना जाता है जब कुछ कार्य वर्जित होते हैं। सूतक केवल तभी लागू होता है जब ग्रहण आपके स्थान से दिखाई दे।',
@@ -96,18 +98,18 @@ const L = {
     en: 'Classical texts disagree slightly on Sutak duration. The three main interpretations:',
     hi: 'शास्त्रीय ग्रन्थ सूतक की अवधि पर थोड़े भिन्न हैं। तीन मुख्य व्याख्याएँ:',
   },
-  sutakDo: { en: 'Recommended during Sutak & Eclipse',                        hi: 'सूतक और ग्रहण में अनुशंसित' },
-  sutakAvoid: { en: 'Avoid during Sutak & Eclipse',                           hi: 'सूतक और ग्रहण में परहेज़ करें' },
+  sutakDo: { en: 'Recommended during Sutak & Eclipse', hi: 'सूतक और ग्रहण में अनुशंसित', sa: 'सूतक और ग्रहण में अनुशंसित', mai: 'सूतक और ग्रहण में अनुशंसित', mr: 'सूतक और ग्रहण में अनुशंसित', ta: 'Recommended during Sutak & Eclipse', te: 'Recommended during Sutak & Eclipse', bn: 'Recommended during Sutak & Eclipse', kn: 'Recommended during Sutak & Eclipse', gu: 'Recommended during Sutak & Eclipse' },
+  sutakAvoid: { en: 'Avoid during Sutak & Eclipse', hi: 'सूतक और ग्रहण में परहेज़ करें', sa: 'सूतक और ग्रहण में परहेज़ करें', mai: 'सूतक और ग्रहण में परहेज़ करें', mr: 'सूतक और ग्रहण में परहेज़ करें', ta: 'Avoid during Sutak & Eclipse', te: 'Avoid during Sutak & Eclipse', bn: 'Avoid during Sutak & Eclipse', kn: 'Avoid during Sutak & Eclipse', gu: 'Avoid during Sutak & Eclipse' },
 
   /* Kundali */
-  kundaliTitle: { en: 'Eclipses in Kundali Analysis',                         hi: 'कुण्डली विश्लेषण में ग्रहण' },
+  kundaliTitle: { en: 'Eclipses in Kundali Analysis', hi: 'कुण्डली विश्लेषण में ग्रहण', sa: 'कुण्डली विश्लेषण में ग्रहण', mai: 'कुण्डली विश्लेषण में ग्रहण', mr: 'कुण्डली विश्लेषण में ग्रहण', ta: 'Eclipses in Kundali Analysis', te: 'Eclipses in Kundali Analysis', bn: 'Eclipses in Kundali Analysis', kn: 'Eclipses in Kundali Analysis', gu: 'Eclipses in Kundali Analysis' },
   kundaliIntro: {
     en: 'In natal astrology (Janma Kundali analysis), eclipses are treated as powerful activation events — not curses, but catalysts. An eclipse is a karmic spotlight, illuminating a specific area of life for deep transformation.',
     hi: 'जन्म कुण्डली विश्लेषण में, ग्रहणों को शक्तिशाली सक्रियण घटनाओं के रूप में माना जाता है — अभिशाप नहीं, बल्कि उत्प्रेरक। एक ग्रहण एक कार्मिक प्रकाशपुञ्ज है जो जीवन के किसी विशेष क्षेत्र को गहन परिवर्तन के लिए प्रकाशित करता है।',
   },
 
   /* Saros */
-  sarosTitle: { en: 'The Saros Cycle & Eclipse Series',                         hi: 'सारोस चक्र एवं ग्रहण श्रृंखला' },
+  sarosTitle: { en: 'The Saros Cycle & Eclipse Series', hi: 'सारोस चक्र एवं ग्रहण श्रृंखला', sa: 'सारोस चक्र एवं ग्रहण श्रृंखला', mai: 'सारोस चक्र एवं ग्रहण श्रृंखला', mr: 'सारोस चक्र एवं ग्रहण श्रृंखला', ta: 'The Saros Cycle & Eclipse Series', te: 'The Saros Cycle & Eclipse Series', bn: 'The Saros Cycle & Eclipse Series', kn: 'The Saros Cycle & Eclipse Series', gu: 'The Saros Cycle & Eclipse Series' },
   sarosWhy: {
     en: 'Why do eclipses repeat? Three orbital cycles align almost perfectly:',
     hi: 'ग्रहण क्यों दोहराते हैं? तीन कक्षीय चक्र लगभग पूर्ण रूप से संरेखित होते हैं:',
@@ -228,14 +230,14 @@ const L = {
   },
 
   /* Cross refs */
-  crossRef: { en: 'Related Topics',                                            hi: 'सम्बन्धित विषय' },
-  viewCalendar: { en: 'View Eclipse Calendar',                                 hi: 'ग्रहण कैलेण्डर देखें' },
+  crossRef: { en: 'Related Topics', hi: 'सम्बन्धित विषय', sa: 'सम्बन्धित विषय', mai: 'सम्बन्धित विषय', mr: 'सम्बन्धित विषय', ta: 'Related Topics', te: 'Related Topics', bn: 'Related Topics', kn: 'Related Topics', gu: 'Related Topics' },
+  viewCalendar: { en: 'View Eclipse Calendar', hi: 'ग्रहण कैलेण्डर देखें', sa: 'ग्रहण कैलेण्डर देखें', mai: 'ग्रहण कैलेण्डर देखें', mr: 'ग्रहण कैलेण्डर देखें', ta: 'View Eclipse Calendar', te: 'View Eclipse Calendar', bn: 'View Eclipse Calendar', kn: 'View Eclipse Calendar', gu: 'View Eclipse Calendar' },
 };
 
 /* ─── Eclipse types data ─── */
 const ECLIPSE_TYPES = [
   {
-    name: { en: 'Total Solar Eclipse', hi: 'पूर्ण सूर्य ग्रहण' },
+    name: { en: 'Total Solar Eclipse', hi: 'पूर्ण सूर्य ग्रहण', sa: 'पूर्ण सूर्य ग्रहण', mai: 'पूर्ण सूर्य ग्रहण', mr: 'पूर्ण सूर्य ग्रहण', ta: 'Total Solar Eclipse', te: 'Total Solar Eclipse', bn: 'Total Solar Eclipse', kn: 'Total Solar Eclipse', gu: 'Total Solar Eclipse' },
     color: 'text-amber-300', border: 'border-amber-500/20', bg: 'bg-amber-500/5',
     symbol: '☀',
     condition: { en: 'Moon\'s disk completely covers the Sun. |β| < ~0.9°', hi: 'चन्द्र बिम्ब सूर्य को पूर्णतः ढकता है। |β| < ~0.9°' },
@@ -245,27 +247,27 @@ const ECLIPSE_TYPES = [
     },
   },
   {
-    name: { en: 'Annular Solar Eclipse', hi: 'कण्कण सूर्य ग्रहण' },
+    name: { en: 'Annular Solar Eclipse', hi: 'कण्कण सूर्य ग्रहण', sa: 'कण्कण सूर्य ग्रहण', mai: 'कण्कण सूर्य ग्रहण', mr: 'कण्कण सूर्य ग्रहण', ta: 'Annular Solar Eclipse', te: 'Annular Solar Eclipse', bn: 'Annular Solar Eclipse', kn: 'Annular Solar Eclipse', gu: 'Annular Solar Eclipse' },
     color: 'text-orange-400', border: 'border-orange-500/20', bg: 'bg-orange-500/5',
     symbol: '⊙',
-    condition: { en: 'Moon near apogee — apparent disk smaller than Sun. Ring of fire visible.', hi: 'चन्द्रमा अपभू के निकट — प्रत्यक्ष बिम्ब सूर्य से छोटा। अग्नि-वलय दृश्यमान।' },
+    condition: { en: 'Moon near apogee — apparent disk smaller than Sun. Ring of fire visible.', hi: 'चन्द्रमा अपभू के निकट — प्रत्यक्ष बिम्ब सूर्य से छोटा। अग्नि-वलय दृश्यमान।', sa: 'चन्द्रमा अपभू के निकट — प्रत्यक्ष बिम्ब सूर्य से छोटा। अग्नि-वलय दृश्यमान।', mai: 'चन्द्रमा अपभू के निकट — प्रत्यक्ष बिम्ब सूर्य से छोटा। अग्नि-वलय दृश्यमान।', mr: 'चन्द्रमा अपभू के निकट — प्रत्यक्ष बिम्ब सूर्य से छोटा। अग्नि-वलय दृश्यमान।', ta: 'Moon near apogee — apparent disk smaller than Sun. Ring of fire visible.', te: 'Moon near apogee — apparent disk smaller than Sun. Ring of fire visible.', bn: 'Moon near apogee — apparent disk smaller than Sun. Ring of fire visible.', kn: 'Moon near apogee — apparent disk smaller than Sun. Ring of fire visible.', gu: 'Moon near apogee — apparent disk smaller than Sun. Ring of fire visible.' },
     desc: {
       en: 'The Moon covers the Sun\'s centre but its apparent diameter is slightly smaller (Moon is near apogee — far from Earth), leaving a brilliant ring of sunlight around the dark lunar disk. Annular eclipses produce no corona-viewing opportunity, but the "ring of fire" is striking. They are more frequent than total solar eclipses because the Moon spends more time near apogee.',
       hi: 'चन्द्रमा सूर्य के केन्द्र को ढकता है परन्तु उसका प्रत्यक्ष व्यास थोड़ा छोटा होता है (चन्द्रमा अपभू के निकट — पृथ्वी से दूर), जिससे अँधेरे चन्द्र बिम्ब के चारों ओर सूर्य के प्रकाश की एक तेजस्वी वलय रहती है।',
     },
   },
   {
-    name: { en: 'Partial Solar Eclipse', hi: 'आंशिक सूर्य ग्रहण' },
+    name: { en: 'Partial Solar Eclipse', hi: 'आंशिक सूर्य ग्रहण', sa: 'आंशिक सूर्य ग्रहण', mai: 'आंशिक सूर्य ग्रहण', mr: 'आंशिक सूर्य ग्रहण', ta: 'Partial Solar Eclipse', te: 'Partial Solar Eclipse', bn: 'Partial Solar Eclipse', kn: 'Partial Solar Eclipse', gu: 'Partial Solar Eclipse' },
     color: 'text-yellow-400', border: 'border-yellow-500/20', bg: 'bg-yellow-500/5',
     symbol: '◑',
-    condition: { en: 'Moon covers only part of the Sun. 0.9° < |β| < ~1.6°', hi: 'चन्द्रमा सूर्य का केवल एक भाग ढकता है। 0.9° < |β| < ~1.6°' },
+    condition: { en: 'Moon covers only part of the Sun. 0.9° < |β| < ~1.6°', hi: 'चन्द्रमा सूर्य का केवल एक भाग ढकता है। 0.9° < |β| < ~1.6°', sa: 'चन्द्रमा सूर्य का केवल एक भाग ढकता है। 0.9° < |β| < ~1.6°', mai: 'चन्द्रमा सूर्य का केवल एक भाग ढकता है। 0.9° < |β| < ~1.6°', mr: 'चन्द्रमा सूर्य का केवल एक भाग ढकता है। 0.9° < |β| < ~1.6°', ta: 'Moon covers only part of the Sun. 0.9° < |β| < ~1.6°', te: 'Moon covers only part of the Sun. 0.9° < |β| < ~1.6°', bn: 'Moon covers only part of the Sun. 0.9° < |β| < ~1.6°', kn: 'Moon covers only part of the Sun. 0.9° < |β| < ~1.6°', gu: 'Moon covers only part of the Sun. 0.9° < |β| < ~1.6°' },
     desc: {
       en: 'The Moon passes across only a part of the Sun\'s disk. The penumbra (partial shadow) sweeps a wide region on either side of the central path. A partial solar eclipse is visible over a much larger geographic area than a total or annular eclipse. At maximum, the Sun appears as a crescent.',
       hi: 'चन्द्रमा केवल सूर्य के बिम्ब के एक भाग को पार करता है। उपछाया (आंशिक छाया) केन्द्रीय पथ के दोनों ओर एक विस्तृत क्षेत्र में फैलती है। आंशिक सूर्य ग्रहण पूर्ण या कण्कण ग्रहण की तुलना में बहुत बड़े भौगोलिक क्षेत्र में दृश्यमान होता है।',
     },
   },
   {
-    name: { en: 'Total Lunar Eclipse (Blood Moon)', hi: 'पूर्ण चन्द्र ग्रहण (रक्त चन्द्र)' },
+    name: { en: 'Total Lunar Eclipse (Blood Moon)', hi: 'पूर्ण चन्द्र ग्रहण (रक्त चन्द्र)', sa: 'पूर्ण चन्द्र ग्रहण (रक्त चन्द्र)', mai: 'पूर्ण चन्द्र ग्रहण (रक्त चन्द्र)', mr: 'पूर्ण चन्द्र ग्रहण (रक्त चन्द्र)', ta: 'Total Lunar Eclipse (Blood Moon)', te: 'Total Lunar Eclipse (Blood Moon)', bn: 'Total Lunar Eclipse (Blood Moon)', kn: 'Total Lunar Eclipse (Blood Moon)', gu: 'Total Lunar Eclipse (Blood Moon)' },
     color: 'text-red-400', border: 'border-red-500/20', bg: 'bg-red-500/5',
     symbol: '🌑',
     condition: { en: 'Moon fully inside Earth\'s umbral shadow. |β| < ~0.5°', hi: 'चन्द्रमा पृथ्वी की उपछाया में पूर्णतः। |β| < ~0.5°' },
@@ -275,20 +277,20 @@ const ECLIPSE_TYPES = [
     },
   },
   {
-    name: { en: 'Partial Lunar Eclipse', hi: 'आंशिक चन्द्र ग्रहण' },
+    name: { en: 'Partial Lunar Eclipse', hi: 'आंशिक चन्द्र ग्रहण', sa: 'आंशिक चन्द्र ग्रहण', mai: 'आंशिक चन्द्र ग्रहण', mr: 'आंशिक चन्द्र ग्रहण', ta: 'Partial Lunar Eclipse', te: 'Partial Lunar Eclipse', bn: 'Partial Lunar Eclipse', kn: 'Partial Lunar Eclipse', gu: 'Partial Lunar Eclipse' },
     color: 'text-rose-400', border: 'border-rose-500/20', bg: 'bg-rose-500/5',
     symbol: '◑',
-    condition: { en: 'Moon partially enters the umbral shadow. 0.5° < |β| < ~1.0°', hi: 'चन्द्रमा आंशिक रूप से उपछाया में प्रवेश करता है। 0.5° < |β| < ~1.0°' },
+    condition: { en: 'Moon partially enters the umbral shadow. 0.5° < |β| < ~1.0°', hi: 'चन्द्रमा आंशिक रूप से उपछाया में प्रवेश करता है। 0.5° < |β| < ~1.0°', sa: 'चन्द्रमा आंशिक रूप से उपछाया में प्रवेश करता है। 0.5° < |β| < ~1.0°', mai: 'चन्द्रमा आंशिक रूप से उपछाया में प्रवेश करता है। 0.5° < |β| < ~1.0°', mr: 'चन्द्रमा आंशिक रूप से उपछाया में प्रवेश करता है। 0.5° < |β| < ~1.0°', ta: 'Moon partially enters the umbral shadow. 0.5° < |β| < ~1.0°', te: 'Moon partially enters the umbral shadow. 0.5° < |β| < ~1.0°', bn: 'Moon partially enters the umbral shadow. 0.5° < |β| < ~1.0°', kn: 'Moon partially enters the umbral shadow. 0.5° < |β| < ~1.0°', gu: 'Moon partially enters the umbral shadow. 0.5° < |β| < ~1.0°' },
     desc: {
       en: 'Only part of the Moon enters Earth\'s umbral (dark inner) shadow. The umbral portion takes on a reddish-brown hue while the rest of the Moon remains its normal colour. The boundary between the lit and shadowed parts is visibly curved, demonstrating Earth\'s spherical shape — an observation known to ancient Indian astronomers.',
       hi: 'चन्द्रमा का केवल एक भाग पृथ्वी की उपछाया (गहरी आन्तरिक छाया) में प्रवेश करता है। उपछाया वाला भाग लाल-भूरा रंग लेता है जबकि शेष चन्द्रमा अपने सामान्य रंग में रहता है।',
     },
   },
   {
-    name: { en: 'Penumbral Lunar Eclipse', hi: 'उपछाया चन्द्र ग्रहण' },
+    name: { en: 'Penumbral Lunar Eclipse', hi: 'उपछाया चन्द्र ग्रहण', sa: 'उपछाया चन्द्र ग्रहण', mai: 'उपछाया चन्द्र ग्रहण', mr: 'उपछाया चन्द्र ग्रहण', ta: 'Penumbral Lunar Eclipse', te: 'Penumbral Lunar Eclipse', bn: 'Penumbral Lunar Eclipse', kn: 'Penumbral Lunar Eclipse', gu: 'Penumbral Lunar Eclipse' },
     color: 'text-slate-400', border: 'border-slate-500/20', bg: 'bg-slate-500/5',
     symbol: '○',
-    condition: { en: 'Moon enters only the penumbral shadow. 1.0° < |β| < ~1.6°', hi: 'चन्द्रमा केवल उपच्छाया में प्रवेश करता है। 1.0° < |β| < ~1.6°' },
+    condition: { en: 'Moon enters only the penumbral shadow. 1.0° < |β| < ~1.6°', hi: 'चन्द्रमा केवल उपच्छाया में प्रवेश करता है। 1.0° < |β| < ~1.6°', sa: 'चन्द्रमा केवल उपच्छाया में प्रवेश करता है। 1.0° < |β| < ~1.6°', mai: 'चन्द्रमा केवल उपच्छाया में प्रवेश करता है। 1.0° < |β| < ~1.6°', mr: 'चन्द्रमा केवल उपच्छाया में प्रवेश करता है। 1.0° < |β| < ~1.6°', ta: 'Moon enters only the penumbral shadow. 1.0° < |β| < ~1.6°', te: 'Moon enters only the penumbral shadow. 1.0° < |β| < ~1.6°', bn: 'Moon enters only the penumbral shadow. 1.0° < |β| < ~1.6°', kn: 'Moon enters only the penumbral shadow. 1.0° < |β| < ~1.6°', gu: 'Moon enters only the penumbral shadow. 1.0° < |β| < ~1.6°' },
     desc: {
       en: 'The Moon passes through Earth\'s outer penumbral shadow — a region of partial sunlight, not total blockage. The dimming is subtle and often imperceptible to the naked eye except near maximum phase when the Moon\'s limb closest to the umbra may look slightly dusky. Not listed in most Panchang sutak observances because there is no visible "biting" of the Moon.',
       hi: 'चन्द्रमा पृथ्वी की बाहरी उपच्छाया से गुज़रता है — आंशिक सूर्यप्रकाश का क्षेत्र, पूर्ण अवरोध नहीं। मंद होना सूक्ष्म होता है और अधिकतम चरण के निकट को छोड़कर नग्न आँखों से अक्सर अगोचर होता है।',
@@ -300,110 +302,110 @@ const ECLIPSE_TYPES = [
 const PHASES = [
   {
     sanskrit: 'स्पर्श (Sparsha)',
-    name: { en: 'First Contact', hi: 'प्रथम सम्पर्क' },
+    name: { en: 'First Contact', hi: 'प्रथम सम्पर्क', sa: 'प्रथम सम्पर्क', mai: 'प्रथम सम्पर्क', mr: 'प्रथम सम्पर्क', ta: 'First Contact', te: 'First Contact', bn: 'First Contact', kn: 'First Contact', gu: 'First Contact' },
     code: 'P1 / C1',
-    desc: { en: 'Shadow first touches the luminary. For lunar: penumbra touches the Moon (P1). For solar: penumbra touches Earth (C1). This is when Sutak is traditionally considered to begin (applying classical rules backward from this point).', hi: 'छाया सबसे पहले ज्योतिर्मय को स्पर्श करती है। यहीं से सूतक काल की गणना पारम्परिक रूप से की जाती है।' },
+    desc: { en: 'Shadow first touches the luminary. For lunar: penumbra touches the Moon (P1). For solar: penumbra touches Earth (C1). This is when Sutak is traditionally considered to begin (applying classical rules backward from this point).', hi: 'छाया सबसे पहले ज्योतिर्मय को स्पर्श करती है। यहीं से सूतक काल की गणना पारम्परिक रूप से की जाती है।', sa: 'छाया सबसे पहले ज्योतिर्मय को स्पर्श करती है। यहीं से सूतक काल की गणना पारम्परिक रूप से की जाती है।', mai: 'छाया सबसे पहले ज्योतिर्मय को स्पर्श करती है। यहीं से सूतक काल की गणना पारम्परिक रूप से की जाती है।', mr: 'छाया सबसे पहले ज्योतिर्मय को स्पर्श करती है। यहीं से सूतक काल की गणना पारम्परिक रूप से की जाती है।', ta: 'Shadow first touches the luminary. For lunar: penumbra touches the Moon (P1). For solar: penumbra touches Earth (C1). This is when Sutak is traditionally considered to begin (applying classical rules backward from this point).', te: 'Shadow first touches the luminary. For lunar: penumbra touches the Moon (P1). For solar: penumbra touches Earth (C1). This is when Sutak is traditionally considered to begin (applying classical rules backward from this point).', bn: 'Shadow first touches the luminary. For lunar: penumbra touches the Moon (P1). For solar: penumbra touches Earth (C1). This is when Sutak is traditionally considered to begin (applying classical rules backward from this point).', kn: 'Shadow first touches the luminary. For lunar: penumbra touches the Moon (P1). For solar: penumbra touches Earth (C1). This is when Sutak is traditionally considered to begin (applying classical rules backward from this point).', gu: 'Shadow first touches the luminary. For lunar: penumbra touches the Moon (P1). For solar: penumbra touches Earth (C1). This is when Sutak is traditionally considered to begin (applying classical rules backward from this point).' },
   },
   {
     sanskrit: 'खग्रास (Khagras)',
-    name: { en: 'Totality Begins', hi: 'पूर्णता आरम्भ' },
+    name: { en: 'Totality Begins', hi: 'पूर्णता आरम्भ', sa: 'पूर्णता आरम्भ', mai: 'पूर्णता आरम्भ', mr: 'पूर्णता आरम्भ', ta: 'Totality Begins', te: 'Totality Begins', bn: 'Totality Begins', kn: 'Totality Begins', gu: 'Totality Begins' },
     code: 'U1 / C2',
     desc: { en: 'Moon fully enters the umbral shadow (U1 for lunar) or Moon\'s disk fully covers the Sun (C2 for solar). Only for total/annular eclipses. The Khagras moment is recorded in classical texts as the deepest ritual restriction.', hi: 'चन्द्रमा पूर्णतः उपछाया में प्रवेश करता है (U1 चन्द्र के लिए) या चन्द्र बिम्ब सूर्य को पूर्णतः ढकता है (C2 सूर्य के लिए)। केवल पूर्ण/कण्कण ग्रहणों के लिए।' },
   },
   {
     sanskrit: 'मध्य (Madhya)',
-    name: { en: 'Maximum Eclipse', hi: 'अधिकतम ग्रहण' },
+    name: { en: 'Maximum Eclipse', hi: 'अधिकतम ग्रहण', sa: 'अधिकतम ग्रहण', mai: 'अधिकतम ग्रहण', mr: 'अधिकतम ग्रहण', ta: 'Maximum Eclipse', te: 'Maximum Eclipse', bn: 'Maximum Eclipse', kn: 'Maximum Eclipse', gu: 'Maximum Eclipse' },
     code: 'Max',
     desc: { en: 'The deepest point of the eclipse — when the shadow\'s centre is nearest to the Moon (lunar) or when the Moon\'s centre is nearest to the Sun\'s centre (solar). This is the moment of greatest spiritual intensity in Vedic tradition.', hi: 'ग्रहण का सबसे गहरा बिन्दु — जब छाया का केन्द्र चन्द्रमा (चन्द्र) के निकटतम हो या जब चन्द्र का केन्द्र सूर्य के केन्द्र के निकटतम हो (सूर्य)।' },
   },
   {
     sanskrit: 'मोक्ष (Moksha)',
-    name: { en: 'Last Contact', hi: 'अन्तिम सम्पर्क' },
+    name: { en: 'Last Contact', hi: 'अन्तिम सम्पर्क', sa: 'अन्तिम सम्पर्क', mai: 'अन्तिम सम्पर्क', mr: 'अन्तिम सम्पर्क', ta: 'Last Contact', te: 'Last Contact', bn: 'Last Contact', kn: 'Last Contact', gu: 'Last Contact' },
     code: 'P4 / C4',
-    desc: { en: 'Shadow fully leaves the luminary. The eclipse is complete. This is the moment for ritual bath (snan), ending of sutak observances, and beginning of eclipse-completion rituals. The name Moksha — liberation — signals the return to normal sacred time.', hi: 'छाया ज्योतिर्मय को पूर्णतः छोड़ देती है। ग्रहण पूर्ण होता है। यह स्नान, सूतक समाप्ति और ग्रहण-पूर्णता अनुष्ठानों का क्षण है। मोक्ष नाम सामान्य पवित्र समय की वापसी का संकेत देता है।' },
+    desc: { en: 'Shadow fully leaves the luminary. The eclipse is complete. This is the moment for ritual bath (snan), ending of sutak observances, and beginning of eclipse-completion rituals. The name Moksha — liberation — signals the return to normal sacred time.', hi: 'छाया ज्योतिर्मय को पूर्णतः छोड़ देती है। ग्रहण पूर्ण होता है। यह स्नान, सूतक समाप्ति और ग्रहण-पूर्णता अनुष्ठानों का क्षण है। मोक्ष नाम सामान्य पवित्र समय की वापसी का संकेत देता है।', sa: 'छाया ज्योतिर्मय को पूर्णतः छोड़ देती है। ग्रहण पूर्ण होता है। यह स्नान, सूतक समाप्ति और ग्रहण-पूर्णता अनुष्ठानों का क्षण है। मोक्ष नाम सामान्य पवित्र समय की वापसी का संकेत देता है।', mai: 'छाया ज्योतिर्मय को पूर्णतः छोड़ देती है। ग्रहण पूर्ण होता है। यह स्नान, सूतक समाप्ति और ग्रहण-पूर्णता अनुष्ठानों का क्षण है। मोक्ष नाम सामान्य पवित्र समय की वापसी का संकेत देता है।', mr: 'छाया ज्योतिर्मय को पूर्णतः छोड़ देती है। ग्रहण पूर्ण होता है। यह स्नान, सूतक समाप्ति और ग्रहण-पूर्णता अनुष्ठानों का क्षण है। मोक्ष नाम सामान्य पवित्र समय की वापसी का संकेत देता है।', ta: 'Shadow fully leaves the luminary. The eclipse is complete. This is the moment for ritual bath (snan), ending of sutak observances, and beginning of eclipse-completion rituals. The name Moksha — liberation — signals the return to normal sacred time.', te: 'Shadow fully leaves the luminary. The eclipse is complete. This is the moment for ritual bath (snan), ending of sutak observances, and beginning of eclipse-completion rituals. The name Moksha — liberation — signals the return to normal sacred time.', bn: 'Shadow fully leaves the luminary. The eclipse is complete. This is the moment for ritual bath (snan), ending of sutak observances, and beginning of eclipse-completion rituals. The name Moksha — liberation — signals the return to normal sacred time.', kn: 'Shadow fully leaves the luminary. The eclipse is complete. This is the moment for ritual bath (snan), ending of sutak observances, and beginning of eclipse-completion rituals. The name Moksha — liberation — signals the return to normal sacred time.', gu: 'Shadow fully leaves the luminary. The eclipse is complete. This is the moment for ritual bath (snan), ending of sutak observances, and beginning of eclipse-completion rituals. The name Moksha — liberation — signals the return to normal sacred time.' },
   },
 ];
 
 /* ─── Sutak data ─── */
 const SUTAK_SOURCES = [
   {
-    text: { en: 'Dharmasindhu', hi: 'धर्मसिन्धु' },
-    solar: { en: '4 day-prahars (~12 hours, scales with season)', hi: '4 दिन-प्रहर (~12 घण्टे, मौसम के साथ बदलता है)' },
-    lunar: { en: '3 night-prahars (~9 hours, scales with season)', hi: '3 रात-प्रहर (~9 घण्टे, मौसम के साथ बदलता है)' },
+    text: { en: 'Dharmasindhu', hi: 'धर्मसिन्धु', sa: 'धर्मसिन्धु', mai: 'धर्मसिन्धु', mr: 'धर्मसिन्धु', ta: 'Dharmasindhu', te: 'Dharmasindhu', bn: 'Dharmasindhu', kn: 'Dharmasindhu', gu: 'Dharmasindhu' },
+    solar: { en: '4 day-prahars (~12 hours, scales with season)', hi: '4 दिन-प्रहर (~12 घण्टे, मौसम के साथ बदलता है)', sa: '4 दिन-प्रहर (~12 घण्टे, मौसम के साथ बदलता है)', mai: '4 दिन-प्रहर (~12 घण्टे, मौसम के साथ बदलता है)', mr: '4 दिन-प्रहर (~12 घण्टे, मौसम के साथ बदलता है)', ta: '4 day-prahars (~12 hours, scales with season)', te: '4 day-prahars (~12 hours, scales with season)', bn: '4 day-prahars (~12 hours, scales with season)', kn: '4 day-prahars (~12 hours, scales with season)', gu: '4 day-prahars (~12 hours, scales with season)' },
+    lunar: { en: '3 night-prahars (~9 hours, scales with season)', hi: '3 रात-प्रहर (~9 घण्टे, मौसम के साथ बदलता है)', sa: '3 रात-प्रहर (~9 घण्टे, मौसम के साथ बदलता है)', mai: '3 रात-प्रहर (~9 घण्टे, मौसम के साथ बदलता है)', mr: '3 रात-प्रहर (~9 घण्टे, मौसम के साथ बदलता है)', ta: '3 night-prahars (~9 hours, scales with season)', te: '3 night-prahars (~9 hours, scales with season)', bn: '3 night-prahars (~9 hours, scales with season)', kn: '3 night-prahars (~9 hours, scales with season)', gu: '3 night-prahars (~9 hours, scales with season)' },
     color: 'text-amber-400',
   },
   {
-    text: { en: 'Nirnaya Sindhu', hi: 'निर्णय सिन्धु' },
-    solar: { en: 'Fixed 12 hours before eclipse', hi: 'ग्रहण से ठीक 12 घण्टे पहले' },
-    lunar: { en: 'Fixed 9 hours before eclipse', hi: 'ग्रहण से ठीक 9 घण्टे पहले' },
+    text: { en: 'Nirnaya Sindhu', hi: 'निर्णय सिन्धु', sa: 'निर्णय सिन्धु', mai: 'निर्णय सिन्धु', mr: 'निर्णय सिन्धु', ta: 'Nirnaya Sindhu', te: 'Nirnaya Sindhu', bn: 'Nirnaya Sindhu', kn: 'Nirnaya Sindhu', gu: 'Nirnaya Sindhu' },
+    solar: { en: 'Fixed 12 hours before eclipse', hi: 'ग्रहण से ठीक 12 घण्टे पहले', sa: 'ग्रहण से ठीक 12 घण्टे पहले', mai: 'ग्रहण से ठीक 12 घण्टे पहले', mr: 'ग्रहण से ठीक 12 घण्टे पहले', ta: 'Fixed 12 hours before eclipse', te: 'Fixed 12 hours before eclipse', bn: 'Fixed 12 hours before eclipse', kn: 'Fixed 12 hours before eclipse', gu: 'Fixed 12 hours before eclipse' },
+    lunar: { en: 'Fixed 9 hours before eclipse', hi: 'ग्रहण से ठीक 9 घण्टे पहले', sa: 'ग्रहण से ठीक 9 घण्टे पहले', mai: 'ग्रहण से ठीक 9 घण्टे पहले', mr: 'ग्रहण से ठीक 9 घण्टे पहले', ta: 'Fixed 9 hours before eclipse', te: 'Fixed 9 hours before eclipse', bn: 'Fixed 9 hours before eclipse', kn: 'Fixed 9 hours before eclipse', gu: 'Fixed 9 hours before eclipse' },
     color: 'text-blue-300',
   },
   {
-    text: { en: 'Muhurta Chintamani', hi: 'मुहूर्त चिन्तामणि' },
-    solar: { en: 'From sunrise on the eclipse day', hi: 'ग्रहण के दिन सूर्योदय से' },
-    lunar: { en: 'From sunrise on the eclipse day', hi: 'ग्रहण के दिन सूर्योदय से' },
+    text: { en: 'Muhurta Chintamani', hi: 'मुहूर्त चिन्तामणि', sa: 'मुहूर्त चिन्तामणि', mai: 'मुहूर्त चिन्तामणि', mr: 'मुहूर्त चिन्तामणि', ta: 'Muhurta Chintamani', te: 'Muhurta Chintamani', bn: 'Muhurta Chintamani', kn: 'Muhurta Chintamani', gu: 'Muhurta Chintamani' },
+    solar: { en: 'From sunrise on the eclipse day', hi: 'ग्रहण के दिन सूर्योदय से', sa: 'ग्रहण के दिन सूर्योदय से', mai: 'ग्रहण के दिन सूर्योदय से', mr: 'ग्रहण के दिन सूर्योदय से', ta: 'From sunrise on the eclipse day', te: 'From sunrise on the eclipse day', bn: 'From sunrise on the eclipse day', kn: 'From sunrise on the eclipse day', gu: 'From sunrise on the eclipse day' },
+    lunar: { en: 'From sunrise on the eclipse day', hi: 'ग्रहण के दिन सूर्योदय से', sa: 'ग्रहण के दिन सूर्योदय से', mai: 'ग्रहण के दिन सूर्योदय से', mr: 'ग्रहण के दिन सूर्योदय से', ta: 'From sunrise on the eclipse day', te: 'From sunrise on the eclipse day', bn: 'From sunrise on the eclipse day', kn: 'From sunrise on the eclipse day', gu: 'From sunrise on the eclipse day' },
     color: 'text-violet-400',
   },
 ];
 
 const SUTAK_DO = [
-  { en: 'Chanting of mantras, japa, prayer', hi: 'मन्त्र जाप, प्रार्थना' },
-  { en: 'Reading scriptures (Gita, Upanishads, Ramayana)', hi: 'शास्त्र पाठ (गीता, उपनिषद, रामायण)' },
-  { en: 'Meditation and pranayama', hi: 'ध्यान और प्राणायाम' },
-  { en: 'Giving charity and donations', hi: 'दान-दक्षिणा देना' },
-  { en: 'Ritual bath at eclipse end (Moksha snan)', hi: 'ग्रहण मोक्ष पर स्नान' },
-  { en: 'Worshipping the deity on whose day the eclipse falls', hi: 'जिस देवता का दिन हो उनकी पूजा' },
+  { en: 'Chanting of mantras, japa, prayer', hi: 'मन्त्र जाप, प्रार्थना', sa: 'मन्त्र जाप, प्रार्थना', mai: 'मन्त्र जाप, प्रार्थना', mr: 'मन्त्र जाप, प्रार्थना', ta: 'Chanting of mantras, japa, prayer', te: 'Chanting of mantras, japa, prayer', bn: 'Chanting of mantras, japa, prayer', kn: 'Chanting of mantras, japa, prayer', gu: 'Chanting of mantras, japa, prayer' },
+  { en: 'Reading scriptures (Gita, Upanishads, Ramayana)', hi: 'शास्त्र पाठ (गीता, उपनिषद, रामायण)', sa: 'शास्त्र पाठ (गीता, उपनिषद, रामायण)', mai: 'शास्त्र पाठ (गीता, उपनिषद, रामायण)', mr: 'शास्त्र पाठ (गीता, उपनिषद, रामायण)', ta: 'Reading scriptures (Gita, Upanishads, Ramayana)', te: 'Reading scriptures (Gita, Upanishads, Ramayana)', bn: 'Reading scriptures (Gita, Upanishads, Ramayana)', kn: 'Reading scriptures (Gita, Upanishads, Ramayana)', gu: 'Reading scriptures (Gita, Upanishads, Ramayana)' },
+  { en: 'Meditation and pranayama', hi: 'ध्यान और प्राणायाम', sa: 'ध्यान और प्राणायाम', mai: 'ध्यान और प्राणायाम', mr: 'ध्यान और प्राणायाम', ta: 'Meditation and pranayama', te: 'Meditation and pranayama', bn: 'Meditation and pranayama', kn: 'Meditation and pranayama', gu: 'Meditation and pranayama' },
+  { en: 'Giving charity and donations', hi: 'दान-दक्षिणा देना', sa: 'दान-दक्षिणा देना', mai: 'दान-दक्षिणा देना', mr: 'दान-दक्षिणा देना', ta: 'Giving charity and donations', te: 'Giving charity and donations', bn: 'Giving charity and donations', kn: 'Giving charity and donations', gu: 'Giving charity and donations' },
+  { en: 'Ritual bath at eclipse end (Moksha snan)', hi: 'ग्रहण मोक्ष पर स्नान', sa: 'ग्रहण मोक्ष पर स्नान', mai: 'ग्रहण मोक्ष पर स्नान', mr: 'ग्रहण मोक्ष पर स्नान', ta: 'Ritual bath at eclipse end (Moksha snan)', te: 'Ritual bath at eclipse end (Moksha snan)', bn: 'Ritual bath at eclipse end (Moksha snan)', kn: 'Ritual bath at eclipse end (Moksha snan)', gu: 'Ritual bath at eclipse end (Moksha snan)' },
+  { en: 'Worshipping the deity on whose day the eclipse falls', hi: 'जिस देवता का दिन हो उनकी पूजा', sa: 'जिस देवता का दिन हो उनकी पूजा', mai: 'जिस देवता का दिन हो उनकी पूजा', mr: 'जिस देवता का दिन हो उनकी पूजा', ta: 'Worshipping the deity on whose day the eclipse falls', te: 'Worshipping the deity on whose day the eclipse falls', bn: 'Worshipping the deity on whose day the eclipse falls', kn: 'Worshipping the deity on whose day the eclipse falls', gu: 'Worshipping the deity on whose day the eclipse falls' },
 ];
 
 const SUTAK_AVOID = [
-  { en: 'Eating food prepared before Sutak began', hi: 'सूतक से पहले बना खाना खाना' },
-  { en: 'Starting new ventures, signing contracts', hi: 'नए कार्य आरम्भ, अनुबंध पर हस्ताक्षर' },
-  { en: 'Marriage, griha pravesh, sacred thread ceremony', hi: 'विवाह, गृह प्रवेश, यज्ञोपवीत संस्कार' },
-  { en: 'Sleeping (considered inauspicious during eclipse)', hi: 'सोना (ग्रहण के दौरान अशुभ माना जाता है)' },
-  { en: 'Sexual activity', hi: 'यौन सम्बन्ध' },
-  { en: 'Cutting hair, nails', hi: 'बाल, नाखून काटना' },
+  { en: 'Eating food prepared before Sutak began', hi: 'सूतक से पहले बना खाना खाना', sa: 'सूतक से पहले बना खाना खाना', mai: 'सूतक से पहले बना खाना खाना', mr: 'सूतक से पहले बना खाना खाना', ta: 'Eating food prepared before Sutak began', te: 'Eating food prepared before Sutak began', bn: 'Eating food prepared before Sutak began', kn: 'Eating food prepared before Sutak began', gu: 'Eating food prepared before Sutak began' },
+  { en: 'Starting new ventures, signing contracts', hi: 'नए कार्य आरम्भ, अनुबंध पर हस्ताक्षर', sa: 'नए कार्य आरम्भ, अनुबंध पर हस्ताक्षर', mai: 'नए कार्य आरम्भ, अनुबंध पर हस्ताक्षर', mr: 'नए कार्य आरम्भ, अनुबंध पर हस्ताक्षर', ta: 'Starting new ventures, signing contracts', te: 'Starting new ventures, signing contracts', bn: 'Starting new ventures, signing contracts', kn: 'Starting new ventures, signing contracts', gu: 'Starting new ventures, signing contracts' },
+  { en: 'Marriage, griha pravesh, sacred thread ceremony', hi: 'विवाह, गृह प्रवेश, यज्ञोपवीत संस्कार', sa: 'विवाह, गृह प्रवेश, यज्ञोपवीत संस्कार', mai: 'विवाह, गृह प्रवेश, यज्ञोपवीत संस्कार', mr: 'विवाह, गृह प्रवेश, यज्ञोपवीत संस्कार', ta: 'Marriage, griha pravesh, sacred thread ceremony', te: 'Marriage, griha pravesh, sacred thread ceremony', bn: 'Marriage, griha pravesh, sacred thread ceremony', kn: 'Marriage, griha pravesh, sacred thread ceremony', gu: 'Marriage, griha pravesh, sacred thread ceremony' },
+  { en: 'Sleeping (considered inauspicious during eclipse)', hi: 'सोना (ग्रहण के दौरान अशुभ माना जाता है)', sa: 'सोना (ग्रहण के दौरान अशुभ माना जाता है)', mai: 'सोना (ग्रहण के दौरान अशुभ माना जाता है)', mr: 'सोना (ग्रहण के दौरान अशुभ माना जाता है)', ta: 'Sleeping (considered inauspicious during eclipse)', te: 'Sleeping (considered inauspicious during eclipse)', bn: 'Sleeping (considered inauspicious during eclipse)', kn: 'Sleeping (considered inauspicious during eclipse)', gu: 'Sleeping (considered inauspicious during eclipse)' },
+  { en: 'Sexual activity', hi: 'यौन सम्बन्ध', sa: 'यौन सम्बन्ध', mai: 'यौन सम्बन्ध', mr: 'यौन सम्बन्ध', ta: 'Sexual activity', te: 'Sexual activity', bn: 'Sexual activity', kn: 'Sexual activity', gu: 'Sexual activity' },
+  { en: 'Cutting hair, nails', hi: 'बाल, नाखून काटना', sa: 'बाल, नाखून काटना', mai: 'बाल, नाखून काटना', mr: 'बाल, नाखून काटना', ta: 'Cutting hair, nails', te: 'Cutting hair, nails', bn: 'Cutting hair, nails', kn: 'Cutting hair, nails', gu: 'Cutting hair, nails' },
 ];
 
 /* ─── Kundali eclipse effects ─── */
 const KUNDALI_EFFECTS = [
   {
-    situation: { en: 'Eclipse conjunct natal Sun', hi: 'जन्म सूर्य पर ग्रहण' },
-    effect: { en: 'Transformation of identity, career, authority. Father-related themes. Leadership changes. A pivotal year for self-definition.', hi: 'पहचान, करियर, अधिकार का परिवर्तन। पिता-सम्बन्धी विषय। नेतृत्व परिवर्तन। आत्म-परिभाषा के लिए महत्वपूर्ण वर्ष।' },
+    situation: { en: 'Eclipse conjunct natal Sun', hi: 'जन्म सूर्य पर ग्रहण', sa: 'जन्म सूर्य पर ग्रहण', mai: 'जन्म सूर्य पर ग्रहण', mr: 'जन्म सूर्य पर ग्रहण', ta: 'Eclipse conjunct natal Sun', te: 'Eclipse conjunct natal Sun', bn: 'Eclipse conjunct natal Sun', kn: 'Eclipse conjunct natal Sun', gu: 'Eclipse conjunct natal Sun' },
+    effect: { en: 'Transformation of identity, career, authority. Father-related themes. Leadership changes. A pivotal year for self-definition.', hi: 'पहचान, करियर, अधिकार का परिवर्तन। पिता-सम्बन्धी विषय। नेतृत्व परिवर्तन। आत्म-परिभाषा के लिए महत्वपूर्ण वर्ष।', sa: 'पहचान, करियर, अधिकार का परिवर्तन। पिता-सम्बन्धी विषय। नेतृत्व परिवर्तन। आत्म-परिभाषा के लिए महत्वपूर्ण वर्ष।', mai: 'पहचान, करियर, अधिकार का परिवर्तन। पिता-सम्बन्धी विषय। नेतृत्व परिवर्तन। आत्म-परिभाषा के लिए महत्वपूर्ण वर्ष।', mr: 'पहचान, करियर, अधिकार का परिवर्तन। पिता-सम्बन्धी विषय। नेतृत्व परिवर्तन। आत्म-परिभाषा के लिए महत्वपूर्ण वर्ष।', ta: 'Transformation of identity, career, authority. Father-related themes. Leadership changes. A pivotal year for self-definition.', te: 'Transformation of identity, career, authority. Father-related themes. Leadership changes. A pivotal year for self-definition.', bn: 'Transformation of identity, career, authority. Father-related themes. Leadership changes. A pivotal year for self-definition.', kn: 'Transformation of identity, career, authority. Father-related themes. Leadership changes. A pivotal year for self-definition.', gu: 'Transformation of identity, career, authority. Father-related themes. Leadership changes. A pivotal year for self-definition.' },
     color: 'text-amber-300',
   },
   {
-    situation: { en: 'Eclipse conjunct natal Moon', hi: 'जन्म चन्द्र पर ग्रहण' },
-    effect: { en: 'Emotional upheaval or breakthrough. Changes in home, mother, public standing. Inner world re-alignment. Often marks a powerful emotional turning point.', hi: 'भावनात्मक उथल-पुथल या सफलता। घर, माँ, सार्वजनिक प्रतिष्ठा में परिवर्तन। आन्तरिक जगत का पुनर्संरेखण।' },
+    situation: { en: 'Eclipse conjunct natal Moon', hi: 'जन्म चन्द्र पर ग्रहण', sa: 'जन्म चन्द्र पर ग्रहण', mai: 'जन्म चन्द्र पर ग्रहण', mr: 'जन्म चन्द्र पर ग्रहण', ta: 'Eclipse conjunct natal Moon', te: 'Eclipse conjunct natal Moon', bn: 'Eclipse conjunct natal Moon', kn: 'Eclipse conjunct natal Moon', gu: 'Eclipse conjunct natal Moon' },
+    effect: { en: 'Emotional upheaval or breakthrough. Changes in home, mother, public standing. Inner world re-alignment. Often marks a powerful emotional turning point.', hi: 'भावनात्मक उथल-पुथल या सफलता। घर, माँ, सार्वजनिक प्रतिष्ठा में परिवर्तन। आन्तरिक जगत का पुनर्संरेखण।', sa: 'भावनात्मक उथल-पुथल या सफलता। घर, माँ, सार्वजनिक प्रतिष्ठा में परिवर्तन। आन्तरिक जगत का पुनर्संरेखण।', mai: 'भावनात्मक उथल-पुथल या सफलता। घर, माँ, सार्वजनिक प्रतिष्ठा में परिवर्तन। आन्तरिक जगत का पुनर्संरेखण।', mr: 'भावनात्मक उथल-पुथल या सफलता। घर, माँ, सार्वजनिक प्रतिष्ठा में परिवर्तन। आन्तरिक जगत का पुनर्संरेखण।', ta: 'Emotional upheaval or breakthrough. Changes in home, mother, public standing. Inner world re-alignment. Often marks a powerful emotional turning point.', te: 'Emotional upheaval or breakthrough. Changes in home, mother, public standing. Inner world re-alignment. Often marks a powerful emotional turning point.', bn: 'Emotional upheaval or breakthrough. Changes in home, mother, public standing. Inner world re-alignment. Often marks a powerful emotional turning point.', kn: 'Emotional upheaval or breakthrough. Changes in home, mother, public standing. Inner world re-alignment. Often marks a powerful emotional turning point.', gu: 'Emotional upheaval or breakthrough. Changes in home, mother, public standing. Inner world re-alignment. Often marks a powerful emotional turning point.' },
     color: 'text-blue-300',
   },
   {
-    situation: { en: 'Eclipse on natal Rahu/Ketu axis', hi: 'जन्म राहु/केतु अक्ष पर ग्रहण' },
-    effect: { en: 'Major karmic reset. Past-life patterns surface for resolution. Sudden life direction changes. Spiritual awakenings or crises. The most intensely fated eclipse contact.', hi: 'प्रमुख कार्मिक रीसेट। पूर्वजन्म के पैटर्न समाधान के लिए उभरते हैं। जीवन की दिशा में अचानक परिवर्तन। सबसे भाग्य-निर्धारित ग्रहण सम्पर्क।' },
+    situation: { en: 'Eclipse on natal Rahu/Ketu axis', hi: 'जन्म राहु/केतु अक्ष पर ग्रहण', sa: 'जन्म राहु/केतु अक्ष पर ग्रहण', mai: 'जन्म राहु/केतु अक्ष पर ग्रहण', mr: 'जन्म राहु/केतु अक्ष पर ग्रहण', ta: 'Eclipse on natal Rahu/Ketu axis', te: 'Eclipse on natal Rahu/Ketu axis', bn: 'Eclipse on natal Rahu/Ketu axis', kn: 'Eclipse on natal Rahu/Ketu axis', gu: 'Eclipse on natal Rahu/Ketu axis' },
+    effect: { en: 'Major karmic reset. Past-life patterns surface for resolution. Sudden life direction changes. Spiritual awakenings or crises. The most intensely fated eclipse contact.', hi: 'प्रमुख कार्मिक रीसेट। पूर्वजन्म के पैटर्न समाधान के लिए उभरते हैं। जीवन की दिशा में अचानक परिवर्तन। सबसे भाग्य-निर्धारित ग्रहण सम्पर्क।', sa: 'प्रमुख कार्मिक रीसेट। पूर्वजन्म के पैटर्न समाधान के लिए उभरते हैं। जीवन की दिशा में अचानक परिवर्तन। सबसे भाग्य-निर्धारित ग्रहण सम्पर्क।', mai: 'प्रमुख कार्मिक रीसेट। पूर्वजन्म के पैटर्न समाधान के लिए उभरते हैं। जीवन की दिशा में अचानक परिवर्तन। सबसे भाग्य-निर्धारित ग्रहण सम्पर्क।', mr: 'प्रमुख कार्मिक रीसेट। पूर्वजन्म के पैटर्न समाधान के लिए उभरते हैं। जीवन की दिशा में अचानक परिवर्तन। सबसे भाग्य-निर्धारित ग्रहण सम्पर्क।', ta: 'Major karmic reset. Past-life patterns surface for resolution. Sudden life direction changes. Spiritual awakenings or crises. The most intensely fated eclipse contact.', te: 'Major karmic reset. Past-life patterns surface for resolution. Sudden life direction changes. Spiritual awakenings or crises. The most intensely fated eclipse contact.', bn: 'Major karmic reset. Past-life patterns surface for resolution. Sudden life direction changes. Spiritual awakenings or crises. The most intensely fated eclipse contact.', kn: 'Major karmic reset. Past-life patterns surface for resolution. Sudden life direction changes. Spiritual awakenings or crises. The most intensely fated eclipse contact.', gu: 'Major karmic reset. Past-life patterns surface for resolution. Sudden life direction changes. Spiritual awakenings or crises. The most intensely fated eclipse contact.' },
     color: 'text-violet-400',
   },
   {
-    situation: { en: 'Eclipse on natal Ascendant (Lagna)', hi: 'जन्म लग्न पर ग्रहण' },
-    effect: { en: 'Physical appearance, health, and overall life direction transform. A new chapter begins. Identity shifts at a fundamental level. Others perceive you differently.', hi: 'शारीरिक उपस्थिति, स्वास्थ्य और समग्र जीवन दिशा में परिवर्तन। एक नया अध्याय आरम्भ होता है। पहचान मौलिक स्तर पर बदलती है।' },
+    situation: { en: 'Eclipse on natal Ascendant (Lagna)', hi: 'जन्म लग्न पर ग्रहण', sa: 'जन्म लग्न पर ग्रहण', mai: 'जन्म लग्न पर ग्रहण', mr: 'जन्म लग्न पर ग्रहण', ta: 'Eclipse on natal Ascendant (Lagna)', te: 'Eclipse on natal Ascendant (Lagna)', bn: 'Eclipse on natal Ascendant (Lagna)', kn: 'Eclipse on natal Ascendant (Lagna)', gu: 'Eclipse on natal Ascendant (Lagna)' },
+    effect: { en: 'Physical appearance, health, and overall life direction transform. A new chapter begins. Identity shifts at a fundamental level. Others perceive you differently.', hi: 'शारीरिक उपस्थिति, स्वास्थ्य और समग्र जीवन दिशा में परिवर्तन। एक नया अध्याय आरम्भ होता है। पहचान मौलिक स्तर पर बदलती है।', sa: 'शारीरिक उपस्थिति, स्वास्थ्य और समग्र जीवन दिशा में परिवर्तन। एक नया अध्याय आरम्भ होता है। पहचान मौलिक स्तर पर बदलती है।', mai: 'शारीरिक उपस्थिति, स्वास्थ्य और समग्र जीवन दिशा में परिवर्तन। एक नया अध्याय आरम्भ होता है। पहचान मौलिक स्तर पर बदलती है।', mr: 'शारीरिक उपस्थिति, स्वास्थ्य और समग्र जीवन दिशा में परिवर्तन। एक नया अध्याय आरम्भ होता है। पहचान मौलिक स्तर पर बदलती है।', ta: 'Physical appearance, health, and overall life direction transform. A new chapter begins. Identity shifts at a fundamental level. Others perceive you differently.', te: 'Physical appearance, health, and overall life direction transform. A new chapter begins. Identity shifts at a fundamental level. Others perceive you differently.', bn: 'Physical appearance, health, and overall life direction transform. A new chapter begins. Identity shifts at a fundamental level. Others perceive you differently.', kn: 'Physical appearance, health, and overall life direction transform. A new chapter begins. Identity shifts at a fundamental level. Others perceive you differently.', gu: 'Physical appearance, health, and overall life direction transform. A new chapter begins. Identity shifts at a fundamental level. Others perceive you differently.' },
     color: 'text-emerald-400',
   },
   {
-    situation: { en: 'Eclipse activating a house (no natal planet)', hi: 'भाव में ग्रहण (बिना जन्म ग्रह)' },
-    effect: { en: 'Events in the life area governed by that house: 1st = body, 2nd = wealth, 4th = home, 7th = relationships, 10th = career. Effects build over 6 months around the eclipse.', hi: 'उस भाव द्वारा शासित जीवन क्षेत्र में घटनाएँ: पहला = शरीर, दूसरा = धन, चौथा = घर, सातवाँ = सम्बन्ध, दसवाँ = करियर।' },
+    situation: { en: 'Eclipse activating a house (no natal planet)', hi: 'भाव में ग्रहण (बिना जन्म ग्रह)', sa: 'भाव में ग्रहण (बिना जन्म ग्रह)', mai: 'भाव में ग्रहण (बिना जन्म ग्रह)', mr: 'भाव में ग्रहण (बिना जन्म ग्रह)', ta: 'Eclipse activating a house (no natal planet)', te: 'Eclipse activating a house (no natal planet)', bn: 'Eclipse activating a house (no natal planet)', kn: 'Eclipse activating a house (no natal planet)', gu: 'Eclipse activating a house (no natal planet)' },
+    effect: { en: 'Events in the life area governed by that house: 1st = body, 2nd = wealth, 4th = home, 7th = relationships, 10th = career. Effects build over 6 months around the eclipse.', hi: 'उस भाव द्वारा शासित जीवन क्षेत्र में घटनाएँ: पहला = शरीर, दूसरा = धन, चौथा = घर, सातवाँ = सम्बन्ध, दसवाँ = करियर।', sa: 'उस भाव द्वारा शासित जीवन क्षेत्र में घटनाएँ: पहला = शरीर, दूसरा = धन, चौथा = घर, सातवाँ = सम्बन्ध, दसवाँ = करियर।', mai: 'उस भाव द्वारा शासित जीवन क्षेत्र में घटनाएँ: पहला = शरीर, दूसरा = धन, चौथा = घर, सातवाँ = सम्बन्ध, दसवाँ = करियर।', mr: 'उस भाव द्वारा शासित जीवन क्षेत्र में घटनाएँ: पहला = शरीर, दूसरा = धन, चौथा = घर, सातवाँ = सम्बन्ध, दसवाँ = करियर।', ta: 'Events in the life area governed by that house: 1st = body, 2nd = wealth, 4th = home, 7th = relationships, 10th = career. Effects build over 6 months around the eclipse.', te: 'Events in the life area governed by that house: 1st = body, 2nd = wealth, 4th = home, 7th = relationships, 10th = career. Effects build over 6 months around the eclipse.', bn: 'Events in the life area governed by that house: 1st = body, 2nd = wealth, 4th = home, 7th = relationships, 10th = career. Effects build over 6 months around the eclipse.', kn: 'Events in the life area governed by that house: 1st = body, 2nd = wealth, 4th = home, 7th = relationships, 10th = career. Effects build over 6 months around the eclipse.', gu: 'Events in the life area governed by that house: 1st = body, 2nd = wealth, 4th = home, 7th = relationships, 10th = career. Effects build over 6 months around the eclipse.' },
     color: 'text-text-secondary',
   },
   {
-    situation: { en: 'Solar eclipse near natal birthday', hi: 'जन्मदिन के निकट सूर्य ग्रहण' },
-    effect: { en: 'Transformative solar return year. Themes set at the eclipse activate through the next year. The year carries an intensified, fated quality. Often marks major life milestones.', hi: 'परिवर्तनकारी सोलर रिटर्न वर्ष। ग्रहण पर निर्धारित विषय अगले वर्ष सक्रिय होते हैं। वर्ष में तीव्र, भाग्य-निर्मित गुणवत्ता होती है।' },
+    situation: { en: 'Solar eclipse near natal birthday', hi: 'जन्मदिन के निकट सूर्य ग्रहण', sa: 'जन्मदिन के निकट सूर्य ग्रहण', mai: 'जन्मदिन के निकट सूर्य ग्रहण', mr: 'जन्मदिन के निकट सूर्य ग्रहण', ta: 'Solar eclipse near natal birthday', te: 'Solar eclipse near natal birthday', bn: 'Solar eclipse near natal birthday', kn: 'Solar eclipse near natal birthday', gu: 'Solar eclipse near natal birthday' },
+    effect: { en: 'Transformative solar return year. Themes set at the eclipse activate through the next year. The year carries an intensified, fated quality. Often marks major life milestones.', hi: 'परिवर्तनकारी सोलर रिटर्न वर्ष। ग्रहण पर निर्धारित विषय अगले वर्ष सक्रिय होते हैं। वर्ष में तीव्र, भाग्य-निर्मित गुणवत्ता होती है।', sa: 'परिवर्तनकारी सोलर रिटर्न वर्ष। ग्रहण पर निर्धारित विषय अगले वर्ष सक्रिय होते हैं। वर्ष में तीव्र, भाग्य-निर्मित गुणवत्ता होती है।', mai: 'परिवर्तनकारी सोलर रिटर्न वर्ष। ग्रहण पर निर्धारित विषय अगले वर्ष सक्रिय होते हैं। वर्ष में तीव्र, भाग्य-निर्मित गुणवत्ता होती है।', mr: 'परिवर्तनकारी सोलर रिटर्न वर्ष। ग्रहण पर निर्धारित विषय अगले वर्ष सक्रिय होते हैं। वर्ष में तीव्र, भाग्य-निर्मित गुणवत्ता होती है।', ta: 'Transformative solar return year. Themes set at the eclipse activate through the next year. The year carries an intensified, fated quality. Often marks major life milestones.', te: 'Transformative solar return year. Themes set at the eclipse activate through the next year. The year carries an intensified, fated quality. Often marks major life milestones.', bn: 'Transformative solar return year. Themes set at the eclipse activate through the next year. The year carries an intensified, fated quality. Often marks major life milestones.', kn: 'Transformative solar return year. Themes set at the eclipse activate through the next year. The year carries an intensified, fated quality. Often marks major life milestones.', gu: 'Transformative solar return year. Themes set at the eclipse activate through the next year. The year carries an intensified, fated quality. Often marks major life milestones.' },
     color: 'text-gold-light',
   },
 ];
 
 /* ─── Cross references ─── */
 const CROSS_REFS = [
-  { href: '/eclipses', label: { en: 'Eclipse Calendar', hi: 'ग्रहण कैलेण्डर' }, desc: { en: 'All upcoming solar & lunar eclipses with timings', hi: 'सभी आगामी सूर्य और चन्द्र ग्रहण समय के साथ' } },
-  { href: '/learn/tithis', label: { en: 'Tithis', hi: 'तिथि' }, desc: { en: 'Amavasya & Purnima — the lunations that can produce eclipses', hi: 'अमावस्या और पूर्णिमा — ग्रहण उत्पन्न करने वाली तिथियाँ' } },
-  { href: '/learn/nakshatras', label: { en: 'Nakshatras', hi: 'नक्षत्र' }, desc: { en: 'Eclipses in Bharani, Krittika, etc. — nakshatra-based eclipse signification', hi: 'भरणी, कृत्तिका आदि में ग्रहण — नक्षत्र-आधारित ग्रहण महत्त्व' } },
-  { href: '/learn/rashis', label: { en: 'Rashis', hi: 'राशि' }, desc: { en: 'Which zodiac sign the eclipse falls in — house and sign effects', hi: 'ग्रहण किस राशि में पड़ता है — भाव और राशि प्रभाव' } },
+  { href: '/eclipses', label: { en: 'Eclipse Calendar', hi: 'ग्रहण कैलेण्डर', sa: 'ग्रहण कैलेण्डर', mai: 'ग्रहण कैलेण्डर', mr: 'ग्रहण कैलेण्डर', ta: 'Eclipse Calendar', te: 'Eclipse Calendar', bn: 'Eclipse Calendar', kn: 'Eclipse Calendar', gu: 'Eclipse Calendar' }, desc: { en: 'All upcoming solar & lunar eclipses with timings', hi: 'सभी आगामी सूर्य और चन्द्र ग्रहण समय के साथ', sa: 'सभी आगामी सूर्य और चन्द्र ग्रहण समय के साथ', mai: 'सभी आगामी सूर्य और चन्द्र ग्रहण समय के साथ', mr: 'सभी आगामी सूर्य और चन्द्र ग्रहण समय के साथ', ta: 'All upcoming solar & lunar eclipses with timings', te: 'All upcoming solar & lunar eclipses with timings', bn: 'All upcoming solar & lunar eclipses with timings', kn: 'All upcoming solar & lunar eclipses with timings', gu: 'All upcoming solar & lunar eclipses with timings' } },
+  { href: '/learn/tithis', label: { en: 'Tithis', hi: 'तिथि', sa: 'तिथि', mai: 'तिथि', mr: 'तिथि', ta: 'Tithis', te: 'Tithis', bn: 'Tithis', kn: 'Tithis', gu: 'Tithis' }, desc: { en: 'Amavasya & Purnima — the lunations that can produce eclipses', hi: 'अमावस्या और पूर्णिमा — ग्रहण उत्पन्न करने वाली तिथियाँ', sa: 'अमावस्या और पूर्णिमा — ग्रहण उत्पन्न करने वाली तिथियाँ', mai: 'अमावस्या और पूर्णिमा — ग्रहण उत्पन्न करने वाली तिथियाँ', mr: 'अमावस्या और पूर्णिमा — ग्रहण उत्पन्न करने वाली तिथियाँ', ta: 'Amavasya & Purnima — the lunations that can produce eclipses', te: 'Amavasya & Purnima — the lunations that can produce eclipses', bn: 'Amavasya & Purnima — the lunations that can produce eclipses', kn: 'Amavasya & Purnima — the lunations that can produce eclipses', gu: 'Amavasya & Purnima — the lunations that can produce eclipses' } },
+  { href: '/learn/nakshatras', label: { en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्र', mai: 'नक्षत्र', mr: 'नक्षत्र', ta: 'Nakshatras', te: 'Nakshatras', bn: 'Nakshatras', kn: 'Nakshatras', gu: 'Nakshatras' }, desc: { en: 'Eclipses in Bharani, Krittika, etc. — nakshatra-based eclipse signification', hi: 'भरणी, कृत्तिका आदि में ग्रहण — नक्षत्र-आधारित ग्रहण महत्त्व', sa: 'भरणी, कृत्तिका आदि में ग्रहण — नक्षत्र-आधारित ग्रहण महत्त्व', mai: 'भरणी, कृत्तिका आदि में ग्रहण — नक्षत्र-आधारित ग्रहण महत्त्व', mr: 'भरणी, कृत्तिका आदि में ग्रहण — नक्षत्र-आधारित ग्रहण महत्त्व', ta: 'Eclipses in Bharani, Krittika, etc. — nakshatra-based eclipse signification', te: 'Eclipses in Bharani, Krittika, etc. — nakshatra-based eclipse signification', bn: 'Eclipses in Bharani, Krittika, etc. — nakshatra-based eclipse signification', kn: 'Eclipses in Bharani, Krittika, etc. — nakshatra-based eclipse signification', gu: 'Eclipses in Bharani, Krittika, etc. — nakshatra-based eclipse signification' } },
+  { href: '/learn/rashis', label: { en: 'Rashis', hi: 'राशि', sa: 'राशि', mai: 'राशि', mr: 'राशि', ta: 'Rashis', te: 'Rashis', bn: 'Rashis', kn: 'Rashis', gu: 'Rashis' }, desc: { en: 'Which zodiac sign the eclipse falls in — house and sign effects', hi: 'ग्रहण किस राशि में पड़ता है — भाव और राशि प्रभाव', sa: 'ग्रहण किस राशि में पड़ता है — भाव और राशि प्रभाव', mai: 'ग्रहण किस राशि में पड़ता है — भाव और राशि प्रभाव', mr: 'ग्रहण किस राशि में पड़ता है — भाव और राशि प्रभाव', ta: 'Which zodiac sign the eclipse falls in — house and sign effects', te: 'Which zodiac sign the eclipse falls in — house and sign effects', bn: 'Which zodiac sign the eclipse falls in — house and sign effects', kn: 'Which zodiac sign the eclipse falls in — house and sign effects', gu: 'Which zodiac sign the eclipse falls in — house and sign effects' } },
 ];
 
 export default function LearnEclipsesPage() {
@@ -413,7 +415,7 @@ export default function LearnEclipsesPage() {
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
-  const l = (obj: Record<string, string>) => (isHi ? obj.hi : obj.en);
+  const l = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
 
   return (
     <div className="space-y-8">
@@ -612,9 +614,9 @@ export default function LearnEclipsesPage() {
                   </div>
                   <div className="space-y-1.5">
                     {[
-                      { range: '|β| < ~0.9°', type: { en: 'Central (Total or Annular)', hi: 'केन्द्रीय (पूर्ण या कण्कण)' }, color: 'text-amber-300 bg-amber-500/8 border-amber-500/20' },
-                      { range: '|β| < ~1.6°', type: { en: 'Partial solar eclipse', hi: 'आंशिक सूर्य ग्रहण' }, color: 'text-yellow-400 bg-yellow-500/8 border-yellow-500/20' },
-                      { range: '|β| > ~1.6°', type: { en: 'No eclipse', hi: 'ग्रहण नहीं' }, color: 'text-text-secondary/60 bg-bg-primary/30 border-gold-primary/8' },
+                      { range: '|β| < ~0.9°', type: { en: 'Central (Total or Annular)', hi: 'केन्द्रीय (पूर्ण या कण्कण)', sa: 'केन्द्रीय (पूर्ण या कण्कण)', mai: 'केन्द्रीय (पूर्ण या कण्कण)', mr: 'केन्द्रीय (पूर्ण या कण्कण)', ta: 'Central (Total or Annular)', te: 'Central (Total or Annular)', bn: 'Central (Total or Annular)', kn: 'Central (Total or Annular)', gu: 'Central (Total or Annular)' }, color: 'text-amber-300 bg-amber-500/8 border-amber-500/20' },
+                      { range: '|β| < ~1.6°', type: { en: 'Partial solar eclipse', hi: 'आंशिक सूर्य ग्रहण', sa: 'आंशिक सूर्य ग्रहण', mai: 'आंशिक सूर्य ग्रहण', mr: 'आंशिक सूर्य ग्रहण', ta: 'Partial solar eclipse', te: 'Partial solar eclipse', bn: 'Partial solar eclipse', kn: 'Partial solar eclipse', gu: 'Partial solar eclipse' }, color: 'text-yellow-400 bg-yellow-500/8 border-yellow-500/20' },
+                      { range: '|β| > ~1.6°', type: { en: 'No eclipse', hi: 'ग्रहण नहीं', sa: 'ग्रहण नहीं', mai: 'ग्रहण नहीं', mr: 'ग्रहण नहीं', ta: 'No eclipse', te: 'No eclipse', bn: 'No eclipse', kn: 'No eclipse', gu: 'No eclipse' }, color: 'text-text-secondary/60 bg-bg-primary/30 border-gold-primary/8' },
                     ].map((row, i) => (
                       <div key={i} className={`flex gap-2 items-center px-3 py-1.5 rounded-lg border text-xs font-mono ${row.color}`}>
                         <span className="opacity-90 w-20 shrink-0">{row.range}</span>
@@ -633,10 +635,10 @@ export default function LearnEclipsesPage() {
                   </div>
                   <div className="space-y-1.5">
                     {[
-                      { range: '|β| < ~0.5°', type: { en: 'Total lunar (Blood Moon)', hi: 'पूर्ण चन्द्र (रक्त चन्द्र)' }, color: 'text-red-400 bg-red-500/8 border-red-500/20' },
-                      { range: '|β| < ~1.0°', type: { en: 'Partial lunar eclipse', hi: 'आंशिक चन्द्र ग्रहण' }, color: 'text-rose-400 bg-rose-500/8 border-rose-500/20' },
-                      { range: '|β| < ~1.6°', type: { en: 'Penumbral lunar eclipse', hi: 'उपच्छाया चन्द्र ग्रहण' }, color: 'text-slate-400 bg-slate-500/8 border-slate-500/20' },
-                      { range: '|β| > ~1.6°', type: { en: 'No eclipse', hi: 'ग्रहण नहीं' }, color: 'text-text-secondary/60 bg-bg-primary/30 border-gold-primary/8' },
+                      { range: '|β| < ~0.5°', type: { en: 'Total lunar (Blood Moon)', hi: 'पूर्ण चन्द्र (रक्त चन्द्र)', sa: 'पूर्ण चन्द्र (रक्त चन्द्र)', mai: 'पूर्ण चन्द्र (रक्त चन्द्र)', mr: 'पूर्ण चन्द्र (रक्त चन्द्र)', ta: 'Total lunar (Blood Moon)', te: 'Total lunar (Blood Moon)', bn: 'Total lunar (Blood Moon)', kn: 'Total lunar (Blood Moon)', gu: 'Total lunar (Blood Moon)' }, color: 'text-red-400 bg-red-500/8 border-red-500/20' },
+                      { range: '|β| < ~1.0°', type: { en: 'Partial lunar eclipse', hi: 'आंशिक चन्द्र ग्रहण', sa: 'आंशिक चन्द्र ग्रहण', mai: 'आंशिक चन्द्र ग्रहण', mr: 'आंशिक चन्द्र ग्रहण', ta: 'Partial lunar eclipse', te: 'Partial lunar eclipse', bn: 'Partial lunar eclipse', kn: 'Partial lunar eclipse', gu: 'Partial lunar eclipse' }, color: 'text-rose-400 bg-rose-500/8 border-rose-500/20' },
+                      { range: '|β| < ~1.6°', type: { en: 'Penumbral lunar eclipse', hi: 'उपच्छाया चन्द्र ग्रहण', sa: 'उपच्छाया चन्द्र ग्रहण', mai: 'उपच्छाया चन्द्र ग्रहण', mr: 'उपच्छाया चन्द्र ग्रहण', ta: 'Penumbral lunar eclipse', te: 'Penumbral lunar eclipse', bn: 'Penumbral lunar eclipse', kn: 'Penumbral lunar eclipse', gu: 'Penumbral lunar eclipse' }, color: 'text-slate-400 bg-slate-500/8 border-slate-500/20' },
+                      { range: '|β| > ~1.6°', type: { en: 'No eclipse', hi: 'ग्रहण नहीं', sa: 'ग्रहण नहीं', mai: 'ग्रहण नहीं', mr: 'ग्रहण नहीं', ta: 'No eclipse', te: 'No eclipse', bn: 'No eclipse', kn: 'No eclipse', gu: 'No eclipse' }, color: 'text-text-secondary/60 bg-bg-primary/30 border-gold-primary/8' },
                     ].map((row, i) => (
                       <div key={i} className={`flex gap-2 items-center px-3 py-1.5 rounded-lg border text-xs font-mono ${row.color}`}>
                         <span className="opacity-90 w-20 shrink-0">{row.range}</span>
@@ -738,11 +740,11 @@ export default function LearnEclipsesPage() {
           </div>
           <div className="flex items-center gap-0 w-full overflow-x-auto">
             {[
-              { code: 'P1', label: { en: 'Penumbra\nstarts', hi: 'उपच्छाया\nआरम्भ' }, color: 'bg-slate-400/60' },
-              { code: 'U1', label: { en: 'Umbra\nstarts', hi: 'उपछाया\nआरम्भ' }, color: 'bg-red-500/60' },
-              { code: 'Max', label: { en: 'Maximum\neclipse', hi: 'अधिकतम\nग्रहण' }, color: 'bg-red-600/80' },
-              { code: 'U2', label: { en: 'Umbra\nends', hi: 'उपछाया\nसमाप्त' }, color: 'bg-red-500/60' },
-              { code: 'P4', label: { en: 'Penumbra\nends', hi: 'उपच्छाया\nसमाप्त' }, color: 'bg-slate-400/60' },
+              { code: 'P1', label: { en: 'Penumbra\nstarts', hi: 'उपच्छाया\nआरम्भ', sa: 'उपच्छाया\nआरम्भ', mai: 'उपच्छाया\nआरम्भ', mr: 'उपच्छाया\nआरम्भ', ta: 'Penumbra\nstarts', te: 'Penumbra\nstarts', bn: 'Penumbra\nstarts', kn: 'Penumbra\nstarts', gu: 'Penumbra\nstarts' }, color: 'bg-slate-400/60' },
+              { code: 'U1', label: { en: 'Umbra\nstarts', hi: 'उपछाया\nआरम्भ', sa: 'उपछाया\nआरम्भ', mai: 'उपछाया\nआरम्भ', mr: 'उपछाया\nआरम्भ', ta: 'Umbra\nstarts', te: 'Umbra\nstarts', bn: 'Umbra\nstarts', kn: 'Umbra\nstarts', gu: 'Umbra\nstarts' }, color: 'bg-red-500/60' },
+              { code: 'Max', label: { en: 'Maximum\neclipse', hi: 'अधिकतम\nग्रहण', sa: 'अधिकतम\nग्रहण', mai: 'अधिकतम\nग्रहण', mr: 'अधिकतम\nग्रहण', ta: 'Maximum\neclipse', te: 'Maximum\neclipse', bn: 'Maximum\neclipse', kn: 'Maximum\neclipse', gu: 'Maximum\neclipse' }, color: 'bg-red-600/80' },
+              { code: 'U2', label: { en: 'Umbra\nends', hi: 'उपछाया\nसमाप्त', sa: 'उपछाया\nसमाप्त', mai: 'उपछाया\nसमाप्त', mr: 'उपछाया\nसमाप्त', ta: 'Umbra\nends', te: 'Umbra\nends', bn: 'Umbra\nends', kn: 'Umbra\nends', gu: 'Umbra\nends' }, color: 'bg-red-500/60' },
+              { code: 'P4', label: { en: 'Penumbra\nends', hi: 'उपच्छाया\nसमाप्त', sa: 'उपच्छाया\nसमाप्त', mai: 'उपच्छाया\nसमाप्त', mr: 'उपच्छाया\nसमाप्त', ta: 'Penumbra\nends', te: 'Penumbra\nends', bn: 'Penumbra\nends', kn: 'Penumbra\nends', gu: 'Penumbra\nends' }, color: 'bg-slate-400/60' },
             ].map((item, i, arr) => (
               <div key={i} className="flex items-center shrink-0">
                 <div className="flex flex-col items-center gap-1">
@@ -900,10 +902,10 @@ export default function LearnEclipsesPage() {
           {/* Stats cards */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { value: '6,585.32', label: { en: 'Days (Saros)', hi: 'दिन (सारोस)' }, color: 'text-gold-light' },
-              { value: '18y 11d 8h', label: { en: 'Duration', hi: 'अवधि' }, color: 'text-gold-light' },
-              { value: '54y 34d', label: { en: 'Exeligmos (3×)', hi: 'एक्सेलिग्मोस' }, color: 'text-violet-400' },
-              { value: '120°', label: { en: 'Westward Shift', hi: 'पश्चिम विचलन' }, color: 'text-blue-300' },
+              { value: '6,585.32', label: { en: 'Days (Saros)', hi: 'दिन (सारोस)', sa: 'दिन (सारोस)', mai: 'दिन (सारोस)', mr: 'दिन (सारोस)', ta: 'Days (Saros)', te: 'Days (Saros)', bn: 'Days (Saros)', kn: 'Days (Saros)', gu: 'Days (Saros)' }, color: 'text-gold-light' },
+              { value: '18y 11d 8h', label: { en: 'Duration', hi: 'अवधि', sa: 'अवधि', mai: 'अवधि', mr: 'अवधि', ta: 'Duration', te: 'Duration', bn: 'Duration', kn: 'Duration', gu: 'Duration' }, color: 'text-gold-light' },
+              { value: '54y 34d', label: { en: 'Exeligmos (3×)', hi: 'एक्सेलिग्मोस', sa: 'एक्सेलिग्मोस', mai: 'एक्सेलिग्मोस', mr: 'एक्सेलिग्मोस', ta: 'Exeligmos (3×)', te: 'Exeligmos (3×)', bn: 'Exeligmos (3×)', kn: 'Exeligmos (3×)', gu: 'Exeligmos (3×)' }, color: 'text-violet-400' },
+              { value: '120°', label: { en: 'Westward Shift', hi: 'पश्चिम विचलन', sa: 'पश्चिम विचलन', mai: 'पश्चिम विचलन', mr: 'पश्चिम विचलन', ta: 'Westward Shift', te: 'Westward Shift', bn: 'Westward Shift', kn: 'Westward Shift', gu: 'Westward Shift' }, color: 'text-blue-300' },
             ].map((stat, i) => (
               <div key={i} className="text-center p-3 border border-gold-primary/10 rounded-xl bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27]">
                 <div className={`text-xl font-bold font-mono mb-0.5 ${stat.color}`}>{stat.value}</div>
@@ -944,9 +946,9 @@ export default function LearnEclipsesPage() {
           {/* Series stats */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {[
-              { value: '~80', label: { en: 'Active Series (any time)', hi: 'सक्रिय श्रृंखलाएँ (किसी भी समय)' }, color: 'text-blue-300' },
-              { value: '70-85', label: { en: 'Eclipses per Series', hi: 'ग्रहण प्रति श्रृंखला' }, color: 'text-emerald-400' },
-              { value: '1,200-1,500y', label: { en: 'Series Lifespan', hi: 'श्रृंखला जीवनकाल' }, color: 'text-amber-400' },
+              { value: '~80', label: { en: 'Active Series (any time)', hi: 'सक्रिय श्रृंखलाएँ (किसी भी समय)', sa: 'सक्रिय श्रृंखलाएँ (किसी भी समय)', mai: 'सक्रिय श्रृंखलाएँ (किसी भी समय)', mr: 'सक्रिय श्रृंखलाएँ (किसी भी समय)', ta: 'Active Series (any time)', te: 'Active Series (any time)', bn: 'Active Series (any time)', kn: 'Active Series (any time)', gu: 'Active Series (any time)' }, color: 'text-blue-300' },
+              { value: '70-85', label: { en: 'Eclipses per Series', hi: 'ग्रहण प्रति श्रृंखला', sa: 'ग्रहण प्रति श्रृंखला', mai: 'ग्रहण प्रति श्रृंखला', mr: 'ग्रहण प्रति श्रृंखला', ta: 'Eclipses per Series', te: 'Eclipses per Series', bn: 'Eclipses per Series', kn: 'Eclipses per Series', gu: 'Eclipses per Series' }, color: 'text-emerald-400' },
+              { value: '1,200-1,500y', label: { en: 'Series Lifespan', hi: 'श्रृंखला जीवनकाल', sa: 'श्रृंखला जीवनकाल', mai: 'श्रृंखला जीवनकाल', mr: 'श्रृंखला जीवनकाल', ta: 'Series Lifespan', te: 'Series Lifespan', bn: 'Series Lifespan', kn: 'Series Lifespan', gu: 'Series Lifespan' }, color: 'text-amber-400' },
             ].map((stat, i) => (
               <div key={i} className="text-center p-3 border border-gold-primary/10 rounded-xl bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27]">
                 <div className={`text-xl font-bold font-mono mb-0.5 ${stat.color}`}>{stat.value}</div>
@@ -963,10 +965,10 @@ export default function LearnEclipsesPage() {
           {/* Nodal precession stats */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { value: '18.6y', label: { en: 'Full Nodal Cycle', hi: 'पूर्ण पात चक्र' }, color: 'text-gold-light' },
-              { value: '~1.5y', label: { en: 'Per Sign', hi: 'प्रति राशि' }, color: 'text-violet-400' },
-              { value: '~19d', label: { en: 'Annual Shift', hi: 'वार्षिक विचलन' }, color: 'text-blue-300' },
-              { value: '~3°/month', label: { en: 'Rahu Speed', hi: 'राहु गति' }, color: 'text-amber-400' },
+              { value: '18.6y', label: { en: 'Full Nodal Cycle', hi: 'पूर्ण पात चक्र', sa: 'पूर्ण पात चक्र', mai: 'पूर्ण पात चक्र', mr: 'पूर्ण पात चक्र', ta: 'Full Nodal Cycle', te: 'Full Nodal Cycle', bn: 'Full Nodal Cycle', kn: 'Full Nodal Cycle', gu: 'Full Nodal Cycle' }, color: 'text-gold-light' },
+              { value: '~1.5y', label: { en: 'Per Sign', hi: 'प्रति राशि', sa: 'प्रति राशि', mai: 'प्रति राशि', mr: 'प्रति राशि', ta: 'Per Sign', te: 'Per Sign', bn: 'Per Sign', kn: 'Per Sign', gu: 'Per Sign' }, color: 'text-violet-400' },
+              { value: '~19d', label: { en: 'Annual Shift', hi: 'वार्षिक विचलन', sa: 'वार्षिक विचलन', mai: 'वार्षिक विचलन', mr: 'वार्षिक विचलन', ta: 'Annual Shift', te: 'Annual Shift', bn: 'Annual Shift', kn: 'Annual Shift', gu: 'Annual Shift' }, color: 'text-blue-300' },
+              { value: '~3°/month', label: { en: 'Rahu Speed', hi: 'राहु गति', sa: 'राहु गति', mai: 'राहु गति', mr: 'राहु गति', ta: 'Rahu Speed', te: 'Rahu Speed', bn: 'Rahu Speed', kn: 'Rahu Speed', gu: 'Rahu Speed' }, color: 'text-amber-400' },
             ].map((stat, i) => (
               <div key={i} className="text-center p-3 border border-gold-primary/10 rounded-xl bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27]">
                 <div className={`text-xl font-bold font-mono mb-0.5 ${stat.color}`}>{stat.value}</div>

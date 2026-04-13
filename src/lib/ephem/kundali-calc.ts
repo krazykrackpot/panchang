@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 import {
   dateToJD, sunLongitude, moonLongitude, toSidereal,
   getRashiNumber, getNakshatraNumber, getNakshatraPada,
@@ -105,7 +106,7 @@ const NAKSHATRA_LORDS = [
   'Ketu', 'Venus', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury',
 ];
 
-const PLANET_NAME_MAP: Record<string, { en: string; hi: string; sa: string }> = {
+const PLANET_NAME_MAP: Record<string, LocaleText> = {
   'Sun': { en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' },
   'Moon': { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्रः' },
   'Mars': { en: 'Mars', hi: 'मंगल', sa: 'मङ्गलः' },
@@ -186,7 +187,7 @@ const YOGINI_DASHAS = [
   { name: 'Siddha', planet: 'Venus', years: 7 },
   { name: 'Sankata', planet: 'Rahu', years: 8 },
 ];
-const YOGINI_NAMES: Record<string, { en: string; hi: string; sa: string }> = {
+const YOGINI_NAMES: Record<string, LocaleText> = {
   'Mangala': { en: 'Mangala', hi: 'मंगला', sa: 'मङ्गला' },
   'Pingala': { en: 'Pingala', hi: 'पिंगला', sa: 'पिङ्गला' },
   'Dhanya': { en: 'Dhanya', hi: 'धान्या', sa: 'धान्या' },
@@ -780,26 +781,26 @@ export function generateKundali(birthData: BirthData): KundaliData {
   const bhavChalitChart = calculateBhavChalit(planets, siderealAsc);
 
   // Divisional Charts — all 16 Parashara Shodashavarga + extras
-  const VARGA_DEFS: { key: string; div: number; label: { en: string; hi: string; sa: string }; meaning: { en: string; hi: string } }[] = [
-    { key: 'D2', div: 2, label: { en: 'D2 Hora', hi: 'D2 होरा', sa: 'D2 होरा' }, meaning: { en: 'Wealth & financial prosperity', hi: 'धन एवं वित्तीय समृद्धि' } },
-    { key: 'D3', div: 3, label: { en: 'D3 Drekkana', hi: 'D3 द्रेष्काण', sa: 'D3 द्रेष्काणः' }, meaning: { en: 'Siblings, courage & co-borns', hi: 'भाई-बहन, साहस एवं सहोदर' } },
-    { key: 'D4', div: 4, label: { en: 'D4 Chaturthamsha', hi: 'D4 चतुर्थांश', sa: 'D4 चतुर्थांशः' }, meaning: { en: 'Property, fortune & fixed assets', hi: 'संपत्ति, भाग्य एवं स्थावर संपदा' } },
-    { key: 'D5', div: 5, label: { en: 'D5 Panchamsha', hi: 'D5 पंचमांश', sa: 'D5 पञ्चमांशः' }, meaning: { en: 'Fame, authority & spiritual merit', hi: 'यश, अधिकार एवं पुण्य' } },
-    { key: 'D6', div: 6, label: { en: 'D6 Shashthamsha', hi: 'D6 षष्ठांश', sa: 'D6 षष्ठांशः' }, meaning: { en: 'Health, disease & enemies', hi: 'स्वास्थ्य, रोग एवं शत्रु' } },
-    { key: 'D7', div: 7, label: { en: 'D7 Saptamsha', hi: 'D7 सप्तमांश', sa: 'D7 सप्तमांशः' }, meaning: { en: 'Children & progeny', hi: 'संतान एवं वंशवृद्धि' } },
-    { key: 'D8', div: 8, label: { en: 'D8 Ashtamsha', hi: 'D8 अष्टमांश', sa: 'D8 अष्टमांशः' }, meaning: { en: 'Longevity & unexpected events', hi: 'दीर्घायु एवं अप्रत्याशित घटनाएं' } },
-    { key: 'D10', div: 10, label: { en: 'D10 Dasamsha', hi: 'D10 दशांश', sa: 'D10 दशांशः' }, meaning: { en: 'Career, profession & public life', hi: 'करियर, व्यवसाय एवं सार्वजनिक जीवन' } },
-    { key: 'D12', div: 12, label: { en: 'D12 Dwadasamsha', hi: 'D12 द्वादशांश', sa: 'D12 द्वादशांशः' }, meaning: { en: 'Parents, ancestry & lineage', hi: 'माता-पिता, वंशावली' } },
-    { key: 'D16', div: 16, label: { en: 'D16 Shodasamsha', hi: 'D16 षोडशांश', sa: 'D16 षोडशांशः' }, meaning: { en: 'Vehicles, comforts & luxuries', hi: 'वाहन, सुख एवं विलासिता' } },
-    { key: 'D20', div: 20, label: { en: 'D20 Vimshamsha', hi: 'D20 विंशांश', sa: 'D20 विंशांशः' }, meaning: { en: 'Spiritual progress & upasana', hi: 'आध्यात्मिक प्रगति एवं उपासना' } },
-    { key: 'D24', div: 24, label: { en: 'D24 Chaturvimshamsha', hi: 'D24 चतुर्विंशांश', sa: 'D24 चतुर्विंशांशः' }, meaning: { en: 'Education, learning & knowledge', hi: 'शिक्षा, विद्या एवं ज्ञान' } },
-    { key: 'D27', div: 27, label: { en: 'D27 Nakshatramsha', hi: 'D27 नक्षत्रांश', sa: 'D27 नक्षत्रांशः' }, meaning: { en: 'Strengths, vitality & stamina', hi: 'बल, ओज एवं सहनशक्ति' } },
-    { key: 'D30', div: 30, label: { en: 'D30 Trimshamsha', hi: 'D30 त्रिंशांश', sa: 'D30 त्रिंशांशः' }, meaning: { en: 'Misfortunes, evils & suffering', hi: 'दुर्भाग्य, पाप एवं कष्ट' } },
-    { key: 'D40', div: 40, label: { en: 'D40 Khavedamsha', hi: 'D40 खवेदांश', sa: 'D40 खवेदांशः' }, meaning: { en: 'Auspicious/inauspicious (maternal)', hi: 'शुभाशुभ प्रभाव (मातृपक्ष)' } },
-    { key: 'D45', div: 45, label: { en: 'D45 Akshavedamsha', hi: 'D45 अक्षवेदांश', sa: 'D45 अक्षवेदांशः' }, meaning: { en: 'General indications (paternal)', hi: 'सामान्य संकेत (पितृपक्ष)' } },
-    { key: 'D60', div: 60, label: { en: 'D60 Shashtiamsha', hi: 'D60 षष्ट्यंश', sa: 'D60 षष्ट्यंशः' }, meaning: { en: 'Past life karma & overall assessment', hi: 'पूर्वजन्म कर्म एवं समग्र मूल्यांकन' } },
+  const VARGA_DEFS: { key: string; div: number; label: LocaleText; meaning: LocaleText }[] = [
+    { key: 'D2', div: 2, label: { en: 'D2 Hora', hi: 'D2 होरा', sa: 'D2 होरा' }, meaning: { en: 'Wealth & financial prosperity', hi: 'धन एवं वित्तीय समृद्धि', sa: 'धन एवं वित्तीय समृद्धि', mai: 'धन एवं वित्तीय समृद्धि', mr: 'धन एवं वित्तीय समृद्धि', ta: 'Wealth & financial prosperity', te: 'Wealth & financial prosperity', bn: 'Wealth & financial prosperity', kn: 'Wealth & financial prosperity', gu: 'Wealth & financial prosperity' } },
+    { key: 'D3', div: 3, label: { en: 'D3 Drekkana', hi: 'D3 द्रेष्काण', sa: 'D3 द्रेष्काणः' }, meaning: { en: 'Siblings, courage & co-borns', hi: 'भाई-बहन, साहस एवं सहोदर', sa: 'भाई-बहन, साहस एवं सहोदर', mai: 'भाई-बहन, साहस एवं सहोदर', mr: 'भाई-बहन, साहस एवं सहोदर', ta: 'Siblings, courage & co-borns', te: 'Siblings, courage & co-borns', bn: 'Siblings, courage & co-borns', kn: 'Siblings, courage & co-borns', gu: 'Siblings, courage & co-borns' } },
+    { key: 'D4', div: 4, label: { en: 'D4 Chaturthamsha', hi: 'D4 चतुर्थांश', sa: 'D4 चतुर्थांशः' }, meaning: { en: 'Property, fortune & fixed assets', hi: 'संपत्ति, भाग्य एवं स्थावर संपदा', sa: 'संपत्ति, भाग्य एवं स्थावर संपदा', mai: 'संपत्ति, भाग्य एवं स्थावर संपदा', mr: 'संपत्ति, भाग्य एवं स्थावर संपदा', ta: 'Property, fortune & fixed assets', te: 'Property, fortune & fixed assets', bn: 'Property, fortune & fixed assets', kn: 'Property, fortune & fixed assets', gu: 'Property, fortune & fixed assets' } },
+    { key: 'D5', div: 5, label: { en: 'D5 Panchamsha', hi: 'D5 पंचमांश', sa: 'D5 पञ्चमांशः' }, meaning: { en: 'Fame, authority & spiritual merit', hi: 'यश, अधिकार एवं पुण्य', sa: 'यश, अधिकार एवं पुण्य', mai: 'यश, अधिकार एवं पुण्य', mr: 'यश, अधिकार एवं पुण्य', ta: 'Fame, authority & spiritual merit', te: 'Fame, authority & spiritual merit', bn: 'Fame, authority & spiritual merit', kn: 'Fame, authority & spiritual merit', gu: 'Fame, authority & spiritual merit' } },
+    { key: 'D6', div: 6, label: { en: 'D6 Shashthamsha', hi: 'D6 षष्ठांश', sa: 'D6 षष्ठांशः' }, meaning: { en: 'Health, disease & enemies', hi: 'स्वास्थ्य, रोग एवं शत्रु', sa: 'स्वास्थ्य, रोग एवं शत्रु', mai: 'स्वास्थ्य, रोग एवं शत्रु', mr: 'स्वास्थ्य, रोग एवं शत्रु', ta: 'Health, disease & enemies', te: 'Health, disease & enemies', bn: 'Health, disease & enemies', kn: 'Health, disease & enemies', gu: 'Health, disease & enemies' } },
+    { key: 'D7', div: 7, label: { en: 'D7 Saptamsha', hi: 'D7 सप्तमांश', sa: 'D7 सप्तमांशः' }, meaning: { en: 'Children & progeny', hi: 'संतान एवं वंशवृद्धि', sa: 'संतान एवं वंशवृद्धि', mai: 'संतान एवं वंशवृद्धि', mr: 'संतान एवं वंशवृद्धि', ta: 'Children & progeny', te: 'Children & progeny', bn: 'Children & progeny', kn: 'Children & progeny', gu: 'Children & progeny' } },
+    { key: 'D8', div: 8, label: { en: 'D8 Ashtamsha', hi: 'D8 अष्टमांश', sa: 'D8 अष्टमांशः' }, meaning: { en: 'Longevity & unexpected events', hi: 'दीर्घायु एवं अप्रत्याशित घटनाएं', sa: 'दीर्घायु एवं अप्रत्याशित घटनाएं', mai: 'दीर्घायु एवं अप्रत्याशित घटनाएं', mr: 'दीर्घायु एवं अप्रत्याशित घटनाएं', ta: 'Longevity & unexpected events', te: 'Longevity & unexpected events', bn: 'Longevity & unexpected events', kn: 'Longevity & unexpected events', gu: 'Longevity & unexpected events' } },
+    { key: 'D10', div: 10, label: { en: 'D10 Dasamsha', hi: 'D10 दशांश', sa: 'D10 दशांशः' }, meaning: { en: 'Career, profession & public life', hi: 'करियर, व्यवसाय एवं सार्वजनिक जीवन', sa: 'करियर, व्यवसाय एवं सार्वजनिक जीवन', mai: 'करियर, व्यवसाय एवं सार्वजनिक जीवन', mr: 'करियर, व्यवसाय एवं सार्वजनिक जीवन', ta: 'Career, profession & public life', te: 'Career, profession & public life', bn: 'Career, profession & public life', kn: 'Career, profession & public life', gu: 'Career, profession & public life' } },
+    { key: 'D12', div: 12, label: { en: 'D12 Dwadasamsha', hi: 'D12 द्वादशांश', sa: 'D12 द्वादशांशः' }, meaning: { en: 'Parents, ancestry & lineage', hi: 'माता-पिता, वंशावली', sa: 'माता-पिता, वंशावली', mai: 'माता-पिता, वंशावली', mr: 'माता-पिता, वंशावली', ta: 'Parents, ancestry & lineage', te: 'Parents, ancestry & lineage', bn: 'Parents, ancestry & lineage', kn: 'Parents, ancestry & lineage', gu: 'Parents, ancestry & lineage' } },
+    { key: 'D16', div: 16, label: { en: 'D16 Shodasamsha', hi: 'D16 षोडशांश', sa: 'D16 षोडशांशः' }, meaning: { en: 'Vehicles, comforts & luxuries', hi: 'वाहन, सुख एवं विलासिता', sa: 'वाहन, सुख एवं विलासिता', mai: 'वाहन, सुख एवं विलासिता', mr: 'वाहन, सुख एवं विलासिता', ta: 'Vehicles, comforts & luxuries', te: 'Vehicles, comforts & luxuries', bn: 'Vehicles, comforts & luxuries', kn: 'Vehicles, comforts & luxuries', gu: 'Vehicles, comforts & luxuries' } },
+    { key: 'D20', div: 20, label: { en: 'D20 Vimshamsha', hi: 'D20 विंशांश', sa: 'D20 विंशांशः' }, meaning: { en: 'Spiritual progress & upasana', hi: 'आध्यात्मिक प्रगति एवं उपासना', sa: 'आध्यात्मिक प्रगति एवं उपासना', mai: 'आध्यात्मिक प्रगति एवं उपासना', mr: 'आध्यात्मिक प्रगति एवं उपासना', ta: 'Spiritual progress & upasana', te: 'Spiritual progress & upasana', bn: 'Spiritual progress & upasana', kn: 'Spiritual progress & upasana', gu: 'Spiritual progress & upasana' } },
+    { key: 'D24', div: 24, label: { en: 'D24 Chaturvimshamsha', hi: 'D24 चतुर्विंशांश', sa: 'D24 चतुर्विंशांशः' }, meaning: { en: 'Education, learning & knowledge', hi: 'शिक्षा, विद्या एवं ज्ञान', sa: 'शिक्षा, विद्या एवं ज्ञान', mai: 'शिक्षा, विद्या एवं ज्ञान', mr: 'शिक्षा, विद्या एवं ज्ञान', ta: 'Education, learning & knowledge', te: 'Education, learning & knowledge', bn: 'Education, learning & knowledge', kn: 'Education, learning & knowledge', gu: 'Education, learning & knowledge' } },
+    { key: 'D27', div: 27, label: { en: 'D27 Nakshatramsha', hi: 'D27 नक्षत्रांश', sa: 'D27 नक्षत्रांशः' }, meaning: { en: 'Strengths, vitality & stamina', hi: 'बल, ओज एवं सहनशक्ति', sa: 'बल, ओज एवं सहनशक्ति', mai: 'बल, ओज एवं सहनशक्ति', mr: 'बल, ओज एवं सहनशक्ति', ta: 'Strengths, vitality & stamina', te: 'Strengths, vitality & stamina', bn: 'Strengths, vitality & stamina', kn: 'Strengths, vitality & stamina', gu: 'Strengths, vitality & stamina' } },
+    { key: 'D30', div: 30, label: { en: 'D30 Trimshamsha', hi: 'D30 त्रिंशांश', sa: 'D30 त्रिंशांशः' }, meaning: { en: 'Misfortunes, evils & suffering', hi: 'दुर्भाग्य, पाप एवं कष्ट', sa: 'दुर्भाग्य, पाप एवं कष्ट', mai: 'दुर्भाग्य, पाप एवं कष्ट', mr: 'दुर्भाग्य, पाप एवं कष्ट', ta: 'Misfortunes, evils & suffering', te: 'Misfortunes, evils & suffering', bn: 'Misfortunes, evils & suffering', kn: 'Misfortunes, evils & suffering', gu: 'Misfortunes, evils & suffering' } },
+    { key: 'D40', div: 40, label: { en: 'D40 Khavedamsha', hi: 'D40 खवेदांश', sa: 'D40 खवेदांशः' }, meaning: { en: 'Auspicious/inauspicious (maternal)', hi: 'शुभाशुभ प्रभाव (मातृपक्ष)', sa: 'शुभाशुभ प्रभाव (मातृपक्ष)', mai: 'शुभाशुभ प्रभाव (मातृपक्ष)', mr: 'शुभाशुभ प्रभाव (मातृपक्ष)', ta: 'Auspicious/inauspicious (maternal)', te: 'Auspicious/inauspicious (maternal)', bn: 'Auspicious/inauspicious (maternal)', kn: 'Auspicious/inauspicious (maternal)', gu: 'Auspicious/inauspicious (maternal)' } },
+    { key: 'D45', div: 45, label: { en: 'D45 Akshavedamsha', hi: 'D45 अक्षवेदांश', sa: 'D45 अक्षवेदांशः' }, meaning: { en: 'General indications (paternal)', hi: 'सामान्य संकेत (पितृपक्ष)', sa: 'सामान्य संकेत (पितृपक्ष)', mai: 'सामान्य संकेत (पितृपक्ष)', mr: 'सामान्य संकेत (पितृपक्ष)', ta: 'General indications (paternal)', te: 'General indications (paternal)', bn: 'General indications (paternal)', kn: 'General indications (paternal)', gu: 'General indications (paternal)' } },
+    { key: 'D60', div: 60, label: { en: 'D60 Shashtiamsha', hi: 'D60 षष्ट्यंश', sa: 'D60 षष्ट्यंशः' }, meaning: { en: 'Past life karma & overall assessment', hi: 'पूर्वजन्म कर्म एवं समग्र मूल्यांकन', sa: 'पूर्वजन्म कर्म एवं समग्र मूल्यांकन', mai: 'पूर्वजन्म कर्म एवं समग्र मूल्यांकन', mr: 'पूर्वजन्म कर्म एवं समग्र मूल्यांकन', ta: 'Past life karma & overall assessment', te: 'Past life karma & overall assessment', bn: 'Past life karma & overall assessment', kn: 'Past life karma & overall assessment', gu: 'Past life karma & overall assessment' } },
   ];
-  const divisionalCharts: Record<string, DivisionalChart & { meaning?: { en: string; hi: string } }> = {};
+  const divisionalCharts: Record<string, DivisionalChart & { meaning?: LocaleText }> = {};
   for (const v of VARGA_DEFS) {
     const chartData = calculateDivisionalChart(planets, siderealAsc, v.div);
     divisionalCharts[v.key] = { ...chartData, division: v.key, label: v.label, meaning: v.meaning };

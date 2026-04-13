@@ -1,5 +1,6 @@
+import { tl } from '@/lib/utils/trilingual';
 import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
+import type { LocaleText, Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
@@ -17,7 +18,7 @@ const L = {
   },
 
   /* Section 1 */
-  s1Title: { en: 'The Setting \u2014 Sangamagrama to Trikkandiyur', hi: 'पृष्ठभूमि \u2014 संगमग्राम से त्रिक्कण्डियूर' },
+  s1Title: { en: 'The Setting \u2014 Sangamagrama to Trikkandiyur', hi: 'पृष्ठभूमि \u2014 संगमग्राम से त्रिक्कण्डियूर', sa: 'पृष्ठभूमि \u2014 संगमग्राम से त्रिक्कण्डियूर', mai: 'पृष्ठभूमि \u2014 संगमग्राम से त्रिक्कण्डियूर', mr: 'पृष्ठभूमि \u2014 संगमग्राम से त्रिक्कण्डियूर', ta: 'The Setting \u2014 Sangamagrama to Trikkandiyur', te: 'The Setting \u2014 Sangamagrama to Trikkandiyur', bn: 'The Setting \u2014 Sangamagrama to Trikkandiyur', kn: 'The Setting \u2014 Sangamagrama to Trikkandiyur', gu: 'The Setting \u2014 Sangamagrama to Trikkandiyur' },
   s1Body: {
     en: 'Madhava of Sangamagrama (~1340\u20131425 CE) \u2014 the founder of the Kerala School \u2014 was born in the village of Sangamagrama, modern-day Irinjalakuda near Thrissur in Kerala. He was not a wandering scholar or a court mathematician; he was a temple-affiliated astronomer working in a tradition called "Illam" \u2014 hereditary scholarly households attached to Hindu temples. His students carried his work forward through five generations: Parameshvara, Nilakantha Somayaji, Jyeshthadeva, Achyuta Pisharati, and others. Knowledge was transmitted through palm-leaf manuscripts, recitation, and direct teacher-student lineage.',
     hi: 'संगमग्राम के माधव (~1340\u20131425 ई.) \u2014 केरल स्कूल के संस्थापक \u2014 का जन्म केरल के त्रिशूर के निकट संगमग्राम (आधुनिक इरिंजलकुडा) गाँव में हुआ था। वे न तो भ्रमणशील विद्वान थे और न ही राजदरबारी गणितज्ञ; वे "इल्लम" \u2014 हिन्दू मन्दिरों से जुड़े वंशानुगत विद्वत् परिवार \u2014 से सम्बद्ध मन्दिर-खगोलशास्त्री थे। उनके शिष्यों ने पाँच पीढ़ियों तक उनके कार्य को आगे बढ़ाया: परमेश्वर, नीलकण्ठ सोमयाजी, ज्येष्ठदेव, अच्युत पिशारटि आदि। ज्ञान ताड़-पत्र पाण्डुलिपियों, पाठ और प्रत्यक्ष गुरु-शिष्य परम्परा के माध्यम से संचारित होता था।',
@@ -167,9 +168,9 @@ const L = {
     hi: 'निम्नलिखित सारणी पश्चिमी गणित पाठ्यपुस्तकों में व्यवस्थित ग़लत श्रेयदान दिखाती है। हर मामले में, केरल स्कूल ने परिणाम उस यूरोपीय गणितज्ञ से 88\u2013390 वर्ष पहले खोजा जिसे श्रेय मिला।',
   },
 
-  backLink: { en: '\u2190 Back to Learn', hi: '\u2190 सीखने पर वापस' },
-  prevPage: { en: 'Calculus Overview', hi: 'कलनशास्त्र सारांश' },
-  nextPage: { en: 'Pythagoras Was Indian', hi: 'पाइथागोरस भारतीय था' },
+  backLink: { en: '\u2190 Back to Learn', hi: '\u2190 सीखने पर वापस', sa: '\u2190 सीखने पर वापस', mai: '\u2190 सीखने पर वापस', mr: '\u2190 सीखने पर वापस', ta: '\u2190 Back to Learn', te: '\u2190 Back to Learn', bn: '\u2190 Back to Learn', kn: '\u2190 Back to Learn', gu: '\u2190 Back to Learn' },
+  prevPage: { en: 'Calculus Overview', hi: 'कलनशास्त्र सारांश', sa: 'कलनशास्त्र सारांश', mai: 'कलनशास्त्र सारांश', mr: 'कलनशास्त्र सारांश', ta: 'Calculus Overview', te: 'Calculus Overview', bn: 'Calculus Overview', kn: 'Calculus Overview', gu: 'Calculus Overview' },
+  nextPage: { en: 'Pythagoras Was Indian', hi: 'पाइथागोरस भारतीय था', sa: 'पाइथागोरस भारतीय था', mai: 'पाइथागोरस भारतीय था', mr: 'पाइथागोरस भारतीय था', ta: 'Pythagoras Was Indian', te: 'Pythagoras Was Indian', bn: 'Pythagoras Was Indian', kn: 'Pythagoras Was Indian', gu: 'Pythagoras Was Indian' },
 };
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -192,45 +193,45 @@ const SINE_TERMS = [
 
 const SCHOOL_CHAIN = [
   {
-    name: { en: 'Madhava of Sangamagrama', hi: 'संगमग्राम के माधव' },
+    name: { en: 'Madhava of Sangamagrama', hi: 'संगमग्राम के माधव', sa: 'संगमग्राम के माधव', mai: 'संगमग्राम के माधव', mr: 'संगमग्राम के माधव', ta: 'Madhava of Sangamagrama', te: 'Madhava of Sangamagrama', bn: 'Madhava of Sangamagrama', kn: 'Madhava of Sangamagrama', gu: 'Madhava of Sangamagrama' },
     years: '~1340\u20131425 CE',
-    role: { en: 'Founder', hi: 'संस्थापक' },
+    role: { en: 'Founder', hi: 'संस्थापक', sa: 'संस्थापक', mai: 'संस्थापक', mr: 'संस्थापक', ta: 'Founder', te: 'Founder', bn: 'Founder', kn: 'Founder', gu: 'Founder' },
     contrib: {
       en: 'Discovered infinite series for \u03C0, sin, cos, arctan. Invented series acceleration correction terms. Computed \u03C0 to 11 decimal places.',
       hi: '\u03C0, sin, cos, arctan के लिए अनन्त श्रेणी की खोज। श्रेणी-त्वरण सुधार पदों का आविष्कार। \u03C0 का 11 दशमलव तक मान।',
     },
   },
   {
-    name: { en: 'Parameshvara', hi: 'परमेश्वर' },
+    name: { en: 'Parameshvara', hi: 'परमेश्वर', sa: 'परमेश्वर', mai: 'परमेश्वर', mr: 'परमेश्वर', ta: 'Parameshvara', te: 'Parameshvara', bn: 'Parameshvara', kn: 'Parameshvara', gu: 'Parameshvara' },
     years: '~1360\u20131455 CE',
-    role: { en: 'Observer', hi: 'प्रेक्षक' },
+    role: { en: 'Observer', hi: 'प्रेक्षक', sa: 'प्रेक्षक', mai: 'प्रेक्षक', mr: 'प्रेक्षक', ta: 'Observer', te: 'Observer', bn: 'Observer', kn: 'Observer', gu: 'Observer' },
     contrib: {
       en: 'Conducted 55 years of systematic astronomical observations \u2014 the longest observational program in pre-telescopic history. Created the Drigganita system based on empirical corrections.',
       hi: '55 वर्षों तक व्यवस्थित खगोलीय प्रेक्षण \u2014 दूरबीन-पूर्व इतिहास में सबसे लम्बा प्रेक्षण कार्यक्रम। अनुभवजन्य सुधारों पर आधारित दृग्गणित प्रणाली।',
     },
   },
   {
-    name: { en: 'Nilakantha Somayaji', hi: 'नीलकण्ठ सोमयाजी' },
+    name: { en: 'Nilakantha Somayaji', hi: 'नीलकण्ठ सोमयाजी', sa: 'नीलकण्ठ सोमयाजी', mai: 'नीलकण्ठ सोमयाजी', mr: 'नीलकण्ठ सोमयाजी', ta: 'Nilakantha Somayaji', te: 'Nilakantha Somayaji', bn: 'Nilakantha Somayaji', kn: 'Nilakantha Somayaji', gu: 'Nilakantha Somayaji' },
     years: '~1444\u20131544 CE',
-    role: { en: 'Astronomer-Theorist', hi: 'खगोलशास्त्री-सिद्धान्तकार' },
+    role: { en: 'Astronomer-Theorist', hi: 'खगोलशास्त्री-सिद्धान्तकार', sa: 'खगोलशास्त्री-सिद्धान्तकार', mai: 'खगोलशास्त्री-सिद्धान्तकार', mr: 'खगोलशास्त्री-सिद्धान्तकार', ta: 'Astronomer-Theorist', te: 'Astronomer-Theorist', bn: 'Astronomer-Theorist', kn: 'Astronomer-Theorist', gu: 'Astronomer-Theorist' },
     contrib: {
       en: 'Wrote Tantrasangraha (1500 CE). Developed partial heliocentric model (Mercury and Venus orbit Sun) \u2014 identical to Tycho Brahe\'s model, 88 years before Brahe.',
       hi: 'तन्त्रसंग्रह (1500 ई.) लिखा। आंशिक सौर-केन्द्रीय मॉडल (बुध और शुक्र सूर्य की परिक्रमा) \u2014 ब्राहे से 88 वर्ष पहले।',
     },
   },
   {
-    name: { en: 'Jyeshthadeva', hi: 'ज्येष्ठदेव' },
+    name: { en: 'Jyeshthadeva', hi: 'ज्येष्ठदेव', sa: 'ज्येष्ठदेव', mai: 'ज्येष्ठदेव', mr: 'ज्येष्ठदेव', ta: 'Jyeshthadeva', te: 'Jyeshthadeva', bn: 'Jyeshthadeva', kn: 'Jyeshthadeva', gu: 'Jyeshthadeva' },
     years: '~1500\u20131575 CE',
-    role: { en: 'Textbook Author', hi: 'पाठ्यग्रन्थ लेखक' },
+    role: { en: 'Textbook Author', hi: 'पाठ्यग्रन्थ लेखक', sa: 'पाठ्यग्रन्थ लेखक', mai: 'पाठ्यग्रन्थ लेखक', mr: 'पाठ्यग्रन्थ लेखक', ta: 'Textbook Author', te: 'Textbook Author', bn: 'Textbook Author', kn: 'Textbook Author', gu: 'Textbook Author' },
     contrib: {
       en: 'Wrote Yuktibhasha (~1530 CE) \u2014 the world\'s first calculus textbook. Contains full proofs of all Kerala results. Written in Malayalam (vernacular) for accessibility.',
       hi: 'युक्तिभाषा (~1530 ई.) लिखी \u2014 विश्व की पहली कलनशास्त्र पाठ्यपुस्तक। सभी केरल परिणामों के पूर्ण प्रमाण। सुगम्यता के लिए मलयालम (स्थानीय भाषा) में।',
     },
   },
   {
-    name: { en: 'Achyuta Pisharati', hi: 'अच्युत पिशारटि' },
+    name: { en: 'Achyuta Pisharati', hi: 'अच्युत पिशारटि', sa: 'अच्युत पिशारटि', mai: 'अच्युत पिशारटि', mr: 'अच्युत पिशारटि', ta: 'Achyuta Pisharati', te: 'Achyuta Pisharati', bn: 'Achyuta Pisharati', kn: 'Achyuta Pisharati', gu: 'Achyuta Pisharati' },
     years: '~1550\u20131621 CE',
-    role: { en: 'Last Major Figure', hi: 'अन्तिम प्रमुख व्यक्ति' },
+    role: { en: 'Last Major Figure', hi: 'अन्तिम प्रमुख व्यक्ति', sa: 'अन्तिम प्रमुख व्यक्ति', mai: 'अन्तिम प्रमुख व्यक्ति', mr: 'अन्तिम प्रमुख व्यक्ति', ta: 'Last Major Figure', te: 'Last Major Figure', bn: 'Last Major Figure', kn: 'Last Major Figure', gu: 'Last Major Figure' },
     contrib: {
       en: 'Applied tropical corrections to Kerala astronomical models. Extended the tradition for another generation before it gradually declined under colonial pressures.',
       hi: 'केरल खगोलीय मॉडलों में उष्णकटिबन्धीय सुधार लागू किए। औपनिवेशिक दबावों में क्रमिक पतन से पहले एक और पीढ़ी तक परम्परा बढ़ाई।',
@@ -258,7 +259,7 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
   const { locale } = await params as { locale: Locale };
   const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const l = (obj: Record<string, string>) => (isHi ? obj.hi : obj.en);
+  const l = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
 
   return (
     <div className="space-y-10">
@@ -279,10 +280,10 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
           {[
-            { label: { en: 'Founder', hi: 'संस्थापक' }, value: 'Madhava (~1340)' },
-            { label: { en: 'Location', hi: 'स्थान' }, value: 'Irinjalakuda, Kerala' },
-            { label: { en: 'Duration', hi: 'अवधि' }, value: '~200 years' },
-            { label: { en: 'Key text', hi: 'प्रमुख ग्रन्थ' }, value: 'Yuktibhasha' },
+            { label: { en: 'Founder', hi: 'संस्थापक', sa: 'संस्थापक', mai: 'संस्थापक', mr: 'संस्थापक', ta: 'Founder', te: 'Founder', bn: 'Founder', kn: 'Founder', gu: 'Founder' }, value: 'Madhava (~1340)' },
+            { label: { en: 'Location', hi: 'स्थान', sa: 'स्थान', mai: 'स्थान', mr: 'स्थान', ta: 'Location', te: 'Location', bn: 'Location', kn: 'Location', gu: 'Location' }, value: 'Irinjalakuda, Kerala' },
+            { label: { en: 'Duration', hi: 'अवधि', sa: 'अवधि', mai: 'अवधि', mr: 'अवधि', ta: 'Duration', te: 'Duration', bn: 'Duration', kn: 'Duration', gu: 'Duration' }, value: '~200 years' },
+            { label: { en: 'Key text', hi: 'प्रमुख ग्रन्थ', sa: 'प्रमुख ग्रन्थ', mai: 'प्रमुख ग्रन्थ', mr: 'प्रमुख ग्रन्थ', ta: 'Key text', te: 'Key text', bn: 'Key text', kn: 'Key text', gu: 'Key text' }, value: 'Yuktibhasha' },
           ].map((stat, i) => (
             <div key={i} className="p-3 rounded-xl bg-gold-primary/8 border border-gold-primary/15 text-center">
               <div className="text-gold-light text-sm font-bold">{stat.value}</div>
@@ -426,9 +427,9 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5">
           {[
-            { num: '1', name: { en: 'Derivatives', hi: 'अवकलज' }, desc: { en: 'Rates of change. How fast is something moving at this instant?', hi: 'परिवर्तन की दर। इस क्षण कुछ कितनी तेज़ी से बदल रहा है?' }, status: { en: 'Partial work', hi: 'आंशिक कार्य' } },
-            { num: '2', name: { en: 'Integrals', hi: 'समाकलन' }, desc: { en: 'Accumulation. What is the total area under this curve?', hi: 'संचय। इस वक्र के नीचे कुल क्षेत्रफल क्या है?' }, status: { en: 'Partial work', hi: 'आंशिक कार्य' } },
-            { num: '3', name: { en: 'Infinite Series', hi: 'अनन्त श्रेणी' }, desc: { en: 'Expressing functions as infinite sums of simpler terms.', hi: 'फलनों को सरल पदों के अनन्त योग के रूप में व्यक्त करना।' }, status: { en: 'Fully mastered', hi: 'पूर्ण अधिकार' } },
+            { num: '1', name: { en: 'Derivatives', hi: 'अवकलज', sa: 'अवकलज', mai: 'अवकलज', mr: 'अवकलज', ta: 'Derivatives', te: 'Derivatives', bn: 'Derivatives', kn: 'Derivatives', gu: 'Derivatives' }, desc: { en: 'Rates of change. How fast is something moving at this instant?', hi: 'परिवर्तन की दर। इस क्षण कुछ कितनी तेज़ी से बदल रहा है?', sa: 'परिवर्तन की दर। इस क्षण कुछ कितनी तेज़ी से बदल रहा है?', mai: 'परिवर्तन की दर। इस क्षण कुछ कितनी तेज़ी से बदल रहा है?', mr: 'परिवर्तन की दर। इस क्षण कुछ कितनी तेज़ी से बदल रहा है?', ta: 'Rates of change. How fast is something moving at this instant?', te: 'Rates of change. How fast is something moving at this instant?', bn: 'Rates of change. How fast is something moving at this instant?', kn: 'Rates of change. How fast is something moving at this instant?', gu: 'Rates of change. How fast is something moving at this instant?' }, status: { en: 'Partial work', hi: 'आंशिक कार्य', sa: 'आंशिक कार्य', mai: 'आंशिक कार्य', mr: 'आंशिक कार्य', ta: 'Partial work', te: 'Partial work', bn: 'Partial work', kn: 'Partial work', gu: 'Partial work' } },
+            { num: '2', name: { en: 'Integrals', hi: 'समाकलन', sa: 'समाकलन', mai: 'समाकलन', mr: 'समाकलन', ta: 'Integrals', te: 'Integrals', bn: 'Integrals', kn: 'Integrals', gu: 'Integrals' }, desc: { en: 'Accumulation. What is the total area under this curve?', hi: 'संचय। इस वक्र के नीचे कुल क्षेत्रफल क्या है?', sa: 'संचय। इस वक्र के नीचे कुल क्षेत्रफल क्या है?', mai: 'संचय। इस वक्र के नीचे कुल क्षेत्रफल क्या है?', mr: 'संचय। इस वक्र के नीचे कुल क्षेत्रफल क्या है?', ta: 'Accumulation. What is the total area under this curve?', te: 'Accumulation. What is the total area under this curve?', bn: 'Accumulation. What is the total area under this curve?', kn: 'Accumulation. What is the total area under this curve?', gu: 'Accumulation. What is the total area under this curve?' }, status: { en: 'Partial work', hi: 'आंशिक कार्य', sa: 'आंशिक कार्य', mai: 'आंशिक कार्य', mr: 'आंशिक कार्य', ta: 'Partial work', te: 'Partial work', bn: 'Partial work', kn: 'Partial work', gu: 'Partial work' } },
+            { num: '3', name: { en: 'Infinite Series', hi: 'अनन्त श्रेणी', sa: 'अनन्त श्रेणी', mai: 'अनन्त श्रेणी', mr: 'अनन्त श्रेणी', ta: 'Infinite Series', te: 'Infinite Series', bn: 'Infinite Series', kn: 'Infinite Series', gu: 'Infinite Series' }, desc: { en: 'Expressing functions as infinite sums of simpler terms.', hi: 'फलनों को सरल पदों के अनन्त योग के रूप में व्यक्त करना।', sa: 'फलनों को सरल पदों के अनन्त योग के रूप में व्यक्त करना।', mai: 'फलनों को सरल पदों के अनन्त योग के रूप में व्यक्त करना।', mr: 'फलनों को सरल पदों के अनन्त योग के रूप में व्यक्त करना।', ta: 'Expressing functions as infinite sums of simpler terms.', te: 'Expressing functions as infinite sums of simpler terms.', bn: 'Expressing functions as infinite sums of simpler terms.', kn: 'Expressing functions as infinite sums of simpler terms.', gu: 'Expressing functions as infinite sums of simpler terms.' }, status: { en: 'Fully mastered', hi: 'पूर्ण अधिकार', sa: 'पूर्ण अधिकार', mai: 'पूर्ण अधिकार', mr: 'पूर्ण अधिकार', ta: 'Fully mastered', te: 'Fully mastered', bn: 'Fully mastered', kn: 'Fully mastered', gu: 'Fully mastered' } },
           ].map((pillar, i) => (
             <div key={i} className={`p-4 rounded-xl border ${i === 2 ? 'bg-emerald-500/8 border-emerald-500/20' : 'bg-white/[0.02] border-gold-primary/10'}`}>
               <div className="flex items-center gap-2 mb-2">
@@ -480,10 +481,10 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
-            { label: { en: 'Language', hi: 'भाषा' }, value: { en: 'Malayalam', hi: 'मलयालम' } },
-            { label: { en: 'Written', hi: 'रचना' }, value: { en: '~1530 CE', hi: '~1530 ई.' } },
-            { label: { en: 'Contains', hi: 'विषयवस्तु' }, value: { en: 'Full proofs', hi: 'पूर्ण प्रमाण' } },
-            { label: { en: 'Significance', hi: 'महत्त्व' }, value: { en: '1st calculus text', hi: 'प्रथम कलन ग्रन्थ' } },
+            { label: { en: 'Language', hi: 'भाषा', sa: 'भाषा', mai: 'भाषा', mr: 'भाषा', ta: 'Language', te: 'Language', bn: 'Language', kn: 'Language', gu: 'Language' }, value: { en: 'Malayalam', hi: 'मलयालम', sa: 'मलयालम', mai: 'मलयालम', mr: 'मलयालम', ta: 'Malayalam', te: 'Malayalam', bn: 'Malayalam', kn: 'Malayalam', gu: 'Malayalam' } },
+            { label: { en: 'Written', hi: 'रचना', sa: 'रचना', mai: 'रचना', mr: 'रचना', ta: 'Written', te: 'Written', bn: 'Written', kn: 'Written', gu: 'Written' }, value: { en: '~1530 CE', hi: '~1530 ई.', sa: '~1530 ई.', mai: '~1530 ई.', mr: '~1530 ई.', ta: '~1530 CE', te: '~1530 CE', bn: '~1530 CE', kn: '~1530 CE', gu: '~1530 CE' } },
+            { label: { en: 'Contains', hi: 'विषयवस्तु', sa: 'विषयवस्तु', mai: 'विषयवस्तु', mr: 'विषयवस्तु', ta: 'Contains', te: 'Contains', bn: 'Contains', kn: 'Contains', gu: 'Contains' }, value: { en: 'Full proofs', hi: 'पूर्ण प्रमाण', sa: 'पूर्ण प्रमाण', mai: 'पूर्ण प्रमाण', mr: 'पूर्ण प्रमाण', ta: 'Full proofs', te: 'Full proofs', bn: 'Full proofs', kn: 'Full proofs', gu: 'Full proofs' } },
+            { label: { en: 'Significance', hi: 'महत्त्व', sa: 'महत्त्व', mai: 'महत्त्व', mr: 'महत्त्व', ta: 'Significance', te: 'Significance', bn: 'Significance', kn: 'Significance', gu: 'Significance' }, value: { en: '1st calculus text', hi: 'प्रथम कलन ग्रन्थ', sa: 'प्रथम कलन ग्रन्थ', mai: 'प्रथम कलन ग्रन्थ', mr: 'प्रथम कलन ग्रन्थ', ta: '1st calculus text', te: '1st calculus text', bn: '1st calculus text', kn: '1st calculus text', gu: '1st calculus text' } },
           ].map((fact, i) => (
             <div key={i} className="p-3 rounded-xl bg-gold-primary/8 border border-gold-primary/15 text-center">
               <div className="text-gold-light text-sm font-bold">{typeof fact.value === 'string' ? fact.value : l(fact.value)}</div>
@@ -533,9 +534,9 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {[
-            { title: { en: 'Planetary Positions', hi: 'ग्रहीय स्थिति' }, desc: { en: 'Series approximations compute Sun/Moon longitude for every Panchang request', hi: 'प्रत्येक पंचांग अनुरोध के लिए श्रेणी-सन्निकटन सूर्य/चन्द्र देशान्तर गणना' } },
-            { title: { en: 'Sunrise/Sunset', hi: 'सूर्योदय/अस्त' }, desc: { en: 'Trigonometric series (sin/cos) compute exact rise and set times', hi: 'त्रिकोणमितीय श्रेणी (sin/cos) सटीक उदय और अस्त समय' } },
-            { title: { en: 'Eclipse Timing', hi: 'ग्रहण समय' }, desc: { en: 'High-precision series compute shadow angles and contact times', hi: 'उच्च-सटीक श्रेणी छाया कोण और सम्पर्क समय' } },
+            { title: { en: 'Planetary Positions', hi: 'ग्रहीय स्थिति', sa: 'ग्रहीय स्थिति', mai: 'ग्रहीय स्थिति', mr: 'ग्रहीय स्थिति', ta: 'Planetary Positions', te: 'Planetary Positions', bn: 'Planetary Positions', kn: 'Planetary Positions', gu: 'Planetary Positions' }, desc: { en: 'Series approximations compute Sun/Moon longitude for every Panchang request', hi: 'प्रत्येक पंचांग अनुरोध के लिए श्रेणी-सन्निकटन सूर्य/चन्द्र देशान्तर गणना', sa: 'प्रत्येक पंचांग अनुरोध के लिए श्रेणी-सन्निकटन सूर्य/चन्द्र देशान्तर गणना', mai: 'प्रत्येक पंचांग अनुरोध के लिए श्रेणी-सन्निकटन सूर्य/चन्द्र देशान्तर गणना', mr: 'प्रत्येक पंचांग अनुरोध के लिए श्रेणी-सन्निकटन सूर्य/चन्द्र देशान्तर गणना', ta: 'Series approximations compute Sun/Moon longitude for every Panchang request', te: 'Series approximations compute Sun/Moon longitude for every Panchang request', bn: 'Series approximations compute Sun/Moon longitude for every Panchang request', kn: 'Series approximations compute Sun/Moon longitude for every Panchang request', gu: 'Series approximations compute Sun/Moon longitude for every Panchang request' } },
+            { title: { en: 'Sunrise/Sunset', hi: 'सूर्योदय/अस्त', sa: 'सूर्योदय/अस्त', mai: 'सूर्योदय/अस्त', mr: 'सूर्योदय/अस्त', ta: 'Sunrise/Sunset', te: 'Sunrise/Sunset', bn: 'Sunrise/Sunset', kn: 'Sunrise/Sunset', gu: 'Sunrise/Sunset' }, desc: { en: 'Trigonometric series (sin/cos) compute exact rise and set times', hi: 'त्रिकोणमितीय श्रेणी (sin/cos) सटीक उदय और अस्त समय', sa: 'त्रिकोणमितीय श्रेणी (sin/cos) सटीक उदय और अस्त समय', mai: 'त्रिकोणमितीय श्रेणी (sin/cos) सटीक उदय और अस्त समय', mr: 'त्रिकोणमितीय श्रेणी (sin/cos) सटीक उदय और अस्त समय', ta: 'Trigonometric series (sin/cos) compute exact rise and set times', te: 'Trigonometric series (sin/cos) compute exact rise and set times', bn: 'Trigonometric series (sin/cos) compute exact rise and set times', kn: 'Trigonometric series (sin/cos) compute exact rise and set times', gu: 'Trigonometric series (sin/cos) compute exact rise and set times' } },
+            { title: { en: 'Eclipse Timing', hi: 'ग्रहण समय', sa: 'ग्रहण समय', mai: 'ग्रहण समय', mr: 'ग्रहण समय', ta: 'Eclipse Timing', te: 'Eclipse Timing', bn: 'Eclipse Timing', kn: 'Eclipse Timing', gu: 'Eclipse Timing' }, desc: { en: 'High-precision series compute shadow angles and contact times', hi: 'उच्च-सटीक श्रेणी छाया कोण और सम्पर्क समय', sa: 'उच्च-सटीक श्रेणी छाया कोण और सम्पर्क समय', mai: 'उच्च-सटीक श्रेणी छाया कोण और सम्पर्क समय', mr: 'उच्च-सटीक श्रेणी छाया कोण और सम्पर्क समय', ta: 'High-precision series compute shadow angles and contact times', te: 'High-precision series compute shadow angles and contact times', bn: 'High-precision series compute shadow angles and contact times', kn: 'High-precision series compute shadow angles and contact times', gu: 'High-precision series compute shadow angles and contact times' } },
           ].map((item, i) => (
             <div key={i} className="p-4 rounded-xl bg-white/[0.03] border border-gold-primary/12">
               <p className="text-gold-light font-semibold text-sm mb-1">{l(item.title)}</p>

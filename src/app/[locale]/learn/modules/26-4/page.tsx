@@ -5,16 +5,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_26_4', phase: 6, topic: 'Indian Contributions', moduleNumber: '26.4',
-  title: { en: '4.32 Billion Years — Cosmic Time', hi: '4.32 अरब वर्ष — ब्रह्मांडीय समय' },
+  title: { en: '4.32 Billion Years — Cosmic Time', hi: '4.32 अरब वर्ष — ब्रह्मांडीय समय', sa: '4.32 अरब वर्ष — ब्रह्मांडीय समय', mai: '4.32 अरब वर्ष — ब्रह्मांडीय समय', mr: '4.32 अरब वर्ष — ब्रह्मांडीय समय', ta: '4.32 Billion Years — Cosmic Time', te: '4.32 Billion Years — Cosmic Time', bn: '4.32 Billion Years — Cosmic Time', kn: '4.32 Billion Years — Cosmic Time', gu: '4.32 Billion Years — Cosmic Time' },
   subtitle: {
     en: 'How ancient Hindu cosmology computed a cosmic time cycle of 4.32 billion years — remarkably close to Earth\'s actual age of 4.54 billion years',
     hi: 'प्राचीन हिन्दू ब्रह्मांडविज्ञान ने 4.32 अरब वर्षों का एक ब्रह्मांडीय समय चक्र कैसे गणना किया — पृथ्वी की वास्तविक आयु 4.54 अरब वर्षों के उल्लेखनीय रूप से करीब',
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 26-1: Earth Rotates', hi: 'मॉड्यूल 26-1: पृथ्वी घूमती है' }, href: '/learn/modules/26-1' },
-    { label: { en: 'Module 26-2: Gravity Before Newton', hi: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण' }, href: '/learn/modules/26-2' },
-    { label: { en: 'Panchang Calendar', hi: 'पञ्चाङ्ग पञ्जिका' }, href: '/calendar' },
+    { label: { en: 'Module 26-1: Earth Rotates', hi: 'मॉड्यूल 26-1: पृथ्वी घूमती है', sa: 'मॉड्यूल 26-1: पृथ्वी घूमती है', mai: 'मॉड्यूल 26-1: पृथ्वी घूमती है', mr: 'मॉड्यूल 26-1: पृथ्वी घूमती है', ta: 'Module 26-1: Earth Rotates', te: 'Module 26-1: Earth Rotates', bn: 'Module 26-1: Earth Rotates', kn: 'Module 26-1: Earth Rotates', gu: 'Module 26-1: Earth Rotates' }, href: '/learn/modules/26-1' },
+    { label: { en: 'Module 26-2: Gravity Before Newton', hi: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण', sa: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण', mai: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण', mr: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण', ta: 'Module 26-2: Gravity Before Newton', te: 'Module 26-2: Gravity Before Newton', bn: 'Module 26-2: Gravity Before Newton', kn: 'Module 26-2: Gravity Before Newton', gu: 'Module 26-2: Gravity Before Newton' }, href: '/learn/modules/26-2' },
+    { label: { en: 'Panchang Calendar', hi: 'पञ्चाङ्ग पञ्जिका', sa: 'पञ्चाङ्ग पञ्जिका', mai: 'पञ्चाङ्ग पञ्जिका', mr: 'पञ्चाङ्ग पञ्जिका', ta: 'Panchang Calendar', te: 'Panchang Calendar', bn: 'Panchang Calendar', kn: 'Panchang Calendar', gu: 'Panchang Calendar' }, href: '/calendar' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'हिन्दू ब्रह्मांडविज्ञान में, कल्प क्या है?',
     },
     options: [
-      { en: 'A single year in the life of Brahma', hi: 'ब्रह्मा के जीवन में एक वर्ष' },
-      { en: 'One day in the life of Brahma', hi: 'ब्रह्मा के जीवन में एक दिन' },
-      { en: 'The duration of a single universe', hi: 'एक ब्रह्मांड की अवधि' },
-      { en: 'The time between two Mahayugas', hi: 'दो महायुगों के बीच का समय' },
+      { en: 'A single year in the life of Brahma', hi: 'ब्रह्मा के जीवन में एक वर्ष', sa: 'ब्रह्मा के जीवन में एक वर्ष', mai: 'ब्रह्मा के जीवन में एक वर्ष', mr: 'ब्रह्मा के जीवन में एक वर्ष', ta: 'A single year in the life of Brahma', te: 'A single year in the life of Brahma', bn: 'A single year in the life of Brahma', kn: 'A single year in the life of Brahma', gu: 'A single year in the life of Brahma' },
+      { en: 'One day in the life of Brahma', hi: 'ब्रह्मा के जीवन में एक दिन', sa: 'ब्रह्मा के जीवन में एक दिन', mai: 'ब्रह्मा के जीवन में एक दिन', mr: 'ब्रह्मा के जीवन में एक दिन', ta: 'One day in the life of Brahma', te: 'One day in the life of Brahma', bn: 'One day in the life of Brahma', kn: 'One day in the life of Brahma', gu: 'One day in the life of Brahma' },
+      { en: 'The duration of a single universe', hi: 'एक ब्रह्मांड की अवधि', sa: 'एक ब्रह्मांड की अवधि', mai: 'एक ब्रह्मांड की अवधि', mr: 'एक ब्रह्मांड की अवधि', ta: 'The duration of a single universe', te: 'The duration of a single universe', bn: 'The duration of a single universe', kn: 'The duration of a single universe', gu: 'The duration of a single universe' },
+      { en: 'The time between two Mahayugas', hi: 'दो महायुगों के बीच का समय', sa: 'दो महायुगों के बीच का समय', mai: 'दो महायुगों के बीच का समय', mr: 'दो महायुगों के बीच का समय', ta: 'The time between two Mahayugas', te: 'The time between two Mahayugas', bn: 'The time between two Mahayugas', kn: 'The time between two Mahayugas', gu: 'The time between two Mahayugas' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -44,10 +44,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मानव वर्षों में एक कल्प कितना लम्बा है?',
     },
     options: [
-      { en: '432,000 years', hi: '432,000 वर्ष' },
-      { en: '4.32 million years', hi: '4.32 मिलियन वर्ष' },
-      { en: '4.32 billion years', hi: '4.32 अरब वर्ष' },
-      { en: '432 billion years', hi: '432 अरब वर्ष' },
+      { en: '432,000 years', hi: '432,000 वर्ष', sa: '432,000 वर्ष', mai: '432,000 वर्ष', mr: '432,000 वर्ष', ta: '432,000 years', te: '432,000 years', bn: '432,000 years', kn: '432,000 years', gu: '432,000 years' },
+      { en: '4.32 million years', hi: '4.32 मिलियन वर्ष', sa: '4.32 मिलियन वर्ष', mai: '4.32 मिलियन वर्ष', mr: '4.32 मिलियन वर्ष', ta: '4.32 million years', te: '4.32 million years', bn: '4.32 million years', kn: '4.32 million years', gu: '4.32 million years' },
+      { en: '4.32 billion years', hi: '4.32 अरब वर्ष', sa: '4.32 अरब वर्ष', mai: '4.32 अरब वर्ष', mr: '4.32 अरब वर्ष', ta: '4.32 billion years', te: '4.32 billion years', bn: '4.32 billion years', kn: '4.32 billion years', gu: '4.32 billion years' },
+      { en: '432 billion years', hi: '432 अरब वर्ष', sa: '432 अरब वर्ष', mai: '432 अरब वर्ष', mr: '432 अरब वर्ष', ta: '432 billion years', te: '432 billion years', bn: '432 billion years', kn: '432 billion years', gu: '432 billion years' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -62,10 +62,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'एक कल्प में कितने महायुग हैं?',
     },
     options: [
-      { en: '100 Mahayugas', hi: '100 महायुग' },
-      { en: '1,000 Mahayugas', hi: '1,000 महायुग' },
-      { en: '10,000 Mahayugas', hi: '10,000 महायुग' },
-      { en: '100,000 Mahayugas', hi: '100,000 महायुग' },
+      { en: '100 Mahayugas', hi: '100 महायुग', sa: '100 महायुग', mai: '100 महायुग', mr: '100 महायुग', ta: '100 Mahayugas', te: '100 Mahayugas', bn: '100 Mahayugas', kn: '100 Mahayugas', gu: '100 Mahayugas' },
+      { en: '1,000 Mahayugas', hi: '1,000 महायुग', sa: '1,000 महायुग', mai: '1,000 महायुग', mr: '1,000 महायुग', ta: '1,000 Mahayugas', te: '1,000 Mahayugas', bn: '1,000 Mahayugas', kn: '1,000 Mahayugas', gu: '1,000 Mahayugas' },
+      { en: '10,000 Mahayugas', hi: '10,000 महायुग', sa: '10,000 महायुग', mai: '10,000 महायुग', mr: '10,000 महायुग', ta: '10,000 Mahayugas', te: '10,000 Mahayugas', bn: '10,000 Mahayugas', kn: '10,000 Mahayugas', gu: '10,000 Mahayugas' },
+      { en: '100,000 Mahayugas', hi: '100,000 महायुग', sa: '100,000 महायुग', mai: '100,000 महायुग', mr: '100,000 महायुग', ta: '100,000 Mahayugas', te: '100,000 Mahayugas', bn: '100,000 Mahayugas', kn: '100,000 Mahayugas', gu: '100,000 Mahayugas' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -80,10 +80,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'एक महायुग (चार-युग चक्र) कितना लम्बा है?',
     },
     options: [
-      { en: '432,000 years', hi: '432,000 वर्ष' },
-      { en: '4.32 million years', hi: '4.32 मिलियन वर्ष' },
-      { en: '43.2 million years', hi: '43.2 मिलियन वर्ष' },
-      { en: '432 million years', hi: '432 मिलियन वर्ष' },
+      { en: '432,000 years', hi: '432,000 वर्ष', sa: '432,000 वर्ष', mai: '432,000 वर्ष', mr: '432,000 वर्ष', ta: '432,000 years', te: '432,000 years', bn: '432,000 years', kn: '432,000 years', gu: '432,000 years' },
+      { en: '4.32 million years', hi: '4.32 मिलियन वर्ष', sa: '4.32 मिलियन वर्ष', mai: '4.32 मिलियन वर्ष', mr: '4.32 मिलियन वर्ष', ta: '4.32 million years', te: '4.32 million years', bn: '4.32 million years', kn: '4.32 million years', gu: '4.32 million years' },
+      { en: '43.2 million years', hi: '43.2 मिलियन वर्ष', sa: '43.2 मिलियन वर्ष', mai: '43.2 मिलियन वर्ष', mr: '43.2 मिलियन वर्ष', ta: '43.2 million years', te: '43.2 million years', bn: '43.2 million years', kn: '43.2 million years', gu: '43.2 million years' },
+      { en: '432 million years', hi: '432 मिलियन वर्ष', sa: '432 मिलियन वर्ष', mai: '432 मिलियन वर्ष', mr: '432 मिलियन वर्ष', ta: '432 million years', te: '432 million years', bn: '432 million years', kn: '432 million years', gu: '432 million years' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -98,10 +98,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'आधुनिक विज्ञान के अनुसार पृथ्वी की वास्तविक आयु क्या है?',
     },
     options: [
-      { en: '4.32 billion years', hi: '4.32 अरब वर्ष' },
-      { en: '4.54 billion years', hi: '4.54 अरब वर्ष' },
-      { en: '6.0 billion years', hi: '6.0 अरब वर्ष' },
-      { en: '13.8 billion years', hi: '13.8 अरब वर्ष' },
+      { en: '4.32 billion years', hi: '4.32 अरब वर्ष', sa: '4.32 अरब वर्ष', mai: '4.32 अरब वर्ष', mr: '4.32 अरब वर्ष', ta: '4.32 billion years', te: '4.32 billion years', bn: '4.32 billion years', kn: '4.32 billion years', gu: '4.32 billion years' },
+      { en: '4.54 billion years', hi: '4.54 अरब वर्ष', sa: '4.54 अरब वर्ष', mai: '4.54 अरब वर्ष', mr: '4.54 अरब वर्ष', ta: '4.54 billion years', te: '4.54 billion years', bn: '4.54 billion years', kn: '4.54 billion years', gu: '4.54 billion years' },
+      { en: '6.0 billion years', hi: '6.0 अरब वर्ष', sa: '6.0 अरब वर्ष', mai: '6.0 अरब वर्ष', mr: '6.0 अरब वर्ष', ta: '6.0 billion years', te: '6.0 billion years', bn: '6.0 billion years', kn: '6.0 billion years', gu: '6.0 billion years' },
+      { en: '13.8 billion years', hi: '13.8 अरब वर्ष', sa: '13.8 अरब वर्ष', mai: '13.8 अरब वर्ष', mr: '13.8 अरब वर्ष', ta: '13.8 billion years', te: '13.8 billion years', bn: '13.8 billion years', kn: '13.8 billion years', gu: '13.8 billion years' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -116,10 +116,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पृथ्वी की वास्तविक आयु (4.54 अरब वर्ष) की तुलना में हिन्दू कल्प (4.32 अरब वर्ष) कितना सटीक है?',
     },
     options: [
-      { en: 'About 75% accurate', hi: 'लगभग 75% सटीक' },
-      { en: 'About 85% accurate', hi: 'लगभग 85% सटीक' },
-      { en: 'About 95% accurate', hi: 'लगभग 95% सटीक' },
-      { en: 'About 99% accurate', hi: 'लगभग 99% सटीक' },
+      { en: 'About 75% accurate', hi: 'लगभग 75% सटीक', sa: 'लगभग 75% सटीक', mai: 'लगभग 75% सटीक', mr: 'लगभग 75% सटीक', ta: 'About 75% accurate', te: 'About 75% accurate', bn: 'About 75% accurate', kn: 'About 75% accurate', gu: 'About 75% accurate' },
+      { en: 'About 85% accurate', hi: 'लगभग 85% सटीक', sa: 'लगभग 85% सटीक', mai: 'लगभग 85% सटीक', mr: 'लगभग 85% सटीक', ta: 'About 85% accurate', te: 'About 85% accurate', bn: 'About 85% accurate', kn: 'About 85% accurate', gu: 'About 85% accurate' },
+      { en: 'About 95% accurate', hi: 'लगभग 95% सटीक', sa: 'लगभग 95% सटीक', mai: 'लगभग 95% सटीक', mr: 'लगभग 95% सटीक', ta: 'About 95% accurate', te: 'About 95% accurate', bn: 'About 95% accurate', kn: 'About 95% accurate', gu: 'About 95% accurate' },
+      { en: 'About 99% accurate', hi: 'लगभग 99% सटीक', sa: 'लगभग 99% सटीक', mai: 'लगभग 99% सटीक', mr: 'लगभग 99% सटीक', ta: 'About 99% accurate', te: 'About 99% accurate', bn: 'About 99% accurate', kn: 'About 99% accurate', gu: 'About 99% accurate' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -134,10 +134,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कौन सा प्राथमिक प्राचीन ग्रन्थ कल्प और महायुग की संख्याओं को सबसे विस्तार से देता है?',
     },
     options: [
-      { en: 'Rig Veda', hi: 'ऋग्वेद' },
-      { en: 'Arthashastra', hi: 'अर्थशास्त्र' },
-      { en: 'Surya Siddhanta', hi: 'सूर्य सिद्धान्त' },
-      { en: 'Natyashastra', hi: 'नाट्यशास्त्र' },
+      { en: 'Rig Veda', hi: 'ऋग्वेद', sa: 'ऋग्वेद', mai: 'ऋग्वेद', mr: 'ऋग्वेद', ta: 'Rig Veda', te: 'Rig Veda', bn: 'Rig Veda', kn: 'Rig Veda', gu: 'Rig Veda' },
+      { en: 'Arthashastra', hi: 'अर्थशास्त्र', sa: 'अर्थशास्त्र', mai: 'अर्थशास्त्र', mr: 'अर्थशास्त्र', ta: 'Arthashastra', te: 'Arthashastra', bn: 'Arthashastra', kn: 'Arthashastra', gu: 'Arthashastra' },
+      { en: 'Surya Siddhanta', hi: 'सूर्य सिद्धान्त', sa: 'सूर्य सिद्धान्त', mai: 'सूर्य सिद्धान्त', mr: 'सूर्य सिद्धान्त', ta: 'Surya Siddhanta', te: 'Surya Siddhanta', bn: 'Surya Siddhanta', kn: 'Surya Siddhanta', gu: 'Surya Siddhanta' },
+      { en: 'Natyashastra', hi: 'नाट्यशास्त्र', sa: 'नाट्यशास्त्र', mai: 'नाट्यशास्त्र', mr: 'नाट्यशास्त्र', ta: 'Natyashastra', te: 'Natyashastra', bn: 'Natyashastra', kn: 'Natyashastra', gu: 'Natyashastra' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -152,10 +152,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किस प्रसिद्ध वैज्ञानिक ने हिन्दू ब्रह्मांडीय समय को सहमति से उद्धृत किया, यह कहते हुए कि यह आधुनिक ब्रह्मांड विज्ञान से मेल खाता है?',
     },
     options: [
-      { en: 'Albert Einstein', hi: 'अल्बर्ट आइंस्टीन' },
-      { en: 'Stephen Hawking', hi: 'स्टीफन हॉकिंग' },
-      { en: 'Carl Sagan', hi: 'कार्ल सागन' },
-      { en: 'Neil deGrasse Tyson', hi: 'नील डेग्रास टायसन' },
+      { en: 'Albert Einstein', hi: 'अल्बर्ट आइंस्टीन', sa: 'अल्बर्ट आइंस्टीन', mai: 'अल्बर्ट आइंस्टीन', mr: 'अल्बर्ट आइंस्टीन', ta: 'Albert Einstein', te: 'Albert Einstein', bn: 'Albert Einstein', kn: 'Albert Einstein', gu: 'Albert Einstein' },
+      { en: 'Stephen Hawking', hi: 'स्टीफन हॉकिंग', sa: 'स्टीफन हॉकिंग', mai: 'स्टीफन हॉकिंग', mr: 'स्टीफन हॉकिंग', ta: 'Stephen Hawking', te: 'Stephen Hawking', bn: 'Stephen Hawking', kn: 'Stephen Hawking', gu: 'Stephen Hawking' },
+      { en: 'Carl Sagan', hi: 'कार्ल सागन', sa: 'कार्ल सागन', mai: 'कार्ल सागन', mr: 'कार्ल सागन', ta: 'Carl Sagan', te: 'Carl Sagan', bn: 'Carl Sagan', kn: 'Carl Sagan', gu: 'Carl Sagan' },
+      { en: 'Neil deGrasse Tyson', hi: 'नील डेग्रास टायसन', sa: 'नील डेग्रास टायसन', mai: 'नील डेग्रास टायसन', mr: 'नील डेग्रास टायसन', ta: 'Neil deGrasse Tyson', te: 'Neil deGrasse Tyson', bn: 'Neil deGrasse Tyson', kn: 'Neil deGrasse Tyson', gu: 'Neil deGrasse Tyson' },
     ],
     correctAnswer: 2,
     explanation: {

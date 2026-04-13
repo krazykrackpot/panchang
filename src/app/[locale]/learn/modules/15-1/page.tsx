@@ -5,17 +5,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_15_1', phase: 4, topic: 'Remedial Measures', moduleNumber: '15.1',
-  title: { en: 'Remedial Measures — Gemstones (Ratna Shastra)', hi: 'उपचार — रत्न शास्त्र' },
+  title: { en: 'Remedial Measures — Gemstones (Ratna Shastra)', hi: 'उपचार — रत्न शास्त्र', sa: 'उपचार — रत्न शास्त्र', mai: 'उपचार — रत्न शास्त्र', mr: 'उपचार — रत्न शास्त्र', ta: 'Remedial Measures — Gemstones (Ratna Shastra)', te: 'Remedial Measures — Gemstones (Ratna Shastra)', bn: 'Remedial Measures — Gemstones (Ratna Shastra)', kn: 'Remedial Measures — Gemstones (Ratna Shastra)', gu: 'Remedial Measures — Gemstones (Ratna Shastra)' },
   subtitle: {
     en: 'Each planet has a primary gemstone that amplifies its energy — but wearing the wrong one can cause harm',
     hi: 'प्रत्येक ग्रह का एक प्राथमिक रत्न है जो उसकी ऊर्जा को प्रवर्धित करता है — परन्तु गलत रत्न धारण करना हानिकारक हो सकता है',
   },
   estimatedMinutes: 14,
   crossRefs: [
-    { label: { en: 'Module 15-2: Mantras & Pujas', hi: 'मॉड्यूल 15-2: मन्त्र एवं पूजा' }, href: '/learn/modules/15-2' },
-    { label: { en: 'Module 15-3: Prashna Astrology', hi: 'मॉड्यूल 15-3: प्रश्न ज्योतिष' }, href: '/learn/modules/15-3' },
-    { label: { en: 'Module 15-4: Varshaphal & KP', hi: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.' }, href: '/learn/modules/15-4' },
-    { label: { en: 'Generate Your Kundali', hi: 'अपनी कुण्डली बनाएँ' }, href: '/kundali' },
+    { label: { en: 'Module 15-2: Mantras & Pujas', hi: 'मॉड्यूल 15-2: मन्त्र एवं पूजा', sa: 'मॉड्यूल 15-2: मन्त्र एवं पूजा', mai: 'मॉड्यूल 15-2: मन्त्र एवं पूजा', mr: 'मॉड्यूल 15-2: मन्त्र एवं पूजा', ta: 'Module 15-2: Mantras & Pujas', te: 'Module 15-2: Mantras & Pujas', bn: 'Module 15-2: Mantras & Pujas', kn: 'Module 15-2: Mantras & Pujas', gu: 'Module 15-2: Mantras & Pujas' }, href: '/learn/modules/15-2' },
+    { label: { en: 'Module 15-3: Prashna Astrology', hi: 'मॉड्यूल 15-3: प्रश्न ज्योतिष', sa: 'मॉड्यूल 15-3: प्रश्न ज्योतिष', mai: 'मॉड्यूल 15-3: प्रश्न ज्योतिष', mr: 'मॉड्यूल 15-3: प्रश्न ज्योतिष', ta: 'Module 15-3: Prashna Astrology', te: 'Module 15-3: Prashna Astrology', bn: 'Module 15-3: Prashna Astrology', kn: 'Module 15-3: Prashna Astrology', gu: 'Module 15-3: Prashna Astrology' }, href: '/learn/modules/15-3' },
+    { label: { en: 'Module 15-4: Varshaphal & KP', hi: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.', sa: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.', mai: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.', mr: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.', ta: 'Module 15-4: Varshaphal & KP', te: 'Module 15-4: Varshaphal & KP', bn: 'Module 15-4: Varshaphal & KP', kn: 'Module 15-4: Varshaphal & KP', gu: 'Module 15-4: Varshaphal & KP' }, href: '/learn/modules/15-4' },
+    { label: { en: 'Generate Your Kundali', hi: 'अपनी कुण्डली बनाएँ', sa: 'अपनी कुण्डली बनाएँ', mai: 'अपनी कुण्डली बनाएँ', mr: 'अपनी कुण्डली बनाएँ', ta: 'Generate Your Kundali', te: 'Generate Your Kundali', bn: 'Generate Your Kundali', kn: 'Generate Your Kundali', gu: 'Generate Your Kundali' }, href: '/kundali' },
   ],
 };
 
@@ -27,10 +27,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सूर्य से कौन-सा रत्न सम्बन्धित है?',
     },
     options: [
-      { en: 'Pearl (Moti)', hi: 'मोती' },
-      { en: 'Ruby (Manikya)', hi: 'माणिक्य' },
-      { en: 'Emerald (Panna)', hi: 'पन्ना' },
-      { en: 'Diamond (Heera)', hi: 'हीरा' },
+      { en: 'Pearl (Moti)', hi: 'मोती', sa: 'मोती', mai: 'मोती', mr: 'मोती', ta: 'Pearl (Moti)', te: 'Pearl (Moti)', bn: 'Pearl (Moti)', kn: 'Pearl (Moti)', gu: 'Pearl (Moti)' },
+      { en: 'Ruby (Manikya)', hi: 'माणिक्य', sa: 'माणिक्य', mai: 'माणिक्य', mr: 'माणिक्य', ta: 'Ruby (Manikya)', te: 'Ruby (Manikya)', bn: 'Ruby (Manikya)', kn: 'Ruby (Manikya)', gu: 'Ruby (Manikya)' },
+      { en: 'Emerald (Panna)', hi: 'पन्ना', sa: 'पन्ना', mai: 'पन्ना', mr: 'पन्ना', ta: 'Emerald (Panna)', te: 'Emerald (Panna)', bn: 'Emerald (Panna)', kn: 'Emerald (Panna)', gu: 'Emerald (Panna)' },
+      { en: 'Diamond (Heera)', hi: 'हीरा', sa: 'हीरा', mai: 'हीरा', mr: 'हीरा', ta: 'Diamond (Heera)', te: 'Diamond (Heera)', bn: 'Diamond (Heera)', kn: 'Diamond (Heera)', gu: 'Diamond (Heera)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -45,10 +45,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'अपनी कुण्डली में कार्यात्मक पापी ग्रह का रत्न क्यों नहीं पहनना चाहिए?',
     },
     options: [
-      { en: 'Because malefic planets have no gemstones', hi: 'क्योंकि पापी ग्रहों के कोई रत्न नहीं होते' },
-      { en: 'Because it amplifies the harmful energy of a planet that rules bad houses for your lagna', hi: 'क्योंकि यह आपके लग्न के लिए अशुभ भावों के स्वामी ग्रह की हानिकारक ऊर्जा को प्रवर्धित करता है' },
-      { en: 'Because gemstones only work for benefic planets', hi: 'क्योंकि रत्न केवल शुभ ग्रहों के लिए कार्य करते हैं' },
-      { en: 'Because it is too expensive', hi: 'क्योंकि यह बहुत महँगा है' },
+      { en: 'Because malefic planets have no gemstones', hi: 'क्योंकि पापी ग्रहों के कोई रत्न नहीं होते', sa: 'क्योंकि पापी ग्रहों के कोई रत्न नहीं होते', mai: 'क्योंकि पापी ग्रहों के कोई रत्न नहीं होते', mr: 'क्योंकि पापी ग्रहों के कोई रत्न नहीं होते', ta: 'Because malefic planets have no gemstones', te: 'Because malefic planets have no gemstones', bn: 'Because malefic planets have no gemstones', kn: 'Because malefic planets have no gemstones', gu: 'Because malefic planets have no gemstones' },
+      { en: 'Because it amplifies the harmful energy of a planet that rules bad houses for your lagna', hi: 'क्योंकि यह आपके लग्न के लिए अशुभ भावों के स्वामी ग्रह की हानिकारक ऊर्जा को प्रवर्धित करता है', sa: 'क्योंकि यह आपके लग्न के लिए अशुभ भावों के स्वामी ग्रह की हानिकारक ऊर्जा को प्रवर्धित करता है', mai: 'क्योंकि यह आपके लग्न के लिए अशुभ भावों के स्वामी ग्रह की हानिकारक ऊर्जा को प्रवर्धित करता है', mr: 'क्योंकि यह आपके लग्न के लिए अशुभ भावों के स्वामी ग्रह की हानिकारक ऊर्जा को प्रवर्धित करता है', ta: 'Because it amplifies the harmful energy of a planet that rules bad houses for your lagna', te: 'Because it amplifies the harmful energy of a planet that rules bad houses for your lagna', bn: 'Because it amplifies the harmful energy of a planet that rules bad houses for your lagna', kn: 'Because it amplifies the harmful energy of a planet that rules bad houses for your lagna', gu: 'Because it amplifies the harmful energy of a planet that rules bad houses for your lagna' },
+      { en: 'Because gemstones only work for benefic planets', hi: 'क्योंकि रत्न केवल शुभ ग्रहों के लिए कार्य करते हैं', sa: 'क्योंकि रत्न केवल शुभ ग्रहों के लिए कार्य करते हैं', mai: 'क्योंकि रत्न केवल शुभ ग्रहों के लिए कार्य करते हैं', mr: 'क्योंकि रत्न केवल शुभ ग्रहों के लिए कार्य करते हैं', ta: 'Because gemstones only work for benefic planets', te: 'Because gemstones only work for benefic planets', bn: 'Because gemstones only work for benefic planets', kn: 'Because gemstones only work for benefic planets', gu: 'Because gemstones only work for benefic planets' },
+      { en: 'Because it is too expensive', hi: 'क्योंकि यह बहुत महँगा है', sa: 'क्योंकि यह बहुत महँगा है', mai: 'क्योंकि यह बहुत महँगा है', mr: 'क्योंकि यह बहुत महँगा है', ta: 'Because it is too expensive', te: 'Because it is too expensive', bn: 'Because it is too expensive', kn: 'Because it is too expensive', gu: 'Because it is too expensive' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -75,10 +75,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'गुरु (बृहस्पति) के लिए कौन-सा रत्न निर्धारित है?',
     },
     options: [
-      { en: 'Red Coral (Moonga)', hi: 'मूँगा' },
+      { en: 'Red Coral (Moonga)', hi: 'मूँगा', sa: 'मूँगा', mai: 'मूँगा', mr: 'मूँगा', ta: 'Red Coral (Moonga)', te: 'Red Coral (Moonga)', bn: 'Red Coral (Moonga)', kn: 'Red Coral (Moonga)', gu: 'Red Coral (Moonga)' },
       { en: 'Cat\'s Eye (Lehsunia)', hi: 'लहसुनिया' },
-      { en: 'Yellow Sapphire (Pukhraj)', hi: 'पुखराज' },
-      { en: 'Hessonite (Gomed)', hi: 'गोमेद' },
+      { en: 'Yellow Sapphire (Pukhraj)', hi: 'पुखराज', sa: 'पुखराज', mai: 'पुखराज', mr: 'पुखराज', ta: 'Yellow Sapphire (Pukhraj)', te: 'Yellow Sapphire (Pukhraj)', bn: 'Yellow Sapphire (Pukhraj)', kn: 'Yellow Sapphire (Pukhraj)', gu: 'Yellow Sapphire (Pukhraj)' },
+      { en: 'Hessonite (Gomed)', hi: 'गोमेद', sa: 'गोमेद', mai: 'गोमेद', mr: 'गोमेद', ta: 'Hessonite (Gomed)', te: 'Hessonite (Gomed)', bn: 'Hessonite (Gomed)', kn: 'Hessonite (Gomed)', gu: 'Hessonite (Gomed)' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -93,10 +93,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'रत्न चयन की प्राथमिक रणनीति क्या है — किस ग्रह को सशक्त करना चाहिए?',
     },
     options: [
-      { en: 'Always strengthen the weakest planet', hi: 'सदैव सबसे कमज़ोर ग्रह को सशक्त करें' },
-      { en: 'Strengthen the lagna lord or yogakaraka planet', hi: 'लग्नेश या योगकारक ग्रह को सशक्त करें' },
-      { en: 'Always wear your Moon sign birthstone', hi: 'सदैव अपनी चन्द्र राशि का जन्म-रत्न पहनें' },
-      { en: 'Wear gems for all nine planets simultaneously', hi: 'सभी नौ ग्रहों के रत्न एक साथ पहनें' },
+      { en: 'Always strengthen the weakest planet', hi: 'सदैव सबसे कमज़ोर ग्रह को सशक्त करें', sa: 'सदैव सबसे कमज़ोर ग्रह को सशक्त करें', mai: 'सदैव सबसे कमज़ोर ग्रह को सशक्त करें', mr: 'सदैव सबसे कमज़ोर ग्रह को सशक्त करें', ta: 'Always strengthen the weakest planet', te: 'Always strengthen the weakest planet', bn: 'Always strengthen the weakest planet', kn: 'Always strengthen the weakest planet', gu: 'Always strengthen the weakest planet' },
+      { en: 'Strengthen the lagna lord or yogakaraka planet', hi: 'लग्नेश या योगकारक ग्रह को सशक्त करें', sa: 'लग्नेश या योगकारक ग्रह को सशक्त करें', mai: 'लग्नेश या योगकारक ग्रह को सशक्त करें', mr: 'लग्नेश या योगकारक ग्रह को सशक्त करें', ta: 'Strengthen the lagna lord or yogakaraka planet', te: 'Strengthen the lagna lord or yogakaraka planet', bn: 'Strengthen the lagna lord or yogakaraka planet', kn: 'Strengthen the lagna lord or yogakaraka planet', gu: 'Strengthen the lagna lord or yogakaraka planet' },
+      { en: 'Always wear your Moon sign birthstone', hi: 'सदैव अपनी चन्द्र राशि का जन्म-रत्न पहनें', sa: 'सदैव अपनी चन्द्र राशि का जन्म-रत्न पहनें', mai: 'सदैव अपनी चन्द्र राशि का जन्म-रत्न पहनें', mr: 'सदैव अपनी चन्द्र राशि का जन्म-रत्न पहनें', ta: 'Always wear your Moon sign birthstone', te: 'Always wear your Moon sign birthstone', bn: 'Always wear your Moon sign birthstone', kn: 'Always wear your Moon sign birthstone', gu: 'Always wear your Moon sign birthstone' },
+      { en: 'Wear gems for all nine planets simultaneously', hi: 'सभी नौ ग्रहों के रत्न एक साथ पहनें', sa: 'सभी नौ ग्रहों के रत्न एक साथ पहनें', mai: 'सभी नौ ग्रहों के रत्न एक साथ पहनें', mr: 'सभी नौ ग्रहों के रत्न एक साथ पहनें', ta: 'Wear gems for all nine planets simultaneously', te: 'Wear gems for all nine planets simultaneously', bn: 'Wear gems for all nine planets simultaneously', kn: 'Wear gems for all nine planets simultaneously', gu: 'Wear gems for all nine planets simultaneously' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -123,10 +123,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मंगल के लिए मूँगा किस धातु और उँगली में पहनना चाहिए?',
     },
     options: [
-      { en: 'Silver, little finger', hi: 'चाँदी, कनिष्ठिका' },
-      { en: 'Gold or copper, ring finger', hi: 'स्वर्ण या ताँबा, अनामिका' },
-      { en: 'Platinum, index finger', hi: 'प्लैटिनम, तर्जनी' },
-      { en: 'Iron, middle finger', hi: 'लोहा, मध्यमा' },
+      { en: 'Silver, little finger', hi: 'चाँदी, कनिष्ठिका', sa: 'चाँदी, कनिष्ठिका', mai: 'चाँदी, कनिष्ठिका', mr: 'चाँदी, कनिष्ठिका', ta: 'Silver, little finger', te: 'Silver, little finger', bn: 'Silver, little finger', kn: 'Silver, little finger', gu: 'Silver, little finger' },
+      { en: 'Gold or copper, ring finger', hi: 'स्वर्ण या ताँबा, अनामिका', sa: 'स्वर्ण या ताँबा, अनामिका', mai: 'स्वर्ण या ताँबा, अनामिका', mr: 'स्वर्ण या ताँबा, अनामिका', ta: 'Gold or copper, ring finger', te: 'Gold or copper, ring finger', bn: 'Gold or copper, ring finger', kn: 'Gold or copper, ring finger', gu: 'Gold or copper, ring finger' },
+      { en: 'Platinum, index finger', hi: 'प्लैटिनम, तर्जनी', sa: 'प्लैटिनम, तर्जनी', mai: 'प्लैटिनम, तर्जनी', mr: 'प्लैटिनम, तर्जनी', ta: 'Platinum, index finger', te: 'Platinum, index finger', bn: 'Platinum, index finger', kn: 'Platinum, index finger', gu: 'Platinum, index finger' },
+      { en: 'Iron, middle finger', hi: 'लोहा, मध्यमा', sa: 'लोहा, मध्यमा', mai: 'लोहा, मध्यमा', mr: 'लोहा, मध्यमा', ta: 'Iron, middle finger', te: 'Iron, middle finger', bn: 'Iron, middle finger', kn: 'Iron, middle finger', gu: 'Iron, middle finger' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -141,10 +141,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ज्योतिषीय प्रभाव के लिए रत्न का सामान्यतः न्यूनतम कितने कैरट भार अनुशंसित है?',
     },
     options: [
-      { en: '0.5 carats', hi: '0.5 कैरट' },
-      { en: '2-3 carats (varies by stone)', hi: '2-3 कैरट (रत्न के अनुसार भिन्न)' },
-      { en: '10 carats minimum', hi: 'न्यूनतम 10 कैरट' },
-      { en: 'Weight does not matter', hi: 'भार का कोई महत्त्व नहीं' },
+      { en: '0.5 carats', hi: '0.5 कैरट', sa: '0.5 कैरट', mai: '0.5 कैरट', mr: '0.5 कैरट', ta: '0.5 carats', te: '0.5 carats', bn: '0.5 carats', kn: '0.5 carats', gu: '0.5 carats' },
+      { en: '2-3 carats (varies by stone)', hi: '2-3 कैरट (रत्न के अनुसार भिन्न)', sa: '2-3 कैरट (रत्न के अनुसार भिन्न)', mai: '2-3 कैरट (रत्न के अनुसार भिन्न)', mr: '2-3 कैरट (रत्न के अनुसार भिन्न)', ta: '2-3 carats (varies by stone)', te: '2-3 carats (varies by stone)', bn: '2-3 carats (varies by stone)', kn: '2-3 carats (varies by stone)', gu: '2-3 carats (varies by stone)' },
+      { en: '10 carats minimum', hi: 'न्यूनतम 10 कैरट', sa: 'न्यूनतम 10 कैरट', mai: 'न्यूनतम 10 कैरट', mr: 'न्यूनतम 10 कैरट', ta: '10 carats minimum', te: '10 carats minimum', bn: '10 carats minimum', kn: '10 carats minimum', gu: '10 carats minimum' },
+      { en: 'Weight does not matter', hi: 'भार का कोई महत्त्व नहीं', sa: 'भार का कोई महत्त्व नहीं', mai: 'भार का कोई महत्त्व नहीं', mr: 'भार का कोई महत्त्व नहीं', ta: 'Weight does not matter', te: 'Weight does not matter', bn: 'Weight does not matter', kn: 'Weight does not matter', gu: 'Weight does not matter' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -171,10 +171,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'राहु और केतु के रत्न क्रमशः कौन-से हैं?',
     },
     options: [
-      { en: 'Diamond and Pearl', hi: 'हीरा और मोती' },
-      { en: 'Blue Sapphire and Red Coral', hi: 'नीलम और मूँगा' },
+      { en: 'Diamond and Pearl', hi: 'हीरा और मोती', sa: 'हीरा और मोती', mai: 'हीरा और मोती', mr: 'हीरा और मोती', ta: 'Diamond and Pearl', te: 'Diamond and Pearl', bn: 'Diamond and Pearl', kn: 'Diamond and Pearl', gu: 'Diamond and Pearl' },
+      { en: 'Blue Sapphire and Red Coral', hi: 'नीलम और मूँगा', sa: 'नीलम और मूँगा', mai: 'नीलम और मूँगा', mr: 'नीलम और मूँगा', ta: 'Blue Sapphire and Red Coral', te: 'Blue Sapphire and Red Coral', bn: 'Blue Sapphire and Red Coral', kn: 'Blue Sapphire and Red Coral', gu: 'Blue Sapphire and Red Coral' },
       { en: 'Hessonite (Gomed) and Cat\'s Eye (Lehsunia)', hi: 'गोमेद और लहसुनिया' },
-      { en: 'Emerald and Yellow Sapphire', hi: 'पन्ना और पुखराज' },
+      { en: 'Emerald and Yellow Sapphire', hi: 'पन्ना और पुखराज', sa: 'पन्ना और पुखराज', mai: 'पन्ना और पुखराज', mr: 'पन्ना और पुखराज', ta: 'Emerald and Yellow Sapphire', te: 'Emerald and Yellow Sapphire', bn: 'Emerald and Yellow Sapphire', kn: 'Emerald and Yellow Sapphire', gu: 'Emerald and Yellow Sapphire' },
     ],
     correctAnswer: 2,
     explanation: {

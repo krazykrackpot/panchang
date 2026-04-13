@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
@@ -236,9 +237,9 @@ export default function LearnCalculationsPage() {
             <tbody>
               {ACCURACY_TABLE.map((row) => (
                 <tr key={row.item.en} className="border-b border-gold-primary/5">
-                  <td className="py-2 text-gold-light text-xs">{row.item[locale]}</td>
+                  <td className="py-2 text-gold-light text-xs">{tl(row.item, locale)}</td>
                   <td className="py-2 text-gold-light/80 font-mono text-xs">{row.accuracy}</td>
-                  <td className="py-2 text-text-secondary text-xs">{row.impact[locale]}</td>
+                  <td className="py-2 text-text-secondary text-xs">{tl(row.impact, locale)}</td>
                 </tr>
               ))}
             </tbody>

@@ -17,7 +17,7 @@ import {
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { getHinduMonth, getNextHinduMonth } from '@/lib/constants/festival-details';
 import { TITHIS } from '@/lib/constants/tithis';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText} from '@/types/panchang';
 
 // ─── Types ───
 
@@ -30,7 +30,7 @@ export interface LunarMonthInfo {
 
 export interface TithiEntry {
   number: number;          // 1-30
-  name: Trilingual;
+  name: LocaleText;
   paksha: 'shukla' | 'krishna';
   startJd: number;
   endJd: number;
@@ -261,7 +261,7 @@ export function buildYearlyTithiTable(
     // Vriddhi tithis.
     isVriddhi: boolean;
     paksha: 'shukla' | 'krishna';
-    name: Trilingual;
+    name: LocaleText;
   }
 
   const rawEntries: RawEntry[] = [];

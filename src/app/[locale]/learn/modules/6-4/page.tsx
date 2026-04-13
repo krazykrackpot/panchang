@@ -6,16 +6,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_6_4', phase: 2, topic: 'Nakshatra', moduleNumber: '6.4',
-  title: { en: 'Nakshatra Lords & Dasha Connection', hi: 'नक्षत्र स्वामी एवं दशा सम्बन्ध' },
+  title: { en: 'Nakshatra Lords & Dasha Connection', hi: 'नक्षत्र स्वामी एवं दशा सम्बन्ध', sa: 'नक्षत्र स्वामी एवं दशा सम्बन्ध', mai: 'नक्षत्र स्वामी एवं दशा सम्बन्ध', mr: 'नक्षत्र स्वामी एवं दशा सम्बन्ध', ta: 'Nakshatra Lords & Dasha Connection', te: 'Nakshatra Lords & Dasha Connection', bn: 'Nakshatra Lords & Dasha Connection', kn: 'Nakshatra Lords & Dasha Connection', gu: 'Nakshatra Lords & Dasha Connection' },
   subtitle: {
     en: 'Each nakshatra is ruled by one of 9 planets in Vimshottari order, determining the starting dasha at birth and the 120-year cycle',
     hi: 'प्रत्येक नक्षत्र विंशोत्तरी क्रम में 9 ग्रहों में से एक द्वारा शासित है, जो जन्म पर आरम्भिक दशा और 120-वर्षीय चक्र निर्धारित करता है',
   },
   estimatedMinutes: 15,
   crossRefs: [
-    { label: { en: 'Module 6-1: Nakshatra System', hi: 'मॉड्यूल 6-1: नक्षत्र पद्धति' }, href: '/learn/modules/6-1' },
-    { label: { en: 'Dashas Deep Dive', hi: 'दशा विस्तार' }, href: '/learn/dashas' },
-    { label: { en: 'Kundali Generator', hi: 'कुण्डली निर्माता' }, href: '/kundali' },
+    { label: { en: 'Module 6-1: Nakshatra System', hi: 'मॉड्यूल 6-1: नक्षत्र पद्धति', sa: 'मॉड्यूल 6-1: नक्षत्र पद्धति', mai: 'मॉड्यूल 6-1: नक्षत्र पद्धति', mr: 'मॉड्यूल 6-1: नक्षत्र पद्धति', ta: 'Module 6-1: Nakshatra System', te: 'Module 6-1: Nakshatra System', bn: 'Module 6-1: Nakshatra System', kn: 'Module 6-1: Nakshatra System', gu: 'Module 6-1: Nakshatra System' }, href: '/learn/modules/6-1' },
+    { label: { en: 'Dashas Deep Dive', hi: 'दशा विस्तार', sa: 'दशा विस्तार', mai: 'दशा विस्तार', mr: 'दशा विस्तार', ta: 'Dashas Deep Dive', te: 'Dashas Deep Dive', bn: 'Dashas Deep Dive', kn: 'Dashas Deep Dive', gu: 'Dashas Deep Dive' }, href: '/learn/dashas' },
+    { label: { en: 'Kundali Generator', hi: 'कुण्डली निर्माता', sa: 'कुण्डली निर्माता', mai: 'कुण्डली निर्माता', mr: 'कुण्डली निर्माता', ta: 'Kundali Generator', te: 'Kundali Generator', bn: 'Kundali Generator', kn: 'Kundali Generator', gu: 'Kundali Generator' }, href: '/kundali' },
   ],
 };
 
@@ -27,10 +27,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विंशोत्तरी पद्धति में अश्विनी, मघा और मूल का स्वामी कौन-सा ग्रह है?',
     },
     options: [
-      { en: 'Venus', hi: 'शुक्र' },
-      { en: 'Sun', hi: 'सूर्य' },
-      { en: 'Ketu', hi: 'केतु' },
-      { en: 'Mars', hi: 'मंगल' },
+      { en: 'Venus', hi: 'शुक्र', sa: 'शुक्र', mai: 'शुक्र', mr: 'शुक्र', ta: 'Venus', te: 'Venus', bn: 'Venus', kn: 'Venus', gu: 'Venus' },
+      { en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', mai: 'सूर्य', mr: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun' },
+      { en: 'Ketu', hi: 'केतु', sa: 'केतु', mai: 'केतु', mr: 'केतु', ta: 'Ketu', te: 'Ketu', bn: 'Ketu', kn: 'Ketu', gu: 'Ketu' },
+      { en: 'Mars', hi: 'मंगल', sa: 'मंगल', mai: 'मंगल', mr: 'मंगल', ta: 'Mars', te: 'Mars', bn: 'Mars', kn: 'Mars', gu: 'Mars' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -45,10 +45,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विंशोत्तरी महादशा चक्र की कुल अवधि कितनी है?',
     },
     options: [
-      { en: '100 years', hi: '100 वर्ष' },
-      { en: '108 years', hi: '108 वर्ष' },
-      { en: '120 years', hi: '120 वर्ष' },
-      { en: '360 years', hi: '360 वर्ष' },
+      { en: '100 years', hi: '100 वर्ष', sa: '100 वर्ष', mai: '100 वर्ष', mr: '100 वर्ष', ta: '100 years', te: '100 years', bn: '100 years', kn: '100 years', gu: '100 years' },
+      { en: '108 years', hi: '108 वर्ष', sa: '108 वर्ष', mai: '108 वर्ष', mr: '108 वर्ष', ta: '108 years', te: '108 years', bn: '108 years', kn: '108 years', gu: '108 years' },
+      { en: '120 years', hi: '120 वर्ष', sa: '120 वर्ष', mai: '120 वर्ष', mr: '120 वर्ष', ta: '120 years', te: '120 years', bn: '120 years', kn: '120 years', gu: '120 years' },
+      { en: '360 years', hi: '360 वर्ष', sa: '360 वर्ष', mai: '360 वर्ष', mr: '360 वर्ष', ta: '360 years', te: '360 years', bn: '360 years', kn: '360 years', gu: '360 years' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -75,10 +75,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'यदि चन्द्रमा 167.3° पर हस्त (160°-173.33°) में है, तो चन्द्र दशा का कितना प्रतिशत बीत चुका है?',
     },
     options: [
-      { en: '45.3%', hi: '45.3%' },
-      { en: '54.7%', hi: '54.7%' },
-      { en: '73.0%', hi: '73.0%' },
-      { en: '16.7%', hi: '16.7%' },
+      { en: '45.3%', hi: '45.3%', sa: '45.3%', mai: '45.3%', mr: '45.3%', ta: '45.3%', te: '45.3%', bn: '45.3%', kn: '45.3%', gu: '45.3%' },
+      { en: '54.7%', hi: '54.7%', sa: '54.7%', mai: '54.7%', mr: '54.7%', ta: '54.7%', te: '54.7%', bn: '54.7%', kn: '54.7%', gu: '54.7%' },
+      { en: '73.0%', hi: '73.0%', sa: '73.0%', mai: '73.0%', mr: '73.0%', ta: '73.0%', te: '73.0%', bn: '73.0%', kn: '73.0%', gu: '73.0%' },
+      { en: '16.7%', hi: '16.7%', sa: '16.7%', mai: '16.7%', mr: '16.7%', ta: '16.7%', te: '16.7%', bn: '16.7%', kn: '16.7%', gu: '16.7%' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -93,10 +93,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्र दशा के बाद विंशोत्तरी अनुक्रम में अगली महादशा कौन-सी है?',
     },
     options: [
-      { en: 'Sun (6 years)', hi: 'सूर्य (6 वर्ष)' },
-      { en: 'Mars (7 years)', hi: 'मंगल (7 वर्ष)' },
-      { en: 'Rahu (18 years)', hi: 'राहु (18 वर्ष)' },
-      { en: 'Venus (20 years)', hi: 'शुक्र (20 वर्ष)' },
+      { en: 'Sun (6 years)', hi: 'सूर्य (6 वर्ष)', sa: 'सूर्य (6 वर्ष)', mai: 'सूर्य (6 वर्ष)', mr: 'सूर्य (6 वर्ष)', ta: 'Sun (6 years)', te: 'Sun (6 years)', bn: 'Sun (6 years)', kn: 'Sun (6 years)', gu: 'Sun (6 years)' },
+      { en: 'Mars (7 years)', hi: 'मंगल (7 वर्ष)', sa: 'मंगल (7 वर्ष)', mai: 'मंगल (7 वर्ष)', mr: 'मंगल (7 वर्ष)', ta: 'Mars (7 years)', te: 'Mars (7 years)', bn: 'Mars (7 years)', kn: 'Mars (7 years)', gu: 'Mars (7 years)' },
+      { en: 'Rahu (18 years)', hi: 'राहु (18 वर्ष)', sa: 'राहु (18 वर्ष)', mai: 'राहु (18 वर्ष)', mr: 'राहु (18 वर्ष)', ta: 'Rahu (18 years)', te: 'Rahu (18 years)', bn: 'Rahu (18 years)', kn: 'Rahu (18 years)', gu: 'Rahu (18 years)' },
+      { en: 'Venus (20 years)', hi: 'शुक्र (20 वर्ष)', sa: 'शुक्र (20 वर्ष)', mai: 'शुक्र (20 वर्ष)', mr: 'शुक्र (20 वर्ष)', ta: 'Venus (20 years)', te: 'Venus (20 years)', bn: 'Venus (20 years)', kn: 'Venus (20 years)', gu: 'Venus (20 years)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -123,10 +123,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विंशोत्तरी पद्धति में प्रत्येक ग्रह कितने नक्षत्रों का शासक है?',
     },
     options: [
-      { en: '1', hi: '1' },
-      { en: '3', hi: '3' },
-      { en: '4', hi: '4' },
-      { en: '9', hi: '9' },
+      { en: '1', hi: '1', sa: '1', mai: '1', mr: '1', ta: '1', te: '1', bn: '1', kn: '1', gu: '1' },
+      { en: '3', hi: '3', sa: '3', mai: '3', mr: '3', ta: '3', te: '3', bn: '3', kn: '3', gu: '3' },
+      { en: '4', hi: '4', sa: '4', mai: '4', mr: '4', ta: '4', te: '4', bn: '4', kn: '4', gu: '4' },
+      { en: '9', hi: '9', sa: '9', mai: '9', mr: '9', ta: '9', te: '9', bn: '9', kn: '9', gu: '9' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -141,10 +141,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'यदि कोई रोहिणी नक्षत्र में जन्मे तो जन्म पर किस ग्रह की महादशा आरम्भ होती है?',
     },
     options: [
-      { en: 'Venus', hi: 'शुक्र' },
-      { en: 'Mars', hi: 'मंगल' },
-      { en: 'Moon', hi: 'चन्द्र' },
-      { en: 'Sun', hi: 'सूर्य' },
+      { en: 'Venus', hi: 'शुक्र', sa: 'शुक्र', mai: 'शुक्र', mr: 'शुक्र', ta: 'Venus', te: 'Venus', bn: 'Venus', kn: 'Venus', gu: 'Venus' },
+      { en: 'Mars', hi: 'मंगल', sa: 'मंगल', mai: 'मंगल', mr: 'मंगल', ta: 'Mars', te: 'Mars', bn: 'Mars', kn: 'Mars', gu: 'Mars' },
+      { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', mai: 'चन्द्र', mr: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon' },
+      { en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', mai: 'सूर्य', mr: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -171,10 +171,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्रमा 167.3° पर हस्त में हो तो जन्म पर शेष चन्द्र दशा लगभग कितनी है?',
     },
     options: [
-      { en: '5.47 years', hi: '5.47 वर्ष' },
-      { en: '4.53 years', hi: '4.53 वर्ष' },
-      { en: '10 years', hi: '10 वर्ष' },
-      { en: '7.3 years', hi: '7.3 वर्ष' },
+      { en: '5.47 years', hi: '5.47 वर्ष', sa: '5.47 वर्ष', mai: '5.47 वर्ष', mr: '5.47 वर्ष', ta: '5.47 years', te: '5.47 years', bn: '5.47 years', kn: '5.47 years', gu: '5.47 years' },
+      { en: '4.53 years', hi: '4.53 वर्ष', sa: '4.53 वर्ष', mai: '4.53 वर्ष', mr: '4.53 वर्ष', ta: '4.53 years', te: '4.53 years', bn: '4.53 years', kn: '4.53 years', gu: '4.53 years' },
+      { en: '10 years', hi: '10 वर्ष', sa: '10 वर्ष', mai: '10 वर्ष', mr: '10 वर्ष', ta: '10 years', te: '10 years', bn: '10 years', kn: '10 years', gu: '10 years' },
+      { en: '7.3 years', hi: '7.3 वर्ष', sa: '7.3 वर्ष', mai: '7.3 वर्ष', mr: '7.3 वर्ष', ta: '7.3 years', te: '7.3 years', bn: '7.3 years', kn: '7.3 years', gu: '7.3 years' },
     ],
     correctAnswer: 1,
     explanation: {

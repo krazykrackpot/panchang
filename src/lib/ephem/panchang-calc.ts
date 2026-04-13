@@ -16,7 +16,7 @@ import { KARANAS } from '@/lib/constants/karanas';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS, VARA_DATA } from '@/lib/constants/grahas';
 import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
-import { PanchangData, Muhurta, TransitionInfo, ChoghadiyaSlot, HoraSlot, DishaShoolInfo } from '@/types/panchang';
+import { PanchangData, Muhurta, TransitionInfo, ChoghadiyaSlot, HoraSlot, DishaShoolInfo , LocaleText} from '@/types/panchang';
 
 export interface PanchangInput {
   year: number;
@@ -89,7 +89,7 @@ function computeTransition(
   finder: (cur: number, jdStart: number, jdEnd: number) => number,
   jdSunrise: number,
   tzOffset: number,
-  dataArray: { name: { en: string; hi: string; sa: string } }[],
+  dataArray: { name: LocaleText }[],
   wrapMax: number, // e.g. 30 for tithi, 27 for nakshatra/yoga, 11 for karana
   timezone?: string, // IANA timezone for per-JD DST resolution
 ): TransitionInfo | undefined {
@@ -208,7 +208,7 @@ function jdToDecimalHoursUT(jd: number, jdRef: number): number {
 
 const CHOGHADIYA_TYPES = ['udveg', 'char', 'labh', 'amrit', 'kaal', 'shubh', 'rog'] as const;
 
-const CHOGHADIYA_NAMES: Record<string, { en: string; hi: string; sa: string }> = {
+const CHOGHADIYA_NAMES: Record<string, LocaleText> = {
   amrit:  { en: 'Amrit',  hi: 'अमृत',  sa: 'अमृतम्' },
   shubh:  { en: 'Shubh',  hi: 'शुभ',   sa: 'शुभम्' },
   labh:   { en: 'Labh',   hi: 'लाभ',   sa: 'लाभः' },
@@ -278,7 +278,7 @@ function computeChoghadiya(sunriseUT: number, sunsetUT: number, weekday: number,
 
 // Hora planet sequence: Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars (then repeats)
 const HORA_PLANET_SEQUENCE = [0, 5, 3, 1, 6, 4, 2]; // planet IDs
-const HORA_PLANET_NAMES: Record<number, { en: string; hi: string; sa: string }> = {
+const HORA_PLANET_NAMES: Record<number, LocaleText> = {
   0: { en: 'Sun',     hi: 'सूर्य',   sa: 'सूर्यः' },
   1: { en: 'Moon',    hi: 'चन्द्र',  sa: 'चन्द्रः' },
   2: { en: 'Mars',    hi: 'मंगल',    sa: 'मङ्गलः' },
@@ -1163,7 +1163,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const gandaMoolaActive = GANDA_MOOLA_NAKSHATRAS.has(nakshatraNum);
   const gandaMoola: {
     active: boolean;
-    nakshatra?: { en: string; hi: string; sa: string };
+    nakshatra?: LocaleText;
     start?: string;
     end?: string;
     endDate?: string;
@@ -1178,7 +1178,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   }
 
   // 4. Anandadi Yoga
-  const ANANDADI_NAMES: { en: string; hi: string; sa: string }[] = [
+  const ANANDADI_NAMES: LocaleText[] = [
     { en: 'Ananda',   hi: 'आनन्द',    sa: 'आनन्दः' },
     { en: 'Kala',     hi: 'काल',      sa: 'कालः' },
     { en: 'Dhwanksha', hi: 'ध्वांक्ष', sa: 'ध्वांक्षः' },
@@ -1239,7 +1239,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // lookup returned undefined, and the `|| PANCHAKA_DEFAULT` fallback silently
   // produced a generic "Panchaka" label with no qualifying type name.  The
   // correct Wednesday type is Chora Panchaka (associated with theft/deception).
-  const PANCHAKA_TYPE: Record<number, { en: string; hi: string; sa: string }> = {
+  const PANCHAKA_TYPE: Record<number, LocaleText> = {
     0: { en: 'Mrityu Panchaka',  hi: 'मृत्यु पंचक',  sa: 'मृत्युपञ्चकम्' }, // Sunday
     1: { en: 'Raja Panchaka',    hi: 'राज पंचक',     sa: 'राजपञ्चकम्' },    // Monday
     2: { en: 'Agni Panchaka',    hi: 'अग्नि पंचक',   sa: 'अग्निपञ्चकम्' },  // Tuesday
@@ -1256,7 +1256,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
 
   // 8. Tamil Yoga (Chandrashtama-based) — day quality from Moon-Sun angle modulo
   // (tithiNum + weekday + nakshatraNum) mod 9 → 9 Tamil quality names
-  const TAMIL_YOGA_NAMES: { en: string; hi: string; sa: string }[] = [
+  const TAMIL_YOGA_NAMES: LocaleText[] = [
     { en: 'Siddha Yoga', hi: 'सिद्ध योग', sa: 'सिद्धयोगः' },
     { en: 'Marana Yoga', hi: 'मरण योग', sa: 'मरणयोगः' },
     { en: 'Amrita Yoga', hi: 'अमृत योग', sa: 'अमृतयोगः' },
@@ -1276,7 +1276,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
 
   // 9. Mantri Mandala (Planetary cabinet) — planet ruling the day acts as "king"
   // The planet ruling the hora at sunrise is the "minister"
-  const MANTRI_ROLES: { en: string; hi: string; sa: string }[] = [
+  const MANTRI_ROLES: LocaleText[] = [
     { en: 'King', hi: 'राजा', sa: 'राजा' },
     { en: 'Minister', hi: 'मंत्री', sa: 'मन्त्री' },
     { en: 'Commander', hi: 'सेनापति', sa: 'सेनापतिः' },
@@ -1339,7 +1339,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
 
   // 10. Homahuti (Fire oblation direction)
   // On each weekday, the direction of offering ghee into the fire differs
-  const HOMAHUTI_DIR: Record<number, { direction: { en: string; hi: string; sa: string }; deity: { en: string; hi: string; sa: string } }> = {
+  const HOMAHUTI_DIR: Record<number, { direction: LocaleText; deity: LocaleText }> = {
     0: { direction: { en: 'East', hi: 'पूर्व', sa: 'पूर्वम्' }, deity: { en: 'Surya', hi: 'सूर्य', sa: 'सूर्यः' } },
     1: { direction: { en: 'Northwest', hi: 'वायव्य', sa: 'वायव्यम्' }, deity: { en: 'Chandra', hi: 'चन्द्र', sa: 'चन्द्रः' } },
     2: { direction: { en: 'South', hi: 'दक्षिण', sa: 'दक्षिणम्' }, deity: { en: 'Mangal', hi: 'मंगल', sa: 'मङ्गलः' } },
@@ -1352,7 +1352,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
 
   // 11. Shiva Vaas (based on tithi)
   const tithiMod = ((tithiResult.number - 1) % 5) + 1; // groups of 5: tithi 1,6,11 → 1; 2,7,12 → 2; etc
-  const SHIVA_VAAS_DATA: Record<number, { name: { en: string; hi: string; sa: string }; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed'; tithis: number[] }> = {
+  const SHIVA_VAAS_DATA: Record<number, { name: LocaleText; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed'; tithis: number[] }> = {
     1: { name: { en: 'Kailash (Mountain)', hi: 'कैलाश पर', sa: 'कैलासे' }, nature: 'auspicious', tithis: [1, 6, 11] },
     2: { name: { en: 'Shamshan (Cremation Ground)', hi: 'श्मशान में', sa: 'श्मशाने' }, nature: 'inauspicious', tithis: [2, 7, 12] },
     3: { name: { en: "Gori's Abode (Auspicious)", hi: 'गौरी गृह में (शुभ)', sa: 'गौरीगृहे (शुभम्)' }, nature: 'auspicious', tithis: [3, 8, 13] },
@@ -1363,7 +1363,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const shivaVaas = SHIVA_VAAS_DATA[shivaVaasKey];
 
   // 9. Agni Vaas (based on weekday) — changes at midnight (next sunrise)
-  const AGNI_VAAS_DATA: Record<number, { name: { en: string; hi: string; sa: string }; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed' }> = {
+  const AGNI_VAAS_DATA: Record<number, { name: LocaleText; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed' }> = {
     0: { name: { en: 'Sky (Akasha)',   hi: 'आकाश में',  sa: 'आकाशे' }, nature: 'auspicious' },
     1: { name: { en: 'Earth (Bhumi)', hi: 'भूमि पर',   sa: 'भूमौ' }, nature: 'auspicious' },
     2: { name: { en: 'Patala',        hi: 'पाताल में', sa: 'पाताले' }, nature: 'inauspicious' },
@@ -1379,7 +1379,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const agniVaas = { name: agniData.name, nature: agniData.nature, validUntil: agniValidUntil };
 
   // 10. Chandra Vaas (based on nakshatra pada) — with direction
-  const CHANDRA_VAAS_DATA: Record<number, { name: { en: string; hi: string; sa: string }; direction: { en: string; hi: string; sa: string }; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed' }> = {
+  const CHANDRA_VAAS_DATA: Record<number, { name: LocaleText; direction: LocaleText; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed' }> = {
     1: { name: { en: "Brahma's Abode", hi: 'ब्रह्म लोक',  sa: 'ब्रह्मस्थाने' }, direction: { en: 'East', hi: 'पूर्व', sa: 'पूर्वम्' }, nature: 'auspicious' },
     2: { name: { en: "Indra's Abode",  hi: 'इन्द्र लोक', sa: 'इन्द्रस्थाने' }, direction: { en: 'South', hi: 'दक्षिण', sa: 'दक्षिणम्' }, nature: 'neutral' },
     3: { name: { en: "Yama's Abode",   hi: 'यम लोक',     sa: 'यमस्थाने' }, direction: { en: 'West', hi: 'पश्चिम', sa: 'पश्चिमम्' }, nature: 'mixed' },
@@ -1388,7 +1388,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const chandraVaas = CHANDRA_VAAS_DATA[nakshatraPada] || CHANDRA_VAAS_DATA[1];
 
   // 11. Rahu Vaas (direction Rahu faces, by weekday)
-  const RAHU_VAAS_MAP: Record<number, { en: string; hi: string; sa: string }> = {
+  const RAHU_VAAS_MAP: Record<number, LocaleText> = {
     0: { en: 'Southwest', hi: 'नैऋत्य', sa: 'नैऋत्यम्' },
     1: { en: 'Northwest', hi: 'वायव्य', sa: 'वायव्यम्' },
     2: { en: 'Northeast', hi: 'ईशान', sa: 'ईशानम्' },
@@ -1416,7 +1416,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     return normalizeDeg(asc);
   }
   const lagnaAyanamsha = lahiriAyanamsha(jdSunrise);
-  const udayaLagna: { rashi: number; name: { en: string; hi: string; sa: string }; start: string; end: string }[] = [];
+  const udayaLagna: { rashi: number; name: LocaleText; start: string; end: string }[] = [];
   const STEP = 10 / 60; // 10 minutes in hours
   let prevRashi = -1;
   let segStart = sunriseUT;

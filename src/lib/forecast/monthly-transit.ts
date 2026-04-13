@@ -7,13 +7,13 @@
 import { getPlanetaryPositions, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText} from '@/types/panchang';
 
 export interface MonthlyPlanetTransit {
   planetId: number;
-  planetName: Trilingual;
+  planetName: LocaleText;
   sign: number;
-  signName: Trilingual;
+  signName: LocaleText;
   house: number;          // from natal ascendant
   savBindu: number;
   isRetrograde: boolean;

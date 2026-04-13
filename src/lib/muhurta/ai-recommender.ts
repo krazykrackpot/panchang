@@ -11,7 +11,7 @@ import {
   getPlanetaryPositions,
 } from '@/lib/ephem/astronomical';
 import type { ExtendedActivity } from '@/types/muhurta-ai';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 export interface PanchangSnapshot {
   tithi: number;
@@ -28,9 +28,9 @@ export interface PanchangSnapshot {
 export function scorePanchangFactors(
   snap: PanchangSnapshot,
   rules: ExtendedActivity,
-): { score: number; factors: Trilingual[] } {
+): { score: number; factors: LocaleText[] } {
   let score = 0;
-  const factors: Trilingual[] = [];
+  const factors: LocaleText[] = [];
 
   // Tithi match: +8
   if (rules.goodTithis.includes(snap.tithi)) {
@@ -78,9 +78,9 @@ export function scorePanchangFactors(
 export function scoreTransitFactors(
   jd: number,
   rules: ExtendedActivity,
-): { score: number; factors: Trilingual[] } {
+): { score: number; factors: LocaleText[] } {
   let score = 0;
-  const factors: Trilingual[] = [];
+  const factors: LocaleText[] = [];
   const planets = getPlanetaryPositions(jd);
 
   // Convert to sidereal and check positions
@@ -100,7 +100,7 @@ export function scoreTransitFactors(
     if (benefics.includes(p.id) && (kendras.includes(house) || trikonas.includes(house))) {
       score += 3;
       if (score <= 10) {
-        const names: Record<number, Trilingual> = {
+        const names: Record<number, LocaleText> = {
           4: { en: 'Jupiter well-placed', hi: 'गुरु शुभ स्थान', sa: 'गुरुः शुभस्थाने' },
           5: { en: 'Venus well-placed', hi: 'शुक्र शुभ स्थान', sa: 'शुक्रः शुभस्थाने' },
           3: { en: 'Mercury well-placed', hi: 'बुध शुभ स्थान', sa: 'बुधः शुभस्थाने' },
@@ -158,9 +158,9 @@ export function scoreTimingFactors(
   sunsetUT: number,
   tzOffset: number,
   rules: ExtendedActivity,
-): { score: number; factors: Trilingual[] } {
+): { score: number; factors: LocaleText[] } {
   let score = 0;
-  const factors: Trilingual[] = [];
+  const factors: LocaleText[] = [];
 
   // Hora calculation
   const dayDuration = sunsetUT - sunriseUT;

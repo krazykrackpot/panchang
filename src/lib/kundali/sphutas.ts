@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 /**
  * Sphuta Calculations — Sensitive Points
  * Computed degrees that indicate vitality, body, death timing, and benefic/malefic peaks.
@@ -6,7 +7,7 @@
 
 import { normalizeDeg, getNakshatraNumber } from '@/lib/ephem/astronomical';
 
-type Tri = { en: string; hi: string; sa: string };
+type Tri = LocaleText;
 
 export interface SphuataResults {
   pranaSphuta: { degree: number; sign: number; nakshatra: number; description: Tri };

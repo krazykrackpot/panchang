@@ -15,8 +15,8 @@ const META: ModuleMeta = {
   },
   estimatedMinutes: 16,
   crossRefs: [
-    { label: { en: 'Module 16-2: Phaladeepika & Jataka Parijata', hi: 'मॉड्यूल 16-2: फलदीपिका एवं जातक पारिजात' }, href: '/learn/modules/16-2' },
-    { label: { en: 'Module 16-3: Surya Siddhanta & Mathematical Texts', hi: 'मॉड्यूल 16-3: सूर्य सिद्धान्त एवं गणितीय ग्रन्थ' }, href: '/learn/modules/16-3' },
+    { label: { en: 'Module 16-2: Phaladeepika & Jataka Parijata', hi: 'मॉड्यूल 16-2: फलदीपिका एवं जातक पारिजात', sa: 'मॉड्यूल 16-2: फलदीपिका एवं जातक पारिजात', mai: 'मॉड्यूल 16-2: फलदीपिका एवं जातक पारिजात', mr: 'मॉड्यूल 16-2: फलदीपिका एवं जातक पारिजात', ta: 'Module 16-2: Phaladeepika & Jataka Parijata', te: 'Module 16-2: Phaladeepika & Jataka Parijata', bn: 'Module 16-2: Phaladeepika & Jataka Parijata', kn: 'Module 16-2: Phaladeepika & Jataka Parijata', gu: 'Module 16-2: Phaladeepika & Jataka Parijata' }, href: '/learn/modules/16-2' },
+    { label: { en: 'Module 16-3: Surya Siddhanta & Mathematical Texts', hi: 'मॉड्यूल 16-3: सूर्य सिद्धान्त एवं गणितीय ग्रन्थ', sa: 'मॉड्यूल 16-3: सूर्य सिद्धान्त एवं गणितीय ग्रन्थ', mai: 'मॉड्यूल 16-3: सूर्य सिद्धान्त एवं गणितीय ग्रन्थ', mr: 'मॉड्यूल 16-3: सूर्य सिद्धान्त एवं गणितीय ग्रन्थ', ta: 'Module 16-3: Surya Siddhanta & Mathematical Texts', te: 'Module 16-3: Surya Siddhanta & Mathematical Texts', bn: 'Module 16-3: Surya Siddhanta & Mathematical Texts', kn: 'Module 16-3: Surya Siddhanta & Mathematical Texts', gu: 'Module 16-3: Surya Siddhanta & Mathematical Texts' }, href: '/learn/modules/16-3' },
   ],
 };
 
@@ -28,10 +28,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'बृहत् पाराशर होरा शास्त्र में कितने अध्याय हैं?',
     },
     options: [
-      { en: '28', hi: '28' },
-      { en: '54', hi: '54' },
-      { en: '97', hi: '97' },
-      { en: '120', hi: '120' },
+      { en: '28', hi: '28', sa: '28', mai: '28', mr: '28', ta: '28', te: '28', bn: '28', kn: '28', gu: '28' },
+      { en: '54', hi: '54', sa: '54', mai: '54', mr: '54', ta: '54', te: '54', bn: '54', kn: '54', gu: '54' },
+      { en: '97', hi: '97', sa: '97', mai: '97', mr: '97', ta: '97', te: '97', bn: '97', kn: '97', gu: '97' },
+      { en: '120', hi: '120', sa: '120', mai: '120', mr: '120', ta: '120', te: '120', bn: '120', kn: '120', gu: '120' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -46,10 +46,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'बृहत् पाराशर होरा शास्त्र किन दो व्यक्तियों के संवाद के रूप में संरचित है?',
     },
     options: [
-      { en: 'Shiva and Parvati', hi: 'शिव और पार्वती' },
-      { en: 'Parashara and Maitreya', hi: 'पराशर और मैत्रेय' },
-      { en: 'Vyasa and Arjuna', hi: 'व्यास और अर्जुन' },
-      { en: 'Narada and Brahma', hi: 'नारद और ब्रह्मा' },
+      { en: 'Shiva and Parvati', hi: 'शिव और पार्वती', sa: 'शिव और पार्वती', mai: 'शिव और पार्वती', mr: 'शिव और पार्वती', ta: 'Shiva and Parvati', te: 'Shiva and Parvati', bn: 'Shiva and Parvati', kn: 'Shiva and Parvati', gu: 'Shiva and Parvati' },
+      { en: 'Parashara and Maitreya', hi: 'पराशर और मैत्रेय', sa: 'पराशर और मैत्रेय', mai: 'पराशर और मैत्रेय', mr: 'पराशर और मैत्रेय', ta: 'Parashara and Maitreya', te: 'Parashara and Maitreya', bn: 'Parashara and Maitreya', kn: 'Parashara and Maitreya', gu: 'Parashara and Maitreya' },
+      { en: 'Vyasa and Arjuna', hi: 'व्यास और अर्जुन', sa: 'व्यास और अर्जुन', mai: 'व्यास और अर्जुन', mr: 'व्यास और अर्जुन', ta: 'Vyasa and Arjuna', te: 'Vyasa and Arjuna', bn: 'Vyasa and Arjuna', kn: 'Vyasa and Arjuna', gu: 'Vyasa and Arjuna' },
+      { en: 'Narada and Brahma', hi: 'नारद और ब्रह्मा', sa: 'नारद और ब्रह्मा', mai: 'नारद और ब्रह्मा', mr: 'नारद और ब्रह्मा', ta: 'Narada and Brahma', te: 'Narada and Brahma', bn: 'Narada and Brahma', kn: 'Narada and Brahma', gu: 'Narada and Brahma' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -76,10 +76,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'बृहत् पाराशर होरा शास्त्र के कौन-से अध्याय भाव फल का वर्णन करते हैं?',
     },
     options: [
-      { en: 'Chapters 1-3', hi: 'अध्याय 1-3' },
-      { en: 'Chapters 12-25', hi: 'अध्याय 12-25' },
-      { en: 'Chapters 87-97', hi: 'अध्याय 87-97' },
-      { en: 'Chapters 50-60', hi: 'अध्याय 50-60' },
+      { en: 'Chapters 1-3', hi: 'अध्याय 1-3', sa: 'अध्याय 1-3', mai: 'अध्याय 1-3', mr: 'अध्याय 1-3', ta: 'Chapters 1-3', te: 'Chapters 1-3', bn: 'Chapters 1-3', kn: 'Chapters 1-3', gu: 'Chapters 1-3' },
+      { en: 'Chapters 12-25', hi: 'अध्याय 12-25', sa: 'अध्याय 12-25', mai: 'अध्याय 12-25', mr: 'अध्याय 12-25', ta: 'Chapters 12-25', te: 'Chapters 12-25', bn: 'Chapters 12-25', kn: 'Chapters 12-25', gu: 'Chapters 12-25' },
+      { en: 'Chapters 87-97', hi: 'अध्याय 87-97', sa: 'अध्याय 87-97', mai: 'अध्याय 87-97', mr: 'अध्याय 87-97', ta: 'Chapters 87-97', te: 'Chapters 87-97', bn: 'Chapters 87-97', kn: 'Chapters 87-97', gu: 'Chapters 87-97' },
+      { en: 'Chapters 50-60', hi: 'अध्याय 50-60', sa: 'अध्याय 50-60', mai: 'अध्याय 50-60', mr: 'अध्याय 50-60', ta: 'Chapters 50-60', te: 'Chapters 50-60', bn: 'Chapters 50-60', kn: 'Chapters 50-60', gu: 'Chapters 50-60' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -94,10 +94,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'बृहत् पाराशर होरा शास्त्र के अध्याय 87-97 मुख्यतः किस विषय से सम्बन्धित हैं?',
     },
     options: [
-      { en: 'Planetary properties', hi: 'ग्रह गुण' },
-      { en: 'Yoga combinations', hi: 'योग संयोजन' },
-      { en: 'Remedial measures (upayas)', hi: 'उपचारात्मक उपाय' },
-      { en: 'Sign descriptions', hi: 'राशि वर्णन' },
+      { en: 'Planetary properties', hi: 'ग्रह गुण', sa: 'ग्रह गुण', mai: 'ग्रह गुण', mr: 'ग्रह गुण', ta: 'Planetary properties', te: 'Planetary properties', bn: 'Planetary properties', kn: 'Planetary properties', gu: 'Planetary properties' },
+      { en: 'Yoga combinations', hi: 'योग संयोजन', sa: 'योग संयोजन', mai: 'योग संयोजन', mr: 'योग संयोजन', ta: 'Yoga combinations', te: 'Yoga combinations', bn: 'Yoga combinations', kn: 'Yoga combinations', gu: 'Yoga combinations' },
+      { en: 'Remedial measures (upayas)', hi: 'उपचारात्मक उपाय', sa: 'उपचारात्मक उपाय', mai: 'उपचारात्मक उपाय', mr: 'उपचारात्मक उपाय', ta: 'Remedial measures (upayas)', te: 'Remedial measures (upayas)', bn: 'Remedial measures (upayas)', kn: 'Remedial measures (upayas)', gu: 'Remedial measures (upayas)' },
+      { en: 'Sign descriptions', hi: 'राशि वर्णन', sa: 'राशि वर्णन', mai: 'राशि वर्णन', mr: 'राशि वर्णन', ta: 'Sign descriptions', te: 'Sign descriptions', bn: 'Sign descriptions', kn: 'Sign descriptions', gu: 'Sign descriptions' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -124,10 +124,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'बृहत् पाराशर होरा शास्त्र का कौन-सा अध्याय ग्रह गुणों और स्वभाव का वर्णन करता है?',
     },
     options: [
-      { en: 'Chapter 3', hi: 'अध्याय 3' },
-      { en: 'Chapter 12', hi: 'अध्याय 12' },
-      { en: 'Chapter 34', hi: 'अध्याय 34' },
-      { en: 'Chapter 46', hi: 'अध्याय 46' },
+      { en: 'Chapter 3', hi: 'अध्याय 3', sa: 'अध्याय 3', mai: 'अध्याय 3', mr: 'अध्याय 3', ta: 'Chapter 3', te: 'Chapter 3', bn: 'Chapter 3', kn: 'Chapter 3', gu: 'Chapter 3' },
+      { en: 'Chapter 12', hi: 'अध्याय 12', sa: 'अध्याय 12', mai: 'अध्याय 12', mr: 'अध्याय 12', ta: 'Chapter 12', te: 'Chapter 12', bn: 'Chapter 12', kn: 'Chapter 12', gu: 'Chapter 12' },
+      { en: 'Chapter 34', hi: 'अध्याय 34', sa: 'अध्याय 34', mai: 'अध्याय 34', mr: 'अध्याय 34', ta: 'Chapter 34', te: 'Chapter 34', bn: 'Chapter 34', kn: 'Chapter 34', gu: 'Chapter 34' },
+      { en: 'Chapter 46', hi: 'अध्याय 46', sa: 'अध्याय 46', mai: 'अध्याय 46', mr: 'अध्याय 46', ta: 'Chapter 46', te: 'Chapter 46', bn: 'Chapter 46', kn: 'Chapter 46', gu: 'Chapter 46' },
     ],
     correctAnswer: 0,
     explanation: {
@@ -142,10 +142,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'बृहत् पाराशर होरा शास्त्र में योग संयोजनों का वर्णन मुख्यतः किन अध्यायों में है?',
     },
     options: [
-      { en: 'Chapters 3-4', hi: 'अध्याय 3-4' },
-      { en: 'Chapters 12-25', hi: 'अध्याय 12-25' },
-      { en: 'Chapters 34-41', hi: 'अध्याय 34-41' },
-      { en: 'Chapters 87-97', hi: 'अध्याय 87-97' },
+      { en: 'Chapters 3-4', hi: 'अध्याय 3-4', sa: 'अध्याय 3-4', mai: 'अध्याय 3-4', mr: 'अध्याय 3-4', ta: 'Chapters 3-4', te: 'Chapters 3-4', bn: 'Chapters 3-4', kn: 'Chapters 3-4', gu: 'Chapters 3-4' },
+      { en: 'Chapters 12-25', hi: 'अध्याय 12-25', sa: 'अध्याय 12-25', mai: 'अध्याय 12-25', mr: 'अध्याय 12-25', ta: 'Chapters 12-25', te: 'Chapters 12-25', bn: 'Chapters 12-25', kn: 'Chapters 12-25', gu: 'Chapters 12-25' },
+      { en: 'Chapters 34-41', hi: 'अध्याय 34-41', sa: 'अध्याय 34-41', mai: 'अध्याय 34-41', mr: 'अध्याय 34-41', ta: 'Chapters 34-41', te: 'Chapters 34-41', bn: 'Chapters 34-41', kn: 'Chapters 34-41', gu: 'Chapters 34-41' },
+      { en: 'Chapters 87-97', hi: 'अध्याय 87-97', sa: 'अध्याय 87-97', mai: 'अध्याय 87-97', mr: 'अध्याय 87-97', ta: 'Chapters 87-97', te: 'Chapters 87-97', bn: 'Chapters 87-97', kn: 'Chapters 87-97', gu: 'Chapters 87-97' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -172,10 +172,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'बृहत् पाराशर होरा शास्त्र का कौन-सा अध्याय राशि गुणों का वर्णन करता है?',
     },
     options: [
-      { en: 'Chapter 1', hi: 'अध्याय 1' },
-      { en: 'Chapter 4', hi: 'अध्याय 4' },
-      { en: 'Chapter 12', hi: 'अध्याय 12' },
-      { en: 'Chapter 34', hi: 'अध्याय 34' },
+      { en: 'Chapter 1', hi: 'अध्याय 1', sa: 'अध्याय 1', mai: 'अध्याय 1', mr: 'अध्याय 1', ta: 'Chapter 1', te: 'Chapter 1', bn: 'Chapter 1', kn: 'Chapter 1', gu: 'Chapter 1' },
+      { en: 'Chapter 4', hi: 'अध्याय 4', sa: 'अध्याय 4', mai: 'अध्याय 4', mr: 'अध्याय 4', ta: 'Chapter 4', te: 'Chapter 4', bn: 'Chapter 4', kn: 'Chapter 4', gu: 'Chapter 4' },
+      { en: 'Chapter 12', hi: 'अध्याय 12', sa: 'अध्याय 12', mai: 'अध्याय 12', mr: 'अध्याय 12', ta: 'Chapter 12', te: 'Chapter 12', bn: 'Chapter 12', kn: 'Chapter 12', gu: 'Chapter 12' },
+      { en: 'Chapter 34', hi: 'अध्याय 34', sa: 'अध्याय 34', mai: 'अध्याय 34', mr: 'अध्याय 34', ta: 'Chapter 34', te: 'Chapter 34', bn: 'Chapter 34', kn: 'Chapter 34', gu: 'Chapter 34' },
     ],
     correctAnswer: 1,
     explanation: {

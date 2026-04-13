@@ -1,3 +1,4 @@
+import type { LocaleText } from '@/types/panchang';
 import { NextResponse } from 'next/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { generateDailyPanchangEmail } from '@/lib/email/templates/daily-panchang';
@@ -77,7 +78,7 @@ export async function GET(request: Request) {
         });
 
         const locale = (sub.preferred_locale === 'hi' ? 'hi' : 'en') as 'en' | 'hi';
-        const L = (obj: { en: string; hi: string; sa: string }) => obj[locale] || obj.en;
+        const L = (obj: LocaleText) => obj[locale] || obj.en;
 
         const emailData = {
           date: panchang.date,

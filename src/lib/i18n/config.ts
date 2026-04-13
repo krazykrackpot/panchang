@@ -9,7 +9,7 @@ export const visibleLocales: Locale[] = isDev
   ? ['en', 'hi', 'sa', 'ta', 'te', 'bn', 'kn', 'mr', 'gu', 'mai']
   : ['en', 'hi', 'sa', 'ta', 'te', 'bn', 'kn', 'mr', 'gu', 'mai'];
 
-export const localeNames: Record<Locale, string> = {
+export const localeNames: { en: string; [key: string]: string | undefined } = {
   en: 'English',
   hi: 'हिन्दी',
   sa: 'संस्कृतम्',
@@ -22,7 +22,7 @@ export const localeNames: Record<Locale, string> = {
   mai: 'मैथिली',
 };
 
-export const localeLabels: Record<Locale, string> = {
+export const localeLabels: { en: string; [key: string]: string | undefined } = {
   en: 'EN',
   hi: 'हिं',
   sa: 'सं',

@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
@@ -224,18 +225,18 @@ export default function LearnMatchingPage() {
                   {k.num}
                 </span>
                 <div className="flex items-center gap-2 flex-1">
-                  <span className="text-gold-light font-semibold text-lg">{k.name[locale]}</span>
+                  <span className="text-gold-light font-semibold text-lg">{tl(k.name, locale)}</span>
                   {locale === 'en' && <span className="text-gold-primary/50 text-sm" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{k.name.sa}</span>}
                   <span className="ml-auto text-gold-primary font-mono text-sm font-bold">{k.points} {!isDevanagariLocale(locale) ? 'pts' : 'अंक'}</span>
                 </div>
               </div>
               <div className="ml-12 space-y-2">
-                <p className="text-amber-300/90 text-sm font-medium">{k.what[locale]}</p>
-                <p className="text-text-secondary text-sm">{k.how[locale]}</p>
+                <p className="text-amber-300/90 text-sm font-medium">{tl(k.what, locale)}</p>
+                <p className="text-text-secondary text-sm">{tl(k.how, locale)}</p>
                 <div className="mt-2 p-3 bg-bg-primary/40 rounded-md border border-gold-primary/5">
-                  <p className="text-gold-light/80 font-mono text-xs">{k.scoring[locale]}</p>
+                  <p className="text-gold-light/80 font-mono text-xs">{tl(k.scoring, locale)}</p>
                 </div>
-                <p className="text-text-secondary/70 text-xs italic">{k.example[locale]}</p>
+                <p className="text-text-secondary/70 text-xs italic">{tl(k.example, locale)}</p>
               </div>
             </motion.div>
           ))}
@@ -266,9 +267,9 @@ export default function LearnMatchingPage() {
             <div key={s.range} className={`rounded-lg p-3 border ${s.bg}`}>
               <div className="flex items-center gap-3">
                 <span className={`font-mono font-bold ${s.color}`}>{s.range}</span>
-                <span className={`font-semibold text-sm ${s.color}`}>{s.label[locale]}</span>
+                <span className={`font-semibold text-sm ${s.color}`}>{tl(s.label, locale)}</span>
               </div>
-              <p className="text-text-secondary text-xs mt-1">{s.desc[locale]}</p>
+              <p className="text-text-secondary text-xs mt-1">{tl(s.desc, locale)}</p>
             </div>
           ))}
         </div>
@@ -293,7 +294,7 @@ export default function LearnMatchingPage() {
               <span className="w-6 h-6 rounded-full bg-emerald-400/15 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold flex-shrink-0 text-xs">
                 {i + 1}
               </span>
-              <p className="text-text-secondary text-sm">{rule[locale]}</p>
+              <p className="text-text-secondary text-sm">{tl(rule, locale)}</p>
             </motion.div>
           ))}
         </div>
@@ -325,10 +326,10 @@ export default function LearnMatchingPage() {
                   {!isDevanagariLocale(locale) ? 'position pair' : 'स्थिति जोड़ा'}
                 </span>
               </div>
-              <p className="text-text-secondary text-sm mb-2">{bp.effect[locale]}</p>
+              <p className="text-text-secondary text-sm mb-2">{tl(bp.effect, locale)}</p>
               <div className="p-2 rounded bg-emerald-400/5 border border-emerald-400/10">
                 <p className="text-emerald-400/80 text-xs">
-                  {!isDevanagariLocale(locale) ? 'Cancellation: ' : 'निरसन: '}{bp.cancel[locale]}
+                  {!isDevanagariLocale(locale) ? 'Cancellation: ' : 'निरसन: '}{tl(bp.cancel, locale)}
                 </p>
               </div>
             </motion.div>
@@ -369,7 +370,7 @@ export default function LearnMatchingPage() {
               <span className="w-6 h-6 rounded-full bg-emerald-400/15 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold flex-shrink-0 text-xs">
                 {i + 1}
               </span>
-              <p className="text-text-secondary text-sm">{rule[locale]}</p>
+              <p className="text-text-secondary text-sm">{tl(rule, locale)}</p>
             </motion.div>
           ))}
         </div>
@@ -391,7 +392,7 @@ export default function LearnMatchingPage() {
               <span className="w-6 h-6 rounded-full bg-gold-primary/10 border border-gold-primary/20 flex items-center justify-center text-gold-light/70 font-bold flex-shrink-0 text-xs">
                 {i + 1}
               </span>
-              <p className="text-text-secondary text-sm">{point[locale]}</p>
+              <p className="text-text-secondary text-sm">{tl(point, locale)}</p>
             </motion.div>
           ))}
         </div>
@@ -407,7 +408,7 @@ export default function LearnMatchingPage() {
               className="flex items-center gap-3 p-3 rounded-lg bg-bg-primary/40 border border-gold-primary/10 hover:bg-gold-primary/10 hover:border-gold-primary/25 transition-colors group"
             >
               <span className="text-gold-primary/50 group-hover:text-gold-primary transition-colors text-lg">&#8594;</span>
-              <span className="text-text-secondary group-hover:text-gold-light text-sm transition-colors">{ref.label[locale]}</span>
+              <span className="text-text-secondary group-hover:text-gold-light text-sm transition-colors">{tl(ref.label, locale)}</span>
             </Link>
           ))}
         </div>

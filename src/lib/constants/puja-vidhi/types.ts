@@ -1,24 +1,20 @@
-export interface Trilingual {
-  en: string;
-  hi: string;
-  sa: string;
-  ta?: string;
-}
+import type { LocaleText } from '@/types/panchang';
+export type { LocaleText as Trilingual };
 
 export interface SamagriItem {
-  name: Trilingual;
+  name: LocaleText;
   quantity?: string;
-  note?: Trilingual;
+  note?: LocaleText;
   category?: 'flowers' | 'food' | 'puja_items' | 'clothing' | 'vessels' | 'other';
   essential?: boolean;
-  substitutions?: { item: Trilingual; note: Trilingual }[];
-  prepNote?: Trilingual;
+  substitutions?: { item: LocaleText; note: LocaleText }[];
+  prepNote?: LocaleText;
 }
 
 export interface VidhiStep {
   step: number;
-  title: Trilingual;
-  description: Trilingual;
+  title: LocaleText;
+  description: LocaleText;
   mantraRef?: string;       // ID linking to MantraDetail
   duration?: string;
   essential?: boolean;
@@ -27,31 +23,31 @@ export interface VidhiStep {
 
 export interface MantraDetail {
   id: string;
-  name: Trilingual;
+  name: LocaleText;
   devanagari: string;       // Full mantra in Devanagari
   iast: string;             // IAST romanization with diacritics
-  meaning: Trilingual;
+  meaning: LocaleText;
   japaCount?: number;
-  usage: Trilingual;
+  usage: LocaleText;
 }
 
 export interface StotraReference {
-  name: Trilingual;
+  name: LocaleText;
   text?: string;            // Full Devanagari text if short
   verseCount?: number;
   duration?: string;
-  note?: Trilingual;
+  note?: LocaleText;
 }
 
 export interface AartiText {
-  name: Trilingual;
+  name: LocaleText;
   devanagari: string;
   iast: string;
 }
 
 export interface ParanaRule {
   type: 'sunrise_plus_quarter' | 'moonrise' | 'next_sunrise' | 'tithi_end';
-  description: Trilingual;
+  description: LocaleText;
 }
 
 export type MuhurtaWindowType = 'madhyahna' | 'aparahna' | 'pradosh' | 'nishita' | 'brahma_muhurta' | 'abhijit';
@@ -59,24 +55,24 @@ export type MuhurtaWindowType = 'madhyahna' | 'aparahna' | 'pradosh' | 'nishita'
 export interface PujaVidhi {
   festivalSlug: string;
   category: 'festival' | 'vrat' | 'graha_shanti';    // Key distinction: festival vs vrat vs graha shanti
-  deity: Trilingual;
+  deity: LocaleText;
 
   samagri: SamagriItem[];
 
   muhurtaType: 'computed' | 'fixed';
-  muhurtaDescription: Trilingual;
+  muhurtaDescription: LocaleText;
   muhurtaWindow?: { type: MuhurtaWindowType };
 
-  sankalpa: Trilingual;
+  sankalpa: LocaleText;
   vidhiSteps: VidhiStep[];
 
   mantras: MantraDetail[];
   stotras?: StotraReference[];
   aarti?: AartiText;
 
-  naivedya: Trilingual;
-  precautions: Trilingual[];
-  phala: Trilingual;
-  visarjan?: Trilingual;
+  naivedya: LocaleText;
+  precautions: LocaleText[];
+  phala: LocaleText;
+  visarjan?: LocaleText;
   parana?: ParanaRule;
 }

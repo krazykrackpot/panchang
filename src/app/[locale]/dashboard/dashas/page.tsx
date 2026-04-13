@@ -8,21 +8,21 @@ import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import type { DashaEntry } from '@/types/kundali';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const PLANET_ID: Record<string, number> = { Sun: 0, Moon: 1, Mars: 2, Mercury: 3, Jupiter: 4, Venus: 5, Saturn: 6, Rahu: 7, Ketu: 8 };
 
-const DASHA_EFFECTS: Record<string, { en: string; hi: string }> = {
-  Sun: { en: 'Authority, career, government, father, vitality', hi: 'अधिकार, करियर, सरकार, पिता, जीवनशक्ति' },
-  Moon: { en: 'Emotions, mother, public dealings, travel, nurturing', hi: 'भावनाएँ, माता, जनसंपर्क, यात्रा, पोषण' },
-  Mars: { en: 'Energy, property, siblings, courage, surgery', hi: 'ऊर्जा, संपत्ति, भाई-बहन, साहस, शल्यक्रिया' },
-  Mercury: { en: 'Intellect, business, communication, education', hi: 'बुद्धि, व्यापार, संवाद, शिक्षा' },
-  Jupiter: { en: 'Wisdom, children, fortune, spirituality, teaching', hi: 'ज्ञान, संतान, भाग्य, आध्यात्मिकता, शिक्षण' },
-  Venus: { en: 'Relationships, luxury, arts, marriage, comfort', hi: 'संबंध, विलासिता, कला, विवाह, सुख' },
-  Saturn: { en: 'Discipline, delays, hard work, karma, longevity', hi: 'अनुशासन, विलंब, कठिन परिश्रम, कर्म, दीर्घायु' },
-  Rahu: { en: 'Sudden changes, foreign, technology, unconventional', hi: 'अचानक बदलाव, विदेश, प्रौद्योगिकी, अपरंपरागत' },
-  Ketu: { en: 'Spirituality, detachment, past karma, liberation', hi: 'आध्यात्मिकता, वैराग्य, पूर्व कर्म, मोक्ष' },
+const DASHA_EFFECTS: Record<string, LocaleText> = {
+  Sun: { en: 'Authority, career, government, father, vitality', hi: 'अधिकार, करियर, सरकार, पिता, जीवनशक्ति', sa: 'अधिकार, करियर, सरकार, पिता, जीवनशक्ति', mai: 'अधिकार, करियर, सरकार, पिता, जीवनशक्ति', mr: 'अधिकार, करियर, सरकार, पिता, जीवनशक्ति', ta: 'Authority, career, government, father, vitality', te: 'Authority, career, government, father, vitality', bn: 'Authority, career, government, father, vitality', kn: 'Authority, career, government, father, vitality', gu: 'Authority, career, government, father, vitality' },
+  Moon: { en: 'Emotions, mother, public dealings, travel, nurturing', hi: 'भावनाएँ, माता, जनसंपर्क, यात्रा, पोषण', sa: 'भावनाएँ, माता, जनसंपर्क, यात्रा, पोषण', mai: 'भावनाएँ, माता, जनसंपर्क, यात्रा, पोषण', mr: 'भावनाएँ, माता, जनसंपर्क, यात्रा, पोषण', ta: 'Emotions, mother, public dealings, travel, nurturing', te: 'Emotions, mother, public dealings, travel, nurturing', bn: 'Emotions, mother, public dealings, travel, nurturing', kn: 'Emotions, mother, public dealings, travel, nurturing', gu: 'Emotions, mother, public dealings, travel, nurturing' },
+  Mars: { en: 'Energy, property, siblings, courage, surgery', hi: 'ऊर्जा, संपत्ति, भाई-बहन, साहस, शल्यक्रिया', sa: 'ऊर्जा, संपत्ति, भाई-बहन, साहस, शल्यक्रिया', mai: 'ऊर्जा, संपत्ति, भाई-बहन, साहस, शल्यक्रिया', mr: 'ऊर्जा, संपत्ति, भाई-बहन, साहस, शल्यक्रिया', ta: 'Energy, property, siblings, courage, surgery', te: 'Energy, property, siblings, courage, surgery', bn: 'Energy, property, siblings, courage, surgery', kn: 'Energy, property, siblings, courage, surgery', gu: 'Energy, property, siblings, courage, surgery' },
+  Mercury: { en: 'Intellect, business, communication, education', hi: 'बुद्धि, व्यापार, संवाद, शिक्षा', sa: 'बुद्धि, व्यापार, संवाद, शिक्षा', mai: 'बुद्धि, व्यापार, संवाद, शिक्षा', mr: 'बुद्धि, व्यापार, संवाद, शिक्षा', ta: 'Intellect, business, communication, education', te: 'Intellect, business, communication, education', bn: 'Intellect, business, communication, education', kn: 'Intellect, business, communication, education', gu: 'Intellect, business, communication, education' },
+  Jupiter: { en: 'Wisdom, children, fortune, spirituality, teaching', hi: 'ज्ञान, संतान, भाग्य, आध्यात्मिकता, शिक्षण', sa: 'ज्ञान, संतान, भाग्य, आध्यात्मिकता, शिक्षण', mai: 'ज्ञान, संतान, भाग्य, आध्यात्मिकता, शिक्षण', mr: 'ज्ञान, संतान, भाग्य, आध्यात्मिकता, शिक्षण', ta: 'Wisdom, children, fortune, spirituality, teaching', te: 'Wisdom, children, fortune, spirituality, teaching', bn: 'Wisdom, children, fortune, spirituality, teaching', kn: 'Wisdom, children, fortune, spirituality, teaching', gu: 'Wisdom, children, fortune, spirituality, teaching' },
+  Venus: { en: 'Relationships, luxury, arts, marriage, comfort', hi: 'संबंध, विलासिता, कला, विवाह, सुख', sa: 'संबंध, विलासिता, कला, विवाह, सुख', mai: 'संबंध, विलासिता, कला, विवाह, सुख', mr: 'संबंध, विलासिता, कला, विवाह, सुख', ta: 'Relationships, luxury, arts, marriage, comfort', te: 'Relationships, luxury, arts, marriage, comfort', bn: 'Relationships, luxury, arts, marriage, comfort', kn: 'Relationships, luxury, arts, marriage, comfort', gu: 'Relationships, luxury, arts, marriage, comfort' },
+  Saturn: { en: 'Discipline, delays, hard work, karma, longevity', hi: 'अनुशासन, विलंब, कठिन परिश्रम, कर्म, दीर्घायु', sa: 'अनुशासन, विलंब, कठिन परिश्रम, कर्म, दीर्घायु', mai: 'अनुशासन, विलंब, कठिन परिश्रम, कर्म, दीर्घायु', mr: 'अनुशासन, विलंब, कठिन परिश्रम, कर्म, दीर्घायु', ta: 'Discipline, delays, hard work, karma, longevity', te: 'Discipline, delays, hard work, karma, longevity', bn: 'Discipline, delays, hard work, karma, longevity', kn: 'Discipline, delays, hard work, karma, longevity', gu: 'Discipline, delays, hard work, karma, longevity' },
+  Rahu: { en: 'Sudden changes, foreign, technology, unconventional', hi: 'अचानक बदलाव, विदेश, प्रौद्योगिकी, अपरंपरागत', sa: 'अचानक बदलाव, विदेश, प्रौद्योगिकी, अपरंपरागत', mai: 'अचानक बदलाव, विदेश, प्रौद्योगिकी, अपरंपरागत', mr: 'अचानक बदलाव, विदेश, प्रौद्योगिकी, अपरंपरागत', ta: 'Sudden changes, foreign, technology, unconventional', te: 'Sudden changes, foreign, technology, unconventional', bn: 'Sudden changes, foreign, technology, unconventional', kn: 'Sudden changes, foreign, technology, unconventional', gu: 'Sudden changes, foreign, technology, unconventional' },
+  Ketu: { en: 'Spirituality, detachment, past karma, liberation', hi: 'आध्यात्मिकता, वैराग्य, पूर्व कर्म, मोक्ष', sa: 'आध्यात्मिकता, वैराग्य, पूर्व कर्म, मोक्ष', mai: 'आध्यात्मिकता, वैराग्य, पूर्व कर्म, मोक्ष', mr: 'आध्यात्मिकता, वैराग्य, पूर्व कर्म, मोक्ष', ta: 'Spirituality, detachment, past karma, liberation', te: 'Spirituality, detachment, past karma, liberation', bn: 'Spirituality, detachment, past karma, liberation', kn: 'Spirituality, detachment, past karma, liberation', gu: 'Spirituality, detachment, past karma, liberation' },
 };
 
 function progressPercent(start: string, end: string): number {

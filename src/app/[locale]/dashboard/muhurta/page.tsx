@@ -7,7 +7,7 @@ import { Heart, Briefcase, Plane, GraduationCap, Home, Stethoscope, Car, Sun, Do
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { computePersonalMuhurta, type PersonalMuhurta } from '@/lib/personalization/personal-muhurta';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const ACTIVITY_ICONS: Record<string, React.ReactNode> = {
@@ -23,11 +23,11 @@ const ACTIVITY_ICONS: Record<string, React.ReactNode> = {
   court_case: <Scale className="w-5 h-5" />,
 };
 
-const REC_STYLES: Record<string, { bg: string; text: string; label: { en: string; hi: string } }> = {
-  excellent: { bg: 'bg-emerald-500/15 border-emerald-500/25', text: 'text-emerald-400', label: { en: 'Excellent', hi: 'उत्कृष्ट' } },
-  good: { bg: 'bg-gold-primary/15 border-gold-primary/25', text: 'text-gold-light', label: { en: 'Good', hi: 'अच्छा' } },
-  neutral: { bg: 'bg-bg-tertiary/30 border-gold-primary/10', text: 'text-text-secondary', label: { en: 'Neutral', hi: 'सामान्य' } },
-  avoid: { bg: 'bg-red-500/10 border-red-500/20', text: 'text-red-400', label: { en: 'Avoid', hi: 'बचें' } },
+const REC_STYLES: Record<string, { bg: string; text: string; label: LocaleText }> = {
+  excellent: { bg: 'bg-emerald-500/15 border-emerald-500/25', text: 'text-emerald-400', label: { en: 'Excellent', hi: 'उत्कृष्ट', sa: 'उत्कृष्ट', mai: 'उत्कृष्ट', mr: 'उत्कृष्ट', ta: 'Excellent', te: 'Excellent', bn: 'Excellent', kn: 'Excellent', gu: 'Excellent' } },
+  good: { bg: 'bg-gold-primary/15 border-gold-primary/25', text: 'text-gold-light', label: { en: 'Good', hi: 'अच्छा', sa: 'अच्छा', mai: 'अच्छा', mr: 'अच्छा', ta: 'Good', te: 'Good', bn: 'Good', kn: 'Good', gu: 'Good' } },
+  neutral: { bg: 'bg-bg-tertiary/30 border-gold-primary/10', text: 'text-text-secondary', label: { en: 'Neutral', hi: 'सामान्य', sa: 'सामान्य', mai: 'सामान्य', mr: 'सामान्य', ta: 'Neutral', te: 'Neutral', bn: 'Neutral', kn: 'Neutral', gu: 'Neutral' } },
+  avoid: { bg: 'bg-red-500/10 border-red-500/20', text: 'text-red-400', label: { en: 'Avoid', hi: 'बचें', sa: 'बचें', mai: 'बचें', mr: 'बचें', ta: 'Avoid', te: 'Avoid', bn: 'Avoid', kn: 'Avoid', gu: 'Avoid' } },
 };
 
 export default function MuhurtaPage() {

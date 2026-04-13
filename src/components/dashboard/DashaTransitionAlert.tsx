@@ -1,26 +1,27 @@
 'use client';
+import { tl } from '@/lib/utils/trilingual';
 
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Clock, Zap } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import type { DashaEntry } from '@/types/kundali';
-import type { Locale, Trilingual } from '@/types/panchang';
+import type { Locale,  LocaleText} from '@/types/panchang';
 import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
 
 // ---------------------------------------------------------------------------
 // Planet interpretations (brief, for the alert card)
 // ---------------------------------------------------------------------------
-const PLANET_INTERPRETATIONS: Record<string, { en: string; hi: string }> = {
-  sun:     { en: 'Authority, career recognition, vitality', hi: 'अधिकार, करियर में मान्यता, जीवन शक्ति' },
+const PLANET_INTERPRETATIONS: Record<string, LocaleText> = {
+  sun:     { en: 'Authority, career recognition, vitality', hi: 'अधिकार, करियर में मान्यता, जीवन शक्ति', sa: 'अधिकार, करियर में मान्यता, जीवन शक्ति', mai: 'अधिकार, करियर में मान्यता, जीवन शक्ति', mr: 'अधिकार, करियर में मान्यता, जीवन शक्ति', ta: 'Authority, career recognition, vitality', te: 'Authority, career recognition, vitality', bn: 'Authority, career recognition, vitality', kn: 'Authority, career recognition, vitality', gu: 'Authority, career recognition, vitality' },
   moon:    { en: 'Emotional peace, public image, mother\'s blessings', hi: 'मानसिक शान्ति, सार्वजनिक छवि, माता का आशीर्वाद' },
-  mars:    { en: 'Energy, courage, property matters, competition', hi: 'ऊर्जा, साहस, सम्पत्ति, प्रतिस्पर्धा' },
-  mercury: { en: 'Communication, business, intellect, education', hi: 'संवाद, व्यापार, बुद्धि, शिक्षा' },
-  jupiter: { en: 'Wisdom, expansion, wealth, spiritual growth', hi: 'ज्ञान, विस्तार, धन, आध्यात्मिक वृद्धि' },
-  venus:   { en: 'Love, luxury, arts, marriage, material comfort', hi: 'प्रेम, विलासिता, कला, विवाह, भौतिक सुख' },
-  saturn:  { en: 'Discipline, hard work, karma, restructuring', hi: 'अनुशासन, कठोर परिश्रम, कर्म, पुनर्गठन' },
-  rahu:    { en: 'Ambition, foreign connections, technology, unconventional paths', hi: 'महत्वाकांक्षा, विदेशी सम्बन्ध, प्रौद्योगिकी, अपरम्परागत मार्ग' },
-  ketu:    { en: 'Spirituality, detachment, past-life karma, liberation', hi: 'आध्यात्मिकता, वैराग्य, पूर्वजन्म कर्म, मोक्ष' },
+  mars:    { en: 'Energy, courage, property matters, competition', hi: 'ऊर्जा, साहस, सम्पत्ति, प्रतिस्पर्धा', sa: 'ऊर्जा, साहस, सम्पत्ति, प्रतिस्पर्धा', mai: 'ऊर्जा, साहस, सम्पत्ति, प्रतिस्पर्धा', mr: 'ऊर्जा, साहस, सम्पत्ति, प्रतिस्पर्धा', ta: 'Energy, courage, property matters, competition', te: 'Energy, courage, property matters, competition', bn: 'Energy, courage, property matters, competition', kn: 'Energy, courage, property matters, competition', gu: 'Energy, courage, property matters, competition' },
+  mercury: { en: 'Communication, business, intellect, education', hi: 'संवाद, व्यापार, बुद्धि, शिक्षा', sa: 'संवाद, व्यापार, बुद्धि, शिक्षा', mai: 'संवाद, व्यापार, बुद्धि, शिक्षा', mr: 'संवाद, व्यापार, बुद्धि, शिक्षा', ta: 'Communication, business, intellect, education', te: 'Communication, business, intellect, education', bn: 'Communication, business, intellect, education', kn: 'Communication, business, intellect, education', gu: 'Communication, business, intellect, education' },
+  jupiter: { en: 'Wisdom, expansion, wealth, spiritual growth', hi: 'ज्ञान, विस्तार, धन, आध्यात्मिक वृद्धि', sa: 'ज्ञान, विस्तार, धन, आध्यात्मिक वृद्धि', mai: 'ज्ञान, विस्तार, धन, आध्यात्मिक वृद्धि', mr: 'ज्ञान, विस्तार, धन, आध्यात्मिक वृद्धि', ta: 'Wisdom, expansion, wealth, spiritual growth', te: 'Wisdom, expansion, wealth, spiritual growth', bn: 'Wisdom, expansion, wealth, spiritual growth', kn: 'Wisdom, expansion, wealth, spiritual growth', gu: 'Wisdom, expansion, wealth, spiritual growth' },
+  venus:   { en: 'Love, luxury, arts, marriage, material comfort', hi: 'प्रेम, विलासिता, कला, विवाह, भौतिक सुख', sa: 'प्रेम, विलासिता, कला, विवाह, भौतिक सुख', mai: 'प्रेम, विलासिता, कला, विवाह, भौतिक सुख', mr: 'प्रेम, विलासिता, कला, विवाह, भौतिक सुख', ta: 'Love, luxury, arts, marriage, material comfort', te: 'Love, luxury, arts, marriage, material comfort', bn: 'Love, luxury, arts, marriage, material comfort', kn: 'Love, luxury, arts, marriage, material comfort', gu: 'Love, luxury, arts, marriage, material comfort' },
+  saturn:  { en: 'Discipline, hard work, karma, restructuring', hi: 'अनुशासन, कठोर परिश्रम, कर्म, पुनर्गठन', sa: 'अनुशासन, कठोर परिश्रम, कर्म, पुनर्गठन', mai: 'अनुशासन, कठोर परिश्रम, कर्म, पुनर्गठन', mr: 'अनुशासन, कठोर परिश्रम, कर्म, पुनर्गठन', ta: 'Discipline, hard work, karma, restructuring', te: 'Discipline, hard work, karma, restructuring', bn: 'Discipline, hard work, karma, restructuring', kn: 'Discipline, hard work, karma, restructuring', gu: 'Discipline, hard work, karma, restructuring' },
+  rahu:    { en: 'Ambition, foreign connections, technology, unconventional paths', hi: 'महत्वाकांक्षा, विदेशी सम्बन्ध, प्रौद्योगिकी, अपरम्परागत मार्ग', sa: 'महत्वाकांक्षा, विदेशी सम्बन्ध, प्रौद्योगिकी, अपरम्परागत मार्ग', mai: 'महत्वाकांक्षा, विदेशी सम्बन्ध, प्रौद्योगिकी, अपरम्परागत मार्ग', mr: 'महत्वाकांक्षा, विदेशी सम्बन्ध, प्रौद्योगिकी, अपरम्परागत मार्ग', ta: 'Ambition, foreign connections, technology, unconventional paths', te: 'Ambition, foreign connections, technology, unconventional paths', bn: 'Ambition, foreign connections, technology, unconventional paths', kn: 'Ambition, foreign connections, technology, unconventional paths', gu: 'Ambition, foreign connections, technology, unconventional paths' },
+  ketu:    { en: 'Spirituality, detachment, past-life karma, liberation', hi: 'आध्यात्मिकता, वैराग्य, पूर्वजन्म कर्म, मोक्ष', sa: 'आध्यात्मिकता, वैराग्य, पूर्वजन्म कर्म, मोक्ष', mai: 'आध्यात्मिकता, वैराग्य, पूर्वजन्म कर्म, मोक्ष', mr: 'आध्यात्मिकता, वैराग्य, पूर्वजन्म कर्म, मोक्ष', ta: 'Spirituality, detachment, past-life karma, liberation', te: 'Spirituality, detachment, past-life karma, liberation', bn: 'Spirituality, detachment, past-life karma, liberation', kn: 'Spirituality, detachment, past-life karma, liberation', gu: 'Spirituality, detachment, past-life karma, liberation' },
 };
 
 // ---------------------------------------------------------------------------
@@ -78,7 +79,7 @@ const LABELS = {
 // ---------------------------------------------------------------------------
 interface UpcomingTransition {
   planet: string;
-  planetName: Trilingual;
+  planetName: LocaleText;
   level: 'maha' | 'antar';
   startDate: string;
   daysUntil: number;
@@ -146,7 +147,7 @@ interface DashaTransitionAlertProps {
 // Component
 // ---------------------------------------------------------------------------
 export default function DashaTransitionAlert({ dashaTimeline, locale, kundaliId }: DashaTransitionAlertProps) {
-  const L = LABELS[locale] || (isDevanagariLocale(locale) ? LABELS.hi : LABELS.en);
+  const L = (LABELS as Record<string, typeof LABELS.en>)[locale] || (isDevanagariLocale(locale) ? LABELS.hi : LABELS.en);
   const isHi = isDevanagariLocale(locale);
   const headingFont = getHeadingFont(locale);
   const bodyFont = getBodyFont(locale);

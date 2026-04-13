@@ -1,13 +1,14 @@
+import type { LocaleText } from '@/types/panchang';
 // Deep Lagna (Ascendant) interpretations — trilingual
 // sign index is 1-based (1=Aries through 12=Pisces)
 
 interface LagnaDeep {
-  personality: { en: string; hi: string; sa: string };
-  career: { en: string; hi: string; sa: string };
-  health: { en: string; hi: string; sa: string };
-  relationships: { en: string; hi: string; sa: string };
-  finances: { en: string; hi: string; sa: string };
-  spiritual: { en: string; hi: string; sa: string };
+  personality: LocaleText;
+  career: LocaleText;
+  health: LocaleText;
+  relationships: LocaleText;
+  finances: LocaleText;
+  spiritual: LocaleText;
 }
 
 export const LAGNA_DEEP: Record<number, LagnaDeep> = {

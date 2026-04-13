@@ -11,21 +11,21 @@ import { dateToJD, sunLongitude, moonLongitude, toSidereal, calculateTithi, norm
 import { generateEclipseCalendar } from '@/lib/calendar/eclipses';
 import { getHinduMonth, getNextHinduMonth, getEkadashiName, ADHIKA_MASA_EKADASHI } from '@/lib/constants/festival-details';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 export interface FestivalEntry {
-  name: Trilingual;
+  name: LocaleText;
   date: string;        // YYYY-MM-DD
   tithi?: string;      // e.g. "Chaitra Shukla 9"
   type: 'major' | 'vrat' | 'regional' | 'eclipse';
   category: 'festival' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham' | 'sankranti' | 'eclipse';
-  description: Trilingual;
+  description: LocaleText;
   slug?: string;       // Key for looking up rich details in FESTIVAL_DETAILS
   // Parana (fast-breaking) info
   paranaDate?: string;            // YYYY-MM-DD (often next day)
   paranaStart?: string;           // HH:MM — start of recommended window
   paranaEnd?: string;             // HH:MM — end of recommended window
-  paranaNote?: Trilingual;        // Instructions for breaking fast
+  paranaNote?: LocaleText;        // Instructions for breaking fast
   paranaSunrise?: string;         // HH:MM — sunrise on parana day
   paranaHariVasaraEnd?: string;   // HH:MM — end of Hari Vasara (1/4 daytime)
   paranaDwadashiEnd?: string;     // HH:MM — when Dwadashi tithi ends
@@ -39,7 +39,7 @@ export interface FestivalEntry {
   sutakStart?: string;       // HH:MM
   sutakEnd?: string;         // HH:MM
   sutakApplicable?: boolean;
-  eclipsePhases?: { name: Trilingual; time: string }[];
+  eclipsePhases?: { name: LocaleText; time: string }[];
 }
 
 /**
@@ -314,7 +314,7 @@ function approxMoonrise(tithiNum: number, sunriseUT: number, sunsetUT: number): 
  *    but before Dwadashi ends
  */
 function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DEFAULT_LON, tz = DEFAULT_TZ): {
-  paranaDate: string; paranaStart: string; paranaEnd: string; paranaNote: Trilingual;
+  paranaDate: string; paranaStart: string; paranaEnd: string; paranaNote: LocaleText;
   paranaSunrise: string; paranaHariVasaraEnd: string; paranaDwadashiEnd: string; paranaEarlyEnd: boolean;
   paranaMadhyahnaStart?: string; paranaMadhyahnaEnd?: string;
 } {
@@ -530,7 +530,7 @@ function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DE
  * If fasting from sunrise to moonrise, break at moonrise or next sunrise.
  */
 function computePurnimaParana(purnimaDate: string, lat = DEFAULT_LAT, lon = DEFAULT_LON, tz = DEFAULT_TZ): {
-  paranaDate: string; paranaStart: string; paranaEnd: string; paranaNote: Trilingual;
+  paranaDate: string; paranaStart: string; paranaEnd: string; paranaNote: LocaleText;
 } {
   const [y, m, d] = purnimaDate.split('-').map(Number);
   const jd = dateToJD(y, m, d, 6);
@@ -555,7 +555,7 @@ function computePurnimaParana(purnimaDate: string, lat = DEFAULT_LAT, lon = DEFA
  * Krishna Chaturthi = tithi 19, moonrise is late evening.
  */
 function computeChaturthiParana(chaturthiDate: string, lat = DEFAULT_LAT, lon = DEFAULT_LON, tz = DEFAULT_TZ): {
-  paranaDate: string; paranaStart: string; paranaEnd: string; paranaNote: Trilingual;
+  paranaDate: string; paranaStart: string; paranaEnd: string; paranaNote: LocaleText;
 } {
   const [y, m, d] = chaturthiDate.split('-').map(Number);
   const jd = dateToJD(y, m, d, 6);
@@ -579,7 +579,7 @@ function computeChaturthiParana(chaturthiDate: string, lat = DEFAULT_LAT, lon = 
  * Compute Amavasya parana: next morning after sunrise.
  */
 function computeAmavasyaParana(amavasyaDate: string, lat = DEFAULT_LAT, lon = DEFAULT_LON, tz = DEFAULT_TZ): {
-  paranaDate: string; paranaStart: string; paranaEnd: string; paranaNote: Trilingual;
+  paranaDate: string; paranaStart: string; paranaEnd: string; paranaNote: LocaleText;
 } {
   const paranaDate = nextDay(amavasyaDate);
   const [y, m, d] = paranaDate.split('-').map(Number);
@@ -602,7 +602,7 @@ function computeAmavasyaParana(amavasyaDate: string, lat = DEFAULT_LAT, lon = DE
  * Compute Pradosham parana: after twilight puja (sunset + ~2.5 hours).
  */
 function computePradoshamParana(pradoshamDate: string, lat = DEFAULT_LAT, lon = DEFAULT_LON, tz = DEFAULT_TZ): {
-  paranaDate: string; paranaStart: string; paranaEnd: string; paranaNote: Trilingual;
+  paranaDate: string; paranaStart: string; paranaEnd: string; paranaNote: LocaleText;
 } {
   const [y, m, d] = pradoshamDate.split('-').map(Number);
   const jd = dateToJD(y, m, d, 6);
@@ -1011,7 +1011,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
     const sutakStartUT = eStartUT - sutakHrs;
 
     // Build phase timeline
-    const phases: { name: Trilingual; time: string }[] = [];
+    const phases: { name: LocaleText; time: string }[] = [];
     const eclipseTz = resolveTz(eclipse.date, timezone);
     const ft = (ut: number) => formatTime(((ut % 24) + 24) % 24, eclipseTz);
 

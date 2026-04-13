@@ -5,17 +5,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_0_5', phase: 0, topic: 'Foundations', moduleNumber: '0.5',
-  title: { en: 'What is a Kundali (Birth Chart)?', hi: 'कुण्डली (जन्म कुण्डली) क्या है?' },
+  title: { en: 'What is a Kundali (Birth Chart)?', hi: 'कुण्डली (जन्म कुण्डली) क्या है?', sa: 'कुण्डली (जन्म कुण्डली) क्या है?', mai: 'कुण्डली (जन्म कुण्डली) क्या है?', mr: 'कुण्डली (जन्म कुण्डली) क्या है?', ta: 'What is a Kundali (Birth Chart)?', te: 'What is a Kundali (Birth Chart)?', bn: 'What is a Kundali (Birth Chart)?', kn: 'What is a Kundali (Birth Chart)?', gu: 'What is a Kundali (Birth Chart)?' },
   subtitle: {
     en: 'A snapshot of the sky at your exact birth moment — houses, planets, and how to read them',
     hi: 'आपके जन्म क्षण का आकाशीय चित्र — भाव, ग्रह, और उन्हें कैसे पढ़ें',
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 0-6: Rituals & Astronomy', hi: 'मॉड्यूल 0-6: कर्मकाण्ड और खगोलशास्त्र' }, href: '/learn/modules/0-6' },
-    { label: { en: 'Generate Your Kundali', hi: 'अपनी कुण्डली बनाएँ' }, href: '/kundali' },
-    { label: { en: 'Module 9-1: Houses Deep Dive', hi: 'मॉड्यूल 9-1: भाव विस्तार' }, href: '/learn/modules/9-1' },
-    { label: { en: 'Module 11-1: Dasha System', hi: 'मॉड्यूल 11-1: दशा पद्धति' }, href: '/learn/modules/11-1' },
+    { label: { en: 'Module 0-6: Rituals & Astronomy', hi: 'मॉड्यूल 0-6: कर्मकाण्ड और खगोलशास्त्र', sa: 'मॉड्यूल 0-6: कर्मकाण्ड और खगोलशास्त्र', mai: 'मॉड्यूल 0-6: कर्मकाण्ड और खगोलशास्त्र', mr: 'मॉड्यूल 0-6: कर्मकाण्ड और खगोलशास्त्र', ta: 'Module 0-6: Rituals & Astronomy', te: 'Module 0-6: Rituals & Astronomy', bn: 'Module 0-6: Rituals & Astronomy', kn: 'Module 0-6: Rituals & Astronomy', gu: 'Module 0-6: Rituals & Astronomy' }, href: '/learn/modules/0-6' },
+    { label: { en: 'Generate Your Kundali', hi: 'अपनी कुण्डली बनाएँ', sa: 'अपनी कुण्डली बनाएँ', mai: 'अपनी कुण्डली बनाएँ', mr: 'अपनी कुण्डली बनाएँ', ta: 'Generate Your Kundali', te: 'Generate Your Kundali', bn: 'Generate Your Kundali', kn: 'Generate Your Kundali', gu: 'Generate Your Kundali' }, href: '/kundali' },
+    { label: { en: 'Module 9-1: Houses Deep Dive', hi: 'मॉड्यूल 9-1: भाव विस्तार', sa: 'मॉड्यूल 9-1: भाव विस्तार', mai: 'मॉड्यूल 9-1: भाव विस्तार', mr: 'मॉड्यूल 9-1: भाव विस्तार', ta: 'Module 9-1: Houses Deep Dive', te: 'Module 9-1: Houses Deep Dive', bn: 'Module 9-1: Houses Deep Dive', kn: 'Module 9-1: Houses Deep Dive', gu: 'Module 9-1: Houses Deep Dive' }, href: '/learn/modules/9-1' },
+    { label: { en: 'Module 11-1: Dasha System', hi: 'मॉड्यूल 11-1: दशा पद्धति', sa: 'मॉड्यूल 11-1: दशा पद्धति', mai: 'मॉड्यूल 11-1: दशा पद्धति', mr: 'मॉड्यूल 11-1: दशा पद्धति', ta: 'Module 11-1: Dasha System', te: 'Module 11-1: Dasha System', bn: 'Module 11-1: Dasha System', kn: 'Module 11-1: Dasha System', gu: 'Module 11-1: Dasha System' }, href: '/learn/modules/11-1' },
   ],
 };
 
@@ -28,9 +28,9 @@ const QUESTIONS: ModuleQuestion[] = [
     },
     options: [
       { en: 'The Sun\'s position at birth', hi: 'जन्म के समय सूर्य की स्थिति' },
-      { en: 'The sign rising on the eastern horizon at birth', hi: 'जन्म के समय पूर्वी क्षितिज पर उदय होती राशि' },
+      { en: 'The sign rising on the eastern horizon at birth', hi: 'जन्म के समय पूर्वी क्षितिज पर उदय होती राशि', sa: 'जन्म के समय पूर्वी क्षितिज पर उदय होती राशि', mai: 'जन्म के समय पूर्वी क्षितिज पर उदय होती राशि', mr: 'जन्म के समय पूर्वी क्षितिज पर उदय होती राशि', ta: 'The sign rising on the eastern horizon at birth', te: 'The sign rising on the eastern horizon at birth', bn: 'The sign rising on the eastern horizon at birth', kn: 'The sign rising on the eastern horizon at birth', gu: 'The sign rising on the eastern horizon at birth' },
       { en: 'The Moon\'s nakshatra at birth', hi: 'जन्म के समय चन्द्रमा का नक्षत्र' },
-      { en: 'The strongest planet in the chart', hi: 'कुण्डली में सबसे बलवान ग्रह' },
+      { en: 'The strongest planet in the chart', hi: 'कुण्डली में सबसे बलवान ग्रह', sa: 'कुण्डली में सबसे बलवान ग्रह', mai: 'कुण्डली में सबसे बलवान ग्रह', mr: 'कुण्डली में सबसे बलवान ग्रह', ta: 'The strongest planet in the chart', te: 'The strongest planet in the chart', bn: 'The strongest planet in the chart', kn: 'The strongest planet in the chart', gu: 'The strongest planet in the chart' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -45,10 +45,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कुण्डली में कितने भाव होते हैं?',
     },
     options: [
-      { en: '9', hi: '9' },
-      { en: '10', hi: '10' },
-      { en: '12', hi: '12' },
-      { en: '27', hi: '27' },
+      { en: '9', hi: '9', sa: '9', mai: '9', mr: '9', ta: '9', te: '9', bn: '9', kn: '9', gu: '9' },
+      { en: '10', hi: '10', sa: '10', mai: '10', mr: '10', ta: '10', te: '10', bn: '10', kn: '10', gu: '10' },
+      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
+      { en: '27', hi: '27', sa: '27', mai: '27', mr: '27', ta: '27', te: '27', bn: '27', kn: '27', gu: '27' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -75,10 +75,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'उत्तर भारतीय कुण्डली शैली में सबसे ऊपर सदैव क्या होता है?',
     },
     options: [
-      { en: 'Aries (Mesha)', hi: 'मेष राशि' },
-      { en: 'The Lagna (Ascendant)', hi: 'लग्न (उदय राशि)' },
-      { en: 'The Moon', hi: 'चन्द्रमा' },
-      { en: 'The Sun', hi: 'सूर्य' },
+      { en: 'Aries (Mesha)', hi: 'मेष राशि', sa: 'मेष राशि', mai: 'मेष राशि', mr: 'मेष राशि', ta: 'Aries (Mesha)', te: 'Aries (Mesha)', bn: 'Aries (Mesha)', kn: 'Aries (Mesha)', gu: 'Aries (Mesha)' },
+      { en: 'The Lagna (Ascendant)', hi: 'लग्न (उदय राशि)', sa: 'लग्न (उदय राशि)', mai: 'लग्न (उदय राशि)', mr: 'लग्न (उदय राशि)', ta: 'The Lagna (Ascendant)', te: 'The Lagna (Ascendant)', bn: 'The Lagna (Ascendant)', kn: 'The Lagna (Ascendant)', gu: 'The Lagna (Ascendant)' },
+      { en: 'The Moon', hi: 'चन्द्रमा', sa: 'चन्द्रमा', mai: 'चन्द्रमा', mr: 'चन्द्रमा', ta: 'The Moon', te: 'The Moon', bn: 'The Moon', kn: 'The Moon', gu: 'The Moon' },
+      { en: 'The Sun', hi: 'सूर्य', sa: 'सूर्य', mai: 'सूर्य', mr: 'सूर्य', ta: 'The Sun', te: 'The Sun', bn: 'The Sun', kn: 'The Sun', gu: 'The Sun' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -93,10 +93,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'आपकी चन्द्र राशि आपके किस पक्ष का प्रतिनिधित्व करती है?',
     },
     options: [
-      { en: 'Career path', hi: 'व्यावसायिक मार्ग' },
-      { en: 'Physical appearance', hi: 'शारीरिक रूप' },
-      { en: 'Emotional core and mind', hi: 'भावनात्मक मूल और मन' },
-      { en: 'Financial prospects', hi: 'आर्थिक सम्भावनाएँ' },
+      { en: 'Career path', hi: 'व्यावसायिक मार्ग', sa: 'व्यावसायिक मार्ग', mai: 'व्यावसायिक मार्ग', mr: 'व्यावसायिक मार्ग', ta: 'Career path', te: 'Career path', bn: 'Career path', kn: 'Career path', gu: 'Career path' },
+      { en: 'Physical appearance', hi: 'शारीरिक रूप', sa: 'शारीरिक रूप', mai: 'शारीरिक रूप', mr: 'शारीरिक रूप', ta: 'Physical appearance', te: 'Physical appearance', bn: 'Physical appearance', kn: 'Physical appearance', gu: 'Physical appearance' },
+      { en: 'Emotional core and mind', hi: 'भावनात्मक मूल और मन', sa: 'भावनात्मक मूल और मन', mai: 'भावनात्मक मूल और मन', mr: 'भावनात्मक मूल और मन', ta: 'Emotional core and mind', te: 'Emotional core and mind', bn: 'Emotional core and mind', kn: 'Emotional core and mind', gu: 'Emotional core and mind' },
+      { en: 'Financial prospects', hi: 'आर्थिक सम्भावनाएँ', sa: 'आर्थिक सम्भावनाएँ', mai: 'आर्थिक सम्भावनाएँ', mr: 'आर्थिक सम्भावनाएँ', ta: 'Financial prospects', te: 'Financial prospects', bn: 'Financial prospects', kn: 'Financial prospects', gu: 'Financial prospects' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -123,10 +123,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वैदिक ज्योतिष कितने ग्रहों का उपयोग करता है?',
     },
     options: [
-      { en: '7', hi: '7' },
-      { en: '8', hi: '8' },
-      { en: '9', hi: '9' },
-      { en: '12', hi: '12' },
+      { en: '7', hi: '7', sa: '7', mai: '7', mr: '7', ta: '7', te: '7', bn: '7', kn: '7', gu: '7' },
+      { en: '8', hi: '8', sa: '8', mai: '8', mr: '8', ta: '8', te: '8', bn: '8', kn: '8', gu: '8' },
+      { en: '9', hi: '9', sa: '9', mai: '9', mr: '9', ta: '9', te: '9', bn: '9', kn: '9', gu: '9' },
+      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -141,10 +141,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पराशर की बृहत्होरा शास्त्र में लगभग कितने योग (ग्रह संयोग) वर्णित हैं?',
     },
     options: [
-      { en: 'About 30', hi: 'लगभग 30' },
-      { en: 'About 100', hi: 'लगभग 100' },
-      { en: 'About 300+', hi: 'लगभग 300+' },
-      { en: 'About 1000', hi: 'लगभग 1000' },
+      { en: 'About 30', hi: 'लगभग 30', sa: 'लगभग 30', mai: 'लगभग 30', mr: 'लगभग 30', ta: 'About 30', te: 'About 30', bn: 'About 30', kn: 'About 30', gu: 'About 30' },
+      { en: 'About 100', hi: 'लगभग 100', sa: 'लगभग 100', mai: 'लगभग 100', mr: 'लगभग 100', ta: 'About 100', te: 'About 100', bn: 'About 100', kn: 'About 100', gu: 'About 100' },
+      { en: 'About 300+', hi: 'लगभग 300+', sa: 'लगभग 300+', mai: 'लगभग 300+', mr: 'लगभग 300+', ta: 'About 300+', te: 'About 300+', bn: 'About 300+', kn: 'About 300+', gu: 'About 300+' },
+      { en: 'About 1000', hi: 'लगभग 1000', sa: 'लगभग 1000', mai: 'लगभग 1000', mr: 'लगभग 1000', ta: 'About 1000', te: 'About 1000', bn: 'About 1000', kn: 'About 1000', gu: 'About 1000' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -171,10 +171,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'भारतीय समभाव पद्धति (प्रत्येक भाव = 30°) लगभग कितने वर्षों से निरन्तर प्रयोग में है?',
     },
     options: [
-      { en: '500 years', hi: '500 वर्ष' },
-      { en: '1000 years', hi: '1000 वर्ष' },
-      { en: '2000+ years', hi: '2000+ वर्ष' },
-      { en: '200 years', hi: '200 वर्ष' },
+      { en: '500 years', hi: '500 वर्ष', sa: '500 वर्ष', mai: '500 वर्ष', mr: '500 वर्ष', ta: '500 years', te: '500 years', bn: '500 years', kn: '500 years', gu: '500 years' },
+      { en: '1000 years', hi: '1000 वर्ष', sa: '1000 वर्ष', mai: '1000 वर्ष', mr: '1000 वर्ष', ta: '1000 years', te: '1000 years', bn: '1000 years', kn: '1000 years', gu: '1000 years' },
+      { en: '2000+ years', hi: '2000+ वर्ष', sa: '2000+ वर्ष', mai: '2000+ वर्ष', mr: '2000+ वर्ष', ta: '2000+ years', te: '2000+ years', bn: '2000+ years', kn: '2000+ years', gu: '2000+ years' },
+      { en: '200 years', hi: '200 वर्ष', sa: '200 वर्ष', mai: '200 वर्ष', mr: '200 वर्ष', ta: '200 years', te: '200 years', bn: '200 years', kn: '200 years', gu: '200 years' },
     ],
     correctAnswer: 2,
     explanation: {

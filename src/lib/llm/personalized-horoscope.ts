@@ -8,7 +8,7 @@
  * - Today's tithi/nakshatra/yoga
  */
 
-import type { PanchangData, Trilingual, Locale } from '@/types/panchang';
+import type { LocaleText, PanchangData,  Locale } from '@/types/panchang';
 import { getPlanetaryPositions, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';

@@ -1,9 +1,10 @@
 'use client';
+import { tl } from '@/lib/utils/trilingual';
 
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Sun, Moon, Sparkles, Clock, AlertTriangle, Orbit } from 'lucide-react';
-import type { PanchangData, Locale, HoraSlot } from '@/types/panchang';
+import type { PanchangData, Locale, HoraSlot , LocaleText} from '@/types/panchang';
 import type { PersonalizedDay } from '@/lib/personalization/types';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
@@ -109,7 +110,7 @@ const LABELS = {
 // ---------------------------------------------------------------------------
 // Hora domain descriptions keyed by planet english name (lowercase)
 // ---------------------------------------------------------------------------
-const HORA_DOMAINS: Record<string, { en: string; hi: string; sa: string }> = {
+const HORA_DOMAINS: Record<string, LocaleText> = {
   jupiter: { en: 'wisdom, education', hi: 'ज्ञान, शिक्षा', sa: 'ज्ञानम्, शिक्षा' },
   venus: { en: 'love, luxury, arts', hi: 'प्रेम, विलास, कला', sa: 'प्रेम, विलासः, कला' },
   mercury: { en: 'intellect, trade', hi: 'बुद्धि, व्यापार', sa: 'बुद्धिः, वाणिज्यम्' },
@@ -143,19 +144,19 @@ function getCurrentHora(horas: HoraSlot[] | undefined, nowHHMM: string): HoraSlo
 }
 
 // House transit implications (1-12)
-const HOUSE_IMPLICATIONS: Record<number, { en: string; hi: string }> = {
-  1: { en: 'focus on self, new beginnings', hi: 'आत्म-ध्यान, नई शुरुआत' },
-  2: { en: 'finances and family matters', hi: 'धन और परिवार के मामले' },
-  3: { en: 'communication and courage', hi: 'संवाद और साहस' },
-  4: { en: 'home comfort and inner peace', hi: 'घरेलू सुख और मानसिक शान्ति' },
-  5: { en: 'creativity and romance', hi: 'रचनात्मकता और प्रेम' },
-  6: { en: 'health and overcoming challenges', hi: 'स्वास्थ्य और चुनौतियों पर विजय' },
-  7: { en: 'partnerships and relationships', hi: 'साझेदारी और सम्बन्ध' },
-  8: { en: 'transformation and hidden matters', hi: 'परिवर्तन और गुप्त मामले' },
-  9: { en: 'luck, dharma, and higher learning', hi: 'भाग्य, धर्म और उच्च शिक्षा' },
-  10: { en: 'career and public recognition', hi: 'करियर और सार्वजनिक मान्यता' },
-  11: { en: 'gains and social connections', hi: 'लाभ और सामाजिक सम्पर्क' },
-  12: { en: 'rest, spirituality, and letting go', hi: 'विश्राम, अध्यात्म और त्याग' },
+const HOUSE_IMPLICATIONS: Record<number, LocaleText> = {
+  1: { en: 'focus on self, new beginnings', hi: 'आत्म-ध्यान, नई शुरुआत', sa: 'आत्म-ध्यान, नई शुरुआत', mai: 'आत्म-ध्यान, नई शुरुआत', mr: 'आत्म-ध्यान, नई शुरुआत', ta: 'focus on self, new beginnings', te: 'focus on self, new beginnings', bn: 'focus on self, new beginnings', kn: 'focus on self, new beginnings', gu: 'focus on self, new beginnings' },
+  2: { en: 'finances and family matters', hi: 'धन और परिवार के मामले', sa: 'धन और परिवार के मामले', mai: 'धन और परिवार के मामले', mr: 'धन और परिवार के मामले', ta: 'finances and family matters', te: 'finances and family matters', bn: 'finances and family matters', kn: 'finances and family matters', gu: 'finances and family matters' },
+  3: { en: 'communication and courage', hi: 'संवाद और साहस', sa: 'संवाद और साहस', mai: 'संवाद और साहस', mr: 'संवाद और साहस', ta: 'communication and courage', te: 'communication and courage', bn: 'communication and courage', kn: 'communication and courage', gu: 'communication and courage' },
+  4: { en: 'home comfort and inner peace', hi: 'घरेलू सुख और मानसिक शान्ति', sa: 'घरेलू सुख और मानसिक शान्ति', mai: 'घरेलू सुख और मानसिक शान्ति', mr: 'घरेलू सुख और मानसिक शान्ति', ta: 'home comfort and inner peace', te: 'home comfort and inner peace', bn: 'home comfort and inner peace', kn: 'home comfort and inner peace', gu: 'home comfort and inner peace' },
+  5: { en: 'creativity and romance', hi: 'रचनात्मकता और प्रेम', sa: 'रचनात्मकता और प्रेम', mai: 'रचनात्मकता और प्रेम', mr: 'रचनात्मकता और प्रेम', ta: 'creativity and romance', te: 'creativity and romance', bn: 'creativity and romance', kn: 'creativity and romance', gu: 'creativity and romance' },
+  6: { en: 'health and overcoming challenges', hi: 'स्वास्थ्य और चुनौतियों पर विजय', sa: 'स्वास्थ्य और चुनौतियों पर विजय', mai: 'स्वास्थ्य और चुनौतियों पर विजय', mr: 'स्वास्थ्य और चुनौतियों पर विजय', ta: 'health and overcoming challenges', te: 'health and overcoming challenges', bn: 'health and overcoming challenges', kn: 'health and overcoming challenges', gu: 'health and overcoming challenges' },
+  7: { en: 'partnerships and relationships', hi: 'साझेदारी और सम्बन्ध', sa: 'साझेदारी और सम्बन्ध', mai: 'साझेदारी और सम्बन्ध', mr: 'साझेदारी और सम्बन्ध', ta: 'partnerships and relationships', te: 'partnerships and relationships', bn: 'partnerships and relationships', kn: 'partnerships and relationships', gu: 'partnerships and relationships' },
+  8: { en: 'transformation and hidden matters', hi: 'परिवर्तन और गुप्त मामले', sa: 'परिवर्तन और गुप्त मामले', mai: 'परिवर्तन और गुप्त मामले', mr: 'परिवर्तन और गुप्त मामले', ta: 'transformation and hidden matters', te: 'transformation and hidden matters', bn: 'transformation and hidden matters', kn: 'transformation and hidden matters', gu: 'transformation and hidden matters' },
+  9: { en: 'luck, dharma, and higher learning', hi: 'भाग्य, धर्म और उच्च शिक्षा', sa: 'भाग्य, धर्म और उच्च शिक्षा', mai: 'भाग्य, धर्म और उच्च शिक्षा', mr: 'भाग्य, धर्म और उच्च शिक्षा', ta: 'luck, dharma, and higher learning', te: 'luck, dharma, and higher learning', bn: 'luck, dharma, and higher learning', kn: 'luck, dharma, and higher learning', gu: 'luck, dharma, and higher learning' },
+  10: { en: 'career and public recognition', hi: 'करियर और सार्वजनिक मान्यता', sa: 'करियर और सार्वजनिक मान्यता', mai: 'करियर और सार्वजनिक मान्यता', mr: 'करियर और सार्वजनिक मान्यता', ta: 'career and public recognition', te: 'career and public recognition', bn: 'career and public recognition', kn: 'career and public recognition', gu: 'career and public recognition' },
+  11: { en: 'gains and social connections', hi: 'लाभ और सामाजिक सम्पर्क', sa: 'लाभ और सामाजिक सम्पर्क', mai: 'लाभ और सामाजिक सम्पर्क', mr: 'लाभ और सामाजिक सम्पर्क', ta: 'gains and social connections', te: 'gains and social connections', bn: 'gains and social connections', kn: 'gains and social connections', gu: 'gains and social connections' },
+  12: { en: 'rest, spirituality, and letting go', hi: 'विश्राम, अध्यात्म और त्याग', sa: 'विश्राम, अध्यात्म और त्याग', mai: 'विश्राम, अध्यात्म और त्याग', mr: 'विश्राम, अध्यात्म और त्याग', ta: 'rest, spirituality, and letting go', te: 'rest, spirituality, and letting go', bn: 'rest, spirituality, and letting go', kn: 'rest, spirituality, and letting go', gu: 'rest, spirituality, and letting go' },
 };
 
 // ---------------------------------------------------------------------------
@@ -168,7 +169,7 @@ interface MorningBriefingProps {
 }
 
 export default function MorningBriefing({ panchangData, personalizedDay, locale }: MorningBriefingProps) {
-  const L = LABELS[locale] || LABELS.en;
+  const L = (LABELS as Record<string, typeof LABELS.en>)[locale] || LABELS.en;
 
   // Current time as HH:MM
   const nowHHMM = useMemo(() => {

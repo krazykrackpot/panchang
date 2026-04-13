@@ -6,17 +6,17 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_21_4', phase: 8, topic: 'Varshaphal', moduleNumber: '21.4',
-  title: { en: 'Tithi Pravesha — The Birthday Chart', hi: 'तिथि प्रवेश — जन्मदिन कुण्डली' },
+  title: { en: 'Tithi Pravesha — The Birthday Chart', hi: 'तिथि प्रवेश — जन्मदिन कुण्डली', sa: 'तिथि प्रवेश — जन्मदिन कुण्डली', mai: 'तिथि प्रवेश — जन्मदिन कुण्डली', mr: 'तिथि प्रवेश — जन्मदिन कुण्डली', ta: 'Tithi Pravesha — The Birthday Chart', te: 'Tithi Pravesha — The Birthday Chart', bn: 'Tithi Pravesha — The Birthday Chart', kn: 'Tithi Pravesha — The Birthday Chart', gu: 'Tithi Pravesha — The Birthday Chart' },
   subtitle: {
     en: 'The annual chart based on the Sun-Moon tithi recurrence — honoring the lunar birthday tradition for emotional and domestic predictions',
     hi: 'सूर्य-चन्द्र तिथि पुनरावृत्ति पर आधारित वार्षिक कुण्डली — भावनात्मक और घरेलू फलादेश हेतु चान्द्र जन्मदिन परम्परा का सम्मान',
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 21-1: Tajika Aspects', hi: 'मॉड्यूल 21-1: ताजिक दृष्टि' }, href: '/learn/modules/21-1' },
-    { label: { en: 'Module 21-2: Sahams', hi: 'मॉड्यूल 21-2: सहम' }, href: '/learn/modules/21-2' },
-    { label: { en: 'Module 21-3: Mudda Dasha', hi: 'मॉड्यूल 21-3: मुद्दा दशा' }, href: '/learn/modules/21-3' },
-    { label: { en: 'Varshaphal Tool', hi: 'वर्षफल उपकरण' }, href: '/varshaphal' },
+    { label: { en: 'Module 21-1: Tajika Aspects', hi: 'मॉड्यूल 21-1: ताजिक दृष्टि', sa: 'मॉड्यूल 21-1: ताजिक दृष्टि', mai: 'मॉड्यूल 21-1: ताजिक दृष्टि', mr: 'मॉड्यूल 21-1: ताजिक दृष्टि', ta: 'Module 21-1: Tajika Aspects', te: 'Module 21-1: Tajika Aspects', bn: 'Module 21-1: Tajika Aspects', kn: 'Module 21-1: Tajika Aspects', gu: 'Module 21-1: Tajika Aspects' }, href: '/learn/modules/21-1' },
+    { label: { en: 'Module 21-2: Sahams', hi: 'मॉड्यूल 21-2: सहम', sa: 'मॉड्यूल 21-2: सहम', mai: 'मॉड्यूल 21-2: सहम', mr: 'मॉड्यूल 21-2: सहम', ta: 'Module 21-2: Sahams', te: 'Module 21-2: Sahams', bn: 'Module 21-2: Sahams', kn: 'Module 21-2: Sahams', gu: 'Module 21-2: Sahams' }, href: '/learn/modules/21-2' },
+    { label: { en: 'Module 21-3: Mudda Dasha', hi: 'मॉड्यूल 21-3: मुद्दा दशा', sa: 'मॉड्यूल 21-3: मुद्दा दशा', mai: 'मॉड्यूल 21-3: मुद्दा दशा', mr: 'मॉड्यूल 21-3: मुद्दा दशा', ta: 'Module 21-3: Mudda Dasha', te: 'Module 21-3: Mudda Dasha', bn: 'Module 21-3: Mudda Dasha', kn: 'Module 21-3: Mudda Dasha', gu: 'Module 21-3: Mudda Dasha' }, href: '/learn/modules/21-3' },
+    { label: { en: 'Varshaphal Tool', hi: 'वर्षफल उपकरण', sa: 'वर्षफल उपकरण', mai: 'वर्षफल उपकरण', mr: 'वर्षफल उपकरण', ta: 'Varshaphal Tool', te: 'Varshaphal Tool', bn: 'Varshaphal Tool', kn: 'Varshaphal Tool', gu: 'Varshaphal Tool' }, href: '/varshaphal' },
   ],
 };
 
@@ -28,10 +28,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'तिथि प्रवेश किस पर आधारित है?',
     },
     options: [
-      { en: 'The Sun returning to its natal longitude (solar return)', hi: 'सूर्य का अपने जन्म भोगांश पर लौटना (सौर प्रत्यावर्तन)' },
-      { en: 'The Moon returning to its natal longitude (lunar return)', hi: 'चन्द्र का अपने जन्म भोगांश पर लौटना (चान्द्र प्रत्यावर्तन)' },
-      { en: 'The Sun-Moon angular relationship (tithi) recurring annually', hi: 'सूर्य-चन्द्र कोणीय सम्बन्ध (तिथि) का वार्षिक पुनरावर्तन' },
-      { en: 'The Ascendant returning to its natal degree', hi: 'लग्न का अपने जन्म अंश पर लौटना' },
+      { en: 'The Sun returning to its natal longitude (solar return)', hi: 'सूर्य का अपने जन्म भोगांश पर लौटना (सौर प्रत्यावर्तन)', sa: 'सूर्य का अपने जन्म भोगांश पर लौटना (सौर प्रत्यावर्तन)', mai: 'सूर्य का अपने जन्म भोगांश पर लौटना (सौर प्रत्यावर्तन)', mr: 'सूर्य का अपने जन्म भोगांश पर लौटना (सौर प्रत्यावर्तन)', ta: 'The Sun returning to its natal longitude (solar return)', te: 'The Sun returning to its natal longitude (solar return)', bn: 'The Sun returning to its natal longitude (solar return)', kn: 'The Sun returning to its natal longitude (solar return)', gu: 'The Sun returning to its natal longitude (solar return)' },
+      { en: 'The Moon returning to its natal longitude (lunar return)', hi: 'चन्द्र का अपने जन्म भोगांश पर लौटना (चान्द्र प्रत्यावर्तन)', sa: 'चन्द्र का अपने जन्म भोगांश पर लौटना (चान्द्र प्रत्यावर्तन)', mai: 'चन्द्र का अपने जन्म भोगांश पर लौटना (चान्द्र प्रत्यावर्तन)', mr: 'चन्द्र का अपने जन्म भोगांश पर लौटना (चान्द्र प्रत्यावर्तन)', ta: 'The Moon returning to its natal longitude (lunar return)', te: 'The Moon returning to its natal longitude (lunar return)', bn: 'The Moon returning to its natal longitude (lunar return)', kn: 'The Moon returning to its natal longitude (lunar return)', gu: 'The Moon returning to its natal longitude (lunar return)' },
+      { en: 'The Sun-Moon angular relationship (tithi) recurring annually', hi: 'सूर्य-चन्द्र कोणीय सम्बन्ध (तिथि) का वार्षिक पुनरावर्तन', sa: 'सूर्य-चन्द्र कोणीय सम्बन्ध (तिथि) का वार्षिक पुनरावर्तन', mai: 'सूर्य-चन्द्र कोणीय सम्बन्ध (तिथि) का वार्षिक पुनरावर्तन', mr: 'सूर्य-चन्द्र कोणीय सम्बन्ध (तिथि) का वार्षिक पुनरावर्तन', ta: 'The Sun-Moon angular relationship (tithi) recurring annually', te: 'The Sun-Moon angular relationship (tithi) recurring annually', bn: 'The Sun-Moon angular relationship (tithi) recurring annually', kn: 'The Sun-Moon angular relationship (tithi) recurring annually', gu: 'The Sun-Moon angular relationship (tithi) recurring annually' },
+      { en: 'The Ascendant returning to its natal degree', hi: 'लग्न का अपने जन्म अंश पर लौटना', sa: 'लग्न का अपने जन्म अंश पर लौटना', mai: 'लग्न का अपने जन्म अंश पर लौटना', mr: 'लग्न का अपने जन्म अंश पर लौटना', ta: 'The Ascendant returning to its natal degree', te: 'The Ascendant returning to its natal degree', bn: 'The Ascendant returning to its natal degree', kn: 'The Ascendant returning to its natal degree', gu: 'The Ascendant returning to its natal degree' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -58,10 +58,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'तिथि प्रवेश वर्षफल (सौर प्रत्यावर्तन) से कैसे भिन्न है?',
     },
     options: [
-      { en: 'Varshaphal uses the Moon, Tithi Pravesha uses the Sun', hi: 'वर्षफल चन्द्रमा का, तिथि प्रवेश सूर्य का उपयोग करता है' },
+      { en: 'Varshaphal uses the Moon, Tithi Pravesha uses the Sun', hi: 'वर्षफल चन्द्रमा का, तिथि प्रवेश सूर्य का उपयोग करता है', sa: 'वर्षफल चन्द्रमा का, तिथि प्रवेश सूर्य का उपयोग करता है', mai: 'वर्षफल चन्द्रमा का, तिथि प्रवेश सूर्य का उपयोग करता है', mr: 'वर्षफल चन्द्रमा का, तिथि प्रवेश सूर्य का उपयोग करता है', ta: 'Varshaphal uses the Moon, Tithi Pravesha uses the Sun', te: 'Varshaphal uses the Moon, Tithi Pravesha uses the Sun', bn: 'Varshaphal uses the Moon, Tithi Pravesha uses the Sun', kn: 'Varshaphal uses the Moon, Tithi Pravesha uses the Sun', gu: 'Varshaphal uses the Moon, Tithi Pravesha uses the Sun' },
       { en: 'Varshaphal tracks Sun\'s return, Tithi Pravesha tracks the Sun-Moon relationship', hi: 'वर्षफल सूर्य के लौटने को, तिथि प्रवेश सूर्य-चन्द्र सम्बन्ध को ट्रैक करता है' },
-      { en: 'They are the same technique with different names', hi: 'ये एक ही तकनीक हैं भिन्न नामों से' },
-      { en: 'Tithi Pravesha is for daily predictions, Varshaphal for yearly', hi: 'तिथि प्रवेश दैनिक फलादेश के लिए, वर्षफल वार्षिक' },
+      { en: 'They are the same technique with different names', hi: 'ये एक ही तकनीक हैं भिन्न नामों से', sa: 'ये एक ही तकनीक हैं भिन्न नामों से', mai: 'ये एक ही तकनीक हैं भिन्न नामों से', mr: 'ये एक ही तकनीक हैं भिन्न नामों से', ta: 'They are the same technique with different names', te: 'They are the same technique with different names', bn: 'They are the same technique with different names', kn: 'They are the same technique with different names', gu: 'They are the same technique with different names' },
+      { en: 'Tithi Pravesha is for daily predictions, Varshaphal for yearly', hi: 'तिथि प्रवेश दैनिक फलादेश के लिए, वर्षफल वार्षिक', sa: 'तिथि प्रवेश दैनिक फलादेश के लिए, वर्षफल वार्षिक', mai: 'तिथि प्रवेश दैनिक फलादेश के लिए, वर्षफल वार्षिक', mr: 'तिथि प्रवेश दैनिक फलादेश के लिए, वर्षफल वार्षिक', ta: 'Tithi Pravesha is for daily predictions, Varshaphal for yearly', te: 'Tithi Pravesha is for daily predictions, Varshaphal for yearly', bn: 'Tithi Pravesha is for daily predictions, Varshaphal for yearly', kn: 'Tithi Pravesha is for daily predictions, Varshaphal for yearly', gu: 'Tithi Pravesha is for daily predictions, Varshaphal for yearly' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -78,8 +78,8 @@ const QUESTIONS: ModuleQuestion[] = [
     options: [
       { en: 'The Sun\'s longitude', hi: 'सूर्य का भोगांश' },
       { en: 'The Moon\'s longitude', hi: 'चन्द्रमा का भोगांश' },
-      { en: 'The angular separation between Moon and Sun', hi: 'चन्द्रमा और सूर्य के बीच कोणीय पृथक्करण' },
-      { en: 'The Ascendant degree', hi: 'लग्न अंश' },
+      { en: 'The angular separation between Moon and Sun', hi: 'चन्द्रमा और सूर्य के बीच कोणीय पृथक्करण', sa: 'चन्द्रमा और सूर्य के बीच कोणीय पृथक्करण', mai: 'चन्द्रमा और सूर्य के बीच कोणीय पृथक्करण', mr: 'चन्द्रमा और सूर्य के बीच कोणीय पृथक्करण', ta: 'The angular separation between Moon and Sun', te: 'The angular separation between Moon and Sun', bn: 'The angular separation between Moon and Sun', kn: 'The angular separation between Moon and Sun', gu: 'The angular separation between Moon and Sun' },
+      { en: 'The Ascendant degree', hi: 'लग्न अंश', sa: 'लग्न अंश', mai: 'लग्न अंश', mr: 'लग्न अंश', ta: 'The Ascendant degree', te: 'The Ascendant degree', bn: 'The Ascendant degree', kn: 'The Ascendant degree', gu: 'The Ascendant degree' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -106,10 +106,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'तिथि प्रवेश गणना के लिए कौन-सी दो शर्तें पूरी होनी चाहिए?',
     },
     options: [
-      { en: 'Moon must be in natal sign AND Sun in natal sign', hi: 'चन्द्र जन्म राशि में हो और सूर्य जन्म राशि में' },
-      { en: 'Moon-Sun elongation matches natal AND Sun is in the same sign as natal', hi: 'चन्द्र-सूर्य विस्तार जन्म से मेल खाए और सूर्य जन्म की ही राशि में हो' },
-      { en: 'Ascendant matches natal AND Moon in natal nakshatra', hi: 'लग्न जन्म से मेल खाए और चन्द्र जन्म नक्षत्र में हो' },
-      { en: 'Only the tithi needs to match', hi: 'केवल तिथि का मिलान आवश्यक' },
+      { en: 'Moon must be in natal sign AND Sun in natal sign', hi: 'चन्द्र जन्म राशि में हो और सूर्य जन्म राशि में', sa: 'चन्द्र जन्म राशि में हो और सूर्य जन्म राशि में', mai: 'चन्द्र जन्म राशि में हो और सूर्य जन्म राशि में', mr: 'चन्द्र जन्म राशि में हो और सूर्य जन्म राशि में', ta: 'Moon must be in natal sign AND Sun in natal sign', te: 'Moon must be in natal sign AND Sun in natal sign', bn: 'Moon must be in natal sign AND Sun in natal sign', kn: 'Moon must be in natal sign AND Sun in natal sign', gu: 'Moon must be in natal sign AND Sun in natal sign' },
+      { en: 'Moon-Sun elongation matches natal AND Sun is in the same sign as natal', hi: 'चन्द्र-सूर्य विस्तार जन्म से मेल खाए और सूर्य जन्म की ही राशि में हो', sa: 'चन्द्र-सूर्य विस्तार जन्म से मेल खाए और सूर्य जन्म की ही राशि में हो', mai: 'चन्द्र-सूर्य विस्तार जन्म से मेल खाए और सूर्य जन्म की ही राशि में हो', mr: 'चन्द्र-सूर्य विस्तार जन्म से मेल खाए और सूर्य जन्म की ही राशि में हो', ta: 'Moon-Sun elongation matches natal AND Sun is in the same sign as natal', te: 'Moon-Sun elongation matches natal AND Sun is in the same sign as natal', bn: 'Moon-Sun elongation matches natal AND Sun is in the same sign as natal', kn: 'Moon-Sun elongation matches natal AND Sun is in the same sign as natal', gu: 'Moon-Sun elongation matches natal AND Sun is in the same sign as natal' },
+      { en: 'Ascendant matches natal AND Moon in natal nakshatra', hi: 'लग्न जन्म से मेल खाए और चन्द्र जन्म नक्षत्र में हो', sa: 'लग्न जन्म से मेल खाए और चन्द्र जन्म नक्षत्र में हो', mai: 'लग्न जन्म से मेल खाए और चन्द्र जन्म नक्षत्र में हो', mr: 'लग्न जन्म से मेल खाए और चन्द्र जन्म नक्षत्र में हो', ta: 'Ascendant matches natal AND Moon in natal nakshatra', te: 'Ascendant matches natal AND Moon in natal nakshatra', bn: 'Ascendant matches natal AND Moon in natal nakshatra', kn: 'Ascendant matches natal AND Moon in natal nakshatra', gu: 'Ascendant matches natal AND Moon in natal nakshatra' },
+      { en: 'Only the tithi needs to match', hi: 'केवल तिथि का मिलान आवश्यक', sa: 'केवल तिथि का मिलान आवश्यक', mai: 'केवल तिथि का मिलान आवश्यक', mr: 'केवल तिथि का मिलान आवश्यक', ta: 'Only the tithi needs to match', te: 'Only the tithi needs to match', bn: 'Only the tithi needs to match', kn: 'Only the tithi needs to match', gu: 'Only the tithi needs to match' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -124,10 +124,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'तिथि प्रवेश को जीवन के किस क्षेत्र के लिए सर्वाधिक प्रासंगिक माना जाता है?',
     },
     options: [
-      { en: 'Career and public life', hi: 'करियर और सार्वजनिक जीवन' },
-      { en: 'Emotional, domestic, and relationship matters', hi: 'भावनात्मक, घरेलू और सम्बन्ध विषय' },
-      { en: 'Financial investments', hi: 'वित्तीय निवेश' },
-      { en: 'Health and longevity only', hi: 'केवल स्वास्थ्य और दीर्घायु' },
+      { en: 'Career and public life', hi: 'करियर और सार्वजनिक जीवन', sa: 'करियर और सार्वजनिक जीवन', mai: 'करियर और सार्वजनिक जीवन', mr: 'करियर और सार्वजनिक जीवन', ta: 'Career and public life', te: 'Career and public life', bn: 'Career and public life', kn: 'Career and public life', gu: 'Career and public life' },
+      { en: 'Emotional, domestic, and relationship matters', hi: 'भावनात्मक, घरेलू और सम्बन्ध विषय', sa: 'भावनात्मक, घरेलू और सम्बन्ध विषय', mai: 'भावनात्मक, घरेलू और सम्बन्ध विषय', mr: 'भावनात्मक, घरेलू और सम्बन्ध विषय', ta: 'Emotional, domestic, and relationship matters', te: 'Emotional, domestic, and relationship matters', bn: 'Emotional, domestic, and relationship matters', kn: 'Emotional, domestic, and relationship matters', gu: 'Emotional, domestic, and relationship matters' },
+      { en: 'Financial investments', hi: 'वित्तीय निवेश', sa: 'वित्तीय निवेश', mai: 'वित्तीय निवेश', mr: 'वित्तीय निवेश', ta: 'Financial investments', te: 'Financial investments', bn: 'Financial investments', kn: 'Financial investments', gu: 'Financial investments' },
+      { en: 'Health and longevity only', hi: 'केवल स्वास्थ्य और दीर्घायु', sa: 'केवल स्वास्थ्य और दीर्घायु', mai: 'केवल स्वास्थ्य और दीर्घायु', mr: 'केवल स्वास्थ्य और दीर्घायु', ta: 'Health and longevity only', te: 'Health and longevity only', bn: 'Health and longevity only', kn: 'Health and longevity only', gu: 'Health and longevity only' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -154,10 +154,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'तिथि प्रवेश कुण्डली के किन तत्त्वों की आगामी वर्ष हेतु व्याख्या होती है?',
     },
     options: [
-      { en: 'Only the Ascendant sign', hi: 'केवल लग्न राशि' },
-      { en: 'Lagna, planetary placements, and dashas', hi: 'लग्न, ग्रह स्थितियाँ, और दशाएँ' },
+      { en: 'Only the Ascendant sign', hi: 'केवल लग्न राशि', sa: 'केवल लग्न राशि', mai: 'केवल लग्न राशि', mr: 'केवल लग्न राशि', ta: 'Only the Ascendant sign', te: 'Only the Ascendant sign', bn: 'Only the Ascendant sign', kn: 'Only the Ascendant sign', gu: 'Only the Ascendant sign' },
+      { en: 'Lagna, planetary placements, and dashas', hi: 'लग्न, ग्रह स्थितियाँ, और दशाएँ', sa: 'लग्न, ग्रह स्थितियाँ, और दशाएँ', mai: 'लग्न, ग्रह स्थितियाँ, और दशाएँ', mr: 'लग्न, ग्रह स्थितियाँ, और दशाएँ', ta: 'Lagna, planetary placements, and dashas', te: 'Lagna, planetary placements, and dashas', bn: 'Lagna, planetary placements, and dashas', kn: 'Lagna, planetary placements, and dashas', gu: 'Lagna, planetary placements, and dashas' },
       { en: 'Only the Moon\'s position', hi: 'केवल चन्द्रमा की स्थिति' },
-      { en: 'Only Tajika yogas', hi: 'केवल ताजिक योग' },
+      { en: 'Only Tajika yogas', hi: 'केवल ताजिक योग', sa: 'केवल ताजिक योग', mai: 'केवल ताजिक योग', mr: 'केवल ताजिक योग', ta: 'Only Tajika yogas', te: 'Only Tajika yogas', bn: 'Only Tajika yogas', kn: 'Only Tajika yogas', gu: 'Only Tajika yogas' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -172,10 +172,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'भावनात्मक विषयों के फलादेश हेतु वर्षफल से तिथि प्रवेश को क्यों प्राथमिकता दी जा सकती है?',
     },
     options: [
-      { en: 'It uses more planets', hi: 'यह अधिक ग्रहों का उपयोग करता है' },
-      { en: 'It is based on the Sun-Moon relationship which governs emotions and mind', hi: 'यह सूर्य-चन्द्र सम्बन्ध पर आधारित है जो भावनाओं और मन को नियन्त्रित करता है' },
-      { en: 'It is always more accurate', hi: 'यह सदैव अधिक सटीक है' },
-      { en: 'It was developed more recently', hi: 'इसका विकास अधिक हाल में हुआ' },
+      { en: 'It uses more planets', hi: 'यह अधिक ग्रहों का उपयोग करता है', sa: 'यह अधिक ग्रहों का उपयोग करता है', mai: 'यह अधिक ग्रहों का उपयोग करता है', mr: 'यह अधिक ग्रहों का उपयोग करता है', ta: 'It uses more planets', te: 'It uses more planets', bn: 'It uses more planets', kn: 'It uses more planets', gu: 'It uses more planets' },
+      { en: 'It is based on the Sun-Moon relationship which governs emotions and mind', hi: 'यह सूर्य-चन्द्र सम्बन्ध पर आधारित है जो भावनाओं और मन को नियन्त्रित करता है', sa: 'यह सूर्य-चन्द्र सम्बन्ध पर आधारित है जो भावनाओं और मन को नियन्त्रित करता है', mai: 'यह सूर्य-चन्द्र सम्बन्ध पर आधारित है जो भावनाओं और मन को नियन्त्रित करता है', mr: 'यह सूर्य-चन्द्र सम्बन्ध पर आधारित है जो भावनाओं और मन को नियन्त्रित करता है', ta: 'It is based on the Sun-Moon relationship which governs emotions and mind', te: 'It is based on the Sun-Moon relationship which governs emotions and mind', bn: 'It is based on the Sun-Moon relationship which governs emotions and mind', kn: 'It is based on the Sun-Moon relationship which governs emotions and mind', gu: 'It is based on the Sun-Moon relationship which governs emotions and mind' },
+      { en: 'It is always more accurate', hi: 'यह सदैव अधिक सटीक है', sa: 'यह सदैव अधिक सटीक है', mai: 'यह सदैव अधिक सटीक है', mr: 'यह सदैव अधिक सटीक है', ta: 'It is always more accurate', te: 'It is always more accurate', bn: 'It is always more accurate', kn: 'It is always more accurate', gu: 'It is always more accurate' },
+      { en: 'It was developed more recently', hi: 'इसका विकास अधिक हाल में हुआ', sa: 'इसका विकास अधिक हाल में हुआ', mai: 'इसका विकास अधिक हाल में हुआ', mr: 'इसका विकास अधिक हाल में हुआ', ta: 'It was developed more recently', te: 'It was developed more recently', bn: 'It was developed more recently', kn: 'It was developed more recently', gu: 'It was developed more recently' },
     ],
     correctAnswer: 1,
     explanation: {

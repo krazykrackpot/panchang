@@ -269,7 +269,7 @@ export function getRemediesForWeakPlanets(
     // Gemstone
     gemstones.push({
       name: triLocale(remedy.gemstone.name, locale),
-      planet: planetName,
+      planet: planetName || '',
       description: locale === 'hi'
         ? `${graha.name.hi} को मजबूत करने के लिए ${triLocale(remedy.gemstone.name, 'hi')} ${triLocale(remedy.gemstone.metal, 'hi')} में ${triLocale(remedy.gemstone.finger, 'hi')} में ${remedy.gemstone.weight} धारण करें। ${triLocale(remedy.charity.day, 'hi')} को धारण करें।`
         : locale === 'sa'
@@ -280,7 +280,7 @@ export function getRemediesForWeakPlanets(
     // Mantra
     mantras.push({
       name: triLocale(remedy.beejMantra, locale),
-      planet: planetName,
+      planet: planetName || '',
       description: locale === 'hi'
         ? `बीज मन्त्र: ${remedy.beejMantra.hi} — ${remedy.count} बार जप करें, ${triLocale(remedy.charity.day, 'hi')} से प्रारम्भ करें। ${triLocale(remedy.charity.deity, 'hi')} को समर्पित।`
         : locale === 'sa'
@@ -291,7 +291,7 @@ export function getRemediesForWeakPlanets(
     // Practices
     practices.push({
       name: locale === 'hi' ? `${graha.name.hi} उपचार` : locale === 'sa' ? `${graha.name.sa} उपचारः` : `${graha.name.en} Remedy`,
-      planet: planetName,
+      planet: planetName || '',
       description: locale === 'hi'
         ? `व्रत: ${triLocale(remedy.fasting, 'hi')}। दान: ${triLocale(remedy.charity.items, 'hi')} — ${triLocale(remedy.charity.day, 'hi')} को। रंग: ${triLocale(remedy.color, 'hi')}। दिशा: ${triLocale(remedy.direction, 'hi')}।`
         : locale === 'sa'

@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -7,7 +8,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { Clock, Loader2, ArrowRight } from 'lucide-react';
 import { MasaIcon, SamvatsaraIcon, MuhurtaIcon, TithiIcon, NakshatraIcon, YogaIcon, KaranaIcon, VaraIcon } from '@/components/icons/PanchangIcons';
 import { useLocationStore } from '@/stores/location-store';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Inline trilingual helpers ─────────────────────────────────────────────
@@ -193,8 +194,8 @@ interface KaalData {
   kaliAhargana?: number;
   kaliyugaYear?: number;
   julianDay?: number;
-  samvatsara?: { en: string; hi: string; sa: string };
-  masa?: { en: string; hi: string; sa: string };
+  samvatsara?: LocaleText;
+  masa?: LocaleText;
   ayanamsha?: number;
 }
 
@@ -204,9 +205,9 @@ export default function KaalNirnayaPage() {
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   // Helper for bilingual objects (en/hi) — falls back to hi for sa, then en
-  const t2 = (obj: { en: string; hi: string }): string => {
+  const t2 = (obj: LocaleText): string => {
     if (locale === 'en') return obj.en;
-    return obj.hi; // hi serves as fallback for sa
+    return obj.hi || ""; // hi serves as fallback for sa
   };
 
   const [kaalData, setKaalData] = useState<KaalData | null>(null);
@@ -261,13 +262,13 @@ export default function KaalNirnayaPage() {
           </motion.div>
         </div>
         <h1 className="text-5xl sm:text-7xl font-bold mb-3" style={headingFont}>
-          <span className="text-gold-gradient">{L.title[locale]}</span>
+          <span className="text-gold-gradient">{tl(L.title, locale)}</span>
         </h1>
         <p className="text-2xl text-gold-dark mb-4" style={headingFont}>
           {locale !== 'en' && L.title.en}
         </p>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto leading-relaxed">
-          {L.subtitle[locale]}
+          {tl(L.subtitle, locale)}
         </p>
       </motion.div>
 
@@ -288,8 +289,8 @@ export default function KaalNirnayaPage() {
               <circle cx="32" cy="32" r="8" fill="url(#yuga-grad)" opacity="0.6" />
             </svg>
           </div>
-          <h2 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>{L.fourYugas[locale]}</h2>
-          <p className="text-text-secondary text-sm max-w-2xl mx-auto">{L.fourYugasDesc[locale]}</p>
+          <h2 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>{tl(L.fourYugas, locale)}</h2>
+          <p className="text-text-secondary text-sm max-w-2xl mx-auto">{tl(L.fourYugasDesc, locale)}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
@@ -308,8 +309,8 @@ export default function KaalNirnayaPage() {
                 </div>
               )}
               <div className="mb-4">
-                <div className={`font-bold text-xl mb-1 ${yuga.text}`} style={headingFont}>{yuga.name[locale]}</div>
-                <div className="text-text-secondary/75 text-xs">{yuga.altName[locale]}</div>
+                <div className={`font-bold text-xl mb-1 ${yuga.text}`} style={headingFont}>{tl(yuga.name, locale)}</div>
+                <div className="text-text-secondary/75 text-xs">{tl(yuga.altName, locale)}</div>
               </div>
               <div className="font-mono text-2xl font-bold text-text-primary mb-3">
                 {yuga.years.toLocaleString()}
@@ -329,7 +330,7 @@ export default function KaalNirnayaPage() {
                   }`} style={{ width: `${yuga.dharma}%` }} />
                 </div>
               </div>
-              <p className="text-text-secondary text-xs leading-relaxed">{yuga.desc[locale]}</p>
+              <p className="text-text-secondary text-xs leading-relaxed">{tl(yuga.desc, locale)}</p>
 
               {/* Current Yuga progress */}
               {yuga.current && (
@@ -361,12 +362,12 @@ export default function KaalNirnayaPage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             {[
-              { label: { en: 'Current Brahma', hi: 'वर्तमान ब्रह्मा' }, value: { en: '51st year (Dvitiya Parardha)', hi: '51वाँ वर्ष (द्वितीय परार्ध)' }, color: 'text-rose-300' },
-              { label: { en: 'Current Kalpa', hi: 'वर्तमान कल्प' }, value: { en: 'Shveta-Varaha Kalpa', hi: 'श्वेत-वराह कल्प' }, color: 'text-gold-light' },
-              { label: { en: 'Current Manu', hi: 'वर्तमान मनु' }, value: { en: '7th — Vaivasvata', hi: '7वें — वैवस्वत' }, color: 'text-blue-300' },
-              { label: { en: 'Current Mahayuga', hi: 'वर्तमान महायुग' }, value: { en: '28th of 71', hi: '71 में से 28वाँ' }, color: 'text-emerald-300' },
-              { label: { en: 'Current Yuga', hi: 'वर्तमान युग' }, value: { en: 'Kali Yuga (4th)', hi: 'कलियुग (4था)' }, color: 'text-red-300' },
-              { label: { en: 'Kali Yuga elapsed', hi: 'कलियुग बीत चुका' }, value: { en: '~5,128 of 432,000 years', hi: '4,32,000 में से ~5,128 वर्ष' }, color: 'text-amber-300' },
+              { label: { en: 'Current Brahma', hi: 'वर्तमान ब्रह्मा', sa: 'वर्तमान ब्रह्मा', mai: 'वर्तमान ब्रह्मा', mr: 'वर्तमान ब्रह्मा', ta: 'Current Brahma', te: 'Current Brahma', bn: 'Current Brahma', kn: 'Current Brahma', gu: 'Current Brahma' }, value: { en: '51st year (Dvitiya Parardha)', hi: '51वाँ वर्ष (द्वितीय परार्ध)', sa: '51वाँ वर्ष (द्वितीय परार्ध)', mai: '51वाँ वर्ष (द्वितीय परार्ध)', mr: '51वाँ वर्ष (द्वितीय परार्ध)', ta: '51st year (Dvitiya Parardha)', te: '51st year (Dvitiya Parardha)', bn: '51st year (Dvitiya Parardha)', kn: '51st year (Dvitiya Parardha)', gu: '51st year (Dvitiya Parardha)' }, color: 'text-rose-300' },
+              { label: { en: 'Current Kalpa', hi: 'वर्तमान कल्प', sa: 'वर्तमान कल्प', mai: 'वर्तमान कल्प', mr: 'वर्तमान कल्प', ta: 'Current Kalpa', te: 'Current Kalpa', bn: 'Current Kalpa', kn: 'Current Kalpa', gu: 'Current Kalpa' }, value: { en: 'Shveta-Varaha Kalpa', hi: 'श्वेत-वराह कल्प', sa: 'श्वेत-वराह कल्प', mai: 'श्वेत-वराह कल्प', mr: 'श्वेत-वराह कल्प', ta: 'Shveta-Varaha Kalpa', te: 'Shveta-Varaha Kalpa', bn: 'Shveta-Varaha Kalpa', kn: 'Shveta-Varaha Kalpa', gu: 'Shveta-Varaha Kalpa' }, color: 'text-gold-light' },
+              { label: { en: 'Current Manu', hi: 'वर्तमान मनु', sa: 'वर्तमान मनु', mai: 'वर्तमान मनु', mr: 'वर्तमान मनु', ta: 'Current Manu', te: 'Current Manu', bn: 'Current Manu', kn: 'Current Manu', gu: 'Current Manu' }, value: { en: '7th — Vaivasvata', hi: '7वें — वैवस्वत', sa: '7वें — वैवस्वत', mai: '7वें — वैवस्वत', mr: '7वें — वैवस्वत', ta: '7th — Vaivasvata', te: '7th — Vaivasvata', bn: '7th — Vaivasvata', kn: '7th — Vaivasvata', gu: '7th — Vaivasvata' }, color: 'text-blue-300' },
+              { label: { en: 'Current Mahayuga', hi: 'वर्तमान महायुग', sa: 'वर्तमान महायुग', mai: 'वर्तमान महायुग', mr: 'वर्तमान महायुग', ta: 'Current Mahayuga', te: 'Current Mahayuga', bn: 'Current Mahayuga', kn: 'Current Mahayuga', gu: 'Current Mahayuga' }, value: { en: '28th of 71', hi: '71 में से 28वाँ', sa: '71 में से 28वाँ', mai: '71 में से 28वाँ', mr: '71 में से 28वाँ', ta: '28th of 71', te: '28th of 71', bn: '28th of 71', kn: '28th of 71', gu: '28th of 71' }, color: 'text-emerald-300' },
+              { label: { en: 'Current Yuga', hi: 'वर्तमान युग', sa: 'वर्तमान युग', mai: 'वर्तमान युग', mr: 'वर्तमान युग', ta: 'Current Yuga', te: 'Current Yuga', bn: 'Current Yuga', kn: 'Current Yuga', gu: 'Current Yuga' }, value: { en: 'Kali Yuga (4th)', hi: 'कलियुग (4था)', sa: 'कलियुग (4था)', mai: 'कलियुग (4था)', mr: 'कलियुग (4था)', ta: 'Kali Yuga (4th)', te: 'Kali Yuga (4th)', bn: 'Kali Yuga (4th)', kn: 'Kali Yuga (4th)', gu: 'Kali Yuga (4th)' }, color: 'text-red-300' },
+              { label: { en: 'Kali Yuga elapsed', hi: 'कलियुग बीत चुका', sa: 'कलियुग बीत चुका', mai: 'कलियुग बीत चुका', mr: 'कलियुग बीत चुका', ta: 'Kali Yuga elapsed', te: 'Kali Yuga elapsed', bn: 'Kali Yuga elapsed', kn: 'Kali Yuga elapsed', gu: 'Kali Yuga elapsed' }, value: { en: '~5,128 of 432,000 years', hi: '4,32,000 में से ~5,128 वर्ष', sa: '4,32,000 में से ~5,128 वर्ष', mai: '4,32,000 में से ~5,128 वर्ष', mr: '4,32,000 में से ~5,128 वर्ष', ta: '~5,128 of 432,000 years', te: '~5,128 of 432,000 years', bn: '~5,128 of 432,000 years', kn: '~5,128 of 432,000 years', gu: '~5,128 of 432,000 years' }, color: 'text-amber-300' },
             ].map((item) => (
               <div key={item.label.en} className="rounded-xl p-4 bg-bg-primary/40 border border-gold-primary/10 text-center">
                 <div className="text-gold-dark/60 text-xs uppercase tracking-wider font-bold mb-1.5">{t2(item.label)}</div>
@@ -450,37 +451,37 @@ export default function KaalNirnayaPage() {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
               {([
-                { n: 1, en: 'Shveta-Varaha', hi: 'श्वेत-वराह', meaning: { en: 'White Boar — Vishnu as Varaha lifts Earth', hi: 'श्वेत वराह — विष्णु वराह रूप में पृथ्वी उठाते हैं' }, current: true },
-                { n: 2, en: 'Nilalohita', hi: 'नीललोहित', meaning: { en: 'Blue-Red — Shiva as Nilalohita', hi: 'नील-लोहित — शिव नीललोहित रूप' } },
-                { n: 3, en: 'Vamadeva', hi: 'वामदेव', meaning: { en: 'Gracious Lord — Shiva as Vamadeva', hi: 'वामदेव — शिव का सौम्य रूप' } },
-                { n: 4, en: 'Gathantara', hi: 'गठान्तर', meaning: { en: 'Between the knots of time', hi: 'काल की गाँठों के बीच' } },
-                { n: 5, en: 'Raurava', hi: 'रौरव', meaning: { en: 'Named after Ruru deer form', hi: 'रुरु मृग रूप के नाम पर' } },
-                { n: 6, en: 'Prana', hi: 'प्राण', meaning: { en: 'The Cosmic Breath', hi: 'ब्रह्मांडीय प्राण' } },
-                { n: 7, en: 'Brihad', hi: 'बृहत्', meaning: { en: 'The Great Expansion', hi: 'महान विस्तार' } },
-                { n: 8, en: 'Kandarpa', hi: 'कन्दर्प', meaning: { en: 'Desire — creative impulse', hi: 'काम — सृजन की प्रेरणा' } },
-                { n: 9, en: 'Sadya', hi: 'सद्य', meaning: { en: 'The Immediate', hi: 'तत्काल' } },
-                { n: 10, en: 'Ishana', hi: 'ईशान', meaning: { en: 'The Ruler — Shiva as Ishana', hi: 'ईशान — शिव का शासक रूप' } },
-                { n: 11, en: 'Dhyana', hi: 'ध्यान', meaning: { en: 'Meditation', hi: 'ध्यान' } },
-                { n: 12, en: 'Sarasvata', hi: 'सारस्वत', meaning: { en: 'Of Sarasvati — knowledge', hi: 'सरस्वती — ज्ञान का कल्प' } },
-                { n: 13, en: 'Udana', hi: 'उदान', meaning: { en: 'Upward breath', hi: 'ऊर्ध्व प्राण' } },
-                { n: 14, en: 'Garuda', hi: 'गरुड', meaning: { en: 'The divine eagle of Vishnu', hi: 'विष्णु का दिव्य वाहन गरुड' } },
-                { n: 15, en: 'Kaurma', hi: 'कौर्म', meaning: { en: 'Tortoise — Vishnu as Kurma', hi: 'कूर्म — विष्णु का कच्छप रूप' } },
-                { n: 16, en: 'Narasimha', hi: 'नारसिंह', meaning: { en: 'Man-Lion avatar of Vishnu', hi: 'विष्णु का नरसिंह अवतार' } },
-                { n: 17, en: 'Samana', hi: 'समान', meaning: { en: 'The Equalizing breath', hi: 'समान प्राण' } },
-                { n: 18, en: 'Agneya', hi: 'आग्नेय', meaning: { en: 'Of Agni — fire creation', hi: 'अग्नि — अग्नि सृष्टि' } },
-                { n: 19, en: 'Soma', hi: 'सोम', meaning: { en: 'Moon — the nectar of immortality', hi: 'चन्द्र — अमृत का कल्प' } },
-                { n: 20, en: 'Manava', hi: 'मानव', meaning: { en: 'Of Manu — human creation', hi: 'मनु — मानव सृष्टि' } },
-                { n: 21, en: 'Tatpurusha', hi: 'तत्पुरुष', meaning: { en: 'Supreme Person — Shiva as Tatpurusha', hi: 'तत्पुरुष — शिव का परम पुरुष रूप' } },
+                { n: 1, en: 'Shveta-Varaha', hi: 'श्वेत-वराह', meaning: { en: 'White Boar — Vishnu as Varaha lifts Earth', hi: 'श्वेत वराह — विष्णु वराह रूप में पृथ्वी उठाते हैं', sa: 'श्वेत वराह — विष्णु वराह रूप में पृथ्वी उठाते हैं', mai: 'श्वेत वराह — विष्णु वराह रूप में पृथ्वी उठाते हैं', mr: 'श्वेत वराह — विष्णु वराह रूप में पृथ्वी उठाते हैं', ta: 'White Boar — Vishnu as Varaha lifts Earth', te: 'White Boar — Vishnu as Varaha lifts Earth', bn: 'White Boar — Vishnu as Varaha lifts Earth', kn: 'White Boar — Vishnu as Varaha lifts Earth', gu: 'White Boar — Vishnu as Varaha lifts Earth' }, current: true },
+                { n: 2, en: 'Nilalohita', hi: 'नीललोहित', meaning: { en: 'Blue-Red — Shiva as Nilalohita', hi: 'नील-लोहित — शिव नीललोहित रूप', sa: 'नील-लोहित — शिव नीललोहित रूप', mai: 'नील-लोहित — शिव नीललोहित रूप', mr: 'नील-लोहित — शिव नीललोहित रूप', ta: 'Blue-Red — Shiva as Nilalohita', te: 'Blue-Red — Shiva as Nilalohita', bn: 'Blue-Red — Shiva as Nilalohita', kn: 'Blue-Red — Shiva as Nilalohita', gu: 'Blue-Red — Shiva as Nilalohita' } },
+                { n: 3, en: 'Vamadeva', hi: 'वामदेव', meaning: { en: 'Gracious Lord — Shiva as Vamadeva', hi: 'वामदेव — शिव का सौम्य रूप', sa: 'वामदेव — शिव का सौम्य रूप', mai: 'वामदेव — शिव का सौम्य रूप', mr: 'वामदेव — शिव का सौम्य रूप', ta: 'Gracious Lord — Shiva as Vamadeva', te: 'Gracious Lord — Shiva as Vamadeva', bn: 'Gracious Lord — Shiva as Vamadeva', kn: 'Gracious Lord — Shiva as Vamadeva', gu: 'Gracious Lord — Shiva as Vamadeva' } },
+                { n: 4, en: 'Gathantara', hi: 'गठान्तर', meaning: { en: 'Between the knots of time', hi: 'काल की गाँठों के बीच', sa: 'काल की गाँठों के बीच', mai: 'काल की गाँठों के बीच', mr: 'काल की गाँठों के बीच', ta: 'Between the knots of time', te: 'Between the knots of time', bn: 'Between the knots of time', kn: 'Between the knots of time', gu: 'Between the knots of time' } },
+                { n: 5, en: 'Raurava', hi: 'रौरव', meaning: { en: 'Named after Ruru deer form', hi: 'रुरु मृग रूप के नाम पर', sa: 'रुरु मृग रूप के नाम पर', mai: 'रुरु मृग रूप के नाम पर', mr: 'रुरु मृग रूप के नाम पर', ta: 'Named after Ruru deer form', te: 'Named after Ruru deer form', bn: 'Named after Ruru deer form', kn: 'Named after Ruru deer form', gu: 'Named after Ruru deer form' } },
+                { n: 6, en: 'Prana', hi: 'प्राण', meaning: { en: 'The Cosmic Breath', hi: 'ब्रह्मांडीय प्राण', sa: 'ब्रह्मांडीय प्राण', mai: 'ब्रह्मांडीय प्राण', mr: 'ब्रह्मांडीय प्राण', ta: 'The Cosmic Breath', te: 'The Cosmic Breath', bn: 'The Cosmic Breath', kn: 'The Cosmic Breath', gu: 'The Cosmic Breath' } },
+                { n: 7, en: 'Brihad', hi: 'बृहत्', meaning: { en: 'The Great Expansion', hi: 'महान विस्तार', sa: 'महान विस्तार', mai: 'महान विस्तार', mr: 'महान विस्तार', ta: 'The Great Expansion', te: 'The Great Expansion', bn: 'The Great Expansion', kn: 'The Great Expansion', gu: 'The Great Expansion' } },
+                { n: 8, en: 'Kandarpa', hi: 'कन्दर्प', meaning: { en: 'Desire — creative impulse', hi: 'काम — सृजन की प्रेरणा', sa: 'काम — सृजन की प्रेरणा', mai: 'काम — सृजन की प्रेरणा', mr: 'काम — सृजन की प्रेरणा', ta: 'Desire — creative impulse', te: 'Desire — creative impulse', bn: 'Desire — creative impulse', kn: 'Desire — creative impulse', gu: 'Desire — creative impulse' } },
+                { n: 9, en: 'Sadya', hi: 'सद्य', meaning: { en: 'The Immediate', hi: 'तत्काल', sa: 'तत्काल', mai: 'तत्काल', mr: 'तत्काल', ta: 'The Immediate', te: 'The Immediate', bn: 'The Immediate', kn: 'The Immediate', gu: 'The Immediate' } },
+                { n: 10, en: 'Ishana', hi: 'ईशान', meaning: { en: 'The Ruler — Shiva as Ishana', hi: 'ईशान — शिव का शासक रूप', sa: 'ईशान — शिव का शासक रूप', mai: 'ईशान — शिव का शासक रूप', mr: 'ईशान — शिव का शासक रूप', ta: 'The Ruler — Shiva as Ishana', te: 'The Ruler — Shiva as Ishana', bn: 'The Ruler — Shiva as Ishana', kn: 'The Ruler — Shiva as Ishana', gu: 'The Ruler — Shiva as Ishana' } },
+                { n: 11, en: 'Dhyana', hi: 'ध्यान', meaning: { en: 'Meditation', hi: 'ध्यान', sa: 'ध्यान', mai: 'ध्यान', mr: 'ध्यान', ta: 'Meditation', te: 'Meditation', bn: 'Meditation', kn: 'Meditation', gu: 'Meditation' } },
+                { n: 12, en: 'Sarasvata', hi: 'सारस्वत', meaning: { en: 'Of Sarasvati — knowledge', hi: 'सरस्वती — ज्ञान का कल्प', sa: 'सरस्वती — ज्ञान का कल्प', mai: 'सरस्वती — ज्ञान का कल्प', mr: 'सरस्वती — ज्ञान का कल्प', ta: 'Of Sarasvati — knowledge', te: 'Of Sarasvati — knowledge', bn: 'Of Sarasvati — knowledge', kn: 'Of Sarasvati — knowledge', gu: 'Of Sarasvati — knowledge' } },
+                { n: 13, en: 'Udana', hi: 'उदान', meaning: { en: 'Upward breath', hi: 'ऊर्ध्व प्राण', sa: 'ऊर्ध्व प्राण', mai: 'ऊर्ध्व प्राण', mr: 'ऊर्ध्व प्राण', ta: 'Upward breath', te: 'Upward breath', bn: 'Upward breath', kn: 'Upward breath', gu: 'Upward breath' } },
+                { n: 14, en: 'Garuda', hi: 'गरुड', meaning: { en: 'The divine eagle of Vishnu', hi: 'विष्णु का दिव्य वाहन गरुड', sa: 'विष्णु का दिव्य वाहन गरुड', mai: 'विष्णु का दिव्य वाहन गरुड', mr: 'विष्णु का दिव्य वाहन गरुड', ta: 'The divine eagle of Vishnu', te: 'The divine eagle of Vishnu', bn: 'The divine eagle of Vishnu', kn: 'The divine eagle of Vishnu', gu: 'The divine eagle of Vishnu' } },
+                { n: 15, en: 'Kaurma', hi: 'कौर्म', meaning: { en: 'Tortoise — Vishnu as Kurma', hi: 'कूर्म — विष्णु का कच्छप रूप', sa: 'कूर्म — विष्णु का कच्छप रूप', mai: 'कूर्म — विष्णु का कच्छप रूप', mr: 'कूर्म — विष्णु का कच्छप रूप', ta: 'Tortoise — Vishnu as Kurma', te: 'Tortoise — Vishnu as Kurma', bn: 'Tortoise — Vishnu as Kurma', kn: 'Tortoise — Vishnu as Kurma', gu: 'Tortoise — Vishnu as Kurma' } },
+                { n: 16, en: 'Narasimha', hi: 'नारसिंह', meaning: { en: 'Man-Lion avatar of Vishnu', hi: 'विष्णु का नरसिंह अवतार', sa: 'विष्णु का नरसिंह अवतार', mai: 'विष्णु का नरसिंह अवतार', mr: 'विष्णु का नरसिंह अवतार', ta: 'Man-Lion avatar of Vishnu', te: 'Man-Lion avatar of Vishnu', bn: 'Man-Lion avatar of Vishnu', kn: 'Man-Lion avatar of Vishnu', gu: 'Man-Lion avatar of Vishnu' } },
+                { n: 17, en: 'Samana', hi: 'समान', meaning: { en: 'The Equalizing breath', hi: 'समान प्राण', sa: 'समान प्राण', mai: 'समान प्राण', mr: 'समान प्राण', ta: 'The Equalizing breath', te: 'The Equalizing breath', bn: 'The Equalizing breath', kn: 'The Equalizing breath', gu: 'The Equalizing breath' } },
+                { n: 18, en: 'Agneya', hi: 'आग्नेय', meaning: { en: 'Of Agni — fire creation', hi: 'अग्नि — अग्नि सृष्टि', sa: 'अग्नि — अग्नि सृष्टि', mai: 'अग्नि — अग्नि सृष्टि', mr: 'अग्नि — अग्नि सृष्टि', ta: 'Of Agni — fire creation', te: 'Of Agni — fire creation', bn: 'Of Agni — fire creation', kn: 'Of Agni — fire creation', gu: 'Of Agni — fire creation' } },
+                { n: 19, en: 'Soma', hi: 'सोम', meaning: { en: 'Moon — the nectar of immortality', hi: 'चन्द्र — अमृत का कल्प', sa: 'चन्द्र — अमृत का कल्प', mai: 'चन्द्र — अमृत का कल्प', mr: 'चन्द्र — अमृत का कल्प', ta: 'Moon — the nectar of immortality', te: 'Moon — the nectar of immortality', bn: 'Moon — the nectar of immortality', kn: 'Moon — the nectar of immortality', gu: 'Moon — the nectar of immortality' } },
+                { n: 20, en: 'Manava', hi: 'मानव', meaning: { en: 'Of Manu — human creation', hi: 'मनु — मानव सृष्टि', sa: 'मनु — मानव सृष्टि', mai: 'मनु — मानव सृष्टि', mr: 'मनु — मानव सृष्टि', ta: 'Of Manu — human creation', te: 'Of Manu — human creation', bn: 'Of Manu — human creation', kn: 'Of Manu — human creation', gu: 'Of Manu — human creation' } },
+                { n: 21, en: 'Tatpurusha', hi: 'तत्पुरुष', meaning: { en: 'Supreme Person — Shiva as Tatpurusha', hi: 'तत्पुरुष — शिव का परम पुरुष रूप', sa: 'तत्पुरुष — शिव का परम पुरुष रूप', mai: 'तत्पुरुष — शिव का परम पुरुष रूप', mr: 'तत्पुरुष — शिव का परम पुरुष रूप', ta: 'Supreme Person — Shiva as Tatpurusha', te: 'Supreme Person — Shiva as Tatpurusha', bn: 'Supreme Person — Shiva as Tatpurusha', kn: 'Supreme Person — Shiva as Tatpurusha', gu: 'Supreme Person — Shiva as Tatpurusha' } },
                 { n: 22, en: 'Vaikunta', hi: 'वैकुण्ठ', meaning: { en: 'Vishnu\'s supreme abode', hi: 'विष्णु का परम धाम' } },
-                { n: 23, en: 'Lakshmi', hi: 'लक्ष्मी', meaning: { en: 'Goddess of prosperity', hi: 'समृद्धि की देवी' } },
-                { n: 24, en: 'Savitri', hi: 'सावित्री', meaning: { en: 'Solar creative power', hi: 'सौर सृजन शक्ति' } },
-                { n: 25, en: 'Aghora', hi: 'अघोर', meaning: { en: 'Non-terrifying — Shiva as Aghora', hi: 'अघोर — शिव का अभय रूप' } },
-                { n: 26, en: 'Varaha', hi: 'वराह', meaning: { en: 'Boar incarnation', hi: 'वराह अवतार' } },
-                { n: 27, en: 'Vairaja', hi: 'वैराज', meaning: { en: 'Of Viraj — the cosmic body', hi: 'विराज — विराट पुरुष का कल्प' } },
+                { n: 23, en: 'Lakshmi', hi: 'लक्ष्मी', meaning: { en: 'Goddess of prosperity', hi: 'समृद्धि की देवी', sa: 'समृद्धि की देवी', mai: 'समृद्धि की देवी', mr: 'समृद्धि की देवी', ta: 'Goddess of prosperity', te: 'Goddess of prosperity', bn: 'Goddess of prosperity', kn: 'Goddess of prosperity', gu: 'Goddess of prosperity' } },
+                { n: 24, en: 'Savitri', hi: 'सावित्री', meaning: { en: 'Solar creative power', hi: 'सौर सृजन शक्ति', sa: 'सौर सृजन शक्ति', mai: 'सौर सृजन शक्ति', mr: 'सौर सृजन शक्ति', ta: 'Solar creative power', te: 'Solar creative power', bn: 'Solar creative power', kn: 'Solar creative power', gu: 'Solar creative power' } },
+                { n: 25, en: 'Aghora', hi: 'अघोर', meaning: { en: 'Non-terrifying — Shiva as Aghora', hi: 'अघोर — शिव का अभय रूप', sa: 'अघोर — शिव का अभय रूप', mai: 'अघोर — शिव का अभय रूप', mr: 'अघोर — शिव का अभय रूप', ta: 'Non-terrifying — Shiva as Aghora', te: 'Non-terrifying — Shiva as Aghora', bn: 'Non-terrifying — Shiva as Aghora', kn: 'Non-terrifying — Shiva as Aghora', gu: 'Non-terrifying — Shiva as Aghora' } },
+                { n: 26, en: 'Varaha', hi: 'वराह', meaning: { en: 'Boar incarnation', hi: 'वराह अवतार', sa: 'वराह अवतार', mai: 'वराह अवतार', mr: 'वराह अवतार', ta: 'Boar incarnation', te: 'Boar incarnation', bn: 'Boar incarnation', kn: 'Boar incarnation', gu: 'Boar incarnation' } },
+                { n: 27, en: 'Vairaja', hi: 'वैराज', meaning: { en: 'Of Viraj — the cosmic body', hi: 'विराज — विराट पुरुष का कल्प', sa: 'विराज — विराट पुरुष का कल्प', mai: 'विराज — विराट पुरुष का कल्प', mr: 'विराज — विराट पुरुष का कल्प', ta: 'Of Viraj — the cosmic body', te: 'Of Viraj — the cosmic body', bn: 'Of Viraj — the cosmic body', kn: 'Of Viraj — the cosmic body', gu: 'Of Viraj — the cosmic body' } },
                 { n: 28, en: 'Gauri', hi: 'गौरी', meaning: { en: 'The radiant — Parvati\'s form', hi: 'गौरी — पार्वती का उज्ज्वल रूप' } },
-                { n: 29, en: 'Mahesvara', hi: 'माहेश्वर', meaning: { en: 'The Great Lord — Shiva', hi: 'महेश्वर — शिव' } },
-                { n: 30, en: 'Pitri', hi: 'पितृ', meaning: { en: 'Of the ancestors', hi: 'पितरों का कल्प' } },
-              ] as { n: number; en: string; hi: string; meaning: { en: string; hi: string }; current?: boolean }[]).map((k) => (
+                { n: 29, en: 'Mahesvara', hi: 'माहेश्वर', meaning: { en: 'The Great Lord — Shiva', hi: 'महेश्वर — शिव', sa: 'महेश्वर — शिव', mai: 'महेश्वर — शिव', mr: 'महेश्वर — शिव', ta: 'The Great Lord — Shiva', te: 'The Great Lord — Shiva', bn: 'The Great Lord — Shiva', kn: 'The Great Lord — Shiva', gu: 'The Great Lord — Shiva' } },
+                { n: 30, en: 'Pitri', hi: 'पितृ', meaning: { en: 'Of the ancestors', hi: 'पितरों का कल्प', sa: 'पितरों का कल्प', mai: 'पितरों का कल्प', mr: 'पितरों का कल्प', ta: 'Of the ancestors', te: 'Of the ancestors', bn: 'Of the ancestors', kn: 'Of the ancestors', gu: 'Of the ancestors' } },
+              ] as { n: number; en: string; hi: string; meaning: LocaleText; current?: boolean }[]).map((k) => (
                 <div key={k.n} className={`rounded-lg px-3 py-2.5 flex items-start gap-2.5 ${k.current ? 'bg-gold-primary/8 border border-gold-primary/25' : 'bg-bg-primary/30 border border-gold-primary/5'}`}>
                   <span className={`text-xs font-mono font-bold mt-0.5 flex-shrink-0 ${k.current ? 'text-gold-primary' : 'text-text-secondary/65'}`}>{String(k.n).padStart(2, '0')}</span>
                   <div className="min-w-0">
@@ -504,22 +505,22 @@ export default function KaalNirnayaPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
                 {
-                  name: { en: 'Nitya Pralaya', hi: 'नित्य प्रलय' },
-                  desc: { en: 'Daily dissolution — the sleep and death of individual beings. Occurs continuously.', hi: 'दैनिक विलय — व्यक्तिगत प्राणियों की नींद और मृत्यु। निरन्तर होता है।' },
+                  name: { en: 'Nitya Pralaya', hi: 'नित्य प्रलय', sa: 'नित्य प्रलय', mai: 'नित्य प्रलय', mr: 'नित्य प्रलय', ta: 'Nitya Pralaya', te: 'Nitya Pralaya', bn: 'Nitya Pralaya', kn: 'Nitya Pralaya', gu: 'Nitya Pralaya' },
+                  desc: { en: 'Daily dissolution — the sleep and death of individual beings. Occurs continuously.', hi: 'दैनिक विलय — व्यक्तिगत प्राणियों की नींद और मृत्यु। निरन्तर होता है।', sa: 'दैनिक विलय — व्यक्तिगत प्राणियों की नींद और मृत्यु। निरन्तर होता है।', mai: 'दैनिक विलय — व्यक्तिगत प्राणियों की नींद और मृत्यु। निरन्तर होता है।', mr: 'दैनिक विलय — व्यक्तिगत प्राणियों की नींद और मृत्यु। निरन्तर होता है।', ta: 'Daily dissolution — the sleep and death of individual beings. Occurs continuously.', te: 'Daily dissolution — the sleep and death of individual beings. Occurs continuously.', bn: 'Daily dissolution — the sleep and death of individual beings. Occurs continuously.', kn: 'Daily dissolution — the sleep and death of individual beings. Occurs continuously.', gu: 'Daily dissolution — the sleep and death of individual beings. Occurs continuously.' },
                   color: 'text-emerald-400', border: 'border-emerald-500/20',
                 },
                 {
-                  name: { en: 'Naimittika Pralaya', hi: 'नैमित्तिक प्रलय' },
+                  name: { en: 'Naimittika Pralaya', hi: 'नैमित्तिक प्रलय', sa: 'नैमित्तिक प्रलय', mai: 'नैमित्तिक प्रलय', mr: 'नैमित्तिक प्रलय', ta: 'Naimittika Pralaya', te: 'Naimittika Pralaya', bn: 'Naimittika Pralaya', kn: 'Naimittika Pralaya', gu: 'Naimittika Pralaya' },
                   desc: { en: 'Brahma\'s nightly sleep — the three lower worlds dissolve, higher lokas survive. Occurs every Kalpa (4.32B years).', hi: 'ब्रह्मा की रात्रि निद्रा — तीन निचले लोक विलीन, उच्चतर लोक बचते हैं। प्रत्येक कल्प (4.32 अरब वर्ष) में होता है।' },
                   color: 'text-blue-400', border: 'border-blue-500/20',
                 },
                 {
-                  name: { en: 'Prakritika Pralaya (Mahapralaya)', hi: 'प्राकृतिक प्रलय (महाप्रलय)' },
+                  name: { en: 'Prakritika Pralaya (Mahapralaya)', hi: 'प्राकृतिक प्रलय (महाप्रलय)', sa: 'प्राकृतिक प्रलय (महाप्रलय)', mai: 'प्राकृतिक प्रलय (महाप्रलय)', mr: 'प्राकृतिक प्रलय (महाप्रलय)', ta: 'Prakritika Pralaya (Mahapralaya)', te: 'Prakritika Pralaya (Mahapralaya)', bn: 'Prakritika Pralaya (Mahapralaya)', kn: 'Prakritika Pralaya (Mahapralaya)', gu: 'Prakritika Pralaya (Mahapralaya)' },
                   desc: { en: 'Brahma\'s death — everything dissolves into Prakriti (primordial nature). Even Brahma ceases. Occurs after 100 Brahma years (311 trillion years).', hi: 'ब्रह्मा की मृत्यु — ब्रह्मा सहित सब कुछ प्रकृति में विलीन। 100 ब्रह्मवर्ष (311 खरब वर्ष) बाद होता है।' },
                   color: 'text-rose-400', border: 'border-rose-500/20',
                 },
                 {
-                  name: { en: 'Atyantika Pralaya', hi: 'आत्यन्तिक प्रलय' },
+                  name: { en: 'Atyantika Pralaya', hi: 'आत्यन्तिक प्रलय', sa: 'आत्यन्तिक प्रलय', mai: 'आत्यन्तिक प्रलय', mr: 'आत्यन्तिक प्रलय', ta: 'Atyantika Pralaya', te: 'Atyantika Pralaya', bn: 'Atyantika Pralaya', kn: 'Atyantika Pralaya', gu: 'Atyantika Pralaya' },
                   desc: { en: 'Individual liberation (Moksha) — the soul\'s personal dissolution from the cycle of rebirth. Not cosmic, but the ultimate goal of Jyotish and Vedanta.', hi: 'व्यक्तिगत मुक्ति (मोक्ष) — आत्मा का पुनर्जन्म चक्र से मुक्ति। ब्रह्मांडीय नहीं, लेकिन ज्योतिष और वेदान्त का अन्तिम लक्ष्य।' },
                   color: 'text-gold-primary', border: 'border-gold-primary/20',
                 },
@@ -576,11 +577,11 @@ export default function KaalNirnayaPage() {
           {[
             {
               level: 1,
-              name: { en: 'Mahayuga', hi: 'महायुग' },
+              name: { en: 'Mahayuga', hi: 'महायुग', sa: 'महायुग', mai: 'महायुग', mr: 'महायुग', ta: 'Mahayuga', te: 'Mahayuga', bn: 'Mahayuga', kn: 'Mahayuga', gu: 'Mahayuga' },
               sanskrit: 'महायुगम्',
               value: '4,320,000',
-              unit: { en: 'years', hi: 'वर्ष' },
-              formula: { en: 'Satya (1.728M) + Treta (1.296M) + Dvapara (0.864M) + Kali (0.432M)', hi: 'सत्य (17.28 लाख) + त्रेता (12.96 लाख) + द्वापर (8.64 लाख) + कलि (4.32 लाख)' },
+              unit: { en: 'years', hi: 'वर्ष', sa: 'वर्ष', mai: 'वर्ष', mr: 'वर्ष', ta: 'years', te: 'years', bn: 'years', kn: 'years', gu: 'years' },
+              formula: { en: 'Satya (1.728M) + Treta (1.296M) + Dvapara (0.864M) + Kali (0.432M)', hi: 'सत्य (17.28 लाख) + त्रेता (12.96 लाख) + द्वापर (8.64 लाख) + कलि (4.32 लाख)', sa: 'सत्य (17.28 लाख) + त्रेता (12.96 लाख) + द्वापर (8.64 लाख) + कलि (4.32 लाख)', mai: 'सत्य (17.28 लाख) + त्रेता (12.96 लाख) + द्वापर (8.64 लाख) + कलि (4.32 लाख)', mr: 'सत्य (17.28 लाख) + त्रेता (12.96 लाख) + द्वापर (8.64 लाख) + कलि (4.32 लाख)', ta: 'Satya (1.728M) + Treta (1.296M) + Dvapara (0.864M) + Kali (0.432M)', te: 'Satya (1.728M) + Treta (1.296M) + Dvapara (0.864M) + Kali (0.432M)', bn: 'Satya (1.728M) + Treta (1.296M) + Dvapara (0.864M) + Kali (0.432M)', kn: 'Satya (1.728M) + Treta (1.296M) + Dvapara (0.864M) + Kali (0.432M)', gu: 'Satya (1.728M) + Treta (1.296M) + Dvapara (0.864M) + Kali (0.432M)' },
               desc: {
                 en: 'One complete cycle of the four Yugas. The ratio between them is 4:3:2:1, reflecting the progressive decline of Dharma. Each Yuga also has a transitional dawn (Sandhya) and dusk (Sandhyamsha) period, which are included in the counts above.',
                 hi: 'चारों युगों का एक पूर्ण चक्र। उनके बीच का अनुपात 4:3:2:1 है, जो धर्म की क्रमिक गिरावट को दर्शाता है। प्रत्येक युग की एक संक्रमणकालीन प्रभात (संध्या) और सन्ध्यांश अवधि भी है।',
@@ -590,11 +591,11 @@ export default function KaalNirnayaPage() {
             },
             {
               level: 2,
-              name: { en: 'Manvantara', hi: 'मन्वन्तर' },
+              name: { en: 'Manvantara', hi: 'मन्वन्तर', sa: 'मन्वन्तर', mai: 'मन्वन्तर', mr: 'मन्वन्तर', ta: 'Manvantara', te: 'Manvantara', bn: 'Manvantara', kn: 'Manvantara', gu: 'Manvantara' },
               sanskrit: 'मन्वन्तरम्',
               value: '306,720,000',
-              unit: { en: 'years', hi: 'वर्ष' },
-              formula: { en: '71 Mahayugas = 71 × 4,320,000', hi: '71 महायुग = 71 × 43,20,000' },
+              unit: { en: 'years', hi: 'वर्ष', sa: 'वर्ष', mai: 'वर्ष', mr: 'वर्ष', ta: 'years', te: 'years', bn: 'years', kn: 'years', gu: 'years' },
+              formula: { en: '71 Mahayugas = 71 × 4,320,000', hi: '71 महायुग = 71 × 43,20,000', sa: '71 महायुग = 71 × 43,20,000', mai: '71 महायुग = 71 × 43,20,000', mr: '71 महायुग = 71 × 43,20,000', ta: '71 Mahayugas = 71 × 4,320,000', te: '71 Mahayugas = 71 × 4,320,000', bn: '71 Mahayugas = 71 × 4,320,000', kn: '71 Mahayugas = 71 × 4,320,000', gu: '71 Mahayugas = 71 × 4,320,000' },
               desc: {
                 en: 'The reign of one Manu — the progenitor of humanity for that age. Each Manu establishes Dharma, law, and social order. There are 14 Manus in a Kalpa. We are in the 7th Manvantara under Vaivasvata Manu (also called Shraddhadeva), the 28th Mahayuga of this Manvantara.',
                 hi: 'एक मनु का शासनकाल — उस युग में मानवता के प्रजापिता। प्रत्येक मनु धर्म, विधि और सामाजिक व्यवस्था स्थापित करता है। एक कल्प में 14 मनु होते हैं। हम 7वें मन्वन्तर में वैवस्वत मनु (श्राद्धदेव) के अधीन हैं, इस मन्वन्तर के 28वें महायुग में।',
@@ -604,11 +605,11 @@ export default function KaalNirnayaPage() {
             },
             {
               level: 3,
-              name: { en: 'Kalpa (Day of Brahma)', hi: 'कल्प (ब्रह्मा का दिन)' },
+              name: { en: 'Kalpa (Day of Brahma)', hi: 'कल्प (ब्रह्मा का दिन)', sa: 'कल्प (ब्रह्मा का दिन)', mai: 'कल्प (ब्रह्मा का दिन)', mr: 'कल्प (ब्रह्मा का दिन)', ta: 'Kalpa (Day of Brahma)', te: 'Kalpa (Day of Brahma)', bn: 'Kalpa (Day of Brahma)', kn: 'Kalpa (Day of Brahma)', gu: 'Kalpa (Day of Brahma)' },
               sanskrit: 'कल्पः',
               value: '4,320,000,000',
-              unit: { en: 'years (4.32 billion)', hi: 'वर्ष (4.32 अरब)' },
-              formula: { en: '14 Manvantaras + 15 Sandhya gaps = 1,000 Mahayugas', hi: '14 मन्वन्तर + 15 संध्या अन्तराल = 1,000 महायुग' },
+              unit: { en: 'years (4.32 billion)', hi: 'वर्ष (4.32 अरब)', sa: 'वर्ष (4.32 अरब)', mai: 'वर्ष (4.32 अरब)', mr: 'वर्ष (4.32 अरब)', ta: 'years (4.32 billion)', te: 'years (4.32 billion)', bn: 'years (4.32 billion)', kn: 'years (4.32 billion)', gu: 'years (4.32 billion)' },
+              formula: { en: '14 Manvantaras + 15 Sandhya gaps = 1,000 Mahayugas', hi: '14 मन्वन्तर + 15 संध्या अन्तराल = 1,000 महायुग', sa: '14 मन्वन्तर + 15 संध्या अन्तराल = 1,000 महायुग', mai: '14 मन्वन्तर + 15 संध्या अन्तराल = 1,000 महायुग', mr: '14 मन्वन्तर + 15 संध्या अन्तराल = 1,000 महायुग', ta: '14 Manvantaras + 15 Sandhya gaps = 1,000 Mahayugas', te: '14 Manvantaras + 15 Sandhya gaps = 1,000 Mahayugas', bn: '14 Manvantaras + 15 Sandhya gaps = 1,000 Mahayugas', kn: '14 Manvantaras + 15 Sandhya gaps = 1,000 Mahayugas', gu: '14 Manvantaras + 15 Sandhya gaps = 1,000 Mahayugas' },
               desc: {
                 en: 'One day of Brahma — the waking period when the universe exists. During a Kalpa, 14 Manus reign in succession, with a Sandhya (twilight dissolution) between each. At the end of the Kalpa, a partial dissolution (Naimittika Pralaya) occurs. The current Kalpa is called Shveta-Varaha Kalpa ("White Boar"), named after Vishnu\'s Varaha avatar.',
                 hi: 'ब्रह्मा का एक दिन — जागरण काल जब सृष्टि विद्यमान रहती है। एक कल्प में 14 मनु क्रमशः शासन करते हैं। कल्प के अंत में नैमित्तिक प्रलय होता है। वर्तमान कल्प को श्वेत-वराह कल्प कहते हैं — विष्णु के वराह अवतार के नाम पर।',
@@ -619,11 +620,11 @@ export default function KaalNirnayaPage() {
             },
             {
               level: 4,
-              name: { en: 'Night of Brahma (Pralaya)', hi: 'ब्रह्मा की रात्रि (प्रलय)' },
+              name: { en: 'Night of Brahma (Pralaya)', hi: 'ब्रह्मा की रात्रि (प्रलय)', sa: 'ब्रह्मा की रात्रि (प्रलय)', mai: 'ब्रह्मा की रात्रि (प्रलय)', mr: 'ब्रह्मा की रात्रि (प्रलय)', ta: 'Night of Brahma (Pralaya)', te: 'Night of Brahma (Pralaya)', bn: 'Night of Brahma (Pralaya)', kn: 'Night of Brahma (Pralaya)', gu: 'Night of Brahma (Pralaya)' },
               sanskrit: 'ब्रह्मरात्रिः (प्रलयः)',
               value: '4,320,000,000',
-              unit: { en: 'years (equal to one Kalpa)', hi: 'वर्ष (एक कल्प के बराबर)' },
-              formula: { en: '1 Night = 1 Day = 4.32 billion years', hi: '1 रात्रि = 1 दिन = 4.32 अरब वर्ष' },
+              unit: { en: 'years (equal to one Kalpa)', hi: 'वर्ष (एक कल्प के बराबर)', sa: 'वर्ष (एक कल्प के बराबर)', mai: 'वर्ष (एक कल्प के बराबर)', mr: 'वर्ष (एक कल्प के बराबर)', ta: 'years (equal to one Kalpa)', te: 'years (equal to one Kalpa)', bn: 'years (equal to one Kalpa)', kn: 'years (equal to one Kalpa)', gu: 'years (equal to one Kalpa)' },
+              formula: { en: '1 Night = 1 Day = 4.32 billion years', hi: '1 रात्रि = 1 दिन = 4.32 अरब वर्ष', sa: '1 रात्रि = 1 दिन = 4.32 अरब वर्ष', mai: '1 रात्रि = 1 दिन = 4.32 अरब वर्ष', mr: '1 रात्रि = 1 दिन = 4.32 अरब वर्ष', ta: '1 Night = 1 Day = 4.32 billion years', te: '1 Night = 1 Day = 4.32 billion years', bn: '1 Night = 1 Day = 4.32 billion years', kn: '1 Night = 1 Day = 4.32 billion years', gu: '1 Night = 1 Day = 4.32 billion years' },
               desc: {
                 en: 'When Brahma sleeps, the three worlds (Bhuloka, Bhuvarloka, Svargaloka) are submerged in the cosmic ocean. All living beings enter a state of suspended existence (Avyakta) within Brahma. The higher worlds (Maharloka and above) survive. When Brahma wakes, creation resumes from where it paused — this is Naimittika Pralaya (incidental dissolution), not total annihilation.',
                 hi: 'जब ब्रह्मा सोते हैं, तीनों लोक (भूलोक, भुवर्लोक, स्वर्गलोक) ब्रह्मांडीय जलप्रलय में डूब जाते हैं। सभी जीव ब्रह्मा के भीतर अव्यक्त अवस्था में प्रवेश करते हैं। उच्चतर लोक (महर्लोक और ऊपर) बचे रहते हैं। जब ब्रह्मा जागते हैं, सृष्टि वहीं से पुनः आरंभ होती है — यह नैमित्तिक प्रलय है, पूर्ण विनाश नहीं।',
@@ -633,11 +634,11 @@ export default function KaalNirnayaPage() {
             },
             {
               level: 5,
-              name: { en: 'Day + Night of Brahma', hi: 'ब्रह्मा का एक अहोरात्र' },
+              name: { en: 'Day + Night of Brahma', hi: 'ब्रह्मा का एक अहोरात्र', sa: 'ब्रह्मा का एक अहोरात्र', mai: 'ब्रह्मा का एक अहोरात्र', mr: 'ब्रह्मा का एक अहोरात्र', ta: 'Day + Night of Brahma', te: 'Day + Night of Brahma', bn: 'Day + Night of Brahma', kn: 'Day + Night of Brahma', gu: 'Day + Night of Brahma' },
               sanskrit: 'ब्रह्माहोरात्रम्',
               value: '8,640,000,000',
-              unit: { en: 'years (8.64 billion)', hi: 'वर्ष (8.64 अरब)' },
-              formula: { en: '1 Day (4.32B) + 1 Night (4.32B)', hi: '1 दिन (4.32 अ) + 1 रात्रि (4.32 अ)' },
+              unit: { en: 'years (8.64 billion)', hi: 'वर्ष (8.64 अरब)', sa: 'वर्ष (8.64 अरब)', mai: 'वर्ष (8.64 अरब)', mr: 'वर्ष (8.64 अरब)', ta: 'years (8.64 billion)', te: 'years (8.64 billion)', bn: 'years (8.64 billion)', kn: 'years (8.64 billion)', gu: 'years (8.64 billion)' },
+              formula: { en: '1 Day (4.32B) + 1 Night (4.32B)', hi: '1 दिन (4.32 अ) + 1 रात्रि (4.32 अ)', sa: '1 दिन (4.32 अ) + 1 रात्रि (4.32 अ)', mai: '1 दिन (4.32 अ) + 1 रात्रि (4.32 अ)', mr: '1 दिन (4.32 अ) + 1 रात्रि (4.32 अ)', ta: '1 Day (4.32B) + 1 Night (4.32B)', te: '1 Day (4.32B) + 1 Night (4.32B)', bn: '1 Day (4.32B) + 1 Night (4.32B)', kn: '1 Day (4.32B) + 1 Night (4.32B)', gu: '1 Day (4.32B) + 1 Night (4.32B)' },
               desc: {
                 en: 'One complete day-night cycle of Brahma. The universe manifests during the day and dissolves during the night. This is remarkably close to modern estimates of the age of our observable universe (~13.8 billion years for half its projected lifespan).',
                 hi: 'ब्रह्मा का एक पूर्ण दिन-रात्रि चक्र। दिन में सृष्टि प्रकट होती है और रात्रि में विलीन। यह हमारे दृश्य ब्रह्मांड की आयु (~13.8 अरब वर्ष) के आधुनिक अनुमानों के उल्लेखनीय रूप से करीब है।',
@@ -647,11 +648,11 @@ export default function KaalNirnayaPage() {
             },
             {
               level: 6,
-              name: { en: 'Year of Brahma', hi: 'ब्रह्मा का एक वर्ष' },
+              name: { en: 'Year of Brahma', hi: 'ब्रह्मा का एक वर्ष', sa: 'ब्रह्मा का एक वर्ष', mai: 'ब्रह्मा का एक वर्ष', mr: 'ब्रह्मा का एक वर्ष', ta: 'Year of Brahma', te: 'Year of Brahma', bn: 'Year of Brahma', kn: 'Year of Brahma', gu: 'Year of Brahma' },
               sanskrit: 'ब्रह्मवर्षम्',
               value: '3,110,400,000,000',
-              unit: { en: 'years (3.11 trillion)', hi: 'वर्ष (3.11 खरब)' },
-              formula: { en: '360 Day-Night cycles × 8.64B', hi: '360 अहोरात्र चक्र × 8.64 अरब' },
+              unit: { en: 'years (3.11 trillion)', hi: 'वर्ष (3.11 खरब)', sa: 'वर्ष (3.11 खरब)', mai: 'वर्ष (3.11 खरब)', mr: 'वर्ष (3.11 खरब)', ta: 'years (3.11 trillion)', te: 'years (3.11 trillion)', bn: 'years (3.11 trillion)', kn: 'years (3.11 trillion)', gu: 'years (3.11 trillion)' },
+              formula: { en: '360 Day-Night cycles × 8.64B', hi: '360 अहोरात्र चक्र × 8.64 अरब', sa: '360 अहोरात्र चक्र × 8.64 अरब', mai: '360 अहोरात्र चक्र × 8.64 अरब', mr: '360 अहोरात्र चक्र × 8.64 अरब', ta: '360 Day-Night cycles × 8.64B', te: '360 Day-Night cycles × 8.64B', bn: '360 Day-Night cycles × 8.64B', kn: '360 Day-Night cycles × 8.64B', gu: '360 Day-Night cycles × 8.64B' },
               desc: {
                 en: 'Brahma\'s year consists of 360 of his day-night cycles (using the divine calendar where there are no extra days). Each of these 360 days sees one complete creation and dissolution of the three worlds.',
                 hi: 'ब्रह्मा के वर्ष में उनके 360 अहोरात्र चक्र होते हैं। इन 360 दिनों में से प्रत्येक में तीनों लोकों की एक पूर्ण सृष्टि और विलय होती है।',
@@ -661,11 +662,11 @@ export default function KaalNirnayaPage() {
             },
             {
               level: 7,
-              name: { en: 'Life of Brahma (Mahakalpa)', hi: 'ब्रह्मा का जीवनकाल (महाकल्प)' },
+              name: { en: 'Life of Brahma (Mahakalpa)', hi: 'ब्रह्मा का जीवनकाल (महाकल्प)', sa: 'ब्रह्मा का जीवनकाल (महाकल्प)', mai: 'ब्रह्मा का जीवनकाल (महाकल्प)', mr: 'ब्रह्मा का जीवनकाल (महाकल्प)', ta: 'Life of Brahma (Mahakalpa)', te: 'Life of Brahma (Mahakalpa)', bn: 'Life of Brahma (Mahakalpa)', kn: 'Life of Brahma (Mahakalpa)', gu: 'Life of Brahma (Mahakalpa)' },
               sanskrit: 'ब्रह्मायुः (महाकल्पः)',
               value: '311,040,000,000,000',
-              unit: { en: 'years (311.04 trillion)', hi: 'वर्ष (311.04 खरब)' },
-              formula: { en: '100 Brahma Years × 3.11 trillion', hi: '100 ब्रह्मवर्ष × 3.11 खरब' },
+              unit: { en: 'years (311.04 trillion)', hi: 'वर्ष (311.04 खरब)', sa: 'वर्ष (311.04 खरब)', mai: 'वर्ष (311.04 खरब)', mr: 'वर्ष (311.04 खरब)', ta: 'years (311.04 trillion)', te: 'years (311.04 trillion)', bn: 'years (311.04 trillion)', kn: 'years (311.04 trillion)', gu: 'years (311.04 trillion)' },
+              formula: { en: '100 Brahma Years × 3.11 trillion', hi: '100 ब्रह्मवर्ष × 3.11 खरब', sa: '100 ब्रह्मवर्ष × 3.11 खरब', mai: '100 ब्रह्मवर्ष × 3.11 खरब', mr: '100 ब्रह्मवर्ष × 3.11 खरब', ta: '100 Brahma Years × 3.11 trillion', te: '100 Brahma Years × 3.11 trillion', bn: '100 Brahma Years × 3.11 trillion', kn: '100 Brahma Years × 3.11 trillion', gu: '100 Brahma Years × 3.11 trillion' },
               desc: {
                 en: 'Brahma lives for 100 of his years. At the end of Brahma\'s life, Mahapralaya (the great dissolution) occurs — everything, including Brahma himself and all the Lokas, dissolves into the primordial Prakriti. Then, after an equal period of cosmic void, a new Brahma is born from Vishnu\'s navel, and the entire cycle begins again. According to the Puranas, the current Brahma is in his 51st year — meaning approximately half of total existence has elapsed.',
                 hi: 'ब्रह्मा 100 ब्रह्म-वर्ष जीते हैं। ब्रह्मा के जीवन के अंत में महाप्रलय होता है — ब्रह्मा स्वयं और सभी लोक सहित सब कुछ मूल प्रकृति में विलीन हो जाता है। फिर, समान अवधि के ब्रह्मांडीय शून्य के बाद, विष्णु की नाभि से नए ब्रह्मा का जन्म होता है, और सम्पूर्ण चक्र पुनः आरंभ होता है। पुराणों के अनुसार, वर्तमान ब्रह्मा अपने 51वें वर्ष में हैं — अर्थात कुल अस्तित्व का लगभग आधा बीत चुका है।',
@@ -737,8 +738,8 @@ export default function KaalNirnayaPage() {
               <circle cx="56" cy="28" r="3" fill="#f0d48a" />
             </svg>
           </div>
-          <h2 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>{L.ayanamsha[locale]}</h2>
-          <p className="text-text-secondary text-sm max-w-2xl mx-auto">{L.ayanamshaDesc[locale]}</p>
+          <h2 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>{tl(L.ayanamsha, locale)}</h2>
+          <p className="text-text-secondary text-sm max-w-2xl mx-auto">{tl(L.ayanamshaDesc, locale)}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-6">
@@ -812,8 +813,8 @@ export default function KaalNirnayaPage() {
       <motion.section initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }} className="mb-20">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-3"><MuhurtaIcon size={56} /></div>
-          <h2 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>{L.panchangaSystem[locale]}</h2>
-          <p className="text-text-secondary text-sm max-w-2xl mx-auto">{L.panchangaDesc[locale]}</p>
+          <h2 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>{tl(L.panchangaSystem, locale)}</h2>
+          <p className="text-text-secondary text-sm max-w-2xl mx-auto">{tl(L.panchangaDesc, locale)}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -831,15 +832,15 @@ export default function KaalNirnayaPage() {
                   <div className={`text-xs uppercase tracking-[0.2em] font-bold mb-0.5 ${limb.color}`}>
                     {!isDevanagariLocale(locale) ? `Anga ${limb.number}` : `अंग ${limb.number}`}
                   </div>
-                  <div className="text-gold-light font-bold text-xl" style={headingFont}>{limb.name[locale]}</div>
+                  <div className="text-gold-light font-bold text-xl" style={headingFont}>{tl(limb.name, locale)}</div>
                 </div>
               </div>
-              <p className="text-text-secondary text-sm leading-relaxed mb-4">{limb.desc[locale]}</p>
+              <p className="text-text-secondary text-sm leading-relaxed mb-4">{tl(limb.desc, locale)}</p>
               <div className="rounded-lg p-3 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/35 to-[#0a0e27] border border-gold-primary/12">
                 <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">
                   {!isDevanagariLocale(locale) ? 'Formula' : 'सूत्र'}
                 </div>
-                <div className="text-text-primary text-xs font-mono">{limb.formula[locale]}</div>
+                <div className="text-text-primary text-xs font-mono">{tl(limb.formula, locale)}</div>
               </div>
             </motion.div>
           ))}
@@ -873,8 +874,8 @@ export default function KaalNirnayaPage() {
               <circle cx="32" cy="32" r="3" fill="#f0d48a" />
             </svg>
           </div>
-          <h2 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>{L.muhurtaTitle[locale]}</h2>
-          <p className="text-text-secondary text-sm max-w-2xl mx-auto">{L.muhurtaDesc[locale]}</p>
+          <h2 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>{tl(L.muhurtaTitle, locale)}</h2>
+          <p className="text-text-secondary text-sm max-w-2xl mx-auto">{tl(L.muhurtaDesc, locale)}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-6">
@@ -966,8 +967,8 @@ export default function KaalNirnayaPage() {
               {!loadingKaal && <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-emerald-400 animate-pulse" />}
             </div>
           </div>
-          <h2 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>{L.todayData[locale]}</h2>
-          <p className="text-text-secondary text-sm max-w-xl mx-auto">{L.todayDataDesc[locale]}</p>
+          <h2 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>{tl(L.todayData, locale)}</h2>
+          <p className="text-text-secondary text-sm max-w-xl mx-auto">{tl(L.todayDataDesc, locale)}</p>
         </div>
 
         {loadingKaal ? (
@@ -1015,7 +1016,7 @@ export default function KaalNirnayaPage() {
                   desc: { en: 'Current sidereal correction', hi: 'वर्तमान सायन सुधार', sa: 'वर्तमान सायन सुधारः' },
                   color: 'text-emerald-300',
                 },
-              ] as { label: { en: string; hi: string; sa: string }; value: string; desc: { en: string; hi: string; sa: string }; color: string }[]).map((item, i) => (
+              ] as { label: LocaleText; value: string; desc: LocaleText; color: string }[]).map((item, i) => (
                 <motion.div key={item.label.en} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.05 * i }}
                   className="p-3 sm:p-4 md:p-6 text-center">
                   <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">{item.label[locale]}</div>
@@ -1040,8 +1041,8 @@ export default function KaalNirnayaPage() {
       <motion.section initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="mb-16">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-3"><Clock className="w-14 h-14 text-gold-primary" /></div>
-          <h2 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>{L.kaalMaan[locale]}</h2>
-          <p className="text-text-secondary text-sm max-w-2xl mx-auto">{L.kaalMaanDesc[locale]}</p>
+          <h2 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>{tl(L.kaalMaan, locale)}</h2>
+          <p className="text-text-secondary text-sm max-w-2xl mx-auto">{tl(L.kaalMaanDesc, locale)}</p>
         </div>
 
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl overflow-hidden">

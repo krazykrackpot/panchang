@@ -13,7 +13,7 @@
  */
 
 import { GRAHAS } from '@/lib/constants/grahas';
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText} from '@/types/panchang';
 import type { RulingPlanets } from '@/types/kp';
 
 // ---------------------------------------------------------------------------
@@ -57,7 +57,7 @@ function nakshatraNumber(deg: number): number {
   return Math.floor(((deg % 360 + 360) % 360) / (360 / 27)) + 1;
 }
 
-function grahaInfo(id: number): { id: number; name: Trilingual } {
+function grahaInfo(id: number): { id: number; name: LocaleText } {
   const g = GRAHAS[id];
   return { id, name: g?.name ?? { en: '', hi: '', sa: '' } };
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Eye, Crown, Users, Compass, ArrowRight, Star, BookOpen, Orbit } from 'lucide-react';
@@ -205,9 +206,9 @@ export default function JaiminiPage() {
                 </div>
                 <div className="flex-1">
                   <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <h4 className="text-gold-light font-semibold">{ck.name[locale]}</h4>
+                    <h4 className="text-gold-light font-semibold">{tl(ck.name, locale)}</h4>
                     <span className="text-text-secondary/70 text-xs font-mono px-2 py-0.5 rounded bg-bg-primary/50">
-                      {ck.rule[locale]}
+                      {tl(ck.rule, locale)}
                     </span>
                     {ck.importance === 'critical' && (
                       <span className="text-amber-400 text-xs font-bold uppercase px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20">
@@ -215,7 +216,7 @@ export default function JaiminiPage() {
                       </span>
                     )}
                   </div>
-                  <p className="text-text-secondary text-sm leading-relaxed">{ck.signifies[locale]}</p>
+                  <p className="text-text-secondary text-sm leading-relaxed">{tl(ck.signifies, locale)}</p>
                 </div>
               </div>
             </motion.div>
@@ -263,11 +264,11 @@ export default function JaiminiPage() {
               transition={{ delay: i * 0.1 }}
               className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5"
             >
-              <h4 className="text-gold-light font-semibold mb-1">{rd.type[locale]}</h4>
-              <p className="text-text-secondary/75 text-xs mb-2 font-mono">{rd.signs[locale]}</p>
-              <p className="text-text-secondary text-sm mb-2">{rd.aspects[locale]}</p>
+              <h4 className="text-gold-light font-semibold mb-1">{tl(rd.type, locale)}</h4>
+              <p className="text-text-secondary/75 text-xs mb-2 font-mono">{tl(rd.signs, locale)}</p>
+              <p className="text-text-secondary text-sm mb-2">{tl(rd.aspects, locale)}</p>
               <div className="p-2 rounded bg-bg-primary/40 text-text-secondary/70 text-xs">
-                {t('example')}{rd.example[locale]}
+                {t('example')}{tl(rd.example, locale)}
               </div>
             </motion.div>
           ))}
@@ -332,9 +333,9 @@ export default function JaiminiPage() {
                   transition={{ delay: i * 0.06 }}
                   className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors"
                 >
-                  <td className="py-3 px-4 text-gold-primary/80 font-medium">{row.feature[locale]}</td>
-                  <td className="py-3 px-4 text-text-secondary">{row.parashari[locale]}</td>
-                  <td className="py-3 px-4 text-text-secondary font-semibold">{row.jaimini[locale]}</td>
+                  <td className="py-3 px-4 text-gold-primary/80 font-medium">{tl(row.feature, locale)}</td>
+                  <td className="py-3 px-4 text-text-secondary">{tl(row.parashari, locale)}</td>
+                  <td className="py-3 px-4 text-text-secondary font-semibold">{tl(row.jaimini, locale)}</td>
                 </motion.tr>
               ))}
             </tbody>
@@ -354,8 +355,8 @@ export default function JaiminiPage() {
               transition={{ delay: i * 0.08 }}
               className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-5"
             >
-              <h4 className="text-gold-light font-semibold text-sm mb-2">{adv.name[locale]}</h4>
-              <p className="text-text-secondary text-sm leading-relaxed">{adv.desc[locale]}</p>
+              <h4 className="text-gold-light font-semibold text-sm mb-2">{tl(adv.name, locale)}</h4>
+              <p className="text-text-secondary text-sm leading-relaxed">{tl(adv.desc, locale)}</p>
             </motion.div>
           ))}
         </div>

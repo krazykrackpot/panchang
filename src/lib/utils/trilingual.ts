@@ -1,9 +1,11 @@
+import type { LocaleText } from '@/types/panchang';
+
 /**
- * Safe trilingual text accessor.
+ * Safe multilingual text accessor.
  * Falls back to 'en' when the requested locale key doesn't exist on the object.
- * Essential for Tamil ('ta') locale where most Trilingual objects only have {en, hi, sa}.
+ * Works with both Trilingual (constants) and LocaleText (inline labels).
  */
-export function tl(obj: any, locale: string): string {
+export function tl(obj: LocaleText | Record<string, string> | null | undefined, locale: string): string {
   if (!obj) return '';
-  return obj[locale] || obj.en || '';
+  return (obj as Record<string, string>)[locale] || (obj as Record<string, string>).en || '';
 }

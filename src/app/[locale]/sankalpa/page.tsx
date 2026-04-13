@@ -444,7 +444,7 @@ export default function SankalpaPage() {
       // Try to match a puja slug by deity name
       const matchedPuja = PUJA_OPTIONS.find(p =>
         p.label.en.toLowerCase().includes(pujaParam.toLowerCase()) ||
-        p.label.hi.includes(pujaParam)
+        p.label.hi!.includes(pujaParam)
       );
       if (matchedPuja) {
         setSelectedPuja(matchedPuja.slug);
@@ -470,7 +470,7 @@ export default function SankalpaPage() {
   const getPurposeText = (): string => {
     if (purposeTab === 'puja' && selectedPuja) {
       const puja = PUJA_VIDHIS[selectedPuja];
-      return puja ? puja.deity.sa : '';
+      return puja ? puja.deity.sa || "" : '';
     }
     if (purposeTab === 'vrat') return vratName;
     return customPurpose;

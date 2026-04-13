@@ -3,7 +3,7 @@
  * Scores festivals by personal relevance based on the user's natal snapshot.
  */
 
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 import type { UserSnapshot } from './types';
 
 // ---------------------------------------------------------------------------
@@ -13,7 +13,7 @@ import type { UserSnapshot } from './types';
 export interface PersonalFestival {
   festivalSlug: string;
   relevanceScore: number;      // 0-100
-  relevanceReason: Trilingual;
+  relevanceReason: LocaleText;
   isRecommended: boolean;      // score > 60
 }
 
@@ -168,7 +168,7 @@ export function scoreFestivalRelevance(
   score = Math.min(100, score);
 
   // Build combined reason
-  const reason: Trilingual = {
+  const reason: LocaleText = {
     en: reasons.en.length > 0 ? reasons.en.join('. ') : 'General spiritual observance',
     hi: reasons.hi.length > 0 ? reasons.hi.join('। ') : 'सामान्य आध्यात्मिक अनुष्ठान',
     sa: reasons.sa.length > 0 ? reasons.sa.join('। ') : 'सामान्यम् आध्यात्मिकम् अनुष्ठानम्',

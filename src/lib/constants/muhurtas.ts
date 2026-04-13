@@ -1,13 +1,13 @@
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 
 export interface MuhurtaInfo {
   number: number;
-  name: Trilingual;
-  deity: Trilingual;
+  name: LocaleText;
+  deity: LocaleText;
   nature: 'auspicious' | 'inauspicious' | 'neutral';
   period: 'day' | 'night';
-  significance: Trilingual;
-  bestFor: Trilingual;
+  significance: LocaleText;
+  bestFor: LocaleText;
 }
 
 // 30 Muhurtas: 15 daytime (sunrise→sunset) + 15 nighttime (sunset→sunrise)

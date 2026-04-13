@@ -1158,9 +1158,9 @@ function renderSadeSati(doc: jsPDF, kundali: KundaliData, locale: Locale) {
       drawBadge(doc, r.priority.toUpperCase(), MARGIN + 2, y, priorityColor);
       doc.setFontSize(7.5);
       setText(doc, GOLD_LIGHT);
-      doc.text(r.title[lk], MARGIN + 20, y);
+      doc.text(r.title[lk] || "", MARGIN + 20, y);
       y += 5;
-      y = drawWrapped(doc, r.description[lk], MARGIN + 4, y, CONTENT_W - 8, 7, MUTED);
+      y = drawWrapped(doc, r.description[lk] || "", MARGIN + 4, y, CONTENT_W - 8, 7, MUTED);
       y += 2;
     }
   }
@@ -1293,7 +1293,7 @@ function renderConvergenceInsights(doc: jsPDF, convergence: ConvergenceResult, l
       doc.setFont('helvetica', 'normal');
       drawBadge(doc, ins.temporalFrame, MARGIN + 3 + doc.getTextWidth(ins.theme) + 4, y, GOLD_DARK);
       y += 5;
-      y = drawWrapped(doc, ins.summary[lk], MARGIN + 3, y, CONTENT_W - 8, 7, WHITE);
+      y = drawWrapped(doc, ins.summary[lk] || "", MARGIN + 3, y, CONTENT_W - 8, 7, WHITE);
       if (ins.advice[lk]) {
         y = drawWrapped(doc, `Advice: ${ins.advice[lk]}`, MARGIN + 3, y, CONTENT_W - 8, 6.5, MUTED);
       }
@@ -1312,7 +1312,7 @@ function renderConvergenceInsights(doc: jsPDF, convergence: ConvergenceResult, l
       const sevLabel = flag.severity === 3 ? 'HIGH' : flag.severity === 2 ? 'MEDIUM' : 'LOW';
       drawBadge(doc, sevLabel, MARGIN + 2, y, sevColor);
       y += 5;
-      y = drawWrapped(doc, flag.message[lk], MARGIN + 3, y, CONTENT_W - 6, 7, WHITE);
+      y = drawWrapped(doc, flag.message[lk] || "", MARGIN + 3, y, CONTENT_W - 6, 7, WHITE);
       y += 2;
     }
   }
@@ -1328,7 +1328,7 @@ function renderConvergenceInsights(doc: jsPDF, convergence: ConvergenceResult, l
       const sevLabel = mi.severity === 3 ? 'HIGH' : mi.severity === 2 ? 'MEDIUM' : 'LOW';
       drawBadge(doc, sevLabel, MARGIN + 2, y, sevColor);
       y += 5;
-      y = drawWrapped(doc, mi.text[lk], MARGIN + 3, y, CONTENT_W - 6, 7, WHITE);
+      y = drawWrapped(doc, mi.text[lk] || '', MARGIN + 3, y, CONTENT_W - 6, 7, WHITE);
       y += 3;
     }
   }

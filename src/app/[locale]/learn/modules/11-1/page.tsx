@@ -6,18 +6,18 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_11_1', phase: 3, topic: 'Dashas', moduleNumber: '11.1',
-  title: { en: 'Vimshottari Dasha — The 120-Year Cycle', hi: 'विंशोत्तरी दशा — 120 वर्षीय चक्र' },
+  title: { en: 'Vimshottari Dasha — The 120-Year Cycle', hi: 'विंशोत्तरी दशा — 120 वर्षीय चक्र', sa: 'विंशोत्तरी दशा — 120 वर्षीय चक्र', mai: 'विंशोत्तरी दशा — 120 वर्षीय चक्र', mr: 'विंशोत्तरी दशा — 120 वर्षीय चक्र', ta: 'Vimshottari Dasha — The 120-Year Cycle', te: 'Vimshottari Dasha — The 120-Year Cycle', bn: 'Vimshottari Dasha — The 120-Year Cycle', kn: 'Vimshottari Dasha — The 120-Year Cycle', gu: 'Vimshottari Dasha — The 120-Year Cycle' },
   subtitle: {
     en: 'The master timing system of Vedic astrology: nine planets divide a 120-year lifespan into predictive periods, computed from a single data point — the Moon\'s nakshatra at birth',
     hi: 'वैदिक ज्योतिष की प्रमुख समय-निर्धारण प्रणाली: नौ ग्रह 120 वर्ष की आयु को भविष्यवाणी काल-खण्डों में विभक्त करते हैं, एकमात्र डेटा बिन्दु — जन्म नक्षत्र में चन्द्रमा — से गणित',
   },
   estimatedMinutes: 18,
   crossRefs: [
-    { label: { en: 'Module 11-2: Yogini & Char Dasha', hi: 'मॉड्यूल 11-2: योगिनी एवं चर दशा' }, href: '/learn/modules/11-2' },
-    { label: { en: 'Module 11-3: Dasha & Transit Overlay', hi: 'मॉड्यूल 11-3: दशा एवं गोचर आच्छादन' }, href: '/learn/modules/11-3' },
-    { label: { en: 'Dashas Deep Dive', hi: 'दशा विस्तार' }, href: '/learn/dashas' },
-    { label: { en: 'Interactive Dasha Lab', hi: 'इंटरैक्टिव दशा प्रयोगशाला' }, href: '/learn/labs/dasha' },
-    { label: { en: 'Generate Kundali', hi: 'कुण्डली बनाएँ' }, href: '/kundali' },
+    { label: { en: 'Module 11-2: Yogini & Char Dasha', hi: 'मॉड्यूल 11-2: योगिनी एवं चर दशा', sa: 'मॉड्यूल 11-2: योगिनी एवं चर दशा', mai: 'मॉड्यूल 11-2: योगिनी एवं चर दशा', mr: 'मॉड्यूल 11-2: योगिनी एवं चर दशा', ta: 'Module 11-2: Yogini & Char Dasha', te: 'Module 11-2: Yogini & Char Dasha', bn: 'Module 11-2: Yogini & Char Dasha', kn: 'Module 11-2: Yogini & Char Dasha', gu: 'Module 11-2: Yogini & Char Dasha' }, href: '/learn/modules/11-2' },
+    { label: { en: 'Module 11-3: Dasha & Transit Overlay', hi: 'मॉड्यूल 11-3: दशा एवं गोचर आच्छादन', sa: 'मॉड्यूल 11-3: दशा एवं गोचर आच्छादन', mai: 'मॉड्यूल 11-3: दशा एवं गोचर आच्छादन', mr: 'मॉड्यूल 11-3: दशा एवं गोचर आच्छादन', ta: 'Module 11-3: Dasha & Transit Overlay', te: 'Module 11-3: Dasha & Transit Overlay', bn: 'Module 11-3: Dasha & Transit Overlay', kn: 'Module 11-3: Dasha & Transit Overlay', gu: 'Module 11-3: Dasha & Transit Overlay' }, href: '/learn/modules/11-3' },
+    { label: { en: 'Dashas Deep Dive', hi: 'दशा विस्तार', sa: 'दशा विस्तार', mai: 'दशा विस्तार', mr: 'दशा विस्तार', ta: 'Dashas Deep Dive', te: 'Dashas Deep Dive', bn: 'Dashas Deep Dive', kn: 'Dashas Deep Dive', gu: 'Dashas Deep Dive' }, href: '/learn/dashas' },
+    { label: { en: 'Interactive Dasha Lab', hi: 'इंटरैक्टिव दशा प्रयोगशाला', sa: 'इंटरैक्टिव दशा प्रयोगशाला', mai: 'इंटरैक्टिव दशा प्रयोगशाला', mr: 'इंटरैक्टिव दशा प्रयोगशाला', ta: 'Interactive Dasha Lab', te: 'Interactive Dasha Lab', bn: 'Interactive Dasha Lab', kn: 'Interactive Dasha Lab', gu: 'Interactive Dasha Lab' }, href: '/learn/labs/dasha' },
+    { label: { en: 'Generate Kundali', hi: 'कुण्डली बनाएँ', sa: 'कुण्डली बनाएँ', mai: 'कुण्डली बनाएँ', mr: 'कुण्डली बनाएँ', ta: 'Generate Kundali', te: 'Generate Kundali', bn: 'Generate Kundali', kn: 'Generate Kundali', gu: 'Generate Kundali' }, href: '/kundali' },
   ],
 };
 
@@ -29,10 +29,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विंशोत्तरी दशा चक्र की कुल अवधि कितनी है?',
     },
     options: [
-      { en: '100 years', hi: '100 वर्ष' },
-      { en: '108 years', hi: '108 वर्ष' },
-      { en: '120 years', hi: '120 वर्ष' },
-      { en: '360 years', hi: '360 वर्ष' },
+      { en: '100 years', hi: '100 वर्ष', sa: '100 वर्ष', mai: '100 वर्ष', mr: '100 वर्ष', ta: '100 years', te: '100 years', bn: '100 years', kn: '100 years', gu: '100 years' },
+      { en: '108 years', hi: '108 वर्ष', sa: '108 वर्ष', mai: '108 वर्ष', mr: '108 वर्ष', ta: '108 years', te: '108 years', bn: '108 years', kn: '108 years', gu: '108 years' },
+      { en: '120 years', hi: '120 वर्ष', sa: '120 वर्ष', mai: '120 वर्ष', mr: '120 वर्ष', ta: '120 years', te: '120 years', bn: '120 years', kn: '120 years', gu: '120 years' },
+      { en: '360 years', hi: '360 वर्ष', sa: '360 वर्ष', mai: '360 वर्ष', mr: '360 वर्ष', ta: '360 years', te: '360 years', bn: '360 years', kn: '360 years', gu: '360 years' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -47,10 +47,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विंशोत्तरी में किस ग्रह की महादशा सबसे लम्बी है?',
     },
     options: [
-      { en: 'Jupiter — 16 years', hi: 'गुरु — 16 वर्ष' },
-      { en: 'Saturn — 19 years', hi: 'शनि — 19 वर्ष' },
-      { en: 'Venus — 20 years', hi: 'शुक्र — 20 वर्ष' },
-      { en: 'Rahu — 18 years', hi: 'राहु — 18 वर्ष' },
+      { en: 'Jupiter — 16 years', hi: 'गुरु — 16 वर्ष', sa: 'गुरु — 16 वर्ष', mai: 'गुरु — 16 वर्ष', mr: 'गुरु — 16 वर्ष', ta: 'Jupiter — 16 years', te: 'Jupiter — 16 years', bn: 'Jupiter — 16 years', kn: 'Jupiter — 16 years', gu: 'Jupiter — 16 years' },
+      { en: 'Saturn — 19 years', hi: 'शनि — 19 वर्ष', sa: 'शनि — 19 वर्ष', mai: 'शनि — 19 वर्ष', mr: 'शनि — 19 वर्ष', ta: 'Saturn — 19 years', te: 'Saturn — 19 years', bn: 'Saturn — 19 years', kn: 'Saturn — 19 years', gu: 'Saturn — 19 years' },
+      { en: 'Venus — 20 years', hi: 'शुक्र — 20 वर्ष', sa: 'शुक्र — 20 वर्ष', mai: 'शुक्र — 20 वर्ष', mr: 'शुक्र — 20 वर्ष', ta: 'Venus — 20 years', te: 'Venus — 20 years', bn: 'Venus — 20 years', kn: 'Venus — 20 years', gu: 'Venus — 20 years' },
+      { en: 'Rahu — 18 years', hi: 'राहु — 18 वर्ष', sa: 'राहु — 18 वर्ष', mai: 'राहु — 18 वर्ष', mr: 'राहु — 18 वर्ष', ta: 'Rahu — 18 years', te: 'Rahu — 18 years', bn: 'Rahu — 18 years', kn: 'Rahu — 18 years', gu: 'Rahu — 18 years' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -77,10 +77,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'रोहिणी नक्षत्र में चन्द्रमा वाले व्यक्ति की पहली महादशा कौन-सी है?',
     },
     options: [
-      { en: 'Venus (Rohini is ruled by Moon)', hi: 'शुक्र (रोहिणी चन्द्रमा शासित है)' },
-      { en: 'Moon (Rohini is ruled by Moon)', hi: 'चन्द्रमा (रोहिणी चन्द्रमा शासित है)' },
-      { en: 'Mars (Rohini is ruled by Mars)', hi: 'मंगल (रोहिणी मंगल शासित है)' },
-      { en: 'Sun (Rohini is ruled by Sun)', hi: 'सूर्य (रोहिणी सूर्य शासित है)' },
+      { en: 'Venus (Rohini is ruled by Moon)', hi: 'शुक्र (रोहिणी चन्द्रमा शासित है)', sa: 'शुक्र (रोहिणी चन्द्रमा शासित है)', mai: 'शुक्र (रोहिणी चन्द्रमा शासित है)', mr: 'शुक्र (रोहिणी चन्द्रमा शासित है)', ta: 'Venus (Rohini is ruled by Moon)', te: 'Venus (Rohini is ruled by Moon)', bn: 'Venus (Rohini is ruled by Moon)', kn: 'Venus (Rohini is ruled by Moon)', gu: 'Venus (Rohini is ruled by Moon)' },
+      { en: 'Moon (Rohini is ruled by Moon)', hi: 'चन्द्रमा (रोहिणी चन्द्रमा शासित है)', sa: 'चन्द्रमा (रोहिणी चन्द्रमा शासित है)', mai: 'चन्द्रमा (रोहिणी चन्द्रमा शासित है)', mr: 'चन्द्रमा (रोहिणी चन्द्रमा शासित है)', ta: 'Moon (Rohini is ruled by Moon)', te: 'Moon (Rohini is ruled by Moon)', bn: 'Moon (Rohini is ruled by Moon)', kn: 'Moon (Rohini is ruled by Moon)', gu: 'Moon (Rohini is ruled by Moon)' },
+      { en: 'Mars (Rohini is ruled by Mars)', hi: 'मंगल (रोहिणी मंगल शासित है)', sa: 'मंगल (रोहिणी मंगल शासित है)', mai: 'मंगल (रोहिणी मंगल शासित है)', mr: 'मंगल (रोहिणी मंगल शासित है)', ta: 'Mars (Rohini is ruled by Mars)', te: 'Mars (Rohini is ruled by Mars)', bn: 'Mars (Rohini is ruled by Mars)', kn: 'Mars (Rohini is ruled by Mars)', gu: 'Mars (Rohini is ruled by Mars)' },
+      { en: 'Sun (Rohini is ruled by Sun)', hi: 'सूर्य (रोहिणी सूर्य शासित है)', sa: 'सूर्य (रोहिणी सूर्य शासित है)', mai: 'सूर्य (रोहिणी सूर्य शासित है)', mr: 'सूर्य (रोहिणी सूर्य शासित है)', ta: 'Sun (Rohini is ruled by Sun)', te: 'Sun (Rohini is ruled by Sun)', bn: 'Sun (Rohini is ruled by Sun)', kn: 'Sun (Rohini is ruled by Sun)', gu: 'Sun (Rohini is ruled by Sun)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -95,10 +95,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'केतु से आरम्भ होने वाला सही विंशोत्तरी क्रम क्या है?',
     },
     options: [
-      { en: 'Ketu, Sun, Moon, Mars, Venus, Rahu, Jupiter, Saturn, Mercury', hi: 'केतु, सूर्य, चन्द्र, मंगल, शुक्र, राहु, गुरु, शनि, बुध' },
-      { en: 'Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury', hi: 'केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, गुरु, शनि, बुध' },
-      { en: 'Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu', hi: 'सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि, राहु, केतु' },
-      { en: 'Ketu, Venus, Sun, Moon, Mars, Rahu, Saturn, Jupiter, Mercury', hi: 'केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, शनि, गुरु, बुध' },
+      { en: 'Ketu, Sun, Moon, Mars, Venus, Rahu, Jupiter, Saturn, Mercury', hi: 'केतु, सूर्य, चन्द्र, मंगल, शुक्र, राहु, गुरु, शनि, बुध', sa: 'केतु, सूर्य, चन्द्र, मंगल, शुक्र, राहु, गुरु, शनि, बुध', mai: 'केतु, सूर्य, चन्द्र, मंगल, शुक्र, राहु, गुरु, शनि, बुध', mr: 'केतु, सूर्य, चन्द्र, मंगल, शुक्र, राहु, गुरु, शनि, बुध', ta: 'Ketu, Sun, Moon, Mars, Venus, Rahu, Jupiter, Saturn, Mercury', te: 'Ketu, Sun, Moon, Mars, Venus, Rahu, Jupiter, Saturn, Mercury', bn: 'Ketu, Sun, Moon, Mars, Venus, Rahu, Jupiter, Saturn, Mercury', kn: 'Ketu, Sun, Moon, Mars, Venus, Rahu, Jupiter, Saturn, Mercury', gu: 'Ketu, Sun, Moon, Mars, Venus, Rahu, Jupiter, Saturn, Mercury' },
+      { en: 'Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury', hi: 'केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, गुरु, शनि, बुध', sa: 'केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, गुरु, शनि, बुध', mai: 'केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, गुरु, शनि, बुध', mr: 'केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, गुरु, शनि, बुध', ta: 'Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury', te: 'Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury', bn: 'Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury', kn: 'Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury', gu: 'Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury' },
+      { en: 'Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu', hi: 'सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि, राहु, केतु', sa: 'सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि, राहु, केतु', mai: 'सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि, राहु, केतु', mr: 'सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि, राहु, केतु', ta: 'Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu', te: 'Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu', bn: 'Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu', kn: 'Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu', gu: 'Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu' },
+      { en: 'Ketu, Venus, Sun, Moon, Mars, Rahu, Saturn, Jupiter, Mercury', hi: 'केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, शनि, गुरु, बुध', sa: 'केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, शनि, गुरु, बुध', mai: 'केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, शनि, गुरु, बुध', mr: 'केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, शनि, गुरु, बुध', ta: 'Ketu, Venus, Sun, Moon, Mars, Rahu, Saturn, Jupiter, Mercury', te: 'Ketu, Venus, Sun, Moon, Mars, Rahu, Saturn, Jupiter, Mercury', bn: 'Ketu, Venus, Sun, Moon, Mars, Rahu, Saturn, Jupiter, Mercury', kn: 'Ketu, Venus, Sun, Moon, Mars, Rahu, Saturn, Jupiter, Mercury', gu: 'Ketu, Venus, Sun, Moon, Mars, Rahu, Saturn, Jupiter, Mercury' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -113,10 +113,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विंशोत्तरी उपविभाजन पदानुक्रम में कुल कितने अद्वितीय महादशा-अन्तर्दशा संयोजन होते हैं?',
     },
     options: [
-      { en: '27 (9 x 3)', hi: '27 (9 x 3)' },
-      { en: '81 (9 x 9)', hi: '81 (9 x 9)' },
-      { en: '108 (9 x 12)', hi: '108 (9 x 12)' },
-      { en: '729 (9 x 9 x 9)', hi: '729 (9 x 9 x 9)' },
+      { en: '27 (9 x 3)', hi: '27 (9 x 3)', sa: '27 (9 x 3)', mai: '27 (9 x 3)', mr: '27 (9 x 3)', ta: '27 (9 x 3)', te: '27 (9 x 3)', bn: '27 (9 x 3)', kn: '27 (9 x 3)', gu: '27 (9 x 3)' },
+      { en: '81 (9 x 9)', hi: '81 (9 x 9)', sa: '81 (9 x 9)', mai: '81 (9 x 9)', mr: '81 (9 x 9)', ta: '81 (9 x 9)', te: '81 (9 x 9)', bn: '81 (9 x 9)', kn: '81 (9 x 9)', gu: '81 (9 x 9)' },
+      { en: '108 (9 x 12)', hi: '108 (9 x 12)', sa: '108 (9 x 12)', mai: '108 (9 x 12)', mr: '108 (9 x 12)', ta: '108 (9 x 12)', te: '108 (9 x 12)', bn: '108 (9 x 12)', kn: '108 (9 x 12)', gu: '108 (9 x 12)' },
+      { en: '729 (9 x 9 x 9)', hi: '729 (9 x 9 x 9)', sa: '729 (9 x 9 x 9)', mai: '729 (9 x 9 x 9)', mr: '729 (9 x 9 x 9)', ta: '729 (9 x 9 x 9)', te: '729 (9 x 9 x 9)', bn: '729 (9 x 9 x 9)', kn: '729 (9 x 9 x 9)', gu: '729 (9 x 9 x 9)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -133,7 +133,7 @@ const QUESTIONS: ModuleQuestion[] = [
     options: [
       { en: 'Only Jupiter\'s significations matter', hi: 'केवल गुरु के कारकत्व महत्त्वपूर्ण हैं' },
       { en: 'Only Mars\' significations matter', hi: 'केवल मंगल के कारकत्व महत्त्वपूर्ण हैं' },
-      { en: 'Mars themes dominate, Jupiter adds its coloring', hi: 'मंगल के विषय प्रधान हैं, गुरु अपना रंग जोड़ता है' },
+      { en: 'Mars themes dominate, Jupiter adds its coloring', hi: 'मंगल के विषय प्रधान हैं, गुरु अपना रंग जोड़ता है', sa: 'मंगल के विषय प्रधान हैं, गुरु अपना रंग जोड़ता है', mai: 'मंगल के विषय प्रधान हैं, गुरु अपना रंग जोड़ता है', mr: 'मंगल के विषय प्रधान हैं, गुरु अपना रंग जोड़ता है', ta: 'Mars themes dominate, Jupiter adds its coloring', te: 'Mars themes dominate, Jupiter adds its coloring', bn: 'Mars themes dominate, Jupiter adds its coloring', kn: 'Mars themes dominate, Jupiter adds its coloring', gu: 'Mars themes dominate, Jupiter adds its coloring' },
       { en: 'Average the two planets\' effects equally', hi: 'दोनों ग्रहों के प्रभावों का समान औसत लें' },
     ],
     correctAnswer: 2,
@@ -149,10 +149,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: '"दशा सन्धि" क्या है और कब होती है?',
     },
     options: [
-      { en: 'The midpoint of any Mahadasha', hi: 'किसी महादशा का मध्य बिन्दु' },
-      { en: 'The transition zone between two Mahadashas (last ~6 months of outgoing + first ~6 months of incoming)', hi: 'दो महादशाओं के बीच का संक्रमण क्षेत्र (जाती हुई के अन्तिम ~6 मास + आने वाली के प्रथम ~6 मास)' },
-      { en: 'A special yoga formed during Rahu dasha', hi: 'राहु दशा में बनने वाला एक विशेष योग' },
-      { en: 'The period when two Antardashas overlap', hi: 'वह काल जब दो अन्तर्दशाएँ ओवरलैप करती हैं' },
+      { en: 'The midpoint of any Mahadasha', hi: 'किसी महादशा का मध्य बिन्दु', sa: 'किसी महादशा का मध्य बिन्दु', mai: 'किसी महादशा का मध्य बिन्दु', mr: 'किसी महादशा का मध्य बिन्दु', ta: 'The midpoint of any Mahadasha', te: 'The midpoint of any Mahadasha', bn: 'The midpoint of any Mahadasha', kn: 'The midpoint of any Mahadasha', gu: 'The midpoint of any Mahadasha' },
+      { en: 'The transition zone between two Mahadashas (last ~6 months of outgoing + first ~6 months of incoming)', hi: 'दो महादशाओं के बीच का संक्रमण क्षेत्र (जाती हुई के अन्तिम ~6 मास + आने वाली के प्रथम ~6 मास)', sa: 'दो महादशाओं के बीच का संक्रमण क्षेत्र (जाती हुई के अन्तिम ~6 मास + आने वाली के प्रथम ~6 मास)', mai: 'दो महादशाओं के बीच का संक्रमण क्षेत्र (जाती हुई के अन्तिम ~6 मास + आने वाली के प्रथम ~6 मास)', mr: 'दो महादशाओं के बीच का संक्रमण क्षेत्र (जाती हुई के अन्तिम ~6 मास + आने वाली के प्रथम ~6 मास)', ta: 'The transition zone between two Mahadashas (last ~6 months of outgoing + first ~6 months of incoming)', te: 'The transition zone between two Mahadashas (last ~6 months of outgoing + first ~6 months of incoming)', bn: 'The transition zone between two Mahadashas (last ~6 months of outgoing + first ~6 months of incoming)', kn: 'The transition zone between two Mahadashas (last ~6 months of outgoing + first ~6 months of incoming)', gu: 'The transition zone between two Mahadashas (last ~6 months of outgoing + first ~6 months of incoming)' },
+      { en: 'A special yoga formed during Rahu dasha', hi: 'राहु दशा में बनने वाला एक विशेष योग', sa: 'राहु दशा में बनने वाला एक विशेष योग', mai: 'राहु दशा में बनने वाला एक विशेष योग', mr: 'राहु दशा में बनने वाला एक विशेष योग', ta: 'A special yoga formed during Rahu dasha', te: 'A special yoga formed during Rahu dasha', bn: 'A special yoga formed during Rahu dasha', kn: 'A special yoga formed during Rahu dasha', gu: 'A special yoga formed during Rahu dasha' },
+      { en: 'The period when two Antardashas overlap', hi: 'वह काल जब दो अन्तर्दशाएँ ओवरलैप करती हैं', sa: 'वह काल जब दो अन्तर्दशाएँ ओवरलैप करती हैं', mai: 'वह काल जब दो अन्तर्दशाएँ ओवरलैप करती हैं', mr: 'वह काल जब दो अन्तर्दशाएँ ओवरलैप करती हैं', ta: 'The period when two Antardashas overlap', te: 'The period when two Antardashas overlap', bn: 'The period when two Antardashas overlap', kn: 'The period when two Antardashas overlap', gu: 'The period when two Antardashas overlap' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -179,10 +179,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वृषभ लग्न के लिए शनि दशा सामान्यतः मानी जाती है:',
     },
     options: [
-      { en: 'Always terrible — Saturn is a malefic', hi: 'सदा भयावह — शनि पाप ग्रह है' },
-      { en: 'Excellent — Saturn rules the 9th (luck) and 10th (career) houses as a Yogakaraka', hi: 'उत्कृष्ट — शनि योगकारक के रूप में 9वें (भाग्य) और 10वें (कर्म) भावों का स्वामी है' },
-      { en: 'Neutral — Saturn has no special role for Taurus', hi: 'तटस्थ — वृषभ के लिए शनि की कोई विशेष भूमिका नहीं' },
-      { en: 'Good only if Saturn is exalted', hi: 'केवल शनि उच्च हो तो अच्छी' },
+      { en: 'Always terrible — Saturn is a malefic', hi: 'सदा भयावह — शनि पाप ग्रह है', sa: 'सदा भयावह — शनि पाप ग्रह है', mai: 'सदा भयावह — शनि पाप ग्रह है', mr: 'सदा भयावह — शनि पाप ग्रह है', ta: 'Always terrible — Saturn is a malefic', te: 'Always terrible — Saturn is a malefic', bn: 'Always terrible — Saturn is a malefic', kn: 'Always terrible — Saturn is a malefic', gu: 'Always terrible — Saturn is a malefic' },
+      { en: 'Excellent — Saturn rules the 9th (luck) and 10th (career) houses as a Yogakaraka', hi: 'उत्कृष्ट — शनि योगकारक के रूप में 9वें (भाग्य) और 10वें (कर्म) भावों का स्वामी है', sa: 'उत्कृष्ट — शनि योगकारक के रूप में 9वें (भाग्य) और 10वें (कर्म) भावों का स्वामी है', mai: 'उत्कृष्ट — शनि योगकारक के रूप में 9वें (भाग्य) और 10वें (कर्म) भावों का स्वामी है', mr: 'उत्कृष्ट — शनि योगकारक के रूप में 9वें (भाग्य) और 10वें (कर्म) भावों का स्वामी है', ta: 'Excellent — Saturn rules the 9th (luck) and 10th (career) houses as a Yogakaraka', te: 'Excellent — Saturn rules the 9th (luck) and 10th (career) houses as a Yogakaraka', bn: 'Excellent — Saturn rules the 9th (luck) and 10th (career) houses as a Yogakaraka', kn: 'Excellent — Saturn rules the 9th (luck) and 10th (career) houses as a Yogakaraka', gu: 'Excellent — Saturn rules the 9th (luck) and 10th (career) houses as a Yogakaraka' },
+      { en: 'Neutral — Saturn has no special role for Taurus', hi: 'तटस्थ — वृषभ के लिए शनि की कोई विशेष भूमिका नहीं', sa: 'तटस्थ — वृषभ के लिए शनि की कोई विशेष भूमिका नहीं', mai: 'तटस्थ — वृषभ के लिए शनि की कोई विशेष भूमिका नहीं', mr: 'तटस्थ — वृषभ के लिए शनि की कोई विशेष भूमिका नहीं', ta: 'Neutral — Saturn has no special role for Taurus', te: 'Neutral — Saturn has no special role for Taurus', bn: 'Neutral — Saturn has no special role for Taurus', kn: 'Neutral — Saturn has no special role for Taurus', gu: 'Neutral — Saturn has no special role for Taurus' },
+      { en: 'Good only if Saturn is exalted', hi: 'केवल शनि उच्च हो तो अच्छी', sa: 'केवल शनि उच्च हो तो अच्छी', mai: 'केवल शनि उच्च हो तो अच्छी', mr: 'केवल शनि उच्च हो तो अच्छी', ta: 'Good only if Saturn is exalted', te: 'Good only if Saturn is exalted', bn: 'Good only if Saturn is exalted', kn: 'Good only if Saturn is exalted', gu: 'Good only if Saturn is exalted' },
     ],
     correctAnswer: 1,
     explanation: {

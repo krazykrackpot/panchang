@@ -368,10 +368,10 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
 
     return {
       planetId: p.planet.id,
-      planetName: graha.name[locale],
+      planetName: graha.name[locale] || "",
       planetColor: graha.color,
       house: p.house,
-      signName: p.signName[locale],
+      signName: p.signName[locale] || "",
       description,
       implications: enhanced?.implications || depth?.implications || '',
       prognosis: enhanced?.prognosis || depth?.prognosis || '',
@@ -860,7 +860,7 @@ function generateStrengthOverview(kundali: KundaliData, locale: Locale): Strengt
   return kundali.shadbala.map(s => {
     const graha = GRAHAS.find(g => g.name.en === s.planet);
     return {
-      planetName: s.planetName[locale],
+      planetName: s.planetName[locale] || "",
       planetColor: graha?.color || '#888',
       strength: s.totalStrength,
       status: t(locale,

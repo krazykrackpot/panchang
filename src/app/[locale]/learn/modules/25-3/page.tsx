@@ -12,9 +12,9 @@ const META: ModuleMeta = {
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 25-2: Sine Is Sanskrit', hi: 'मॉड्यूल 25-2: ज्या से Sine' }, href: '/learn/modules/25-2' },
-    { label: { en: 'Module 25-7: Kerala Calculus', hi: 'मॉड्यूल 25-7: केरल गणित' }, href: '/learn/modules/25-7' },
-    { label: { en: 'Module 25-1: Zero', hi: 'मॉड्यूल 25-1: शून्य' }, href: '/learn/modules/25-1' },
+    { label: { en: 'Module 25-2: Sine Is Sanskrit', hi: 'मॉड्यूल 25-2: ज्या से Sine', sa: 'मॉड्यूल 25-2: ज्या से Sine', mai: 'मॉड्यूल 25-2: ज्या से Sine', mr: 'मॉड्यूल 25-2: ज्या से Sine', ta: 'Module 25-2: Sine Is Sanskrit', te: 'Module 25-2: Sine Is Sanskrit', bn: 'Module 25-2: Sine Is Sanskrit', kn: 'Module 25-2: Sine Is Sanskrit', gu: 'Module 25-2: Sine Is Sanskrit' }, href: '/learn/modules/25-2' },
+    { label: { en: 'Module 25-7: Kerala Calculus', hi: 'मॉड्यूल 25-7: केरल गणित', sa: 'मॉड्यूल 25-7: केरल गणित', mai: 'मॉड्यूल 25-7: केरल गणित', mr: 'मॉड्यूल 25-7: केरल गणित', ta: 'Module 25-7: Kerala Calculus', te: 'Module 25-7: Kerala Calculus', bn: 'Module 25-7: Kerala Calculus', kn: 'Module 25-7: Kerala Calculus', gu: 'Module 25-7: Kerala Calculus' }, href: '/learn/modules/25-7' },
+    { label: { en: 'Module 25-1: Zero', hi: 'मॉड्यूल 25-1: शून्य', sa: 'मॉड्यूल 25-1: शून्य', mai: 'मॉड्यूल 25-1: शून्य', mr: 'मॉड्यूल 25-1: शून्य', ta: 'Module 25-1: Zero', te: 'Module 25-1: Zero', bn: 'Module 25-1: Zero', kn: 'Module 25-1: Zero', gu: 'Module 25-1: Zero' }, href: '/learn/modules/25-1' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'आर्यभटीय (499 ई.) में आर्यभट ने π का कौन सा मान दिया?',
     },
     options: [
-      { en: '3.14', hi: '3.14' },
-      { en: '3.1416', hi: '3.1416' },
-      { en: '3.14159', hi: '3.14159' },
-      { en: '22/7', hi: '22/7' },
+      { en: '3.14', hi: '3.14', sa: '3.14', mai: '3.14', mr: '3.14', ta: '3.14', te: '3.14', bn: '3.14', kn: '3.14', gu: '3.14' },
+      { en: '3.1416', hi: '3.1416', sa: '3.1416', mai: '3.1416', mr: '3.1416', ta: '3.1416', te: '3.1416', bn: '3.1416', kn: '3.1416', gu: '3.1416' },
+      { en: '3.14159', hi: '3.14159', sa: '3.14159', mai: '3.14159', mr: '3.14159', ta: '3.14159', te: '3.14159', bn: '3.14159', kn: '3.14159', gu: '3.14159' },
+      { en: '22/7', hi: '22/7', sa: '22/7', mai: '22/7', mr: '22/7', ta: '22/7', te: '22/7', bn: '22/7', kn: '22/7', gu: '22/7' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -44,10 +44,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'आर्यभटीय के किस श्लोक में आर्यभट ने π का मान दिया?',
     },
     options: [
-      { en: 'Ganitapada 1', hi: 'गणितपाद 1' },
-      { en: 'Ganitapada 10', hi: 'गणितपाद 10' },
-      { en: 'Kalakriyapada 5', hi: 'कालक्रियापाद 5' },
-      { en: 'Golapada 17', hi: 'गोलपाद 17' },
+      { en: 'Ganitapada 1', hi: 'गणितपाद 1', sa: 'गणितपाद 1', mai: 'गणितपाद 1', mr: 'गणितपाद 1', ta: 'Ganitapada 1', te: 'Ganitapada 1', bn: 'Ganitapada 1', kn: 'Ganitapada 1', gu: 'Ganitapada 1' },
+      { en: 'Ganitapada 10', hi: 'गणितपाद 10', sa: 'गणितपाद 10', mai: 'गणितपाद 10', mr: 'गणितपाद 10', ta: 'Ganitapada 10', te: 'Ganitapada 10', bn: 'Ganitapada 10', kn: 'Ganitapada 10', gu: 'Ganitapada 10' },
+      { en: 'Kalakriyapada 5', hi: 'कालक्रियापाद 5', sa: 'कालक्रियापाद 5', mai: 'कालक्रियापाद 5', mr: 'कालक्रियापाद 5', ta: 'Kalakriyapada 5', te: 'Kalakriyapada 5', bn: 'Kalakriyapada 5', kn: 'Kalakriyapada 5', gu: 'Kalakriyapada 5' },
+      { en: 'Golapada 17', hi: 'गोलपाद 17', sa: 'गोलपाद 17', mai: 'गोलपाद 17', mr: 'गोलपाद 17', ta: 'Golapada 17', te: 'Golapada 17', bn: 'Golapada 17', kn: 'Golapada 17', gu: 'Golapada 17' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -62,10 +62,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'π के श्लोक में आर्यभट द्वारा प्रयुक्त संस्कृत शब्द "आसन्नः" का क्या अर्थ है?',
     },
     options: [
-      { en: 'Exact', hi: 'सटीक' },
-      { en: 'Approximate / approaching', hi: 'सन्निकट / निकटतम' },
-      { en: 'Infinite', hi: 'अनन्त' },
-      { en: 'Sufficient', hi: 'पर्याप्त' },
+      { en: 'Exact', hi: 'सटीक', sa: 'सटीक', mai: 'सटीक', mr: 'सटीक', ta: 'Exact', te: 'Exact', bn: 'Exact', kn: 'Exact', gu: 'Exact' },
+      { en: 'Approximate / approaching', hi: 'सन्निकट / निकटतम', sa: 'सन्निकट / निकटतम', mai: 'सन्निकट / निकटतम', mr: 'सन्निकट / निकटतम', ta: 'Approximate / approaching', te: 'Approximate / approaching', bn: 'Approximate / approaching', kn: 'Approximate / approaching', gu: 'Approximate / approaching' },
+      { en: 'Infinite', hi: 'अनन्त', sa: 'अनन्त', mai: 'अनन्त', mr: 'अनन्त', ta: 'Infinite', te: 'Infinite', bn: 'Infinite', kn: 'Infinite', gu: 'Infinite' },
+      { en: 'Sufficient', hi: 'पर्याप्त', sa: 'पर्याप्त', mai: 'पर्याप्त', mr: 'पर्याप्त', ta: 'Sufficient', te: 'Sufficient', bn: 'Sufficient', kn: 'Sufficient', gu: 'Sufficient' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -80,10 +80,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'आर्यभट की तुलना में आर्किमिडीज़ का π का सर्वोत्तम सन्निकटन कितना सटीक था?',
     },
     options: [
-      { en: 'More accurate — Archimedes had 5 decimal places', hi: 'अधिक सटीक — आर्किमिडीज़ के पास 5 दशमलव थे' },
-      { en: 'About the same — both had 4 decimal places', hi: 'लगभग समान — दोनों के पास 4 दशमलव थे' },
-      { en: 'Less accurate — Archimedes had about 2 correct decimal places', hi: 'कम सटीक — आर्किमिडीज़ के पास लगभग 2 सही दशमलव थे' },
-      { en: 'Archimedes did not calculate pi', hi: 'आर्किमिडीज़ ने π की गणना नहीं की' },
+      { en: 'More accurate — Archimedes had 5 decimal places', hi: 'अधिक सटीक — आर्किमिडीज़ के पास 5 दशमलव थे', sa: 'अधिक सटीक — आर्किमिडीज़ के पास 5 दशमलव थे', mai: 'अधिक सटीक — आर्किमिडीज़ के पास 5 दशमलव थे', mr: 'अधिक सटीक — आर्किमिडीज़ के पास 5 दशमलव थे', ta: 'More accurate — Archimedes had 5 decimal places', te: 'More accurate — Archimedes had 5 decimal places', bn: 'More accurate — Archimedes had 5 decimal places', kn: 'More accurate — Archimedes had 5 decimal places', gu: 'More accurate — Archimedes had 5 decimal places' },
+      { en: 'About the same — both had 4 decimal places', hi: 'लगभग समान — दोनों के पास 4 दशमलव थे', sa: 'लगभग समान — दोनों के पास 4 दशमलव थे', mai: 'लगभग समान — दोनों के पास 4 दशमलव थे', mr: 'लगभग समान — दोनों के पास 4 दशमलव थे', ta: 'About the same — both had 4 decimal places', te: 'About the same — both had 4 decimal places', bn: 'About the same — both had 4 decimal places', kn: 'About the same — both had 4 decimal places', gu: 'About the same — both had 4 decimal places' },
+      { en: 'Less accurate — Archimedes had about 2 correct decimal places', hi: 'कम सटीक — आर्किमिडीज़ के पास लगभग 2 सही दशमलव थे', sa: 'कम सटीक — आर्किमिडीज़ के पास लगभग 2 सही दशमलव थे', mai: 'कम सटीक — आर्किमिडीज़ के पास लगभग 2 सही दशमलव थे', mr: 'कम सटीक — आर्किमिडीज़ के पास लगभग 2 सही दशमलव थे', ta: 'Less accurate — Archimedes had about 2 correct decimal places', te: 'Less accurate — Archimedes had about 2 correct decimal places', bn: 'Less accurate — Archimedes had about 2 correct decimal places', kn: 'Less accurate — Archimedes had about 2 correct decimal places', gu: 'Less accurate — Archimedes had about 2 correct decimal places' },
+      { en: 'Archimedes did not calculate pi', hi: 'आर्किमिडीज़ ने π की गणना नहीं की', sa: 'आर्किमिडीज़ ने π की गणना नहीं की', mai: 'आर्किमिडीज़ ने π की गणना नहीं की', mr: 'आर्किमिडीज़ ने π की गणना नहीं की', ta: 'Archimedes did not calculate pi', te: 'Archimedes did not calculate pi', bn: 'Archimedes did not calculate pi', kn: 'Archimedes did not calculate pi', gu: 'Archimedes did not calculate pi' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -98,10 +98,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'यूरोपीय गणितज्ञों से सदियों पहले π को 11 दशमलव तक किसने गणना की?',
     },
     options: [
-      { en: 'Bhaskara II', hi: 'भास्कर द्वितीय' },
-      { en: 'Madhava of Sangamagrama', hi: 'माधव संगमग्राम के' },
-      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त' },
-      { en: 'Nilakantha Somayaji', hi: 'नीलकण्ठ सोमयाजी' },
+      { en: 'Bhaskara II', hi: 'भास्कर द्वितीय', sa: 'भास्कर द्वितीय', mai: 'भास्कर द्वितीय', mr: 'भास्कर द्वितीय', ta: 'Bhaskara II', te: 'Bhaskara II', bn: 'Bhaskara II', kn: 'Bhaskara II', gu: 'Bhaskara II' },
+      { en: 'Madhava of Sangamagrama', hi: 'माधव संगमग्राम के', sa: 'माधव संगमग्राम के', mai: 'माधव संगमग्राम के', mr: 'माधव संगमग्राम के', ta: 'Madhava of Sangamagrama', te: 'Madhava of Sangamagrama', bn: 'Madhava of Sangamagrama', kn: 'Madhava of Sangamagrama', gu: 'Madhava of Sangamagrama' },
+      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त', sa: 'ब्रह्मगुप्त', mai: 'ब्रह्मगुप्त', mr: 'ब्रह्मगुप्त', ta: 'Brahmagupta', te: 'Brahmagupta', bn: 'Brahmagupta', kn: 'Brahmagupta', gu: 'Brahmagupta' },
+      { en: 'Nilakantha Somayaji', hi: 'नीलकण्ठ सोमयाजी', sa: 'नीलकण्ठ सोमयाजी', mai: 'नीलकण्ठ सोमयाजी', mr: 'नीलकण्ठ सोमयाजी', ta: 'Nilakantha Somayaji', te: 'Nilakantha Somayaji', bn: 'Nilakantha Somayaji', kn: 'Nilakantha Somayaji', gu: 'Nilakantha Somayaji' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -116,10 +116,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'संगमग्राम के माधव किस शताब्दी में रहे?',
     },
     options: [
-      { en: '10th century CE', hi: '10वीं शताब्दी ई.' },
-      { en: '12th century CE', hi: '12वीं शताब्दी ई.' },
-      { en: '14th century CE', hi: '14वीं शताब्दी ई.' },
-      { en: '16th century CE', hi: '16वीं शताब्दी ई.' },
+      { en: '10th century CE', hi: '10वीं शताब्दी ई.', sa: '10वीं शताब्दी ई.', mai: '10वीं शताब्दी ई.', mr: '10वीं शताब्दी ई.', ta: '10th century CE', te: '10th century CE', bn: '10th century CE', kn: '10th century CE', gu: '10th century CE' },
+      { en: '12th century CE', hi: '12वीं शताब्दी ई.', sa: '12वीं शताब्दी ई.', mai: '12वीं शताब्दी ई.', mr: '12वीं शताब्दी ई.', ta: '12th century CE', te: '12th century CE', bn: '12th century CE', kn: '12th century CE', gu: '12th century CE' },
+      { en: '14th century CE', hi: '14वीं शताब्दी ई.', sa: '14वीं शताब्दी ई.', mai: '14वीं शताब्दी ई.', mr: '14वीं शताब्दी ई.', ta: '14th century CE', te: '14th century CE', bn: '14th century CE', kn: '14th century CE', gu: '14th century CE' },
+      { en: '16th century CE', hi: '16वीं शताब्दी ई.', sa: '16वीं शताब्दी ई.', mai: '16वीं शताब्दी ई.', mr: '16वीं शताब्दी ई.', ta: '16th century CE', te: '16th century CE', bn: '16th century CE', kn: '16th century CE', gu: '16th century CE' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -134,10 +134,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'π/4 के लिए माधव-लाइबनित्ज़ श्रृंखला क्या है?',
     },
     options: [
-      { en: 'π/4 = 1 + 1/3 + 1/5 + 1/7 + ...', hi: 'π/4 = 1 + 1/3 + 1/5 + 1/7 + ...' },
-      { en: 'π/4 = 1 - 1/3 + 1/5 - 1/7 + ...', hi: 'π/4 = 1 - 1/3 + 1/5 - 1/7 + ...' },
-      { en: 'π/4 = 1/1² + 1/2² + 1/3² + ...', hi: 'π/4 = 1/1² + 1/2² + 1/3² + ...' },
-      { en: 'π/4 = 1 - 1/2 + 1/4 - 1/8 + ...', hi: 'π/4 = 1 - 1/2 + 1/4 - 1/8 + ...' },
+      { en: 'π/4 = 1 + 1/3 + 1/5 + 1/7 + ...', hi: 'π/4 = 1 + 1/3 + 1/5 + 1/7 + ...', sa: 'π/4 = 1 + 1/3 + 1/5 + 1/7 + ...', mai: 'π/4 = 1 + 1/3 + 1/5 + 1/7 + ...', mr: 'π/4 = 1 + 1/3 + 1/5 + 1/7 + ...', ta: 'π/4 = 1 + 1/3 + 1/5 + 1/7 + ...', te: 'π/4 = 1 + 1/3 + 1/5 + 1/7 + ...', bn: 'π/4 = 1 + 1/3 + 1/5 + 1/7 + ...', kn: 'π/4 = 1 + 1/3 + 1/5 + 1/7 + ...', gu: 'π/4 = 1 + 1/3 + 1/5 + 1/7 + ...' },
+      { en: 'π/4 = 1 - 1/3 + 1/5 - 1/7 + ...', hi: 'π/4 = 1 - 1/3 + 1/5 - 1/7 + ...', sa: 'π/4 = 1 - 1/3 + 1/5 - 1/7 + ...', mai: 'π/4 = 1 - 1/3 + 1/5 - 1/7 + ...', mr: 'π/4 = 1 - 1/3 + 1/5 - 1/7 + ...', ta: 'π/4 = 1 - 1/3 + 1/5 - 1/7 + ...', te: 'π/4 = 1 - 1/3 + 1/5 - 1/7 + ...', bn: 'π/4 = 1 - 1/3 + 1/5 - 1/7 + ...', kn: 'π/4 = 1 - 1/3 + 1/5 - 1/7 + ...', gu: 'π/4 = 1 - 1/3 + 1/5 - 1/7 + ...' },
+      { en: 'π/4 = 1/1² + 1/2² + 1/3² + ...', hi: 'π/4 = 1/1² + 1/2² + 1/3² + ...', sa: 'π/4 = 1/1² + 1/2² + 1/3² + ...', mai: 'π/4 = 1/1² + 1/2² + 1/3² + ...', mr: 'π/4 = 1/1² + 1/2² + 1/3² + ...', ta: 'π/4 = 1/1² + 1/2² + 1/3² + ...', te: 'π/4 = 1/1² + 1/2² + 1/3² + ...', bn: 'π/4 = 1/1² + 1/2² + 1/3² + ...', kn: 'π/4 = 1/1² + 1/2² + 1/3² + ...', gu: 'π/4 = 1/1² + 1/2² + 1/3² + ...' },
+      { en: 'π/4 = 1 - 1/2 + 1/4 - 1/8 + ...', hi: 'π/4 = 1 - 1/2 + 1/4 - 1/8 + ...', sa: 'π/4 = 1 - 1/2 + 1/4 - 1/8 + ...', mai: 'π/4 = 1 - 1/2 + 1/4 - 1/8 + ...', mr: 'π/4 = 1 - 1/2 + 1/4 - 1/8 + ...', ta: 'π/4 = 1 - 1/2 + 1/4 - 1/8 + ...', te: 'π/4 = 1 - 1/2 + 1/4 - 1/8 + ...', bn: 'π/4 = 1 - 1/2 + 1/4 - 1/8 + ...', kn: 'π/4 = 1 - 1/2 + 1/4 - 1/8 + ...', gu: 'π/4 = 1 - 1/2 + 1/4 - 1/8 + ...' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -152,10 +152,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'यूरोप ने माधव की 11 दशमलव की π सटीकता लगभग किस वर्ष तक हासिल की?',
     },
     options: [
-      { en: 'Around 1400 CE', hi: 'लगभग 1400 ई.' },
-      { en: 'Around 1500 CE', hi: 'लगभग 1500 ई.' },
-      { en: 'Around 1600 CE', hi: 'लगभग 1600 ई.' },
-      { en: 'Around 1700 CE', hi: 'लगभग 1700 ई.' },
+      { en: 'Around 1400 CE', hi: 'लगभग 1400 ई.', sa: 'लगभग 1400 ई.', mai: 'लगभग 1400 ई.', mr: 'लगभग 1400 ई.', ta: 'Around 1400 CE', te: 'Around 1400 CE', bn: 'Around 1400 CE', kn: 'Around 1400 CE', gu: 'Around 1400 CE' },
+      { en: 'Around 1500 CE', hi: 'लगभग 1500 ई.', sa: 'लगभग 1500 ई.', mai: 'लगभग 1500 ई.', mr: 'लगभग 1500 ई.', ta: 'Around 1500 CE', te: 'Around 1500 CE', bn: 'Around 1500 CE', kn: 'Around 1500 CE', gu: 'Around 1500 CE' },
+      { en: 'Around 1600 CE', hi: 'लगभग 1600 ई.', sa: 'लगभग 1600 ई.', mai: 'लगभग 1600 ई.', mr: 'लगभग 1600 ई.', ta: 'Around 1600 CE', te: 'Around 1600 CE', bn: 'Around 1600 CE', kn: 'Around 1600 CE', gu: 'Around 1600 CE' },
+      { en: 'Around 1700 CE', hi: 'लगभग 1700 ई.', sa: 'लगभग 1700 ई.', mai: 'लगभग 1700 ई.', mr: 'लगभग 1700 ई.', ta: 'Around 1700 CE', te: 'Around 1700 CE', bn: 'Around 1700 CE', kn: 'Around 1700 CE', gu: 'Around 1700 CE' },
     ],
     correctAnswer: 2,
     explanation: {

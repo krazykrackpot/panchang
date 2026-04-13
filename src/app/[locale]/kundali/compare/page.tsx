@@ -20,7 +20,7 @@ import {
 } from '@/lib/comparison/synastry-engine';
 import type { SynastryAspect } from '@/lib/comparison/synastry-engine';
 import type { KundaliData, BirthData, ChartStyle, ChartData } from '@/types/kundali';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ─── Labels ──────────────────────────────────────────────────────────────── */
@@ -74,7 +74,7 @@ const ASPECT_SYMBOLS: Record<string, string> = {
   Conjunction: '☌', Opposition: '☍', Trine: '△', Square: '□', Sextile: '⚹',
 };
 
-const DIGNITY_LABELS: Record<string, { en: string; hi: string }> = {
+const DIGNITY_LABELS: Record<string, LocaleText> = {
   exalted:      { en: 'Exalted', hi: 'उच्च' },
   debilitated:  { en: 'Debilitated', hi: 'नीच' },
   own:          { en: 'Own Sign', hi: 'स्वगृह' },

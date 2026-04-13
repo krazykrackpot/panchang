@@ -1,15 +1,16 @@
+import type { LocaleText } from '@/types/panchang';
 // yogas-complete.ts — Comprehensive Vedic Yoga Detection Library (150+ yogas)
 // Pure logic, no imports needed.
 
 export interface YogaComplete {
   id: string;
-  name: { en: string; hi: string; sa: string };
+  name: LocaleText;
   category: 'dosha' | 'mahapurusha' | 'moon_based' | 'sun_based' | 'raja' | 'wealth' | 'inauspicious' | 'other';
   isAuspicious: boolean;
   present: boolean;
   strength: 'Strong' | 'Moderate' | 'Weak';
-  formationRule: { en: string; hi: string; sa: string };
-  description: { en: string; hi: string; sa: string };
+  formationRule: LocaleText;
+  description: LocaleText;
 }
 
 const GRAHA_EN = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'];
@@ -1492,7 +1493,7 @@ function detectSankhyaYogas(planets: PlanetData[]): YogaComplete[] {
   const occupiedSigns = new Set(seven.map(p => p.sign));
   const count = occupiedSigns.size;
 
-  const SANKHYA: { count: number; id: string; name: { en: string; hi: string; sa: string }; desc: string }[] = [
+  const SANKHYA: { count: number; id: string; name: LocaleText; desc: string }[] = [
     { count: 1, id: 'gola', name: { en: 'Gola Yoga', hi: 'गोल योग', sa: 'गोलयोगः' }, desc: 'All 7 planets in 1 sign — extreme concentration of energy. Very rare. Native dominates one area of life completely.' },
     { count: 2, id: 'yuga', name: { en: 'Yuga Yoga', hi: 'युग योग', sa: 'युगयोगः' }, desc: 'All planets in 2 signs — polarized energy between two life areas.' },
     { count: 3, id: 'shoola_nabhasa', name: { en: 'Shoola Yoga (Nabhasa)', hi: 'शूल योग (नभस)', sa: 'शूलयोगः' }, desc: 'Planets in 3 signs — trident-like energy, sharp and focused.' },

@@ -2,7 +2,8 @@ import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowRight, Music } from 'lucide-react';
-import type { Locale } from '@/types/panchang';
+import type { Locale, LocaleText } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
@@ -82,14 +83,14 @@ const L = {
     hi: 'फिबोनाची अनुक्रम के बारे में उल्लेखनीय तथ्य यह है कि एक ही गणितीय पैटर्न बिल्कुल अलग क्षेत्रों में स्वतंत्र रूप से उत्पन्न होता है — और भारत ने इसे सबसे अप्रत्याशित स्थान पर खोजा: संगीत। भरत मुनि ने इसे ताल की लयबद्ध धड़कनों में पाया। पिंगल ने इसे संस्कृत कविता के अक्षरों में पाया। यह अनुक्रम गणनात्मक विकास का एक मूलभूत गुण है, और प्राचीन भारत में एक संगीत प्रतिभाशाली व्यक्ति ने पहले इसे लय के नृत्य में देखा।',
   },
 
-  s8Title: { en: 'Classical Sources Timeline', hi: 'शास्त्रीय स्रोत समयरेखा' },
+  s8Title: { en: 'Classical Sources Timeline', hi: 'शास्त्रीय स्रोत समयरेखा', sa: 'शास्त्रीय स्रोत समयरेखा', mai: 'शास्त्रीय स्रोत समयरेखा', mr: 'शास्त्रीय स्रोत समयरेखा', ta: 'Classical Sources Timeline', te: 'Classical Sources Timeline', bn: 'Classical Sources Timeline', kn: 'Classical Sources Timeline', gu: 'Classical Sources Timeline' },
   s8Body: {
     en: "The full chain of Indian priority — from Bharata Muni's musical discovery to the final European encounter via Fibonacci:",
     hi: 'भारतीय प्राथमिकता की पूरी श्रृंखला — भरत मुनि की संगीत खोज से फिबोनाची के माध्यम से अंतिम यूरोपीय मुठभेड़ तक:',
   },
 
-  backToContributions: { en: 'Back to Contributions', hi: 'योगदान पर वापस' },
-  nextPage: { en: 'Next: Binary Numbers', hi: 'अगला: बाइनरी संख्याएँ' },
+  backToContributions: { en: 'Back to Contributions', hi: 'योगदान पर वापस', sa: 'योगदान पर वापस', mai: 'योगदान पर वापस', mr: 'योगदान पर वापस', ta: 'Back to Contributions', te: 'Back to Contributions', bn: 'Back to Contributions', kn: 'Back to Contributions', gu: 'Back to Contributions' },
+  nextPage: { en: 'Next: Binary Numbers', hi: 'अगला: बाइनरी संख्याएँ', sa: 'अगला: बाइनरी संख्याएँ', mai: 'अगला: बाइनरी संख्याएँ', mr: 'अगला: बाइनरी संख्याएँ', ta: 'Next: Binary Numbers', te: 'Next: Binary Numbers', bn: 'Next: Binary Numbers', kn: 'Next: Binary Numbers', gu: 'Next: Binary Numbers' },
 };
 
 /* ═══════════════════════════════════════════════════════════════
@@ -111,65 +112,65 @@ const TIMELINE = [
     year: '~200 BCE',
     who: 'Bharata Muni',
     text: 'Natyashastra',
-    event: { en: 'FIRST: Sequence emerges from tala (rhythmic cycle) analysis — musical discovery, 22 shrutis', hi: 'पहला: ताल विश्लेषण से अनुक्रम उभरता है — संगीत खोज, 22 श्रुतियाँ' },
+    event: { en: 'FIRST: Sequence emerges from tala (rhythmic cycle) analysis — musical discovery, 22 shrutis', hi: 'पहला: ताल विश्लेषण से अनुक्रम उभरता है — संगीत खोज, 22 श्रुतियाँ', sa: 'पहला: ताल विश्लेषण से अनुक्रम उभरता है — संगीत खोज, 22 श्रुतियाँ', mai: 'पहला: ताल विश्लेषण से अनुक्रम उभरता है — संगीत खोज, 22 श्रुतियाँ', mr: 'पहला: ताल विश्लेषण से अनुक्रम उभरता है — संगीत खोज, 22 श्रुतियाँ', ta: 'FIRST: Sequence emerges from tala (rhythmic cycle) analysis — musical discovery, 22 shrutis', te: 'FIRST: Sequence emerges from tala (rhythmic cycle) analysis — musical discovery, 22 shrutis', bn: 'FIRST: Sequence emerges from tala (rhythmic cycle) analysis — musical discovery, 22 shrutis', kn: 'FIRST: Sequence emerges from tala (rhythmic cycle) analysis — musical discovery, 22 shrutis', gu: 'FIRST: Sequence emerges from tala (rhythmic cycle) analysis — musical discovery, 22 shrutis' },
     color: 'border-gold-primary/70',
-    badge: { en: 'MUSIC', hi: 'संगीत' },
+    badge: { en: 'MUSIC', hi: 'संगीत', sa: 'संगीत', mai: 'संगीत', mr: 'संगीत', ta: 'MUSIC', te: 'MUSIC', bn: 'MUSIC', kn: 'MUSIC', gu: 'MUSIC' },
     badgeColor: 'bg-gold-primary/20 text-gold-primary',
   },
   {
     year: '~200 BCE',
     who: 'Pingala',
     text: 'Chandahshastra',
-    event: { en: "Sequence in Sanskrit prosody (laghu/guru syllables); discovers Meruprastara (Pascal's Triangle) — diagonals give Fibonacci numbers", hi: 'संस्कृत छंद-विज्ञान में अनुक्रम (लघु/गुरु अक्षर); मेरुप्रस्तार की खोज — विकर्ण फिबोनाची संख्याएँ देते हैं' },
+    event: { en: "Sequence in Sanskrit prosody (laghu/guru syllables); discovers Meruprastara (Pascal's Triangle) — diagonals give Fibonacci numbers", hi: 'संस्कृत छंद-विज्ञान में अनुक्रम (लघु/गुरु अक्षर); मेरुप्रस्तार की खोज — विकर्ण फिबोनाची संख्याएँ देते हैं', sa: 'संस्कृत छंद-विज्ञान में अनुक्रम (लघु/गुरु अक्षर); मेरुप्रस्तार की खोज — विकर्ण फिबोनाची संख्याएँ देते हैं', mai: 'संस्कृत छंद-विज्ञान में अनुक्रम (लघु/गुरु अक्षर); मेरुप्रस्तार की खोज — विकर्ण फिबोनाची संख्याएँ देते हैं', mr: 'संस्कृत छंद-विज्ञान में अनुक्रम (लघु/गुरु अक्षर); मेरुप्रस्तार की खोज — विकर्ण फिबोनाची संख्याएँ देते हैं', ta: "Sequence in Sanskrit prosody (laghu/guru syllables); discovers Meruprastara (Pascal's Triangle) — diagonals give Fibonacci numbers", te: "Sequence in Sanskrit prosody (laghu/guru syllables); discovers Meruprastara (Pascal's Triangle) — diagonals give Fibonacci numbers", bn: "Sequence in Sanskrit prosody (laghu/guru syllables); discovers Meruprastara (Pascal's Triangle) — diagonals give Fibonacci numbers", kn: "Sequence in Sanskrit prosody (laghu/guru syllables); discovers Meruprastara (Pascal's Triangle) — diagonals give Fibonacci numbers", gu: "Sequence in Sanskrit prosody (laghu/guru syllables); discovers Meruprastara (Pascal's Triangle) — diagonals give Fibonacci numbers" },
     color: 'border-amber-400/60',
-    badge: { en: 'POETRY', hi: 'कविता' },
+    badge: { en: 'POETRY', hi: 'कविता', sa: 'कविता', mai: 'कविता', mr: 'कविता', ta: 'POETRY', te: 'POETRY', bn: 'POETRY', kn: 'POETRY', gu: 'POETRY' },
     badgeColor: 'bg-amber-500/20 text-amber-400',
   },
   {
     year: '~600 CE',
     who: 'Virahanka',
     text: 'Vrittajatisamuccaya',
-    event: { en: 'First EXPLICIT recurrence relation: F(n) = F(n−1) + F(n−2) — the defining rule, stated clearly for the first time', hi: 'पहला स्पष्ट पुनरावृत्ति संबंध: F(n) = F(n−1) + F(n−2) — पहली बार स्पष्ट रूप से कहा गया' },
+    event: { en: 'First EXPLICIT recurrence relation: F(n) = F(n−1) + F(n−2) — the defining rule, stated clearly for the first time', hi: 'पहला स्पष्ट पुनरावृत्ति संबंध: F(n) = F(n−1) + F(n−2) — पहली बार स्पष्ट रूप से कहा गया', sa: 'पहला स्पष्ट पुनरावृत्ति संबंध: F(n) = F(n−1) + F(n−2) — पहली बार स्पष्ट रूप से कहा गया', mai: 'पहला स्पष्ट पुनरावृत्ति संबंध: F(n) = F(n−1) + F(n−2) — पहली बार स्पष्ट रूप से कहा गया', mr: 'पहला स्पष्ट पुनरावृत्ति संबंध: F(n) = F(n−1) + F(n−2) — पहली बार स्पष्ट रूप से कहा गया', ta: 'First EXPLICIT recurrence relation: F(n) = F(n−1) + F(n−2) — the defining rule, stated clearly for the first time', te: 'First EXPLICIT recurrence relation: F(n) = F(n−1) + F(n−2) — the defining rule, stated clearly for the first time', bn: 'First EXPLICIT recurrence relation: F(n) = F(n−1) + F(n−2) — the defining rule, stated clearly for the first time', kn: 'First EXPLICIT recurrence relation: F(n) = F(n−1) + F(n−2) — the defining rule, stated clearly for the first time', gu: 'First EXPLICIT recurrence relation: F(n) = F(n−1) + F(n−2) — the defining rule, stated clearly for the first time' },
     color: 'border-emerald-400/60',
-    badge: { en: 'RECURRENCE', hi: 'पुनरावृत्ति' },
+    badge: { en: 'RECURRENCE', hi: 'पुनरावृत्ति', sa: 'पुनरावृत्ति', mai: 'पुनरावृत्ति', mr: 'पुनरावृत्ति', ta: 'RECURRENCE', te: 'RECURRENCE', bn: 'RECURRENCE', kn: 'RECURRENCE', gu: 'RECURRENCE' },
     badgeColor: 'bg-emerald-500/20 text-emerald-400',
   },
   {
     year: '~1135 CE',
     who: 'Gopala',
     text: 'Commentary on Chandahshastra',
-    event: { en: 'Further systematization of the sequence in prosody, extending to longer meters', hi: 'छंद-विज्ञान में अनुक्रम का आगे व्यवस्थितकरण' },
+    event: { en: 'Further systematization of the sequence in prosody, extending to longer meters', hi: 'छंद-विज्ञान में अनुक्रम का आगे व्यवस्थितकरण', sa: 'छंद-विज्ञान में अनुक्रम का आगे व्यवस्थितकरण', mai: 'छंद-विज्ञान में अनुक्रम का आगे व्यवस्थितकरण', mr: 'छंद-विज्ञान में अनुक्रम का आगे व्यवस्थितकरण', ta: 'Further systematization of the sequence in prosody, extending to longer meters', te: 'Further systematization of the sequence in prosody, extending to longer meters', bn: 'Further systematization of the sequence in prosody, extending to longer meters', kn: 'Further systematization of the sequence in prosody, extending to longer meters', gu: 'Further systematization of the sequence in prosody, extending to longer meters' },
     color: 'border-blue-400/50',
-    badge: { en: 'PROSODY', hi: 'छंद' },
+    badge: { en: 'PROSODY', hi: 'छंद', sa: 'छंद', mai: 'छंद', mr: 'छंद', ta: 'PROSODY', te: 'PROSODY', bn: 'PROSODY', kn: 'PROSODY', gu: 'PROSODY' },
     badgeColor: 'bg-blue-500/20 text-blue-400',
   },
   {
     year: '1150 CE',
     who: 'Hemachandra',
     text: 'Chandonushasana',
-    event: { en: 'Independent derivation — 52 years before Fibonacci. Full explicit statement of the recurrence. Sometimes called the Hemachandra-Fibonacci sequence.', hi: 'स्वतंत्र व्युत्पत्ति — फिबोनाची से 52 साल पहले। कभी-कभी हेमचंद्र-फिबोनाची अनुक्रम कहा जाता है।' },
+    event: { en: 'Independent derivation — 52 years before Fibonacci. Full explicit statement of the recurrence. Sometimes called the Hemachandra-Fibonacci sequence.', hi: 'स्वतंत्र व्युत्पत्ति — फिबोनाची से 52 साल पहले। कभी-कभी हेमचंद्र-फिबोनाची अनुक्रम कहा जाता है।', sa: 'स्वतंत्र व्युत्पत्ति — फिबोनाची से 52 साल पहले। कभी-कभी हेमचंद्र-फिबोनाची अनुक्रम कहा जाता है।', mai: 'स्वतंत्र व्युत्पत्ति — फिबोनाची से 52 साल पहले। कभी-कभी हेमचंद्र-फिबोनाची अनुक्रम कहा जाता है।', mr: 'स्वतंत्र व्युत्पत्ति — फिबोनाची से 52 साल पहले। कभी-कभी हेमचंद्र-फिबोनाची अनुक्रम कहा जाता है।', ta: 'Independent derivation — 52 years before Fibonacci. Full explicit statement of the recurrence. Sometimes called the Hemachandra-Fibonacci sequence.', te: 'Independent derivation — 52 years before Fibonacci. Full explicit statement of the recurrence. Sometimes called the Hemachandra-Fibonacci sequence.', bn: 'Independent derivation — 52 years before Fibonacci. Full explicit statement of the recurrence. Sometimes called the Hemachandra-Fibonacci sequence.', kn: 'Independent derivation — 52 years before Fibonacci. Full explicit statement of the recurrence. Sometimes called the Hemachandra-Fibonacci sequence.', gu: 'Independent derivation — 52 years before Fibonacci. Full explicit statement of the recurrence. Sometimes called the Hemachandra-Fibonacci sequence.' },
     color: 'border-violet-400/60',
-    badge: { en: '52 YRS EARLIER', hi: '52 साल पहले' },
+    badge: { en: '52 YRS EARLIER', hi: '52 साल पहले', sa: '52 साल पहले', mai: '52 साल पहले', mr: '52 साल पहले', ta: '52 YRS EARLIER', te: '52 YRS EARLIER', bn: '52 YRS EARLIER', kn: '52 YRS EARLIER', gu: '52 YRS EARLIER' },
     badgeColor: 'bg-violet-500/20 text-violet-400',
   },
   {
     year: '1202 CE',
     who: 'Leonardo Fibonacci',
     text: 'Liber Abaci',
-    event: { en: "Introduces sequence to Europe via rabbit-breeding problem — 1,400 years after Bharata Muni. Gets naming credit in the West.", hi: 'खरगोश-प्रजनन समस्या के माध्यम से यूरोप में अनुक्रम पेश करता है — भरत मुनि के 1,400 साल बाद।' },
+    event: { en: "Introduces sequence to Europe via rabbit-breeding problem — 1,400 years after Bharata Muni. Gets naming credit in the West.", hi: 'खरगोश-प्रजनन समस्या के माध्यम से यूरोप में अनुक्रम पेश करता है — भरत मुनि के 1,400 साल बाद।', sa: 'खरगोश-प्रजनन समस्या के माध्यम से यूरोप में अनुक्रम पेश करता है — भरत मुनि के 1,400 साल बाद।', mai: 'खरगोश-प्रजनन समस्या के माध्यम से यूरोप में अनुक्रम पेश करता है — भरत मुनि के 1,400 साल बाद।', mr: 'खरगोश-प्रजनन समस्या के माध्यम से यूरोप में अनुक्रम पेश करता है — भरत मुनि के 1,400 साल बाद।', ta: "Introduces sequence to Europe via rabbit-breeding problem — 1,400 years after Bharata Muni. Gets naming credit in the West.", te: "Introduces sequence to Europe via rabbit-breeding problem — 1,400 years after Bharata Muni. Gets naming credit in the West.", bn: "Introduces sequence to Europe via rabbit-breeding problem — 1,400 years after Bharata Muni. Gets naming credit in the West.", kn: "Introduces sequence to Europe via rabbit-breeding problem — 1,400 years after Bharata Muni. Gets naming credit in the West.", gu: "Introduces sequence to Europe via rabbit-breeding problem — 1,400 years after Bharata Muni. Gets naming credit in the West." },
     color: 'border-red-400/40',
-    badge: { en: 'EUROPE', hi: 'यूरोप' },
+    badge: { en: 'EUROPE', hi: 'यूरोप', sa: 'यूरोप', mai: 'यूरोप', mr: 'यूरोप', ta: 'EUROPE', te: 'EUROPE', bn: 'EUROPE', kn: 'EUROPE', gu: 'EUROPE' },
     badgeColor: 'bg-red-500/20 text-red-400',
   },
 ];
 
 const NATURE_EXAMPLES = [
-  { item: { en: 'Sunflower spirals', hi: 'सूरजमुखी सर्पिल' }, detail: { en: '34 clockwise, 55 counterclockwise', hi: '34 दक्षिणावर्त, 55 वामावर्त' } },
-  { item: { en: 'Lily petals', hi: 'लिली की पंखुड़ियाँ' }, detail: { en: '3 petals', hi: '3 पंखुड़ियाँ' } },
-  { item: { en: 'Buttercup petals', hi: 'बटरकप की पंखुड़ियाँ' }, detail: { en: '5 petals', hi: '5 पंखुड़ियाँ' } },
-  { item: { en: 'Delphinium petals', hi: 'डेल्फीनियम पंखुड़ियाँ' }, detail: { en: '8 petals', hi: '8 पंखुड़ियाँ' } },
-  { item: { en: 'Nautilus shell', hi: 'नॉटिलस शेल' }, detail: { en: 'phi = 1.618... golden ratio spiral', hi: 'phi = 1.618... स्वर्णिम अनुपात सर्पिल' } },
-  { item: { en: 'Pine cone spirals', hi: 'पाइन शंकु सर्पिल' }, detail: { en: '8 and 13 spiral rows', hi: '8 और 13 सर्पिल पंक्तियाँ' } },
+  { item: { en: 'Sunflower spirals', hi: 'सूरजमुखी सर्पिल', sa: 'सूरजमुखी सर्पिल', mai: 'सूरजमुखी सर्पिल', mr: 'सूरजमुखी सर्पिल', ta: 'Sunflower spirals', te: 'Sunflower spirals', bn: 'Sunflower spirals', kn: 'Sunflower spirals', gu: 'Sunflower spirals' }, detail: { en: '34 clockwise, 55 counterclockwise', hi: '34 दक्षिणावर्त, 55 वामावर्त', sa: '34 दक्षिणावर्त, 55 वामावर्त', mai: '34 दक्षिणावर्त, 55 वामावर्त', mr: '34 दक्षिणावर्त, 55 वामावर्त', ta: '34 clockwise, 55 counterclockwise', te: '34 clockwise, 55 counterclockwise', bn: '34 clockwise, 55 counterclockwise', kn: '34 clockwise, 55 counterclockwise', gu: '34 clockwise, 55 counterclockwise' } },
+  { item: { en: 'Lily petals', hi: 'लिली की पंखुड़ियाँ', sa: 'लिली की पंखुड़ियाँ', mai: 'लिली की पंखुड़ियाँ', mr: 'लिली की पंखुड़ियाँ', ta: 'Lily petals', te: 'Lily petals', bn: 'Lily petals', kn: 'Lily petals', gu: 'Lily petals' }, detail: { en: '3 petals', hi: '3 पंखुड़ियाँ', sa: '3 पंखुड़ियाँ', mai: '3 पंखुड़ियाँ', mr: '3 पंखुड़ियाँ', ta: '3 petals', te: '3 petals', bn: '3 petals', kn: '3 petals', gu: '3 petals' } },
+  { item: { en: 'Buttercup petals', hi: 'बटरकप की पंखुड़ियाँ', sa: 'बटरकप की पंखुड़ियाँ', mai: 'बटरकप की पंखुड़ियाँ', mr: 'बटरकप की पंखुड़ियाँ', ta: 'Buttercup petals', te: 'Buttercup petals', bn: 'Buttercup petals', kn: 'Buttercup petals', gu: 'Buttercup petals' }, detail: { en: '5 petals', hi: '5 पंखुड़ियाँ', sa: '5 पंखुड़ियाँ', mai: '5 पंखुड़ियाँ', mr: '5 पंखुड़ियाँ', ta: '5 petals', te: '5 petals', bn: '5 petals', kn: '5 petals', gu: '5 petals' } },
+  { item: { en: 'Delphinium petals', hi: 'डेल्फीनियम पंखुड़ियाँ', sa: 'डेल्फीनियम पंखुड़ियाँ', mai: 'डेल्फीनियम पंखुड़ियाँ', mr: 'डेल्फीनियम पंखुड़ियाँ', ta: 'Delphinium petals', te: 'Delphinium petals', bn: 'Delphinium petals', kn: 'Delphinium petals', gu: 'Delphinium petals' }, detail: { en: '8 petals', hi: '8 पंखुड़ियाँ', sa: '8 पंखुड़ियाँ', mai: '8 पंखुड़ियाँ', mr: '8 पंखुड़ियाँ', ta: '8 petals', te: '8 petals', bn: '8 petals', kn: '8 petals', gu: '8 petals' } },
+  { item: { en: 'Nautilus shell', hi: 'नॉटिलस शेल', sa: 'नॉटिलस शेल', mai: 'नॉटिलस शेल', mr: 'नॉटिलस शेल', ta: 'Nautilus shell', te: 'Nautilus shell', bn: 'Nautilus shell', kn: 'Nautilus shell', gu: 'Nautilus shell' }, detail: { en: 'phi = 1.618... golden ratio spiral', hi: 'phi = 1.618... स्वर्णिम अनुपात सर्पिल', sa: 'phi = 1.618... स्वर्णिम अनुपात सर्पिल', mai: 'phi = 1.618... स्वर्णिम अनुपात सर्पिल', mr: 'phi = 1.618... स्वर्णिम अनुपात सर्पिल', ta: 'phi = 1.618... golden ratio spiral', te: 'phi = 1.618... golden ratio spiral', bn: 'phi = 1.618... golden ratio spiral', kn: 'phi = 1.618... golden ratio spiral', gu: 'phi = 1.618... golden ratio spiral' } },
+  { item: { en: 'Pine cone spirals', hi: 'पाइन शंकु सर्पिल', sa: 'पाइन शंकु सर्पिल', mai: 'पाइन शंकु सर्पिल', mr: 'पाइन शंकु सर्पिल', ta: 'Pine cone spirals', te: 'Pine cone spirals', bn: 'Pine cone spirals', kn: 'Pine cone spirals', gu: 'Pine cone spirals' }, detail: { en: '8 and 13 spiral rows', hi: '8 और 13 सर्पिल पंक्तियाँ', sa: '8 और 13 सर्पिल पंक्तियाँ', mai: '8 और 13 सर्पिल पंक्तियाँ', mr: '8 और 13 सर्पिल पंक्तियाँ', ta: '8 and 13 spiral rows', te: '8 and 13 spiral rows', bn: '8 and 13 spiral rows', kn: '8 and 13 spiral rows', gu: '8 and 13 spiral rows' } },
 ];
 
 const SANSKRIT_TERMS = [
@@ -268,7 +269,7 @@ function MeruprastaraSVG({ hi }: { hi: boolean }) {
 export default async function FibonacciPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params as { locale: Locale };
   const hi = isDevanagariLocale(locale);
-  const t = (obj: Record<string, string>) => hi ? obj.hi : obj.en;
+  const t = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
 
   return (
     <div className="min-h-screen">
@@ -440,9 +441,9 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
           <p>{t(L.s4Body)}</p>
           <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
-              { label: { en: 'Hemachandra wrote', hi: 'हेमचंद्र ने लिखा' }, val: '1150 CE', color: 'border-violet-400/30' },
-              { label: { en: 'Fibonacci published', hi: 'फिबोनाची ने प्रकाशित किया' }, val: '1202 CE', color: 'border-red-400/30' },
-              { label: { en: 'Gap', hi: 'अंतर' }, val: '52 years', color: 'border-gold-primary/30' },
+              { label: { en: 'Hemachandra wrote', hi: 'हेमचंद्र ने लिखा', sa: 'हेमचंद्र ने लिखा', mai: 'हेमचंद्र ने लिखा', mr: 'हेमचंद्र ने लिखा', ta: 'Hemachandra wrote', te: 'Hemachandra wrote', bn: 'Hemachandra wrote', kn: 'Hemachandra wrote', gu: 'Hemachandra wrote' }, val: '1150 CE', color: 'border-violet-400/30' },
+              { label: { en: 'Fibonacci published', hi: 'फिबोनाची ने प्रकाशित किया', sa: 'फिबोनाची ने प्रकाशित किया', mai: 'फिबोनाची ने प्रकाशित किया', mr: 'फिबोनाची ने प्रकाशित किया', ta: 'Fibonacci published', te: 'Fibonacci published', bn: 'Fibonacci published', kn: 'Fibonacci published', gu: 'Fibonacci published' }, val: '1202 CE', color: 'border-red-400/30' },
+              { label: { en: 'Gap', hi: 'अंतर', sa: 'अंतर', mai: 'अंतर', mr: 'अंतर', ta: 'Gap', te: 'Gap', bn: 'Gap', kn: 'Gap', gu: 'Gap' }, val: '52 years', color: 'border-gold-primary/30' },
             ].map((item, i) => (
               <div key={i} className={`rounded-xl bg-white/[0.02] border ${item.color} p-4 text-center`}>
                 <div className="text-gold-primary font-bold text-2xl">{item.val}</div>
@@ -461,15 +462,15 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
             </div>
             <div className="flex flex-wrap items-center gap-2 text-sm text-text-secondary">
               {([
-                { en: 'India', hi: 'भारत' },
+                { en: 'India', hi: 'भारत', sa: 'भारत', mai: 'भारत', mr: 'भारत', ta: 'India', te: 'India', bn: 'India', kn: 'India', gu: 'India' },
                 '→',
-                { en: 'Baghdad (Arabic translations)', hi: 'बगदाद (अरबी अनुवाद)' },
+                { en: 'Baghdad (Arabic translations)', hi: 'बगदाद (अरबी अनुवाद)', sa: 'बगदाद (अरबी अनुवाद)', mai: 'बगदाद (अरबी अनुवाद)', mr: 'बगदाद (अरबी अनुवाद)', ta: 'Baghdad (Arabic translations)', te: 'Baghdad (Arabic translations)', bn: 'Baghdad (Arabic translations)', kn: 'Baghdad (Arabic translations)', gu: 'Baghdad (Arabic translations)' },
                 '→',
-                { en: 'North Africa (merchants)', hi: 'उत्तरी अफ्रीका (व्यापारी)' },
+                { en: 'North Africa (merchants)', hi: 'उत्तरी अफ्रीका (व्यापारी)', sa: 'उत्तरी अफ्रीका (व्यापारी)', mai: 'उत्तरी अफ्रीका (व्यापारी)', mr: 'उत्तरी अफ्रीका (व्यापारी)', ta: 'North Africa (merchants)', te: 'North Africa (merchants)', bn: 'North Africa (merchants)', kn: 'North Africa (merchants)', gu: 'North Africa (merchants)' },
                 '→',
-                { en: 'Fibonacci in Pisa', hi: 'पीसा में फिबोनाची' },
+                { en: 'Fibonacci in Pisa', hi: 'पीसा में फिबोनाची', sa: 'पीसा में फिबोनाची', mai: 'पीसा में फिबोनाची', mr: 'पीसा में फिबोनाची', ta: 'Fibonacci in Pisa', te: 'Fibonacci in Pisa', bn: 'Fibonacci in Pisa', kn: 'Fibonacci in Pisa', gu: 'Fibonacci in Pisa' },
                 '→',
-                { en: 'Europe (Liber Abaci, 1202 CE)', hi: 'यूरोप (लिबर अबासी, 1202 ईस्वी)' },
+                { en: 'Europe (Liber Abaci, 1202 CE)', hi: 'यूरोप (लिबर अबासी, 1202 ईस्वी)', sa: 'यूरोप (लिबर अबासी, 1202 ईस्वी)', mai: 'यूरोप (लिबर अबासी, 1202 ईस्वी)', mr: 'यूरोप (लिबर अबासी, 1202 ईस्वी)', ta: 'Europe (Liber Abaci, 1202 CE)', te: 'Europe (Liber Abaci, 1202 CE)', bn: 'Europe (Liber Abaci, 1202 CE)', kn: 'Europe (Liber Abaci, 1202 CE)', gu: 'Europe (Liber Abaci, 1202 CE)' },
               ] as Array<string | Record<string, string>>).map((item, i) =>
                 typeof item === 'string' ? (
                   <span key={i} className="text-gold-primary/50">{item}</span>
@@ -508,10 +509,10 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
           <p>{t(L.s7Body)}</p>
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { domain: { en: 'Music', hi: 'संगीत' }, who: { en: 'Bharata Muni', hi: 'भरत मुनि' }, year: '~200 BCE' },
-              { domain: { en: 'Poetry', hi: 'कविता' }, who: { en: 'Pingala', hi: 'पिंगल' }, year: '~200 BCE' },
-              { domain: { en: 'Nature', hi: 'प्रकृति' }, who: { en: 'Spirals & Petals', hi: 'सर्पिल और पंखुड़ियाँ' }, year: 'Always' },
-              { domain: { en: 'Finance', hi: 'वित्त' }, who: { en: 'Elliott Waves', hi: 'इलियट वेव्स' }, year: '1938 CE' },
+              { domain: { en: 'Music', hi: 'संगीत', sa: 'संगीत', mai: 'संगीत', mr: 'संगीत', ta: 'Music', te: 'Music', bn: 'Music', kn: 'Music', gu: 'Music' }, who: { en: 'Bharata Muni', hi: 'भरत मुनि', sa: 'भरत मुनि', mai: 'भरत मुनि', mr: 'भरत मुनि', ta: 'Bharata Muni', te: 'Bharata Muni', bn: 'Bharata Muni', kn: 'Bharata Muni', gu: 'Bharata Muni' }, year: '~200 BCE' },
+              { domain: { en: 'Poetry', hi: 'कविता', sa: 'कविता', mai: 'कविता', mr: 'कविता', ta: 'Poetry', te: 'Poetry', bn: 'Poetry', kn: 'Poetry', gu: 'Poetry' }, who: { en: 'Pingala', hi: 'पिंगल', sa: 'पिंगल', mai: 'पिंगल', mr: 'पिंगल', ta: 'Pingala', te: 'Pingala', bn: 'Pingala', kn: 'Pingala', gu: 'Pingala' }, year: '~200 BCE' },
+              { domain: { en: 'Nature', hi: 'प्रकृति', sa: 'प्रकृति', mai: 'प्रकृति', mr: 'प्रकृति', ta: 'Nature', te: 'Nature', bn: 'Nature', kn: 'Nature', gu: 'Nature' }, who: { en: 'Spirals & Petals', hi: 'सर्पिल और पंखुड़ियाँ', sa: 'सर्पिल और पंखुड़ियाँ', mai: 'सर्पिल और पंखुड़ियाँ', mr: 'सर्पिल और पंखुड़ियाँ', ta: 'Spirals & Petals', te: 'Spirals & Petals', bn: 'Spirals & Petals', kn: 'Spirals & Petals', gu: 'Spirals & Petals' }, year: 'Always' },
+              { domain: { en: 'Finance', hi: 'वित्त', sa: 'वित्त', mai: 'वित्त', mr: 'वित्त', ta: 'Finance', te: 'Finance', bn: 'Finance', kn: 'Finance', gu: 'Finance' }, who: { en: 'Elliott Waves', hi: 'इलियट वेव्स', sa: 'इलियट वेव्स', mai: 'इलियट वेव्स', mr: 'इलियट वेव्स', ta: 'Elliott Waves', te: 'Elliott Waves', bn: 'Elliott Waves', kn: 'Elliott Waves', gu: 'Elliott Waves' }, year: '1938 CE' },
             ].map((item, i) => (
               <div
                 key={i}

@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Moon, Clock, ShieldAlert, Heart, Sparkles, Star, AlertTriangle, CheckCircle, ArrowRight } from 'lucide-react';
@@ -255,15 +256,15 @@ export default function SadeSatiLearnPage() {
                   {phase.num}
                 </div>
                 <div>
-                  <h4 className="text-gold-light font-semibold">{phase.name[locale]}</h4>
-                  <span className="text-text-secondary/70 text-xs font-mono">{phase.transit[locale]}</span>
+                  <h4 className="text-gold-light font-semibold">{tl(phase.name, locale)}</h4>
+                  <span className="text-text-secondary/70 text-xs font-mono">{tl(phase.transit, locale)}</span>
                 </div>
               </div>
-              <p className="text-text-secondary text-sm mb-3 leading-relaxed">{phase.themes[locale]}</p>
+              <p className="text-text-secondary text-sm mb-3 leading-relaxed">{tl(phase.themes, locale)}</p>
               <div className="p-3 rounded-lg bg-gold-primary/5 border border-gold-primary/10">
                 <p className="text-gold-light/80 text-sm">
                   <span className="font-semibold">{!isDevanagariLocale(locale) ? 'Advice: ' : 'सलाह: '}</span>
-                  {phase.advice[locale]}
+                  {tl(phase.advice, locale)}
                 </p>
               </div>
             </motion.div>
@@ -294,9 +295,9 @@ export default function SadeSatiLearnPage() {
                   transition={{ delay: i * 0.06 }}
                   className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors"
                 >
-                  <td className="py-3 px-3 text-gold-primary/80 font-medium">{row.factor[locale]}</td>
-                  <td className="py-3 px-3 text-emerald-300/70">{row.mild[locale]}</td>
-                  <td className="py-3 px-3 text-red-300/70">{row.severe[locale]}</td>
+                  <td className="py-3 px-3 text-gold-primary/80 font-medium">{tl(row.factor, locale)}</td>
+                  <td className="py-3 px-3 text-emerald-300/70">{tl(row.mild, locale)}</td>
+                  <td className="py-3 px-3 text-red-300/70">{tl(row.severe, locale)}</td>
                 </motion.tr>
               ))}
             </tbody>
@@ -320,8 +321,8 @@ export default function SadeSatiLearnPage() {
             >
               <Clock className="w-5 h-5 text-gold-primary flex-shrink-0 mt-0.5" />
               <div>
-                <h4 className="text-gold-light font-semibold text-sm mb-1">{lc.cycle[locale]}</h4>
-                <p className="text-text-secondary text-sm leading-relaxed">{lc.theme[locale]}</p>
+                <h4 className="text-gold-light font-semibold text-sm mb-1">{tl(lc.cycle, locale)}</h4>
+                <p className="text-text-secondary text-sm leading-relaxed">{tl(lc.theme, locale)}</p>
               </div>
             </motion.div>
           ))}
@@ -349,8 +350,8 @@ export default function SadeSatiLearnPage() {
                   rem.icon === AlertTriangle ? 'text-amber-400' : 'text-gold-primary'
                 }`} />
                 <div>
-                  <h4 className="text-gold-light font-semibold text-sm mb-1">{rem.name[locale]}</h4>
-                  <p className="text-text-secondary text-sm leading-relaxed">{rem.desc[locale]}</p>
+                  <h4 className="text-gold-light font-semibold text-sm mb-1">{tl(rem.name, locale)}</h4>
+                  <p className="text-text-secondary text-sm leading-relaxed">{tl(rem.desc, locale)}</p>
                 </div>
               </div>
             </motion.div>
@@ -382,9 +383,9 @@ export default function SadeSatiLearnPage() {
                 ) : (
                   <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
                 )}
-                <h4 className="text-gold-light font-semibold text-sm">{m.myth[locale]}</h4>
+                <h4 className="text-gold-light font-semibold text-sm">{tl(m.myth, locale)}</h4>
               </div>
-              <p className="text-text-secondary text-sm leading-relaxed ml-7">{m.truth[locale]}</p>
+              <p className="text-text-secondary text-sm leading-relaxed ml-7">{tl(m.truth, locale)}</p>
             </motion.div>
           ))}
         </div>

@@ -6,16 +6,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_19_2', phase: 6, topic: 'Jaimini', moduleNumber: '19.2',
-  title: { en: 'Rashi Drishti — Sign-Based Aspects', hi: 'राशि दृष्टि — राशि-आधारित दृष्टियाँ' },
+  title: { en: 'Rashi Drishti — Sign-Based Aspects', hi: 'राशि दृष्टि — राशि-आधारित दृष्टियाँ', sa: 'राशि दृष्टि — राशि-आधारित दृष्टियाँ', mai: 'राशि दृष्टि — राशि-आधारित दृष्टियाँ', mr: 'राशि दृष्टि — राशि-आधारित दृष्टियाँ', ta: 'Rashi Drishti — Sign-Based Aspects', te: 'Rashi Drishti — Sign-Based Aspects', bn: 'Rashi Drishti — Sign-Based Aspects', kn: 'Rashi Drishti — Sign-Based Aspects', gu: 'Rashi Drishti — Sign-Based Aspects' },
   subtitle: {
     en: 'Jaimini\'s aspect system where entire signs aspect entire signs — no orbs, no partial aspects, radically different from Parashari',
     hi: 'जैमिनी की दृष्टि पद्धति जहाँ सम्पूर्ण राशियाँ सम्पूर्ण राशियों को दृष्ट करती हैं — कोई ओर्ब नहीं, कोई आंशिक दृष्टि नहीं, पाराशरी से मूलतः भिन्न',
   },
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 19-1: Chara Karakas', hi: 'मॉड्यूल 19-1: चर कारक' }, href: '/learn/modules/19-1' },
-    { label: { en: 'Module 19-3: Argala', hi: 'मॉड्यूल 19-3: अर्गला' }, href: '/learn/modules/19-3' },
-    { label: { en: 'Module 11-2: Planetary Aspects (Parashari)', hi: 'मॉड्यूल 11-2: ग्रह दृष्टि (पाराशरी)' }, href: '/learn/modules/11-2' },
+    { label: { en: 'Module 19-1: Chara Karakas', hi: 'मॉड्यूल 19-1: चर कारक', sa: 'मॉड्यूल 19-1: चर कारक', mai: 'मॉड्यूल 19-1: चर कारक', mr: 'मॉड्यूल 19-1: चर कारक', ta: 'Module 19-1: Chara Karakas', te: 'Module 19-1: Chara Karakas', bn: 'Module 19-1: Chara Karakas', kn: 'Module 19-1: Chara Karakas', gu: 'Module 19-1: Chara Karakas' }, href: '/learn/modules/19-1' },
+    { label: { en: 'Module 19-3: Argala', hi: 'मॉड्यूल 19-3: अर्गला', sa: 'मॉड्यूल 19-3: अर्गला', mai: 'मॉड्यूल 19-3: अर्गला', mr: 'मॉड्यूल 19-3: अर्गला', ta: 'Module 19-3: Argala', te: 'Module 19-3: Argala', bn: 'Module 19-3: Argala', kn: 'Module 19-3: Argala', gu: 'Module 19-3: Argala' }, href: '/learn/modules/19-3' },
+    { label: { en: 'Module 11-2: Planetary Aspects (Parashari)', hi: 'मॉड्यूल 11-2: ग्रह दृष्टि (पाराशरी)', sa: 'मॉड्यूल 11-2: ग्रह दृष्टि (पाराशरी)', mai: 'मॉड्यूल 11-2: ग्रह दृष्टि (पाराशरी)', mr: 'मॉड्यूल 11-2: ग्रह दृष्टि (पाराशरी)', ta: 'Module 11-2: Planetary Aspects (Parashari)', te: 'Module 11-2: Planetary Aspects (Parashari)', bn: 'Module 11-2: Planetary Aspects (Parashari)', kn: 'Module 11-2: Planetary Aspects (Parashari)', gu: 'Module 11-2: Planetary Aspects (Parashari)' }, href: '/learn/modules/11-2' },
   ],
 };
 
@@ -27,10 +27,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'जैमिनी की राशि दृष्टि में चर राशियाँ किन राशियों को दृष्ट करती हैं?',
     },
     options: [
-      { en: 'All other movable signs', hi: 'सभी अन्य चर राशियों को' },
-      { en: 'All fixed signs except the adjacent one', hi: 'निकटवर्ती को छोड़कर सभी स्थिर राशियों को' },
-      { en: 'All dual signs', hi: 'सभी द्विस्वभाव राशियों को' },
-      { en: 'The 7th sign only', hi: 'केवल सप्तम राशि को' },
+      { en: 'All other movable signs', hi: 'सभी अन्य चर राशियों को', sa: 'सभी अन्य चर राशियों को', mai: 'सभी अन्य चर राशियों को', mr: 'सभी अन्य चर राशियों को', ta: 'All other movable signs', te: 'All other movable signs', bn: 'All other movable signs', kn: 'All other movable signs', gu: 'All other movable signs' },
+      { en: 'All fixed signs except the adjacent one', hi: 'निकटवर्ती को छोड़कर सभी स्थिर राशियों को', sa: 'निकटवर्ती को छोड़कर सभी स्थिर राशियों को', mai: 'निकटवर्ती को छोड़कर सभी स्थिर राशियों को', mr: 'निकटवर्ती को छोड़कर सभी स्थिर राशियों को', ta: 'All fixed signs except the adjacent one', te: 'All fixed signs except the adjacent one', bn: 'All fixed signs except the adjacent one', kn: 'All fixed signs except the adjacent one', gu: 'All fixed signs except the adjacent one' },
+      { en: 'All dual signs', hi: 'सभी द्विस्वभाव राशियों को', sa: 'सभी द्विस्वभाव राशियों को', mai: 'सभी द्विस्वभाव राशियों को', mr: 'सभी द्विस्वभाव राशियों को', ta: 'All dual signs', te: 'All dual signs', bn: 'All dual signs', kn: 'All dual signs', gu: 'All dual signs' },
+      { en: 'The 7th sign only', hi: 'केवल सप्तम राशि को', sa: 'केवल सप्तम राशि को', mai: 'केवल सप्तम राशि को', mr: 'केवल सप्तम राशि को', ta: 'The 7th sign only', te: 'The 7th sign only', bn: 'The 7th sign only', kn: 'The 7th sign only', gu: 'The 7th sign only' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -45,10 +45,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'स्थिर राशियाँ किन राशियों को दृष्ट करती हैं?',
     },
     options: [
-      { en: 'All other fixed signs', hi: 'सभी अन्य स्थिर राशियों को' },
-      { en: 'All dual signs except the adjacent one', hi: 'निकटवर्ती को छोड़कर सभी द्विस्वभाव राशियों को' },
-      { en: 'All movable signs except the adjacent one', hi: 'निकटवर्ती को छोड़कर सभी चर राशियों को' },
-      { en: 'Only the opposite sign', hi: 'केवल विपरीत राशि को' },
+      { en: 'All other fixed signs', hi: 'सभी अन्य स्थिर राशियों को', sa: 'सभी अन्य स्थिर राशियों को', mai: 'सभी अन्य स्थिर राशियों को', mr: 'सभी अन्य स्थिर राशियों को', ta: 'All other fixed signs', te: 'All other fixed signs', bn: 'All other fixed signs', kn: 'All other fixed signs', gu: 'All other fixed signs' },
+      { en: 'All dual signs except the adjacent one', hi: 'निकटवर्ती को छोड़कर सभी द्विस्वभाव राशियों को', sa: 'निकटवर्ती को छोड़कर सभी द्विस्वभाव राशियों को', mai: 'निकटवर्ती को छोड़कर सभी द्विस्वभाव राशियों को', mr: 'निकटवर्ती को छोड़कर सभी द्विस्वभाव राशियों को', ta: 'All dual signs except the adjacent one', te: 'All dual signs except the adjacent one', bn: 'All dual signs except the adjacent one', kn: 'All dual signs except the adjacent one', gu: 'All dual signs except the adjacent one' },
+      { en: 'All movable signs except the adjacent one', hi: 'निकटवर्ती को छोड़कर सभी चर राशियों को', sa: 'निकटवर्ती को छोड़कर सभी चर राशियों को', mai: 'निकटवर्ती को छोड़कर सभी चर राशियों को', mr: 'निकटवर्ती को छोड़कर सभी चर राशियों को', ta: 'All movable signs except the adjacent one', te: 'All movable signs except the adjacent one', bn: 'All movable signs except the adjacent one', kn: 'All movable signs except the adjacent one', gu: 'All movable signs except the adjacent one' },
+      { en: 'Only the opposite sign', hi: 'केवल विपरीत राशि को', sa: 'केवल विपरीत राशि को', mai: 'केवल विपरीत राशि को', mr: 'केवल विपरीत राशि को', ta: 'Only the opposite sign', te: 'Only the opposite sign', bn: 'Only the opposite sign', kn: 'Only the opposite sign', gu: 'Only the opposite sign' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -75,10 +75,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'जैमिनी में द्विस्वभाव राशियाँ कैसे दृष्ट करती हैं?',
     },
     options: [
-      { en: 'They aspect all movable signs', hi: 'वे सभी चर राशियों को दृष्ट करती हैं' },
-      { en: 'They aspect all fixed signs', hi: 'वे सभी स्थिर राशियों को दृष्ट करती हैं' },
-      { en: 'They aspect each other (all other dual signs)', hi: 'वे एक-दूसरे को दृष्ट करती हैं (सभी अन्य द्विस्वभाव राशियों को)' },
-      { en: 'They have no aspects', hi: 'उनकी कोई दृष्टि नहीं होती' },
+      { en: 'They aspect all movable signs', hi: 'वे सभी चर राशियों को दृष्ट करती हैं', sa: 'वे सभी चर राशियों को दृष्ट करती हैं', mai: 'वे सभी चर राशियों को दृष्ट करती हैं', mr: 'वे सभी चर राशियों को दृष्ट करती हैं', ta: 'They aspect all movable signs', te: 'They aspect all movable signs', bn: 'They aspect all movable signs', kn: 'They aspect all movable signs', gu: 'They aspect all movable signs' },
+      { en: 'They aspect all fixed signs', hi: 'वे सभी स्थिर राशियों को दृष्ट करती हैं', sa: 'वे सभी स्थिर राशियों को दृष्ट करती हैं', mai: 'वे सभी स्थिर राशियों को दृष्ट करती हैं', mr: 'वे सभी स्थिर राशियों को दृष्ट करती हैं', ta: 'They aspect all fixed signs', te: 'They aspect all fixed signs', bn: 'They aspect all fixed signs', kn: 'They aspect all fixed signs', gu: 'They aspect all fixed signs' },
+      { en: 'They aspect each other (all other dual signs)', hi: 'वे एक-दूसरे को दृष्ट करती हैं (सभी अन्य द्विस्वभाव राशियों को)', sa: 'वे एक-दूसरे को दृष्ट करती हैं (सभी अन्य द्विस्वभाव राशियों को)', mai: 'वे एक-दूसरे को दृष्ट करती हैं (सभी अन्य द्विस्वभाव राशियों को)', mr: 'वे एक-दूसरे को दृष्ट करती हैं (सभी अन्य द्विस्वभाव राशियों को)', ta: 'They aspect each other (all other dual signs)', te: 'They aspect each other (all other dual signs)', bn: 'They aspect each other (all other dual signs)', kn: 'They aspect each other (all other dual signs)', gu: 'They aspect each other (all other dual signs)' },
+      { en: 'They have no aspects', hi: 'उनकी कोई दृष्टि नहीं होती', sa: 'उनकी कोई दृष्टि नहीं होती', mai: 'उनकी कोई दृष्टि नहीं होती', mr: 'उनकी कोई दृष्टि नहीं होती', ta: 'They have no aspects', te: 'They have no aspects', bn: 'They have no aspects', kn: 'They have no aspects', gu: 'They have no aspects' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -105,10 +105,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'मेष एक चर राशि है। यह किस स्थिर राशि को दृष्ट नहीं करती?',
     },
     options: [
-      { en: 'Leo', hi: 'सिंह' },
-      { en: 'Scorpio', hi: 'वृश्चिक' },
-      { en: 'Taurus', hi: 'वृषभ' },
-      { en: 'Aquarius', hi: 'कुम्भ' },
+      { en: 'Leo', hi: 'सिंह', sa: 'सिंह', mai: 'सिंह', mr: 'सिंह', ta: 'Leo', te: 'Leo', bn: 'Leo', kn: 'Leo', gu: 'Leo' },
+      { en: 'Scorpio', hi: 'वृश्चिक', sa: 'वृश्चिक', mai: 'वृश्चिक', mr: 'वृश्चिक', ta: 'Scorpio', te: 'Scorpio', bn: 'Scorpio', kn: 'Scorpio', gu: 'Scorpio' },
+      { en: 'Taurus', hi: 'वृषभ', sa: 'वृषभ', mai: 'वृषभ', mr: 'वृषभ', ta: 'Taurus', te: 'Taurus', bn: 'Taurus', kn: 'Taurus', gu: 'Taurus' },
+      { en: 'Aquarius', hi: 'कुम्भ', sa: 'कुम्भ', mai: 'कुम्भ', mr: 'कुम्भ', ta: 'Aquarius', te: 'Aquarius', bn: 'Aquarius', kn: 'Aquarius', gu: 'Aquarius' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -123,10 +123,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पाराशरी ज्योतिष में मंगल की चौथे, सातवें और आठवें भाव पर विशेष दृष्टि है। जैमिनी में:',
     },
     options: [
-      { en: 'Mars retains its special aspects', hi: 'मंगल अपनी विशेष दृष्टियाँ रखता है' },
-      { en: 'Mars aspects are determined by the sign it occupies, not its own nature', hi: 'मंगल की दृष्टियाँ उसकी राशि से निर्धारित होती हैं, उसके स्वभाव से नहीं' },
-      { en: 'Mars has no aspects in Jaimini', hi: 'जैमिनी में मंगल की कोई दृष्टि नहीं' },
-      { en: 'Mars only aspects the 7th sign', hi: 'मंगल केवल सप्तम राशि को दृष्ट करता है' },
+      { en: 'Mars retains its special aspects', hi: 'मंगल अपनी विशेष दृष्टियाँ रखता है', sa: 'मंगल अपनी विशेष दृष्टियाँ रखता है', mai: 'मंगल अपनी विशेष दृष्टियाँ रखता है', mr: 'मंगल अपनी विशेष दृष्टियाँ रखता है', ta: 'Mars retains its special aspects', te: 'Mars retains its special aspects', bn: 'Mars retains its special aspects', kn: 'Mars retains its special aspects', gu: 'Mars retains its special aspects' },
+      { en: 'Mars aspects are determined by the sign it occupies, not its own nature', hi: 'मंगल की दृष्टियाँ उसकी राशि से निर्धारित होती हैं, उसके स्वभाव से नहीं', sa: 'मंगल की दृष्टियाँ उसकी राशि से निर्धारित होती हैं, उसके स्वभाव से नहीं', mai: 'मंगल की दृष्टियाँ उसकी राशि से निर्धारित होती हैं, उसके स्वभाव से नहीं', mr: 'मंगल की दृष्टियाँ उसकी राशि से निर्धारित होती हैं, उसके स्वभाव से नहीं', ta: 'Mars aspects are determined by the sign it occupies, not its own nature', te: 'Mars aspects are determined by the sign it occupies, not its own nature', bn: 'Mars aspects are determined by the sign it occupies, not its own nature', kn: 'Mars aspects are determined by the sign it occupies, not its own nature', gu: 'Mars aspects are determined by the sign it occupies, not its own nature' },
+      { en: 'Mars has no aspects in Jaimini', hi: 'जैमिनी में मंगल की कोई दृष्टि नहीं', sa: 'जैमिनी में मंगल की कोई दृष्टि नहीं', mai: 'जैमिनी में मंगल की कोई दृष्टि नहीं', mr: 'जैमिनी में मंगल की कोई दृष्टि नहीं', ta: 'Mars has no aspects in Jaimini', te: 'Mars has no aspects in Jaimini', bn: 'Mars has no aspects in Jaimini', kn: 'Mars has no aspects in Jaimini', gu: 'Mars has no aspects in Jaimini' },
+      { en: 'Mars only aspects the 7th sign', hi: 'मंगल केवल सप्तम राशि को दृष्ट करता है', sa: 'मंगल केवल सप्तम राशि को दृष्ट करता है', mai: 'मंगल केवल सप्तम राशि को दृष्ट करता है', mr: 'मंगल केवल सप्तम राशि को दृष्ट करता है', ta: 'Mars only aspects the 7th sign', te: 'Mars only aspects the 7th sign', bn: 'Mars only aspects the 7th sign', kn: 'Mars only aspects the 7th sign', gu: 'Mars only aspects the 7th sign' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -153,10 +153,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'राशि दृष्टि पद्धति में एक चर राशि कितनी राशियों को दृष्ट करती है?',
     },
     options: [
-      { en: '1', hi: '1' },
-      { en: '3', hi: '3' },
-      { en: '4', hi: '4' },
-      { en: '6', hi: '6' },
+      { en: '1', hi: '1', sa: '1', mai: '1', mr: '1', ta: '1', te: '1', bn: '1', kn: '1', gu: '1' },
+      { en: '3', hi: '3', sa: '3', mai: '3', mr: '3', ta: '3', te: '3', bn: '3', kn: '3', gu: '3' },
+      { en: '4', hi: '4', sa: '4', mai: '4', mr: '4', ta: '4', te: '4', bn: '4', kn: '4', gu: '4' },
+      { en: '6', hi: '6', sa: '6', mai: '6', mr: '6', ta: '6', te: '6', bn: '6', kn: '6', gu: '6' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -171,10 +171,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'शनि वृश्चिक (स्थिर राशि) में है। बृहस्पति तुला (चर राशि) में है। क्या वे राशि दृष्टि से एक-दूसरे को दृष्ट करते हैं?',
     },
     options: [
-      { en: 'Yes, mutually', hi: 'हाँ, पारस्परिक रूप से' },
-      { en: 'Only Saturn aspects Jupiter, not vice versa', hi: 'केवल शनि बृहस्पति को दृष्ट करता है, उल्टा नहीं' },
-      { en: 'No, because Scorpio and Libra are adjacent (exception rule)', hi: 'नहीं, क्योंकि वृश्चिक और तुला निकटवर्ती हैं (अपवाद नियम)' },
-      { en: 'Only Jupiter aspects Saturn', hi: 'केवल बृहस्पति शनि को दृष्ट करता है' },
+      { en: 'Yes, mutually', hi: 'हाँ, पारस्परिक रूप से', sa: 'हाँ, पारस्परिक रूप से', mai: 'हाँ, पारस्परिक रूप से', mr: 'हाँ, पारस्परिक रूप से', ta: 'Yes, mutually', te: 'Yes, mutually', bn: 'Yes, mutually', kn: 'Yes, mutually', gu: 'Yes, mutually' },
+      { en: 'Only Saturn aspects Jupiter, not vice versa', hi: 'केवल शनि बृहस्पति को दृष्ट करता है, उल्टा नहीं', sa: 'केवल शनि बृहस्पति को दृष्ट करता है, उल्टा नहीं', mai: 'केवल शनि बृहस्पति को दृष्ट करता है, उल्टा नहीं', mr: 'केवल शनि बृहस्पति को दृष्ट करता है, उल्टा नहीं', ta: 'Only Saturn aspects Jupiter, not vice versa', te: 'Only Saturn aspects Jupiter, not vice versa', bn: 'Only Saturn aspects Jupiter, not vice versa', kn: 'Only Saturn aspects Jupiter, not vice versa', gu: 'Only Saturn aspects Jupiter, not vice versa' },
+      { en: 'No, because Scorpio and Libra are adjacent (exception rule)', hi: 'नहीं, क्योंकि वृश्चिक और तुला निकटवर्ती हैं (अपवाद नियम)', sa: 'नहीं, क्योंकि वृश्चिक और तुला निकटवर्ती हैं (अपवाद नियम)', mai: 'नहीं, क्योंकि वृश्चिक और तुला निकटवर्ती हैं (अपवाद नियम)', mr: 'नहीं, क्योंकि वृश्चिक और तुला निकटवर्ती हैं (अपवाद नियम)', ta: 'No, because Scorpio and Libra are adjacent (exception rule)', te: 'No, because Scorpio and Libra are adjacent (exception rule)', bn: 'No, because Scorpio and Libra are adjacent (exception rule)', kn: 'No, because Scorpio and Libra are adjacent (exception rule)', gu: 'No, because Scorpio and Libra are adjacent (exception rule)' },
+      { en: 'Only Jupiter aspects Saturn', hi: 'केवल बृहस्पति शनि को दृष्ट करता है', sa: 'केवल बृहस्पति शनि को दृष्ट करता है', mai: 'केवल बृहस्पति शनि को दृष्ट करता है', mr: 'केवल बृहस्पति शनि को दृष्ट करता है', ta: 'Only Jupiter aspects Saturn', te: 'Only Jupiter aspects Saturn', bn: 'Only Jupiter aspects Saturn', kn: 'Only Jupiter aspects Saturn', gu: 'Only Jupiter aspects Saturn' },
     ],
     correctAnswer: 2,
     explanation: {

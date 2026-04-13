@@ -1,4 +1,5 @@
 'use client';
+import { tl } from '@/lib/utils/trilingual';
 
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -28,7 +29,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
   const [direction, setDirection] = useState(0); // -1 = left, 1 = right
   const wakeLockRef = useRef<WakeLockSentinel | null>(null);
 
-  const labels = LABELS[locale];
+  const labels = (LABELS as unknown as Record<string, typeof LABELS.en>)[locale] || LABELS.en;
   const { speaking, pronounce, supported: speechSupported } = useMantraPronounce();
 
   // Build mantra lookup map
@@ -293,7 +294,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
               <div className="flex flex-col items-center gap-2">
                 <JapaCounter
                   target={linkedMantra.japaCount}
-                  mantraName={linkedMantra.name[locale]}
+                  mantraName={linkedMantra.name[locale] || linkedMantra.name.en}
                 />
                 <p className="text-xs text-text-secondary/65">{labels.chant}</p>
               </div>

@@ -1,24 +1,25 @@
+import type { LocaleText } from '@/types/panchang';
 import { getPlanetaryPositions, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 
 export interface PersonalTransit {
   planetId: number;
-  planetName: { en: string; hi: string; sa: string };
+  planetName: LocaleText;
   planetColor: string;
   currentSign: number;    // 1-based rashi
-  signName: { en: string; hi: string; sa: string };
+  signName: LocaleText;
   house: number;          // 1-based house from ascendant
   savBindu: number;       // SAV score for this sign
   quality: 'strong' | 'neutral' | 'weak';
-  interpretation: { en: string; hi: string; sa: string };
+  interpretation: LocaleText;
 }
 
 export interface UpcomingTransition {
   planetId: number;
-  planetName: { en: string; hi: string; sa: string };
-  fromSign: { en: string; hi: string; sa: string };
-  toSign: { en: string; hi: string; sa: string };
+  planetName: LocaleText;
+  fromSign: LocaleText;
+  toSign: LocaleText;
   approximateDate: string;  // "Mon YYYY" format
 }
 
@@ -31,7 +32,7 @@ const SLOW_PLANETS = [
 ];
 
 // One-line interpretations based on house + quality
-const HOUSE_MEANINGS: Record<number, { en: string; hi: string; sa: string }> = {
+const HOUSE_MEANINGS: Record<number, LocaleText> = {
   1:  { en: 'self, identity, health', hi: 'स्व, पहचान, स्वास्थ्य', sa: 'आत्मन्, स्वरूपम्, आरोग्यम्' },
   2:  { en: 'wealth, family, speech', hi: 'धन, परिवार, वाणी', sa: 'धनम्, कुटुम्बम्, वाक्' },
   3:  { en: 'courage, siblings, communication', hi: 'साहस, भाई-बहन, संवाद', sa: 'शौर्यम्, भ्रातरः, सम्भाषणम्' },

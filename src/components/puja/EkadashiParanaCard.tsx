@@ -1,4 +1,5 @@
 'use client';
+import { tl } from '@/lib/utils/trilingual';
 
 import { useMemo } from 'react';
 import { Sunrise, Clock, AlertTriangle, CheckCircle2, XCircle } from 'lucide-react';
@@ -128,7 +129,7 @@ export default function EkadashiParanaCard({
   dwadashiEndDate,
   locale,
 }: EkadashiParanaCardProps) {
-  const ll = LABELS[locale] || LABELS.en;
+  const ll = (LABELS as Record<string, typeof LABELS.en>)[locale] || LABELS.en;
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = getHeadingFont(locale);
 

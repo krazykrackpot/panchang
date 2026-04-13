@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState, useEffect } from 'react';
-import type { Locale } from '@/types/panchang';
+import type { Locale , LocaleText} from '@/types/panchang';
 import type { PlanetPosition, DashaEntry } from '@/types/kundali';
 import { useAuthStore } from '@/stores/auth-store';
 import { useChartsStore } from '@/stores/charts-store';
@@ -29,43 +29,43 @@ interface PersonalInsight {
   overallIntensity: 'high' | 'moderate' | 'low';
 }
 
-const HOUSE_MEANINGS: Record<number, { en: string; hi: string }> = {
-  1:  { en: 'Self, health, personality, physical body', hi: 'स्व, स्वास्थ्य, व्यक्तित्व, शरीर' },
-  2:  { en: 'Wealth, family, speech, food habits', hi: 'धन, परिवार, वाणी, भोजन' },
-  3:  { en: 'Courage, siblings, communication, short travels', hi: 'साहस, भाई-बहन, संवाद, लघु यात्रा' },
-  4:  { en: 'Home, mother, emotional peace, property', hi: 'घर, माता, मानसिक शान्ति, सम्पत्ति' },
-  5:  { en: 'Children, education, creativity, past-life merit', hi: 'सन्तान, शिक्षा, रचनात्मकता, पूर्व पुण्य' },
-  6:  { en: 'Enemies, disease, debts, daily work', hi: 'शत्रु, रोग, ऋण, दैनिक कार्य' },
-  7:  { en: 'Marriage, partnerships, business, public image', hi: 'विवाह, साझेदारी, व्यापार, सार्वजनिक छवि' },
-  8:  { en: 'Transformation, longevity, occult, sudden events', hi: 'परिवर्तन, आयु, गुप्त, अचानक घटनाएं' },
-  9:  { en: 'Fortune, dharma, guru, father, long journeys', hi: 'भाग्य, धर्म, गुरु, पिता, लम्बी यात्रा' },
-  10: { en: 'Career, reputation, authority, public status', hi: 'कैरियर, प्रतिष्ठा, अधिकार, सार्वजनिक स्थिति' },
-  11: { en: 'Gains, income, friendships, wish fulfillment', hi: 'लाभ, आय, मित्रता, इच्छापूर्ति' },
-  12: { en: 'Expenses, moksha, foreign lands, isolation', hi: 'व्यय, मोक्ष, विदेश, एकान्त' },
+const HOUSE_MEANINGS: Record<number, LocaleText> = {
+  1:  { en: 'Self, health, personality, physical body', hi: 'स्व, स्वास्थ्य, व्यक्तित्व, शरीर', sa: 'स्व, स्वास्थ्य, व्यक्तित्व, शरीर', mai: 'स्व, स्वास्थ्य, व्यक्तित्व, शरीर', mr: 'स्व, स्वास्थ्य, व्यक्तित्व, शरीर', ta: 'Self, health, personality, physical body', te: 'Self, health, personality, physical body', bn: 'Self, health, personality, physical body', kn: 'Self, health, personality, physical body', gu: 'Self, health, personality, physical body' },
+  2:  { en: 'Wealth, family, speech, food habits', hi: 'धन, परिवार, वाणी, भोजन', sa: 'धन, परिवार, वाणी, भोजन', mai: 'धन, परिवार, वाणी, भोजन', mr: 'धन, परिवार, वाणी, भोजन', ta: 'Wealth, family, speech, food habits', te: 'Wealth, family, speech, food habits', bn: 'Wealth, family, speech, food habits', kn: 'Wealth, family, speech, food habits', gu: 'Wealth, family, speech, food habits' },
+  3:  { en: 'Courage, siblings, communication, short travels', hi: 'साहस, भाई-बहन, संवाद, लघु यात्रा', sa: 'साहस, भाई-बहन, संवाद, लघु यात्रा', mai: 'साहस, भाई-बहन, संवाद, लघु यात्रा', mr: 'साहस, भाई-बहन, संवाद, लघु यात्रा', ta: 'Courage, siblings, communication, short travels', te: 'Courage, siblings, communication, short travels', bn: 'Courage, siblings, communication, short travels', kn: 'Courage, siblings, communication, short travels', gu: 'Courage, siblings, communication, short travels' },
+  4:  { en: 'Home, mother, emotional peace, property', hi: 'घर, माता, मानसिक शान्ति, सम्पत्ति', sa: 'घर, माता, मानसिक शान्ति, सम्पत्ति', mai: 'घर, माता, मानसिक शान्ति, सम्पत्ति', mr: 'घर, माता, मानसिक शान्ति, सम्पत्ति', ta: 'Home, mother, emotional peace, property', te: 'Home, mother, emotional peace, property', bn: 'Home, mother, emotional peace, property', kn: 'Home, mother, emotional peace, property', gu: 'Home, mother, emotional peace, property' },
+  5:  { en: 'Children, education, creativity, past-life merit', hi: 'सन्तान, शिक्षा, रचनात्मकता, पूर्व पुण्य', sa: 'सन्तान, शिक्षा, रचनात्मकता, पूर्व पुण्य', mai: 'सन्तान, शिक्षा, रचनात्मकता, पूर्व पुण्य', mr: 'सन्तान, शिक्षा, रचनात्मकता, पूर्व पुण्य', ta: 'Children, education, creativity, past-life merit', te: 'Children, education, creativity, past-life merit', bn: 'Children, education, creativity, past-life merit', kn: 'Children, education, creativity, past-life merit', gu: 'Children, education, creativity, past-life merit' },
+  6:  { en: 'Enemies, disease, debts, daily work', hi: 'शत्रु, रोग, ऋण, दैनिक कार्य', sa: 'शत्रु, रोग, ऋण, दैनिक कार्य', mai: 'शत्रु, रोग, ऋण, दैनिक कार्य', mr: 'शत्रु, रोग, ऋण, दैनिक कार्य', ta: 'Enemies, disease, debts, daily work', te: 'Enemies, disease, debts, daily work', bn: 'Enemies, disease, debts, daily work', kn: 'Enemies, disease, debts, daily work', gu: 'Enemies, disease, debts, daily work' },
+  7:  { en: 'Marriage, partnerships, business, public image', hi: 'विवाह, साझेदारी, व्यापार, सार्वजनिक छवि', sa: 'विवाह, साझेदारी, व्यापार, सार्वजनिक छवि', mai: 'विवाह, साझेदारी, व्यापार, सार्वजनिक छवि', mr: 'विवाह, साझेदारी, व्यापार, सार्वजनिक छवि', ta: 'Marriage, partnerships, business, public image', te: 'Marriage, partnerships, business, public image', bn: 'Marriage, partnerships, business, public image', kn: 'Marriage, partnerships, business, public image', gu: 'Marriage, partnerships, business, public image' },
+  8:  { en: 'Transformation, longevity, occult, sudden events', hi: 'परिवर्तन, आयु, गुप्त, अचानक घटनाएं', sa: 'परिवर्तन, आयु, गुप्त, अचानक घटनाएं', mai: 'परिवर्तन, आयु, गुप्त, अचानक घटनाएं', mr: 'परिवर्तन, आयु, गुप्त, अचानक घटनाएं', ta: 'Transformation, longevity, occult, sudden events', te: 'Transformation, longevity, occult, sudden events', bn: 'Transformation, longevity, occult, sudden events', kn: 'Transformation, longevity, occult, sudden events', gu: 'Transformation, longevity, occult, sudden events' },
+  9:  { en: 'Fortune, dharma, guru, father, long journeys', hi: 'भाग्य, धर्म, गुरु, पिता, लम्बी यात्रा', sa: 'भाग्य, धर्म, गुरु, पिता, लम्बी यात्रा', mai: 'भाग्य, धर्म, गुरु, पिता, लम्बी यात्रा', mr: 'भाग्य, धर्म, गुरु, पिता, लम्बी यात्रा', ta: 'Fortune, dharma, guru, father, long journeys', te: 'Fortune, dharma, guru, father, long journeys', bn: 'Fortune, dharma, guru, father, long journeys', kn: 'Fortune, dharma, guru, father, long journeys', gu: 'Fortune, dharma, guru, father, long journeys' },
+  10: { en: 'Career, reputation, authority, public status', hi: 'कैरियर, प्रतिष्ठा, अधिकार, सार्वजनिक स्थिति', sa: 'कैरियर, प्रतिष्ठा, अधिकार, सार्वजनिक स्थिति', mai: 'कैरियर, प्रतिष्ठा, अधिकार, सार्वजनिक स्थिति', mr: 'कैरियर, प्रतिष्ठा, अधिकार, सार्वजनिक स्थिति', ta: 'Career, reputation, authority, public status', te: 'Career, reputation, authority, public status', bn: 'Career, reputation, authority, public status', kn: 'Career, reputation, authority, public status', gu: 'Career, reputation, authority, public status' },
+  11: { en: 'Gains, income, friendships, wish fulfillment', hi: 'लाभ, आय, मित्रता, इच्छापूर्ति', sa: 'लाभ, आय, मित्रता, इच्छापूर्ति', mai: 'लाभ, आय, मित्रता, इच्छापूर्ति', mr: 'लाभ, आय, मित्रता, इच्छापूर्ति', ta: 'Gains, income, friendships, wish fulfillment', te: 'Gains, income, friendships, wish fulfillment', bn: 'Gains, income, friendships, wish fulfillment', kn: 'Gains, income, friendships, wish fulfillment', gu: 'Gains, income, friendships, wish fulfillment' },
+  12: { en: 'Expenses, moksha, foreign lands, isolation', hi: 'व्यय, मोक्ष, विदेश, एकान्त', sa: 'व्यय, मोक्ष, विदेश, एकान्त', mai: 'व्यय, मोक्ष, विदेश, एकान्त', mr: 'व्यय, मोक्ष, विदेश, एकान्त', ta: 'Expenses, moksha, foreign lands, isolation', te: 'Expenses, moksha, foreign lands, isolation', bn: 'Expenses, moksha, foreign lands, isolation', kn: 'Expenses, moksha, foreign lands, isolation', gu: 'Expenses, moksha, foreign lands, isolation' },
 };
 
-const PLANET_NAMES: Record<number, { en: string; hi: string }> = {
-  0: { en: 'Sun', hi: 'सूर्य' },
-  1: { en: 'Moon', hi: 'चन्द्र' },
-  2: { en: 'Mars', hi: 'मंगल' },
-  3: { en: 'Mercury', hi: 'बुध' },
-  4: { en: 'Jupiter', hi: 'बृहस्पति' },
-  5: { en: 'Venus', hi: 'शुक्र' },
-  6: { en: 'Saturn', hi: 'शनि' },
-  7: { en: 'Rahu', hi: 'राहु' },
-  8: { en: 'Ketu', hi: 'केतु' },
+const PLANET_NAMES: Record<number, LocaleText> = {
+  0: { en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', mai: 'सूर्य', mr: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun' },
+  1: { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', mai: 'चन्द्र', mr: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon' },
+  2: { en: 'Mars', hi: 'मंगल', sa: 'मंगल', mai: 'मंगल', mr: 'मंगल', ta: 'Mars', te: 'Mars', bn: 'Mars', kn: 'Mars', gu: 'Mars' },
+  3: { en: 'Mercury', hi: 'बुध', sa: 'बुध', mai: 'बुध', mr: 'बुध', ta: 'Mercury', te: 'Mercury', bn: 'Mercury', kn: 'Mercury', gu: 'Mercury' },
+  4: { en: 'Jupiter', hi: 'बृहस्पति', sa: 'बृहस्पति', mai: 'बृहस्पति', mr: 'बृहस्पति', ta: 'Jupiter', te: 'Jupiter', bn: 'Jupiter', kn: 'Jupiter', gu: 'Jupiter' },
+  5: { en: 'Venus', hi: 'शुक्र', sa: 'शुक्र', mai: 'शुक्र', mr: 'शुक्र', ta: 'Venus', te: 'Venus', bn: 'Venus', kn: 'Venus', gu: 'Venus' },
+  6: { en: 'Saturn', hi: 'शनि', sa: 'शनि', mai: 'शनि', mr: 'शनि', ta: 'Saturn', te: 'Saturn', bn: 'Saturn', kn: 'Saturn', gu: 'Saturn' },
+  7: { en: 'Rahu', hi: 'राहु', sa: 'राहु', mai: 'राहु', mr: 'राहु', ta: 'Rahu', te: 'Rahu', bn: 'Rahu', kn: 'Rahu', gu: 'Rahu' },
+  8: { en: 'Ketu', hi: 'केतु', sa: 'केतु', mai: 'केतु', mr: 'केतु', ta: 'Ketu', te: 'Ketu', bn: 'Ketu', kn: 'Ketu', gu: 'Ketu' },
 };
 
-const CONTACT_EFFECTS: Record<number, { en: string; hi: string }> = {
+const CONTACT_EFFECTS: Record<number, LocaleText> = {
   0: { en: 'career/authority disruption, father\'s health', hi: 'कैरियर/अधिकार व्यवधान, पिता का स्वास्थ्य' },
   1: { en: 'emotional upheaval, mother\'s health, mental restlessness', hi: 'भावनात्मक उथल-पुथल, माता का स्वास्थ्य, मानसिक अशान्ति' },
-  2: { en: 'energy conflicts, property disputes, sibling issues', hi: 'ऊर्जा संघर्ष, सम्पत्ति विवाद, भाई-बहन मुद्दे' },
-  3: { en: 'communication breakdown, business disruption, intellect shift', hi: 'संवाद विच्छेद, व्यापार व्यवधान, बुद्धि परिवर्तन' },
-  4: { en: 'wisdom expansion or guru issues, children matters, education shift', hi: 'ज्ञान विस्तार या गुरु मुद्दे, सन्तान, शिक्षा परिवर्तन' },
-  5: { en: 'relationship transformation, luxury/comfort changes, creative shift', hi: 'सम्बन्ध परिवर्तन, विलास/सुख परिवर्तन, रचनात्मक मोड़' },
-  6: { en: 'structural collapse forcing rebuilding, discipline tested, chronic health', hi: 'ढाँचागत पतन जो पुनर्निर्माण बाध्य करे, अनुशासन परीक्षा, दीर्घकालिक स्वास्थ्य' },
-  7: { en: 'obsessive new direction, foreign connection activated, desires amplified', hi: 'जुनूनी नई दिशा, विदेशी सम्बन्ध सक्रिय, इच्छाएं प्रबल' },
-  8: { en: 'past-life karmic acceleration, sudden spiritual detachment', hi: 'पूर्वजन्म कार्मिक त्वरण, अचानक आध्यात्मिक वैराग्य' },
+  2: { en: 'energy conflicts, property disputes, sibling issues', hi: 'ऊर्जा संघर्ष, सम्पत्ति विवाद, भाई-बहन मुद्दे', sa: 'ऊर्जा संघर्ष, सम्पत्ति विवाद, भाई-बहन मुद्दे', mai: 'ऊर्जा संघर्ष, सम्पत्ति विवाद, भाई-बहन मुद्दे', mr: 'ऊर्जा संघर्ष, सम्पत्ति विवाद, भाई-बहन मुद्दे', ta: 'energy conflicts, property disputes, sibling issues', te: 'energy conflicts, property disputes, sibling issues', bn: 'energy conflicts, property disputes, sibling issues', kn: 'energy conflicts, property disputes, sibling issues', gu: 'energy conflicts, property disputes, sibling issues' },
+  3: { en: 'communication breakdown, business disruption, intellect shift', hi: 'संवाद विच्छेद, व्यापार व्यवधान, बुद्धि परिवर्तन', sa: 'संवाद विच्छेद, व्यापार व्यवधान, बुद्धि परिवर्तन', mai: 'संवाद विच्छेद, व्यापार व्यवधान, बुद्धि परिवर्तन', mr: 'संवाद विच्छेद, व्यापार व्यवधान, बुद्धि परिवर्तन', ta: 'communication breakdown, business disruption, intellect shift', te: 'communication breakdown, business disruption, intellect shift', bn: 'communication breakdown, business disruption, intellect shift', kn: 'communication breakdown, business disruption, intellect shift', gu: 'communication breakdown, business disruption, intellect shift' },
+  4: { en: 'wisdom expansion or guru issues, children matters, education shift', hi: 'ज्ञान विस्तार या गुरु मुद्दे, सन्तान, शिक्षा परिवर्तन', sa: 'ज्ञान विस्तार या गुरु मुद्दे, सन्तान, शिक्षा परिवर्तन', mai: 'ज्ञान विस्तार या गुरु मुद्दे, सन्तान, शिक्षा परिवर्तन', mr: 'ज्ञान विस्तार या गुरु मुद्दे, सन्तान, शिक्षा परिवर्तन', ta: 'wisdom expansion or guru issues, children matters, education shift', te: 'wisdom expansion or guru issues, children matters, education shift', bn: 'wisdom expansion or guru issues, children matters, education shift', kn: 'wisdom expansion or guru issues, children matters, education shift', gu: 'wisdom expansion or guru issues, children matters, education shift' },
+  5: { en: 'relationship transformation, luxury/comfort changes, creative shift', hi: 'सम्बन्ध परिवर्तन, विलास/सुख परिवर्तन, रचनात्मक मोड़', sa: 'सम्बन्ध परिवर्तन, विलास/सुख परिवर्तन, रचनात्मक मोड़', mai: 'सम्बन्ध परिवर्तन, विलास/सुख परिवर्तन, रचनात्मक मोड़', mr: 'सम्बन्ध परिवर्तन, विलास/सुख परिवर्तन, रचनात्मक मोड़', ta: 'relationship transformation, luxury/comfort changes, creative shift', te: 'relationship transformation, luxury/comfort changes, creative shift', bn: 'relationship transformation, luxury/comfort changes, creative shift', kn: 'relationship transformation, luxury/comfort changes, creative shift', gu: 'relationship transformation, luxury/comfort changes, creative shift' },
+  6: { en: 'structural collapse forcing rebuilding, discipline tested, chronic health', hi: 'ढाँचागत पतन जो पुनर्निर्माण बाध्य करे, अनुशासन परीक्षा, दीर्घकालिक स्वास्थ्य', sa: 'ढाँचागत पतन जो पुनर्निर्माण बाध्य करे, अनुशासन परीक्षा, दीर्घकालिक स्वास्थ्य', mai: 'ढाँचागत पतन जो पुनर्निर्माण बाध्य करे, अनुशासन परीक्षा, दीर्घकालिक स्वास्थ्य', mr: 'ढाँचागत पतन जो पुनर्निर्माण बाध्य करे, अनुशासन परीक्षा, दीर्घकालिक स्वास्थ्य', ta: 'structural collapse forcing rebuilding, discipline tested, chronic health', te: 'structural collapse forcing rebuilding, discipline tested, chronic health', bn: 'structural collapse forcing rebuilding, discipline tested, chronic health', kn: 'structural collapse forcing rebuilding, discipline tested, chronic health', gu: 'structural collapse forcing rebuilding, discipline tested, chronic health' },
+  7: { en: 'obsessive new direction, foreign connection activated, desires amplified', hi: 'जुनूनी नई दिशा, विदेशी सम्बन्ध सक्रिय, इच्छाएं प्रबल', sa: 'जुनूनी नई दिशा, विदेशी सम्बन्ध सक्रिय, इच्छाएं प्रबल', mai: 'जुनूनी नई दिशा, विदेशी सम्बन्ध सक्रिय, इच्छाएं प्रबल', mr: 'जुनूनी नई दिशा, विदेशी सम्बन्ध सक्रिय, इच्छाएं प्रबल', ta: 'obsessive new direction, foreign connection activated, desires amplified', te: 'obsessive new direction, foreign connection activated, desires amplified', bn: 'obsessive new direction, foreign connection activated, desires amplified', kn: 'obsessive new direction, foreign connection activated, desires amplified', gu: 'obsessive new direction, foreign connection activated, desires amplified' },
+  8: { en: 'past-life karmic acceleration, sudden spiritual detachment', hi: 'पूर्वजन्म कार्मिक त्वरण, अचानक आध्यात्मिक वैराग्य', sa: 'पूर्वजन्म कार्मिक त्वरण, अचानक आध्यात्मिक वैराग्य', mai: 'पूर्वजन्म कार्मिक त्वरण, अचानक आध्यात्मिक वैराग्य', mr: 'पूर्वजन्म कार्मिक त्वरण, अचानक आध्यात्मिक वैराग्य', ta: 'past-life karmic acceleration, sudden spiritual detachment', te: 'past-life karmic acceleration, sudden spiritual detachment', bn: 'past-life karmic acceleration, sudden spiritual detachment', kn: 'past-life karmic acceleration, sudden spiritual detachment', gu: 'past-life karmic acceleration, sudden spiritual detachment' },
 };
 
 function computePersonalInsight(eclipse: EclipseInfo, kundali: KundaliData, locale: Locale): PersonalInsight {
@@ -249,7 +249,7 @@ function computePersonalInsight(eclipse: EclipseInfo, kundali: KundaliData, loca
   return {
     dashAlert,
     natalContacts,
-    houseAffected: { house, meaning: isHi ? houseMeaning.hi : houseMeaning.en },
+    houseAffected: { house, meaning: isHi ? houseMeaning.hi || "" : houseMeaning.en },
     nakshatraLink,
     transitAspects,
     overallIntensity,
@@ -349,9 +349,9 @@ export default function PersonalEclipseInsight({
   const intensityColor = insight.overallIntensity === 'high' ? 'text-red-400' : insight.overallIntensity === 'moderate' ? 'text-amber-400' : 'text-emerald-400';
   const intensityBorder = insight.overallIntensity === 'high' ? 'border-red-500/20' : insight.overallIntensity === 'moderate' ? 'border-amber-500/20' : 'border-emerald-500/20';
   const intensityLabel = {
-    high: { en: 'HIGH IMPACT', hi: 'उच्च प्रभाव' },
-    moderate: { en: 'MODERATE IMPACT', hi: 'मध्यम प्रभाव' },
-    low: { en: 'LOW IMPACT', hi: 'न्यून प्रभाव' },
+    high: { en: 'HIGH IMPACT', hi: 'उच्च प्रभाव', sa: 'उच्च प्रभाव', mai: 'उच्च प्रभाव', mr: 'उच्च प्रभाव', ta: 'HIGH IMPACT', te: 'HIGH IMPACT', bn: 'HIGH IMPACT', kn: 'HIGH IMPACT', gu: 'HIGH IMPACT' },
+    moderate: { en: 'MODERATE IMPACT', hi: 'मध्यम प्रभाव', sa: 'मध्यम प्रभाव', mai: 'मध्यम प्रभाव', mr: 'मध्यम प्रभाव', ta: 'MODERATE IMPACT', te: 'MODERATE IMPACT', bn: 'MODERATE IMPACT', kn: 'MODERATE IMPACT', gu: 'MODERATE IMPACT' },
+    low: { en: 'LOW IMPACT', hi: 'न्यून प्रभाव', sa: 'न्यून प्रभाव', mai: 'न्यून प्रभाव', mr: 'न्यून प्रभाव', ta: 'LOW IMPACT', te: 'LOW IMPACT', bn: 'LOW IMPACT', kn: 'LOW IMPACT', gu: 'LOW IMPACT' },
   }[insight.overallIntensity];
 
   return (

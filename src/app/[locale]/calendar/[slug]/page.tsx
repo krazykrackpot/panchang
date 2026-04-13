@@ -10,7 +10,7 @@ import { FESTIVAL_DETAILS, CATEGORY_DETAILS, EKADASHI_NAMES } from '@/lib/consta
 import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-details';
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 import type { PujaVidhi, MantraDetail as MantraType } from '@/lib/constants/puja-vidhi/types';
-import type { Locale, Trilingual } from '@/types/panchang';
+import type { Locale,  LocaleText} from '@/types/panchang';
 import SamagriList from '@/components/puja/SamagriList';
 import PujaMode from '@/components/puja/PujaMode';
 import EkadashiParanaCard from '@/components/puja/EkadashiParanaCard';
@@ -49,7 +49,7 @@ const LABELS = {
   japaCount: { en: 'Japa Count', hi: 'जप संख्या', sa: 'जपसङ्ख्या', ta: 'ஜப எண்ணிக்கை', te: 'జప సంఖ్య', bn: 'জপ সংখ্যা', kn: 'ಜಪ ಸಂಖ್ಯೆ', mr: 'जप संख्या', gu: 'જપ સંખ્યા', mai: 'जप संख्या' },
 };
 
-const l = (tri: Trilingual, locale: Locale) => tri[locale] || tri.en;
+const l = (tri: LocaleText, locale: Locale) => tri[locale] || tri.en;
 
 /* ═══════════════════════════════════════════
    ANIMATION VARIANTS
@@ -218,7 +218,7 @@ export default function FestivalDetailPage() {
   }
 
   // ─── Display name — prefer specific ekadashi name from calendar entry ───
-  const specificEkadashiName = ekadashiParana?.name as { en: string; hi: string; sa: string } | undefined;
+  const specificEkadashiName = ekadashiParana?.name as LocaleText | undefined;
   const displayName = specificEkadashiName || detail?.name || ekadashiDetail?.name || { en: slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '), hi: slug, sa: slug };
 
   return (
@@ -530,7 +530,7 @@ function InlineMantra({ mantra, locale, bodyFont }: { mantra: MantraType; locale
    ═══════════════════════════════════════════ */
 
 function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidhi; locale: Locale; headingFont: React.CSSProperties; bodyFont: React.CSSProperties }) {
-  const t = (tri: Trilingual) => tri[locale] || tri.en;
+  const t = (tri: LocaleText) => tri[locale] || tri.en;
 
   return (
     <div className="space-y-6">

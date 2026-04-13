@@ -5,16 +5,16 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_25_4', phase: 5, topic: 'Indian Mathematics', moduleNumber: '25.4',
-  title: { en: 'Negative Numbers — Debt Before Descartes', hi: 'ऋण संख्याएँ — देकार्त से पहले ऋण' },
+  title: { en: 'Negative Numbers — Debt Before Descartes', hi: 'ऋण संख्याएँ — देकार्त से पहले ऋण', sa: 'ऋण संख्याएँ — देकार्त से पहले ऋण', mai: 'ऋण संख्याएँ — देकार्त से पहले ऋण', mr: 'ऋण संख्याएँ — देकार्त से पहले ऋण', ta: 'Negative Numbers — Debt Before Descartes', te: 'Negative Numbers — Debt Before Descartes', bn: 'Negative Numbers — Debt Before Descartes', kn: 'Negative Numbers — Debt Before Descartes', gu: 'Negative Numbers — Debt Before Descartes' },
   subtitle: {
     en: 'How Brahmagupta formalised rules for negative numbers in 628 CE — 1000 years before Europe accepted them — and why Descartes called them "false"',
     hi: 'ब्रह्मगुप्त ने 628 ई. में ऋण संख्याओं के नियम कैसे औपचारिक किए — यूरोप की स्वीकृति से 1000 वर्ष पहले — और देकार्त ने उन्हें "असत्य" क्यों कहा',
   },
   estimatedMinutes: 11,
   crossRefs: [
-    { label: { en: 'Module 25-1: Zero', hi: 'मॉड्यूल 25-1: शून्य' }, href: '/learn/modules/25-1' },
-    { label: { en: 'Module 25-5: Binary Code', hi: 'मॉड्यूल 25-5: द्विआधारी संकेत' }, href: '/learn/modules/25-5' },
-    { label: { en: 'Module 25-3: Pi = 3.1416', hi: 'मॉड्यूल 25-3: π = 3.1416' }, href: '/learn/modules/25-3' },
+    { label: { en: 'Module 25-1: Zero', hi: 'मॉड्यूल 25-1: शून्य', sa: 'मॉड्यूल 25-1: शून्य', mai: 'मॉड्यूल 25-1: शून्य', mr: 'मॉड्यूल 25-1: शून्य', ta: 'Module 25-1: Zero', te: 'Module 25-1: Zero', bn: 'Module 25-1: Zero', kn: 'Module 25-1: Zero', gu: 'Module 25-1: Zero' }, href: '/learn/modules/25-1' },
+    { label: { en: 'Module 25-5: Binary Code', hi: 'मॉड्यूल 25-5: द्विआधारी संकेत', sa: 'मॉड्यूल 25-5: द्विआधारी संकेत', mai: 'मॉड्यूल 25-5: द्विआधारी संकेत', mr: 'मॉड्यूल 25-5: द्विआधारी संकेत', ta: 'Module 25-5: Binary Code', te: 'Module 25-5: Binary Code', bn: 'Module 25-5: Binary Code', kn: 'Module 25-5: Binary Code', gu: 'Module 25-5: Binary Code' }, href: '/learn/modules/25-5' },
+    { label: { en: 'Module 25-3: Pi = 3.1416', hi: 'मॉड्यूल 25-3: π = 3.1416', sa: 'मॉड्यूल 25-3: π = 3.1416', mai: 'मॉड्यूल 25-3: π = 3.1416', mr: 'मॉड्यूल 25-3: π = 3.1416', ta: 'Module 25-3: Pi = 3.1416', te: 'Module 25-3: Pi = 3.1416', bn: 'Module 25-3: Pi = 3.1416', kn: 'Module 25-3: Pi = 3.1416', gu: 'Module 25-3: Pi = 3.1416' }, href: '/learn/modules/25-3' },
   ],
 };
 
@@ -26,10 +26,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ऋण संख्याओं के साथ गणित के नियम सबसे पहले किसने औपचारिक किए?',
     },
     options: [
-      { en: 'Mahavira', hi: 'महावीर' },
-      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त' },
-      { en: 'Fibonacci', hi: 'फिबोनाची' },
-      { en: 'Diophantus', hi: 'डायोफेन्टस' },
+      { en: 'Mahavira', hi: 'महावीर', sa: 'महावीर', mai: 'महावीर', mr: 'महावीर', ta: 'Mahavira', te: 'Mahavira', bn: 'Mahavira', kn: 'Mahavira', gu: 'Mahavira' },
+      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त', sa: 'ब्रह्मगुप्त', mai: 'ब्रह्मगुप्त', mr: 'ब्रह्मगुप्त', ta: 'Brahmagupta', te: 'Brahmagupta', bn: 'Brahmagupta', kn: 'Brahmagupta', gu: 'Brahmagupta' },
+      { en: 'Fibonacci', hi: 'फिबोनाची', sa: 'फिबोनाची', mai: 'फिबोनाची', mr: 'फिबोनाची', ta: 'Fibonacci', te: 'Fibonacci', bn: 'Fibonacci', kn: 'Fibonacci', gu: 'Fibonacci' },
+      { en: 'Diophantus', hi: 'डायोफेन्टस', sa: 'डायोफेन्टस', mai: 'डायोफेन्टस', mr: 'डायोफेन्टस', ta: 'Diophantus', te: 'Diophantus', bn: 'Diophantus', kn: 'Diophantus', gu: 'Diophantus' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -44,10 +44,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ब्रह्मगुप्त ने धनात्मक संख्याओं के लिए कौन सा संस्कृत शब्द प्रयोग किया?',
     },
     options: [
-      { en: 'Rina (ऋण)', hi: 'ऋण' },
-      { en: 'Dhana (धन)', hi: 'धन' },
-      { en: 'Shunya (शून्य)', hi: 'शून्य' },
-      { en: 'Mithya (मिथ्या)', hi: 'मिथ्या' },
+      { en: 'Rina (ऋण)', hi: 'ऋण', sa: 'ऋण', mai: 'ऋण', mr: 'ऋण', ta: 'Rina (ऋण)', te: 'Rina (ऋण)', bn: 'Rina (ऋण)', kn: 'Rina (ऋण)', gu: 'Rina (ऋण)' },
+      { en: 'Dhana (धन)', hi: 'धन', sa: 'धन', mai: 'धन', mr: 'धन', ta: 'Dhana (धन)', te: 'Dhana (धन)', bn: 'Dhana (धन)', kn: 'Dhana (धन)', gu: 'Dhana (धन)' },
+      { en: 'Shunya (शून्य)', hi: 'शून्य', sa: 'शून्य', mai: 'शून्य', mr: 'शून्य', ta: 'Shunya (शून्य)', te: 'Shunya (शून्य)', bn: 'Shunya (शून्य)', kn: 'Shunya (शून्य)', gu: 'Shunya (शून्य)' },
+      { en: 'Mithya (मिथ्या)', hi: 'मिथ्या', sa: 'मिथ्या', mai: 'मिथ्या', mr: 'मिथ्या', ta: 'Mithya (मिथ्या)', te: 'Mithya (मिथ्या)', bn: 'Mithya (मिथ्या)', kn: 'Mithya (मिथ्या)', gu: 'Mithya (मिथ्या)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -62,10 +62,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ब्रह्मगुप्त ने ऋण संख्याओं के लिए कौन सा संस्कृत शब्द प्रयोग किया?',
     },
     options: [
-      { en: 'Viyat (वियत्)', hi: 'वियत्' },
-      { en: 'Ksaya (क्षय)', hi: 'क्षय' },
-      { en: 'Rina (ऋण)', hi: 'ऋण' },
-      { en: 'Apama (अपमा)', hi: 'अपमा' },
+      { en: 'Viyat (वियत्)', hi: 'वियत्', sa: 'वियत्', mai: 'वियत्', mr: 'वियत्', ta: 'Viyat (वियत्)', te: 'Viyat (वियत्)', bn: 'Viyat (वियत्)', kn: 'Viyat (वियत्)', gu: 'Viyat (वियत्)' },
+      { en: 'Ksaya (क्षय)', hi: 'क्षय', sa: 'क्षय', mai: 'क्षय', mr: 'क्षय', ta: 'Ksaya (क्षय)', te: 'Ksaya (क्षय)', bn: 'Ksaya (क्षय)', kn: 'Ksaya (क्षय)', gu: 'Ksaya (क्षय)' },
+      { en: 'Rina (ऋण)', hi: 'ऋण', sa: 'ऋण', mai: 'ऋण', mr: 'ऋण', ta: 'Rina (ऋण)', te: 'Rina (ऋण)', bn: 'Rina (ऋण)', kn: 'Rina (ऋण)', gu: 'Rina (ऋण)' },
+      { en: 'Apama (अपमा)', hi: 'अपमा', sa: 'अपमा', mai: 'अपमा', mr: 'अपमा', ta: 'Apama (अपमा)', te: 'Apama (अपमा)', bn: 'Apama (अपमा)', kn: 'Apama (अपमा)', gu: 'Apama (अपमा)' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -80,10 +80,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ब्रह्मगुप्त के नियमों के अनुसार ऋण × ऋण का परिणाम क्या है?',
     },
     options: [
-      { en: 'Negative', hi: 'ऋण' },
-      { en: 'Zero', hi: 'शून्य' },
-      { en: 'Positive', hi: 'धन' },
-      { en: 'Undefined', hi: 'अपरिभाषित' },
+      { en: 'Negative', hi: 'ऋण', sa: 'ऋण', mai: 'ऋण', mr: 'ऋण', ta: 'Negative', te: 'Negative', bn: 'Negative', kn: 'Negative', gu: 'Negative' },
+      { en: 'Zero', hi: 'शून्य', sa: 'शून्य', mai: 'शून्य', mr: 'शून्य', ta: 'Zero', te: 'Zero', bn: 'Zero', kn: 'Zero', gu: 'Zero' },
+      { en: 'Positive', hi: 'धन', sa: 'धन', mai: 'धन', mr: 'धन', ta: 'Positive', te: 'Positive', bn: 'Positive', kn: 'Positive', gu: 'Positive' },
+      { en: 'Undefined', hi: 'अपरिभाषित', sa: 'अपरिभाषित', mai: 'अपरिभाषित', mr: 'अपरिभाषित', ta: 'Undefined', te: 'Undefined', bn: 'Undefined', kn: 'Undefined', gu: 'Undefined' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -98,10 +98,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किसने समीकरणों के ऋण मूलों को "असत्य संख्याएँ" (numeri falsi) कहा?',
     },
     options: [
-      { en: 'Isaac Newton', hi: 'आइज़ैक न्यूटन' },
-      { en: 'René Descartes', hi: 'रेने देकार्त' },
-      { en: 'Blaise Pascal', hi: 'ब्लेज़ पास्कल' },
-      { en: 'John Wallis', hi: 'जॉन वालिस' },
+      { en: 'Isaac Newton', hi: 'आइज़ैक न्यूटन', sa: 'आइज़ैक न्यूटन', mai: 'आइज़ैक न्यूटन', mr: 'आइज़ैक न्यूटन', ta: 'Isaac Newton', te: 'Isaac Newton', bn: 'Isaac Newton', kn: 'Isaac Newton', gu: 'Isaac Newton' },
+      { en: 'René Descartes', hi: 'रेने देकार्त', sa: 'रेने देकार्त', mai: 'रेने देकार्त', mr: 'रेने देकार्त', ta: 'René Descartes', te: 'René Descartes', bn: 'René Descartes', kn: 'René Descartes', gu: 'René Descartes' },
+      { en: 'Blaise Pascal', hi: 'ब्लेज़ पास्कल', sa: 'ब्लेज़ पास्कल', mai: 'ब्लेज़ पास्कल', mr: 'ब्लेज़ पास्कल', ta: 'Blaise Pascal', te: 'Blaise Pascal', bn: 'Blaise Pascal', kn: 'Blaise Pascal', gu: 'Blaise Pascal' },
+      { en: 'John Wallis', hi: 'जॉन वालिस', sa: 'जॉन वालिस', mai: 'जॉन वालिस', mr: 'जॉन वालिस', ta: 'John Wallis', te: 'John Wallis', bn: 'John Wallis', kn: 'John Wallis', gu: 'John Wallis' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -116,10 +116,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वह व्यावहारिक उत्पत्ति क्या थी जिसने भारतीय गणित में ऋण संख्याओं को सहज बनाया?',
     },
     options: [
-      { en: 'Measuring negative temperatures', hi: 'ऋण तापमान मापना' },
-      { en: 'Accounting and debt in commerce', hi: 'वाणिज्य में लेखांकन और ऋण' },
-      { en: 'Representing underground depths', hi: 'भूमिगत गहराई दर्शाना' },
-      { en: 'Astronomical retrograde motion', hi: 'खगोलीय वक्री गति' },
+      { en: 'Measuring negative temperatures', hi: 'ऋण तापमान मापना', sa: 'ऋण तापमान मापना', mai: 'ऋण तापमान मापना', mr: 'ऋण तापमान मापना', ta: 'Measuring negative temperatures', te: 'Measuring negative temperatures', bn: 'Measuring negative temperatures', kn: 'Measuring negative temperatures', gu: 'Measuring negative temperatures' },
+      { en: 'Accounting and debt in commerce', hi: 'वाणिज्य में लेखांकन और ऋण', sa: 'वाणिज्य में लेखांकन और ऋण', mai: 'वाणिज्य में लेखांकन और ऋण', mr: 'वाणिज्य में लेखांकन और ऋण', ta: 'Accounting and debt in commerce', te: 'Accounting and debt in commerce', bn: 'Accounting and debt in commerce', kn: 'Accounting and debt in commerce', gu: 'Accounting and debt in commerce' },
+      { en: 'Representing underground depths', hi: 'भूमिगत गहराई दर्शाना', sa: 'भूमिगत गहराई दर्शाना', mai: 'भूमिगत गहराई दर्शाना', mr: 'भूमिगत गहराई दर्शाना', ta: 'Representing underground depths', te: 'Representing underground depths', bn: 'Representing underground depths', kn: 'Representing underground depths', gu: 'Representing underground depths' },
+      { en: 'Astronomical retrograde motion', hi: 'खगोलीय वक्री गति', sa: 'खगोलीय वक्री गति', mai: 'खगोलीय वक्री गति', mr: 'खगोलीय वक्री गति', ta: 'Astronomical retrograde motion', te: 'Astronomical retrograde motion', bn: 'Astronomical retrograde motion', kn: 'Astronomical retrograde motion', gu: 'Astronomical retrograde motion' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -134,10 +134,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'ब्रह्मगुप्त ने ऋण संख्याओं के अपने नियम किस वर्ष प्रकाशित किए?',
     },
     options: [
-      { en: '476 CE', hi: '476 ई.' },
-      { en: '499 CE', hi: '499 ई.' },
-      { en: '628 CE', hi: '628 ई.' },
-      { en: '850 CE', hi: '850 ई.' },
+      { en: '476 CE', hi: '476 ई.', sa: '476 ई.', mai: '476 ई.', mr: '476 ई.', ta: '476 CE', te: '476 CE', bn: '476 CE', kn: '476 CE', gu: '476 CE' },
+      { en: '499 CE', hi: '499 ई.', sa: '499 ई.', mai: '499 ई.', mr: '499 ई.', ta: '499 CE', te: '499 CE', bn: '499 CE', kn: '499 CE', gu: '499 CE' },
+      { en: '628 CE', hi: '628 ई.', sa: '628 ई.', mai: '628 ई.', mr: '628 ई.', ta: '628 CE', te: '628 CE', bn: '628 CE', kn: '628 CE', gu: '628 CE' },
+      { en: '850 CE', hi: '850 ई.', sa: '850 ई.', mai: '850 ई.', mr: '850 ई.', ta: '850 CE', te: '850 CE', bn: '850 CE', kn: '850 CE', gu: '850 CE' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -152,10 +152,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'किस भारतीय गणितज्ञ ने 9वीं शताब्दी में ब्रह्मगुप्त के ऋण संख्या नियमों का विस्तार किया?',
     },
     options: [
-      { en: 'Aryabhata II', hi: 'आर्यभट द्वितीय' },
-      { en: 'Mahavira', hi: 'महावीर' },
-      { en: 'Bhaskara I', hi: 'भास्कर प्रथम' },
-      { en: 'Sridharacharya', hi: 'श्रीधराचार्य' },
+      { en: 'Aryabhata II', hi: 'आर्यभट द्वितीय', sa: 'आर्यभट द्वितीय', mai: 'आर्यभट द्वितीय', mr: 'आर्यभट द्वितीय', ta: 'Aryabhata II', te: 'Aryabhata II', bn: 'Aryabhata II', kn: 'Aryabhata II', gu: 'Aryabhata II' },
+      { en: 'Mahavira', hi: 'महावीर', sa: 'महावीर', mai: 'महावीर', mr: 'महावीर', ta: 'Mahavira', te: 'Mahavira', bn: 'Mahavira', kn: 'Mahavira', gu: 'Mahavira' },
+      { en: 'Bhaskara I', hi: 'भास्कर प्रथम', sa: 'भास्कर प्रथम', mai: 'भास्कर प्रथम', mr: 'भास्कर प्रथम', ta: 'Bhaskara I', te: 'Bhaskara I', bn: 'Bhaskara I', kn: 'Bhaskara I', gu: 'Bhaskara I' },
+      { en: 'Sridharacharya', hi: 'श्रीधराचार्य', sa: 'श्रीधराचार्य', mai: 'श्रीधराचार्य', mr: 'श्रीधराचार्य', ta: 'Sridharacharya', te: 'Sridharacharya', bn: 'Sridharacharya', kn: 'Sridharacharya', gu: 'Sridharacharya' },
     ],
     correctAnswer: 1,
     explanation: {

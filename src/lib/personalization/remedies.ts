@@ -1,4 +1,4 @@
-import type { Trilingual } from '@/types/panchang';
+import type { LocaleText,} from '@/types/panchang';
 import type { UserSnapshot } from './types';
 
 // ---------------------------------------------------------------------------
@@ -8,12 +8,12 @@ import type { UserSnapshot } from './types';
 export interface PersonalRemedy {
   category: 'weak_planet' | 'dosha' | 'dasha' | 'transit';
   planetId?: number;
-  title: Trilingual;
-  description: Trilingual;
+  title: LocaleText;
+  description: LocaleText;
   mantra?: string;
-  gemstone?: Trilingual;
-  donation?: Trilingual;
-  day?: Trilingual;
+  gemstone?: LocaleText;
+  donation?: LocaleText;
+  day?: LocaleText;
   priority: 'high' | 'medium' | 'low';
 }
 
@@ -23,11 +23,11 @@ export interface PersonalRemedy {
 
 interface PlanetRemedyData {
   mantra: string;
-  gemstone: Trilingual;
-  donation: Trilingual;
-  day: Trilingual;
-  weakTitle: Trilingual;
-  weakDesc: Trilingual;
+  gemstone: LocaleText;
+  donation: LocaleText;
+  day: LocaleText;
+  weakTitle: LocaleText;
+  weakDesc: LocaleText;
 }
 
 const PLANET_REMEDIES: Record<number, PlanetRemedyData> = {
@@ -324,13 +324,13 @@ export function computePersonalRemedies(snapshot: UserSnapshot): PersonalRemedy[
           planetId: dashaLord,
           title: {
             en: `Dasha Lord: ${data.weakTitle.en.replace('Strengthen ', '').replace('Pacify ', '')}`,
-            hi: `दशा स्वामी: ${data.weakTitle.hi.replace(' को बलवान करें', '').replace(' को शान्त करें', '')}`,
-            sa: `दशास्वामी: ${data.weakTitle.sa.replace('बलवन्तं कुर्यात्', '').replace('शान्तं कुर्यात्', '').trim()}`,
+            hi: `दशा स्वामी: ${data.weakTitle.hi!.replace(' को बलवान करें', '').replace(' को शान्त करें', '')}`,
+            sa: `दशास्वामी: ${data.weakTitle.sa!.replace('बलवन्तं कुर्यात्', '').replace('शान्तं कुर्यात्', '').trim()}`,
           },
           description: {
             en: `You are currently in the ${data.weakTitle.en.replace('Strengthen ', '').replace('Pacify ', '')} dasha period. Propitiating this planet can enhance its positive effects.`,
-            hi: `आप वर्तमान में ${data.weakTitle.hi.replace(' को बलवान करें', '').replace(' को शान्त करें', '')} दशा काल में हैं। इस ग्रह को प्रसन्न करने से इसके शुभ प्रभाव बढ़ सकते हैं।`,
-            sa: `भवान् वर्तमानं ${data.weakTitle.sa.replace(' बलवन्तं कुर्यात्', '').replace(' शान्तं कुर्यात्', '').trim()} दशाकाले वर्तते। अस्य ग्रहस्य प्रसन्नीकरणेन शुभप्रभावाः वर्धन्ते।`,
+            hi: `आप वर्तमान में ${data.weakTitle.hi!.replace(' को बलवान करें', '').replace(' को शान्त करें', '')} दशा काल में हैं। इस ग्रह को प्रसन्न करने से इसके शुभ प्रभाव बढ़ सकते हैं।`,
+            sa: `भवान् वर्तमानं ${data.weakTitle.sa!.replace(' बलवन्तं कुर्यात्', '').replace(' शान्तं कुर्यात्', '').trim()} दशाकाले वर्तते। अस्य ग्रहस्य प्रसन्नीकरणेन शुभप्रभावाः वर्धन्ते।`,
           },
           mantra: data.mantra,
           gemstone: data.gemstone,

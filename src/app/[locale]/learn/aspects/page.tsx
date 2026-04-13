@@ -12,81 +12,7 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LT from '@/messages/learn/aspects.json';
 
-/* ── Trilingual Labels ──────────────────────────────────────────── */
-const L = {
-  title: { en: 'Planetary Aspects (Graha Drishti)', hi: 'ग्रह दृष्टि (Planetary Aspects)', sa: 'ग्रहदृष्टिः' , ta: 'கிரக பார்வை (கிரக திருஷ்டி)' },
-  subtitle: {
-    en: 'In Vedic astrology, planets cast their gaze (Drishti) on other houses and planets, influencing them from a distance. Every planet has a full 7th-house aspect, while Mars, Jupiter, and Saturn possess additional special aspects that make them uniquely powerful.',
-    hi: 'वैदिक ज्योतिष में ग्रह अन्य भावों और ग्रहों पर अपनी दृष्टि डालते हैं, दूर से उन्हें प्रभावित करते हैं। प्रत्येक ग्रह की 7वें भाव पर पूर्ण दृष्टि होती है, जबकि मंगल, बृहस्पति और शनि की अतिरिक्त विशेष दृष्टियाँ होती हैं।',
-    sa: 'ज्योतिषे ग्रहाः अन्यभावान् ग्रहांश्च दृष्ट्या प्रभावयन्ति। प्रत्येकग्रहस्य सप्तमभावे पूर्णदृष्टिः, मङ्गलबृहस्पतिशनीनां विशेषदृष्टयः अपि सन्ति।'
-  },
-
-  whatTitle: { en: 'What are Aspects (Drishti)?', hi: 'दृष्टि (Aspects) क्या है?', sa: 'दृष्टिः का?' },
-  whatContent: {
-    en: 'The Sanskrit word "Drishti" literally means "sight" or "gaze." In Jyotish, every planet looks at (aspects) the 7th house from its position — this is the opposition aspect, shared by all nine grahas. This is the fundamental rule: wherever a planet sits, it influences the house directly opposite.',
-    hi: '"दृष्टि" शब्द का शाब्दिक अर्थ "देखना" या "नज़र" है। ज्योतिष में प्रत्येक ग्रह अपनी स्थिति से 7वें भाव को देखता है — यह प्रतिपक्ष दृष्टि है, जो सभी नौ ग्रहों में समान है। यह मूल नियम है: ग्रह जहाँ बैठा हो, वह सामने वाले भाव को प्रभावित करता है।',
-    sa: '"दृष्टिः" इति शब्दस्य शाब्दिकार्थः "दर्शनम्" इति। ज्योतिषे प्रत्येकः ग्रहः स्वस्थानात् सप्तमभावं पश्यति — इयं प्रतिपक्षदृष्टिः सर्वेषु नवग्रहेषु समाना।'
-  },
-  whatContent2: {
-    en: 'But three planets break this rule with additional special aspects: Mars also aspects the 4th and 8th houses, Jupiter also aspects the 5th and 9th houses (the trines), and Saturn also aspects the 3rd and 10th houses. These special aspects dramatically increase these planets\' sphere of influence — Saturn, for example, controls four houses from any position (3rd, 7th, 10th from placement, plus the house it occupies).',
-    hi: 'किन्तु तीन ग्रह इस नियम से परे अतिरिक्त विशेष दृष्टियाँ रखते हैं: मंगल 4वें और 8वें भाव को भी देखता है, बृहस्पति 5वें और 9वें भाव (त्रिकोण) को भी देखता है, और शनि 3रे और 10वें भाव को भी देखता है। ये विशेष दृष्टियाँ इन ग्रहों के प्रभाव क्षेत्र को नाटकीय रूप से बढ़ाती हैं।',
-    sa: 'किन्तु त्रयः ग्रहाः अतिरिक्तविशेषदृष्टीः धारयन्ति: मङ्गलः 4-8 भावौ, बृहस्पतिः 5-9 भावौ (त्रिकोणौ), शनिः 3-10 भावौ अपि पश्यति।'
-  },
-  whatContent3: {
-    en: 'Aspect = influence. The nature of the influence depends entirely on which planet is casting the aspect. Jupiter\'s aspect is benevolent — it protects, expands, and blesses whatever it gazes upon. Saturn\'s aspect is restrictive — it delays, disciplines, and forces maturity. Mars\'s aspect is aggressive — it energizes, creates conflict, but also gives courage. Rahu and Ketu aspect like Jupiter (5th, 7th, 9th) according to Parashari principles, but their influence is shadowy and obsessive.',
-    hi: 'दृष्टि = प्रभाव। प्रभाव की प्रकृति पूर्णतः इस बात पर निर्भर है कि कौन सा ग्रह दृष्टि डाल रहा है। बृहस्पति की दृष्टि शुभ है — वह रक्षा, विस्तार और आशीर्वाद देती है। शनि की दृष्टि प्रतिबन्धात्मक है — वह विलम्ब, अनुशासन और परिपक्वता लाती है। मंगल की दृष्टि आक्रामक है — वह ऊर्जा, संघर्ष और साहस देती है।',
-    sa: 'दृष्टिः = प्रभावः। बृहस्पतेः दृष्टिः शुभा — रक्षति विस्तारयति आशिषं ददाति। शनेः दृष्टिः प्रतिबन्धात्मिका। मङ्गलस्य दृष्टिः आक्रामिका।'
-  },
-
-  diagramTitle: { en: 'Interactive Aspect Diagram', hi: 'संवादात्मक दृष्टि आरेख', sa: 'संवादात्मकदृष्ट्यारेखः' },
-  diagramHint: { en: 'Select a planet below to see its aspects on the 12-house wheel', hi: 'नीचे ग्रह चुनें और 12 भाव चक्र पर उसकी दृष्टि देखें', sa: 'अधः ग्रहं चिनुत भावचक्रे दृष्टिं द्रष्टुम्' },
-  placedIn: { en: 'Placed in House 1', hi: 'भाव 1 में स्थित', sa: 'भावे 1 स्थितः' },
-
-  rulesTitle: { en: 'Aspect Rules & Strength', hi: 'दृष्टि नियम एवं बल', sa: 'दृष्टिनियमाः बलं च' },
-  planet: { en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः' },
-  aspects: { en: 'Aspects', hi: 'दृष्टियाँ', sa: 'दृष्टयः' },
-  full: { en: 'Full (100%)', hi: 'पूर्ण (100%)', sa: 'पूर्णम् (100%)' },
-  threeQ: { en: '3/4 (75%)', hi: '3/4 (75%)', sa: '3/4 (75%)' },
-  half: { en: '1/2 (50%)', hi: '1/2 (50%)', sa: '1/2 (50%)' },
-  quarter: { en: '1/4 (25%)', hi: '1/4 (25%)', sa: '1/4 (25%)' },
-
-  effectTitle: { en: 'What Each Planet\'s Aspect Does', hi: 'प्रत्येक ग्रह की दृष्टि का प्रभाव', sa: 'प्रत्येकग्रहदृष्टेः फलम्' },
-  jupiterEffect: {
-    en: 'Jupiter\'s Aspect — Expansion, protection, wisdom, and growth. Jupiter\'s gaze on any house blesses that house\'s significations. It brings teachers, opportunity, dharmic guidance, and optimism. Jupiter aspecting the 7th house protects marriage; aspecting the 5th blesses children and creativity; aspecting the 2nd enriches wealth and family.',
-    hi: 'बृहस्पति की दृष्टि — विस्तार, रक्षा, ज्ञान और वृद्धि। बृहस्पति की किसी भी भाव पर दृष्टि उस भाव के कारकत्व को आशीर्वाद देती है। यह गुरु, अवसर, धार्मिक मार्गदर्शन और आशावाद लाती है।',
-    sa: 'बृहस्पतेः दृष्टिः — विस्तारः, रक्षा, ज्ञानम्, वृद्धिश्च। बृहस्पतिदृष्टिः भावकारकत्वानि आशिषा पूरयति।'
-  },
-  saturnEffect: {
-    en: 'Saturn\'s Aspect — Restriction, discipline, delay, maturity, and karmic lessons. Saturn\'s gaze slows things down but builds lasting structures. It forces responsibility, patience, and hard work. Saturn aspecting the 7th house delays marriage but gives a mature, stable spouse; aspecting the 1st makes the native serious and hardworking; aspecting the 10th demands sustained career effort.',
-    hi: 'शनि की दृष्टि — प्रतिबन्ध, अनुशासन, विलम्ब, परिपक्वता और कार्मिक पाठ। शनि की दृष्टि गति धीमी करती है किन्तु स्थायी संरचना बनाती है। यह उत्तरदायित्व, धैर्य और कठोर परिश्रम की माँग करती है।',
-    sa: 'शनेः दृष्टिः — प्रतिबन्धः, अनुशासनम्, विलम्बः, परिपक्वता, कार्मिकपाठाश्च।'
-  },
-  marsEffect: {
-    en: 'Mars\'s Aspect — Energy, aggression, courage, conflict, and the risk of surgery or accidents. Mars\'s gaze on a house energizes it but can also create friction and competition. Mars aspecting the 7th house makes marriage passionate but conflictual (this is one form of Mangal Dosha from aspect). Mars aspecting the 10th drives ambitious career pursuits but can cause workplace conflicts.',
-    hi: 'मंगल की दृष्टि — ऊर्जा, आक्रामकता, साहस, संघर्ष और शल्यक्रिया/दुर्घटना का जोखिम। मंगल की दृष्टि भाव को ऊर्जावान बनाती है किन्तु घर्षण और प्रतिस्पर्धा भी उत्पन्न कर सकती है।',
-    sa: 'मङ्गलस्य दृष्टिः — ऊर्जा, आक्रामकता, शौर्यम्, संघर्षः, शल्यचिकित्साजोखिमं च।'
-  },
-  rahuEffect: {
-    en: 'Rahu\'s Aspect — Obsession, unconventional growth, foreign influence, and amplification. Rahu\'s gaze creates an insatiable desire for the aspected house\'s significations. It brings foreign connections, technological innovations, and unconventional approaches, but also confusion, deception, and materialism. Rahu aspecting the 7th can bring a spouse from a different culture.',
-    hi: 'राहु की दृष्टि — आसक्ति, अपरम्परागत वृद्धि, विदेशी प्रभाव और प्रवर्धन। राहु की दृष्टि दृष्ट भाव के कारकत्वों की अतृप्त इच्छा उत्पन्न करती है। यह विदेशी सम्बन्ध और अपरम्परागत दृष्टिकोण लाती है।',
-    sa: 'राहोः दृष्टिः — आसक्तिः, अपरम्परागतवृद्धिः, विदेशप्रभावः, प्रवर्धनं च।'
-  },
-  othersEffect: {
-    en: 'Sun, Moon, Mercury, Venus — These planets cast only the standard 7th-house aspect (opposition). Sun\'s aspect brings authority and ego; Moon\'s brings emotional connection and nurturing; Mercury\'s brings communication and intellect; Venus\'s brings love, beauty, and comfort. Their influence is limited to opposition, making them less dominant in aspect analysis compared to Mars, Jupiter, and Saturn.',
-    hi: 'सूर्य, चन्द्र, बुध, शुक्र — ये ग्रह केवल मानक 7वें भाव की दृष्टि (प्रतिपक्ष) डालते हैं। सूर्य की दृष्टि अधिकार और अहंकार लाती है; चन्द्र की भावनात्मक सम्बन्ध; बुध की संवाद और बुद्धि; शुक्र की प्रेम, सौन्दर्य और सुख।',
-    sa: 'सूर्यचन्द्रबुधशुक्राः केवलं सप्तमभावदृष्टिं पातयन्ति।'
-  },
-
-  combosTitle: { en: 'Key Aspect Combinations', hi: 'प्रमुख दृष्टि संयोग', sa: 'प्रमुखदृष्टिसंयोगाः' },
-  mathTitle: { en: 'How Our Engine Computes Aspects', hi: 'हमारा इंजन दृष्टि कैसे गणना करता है', sa: 'अस्माकं यन्त्रं दृष्टिं कथं गणयति' },
-  mathContent: {
-    en: 'Our Panchang engine computes aspects using precise degree-based calculations, not just house-based approximations. The actual aspect strength depends on the angular distance between two planets. A planet at 15 degrees Aries aspecting a planet at 15 degrees Libra (exact 180 degrees apart) gets full 100% aspect strength. As the orb widens, strength diminishes proportionally. We use the Tajika system for fractional aspects: full strength (Purna Drishti) at exact aspect angles, 3/4 strength (Deha Drishti) within a moderate orb, 1/2 strength (Ardha Drishti) at wider orbs, and 1/4 strength (Pada Drishti) at the edge of the orb. Special aspects of Mars (4th, 8th), Jupiter (5th, 9th), and Saturn (3rd, 10th) use the same degree-based precision.',
-    hi: 'हमारा पंचांग इंजन दृष्टि की गणना सटीक अंश-आधारित पद्धति से करता है, केवल भाव-आधारित अनुमान से नहीं। वास्तविक दृष्टि बल दो ग्रहों के बीच कोणीय दूरी पर निर्भर करता है। मेष 15 अंश पर स्थित ग्रह की तुला 15 अंश पर स्थित ग्रह पर (ठीक 180 अंश दूर) पूर्ण 100% दृष्टि बल होता है। हम ताजिक पद्धति का उपयोग करते हैं: पूर्ण दृष्टि, देह दृष्टि (3/4), अर्ध दृष्टि (1/2), और पद दृष्टि (1/4)।',
-    sa: 'अस्माकं पञ्चाङ्गयन्त्रं दृष्टेः गणनां सूक्ष्मांशाधारितपद्धत्या करोति। पूर्णदृष्टिः, देहदृष्टिः (3/4), अर्धदृष्टिः (1/2), पददृष्टिः (1/4) च।'
-  },
-
-  relatedTitle: { en: 'Continue Learning', hi: 'आगे पढ़ें', sa: 'अग्रे पठत' },
-};
+/* Labels migrated to src/messages/learn/aspects.json — accessed via LT + t() */
 
 /* ── Planet data for diagram ─────────────────────────────────────── */
 const PLANETS = [
@@ -415,17 +341,17 @@ export default function AspectsPage() {
         <h3 className="text-gold-gradient text-xl font-bold mb-5" style={headingFont}>{t('effectTitle')}</h3>
         <div className="space-y-4" style={bodyFont}>
           {[
-            { label: { en: 'Jupiter', hi: 'बृहस्पति', sa: 'बृहस्पतिः' }, color: '#facc15', text: L.jupiterEffect },
-            { label: { en: 'Saturn', hi: 'शनि', sa: 'शनिः' }, color: '#60a5fa', text: L.saturnEffect },
-            { label: { en: 'Mars', hi: 'मंगल', sa: 'मङ्गलः' }, color: '#ef4444', text: L.marsEffect },
-            { label: { en: 'Rahu', hi: 'राहु', sa: 'राहुः' }, color: '#a78bfa', text: L.rahuEffect },
-            { label: { en: 'Sun / Moon / Mercury / Venus', hi: 'सूर्य / चन्द्र / बुध / शुक्र', sa: 'सूर्य / चन्द्र / बुध / शुक्र' }, color: '#d4a853', text: L.othersEffect },
+            { label: { en: 'Jupiter', hi: 'बृहस्पति', sa: 'बृहस्पतिः' }, color: '#facc15', textKey: 'jupiterEffect' },
+            { label: { en: 'Saturn', hi: 'शनि', sa: 'शनिः' }, color: '#60a5fa', textKey: 'saturnEffect' },
+            { label: { en: 'Mars', hi: 'मंगल', sa: 'मङ्गलः' }, color: '#ef4444', textKey: 'marsEffect' },
+            { label: { en: 'Rahu', hi: 'राहु', sa: 'राहुः' }, color: '#a78bfa', textKey: 'rahuEffect' },
+            { label: { en: 'Sun / Moon / Mercury / Venus', hi: 'सूर्य / चन्द्र / बुध / शुक्र', sa: 'सूर्य / चन्द्र / बुध / शुक्र' }, color: '#d4a853', textKey: 'othersEffect' },
           ].map((item, i) => (
             <div key={i} className="rounded-xl border border-white/5 p-4 bg-white/2">
               <h4 className="text-sm font-bold mb-2" style={{ color: item.color, ...headingFont }}>
                 {tl(item.label, locale)}
               </h4>
-              <p className="text-text-secondary text-sm leading-relaxed">{tl(item.text, locale)}</p>
+              <p className="text-text-secondary text-sm leading-relaxed">{t(item.textKey)}</p>
             </div>
           ))}
         </div>

@@ -39,6 +39,19 @@ describe('RASHI_PAIR_CONTENT', () => {
     });
   });
 
+  it('all narrative fields have sa (Sanskrit) translations', () => {
+    RASHI_PAIR_CONTENT.forEach(p => {
+      expect(p.oneLiner.sa).toBeTruthy();
+      expect(p.summary.sa).toBeTruthy();
+      expect(p.temperament.sa).toBeTruthy();
+      expect(p.communication.sa).toBeTruthy();
+      expect(p.romance.sa).toBeTruthy();
+      expect(p.career.sa).toBeTruthy();
+      expect(p.challenges.sa).toBeTruthy();
+      expect(p.remedies.sa).toBeTruthy();
+    });
+  });
+
   it('covers all unique pairs (no duplicates)', () => {
     const keys = RASHI_PAIR_CONTENT.map(p => `${p.rashi1}-${p.rashi2}`);
     const unique = new Set(keys);

@@ -121,7 +121,7 @@
     "kn": "ಸ್ಥಾನಧಾರಕ ವಿರುದ್ಧ ಸಂಖ್ಯೆ — ನಿರ್ಣಾಯಕ ವ್ಯತ್ಯಾಸ",
     "mr": "स्थानधारक विरुद्ध संख्या — महत्त्वपूर्ण फरक",
     "gu": "સ્થાનધારક વિરુદ્ધ સંખ્યા — નિર્ણાયક તફાવત",
-    "mai": "स्थान-धारक बनाम संख्या — महत्वपूर्ण अंतर"
+    "mai": "शून्यक यात्रा"
   },
   "s4Body": {
     "en": "Every civilization that used positional notation needed a placeholder — a symbol saying 'this column is empty.' The Babylonians had it. The Maya had it. But India did something NO OTHER civilization did: they made zero a NUMBER. Zero could be added, subtracted, multiplied. It had rules. It was on equal footing with 1, 2, 3... This leap — from placeholder to number — is what gave us the entire modern number system.",
@@ -279,36 +279,126 @@
     "gu": "શૂન્ય માટે બ્રહ્મગુપ્તના 6 નિયમો",
     "mai": "शून्यक लेल ब्रह्मगुप्तक 6 नियम"
   },
-  "rule1": { "en": "zero + zero = zero", "hi": "शून्य + शून्य = शून्य" },
-  "rule2": { "en": "positive + zero = positive", "hi": "धन + शून्य = धन" },
-  "rule3": { "en": "negative + zero = negative", "hi": "ऋण + शून्य = ऋण" },
-  "rule4": { "en": "zero × any number = zero", "hi": "शून्य × कोई भी = शून्य" },
-  "rule5": { "en": "positive × negative = negative", "hi": "धन × ऋण = ऋण" },
-  "rule6": { "en": "0 ÷ 0 = 0 (his one error!)", "hi": "0 ÷ 0 = 0 (उनकी एकमात्र त्रुटि!)" },
-  "civRomeProblem": { "en": "No zero → counting boards required for every calculation", "hi": "शून्य नहीं → हर गणना के लिए काउंटिंग बोर्ड चाहिए" },
-  "civGreeceProblem": { "en": "Philosophical block — \"Nothing cannot be Something\"", "hi": "दार्शनिक बाधा — \"शून्य कुछ नहीं हो सकता\"" },
-  "civBabylonProblem": { "en": "Placeholder zero only — never a number", "hi": "केवल स्थान-धारक शून्य — कभी संख्या नहीं" },
-  "bakhshaliDot": { "en": "Bakhshali dot (~300 CE)", "hi": "बख्शाली बिंदु (~300 ईस्वी)" },
-  "earthsOldestZero": { "en": "Earth's oldest zero", "hi": "पृथ्वी पर सबसे पुराना शून्य" },
-  "brahmaguptaNumber": { "en": "Brahmagupta number (628 CE)", "hi": "ब्रह्मगुप्त संख्या (628 ईस्वी)" },
-  "placeholderToNumber": { "en": "Placeholder to full number", "hi": "स्थान-धारक से पूर्ण संख्या" },
-  "thCivilization": { "en": "Civilization", "hi": "सभ्यता" },
-  "thZeroType": { "en": "Zero Type", "hi": "शून्य का प्रकार" },
-  "thArithmetic": { "en": "Arithmetic?", "hi": "अंकगणित?" },
-  "placeholderOnly": { "en": "Placeholder only", "hi": "केवल स्थान-धारक" },
-  "placeholderDot": { "en": "Placeholder dot", "hi": "स्थान-धारक बिंदु" },
-  "fullNumberWithRules": { "en": "FULL NUMBER with rules", "hi": "नियमों के साथ पूर्ण संख्या" },
-  "yes": { "en": "YES!", "hi": "हाँ!" },
-  "no": { "en": "No", "hi": "नहीं" },
-  "binaryCode": { "en": "Binary Code", "hi": "बाइनरी कोड" },
-  "requiresZeroOne": { "en": "Requires 0 and 1", "hi": "0 और 1 आवश्यक" },
-  "gps": { "en": "GPS", "hi": "जीपीएस" },
-  "continuousCalculus": { "en": "Continuous calculus", "hi": "निरंतर कलन" },
-  "calculus": { "en": "Calculus", "hi": "कलन" },
-  "limitsToZero": { "en": "Limits → 0", "hi": "सीमाएँ → 0" },
-  "algebra": { "en": "Algebra", "hi": "बीजगणित" },
-  "equationsNeedZero": { "en": "Equations need 0", "hi": "समीकरणों को 0 चाहिए" },
-  "brahmaguptaError": { "en": "Brahmagupta's one error:", "hi": "ब्रह्मगुप्त की एकमात्र त्रुटि:" },
+  "rule1": {
+    "en": "zero + zero = zero",
+    "hi": "शून्य + शून्य = शून्य"
+  },
+  "rule2": {
+    "en": "positive + zero = positive",
+    "hi": "धन + शून्य = धन"
+  },
+  "rule3": {
+    "en": "negative + zero = negative",
+    "hi": "ऋण + शून्य = ऋण"
+  },
+  "rule4": {
+    "en": "zero × any number = zero",
+    "hi": "शून्य × कोई भी = शून्य"
+  },
+  "rule5": {
+    "en": "positive × negative = negative",
+    "hi": "धन × ऋण = ऋण"
+  },
+  "rule6": {
+    "en": "0 ÷ 0 = 0 (his one error!)",
+    "hi": "0 ÷ 0 = 0 (उनकी एकमात्र त्रुटि!)"
+  },
+  "civRomeProblem": {
+    "en": "No zero → counting boards required for every calculation",
+    "hi": "शून्य नहीं → हर गणना के लिए काउंटिंग बोर्ड चाहिए"
+  },
+  "civGreeceProblem": {
+    "en": "Philosophical block — \"Nothing cannot be Something\"",
+    "hi": "दार्शनिक बाधा — \"शून्य कुछ नहीं हो सकता\""
+  },
+  "civBabylonProblem": {
+    "en": "Placeholder zero only — never a number",
+    "hi": "केवल स्थान-धारक शून्य — कभी संख्या नहीं"
+  },
+  "bakhshaliDot": {
+    "en": "Bakhshali dot (~300 CE)",
+    "hi": "बख्शाली बिंदु (~300 ईस्वी)"
+  },
+  "earthsOldestZero": {
+    "en": "Earth's oldest zero",
+    "hi": "पृथ्वी पर सबसे पुराना शून्य"
+  },
+  "brahmaguptaNumber": {
+    "en": "Brahmagupta number (628 CE)",
+    "hi": "ब्रह्मगुप्त संख्या (628 ईस्वी)"
+  },
+  "placeholderToNumber": {
+    "en": "Placeholder to full number",
+    "hi": "स्थान-धारक से पूर्ण संख्या"
+  },
+  "thCivilization": {
+    "en": "Civilization",
+    "hi": "सभ्यता"
+  },
+  "thZeroType": {
+    "en": "Zero Type",
+    "hi": "शून्य का प्रकार"
+  },
+  "thArithmetic": {
+    "en": "Arithmetic?",
+    "hi": "अंकगणित?"
+  },
+  "placeholderOnly": {
+    "en": "Placeholder only",
+    "hi": "केवल स्थान-धारक"
+  },
+  "placeholderDot": {
+    "en": "Placeholder dot",
+    "hi": "स्थान-धारक बिंदु"
+  },
+  "fullNumberWithRules": {
+    "en": "FULL NUMBER with rules",
+    "hi": "नियमों के साथ पूर्ण संख्या"
+  },
+  "yes": {
+    "en": "YES!",
+    "hi": "हाँ!"
+  },
+  "no": {
+    "en": "No",
+    "hi": "नहीं"
+  },
+  "binaryCode": {
+    "en": "Binary Code",
+    "hi": "बाइनरी कोड"
+  },
+  "requiresZeroOne": {
+    "en": "Requires 0 and 1",
+    "hi": "0 और 1 आवश्यक"
+  },
+  "gps": {
+    "en": "GPS",
+    "hi": "जीपीएस"
+  },
+  "continuousCalculus": {
+    "en": "Continuous calculus",
+    "hi": "निरंतर कलन"
+  },
+  "calculus": {
+    "en": "Calculus",
+    "hi": "कलन"
+  },
+  "limitsToZero": {
+    "en": "Limits → 0",
+    "hi": "सीमाएँ → 0"
+  },
+  "algebra": {
+    "en": "Algebra",
+    "hi": "बीजगणित"
+  },
+  "equationsNeedZero": {
+    "en": "Equations need 0",
+    "hi": "समीकरणों को 0 चाहिए"
+  },
+  "brahmaguptaError": {
+    "en": "Brahmagupta's one error:",
+    "hi": "ब्रह्मगुप्त की एकमात्र त्रुटि:"
+  },
   "bhaskaraNote": {
     "en": "Bhaskara II (1150 CE): n ÷ 0 = ananta (∞) where n≠0 — still not fully correct, but closer.",
     "hi": "भास्कर II (1150 ईस्वी): n ÷ 0 = अनन्त (∞) जहाँ n≠0 — यह भी पूरी तरह सही नहीं, लेकिन करीब था।"
@@ -337,16 +427,52 @@
     "gu": "આગળ: π અને આર્યભટ",
     "mai": "अगला: π आ आर्यभट"
   },
-  "journeyPlace1": { "en": "Bakhshali, India", "hi": "बख्शाली, भारत" },
-  "journeyEvent1": { "en": "Earliest physical zero dot on birch bark manuscript", "hi": "भोजपत्र पांडुलिपि पर सबसे पुराना भौतिक शून्य बिंदु" },
-  "journeyPlace2": { "en": "Ujjain, India", "hi": "उज्जैन, भारत" },
-  "journeyEvent2": { "en": "Brahmagupta defines zero as a full number with arithmetic rules", "hi": "ब्रह्मगुप्त शून्य को अंकगणितीय नियमों के साथ पूर्ण संख्या के रूप में परिभाषित करते हैं" },
-  "journeyPlace3": { "en": "Baghdad, Iraq", "hi": "बगदाद, इराक" },
-  "journeyEvent3": { "en": "Al-Khwarizmi translates Indian numerals — gives us 'algorithm'", "hi": "अल-ख्वारिज्मी भारतीय अंकों का अनुवाद करते हैं — हमें \"एल्गोरिदम\" देते हैं" },
-  "journeyPlace4": { "en": "Pisa, Italy", "hi": "पीसा, इटली" },
-  "journeyEvent4": { "en": "Fibonacci publishes Liber Abaci, introducing zero to Europe", "hi": "फिबोनाची लिबर अबासी प्रकाशित करते हैं, यूरोप को शून्य से परिचित कराते हैं" },
-  "journeyPlace5": { "en": "Florence, Italy", "hi": "फ्लोरेंस, इटली" },
-  "journeyEvent5": { "en": "Florence BANS Indian numerals — calls them 'Saracen numerals'", "hi": "फ्लोरेंस ने भारतीय अंकों पर प्रतिबंध लगाया — उन्हें \"सारासेन अंक\" कहा" },
-  "journeyPlace6": { "en": "All of Europe", "hi": "सारा यूरोप" },
-  "journeyEvent6": { "en": "Indian numerals finally win. Zero universally accepted. Modern math begins.", "hi": "भारतीय अंक अंततः जीत गए। शून्य सार्वभौमिक रूप से स्वीकृत। आधुनिक गणित शुरू।" }
+  "journeyPlace1": {
+    "en": "Bakhshali, India",
+    "hi": "बख्शाली, भारत"
+  },
+  "journeyEvent1": {
+    "en": "Earliest physical zero dot on birch bark manuscript",
+    "hi": "भोजपत्र पांडुलिपि पर सबसे पुराना भौतिक शून्य बिंदु"
+  },
+  "journeyPlace2": {
+    "en": "Ujjain, India",
+    "hi": "उज्जैन, भारत"
+  },
+  "journeyEvent2": {
+    "en": "Brahmagupta defines zero as a full number with arithmetic rules",
+    "hi": "ब्रह्मगुप्त शून्य को अंकगणितीय नियमों के साथ पूर्ण संख्या के रूप में परिभाषित करते हैं"
+  },
+  "journeyPlace3": {
+    "en": "Baghdad, Iraq",
+    "hi": "बगदाद, इराक"
+  },
+  "journeyEvent3": {
+    "en": "Al-Khwarizmi translates Indian numerals — gives us 'algorithm'",
+    "hi": "अल-ख्वारिज्मी भारतीय अंकों का अनुवाद करते हैं — हमें \"एल्गोरिदम\" देते हैं"
+  },
+  "journeyPlace4": {
+    "en": "Pisa, Italy",
+    "hi": "पीसा, इटली"
+  },
+  "journeyEvent4": {
+    "en": "Fibonacci publishes Liber Abaci, introducing zero to Europe",
+    "hi": "फिबोनाची लिबर अबासी प्रकाशित करते हैं, यूरोप को शून्य से परिचित कराते हैं"
+  },
+  "journeyPlace5": {
+    "en": "Florence, Italy",
+    "hi": "फ्लोरेंस, इटली"
+  },
+  "journeyEvent5": {
+    "en": "Florence BANS Indian numerals — calls them 'Saracen numerals'",
+    "hi": "फ्लोरेंस ने भारतीय अंकों पर प्रतिबंध लगाया — उन्हें \"सारासेन अंक\" कहा"
+  },
+  "journeyPlace6": {
+    "en": "All of Europe",
+    "hi": "सारा यूरोप"
+  },
+  "journeyEvent6": {
+    "en": "Indian numerals finally win. Zero universally accepted. Modern math begins.",
+    "hi": "भारतीय अंक अंततः जीत गए। शून्य सार्वभौमिक रूप से स्वीकृत। आधुनिक गणित शुरू।"
+  }
 }

@@ -117,7 +117,7 @@
     "kn": "ನಿಖರತೆ ಹೋಲಿಕೆ: ಆರ್ಯಭಟ vs ಆಧುನಿಕ ಮೌಲ್ಯಗಳು",
     "mr": "अचूकता तुलना: आर्यभट विरुद्ध आधुनिक मूल्ये",
     "gu": "ચોકસાઈ સરખામણી: આર્યભટ vs આધુનિક મૂલ્યો",
-    "mai": "सटीकता तुलना: आर्यभट बनाम आधुनिक मान"
+    "mai": "भारतीय गणितमे ज्या (Sine)"
   },
   "s4Body": {
     "en": "Aryabhata's values, computed in 499 CE, hold up remarkably well against IEEE 754 double-precision floating point. The worst-case deviation is under 0.2%. For most values, the error is under 0.05% — achieved with no calculators, no computers, and no earlier mathematical tradition to build on.",

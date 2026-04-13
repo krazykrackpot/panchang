@@ -43,11 +43,11 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
   const mars = kundali.planets.find(p => p.planet.id === 2);
   const isManglik = mars ? [1, 2, 4, 7, 8, 12].includes(mars.house) : false;
   doshas.push({
-    name: { en: 'Manglik Dosha', hi: 'मांगलिक दोष', sa: 'मांगलिक दोष', mai: 'मांगलिक दोष', mr: 'मांगलिक दोष', ta: 'Manglik Dosha', te: 'Manglik Dosha', bn: 'Manglik Dosha', kn: 'Manglik Dosha', gu: 'Manglik Dosha' },
+    name: { en: 'Manglik Dosha', hi: 'मांगलिक दोष', sa: 'मांगलिक दोष', mai: 'मांगलिक दोष', mr: 'मांगलिक दोष', ta: 'செவ்வாய் தோஷம்', te: 'కుజ దోషం', bn: 'মাঙ্গলিক দোষ', kn: 'ಮಾಂಗಲಿಕ ದೋಷ', gu: 'માંગલિક દોષ' },
     present: isManglik,
     detail: isManglik
-      ? { en: `Mars in House ${mars!.house}`, hi: `मंगल भाव ${mars!.house} में`, sa: `मंगल भाव ${mars!.house} में`, mai: `मंगल भाव ${mars!.house} में`, mr: `मंगल भाव ${mars!.house} में`, ta: `Mars in House ${mars!.house}`, te: `Mars in House ${mars!.house}`, bn: `Mars in House ${mars!.house}`, kn: `Mars in House ${mars!.house}`, gu: `Mars in House ${mars!.house}` }
-      : { en: 'Mars not in 1/2/4/7/8/12', hi: 'मंगल 1/2/4/7/8/12 में नहीं', sa: 'मंगल 1/2/4/7/8/12 में नहीं', mai: 'मंगल 1/2/4/7/8/12 में नहीं', mr: 'मंगल 1/2/4/7/8/12 में नहीं', ta: 'Mars not in 1/2/4/7/8/12', te: 'Mars not in 1/2/4/7/8/12', bn: 'Mars not in 1/2/4/7/8/12', kn: 'Mars not in 1/2/4/7/8/12', gu: 'Mars not in 1/2/4/7/8/12' },
+      ? { en: `Mars in House ${mars!.house}`, hi: `मंगल भाव ${mars!.house} में`, sa: `मङ्गलः भावे ${mars!.house}`, mai: `मंगल भाव ${mars!.house} में`, mr: `मंगळ भाव ${mars!.house} मध्ये`, ta: `செவ்வாய் பாவம் ${mars!.house}-இல்`, te: `కుజుడు భావం ${mars!.house}లో`, bn: `মঙ্গল ভাব ${mars!.house}-এ`, kn: `ಕುಜ ಭಾವ ${mars!.house}ರಲ್ಲಿ`, gu: `મંગળ ભાવ ${mars!.house}માં` }
+      : { en: 'Mars not in 1/2/4/7/8/12', hi: 'मंगल 1/2/4/7/8/12 में नहीं', sa: 'मङ्गलः 1/2/4/7/8/12 भावे नास्ति', mai: 'मंगल 1/2/4/7/8/12 में नहीं', mr: 'मंगळ 1/2/4/7/8/12 मध्ये नाही', ta: 'செவ்வாய் 1/2/4/7/8/12-இல் இல்லை', te: 'కుజుడు 1/2/4/7/8/12లో లేడు', bn: 'মঙ্গল 1/2/4/7/8/12-এ নেই', kn: 'ಕುಜ 1/2/4/7/8/12ರಲ್ಲಿ ಇಲ್ಲ', gu: 'મંગળ 1/2/4/7/8/12માં નથી' },
   });
 
   // Kaal Sarp: all planets between Rahu-Ketu axis
@@ -71,11 +71,11 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
     isKaalSarp = allOnOneSide || allOnOtherSide;
   }
   doshas.push({
-    name: { en: 'Kaal Sarp Dosha', hi: 'काल सर्प दोष', sa: 'काल सर्प दोष', mai: 'काल सर्प दोष', mr: 'काल सर्प दोष', ta: 'Kaal Sarp Dosha', te: 'Kaal Sarp Dosha', bn: 'Kaal Sarp Dosha', kn: 'Kaal Sarp Dosha', gu: 'Kaal Sarp Dosha' },
+    name: { en: 'Kaal Sarp Dosha', hi: 'काल सर्प दोष', sa: 'काल सर्प दोष', mai: 'काल सर्प दोष', mr: 'काल सर्प दोष', ta: 'கால சர்ப்ப தோஷம்', te: 'కాల సర్ప దోషం', bn: 'কাল সর্প দোষ', kn: 'ಕಾಲ ಸರ್ಪ ದೋಷ', gu: 'કાળ સર્પ દોષ' },
     present: isKaalSarp,
     detail: isKaalSarp
-      ? { en: 'All planets hemmed between Rahu-Ketu axis', hi: 'सभी ग्रह राहु-केतु अक्ष के बीच', sa: 'सभी ग्रह राहु-केतु अक्ष के बीच', mai: 'सभी ग्रह राहु-केतु अक्ष के बीच', mr: 'सभी ग्रह राहु-केतु अक्ष के बीच', ta: 'All planets hemmed between Rahu-Ketu axis', te: 'All planets hemmed between Rahu-Ketu axis', bn: 'All planets hemmed between Rahu-Ketu axis', kn: 'All planets hemmed between Rahu-Ketu axis', gu: 'All planets hemmed between Rahu-Ketu axis' }
-      : { en: 'Not present', hi: 'उपस्थित नहीं', sa: 'उपस्थित नहीं', mai: 'उपस्थित नहीं', mr: 'उपस्थित नहीं', ta: 'Not present', te: 'Not present', bn: 'Not present', kn: 'Not present', gu: 'Not present' },
+      ? { en: 'All planets hemmed between Rahu-Ketu axis', hi: 'सभी ग्रह राहु-केतु अक्ष के बीच', sa: 'सभी ग्रह राहु-केतु अक्ष के बीच', mai: 'सभी ग्रह राहु-केतु अक्ष के बीच', mr: 'सभी ग्रह राहु-केतु अक्ष के बीच', ta: 'எல்லா கிரகங்களும் ராகு-கேது அச்சுக்கு இடையில்', te: 'అన్ని గ్రహాలు రాహు-కేతు అక్షం మధ్యలో', bn: 'সকল গ্রহ রাহু-কেতু অক্ষের মধ্যে', kn: 'ಎಲ್ಲ ಗ್ರಹಗಳು ರಾಹು-ಕೇತು ಅಕ್ಷದ ನಡುವೆ', gu: 'બધા ગ્રહો રાહુ-કેતુ અક્ષ વચ્ચે' }
+      : { en: 'Not present', hi: 'उपस्थित नहीं', sa: 'उपस्थित नहीं', mai: 'उपस्थित नहीं', mr: 'उपस्थित नहीं', ta: 'இல்லை', te: 'లేదు', bn: 'অনুপস্থিত', kn: 'ಇಲ್ಲ', gu: 'નથી' },
   });
 
   // Ganda Mula
@@ -83,21 +83,21 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
   const gandaMulaNakshatras = [1, 10, 19, 9, 18, 27];
   const isGandaMula = moon ? gandaMulaNakshatras.includes(moon.nakshatra.id) : false;
   doshas.push({
-    name: { en: 'Ganda Mula', hi: 'गण्ड मूल', sa: 'गण्ड मूल', mai: 'गण्ड मूल', mr: 'गण्ड मूल', ta: 'Ganda Mula', te: 'Ganda Mula', bn: 'Ganda Mula', kn: 'Ganda Mula', gu: 'Ganda Mula' },
+    name: { en: 'Ganda Mula', hi: 'गण्ड मूल', sa: 'गण्ड मूल', mai: 'गण्ड मूल', mr: 'गण्ड मूल', ta: 'கண்ட மூலம்', te: 'గండ మూల', bn: 'গণ্ড মূল', kn: 'ಗಂಡ ಮೂಲ', gu: 'ગંડ મૂળ' },
     present: isGandaMula,
     detail: isGandaMula
-      ? { en: `Moon in ${moon!.nakshatra.name.en}`, hi: `चन्द्र ${moon!.nakshatra.name.hi} में`, sa: `चन्द्र ${moon!.nakshatra.name.hi} में`, mai: `चन्द्र ${moon!.nakshatra.name.hi} में`, mr: `चन्द्र ${moon!.nakshatra.name.hi} में`, ta: `Moon in ${moon!.nakshatra.name.en}`, te: `Moon in ${moon!.nakshatra.name.en}`, bn: `Moon in ${moon!.nakshatra.name.en}`, kn: `Moon in ${moon!.nakshatra.name.en}`, gu: `Moon in ${moon!.nakshatra.name.en}` }
-      : { en: 'Moon not in Ganda Mula nakshatra', hi: 'चन्द्र गण्ड मूल नक्षत्र में नहीं', sa: 'चन्द्र गण्ड मूल नक्षत्र में नहीं', mai: 'चन्द्र गण्ड मूल नक्षत्र में नहीं', mr: 'चन्द्र गण्ड मूल नक्षत्र में नहीं', ta: 'Moon not in Ganda Mula nakshatra', te: 'Moon not in Ganda Mula nakshatra', bn: 'Moon not in Ganda Mula nakshatra', kn: 'Moon not in Ganda Mula nakshatra', gu: 'Moon not in Ganda Mula nakshatra' },
+      ? { en: `Moon in ${moon!.nakshatra.name.en}`, hi: `चन्द्र ${moon!.nakshatra.name.hi} में`, sa: `चन्द्रः ${moon!.nakshatra.name.hi} नक्षत्रे`, mai: `चन्द्र ${moon!.nakshatra.name.hi} में`, mr: `चंद्र ${moon!.nakshatra.name.hi} नक्षत्रात`, ta: `சந்திரன் ${moon!.nakshatra.name.en}-இல்`, te: `చంద్రుడు ${moon!.nakshatra.name.en}లో`, bn: `চন্দ্র ${moon!.nakshatra.name.en}-এ`, kn: `ಚಂದ್ರ ${moon!.nakshatra.name.en}ದಲ್ಲಿ`, gu: `ચંદ્ર ${moon!.nakshatra.name.en}માં` }
+      : { en: 'Moon not in Ganda Mula nakshatra', hi: 'चन्द्र गण्ड मूल नक्षत्र में नहीं', sa: 'चन्द्र गण्ड मूल नक्षत्र में नहीं', mai: 'चन्द्र गण्ड मूल नक्षत्र में नहीं', mr: 'चन्द्र गण्ड मूल नक्षत्र में नहीं', ta: 'சந்திரன் கண்ட மூல நட்சத்திரத்தில் இல்லை', te: 'చంద్రుడు గండ మూల నక్షత్రంలో లేడు', bn: 'চন্দ্র গণ্ড মূল নক্ষত্রে নেই', kn: 'ಚಂದ್ರ ಗಂಡ ಮೂಲ ನಕ್ಷತ್ರದಲ್ಲಿಲ್ಲ', gu: 'ચંદ્ર ગંડ મૂળ નક્ષત્રમાં નથી' },
   });
 
   // Sade Sati
   const isSadeSati = kundali.sadeSati?.isActive ?? false;
   doshas.push({
-    name: { en: 'Sade Sati', hi: 'साढ़े साती', sa: 'साढ़े साती', mai: 'साढ़े साती', mr: 'साढ़े साती', ta: 'Sade Sati', te: 'Sade Sati', bn: 'Sade Sati', kn: 'Sade Sati', gu: 'Sade Sati' },
+    name: { en: 'Sade Sati', hi: 'साढ़े साती', sa: 'साढ़े साती', mai: 'साढ़े साती', mr: 'साढ़े साती', ta: 'சாடே சாதி', te: 'సాడే సాతి', bn: 'সাড়ে সাতি', kn: 'ಸಾಡೆ ಸಾತಿ', gu: 'સાડા સાતી' },
     present: isSadeSati,
     detail: isSadeSati
-      ? { en: `Currently active — ${kundali.sadeSati?.currentPhase || 'ongoing'}`, hi: `वर्तमान में सक्रिय — ${kundali.sadeSati?.currentPhase || 'चालू'}`, sa: `वर्तमान में सक्रिय — ${kundali.sadeSati?.currentPhase || 'चालू'}`, mai: `वर्तमान में सक्रिय — ${kundali.sadeSati?.currentPhase || 'चालू'}`, mr: `वर्तमान में सक्रिय — ${kundali.sadeSati?.currentPhase || 'चालू'}`, ta: `Currently active — ${kundali.sadeSati?.currentPhase || 'ongoing'}`, te: `Currently active — ${kundali.sadeSati?.currentPhase || 'ongoing'}`, bn: `Currently active — ${kundali.sadeSati?.currentPhase || 'ongoing'}`, kn: `Currently active — ${kundali.sadeSati?.currentPhase || 'ongoing'}`, gu: `Currently active — ${kundali.sadeSati?.currentPhase || 'ongoing'}` }
-      : { en: 'Not currently active', hi: 'वर्तमान में सक्रिय नहीं', sa: 'वर्तमान में सक्रिय नहीं', mai: 'वर्तमान में सक्रिय नहीं', mr: 'वर्तमान में सक्रिय नहीं', ta: 'Not currently active', te: 'Not currently active', bn: 'Not currently active', kn: 'Not currently active', gu: 'Not currently active' },
+      ? { en: `Currently active — ${kundali.sadeSati?.currentPhase || 'ongoing'}`, hi: `वर्तमान में सक्रिय — ${kundali.sadeSati?.currentPhase || 'चालू'}`, sa: `सम्प्रति सक्रियम् — ${kundali.sadeSati?.currentPhase || 'प्रचलितम्'}`, mai: `वर्तमान में सक्रिय — ${kundali.sadeSati?.currentPhase || 'चालू'}`, mr: `सध्या सक्रिय — ${kundali.sadeSati?.currentPhase || 'चालू'}`, ta: `தற்போது செயலில் — ${kundali.sadeSati?.currentPhase || 'நடப்பில்'}`, te: `ప్రస్తుతం సక్రియం — ${kundali.sadeSati?.currentPhase || 'కొనసాగుతోంది'}`, bn: `বর্তমানে সক্রিয় — ${kundali.sadeSati?.currentPhase || 'চলমান'}`, kn: `ಪ್ರಸ್ತುತ ಸಕ್ರಿಯ — ${kundali.sadeSati?.currentPhase || 'ನಡೆಯುತ್ತಿದೆ'}`, gu: `હાલમાં સક્રિય — ${kundali.sadeSati?.currentPhase || 'ચાલુ'}` }
+      : { en: 'Not currently active', hi: 'वर्तमान में सक्रिय नहीं', sa: 'वर्तमान में सक्रिय नहीं', mai: 'वर्तमान में सक्रिय नहीं', mr: 'वर्तमान में सक्रिय नहीं', ta: 'தற்போது செயலில் இல்லை', te: 'ప్రస్తుతం సక్రియం కాదు', bn: 'বর্তমানে সক্রিয় নয়', kn: 'ಪ್ರಸ್ತುತ ಸಕ್ರಿಯವಲ್ಲ', gu: 'હાલમાં સક્રિય નથી' },
   });
 
   return (

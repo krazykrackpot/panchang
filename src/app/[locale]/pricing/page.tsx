@@ -14,7 +14,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 const PLANS = [
   {
     key: 'free',
-    name: { en: 'Free', hi: 'नि:शुल्क', sa: 'नि:शुल्क', mai: 'नि:शुल्क', mr: 'नि:शुल्क', ta: 'Free', te: 'Free', bn: 'Free', kn: 'Free', gu: 'Free' },
+    name: { en: 'Free', hi: 'नि:शुल्क', sa: 'नि:शुल्कम्', mai: 'नि:शुल्क', mr: 'मोफत', ta: 'இலவசம்', te: 'ఉచితం', bn: 'বিনামূল্যে', kn: 'ಉಚಿತ', gu: 'મફત' },
     priceINR: { monthly: 0, annual: 0 },
     priceUSD: { monthly: 0, annual: 0 },
     features: [
@@ -30,10 +30,10 @@ const PLANS = [
   },
   {
     key: 'pro',
-    name: { en: 'Pro', hi: 'प्रो', sa: 'प्रो', mai: 'प्रो', mr: 'प्रो', ta: 'Pro', te: 'Pro', bn: 'Pro', kn: 'Pro', gu: 'Pro' },
+    name: { en: 'Pro', hi: 'प्रो', sa: 'प्रो', mai: 'प्रो', mr: 'प्रो', ta: 'புரோ', te: 'ప్రో', bn: 'প্রো', kn: 'ಪ್ರೊ', gu: 'પ્રો' },
     priceINR: { monthly: 149, annual: 1199 },
     priceUSD: { monthly: 5, annual: 39 },
-    badge: { en: '7-day free trial', hi: '7 दिन नि:शुल्क परीक्षण', sa: '7 दिन नि:शुल्क परीक्षण', mai: '7 दिन नि:शुल्क परीक्षण', mr: '7 दिन नि:शुल्क परीक्षण', ta: '7-day free trial', te: '7-day free trial', bn: '7-day free trial', kn: '7-day free trial', gu: '7-day free trial' },
+    badge: { en: '7-day free trial', hi: '7 दिन नि:शुल्क परीक्षण', sa: '7-दिनं नि:शुल्कपरीक्षणम्', mai: '7 दिन नि:शुल्क परीक्षण', mr: '7 दिवस विनामूल्य चाचणी', ta: '7 நாள் இலவச சோதனை', te: '7 రోజుల ఉచిత ట్రయల్', bn: '৭ দিনের বিনামূল্যে ট্রায়াল', kn: '7 ದಿನ ಉಚಿತ ಟ್ರಯಲ್', gu: '7 દિવસ મફત ટ્રાયલ' },
     features: [
       { en: 'Ad-free Panchang', hi: 'विज्ञापन-मुक्त पंचांग', included: true },
       { en: 'Unlimited Kundali', hi: 'असीमित कुण्डली', included: true },
@@ -47,7 +47,7 @@ const PLANS = [
   },
   {
     key: 'jyotishi',
-    name: { en: 'Jyotishi', hi: 'ज्योतिषी', sa: 'ज्योतिषी', mai: 'ज्योतिषी', mr: 'ज्योतिषी', ta: 'Jyotishi', te: 'Jyotishi', bn: 'Jyotishi', kn: 'Jyotishi', gu: 'Jyotishi' },
+    name: { en: 'Jyotishi', hi: 'ज्योतिषी', sa: 'ज्योतिषी', mai: 'ज्योतिषी', mr: 'ज्योतिषी', ta: 'ஜோதிடர்', te: 'జ్యోతిషి', bn: 'জ্যোতিষী', kn: 'ಜ್ಯೋತಿಷಿ', gu: 'જ્યોતિષી' },
     priceINR: { monthly: 499, annual: 3999 },
     priceUSD: { monthly: 15, annual: 119 },
     features: [
@@ -65,35 +65,35 @@ const PLANS = [
 
 const FAQ = [
   {
-    q: { en: 'Can I cancel anytime?', hi: 'क्या मैं कभी भी रद्द कर सकता हूं?', sa: 'क्या मैं कभी भी रद्द कर सकता हूं?', mai: 'क्या मैं कभी भी रद्द कर सकता हूं?', mr: 'क्या मैं कभी भी रद्द कर सकता हूं?', ta: 'Can I cancel anytime?', te: 'Can I cancel anytime?', bn: 'Can I cancel anytime?', kn: 'Can I cancel anytime?', gu: 'Can I cancel anytime?' },
+    q: { en: 'Can I cancel anytime?', hi: 'क्या मैं कभी भी रद्द कर सकता हूं?', sa: 'किम् अहं कदापि रद्दं कर्तुं शक्नोमि?', mai: 'की हम कहियो रद्द कऽ सकैत छी?', mr: 'मी कधीही रद्द करू शकतो का?', ta: 'நான் எப்போது வேண்டுமானாலும் ரத்து செய்யலாமா?', te: 'నేను ఎప్పుడైనా రద్దు చేయగలనా?', bn: 'আমি কি যেকোনো সময় বাতিল করতে পারি?', kn: 'ನಾನು ಯಾವಾಗ ಬೇಕಾದರೂ ರದ್ದುಗೊಳಿಸಬಹುದೇ?', gu: 'શું હું ગમે ત્યારે રદ કરી શકું?' },
     a: {
       en: 'Yes, you can cancel your subscription at any time. You will retain access to your plan until the end of the current billing period.',
       hi: 'हां, आप अपनी सदस्यता कभी भी रद्द कर सकते हैं। वर्तमान बिलिंग अवधि समाप्त होने तक आपकी योजना की पहुंच बनी रहेगी।',
     },
   },
   {
-    q: { en: 'What happens after the trial?', hi: 'परीक्षण के बाद क्या होता है?', sa: 'परीक्षण के बाद क्या होता है?', mai: 'परीक्षण के बाद क्या होता है?', mr: 'परीक्षण के बाद क्या होता है?', ta: 'What happens after the trial?', te: 'What happens after the trial?', bn: 'What happens after the trial?', kn: 'What happens after the trial?', gu: 'What happens after the trial?' },
+    q: { en: 'What happens after the trial?', hi: 'परीक्षण के बाद क्या होता है?', sa: 'परीक्षणानन्तरं किं भवति?', mai: 'परीक्षणक बाद की होइत अछि?', mr: 'चाचणीनंतर काय होते?', ta: 'சோதனைக்குப் பிறகு என்ன நடக்கும்?', te: 'ట్రయల్ తర్వాత ఏమి జరుగుతుంది?', bn: 'ট্রায়ালের পরে কী হয়?', kn: 'ಟ್ರಯಲ್ ನಂತರ ಏನಾಗುತ್ತದೆ?', gu: 'ટ્રાયલ પછી શું થાય?' },
     a: {
       en: 'After your 7-day free trial ends, you will be automatically downgraded to the Free plan unless you choose to subscribe. No charges are made during the trial.',
       hi: '7 दिन के नि:शुल्क परीक्षण की समाप्ति के बाद, यदि आप सदस्यता नहीं लेते हैं तो आपको स्वचालित रूप से नि:शुल्क योजना में डाउनग्रेड कर दिया जाएगा।',
     },
   },
   {
-    q: { en: 'Can I switch plans?', hi: 'क्या मैं योजना बदल सकता हूं?', sa: 'क्या मैं योजना बदल सकता हूं?', mai: 'क्या मैं योजना बदल सकता हूं?', mr: 'क्या मैं योजना बदल सकता हूं?', ta: 'Can I switch plans?', te: 'Can I switch plans?', bn: 'Can I switch plans?', kn: 'Can I switch plans?', gu: 'Can I switch plans?' },
+    q: { en: 'Can I switch plans?', hi: 'क्या मैं योजना बदल सकता हूं?', sa: 'किम् अहं योजनां परिवर्तयितुं शक्नोमि?', mai: 'की हम योजना बदलि सकैत छी?', mr: 'मी योजना बदलू शकतो का?', ta: 'நான் திட்டத்தை மாற்றலாமா?', te: 'నేను ప్లాన్ మార్చగలనా?', bn: 'আমি কি পরিকল্পনা পরিবর্তন করতে পারি?', kn: 'ನಾನು ಯೋಜನೆ ಬದಲಾಯಿಸಬಹುದೇ?', gu: 'શું હું યોજના બદલી શકું?' },
     a: {
       en: 'Yes, you can upgrade or downgrade your plan at any time. When upgrading, you get immediate access to new features. When downgrading, the change takes effect at the next billing cycle.',
       hi: 'हां, आप कभी भी अपनी योजना अपग्रेड या डाउनग्रेड कर सकते हैं। अपग्रेड करने पर, आपको नई सुविधाओं तक तुरंत पहुंच मिलती है।',
     },
   },
   {
-    q: { en: 'What payment methods are accepted?', hi: 'कौन सी भुगतान विधियां स्वीकार की जाती हैं?', sa: 'कौन सी भुगतान विधियां स्वीकार की जाती हैं?', mai: 'कौन सी भुगतान विधियां स्वीकार की जाती हैं?', mr: 'कौन सी भुगतान विधियां स्वीकार की जाती हैं?', ta: 'What payment methods are accepted?', te: 'What payment methods are accepted?', bn: 'What payment methods are accepted?', kn: 'What payment methods are accepted?', gu: 'What payment methods are accepted?' },
+    q: { en: 'What payment methods are accepted?', hi: 'कौन सी भुगतान विधियां स्वीकार की जाती हैं?', sa: 'काः भुगतानविधयः स्वीक्रियन्ते?', mai: 'कोन भुगतान विधि स्वीकार कैल जाइत अछि?', mr: 'कोणत्या पेमेंट पद्धती स्वीकारल्या जातात?', ta: 'எந்த கட்டண முறைகள் ஏற்றுக்கொள்ளப்படுகின்றன?', te: 'ఏ చెల్లింపు పద్ధతులు ఆమోదించబడతాయి?', bn: 'কোন পেমেন্ট পদ্ধতি গ্রহণ করা হয়?', kn: 'ಯಾವ ಪಾವತಿ ವಿಧಾನಗಳನ್ನು ಸ್ವೀಕರಿಸಲಾಗುತ್ತದೆ?', gu: 'કયા ચૂકવણી પદ્ધતિઓ સ્વીકારવામાં આવે છે?' },
     a: {
       en: 'In India: UPI, credit/debit cards, and net banking. Internationally: credit/debit cards, Apple Pay, and Google Pay.',
       hi: 'भारत में: UPI, क्रेडिट/डेबिट कार्ड और नेट बैंकिंग। अंतर्राष्ट्रीय: क्रेडिट/डेबिट कार्ड, Apple Pay और Google Pay।',
     },
   },
   {
-    q: { en: 'Is my data safe?', hi: 'क्या मेरा डेटा सुरक्षित है?', sa: 'क्या मेरा डेटा सुरक्षित है?', mai: 'क्या मेरा डेटा सुरक्षित है?', mr: 'क्या मेरा डेटा सुरक्षित है?', ta: 'Is my data safe?', te: 'Is my data safe?', bn: 'Is my data safe?', kn: 'Is my data safe?', gu: 'Is my data safe?' },
+    q: { en: 'Is my data safe?', hi: 'क्या मेरा डेटा सुरक्षित है?', sa: 'किं मम दत्तांशः सुरक्षितः?', mai: 'की हमर डेटा सुरक्षित अछि?', mr: 'माझा डेटा सुरक्षित आहे का?', ta: 'என் தரவு பாதுகாப்பானதா?', te: 'నా డేటా సురక్షితమా?', bn: 'আমার ডেটা কি নিরাপদ?', kn: 'ನನ್ನ ಡೇಟಾ ಸುರಕ್ಷಿತವೇ?', gu: 'શું મારો ડેટા સુરક્ષિત છે?' },
     a: {
       en: 'All data is encrypted in transit and at rest. We are GDPR compliant and never share your personal birth data with third parties.',
       hi: 'सभी डेटा ट्रांज़िट और रेस्ट में एन्क्रिप्टेड है। हम GDPR अनुपालक हैं और आपके व्यक्तिगत जन्म डेटा को तृतीय पक्षों के साथ कभी साझा नहीं करते।',

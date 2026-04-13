@@ -159,10 +159,10 @@ export default function DevotionalPage() {
           {Object.entries(VARA_DEITIES).map(([day, info]) => {
             const dayNum = parseInt(day);
             const dayNames: Record<number, LocaleText> = {
-              0: { en: 'Sunday', hi: 'रविवार', sa: 'रविवार', mai: 'रविवार', mr: 'रविवार', ta: 'Sunday', te: 'Sunday', bn: 'Sunday', kn: 'Sunday', gu: 'Sunday' }, 1: { en: 'Monday', hi: 'सोमवार', sa: 'सोमवार', mai: 'सोमवार', mr: 'सोमवार', ta: 'Monday', te: 'Monday', bn: 'Monday', kn: 'Monday', gu: 'Monday' },
-              2: { en: 'Tuesday', hi: 'मंगलवार', sa: 'मंगलवार', mai: 'मंगलवार', mr: 'मंगलवार', ta: 'Tuesday', te: 'Tuesday', bn: 'Tuesday', kn: 'Tuesday', gu: 'Tuesday' }, 3: { en: 'Wednesday', hi: 'बुधवार', sa: 'बुधवार', mai: 'बुधवार', mr: 'बुधवार', ta: 'Wednesday', te: 'Wednesday', bn: 'Wednesday', kn: 'Wednesday', gu: 'Wednesday' },
-              4: { en: 'Thursday', hi: 'गुरुवार', sa: 'गुरुवार', mai: 'गुरुवार', mr: 'गुरुवार', ta: 'Thursday', te: 'Thursday', bn: 'Thursday', kn: 'Thursday', gu: 'Thursday' }, 5: { en: 'Friday', hi: 'शुक्रवार', sa: 'शुक्रवार', mai: 'शुक्रवार', mr: 'शुक्रवार', ta: 'Friday', te: 'Friday', bn: 'Friday', kn: 'Friday', gu: 'Friday' },
-              6: { en: 'Saturday', hi: 'शनिवार', sa: 'शनिवार', mai: 'शनिवार', mr: 'शनिवार', ta: 'Saturday', te: 'Saturday', bn: 'Saturday', kn: 'Saturday', gu: 'Saturday' },
+              0: { en: 'Sunday', hi: 'रविवार', sa: 'रविवासरः', mai: 'रविदिन', mr: 'रविवार', ta: 'ஞாயிறு', te: 'ఆదివారం', bn: 'রবিবার', kn: 'ಭಾನುವಾರ', gu: 'રવિવાર' }, 1: { en: 'Monday', hi: 'सोमवार', sa: 'सोमवासरः', mai: 'सोमदिन', mr: 'सोमवार', ta: 'திங்கள்', te: 'సోమవారం', bn: 'সোমবার', kn: 'ಸೋಮವಾರ', gu: 'સોમવાર' },
+              2: { en: 'Tuesday', hi: 'मंगलवार', sa: 'मङ्गलवासरः', mai: 'मंगलदिन', mr: 'मंगळवार', ta: 'செவ்வாய்', te: 'మంగళవారం', bn: 'মঙ্গলবার', kn: 'ಮಂಗಳವಾರ', gu: 'મંગળવાર' }, 3: { en: 'Wednesday', hi: 'बुधवार', sa: 'बुधवासरः', mai: 'बुधदिन', mr: 'बुधवार', ta: 'புதன்', te: 'బుధవారం', bn: 'বুধবার', kn: 'ಬುಧವಾರ', gu: 'બુધવાર' },
+              4: { en: 'Thursday', hi: 'गुरुवार', sa: 'गुरुवासरः', mai: 'बृहस्पतिदिन', mr: 'गुरुवार', ta: 'வியாழன்', te: 'గురువారం', bn: 'বৃহস্পতিবার', kn: 'ಗುರುವಾರ', gu: 'ગુરુવાર' }, 5: { en: 'Friday', hi: 'शुक्रवार', sa: 'शुक्रवासरः', mai: 'शुक्रदिन', mr: 'शुक्रवार', ta: 'வெள்ளி', te: 'శుక్రవారం', bn: 'শুক্রবার', kn: 'ಶುಕ್ರವಾರ', gu: 'શુક્રવાર' },
+              6: { en: 'Saturday', hi: 'शनिवार', sa: 'शनिवासरः', mai: 'शनिदिन', mr: 'शनिवार', ta: 'சனி', te: 'శనివారం', bn: 'শনিবার', kn: 'ಶನಿವಾರ', gu: 'શનિવાર' },
             };
             const isToday = dayNum === today.weekday;
 

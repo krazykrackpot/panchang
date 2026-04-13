@@ -29,11 +29,26 @@ interface EclipseEvent {
   local?: LocalEclipseResult;
 }
 
+// ─── Labels ────────────────────────────────────────────────────────
+const ECLIPSE_LABELS: Record<string, Record<string, string>> = {
+  en: { title: 'Eclipse Calendar', subtitle: 'Solar and Lunar eclipses with local timings, Sutak periods, and visibility', change: 'Change', detecting: 'Detecting location...', resetLoc: 'Reset to my location', searchCity: 'Search any city...', learnMore: 'Learn how eclipses work →' },
+  hi: { title: 'ग्रहण पञ्चाङ्ग', subtitle: 'सूर्य एवं चन्द्र ग्रहण — स्थानीय समय, सूतक काल और दृश्यता सहित', change: 'बदलें', detecting: 'स्थान का पता लगा रहे हैं...', resetLoc: 'अपना स्थान पुनः उपयोग करें', searchCity: 'शहर खोजें...', learnMore: 'ग्रहण के बारे में विस्तार से जानें →' },
+  sa: { title: 'ग्रहणपञ्चाङ्गम्', subtitle: 'सूर्यचन्द्रग्रहणानि — स्थानीयसमयः, सूतककालः दृश्यता च', change: 'परिवर्तयतु', detecting: 'स्थानम् अन्विष्यते...', resetLoc: 'स्वस्थानं पुनः उपयुज्यताम्', searchCity: 'नगरम् अन्विष्यतु...', learnMore: 'ग्रहणविषये विस्तरेण जानातु →' },
+  ta: { title: 'கிரகண நாள்காட்டி', subtitle: 'சூரிய & சந்திர கிரகணங்கள் — உள்ளூர் நேரங்கள், சூதக காலம் மற்றும் பார்வைத்தன்மை', change: 'மாற்று', detecting: 'இருப்பிடம் கண்டறியப்படுகிறது...', resetLoc: 'எனது இருப்பிடத்திற்கு மீட்டமை', searchCity: 'நகரத்தைத் தேடு...', learnMore: 'கிரகணங்கள் எவ்வாறு செயல்படுகின்றன என்று அறிக →' },
+  te: { title: 'గ్రహణ పంచాంగం', subtitle: 'సూర్య & చంద్ర గ్రహణాలు — స్థానిక సమయాలు, సూతక కాలం మరియు దృశ్యత', change: 'మార్చు', detecting: 'స్థానం గుర్తించబడుతోంది...', resetLoc: 'నా స్థానానికి రీసెట్ చేయి', searchCity: 'నగరాన్ని వెతుకు...', learnMore: 'గ్రహణాలు ఎలా పనిచేస్తాయో తెలుసుకోండి →' },
+  bn: { title: 'গ্রহণ পঞ্চাঙ্গ', subtitle: 'সূর্য ও চন্দ্র গ্রহণ — স্থানীয় সময়, সূতক কাল এবং দৃশ্যমানতা', change: 'বদলান', detecting: 'অবস্থান সনাক্ত করা হচ্ছে...', resetLoc: 'আমার অবস্থানে রিসেট করুন', searchCity: 'শহর খুঁজুন...', learnMore: 'গ্রহণ কীভাবে কাজ করে জানুন →' },
+  kn: { title: 'ಗ್ರಹಣ ಪಂಚಾಂಗ', subtitle: 'ಸೂರ್ಯ ಮತ್ತು ಚಂದ್ರ ಗ್ರಹಣಗಳು — ಸ್ಥಳೀಯ ಸಮಯ, ಸೂತಕ ಕಾಲ ಮತ್ತು ಗೋಚರತೆ', change: 'ಬದಲಿಸಿ', detecting: 'ಸ್ಥಳ ಪತ್ತೆಯಾಗುತ್ತಿದೆ...', resetLoc: 'ನನ್ನ ಸ್ಥಳಕ್ಕೆ ಮರುಹೊಂದಿಸಿ', searchCity: 'ನಗರ ಹುಡುಕಿ...', learnMore: 'ಗ್ರಹಣಗಳು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತವೆ ತಿಳಿಯಿರಿ →' },
+  mr: { title: 'ग्रहण पंचांग', subtitle: 'सूर्य आणि चंद्र ग्रहण — स्थानिक वेळा, सूतक काळ आणि दृश्यता', change: 'बदला', detecting: 'स्थान शोधत आहे...', resetLoc: 'माझ्या स्थानावर रीसेट करा', searchCity: 'शहर शोधा...', learnMore: 'ग्रहण कसे कार्य करतात जाणून घ्या →' },
+  gu: { title: 'ગ્રહણ પંચાંગ', subtitle: 'સૂર્ય અને ચંદ્ર ગ્રહણ — સ્થાનિક સમય, સૂતક કાળ અને દૃશ્યતા', change: 'બદલો', detecting: 'સ્થાન શોધી રહ્યા છે...', resetLoc: 'મારા સ્થાન પર રીસેટ કરો', searchCity: 'શહેર શોધો...', learnMore: 'ગ્રહણ કેવી રીતે કામ કરે છે જાણો →' },
+  mai: { title: 'ग्रहण पंचांग', subtitle: 'सूर्य आ चंद्र ग्रहण — स्थानीय समय, सूतक काल आ दृश्यता', change: 'बदलू', detecting: 'स्थानक पता लगा रहल अछि...', resetLoc: 'अपन स्थान पुनः उपयोग करू', searchCity: 'शहर खोजू...', learnMore: 'ग्रहणक बारेमे विस्तारसँ जानू →' },
+};
+
 export default function EclipsesPage() {
   const locale = useLocale() as Locale;
   const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
+  const EL = ECLIPSE_LABELS[locale] || ECLIPSE_LABELS.en;
 
   const locationStore = useLocationStore();
   const [year, setYear] = useState(new Date().getFullYear());

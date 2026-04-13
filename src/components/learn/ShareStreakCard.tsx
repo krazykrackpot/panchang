@@ -16,10 +16,10 @@ const LEVEL_ICONS: Record<string, string> = {
 };
 
 const LABELS = {
-  title:     { en: 'Share Your Progress', hi: 'अपनी प्रगति साझा करें', sa: 'अपनी प्रगति साझा करें', mai: 'अपनी प्रगति साझा करें', mr: 'अपनी प्रगति साझा करें', ta: 'Share Your Progress', te: 'Share Your Progress', bn: 'Share Your Progress', kn: 'Share Your Progress', gu: 'Share Your Progress' },
-  streak:    { en: 'Day Streak', hi: 'दिन की लय', sa: 'दिन की लय', mai: 'दिन की लय', mr: 'दिन की लय', ta: 'Day Streak', te: 'Day Streak', bn: 'Day Streak', kn: 'Day Streak', gu: 'Day Streak' },
-  badges:    { en: 'Badges Earned', hi: 'अर्जित बैज', sa: 'अर्जित बैज', mai: 'अर्जित बैज', mr: 'अर्जित बैज', ta: 'Badges Earned', te: 'Badges Earned', bn: 'Badges Earned', kn: 'Badges Earned', gu: 'Badges Earned' },
-  tagline:   { en: 'Learning Vedic Astrology on Dekho Panchang', hi: 'देखो पंचांग पर वैदिक ज्योतिष सीख रहे हैं', sa: 'देखो पंचांग पर वैदिक ज्योतिष सीख रहे हैं', mai: 'देखो पंचांग पर वैदिक ज्योतिष सीख रहे हैं', mr: 'देखो पंचांग पर वैदिक ज्योतिष सीख रहे हैं', ta: 'Learning Vedic Astrology on Dekho Panchang', te: 'Learning Vedic Astrology on Dekho Panchang', bn: 'Learning Vedic Astrology on Dekho Panchang', kn: 'Learning Vedic Astrology on Dekho Panchang', gu: 'Learning Vedic Astrology on Dekho Panchang' },
+  title:     { en: 'Share Your Progress', hi: 'अपनी प्रगति साझा करें', sa: 'स्वप्रगतिं प्रसारयतु', mai: 'अपन प्रगति साझा करू', mr: 'तुमची प्रगती शेअर करा', ta: 'உங்கள் முன்னேற்றத்தைப் பகிரவும்', te: 'మీ పురోగతిని షేర్ చేయండి', bn: 'আপনার অগ্রগতি শেয়ার করুন', kn: 'ನಿಮ್ಮ ಪ್ರಗತಿ ಹಂಚಿಕೊಳ್ಳಿ', gu: 'તમારી પ્રગતિ શેર કરો' },
+  streak:    { en: 'Day Streak', hi: 'दिन की लय', sa: 'दिनानुक्रमः', mai: 'दिनक लय', mr: 'दिवसांची मालिका', ta: 'நாள் தொடர்', te: 'రోజుల స్ట్రీక్', bn: 'দিনের ধারা', kn: 'ದಿನ ಸರಣಿ', gu: 'દિવસની શ્રેણી' },
+  badges:    { en: 'Badges Earned', hi: 'अर्जित बैज', sa: 'अर्जिताः प्रतीकचित्राः', mai: 'अर्जित बैज', mr: 'मिळवलेले बॅज', ta: 'பெற்ற பதக்கங்கள்', te: 'సాధించిన బ్యాడ్జ్‌లు', bn: 'অর্জিত ব্যাজ', kn: 'ಗಳಿಸಿದ ಬ್ಯಾಡ್ಜ್‌ಗಳು', gu: 'મેળવેલ બેજ' },
+  tagline:   { en: 'Learning Vedic Astrology on Dekho Panchang', hi: 'देखो पंचांग पर वैदिक ज्योतिष सीख रहे हैं', sa: 'देखो पञ्चाङ्गे वैदिकज्योतिषम् अधीयते', mai: 'देखो पंचांग पर वैदिक ज्योतिष सीखि रहल छी', mr: 'देखो पंचांगवर वैदिक ज्योतिष शिकत आहोत', ta: 'தேகோ பஞ்சாங்கத்தில் வேத ஜோதிடம் கற்கிறேன்', te: 'దేఖో పంచాంగంలో వేద జ్యోతిషం నేర్చుకుంటున్నాను', bn: 'দেখো পঞ্চাঙ্গে বৈদিক জ্যোতিষ শিখছি', kn: 'ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ವೈದಿಕ ಜ್ಯೋತಿಷ ಕಲಿಯುತ್ತಿದ್ದೇನೆ', gu: 'દેખો પંચાંગ પર વૈદિક જ્યોતિષ શીખી રહ્યા છીએ' },
 };
 
 function t(key: keyof typeof LABELS, locale: Locale): string {

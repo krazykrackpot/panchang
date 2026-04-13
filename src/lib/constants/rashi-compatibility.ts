@@ -35,18 +35,18 @@ export interface RashiPairContent {
 // ──────────────────────────────────────────────────────────────
 
 const RASHI_NAMES: Record<number, LocaleText> = {
-  1:  { en: 'Aries', hi: 'मेष', sa: 'मेष', mai: 'मेष', mr: 'मेष', ta: 'Aries', te: 'Aries', bn: 'Aries', kn: 'Aries', gu: 'Aries' },
-  2:  { en: 'Taurus', hi: 'वृषभ', sa: 'वृषभ', mai: 'वृषभ', mr: 'वृषभ', ta: 'Taurus', te: 'Taurus', bn: 'Taurus', kn: 'Taurus', gu: 'Taurus' },
-  3:  { en: 'Gemini', hi: 'मिथुन', sa: 'मिथुन', mai: 'मिथुन', mr: 'मिथुन', ta: 'Gemini', te: 'Gemini', bn: 'Gemini', kn: 'Gemini', gu: 'Gemini' },
-  4:  { en: 'Cancer', hi: 'कर्क', sa: 'कर्क', mai: 'कर्क', mr: 'कर्क', ta: 'Cancer', te: 'Cancer', bn: 'Cancer', kn: 'Cancer', gu: 'Cancer' },
-  5:  { en: 'Leo', hi: 'सिंह', sa: 'सिंह', mai: 'सिंह', mr: 'सिंह', ta: 'Leo', te: 'Leo', bn: 'Leo', kn: 'Leo', gu: 'Leo' },
+  1:  { en: 'Aries', hi: 'मेष', sa: 'मेषः', mai: 'मेष', mr: 'मेष', ta: 'Aries', te: 'Aries', bn: 'Aries', kn: 'Aries', gu: 'Aries' },
+  2:  { en: 'Taurus', hi: 'वृषभ', sa: 'वृषभः', mai: 'वृषभ', mr: 'वृषभ', ta: 'Taurus', te: 'Taurus', bn: 'Taurus', kn: 'Taurus', gu: 'Taurus' },
+  3:  { en: 'Gemini', hi: 'मिथुन', sa: 'मिथुनम्', mai: 'मिथुन', mr: 'मिथुन', ta: 'Gemini', te: 'Gemini', bn: 'Gemini', kn: 'Gemini', gu: 'Gemini' },
+  4:  { en: 'Cancer', hi: 'कर्क', sa: 'कर्कटः', mai: 'कर्क', mr: 'कर्क', ta: 'Cancer', te: 'Cancer', bn: 'Cancer', kn: 'Cancer', gu: 'Cancer' },
+  5:  { en: 'Leo', hi: 'सिंह', sa: 'सिंहः', mai: 'सिंह', mr: 'सिंह', ta: 'Leo', te: 'Leo', bn: 'Leo', kn: 'Leo', gu: 'Leo' },
   6:  { en: 'Virgo', hi: 'कन्या', sa: 'कन्या', mai: 'कन्या', mr: 'कन्या', ta: 'Virgo', te: 'Virgo', bn: 'Virgo', kn: 'Virgo', gu: 'Virgo' },
   7:  { en: 'Libra', hi: 'तुला', sa: 'तुला', mai: 'तुला', mr: 'तुला', ta: 'Libra', te: 'Libra', bn: 'Libra', kn: 'Libra', gu: 'Libra' },
-  8:  { en: 'Scorpio', hi: 'वृश्चिक', sa: 'वृश्चिक', mai: 'वृश्चिक', mr: 'वृश्चिक', ta: 'Scorpio', te: 'Scorpio', bn: 'Scorpio', kn: 'Scorpio', gu: 'Scorpio' },
-  9:  { en: 'Sagittarius', hi: 'धनु', sa: 'धनु', mai: 'धनु', mr: 'धनु', ta: 'Sagittarius', te: 'Sagittarius', bn: 'Sagittarius', kn: 'Sagittarius', gu: 'Sagittarius' },
-  10: { en: 'Capricorn', hi: 'मकर', sa: 'मकर', mai: 'मकर', mr: 'मकर', ta: 'Capricorn', te: 'Capricorn', bn: 'Capricorn', kn: 'Capricorn', gu: 'Capricorn' },
-  11: { en: 'Aquarius', hi: 'कुम्भ', sa: 'कुम्भ', mai: 'कुम्भ', mr: 'कुम्भ', ta: 'Aquarius', te: 'Aquarius', bn: 'Aquarius', kn: 'Aquarius', gu: 'Aquarius' },
-  12: { en: 'Pisces', hi: 'मीन', sa: 'मीन', mai: 'मीन', mr: 'मीन', ta: 'Pisces', te: 'Pisces', bn: 'Pisces', kn: 'Pisces', gu: 'Pisces' },
+  8:  { en: 'Scorpio', hi: 'वृश्चिक', sa: 'वृश्चिकः', mai: 'वृश्चिक', mr: 'वृश्चिक', ta: 'Scorpio', te: 'Scorpio', bn: 'Scorpio', kn: 'Scorpio', gu: 'Scorpio' },
+  9:  { en: 'Sagittarius', hi: 'धनु', sa: 'धनुः', mai: 'धनु', mr: 'धनु', ta: 'Sagittarius', te: 'Sagittarius', bn: 'Sagittarius', kn: 'Sagittarius', gu: 'Sagittarius' },
+  10: { en: 'Capricorn', hi: 'मकर', sa: 'मकरः', mai: 'मकर', mr: 'मकर', ta: 'Capricorn', te: 'Capricorn', bn: 'Capricorn', kn: 'Capricorn', gu: 'Capricorn' },
+  11: { en: 'Aquarius', hi: 'कुम्भ', sa: 'कुम्भः', mai: 'कुम्भ', mr: 'कुम्भ', ta: 'Aquarius', te: 'Aquarius', bn: 'Aquarius', kn: 'Aquarius', gu: 'Aquarius' },
+  12: { en: 'Pisces', hi: 'मीन', sa: 'मीनः', mai: 'मीन', mr: 'मीन', ta: 'Pisces', te: 'Pisces', bn: 'Pisces', kn: 'Pisces', gu: 'Pisces' },
 };
 
 type Element = 'fire' | 'earth' | 'air' | 'water';
@@ -132,40 +132,48 @@ const ELEMENT_COMPAT: Record<string, ElementText> = {
     temperament: {
       en: 'Both signs radiate passionate, action-oriented energy that fuels mutual enthusiasm. Their shared fire element creates instant understanding but also ego clashes when neither yields. The dynamic is electric but requires conscious humility from both.',
       hi: 'दोनों राशियाँ उत्साही, क्रियाशील ऊर्जा से भरी हैं जो एक-दूसरे के उत्साह को बढ़ाती हैं। साझा अग्नि तत्व तात्कालिक समझ बनाता है लेकिन अहंकार का टकराव भी होता है।',
+      sa: 'उभे राशी तीव्रभावनाप्रधाने क्रियाशीले च स्तः, परस्परं उत्साहं वर्धयतः। साझम् अग्नितत्त्वं तात्कालिकं बोधं जनयति, किन्तु अहङ्कारसङ्घर्षोऽपि भवति यदा न कोऽपि नम्रतां स्वीकरोति।',
     },
     romance: {
       en: 'Romantic chemistry ignites fast — sparks fly from the first meeting. Passion runs deep but can burn out if both compete for the spotlight. They need to channel fire into shared adventures rather than power struggles.',
       hi: 'रोमांटिक रसायन तेज़ी से जलता है — पहली मुलाक़ात से ही चिंगारी उड़ती है। जुनून गहरा है लेकिन प्रतिस्पर्धा से बचना ज़रूरी है।',
+      sa: 'प्रणयरसायनं शीघ्रं प्रज्वलति — प्रथममिलनादेव विस्फुलिङ्गाः उत्पतन्ति। अनुरागो गहनः, किन्तु उभयोः प्रतिस्पर्धायां दग्धो भवितुं शक्नोति। शक्तिसङ्घर्षं विहाय साहसिकयात्रासु अग्निं नियोजयेयुः।',
     },
   },
   'earth-earth': {
     temperament: {
       en: 'Two earth signs create a bedrock of stability, reliability, and practical wisdom. They build together methodically, valuing security and tangible results. The risk is stagnation — comfort can breed complacency if neither pushes for growth.',
       hi: 'दो पृथ्वी राशियाँ स्थिरता, विश्वसनीयता और व्यावहारिक बुद्धि की नींव बनाती हैं। दोनों सुरक्षा और मूर्त परिणाम को महत्व देती हैं।',
+      sa: 'द्वे पृथ्वीराशी स्थैर्यस्य विश्वसनीयतायाः व्यावहारिकप्रज्ञायाश्च आधारशिलां रचयतः। ते क्रमशः निर्मान्ति, सुरक्षां मूर्तफलं च मन्यमाने। भयं स्थैर्यजन्यालस्यस्य — सुखं प्रमादं जनयति यदा न कोऽपि वृद्धिं प्रेरयति।',
     },
     romance: {
       en: 'Romance is steady, sensual, and deeply loyal. They express love through acts of service and material comfort. However, both may struggle to articulate emotions, leading to unspoken resentments that build over time.',
       hi: 'प्रेम स्थिर, संवेदनशील और गहराई से वफ़ादार है। वे सेवा और भौतिक आराम से प्रेम व्यक्त करते हैं।',
+      sa: 'प्रणयः स्थिरः इन्द्रियसुखप्रदः गहनभक्तियुक्तश्च भवति। तौ सेवाकर्मभिः भौतिकसुखेन च प्रेम प्रकटयतः। तथापि उभावपि भावनानां अभिव्यक्तौ कष्टं अनुभवतः, येन अनुक्तं वैमनस्यं कालेन वर्धते।',
     },
   },
   'air-air': {
     temperament: {
       en: 'Two air signs create an intellectually vibrant bond full of ideas, conversation, and social engagement. Mental stimulation is their love language. The challenge is grounding — both may float between plans without committing to action.',
       hi: 'दो वायु राशियाँ विचारों, संवाद और सामाजिक जुड़ाव से भरा बौद्धिक रूप से जीवंत बंधन बनाती हैं।',
+      sa: 'द्वे वायुराशी विचारैः संवादेन सामाजिकसंलग्नतया च पूर्णं बौद्धिकतेजस्वि बन्धनं रचयतः। मानसिकं प्रेरणं तयोः प्रेमभाषा अस्ति। आव्हानं स्थैर्ये — उभे योजनानां मध्ये विचरतः, कर्मणि न बध्नीतः।',
     },
     romance: {
       en: 'Romance thrives on mental connection — witty banter, shared interests, and intellectual exploration. Emotional depth can be lacking, as both tend to rationalize feelings rather than sitting with them.',
       hi: 'प्रेम मानसिक जुड़ाव पर फलता-फूलता है — बुद्धिमत्तापूर्ण बातचीत और साझा रुचियाँ। भावनात्मक गहराई की कमी हो सकती है।',
+      sa: 'प्रणयो मानसिकसम्बन्धे पुष्यति — चतुरपरिहासः, साझारुचयः, बौद्धिकान्वेषणं च। भावनात्मिका गहनता न्यूना भवितुम् अर्हति, यतः उभौ भावनानां युक्तिकरणं कुरुतः, न तु तासु स्थितौ तिष्ठतः।',
     },
   },
   'water-water': {
     temperament: {
       en: 'Two water signs share an ocean-deep emotional bond, intuitive understanding, and psychic sensitivity. They feel each other without words. The danger is codependency — they can drown in shared emotions without an anchor of rationality.',
       hi: 'दो जल राशियाँ गहरे भावनात्मक बंधन, सहज समझ और मानसिक संवेदनशीलता साझा करती हैं। ख़तरा सह-निर्भरता का है।',
+      sa: 'द्वे जलराशी सागरगम्भीरं भावबन्धनं, सहजबोधं, मानसिकसंवेदनशीलतां च विभजतः। तौ विना वचनैः परस्परम् अनुभवतः। भयं सहनिर्भरतायाः — तौ युक्तेः आलम्बनं विना साझाभावेषु निमज्जितौ भवेताम्।',
     },
     romance: {
       en: 'Romance is deeply soulful, nurturing, and all-consuming. They create a private emotional world that outsiders rarely penetrate. Mood swings can amplify each other, turning minor upsets into tidal waves of feeling.',
       hi: 'प्रेम गहराई से आत्मीय, पोषणकारी और सर्वव्यापी है। वे एक निजी भावनात्मक दुनिया बनाते हैं।',
+      sa: 'प्रणयो गहनात्मीयः पोषणकारी सर्वग्रासी च भवति। तौ एकं गोपनीयं भावजगत् रचयतः यत् बहिर्जनाः विरलं प्रविशन्ति। मनोदशापरिवर्तनानि परस्परं वर्धयन्ति, लघुदुःखानि भावतरङ्गेषु परिणमयन्ति।',
     },
   },
   'fire-earth': {

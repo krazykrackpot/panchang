@@ -24,10 +24,10 @@ const ACTIVITY_ICONS: Record<string, React.ReactNode> = {
 };
 
 const REC_STYLES: Record<string, { bg: string; text: string; label: LocaleText }> = {
-  excellent: { bg: 'bg-emerald-500/15 border-emerald-500/25', text: 'text-emerald-400', label: { en: 'Excellent', hi: 'उत्कृष्ट', sa: 'उत्कृष्ट', mai: 'उत्कृष्ट', mr: 'उत्कृष्ट', ta: 'Excellent', te: 'Excellent', bn: 'Excellent', kn: 'Excellent', gu: 'Excellent' } },
-  good: { bg: 'bg-gold-primary/15 border-gold-primary/25', text: 'text-gold-light', label: { en: 'Good', hi: 'अच्छा', sa: 'अच्छा', mai: 'अच्छा', mr: 'अच्छा', ta: 'Good', te: 'Good', bn: 'Good', kn: 'Good', gu: 'Good' } },
-  neutral: { bg: 'bg-bg-tertiary/30 border-gold-primary/10', text: 'text-text-secondary', label: { en: 'Neutral', hi: 'सामान्य', sa: 'सामान्य', mai: 'सामान्य', mr: 'सामान्य', ta: 'Neutral', te: 'Neutral', bn: 'Neutral', kn: 'Neutral', gu: 'Neutral' } },
-  avoid: { bg: 'bg-red-500/10 border-red-500/20', text: 'text-red-400', label: { en: 'Avoid', hi: 'बचें', sa: 'बचें', mai: 'बचें', mr: 'बचें', ta: 'Avoid', te: 'Avoid', bn: 'Avoid', kn: 'Avoid', gu: 'Avoid' } },
+  excellent: { bg: 'bg-emerald-500/15 border-emerald-500/25', text: 'text-emerald-400', label: { en: 'Excellent', hi: 'उत्कृष्ट', sa: 'उत्कृष्टम्', mai: 'उत्कृष्ट', mr: 'उत्कृष्ट', ta: 'சிறப்பு', te: 'అద్భుతం', bn: 'চমৎকার', kn: 'ಅತ್ಯುತ್ತಮ', gu: 'ઉત્તમ' } },
+  good: { bg: 'bg-gold-primary/15 border-gold-primary/25', text: 'text-gold-light', label: { en: 'Good', hi: 'अच्छा', sa: 'शुभम्', mai: 'नीक', mr: 'चांगले', ta: 'நல்லது', te: 'మంచిది', bn: 'ভালো', kn: 'ಒಳ್ಳೆಯದು', gu: 'સારું' } },
+  neutral: { bg: 'bg-bg-tertiary/30 border-gold-primary/10', text: 'text-text-secondary', label: { en: 'Neutral', hi: 'सामान्य', sa: 'सामान्यम्', mai: 'सामान्य', mr: 'सामान्य', ta: 'நடுநிலை', te: 'సాధారణం', bn: 'সাধারণ', kn: 'ಸಾಮಾನ್ಯ', gu: 'સામાન્ય' } },
+  avoid: { bg: 'bg-red-500/10 border-red-500/20', text: 'text-red-400', label: { en: 'Avoid', hi: 'बचें', sa: 'वर्जयतु', mai: 'बचू', mr: 'टाळा', ta: 'தவிர்க்கவும்', te: 'నివారించండి', bn: 'এড়িয়ে চলুন', kn: 'ತಪ್ಪಿಸಿ', gu: 'ટાળો' } },
 };
 
 export default function MuhurtaPage() {

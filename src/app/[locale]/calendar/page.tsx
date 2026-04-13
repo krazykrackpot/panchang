@@ -67,12 +67,12 @@ const MONTH_NAMES = ['January','February','March','April','May','June','July','A
 const MONTH_NAMES_HI = ['जनवरी','फरवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितम्बर','अक्टूबर','नवम्बर','दिसम्बर'];
 
 const HINDU_MONTHS = [
-  { en: 'Chaitra', hi: 'चैत्र', sa: 'चैत्र', mai: 'चैत्र', mr: 'चैत्र', ta: 'Chaitra', te: 'Chaitra', bn: 'Chaitra', kn: 'Chaitra', gu: 'Chaitra' }, { en: 'Vaishakha', hi: 'वैशाख', sa: 'वैशाख', mai: 'वैशाख', mr: 'वैशाख', ta: 'Vaishakha', te: 'Vaishakha', bn: 'Vaishakha', kn: 'Vaishakha', gu: 'Vaishakha' },
-  { en: 'Jyeshtha', hi: 'ज्येष्ठ', sa: 'ज्येष्ठ', mai: 'ज्येष्ठ', mr: 'ज्येष्ठ', ta: 'Jyeshtha', te: 'Jyeshtha', bn: 'Jyeshtha', kn: 'Jyeshtha', gu: 'Jyeshtha' }, { en: 'Ashadha', hi: 'आषाढ़', sa: 'आषाढ़', mai: 'आषाढ़', mr: 'आषाढ़', ta: 'Ashadha', te: 'Ashadha', bn: 'Ashadha', kn: 'Ashadha', gu: 'Ashadha' },
-  { en: 'Shravana', hi: 'श्रावण', sa: 'श्रावण', mai: 'श्रावण', mr: 'श्रावण', ta: 'Shravana', te: 'Shravana', bn: 'Shravana', kn: 'Shravana', gu: 'Shravana' }, { en: 'Bhadrapada', hi: 'भाद्रपद', sa: 'भाद्रपद', mai: 'भाद्रपद', mr: 'भाद्रपद', ta: 'Bhadrapada', te: 'Bhadrapada', bn: 'Bhadrapada', kn: 'Bhadrapada', gu: 'Bhadrapada' },
-  { en: 'Ashwina', hi: 'आश्विन', sa: 'आश्विन', mai: 'आश्विन', mr: 'आश्विन', ta: 'Ashwina', te: 'Ashwina', bn: 'Ashwina', kn: 'Ashwina', gu: 'Ashwina' }, { en: 'Kartika', hi: 'कार्तिक', sa: 'कार्तिक', mai: 'कार्तिक', mr: 'कार्तिक', ta: 'Kartika', te: 'Kartika', bn: 'Kartika', kn: 'Kartika', gu: 'Kartika' },
-  { en: 'Margashirsha', hi: 'मार्गशीर्ष', sa: 'मार्गशीर्ष', mai: 'मार्गशीर्ष', mr: 'मार्गशीर्ष', ta: 'Margashirsha', te: 'Margashirsha', bn: 'Margashirsha', kn: 'Margashirsha', gu: 'Margashirsha' }, { en: 'Pausha', hi: 'पौष', sa: 'पौष', mai: 'पौष', mr: 'पौष', ta: 'Pausha', te: 'Pausha', bn: 'Pausha', kn: 'Pausha', gu: 'Pausha' },
-  { en: 'Magha', hi: 'माघ', sa: 'माघ', mai: 'माघ', mr: 'माघ', ta: 'Magha', te: 'Magha', bn: 'Magha', kn: 'Magha', gu: 'Magha' }, { en: 'Phalguna', hi: 'फाल्गुन', sa: 'फाल्गुन', mai: 'फाल्गुन', mr: 'फाल्गुन', ta: 'Phalguna', te: 'Phalguna', bn: 'Phalguna', kn: 'Phalguna', gu: 'Phalguna' },
+  { en: 'Chaitra', hi: 'चैत्र', sa: 'चैत्रः', mai: 'चैत', mr: 'चैत्र', ta: 'சித்திரை', te: 'చైత్రము', bn: 'চৈত্র', kn: 'ಚೈತ್ರ', gu: 'ચૈત્ર' }, { en: 'Vaishakha', hi: 'वैशाख', sa: 'वैशाखः', mai: 'बैसाख', mr: 'वैशाख', ta: 'வைகாசி', te: 'వైశాఖము', bn: 'বৈশাখ', kn: 'ವೈಶಾಖ', gu: 'વૈશાખ' },
+  { en: 'Jyeshtha', hi: 'ज्येष्ठ', sa: 'ज्येष्ठः', mai: 'जेठ', mr: 'ज्येष्ठ', ta: 'ஆனி', te: 'జ్యేష్ఠము', bn: 'জ্যৈষ্ঠ', kn: 'ಜ್ಯೇಷ್ಠ', gu: 'જેઠ' }, { en: 'Ashadha', hi: 'आषाढ़', sa: 'आषाढः', mai: 'आषाढ़', mr: 'आषाढ', ta: 'ஆடி', te: 'ఆషాఢము', bn: 'আষাঢ়', kn: 'ಆಷಾಢ', gu: 'અષાઢ' },
+  { en: 'Shravana', hi: 'श्रावण', sa: 'श्रावणः', mai: 'सावन', mr: 'श्रावण', ta: 'ஆவணி', te: 'శ్రావణము', bn: 'শ্রাবণ', kn: 'ಶ್ರಾವಣ', gu: 'શ્રાવણ' }, { en: 'Bhadrapada', hi: 'भाद्रपद', sa: 'भाद्रपदः', mai: 'भादो', mr: 'भाद्रपद', ta: 'புரட்டாசி', te: 'భాద్రపదము', bn: 'ভাদ্র', kn: 'ಭಾದ್ರಪದ', gu: 'ભાદરવો' },
+  { en: 'Ashwina', hi: 'आश्विन', sa: 'आश्विनः', mai: 'आश्विन', mr: 'अश्विन', ta: 'ஐப்பசி', te: 'ఆశ్వయుజము', bn: 'আশ্বিন', kn: 'ಆಶ್ವಿನ', gu: 'આસો' }, { en: 'Kartika', hi: 'कार्तिक', sa: 'कार्तिकः', mai: 'कातिक', mr: 'कार्तिक', ta: 'கார்த்திகை', te: 'కార్తీకము', bn: 'কার্তিক', kn: 'ಕಾರ್ತಿಕ', gu: 'કારતક' },
+  { en: 'Margashirsha', hi: 'मार्गशीर्ष', sa: 'मार्गशीर्षः', mai: 'अगहन', mr: 'मार्गशीर्ष', ta: 'மார்கழி', te: 'మార్గశిరము', bn: 'অগ্রহায়ণ', kn: 'ಮಾರ್ಗಶಿರ', gu: 'માગશર' }, { en: 'Pausha', hi: 'पौष', sa: 'पौषः', mai: 'पूस', mr: 'पौष', ta: 'தை', te: 'పుష్యము', bn: 'পৌষ', kn: 'ಪುಷ್ಯ', gu: 'પોષ' },
+  { en: 'Magha', hi: 'माघ', sa: 'माघः', mai: 'माघ', mr: 'माघ', ta: 'மாசி', te: 'మాఘము', bn: 'মাঘ', kn: 'ಮಾಘ', gu: 'મહા' }, { en: 'Phalguna', hi: 'फाल्गुन', sa: 'फाल्गुनः', mai: 'फागुन', mr: 'फाल्गुन', ta: 'பங்குனி', te: 'ఫాల్గుణము', bn: 'ফাল্গুন', kn: 'ಫಾಲ್ಗುಣ', gu: 'ફાગણ' },
 ];
 
 type Filter = 'all' | 'major' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham' | 'vrat' | 'eclipse';
@@ -529,11 +529,11 @@ export default function CalendarPage() {
         <div className="flex flex-wrap gap-2 justify-center mt-4 pt-4 border-t border-gold-primary/10">
           <span className="text-text-secondary text-xs mr-2 self-center">{!isDevanagariLocale(locale) ? 'Subscribe:' : 'सदस्यता:'}</span>
           {([
-            { cat: 'all', label: { en: 'All Events', hi: 'सभी', sa: 'सभी', mai: 'सभी', mr: 'सभी', ta: 'All Events', te: 'All Events', bn: 'All Events', kn: 'All Events', gu: 'All Events' } },
-            { cat: 'major', label: { en: 'Festivals', hi: 'त्योहार', sa: 'त्योहार', mai: 'त्योहार', mr: 'त्योहार', ta: 'Festivals', te: 'Festivals', bn: 'Festivals', kn: 'Festivals', gu: 'Festivals' } },
-            { cat: 'ekadashi', label: { en: 'Ekadashi', hi: 'एकादशी', sa: 'एकादशी', mai: 'एकादशी', mr: 'एकादशी', ta: 'Ekadashi', te: 'Ekadashi', bn: 'Ekadashi', kn: 'Ekadashi', gu: 'Ekadashi' } },
-            { cat: 'purnima', label: { en: 'Purnima', hi: 'पूर्णिमा', sa: 'पूर्णिमा', mai: 'पूर्णिमा', mr: 'पूर्णिमा', ta: 'Purnima', te: 'Purnima', bn: 'Purnima', kn: 'Purnima', gu: 'Purnima' } },
-            { cat: 'amavasya', label: { en: 'Amavasya', hi: 'अमावस्या', sa: 'अमावस्या', mai: 'अमावस्या', mr: 'अमावस्या', ta: 'Amavasya', te: 'Amavasya', bn: 'Amavasya', kn: 'Amavasya', gu: 'Amavasya' } },
+            { cat: 'all', label: { en: 'All Events', hi: 'सभी', sa: 'सर्वाणि', mai: 'सभ', mr: 'सर्व', ta: 'அனைத்தும்', te: 'అన్నీ', bn: 'সব', kn: 'ಎಲ್ಲಾ', gu: 'બધા' } },
+            { cat: 'major', label: { en: 'Festivals', hi: 'त्योहार', sa: 'उत्सवाः', mai: 'पर्व', mr: 'सण', ta: 'பண்டிகைகள்', te: 'పండుగలు', bn: 'উৎসব', kn: 'ಹಬ್ಬಗಳು', gu: 'તહેવારો' } },
+            { cat: 'ekadashi', label: { en: 'Ekadashi', hi: 'एकादशी', sa: 'एकादशी', mai: 'एकादशी', mr: 'एकादशी', ta: 'ஏகாதசி', te: 'ఏకాదశి', bn: 'একাদশী', kn: 'ಏಕಾದಶಿ', gu: 'એકાદશી' } },
+            { cat: 'purnima', label: { en: 'Purnima', hi: 'पूर्णिमा', sa: 'पूर्णिमा', mai: 'पूर्णिमा', mr: 'पौर्णिमा', ta: 'பௌர்ணமி', te: 'పౌర్ణమి', bn: 'পূর্ণিমা', kn: 'ಹುಣ್ಣಿಮೆ', gu: 'પૂર્ણિમા' } },
+            { cat: 'amavasya', label: { en: 'Amavasya', hi: 'अमावस्या', sa: 'अमावास्या', mai: 'अमावस्या', mr: 'अमावास्या', ta: 'அமாவாசை', te: 'అమావాస్య', bn: 'অমাবস্যা', kn: 'ಅಮಾವಾಸ್ಯೆ', gu: 'અમાવાસ્યા' } },
           ] as const).map(e => (
             <a
               key={e.cat}

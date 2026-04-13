@@ -10,11 +10,11 @@ import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const LABELS = {
-  title:       { en: 'Badge Gallery', hi: 'बैज गैलरी', sa: 'बैज गैलरी', mai: 'बैज गैलरी', mr: 'बैज गैलरी', ta: 'Badge Gallery', te: 'Badge Gallery', bn: 'Badge Gallery', kn: 'Badge Gallery', gu: 'Badge Gallery' },
-  earned:      { en: 'Earned', hi: 'अर्जित', sa: 'अर्जित', mai: 'अर्जित', mr: 'अर्जित', ta: 'Earned', te: 'Earned', bn: 'Earned', kn: 'Earned', gu: 'Earned' },
-  locked:      { en: 'Locked', hi: 'लॉक', sa: 'लॉक', mai: 'लॉक', mr: 'लॉक', ta: 'Locked', te: 'Locked', bn: 'Locked', kn: 'Locked', gu: 'Locked' },
-  earnedOn:    { en: 'Earned', hi: 'अर्जित', sa: 'अर्जित', mai: 'अर्जित', mr: 'अर्जित', ta: 'Earned', te: 'Earned', bn: 'Earned', kn: 'Earned', gu: 'Earned' },
-  progress:    { en: 'Progress', hi: 'प्रगति', sa: 'प्रगति', mai: 'प्रगति', mr: 'प्रगति', ta: 'Progress', te: 'Progress', bn: 'Progress', kn: 'Progress', gu: 'Progress' },
+  title:       { en: 'Badge Gallery', hi: 'बैज गैलरी', sa: 'प्रतीकचित्रशाला', mai: 'बैज गैलरी', mr: 'बॅज दालन', ta: 'பதக்க காட்சியகம்', te: 'బ్యాడ్జ్ గ్యాలరీ', bn: 'ব্যাজ গ্যালারি', kn: 'ಬ್ಯಾಡ್ಜ್ ಗ್ಯಾಲರಿ', gu: 'બેજ ગેલેરી' },
+  earned:      { en: 'Earned', hi: 'अर्जित', sa: 'अर्जितम्', mai: 'अर्जित', mr: 'मिळवलेले', ta: 'பெற்றவை', te: 'సాధించినవి', bn: 'অর্জিত', kn: 'ಗಳಿಸಿದವು', gu: 'મેળવેલ' },
+  locked:      { en: 'Locked', hi: 'लॉक', sa: 'पिहितम्', mai: 'लॉक', mr: 'लॉक', ta: 'பூட்டப்பட்டது', te: 'లాక్ చేయబడింది', bn: 'লক করা', kn: 'ಲಾಕ್', gu: 'લૉક' },
+  earnedOn:    { en: 'Earned', hi: 'अर्जित', sa: 'अर्जितम्', mai: 'अर्जित', mr: 'मिळवले', ta: 'பெற்றது', te: 'సాధించిన', bn: 'অর্জিত', kn: 'ಗಳಿಸಿದ', gu: 'મેળવ્યું' },
+  progress:    { en: 'Progress', hi: 'प्रगति', sa: 'प्रगतिः', mai: 'प्रगति', mr: 'प्रगती', ta: 'முன்னேற்றம்', te: 'పురోగతి', bn: 'অগ্রগতি', kn: 'ಪ್ರಗತಿ', gu: 'પ્રગતિ' },
 };
 
 function t(key: keyof typeof LABELS, locale: Locale): string {

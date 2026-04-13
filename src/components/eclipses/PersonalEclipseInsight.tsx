@@ -349,9 +349,9 @@ export default function PersonalEclipseInsight({
   const intensityColor = insight.overallIntensity === 'high' ? 'text-red-400' : insight.overallIntensity === 'moderate' ? 'text-amber-400' : 'text-emerald-400';
   const intensityBorder = insight.overallIntensity === 'high' ? 'border-red-500/20' : insight.overallIntensity === 'moderate' ? 'border-amber-500/20' : 'border-emerald-500/20';
   const intensityLabel = {
-    high: { en: 'HIGH IMPACT', hi: 'उच्च प्रभाव', sa: 'उच्च प्रभाव', mai: 'उच्च प्रभाव', mr: 'उच्च प्रभाव', ta: 'HIGH IMPACT', te: 'HIGH IMPACT', bn: 'HIGH IMPACT', kn: 'HIGH IMPACT', gu: 'HIGH IMPACT' },
-    moderate: { en: 'MODERATE IMPACT', hi: 'मध्यम प्रभाव', sa: 'मध्यम प्रभाव', mai: 'मध्यम प्रभाव', mr: 'मध्यम प्रभाव', ta: 'MODERATE IMPACT', te: 'MODERATE IMPACT', bn: 'MODERATE IMPACT', kn: 'MODERATE IMPACT', gu: 'MODERATE IMPACT' },
-    low: { en: 'LOW IMPACT', hi: 'न्यून प्रभाव', sa: 'न्यून प्रभाव', mai: 'न्यून प्रभाव', mr: 'न्यून प्रभाव', ta: 'LOW IMPACT', te: 'LOW IMPACT', bn: 'LOW IMPACT', kn: 'LOW IMPACT', gu: 'LOW IMPACT' },
+    high: { en: 'HIGH IMPACT', hi: 'उच्च प्रभाव', sa: 'उच्च प्रभाव', mai: 'उच्च प्रभाव', mr: 'उच्च प्रभाव', ta: 'உயர் தாக்கம்', te: 'అధిక ప్రభావం', bn: 'উচ্চ প্রভাব', kn: 'ಹೆಚ್ಚಿನ ಪ್ರಭಾವ', gu: 'ઉચ્ચ પ્રભાવ' },
+    moderate: { en: 'MODERATE IMPACT', hi: 'मध्यम प्रभाव', sa: 'मध्यम प्रभाव', mai: 'मध्यम प्रभाव', mr: 'मध्यम प्रभाव', ta: 'மிதமான தாக்கம்', te: 'మోస్తరు ప్రభావం', bn: 'মাঝারি প্রভাব', kn: 'ಮಧ್ಯಮ ಪ್ರಭಾವ', gu: 'મધ્યમ પ્રભાવ' },
+    low: { en: 'LOW IMPACT', hi: 'न्यून प्रभाव', sa: 'न्यून प्रभाव', mai: 'न्यून प्रभाव', mr: 'न्यून प्रभाव', ta: 'குறைந்த தாக்கம்', te: 'తక్కువ ప్రభావం', bn: 'নিম্ন প্রভাব', kn: 'ಕಡಿಮೆ ಪ್ರಭಾವ', gu: 'ઓછો પ્રભાવ' },
   }[insight.overallIntensity];
 
   return (

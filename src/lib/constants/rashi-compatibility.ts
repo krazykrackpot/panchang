@@ -69,6 +69,11 @@ const LORD_NAME_HI: Record<Planet, string> = {
   Jupiter: 'बृहस्पति', Venus: 'शुक्र', Saturn: 'शनि',
 };
 
+const LORD_NAME_SA: Record<Planet, string> = {
+  Sun: 'सूर्यः', Moon: 'चन्द्रः', Mars: 'मङ्गलः', Mercury: 'बुधः',
+  Jupiter: 'बृहस्पतिः', Venus: 'शुक्रः', Saturn: 'शनिः',
+};
+
 // ──────────────────────────────────────────────────────────────
 // Graha Maitri (Lord Friendship)
 // ──────────────────────────────────────────────────────────────
@@ -180,20 +185,24 @@ const ELEMENT_COMPAT: Record<string, ElementText> = {
     temperament: {
       en: 'Fire\'s spontaneous energy meets Earth\'s methodical steadiness — a pairing that can either forge steel or smother flames. Earth provides grounding that fire needs, while fire brings excitement that earth secretly craves.',
       hi: 'अग्नि की स्वतःस्फूर्त ऊर्जा पृथ्वी की व्यवस्थित स्थिरता से मिलती है — यह जोड़ी या तो इस्पात गढ़ती है या लपटों को दबाती है।',
+      sa: 'अग्नेः स्वतःस्फूर्तं तेजः पृथिव्याः क्रमबद्धस्थैर्येण मिलति — एषा युगलता लोहं वा निर्माति ज्वालां वा निवारयति। पृथिवी अग्नये आवश्यकं स्थैर्यं ददाति, अग्निश्च पृथिव्यै गूढमभिलषितम् उत्साहम् आनयति।',
     },
     romance: {
       en: 'Fire desires passion and grand gestures, while Earth shows love through quiet reliability and sensual comfort. Misunderstandings arise when fire feels restricted and earth feels destabilized.',
       hi: 'अग्नि जुनून और भव्य इशारे चाहती है, जबकि पृथ्वी शांत विश्वसनीयता से प्रेम दर्शाती है।',
+      sa: 'अग्निः तीव्रानुरागं भव्यचेष्टाश्च वाञ्छति, पृथिवी तु शान्तविश्वसनीयतया इन्द्रियसुखेन च प्रेम प्रकटयति। यदा अग्निः निरुद्धम् अनुभवति पृथिवी च अस्थिरताम्, तदा भ्रान्तयो जायन्ते।',
     },
   },
   'fire-air': {
     temperament: {
       en: 'Air fans fire\'s flames into a brilliant blaze — this is one of the most naturally synergistic element pairings. Both are active, outgoing, and future-oriented. The combination sparkles with intellectual and creative energy.',
       hi: 'वायु अग्नि की लपटों को शानदार ज्वाला में बदलती है — यह सबसे स्वाभाविक रूप से तालमेल वाली जोड़ियों में से एक है।',
+      sa: 'वायुः अग्नेः ज्वालाः उज्ज्वलप्रभायां वर्धयति — एतत् सर्वाधिकं स्वाभाविकसामञ्जस्ययुक्तं तत्त्वयुगलम्। उभौ क्रियाशीलौ बहिर्मुखौ भविष्योन्मुखौ च। संयोगो बौद्धिकसृजनात्मकतेजसा स्फुरति।',
     },
     romance: {
       en: 'Romance is exciting, spontaneous, and never dull. Fire brings passion while air brings variety and mental stimulation. Both value independence, making this a relationship of equals who inspire each other.',
       hi: 'प्रेम रोमांचक, स्वतःस्फूर्त और कभी नीरस नहीं होता। अग्नि जुनून लाती है जबकि वायु विविधता और मानसिक उत्तेजना लाती है।',
+      sa: 'प्रणयो रोमाञ्चकः स्वतःस्फूर्तः न कदापि नीरसो भवति। अग्निः अनुरागम् आनयति वायुस्तु वैविध्यं मानसिकप्रेरणं च। उभौ स्वातन्त्र्यं मन्येते, अतः समानयोः परस्परप्रेरकयोः सम्बन्धो भवति।',
     },
   },
   'fire-water': {

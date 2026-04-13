@@ -107,7 +107,7 @@ export default function LearnNakshatrasPage() {
   const locale = useLocale();
   const t = (key: string) => lt(t_[key], locale);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const tObj = (obj: any) => (obj as Record<string, string>)[locale] || obj?.en || '';
+  const tObj = (obj: any) => (obj as { en: string; hi: string; [k: string]: string })[locale] || obj?.en || '';
   const lo = locale === 'hi' || locale === 'sa' ? 'hi' as const : 'en' as const;
 
   return (
@@ -670,7 +670,7 @@ export default function LearnNakshatrasPage() {
                     <td className="py-2 px-2">
                       <div className="flex items-center gap-2">
                         {Icon && <span className="w-5 h-5 flex-shrink-0"><Icon size={20} /></span>}
-                        <span className="text-gold-light font-medium text-sm">{n?.name[locale]}</span>
+                        <span className="text-gold-light font-medium text-sm">{n?.name[locale as keyof typeof n.name] || n?.name.en}</span>
                       </div>
                     </td>
                     <td className="py-2 px-2 text-text-primary font-semibold text-sm">{lo === 'en' ? yt.star : yt.starHi}</td>

@@ -296,6 +296,10 @@ export default function HoroscopePage() {
                 }`}>
                 <div className="flex justify-center mb-2"><RashiIconById id={r.id} size={36} /></div>
                 <div className="text-gold-light text-xs font-bold" style={headingFont}>{r.name[lk]}</div>
+                <Link href={`/horoscope/${r.slug}` as '/horoscope'} onClick={(e) => e.stopPropagation()}
+                  className="text-[10px] text-gold-dark hover:text-gold-primary mt-1 block transition-colors">
+                  {r.name.en}
+                </Link>
               </motion.button>
             ))}
           </div>
@@ -323,6 +327,12 @@ export default function HoroscopePage() {
                         {horoscope.moonSignName[lk]}
                       </h2>
                       <p className="text-text-secondary text-xs">{horoscope.date}</p>
+                      {selectedSign && (
+                        <Link href={`/horoscope/${RASHIS[selectedSign - 1]?.slug}` as '/horoscope'}
+                          className="text-gold-primary hover:text-gold-light text-xs mt-1 inline-block transition-colors">
+                          {lk === 'hi' ? 'पूर्ण राशिफल देखें' : 'View full horoscope'} &rarr;
+                        </Link>
+                      )}
                     </div>
                     {/* Circular gauge */}
                     <div className="relative w-20 h-20">

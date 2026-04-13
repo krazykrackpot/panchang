@@ -5,54 +5,14 @@ import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, ChevronDown, Gem, Music, Heart, Flame, AlertTriangle, CheckCircle } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LJ from '@/messages/learn/doshas.json';
+import { getHeadingFont, getBodyFont, isIndicLocale } from '@/lib/utils/locale-fonts';
 
-const L = {
-  title: { en: 'Doshas & Remedies', hi: 'दोष एवं उपाय', sa: 'दोषाः उपायाः च' , ta: 'தோஷங்கள் & பரிகாரங்கள்' },
-  subtitle: {
-    en: 'Doshas are astrological afflictions formed by specific inauspicious planetary configurations. Each dosha has remedies — gemstones, mantras, charity, and rituals. Important: most doshas have "cancellation" conditions that reduce or eliminate their effects.',
-    hi: 'दोष ज्योतिषीय कष्ट हैं जो ग्रहों की विशिष्ट अशुभ स्थितियों से बनते हैं। प्रत्येक दोष के उपचार हैं — रत्न, मंत्र, दान और अनुष्ठान। महत्वपूर्ण: अधिकांश दोषों में "रद्दीकरण" शर्तें हैं जो उनके प्रभाव को कम या समाप्त कर देती हैं।',
-    sa: 'दोषाः ज्योतिषीयकष्टाः ये ग्रहाणां विशिष्टाशुभस्थितिभिः निर्मीयन्ते। प्रत्येकस्य दोषस्य उपचाराः सन्ति।'
-  },
-  whatTitle: { en: 'What is a Dosha?', hi: 'दोष क्या है?', sa: 'दोषः कः?' },
-  whatContent: {
-    en: 'In Vedic astrology, a Dosha (literally "fault" or "blemish") is a specific planetary configuration that creates challenges in certain areas of life. Doshas are not curses or punishments — they are karmic patterns encoded in the birth chart, indicating areas where the soul has chosen to work through specific lessons in this lifetime.',
-    hi: 'वैदिक ज्योतिष में, दोष (शाब्दिक अर्थ "दोष" या "कलंक") एक विशिष्ट ग्रह विन्यास है जो जीवन के कुछ क्षेत्रों में चुनौतियाँ उत्पन्न करता है। दोष शाप या दण्ड नहीं हैं — ये जन्म कुण्डली में अंकित कार्मिक प्रतिरूप हैं।',
-    sa: 'वैदिकज्योतिषे दोषः विशिष्टग्रहविन्यासः यः जीवनस्य केषुचित् क्षेत्रेषु कठिनताः उत्पादयति। दोषाः शापाः न सन्ति — कार्मिकप्रतिरूपाणि।'
-  },
-  whatContent2: {
-    en: 'The key principle: a dosha indicates a tendency, not a certainty. Its actual manifestation depends on the overall chart strength, the dasha period running, current transits, and — crucially — the cancellation conditions that may neutralize it. A skilled astrologer always checks for cancellations before declaring a dosha active.',
-    hi: 'मुख्य सिद्धान्त: दोष एक प्रवृत्ति को इंगित करता है, निश्चितता को नहीं। इसकी वास्तविक अभिव्यक्ति समग्र कुण्डली बल, चल रही दशा, वर्तमान गोचर और — महत्वपूर्ण रूप से — रद्दीकरण शर्तों पर निर्भर करती है।',
-    sa: 'मुख्यसिद्धान्तः: दोषः प्रवृत्तिं सूचयति, निश्चितिं न। तस्य वास्तविकाभिव्यक्तिः कुण्डलीबले, दशायां, गोचरे च निर्भरति।'
-  },
-  principleTitle: { en: 'The Karmic Perspective on Doshas', hi: 'दोषों पर कार्मिक दृष्टिकोण', sa: 'दोषेषु कार्मिकदृष्टिकोणः' },
-  principleContent: {
-    en: 'Classical texts emphasize that doshas exist to direct the soul\'s attention to specific growth areas. Mangal Dosha, for example, does not "prevent" marriage — it indicates that the person must develop patience and emotional maturity before they can sustain a harmonious partnership. The remedies work not by magically removing the dosha, but by cultivating the qualities needed to transcend it.',
-    hi: 'शास्त्रीय ग्रन्थ इस बात पर बल देते हैं कि दोष आत्मा का ध्यान विशिष्ट विकास क्षेत्रों की ओर निर्देशित करने के लिए हैं। मंगल दोष विवाह को "रोकता" नहीं — यह संकेत देता है कि व्यक्ति को धैर्य और भावनात्मक परिपक्वता विकसित करनी चाहिए।',
-    sa: 'शास्त्रीयग्रन्थाः बलं ददति यत् दोषाः आत्मनः ध्यानं विशिष्टविकासक्षेत्राणां प्रति निर्दिशन्ति।'
-  },
-  principleContent2: {
-    en: 'Furthermore, Parashari texts state that the dasha of a dosha-causing planet is when the dosha manifests most strongly. Outside that dasha, the dosha may remain largely dormant. This means timing matters as much as the dosha\'s existence.',
-    hi: 'इसके अतिरिक्त, पाराशरी ग्रन्थ कहते हैं कि दोष-कारक ग्रह की दशा में दोष सबसे प्रबल रूप से प्रकट होता है। उस दशा के बाहर, दोष अधिकांशतः सुप्त रह सकता है।',
-    sa: 'अपि च, पाराशरग्रन्थाः वदन्ति यत् दोषकारकग्रहस्य दशायां दोषः प्रबलतमं प्रकटति।'
-  },
-  guruChandalTitle: { en: 'Guru Chandal Dosha — Jupiter-Rahu Conjunction', hi: 'गुरु चाण्डाल दोष — गुरु-राहु युति', sa: 'गुरुचाण्डालदोषः — गुरुराहुयुतिः' },
-  guruChandalContent: {
-    en: 'When Jupiter (the Guru, teacher of the Devas) conjoins Rahu (the anti-establishment, rule-breaking shadow planet), the person\'s wisdom and dharmic sense becomes "polluted" by unconventional or taboo influences. This can manifest as disrespect for traditions, association with dubious gurus, making wrong moral choices despite knowing better, or being deceived in matters of faith and education.',
-    hi: 'जब गुरु (देवताओं का शिक्षक) राहु (प्रतिष्ठा-विरोधी, नियम-तोड़ने वाला छाया ग्रह) के साथ मिलता है, तो व्यक्ति का ज्ञान और धार्मिक भावना अपरम्परागत प्रभावों से "प्रदूषित" हो जाती है।',
-    sa: 'यदा गुरुः राहुणा सह युज्यते, तदा ज्ञानं धार्मिकभावना च अपरम्परागतप्रभावैः "प्रदूषिता" भवति।'
-  },
-  kemdrumaTitle: { en: 'Kemadruma Dosha — The Isolated Moon', hi: 'केमद्रुम दोष — एकाकी चन्द्र', sa: 'केमद्रुमदोषः — एकाकीचन्द्रः' },
-  kemdrumaContent: {
-    en: 'Kemadruma Dosha forms when no planet (excluding Sun, Rahu, Ketu) occupies the 2nd or 12th house from the Moon. The Moon, representing the mind and emotions, needs planetary "companions" in adjacent houses for emotional stability and social support. Without them, the native may experience emotional isolation, poverty despite effort, lack of support systems, and mental distress.',
-    hi: 'केमद्रुम दोष तब बनता है जब चन्द्र से 2रे और 12वें भाव में कोई ग्रह (सूर्य, राहु, केतु छोड़कर) न हो। चन्द्र, जो मन और भावनाओं का प्रतिनिधित्व करता है, भावनात्मक स्थिरता के लिए समीपस्थ भावों में ग्रह "साथियों" की आवश्यकता रखता है।',
-    sa: 'केमद्रुमदोषः यदा चन्द्रात् 2 12 भावयोः कोऽपि ग्रहः न तिष्ठति (सूर्यराहुकेतुवर्जम्)।'
-  },
-  remedySystemTitle: { en: 'The Remedy System', hi: 'उपचार पद्धतियाँ', sa: 'उपचारपद्धतयः' },
-  planetRemedyTitle: { en: 'Planet Remedy Quick Reference', hi: 'ग्रह उपचार त्वरित संदर्भ', sa: 'ग्रहोपचारत्वरितसन्दर्भः' },
-  modulesTitle: { en: 'Related Lesson Modules', hi: 'सम्बन्धित पाठ मॉड्यूल', sa: 'सम्बद्धपाठखण्डाः' },
-};
+const t_ = LJ as unknown as Record<string, LocaleText>;
+
+
 
 const DOSHAS = [
   { id: 'mangal', name: { en: 'Mangal Dosha (Manglik)', hi: 'मांगलिक दोष', sa: 'मङ्गलदोषः' }, severity: 'high', planets: 'Mars',
@@ -111,8 +71,11 @@ const REMEDY_TYPES = [
 ];
 
 export default function DoshasPage() {
-  const locale = useLocale() as Locale;
-  const isHi = isDevanagariLocale(locale);
+  const t = (key: string) => lt(t_[key], locale);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const tObj = (obj: any) => (obj as Record<string, string>)[locale] || obj?.en || '';
+  const locale = useLocale();
+  const isHi = isIndicLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const [expanded, setExpanded] = useState<string | null>('mangal');
@@ -122,23 +85,23 @@ export default function DoshasPage() {
       {/* Header */}
       <div>
         <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={headingFont}>
-          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
+          {t('title')}
         </h2>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl" style={bodyFont}>
-          {((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}
+          {t('subtitle')}
         </p>
       </div>
 
       {/* What is a Dosha */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-gold-gradient text-xl font-bold mb-3" style={headingFont}>
-          {((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}
+          {t('whatTitle')}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3" style={bodyFont}>
-          {((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}
+          {t('whatContent')}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
-          {((L.whatContent2 as Record<string, string>)[locale] ?? L.whatContent2.en)}
+          {t('whatContent2')}
         </p>
       </div>
 
@@ -147,22 +110,22 @@ export default function DoshasPage() {
         <div className="flex items-center gap-3 mb-3">
           <Shield className="w-6 h-6 text-violet-400" />
           <h3 className="text-violet-300 text-lg font-bold" style={headingFont}>
-            {((L.principleTitle as Record<string, string>)[locale] ?? L.principleTitle.en)}
+            {t('principleTitle')}
           </h3>
         </div>
         <p className="text-text-secondary text-sm leading-relaxed mb-3" style={bodyFont}>
-          {((L.principleContent as Record<string, string>)[locale] ?? L.principleContent.en)}
+          {t('principleContent')}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
-          {((L.principleContent2 as Record<string, string>)[locale] ?? L.principleContent2.en)}
+          {t('principleContent2')}
         </p>
       </div>
 
       {/* Severity legend */}
       <div className="flex gap-4 text-xs">
-        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-red-500" /> {!isDevanagariLocale(locale) ? 'Severe' : isHi ? 'गंभीर' : 'गम्भीरम्'}</span>
-        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-amber-500" /> {!isDevanagariLocale(locale) ? 'Moderate' : isHi ? 'मध्यम' : 'मध्यमम्'}</span>
-        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-blue-500" /> {!isDevanagariLocale(locale) ? 'Mild' : isHi ? 'हल्का' : 'लघु'}</span>
+        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-red-500" /> {!isIndicLocale(locale) ? 'Severe' : isHi ? 'गंभीर' : 'गम्भीरम्'}</span>
+        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-amber-500" /> {!isIndicLocale(locale) ? 'Moderate' : isHi ? 'मध्यम' : 'मध्यमम्'}</span>
+        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-blue-500" /> {!isIndicLocale(locale) ? 'Mild' : isHi ? 'हल्का' : 'लघु'}</span>
       </div>
 
       {/* Dosha cards */}
@@ -177,7 +140,7 @@ export default function DoshasPage() {
                 className="w-full flex items-center justify-between px-5 py-4 hover:bg-gold-primary/3 transition-colors">
                 <div className="flex items-center gap-3">
                   <span className={`w-2.5 h-2.5 rounded-full ${sevDot}`} />
-                  <span className="text-gold-light font-bold" style={headingFont}>{dosha.name[locale]}</span>
+                  <span className="text-gold-light font-bold" style={headingFont}>{tObj(dosha.name)}</span>
                   <span className="text-text-tertiary text-xs">{dosha.planets}</span>
                 </div>
                 <ChevronDown className={`w-4 h-4 text-text-tertiary transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
@@ -189,24 +152,24 @@ export default function DoshasPage() {
                     <div className="p-5 space-y-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">{!isDevanagariLocale(locale) ? 'Formation' : isHi ? 'निर्माण शर्त' : 'निर्माणशर्तः'}</div>
-                          <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{dosha.condition[locale]}</div>
+                          <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">{!isIndicLocale(locale) ? 'Formation' : isHi ? 'निर्माण शर्त' : 'निर्माणशर्तः'}</div>
+                          <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{tObj(dosha.condition)}</div>
                         </div>
                         <div>
-                          <div className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-1">{!isDevanagariLocale(locale) ? 'Effects' : isHi ? 'प्रभाव' : 'प्रभावः'}</div>
-                          <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{dosha.effect[locale]}</div>
+                          <div className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-1">{!isIndicLocale(locale) ? 'Effects' : isHi ? 'प्रभाव' : 'प्रभावः'}</div>
+                          <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{tObj(dosha.effect)}</div>
                         </div>
                       </div>
                       <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
                         <div className="flex items-center gap-2 mb-1">
                           <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
-                          <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold">{!isDevanagariLocale(locale) ? 'Cancellation Conditions' : isHi ? 'रद्दीकरण शर्तें' : 'शमनशर्ताः'}</div>
+                          <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold">{!isIndicLocale(locale) ? 'Cancellation Conditions' : isHi ? 'रद्दीकरण शर्तें' : 'शमनशर्ताः'}</div>
                         </div>
-                        <div className="text-emerald-300 text-xs leading-relaxed" style={bodyFont}>{dosha.cancellation[locale]}</div>
+                        <div className="text-emerald-300 text-xs leading-relaxed" style={bodyFont}>{tObj(dosha.cancellation)}</div>
                       </div>
                       <div className="p-3 rounded-xl bg-gold-primary/5 border border-gold-primary/15">
-                        <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1">{!isDevanagariLocale(locale) ? 'Remedies' : isHi ? 'उपाय' : 'उपायाः'}</div>
-                        <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{dosha.remedy[locale]}</div>
+                        <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1">{!isIndicLocale(locale) ? 'Remedies' : isHi ? 'उपाय' : 'उपायाः'}</div>
+                        <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{tObj(dosha.remedy)}</div>
                       </div>
                       <div className="text-text-tertiary text-xs">{dosha.classical}</div>
                     </div>
@@ -221,26 +184,26 @@ export default function DoshasPage() {
       {/* Guru Chandal Dosha detail section */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-gold-gradient text-xl font-bold mb-3" style={headingFont}>
-          {((L.guruChandalTitle as Record<string, string>)[locale] ?? L.guruChandalTitle.en)}
+          {t('guruChandalTitle')}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
-          {((L.guruChandalContent as Record<string, string>)[locale] ?? L.guruChandalContent.en)}
+          {t('guruChandalContent')}
         </p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
             <div className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-1">
-              {!isDevanagariLocale(locale) ? 'Detection' : isHi ? 'पहचान' : 'पहचानम्'}
+              {!isIndicLocale(locale) ? 'Detection' : isHi ? 'पहचान' : 'पहचानम्'}
             </div>
             <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
-              {!isDevanagariLocale(locale) ? 'Jupiter and Rahu in the same sign (within 15 degrees orb is strongest). Check in both Rashi and Navamsa charts.' : 'गुरु और राहु एक ही राशि में (15 अंश के भीतर सबसे प्रबल)। राशि और नवमांश दोनों में जाँचें।'}
+              {!isIndicLocale(locale) ? 'Jupiter and Rahu in the same sign (within 15 degrees orb is strongest). Check in both Rashi and Navamsa charts.' : 'गुरु और राहु एक ही राशि में (15 अंश के भीतर सबसे प्रबल)। राशि और नवमांश दोनों में जाँचें।'}
             </div>
           </div>
           <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
             <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-1">
-              {!isDevanagariLocale(locale) ? 'Silver lining' : isHi ? 'सकारात्मक पक्ष' : 'सकारात्मकपक्षः'}
+              {!isIndicLocale(locale) ? 'Silver lining' : isHi ? 'सकारात्मक पक्ष' : 'सकारात्मकपक्षः'}
             </div>
             <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
-              {!isDevanagariLocale(locale) ? 'Can give extraordinary unconventional wisdom, success in foreign/cutting-edge fields, ability to challenge established norms productively.' : 'असाधारण अपरम्परागत ज्ञान, विदेशी/अग्रणी क्षेत्रों में सफलता, स्थापित मानदंडों को रचनात्मक रूप से चुनौती देने की क्षमता दे सकता है।'}
+              {!isIndicLocale(locale) ? 'Can give extraordinary unconventional wisdom, success in foreign/cutting-edge fields, ability to challenge established norms productively.' : 'असाधारण अपरम्परागत ज्ञान, विदेशी/अग्रणी क्षेत्रों में सफलता, स्थापित मानदंडों को रचनात्मक रूप से चुनौती देने की क्षमता दे सकता है।'}
             </div>
           </div>
         </div>
@@ -249,14 +212,14 @@ export default function DoshasPage() {
       {/* Kemadruma detail section */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-gold-gradient text-xl font-bold mb-3" style={headingFont}>
-          {((L.kemdrumaTitle as Record<string, string>)[locale] ?? L.kemdrumaTitle.en)}
+          {t('kemdrumaTitle')}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
-          {((L.kemdrumaContent as Record<string, string>)[locale] ?? L.kemdrumaContent.en)}
+          {t('kemdrumaContent')}
         </p>
         <div className="mt-4 p-3 rounded-xl bg-blue-400/5 border border-blue-400/15">
           <div className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-1">
-            {!isDevanagariLocale(locale) ? 'Important nuance' : isHi ? 'महत्वपूर्ण सूक्ष्मता' : 'महत्त्वपूर्णसूक्ष्मता'}
+            {!isIndicLocale(locale) ? 'Important nuance' : isHi ? 'महत्वपूर्ण सूक्ष्मता' : 'महत्त्वपूर्णसूक्ष्मता'}
           </div>
           <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
             {locale === 'en'
@@ -269,7 +232,7 @@ export default function DoshasPage() {
       {/* Remedy System Overview */}
       <div>
         <h3 className="text-gold-gradient text-xl font-bold mb-4" style={headingFont}>
-          {((L.remedySystemTitle as Record<string, string>)[locale] ?? L.remedySystemTitle.en)}
+          {t('remedySystemTitle')}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {REMEDY_TYPES.map((rt, i) => {
@@ -279,9 +242,9 @@ export default function DoshasPage() {
                 className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
                 <div className="flex items-center gap-3 mb-2">
                   <Icon className={`w-6 h-6 ${rt.color}`} />
-                  <span className={`font-bold ${rt.color}`} style={headingFont}>{rt.name[locale]}</span>
+                  <span className={`font-bold ${rt.color}`} style={headingFont}>{tObj(rt.name)}</span>
                 </div>
-                <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{rt.desc[locale]}</p>
+                <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{tObj(rt.desc)}</p>
               </motion.div>
             );
           })}
@@ -290,17 +253,17 @@ export default function DoshasPage() {
 
       {/* Planet remedy quick reference */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
-        <h4 className="text-gold-light font-bold mb-3" style={headingFont}>{((L.planetRemedyTitle as Record<string, string>)[locale] ?? L.planetRemedyTitle.en)}</h4>
+        <h4 className="text-gold-light font-bold mb-3" style={headingFont}>{t('planetRemedyTitle')}</h4>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/10">
-                <th className="text-left py-2 px-3 text-gold-dark">{!isDevanagariLocale(locale) ? 'Planet' : isHi ? 'ग्रह' : 'ग्रहः'}</th>
-                <th className="text-left py-2 px-3 text-gold-dark">{!isDevanagariLocale(locale) ? 'Gemstone' : isHi ? 'रत्न' : 'रत्नम्'}</th>
-                <th className="text-left py-2 px-3 text-gold-dark">{!isDevanagariLocale(locale) ? 'Day' : isHi ? 'दिन' : 'दिनम्'}</th>
-                <th className="text-left py-2 px-3 text-gold-dark">{!isDevanagariLocale(locale) ? 'Color' : isHi ? 'रंग' : 'वर्णः'}</th>
-                <th className="text-left py-2 px-3 text-gold-dark">{!isDevanagariLocale(locale) ? 'Charity' : isHi ? 'दान' : 'दानम्'}</th>
-                <th className="text-left py-2 px-3 text-gold-dark">{!isDevanagariLocale(locale) ? 'Beej Mantra' : isHi ? 'बीज मंत्र' : 'बीजमन्त्रः'}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Planet' : isHi ? 'ग्रह' : 'ग्रहः'}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Gemstone' : isHi ? 'रत्न' : 'रत्नम्'}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Day' : isHi ? 'दिन' : 'दिनम्'}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Color' : isHi ? 'रंग' : 'वर्णः'}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Charity' : isHi ? 'दान' : 'दानम्'}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Beej Mantra' : isHi ? 'बीज मंत्र' : 'बीजमन्त्रः'}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gold-primary/5">
@@ -335,7 +298,7 @@ export default function DoshasPage() {
           <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
           <div>
             <h4 className="text-amber-300 font-bold text-sm mb-2" style={headingFont}>
-              {!isDevanagariLocale(locale) ? 'A Note on Dosha Assessment' : isHi ? 'दोष मूल्यांकन पर टिप्पणी' : 'दोषमूल्याङ्कने टिप्पणी'}
+              {!isIndicLocale(locale) ? 'A Note on Dosha Assessment' : isHi ? 'दोष मूल्यांकन पर टिप्पणी' : 'दोषमूल्याङ्कने टिप्पणी'}
             </h4>
             <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
               {locale === 'en'
@@ -349,7 +312,7 @@ export default function DoshasPage() {
       {/* Related Modules */}
       <div>
         <h3 className="text-gold-gradient text-lg font-bold mb-3" style={headingFont}>
-          {((L.modulesTitle as Record<string, string>)[locale] ?? L.modulesTitle.en)}
+          {t('modulesTitle')}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[

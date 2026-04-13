@@ -20,7 +20,7 @@ const L = {
 };
 
 /* ── Retrograde frequency table ──────────────────────────────────── */
-const RETRO_TABLE: { planet: { en: string; hi: string }; frequency: { en: string; hi: string }; duration: { en: string; hi: string }; view: { en: string; hi: string }; color: string }[] = [
+const RETRO_TABLE: { planet: Record<string, string>; frequency: Record<string, string>; duration: Record<string, string>; view: Record<string, string>; color: string }[] = [
   { planet: { en: 'Mercury', hi: 'बुध' }, frequency: { en: '3-4x per year', hi: 'वर्ष में 3-4 बार' }, duration: { en: '~21 days', hi: '~21 दिन' }, view: { en: 'Communication internalized, deep processing', hi: 'संवाद आन्तरिक, गहन प्रसंस्करण' }, color: 'text-emerald-400' },
   { planet: { en: 'Venus', hi: 'शुक्र' }, frequency: { en: 'Every 18 months', hi: 'हर 18 माह' }, duration: { en: '~40 days', hi: '~40 दिन' }, view: { en: 'Relationship re-evaluation, inner beauty focus', hi: 'सम्बन्ध पुनर्मूल्यांकन, आन्तरिक सौन्दर्य' }, color: 'text-pink-400' },
   { planet: { en: 'Mars', hi: 'मंगल' }, frequency: { en: 'Every 26 months', hi: 'हर 26 माह' }, duration: { en: '~72 days', hi: '~72 दिन' }, view: { en: 'Action stalled then redirected, strategy over force', hi: 'कर्म अवरुद्ध फिर पुनर्निर्देशित, बल पर रणनीति' }, color: 'text-red-400' },
@@ -30,7 +30,7 @@ const RETRO_TABLE: { planet: { en: string; hi: string }; frequency: { en: string
 ];
 
 /* ── Natal retrograde effects ────────────────────────────────────── */
-const NATAL_EFFECTS: { planet: { en: string; hi: string }; icon: typeof MessageCircle; traits: { en: string; hi: string }; depth: { en: string; hi: string }; famous: { en: string; hi: string }; color: string }[] = [
+const NATAL_EFFECTS: { planet: Record<string, string>; icon: typeof MessageCircle; traits: Record<string, string>; depth: Record<string, string>; famous: Record<string, string>; color: string }[] = [
   { planet: { en: 'Mercury Retrograde (Natal)', hi: 'बुध वक्री (जन्म)' }, icon: MessageCircle, traits: { en: 'Deep thinker, may struggle with quick communication but excels at research, editing, and analysis. Learns by revisiting and revising.', hi: 'गहन विचारक, त्वरित संवाद में कठिनाई परन्तु अनुसन्धान, सम्पादन और विश्लेषण में निपुण। पुनरावलोकन से सीखता है।' }, depth: { en: 'The mind works in spirals, not lines. Ideas need multiple passes to crystallize. Writing improves dramatically with editing. Often bilingual or multilingual.', hi: 'मन सर्पिल गति से कार्य करता है, सीधी रेखा से नहीं। विचारों को क्रिस्टलीकरण के लिए बहु प्रयास चाहिए। सम्पादन से लेखन नाटकीय रूप से सुधरता है।' }, famous: { en: 'Einstein, Shakespeare, Nikola Tesla', hi: 'आइंस्टीन, शेक्सपियर, निकोला टेस्ला' }, color: 'text-emerald-400' },
   { planet: { en: 'Venus Retrograde (Natal)', hi: 'शुक्र वक्री (जन्म)' }, icon: Heart, traits: { en: 'Unconventional love life, may marry late or remarry. Deep appreciation for beauty but difficulty expressing affection openly. Artistic depth over surface charm.', hi: 'अपरम्परागत प्रेम जीवन, देर से विवाह या पुनर्विवाह सम्भव। सौन्दर्य की गहरी सराहना परन्तु स्नेह व्यक्त करने में कठिनाई।' }, depth: { en: 'Love is felt intensely but expressed awkwardly. Past-life relationship karma surfaces. Often drawn to art, music, or aesthetics as a profession. Values feel "different" from mainstream.', hi: 'प्रेम तीव्रता से अनुभव होता है परन्तु अजीब ढंग से व्यक्त। पूर्वजन्म सम्बन्ध कर्म उभरता है। कला, संगीत में आकर्षण।' }, famous: { en: 'Frida Kahlo, Kurt Cobain, Rumi', hi: 'फ्रीडा काहलो, कर्ट कोबेन, रूमी' }, color: 'text-pink-400' },
   { planet: { en: 'Mars Retrograde (Natal)', hi: 'मंगल वक्री (जन्म)' }, icon: Swords, traits: { en: 'Internalized anger, indirect action. Excels at strategy over brute force. May avoid confrontation. Energy comes in intense bursts rather than steady output.', hi: 'आन्तरिक क्रोध, अप्रत्यक्ष कार्य। बल पर रणनीति में श्रेष्ठ। टकराव से बचाव। ऊर्जा स्थिर नहीं, तीव्र विस्फोटों में।' }, depth: { en: 'The warrior fights with wit, not sword. Physical energy must be consciously channeled — gym, martial arts, competitive sports. Suppressed anger can cause health issues if not expressed.', hi: 'योद्धा बुद्धि से लड़ता है, तलवार से नहीं। शारीरिक ऊर्जा सचेत रूप से निर्देशित — व्यायाम, मार्शल आर्ट। दबा क्रोध स्वास्थ्य समस्या।' }, famous: { en: 'Mahatma Gandhi, Bruce Lee, Steve Jobs', hi: 'महात्मा गांधी, ब्रूस ली, स्टीव जॉब्स' }, color: 'text-red-400' },
@@ -39,7 +39,7 @@ const NATAL_EFFECTS: { planet: { en: string; hi: string }; icon: typeof MessageC
 ];
 
 /* ── Transit retrograde effects ──────────────────────────────────── */
-const TRANSIT_EFFECTS: { planet: { en: string; hi: string }; doList: { en: string; hi: string }; dontList: { en: string; hi: string }; color: string }[] = [
+const TRANSIT_EFFECTS: { planet: Record<string, string>; doList: Record<string, string>; dontList: Record<string, string>; color: string }[] = [
   { planet: { en: 'Mercury Retrograde Transit', hi: 'बुध वक्री गोचर' }, doList: { en: 'Revisit old plans, edit/revise documents, reconnect with old contacts, backup data, double-check communications', hi: 'पुरानी योजनाएं पुनरावलोकन, दस्तावेज सम्पादन, पुराने सम्पर्क, डेटा बैकअप, संचार दोबारा जांचें' }, dontList: { en: 'Sign major contracts, launch new products, buy electronics, start new communication projects', hi: 'बड़े अनुबन्ध, नए उत्पाद लॉन्च, इलेक्ट्रॉनिक्स खरीद, नई संचार परियोजनाएं' }, color: 'text-emerald-400' },
   { planet: { en: 'Venus Retrograde Transit', hi: 'शुक्र वक्री गोचर' }, doList: { en: 'Reassess relationships, reconnect with ex (carefully), revisit artistic projects, inner beauty work', hi: 'सम्बन्ध पुनर्मूल्यांकन, पूर्व साथी से सम्पर्क (सावधानी), कलात्मक परियोजना पुनरावलोकन' }, dontList: { en: 'Get married, major cosmetic procedures, expensive luxury purchases, start new relationships', hi: 'विवाह, बड़ी कॉस्मेटिक प्रक्रिया, महंगी विलासिता खरीद, नए सम्बन्ध' }, color: 'text-pink-400' },
   { planet: { en: 'Mars Retrograde Transit', hi: 'मंगल वक्री गोचर' }, doList: { en: 'Strategize, plan actions, exercise patience, redirect stalled projects, internal strength building', hi: 'रणनीति बनाएं, कार्य योजना, धैर्य, रुकी परियोजनाएं पुनर्निर्देशित, आन्तरिक शक्ति' }, dontList: { en: 'Start new ventures, initiate confrontations, surgery (if elective), risky physical activities', hi: 'नए उद्यम, टकराव, वैकल्पिक शल्यक्रिया, जोखिमपूर्ण शारीरिक गतिविधि' }, color: 'text-red-400' },
@@ -162,7 +162,7 @@ function RetrogradeOrbitalDiagram({ isHi }: { isHi: boolean }) {
 export default function RetrogradeEffectsPage() {
   const locale = useLocale() as Locale;
   const isHi = isDevanagariLocale(locale);
-  const t = (obj: { en: string; hi: string; sa?: string }) => isHi ? (locale === 'sa' && obj.sa ? obj.sa : obj.hi) : obj.en;
+  const t = (obj: Record<string, string>) => (obj[locale] || (isHi ? obj.hi : obj.en)) || obj.en;
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedNatal, setExpandedNatal] = useState<number | null>(null);
   const [expandedTransit, setExpandedTransit] = useState<number | null>(null);

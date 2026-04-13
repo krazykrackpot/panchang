@@ -6,21 +6,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Baby, Calculator, ChevronDown, Clock, Heart, Sparkles, Star, Target, Users } from 'lucide-react';
 import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-
-/* ── Trilingual labels ───────────────────────────────────────────── */
-const L = {
-  title: { en: 'Children Prediction Guide', hi: 'सन्तान भविष्यवाणी मार्गदर्शिका', sa: 'सन्तानभविष्यवाणी-मार्गदर्शिका' , ta: 'குழந்தை கணிப்பு வழிகாட்டி' },
-  subtitle: {
-    en: 'A complete framework for analyzing childbirth timing, fertility indicators, and children\'s nature through the 5th house, Jupiter, and D7 Saptamsha chart.',
-    hi: 'पञ्चम भाव, गुरु और D7 सप्तमांश कुण्डली से सन्तान प्राप्ति का समय, प्रजनन सूचक और सन्तान स्वभाव का विश्लेषण।',
-    sa: 'पञ्चमभावेन गुरुणा D7-सप्तमांशकुण्डल्या च सन्तानप्राप्तिकालस्य प्रजननसूचकानां सन्तानस्वभावस्य च विश्लेषणम्।'
-  },
-};
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/children.json';
 
 /* ── 5th house sign data ─────────────────────────────────────────── */
-const FIFTH_SIGN: { sign: { en: string; hi: string }; nature: { en: string; hi: string }; color: string }[] = [
+const FIFTH_SIGN: { sign: Record<string, string>; nature: Record<string, string>; color: string }[] = [
   { sign: { en: 'Aries', hi: 'मेष' }, nature: { en: 'Energetic, independent first child. Quick conception likely. Male tendency.', hi: 'ऊर्जावान, स्वतन्त्र प्रथम सन्तान। शीघ्र गर्भधारण। पुत्र प्रवृत्ति।' }, color: 'text-red-400' },
   { sign: { en: 'Taurus', hi: 'वृषभ' }, nature: { en: 'Beautiful, artistic children. Steady fertility. Female tendency.', hi: 'सुन्दर, कलात्मक सन्तान। स्थिर प्रजनन। कन्या प्रवृत्ति।' }, color: 'text-emerald-400' },
   { sign: { en: 'Gemini', hi: 'मिथुन' }, nature: { en: 'Intelligent, communicative. Dual sign = twins possibility. Multiple children.', hi: 'बुद्धिमान, वाचाल। द्वि-राशि = जुड़वां सम्भावना। बहु सन्तान।' }, color: 'text-yellow-300' },
@@ -36,7 +28,7 @@ const FIFTH_SIGN: { sign: { en: string; hi: string }; nature: { en: string; hi: 
 ];
 
 /* ── Challenge & remedy data ─────────────────────────────────────── */
-const CHALLENGES: { condition: { en: string; hi: string }; meaning: { en: string; hi: string }; remedy: { en: string; hi: string }; color: string }[] = [
+const CHALLENGES: { condition: Record<string, string>; meaning: Record<string, string>; remedy: Record<string, string>; color: string }[] = [
   { condition: { en: '5th lord in 6/8/12', hi: 'पञ्चमेश 6/8/12 में' }, meaning: { en: 'Difficulty in conception or childbirth complications. The 5th lord loses strength in dusthana houses.', hi: 'गर्भधारण कठिनाई या प्रसव जटिलता। पञ्चमेश दुःस्थान भावों में शक्ति खोता है।' }, remedy: { en: 'Jupiter strengthening: yellow sapphire, Thursday fasting, Dattatreya mantra, Santan Gopal puja', hi: 'गुरु बलवर्धन: पुखराज, गुरुवार व्रत, दत्तात्रेय मन्त्र, सन्तान गोपाल पूजा' }, color: 'border-amber-500/20' },
   { condition: { en: 'Rahu in 5th house', hi: 'राहु पञ्चम भाव में' }, meaning: { en: 'Unconventional path — IVF, adoption, surrogacy. NOT denial of children, but unusual circumstances.', hi: 'अपरम्परागत मार्ग — IVF, दत्तक, सरोगेसी। सन्तान निषेध नहीं, परन्तु असामान्य परिस्थिति।' }, remedy: { en: 'Rahu shanti, Naga puja, donate to orphanages, avoid intoxicants during conception period', hi: 'राहु शान्ति, नाग पूजा, अनाथालय दान, गर्भधारण काल में मादक पदार्थ वर्जित' }, color: 'border-cyan-500/20' },
   { condition: { en: 'Saturn in 5th house', hi: 'शनि पञ्चम भाव में' }, meaning: { en: 'Delayed children, not denied. Saturn matures at 36 — children often come after. Responsible, mature offspring.', hi: 'विलम्बित सन्तान, निषेध नहीं। शनि 36 वर्ष में परिपक्व — प्रायः उसके बाद सन्तान। जिम्मेदार सन्तान।' }, remedy: { en: 'Saturn shanti, Hanuman Chalisa, serve elderly, patience — Saturn rewards after its maturation age', hi: 'शनि शान्ति, हनुमान चालीसा, वृद्ध सेवा, धैर्य — शनि परिपक्वता आयु के बाद पुरस्कृत करता है' }, color: 'border-slate-500/20' },
@@ -95,9 +87,10 @@ function FifthHouseChart() {
 
 /* ── Main Page ───────────────────────────────────────────────────── */
 export default function ChildrenPredictionPage() {
-  const locale = useLocale() as Locale;
+  const locale = useLocale();
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
+  const tl = (obj: Record<string, string>) => lt(obj as LocaleText, locale);
   const isHi = isDevanagariLocale(locale);
-  const t = (obj: { en: string; hi: string; sa?: string }) => isHi ? (locale === 'sa' && obj.sa ? obj.sa : obj.hi) : obj.en;
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedSign, setExpandedSign] = useState<number | null>(null);
 
@@ -109,8 +102,8 @@ export default function ChildrenPredictionPage() {
           <Baby className="w-3.5 h-3.5" />
           {isHi ? 'सन्तान विश्लेषण' : 'Progeny Analysis'}
         </div>
-        <h1 className="text-3xl sm:text-4xl font-bold text-gold-gradient mb-4" style={hf}>{t(L.title)}</h1>
-        <p className="text-text-secondary text-sm leading-relaxed max-w-2xl mx-auto">{t(L.subtitle)}</p>
+        <h1 className="text-3xl sm:text-4xl font-bold text-gold-gradient mb-4" style={hf}>{t('title')}</h1>
+        <p className="text-text-secondary text-sm leading-relaxed max-w-2xl mx-auto">{t('subtitle')}</p>
       </motion.div>
 
       {/* SVG Chart */}
@@ -144,9 +137,9 @@ export default function ChildrenPredictionPage() {
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-gold-dark text-xs font-bold uppercase tracking-wider">{isHi ? `चरण ${s.step}` : `Step ${s.step}`}</span>
-                    <h3 className="text-gold-light font-bold text-sm" style={hf}>{t(s.title)}</h3>
+                    <h3 className="text-gold-light font-bold text-sm" style={hf}>{tl(s.title)}</h3>
                   </div>
-                  <p className="text-text-secondary text-sm leading-relaxed">{t(s.desc)}</p>
+                  <p className="text-text-secondary text-sm leading-relaxed">{tl(s.desc)}</p>
                 </div>
               </div>
             );
@@ -171,9 +164,9 @@ export default function ChildrenPredictionPage() {
               <div key={i} className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10">
                 <div className="flex items-center gap-2 mb-1">
                   <Icon className={`w-4 h-4 ${item.color}`} />
-                  <span className="text-gold-light font-bold text-sm" style={hf}>{t(item.trigger)}</span>
+                  <span className="text-gold-light font-bold text-sm" style={hf}>{tl(item.trigger)}</span>
                 </div>
-                <p className="text-text-secondary text-sm leading-relaxed ml-6">{t(item.effect)}</p>
+                <p className="text-text-secondary text-sm leading-relaxed ml-6">{tl(item.effect)}</p>
               </div>
             );
           })}
@@ -217,8 +210,8 @@ export default function ChildrenPredictionPage() {
               { indicator: { en: 'Multiple planets in 5th', hi: '5वें में बहु ग्रह' }, result: { en: 'Multiple children possibility. 5th lord in dual sign (Gemini/Sagittarius/Pisces/Virgo) = twins.', hi: 'बहु सन्तान सम्भावना। पञ्चमेश द्वि-राशि में = जुड़वां सम्भव।' }, positive: true },
             ].map((item, i) => (
               <div key={i} className={`p-3 rounded-xl border ${item.positive ? 'border-emerald-500/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]' : 'border-amber-500/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]'}`}>
-                <span className={`font-bold text-xs ${item.positive ? 'text-emerald-400' : 'text-amber-400'}`} style={hf}>{t(item.indicator)}</span>
-                <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{t(item.result)}</p>
+                <span className={`font-bold text-xs ${item.positive ? 'text-emerald-400' : 'text-amber-400'}`} style={hf}>{tl(item.indicator)}</span>
+                <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{tl(item.result)}</p>
               </div>
             ))}
           </div>
@@ -235,13 +228,13 @@ export default function ChildrenPredictionPage() {
             <button key={i} onClick={() => setExpandedSign(expandedSign === i ? null : i)}
               className="text-left p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 hover:border-gold-primary/20 transition-colors">
               <div className="flex items-center justify-between">
-                <span className={`font-bold text-sm ${s.color}`} style={hf}>{t(s.sign)}</span>
+                <span className={`font-bold text-sm ${s.color}`} style={hf}>{tl(s.sign)}</span>
                 <ChevronDown className={`w-3.5 h-3.5 text-gold-dark transition-transform ${expandedSign === i ? 'rotate-180' : ''}`} />
               </div>
               <AnimatePresence>
                 {expandedSign === i && (
                   <motion.p initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
-                    className="text-text-tertiary text-xs mt-2 leading-relaxed overflow-hidden">{t(s.nature)}</motion.p>
+                    className="text-text-tertiary text-xs mt-2 leading-relaxed overflow-hidden">{tl(s.nature)}</motion.p>
                 )}
               </AnimatePresence>
             </button>
@@ -259,11 +252,11 @@ export default function ChildrenPredictionPage() {
         <div className="space-y-4">
           {CHALLENGES.map((c, i) => (
             <div key={i} className={`p-4 rounded-xl border ${c.color} bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]`}>
-              <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{t(c.condition)}</h4>
-              <p className="text-text-secondary text-sm leading-relaxed mb-3">{t(c.meaning)}</p>
+              <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{tl(c.condition)}</h4>
+              <p className="text-text-secondary text-sm leading-relaxed mb-3">{tl(c.meaning)}</p>
               <div className="p-3 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
                 <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">{isHi ? 'उपाय' : 'Remedy'}</span>
-                <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{t(c.remedy)}</p>
+                <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{tl(c.remedy)}</p>
               </div>
             </div>
           ))}

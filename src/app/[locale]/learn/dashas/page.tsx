@@ -5,124 +5,14 @@ import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LJ from '@/messages/learn/dashas.json';
+import { getHeadingFont, getBodyFont, isIndicLocale } from '@/lib/utils/locale-fonts';
 
-const L = {
-  title: { en: 'Dashas — Planetary Periods', hi: 'दशा — ग्रह अवधियाँ', sa: 'दशाः — ग्रहकालखण्डाः' , ta: 'தசைகள் — கிரக காலங்கள்' },
-  subtitle: { en: 'The timing system that unfolds destiny through a 120-year planetary cycle', hi: '120 वर्षों की ग्रह चक्र से भाग्य को प्रकट करने वाली समय प्रणाली', sa: '120 वर्षाणां ग्रहचक्रेण भाग्यं प्रकटयतीति कालप्रणालिः' },
-  whatTitle: { en: 'What is a Dasha?', hi: 'दशा क्या है?', sa: 'दशा का?' },
-  whatContent: {
-    en: 'A Dasha is a planetary period — a span of time ruled by a specific Graha. The Vimshottari Dasha system ("Dasha of 120") is the most widely used timing system in Vedic astrology. It divides an entire lifetime into major periods (Maha Dasha), each governed by one of the nine Grahas. The sequence and starting point are determined by the Moon\'s Nakshatra at birth.',
-    hi: 'दशा एक ग्रह अवधि है — एक विशिष्ट ग्रह द्वारा शासित समय का अन्तराल। विंशोत्तरी दशा प्रणाली ("120 की दशा") वैदिक ज्योतिष में सबसे व्यापक रूप से प्रयुक्त समय प्रणाली है। यह सम्पूर्ण जीवनकाल को महादशाओं में विभाजित करती है।',
-    sa: 'दशा ग्रहकालखण्डः — विशिष्टग्रहेण शासितः कालान्तरः। विंशोत्तरीदशापद्धतिः वैदिकज्योतिषे सर्वाधिकप्रचलिता कालपद्धतिः।'
-  },
-  whatContent2: {
-    en: 'The concept is rooted in Parashari Jyotish: each planet "rules" certain years of your life, activating the houses it owns and occupies in your birth chart. During a planet\'s Dasha, that planet becomes the primary driver of events — its strength, placement, and associations colour everything from career to health to relationships.',
-    hi: 'यह अवधारणा पाराशरी ज्योतिष में निहित है: प्रत्येक ग्रह आपके जीवन के कुछ वर्षों पर "शासन" करता है, जन्म कुण्डली में उसके स्वामित्व और स्थिति वाले भावों को सक्रिय करता है। किसी ग्रह की दशा के दौरान, वह ग्रह घटनाओं का प्राथमिक चालक बन जाता है।',
-    sa: 'एषा अवधारणा पाराशरज्योतिषे निहिता — प्रत्येकः ग्रहः जीवनस्य कानिचित् वर्षाणि शासति, जन्मकुण्डल्यां स्वभावान् सक्रियान् करोति।'
-  },
-  vimshottariTitle: { en: 'The Vimshottari System — 120 Years', hi: 'विंशोत्तरी प्रणाली — 120 वर्ष', sa: 'विंशोत्तरीपद्धतिः — 120 वर्षाणि' },
-  vimshottariContent: {
-    en: 'The nine Maha Dashas follow a fixed sequence, each lasting a specific number of years. The total cycle spans 120 years. The sequence follows the Nakshatra lords in Vimshottari order: Ketu (7) → Venus (20) → Sun (6) → Moon (10) → Mars (7) → Rahu (18) → Jupiter (16) → Saturn (19) → Mercury (17).',
-    hi: 'नौ महादशाएँ एक निश्चित क्रम में आती हैं, प्रत्येक निर्धारित वर्षों तक चलती है। कुल चक्र 120 वर्ष का होता है। क्रम विंशोत्तरी क्रम में नक्षत्र स्वामियों का अनुसरण करता है।',
-    sa: 'नव महादशाः निश्चितक्रमेण आगच्छन्ति। सम्पूर्णचक्रं 120 वर्षाणि।'
-  },
-  vimshottariContent2: {
-    en: 'Why 120 years? Parashari texts define a full human lifespan as 120 years (Param Ayush). The number has mathematical elegance — it allows clean fractional division across 9 planets for sub-period calculations. The system is prescribed for all charts where the Moon is strong; when the Moon is weak (e.g., in the 6th/8th house or heavily afflicted), some astrologers prefer alternative systems.',
-    hi: '120 वर्ष क्यों? पाराशरी ग्रन्थ पूर्ण मानव आयु 120 वर्ष (परम आयुष) परिभाषित करते हैं। यह संख्या गणितीय रूप से सुन्दर है — 9 ग्रहों में उप-अवधि गणना के लिए स्वच्छ भिन्नात्मक विभाजन की अनुमति देती है।',
-    sa: 'किमर्थं 120 वर्षाणि? पाराशरग्रन्थाः पूर्णमानवायुः 120 वर्षाणि (परमायुषम्) परिभाषयन्ति।'
-  },
-  birthNakshatraTitle: { en: 'How Birth Nakshatra Determines Your Starting Dasha', hi: 'जन्म नक्षत्र आपकी प्रारम्भिक दशा कैसे निर्धारित करता है', sa: 'जन्मनक्षत्रं प्रारम्भिकदशां कथं निर्धारयति' },
-  birthNakshatraContent: {
-    en: 'Each of the 27 Nakshatras is ruled by one of the 9 Dasha planets. The 27 Nakshatras are divided into 3 groups of 9, and each group cycles through the same sequence: Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury. Your birth Nakshatra\'s ruler determines which Maha Dasha is running at birth.',
-    hi: '27 नक्षत्रों में से प्रत्येक 9 दशा ग्रहों में से एक द्वारा शासित है। 27 नक्षत्र 9 के 3 समूहों में विभाजित हैं, और प्रत्येक समूह उसी क्रम में चक्र करता है। आपके जन्म नक्षत्र का स्वामी निर्धारित करता है कि जन्म पर कौन सी महादशा चल रही है।',
-    sa: '27 नक्षत्राणां प्रत्येकं 9 दशाग्रहेषु एकेन शासितम्। 27 नक्षत्राणि 9 इति 3 समूहेषु विभज्यन्ते।'
-  },
-  calcTitle: { en: 'Calculating Dasha Balance at Birth', hi: 'जन्म पर दशा शेष की गणना', sa: 'जन्मसमये दशाशेषस्य गणना' },
-  calcContent: {
-    en: 'Your Dasha starting point depends on the Moon\'s exact position in its Nakshatra at birth. The Nakshatra lord determines which Dasha you\'re born into, and the Moon\'s progress through that Nakshatra determines how much of that Dasha remains.',
-    hi: 'आपकी दशा का प्रारम्भ बिन्दु जन्म के समय चन्द्र की नक्षत्र में सटीक स्थिति पर निर्भर करता है। नक्षत्र स्वामी यह निर्धारित करता है कि आप किस दशा में जन्मे हैं।',
-    sa: 'दशायाः प्रारम्भबिन्दुः जन्मसमये चन्द्रस्य नक्षत्रे सूक्ष्मस्थित्यां निर्भरम्।'
-  },
-  subTitle: { en: 'Sub-Periods: Antardasha, Pratyantardasha & Beyond', hi: 'उप-अवधियाँ: अन्तर्दशा, प्रत्यन्तरदशा और आगे', sa: 'उपकालखण्डाः: अन्तर्दशा, प्रत्यन्तरदशा च ततः परम्' },
-  subContent: {
-    en: 'Each Maha Dasha is subdivided into 9 Antardashas (sub-periods), which follow the same Vimshottari sequence starting from the Maha Dasha lord. Each Antardasha is further divided into 9 Pratyantardashas, and so on for even finer timing (Sookshma, Prana). Our software calculates down to the Antardasha level.',
-    hi: 'प्रत्येक महादशा 9 अन्तर्दशाओं में विभाजित होती है, जो महादशा स्वामी से प्रारम्भ होकर उसी विंशोत्तरी क्रम में आती हैं। प्रत्येक अन्तर्दशा 9 प्रत्यन्तरदशाओं में विभाजित होती है।',
-    sa: 'प्रत्येका महादशा 9 अन्तर्दशासु विभज्यते।'
-  },
-  subContent2: {
-    en: 'The hierarchy of precision: Maha Dasha (years) → Antardasha (months) → Pratyantardasha (weeks) → Sookshma Dasha (days) → Prana Dasha (hours). For most practical predictions, the Maha Dasha and Antardasha combination is sufficient. The Pratyantardasha is used for precise event timing — pinpointing the exact month or week when something manifests.',
-    hi: 'सटीकता का क्रम: महादशा (वर्ष) → अन्तर्दशा (माह) → प्रत्यन्तरदशा (सप्ताह) → सूक्ष्म दशा (दिन) → प्राण दशा (घण्टे)। अधिकांश व्यावहारिक भविष्यवाणियों के लिए महादशा और अन्तर्दशा का संयोजन पर्याप्त है।',
-    sa: 'सूक्ष्मतायाः क्रमः: महादशा (वर्षाणि) → अन्तर्दशा (मासाः) → प्रत्यन्तरदशा (सप्ताहाः) → सूक्ष्मदशा (दिनानि) → प्राणदशा (होराः)।'
-  },
-  otherTitle: { en: 'Other Dasha Systems', hi: 'अन्य दशा प्रणालियाँ', sa: 'अन्यदशापद्धतयः' },
-  otherContent: {
-    en: 'While Vimshottari is the most widely used, Jyotish texts describe over 40 dasha systems. Each has specific conditions when it is most appropriate:',
-    hi: 'विंशोत्तरी सबसे व्यापक रूप से प्रयुक्त है, लेकिन ज्योतिष ग्रन्थों में 40 से अधिक दशा प्रणालियाँ वर्णित हैं। प्रत्येक की विशिष्ट शर्तें हैं जब यह सर्वाधिक उपयुक्त होती है:',
-    sa: 'विंशोत्तरी सर्वाधिकप्रचलिता, परन्तु ज्योतिषग्रन्थेषु 40 अधिकदशापद्धतयः वर्णिताः।'
-  },
-  interpretTitle: { en: 'How to Interpret Dashas', hi: 'दशा की व्याख्या कैसे करें', sa: 'दशाव्याख्या कथं करणीया' },
-  interpretContent: {
-    en: 'A Dasha period activates the planet\'s significations based on its placement in your chart. The results depend on: (1) Which houses the Dasha lord owns, (2) Which house it occupies, (3) Which planets it\'s associated with or aspected by, (4) Its strength (exalted, debilitated, combust, etc.), and (5) The Antardasha lord\'s relationship to the Maha Dasha lord.',
-    hi: 'दशा काल ग्रह के संकेतों को उसकी कुण्डली में स्थिति के आधार पर सक्रिय करता है। परिणाम निर्भर करते हैं: (1) दशा स्वामी कौन से भाव का स्वामी है, (2) वह किस भाव में बैठा है, (3) कौन से ग्रह उससे सम्बन्धित हैं, (4) उसका बल, और (5) अन्तर्दशा स्वामी का महादशा स्वामी से सम्बन्ध।',
-    sa: 'दशाकालः ग्रहस्य सङ्केतान् सक्रियं करोति।'
-  },
-  workedExampleTitle: { en: 'Worked Example: Dasha Balance Calculation', hi: 'कार्यशील उदाहरण: दशा शेष गणना', sa: 'कार्यशीलोदाहरणम्: दशाशेषगणना' },
-  workedExampleContent: {
-    en: 'Let us walk through a complete example. Suppose someone is born with Moon at 14 degrees 30 minutes in Aries.',
-    hi: 'एक पूर्ण उदाहरण देखते हैं। मान लीजिये कोई मेष राशि में चन्द्र 14 अंश 30 कला पर जन्मा है।',
-    sa: 'एकं पूर्णोदाहरणं पश्यामः। कश्चित् मेषराशौ चन्द्रेण 14 अंशे 30 कलायां जातः।'
-  },
-  preferenceTitle: { en: 'When to Use Which Dasha System', hi: 'कौन सी दशा प्रणाली कब प्रयोग करें', sa: 'कदा कां दशापद्धतिं प्रयोजयेत्' },
-  modulesTitle: { en: 'Related Lesson Modules', hi: 'सम्बन्धित पाठ मॉड्यूल', sa: 'सम्बद्धपाठखण्डाः' },
-  tryIt: { en: 'See Your Dasha Periods in Kundali', hi: 'अपनी दशा अवधियाँ कुण्डली में देखें', sa: 'स्वदशाकालखण्डान् कुण्डल्यां पश्यतु' },
+const t_ = LJ as unknown as Record<string, LocaleText>;
 
-  findYourTitle: { en: 'Finding Your Current Dasha', hi: 'अपनी वर्तमान दशा खोजना', sa: 'स्ववर्तमानदशां ज्ञातुम्' },
-  findYourContent: {
-    en: 'To find your current Dasha, generate your Kundali on this site and navigate to the Dashas tab. The system automatically calculates your complete Vimshottari Dasha timeline from birth based on your Moon\'s Nakshatra position. The currently active Maha Dasha is highlighted, along with the running Antardasha within it. You can see past periods and future ones stretching across your entire 120-year cycle.',
-    hi: 'अपनी वर्तमान दशा जानने के लिए इस साइट पर कुण्डली बनाएँ और दशा टैब पर जाएँ। प्रणाली स्वचालित रूप से आपके चन्द्र नक्षत्र की स्थिति से जन्म से पूर्ण विंशोत्तरी दशा समयरेखा गणना करती है। वर्तमान सक्रिय महादशा और उसमें चल रही अन्तर्दशा हाइलाइट की जाती है।',
-    sa: 'स्ववर्तमानदशां ज्ञातुं अत्र कुण्डलीं जनयतु दशापत्रं च गच्छतु। पद्धतिः स्वयमेव चन्द्रनक्षत्रस्थित्या जन्मतः पूर्णां विंशोत्तरीदशासमयरेखां गणयति।'
-  },
-  findYourContent2: {
-    en: 'Pay attention to the transition dates between Maha Dashas and between Antardashas — these are the periods of maximum change and adjustment. If you are near a Dasha transition (within 6-12 months), the themes of both the outgoing and incoming Dasha lord will be active simultaneously, creating a blended period.',
-    hi: 'महादशाओं और अन्तर्दशाओं के बीच संक्रमण तिथियों पर ध्यान दें — ये अधिकतम परिवर्तन और समायोजन की अवधियाँ हैं। यदि आप दशा संक्रमण के निकट (6-12 माह के भीतर) हैं, तो जाने वाली और आने वाली दशा दोनों के स्वामी के विषय एक साथ सक्रिय होंगे।',
-    sa: 'महादशान्तर्दशानां मध्ये सङ्क्रमणतिथिषु अवधानं ददातु — एते अधिकतमपरिवर्तनस्य कालाः।'
-  },
 
-  antardashaCalcTitle: { en: 'Antardasha Calculation — A Worked Example', hi: 'अन्तर्दशा गणना — एक कार्यशील उदाहरण', sa: 'अन्तर्दशागणना — कार्यशीलोदाहरणम्' },
-  antardashaCalcContent: {
-    en: 'Each Maha Dasha is divided into 9 Antardashas proportional to each planet\'s total Dasha years. The formula is: Antardasha duration = (Maha Dasha years x Antardasha planet years) / 120. The sequence starts with the Maha Dasha lord\'s own Antardasha, then follows the Vimshottari order.',
-    hi: 'प्रत्येक महादशा 9 अन्तर्दशाओं में विभाजित होती है जो प्रत्येक ग्रह के कुल दशा वर्षों के अनुपात में होती हैं। सूत्र: अन्तर्दशा अवधि = (महादशा वर्ष x अन्तर्दशा ग्रह वर्ष) / 120। क्रम महादशा स्वामी की अपनी अन्तर्दशा से शुरू होता है।',
-    sa: 'प्रत्येका महादशा 9 अन्तर्दशासु विभज्यते। सूत्रम्: अन्तर्दशाकालः = (महादशावर्षाणि x अन्तर्दशाग्रहवर्षाणि) / 120।'
-  },
-
-  mahadashaThemesTitle: { en: 'Life Themes During Each Maha Dasha', hi: 'प्रत्येक महादशा के जीवन विषय', sa: 'प्रत्येकमहादशायाः जीवनविषयाः' },
-  mahadashaThemesContent: {
-    en: 'Each Maha Dasha lord activates its core significations. The actual results depend on the planet\'s chart placement, but these are the universal themes each planet tends to emphasize during its rule:',
-    hi: 'प्रत्येक महादशा स्वामी अपने मूल संकेतों को सक्रिय करता है। वास्तविक परिणाम ग्रह की कुण्डली स्थिति पर निर्भर हैं, लेकिन ये सार्वभौमिक विषय हैं जो प्रत्येक ग्रह अपने शासनकाल में प्रभावित करता है:',
-    sa: 'प्रत्येकमहादशास्वामी स्वमूलसङ्केतान् सक्रियान् करोति।'
-  },
-
-  sandhiTitle: { en: 'Dasha Sandhi — The Turbulent Transition Zone', hi: 'दशा सन्धि — अशान्त संक्रमण क्षेत्र', sa: 'दशासन्धिः — अशान्तसङ्क्रमणक्षेत्रम्' },
-  sandhiContent: {
-    en: 'Dasha Sandhi (junction) is the transition period between two Maha Dashas — typically the last few months of the outgoing Dasha and the first few months of the incoming one. This period is often turbulent because the native is simultaneously experiencing the winding down of one planetary energy and the activation of a completely different one. The contrast can be disorienting.',
-    hi: 'दशा सन्धि दो महादशाओं के बीच का संक्रमण काल है — सामान्यतः जाने वाली दशा के अन्तिम कुछ माह और आने वाली के पहले कुछ माह। यह काल अक्सर अशान्त होता है क्योंकि व्यक्ति एक साथ एक ग्रह ऊर्जा के समापन और दूसरी के आरम्भ का अनुभव करता है।',
-    sa: 'दशासन्धिः द्वयोः महादशयोः मध्ये सङ्क्रमणकालः — गच्छत्याः दशायाः अन्तिमाः मासाः आगच्छन्त्याश्च प्रथमाः मासाः। एषः कालः प्रायः अशान्तः।'
-  },
-  sandhiContent2: {
-    en: 'The degree of turbulence depends on how different the two Dasha lords are. A transition from Jupiter to Saturn (wisdom to discipline) or from Venus to Sun (luxury to authority) creates more friction than Jupiter to Mercury (both intellectual planets). During Sandhi, avoid major life decisions if possible — let the new energy settle before committing to irreversible choices.',
-    hi: 'अशान्ति की मात्रा इस पर निर्भर करती है कि दोनों दशा स्वामी कितने भिन्न हैं। गुरु से शनि (ज्ञान से अनुशासन) या शुक्र से सूर्य (विलास से अधिकार) का संक्रमण गुरु से बुध (दोनों बौद्धिक) की तुलना में अधिक घर्षण पैदा करता है। सन्धि काल में यदि सम्भव हो तो बड़े जीवन निर्णय टालें।',
-    sa: 'अशान्तेः मात्रा दशास्वामिनोः भिन्नतायां निर्भरा। सन्धिकाले यदि शक्यं प्रमुखजीवननिर्णयान् परिहरेत्।'
-  },
-
-  eventTimingTitle: { en: 'Event Timing — Which Dasha Brings What', hi: 'घटना समय — कौन सी दशा क्या लाती है', sa: 'घटनाकालनिर्धारणम् — का दशा किं आनयति' },
-  eventTimingContent: {
-    en: 'Certain life events are strongly correlated with specific Dasha periods. While the exact outcome depends on the chart, experienced astrologers look for these classical combinations when timing events:',
-    hi: 'कुछ जीवन घटनाएँ विशिष्ट दशा अवधियों से दृढ़ता से सम्बन्धित हैं। सटीक परिणाम कुण्डली पर निर्भर है, लेकिन अनुभवी ज्योतिषी घटनाओं का समय निर्धारण करते समय इन शास्त्रीय संयोजनों को देखते हैं:',
-    sa: 'कानिचित् जीवनघटनानि विशिष्टदशाकालखण्डैः दृढं सम्बद्धानि। अनुभवीज्योतिषिणः एतानि शास्त्रीयसंयोजनानि पश्यन्ति:'
-  },
-};
 
 const DASHA_PERIODS = [
   { planet: 'Ketu', planetHi: 'केतु', planetSa: 'केतुः', years: 7, color: '#9ca3af', nakshatras: 'Ashwini, Magha, Moola', nakshatrasHi: 'अश्विनी, मघा, मूल' },
@@ -201,8 +91,11 @@ const EVENT_TIMING = [
 ];
 
 export default function LearnDashasPage() {
-  const locale = useLocale() as Locale;
-  const isHi = isDevanagariLocale(locale);
+  const t = (key: string) => lt(t_[key], locale);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const tObj = (obj: any) => (obj as Record<string, string>)[locale] || obj?.en || '';
+  const locale = useLocale();
+  const isHi = isIndicLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -210,9 +103,9 @@ export default function LearnDashasPage() {
     <div>
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>
-          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
+          {t('title')}
         </h2>
-        <p className="text-text-secondary" style={bodyFont}>{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
+        <p className="text-text-secondary" style={bodyFont}>{t('subtitle')}</p>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
@@ -224,15 +117,15 @@ export default function LearnDashasPage() {
       </div>
 
       {/* Section 1: What is a Dasha */}
-      <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}>
-        <p style={bodyFont}>{((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}</p>
-        <p className="mt-3" style={bodyFont}>{((L.whatContent2 as Record<string, string>)[locale] ?? L.whatContent2.en)}</p>
+      <LessonSection number={1} title={t('whatTitle')}>
+        <p style={bodyFont}>{t('whatContent')}</p>
+        <p className="mt-3" style={bodyFont}>{t('whatContent2')}</p>
       </LessonSection>
 
       {/* Section 2: Vimshottari System */}
-      <LessonSection number={2} title={((L.vimshottariTitle as Record<string, string>)[locale] ?? L.vimshottariTitle.en)}>
-        <p style={bodyFont}>{((L.vimshottariContent as Record<string, string>)[locale] ?? L.vimshottariContent.en)}</p>
-        <p className="mt-3" style={bodyFont}>{((L.vimshottariContent2 as Record<string, string>)[locale] ?? L.vimshottariContent2.en)}</p>
+      <LessonSection number={2} title={t('vimshottariTitle')}>
+        <p style={bodyFont}>{t('vimshottariContent')}</p>
+        <p className="mt-3" style={bodyFont}>{t('vimshottariContent2')}</p>
 
         {/* Dasha periods visual bar chart */}
         <div className="mt-6 space-y-2">
@@ -246,7 +139,7 @@ export default function LearnDashasPage() {
               className="flex items-center gap-3"
             >
               <div className="w-20 text-right text-sm font-semibold" style={{ color: d.color }}>
-                {!isDevanagariLocale(locale) ? d.planet : d.planetHi}
+                {!isIndicLocale(locale) ? d.planet : d.planetHi}
               </div>
               <div
                 className="h-8 rounded-md flex items-center px-3 text-xs font-mono text-white/80"
@@ -257,7 +150,7 @@ export default function LearnDashasPage() {
                   border: `1px solid ${d.color}55`,
                 }}
               >
-                {d.years} {!isDevanagariLocale(locale) ? 'yrs' : 'वर्ष'}
+                {d.years} {!isIndicLocale(locale) ? 'yrs' : 'वर्ष'}
               </div>
               <div className="text-text-secondary/75 text-xs hidden sm:block">
                 {isHi ? d.nakshatrasHi : d.nakshatras}
@@ -265,24 +158,24 @@ export default function LearnDashasPage() {
             </motion.div>
           ))}
           <div className="mt-2 text-center text-text-secondary/70 text-xs font-mono">
-            Total: 7+20+6+10+7+18+16+19+17 = 120 {!isDevanagariLocale(locale) ? 'years' : 'वर्ष'}
+            Total: 7+20+6+10+7+18+16+19+17 = 120 {!isIndicLocale(locale) ? 'years' : 'वर्ष'}
           </div>
         </div>
       </LessonSection>
 
       {/* Section 3: Full reference table */}
-      <LessonSection number={3} title={((L.birthNakshatraTitle as Record<string, string>)[locale] ?? L.birthNakshatraTitle.en)}>
-        <p style={bodyFont}>{((L.birthNakshatraContent as Record<string, string>)[locale] ?? L.birthNakshatraContent.en)}</p>
+      <LessonSection number={3} title={t('birthNakshatraTitle')}>
+        <p style={bodyFont}>{t('birthNakshatraContent')}</p>
 
         <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/10">
-                <th className="text-left py-2 px-2 text-gold-dark">{!isDevanagariLocale(locale) ? 'Planet' : 'ग्रह'}</th>
-                <th className="text-left py-2 px-2 text-gold-dark">{!isDevanagariLocale(locale) ? 'Years' : 'वर्ष'}</th>
-                <th className="text-left py-2 px-2 text-gold-dark">{!isDevanagariLocale(locale) ? 'Ruling Nakshatras (1-9)' : 'शासित नक्षत्र (1-9)'}</th>
-                <th className="text-left py-2 px-2 text-gold-dark">{!isDevanagariLocale(locale) ? '(10-18)' : '(10-18)'}</th>
-                <th className="text-left py-2 px-2 text-gold-dark">{!isDevanagariLocale(locale) ? '(19-27)' : '(19-27)'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{!isIndicLocale(locale) ? 'Planet' : 'ग्रह'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{!isIndicLocale(locale) ? 'Years' : 'वर्ष'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{!isIndicLocale(locale) ? 'Ruling Nakshatras (1-9)' : 'शासित नक्षत्र (1-9)'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{!isIndicLocale(locale) ? '(10-18)' : '(10-18)'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{!isIndicLocale(locale) ? '(19-27)' : '(19-27)'}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gold-primary/5">
@@ -291,7 +184,7 @@ export default function LearnDashasPage() {
                 return (
                   <tr key={d.planet} className="hover:bg-gold-primary/3">
                     <td className="py-2 px-2 font-medium" style={{ color: d.color }}>
-                      {!isDevanagariLocale(locale) ? d.planet : d.planetHi}
+                      {!isIndicLocale(locale) ? d.planet : d.planetHi}
                     </td>
                     <td className="py-2 px-2 text-text-secondary font-mono">{d.years}</td>
                     <td className="py-2 px-2 text-text-secondary">{naks[0]}</td>
@@ -306,48 +199,48 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 4: Calculating Dasha Balance */}
-      <LessonSection number={4} title={((L.calcTitle as Record<string, string>)[locale] ?? L.calcTitle.en)}>
-        <p style={bodyFont}>{((L.calcContent as Record<string, string>)[locale] ?? L.calcContent.en)}</p>
+      <LessonSection number={4} title={t('calcTitle')}>
+        <p style={bodyFont}>{t('calcContent')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {!isDevanagariLocale(locale) ? 'Step-by-Step Calculation:' : 'चरणबद्ध गणना:'}
+            {!isIndicLocale(locale) ? 'Step-by-Step Calculation:' : 'चरणबद्ध गणना:'}
           </p>
-          <p className="text-gold-light/80 font-mono text-xs">1. {!isDevanagariLocale(locale) ? 'Find Moon\'s Nakshatra at birth (e.g., Pushya)' : 'जन्म के समय चन्द्र का नक्षत्र ज्ञात करें (जैसे, पुष्य)'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">2. {!isDevanagariLocale(locale) ? 'Nakshatra lord = Dasha lord at birth (Pushya lord = Saturn)' : 'नक्षत्र स्वामी = जन्म पर दशा स्वामी (पुष्य स्वामी = शनि)'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">3. {!isDevanagariLocale(locale) ? 'Moon\'s progress through Nakshatra = elapsed portion of Dasha' : 'नक्षत्र में चन्द्र की प्रगति = दशा का बीता हुआ भाग'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">1. {!isIndicLocale(locale) ? 'Find Moon\'s Nakshatra at birth (e.g., Pushya)' : 'जन्म के समय चन्द्र का नक्षत्र ज्ञात करें (जैसे, पुष्य)'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">2. {!isIndicLocale(locale) ? 'Nakshatra lord = Dasha lord at birth (Pushya lord = Saturn)' : 'नक्षत्र स्वामी = जन्म पर दशा स्वामी (पुष्य स्वामी = शनि)'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">3. {!isIndicLocale(locale) ? 'Moon\'s progress through Nakshatra = elapsed portion of Dasha' : 'नक्षत्र में चन्द्र की प्रगति = दशा का बीता हुआ भाग'}</p>
           <p className="text-gold-light/80 font-mono text-xs mt-2">
-            {!isDevanagariLocale(locale) ? 'Example: Moon at 10° in Pushya (3°20\' to 16°40\')' : 'उदाहरण: पुष्य में चन्द्र 10° पर (3°20\' से 16°40\')'}
+            {!isIndicLocale(locale) ? 'Example: Moon at 10° in Pushya (3°20\' to 16°40\')' : 'उदाहरण: पुष्य में चन्द्र 10° पर (3°20\' से 16°40\')'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
-            {!isDevanagariLocale(locale) ? 'Progress = (10° - 3.333°) / 13.333° = 50%' : 'प्रगति = (10° - 3.333°) / 13.333° = 50%'}
+            {!isIndicLocale(locale) ? 'Progress = (10° - 3.333°) / 13.333° = 50%' : 'प्रगति = (10° - 3.333°) / 13.333° = 50%'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
-            {!isDevanagariLocale(locale) ? 'Remaining Saturn Dasha = 19 × (1 - 0.50) = 9.5 years' : 'शेष शनि दशा = 19 × (1 - 0.50) = 9.5 वर्ष'}
+            {!isIndicLocale(locale) ? 'Remaining Saturn Dasha = 19 × (1 - 0.50) = 9.5 years' : 'शेष शनि दशा = 19 × (1 - 0.50) = 9.5 वर्ष'}
           </p>
         </div>
       </LessonSection>
 
       {/* Section 5: Worked example */}
-      <LessonSection number={5} title={((L.workedExampleTitle as Record<string, string>)[locale] ?? L.workedExampleTitle.en)}>
-        <p style={bodyFont}>{((L.workedExampleContent as Record<string, string>)[locale] ?? L.workedExampleContent.en)}</p>
+      <LessonSection number={5} title={t('workedExampleTitle')}>
+        <p style={bodyFont}>{t('workedExampleContent')}</p>
         <div className="mt-4 space-y-3">
           <div className="p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
             <p className="text-gold-light font-mono text-sm mb-3">
-              {!isDevanagariLocale(locale) ? 'Given: Moon at 14°30\' Aries (Mesha)' : 'दिया गया: मेष में चन्द्र 14°30\' पर'}
+              {!isIndicLocale(locale) ? 'Given: Moon at 14°30\' Aries (Mesha)' : 'दिया गया: मेष में चन्द्र 14°30\' पर'}
             </p>
             <div className="space-y-1.5 text-gold-light/80 font-mono text-xs">
-              <p>{!isDevanagariLocale(locale) ? 'Step 1: Identify Nakshatra' : 'चरण 1: नक्षत्र पहचानें'}</p>
-              <p className="pl-4">{!isDevanagariLocale(locale) ? '14°30\' Aries falls in Bharani (13°20\' - 26°40\' Aries)' : '14°30\' मेष भरणी में आता है (13°20\' - 26°40\' मेष)'}</p>
-              <p className="mt-2">{!isDevanagariLocale(locale) ? 'Step 2: Nakshatra lord' : 'चरण 2: नक्षत्र स्वामी'}</p>
-              <p className="pl-4">{!isDevanagariLocale(locale) ? 'Bharani lord = Venus → Birth Dasha = Venus Maha Dasha' : 'भरणी स्वामी = शुक्र → जन्म दशा = शुक्र महादशा'}</p>
-              <p className="mt-2">{!isDevanagariLocale(locale) ? 'Step 3: Calculate progress through Nakshatra' : 'चरण 3: नक्षत्र में प्रगति गणना'}</p>
-              <p className="pl-4">{!isDevanagariLocale(locale) ? 'Moon position within Bharani = 14°30\' - 13°20\' = 1°10\' = 1.167°' : 'भरणी में चन्द्र स्थिति = 14°30\' - 13°20\' = 1°10\' = 1.167°'}</p>
-              <p className="pl-4">{!isDevanagariLocale(locale) ? 'Nakshatra span = 13°20\' = 13.333°' : 'नक्षत्र विस्तार = 13°20\' = 13.333°'}</p>
-              <p className="pl-4">{!isDevanagariLocale(locale) ? 'Progress = 1.167 / 13.333 = 8.75% elapsed' : 'प्रगति = 1.167 / 13.333 = 8.75% बीता'}</p>
-              <p className="mt-2">{!isDevanagariLocale(locale) ? 'Step 4: Calculate remaining Dasha' : 'चरण 4: शेष दशा गणना'}</p>
-              <p className="pl-4">{!isDevanagariLocale(locale) ? 'Venus total = 20 years' : 'शुक्र कुल = 20 वर्ष'}</p>
-              <p className="pl-4">{!isDevanagariLocale(locale) ? 'Remaining = 20 × (1 - 0.0875) = 18.25 years = 18 years 3 months' : 'शेष = 20 × (1 - 0.0875) = 18.25 वर्ष = 18 वर्ष 3 माह'}</p>
-              <p className="mt-2">{!isDevanagariLocale(locale) ? 'Step 5: Sequence after Venus' : 'चरण 5: शुक्र के बाद का क्रम'}</p>
+              <p>{!isIndicLocale(locale) ? 'Step 1: Identify Nakshatra' : 'चरण 1: नक्षत्र पहचानें'}</p>
+              <p className="pl-4">{!isIndicLocale(locale) ? '14°30\' Aries falls in Bharani (13°20\' - 26°40\' Aries)' : '14°30\' मेष भरणी में आता है (13°20\' - 26°40\' मेष)'}</p>
+              <p className="mt-2">{!isIndicLocale(locale) ? 'Step 2: Nakshatra lord' : 'चरण 2: नक्षत्र स्वामी'}</p>
+              <p className="pl-4">{!isIndicLocale(locale) ? 'Bharani lord = Venus → Birth Dasha = Venus Maha Dasha' : 'भरणी स्वामी = शुक्र → जन्म दशा = शुक्र महादशा'}</p>
+              <p className="mt-2">{!isIndicLocale(locale) ? 'Step 3: Calculate progress through Nakshatra' : 'चरण 3: नक्षत्र में प्रगति गणना'}</p>
+              <p className="pl-4">{!isIndicLocale(locale) ? 'Moon position within Bharani = 14°30\' - 13°20\' = 1°10\' = 1.167°' : 'भरणी में चन्द्र स्थिति = 14°30\' - 13°20\' = 1°10\' = 1.167°'}</p>
+              <p className="pl-4">{!isIndicLocale(locale) ? 'Nakshatra span = 13°20\' = 13.333°' : 'नक्षत्र विस्तार = 13°20\' = 13.333°'}</p>
+              <p className="pl-4">{!isIndicLocale(locale) ? 'Progress = 1.167 / 13.333 = 8.75% elapsed' : 'प्रगति = 1.167 / 13.333 = 8.75% बीता'}</p>
+              <p className="mt-2">{!isIndicLocale(locale) ? 'Step 4: Calculate remaining Dasha' : 'चरण 4: शेष दशा गणना'}</p>
+              <p className="pl-4">{!isIndicLocale(locale) ? 'Venus total = 20 years' : 'शुक्र कुल = 20 वर्ष'}</p>
+              <p className="pl-4">{!isIndicLocale(locale) ? 'Remaining = 20 × (1 - 0.0875) = 18.25 years = 18 years 3 months' : 'शेष = 20 × (1 - 0.0875) = 18.25 वर्ष = 18 वर्ष 3 माह'}</p>
+              <p className="mt-2">{!isIndicLocale(locale) ? 'Step 5: Sequence after Venus' : 'चरण 5: शुक्र के बाद का क्रम'}</p>
               <p className="pl-4 text-gold-light/60">{locale === 'en'
                 ? 'Venus (18y 3m remaining) → Sun (6y) → Moon (10y) → Mars (7y) → Rahu (18y) → Jupiter (16y) → Saturn (19y) → Mercury (17y) → Ketu (7y)'
                 : 'शुक्र (18 वर्ष 3 माह शेष) → सूर्य (6) → चन्द्र (10) → मंगल (7) → राहु (18) → गुरु (16) → शनि (19) → बुध (17) → केतु (7)'}</p>
@@ -357,12 +250,12 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 6: Sub-periods hierarchy */}
-      <LessonSection number={6} title={((L.subTitle as Record<string, string>)[locale] ?? L.subTitle.en)}>
-        <p style={bodyFont}>{((L.subContent as Record<string, string>)[locale] ?? L.subContent.en)}</p>
-        <p className="mt-3" style={bodyFont}>{((L.subContent2 as Record<string, string>)[locale] ?? L.subContent2.en)}</p>
+      <LessonSection number={6} title={t('subTitle')}>
+        <p style={bodyFont}>{t('subContent')}</p>
+        <p className="mt-3" style={bodyFont}>{t('subContent2')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {!isDevanagariLocale(locale) ? 'Antardasha Duration Formula:' : 'अन्तर्दशा अवधि सूत्र:'}
+            {!isIndicLocale(locale) ? 'Antardasha Duration Formula:' : 'अन्तर्दशा अवधि सूत्र:'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
             Antardasha of B in Maha Dasha of A = (Years_A x Years_B) / 120
@@ -400,8 +293,8 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 7: Other Dasha Systems */}
-      <LessonSection number={7} title={((L.otherTitle as Record<string, string>)[locale] ?? L.otherTitle.en)}>
-        <p style={bodyFont}>{((L.otherContent as Record<string, string>)[locale] ?? L.otherContent.en)}</p>
+      <LessonSection number={7} title={t('otherTitle')}>
+        <p style={bodyFont}>{t('otherContent')}</p>
         <div className="mt-4 space-y-3">
           {OTHER_DASHA_SYSTEMS.map((sys, i) => (
             <motion.div
@@ -413,12 +306,12 @@ export default function LearnDashasPage() {
               className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4"
             >
               <div className="flex items-center gap-3 mb-2">
-                <span className="text-gold-light font-bold text-sm" style={headingFont}>{sys.name[locale]}</span>
-                <span className="text-text-tertiary text-xs font-mono">{sys.cycle} / {sys.planets} {!isDevanagariLocale(locale) ? 'planets' : 'ग्रह'}</span>
+                <span className="text-gold-light font-bold text-sm" style={headingFont}>{tObj(sys.name)}</span>
+                <span className="text-text-tertiary text-xs font-mono">{sys.cycle} / {sys.planets} {!isIndicLocale(locale) ? 'planets' : 'ग्रह'}</span>
               </div>
-              <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{sys.desc[locale]}</p>
+              <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{tObj(sys.desc)}</p>
               <div className="mt-2 text-xs text-emerald-400/80 font-mono">
-                {!isDevanagariLocale(locale) ? 'Best used when: ' : 'सर्वोत्तम उपयोग: '}{sys.when[locale]}
+                {!isIndicLocale(locale) ? 'Best used when: ' : 'सर्वोत्तम उपयोग: '}{tObj(sys.when)}
               </div>
             </motion.div>
           ))}
@@ -426,8 +319,8 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 8: Interpretation */}
-      <LessonSection number={8} title={((L.interpretTitle as Record<string, string>)[locale] ?? L.interpretTitle.en)} variant="highlight">
-        <p style={bodyFont}>{((L.interpretContent as Record<string, string>)[locale] ?? L.interpretContent.en)}</p>
+      <LessonSection number={8} title={t('interpretTitle')} variant="highlight">
+        <p style={bodyFont}>{t('interpretContent')}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
             { label: { en: 'Benefic Dasha Lord in Kendra/Trikona', hi: 'शुभ दशा स्वामी केन्द्र/त्रिकोण में', sa: 'शुभदशास्वामी केन्द्रे/त्रिकोणे' }, result: { en: 'Prosperity, success, good health', hi: 'समृद्धि, सफलता, अच्छा स्वास्थ्य', sa: 'समृद्धिः, सफलता, सुस्वास्थ्यम्' }, color: 'emerald' },
@@ -445,8 +338,8 @@ export default function LearnDashasPage() {
             const cls = colorClasses[item.color] || colorClasses.amber;
             return (
             <div key={item.label.en} className={`rounded-lg p-3 border ${cls.split(' ').slice(0, 2).join(' ')}`}>
-              <div className={`${cls.split(' ')[2]} text-sm font-semibold mb-1`} style={headingFont}>{item.label[locale]}</div>
-              <div className="text-text-secondary text-xs" style={bodyFont}>{item.result[locale]}</div>
+              <div className={`${cls.split(' ')[2]} text-sm font-semibold mb-1`} style={headingFont}>{tObj(item.label)}</div>
+              <div className="text-text-secondary text-xs" style={bodyFont}>{tObj(item.result)}</div>
             </div>
             );
           })}
@@ -454,7 +347,7 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 9: When to use which system */}
-      <LessonSection number={9} title={((L.preferenceTitle as Record<string, string>)[locale] ?? L.preferenceTitle.en)}>
+      <LessonSection number={9} title={t('preferenceTitle')}>
         <div className="space-y-3">
           {[
             { system: { en: 'Vimshottari', hi: 'विंशोत्तरी' }, condition: { en: 'Default system for all charts. Use unless specific conditions warrant another system. Works best when Moon is strong and well-placed.', hi: 'सभी कुण्डलियों के लिए डिफ़ॉल्ट प्रणाली। जब तक विशिष्ट शर्तें न हों तब तक इसका प्रयोग करें।' }, color: '#f0d48a' },
@@ -475,42 +368,42 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 10: Finding Your Current Dasha */}
-      <LessonSection number={10} title={((L.findYourTitle as Record<string, string>)[locale] ?? L.findYourTitle.en)}>
-        <p style={bodyFont}>{((L.findYourContent as Record<string, string>)[locale] ?? L.findYourContent.en)}</p>
-        <p className="mt-3" style={bodyFont}>{((L.findYourContent2 as Record<string, string>)[locale] ?? L.findYourContent2.en)}</p>
+      <LessonSection number={10} title={t('findYourTitle')}>
+        <p style={bodyFont}>{t('findYourContent')}</p>
+        <p className="mt-3" style={bodyFont}>{t('findYourContent2')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {!isDevanagariLocale(locale) ? 'How to find it:' : 'कैसे खोजें:'}
+            {!isIndicLocale(locale) ? 'How to find it:' : 'कैसे खोजें:'}
           </p>
           <div className="space-y-1 text-gold-light/80 font-mono text-xs">
-            <p>1. {!isDevanagariLocale(locale) ? 'Go to /kundali and enter your birth details' : '/kundali पर जाएँ और जन्म विवरण दर्ज करें'}</p>
-            <p>2. {!isDevanagariLocale(locale) ? 'Click on the "Dashas" tab in the results' : 'परिणामों में "दशा" टैब पर क्लिक करें'}</p>
-            <p>3. {!isDevanagariLocale(locale) ? 'The highlighted row is your current Maha Dasha' : 'हाइलाइट पंक्ति आपकी वर्तमान महादशा है'}</p>
-            <p>4. {!isDevanagariLocale(locale) ? 'Expand it to see Antardashas — the highlighted sub-row is your current Antardasha' : 'इसे विस्तार करें अन्तर्दशाएँ देखने के लिए — हाइलाइट उप-पंक्ति आपकी वर्तमान अन्तर्दशा है'}</p>
+            <p>1. {!isIndicLocale(locale) ? 'Go to /kundali and enter your birth details' : '/kundali पर जाएँ और जन्म विवरण दर्ज करें'}</p>
+            <p>2. {!isIndicLocale(locale) ? 'Click on the "Dashas" tab in the results' : 'परिणामों में "दशा" टैब पर क्लिक करें'}</p>
+            <p>3. {!isIndicLocale(locale) ? 'The highlighted row is your current Maha Dasha' : 'हाइलाइट पंक्ति आपकी वर्तमान महादशा है'}</p>
+            <p>4. {!isIndicLocale(locale) ? 'Expand it to see Antardashas — the highlighted sub-row is your current Antardasha' : 'इसे विस्तार करें अन्तर्दशाएँ देखने के लिए — हाइलाइट उप-पंक्ति आपकी वर्तमान अन्तर्दशा है'}</p>
           </div>
         </div>
       </LessonSection>
 
       {/* Section 11: Antardasha Calculation */}
-      <LessonSection number={11} title={((L.antardashaCalcTitle as Record<string, string>)[locale] ?? L.antardashaCalcTitle.en)}>
-        <p style={bodyFont}>{((L.antardashaCalcContent as Record<string, string>)[locale] ?? L.antardashaCalcContent.en)}</p>
+      <LessonSection number={11} title={t('antardashaCalcTitle')}>
+        <p style={bodyFont}>{t('antardashaCalcContent')}</p>
 
         <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
           <p className="text-gold-light text-sm font-semibold mb-3" style={headingFont}>
-            {!isDevanagariLocale(locale) ? 'Venus Maha Dasha (20 years) — All 9 Antardashas' : 'शुक्र महादशा (20 वर्ष) — सभी 9 अन्तर्दशाएँ'}
+            {!isIndicLocale(locale) ? 'Venus Maha Dasha (20 years) — All 9 Antardashas' : 'शुक्र महादशा (20 वर्ष) — सभी 9 अन्तर्दशाएँ'}
           </p>
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/10">
-                <th className="text-left py-2 px-2 text-gold-dark">{!isDevanagariLocale(locale) ? 'Antardasha' : 'अन्तर्दशा'}</th>
-                <th className="text-left py-2 px-2 text-gold-dark">{!isDevanagariLocale(locale) ? 'Calculation' : 'गणना'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{!isIndicLocale(locale) ? 'Antardasha' : 'अन्तर्दशा'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{!isIndicLocale(locale) ? 'Calculation' : 'गणना'}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gold-primary/5">
               {VENUS_ANTARDASHA_EXAMPLE.map((ad) => (
                 <tr key={ad.planet} className="hover:bg-gold-primary/3">
                   <td className="py-2 px-2 font-medium text-text-secondary">
-                    {!isDevanagariLocale(locale) ? `Venus-${ad.planet}` : `शुक्र-${ad.planetHi}`}
+                    {!isIndicLocale(locale) ? `Venus-${ad.planet}` : `शुक्र-${ad.planetHi}`}
                   </td>
                   <td className="py-2 px-2 text-text-secondary font-mono">
                     {isHi ? ad.durationHi : ad.duration}
@@ -520,14 +413,14 @@ export default function LearnDashasPage() {
             </tbody>
           </table>
           <p className="mt-2 text-text-tertiary text-xs font-mono">
-            {!isDevanagariLocale(locale) ? 'Total: 3y4m + 1y + 1y8m + 1y2m + 3y + 2y8m + 3y2m + 2y10m + 1y2m = 20 years' : 'कुल: 3वर्ष4माह + 1वर्ष + 1वर्ष8माह + 1वर्ष2माह + 3वर्ष + 2वर्ष8माह + 3वर्ष2माह + 2वर्ष10माह + 1वर्ष2माह = 20 वर्ष'}
+            {!isIndicLocale(locale) ? 'Total: 3y4m + 1y + 1y8m + 1y2m + 3y + 2y8m + 3y2m + 2y10m + 1y2m = 20 years' : 'कुल: 3वर्ष4माह + 1वर्ष + 1वर्ष8माह + 1वर्ष2माह + 3वर्ष + 2वर्ष8माह + 3वर्ष2माह + 2वर्ष10माह + 1वर्ष2माह = 20 वर्ष'}
           </p>
         </div>
       </LessonSection>
 
       {/* Section 12: Maha Dasha Themes */}
-      <LessonSection number={12} title={((L.mahadashaThemesTitle as Record<string, string>)[locale] ?? L.mahadashaThemesTitle.en)}>
-        <p style={bodyFont}>{((L.mahadashaThemesContent as Record<string, string>)[locale] ?? L.mahadashaThemesContent.en)}</p>
+      <LessonSection number={12} title={t('mahadashaThemesTitle')}>
+        <p style={bodyFont}>{t('mahadashaThemesContent')}</p>
         <div className="mt-4 space-y-3">
           {MAHADASHA_THEMES.map((md, i) => (
             <motion.div
@@ -543,7 +436,7 @@ export default function LearnDashasPage() {
                 <span className="font-bold text-sm" style={{ color: md.color, ...headingFont }}>
                   {isHi ? md.planetHi : md.planet}
                 </span>
-                <span className="text-text-tertiary text-xs font-mono">{md.years} {!isDevanagariLocale(locale) ? 'years' : 'वर्ष'}</span>
+                <span className="text-text-tertiary text-xs font-mono">{md.years} {!isIndicLocale(locale) ? 'years' : 'वर्ष'}</span>
               </div>
               <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
                 {isHi ? md.themes.hi : md.themes.en}
@@ -554,9 +447,9 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 13: Dasha Sandhi */}
-      <LessonSection number={13} title={((L.sandhiTitle as Record<string, string>)[locale] ?? L.sandhiTitle.en)} variant="highlight">
-        <p style={bodyFont}>{((L.sandhiContent as Record<string, string>)[locale] ?? L.sandhiContent.en)}</p>
-        <p className="mt-3" style={bodyFont}>{((L.sandhiContent2 as Record<string, string>)[locale] ?? L.sandhiContent2.en)}</p>
+      <LessonSection number={13} title={t('sandhiTitle')} variant="highlight">
+        <p style={bodyFont}>{t('sandhiContent')}</p>
+        <p className="mt-3" style={bodyFont}>{t('sandhiContent2')}</p>
 
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
@@ -570,7 +463,7 @@ export default function LearnDashasPage() {
                 {isHi ? item.from.hi : item.from.en}
               </div>
               <div className="text-text-tertiary text-xs font-mono mb-1">
-                {!isDevanagariLocale(locale) ? `Friction: ${item.friction.en}` : `घर्षण: ${item.friction.hi}`}
+                {!isIndicLocale(locale) ? `Friction: ${item.friction.en}` : `घर्षण: ${item.friction.hi}`}
               </div>
               <div className="text-text-secondary text-xs" style={bodyFont}>{isHi ? item.desc.hi : item.desc.en}</div>
             </div>
@@ -579,8 +472,8 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 14: Event Timing */}
-      <LessonSection number={14} title={((L.eventTimingTitle as Record<string, string>)[locale] ?? L.eventTimingTitle.en)}>
-        <p style={bodyFont}>{((L.eventTimingContent as Record<string, string>)[locale] ?? L.eventTimingContent.en)}</p>
+      <LessonSection number={14} title={t('eventTimingTitle')}>
+        <p style={bodyFont}>{t('eventTimingContent')}</p>
         <div className="mt-4 space-y-3">
           {EVENT_TIMING.map((et, i) => (
             <motion.div
@@ -603,7 +496,7 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 15: Related modules */}
-      <LessonSection number={15} title={((L.modulesTitle as Record<string, string>)[locale] ?? L.modulesTitle.en)}>
+      <LessonSection number={15} title={t('modulesTitle')}>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             { href: '/learn/modules/11-1', label: { en: 'Lesson 11-1: Vimshottari Dasha System', hi: 'पाठ 11-1: विंशोत्तरी दशा प्रणाली' } },
@@ -628,7 +521,7 @@ export default function LearnDashasPage() {
           href="/kundali"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {((L.tryIt as Record<string, string>)[locale] ?? L.tryIt.en)} →
+          {t('tryIt')} →
         </Link>
       </div>
     </div>

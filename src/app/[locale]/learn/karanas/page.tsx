@@ -1,167 +1,27 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
 import { KARANAS } from '@/lib/constants/karanas';
 import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
 import { ChevronDown } from 'lucide-react';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LJ from '@/messages/learn/karanas.json';
+import { getHeadingFont, getBodyFont, isIndicLocale } from '@/lib/utils/locale-fonts';
 
-/* ─── Inline bilingual labels (en/hi) ─── */
-const L = {
-  title: { en: 'Karanas — The 11 Half-Tithis', hi: 'करण — 11 अर्ध-तिथि' , ta: 'கரணங்கள் — 11 அரை திதிகள்' },
-  subtitle: {
-    en: 'Each Tithi has two halves, giving 60 Karanas per lunar month from just 11 types',
-    hi: 'प्रत्येक तिथि के दो भाग, केवल 11 प्रकारों से प्रति चान्द्रमास 60 करण बनते हैं',
-  },
-  whatIs: { en: 'What is a Karana?', hi: 'करण क्या है?' },
-  whatIsBody: {
-    en: 'A Karana is the smallest daily subdivision of the Panchang. It represents half a Tithi — exactly 6 degrees of angular separation between the Moon and the Sun. The word "Karana" derives from the Sanskrit root "kri" (to do), signifying the quality of action during that period. While a Tithi spans roughly one day (12 degrees of Moon-Sun elongation), a Karana covers roughly half a day.',
-    hi: 'करण पंचांग का सबसे छोटा दैनिक विभाजन है। यह अर्ध-तिथि है — चन्द्रमा और सूर्य के बीच ठीक 6 अंश का कोणीय अन्तर। "करण" शब्द संस्कृत धातु "कृ" (करना) से बना है, जो उस समयावधि में कार्य की गुणवत्ता को दर्शाता है। जबकि एक तिथि लगभग एक दिन (12 अंश) की होती है, एक करण लगभग आधे दिन का होता है।',
-  },
-  whatIsBody2: {
-    en: 'Karanas are used extensively in Muhurta (electional astrology) to determine the suitability of a time for specific activities. Classical texts like the Surya Siddhanta and Muhurta Chintamani prescribe specific Karanas for ceremonies, travel, agriculture, and commerce.',
-    hi: 'करणों का व्यापक उपयोग मुहूर्त (निर्वाचन ज्योतिष) में किया जाता है ताकि किसी विशेष कार्य के लिए समय की उपयुक्तता निर्धारित की जा सके। सूर्य सिद्धान्त और मुहूर्त चिन्तामणि जैसे शास्त्रीय ग्रन्थों में संस्कार, यात्रा, कृषि और वाणिज्य के लिए विशिष्ट करण निर्धारित हैं।',
-  },
+const t_ = LJ as unknown as Record<string, LocaleText>;
 
-  elevenTypes: { en: 'The 11 Karana Types', hi: '11 करण प्रकार' },
-  elevenBody: {
-    en: 'There are only 11 distinct Karana types, yet they fill 60 positions per lunar month. This works because the Karanas are divided into two groups:',
-    hi: 'केवल 11 विशिष्ट करण प्रकार हैं, फिर भी वे प्रति चान्द्रमास 60 स्थानों को भरते हैं। यह इसलिए सम्भव है क्योंकि करण दो वर्गों में विभक्त हैं:',
-  },
-  charaLabel: { en: 'Chara (Movable) Karanas', hi: 'चर (गतिशील) करण' },
-  charaDesc: {
-    en: '7 types that repeat 8 times each = 56 positions (positions 2 through 57)',
-    hi: '7 प्रकार जो 8 बार दोहराए जाते हैं = 56 स्थान (स्थान 2 से 57)',
-  },
-  sthiraLabel: { en: 'Sthira (Fixed) Karanas', hi: 'स्थिर (नियत) करण' },
-  sthiraDesc: {
-    en: '4 types that occur only once each = 4 positions (positions 1, 58, 59, 60)',
-    hi: '4 प्रकार जो केवल एक बार आते हैं = 4 स्थान (स्थान 1, 58, 59, 60)',
-  },
-  totalFormula: {
-    en: 'Total: 56 (chara) + 4 (sthira) = 60 karanas = 2 per tithi x 30 tithis',
-    hi: 'कुल: 56 (चर) + 4 (स्थिर) = 60 करण = 2 प्रति तिथि x 30 तिथि',
-  },
 
-  calcTitle: { en: 'Calculation Formula', hi: 'गणना सूत्र' },
-  calcBody: {
-    en: 'The Karana number (1-60) within a lunar month is derived directly from the Moon-Sun elongation:',
-    hi: 'चान्द्रमास में करण संख्या (1-60) चन्द्र-सूर्य अन्तर से सीधे प्राप्त होती है:',
-  },
-  workedExample: { en: 'Worked Example', hi: 'उदाहरण' },
-  workedBody: {
-    en: 'Suppose the Moon is at 85.3 degrees and the Sun is at 42.7 degrees.',
-    hi: 'मान लीजिए चन्द्रमा 85.3 अंश पर है और सूर्य 42.7 अंश पर है।',
-  },
-  step1: {
-    en: 'Elongation = 85.3 - 42.7 = 42.6 degrees',
-    hi: 'अन्तर = 85.3 - 42.7 = 42.6 अंश',
-  },
-  step2: {
-    en: 'Karana position = floor(42.6 / 6) + 1 = floor(7.1) + 1 = 7 + 1 = 8',
-    hi: 'करण स्थान = floor(42.6 / 6) + 1 = floor(7.1) + 1 = 7 + 1 = 8',
-  },
-  step3: {
-    en: 'Position 8 falls in the chara cycle (positions 2-57). Offset = (8 - 2) mod 7 = 6, which maps to the 7th chara karana = Vishti (Bhadra).',
-    hi: 'स्थान 8 चर चक्र (स्थान 2-57) में आता है। ऑफसेट = (8 - 2) mod 7 = 6, जो 7वें चर करण = विष्टि (भद्रा) को दर्शाता है।',
-  },
-  step4: {
-    en: 'This is Shukla Chaturthi (4th tithi), 2nd half. The elongation 42.6 degrees is between 42 and 48 degrees (7th and 8th karana of the month).',
-    hi: 'यह शुक्ल चतुर्थी (चौथी तिथि) का दूसरा भाग है। 42.6 अंश का अन्तर 42 और 48 अंश (मास के 7वें और 8वें करण) के बीच है।',
-  },
-
-  deityTitle: { en: 'Deities & Nature of Each Karana', hi: 'प्रत्येक करण के देवता और स्वभाव' },
-  deityBody: {
-    en: 'Each of the 11 Karanas is presided over by a deity and carries a distinct nature that influences the quality of actions undertaken during its period.',
-    hi: 'प्रत्येक 11 करणों पर एक देवता का अधिकार है और उसका एक विशिष्ट स्वभाव है जो उस अवधि में किए गए कार्यों की गुणवत्ता को प्रभावित करता है।',
-  },
-
-  auspTitle: { en: 'Auspicious vs Inauspicious Karanas', hi: 'शुभ एवं अशुभ करण' },
-  auspBody: {
-    en: 'Karanas are broadly classified into three categories based on their suitability for undertaking activities:',
-    hi: 'करणों को कार्य आरम्भ के लिए उपयुक्तता के आधार पर तीन श्रेणियों में वर्गीकृत किया जाता है:',
-  },
-  goodLabel: { en: 'Auspicious (Shubha)', hi: 'शुभ करण' },
-  goodKaranas: {
-    en: 'Bava, Balava, Kaulava, Taitila, Garaja -- These five chara karanas are considered favorable for most activities including marriage, travel, business, and religious ceremonies.',
-    hi: 'बव, बालव, कौलव, तैतिल, गरज -- ये पांच चर करण विवाह, यात्रा, व्यापार और धार्मिक कार्यों सहित अधिकांश गतिविधियों के लिए शुभ माने जाते हैं।',
-  },
-  neutralLabel: { en: 'Neutral (Mishra)', hi: 'मिश्र करण' },
-  neutralKaranas: {
-    en: 'Vanija -- Suitable for trade and commerce but not recommended for spiritual or domestic ceremonies. Also favorable for agriculture.',
-    hi: 'वणिज -- व्यापार और वाणिज्य के लिए उपयुक्त, किन्तु आध्यात्मिक या गृह संस्कारों के लिए अनुशंसित नहीं। कृषि के लिए भी अनुकूल।',
-  },
-  badLabel: { en: 'Inauspicious (Ashubha)', hi: 'अशुभ करण' },
-  badKaranas: {
-    en: 'Vishti (Bhadra) -- The 7th chara karana is considered highly inauspicious. It occurs 8 times per month and is avoided for all new beginnings, journeys, and ceremonies. Only acts of destruction, confrontation, and warfare are prescribed during Vishti.',
-    hi: 'विष्टि (भद्रा) -- 7वां चर करण अत्यन्त अशुभ माना जाता है। यह प्रति मास 8 बार आता है और सभी नए कार्यों, यात्राओं और संस्कारों में त्याज्य है। केवल विध्वंस, संघर्ष और युद्ध के कार्य विष्टि में विहित हैं।',
-  },
-
-  fixedTitle: { en: 'The 4 Fixed Karanas -- Special Significance', hi: '4 स्थिर करण -- विशेष महत्व' },
-  fixedBody: {
-    en: 'The four Sthira (fixed) Karanas occupy unique positions at the very beginning and end of the lunar month. They appear only once, making them astronomically and ritually distinct from the repeating cycle.',
-    hi: 'चार स्थिर करण चान्द्रमास के प्रारम्भ और अन्त में विशेष स्थानों पर होते हैं। वे केवल एक बार आते हैं, जिससे वे खगोलीय और कर्मकाण्डीय दृष्टि से चर चक्र से भिन्न हैं।',
-  },
-
-  muhurtaTitle: { en: 'Karana & Muhurta Selection', hi: 'करण और मुहूर्त चयन' },
-  muhurtaBody: {
-    en: 'In Muhurta Shastra (electional astrology), the Karana is one of the five limbs (Panchangas) that must be evaluated before fixing an auspicious time. While Tithi and Nakshatra carry more weight, the Karana acts as a fine-tuning element:',
-    hi: 'मुहूर्त शास्त्र (निर्वाचन ज्योतिष) में, करण पांच अंगों (पंचांगों) में से एक है जिनका मूल्यांकन शुभ समय निर्धारण से पहले किया जाना चाहिए। जबकि तिथि और नक्षत्र अधिक महत्वपूर्ण हैं, करण सूक्ष्म समायोजन का कार्य करता है:',
-  },
-  muhurtaRule1: {
-    en: 'Always avoid Vishti (Bhadra) Karana for auspicious events. Since Vishti occurs 8 times a month, it eliminates roughly 13% of available time.',
-    hi: 'शुभ कार्यों के लिए विष्टि (भद्रा) करण सदैव त्याज्य है। चूंकि विष्टि मास में 8 बार आती है, यह उपलब्ध समय का लगभग 13% समाप्त कर देती है।',
-  },
-  muhurtaRule2: {
-    en: 'Bava and Balava Karanas are especially recommended for marriage (Vivaha), religious initiations (Upanayana), and house construction (Griha Arambha).',
-    hi: 'बव और बालव करण विशेष रूप से विवाह, उपनयन और गृहारम्भ के लिए अनुशंसित हैं।',
-  },
-  muhurtaRule3: {
-    en: 'Vanija Karana is preferred for starting new businesses, signing contracts, and agricultural sowing.',
-    hi: 'वणिज करण नया व्यापार आरम्भ करने, अनुबन्ध हस्ताक्षर और कृषि बुआई के लिए श्रेष्ठ है।',
-  },
-  muhurtaRule4: {
-    en: 'The Sthira Karanas (Shakuni, Chatushpada, Naga, Kimstughna) at month boundaries are reserved for specific rituals like Shraddha, animal husbandry, and spiritual practices.',
-    hi: 'मास की सीमाओं पर स्थिर करण (शकुनि, चतुष्पद, नाग, किंस्तुघ्न) श्राद्ध, पशुपालन और आध्यात्मिक साधना जैसे विशिष्ट अनुष्ठानों के लिए आरक्षित हैं।',
-  },
-
-  cycleTitle: { en: 'How Karanas Cycle Through the Lunar Month', hi: 'करण चान्द्रमास में कैसे चक्रित होते हैं' },
-  cycleBody: {
-    en: 'The 60 Karanas of each lunar month follow a precise pattern. Understanding this cycle is key to predicting which Karana will be active at any point in the month:',
-    hi: '60 करणों का प्रत्येक चान्द्रमास में एक सटीक क्रम होता है। इस चक्र को समझना मास के किसी भी बिन्दु पर सक्रिय करण की पूर्वानुमान की कुंजी है:',
-  },
-  cycleStep1: {
-    en: 'Position 1 (Shukla Pratipada, 1st half): Kimstughna (sthira) -- the month begins with the last fixed karana, symbolizing the dissolution of the old cycle.',
-    hi: 'स्थान 1 (शुक्ल प्रतिपदा, प्रथम भाग): किंस्तुघ्न (स्थिर) -- मास अन्तिम स्थिर करण से प्रारम्भ होता है, पुराने चक्र के विलय का प्रतीक।',
-  },
-  cycleStep2: {
-    en: 'Positions 2-57 (Shukla Pratipada 2nd half through Krishna Chaturdashi 1st half): The 7 chara karanas cycle 8 times in order: Bava, Balava, Kaulava, Taitila, Garaja, Vanija, Vishti.',
-    hi: 'स्थान 2-57 (शुक्ल प्रतिपदा दूसरा भाग से कृष्ण चतुर्दशी प्रथम भाग तक): 7 चर करण क्रमानुसार 8 बार चक्रित: बव, बालव, कौलव, तैतिल, गरज, वणिज, विष्टि।',
-  },
-  cycleStep3: {
-    en: 'Positions 58-60 (Krishna Chaturdashi 2nd half, Amavasya 1st & 2nd half): Shakuni, Chatushpada, Naga (sthira) -- the month ends with three fixed karanas at the darkest phase.',
-    hi: 'स्थान 58-60 (कृष्ण चतुर्दशी दूसरा भाग, अमावस्या प्रथम एवं द्वितीय भाग): शकुनि, चतुष्पद, नाग (स्थिर) -- मास तीन स्थिर करणों के साथ अन्धकारमय चरण में समाप्त होता है।',
-  },
-
-  crossRefTitle: { en: 'Related Topics', hi: 'सम्बन्धित विषय' },
-  crossRefTithi: { en: 'Tithis -- The parent unit (each Tithi = 2 Karanas)', hi: 'तिथि -- मूल इकाई (प्रत्येक तिथि = 2 करण)' },
-  crossRefYoga: { en: 'Yogas -- Another Panchang limb from Sun+Moon', hi: 'योग -- सूर्य+चन्द्र से पंचांग का अन्य अंग' },
-  crossRefMuhurta: { en: 'Muhurtas -- Time divisions of the day', hi: 'मुहूर्त -- दिन के समय विभाजन' },
-  crossRefNakshatra: { en: 'Nakshatras -- Lunar mansions that pair with Karanas in Muhurta', hi: 'नक्षत्र -- चान्द्र भवन जो मुहूर्त में करणों के साथ जुड़ते हैं' },
-
-  viewPanchang: { en: 'View Today\'s Karana in Panchang', hi: 'आज का करण पंचांग में देखें' },
-} as const;
 
 /* ─── Karana detailed data (inline, not in constants file) ─── */
 const KARANA_DETAILS: Record<string, {
-  deity: { en: string; hi: string };
+  deity: Record<string, string>;
   nature: 'auspicious' | 'neutral' | 'inauspicious';
-  meaning: { en: string; hi: string };
-  bestFor: { en: string; hi: string };
+  meaning: Record<string, string>;
+  bestFor: Record<string, string>;
 }> = {
   Bava: {
     deity: { en: 'Indra', hi: 'इन्द्र' },
@@ -260,15 +120,17 @@ const natureColor = (nature: string) => {
 };
 
 const natureLabel = (nature: string, locale: string) => {
-  if (nature === 'auspicious') return !isDevanagariLocale(locale) ? 'Shubha' : 'शुभ';
-  if (nature === 'neutral') return !isDevanagariLocale(locale) ? 'Mishra' : 'मिश्र';
-  return !isDevanagariLocale(locale) ? 'Ashubha' : 'अशुभ';
+  if (nature === 'auspicious') return !isIndicLocale(locale) ? 'Shubha' : 'शुभ';
+  if (nature === 'neutral') return !isIndicLocale(locale) ? 'Mishra' : 'मिश्र';
+  return !isIndicLocale(locale) ? 'Ashubha' : 'अशुभ';
 };
 
 export default function LearnKaranasPage() {
-  const t = useTranslations('learn');
-  const locale = useLocale() as Locale;
-  const loc = isDevanagariLocale(locale) ? 'hi' as const : 'en' as const; // fallback sa -> hi for inline labels
+  const locale = useLocale();
+  const t = (key: string) => lt(t_[key], locale);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const tObj = (obj: any) => (obj as Record<string, string>)[locale] || obj?.en || '';
+  const loc = isIndicLocale(locale) ? 'hi' as const : 'en' as const; // fallback sa -> hi for inline labels
 
   const chara = KARANAS.filter(k => k.type === 'chara');
   const sthira = KARANAS.filter(k => k.type === 'sthira');
@@ -280,15 +142,15 @@ export default function LearnKaranasPage() {
       {/* ─── Header ─── */}
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-          {L.title[loc]}
+          {t('title')}
         </h2>
-        <p className="text-text-secondary">{L.subtitle[loc]}</p>
+        <p className="text-text-secondary">{t('subtitle')}</p>
       </div>
 
       {/* ─── Section 1: What is a Karana? ─── */}
-      <LessonSection number={1} title={L.whatIs[loc]}>
-        <p>{L.whatIsBody[loc]}</p>
-        <p>{L.whatIsBody2[loc]}</p>
+      <LessonSection number={1} title={t('whatIs')}>
+        <p>{t('whatIsBody')}</p>
+        <p>{t('whatIsBody2')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">1 Karana = 6{'\u00B0'} of Moon-Sun elongation = {'\u00BD'} Tithi</p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">1 Tithi = 12{'\u00B0'} = 2 Karanas</p>
@@ -297,28 +159,28 @@ export default function LearnKaranasPage() {
       </LessonSection>
 
       {/* ─── Section 2: The 11 Types ─── */}
-      <LessonSection number={2} title={L.elevenTypes[loc]}>
-        <p>{L.elevenBody[loc]}</p>
+      <LessonSection number={2} title={t('elevenTypes')}>
+        <p>{t('elevenBody')}</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
           <div className="p-4 rounded-lg border border-gold-primary/20 bg-gold-primary/5">
-            <h4 className="text-gold-light font-bold mb-1" style={{ fontFamily: 'var(--font-heading)' }}>{L.charaLabel[loc]}</h4>
-            <p className="text-text-secondary text-sm">{L.charaDesc[loc]}</p>
+            <h4 className="text-gold-light font-bold mb-1" style={{ fontFamily: 'var(--font-heading)' }}>{t('charaLabel')}</h4>
+            <p className="text-text-secondary text-sm">{t('charaDesc')}</p>
             <div className="flex flex-wrap gap-1.5 mt-2">
               {chara.map(k => (
                 <span key={k.number} className={`text-xs px-2 py-0.5 rounded-full border ${k.name.en === 'Vishti' ? 'border-red-500/30 text-red-400' : 'border-gold-primary/20 text-gold-light'}`}>
-                  {k.name[locale]}
+                  {tObj(k.name)}
                 </span>
               ))}
             </div>
           </div>
           <div className="p-4 rounded-lg border border-amber-500/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
-            <h4 className="text-amber-300 font-bold mb-1" style={{ fontFamily: 'var(--font-heading)' }}>{L.sthiraLabel[loc]}</h4>
-            <p className="text-text-secondary text-sm">{L.sthiraDesc[loc]}</p>
+            <h4 className="text-amber-300 font-bold mb-1" style={{ fontFamily: 'var(--font-heading)' }}>{t('sthiraLabel')}</h4>
+            <p className="text-text-secondary text-sm">{t('sthiraDesc')}</p>
             <div className="flex flex-wrap gap-1.5 mt-2">
               {sthira.map(k => (
                 <span key={k.number} className="text-xs px-2 py-0.5 rounded-full border border-amber-500/20 text-amber-300">
-                  {k.name[locale]}
+                  {tObj(k.name)}
                 </span>
               ))}
             </div>
@@ -326,13 +188,13 @@ export default function LearnKaranasPage() {
         </div>
 
         <div className="mt-3 p-3 bg-bg-primary/50 rounded-lg border border-gold-primary/10 text-center">
-          <p className="text-gold-light font-mono text-sm">{L.totalFormula[loc]}</p>
+          <p className="text-gold-light font-mono text-sm">{t('totalFormula')}</p>
         </div>
       </LessonSection>
 
       {/* ─── Section 3: Calculation Formula ─── */}
-      <LessonSection number={3} title={L.calcTitle[loc]}>
-        <p>{L.calcBody[loc]}</p>
+      <LessonSection number={3} title={t('calcTitle')}>
+        <p>{t('calcBody')}</p>
 
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">Karana Position = floor((Moon{'\u00B0'} - Sun{'\u00B0'}) / 6) + 1</p>
@@ -343,15 +205,15 @@ export default function LearnKaranasPage() {
         </div>
 
         <div className="mt-5 p-5 rounded-xl border border-gold-primary/15 bg-gold-primary/5">
-          <h4 className="text-gold-light font-bold mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{L.workedExample[loc]}</h4>
-          <p className="text-text-secondary text-sm mb-3">{L.workedBody[loc]}</p>
+          <h4 className="text-gold-light font-bold mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{t('workedExample')}</h4>
+          <p className="text-text-secondary text-sm mb-3">{t('workedBody')}</p>
           <div className="space-y-2">
-            {[L.step1, L.step2, L.step3, L.step4].map((step, i) => (
+            {[t('step1'), t('step2'), t('step3'), t('step4')].map((step, i) => (
               <div key={i} className="flex items-start gap-2">
                 <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gold-primary/20 border border-gold-primary/30 flex items-center justify-center text-gold-light text-xs font-bold mt-0.5">
                   {i + 1}
                 </span>
-                <p className="text-text-secondary text-sm">{step[loc]}</p>
+                <p className="text-text-secondary text-sm">{step}</p>
               </div>
             ))}
           </div>
@@ -359,8 +221,8 @@ export default function LearnKaranasPage() {
       </LessonSection>
 
       {/* ─── Section 4: Deity & Nature (expandable cards) ─── */}
-      <LessonSection number={4} title={L.deityTitle[loc]}>
-        <p>{L.deityBody[loc]}</p>
+      <LessonSection number={4} title={t('deityTitle')}>
+        <p>{t('deityBody')}</p>
 
         <div className="space-y-3 mt-4">
           {[...chara, ...sthira].map((k, i) => {
@@ -388,9 +250,9 @@ export default function LearnKaranasPage() {
                     <div className="flex items-center gap-3">
                       <span className={`font-bold text-xl w-8 ${k.type === 'sthira' ? 'text-amber-400' : 'text-gold-primary'}`}>{k.number}</span>
                       <div>
-                        <span className="text-gold-light font-bold">{k.name[locale]}</span>
+                        <span className="text-gold-light font-bold">{tObj(k.name)}</span>
                         {locale !== 'en' && <span className="ml-2 text-text-secondary/70 text-xs">{k.name.en}</span>}
-                        <span className="ml-2 text-text-secondary/65 text-xs">({detail.deity[loc]})</span>
+                        <span className="ml-2 text-text-secondary/65 text-xs">({tObj(detail.deity)})</span>
                         {k.type === 'sthira' && (
                           <span className="ml-2 px-1.5 py-0.5 bg-amber-500/15 text-amber-300 text-xs rounded-full font-bold uppercase">
                             {loc === 'en' ? 'Fixed' : 'स्थिर'}
@@ -405,7 +267,7 @@ export default function LearnKaranasPage() {
                       <ChevronDown className={`w-4 h-4 text-text-secondary/70 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
                     </div>
                   </div>
-                  <p className="text-text-secondary/70 text-sm ml-11 mt-1">{detail.meaning[loc]}</p>
+                  <p className="text-text-secondary/70 text-sm ml-11 mt-1">{tObj(detail.meaning)}</p>
                 </button>
                 <AnimatePresence>
                   {isExpanded && (
@@ -420,7 +282,7 @@ export default function LearnKaranasPage() {
                         <h4 className="text-xs font-semibold text-gold-primary/70 uppercase tracking-wider mb-1">
                           {loc === 'en' ? 'Best Activities' : 'उपयुक्त कार्य'}
                         </h4>
-                        <p className="text-text-secondary text-sm">{detail.bestFor[loc]}</p>
+                        <p className="text-text-secondary text-sm">{tObj(detail.bestFor)}</p>
                       </div>
                     </motion.div>
                   )}
@@ -432,37 +294,37 @@ export default function LearnKaranasPage() {
       </LessonSection>
 
       {/* ─── Section 5: Auspicious vs Inauspicious ─── */}
-      <LessonSection number={5} title={L.auspTitle[loc]}>
-        <p>{L.auspBody[loc]}</p>
+      <LessonSection number={5} title={t('auspTitle')}>
+        <p>{t('auspBody')}</p>
 
         <div className="space-y-4 mt-4">
           {/* Auspicious */}
           <div className="p-4 rounded-lg border border-emerald-500/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
-            <h4 className="text-emerald-400 font-bold mb-2">{L.goodLabel[loc]}</h4>
-            <p className="text-text-secondary text-sm">{L.goodKaranas[loc]}</p>
+            <h4 className="text-emerald-400 font-bold mb-2">{t('goodLabel')}</h4>
+            <p className="text-text-secondary text-sm">{t('goodKaranas')}</p>
           </div>
           {/* Neutral */}
           <div className="p-4 rounded-lg border border-amber-500/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
-            <h4 className="text-amber-400 font-bold mb-2">{L.neutralLabel[loc]}</h4>
-            <p className="text-text-secondary text-sm">{L.neutralKaranas[loc]}</p>
+            <h4 className="text-amber-400 font-bold mb-2">{t('neutralLabel')}</h4>
+            <p className="text-text-secondary text-sm">{t('neutralKaranas')}</p>
           </div>
           {/* Inauspicious */}
           <div className="p-4 rounded-lg border border-red-500/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
-            <h4 className="text-red-400 font-bold mb-2">{L.badLabel[loc]}</h4>
-            <p className="text-text-secondary text-sm">{L.badKaranas[loc]}</p>
+            <h4 className="text-red-400 font-bold mb-2">{t('badLabel')}</h4>
+            <p className="text-text-secondary text-sm">{t('badKaranas')}</p>
           </div>
         </div>
       </LessonSection>
 
       {/* ─── Section 6: Fixed Karanas Deep Dive ─── */}
-      <LessonSection number={6} title={L.fixedTitle[loc]}>
-        <p>{L.fixedBody[loc]}</p>
+      <LessonSection number={6} title={t('fixedTitle')}>
+        <p>{t('fixedBody')}</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
           {sthira.map((k, i) => {
             const detail = KARANA_DETAILS[k.name.en];
             if (!detail) return null;
-            const positions: Record<string, { pos: string; tithi: { en: string; hi: string } }> = {
+            const positions: Record<string, { pos: string; tithi: Record<string, string> }> = {
               Kimstughna: { pos: '1', tithi: { en: 'Shukla Pratipada, 1st half', hi: 'शुक्ल प्रतिपदा, प्रथम भाग' } },
               Shakuni: { pos: '58', tithi: { en: 'Krishna Chaturdashi, 2nd half', hi: 'कृष्ण चतुर्दशी, द्वितीय भाग' } },
               Chatushpada: { pos: '59', tithi: { en: 'Amavasya, 1st half', hi: 'अमावस्या, प्रथम भाग' } },
@@ -481,14 +343,14 @@ export default function LearnKaranasPage() {
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-amber-400 text-2xl font-bold">#{posInfo?.pos}</span>
                   <div>
-                    <div className="text-gold-light font-bold text-lg">{k.name[locale]}</div>
+                    <div className="text-gold-light font-bold text-lg">{tObj(k.name)}</div>
                     {locale !== 'en' && <div className="text-text-secondary/70 text-xs">{k.name.en}</div>}
                   </div>
                 </div>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-text-secondary/75">{loc === 'en' ? 'Deity' : 'देवता'}</span>
-                    <span className="text-gold-light">{detail.deity[loc]}</span>
+                    <span className="text-gold-light">{tObj(detail.deity)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-text-secondary/75">{loc === 'en' ? 'Nature' : 'स्वभाव'}</span>
@@ -496,10 +358,10 @@ export default function LearnKaranasPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-text-secondary/75">{loc === 'en' ? 'Occurs at' : 'स्थान'}</span>
-                    <span className="text-text-secondary text-xs text-right">{posInfo?.tithi[loc]}</span>
+                    <span className="text-text-secondary text-xs text-right">{posInfo ? tObj(posInfo.tithi) : ''}</span>
                   </div>
                   <div className="pt-2 border-t border-gold-primary/10">
-                    <p className="text-text-secondary/80 text-xs leading-relaxed">{detail.bestFor[loc]}</p>
+                    <p className="text-text-secondary/80 text-xs leading-relaxed">{tObj(detail.bestFor)}</p>
                   </div>
                 </div>
               </motion.div>
@@ -509,29 +371,29 @@ export default function LearnKaranasPage() {
       </LessonSection>
 
       {/* ─── Section 7: Karana & Muhurta Selection ─── */}
-      <LessonSection number={7} title={L.muhurtaTitle[loc]}>
-        <p>{L.muhurtaBody[loc]}</p>
+      <LessonSection number={7} title={t('muhurtaTitle')}>
+        <p>{t('muhurtaBody')}</p>
 
         <div className="space-y-3 mt-4">
-          {[L.muhurtaRule1, L.muhurtaRule2, L.muhurtaRule3, L.muhurtaRule4].map((rule, i) => (
+          {[t('muhurtaRule1'), t('muhurtaRule2'), t('muhurtaRule3'), t('muhurtaRule4')].map((rule, i) => (
             <div key={i} className="flex items-start gap-3 p-3 rounded-lg border border-gold-primary/10 bg-bg-primary/30">
               <span className="flex-shrink-0 w-6 h-6 rounded-full bg-gold-primary/15 border border-gold-primary/30 flex items-center justify-center text-gold-light text-xs font-bold mt-0.5">
                 {i + 1}
               </span>
-              <p className="text-text-secondary text-sm">{rule[loc]}</p>
+              <p className="text-text-secondary text-sm">{rule}</p>
             </div>
           ))}
         </div>
       </LessonSection>
 
       {/* ─── Section 8: Cycle Through the Lunar Month ─── */}
-      <LessonSection number={8} title={L.cycleTitle[loc]}>
-        <p>{L.cycleBody[loc]}</p>
+      <LessonSection number={8} title={t('cycleTitle')}>
+        <p>{t('cycleBody')}</p>
 
         <div className="space-y-3 mt-4">
-          {[L.cycleStep1, L.cycleStep2, L.cycleStep3].map((step, i) => (
+          {[t('cycleStep1'), t('cycleStep2'), t('cycleStep3')].map((step, i) => (
             <div key={i} className="p-3 rounded-lg border border-gold-primary/10 bg-bg-primary/30">
-              <p className="text-text-secondary text-sm">{step[loc]}</p>
+              <p className="text-text-secondary text-sm">{step}</p>
             </div>
           ))}
         </div>
@@ -591,13 +453,13 @@ export default function LearnKaranasPage() {
       </LessonSection>
 
       {/* ─── Section 9: Cross-References ─── */}
-      <LessonSection number={9} title={L.crossRefTitle[loc]}>
+      <LessonSection number={9} title={t('crossRefTitle')}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
-            { href: '/learn/tithis' as const, label: L.crossRefTithi },
-            { href: '/learn/yogas' as const, label: L.crossRefYoga },
-            { href: '/learn/muhurtas' as const, label: L.crossRefMuhurta },
-            { href: '/learn/nakshatras' as const, label: L.crossRefNakshatra },
+            { href: '/learn/tithis' as const, label: t('crossRefTithi') },
+            { href: '/learn/yogas' as const, label: t('crossRefYoga') },
+            { href: '/learn/muhurtas' as const, label: t('crossRefMuhurta') },
+            { href: '/learn/nakshatras' as const, label: t('crossRefNakshatra') },
           ].map((ref, i) => (
             <Link
               key={i}
@@ -605,7 +467,7 @@ export default function LearnKaranasPage() {
               className="flex items-center gap-2 p-3 rounded-lg border border-gold-primary/10 bg-bg-primary/30 hover:bg-gold-primary/10 hover:border-gold-primary/30 transition-all text-sm text-text-secondary hover:text-gold-light"
             >
               <span className="text-gold-primary">{'>'}</span>
-              {ref.label[loc]}
+              {ref.label}
             </Link>
           ))}
         </div>
@@ -617,7 +479,7 @@ export default function LearnKaranasPage() {
           href="/panchang"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {L.viewPanchang[loc]}
+          {t('viewPanchang')}
         </Link>
       </div>
     </div>

@@ -12,18 +12,18 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface ClassicalText {
   id: string;
-  name: { en: string; hi: string; sa: string };
-  author: { en: string; hi: string };
+  name: Record<string, string>;
+  author: Record<string, string>;
   date: string;
   chapters: number;
   verses: string;
   category: 'siddhanta' | 'hora';
   color: string;
   border: string;
-  summary: { en: string; hi: string };
-  keyContributions: { topic: string; detail: { en: string; hi: string }; status: 'still_used' | 'superseded' | 'partially_valid' }[];
+  summary: Record<string, string>;
+  keyContributions: { topic: string; detail: Record<string, string>; status: 'still_used' | 'superseded' | 'partially_valid' }[];
   accuracyHighlights?: { value: string; given: string; modern: string; error: string }[];
-  uniqueConcepts: { en: string; hi: string }[];
+  uniqueConcepts: Record<string, string>[];
 }
 
 const TEXTS: ClassicalText[] = [

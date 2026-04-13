@@ -7,6 +7,9 @@ import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LT from '@/messages/learn/vargas.json';
 
 /* ─── Trilingual Labels ─── */
 const L = {
@@ -435,15 +438,16 @@ const TIER_COLORS: Record<string, { bg: string; text: string; border: string; la
 /* ─── Page Component ─── */
 export default function LearnVargasPage() {
   const locale = useLocale() as Locale;
+  const t = (key: string) => lt((LT as unknown as Record<string, LocaleText>)[key], locale);
 
   return (
     <div>
       {/* Header */}
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
+          {t('title')}
         </h2>
-        <p className="text-text-secondary">{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
+        <p className="text-text-secondary">{t('subtitle')}</p>
       </div>
 
       {/* Key Terms */}
@@ -455,8 +459,8 @@ export default function LearnVargasPage() {
       </div>
 
       {/* ─── OVERVIEW ─── */}
-      <LessonSection title={((L.overviewTitle as Record<string, string>)[locale] ?? L.overviewTitle.en)}>
-        <p>{((L.overviewText as Record<string, string>)[locale] ?? L.overviewText.en)}</p>
+      <LessonSection title={t('overviewTitle')}>
+        <p>{t('overviewText')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">{!isDevanagariLocale(locale) ? 'The Core Idea:' : 'मूल विचार:'}</p>
           <p className="text-gold-light/80 font-mono text-xs">
@@ -473,8 +477,8 @@ export default function LearnVargasPage() {
       </LessonSection>
 
       {/* ─── HOW DIVISIONS WORK ─── */}
-      <LessonSection number={1} title={((L.howTitle as Record<string, string>)[locale] ?? L.howTitle.en)}>
-        <p>{((L.howText as Record<string, string>)[locale] ?? L.howText.en)}</p>
+      <LessonSection number={1} title={t('howTitle')}>
+        <p>{t('howText')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-3">{!isDevanagariLocale(locale) ? 'General Formula:' : 'सामान्य सूत्र:'}</p>
           <div className="space-y-1">
@@ -570,8 +574,8 @@ export default function LearnVargasPage() {
       </LessonSection>
 
       {/* ─── NAVAMSHA DEEP DIVE ─── */}
-      <LessonSection number={3} title={((L.navamshaTitle as Record<string, string>)[locale] ?? L.navamshaTitle.en)} variant="highlight">
-        <p>{((L.navamshaText as Record<string, string>)[locale] ?? L.navamshaText.en)}</p>
+      <LessonSection number={3} title={t('navamshaTitle')} variant="highlight">
+        <p>{t('navamshaText')}</p>
 
         {/* Navamsha mapping table */}
         <div className="mt-5 overflow-x-auto">
@@ -631,8 +635,8 @@ export default function LearnVargasPage() {
       </LessonSection>
 
       {/* ─── NAVAMSHA CALCULATION ─── */}
-      <LessonSection number={4} title={((L.navCalcTitle as Record<string, string>)[locale] ?? L.navCalcTitle.en)}>
-        <p>{((L.navCalcText as Record<string, string>)[locale] ?? L.navCalcText.en)}</p>
+      <LessonSection number={4} title={t('navCalcTitle')}>
+        <p>{t('navCalcText')}</p>
 
         {/* Key Navamsha concepts */}
         <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -680,8 +684,8 @@ export default function LearnVargasPage() {
       </LessonSection>
 
       {/* ─── VIMSHOPAK BALA ─── */}
-      <LessonSection number={5} title={((L.vimshopakTitle as Record<string, string>)[locale] ?? L.vimshopakTitle.en)}>
-        <p>{((L.vimshopakText as Record<string, string>)[locale] ?? L.vimshopakText.en)}</p>
+      <LessonSection number={5} title={t('vimshopakTitle')}>
+        <p>{t('vimshopakText')}</p>
 
         {/* Weight table */}
         <div className="mt-5 overflow-x-auto">
@@ -739,8 +743,8 @@ export default function LearnVargasPage() {
       </LessonSection>
 
       {/* ─── HIERARCHY ─── */}
-      <LessonSection number={6} title={((L.hierarchyTitle as Record<string, string>)[locale] ?? L.hierarchyTitle.en)}>
-        <p>{((L.hierarchyText as Record<string, string>)[locale] ?? L.hierarchyText.en)}</p>
+      <LessonSection number={6} title={t('hierarchyTitle')}>
+        <p>{t('hierarchyText')}</p>
 
         <div className="mt-5 space-y-3">
           {/* Essential tier */}
@@ -810,8 +814,8 @@ export default function LearnVargasPage() {
       </LessonSection>
 
       {/* ─── 7-STEP INTERPRETATION ─── */}
-      <LessonSection number={7} title={((L.interpretTitle as Record<string, string>)[locale] ?? L.interpretTitle.en)} variant="highlight">
-        <p className="mb-5">{((L.interpretText as Record<string, string>)[locale] ?? L.interpretText.en)}</p>
+      <LessonSection number={7} title={t('interpretTitle')} variant="highlight">
+        <p className="mb-5">{t('interpretText')}</p>
 
         <div className="space-y-4">
           {INTERPRETATION_STEPS.map((s) => (
@@ -829,8 +833,8 @@ export default function LearnVargasPage() {
       </LessonSection>
 
       {/* ─── GOLDEN RULES ─── */}
-      <LessonSection number={8} title={((L.rulesTitle as Record<string, string>)[locale] ?? L.rulesTitle.en)}>
-        <p className="mb-5">{((L.rulesText as Record<string, string>)[locale] ?? L.rulesText.en)}</p>
+      <LessonSection number={8} title={t('rulesTitle')}>
+        <p className="mb-5">{t('rulesText')}</p>
 
         <div className="space-y-3">
           {GOLDEN_RULES.map((r, i) => (
@@ -856,8 +860,8 @@ export default function LearnVargasPage() {
       </LessonSection>
 
       {/* ─── PRACTICAL EXAMPLES ─── */}
-      <LessonSection number={9} title={((L.practicalTitle as Record<string, string>)[locale] ?? L.practicalTitle.en)}>
-        <p className="mb-5">{((L.practicalText as Record<string, string>)[locale] ?? L.practicalText.en)}</p>
+      <LessonSection number={9} title={t('practicalTitle')}>
+        <p className="mb-5">{t('practicalText')}</p>
 
         {/* D9 Interpretation Example */}
         <div className="mb-5 p-5 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 border border-amber-500/20">
@@ -920,8 +924,8 @@ export default function LearnVargasPage() {
       </LessonSection>
 
       {/* ─── COMMON MISTAKES ─── */}
-      <LessonSection number={10} title={((L.mistakesTitle as Record<string, string>)[locale] ?? L.mistakesTitle.en)}>
-        <p className="mb-5">{((L.mistakesText as Record<string, string>)[locale] ?? L.mistakesText.en)}</p>
+      <LessonSection number={10} title={t('mistakesTitle')}>
+        <p className="mb-5">{t('mistakesText')}</p>
 
         <div className="space-y-3">
           {MISTAKES.map((m, i) => (
@@ -942,7 +946,7 @@ export default function LearnVargasPage() {
       {/* ─── DEEPER LINKS ─── */}
       <div className="mt-10">
         <h3 className="text-xl font-bold text-gold-gradient mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-          {((L.deeper as Record<string, string>)[locale] ?? L.deeper.en)}
+          {t('deeper')}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {DEEPER_LINKS.map((link) => (
@@ -967,7 +971,7 @@ export default function LearnVargasPage() {
           className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-base font-bold"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
-          {((L.tryIt as Record<string, string>)[locale] ?? L.tryIt.en)}
+          {t('tryIt')}
         </Link>
       </div>
     </div>

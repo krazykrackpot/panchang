@@ -34,9 +34,9 @@ const L = {
 interface Instrument {
   name: string;
   nameHi: string;
-  purpose: { en: string; hi: string };
-  description: { en: string; hi: string };
-  highlight: { en: string; hi: string };
+  purpose: Record<string, string>;
+  description: Record<string, string>;
+  highlight: Record<string, string>;
   color: string;
   border: string;
 }
@@ -148,7 +148,7 @@ const OBSERVATORIES = [
 export default function ObservatoriesPage() {
   const locale = useLocale() as Locale;
   const hi = isDevanagariLocale(locale);
-  const t = (obj: { en: string; hi: string }) => (hi ? obj.hi : obj.en);
+  const t = (obj: Record<string, string>) => (hi ? obj.hi : obj.en);
 
   return (
     <div className="min-h-screen py-8 sm:py-12 px-4 sm:px-6 max-w-4xl mx-auto">

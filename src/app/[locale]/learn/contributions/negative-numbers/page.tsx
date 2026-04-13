@@ -101,7 +101,7 @@ const SANSKRIT_TERMS = [
 export default async function NegativeNumbersPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params as { locale: Locale };
   const hi = isDevanagariLocale(locale);
-  const t = (obj: { en: string; hi: string }) => hi ? obj.hi : obj.en;
+  const t = (obj: Record<string, string>) => hi ? obj.hi : obj.en;
 
   return (
     <div className="min-h-screen">

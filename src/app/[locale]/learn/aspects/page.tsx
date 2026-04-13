@@ -7,6 +7,9 @@ import { Eye, Target, ArrowRight } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LT from '@/messages/learn/aspects.json';
 
 /* ── Trilingual Labels ──────────────────────────────────────────── */
 const L = {
@@ -282,7 +285,7 @@ function AspectWheel({ selectedPlanet, locale }: { selectedPlanet: typeof PLANET
       {!selectedPlanet && (
         <text x={cx} y={cy} textAnchor="middle" dominantBaseline="central"
           className="text-xs" fill="#8b8fa3">
-          {!isDevanagariLocale(locale) ? 'Select a planet' : locale === 'sa' ? 'ग्रहं चिनुत' : 'ग्रह चुनें'}
+          {lt((LT as unknown as Record<string, LocaleText>)['selectPlanet'], locale)}
         </text>
       )}
       {selectedPlanet && (
@@ -301,6 +304,7 @@ export default function AspectsPage() {
   const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+  const t = (key: string) => lt((LT as unknown as Record<string, LocaleText>)[key], locale);
   const [selected, setSelected] = useState<typeof PLANETS[0] | null>(PLANETS[0]);
 
   return (
@@ -308,10 +312,10 @@ export default function AspectsPage() {
       {/* Header */}
       <div>
         <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={headingFont}>
-          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
+          {t('title')}
         </h2>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl" style={bodyFont}>
-          {((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}
+          {t('subtitle')}
         </p>
       </div>
 
@@ -320,20 +324,20 @@ export default function AspectsPage() {
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <div className="flex items-center gap-3 mb-4">
           <Eye className="w-6 h-6 text-gold-light" />
-          <h3 className="text-gold-gradient text-xl font-bold" style={headingFont}>{((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}</h3>
+          <h3 className="text-gold-gradient text-xl font-bold" style={headingFont}>{t('whatTitle')}</h3>
         </div>
         <div className="space-y-3" style={bodyFont}>
-          <p className="text-text-secondary text-sm leading-relaxed">{((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}</p>
-          <p className="text-text-secondary text-sm leading-relaxed">{((L.whatContent2 as Record<string, string>)[locale] ?? L.whatContent2.en)}</p>
-          <p className="text-text-secondary text-sm leading-relaxed">{((L.whatContent3 as Record<string, string>)[locale] ?? L.whatContent3.en)}</p>
+          <p className="text-text-secondary text-sm leading-relaxed">{t('whatContent')}</p>
+          <p className="text-text-secondary text-sm leading-relaxed">{t('whatContent2')}</p>
+          <p className="text-text-secondary text-sm leading-relaxed">{t('whatContent3')}</p>
         </div>
       </motion.div>
 
       {/* Interactive Aspect Diagram */}
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
-        <h3 className="text-gold-gradient text-xl font-bold mb-2" style={headingFont}>{((L.diagramTitle as Record<string, string>)[locale] ?? L.diagramTitle.en)}</h3>
-        <p className="text-text-secondary text-xs mb-4" style={bodyFont}>{((L.diagramHint as Record<string, string>)[locale] ?? L.diagramHint.en)}</p>
+        <h3 className="text-gold-gradient text-xl font-bold mb-2" style={headingFont}>{t('diagramTitle')}</h3>
+        <p className="text-text-secondary text-xs mb-4" style={bodyFont}>{t('diagramHint')}</p>
 
         {/* Planet selector buttons */}
         <div className="flex flex-wrap gap-2 mb-6">
@@ -359,8 +363,8 @@ export default function AspectsPage() {
           <div className="mt-4 text-center">
             <p className="text-xs text-text-secondary" style={bodyFont}>
               <span style={{ color: selected.color }} className="font-bold">{selected.name[locale]}</span>
-              {' '}{((L.placedIn as Record<string, string>)[locale] ?? L.placedIn.en)}
-              {' \u2192 '}{!isDevanagariLocale(locale) ? 'Aspects houses' : isHi ? 'दृष्टि भाव' : 'दृष्टिभावाः'}{': '}
+              {' '}{t('placedIn')}
+              {' \u2192 '}{t('aspectsHouses')}{': '}
               <span style={{ color: selected.color }} className="font-bold">
                 {selected.aspects.join(', ')}
               </span>
@@ -374,18 +378,18 @@ export default function AspectsPage() {
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <div className="flex items-center gap-3 mb-4">
           <Target className="w-6 h-6 text-gold-light" />
-          <h3 className="text-gold-gradient text-xl font-bold" style={headingFont}>{((L.rulesTitle as Record<string, string>)[locale] ?? L.rulesTitle.en)}</h3>
+          <h3 className="text-gold-gradient text-xl font-bold" style={headingFont}>{t('rulesTitle')}</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/15">
-                <th className="py-2 px-3 text-left text-gold-light font-bold" style={headingFont}>{((L.planet as Record<string, string>)[locale] ?? L.planet.en)}</th>
-                <th className="py-2 px-3 text-left text-gold-light font-bold" style={headingFont}>{((L.aspects as Record<string, string>)[locale] ?? L.aspects.en)}</th>
-                <th className="py-2 px-3 text-center text-emerald-400 font-bold">{((L.full as Record<string, string>)[locale] ?? L.full.en)}</th>
-                <th className="py-2 px-3 text-center text-yellow-400 font-bold">{((L.threeQ as Record<string, string>)[locale] ?? L.threeQ.en)}</th>
-                <th className="py-2 px-3 text-center text-orange-400 font-bold">{((L.half as Record<string, string>)[locale] ?? L.half.en)}</th>
-                <th className="py-2 px-3 text-center text-red-400 font-bold">{((L.quarter as Record<string, string>)[locale] ?? L.quarter.en)}</th>
+                <th className="py-2 px-3 text-left text-gold-light font-bold" style={headingFont}>{t('planet')}</th>
+                <th className="py-2 px-3 text-left text-gold-light font-bold" style={headingFont}>{t('aspects')}</th>
+                <th className="py-2 px-3 text-center text-emerald-400 font-bold">{t('full')}</th>
+                <th className="py-2 px-3 text-center text-yellow-400 font-bold">{t('threeQ')}</th>
+                <th className="py-2 px-3 text-center text-orange-400 font-bold">{t('half')}</th>
+                <th className="py-2 px-3 text-center text-red-400 font-bold">{t('quarter')}</th>
               </tr>
             </thead>
             <tbody>
@@ -407,7 +411,7 @@ export default function AspectsPage() {
       {/* Section 3: What Each Planet's Aspect Does */}
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
-        <h3 className="text-gold-gradient text-xl font-bold mb-5" style={headingFont}>{((L.effectTitle as Record<string, string>)[locale] ?? L.effectTitle.en)}</h3>
+        <h3 className="text-gold-gradient text-xl font-bold mb-5" style={headingFont}>{t('effectTitle')}</h3>
         <div className="space-y-4" style={bodyFont}>
           {[
             { label: { en: 'Jupiter', hi: 'बृहस्पति', sa: 'बृहस्पतिः' }, color: '#facc15', text: L.jupiterEffect },
@@ -429,7 +433,7 @@ export default function AspectsPage() {
       {/* Section 4: Key Aspect Combinations */}
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
-        <h3 className="text-gold-gradient text-xl font-bold mb-5" style={headingFont}>{((L.combosTitle as Record<string, string>)[locale] ?? L.combosTitle.en)}</h3>
+        <h3 className="text-gold-gradient text-xl font-bold mb-5" style={headingFont}>{t('combosTitle')}</h3>
         <div className="space-y-3">
           {KEY_COMBOS.map((combo, i) => (
             <div key={i}
@@ -451,13 +455,13 @@ export default function AspectsPage() {
       {/* Section 5: Math / Engine */}
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-violet-400/15 bg-violet-400/3">
-        <h3 className="text-violet-300 text-lg font-bold mb-3" style={headingFont}>{((L.mathTitle as Record<string, string>)[locale] ?? L.mathTitle.en)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>{((L.mathContent as Record<string, string>)[locale] ?? L.mathContent.en)}</p>
+        <h3 className="text-violet-300 text-lg font-bold mb-3" style={headingFont}>{t('mathTitle')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>{t('mathContent')}</p>
       </motion.div>
 
       {/* Related Links */}
       <div>
-        <h3 className="text-gold-gradient text-lg font-bold mb-4" style={headingFont}>{((L.relatedTitle as Record<string, string>)[locale] ?? L.relatedTitle.en)}</h3>
+        <h3 className="text-gold-gradient text-lg font-bold mb-4" style={headingFont}>{t('relatedTitle')}</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {RELATED_LINKS.map((link, i) => (
             <Link key={i} href={link.href}

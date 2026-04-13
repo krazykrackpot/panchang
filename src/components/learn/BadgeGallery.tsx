@@ -10,11 +10,11 @@ import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const LABELS = {
-  title:       { en: 'Badge Gallery',       hi: 'बैज गैलरी' },
-  earned:      { en: 'Earned',              hi: 'अर्जित' },
-  locked:      { en: 'Locked',              hi: 'लॉक' },
-  earnedOn:    { en: 'Earned',              hi: 'अर्जित' },
-  progress:    { en: 'Progress',            hi: 'प्रगति' },
+  title:       { en: 'Badge Gallery', hi: 'बैज गैलरी', sa: 'बैज गैलरी', mai: 'बैज गैलरी', mr: 'बैज गैलरी', ta: 'Badge Gallery', te: 'Badge Gallery', bn: 'Badge Gallery', kn: 'Badge Gallery', gu: 'Badge Gallery' },
+  earned:      { en: 'Earned', hi: 'अर्जित', sa: 'अर्जित', mai: 'अर्जित', mr: 'अर्जित', ta: 'Earned', te: 'Earned', bn: 'Earned', kn: 'Earned', gu: 'Earned' },
+  locked:      { en: 'Locked', hi: 'लॉक', sa: 'लॉक', mai: 'लॉक', mr: 'लॉक', ta: 'Locked', te: 'Locked', bn: 'Locked', kn: 'Locked', gu: 'Locked' },
+  earnedOn:    { en: 'Earned', hi: 'अर्जित', sa: 'अर्जित', mai: 'अर्जित', mr: 'अर्जित', ta: 'Earned', te: 'Earned', bn: 'Earned', kn: 'Earned', gu: 'Earned' },
+  progress:    { en: 'Progress', hi: 'प्रगति', sa: 'प्रगति', mai: 'प्रगति', mr: 'प्रगति', ta: 'Progress', te: 'Progress', bn: 'Progress', kn: 'Progress', gu: 'Progress' },
 };
 
 function t(key: keyof typeof LABELS, locale: Locale): string {

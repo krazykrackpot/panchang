@@ -9,7 +9,7 @@ import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ── Trilingual Labels ──────────────────────────────────────────────── */
-type Tri = { en: string; hi: string; sa: string; ta?: string };
+type Tri = Record<string, string>;
 const L: Record<string, Tri> = {
   title:    { en: 'Advanced Compatibility Analysis', hi: 'उन्नत अनुकूलता विश्लेषण', sa: 'उन्नतानुकूलताविश्लेषणम्' , ta: 'மேம்பட்ட பொருத்த பகுப்பாய்வு' },
   subtitle: { en: 'Beyond Ashta Kuta --- chart-level factors that determine real compatibility', hi: 'अष्ट कूट से परे --- वास्तविक अनुकूलता निर्धारित करने वाले कुण्डली-स्तरीय कारक', sa: 'अष्टकूटात् परं --- वास्तविकानुकूलतां निर्धारयन्तः कुण्डलीस्तरीयकारकाः' },
@@ -64,7 +64,7 @@ function KeyInsight({ children, color = '#d4a853' }: { children: React.ReactNode
 }
 
 /* ── 7th House Points ───────────────────────────────────────────────── */
-const HOUSE7_POINTS: { en: string; hi: string; sa: string }[] = [
+const HOUSE7_POINTS: Record<string, string>[] = [
   { en: 'Compare both charts\' 7th house signs, lords, and occupants for harmony or friction.', hi: 'दोनों कुण्डलियों के 7वें भाव की राशि, स्वामी और ग्रहों की तुलना करें।', sa: 'उभयोः कुण्डल्योः सप्तमभावराशिं, स्वामिनं, ग्रहान् च तुलयतु।' },
   { en: 'His 7th lord in her Lagna (or vice versa) = strong natural attraction.', hi: 'उसका 7वाँ स्वामी उसके लग्न में (या इसके विपरीत) = प्रबल स्वाभाविक आकर्षण।', sa: 'तस्य सप्तमस्वामी तस्याः लग्ने (विपरीतं वा) = प्रबलं स्वाभाविकम् आकर्षणम्।' },
   { en: 'Malefics in 7th of BOTH charts = shared friction zone requiring conscious effort.', hi: 'दोनों कुण्डलियों के 7वें में पाप ग्रह = साझा घर्षण क्षेत्र, सचेत प्रयास आवश्यक।', sa: 'उभयोः कुण्डल्योः सप्तमे पापग्रहाः = साझं घर्षणक्षेत्रम्।' },

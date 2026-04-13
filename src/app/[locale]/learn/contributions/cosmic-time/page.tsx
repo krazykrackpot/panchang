@@ -82,7 +82,7 @@ export default async function CosmicTimePage({ params }: { params: Promise<{ loc
   const { locale } = await params as { locale: Locale };
   const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const l = (obj: { en: string; hi: string }) => (isHi ? obj.hi : obj.en);
+  const l = (obj: Record<string, string>) => (isHi ? obj.hi : obj.en);
 
   const totalMahayuga = YUGA_DATA.reduce((sum, y) => sum + y.years, 0);
 

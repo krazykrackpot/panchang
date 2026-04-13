@@ -17,7 +17,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 // Modules can import `useT` and call `t(en, hi)` to get the locale-appropriate string
 const ModuleLocaleContext = createContext<Locale>('en');
 export function useModuleLocale(): Locale { return useContext(ModuleLocaleContext); }
-export function T({ en, hi }: { en: string; hi: string }) {
+export function T({ en, hi }: Record<string, string>) {
   const locale = useContext(ModuleLocaleContext);
   return <>{!isDevanagariLocale(locale) ? en : hi}</>;
 }
@@ -27,10 +27,10 @@ export function T({ en, hi }: { en: string; hi: string }) {
 export interface ModuleQuestion {
   id: string;
   type: 'mcq' | 'true_false';
-  question: { en: string; hi: string };
-  options?: { en: string; hi: string }[];
+  question: Record<string, string>;
+  options?: Record<string, string>[];
   correctAnswer: number | boolean; // index for mcq, true/false for t/f
-  explanation: { en: string; hi: string };
+  explanation: Record<string, string>;
   classicalRef?: string;
 }
 
@@ -39,11 +39,11 @@ export interface ModuleMeta {
   phase: number;
   topic: string;
   moduleNumber: string; // e.g. "1.1"
-  title: { en: string; hi: string };
-  subtitle: { en: string; hi: string };
+  title: Record<string, string>;
+  subtitle: Record<string, string>;
   estimatedMinutes: number;
   prerequisites?: string[]; // module IDs
-  crossRefs?: { label: { en: string; hi: string }; href: string }[];
+  crossRefs?: { label: Record<string, string>; href: string }[];
 }
 
 interface ModuleContainerProps {

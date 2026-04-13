@@ -5,63 +5,23 @@ import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { BookOpen, ChevronRight, Clock, Star, CheckCircle, Sparkles, Calendar, Diamond, Library } from 'lucide-react';
 import { ShareRow } from '@/components/ui/ShareButton';
-import type { Locale } from '@/types/panchang';
 import AdUnit from '@/components/ads/AdUnit';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import type { Locale } from '@/types/panchang';
+import L from '@/messages/learn/learn-index.json';
 
 const STATS = { modules: 104, references: 45, labs: 5, tracks: 11 };
 
 export default function LearnPage() {
-  const locale = useLocale() as Locale;
+  const locale = useLocale();
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
   const isDevanagari = isDevanagariLocale(locale);
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
-  /** Safe trilingual access — falls back to en for ta and unknown locales */
-  const tri = (obj: Record<string, string>) => obj[locale] || obj.en;
-
-  const L = {
-    en: {
-      heroTitle: 'Learn Vedic Astrology',
-      heroSub: 'The most comprehensive free Jyotish course online — 3 structured tracks from cosmic foundations to advanced prediction',
-      freeForever: 'Free forever. No account needed.',
-      chooseTrack: 'Choose Your Track',
-      labsTitle: 'Interactive Labs',
-      labsSub: 'Input your data, watch the engine calculate step by step',
-      refTitle: 'Reference Library',
-      refSub: 'Quick-access deep dives — use alongside the course or independently',
-    },
-    hi: {
-      heroTitle: 'वैदिक ज्योतिष सीखें',
-      heroSub: 'सबसे व्यापक निःशुल्क ज्योतिष पाठ्यक्रम — ब्रह्माण्डीय आधार से उन्नत भविष्यवाणी तक 3 संरचित ट्रैक',
-      freeForever: 'सदा नि:शुल्क। खाते की आवश्यकता नहीं।',
-      chooseTrack: 'अपना ट्रैक चुनें',
-      labsTitle: 'इंटरैक्टिव प्रयोगशाला',
-      labsSub: 'अपना डेटा दें, इंजन को चरणबद्ध गणना करते देखें',
-      refTitle: 'संदर्भ पुस्तकालय',
-      refSub: 'विशिष्ट विषयों पर त्वरित गहन अध्ययन',
-    },
-    sa: {
-      heroTitle: 'वैदिकज्योतिषं पठतु',
-      heroSub: 'सर्वव्यापकं निःशुल्कं ज्योतिषपाठ्यक्रमम् — ब्रह्माण्डाधारात् उन्नतभविष्यवाणीपर्यन्तम्',
-      freeForever: 'सदा नि:शुल्कम्।',
-      chooseTrack: 'स्वमार्गं चिनुत',
-      labsTitle: 'अन्तरक्रियात्मकप्रयोगशाला',
-      labsSub: 'स्वदत्तांशं दत्तवान् यन्त्रस्य गणनां पश्यतु',
-      refTitle: 'सन्दर्भपुस्तकालयः',
-      refSub: 'विशिष्टविषयेषु त्वरितगहनाध्ययनम्',
-    },
-    ta: {
-      heroTitle: 'வேத ஜோதிடம் கற்றுக்கொள்ளுங்கள்',
-      heroSub: 'இணையத்தில் மிகவும் விரிவான இலவச ஜோதிட பாடத்திட்டம் — அண்ட அடிப்படையிலிருந்து மேம்பட்ட கணிப்பு வரை 3 கட்டமைக்கப்பட்ட பாதைகள்',
-      freeForever: 'எப்போதும் இலவசம். கணக்கு தேவையில்லை.',
-      chooseTrack: 'உங்கள் பாதையைத் தேர்ந்தெடுங்கள்',
-      labsTitle: 'ஊடாடும் ஆய்வகங்கள்',
-      labsSub: 'உங்கள் தரவை உள்ளிடுங்கள், இயந்திரம் படிப்படியாக கணக்கிடுவதைப் பாருங்கள்',
-      refTitle: 'குறிப்பு நூலகம்',
-      refSub: 'விரைவு அணுகல் ஆழ்ந்த ஆய்வுகள்',
-    },
-  };
-  const l = L[locale] || L.en;
+  /** Safe trilingual access — falls back to en for unknown locales */
+  const tri = (obj: Record<string, string>) => lt(obj as LocaleText, locale);
 
   // 3 Mega Tracks
   const TRACKS = [
@@ -183,9 +143,9 @@ export default function LearnPage() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4" style={hf}>
-            <span className="text-gold-gradient">{l.heroTitle}</span>
+            <span className="text-gold-gradient">{t('heroTitle')}</span>
           </h1>
-          <p className="text-text-secondary text-lg max-w-2xl mb-8" style={bf}>{l.heroSub}</p>
+          <p className="text-text-secondary text-lg max-w-2xl mb-8" style={bf}>{t('heroSub')}</p>
 
           <div className="flex flex-wrap gap-6 mb-6">
             {[
@@ -201,16 +161,16 @@ export default function LearnPage() {
               </div>
             ))}
           </div>
-          <span className="text-text-secondary/75 text-sm">{l.freeForever}</span>
+          <span className="text-text-secondary/75 text-sm">{t('freeForever')}</span>
           <div className="flex justify-center mt-5">
             <ShareRow
-              pageTitle={l.heroTitle}
+              pageTitle={t('heroTitle')}
               shareText={locale === 'en'
                 ? 'Learn Vedic Astrology — 104 free modules from basics to advanced — Dekho Panchang'
                 : isDevanagari
                   ? 'वैदिक ज्योतिष सीखें — 104 निःशुल्क मॉड्यूल — Dekho Panchang'
                   : 'वैदिकज्योतिषं पठतु — 104 निःशुल्कमॉड्यूलाः — Dekho Panchang'}
-              locale={locale}
+              locale={locale as Locale}
             />
           </div>
         </div>
@@ -219,7 +179,7 @@ export default function LearnPage() {
       <AdUnit placement="leaderboard" className="max-w-4xl mx-auto" />
 
       {/* ── 3 Mega Track Cards ── */}
-      <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={hf}>{l.chooseTrack}</h2>
+      <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={hf}>{t('chooseTrack')}</h2>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
         {TRACKS.map((track, i) => {
           const Icon = track.icon;
@@ -268,8 +228,8 @@ export default function LearnPage() {
             &#9881;
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-gold-gradient" style={hf}>{l.labsTitle}</h2>
-            <p className="text-text-secondary text-sm" style={bf}>{l.labsSub}</p>
+            <h2 className="text-2xl font-bold text-gold-gradient" style={hf}>{t('labsTitle')}</h2>
+            <p className="text-text-secondary text-sm" style={bf}>{t('labsSub')}</p>
           </div>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -373,8 +333,8 @@ export default function LearnPage() {
 
       {/* ── Reference Library (grouped by track) ── */}
       <div>
-        <h2 className="text-2xl font-bold text-gold-gradient mb-2" style={hf}>{l.refTitle}</h2>
-        <p className="text-text-secondary text-sm mb-6" style={bf}>{l.refSub}</p>
+        <h2 className="text-2xl font-bold text-gold-gradient mb-2" style={hf}>{t('refTitle')}</h2>
+        <p className="text-text-secondary text-sm mb-6" style={bf}>{t('refSub')}</p>
         <div className="space-y-6">
           {REF_GROUPS.map(group => (
             <div key={group.label.en}>

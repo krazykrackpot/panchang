@@ -46,8 +46,8 @@ interface Astronomer {
   era: string;
   color: string;
   border: string;
-  achievements: { en: string; hi: string }[];
-  quote?: { en: string; hi: string };
+  achievements: Record<string, string>[];
+  quote?: Record<string, string>;
 }
 
 const ASTRONOMERS: Astronomer[] = [
@@ -154,7 +154,7 @@ const PRIORITY_TABLE = [
 export default function VedangaPage() {
   const locale = useLocale() as Locale;
   const hi = isDevanagariLocale(locale);
-  const t = (obj: { en: string; hi: string }) => (hi ? obj.hi : obj.en);
+  const t = (obj: Record<string, string>) => (hi ? obj.hi : obj.en);
 
   return (
     <div className="min-h-screen py-8 sm:py-12 px-4 sm:px-6 max-w-4xl mx-auto">

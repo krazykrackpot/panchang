@@ -7,6 +7,9 @@ import { ChevronDown, Zap, Compass, Clock, RotateCcw, Sun, Eye, Shield, Trending
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt as ltFn } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LT from '@/messages/learn/shadbala.json';
 
 // ─── Trilingual Labels ────────────────────────────────────────────────────────
 const L = {
@@ -153,6 +156,7 @@ export default function LearnShadbalaPage() {
   const locale = useLocale() as Locale;
   const isHi = isDevanagariLocale(locale);
   const t = (obj: Record<string, string>) => obj[locale] || obj.en;
+  const tj = (key: string) => ltFn((LT as unknown as Record<string, LocaleText>)[key], locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedBala, setExpandedBala] = useState<number | null>(0);
   const [expandedPlanet, setExpandedPlanet] = useState<string | null>(null);
@@ -212,7 +216,7 @@ export default function LearnShadbalaPage() {
                       {/* Sthana sub-parts */}
                       {i === 0 && (
                         <div className="space-y-3">
-                          <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold">{isHi ? '5 उप-भाग' : '5 Sub-parts'}</h4>
+                          <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold">{tj('subParts')}</h4>
                           {L.sthanaSubParts.map((sub, j) => (
                             <div key={j} className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8">
                               <div className="text-gold-light font-bold text-sm mb-1">{t(sub.name)}</div>
@@ -228,9 +232,9 @@ export default function LearnShadbalaPage() {
                           <table className="w-full text-sm">
                             <thead>
                               <tr className="text-gold-dark text-xs uppercase tracking-widest">
-                                <th className="text-left py-2 px-3">{isHi ? 'ग्रह' : 'Planet'}</th>
-                                <th className="text-left py-2 px-3">{isHi ? 'प्रबल दिशा' : 'Strong Direction'}</th>
-                                <th className="text-left py-2 px-3">{isHi ? 'तर्क' : 'Logic'}</th>
+                                <th className="text-left py-2 px-3">{tj('planet')}</th>
+                                <th className="text-left py-2 px-3">{tj('strongDirection')}</th>
+                                <th className="text-left py-2 px-3">{tj('logic')}</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -275,10 +279,10 @@ export default function LearnShadbalaPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="text-gold-dark text-xs uppercase tracking-widest border-b border-gold-primary/15">
-                <th className="text-left py-3 px-4">{isHi ? 'ग्रह' : 'Planet'}</th>
-                <th className="text-center py-3 px-4">{isHi ? 'न्यूनतम रूप' : 'Min. Rupas'}</th>
-                <th className="text-center py-3 px-4">{isHi ? 'षष्ट्यंश' : 'Shashtiamshas'}</th>
-                <th className="text-center py-3 px-4">{isHi ? 'स्तर' : 'Difficulty'}</th>
+                <th className="text-left py-3 px-4">{tj('planet')}</th>
+                <th className="text-center py-3 px-4">{tj('minRupas')}</th>
+                <th className="text-center py-3 px-4">{'Shashtiamshas'}</th>
+                <th className="text-center py-3 px-4">{tj('difficulty')}</th>
               </tr>
             </thead>
             <tbody>
@@ -289,7 +293,7 @@ export default function LearnShadbalaPage() {
                   <td className="py-2 px-4 text-center text-text-secondary">{th.shashtiamshas}</td>
                   <td className="py-2 px-4 text-center">
                     <span className={`text-xs px-2 py-0.5 rounded ${th.rupas >= 6.5 ? 'bg-red-500/10 text-red-400' : th.rupas >= 6 ? 'bg-amber-500/10 text-amber-400' : 'bg-emerald-500/10 text-emerald-400'}`}>
-                      {th.rupas >= 6.5 ? (isHi ? 'कठिन' : 'Hard') : th.rupas >= 6 ? (isHi ? 'मध्यम' : 'Medium') : (isHi ? 'सरल' : 'Easier')}
+                      {th.rupas >= 6.5 ? (tj('hard')) : th.rupas >= 6 ? (tj('medium')) : (tj('easier'))}
                     </span>
                   </td>
                 </tr>
@@ -317,14 +321,14 @@ export default function LearnShadbalaPage() {
         <div className="flex items-start gap-3 p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
           <TrendingUp className="w-5 h-5 text-emerald-400 mt-0.5 shrink-0" />
           <div>
-            <div className="text-emerald-400 font-bold text-sm mb-1">{isHi ? 'सबसे बलवान ग्रह = कुण्डली का कप्तान' : 'Strongest Planet = Chart Captain'}</div>
+            <div className="text-emerald-400 font-bold text-sm mb-1">{tj('strongestPlanet')}</div>
             <p className="text-text-secondary text-sm leading-relaxed">{t(L.readingP1)}</p>
           </div>
         </div>
         <div className="flex items-start gap-3 p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
           <AlertTriangle className="w-5 h-5 text-amber-400 mt-0.5 shrink-0" />
           <div>
-            <div className="text-amber-400 font-bold text-sm mb-1">{isHi ? 'सबसे कमजोर ग्रह = उपचार आवश्यक' : 'Weakest Planet = Needs Remedies'}</div>
+            <div className="text-amber-400 font-bold text-sm mb-1">{tj('weakestPlanet')}</div>
             <p className="text-text-secondary text-sm leading-relaxed">{t(L.readingP2)}</p>
           </div>
         </div>
@@ -348,11 +352,11 @@ export default function LearnShadbalaPage() {
                     transition={{ duration: 0.25, ease: 'easeInOut' as const }} className="overflow-hidden">
                     <div className="px-6 pb-5 space-y-3 border-t border-gold-primary/10 pt-4">
                       <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
-                        <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'बलवान होने पर' : 'When Strong'}</div>
+                        <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-1">{tj('whenStrong')}</div>
                         <div className="text-text-secondary text-sm leading-relaxed">{t(pe.strong)}</div>
                       </div>
                       <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
-                        <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'दुर्बल होने पर' : 'When Weak'}</div>
+                        <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">{tj('whenWeak')}</div>
                         <div className="text-text-secondary text-sm leading-relaxed">{t(pe.weak)}</div>
                       </div>
                     </div>

@@ -19,17 +19,17 @@ import { Flame } from 'lucide-react';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const LABELS = {
-  yourJourney:    { en: 'Your Journey',           hi: 'आपकी यात्रा' },
-  modulesOf:      { en: 'modules mastered',        hi: 'मॉड्यूल पूर्ण' },
-  continueLearning:{ en: 'Continue Learning',      hi: 'आगे बढ़ें' },
-  allMastered:    { en: 'All Mastered!',           hi: 'सब पूर्ण!' },
-  allMasteredSub: { en: "You've completed the full curriculum.",  hi: 'आपने पूरा पाठ्यक्रम पूर्ण किया।' },
-  signInToSave:   { en: 'Sign in to save progress across devices', hi: 'उपकरणों के पार प्रगति सहेजें' },
-  nextUp:         { en: 'Next up',                 hi: 'अगला' },
-  dayStreak:      { en: 'Day Streak',              hi: 'दिन की लय' },
-  longest:        { en: 'Longest',                 hi: 'सर्वोच्च' },
-  dontBreak:      { en: "Don't break your streak!",hi: 'अपनी लय मत तोड़ो!' },
-  freezeUsed:     { en: 'Freeze used this week',   hi: 'इस सप्ताह फ़्रीज़ उपयोग किया' },
+  yourJourney:    { en: 'Your Journey', hi: 'आपकी यात्रा', sa: 'आपकी यात्रा', mai: 'आपकी यात्रा', mr: 'आपकी यात्रा', ta: 'Your Journey', te: 'Your Journey', bn: 'Your Journey', kn: 'Your Journey', gu: 'Your Journey' },
+  modulesOf:      { en: 'modules mastered', hi: 'मॉड्यूल पूर्ण', sa: 'मॉड्यूल पूर्ण', mai: 'मॉड्यूल पूर्ण', mr: 'मॉड्यूल पूर्ण', ta: 'modules mastered', te: 'modules mastered', bn: 'modules mastered', kn: 'modules mastered', gu: 'modules mastered' },
+  continueLearning:{ en: 'Continue Learning', hi: 'आगे बढ़ें', sa: 'आगे बढ़ें', mai: 'आगे बढ़ें', mr: 'आगे बढ़ें', ta: 'Continue Learning', te: 'Continue Learning', bn: 'Continue Learning', kn: 'Continue Learning', gu: 'Continue Learning' },
+  allMastered:    { en: 'All Mastered!', hi: 'सब पूर्ण!', sa: 'सब पूर्ण!', mai: 'सब पूर्ण!', mr: 'सब पूर्ण!', ta: 'All Mastered!', te: 'All Mastered!', bn: 'All Mastered!', kn: 'All Mastered!', gu: 'All Mastered!' },
+  allMasteredSub: { en: "You've completed the full curriculum.", hi: 'आपने पूरा पाठ्यक्रम पूर्ण किया।', sa: 'आपने पूरा पाठ्यक्रम पूर्ण किया।', mai: 'आपने पूरा पाठ्यक्रम पूर्ण किया।', mr: 'आपने पूरा पाठ्यक्रम पूर्ण किया।', ta: "You've completed the full curriculum.", te: "You've completed the full curriculum.", bn: "You've completed the full curriculum.", kn: "You've completed the full curriculum.", gu: "You've completed the full curriculum." },
+  signInToSave:   { en: 'Sign in to save progress across devices', hi: 'उपकरणों के पार प्रगति सहेजें', sa: 'उपकरणों के पार प्रगति सहेजें', mai: 'उपकरणों के पार प्रगति सहेजें', mr: 'उपकरणों के पार प्रगति सहेजें', ta: 'Sign in to save progress across devices', te: 'Sign in to save progress across devices', bn: 'Sign in to save progress across devices', kn: 'Sign in to save progress across devices', gu: 'Sign in to save progress across devices' },
+  nextUp:         { en: 'Next up', hi: 'अगला', sa: 'अगला', mai: 'अगला', mr: 'अगला', ta: 'Next up', te: 'Next up', bn: 'Next up', kn: 'Next up', gu: 'Next up' },
+  dayStreak:      { en: 'Day Streak', hi: 'दिन की लय', sa: 'दिन की लय', mai: 'दिन की लय', mr: 'दिन की लय', ta: 'Day Streak', te: 'Day Streak', bn: 'Day Streak', kn: 'Day Streak', gu: 'Day Streak' },
+  longest:        { en: 'Longest', hi: 'सर्वोच्च', sa: 'सर्वोच्च', mai: 'सर्वोच्च', mr: 'सर्वोच्च', ta: 'Longest', te: 'Longest', bn: 'Longest', kn: 'Longest', gu: 'Longest' },
+  dontBreak:      { en: "Don't break your streak!", hi: 'अपनी लय मत तोड़ो!', sa: 'अपनी लय मत तोड़ो!', mai: 'अपनी लय मत तोड़ो!', mr: 'अपनी लय मत तोड़ो!', ta: "Don't break your streak!", te: "Don't break your streak!", bn: "Don't break your streak!", kn: "Don't break your streak!", gu: "Don't break your streak!" },
+  freezeUsed:     { en: 'Freeze used this week', hi: 'इस सप्ताह फ़्रीज़ उपयोग किया', sa: 'इस सप्ताह फ़्रीज़ उपयोग किया', mai: 'इस सप्ताह फ़्रीज़ उपयोग किया', mr: 'इस सप्ताह फ़्रीज़ उपयोग किया', ta: 'Freeze used this week', te: 'Freeze used this week', bn: 'Freeze used this week', kn: 'Freeze used this week', gu: 'Freeze used this week' },
 };
 
 function t(key: keyof typeof LABELS, locale: Locale): string {

@@ -5,84 +5,11 @@ import { motion } from 'framer-motion';
 import { ArrowRight, ShieldCheck, ShieldX, Zap, Home, Heart, TrendingUp, Star } from 'lucide-react';
 import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import L from '@/messages/learn/argala.json';
 
-/* ── Inline trilingual labels ─────────────────────────────────────── */
-const L = {
-  title: { en: 'Argala — Planetary Intervention', hi: 'अर्गला — ग्रहीय हस्तक्षेप', sa: 'अर्गला — ग्रहीयहस्तक्षेपः' , ta: 'அர்கலா — கிரக தலையீடு' },
-  subtitle: {
-    en: 'From Jaimini Sutras and BPHS Chapter 31. Argala reveals which planets actively intervene in each house\'s affairs — bolting support or obstruction onto your life areas.',
-    hi: 'जैमिनी सूत्र और बृहत् पाराशर होरा शास्त्र अध्याय 31 से। अर्गला बताता है कि कौन से ग्रह प्रत्येक भाव के मामलों में सक्रिय हस्तक्षेप करते हैं।',
-    sa: 'जैमिनिसूत्रेभ्यः बृहत्पाराशरहोराशास्त्रस्य एकत्रिंशत्तमाध्यायाच्च। अर्गला ज्ञापयति ये ग्रहाः प्रत्येकभावस्य विषयेषु सक्रियहस्तक्षेपं कुर्वन्ति।'
-  },
-  whatTitle: { en: 'What is Argala?', hi: 'अर्गला क्या है?', sa: 'अर्गला का?' },
-  whatContent: {
-    en: 'The word "Argala" literally means a "bolt" or "latch" — like the bolt on a door. In Jyotish, it refers to the planetary intervention that locks support (or obstruction) onto a specific house. While aspects (Drishti) show where a planet casts its gaze, Argala shows where a planet actively intervenes with resources, emotions, or achievements.',
-    hi: '"अर्गला" शब्द का शाब्दिक अर्थ है "सिटकनी" या "कुंडी" — जैसे दरवाज़े की कुंडी। ज्योतिष में यह उस ग्रहीय हस्तक्षेप को सूचित करता है जो किसी भाव पर सहायता (या बाधा) को लॉक कर देता है। जबकि दृष्टि दिखाती है कि ग्रह कहाँ देखता है, अर्गला दिखाती है कि ग्रह कहाँ सक्रिय रूप से संसाधनों, भावनाओं या उपलब्धियों के साथ हस्तक्षेप करता है।',
-    sa: '"अर्गला" इति शब्दस्य शाब्दिकार्थः "अर्गलम्" — यथा द्वारस्य कुण्डी। ज्योतिषे इदं ग्रहीयहस्तक्षेपं सूचयति यत् भावे सहायतां (बाधां वा) स्थापयति।'
-  },
-  whatContent2: {
-    en: 'Argala is a concept from both Maharishi Jaimini\'s Sutras and Brihat Parashara Hora Shastra (BPHS, Ch. 31). Parashara defines four types of Argala based on the position of intervening planets relative to any reference house. The beauty of Argala is its simplicity: count houses, check planets, determine intervention.',
-    hi: 'अर्गला महर्षि जैमिनी के सूत्रों और बृहत् पाराशर होरा शास्त्र (अध्याय 31) दोनों से एक अवधारणा है। पराशर चार प्रकार की अर्गला परिभाषित करते हैं जो किसी भी संदर्भ भाव से हस्तक्षेप करने वाले ग्रहों की स्थिति पर आधारित हैं।',
-    sa: 'अर्गला महर्षिजैमिनेः सूत्रेभ्यः बृहत्पाराशरहोराशास्त्राच्च (31 अध्यायः) उभयतः अवधारणा। पराशरः चतुर्विधाम् अर्गलां परिभाषयति।'
-  },
-  sourceTitle: { en: 'Scriptural Sources', hi: 'शास्त्रीय स्रोत', sa: 'शास्त्रीयस्रोतांसि' },
-  sourceContent: {
-    en: 'BPHS Chapter 31 states: "Planets in the 2nd, 4th, and 11th from any Bhava or Graha cause Argala to that Bhava/Graha." Jaimini Sutras (1.1.5-12) elaborate further, adding the 5th house as a special Argala. Both traditions agree that Argala is a powerful modifying influence — sometimes more impactful than aspects, because it represents active material or emotional intervention rather than mere influence.',
-    hi: 'बृहत् पाराशर होरा शास्त्र अध्याय 31 कहता है: "किसी भी भाव या ग्रह से 2, 4 और 11वें स्थान में ग्रह उस भाव/ग्रह पर अर्गला उत्पन्न करते हैं।" जैमिनी सूत्र (1.1.5-12) आगे 5वें भाव को विशेष अर्गला के रूप में जोड़ते हैं।',
-    sa: 'बृ.पा.हो.शा. 31 अध्यायः वदति: "कस्मादपि भावात् ग्रहात् वा द्वितीये चतुर्थे एकादशे च ग्रहाः तस्य भावस्य/ग्रहस्य अर्गलां कुर्वन्ति।"'
-  },
-  typesTitle: { en: 'The Four Types of Argala', hi: 'अर्गला के चार प्रकार', sa: 'अर्गलायाः चत्वारः प्रकाराः' },
-  typesContent: {
-    en: 'Each type of Argala describes a different mechanism of planetary intervention. The intervening planets bring their own nature — benefics bring positive support, malefics bring forceful or challenging intervention. The strength of Argala depends on how many planets occupy the Argala-causing house and their nature.',
-    hi: 'प्रत्येक प्रकार की अर्गला ग्रहीय हस्तक्षेप की एक अलग प्रणाली का वर्णन करती है। हस्तक्षेप करने वाले ग्रह अपना स्वभाव लाते हैं — शुभ ग्रह सकारात्मक सहायता लाते हैं, पाप ग्रह चुनौतीपूर्ण हस्तक्षेप करते हैं।',
-    sa: 'प्रत्येकः अर्गलाप्रकारः ग्रहीयहस्तक्षेपस्य भिन्नां प्रणालिं वर्णयति।'
-  },
-  virodhaTitle: { en: 'Virodha Argala — Counter-Intervention', hi: 'विरोध अर्गला — प्रतिरोधी हस्तक्षेप', sa: 'विरोधार्गला — प्रतिरोधी हस्तक्षेपः' },
-  virodhaContent: {
-    en: 'For each Argala, there exists a Virodha (obstruction) point. If planets occupy the Virodha house, they attempt to block or neutralize the Argala. However — and this is crucial — the obstruction only succeeds if the Virodha planets are MORE in number or strength than the Argala-causing planets. If the Argala planets outnumber the Virodha planets, the Argala holds firm.',
-    hi: 'प्रत्येक अर्गला के लिए एक विरोध (बाधा) बिन्दु होता है। यदि ग्रह विरोध भाव में हैं, तो वे अर्गला को अवरुद्ध करने का प्रयास करते हैं। परन्तु — और यह महत्वपूर्ण है — बाधा तभी सफल होती है जब विरोधी ग्रह अर्गला-कारक ग्रहों से अधिक संख्या या बल में हों।',
-    sa: 'प्रत्येकस्यै अर्गलायै विरोधबिन्दुः अस्ति। यदि विरोधभावे ग्रहाः सन्ति, ते अर्गलां अवरुणद्धुं प्रयतन्ते। किन्तु बाधा तदैव सिध्यति यदा विरोधिग्रहाः अर्गलाकारकग्रहेभ्यः अधिकाः।'
-  },
-  virodhaContent2: {
-    en: 'This creates a fascinating dynamic: imagine Jupiter and Venus in the 2nd from your 7th house (Dhana Argala on marriage — wealth supports marriage). Now if only Mars is in the 3rd from the 7th (Virodha). Since 2 benefics > 1 malefic, the Argala holds — your marriage receives financial support despite some opposition.',
-    hi: 'यह एक रोचक गतिशीलता बनाता है: कल्पना करें कि बृहस्पति और शुक्र आपके 7वें भाव से 2रे में हैं (विवाह पर धन अर्गला)। अब यदि केवल मंगल 7वें से 3रे में है (विरोध)। चूँकि 2 शुभ > 1 पाप, अर्गला बनी रहती है।',
-    sa: 'इदं रोचकां गतिशीलतां रचयति: कल्पयतु गुरुशुक्रौ सप्तमभावात् द्वितीये (धनार्गला विवाहे)। यदि केवलं मङ्गलः सप्तमात् तृतीये (विरोधः)। यतो 2 शुभौ > 1 पापः, अर्गला तिष्ठति।'
-  },
-  readingTitle: { en: 'Reading Argala in Your Chart', hi: 'अपनी कुण्डली में अर्गला पढ़ना', sa: 'स्वकुण्डल्याम् अर्गलां पठनम्' },
-  readingContent: {
-    en: 'To analyze Argala for any house, follow these steps: (1) Choose your target house. (2) Count 2nd, 4th, 5th, and 11th from it. (3) Note which planets occupy those houses. (4) Count the Virodha houses (3rd, 10th, 9th, 12th). (5) Compare: if Argala planets >= Virodha planets, the Argala is active.',
-    hi: 'किसी भी भाव के लिए अर्गला विश्लेषण करने हेतु: (1) लक्ष्य भाव चुनें। (2) उससे 2रा, 4था, 5वाँ और 11वाँ गिनें। (3) उन भावों में कौन से ग्रह हैं नोट करें। (4) विरोध भाव गिनें (3रा, 10वाँ, 9वाँ, 12वाँ)। (5) तुलना करें: यदि अर्गला ग्रह >= विरोध ग्रह, तो अर्गला सक्रिय है।',
-    sa: 'कस्यापि भावस्य अर्गलाविश्लेषणाय: (1) लक्ष्यभावं चिनुत। (2) ततः द्वितीयं चतुर्थं पञ्चमम् एकादशं च गणयत। (3) तेषु भावेषु के ग्रहाः इति लिखत। (4) विरोधभावान् गणयत। (5) तुलयत।'
-  },
-  supportedTitle: { en: 'Supported vs Obstructed Houses', hi: 'समर्थित बनाम अवरुद्ध भाव', sa: 'समर्थिताः अवरुद्धाः च भावाः' },
-  supportedContent: {
-    en: 'A "supported" house — one with active, unobstructed Argala — receives tangible planetary help. The life areas of that house flourish with material or emotional backing. An "obstructed" house — where Virodha Argala succeeds — faces counter-intervention, meaning external forces work against that house\'s significations.',
-    hi: 'एक "समर्थित" भाव — जिसमें सक्रिय, अबाधित अर्गला है — को वास्तविक ग्रहीय सहायता प्राप्त होती है। एक "अवरुद्ध" भाव — जहाँ विरोध अर्गला सफल होती है — को प्रतिरोधी हस्तक्षेप का सामना करना पड़ता है।',
-    sa: '"समर्थितः" भावः — यस्मिन् सक्रिया अबाधिता अर्गला अस्ति — वास्तविकां ग्रहीयसहायतां प्राप्नोति। "अवरुद्धः" भावः प्रतिरोधिहस्तक्षेपं अनुभवति।'
-  },
-  remediesTitle: { en: 'Remedies for Obstructed Houses', hi: 'अवरुद्ध भावों के उपाय', sa: 'अवरुद्धभावानाम् उपायाः' },
-  remediesContent: {
-    en: 'When a critical house (like the 7th for marriage, or the 10th for career) has its Argala obstructed, remedies focus on strengthening the Argala planets while pacifying the Virodha planets. If benefics cause Argala but malefics obstruct, strengthen the benefics through gemstones and mantras. Charity related to the obstructing planet\'s significations can also help — for example, donating iron items if Saturn obstructs.',
-    hi: 'जब किसी महत्वपूर्ण भाव (जैसे 7वाँ विवाह के लिए, या 10वाँ करियर के लिए) की अर्गला अवरुद्ध हो, तो उपाय अर्गला ग्रहों को मजबूत करने और विरोधी ग्रहों को शांत करने पर केन्द्रित होते हैं।',
-    sa: 'यदा महत्वपूर्णभावस्य (यथा सप्तमस्य विवाहाय) अर्गला अवरुद्धा भवति, उपायाः अर्गलाग्रहान् बलयितुं विरोधिग्रहान् शमयितुं च केन्द्रिताः।'
-  },
-  exampleTitle: { en: 'Worked Example — Argala on the 7th House (Marriage)', hi: 'उदाहरण — 7वें भाव (विवाह) पर अर्गला', sa: 'उदाहरणम् — सप्तमभावे (विवाहे) अर्गला' },
-  exampleContent: {
-    en: 'Let us trace Argala for the 7th house — the house of marriage, partnerships, and public dealings.',
-    hi: 'आइए 7वें भाव — विवाह, साझेदारी और सार्वजनिक व्यवहार के भाव — के लिए अर्गला का पता लगाएं।',
-    sa: 'सप्तमभावस्य — विवाहस्य, साझेदार्याः, लोकव्यवहारस्य च भावस्य — अर्गलां अनुसरामः।'
-  },
-  specialTitle: { en: 'Special Rules & Exceptions', hi: 'विशेष नियम और अपवाद', sa: 'विशेषनियमाः अपवादाः च' },
-  specialContent: {
-    en: 'Several special rules govern Argala analysis that elevate it beyond simple house-counting:',
-    hi: 'कई विशेष नियम अर्गला विश्लेषण को सरल भाव-गणना से ऊपर उठाते हैं:',
-    sa: 'अनेके विशेषनियमाः अर्गलाविश्लेषणं सरलभावगणनातः ऊर्ध्वं नयन्ति:'
-  },
-  practicalTitle: { en: 'Practical Application Tips', hi: 'व्यावहारिक उपयोग सुझाव', sa: 'व्यावहारिकोपयोगसूचनाः' },
-  crossRefTitle: { en: 'Related Topics', hi: 'सम्बन्धित विषय', sa: 'सम्बद्धविषयाः' },
-};
 
 /* ── Argala types data ────────────────────────────────────────────── */
 const ARGALA_TYPES = [
@@ -179,7 +106,8 @@ const CROSS_REFS = [
 
 /* ── Page component ───────────────────────────────────────────────── */
 export default function ArgalaPage() {
-  const locale = useLocale() as Locale;
+  const locale = useLocale();
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
   const loc = isDevanagariLocale(locale) ? 'hi' as const : 'en' as const;
 
   return (
@@ -198,27 +126,27 @@ export default function ArgalaPage() {
           className="text-3xl sm:text-4xl md:text-5xl font-bold text-gold-gradient mb-4"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
-          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
+          {t('title')}
         </h1>
         <p className="text-text-secondary max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
-          {((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}
+          {t('subtitle')}
         </p>
       </motion.div>
 
       {/* ── Section 1: What is Argala? ────────────────────────────── */}
-      <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}>
-        <p>{((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}</p>
-        <p>{((L.whatContent2 as Record<string, string>)[locale] ?? L.whatContent2.en)}</p>
+      <LessonSection number={1} title={t('whatTitle')}>
+        <p>{t('whatContent')}</p>
+        <p>{t('whatContent2')}</p>
         <div className="mt-4 p-4 rounded-lg bg-gold-primary/5 border border-gold-primary/15">
           <p className="text-gold-light text-sm italic">
-            {((L.sourceContent as Record<string, string>)[locale] ?? L.sourceContent.en)}
+            {t('sourceContent')}
           </p>
         </div>
       </LessonSection>
 
       {/* ── Section 2: The Four Types ─────────────────────────────── */}
-      <LessonSection number={2} title={((L.typesTitle as Record<string, string>)[locale] ?? L.typesTitle.en)}>
-        <p>{((L.typesContent as Record<string, string>)[locale] ?? L.typesContent.en)}</p>
+      <LessonSection number={2} title={t('typesTitle')}>
+        <p>{t('typesContent')}</p>
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {ARGALA_TYPES.map((a, i) => (
             <motion.div
@@ -237,22 +165,22 @@ export default function ArgalaPage() {
                   {a.house}
                 </div>
                 <div>
-                  <h4 className="text-gold-light font-semibold text-sm">{a.name[locale]}</h4>
+                  <h4 className="text-gold-light font-semibold text-sm">{lt(a.name as LocaleText, locale)}</h4>
                   <span className="text-text-secondary/70 text-xs font-mono">
                     {!isDevanagariLocale(locale) ? 'Virodha:' : 'विरोध:'} {a.virodha}
                   </span>
                 </div>
               </div>
-              <p className="text-text-secondary text-sm leading-relaxed">{a.desc[locale]}</p>
+              <p className="text-text-secondary text-sm leading-relaxed">{lt(a.desc as LocaleText, locale)}</p>
             </motion.div>
           ))}
         </div>
       </LessonSection>
 
       {/* ── Section 3: Virodha Argala ─────────────────────────────── */}
-      <LessonSection number={3} title={((L.virodhaTitle as Record<string, string>)[locale] ?? L.virodhaTitle.en)}>
-        <p>{((L.virodhaContent as Record<string, string>)[locale] ?? L.virodhaContent.en)}</p>
-        <p>{((L.virodhaContent2 as Record<string, string>)[locale] ?? L.virodhaContent2.en)}</p>
+      <LessonSection number={3} title={t('virodhaTitle')}>
+        <p>{t('virodhaContent')}</p>
+        <p>{t('virodhaContent2')}</p>
 
         {/* Virodha table */}
         <div className="mt-6 overflow-x-auto">
@@ -276,7 +204,7 @@ export default function ArgalaPage() {
                 >
                   <td className="py-3 px-4 text-gold-primary font-mono">{row.argala}</td>
                   <td className="py-3 px-4 text-text-secondary font-mono">{row.virodha}</td>
-                  <td className="py-3 px-4 text-text-secondary">{row.desc[locale]}</td>
+                  <td className="py-3 px-4 text-text-secondary">{lt(row.desc as LocaleText, locale)}</td>
                 </motion.tr>
               ))}
             </tbody>
@@ -295,8 +223,8 @@ export default function ArgalaPage() {
       </LessonSection>
 
       {/* ── Section 4: Worked Example ─────────────────────────────── */}
-      <LessonSection number={4} title={((L.exampleTitle as Record<string, string>)[locale] ?? L.exampleTitle.en)}>
-        <p>{((L.exampleContent as Record<string, string>)[locale] ?? L.exampleContent.en)}</p>
+      <LessonSection number={4} title={t('exampleTitle')}>
+        <p>{t('exampleContent')}</p>
 
         <div className="mt-6 space-y-4">
           {EXAMPLE_STEPS.map((step, i) => (
@@ -316,11 +244,11 @@ export default function ArgalaPage() {
                   <span className="text-gold-primary font-mono text-xs px-2 py-0.5 rounded bg-gold-primary/10">
                     {step.house}
                   </span>
-                  <span className="text-gold-light font-semibold text-sm">{step.type[locale]}</span>
+                  <span className="text-gold-light font-semibold text-sm">{lt(step.type as LocaleText, locale)}</span>
                   <ArrowRight className="w-3 h-3 text-text-secondary/65" />
-                  <span className="text-text-secondary text-sm">{step.planets[locale]}</span>
+                  <span className="text-text-secondary text-sm">{lt(step.planets as LocaleText, locale)}</span>
                 </div>
-                <p className="text-text-secondary text-sm leading-relaxed">{step.result[locale]}</p>
+                <p className="text-text-secondary text-sm leading-relaxed">{lt(step.result as LocaleText, locale)}</p>
               </div>
             </motion.div>
           ))}
@@ -340,9 +268,9 @@ export default function ArgalaPage() {
       </LessonSection>
 
       {/* ── Section 5: Reading Argala ─────────────────────────────── */}
-      <LessonSection number={5} title={((L.readingTitle as Record<string, string>)[locale] ?? L.readingTitle.en)}>
-        <p>{((L.readingContent as Record<string, string>)[locale] ?? L.readingContent.en)}</p>
-        <p>{((L.supportedContent as Record<string, string>)[locale] ?? L.supportedContent.en)}</p>
+      <LessonSection number={5} title={t('readingTitle')}>
+        <p>{t('readingContent')}</p>
+        <p>{t('supportedContent')}</p>
 
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
@@ -371,13 +299,13 @@ export default function ArgalaPage() {
       </LessonSection>
 
       {/* ── Section 6: Remedies ────────────────────────────────────── */}
-      <LessonSection number={6} title={((L.remediesTitle as Record<string, string>)[locale] ?? L.remediesTitle.en)}>
-        <p>{((L.remediesContent as Record<string, string>)[locale] ?? L.remediesContent.en)}</p>
+      <LessonSection number={6} title={t('remediesTitle')}>
+        <p>{t('remediesContent')}</p>
       </LessonSection>
 
       {/* ── Section 7: Special Rules ──────────────────────────────── */}
-      <LessonSection number={7} title={((L.specialTitle as Record<string, string>)[locale] ?? L.specialTitle.en)}>
-        <p>{((L.specialContent as Record<string, string>)[locale] ?? L.specialContent.en)}</p>
+      <LessonSection number={7} title={t('specialTitle')}>
+        <p>{t('specialContent')}</p>
         <div className="mt-4 space-y-3">
           {SPECIAL_RULES.map((rule, i) => (
             <motion.div
@@ -388,14 +316,14 @@ export default function ArgalaPage() {
               transition={{ delay: i * 0.06 }}
               className="p-4 rounded-lg border border-gold-primary/10 bg-bg-primary/30"
             >
-              <p className="text-text-secondary text-sm leading-relaxed">{rule[locale]}</p>
+              <p className="text-text-secondary text-sm leading-relaxed">{(rule as Record<string, string>)[locale] || rule.en}</p>
             </motion.div>
           ))}
         </div>
       </LessonSection>
 
       {/* ── Section 8: Practical Tips ─────────────────────────────── */}
-      <LessonSection number={8} title={((L.practicalTitle as Record<string, string>)[locale] ?? L.practicalTitle.en)}>
+      <LessonSection number={8} title={t('practicalTitle')}>
         <div className="space-y-3">
           {PRACTICAL_TIPS.map((tip, i) => (
             <motion.div
@@ -407,14 +335,14 @@ export default function ArgalaPage() {
               className="flex items-start gap-3"
             >
               <Star className="w-4 h-4 text-gold-primary flex-shrink-0 mt-1" />
-              <p className="text-text-secondary text-sm leading-relaxed">{tip[locale]}</p>
+              <p className="text-text-secondary text-sm leading-relaxed">{(tip as Record<string, string>)[locale] || tip.en}</p>
             </motion.div>
           ))}
         </div>
       </LessonSection>
 
       {/* ── Section 9: Cross References ───────────────────────────── */}
-      <LessonSection number={9} title={((L.crossRefTitle as Record<string, string>)[locale] ?? L.crossRefTitle.en)}>
+      <LessonSection number={9} title={t('crossRefTitle')}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {CROSS_REFS.map((ref) => (
             <Link
@@ -422,8 +350,8 @@ export default function ArgalaPage() {
               href={ref.href as '/learn/jaimini'}
               className="block p-4 rounded-lg border border-gold-primary/10 bg-bg-primary/30 hover:bg-gold-primary/10 hover:border-gold-primary/30 transition-all group"
             >
-              <div className="text-gold-light font-semibold text-sm group-hover:text-gold-primary transition-colors">{ref.label[loc]}</div>
-              <p className="text-text-secondary/75 text-xs mt-1">{ref.desc[loc]}</p>
+              <div className="text-gold-light font-semibold text-sm group-hover:text-gold-primary transition-colors">{lt(ref.label as LocaleText, locale)}</div>
+              <p className="text-text-secondary/75 text-xs mt-1">{lt(ref.desc as LocaleText, locale)}</p>
             </Link>
           ))}
         </div>

@@ -7,97 +7,14 @@ import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { ZodiacBeltDiagram } from '@/components/learn/InteractiveDiagram';
 import { RASHIS } from '@/lib/constants/rashis';
 import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LJ from '@/messages/learn/rashis.json';
+import { getHeadingFont, getBodyFont, isIndicLocale } from '@/lib/utils/locale-fonts';
 
-/* ---------- inline bilingual labels ---------- */
-const L = {
-  title: { en: 'Rashis — The 12 Zodiac Signs', hi: 'राशियाँ — 12 राशिचक्र', sa: 'राशयः — द्वादशराशिचक्रम्' , ta: 'ராசிகள் — 12 ராசி அடையாளங்கள்' },
-  subtitle: {
-    en: 'The twelve equal divisions of the sidereal ecliptic that form the foundation of Vedic astrology',
-    hi: 'सायन ज्योतिषीय पथ के बारह समान विभाग जो वैदिक ज्योतिष की नींव हैं',
-    sa: 'सायनज्योतिषपथस्य द्वादशसमविभागाः ये वैदिकज्योतिषस्य आधारः'
-  },
+const t_ = LJ as unknown as Record<string, LocaleText>;
 
-  /* Section 1: What are Rashis */
-  whatTitle: { en: 'What is a Rashi?', hi: 'राशि क्या है?', sa: 'राशिः कः?' },
-  whatContent: {
-    en: 'In Vedic astrology (Jyotish), the zodiac belt — the apparent path of the Sun through the sky — is divided into 12 equal segments of 30 degrees each. Each segment is called a Rashi (sign). Unlike Western astrology which uses the tropical zodiac (tied to the equinoxes), Jyotish uses the sidereal zodiac (tied to fixed stars). The difference between the two, called Ayanamsha, is currently about 24 degrees. This means your Vedic sign is often one sign behind your Western sign.',
-    hi: 'वैदिक ज्योतिष (ज्योतिष) में राशिचक्र — आकाश में सूर्य का प्रत्यक्ष पथ — 30-30 अंश के 12 समान खण्डों में विभाजित होता है। प्रत्येक खण्ड को राशि कहते हैं। पश्चिमी ज्योतिष जो सायन राशिचक्र (विषुवों से बँधा) का उपयोग करता है, उसके विपरीत ज्योतिष निरयण राशिचक्र (स्थिर तारों से बँधा) का उपयोग करता है। दोनों के बीच का अन्तर, अयनांश, वर्तमान में लगभग 24 अंश है।',
-    sa: 'वैदिकज्योतिषे राशिचक्रम् — आकाशे सूर्यस्य प्रत्यक्षपथः — त्रिंशत्-त्रिंशत् अंशानां द्वादशसमखण्डेषु विभज्यते। प्रत्येकं खण्डं राशिः इति कथ्यते।'
-  },
-  whatContent2: {
-    en: 'Each Rashi carries a unique combination of element (tattva), quality (guna), and planetary lordship that defines its character. When a planet occupies a particular Rashi, it takes on the qualities of that sign — a planet in a fire sign acts differently from the same planet in a water sign. The Rashi where your Moon is placed determines your "Moon sign" (Rashi in everyday usage), which is the primary identity marker in Vedic astrology.',
-    hi: 'प्रत्येक राशि में तत्व, गुण और ग्रह स्वामित्व का एक अद्वितीय संयोजन होता है जो उसका चरित्र निर्धारित करता है। जब कोई ग्रह किसी विशेष राशि में स्थित होता है, तो वह उस राशि के गुणों को अपनाता है। जिस राशि में आपका चन्द्रमा स्थित है वह आपकी "राशि" (चन्द्र राशि) निर्धारित करती है, जो वैदिक ज्योतिष में प्राथमिक पहचान चिह्न है।',
-    sa: 'प्रत्येकराशौ तत्त्वं, गुणः, ग्रहस्वामित्वं च अद्वितीयसंयोजनेन तस्याः स्वभावं निर्धारयति।'
-  },
 
-  /* Section 2: Astronomy */
-  astroTitle: { en: 'The Astronomy Behind Rashis', hi: 'राशियों का खगोलशास्त्र', sa: 'राशीनां खगोलशास्त्रम्' },
-  astroContent: {
-    en: 'The ecliptic is the plane of Earth\'s orbit around the Sun, projected onto the celestial sphere. The Vedic zodiac divides this circle of 360 degrees into 12 equal sectors starting from the star Spica (Chitra) as the reference point for the Lahiri Ayanamsha. Each 30-degree sector is one Rashi. The sidereal position of any celestial body is computed by subtracting the Ayanamsha from its tropical longitude.',
-    hi: 'क्रान्तिवृत्त पृथ्वी की सूर्य के चारों ओर कक्षा का तल है, जो खगोलीय गोले पर प्रक्षेपित होता है। वैदिक राशिचक्र इस 360 अंश के वृत्त को चित्रा तारे (Spica) से आरम्भ करके 12 समान खण्डों में बाँटता है। प्रत्येक 30 अंश का खण्ड एक राशि है।',
-    sa: 'क्रान्तिवृत्तं पृथिव्याः सूर्यपरिक्रमणकक्षायाः तलम्। वैदिकराशिचक्रम् एतस्य ३६० अंशवृत्तं चित्रातारकात् आरभ्य १२ समखण्डेषु विभजति।'
-  },
-
-  /* Section 3: Sign Qualities (Chara/Sthira/Dwiswabhava) */
-  qualityTitle: { en: 'Sign Qualities — Chara, Sthira, Dwiswabhava', hi: 'राशि गुण — चर, स्थिर, द्विस्वभाव', sa: 'राशिगुणाः — चरं, स्थिरं, द्विस्वभावम्' },
-  qualityIntro: {
-    en: 'Every Rashi falls into one of three modalities (qualities) that describe how its energy expresses itself. These qualities cycle through the zodiac in a fixed pattern: Cardinal, Fixed, Mutable, Cardinal, Fixed, Mutable... This classification is crucial for predicting how planets will behave in a given sign.',
-    hi: 'प्रत्येक राशि तीन प्रकार (गुणों) में से एक में आती है जो बताती है कि उसकी ऊर्जा कैसे अभिव्यक्त होती है। ये गुण राशिचक्र में एक निश्चित क्रम में चक्रित होते हैं: चर, स्थिर, द्विस्वभाव। यह वर्गीकरण भविष्यवाणी के लिए अत्यन्त महत्वपूर्ण है।',
-    sa: 'प्रत्येकराशिः त्रिषु गुणेषु एकस्मिन् पतति — चरं, स्थिरं, द्विस्वभावं च।'
-  },
-
-  /* Section 4: Elements (Tattva) */
-  elementTitle: { en: 'Elements (Tattva) — The Four Forces', hi: 'तत्व — चार शक्तियाँ', sa: 'तत्त्वानि — चतस्रः शक्तयः' },
-  elementIntro: {
-    en: 'Each Rashi is governed by one of four elements (Tattvas). The element cycle — Fire, Earth, Air, Water — repeats three times through the zodiac. Elements describe the fundamental nature of a sign\'s energy and strongly influence how planets placed in them will manifest their results.',
-    hi: 'प्रत्येक राशि चार तत्वों में से एक द्वारा शासित होती है। तत्व चक्र — अग्नि, पृथ्वी, वायु, जल — राशिचक्र में तीन बार दोहराता है। तत्व राशि की ऊर्जा की मूल प्रकृति का वर्णन करते हैं।',
-    sa: 'प्रत्येकराशिः चतुर्षु तत्त्वेषु एकेन शास्यते — अग्निः, पृथिवी, वायुः, जलं च।'
-  },
-
-  /* Section 5: Lordship */
-  lordTitle: { en: 'Sign Lordship — Rashi Swami', hi: 'राशि स्वामित्व — राशि स्वामी', sa: 'राशिस्वामित्वम्' },
-  lordContent: {
-    en: 'Each Rashi is "owned" by a planet called its lord (Swami). The lord\'s condition in a chart profoundly affects all matters related to that sign. If the lord is strong (exalted, in own sign, or in a friend\'s sign), the sign\'s matters flourish. If the lord is weak (debilitated, combust, or in enemy territory), the sign\'s significations suffer. The Sun and Moon each own one sign; Mars, Mercury, Jupiter, Venus, and Saturn each own two signs. Rahu and Ketu do not own any Rashi in traditional Jyotish but co-rule certain signs in some schools.',
-    hi: 'प्रत्येक राशि एक ग्रह के "स्वामित्व" में होती है जिसे उसका स्वामी कहते हैं। कुण्डली में स्वामी की स्थिति उस राशि से सम्बन्धित सभी मामलों को गहराई से प्रभावित करती है। यदि स्वामी बलवान है (उच्च, स्वराशि, या मित्र राशि में), तो राशि के मामले फलते-फूलते हैं। सूर्य और चन्द्र प्रत्येक एक राशि के स्वामी हैं; मंगल, बुध, बृहस्पति, शुक्र और शनि प्रत्येक दो राशियों के स्वामी हैं।',
-    sa: 'प्रत्येकराशिः एकेन ग्रहेण स्वामिता भवति यः तस्याः स्वामी इति कथ्यते। कुण्डल्यां स्वामिनः स्थितिः तस्याः राशेः सर्वविषयान् गभीरतया प्रभावयति।'
-  },
-
-  /* Section 6: Exaltation & Debilitation */
-  dignityTitle: { en: 'Exaltation & Debilitation Points', hi: 'उच्च और नीच बिन्दु', sa: 'उच्चनीचस्थानानि' },
-  dignityIntro: {
-    en: 'Each planet has a specific degree where it reaches maximum strength (Uccha — exaltation) and a diametrically opposite degree where it is weakest (Neecha — debilitation). These are precise degrees, not just signs. A planet within a few degrees of its exact exaltation point produces powerful, beneficial results; near its debilitation point, its significations are weakened. The concept of Neecha Bhanga (cancellation of debilitation) provides important exceptions where a debilitated planet can still give good results.',
-    hi: 'प्रत्येक ग्रह का एक विशिष्ट अंश होता है जहाँ वह अधिकतम शक्ति (उच्च) प्राप्त करता है और एक विपरीत अंश जहाँ वह सबसे कमजोर (नीच) होता है। ये सटीक अंश हैं, केवल राशियाँ नहीं। नीच भंग (नीचत्व रद्द होना) की अवधारणा महत्वपूर्ण अपवाद प्रदान करती है।',
-    sa: 'प्रत्येकग्रहस्य विशिष्टः अंशः यत्र सः परमबलं प्राप्नोति (उच्चम्) विपरीतः अंशः यत्र सः दुर्बलतमः (नीचम्) च।'
-  },
-
-  /* Section 7: Body Parts */
-  bodyTitle: { en: 'Rashi & Body Parts — Kalapurusha', hi: 'राशि और शरीर के अंग — कालपुरुष', sa: 'राशिशरीरावयवाः — कालपुरुषः' },
-  bodyContent: {
-    en: 'In Vedic astrology, the zodiac is mapped onto a cosmic being called the Kalapurusha (Time Person). Aries rules the head and Pisces rules the feet, with each sign governing a specific body region in sequence. This mapping is used in medical astrology (Ayurvedic Jyotish) to identify vulnerable body parts. If a sign is afflicted by malefic planets, the corresponding body part may be prone to disease or injury.',
-    hi: 'वैदिक ज्योतिष में राशिचक्र को एक ब्रह्माण्डीय पुरुष पर मानचित्रित किया जाता है जिसे कालपुरुष कहते हैं। मेष सिर पर शासन करती है और मीन पैरों पर, प्रत्येक राशि एक विशिष्ट शरीर क्षेत्र को क्रम में नियन्त्रित करती है। इस मानचित्रण का उपयोग चिकित्सा ज्योतिष (आयुर्वेदिक ज्योतिष) में कमजोर शरीर भागों की पहचान के लिए किया जाता है।',
-    sa: 'वैदिकज्योतिषे राशिचक्रं ब्रह्माण्डीयपुरुषे प्रक्षिप्यते यः कालपुरुषः इति कथ्यते। मेषः शिरसि शासति मीनः पादयोः च।'
-  },
-
-  /* Section 8: Interpreting planets in sign categories */
-  interpTitle: { en: 'Interpreting Planets in Sign Categories', hi: 'राशि वर्गों में ग्रह व्याख्या', sa: 'राशिवर्गेषु ग्रहव्याख्या' },
-  interpContent: {
-    en: 'Understanding how a planet behaves in different sign categories is fundamental to chart interpretation. The sign\'s element, quality, and lord all interact with the planet\'s own nature:',
-    hi: 'यह समझना कि ग्रह विभिन्न राशि वर्गों में कैसा व्यवहार करता है, कुण्डली व्याख्या के लिए मौलिक है। राशि का तत्व, गुण और स्वामी सभी ग्रह की अपनी प्रकृति से अन्तर्क्रिया करते हैं:',
-    sa: 'ग्रहः विभिन्नराशिवर्गेषु कथं व्यवहरति इति अवगन्तुं कुण्डलीव्याख्यायै मौलिकम्।'
-  },
-
-  /* Section 9: Common Misconceptions */
-  mythTitle: { en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्यभ्रान्तयः' },
-
-  /* Section 10: Complete list */
-  listTitle: { en: 'All 12 Rashis — Detailed Reference', hi: 'सम्पूर्ण 12 राशियाँ — विस्तृत सन्दर्भ', sa: 'सम्पूर्णाः 12 राशयः — विस्तृतसन्दर्भः' },
-
-  /* Cross-references */
-  crossTitle: { en: 'Deepen Your Understanding', hi: 'अपनी समझ गहरी करें', sa: 'ज्ञानं गभीरयतु' },
-  tryIt: { en: 'Find Your Rashi — Generate Your Kundali →', hi: 'अपनी राशि खोजें — अपनी कुण्डली बनाएँ →', sa: 'स्वराशिं अन्वेषयतु — कुण्डलीं रचयतु →' },
-};
 
 /* ---------- element data ---------- */
 const ELEMENTS = [
@@ -302,7 +219,7 @@ const MYTHS = [
 ];
 
 /* ---------- rashi characteristics (en/hi) ---------- */
-const RASHI_CHARS: Record<number, { traits: { en: string; hi: string }; keywords: { en: string; hi: string } }> = {
+const RASHI_CHARS: Record<number, { traits: Record<string, string>; keywords: Record<string, string> }> = {
   1: { traits: { en: 'Courageous, pioneering, impatient, independent. Natural leader with fiery temperament. First sign — represents new beginnings, the self, and raw initiative.', hi: 'साहसी, अग्रणी, अधीर, स्वतन्त्र। अग्नि स्वभाव का प्राकृतिक नेता। प्रथम राशि — नई शुरुआत, आत्मा और कच्ची पहल का प्रतिनिधित्व।' }, keywords: { en: 'Initiative, energy, self', hi: 'पहल, ऊर्जा, स्व' } },
   2: { traits: { en: 'Stable, sensual, possessive, artistic. Values material comfort and beauty. Strongest earth sign — represents wealth, family, and sensory pleasure.', hi: 'स्थिर, इन्द्रियप्रिय, अधिकारशील, कलात्मक। भौतिक सुख और सौन्दर्य को महत्व देता है। सबसे मजबूत पृथ्वी राशि — धन, परिवार और संवेदी सुख।' }, keywords: { en: 'Wealth, beauty, stability', hi: 'धन, सौन्दर्य, स्थिरता' } },
   3: { traits: { en: 'Curious, communicative, versatile, restless. Twin-natured sign of intellect and duality. Masters of language, trade, and information exchange.', hi: 'जिज्ञासु, संवादी, बहुमुखी, बेचैन। बुद्धि और द्वैत की जुड़वाँ प्रकृति वाली राशि। भाषा, व्यापार और सूचना विनिमय के स्वामी।' }, keywords: { en: 'Communication, duality, intellect', hi: 'संवाद, द्वैत, बुद्धि' } },
@@ -342,17 +259,20 @@ const CROSS_REFS = [
 /* ========== Component ========== */
 
 export default function LearnRashisPage() {
-  const locale = useLocale() as Locale;
-  const loc = isDevanagariLocale(locale) ? 'hi' as const : 'en' as const; // fallback sa -> hi for longer content
+  const t = (key: string) => lt(t_[key], locale);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const tObj = (obj: any) => (obj as Record<string, string>)[locale] || obj?.en || '';
+  const locale = useLocale();
+  const loc = isIndicLocale(locale) ? 'hi' as const : 'en' as const; // fallback sa -> hi for longer content
 
   return (
     <div>
       {/* Hero */}
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
+          {t('title')}
         </h2>
-        <p className="text-text-secondary">{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
+        <p className="text-text-secondary">{t('subtitle')}</p>
       </div>
 
       {/* Sanskrit Key Terms */}
@@ -364,9 +284,9 @@ export default function LearnRashisPage() {
       </div>
 
       {/* Section 1: What is a Rashi */}
-      <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)} illustration={<ZodiacBeltDiagram />}>
-        <p>{((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}</p>
-        <p>{((L.whatContent2 as Record<string, string>)[locale] ?? L.whatContent2.en)}</p>
+      <LessonSection number={1} title={t('whatTitle')} illustration={<ZodiacBeltDiagram />}>
+        <p>{t('whatContent')}</p>
+        <p>{t('whatContent2')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">Rashi = floor(sidereal_longitude / 30) + 1</p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">Sidereal longitude = Tropical longitude - Ayanamsha (~24.2 in 2026)</p>
@@ -375,8 +295,8 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 2: Astronomy */}
-      <LessonSection number={2} title={((L.astroTitle as Record<string, string>)[locale] ?? L.astroTitle.en)}>
-        <p>{((L.astroContent as Record<string, string>)[locale] ?? L.astroContent.en)}</p>
+      <LessonSection number={2} title={t('astroTitle')}>
+        <p>{t('astroContent')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">360 / 12 = 30 per Rashi</p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">Aries (Mesha): 0-30 | Taurus (Vrishabha): 30-60 | ... | Pisces (Meena): 330-360</p>
@@ -386,8 +306,8 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 3: Sign Qualities */}
-      <LessonSection number={3} title={((L.qualityTitle as Record<string, string>)[locale] ?? L.qualityTitle.en)}>
-        <p>{((L.qualityIntro as Record<string, string>)[locale] ?? L.qualityIntro.en)}</p>
+      <LessonSection number={3} title={t('qualityTitle')}>
+        <p>{t('qualityIntro')}</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
           {QUALITIES.map((q) => (
             <motion.div
@@ -409,8 +329,8 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 4: Elements */}
-      <LessonSection number={4} title={((L.elementTitle as Record<string, string>)[locale] ?? L.elementTitle.en)}>
-        <p>{((L.elementIntro as Record<string, string>)[locale] ?? L.elementIntro.en)}</p>
+      <LessonSection number={4} title={t('elementTitle')}>
+        <p>{t('elementIntro')}</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
           {ELEMENTS.map((el) => (
             <motion.div
@@ -439,8 +359,8 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 5: Lordship */}
-      <LessonSection number={5} title={((L.lordTitle as Record<string, string>)[locale] ?? L.lordTitle.en)}>
-        <p>{((L.lordContent as Record<string, string>)[locale] ?? L.lordContent.en)}</p>
+      <LessonSection number={5} title={t('lordTitle')}>
+        <p>{t('lordContent')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10 text-xs">
           <div className="grid grid-cols-3 gap-2 text-gold-light/80 font-mono">
             <div className="font-semibold text-gold-primary">{loc === 'en' ? 'Planet' : 'ग्रह'}</div>
@@ -458,8 +378,8 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 6: Exaltation & Debilitation */}
-      <LessonSection number={6} title={((L.dignityTitle as Record<string, string>)[locale] ?? L.dignityTitle.en)}>
-        <p>{((L.dignityIntro as Record<string, string>)[locale] ?? L.dignityIntro.en)}</p>
+      <LessonSection number={6} title={t('dignityTitle')}>
+        <p>{t('dignityIntro')}</p>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -493,8 +413,8 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 7: Body Parts */}
-      <LessonSection number={7} title={((L.bodyTitle as Record<string, string>)[locale] ?? L.bodyTitle.en)}>
-        <p>{((L.bodyContent as Record<string, string>)[locale] ?? L.bodyContent.en)}</p>
+      <LessonSection number={7} title={t('bodyTitle')}>
+        <p>{t('bodyContent')}</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mt-4">
           {BODY_PARTS.map((bp) => (
             <motion.div
@@ -520,8 +440,8 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 8: Interpreting planets by sign category */}
-      <LessonSection number={8} title={((L.interpTitle as Record<string, string>)[locale] ?? L.interpTitle.en)}>
-        <p>{((L.interpContent as Record<string, string>)[locale] ?? L.interpContent.en)}</p>
+      <LessonSection number={8} title={t('interpTitle')}>
+        <p>{t('interpContent')}</p>
         <div className="space-y-4 mt-4">
           {INTERP_RULES.map((rule) => (
             <motion.div
@@ -540,7 +460,7 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 9: Common Misconceptions */}
-      <LessonSection number={9} title={((L.mythTitle as Record<string, string>)[locale] ?? L.mythTitle.en)} variant="highlight">
+      <LessonSection number={9} title={t('mythTitle')} variant="highlight">
         <div className="space-y-4">
           {MYTHS.map((m, i) => (
             <motion.div
@@ -567,7 +487,7 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 10: All 12 Rashis — Detailed */}
-      <LessonSection number={10} title={((L.listTitle as Record<string, string>)[locale] ?? L.listTitle.en)}>
+      <LessonSection number={10} title={t('listTitle')}>
         <div className="space-y-4">
           {RASHIS.map((r, i) => {
             const chars = RASHI_CHARS[r.id];
@@ -584,19 +504,19 @@ export default function LearnRashisPage() {
                   <span className="text-4xl">{r.symbol}</span>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-gold-light font-bold text-lg">{r.name[locale]}</span>
+                      <span className="text-gold-light font-bold text-lg">{tObj(r.name)}</span>
                       {locale !== 'en' && <span className="text-text-secondary/70 text-sm">({r.name.en})</span>}
                       <span className="text-text-secondary/65 text-xs font-mono">{r.startDeg}-{r.endDeg}</span>
                     </div>
                     <div className="flex flex-wrap gap-2 mt-1">
                       <span className={`text-xs px-2 py-0.5 rounded-full border ${elementBg[r.element.en] || ''} ${elementColor[r.element.en] || ''}`}>
-                        {r.element[locale]}
+                        {tObj(r.element)}
                       </span>
                       <span className="text-xs px-2 py-0.5 rounded-full border border-gold-primary/20 bg-gold-primary/5 text-gold-primary">
-                        {r.quality[locale]}
+                        {tObj(r.quality)}
                       </span>
                       <span className="text-xs px-2 py-0.5 rounded-full border border-violet-400/20 bg-violet-400/5 text-violet-400">
-                        {loc === 'en' ? 'Lord:' : 'स्वामी:'} {r.rulerName[locale]}
+                        {loc === 'en' ? 'Lord:' : 'स्वामी:'} {tObj(r.rulerName)}
                       </span>
                     </div>
                   </div>
@@ -617,7 +537,7 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Cross-references */}
-      <LessonSection title={((L.crossTitle as Record<string, string>)[locale] ?? L.crossTitle.en)}>
+      <LessonSection title={t('crossTitle')}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {CROSS_REFS.map((ref) => (
             <Link
@@ -638,7 +558,7 @@ export default function LearnRashisPage() {
           href="/kundali"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {((L.tryIt as Record<string, string>)[locale] ?? L.tryIt.en)}
+          {t('tryIt')}
         </Link>
       </div>
     </div>

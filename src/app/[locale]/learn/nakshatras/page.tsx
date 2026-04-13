@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
@@ -11,7 +11,12 @@ import type { Locale } from '@/types/panchang';
 import RashiNakshatraWheel from '@/components/learn/RashiNakshatraWheel';
 import NakshatraDashaSpiral from '@/components/learn/NakshatraDashaSpiral';
 import { NAKSHATRA_ICONS } from '@/components/icons/NakshatraIcons';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LJ from '@/messages/learn/nakshatras.json';
+import { getHeadingFont, getBodyFont, isIndicLocale } from '@/lib/utils/locale-fonts';
+
+const t_ = LJ as unknown as Record<string, LocaleText>;
 
 /** Format decimal degrees as D°M' (e.g. 13.333 → "13°20'") */
 function fmtDeg(d: number): string {
@@ -20,75 +25,7 @@ function fmtDeg(d: number): string {
   return min === 0 ? `${deg}°` : `${deg}°${min}'`;
 }
 
-/* ───── Inline bilingual labels ───── */
-const L = {
-  overviewTitle: { en: 'What are the 27 Nakshatras?', hi: 'नक्षत्र क्या हैं?', ta: '27 நட்சத்திரங்கள் என்றால் என்ன?' },
-  overviewContent: {
-    en: 'The Nakshatras are the 27 lunar mansions of Vedic astrology -- the original star-based coordinate system of Jyotish, predating the 12-sign Rashi system by millennia. While Rashis describe solar energy (the Sun spends ~30 days in each sign), Nakshatras describe lunar energy: the Moon spends roughly one day in each Nakshatra. Because the Moon governs the mind (Manas) in Jyotish, the birth Nakshatra reveals one\'s emotional core, instinctive nature, and deepest psychological patterns -- often more accurately than the Sun sign or even the Moon sign alone.',
-    hi: 'नक्षत्र वैदिक ज्योतिष के 27 चान्द्र भवन हैं -- ज्योतिष की मूल तारा-आधारित निर्देशांक प्रणाली, जो 12 राशियों की प्रणाली से सहस्राब्दियों पुरानी है। जहाँ राशियाँ सौर ऊर्जा का वर्णन करती हैं, नक्षत्र चान्द्र ऊर्जा का वर्णन करते हैं: चन्द्रमा प्रत्येक नक्षत्र में लगभग एक दिन व्यतीत करता है। क्योंकि चन्द्र ज्योतिष में मन (मानस) का शासक है, जन्म नक्षत्र व्यक्ति के भावनात्मक केन्द्र, सहज प्रकृति, और गहनतम मनोवैज्ञानिक प्रतिरूपों को प्रकट करता है।'
-  },
-  spanTitle: { en: 'Why 27 Divisions? The Geometry of 13°20\'', hi: '27 विभाग क्यों? 13°20\' की ज्यामिति' },
-  spanContent: {
-    en: 'The Moon completes one full orbit (360°) around the zodiac in approximately 27.3 days -- the sidereal lunar month. The ancient Rishis divided the ecliptic into 27 equal segments of 13°20\' (13.333°) each, so the Moon traverses roughly one Nakshatra per day. This creates an elegant daily marker system: each night, the Moon "resides" in a different stellar mansion. The 27-fold division is also mathematically harmonious: 27 = 3\u00b3, and 27 × 4 padas = 108, the sacred number connecting Nakshatras to the Navamsha (D9) chart.',
-    hi: 'चन्द्रमा राशिचक्र (360°) की एक पूर्ण परिक्रमा लगभग 27.3 दिनों में पूर्ण करता है -- नाक्षत्र चान्द्र मास। प्राचीन ऋषियों ने क्रान्तिवृत्त को 13°20\' (13.333°) के 27 समान खण्डों में विभाजित किया, ताकि चन्द्रमा प्रतिदिन लगभग एक नक्षत्र पार करे। 27-गुना विभाजन गणितीय रूप से भी सुन्दर है: 27 = 3\u00b3, और 27 × 4 पाद = 108, वह पवित्र संख्या जो नक्षत्र को नवमांश (D9) कुण्डली से जोड़ती है।'
-  },
-  dashaTitle: { en: 'Nakshatra Lords & the Vimshottari Dasha', hi: 'नक्षत्र स्वामी और विंशोत्तरी दशा' },
-  dashaContent: {
-    en: 'Each Nakshatra is assigned a planetary lord from the 9 Grahas. These lords repeat in a fixed cycle of 9, governing 3 Nakshatras each. This assignment is the foundation of the Vimshottari Dasha -- the 120-year planetary period system that is the primary predictive timing tool in Jyotish. The planet ruling your birth Moon\'s Nakshatra determines which Maha Dasha you are born into, and the Moon\'s exact progress through that Nakshatra determines how many years of that Dasha remain at birth.',
-    hi: 'प्रत्येक नक्षत्र को 9 ग्रहों में से एक ग्रह स्वामी आवण्टित है। ये स्वामी 9 के एक निश्चित चक्र में दोहराते हैं, प्रत्येक 3 नक्षत्रों का शासन करता है। यह आवण्टन विंशोत्तरी दशा का आधार है -- 120 वर्षीय ग्रह अवधि प्रणाली जो ज्योतिष का प्राथमिक भविष्यवाणी समय उपकरण है।'
-  },
-  padaTitle: { en: 'Nakshatra Padas -- The 108 Quarters', hi: 'नक्षत्र पाद -- 108 चतुर्थांश' },
-  padaContent: {
-    en: 'Each Nakshatra is further divided into 4 Padas (quarters) of 3°20\' (3.333°) each. The 108 Padas (27 × 4) map one-to-one with the 108 Navamsha divisions (12 signs × 9 Navamshas per sign). This elegant mathematical bridge connects the Nakshatra system to the Navamsha chart (D9), the most important divisional chart for marriage, dharma, and the soul\'s deeper purpose. The Pada determines which Navamsha sign a planet falls in, adding a crucial layer of interpretation beyond the Rashi chart alone.',
-    hi: 'प्रत्येक नक्षत्र को 3°20\' (3.333°) के 4 पादों (चतुर्थांशों) में विभाजित किया गया है। 108 पाद (27 × 4) 108 नवमांश विभागों (12 राशि × 9 नवमांश प्रति राशि) से एक-एक मेल खाते हैं। यह सुन्दर गणितीय सेतु नक्षत्र प्रणाली को नवमांश कुण्डली (D9) से जोड़ता है, जो विवाह, धर्म, और आत्मा के गहन उद्देश्य के लिए सबसे महत्वपूर्ण विभागीय कुण्डली है।'
-  },
-  categoryTitle: { en: 'Nakshatra Categories -- Activity Types', hi: 'नक्षत्र वर्गीकरण -- क्रिया प्रकार' },
-  categoryContent: {
-    en: 'Beyond the Gana classification, Nakshatras are categorized by activity type (Swabhava), which governs Muhurta (electional) astrology -- choosing the right time for actions. The nature of the prevailing Nakshatra determines what activities are auspicious on a given day.',
-    hi: 'गण वर्गीकरण के अतिरिक्त, नक्षत्रों को क्रिया प्रकार (स्वभाव) द्वारा वर्गीकृत किया जाता है, जो मुहूर्त (निर्वाचन) ज्योतिष को नियन्त्रित करता है -- कार्यों के लिए सही समय चुनना।'
-  },
-  namingTitle: { en: 'Baby Naming -- Nakshatra Akshara', hi: 'शिशु नामकरण -- नक्षत्र अक्षर' },
-  namingContent: {
-    en: 'One of the most beloved practical applications of Nakshatras is the Namakarana Samskara (naming ceremony). Each Nakshatra Pada has a designated starting syllable (Akshara). Traditionally, a child\'s name begins with the syllable of their birth Moon\'s Nakshatra Pada, creating a phonetic bond between the child and their cosmic birth signature. This practice is mentioned in the Grihya Sutras and remains widely followed today.',
-    hi: 'नक्षत्रों का सबसे प्रिय व्यावहारिक अनुप्रयोग नामकरण संस्कार है। प्रत्येक नक्षत्र पाद का एक निर्दिष्ट प्रारम्भिक अक्षर होता है। परम्परागत रूप से, बालक का नाम उसके जन्म चन्द्र के नक्षत्र पाद के अक्षर से प्रारम्भ होता है, जो बालक और उसकी ब्रह्माण्डीय जन्म पहचान के बीच ध्वनि-बन्धन बनाता है।'
-  },
-  taraTitle: { en: 'Tara Bala -- Star Strength System', hi: 'तारा बल -- नक्षत्र शक्ति प्रणाली' },
-  taraContent: {
-    en: 'Tara Bala (star strength) is a daily-applicable system that measures the relationship between the Moon\'s current Nakshatra and your birth Nakshatra. By counting from your Janma Nakshatra to the day\'s Nakshatra and dividing by 9, you get a Tara number (1-9). Each Tara produces a specific effect, cycling through the 27 Nakshatras in groups of 9. Taras 2, 4, 6, 8 are generally favorable; Taras 1, 3, 5, 7, 9 need examination (some are good, some challenging).',
-    hi: 'तारा बल एक दैनिक-लागू प्रणाली है जो चन्द्रमा के वर्तमान नक्षत्र और आपके जन्म नक्षत्र के बीच सम्बन्ध को मापती है। अपने जन्म नक्षत्र से दिन के नक्षत्र तक गिनकर 9 से भाग देने पर तारा संख्या (1-9) प्राप्त होती है। प्रत्येक तारा एक विशिष्ट प्रभाव उत्पन्न करता है।'
-  },
-  matchingTitle: { en: 'Nakshatra in Kundali Matching -- Yoni, Gana, Nadi', hi: 'कुण्डली मिलान में नक्षत्र -- योनि, गण, नाडी' },
-  matchingContent: {
-    en: 'Three of the eight Ashtakoota matching factors are Nakshatra-based, together accounting for 13 out of 36 total points. These three factors assess physical compatibility (Yoni), temperamental harmony (Gana), and physiological-genetic health (Nadi). A minimum of 18/36 points is considered acceptable; 24+ is excellent.',
-    hi: 'अष्टकूट मिलान के आठ कारकों में से तीन नक्षत्र-आधारित हैं, जो कुल 36 में से 13 अंकों के लिए जिम्मेदार हैं। ये तीन कारक शारीरिक अनुकूलता (योनि), स्वभाव सामंजस्य (गण), और शारीरिक-आनुवंशिक स्वास्थ्य (नाडी) का मूल्यांकन करते हैं।'
-  },
-  ganaTitle: { en: 'Gana (Temperament) Groups', hi: 'गण (स्वभाव) समूह' },
-  degreeTitle: { en: 'What Do the Degrees Measure?', hi: 'अंश किसका माप हैं?' },
-  degreeContent: {
-    en: 'The degree ranges shown for each Nakshatra are sidereal ecliptic longitudes — positions along the ecliptic (the Sun\'s apparent annual path) measured in the fixed-star-based sidereal zodiac (Nirayana). The ecliptic is divided into 360°, and each Nakshatra occupies exactly 13°20\' (13.333°) of that arc.',
-    hi: 'प्रत्येक नक्षत्र के लिए दिखाई गई अंश सीमाएँ निरयन क्रान्तिवृत्तीय देशान्तर हैं — क्रान्तिवृत्त (सूर्य का वार्षिक पथ) के साथ स्थिर-तारा-आधारित निरयन राशिचक्र में मापी गई स्थितियाँ। क्रान्तिवृत्त 360° में विभाजित है, और प्रत्येक नक्षत्र उस चाप का ठीक 13°20\' (13.333°) भाग है।'
-  },
-  ayanamshaTitle: { en: 'The Role of Ayanamsha', hi: 'अयनांश की भूमिका' },
-  ayanamshaContent: {
-    en: 'The Ayanamsha is the angular difference between the tropical zodiac (used in Western astrology) and the sidereal zodiac (used in Jyotish). It exists because of precession — the slow ~26,000-year wobble of Earth\'s axis that causes the spring equinox point to drift backward through the constellations at about 50.3 arcseconds per year.',
-    hi: 'अयनांश सायन राशिचक्र (पश्चिमी ज्योतिष) और निरयन राशिचक्र (वैदिक ज्योतिष) के बीच का कोणीय अन्तर है। यह अयन-गति (precession) के कारण विद्यमान है — पृथ्वी के अक्ष का धीमा ~26,000 वर्षीय डोलन जिससे विषुव बिन्दु प्रति वर्ष लगभग 50.3 कला-विकला पीछे खिसकता है।'
-  },
-  ayanamshaHow: {
-    en: 'The tropical zodiac ties 0° Aries to the spring equinox — a seasonal marker that drifts relative to the stars. The sidereal zodiac ties 0° Aries to the fixed stars, so as the equinox drifts, the two zodiacs fall out of sync. The Ayanamsha quantifies this gap. In 2026, the Lahiri Ayanamsha is approximately 24°07\', meaning the sidereal zodiac is 24°07\' behind the tropical one.',
-    hi: 'सायन राशिचक्र 0° मेष को विषुव बिन्दु से बाँधता है — एक ऋतु-सूचक जो तारों के सापेक्ष खिसकता है। निरयन राशिचक्र 0° मेष को स्थिर तारों से बाँधता है, इसलिए जैसे-जैसे विषुव बिन्दु खिसकता है, दोनों राशिचक्र असमकालिक हो जाते हैं। अयनांश इस अन्तर को मापता है। 2026 में लाहिरी अयनांश लगभग 24°07\' है — अर्थात निरयन राशिचक्र, सायन से 24°07\' पीछे है।'
-  },
-  ayanamshaCalc: {
-    en: 'To find which Nakshatra a planet is in, we first get its tropical longitude (from astronomical calculation), then subtract the Ayanamsha to convert to sidereal longitude. Finally, we divide by 13°20\' to get the Nakshatra number.',
-    hi: 'किसी ग्रह का नक्षत्र ज्ञात करने के लिए, पहले उसका सायन देशान्तर (खगोलीय गणना से) प्राप्त करते हैं, फिर अयनांश घटाकर निरयन देशान्तर में परिवर्तित करते हैं। अन्त में, 13°20\' से भाग देकर नक्षत्र क्रमांक प्राप्त करते हैं।'
-  },
-  yogataraTitle: { en: 'Yogatara — The Junction Stars', hi: 'योगतारा — संयोजक तारे' },
-  yogataraContent: {
-    en: 'Each Nakshatra is identified by a Yogatara (junction star) — the brightest or most prominent star in that lunar mansion. The Yogatara serves as the physical celestial marker for the Nakshatra. Ancient Indian astronomers catalogued these stars with remarkable precision; the Surya Siddhanta lists their ecliptic coordinates. Many Yogataras correspond to well-known stars in modern astronomy.',
-    hi: 'प्रत्येक नक्षत्र की पहचान एक योगतारा (संयोजक तारा) से होती है — उस चान्द्र भवन का सबसे चमकीला या प्रमुख तारा। योगतारा नक्षत्र का भौतिक आकाशीय चिन्हक है। प्राचीन भारतीय खगोलविदों ने इन तारों को अद्भुत परिशुद्धता से सूचीबद्ध किया; सूर्य सिद्धान्त में इनके क्रान्तिवृत्तीय निर्देशांक दिए गए हैं।'
-  },
-  crossRefTitle: { en: 'Continue Your Learning', hi: 'अपना अध्ययन जारी रखें' },
-  tryIt: { en: 'Explore Today\'s Nakshatra in Panchang', hi: 'आज का नक्षत्र पंचांग में देखें' },
-};
+
 
 const NAKSHATRA_GROUPS = [
   { name: { en: 'Deva (Divine)', hi: 'देव (दैवी)' }, nakshatras: 'Ashwini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, Revati', count: 9 },
@@ -167,18 +104,20 @@ const YOGATARAS: { id: number; star: string; starHi: string; designation: string
 ];
 
 export default function LearnNakshatrasPage() {
-  const t = useTranslations('learn');
-  const locale = useLocale() as Locale;
-  const lo = isDevanagariLocale(locale) ? 'hi' as const : 'en' as const; // fallback sa -> hi for inline labels
+  const locale = useLocale();
+  const t = (key: string) => lt(t_[key], locale);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const tObj = (obj: any) => (obj as Record<string, string>)[locale] || obj?.en || '';
+  const lo = locale === 'hi' || locale === 'sa' ? 'hi' as const : 'en' as const;
 
   return (
     <div>
       {/* ─── Header ─── */}
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-          {t('nakshatrasTitle')}
+          {t('title')}
         </h2>
-        <p className="text-text-secondary">{t('nakshatrasSubtitle')}</p>
+        <p className="text-text-secondary">{t('subtitle')}</p>
       </div>
 
       {/* ─── Sanskrit Key Terms ─── */}
@@ -190,8 +129,8 @@ export default function LearnNakshatrasPage() {
       </div>
 
       {/* ─── 1. Overview ─── */}
-      <LessonSection number={1} title={L.overviewTitle[lo]}>
-        <p>{L.overviewContent[lo]}</p>
+      <LessonSection number={1} title={t('overviewTitle')}>
+        <p>{t('overviewContent')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">
             {lo === 'en' ? 'Key Fact:' : 'मुख्य तथ्य:'} 360° ÷ 27 = 13°20' per Nakshatra
@@ -205,8 +144,8 @@ export default function LearnNakshatrasPage() {
       </LessonSection>
 
       {/* ─── 2. Span & Geometry ─── */}
-      <LessonSection number={2} title={L.spanTitle[lo]}>
-        <p>{L.spanContent[lo]}</p>
+      <LessonSection number={2} title={t('spanTitle')}>
+        <p>{t('spanContent')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">Nakshatra = floor(Moon_longitude / 13.333°) + 1</p>
           <p className="text-gold-light font-mono text-sm mt-1">Pada = floor((Moon_longitude mod 13.333°) / 3.333°) + 1</p>
@@ -228,8 +167,8 @@ export default function LearnNakshatrasPage() {
       </LessonSection>
 
       {/* ─── 3. Nakshatra Lords & Dasha ─── */}
-      <LessonSection number={3} title={L.dashaTitle[lo]}>
-        <p>{L.dashaContent[lo]}</p>
+      <LessonSection number={3} title={t('dashaTitle')}>
+        <p>{t('dashaContent')}</p>
         <div className="mt-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 p-4 text-sm text-text-secondary leading-relaxed">
           {lo === 'en' ? (
             <>
@@ -283,13 +222,13 @@ export default function LearnNakshatrasPage() {
 
         {/* Interactive Nakshatra-Dasha mapping visualization */}
         <div className="mt-8">
-          <NakshatraDashaSpiral locale={lo as Locale} />
+          <NakshatraDashaSpiral locale={locale as Locale} />
         </div>
       </LessonSection>
 
       {/* ─── 4. Padas ─── */}
-      <LessonSection number={4} title={L.padaTitle[lo]}>
-        <p>{L.padaContent[lo]}</p>
+      <LessonSection number={4} title={t('padaTitle')}>
+        <p>{t('padaContent')}</p>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-xs sm:text-sm">
             <thead>
@@ -331,8 +270,8 @@ export default function LearnNakshatrasPage() {
       </LessonSection>
 
       {/* ─── 5. Categories ─── */}
-      <LessonSection number={5} title={L.categoryTitle[lo]}>
-        <p>{L.categoryContent[lo]}</p>
+      <LessonSection number={5} title={t('categoryTitle')}>
+        <p>{t('categoryContent')}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           {NAKSHATRA_CATEGORIES.map((cat) => (
             <motion.div
@@ -352,7 +291,7 @@ export default function LearnNakshatrasPage() {
       </LessonSection>
 
       {/* ─── 6. Gana Groups ─── */}
-      <LessonSection number={6} title={L.ganaTitle[lo]}>
+      <LessonSection number={6} title={t('ganaTitle')}>
         <p>
           {lo === 'en'
             ? 'Each Nakshatra belongs to one of three Ganas -- Deva (divine/gentle), Manushya (human/balanced), or Rakshasa (fierce/independent). This classification is crucial in Kundali matching (Gana Kuta = 6 points). Same Gana partners are most compatible temperamentally. Deva-Rakshasa pairing scores 0 and is considered the most challenging combination.'
@@ -418,13 +357,13 @@ export default function LearnNakshatrasPage() {
           </div>
         )}
         <div className="mt-6">
-          <RashiNakshatraWheel locale={lo as Locale} />
+          <RashiNakshatraWheel locale={locale as Locale} />
         </div>
       </LessonSection>
 
       {/* ─── 8. Baby Naming ─── */}
-      <LessonSection number={7} title={L.namingTitle[lo]}>
-        <p>{L.namingContent[lo]}</p>
+      <LessonSection number={7} title={t('namingTitle')}>
+        <p>{t('namingContent')}</p>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-xs sm:text-sm">
             <thead>
@@ -467,8 +406,8 @@ export default function LearnNakshatrasPage() {
       </LessonSection>
 
       {/* ─── 8. Tara Bala ─── */}
-      <LessonSection number={8} title={L.taraTitle[lo]}>
-        <p>{L.taraContent[lo]}</p>
+      <LessonSection number={8} title={t('taraTitle')}>
+        <p>{t('taraContent')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10 mb-4">
           <p className="text-gold-light font-mono text-sm mb-1">
             {lo === 'en' ? 'Formula:' : '\u0938\u0942\u0924\u094d\u0930:'}
@@ -501,8 +440,8 @@ export default function LearnNakshatrasPage() {
       </LessonSection>
 
       {/* ─── 9. Matching: Yoni, Gana, Nadi ─── */}
-      <LessonSection number={9} title={L.matchingTitle[lo]} variant="highlight">
-        <p>{L.matchingContent[lo]}</p>
+      <LessonSection number={9} title={t('matchingTitle')} variant="highlight">
+        <p>{t('matchingContent')}</p>
         <div className="mt-4 space-y-3">
           {MATCHING_KUTAS.map((kuta) => (
             <div key={kuta.name.en} className="p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
@@ -538,18 +477,18 @@ export default function LearnNakshatrasPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="text-gold-light font-semibold text-sm truncate">
-                    {n.id}. {n.name[locale]}
+                    {n.id}. {tObj(n.name)}
                   </div>
                   {locale !== 'en' && <div className="text-text-secondary/75 text-xs truncate">{n.name.en}</div>}
                 </div>
                 <span className="text-gold-primary text-xs font-mono font-bold flex-shrink-0">{fmtDeg(n.startDeg)} – {fmtDeg(n.endDeg)}</span>
               </div>
               <div className="flex flex-wrap gap-x-2 text-xs text-text-secondary/70 ml-[42px]">
-                <span>{n.deity[locale]}</span>
+                <span>{tObj(n.deity)}</span>
                 <span className="text-text-secondary/55">|</span>
-                <span>{n.rulerName[locale]}</span>
+                <span>{tObj(n.rulerName)}</span>
                 <span className="text-text-secondary/55">|</span>
-                <span>{n.nature[locale]}</span>
+                <span>{tObj(n.nature)}</span>
               </div>
             </motion.div>
           ))}
@@ -557,8 +496,8 @@ export default function LearnNakshatrasPage() {
       </LessonSection>
 
       {/* ─── 11. What Do the Degrees Measure? ─── */}
-      <LessonSection title={L.degreeTitle[lo]}>
-        <p>{L.degreeContent[lo]}</p>
+      <LessonSection title={t('degreeTitle')}>
+        <p>{t('degreeContent')}</p>
         <div className="mt-4 p-3 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light/70 text-xs font-mono">
             {lo === 'en'
@@ -568,10 +507,10 @@ export default function LearnNakshatrasPage() {
         </div>
 
         {/* Ayanamsha explanation */}
-        <h4 className="text-gold-light font-semibold text-base mt-6 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>{L.ayanamshaTitle[lo]}</h4>
-        <p>{L.ayanamshaContent[lo]}</p>
-        <p className="mt-3">{L.ayanamshaHow[lo]}</p>
-        <p className="mt-3">{L.ayanamshaCalc[lo]}</p>
+        <h4 className="text-gold-light font-semibold text-base mt-6 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>{t('ayanamshaTitle')}</h4>
+        <p>{t('ayanamshaContent')}</p>
+        <p className="mt-3">{t('ayanamshaHow')}</p>
+        <p className="mt-3">{t('ayanamshaCalc')}</p>
 
         {/* Worked example */}
         <div className="mt-4 p-4 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] rounded-lg border border-gold-primary/15">
@@ -707,8 +646,8 @@ export default function LearnNakshatrasPage() {
       </LessonSection>
 
       {/* ─── 12. Yogatara — The Junction Stars ─── */}
-      <LessonSection title={L.yogataraTitle[lo]}>
-        <p>{L.yogataraContent[lo]}</p>
+      <LessonSection title={t('yogataraTitle')}>
+        <p>{t('yogataraContent')}</p>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -756,7 +695,7 @@ export default function LearnNakshatrasPage() {
       </LessonSection>
 
       {/* ─── Cross-References ─── */}
-      <LessonSection title={L.crossRefTitle[lo]}>
+      <LessonSection title={t('crossRefTitle')}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {([
             { href: '/learn/dashas' as const, label: lo === 'en' ? 'Dashas -- How Nakshatras drive the timing system' : '\u0926\u0936\u093e -- \u0928\u0915\u094d\u0937\u0924\u094d\u0930 \u0938\u092e\u092f \u092a\u094d\u0930\u0923\u093e\u0932\u0940 \u0915\u0948\u0938\u0947 \u091a\u0932\u093e\u0924\u0947 \u0939\u0948\u0902' },
@@ -783,7 +722,7 @@ export default function LearnNakshatrasPage() {
           href="/panchang"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {L.tryIt[lo]}
+          {t('tryIt')}
         </Link>
       </div>
     </div>

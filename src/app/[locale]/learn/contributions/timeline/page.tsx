@@ -41,10 +41,10 @@ const L = {
    ════════════════════════════════════════════════════════════════ */
 interface TimelineEntry {
   id: string;
-  date: { en: string; hi: string };
-  person: { en: string; hi: string };
-  contribution: { en: string; hi: string };
-  europe: { en: string; hi: string } | null;
+  date: Record<string, string>;
+  person: Record<string, string>;
+  contribution: Record<string, string>;
+  europe: Record<string, string> | null;
   link: string | null;
 }
 
@@ -269,7 +269,7 @@ const TIMELINE: TimelineEntry[] = [
 /* ════════════════════════════════════════════════════════════════
    CROSS-REFERENCE LINKS
    ════════════════════════════════════════════════════════════════ */
-const CROSS_REFS: { label: { en: string; hi: string }; href: string }[] = [
+const CROSS_REFS: { label: Record<string, string>; href: string }[] = [
   { label: { en: 'Calculus', hi: 'कलनशास्त्र' }, href: '/learn/contributions/calculus' },
   { label: { en: 'Zero', hi: 'शून्य' }, href: '/learn/contributions/zero' },
   { label: { en: 'Gravity', hi: 'गुरुत्वाकर्षण' }, href: '/learn/contributions/gravity' },
@@ -300,7 +300,7 @@ function TimelineCard({
   index: number;
 }) {
   const loc = locale as Locale;
-  const t = (obj: { en: string; hi: string }) => (loc === 'hi' ? obj.hi : obj.en);
+  const t = (obj: Record<string, string>) => (loc === 'hi' ? obj.hi : obj.en);
 
   return (
     <div
@@ -396,7 +396,7 @@ function TimelineCardMobile({
   locale: string;
 }) {
   const loc = locale as Locale;
-  const t = (obj: { en: string; hi: string }) => (loc === 'hi' ? obj.hi : obj.en);
+  const t = (obj: Record<string, string>) => (loc === 'hi' ? obj.hi : obj.en);
 
   return (
     <div
@@ -465,7 +465,7 @@ function TimelineCardMobile({
 export default async function TimelinePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const loc = locale as Locale;
-  const t = (obj: { en: string; hi: string }) => (loc === 'hi' ? obj.hi : obj.en);
+  const t = (obj: Record<string, string>) => (loc === 'hi' ? obj.hi : obj.en);
 
   return (
     <div className="min-h-screen" style={{ background: 'transparent' }}>

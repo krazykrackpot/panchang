@@ -111,7 +111,7 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
   const { locale } = await params as { locale: Locale };
   const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const l = (obj: { en: string; hi: string }) => (isHi ? obj.hi : obj.en);
+  const l = (obj: Record<string, string>) => (isHi ? obj.hi : obj.en);
 
   return (
     <div className="space-y-10">

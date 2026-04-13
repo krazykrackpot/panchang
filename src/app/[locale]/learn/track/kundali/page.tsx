@@ -7,7 +7,7 @@ import { ChevronRight, Diamond } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-type Tri = { en: string; hi: string; sa: string; ta?: string };
+type Tri = Record<string, string>;
 interface Section {
   id: string;
   icon: string;

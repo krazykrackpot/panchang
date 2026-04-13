@@ -243,12 +243,12 @@ const L = {
 
 // ── Data ────────────────────────────────────────────────────────
 interface OrbitalRow {
-  planet: { en: string; hi: string };
+  planet: Record<string, string>;
   sanskrit: string;
   vedic: string;
   modern: string;
   error: string;
-  jyotish: { en: string; hi: string };
+  jyotish: Record<string, string>;
 }
 
 const ORBITAL_DATA: OrbitalRow[] = [
@@ -264,9 +264,9 @@ const ORBITAL_DATA: OrbitalRow[] = [
 ];
 
 interface DashaRow {
-  planet: { en: string; hi: string };
+  planet: Record<string, string>;
   years: number;
-  connection: { en: string; hi: string };
+  connection: Record<string, string>;
 }
 
 const DASHA_DATA: DashaRow[] = [

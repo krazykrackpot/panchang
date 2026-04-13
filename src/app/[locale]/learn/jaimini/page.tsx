@@ -7,6 +7,9 @@ import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LT from '@/messages/learn/jaimini.json';
 
 /* ── Inline trilingual labels ─────────────────────────────────────── */
 const L = {
@@ -138,6 +141,7 @@ const CROSS_REFS = [
 /* ── Page component ───────────────────────────────────────────────── */
 export default function JaiminiPage() {
   const locale = useLocale() as Locale;
+  const t = (key: string) => lt((LT as unknown as Record<string, LocaleText>)[key], locale);
   const loc = isDevanagariLocale(locale) ? 'hi' as const : 'en' as const;
 
   return (
@@ -156,24 +160,24 @@ export default function JaiminiPage() {
           className="text-3xl sm:text-4xl md:text-5xl font-bold text-gold-gradient mb-4"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
-          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
+          {t('title')}
         </h1>
         <p className="text-text-secondary max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
-          {((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}
+          {t('subtitle')}
         </p>
       </motion.div>
 
       {/* ── Section 1: What is Jaimini? ───────────────────────────── */}
-      <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}>
-        <p>{((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}</p>
-        <p>{((L.whatContent2 as Record<string, string>)[locale] ?? L.whatContent2.en)}</p>
+      <LessonSection number={1} title={t('whatTitle')}>
+        <p>{t('whatContent')}</p>
+        <p>{t('whatContent2')}</p>
       </LessonSection>
 
       {/* ── Section 2: Chara Karakas ──────────────────────────────── */}
-      <LessonSection number={2} title={((L.karakaTitle as Record<string, string>)[locale] ?? L.karakaTitle.en)}>
-        <p>{((L.karakaContent as Record<string, string>)[locale] ?? L.karakaContent.en)}</p>
+      <LessonSection number={2} title={t('karakaTitle')}>
+        <p>{t('karakaContent')}</p>
         <div className="mt-4 p-3 rounded-lg bg-gold-primary/5 border border-gold-primary/15">
-          <p className="text-gold-light/80 text-sm italic">{((L.karakaNote as Record<string, string>)[locale] ?? L.karakaNote.en)}</p>
+          <p className="text-gold-light/80 text-sm italic">{t('karakaNote')}</p>
         </div>
 
         <div className="mt-6 space-y-4">
@@ -207,7 +211,7 @@ export default function JaiminiPage() {
                     </span>
                     {ck.importance === 'critical' && (
                       <span className="text-amber-400 text-xs font-bold uppercase px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20">
-                        {!isDevanagariLocale(locale) ? 'MOST IMPORTANT' : 'सर्वाधिक महत्वपूर्ण'}
+                        {t('mostImportant')}
                       </span>
                     )}
                   </div>
@@ -220,14 +224,14 @@ export default function JaiminiPage() {
       </LessonSection>
 
       {/* ── Section 3: Karakamsha ─────────────────────────────────── */}
-      <LessonSection number={3} title={((L.karakamshaTitle as Record<string, string>)[locale] ?? L.karakamshaTitle.en)}>
-        <p>{((L.karakamshaContent as Record<string, string>)[locale] ?? L.karakamshaContent.en)}</p>
-        <p>{((L.karakamshaContent2 as Record<string, string>)[locale] ?? L.karakamshaContent2.en)}</p>
+      <LessonSection number={3} title={t('karakamshaTitle')}>
+        <p>{t('karakamshaContent')}</p>
+        <p>{t('karakamshaContent2')}</p>
 
         <div className="mt-4 p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-indigo-500/15">
           <div className="flex items-center gap-2 mb-2">
             <Compass className="w-5 h-5 text-indigo-400" />
-            <h4 className="text-indigo-300 font-semibold text-sm">{!isDevanagariLocale(locale) ? 'Quick Karakamsha Guide' : 'त्वरित कारकांश मार्गदर्शिका'}</h4>
+            <h4 className="text-indigo-300 font-semibold text-sm">{t('quickKarakamshaGuide')}</h4>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-text-secondary">
             {[
@@ -246,8 +250,8 @@ export default function JaiminiPage() {
       </LessonSection>
 
       {/* ── Section 4: Rashi Drishti ──────────────────────────────── */}
-      <LessonSection number={4} title={((L.drishtiTitle as Record<string, string>)[locale] ?? L.drishtiTitle.en)}>
-        <p>{((L.drishtiContent as Record<string, string>)[locale] ?? L.drishtiContent.en)}</p>
+      <LessonSection number={4} title={t('drishtiTitle')}>
+        <p>{t('drishtiContent')}</p>
 
         <div className="mt-6 space-y-4">
           {RASHI_DRISHTI.map((rd, i) => (
@@ -263,7 +267,7 @@ export default function JaiminiPage() {
               <p className="text-text-secondary/75 text-xs mb-2 font-mono">{rd.signs[locale]}</p>
               <p className="text-text-secondary text-sm mb-2">{rd.aspects[locale]}</p>
               <div className="p-2 rounded bg-bg-primary/40 text-text-secondary/70 text-xs">
-                {!isDevanagariLocale(locale) ? 'Example: ' : 'उदाहरण: '}{rd.example[locale]}
+                {t('example')}{rd.example[locale]}
               </div>
             </motion.div>
           ))}
@@ -271,15 +275,15 @@ export default function JaiminiPage() {
       </LessonSection>
 
       {/* ── Section 5: Arudha Padas ───────────────────────────────── */}
-      <LessonSection number={5} title={((L.arudhaTitle as Record<string, string>)[locale] ?? L.arudhaTitle.en)}>
-        <p>{((L.arudhaContent as Record<string, string>)[locale] ?? L.arudhaContent.en)}</p>
-        <p>{((L.arudhaContent2 as Record<string, string>)[locale] ?? L.arudhaContent2.en)}</p>
+      <LessonSection number={5} title={t('arudhaTitle')}>
+        <p>{t('arudhaContent')}</p>
+        <p>{t('arudhaContent2')}</p>
 
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="p-4 rounded-lg bg-cyan-500/5 border border-cyan-500/15">
             <div className="flex items-center gap-2 mb-2">
               <Crown className="w-5 h-5 text-cyan-400" />
-              <h4 className="text-cyan-300 font-semibold text-sm">{!isDevanagariLocale(locale) ? 'Lagna (Reality)' : 'लग्न (वास्तविकता)'}</h4>
+              <h4 className="text-cyan-300 font-semibold text-sm">{t('lagnaReality')}</h4>
             </div>
             <p className="text-cyan-200/60 text-sm">
               {locale === 'en'
@@ -290,7 +294,7 @@ export default function JaiminiPage() {
           <div className="p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
             <div className="flex items-center gap-2 mb-2">
               <Users className="w-5 h-5 text-amber-400" />
-              <h4 className="text-amber-300 font-semibold text-sm">{!isDevanagariLocale(locale) ? 'Arudha Lagna (Perception)' : 'अरूढ़ लग्न (धारणा)'}</h4>
+              <h4 className="text-amber-300 font-semibold text-sm">{t('arudhaLagnaPerception')}</h4>
             </div>
             <p className="text-amber-200/60 text-sm">
               {locale === 'en'
@@ -302,20 +306,20 @@ export default function JaiminiPage() {
       </LessonSection>
 
       {/* ── Section 6: Chara Dasha ────────────────────────────────── */}
-      <LessonSection number={6} title={((L.charaDashaTitle as Record<string, string>)[locale] ?? L.charaDashaTitle.en)}>
-        <p>{((L.charaDashaContent as Record<string, string>)[locale] ?? L.charaDashaContent.en)}</p>
-        <p>{((L.charaDashaContent2 as Record<string, string>)[locale] ?? L.charaDashaContent2.en)}</p>
+      <LessonSection number={6} title={t('charaDashaTitle')}>
+        <p>{t('charaDashaContent')}</p>
+        <p>{t('charaDashaContent2')}</p>
       </LessonSection>
 
       {/* ── Section 7: Comparison Table ───────────────────────────── */}
-      <LessonSection number={7} title={((L.keyDiffTitle as Record<string, string>)[locale] ?? L.keyDiffTitle.en)}>
+      <LessonSection number={7} title={t('keyDiffTitle')}>
         <div className="overflow-x-auto">
           <table className="w-full text-sm border-collapse">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-3 px-4 text-gold-light font-semibold">{!isDevanagariLocale(locale) ? 'Feature' : 'विशेषता'}</th>
-                <th className="text-left py-3 px-4 text-gold-light font-semibold">{!isDevanagariLocale(locale) ? 'Parashari' : 'पाराशरी'}</th>
-                <th className="text-left py-3 px-4 text-gold-light font-semibold">{!isDevanagariLocale(locale) ? 'Jaimini' : 'जैमिनी'}</th>
+                <th className="text-left py-3 px-4 text-gold-light font-semibold">{t('feature')}</th>
+                <th className="text-left py-3 px-4 text-gold-light font-semibold">{t('parashari')}</th>
+                <th className="text-left py-3 px-4 text-gold-light font-semibold">{t('jaiminiLabel')}</th>
               </tr>
             </thead>
             <tbody>
@@ -339,7 +343,7 @@ export default function JaiminiPage() {
       </LessonSection>
 
       {/* ── Section 8: Advanced Concepts ──────────────────────────── */}
-      <LessonSection number={8} title={((L.advancedTitle as Record<string, string>)[locale] ?? L.advancedTitle.en)}>
+      <LessonSection number={8} title={t('advancedTitle')}>
         <div className="space-y-4">
           {ADVANCED.map((adv, i) => (
             <motion.div
@@ -358,7 +362,7 @@ export default function JaiminiPage() {
       </LessonSection>
 
       {/* ── Section 9: Practical Tips ─────────────────────────────── */}
-      <LessonSection number={9} title={((L.practicalTitle as Record<string, string>)[locale] ?? L.practicalTitle.en)}>
+      <LessonSection number={9} title={t('practicalTitle')}>
         <div className="space-y-3">
           {PRACTICAL_TIPS.map((tip, i) => (
             <motion.div
@@ -377,7 +381,7 @@ export default function JaiminiPage() {
       </LessonSection>
 
       {/* ── Section 10: Cross References ──────────────────────────── */}
-      <LessonSection number={10} title={((L.crossRefTitle as Record<string, string>)[locale] ?? L.crossRefTitle.en)}>
+      <LessonSection number={10} title={t('crossRefTitle')}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {CROSS_REFS.map((ref) => (
             <Link

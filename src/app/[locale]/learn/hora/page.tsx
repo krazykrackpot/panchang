@@ -372,7 +372,7 @@ export default function HoraChaldeanPage() {
     : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
-  const t = (obj: { en: string; hi: string }) => (isHi ? obj.hi : obj.en);
+  const t = (obj: Record<string, string>) => (isHi ? obj.hi : obj.en);
 
   return (
     <main className="min-h-screen px-4 py-12 max-w-4xl mx-auto" style={bodyFont}>

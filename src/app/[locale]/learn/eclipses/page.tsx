@@ -413,7 +413,7 @@ export default function LearnEclipsesPage() {
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
-  const l = (obj: { en: string; hi: string }) => (isHi ? obj.hi : obj.en);
+  const l = (obj: Record<string, string>) => (isHi ? obj.hi : obj.en);
 
   return (
     <div className="space-y-8">

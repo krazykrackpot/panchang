@@ -268,7 +268,7 @@ function MeruprastaraSVG({ hi }: { hi: boolean }) {
 export default async function FibonacciPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params as { locale: Locale };
   const hi = isDevanagariLocale(locale);
-  const t = (obj: { en: string; hi: string }) => hi ? obj.hi : obj.en;
+  const t = (obj: Record<string, string>) => hi ? obj.hi : obj.en;
 
   return (
     <div className="min-h-screen">
@@ -470,7 +470,7 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
                 { en: 'Fibonacci in Pisa', hi: 'पीसा में फिबोनाची' },
                 '→',
                 { en: 'Europe (Liber Abaci, 1202 CE)', hi: 'यूरोप (लिबर अबासी, 1202 ईस्वी)' },
-              ] as Array<string | { en: string; hi: string }>).map((item, i) =>
+              ] as Array<string | Record<string, string>>).map((item, i) =>
                 typeof item === 'string' ? (
                   <span key={i} className="text-gold-primary/50">{item}</span>
                 ) : (

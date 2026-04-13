@@ -80,22 +80,22 @@ const L = {
 /* ── Planet Remedy Data ─────────────────────────────────────────── */
 interface PlanetRemedy {
   id: string;
-  name: { en: string; hi: string; sa: string };
+  name: Record<string, string>;
   color: string;
   btnColor: string;
-  gemstone: { en: string; hi: string; sa: string };
-  gemstoneSpec: { en: string; hi: string; sa: string };
-  substitute: { en: string; hi: string; sa: string };
+  gemstone: Record<string, string>;
+  gemstoneSpec: Record<string, string>;
+  substitute: Record<string, string>;
   beejMantra: string;
   repetitions: string;
   gayatri?: string;
-  deity: { en: string; hi: string; sa: string };
-  day: { en: string; hi: string; sa: string };
-  color_val: { en: string; hi: string; sa: string };
-  fast: { en: string; hi: string; sa: string };
-  charity: { en: string; hi: string; sa: string };
-  direction?: { en: string; hi: string; sa: string };
-  warning?: { en: string; hi: string; sa: string };
+  deity: Record<string, string>;
+  day: Record<string, string>;
+  color_val: Record<string, string>;
+  fast: Record<string, string>;
+  charity: Record<string, string>;
+  direction?: Record<string, string>;
+  warning?: Record<string, string>;
 }
 
 const PLANET_REMEDIES: PlanetRemedy[] = [

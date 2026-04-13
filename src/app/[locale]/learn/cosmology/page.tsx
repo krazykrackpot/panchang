@@ -126,7 +126,7 @@ export default function CosmologyPage() {
   const locale = useLocale() as Locale;
   const hi = isDevanagariLocale(locale);
 
-  const t = (obj: { en: string; hi: string }) => hi ? obj.hi : obj.en;
+  const t = (obj: Record<string, string>) => hi ? obj.hi : obj.en;
 
   /* log scale helper for the comparison bars */
   const logWidth = (years: number) => {

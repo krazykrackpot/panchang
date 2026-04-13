@@ -10,6 +10,9 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { GRAHAS } from '@/lib/constants/grahas';
 import type { Locale } from '@/types/panchang';
 import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LJ from '@/messages/learn/labs-shadbala.json';
 
 interface LocationResult { name: string; lat: number; lng: number; timezone: string; }
 
@@ -201,10 +204,7 @@ export default function ShadbalaLabPage() {
     return { shadbala, ranked, captain: ranked[0], maxBala };
   }, [computed, birthDate, birthTime, location]);
 
-  const L = (obj: { en: string; hi?: string; sa?: string } | undefined) => {
-    if (!obj) return '';
-    return (obj as Record<string, string>)[locale] || (obj as Record<string, string>).en || '';
-  };
+  const t = (key: string) => lt((LJ as unknown as Record<string, LocaleText>)[key], locale);
 
   const next = () => setStep(s => Math.min(s + 1, TOTAL_STEPS));
   const back = () => setStep(s => Math.max(s - 1, 0));
@@ -372,7 +372,7 @@ export default function ShadbalaLabPage() {
                 </motion.div>
               </AnimatePresence>
 
-              <NavButtons onBack={back} onNext={next} disableNext={!result} nextLabel={result ? 'See Your Results →' : 'Calculating…'} />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} disableNext={!result} nextLabel={result ? t('seeYourResults') : 'Calculating…'} />
             </StepShell>
           )}
 
@@ -403,7 +403,7 @@ export default function ShadbalaLabPage() {
                         <div className="flex items-center gap-3">
                           <RadarDiagram sb={sb} maxBala={result.maxBala} />
                           <div>
-                            <div className="font-bold text-white text-lg">{graha.symbol} {L(graha.name)}</div>
+                            <div className="font-bold text-white text-lg">{graha.symbol} {lt(graha.name as LocaleText, locale)}</div>
                             <div className="text-xs text-slate-500">Rank #{sb.rank}</div>
                           </div>
                         </div>
@@ -411,7 +411,7 @@ export default function ShadbalaLabPage() {
                           <div className="text-2xl font-mono font-bold" style={{ color: totalColor }}>{sb.rupas.toFixed(2)}</div>
                           <div className="text-xs text-slate-500">min {sb.minRequired.toFixed(1)}</div>
                           <div className="text-xs font-semibold" style={{ color: totalColor }}>
-                            {sb.rupas >= sb.minRequired ? '✓ STRONG' : '✗ WEAK'}
+                            {sb.rupas >= sb.minRequired ? `✓ ${t('strong')}` : `✗ ${t('weak')}`}
                           </div>
                         </div>
                       </div>
@@ -464,7 +464,7 @@ export default function ShadbalaLabPage() {
                   <div className="text-xs text-amber-400 uppercase tracking-wider font-semibold mb-1">Chart Captain — Strongest Planet</div>
                   <div className="text-2xl font-bold text-amber-200 flex items-center gap-2">
                     <span className="text-3xl">{GRAHAS[result.captain.planetId].symbol}</span>
-                    {L(GRAHAS[result.captain.planetId].name)}
+                    {lt(GRAHAS[result.captain.planetId].name as LocaleText, locale)}
                     <span className="text-lg font-mono text-amber-300/70">{result.captain.rupas.toFixed(2)} rupas</span>
                   </div>
                   <p className="text-slate-400 text-xs mt-1">This planet dominates the chart — its significations, house placement, and dasha periods carry the most weight in life outcomes.</p>
@@ -485,7 +485,7 @@ export default function ShadbalaLabPage() {
                       <span className="text-xl">{graha.symbol}</span>
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-semibold text-white">{L(graha.name)}</span>
+                          <span className="text-sm font-semibold text-white">{lt(graha.name as LocaleText, locale)}</span>
                           <span className="font-mono text-sm font-bold" style={{ color }}>{sb.rupas.toFixed(2)}</span>
                         </div>
                         <div className="relative h-2 rounded-full bg-white/5 overflow-hidden">

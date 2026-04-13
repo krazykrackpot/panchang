@@ -1,0 +1,780 @@
+{
+  "title": {
+    "en": "Vimshopaka — 20-Point Varga Strength",
+    "hi": "विंशोपक — 20-अंकीय वर्ग बल",
+    "sa": "विंशोपकम् — विंशत्यङ्कवर्गबलम्",
+    "ta": "விம்சோபகம் — 20 புள்ளி வர்க பலம்",
+    "te": "విమ్శోపకం — 20 పాయింట్ వర్గ బలం",
+    "bn": "বিংশোপক — ২০ পয়েন্ট বর্গ বল",
+    "kn": "ವಿಂಶೋಪಕ — 20 ಅಂಕ ವರ್ಗ ಬಲ",
+    "mr": "विंशोपक — 20 गुण वर्ग बल",
+    "gu": "વિંશોપક — 20 અંક વર્ગ બળ",
+    "mai": "विंशोपक — 20 अंकीय वर्ग बल"
+  },
+  "subtitle": {
+    "en": "A planet's dignity checked across 16 divisional charts (Shodasvarga), weighted and summed to a maximum of 20 points — the gold standard of inherent planetary quality",
+    "hi": "16 विभागीय कुण्डलियों (षोडशवर्ग) में ग्रह की गरिमा की जाँच, भारित और अधिकतम 20 अंकों तक योग — अन्तर्निहित ग्रह गुणवत्ता का स्वर्ण मानक",
+    "sa": "षोडशवर्गकुण्डलीषु ग्रहस्य गरिमापरीक्षा, भारिता विंशत्यङ्कपर्यन्तं सङ्कलिता",
+    "ta": "16 வகுப்பு ஜாதகங்களில் (ஷோடசவர்கம்) கிரகத்தின் கௌரவத்தை சரிபார்த்து, எடையிட்டு அதிகபட்சம் 20 புள்ளிகளாக தொகுத்தல்",
+    "te": "16 విభాగ కుండలీలలో (షోడశవర్గం) గ్రహం గౌరవాన్ని పరీక్షించి, భారమివ్వి గరిష్ఠ 20 పాయింట్లకు సంకలనం",
+    "bn": "১৬টি বিভাগ কুণ্ডলীতে (ষোড়শবর্গ) গ্রহের মর্যাদা পরীক্ষা করে, ভারিত ও সর্বোচ্চ ২০ পয়েন্টে সংকলিত",
+    "kn": "16 ವಿಭಾಗ ಕುಂಡಲಿಗಳಲ್ಲಿ (ಷೋಡಶವರ್ಗ) ಗ್ರಹದ ಗೌರವವನ್ನು ಪರಿಶೀಲಿಸಿ, ತೂಕ ಹಾಕಿ ಗರಿಷ್ಠ 20 ಅಂಕಗಳಲ್ಲಿ ಸಂಕಲನ",
+    "mr": "16 विभागीय कुंडलींमध्ये (षोडशवर्ग) ग्रहाच्या प्रतिष्ठेची तपासणी, भारित व कमाल 20 गुणांपर्यंत संकलित",
+    "gu": "16 વિભાગીય કુંડળીઓમાં (ષોડશવર્ગ) ગ્રહની ગરિમાની તપાસ, વજનિત અને મહત્તમ 20 અંકમાં સંકલિત",
+    "mai": "16 विभागीय कुण्डली (षोडशवर्ग) मे ग्रहक गरिमाक जाँच, भारित आ अधिकतम 20 अंक मे संकलित"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "Module 18-1: Shadbala Overview",
+        "hi": "मॉड्यूल 18-1: षड्बल अवलोकन",
+        "sa": "मॉड्यूल 18-1: षड्बल अवलोकन",
+        "mai": "मॉड्यूल 18-1: षड्बल अवलोकन",
+        "mr": "मॉड्यूल 18-1: षड्बल अवलोकन",
+        "ta": "Module 18-1: Shadbala Overview",
+        "te": "Module 18-1: Shadbala Overview",
+        "bn": "Module 18-1: Shadbala Overview",
+        "kn": "Module 18-1: Shadbala Overview",
+        "gu": "Module 18-1: Shadbala Overview"
+      },
+      "href": "/learn/modules/18-1"
+    },
+    {
+      "label": {
+        "en": "Module 18-4: Avasthas",
+        "hi": "मॉड्यूल 18-4: अवस्थाएँ",
+        "sa": "मॉड्यूल 18-4: अवस्थाएँ",
+        "mai": "मॉड्यूल 18-4: अवस्थाएँ",
+        "mr": "मॉड्यूल 18-4: अवस्थाएँ",
+        "ta": "Module 18-4: Avasthas",
+        "te": "Module 18-4: Avasthas",
+        "bn": "Module 18-4: Avasthas",
+        "kn": "Module 18-4: Avasthas",
+        "gu": "Module 18-4: Avasthas"
+      },
+      "href": "/learn/modules/18-4"
+    },
+    {
+      "label": {
+        "en": "Module 10-1: Divisional Charts",
+        "hi": "मॉड्यूल 10-1: वर्ग कुण्डलियाँ",
+        "sa": "मॉड्यूल 10-1: वर्ग कुण्डलियाँ",
+        "mai": "मॉड्यूल 10-1: वर्ग कुण्डलियाँ",
+        "mr": "मॉड्यूल 10-1: वर्ग कुण्डलियाँ",
+        "ta": "Module 10-1: Divisional Charts",
+        "te": "Module 10-1: Divisional Charts",
+        "bn": "Module 10-1: Divisional Charts",
+        "kn": "Module 10-1: Divisional Charts",
+        "gu": "Module 10-1: Divisional Charts"
+      },
+      "href": "/learn/modules/10-1"
+    },
+    {
+      "label": {
+        "en": "Kundali Tool",
+        "hi": "कुण्डली उपकरण",
+        "sa": "कुण्डली उपकरण",
+        "mai": "कुण्डली उपकरण",
+        "mr": "कुण्डली उपकरण",
+        "ta": "Kundali Tool",
+        "te": "Kundali Tool",
+        "bn": "Kundali Tool",
+        "kn": "Kundali Tool",
+        "gu": "Kundali Tool"
+      },
+      "href": "/kundali"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q18_5_01",
+      "type": "mcq",
+      "question": {
+        "en": "What does \"Vimshopaka\" literally mean?",
+        "hi": "\"विंशोपक\" का शाब्दिक अर्थ क्या है?",
+        "sa": "\"विंशोपक\" का शाब्दिक अर्थ क्या है?",
+        "ta": "What does \"Vimshopaka\" literally mean?",
+        "te": "What does \"Vimshopaka\" literally mean?",
+        "bn": "What does \"Vimshopaka\" literally mean?",
+        "kn": "What does \"Vimshopaka\" literally mean?",
+        "mr": "\"विंशोपक\" का शाब्दिक अर्थ क्या है?",
+        "gu": "What does \"Vimshopaka\" literally mean?",
+        "mai": "\"विंशोपक\" का शाब्दिक अर्थ क्या है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Vimshopaka comes from \"Vimsho\" (twenty) + \"upaka\" (points/subsidiary). It is a 20-point scoring system where a planet's dignity is checked across 16 divisional charts and the weighted scores sum to a maximum of 20.",
+        "hi": "विंशोपक \"विंश\" (बीस) + \"उपक\" (अंक/सहायक) से आता है। यह 20-अंकीय मूल्यांकन पद्धति है जहाँ 16 वर्ग कुण्डलियों में ग्रह की गरिमा जाँची जाती है और भारित अंकों का योग अधिकतम 20 तक होता है।",
+        "sa": "विंशोपक \"विंश\" (बीस) + \"उपक\" (अंक/सहायक) से आता है। यह 20-अंकीय मूल्यांकन पद्धति है जहाँ 16 वर्ग कुण्डलियों में ग्रह की गरिमा जाँची जाती है और भारित अंकों का योग अधिकतम 20 तक होता है।",
+        "ta": "Vimshopaka comes from \"Vimsho\" (twenty) + \"upaka\" (points/subsidiary). It is a 20-point scoring system where a planet's dignity is checked across 16 divisional charts and the weighted scores sum to a maximum of 20.",
+        "te": "Vimshopaka comes from \"Vimsho\" (twenty) + \"upaka\" (points/subsidiary). It is a 20-point scoring system where a planet's dignity is checked across 16 divisional charts and the weighted scores sum to a maximum of 20.",
+        "bn": "Vimshopaka comes from \"Vimsho\" (twenty) + \"upaka\" (points/subsidiary). It is a 20-point scoring system where a planet's dignity is checked across 16 divisional charts and the weighted scores sum to a maximum of 20.",
+        "kn": "Vimshopaka comes from \"Vimsho\" (twenty) + \"upaka\" (points/subsidiary). It is a 20-point scoring system where a planet's dignity is checked across 16 divisional charts and the weighted scores sum to a maximum of 20.",
+        "mr": "विंशोपक \"विंश\" (बीस) + \"उपक\" (अंक/सहायक) से आता है। यह 20-अंकीय मूल्यांकन पद्धति है जहाँ 16 वर्ग कुण्डलियों में ग्रह की गरिमा जाँची जाती है और भारित अंकों का योग अधिकतम 20 तक होता है।",
+        "gu": "Vimshopaka comes from \"Vimsho\" (twenty) + \"upaka\" (points/subsidiary). It is a 20-point scoring system where a planet's dignity is checked across 16 divisional charts and the weighted scores sum to a maximum of 20.",
+        "mai": "विंशोपक \"विंश\" (बीस) + \"उपक\" (अंक/सहायक) से आता है। यह 20-अंकीय मूल्यांकन पद्धति है जहाँ 16 वर्ग कुण्डलियों में ग्रह की गरिमा जाँची जाती है और भारित अंकों का योग अधिकतम 20 तक होता है।"
+      },
+      "options": [
+        {
+          "en": "Six-fold strength",
+          "hi": "छह-गुना बल",
+          "sa": "छह-गुना बल",
+          "ta": "Six-fold strength",
+          "te": "Six-fold strength",
+          "bn": "Six-fold strength",
+          "kn": "Six-fold strength",
+          "mr": "छह-गुना बल",
+          "gu": "Six-fold strength",
+          "mai": "छह-गुना बल"
+        },
+        {
+          "en": "Twenty-pointed",
+          "hi": "बीस-अंकीय",
+          "sa": "बीस-अंकीय",
+          "ta": "Twenty-pointed",
+          "te": "Twenty-pointed",
+          "bn": "Twenty-pointed",
+          "kn": "Twenty-pointed",
+          "mr": "बीस-अंकीय",
+          "gu": "Twenty-pointed",
+          "mai": "बीस-अंकीय"
+        },
+        {
+          "en": "Twelve divisions",
+          "hi": "बारह विभाजन",
+          "sa": "बारह विभाजन",
+          "ta": "Twelve divisions",
+          "te": "Twelve divisions",
+          "bn": "Twelve divisions",
+          "kn": "Twelve divisions",
+          "mr": "बारह विभाजन",
+          "gu": "Twelve divisions",
+          "mai": "बारह विभाजन"
+        },
+        {
+          "en": "Hundred-fold power",
+          "hi": "सौ-गुना शक्ति",
+          "sa": "सौ-गुना शक्ति",
+          "ta": "Hundred-fold power",
+          "te": "Hundred-fold power",
+          "bn": "Hundred-fold power",
+          "kn": "Hundred-fold power",
+          "mr": "सौ-गुना शक्ति",
+          "gu": "Hundred-fold power",
+          "mai": "सौ-गुना शक्ति"
+        }
+      ]
+    },
+    {
+      "id": "q18_5_02",
+      "type": "mcq",
+      "question": {
+        "en": "How many divisional charts are used in the Shodasvarga scheme?",
+        "hi": "षोडशवर्ग योजना में कितनी वर्ग कुण्डलियों का उपयोग होता है?",
+        "sa": "षोडशवर्ग योजना में कितनी वर्ग कुण्डलियों का उपयोग होता है?",
+        "ta": "How many divisional charts are used in the Shodasvarga scheme?",
+        "te": "How many divisional charts are used in the Shodasvarga scheme?",
+        "bn": "How many divisional charts are used in the Shodasvarga scheme?",
+        "kn": "How many divisional charts are used in the Shodasvarga scheme?",
+        "mr": "षोडशवर्ग योजना में कितनी वर्ग कुण्डलियों का उपयोग होता है?",
+        "gu": "How many divisional charts are used in the Shodasvarga scheme?",
+        "mai": "षोडशवर्ग योजना में कितनी वर्ग कुण्डलियों का उपयोग होता है?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Shodasvarga means \"sixteen divisions.\" The 16 vargas are: D1 (Rashi), D2 (Hora), D3 (Drekkana), D7 (Saptamsha), D9 (Navamsha), D10 (Dashamsha), D12 (Dwadashamsha), D16 (Shodashamsha), D20 (Vimshamsha), D24 (Chaturvimshamsha), D27 (Saptavimshamsha), D30 (Trimshamsha), D40 (Khavedamsha), D45 (Akshavedamsha), and D60 (Shashtiamsha).",
+        "hi": "षोडशवर्ग का अर्थ है \"सोलह विभाजन।\" 16 वर्ग हैं: D1 (राशि), D2 (होरा), D3 (द्रेक्काण), D7 (सप्तांश), D9 (नवांश), D10 (दशांश), D12 (द्वादशांश), D16 (षोडशांश), D20 (विंशांश), D24 (चतुर्विंशांश), D27 (सप्तविंशांश), D30 (त्रिंशांश), D40 (खवेदांश), D45 (अक्षवेदांश), और D60 (षष्ट्यंश)।",
+        "sa": "षोडशवर्ग का अर्थ है \"सोलह विभाजन।\" 16 वर्ग हैं: D1 (राशि), D2 (होरा), D3 (द्रेक्काण), D7 (सप्तांश), D9 (नवांश), D10 (दशांश), D12 (द्वादशांश), D16 (षोडशांश), D20 (विंशांश), D24 (चतुर्विंशांश), D27 (सप्तविंशांश), D30 (त्रिंशांश), D40 (खवेदांश), D45 (अक्षवेदांश), और D60 (षष्ट्यंश)।",
+        "ta": "Shodasvarga means \"sixteen divisions.\" The 16 vargas are: D1 (Rashi), D2 (Hora), D3 (Drekkana), D7 (Saptamsha), D9 (Navamsha), D10 (Dashamsha), D12 (Dwadashamsha), D16 (Shodashamsha), D20 (Vimshamsha), D24 (Chaturvimshamsha), D27 (Saptavimshamsha), D30 (Trimshamsha), D40 (Khavedamsha), D45 (Akshavedamsha), and D60 (Shashtiamsha).",
+        "te": "Shodasvarga means \"sixteen divisions.\" The 16 vargas are: D1 (Rashi), D2 (Hora), D3 (Drekkana), D7 (Saptamsha), D9 (Navamsha), D10 (Dashamsha), D12 (Dwadashamsha), D16 (Shodashamsha), D20 (Vimshamsha), D24 (Chaturvimshamsha), D27 (Saptavimshamsha), D30 (Trimshamsha), D40 (Khavedamsha), D45 (Akshavedamsha), and D60 (Shashtiamsha).",
+        "bn": "Shodasvarga means \"sixteen divisions.\" The 16 vargas are: D1 (Rashi), D2 (Hora), D3 (Drekkana), D7 (Saptamsha), D9 (Navamsha), D10 (Dashamsha), D12 (Dwadashamsha), D16 (Shodashamsha), D20 (Vimshamsha), D24 (Chaturvimshamsha), D27 (Saptavimshamsha), D30 (Trimshamsha), D40 (Khavedamsha), D45 (Akshavedamsha), and D60 (Shashtiamsha).",
+        "kn": "Shodasvarga means \"sixteen divisions.\" The 16 vargas are: D1 (Rashi), D2 (Hora), D3 (Drekkana), D7 (Saptamsha), D9 (Navamsha), D10 (Dashamsha), D12 (Dwadashamsha), D16 (Shodashamsha), D20 (Vimshamsha), D24 (Chaturvimshamsha), D27 (Saptavimshamsha), D30 (Trimshamsha), D40 (Khavedamsha), D45 (Akshavedamsha), and D60 (Shashtiamsha).",
+        "mr": "षोडशवर्ग का अर्थ है \"सोलह विभाजन।\" 16 वर्ग हैं: D1 (राशि), D2 (होरा), D3 (द्रेक्काण), D7 (सप्तांश), D9 (नवांश), D10 (दशांश), D12 (द्वादशांश), D16 (षोडशांश), D20 (विंशांश), D24 (चतुर्विंशांश), D27 (सप्तविंशांश), D30 (त्रिंशांश), D40 (खवेदांश), D45 (अक्षवेदांश), और D60 (षष्ट्यंश)।",
+        "gu": "Shodasvarga means \"sixteen divisions.\" The 16 vargas are: D1 (Rashi), D2 (Hora), D3 (Drekkana), D7 (Saptamsha), D9 (Navamsha), D10 (Dashamsha), D12 (Dwadashamsha), D16 (Shodashamsha), D20 (Vimshamsha), D24 (Chaturvimshamsha), D27 (Saptavimshamsha), D30 (Trimshamsha), D40 (Khavedamsha), D45 (Akshavedamsha), and D60 (Shashtiamsha).",
+        "mai": "षोडशवर्ग का अर्थ है \"सोलह विभाजन।\" 16 वर्ग हैं: D1 (राशि), D2 (होरा), D3 (द्रेक्काण), D7 (सप्तांश), D9 (नवांश), D10 (दशांश), D12 (द्वादशांश), D16 (षोडशांश), D20 (विंशांश), D24 (चतुर्विंशांश), D27 (सप्तविंशांश), D30 (त्रिंशांश), D40 (खवेदांश), D45 (अक्षवेदांश), और D60 (षष्ट्यंश)।"
+      },
+      "options": [
+        {
+          "en": "7",
+          "hi": "7",
+          "sa": "7",
+          "ta": "7",
+          "te": "7",
+          "bn": "7",
+          "kn": "7",
+          "mr": "7",
+          "gu": "7",
+          "mai": "7"
+        },
+        {
+          "en": "12",
+          "hi": "12",
+          "sa": "12",
+          "ta": "12",
+          "te": "12",
+          "bn": "12",
+          "kn": "12",
+          "mr": "12",
+          "gu": "12",
+          "mai": "12"
+        },
+        {
+          "en": "16",
+          "hi": "16",
+          "sa": "16",
+          "ta": "16",
+          "te": "16",
+          "bn": "16",
+          "kn": "16",
+          "mr": "16",
+          "gu": "16",
+          "mai": "16"
+        },
+        {
+          "en": "20",
+          "hi": "20",
+          "sa": "20",
+          "ta": "20",
+          "te": "20",
+          "bn": "20",
+          "kn": "20",
+          "mr": "20",
+          "gu": "20",
+          "mai": "20"
+        }
+      ]
+    },
+    {
+      "id": "q18_5_03",
+      "type": "mcq",
+      "question": {
+        "en": "Which divisional chart carries the highest weight in the Shodasvarga Vimshopaka scheme?",
+        "hi": "षोडशवर्ग विंशोपक योजना में किस वर्ग कुण्डली का भार सर्वाधिक है?",
+        "sa": "षोडशवर्ग विंशोपक योजना में किस वर्ग कुण्डली का भार सर्वाधिक है?",
+        "ta": "Which divisional chart carries the highest weight in the Shodasvarga Vimshopaka scheme?",
+        "te": "Which divisional chart carries the highest weight in the Shodasvarga Vimshopaka scheme?",
+        "bn": "Which divisional chart carries the highest weight in the Shodasvarga Vimshopaka scheme?",
+        "kn": "Which divisional chart carries the highest weight in the Shodasvarga Vimshopaka scheme?",
+        "mr": "षोडशवर्ग विंशोपक योजना में किस वर्ग कुण्डली का भार सर्वाधिक है?",
+        "gu": "Which divisional chart carries the highest weight in the Shodasvarga Vimshopaka scheme?",
+        "mai": "षोडशवर्ग विंशोपक योजना में किस वर्ग कुण्डली का भार सर्वाधिक है?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "D60 (Shashtiamsha) carries the highest weight of 4.0 points. This is significant — the most microscopic division (each portion is just 0.5° of the zodiac) is considered the most important. It reflects the Vedic emphasis on subtle, karmic indicators. D1 (3.5) and D9 (3.0) follow.",
+        "hi": "D60 (षष्ट्यंश) का सर्वाधिक भार 4.0 अंक है। यह महत्वपूर्ण है — सबसे सूक्ष्म विभाजन (प्रत्येक भाग राशिचक्र का केवल 0.5°) सबसे महत्वपूर्ण माना जाता है। यह सूक्ष्म, कार्मिक संकेतकों पर वैदिक बल को दर्शाता है। D1 (3.5) और D9 (3.0) इसके बाद आते हैं।",
+        "sa": "D60 (षष्ट्यंश) का सर्वाधिक भार 4.0 अंक है। यह महत्वपूर्ण है — सबसे सूक्ष्म विभाजन (प्रत्येक भाग राशिचक्र का केवल 0.5°) सबसे महत्वपूर्ण माना जाता है। यह सूक्ष्म, कार्मिक संकेतकों पर वैदिक बल को दर्शाता है। D1 (3.5) और D9 (3.0) इसके बाद आते हैं।",
+        "ta": "D60 (Shashtiamsha) carries the highest weight of 4.0 points. This is significant — the most microscopic division (each portion is just 0.5° of the zodiac) is considered the most important. It reflects the Vedic emphasis on subtle, karmic indicators. D1 (3.5) and D9 (3.0) follow.",
+        "te": "D60 (Shashtiamsha) carries the highest weight of 4.0 points. This is significant — the most microscopic division (each portion is just 0.5° of the zodiac) is considered the most important. It reflects the Vedic emphasis on subtle, karmic indicators. D1 (3.5) and D9 (3.0) follow.",
+        "bn": "D60 (Shashtiamsha) carries the highest weight of 4.0 points. This is significant — the most microscopic division (each portion is just 0.5° of the zodiac) is considered the most important. It reflects the Vedic emphasis on subtle, karmic indicators. D1 (3.5) and D9 (3.0) follow.",
+        "kn": "D60 (Shashtiamsha) carries the highest weight of 4.0 points. This is significant — the most microscopic division (each portion is just 0.5° of the zodiac) is considered the most important. It reflects the Vedic emphasis on subtle, karmic indicators. D1 (3.5) and D9 (3.0) follow.",
+        "mr": "D60 (षष्ट्यंश) का सर्वाधिक भार 4.0 अंक है। यह महत्वपूर्ण है — सबसे सूक्ष्म विभाजन (प्रत्येक भाग राशिचक्र का केवल 0.5°) सबसे महत्वपूर्ण माना जाता है। यह सूक्ष्म, कार्मिक संकेतकों पर वैदिक बल को दर्शाता है। D1 (3.5) और D9 (3.0) इसके बाद आते हैं।",
+        "gu": "D60 (Shashtiamsha) carries the highest weight of 4.0 points. This is significant — the most microscopic division (each portion is just 0.5° of the zodiac) is considered the most important. It reflects the Vedic emphasis on subtle, karmic indicators. D1 (3.5) and D9 (3.0) follow.",
+        "mai": "D60 (षष्ट्यंश) का सर्वाधिक भार 4.0 अंक है। यह महत्वपूर्ण है — सबसे सूक्ष्म विभाजन (प्रत्येक भाग राशिचक्र का केवल 0.5°) सबसे महत्वपूर्ण माना जाता है। यह सूक्ष्म, कार्मिक संकेतकों पर वैदिक बल को दर्शाता है। D1 (3.5) और D9 (3.0) इसके बाद आते हैं।"
+      },
+      "options": [
+        {
+          "en": "D1 (Rashi) — weight 3.5",
+          "hi": "D1 (राशि) — भार 3.5",
+          "sa": "D1 (राशि) — भार 3.5",
+          "ta": "D1 (Rashi) — weight 3.5",
+          "te": "D1 (Rashi) — weight 3.5",
+          "bn": "D1 (Rashi) — weight 3.5",
+          "kn": "D1 (Rashi) — weight 3.5",
+          "mr": "D1 (राशि) — भार 3.5",
+          "gu": "D1 (Rashi) — weight 3.5",
+          "mai": "D1 (राशि) — भार 3.5"
+        },
+        {
+          "en": "D9 (Navamsha) — weight 3.0",
+          "hi": "D9 (नवांश) — भार 3.0",
+          "sa": "D9 (नवांश) — भार 3.0",
+          "ta": "D9 (Navamsha) — weight 3.0",
+          "te": "D9 (Navamsha) — weight 3.0",
+          "bn": "D9 (Navamsha) — weight 3.0",
+          "kn": "D9 (Navamsha) — weight 3.0",
+          "mr": "D9 (नवांश) — भार 3.0",
+          "gu": "D9 (Navamsha) — weight 3.0",
+          "mai": "D9 (नवांश) — भार 3.0"
+        },
+        {
+          "en": "D60 (Shashtiamsha) — weight 4.0",
+          "hi": "D60 (षष्ट्यंश) — भार 4.0",
+          "sa": "D60 (षष्ट्यंश) — भार 4.0",
+          "ta": "D60 (Shashtiamsha) — weight 4.0",
+          "te": "D60 (Shashtiamsha) — weight 4.0",
+          "bn": "D60 (Shashtiamsha) — weight 4.0",
+          "kn": "D60 (Shashtiamsha) — weight 4.0",
+          "mr": "D60 (षष्ट्यंश) — भार 4.0",
+          "gu": "D60 (Shashtiamsha) — weight 4.0",
+          "mai": "D60 (षष्ट्यंश) — भार 4.0"
+        },
+        {
+          "en": "D16 (Shodashamsha) — weight 2.0",
+          "hi": "D16 (षोडशांश) — भार 2.0",
+          "sa": "D16 (षोडशांश) — भार 2.0",
+          "ta": "D16 (Shodashamsha) — weight 2.0",
+          "te": "D16 (Shodashamsha) — weight 2.0",
+          "bn": "D16 (Shodashamsha) — weight 2.0",
+          "kn": "D16 (Shodashamsha) — weight 2.0",
+          "mr": "D16 (षोडशांश) — भार 2.0",
+          "gu": "D16 (Shodashamsha) — weight 2.0",
+          "mai": "D16 (षोडशांश) — भार 2.0"
+        }
+      ]
+    },
+    {
+      "id": "q18_5_04",
+      "type": "mcq",
+      "question": {
+        "en": "If a planet is exalted in a particular varga, what fraction of that varga's weight does it receive?",
+        "hi": "यदि कोई ग्रह किसी विशेष वर्ग में उच्च है, तो उसे उस वर्ग के भार का कितना अंश प्राप्त होता है?",
+        "sa": "यदि कोई ग्रह किसी विशेष वर्ग में उच्च है, तो उसे उस वर्ग के भार का कितना अंश प्राप्त होता है?",
+        "ta": "If a planet is exalted in a particular varga, what fraction of that varga's weight does it receive?",
+        "te": "If a planet is exalted in a particular varga, what fraction of that varga's weight does it receive?",
+        "bn": "If a planet is exalted in a particular varga, what fraction of that varga's weight does it receive?",
+        "kn": "If a planet is exalted in a particular varga, what fraction of that varga's weight does it receive?",
+        "mr": "यदि कोई ग्रह किसी विशेष वर्ग में उच्च है, तो उसे उस वर्ग के भार का कितना अंश प्राप्त होता है?",
+        "gu": "If a planet is exalted in a particular varga, what fraction of that varga's weight does it receive?",
+        "mai": "यदि कोई ग्रह किसी विशेष वर्ग में उच्च है, तो उसे उस वर्ग के भार का कितना अंश प्राप्त होता है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "An exalted planet receives the full weight of that varga. For example, if a planet is exalted in D60 (weight 4.0), it scores the complete 4.0 points for that division. Moolatrikona and own sign receive 3/4, friend's sign gets 1/2, neutral 1/4, enemy 1/8, and debilitated receives 0.",
+        "hi": "उच्च ग्रह को उस वर्ग का पूर्ण भार प्राप्त होता है। उदाहरणार्थ, यदि कोई ग्रह D60 (भार 4.0) में उच्च है, तो उसे उस विभाजन के पूर्ण 4.0 अंक मिलते हैं। मूलत्रिकोण और स्वराशि को 3/4, मित्र राशि को 1/2, सम को 1/4, शत्रु को 1/8, और नीच को 0 मिलता है।",
+        "sa": "उच्च ग्रह को उस वर्ग का पूर्ण भार प्राप्त होता है। उदाहरणार्थ, यदि कोई ग्रह D60 (भार 4.0) में उच्च है, तो उसे उस विभाजन के पूर्ण 4.0 अंक मिलते हैं। मूलत्रिकोण और स्वराशि को 3/4, मित्र राशि को 1/2, सम को 1/4, शत्रु को 1/8, और नीच को 0 मिलता है।",
+        "ta": "An exalted planet receives the full weight of that varga. For example, if a planet is exalted in D60 (weight 4.0), it scores the complete 4.0 points for that division. Moolatrikona and own sign receive 3/4, friend's sign gets 1/2, neutral 1/4, enemy 1/8, and debilitated receives 0.",
+        "te": "An exalted planet receives the full weight of that varga. For example, if a planet is exalted in D60 (weight 4.0), it scores the complete 4.0 points for that division. Moolatrikona and own sign receive 3/4, friend's sign gets 1/2, neutral 1/4, enemy 1/8, and debilitated receives 0.",
+        "bn": "An exalted planet receives the full weight of that varga. For example, if a planet is exalted in D60 (weight 4.0), it scores the complete 4.0 points for that division. Moolatrikona and own sign receive 3/4, friend's sign gets 1/2, neutral 1/4, enemy 1/8, and debilitated receives 0.",
+        "kn": "An exalted planet receives the full weight of that varga. For example, if a planet is exalted in D60 (weight 4.0), it scores the complete 4.0 points for that division. Moolatrikona and own sign receive 3/4, friend's sign gets 1/2, neutral 1/4, enemy 1/8, and debilitated receives 0.",
+        "mr": "उच्च ग्रह को उस वर्ग का पूर्ण भार प्राप्त होता है। उदाहरणार्थ, यदि कोई ग्रह D60 (भार 4.0) में उच्च है, तो उसे उस विभाजन के पूर्ण 4.0 अंक मिलते हैं। मूलत्रिकोण और स्वराशि को 3/4, मित्र राशि को 1/2, सम को 1/4, शत्रु को 1/8, और नीच को 0 मिलता है।",
+        "gu": "An exalted planet receives the full weight of that varga. For example, if a planet is exalted in D60 (weight 4.0), it scores the complete 4.0 points for that division. Moolatrikona and own sign receive 3/4, friend's sign gets 1/2, neutral 1/4, enemy 1/8, and debilitated receives 0.",
+        "mai": "उच्च ग्रह को उस वर्ग का पूर्ण भार प्राप्त होता है। उदाहरणार्थ, यदि कोई ग्रह D60 (भार 4.0) में उच्च है, तो उसे उस विभाजन के पूर्ण 4.0 अंक मिलते हैं। मूलत्रिकोण और स्वराशि को 3/4, मित्र राशि को 1/2, सम को 1/4, शत्रु को 1/8, और नीच को 0 मिलता है।"
+      },
+      "options": [
+        {
+          "en": "3/4 of the weight",
+          "hi": "भार का 3/4",
+          "sa": "भार का 3/4",
+          "ta": "3/4 of the weight",
+          "te": "3/4 of the weight",
+          "bn": "3/4 of the weight",
+          "kn": "3/4 of the weight",
+          "mr": "भार का 3/4",
+          "gu": "3/4 of the weight",
+          "mai": "भार का 3/4"
+        },
+        {
+          "en": "Full weight",
+          "hi": "पूर्ण भार",
+          "sa": "पूर्ण भार",
+          "ta": "Full weight",
+          "te": "Full weight",
+          "bn": "Full weight",
+          "kn": "Full weight",
+          "mr": "पूर्ण भार",
+          "gu": "Full weight",
+          "mai": "पूर्ण भार"
+        },
+        {
+          "en": "1/2 of the weight",
+          "hi": "भार का 1/2",
+          "sa": "भार का 1/2",
+          "ta": "1/2 of the weight",
+          "te": "1/2 of the weight",
+          "bn": "1/2 of the weight",
+          "kn": "1/2 of the weight",
+          "mr": "भार का 1/2",
+          "gu": "1/2 of the weight",
+          "mai": "भार का 1/2"
+        },
+        {
+          "en": "1/4 of the weight",
+          "hi": "भार का 1/4",
+          "sa": "भार का 1/4",
+          "ta": "1/4 of the weight",
+          "te": "1/4 of the weight",
+          "bn": "1/4 of the weight",
+          "kn": "1/4 of the weight",
+          "mr": "भार का 1/4",
+          "gu": "1/4 of the weight",
+          "mai": "भार का 1/4"
+        }
+      ]
+    },
+    {
+      "id": "q18_5_05",
+      "type": "true_false",
+      "question": {
+        "en": "A debilitated planet in any varga scores zero points for that varga in Vimshopaka.",
+        "hi": "किसी भी वर्ग में नीच ग्रह को विंशोपक में उस वर्ग के लिए शून्य अंक मिलते हैं।",
+        "sa": "किसी भी वर्ग में नीच ग्रह को विंशोपक में उस वर्ग के लिए शून्य अंक मिलते हैं।",
+        "ta": "A debilitated planet in any varga scores zero points for that varga in Vimshopaka.",
+        "te": "A debilitated planet in any varga scores zero points for that varga in Vimshopaka.",
+        "bn": "A debilitated planet in any varga scores zero points for that varga in Vimshopaka.",
+        "kn": "A debilitated planet in any varga scores zero points for that varga in Vimshopaka.",
+        "mr": "किसी भी वर्ग में नीच ग्रह को विंशोपक में उस वर्ग के लिए शून्य अंक मिलते हैं।",
+        "gu": "A debilitated planet in any varga scores zero points for that varga in Vimshopaka.",
+        "mai": "किसी भी वर्ग में नीच ग्रह को विंशोपक में उस वर्ग के लिए शून्य अंक मिलते हैं।"
+      },
+      "correctAnswer": true,
+      "explanation": {
+        "en": "True. Debilitation yields zero contribution from that particular varga. If a planet is debilitated in D9 (weight 3.0), it contributes 0 out of 3.0 from the Navamsha. However, it may still score well in other vargas — Vimshopaka is a sum across all 16 charts.",
+        "hi": "सत्य। नीच होने पर उस विशेष वर्ग से शून्य योगदान मिलता है। यदि कोई ग्रह D9 (भार 3.0) में नीच है, तो नवांश से 3.0 में से 0 योगदान होता है। परन्तु अन्य वर्गों में अच्छे अंक प्राप्त हो सकते हैं — विंशोपक सभी 16 कुण्डलियों का योग है।",
+        "sa": "सत्य। नीच होने पर उस विशेष वर्ग से शून्य योगदान मिलता है। यदि कोई ग्रह D9 (भार 3.0) में नीच है, तो नवांश से 3.0 में से 0 योगदान होता है। परन्तु अन्य वर्गों में अच्छे अंक प्राप्त हो सकते हैं — विंशोपक सभी 16 कुण्डलियों का योग है।",
+        "ta": "True. Debilitation yields zero contribution from that particular varga. If a planet is debilitated in D9 (weight 3.0), it contributes 0 out of 3.0 from the Navamsha. However, it may still score well in other vargas — Vimshopaka is a sum across all 16 charts.",
+        "te": "True. Debilitation yields zero contribution from that particular varga. If a planet is debilitated in D9 (weight 3.0), it contributes 0 out of 3.0 from the Navamsha. However, it may still score well in other vargas — Vimshopaka is a sum across all 16 charts.",
+        "bn": "True. Debilitation yields zero contribution from that particular varga. If a planet is debilitated in D9 (weight 3.0), it contributes 0 out of 3.0 from the Navamsha. However, it may still score well in other vargas — Vimshopaka is a sum across all 16 charts.",
+        "kn": "True. Debilitation yields zero contribution from that particular varga. If a planet is debilitated in D9 (weight 3.0), it contributes 0 out of 3.0 from the Navamsha. However, it may still score well in other vargas — Vimshopaka is a sum across all 16 charts.",
+        "mr": "सत्य। नीच होने पर उस विशेष वर्ग से शून्य योगदान मिलता है। यदि कोई ग्रह D9 (भार 3.0) में नीच है, तो नवांश से 3.0 में से 0 योगदान होता है। परन्तु अन्य वर्गों में अच्छे अंक प्राप्त हो सकते हैं — विंशोपक सभी 16 कुण्डलियों का योग है।",
+        "gu": "True. Debilitation yields zero contribution from that particular varga. If a planet is debilitated in D9 (weight 3.0), it contributes 0 out of 3.0 from the Navamsha. However, it may still score well in other vargas — Vimshopaka is a sum across all 16 charts.",
+        "mai": "सत्य। नीच होने पर उस विशेष वर्ग से शून्य योगदान मिलता है। यदि कोई ग्रह D9 (भार 3.0) में नीच है, तो नवांश से 3.0 में से 0 योगदान होता है। परन्तु अन्य वर्गों में अच्छे अंक प्राप्त हो सकते हैं — विंशोपक सभी 16 कुण्डलियों का योग है।"
+      }
+    },
+    {
+      "id": "q18_5_06",
+      "type": "mcq",
+      "question": {
+        "en": "A planet scoring 16 out of 20 in Vimshopaka would be classified as:",
+        "hi": "विंशोपक में 20 में से 16 अंक प्राप्त करने वाले ग्रह को किस रूप में वर्गीकृत किया जाएगा?",
+        "sa": "विंशोपक में 20 में से 16 अंक प्राप्त करने वाले ग्रह को किस रूप में वर्गीकृत किया जाएगा?",
+        "ta": "A planet scoring 16 out of 20 in Vimshopaka would be classified as:",
+        "te": "A planet scoring 16 out of 20 in Vimshopaka would be classified as:",
+        "bn": "A planet scoring 16 out of 20 in Vimshopaka would be classified as:",
+        "kn": "A planet scoring 16 out of 20 in Vimshopaka would be classified as:",
+        "mr": "विंशोपक में 20 में से 16 अंक प्राप्त करने वाले ग्रह को किस रूप में वर्गीकृत किया जाएगा?",
+        "gu": "A planet scoring 16 out of 20 in Vimshopaka would be classified as:",
+        "mai": "विंशोपक में 20 में से 16 अंक प्राप्त करने वाले ग्रह को किस रूप में वर्गीकृत किया जाएगा?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "A score of 15+ is considered highly auspicious — the planet is dignified across most of the 16 divisional charts. 10-15 is good, 5-10 is mixed, and below 5 indicates weakness across multiple dimensions. A planet scoring 16/20 is consistently well-placed regardless of which divisional lens you examine it through.",
+        "hi": "15+ का अंक अत्यन्त शुभ माना जाता है — ग्रह 16 वर्ग कुण्डलियों में से अधिकांश में गरिमावान है। 10-15 अच्छा है, 5-10 मिश्रित है, और 5 से कम बहुआयामी दुर्बलता दर्शाता है। 16/20 अंक वाला ग्रह किसी भी वर्ग दृष्टिकोण से देखने पर सुस्थित है।",
+        "sa": "15+ का अंक अत्यन्त शुभ माना जाता है — ग्रह 16 वर्ग कुण्डलियों में से अधिकांश में गरिमावान है। 10-15 अच्छा है, 5-10 मिश्रित है, और 5 से कम बहुआयामी दुर्बलता दर्शाता है। 16/20 अंक वाला ग्रह किसी भी वर्ग दृष्टिकोण से देखने पर सुस्थित है।",
+        "ta": "A score of 15+ is considered highly auspicious — the planet is dignified across most of the 16 divisional charts. 10-15 is good, 5-10 is mixed, and below 5 indicates weakness across multiple dimensions. A planet scoring 16/20 is consistently well-placed regardless of which divisional lens you examine it through.",
+        "te": "A score of 15+ is considered highly auspicious — the planet is dignified across most of the 16 divisional charts. 10-15 is good, 5-10 is mixed, and below 5 indicates weakness across multiple dimensions. A planet scoring 16/20 is consistently well-placed regardless of which divisional lens you examine it through.",
+        "bn": "A score of 15+ is considered highly auspicious — the planet is dignified across most of the 16 divisional charts. 10-15 is good, 5-10 is mixed, and below 5 indicates weakness across multiple dimensions. A planet scoring 16/20 is consistently well-placed regardless of which divisional lens you examine it through.",
+        "kn": "A score of 15+ is considered highly auspicious — the planet is dignified across most of the 16 divisional charts. 10-15 is good, 5-10 is mixed, and below 5 indicates weakness across multiple dimensions. A planet scoring 16/20 is consistently well-placed regardless of which divisional lens you examine it through.",
+        "mr": "15+ का अंक अत्यन्त शुभ माना जाता है — ग्रह 16 वर्ग कुण्डलियों में से अधिकांश में गरिमावान है। 10-15 अच्छा है, 5-10 मिश्रित है, और 5 से कम बहुआयामी दुर्बलता दर्शाता है। 16/20 अंक वाला ग्रह किसी भी वर्ग दृष्टिकोण से देखने पर सुस्थित है।",
+        "gu": "A score of 15+ is considered highly auspicious — the planet is dignified across most of the 16 divisional charts. 10-15 is good, 5-10 is mixed, and below 5 indicates weakness across multiple dimensions. A planet scoring 16/20 is consistently well-placed regardless of which divisional lens you examine it through.",
+        "mai": "15+ का अंक अत्यन्त शुभ माना जाता है — ग्रह 16 वर्ग कुण्डलियों में से अधिकांश में गरिमावान है। 10-15 अच्छा है, 5-10 मिश्रित है, और 5 से कम बहुआयामी दुर्बलता दर्शाता है। 16/20 अंक वाला ग्रह किसी भी वर्ग दृष्टिकोण से देखने पर सुस्थित है।"
+      },
+      "options": [
+        {
+          "en": "Weak — needs remedial measures",
+          "hi": "दुर्बल — उपाय आवश्यक",
+          "sa": "दुर्बल — उपाय आवश्यक",
+          "ta": "Weak — needs remedial measures",
+          "te": "Weak — needs remedial measures",
+          "bn": "Weak — needs remedial measures",
+          "kn": "Weak — needs remedial measures",
+          "mr": "दुर्बल — उपाय आवश्यक",
+          "gu": "Weak — needs remedial measures",
+          "mai": "दुर्बल — उपाय आवश्यक"
+        },
+        {
+          "en": "Mixed — inconsistent results",
+          "hi": "मिश्रित — असंगत परिणाम",
+          "sa": "मिश्रित — असंगत परिणाम",
+          "ta": "Mixed — inconsistent results",
+          "te": "Mixed — inconsistent results",
+          "bn": "Mixed — inconsistent results",
+          "kn": "Mixed — inconsistent results",
+          "mr": "मिश्रित — असंगत परिणाम",
+          "gu": "Mixed — inconsistent results",
+          "mai": "मिश्रित — असंगत परिणाम"
+        },
+        {
+          "en": "Highly auspicious — excellent inherent quality",
+          "hi": "अत्यन्त शुभ — उत्कृष्ट अन्तर्निहित गुणवत्ता",
+          "sa": "अत्यन्त शुभ — उत्कृष्ट अन्तर्निहित गुणवत्ता",
+          "ta": "Highly auspicious — excellent inherent quality",
+          "te": "Highly auspicious — excellent inherent quality",
+          "bn": "Highly auspicious — excellent inherent quality",
+          "kn": "Highly auspicious — excellent inherent quality",
+          "mr": "अत्यन्त शुभ — उत्कृष्ट अन्तर्निहित गुणवत्ता",
+          "gu": "Highly auspicious — excellent inherent quality",
+          "mai": "अत्यन्त शुभ — उत्कृष्ट अन्तर्निहित गुणवत्ता"
+        },
+        {
+          "en": "Average — no special significance",
+          "hi": "सामान्य — कोई विशेष महत्व नहीं",
+          "sa": "सामान्य — कोई विशेष महत्व नहीं",
+          "ta": "Average — no special significance",
+          "te": "Average — no special significance",
+          "bn": "Average — no special significance",
+          "kn": "Average — no special significance",
+          "mr": "सामान्य — कोई विशेष महत्व नहीं",
+          "gu": "Average — no special significance",
+          "mai": "सामान्य — कोई विशेष महत्व नहीं"
+        }
+      ]
+    },
+    {
+      "id": "q18_5_07",
+      "type": "mcq",
+      "question": {
+        "en": "What is the key difference between Vimshopaka and Shadbala?",
+        "hi": "विंशोपक और षड्बल में मुख्य अन्तर क्या है?",
+        "sa": "विंशोपक और षड्बल में मुख्य अन्तर क्या है?",
+        "ta": "What is the key difference between Vimshopaka and Shadbala?",
+        "te": "What is the key difference between Vimshopaka and Shadbala?",
+        "bn": "What is the key difference between Vimshopaka and Shadbala?",
+        "kn": "What is the key difference between Vimshopaka and Shadbala?",
+        "mr": "विंशोपक और षड्बल में मुख्य अन्तर क्या है?",
+        "gu": "What is the key difference between Vimshopaka and Shadbala?",
+        "mai": "विंशोपक और षड्बल में मुख्य अन्तर क्या है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Vimshopaka measures \"inherent quality\" — is the planet dignified across multiple dimensional lenses? Shadbala measures \"functional ability\" — positional strength, directional strength, temporal strength in the birth chart. A planet can be dignified (high Vimshopaka) but poorly placed (low Shadbala), or vice versa. Both are needed for complete assessment.",
+        "hi": "विंशोपक \"अन्तर्निहित गुणवत्ता\" मापता है — क्या ग्रह बहुआयामी दृष्टिकोणों में गरिमावान है? षड्बल \"कार्यात्मक क्षमता\" मापता है — जन्म कुण्डली में स्थानीय बल, दिशा बल, कालिक बल। एक ग्रह गरिमावान (उच्च विंशोपक) परन्तु कुस्थित (निम्न षड्बल) हो सकता है, या इसका विपरीत। पूर्ण मूल्यांकन के लिए दोनों आवश्यक हैं।",
+        "sa": "विंशोपक \"अन्तर्निहित गुणवत्ता\" मापता है — क्या ग्रह बहुआयामी दृष्टिकोणों में गरिमावान है? षड्बल \"कार्यात्मक क्षमता\" मापता है — जन्म कुण्डली में स्थानीय बल, दिशा बल, कालिक बल। एक ग्रह गरिमावान (उच्च विंशोपक) परन्तु कुस्थित (निम्न षड्बल) हो सकता है, या इसका विपरीत। पूर्ण मूल्यांकन के लिए दोनों आवश्यक हैं।",
+        "ta": "Vimshopaka measures \"inherent quality\" — is the planet dignified across multiple dimensional lenses? Shadbala measures \"functional ability\" — positional strength, directional strength, temporal strength in the birth chart. A planet can be dignified (high Vimshopaka) but poorly placed (low Shadbala), or vice versa. Both are needed for complete assessment.",
+        "te": "Vimshopaka measures \"inherent quality\" — is the planet dignified across multiple dimensional lenses? Shadbala measures \"functional ability\" — positional strength, directional strength, temporal strength in the birth chart. A planet can be dignified (high Vimshopaka) but poorly placed (low Shadbala), or vice versa. Both are needed for complete assessment.",
+        "bn": "Vimshopaka measures \"inherent quality\" — is the planet dignified across multiple dimensional lenses? Shadbala measures \"functional ability\" — positional strength, directional strength, temporal strength in the birth chart. A planet can be dignified (high Vimshopaka) but poorly placed (low Shadbala), or vice versa. Both are needed for complete assessment.",
+        "kn": "Vimshopaka measures \"inherent quality\" — is the planet dignified across multiple dimensional lenses? Shadbala measures \"functional ability\" — positional strength, directional strength, temporal strength in the birth chart. A planet can be dignified (high Vimshopaka) but poorly placed (low Shadbala), or vice versa. Both are needed for complete assessment.",
+        "mr": "विंशोपक \"अन्तर्निहित गुणवत्ता\" मापता है — क्या ग्रह बहुआयामी दृष्टिकोणों में गरिमावान है? षड्बल \"कार्यात्मक क्षमता\" मापता है — जन्म कुण्डली में स्थानीय बल, दिशा बल, कालिक बल। एक ग्रह गरिमावान (उच्च विंशोपक) परन्तु कुस्थित (निम्न षड्बल) हो सकता है, या इसका विपरीत। पूर्ण मूल्यांकन के लिए दोनों आवश्यक हैं।",
+        "gu": "Vimshopaka measures \"inherent quality\" — is the planet dignified across multiple dimensional lenses? Shadbala measures \"functional ability\" — positional strength, directional strength, temporal strength in the birth chart. A planet can be dignified (high Vimshopaka) but poorly placed (low Shadbala), or vice versa. Both are needed for complete assessment.",
+        "mai": "विंशोपक \"अन्तर्निहित गुणवत्ता\" मापता है — क्या ग्रह बहुआयामी दृष्टिकोणों में गरिमावान है? षड्बल \"कार्यात्मक क्षमता\" मापता है — जन्म कुण्डली में स्थानीय बल, दिशा बल, कालिक बल। एक ग्रह गरिमावान (उच्च विंशोपक) परन्तु कुस्थित (निम्न षड्बल) हो सकता है, या इसका विपरीत। पूर्ण मूल्यांकन के लिए दोनों आवश्यक हैं।"
+      },
+      "options": [
+        {
+          "en": "They measure the same thing using different scales",
+          "hi": "वे समान वस्तु को भिन्न पैमानों से मापते हैं",
+          "sa": "वे समान वस्तु को भिन्न पैमानों से मापते हैं",
+          "ta": "They measure the same thing using different scales",
+          "te": "They measure the same thing using different scales",
+          "bn": "They measure the same thing using different scales",
+          "kn": "They measure the same thing using different scales",
+          "mr": "वे समान वस्तु को भिन्न पैमानों से मापते हैं",
+          "gu": "They measure the same thing using different scales",
+          "mai": "वे समान वस्तु को भिन्न पैमानों से मापते हैं"
+        },
+        {
+          "en": "Vimshopaka measures inherent dignity across vargas; Shadbala measures functional ability in the rashi chart",
+          "hi": "विंशोपक वर्गों में अन्तर्निहित गरिमा मापता है; षड्बल राशि कुण्डली में कार्यात्मक क्षमता मापता है",
+          "sa": "विंशोपक वर्गों में अन्तर्निहित गरिमा मापता है; षड्बल राशि कुण्डली में कार्यात्मक क्षमता मापता है",
+          "ta": "Vimshopaka measures inherent dignity across vargas; Shadbala measures functional ability in the rashi chart",
+          "te": "Vimshopaka measures inherent dignity across vargas; Shadbala measures functional ability in the rashi chart",
+          "bn": "Vimshopaka measures inherent dignity across vargas; Shadbala measures functional ability in the rashi chart",
+          "kn": "Vimshopaka measures inherent dignity across vargas; Shadbala measures functional ability in the rashi chart",
+          "mr": "विंशोपक वर्गों में अन्तर्निहित गरिमा मापता है; षड्बल राशि कुण्डली में कार्यात्मक क्षमता मापता है",
+          "gu": "Vimshopaka measures inherent dignity across vargas; Shadbala measures functional ability in the rashi chart",
+          "mai": "विंशोपक वर्गों में अन्तर्निहित गरिमा मापता है; षड्बल राशि कुण्डली में कार्यात्मक क्षमता मापता है"
+        },
+        {
+          "en": "Shadbala is more important than Vimshopaka",
+          "hi": "षड्बल विंशोपक से अधिक महत्वपूर्ण है",
+          "sa": "षड्बल विंशोपक से अधिक महत्वपूर्ण है",
+          "ta": "Shadbala is more important than Vimshopaka",
+          "te": "Shadbala is more important than Vimshopaka",
+          "bn": "Shadbala is more important than Vimshopaka",
+          "kn": "Shadbala is more important than Vimshopaka",
+          "mr": "षड्बल विंशोपक से अधिक महत्वपूर्ण है",
+          "gu": "Shadbala is more important than Vimshopaka",
+          "mai": "षड्बल विंशोपक से अधिक महत्वपूर्ण है"
+        },
+        {
+          "en": "Vimshopaka only uses the D9 chart",
+          "hi": "विंशोपक केवल D9 कुण्डली का उपयोग करता है",
+          "sa": "विंशोपक केवल D9 कुण्डली का उपयोग करता है",
+          "ta": "Vimshopaka only uses the D9 chart",
+          "te": "Vimshopaka only uses the D9 chart",
+          "bn": "Vimshopaka only uses the D9 chart",
+          "kn": "Vimshopaka only uses the D9 chart",
+          "mr": "विंशोपक केवल D9 कुण्डली का उपयोग करता है",
+          "gu": "Vimshopaka only uses the D9 chart",
+          "mai": "विंशोपक केवल D9 कुण्डली का उपयोग करता है"
+        }
+      ]
+    },
+    {
+      "id": "q18_5_08",
+      "type": "true_false",
+      "question": {
+        "en": "A planet can have high Vimshopaka (dignified across vargas) but low Shadbala (weak positional strength).",
+        "hi": "एक ग्रह का विंशोपक उच्च (वर्गों में गरिमावान) परन्तु षड्बल निम्न (दुर्बल स्थानीय बल) हो सकता है।",
+        "sa": "एक ग्रह का विंशोपक उच्च (वर्गों में गरिमावान) परन्तु षड्बल निम्न (दुर्बल स्थानीय बल) हो सकता है।",
+        "ta": "A planet can have high Vimshopaka (dignified across vargas) but low Shadbala (weak positional strength).",
+        "te": "A planet can have high Vimshopaka (dignified across vargas) but low Shadbala (weak positional strength).",
+        "bn": "A planet can have high Vimshopaka (dignified across vargas) but low Shadbala (weak positional strength).",
+        "kn": "A planet can have high Vimshopaka (dignified across vargas) but low Shadbala (weak positional strength).",
+        "mr": "एक ग्रह का विंशोपक उच्च (वर्गों में गरिमावान) परन्तु षड्बल निम्न (दुर्बल स्थानीय बल) हो सकता है।",
+        "gu": "A planet can have high Vimshopaka (dignified across vargas) but low Shadbala (weak positional strength).",
+        "mai": "एक ग्रह का विंशोपक उच्च (वर्गों में गरिमावान) परन्तु षड्बल निम्न (दुर्बल स्थानीय बल) हो सकता है।"
+      },
+      "correctAnswer": true,
+      "explanation": {
+        "en": "True. This is a crucial concept. Imagine Jupiter exalted in Cancer (high dignity across many vargas = high Vimshopaka) but placed in the 6th house, with low directional strength, and in an inimical temporal state. The planet is inherently noble but situationally constrained. Understanding this distinction separates advanced practitioners from beginners.",
+        "hi": "सत्य। यह एक महत्वपूर्ण अवधारणा है। कल्पना करें बृहस्पति कर्क में उच्च (अनेक वर्गों में उच्च गरिमा = उच्च विंशोपक) परन्तु 6वें भाव में स्थित, निम्न दिशा बल के साथ। ग्रह अन्तर्निहित रूप से श्रेष्ठ है परन्तु परिस्थितिगत रूप से बाधित। इस भेद को समझना उन्नत और नवशिक्षार्थी साधकों को अलग करता है।",
+        "sa": "सत्य। यह एक महत्वपूर्ण अवधारणा है। कल्पना करें बृहस्पति कर्क में उच्च (अनेक वर्गों में उच्च गरिमा = उच्च विंशोपक) परन्तु 6वें भाव में स्थित, निम्न दिशा बल के साथ। ग्रह अन्तर्निहित रूप से श्रेष्ठ है परन्तु परिस्थितिगत रूप से बाधित। इस भेद को समझना उन्नत और नवशिक्षार्थी साधकों को अलग करता है।",
+        "ta": "True. This is a crucial concept. Imagine Jupiter exalted in Cancer (high dignity across many vargas = high Vimshopaka) but placed in the 6th house, with low directional strength, and in an inimical temporal state. The planet is inherently noble but situationally constrained. Understanding this distinction separates advanced practitioners from beginners.",
+        "te": "True. This is a crucial concept. Imagine Jupiter exalted in Cancer (high dignity across many vargas = high Vimshopaka) but placed in the 6th house, with low directional strength, and in an inimical temporal state. The planet is inherently noble but situationally constrained. Understanding this distinction separates advanced practitioners from beginners.",
+        "bn": "True. This is a crucial concept. Imagine Jupiter exalted in Cancer (high dignity across many vargas = high Vimshopaka) but placed in the 6th house, with low directional strength, and in an inimical temporal state. The planet is inherently noble but situationally constrained. Understanding this distinction separates advanced practitioners from beginners.",
+        "kn": "True. This is a crucial concept. Imagine Jupiter exalted in Cancer (high dignity across many vargas = high Vimshopaka) but placed in the 6th house, with low directional strength, and in an inimical temporal state. The planet is inherently noble but situationally constrained. Understanding this distinction separates advanced practitioners from beginners.",
+        "mr": "सत्य। यह एक महत्वपूर्ण अवधारणा है। कल्पना करें बृहस्पति कर्क में उच्च (अनेक वर्गों में उच्च गरिमा = उच्च विंशोपक) परन्तु 6वें भाव में स्थित, निम्न दिशा बल के साथ। ग्रह अन्तर्निहित रूप से श्रेष्ठ है परन्तु परिस्थितिगत रूप से बाधित। इस भेद को समझना उन्नत और नवशिक्षार्थी साधकों को अलग करता है।",
+        "gu": "True. This is a crucial concept. Imagine Jupiter exalted in Cancer (high dignity across many vargas = high Vimshopaka) but placed in the 6th house, with low directional strength, and in an inimical temporal state. The planet is inherently noble but situationally constrained. Understanding this distinction separates advanced practitioners from beginners.",
+        "mai": "सत्य। यह एक महत्वपूर्ण अवधारणा है। कल्पना करें बृहस्पति कर्क में उच्च (अनेक वर्गों में उच्च गरिमा = उच्च विंशोपक) परन्तु 6वें भाव में स्थित, निम्न दिशा बल के साथ। ग्रह अन्तर्निहित रूप से श्रेष्ठ है परन्तु परिस्थितिगत रूप से बाधित। इस भेद को समझना उन्नत और नवशिक्षार्थी साधकों को अलग करता है।"
+      }
+    },
+    {
+      "id": "q18_5_09",
+      "type": "mcq",
+      "question": {
+        "en": "If a planet is in a neutral sign in a varga with weight 2.0, how many points does it contribute from that varga?",
+        "hi": "यदि कोई ग्रह 2.0 भार वाले वर्ग में सम राशि में है, तो उस वर्ग से कितने अंक योगदान करता है?",
+        "sa": "यदि कोई ग्रह 2.0 भार वाले वर्ग में सम राशि में है, तो उस वर्ग से कितने अंक योगदान करता है?",
+        "ta": "If a planet is in a neutral sign in a varga with weight 2.0, how many points does it contribute from that varga?",
+        "te": "If a planet is in a neutral sign in a varga with weight 2.0, how many points does it contribute from that varga?",
+        "bn": "If a planet is in a neutral sign in a varga with weight 2.0, how many points does it contribute from that varga?",
+        "kn": "If a planet is in a neutral sign in a varga with weight 2.0, how many points does it contribute from that varga?",
+        "mr": "यदि कोई ग्रह 2.0 भार वाले वर्ग में सम राशि में है, तो उस वर्ग से कितने अंक योगदान करता है?",
+        "gu": "If a planet is in a neutral sign in a varga with weight 2.0, how many points does it contribute from that varga?",
+        "mai": "यदि कोई ग्रह 2.0 भार वाले वर्ग में सम राशि में है, तो उस वर्ग से कितने अंक योगदान करता है?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "A neutral placement receives 1/4 of the varga's weight. So for a varga with weight 2.0, the contribution is 2.0 x 1/4 = 0.5 points. The scoring hierarchy is: Exalted = full, Moolatrikona/Own = 3/4, Friend = 1/2, Neutral = 1/4, Enemy = 1/8, Debilitated = 0.",
+        "hi": "सम स्थिति को वर्ग भार का 1/4 प्राप्त होता है। अतः 2.0 भार वाले वर्ग के लिए, योगदान 2.0 x 1/4 = 0.5 अंक है। मूल्यांकन क्रम: उच्च = पूर्ण, मूलत्रिकोण/स्व = 3/4, मित्र = 1/2, सम = 1/4, शत्रु = 1/8, नीच = 0।",
+        "sa": "सम स्थिति को वर्ग भार का 1/4 प्राप्त होता है। अतः 2.0 भार वाले वर्ग के लिए, योगदान 2.0 x 1/4 = 0.5 अंक है। मूल्यांकन क्रम: उच्च = पूर्ण, मूलत्रिकोण/स्व = 3/4, मित्र = 1/2, सम = 1/4, शत्रु = 1/8, नीच = 0।",
+        "ta": "A neutral placement receives 1/4 of the varga's weight. So for a varga with weight 2.0, the contribution is 2.0 x 1/4 = 0.5 points. The scoring hierarchy is: Exalted = full, Moolatrikona/Own = 3/4, Friend = 1/2, Neutral = 1/4, Enemy = 1/8, Debilitated = 0.",
+        "te": "A neutral placement receives 1/4 of the varga's weight. So for a varga with weight 2.0, the contribution is 2.0 x 1/4 = 0.5 points. The scoring hierarchy is: Exalted = full, Moolatrikona/Own = 3/4, Friend = 1/2, Neutral = 1/4, Enemy = 1/8, Debilitated = 0.",
+        "bn": "A neutral placement receives 1/4 of the varga's weight. So for a varga with weight 2.0, the contribution is 2.0 x 1/4 = 0.5 points. The scoring hierarchy is: Exalted = full, Moolatrikona/Own = 3/4, Friend = 1/2, Neutral = 1/4, Enemy = 1/8, Debilitated = 0.",
+        "kn": "A neutral placement receives 1/4 of the varga's weight. So for a varga with weight 2.0, the contribution is 2.0 x 1/4 = 0.5 points. The scoring hierarchy is: Exalted = full, Moolatrikona/Own = 3/4, Friend = 1/2, Neutral = 1/4, Enemy = 1/8, Debilitated = 0.",
+        "mr": "सम स्थिति को वर्ग भार का 1/4 प्राप्त होता है। अतः 2.0 भार वाले वर्ग के लिए, योगदान 2.0 x 1/4 = 0.5 अंक है। मूल्यांकन क्रम: उच्च = पूर्ण, मूलत्रिकोण/स्व = 3/4, मित्र = 1/2, सम = 1/4, शत्रु = 1/8, नीच = 0।",
+        "gu": "A neutral placement receives 1/4 of the varga's weight. So for a varga with weight 2.0, the contribution is 2.0 x 1/4 = 0.5 points. The scoring hierarchy is: Exalted = full, Moolatrikona/Own = 3/4, Friend = 1/2, Neutral = 1/4, Enemy = 1/8, Debilitated = 0.",
+        "mai": "सम स्थिति को वर्ग भार का 1/4 प्राप्त होता है। अतः 2.0 भार वाले वर्ग के लिए, योगदान 2.0 x 1/4 = 0.5 अंक है। मूल्यांकन क्रम: उच्च = पूर्ण, मूलत्रिकोण/स्व = 3/4, मित्र = 1/2, सम = 1/4, शत्रु = 1/8, नीच = 0।"
+      },
+      "options": [
+        {
+          "en": "2.0",
+          "hi": "2.0",
+          "sa": "2.0",
+          "ta": "2.0",
+          "te": "2.0",
+          "bn": "2.0",
+          "kn": "2.0",
+          "mr": "2.0",
+          "gu": "2.0",
+          "mai": "2.0"
+        },
+        {
+          "en": "1.0",
+          "hi": "1.0",
+          "sa": "1.0",
+          "ta": "1.0",
+          "te": "1.0",
+          "bn": "1.0",
+          "kn": "1.0",
+          "mr": "1.0",
+          "gu": "1.0",
+          "mai": "1.0"
+        },
+        {
+          "en": "0.5",
+          "hi": "0.5",
+          "sa": "0.5",
+          "ta": "0.5",
+          "te": "0.5",
+          "bn": "0.5",
+          "kn": "0.5",
+          "mr": "0.5",
+          "gu": "0.5",
+          "mai": "0.5"
+        },
+        {
+          "en": "0.25",
+          "hi": "0.25",
+          "sa": "0.25",
+          "ta": "0.25",
+          "te": "0.25",
+          "bn": "0.25",
+          "kn": "0.25",
+          "mr": "0.25",
+          "gu": "0.25",
+          "mai": "0.25"
+        }
+      ]
+    },
+    {
+      "id": "q18_5_10",
+      "type": "mcq",
+      "question": {
+        "en": "Why is D60 (Shashtiamsha) given the highest weight (4.0) despite being the most microscopic division?",
+        "hi": "D60 (षष्ट्यंश) को सबसे सूक्ष्म विभाजन होने के बावजूद सर्वाधिक भार (4.0) क्यों दिया गया है?",
+        "sa": "D60 (षष्ट्यंश) को सबसे सूक्ष्म विभाजन होने के बावजूद सर्वाधिक भार (4.0) क्यों दिया गया है?",
+        "ta": "Why is D60 (Shashtiamsha) given the highest weight (4.0) despite being the most microscopic division?",
+        "te": "Why is D60 (Shashtiamsha) given the highest weight (4.0) despite being the most microscopic division?",
+        "bn": "Why is D60 (Shashtiamsha) given the highest weight (4.0) despite being the most microscopic division?",
+        "kn": "Why is D60 (Shashtiamsha) given the highest weight (4.0) despite being the most microscopic division?",
+        "mr": "D60 (षष्ट्यंश) को सबसे सूक्ष्म विभाजन होने के बावजूद सर्वाधिक भार (4.0) क्यों दिया गया है?",
+        "gu": "Why is D60 (Shashtiamsha) given the highest weight (4.0) despite being the most microscopic division?",
+        "mai": "D60 (षष्ट्यंश) को सबसे सूक्ष्म विभाजन होने के बावजूद सर्वाधिक भार (4.0) क्यों दिया गया है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "D60 divides each sign into 60 parts (0.5° each), revealing the most subtle karmic layer. Parashara considered D60 the final arbiter of a planet's true nature — reflecting accumulated karma from past lives. Its high weight acknowledges that deep karmic merit (or debt) ultimately outweighs surface-level placements.",
+        "hi": "D60 प्रत्येक राशि को 60 भागों (प्रत्येक 0.5°) में विभाजित करता है, सबसे सूक्ष्म कार्मिक परत को प्रकट करता है। पराशर ने D60 को ग्रह की वास्तविक प्रकृति का अन्तिम निर्णायक माना — पूर्वजन्मों के संचित कर्म को दर्शाते हुए। इसका उच्च भार स्वीकार करता है कि गहन कार्मिक पुण्य (या ऋण) अन्ततः सतही स्थितियों से अधिक महत्वपूर्ण है।",
+        "sa": "D60 प्रत्येक राशि को 60 भागों (प्रत्येक 0.5°) में विभाजित करता है, सबसे सूक्ष्म कार्मिक परत को प्रकट करता है। पराशर ने D60 को ग्रह की वास्तविक प्रकृति का अन्तिम निर्णायक माना — पूर्वजन्मों के संचित कर्म को दर्शाते हुए। इसका उच्च भार स्वीकार करता है कि गहन कार्मिक पुण्य (या ऋण) अन्ततः सतही स्थितियों से अधिक महत्वपूर्ण है।",
+        "ta": "D60 divides each sign into 60 parts (0.5° each), revealing the most subtle karmic layer. Parashara considered D60 the final arbiter of a planet's true nature — reflecting accumulated karma from past lives. Its high weight acknowledges that deep karmic merit (or debt) ultimately outweighs surface-level placements.",
+        "te": "D60 divides each sign into 60 parts (0.5° each), revealing the most subtle karmic layer. Parashara considered D60 the final arbiter of a planet's true nature — reflecting accumulated karma from past lives. Its high weight acknowledges that deep karmic merit (or debt) ultimately outweighs surface-level placements.",
+        "bn": "D60 divides each sign into 60 parts (0.5° each), revealing the most subtle karmic layer. Parashara considered D60 the final arbiter of a planet's true nature — reflecting accumulated karma from past lives. Its high weight acknowledges that deep karmic merit (or debt) ultimately outweighs surface-level placements.",
+        "kn": "D60 divides each sign into 60 parts (0.5° each), revealing the most subtle karmic layer. Parashara considered D60 the final arbiter of a planet's true nature — reflecting accumulated karma from past lives. Its high weight acknowledges that deep karmic merit (or debt) ultimately outweighs surface-level placements.",
+        "mr": "D60 प्रत्येक राशि को 60 भागों (प्रत्येक 0.5°) में विभाजित करता है, सबसे सूक्ष्म कार्मिक परत को प्रकट करता है। पराशर ने D60 को ग्रह की वास्तविक प्रकृति का अन्तिम निर्णायक माना — पूर्वजन्मों के संचित कर्म को दर्शाते हुए। इसका उच्च भार स्वीकार करता है कि गहन कार्मिक पुण्य (या ऋण) अन्ततः सतही स्थितियों से अधिक महत्वपूर्ण है।",
+        "gu": "D60 divides each sign into 60 parts (0.5° each), revealing the most subtle karmic layer. Parashara considered D60 the final arbiter of a planet's true nature — reflecting accumulated karma from past lives. Its high weight acknowledges that deep karmic merit (or debt) ultimately outweighs surface-level placements.",
+        "mai": "D60 प्रत्येक राशि को 60 भागों (प्रत्येक 0.5°) में विभाजित करता है, सबसे सूक्ष्म कार्मिक परत को प्रकट करता है। पराशर ने D60 को ग्रह की वास्तविक प्रकृति का अन्तिम निर्णायक माना — पूर्वजन्मों के संचित कर्म को दर्शाते हुए। इसका उच्च भार स्वीकार करता है कि गहन कार्मिक पुण्य (या ऋण) अन्ततः सतही स्थितियों से अधिक महत्वपूर्ण है।"
+      },
+      "options": [
+        {
+          "en": "It is the easiest to calculate",
+          "hi": "इसकी गणना सबसे सरल है",
+          "sa": "इसकी गणना सबसे सरल है",
+          "ta": "It is the easiest to calculate",
+          "te": "It is the easiest to calculate",
+          "bn": "It is the easiest to calculate",
+          "kn": "It is the easiest to calculate",
+          "mr": "इसकी गणना सबसे सरल है",
+          "gu": "It is the easiest to calculate",
+          "mai": "इसकी गणना सबसे सरल है"
+        },
+        {
+          "en": "It represents deep karmic and past-life indicators",
+          "hi": "यह गहन कार्मिक और पूर्वजन्म संकेतकों को दर्शाता है",
+          "sa": "यह गहन कार्मिक और पूर्वजन्म संकेतकों को दर्शाता है",
+          "ta": "It represents deep karmic and past-life indicators",
+          "te": "It represents deep karmic and past-life indicators",
+          "bn": "It represents deep karmic and past-life indicators",
+          "kn": "It represents deep karmic and past-life indicators",
+          "mr": "यह गहन कार्मिक और पूर्वजन्म संकेतकों को दर्शाता है",
+          "gu": "It represents deep karmic and past-life indicators",
+          "mai": "यह गहन कार्मिक और पूर्वजन्म संकेतकों को दर्शाता है"
+        },
+        {
+          "en": "It was invented most recently",
+          "hi": "इसका आविष्कार सबसे हाल में हुआ",
+          "sa": "इसका आविष्कार सबसे हाल में हुआ",
+          "ta": "It was invented most recently",
+          "te": "It was invented most recently",
+          "bn": "It was invented most recently",
+          "kn": "It was invented most recently",
+          "mr": "इसका आविष्कार सबसे हाल में हुआ",
+          "gu": "It was invented most recently",
+          "mai": "इसका आविष्कार सबसे हाल में हुआ"
+        },
+        {
+          "en": "It only applies to benefic planets",
+          "hi": "यह केवल शुभ ग्रहों पर लागू होता है",
+          "sa": "यह केवल शुभ ग्रहों पर लागू होता है",
+          "ta": "It only applies to benefic planets",
+          "te": "It only applies to benefic planets",
+          "bn": "It only applies to benefic planets",
+          "kn": "It only applies to benefic planets",
+          "mr": "यह केवल शुभ ग्रहों पर लागू होता है",
+          "gu": "It only applies to benefic planets",
+          "mai": "यह केवल शुभ ग्रहों पर लागू होता है"
+        }
+      ]
+    }
+  ]
+}

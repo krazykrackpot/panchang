@@ -1,0 +1,795 @@
+{
+  "title": {
+    "en": "Vimshottari Dasha — The 120-Year Cycle",
+    "hi": "विंशोत्तरी दशा — 120 वर्षीय चक्र",
+    "sa": "विंशोत्तरीदशा — विंशत्यधिकशतवर्षचक्रम्",
+    "mai": "विंशोत्तरी दशा — 120 वर्षक चक्र",
+    "mr": "विंशोत्तरी दशा — 120 वर्षांचे चक्र",
+    "ta": "விம்சோத்தரி தசை — 120 ஆண்டு சுழற்சி",
+    "te": "విమ్శోత్తరి దశ — 120 సంవత్సరాల చక్రం",
+    "bn": "বিংশোত্তরী দশা — ১২০ বছরের চক্র",
+    "kn": "ವಿಂಶೋತ್ತರಿ ದಶಾ — 120 ವರ್ಷಗಳ ಚಕ್ರ",
+    "gu": "વિંશોત્તરી દશા — 120 વર્ષનું ચક્ર"
+  },
+  "subtitle": {
+    "en": "The master timing system of Vedic astrology: nine planets divide a 120-year lifespan into predictive periods, computed from a single data point — the Moon's nakshatra at birth",
+    "hi": "वैदिक ज्योतिष की प्रमुख समय-निर्धारण प्रणाली: नौ ग्रह 120 वर्ष की आयु को भविष्यवाणी काल-खण्डों में विभक्त करते हैं, एकमात्र डेटा बिन्दु — जन्म नक्षत्र में चन्द्रमा — से गणित",
+    "sa": "नवग्रहाणां महादशाः अन्तर्दशाः प्रत्यन्तर्दशाश्च — कालफलभोगस्य प्राचीनतमा पद्धतिः",
+    "ta": "ஒன்பது கிரகங்களின் மகா தசை, அந்தர தசை, பிரத்யந்தர தசை — கால பலன் அனுபவிப்பதற்கான பழமையான முறை",
+    "te": "తొమ్మిది గ్రహాల మహాదశ, అంతర్దశ, ప్రత్యంతర్దశ — కాల ఫల అనుభవానికి ప్రాచీన పద్ధతి",
+    "bn": "নবগ্রহের মহাদশা, অন্তর্দশা ও প্রত্যন্তর্দশা — কালফল ভোগের সুপ্রাচীন পদ্ধতি",
+    "kn": "ನವಗ್ರಹಗಳ ಮಹಾದಶಾ, ಅಂತರ್ದಶಾ, ಪ್ರತ್ಯಂತರ್ದಶಾ — ಕಾಲ ಫಲ ಅನುಭವದ ಪ್ರಾಚೀನ ಪದ್ಧತಿ",
+    "mr": "नवग्रहांच्या महादशा, अंतर्दशा व प्रत्यंतर्दशा — कालफल भोगाची प्राचीन पद्धती",
+    "gu": "નવગ્રહોની મહાદશા, અંતર્દશા, પ્રત્યંતર્દશા — કાળફળ ભોગવવાની પ્રાચીન પદ્ધતિ",
+    "mai": "नवग्रहक महादशा, अंतर्दशा आ प्रत्यंतर्दशा — कालफल भोगक प्राचीन पद्धति"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "Module 11-2: Yogini & Char Dasha",
+        "hi": "मॉड्यूल 11-2: योगिनी एवं चर दशा",
+        "sa": "मॉड्यूल 11-2: योगिनी एवं चर दशा",
+        "mai": "मॉड्यूल 11-2: योगिनी एवं चर दशा",
+        "mr": "मॉड्यूल 11-2: योगिनी एवं चर दशा",
+        "ta": "Module 11-2: Yogini & Char Dasha",
+        "te": "Module 11-2: Yogini & Char Dasha",
+        "bn": "Module 11-2: Yogini & Char Dasha",
+        "kn": "Module 11-2: Yogini & Char Dasha",
+        "gu": "Module 11-2: Yogini & Char Dasha"
+      },
+      "href": "/learn/modules/11-2"
+    },
+    {
+      "label": {
+        "en": "Module 11-3: Dasha & Transit Overlay",
+        "hi": "मॉड्यूल 11-3: दशा एवं गोचर आच्छादन",
+        "sa": "मॉड्यूल 11-3: दशा एवं गोचर आच्छादन",
+        "mai": "मॉड्यूल 11-3: दशा एवं गोचर आच्छादन",
+        "mr": "मॉड्यूल 11-3: दशा एवं गोचर आच्छादन",
+        "ta": "Module 11-3: Dasha & Transit Overlay",
+        "te": "Module 11-3: Dasha & Transit Overlay",
+        "bn": "Module 11-3: Dasha & Transit Overlay",
+        "kn": "Module 11-3: Dasha & Transit Overlay",
+        "gu": "Module 11-3: Dasha & Transit Overlay"
+      },
+      "href": "/learn/modules/11-3"
+    },
+    {
+      "label": {
+        "en": "Dashas Deep Dive",
+        "hi": "दशा विस्तार",
+        "sa": "दशा विस्तार",
+        "mai": "दशा विस्तार",
+        "mr": "दशा विस्तार",
+        "ta": "Dashas Deep Dive",
+        "te": "Dashas Deep Dive",
+        "bn": "Dashas Deep Dive",
+        "kn": "Dashas Deep Dive",
+        "gu": "Dashas Deep Dive"
+      },
+      "href": "/learn/dashas"
+    },
+    {
+      "label": {
+        "en": "Interactive Dasha Lab",
+        "hi": "इंटरैक्टिव दशा प्रयोगशाला",
+        "sa": "इंटरैक्टिव दशा प्रयोगशाला",
+        "mai": "इंटरैक्टिव दशा प्रयोगशाला",
+        "mr": "इंटरैक्टिव दशा प्रयोगशाला",
+        "ta": "Interactive Dasha Lab",
+        "te": "Interactive Dasha Lab",
+        "bn": "Interactive Dasha Lab",
+        "kn": "Interactive Dasha Lab",
+        "gu": "Interactive Dasha Lab"
+      },
+      "href": "/learn/labs/dasha"
+    },
+    {
+      "label": {
+        "en": "Generate Kundali",
+        "hi": "कुण्डली बनाएँ",
+        "sa": "कुण्डली बनाएँ",
+        "mai": "कुण्डली बनाएँ",
+        "mr": "कुण्डली बनाएँ",
+        "ta": "Generate Kundali",
+        "te": "Generate Kundali",
+        "bn": "Generate Kundali",
+        "kn": "Generate Kundali",
+        "gu": "Generate Kundali"
+      },
+      "href": "/kundali"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q11_1_01",
+      "type": "mcq",
+      "question": {
+        "en": "What is the total duration of the Vimshottari Dasha cycle?",
+        "hi": "विंशोत्तरी दशा चक्र की कुल अवधि कितनी है?",
+        "sa": "विंशोत्तरी दशा चक्र की कुल अवधि कितनी है?",
+        "ta": "What is the total duration of the Vimshottari Dasha cycle?",
+        "te": "What is the total duration of the Vimshottari Dasha cycle?",
+        "bn": "What is the total duration of the Vimshottari Dasha cycle?",
+        "kn": "What is the total duration of the Vimshottari Dasha cycle?",
+        "mr": "विंशोत्तरी दशा चक्र की कुल अवधि कितनी है?",
+        "gu": "What is the total duration of the Vimshottari Dasha cycle?",
+        "mai": "विंशोत्तरी दशा चक्र की कुल अवधि कितनी है?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Vimshottari literally means \"120\" — the system allocates a total of 120 years across 9 planetary periods: Ketu(7) + Venus(20) + Sun(6) + Moon(10) + Mars(7) + Rahu(18) + Jupiter(16) + Saturn(19) + Mercury(17) = 120. This equals the Vedic \"Param Ayush\" (maximum ideal human lifespan).",
+        "hi": "विंशोत्तरी का शाब्दिक अर्थ \"120\" है — यह पद्धति 9 ग्रह काल-खण्डों में कुल 120 वर्ष आवण्टित करती है: केतु(7) + शुक्र(20) + सूर्य(6) + चन्द्र(10) + मंगल(7) + राहु(18) + गुरु(16) + शनि(19) + बुध(17) = 120। यह वैदिक \"परम आयुष्\" (आदर्श अधिकतम मानव आयु) के बराबर है।",
+        "sa": "विंशोत्तरी का शाब्दिक अर्थ \"120\" है — यह पद्धति 9 ग्रह काल-खण्डों में कुल 120 वर्ष आवण्टित करती है: केतु(7) + शुक्र(20) + सूर्य(6) + चन्द्र(10) + मंगल(7) + राहु(18) + गुरु(16) + शनि(19) + बुध(17) = 120। यह वैदिक \"परम आयुष्\" (आदर्श अधिकतम मानव आयु) के बराबर है।",
+        "ta": "Vimshottari literally means \"120\" — the system allocates a total of 120 years across 9 planetary periods: Ketu(7) + Venus(20) + Sun(6) + Moon(10) + Mars(7) + Rahu(18) + Jupiter(16) + Saturn(19) + Mercury(17) = 120. This equals the Vedic \"Param Ayush\" (maximum ideal human lifespan).",
+        "te": "Vimshottari literally means \"120\" — the system allocates a total of 120 years across 9 planetary periods: Ketu(7) + Venus(20) + Sun(6) + Moon(10) + Mars(7) + Rahu(18) + Jupiter(16) + Saturn(19) + Mercury(17) = 120. This equals the Vedic \"Param Ayush\" (maximum ideal human lifespan).",
+        "bn": "Vimshottari literally means \"120\" — the system allocates a total of 120 years across 9 planetary periods: Ketu(7) + Venus(20) + Sun(6) + Moon(10) + Mars(7) + Rahu(18) + Jupiter(16) + Saturn(19) + Mercury(17) = 120. This equals the Vedic \"Param Ayush\" (maximum ideal human lifespan).",
+        "kn": "Vimshottari literally means \"120\" — the system allocates a total of 120 years across 9 planetary periods: Ketu(7) + Venus(20) + Sun(6) + Moon(10) + Mars(7) + Rahu(18) + Jupiter(16) + Saturn(19) + Mercury(17) = 120. This equals the Vedic \"Param Ayush\" (maximum ideal human lifespan).",
+        "mr": "विंशोत्तरी का शाब्दिक अर्थ \"120\" है — यह पद्धति 9 ग्रह काल-खण्डों में कुल 120 वर्ष आवण्टित करती है: केतु(7) + शुक्र(20) + सूर्य(6) + चन्द्र(10) + मंगल(7) + राहु(18) + गुरु(16) + शनि(19) + बुध(17) = 120। यह वैदिक \"परम आयुष्\" (आदर्श अधिकतम मानव आयु) के बराबर है।",
+        "gu": "Vimshottari literally means \"120\" — the system allocates a total of 120 years across 9 planetary periods: Ketu(7) + Venus(20) + Sun(6) + Moon(10) + Mars(7) + Rahu(18) + Jupiter(16) + Saturn(19) + Mercury(17) = 120. This equals the Vedic \"Param Ayush\" (maximum ideal human lifespan).",
+        "mai": "विंशोत्तरी का शाब्दिक अर्थ \"120\" है — यह पद्धति 9 ग्रह काल-खण्डों में कुल 120 वर्ष आवण्टित करती है: केतु(7) + शुक्र(20) + सूर्य(6) + चन्द्र(10) + मंगल(7) + राहु(18) + गुरु(16) + शनि(19) + बुध(17) = 120। यह वैदिक \"परम आयुष्\" (आदर्श अधिकतम मानव आयु) के बराबर है।"
+      },
+      "options": [
+        {
+          "en": "100 years",
+          "hi": "100 वर्ष",
+          "sa": "100 वर्ष",
+          "mai": "100 वर्ष",
+          "mr": "100 वर्ष",
+          "ta": "100 years",
+          "te": "100 years",
+          "bn": "100 years",
+          "kn": "100 years",
+          "gu": "100 years"
+        },
+        {
+          "en": "108 years",
+          "hi": "108 वर्ष",
+          "sa": "108 वर्ष",
+          "mai": "108 वर्ष",
+          "mr": "108 वर्ष",
+          "ta": "108 years",
+          "te": "108 years",
+          "bn": "108 years",
+          "kn": "108 years",
+          "gu": "108 years"
+        },
+        {
+          "en": "120 years",
+          "hi": "120 वर्ष",
+          "sa": "120 वर्ष",
+          "mai": "120 वर्ष",
+          "mr": "120 वर्ष",
+          "ta": "120 years",
+          "te": "120 years",
+          "bn": "120 years",
+          "kn": "120 years",
+          "gu": "120 years"
+        },
+        {
+          "en": "360 years",
+          "hi": "360 वर्ष",
+          "sa": "360 वर्ष",
+          "mai": "360 वर्ष",
+          "mr": "360 वर्ष",
+          "ta": "360 years",
+          "te": "360 years",
+          "bn": "360 years",
+          "kn": "360 years",
+          "gu": "360 years"
+        }
+      ]
+    },
+    {
+      "id": "q11_1_02",
+      "type": "mcq",
+      "question": {
+        "en": "Which planet has the longest Mahadasha period in Vimshottari?",
+        "hi": "विंशोत्तरी में किस ग्रह की महादशा सबसे लम्बी है?",
+        "sa": "विंशोत्तरी में किस ग्रह की महादशा सबसे लम्बी है?",
+        "ta": "Which planet has the longest Mahadasha period in Vimshottari?",
+        "te": "Which planet has the longest Mahadasha period in Vimshottari?",
+        "bn": "Which planet has the longest Mahadasha period in Vimshottari?",
+        "kn": "Which planet has the longest Mahadasha period in Vimshottari?",
+        "mr": "विंशोत्तरी में किस ग्रह की महादशा सबसे लम्बी है?",
+        "gu": "Which planet has the longest Mahadasha period in Vimshottari?",
+        "mai": "विंशोत्तरी में किस ग्रह की महादशा सबसे लम्बी है?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Venus (Shukra) rules the longest Mahadasha at 20 years. This reflects Venus's dominion over marriage, comforts, and material life — which form the largest portion of one's earthly experience. The shortest period belongs to the Sun at just 6 years, reflecting how authority and leadership occupy a relatively brief window.",
+        "hi": "शुक्र 20 वर्ष की सबसे लम्बी महादशा का स्वामी है। यह विवाह, सुख-सुविधाओं और भौतिक जीवन पर शुक्र के प्रभुत्व को दर्शाता है — जो सांसारिक अनुभव का सबसे बड़ा भाग है। सबसे छोटी अवधि सूर्य की मात्र 6 वर्ष है, जो दर्शाता है कि अधिकार और नेतृत्व अपेक्षाकृत संक्षिप्त काल में आते हैं।",
+        "sa": "शुक्र 20 वर्ष की सबसे लम्बी महादशा का स्वामी है। यह विवाह, सुख-सुविधाओं और भौतिक जीवन पर शुक्र के प्रभुत्व को दर्शाता है — जो सांसारिक अनुभव का सबसे बड़ा भाग है। सबसे छोटी अवधि सूर्य की मात्र 6 वर्ष है, जो दर्शाता है कि अधिकार और नेतृत्व अपेक्षाकृत संक्षिप्त काल में आते हैं।",
+        "ta": "Venus (Shukra) rules the longest Mahadasha at 20 years. This reflects Venus's dominion over marriage, comforts, and material life — which form the largest portion of one's earthly experience. The shortest period belongs to the Sun at just 6 years, reflecting how authority and leadership occupy a relatively brief window.",
+        "te": "Venus (Shukra) rules the longest Mahadasha at 20 years. This reflects Venus's dominion over marriage, comforts, and material life — which form the largest portion of one's earthly experience. The shortest period belongs to the Sun at just 6 years, reflecting how authority and leadership occupy a relatively brief window.",
+        "bn": "Venus (Shukra) rules the longest Mahadasha at 20 years. This reflects Venus's dominion over marriage, comforts, and material life — which form the largest portion of one's earthly experience. The shortest period belongs to the Sun at just 6 years, reflecting how authority and leadership occupy a relatively brief window.",
+        "kn": "Venus (Shukra) rules the longest Mahadasha at 20 years. This reflects Venus's dominion over marriage, comforts, and material life — which form the largest portion of one's earthly experience. The shortest period belongs to the Sun at just 6 years, reflecting how authority and leadership occupy a relatively brief window.",
+        "mr": "शुक्र 20 वर्ष की सबसे लम्बी महादशा का स्वामी है। यह विवाह, सुख-सुविधाओं और भौतिक जीवन पर शुक्र के प्रभुत्व को दर्शाता है — जो सांसारिक अनुभव का सबसे बड़ा भाग है। सबसे छोटी अवधि सूर्य की मात्र 6 वर्ष है, जो दर्शाता है कि अधिकार और नेतृत्व अपेक्षाकृत संक्षिप्त काल में आते हैं।",
+        "gu": "Venus (Shukra) rules the longest Mahadasha at 20 years. This reflects Venus's dominion over marriage, comforts, and material life — which form the largest portion of one's earthly experience. The shortest period belongs to the Sun at just 6 years, reflecting how authority and leadership occupy a relatively brief window.",
+        "mai": "शुक्र 20 वर्ष की सबसे लम्बी महादशा का स्वामी है। यह विवाह, सुख-सुविधाओं और भौतिक जीवन पर शुक्र के प्रभुत्व को दर्शाता है — जो सांसारिक अनुभव का सबसे बड़ा भाग है। सबसे छोटी अवधि सूर्य की मात्र 6 वर्ष है, जो दर्शाता है कि अधिकार और नेतृत्व अपेक्षाकृत संक्षिप्त काल में आते हैं।"
+      },
+      "options": [
+        {
+          "en": "Jupiter — 16 years",
+          "hi": "गुरु — 16 वर्ष",
+          "sa": "गुरु — 16 वर्ष",
+          "mai": "गुरु — 16 वर्ष",
+          "mr": "गुरु — 16 वर्ष",
+          "ta": "Jupiter — 16 years",
+          "te": "Jupiter — 16 years",
+          "bn": "Jupiter — 16 years",
+          "kn": "Jupiter — 16 years",
+          "gu": "Jupiter — 16 years"
+        },
+        {
+          "en": "Saturn — 19 years",
+          "hi": "शनि — 19 वर्ष",
+          "sa": "शनि — 19 वर्ष",
+          "mai": "शनि — 19 वर्ष",
+          "mr": "शनि — 19 वर्ष",
+          "ta": "Saturn — 19 years",
+          "te": "Saturn — 19 years",
+          "bn": "Saturn — 19 years",
+          "kn": "Saturn — 19 years",
+          "gu": "Saturn — 19 years"
+        },
+        {
+          "en": "Venus — 20 years",
+          "hi": "शुक्र — 20 वर्ष",
+          "sa": "शुक्र — 20 वर्ष",
+          "mai": "शुक्र — 20 वर्ष",
+          "mr": "शुक्र — 20 वर्ष",
+          "ta": "Venus — 20 years",
+          "te": "Venus — 20 years",
+          "bn": "Venus — 20 years",
+          "kn": "Venus — 20 years",
+          "gu": "Venus — 20 years"
+        },
+        {
+          "en": "Rahu — 18 years",
+          "hi": "राहु — 18 वर्ष",
+          "sa": "राहु — 18 वर्ष",
+          "mai": "राहु — 18 वर्ष",
+          "mr": "राहु — 18 वर्ष",
+          "ta": "Rahu — 18 years",
+          "te": "Rahu — 18 years",
+          "bn": "Rahu — 18 years",
+          "kn": "Rahu — 18 years",
+          "gu": "Rahu — 18 years"
+        }
+      ]
+    },
+    {
+      "id": "q11_1_03",
+      "type": "true_false",
+      "question": {
+        "en": "The starting Mahadasha planet is determined by the Sun's nakshatra at birth.",
+        "hi": "आरम्भिक महादशा ग्रह जन्म के समय सूर्य के नक्षत्र से निर्धारित होता है।",
+        "sa": "आरम्भिक महादशा ग्रह जन्म के समय सूर्य के नक्षत्र से निर्धारित होता है।",
+        "ta": "The starting Mahadasha planet is determined by the Sun's nakshatra at birth.",
+        "te": "The starting Mahadasha planet is determined by the Sun's nakshatra at birth.",
+        "bn": "The starting Mahadasha planet is determined by the Sun's nakshatra at birth.",
+        "kn": "The starting Mahadasha planet is determined by the Sun's nakshatra at birth.",
+        "mr": "आरम्भिक महादशा ग्रह जन्म के समय सूर्य के नक्षत्र से निर्धारित होता है।",
+        "gu": "The starting Mahadasha planet is determined by the Sun's nakshatra at birth.",
+        "mai": "आरम्भिक महादशा ग्रह जन्म के समय सूर्य के नक्षत्र से निर्धारित होता है।"
+      },
+      "correctAnswer": false,
+      "explanation": {
+        "en": "False. The starting planet is determined by the MOON's nakshatra at birth, not the Sun's. The Moon's position in one of the 27 nakshatras determines the running Mahadasha lord, and the Moon's exact degree within that nakshatra determines the balance (remaining portion) of that dasha at birth.",
+        "hi": "असत्य। आरम्भिक ग्रह जन्म के समय चन्द्रमा के नक्षत्र से निर्धारित होता है, सूर्य के नहीं। 27 नक्षत्रों में चन्द्रमा की स्थिति चल रही महादशा के स्वामी को निर्धारित करती है, और उस नक्षत्र में चन्द्रमा का सटीक अंश जन्म पर उस दशा का शेष (बचा हुआ भाग) निर्धारित करता है।",
+        "sa": "असत्य। आरम्भिक ग्रह जन्म के समय चन्द्रमा के नक्षत्र से निर्धारित होता है, सूर्य के नहीं। 27 नक्षत्रों में चन्द्रमा की स्थिति चल रही महादशा के स्वामी को निर्धारित करती है, और उस नक्षत्र में चन्द्रमा का सटीक अंश जन्म पर उस दशा का शेष (बचा हुआ भाग) निर्धारित करता है।",
+        "ta": "False. The starting planet is determined by the MOON's nakshatra at birth, not the Sun's. The Moon's position in one of the 27 nakshatras determines the running Mahadasha lord, and the Moon's exact degree within that nakshatra determines the balance (remaining portion) of that dasha at birth.",
+        "te": "False. The starting planet is determined by the MOON's nakshatra at birth, not the Sun's. The Moon's position in one of the 27 nakshatras determines the running Mahadasha lord, and the Moon's exact degree within that nakshatra determines the balance (remaining portion) of that dasha at birth.",
+        "bn": "False. The starting planet is determined by the MOON's nakshatra at birth, not the Sun's. The Moon's position in one of the 27 nakshatras determines the running Mahadasha lord, and the Moon's exact degree within that nakshatra determines the balance (remaining portion) of that dasha at birth.",
+        "kn": "False. The starting planet is determined by the MOON's nakshatra at birth, not the Sun's. The Moon's position in one of the 27 nakshatras determines the running Mahadasha lord, and the Moon's exact degree within that nakshatra determines the balance (remaining portion) of that dasha at birth.",
+        "mr": "असत्य। आरम्भिक ग्रह जन्म के समय चन्द्रमा के नक्षत्र से निर्धारित होता है, सूर्य के नहीं। 27 नक्षत्रों में चन्द्रमा की स्थिति चल रही महादशा के स्वामी को निर्धारित करती है, और उस नक्षत्र में चन्द्रमा का सटीक अंश जन्म पर उस दशा का शेष (बचा हुआ भाग) निर्धारित करता है।",
+        "gu": "False. The starting planet is determined by the MOON's nakshatra at birth, not the Sun's. The Moon's position in one of the 27 nakshatras determines the running Mahadasha lord, and the Moon's exact degree within that nakshatra determines the balance (remaining portion) of that dasha at birth.",
+        "mai": "असत्य। आरम्भिक ग्रह जन्म के समय चन्द्रमा के नक्षत्र से निर्धारित होता है, सूर्य के नहीं। 27 नक्षत्रों में चन्द्रमा की स्थिति चल रही महादशा के स्वामी को निर्धारित करती है, और उस नक्षत्र में चन्द्रमा का सटीक अंश जन्म पर उस दशा का शेष (बचा हुआ भाग) निर्धारित करता है।"
+      }
+    },
+    {
+      "id": "q11_1_04",
+      "type": "mcq",
+      "question": {
+        "en": "A person born with Moon in Rohini nakshatra starts with which Mahadasha?",
+        "hi": "रोहिणी नक्षत्र में चन्द्रमा वाले व्यक्ति की पहली महादशा कौन-सी है?",
+        "sa": "रोहिणी नक्षत्र में चन्द्रमा वाले व्यक्ति की पहली महादशा कौन-सी है?",
+        "ta": "A person born with Moon in Rohini nakshatra starts with which Mahadasha?",
+        "te": "A person born with Moon in Rohini nakshatra starts with which Mahadasha?",
+        "bn": "A person born with Moon in Rohini nakshatra starts with which Mahadasha?",
+        "kn": "A person born with Moon in Rohini nakshatra starts with which Mahadasha?",
+        "mr": "रोहिणी नक्षत्र में चन्द्रमा वाले व्यक्ति की पहली महादशा कौन-सी है?",
+        "gu": "A person born with Moon in Rohini nakshatra starts with which Mahadasha?",
+        "mai": "रोहिणी नक्षत्र में चन्द्रमा वाले व्यक्ति की पहली महादशा कौन-सी है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Rohini is ruled by the Moon in the Vimshottari scheme. So a person born with Moon in Rohini starts with Moon Mahadasha (10 years). The balance of dasha at birth depends on how far the Moon has traversed within Rohini. If Moon is at the very start, nearly 10 full years remain; if near the end, only months remain before Mars Mahadasha begins.",
+        "hi": "विंशोत्तरी योजना में रोहिणी का स्वामी चन्द्रमा है। अतः रोहिणी में चन्द्रमा वाले व्यक्ति की चन्द्र महादशा (10 वर्ष) से शुरुआत होती है। जन्म पर दशा का शेष इस पर निर्भर करता है कि चन्द्रमा रोहिणी में कितना आगे बढ़ चुका है। यदि बिल्कुल आरम्भ में है तो लगभग 10 वर्ष शेष; अन्त के निकट है तो केवल कुछ मास शेष रहते हैं।",
+        "sa": "विंशोत्तरी योजना में रोहिणी का स्वामी चन्द्रमा है। अतः रोहिणी में चन्द्रमा वाले व्यक्ति की चन्द्र महादशा (10 वर्ष) से शुरुआत होती है। जन्म पर दशा का शेष इस पर निर्भर करता है कि चन्द्रमा रोहिणी में कितना आगे बढ़ चुका है। यदि बिल्कुल आरम्भ में है तो लगभग 10 वर्ष शेष; अन्त के निकट है तो केवल कुछ मास शेष रहते हैं।",
+        "ta": "Rohini is ruled by the Moon in the Vimshottari scheme. So a person born with Moon in Rohini starts with Moon Mahadasha (10 years). The balance of dasha at birth depends on how far the Moon has traversed within Rohini. If Moon is at the very start, nearly 10 full years remain; if near the end, only months remain before Mars Mahadasha begins.",
+        "te": "Rohini is ruled by the Moon in the Vimshottari scheme. So a person born with Moon in Rohini starts with Moon Mahadasha (10 years). The balance of dasha at birth depends on how far the Moon has traversed within Rohini. If Moon is at the very start, nearly 10 full years remain; if near the end, only months remain before Mars Mahadasha begins.",
+        "bn": "Rohini is ruled by the Moon in the Vimshottari scheme. So a person born with Moon in Rohini starts with Moon Mahadasha (10 years). The balance of dasha at birth depends on how far the Moon has traversed within Rohini. If Moon is at the very start, nearly 10 full years remain; if near the end, only months remain before Mars Mahadasha begins.",
+        "kn": "Rohini is ruled by the Moon in the Vimshottari scheme. So a person born with Moon in Rohini starts with Moon Mahadasha (10 years). The balance of dasha at birth depends on how far the Moon has traversed within Rohini. If Moon is at the very start, nearly 10 full years remain; if near the end, only months remain before Mars Mahadasha begins.",
+        "mr": "विंशोत्तरी योजना में रोहिणी का स्वामी चन्द्रमा है। अतः रोहिणी में चन्द्रमा वाले व्यक्ति की चन्द्र महादशा (10 वर्ष) से शुरुआत होती है। जन्म पर दशा का शेष इस पर निर्भर करता है कि चन्द्रमा रोहिणी में कितना आगे बढ़ चुका है। यदि बिल्कुल आरम्भ में है तो लगभग 10 वर्ष शेष; अन्त के निकट है तो केवल कुछ मास शेष रहते हैं।",
+        "gu": "Rohini is ruled by the Moon in the Vimshottari scheme. So a person born with Moon in Rohini starts with Moon Mahadasha (10 years). The balance of dasha at birth depends on how far the Moon has traversed within Rohini. If Moon is at the very start, nearly 10 full years remain; if near the end, only months remain before Mars Mahadasha begins.",
+        "mai": "विंशोत्तरी योजना में रोहिणी का स्वामी चन्द्रमा है। अतः रोहिणी में चन्द्रमा वाले व्यक्ति की चन्द्र महादशा (10 वर्ष) से शुरुआत होती है। जन्म पर दशा का शेष इस पर निर्भर करता है कि चन्द्रमा रोहिणी में कितना आगे बढ़ चुका है। यदि बिल्कुल आरम्भ में है तो लगभग 10 वर्ष शेष; अन्त के निकट है तो केवल कुछ मास शेष रहते हैं।"
+      },
+      "options": [
+        {
+          "en": "Venus (Rohini is ruled by Moon)",
+          "hi": "शुक्र (रोहिणी चन्द्रमा शासित है)",
+          "sa": "शुक्र (रोहिणी चन्द्रमा शासित है)",
+          "mai": "शुक्र (रोहिणी चन्द्रमा शासित है)",
+          "mr": "शुक्र (रोहिणी चन्द्रमा शासित है)",
+          "ta": "Venus (Rohini is ruled by Moon)",
+          "te": "Venus (Rohini is ruled by Moon)",
+          "bn": "Venus (Rohini is ruled by Moon)",
+          "kn": "Venus (Rohini is ruled by Moon)",
+          "gu": "Venus (Rohini is ruled by Moon)"
+        },
+        {
+          "en": "Moon (Rohini is ruled by Moon)",
+          "hi": "चन्द्रमा (रोहिणी चन्द्रमा शासित है)",
+          "sa": "चन्द्रमा (रोहिणी चन्द्रमा शासित है)",
+          "mai": "चन्द्रमा (रोहिणी चन्द्रमा शासित है)",
+          "mr": "चन्द्रमा (रोहिणी चन्द्रमा शासित है)",
+          "ta": "Moon (Rohini is ruled by Moon)",
+          "te": "Moon (Rohini is ruled by Moon)",
+          "bn": "Moon (Rohini is ruled by Moon)",
+          "kn": "Moon (Rohini is ruled by Moon)",
+          "gu": "Moon (Rohini is ruled by Moon)"
+        },
+        {
+          "en": "Mars (Rohini is ruled by Mars)",
+          "hi": "मंगल (रोहिणी मंगल शासित है)",
+          "sa": "मंगल (रोहिणी मंगल शासित है)",
+          "mai": "मंगल (रोहिणी मंगल शासित है)",
+          "mr": "मंगल (रोहिणी मंगल शासित है)",
+          "ta": "Mars (Rohini is ruled by Mars)",
+          "te": "Mars (Rohini is ruled by Mars)",
+          "bn": "Mars (Rohini is ruled by Mars)",
+          "kn": "Mars (Rohini is ruled by Mars)",
+          "gu": "Mars (Rohini is ruled by Mars)"
+        },
+        {
+          "en": "Sun (Rohini is ruled by Sun)",
+          "hi": "सूर्य (रोहिणी सूर्य शासित है)",
+          "sa": "सूर्य (रोहिणी सूर्य शासित है)",
+          "mai": "सूर्य (रोहिणी सूर्य शासित है)",
+          "mr": "सूर्य (रोहिणी सूर्य शासित है)",
+          "ta": "Sun (Rohini is ruled by Sun)",
+          "te": "Sun (Rohini is ruled by Sun)",
+          "bn": "Sun (Rohini is ruled by Sun)",
+          "kn": "Sun (Rohini is ruled by Sun)",
+          "gu": "Sun (Rohini is ruled by Sun)"
+        }
+      ]
+    },
+    {
+      "id": "q11_1_05",
+      "type": "mcq",
+      "question": {
+        "en": "What is the correct Vimshottari sequence starting from Ketu?",
+        "hi": "केतु से आरम्भ होने वाला सही विंशोत्तरी क्रम क्या है?",
+        "sa": "केतु से आरम्भ होने वाला सही विंशोत्तरी क्रम क्या है?",
+        "ta": "What is the correct Vimshottari sequence starting from Ketu?",
+        "te": "What is the correct Vimshottari sequence starting from Ketu?",
+        "bn": "What is the correct Vimshottari sequence starting from Ketu?",
+        "kn": "What is the correct Vimshottari sequence starting from Ketu?",
+        "mr": "केतु से आरम्भ होने वाला सही विंशोत्तरी क्रम क्या है?",
+        "gu": "What is the correct Vimshottari sequence starting from Ketu?",
+        "mai": "केतु से आरम्भ होने वाला सही विंशोत्तरी क्रम क्या है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "The correct Vimshottari sequence is: Ketu(7) -> Venus(20) -> Sun(6) -> Moon(10) -> Mars(7) -> Rahu(18) -> Jupiter(16) -> Saturn(19) -> Mercury(17). This sequence is derived from the nakshatra lordship pattern starting from Ashwini (Ketu). It cycles through the 27 nakshatras in groups of 3, each planet ruling exactly 3 nakshatras. After Mercury, the cycle restarts with Ketu.",
+        "hi": "सही विंशोत्तरी क्रम है: केतु(7) -> शुक्र(20) -> सूर्य(6) -> चन्द्र(10) -> मंगल(7) -> राहु(18) -> गुरु(16) -> शनि(19) -> बुध(17)। यह क्रम अश्विनी (केतु) से आरम्भ नक्षत्र स्वामित्व प्रतिरूप से व्युत्पन्न है। यह 27 नक्षत्रों में 3-3 के समूहों में चलता है, प्रत्येक ग्रह ठीक 3 नक्षत्रों का स्वामी है। बुध के बाद चक्र केतु से पुनः आरम्भ होता है।",
+        "sa": "सही विंशोत्तरी क्रम है: केतु(7) -> शुक्र(20) -> सूर्य(6) -> चन्द्र(10) -> मंगल(7) -> राहु(18) -> गुरु(16) -> शनि(19) -> बुध(17)। यह क्रम अश्विनी (केतु) से आरम्भ नक्षत्र स्वामित्व प्रतिरूप से व्युत्पन्न है। यह 27 नक्षत्रों में 3-3 के समूहों में चलता है, प्रत्येक ग्रह ठीक 3 नक्षत्रों का स्वामी है। बुध के बाद चक्र केतु से पुनः आरम्भ होता है।",
+        "ta": "The correct Vimshottari sequence is: Ketu(7) -> Venus(20) -> Sun(6) -> Moon(10) -> Mars(7) -> Rahu(18) -> Jupiter(16) -> Saturn(19) -> Mercury(17). This sequence is derived from the nakshatra lordship pattern starting from Ashwini (Ketu). It cycles through the 27 nakshatras in groups of 3, each planet ruling exactly 3 nakshatras. After Mercury, the cycle restarts with Ketu.",
+        "te": "The correct Vimshottari sequence is: Ketu(7) -> Venus(20) -> Sun(6) -> Moon(10) -> Mars(7) -> Rahu(18) -> Jupiter(16) -> Saturn(19) -> Mercury(17). This sequence is derived from the nakshatra lordship pattern starting from Ashwini (Ketu). It cycles through the 27 nakshatras in groups of 3, each planet ruling exactly 3 nakshatras. After Mercury, the cycle restarts with Ketu.",
+        "bn": "The correct Vimshottari sequence is: Ketu(7) -> Venus(20) -> Sun(6) -> Moon(10) -> Mars(7) -> Rahu(18) -> Jupiter(16) -> Saturn(19) -> Mercury(17). This sequence is derived from the nakshatra lordship pattern starting from Ashwini (Ketu). It cycles through the 27 nakshatras in groups of 3, each planet ruling exactly 3 nakshatras. After Mercury, the cycle restarts with Ketu.",
+        "kn": "The correct Vimshottari sequence is: Ketu(7) -> Venus(20) -> Sun(6) -> Moon(10) -> Mars(7) -> Rahu(18) -> Jupiter(16) -> Saturn(19) -> Mercury(17). This sequence is derived from the nakshatra lordship pattern starting from Ashwini (Ketu). It cycles through the 27 nakshatras in groups of 3, each planet ruling exactly 3 nakshatras. After Mercury, the cycle restarts with Ketu.",
+        "mr": "सही विंशोत्तरी क्रम है: केतु(7) -> शुक्र(20) -> सूर्य(6) -> चन्द्र(10) -> मंगल(7) -> राहु(18) -> गुरु(16) -> शनि(19) -> बुध(17)। यह क्रम अश्विनी (केतु) से आरम्भ नक्षत्र स्वामित्व प्रतिरूप से व्युत्पन्न है। यह 27 नक्षत्रों में 3-3 के समूहों में चलता है, प्रत्येक ग्रह ठीक 3 नक्षत्रों का स्वामी है। बुध के बाद चक्र केतु से पुनः आरम्भ होता है।",
+        "gu": "The correct Vimshottari sequence is: Ketu(7) -> Venus(20) -> Sun(6) -> Moon(10) -> Mars(7) -> Rahu(18) -> Jupiter(16) -> Saturn(19) -> Mercury(17). This sequence is derived from the nakshatra lordship pattern starting from Ashwini (Ketu). It cycles through the 27 nakshatras in groups of 3, each planet ruling exactly 3 nakshatras. After Mercury, the cycle restarts with Ketu.",
+        "mai": "सही विंशोत्तरी क्रम है: केतु(7) -> शुक्र(20) -> सूर्य(6) -> चन्द्र(10) -> मंगल(7) -> राहु(18) -> गुरु(16) -> शनि(19) -> बुध(17)। यह क्रम अश्विनी (केतु) से आरम्भ नक्षत्र स्वामित्व प्रतिरूप से व्युत्पन्न है। यह 27 नक्षत्रों में 3-3 के समूहों में चलता है, प्रत्येक ग्रह ठीक 3 नक्षत्रों का स्वामी है। बुध के बाद चक्र केतु से पुनः आरम्भ होता है।"
+      },
+      "options": [
+        {
+          "en": "Ketu, Sun, Moon, Mars, Venus, Rahu, Jupiter, Saturn, Mercury",
+          "hi": "केतु, सूर्य, चन्द्र, मंगल, शुक्र, राहु, गुरु, शनि, बुध",
+          "sa": "केतु, सूर्य, चन्द्र, मंगल, शुक्र, राहु, गुरु, शनि, बुध",
+          "mai": "केतु, सूर्य, चन्द्र, मंगल, शुक्र, राहु, गुरु, शनि, बुध",
+          "mr": "केतु, सूर्य, चन्द्र, मंगल, शुक्र, राहु, गुरु, शनि, बुध",
+          "ta": "Ketu, Sun, Moon, Mars, Venus, Rahu, Jupiter, Saturn, Mercury",
+          "te": "Ketu, Sun, Moon, Mars, Venus, Rahu, Jupiter, Saturn, Mercury",
+          "bn": "Ketu, Sun, Moon, Mars, Venus, Rahu, Jupiter, Saturn, Mercury",
+          "kn": "Ketu, Sun, Moon, Mars, Venus, Rahu, Jupiter, Saturn, Mercury",
+          "gu": "Ketu, Sun, Moon, Mars, Venus, Rahu, Jupiter, Saturn, Mercury"
+        },
+        {
+          "en": "Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury",
+          "hi": "केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, गुरु, शनि, बुध",
+          "sa": "केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, गुरु, शनि, बुध",
+          "mai": "केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, गुरु, शनि, बुध",
+          "mr": "केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, गुरु, शनि, बुध",
+          "ta": "Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury",
+          "te": "Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury",
+          "bn": "Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury",
+          "kn": "Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury",
+          "gu": "Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury"
+        },
+        {
+          "en": "Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu",
+          "hi": "सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि, राहु, केतु",
+          "sa": "सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि, राहु, केतु",
+          "mai": "सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि, राहु, केतु",
+          "mr": "सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि, राहु, केतु",
+          "ta": "Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu",
+          "te": "Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu",
+          "bn": "Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu",
+          "kn": "Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu",
+          "gu": "Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu"
+        },
+        {
+          "en": "Ketu, Venus, Sun, Moon, Mars, Rahu, Saturn, Jupiter, Mercury",
+          "hi": "केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, शनि, गुरु, बुध",
+          "sa": "केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, शनि, गुरु, बुध",
+          "mai": "केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, शनि, गुरु, बुध",
+          "mr": "केतु, शुक्र, सूर्य, चन्द्र, मंगल, राहु, शनि, गुरु, बुध",
+          "ta": "Ketu, Venus, Sun, Moon, Mars, Rahu, Saturn, Jupiter, Mercury",
+          "te": "Ketu, Venus, Sun, Moon, Mars, Rahu, Saturn, Jupiter, Mercury",
+          "bn": "Ketu, Venus, Sun, Moon, Mars, Rahu, Saturn, Jupiter, Mercury",
+          "kn": "Ketu, Venus, Sun, Moon, Mars, Rahu, Saturn, Jupiter, Mercury",
+          "gu": "Ketu, Venus, Sun, Moon, Mars, Rahu, Saturn, Jupiter, Mercury"
+        }
+      ]
+    },
+    {
+      "id": "q11_1_06",
+      "type": "mcq",
+      "question": {
+        "en": "In the Vimshottari subdivision hierarchy, how many unique Mahadasha-Antardasha combinations exist?",
+        "hi": "विंशोत्तरी उपविभाजन पदानुक्रम में कुल कितने अद्वितीय महादशा-अन्तर्दशा संयोजन होते हैं?",
+        "sa": "विंशोत्तरी उपविभाजन पदानुक्रम में कुल कितने अद्वितीय महादशा-अन्तर्दशा संयोजन होते हैं?",
+        "ta": "In the Vimshottari subdivision hierarchy, how many unique Mahadasha-Antardasha combinations exist?",
+        "te": "In the Vimshottari subdivision hierarchy, how many unique Mahadasha-Antardasha combinations exist?",
+        "bn": "In the Vimshottari subdivision hierarchy, how many unique Mahadasha-Antardasha combinations exist?",
+        "kn": "In the Vimshottari subdivision hierarchy, how many unique Mahadasha-Antardasha combinations exist?",
+        "mr": "विंशोत्तरी उपविभाजन पदानुक्रम में कुल कितने अद्वितीय महादशा-अन्तर्दशा संयोजन होते हैं?",
+        "gu": "In the Vimshottari subdivision hierarchy, how many unique Mahadasha-Antardasha combinations exist?",
+        "mai": "विंशोत्तरी उपविभाजन पदानुक्रम में कुल कितने अद्वितीय महादशा-अन्तर्दशा संयोजन होते हैं?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "9 Mahadasha lords x 9 Antardasha lords = 81 unique combinations. With Pratyantardasha (sub-sub), that becomes 729. With Sookshma Dasha, 6,561. This recursive subdivision creates timing resolution down to individual days — an unparalleled level of temporal granularity in any astrological system worldwide.",
+        "hi": "9 महादशा स्वामी x 9 अन्तर्दशा स्वामी = 81 अद्वितीय संयोजन। प्रत्यन्तर्दशा (उप-उप) के साथ यह 729 हो जाता है। सूक्ष्म दशा के साथ 6,561। यह पुनरावर्ती उपविभाजन व्यक्तिगत दिनों तक की समय सटीकता उत्पन्न करता है — विश्व की किसी भी ज्योतिष पद्धति में अद्वितीय।",
+        "sa": "9 महादशा स्वामी x 9 अन्तर्दशा स्वामी = 81 अद्वितीय संयोजन। प्रत्यन्तर्दशा (उप-उप) के साथ यह 729 हो जाता है। सूक्ष्म दशा के साथ 6,561। यह पुनरावर्ती उपविभाजन व्यक्तिगत दिनों तक की समय सटीकता उत्पन्न करता है — विश्व की किसी भी ज्योतिष पद्धति में अद्वितीय।",
+        "ta": "9 Mahadasha lords x 9 Antardasha lords = 81 unique combinations. With Pratyantardasha (sub-sub), that becomes 729. With Sookshma Dasha, 6,561. This recursive subdivision creates timing resolution down to individual days — an unparalleled level of temporal granularity in any astrological system worldwide.",
+        "te": "9 Mahadasha lords x 9 Antardasha lords = 81 unique combinations. With Pratyantardasha (sub-sub), that becomes 729. With Sookshma Dasha, 6,561. This recursive subdivision creates timing resolution down to individual days — an unparalleled level of temporal granularity in any astrological system worldwide.",
+        "bn": "9 Mahadasha lords x 9 Antardasha lords = 81 unique combinations. With Pratyantardasha (sub-sub), that becomes 729. With Sookshma Dasha, 6,561. This recursive subdivision creates timing resolution down to individual days — an unparalleled level of temporal granularity in any astrological system worldwide.",
+        "kn": "9 Mahadasha lords x 9 Antardasha lords = 81 unique combinations. With Pratyantardasha (sub-sub), that becomes 729. With Sookshma Dasha, 6,561. This recursive subdivision creates timing resolution down to individual days — an unparalleled level of temporal granularity in any astrological system worldwide.",
+        "mr": "9 महादशा स्वामी x 9 अन्तर्दशा स्वामी = 81 अद्वितीय संयोजन। प्रत्यन्तर्दशा (उप-उप) के साथ यह 729 हो जाता है। सूक्ष्म दशा के साथ 6,561। यह पुनरावर्ती उपविभाजन व्यक्तिगत दिनों तक की समय सटीकता उत्पन्न करता है — विश्व की किसी भी ज्योतिष पद्धति में अद्वितीय।",
+        "gu": "9 Mahadasha lords x 9 Antardasha lords = 81 unique combinations. With Pratyantardasha (sub-sub), that becomes 729. With Sookshma Dasha, 6,561. This recursive subdivision creates timing resolution down to individual days — an unparalleled level of temporal granularity in any astrological system worldwide.",
+        "mai": "9 महादशा स्वामी x 9 अन्तर्दशा स्वामी = 81 अद्वितीय संयोजन। प्रत्यन्तर्दशा (उप-उप) के साथ यह 729 हो जाता है। सूक्ष्म दशा के साथ 6,561। यह पुनरावर्ती उपविभाजन व्यक्तिगत दिनों तक की समय सटीकता उत्पन्न करता है — विश्व की किसी भी ज्योतिष पद्धति में अद्वितीय।"
+      },
+      "options": [
+        {
+          "en": "27 (9 x 3)",
+          "hi": "27 (9 x 3)",
+          "sa": "27 (9 x 3)",
+          "mai": "27 (9 x 3)",
+          "mr": "27 (9 x 3)",
+          "ta": "27 (9 x 3)",
+          "te": "27 (9 x 3)",
+          "bn": "27 (9 x 3)",
+          "kn": "27 (9 x 3)",
+          "gu": "27 (9 x 3)"
+        },
+        {
+          "en": "81 (9 x 9)",
+          "hi": "81 (9 x 9)",
+          "sa": "81 (9 x 9)",
+          "mai": "81 (9 x 9)",
+          "mr": "81 (9 x 9)",
+          "ta": "81 (9 x 9)",
+          "te": "81 (9 x 9)",
+          "bn": "81 (9 x 9)",
+          "kn": "81 (9 x 9)",
+          "gu": "81 (9 x 9)"
+        },
+        {
+          "en": "108 (9 x 12)",
+          "hi": "108 (9 x 12)",
+          "sa": "108 (9 x 12)",
+          "mai": "108 (9 x 12)",
+          "mr": "108 (9 x 12)",
+          "ta": "108 (9 x 12)",
+          "te": "108 (9 x 12)",
+          "bn": "108 (9 x 12)",
+          "kn": "108 (9 x 12)",
+          "gu": "108 (9 x 12)"
+        },
+        {
+          "en": "729 (9 x 9 x 9)",
+          "hi": "729 (9 x 9 x 9)",
+          "sa": "729 (9 x 9 x 9)",
+          "mai": "729 (9 x 9 x 9)",
+          "mr": "729 (9 x 9 x 9)",
+          "ta": "729 (9 x 9 x 9)",
+          "te": "729 (9 x 9 x 9)",
+          "bn": "729 (9 x 9 x 9)",
+          "kn": "729 (9 x 9 x 9)",
+          "gu": "729 (9 x 9 x 9)"
+        }
+      ]
+    },
+    {
+      "id": "q11_1_07",
+      "type": "mcq",
+      "question": {
+        "en": "During Mars Mahadasha / Jupiter Antardasha, what is the correct interpretive approach?",
+        "hi": "मंगल महादशा / गुरु अन्तर्दशा में सही व्याख्या दृष्टिकोण क्या है?",
+        "sa": "मंगल महादशा / गुरु अन्तर्दशा में सही व्याख्या दृष्टिकोण क्या है?",
+        "ta": "During Mars Mahadasha / Jupiter Antardasha, what is the correct interpretive approach?",
+        "te": "During Mars Mahadasha / Jupiter Antardasha, what is the correct interpretive approach?",
+        "bn": "During Mars Mahadasha / Jupiter Antardasha, what is the correct interpretive approach?",
+        "kn": "During Mars Mahadasha / Jupiter Antardasha, what is the correct interpretive approach?",
+        "mr": "मंगल महादशा / गुरु अन्तर्दशा में सही व्याख्या दृष्टिकोण क्या है?",
+        "gu": "During Mars Mahadasha / Jupiter Antardasha, what is the correct interpretive approach?",
+        "mai": "मंगल महादशा / गुरु अन्तर्दशा में सही व्याख्या दृष्टिकोण क्या है?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "The Mahadasha lord sets the dominant theme — Mars brings energy, courage, conflicts, property matters. The Antardasha lord (Jupiter) modifies and colors that theme — adding wisdom, expansion, or spiritual growth to Mars' assertive energy. Think of it as: the Mahadasha is the canvas; the Antardasha is the brushstroke. Result: property expansion, educational achievements through effort, or bold spiritual pursuits.",
+        "hi": "महादशा स्वामी प्रधान विषय निर्धारित करता है — मंगल ऊर्जा, साहस, संघर्ष, सम्पत्ति मामले लाता है। अन्तर्दशा स्वामी (गुरु) उस विषय को रूपान्तरित करता है — मंगल की आक्रामक ऊर्जा में ज्ञान, विस्तार या आध्यात्मिक वृद्धि जोड़ता है। इसे ऐसे समझें: महादशा कैनवास है; अन्तर्दशा तूलिका है। परिणाम: सम्पत्ति विस्तार, प्रयास से शैक्षिक उपलब्धियाँ, या साहसिक आध्यात्मिक अन्वेषण।",
+        "sa": "महादशा स्वामी प्रधान विषय निर्धारित करता है — मंगल ऊर्जा, साहस, संघर्ष, सम्पत्ति मामले लाता है। अन्तर्दशा स्वामी (गुरु) उस विषय को रूपान्तरित करता है — मंगल की आक्रामक ऊर्जा में ज्ञान, विस्तार या आध्यात्मिक वृद्धि जोड़ता है। इसे ऐसे समझें: महादशा कैनवास है; अन्तर्दशा तूलिका है। परिणाम: सम्पत्ति विस्तार, प्रयास से शैक्षिक उपलब्धियाँ, या साहसिक आध्यात्मिक अन्वेषण।",
+        "ta": "The Mahadasha lord sets the dominant theme — Mars brings energy, courage, conflicts, property matters. The Antardasha lord (Jupiter) modifies and colors that theme — adding wisdom, expansion, or spiritual growth to Mars' assertive energy. Think of it as: the Mahadasha is the canvas; the Antardasha is the brushstroke. Result: property expansion, educational achievements through effort, or bold spiritual pursuits.",
+        "te": "The Mahadasha lord sets the dominant theme — Mars brings energy, courage, conflicts, property matters. The Antardasha lord (Jupiter) modifies and colors that theme — adding wisdom, expansion, or spiritual growth to Mars' assertive energy. Think of it as: the Mahadasha is the canvas; the Antardasha is the brushstroke. Result: property expansion, educational achievements through effort, or bold spiritual pursuits.",
+        "bn": "The Mahadasha lord sets the dominant theme — Mars brings energy, courage, conflicts, property matters. The Antardasha lord (Jupiter) modifies and colors that theme — adding wisdom, expansion, or spiritual growth to Mars' assertive energy. Think of it as: the Mahadasha is the canvas; the Antardasha is the brushstroke. Result: property expansion, educational achievements through effort, or bold spiritual pursuits.",
+        "kn": "The Mahadasha lord sets the dominant theme — Mars brings energy, courage, conflicts, property matters. The Antardasha lord (Jupiter) modifies and colors that theme — adding wisdom, expansion, or spiritual growth to Mars' assertive energy. Think of it as: the Mahadasha is the canvas; the Antardasha is the brushstroke. Result: property expansion, educational achievements through effort, or bold spiritual pursuits.",
+        "mr": "महादशा स्वामी प्रधान विषय निर्धारित करता है — मंगल ऊर्जा, साहस, संघर्ष, सम्पत्ति मामले लाता है। अन्तर्दशा स्वामी (गुरु) उस विषय को रूपान्तरित करता है — मंगल की आक्रामक ऊर्जा में ज्ञान, विस्तार या आध्यात्मिक वृद्धि जोड़ता है। इसे ऐसे समझें: महादशा कैनवास है; अन्तर्दशा तूलिका है। परिणाम: सम्पत्ति विस्तार, प्रयास से शैक्षिक उपलब्धियाँ, या साहसिक आध्यात्मिक अन्वेषण।",
+        "gu": "The Mahadasha lord sets the dominant theme — Mars brings energy, courage, conflicts, property matters. The Antardasha lord (Jupiter) modifies and colors that theme — adding wisdom, expansion, or spiritual growth to Mars' assertive energy. Think of it as: the Mahadasha is the canvas; the Antardasha is the brushstroke. Result: property expansion, educational achievements through effort, or bold spiritual pursuits.",
+        "mai": "महादशा स्वामी प्रधान विषय निर्धारित करता है — मंगल ऊर्जा, साहस, संघर्ष, सम्पत्ति मामले लाता है। अन्तर्दशा स्वामी (गुरु) उस विषय को रूपान्तरित करता है — मंगल की आक्रामक ऊर्जा में ज्ञान, विस्तार या आध्यात्मिक वृद्धि जोड़ता है। इसे ऐसे समझें: महादशा कैनवास है; अन्तर्दशा तूलिका है। परिणाम: सम्पत्ति विस्तार, प्रयास से शैक्षिक उपलब्धियाँ, या साहसिक आध्यात्मिक अन्वेषण।"
+      },
+      "options": [
+        {
+          "en": "Only Jupiter's significations matter",
+          "hi": "केवल गुरु के कारकत्व महत्त्वपूर्ण हैं",
+          "sa": "केवल गुरु के कारकत्व महत्त्वपूर्ण हैं",
+          "ta": "Only Jupiter's significations matter",
+          "te": "Only Jupiter's significations matter",
+          "bn": "Only Jupiter's significations matter",
+          "kn": "Only Jupiter's significations matter",
+          "mr": "केवल गुरु के कारकत्व महत्त्वपूर्ण हैं",
+          "gu": "Only Jupiter's significations matter",
+          "mai": "केवल गुरु के कारकत्व महत्त्वपूर्ण हैं"
+        },
+        {
+          "en": "Only Mars' significations matter",
+          "hi": "केवल मंगल के कारकत्व महत्त्वपूर्ण हैं",
+          "sa": "केवल मंगल के कारकत्व महत्त्वपूर्ण हैं",
+          "ta": "Only Mars' significations matter",
+          "te": "Only Mars' significations matter",
+          "bn": "Only Mars' significations matter",
+          "kn": "Only Mars' significations matter",
+          "mr": "केवल मंगल के कारकत्व महत्त्वपूर्ण हैं",
+          "gu": "Only Mars' significations matter",
+          "mai": "केवल मंगल के कारकत्व महत्त्वपूर्ण हैं"
+        },
+        {
+          "en": "Mars themes dominate, Jupiter adds its coloring",
+          "hi": "मंगल के विषय प्रधान हैं, गुरु अपना रंग जोड़ता है",
+          "sa": "मंगल के विषय प्रधान हैं, गुरु अपना रंग जोड़ता है",
+          "mai": "मंगल के विषय प्रधान हैं, गुरु अपना रंग जोड़ता है",
+          "mr": "मंगल के विषय प्रधान हैं, गुरु अपना रंग जोड़ता है",
+          "ta": "Mars themes dominate, Jupiter adds its coloring",
+          "te": "Mars themes dominate, Jupiter adds its coloring",
+          "bn": "Mars themes dominate, Jupiter adds its coloring",
+          "kn": "Mars themes dominate, Jupiter adds its coloring",
+          "gu": "Mars themes dominate, Jupiter adds its coloring"
+        },
+        {
+          "en": "Average the two planets' effects equally",
+          "hi": "दोनों ग्रहों के प्रभावों का समान औसत लें",
+          "sa": "दोनों ग्रहों के प्रभावों का समान औसत लें",
+          "ta": "Average the two planets' effects equally",
+          "te": "Average the two planets' effects equally",
+          "bn": "Average the two planets' effects equally",
+          "kn": "Average the two planets' effects equally",
+          "mr": "दोनों ग्रहों के प्रभावों का समान औसत लें",
+          "gu": "Average the two planets' effects equally",
+          "mai": "दोनों ग्रहों के प्रभावों का समान औसत लें"
+        }
+      ]
+    },
+    {
+      "id": "q11_1_08",
+      "type": "mcq",
+      "question": {
+        "en": "What is \"Dasha Sandhi\" and when does it occur?",
+        "hi": "\"दशा सन्धि\" क्या है और कब होती है?",
+        "sa": "\"दशा सन्धि\" क्या है और कब होती है?",
+        "ta": "What is \"Dasha Sandhi\" and when does it occur?",
+        "te": "What is \"Dasha Sandhi\" and when does it occur?",
+        "bn": "What is \"Dasha Sandhi\" and when does it occur?",
+        "kn": "What is \"Dasha Sandhi\" and when does it occur?",
+        "mr": "\"दशा सन्धि\" क्या है और कब होती है?",
+        "gu": "What is \"Dasha Sandhi\" and when does it occur?",
+        "mai": "\"दशा सन्धि\" क्या है और कब होती है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Dasha Sandhi is the turbulent transition zone between two Mahadashas — roughly the last 6 months of the outgoing dasha and the first 6 months of the incoming one. During this period, the native experiences uncertainty, identity shifts, and life restructuring. The greater the contrast between the two planets (e.g., Venus to Sun: luxury to authority), the more disruptive the transition.",
+        "hi": "दशा सन्धि दो महादशाओं के बीच का अशान्त संक्रमण क्षेत्र है — जाती हुई दशा के अन्तिम लगभग 6 मास और आने वाली के प्रथम लगभग 6 मास। इस काल में जातक अनिश्चितता, पहचान परिवर्तन और जीवन पुनर्गठन अनुभव करता है। दोनों ग्रहों के बीच जितना अधिक अन्तर (जैसे शुक्र से सूर्य: विलासिता से अधिकार), संक्रमण उतना ही अधिक विघटनकारी।",
+        "sa": "दशा सन्धि दो महादशाओं के बीच का अशान्त संक्रमण क्षेत्र है — जाती हुई दशा के अन्तिम लगभग 6 मास और आने वाली के प्रथम लगभग 6 मास। इस काल में जातक अनिश्चितता, पहचान परिवर्तन और जीवन पुनर्गठन अनुभव करता है। दोनों ग्रहों के बीच जितना अधिक अन्तर (जैसे शुक्र से सूर्य: विलासिता से अधिकार), संक्रमण उतना ही अधिक विघटनकारी।",
+        "ta": "Dasha Sandhi is the turbulent transition zone between two Mahadashas — roughly the last 6 months of the outgoing dasha and the first 6 months of the incoming one. During this period, the native experiences uncertainty, identity shifts, and life restructuring. The greater the contrast between the two planets (e.g., Venus to Sun: luxury to authority), the more disruptive the transition.",
+        "te": "Dasha Sandhi is the turbulent transition zone between two Mahadashas — roughly the last 6 months of the outgoing dasha and the first 6 months of the incoming one. During this period, the native experiences uncertainty, identity shifts, and life restructuring. The greater the contrast between the two planets (e.g., Venus to Sun: luxury to authority), the more disruptive the transition.",
+        "bn": "Dasha Sandhi is the turbulent transition zone between two Mahadashas — roughly the last 6 months of the outgoing dasha and the first 6 months of the incoming one. During this period, the native experiences uncertainty, identity shifts, and life restructuring. The greater the contrast between the two planets (e.g., Venus to Sun: luxury to authority), the more disruptive the transition.",
+        "kn": "Dasha Sandhi is the turbulent transition zone between two Mahadashas — roughly the last 6 months of the outgoing dasha and the first 6 months of the incoming one. During this period, the native experiences uncertainty, identity shifts, and life restructuring. The greater the contrast between the two planets (e.g., Venus to Sun: luxury to authority), the more disruptive the transition.",
+        "mr": "दशा सन्धि दो महादशाओं के बीच का अशान्त संक्रमण क्षेत्र है — जाती हुई दशा के अन्तिम लगभग 6 मास और आने वाली के प्रथम लगभग 6 मास। इस काल में जातक अनिश्चितता, पहचान परिवर्तन और जीवन पुनर्गठन अनुभव करता है। दोनों ग्रहों के बीच जितना अधिक अन्तर (जैसे शुक्र से सूर्य: विलासिता से अधिकार), संक्रमण उतना ही अधिक विघटनकारी।",
+        "gu": "Dasha Sandhi is the turbulent transition zone between two Mahadashas — roughly the last 6 months of the outgoing dasha and the first 6 months of the incoming one. During this period, the native experiences uncertainty, identity shifts, and life restructuring. The greater the contrast between the two planets (e.g., Venus to Sun: luxury to authority), the more disruptive the transition.",
+        "mai": "दशा सन्धि दो महादशाओं के बीच का अशान्त संक्रमण क्षेत्र है — जाती हुई दशा के अन्तिम लगभग 6 मास और आने वाली के प्रथम लगभग 6 मास। इस काल में जातक अनिश्चितता, पहचान परिवर्तन और जीवन पुनर्गठन अनुभव करता है। दोनों ग्रहों के बीच जितना अधिक अन्तर (जैसे शुक्र से सूर्य: विलासिता से अधिकार), संक्रमण उतना ही अधिक विघटनकारी।"
+      },
+      "options": [
+        {
+          "en": "The midpoint of any Mahadasha",
+          "hi": "किसी महादशा का मध्य बिन्दु",
+          "sa": "किसी महादशा का मध्य बिन्दु",
+          "mai": "किसी महादशा का मध्य बिन्दु",
+          "mr": "किसी महादशा का मध्य बिन्दु",
+          "ta": "The midpoint of any Mahadasha",
+          "te": "The midpoint of any Mahadasha",
+          "bn": "The midpoint of any Mahadasha",
+          "kn": "The midpoint of any Mahadasha",
+          "gu": "The midpoint of any Mahadasha"
+        },
+        {
+          "en": "The transition zone between two Mahadashas (last ~6 months of outgoing + first ~6 months of incoming)",
+          "hi": "दो महादशाओं के बीच का संक्रमण क्षेत्र (जाती हुई के अन्तिम ~6 मास + आने वाली के प्रथम ~6 मास)",
+          "sa": "दो महादशाओं के बीच का संक्रमण क्षेत्र (जाती हुई के अन्तिम ~6 मास + आने वाली के प्रथम ~6 मास)",
+          "mai": "दो महादशाओं के बीच का संक्रमण क्षेत्र (जाती हुई के अन्तिम ~6 मास + आने वाली के प्रथम ~6 मास)",
+          "mr": "दो महादशाओं के बीच का संक्रमण क्षेत्र (जाती हुई के अन्तिम ~6 मास + आने वाली के प्रथम ~6 मास)",
+          "ta": "The transition zone between two Mahadashas (last ~6 months of outgoing + first ~6 months of incoming)",
+          "te": "The transition zone between two Mahadashas (last ~6 months of outgoing + first ~6 months of incoming)",
+          "bn": "The transition zone between two Mahadashas (last ~6 months of outgoing + first ~6 months of incoming)",
+          "kn": "The transition zone between two Mahadashas (last ~6 months of outgoing + first ~6 months of incoming)",
+          "gu": "The transition zone between two Mahadashas (last ~6 months of outgoing + first ~6 months of incoming)"
+        },
+        {
+          "en": "A special yoga formed during Rahu dasha",
+          "hi": "राहु दशा में बनने वाला एक विशेष योग",
+          "sa": "राहु दशा में बनने वाला एक विशेष योग",
+          "mai": "राहु दशा में बनने वाला एक विशेष योग",
+          "mr": "राहु दशा में बनने वाला एक विशेष योग",
+          "ta": "A special yoga formed during Rahu dasha",
+          "te": "A special yoga formed during Rahu dasha",
+          "bn": "A special yoga formed during Rahu dasha",
+          "kn": "A special yoga formed during Rahu dasha",
+          "gu": "A special yoga formed during Rahu dasha"
+        },
+        {
+          "en": "The period when two Antardashas overlap",
+          "hi": "वह काल जब दो अन्तर्दशाएँ ओवरलैप करती हैं",
+          "sa": "वह काल जब दो अन्तर्दशाएँ ओवरलैप करती हैं",
+          "mai": "वह काल जब दो अन्तर्दशाएँ ओवरलैप करती हैं",
+          "mr": "वह काल जब दो अन्तर्दशाएँ ओवरलैप करती हैं",
+          "ta": "The period when two Antardashas overlap",
+          "te": "The period when two Antardashas overlap",
+          "bn": "The period when two Antardashas overlap",
+          "kn": "The period when two Antardashas overlap",
+          "gu": "The period when two Antardashas overlap"
+        }
+      ]
+    },
+    {
+      "id": "q11_1_09",
+      "type": "true_false",
+      "question": {
+        "en": "The \"balance of dasha\" at birth is calculated based on how far the Moon has traversed within its birth nakshatra.",
+        "hi": "\"जन्म पर दशा शेष\" की गणना इस आधार पर होती है कि चन्द्रमा ने अपने जन्म नक्षत्र में कितनी दूरी तय की है।",
+        "sa": "\"जन्म पर दशा शेष\" की गणना इस आधार पर होती है कि चन्द्रमा ने अपने जन्म नक्षत्र में कितनी दूरी तय की है।",
+        "ta": "The \"balance of dasha\" at birth is calculated based on how far the Moon has traversed within its birth nakshatra.",
+        "te": "The \"balance of dasha\" at birth is calculated based on how far the Moon has traversed within its birth nakshatra.",
+        "bn": "The \"balance of dasha\" at birth is calculated based on how far the Moon has traversed within its birth nakshatra.",
+        "kn": "The \"balance of dasha\" at birth is calculated based on how far the Moon has traversed within its birth nakshatra.",
+        "mr": "\"जन्म पर दशा शेष\" की गणना इस आधार पर होती है कि चन्द्रमा ने अपने जन्म नक्षत्र में कितनी दूरी तय की है।",
+        "gu": "The \"balance of dasha\" at birth is calculated based on how far the Moon has traversed within its birth nakshatra.",
+        "mai": "\"जन्म पर दशा शेष\" की गणना इस आधार पर होती है कि चन्द्रमा ने अपने जन्म नक्षत्र में कितनी दूरी तय की है।"
+      },
+      "correctAnswer": true,
+      "explanation": {
+        "en": "True. Each nakshatra spans 13 degrees 20 minutes (13.333 degrees). The formula is: Remaining Dasha = Total Dasha Years x (1 - degrees traversed / 13.333). If Moon is at the start of a nakshatra, nearly the full period remains. If near the end, only a fraction remains. For example, Moon at 7.3 degrees into Hasta (Moon-ruled): fraction consumed = 7.3/13.333 = 54.75%, so remaining Moon dasha = 10 x (1 - 0.5475) = 4.525 years = 4 years, 6 months, 9 days.",
+        "hi": "सत्य। प्रत्येक नक्षत्र 13 अंश 20 कला (13.333 अंश) का होता है। सूत्र: शेष दशा = कुल दशा वर्ष x (1 - तय किए अंश / 13.333)। यदि चन्द्रमा नक्षत्र के आरम्भ में है तो लगभग पूरी अवधि शेष। अन्त के निकट है तो केवल अंश शेष। उदाहरण: हस्त (चन्द्र-शासित) में 7.3 अंश पर चन्द्रमा: व्यतीत अंश = 7.3/13.333 = 54.75%, अतः शेष चन्द्र दशा = 10 x (1 - 0.5475) = 4.525 वर्ष = 4 वर्ष, 6 मास, 9 दिन।",
+        "sa": "सत्य। प्रत्येक नक्षत्र 13 अंश 20 कला (13.333 अंश) का होता है। सूत्र: शेष दशा = कुल दशा वर्ष x (1 - तय किए अंश / 13.333)। यदि चन्द्रमा नक्षत्र के आरम्भ में है तो लगभग पूरी अवधि शेष। अन्त के निकट है तो केवल अंश शेष। उदाहरण: हस्त (चन्द्र-शासित) में 7.3 अंश पर चन्द्रमा: व्यतीत अंश = 7.3/13.333 = 54.75%, अतः शेष चन्द्र दशा = 10 x (1 - 0.5475) = 4.525 वर्ष = 4 वर्ष, 6 मास, 9 दिन।",
+        "ta": "True. Each nakshatra spans 13 degrees 20 minutes (13.333 degrees). The formula is: Remaining Dasha = Total Dasha Years x (1 - degrees traversed / 13.333). If Moon is at the start of a nakshatra, nearly the full period remains. If near the end, only a fraction remains. For example, Moon at 7.3 degrees into Hasta (Moon-ruled): fraction consumed = 7.3/13.333 = 54.75%, so remaining Moon dasha = 10 x (1 - 0.5475) = 4.525 years = 4 years, 6 months, 9 days.",
+        "te": "True. Each nakshatra spans 13 degrees 20 minutes (13.333 degrees). The formula is: Remaining Dasha = Total Dasha Years x (1 - degrees traversed / 13.333). If Moon is at the start of a nakshatra, nearly the full period remains. If near the end, only a fraction remains. For example, Moon at 7.3 degrees into Hasta (Moon-ruled): fraction consumed = 7.3/13.333 = 54.75%, so remaining Moon dasha = 10 x (1 - 0.5475) = 4.525 years = 4 years, 6 months, 9 days.",
+        "bn": "True. Each nakshatra spans 13 degrees 20 minutes (13.333 degrees). The formula is: Remaining Dasha = Total Dasha Years x (1 - degrees traversed / 13.333). If Moon is at the start of a nakshatra, nearly the full period remains. If near the end, only a fraction remains. For example, Moon at 7.3 degrees into Hasta (Moon-ruled): fraction consumed = 7.3/13.333 = 54.75%, so remaining Moon dasha = 10 x (1 - 0.5475) = 4.525 years = 4 years, 6 months, 9 days.",
+        "kn": "True. Each nakshatra spans 13 degrees 20 minutes (13.333 degrees). The formula is: Remaining Dasha = Total Dasha Years x (1 - degrees traversed / 13.333). If Moon is at the start of a nakshatra, nearly the full period remains. If near the end, only a fraction remains. For example, Moon at 7.3 degrees into Hasta (Moon-ruled): fraction consumed = 7.3/13.333 = 54.75%, so remaining Moon dasha = 10 x (1 - 0.5475) = 4.525 years = 4 years, 6 months, 9 days.",
+        "mr": "सत्य। प्रत्येक नक्षत्र 13 अंश 20 कला (13.333 अंश) का होता है। सूत्र: शेष दशा = कुल दशा वर्ष x (1 - तय किए अंश / 13.333)। यदि चन्द्रमा नक्षत्र के आरम्भ में है तो लगभग पूरी अवधि शेष। अन्त के निकट है तो केवल अंश शेष। उदाहरण: हस्त (चन्द्र-शासित) में 7.3 अंश पर चन्द्रमा: व्यतीत अंश = 7.3/13.333 = 54.75%, अतः शेष चन्द्र दशा = 10 x (1 - 0.5475) = 4.525 वर्ष = 4 वर्ष, 6 मास, 9 दिन।",
+        "gu": "True. Each nakshatra spans 13 degrees 20 minutes (13.333 degrees). The formula is: Remaining Dasha = Total Dasha Years x (1 - degrees traversed / 13.333). If Moon is at the start of a nakshatra, nearly the full period remains. If near the end, only a fraction remains. For example, Moon at 7.3 degrees into Hasta (Moon-ruled): fraction consumed = 7.3/13.333 = 54.75%, so remaining Moon dasha = 10 x (1 - 0.5475) = 4.525 years = 4 years, 6 months, 9 days.",
+        "mai": "सत्य। प्रत्येक नक्षत्र 13 अंश 20 कला (13.333 अंश) का होता है। सूत्र: शेष दशा = कुल दशा वर्ष x (1 - तय किए अंश / 13.333)। यदि चन्द्रमा नक्षत्र के आरम्भ में है तो लगभग पूरी अवधि शेष। अन्त के निकट है तो केवल अंश शेष। उदाहरण: हस्त (चन्द्र-शासित) में 7.3 अंश पर चन्द्रमा: व्यतीत अंश = 7.3/13.333 = 54.75%, अतः शेष चन्द्र दशा = 10 x (1 - 0.5475) = 4.525 वर्ष = 4 वर्ष, 6 मास, 9 दिन।"
+      }
+    },
+    {
+      "id": "q11_1_10",
+      "type": "mcq",
+      "question": {
+        "en": "Saturn dasha for a Taurus (Vrishabha) ascendant is generally considered:",
+        "hi": "वृषभ लग्न के लिए शनि दशा सामान्यतः मानी जाती है:",
+        "sa": "वृषभ लग्न के लिए शनि दशा सामान्यतः मानी जाती है:",
+        "ta": "Saturn dasha for a Taurus (Vrishabha) ascendant is generally considered:",
+        "te": "Saturn dasha for a Taurus (Vrishabha) ascendant is generally considered:",
+        "bn": "Saturn dasha for a Taurus (Vrishabha) ascendant is generally considered:",
+        "kn": "Saturn dasha for a Taurus (Vrishabha) ascendant is generally considered:",
+        "mr": "वृषभ लग्न के लिए शनि दशा सामान्यतः मानी जाती है:",
+        "gu": "Saturn dasha for a Taurus (Vrishabha) ascendant is generally considered:",
+        "mai": "वृषभ लग्न के लिए शनि दशा सामान्यतः मानी जाती है:"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "For Taurus ascendant, Saturn is a Yogakaraka — it rules BOTH a trine (9th house, Capricorn) and an angle (10th house, Aquarius). This makes Saturn dasha potentially the best period for Taurus natives, bringing career success, spiritual growth, foreign travel, and fortune. This disproves the common misconception that \"Saturn dasha is always bad.\" Always judge by house lordship, not planetary name.",
+        "hi": "वृषभ लग्न के लिए शनि योगकारक है — यह त्रिकोण (9वाँ भाव, मकर) और केन्द्र (10वाँ भाव, कुम्भ) दोनों का स्वामी है। इससे शनि दशा वृषभ जातकों के लिए सम्भवतः सर्वोत्तम काल बनती है — कैरियर सफलता, आध्यात्मिक वृद्धि, विदेश यात्रा और भाग्योदय। यह \"शनि दशा सदा बुरी\" की सामान्य भ्रान्ति को खण्डित करता है। सदा भावेशत्व से आँकें, ग्रह के नाम से नहीं।",
+        "sa": "वृषभ लग्न के लिए शनि योगकारक है — यह त्रिकोण (9वाँ भाव, मकर) और केन्द्र (10वाँ भाव, कुम्भ) दोनों का स्वामी है। इससे शनि दशा वृषभ जातकों के लिए सम्भवतः सर्वोत्तम काल बनती है — कैरियर सफलता, आध्यात्मिक वृद्धि, विदेश यात्रा और भाग्योदय। यह \"शनि दशा सदा बुरी\" की सामान्य भ्रान्ति को खण्डित करता है। सदा भावेशत्व से आँकें, ग्रह के नाम से नहीं।",
+        "ta": "For Taurus ascendant, Saturn is a Yogakaraka — it rules BOTH a trine (9th house, Capricorn) and an angle (10th house, Aquarius). This makes Saturn dasha potentially the best period for Taurus natives, bringing career success, spiritual growth, foreign travel, and fortune. This disproves the common misconception that \"Saturn dasha is always bad.\" Always judge by house lordship, not planetary name.",
+        "te": "For Taurus ascendant, Saturn is a Yogakaraka — it rules BOTH a trine (9th house, Capricorn) and an angle (10th house, Aquarius). This makes Saturn dasha potentially the best period for Taurus natives, bringing career success, spiritual growth, foreign travel, and fortune. This disproves the common misconception that \"Saturn dasha is always bad.\" Always judge by house lordship, not planetary name.",
+        "bn": "For Taurus ascendant, Saturn is a Yogakaraka — it rules BOTH a trine (9th house, Capricorn) and an angle (10th house, Aquarius). This makes Saturn dasha potentially the best period for Taurus natives, bringing career success, spiritual growth, foreign travel, and fortune. This disproves the common misconception that \"Saturn dasha is always bad.\" Always judge by house lordship, not planetary name.",
+        "kn": "For Taurus ascendant, Saturn is a Yogakaraka — it rules BOTH a trine (9th house, Capricorn) and an angle (10th house, Aquarius). This makes Saturn dasha potentially the best period for Taurus natives, bringing career success, spiritual growth, foreign travel, and fortune. This disproves the common misconception that \"Saturn dasha is always bad.\" Always judge by house lordship, not planetary name.",
+        "mr": "वृषभ लग्न के लिए शनि योगकारक है — यह त्रिकोण (9वाँ भाव, मकर) और केन्द्र (10वाँ भाव, कुम्भ) दोनों का स्वामी है। इससे शनि दशा वृषभ जातकों के लिए सम्भवतः सर्वोत्तम काल बनती है — कैरियर सफलता, आध्यात्मिक वृद्धि, विदेश यात्रा और भाग्योदय। यह \"शनि दशा सदा बुरी\" की सामान्य भ्रान्ति को खण्डित करता है। सदा भावेशत्व से आँकें, ग्रह के नाम से नहीं।",
+        "gu": "For Taurus ascendant, Saturn is a Yogakaraka — it rules BOTH a trine (9th house, Capricorn) and an angle (10th house, Aquarius). This makes Saturn dasha potentially the best period for Taurus natives, bringing career success, spiritual growth, foreign travel, and fortune. This disproves the common misconception that \"Saturn dasha is always bad.\" Always judge by house lordship, not planetary name.",
+        "mai": "वृषभ लग्न के लिए शनि योगकारक है — यह त्रिकोण (9वाँ भाव, मकर) और केन्द्र (10वाँ भाव, कुम्भ) दोनों का स्वामी है। इससे शनि दशा वृषभ जातकों के लिए सम्भवतः सर्वोत्तम काल बनती है — कैरियर सफलता, आध्यात्मिक वृद्धि, विदेश यात्रा और भाग्योदय। यह \"शनि दशा सदा बुरी\" की सामान्य भ्रान्ति को खण्डित करता है। सदा भावेशत्व से आँकें, ग्रह के नाम से नहीं।"
+      },
+      "options": [
+        {
+          "en": "Always terrible — Saturn is a malefic",
+          "hi": "सदा भयावह — शनि पाप ग्रह है",
+          "sa": "सदा भयावह — शनि पाप ग्रह है",
+          "mai": "सदा भयावह — शनि पाप ग्रह है",
+          "mr": "सदा भयावह — शनि पाप ग्रह है",
+          "ta": "Always terrible — Saturn is a malefic",
+          "te": "Always terrible — Saturn is a malefic",
+          "bn": "Always terrible — Saturn is a malefic",
+          "kn": "Always terrible — Saturn is a malefic",
+          "gu": "Always terrible — Saturn is a malefic"
+        },
+        {
+          "en": "Excellent — Saturn rules the 9th (luck) and 10th (career) houses as a Yogakaraka",
+          "hi": "उत्कृष्ट — शनि योगकारक के रूप में 9वें (भाग्य) और 10वें (कर्म) भावों का स्वामी है",
+          "sa": "उत्कृष्ट — शनि योगकारक के रूप में 9वें (भाग्य) और 10वें (कर्म) भावों का स्वामी है",
+          "mai": "उत्कृष्ट — शनि योगकारक के रूप में 9वें (भाग्य) और 10वें (कर्म) भावों का स्वामी है",
+          "mr": "उत्कृष्ट — शनि योगकारक के रूप में 9वें (भाग्य) और 10वें (कर्म) भावों का स्वामी है",
+          "ta": "Excellent — Saturn rules the 9th (luck) and 10th (career) houses as a Yogakaraka",
+          "te": "Excellent — Saturn rules the 9th (luck) and 10th (career) houses as a Yogakaraka",
+          "bn": "Excellent — Saturn rules the 9th (luck) and 10th (career) houses as a Yogakaraka",
+          "kn": "Excellent — Saturn rules the 9th (luck) and 10th (career) houses as a Yogakaraka",
+          "gu": "Excellent — Saturn rules the 9th (luck) and 10th (career) houses as a Yogakaraka"
+        },
+        {
+          "en": "Neutral — Saturn has no special role for Taurus",
+          "hi": "तटस्थ — वृषभ के लिए शनि की कोई विशेष भूमिका नहीं",
+          "sa": "तटस्थ — वृषभ के लिए शनि की कोई विशेष भूमिका नहीं",
+          "mai": "तटस्थ — वृषभ के लिए शनि की कोई विशेष भूमिका नहीं",
+          "mr": "तटस्थ — वृषभ के लिए शनि की कोई विशेष भूमिका नहीं",
+          "ta": "Neutral — Saturn has no special role for Taurus",
+          "te": "Neutral — Saturn has no special role for Taurus",
+          "bn": "Neutral — Saturn has no special role for Taurus",
+          "kn": "Neutral — Saturn has no special role for Taurus",
+          "gu": "Neutral — Saturn has no special role for Taurus"
+        },
+        {
+          "en": "Good only if Saturn is exalted",
+          "hi": "केवल शनि उच्च हो तो अच्छी",
+          "sa": "केवल शनि उच्च हो तो अच्छी",
+          "mai": "केवल शनि उच्च हो तो अच्छी",
+          "mr": "केवल शनि उच्च हो तो अच्छी",
+          "ta": "Good only if Saturn is exalted",
+          "te": "Good only if Saturn is exalted",
+          "bn": "Good only if Saturn is exalted",
+          "kn": "Good only if Saturn is exalted",
+          "gu": "Good only if Saturn is exalted"
+        }
+      ]
+    }
+  ]
+}

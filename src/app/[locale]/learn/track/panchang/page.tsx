@@ -1,12 +1,14 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { ChevronRight, Calendar } from 'lucide-react';
-import type { Locale ,LocaleText} from '@/types/panchang';
+import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/track-panchang.json';
 
 interface Section {
   id: string;
@@ -92,45 +94,13 @@ const SECTIONS: Section[] = [
   },
 ];
 
-const L = {
-  en: {
-    badge: 'Track 2',
-    title: 'Panchang \u2014 The Daily Practice',
-    sub: 'Reading the cosmic weather that governs every day \u2014 Tithi, Nakshatra, Yoga, Karana, and Vara',
-    startHere: 'Start Here',
-    modules: 'modules',
-    deepDive: 'Deep Dive',
-    backToLearn: 'All Tracks',
-    refsOnly: 'Reference pages only',
-  },
-  hi: {
-    badge: 'ट्रैक 2',
-    title: 'पंचांग \u2014 दैनिक अभ्यास',
-    sub: 'प्रतिदिन के ब्रह्माण्डीय मौसम को पढ़ना \u2014 तिथि, नक्षत्र, योग, करण, और वार',
-    startHere: 'यहाँ से शुरू करें',
-    modules: 'मॉड्यूल',
-    deepDive: 'गहन अध्ययन',
-    backToLearn: 'सभी ट्रैक',
-    refsOnly: 'केवल संदर्भ पृष्ठ',
-  },
-  sa: {
-    badge: 'मार्गः 2',
-    title: 'पञ्चाङ्गम् \u2014 दैनिकाभ्यासः',
-    sub: 'प्रतिदिनस्य ब्रह्माण्डीयवातावरणं पठति \u2014 तिथिः, नक्षत्रम्, योगः, करणम्, वारश्च',
-    startHere: 'अत्र आरभतु',
-    modules: 'मॉड्यूलाः',
-    deepDive: 'गहनाध्ययनम्',
-    backToLearn: 'सर्वे मार्गाः',
-    refsOnly: 'सन्दर्भपृष्ठानि केवलम्',
-  },
-};
 
 export default function PanchangTrackPage() {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
-  const l = (L as Record<string, typeof L.en>)[locale] || L.en;
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
   return (
     <div>
@@ -146,25 +116,25 @@ export default function PanchangTrackPage() {
         <div className="relative z-10">
           <Link href="/learn" className="inline-flex items-center gap-1.5 text-gold-light/70 hover:text-amber-200 text-xs uppercase tracking-wider mb-6 transition-colors">
             <ChevronRight className="w-3 h-3 rotate-180" />
-            {l.backToLearn}
+            {t('backToLearn')}
           </Link>
 
           <div className="flex items-center gap-3 mb-4">
             <Calendar className="w-6 h-6 text-gold-light" />
-            <span className="text-gold-light text-xs uppercase tracking-widest font-bold">{l.badge}</span>
+            <span className="text-gold-light text-xs uppercase tracking-widest font-bold">{t('badge')}</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3" style={hf}>
-            {l.title}
+            {t('title')}
           </h1>
-          <p className="text-amber-200/60 text-lg max-w-2xl mb-8" style={bf}>{l.sub}</p>
+          <p className="text-amber-200/60 text-lg max-w-2xl mb-8" style={bf}>{t('sub')}</p>
 
           <Link
             href="/learn/modules/5-1"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gold-primary/20 text-gold-light border border-gold-primary/30 font-bold text-sm hover:bg-gold-primary/30 transition-colors"
             style={hf}
           >
-            {l.startHere}
+            {t('startHere')}
             <ChevronRight className="w-4 h-4" />
           </Link>
         </div>
@@ -191,8 +161,8 @@ export default function PanchangTrackPage() {
               {(() => {
                 const modCount = section.modules.filter(m => !m.id.startsWith('ref:')).length;
                 return modCount > 0
-                  ? <span className="ml-auto text-gold-primary/40 text-xs font-mono">{modCount} {l.modules}</span>
-                  : <span className="ml-auto text-gold-primary/30 text-xs italic">{l.refsOnly}</span>;
+                  ? <span className="ml-auto text-gold-primary/40 text-xs font-mono">{modCount} {t('modules')}</span>
+                  : <span className="ml-auto text-gold-primary/30 text-xs italic">{t('refsOnly')}</span>;
               })()}
             </div>
 

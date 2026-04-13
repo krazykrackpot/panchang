@@ -1,6 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/planet-in-house.json';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Home, Star } from 'lucide-react';
@@ -174,7 +177,8 @@ const CLASSIFICATIONS = [
 
 /* ── Component ───────────────────────────────────────────────────── */
 export default function PlanetInHousePage() {
-  const locale = useLocale() as 'en' | 'hi' | 'sa';
+  const locale = useLocale() as string;
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
   const [selPlanet, setSelPlanet] = useState<number | null>(null);
   const [selHouse, setSelHouse] = useState<number | null>(null);
 
@@ -188,23 +192,22 @@ export default function PlanetInHousePage() {
       <div className="mx-auto max-w-5xl px-4 py-12">
         {/* Header */}
         <nav className="mb-8 flex items-center gap-2 text-sm text-[#d4a853]/60">
-          <Link href="/learn" className="hover:text-[#d4a853]">Learn</Link>
+          <Link href="/learn" className="hover:text-[#d4a853]">{t('breadcrumbLearn')}</Link>
           <span>/</span>
-          <span className="text-[#d4a853]">Planet in House</span>
+          <span className="text-[#d4a853]">{t('breadcrumbCurrent')}</span>
         </nav>
 
         <h1 className="mb-2 text-4xl font-bold text-[#d4a853]">
-          Planet in House
-          <span className="ml-3 text-xl text-[#d4a853]/50">ग्रह-भाव फल</span>
+          {t('title')}
+          <span className="ml-3 text-xl text-[#d4a853]/50">{t('titleSa')}</span>
         </h1>
         <p className="mb-10 max-w-2xl text-base text-text-secondary">
-          The foundation of chart interpretation. Select a planet and a house to see its effect.
-          Each of the 108 combinations reveals how a graha colors the affairs of a bhava.
+          {t('subtitle')}
         </p>
 
         {/* Planet Selector */}
         <div className="mb-6">
-          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-text-secondary/60">Select Planet</h2>
+          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-text-secondary/60">{t('selectPlanet')}</h2>
           <div className="flex flex-wrap gap-2">
             {PLANETS.map(p => (
               <button
@@ -235,7 +238,7 @@ export default function PlanetInHousePage() {
 
         {/* House Selector */}
         <div className="mb-8">
-          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-text-secondary/60">Select House</h2>
+          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-text-secondary/60">{t('selectHouse')}</h2>
           <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-6">
             {HOUSES.map(h => {
               const isSelected = selHouse === h.num;
@@ -291,7 +294,7 @@ export default function PlanetInHousePage() {
                   </span>
                   <div>
                     <h3 className="text-lg font-bold text-white">
-                      {planet.name} in House {house.num}
+                      {planet.name} {t('inHouse')} {house.num}
                     </h3>
                     <span className="text-sm text-text-secondary/60">
                       {planet.sa} — {house.sign} ({house.sa})
@@ -313,7 +316,7 @@ export default function PlanetInHousePage() {
             >
               <div>
                 <Star className="mx-auto mb-3 h-8 w-8 opacity-30" />
-                <p>Select a planet and a house above to see the interpretation</p>
+                <p>{t('placeholder')}</p>
               </div>
             </motion.div>
           )}
@@ -322,8 +325,8 @@ export default function PlanetInHousePage() {
         {/* House Classification Diagram */}
         <section>
           <h2 className="mb-6 text-2xl font-bold text-[#d4a853]">
-            House Classifications
-            <span className="ml-2 text-sm font-normal text-[#d4a853]/40">भाव वर्गीकरण</span>
+            {t('houseClassifications')}
+            <span className="ml-2 text-sm font-normal text-[#d4a853]/40">{t('houseClassificationsSa')}</span>
           </h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {CLASSIFICATIONS.map(cls => (
@@ -387,10 +390,10 @@ export default function PlanetInHousePage() {
               })}
               {/* Center label */}
               <text x="160" y="155" textAnchor="middle" fill="#d4a853" className="text-xs font-medium opacity-60">
-                Bhava
+                {t('bhavaChakra')}
               </text>
               <text x="160" y="172" textAnchor="middle" fill="#d4a853" className="text-xs opacity-40">
-                Chakra
+                {t('chakra')}
               </text>
             </svg>
           </div>

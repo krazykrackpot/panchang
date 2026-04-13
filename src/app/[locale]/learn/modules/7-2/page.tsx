@@ -3,181 +3,19 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/7-2.json';
 
 const META: ModuleMeta = {
   id: 'mod_7_2', phase: 2, topic: 'Yoga Karana', moduleNumber: '7.2',
-  title: { en: 'Karana — The Half-Tithi', hi: 'करण — अर्ध-तिथि', sa: 'करण — अर्ध-तिथि', mai: 'करण — अर्ध-तिथि', mr: 'करण — अर्ध-तिथि', ta: 'Karana — The Half-Tithi', te: 'Karana — The Half-Tithi', bn: 'Karana — The Half-Tithi', kn: 'Karana — The Half-Tithi', gu: 'Karana — The Half-Tithi' },
-  subtitle: {
-    en: 'Each tithi splits into two karanas (6° of elongation each), yielding 60 karanas per lunar month from 7 movable and 4 fixed types',
-    hi: 'प्रत्येक तिथि दो करणों (प्रत्येक 6° कोणीय दूरी) में विभक्त होती है, जिससे 7 चर और 4 स्थिर प्रकारों से प्रति चान्द्र मास 60 करण बनते हैं',
-  },
+  title: L.title as unknown as ModuleMeta['title'],
+  subtitle: L.subtitle as unknown as ModuleMeta['subtitle'],
   estimatedMinutes: 13,
-  crossRefs: [
-    { label: { en: 'Module 7-1: Yoga', hi: 'मॉड्यूल 7-1: योग', sa: 'मॉड्यूल 7-1: योग', mai: 'मॉड्यूल 7-1: योग', mr: 'मॉड्यूल 7-1: योग', ta: 'Module 7-1: Yoga', te: 'Module 7-1: Yoga', bn: 'Module 7-1: Yoga', kn: 'Module 7-1: Yoga', gu: 'Module 7-1: Yoga' }, href: '/learn/modules/7-1' },
-    { label: { en: 'Module 7-3: Vara', hi: 'मॉड्यूल 7-3: वार', sa: 'मॉड्यूल 7-3: वार', mai: 'मॉड्यूल 7-3: वार', mr: 'मॉड्यूल 7-3: वार', ta: 'Module 7-3: Vara', te: 'Module 7-3: Vara', bn: 'Module 7-3: Vara', kn: 'Module 7-3: Vara', gu: 'Module 7-3: Vara' }, href: '/learn/modules/7-3' },
-    { label: { en: 'Karanas Deep Dive', hi: 'करण विस्तार', sa: 'करण विस्तार', mai: 'करण विस्तार', mr: 'करण विस्तार', ta: 'Karanas Deep Dive', te: 'Karanas Deep Dive', bn: 'Karanas Deep Dive', kn: 'Karanas Deep Dive', gu: 'Karanas Deep Dive' }, href: '/learn/karanas' },
-    { label: { en: 'Daily Karana', hi: 'दैनिक करण', sa: 'दैनिक करण', mai: 'दैनिक करण', mr: 'दैनिक करण', ta: 'Daily Karana', te: 'Daily Karana', bn: 'Daily Karana', kn: 'Daily Karana', gu: 'Daily Karana' }, href: '/panchang/karana' },
-  ],
+  crossRefs: L.crossRefs as unknown as ModuleMeta['crossRefs'],
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q7_2_01', type: 'mcq',
-    question: {
-      en: 'A karana is defined as what fraction of a tithi?',
-      hi: 'करण, तिथि का कितना भाग होता है?',
-    },
-    options: [
-      { en: 'One-third of a tithi', hi: 'तिथि का एक-तिहाई', sa: 'तिथि का एक-तिहाई', mai: 'तिथि का एक-तिहाई', mr: 'तिथि का एक-तिहाई', ta: 'One-third of a tithi', te: 'One-third of a tithi', bn: 'One-third of a tithi', kn: 'One-third of a tithi', gu: 'One-third of a tithi' },
-      { en: 'One-half of a tithi', hi: 'तिथि का आधा भाग', sa: 'तिथि का आधा भाग', mai: 'तिथि का आधा भाग', mr: 'तिथि का आधा भाग', ta: 'One-half of a tithi', te: 'One-half of a tithi', bn: 'One-half of a tithi', kn: 'One-half of a tithi', gu: 'One-half of a tithi' },
-      { en: 'One-quarter of a tithi', hi: 'तिथि का एक-चौथाई', sa: 'तिथि का एक-चौथाई', mai: 'तिथि का एक-चौथाई', mr: 'तिथि का एक-चौथाई', ta: 'One-quarter of a tithi', te: 'One-quarter of a tithi', bn: 'One-quarter of a tithi', kn: 'One-quarter of a tithi', gu: 'One-quarter of a tithi' },
-      { en: 'Two tithis combined', hi: 'दो तिथियों का संयोग', sa: 'दो तिथियों का संयोग', mai: 'दो तिथियों का संयोग', mr: 'दो तिथियों का संयोग', ta: 'Two tithis combined', te: 'Two tithis combined', bn: 'Two tithis combined', kn: 'Two tithis combined', gu: 'Two tithis combined' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'A karana is exactly half of a tithi. Since each tithi spans 12° of Moon-Sun elongation, each karana spans 6°. Every tithi contains two karanas, giving 60 karanas in a 30-tithi lunar month.',
-      hi: 'करण तिथि का ठीक आधा भाग है। चूँकि प्रत्येक तिथि चन्द्र-सूर्य कोणीय दूरी के 12° की होती है, प्रत्येक करण 6° का होता है। हर तिथि में दो करण होते हैं, जिससे 30-तिथि चान्द्र मास में 60 करण बनते हैं।',
-    },
-  },
-  {
-    id: 'q7_2_02', type: 'mcq',
-    question: {
-      en: 'How many Chara (movable) karanas are there?',
-      hi: 'कितने चर (गतिशील) करण होते हैं?',
-    },
-    options: [
-      { en: '4', hi: '4', sa: '4', mai: '4', mr: '4', ta: '4', te: '4', bn: '4', kn: '4', gu: '4' },
-      { en: '7', hi: '7', sa: '7', mai: '7', mr: '7', ta: '7', te: '7', bn: '7', kn: '7', gu: '7' },
-      { en: '11', hi: '11', sa: '11', mai: '11', mr: '11', ta: '11', te: '11', bn: '11', kn: '11', gu: '11' },
-      { en: '27', hi: '27', sa: '27', mai: '27', mr: '27', ta: '27', te: '27', bn: '27', kn: '27', gu: '27' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'There are 7 Chara karanas that cycle repeatedly: Bava, Balava, Kaulava, Taitila, Gara, Vanija, and Vishti (Bhadra). They occupy slots 2 through 57 of the 60-karana month.',
-      hi: '7 चर करण हैं जो बारम्बार चक्रित होते हैं: बव, बालव, कौलव, तैतिल, गर, वणिज और विष्टि (भद्र)। ये 60-करण मास के स्थान 2 से 57 तक व्याप्त हैं।',
-    },
-  },
-  {
-    id: 'q7_2_03', type: 'true_false',
-    question: {
-      en: 'The 4 Sthira (fixed) karanas — Shakuni, Chatushpada, Nagava, Kimstughna — appear only once each in a lunar month.',
-      hi: '4 स्थिर करण — शकुनि, चतुष्पद, नागव, किंस्तुघ्न — चान्द्र मास में प्रत्येक केवल एक बार आता है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. The 4 fixed karanas each appear exactly once per lunar month. Kimstughna occupies the first half of Shukla Pratipada (slot 1), and Shakuni, Chatushpada, Nagava occupy the last three slots (58, 59, 60) at the end of Krishna Paksha.',
-      hi: 'सत्य। 4 स्थिर करण प्रत्येक चान्द्र मास में ठीक एक बार आते हैं। किंस्तुघ्न शुक्ल प्रतिपदा के प्रथम अर्ध (स्थान 1) में, और शकुनि, चतुष्पद, नागव अन्तिम तीन स्थानों (58, 59, 60) में कृष्ण पक्ष के अन्त में आते हैं।',
-    },
-  },
-  {
-    id: 'q7_2_04', type: 'mcq',
-    question: {
-      en: 'Vishti (Bhadra) karana is significant because it is:',
-      hi: 'विष्टि (भद्र) करण महत्वपूर्ण है क्योंकि यह है:',
-    },
-    options: [
-      { en: 'The most auspicious karana for marriage', hi: 'विवाह हेतु सर्वाधिक शुभ करण', sa: 'विवाह हेतु सर्वाधिक शुभ करण', mai: 'विवाह हेतु सर्वाधिक शुभ करण', mr: 'विवाह हेतु सर्वाधिक शुभ करण', ta: 'The most auspicious karana for marriage', te: 'The most auspicious karana for marriage', bn: 'The most auspicious karana for marriage', kn: 'The most auspicious karana for marriage', gu: 'The most auspicious karana for marriage' },
-      { en: 'The most inauspicious Chara karana, occurring 8 times per month', hi: 'सर्वाधिक अशुभ चर करण, मास में 8 बार आता है', sa: 'सर्वाधिक अशुभ चर करण, मास में 8 बार आता है', mai: 'सर्वाधिक अशुभ चर करण, मास में 8 बार आता है', mr: 'सर्वाधिक अशुभ चर करण, मास में 8 बार आता है', ta: 'The most inauspicious Chara karana, occurring 8 times per month', te: 'The most inauspicious Chara karana, occurring 8 times per month', bn: 'The most inauspicious Chara karana, occurring 8 times per month', kn: 'The most inauspicious Chara karana, occurring 8 times per month', gu: 'The most inauspicious Chara karana, occurring 8 times per month' },
-      { en: 'A fixed karana appearing once per month', hi: 'एक स्थिर करण जो मास में एक बार आता है', sa: 'एक स्थिर करण जो मास में एक बार आता है', mai: 'एक स्थिर करण जो मास में एक बार आता है', mr: 'एक स्थिर करण जो मास में एक बार आता है', ta: 'A fixed karana appearing once per month', te: 'A fixed karana appearing once per month', bn: 'A fixed karana appearing once per month', kn: 'A fixed karana appearing once per month', gu: 'A fixed karana appearing once per month' },
-      { en: 'Identical to Vyatipata yoga', hi: 'व्यतीपात योग के समान', sa: 'व्यतीपात योग के समान', mai: 'व्यतीपात योग के समान', mr: 'व्यतीपात योग के समान', ta: 'Identical to Vyatipata yoga', te: 'Identical to Vyatipata yoga', bn: 'Identical to Vyatipata yoga', kn: 'Identical to Vyatipata yoga', gu: 'Identical to Vyatipata yoga' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Vishti (also called Bhadra) is the 7th Chara karana and is considered the most inauspicious. It appears 8 times in each lunar month (once in each cycle of 7, across the 56 Chara slots, though the exact count depends on placement). Auspicious activities are strongly avoided during Bhadra.',
-      hi: 'विष्टि (भद्र) सातवाँ चर करण है और सर्वाधिक अशुभ माना जाता है। यह प्रत्येक चान्द्र मास में 8 बार आता है। भद्र काल में शुभ कार्य दृढ़ता से वर्जित माने जाते हैं।',
-    },
-  },
-  {
-    id: 'q7_2_05', type: 'true_false',
-    question: {
-      en: 'When Bhadra (Vishti) is said to be "in heaven" (Bhadra mukha), its inauspicious effects are considered reduced.',
-      hi: 'जब भद्र (विष्टि) "स्वर्ग में" (भद्र मुख) कहा जाता है, तो इसके अशुभ प्रभाव कम माने जाते हैं।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Classical texts distinguish Bhadra mukha (face, in heaven) from Bhadra puchha (tail, on earth). When Bhadra is in heaven or the nether world, its malefic effects are diminished. When it is on earth (puchha), the inauspicious effects are at full strength.',
-      hi: 'सत्य। शास्त्रों में भद्र मुख (स्वर्ग में) और भद्र पुच्छ (पृथ्वी पर) में भेद किया गया है। जब भद्र स्वर्ग या पाताल में होती है, तो अशुभ प्रभाव क्षीण होते हैं। पृथ्वी पर (पुच्छ) होने पर अशुभ प्रभाव पूर्ण बल से रहते हैं।',
-    },
-  },
-  {
-    id: 'q7_2_06', type: 'mcq',
-    question: {
-      en: 'If the Moon-Sun elongation is 179°, what is the karana index?',
-      hi: 'यदि चन्द्र-सूर्य कोणीय दूरी 179° है, तो करण सूचकांक क्या होगा?',
-    },
-    options: [
-      { en: '28', hi: '28', sa: '28', mai: '28', mr: '28', ta: '28', te: '28', bn: '28', kn: '28', gu: '28' },
-      { en: '29', hi: '29', sa: '29', mai: '29', mr: '29', ta: '29', te: '29', bn: '29', kn: '29', gu: '29' },
-      { en: '30', hi: '30', sa: '30', mai: '30', mr: '30', ta: '30', te: '30', bn: '30', kn: '30', gu: '30' },
-      { en: '14', hi: '14', sa: '14', mai: '14', mr: '14', ta: '14', te: '14', bn: '14', kn: '14', gu: '14' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Karana index = floor(179 / 6) = floor(29.833) = 29. To find the karana name: index 0 = Kimstughna (fixed), indices 1-56 cycle through the 7 Chara karanas. For index 29: (29-1) mod 7 = 0, which maps to Bava (the 1st Chara karana).',
-      hi: 'करण सूचकांक = floor(179 / 6) = floor(29.833) = 29। करण का नाम: सूचकांक 0 = किंस्तुघ्न (स्थिर), सूचकांक 1-56 में 7 चर करण चक्रित होते हैं। सूचकांक 29 के लिए: (29-1) mod 7 = 0, जो बव (प्रथम चर करण) है।',
-    },
-  },
-  {
-    id: 'q7_2_07', type: 'mcq',
-    question: {
-      en: 'How many total karanas exist in one complete lunar month?',
-      hi: 'एक पूर्ण चान्द्र मास में कुल कितने करण होते हैं?',
-    },
-    options: [
-      { en: '30', hi: '30', sa: '30', mai: '30', mr: '30', ta: '30', te: '30', bn: '30', kn: '30', gu: '30' },
-      { en: '54', hi: '54', sa: '54', mai: '54', mr: '54', ta: '54', te: '54', bn: '54', kn: '54', gu: '54' },
-      { en: '60', hi: '60', sa: '60', mai: '60', mr: '60', ta: '60', te: '60', bn: '60', kn: '60', gu: '60' },
-      { en: '27', hi: '27', sa: '27', mai: '27', mr: '27', ta: '27', te: '27', bn: '27', kn: '27', gu: '27' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: '30 tithis × 2 karanas per tithi = 60 karanas in a lunar month. Of these, 4 are Sthira (fixed) karanas and 56 are filled by cycling through the 7 Chara karanas eight times.',
-      hi: '30 तिथियाँ × 2 करण प्रति तिथि = 60 करण प्रति चान्द्र मास। इनमें 4 स्थिर करण और 56 स्थान 7 चर करणों के आठ चक्रों से भरे जाते हैं।',
-    },
-  },
-  {
-    id: 'q7_2_08', type: 'true_false',
-    question: {
-      en: 'Karana is the fifth and least important limb of the Panchang, often ignored in muhurta selection.',
-      hi: 'करण पंचांग का पाँचवाँ और सबसे कम महत्वपूर्ण अंग है, मुहूर्त चयन में प्रायः उपेक्षित।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. While Karana is sometimes considered the least weighted of the five Panchang elements, it is NOT ignored. Vishti (Bhadra) karana in particular is a strong prohibitive factor that can veto otherwise auspicious windows. Muhurta texts explicitly warn against beginning important works during Bhadra.',
-      hi: 'असत्य। यद्यपि करण को पंचांग के पाँच अंगों में कभी-कभी सबसे कम भारित माना जाता है, इसे अनदेखा नहीं किया जाता। विशेषकर विष्टि (भद्र) करण एक प्रबल निषेधात्मक कारक है जो अन्यथा शुभ खिड़कियों को भी निरस्त कर सकता है।',
-    },
-  },
-  {
-    id: 'q7_2_09', type: 'mcq',
-    question: {
-      en: 'Each karana spans how many degrees of Moon-Sun elongation?',
-      hi: 'प्रत्येक करण चन्द्र-सूर्य कोणीय दूरी के कितने अंशों का होता है?',
-    },
-    options: [
-      { en: '12°', hi: '12°', sa: '12°', mai: '12°', mr: '12°', ta: '12°', te: '12°', bn: '12°', kn: '12°', gu: '12°' },
-      { en: '6°', hi: '6°', sa: '6°', mai: '6°', mr: '6°', ta: '6°', te: '6°', bn: '6°', kn: '6°', gu: '6°' },
-      { en: '13°20\u2032', hi: '13°20\u2032', sa: '13°20\u2032', mai: '13°20\u2032', mr: '13°20\u2032', ta: '13°20\u2032', te: '13°20\u2032', bn: '13°20\u2032', kn: '13°20\u2032', gu: '13°20\u2032' },
-      { en: '3°', hi: '3°', sa: '3°', mai: '3°', mr: '3°', ta: '3°', te: '3°', bn: '3°', kn: '3°', gu: '3°' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Each karana spans 6° of Moon-Sun elongation. Since a tithi spans 12° and each tithi has two karanas, each karana is 12° / 2 = 6°.',
-      hi: 'प्रत्येक करण चन्द्र-सूर्य कोणीय दूरी के 6° का होता है। चूँकि तिथि 12° की होती है और प्रत्येक तिथि में दो करण हैं, प्रत्येक करण 12° / 2 = 6° का होता है।',
-    },
-  },
-  {
-    id: 'q7_2_10', type: 'true_false',
-    question: {
-      en: 'Bava karana is considered auspicious and is suitable for initiating new business ventures.',
-      hi: 'बव करण शुभ माना जाता है और नये व्यापारिक उद्यम आरम्भ करने हेतु उपयुक्त है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Bava is associated with strength and achievement. Among the 7 Chara karanas, Bava, Balava, Kaulava, and Taitila are generally considered auspicious, while Vishti (Bhadra) is inauspicious. Gara suits agriculture, and Vanija suits commerce.',
-      hi: 'सत्य। बव बल और उपलब्धि से सम्बन्धित है। 7 चर करणों में बव, बालव, कौलव और तैतिल सामान्यतः शुभ माने जाते हैं, जबकि विष्टि (भद्र) अशुभ है। गर कृषि के लिए और वणिज वाणिज्य के लिए उपयुक्त है।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = L.questions as unknown as ModuleQuestion[];
 
 function Page1() {
   const locale = useModuleLocale();

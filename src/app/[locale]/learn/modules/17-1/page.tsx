@@ -2,190 +2,19 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/17-1.json';
 
 const META: ModuleMeta = {
   id: 'mod_17_1', phase: 5, topic: 'Muhurta', moduleNumber: '17.1',
-  title: {
-    en: 'Muhurta Selection — The Science of Timing',
-    hi: 'मुहूर्त चयन — समय निर्धारण का विज्ञान',
-  },
-  subtitle: {
-    en: 'Choosing auspicious moments by combining Panchang elements, planetary strength, lagna, and personal compatibility into a unified scoring system',
-    hi: 'पंचांग तत्त्वों, ग्रह बल, लग्न और व्यक्तिगत अनुकूलता को एकीकृत अंकन पद्धति में संयोजित करके शुभ क्षणों का चयन',
-  },
+  title: L.title as unknown as ModuleMeta['title'],
+  subtitle: L.subtitle as unknown as ModuleMeta['subtitle'],
   estimatedMinutes: 15,
-  crossRefs: [
-    { label: { en: 'Module 17-2: Muhurta for Marriage', hi: 'मॉड्यूल 17-2: विवाह मुहूर्त', sa: 'मॉड्यूल 17-2: विवाह मुहूर्त', mai: 'मॉड्यूल 17-2: विवाह मुहूर्त', mr: 'मॉड्यूल 17-2: विवाह मुहूर्त', ta: 'Module 17-2: Muhurta for Marriage', te: 'Module 17-2: Muhurta for Marriage', bn: 'Module 17-2: Muhurta for Marriage', kn: 'Module 17-2: Muhurta for Marriage', gu: 'Module 17-2: Muhurta for Marriage' }, href: '/learn/modules/17-2' },
-    { label: { en: 'Module 17-3: Muhurta for Property & Travel', hi: 'मॉड्यूल 17-3: सम्पत्ति एवं यात्रा मुहूर्त', sa: 'मॉड्यूल 17-3: सम्पत्ति एवं यात्रा मुहूर्त', mai: 'मॉड्यूल 17-3: सम्पत्ति एवं यात्रा मुहूर्त', mr: 'मॉड्यूल 17-3: सम्पत्ति एवं यात्रा मुहूर्त', ta: 'Module 17-3: Muhurta for Property & Travel', te: 'Module 17-3: Muhurta for Property & Travel', bn: 'Module 17-3: Muhurta for Property & Travel', kn: 'Module 17-3: Muhurta for Property & Travel', gu: 'Module 17-3: Muhurta for Property & Travel' }, href: '/learn/modules/17-3' },
-    { label: { en: 'Module 17-4: Muhurta for Education & Naming', hi: 'मॉड्यूल 17-4: शिक्षा एवं नामकरण मुहूर्त', sa: 'मॉड्यूल 17-4: शिक्षा एवं नामकरण मुहूर्त', mai: 'मॉड्यूल 17-4: शिक्षा एवं नामकरण मुहूर्त', mr: 'मॉड्यूल 17-4: शिक्षा एवं नामकरण मुहूर्त', ta: 'Module 17-4: Muhurta for Education & Naming', te: 'Module 17-4: Muhurta for Education & Naming', bn: 'Module 17-4: Muhurta for Education & Naming', kn: 'Module 17-4: Muhurta for Education & Naming', gu: 'Module 17-4: Muhurta for Education & Naming' }, href: '/learn/modules/17-4' },
-    { label: { en: 'Muhurta AI Tool', hi: 'मुहूर्त AI उपकरण', sa: 'मुहूर्त AI उपकरण', mai: 'मुहूर्त AI उपकरण', mr: 'मुहूर्त AI उपकरण', ta: 'Muhurta AI Tool', te: 'Muhurta AI Tool', bn: 'Muhurta AI Tool', kn: 'Muhurta AI Tool', gu: 'Muhurta AI Tool' }, href: '/muhurta-ai' },
-  ],
+  crossRefs: (L.crossRefs as unknown as Array<{ label: ModuleMeta['title']; href: string }>).map(cr => ({ label: cr.label, href: cr.href })),
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q17_1_01', type: 'mcq',
-    question: {
-      en: 'What is Muhurta in Vedic astrology?',
-      hi: 'वैदिक ज्योतिष में मुहूर्त क्या है?',
-    },
-    options: [
-      { en: 'A type of yoga combination', hi: 'एक प्रकार का योग संयोजन', sa: 'एक प्रकार का योग संयोजन', mai: 'एक प्रकार का योग संयोजन', mr: 'एक प्रकार का योग संयोजन', ta: 'A type of yoga combination', te: 'A type of yoga combination', bn: 'A type of yoga combination', kn: 'A type of yoga combination', gu: 'A type of yoga combination' },
-      { en: 'Choosing an auspicious time to begin an important activity', hi: 'किसी महत्वपूर्ण कार्य को आरम्भ करने के लिए शुभ समय का चयन', sa: 'किसी महत्वपूर्ण कार्य को आरम्भ करने के लिए शुभ समय का चयन', mai: 'किसी महत्वपूर्ण कार्य को आरम्भ करने के लिए शुभ समय का चयन', mr: 'किसी महत्वपूर्ण कार्य को आरम्भ करने के लिए शुभ समय का चयन', ta: 'Choosing an auspicious time to begin an important activity', te: 'Choosing an auspicious time to begin an important activity', bn: 'Choosing an auspicious time to begin an important activity', kn: 'Choosing an auspicious time to begin an important activity', gu: 'Choosing an auspicious time to begin an important activity' },
-      { en: 'A method of reading past lives', hi: 'पूर्वजन्म पढ़ने की विधि', sa: 'पूर्वजन्म पढ़ने की विधि', mai: 'पूर्वजन्म पढ़ने की विधि', mr: 'पूर्वजन्म पढ़ने की विधि', ta: 'A method of reading past lives', te: 'A method of reading past lives', bn: 'A method of reading past lives', kn: 'A method of reading past lives', gu: 'A method of reading past lives' },
-      { en: 'A type of divisional chart', hi: 'एक प्रकार का वर्ग कुण्डली', sa: 'एक प्रकार का वर्ग कुण्डली', mai: 'एक प्रकार का वर्ग कुण्डली', mr: 'एक प्रकार का वर्ग कुण्डली', ta: 'A type of divisional chart', te: 'A type of divisional chart', bn: 'A type of divisional chart', kn: 'A type of divisional chart', gu: 'A type of divisional chart' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Muhurta is the science of selecting an auspicious time for starting important activities. The concept is that the time you BEGIN something creates a "birth chart" for that activity, influencing its outcome — just as your birth time shapes your natal chart.',
-      hi: 'मुहूर्त महत्वपूर्ण कार्यों को आरम्भ करने के लिए शुभ समय चयन का विज्ञान है। अवधारणा यह है कि जिस समय आप कुछ आरम्भ करते हैं, वह उस कार्य की "जन्म कुण्डली" बनाता है, जो उसके परिणाम को प्रभावित करता है।',
-    },
-  },
-  {
-    id: 'q17_1_02', type: 'mcq',
-    question: {
-      en: 'Which 5 elements form the Panchang basis for Muhurta selection?',
-      hi: 'मुहूर्त चयन के लिए पंचांग के कौन-से 5 तत्त्व आधार बनते हैं?',
-    },
-    options: [
-      { en: 'Sun, Moon, Mars, Mercury, Jupiter', hi: 'सूर्य, चन्द्र, मंगल, बुध, बृहस्पति', sa: 'सूर्य, चन्द्र, मंगल, बुध, बृहस्पति', mai: 'सूर्य, चन्द्र, मंगल, बुध, बृहस्पति', mr: 'सूर्य, चन्द्र, मंगल, बुध, बृहस्पति', ta: 'Sun, Moon, Mars, Mercury, Jupiter', te: 'Sun, Moon, Mars, Mercury, Jupiter', bn: 'Sun, Moon, Mars, Mercury, Jupiter', kn: 'Sun, Moon, Mars, Mercury, Jupiter', gu: 'Sun, Moon, Mars, Mercury, Jupiter' },
-      { en: 'Tithi, Nakshatra, Yoga, Karana, Vara (weekday)', hi: 'तिथि, नक्षत्र, योग, करण, वार', sa: 'तिथि, नक्षत्र, योग, करण, वार', mai: 'तिथि, नक्षत्र, योग, करण, वार', mr: 'तिथि, नक्षत्र, योग, करण, वार', ta: 'Tithi, Nakshatra, Yoga, Karana, Vara (weekday)', te: 'Tithi, Nakshatra, Yoga, Karana, Vara (weekday)', bn: 'Tithi, Nakshatra, Yoga, Karana, Vara (weekday)', kn: 'Tithi, Nakshatra, Yoga, Karana, Vara (weekday)', gu: 'Tithi, Nakshatra, Yoga, Karana, Vara (weekday)' },
-      { en: 'Lagna, Navamsha, Dashamsha, Hora, Drekkana', hi: 'लग्न, नवमांश, दशमांश, होरा, द्रेक्काण', sa: 'लग्न, नवमांश, दशमांश, होरा, द्रेक्काण', mai: 'लग्न, नवमांश, दशमांश, होरा, द्रेक्काण', mr: 'लग्न, नवमांश, दशमांश, होरा, द्रेक्काण', ta: 'Lagna, Navamsha, Dashamsha, Hora, Drekkana', te: 'Lagna, Navamsha, Dashamsha, Hora, Drekkana', bn: 'Lagna, Navamsha, Dashamsha, Hora, Drekkana', kn: 'Lagna, Navamsha, Dashamsha, Hora, Drekkana', gu: 'Lagna, Navamsha, Dashamsha, Hora, Drekkana' },
-      { en: 'Rahu Kaal, Yamaghanda, Gulika, Abhijit, Brahma', hi: 'राहु काल, यमघण्ट, गुलिक, अभिजित, ब्रह्मा', sa: 'राहु काल, यमघण्ट, गुलिक, अभिजित, ब्रह्मा', mai: 'राहु काल, यमघण्ट, गुलिक, अभिजित, ब्रह्मा', mr: 'राहु काल, यमघण्ट, गुलिक, अभिजित, ब्रह्मा', ta: 'Rahu Kaal, Yamaghanda, Gulika, Abhijit, Brahma', te: 'Rahu Kaal, Yamaghanda, Gulika, Abhijit, Brahma', bn: 'Rahu Kaal, Yamaghanda, Gulika, Abhijit, Brahma', kn: 'Rahu Kaal, Yamaghanda, Gulika, Abhijit, Brahma', gu: 'Rahu Kaal, Yamaghanda, Gulika, Abhijit, Brahma' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The five Panchang elements — Tithi (lunar day), Nakshatra (lunar mansion), Yoga (Sun-Moon combination), Karana (half-tithi), and Vara (weekday) — form the primary assessment framework. Each element has shubha (auspicious) and ashubha (inauspicious) categories.',
-      hi: 'पाँच पंचांग तत्त्व — तिथि, नक्षत्र, योग, करण और वार — प्राथमिक मूल्यांकन ढाँचा बनाते हैं। प्रत्येक तत्त्व में शुभ और अशुभ श्रेणियाँ हैं।',
-    },
-  },
-  {
-    id: 'q17_1_03', type: 'true_false',
-    question: {
-      en: 'In the Muhurta hierarchy, Nakshatra is considered more important than Tithi.',
-      hi: 'मुहूर्त पदानुक्रम में नक्षत्र को तिथि से अधिक महत्वपूर्ण माना जाता है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. The classical hierarchy for Muhurta is: Nakshatra > Tithi > Yoga > Vara > Karana. The nakshatra at the time of starting an activity has the strongest influence. This is why most Muhurta consultations begin by identifying suitable nakshatras.',
-      hi: 'सत्य। मुहूर्त का शास्त्रीय पदानुक्रम है: नक्षत्र > तिथि > योग > वार > करण। कार्य आरम्भ के समय का नक्षत्र सबसे प्रबल प्रभाव रखता है। इसलिए अधिकांश मुहूर्त परामर्श उपयुक्त नक्षत्रों की पहचान से आरम्भ होते हैं।',
-    },
-  },
-  {
-    id: 'q17_1_04', type: 'mcq',
-    question: {
-      en: 'Which of the following should be AVOIDED in Muhurta selection?',
-      hi: 'मुहूर्त चयन में निम्नलिखित में से किससे बचना चाहिए?',
-    },
-    options: [
-      { en: 'Pushya nakshatra', hi: 'पुष्य नक्षत्र', sa: 'पुष्य नक्षत्र', mai: 'पुष्य नक्षत्र', mr: 'पुष्य नक्षत्र', ta: 'Pushya nakshatra', te: 'Pushya nakshatra', bn: 'Pushya nakshatra', kn: 'Pushya nakshatra', gu: 'Pushya nakshatra' },
-      { en: 'Rikta tithis, Vishti karana, and Rahu Kaal', hi: 'रिक्ता तिथियाँ, विष्टि करण और राहु काल', sa: 'रिक्ता तिथियाँ, विष्टि करण और राहु काल', mai: 'रिक्ता तिथियाँ, विष्टि करण और राहु काल', mr: 'रिक्ता तिथियाँ, विष्टि करण और राहु काल', ta: 'Rikta tithis, Vishti karana, and Rahu Kaal', te: 'Rikta tithis, Vishti karana, and Rahu Kaal', bn: 'Rikta tithis, Vishti karana, and Rahu Kaal', kn: 'Rikta tithis, Vishti karana, and Rahu Kaal', gu: 'Rikta tithis, Vishti karana, and Rahu Kaal' },
-      { en: 'Shukla paksha', hi: 'शुक्ल पक्ष', sa: 'शुक्ल पक्ष', mai: 'शुक्ल पक्ष', mr: 'शुक्ल पक्ष', ta: 'Shukla paksha', te: 'Shukla paksha', bn: 'Shukla paksha', kn: 'Shukla paksha', gu: 'Shukla paksha' },
-      { en: 'Thursday', hi: 'गुरुवार', sa: 'गुरुवार', mai: 'गुरुवार', mr: 'गुरुवार', ta: 'Thursday', te: 'Thursday', bn: 'Thursday', kn: 'Thursday', gu: 'Thursday' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Rikta tithis (4th, 9th, 14th — called "empty"), Vishti (Bhadra) karana, Vyatipata/Vaidhriti yoga, and Rahu Kaal are the primary elements to avoid. These are considered inauspicious for initiating new activities.',
-      hi: 'रिक्ता तिथियाँ (चतुर्थी, नवमी, चतुर्दशी — "खाली" कहलाती हैं), विष्टि (भद्रा) करण, व्यतीपात/वैधृति योग और राहु काल से मुख्य रूप से बचना चाहिए। ये नए कार्यों के आरम्भ के लिए अशुभ माने जाते हैं।',
-    },
-  },
-  {
-    id: 'q17_1_05', type: 'mcq',
-    question: {
-      en: 'Beyond the 5 Panchang elements, what additional factor is critical for Muhurta?',
-      hi: 'पंचांग के 5 तत्त्वों के अतिरिक्त, मुहूर्त के लिए कौन-सा अतिरिक्त कारक महत्वपूर्ण है?',
-    },
-    options: [
-      { en: 'The color of clothing worn', hi: 'पहने गए वस्त्रों का रंग', sa: 'पहने गए वस्त्रों का रंग', mai: 'पहने गए वस्त्रों का रंग', mr: 'पहने गए वस्त्रों का रंग', ta: 'The color of clothing worn', te: 'The color of clothing worn', bn: 'The color of clothing worn', kn: 'The color of clothing worn', gu: 'The color of clothing worn' },
-      { en: 'Lagna (rising sign at the event time)', hi: 'लग्न (कार्य के समय उदय राशि)', sa: 'लग्न (कार्य के समय उदय राशि)', mai: 'लग्न (कार्य के समय उदय राशि)', mr: 'लग्न (कार्य के समय उदय राशि)', ta: 'Lagna (rising sign at the event time)', te: 'Lagna (rising sign at the event time)', bn: 'Lagna (rising sign at the event time)', kn: 'Lagna (rising sign at the event time)', gu: 'Lagna (rising sign at the event time)' },
-      { en: 'The native\'s age only', hi: 'केवल जातक की आयु' },
-      { en: 'The direction of wind', hi: 'वायु की दिशा', sa: 'वायु की दिशा', mai: 'वायु की दिशा', mr: 'वायु की दिशा', ta: 'The direction of wind', te: 'The direction of wind', bn: 'The direction of wind', kn: 'The direction of wind', gu: 'The direction of wind' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Lagna (ascendant) at the time of starting the activity is critical. It acts as the "birth chart" of the event. A strong lagna lord, benefic planets in kendras (1st, 4th, 7th, 10th), and the right lagna for the activity type are essential for a good Muhurta.',
-      hi: 'कार्य आरम्भ के समय का लग्न महत्वपूर्ण है। यह कार्य की "जन्म कुण्डली" के रूप में कार्य करता है। लग्नेश का बलवान होना, केन्द्रों में शुभ ग्रह और कार्य के प्रकार के लिए उचित लग्न आवश्यक है।',
-    },
-  },
-  {
-    id: 'q17_1_06', type: 'true_false',
-    question: {
-      en: 'Vyatipata and Vaidhriti yogas are considered highly auspicious for starting new activities.',
-      hi: 'व्यतीपात और वैधृति योग नए कार्यों के आरम्भ के लिए अत्यन्त शुभ माने जाते हैं।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. Vyatipata and Vaidhriti are the two most inauspicious yogas among the 27 Panchang yogas. They are specifically avoided for all auspicious muhurtas. Vyatipata means "great calamity" and Vaidhriti means "obstruction."',
-      hi: 'असत्य। व्यतीपात और वैधृति 27 पंचांग योगों में दो सर्वाधिक अशुभ योग हैं। इन्हें सभी शुभ मुहूर्तों में विशेष रूप से टाला जाता है। व्यतीपात का अर्थ है "महान विपत्ति" और वैधृति का अर्थ है "बाधा"।',
-    },
-  },
-  {
-    id: 'q17_1_07', type: 'mcq',
-    question: {
-      en: 'Our Muhurta AI engine scores each time window on a scale of:',
-      hi: 'हमारा मुहूर्त AI इंजन प्रत्येक समय विंडो को किस पैमाने पर अंकित करता है?',
-    },
-    options: [
-      { en: '1 to 5 stars', hi: '1 से 5 तारे', sa: '1 से 5 तारे', mai: '1 से 5 तारे', mr: '1 से 5 तारे', ta: '1 to 5 stars', te: '1 to 5 stars', bn: '1 to 5 stars', kn: '1 to 5 stars', gu: '1 to 5 stars' },
-      { en: '0 to 100', hi: '0 से 100', sa: '0 से 100', mai: '0 से 100', mr: '0 से 100', ta: '0 to 100', te: '0 to 100', bn: '0 to 100', kn: '0 to 100', gu: '0 to 100' },
-      { en: 'Good / Bad only', hi: 'केवल अच्छा / बुरा', sa: 'केवल अच्छा / बुरा', mai: 'केवल अच्छा / बुरा', mr: 'केवल अच्छा / बुरा', ta: 'Good / Bad only', te: 'Good / Bad only', bn: 'Good / Bad only', kn: 'Good / Bad only', gu: 'Good / Bad only' },
-      { en: 'A to F grades', hi: 'A से F ग्रेड', sa: 'A से F ग्रेड', mai: 'A से F ग्रेड', mr: 'A से F ग्रेड', ta: 'A to F grades', te: 'A to F grades', bn: 'A to F grades', kn: 'A to F grades', gu: 'A to F grades' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Our Muhurta AI engine scores each time window 0-100, combining four sub-scores: Panchang score (element quality), Transit score (current planetary strength), Timing score (hora, choghadiya), and Personal score (birth chart compatibility).',
-      hi: 'हमारा मुहूर्त AI इंजन प्रत्येक समय विंडो को 0-100 अंकित करता है, चार उप-अंकों को संयोजित करते हुए: पंचांग अंक, गोचर अंक, समय अंक (होरा, चौघड़िया), और व्यक्तिगत अंक।',
-    },
-  },
-  {
-    id: 'q17_1_08', type: 'mcq',
-    question: {
-      en: 'What is the concept behind choosing a Muhurta?',
-      hi: 'मुहूर्त चयन के पीछे क्या अवधारणा है?',
-    },
-    options: [
-      { en: 'Superstition with no logical basis', hi: 'बिना तर्कसंगत आधार का अन्धविश्वास', sa: 'बिना तर्कसंगत आधार का अन्धविश्वास', mai: 'बिना तर्कसंगत आधार का अन्धविश्वास', mr: 'बिना तर्कसंगत आधार का अन्धविश्वास', ta: 'Superstition with no logical basis', te: 'Superstition with no logical basis', bn: 'Superstition with no logical basis', kn: 'Superstition with no logical basis', gu: 'Superstition with no logical basis' },
-      { en: 'The start time creates a birth chart for the activity itself', hi: 'आरम्भ समय कार्य की स्वयं की जन्म कुण्डली बनाता है', sa: 'आरम्भ समय कार्य की स्वयं की जन्म कुण्डली बनाता है', mai: 'आरम्भ समय कार्य की स्वयं की जन्म कुण्डली बनाता है', mr: 'आरम्भ समय कार्य की स्वयं की जन्म कुण्डली बनाता है', ta: 'The start time creates a birth chart for the activity itself', te: 'The start time creates a birth chart for the activity itself', bn: 'The start time creates a birth chart for the activity itself', kn: 'The start time creates a birth chart for the activity itself', gu: 'The start time creates a birth chart for the activity itself' },
-      { en: 'It only matters for weddings', hi: 'यह केवल विवाह के लिए महत्वपूर्ण है', sa: 'यह केवल विवाह के लिए महत्वपूर्ण है', mai: 'यह केवल विवाह के लिए महत्वपूर्ण है', mr: 'यह केवल विवाह के लिए महत्वपूर्ण है', ta: 'It only matters for weddings', te: 'It only matters for weddings', bn: 'It only matters for weddings', kn: 'It only matters for weddings', gu: 'It only matters for weddings' },
-      { en: 'Any time is equally good', hi: 'कोई भी समय समान रूप से अच्छा है', sa: 'कोई भी समय समान रूप से अच्छा है', mai: 'कोई भी समय समान रूप से अच्छा है', mr: 'कोई भी समय समान रूप से अच्छा है', ta: 'Any time is equally good', te: 'Any time is equally good', bn: 'Any time is equally good', kn: 'Any time is equally good', gu: 'Any time is equally good' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Just as a person\'s birth chart shapes their life, the moment you START an activity creates an "inception chart" for that event. A business started during good Muhurta has a strong inception chart, like a person born under favorable stars.',
-      hi: 'जैसे किसी व्यक्ति की जन्म कुण्डली उनके जीवन को आकार देती है, वैसे ही जिस क्षण आप कोई कार्य आरम्भ करते हैं, वह उस कार्य की "आरम्भ कुण्डली" बनाता है। शुभ मुहूर्त में आरम्भ किया गया कार्य एक बलवान आरम्भ कुण्डली रखता है।',
-    },
-  },
-  {
-    id: 'q17_1_09', type: 'true_false',
-    question: {
-      en: 'Shubha (auspicious) nakshatras are preferred over all others for initiating new activities.',
-      hi: 'नए कार्यों के आरम्भ के लिए शुभ नक्षत्रों को अन्य सभी से अधिक प्राथमिकता दी जाती है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Nakshatras are classified as Dhruva (fixed/stable — good for permanent works), Chara (movable — good for travel), Kshipra (swift — good for quick tasks), Mridu (soft — good for arts), and Tikshna (sharp — good for fierce acts). Shubha nakshatras are chosen to match the activity type.',
-      hi: 'सत्य। नक्षत्रों को ध्रुव (स्थिर — स्थायी कार्यों के लिए शुभ), चर (गतिशील — यात्रा के लिए), क्षिप्र (शीघ्र — त्वरित कार्यों के लिए), मृदु (कोमल — कलाओं के लिए), और तीक्ष्ण (तीव्र — उग्र कार्यों के लिए) में वर्गीकृत किया जाता है।',
-    },
-  },
-  {
-    id: 'q17_1_10', type: 'mcq',
-    question: {
-      en: 'The four sub-scores in our Muhurta AI scoring system are:',
-      hi: 'हमारी मुहूर्त AI अंकन प्रणाली में चार उप-अंक हैं:',
-    },
-    options: [
-      { en: 'Sun, Moon, Mars, Jupiter scores', hi: 'सूर्य, चन्द्र, मंगल, बृहस्पति अंक', sa: 'सूर्य, चन्द्र, मंगल, बृहस्पति अंक', mai: 'सूर्य, चन्द्र, मंगल, बृहस्पति अंक', mr: 'सूर्य, चन्द्र, मंगल, बृहस्पति अंक', ta: 'Sun, Moon, Mars, Jupiter scores', te: 'Sun, Moon, Mars, Jupiter scores', bn: 'Sun, Moon, Mars, Jupiter scores', kn: 'Sun, Moon, Mars, Jupiter scores', gu: 'Sun, Moon, Mars, Jupiter scores' },
-      { en: 'Panchang, Transit, Timing, Personal', hi: 'पंचांग, गोचर, समय, व्यक्तिगत', sa: 'पंचांग, गोचर, समय, व्यक्तिगत', mai: 'पंचांग, गोचर, समय, व्यक्तिगत', mr: 'पंचांग, गोचर, समय, व्यक्तिगत', ta: 'Panchang, Transit, Timing, Personal', te: 'Panchang, Transit, Timing, Personal', bn: 'Panchang, Transit, Timing, Personal', kn: 'Panchang, Transit, Timing, Personal', gu: 'Panchang, Transit, Timing, Personal' },
-      { en: 'Lagna, Navamsha, Dasha, Yoga', hi: 'लग्न, नवमांश, दशा, योग', sa: 'लग्न, नवमांश, दशा, योग', mai: 'लग्न, नवमांश, दशा, योग', mr: 'लग्न, नवमांश, दशा, योग', ta: 'Lagna, Navamsha, Dasha, Yoga', te: 'Lagna, Navamsha, Dasha, Yoga', bn: 'Lagna, Navamsha, Dasha, Yoga', kn: 'Lagna, Navamsha, Dasha, Yoga', gu: 'Lagna, Navamsha, Dasha, Yoga' },
-      { en: 'Physical, Mental, Spiritual, Material', hi: 'शारीरिक, मानसिक, आध्यात्मिक, भौतिक', sa: 'शारीरिक, मानसिक, आध्यात्मिक, भौतिक', mai: 'शारीरिक, मानसिक, आध्यात्मिक, भौतिक', mr: 'शारीरिक, मानसिक, आध्यात्मिक, भौतिक', ta: 'Physical, Mental, Spiritual, Material', te: 'Physical, Mental, Spiritual, Material', bn: 'Physical, Mental, Spiritual, Material', kn: 'Physical, Mental, Spiritual, Material', gu: 'Physical, Mental, Spiritual, Material' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Our engine combines: Panchang score (quality of tithi, nakshatra, yoga, karana, vara), Transit score (current planetary positions and strength), Timing score (hora ruler, choghadiya period), and Personal score (compatibility with the native\'s birth chart).',
-      hi: 'हमारा इंजन संयोजित करता है: पंचांग अंक (तिथि, नक्षत्र, योग, करण, वार की गुणवत्ता), गोचर अंक (वर्तमान ग्रह स्थिति और बल), समय अंक (होरा स्वामी, चौघड़िया), और व्यक्तिगत अंक (जातक की जन्म कुण्डली से अनुकूलता)।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = (L.questions as unknown as ModuleQuestion[]);
 
 function Page1() {
   const locale = useModuleLocale();

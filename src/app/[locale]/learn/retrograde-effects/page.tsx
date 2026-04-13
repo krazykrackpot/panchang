@@ -1,6 +1,8 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/retrograde-effects.json';
 
 import { useState } from 'react';
 import { useLocale } from 'next-intl';
@@ -8,18 +10,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeftRight, Brain, ChevronDown, Clock, Code2, Gauge, Heart, MessageCircle, RotateCcw, Sparkles, Swords, Zap } from 'lucide-react';
 import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
-import type { LocaleText, Locale } from '@/types/panchang';
+import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-/* ── Trilingual labels ───────────────────────────────────────────── */
-const L = {
-  title: { en: 'Retrograde Effects Per Planet', hi: 'ग्रहवार वक्री प्रभाव', sa: 'ग्रहशः वक्रिप्रभावाः' , ta: 'கிரகம் வாரியான வக்கிர விளைவுகள்' },
-  subtitle: {
-    en: 'Understanding retrograde motion — why planets appear to move backward, how it strengthens them in Vedic astrology, and what each retrograde planet means in your birth chart and current transits.',
-    hi: 'वक्री गति को समझना — ग्रह पीछे क्यों चलते प्रतीत होते हैं, वैदिक ज्योतिष में यह उन्हें कैसे बलवान बनाता है, और प्रत्येक वक्री ग्रह का अर्थ।',
-    sa: 'वक्रगतेः अवगमनम् — ग्रहाः पश्चाद्गामिनः किमर्थं प्रतीयन्ते, वैदिकज्योतिषे एतत् तान् कथं बलवन्तं करोति, प्रत्येकवक्रिग्रहस्य अर्थश्च।'
-  },
-};
 
 /* ── Retrograde frequency table ──────────────────────────────────── */
 const RETRO_TABLE: { planet: Record<string, string>; frequency: Record<string, string>; duration: Record<string, string>; view: Record<string, string>; color: string }[] = [
@@ -164,7 +157,8 @@ function RetrogradeOrbitalDiagram({ isHi }: { isHi: boolean }) {
 export default function RetrogradeEffectsPage() {
   const locale = useLocale() as Locale;
   const isHi = isDevanagariLocale(locale);
-  const t = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
+  const tObj = (obj: LocaleText | Record<string, string>) => lt(obj as LocaleText, locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedNatal, setExpandedNatal] = useState<number | null>(null);
   const [expandedTransit, setExpandedTransit] = useState<number | null>(null);
@@ -177,8 +171,8 @@ export default function RetrogradeEffectsPage() {
           <RotateCcw className="w-3.5 h-3.5" />
           {isHi ? 'वक्री ग्रह विश्लेषण' : 'Retrograde Analysis'}
         </div>
-        <h1 className="text-3xl sm:text-4xl font-bold text-gold-gradient mb-4" style={hf}>{t(L.title)}</h1>
-        <p className="text-text-secondary text-sm leading-relaxed max-w-2xl mx-auto">{t(L.subtitle)}</p>
+        <h1 className="text-3xl sm:text-4xl font-bold text-gold-gradient mb-4" style={hf}>{t('title')}</h1>
+        <p className="text-text-secondary text-sm leading-relaxed max-w-2xl mx-auto">{t('subtitle')}</p>
       </motion.div>
 
       {/* SVG Orbital Diagram */}
@@ -208,8 +202,8 @@ export default function RetrogradeEffectsPage() {
                   <Icon className={`w-5 h-5 ${item.color}`} />
                 </div>
                 <div>
-                  <h3 className="text-gold-light font-bold text-sm mb-1" style={hf}>{t(item.point)}</h3>
-                  <p className="text-text-secondary text-sm leading-relaxed">{t(item.detail)}</p>
+                  <h3 className="text-gold-light font-bold text-sm mb-1" style={hf}>{tObj(item.point)}</h3>
+                  <p className="text-text-secondary text-sm leading-relaxed">{tObj(item.detail)}</p>
                 </div>
               </div>
             );
@@ -232,10 +226,10 @@ export default function RetrogradeEffectsPage() {
             <tbody>
               {RETRO_TABLE.map((r, i) => (
                 <tr key={i} className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors">
-                  <td className={`py-2.5 px-3 font-bold text-xs ${r.color}`} style={hf}>{t(r.planet)}</td>
-                  <td className="py-2.5 px-3 text-text-secondary text-xs">{t(r.frequency)}</td>
-                  <td className="py-2.5 px-3 text-text-secondary text-xs">{t(r.duration)}</td>
-                  <td className="py-2.5 px-3 text-text-tertiary text-xs">{t(r.view)}</td>
+                  <td className={`py-2.5 px-3 font-bold text-xs ${r.color}`} style={hf}>{tObj(r.planet)}</td>
+                  <td className="py-2.5 px-3 text-text-secondary text-xs">{tObj(r.frequency)}</td>
+                  <td className="py-2.5 px-3 text-text-secondary text-xs">{tObj(r.duration)}</td>
+                  <td className="py-2.5 px-3 text-text-tertiary text-xs">{tObj(r.view)}</td>
                 </tr>
               ))}
             </tbody>
@@ -261,7 +255,7 @@ export default function RetrogradeEffectsPage() {
                   <div className={`flex-shrink-0 w-8 h-8 rounded-full bg-gold-primary/10 flex items-center justify-center`}>
                     <Icon className={`w-4 h-4 ${n.color}`} />
                   </div>
-                  <span className={`font-bold text-sm flex-1 ${n.color}`} style={hf}>{t(n.planet)}</span>
+                  <span className={`font-bold text-sm flex-1 ${n.color}`} style={hf}>{tObj(n.planet)}</span>
                   <ChevronDown className={`w-4 h-4 text-gold-dark transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                 </button>
                 <AnimatePresence>
@@ -269,13 +263,13 @@ export default function RetrogradeEffectsPage() {
                     <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden">
                       <div className="px-4 pb-4 space-y-3 ml-11">
-                        <p className="text-text-secondary text-sm leading-relaxed">{t(n.traits)}</p>
+                        <p className="text-text-secondary text-sm leading-relaxed">{tObj(n.traits)}</p>
                         <div className="p-3 rounded-lg bg-gold-primary/5 border border-gold-primary/10">
                           <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{isHi ? 'गहरा अर्थ' : 'Deeper Meaning'}</span>
-                          <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{t(n.depth)}</p>
+                          <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{tObj(n.depth)}</p>
                         </div>
                         <div className="text-text-tertiary text-xs">
-                          <span className="text-gold-dark font-bold">{isHi ? 'प्रसिद्ध उदाहरण:' : 'Famous examples:'}</span> {t(n.famous)}
+                          <span className="text-gold-dark font-bold">{isHi ? 'प्रसिद्ध उदाहरण:' : 'Famous examples:'}</span> {tObj(n.famous)}
                         </div>
                       </div>
                     </motion.div>
@@ -299,7 +293,7 @@ export default function RetrogradeEffectsPage() {
               <motion.div key={i} layout className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 overflow-hidden">
                 <button onClick={() => setExpandedTransit(isOpen ? null : i)}
                   className="w-full flex items-center justify-between p-4 text-left">
-                  <span className={`font-bold text-sm ${te.color}`} style={hf}>{t(te.planet)}</span>
+                  <span className={`font-bold text-sm ${te.color}`} style={hf}>{tObj(te.planet)}</span>
                   <ChevronDown className={`w-4 h-4 text-gold-dark transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                 </button>
                 <AnimatePresence>
@@ -309,11 +303,11 @@ export default function RetrogradeEffectsPage() {
                       <div className="px-4 pb-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div className="p-3 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
                           <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">{isHi ? 'करें' : 'Do'}</span>
-                          <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{t(te.doList)}</p>
+                          <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{tObj(te.doList)}</p>
                         </div>
                         <div className="p-3 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
                           <span className="text-red-400 text-xs uppercase tracking-wider font-bold">{isHi ? 'न करें' : 'Don\'t'}</span>
-                          <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{t(te.dontList)}</p>
+                          <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{tObj(te.dontList)}</p>
                         </div>
                       </div>
                     </motion.div>
@@ -344,8 +338,8 @@ export default function RetrogradeEffectsPage() {
             { label: { en: 'Stationary Planets', hi: 'स्थिर ग्रह', sa: 'स्थिर ग्रह', mai: 'स्थिर ग्रह', mr: 'स्थिर ग्रह', ta: 'Stationary Planets', te: 'Stationary Planets', bn: 'Stationary Planets', kn: 'Stationary Planets', gu: 'Stationary Planets' }, value: { en: 'Just before going retrograde or turning direct, a planet becomes "stationary" (near-zero speed). Stationary planets are extremely powerful — they "stop" and concentrate all energy on the degree they occupy.', hi: 'वक्री होने या मार्गी होने से ठीक पहले, ग्रह "स्थिर" (लगभग शून्य गति) होता है। स्थिर ग्रह अत्यन्त शक्तिशाली — वे "रुकते" हैं और सारी ऊर्जा उस अंश पर केन्द्रित करते हैं।', sa: 'वक्री होने या मार्गी होने से ठीक पहले, ग्रह "स्थिर" (लगभग शून्य गति) होता है। स्थिर ग्रह अत्यन्त शक्तिशाली — वे "रुकते" हैं और सारी ऊर्जा उस अंश पर केन्द्रित करते हैं।', mai: 'वक्री होने या मार्गी होने से ठीक पहले, ग्रह "स्थिर" (लगभग शून्य गति) होता है। स्थिर ग्रह अत्यन्त शक्तिशाली — वे "रुकते" हैं और सारी ऊर्जा उस अंश पर केन्द्रित करते हैं।', mr: 'वक्री होने या मार्गी होने से ठीक पहले, ग्रह "स्थिर" (लगभग शून्य गति) होता है। स्थिर ग्रह अत्यन्त शक्तिशाली — वे "रुकते" हैं और सारी ऊर्जा उस अंश पर केन्द्रित करते हैं।', ta: 'Just before going retrograde or turning direct, a planet becomes "stationary" (near-zero speed). Stationary planets are extremely powerful — they "stop" and concentrate all energy on the degree they occupy.', te: 'Just before going retrograde or turning direct, a planet becomes "stationary" (near-zero speed). Stationary planets are extremely powerful — they "stop" and concentrate all energy on the degree they occupy.', bn: 'Just before going retrograde or turning direct, a planet becomes "stationary" (near-zero speed). Stationary planets are extremely powerful — they "stop" and concentrate all energy on the degree they occupy.', kn: 'Just before going retrograde or turning direct, a planet becomes "stationary" (near-zero speed). Stationary planets are extremely powerful — they "stop" and concentrate all energy on the degree they occupy.', gu: 'Just before going retrograde or turning direct, a planet becomes "stationary" (near-zero speed). Stationary planets are extremely powerful — they "stop" and concentrate all energy on the degree they occupy.' } },
           ].map((item, i) => (
             <div key={i} className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8">
-              <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{t(item.label)}</span>
-              <p className="text-text-secondary text-sm mt-1 leading-relaxed">{t(item.value)}</p>
+              <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{tObj(item.label)}</span>
+              <p className="text-text-secondary text-sm mt-1 leading-relaxed">{tObj(item.value)}</p>
             </div>
           ))}
         </div>

@@ -3,190 +3,20 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/12-3.json';
 
 const META: ModuleMeta = {
   id: 'mod_12_3', phase: 3, topic: 'Transits', moduleNumber: '12.3',
-  title: { en: 'Jupiter Transit & Rahu-Ketu Axis', hi: 'गुरु गोचर एवं राहु-केतु अक्ष', sa: 'गुरु गोचर एवं राहु-केतु अक्ष', mai: 'गुरु गोचर एवं राहु-केतु अक्ष', mr: 'गुरु गोचर एवं राहु-केतु अक्ष', ta: 'Jupiter Transit & Rahu-Ketu Axis', te: 'Jupiter Transit & Rahu-Ketu Axis', bn: 'Jupiter Transit & Rahu-Ketu Axis', kn: 'Jupiter Transit & Rahu-Ketu Axis', gu: 'Jupiter Transit & Rahu-Ketu Axis' },
-  subtitle: {
-    en: 'Jupiter\'s annual sign change, the 18-month nodal cycle, and the double-transit theory for timing major life events',
-    hi: 'गुरु का वार्षिक राशि परिवर्तन, 18-मासिक नोडल चक्र, और प्रमुख जीवन घटनाओं के समय निर्धारण हेतु दोहरे गोचर सिद्धान्त',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 14,
-  crossRefs: [
-    { label: { en: 'Module 12-1: Transits (Gochar)', hi: 'मॉड्यूल 12-1: गोचर', sa: 'मॉड्यूल 12-1: गोचर', mai: 'मॉड्यूल 12-1: गोचर', mr: 'मॉड्यूल 12-1: गोचर', ta: 'Module 12-1: Transits (Gochar)', te: 'Module 12-1: Transits (Gochar)', bn: 'Module 12-1: Transits (Gochar)', kn: 'Module 12-1: Transits (Gochar)', gu: 'Module 12-1: Transits (Gochar)' }, href: '/learn/modules/12-1' },
-    { label: { en: 'Module 12-2: Sade Sati', hi: 'मॉड्यूल 12-2: साढ़े साती', sa: 'मॉड्यूल 12-2: साढ़े साती', mai: 'मॉड्यूल 12-2: साढ़े साती', mr: 'मॉड्यूल 12-2: साढ़े साती', ta: 'Module 12-2: Sade Sati', te: 'Module 12-2: Sade Sati', bn: 'Module 12-2: Sade Sati', kn: 'Module 12-2: Sade Sati', gu: 'Module 12-2: Sade Sati' }, href: '/learn/modules/12-2' },
-    { label: { en: 'Transit Calendar', hi: 'गोचर पञ्चाङ्ग', sa: 'गोचर पञ्चाङ्ग', mai: 'गोचर पञ्चाङ्ग', mr: 'गोचर पञ्चाङ्ग', ta: 'Transit Calendar', te: 'Transit Calendar', bn: 'Transit Calendar', kn: 'Transit Calendar', gu: 'Transit Calendar' }, href: '/transits' },
-  ],
+  crossRefs: L.crossRefs.map(cr => ({ label: cr.label as unknown as Record<string, string>, href: cr.href })),
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q12_3_01', type: 'mcq',
-    question: {
-      en: 'How long does Jupiter approximately stay in one zodiac sign?',
-      hi: 'गुरु लगभग कितने समय तक एक राशि में रहता है?',
-    },
-    options: [
-      { en: 'About 1 month', hi: 'लगभग 1 मास', sa: 'लगभग 1 मास', mai: 'लगभग 1 मास', mr: 'लगभग 1 मास', ta: 'About 1 month', te: 'About 1 month', bn: 'About 1 month', kn: 'About 1 month', gu: 'About 1 month' },
-      { en: 'About 13 months', hi: 'लगभग 13 मास', sa: 'लगभग 13 मास', mai: 'लगभग 13 मास', mr: 'लगभग 13 मास', ta: 'About 13 months', te: 'About 13 months', bn: 'About 13 months', kn: 'About 13 months', gu: 'About 13 months' },
-      { en: 'About 2.5 years', hi: 'लगभग 2.5 वर्ष', sa: 'लगभग 2.5 वर्ष', mai: 'लगभग 2.5 वर्ष', mr: 'लगभग 2.5 वर्ष', ta: 'About 2.5 years', te: 'About 2.5 years', bn: 'About 2.5 years', kn: 'About 2.5 years', gu: 'About 2.5 years' },
-      { en: 'About 7 years', hi: 'लगभग 7 वर्ष', sa: 'लगभग 7 वर्ष', mai: 'लगभग 7 वर्ष', mr: 'लगभग 7 वर्ष', ta: 'About 7 years', te: 'About 7 years', bn: 'About 7 years', kn: 'About 7 years', gu: 'About 7 years' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Jupiter takes about 12 years to complete one zodiacal revolution, spending approximately 13 months (just over 1 year) in each sign. This makes Jupiter\'s sign change an annual event closely watched in Vedic astrology.',
-      hi: 'गुरु एक पूर्ण राशिचक्र परिक्रमा में लगभग 12 वर्ष लेता है, प्रत्येक राशि में लगभग 13 मास (1 वर्ष से थोड़ा अधिक) रहता है। इसलिए गुरु का राशि परिवर्तन एक वार्षिक घटना है जिस पर वैदिक ज्योतिष में विशेष दृष्टि रहती है।',
-    },
-  },
-  {
-    id: 'q12_3_02', type: 'mcq',
-    question: {
-      en: 'Jupiter transiting trikona houses (1, 5, 9) from the Moon is considered:',
-      hi: 'चन्द्रमा से त्रिकोण भावों (1, 5, 9) में गुरु गोचर माना जाता है:',
-    },
-    options: [
-      { en: 'Highly auspicious', hi: 'अत्यन्त शुभ', sa: 'अत्यन्त शुभ', mai: 'अत्यन्त शुभ', mr: 'अत्यन्त शुभ', ta: 'Highly auspicious', te: 'Highly auspicious', bn: 'Highly auspicious', kn: 'Highly auspicious', gu: 'Highly auspicious' },
-      { en: 'Neutral', hi: 'तटस्थ', sa: 'तटस्थ', mai: 'तटस्थ', mr: 'तटस्थ', ta: 'Neutral', te: 'Neutral', bn: 'Neutral', kn: 'Neutral', gu: 'Neutral' },
-      { en: 'Challenging', hi: 'कठिन', sa: 'कठिन', mai: 'कठिन', mr: 'कठिन', ta: 'Challenging', te: 'Challenging', bn: 'Challenging', kn: 'Challenging', gu: 'Challenging' },
-      { en: 'Depends entirely on dasha', hi: 'पूर्णतः दशा पर निर्भर', sa: 'पूर्णतः दशा पर निर्भर', mai: 'पूर्णतः दशा पर निर्भर', mr: 'पूर्णतः दशा पर निर्भर', ta: 'Depends entirely on dasha', te: 'Depends entirely on dasha', bn: 'Depends entirely on dasha', kn: 'Depends entirely on dasha', gu: 'Depends entirely on dasha' },
-    ],
-    correctAnswer: 0,
-    explanation: {
-      en: 'Jupiter in trikona (1st, 5th, 9th) from Moon is considered highly auspicious. The 1st brings personal growth, the 5th enhances intelligence and creativity, and the 9th brings fortune, spiritual progress, and guru blessings.',
-      hi: 'चन्द्र से त्रिकोण (1, 5, 9) में गुरु अत्यन्त शुभ माना जाता है। 1ले में व्यक्तिगत विकास, 5वें में बुद्धि और सृजनात्मकता वृद्धि, और 9वें में भाग्य, आध्यात्मिक प्रगति और गुरु कृपा आती है।',
-    },
-  },
-  {
-    id: 'q12_3_03', type: 'true_false',
-    question: {
-      en: 'Rahu and Ketu move in direct (forward) motion through the zodiac like other planets.',
-      hi: 'राहु और केतु अन्य ग्रहों की भाँति राशिचक्र में सीधी (अग्र) गति से चलते हैं।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. Rahu and Ketu always move in retrograde (reverse) motion through the zodiac. While other planets occasionally go retrograde, the lunar nodes are perpetually retrograde, moving from Aries toward Pisces (backward through the signs).',
-      hi: 'असत्य। राहु और केतु सदैव वक्री (विपरीत) गति से राशिचक्र में चलते हैं। जबकि अन्य ग्रह कभी-कभी वक्री होते हैं, चन्द्र पात सदा वक्री हैं, मेष से मीन की ओर (राशियों में पीछे की ओर) चलते हैं।',
-    },
-  },
-  {
-    id: 'q12_3_04', type: 'mcq',
-    question: {
-      en: 'Rahu transiting which houses from Moon is generally favorable?',
-      hi: 'चन्द्र से राहु का गोचर किन भावों में सामान्यतः शुभ होता है?',
-    },
-    options: [
-      { en: '2, 5, 7, 9', hi: '2, 5, 7, 9', sa: '2, 5, 7, 9', mai: '2, 5, 7, 9', mr: '2, 5, 7, 9', ta: '2, 5, 7, 9', te: '2, 5, 7, 9', bn: '2, 5, 7, 9', kn: '2, 5, 7, 9', gu: '2, 5, 7, 9' },
-      { en: '3, 6, 10, 11', hi: '3, 6, 10, 11', sa: '3, 6, 10, 11', mai: '3, 6, 10, 11', mr: '3, 6, 10, 11', ta: '3, 6, 10, 11', te: '3, 6, 10, 11', bn: '3, 6, 10, 11', kn: '3, 6, 10, 11', gu: '3, 6, 10, 11' },
-      { en: '1, 4, 8, 12', hi: '1, 4, 8, 12', sa: '1, 4, 8, 12', mai: '1, 4, 8, 12', mr: '1, 4, 8, 12', ta: '1, 4, 8, 12', te: '1, 4, 8, 12', bn: '1, 4, 8, 12', kn: '1, 4, 8, 12', gu: '1, 4, 8, 12' },
-      { en: 'No house is favorable', hi: 'कोई भाव शुभ नहीं', sa: 'कोई भाव शुभ नहीं', mai: 'कोई भाव शुभ नहीं', mr: 'कोई भाव शुभ नहीं', ta: 'No house is favorable', te: 'No house is favorable', bn: 'No house is favorable', kn: 'No house is favorable', gu: 'No house is favorable' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Rahu in the 3rd gives courage and adventure, 6th conquers enemies, 10th brings career rise and fame, 11th brings large gains and fulfillment. Rahu in the 1st is also considered favorable by some texts, giving personal magnetism.',
-      hi: '3वें में राहु साहस और रोमांच देता है, 6वें में शत्रु पराजय, 10वें में करियर उन्नति और प्रसिद्धि, 11वें में बड़ा लाभ और इच्छापूर्ति। 1ले में राहु को कुछ ग्रन्थ शुभ मानते हैं, व्यक्तिगत आकर्षण देता है।',
-    },
-  },
-  {
-    id: 'q12_3_05', type: 'mcq',
-    question: {
-      en: 'What is the "Double Transit" (Dwigraha Gochar) theory?',
-      hi: '"दोहरा गोचर" (द्विग्रह गोचर) सिद्धान्त क्या है?',
-    },
-    options: [
-      { en: 'Two planets in the same sign', hi: 'दो ग्रह एक ही राशि में', sa: 'दो ग्रह एक ही राशि में', mai: 'दो ग्रह एक ही राशि में', mr: 'दो ग्रह एक ही राशि में', ta: 'Two planets in the same sign', te: 'Two planets in the same sign', bn: 'Two planets in the same sign', kn: 'Two planets in the same sign', gu: 'Two planets in the same sign' },
-      { en: 'Both Jupiter and Saturn must aspect a house for its significations to manifest', hi: 'किसी भाव के फल प्रकट होने के लिए गुरु और शनि दोनों को उस भाव को दृष्टि करनी चाहिए', sa: 'किसी भाव के फल प्रकट होने के लिए गुरु और शनि दोनों को उस भाव को दृष्टि करनी चाहिए', mai: 'किसी भाव के फल प्रकट होने के लिए गुरु और शनि दोनों को उस भाव को दृष्टि करनी चाहिए', mr: 'किसी भाव के फल प्रकट होने के लिए गुरु और शनि दोनों को उस भाव को दृष्टि करनी चाहिए', ta: 'Both Jupiter and Saturn must aspect a house for its significations to manifest', te: 'Both Jupiter and Saturn must aspect a house for its significations to manifest', bn: 'Both Jupiter and Saturn must aspect a house for its significations to manifest', kn: 'Both Jupiter and Saturn must aspect a house for its significations to manifest', gu: 'Both Jupiter and Saturn must aspect a house for its significations to manifest' },
-      { en: 'Sun and Moon in opposition', hi: 'सूर्य और चन्द्रमा विपरीत में', sa: 'सूर्य और चन्द्रमा विपरीत में', mai: 'सूर्य और चन्द्रमा विपरीत में', mr: 'सूर्य और चन्द्रमा विपरीत में', ta: 'Sun and Moon in opposition', te: 'Sun and Moon in opposition', bn: 'Sun and Moon in opposition', kn: 'Sun and Moon in opposition', gu: 'Sun and Moon in opposition' },
-      { en: 'Rahu and Ketu in the same axis', hi: 'राहु और केतु एक ही अक्ष में', sa: 'राहु और केतु एक ही अक्ष में', mai: 'राहु और केतु एक ही अक्ष में', mr: 'राहु और केतु एक ही अक्ष में', ta: 'Rahu and Ketu in the same axis', te: 'Rahu and Ketu in the same axis', bn: 'Rahu and Ketu in the same axis', kn: 'Rahu and Ketu in the same axis', gu: 'Rahu and Ketu in the same axis' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Double Transit theory states that for a house\'s significations to fructify, BOTH Jupiter AND Saturn must simultaneously aspect or occupy that house (from Moon or Lagna). For example, marriage occurs when both planets influence the 7th house.',
-      hi: 'दोहरा गोचर सिद्धान्त कहता है कि किसी भाव के फल प्रकट होने के लिए गुरु और शनि दोनों को एक साथ उस भाव (चन्द्र या लग्न से) को दृष्टि या अधिवास करना चाहिए। उदाहरणार्थ, विवाह तब होता है जब दोनों ग्रह 7वें भाव को प्रभावित करते हैं।',
-    },
-  },
-  {
-    id: 'q12_3_06', type: 'true_false',
-    question: {
-      en: 'Jupiter aspects the 5th, 7th, and 9th houses from its transit position (in addition to the house it occupies).',
-      hi: 'गुरु अपनी गोचर स्थिति से 5वें, 7वें और 9वें भाव को दृष्टि करता है (जिस भाव में बैठा है उसके अतिरिक्त)।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Jupiter has special aspects (Vishesh Drishti) on the 5th, 7th, and 9th houses from its position. This means Jupiter\'s transit activates not just the house it occupies but three additional houses — greatly expanding its influence.',
-      hi: 'सत्य। गुरु की अपनी स्थिति से 5वें, 7वें और 9वें भाव पर विशेष दृष्टि (विशेष दृष्टि) होती है। इसका अर्थ है गुरु का गोचर न केवल उस भाव को सक्रिय करता है जिसमें वह बैठा है, बल्कि तीन अतिरिक्त भावों को भी — जिससे उसका प्रभाव बहुत बढ़ जाता है।',
-    },
-  },
-  {
-    id: 'q12_3_07', type: 'mcq',
-    question: {
-      en: 'The Rahu-Ketu transit cycle through the complete zodiac takes approximately:',
-      hi: 'पूर्ण राशिचक्र में राहु-केतु गोचर चक्र लगभग कितना समय लेता है?',
-    },
-    options: [
-      { en: '7 years', hi: '7 वर्ष', sa: '7 वर्ष', mai: '7 वर्ष', mr: '7 वर्ष', ta: '7 years', te: '7 years', bn: '7 years', kn: '7 years', gu: '7 years' },
-      { en: '12 years', hi: '12 वर्ष', sa: '12 वर्ष', mai: '12 वर्ष', mr: '12 वर्ष', ta: '12 years', te: '12 years', bn: '12 years', kn: '12 years', gu: '12 years' },
-      { en: '18 years', hi: '18 वर्ष', sa: '18 वर्ष', mai: '18 वर्ष', mr: '18 वर्ष', ta: '18 years', te: '18 years', bn: '18 years', kn: '18 years', gu: '18 years' },
-      { en: '29 years', hi: '29 वर्ष', sa: '29 वर्ष', mai: '29 वर्ष', mr: '29 वर्ष', ta: '29 years', te: '29 years', bn: '29 years', kn: '29 years', gu: '29 years' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'Rahu and Ketu take approximately 18 years to transit all 12 signs (about 1.5 years per sign). This 18-year cycle is closely connected to eclipse cycles — every 18 years, eclipses repeat in similar zodiacal positions.',
-      hi: 'राहु और केतु सभी 12 राशियों का गोचर लगभग 18 वर्षों में करते हैं (प्रत्येक राशि में लगभग 1.5 वर्ष)। यह 18-वर्षीय चक्र ग्रहण चक्रों से घनिष्ठ रूप से जुड़ा है — प्रत्येक 18 वर्ष में ग्रहण समान राशिचक्र स्थितियों में दोहराते हैं।',
-    },
-  },
-  {
-    id: 'q12_3_08', type: 'mcq',
-    question: {
-      en: 'Ketu transiting over natal Rahu (or vice versa) is called:',
-      hi: 'केतु का जन्मकालिक राहु पर गोचर (या इसके विपरीत) कहलाता है:',
-    },
-    options: [
-      { en: 'Grahan Yoga', hi: 'ग्रहण योग', sa: 'ग्रहण योग', mai: 'ग्रहण योग', mr: 'ग्रहण योग', ta: 'Grahan Yoga', te: 'Grahan Yoga', bn: 'Grahan Yoga', kn: 'Grahan Yoga', gu: 'Grahan Yoga' },
-      { en: 'Karmic activation of the nodal axis', hi: 'नोडल अक्ष की कार्मिक सक्रियता', sa: 'नोडल अक्ष की कार्मिक सक्रियता', mai: 'नोडल अक्ष की कार्मिक सक्रियता', mr: 'नोडल अक्ष की कार्मिक सक्रियता', ta: 'Karmic activation of the nodal axis', te: 'Karmic activation of the nodal axis', bn: 'Karmic activation of the nodal axis', kn: 'Karmic activation of the nodal axis', gu: 'Karmic activation of the nodal axis' },
-      { en: 'Guru Chandal', hi: 'गुरु चाण्डाल', sa: 'गुरु चाण्डाल', mai: 'गुरु चाण्डाल', mr: 'गुरु चाण्डाल', ta: 'Guru Chandal', te: 'Guru Chandal', bn: 'Guru Chandal', kn: 'Guru Chandal', gu: 'Guru Chandal' },
-      { en: 'Shrapit Dosha', hi: 'शापित दोष', sa: 'शापित दोष', mai: 'शापित दोष', mr: 'शापित दोष', ta: 'Shrapit Dosha', te: 'Shrapit Dosha', bn: 'Shrapit Dosha', kn: 'Shrapit Dosha', gu: 'Shrapit Dosha' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'When transiting Rahu/Ketu crosses over the natal Ketu/Rahu position, it activates the karmic axis of the birth chart. This brings past-life themes to the surface — unresolved karma demands attention, often through sudden events or encounters.',
-      hi: 'जब गोचरी राहु/केतु जन्मकालिक केतु/राहु स्थिति पर आता है, तो जन्म कुण्डली का कार्मिक अक्ष सक्रिय होता है। इससे पूर्वजन्म विषय सतह पर आते हैं — अनसुलझा कर्म अचानक घटनाओं या मिलनों के माध्यम से ध्यान माँगता है।',
-    },
-  },
-  {
-    id: 'q12_3_09', type: 'true_false',
-    question: {
-      en: 'Eclipse seasons occur when the transiting Sun and Moon are near the Rahu-Ketu axis.',
-      hi: 'ग्रहण काल तब आता है जब गोचरी सूर्य और चन्द्रमा राहु-केतु अक्ष के निकट होते हैं।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Solar and lunar eclipses occur when the Sun and Moon align near the Rahu-Ketu axis (the lunar nodes). This happens roughly twice a year. In Jyotish, eclipse periods are considered karmically charged — events during eclipse seasons have amplified consequences.',
-      hi: 'सत्य। सूर्य और चन्द्र ग्रहण तब होते हैं जब सूर्य और चन्द्रमा राहु-केतु अक्ष (चन्द्र पात) के निकट संरेखित होते हैं। यह वर्ष में लगभग दो बार होता है। ज्योतिष में ग्रहण काल कार्मिक रूप से आवेशित माना जाता है — ग्रहण काल की घटनाओं के परिणाम प्रवर्धित होते हैं।',
-    },
-  },
-  {
-    id: 'q12_3_10', type: 'mcq',
-    question: {
-      en: 'For marriage to manifest according to double-transit theory, Jupiter and Saturn must both influence:',
-      hi: 'दोहरे गोचर सिद्धान्त के अनुसार विवाह प्रकट होने के लिए गुरु और शनि दोनों को किसे प्रभावित करना चाहिए?',
-    },
-    options: [
-      { en: 'The 5th house', hi: '5वाँ भाव', sa: '5वाँ भाव', mai: '5वाँ भाव', mr: '5वाँ भाव', ta: 'The 5th house', te: 'The 5th house', bn: 'The 5th house', kn: 'The 5th house', gu: 'The 5th house' },
-      { en: 'The 10th house', hi: '10वाँ भाव', sa: '10वाँ भाव', mai: '10वाँ भाव', mr: '10वाँ भाव', ta: 'The 10th house', te: 'The 10th house', bn: 'The 10th house', kn: 'The 10th house', gu: 'The 10th house' },
-      { en: 'The 7th house', hi: '7वाँ भाव', sa: '7वाँ भाव', mai: '7वाँ भाव', mr: '7वाँ भाव', ta: 'The 7th house', te: 'The 7th house', bn: 'The 7th house', kn: 'The 7th house', gu: 'The 7th house' },
-      { en: 'The 2nd house only', hi: 'केवल 2रा भाव', sa: 'केवल 2रा भाव', mai: 'केवल 2रा भाव', mr: 'केवल 2रा भाव', ta: 'The 2nd house only', te: 'The 2nd house only', bn: 'The 2nd house only', kn: 'The 2nd house only', gu: 'The 2nd house only' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'The 7th house is the house of marriage and partnerships. Both Jupiter and Saturn must aspect or occupy the 7th house (from Moon or Lagna) simultaneously for marriage to be timed. This can include direct occupation or special aspects.',
-      hi: '7वाँ भाव विवाह और साझेदारी का भाव है। विवाह का समय निर्धारित होने के लिए गुरु और शनि दोनों को एक साथ 7वें भाव (चन्द्र या लग्न से) पर दृष्टि या अधिवास करना चाहिए। इसमें प्रत्यक्ष अधिवास या विशेष दृष्टि सम्मिलित है।',
-    },
-  },
-];
+const QUESTIONS = (L.questions as unknown) as ModuleQuestion[];
 
-/* ------------------------------------------------------------------ */
-/*  PAGE 1 — Jupiter Transit                                           */
-/* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
   const isHi = isDevanagariLocale(locale);
@@ -311,3 +141,4 @@ function Page3() {
 export default function Module12_3Page() {
   return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
 }
+

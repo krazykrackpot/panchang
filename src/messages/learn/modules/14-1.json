@@ -1,0 +1,730 @@
+{
+  "title": {
+    "en": "Compatibility Matching — Kundali Milan",
+    "hi": "कुण्डली मिलान — वैवाहिक अनुकूलता",
+    "sa": "कुण्डली मिलानम् — वैवाहिकानुकूलता",
+    "ta": "ஜாதக பொருத்தம் — குண்டலி மிலன்",
+    "te": "కుండలి మిలన్ — వివాహ అనుకూలత",
+    "bn": "কুণ্ডলী মিলান — বৈবাহিক সামঞ্জস্য",
+    "kn": "ಕುಂಡಲಿ ಮಿಲನ — ವೈವಾಹಿಕ ಹೊಂದಾಣಿಕೆ",
+    "mr": "कुंडली मिलान — वैवाहिक अनुकूलता",
+    "gu": "કુંડળી મિલાન — વૈવાહિક અનુકૂળતા",
+    "mai": "कुण्डली मिलान — वैवाहिक अनुकूलता"
+  },
+  "subtitle": {
+    "en": "Ashta Kuta (8 factors, 36 points) and Dashakuta (10 factors) — two classical systems for evaluating marriage compatibility from Moon nakshatras",
+    "hi": "अष्ट कूट (8 कारक, 36 अंक) और दशकूट (10 कारक) — चन्द्र नक्षत्रों से वैवाहिक अनुकूलता मूल्यांकन की दो शास्त्रीय पद्धतियाँ",
+    "sa": "अष्टकूटम् (अष्टकारकाणि, षट्त्रिंशद्गुणाः) दशकूटं च — चन्द्रनक्षत्रेभ्यो वैवाहिकानुकूलतामूल्याङ्कनस्य द्वे शास्त्रीये पद्धती",
+    "ta": "அஷ்ட கூடம் (8 காரணிகள், 36 புள்ளிகள்) மற்றும் தசகூடம் (10 காரணிகள்) — சந்திர நட்சத்திரங்களிலிருந்து திருமண பொருத்தத்தை மதிப்பிடும் இரு சாஸ்திரீய முறைகள்",
+    "te": "అష్ట కూటం (8 అంశాలు, 36 పాయింట్లు) మరియు దశకూటం (10 అంశాలు) — చంద్ర నక్షత్రాల నుండి వివాహ అనుకూలతను అంచనా వేసే రెండు శాస్త్రీయ పద్ధతులు",
+    "bn": "অষ্ট কূট (৮ উপাদান, ৩৬ পয়েন্ট) এবং দশকূট (১০ উপাদান) — চন্দ্র নক্ষত্র থেকে বৈবাহিক সামঞ্জস্য মূল্যায়নের দুটি শাস্ত্রীয় পদ্ধতি",
+    "kn": "ಅಷ್ಟ ಕೂಟ (8 ಅಂಶಗಳು, 36 ಅಂಕಗಳು) ಮತ್ತು ದಶಕೂಟ (10 ಅಂಶಗಳು) — ಚಂದ್ರ ನಕ್ಷತ್ರಗಳಿಂದ ವೈವಾಹಿಕ ಹೊಂದಾಣಿಕೆಯನ್ನು ಮೌಲ್ಯಮಾಪನ ಮಾಡುವ ಎರಡು ಶಾಸ್ತ್ರೀಯ ಪದ್ಧತಿಗಳು",
+    "mr": "अष्ट कूट (८ घटक, ३६ गुण) आणि दशकूट (१० घटक) — चंद्र नक्षत्रांवरून वैवाहिक अनुकूलतेचे मूल्यांकन करणार्‍या दोन शास्त्रीय पद्धती",
+    "gu": "અષ્ટ કૂટ (8 પરિબળો, 36 ગુણ) અને દશકૂટ (10 પરિબળો) — ચંદ્ર નક્ષત્રોથી વૈવાહિક અનુકૂળતાનું મૂલ્યાંકન કરતી બે શાસ્ત્રીય પદ્ધતિઓ",
+    "mai": "अष्ट कूट (8 कारक, 36 अंक) आ दशकूट (10 कारक) — चन्द्र नक्षत्र सँ वैवाहिक अनुकूलता मूल्यांकनक दू शास्त्रीय पद्धति"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "Module 14-2: Mangal Dosha in Marriage",
+        "hi": "मॉड्यूल 14-2: विवाह में मंगल दोष",
+        "sa": "मॉड्यूल 14-2: विवाह में मंगल दोष",
+        "mai": "मॉड्यूल 14-2: विवाह में मंगल दोष",
+        "mr": "मॉड्यूल 14-2: विवाह में मंगल दोष",
+        "ta": "Module 14-2: Mangal Dosha in Marriage",
+        "te": "Module 14-2: Mangal Dosha in Marriage",
+        "bn": "Module 14-2: Mangal Dosha in Marriage",
+        "kn": "Module 14-2: Mangal Dosha in Marriage",
+        "gu": "Module 14-2: Mangal Dosha in Marriage"
+      },
+      "href": "/learn/modules/14-2"
+    },
+    {
+      "label": {
+        "en": "Module 14-3: Timing Marriage Events",
+        "hi": "मॉड्यूल 14-3: विवाह समय निर्धारण",
+        "sa": "मॉड्यूल 14-3: विवाह समय निर्धारण",
+        "mai": "मॉड्यूल 14-3: विवाह समय निर्धारण",
+        "mr": "मॉड्यूल 14-3: विवाह समय निर्धारण",
+        "ta": "Module 14-3: Timing Marriage Events",
+        "te": "Module 14-3: Timing Marriage Events",
+        "bn": "Module 14-3: Timing Marriage Events",
+        "kn": "Module 14-3: Timing Marriage Events",
+        "gu": "Module 14-3: Timing Marriage Events"
+      },
+      "href": "/learn/modules/14-3"
+    },
+    {
+      "label": {
+        "en": "Matching Deep Dive",
+        "hi": "मिलान विस्तार",
+        "sa": "मिलान विस्तार",
+        "mai": "मिलान विस्तार",
+        "mr": "मिलान विस्तार",
+        "ta": "Matching Deep Dive",
+        "te": "Matching Deep Dive",
+        "bn": "Matching Deep Dive",
+        "kn": "Matching Deep Dive",
+        "gu": "Matching Deep Dive"
+      },
+      "href": "/learn/matching"
+    },
+    {
+      "label": {
+        "en": "Kundali Matching Tool",
+        "hi": "कुण्डली मिलान उपकरण",
+        "sa": "कुण्डली मिलान उपकरण",
+        "mai": "कुण्डली मिलान उपकरण",
+        "mr": "कुण्डली मिलान उपकरण",
+        "ta": "Kundali Matching Tool",
+        "te": "Kundali Matching Tool",
+        "bn": "Kundali Matching Tool",
+        "kn": "Kundali Matching Tool",
+        "gu": "Kundali Matching Tool"
+      },
+      "href": "/matching"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q14_1_01",
+      "type": "mcq",
+      "question": {
+        "en": "What is the maximum possible score in the Ashta Kuta system?",
+        "hi": "अष्ट कूट पद्धति में अधिकतम सम्भव अंक कितने हैं?",
+        "sa": "अष्ट कूट पद्धति में अधिकतम सम्भव अंक कितने हैं?",
+        "ta": "What is the maximum possible score in the Ashta Kuta system?",
+        "te": "What is the maximum possible score in the Ashta Kuta system?",
+        "bn": "What is the maximum possible score in the Ashta Kuta system?",
+        "kn": "What is the maximum possible score in the Ashta Kuta system?",
+        "mr": "अष्ट कूट पद्धति में अधिकतम सम्भव अंक कितने हैं?",
+        "gu": "What is the maximum possible score in the Ashta Kuta system?",
+        "mai": "अष्ट कूट पद्धति में अधिकतम सम्भव अंक कितने हैं?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "The 8 kutas contribute 1+2+3+4+5+6+7+8 = 36 maximum points. Varna (1), Vashya (2), Tara (3), Yoni (4), Graha Maitri (5), Gana (6), Bhakoot (7), Nadi (8).",
+        "hi": "8 कूटों का योग 1+2+3+4+5+6+7+8 = 36 अधिकतम अंक होता है। वर्ण (1), वश्य (2), तारा (3), योनि (4), ग्रह मैत्री (5), गण (6), भकूट (7), नाड़ी (8)।",
+        "sa": "8 कूटों का योग 1+2+3+4+5+6+7+8 = 36 अधिकतम अंक होता है। वर्ण (1), वश्य (2), तारा (3), योनि (4), ग्रह मैत्री (5), गण (6), भकूट (7), नाड़ी (8)।",
+        "ta": "The 8 kutas contribute 1+2+3+4+5+6+7+8 = 36 maximum points. Varna (1), Vashya (2), Tara (3), Yoni (4), Graha Maitri (5), Gana (6), Bhakoot (7), Nadi (8).",
+        "te": "The 8 kutas contribute 1+2+3+4+5+6+7+8 = 36 maximum points. Varna (1), Vashya (2), Tara (3), Yoni (4), Graha Maitri (5), Gana (6), Bhakoot (7), Nadi (8).",
+        "bn": "The 8 kutas contribute 1+2+3+4+5+6+7+8 = 36 maximum points. Varna (1), Vashya (2), Tara (3), Yoni (4), Graha Maitri (5), Gana (6), Bhakoot (7), Nadi (8).",
+        "kn": "The 8 kutas contribute 1+2+3+4+5+6+7+8 = 36 maximum points. Varna (1), Vashya (2), Tara (3), Yoni (4), Graha Maitri (5), Gana (6), Bhakoot (7), Nadi (8).",
+        "mr": "8 कूटों का योग 1+2+3+4+5+6+7+8 = 36 अधिकतम अंक होता है। वर्ण (1), वश्य (2), तारा (3), योनि (4), ग्रह मैत्री (5), गण (6), भकूट (7), नाड़ी (8)।",
+        "gu": "The 8 kutas contribute 1+2+3+4+5+6+7+8 = 36 maximum points. Varna (1), Vashya (2), Tara (3), Yoni (4), Graha Maitri (5), Gana (6), Bhakoot (7), Nadi (8).",
+        "mai": "8 कूटों का योग 1+2+3+4+5+6+7+8 = 36 अधिकतम अंक होता है। वर्ण (1), वश्य (2), तारा (3), योनि (4), ग्रह मैत्री (5), गण (6), भकूट (7), नाड़ी (8)।"
+      },
+      "options": [
+        {
+          "en": "18 points",
+          "hi": "18 अंक",
+          "sa": "18 अंक",
+          "ta": "18 points",
+          "te": "18 points",
+          "bn": "18 points",
+          "kn": "18 points",
+          "mr": "18 अंक",
+          "gu": "18 points",
+          "mai": "18 अंक"
+        },
+        {
+          "en": "36 points",
+          "hi": "36 अंक",
+          "sa": "36 अंक",
+          "ta": "36 points",
+          "te": "36 points",
+          "bn": "36 points",
+          "kn": "36 points",
+          "mr": "36 अंक",
+          "gu": "36 points",
+          "mai": "36 अंक"
+        },
+        {
+          "en": "32 points",
+          "hi": "32 अंक",
+          "sa": "32 अंक",
+          "ta": "32 points",
+          "te": "32 points",
+          "bn": "32 points",
+          "kn": "32 points",
+          "mr": "32 अंक",
+          "gu": "32 points",
+          "mai": "32 अंक"
+        },
+        {
+          "en": "40 points",
+          "hi": "40 अंक",
+          "sa": "40 अंक",
+          "ta": "40 points",
+          "te": "40 points",
+          "bn": "40 points",
+          "kn": "40 points",
+          "mr": "40 अंक",
+          "gu": "40 points",
+          "mai": "40 अंक"
+        }
+      ]
+    },
+    {
+      "id": "q14_1_02",
+      "type": "mcq",
+      "question": {
+        "en": "What is the generally accepted minimum threshold for a compatible match?",
+        "hi": "अनुकूल मिलान के लिए सामान्यतः स्वीकृत न्यूनतम सीमा क्या है?",
+        "sa": "अनुकूल मिलान के लिए सामान्यतः स्वीकृत न्यूनतम सीमा क्या है?",
+        "ta": "What is the generally accepted minimum threshold for a compatible match?",
+        "te": "What is the generally accepted minimum threshold for a compatible match?",
+        "bn": "What is the generally accepted minimum threshold for a compatible match?",
+        "kn": "What is the generally accepted minimum threshold for a compatible match?",
+        "mr": "अनुकूल मिलान के लिए सामान्यतः स्वीकृत न्यूनतम सीमा क्या है?",
+        "gu": "What is the generally accepted minimum threshold for a compatible match?",
+        "mai": "अनुकूल मिलान के लिए सामान्यतः स्वीकृत न्यूनतम सीमा क्या है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "18/36 (50%) is the traditional minimum. Below 18 is generally discouraged. 18-24 is acceptable, 24-32 is good, and 32+ is excellent. However, the score alone is not sufficient — specific dosha checks matter more.",
+        "hi": "18/36 (50%) पारम्परिक न्यूनतम है। 18 से कम सामान्यतः निरुत्साहित किया जाता है। 18-24 स्वीकार्य, 24-32 अच्छा, और 32+ उत्तम है। परन्तु केवल अंक पर्याप्त नहीं — विशिष्ट दोष जाँच अधिक महत्वपूर्ण है।",
+        "sa": "18/36 (50%) पारम्परिक न्यूनतम है। 18 से कम सामान्यतः निरुत्साहित किया जाता है। 18-24 स्वीकार्य, 24-32 अच्छा, और 32+ उत्तम है। परन्तु केवल अंक पर्याप्त नहीं — विशिष्ट दोष जाँच अधिक महत्वपूर्ण है।",
+        "ta": "18/36 (50%) is the traditional minimum. Below 18 is generally discouraged. 18-24 is acceptable, 24-32 is good, and 32+ is excellent. However, the score alone is not sufficient — specific dosha checks matter more.",
+        "te": "18/36 (50%) is the traditional minimum. Below 18 is generally discouraged. 18-24 is acceptable, 24-32 is good, and 32+ is excellent. However, the score alone is not sufficient — specific dosha checks matter more.",
+        "bn": "18/36 (50%) is the traditional minimum. Below 18 is generally discouraged. 18-24 is acceptable, 24-32 is good, and 32+ is excellent. However, the score alone is not sufficient — specific dosha checks matter more.",
+        "kn": "18/36 (50%) is the traditional minimum. Below 18 is generally discouraged. 18-24 is acceptable, 24-32 is good, and 32+ is excellent. However, the score alone is not sufficient — specific dosha checks matter more.",
+        "mr": "18/36 (50%) पारम्परिक न्यूनतम है। 18 से कम सामान्यतः निरुत्साहित किया जाता है। 18-24 स्वीकार्य, 24-32 अच्छा, और 32+ उत्तम है। परन्तु केवल अंक पर्याप्त नहीं — विशिष्ट दोष जाँच अधिक महत्वपूर्ण है।",
+        "gu": "18/36 (50%) is the traditional minimum. Below 18 is generally discouraged. 18-24 is acceptable, 24-32 is good, and 32+ is excellent. However, the score alone is not sufficient — specific dosha checks matter more.",
+        "mai": "18/36 (50%) पारम्परिक न्यूनतम है। 18 से कम सामान्यतः निरुत्साहित किया जाता है। 18-24 स्वीकार्य, 24-32 अच्छा, और 32+ उत्तम है। परन्तु केवल अंक पर्याप्त नहीं — विशिष्ट दोष जाँच अधिक महत्वपूर्ण है।"
+      },
+      "options": [
+        {
+          "en": "12 out of 36",
+          "hi": "36 में से 12",
+          "sa": "36 में से 12",
+          "ta": "12 out of 36",
+          "te": "12 out of 36",
+          "bn": "12 out of 36",
+          "kn": "12 out of 36",
+          "mr": "36 में से 12",
+          "gu": "12 out of 36",
+          "mai": "36 में से 12"
+        },
+        {
+          "en": "18 out of 36",
+          "hi": "36 में से 18",
+          "sa": "36 में से 18",
+          "ta": "18 out of 36",
+          "te": "18 out of 36",
+          "bn": "18 out of 36",
+          "kn": "18 out of 36",
+          "mr": "36 में से 18",
+          "gu": "18 out of 36",
+          "mai": "36 में से 18"
+        },
+        {
+          "en": "24 out of 36",
+          "hi": "36 में से 24",
+          "sa": "36 में से 24",
+          "ta": "24 out of 36",
+          "te": "24 out of 36",
+          "bn": "24 out of 36",
+          "kn": "24 out of 36",
+          "mr": "36 में से 24",
+          "gu": "24 out of 36",
+          "mai": "36 में से 24"
+        },
+        {
+          "en": "30 out of 36",
+          "hi": "36 में से 30",
+          "sa": "36 में से 30",
+          "ta": "30 out of 36",
+          "te": "30 out of 36",
+          "bn": "30 out of 36",
+          "kn": "30 out of 36",
+          "mr": "36 में से 30",
+          "gu": "30 out of 36",
+          "mai": "36 में से 30"
+        }
+      ]
+    },
+    {
+      "id": "q14_1_03",
+      "type": "true_false",
+      "question": {
+        "en": "The Ashta Kuta system uses only the Moon nakshatra of both individuals — no other planetary positions are considered.",
+        "hi": "अष्ट कूट पद्धति केवल दोनों व्यक्तियों के चन्द्र नक्षत्र का उपयोग करती है — किसी अन्य ग्रह स्थिति पर विचार नहीं होता।",
+        "sa": "अष्ट कूट पद्धति केवल दोनों व्यक्तियों के चन्द्र नक्षत्र का उपयोग करती है — किसी अन्य ग्रह स्थिति पर विचार नहीं होता।",
+        "ta": "The Ashta Kuta system uses only the Moon nakshatra of both individuals — no other planetary positions are considered.",
+        "te": "The Ashta Kuta system uses only the Moon nakshatra of both individuals — no other planetary positions are considered.",
+        "bn": "The Ashta Kuta system uses only the Moon nakshatra of both individuals — no other planetary positions are considered.",
+        "kn": "The Ashta Kuta system uses only the Moon nakshatra of both individuals — no other planetary positions are considered.",
+        "mr": "अष्ट कूट पद्धति केवल दोनों व्यक्तियों के चन्द्र नक्षत्र का उपयोग करती है — किसी अन्य ग्रह स्थिति पर विचार नहीं होता।",
+        "gu": "The Ashta Kuta system uses only the Moon nakshatra of both individuals — no other planetary positions are considered.",
+        "mai": "अष्ट कूट पद्धति केवल दोनों व्यक्तियों के चन्द्र नक्षत्र का उपयोग करती है — किसी अन्य ग्रह स्थिति पर विचार नहीं होता।"
+      },
+      "correctAnswer": true,
+      "explanation": {
+        "en": "True. Ashta Kuta is entirely Moon-nakshatra based. This is both its strength (simplicity) and its limitation — it ignores Venus, 7th house, and overall chart strength, which is why experienced astrologers look beyond just the Kuta score.",
+        "hi": "सत्य। अष्ट कूट पूर्णतया चन्द्र-नक्षत्र आधारित है। यह इसकी शक्ति (सरलता) और सीमा दोनों है — यह शुक्र, सप्तम भाव, और समग्र कुण्डली बल की उपेक्षा करती है, इसलिए अनुभवी ज्योतिषी कूट अंकों से परे देखते हैं।",
+        "sa": "सत्य। अष्ट कूट पूर्णतया चन्द्र-नक्षत्र आधारित है। यह इसकी शक्ति (सरलता) और सीमा दोनों है — यह शुक्र, सप्तम भाव, और समग्र कुण्डली बल की उपेक्षा करती है, इसलिए अनुभवी ज्योतिषी कूट अंकों से परे देखते हैं।",
+        "ta": "True. Ashta Kuta is entirely Moon-nakshatra based. This is both its strength (simplicity) and its limitation — it ignores Venus, 7th house, and overall chart strength, which is why experienced astrologers look beyond just the Kuta score.",
+        "te": "True. Ashta Kuta is entirely Moon-nakshatra based. This is both its strength (simplicity) and its limitation — it ignores Venus, 7th house, and overall chart strength, which is why experienced astrologers look beyond just the Kuta score.",
+        "bn": "True. Ashta Kuta is entirely Moon-nakshatra based. This is both its strength (simplicity) and its limitation — it ignores Venus, 7th house, and overall chart strength, which is why experienced astrologers look beyond just the Kuta score.",
+        "kn": "True. Ashta Kuta is entirely Moon-nakshatra based. This is both its strength (simplicity) and its limitation — it ignores Venus, 7th house, and overall chart strength, which is why experienced astrologers look beyond just the Kuta score.",
+        "mr": "सत्य। अष्ट कूट पूर्णतया चन्द्र-नक्षत्र आधारित है। यह इसकी शक्ति (सरलता) और सीमा दोनों है — यह शुक्र, सप्तम भाव, और समग्र कुण्डली बल की उपेक्षा करती है, इसलिए अनुभवी ज्योतिषी कूट अंकों से परे देखते हैं।",
+        "gu": "True. Ashta Kuta is entirely Moon-nakshatra based. This is both its strength (simplicity) and its limitation — it ignores Venus, 7th house, and overall chart strength, which is why experienced astrologers look beyond just the Kuta score.",
+        "mai": "सत्य। अष्ट कूट पूर्णतया चन्द्र-नक्षत्र आधारित है। यह इसकी शक्ति (सरलता) और सीमा दोनों है — यह शुक्र, सप्तम भाव, और समग्र कुण्डली बल की उपेक्षा करती है, इसलिए अनुभवी ज्योतिषी कूट अंकों से परे देखते हैं।"
+      }
+    },
+    {
+      "id": "q14_1_04",
+      "type": "mcq",
+      "question": {
+        "en": "Which kuta carries the highest point value (8 points) and is considered most critical?",
+        "hi": "किस कूट का सर्वाधिक अंक मूल्य (8 अंक) है और सबसे महत्वपूर्ण माना जाता है?",
+        "sa": "किस कूट का सर्वाधिक अंक मूल्य (8 अंक) है और सबसे महत्वपूर्ण माना जाता है?",
+        "ta": "Which kuta carries the highest point value (8 points) and is considered most critical?",
+        "te": "Which kuta carries the highest point value (8 points) and is considered most critical?",
+        "bn": "Which kuta carries the highest point value (8 points) and is considered most critical?",
+        "kn": "Which kuta carries the highest point value (8 points) and is considered most critical?",
+        "mr": "किस कूट का सर्वाधिक अंक मूल्य (8 अंक) है और सबसे महत्वपूर्ण माना जाता है?",
+        "gu": "Which kuta carries the highest point value (8 points) and is considered most critical?",
+        "mai": "किस कूट का सर्वाधिक अंक मूल्य (8 अंक) है और सबसे महत्वपूर्ण माना जाता है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Nadi kuta (8 points) is the highest-weighted factor. It assesses constitutional compatibility — Aadi (Vata), Madhya (Pitta), and Antya (Kapha). Same nadi scores 0 and is called Nadi Dosha, traditionally considered very serious.",
+        "hi": "नाड़ी कूट (8 अंक) सर्वाधिक भारित कारक है। यह शारीरिक संरचना अनुकूलता का आकलन करता है — आदि (वात), मध्य (पित्त), और अन्त्य (कफ)। समान नाड़ी में 0 अंक मिलते हैं जिसे नाड़ी दोष कहते हैं, जिसे पारम्परिक रूप से अत्यन्त गम्भीर माना जाता है।",
+        "sa": "नाड़ी कूट (8 अंक) सर्वाधिक भारित कारक है। यह शारीरिक संरचना अनुकूलता का आकलन करता है — आदि (वात), मध्य (पित्त), और अन्त्य (कफ)। समान नाड़ी में 0 अंक मिलते हैं जिसे नाड़ी दोष कहते हैं, जिसे पारम्परिक रूप से अत्यन्त गम्भीर माना जाता है।",
+        "ta": "Nadi kuta (8 points) is the highest-weighted factor. It assesses constitutional compatibility — Aadi (Vata), Madhya (Pitta), and Antya (Kapha). Same nadi scores 0 and is called Nadi Dosha, traditionally considered very serious.",
+        "te": "Nadi kuta (8 points) is the highest-weighted factor. It assesses constitutional compatibility — Aadi (Vata), Madhya (Pitta), and Antya (Kapha). Same nadi scores 0 and is called Nadi Dosha, traditionally considered very serious.",
+        "bn": "Nadi kuta (8 points) is the highest-weighted factor. It assesses constitutional compatibility — Aadi (Vata), Madhya (Pitta), and Antya (Kapha). Same nadi scores 0 and is called Nadi Dosha, traditionally considered very serious.",
+        "kn": "Nadi kuta (8 points) is the highest-weighted factor. It assesses constitutional compatibility — Aadi (Vata), Madhya (Pitta), and Antya (Kapha). Same nadi scores 0 and is called Nadi Dosha, traditionally considered very serious.",
+        "mr": "नाड़ी कूट (8 अंक) सर्वाधिक भारित कारक है। यह शारीरिक संरचना अनुकूलता का आकलन करता है — आदि (वात), मध्य (पित्त), और अन्त्य (कफ)। समान नाड़ी में 0 अंक मिलते हैं जिसे नाड़ी दोष कहते हैं, जिसे पारम्परिक रूप से अत्यन्त गम्भीर माना जाता है।",
+        "gu": "Nadi kuta (8 points) is the highest-weighted factor. It assesses constitutional compatibility — Aadi (Vata), Madhya (Pitta), and Antya (Kapha). Same nadi scores 0 and is called Nadi Dosha, traditionally considered very serious.",
+        "mai": "नाड़ी कूट (8 अंक) सर्वाधिक भारित कारक है। यह शारीरिक संरचना अनुकूलता का आकलन करता है — आदि (वात), मध्य (पित्त), और अन्त्य (कफ)। समान नाड़ी में 0 अंक मिलते हैं जिसे नाड़ी दोष कहते हैं, जिसे पारम्परिक रूप से अत्यन्त गम्भीर माना जाता है।"
+      },
+      "options": [
+        {
+          "en": "Bhakoot (7th lord compatibility)",
+          "hi": "भकूट (सप्तमेश अनुकूलता)",
+          "sa": "भकूट (सप्तमेश अनुकूलता)",
+          "ta": "Bhakoot (7th lord compatibility)",
+          "te": "Bhakoot (7th lord compatibility)",
+          "bn": "Bhakoot (7th lord compatibility)",
+          "kn": "Bhakoot (7th lord compatibility)",
+          "mr": "भकूट (सप्तमेश अनुकूलता)",
+          "gu": "Bhakoot (7th lord compatibility)",
+          "mai": "भकूट (सप्तमेश अनुकूलता)"
+        },
+        {
+          "en": "Nadi (genetic/health compatibility)",
+          "hi": "नाड़ी (आनुवंशिक/स्वास्थ्य अनुकूलता)",
+          "sa": "नाड़ी (आनुवंशिक/स्वास्थ्य अनुकूलता)",
+          "ta": "Nadi (genetic/health compatibility)",
+          "te": "Nadi (genetic/health compatibility)",
+          "bn": "Nadi (genetic/health compatibility)",
+          "kn": "Nadi (genetic/health compatibility)",
+          "mr": "नाड़ी (आनुवंशिक/स्वास्थ्य अनुकूलता)",
+          "gu": "Nadi (genetic/health compatibility)",
+          "mai": "नाड़ी (आनुवंशिक/स्वास्थ्य अनुकूलता)"
+        },
+        {
+          "en": "Gana (temperament)",
+          "hi": "गण (स्वभाव)",
+          "sa": "गण (स्वभाव)",
+          "ta": "Gana (temperament)",
+          "te": "Gana (temperament)",
+          "bn": "Gana (temperament)",
+          "kn": "Gana (temperament)",
+          "mr": "गण (स्वभाव)",
+          "gu": "Gana (temperament)",
+          "mai": "गण (स्वभाव)"
+        },
+        {
+          "en": "Yoni (physical compatibility)",
+          "hi": "योनि (शारीरिक अनुकूलता)",
+          "sa": "योनि (शारीरिक अनुकूलता)",
+          "ta": "Yoni (physical compatibility)",
+          "te": "Yoni (physical compatibility)",
+          "bn": "Yoni (physical compatibility)",
+          "kn": "Yoni (physical compatibility)",
+          "mr": "योनि (शारीरिक अनुकूलता)",
+          "gu": "Yoni (physical compatibility)",
+          "mai": "योनि (शारीरिक अनुकूलता)"
+        }
+      ]
+    },
+    {
+      "id": "q14_1_05",
+      "type": "mcq",
+      "question": {
+        "en": "How does the South Indian Dashakuta system differ from the North Indian Ashta Kuta?",
+        "hi": "दक्षिण भारतीय दशकूट पद्धति उत्तर भारतीय अष्ट कूट से कैसे भिन्न है?",
+        "sa": "दक्षिण भारतीय दशकूट पद्धति उत्तर भारतीय अष्ट कूट से कैसे भिन्न है?",
+        "ta": "How does the South Indian Dashakuta system differ from the North Indian Ashta Kuta?",
+        "te": "How does the South Indian Dashakuta system differ from the North Indian Ashta Kuta?",
+        "bn": "How does the South Indian Dashakuta system differ from the North Indian Ashta Kuta?",
+        "kn": "How does the South Indian Dashakuta system differ from the North Indian Ashta Kuta?",
+        "mr": "दक्षिण भारतीय दशकूट पद्धति उत्तर भारतीय अष्ट कूट से कैसे भिन्न है?",
+        "gu": "How does the South Indian Dashakuta system differ from the North Indian Ashta Kuta?",
+        "mai": "दक्षिण भारतीय दशकूट पद्धति उत्तर भारतीय अष्ट कूट से कैसे भिन्न है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Dashakuta adds 2 additional factors (Mahendra and Vedha) to the 8 kutas, with a different maximum score. The weighting priorities also differ — South Indian tradition places more emphasis on Rajju (longevity of spouse) which is not part of Ashta Kuta.",
+        "hi": "दशकूट 8 कूटों में 2 अतिरिक्त कारक (महेन्द्र और वेध) जोड़ती है, भिन्न अधिकतम अंक के साथ। भार प्राथमिकताएँ भी भिन्न हैं — दक्षिण भारतीय परम्परा रज्जु (पति/पत्नी की दीर्घायु) पर अधिक बल देती है जो अष्ट कूट का भाग नहीं है।",
+        "sa": "दशकूट 8 कूटों में 2 अतिरिक्त कारक (महेन्द्र और वेध) जोड़ती है, भिन्न अधिकतम अंक के साथ। भार प्राथमिकताएँ भी भिन्न हैं — दक्षिण भारतीय परम्परा रज्जु (पति/पत्नी की दीर्घायु) पर अधिक बल देती है जो अष्ट कूट का भाग नहीं है।",
+        "ta": "Dashakuta adds 2 additional factors (Mahendra and Vedha) to the 8 kutas, with a different maximum score. The weighting priorities also differ — South Indian tradition places more emphasis on Rajju (longevity of spouse) which is not part of Ashta Kuta.",
+        "te": "Dashakuta adds 2 additional factors (Mahendra and Vedha) to the 8 kutas, with a different maximum score. The weighting priorities also differ — South Indian tradition places more emphasis on Rajju (longevity of spouse) which is not part of Ashta Kuta.",
+        "bn": "Dashakuta adds 2 additional factors (Mahendra and Vedha) to the 8 kutas, with a different maximum score. The weighting priorities also differ — South Indian tradition places more emphasis on Rajju (longevity of spouse) which is not part of Ashta Kuta.",
+        "kn": "Dashakuta adds 2 additional factors (Mahendra and Vedha) to the 8 kutas, with a different maximum score. The weighting priorities also differ — South Indian tradition places more emphasis on Rajju (longevity of spouse) which is not part of Ashta Kuta.",
+        "mr": "दशकूट 8 कूटों में 2 अतिरिक्त कारक (महेन्द्र और वेध) जोड़ती है, भिन्न अधिकतम अंक के साथ। भार प्राथमिकताएँ भी भिन्न हैं — दक्षिण भारतीय परम्परा रज्जु (पति/पत्नी की दीर्घायु) पर अधिक बल देती है जो अष्ट कूट का भाग नहीं है।",
+        "gu": "Dashakuta adds 2 additional factors (Mahendra and Vedha) to the 8 kutas, with a different maximum score. The weighting priorities also differ — South Indian tradition places more emphasis on Rajju (longevity of spouse) which is not part of Ashta Kuta.",
+        "mai": "दशकूट 8 कूटों में 2 अतिरिक्त कारक (महेन्द्र और वेध) जोड़ती है, भिन्न अधिकतम अंक के साथ। भार प्राथमिकताएँ भी भिन्न हैं — दक्षिण भारतीय परम्परा रज्जु (पति/पत्नी की दीर्घायु) पर अधिक बल देती है जो अष्ट कूट का भाग नहीं है।"
+      },
+      "options": [
+        {
+          "en": "It uses Sun signs instead of Moon nakshatras",
+          "hi": "यह चन्द्र नक्षत्रों के स्थान पर सूर्य राशियों का उपयोग करती है",
+          "sa": "यह चन्द्र नक्षत्रों के स्थान पर सूर्य राशियों का उपयोग करती है",
+          "ta": "It uses Sun signs instead of Moon nakshatras",
+          "te": "It uses Sun signs instead of Moon nakshatras",
+          "bn": "It uses Sun signs instead of Moon nakshatras",
+          "kn": "It uses Sun signs instead of Moon nakshatras",
+          "mr": "यह चन्द्र नक्षत्रों के स्थान पर सूर्य राशियों का उपयोग करती है",
+          "gu": "It uses Sun signs instead of Moon nakshatras",
+          "mai": "यह चन्द्र नक्षत्रों के स्थान पर सूर्य राशियों का उपयोग करती है"
+        },
+        {
+          "en": "It uses 10 factors instead of 8, with different weighting",
+          "hi": "यह 8 के स्थान पर 10 कारकों का उपयोग करती है, भिन्न भार के साथ",
+          "sa": "यह 8 के स्थान पर 10 कारकों का उपयोग करती है, भिन्न भार के साथ",
+          "ta": "It uses 10 factors instead of 8, with different weighting",
+          "te": "It uses 10 factors instead of 8, with different weighting",
+          "bn": "It uses 10 factors instead of 8, with different weighting",
+          "kn": "It uses 10 factors instead of 8, with different weighting",
+          "mr": "यह 8 के स्थान पर 10 कारकों का उपयोग करती है, भिन्न भार के साथ",
+          "gu": "It uses 10 factors instead of 8, with different weighting",
+          "mai": "यह 8 के स्थान पर 10 कारकों का उपयोग करती है, भिन्न भार के साथ"
+        },
+        {
+          "en": "It requires exact birth time while Ashta Kuta does not",
+          "hi": "इसमें सटीक जन्म समय आवश्यक है जबकि अष्ट कूट में नहीं",
+          "sa": "इसमें सटीक जन्म समय आवश्यक है जबकि अष्ट कूट में नहीं",
+          "ta": "It requires exact birth time while Ashta Kuta does not",
+          "te": "It requires exact birth time while Ashta Kuta does not",
+          "bn": "It requires exact birth time while Ashta Kuta does not",
+          "kn": "It requires exact birth time while Ashta Kuta does not",
+          "mr": "इसमें सटीक जन्म समय आवश्यक है जबकि अष्ट कूट में नहीं",
+          "gu": "It requires exact birth time while Ashta Kuta does not",
+          "mai": "इसमें सटीक जन्म समय आवश्यक है जबकि अष्ट कूट में नहीं"
+        },
+        {
+          "en": "It only checks Nadi and Bhakoot",
+          "hi": "यह केवल नाड़ी और भकूट की जाँच करती है",
+          "sa": "यह केवल नाड़ी और भकूट की जाँच करती है",
+          "ta": "It only checks Nadi and Bhakoot",
+          "te": "It only checks Nadi and Bhakoot",
+          "bn": "It only checks Nadi and Bhakoot",
+          "kn": "It only checks Nadi and Bhakoot",
+          "mr": "यह केवल नाड़ी और भकूट की जाँच करती है",
+          "gu": "It only checks Nadi and Bhakoot",
+          "mai": "यह केवल नाड़ी और भकूट की जाँच करती है"
+        }
+      ]
+    },
+    {
+      "id": "q14_1_06",
+      "type": "true_false",
+      "question": {
+        "en": "A couple scoring 32/36 on Ashta Kuta is guaranteed a happy marriage.",
+        "hi": "32/36 अष्ट कूट अंक प्राप्त करने वाले जोड़े का सुखी विवाह सुनिश्चित है।",
+        "sa": "32/36 अष्ट कूट अंक प्राप्त करने वाले जोड़े का सुखी विवाह सुनिश्चित है।",
+        "ta": "A couple scoring 32/36 on Ashta Kuta is guaranteed a happy marriage.",
+        "te": "A couple scoring 32/36 on Ashta Kuta is guaranteed a happy marriage.",
+        "bn": "A couple scoring 32/36 on Ashta Kuta is guaranteed a happy marriage.",
+        "kn": "A couple scoring 32/36 on Ashta Kuta is guaranteed a happy marriage.",
+        "mr": "32/36 अष्ट कूट अंक प्राप्त करने वाले जोड़े का सुखी विवाह सुनिश्चित है।",
+        "gu": "A couple scoring 32/36 on Ashta Kuta is guaranteed a happy marriage.",
+        "mai": "32/36 अष्ट कूट अंक प्राप्त करने वाले जोड़े का सुखी विवाह सुनिश्चित है।"
+      },
+      "correctAnswer": false,
+      "explanation": {
+        "en": "False. High Kuta score is favorable but not a guarantee. A couple with 32 points but severely afflicted 7th houses, weak Venus, or misaligned dashas can face serious challenges. Conversely, 18-point couples with strong 7th lords and good Venus can be very happy.",
+        "hi": "असत्य। उच्च कूट अंक अनुकूल है परन्तु गारण्टी नहीं। 32 अंक वाले जोड़े जिनके सप्तम भाव गम्भीर रूप से पीड़ित हों, शुक्र दुर्बल हो, या दशाएँ असंरेखित हों, गम्भीर चुनौतियों का सामना कर सकते हैं। इसके विपरीत, 18 अंक वाले जोड़े जिनके सप्तमेश बली और शुक्र शुभ हो, बहुत सुखी हो सकते हैं।",
+        "sa": "असत्य। उच्च कूट अंक अनुकूल है परन्तु गारण्टी नहीं। 32 अंक वाले जोड़े जिनके सप्तम भाव गम्भीर रूप से पीड़ित हों, शुक्र दुर्बल हो, या दशाएँ असंरेखित हों, गम्भीर चुनौतियों का सामना कर सकते हैं। इसके विपरीत, 18 अंक वाले जोड़े जिनके सप्तमेश बली और शुक्र शुभ हो, बहुत सुखी हो सकते हैं।",
+        "ta": "False. High Kuta score is favorable but not a guarantee. A couple with 32 points but severely afflicted 7th houses, weak Venus, or misaligned dashas can face serious challenges. Conversely, 18-point couples with strong 7th lords and good Venus can be very happy.",
+        "te": "False. High Kuta score is favorable but not a guarantee. A couple with 32 points but severely afflicted 7th houses, weak Venus, or misaligned dashas can face serious challenges. Conversely, 18-point couples with strong 7th lords and good Venus can be very happy.",
+        "bn": "False. High Kuta score is favorable but not a guarantee. A couple with 32 points but severely afflicted 7th houses, weak Venus, or misaligned dashas can face serious challenges. Conversely, 18-point couples with strong 7th lords and good Venus can be very happy.",
+        "kn": "False. High Kuta score is favorable but not a guarantee. A couple with 32 points but severely afflicted 7th houses, weak Venus, or misaligned dashas can face serious challenges. Conversely, 18-point couples with strong 7th lords and good Venus can be very happy.",
+        "mr": "असत्य। उच्च कूट अंक अनुकूल है परन्तु गारण्टी नहीं। 32 अंक वाले जोड़े जिनके सप्तम भाव गम्भीर रूप से पीड़ित हों, शुक्र दुर्बल हो, या दशाएँ असंरेखित हों, गम्भीर चुनौतियों का सामना कर सकते हैं। इसके विपरीत, 18 अंक वाले जोड़े जिनके सप्तमेश बली और शुक्र शुभ हो, बहुत सुखी हो सकते हैं।",
+        "gu": "False. High Kuta score is favorable but not a guarantee. A couple with 32 points but severely afflicted 7th houses, weak Venus, or misaligned dashas can face serious challenges. Conversely, 18-point couples with strong 7th lords and good Venus can be very happy.",
+        "mai": "असत्य। उच्च कूट अंक अनुकूल है परन्तु गारण्टी नहीं। 32 अंक वाले जोड़े जिनके सप्तम भाव गम्भीर रूप से पीड़ित हों, शुक्र दुर्बल हो, या दशाएँ असंरेखित हों, गम्भीर चुनौतियों का सामना कर सकते हैं। इसके विपरीत, 18 अंक वाले जोड़े जिनके सप्तमेश बली और शुक्र शुभ हो, बहुत सुखी हो सकते हैं।"
+      }
+    },
+    {
+      "id": "q14_1_07",
+      "type": "mcq",
+      "question": {
+        "en": "What does the Bhakoot kuta (7 points) primarily assess?",
+        "hi": "भकूट कूट (7 अंक) मुख्य रूप से किसका आकलन करता है?",
+        "sa": "भकूट कूट (7 अंक) मुख्य रूप से किसका आकलन करता है?",
+        "ta": "What does the Bhakoot kuta (7 points) primarily assess?",
+        "te": "What does the Bhakoot kuta (7 points) primarily assess?",
+        "bn": "What does the Bhakoot kuta (7 points) primarily assess?",
+        "kn": "What does the Bhakoot kuta (7 points) primarily assess?",
+        "mr": "भकूट कूट (7 अंक) मुख्य रूप से किसका आकलन करता है?",
+        "gu": "What does the Bhakoot kuta (7 points) primarily assess?",
+        "mai": "भकूट कूट (7 अंक) मुख्य रूप से किसका आकलन करता है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Bhakoot kuta (7 points) checks the Moon sign relationship (2/12, 6/8, 5/9 etc.) between partners. The 6/8 and 2/12 combinations score 0 (Bhakoot Dosha) indicating potential for financial stress and emotional disconnect.",
+        "hi": "भकूट कूट (7 अंक) साथियों के मध्य चन्द्र राशि सम्बन्ध (2/12, 6/8, 5/9 आदि) की जाँच करता है। 6/8 और 2/12 संयोजनों में 0 अंक मिलते हैं (भकूट दोष) जो आर्थिक तनाव और भावनात्मक विच्छेद की सम्भावना दर्शाता है।",
+        "sa": "भकूट कूट (7 अंक) साथियों के मध्य चन्द्र राशि सम्बन्ध (2/12, 6/8, 5/9 आदि) की जाँच करता है। 6/8 और 2/12 संयोजनों में 0 अंक मिलते हैं (भकूट दोष) जो आर्थिक तनाव और भावनात्मक विच्छेद की सम्भावना दर्शाता है।",
+        "ta": "Bhakoot kuta (7 points) checks the Moon sign relationship (2/12, 6/8, 5/9 etc.) between partners. The 6/8 and 2/12 combinations score 0 (Bhakoot Dosha) indicating potential for financial stress and emotional disconnect.",
+        "te": "Bhakoot kuta (7 points) checks the Moon sign relationship (2/12, 6/8, 5/9 etc.) between partners. The 6/8 and 2/12 combinations score 0 (Bhakoot Dosha) indicating potential for financial stress and emotional disconnect.",
+        "bn": "Bhakoot kuta (7 points) checks the Moon sign relationship (2/12, 6/8, 5/9 etc.) between partners. The 6/8 and 2/12 combinations score 0 (Bhakoot Dosha) indicating potential for financial stress and emotional disconnect.",
+        "kn": "Bhakoot kuta (7 points) checks the Moon sign relationship (2/12, 6/8, 5/9 etc.) between partners. The 6/8 and 2/12 combinations score 0 (Bhakoot Dosha) indicating potential for financial stress and emotional disconnect.",
+        "mr": "भकूट कूट (7 अंक) साथियों के मध्य चन्द्र राशि सम्बन्ध (2/12, 6/8, 5/9 आदि) की जाँच करता है। 6/8 और 2/12 संयोजनों में 0 अंक मिलते हैं (भकूट दोष) जो आर्थिक तनाव और भावनात्मक विच्छेद की सम्भावना दर्शाता है।",
+        "gu": "Bhakoot kuta (7 points) checks the Moon sign relationship (2/12, 6/8, 5/9 etc.) between partners. The 6/8 and 2/12 combinations score 0 (Bhakoot Dosha) indicating potential for financial stress and emotional disconnect.",
+        "mai": "भकूट कूट (7 अंक) साथियों के मध्य चन्द्र राशि सम्बन्ध (2/12, 6/8, 5/9 आदि) की जाँच करता है। 6/8 और 2/12 संयोजनों में 0 अंक मिलते हैं (भकूट दोष) जो आर्थिक तनाव और भावनात्मक विच्छेद की सम्भावना दर्शाता है।"
+      },
+      "options": [
+        {
+          "en": "Physical attraction between partners",
+          "hi": "साथियों के मध्य शारीरिक आकर्षण",
+          "sa": "साथियों के मध्य शारीरिक आकर्षण",
+          "ta": "Physical attraction between partners",
+          "te": "Physical attraction between partners",
+          "bn": "Physical attraction between partners",
+          "kn": "Physical attraction between partners",
+          "mr": "साथियों के मध्य शारीरिक आकर्षण",
+          "gu": "Physical attraction between partners",
+          "mai": "साथियों के मध्य शारीरिक आकर्षण"
+        },
+        {
+          "en": "Financial prosperity and emotional harmony of the couple",
+          "hi": "दम्पती की आर्थिक समृद्धि और भावनात्मक सामंजस्य",
+          "sa": "दम्पती की आर्थिक समृद्धि और भावनात्मक सामंजस्य",
+          "ta": "Financial prosperity and emotional harmony of the couple",
+          "te": "Financial prosperity and emotional harmony of the couple",
+          "bn": "Financial prosperity and emotional harmony of the couple",
+          "kn": "Financial prosperity and emotional harmony of the couple",
+          "mr": "दम्पती की आर्थिक समृद्धि और भावनात्मक सामंजस्य",
+          "gu": "Financial prosperity and emotional harmony of the couple",
+          "mai": "दम्पती की आर्थिक समृद्धि और भावनात्मक सामंजस्य"
+        },
+        {
+          "en": "Number of children the couple will have",
+          "hi": "दम्पती को कितनी सन्तान होगी",
+          "sa": "दम्पती को कितनी सन्तान होगी",
+          "ta": "Number of children the couple will have",
+          "te": "Number of children the couple will have",
+          "bn": "Number of children the couple will have",
+          "kn": "Number of children the couple will have",
+          "mr": "दम्पती को कितनी सन्तान होगी",
+          "gu": "Number of children the couple will have",
+          "mai": "दम्पती को कितनी सन्तान होगी"
+        },
+        {
+          "en": "Career compatibility",
+          "hi": "व्यावसायिक अनुकूलता",
+          "sa": "व्यावसायिक अनुकूलता",
+          "ta": "Career compatibility",
+          "te": "Career compatibility",
+          "bn": "Career compatibility",
+          "kn": "Career compatibility",
+          "mr": "व्यावसायिक अनुकूलता",
+          "gu": "Career compatibility",
+          "mai": "व्यावसायिक अनुकूलता"
+        }
+      ]
+    },
+    {
+      "id": "q14_1_08",
+      "type": "mcq",
+      "question": {
+        "en": "Which chart factor can override a low Kuta score and still indicate a successful marriage?",
+        "hi": "कौन-सा कुण्डली कारक कम कूट अंक को अधिभावी कर सकता है और फिर भी सफल विवाह दर्शा सकता है?",
+        "sa": "कौन-सा कुण्डली कारक कम कूट अंक को अधिभावी कर सकता है और फिर भी सफल विवाह दर्शा सकता है?",
+        "ta": "Which chart factor can override a low Kuta score and still indicate a successful marriage?",
+        "te": "Which chart factor can override a low Kuta score and still indicate a successful marriage?",
+        "bn": "Which chart factor can override a low Kuta score and still indicate a successful marriage?",
+        "kn": "Which chart factor can override a low Kuta score and still indicate a successful marriage?",
+        "mr": "कौन-सा कुण्डली कारक कम कूट अंक को अधिभावी कर सकता है और फिर भी सफल विवाह दर्शा सकता है?",
+        "gu": "Which chart factor can override a low Kuta score and still indicate a successful marriage?",
+        "mai": "कौन-सा कुण्डली कारक कम कूट अंक को अधिभावी कर सकता है और फिर भी सफल विवाह दर्शा सकता है?"
+      },
+      "correctAnswer": 0,
+      "explanation": {
+        "en": "A strong 7th house lord (the house of marriage) in a kendra with good dignity is a powerful indicator of marital happiness regardless of the Kuta score. Venus dignity and Navamsha compatibility are also crucial override factors.",
+        "hi": "केन्द्र में उच्च गरिमा सहित बली सप्तमेश (विवाह का भाव) कूट अंक की परवाह किए बिना वैवाहिक सुख का शक्तिशाली संकेत है। शुक्र की गरिमा और नवांश अनुकूलता भी महत्वपूर्ण अधिभावी कारक हैं।",
+        "sa": "केन्द्र में उच्च गरिमा सहित बली सप्तमेश (विवाह का भाव) कूट अंक की परवाह किए बिना वैवाहिक सुख का शक्तिशाली संकेत है। शुक्र की गरिमा और नवांश अनुकूलता भी महत्वपूर्ण अधिभावी कारक हैं।",
+        "ta": "A strong 7th house lord (the house of marriage) in a kendra with good dignity is a powerful indicator of marital happiness regardless of the Kuta score. Venus dignity and Navamsha compatibility are also crucial override factors.",
+        "te": "A strong 7th house lord (the house of marriage) in a kendra with good dignity is a powerful indicator of marital happiness regardless of the Kuta score. Venus dignity and Navamsha compatibility are also crucial override factors.",
+        "bn": "A strong 7th house lord (the house of marriage) in a kendra with good dignity is a powerful indicator of marital happiness regardless of the Kuta score. Venus dignity and Navamsha compatibility are also crucial override factors.",
+        "kn": "A strong 7th house lord (the house of marriage) in a kendra with good dignity is a powerful indicator of marital happiness regardless of the Kuta score. Venus dignity and Navamsha compatibility are also crucial override factors.",
+        "mr": "केन्द्र में उच्च गरिमा सहित बली सप्तमेश (विवाह का भाव) कूट अंक की परवाह किए बिना वैवाहिक सुख का शक्तिशाली संकेत है। शुक्र की गरिमा और नवांश अनुकूलता भी महत्वपूर्ण अधिभावी कारक हैं।",
+        "gu": "A strong 7th house lord (the house of marriage) in a kendra with good dignity is a powerful indicator of marital happiness regardless of the Kuta score. Venus dignity and Navamsha compatibility are also crucial override factors.",
+        "mai": "केन्द्र में उच्च गरिमा सहित बली सप्तमेश (विवाह का भाव) कूट अंक की परवाह किए बिना वैवाहिक सुख का शक्तिशाली संकेत है। शुक्र की गरिमा और नवांश अनुकूलता भी महत्वपूर्ण अधिभावी कारक हैं।"
+      },
+      "options": [
+        {
+          "en": "Strong 7th house lord in a kendra with good dignity",
+          "hi": "केन्द्र में उच्च गरिमा सहित बली सप्तमेश",
+          "sa": "केन्द्र में उच्च गरिमा सहित बली सप्तमेश",
+          "ta": "Strong 7th house lord in a kendra with good dignity",
+          "te": "Strong 7th house lord in a kendra with good dignity",
+          "bn": "Strong 7th house lord in a kendra with good dignity",
+          "kn": "Strong 7th house lord in a kendra with good dignity",
+          "mr": "केन्द्र में उच्च गरिमा सहित बली सप्तमेश",
+          "gu": "Strong 7th house lord in a kendra with good dignity",
+          "mai": "केन्द्र में उच्च गरिमा सहित बली सप्तमेश"
+        },
+        {
+          "en": "Sun in the 10th house",
+          "hi": "दशम भाव में सूर्य",
+          "sa": "दशम भाव में सूर्य",
+          "ta": "Sun in the 10th house",
+          "te": "Sun in the 10th house",
+          "bn": "Sun in the 10th house",
+          "kn": "Sun in the 10th house",
+          "mr": "दशम भाव में सूर्य",
+          "gu": "Sun in the 10th house",
+          "mai": "दशम भाव में सूर्य"
+        },
+        {
+          "en": "Mercury retrograde",
+          "hi": "बुध वक्री",
+          "sa": "बुध वक्री",
+          "ta": "Mercury retrograde",
+          "te": "Mercury retrograde",
+          "bn": "Mercury retrograde",
+          "kn": "Mercury retrograde",
+          "mr": "बुध वक्री",
+          "gu": "Mercury retrograde",
+          "mai": "बुध वक्री"
+        },
+        {
+          "en": "Rahu in the 1st house",
+          "hi": "प्रथम भाव में राहु",
+          "sa": "प्रथम भाव में राहु",
+          "ta": "Rahu in the 1st house",
+          "te": "Rahu in the 1st house",
+          "bn": "Rahu in the 1st house",
+          "kn": "Rahu in the 1st house",
+          "mr": "प्रथम भाव में राहु",
+          "gu": "Rahu in the 1st house",
+          "mai": "प्रथम भाव में राहु"
+        }
+      ]
+    },
+    {
+      "id": "q14_1_09",
+      "type": "true_false",
+      "question": {
+        "en": "Navamsha (D-9) compatibility between two charts is more important than Rashi chart Kuta matching for predicting marital quality.",
+        "hi": "वैवाहिक गुणवत्ता की भविष्यवाणी के लिए दो कुण्डलियों के मध्य नवांश (डी-9) अनुकूलता राशि कुण्डली कूट मिलान से अधिक महत्वपूर्ण है।",
+        "sa": "वैवाहिक गुणवत्ता की भविष्यवाणी के लिए दो कुण्डलियों के मध्य नवांश (डी-9) अनुकूलता राशि कुण्डली कूट मिलान से अधिक महत्वपूर्ण है।",
+        "ta": "Navamsha (D-9) compatibility between two charts is more important than Rashi chart Kuta matching for predicting marital quality.",
+        "te": "Navamsha (D-9) compatibility between two charts is more important than Rashi chart Kuta matching for predicting marital quality.",
+        "bn": "Navamsha (D-9) compatibility between two charts is more important than Rashi chart Kuta matching for predicting marital quality.",
+        "kn": "Navamsha (D-9) compatibility between two charts is more important than Rashi chart Kuta matching for predicting marital quality.",
+        "mr": "वैवाहिक गुणवत्ता की भविष्यवाणी के लिए दो कुण्डलियों के मध्य नवांश (डी-9) अनुकूलता राशि कुण्डली कूट मिलान से अधिक महत्वपूर्ण है।",
+        "gu": "Navamsha (D-9) compatibility between two charts is more important than Rashi chart Kuta matching for predicting marital quality.",
+        "mai": "वैवाहिक गुणवत्ता की भविष्यवाणी के लिए दो कुण्डलियों के मध्य नवांश (डी-9) अनुकूलता राशि कुण्डली कूट मिलान से अधिक महत्वपूर्ण है।"
+      },
+      "correctAnswer": true,
+      "explanation": {
+        "en": "True. The Navamsha (D-9) is called the \"marriage chart\" and reveals the deeper quality of partnerships. Many experienced jyotishis consider Navamsha compatibility — especially Navamsha lagna lord placement and Venus dignity in D-9 — more revealing than the Kuta score.",
+        "hi": "सत्य। नवांश (डी-9) को \"विवाह कुण्डली\" कहा जाता है और यह साझेदारी की गहरी गुणवत्ता प्रकट करता है। अनेक अनुभवी ज्योतिषी नवांश अनुकूलता — विशेषकर नवांश लग्नेश स्थिति और डी-9 में शुक्र गरिमा — को कूट अंक से अधिक प्रकट करने वाला मानते हैं।",
+        "sa": "सत्य। नवांश (डी-9) को \"विवाह कुण्डली\" कहा जाता है और यह साझेदारी की गहरी गुणवत्ता प्रकट करता है। अनेक अनुभवी ज्योतिषी नवांश अनुकूलता — विशेषकर नवांश लग्नेश स्थिति और डी-9 में शुक्र गरिमा — को कूट अंक से अधिक प्रकट करने वाला मानते हैं।",
+        "ta": "True. The Navamsha (D-9) is called the \"marriage chart\" and reveals the deeper quality of partnerships. Many experienced jyotishis consider Navamsha compatibility — especially Navamsha lagna lord placement and Venus dignity in D-9 — more revealing than the Kuta score.",
+        "te": "True. The Navamsha (D-9) is called the \"marriage chart\" and reveals the deeper quality of partnerships. Many experienced jyotishis consider Navamsha compatibility — especially Navamsha lagna lord placement and Venus dignity in D-9 — more revealing than the Kuta score.",
+        "bn": "True. The Navamsha (D-9) is called the \"marriage chart\" and reveals the deeper quality of partnerships. Many experienced jyotishis consider Navamsha compatibility — especially Navamsha lagna lord placement and Venus dignity in D-9 — more revealing than the Kuta score.",
+        "kn": "True. The Navamsha (D-9) is called the \"marriage chart\" and reveals the deeper quality of partnerships. Many experienced jyotishis consider Navamsha compatibility — especially Navamsha lagna lord placement and Venus dignity in D-9 — more revealing than the Kuta score.",
+        "mr": "सत्य। नवांश (डी-9) को \"विवाह कुण्डली\" कहा जाता है और यह साझेदारी की गहरी गुणवत्ता प्रकट करता है। अनेक अनुभवी ज्योतिषी नवांश अनुकूलता — विशेषकर नवांश लग्नेश स्थिति और डी-9 में शुक्र गरिमा — को कूट अंक से अधिक प्रकट करने वाला मानते हैं।",
+        "gu": "True. The Navamsha (D-9) is called the \"marriage chart\" and reveals the deeper quality of partnerships. Many experienced jyotishis consider Navamsha compatibility — especially Navamsha lagna lord placement and Venus dignity in D-9 — more revealing than the Kuta score.",
+        "mai": "सत्य। नवांश (डी-9) को \"विवाह कुण्डली\" कहा जाता है और यह साझेदारी की गहरी गुणवत्ता प्रकट करता है। अनेक अनुभवी ज्योतिषी नवांश अनुकूलता — विशेषकर नवांश लग्नेश स्थिति और डी-9 में शुक्र गरिमा — को कूट अंक से अधिक प्रकट करने वाला मानते हैं।"
+      }
+    },
+    {
+      "id": "q14_1_10",
+      "type": "mcq",
+      "question": {
+        "en": "What is the correct first step in the Kundali Milan process?",
+        "hi": "कुण्डली मिलान प्रक्रिया में सही प्रथम चरण क्या है?",
+        "sa": "कुण्डली मिलान प्रक्रिया में सही प्रथम चरण क्या है?",
+        "ta": "What is the correct first step in the Kundali Milan process?",
+        "te": "What is the correct first step in the Kundali Milan process?",
+        "bn": "What is the correct first step in the Kundali Milan process?",
+        "kn": "What is the correct first step in the Kundali Milan process?",
+        "mr": "कुण्डली मिलान प्रक्रिया में सही प्रथम चरण क्या है?",
+        "gu": "What is the correct first step in the Kundali Milan process?",
+        "mai": "कुण्डली मिलान प्रक्रिया में सही प्रथम चरण क्या है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Step 1: Get both Moon nakshatras from their birth charts. Step 2: Compute all 8 kutas. Step 3: Check for Nadi/Bhakoot dosha specifically. Step 4: Examine Mars dosha. Step 5: Assess overall chart strength (7th house, Venus, Navamsha).",
+        "hi": "चरण 1: दोनों की जन्म कुण्डलियों से चन्द्र नक्षत्र प्राप्त करें। चरण 2: सभी 8 कूटों की गणना करें। चरण 3: विशेष रूप से नाड़ी/भकूट दोष की जाँच करें। चरण 4: मंगल दोष की जाँच करें। चरण 5: समग्र कुण्डली बल का आकलन करें (सप्तम भाव, शुक्र, नवांश)।",
+        "sa": "चरण 1: दोनों की जन्म कुण्डलियों से चन्द्र नक्षत्र प्राप्त करें। चरण 2: सभी 8 कूटों की गणना करें। चरण 3: विशेष रूप से नाड़ी/भकूट दोष की जाँच करें। चरण 4: मंगल दोष की जाँच करें। चरण 5: समग्र कुण्डली बल का आकलन करें (सप्तम भाव, शुक्र, नवांश)।",
+        "ta": "Step 1: Get both Moon nakshatras from their birth charts. Step 2: Compute all 8 kutas. Step 3: Check for Nadi/Bhakoot dosha specifically. Step 4: Examine Mars dosha. Step 5: Assess overall chart strength (7th house, Venus, Navamsha).",
+        "te": "Step 1: Get both Moon nakshatras from their birth charts. Step 2: Compute all 8 kutas. Step 3: Check for Nadi/Bhakoot dosha specifically. Step 4: Examine Mars dosha. Step 5: Assess overall chart strength (7th house, Venus, Navamsha).",
+        "bn": "Step 1: Get both Moon nakshatras from their birth charts. Step 2: Compute all 8 kutas. Step 3: Check for Nadi/Bhakoot dosha specifically. Step 4: Examine Mars dosha. Step 5: Assess overall chart strength (7th house, Venus, Navamsha).",
+        "kn": "Step 1: Get both Moon nakshatras from their birth charts. Step 2: Compute all 8 kutas. Step 3: Check for Nadi/Bhakoot dosha specifically. Step 4: Examine Mars dosha. Step 5: Assess overall chart strength (7th house, Venus, Navamsha).",
+        "mr": "चरण 1: दोनों की जन्म कुण्डलियों से चन्द्र नक्षत्र प्राप्त करें। चरण 2: सभी 8 कूटों की गणना करें। चरण 3: विशेष रूप से नाड़ी/भकूट दोष की जाँच करें। चरण 4: मंगल दोष की जाँच करें। चरण 5: समग्र कुण्डली बल का आकलन करें (सप्तम भाव, शुक्र, नवांश)।",
+        "gu": "Step 1: Get both Moon nakshatras from their birth charts. Step 2: Compute all 8 kutas. Step 3: Check for Nadi/Bhakoot dosha specifically. Step 4: Examine Mars dosha. Step 5: Assess overall chart strength (7th house, Venus, Navamsha).",
+        "mai": "चरण 1: दोनों की जन्म कुण्डलियों से चन्द्र नक्षत्र प्राप्त करें। चरण 2: सभी 8 कूटों की गणना करें। चरण 3: विशेष रूप से नाड़ी/भकूट दोष की जाँच करें। चरण 4: मंगल दोष की जाँच करें। चरण 5: समग्र कुण्डली बल का आकलन करें (सप्तम भाव, शुक्र, नवांश)।"
+      },
+      "options": [
+        {
+          "en": "Check Mars dosha immediately",
+          "hi": "तुरन्त मंगल दोष जाँचें",
+          "sa": "तुरन्त मंगल दोष जाँचें",
+          "ta": "Check Mars dosha immediately",
+          "te": "Check Mars dosha immediately",
+          "bn": "Check Mars dosha immediately",
+          "kn": "Check Mars dosha immediately",
+          "mr": "तुरन्त मंगल दोष जाँचें",
+          "gu": "Check Mars dosha immediately",
+          "mai": "तुरन्त मंगल दोष जाँचें"
+        },
+        {
+          "en": "Determine both Moon nakshatras and compute all 8 kutas",
+          "hi": "दोनों के चन्द्र नक्षत्र ज्ञात करें और सभी 8 कूटों की गणना करें",
+          "sa": "दोनों के चन्द्र नक्षत्र ज्ञात करें और सभी 8 कूटों की गणना करें",
+          "ta": "Determine both Moon nakshatras and compute all 8 kutas",
+          "te": "Determine both Moon nakshatras and compute all 8 kutas",
+          "bn": "Determine both Moon nakshatras and compute all 8 kutas",
+          "kn": "Determine both Moon nakshatras and compute all 8 kutas",
+          "mr": "दोनों के चन्द्र नक्षत्र ज्ञात करें और सभी 8 कूटों की गणना करें",
+          "gu": "Determine both Moon nakshatras and compute all 8 kutas",
+          "mai": "दोनों के चन्द्र नक्षत्र ज्ञात करें और सभी 8 कूटों की गणना करें"
+        },
+        {
+          "en": "Compare Sun signs",
+          "hi": "सूर्य राशियों की तुलना करें",
+          "sa": "सूर्य राशियों की तुलना करें",
+          "ta": "Compare Sun signs",
+          "te": "Compare Sun signs",
+          "bn": "Compare Sun signs",
+          "kn": "Compare Sun signs",
+          "mr": "सूर्य राशियों की तुलना करें",
+          "gu": "Compare Sun signs",
+          "mai": "सूर्य राशियों की तुलना करें"
+        },
+        {
+          "en": "Read both horoscopes aloud to family",
+          "hi": "दोनों जन्मपत्रिकाएँ परिवार को पढ़कर सुनाएँ",
+          "sa": "दोनों जन्मपत्रिकाएँ परिवार को पढ़कर सुनाएँ",
+          "ta": "Read both horoscopes aloud to family",
+          "te": "Read both horoscopes aloud to family",
+          "bn": "Read both horoscopes aloud to family",
+          "kn": "Read both horoscopes aloud to family",
+          "mr": "दोनों जन्मपत्रिकाएँ परिवार को पढ़कर सुनाएँ",
+          "gu": "Read both horoscopes aloud to family",
+          "mai": "दोनों जन्मपत्रिकाएँ परिवार को पढ़कर सुनाएँ"
+        }
+      ]
+    }
+  ]
+}

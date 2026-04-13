@@ -3,21 +3,16 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/21-2.json';
 
 const META: ModuleMeta = {
   id: 'mod_21_2', phase: 8, topic: 'Varshaphal', moduleNumber: '21.2',
-  title: { en: 'Sahams — Sensitive Points (Punya, Vidya, Karma)', hi: 'सहम — संवेदनशील बिन्दु (पुण्य, विद्या, कर्म)', sa: 'सहम — संवेदनशील बिन्दु (पुण्य, विद्या, कर्म)', mai: 'सहम — संवेदनशील बिन्दु (पुण्य, विद्या, कर्म)', mr: 'सहम — संवेदनशील बिन्दु (पुण्य, विद्या, कर्म)', ta: 'Sahams — Sensitive Points (Punya, Vidya, Karma)', te: 'Sahams — Sensitive Points (Punya, Vidya, Karma)', bn: 'Sahams — Sensitive Points (Punya, Vidya, Karma)', kn: 'Sahams — Sensitive Points (Punya, Vidya, Karma)', gu: 'Sahams — Sensitive Points (Punya, Vidya, Karma)' },
-  subtitle: {
-    en: 'Arabic Parts adapted into Tajika — computed sensitive points that reveal fortune, education, career, and health prospects in the annual chart',
-    hi: 'ताजिक में समाहित अरबी भाग — गणित संवेदनशील बिन्दु जो वार्षिक कुण्डली में भाग्य, शिक्षा, करियर और स्वास्थ्य सम्भावनाएँ प्रकट करते हैं',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 12,
-  crossRefs: [
-    { label: { en: 'Module 21-1: Tajika Aspects', hi: 'मॉड्यूल 21-1: ताजिक दृष्टि', sa: 'मॉड्यूल 21-1: ताजिक दृष्टि', mai: 'मॉड्यूल 21-1: ताजिक दृष्टि', mr: 'मॉड्यूल 21-1: ताजिक दृष्टि', ta: 'Module 21-1: Tajika Aspects', te: 'Module 21-1: Tajika Aspects', bn: 'Module 21-1: Tajika Aspects', kn: 'Module 21-1: Tajika Aspects', gu: 'Module 21-1: Tajika Aspects' }, href: '/learn/modules/21-1' },
-    { label: { en: 'Module 21-3: Mudda Dasha', hi: 'मॉड्यूल 21-3: मुद्दा दशा', sa: 'मॉड्यूल 21-3: मुद्दा दशा', mai: 'मॉड्यूल 21-3: मुद्दा दशा', mr: 'मॉड्यूल 21-3: मुद्दा दशा', ta: 'Module 21-3: Mudda Dasha', te: 'Module 21-3: Mudda Dasha', bn: 'Module 21-3: Mudda Dasha', kn: 'Module 21-3: Mudda Dasha', gu: 'Module 21-3: Mudda Dasha' }, href: '/learn/modules/21-3' },
-    { label: { en: 'Module 21-4: Tithi Pravesha', hi: 'मॉड्यूल 21-4: तिथि प्रवेश', sa: 'मॉड्यूल 21-4: तिथि प्रवेश', mai: 'मॉड्यूल 21-4: तिथि प्रवेश', mr: 'मॉड्यूल 21-4: तिथि प्रवेश', ta: 'Module 21-4: Tithi Pravesha', te: 'Module 21-4: Tithi Pravesha', bn: 'Module 21-4: Tithi Pravesha', kn: 'Module 21-4: Tithi Pravesha', gu: 'Module 21-4: Tithi Pravesha' }, href: '/learn/modules/21-4' },
-    { label: { en: 'Varshaphal Tool', hi: 'वर्षफल उपकरण', sa: 'वर्षफल उपकरण', mai: 'वर्षफल उपकरण', mr: 'वर्षफल उपकरण', ta: 'Varshaphal Tool', te: 'Varshaphal Tool', bn: 'Varshaphal Tool', kn: 'Varshaphal Tool', gu: 'Varshaphal Tool' }, href: '/varshaphal' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

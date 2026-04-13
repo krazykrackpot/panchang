@@ -1,77 +1,14 @@
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/contributions-speed-of-light.json';
 import { Link } from '@/lib/i18n/navigation';
-import type { LocaleText, Locale } from '@/types/panchang';
+import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ════════════════════════════════════════════════════════════════
    LABELS — bilingual (en / hi)
    ════════════════════════════════════════════════════════════════ */
-const L = {
-  title: {
-    en: 'The Speed of Light — In a 14th-Century Sanskrit Commentary',
-    hi: 'प्रकाश की गति — 14वीं सदी की संस्कृत टीका में',
-  },
-  subtitle: {
-    en: 'In the 1670s, Danish astronomer Ole Rømer made the first measurement of the speed of light. But 300 years earlier, Sayana — minister of the Vijayanagara Empire and one of the greatest Sanskrit scholars — wrote a commentary on the Rig Veda that gives a value astonishingly close to the modern measurement.',
-    hi: '1670 के दशक में, डेनिश खगोलशास्त्री ओले रोमर ने प्रकाश की गति का पहला माप किया। लेकिन 300 वर्ष पहले, सायण — विजयनगर साम्राज्य के मंत्री और महानतम संस्कृत विद्वानों में से एक — ने ऋग्वेद पर एक टीका लिखी जो आधुनिक माप के आश्चर्यजनक रूप से निकट एक मान देती है।',
-  },
-
-  s1Title: { en: 'The Sayana Verse — Rigveda 1.50.4', hi: 'सायण का श्लोक — ऋग्वेद 1.50.4', sa: 'सायण का श्लोक — ऋग्वेद 1.50.4', mai: 'सायण का श्लोक — ऋग्वेद 1.50.4', mr: 'सायण का श्लोक — ऋग्वेद 1.50.4', ta: 'The Sayana Verse — Rigveda 1.50.4', te: 'The Sayana Verse — Rigveda 1.50.4', bn: 'The Sayana Verse — Rigveda 1.50.4', kn: 'The Sayana Verse — Rigveda 1.50.4', gu: 'The Sayana Verse — Rigveda 1.50.4' },
-  s1Body: {
-    en: 'The Rig Veda 1.50.4 is a hymn to Surya (the Sun). In his 14th-century commentary on this verse, Sayana writes a remarkable passage about how far sunlight travels in half a nimesha (a traditional time unit). The verse itself is about Surya\'s glory; the computation appears in Sayana\'s prose commentary — suggesting he was citing an existing numerical tradition, not inventing it.',
-    hi: 'ऋग्वेद 1.50.4 सूर्य की एक स्तुति है। इस श्लोक पर अपनी 14वीं सदी की टीका में, सायण सूर्य प्रकाश की यात्रा के बारे में एक उल्लेखनीय अनुच्छेद लिखते हैं — आधे निमेष (एक पारंपरिक समय इकाई) में। श्लोक स्वयं सूर्य की महिमा के बारे में है; गणना सायण की गद्य टीका में प्रकट होती है — यह सुझाव देती है कि वे एक मौजूदा संख्यात्मक परंपरा को उद्धृत कर रहे थे, इसका आविष्कार नहीं कर रहे थे।',
-  },
-  s1Sanskrit: 'तथा च स्मर्यते योजनानां सहस्रे द्वे द्वे शते द्वे च योजने एकेन निमेषार्धेन क्रममाण।',
-  s1Translation: {
-    en: 'Translation: "It is remembered [in tradition] that [the Sun\'s light] traverses 2,202 yojanas in half a nimesha."',
-    hi: 'अनुवाद: "यह [परंपरा में] स्मरण किया जाता है कि [सूर्य का प्रकाश] आधे निमेष में 2,202 योजन पार करता है।"',
-  },
-
-  s2Title: { en: 'The Calculation — Step by Step', hi: 'गणना — चरण दर चरण', sa: 'गणना — चरण दर चरण', mai: 'गणना — चरण दर चरण', mr: 'गणना — चरण दर चरण', ta: 'The Calculation — Step by Step', te: 'The Calculation — Step by Step', bn: 'The Calculation — Step by Step', kn: 'The Calculation — Step by Step', gu: 'The Calculation — Step by Step' },
-  s2Body: {
-    en: 'To evaluate Sayana\'s claim, we need the values of "yojana" and "nimesha." Both units appear in multiple classical texts with consistent definitions. The calculation uses the Arthashastra yojana (Kautilya, ~300 BCE) which is the most widely cited.',
-    hi: 'सायण के दावे का मूल्यांकन करने के लिए, हमें "योजन" और "निमेष" के मान चाहिए। दोनों इकाइयाँ सुसंगत परिभाषाओं के साथ कई शास्त्रीय ग्रंथों में प्रकट होती हैं। गणना अर्थशास्त्र योजन (कौटिल्य, ~300 BCE) का उपयोग करती है जो सबसे व्यापक रूप से उद्धृत है।',
-  },
-
-  s3Title: { en: 'How Does This Compare to the Modern Value?', hi: 'यह आधुनिक मान से कैसे तुलना करता है?', sa: 'यह आधुनिक मान से कैसे तुलना करता है?', mai: 'यह आधुनिक मान से कैसे तुलना करता है?', mr: 'यह आधुनिक मान से कैसे तुलना करता है?', ta: 'How Does This Compare to the Modern Value?', te: 'How Does This Compare to the Modern Value?', bn: 'How Does This Compare to the Modern Value?', kn: 'How Does This Compare to the Modern Value?', gu: 'How Does This Compare to the Modern Value?' },
-  s3Body: {
-    en: 'The speed of light in a vacuum is exactly 299,792,458 meters per second = 186,282.397 miles per second. Sayana\'s calculation gives 186,536 miles/second — a difference of only 253 miles/second, or 0.14%. This level of agreement is extraordinary. No other pre-modern text, from any civilization, comes close.',
-    hi: 'निर्वात में प्रकाश की गति ठीक 299,792,458 मीटर प्रति सेकंड = 186,282.397 मील प्रति सेकंड है। सायण की गणना 186,536 मील/सेकंड देती है — केवल 253 मील/सेकंड का अंतर, या 0.14%। इस सहमति का स्तर असाधारण है। किसी भी सभ्यता का कोई अन्य पूर्व-आधुनिक ग्रंथ इसके करीब नहीं आता।',
-  },
-
-  s4Title: { en: 'The Debate — Coincidence or Knowledge?', hi: 'बहस — संयोग या ज्ञान?', sa: 'बहस — संयोग या ज्ञान?', mai: 'बहस — संयोग या ज्ञान?', mr: 'बहस — संयोग या ज्ञान?', ta: 'The Debate — Coincidence or Knowledge?', te: 'The Debate — Coincidence or Knowledge?', bn: 'The Debate — Coincidence or Knowledge?', kn: 'The Debate — Coincidence or Knowledge?', gu: 'The Debate — Coincidence or Knowledge?' },
-  s4For: {
-    en: 'Arguments FOR genuine knowledge: The value is too precise to be accidental (0.14% error). Sayana says "it is remembered" — citing an older tradition, not claiming originality. The Surya Siddhanta (astronomy text) independently gives very accurate values for astronomical distances. Indian astronomers were clearly capable of precision measurement.',
-    hi: 'वास्तविक ज्ञान के पक्ष में तर्क: मान इतना सटीक है कि आकस्मिक नहीं हो सकता (0.14% त्रुटि)। सायण कहते हैं "यह स्मरण किया जाता है" — एक पुरानी परंपरा को उद्धृत करते हुए, मौलिकता का दावा नहीं। सूर्य सिद्धांत (खगोल ग्रंथ) स्वतंत्र रूप से खगोलीय दूरियों के लिए बहुत सटीक मान देता है। भारतीय खगोलशास्त्री स्पष्ट रूप से सटीक माप में सक्षम थे।',
-  },
-  s4Against: {
-    en: 'Arguments AGAINST: We don\'t know exactly what yojana value Sayana intended — different texts give different yojana sizes. If we use a longer yojana (~9.5 miles), the result exceeds the modern value. The close match may depend on which yojana we choose. No other Indian text explicitly claims to measure light speed.',
-    hi: 'विरुद्ध तर्क: हम नहीं जानते कि सायण का इच्छित योजन मान क्या था — विभिन्न ग्रंथ विभिन्न योजन आकार देते हैं। यदि हम एक लंबे योजन (~9.5 मील) का उपयोग करें, तो परिणाम आधुनिक मान से अधिक हो जाता है। निकट मेल इस बात पर निर्भर हो सकता है कि हम कौन सा योजन चुनते हैं। कोई अन्य भारतीय ग्रंथ स्पष्ट रूप से प्रकाश गति मापने का दावा नहीं करता।',
-  },
-  s4Conclusion: {
-    en: 'Our assessment: The coincidence hypothesis is strained by the extreme precision. Even if the match is partially due to unit selection, the number 2,202 appears in a context that is specifically about how far light travels — suggesting systematic astronomical observation, not random numerology.',
-    hi: 'हमारा आकलन: संयोग परिकल्पना अत्यधिक सटीकता से तनावपूर्ण है। भले ही मेल आंशिक रूप से इकाई चयन के कारण हो, संख्या 2,202 एक ऐसे संदर्भ में प्रकट होती है जो विशेष रूप से प्रकाश की यात्रा के बारे में है — व्यवस्थित खगोलीय अवलोकन का सुझाव देती है, न कि यादृच्छिक अंकशास्त्र।',
-  },
-
-  s5Title: { en: 'Who Was Sayana?', hi: 'सायण कौन थे?', sa: 'सायण कौन थे?', mai: 'सायण कौन थे?', mr: 'सायण कौन थे?', ta: 'Who Was Sayana?', te: 'Who Was Sayana?', bn: 'Who Was Sayana?', kn: 'Who Was Sayana?', gu: 'Who Was Sayana?' },
-  s5Body: {
-    en: 'Sayana (c. 1315–1387 CE) was the Prime Minister (Mahamantri) of the Vijayanagara Empire under King Bukka I and later Harihara II. He was one of the most prolific Sanskrit scholars in history, writing commentaries on all four Vedas — over 20,000 pages of scholarship. His Rigveda commentary, Rigveda-Samhita-Bhasya, is still the standard reference text for Rigvedic interpretation. He was not a crackpot or mystic — he was the foremost intellectual of a great empire.',
-    hi: 'सायण (c. 1315-1387 CE) विजयनगर साम्राज्य में राजा बुक्क प्रथम और बाद में हरिहर द्वितीय के अधीन महामंत्री थे। वे इतिहास में सबसे विपुल संस्कृत विद्वानों में से एक थे, जिन्होंने चारों वेदों पर टिप्पणियाँ लिखीं — 20,000 से अधिक पृष्ठों की विद्वत्ता। उनकी ऋग्वेद टीका, ऋग्वेद-संहिता-भाष्य, अभी भी ऋग्वैदिक व्याख्या के लिए मानक संदर्भ ग्रंथ है। वे कोई विक्षिप्त या रहस्यवादी नहीं थे — वे एक महान साम्राज्य के सर्वोच्च बुद्धिजीवी थे।',
-  },
-
-  s6Title: { en: 'Other Vedic References to Light and Its Nature', hi: 'प्रकाश और उसकी प्रकृति के अन्य वैदिक संदर्भ', sa: 'प्रकाश और उसकी प्रकृति के अन्य वैदिक संदर्भ', mai: 'प्रकाश और उसकी प्रकृति के अन्य वैदिक संदर्भ', mr: 'प्रकाश और उसकी प्रकृति के अन्य वैदिक संदर्भ', ta: 'Other Vedic References to Light and Its Nature', te: 'Other Vedic References to Light and Its Nature', bn: 'Other Vedic References to Light and Its Nature', kn: 'Other Vedic References to Light and Its Nature', gu: 'Other Vedic References to Light and Its Nature' },
-  s6Body: {
-    en: 'The Vedic corpus contains numerous references suggesting sophisticated understanding of light. The Rigveda describes Surya\'s rays as "self-luminous" and traveling through space. The Aitareya Brahmana speaks of light having no mass. The Vishnu Purana states that the Sun illuminates from a fixed point while its light spreads spherically — an accurate description of electromagnetic radiation propagation. These are not proofs of measured knowledge, but they suggest a contemplative tradition that took the physical nature of light seriously.',
-    hi: 'वैदिक संहिता में कई संदर्भ हैं जो प्रकाश की परिष्कृत समझ का सुझाव देते हैं। ऋग्वेद सूर्य की किरणों को "स्व-प्रकाशमान" और अंतरिक्ष में यात्रा करने वाली बताता है। ऐतरेय ब्राह्मण कहता है कि प्रकाश का कोई द्रव्यमान नहीं है। विष्णु पुराण कहता है कि सूर्य एक निश्चित बिंदु से प्रकाशित करता है जबकि उसका प्रकाश गोलाकार रूप से फैलता है — विद्युतचुम्बकीय विकिरण प्रसार का सटीक वर्णन। ये मापे गए ज्ञान के प्रमाण नहीं हैं, लेकिन वे एक चिंतनशील परंपरा का सुझाव देते हैं जिसने प्रकाश की भौतिक प्रकृति को गंभीरता से लिया।',
-  },
-
-  s7Title: { en: 'The Measurement Timeline', hi: 'माप की समय-रेखा', sa: 'माप की समय-रेखा', mai: 'माप की समय-रेखा', mr: 'माप की समय-रेखा', ta: 'The Measurement Timeline', te: 'The Measurement Timeline', bn: 'The Measurement Timeline', kn: 'The Measurement Timeline', gu: 'The Measurement Timeline' },
-
-  backLink: { en: '← Back to Learn', hi: '← सीखने पर वापस', sa: '← सीखने पर वापस', mai: '← सीखने पर वापस', mr: '← सीखने पर वापस', ta: '← Back to Learn', te: '← Back to Learn', bn: '← Back to Learn', kn: '← Back to Learn', gu: '← Back to Learn' },
-  prevPage: { en: 'Calculus in Kerala', hi: 'केरल में कलनशास्त्र', sa: 'केरल में कलनशास्त्र', mai: 'केरल में कलनशास्त्र', mr: 'केरल में कलनशास्त्र', ta: 'Calculus in Kerala', te: 'Calculus in Kerala', bn: 'Calculus in Kerala', kn: 'Calculus in Kerala', gu: 'Calculus in Kerala' },
-  nextPage: { en: 'Gravity Before Newton', hi: 'न्यूटन से पहले गुरुत्वाकर्षण', sa: 'न्यूटन से पहले गुरुत्वाकर्षण', mai: 'न्यूटन से पहले गुरुत्वाकर्षण', mr: 'न्यूटन से पहले गुरुत्वाकर्षण', ta: 'Gravity Before Newton', te: 'Gravity Before Newton', bn: 'Gravity Before Newton', kn: 'Gravity Before Newton', gu: 'Gravity Before Newton' },
-};
 
 const CALC_STEPS = [
   {
@@ -130,17 +67,18 @@ export default async function SpeedOfLightPage({ params }: { params: Promise<{ l
   const { locale } = await params as { locale: Locale };
   const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const l = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
+  const l = (obj: LocaleText | Record<string, string>) => lt(obj as LocaleText, locale);
 
   return (
     <div className="space-y-10">
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <div>
-        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{l(L.title)}</h2>
-        <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">{l(L.subtitle)}</p>
+        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{t('title')}</h2>
+        <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">{t('subtitle')}</p>
         <div className="flex justify-center mt-4">
-          <ShareRow pageTitle={l(L.title)} locale={locale} />
+          <ShareRow pageTitle={t('title')} locale={locale} />
         </div>
       </div>
 
@@ -148,8 +86,8 @@ export default async function SpeedOfLightPage({ params }: { params: Promise<{ l
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s1Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-5">{l(L.s1Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s1Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-5">{t('s1Body')}</p>
 
         {/* Sanskrit verse */}
         <div className="p-5 rounded-xl bg-gold-primary/8 border border-gold-primary/20 mb-4">
@@ -157,10 +95,10 @@ export default async function SpeedOfLightPage({ params }: { params: Promise<{ l
             {isHi ? 'सायण, ऋग्वेद-संहिता-भाष्य, 1.50.4 पर (~1375 CE)' : 'Sayana, Rigveda-Samhita-Bhasya, on 1.50.4 (~1375 CE)'}
           </p>
           <p className="text-gold-light text-base font-mono leading-relaxed mb-3" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
-            {L.s1Sanskrit}
+            {t('s1Sanskrit')}
           </p>
           <p className="text-text-secondary text-sm italic leading-relaxed">
-            {l(L.s1Translation)}
+            {t('s1Translation')}
           </p>
         </div>
 
@@ -182,8 +120,8 @@ export default async function SpeedOfLightPage({ params }: { params: Promise<{ l
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s2Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-5">{l(L.s2Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s2Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-5">{t('s2Body')}</p>
 
         <div className="space-y-3">
           {CALC_STEPS.map((step, i) => (
@@ -211,8 +149,8 @@ export default async function SpeedOfLightPage({ params }: { params: Promise<{ l
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s3Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-5">{l(L.s3Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s3Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-5">{t('s3Body')}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="p-4 rounded-xl bg-gold-primary/8 border border-gold-primary/20 text-center">
@@ -237,22 +175,22 @@ export default async function SpeedOfLightPage({ params }: { params: Promise<{ l
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s4Title)}</h3>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s4Title')}</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
           <div className="p-4 rounded-xl bg-emerald-500/8 border border-emerald-500/20">
             <p className="text-emerald-300 font-semibold text-xs mb-2 uppercase tracking-wide">{isHi ? 'पक्ष में' : 'In Favor'}</p>
-            <p className="text-text-secondary text-xs leading-relaxed">{l(L.s4For)}</p>
+            <p className="text-text-secondary text-xs leading-relaxed">{t('s4For')}</p>
           </div>
           <div className="p-4 rounded-xl bg-amber-500/8 border border-amber-500/20">
             <p className="text-amber-300 font-semibold text-xs mb-2 uppercase tracking-wide">{isHi ? 'विरुद्ध' : 'Against'}</p>
-            <p className="text-text-secondary text-xs leading-relaxed">{l(L.s4Against)}</p>
+            <p className="text-text-secondary text-xs leading-relaxed">{t('s4Against')}</p>
           </div>
         </div>
 
         <div className="p-4 rounded-xl bg-blue-500/8 border border-blue-500/20">
           <p className="text-blue-200 font-semibold text-xs mb-1">{isHi ? 'हमारा आकलन' : 'Our Assessment'}</p>
-          <p className="text-text-secondary text-xs leading-relaxed">{l(L.s4Conclusion)}</p>
+          <p className="text-text-secondary text-xs leading-relaxed">{t('s4Conclusion')}</p>
         </div>
       </div>
 
@@ -260,8 +198,8 @@ export default async function SpeedOfLightPage({ params }: { params: Promise<{ l
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s5Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-4">{l(L.s5Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s5Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-4">{t('s5Body')}</p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
@@ -282,15 +220,15 @@ export default async function SpeedOfLightPage({ params }: { params: Promise<{ l
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s6Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed">{l(L.s6Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s6Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed">{t('s6Body')}</p>
       </div>
 
       {/* ── Section 7: Timeline ──────────────────────────────────── */}
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-5" style={hf}>{l(L.s7Title)}</h3>
+        <h3 className="text-gold-light font-bold text-xl mb-5" style={hf}>{t('s7Title')}</h3>
         <div className="relative">
           <div className="absolute left-8 top-0 bottom-0 w-px bg-gold-primary/20" />
           <div className="space-y-4">
@@ -317,14 +255,14 @@ export default async function SpeedOfLightPage({ params }: { params: Promise<{ l
         className="flex flex-col sm:flex-row gap-3 pt-4"
       >
         <Link href="/learn" className="text-text-secondary hover:text-gold-light text-sm transition-colors">
-          {l(L.backLink)}
+          {t('backLink')}
         </Link>
         <div className="flex gap-3 sm:ml-auto">
           <Link href="/learn/contributions/calculus" className="px-4 py-2 rounded-xl bg-gold-primary/10 border border-gold-primary/15 text-gold-light text-sm hover:bg-gold-primary/20 transition-colors">
-            ← {l(L.prevPage)}
+            ← {t('prevPage')}
           </Link>
           <Link href="/learn/contributions/gravity" className="px-4 py-2 rounded-xl bg-gold-primary/15 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/25 transition-colors">
-            {l(L.nextPage)} →
+            {t('nextPage')} →
           </Link>
         </div>
       </div>

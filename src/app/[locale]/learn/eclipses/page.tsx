@@ -1,238 +1,16 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/eclipses.json';
 
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
-import type { LocaleText, Locale } from '@/types/panchang';
+import type { Locale } from '@/types/panchang';
 import EclipseAnimation from '@/components/learn/EclipseAnimation';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-/* ─── Inline bilingual labels ─── */
-const L = {
-  title:    { en: 'Grahan — Eclipses in Vedic Astrology',                      hi: 'ग्रहण — वैदिक ज्योतिष में ग्रहण' , ta: 'கிரகணம் — வேத ஜோதிடத்தில் கிரகணங்கள்' },
-  subtitle: {
-    en: 'Eclipses occur when the Sun, Moon, and Earth align at the lunar nodes — Rahu and Ketu. They are among the most astronomically precise and spiritually charged events in Jyotish, and the only phenomena where the mythological and scientific accounts tell exactly the same story.',
-    hi: 'ग्रहण तब होता है जब सूर्य, चन्द्र और पृथ्वी चन्द्र के पातों — राहु और केतु — पर संरेखित होते हैं। ये ज्योतिष की सबसे खगोलीय रूप से सटीक और आध्यात्मिक रूप से आवेशित घटनाएँ हैं।',
-  },
-
-  /* Mythology */
-  mythTitle: { en: 'The Mythology — Rahu, Ketu & the Samudra Manthan', hi: 'पौराणिक कथा — राहु, केतु और समुद्र मन्थन', sa: 'पौराणिक कथा — राहु, केतु और समुद्र मन्थन', mai: 'पौराणिक कथा — राहु, केतु और समुद्र मन्थन', mr: 'पौराणिक कथा — राहु, केतु और समुद्र मन्थन', ta: 'The Mythology — Rahu, Ketu & the Samudra Manthan', te: 'The Mythology — Rahu, Ketu & the Samudra Manthan', bn: 'The Mythology — Rahu, Ketu & the Samudra Manthan', kn: 'The Mythology — Rahu, Ketu & the Samudra Manthan', gu: 'The Mythology — Rahu, Ketu & the Samudra Manthan' },
-  myth1: {
-    en: 'During the Samudra Manthan (churning of the cosmic ocean), a demon named Svarbhanu disguised himself as a god and sat between the Sun and Moon to drink the amrita (nectar of immortality). The Sun and Moon recognised the imposter and alerted Lord Vishnu, who immediately hurled his Sudarshan Chakra — severing Svarbhanu\'s head from his body at the precise moment the amrita reached his throat.',
-    hi: 'समुद्र मन्थन के दौरान, स्वर्भानु नामक एक असुर देवता के वेश में सूर्य और चन्द्र के बीच बैठ कर अमृत पी गया। सूर्य और चन्द्र ने उसे पहचाना और भगवान विष्णु को सूचित किया, जिन्होंने तुरन्त अपना सुदर्शन चक्र फेंका — जिससे स्वर्भानु का सिर उसके धड़ से उस क्षण अलग हो गया जब अमृत उसके गले तक पहुँचा था।',
-  },
-  myth2: {
-    en: 'The severed head became Rahu — the north lunar node — and the headless body became Ketu — the south lunar node. Both are immortal, having consumed amrita. In eternal vengeance, Rahu periodically swallows the Sun (solar eclipse) and Ketu swallows the Moon (lunar eclipse) — but each time, the Sun or Moon emerges unharmed from the severed neck.',
-    hi: 'कटा हुआ सिर राहु बन गया — उत्तर चन्द्र पात — और बिना सिर का धड़ केतु बन गया — दक्षिण चन्द्र पात। दोनों अमर हैं क्योंकि उन्होंने अमृत पी लिया था। शाश्वत प्रतिशोध में, राहु समय-समय पर सूर्य (सूर्य ग्रहण) और केतु चन्द्र (चन्द्र ग्रहण) को निगलता है — परन्तु प्रत्येक बार सूर्य या चन्द्र कटी हुई गर्दन से अक्षत निकल आते हैं।',
-  },
-  myth3: {
-    en: 'This myth is not merely allegory — it is a precise astronomical encoding. Eclipses literally occur when the Sun or Full Moon is conjunct Rahu or Ketu (the lunar nodes). The ancient rishis had discovered the node-eclipse relationship and encoded it in a story that would be remembered across millennia.',
-    hi: 'यह कथा केवल रूपक नहीं है — यह एक सटीक खगोलीय एन्कोडिंग है। ग्रहण वस्तुतः तब होता है जब सूर्य या पूर्ण चन्द्र राहु या केतु (चन्द्र पात) के साथ युति में हो। प्राचीन ऋषियों ने पात-ग्रहण सम्बन्ध की खोज की थी और उसे एक ऐसी कथा में पिरोया था जो सहस्राब्दियों तक याद रहे।',
-  },
-
-  /* Astronomy */
-  astroTitle: { en: 'The Astronomy — Why Eclipses Happen', hi: 'खगोल विज्ञान — ग्रहण क्यों होते हैं', sa: 'खगोल विज्ञान — ग्रहण क्यों होते हैं', mai: 'खगोल विज्ञान — ग्रहण क्यों होते हैं', mr: 'खगोल विज्ञान — ग्रहण क्यों होते हैं', ta: 'The Astronomy — Why Eclipses Happen', te: 'The Astronomy — Why Eclipses Happen', bn: 'The Astronomy — Why Eclipses Happen', kn: 'The Astronomy — Why Eclipses Happen', gu: 'The Astronomy — Why Eclipses Happen' },
-  astro1: {
-    en: 'The Moon\'s orbit is tilted approximately 5.15° with respect to the ecliptic (the plane of Earth\'s orbit around the Sun). This tilt means the Moon is usually above or below the ecliptic — so most New Moons and Full Moons pass without an eclipse.',
-    hi: 'चन्द्रमा की कक्षा क्रान्तिवृत्त (पृथ्वी की सूर्य के चारों ओर कक्षा का तल) के सापेक्ष लगभग 5.15° झुकी हुई है। इस झुकाव का अर्थ है कि चन्द्रमा सामान्यतः क्रान्तिवृत्त के ऊपर या नीचे रहता है — इसलिए अधिकांश अमावस्या और पूर्णिमा बिना ग्रहण के गुजर जाती हैं।',
-  },
-  astro2: {
-    en: 'The Moon\'s orbit crosses the ecliptic at exactly two points: the ascending node (Rahu in Sanskrit, ☊ in Western notation) where the Moon crosses from south to north, and the descending node (Ketu, ☋) where it crosses from north to south. At these crossing points, the Moon\'s ecliptic latitude equals zero degrees.',
-    hi: 'चन्द्रमा की कक्षा क्रान्तिवृत्त को ठीक दो बिन्दुओं पर काटती है: आरोही पात (राहु, ☊) जहाँ चन्द्रमा दक्षिण से उत्तर की ओर जाता है, और अवरोही पात (केतु, ☋) जहाँ यह उत्तर से दक्षिण की ओर जाता है। इन बिन्दुओं पर चन्द्रमा का क्रान्तिवृत्त अक्षांश शून्य डिग्री होता है।',
-  },
-  astro3: {
-    en: 'A solar eclipse requires a New Moon (Amavasya) occurring when the Moon is near a node — its shadow then falls on Earth. A lunar eclipse requires a Full Moon (Purnima) occurring near a node — the Moon then enters Earth\'s shadow. The closer the Moon is to the node at the moment of lunation, the deeper and more central the eclipse.',
-    hi: 'सूर्य ग्रहण के लिए अमावस्या (नया चन्द्र) का पात के निकट होना आवश्यक है — तब चन्द्रमा की छाया पृथ्वी पर पड़ती है। चन्द्र ग्रहण के लिए पूर्णिमा (पूर्ण चन्द्र) का पात के निकट होना आवश्यक है — तब चन्द्रमा पृथ्वी की छाया में प्रवेश करता है। लुनेशन के समय चन्द्रमा जितना पात के निकट होगा, ग्रहण उतना ही गहरा और केन्द्रीय होगा।',
-  },
-
-  /* Calculation Engine */
-  calcTitle: { en: 'How We Calculate Eclipses — Our Engine', hi: 'हम ग्रहण की गणना कैसे करते हैं — हमारा इंजन', sa: 'हम ग्रहण की गणना कैसे करते हैं — हमारा इंजन', mai: 'हम ग्रहण की गणना कैसे करते हैं — हमारा इंजन', mr: 'हम ग्रहण की गणना कैसे करते हैं — हमारा इंजन', ta: 'How We Calculate Eclipses — Our Engine', te: 'How We Calculate Eclipses — Our Engine', bn: 'How We Calculate Eclipses — Our Engine', kn: 'How We Calculate Eclipses — Our Engine', gu: 'How We Calculate Eclipses — Our Engine' },
-  calcIntro: {
-    en: 'Our eclipse engine finds all eclipses for any year by building on top of the tithi table we already compute for the Panchang calendar. Here is the full pipeline, step by step:',
-    hi: 'हमारा ग्रहण इंजन किसी भी वर्ष के सभी ग्रहणों को खोजने के लिए उस तिथि तालिका पर आधारित है जिसकी गणना हम पंचांग कैलेण्डर के लिए पहले से करते हैं। यहाँ चरण-दर-चरण पूरी प्रक्रिया है:',
-  },
-  step1Title: { en: 'Step 1 — Find All Lunations from the Tithi Table', hi: 'चरण 1 — तिथि तालिका से सभी लुनेशन खोजें', sa: 'चरण 1 — तिथि तालिका से सभी लुनेशन खोजें', mai: 'चरण 1 — तिथि तालिका से सभी लुनेशन खोजें', mr: 'चरण 1 — तिथि तालिका से सभी लुनेशन खोजें', ta: 'Step 1 — Find All Lunations from the Tithi Table', te: 'Step 1 — Find All Lunations from the Tithi Table', bn: 'Step 1 — Find All Lunations from the Tithi Table', kn: 'Step 1 — Find All Lunations from the Tithi Table', gu: 'Step 1 — Find All Lunations from the Tithi Table' },
-  step1: {
-    en: 'Our Panchang calendar pre-computes ~370 tithi entries per year with precise start/end Julian Day numbers. Every Amavasya (tithi #30 — the New Moon) is a solar eclipse candidate. Every Purnima (tithi #15 — the Full Moon) is a lunar eclipse candidate. Because we already compute exact tithi times, we need no separate lunation scanning — we simply filter for tithis #15 and #30 and extract their midpoint times.',
-    hi: 'हमारा पंचांग कैलेण्डर प्रत्येक वर्ष के लिए ~370 तिथि प्रविष्टियाँ सटीक प्रारम्भ/समाप्ति जूलियन दिन संख्याओं के साथ पूर्व-गणना करता है। प्रत्येक अमावस्या (तिथि #30 — नया चन्द्र) सूर्य ग्रहण का उम्मीदवार है। प्रत्येक पूर्णिमा (तिथि #15 — पूर्ण चन्द्र) चन्द्र ग्रहण का उम्मीदवार है। हम केवल तिथि #15 और #30 के लिए फ़िल्टर करते हैं और उनके मध्यबिन्दु समय निकालते हैं।',
-  },
-  step2Title: { en: 'Step 2 — Check Moon\'s Ecliptic Latitude',               hi: 'चरण 2 — चन्द्रमा का क्रान्तिवृत्त अक्षांश जाँचें' },
-  step2: {
-    en: 'At each lunation midpoint, we query the ephemeris for the Moon\'s ecliptic latitude (β). This value tells us precisely how far above or below the ecliptic the Moon is at that moment. At a node (Rahu or Ketu), β = 0°, which would produce the deepest possible eclipse. As the Moon moves away from the nodes, |β| grows toward ±5.15°. If |β| is large enough, no eclipse occurs even at New Moon or Full Moon — the shadows simply miss.',
-    hi: 'प्रत्येक लुनेशन मध्यबिन्दु पर, हम इफेमेरिस से चन्द्रमा का क्रान्तिवृत्त अक्षांश (β) प्राप्त करते हैं। यह मान बताता है कि उस क्षण चन्द्रमा क्रान्तिवृत्त से कितना ऊपर या नीचे है। पात (राहु या केतु) पर β = 0° होता है, जो सबसे गहरा ग्रहण देता है। जैसे-जैसे चन्द्रमा पातों से दूर जाता है, |β| ±5.15° की ओर बढ़ता है।',
-  },
-  step3Title: { en: 'Step 3 — Apply Distance-Scaled Eclipse Limits', hi: 'चरण 3 — दूरी-स्केल ग्रहण सीमाएँ लागू करें', sa: 'चरण 3 — दूरी-स्केल ग्रहण सीमाएँ लागू करें', mai: 'चरण 3 — दूरी-स्केल ग्रहण सीमाएँ लागू करें', mr: 'चरण 3 — दूरी-स्केल ग्रहण सीमाएँ लागू करें', ta: 'Step 3 — Apply Distance-Scaled Eclipse Limits', te: 'Step 3 — Apply Distance-Scaled Eclipse Limits', bn: 'Step 3 — Apply Distance-Scaled Eclipse Limits', kn: 'Step 3 — Apply Distance-Scaled Eclipse Limits', gu: 'Step 3 — Apply Distance-Scaled Eclipse Limits' },
-  step3: {
-    en: 'Whether an eclipse occurs depends on the Moon\'s latitude and its distance from Earth (which determines its apparent size). We use the Moon\'s angular velocity as a proxy for distance — a faster Moon is closer (larger apparent disk). The thresholds are:',
-    hi: 'ग्रहण होगा या नहीं यह चन्द्रमा के अक्षांश और पृथ्वी से उसकी दूरी (जो उसके प्रत्यक्ष आकार को निर्धारित करती है) पर निर्भर करता है। हम चन्द्रमा की कोणीय गति को दूरी के प्रतिनिधि के रूप में उपयोग करते हैं — तेज़ चन्द्रमा निकट (बड़ा प्रत्यक्ष बिम्ब) है। सीमाएँ इस प्रकार हैं:',
-  },
-  step4Title: { en: 'Step 4 — Compute Local Circumstances', hi: 'चरण 4 — स्थानीय परिस्थितियाँ गणना करें', sa: 'चरण 4 — स्थानीय परिस्थितियाँ गणना करें', mai: 'चरण 4 — स्थानीय परिस्थितियाँ गणना करें', mr: 'चरण 4 — स्थानीय परिस्थितियाँ गणना करें', ta: 'Step 4 — Compute Local Circumstances', te: 'Step 4 — Compute Local Circumstances', bn: 'Step 4 — Compute Local Circumstances', kn: 'Step 4 — Compute Local Circumstances', gu: 'Step 4 — Compute Local Circumstances' },
-  step4: {
-    en: 'For lunar eclipses, the contact times are universal — Earth\'s shadow is so large that the eclipse is seen from the entire night-side hemisphere simultaneously. We simply convert UTC contact times to the user\'s local timezone. For solar eclipses, the situation is more complex: the Moon\'s shadow is a narrow cone, and the contact times, totality path, and local magnitude all depend on the observer\'s geographic coordinates. We compute this using a standard geometric approach based on the Besselian elements of the eclipse. Sutak is then computed from the first contact (sparsha) time using classical timing rules.',
-    hi: 'चन्द्र ग्रहण के लिए, सम्पर्क समय सार्वभौमिक हैं — पृथ्वी की छाया इतनी बड़ी है कि ग्रहण पूरे रात्रि-पक्ष से एक साथ दिखता है। हम केवल UTC सम्पर्क समयों को उपयोगकर्ता के स्थानीय टाइमज़ोन में बदलते हैं। सूर्य ग्रहण के लिए, चन्द्रमा की छाया एक संकीर्ण शंकु है, और सम्पर्क समय, पूर्णता पथ और स्थानीय परिमाण सभी पर्यवेक्षक के भौगोलिक निर्देशांकों पर निर्भर करते हैं। सूतक को तब शास्त्रीय नियमों के अनुसार स्पर्श (प्रथम सम्पर्क) समय से गणना की जाती है।',
-  },
-
-  /* Eclipse Types */
-  typesTitle: { en: 'Types of Eclipses', hi: 'ग्रहण के प्रकार', sa: 'ग्रहण के प्रकार', mai: 'ग्रहण के प्रकार', mr: 'ग्रहण के प्रकार', ta: 'Types of Eclipses', te: 'Types of Eclipses', bn: 'Types of Eclipses', kn: 'Types of Eclipses', gu: 'Types of Eclipses' },
-  typesIntro: {
-    en: 'Not all eclipses are equal. The type depends on the Moon\'s distance from the node, its distance from Earth, and the observer\'s location.',
-    hi: 'सभी ग्रहण समान नहीं होते। प्रकार चन्द्रमा की पात से दूरी, पृथ्वी से उसकी दूरी और पर्यवेक्षक के स्थान पर निर्भर करता है।',
-  },
-
-  /* Phases */
-  phasesTitle: { en: 'Eclipse Phases & Sanskrit Terminology', hi: 'ग्रहण के चरण एवं संस्कृत शब्दावली', sa: 'ग्रहण के चरण एवं संस्कृत शब्दावली', mai: 'ग्रहण के चरण एवं संस्कृत शब्दावली', mr: 'ग्रहण के चरण एवं संस्कृत शब्दावली', ta: 'Eclipse Phases & Sanskrit Terminology', te: 'Eclipse Phases & Sanskrit Terminology', bn: 'Eclipse Phases & Sanskrit Terminology', kn: 'Eclipse Phases & Sanskrit Terminology', gu: 'Eclipse Phases & Sanskrit Terminology' },
-  phasesIntro: {
-    en: 'Every eclipse passes through defined phases, each with a Sanskrit name used in classical texts and modern Panchang calculations:',
-    hi: 'प्रत्येक ग्रहण निर्धारित चरणों से गुज़रता है, जिनमें से प्रत्येक का शास्त्रीय ग्रन्थों और आधुनिक पंचांग गणनाओं में उपयोग किया जाने वाला संस्कृत नाम है:',
-  },
-
-  /* Sutak */
-  sutakTitle: { en: 'Sutak — The Restriction Period', hi: 'सूतक — निषेध काल', sa: 'सूतक — निषेध काल', mai: 'सूतक — निषेध काल', mr: 'सूतक — निषेध काल', ta: 'Sutak — The Restriction Period', te: 'Sutak — The Restriction Period', bn: 'Sutak — The Restriction Period', kn: 'Sutak — The Restriction Period', gu: 'Sutak — The Restriction Period' },
-  sutakIntro: {
-    en: 'Sutak (also spelled Soothak or Sutak) is the period of ritual restriction that precedes and includes an eclipse. It is considered spiritually polluted time when certain activities are forbidden. Sutak only applies when the eclipse is visible from your location — an eclipse on the other side of Earth carries no Sutak obligation.',
-    hi: 'सूतक वह अनुष्ठान-प्रतिबन्ध काल है जो ग्रहण से पहले और उसे सम्मिलित करते हुए आता है। यह आध्यात्मिक रूप से अशुद्ध समय माना जाता है जब कुछ कार्य वर्जित होते हैं। सूतक केवल तभी लागू होता है जब ग्रहण आपके स्थान से दिखाई दे।',
-  },
-  sutakSources: {
-    en: 'Classical texts disagree slightly on Sutak duration. The three main interpretations:',
-    hi: 'शास्त्रीय ग्रन्थ सूतक की अवधि पर थोड़े भिन्न हैं। तीन मुख्य व्याख्याएँ:',
-  },
-  sutakDo: { en: 'Recommended during Sutak & Eclipse', hi: 'सूतक और ग्रहण में अनुशंसित', sa: 'सूतक और ग्रहण में अनुशंसित', mai: 'सूतक और ग्रहण में अनुशंसित', mr: 'सूतक और ग्रहण में अनुशंसित', ta: 'Recommended during Sutak & Eclipse', te: 'Recommended during Sutak & Eclipse', bn: 'Recommended during Sutak & Eclipse', kn: 'Recommended during Sutak & Eclipse', gu: 'Recommended during Sutak & Eclipse' },
-  sutakAvoid: { en: 'Avoid during Sutak & Eclipse', hi: 'सूतक और ग्रहण में परहेज़ करें', sa: 'सूतक और ग्रहण में परहेज़ करें', mai: 'सूतक और ग्रहण में परहेज़ करें', mr: 'सूतक और ग्रहण में परहेज़ करें', ta: 'Avoid during Sutak & Eclipse', te: 'Avoid during Sutak & Eclipse', bn: 'Avoid during Sutak & Eclipse', kn: 'Avoid during Sutak & Eclipse', gu: 'Avoid during Sutak & Eclipse' },
-
-  /* Kundali */
-  kundaliTitle: { en: 'Eclipses in Kundali Analysis', hi: 'कुण्डली विश्लेषण में ग्रहण', sa: 'कुण्डली विश्लेषण में ग्रहण', mai: 'कुण्डली विश्लेषण में ग्रहण', mr: 'कुण्डली विश्लेषण में ग्रहण', ta: 'Eclipses in Kundali Analysis', te: 'Eclipses in Kundali Analysis', bn: 'Eclipses in Kundali Analysis', kn: 'Eclipses in Kundali Analysis', gu: 'Eclipses in Kundali Analysis' },
-  kundaliIntro: {
-    en: 'In natal astrology (Janma Kundali analysis), eclipses are treated as powerful activation events — not curses, but catalysts. An eclipse is a karmic spotlight, illuminating a specific area of life for deep transformation.',
-    hi: 'जन्म कुण्डली विश्लेषण में, ग्रहणों को शक्तिशाली सक्रियण घटनाओं के रूप में माना जाता है — अभिशाप नहीं, बल्कि उत्प्रेरक। एक ग्रहण एक कार्मिक प्रकाशपुञ्ज है जो जीवन के किसी विशेष क्षेत्र को गहन परिवर्तन के लिए प्रकाशित करता है।',
-  },
-
-  /* Saros */
-  sarosTitle: { en: 'The Saros Cycle & Eclipse Series', hi: 'सारोस चक्र एवं ग्रहण श्रृंखला', sa: 'सारोस चक्र एवं ग्रहण श्रृंखला', mai: 'सारोस चक्र एवं ग्रहण श्रृंखला', mr: 'सारोस चक्र एवं ग्रहण श्रृंखला', ta: 'The Saros Cycle & Eclipse Series', te: 'The Saros Cycle & Eclipse Series', bn: 'The Saros Cycle & Eclipse Series', kn: 'The Saros Cycle & Eclipse Series', gu: 'The Saros Cycle & Eclipse Series' },
-  sarosWhy: {
-    en: 'Why do eclipses repeat? Three orbital cycles align almost perfectly:',
-    hi: 'ग्रहण क्यों दोहराते हैं? तीन कक्षीय चक्र लगभग पूर्ण रूप से संरेखित होते हैं:',
-  },
-  sarosSynodic: {
-    en: '223 Synodic Months (New Moon to New Moon) = 6,585.32 days. This ensures the Sun-Moon phase (New or Full) repeats.',
-    hi: '223 सिनोडिक मास (अमावस्या से अमावस्या) = 6,585.32 दिन। यह सुनिश्चित करता है कि सूर्य-चन्द्र कला (अमावस्या या पूर्णिमा) दोहराती है।',
-  },
-  sarosDraconic: {
-    en: '242 Draconic Months (node to node) = 6,585.36 days. This ensures the Moon returns to almost the same position relative to its nodes (Rahu/Ketu), so the eclipse geometry repeats.',
-    hi: '242 ड्रैकोनिक मास (पात से पात) = 6,585.36 दिन। यह सुनिश्चित करता है कि चन्द्र अपने पातों (राहु/केतु) के सापेक्ष लगभग उसी स्थिति में वापस आता है।',
-  },
-  sarosAnomalistic: {
-    en: '239 Anomalistic Months (perigee to perigee) = 6,585.54 days. This ensures the Moon is at nearly the same distance from Earth, so the eclipse magnitude and type (total vs annular) are similar.',
-    hi: '239 एनोमैलिस्टिक मास (उपभू से उपभू) = 6,585.54 दिन। यह सुनिश्चित करता है कि चन्द्र पृथ्वी से लगभग समान दूरी पर है, इसलिए ग्रहण का परिमाण और प्रकार समान रहता है।',
-  },
-  sarosResult: {
-    en: 'All three align within 0.04 days of 6,585.32 days — approximately 18 years, 11 days, and 8 hours. After this period, virtually the same eclipse recurs.',
-    hi: 'तीनों 6,585.32 दिनों के 0.04 दिन के भीतर संरेखित होते हैं — लगभग 18 वर्ष, 11 दिन, 8 घण्टे। इस अवधि के बाद, लगभग वही ग्रहण पुनः होता है।',
-  },
-  saros8hours: {
-    en: 'The 8-Hour Shift — The extra ⅓ day means Earth has rotated 120° further. So the repeat eclipse occurs ~120° west on Earth\'s surface. The same eclipse is visible from a completely different part of the world. After THREE Saros cycles (54 years 34 days, called the Exeligmos), the eclipse returns to approximately the same longitude — the same part of the world sees it again.',
-    hi: '8 घण्टे का विचलन — अतिरिक्त ⅓ दिन का अर्थ है कि पृथ्वी 120° और घूम चुकी है। अगला ग्रहण पृथ्वी की सतह पर ~120° पश्चिम में होता है। तीन सारोस चक्रों (54 वर्ष 34 दिन, एक्सेलिग्मोस) के बाद, ग्रहण लगभग उसी देशान्तर पर वापस आता है।',
-  },
-  sarosSeriesTitle: {
-    en: 'What is a Saros Series?',
-    hi: 'सारोस श्रृंखला क्या है?',
-  },
-  sarosSeries1: {
-    en: 'Each eclipse belongs to a Saros series — a family of eclipses recurring every 18.03 years over ~1,200-1,500 years. A typical Saros series contains 70-85 eclipses. The series begins with small partial eclipses near one pole, gradually intensifying to total/annular eclipses near the equator, then fading to small partials at the opposite pole before ending.',
-    hi: 'प्रत्येक ग्रहण एक सारोस श्रृंखला से सम्बन्धित है — ~1,200-1,500 वर्षों में हर 18.03 वर्ष में पुनरावर्ती ग्रहणों का एक परिवार। एक सामान्य श्रृंखला में 70-85 ग्रहण होते हैं। श्रृंखला एक ध्रुव के पास छोटे आंशिक ग्रहणों से शुरू होती है, धीरे-धीरे भूमध्य रेखा के पास पूर्ण/वलयाकार ग्रहणों तक तीव्र होती है, फिर विपरीत ध्रुव पर छोटे आंशिक ग्रहणों में क्षीण होकर समाप्त होती है।',
-  },
-  sarosSeries2: {
-    en: 'At any given time, about 40 Saros series are producing solar eclipses and about 40 are producing lunar eclipses (~80 total active series). Series are numbered: for example, the August 12, 2026 total solar eclipse belongs to Saros 126, and the March 3, 2026 total lunar eclipse belongs to Saros 133.',
-    hi: 'किसी भी समय, लगभग 40 सारोस श्रृंखलाएँ सूर्य ग्रहण और लगभग 40 चन्द्र ग्रहण उत्पन्न कर रही होती हैं (~80 कुल सक्रिय श्रृंखलाएँ)। उदाहरण: 12 अगस्त 2026 का पूर्ण सूर्य ग्रहण सारोस 126 से सम्बन्धित है, और 3 मार्च 2026 का पूर्ण चन्द्र ग्रहण सारोस 133 से।',
-  },
-  sarosNodePrecession: {
-    en: 'The Nodal Precession (18.6 Year Cycle)',
-    hi: 'पात का पुरस्सरण (18.6 वर्ष चक्र)',
-  },
-  sarosNodePrec1: {
-    en: 'The Rahu-Ketu axis is not fixed — it rotates backwards (retrograde) through the zodiac, completing one full revolution in 18.6 years. This means Rahu and Ketu move through all 12 signs over 18.6 years, spending about 1.5 years in each sign. This is why eclipse "seasons" (when the Sun is near a node and eclipses are possible) shift earlier by about 19 days each year.',
-    hi: 'राहु-केतु अक्ष स्थिर नहीं है — यह राशिचक्र में पीछे की ओर (वक्री) घूमता है, 18.6 वर्षों में एक पूर्ण चक्कर पूरा करता है। अर्थात् राहु और केतु 18.6 वर्षों में सभी 12 राशियों से गुजरते हैं, प्रत्येक राशि में लगभग 1.5 वर्ष रहते हैं। इसलिए ग्रहण "ऋतुएँ" प्रत्येक वर्ष लगभग 19 दिन पहले आती हैं।',
-  },
-  sarosNodePrec2: {
-    en: 'In Vedic astrology, this precession is one of the most important transit events — Rahu\'s ingress into a new sign affects mundane predictions, national events, and personal charts (especially for those running Rahu or Ketu Mahadasha). The current transit: Rahu is in Pisces and Ketu is in Virgo (2025-2026).',
-    hi: 'वैदिक ज्योतिष में, यह पुरस्सरण सबसे महत्वपूर्ण गोचर घटनाओं में से एक है — राहु का नई राशि में प्रवेश मुण्डन भविष्यवाणियों, राष्ट्रीय घटनाओं और व्यक्तिगत कुण्डलियों को प्रभावित करता है (विशेषकर राहु या केतु महादशा वालों के लिए)। वर्तमान गोचर: राहु मीन में और केतु कन्या में (2025-2026)।',
-  },
-  sarosExampleTitle: {
-    en: 'Saros in Action — Predicting Real Eclipses',
-    hi: 'सारोस कार्य में — वास्तविक ग्रहणों की भविष्यवाणी',
-  },
-  sarosExample1: {
-    en: 'Let\'s trace a real Saros chain. The total solar eclipse of August 12, 2026 (Saros 126) is part of a family. Add 18 years, 11 days, 8 hours to each date:',
-    hi: 'एक वास्तविक सारोस श्रृंखला का अनुसरण करें। 12 अगस्त 2026 का पूर्ण सूर्य ग्रहण (सारोस 126) एक परिवार का हिस्सा है। प्रत्येक तिथि में 18 वर्ष, 11 दिन, 8 घण्टे जोड़ें:',
-  },
-  sarosExample2: {
-    en: 'Notice how the path shifts ~120° westward each time (the 8-hour rotation), and the magnitude slowly changes as the series evolves. This is how ancient astronomers could predict eclipses centuries in advance — by knowing the Saros pattern.',
-    hi: 'देखें कि कैसे प्रत्येक बार पथ ~120° पश्चिम की ओर खिसकता है (8 घण्टे का घूर्णन), और श्रृंखला के विकास के साथ परिमाण धीरे-धीरे बदलता है। इसी प्रकार प्राचीन खगोलविद सारोस प्रतिमान जानकर सदियों पहले ग्रहणों की भविष्यवाणी कर सकते थे।',
-  },
-  sarosLunarExample: {
-    en: 'Similarly for lunar eclipses — the total lunar eclipse of March 3, 2026 (Saros 133) connects to:',
-    hi: 'इसी प्रकार चन्द्र ग्रहणों के लिए — 3 मार्च 2026 का पूर्ण चन्द्र ग्रहण (सारोस 133) जुड़ता है:',
-  },
-  sarosSeasonTitle: {
-    en: 'Eclipse Seasons — Why They Shift',
-    hi: 'ग्रहण ऋतुएँ — ये क्यों खिसकती हैं',
-  },
-  sarosSeason1: {
-    en: 'Because the Rahu-Ketu axis precesses backwards, the times when the Sun aligns with a node (eclipse season) shift earlier by ~19 days each year. In 2026, eclipse seasons are in February-March and August. By 2030, they\'ll have shifted to approximately January-February and July. By 2035, to December-January and June.',
-    hi: 'चूँकि राहु-केतु अक्ष पीछे की ओर घूमता है, जब सूर्य किसी पात से संरेखित होता है (ग्रहण ऋतु) वह प्रत्येक वर्ष ~19 दिन पहले खिसकती है। 2026 में ग्रहण ऋतुएँ फरवरी-मार्च और अगस्त में हैं। 2030 तक वे लगभग जनवरी-फरवरी और जुलाई में होंगी। 2035 तक दिसम्बर-जनवरी और जून में।',
-  },
-
-  /* Node-Type Matrix */
-  nodeMatrixTitle: {
-    en: 'The 4 Eclipse Types — Rahu vs Ketu, Solar vs Lunar',
-    hi: '4 ग्रहण प्रकार — राहु बनाम केतु, सूर्य बनाम चन्द्र',
-  },
-  nodeMatrixIntro: {
-    en: 'An eclipse can occur at either node (Rahu or Ketu) and can be solar or lunar — giving us a 2×2 matrix of four distinct eclipse types. Classical texts like Brihat Samhita (Varahamihira), Surya Siddhanta, and Arthashastra (Kautilya) assign different mundane and personal significances to each combination. The node where the eclipse occurs determines its karmic flavour.',
-    hi: 'ग्रहण किसी भी पात (राहु या केतु) पर हो सकता है और सूर्य या चन्द्र हो सकता है — जिससे चार विशिष्ट ग्रहण प्रकारों का 2×2 आव्यूह बनता है। बृहत् संहिता (वराहमिहिर), सूर्य सिद्धान्त और अर्थशास्त्र (कौटिल्य) जैसे शास्त्रीय ग्रन्थ प्रत्येक संयोजन को भिन्न मुण्डन और व्यक्तिगत महत्त्व देते हैं। जिस पात पर ग्रहण होता है वह उसका कार्मिक स्वरूप निर्धारित करता है।',
-  },
-  rahuSolar: {
-    en: 'Rahu Solar Eclipse (Amavasya at Rahu)',
-    hi: 'राहु सूर्य ग्रहण (राहु पर अमावस्या)',
-  },
-  rahuSolarDesc: {
-    en: 'Rahu\'s nature: material desire, obsession, foreign influence, technology, illusion. When Rahu swallows the Sun (soul, authority, kings), it signifies: disruption to ruling powers, political upheaval, deception at the highest levels, and ambition overriding dharma. For individuals: ego crises, identity confusion, father\'s health issues, but also breakthroughs in foreign lands, technology, and unconventional paths. Remedies lean toward Surya mantras and Rahu pacification (donation of sesame, mustard oil on Saturday).',
-    hi: 'राहु का स्वभाव: भौतिक इच्छा, जुनून, विदेशी प्रभाव, तकनीक, भ्रम। जब राहु सूर्य (आत्मा, अधिकार, राजा) को ग्रसता है: शासकों में उथल-पुथल, राजनीतिक अस्थिरता, उच्चतम स्तर पर छल, धर्म पर महत्वाकांक्षा का प्रभुत्व। व्यक्तिगत: अहंकार संकट, पहचान भ्रम, पिता का स्वास्थ्य, पर विदेश और तकनीक में सफलता भी। उपाय: सूर्य मन्त्र और राहु शान्ति (तिल, सरसों तेल शनिवार को दान)।',
-  },
-  ketuSolar: {
-    en: 'Ketu Solar Eclipse (Amavasya at Ketu)',
-    hi: 'केतु सूर्य ग्रहण (केतु पर अमावस्या)',
-  },
-  ketuSolarDesc: {
-    en: 'Ketu\'s nature: detachment, liberation, past karma, spirituality, loss. When Ketu eclipses the Sun, it strips away ego and worldly attachment. It signifies: fall of arrogant leaders, exposure of hidden truths, spiritual awakenings forced by loss, and karmic debts coming due. For individuals: sudden detachment from career or status, health scares that redirect life purpose, deep spiritual experiences, liberation from old patterns. Often the more transformative of the two solar eclipses. Remedies: Maha Mrityunjaya mantra, Ketu pacification (cat\'s eye stone, donation of blankets).',
-    hi: 'केतु का स्वभाव: वैराग्य, मोक्ष, पूर्व कर्म, आध्यात्म, हानि। जब केतु सूर्य को ग्रसता है, यह अहंकार और सांसारिक आसक्ति छीन लेता है। अहंकारी नेताओं का पतन, छिपे सत्यों का उद्घाटन, हानि से प्रेरित आध्यात्मिक जागृति, कर्म ऋणों का परिपक्व होना। व्यक्तिगत: कैरियर/प्रतिष्ठा से अचानक वैराग्य, स्वास्थ्य भय जो जीवन उद्देश्य बदले, गहन आध्यात्मिक अनुभव। प्रायः दो सूर्य ग्रहणों में अधिक परिवर्तनकारी। उपाय: महामृत्युंजय मन्त्र, केतु शान्ति (लहसुनिया, कम्बल दान)।',
-  },
-  rahuLunar: {
-    en: 'Rahu Lunar Eclipse (Purnima at Rahu)',
-    hi: 'राहु चन्द्र ग्रहण (राहु पर पूर्णिमा)',
-  },
-  rahuLunarDesc: {
-    en: 'When Rahu eclipses the Moon (mind, emotions, mother, public), it creates: mass emotional manipulation, public hysteria or panic, deceptive media narratives, and collective anxiety. The mind gets clouded by desires and illusions. For individuals: emotional turbulence, mother\'s health issues, mental fog, irrational fears, but also sudden intuitive breakthroughs and psychic awakening. Those in Rahu or Moon dasha feel this most intensely. Remedies: Chandra mantras, pearl, milk donation, Rahu pacification.',
-    hi: 'जब राहु चन्द्र (मन, भावनाएं, माता, जनता) को ग्रसता है: सामूहिक भावनात्मक हेरफेर, जन उन्माद, भ्रामक मीडिया, सामूहिक चिन्ता। मन इच्छाओं और भ्रम से ग्रस्त। व्यक्तिगत: भावनात्मक उथल-पुथल, माता का स्वास्थ्य, मानसिक धुंध, अतार्किक भय, पर अचानक सहज ज्ञान और मानसिक जागृति भी। राहु या चन्द्र दशा वाले सबसे तीव्रता से अनुभव करते हैं। उपाय: चन्द्र मन्त्र, मोती, दूध दान, राहु शान्ति।',
-  },
-  ketuLunar: {
-    en: 'Ketu Lunar Eclipse (Purnima at Ketu)',
-    hi: 'केतु चन्द्र ग्रहण (केतु पर पूर्णिमा)',
-  },
-  ketuLunarDesc: {
-    en: 'When Ketu eclipses the Moon, it dissolves emotional attachments and forces inner reckoning. It signifies: collective grief or mourning, revelations about the past, ancestral karma surfacing, and spiritual purification through emotional pain. The famous "Blood Moon" is often a Ketu lunar eclipse — the red colour symbolising the burning away of past-life impressions (samskaras). For individuals: deep introspection, release of emotional baggage, past relationships resurfacing for closure, psychic sensitivity heightened. This is the most spiritually potent of all four eclipse types. Remedies: Ketu pacification, Pitri Tarpan (ancestral offerings), meditation, seven-grain donation.',
-    hi: 'जब केतु चन्द्र को ग्रसता है, यह भावनात्मक आसक्तियों को विलीन करता है और आन्तरिक लेखा-जोखा करवाता है। सामूहिक शोक, अतीत के बारे में रहस्योद्घाटन, पूर्वजों का कर्म सतह पर, भावनात्मक पीड़ा से आध्यात्मिक शुद्धि। प्रसिद्ध "रक्त चन्द्र" प्रायः केतु चन्द्र ग्रहण होता है — लाल रंग पूर्वजन्म संस्कारों के दहन का प्रतीक। व्यक्तिगत: गहन आत्मनिरीक्षण, भावनात्मक बोझ से मुक्ति, पिछले सम्बन्ध समापन हेतु पुनः प्रकट, मानसिक संवेदनशीलता बढ़ी। चारों ग्रहण प्रकारों में सर्वाधिक आध्यात्मिक रूप से शक्तिशाली। उपाय: केतु शान्ति, पितृ तर्पण, ध्यान, सप्तधान्य दान।',
-  },
-  nodeMatrixNote: {
-    en: 'How to know which node? Check if the eclipse is near Rahu\'s longitude or Ketu\'s longitude (Rahu + 180°) in the sidereal zodiac. Our eclipse engine automatically identifies this.',
-    hi: 'कैसे पता करें कौन सा पात? देखें कि ग्रहण सायन राशिचक्र में राहु के अंश या केतु के अंश (राहु + 180°) के निकट है। हमारा ग्रहण इंजन स्वचालित रूप से इसकी पहचान करता है।',
-  },
-
-  /* Cross refs */
-  crossRef: { en: 'Related Topics', hi: 'सम्बन्धित विषय', sa: 'सम्बन्धित विषय', mai: 'सम्बन्धित विषय', mr: 'सम्बन्धित विषय', ta: 'Related Topics', te: 'Related Topics', bn: 'Related Topics', kn: 'Related Topics', gu: 'Related Topics' },
-  viewCalendar: { en: 'View Eclipse Calendar', hi: 'ग्रहण कैलेण्डर देखें', sa: 'ग्रहण कैलेण्डर देखें', mai: 'ग्रहण कैलेण्डर देखें', mr: 'ग्रहण कैलेण्डर देखें', ta: 'View Eclipse Calendar', te: 'View Eclipse Calendar', bn: 'View Eclipse Calendar', kn: 'View Eclipse Calendar', gu: 'View Eclipse Calendar' },
-};
 
 /* ─── Eclipse types data ─── */
 const ECLIPSE_TYPES = [
@@ -415,17 +193,18 @@ export default function LearnEclipsesPage() {
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
-  const l = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
+  const l = (obj: LocaleText | Record<string, string>) => lt(obj as LocaleText, locale);
 
   return (
     <div className="space-y-8">
       {/* ═══ Header ═══ */}
       <div>
         <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={headingFont}>
-          {l(L.title)}
+          {t('title')}
         </h2>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl" style={bodyFont}>
-          {l(L.subtitle)}
+          {t('subtitle')}
         </p>
       </div>
 
@@ -438,11 +217,11 @@ export default function LearnEclipsesPage() {
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>
-          {l(L.mythTitle)}
+          {t('mythTitle')}
         </h3>
         <div className="text-text-secondary text-base leading-relaxed space-y-4" style={bodyFont}>
-          <p>{l(L.myth1)}</p>
-          <p>{l(L.myth2)}</p>
+          <p>{t('myth1')}</p>
+          <p>{t('myth2')}</p>
 
           {/* Visual: Rahu-Ketu diagram */}
           <div className="flex justify-center my-6">
@@ -490,7 +269,7 @@ export default function LearnEclipsesPage() {
             </div>
           </div>
 
-          <p>{l(L.myth3)}</p>
+          <p>{t('myth3')}</p>
         </div>
       </motion.section>
 
@@ -503,12 +282,12 @@ export default function LearnEclipsesPage() {
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>
-          {l(L.astroTitle)}
+          {t('astroTitle')}
         </h3>
         <div className="text-text-secondary text-base leading-relaxed space-y-4" style={bodyFont}>
-          <p>{l(L.astro1)}</p>
-          <p>{l(L.astro2)}</p>
-          <p>{l(L.astro3)}</p>
+          <p>{t('astro1')}</p>
+          <p>{t('astro2')}</p>
+          <p>{t('astro3')}</p>
 
           {/* Interactive animation — Solar & Lunar Eclipse */}
           <EclipseAnimation locale={locale} />
@@ -559,10 +338,10 @@ export default function LearnEclipsesPage() {
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-2" style={headingFont}>
-          {l(L.calcTitle)}
+          {t('calcTitle')}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-6" style={bodyFont}>
-          {l(L.calcIntro)}
+          {t('calcIntro')}
         </p>
 
         <div className="space-y-5">
@@ -570,10 +349,10 @@ export default function LearnEclipsesPage() {
           <div className="border border-gold-primary/12 rounded-xl overflow-hidden">
             <div className="bg-gold-primary/8 px-5 py-3 flex items-center gap-3">
               <span className="text-gold-primary font-bold text-lg font-mono">01</span>
-              <h4 className="text-gold-light font-bold text-base" style={headingFont}>{l(L.step1Title)}</h4>
+              <h4 className="text-gold-light font-bold text-base" style={headingFont}>{t('step1Title')}</h4>
             </div>
             <div className="px-5 py-4 text-text-secondary text-sm leading-relaxed" style={bodyFont}>
-              <p>{l(L.step1)}</p>
+              <p>{t('step1')}</p>
               <div className="mt-3 p-3 bg-bg-primary/50 rounded-lg font-mono text-xs text-gold-light/80 space-y-1">
                 <p>{isHi ? '// तिथि #30 (अमावस्या) → सूर्य ग्रहण उम्मीदवार' : '// Tithi #30 (Amavasya) → solar eclipse candidate'}</p>
                 <p>{isHi ? '// तिथि #15 (पूर्णिमा) → चन्द्र ग्रहण उम्मीदवार' : '// Tithi #15 (Purnima) → lunar eclipse candidate'}</p>
@@ -586,10 +365,10 @@ export default function LearnEclipsesPage() {
           <div className="border border-gold-primary/12 rounded-xl overflow-hidden">
             <div className="bg-gold-primary/8 px-5 py-3 flex items-center gap-3">
               <span className="text-gold-primary font-bold text-lg font-mono">02</span>
-              <h4 className="text-gold-light font-bold text-base" style={headingFont}>{l(L.step2Title)}</h4>
+              <h4 className="text-gold-light font-bold text-base" style={headingFont}>{t('step2Title')}</h4>
             </div>
             <div className="px-5 py-4 text-text-secondary text-sm leading-relaxed" style={bodyFont}>
-              <p>{l(L.step2)}</p>
+              <p>{t('step2')}</p>
               <div className="mt-3 p-3 bg-bg-primary/50 rounded-lg font-mono text-xs text-gold-light/80 space-y-1">
                 <p className="text-text-secondary/60">{isHi ? '// चन्द्र अक्षांश प्राप्त करें' : '// Query Moon ecliptic latitude'}</p>
                 <p>β = moonEclipticLatitude(t_mid)  <span className="text-text-secondary/50">// degrees</span></p>
@@ -602,10 +381,10 @@ export default function LearnEclipsesPage() {
           <div className="border border-gold-primary/12 rounded-xl overflow-hidden">
             <div className="bg-gold-primary/8 px-5 py-3 flex items-center gap-3">
               <span className="text-gold-primary font-bold text-lg font-mono">03</span>
-              <h4 className="text-gold-light font-bold text-base" style={headingFont}>{l(L.step3Title)}</h4>
+              <h4 className="text-gold-light font-bold text-base" style={headingFont}>{t('step3Title')}</h4>
             </div>
             <div className="px-5 py-4 text-text-secondary text-sm leading-relaxed space-y-4" style={bodyFont}>
-              <p>{l(L.step3)}</p>
+              <p>{t('step3')}</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Solar thresholds */}
                 <div>
@@ -620,7 +399,7 @@ export default function LearnEclipsesPage() {
                     ].map((row, i) => (
                       <div key={i} className={`flex gap-2 items-center px-3 py-1.5 rounded-lg border text-xs font-mono ${row.color}`}>
                         <span className="opacity-90 w-20 shrink-0">{row.range}</span>
-                        <span className="opacity-80">{l(row.type)}</span>
+                        <span className="opacity-80">{lt(row.type as LocaleText, locale)}</span>
                       </div>
                     ))}
                     <div className="text-text-secondary/60 text-xs px-1 mt-1">
@@ -642,7 +421,7 @@ export default function LearnEclipsesPage() {
                     ].map((row, i) => (
                       <div key={i} className={`flex gap-2 items-center px-3 py-1.5 rounded-lg border text-xs font-mono ${row.color}`}>
                         <span className="opacity-90 w-20 shrink-0">{row.range}</span>
-                        <span className="opacity-80">{l(row.type)}</span>
+                        <span className="opacity-80">{lt(row.type as LocaleText, locale)}</span>
                       </div>
                     ))}
                   </div>
@@ -655,10 +434,10 @@ export default function LearnEclipsesPage() {
           <div className="border border-gold-primary/12 rounded-xl overflow-hidden">
             <div className="bg-gold-primary/8 px-5 py-3 flex items-center gap-3">
               <span className="text-gold-primary font-bold text-lg font-mono">04</span>
-              <h4 className="text-gold-light font-bold text-base" style={headingFont}>{l(L.step4Title)}</h4>
+              <h4 className="text-gold-light font-bold text-base" style={headingFont}>{t('step4Title')}</h4>
             </div>
             <div className="px-5 py-4 text-text-secondary text-sm leading-relaxed" style={bodyFont}>
-              <p>{l(L.step4)}</p>
+              <p>{t('step4')}</p>
             </div>
           </div>
         </div>
@@ -673,10 +452,10 @@ export default function LearnEclipsesPage() {
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-2" style={headingFont}>
-          {l(L.typesTitle)}
+          {t('typesTitle')}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-5" style={bodyFont}>
-          {l(L.typesIntro)}
+          {t('typesIntro')}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {ECLIPSE_TYPES.map((et, i) => (
@@ -689,9 +468,9 @@ export default function LearnEclipsesPage() {
               className={`rounded-xl border p-4 ${et.bg} ${et.border}`}
             >
               <div className={`text-2xl mb-2 ${et.color}`}>{et.symbol}</div>
-              <h4 className={`font-bold text-sm mb-1 ${et.color}`} style={headingFont}>{l(et.name)}</h4>
-              <div className="text-text-secondary/70 text-xs font-mono mb-2 leading-snug">{l(et.condition)}</div>
-              <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{l(et.desc)}</p>
+              <h4 className={`font-bold text-sm mb-1 ${et.color}`} style={headingFont}>{lt(et.name as LocaleText, locale)}</h4>
+              <div className="text-text-secondary/70 text-xs font-mono mb-2 leading-snug">{lt(et.condition as LocaleText, locale)}</div>
+              <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{lt(et.desc as LocaleText, locale)}</p>
             </motion.div>
           ))}
         </div>
@@ -706,10 +485,10 @@ export default function LearnEclipsesPage() {
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-2" style={headingFont}>
-          {l(L.phasesTitle)}
+          {t('phasesTitle')}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-5" style={bodyFont}>
-          {l(L.phasesIntro)}
+          {t('phasesIntro')}
         </p>
         <div className="space-y-3">
           {PHASES.map((phase, i) => (
@@ -726,8 +505,8 @@ export default function LearnEclipsesPage() {
                 <span className="text-text-secondary/60 text-xs font-mono">{phase.code}</span>
               </div>
               <div>
-                <div className="text-gold-light text-sm font-semibold mb-1" style={headingFont}>{l(phase.name)}</div>
-                <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>{l(phase.desc)}</p>
+                <div className="text-gold-light text-sm font-semibold mb-1" style={headingFont}>{lt(phase.name as LocaleText, locale)}</div>
+                <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>{lt(phase.desc as LocaleText, locale)}</p>
               </div>
             </motion.div>
           ))}
@@ -751,7 +530,7 @@ export default function LearnEclipsesPage() {
                   <div className={`w-3 h-3 rounded-full ${item.color}`} />
                   <div className="text-xs font-bold font-mono text-gold-primary">{item.code}</div>
                   <div className="text-text-secondary/60 text-xs text-center whitespace-pre-line leading-tight max-w-12">
-                    {l(item.label)}
+                    {lt(item.label as LocaleText, locale)}
                   </div>
                 </div>
                 {i < arr.length - 1 && (
@@ -772,13 +551,13 @@ export default function LearnEclipsesPage() {
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-2" style={headingFont}>
-          {l(L.sutakTitle)}
+          {t('sutakTitle')}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-4" style={bodyFont}>
-          {l(L.sutakIntro)}
+          {t('sutakIntro')}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-4" style={bodyFont}>
-          {l(L.sutakSources)}
+          {t('sutakSources')}
         </p>
 
         {/* Sutak source table */}
@@ -794,9 +573,9 @@ export default function LearnEclipsesPage() {
             <tbody>
               {SUTAK_SOURCES.map((src, i) => (
                 <tr key={i} className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors">
-                  <td className={`py-2.5 px-3 font-bold text-sm ${src.color}`} style={headingFont}>{l(src.text)}</td>
-                  <td className="py-2.5 px-3 text-text-secondary text-xs" style={bodyFont}>{l(src.solar)}</td>
-                  <td className="py-2.5 px-3 text-text-secondary text-xs" style={bodyFont}>{l(src.lunar)}</td>
+                  <td className={`py-2.5 px-3 font-bold text-sm ${src.color}`} style={headingFont}>{lt(src.text as LocaleText, locale)}</td>
+                  <td className="py-2.5 px-3 text-text-secondary text-xs" style={bodyFont}>{lt(src.solar as LocaleText, locale)}</td>
+                  <td className="py-2.5 px-3 text-text-secondary text-xs" style={bodyFont}>{lt(src.lunar as LocaleText, locale)}</td>
                 </tr>
               ))}
             </tbody>
@@ -807,7 +586,7 @@ export default function LearnEclipsesPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
             <h4 className="text-emerald-400 font-bold text-sm mb-3 uppercase tracking-wide" style={headingFont}>
-              {l(L.sutakDo)}
+              {t('sutakDo')}
             </h4>
             <ul className="space-y-2">
               {SUTAK_DO.map((item, i) => (
@@ -820,7 +599,7 @@ export default function LearnEclipsesPage() {
           </div>
           <div>
             <h4 className="text-red-400 font-bold text-sm mb-3 uppercase tracking-wide" style={headingFont}>
-              {l(L.sutakAvoid)}
+              {t('sutakAvoid')}
             </h4>
             <ul className="space-y-2">
               {SUTAK_AVOID.map((item, i) => (
@@ -843,10 +622,10 @@ export default function LearnEclipsesPage() {
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-2" style={headingFont}>
-          {l(L.kundaliTitle)}
+          {t('kundaliTitle')}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-5" style={bodyFont}>
-          {l(L.kundaliIntro)}
+          {t('kundaliIntro')}
         </p>
         <div className="space-y-3">
           {KUNDALI_EFFECTS.map((eff, i) => (
@@ -859,10 +638,10 @@ export default function LearnEclipsesPage() {
               className="flex flex-col sm:flex-row gap-3 border border-gold-primary/10 rounded-xl p-4"
             >
               <div className={`shrink-0 font-bold text-sm sm:w-52 ${eff.color}`} style={headingFont}>
-                {l(eff.situation)}
+                {lt(eff.situation as LocaleText, locale)}
               </div>
               <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
-                {l(eff.effect)}
+                {lt(eff.effect as LocaleText, locale)}
               </p>
             </motion.div>
           ))}
@@ -878,26 +657,26 @@ export default function LearnEclipsesPage() {
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>
-          {l(L.sarosTitle)}
+          {t('sarosTitle')}
         </h3>
         <div className="text-text-secondary text-base leading-relaxed space-y-5" style={bodyFont}>
           {/* Why eclipses repeat */}
-          <p className="font-semibold text-gold-light">{l(L.sarosWhy)}</p>
+          <p className="font-semibold text-gold-light">{t('sarosWhy')}</p>
           <div className="space-y-3 ml-1">
             <div className="flex gap-3 items-start">
               <span className="text-gold-light font-mono text-sm font-bold shrink-0 mt-0.5">1.</span>
-              <p className="text-sm">{l(L.sarosSynodic)}</p>
+              <p className="text-sm">{t('sarosSynodic')}</p>
             </div>
             <div className="flex gap-3 items-start">
               <span className="text-gold-light font-mono text-sm font-bold shrink-0 mt-0.5">2.</span>
-              <p className="text-sm">{l(L.sarosDraconic)}</p>
+              <p className="text-sm">{t('sarosDraconic')}</p>
             </div>
             <div className="flex gap-3 items-start">
               <span className="text-gold-light font-mono text-sm font-bold shrink-0 mt-0.5">3.</span>
-              <p className="text-sm">{l(L.sarosAnomalistic)}</p>
+              <p className="text-sm">{t('sarosAnomalistic')}</p>
             </div>
           </div>
-          <p>{l(L.sarosResult)}</p>
+          <p>{t('sarosResult')}</p>
 
           {/* Stats cards */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -909,18 +688,18 @@ export default function LearnEclipsesPage() {
             ].map((stat, i) => (
               <div key={i} className="text-center p-3 border border-gold-primary/10 rounded-xl bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27]">
                 <div className={`text-xl font-bold font-mono mb-0.5 ${stat.color}`}>{stat.value}</div>
-                <div className="text-text-secondary/60 text-[10px]" style={bodyFont}>{l(stat.label)}</div>
+                <div className="text-text-secondary/60 text-[10px]" style={bodyFont}>{lt(stat.label as LocaleText, locale)}</div>
               </div>
             ))}
           </div>
 
           {/* 8-hour shift */}
-          <p>{l(L.saros8hours)}</p>
+          <p>{t('saros8hours')}</p>
 
           {/* Saros Series */}
-          <h4 className="text-lg font-bold text-gold-light mt-4" style={headingFont}>{l(L.sarosSeriesTitle)}</h4>
-          <p>{l(L.sarosSeries1)}</p>
-          <p>{l(L.sarosSeries2)}</p>
+          <h4 className="text-lg font-bold text-gold-light mt-4" style={headingFont}>{t('sarosSeriesTitle')}</h4>
+          <p>{t('sarosSeries1')}</p>
+          <p>{t('sarosSeries2')}</p>
 
           {/* Saros lifecycle diagram */}
           <div className="border border-gold-primary/10 rounded-xl p-4 bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27]">
@@ -952,15 +731,15 @@ export default function LearnEclipsesPage() {
             ].map((stat, i) => (
               <div key={i} className="text-center p-3 border border-gold-primary/10 rounded-xl bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27]">
                 <div className={`text-xl font-bold font-mono mb-0.5 ${stat.color}`}>{stat.value}</div>
-                <div className="text-text-secondary/60 text-[10px]" style={bodyFont}>{l(stat.label)}</div>
+                <div className="text-text-secondary/60 text-[10px]" style={bodyFont}>{lt(stat.label as LocaleText, locale)}</div>
               </div>
             ))}
           </div>
 
           {/* Nodal Precession */}
-          <h4 className="text-lg font-bold text-gold-light mt-4" style={headingFont}>{l(L.sarosNodePrecession)}</h4>
-          <p>{l(L.sarosNodePrec1)}</p>
-          <p>{l(L.sarosNodePrec2)}</p>
+          <h4 className="text-lg font-bold text-gold-light mt-4" style={headingFont}>{t('sarosNodePrecession')}</h4>
+          <p>{t('sarosNodePrec1')}</p>
+          <p>{t('sarosNodePrec2')}</p>
 
           {/* Nodal precession stats */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -972,14 +751,14 @@ export default function LearnEclipsesPage() {
             ].map((stat, i) => (
               <div key={i} className="text-center p-3 border border-gold-primary/10 rounded-xl bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27]">
                 <div className={`text-xl font-bold font-mono mb-0.5 ${stat.color}`}>{stat.value}</div>
-                <div className="text-text-secondary/60 text-[10px]" style={bodyFont}>{l(stat.label)}</div>
+                <div className="text-text-secondary/60 text-[10px]" style={bodyFont}>{lt(stat.label as LocaleText, locale)}</div>
               </div>
             ))}
           </div>
 
           {/* ══ WORKED EXAMPLES ══ */}
-          <h4 className="text-lg font-bold text-gold-light mt-6" style={headingFont}>{l(L.sarosExampleTitle)}</h4>
-          <p className="text-sm">{l(L.sarosExample1)}</p>
+          <h4 className="text-lg font-bold text-gold-light mt-6" style={headingFont}>{t('sarosExampleTitle')}</h4>
+          <p className="text-sm">{t('sarosExample1')}</p>
 
           {/* Solar: Saros 126 chain */}
           <div className="border border-amber-500/15 rounded-xl overflow-hidden">
@@ -1008,10 +787,10 @@ export default function LearnEclipsesPage() {
             </div>
           </div>
 
-          <p className="text-sm">{l(L.sarosExample2)}</p>
+          <p className="text-sm">{t('sarosExample2')}</p>
 
           {/* Lunar: Saros 133 chain */}
-          <p className="text-sm mt-2">{l(L.sarosLunarExample)}</p>
+          <p className="text-sm mt-2">{t('sarosLunarExample')}</p>
           <div className="border border-indigo-500/15 rounded-xl overflow-hidden">
             <div className="px-4 py-2 bg-indigo-500/5 border-b border-indigo-500/10">
               <span className="text-indigo-300 font-bold text-sm">{isHi ? 'सारोस 133 — पूर्ण चन्द्र ग्रहण श्रृंखला' : 'Saros 133 — Total Lunar Eclipse Chain'}</span>
@@ -1039,8 +818,8 @@ export default function LearnEclipsesPage() {
           </div>
 
           {/* Eclipse Seasons */}
-          <h4 className="text-lg font-bold text-gold-light mt-6" style={headingFont}>{l(L.sarosSeasonTitle)}</h4>
-          <p className="text-sm">{l(L.sarosSeason1)}</p>
+          <h4 className="text-lg font-bold text-gold-light mt-6" style={headingFont}>{t('sarosSeasonTitle')}</h4>
+          <p className="text-sm">{t('sarosSeason1')}</p>
 
           {/* Eclipse season shift table */}
           <div className="border border-gold-primary/10 rounded-xl overflow-hidden">
@@ -1095,10 +874,10 @@ export default function LearnEclipsesPage() {
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>
-          {l(L.nodeMatrixTitle)}
+          {t('nodeMatrixTitle')}
         </h3>
         <div className="text-text-secondary text-base leading-relaxed space-y-5" style={bodyFont}>
-          <p>{l(L.nodeMatrixIntro)}</p>
+          <p>{t('nodeMatrixIntro')}</p>
 
           {/* 2×2 Matrix Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1106,10 +885,10 @@ export default function LearnEclipsesPage() {
             <div className="border border-amber-500/20 rounded-xl overflow-hidden">
               <div className="px-4 py-2.5 bg-amber-500/8 border-b border-amber-500/10 flex items-center gap-2">
                 <span className="text-lg">☊</span>
-                <span className="text-amber-300 font-bold text-sm" style={headingFont}>{l(L.rahuSolar)}</span>
+                <span className="text-amber-300 font-bold text-sm" style={headingFont}>{t('rahuSolar')}</span>
               </div>
               <div className="px-4 py-3 text-xs leading-relaxed text-text-secondary/80" style={bodyFont}>
-                {l(L.rahuSolarDesc)}
+                {t('rahuSolarDesc')}
               </div>
               <div className="px-4 py-2 bg-amber-500/3 border-t border-amber-500/8">
                 <div className="text-[10px] text-amber-400/60 font-mono">
@@ -1122,10 +901,10 @@ export default function LearnEclipsesPage() {
             <div className="border border-violet-500/20 rounded-xl overflow-hidden">
               <div className="px-4 py-2.5 bg-violet-500/8 border-b border-violet-500/10 flex items-center gap-2">
                 <span className="text-lg">☋</span>
-                <span className="text-violet-300 font-bold text-sm" style={headingFont}>{l(L.ketuSolar)}</span>
+                <span className="text-violet-300 font-bold text-sm" style={headingFont}>{t('ketuSolar')}</span>
               </div>
               <div className="px-4 py-3 text-xs leading-relaxed text-text-secondary/80" style={bodyFont}>
-                {l(L.ketuSolarDesc)}
+                {t('ketuSolarDesc')}
               </div>
               <div className="px-4 py-2 bg-violet-500/3 border-t border-violet-500/8">
                 <div className="text-[10px] text-violet-400/60 font-mono">
@@ -1138,10 +917,10 @@ export default function LearnEclipsesPage() {
             <div className="border border-amber-500/20 rounded-xl overflow-hidden">
               <div className="px-4 py-2.5 bg-amber-500/8 border-b border-amber-500/10 flex items-center gap-2">
                 <span className="text-lg">☊</span>
-                <span className="text-amber-300 font-bold text-sm" style={headingFont}>{l(L.rahuLunar)}</span>
+                <span className="text-amber-300 font-bold text-sm" style={headingFont}>{t('rahuLunar')}</span>
               </div>
               <div className="px-4 py-3 text-xs leading-relaxed text-text-secondary/80" style={bodyFont}>
-                {l(L.rahuLunarDesc)}
+                {t('rahuLunarDesc')}
               </div>
               <div className="px-4 py-2 bg-amber-500/3 border-t border-amber-500/8">
                 <div className="text-[10px] text-amber-400/60 font-mono">
@@ -1154,10 +933,10 @@ export default function LearnEclipsesPage() {
             <div className="border border-red-500/20 rounded-xl overflow-hidden">
               <div className="px-4 py-2.5 bg-red-500/8 border-b border-red-500/10 flex items-center gap-2">
                 <span className="text-lg">☋</span>
-                <span className="text-red-300 font-bold text-sm" style={headingFont}>{l(L.ketuLunar)}</span>
+                <span className="text-red-300 font-bold text-sm" style={headingFont}>{t('ketuLunar')}</span>
               </div>
               <div className="px-4 py-3 text-xs leading-relaxed text-text-secondary/80" style={bodyFont}>
-                {l(L.ketuLunarDesc)}
+                {t('ketuLunarDesc')}
               </div>
               <div className="px-4 py-2 bg-red-500/3 border-t border-red-500/8">
                 <div className="text-[10px] text-red-400/60 font-mono">
@@ -1192,7 +971,7 @@ export default function LearnEclipsesPage() {
             </table>
           </div>
 
-          <p className="text-text-secondary/50 text-xs italic">{l(L.nodeMatrixNote)}</p>
+          <p className="text-text-secondary/50 text-xs italic">{t('nodeMatrixNote')}</p>
         </div>
       </motion.section>
 
@@ -1205,7 +984,7 @@ export default function LearnEclipsesPage() {
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl font-bold text-gold-gradient mb-4" style={headingFont}>
-          {l(L.crossRef)}
+          {t('crossRef')}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
           {CROSS_REFS.map((ref, i) => (
@@ -1215,9 +994,9 @@ export default function LearnEclipsesPage() {
               className="flex flex-col gap-1 p-4 border border-gold-primary/15 rounded-xl hover:border-gold-primary/35 hover:bg-gold-primary/5 transition-all group"
             >
               <span className="text-gold-light font-semibold text-sm group-hover:text-gold-primary transition-colors" style={headingFont}>
-                {l(ref.label)}
+                {lt(ref.label as LocaleText, locale)}
               </span>
-              <span className="text-text-secondary/70 text-xs" style={bodyFont}>{l(ref.desc)}</span>
+              <span className="text-text-secondary/70 text-xs" style={bodyFont}>{lt(ref.desc as LocaleText, locale)}</span>
             </Link>
           ))}
         </div>
@@ -1226,7 +1005,7 @@ export default function LearnEclipsesPage() {
           className="inline-flex items-center gap-2 px-5 py-2.5 bg-gold-primary/15 hover:bg-gold-primary/25 border border-gold-primary/30 hover:border-gold-primary/50 text-gold-light rounded-xl text-sm font-semibold transition-all"
           style={headingFont}
         >
-          {l(L.viewCalendar)} →
+          {t('viewCalendar')} →
         </Link>
       </motion.section>
     </div>

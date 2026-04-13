@@ -2,18 +2,16 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/23-1.json';
 
 const META: ModuleMeta = {
   id: 'mod_23_1', phase: 10, topic: 'Prediction', moduleNumber: '23.1',
-  title: { en: 'Eclipse Prediction — When Sun, Moon & Nodes Align', hi: 'ग्रहण भविष्यवाणी — जब सूर्य, चन्द्र और राहु-केतु एक रेखा में आएँ', sa: 'ग्रहण भविष्यवाणी — जब सूर्य, चन्द्र और राहु-केतु एक रेखा में आएँ', mai: 'ग्रहण भविष्यवाणी — जब सूर्य, चन्द्र और राहु-केतु एक रेखा में आएँ', mr: 'ग्रहण भविष्यवाणी — जब सूर्य, चन्द्र और राहु-केतु एक रेखा में आएँ', ta: 'Eclipse Prediction — When Sun, Moon & Nodes Align', te: 'Eclipse Prediction — When Sun, Moon & Nodes Align', bn: 'Eclipse Prediction — When Sun, Moon & Nodes Align', kn: 'Eclipse Prediction — When Sun, Moon & Nodes Align', gu: 'Eclipse Prediction — When Sun, Moon & Nodes Align' },
-  subtitle: { en: 'Understanding the mechanics and astrological significance of solar and lunar eclipses', hi: 'सूर्य और चन्द्र ग्रहणों की यांत्रिकी और ज्योतिषीय महत्व को समझना', sa: 'सूर्य और चन्द्र ग्रहणों की यांत्रिकी और ज्योतिषीय महत्व को समझना', mai: 'सूर्य और चन्द्र ग्रहणों की यांत्रिकी और ज्योतिषीय महत्व को समझना', mr: 'सूर्य और चन्द्र ग्रहणों की यांत्रिकी और ज्योतिषीय महत्व को समझना', ta: 'Understanding the mechanics and astrological significance of solar and lunar eclipses', te: 'Understanding the mechanics and astrological significance of solar and lunar eclipses', bn: 'Understanding the mechanics and astrological significance of solar and lunar eclipses', kn: 'Understanding the mechanics and astrological significance of solar and lunar eclipses', gu: 'Understanding the mechanics and astrological significance of solar and lunar eclipses' },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 14,
-  crossRefs: [
-    { label: { en: 'Module 23.2: Retrograde & Combustion', hi: 'मॉड्यूल 23.2: वक्री और अस्त', sa: 'मॉड्यूल 23.2: वक्री और अस्त', mai: 'मॉड्यूल 23.2: वक्री और अस्त', mr: 'मॉड्यूल 23.2: वक्री और अस्त', ta: 'Module 23.2: Retrograde & Combustion', te: 'Module 23.2: Retrograde & Combustion', bn: 'Module 23.2: Retrograde & Combustion', kn: 'Module 23.2: Retrograde & Combustion', gu: 'Module 23.2: Retrograde & Combustion' }, href: '/learn/modules/23-2' },
-    { label: { en: 'Module 23.3: Chakra Systems', hi: 'मॉड्यूल 23.3: चक्र प्रणालियाँ', sa: 'मॉड्यूल 23.3: चक्र प्रणालियाँ', mai: 'मॉड्यूल 23.3: चक्र प्रणालियाँ', mr: 'मॉड्यूल 23.3: चक्र प्रणालियाँ', ta: 'Module 23.3: Chakra Systems', te: 'Module 23.3: Chakra Systems', bn: 'Module 23.3: Chakra Systems', kn: 'Module 23.3: Chakra Systems', gu: 'Module 23.3: Chakra Systems' }, href: '/learn/modules/23-3' },
-    { label: { en: 'Module 12.3: Rahu-Ketu Axis', hi: 'मॉड्यूल 12.3: राहु-केतु अक्ष', sa: 'मॉड्यूल 12.3: राहु-केतु अक्ष', mai: 'मॉड्यूल 12.3: राहु-केतु अक्ष', mr: 'मॉड्यूल 12.3: राहु-केतु अक्ष', ta: 'Module 12.3: Rahu-Ketu Axis', te: 'Module 12.3: Rahu-Ketu Axis', bn: 'Module 12.3: Rahu-Ketu Axis', kn: 'Module 12.3: Rahu-Ketu Axis', gu: 'Module 12.3: Rahu-Ketu Axis' }, href: '/learn/modules/12-3' },
-    { label: { en: 'Eclipse Calendar', hi: 'ग्रहण पंचांग', sa: 'ग्रहण पंचांग', mai: 'ग्रहण पंचांग', mr: 'ग्रहण पंचांग', ta: 'Eclipse Calendar', te: 'Eclipse Calendar', bn: 'Eclipse Calendar', kn: 'Eclipse Calendar', gu: 'Eclipse Calendar' }, href: '/panchang/grahan' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

@@ -10,6 +10,9 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { GRAHAS } from '@/lib/constants/grahas';
 import type { Locale } from '@/types/panchang';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LJ from '@/messages/learn/labs-dasha.json';
 
 // ── Vimshottari constants ───────────────────────────────────────────────────
 const VIMSHOTTARI_ORDER = [
@@ -85,10 +88,10 @@ function StepShell({ stepNum, totalSteps, title, subtitle, children }: {
   );
 }
 
-function WhyBox({ children }: { children: React.ReactNode }) {
+function WhyBox({ children, heading = 'What is this?' }: { children: React.ReactNode; heading?: string }) {
   return (
     <div className="mb-6 p-4 rounded-xl bg-amber-500/8 border border-amber-500/20">
-      <div className="text-xs text-amber-400 uppercase tracking-wider font-semibold mb-2">What is this?</div>
+      <div className="text-xs text-amber-400 uppercase tracking-wider font-semibold mb-2">{heading}</div>
       <div className="text-text-primary text-sm leading-relaxed">{children}</div>
     </div>
   );
@@ -214,7 +217,7 @@ function BalanceDiagram({ posInNak, nakSpan, planetName, planetYears, balanceYea
   );
 }
 
-function TimelineBar({ segments, birthDate, today }: { segments: DashaSegment[]; birthDate: Date; today: Date }) {
+function TimelineBar({ segments, birthDate, today, todayLabel = 'Today' }: { segments: DashaSegment[]; birthDate: Date; today: Date; todayLabel?: string }) {
   const totalMs = segments[segments.length - 1].endDate.getTime() - birthDate.getTime();
   const todayMs = today.getTime() - birthDate.getTime();
   const todayPct = Math.min(Math.max(todayMs / totalMs * 100, 0), 100);
@@ -240,7 +243,7 @@ function TimelineBar({ segments, birthDate, today }: { segments: DashaSegment[];
         <div className="absolute top-0 h-14 w-0.5 bg-amber-400" style={{ left: `${todayPct}%` }} />
         <div className="relative h-5 mt-0.5">
           <div className="absolute text-[10px] text-amber-300 font-semibold whitespace-nowrap" style={{ left: `${todayPct}%`, transform: 'translateX(-50%)' }}>
-            ▲ Today
+            ▲ {todayLabel}
           </div>
         </div>
       </div>
@@ -308,15 +311,12 @@ export default function DashaLabPage() {
     return { tropMoon, sidMoon, nakNum, nak, posInNak, degRemaining, vIdx, startVimsh, balanceYears, segments, birthDateObj, currentSeg };
   }, [computed, birthDate, birthTime, location]);
 
-  const L = (obj: { en: string; hi?: string; sa?: string } | undefined) => {
-    if (!obj) return '';
-    return (obj as Record<string, string>)[locale] || (obj as Record<string, string>).en || '';
-  };
+  const t = (key: string) => lt((LJ as unknown as Record<string, LocaleText>)[key], locale);
 
   const next = () => setStep(s => Math.min(s + 1, TOTAL_STEPS));
   const back = () => setStep(s => Math.max(s - 1, 0));
 
-  const progressLabels = ['Setup', 'What is Dasha?', 'Birth Moon', 'Nakshatra Lord', 'Balance', 'Your Timeline'];
+  const progressLabels = [t('stepSetup'), t('stepWhatIsDasha'), t('stepBirthMoon'), t('stepNakshatraLord'), t('stepBalance'), t('stepYourTimeline')];
 
   return (
     <div className="min-h-screen">
@@ -326,10 +326,10 @@ export default function DashaLabPage() {
             <Moon className="w-5 h-5 text-amber-400" />
           </div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-200 bg-clip-text text-transparent">
-            Your Dasha Timeline
+            {t('pageTitle')}
           </h1>
         </div>
-        <p className="text-text-secondary text-base">Understand your life chapters — from birth data to a 120-year map</p>
+        <p className="text-text-secondary text-base">{t('pageSubtitle')}</p>
       </div>
 
       {/* Progress */}
@@ -360,32 +360,32 @@ export default function DashaLabPage() {
             <motion.div key="setup" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <div className="text-center mb-8">
                 <div className="text-4xl mb-3">📅</div>
-                <h2 className="text-2xl font-bold text-white mb-2">Compute Your Life Chapters</h2>
+                <h2 className="text-2xl font-bold text-white mb-2">{t('computeTitle')}</h2>
                 <p className="text-text-secondary text-sm leading-relaxed max-w-md mx-auto">
-                  In Vedic astrology, your entire life is divided into planetary periods called Dashas. We'll calculate your personal 120-year sequence using just your birth date, time, and place.
+                  {t('computeDesc')}
                 </p>
               </div>
               <div className="space-y-4 mb-8">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-amber-300/80 mb-1.5">Birth Date</label>
+                    <label className="block text-sm font-medium text-amber-300/80 mb-1.5">{t('birthDate')}</label>
                     <input type="date" value={birthDate} onChange={e => { setBirthDate(e.target.value); setComputed(false); }}
                       className="w-full px-4 py-3 rounded-xl bg-white/[0.06] border border-white/10 text-white focus:border-amber-500/50 focus:outline-none transition-colors [color-scheme:dark]" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-amber-300/80 mb-1.5">Birth Time</label>
+                    <label className="block text-sm font-medium text-amber-300/80 mb-1.5">{t('birthTime')}</label>
                     <input type="time" value={birthTime} onChange={e => { setBirthTime(e.target.value); setComputed(false); }}
                       className="w-full px-4 py-3 rounded-xl bg-white/[0.06] border border-white/10 text-white focus:border-amber-500/50 focus:outline-none transition-colors [color-scheme:dark]" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-amber-300/80 mb-1.5">Birth Place</label>
-                  <LocationSearch value={locationName} onSelect={loc => { setLocation(loc); setLocationName(loc.name); setComputed(false); }} placeholder="Search city..." className="w-full" />
+                  <label className="block text-sm font-medium text-amber-300/80 mb-1.5">{t('birthPlace')}</label>
+                  <LocationSearch value={locationName} onSelect={loc => { setLocation(loc); setLocationName(loc.name); setComputed(false); }} placeholder={t('searchCity')} className="w-full" />
                 </div>
               </div>
               <button onClick={() => { setComputed(true); setStep(1); }} disabled={!location}
                 className="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold transition-all flex items-center justify-center gap-2">
-                Calculate My Dashas <ArrowRight className="w-5 h-5" />
+                {t('calculateMyDashas')} <ArrowRight className="w-5 h-5" />
               </button>
             </motion.div>
           )}
@@ -393,9 +393,9 @@ export default function DashaLabPage() {
           {/* STEP 1: What is Dasha? */}
           {step === 1 && (
             <StepShell key="concept" stepNum={1} totalSteps={TOTAL_STEPS}
-              title="What is a Dasha? (Your Life Chapters)"
-              subtitle="Vedic astrology divides your entire life into planetary periods — each with a distinct quality and theme.">
-              <WhyBox>
+              title={t('step1Title')}
+              subtitle={t('step1Subtitle')}>
+              <WhyBox heading={t('whatIsThis')}>
                 Imagine your life as a long road trip. Different planets take turns "driving" for multi-year stretches. When your Sun Dasha is active, solar themes dominate: identity, authority, vitality, father. When the Moon Dasha runs, lunar themes rise: mind, emotions, mother, public. The planet driving shapes the opportunities and challenges that tend to emerge during that period.
                 <br /><br />
                 This is the Vimshottari Dasha system — "Vimshottari" means 120 in Sanskrit, because the full cycle takes exactly 120 years.
@@ -418,16 +418,16 @@ export default function DashaLabPage() {
                   <strong className="text-amber-300">But why does your birth time matter?</strong> Because you're born mid-way through a planetary period. The Moon's position in your birth chart tells us exactly how far into the first period you are — and therefore when every subsequent period starts. This is why an accurate birth time is so critical.
                 </p>
               </div>
-              <NavButtons onBack={back} onNext={next} />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
             </StepShell>
           )}
 
           {/* STEP 2: Birth Moon Position */}
           {step === 2 && calc && (
             <StepShell key="moon" stepNum={2} totalSteps={TOTAL_STEPS}
-              title="Birth Moon Position"
-              subtitle="The Moon at birth is the anchor of your entire Dasha sequence.">
-              <WhyBox>
+              title={t('step2Title')}
+              subtitle={t('step2Subtitle')}>
+              <WhyBox heading={t('whatIsThis')}>
                 Of all the planets, the Moon moves the fastest through the Nakshatras — completing one full round in just 27 days. This makes it ideal as a "clock hand" — by knowing exactly where in which Nakshatra the Moon was at birth, we know precisely how far into that Nakshatra's planetary period you arrived. That fraction becomes your starting Dasha balance.
               </WhyBox>
 
@@ -436,48 +436,48 @@ export default function DashaLabPage() {
                 <CalcRow label="Lahiri Ayanamsha applied" value="(see Moon lab for detail)" />
                 <CalcRow label="Sidereal Moon longitude" value={`${calc.sidMoon.toFixed(4)}°`} highlight />
                 <CalcRow label="Nakshatra = floor(° ÷ 13.333) + 1" value={`${calc.nakNum}`} />
-                <CalcRow label="Birth Nakshatra" value={`${L(calc.nak.name)} (Nakshatra #${calc.nakNum})`} highlight />
+                <CalcRow label="Birth Nakshatra" value={`${lt(calc.nak.name as LocaleText, locale)} (Nakshatra #${calc.nakNum})`} highlight />
                 <CalcRow label="Ruling planet" value={calc.nak.ruler} />
               </div>
 
               <div className="p-4 rounded-xl bg-gradient-to-br from-amber-500/10 to-orange-500/5 border border-amber-500/20 text-center">
-                <div className="text-xs text-amber-500/70 uppercase tracking-widest mb-1">Birth Moon</div>
-                <div className="text-3xl font-bold text-amber-200">{L(calc.nak.name)}</div>
+                <div className="text-xs text-amber-500/70 uppercase tracking-widest mb-1">{t('stepBirthMoon')}</div>
+                <div className="text-3xl font-bold text-amber-200">{lt(calc.nak.name as LocaleText, locale)}</div>
                 <div className="text-amber-400/80 text-sm font-mono">{calc.sidMoon.toFixed(4)}° · Nakshatra {calc.nakNum}</div>
                 <div className="text-text-secondary text-xs mt-1">Ruled by {calc.nak.ruler} → {calc.startVimsh.name} Dasha starts at birth</div>
               </div>
-              <NavButtons onBack={back} onNext={next} />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
             </StepShell>
           )}
 
           {/* STEP 3: Nakshatra Lord Mapping */}
           {step === 3 && calc && (
             <StepShell key="lord" stepNum={3} totalSteps={TOTAL_STEPS}
-              title="Which Planet Starts Your Dasha?"
-              subtitle="Each Nakshatra has a ruling planet. That planet's period is what runs first — but only the remaining portion.">
-              <WhyBox>
+              title={t('step3Title')}
+              subtitle={t('step3Subtitle')}>
+              <WhyBox heading={t('whatIsThis')}>
                 The 27 Nakshatras are divided equally among 9 planets — 3 Nakshatras per planet. Your birth Nakshatra tells us which planet "owns" the chapter you're being born into. Since you're born somewhere in the middle of that Nakshatra, you don't get the full period — only what's left. The remaining fraction becomes your "dasha balance" at birth.
               </WhyBox>
 
               <NakshatraNakshMap nakNum={calc.nakNum} />
 
               <div className="space-y-2">
-                <CalcRow label="Birth Nakshatra" value={`${L(calc.nak.name)} (#${calc.nakNum})`} />
+                <CalcRow label="Birth Nakshatra" value={`${lt(calc.nak.name as LocaleText, locale)} (#${calc.nakNum})`} />
                 <CalcRow label="Ruling planet" value={calc.startVimsh.name} highlight />
                 <CalcRow label="Full period length" value={`${calc.startVimsh.years} years`} />
                 <CalcRow label="Position in Nakshatra" value={`${calc.posInNak.toFixed(4)}° of ${NAK_SPAN.toFixed(3)}°`} />
                 <CalcRow label="Degrees remaining" value={`${calc.degRemaining.toFixed(4)}°`} />
               </div>
-              <NavButtons onBack={back} onNext={next} />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
             </StepShell>
           )}
 
           {/* STEP 4: Balance Calculation */}
           {step === 4 && calc && (
             <StepShell key="balance" stepNum={4} totalSteps={TOTAL_STEPS}
-              title="Dasha Balance at Birth"
-              subtitle="A simple proportion: how much of the Nakshatra is left determines how much of the period is left.">
-              <WhyBox>
+              title={t('step4Title')}
+              subtitle={t('step4Subtitle')}>
+              <WhyBox heading={t('whatIsThis')}>
                 If the Moon is at the very start of the Nakshatra (0° in), you get the full Dasha period. If it's at the very end (13.333° in), you get almost nothing. Any position in between gives a proportional slice. This is elegant: the Nakshatra acts as a 13.333° measuring stick, and your Moon's position on that stick determines your birth-time starting balance.
               </WhyBox>
 
@@ -510,7 +510,7 @@ export default function DashaLabPage() {
                 <CalcRow label={`${calc.startVimsh.name} Dasha ends`} value={formatDate(calc.segments[0].endDate)} />
               </div>
 
-              <NavButtons onBack={back} onNext={next} nextLabel="See Full Timeline →" />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('seeFullTimeline')} />
             </StepShell>
           )}
 
@@ -523,19 +523,19 @@ export default function DashaLabPage() {
                   <span>Step 5</span><span className="text-amber-500/40">/</span><span className="text-amber-500/60">{TOTAL_STEPS}</span>
                 </div>
               </div>
-              <h2 className="text-2xl font-bold text-white mb-2">Your 120-Year Dasha Map</h2>
-              <p className="text-text-secondary text-base mb-6">Each colored block is one Maha Dasha. The white line is today.</p>
+              <h2 className="text-2xl font-bold text-white mb-2">{t('step5Title')}</h2>
+              <p className="text-text-secondary text-base mb-6">{t('step5Subtitle')}</p>
 
-              <TimelineBar segments={calc.segments} birthDate={calc.birthDateObj} today={today} />
+              <TimelineBar segments={calc.segments} birthDate={calc.birthDateObj} today={today} todayLabel={t('today')} />
 
               {/* Current Dasha highlight */}
               {calc.currentSeg && (
                 <div className="mb-5 p-4 rounded-xl border border-amber-500/30 bg-amber-500/10">
-                  <div className="text-xs text-amber-400 uppercase tracking-wider font-semibold mb-1">You are currently in</div>
+                  <div className="text-xs text-amber-400 uppercase tracking-wider font-semibold mb-1">{t('youAreCurrentlyIn')}</div>
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">{GRAHAS[calc.currentSeg.planetId].symbol}</span>
                     <div>
-                      <div className="text-white font-bold text-lg">{calc.currentSeg.planetName} Maha Dasha</div>
+                      <div className="text-white font-bold text-lg">{calc.currentSeg.planetName} {t('mahaDasha')}</div>
                       <div className="text-text-secondary text-xs">{formatDate(calc.currentSeg.startDate)} — {formatDate(calc.currentSeg.endDate)}</div>
                     </div>
                   </div>
@@ -554,8 +554,8 @@ export default function DashaLabPage() {
                       <div className="flex-1 min-w-0">
                         <div className="font-semibold text-white text-sm flex items-center gap-2">
                           {seg.planetName}
-                          {seg.isPartial && <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300">PARTIAL</span>}
-                          {isCurrent && <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 animate-pulse">NOW</span>}
+                          {seg.isPartial && <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300">{t('partial')}</span>}
+                          {isCurrent && <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 animate-pulse">{t('now')}</span>}
                         </div>
                         <div className="text-xs text-text-secondary/60 font-mono">{formatDate(seg.startDate)} — {formatDate(seg.endDate)}</div>
                       </div>
@@ -565,7 +565,7 @@ export default function DashaLabPage() {
                 })}
               </div>
 
-              <NavButtons onBack={back} onNext={() => setStep(0)} nextLabel="Try Another Birth" />
+              <NavButtons onBack={back} onNext={() => setStep(0)} backLabel={t('back')} nextLabel={t('tryAnotherBirth')} />
             </motion.div>
           )}
 

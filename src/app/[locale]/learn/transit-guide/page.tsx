@@ -1,6 +1,8 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/transit-guide.json';
 
 import { useState } from 'react';
 import { useLocale } from 'next-intl';
@@ -8,42 +10,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Orbit, Star, BookOpen, ChevronRight } from 'lucide-react';
 import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
-import type { LocaleText, Locale } from '@/types/panchang';
+import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-
-/* ── Trilingual labels ────────────────────────────────────────────── */
-const L = {
-  title: { en: 'Transit House-by-House Guide', hi: 'गोचर भाव-दर-भाव मार्गदर्शिका', sa: 'गोचरभावशः मार्गदर्शिका' , ta: 'கோசார பாவ வாரியான வழிகாட்டி' },
-  subtitle: {
-    en: 'How slow-moving planets shape your years as they transit through each house from your Moon sign. Saturn, Jupiter, and Rahu-Ketu are the heavy hitters of Vedic timing.',
-    hi: 'आपकी चन्द्र राशि से प्रत्येक भाव में गोचर करते हुए मन्दगति ग्रह आपके वर्षों को कैसे आकार देते हैं। शनि, गुरु और राहु-केतु वैदिक समय-निर्धारण के प्रमुख कारक हैं।',
-    sa: 'भवतः चन्द्रराशेः प्रत्येकभावं गोचरन्तः मन्दगतिग्रहाः भवतः वर्षाणि कथम् आकारयन्ति। शनिः, गुरुः, राहुकेतू च वैदिकसमयनिर्धारणस्य प्रमुखकारकाः।'
-  },
-  howTitle: { en: 'How to Read Transits', hi: 'गोचर कैसे पढ़ें', sa: 'गोचरं कथं पठेत्' },
-  howP1: {
-    en: 'In Vedic astrology, transits are read from the MOON sign — not the Sun sign as in Western astrology. Your Moon sign (Janma Rashi) is the emotional anchor of your chart, and planetary movements over it create felt experiences in your life.',
-    hi: 'वैदिक ज्योतिष में गोचर चन्द्र राशि से पढ़ा जाता है — पश्चिमी ज्योतिष की तरह सूर्य राशि से नहीं। आपकी चन्द्र राशि (जन्म राशि) आपकी कुण्डली का भावनात्मक केन्द्र है।',
-    sa: 'वैदिकज्योतिषे गोचरः चन्द्रराशेः पठ्यते — पाश्चात्यज्योतिषवत् सूर्यराशेः न। भवतः चन्द्रराशिः (जन्मराशिः) कुण्डल्याः भावनात्मककेन्द्रम्।'
-  },
-  howP2: {
-    en: 'Slow planets matter most: Saturn stays in a sign for ~2.5 years, Jupiter for ~1 year, Rahu-Ketu for ~1.5 years. Fast planets (Sun, Moon, Mercury, Venus, Mars) trigger specific events within the slow planet\'s broader theme.',
-    hi: 'मन्दगति ग्रह सर्वाधिक महत्वपूर्ण: शनि ~2.5 वर्ष, गुरु ~1 वर्ष, राहु-केतु ~1.5 वर्ष एक राशि में। तीव्र गति ग्रह (सूर्य, चन्द्र, बुध, शुक्र, मंगल) मन्द ग्रह की विस्तृत विषयवस्तु में विशिष्ट घटनाएँ उत्प्रेरित करते हैं।',
-    sa: 'मन्दगतिग्रहाः सर्वाधिकमहत्त्वपूर्णाः: शनिः ~2.5 वर्षाणि, गुरुः ~1 वर्षम्, राहुकेतू ~1.5 वर्षाणि एकराशौ।'
-  },
-  doubleTitle: { en: 'Double Transit Theory (Gopesh Ayanamsha)', hi: 'द्विगोचर सिद्धान्त', sa: 'द्विगोचरसिद्धान्तः' },
-  doubleP1: {
-    en: 'The MOST reliable timing technique in Vedic astrology: events manifest ONLY when BOTH Jupiter AND Saturn simultaneously activate the same house through transit or aspect. Marriage happens when both influence the 7th house. Career milestones when both touch the 10th. Childbirth when both activate the 5th.',
-    hi: 'वैदिक ज्योतिष की सबसे विश्वसनीय समय-निर्धारण तकनीक: घटनाएँ तभी घटित होती हैं जब गुरु और शनि दोनों एक साथ गोचर या दृष्टि से एक ही भाव को सक्रिय करें। विवाह: दोनों 7वें भाव पर। करियर: दोनों 10वें पर। सन्तान: दोनों 5वें पर।',
-    sa: 'वैदिकज्योतिषस्य सर्वाधिकविश्वसनीयसमयनिर्धारणविधिः: घटनाः तदैव प्रकटन्ते यदा गुरुशनी उभौ एकस्मिन् भावे गोचरदृष्टिभ्यां सक्रियौ भवतः।'
-  },
-  doubleP2: {
-    en: 'Check our Transits page to see which houses Jupiter and Saturn are currently activating from your Moon sign — if they overlap, that house\'s themes will dominate your year.',
-    hi: 'हमारे गोचर पृष्ठ पर देखें कि गुरु और शनि आपकी चन्द्र राशि से कौन से भाव सक्रिय कर रहे हैं — यदि वे एक ही भाव पर हैं, तो उस भाव के विषय आपके वर्ष पर हावी होंगे।',
-    sa: 'अस्माकं गोचरपृष्ठे पश्यत गुरुशनी भवतः चन्द्रराशेः कान् भावान् सक्रियौ कुरुतः।'
-  },
-  related: { en: 'Explore Further', hi: 'और जानें', sa: 'अधिकं जानीत' },
-  selectPlanet: { en: 'Select a planet to view house-by-house effects', hi: 'भाव-दर-भाव प्रभाव देखने के लिए ग्रह चुनें', sa: 'भावशः प्रभावान् द्रष्टुं ग्रहं चिनुत' },
-};
 
 /* ── Rating display ──────────────────────────────────────────────── */
 function Rating({ stars }: { stars: number }) {
@@ -110,7 +78,7 @@ const PLANET_TABS: { key: PlanetKey; label: Record<string, string>; color: strin
 export default function TransitGuidePage() {
   const locale = useLocale() as Locale;
   const [selected, setSelected] = useState<PlanetKey>('saturn');
-  const t = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
   const houseData = selected === 'saturn' ? SATURN : selected === 'jupiter' ? JUPITER : null;
   const axisData = selected === 'rahu_ketu' ? RAHU_KETU : null;
@@ -125,20 +93,20 @@ export default function TransitGuidePage() {
           <span className="text-indigo-300 text-sm font-medium">{isDevanagariLocale(locale) ? 'सन्दर्भ' : 'Reference'}</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-bold text-gold-gradient mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {t(L.title)}
+          {t('title')}
         </h1>
-        <p className="text-text-secondary max-w-2xl mx-auto text-base leading-relaxed">{t(L.subtitle)}</p>
+        <p className="text-text-secondary max-w-2xl mx-auto text-base leading-relaxed">{t('subtitle')}</p>
       </motion.div>
 
       {/* Section 1: How to Read Transits */}
-      <LessonSection number={1} title={t(L.howTitle)}>
-        <p>{t(L.howP1)}</p>
-        <p>{t(L.howP2)}</p>
+      <LessonSection number={1} title={t('howTitle')}>
+        <p>{t('howP1')}</p>
+        <p>{t('howP2')}</p>
       </LessonSection>
 
       {/* Planet Selector */}
       <div className="mb-6">
-        <p className="text-center text-sm text-text-tertiary mb-3">{t(L.selectPlanet)}</p>
+        <p className="text-center text-sm text-text-tertiary mb-3">{t('selectPlanet')}</p>
         <div className="flex justify-center gap-3 flex-wrap">
           {PLANET_TABS.map(tab => (
             <button key={tab.key} onClick={() => setSelected(tab.key)}
@@ -148,8 +116,8 @@ export default function TransitGuidePage() {
                   : 'border-white/10 bg-white/5 text-text-secondary hover:bg-white/10'
               }`}
             >
-              <span style={{ color: selected === tab.key ? tab.color : undefined }}>{t(tab.label)}</span>
-              <span className="block text-xs mt-0.5 opacity-60">{t(tab.stay)}</span>
+              <span style={{ color: selected === tab.key ? tab.color : undefined }}>{lt(tab.label as LocaleText, locale)}</span>
+              <span className="block text-xs mt-0.5 opacity-60">{lt(tab.stay as LocaleText, locale)}</span>
             </button>
           ))}
         </div>
@@ -159,7 +127,7 @@ export default function TransitGuidePage() {
       <AnimatePresence mode="wait">
         {houseData && (
           <motion.div key={selected} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
-            <LessonSection number={2} title={`${t(activeTab.label)} — ${isDevanagariLocale(locale) ? '12 भावों में गोचर' : 'Transit Through 12 Houses'}`}>
+            <LessonSection number={2} title={`${lt(activeTab.label as LocaleText, locale)} — ${isDevanagariLocale(locale) ? '12 भावों में गोचर' : 'Transit Through 12 Houses'}`}>
               <div className="grid gap-3 sm:grid-cols-2">
                 {houseData.map(h => (
                   <motion.div key={h.house} whileHover={{ scale: 1.015 }}
@@ -171,7 +139,7 @@ export default function TransitGuidePage() {
                       </span>
                       <Rating stars={h.stars} />
                     </div>
-                    <p className="text-sm text-text-secondary leading-relaxed">{t(h.effect)}</p>
+                    <p className="text-sm text-text-secondary leading-relaxed">{lt(h.effect as LocaleText, locale)}</p>
                   </motion.div>
                 ))}
               </div>
@@ -181,7 +149,7 @@ export default function TransitGuidePage() {
 
         {axisData && (
           <motion.div key="rahu_ketu" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
-            <LessonSection number={2} title={`${t(activeTab.label)} — ${isDevanagariLocale(locale) ? 'अक्ष प्रभाव' : 'Axis Effects'}`}>
+            <LessonSection number={2} title={`${lt(activeTab.label as LocaleText, locale)} — ${isDevanagariLocale(locale) ? 'अक्ष प्रभाव' : 'Axis Effects'}`}>
               <p className="mb-4 text-sm">
                 {isDevanagariLocale(locale)
                   ? 'राहु-केतु सदैव 180° विपरीत होते हैं। प्रभाव अक्ष (axis) जोड़ियों में पढ़ा जाता है।'
@@ -197,7 +165,7 @@ export default function TransitGuidePage() {
                         {isDevanagariLocale(locale) ? `राहु ${a.rahu}वें / केतु ${a.ketu}वें` : `Rahu ${a.rahu}th / Ketu ${a.ketu}th`}
                       </span>
                     </div>
-                    <p className="text-sm text-text-secondary leading-relaxed">{t(a.theme)}</p>
+                    <p className="text-sm text-text-secondary leading-relaxed">{lt(a.theme as LocaleText, locale)}</p>
                   </motion.div>
                 ))}
               </div>
@@ -207,9 +175,9 @@ export default function TransitGuidePage() {
       </AnimatePresence>
 
       {/* Section: Double Transit Theory */}
-      <LessonSection number={3} title={t(L.doubleTitle)} variant="highlight">
-        <p>{t(L.doubleP1)}</p>
-        <p>{t(L.doubleP2)}</p>
+      <LessonSection number={3} title={t('doubleTitle')} variant="highlight">
+        <p>{t('doubleP1')}</p>
+        <p>{t('doubleP2')}</p>
         <div className="mt-4 grid grid-cols-3 gap-3">
           {[
             { event: { en: 'Marriage', hi: 'विवाह', sa: 'विवाहः' }, house: '7th', icon: '7' },
@@ -218,7 +186,7 @@ export default function TransitGuidePage() {
           ].map(d => (
             <div key={d.house} className="text-center p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/10">
               <div className="w-10 h-10 rounded-full bg-gold-primary/15 border border-gold-primary/30 flex items-center justify-center mx-auto mb-2 text-gold-light font-bold text-sm">{d.icon}</div>
-              <p className="text-sm font-semibold text-gold-light">{t(d.event)}</p>
+              <p className="text-sm font-semibold text-gold-light">{lt(d.event as LocaleText, locale)}</p>
               <p className="text-xs text-text-tertiary mt-1">{isDevanagariLocale(locale) ? `गुरु + शनि → ${d.house}` : `Jup + Sat → ${d.house}`}</p>
             </div>
           ))}
@@ -229,7 +197,7 @@ export default function TransitGuidePage() {
       <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mt-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
         <h3 className="text-lg font-bold text-gold-gradient mb-4 flex items-center gap-2">
           <BookOpen className="w-5 h-5 text-gold-light" />
-          {t(L.related)}
+          {t('related')}
         </h3>
         <div className="flex flex-wrap gap-3">
           {[
@@ -240,7 +208,7 @@ export default function TransitGuidePage() {
           ].map((link) => (
             <Link key={link.href} href={link.href as '/'} className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/20 transition-colors">
               <ChevronRight className="w-3.5 h-3.5" />
-              {t(link.label)}
+              {lt(link.label as LocaleText, locale)}
             </Link>
           ))}
         </div>

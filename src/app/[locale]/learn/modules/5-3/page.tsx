@@ -1,188 +1,20 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
-import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/5-3.json';
 
 const META: ModuleMeta = {
   id: 'mod_5_3', phase: 2, topic: 'Tithi', moduleNumber: '5.3',
-  title: { en: 'Tithi Calculations — Parana, Kshaya, Vriddhi', hi: 'तिथि गणना — पारण, क्षय, वृद्धि', sa: 'तिथि गणना — पारण, क्षय, वृद्धि', mai: 'तिथि गणना — पारण, क्षय, वृद्धि', mr: 'तिथि गणना — पारण, क्षय, वृद्धि', ta: 'Tithi Calculations — Parana, Kshaya, Vriddhi', te: 'Tithi Calculations — Parana, Kshaya, Vriddhi', bn: 'Tithi Calculations — Parana, Kshaya, Vriddhi', kn: 'Tithi Calculations — Parana, Kshaya, Vriddhi', gu: 'Tithi Calculations — Parana, Kshaya, Vriddhi' },
-  subtitle: {
-    en: 'Understanding variable tithi duration, skipped and repeated tithis, and the critical rules for breaking Ekadashi fasts',
-    hi: 'तिथि की परिवर्तनशील अवधि, छूटी और दोहरी तिथियों तथा एकादशी उपवास तोड़ने के महत्वपूर्ण नियमों को समझना',
-  },
+  title: L.title as unknown as ModuleMeta['title'],
+  subtitle: L.subtitle as unknown as ModuleMeta['subtitle'],
   estimatedMinutes: 15,
-  crossRefs: [
-    { label: { en: 'Module 5-1: Tithi', hi: 'मॉड्यूल 5-1: तिथि', sa: 'मॉड्यूल 5-1: तिथि', mai: 'मॉड्यूल 5-1: तिथि', mr: 'मॉड्यूल 5-1: तिथि', ta: 'Module 5-1: Tithi', te: 'Module 5-1: Tithi', bn: 'Module 5-1: Tithi', kn: 'Module 5-1: Tithi', gu: 'Module 5-1: Tithi' }, href: '/learn/modules/5-1' },
-    { label: { en: 'Module 5-2: Paksha', hi: 'मॉड्यूल 5-2: पक्ष', sa: 'मॉड्यूल 5-2: पक्ष', mai: 'मॉड्यूल 5-2: पक्ष', mr: 'मॉड्यूल 5-2: पक्ष', ta: 'Module 5-2: Paksha', te: 'Module 5-2: Paksha', bn: 'Module 5-2: Paksha', kn: 'Module 5-2: Paksha', gu: 'Module 5-2: Paksha' }, href: '/learn/modules/5-2' },
-    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग', mai: 'दैनिक पंचांग', mr: 'दैनिक पंचांग', ta: 'Daily Panchang', te: 'Daily Panchang', bn: 'Daily Panchang', kn: 'Daily Panchang', gu: 'Daily Panchang' }, href: '/panchang' },
-  ],
+  crossRefs: L.crossRefs as unknown as ModuleMeta['crossRefs'],
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q5_3_01', type: 'mcq',
-    question: {
-      en: 'The Moon\'s daily motion varies between approximately:',
-      hi: 'चन्द्रमा की दैनिक गति लगभग कितने के बीच बदलती है?',
-    },
-    options: [
-      { en: '5 degrees/day to 8 degrees/day', hi: '5 अंश/दिन से 8 अंश/दिन', sa: '5 अंश/दिन से 8 अंश/दिन', mai: '5 अंश/दिन से 8 अंश/दिन', mr: '5 अंश/दिन से 8 अंश/दिन', ta: '5 degrees/day to 8 degrees/day', te: '5 degrees/day to 8 degrees/day', bn: '5 degrees/day to 8 degrees/day', kn: '5 degrees/day to 8 degrees/day', gu: '5 degrees/day to 8 degrees/day' },
-      { en: '11.8 degrees/day to 15.4 degrees/day', hi: '11.8 अंश/दिन से 15.4 अंश/दिन', sa: '11.8 अंश/दिन से 15.4 अंश/दिन', mai: '11.8 अंश/दिन से 15.4 अंश/दिन', mr: '11.8 अंश/दिन से 15.4 अंश/दिन', ta: '11.8 degrees/day to 15.4 degrees/day', te: '11.8 degrees/day to 15.4 degrees/day', bn: '11.8 degrees/day to 15.4 degrees/day', kn: '11.8 degrees/day to 15.4 degrees/day', gu: '11.8 degrees/day to 15.4 degrees/day' },
-      { en: '20 degrees/day to 25 degrees/day', hi: '20 अंश/दिन से 25 अंश/दिन', sa: '20 अंश/दिन से 25 अंश/दिन', mai: '20 अंश/दिन से 25 अंश/दिन', mr: '20 अंश/दिन से 25 अंश/दिन', ta: '20 degrees/day to 25 degrees/day', te: '20 degrees/day to 25 degrees/day', bn: '20 degrees/day to 25 degrees/day', kn: '20 degrees/day to 25 degrees/day', gu: '20 degrees/day to 25 degrees/day' },
-      { en: '1 degree/day to 3 degrees/day', hi: '1 अंश/दिन से 3 अंश/दिन', sa: '1 अंश/दिन से 3 अंश/दिन', mai: '1 अंश/दिन से 3 अंश/दिन', mr: '1 अंश/दिन से 3 अंश/दिन', ta: '1 degree/day to 3 degrees/day', te: '1 degree/day to 3 degrees/day', bn: '1 degree/day to 3 degrees/day', kn: '1 degree/day to 3 degrees/day', gu: '1 degree/day to 3 degrees/day' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Moon\'s daily motion ranges from about 11.8 degrees/day at apogee (farthest from Earth) to about 15.4 degrees/day at perigee (closest to Earth). This variation is due to its elliptical orbit.',
-      hi: 'चन्द्रमा की दैनिक गति अपभू (पृथ्वी से दूरस्थ) पर लगभग 11.8 अंश/दिन से उपभू (पृथ्वी के निकटतम) पर लगभग 15.4 अंश/दिन तक होती है। यह भिन्नता उसकी दीर्घवृत्ताकार कक्षा के कारण है।',
-    },
-  },
-  {
-    id: 'q5_3_02', type: 'true_false',
-    question: {
-      en: 'A Kshaya tithi occurs when a tithi begins and ends entirely between two consecutive sunrises, so no sunrise falls during that tithi.',
-      hi: 'क्षय तिथि तब होती है जब कोई तिथि दो क्रमागत सूर्योदयों के बीच पूर्णतया आरम्भ और समाप्त हो जाती है, अतः उस तिथि के दौरान कोई सूर्योदय नहीं होता।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Kshaya means "loss" or "decay." When the Moon is moving fast (near perigee), a short tithi can start after one sunrise and end before the next sunrise, meaning that tithi never governs any day.',
-      hi: 'सत्य। क्षय का अर्थ "हानि" या "ह्रास" है। जब चन्द्रमा तीव्र गति (उपभू के निकट) से चल रहा हो, एक लघु तिथि एक सूर्योदय के बाद आरम्भ होकर अगले सूर्योदय से पहले ही समाप्त हो सकती है, अर्थात् वह तिथि किसी भी दिन पर शासन नहीं करती।',
-    },
-  },
-  {
-    id: 'q5_3_03', type: 'mcq',
-    question: {
-      en: 'A Vriddhi (extra/repeated) tithi occurs when:',
-      hi: 'वृद्धि (अतिरिक्त/दोहरी) तिथि कब होती है?',
-    },
-    options: [
-      { en: 'The Moon is at perigee and moves very fast', hi: 'चन्द्रमा उपभू पर है और अत्यन्त तीव्र गति से चलता है', sa: 'चन्द्रमा उपभू पर है और अत्यन्त तीव्र गति से चलता है', mai: 'चन्द्रमा उपभू पर है और अत्यन्त तीव्र गति से चलता है', mr: 'चन्द्रमा उपभू पर है और अत्यन्त तीव्र गति से चलता है', ta: 'The Moon is at perigee and moves very fast', te: 'The Moon is at perigee and moves very fast', bn: 'The Moon is at perigee and moves very fast', kn: 'The Moon is at perigee and moves very fast', gu: 'The Moon is at perigee and moves very fast' },
-      { en: 'A slow-moving Moon causes a tithi to span three sunrises', hi: 'मन्दगति चन्द्रमा के कारण एक तिथि तीन सूर्योदयों तक फैल जाती है', sa: 'मन्दगति चन्द्रमा के कारण एक तिथि तीन सूर्योदयों तक फैल जाती है', mai: 'मन्दगति चन्द्रमा के कारण एक तिथि तीन सूर्योदयों तक फैल जाती है', mr: 'मन्दगति चन्द्रमा के कारण एक तिथि तीन सूर्योदयों तक फैल जाती है', ta: 'A slow-moving Moon causes a tithi to span three sunrises', te: 'A slow-moving Moon causes a tithi to span three sunrises', bn: 'A slow-moving Moon causes a tithi to span three sunrises', kn: 'A slow-moving Moon causes a tithi to span three sunrises', gu: 'A slow-moving Moon causes a tithi to span three sunrises' },
-      { en: 'An eclipse occurs during the tithi', hi: 'तिथि के दौरान ग्रहण होता है', sa: 'तिथि के दौरान ग्रहण होता है', mai: 'तिथि के दौरान ग्रहण होता है', mr: 'तिथि के दौरान ग्रहण होता है', ta: 'An eclipse occurs during the tithi', te: 'An eclipse occurs during the tithi', bn: 'An eclipse occurs during the tithi', kn: 'An eclipse occurs during the tithi', gu: 'An eclipse occurs during the tithi' },
-      { en: 'Two tithis start at the same time', hi: 'दो तिथियाँ एक ही समय आरम्भ होती हैं', sa: 'दो तिथियाँ एक ही समय आरम्भ होती हैं', mai: 'दो तिथियाँ एक ही समय आरम्भ होती हैं', mr: 'दो तिथियाँ एक ही समय आरम्भ होती हैं', ta: 'Two tithis start at the same time', te: 'Two tithis start at the same time', bn: 'Two tithis start at the same time', kn: 'Two tithis start at the same time', gu: 'Two tithis start at the same time' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'When the Moon moves slowly (near apogee), a tithi can last long enough to be present at three consecutive sunrises. This means the same tithi governs two successive calendar days — it is repeated or "vriddhi" (augmented).',
-      hi: 'जब चन्द्रमा मन्द गति (अपभू के निकट) से चलता है, तो एक तिथि इतनी दीर्घ हो सकती है कि तीन क्रमागत सूर्योदयों पर उपस्थित रहे। इसका अर्थ है कि एक ही तिथि दो लगातार दिनों पर शासन करती है — यह "वृद्धि" (बढ़ी हुई) तिथि कहलाती है।',
-    },
-  },
-  {
-    id: 'q5_3_04', type: 'mcq',
-    question: {
-      en: 'Parana (breaking the Ekadashi fast) should ideally be done:',
-      hi: 'पारण (एकादशी उपवास तोड़ना) आदर्श रूप से कब करना चाहिए?',
-    },
-    options: [
-      { en: 'Immediately at sunrise on Dwadashi day', hi: 'द्वादशी दिवस पर सूर्योदय के तुरन्त बाद', sa: 'द्वादशी दिवस पर सूर्योदय के तुरन्त बाद', mai: 'द्वादशी दिवस पर सूर्योदय के तुरन्त बाद', mr: 'द्वादशी दिवस पर सूर्योदय के तुरन्त बाद', ta: 'Immediately at sunrise on Dwadashi day', te: 'Immediately at sunrise on Dwadashi day', bn: 'Immediately at sunrise on Dwadashi day', kn: 'Immediately at sunrise on Dwadashi day', gu: 'Immediately at sunrise on Dwadashi day' },
-      { en: 'After Dwadashi tithi begins but before it ends, within the prescribed window', hi: 'द्वादशी तिथि आरम्भ होने के बाद किन्तु समाप्त होने से पहले, निर्धारित समय-सीमा में', sa: 'द्वादशी तिथि आरम्भ होने के बाद किन्तु समाप्त होने से पहले, निर्धारित समय-सीमा में', mai: 'द्वादशी तिथि आरम्भ होने के बाद किन्तु समाप्त होने से पहले, निर्धारित समय-सीमा में', mr: 'द्वादशी तिथि आरम्भ होने के बाद किन्तु समाप्त होने से पहले, निर्धारित समय-सीमा में', ta: 'After Dwadashi tithi begins but before it ends, within the prescribed window', te: 'After Dwadashi tithi begins but before it ends, within the prescribed window', bn: 'After Dwadashi tithi begins but before it ends, within the prescribed window', kn: 'After Dwadashi tithi begins but before it ends, within the prescribed window', gu: 'After Dwadashi tithi begins but before it ends, within the prescribed window' },
-      { en: 'Any time on the day after Ekadashi', hi: 'एकादशी के अगले दिन कभी भी', sa: 'एकादशी के अगले दिन कभी भी', mai: 'एकादशी के अगले दिन कभी भी', mr: 'एकादशी के अगले दिन कभी भी', ta: 'Any time on the day after Ekadashi', te: 'Any time on the day after Ekadashi', bn: 'Any time on the day after Ekadashi', kn: 'Any time on the day after Ekadashi', gu: 'Any time on the day after Ekadashi' },
-      { en: 'Only at midnight', hi: 'केवल मध्यरात्रि में', sa: 'केवल मध्यरात्रि में', mai: 'केवल मध्यरात्रि में', mr: 'केवल मध्यरात्रि में', ta: 'Only at midnight', te: 'Only at midnight', bn: 'Only at midnight', kn: 'Only at midnight', gu: 'Only at midnight' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Parana window opens when Dwadashi tithi begins (i.e., the Ekadashi tithi has ended) and closes when Dwadashi tithi ends. Breaking the fast too early (while Ekadashi still prevails) or too late (after Dwadashi ends) diminishes the spiritual merit.',
-      hi: 'पारण का समय-सीमा द्वादशी तिथि आरम्भ होने पर (अर्थात् एकादशी तिथि समाप्त होने पर) खुलती है और द्वादशी तिथि समाप्त होने पर बन्द होती है। बहुत जल्दी (जब एकादशी चल रही हो) या बहुत देर से (द्वादशी समाप्त होने के बाद) उपवास तोड़ने से आध्यात्मिक पुण्य कम होता है।',
-    },
-  },
-  {
-    id: 'q5_3_05', type: 'mcq',
-    question: {
-      en: 'Given Moon at 167 degrees and Sun at 348 degrees at sunrise, calculate the tithi:',
-      hi: 'सूर्योदय पर चन्द्रमा 167 अंश और सूर्य 348 अंश पर हो, तो तिथि ज्ञात करें:',
-    },
-    options: [
-      { en: 'Chaturdashi (14th)', hi: 'चतुर्दशी (14वीं)', sa: 'चतुर्दशी (14वीं)', mai: 'चतुर्दशी (14वीं)', mr: 'चतुर्दशी (14वीं)', ta: 'Chaturdashi (14th)', te: 'Chaturdashi (14th)', bn: 'Chaturdashi (14th)', kn: 'Chaturdashi (14th)', gu: 'Chaturdashi (14th)' },
-      { en: 'Purnima (15th)', hi: 'पूर्णिमा (15वीं)', sa: 'पूर्णिमा (15वीं)', mai: 'पूर्णिमा (15वीं)', mr: 'पूर्णिमा (15वीं)', ta: 'Purnima (15th)', te: 'Purnima (15th)', bn: 'Purnima (15th)', kn: 'Purnima (15th)', gu: 'Purnima (15th)' },
-      { en: 'Pratipada (1st)', hi: 'प्रतिपदा (1ली)', sa: 'प्रतिपदा (1ली)', mai: 'प्रतिपदा (1ली)', mr: 'प्रतिपदा (1ली)', ta: 'Pratipada (1st)', te: 'Pratipada (1st)', bn: 'Pratipada (1st)', kn: 'Pratipada (1st)', gu: 'Pratipada (1st)' },
-      { en: 'Trayodashi (13th)', hi: 'त्रयोदशी (13वीं)', sa: 'त्रयोदशी (13वीं)', mai: 'त्रयोदशी (13वीं)', mr: 'त्रयोदशी (13वीं)', ta: 'Trayodashi (13th)', te: 'Trayodashi (13th)', bn: 'Trayodashi (13th)', kn: 'Trayodashi (13th)', gu: 'Trayodashi (13th)' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Elongation = 167 - 348 = -181, add 360 = 179 degrees. Tithi = floor(179 / 12) + 1 = floor(14.916) + 1 = 14 + 1 = 15. Tithi 15 of Shukla Paksha is Purnima.',
-      hi: 'कोणीय दूरी = 167 - 348 = -181, 360 जोड़ें = 179 अंश। तिथि = floor(179 / 12) + 1 = floor(14.916) + 1 = 14 + 1 = 15। शुक्ल पक्ष की 15वीं तिथि पूर्णिमा है।',
-    },
-  },
-  {
-    id: 'q5_3_06', type: 'true_false',
-    question: {
-      en: 'When a tithi spans two sunrises (present at both), that date has that tithi. This is the most common scenario.',
-      hi: 'जब कोई तिथि दो सूर्योदयों तक फैली हो (दोनों पर उपस्थित), तो वह तिथि उस दिन की मानी जाती है। यह सबसे सामान्य स्थिति है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. The standard case is that a tithi is present at one sunrise and has ended before the next. That sunrise day is named after that tithi. A tithi spanning two sunrises means it governs both days (vriddhi).',
-      hi: 'सत्य। सामान्य स्थिति यह है कि एक तिथि एक सूर्योदय पर उपस्थित हो और अगले से पहले समाप्त हो जाए। वह सूर्योदय-दिवस उस तिथि के नाम पर होता है। दो सूर्योदयों तक फैली तिथि दोनों दिनों पर शासन करती है (वृद्धि)।',
-    },
-  },
-  {
-    id: 'q5_3_07', type: 'mcq',
-    question: {
-      en: 'If the Moon-Sun elongation at sunrise is exactly 180 degrees, which tithi is about to end?',
-      hi: 'यदि सूर्योदय पर चन्द्र-सूर्य कोणीय दूरी ठीक 180 अंश हो, तो कौन-सी तिथि समाप्त होने वाली है?',
-    },
-    options: [
-      { en: 'Chaturdashi (14th)', hi: 'चतुर्दशी (14वीं)', sa: 'चतुर्दशी (14वीं)', mai: 'चतुर्दशी (14वीं)', mr: 'चतुर्दशी (14वीं)', ta: 'Chaturdashi (14th)', te: 'Chaturdashi (14th)', bn: 'Chaturdashi (14th)', kn: 'Chaturdashi (14th)', gu: 'Chaturdashi (14th)' },
-      { en: 'Purnima (15th)', hi: 'पूर्णिमा (15वीं)', sa: 'पूर्णिमा (15वीं)', mai: 'पूर्णिमा (15वीं)', mr: 'पूर्णिमा (15वीं)', ta: 'Purnima (15th)', te: 'Purnima (15th)', bn: 'Purnima (15th)', kn: 'Purnima (15th)', gu: 'Purnima (15th)' },
-      { en: 'Amavasya (30th)', hi: 'अमावस्या (30वीं)', sa: 'अमावस्या (30वीं)', mai: 'अमावस्या (30वीं)', mr: 'अमावस्या (30वीं)', ta: 'Amavasya (30th)', te: 'Amavasya (30th)', bn: 'Amavasya (30th)', kn: 'Amavasya (30th)', gu: 'Amavasya (30th)' },
-      { en: 'Krishna Pratipada (16th)', hi: 'कृष्ण प्रतिपदा (16वीं)', sa: 'कृष्ण प्रतिपदा (16वीं)', mai: 'कृष्ण प्रतिपदा (16वीं)', mr: 'कृष्ण प्रतिपदा (16वीं)', ta: 'Krishna Pratipada (16th)', te: 'Krishna Pratipada (16th)', bn: 'Krishna Pratipada (16th)', kn: 'Krishna Pratipada (16th)', gu: 'Krishna Pratipada (16th)' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Purnima spans 168 to 180 degrees. At exactly 180 degrees, Purnima is at its endpoint. The moment elongation crosses 180 degrees, Krishna Paksha Pratipada begins (180 to 192 degrees).',
-      hi: 'पूर्णिमा 168 से 180 अंश तक फैली है। ठीक 180 अंश पर पूर्णिमा अपने अन्तिम बिन्दु पर है। जैसे ही कोणीय दूरी 180 अंश पार करती है, कृष्ण पक्ष प्रतिपदा (180 से 192 अंश) आरम्भ होती है।',
-    },
-  },
-  {
-    id: 'q5_3_08', type: 'mcq',
-    question: {
-      en: 'To find precisely when a tithi ends, which computational method is used?',
-      hi: 'किसी तिथि के ठीक समाप्ति समय को ज्ञात करने हेतु कौन-सी गणना विधि प्रयुक्त होती है?',
-    },
-    options: [
-      { en: 'Simple linear interpolation between two known points', hi: 'दो ज्ञात बिन्दुओं के बीच सरल रैखिक प्रक्षेप', sa: 'दो ज्ञात बिन्दुओं के बीच सरल रैखिक प्रक्षेप', mai: 'दो ज्ञात बिन्दुओं के बीच सरल रैखिक प्रक्षेप', mr: 'दो ज्ञात बिन्दुओं के बीच सरल रैखिक प्रक्षेप', ta: 'Simple linear interpolation between two known points', te: 'Simple linear interpolation between two known points', bn: 'Simple linear interpolation between two known points', kn: 'Simple linear interpolation between two known points', gu: 'Simple linear interpolation between two known points' },
-      { en: 'Binary search (iterative bisection) to find the exact moment Moon-Sun elongation crosses a 12-degree boundary', hi: 'द्विभाजन खोज (पुनरावर्ती विभाजन) द्वारा चन्द्र-सूर्य कोणीय दूरी के 12-अंश सीमा पार करने का ठीक क्षण ज्ञात करना', sa: 'द्विभाजन खोज (पुनरावर्ती विभाजन) द्वारा चन्द्र-सूर्य कोणीय दूरी के 12-अंश सीमा पार करने का ठीक क्षण ज्ञात करना', mai: 'द्विभाजन खोज (पुनरावर्ती विभाजन) द्वारा चन्द्र-सूर्य कोणीय दूरी के 12-अंश सीमा पार करने का ठीक क्षण ज्ञात करना', mr: 'द्विभाजन खोज (पुनरावर्ती विभाजन) द्वारा चन्द्र-सूर्य कोणीय दूरी के 12-अंश सीमा पार करने का ठीक क्षण ज्ञात करना', ta: 'Binary search (iterative bisection) to find the exact moment Moon-Sun elongation crosses a 12-degree boundary', te: 'Binary search (iterative bisection) to find the exact moment Moon-Sun elongation crosses a 12-degree boundary', bn: 'Binary search (iterative bisection) to find the exact moment Moon-Sun elongation crosses a 12-degree boundary', kn: 'Binary search (iterative bisection) to find the exact moment Moon-Sun elongation crosses a 12-degree boundary', gu: 'Binary search (iterative bisection) to find the exact moment Moon-Sun elongation crosses a 12-degree boundary' },
-      { en: 'Looking up a pre-printed table from the previous year', hi: 'पिछले वर्ष की छपी तालिका देखना', sa: 'पिछले वर्ष की छपी तालिका देखना', mai: 'पिछले वर्ष की छपी तालिका देखना', mr: 'पिछले वर्ष की छपी तालिका देखना', ta: 'Looking up a pre-printed table from the previous year', te: 'Looking up a pre-printed table from the previous year', bn: 'Looking up a pre-printed table from the previous year', kn: 'Looking up a pre-printed table from the previous year', gu: 'Looking up a pre-printed table from the previous year' },
-      { en: 'Counting 24 hours from the tithi start', hi: 'तिथि आरम्भ से 24 घण्टे गिनना', sa: 'तिथि आरम्भ से 24 घण्टे गिनना', mai: 'तिथि आरम्भ से 24 घण्टे गिनना', mr: 'तिथि आरम्भ से 24 घण्टे गिनना', ta: 'Counting 24 hours from the tithi start', te: 'Counting 24 hours from the tithi start', bn: 'Counting 24 hours from the tithi start', kn: 'Counting 24 hours from the tithi start', gu: 'Counting 24 hours from the tithi start' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Modern Panchang software uses binary search (bisection): compute elongation at two times bracketing the boundary, then repeatedly halve the interval until the crossing moment is found to the desired precision (typically within one second).',
-      hi: 'आधुनिक पंचांग सॉफ्टवेयर द्विभाजन खोज का उपयोग करता है: सीमा के दोनों ओर दो समयों पर कोणीय दूरी गणना करें, फिर अन्तराल को बार-बार आधा करें जब तक सीमा-पार का क्षण वांछित सटीकता (सामान्यतः एक सेकण्ड के भीतर) तक न मिल जाए।',
-    },
-  },
-  {
-    id: 'q5_3_09', type: 'true_false',
-    question: {
-      en: 'Kshaya tithis are extremely common and occur multiple times every month.',
-      hi: 'क्षय तिथियाँ अत्यन्त सामान्य हैं और प्रत्येक मास में कई बार होती हैं।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. Kshaya tithis are relatively rare — typically only a few occur per year. They require the Moon to be near perigee (fastest motion) and the Sun to be near aphelion (slowest motion) simultaneously, creating the conditions for a very short tithi.',
-      hi: 'असत्य। क्षय तिथियाँ अपेक्षाकृत दुर्लभ हैं — सामान्यतः वर्ष में केवल कुछ ही होती हैं। इसके लिए चन्द्रमा का उपभू (तीव्रतम गति) के निकट और सूर्य का अपसौर (मन्दतम गति) के निकट एक साथ होना आवश्यक है, जो अत्यन्त लघु तिथि की स्थिति उत्पन्न करता है।',
-    },
-  },
-  {
-    id: 'q5_3_10', type: 'mcq',
-    question: {
-      en: 'In the worked example (Moon=167, Sun=348), when does Purnima end?',
-      hi: 'कार्यान्वित उदाहरण (चन्द्र=167, सूर्य=348) में पूर्णिमा कब समाप्त होती है?',
-    },
-    options: [
-      { en: 'When elongation reaches 168 degrees', hi: 'जब कोणीय दूरी 168 अंश तक पहुँचे', sa: 'जब कोणीय दूरी 168 अंश तक पहुँचे', mai: 'जब कोणीय दूरी 168 अंश तक पहुँचे', mr: 'जब कोणीय दूरी 168 अंश तक पहुँचे', ta: 'When elongation reaches 168 degrees', te: 'When elongation reaches 168 degrees', bn: 'When elongation reaches 168 degrees', kn: 'When elongation reaches 168 degrees', gu: 'When elongation reaches 168 degrees' },
-      { en: 'When elongation reaches 180 degrees', hi: 'जब कोणीय दूरी 180 अंश तक पहुँचे', sa: 'जब कोणीय दूरी 180 अंश तक पहुँचे', mai: 'जब कोणीय दूरी 180 अंश तक पहुँचे', mr: 'जब कोणीय दूरी 180 अंश तक पहुँचे', ta: 'When elongation reaches 180 degrees', te: 'When elongation reaches 180 degrees', bn: 'When elongation reaches 180 degrees', kn: 'When elongation reaches 180 degrees', gu: 'When elongation reaches 180 degrees' },
-      { en: 'When elongation reaches 192 degrees', hi: 'जब कोणीय दूरी 192 अंश तक पहुँचे', sa: 'जब कोणीय दूरी 192 अंश तक पहुँचे', mai: 'जब कोणीय दूरी 192 अंश तक पहुँचे', mr: 'जब कोणीय दूरी 192 अंश तक पहुँचे', ta: 'When elongation reaches 192 degrees', te: 'When elongation reaches 192 degrees', bn: 'When elongation reaches 192 degrees', kn: 'When elongation reaches 192 degrees', gu: 'When elongation reaches 192 degrees' },
-      { en: 'Exactly 24 hours after it began', hi: 'आरम्भ होने के ठीक 24 घण्टे बाद', sa: 'आरम्भ होने के ठीक 24 घण्टे बाद', mai: 'आरम्भ होने के ठीक 24 घण्टे बाद', mr: 'आरम्भ होने के ठीक 24 घण्टे बाद', ta: 'Exactly 24 hours after it began', te: 'Exactly 24 hours after it began', bn: 'Exactly 24 hours after it began', kn: 'Exactly 24 hours after it began', gu: 'Exactly 24 hours after it began' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Purnima is tithi 15, spanning from 168 to 180 degrees. It ends the moment elongation reaches exactly 180 degrees. At 179 degrees (from our example), Purnima is nearing its end — the binary search would find the exact minute when 180 degrees is reached.',
-      hi: 'पूर्णिमा 15वीं तिथि है, 168 से 180 अंश तक। यह उस क्षण समाप्त होती है जब कोणीय दूरी ठीक 180 अंश तक पहुँचती है। हमारे उदाहरण में 179 अंश पर पूर्णिमा समाप्ति के निकट है — द्विभाजन खोज ठीक वह मिनट ज्ञात करेगी जब 180 अंश प्राप्त होते हैं।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = L.questions as unknown as ModuleQuestion[];
 
 function Page1() {
   const locale = useModuleLocale();

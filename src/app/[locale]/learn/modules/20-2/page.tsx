@@ -3,21 +3,16 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/20-2.json';
 
 const META: ModuleMeta = {
   id: 'mod_20_2', phase: 7, topic: 'KP System', moduleNumber: '20.2',
-  title: { en: 'The 249 Sub-Lord Table', hi: '249 उप-स्वामी सारणी', sa: '249 उप-स्वामी सारणी', mai: '249 उप-स्वामी सारणी', mr: '249 उप-स्वामी सारणी', ta: 'The 249 Sub-Lord Table', te: 'The 249 Sub-Lord Table', bn: 'The 249 Sub-Lord Table', kn: 'The 249 Sub-Lord Table', gu: 'The 249 Sub-Lord Table' },
-  subtitle: {
-    en: 'How KP divides each nakshatra into 9 unequal sub-divisions using Vimshottari proportions, creating 249 sub-lords that govern every degree of the zodiac',
-    hi: 'केपी कैसे विंशोत्तरी अनुपात से प्रत्येक नक्षत्र को 9 असमान उप-विभागों में बाँटता है, जिससे राशिचक्र के हर अंश पर शासन करने वाले 249 उप-स्वामी बनते हैं',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 15,
-  crossRefs: [
-    { label: { en: 'Module 20-1: Placidus Houses', hi: 'मॉड्यूल 20-1: प्लेसिडस भाव', sa: 'मॉड्यूल 20-1: प्लेसिडस भाव', mai: 'मॉड्यूल 20-1: प्लेसिडस भाव', mr: 'मॉड्यूल 20-1: प्लेसिडस भाव', ta: 'Module 20-1: Placidus Houses', te: 'Module 20-1: Placidus Houses', bn: 'Module 20-1: Placidus Houses', kn: 'Module 20-1: Placidus Houses', gu: 'Module 20-1: Placidus Houses' }, href: '/learn/modules/20-1' },
-    { label: { en: 'Module 20-3: Significators', hi: 'मॉड्यूल 20-3: कारकत्व', sa: 'मॉड्यूल 20-3: कारकत्व', mai: 'मॉड्यूल 20-3: कारकत्व', mr: 'मॉड्यूल 20-3: कारकत्व', ta: 'Module 20-3: Significators', te: 'Module 20-3: Significators', bn: 'Module 20-3: Significators', kn: 'Module 20-3: Significators', gu: 'Module 20-3: Significators' }, href: '/learn/modules/20-3' },
-    { label: { en: 'Module 20-4: Ruling Planets', hi: 'मॉड्यूल 20-4: शासक ग्रह', sa: 'मॉड्यूल 20-4: शासक ग्रह', mai: 'मॉड्यूल 20-4: शासक ग्रह', mr: 'मॉड्यूल 20-4: शासक ग्रह', ta: 'Module 20-4: Ruling Planets', te: 'Module 20-4: Ruling Planets', bn: 'Module 20-4: Ruling Planets', kn: 'Module 20-4: Ruling Planets', gu: 'Module 20-4: Ruling Planets' }, href: '/learn/modules/20-4' },
-    { label: { en: 'KP System Tool', hi: 'केपी पद्धति उपकरण', sa: 'केपी पद्धति उपकरण', mai: 'केपी पद्धति उपकरण', mr: 'केपी पद्धति उपकरण', ta: 'KP System Tool', te: 'KP System Tool', bn: 'KP System Tool', kn: 'KP System Tool', gu: 'KP System Tool' }, href: '/kp-system' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

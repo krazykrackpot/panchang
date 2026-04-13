@@ -1,6 +1,8 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/observatories.json';
 
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -8,26 +10,8 @@ import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowRight, BookOpen, Ruler, Eye, Mountain, MapPin, Star } from 'lucide-react';
-import type { LocaleText, Locale } from '@/types/panchang';
+import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-
-/* ═══════════════════════════════════════════════════════════════
-   LABELS
-   ═══════════════════════════════════════════════════════════════ */
-const L = {
-  title: { en: 'Jantar Mantar — India\'s Stone Observatories', hi: 'जन्तर मन्तर — भारत की पाषाण वेधशालाएँ' , ta: 'ஜந்தர் மந்தர் — இந்திய வான் ஆய்வகங்கள்' },
-  subtitle: {
-    en: 'Stone instruments that rival modern accuracy — built when Europe still relied on tiny brass gadgets.',
-    hi: 'पत्थर के यन्त्र जो आधुनिक सटीकता की बराबरी करते हैं — जब यूरोप अभी भी छोटे पीतल के उपकरणों पर निर्भर था।',
-  },
-  s1Title: { en: 'Maharaja Jai Singh II — The Astronomer King', hi: 'महाराजा जयसिंह द्वितीय — खगोलशास्त्री सम्राट', sa: 'महाराजा जयसिंह द्वितीय — खगोलशास्त्री सम्राट', mai: 'महाराजा जयसिंह द्वितीय — खगोलशास्त्री सम्राट', mr: 'महाराजा जयसिंह द्वितीय — खगोलशास्त्री सम्राट', ta: 'Maharaja Jai Singh II — The Astronomer King', te: 'Maharaja Jai Singh II — The Astronomer King', bn: 'Maharaja Jai Singh II — The Astronomer King', kn: 'Maharaja Jai Singh II — The Astronomer King', gu: 'Maharaja Jai Singh II — The Astronomer King' },
-  s2Title: { en: 'The Instruments', hi: 'यन्त्र', sa: 'यन्त्र', mai: 'यन्त्र', mr: 'यन्त्र', ta: 'The Instruments', te: 'The Instruments', bn: 'The Instruments', kn: 'The Instruments', gu: 'The Instruments' },
-  s3Title: { en: 'Why Stone Beats Brass', hi: 'पत्थर पीतल से श्रेष्ठ क्यों', sa: 'पत्थर पीतल से श्रेष्ठ क्यों', mai: 'पत्थर पीतल से श्रेष्ठ क्यों', mr: 'पत्थर पीतल से श्रेष्ठ क्यों', ta: 'Why Stone Beats Brass', te: 'Why Stone Beats Brass', bn: 'Why Stone Beats Brass', kn: 'Why Stone Beats Brass', gu: 'Why Stone Beats Brass' },
-  s4Title: { en: 'Legacy', hi: 'विरासत', sa: 'विरासत', mai: 'विरासत', mr: 'विरासत', ta: 'Legacy', te: 'Legacy', bn: 'Legacy', kn: 'Legacy', gu: 'Legacy' },
-  s5Title: { en: 'Visit', hi: 'दर्शन करें', sa: 'दर्शन करें', mai: 'दर्शन करें', mr: 'दर्शन करें', ta: 'Visit', te: 'Visit', bn: 'Visit', kn: 'Visit', gu: 'Visit' },
-  backToLearn: { en: 'Back to Learn', hi: 'सीखने पर वापस', sa: 'सीखने पर वापस', mai: 'सीखने पर वापस', mr: 'सीखने पर वापस', ta: 'Back to Learn', te: 'Back to Learn', bn: 'Back to Learn', kn: 'Back to Learn', gu: 'Back to Learn' },
-  exploreMore: { en: 'Continue Exploring', hi: 'और जानें', sa: 'और जानें', mai: 'और जानें', mr: 'और जानें', ta: 'Continue Exploring', te: 'Continue Exploring', bn: 'Continue Exploring', kn: 'Continue Exploring', gu: 'Continue Exploring' },
-};
 
 /* ═══════════════════════════════════════════════════════════════
    DATA
@@ -150,7 +134,7 @@ const OBSERVATORIES = [
 export default function ObservatoriesPage() {
   const locale = useLocale() as Locale;
   const hi = isDevanagariLocale(locale);
-  const t = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
   return (
     <div className="min-h-screen py-8 sm:py-12 px-4 sm:px-6 max-w-4xl mx-auto">
@@ -161,9 +145,9 @@ export default function ObservatoriesPage() {
           <span className="text-xs text-gold-light font-medium tracking-wider uppercase">{hi ? 'भारतीय वेधशालाएँ' : 'Indian Observatories'}</span>
         </div>
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gold-gradient leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
-          {t(L.title)}
+          {t('title')}
         </h1>
-        <p className="mt-4 text-text-secondary/70 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">{t(L.subtitle)}</p>
+        <p className="mt-4 text-text-secondary/70 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">{t('subtitle')}</p>
 
         {/* Key stat */}
         <motion.div
@@ -181,7 +165,7 @@ export default function ObservatoriesPage() {
 
       <div className="space-y-6">
         {/* ═══ SECTION 1: Jai Singh ═══ */}
-        <LessonSection number={1} title={t(L.s1Title)} variant="highlight">
+        <LessonSection number={1} title={t('s1Title')} variant="highlight">
           <div className="space-y-4">
             <p className="text-text-secondary/80 text-sm leading-relaxed">
               {hi
@@ -235,7 +219,7 @@ export default function ObservatoriesPage() {
         </LessonSection>
 
         {/* ═══ SECTION 2: The Instruments ═══ */}
-        <LessonSection number={2} title={t(L.s2Title)}>
+        <LessonSection number={2} title={t('s2Title')}>
           <p className="text-text-secondary/70 text-sm mb-4">
             {hi
               ? 'प्रत्येक यन्त्र एक विशिष्ट खगोलीय माप के लिए बनाया गया — और प्रत्येक इंजीनियरिंग की उत्कृष्ट कृति है।'
@@ -259,14 +243,14 @@ export default function ObservatoriesPage() {
                     <div className="flex items-center gap-2">
                       <span className="text-text-secondary/65 text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{inst.nameHi}</span>
                       <span className="text-xs text-gold-primary/60">|</span>
-                      <span className="text-xs text-gold-primary/70">{t(inst.purpose)}</span>
+                      <span className="text-xs text-gold-primary/70">{lt(inst.purpose as LocaleText, locale)}</span>
                     </div>
                   </div>
                   <Ruler className="w-5 h-5 text-gold-primary/30 flex-shrink-0" />
                 </div>
-                <p className="text-xs sm:text-sm text-text-secondary/75 leading-relaxed mb-3">{t(inst.description)}</p>
+                <p className="text-xs sm:text-sm text-text-secondary/75 leading-relaxed mb-3">{lt(inst.description as LocaleText, locale)}</p>
                 <div className="bg-gold-primary/[0.06] border border-gold-primary/15 rounded-lg px-4 py-2.5">
-                  <p className="text-xs sm:text-sm text-gold-light/90 font-medium leading-relaxed">{t(inst.highlight)}</p>
+                  <p className="text-xs sm:text-sm text-gold-light/90 font-medium leading-relaxed">{lt(inst.highlight as LocaleText, locale)}</p>
                 </div>
               </motion.div>
             ))}
@@ -274,7 +258,7 @@ export default function ObservatoriesPage() {
         </LessonSection>
 
         {/* ═══ SECTION 3: Why Stone Beats Brass ═══ */}
-        <LessonSection number={3} title={t(L.s3Title)} variant="highlight">
+        <LessonSection number={3} title={t('s3Title')} variant="highlight">
           <div className="space-y-5">
             <p className="text-text-secondary/80 text-sm leading-relaxed">
               {hi
@@ -313,9 +297,9 @@ export default function ObservatoriesPage() {
                 >
                   <div className="flex items-center gap-2 mb-2">
                     {item.icon}
-                    <h4 className="font-bold text-sm text-gold-light">{t(item.problem)}</h4>
+                    <h4 className="font-bold text-sm text-gold-light">{lt(item.problem as LocaleText, locale)}</h4>
                   </div>
-                  <p className="text-xs text-text-secondary/70 leading-relaxed">{t(item.detail)}</p>
+                  <p className="text-xs text-text-secondary/70 leading-relaxed">{lt(item.detail as LocaleText, locale)}</p>
                 </motion.div>
               ))}
             </div>
@@ -337,7 +321,7 @@ export default function ObservatoriesPage() {
         </LessonSection>
 
         {/* ═══ SECTION 4: Legacy ═══ */}
-        <LessonSection number={4} title={t(L.s4Title)}>
+        <LessonSection number={4} title={t('s4Title')}>
           <div className="space-y-4">
             {[
               {
@@ -361,14 +345,14 @@ export default function ObservatoriesPage() {
                 transition={{ delay: i * 0.1 }}
                 className={`rounded-xl border ${item.color} p-4 sm:p-5`}
               >
-                <p className="text-xs sm:text-sm text-text-secondary/80 leading-relaxed">{t(item.text)}</p>
+                <p className="text-xs sm:text-sm text-text-secondary/80 leading-relaxed">{lt(item.text as LocaleText, locale)}</p>
               </motion.div>
             ))}
           </div>
         </LessonSection>
 
         {/* ═══ SECTION 5: Visit ═══ */}
-        <LessonSection number={5} title={t(L.s5Title)} variant="highlight">
+        <LessonSection number={5} title={t('s5Title')} variant="highlight">
           <p className="text-text-secondary/80 text-sm leading-relaxed mb-4">
             {hi
               ? 'यदि आप कभी भारत जाएँ, तो इन वेधशालाओं को अवश्य देखें। कोई फ़ोटो या पुस्तक इन यन्त्रों के पैमाने को व्यक्त नहीं कर सकती।'
@@ -392,7 +376,7 @@ export default function ObservatoriesPage() {
                     <span className="text-text-secondary/65 text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>({obs.cityHi})</span>
                     <span className="text-xs font-mono text-gold-primary/50">{obs.instruments} {hi ? 'यन्त्र' : 'instruments'}</span>
                   </div>
-                  <p className="text-xs text-text-secondary/75 leading-relaxed mt-1">{t(obs.status)}</p>
+                  <p className="text-xs text-text-secondary/75 leading-relaxed mt-1">{lt(obs.status as LocaleText, locale)}</p>
                 </div>
               </motion.div>
             ))}
@@ -442,7 +426,7 @@ export default function ObservatoriesPage() {
           transition={{ duration: 0.5 }}
           className="mt-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6"
         >
-          <h3 className="text-gold-light font-semibold text-sm uppercase tracking-wider mb-4">{t(L.exploreMore)}</h3>
+          <h3 className="text-gold-light font-semibold text-sm uppercase tracking-wider mb-4">{t('exploreMore')}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
               { href: '/learn/vedanga' as const, label: { en: 'Vedanga Jyotisha & Indian Astronomy', hi: 'वेदाङ्ग ज्योतिष एवं भारतीय खगोल', sa: 'वेदाङ्ग ज्योतिष एवं भारतीय खगोल', mai: 'वेदाङ्ग ज्योतिष एवं भारतीय खगोल', mr: 'वेदाङ्ग ज्योतिष एवं भारतीय खगोल', ta: 'Vedanga Jyotisha & Indian Astronomy', te: 'Vedanga Jyotisha & Indian Astronomy', bn: 'Vedanga Jyotisha & Indian Astronomy', kn: 'Vedanga Jyotisha & Indian Astronomy', gu: 'Vedanga Jyotisha & Indian Astronomy' } },
@@ -455,14 +439,14 @@ export default function ObservatoriesPage() {
                 href={link.href}
                 className="flex items-center justify-between bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg px-4 py-3 hover:border-gold-primary/30 hover:bg-gold-primary/[0.04] transition-all group"
               >
-                <span className="text-sm text-text-secondary group-hover:text-gold-light transition-colors">{t(link.label)}</span>
+                <span className="text-sm text-text-secondary group-hover:text-gold-light transition-colors">{lt(link.label as LocaleText, locale)}</span>
                 <ArrowRight className="w-4 h-4 text-gold-primary/40 group-hover:text-gold-primary group-hover:translate-x-1 transition-all" />
               </Link>
             ))}
           </div>
           <div className="mt-4 pt-4 border-t border-white/[0.05]">
             <Link href="/learn" className="text-sm text-text-secondary/75 hover:text-gold-light transition-colors">
-              &larr; {t(L.backToLearn)}
+              &larr; {t('backToLearn')}
             </Link>
           </div>
         </motion.nav>

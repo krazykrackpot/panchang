@@ -1,12 +1,14 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { ChevronRight, Sparkles, BookOpen, ExternalLink } from 'lucide-react';
-import type { Locale ,LocaleText} from '@/types/panchang';
+import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/track-cosmology.json';
 
 // ── Section data ─────────────────────────────────────────────────
 interface Section {
@@ -138,42 +140,13 @@ const SECTIONS: Section[] = [
   },
 ];
 
-const L = {
-  en: {
-    badge: 'Track 1',
-    title: 'Hindu Cosmology & Mathematics',
-    sub: 'The universe, time, planets, stars, and the mathematical framework of Jyotish',
-    startHere: 'Start Here',
-    modules: 'modules',
-    deepDive: 'Deep Dive',
-    backToLearn: 'All Tracks',
-  },
-  hi: {
-    badge: 'ट्रैक 1',
-    title: 'हिन्दू ब्रह्माण्डविद्या एवं आधार',
-    sub: 'ब्रह्माण्ड, काल, ग्रह, तारे, और ज्योतिष का गणितीय ढाँचा',
-    startHere: 'यहाँ से शुरू करें',
-    modules: 'मॉड्यूल',
-    deepDive: 'गहन अध्ययन',
-    backToLearn: 'सभी ट्रैक',
-  },
-  sa: {
-    badge: 'मार्गः 1',
-    title: 'हिन्दूब्रह्माण्डविद्या आधारश्च',
-    sub: 'ब्रह्माण्डं कालः ग्रहाः ताराः ज्योतिषस्य गणितीयढाञ्चश्च',
-    startHere: 'अत्र आरभतु',
-    modules: 'मॉड्यूलाः',
-    deepDive: 'गहनाध्ययनम्',
-    backToLearn: 'सर्वे मार्गाः',
-  },
-};
 
 export default function CosmologyTrackPage() {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
-  const l = (L as Record<string, typeof L.en>)[locale] || L.en;
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
   return (
     <div>
@@ -190,25 +163,25 @@ export default function CosmologyTrackPage() {
           {/* Back link */}
           <Link href="/learn" className="inline-flex items-center gap-1.5 text-gold-light/70 hover:text-indigo-200 text-xs uppercase tracking-wider mb-6 transition-colors">
             <ChevronRight className="w-3 h-3 rotate-180" />
-            {l.backToLearn}
+            {t('backToLearn')}
           </Link>
 
           <div className="flex items-center gap-3 mb-4">
             <Sparkles className="w-6 h-6 text-gold-light" />
-            <span className="text-gold-light text-xs uppercase tracking-widest font-bold">{l.badge}</span>
+            <span className="text-gold-light text-xs uppercase tracking-widest font-bold">{t('badge')}</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3" style={hf}>
-            {l.title}
+            {t('title')}
           </h1>
-          <p className="text-indigo-200/60 text-lg max-w-2xl mb-8" style={bf}>{l.sub}</p>
+          <p className="text-indigo-200/60 text-lg max-w-2xl mb-8" style={bf}>{t('sub')}</p>
 
           <Link
             href="/learn/modules/0-1"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gold-primary/20 text-gold-light border border-gold-primary/30 font-bold text-sm hover:bg-gold-primary/30 transition-colors"
             style={hf}
           >
-            {l.startHere}
+            {t('startHere')}
             <ChevronRight className="w-4 h-4" />
           </Link>
         </div>
@@ -232,7 +205,7 @@ export default function CosmologyTrackPage() {
                 <h2 className="text-lg font-bold text-white" style={hf}>{(section.title[locale] ?? section.title.en)}</h2>
                 <span className="text-gold-light/50 text-xs uppercase tracking-wider" style={bf}>{(section.subtitle[locale] ?? section.subtitle.en)}</span>
               </div>
-              <span className="ml-auto text-gold-primary/40 text-xs font-mono">{section.modules.length} {l.modules}</span>
+              <span className="ml-auto text-gold-primary/40 text-xs font-mono">{section.modules.length} {t('modules')}</span>
             </div>
 
             {/* Module cards */}
@@ -277,7 +250,7 @@ export default function CosmologyTrackPage() {
                     style={bf}
                   >
                     <BookOpen className="w-3 h-3" />
-                    {l.deepDive}: {(ref.label[locale] ?? ref.label.en)}
+                    {t('deepDive')}: {(ref.label[locale] ?? ref.label.en)}
                     <ExternalLink className="w-2.5 h-2.5 opacity-50" />
                   </Link>
                 ))}

@@ -10,6 +10,9 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import type { Locale } from '@/types/panchang';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LJ from '@/messages/learn/labs-moon.json';
 
 // Top 60 sine terms from Meeus Table 47.A
 const MOON_LR_TABLE: [number, number, number, number, number][] = [
@@ -72,10 +75,10 @@ function StepShell({ stepNum, totalSteps, title, subtitle, children }: {
   );
 }
 
-function WhyBox({ children }: { children: React.ReactNode }) {
+function WhyBox({ children, heading = 'Why do we need this?' }: { children: React.ReactNode; heading?: string }) {
   return (
     <div className="mb-6 p-4 rounded-xl bg-indigo-500/8 border border-indigo-500/20">
-      <div className="text-xs text-indigo-400 uppercase tracking-wider font-semibold mb-2">Why do we need this?</div>
+      <div className="text-xs text-indigo-400 uppercase tracking-wider font-semibold mb-2">{heading}</div>
       <div className="text-text-primary text-sm leading-relaxed">{children}</div>
     </div>
   );
@@ -90,10 +93,10 @@ function CalcRow({ label, value, highlight }: { label: string; value: string; hi
   );
 }
 
-function ResultBanner({ label, value, sub }: { label: string; value: string; sub?: string }) {
+function ResultBanner({ label, value, sub, resultLabel = 'Result' }: { label: string; value: string; sub?: string; resultLabel?: string }) {
   return (
     <div className="mt-6 p-5 rounded-2xl bg-gradient-to-br from-indigo-500/15 to-purple-500/10 border border-indigo-500/30 text-center">
-      <div className="text-xs text-indigo-500/70 uppercase tracking-widest mb-1">Result</div>
+      <div className="text-xs text-indigo-500/70 uppercase tracking-widest mb-1">{resultLabel}</div>
       <div className="text-3xl font-bold text-indigo-200 mb-1">{label}</div>
       <div className="font-mono text-indigo-400/80 text-sm">{value}</div>
       {sub && <div className="text-text-secondary text-xs mt-2">{sub}</div>}
@@ -298,15 +301,12 @@ export default function MoonLabPage() {
     };
   }, [date, time, location]);
 
-  const L = (obj: { en: string; hi?: string; sa?: string } | undefined) => {
-    if (!obj) return '';
-    return (obj as Record<string, string>)[locale] || (obj as Record<string, string>).en || '';
-  };
+  const t = (key: string) => lt((LJ as unknown as Record<string, LocaleText>)[key], locale);
 
   const next = () => setStep(s => Math.min(s + 1, TOTAL_STEPS + 1));
   const back = () => setStep(s => Math.max(s - 1, 0));
 
-  const progressLabels = ['Setup', 'Why Moon?', 'JD + T', 'Arguments', 'Sine Terms', 'Sum', 'Tropical', 'Ayanamsha', 'Result'];
+  const progressLabels = [t('stepSetup'), t('stepWhyMoon'), t('stepJDT'), t('stepArguments'), t('stepSineTerms'), t('stepSum'), t('stepTropical'), t('stepAyanamsha'), t('stepResult')];
 
   return (
     <div className="min-h-screen">
@@ -317,10 +317,10 @@ export default function MoonLabPage() {
             <Moon className="w-5 h-5 text-indigo-300" />
           </div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-200 via-purple-100 to-indigo-200 bg-clip-text text-transparent">
-            Trace Your Moon
+            {t('pageTitle')}
           </h1>
         </div>
-        <p className="text-text-secondary text-base">The Meeus algorithm — decoded step by step for a complete beginner</p>
+        <p className="text-text-secondary text-base">{t('pageSubtitle')}</p>
       </div>
 
       {/* Progress */}
@@ -351,13 +351,13 @@ export default function MoonLabPage() {
             <motion.div key="setup" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <div className="text-center mb-8">
                 <div className="text-4xl mb-3">🌙</div>
-                <h2 className="text-2xl font-bold text-white mb-2">Trace the Moon's Exact Position</h2>
+                <h2 className="text-2xl font-bold text-white mb-2">{t('traceTitle')}</h2>
                 <p className="text-text-secondary text-sm leading-relaxed max-w-md mx-auto">
-                  The Moon's position can't be calculated with a simple formula — the Sun and Earth's shape both pull it in complex ways. We'll use the Meeus algorithm, which adds up 60+ mathematical waves to model the orbit with sub-degree accuracy.
+                  {t('traceDesc')}
                 </p>
               </div>
               <div className="p-4 rounded-xl bg-indigo-500/8 border border-indigo-500/20 mb-6">
-                <div className="text-xs text-indigo-400 uppercase tracking-wider font-semibold mb-2">What this lab shows</div>
+                <div className="text-xs text-indigo-400 uppercase tracking-wider font-semibold mb-2">{t('whatThisLabShows')}</div>
                 <div className="space-y-1.5">
                   {['Why the Moon\'s orbit is irregular', 'Julian Centuries — a compact time unit', '5 fundamental orbital angles', '60 sine correction terms (Fourier analysis)', 'Final tropical → sidereal conversion', 'Rashi and Nakshatra identification'].map(item => (
                     <div key={item} className="flex items-center gap-2 text-text-primary text-xs">
@@ -370,22 +370,22 @@ export default function MoonLabPage() {
               <div className="space-y-4 mb-8">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-indigo-300/80 mb-1.5">Date</label>
+                    <label className="block text-sm font-medium text-indigo-300/80 mb-1.5">{t('date')}</label>
                     <input type="date" value={date} onChange={e => setDate(e.target.value)}
                       className="w-full px-4 py-3 rounded-xl bg-white/[0.06] border border-white/10 text-white focus:border-indigo-500/50 focus:outline-none transition-colors [color-scheme:dark]" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-indigo-300/80 mb-1.5">Time <span className="text-text-secondary/60 font-normal">(local)</span></label>
+                    <label className="block text-sm font-medium text-indigo-300/80 mb-1.5">{t('timeLocal')} <span className="text-text-secondary/60 font-normal">{t('local')}</span></label>
                     <input type="time" value={time} onChange={e => setTime(e.target.value)}
                       className="w-full px-4 py-3 rounded-xl bg-white/[0.06] border border-white/10 text-white focus:border-indigo-500/50 focus:outline-none transition-colors [color-scheme:dark]" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-indigo-300/80 mb-1.5">Location <span className="text-text-secondary/60 font-normal">(for timezone)</span></label>
-                  <LocationSearch value={locationName} onSelect={loc => { setLocation(loc); setLocationName(loc.name); }} placeholder="Search city..." className="w-full" />
+                  <label className="block text-sm font-medium text-indigo-300/80 mb-1.5">{t('location')} <span className="text-text-secondary/60 font-normal">{t('forTimezone')}</span></label>
+                  <LocationSearch value={locationName} onSelect={loc => { setLocation(loc); setLocationName(loc.name); }} placeholder={t('searchCity')} className="w-full" />
                 </div>
               </div>
-              <NavButtons nextLabel="Begin Tracing →" onNext={() => setStep(1)} disableNext={!date} />
+              <NavButtons nextLabel={t('beginTracing')} onNext={() => setStep(1)} disableNext={!date} />
             </motion.div>
           )}
 
@@ -394,7 +394,7 @@ export default function MoonLabPage() {
             <StepShell key="why" stepNum={1} totalSteps={TOTAL_STEPS}
               title="Why is the Moon's Position Hard to Calculate?"
               subtitle="Unlike the Sun — which moves in a nearly perfect ellipse — the Moon has one of the most complex orbits in the solar system.">
-              <WhyBox>
+              <WhyBox heading={t('whyDoWeNeedThis')}>
                 Three forces constantly distort the Moon's orbit:
                 <br /><br />
                 <strong className="text-white">1. Earth's gravity</strong> — the main force, keeping the Moon in orbit<br />
@@ -412,7 +412,7 @@ export default function MoonLabPage() {
                   Jean Meeus, a Belgian astronomer, published "Astronomical Algorithms" in 1991. He distilled centuries of orbital observations into a set of 60+ trigonometric terms that together predict the Moon's position to within 0.5° — accurate enough for Panchang calculations. This is what almost every Vedic astrology software uses today.
                 </p>
               </div>
-              <NavButtons onBack={back} onNext={next} />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
             </StepShell>
           )}
 
@@ -421,7 +421,7 @@ export default function MoonLabPage() {
             <StepShell key="jd" stepNum={2} totalSteps={TOTAL_STEPS}
               title="Julian Day & Julian Centuries"
               subtitle="We need to express 'how much time has passed' in a form that's easy to put into polynomial equations.">
-              <WhyBox>
+              <WhyBox heading={t('whyDoWeNeedThis')}>
                 The Julian Day (JD) gives us a single number for any moment. But for orbital calculations, astronomers use an even more convenient unit: <strong className="text-white">Julian Centuries (T)</strong> — how many 100-year chunks have passed since January 1.5, 2000 (the J2000 epoch). Why J2000? Because all of Meeus's equations were calibrated to that date. Using T means the numbers stay small and manageable — today T ≈ 0.26, instead of JD ≈ 2,460,000.
               </WhyBox>
 
@@ -445,12 +445,12 @@ export default function MoonLabPage() {
                 <CalcRow label="T = ÷ 36,525" value={calc.t.toFixed(10)} highlight />
               </div>
 
-              <ResultBanner
+              <ResultBanner resultLabel={t('stepResult')}
                 label={`T = ${calc.t.toFixed(8)}`}
                 value="Julian centuries since J2000"
                 sub={`${(calc.t * 100).toFixed(2)} years have passed since Jan 1, 2000`}
               />
-              <NavButtons onBack={back} onNext={next} />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
             </StepShell>
           )}
 
@@ -459,7 +459,7 @@ export default function MoonLabPage() {
             <StepShell key="args" stepNum={3} totalSteps={TOTAL_STEPS}
               title="5 Fundamental Arguments"
               subtitle="Before we can evaluate the 60 sine terms, we need 5 key orbital angles. Each is a linearly-growing angle based on T.">
-              <WhyBox>
+              <WhyBox heading={t('whyDoWeNeedThis')}>
                 Think of the solar system as a machine with spinning gears. Each gear has a frequency — it rotates at a certain rate over time. The 5 fundamental arguments are the "master angles" of that machine: the Moon's average position, the Sun-Moon angle, the Sun's orbit, the Moon's orbit shape, and the Moon's orbital tilt. Once we know where each gear is pointed, we can calculate the distortions using sine/cosine functions.
               </WhyBox>
 
@@ -484,8 +484,8 @@ export default function MoonLabPage() {
                 <CalcRow label="F  — Arg of latitude" value={`${calc.F.toFixed(4)}°`} />
               </div>
 
-              <ResultBanner label="5 angles computed" value="Now we can evaluate all 60 sine terms" />
-              <NavButtons onBack={back} onNext={next} />
+              <ResultBanner resultLabel={t('stepResult')} label="5 angles computed" value="Now we can evaluate all 60 sine terms" />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
             </StepShell>
           )}
 
@@ -494,7 +494,7 @@ export default function MoonLabPage() {
             <StepShell key="terms" stepNum={4} totalSteps={TOTAL_STEPS}
               title="60 Sine Correction Terms"
               subtitle="This is where all the gravitational complexity gets encoded — as a sum of 60 carefully measured sine waves.">
-              <WhyBox>
+              <WhyBox heading={t('whyDoWeNeedThis')}>
                 Fourier analysis (named after French mathematician Joseph Fourier) shows that <em>any</em> repeating shape can be approximated by adding sine waves of different frequencies and amplitudes. The Moon's irregular orbit is a repeating pattern — and Meeus found the 60 most important waves that together reconstruct it. Each row in his famous Table 47.A says: "multiply D by this, M by this, M' by this, F by this, take the sine, multiply by this coefficient". Adding all 60 results gives the total correction to add to the Moon's mean position.
               </WhyBox>
 
@@ -528,7 +528,7 @@ export default function MoonLabPage() {
                 <p className="text-text-secondary/60 text-xs mt-2">Total terms evaluated: {calc.termCount}. Contributions are in units of 10⁻⁶ degrees (millionths of a degree).</p>
               </div>
 
-              <NavButtons onBack={back} onNext={next} />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
             </StepShell>
           )}
 
@@ -537,7 +537,7 @@ export default function MoonLabPage() {
             <StepShell key="sum" stepNum={5} totalSteps={TOTAL_STEPS}
               title="Summing All Corrections"
               subtitle="We add all 60 terms plus 3 extra corrections for Venus, Earth's shape, and Jupiter.">
-              <WhyBox>
+              <WhyBox heading={t('whyDoWeNeedThis')}>
                 After summing the main 60 terms, Meeus adds 3 extra corrections. These account for:<br />
                 <strong className="text-white">Venus</strong> — the second-largest gravitational influence after the Sun (small but non-negligible)<br />
                 <strong className="text-white">Earth's flattening</strong> — Earth is slightly squashed at the poles, so gravity isn't perfectly spherical<br />
@@ -553,8 +553,8 @@ export default function MoonLabPage() {
                 <CalcRow label="In degrees" value={`${(calc.totalCorr / 1e6).toFixed(6)}°`} highlight />
               </div>
 
-              <ResultBanner label={`Correction: ${(calc.totalCorr / 1e6).toFixed(4)}°`} value="Total shift from mean position" sub="This gets added to L' (the mean longitude) in the next step" />
-              <NavButtons onBack={back} onNext={next} />
+              <ResultBanner resultLabel={t('stepResult')} label={`Correction: ${(calc.totalCorr / 1e6).toFixed(4)}°`} value="Total shift from mean position" sub="This gets added to L' (the mean longitude) in the next step" />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
             </StepShell>
           )}
 
@@ -563,7 +563,7 @@ export default function MoonLabPage() {
             <StepShell key="trop" stepNum={6} totalSteps={TOTAL_STEPS}
               title="Final Tropical Longitude"
               subtitle="Now we add the total correction to the mean longitude to get where the Moon actually is.">
-              <WhyBox>
+              <WhyBox heading={t('whyDoWeNeedThis')}>
                 L' is the Moon's <em>mean</em> position — where it would be if the orbit were a perfect ellipse with no perturbations. The correction term (all those 60+ sine waves) tells us how far the Moon has deviated from that mean due to gravitational influences. Adding them gives the Moon's true tropical longitude — its position measured from the Spring Equinox point.
               </WhyBox>
 
@@ -574,8 +574,8 @@ export default function MoonLabPage() {
                 <CalcRow label="mod 360° → Tropical Moon longitude" value={`${calc.tropLong.toFixed(6)}°`} highlight />
               </div>
 
-              <ResultBanner label={`Tropical Moon: ${calc.tropLong.toFixed(4)}°`} value="Measured from the Spring Equinox (tropical zodiac)" sub="Next: we convert this to sidereal (star-based) using the Ayanamsha" />
-              <NavButtons onBack={back} onNext={next} />
+              <ResultBanner resultLabel={t('stepResult')} label={`Tropical Moon: ${calc.tropLong.toFixed(4)}°`} value="Measured from the Spring Equinox (tropical zodiac)" sub="Next: we convert this to sidereal (star-based) using the Ayanamsha" />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
             </StepShell>
           )}
 
@@ -584,7 +584,7 @@ export default function MoonLabPage() {
             <StepShell key="ayan" stepNum={7} totalSteps={TOTAL_STEPS}
               title="Apply the Ayanamsha"
               subtitle="The last step: convert from the Western (tropical) zodiac to the Vedic (sidereal) star-fixed zodiac.">
-              <WhyBox>
+              <WhyBox heading={t('whyDoWeNeedThis')}>
                 The tropical zodiac is anchored to the Spring Equinox — a point that slowly drifts due to Earth's 26,000-year axial wobble. The sidereal zodiac is anchored to the actual star backdrop. Since Vedic astrology uses the real stars, not the drifting equinox, we subtract the Lahiri Ayanamsha — the official correction adopted by the Government of India in 1955 — to get the true Vedic position.
               </WhyBox>
 
@@ -594,8 +594,8 @@ export default function MoonLabPage() {
                 <CalcRow label="Sidereal = Tropical − Ayanamsha" value={`${calc.sidLong.toFixed(6)}°`} highlight />
               </div>
 
-              <ResultBanner label={`Sidereal Moon: ${calc.sidLong.toFixed(4)}°`} value="Vedic (star-fixed) position — ready for Nakshatra/Rashi lookup" />
-              <NavButtons onBack={back} onNext={next} nextLabel="See Result →" />
+              <ResultBanner resultLabel={t('stepResult')} label={`Sidereal Moon: ${calc.sidLong.toFixed(4)}°`} value="Vedic (star-fixed) position — ready for Nakshatra/Rashi lookup" />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('seeResult')} />
             </StepShell>
           )}
 
@@ -608,20 +608,20 @@ export default function MoonLabPage() {
 
               <div className="space-y-2 mb-4">
                 <CalcRow label="Sidereal Moon" value={`${calc.sidLong.toFixed(4)}°`} />
-                <CalcRow label="Rashi = floor(° ÷ 30) + 1" value={`${calc.rashiNum} — ${L(calc.rashiData.name)} ${calc.rashiData.symbol}`} highlight />
+                <CalcRow label="Rashi = floor(° ÷ 30) + 1" value={`${calc.rashiNum} — ${lt(calc.rashiData.name as LocaleText, locale)} ${calc.rashiData.symbol}`} highlight />
                 <CalcRow label="Degree within sign" value={`${(calc.sidLong % 30).toFixed(2)}°`} />
-                <CalcRow label="Nakshatra = floor(° ÷ 13.333) + 1" value={`${calc.nakNum} — ${L(calc.nakData.name)}`} highlight />
+                <CalcRow label="Nakshatra = floor(° ÷ 13.333) + 1" value={`${calc.nakNum} — ${lt(calc.nakData.name as LocaleText, locale)}`} highlight />
                 <CalcRow label="Pada (quarter)" value={`${calc.pada} / 4`} />
                 <CalcRow label="Nakshatra ruler" value={calc.nakData.ruler} />
               </div>
 
-              <ResultBanner
-                label={`${L(calc.rashiData.name)} ${calc.rashiData.symbol} · ${L(calc.nakData.name)} Pada ${calc.pada}`}
+              <ResultBanner resultLabel={t('stepResult')}
+                label={`${lt(calc.rashiData.name as LocaleText, locale)} ${calc.rashiData.symbol} · ${lt(calc.nakData.name as LocaleText, locale)} Pada ${calc.pada}`}
                 value={`${calc.sidLong.toFixed(4)}° sidereal`}
                 sub={`Ruled by ${calc.nakData.ruler} · This Nakshatra governs your birth Dasha if this is your birth Moon`}
               />
 
-              <NavButtons onBack={back} onNext={() => setStep(0)} nextLabel="Try Another Date" />
+              <NavButtons onBack={back} onNext={() => setStep(0)} backLabel={t('back')} nextLabel={t('tryAnotherDate')} />
             </StepShell>
           )}
 

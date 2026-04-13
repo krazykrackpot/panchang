@@ -1,5 +1,9 @@
 'use client';
 
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LJ from '@/messages/learn/planetary-cycles.json';
+
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
@@ -511,6 +515,7 @@ export default function PlanetaryCyclesPage() {
   const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+  const t = (key: string) => lt((LJ as unknown as Record<string, LocaleText>)[key], locale);
   const l = (L as Record<string, typeof L.en>)[locale] || L.en;
 
   return (
@@ -527,23 +532,23 @@ export default function PlanetaryCyclesPage() {
         <div className="relative z-10">
           <Link href="/learn" className="inline-flex items-center gap-1.5 text-gold-light/70 hover:text-indigo-200 text-xs uppercase tracking-wider mb-6 transition-colors">
             <ChevronRight className="w-3 h-3 rotate-180" />
-            {l.backToLearn}
+            {t('backToLearn')}
           </Link>
 
           <div className="flex items-center gap-3 mb-4">
             <Orbit className="w-6 h-6 text-gold-light" />
-            <span className="text-gold-light text-xs uppercase tracking-widest font-bold">{l.badge}</span>
+            <span className="text-gold-light text-xs uppercase tracking-widest font-bold">{t('badge')}</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight" style={hf}>
-            {l.title}
+            {t('title')}
           </h1>
-          <p className="text-indigo-200/60 text-base sm:text-lg max-w-3xl mb-8" style={bf}>{l.sub}</p>
+          <p className="text-indigo-200/60 text-base sm:text-lg max-w-3xl mb-8" style={bf}>{t('sub')}</p>
 
           {/* Hook quote */}
           <div className="border-l-2 border-gold-primary/40 pl-5 py-2">
             <p className="text-text-secondary text-sm sm:text-base leading-relaxed italic max-w-3xl" style={bf}>
-              {l.hook}
+              {t('hook')}
             </p>
           </div>
         </div>
@@ -554,8 +559,8 @@ export default function PlanetaryCyclesPage() {
         <div className="flex items-start gap-4">
           <SectionIcon icon={Target} />
           <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white" style={hf}>{l.sec1}</h2>
-            <p className="text-gold-light/50 text-sm mt-1" style={bf}>{l.sec1sub}</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white" style={hf}>{t('sec1')}</h2>
+            <p className="text-gold-light/50 text-sm mt-1" style={bf}>{t('sec1sub')}</p>
           </div>
         </div>
 
@@ -565,12 +570,12 @@ export default function PlanetaryCyclesPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-gold-primary/15">
-                  <th className="text-left px-4 py-3 text-gold-light font-bold text-xs uppercase tracking-wider" style={hf}>{l.tblPlanet}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-bold text-xs uppercase tracking-wider hidden sm:table-cell" style={hf}>{l.tblSanskrit}</th>
-                  <th className="text-right px-4 py-3 text-gold-light font-bold text-xs uppercase tracking-wider" style={hf}>{l.tblVedic}</th>
-                  <th className="text-right px-4 py-3 text-gold-light font-bold text-xs uppercase tracking-wider" style={hf}>{l.tblModern}</th>
-                  <th className="text-right px-4 py-3 text-gold-light font-bold text-xs uppercase tracking-wider" style={hf}>{l.tblError}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-bold text-xs uppercase tracking-wider hidden lg:table-cell" style={hf}>{l.tblJyotish}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-bold text-xs uppercase tracking-wider" style={hf}>{t('tblPlanet')}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-bold text-xs uppercase tracking-wider hidden sm:table-cell" style={hf}>{t('tblSanskrit')}</th>
+                  <th className="text-right px-4 py-3 text-gold-light font-bold text-xs uppercase tracking-wider" style={hf}>{t('tblVedic')}</th>
+                  <th className="text-right px-4 py-3 text-gold-light font-bold text-xs uppercase tracking-wider" style={hf}>{t('tblModern')}</th>
+                  <th className="text-right px-4 py-3 text-gold-light font-bold text-xs uppercase tracking-wider" style={hf}>{t('tblError')}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-bold text-xs uppercase tracking-wider hidden lg:table-cell" style={hf}>{t('tblJyotish')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -590,7 +595,7 @@ export default function PlanetaryCyclesPage() {
 
           {/* Highlight callout */}
           <div className="px-5 py-4 bg-gold-primary/5 border-t border-gold-primary/12">
-            <p className="text-gold-light text-sm font-medium leading-relaxed" style={bf}>{l.sec1note}</p>
+            <p className="text-gold-light text-sm font-medium leading-relaxed" style={bf}>{t('sec1note')}</p>
           </div>
         </div>
       </motion.section>
@@ -748,9 +753,9 @@ export default function PlanetaryCyclesPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-y border-gold-primary/12">
-                  <th className="text-left px-5 py-3 text-gold-light font-bold text-xs uppercase tracking-wider" style={hf}>{l.tblDashaPlanet}</th>
-                  <th className="text-center px-4 py-3 text-gold-light font-bold text-xs uppercase tracking-wider" style={hf}>{l.tblYears}</th>
-                  <th className="text-left px-5 py-3 text-gold-light font-bold text-xs uppercase tracking-wider" style={hf}>{l.tblConnection}</th>
+                  <th className="text-left px-5 py-3 text-gold-light font-bold text-xs uppercase tracking-wider" style={hf}>{t('tblDashaPlanet')}</th>
+                  <th className="text-center px-4 py-3 text-gold-light font-bold text-xs uppercase tracking-wider" style={hf}>{t('tblYears')}</th>
+                  <th className="text-left px-5 py-3 text-gold-light font-bold text-xs uppercase tracking-wider" style={hf}>{t('tblConnection')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -1030,14 +1035,14 @@ export default function PlanetaryCyclesPage() {
       <motion.section {...fadeUp}>
         <div className="rounded-2xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] p-8">
           <p className="text-indigo-100/80 text-base sm:text-lg leading-relaxed text-center max-w-3xl mx-auto" style={bf}>
-            {l.closing}
+            {t('closing')}
           </p>
         </div>
       </motion.section>
 
       {/* ══════════════ RELATED LINKS ══════════════ */}
       <motion.section {...fadeUp} className="space-y-4">
-        <h3 className="text-gold-light text-sm uppercase tracking-widest font-bold" style={hf}>{l.relatedLinks}</h3>
+        <h3 className="text-gold-light text-sm uppercase tracking-widest font-bold" style={hf}>{t('relatedLinks')}</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {[
             { href: '/learn/cosmology', label: { en: 'Cosmic Time Scales -- Yugas & Kalpas', hi: 'ब्रह्माण्डीय कालमान -- युग एवं कल्प', sa: 'ब्रह्माण्डीय कालमान -- युग एवं कल्प', mai: 'ब्रह्माण्डीय कालमान -- युग एवं कल्प', mr: 'ब्रह्माण्डीय कालमान -- युग एवं कल्प', ta: 'Cosmic Time Scales -- Yugas & Kalpas', te: 'Cosmic Time Scales -- Yugas & Kalpas', bn: 'Cosmic Time Scales -- Yugas & Kalpas', kn: 'Cosmic Time Scales -- Yugas & Kalpas', gu: 'Cosmic Time Scales -- Yugas & Kalpas' } },

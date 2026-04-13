@@ -5,6 +5,9 @@ import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LJ from '@/messages/learn/birth-chart.json';
 
 // ─── Trilingual Labels ────────────────────────────────────────────────────────
 const L = {
@@ -315,13 +318,8 @@ const L = {
 
 export default function BirthChartPage() {
   const locale = useLocale() as Locale;
-  const t = (key: keyof typeof L) => {
-    const val = L[key];
-    if (typeof val === 'object' && 'en' in val && 'hi' in val) {
-      return (val as Record<string, string>)[locale] || (val as Record<string, string>).en;
-    }
-    return '';
-  };
+  const t = (key: string) => lt((LJ as unknown as Record<string, LocaleText>)[key], locale);
+  const l = (obj: Record<string, string> | { en: string; [k: string]: string | undefined }) => lt(obj as LocaleText, locale);
   const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
@@ -336,20 +334,20 @@ export default function BirthChartPage() {
       </header>
 
       {/* 1. What is a birth chart */}
-      <LessonSection number={1} title={(L.whatTitle as Record<string, string>)[locale] || L.whatTitle.en}>
+      <LessonSection number={1} title={t('whatTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.whatP1.hi : L.whatP1.en}</p>
-          <p>{isHi ? L.whatP2.hi : L.whatP2.en}</p>
-          <p>{isHi ? L.whatP3.hi : L.whatP3.en}</p>
+          <p>{t('whatP1')}</p>
+          <p>{t('whatP2')}</p>
+          <p>{t('whatP3')}</p>
         </div>
       </LessonSection>
 
       {/* 2. Why time and place matter */}
-      <LessonSection number={2} title={isHi ? L.whyTimeTitle.hi : L.whyTimeTitle.en}>
+      <LessonSection number={2} title={t('whyTimeTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.whyTimeP1.hi : L.whyTimeP1.en}</p>
-          <p>{isHi ? L.whyTimeP2.hi : L.whyTimeP2.en}</p>
-          <p>{isHi ? L.whyTimeP3.hi : L.whyTimeP3.en}</p>
+          <p>{t('whyTimeP1')}</p>
+          <p>{t('whyTimeP2')}</p>
+          <p>{t('whyTimeP3')}</p>
 
           <div className="overflow-x-auto">
             <table className="w-full text-xs mt-4">
@@ -362,8 +360,8 @@ export default function BirthChartPage() {
               <tbody>
                 {L.whyTimeTable.map((row, i) => (
                   <tr key={i} className="border-b border-gold-primary/8">
-                    <td className="py-2 px-3 text-gold-primary font-semibold">{isHi ? row.factor.hi : row.factor.en}</td>
-                    <td className="py-2 px-3 text-text-secondary">{isHi ? row.changes.hi : row.changes.en}</td>
+                    <td className="py-2 px-3 text-gold-primary font-semibold">{l(row.factor)}</td>
+                    <td className="py-2 px-3 text-text-secondary">{l(row.changes)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -373,9 +371,9 @@ export default function BirthChartPage() {
       </LessonSection>
 
       {/* 3. The 12 houses */}
-      <LessonSection number={3} title={isHi ? L.housesTitle.hi : L.housesTitle.en}>
+      <LessonSection number={3} title={t('housesTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.housesIntro.hi : L.housesIntro.en}</p>
+          <p>{t('housesIntro')}</p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
             {L.houses.map((h) => (
@@ -384,16 +382,16 @@ export default function BirthChartPage() {
                   <span className="w-6 h-6 rounded-full bg-gold-primary/15 border border-gold-primary/25 flex items-center justify-center text-gold-light text-xs font-bold">
                     {h.num}
                   </span>
-                  <span className="text-gold-light font-semibold text-sm">{isHi ? h.name.hi : h.name.en}</span>
-                  <span className="text-text-secondary/50 text-xs ml-auto">{isHi ? h.tag.hi : h.tag.en}</span>
+                  <span className="text-gold-light font-semibold text-sm">{l(h.name)}</span>
+                  <span className="text-text-secondary/50 text-xs ml-auto">{l(h.tag)}</span>
                 </div>
-                <p className="text-text-secondary text-xs ml-8">{isHi ? h.area.hi : h.area.en}</p>
+                <p className="text-text-secondary text-xs ml-8">{l(h.area)}</p>
               </div>
             ))}
           </div>
 
           <p className="text-text-secondary/70 text-xs mt-3 p-3 rounded-lg bg-gold-primary/5 border border-gold-primary/10">
-            {isHi ? L.housesClassification.hi : L.housesClassification.en}
+            {t('housesClassification')}
           </p>
 
           <p className="text-xs">
@@ -405,9 +403,9 @@ export default function BirthChartPage() {
       </LessonSection>
 
       {/* 4. The 9 planets */}
-      <LessonSection number={4} title={isHi ? L.planetsTitle.hi : L.planetsTitle.en}>
+      <LessonSection number={4} title={t('planetsTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.planetsIntro.hi : L.planetsIntro.en}</p>
+          <p>{t('planetsIntro')}</p>
 
           <div className="overflow-x-auto">
             <table className="w-full text-xs mt-2">
@@ -421,8 +419,8 @@ export default function BirthChartPage() {
               <tbody>
                 {L.planets.map((p, i) => (
                   <tr key={i} className="border-b border-gold-primary/8">
-                    <td className="py-2 px-3 text-gold-primary font-semibold whitespace-nowrap">{isHi ? p.name.hi : p.name.en}</td>
-                    <td className="py-2 px-3 text-text-secondary">{isHi ? p.rules.hi : p.rules.en}</td>
+                    <td className="py-2 px-3 text-gold-primary font-semibold whitespace-nowrap">{l(p.name)}</td>
+                    <td className="py-2 px-3 text-text-secondary">{l(p.rules)}</td>
                     <td className="py-2 px-3 text-center text-gold-light">{p.years}</td>
                   </tr>
                 ))}
@@ -439,10 +437,10 @@ export default function BirthChartPage() {
       </LessonSection>
 
       {/* 5. The 12 signs */}
-      <LessonSection number={5} title={isHi ? L.signsTitle.hi : L.signsTitle.en}>
+      <LessonSection number={5} title={t('signsTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.signsIntro.hi : L.signsIntro.en}</p>
-          <p>{isHi ? L.signsP2.hi : L.signsP2.en}</p>
+          <p>{t('signsIntro')}</p>
+          <p>{t('signsP2')}</p>
 
           <div className="overflow-x-auto">
             <table className="w-full text-xs mt-2">
@@ -459,10 +457,10 @@ export default function BirthChartPage() {
                 {L.signs.map((s) => (
                   <tr key={s.num} className="border-b border-gold-primary/8">
                     <td className="py-1.5 px-2 text-center text-gold-primary/60">{s.num}</td>
-                    <td className="py-1.5 px-3 text-gold-primary font-semibold">{isHi ? s.name.hi : s.name.en}</td>
-                    <td className="py-1.5 px-3 text-text-secondary">{isHi ? s.lord.hi : s.lord.en}</td>
-                    <td className="py-1.5 px-3 text-text-secondary">{isHi ? s.element.hi : s.element.en}</td>
-                    <td className="py-1.5 px-3 text-text-secondary">{isHi ? s.quality.hi : s.quality.en}</td>
+                    <td className="py-1.5 px-3 text-gold-primary font-semibold">{l(s.name)}</td>
+                    <td className="py-1.5 px-3 text-text-secondary">{l(s.lord)}</td>
+                    <td className="py-1.5 px-3 text-text-secondary">{l(s.element)}</td>
+                    <td className="py-1.5 px-3 text-text-secondary">{l(s.quality)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -478,17 +476,17 @@ export default function BirthChartPage() {
       </LessonSection>
 
       {/* 6. How to read */}
-      <LessonSection number={6} title={isHi ? L.howToReadTitle.hi : L.howToReadTitle.en}>
+      <LessonSection number={6} title={t('howToReadTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.howToReadIntro.hi : L.howToReadIntro.en}</p>
+          <p>{t('howToReadIntro')}</p>
 
           <div className="space-y-4 mt-4">
             {L.readSteps.map((s, i) => (
               <div key={i} className="rounded-lg bg-bg-primary/40 border border-gold-primary/10 p-4">
                 <h4 className="text-gold-light font-bold text-sm mb-2" style={headingFont}>
-                  {isHi ? s.step.hi : s.step.en}
+                  {l(s.step)}
                 </h4>
-                <p className="text-text-secondary text-xs leading-relaxed">{isHi ? s.detail.hi : s.detail.en}</p>
+                <p className="text-text-secondary text-xs leading-relaxed">{l(s.detail)}</p>
               </div>
             ))}
           </div>
@@ -496,39 +494,39 @@ export default function BirthChartPage() {
       </LessonSection>
 
       {/* 7. Chart styles */}
-      <LessonSection number={7} title={isHi ? L.chartStylesTitle.hi : L.chartStylesTitle.en}>
+      <LessonSection number={7} title={t('chartStylesTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.chartStylesP1.hi : L.chartStylesP1.en}</p>
+          <p>{t('chartStylesP1')}</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
             <div className="rounded-lg bg-bg-primary/40 border border-gold-primary/10 p-4">
               <h4 className="text-gold-light font-bold text-sm mb-2" style={headingFont}>
-                {isHi ? L.northStyle.title.hi : L.northStyle.title.en}
+                {t('northStyle_title')}
               </h4>
-              <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? L.northStyle.p1.hi : L.northStyle.p1.en}</p>
-              <p className="text-text-secondary/70 text-xs">{isHi ? L.northStyle.p2.hi : L.northStyle.p2.en}</p>
+              <p className="text-text-secondary text-xs leading-relaxed mb-2">{t('northStyle_p1')}</p>
+              <p className="text-text-secondary/70 text-xs">{t('northStyle_p2')}</p>
             </div>
             <div className="rounded-lg bg-bg-primary/40 border border-gold-primary/10 p-4">
               <h4 className="text-gold-light font-bold text-sm mb-2" style={headingFont}>
-                {isHi ? L.southStyle.title.hi : L.southStyle.title.en}
+                {t('southStyle_title')}
               </h4>
-              <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? L.southStyle.p1.hi : L.southStyle.p1.en}</p>
-              <p className="text-text-secondary/70 text-xs">{isHi ? L.southStyle.p2.hi : L.southStyle.p2.en}</p>
+              <p className="text-text-secondary text-xs leading-relaxed mb-2">{t('southStyle_p1')}</p>
+              <p className="text-text-secondary/70 text-xs">{t('southStyle_p2')}</p>
             </div>
           </div>
         </div>
       </LessonSection>
 
       {/* 8. Degrees */}
-      <LessonSection number={8} title={isHi ? L.degreesTitle.hi : L.degreesTitle.en}>
+      <LessonSection number={8} title={t('degreesTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.degreesP1.hi : L.degreesP1.en}</p>
+          <p>{t('degreesP1')}</p>
 
           <div className="space-y-3 mt-4">
             {L.degreeReasons.map((d, i) => (
               <div key={i} className="rounded-lg bg-bg-primary/40 border border-gold-primary/10 p-3">
-                <h4 className="text-gold-light font-semibold text-xs mb-1">{isHi ? d.reason.hi : d.reason.en}</h4>
-                <p className="text-text-secondary text-xs leading-relaxed">{isHi ? d.detail.hi : d.detail.en}</p>
+                <h4 className="text-gold-light font-semibold text-xs mb-1">{l(d.reason)}</h4>
+                <p className="text-text-secondary text-xs leading-relaxed">{l(d.detail)}</p>
               </div>
             ))}
           </div>
@@ -536,14 +534,14 @@ export default function BirthChartPage() {
       </LessonSection>
 
       {/* 9. Nakshatras */}
-      <LessonSection number={9} title={isHi ? L.nakshatrasTitle.hi : L.nakshatrasTitle.en}>
+      <LessonSection number={9} title={t('nakshatrasTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.nakshatrasP1.hi : L.nakshatrasP1.en}</p>
+          <p>{t('nakshatrasP1')}</p>
           <ul className="space-y-2 mt-3">
             {L.nakshatraPoints.map((n, i) => (
               <li key={i} className="flex gap-2 text-xs">
                 <span className="text-gold-primary shrink-0 mt-0.5">&#x2022;</span>
-                <span className="text-text-secondary">{isHi ? n.point.hi : n.point.en}</span>
+                <span className="text-text-secondary">{l(n.point)}</span>
               </li>
             ))}
           </ul>
@@ -556,38 +554,38 @@ export default function BirthChartPage() {
       </LessonSection>
 
       {/* 10. Key Concepts */}
-      <LessonSection number={10} title={isHi ? L.importantConcepts.hi : L.importantConcepts.en}>
+      <LessonSection number={10} title={t('importantConcepts')}>
         <div className="space-y-3">
           {L.concepts.map((c, i) => (
             <div key={i} className="rounded-lg bg-bg-primary/40 border border-gold-primary/10 p-4">
               <h4 className="text-gold-light font-bold text-sm mb-2" style={headingFont}>
-                {isHi ? c.concept.hi : c.concept.en}
+                {l(c.concept)}
               </h4>
-              <p className="text-text-secondary text-xs leading-relaxed">{isHi ? c.detail.hi : c.detail.en}</p>
+              <p className="text-text-secondary text-xs leading-relaxed">{l(c.detail)}</p>
             </div>
           ))}
         </div>
       </LessonSection>
 
       {/* 11. Misconceptions */}
-      <LessonSection number={11} title={isHi ? L.misconceptionsTitle.hi : L.misconceptionsTitle.en}>
+      <LessonSection number={11} title={t('misconceptionsTitle')}>
         <div className="space-y-4">
           {L.misconceptions.map((m, i) => (
             <div key={i} className="rounded-lg bg-bg-primary/40 border border-gold-primary/10 p-4">
-              <h4 className="text-red-400/80 font-bold text-sm mb-2">{isHi ? m.myth.hi : m.myth.en}</h4>
-              <p className="text-text-secondary text-xs leading-relaxed">{isHi ? m.truth.hi : m.truth.en}</p>
+              <h4 className="text-red-400/80 font-bold text-sm mb-2">{l(m.myth)}</h4>
+              <p className="text-text-secondary text-xs leading-relaxed">{l(m.truth)}</p>
             </div>
           ))}
         </div>
       </LessonSection>
 
       {/* 12. Practical first steps */}
-      <LessonSection number={12} title={isHi ? L.practicalTitle.hi : L.practicalTitle.en}>
+      <LessonSection number={12} title={t('practicalTitle')}>
         <div className="space-y-3">
           {L.practicalSteps.map((s, i) => (
             <div key={i} className="flex gap-3 p-3 rounded-lg bg-bg-primary/40 border border-gold-primary/10">
               <span className="text-gold-primary font-bold text-xs shrink-0 mt-0.5">{i + 1}.</span>
-              <p className="text-text-secondary text-xs leading-relaxed">{isHi ? s.step.hi : s.step.en}</p>
+              <p className="text-text-secondary text-xs leading-relaxed">{l(s.step)}</p>
             </div>
           ))}
           <div className="mt-4 text-center">
@@ -602,7 +600,7 @@ export default function BirthChartPage() {
       </LessonSection>
 
       {/* Further learning */}
-      <LessonSection title={isHi ? L.furtherTitle.hi : L.furtherTitle.en}>
+      <LessonSection title={t('furtherTitle')}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {L.furtherLinks.map((link, i) => (
             <Link
@@ -610,7 +608,7 @@ export default function BirthChartPage() {
               href={link.href}
               className="text-gold-primary/70 hover:text-gold-light transition-colors text-sm p-2 rounded-lg hover:bg-gold-primary/5"
             >
-              {isHi ? link.label.hi : link.label.en} →
+              {l(link.label)} →
             </Link>
           ))}
         </div>

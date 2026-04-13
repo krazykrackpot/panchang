@@ -1,6 +1,8 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/combustion.json';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Flame, Sun, Shield, BookOpen } from 'lucide-react';
@@ -9,39 +11,6 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-/* ── Trilingual labels ───────────────────────────────────────────── */
-const L = {
-  title: { en: 'Combustion (Asta)', hi: 'अस्त (ग्रह दाह)', sa: 'अस्तः (ग्रहदाहः)' , ta: 'அஸ்தம் (எரிப்பு)' },
-  subtitle: {
-    en: 'When a planet ventures too close to the Sun, it becomes invisible — swallowed by the Sun\'s radiance. This ancient observation forms the basis of one of Vedic astrology\'s most important planetary conditions.',
-    hi: 'जब कोई ग्रह सूर्य के अत्यधिक निकट आता है, वह अदृश्य हो जाता है — सूर्य की दीप्ति में विलीन। यह प्राचीन अवलोकन वैदिक ज्योतिष की सबसे महत्वपूर्ण ग्रह अवस्थाओं का आधार है।',
-    sa: 'यदा ग्रहः सूर्यस्य अत्यन्तसमीपं गच्छति, अदृश्यः भवति — सूर्यस्य दीप्तौ विलीनः। एतत् प्राचीनावलोकनं वैदिकज्योतिषस्य महत्त्वपूर्णग्रहावस्थायाः आधारः।'
-  },
-  whatTitle: { en: 'What is Combustion (Asta)?', hi: 'अस्त (दाह) क्या है?', sa: 'अस्तः (दाहः) कः?' },
-  whatP1: {
-    en: 'When a planet gets too close to the Sun in longitude, it becomes invisible from Earth — literally "burned" by the Sun\'s light. The planet\'s significations become OVERSHADOWED by the Sun\'s ego and authority. This is called Asta (combustion) in Jyotish.',
-    hi: 'जब कोई ग्रह देशान्तर में सूर्य के बहुत निकट आता है, वह पृथ्वी से अदृश्य हो जाता है — सूर्य के प्रकाश में "जलाया" हुआ। ग्रह के कारकत्व सूर्य के अहंकार और अधिकार से आच्छादित हो जाते हैं। इसे ज्योतिष में अस्त कहते हैं।',
-    sa: 'यदा ग्रहः देशान्तरे सूर्यस्य अत्यन्तसमीपं गच्छति, पृथिव्याः अदृश्यः भवति। ग्रहस्य कारकत्वानि सूर्यस्य अहङ्कारेण अधिकारेण च आच्छादितानि भवन्ति। एतत् ज्योतिषे अस्तः इति उच्यते।'
-  },
-  whatP2: {
-    en: 'Combustion weakens the planet but does not destroy it. Think of a brilliant minister who cannot speak freely because the king dominates every conversation. The minister\'s knowledge is intact, but expression is suppressed. Retrograde planets have SMALLER combustion distances because they are stronger — closer to Earth and thus harder to overpower.',
-    hi: 'दाह ग्रह को दुर्बल करता है परन्तु नष्ट नहीं करता। एक प्रतिभाशाली मन्त्री की कल्पना करें जो स्वतन्त्रता से नहीं बोल सकता क्योंकि राजा प्रत्येक बातचीत पर अधिकार जमाता है। वक्री ग्रहों की दाह दूरी कम होती है क्योंकि वे अधिक बलवान होते हैं।',
-    sa: 'दाहः ग्रहं दुर्बलं करोति परं न नाशयति। वक्रिग्रहाणां दाहदूरी न्यूना भवति यतः ते बलवत्तराः।'
-  },
-  effectsTitle: { en: 'Effects Per Planet When Combust', hi: 'अस्त होने पर प्रत्येक ग्रह का प्रभाव', sa: 'अस्ते सति प्रत्येकग्रहस्य प्रभावः' },
-  vsTitle: { en: 'Combustion vs Other Weaknesses', hi: 'अस्त बनाम अन्य दुर्बलताएँ', sa: 'अस्तः अन्यदौर्बल्यैः सह तुलना' },
-  vsP1: {
-    en: 'Combustion is NOT the same as debilitation. A combust Jupiter in Cancer (exalted) is still exalted — just overshadowed. The planet retains its sign-based dignity but loses its ability to express freely. Combustion is temporary in transit — the planet moves away from the Sun within weeks.',
-    hi: 'अस्त नीचत्व के समान नहीं है। कर्क में अस्त गुरु (उच्च) अभी भी उच्च है — बस आच्छादित। ग्रह अपनी राशि-आधारित गरिमा बनाए रखता है परन्तु स्वतन्त्र अभिव्यक्ति खो देता है। गोचर में अस्त अस्थायी है — ग्रह कुछ सप्ताहों में सूर्य से दूर चला जाता है।',
-    sa: 'अस्तः नीचत्वेन समानः न। कर्के अस्तगुरुः (उच्चः) तथापि उच्चः — केवलम् आच्छादितः।'
-  },
-  vsP2: {
-    en: 'In a natal chart, combustion is permanent but can be mitigated with remedies. Our engine marks combust planets with a flame icon in the Planets tab of your Kundali. Detection algorithm: |planet_longitude - sun_longitude| < combustion_distance.',
-    hi: 'जन्म कुण्डली में अस्त स्थायी है परन्तु उपायों से शमन किया जा सकता है। हमारा इंजन आपकी कुण्डली के ग्रह टैब में अस्त ग्रहों को अग्नि चिह्न से दर्शाता है। गणना: |ग्रह_देशान्तर - सूर्य_देशान्तर| < दाह_दूरी।',
-    sa: 'जन्मकुण्डल्यां अस्तः स्थायी परम् उपायैः शमयितुं शक्यते। सूत्रम्: |ग्रहदेशान्तरम् - सूर्यदेशान्तरम्| < दाहदूरी।'
-  },
-  relatedTitle: { en: 'Explore Further', hi: 'और जानें', sa: 'अधिकं जानीत' },
-};
 
 /* ── Planet combustion data ──────────────────────────────────────── */
 const PLANETS = [
@@ -106,7 +75,7 @@ function CombustionDiagram({ locale }: { locale: Locale }) {
           <g key={p.name.en}>
             <circle cx={cx} cy={cy} r={r} fill="none" stroke={p.color} strokeWidth="1.5" strokeDasharray="6 4" opacity="0.6" />
             <text x={lx} y={ly} fill={p.color} fontSize="11" fontWeight="600" textAnchor="middle" dominantBaseline="middle">
-              {tl(p.name, locale)} {p.deg}{p.retroDeg ? `/${p.retroDeg}R` : ''}
+              {lt(p.name as LocaleText, locale)} {p.deg}{p.retroDeg ? `/${p.retroDeg}R` : ''}
             </text>
           </g>
         );
@@ -140,6 +109,7 @@ function SeverityStars({ rating }: { rating: number }) {
 /* ── Main Page ───────────────────────────────────────────────────── */
 export default function CombustionPage() {
   const locale = useLocale() as Locale;
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
   return (
     <div className="min-h-screen py-12 px-4">
@@ -151,17 +121,17 @@ export default function CombustionPage() {
             {isDevanagariLocale(locale) ? 'ग्रह अवस्था' : 'Planetary Condition'}
           </div>
           <h1 className="text-3xl sm:text-5xl font-bold text-gold-gradient mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-            {((L.title as Record<string, string>)[locale] ?? L.title.en)}
+            {t('title')}
           </h1>
           <p className="text-text-secondary max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
-            {((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}
+            {t('subtitle')}
           </p>
         </motion.div>
 
         {/* Section 1: What is Combustion */}
-        <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}>
-          <p>{((L.whatP1 as Record<string, string>)[locale] ?? L.whatP1.en)}</p>
-          <p>{((L.whatP2 as Record<string, string>)[locale] ?? L.whatP2.en)}</p>
+        <LessonSection number={1} title={t('whatTitle')}>
+          <p>{t('whatP1')}</p>
+          <p>{t('whatP2')}</p>
         </LessonSection>
 
         {/* SVG Diagram */}
@@ -171,7 +141,7 @@ export default function CombustionPage() {
         </motion.div>
 
         {/* Section 2: Effects Per Planet */}
-        <LessonSection number={2} title={((L.effectsTitle as Record<string, string>)[locale] ?? L.effectsTitle.en)}>
+        <LessonSection number={2} title={t('effectsTitle')}>
           <div className="grid gap-4 sm:grid-cols-2">
             {PLANETS.map((p) => (
               <motion.div key={p.name.en}
@@ -180,17 +150,17 @@ export default function CombustionPage() {
               >
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-bold text-lg" style={{ color: p.color }}>
-                    {tl(p.name, locale)}
+                    {lt(p.name as LocaleText, locale)}
                   </h4>
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-text-tertiary font-mono">{p.deg}{p.retroDeg ? `/${p.retroDeg}R` : ''}</span>
                     <SeverityStars rating={p.rating} />
                   </div>
                 </div>
-                <p className="text-sm text-text-secondary leading-relaxed mb-3">{tl(p.effect, locale)}</p>
+                <p className="text-sm text-text-secondary leading-relaxed mb-3">{lt(p.effect as LocaleText, locale)}</p>
                 <div className="flex items-start gap-2 pt-2 border-t border-white/5">
                   <Shield className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                  <p className="text-xs text-emerald-300/80">{tl(p.remedy, locale)}</p>
+                  <p className="text-xs text-emerald-300/80">{lt(p.remedy as LocaleText, locale)}</p>
                 </div>
               </motion.div>
             ))}
@@ -198,16 +168,16 @@ export default function CombustionPage() {
         </LessonSection>
 
         {/* Section 3: Combustion vs Other Weaknesses */}
-        <LessonSection number={3} title={((L.vsTitle as Record<string, string>)[locale] ?? L.vsTitle.en)} variant="highlight">
-          <p>{((L.vsP1 as Record<string, string>)[locale] ?? L.vsP1.en)}</p>
-          <p>{((L.vsP2 as Record<string, string>)[locale] ?? L.vsP2.en)}</p>
+        <LessonSection number={3} title={t('vsTitle')} variant="highlight">
+          <p>{t('vsP1')}</p>
+          <p>{t('vsP2')}</p>
           <div className="mt-4 p-4 rounded-lg bg-bg-primary/50 border border-gold-primary/10 font-mono text-sm text-gold-light">
             <code>abs(planet_longitude - sun_longitude) &lt; combustion_distance</code>
           </div>
         </LessonSection>
 
         {/* Related Links */}
-        <LessonSection title={((L.relatedTitle as Record<string, string>)[locale] ?? L.relatedTitle.en)}>
+        <LessonSection title={t('relatedTitle')}>
           <div className="flex flex-wrap gap-3">
             {[
               { href: '/kundali', label: { en: 'Generate Kundali', hi: 'कुण्डली बनाएँ', sa: 'कुण्डलीनिर्माणम्' } },
@@ -216,7 +186,7 @@ export default function CombustionPage() {
             ].map(link => (
               <Link key={link.href} href={link.href as '/'} className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-gold-primary/20 bg-gold-primary/5 text-gold-light text-sm hover:bg-gold-primary/15 transition-colors">
                 <BookOpen className="w-3.5 h-3.5" />
-                {tl(link.label, locale)}
+                {lt(link.label as LocaleText, locale)}
               </Link>
             ))}
           </div>

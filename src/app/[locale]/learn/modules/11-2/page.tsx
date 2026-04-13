@@ -2,186 +2,19 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/11-2.json';
 
 const META: ModuleMeta = {
   id: 'mod_11_2', phase: 3, topic: 'Dashas', moduleNumber: '11.2',
-  title: { en: 'Yogini and Char Dasha — Alternative Systems', hi: 'योगिनी एवं चर दशा — वैकल्पिक पद्धतियाँ', sa: 'योगिनी एवं चर दशा — वैकल्पिक पद्धतियाँ', mai: 'योगिनी एवं चर दशा — वैकल्पिक पद्धतियाँ', mr: 'योगिनी एवं चर दशा — वैकल्पिक पद्धतियाँ', ta: 'Yogini and Char Dasha — Alternative Systems', te: 'Yogini and Char Dasha — Alternative Systems', bn: 'Yogini and Char Dasha — Alternative Systems', kn: 'Yogini and Char Dasha — Alternative Systems', gu: 'Yogini and Char Dasha — Alternative Systems' },
-  subtitle: {
-    en: 'Beyond Vimshottari: the 36-year Yogini cycle and Jaimini\'s sign-based Char Dasha for event confirmation',
-    hi: 'विंशोत्तरी से परे: 36 वर्षीय योगिनी चक्र और घटना पुष्टि के लिए जैमिनी की राशि-आधारित चर दशा',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 15,
-  crossRefs: [
-    { label: { en: 'Module 11-1: Vimshottari Dasha', hi: 'मॉड्यूल 11-1: विंशोत्तरी दशा', sa: 'मॉड्यूल 11-1: विंशोत्तरी दशा', mai: 'मॉड्यूल 11-1: विंशोत्तरी दशा', mr: 'मॉड्यूल 11-1: विंशोत्तरी दशा', ta: 'Module 11-1: Vimshottari Dasha', te: 'Module 11-1: Vimshottari Dasha', bn: 'Module 11-1: Vimshottari Dasha', kn: 'Module 11-1: Vimshottari Dasha', gu: 'Module 11-1: Vimshottari Dasha' }, href: '/learn/modules/11-1' },
-    { label: { en: 'Module 11-3: Dasha & Transit Overlay', hi: 'मॉड्यूल 11-3: दशा एवं गोचर आच्छादन', sa: 'मॉड्यूल 11-3: दशा एवं गोचर आच्छादन', mai: 'मॉड्यूल 11-3: दशा एवं गोचर आच्छादन', mr: 'मॉड्यूल 11-3: दशा एवं गोचर आच्छादन', ta: 'Module 11-3: Dasha & Transit Overlay', te: 'Module 11-3: Dasha & Transit Overlay', bn: 'Module 11-3: Dasha & Transit Overlay', kn: 'Module 11-3: Dasha & Transit Overlay', gu: 'Module 11-3: Dasha & Transit Overlay' }, href: '/learn/modules/11-3' },
-    { label: { en: 'Dashas Deep Dive', hi: 'दशा विस्तार', sa: 'दशा विस्तार', mai: 'दशा विस्तार', mr: 'दशा विस्तार', ta: 'Dashas Deep Dive', te: 'Dashas Deep Dive', bn: 'Dashas Deep Dive', kn: 'Dashas Deep Dive', gu: 'Dashas Deep Dive' }, href: '/learn/dashas' },
-  ],
+  crossRefs: L.crossRefs.map(cr => ({ label: cr.label as unknown as Record<string, string>, href: cr.href })),
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q11_2_01', type: 'mcq',
-    question: {
-      en: 'What is the total cycle length of the Yogini Dasha system?',
-      hi: 'योगिनी दशा पद्धति के चक्र की कुल अवधि कितनी है?',
-    },
-    options: [
-      { en: '27 years', hi: '27 वर्ष', sa: '27 वर्ष', mai: '27 वर्ष', mr: '27 वर्ष', ta: '27 years', te: '27 years', bn: '27 years', kn: '27 years', gu: '27 years' },
-      { en: '36 years', hi: '36 वर्ष', sa: '36 वर्ष', mai: '36 वर्ष', mr: '36 वर्ष', ta: '36 years', te: '36 years', bn: '36 years', kn: '36 years', gu: '36 years' },
-      { en: '60 years', hi: '60 वर्ष', sa: '60 वर्ष', mai: '60 वर्ष', mr: '60 वर्ष', ta: '60 years', te: '60 years', bn: '60 years', kn: '60 years', gu: '60 years' },
-      { en: '120 years', hi: '120 वर्ष', sa: '120 वर्ष', mai: '120 वर्ष', mr: '120 वर्ष', ta: '120 years', te: '120 years', bn: '120 years', kn: '120 years', gu: '120 years' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Yogini Dasha cycle totals 36 years: Mangala(1) + Pingala(2) + Dhanya(3) + Bhramari(4) + Bhadrika(5) + Ulka(6) + Siddha(7) + Sankata(8) = 36. It repeats multiple times within a lifetime, making it useful for quick confirmation.',
-      hi: 'योगिनी दशा चक्र कुल 36 वर्ष है: मंगला(1) + पिंगला(2) + धन्या(3) + भ्रामरी(4) + भद्रिका(5) + उल्का(6) + सिद्धा(7) + संकटा(8) = 36। यह जीवनकाल में कई बार दोहराता है, जिससे यह शीघ्र पुष्टि के लिए उपयोगी है।',
-    },
-  },
-  {
-    id: 'q11_2_02', type: 'mcq',
-    question: {
-      en: 'How many Yoginis are there in the Yogini Dasha system?',
-      hi: 'योगिनी दशा पद्धति में कितनी योगिनियाँ हैं?',
-    },
-    options: [
-      { en: '7', hi: '7', sa: '7', mai: '7', mr: '7', ta: '7', te: '7', bn: '7', kn: '7', gu: '7' },
-      { en: '8', hi: '8', sa: '8', mai: '8', mr: '8', ta: '8', te: '8', bn: '8', kn: '8', gu: '8' },
-      { en: '9', hi: '9', sa: '9', mai: '9', mr: '9', ta: '9', te: '9', bn: '9', kn: '9', gu: '9' },
-      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'There are 8 Yoginis: Mangala, Pingala, Dhanya, Bhramari, Bhadrika, Ulka, Siddha, and Sankata. Each is assigned 1 through 8 years respectively, and each is linked to a specific planet.',
-      hi: '8 योगिनियाँ हैं: मंगला, पिंगला, धन्या, भ्रामरी, भद्रिका, उल्का, सिद्धा और संकटा। प्रत्येक को क्रमशः 1 से 8 वर्ष आवण्टित हैं, और प्रत्येक एक विशिष्ट ग्रह से जुड़ी है।',
-    },
-  },
-  {
-    id: 'q11_2_03', type: 'true_false',
-    question: {
-      en: 'Char Dasha is a planet-based system like Vimshottari.',
-      hi: 'चर दशा विंशोत्तरी की तरह ग्रह-आधारित पद्धति है।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. Char Dasha (Jaimini) is a sign-based (rashi-based) system. Each of the 12 signs gets a dasha period, unlike Vimshottari which assigns periods to 9 planets. The dasha duration for each sign is calculated based on its lord\'s distance from the sign.',
-      hi: 'असत्य। चर दशा (जैमिनी) राशि-आधारित पद्धति है। 12 राशियों में से प्रत्येक को एक दशा काल मिलता है, विंशोत्तरी के विपरीत जो 9 ग्रहों को काल निर्दिष्ट करती है। प्रत्येक राशि की दशा अवधि उसके स्वामी की राशि से दूरी के आधार पर गणित होती है।',
-    },
-  },
-  {
-    id: 'q11_2_04', type: 'mcq',
-    question: {
-      en: 'Which Yogini has the longest dasha period?',
-      hi: 'किस योगिनी की दशा अवधि सबसे लम्बी है?',
-    },
-    options: [
-      { en: 'Siddha (7 years)', hi: 'सिद्धा (7 वर्ष)', sa: 'सिद्धा (7 वर्ष)', mai: 'सिद्धा (7 वर्ष)', mr: 'सिद्धा (7 वर्ष)', ta: 'Siddha (7 years)', te: 'Siddha (7 years)', bn: 'Siddha (7 years)', kn: 'Siddha (7 years)', gu: 'Siddha (7 years)' },
-      { en: 'Sankata (8 years)', hi: 'संकटा (8 वर्ष)', sa: 'संकटा (8 वर्ष)', mai: 'संकटा (8 वर्ष)', mr: 'संकटा (8 वर्ष)', ta: 'Sankata (8 years)', te: 'Sankata (8 years)', bn: 'Sankata (8 years)', kn: 'Sankata (8 years)', gu: 'Sankata (8 years)' },
-      { en: 'Ulka (6 years)', hi: 'उल्का (6 वर्ष)', sa: 'उल्का (6 वर्ष)', mai: 'उल्का (6 वर्ष)', mr: 'उल्का (6 वर्ष)', ta: 'Ulka (6 years)', te: 'Ulka (6 years)', bn: 'Ulka (6 years)', kn: 'Ulka (6 years)', gu: 'Ulka (6 years)' },
-      { en: 'Bhadrika (5 years)', hi: 'भद्रिका (5 वर्ष)', sa: 'भद्रिका (5 वर्ष)', mai: 'भद्रिका (5 वर्ष)', mr: 'भद्रिका (5 वर्ष)', ta: 'Bhadrika (5 years)', te: 'Bhadrika (5 years)', bn: 'Bhadrika (5 years)', kn: 'Bhadrika (5 years)', gu: 'Bhadrika (5 years)' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Sankata has the longest period at 8 years. She is linked to Rahu and governs obstacles and karmic challenges. The Yogini periods ascend: Mangala(1), Pingala(2), Dhanya(3), Bhramari(4), Bhadrika(5), Ulka(6), Siddha(7), Sankata(8).',
-      hi: 'संकटा 8 वर्ष की सबसे लम्बी अवधि वाली है। वह राहु से जुड़ी है और बाधाओं तथा कार्मिक चुनौतियों की शासक है। योगिनी अवधियाँ आरोही हैं: मंगला(1), पिंगला(2), धन्या(3), भ्रामरी(4), भद्रिका(5), उल्का(6), सिद्धा(7), संकटा(8)।',
-    },
-  },
-  {
-    id: 'q11_2_05', type: 'mcq',
-    question: {
-      en: 'In Jaimini\'s system, what replaces the traditional Parashari aspects (graha drishti)?',
-      hi: 'जैमिनी पद्धति में पारम्परिक पाराशरी दृष्टि (ग्रह दृष्टि) के स्थान पर क्या है?',
-    },
-    options: [
-      { en: 'No aspects are used', hi: 'कोई दृष्टि प्रयुक्त नहीं', sa: 'कोई दृष्टि प्रयुक्त नहीं', mai: 'कोई दृष्टि प्रयुक्त नहीं', mr: 'कोई दृष्टि प्रयुक्त नहीं', ta: 'No aspects are used', te: 'No aspects are used', bn: 'No aspects are used', kn: 'No aspects are used', gu: 'No aspects are used' },
-      { en: 'Rashi Drishti (sign-based aspects)', hi: 'राशि दृष्टि (राशि-आधारित दृष्टि)', sa: 'राशि दृष्टि (राशि-आधारित दृष्टि)', mai: 'राशि दृष्टि (राशि-आधारित दृष्टि)', mr: 'राशि दृष्टि (राशि-आधारित दृष्टि)', ta: 'Rashi Drishti (sign-based aspects)', te: 'Rashi Drishti (sign-based aspects)', bn: 'Rashi Drishti (sign-based aspects)', kn: 'Rashi Drishti (sign-based aspects)', gu: 'Rashi Drishti (sign-based aspects)' },
-      { en: 'Only conjunctions matter', hi: 'केवल युति महत्त्वपूर्ण है', sa: 'केवल युति महत्त्वपूर्ण है', mai: 'केवल युति महत्त्वपूर्ण है', mr: 'केवल युति महत्त्वपूर्ण है', ta: 'Only conjunctions matter', te: 'Only conjunctions matter', bn: 'Only conjunctions matter', kn: 'Only conjunctions matter', gu: 'Only conjunctions matter' },
-      { en: 'Western-style orb aspects', hi: 'पाश्चात्य शैली की ओर्ब दृष्टि', sa: 'पाश्चात्य शैली की ओर्ब दृष्टि', mai: 'पाश्चात्य शैली की ओर्ब दृष्टि', mr: 'पाश्चात्य शैली की ओर्ब दृष्टि', ta: 'Western-style orb aspects', te: 'Western-style orb aspects', bn: 'Western-style orb aspects', kn: 'Western-style orb aspects', gu: 'Western-style orb aspects' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Jaimini uses Rashi Drishti (sign aspects) instead of planetary aspects. In this system, all planets in a sign aspect all planets in certain other signs. Movable signs aspect fixed signs (except the adjacent one), fixed signs aspect movable signs, and dual signs aspect each other.',
-      hi: 'जैमिनी ग्रह दृष्टि के स्थान पर राशि दृष्टि प्रयोग करते हैं। इस पद्धति में किसी राशि के सभी ग्रह कुछ अन्य राशियों के सभी ग्रहों को देखते हैं। चर राशियाँ स्थिर राशियों को देखती हैं (निकटवर्ती को छोड़कर), स्थिर राशियाँ चर राशियों को, और द्विस्वभाव राशियाँ एक-दूसरे को।',
-    },
-  },
-  {
-    id: 'q11_2_06', type: 'true_false',
-    question: {
-      en: 'Chara Karakas in Jaimini\'s system are determined by planetary degree, not by natural signification.',
-      hi: 'जैमिनी पद्धति में चर कारक ग्रह अंश से निर्धारित होते हैं, नैसर्गिक कारकत्व से नहीं।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. In Jaimini, the planet at the highest degree in any sign becomes the Atmakaraka (soul significator), the next highest becomes Amatyakaraka (career significator), and so on. These "chara" (variable) karakas change from chart to chart, unlike Parashara\'s fixed naisargika karakas.',
-      hi: 'सत्य। जैमिनी में, किसी भी राशि में सर्वोच्च अंश वाला ग्रह आत्मकारक बनता है, अगला उच्चतम अमात्यकारक, इत्यादि। ये "चर" (परिवर्तनशील) कारक प्रत्येक कुण्डली में बदलते हैं, पराशर के स्थिर नैसर्गिक कारकों के विपरीत।',
-    },
-  },
-  {
-    id: 'q11_2_07', type: 'mcq',
-    question: {
-      en: 'When should Yogini Dasha be preferred over Vimshottari?',
-      hi: 'विंशोत्तरी की अपेक्षा योगिनी दशा को कब प्राथमिकता दी जानी चाहिए?',
-    },
-    options: [
-      { en: 'Always — it is more accurate', hi: 'सदैव — यह अधिक सटीक है', sa: 'सदैव — यह अधिक सटीक है', mai: 'सदैव — यह अधिक सटीक है', mr: 'सदैव — यह अधिक सटीक है', ta: 'Always — it is more accurate', te: 'Always — it is more accurate', bn: 'Always — it is more accurate', kn: 'Always — it is more accurate', gu: 'Always — it is more accurate' },
-      { en: 'Never — only Vimshottari is valid', hi: 'कभी नहीं — केवल विंशोत्तरी वैध है', sa: 'कभी नहीं — केवल विंशोत्तरी वैध है', mai: 'कभी नहीं — केवल विंशोत्तरी वैध है', mr: 'कभी नहीं — केवल विंशोत्तरी वैध है', ta: 'Never — only Vimshottari is valid', te: 'Never — only Vimshottari is valid', bn: 'Never — only Vimshottari is valid', kn: 'Never — only Vimshottari is valid', gu: 'Never — only Vimshottari is valid' },
-      { en: 'As a secondary confirmation tool alongside Vimshottari', hi: 'विंशोत्तरी के साथ द्वितीयक पुष्टि उपकरण के रूप में', sa: 'विंशोत्तरी के साथ द्वितीयक पुष्टि उपकरण के रूप में', mai: 'विंशोत्तरी के साथ द्वितीयक पुष्टि उपकरण के रूप में', mr: 'विंशोत्तरी के साथ द्वितीयक पुष्टि उपकरण के रूप में', ta: 'As a secondary confirmation tool alongside Vimshottari', te: 'As a secondary confirmation tool alongside Vimshottari', bn: 'As a secondary confirmation tool alongside Vimshottari', kn: 'As a secondary confirmation tool alongside Vimshottari', gu: 'As a secondary confirmation tool alongside Vimshottari' },
-      { en: 'Only for female charts', hi: 'केवल स्त्री कुण्डली के लिए', sa: 'केवल स्त्री कुण्डली के लिए', mai: 'केवल स्त्री कुण्डली के लिए', mr: 'केवल स्त्री कुण्डली के लिए', ta: 'Only for female charts', te: 'Only for female charts', bn: 'Only for female charts', kn: 'Only for female charts', gu: 'Only for female charts' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'Yogini Dasha is best used as a secondary confirmation system. Its shorter 36-year cycle allows quick verification: if both Vimshottari and Yogini point to the same event timing, confidence in the prediction increases significantly.',
-      hi: 'योगिनी दशा द्वितीयक पुष्टि पद्धति के रूप में सर्वोत्तम है। इसका छोटा 36-वर्षीय चक्र शीघ्र सत्यापन की अनुमति देता है: यदि विंशोत्तरी और योगिनी दोनों एक ही घटना समय की ओर इंगित करें, तो भविष्यवाणी में विश्वास काफी बढ़ जाता है।',
-    },
-  },
-  {
-    id: 'q11_2_08', type: 'mcq',
-    question: {
-      en: 'What principle increases prediction confidence according to this module?',
-      hi: 'इस मॉड्यूल के अनुसार भविष्यवाणी में विश्वास बढ़ाने वाला सिद्धान्त कौन-सा है?',
-    },
-    options: [
-      { en: 'Using only one dasha system consistently', hi: 'सदा केवल एक दशा पद्धति का उपयोग', sa: 'सदा केवल एक दशा पद्धति का उपयोग', mai: 'सदा केवल एक दशा पद्धति का उपयोग', mr: 'सदा केवल एक दशा पद्धति का उपयोग', ta: 'Using only one dasha system consistently', te: 'Using only one dasha system consistently', bn: 'Using only one dasha system consistently', kn: 'Using only one dasha system consistently', gu: 'Using only one dasha system consistently' },
-      { en: 'If 3 dashas agree, the event is certain', hi: 'यदि 3 दशाएँ सहमत हों, तो घटना निश्चित है', sa: 'यदि 3 दशाएँ सहमत हों, तो घटना निश्चित है', mai: 'यदि 3 दशाएँ सहमत हों, तो घटना निश्चित है', mr: 'यदि 3 दशाएँ सहमत हों, तो घटना निश्चित है', ta: 'If 3 dashas agree, the event is certain', te: 'If 3 dashas agree, the event is certain', bn: 'If 3 dashas agree, the event is certain', kn: 'If 3 dashas agree, the event is certain', gu: 'If 3 dashas agree, the event is certain' },
-      { en: 'Only planetary transits matter', hi: 'केवल ग्रह गोचर महत्त्वपूर्ण हैं', sa: 'केवल ग्रह गोचर महत्त्वपूर्ण हैं', mai: 'केवल ग्रह गोचर महत्त्वपूर्ण हैं', mr: 'केवल ग्रह गोचर महत्त्वपूर्ण हैं', ta: 'Only planetary transits matter', te: 'Only planetary transits matter', bn: 'Only planetary transits matter', kn: 'Only planetary transits matter', gu: 'Only planetary transits matter' },
-      { en: 'Birth time rectification eliminates the need for multiple systems', hi: 'जन्म समय शोधन से बहु-पद्धति की आवश्यकता समाप्त हो जाती है', sa: 'जन्म समय शोधन से बहु-पद्धति की आवश्यकता समाप्त हो जाती है', mai: 'जन्म समय शोधन से बहु-पद्धति की आवश्यकता समाप्त हो जाती है', mr: 'जन्म समय शोधन से बहु-पद्धति की आवश्यकता समाप्त हो जाती है', ta: 'Birth time rectification eliminates the need for multiple systems', te: 'Birth time rectification eliminates the need for multiple systems', bn: 'Birth time rectification eliminates the need for multiple systems', kn: 'Birth time rectification eliminates the need for multiple systems', gu: 'Birth time rectification eliminates the need for multiple systems' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: '"If 3 dashas agree, the event is certain" — this is the principle of convergent validation. When Vimshottari, Yogini, and Char Dasha all point to the same event in the same time window, the prediction carries very high confidence.',
-      hi: '"यदि 3 दशाएँ सहमत हों, तो घटना निश्चित है" — यह अभिसारी प्रमाणीकरण का सिद्धान्त है। जब विंशोत्तरी, योगिनी और चर दशा सभी एक ही समय-खिड़की में एक ही घटना की ओर इंगित करें, तो भविष्यवाणी अत्यधिक विश्वसनीय होती है।',
-    },
-  },
-  {
-    id: 'q11_2_09', type: 'true_false',
-    question: {
-      en: 'In Char Dasha, the dasha duration for each sign is always the same (10 years per sign).',
-      hi: 'चर दशा में प्रत्येक राशि की दशा अवधि सदा समान (10 वर्ष प्रति राशि) होती है।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. In Char Dasha, each sign gets a variable duration (1 to 12 years) based on its lord\'s distance from the sign. The calculation involves counting signs from the sign to its lord, applying certain rules for odd and even signs. This makes each chart\'s Char Dasha sequence unique.',
-      hi: 'असत्य। चर दशा में प्रत्येक राशि को उसके स्वामी की राशि से दूरी के आधार पर परिवर्तनशील अवधि (1 से 12 वर्ष) मिलती है। गणना में राशि से उसके स्वामी तक राशि गिनना शामिल है, विषम और सम राशियों के लिए विशेष नियम लगाकर। यह प्रत्येक कुण्डली का चर दशा क्रम अद्वितीय बनाता है।',
-    },
-  },
-  {
-    id: 'q11_2_10', type: 'mcq',
-    question: {
-      en: 'Char Dasha is most useful for which type of analysis?',
-      hi: 'चर दशा किस प्रकार के विश्लेषण के लिए सर्वाधिक उपयोगी है?',
-    },
-    options: [
-      { en: 'Personality assessment', hi: 'व्यक्तित्व आकलन', sa: 'व्यक्तित्व आकलन', mai: 'व्यक्तित्व आकलन', mr: 'व्यक्तित्व आकलन', ta: 'Personality assessment', te: 'Personality assessment', bn: 'Personality assessment', kn: 'Personality assessment', gu: 'Personality assessment' },
-      { en: 'Event-based prediction and timing', hi: 'घटना-आधारित भविष्यवाणी और समय-निर्धारण', sa: 'घटना-आधारित भविष्यवाणी और समय-निर्धारण', mai: 'घटना-आधारित भविष्यवाणी और समय-निर्धारण', mr: 'घटना-आधारित भविष्यवाणी और समय-निर्धारण', ta: 'Event-based prediction and timing', te: 'Event-based prediction and timing', bn: 'Event-based prediction and timing', kn: 'Event-based prediction and timing', gu: 'Event-based prediction and timing' },
-      { en: 'Gemstone recommendation', hi: 'रत्न संस्तुति', sa: 'रत्न संस्तुति', mai: 'रत्न संस्तुति', mr: 'रत्न संस्तुति', ta: 'Gemstone recommendation', te: 'Gemstone recommendation', bn: 'Gemstone recommendation', kn: 'Gemstone recommendation', gu: 'Gemstone recommendation' },
-      { en: 'Naming ceremony', hi: 'नामकरण संस्कार', sa: 'नामकरण संस्कार', mai: 'नामकरण संस्कार', mr: 'नामकरण संस्कार', ta: 'Naming ceremony', te: 'Naming ceremony', bn: 'Naming ceremony', kn: 'Naming ceremony', gu: 'Naming ceremony' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Char Dasha excels at event-based analysis because it activates signs (houses), not individual planets. When a particular sign\'s dasha runs, ALL planets in that sign and the houses it represents become active simultaneously, making it easier to pinpoint concrete life events.',
-      hi: 'चर दशा घटना-आधारित विश्लेषण में उत्कृष्ट है क्योंकि यह राशियों (भावों) को सक्रिय करती है, व्यक्तिगत ग्रहों को नहीं। जब किसी विशेष राशि की दशा चलती है, उस राशि के सभी ग्रह और वह जिन भावों का प्रतिनिधित्व करती है, एक साथ सक्रिय हो जाते हैं, जिससे ठोस जीवन घटनाओं का निर्धारण सरल हो जाता है।',
-    },
-  },
-];
+const QUESTIONS = (L.questions as unknown) as ModuleQuestion[];
 
 function Page1() {
   const locale = useModuleLocale();
@@ -268,3 +101,4 @@ function Page3() {
 export default function Module11_2Page() {
   return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
 }
+

@@ -2,63 +2,13 @@ import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowRight, Minus, TrendingDown } from 'lucide-react';
-import type { Locale, LocaleText } from '@/types/panchang';
-import { tl } from '@/lib/utils/trilingual';
+import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/contributions-negative-numbers.json';
 
-/* ═══════════════════════════════════════════════════════════════
-   LABELS — bilingual (en / hi)
-   ═══════════════════════════════════════════════════════════════ */
-const L = {
-  title: {
-    en: "Negative Numbers — When India Said 'Less Than Nothing' and Europe Said 'Impossible'",
-    hi: 'ऋणात्मक संख्याएँ — जब भारत ने कहा "शून्य से कम" और यूरोप ने कहा "असंभव"',
-  },
-  subtitle: {
-    en: "Try explaining '-5 apples' to a 5-year-old. Now imagine being a European mathematician in 1700 and calling negative numbers 'absurd' and 'fictitious'. Meanwhile, in India, Brahmagupta had been doing arithmetic with negative numbers since 628 CE...",
-    hi: 'एक 5 वर्षीय बच्चे को "-5 सेब" समझाने की कोशिश करें। अब कल्पना करें कि आप 1700 में एक यूरोपीय गणितज्ञ हैं जो ऋणात्मक संख्याओं को "बेतुका" और "काल्पनिक" कह रहे हैं। इस बीच, भारत में ब्रह्मगुप्त 628 ईस्वी से ऋणात्मक संख्याओं के साथ अंकगणित कर रहे थे...',
-  },
-
-  s1Title: { en: 'Brahmagupta — Formal Rules for Negative Numbers (628 CE)', hi: 'ब्रह्मगुप्त — ऋणात्मक संख्याओं के औपचारिक नियम (628 ईस्वी)', sa: 'ब्रह्मगुप्त — ऋणात्मक संख्याओं के औपचारिक नियम (628 ईस्वी)', mai: 'ब्रह्मगुप्त — ऋणात्मक संख्याओं के औपचारिक नियम (628 ईस्वी)', mr: 'ब्रह्मगुप्त — ऋणात्मक संख्याओं के औपचारिक नियम (628 ईस्वी)', ta: 'Brahmagupta — Formal Rules for Negative Numbers (628 CE)', te: 'Brahmagupta — Formal Rules for Negative Numbers (628 CE)', bn: 'Brahmagupta — Formal Rules for Negative Numbers (628 CE)', kn: 'Brahmagupta — Formal Rules for Negative Numbers (628 CE)', gu: 'Brahmagupta — Formal Rules for Negative Numbers (628 CE)' },
-  s1Body: {
-    en: "In 628 CE, Brahmagupta wrote the Brahmasphutasiddhanta — the same text that gave us zero. Chapter 18 contains the first formal arithmetic rules for negative numbers ever written. He framed them in economic terms every merchant could understand: धन (dhana = fortune = positive) and ऋण (rina = debt = negative). Debt was a physical, everyday reality for Indian traders and bankers. Negative numbers weren't philosophical puzzles — they were accounting tools.",
-    hi: '628 ईस्वी में, ब्रह्मगुप्त ने ब्रह्मस्फुटसिद्धान्त लिखा — वही ग्रंथ जिसने हमें शून्य दिया। अध्याय 18 में ऋणात्मक संख्याओं के लिए पहले औपचारिक अंकगणितीय नियम हैं। उन्होंने इन्हें आर्थिक शब्दों में तैयार किया जो हर व्यापारी समझ सकता था: धन (= सम्पदा = धनात्मक) और ऋण (= कर्ज़ = ऋणात्मक)। ऋण भारतीय व्यापारियों और बैंकरों के लिए एक भौतिक, दैनिक वास्तविकता था। ऋणात्मक संख्याएँ दार्शनिक पहेलियाँ नहीं थीं — वे लेखा-जोखा के उपकरण थे।',
-  },
-
-  s2Title: { en: "Brahmagupta's Rules — The World's First Negative Number Arithmetic", hi: 'ब्रह्मगुप्त के नियम — विश्व का पहला ऋणात्मक संख्या अंकगणित', sa: 'ब्रह्मगुप्त के नियम — विश्व का पहला ऋणात्मक संख्या अंकगणित', mai: 'ब्रह्मगुप्त के नियम — विश्व का पहला ऋणात्मक संख्या अंकगणित', mr: 'ब्रह्मगुप्त के नियम — विश्व का पहला ऋणात्मक संख्या अंकगणित', ta: "Brahmagupta's Rules — The World's First Negative Number Arithmetic", te: "Brahmagupta's Rules — The World's First Negative Number Arithmetic", bn: "Brahmagupta's Rules — The World's First Negative Number Arithmetic", kn: "Brahmagupta's Rules — The World's First Negative Number Arithmetic", gu: "Brahmagupta's Rules — The World's First Negative Number Arithmetic" },
-  s2Intro: {
-    en: 'Brahmagupta gave complete, correct rules for all four operations with negative numbers — more than a thousand years before Europe accepted them. His one error: he also declared 0 ÷ 0 = 0 (same error as in his zero chapter).',
-    hi: 'ब्रह्मगुप्त ने ऋणात्मक संख्याओं के साथ सभी चार संक्रियाओं के लिए पूर्ण, सही नियम दिए — यूरोप के उन्हें स्वीकार करने से एक हजार साल से भी अधिक पहले। उनकी एकमात्र त्रुटि: उन्होंने 0 ÷ 0 = 0 भी घोषित किया।',
-  },
-
-  s3Title: { en: 'Mahavira — Extending the System (9th Century)', hi: 'महावीर — प्रणाली का विस्तार (9वीं शताब्दी)', sa: 'महावीर — प्रणाली का विस्तार (9वीं शताब्दी)', mai: 'महावीर — प्रणाली का विस्तार (9वीं शताब्दी)', mr: 'महावीर — प्रणाली का विस्तार (9वीं शताब्दी)', ta: 'Mahavira — Extending the System (9th Century)', te: 'Mahavira — Extending the System (9th Century)', bn: 'Mahavira — Extending the System (9th Century)', kn: 'Mahavira — Extending the System (9th Century)', gu: 'Mahavira — Extending the System (9th Century)' },
-  s3Body: {
-    en: "The Jain mathematician Mahavira (around 850 CE) wrote the Ganitasarasangraha — 'Compendium of the Essence of Mathematics.' He extended Brahmagupta's negative number rules and worked extensively with negative quantities in the context of debt, losses, and subtraction sequences. He also — incorrectly — declared that the square root of a negative number does not exist. This was reasonable given the knowledge of his time, and it would take another 700 years (and the work of Cardano in 1545 CE) before imaginary numbers were introduced. But his systematic treatment of negative arithmetic was centuries ahead of the West.",
-    hi: 'जैन गणितज्ञ महावीर (लगभग 850 ईस्वी) ने गणितसारसंग्रह लिखा — "गणित के सार का संग्रह।" उन्होंने ब्रह्मगुप्त के ऋणात्मक संख्या नियमों का विस्तार किया और ऋण, हानि और घटाव अनुक्रमों के संदर्भ में ऋणात्मक मात्राओं के साथ व्यापक रूप से काम किया। उन्होंने — गलत तरीके से — घोषित किया कि ऋणात्मक संख्या का वर्गमूल मौजूद नहीं है। यह उनके समय के ज्ञान को देखते हुए उचित था। उनका व्यवस्थित उपचार पश्चिम से सदियों आगे था।',
-  },
-
-  s4Title: { en: "European Resistance — 'Absurd' and 'Fictitious' Numbers", hi: 'यूरोपीय प्रतिरोध — "बेतुकी" और "काल्पनिक" संख्याएँ', sa: 'यूरोपीय प्रतिरोध — "बेतुकी" और "काल्पनिक" संख्याएँ', mai: 'यूरोपीय प्रतिरोध — "बेतुकी" और "काल्पनिक" संख्याएँ', mr: 'यूरोपीय प्रतिरोध — "बेतुकी" और "काल्पनिक" संख्याएँ', ta: "European Resistance — 'Absurd' and 'Fictitious' Numbers", te: "European Resistance — 'Absurd' and 'Fictitious' Numbers", bn: "European Resistance — 'Absurd' and 'Fictitious' Numbers", kn: "European Resistance — 'Absurd' and 'Fictitious' Numbers", gu: "European Resistance — 'Absurd' and 'Fictitious' Numbers" },
-  s4Body: {
-    en: "Europe's greatest mathematicians resisted negative numbers for over a thousand years after Brahmagupta. René Descartes (1637 CE) called negative roots of equations 'false roots' — he literally refused to accept them as real solutions. Blaise Pascal (1650 CE) insisted that subtracting a number from zero was 'pure nonsense.' Even Leonhard Euler — arguably the greatest mathematician of the 18th century — struggled with negative numbers, initially unsure whether a negative number was greater or less than infinity. The philosopher Francis Maseres (1758 CE) wrote entire books arguing that negative numbers should be abolished from mathematics. These were not fringe views — they were mainstream European mathematics.",
-    hi: 'यूरोप के सबसे बड़े गणितज्ञों ने ब्रह्मगुप्त के बाद एक हजार से अधिक वर्षों तक ऋणात्मक संख्याओं का विरोध किया। रेने डेकार्ट (1637 ईस्वी) ने समीकरणों की ऋणात्मक जड़ों को "झूठी जड़ें" कहा। ब्लेज़ पास्कल (1650 ईस्वी) ने जोर देकर कहा कि शून्य में से एक संख्या घटाना "शुद्ध बकवास" है। यहाँ तक कि लियोनार्ड यूलर भी शुरू में ऋणात्मक संख्याओं से जूझते थे। फ्रांसिस मासेरेस (1758 ईस्वी) ने पूरी किताबें लिखीं यह तर्क देते हुए कि ऋणात्मक संख्याओं को गणित से समाप्त किया जाना चाहिए।',
-  },
-
-  s5Title: { en: 'The Practical Origin — Indian Merchants and Bankers', hi: 'व्यावहारिक उत्पत्ति — भारतीय व्यापारी और बैंकर', sa: 'व्यावहारिक उत्पत्ति — भारतीय व्यापारी और बैंकर', mai: 'व्यावहारिक उत्पत्ति — भारतीय व्यापारी और बैंकर', mr: 'व्यावहारिक उत्पत्ति — भारतीय व्यापारी और बैंकर', ta: 'The Practical Origin — Indian Merchants and Bankers', te: 'The Practical Origin — Indian Merchants and Bankers', bn: 'The Practical Origin — Indian Merchants and Bankers', kn: 'The Practical Origin — Indian Merchants and Bankers', gu: 'The Practical Origin — Indian Merchants and Bankers' },
-  s5Body: {
-    en: "Why did India accept negative numbers so readily when Europe struggled for over a millennium? The answer is practical: the Indian economy needed them. India had a sophisticated banking and credit system centuries before Europe. The concept of rina (debt) was legally and commercially codified in texts like Manusmriti and Arthashastra. A merchant who owed 50 coins but had only 30 needed a way to represent '-20 coins.' Indian mathematicians had a concrete, economically grounded reason to formalize negative arithmetic. European mathematicians, working primarily in the abstract tradition of Greek geometry, had no such grounding. Geometry cannot have a negative length — but debt absolutely can.",
-    hi: 'भारत ने ऋणात्मक संख्याओं को इतनी आसानी से क्यों स्वीकार किया जबकि यूरोप एक सहस्राब्दी से अधिक समय तक संघर्ष करता रहा? उत्तर व्यावहारिक है: भारतीय अर्थव्यवस्था को उनकी आवश्यकता थी। भारत में यूरोप से सदियों पहले एक परिष्कृत बैंकिंग और ऋण प्रणाली थी। ऋण की अवधारणा मनुस्मृति और अर्थशास्त्र जैसे ग्रंथों में कानूनी और व्यावसायिक रूप से संहिताबद्ध थी। एक व्यापारी जो 50 सिक्के का ऋणी था लेकिन उसके पास केवल 30 थे, उसे "-20 सिक्के" दर्शाने का एक तरीका चाहिए था।',
-  },
-
-  s6Title: { en: 'Negative Numbers in Jyotish — Retrograde Motion and Longitudes', hi: 'ज्योतिष में ऋणात्मक संख्याएँ — वक्री गति और देशांतर', sa: 'ज्योतिष में ऋणात्मक संख्याएँ — वक्री गति और देशांतर', mai: 'ज्योतिष में ऋणात्मक संख्याएँ — वक्री गति और देशांतर', mr: 'ज्योतिष में ऋणात्मक संख्याएँ — वक्री गति और देशांतर', ta: 'Negative Numbers in Jyotish — Retrograde Motion and Longitudes', te: 'Negative Numbers in Jyotish — Retrograde Motion and Longitudes', bn: 'Negative Numbers in Jyotish — Retrograde Motion and Longitudes', kn: 'Negative Numbers in Jyotish — Retrograde Motion and Longitudes', gu: 'Negative Numbers in Jyotish — Retrograde Motion and Longitudes' },
-  s6Body: {
-    en: "The connection between Indian astronomy (Jyotish) and negative numbers is direct and elegant. Planetary longitudes are measured from 0° to 360°. A planet's apparent retrograde motion — when it appears to move backward against the stars — requires tracking negative velocity (degrees per day). Without signed arithmetic, you cannot compute retrogression. The difference in longitude between two planets (the bhava sandhi calculation) can be negative if measured in one direction. The correction terms in planetary equations (the manda and shighra samskara) are signed quantities — they are added or subtracted depending on which half of the orbit the planet occupies. Every panchang calculation in this app uses signed arithmetic that Brahmagupta formalized in 628 CE.",
-    hi: 'भारतीय खगोलशास्त्र (ज्योतिष) और ऋणात्मक संख्याओं के बीच संबंध प्रत्यक्ष और सुंदर है। ग्रहों के देशांतर 0° से 360° तक मापे जाते हैं। ग्रह की वक्री गति — जब वह तारों के विपरीत पीछे चलता प्रतीत होता है — के लिए ऋणात्मक वेग (डिग्री प्रति दिन) को ट्रैक करना आवश्यक है। ऋणात्मक अंकगणित के बिना, आप वक्र-गति की गणना नहीं कर सकते। इस ऐप में प्रत्येक पंचांग गणना उस चिह्नित अंकगणित का उपयोग करती है जिसे ब्रह्मगुप्त ने 628 ईस्वी में औपचारिक रूप दिया था।',
-  },
-
-  backToContributions: { en: 'Back to Contributions', hi: 'योगदान पर वापस', sa: 'योगदान पर वापस', mai: 'योगदान पर वापस', mr: 'योगदान पर वापस', ta: 'Back to Contributions', te: 'Back to Contributions', bn: 'Back to Contributions', kn: 'Back to Contributions', gu: 'Back to Contributions' },
-  nextPage: { en: 'Next: Fibonacci & Indian Music', hi: 'अगला: फिबोनाची और भारतीय संगीत', sa: 'अगला: फिबोनाची और भारतीय संगीत', mai: 'अगला: फिबोनाची और भारतीय संगीत', mr: 'अगला: फिबोनाची और भारतीय संगीत', ta: 'Next: Fibonacci & Indian Music', te: 'Next: Fibonacci & Indian Music', bn: 'Next: Fibonacci & Indian Music', kn: 'Next: Fibonacci & Indian Music', gu: 'Next: Fibonacci & Indian Music' },
-};
 
 /* ═══════════════════════════════════════════════════════════════
    DATA
@@ -102,7 +52,7 @@ const SANSKRIT_TERMS = [
 export default async function NegativeNumbersPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params as { locale: Locale };
   const hi = isDevanagariLocale(locale);
-  const t = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
   return (
     <div className="min-h-screen">
@@ -134,13 +84,13 @@ export default async function NegativeNumbersPage({ params }: { params: Promise<
               className="text-4xl sm:text-5xl lg:text-6xl font-black text-gold-gradient mb-4"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
-              {t(L.title)}
+              {t('title')}
             </h1>
             <p className="text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
-              {t(L.subtitle)}
+              {t('subtitle')}
             </p>
             <div className="flex justify-center mt-4">
-              <ShareRow pageTitle={t(L.title)} locale={locale} />
+              <ShareRow pageTitle={t('title')} locale={locale} />
             </div>
           </div>
 
@@ -178,8 +128,8 @@ export default async function NegativeNumbersPage({ params }: { params: Promise<
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pb-20 space-y-2">
 
         {/* ═══ SECTION 1 ═══ */}
-        <LessonSection number={1} title={t(L.s1Title)} variant="highlight">
-          <p>{t(L.s1Body)}</p>
+        <LessonSection number={1} title={t('s1Title')} variant="highlight">
+          <p>{t('s1Body')}</p>
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="rounded-xl bg-gradient-to-br from-gold-primary/10 to-transparent border border-gold-primary/20 p-5">
               <div
@@ -209,8 +159,8 @@ export default async function NegativeNumbersPage({ params }: { params: Promise<
         </LessonSection>
 
         {/* ═══ SECTION 2 ═══ */}
-        <LessonSection number={2} title={t(L.s2Title)}>
-          <p>{t(L.s2Intro)}</p>
+        <LessonSection number={2} title={t('s2Title')}>
+          <p>{t('s2Intro')}</p>
           <div className="mt-6 space-y-3">
             <h4 className="text-gold-light font-semibold text-sm uppercase tracking-wider">
               {hi ? 'ब्रह्मगुप्त के ऋण-धन नियम (628 ईस्वी)' : "Brahmagupta's rina-dhana rules (628 CE)"}
@@ -221,7 +171,7 @@ export default async function NegativeNumbersPage({ params }: { params: Promise<
                 className={`flex items-center gap-3 rounded-lg border px-4 py-3 ${item.sign}`}
               >
                 <span className="text-xs font-mono w-4 flex-shrink-0 opacity-60">{i + 1}.</span>
-                <span className="font-mono text-sm flex-1">{t(item.rule)}</span>
+                <span className="font-mono text-sm flex-1">{lt(item.rule as LocaleText, locale)}</span>
               </div>
             ))}
           </div>
@@ -241,8 +191,8 @@ export default async function NegativeNumbersPage({ params }: { params: Promise<
         </LessonSection>
 
         {/* ═══ SECTION 3 ═══ */}
-        <LessonSection number={3} title={t(L.s3Title)} variant="highlight">
-          <p>{t(L.s3Body)}</p>
+        <LessonSection number={3} title={t('s3Title')} variant="highlight">
+          <p>{t('s3Body')}</p>
           <div className="mt-5 bg-white/[0.02] border border-gold-primary/15 rounded-xl p-5">
             <div className="text-gold-light font-semibold text-sm mb-3">
               {hi ? 'महावीर का योगदान (गणितसारसंग्रह, ~850 ईस्वी)' : "Mahavira's contributions (Ganitasarasangraha, ~850 CE)"}
@@ -256,7 +206,7 @@ export default async function NegativeNumbersPage({ params }: { params: Promise<
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-2 text-text-secondary text-sm">
                   <span className="text-gold-primary/60 mt-0.5">•</span>
-                  <span>{t(item)}</span>
+                  <span>{lt(item as LocaleText, locale)}</span>
                 </li>
               ))}
             </ul>
@@ -264,8 +214,8 @@ export default async function NegativeNumbersPage({ params }: { params: Promise<
         </LessonSection>
 
         {/* ═══ SECTION 4 ═══ */}
-        <LessonSection number={4} title={t(L.s4Title)}>
-          <p>{t(L.s4Body)}</p>
+        <LessonSection number={4} title={t('s4Title')}>
+          <p>{t('s4Body')}</p>
           <div className="mt-6 space-y-3">
             <h4 className="text-gold-light font-semibold text-sm uppercase tracking-wider">
               {hi ? 'यूरोपीय विरोध की समयरेखा' : 'Timeline of European resistance'}
@@ -279,7 +229,7 @@ export default async function NegativeNumbersPage({ params }: { params: Promise<
                   <div className="text-gold-primary font-bold text-sm font-mono">{item.year}</div>
                   <div className="text-text-secondary/70 text-xs">{item.who}</div>
                 </div>
-                <div className="text-text-secondary text-sm leading-relaxed italic">&ldquo;{t(item.stance)}&rdquo;</div>
+                <div className="text-text-secondary text-sm leading-relaxed italic">&ldquo;{lt(item.stance as LocaleText, locale)}&rdquo;</div>
               </div>
             ))}
           </div>
@@ -292,8 +242,8 @@ export default async function NegativeNumbersPage({ params }: { params: Promise<
         </LessonSection>
 
         {/* ═══ SECTION 5 ═══ */}
-        <LessonSection number={5} title={t(L.s5Title)} variant="highlight">
-          <p>{t(L.s5Body)}</p>
+        <LessonSection number={5} title={t('s5Title')} variant="highlight">
+          <p>{t('s5Body')}</p>
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="rounded-xl bg-emerald-500/5 border border-emerald-500/20 p-5">
               <div className="flex items-center gap-2 mb-3">
@@ -311,7 +261,7 @@ export default async function NegativeNumbersPage({ params }: { params: Promise<
                 ].map((item, j) => (
                   <li key={j} className="flex items-start gap-2">
                     <span className="text-emerald-400/60 mt-0.5">+</span>
-                    <span>{t(item)}</span>
+                    <span>{lt(item as LocaleText, locale)}</span>
                   </li>
                 ))}
               </ul>
@@ -332,7 +282,7 @@ export default async function NegativeNumbersPage({ params }: { params: Promise<
                 ].map((item, j) => (
                   <li key={j} className="flex items-start gap-2">
                     <span className="text-red-400/60 mt-0.5">−</span>
-                    <span>{t(item)}</span>
+                    <span>{lt(item as LocaleText, locale)}</span>
                   </li>
                 ))}
               </ul>
@@ -341,8 +291,8 @@ export default async function NegativeNumbersPage({ params }: { params: Promise<
         </LessonSection>
 
         {/* ═══ SECTION 6 ═══ */}
-        <LessonSection number={6} title={t(L.s6Title)}>
-          <p>{t(L.s6Body)}</p>
+        <LessonSection number={6} title={t('s6Title')}>
+          <p>{t('s6Body')}</p>
           <div className="mt-6 space-y-2">
             <h4 className="text-gold-light font-semibold text-sm uppercase tracking-wider mb-3">
               {hi ? 'इस ऐप में ऋणात्मक संख्याओं के उपयोग' : 'Uses of negative numbers in this app'}
@@ -353,7 +303,7 @@ export default async function NegativeNumbersPage({ params }: { params: Promise<
                 className="flex items-start gap-3 rounded-lg bg-white/[0.02] border border-white/[0.05] px-4 py-3"
               >
                 <TrendingDown className="w-4 h-4 text-gold-primary/60 flex-shrink-0 mt-0.5" />
-                <span className="text-text-secondary text-sm">{t(item.use)}</span>
+                <span className="text-text-secondary text-sm">{lt(item.use as LocaleText, locale)}</span>
               </div>
             ))}
           </div>
@@ -374,13 +324,13 @@ export default async function NegativeNumbersPage({ params }: { params: Promise<
             href="/learn/contributions"
             className="flex items-center gap-2 px-6 py-3 rounded-xl border border-gold-primary/20 text-gold-primary hover:border-gold-primary/50 hover:bg-gold-primary/5 transition-all text-sm font-medium"
           >
-            ← {t(L.backToContributions)}
+            ← {t('backToContributions')}
           </Link>
           <Link
             href="/learn/contributions/fibonacci"
             className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-all text-sm font-medium"
           >
-            {t(L.nextPage)} <ArrowRight className="w-4 h-4" />
+            {t('nextPage')} <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>

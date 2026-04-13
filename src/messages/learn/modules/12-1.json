@@ -1,0 +1,665 @@
+{
+  "title": {
+    "en": "Transits (Gochar) — Planets in Motion",
+    "hi": "गोचर — गतिमान ग्रह",
+    "sa": "गोचरः — गतिमानाः ग्रहाः",
+    "mai": "गोचर — गतिमान ग्रह",
+    "mr": "गोचर — गतिमान ग्रह",
+    "ta": "கோசாரம் — இயங்கும் கிரகங்கள்",
+    "te": "గోచారం — గతిలోని గ్రహాలు",
+    "bn": "গোচর — গতিমান গ্রহ",
+    "kn": "ಗೋಚಾರ — ಚಲಿಸುವ ಗ್ರಹಗಳು",
+    "gu": "ગોચર — ગતિમાન ગ્રહો"
+  },
+  "subtitle": {
+    "en": "How current planetary positions overlay the birth chart, creating evolving life themes through slow and fast planet transits",
+    "hi": "वर्तमान ग्रह स्थितियाँ जन्म कुण्डली पर कैसे आच्छादित होती हैं, धीमे और तीव्र ग्रह गोचर से जीवन विषय कैसे बनते हैं",
+    "sa": "ग्रहाणां वर्तमानस्थितिः जन्मकुण्डलीं प्रति कथं फलं ददाति — गोचरविश्लेषणस्य मूलतत्त्वानि",
+    "ta": "கிரகங்களின் தற்போதைய நிலை ஜாதகத்தின் மீது எவ்வாறு பலன் அளிக்கிறது — கோசார பகுப்பாய்வின் அடிப்படைகள்",
+    "te": "గ్రహాల ప్రస్తుత స్థితి జాతకంపై ఎలా ఫలితమిస్తుంది — గోచార విశ్లేషణ ప్రాథమికాంశాలు",
+    "bn": "গ্রহের বর্তমান অবস্থান জন্মকুণ্ডলীতে কীভাবে ফল দেয় — গোচর বিশ্লেষণের মূলতত্ত্ব",
+    "kn": "ಗ್ರಹಗಳ ಪ್ರಸ್ತುತ ಸ್ಥಿತಿ ಜನ್ಮ ಕುಂಡಲಿಯ ಮೇಲೆ ಹೇಗೆ ಫಲ ಕೊಡುತ್ತದೆ — ಗೋಚಾರ ವಿಶ್ಲೇಷಣೆಯ ಮೂಲ ತತ್ತ್ವಗಳು",
+    "mr": "ग्रहांची सध्याची स्थिती जन्मकुंडलीवर कसे फल देते — गोचर विश्लेषणाची मूलतत्त्वे",
+    "gu": "ગ્રહોની વર્તમાન સ્થિતિ જન્મ કુંડળી પર કેવી રીતે ફળ આપે છે — ગોચર વિશ્લેષણનાં મૂળ તત્ત્વો",
+    "mai": "ग्रहक वर्तमान स्थिति जन्मकुंडलीपर कोना फल दैत अछि — गोचर विश्लेषणक मूल तत्त्व"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "Module 12-2: Sade Sati",
+        "hi": "मॉड्यूल 12-2: साढ़े साती",
+        "sa": "मॉड्यूल 12-2: साढ़े साती",
+        "mai": "मॉड्यूल 12-2: साढ़े साती",
+        "mr": "मॉड्यूल 12-2: साढ़े साती",
+        "ta": "Module 12-2: Sade Sati",
+        "te": "Module 12-2: Sade Sati",
+        "bn": "Module 12-2: Sade Sati",
+        "kn": "Module 12-2: Sade Sati",
+        "gu": "Module 12-2: Sade Sati"
+      },
+      "href": "/learn/modules/12-2"
+    },
+    {
+      "label": {
+        "en": "Module 12-3: Jupiter & Rahu-Ketu Transit",
+        "hi": "मॉड्यूल 12-3: गुरु एवं राहु-केतु गोचर",
+        "sa": "मॉड्यूल 12-3: गुरु एवं राहु-केतु गोचर",
+        "mai": "मॉड्यूल 12-3: गुरु एवं राहु-केतु गोचर",
+        "mr": "मॉड्यूल 12-3: गुरु एवं राहु-केतु गोचर",
+        "ta": "Module 12-3: Jupiter & Rahu-Ketu Transit",
+        "te": "Module 12-3: Jupiter & Rahu-Ketu Transit",
+        "bn": "Module 12-3: Jupiter & Rahu-Ketu Transit",
+        "kn": "Module 12-3: Jupiter & Rahu-Ketu Transit",
+        "gu": "Module 12-3: Jupiter & Rahu-Ketu Transit"
+      },
+      "href": "/learn/modules/12-3"
+    },
+    {
+      "label": {
+        "en": "Transit Calendar",
+        "hi": "गोचर पञ्चाङ्ग",
+        "sa": "गोचर पञ्चाङ्ग",
+        "mai": "गोचर पञ्चाङ्ग",
+        "mr": "गोचर पञ्चाङ्ग",
+        "ta": "Transit Calendar",
+        "te": "Transit Calendar",
+        "bn": "Transit Calendar",
+        "kn": "Transit Calendar",
+        "gu": "Transit Calendar"
+      },
+      "href": "/transits"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q12_1_01",
+      "type": "mcq",
+      "question": {
+        "en": "How long does Saturn approximately stay in one zodiac sign?",
+        "hi": "शनि लगभग कितने समय तक एक राशि में रहता है?",
+        "sa": "शनि लगभग कितने समय तक एक राशि में रहता है?",
+        "ta": "How long does Saturn approximately stay in one zodiac sign?",
+        "te": "How long does Saturn approximately stay in one zodiac sign?",
+        "bn": "How long does Saturn approximately stay in one zodiac sign?",
+        "kn": "How long does Saturn approximately stay in one zodiac sign?",
+        "mr": "शनि लगभग कितने समय तक एक राशि में रहता है?",
+        "gu": "How long does Saturn approximately stay in one zodiac sign?",
+        "mai": "शनि लगभग कितने समय तक एक राशि में रहता है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Saturn takes approximately 29.5 years to complete one zodiacal revolution, spending about 2.5 years in each of the 12 signs. This slow pace is why Saturn transits create long-lasting life themes.",
+        "hi": "शनि एक पूर्ण राशिचक्र परिक्रमा में लगभग 29.5 वर्ष लेता है, प्रत्येक 12 राशियों में लगभग 2.5 वर्ष रहता है। इसी धीमी गति के कारण शनि गोचर दीर्घकालिक जीवन विषय निर्मित करता है।",
+        "sa": "शनि एक पूर्ण राशिचक्र परिक्रमा में लगभग 29.5 वर्ष लेता है, प्रत्येक 12 राशियों में लगभग 2.5 वर्ष रहता है। इसी धीमी गति के कारण शनि गोचर दीर्घकालिक जीवन विषय निर्मित करता है।",
+        "ta": "Saturn takes approximately 29.5 years to complete one zodiacal revolution, spending about 2.5 years in each of the 12 signs. This slow pace is why Saturn transits create long-lasting life themes.",
+        "te": "Saturn takes approximately 29.5 years to complete one zodiacal revolution, spending about 2.5 years in each of the 12 signs. This slow pace is why Saturn transits create long-lasting life themes.",
+        "bn": "Saturn takes approximately 29.5 years to complete one zodiacal revolution, spending about 2.5 years in each of the 12 signs. This slow pace is why Saturn transits create long-lasting life themes.",
+        "kn": "Saturn takes approximately 29.5 years to complete one zodiacal revolution, spending about 2.5 years in each of the 12 signs. This slow pace is why Saturn transits create long-lasting life themes.",
+        "mr": "शनि एक पूर्ण राशिचक्र परिक्रमा में लगभग 29.5 वर्ष लेता है, प्रत्येक 12 राशियों में लगभग 2.5 वर्ष रहता है। इसी धीमी गति के कारण शनि गोचर दीर्घकालिक जीवन विषय निर्मित करता है।",
+        "gu": "Saturn takes approximately 29.5 years to complete one zodiacal revolution, spending about 2.5 years in each of the 12 signs. This slow pace is why Saturn transits create long-lasting life themes.",
+        "mai": "शनि एक पूर्ण राशिचक्र परिक्रमा में लगभग 29.5 वर्ष लेता है, प्रत्येक 12 राशियों में लगभग 2.5 वर्ष रहता है। इसी धीमी गति के कारण शनि गोचर दीर्घकालिक जीवन विषय निर्मित करता है।"
+      },
+      "options": [
+        {
+          "en": "About 1 month",
+          "hi": "लगभग 1 मास",
+          "sa": "लगभग 1 मास",
+          "mai": "लगभग 1 मास",
+          "mr": "लगभग 1 मास",
+          "ta": "About 1 month",
+          "te": "About 1 month",
+          "bn": "About 1 month",
+          "kn": "About 1 month",
+          "gu": "About 1 month"
+        },
+        {
+          "en": "About 2.5 years",
+          "hi": "लगभग 2.5 वर्ष",
+          "sa": "लगभग 2.5 वर्ष",
+          "mai": "लगभग 2.5 वर्ष",
+          "mr": "लगभग 2.5 वर्ष",
+          "ta": "About 2.5 years",
+          "te": "About 2.5 years",
+          "bn": "About 2.5 years",
+          "kn": "About 2.5 years",
+          "gu": "About 2.5 years"
+        },
+        {
+          "en": "About 12 years",
+          "hi": "लगभग 12 वर्ष",
+          "sa": "लगभग 12 वर्ष",
+          "mai": "लगभग 12 वर्ष",
+          "mr": "लगभग 12 वर्ष",
+          "ta": "About 12 years",
+          "te": "About 12 years",
+          "bn": "About 12 years",
+          "kn": "About 12 years",
+          "gu": "About 12 years"
+        },
+        {
+          "en": "About 18 months",
+          "hi": "लगभग 18 मास",
+          "sa": "लगभग 18 मास",
+          "mai": "लगभग 18 मास",
+          "mr": "लगभग 18 मास",
+          "ta": "About 18 months",
+          "te": "About 18 months",
+          "bn": "About 18 months",
+          "kn": "About 18 months",
+          "gu": "About 18 months"
+        }
+      ]
+    },
+    {
+      "id": "q12_1_02",
+      "type": "true_false",
+      "question": {
+        "en": "In Vedic astrology, transits are primarily read from the Sun sign (Surya Lagna).",
+        "hi": "वैदिक ज्योतिष में गोचर मुख्यतः सूर्य राशि (सूर्य लग्न) से पढ़ा जाता है।",
+        "sa": "वैदिक ज्योतिष में गोचर मुख्यतः सूर्य राशि (सूर्य लग्न) से पढ़ा जाता है।",
+        "ta": "In Vedic astrology, transits are primarily read from the Sun sign (Surya Lagna).",
+        "te": "In Vedic astrology, transits are primarily read from the Sun sign (Surya Lagna).",
+        "bn": "In Vedic astrology, transits are primarily read from the Sun sign (Surya Lagna).",
+        "kn": "In Vedic astrology, transits are primarily read from the Sun sign (Surya Lagna).",
+        "mr": "वैदिक ज्योतिष में गोचर मुख्यतः सूर्य राशि (सूर्य लग्न) से पढ़ा जाता है।",
+        "gu": "In Vedic astrology, transits are primarily read from the Sun sign (Surya Lagna).",
+        "mai": "वैदिक ज्योतिष में गोचर मुख्यतः सूर्य राशि (सूर्य लग्न) से पढ़ा जाता है।"
+      },
+      "correctAnswer": false,
+      "explanation": {
+        "en": "False. In Vedic astrology, transits are primarily read from the Moon sign (Chandra Lagna), not the Sun sign. The Moon represents the mind and emotional landscape, making it the natural reference point for experiencing transit effects.",
+        "hi": "असत्य। वैदिक ज्योतिष में गोचर मुख्यतः चन्द्र राशि (चन्द्र लग्न) से पढ़ा जाता है, सूर्य राशि से नहीं। चन्द्रमा मन और भावनात्मक संसार का प्रतिनिधि है, इसलिए गोचर फल अनुभव करने का स्वाभाविक सन्दर्भ बिन्दु है।",
+        "sa": "असत्य। वैदिक ज्योतिष में गोचर मुख्यतः चन्द्र राशि (चन्द्र लग्न) से पढ़ा जाता है, सूर्य राशि से नहीं। चन्द्रमा मन और भावनात्मक संसार का प्रतिनिधि है, इसलिए गोचर फल अनुभव करने का स्वाभाविक सन्दर्भ बिन्दु है।",
+        "ta": "False. In Vedic astrology, transits are primarily read from the Moon sign (Chandra Lagna), not the Sun sign. The Moon represents the mind and emotional landscape, making it the natural reference point for experiencing transit effects.",
+        "te": "False. In Vedic astrology, transits are primarily read from the Moon sign (Chandra Lagna), not the Sun sign. The Moon represents the mind and emotional landscape, making it the natural reference point for experiencing transit effects.",
+        "bn": "False. In Vedic astrology, transits are primarily read from the Moon sign (Chandra Lagna), not the Sun sign. The Moon represents the mind and emotional landscape, making it the natural reference point for experiencing transit effects.",
+        "kn": "False. In Vedic astrology, transits are primarily read from the Moon sign (Chandra Lagna), not the Sun sign. The Moon represents the mind and emotional landscape, making it the natural reference point for experiencing transit effects.",
+        "mr": "असत्य। वैदिक ज्योतिष में गोचर मुख्यतः चन्द्र राशि (चन्द्र लग्न) से पढ़ा जाता है, सूर्य राशि से नहीं। चन्द्रमा मन और भावनात्मक संसार का प्रतिनिधि है, इसलिए गोचर फल अनुभव करने का स्वाभाविक सन्दर्भ बिन्दु है।",
+        "gu": "False. In Vedic astrology, transits are primarily read from the Moon sign (Chandra Lagna), not the Sun sign. The Moon represents the mind and emotional landscape, making it the natural reference point for experiencing transit effects.",
+        "mai": "असत्य। वैदिक ज्योतिष में गोचर मुख्यतः चन्द्र राशि (चन्द्र लग्न) से पढ़ा जाता है, सूर्य राशि से नहीं। चन्द्रमा मन और भावनात्मक संसार का प्रतिनिधि है, इसलिए गोचर फल अनुभव करने का स्वाभाविक सन्दर्भ बिन्दु है।"
+      }
+    },
+    {
+      "id": "q12_1_03",
+      "type": "mcq",
+      "question": {
+        "en": "Which planets are considered \"slow\" (Manda Graha) and create major life themes?",
+        "hi": "कौन-से ग्रह \"मन्द ग्रह\" माने जाते हैं और प्रमुख जीवन विषय निर्मित करते हैं?",
+        "sa": "कौन-से ग्रह \"मन्द ग्रह\" माने जाते हैं और प्रमुख जीवन विषय निर्मित करते हैं?",
+        "ta": "Which planets are considered \"slow\" (Manda Graha) and create major life themes?",
+        "te": "Which planets are considered \"slow\" (Manda Graha) and create major life themes?",
+        "bn": "Which planets are considered \"slow\" (Manda Graha) and create major life themes?",
+        "kn": "Which planets are considered \"slow\" (Manda Graha) and create major life themes?",
+        "mr": "कौन-से ग्रह \"मन्द ग्रह\" माने जाते हैं और प्रमुख जीवन विषय निर्मित करते हैं?",
+        "gu": "Which planets are considered \"slow\" (Manda Graha) and create major life themes?",
+        "mai": "कौन-से ग्रह \"मन्द ग्रह\" माने जाते हैं और प्रमुख जीवन विषय निर्मित करते हैं?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Saturn (~2.5 years/sign), Jupiter (~1 year/sign), and Rahu-Ketu (~1.5 years/sign) are slow-moving planets. Their transits define the major themes and turning points of life due to their prolonged influence on each house.",
+        "hi": "शनि (~2.5 वर्ष/राशि), गुरु (~1 वर्ष/राशि) और राहु-केतु (~1.5 वर्ष/राशि) मन्दगति ग्रह हैं। प्रत्येक भाव पर दीर्घकालिक प्रभाव के कारण इनके गोचर जीवन के प्रमुख विषय और मोड़ निर्धारित करते हैं।",
+        "sa": "शनि (~2.5 वर्ष/राशि), गुरु (~1 वर्ष/राशि) और राहु-केतु (~1.5 वर्ष/राशि) मन्दगति ग्रह हैं। प्रत्येक भाव पर दीर्घकालिक प्रभाव के कारण इनके गोचर जीवन के प्रमुख विषय और मोड़ निर्धारित करते हैं।",
+        "ta": "Saturn (~2.5 years/sign), Jupiter (~1 year/sign), and Rahu-Ketu (~1.5 years/sign) are slow-moving planets. Their transits define the major themes and turning points of life due to their prolonged influence on each house.",
+        "te": "Saturn (~2.5 years/sign), Jupiter (~1 year/sign), and Rahu-Ketu (~1.5 years/sign) are slow-moving planets. Their transits define the major themes and turning points of life due to their prolonged influence on each house.",
+        "bn": "Saturn (~2.5 years/sign), Jupiter (~1 year/sign), and Rahu-Ketu (~1.5 years/sign) are slow-moving planets. Their transits define the major themes and turning points of life due to their prolonged influence on each house.",
+        "kn": "Saturn (~2.5 years/sign), Jupiter (~1 year/sign), and Rahu-Ketu (~1.5 years/sign) are slow-moving planets. Their transits define the major themes and turning points of life due to their prolonged influence on each house.",
+        "mr": "शनि (~2.5 वर्ष/राशि), गुरु (~1 वर्ष/राशि) और राहु-केतु (~1.5 वर्ष/राशि) मन्दगति ग्रह हैं। प्रत्येक भाव पर दीर्घकालिक प्रभाव के कारण इनके गोचर जीवन के प्रमुख विषय और मोड़ निर्धारित करते हैं।",
+        "gu": "Saturn (~2.5 years/sign), Jupiter (~1 year/sign), and Rahu-Ketu (~1.5 years/sign) are slow-moving planets. Their transits define the major themes and turning points of life due to their prolonged influence on each house.",
+        "mai": "शनि (~2.5 वर्ष/राशि), गुरु (~1 वर्ष/राशि) और राहु-केतु (~1.5 वर्ष/राशि) मन्दगति ग्रह हैं। प्रत्येक भाव पर दीर्घकालिक प्रभाव के कारण इनके गोचर जीवन के प्रमुख विषय और मोड़ निर्धारित करते हैं।"
+      },
+      "options": [
+        {
+          "en": "Sun, Moon, Mercury",
+          "hi": "सूर्य, चन्द्र, बुध",
+          "sa": "सूर्य, चन्द्र, बुध",
+          "mai": "सूर्य, चन्द्र, बुध",
+          "mr": "सूर्य, चन्द्र, बुध",
+          "ta": "Sun, Moon, Mercury",
+          "te": "Sun, Moon, Mercury",
+          "bn": "Sun, Moon, Mercury",
+          "kn": "Sun, Moon, Mercury",
+          "gu": "Sun, Moon, Mercury"
+        },
+        {
+          "en": "Saturn, Jupiter, Rahu/Ketu",
+          "hi": "शनि, गुरु, राहु/केतु",
+          "sa": "शनि, गुरु, राहु/केतु",
+          "mai": "शनि, गुरु, राहु/केतु",
+          "mr": "शनि, गुरु, राहु/केतु",
+          "ta": "Saturn, Jupiter, Rahu/Ketu",
+          "te": "Saturn, Jupiter, Rahu/Ketu",
+          "bn": "Saturn, Jupiter, Rahu/Ketu",
+          "kn": "Saturn, Jupiter, Rahu/Ketu",
+          "gu": "Saturn, Jupiter, Rahu/Ketu"
+        },
+        {
+          "en": "Mars, Venus, Mercury",
+          "hi": "मंगल, शुक्र, बुध",
+          "sa": "मंगल, शुक्र, बुध",
+          "mai": "मंगल, शुक्र, बुध",
+          "mr": "मंगल, शुक्र, बुध",
+          "ta": "Mars, Venus, Mercury",
+          "te": "Mars, Venus, Mercury",
+          "bn": "Mars, Venus, Mercury",
+          "kn": "Mars, Venus, Mercury",
+          "gu": "Mars, Venus, Mercury"
+        },
+        {
+          "en": "Only Saturn",
+          "hi": "केवल शनि",
+          "sa": "केवल शनि",
+          "mai": "केवल शनि",
+          "mr": "केवल शनि",
+          "ta": "Only Saturn",
+          "te": "Only Saturn",
+          "bn": "Only Saturn",
+          "kn": "Only Saturn",
+          "gu": "Only Saturn"
+        }
+      ]
+    },
+    {
+      "id": "q12_1_04",
+      "type": "mcq",
+      "question": {
+        "en": "Jupiter transiting in which houses from the Moon sign is considered favorable?",
+        "hi": "चन्द्र राशि से गुरु का गोचर किन भावों में शुभ माना जाता है?",
+        "sa": "चन्द्र राशि से गुरु का गोचर किन भावों में शुभ माना जाता है?",
+        "ta": "Jupiter transiting in which houses from the Moon sign is considered favorable?",
+        "te": "Jupiter transiting in which houses from the Moon sign is considered favorable?",
+        "bn": "Jupiter transiting in which houses from the Moon sign is considered favorable?",
+        "kn": "Jupiter transiting in which houses from the Moon sign is considered favorable?",
+        "mr": "चन्द्र राशि से गुरु का गोचर किन भावों में शुभ माना जाता है?",
+        "gu": "Jupiter transiting in which houses from the Moon sign is considered favorable?",
+        "mai": "चन्द्र राशि से गुरु का गोचर किन भावों में शुभ माना जाता है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Jupiter transiting in the 2nd, 5th, 7th, 9th, and 11th houses from the natal Moon is considered favorable. These positions support wealth, intelligence, relationships, fortune, and gains respectively.",
+        "hi": "जन्म चन्द्रमा से 2, 5, 7, 9 और 11वें भाव में गुरु गोचर शुभ माना जाता है। ये स्थान क्रमशः धन, बुद्धि, सम्बन्ध, भाग्य और लाभ का समर्थन करते हैं।",
+        "sa": "जन्म चन्द्रमा से 2, 5, 7, 9 और 11वें भाव में गुरु गोचर शुभ माना जाता है। ये स्थान क्रमशः धन, बुद्धि, सम्बन्ध, भाग्य और लाभ का समर्थन करते हैं।",
+        "ta": "Jupiter transiting in the 2nd, 5th, 7th, 9th, and 11th houses from the natal Moon is considered favorable. These positions support wealth, intelligence, relationships, fortune, and gains respectively.",
+        "te": "Jupiter transiting in the 2nd, 5th, 7th, 9th, and 11th houses from the natal Moon is considered favorable. These positions support wealth, intelligence, relationships, fortune, and gains respectively.",
+        "bn": "Jupiter transiting in the 2nd, 5th, 7th, 9th, and 11th houses from the natal Moon is considered favorable. These positions support wealth, intelligence, relationships, fortune, and gains respectively.",
+        "kn": "Jupiter transiting in the 2nd, 5th, 7th, 9th, and 11th houses from the natal Moon is considered favorable. These positions support wealth, intelligence, relationships, fortune, and gains respectively.",
+        "mr": "जन्म चन्द्रमा से 2, 5, 7, 9 और 11वें भाव में गुरु गोचर शुभ माना जाता है। ये स्थान क्रमशः धन, बुद्धि, सम्बन्ध, भाग्य और लाभ का समर्थन करते हैं।",
+        "gu": "Jupiter transiting in the 2nd, 5th, 7th, 9th, and 11th houses from the natal Moon is considered favorable. These positions support wealth, intelligence, relationships, fortune, and gains respectively.",
+        "mai": "जन्म चन्द्रमा से 2, 5, 7, 9 और 11वें भाव में गुरु गोचर शुभ माना जाता है। ये स्थान क्रमशः धन, बुद्धि, सम्बन्ध, भाग्य और लाभ का समर्थन करते हैं।"
+      },
+      "options": [
+        {
+          "en": "1, 3, 6, 8",
+          "hi": "1, 3, 6, 8",
+          "sa": "1, 3, 6, 8",
+          "mai": "1, 3, 6, 8",
+          "mr": "1, 3, 6, 8",
+          "ta": "1, 3, 6, 8",
+          "te": "1, 3, 6, 8",
+          "bn": "1, 3, 6, 8",
+          "kn": "1, 3, 6, 8",
+          "gu": "1, 3, 6, 8"
+        },
+        {
+          "en": "2, 5, 7, 9, 11",
+          "hi": "2, 5, 7, 9, 11",
+          "sa": "2, 5, 7, 9, 11",
+          "mai": "2, 5, 7, 9, 11",
+          "mr": "2, 5, 7, 9, 11",
+          "ta": "2, 5, 7, 9, 11",
+          "te": "2, 5, 7, 9, 11",
+          "bn": "2, 5, 7, 9, 11",
+          "kn": "2, 5, 7, 9, 11",
+          "gu": "2, 5, 7, 9, 11"
+        },
+        {
+          "en": "4, 6, 10, 12",
+          "hi": "4, 6, 10, 12",
+          "sa": "4, 6, 10, 12",
+          "mai": "4, 6, 10, 12",
+          "mr": "4, 6, 10, 12",
+          "ta": "4, 6, 10, 12",
+          "te": "4, 6, 10, 12",
+          "bn": "4, 6, 10, 12",
+          "kn": "4, 6, 10, 12",
+          "gu": "4, 6, 10, 12"
+        },
+        {
+          "en": "3, 6, 11 only",
+          "hi": "केवल 3, 6, 11",
+          "sa": "केवल 3, 6, 11",
+          "mai": "केवल 3, 6, 11",
+          "mr": "केवल 3, 6, 11",
+          "ta": "3, 6, 11 only",
+          "te": "3, 6, 11 only",
+          "bn": "3, 6, 11 only",
+          "kn": "3, 6, 11 only",
+          "gu": "3, 6, 11 only"
+        }
+      ]
+    },
+    {
+      "id": "q12_1_05",
+      "type": "true_false",
+      "question": {
+        "en": "Fast-moving planets like the Sun and Moon have negligible effects in transit analysis.",
+        "hi": "सूर्य और चन्द्रमा जैसे तीव्र गति ग्रहों का गोचर विश्लेषण में नगण्य प्रभाव होता है।",
+        "sa": "सूर्य और चन्द्रमा जैसे तीव्र गति ग्रहों का गोचर विश्लेषण में नगण्य प्रभाव होता है।",
+        "ta": "Fast-moving planets like the Sun and Moon have negligible effects in transit analysis.",
+        "te": "Fast-moving planets like the Sun and Moon have negligible effects in transit analysis.",
+        "bn": "Fast-moving planets like the Sun and Moon have negligible effects in transit analysis.",
+        "kn": "Fast-moving planets like the Sun and Moon have negligible effects in transit analysis.",
+        "mr": "सूर्य और चन्द्रमा जैसे तीव्र गति ग्रहों का गोचर विश्लेषण में नगण्य प्रभाव होता है।",
+        "gu": "Fast-moving planets like the Sun and Moon have negligible effects in transit analysis.",
+        "mai": "सूर्य और चन्द्रमा जैसे तीव्र गति ग्रहों का गोचर विश्लेषण में नगण्य प्रभाव होता है।"
+      },
+      "correctAnswer": false,
+      "explanation": {
+        "en": "False. While fast planets create shorter-duration effects, they act as triggers for events promised by slow planet transits. The Sun (1 month/sign) and Moon (2.25 days/sign) often pinpoint the exact day an event fructifies.",
+        "hi": "असत्य। तीव्र ग्रह अल्पकालिक प्रभाव देते हैं, परन्तु मन्द ग्रह गोचर द्वारा प्रतिश्रुत घटनाओं के लिए ट्रिगर का कार्य करते हैं। सूर्य (1 मास/राशि) और चन्द्रमा (2.25 दिन/राशि) प्रायः घटना के सटीक दिन को इंगित करते हैं।",
+        "sa": "असत्य। तीव्र ग्रह अल्पकालिक प्रभाव देते हैं, परन्तु मन्द ग्रह गोचर द्वारा प्रतिश्रुत घटनाओं के लिए ट्रिगर का कार्य करते हैं। सूर्य (1 मास/राशि) और चन्द्रमा (2.25 दिन/राशि) प्रायः घटना के सटीक दिन को इंगित करते हैं।",
+        "ta": "False. While fast planets create shorter-duration effects, they act as triggers for events promised by slow planet transits. The Sun (1 month/sign) and Moon (2.25 days/sign) often pinpoint the exact day an event fructifies.",
+        "te": "False. While fast planets create shorter-duration effects, they act as triggers for events promised by slow planet transits. The Sun (1 month/sign) and Moon (2.25 days/sign) often pinpoint the exact day an event fructifies.",
+        "bn": "False. While fast planets create shorter-duration effects, they act as triggers for events promised by slow planet transits. The Sun (1 month/sign) and Moon (2.25 days/sign) often pinpoint the exact day an event fructifies.",
+        "kn": "False. While fast planets create shorter-duration effects, they act as triggers for events promised by slow planet transits. The Sun (1 month/sign) and Moon (2.25 days/sign) often pinpoint the exact day an event fructifies.",
+        "mr": "असत्य। तीव्र ग्रह अल्पकालिक प्रभाव देते हैं, परन्तु मन्द ग्रह गोचर द्वारा प्रतिश्रुत घटनाओं के लिए ट्रिगर का कार्य करते हैं। सूर्य (1 मास/राशि) और चन्द्रमा (2.25 दिन/राशि) प्रायः घटना के सटीक दिन को इंगित करते हैं।",
+        "gu": "False. While fast planets create shorter-duration effects, they act as triggers for events promised by slow planet transits. The Sun (1 month/sign) and Moon (2.25 days/sign) often pinpoint the exact day an event fructifies.",
+        "mai": "असत्य। तीव्र ग्रह अल्पकालिक प्रभाव देते हैं, परन्तु मन्द ग्रह गोचर द्वारा प्रतिश्रुत घटनाओं के लिए ट्रिगर का कार्य करते हैं। सूर्य (1 मास/राशि) और चन्द्रमा (2.25 दिन/राशि) प्रायः घटना के सटीक दिन को इंगित करते हैं।"
+      }
+    },
+    {
+      "id": "q12_1_06",
+      "type": "mcq",
+      "question": {
+        "en": "In the Ashtakavarga system, a sign with how many bindus is considered favorable for transit?",
+        "hi": "अष्टकवर्ग पद्धति में कितने बिन्दु वाली राशि गोचर के लिए शुभ मानी जाती है?",
+        "sa": "अष्टकवर्ग पद्धति में कितने बिन्दु वाली राशि गोचर के लिए शुभ मानी जाती है?",
+        "ta": "In the Ashtakavarga system, a sign with how many bindus is considered favorable for transit?",
+        "te": "In the Ashtakavarga system, a sign with how many bindus is considered favorable for transit?",
+        "bn": "In the Ashtakavarga system, a sign with how many bindus is considered favorable for transit?",
+        "kn": "In the Ashtakavarga system, a sign with how many bindus is considered favorable for transit?",
+        "mr": "अष्टकवर्ग पद्धति में कितने बिन्दु वाली राशि गोचर के लिए शुभ मानी जाती है?",
+        "gu": "In the Ashtakavarga system, a sign with how many bindus is considered favorable for transit?",
+        "mai": "अष्टकवर्ग पद्धति में कितने बिन्दु वाली राशि गोचर के लिए शुभ मानी जाती है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "In Ashtakavarga, each planet receives bindus (benefic points) from 8 sources (7 planets + Lagna). A sign with 4 or more bindus (out of 8 maximum) is considered favorable for that planet's transit through it.",
+        "hi": "अष्टकवर्ग में प्रत्येक ग्रह को 8 स्रोतों (7 ग्रह + लग्न) से बिन्दु (शुभ अंक) प्राप्त होते हैं। 4 या अधिक बिन्दु (अधिकतम 8 में से) वाली राशि उस ग्रह के गोचर के लिए शुभ मानी जाती है।",
+        "sa": "अष्टकवर्ग में प्रत्येक ग्रह को 8 स्रोतों (7 ग्रह + लग्न) से बिन्दु (शुभ अंक) प्राप्त होते हैं। 4 या अधिक बिन्दु (अधिकतम 8 में से) वाली राशि उस ग्रह के गोचर के लिए शुभ मानी जाती है।",
+        "ta": "In Ashtakavarga, each planet receives bindus (benefic points) from 8 sources (7 planets + Lagna). A sign with 4 or more bindus (out of 8 maximum) is considered favorable for that planet's transit through it.",
+        "te": "In Ashtakavarga, each planet receives bindus (benefic points) from 8 sources (7 planets + Lagna). A sign with 4 or more bindus (out of 8 maximum) is considered favorable for that planet's transit through it.",
+        "bn": "In Ashtakavarga, each planet receives bindus (benefic points) from 8 sources (7 planets + Lagna). A sign with 4 or more bindus (out of 8 maximum) is considered favorable for that planet's transit through it.",
+        "kn": "In Ashtakavarga, each planet receives bindus (benefic points) from 8 sources (7 planets + Lagna). A sign with 4 or more bindus (out of 8 maximum) is considered favorable for that planet's transit through it.",
+        "mr": "अष्टकवर्ग में प्रत्येक ग्रह को 8 स्रोतों (7 ग्रह + लग्न) से बिन्दु (शुभ अंक) प्राप्त होते हैं। 4 या अधिक बिन्दु (अधिकतम 8 में से) वाली राशि उस ग्रह के गोचर के लिए शुभ मानी जाती है।",
+        "gu": "In Ashtakavarga, each planet receives bindus (benefic points) from 8 sources (7 planets + Lagna). A sign with 4 or more bindus (out of 8 maximum) is considered favorable for that planet's transit through it.",
+        "mai": "अष्टकवर्ग में प्रत्येक ग्रह को 8 स्रोतों (7 ग्रह + लग्न) से बिन्दु (शुभ अंक) प्राप्त होते हैं। 4 या अधिक बिन्दु (अधिकतम 8 में से) वाली राशि उस ग्रह के गोचर के लिए शुभ मानी जाती है।"
+      },
+      "options": [
+        {
+          "en": "1 or more",
+          "hi": "1 या अधिक",
+          "sa": "1 या अधिक",
+          "mai": "1 या अधिक",
+          "mr": "1 या अधिक",
+          "ta": "1 or more",
+          "te": "1 or more",
+          "bn": "1 or more",
+          "kn": "1 or more",
+          "gu": "1 or more"
+        },
+        {
+          "en": "4 or more",
+          "hi": "4 या अधिक",
+          "sa": "4 या अधिक",
+          "mai": "4 या अधिक",
+          "mr": "4 या अधिक",
+          "ta": "4 or more",
+          "te": "4 or more",
+          "bn": "4 or more",
+          "kn": "4 or more",
+          "gu": "4 or more"
+        },
+        {
+          "en": "8 or more",
+          "hi": "8 या अधिक",
+          "sa": "8 या अधिक",
+          "mai": "8 या अधिक",
+          "mr": "8 या अधिक",
+          "ta": "8 or more",
+          "te": "8 or more",
+          "bn": "8 or more",
+          "kn": "8 or more",
+          "gu": "8 or more"
+        },
+        {
+          "en": "Exactly 7",
+          "hi": "ठीक 7",
+          "sa": "ठीक 7",
+          "mai": "ठीक 7",
+          "mr": "ठीक 7",
+          "ta": "Exactly 7",
+          "te": "Exactly 7",
+          "bn": "Exactly 7",
+          "kn": "Exactly 7",
+          "gu": "Exactly 7"
+        }
+      ]
+    },
+    {
+      "id": "q12_1_07",
+      "type": "mcq",
+      "question": {
+        "en": "What is Sarvashtakavarga (SAV)?",
+        "hi": "सर्वाष्टकवर्ग (SAV) क्या है?",
+        "sa": "सर्वाष्टकवर्ग (SAV) क्या है?",
+        "ta": "What is Sarvashtakavarga (SAV)?",
+        "te": "What is Sarvashtakavarga (SAV)?",
+        "bn": "What is Sarvashtakavarga (SAV)?",
+        "kn": "What is Sarvashtakavarga (SAV)?",
+        "mr": "सर्वाष्टकवर्ग (SAV) क्या है?",
+        "gu": "What is Sarvashtakavarga (SAV)?",
+        "mai": "सर्वाष्टकवर्ग (SAV) क्या है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Sarvashtakavarga is the combined total of all 7 planets' individual Ashtakavarga bindus for each sign. A sign with 28 or more SAV points (out of 56 maximum) is generally considered auspicious.",
+        "hi": "सर्वाष्टकवर्ग प्रत्येक राशि के लिए सभी 7 ग्रहों के व्यक्तिगत अष्टकवर्ग बिन्दुओं का संयुक्त योग है। 28 या अधिक SAV अंक (अधिकतम 56 में से) वाली राशि सामान्यतः शुभ मानी जाती है।",
+        "sa": "सर्वाष्टकवर्ग प्रत्येक राशि के लिए सभी 7 ग्रहों के व्यक्तिगत अष्टकवर्ग बिन्दुओं का संयुक्त योग है। 28 या अधिक SAV अंक (अधिकतम 56 में से) वाली राशि सामान्यतः शुभ मानी जाती है।",
+        "ta": "Sarvashtakavarga is the combined total of all 7 planets' individual Ashtakavarga bindus for each sign. A sign with 28 or more SAV points (out of 56 maximum) is generally considered auspicious.",
+        "te": "Sarvashtakavarga is the combined total of all 7 planets' individual Ashtakavarga bindus for each sign. A sign with 28 or more SAV points (out of 56 maximum) is generally considered auspicious.",
+        "bn": "Sarvashtakavarga is the combined total of all 7 planets' individual Ashtakavarga bindus for each sign. A sign with 28 or more SAV points (out of 56 maximum) is generally considered auspicious.",
+        "kn": "Sarvashtakavarga is the combined total of all 7 planets' individual Ashtakavarga bindus for each sign. A sign with 28 or more SAV points (out of 56 maximum) is generally considered auspicious.",
+        "mr": "सर्वाष्टकवर्ग प्रत्येक राशि के लिए सभी 7 ग्रहों के व्यक्तिगत अष्टकवर्ग बिन्दुओं का संयुक्त योग है। 28 या अधिक SAV अंक (अधिकतम 56 में से) वाली राशि सामान्यतः शुभ मानी जाती है।",
+        "gu": "Sarvashtakavarga is the combined total of all 7 planets' individual Ashtakavarga bindus for each sign. A sign with 28 or more SAV points (out of 56 maximum) is generally considered auspicious.",
+        "mai": "सर्वाष्टकवर्ग प्रत्येक राशि के लिए सभी 7 ग्रहों के व्यक्तिगत अष्टकवर्ग बिन्दुओं का संयुक्त योग है। 28 या अधिक SAV अंक (अधिकतम 56 में से) वाली राशि सामान्यतः शुभ मानी जाती है।"
+      },
+      "options": [
+        {
+          "en": "A type of dasha system",
+          "hi": "एक प्रकार की दशा पद्धति",
+          "sa": "एक प्रकार की दशा पद्धति",
+          "mai": "एक प्रकार की दशा पद्धति",
+          "mr": "एक प्रकार की दशा पद्धति",
+          "ta": "A type of dasha system",
+          "te": "A type of dasha system",
+          "bn": "A type of dasha system",
+          "kn": "A type of dasha system",
+          "gu": "A type of dasha system"
+        },
+        {
+          "en": "The total bindus of all 7 planets combined for each sign",
+          "hi": "प्रत्येक राशि के लिए सभी 7 ग्रहों के कुल बिन्दुओं का योग",
+          "sa": "प्रत्येक राशि के लिए सभी 7 ग्रहों के कुल बिन्दुओं का योग",
+          "mai": "प्रत्येक राशि के लिए सभी 7 ग्रहों के कुल बिन्दुओं का योग",
+          "mr": "प्रत्येक राशि के लिए सभी 7 ग्रहों के कुल बिन्दुओं का योग",
+          "ta": "The total bindus of all 7 planets combined for each sign",
+          "te": "The total bindus of all 7 planets combined for each sign",
+          "bn": "The total bindus of all 7 planets combined for each sign",
+          "kn": "The total bindus of all 7 planets combined for each sign",
+          "gu": "The total bindus of all 7 planets combined for each sign"
+        },
+        {
+          "en": "The number of yogas in a chart",
+          "hi": "कुण्डली में योगों की संख्या",
+          "sa": "कुण्डली में योगों की संख्या",
+          "mai": "कुण्डली में योगों की संख्या",
+          "mr": "कुण्डली में योगों की संख्या",
+          "ta": "The number of yogas in a chart",
+          "te": "The number of yogas in a chart",
+          "bn": "The number of yogas in a chart",
+          "kn": "The number of yogas in a chart",
+          "gu": "The number of yogas in a chart"
+        },
+        {
+          "en": "A nakshatra classification",
+          "hi": "एक नक्षत्र वर्गीकरण",
+          "sa": "एक नक्षत्र वर्गीकरण",
+          "mai": "एक नक्षत्र वर्गीकरण",
+          "mr": "एक नक्षत्र वर्गीकरण",
+          "ta": "A nakshatra classification",
+          "te": "A nakshatra classification",
+          "bn": "A nakshatra classification",
+          "kn": "A nakshatra classification",
+          "gu": "A nakshatra classification"
+        }
+      ]
+    },
+    {
+      "id": "q12_1_08",
+      "type": "true_false",
+      "question": {
+        "en": "Saturn transiting houses 1, 2, 4, 5, 7, 8, 10, and 12 from the Moon is generally considered challenging.",
+        "hi": "चन्द्रमा से 1, 2, 4, 5, 7, 8, 10 और 12वें भाव में शनि गोचर सामान्यतः कठिन माना जाता है।",
+        "sa": "चन्द्रमा से 1, 2, 4, 5, 7, 8, 10 और 12वें भाव में शनि गोचर सामान्यतः कठिन माना जाता है।",
+        "ta": "Saturn transiting houses 1, 2, 4, 5, 7, 8, 10, and 12 from the Moon is generally considered challenging.",
+        "te": "Saturn transiting houses 1, 2, 4, 5, 7, 8, 10, and 12 from the Moon is generally considered challenging.",
+        "bn": "Saturn transiting houses 1, 2, 4, 5, 7, 8, 10, and 12 from the Moon is generally considered challenging.",
+        "kn": "Saturn transiting houses 1, 2, 4, 5, 7, 8, 10, and 12 from the Moon is generally considered challenging.",
+        "mr": "चन्द्रमा से 1, 2, 4, 5, 7, 8, 10 और 12वें भाव में शनि गोचर सामान्यतः कठिन माना जाता है।",
+        "gu": "Saturn transiting houses 1, 2, 4, 5, 7, 8, 10, and 12 from the Moon is generally considered challenging.",
+        "mai": "चन्द्रमा से 1, 2, 4, 5, 7, 8, 10 और 12वें भाव में शनि गोचर सामान्यतः कठिन माना जाता है।"
+      },
+      "correctAnswer": true,
+      "explanation": {
+        "en": "True. Saturn is favorable only in the 3rd, 6th, and 11th from Moon (upachaya houses). In all other houses (1,2,4,5,7,8,10,12), Saturn's transit tends to bring challenges, delays, and karmic lessons.",
+        "hi": "सत्य। शनि केवल चन्द्रमा से 3, 6 और 11वें भाव (उपचय भाव) में शुभ होता है। अन्य सभी भावों (1,2,4,5,7,8,10,12) में शनि गोचर चुनौतियाँ, विलम्ब और कर्म-शिक्षा लाता है।",
+        "sa": "सत्य। शनि केवल चन्द्रमा से 3, 6 और 11वें भाव (उपचय भाव) में शुभ होता है। अन्य सभी भावों (1,2,4,5,7,8,10,12) में शनि गोचर चुनौतियाँ, विलम्ब और कर्म-शिक्षा लाता है।",
+        "ta": "True. Saturn is favorable only in the 3rd, 6th, and 11th from Moon (upachaya houses). In all other houses (1,2,4,5,7,8,10,12), Saturn's transit tends to bring challenges, delays, and karmic lessons.",
+        "te": "True. Saturn is favorable only in the 3rd, 6th, and 11th from Moon (upachaya houses). In all other houses (1,2,4,5,7,8,10,12), Saturn's transit tends to bring challenges, delays, and karmic lessons.",
+        "bn": "True. Saturn is favorable only in the 3rd, 6th, and 11th from Moon (upachaya houses). In all other houses (1,2,4,5,7,8,10,12), Saturn's transit tends to bring challenges, delays, and karmic lessons.",
+        "kn": "True. Saturn is favorable only in the 3rd, 6th, and 11th from Moon (upachaya houses). In all other houses (1,2,4,5,7,8,10,12), Saturn's transit tends to bring challenges, delays, and karmic lessons.",
+        "mr": "सत्य। शनि केवल चन्द्रमा से 3, 6 और 11वें भाव (उपचय भाव) में शुभ होता है। अन्य सभी भावों (1,2,4,5,7,8,10,12) में शनि गोचर चुनौतियाँ, विलम्ब और कर्म-शिक्षा लाता है।",
+        "gu": "True. Saturn is favorable only in the 3rd, 6th, and 11th from Moon (upachaya houses). In all other houses (1,2,4,5,7,8,10,12), Saturn's transit tends to bring challenges, delays, and karmic lessons.",
+        "mai": "सत्य। शनि केवल चन्द्रमा से 3, 6 और 11वें भाव (उपचय भाव) में शुभ होता है। अन्य सभी भावों (1,2,4,5,7,8,10,12) में शनि गोचर चुनौतियाँ, विलम्ब और कर्म-शिक्षा लाता है।"
+      }
+    },
+    {
+      "id": "q12_1_09",
+      "type": "mcq",
+      "question": {
+        "en": "Mars transits one sign in approximately:",
+        "hi": "मंगल एक राशि में लगभग कितने समय रहता है?",
+        "sa": "मंगल एक राशि में लगभग कितने समय रहता है?",
+        "ta": "Mars transits one sign in approximately:",
+        "te": "Mars transits one sign in approximately:",
+        "bn": "Mars transits one sign in approximately:",
+        "kn": "Mars transits one sign in approximately:",
+        "mr": "मंगल एक राशि में लगभग कितने समय रहता है?",
+        "gu": "Mars transits one sign in approximately:",
+        "mai": "मंगल एक राशि में लगभग कितने समय रहता है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Mars takes about 1.5 to 2 months (roughly 45 days) per sign normally, completing one full zodiacal round in about 18 months. During retrograde periods, Mars can stay in one sign for up to 6 months.",
+        "hi": "मंगल सामान्यतः प्रत्येक राशि में लगभग 1.5 से 2 मास (करीब 45 दिन) रहता है, लगभग 18 मासों में एक पूर्ण राशिचक्र पूरा करता है। वक्री काल में मंगल एक राशि में 6 मास तक रह सकता है।",
+        "sa": "मंगल सामान्यतः प्रत्येक राशि में लगभग 1.5 से 2 मास (करीब 45 दिन) रहता है, लगभग 18 मासों में एक पूर्ण राशिचक्र पूरा करता है। वक्री काल में मंगल एक राशि में 6 मास तक रह सकता है।",
+        "ta": "Mars takes about 1.5 to 2 months (roughly 45 days) per sign normally, completing one full zodiacal round in about 18 months. During retrograde periods, Mars can stay in one sign for up to 6 months.",
+        "te": "Mars takes about 1.5 to 2 months (roughly 45 days) per sign normally, completing one full zodiacal round in about 18 months. During retrograde periods, Mars can stay in one sign for up to 6 months.",
+        "bn": "Mars takes about 1.5 to 2 months (roughly 45 days) per sign normally, completing one full zodiacal round in about 18 months. During retrograde periods, Mars can stay in one sign for up to 6 months.",
+        "kn": "Mars takes about 1.5 to 2 months (roughly 45 days) per sign normally, completing one full zodiacal round in about 18 months. During retrograde periods, Mars can stay in one sign for up to 6 months.",
+        "mr": "मंगल सामान्यतः प्रत्येक राशि में लगभग 1.5 से 2 मास (करीब 45 दिन) रहता है, लगभग 18 मासों में एक पूर्ण राशिचक्र पूरा करता है। वक्री काल में मंगल एक राशि में 6 मास तक रह सकता है।",
+        "gu": "Mars takes about 1.5 to 2 months (roughly 45 days) per sign normally, completing one full zodiacal round in about 18 months. During retrograde periods, Mars can stay in one sign for up to 6 months.",
+        "mai": "मंगल सामान्यतः प्रत्येक राशि में लगभग 1.5 से 2 मास (करीब 45 दिन) रहता है, लगभग 18 मासों में एक पूर्ण राशिचक्र पूरा करता है। वक्री काल में मंगल एक राशि में 6 मास तक रह सकता है।"
+      },
+      "options": [
+        {
+          "en": "1 week",
+          "hi": "1 सप्ताह",
+          "sa": "1 सप्ताह",
+          "mai": "1 सप्ताह",
+          "mr": "1 सप्ताह",
+          "ta": "1 week",
+          "te": "1 week",
+          "bn": "1 week",
+          "kn": "1 week",
+          "gu": "1 week"
+        },
+        {
+          "en": "45 days",
+          "hi": "45 दिन",
+          "sa": "45 दिन",
+          "mai": "45 दिन",
+          "mr": "45 दिन",
+          "ta": "45 days",
+          "te": "45 days",
+          "bn": "45 days",
+          "kn": "45 days",
+          "gu": "45 days"
+        },
+        {
+          "en": "6 months",
+          "hi": "6 मास",
+          "sa": "6 मास",
+          "mai": "6 मास",
+          "mr": "6 मास",
+          "ta": "6 months",
+          "te": "6 months",
+          "bn": "6 months",
+          "kn": "6 months",
+          "gu": "6 months"
+        },
+        {
+          "en": "1 year",
+          "hi": "1 वर्ष",
+          "sa": "1 वर्ष",
+          "mai": "1 वर्ष",
+          "mr": "1 वर्ष",
+          "ta": "1 year",
+          "te": "1 year",
+          "bn": "1 year",
+          "kn": "1 year",
+          "gu": "1 year"
+        }
+      ]
+    },
+    {
+      "id": "q12_1_10",
+      "type": "true_false",
+      "question": {
+        "en": "Ashtakavarga analysis can override the general favorable/unfavorable classification of a transit.",
+        "hi": "अष्टकवर्ग विश्लेषण गोचर के सामान्य शुभ/अशुभ वर्गीकरण को परिवर्तित कर सकता है।",
+        "sa": "अष्टकवर्ग विश्लेषण गोचर के सामान्य शुभ/अशुभ वर्गीकरण को परिवर्तित कर सकता है।",
+        "ta": "Ashtakavarga analysis can override the general favorable/unfavorable classification of a transit.",
+        "te": "Ashtakavarga analysis can override the general favorable/unfavorable classification of a transit.",
+        "bn": "Ashtakavarga analysis can override the general favorable/unfavorable classification of a transit.",
+        "kn": "Ashtakavarga analysis can override the general favorable/unfavorable classification of a transit.",
+        "mr": "अष्टकवर्ग विश्लेषण गोचर के सामान्य शुभ/अशुभ वर्गीकरण को परिवर्तित कर सकता है।",
+        "gu": "Ashtakavarga analysis can override the general favorable/unfavorable classification of a transit.",
+        "mai": "अष्टकवर्ग विश्लेषण गोचर के सामान्य शुभ/अशुभ वर्गीकरण को परिवर्तित कर सकता है।"
+      },
+      "correctAnswer": true,
+      "explanation": {
+        "en": "True. A generally unfavorable transit (e.g., Saturn in 8th from Moon) can be mitigated if the sign has high Ashtakavarga bindus. Conversely, a favorable transit in a low-bindu sign may not deliver expected results. Ashtakavarga fine-tunes predictions.",
+        "hi": "सत्य। सामान्यतः अशुभ गोचर (जैसे चन्द्र से 8वें में शनि) यदि उस राशि में अष्टकवर्ग बिन्दु अधिक हों तो शमित हो सकता है। इसके विपरीत, कम बिन्दु वाली राशि में शुभ गोचर भी अपेक्षित फल नहीं दे सकता। अष्टकवर्ग भविष्यवाणी को सूक्ष्म करता है।",
+        "sa": "सत्य। सामान्यतः अशुभ गोचर (जैसे चन्द्र से 8वें में शनि) यदि उस राशि में अष्टकवर्ग बिन्दु अधिक हों तो शमित हो सकता है। इसके विपरीत, कम बिन्दु वाली राशि में शुभ गोचर भी अपेक्षित फल नहीं दे सकता। अष्टकवर्ग भविष्यवाणी को सूक्ष्म करता है।",
+        "ta": "True. A generally unfavorable transit (e.g., Saturn in 8th from Moon) can be mitigated if the sign has high Ashtakavarga bindus. Conversely, a favorable transit in a low-bindu sign may not deliver expected results. Ashtakavarga fine-tunes predictions.",
+        "te": "True. A generally unfavorable transit (e.g., Saturn in 8th from Moon) can be mitigated if the sign has high Ashtakavarga bindus. Conversely, a favorable transit in a low-bindu sign may not deliver expected results. Ashtakavarga fine-tunes predictions.",
+        "bn": "True. A generally unfavorable transit (e.g., Saturn in 8th from Moon) can be mitigated if the sign has high Ashtakavarga bindus. Conversely, a favorable transit in a low-bindu sign may not deliver expected results. Ashtakavarga fine-tunes predictions.",
+        "kn": "True. A generally unfavorable transit (e.g., Saturn in 8th from Moon) can be mitigated if the sign has high Ashtakavarga bindus. Conversely, a favorable transit in a low-bindu sign may not deliver expected results. Ashtakavarga fine-tunes predictions.",
+        "mr": "सत्य। सामान्यतः अशुभ गोचर (जैसे चन्द्र से 8वें में शनि) यदि उस राशि में अष्टकवर्ग बिन्दु अधिक हों तो शमित हो सकता है। इसके विपरीत, कम बिन्दु वाली राशि में शुभ गोचर भी अपेक्षित फल नहीं दे सकता। अष्टकवर्ग भविष्यवाणी को सूक्ष्म करता है।",
+        "gu": "True. A generally unfavorable transit (e.g., Saturn in 8th from Moon) can be mitigated if the sign has high Ashtakavarga bindus. Conversely, a favorable transit in a low-bindu sign may not deliver expected results. Ashtakavarga fine-tunes predictions.",
+        "mai": "सत्य। सामान्यतः अशुभ गोचर (जैसे चन्द्र से 8वें में शनि) यदि उस राशि में अष्टकवर्ग बिन्दु अधिक हों तो शमित हो सकता है। इसके विपरीत, कम बिन्दु वाली राशि में शुभ गोचर भी अपेक्षित फल नहीं दे सकता। अष्टकवर्ग भविष्यवाणी को सूक्ष्म करता है।"
+      }
+    }
+  ]
+}

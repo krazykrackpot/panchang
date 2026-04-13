@@ -1,62 +1,14 @@
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/contributions-cosmic-time.json';
 import { Link } from '@/lib/i18n/navigation';
-import type { LocaleText, Locale } from '@/types/panchang';
+import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ════════════════════════════════════════════════════════════════
    LABELS — bilingual (en / hi)
    ════════════════════════════════════════════════════════════════ */
-const L = {
-  title: {
-    en: '4.32 Billion Years — How Did the Ancients Know?',
-    hi: '4.32 अरब वर्ष — प्राचीनों को यह कैसे पता था?',
-  },
-  subtitle: {
-    en: 'Modern science tells us Earth is 4.54 billion years old. These numbers were discovered in the 20th century. So how do you explain that ancient Indian texts describe cosmic cycles of 4.32 billion years — written thousands of years ago?',
-    hi: 'आधुनिक विज्ञान बताता है कि पृथ्वी 4.54 अरब वर्ष पुरानी है। ये संख्याएँ 20वीं सदी में खोजी गईं। तो आप यह कैसे समझाएंगे कि प्राचीन भारतीय ग्रंथ 4.32 अरब वर्षों के ब्रह्मांडीय चक्रों का वर्णन करते हैं — हजारों वर्ष पहले लिखे गए?',
-  },
-
-  s1Title: { en: 'The Hindu Time Scale — From Kali to Kalpa', hi: 'हिंदू काल-पैमाना — कलि से कल्प तक', sa: 'हिंदू काल-पैमाना — कलि से कल्प तक', mai: 'हिंदू काल-पैमाना — कलि से कल्प तक', mr: 'हिंदू काल-पैमाना — कलि से कल्प तक', ta: 'The Hindu Time Scale — From Kali to Kalpa', te: 'The Hindu Time Scale — From Kali to Kalpa', bn: 'The Hindu Time Scale — From Kali to Kalpa', kn: 'The Hindu Time Scale — From Kali to Kalpa', gu: 'The Hindu Time Scale — From Kali to Kalpa' },
-  s1Body: {
-    en: 'Hindu cosmology divides time into nested cycles of extraordinary scale. The smallest named unit relevant here is the Kali Yuga (432,000 years). From there, each step multiplies by factors of 2, 4, and 1000, culminating in the Kalpa — one "day of Brahma" — equal to 4.32 billion years. Brahma\'s full lifespan spans 311 trillion years. These numbers were not symbolic or metaphorical. Ancient Indian astronomers used them to compute planetary positions, eclipse cycles, and the cosmic calendar with mathematical precision.',
-    hi: 'हिंदू ब्रह्मांड-विज्ञान समय को असाधारण पैमाने के नेस्टेड चक्रों में विभाजित करता है। यहाँ सबसे छोटी नामित इकाई कलि युग (432,000 वर्ष) है। वहाँ से, प्रत्येक कदम 2, 4 और 1000 के गुणनखंडों से गुणित होता है, कल्प में परिणत होता है — ब्रह्मा का एक "दिन" — 4.32 अरब वर्षों के बराबर। ब्रह्मा का पूर्ण जीवनकाल 311 खरब वर्षों में फैला है। ये संख्याएँ प्रतीकात्मक या रूपकात्मक नहीं थीं। प्राचीन भारतीय खगोलशास्त्रियों ने इनका उपयोग ग्रहीय स्थिति, ग्रहण चक्र और ब्रह्मांडीय कैलेंडर की गणितीय सटीकता के साथ गणना करने के लिए किया।',
-  },
-
-  s2Title: { en: 'The Math: How the Yugas Add Up', hi: 'गणित: युग कैसे जुड़ते हैं', sa: 'गणित: युग कैसे जुड़ते हैं', mai: 'गणित: युग कैसे जुड़ते हैं', mr: 'गणित: युग कैसे जुड़ते हैं', ta: 'The Math: How the Yugas Add Up', te: 'The Math: How the Yugas Add Up', bn: 'The Math: How the Yugas Add Up', kn: 'The Math: How the Yugas Add Up', gu: 'The Math: How the Yugas Add Up' },
-  s2Body: {
-    en: 'The four Yugas within one Mahayuga follow a descending ratio of 4:3:2:1 — a deliberate mathematical proportion reflecting decreasing cosmic virtue. Precisely 1,000 Mahayugas form one Kalpa. This nested structure allowed astronomers to perform modular arithmetic on cosmic time — finding where any date falls within the grand cycle, like a cosmic odometer.',
-    hi: 'एक महायुग के भीतर चार युग 4:3:2:1 के अवरोही अनुपात का अनुसरण करते हैं — एक जानबूझकर गणितीय अनुपात जो घटते हुए ब्रह्मांडीय सद्गुण को दर्शाता है। ठीक 1,000 महायुग एक कल्प बनाते हैं। इस नेस्टेड संरचना ने खगोलशास्त्रियों को ब्रह्मांडीय समय पर मॉड्यूलर अंकगणित करने की अनुमति दी — एक ब्रह्मांडीय ओडोमीटर की तरह किसी भी तिथि को महान चक्र में खोजना।',
-  },
-
-  s3Title: { en: 'Compare With Modern Science: A 95% Match', hi: 'आधुनिक विज्ञान से तुलना: 95% मिलान', sa: 'आधुनिक विज्ञान से तुलना: 95% मिलान', mai: 'आधुनिक विज्ञान से तुलना: 95% मिलान', mr: 'आधुनिक विज्ञान से तुलना: 95% मिलान', ta: 'Compare With Modern Science: A 95% Match', te: 'Compare With Modern Science: A 95% Match', bn: 'Compare With Modern Science: A 95% Match', kn: 'Compare With Modern Science: A 95% Match', gu: 'Compare With Modern Science: A 95% Match' },
-  s3Body: {
-    en: 'The coincidence — if it is one — is striking. The Kalpa of 4.32 billion years falls within 5% of the modern scientific estimate for Earth\'s age (4.54 billion years). The Universe\'s age (13.8 billion years) is approximately 3.2 Kalpas. We do not claim ancient India measured radiometric decay rates. But we do note: a civilization that thought this deeply about cosmic time scales was not operating on ignorance.',
-    hi: 'संयोग — यदि यह है — तो उल्लेखनीय है। 4.32 अरब वर्षों का कल्प पृथ्वी की आयु के आधुनिक वैज्ञानिक अनुमान (4.54 अरब वर्ष) के 5% के भीतर आता है। ब्रह्मांड की आयु (13.8 अरब वर्ष) लगभग 3.2 कल्प है। हम यह दावा नहीं करते कि प्राचीन भारत ने रेडियोमेट्रिक क्षय दर मापी। लेकिन हम यह अवश्य कहते हैं: एक सभ्यता जो ब्रह्मांडीय समय के पैमाने के बारे में इतनी गहराई से सोचती थी, वह अज्ञानता पर काम नहीं कर रही थी।',
-  },
-
-  s4Title: { en: 'The Sources: Surya Siddhanta and Vishnu Purana', hi: 'स्रोत: सूर्य सिद्धांत और विष्णु पुराण', sa: 'स्रोत: सूर्य सिद्धांत और विष्णु पुराण', mai: 'स्रोत: सूर्य सिद्धांत और विष्णु पुराण', mr: 'स्रोत: सूर्य सिद्धांत और विष्णु पुराण', ta: 'The Sources: Surya Siddhanta and Vishnu Purana', te: 'The Sources: Surya Siddhanta and Vishnu Purana', bn: 'The Sources: Surya Siddhanta and Vishnu Purana', kn: 'The Sources: Surya Siddhanta and Vishnu Purana', gu: 'The Sources: Surya Siddhanta and Vishnu Purana' },
-  s4Body: {
-    en: 'The most precise numerical treatment of Hindu time cycles comes from two canonical sources. The Surya Siddhanta (compiled ~400 CE, based on older tradition) opens with a precise astronomical statement: "A Kalpa equals 4,320,000,000 years — one day of Brahma." It then uses this number to derive the number of planetary revolutions since the start of creation. The Vishnu Purana describes the full nested hierarchy from Kali Yuga to Brahma\'s lifespan with consistent, interlocking numbers — suggesting a coherent mathematical framework rather than folklore.',
-    hi: 'हिंदू समय चक्रों का सबसे सटीक संख्यात्मक उपचार दो प्रामाणिक स्रोतों से आता है। सूर्य सिद्धांत (~400 ई. संकलित, पुरानी परंपरा पर आधारित) एक सटीक खगोलीय कथन के साथ खुलता है: "एक कल्प 4,320,000,000 वर्षों के बराबर है — ब्रह्मा का एक दिन।" फिर वह इस संख्या का उपयोग सृष्टि की शुरुआत से ग्रहीय चक्करों की संख्या निकालने के लिए करता है। विष्णु पुराण कलि युग से ब्रह्मा के जीवनकाल तक पूर्ण नेस्टेड पदानुक्रम का सुसंगत, अंतर-संबंधित संख्याओं के साथ वर्णन करता है।',
-  },
-
-  s5Title: { en: 'Carl Sagan on Hindu Cosmology', hi: 'हिंदू ब्रह्मांड-विज्ञान पर कार्ल सागन', sa: 'हिंदू ब्रह्मांड-विज्ञान पर कार्ल सागन', mai: 'हिंदू ब्रह्मांड-विज्ञान पर कार्ल सागन', mr: 'हिंदू ब्रह्मांड-विज्ञान पर कार्ल सागन', ta: 'Carl Sagan on Hindu Cosmology', te: 'Carl Sagan on Hindu Cosmology', bn: 'Carl Sagan on Hindu Cosmology', kn: 'Carl Sagan on Hindu Cosmology', gu: 'Carl Sagan on Hindu Cosmology' },
-  s5Quote: {
-    en: '"The Hindu religion is the only one of the world\'s great faiths dedicated to the idea that the Cosmos itself undergoes an immense, indeed an infinite, number of deaths and rebirths. It is the only religion in which the time scales correspond to those of modern scientific cosmology. Its cycles run from our ordinary day and night to a day and night of Brahma, 8.64 billion years long — longer than the age of the Earth or the Sun, about half the time since the Big Bang."',
-    hi: '"हिंदू धर्म विश्व के महान धर्मों में एकमात्र है जो इस विचार को समर्पित है कि ब्रह्मांड स्वयं असंख्य, वास्तव में अनंत, मृत्युओं और पुनर्जन्मों से गुजरता है। यह एकमात्र धर्म है जिसके समय-पैमाने आधुनिक वैज्ञानिक ब्रह्मांड-विज्ञान के समान हैं। इसके चक्र हमारे साधारण दिन-रात से लेकर ब्रह्मा के दिन-रात तक चलते हैं, जो 8.64 अरब वर्ष लंबे हैं — पृथ्वी या सूर्य की आयु से अधिक, बिग बैंग के बाद से लगभग आधा समय।"',
-  },
-
-  s6Title: { en: 'Our App Uses This Framework Directly', hi: 'हमारा ऐप इस ढाँचे का सीधे उपयोग करता है', sa: 'हमारा ऐप इस ढाँचे का सीधे उपयोग करता है', mai: 'हमारा ऐप इस ढाँचे का सीधे उपयोग करता है', mr: 'हमारा ऐप इस ढाँचे का सीधे उपयोग करता है', ta: 'Our App Uses This Framework Directly', te: 'Our App Uses This Framework Directly', bn: 'Our App Uses This Framework Directly', kn: 'Our App Uses This Framework Directly', gu: 'Our App Uses This Framework Directly' },
-  s6Body: {
-    en: 'The Hindu time framework is not just historical curiosity — it is the active foundation of every Vedic calculation in this app. Samvatsara (the 60-year Jupiter-Saturn cycle) is a sub-cycle of larger Yuga time. The current Kali Yuga start (3102 BCE) is used as the epoch for astronomical computations in the Surya Siddhanta. Vedic Time calculations show your current position within the Yuga hierarchy. Even our Panchang uses the sidereal year count from the Kali Yuga epoch.',
-    hi: 'हिंदू समय ढाँचा केवल ऐतिहासिक जिज्ञासा नहीं है — यह इस ऐप में प्रत्येक वैदिक गणना की सक्रिय नींव है। संवत्सर (60 वर्षीय बृहस्पति-शनि चक्र) बड़े युग समय का एक उप-चक्र है। वर्तमान कलि युग की शुरुआत (3102 BCE) सूर्य सिद्धांत में खगोलीय गणनाओं के युग के रूप में उपयोग की जाती है। वैदिक समय गणनाएँ युग पदानुक्रम के भीतर आपकी वर्तमान स्थिति दिखाती हैं।',
-  },
-
-  backLink: { en: '← Back to Learn', hi: '← सीखने पर वापस', sa: '← सीखने पर वापस', mai: '← सीखने पर वापस', mr: '← सीखने पर वापस', ta: '← Back to Learn', te: '← Back to Learn', bn: '← Back to Learn', kn: '← Back to Learn', gu: '← Back to Learn' },
-  gravity: { en: 'Gravity (500 yrs before Newton)', hi: 'गुरुत्वाकर्षण (न्यूटन से 500 वर्ष पूर्व)', sa: 'गुरुत्वाकर्षण (न्यूटन से 500 वर्ष पूर्व)', mai: 'गुरुत्वाकर्षण (न्यूटन से 500 वर्ष पूर्व)', mr: 'गुरुत्वाकर्षण (न्यूटन से 500 वर्ष पूर्व)', ta: 'Gravity (500 yrs before Newton)', te: 'Gravity (500 yrs before Newton)', bn: 'Gravity (500 yrs before Newton)', kn: 'Gravity (500 yrs before Newton)', gu: 'Gravity (500 yrs before Newton)' },
-  vedicTime: { en: 'Vedic Time Tool', hi: 'वैदिक समय उपकरण', sa: 'वैदिक समय उपकरण', mai: 'वैदिक समय उपकरण', mr: 'वैदिक समय उपकरण', ta: 'Vedic Time Tool', te: 'Vedic Time Tool', bn: 'Vedic Time Tool', kn: 'Vedic Time Tool', gu: 'Vedic Time Tool' },
-};
 
 const YUGA_DATA = [
   { name: 'Satya Yuga', sanskrit: 'सत्य युग', years: 1728000, color: '#f0d48a', desc: { en: 'Golden Age — full cosmic virtue', hi: 'स्वर्ण युग — पूर्ण ब्रह्मांडीय सद्गुण', sa: 'स्वर्ण युग — पूर्ण ब्रह्मांडीय सद्गुण', mai: 'स्वर्ण युग — पूर्ण ब्रह्मांडीय सद्गुण', mr: 'स्वर्ण युग — पूर्ण ब्रह्मांडीय सद्गुण', ta: 'Golden Age — full cosmic virtue', te: 'Golden Age — full cosmic virtue', bn: 'Golden Age — full cosmic virtue', kn: 'Golden Age — full cosmic virtue', gu: 'Golden Age — full cosmic virtue' } },
@@ -83,7 +35,8 @@ export default async function CosmicTimePage({ params }: { params: Promise<{ loc
   const { locale } = await params as { locale: Locale };
   const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const l = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
+  const l = (obj: LocaleText | Record<string, string>) => lt(obj as LocaleText, locale);
 
   const totalMahayuga = YUGA_DATA.reduce((sum, y) => sum + y.years, 0);
 
@@ -92,10 +45,10 @@ export default async function CosmicTimePage({ params }: { params: Promise<{ loc
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <div>
-        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{l(L.title)}</h2>
-        <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">{l(L.subtitle)}</p>
+        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{t('title')}</h2>
+        <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">{t('subtitle')}</p>
         <div className="flex justify-center mt-4">
-          <ShareRow pageTitle={l(L.title)} locale={locale} />
+          <ShareRow pageTitle={t('title')} locale={locale} />
         </div>
       </div>
 
@@ -103,8 +56,8 @@ export default async function CosmicTimePage({ params }: { params: Promise<{ loc
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s1Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-6">{l(L.s1Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s1Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-6">{t('s1Body')}</p>
 
         <div className="space-y-3">
           {SCALE_COMPARE.map((item, i) => (
@@ -126,8 +79,8 @@ export default async function CosmicTimePage({ params }: { params: Promise<{ loc
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s2Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-6">{l(L.s2Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s2Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-6">{t('s2Body')}</p>
 
         <div className="space-y-3 mb-5">
           {YUGA_DATA.map((yuga, i) => {
@@ -168,8 +121,8 @@ export default async function CosmicTimePage({ params }: { params: Promise<{ loc
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s3Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-6">{l(L.s3Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s3Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-6">{t('s3Body')}</p>
 
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -215,8 +168,8 @@ export default async function CosmicTimePage({ params }: { params: Promise<{ loc
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s4Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-5">{l(L.s4Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s4Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-5">{t('s4Body')}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 rounded-xl bg-gold-primary/8 border border-gold-primary/20">
@@ -250,10 +203,10 @@ export default async function CosmicTimePage({ params }: { params: Promise<{ loc
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-5" style={hf}>{l(L.s5Title)}</h3>
+        <h3 className="text-gold-light font-bold text-xl mb-5" style={hf}>{t('s5Title')}</h3>
 
         <div className="p-5 rounded-xl bg-blue-500/8 border-l-4 border-blue-400/50 mb-5">
-          <p className="text-blue-100 text-sm leading-relaxed italic mb-3">{l(L.s5Quote)}</p>
+          <p className="text-blue-100 text-sm leading-relaxed italic mb-3">{t('s5Quote')}</p>
           <p className="text-blue-300 text-xs font-semibold">— Carl Sagan, Cosmos (1980)</p>
         </div>
 
@@ -275,8 +228,8 @@ export default async function CosmicTimePage({ params }: { params: Promise<{ loc
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s6Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-5">{l(L.s6Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s6Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-5">{t('s6Body')}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-5">
           {[
@@ -308,14 +261,14 @@ export default async function CosmicTimePage({ params }: { params: Promise<{ loc
         className="flex flex-col sm:flex-row gap-3 pt-4"
       >
         <Link href="/learn" className="text-text-secondary hover:text-gold-light text-sm transition-colors">
-          {l(L.backLink)}
+          {t('backLink')}
         </Link>
         <div className="flex gap-3 sm:ml-auto">
           <Link href="/learn/contributions/gravity" className="px-4 py-2 rounded-xl bg-gold-primary/15 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/25 transition-colors">
-            ← {l(L.gravity)}
+            ← {t('gravity')}
           </Link>
           <Link href="/vedic-time" className="px-4 py-2 rounded-xl bg-gold-primary/15 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/25 transition-colors">
-            {l(L.vedicTime)} →
+            {t('vedicTime')} →
           </Link>
         </div>
       </div>

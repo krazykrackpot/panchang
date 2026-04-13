@@ -1,83 +1,14 @@
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/contributions-earth-rotation.json';
 import { Link } from '@/lib/i18n/navigation';
-import type { LocaleText, Locale } from '@/types/panchang';
+import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ════════════════════════════════════════════════════════════════
    LABELS — bilingual (en / hi)
    ════════════════════════════════════════════════════════════════ */
-const L = {
-  title: {
-    en: 'India Knew the Earth Rotates — 1,000 Years Before Europe',
-    hi: 'भारत को पता था पृथ्वी घूमती है — यूरोप से 1,000 वर्ष पहले',
-  },
-  subtitle: {
-    en: 'In 499 CE, while Europe was in the Dark Ages, a 23-year-old Indian mathematician wrote: "The starry sphere does not revolve; it is the Earth that rotates on its axis, causing the stars to appear to rise and set." His name was Aryabhata — and this was not a guess.',
-    hi: '499 ई. में, जब यूरोप अंधकार युग में था, एक 23 वर्षीय भारतीय गणितज्ञ ने लिखा: "तारों का गोला नहीं घूमता; पृथ्वी अपनी धुरी पर घूमती है, जिससे तारे उगते और डूबते प्रतीत होते हैं।" उनका नाम था आर्यभट — और यह कोई अनुमान नहीं था।',
-  },
-
-  s1Title: { en: 'The Exact Quote — Aryabhatiya, Golapada', hi: 'सटीक उद्धरण — आर्यभटीय, गोलपाद', sa: 'सटीक उद्धरण — आर्यभटीय, गोलपाद', mai: 'सटीक उद्धरण — आर्यभटीय, गोलपाद', mr: 'सटीक उद्धरण — आर्यभटीय, गोलपाद', ta: 'The Exact Quote — Aryabhatiya, Golapada', te: 'The Exact Quote — Aryabhatiya, Golapada', bn: 'The Exact Quote — Aryabhatiya, Golapada', kn: 'The Exact Quote — Aryabhatiya, Golapada', gu: 'The Exact Quote — Aryabhatiya, Golapada' },
-  s1Body: {
-    en: 'The Aryabhatiya contains two critical verses in the Golapada (Celestial Sphere section) that state Earth\'s rotation with mathematical precision. These are not poetic metaphors — they are technical astronomical statements embedded in a work of applied mathematics.',
-    hi: 'आर्यभटीय के गोलपाद (आकाशीय गोल खंड) में दो महत्वपूर्ण श्लोक हैं जो पृथ्वी के घूर्णन को गणितीय सटीकता के साथ बताते हैं। ये काव्यात्मक रूपक नहीं हैं — ये अनुप्रयुक्त गणित के कार्य में एम्बेड किए गए तकनीकी खगोलीय कथन हैं।',
-  },
-  s1Quote1: {
-    en: 'Verse 9, Golapada: "Just as a man in a boat moving forward sees the stationary objects as moving backward, just so the stationary stars appear to move westward — to a person at Lanka (equator). The cause of rising and setting is this: the sphere of stars together with the planets appears to move westward at Lanka, driven by the provector wind, constantly revolves eastward."',
-    hi: 'श्लोक 9, गोलपाद: "जैसे एक नाव में आगे बढ़ता व्यक्ति स्थिर वस्तुओं को पीछे जाते देखता है, वैसे ही स्थिर तारे लंका (भूमध्य रेखा) पर किसी व्यक्ति को पश्चिम की ओर जाते प्रतीत होते हैं। उदय और अस्त का कारण यह है: ग्रहों सहित तारों का गोला लंका में पश्चिम की ओर जाता प्रतीत होता है, प्रवह पवन द्वारा संचालित, निरंतर पूर्व की ओर घूमता है।"',
-  },
-  s1Sanskrit: 'अनुलोमगतिर्नौस्थः पश्यत्यचलं विलोमगं यद्वत् । अचलानि भानि तद्वत् समपश्चिमगानि लङ्कायाम् ॥',
-
-  s2Title: {
-    en: 'Why Was This Revolutionary?',
-    hi: 'यह क्रांतिकारी क्यों था?',
-  },
-  s2Body: {
-    en: 'In 499 CE, the dominant model across the entire known world was the Ptolemaic geocentric system: Earth at the center, stars and planets revolving around it. This was not mere folk belief — it was the rigorous mathematical system of the greatest Greek astronomer, backed by centuries of observation. Aryabhata\'s assertion contradicted it directly. He gave a reason: apparent motion is relative. An observer on a moving Earth would see stationary stars as moving — exactly what we observe. This is the same argument Galileo used 1,100 years later.',
-    hi: '499 ई. में, पूरे ज्ञात संसार में प्रमुख मॉडल टॉलेमी का भू-केंद्रित प्रणाली था: पृथ्वी केंद्र में, तारे और ग्रह उसके चारों ओर घूमते हुए। यह केवल लोककथा नहीं थी — यह महानतम ग्रीक खगोलशास्त्री की कठोर गणितीय प्रणाली थी, जिसे सदियों के अवलोकन का समर्थन था। आर्यभट के दावे ने इसे सीधे चुनौती दी। उन्होंने एक कारण दिया: स्पष्ट गति सापेक्ष है। एक गतिशील पृथ्वी पर एक पर्यवेक्षक स्थिर तारों को गतिशील देखेगा — ठीक वही जो हम देखते हैं। यह वही तर्क है जो गैलीलियो ने 1,100 वर्ष बाद दिया।',
-  },
-
-  s3Title: {
-    en: 'Brahmagupta\'s Criticism — Active Scientific Debate',
-    hi: 'ब्रह्मगुप्त की आलोचना — सक्रिय वैज्ञानिक बहस',
-  },
-  s3Body: {
-    en: 'Not everyone agreed. Brahmagupta (628 CE) famously criticized Aryabhata in his Brahmasphutasiddhanta, arguing that if the Earth rotated, a stone thrown upward would land far to the west. This is actually a reasonable objection — it was later resolved by Newton\'s concept of inertia. What matters here is the context: India in the 6th–7th century had an active, contentious scientific debate about Earth\'s motion. This was not dogma — it was science.',
-    hi: 'सभी सहमत नहीं थे। ब्रह्मगुप्त (628 ई.) ने अपने ब्रह्मस्फुटसिद्धांत में आर्यभट की प्रसिद्ध रूप से आलोचना की, तर्क देते हुए कि यदि पृथ्वी घूमती, तो ऊपर फेंका गया पत्थर बहुत पश्चिम में गिरता। यह वास्तव में एक उचित आपत्ति थी — इसे बाद में न्यूटन की जड़त्व की अवधारणा ने हल किया। यहाँ जो महत्वपूर्ण है वह संदर्भ है: 6वीं-7वीं सदी के भारत में पृथ्वी की गति के बारे में एक सक्रिय, विवादास्पद वैज्ञानिक बहस थी। यह हठधर्मिता नहीं थी — यह विज्ञान था।',
-  },
-
-  s4Title: {
-    en: 'Earth\'s Circumference — 99.7% Accurate',
-    hi: 'पृथ्वी की परिधि — 99.7% सटीक',
-  },
-  s4Body: {
-    en: 'Aryabhata\'s genius did not stop at rotation. In Ganitapada verse 14, he calculated Earth\'s circumference as 4,967 yojanas. Using the yojana value he himself defined (8 miles), this gives 39,736 miles. The modern value is 40,075 km (24,901 miles). His result: 99.4% accurate for a measurement made in 499 CE. He also calculated the Earth\'s diameter, correctly identifying it as larger than the Moon\'s but smaller than the Sun\'s.',
-    hi: 'आर्यभट की प्रतिभा घूर्णन पर नहीं रुकी। गणितपाद श्लोक 14 में, उन्होंने पृथ्वी की परिधि 4,967 योजन बताई। उनके द्वारा परिभाषित योजन मान (8 मील) का उपयोग करते हुए, यह 39,736 मील देता है। आधुनिक मान 40,075 किमी (24,901 मील) है। उनका परिणाम: 499 ई. में किए गए माप के लिए 99.4% सटीक। उन्होंने पृथ्वी के व्यास की भी गणना की, सही ढंग से पहचाना कि यह चंद्रमा से बड़ा लेकिन सूर्य से छोटा है।',
-  },
-
-  s5Title: {
-    en: 'Connection to Sidereal Astronomy & Ayanamsha',
-    hi: 'नाक्षत्र खगोल विज्ञान और अयनांश से संबंध',
-  },
-  s5Body: {
-    en: 'Aryabhata\'s heliocentric understanding directly influenced how Vedic astronomy measures planetary positions. He measured the sidereal day — Earth\'s rotation relative to the fixed stars — as 23h 56m 4.1s. Modern value: 23h 56m 4.091s. His value is off by less than 0.01 seconds after 1,500 years. This sidereal perspective is why Vedic astrology uses the sidereal zodiac (Nirayana) and why the ayanamsha correction exists in all our calculations.',
-    hi: 'आर्यभट की सौर-केंद्रित समझ ने सीधे तौर पर प्रभावित किया कि वैदिक खगोल विज्ञान ग्रहीय स्थितियों को कैसे मापता है। उन्होंने नाक्षत्र दिन — स्थिर तारों के सापेक्ष पृथ्वी का घूर्णन — 23 घंटे 56 मिनट 4.1 सेकंड मापा। आधुनिक मान: 23 घंटे 56 मिनट 4.091 सेकंड। 1,500 वर्षों के बाद उनका मान 0.01 सेकंड से कम गलत है। यह नाक्षत्र दृष्टिकोण यही कारण है कि वैदिक ज्योतिष नाक्षत्र राशिचक्र (निरयण) का उपयोग करता है और क्यों हमारी सभी गणनाओं में अयनांश सुधार मौजूद है।',
-  },
-
-  s6Title: {
-    en: 'Timeline — Aryabhata to Galileo',
-    hi: 'समय-रेखा — आर्यभट से गैलीलियो तक',
-  },
-
-  s7Title: {
-    en: 'Aryabhata\'s Other Astronomical Achievements',
-    hi: 'आर्यभट की अन्य खगोलीय उपलब्धियाँ',
-  },
-
-  backLink: { en: '← Back to Learn', hi: '← सीखने पर वापस', sa: '← सीखने पर वापस', mai: '← सीखने पर वापस', mr: '← सीखने पर वापस', ta: '← Back to Learn', te: '← Back to Learn', bn: '← Back to Learn', kn: '← Back to Learn', gu: '← Back to Learn' },
-  prevPage: { en: 'Sine — Sanskrit Origin', hi: 'Sine — संस्कृत उत्पत्ति', sa: 'Sine — संस्कृत उत्पत्ति', mai: 'Sine — संस्कृत उत्पत्ति', mr: 'Sine — संस्कृत उत्पत्ति', ta: 'Sine — Sanskrit Origin', te: 'Sine — Sanskrit Origin', bn: 'Sine — Sanskrit Origin', kn: 'Sine — Sanskrit Origin', gu: 'Sine — Sanskrit Origin' },
-  nextPage: { en: 'Calculus in Kerala', hi: 'केरल में कलनशास्त्र', sa: 'केरल में कलनशास्त्र', mai: 'केरल में कलनशास्त्र', mr: 'केरल में कलनशास्त्र', ta: 'Calculus in Kerala', te: 'Calculus in Kerala', bn: 'Calculus in Kerala', kn: 'Calculus in Kerala', gu: 'Calculus in Kerala' },
-};
 
 const TIMELINE = [
   { year: '499 CE', person: 'Aryabhata', event: { en: 'States Earth rotates on its axis, in Aryabhatiya Golapada', hi: 'आर्यभटीय गोलपाद में पृथ्वी के अक्षीय घूर्णन का कथन', sa: 'आर्यभटीय गोलपाद में पृथ्वी के अक्षीय घूर्णन का कथन', mai: 'आर्यभटीय गोलपाद में पृथ्वी के अक्षीय घूर्णन का कथन', mr: 'आर्यभटीय गोलपाद में पृथ्वी के अक्षीय घूर्णन का कथन', ta: 'States Earth rotates on its axis, in Aryabhatiya Golapada', te: 'States Earth rotates on its axis, in Aryabhatiya Golapada', bn: 'States Earth rotates on its axis, in Aryabhatiya Golapada', kn: 'States Earth rotates on its axis, in Aryabhatiya Golapada', gu: 'States Earth rotates on its axis, in Aryabhatiya Golapada' }, color: '#f0d48a' },
@@ -100,17 +31,18 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
   const { locale } = await params as { locale: Locale };
   const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const l = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
+  const l = (obj: LocaleText | Record<string, string>) => lt(obj as LocaleText, locale);
 
   return (
     <div className="space-y-10">
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <div>
-        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{l(L.title)}</h2>
-        <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">{l(L.subtitle)}</p>
+        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{t('title')}</h2>
+        <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">{t('subtitle')}</p>
         <div className="flex justify-center mt-4">
-          <ShareRow pageTitle={l(L.title)} locale={locale} />
+          <ShareRow pageTitle={t('title')} locale={locale} />
         </div>
       </div>
 
@@ -118,17 +50,17 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s1Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-5">{l(L.s1Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s1Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-5">{t('s1Body')}</p>
 
         {/* Sanskrit verse */}
         <div className="p-5 rounded-xl bg-gold-primary/8 border border-gold-primary/20 mb-4">
           <p className="text-xs text-text-secondary mb-2 font-semibold">{isHi ? 'आर्यभटीय, गोलपाद, श्लोक 9' : 'Aryabhatiya, Golapada, Verse 9'}</p>
           <p className="text-gold-light text-base font-mono leading-relaxed mb-3" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
-            {L.s1Sanskrit}
+            {t('s1Sanskrit')}
           </p>
           <p className="text-text-secondary text-sm leading-relaxed italic">
-            {l(L.s1Quote1)}
+            {t('s1Quote1')}
           </p>
         </div>
 
@@ -145,8 +77,8 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s2Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-4">{l(L.s2Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s2Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-4">{t('s2Body')}</p>
 
         {/* Comparison */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -175,8 +107,8 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s3Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-4">{l(L.s3Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s3Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-4">{t('s3Body')}</p>
 
         <div className="p-4 rounded-xl bg-blue-500/8 border border-blue-500/15">
           <p className="text-blue-200 font-semibold text-xs mb-2">{isHi ? 'ब्रह्मगुप्त की आपत्ति (628 CE)' : "Brahmagupta's Objection (628 CE)"}</p>
@@ -197,8 +129,8 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s4Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-5">{l(L.s4Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s4Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-5">{t('s4Body')}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <div className="p-4 rounded-xl bg-gold-primary/8 border border-gold-primary/15 text-center">
@@ -220,8 +152,8 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s5Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-5">{l(L.s5Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s5Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-5">{t('s5Body')}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 rounded-xl bg-white/[0.03] border border-gold-primary/10">
@@ -244,7 +176,7 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-6" style={hf}>{l(L.s6Title)}</h3>
+        <h3 className="text-gold-light font-bold text-xl mb-6" style={hf}>{t('s6Title')}</h3>
         <div className="relative">
           <div className="absolute left-8 top-0 bottom-0 w-px bg-gold-primary/20" />
           <div className="space-y-4">
@@ -270,7 +202,7 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s7Title)}</h3>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s7Title')}</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -300,14 +232,14 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
         className="flex flex-col sm:flex-row gap-3 pt-4"
       >
         <Link href="/learn" className="text-text-secondary hover:text-gold-light text-sm transition-colors">
-          {l(L.backLink)}
+          {t('backLink')}
         </Link>
         <div className="flex gap-3 sm:ml-auto">
           <Link href="/learn/contributions/sine" className="px-4 py-2 rounded-xl bg-gold-primary/10 border border-gold-primary/15 text-gold-light text-sm hover:bg-gold-primary/20 transition-colors">
-            ← {l(L.prevPage)}
+            ← {t('prevPage')}
           </Link>
           <Link href="/learn/contributions/calculus" className="px-4 py-2 rounded-xl bg-gold-primary/15 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/25 transition-colors">
-            {l(L.nextPage)} →
+            {t('nextPage')} →
           </Link>
         </div>
       </div>

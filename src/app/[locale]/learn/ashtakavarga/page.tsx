@@ -1,6 +1,8 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/ashtakavarga.json';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
@@ -9,78 +11,6 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-const L = {
-  title: { en: 'Ashtakavarga — The 8-Fold Transit Scoring System', hi: 'अष्टकवर्ग — आठ-गुणा गोचर अंक प्रणाली', sa: 'अष्टकवर्गः — अष्टगुणगोचराङ्कपद्धतिः' , ta: 'அஷ்டகவர்க்கம் — 8 மடங்கு கோசார மதிப்பீடு' },
-  subtitle: { en: 'A numerical system that predicts the strength of planetary transits through every sign', hi: 'एक संख्यात्मक प्रणाली जो प्रत्येक राशि में ग्रह गोचर की शक्ति का पूर्वानुमान करती है', sa: 'संख्यात्मकपद्धतिः या प्रत्येकराशौ ग्रहगोचरस्य बलं पूर्वानुमानयति' },
-
-  whatTitle: { en: 'What is Ashtakavarga?', hi: 'अष्टकवर्ग क्या है?', sa: 'अष्टकवर्गः कः?' },
-  whatContent: {
-    en: '"Ashta" means eight, "Varga" means division or group. Ashtakavarga is a system where each planet receives benefic points (called Bindus) from eight sources: the seven classical planets (Sun through Saturn) and the Lagna (Ascendant). Each source either contributes a Bindu (1) or does not (0) to each of the 12 signs, creating a comprehensive scoring matrix for every planet.',
-    hi: '"अष्ट" का अर्थ आठ, "वर्ग" का अर्थ विभाग। अष्टकवर्ग एक प्रणाली है जिसमें प्रत्येक ग्रह को आठ स्रोतों से शुभ अंक (बिन्दु) प्राप्त होते हैं: सात शास्त्रीय ग्रह (सूर्य से शनि) और लग्न। प्रत्येक स्रोत प्रत्येक 12 राशियों को बिन्दु (1) देता है या नहीं (0), हर ग्रह के लिए एक व्यापक अंक मैट्रिक्स बनाता है।',
-    sa: '"अष्ट" इत्यर्थः अष्टौ, "वर्गः" इत्यर्थः विभागः। अष्टकवर्गः पद्धतिः यत्र प्रत्येकग्रहः अष्टस्रोतेभ्यः शुभाङ्कान् (बिन्दून्) प्राप्नोति।'
-  },
-  whatContent2: {
-    en: 'There are two key tables in Ashtakavarga: the Bhinna Ashtakavarga (BAV) which is the individual scoring table for each planet, and the Sarvashtakavarga (SAV) which combines all individual scores into a grand total for each sign. The BAV tells you how a specific planet will perform when transiting a given sign; the SAV tells you the overall strength of a sign across all planetary transits.',
-    hi: 'अष्टकवर्ग में दो प्रमुख तालिकाएँ हैं: भिन्न अष्टकवर्ग (BAV) जो प्रत्येक ग्रह की व्यक्तिगत अंक तालिका है, और सर्वाष्टकवर्ग (SAV) जो सभी व्यक्तिगत अंकों को प्रत्येक राशि के लिए कुल योग में संयोजित करता है। BAV बताता है कि कोई विशिष्ट ग्रह किसी राशि में गोचर करते समय कैसा प्रदर्शन करेगा; SAV बताता है कि सभी ग्रह गोचरों में राशि की समग्र शक्ति क्या है।',
-    sa: 'अष्टकवर्गे द्वे प्रमुखसारण्यौ स्तः: भिन्नाष्टकवर्गः (BAV) यः प्रत्येकग्रहस्य व्यक्तिगताङ्कसारणी, सर्वाष्टकवर्गश्च (SAV) यः सर्वान् अङ्कान् समाहृत्य प्रत्येकराशेः महायोगं करोति।'
-  },
-  whatContent3: {
-    en: 'Why does Ashtakavarga matter? It answers a critical question that basic transit analysis cannot: two people with the same Moon sign will experience the same Saturn transit very differently. Ashtakavarga explains WHY — the bindu score for Saturn in that sign in their individual charts will differ, making one person\'s transit productive and the other\'s challenging.',
-    hi: 'अष्टकवर्ग क्यों महत्वपूर्ण है? यह एक महत्वपूर्ण प्रश्न का उत्तर देता है जो सामान्य गोचर विश्लेषण नहीं दे सकता: एक ही चन्द्र राशि के दो व्यक्ति एक ही शनि गोचर को बहुत भिन्न अनुभव करेंगे। अष्टकवर्ग बताता है क्यों — उनकी व्यक्तिगत कुण्डलियों में उस राशि में शनि का बिन्दु स्कोर भिन्न होगा।',
-    sa: 'अष्टकवर्गः किमर्थं महत्त्वपूर्णः? एकस्याः चन्द्रराशेः द्वौ व्यक्तौ एकं शनिगोचरं भिन्नतया अनुभवतः। अष्टकवर्गः कारणं वदति।'
-  },
-
-  readTitle: { en: 'How to Read the Ashtakavarga Table', hi: 'अष्टकवर्ग तालिका कैसे पढ़ें', sa: 'अष्टकवर्गसारणीं कथं पठेत्' },
-  readContent: {
-    en: 'Each planet\'s Bhinna Ashtakavarga (BAV) is a row of 12 numbers — one for each sign (Aries through Pisces). Each number ranges from 0 to 8, representing how many of the 8 sources contribute a benefic point to that sign for that planet.',
-    hi: 'प्रत्येक ग्रह का भिन्न अष्टकवर्ग (BAV) 12 संख्याओं की एक पंक्ति है — प्रत्येक राशि (मेष से मीन) के लिए एक। प्रत्येक संख्या 0 से 8 तक होती है, यह दर्शाती है कि 8 स्रोतों में से कितने उस राशि में उस ग्रह को शुभ बिन्दु देते हैं।',
-    sa: 'प्रत्येकग्रहस्य भिन्नाष्टकवर्गः 12 सङ्ख्यानां पङ्क्तिः — प्रत्येकराशये एका। प्रत्येका सङ्ख्या 0 तः 8 पर्यन्तम्।'
-  },
-
-  thresholdTitle: { en: 'The Rule of Four', hi: 'चार का नियम', sa: 'चतुर्नियमः' },
-  thresholdContent: {
-    en: 'The critical threshold in Ashtakavarga is 4 bindus. When a planet transits a sign where it has 4 or more bindus in its BAV, the transit tends to give favourable results in that planet\'s significations. Below 4 bindus, the transit is likely to bring challenges, delays, or unfavourable outcomes. The higher the score, the stronger the positive effect; a score of 0-1 can indicate significant difficulties.',
-    hi: '4 बिन्दु अष्टकवर्ग की महत्वपूर्ण सीमा है। जब कोई ग्रह उस राशि में गोचर करता है जहाँ BAV में 4 या अधिक बिन्दु हैं, तो गोचर उस ग्रह के संकेतों में अनुकूल परिणाम देता है। 4 से कम बिन्दु पर गोचर कठिनाइयाँ या प्रतिकूल परिणाम ला सकता है।',
-    sa: '4 बिन्दवः अष्टकवर्गस्य महत्त्वपूर्णा सीमा। यदा ग्रहः तस्यां राशौ गोचरं करोति यत्र BAV मध्ये 4 वा अधिकाः बिन्दवः सन्ति, तदा गोचरः अनुकूलफलानि ददाति।'
-  },
-  savTitle: { en: 'Sarvashtakavarga (SAV) — The Grand Total', hi: 'सर्वाष्टकवर्ग (SAV) — महायोग', sa: 'सर्वाष्टकवर्गः (SAV) — महायोगः' },
-  savContent: {
-    en: 'The SAV row sums all seven planets\' BAV scores for each sign. The total SAV across all 12 signs is always 337 points. The average per sign is about 28. Signs scoring 28 or above in SAV are considered strong — any planet transiting that sign tends to give better-than-average results. Signs below 25 are weak — transits through these signs tend to be more challenging regardless of the specific planet.',
-    hi: 'SAV पंक्ति प्रत्येक राशि के लिए सातों ग्रहों के BAV अंकों का योग है। 12 राशियों में कुल SAV सदा 337 अंक होता है। प्रति राशि औसत लगभग 28 है। 28 या अधिक SAV वाली राशियाँ शक्तिशाली हैं; 25 से कम कमज़ोर हैं।',
-    sa: 'SAV पङ्क्तिः प्रत्येकराशये सप्तग्रहाणां BAV अङ्कानां योगः। 12 राशिषु सम्पूर्णं SAV सदा 337 अङ्काः। प्रतिराशि औसतं 28। 28 वा अधिकं शक्तिमत्; 25 अधः दुर्बलम्।'
-  },
-
-  practicalTitle: { en: 'Practical Use — Transit Scoring with Ashtakavarga', hi: 'व्यावहारिक प्रयोग — अष्टकवर्ग से गोचर अंकन', sa: 'व्यावहारिकप्रयोगः — अष्टकवर्गेण गोचराङ्कनम्' },
-  practicalContent: {
-    en: 'The real power of Ashtakavarga is in predicting transit quality. Instead of simply saying "Saturn is transiting Capricorn," you can say "Saturn is transiting Capricorn where it has 6 bindus in my chart — this will be a productive, structured transit for me." Here is a worked example:',
-    hi: 'अष्टकवर्ग की वास्तविक शक्ति गोचर गुणवत्ता की भविष्यवाणी में है। केवल "शनि मकर में गोचर कर रहा है" कहने के बजाय, आप कह सकते हैं "शनि मकर में गोचर कर रहा है जहाँ मेरी कुण्डली में 6 बिन्दु हैं — यह मेरे लिए उत्पादक गोचर होगा।"',
-    sa: 'अष्टकवर्गस्य वास्तविकशक्तिः गोचरगुणवत्तायाः भविष्यवाण्याम्।'
-  },
-
-  workedTitle: { en: 'Worked Example', hi: 'कार्यशील उदाहरण', sa: 'कार्यशीलोदाहरणम्' },
-
-  trikonaTitle: { en: 'Trikona Shodhana — Advanced Reduction', hi: 'त्रिकोण शोधन — उन्नत न्यूनीकरण', sa: 'त्रिकोणशोधनम् — उन्नतन्यूनीकरणम्' },
-  trikonaContent: {
-    en: 'Trikona Shodhana is an advanced technique that reduces the BAV to yield more precise results. The basic principle: signs that share the same lord (Trikona signs) should have their minimum bindu value subtracted from all three. For example, Aries and Scorpio are both ruled by Mars. If Aries has 5 bindus and Scorpio has 3, subtract 3 from both: Aries becomes 2 and Scorpio becomes 0. This refined table is used for precise timing within a transit.',
-    hi: 'त्रिकोण शोधन एक उन्नत तकनीक है जो अधिक सटीक परिणामों के लिए BAV को न्यूनीकृत करती है। मूल सिद्धान्त: एक ही स्वामी वाली राशियों (त्रिकोण राशियों) से उनका न्यूनतम बिन्दु मूल्य घटाया जाना चाहिए। उदाहरण: मेष और वृश्चिक दोनों मंगल शासित हैं। यदि मेष में 5 और वृश्चिक में 3 बिन्दु हैं, तो दोनों से 3 घटाएँ: मेष 2 और वृश्चिक 0 हो जाता है।',
-    sa: 'त्रिकोणशोधनम् उन्नततन्त्रम् यत् BAV न्यूनीकरोति। मूलसिद्धान्तः: एकस्वामिराशिभ्यः न्यूनतमबिन्दुमूल्यं विशोध्यते।'
-  },
-  trikonaContent2: {
-    en: 'Ekadhipati Shodhana extends this principle specifically to signs sharing the same lord (dual-lordship signs). Mars rules Aries and Scorpio; Jupiter rules Sagittarius and Pisces; Saturn rules Capricorn and Aquarius; Mercury rules Gemini and Virgo; Venus rules Taurus and Libra. For each such pair, the lower value is subtracted from both. This gives a "net strength" that shows where a planet truly delivers its strongest results during transit.',
-    hi: 'एकाधिपति शोधन इस सिद्धान्त को विशेष रूप से एक ही स्वामी वाली राशियों (द्वि-स्वामित्व राशियों) पर लागू करता है। मंगल मेष और वृश्चिक शासित करता है; गुरु धनु और मीन; शनि मकर और कुम्भ; बुध मिथुन और कन्या; शुक्र वृषभ और तुला। प्रत्येक ऐसी जोड़ी में निम्न मूल्य दोनों से घटाया जाता है।',
-    sa: 'एकाधिपतिशोधनम् एतत् सिद्धान्तं विशेषतः एकस्वामिराशिषु प्रयुज्यते। मङ्गलः मेषवृश्चिकयोः; गुरुः धनुमीनयोः; शनिः मकरकुम्भयोः।'
-  },
-
-  kakshyaTitle: { en: 'Kakshya Transits — Fine Timing within a Sign', hi: 'कक्ष्या गोचर — राशि के भीतर सूक्ष्म समय', sa: 'कक्ष्यागोचरः — राशेः अन्तः सूक्ष्मकालनिर्धारणम्' },
-  kakshyaContent: {
-    en: 'Each sign of 30 degrees is divided into 8 Kakshyas (divisions) of 3 degrees 45 minutes each, ruled by the 8 Ashtakavarga contributors in a fixed order: Saturn (0-3\u00b045\'), Jupiter (3\u00b045\'-7\u00b030\'), Mars (7\u00b030\'-11\u00b015\'), Sun (11\u00b015\'-15\u00b0), Venus (15\u00b0-18\u00b045\'), Mercury (18\u00b045\'-22\u00b030\'), Moon (22\u00b030\'-26\u00b015\'), Lagna (26\u00b015\'-30\u00b0). When a transiting planet passes through the Kakshya of a source that contributed a Bindu, that specific 3-4 day window yields positive results.',
-    hi: '30 अंश की प्रत्येक राशि 8 कक्ष्याओं (विभागों) में विभाजित है, प्रत्येक 3 अंश 45 कला की। क्रम: शनि, गुरु, मंगल, सूर्य, शुक्र, बुध, चन्द्र, लग्न। जब गोचरी ग्रह उस कक्ष्या से गुज़रता है जिसके स्रोत ने बिन्दु दिया, वह विशिष्ट 3-4 दिन का काल शुभ होता है।',
-    sa: '30 अंशानां प्रत्येका राशिः 8 कक्ष्यासु विभज्यते, प्रत्येका 3 अंश 45 कला। यदा गोचरग्रहः तस्याः कक्ष्यायां गच्छति यस्याः स्रोतः बिन्दुं दत्तवान्, तत् सूक्ष्मकालखण्डं शुभम्।'
-  },
-
-  modulesTitle: { en: 'Related Lessons & Tools', hi: 'सम्बन्धित पाठ और उपकरण', sa: 'सम्बद्धपाठसाधनानि' },
-  tryIt: { en: 'Generate Your Kundali — View Your Ashtakavarga', hi: 'अपनी कुण्डली बनाएँ — अष्टकवर्ग देखें', sa: 'स्वकुण्डलीं जनयतु — अष्टकवर्गं पश्यतु' },
-};
 
 const SIGNS_SHORT = [
   { en: 'Ari', hi: 'मे', sa: 'मे', mai: 'मे', mr: 'मे', ta: 'Ari', te: 'Ari', bn: 'Ari', kn: 'Ari', gu: 'Ari' }, { en: 'Tau', hi: 'वृ', sa: 'वृ', mai: 'वृ', mr: 'वृ', ta: 'Tau', te: 'Tau', bn: 'Tau', kn: 'Tau', gu: 'Tau' }, { en: 'Gem', hi: 'मि', sa: 'मि', mai: 'मि', mr: 'मि', ta: 'Gem', te: 'Gem', bn: 'Gem', kn: 'Gem', gu: 'Gem' },
@@ -109,6 +39,7 @@ const SCORE_MEANINGS = [
 export default function LearnAshtakavargaPage() {
   const locale = useLocale() as Locale;
   const isHi = isDevanagariLocale(locale);
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -116,9 +47,9 @@ export default function LearnAshtakavargaPage() {
     <div>
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>
-          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
+          {t('title')}
         </h2>
-        <p className="text-text-secondary" style={bodyFont}>{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
+        <p className="text-text-secondary" style={bodyFont}>{t('subtitle')}</p>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
@@ -130,10 +61,10 @@ export default function LearnAshtakavargaPage() {
       </div>
 
       {/* Section 1: What is Ashtakavarga */}
-      <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}>
-        <p style={bodyFont}>{((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}</p>
-        <p className="mt-3" style={bodyFont}>{((L.whatContent2 as Record<string, string>)[locale] ?? L.whatContent2.en)}</p>
-        <p className="mt-3" style={bodyFont}>{((L.whatContent3 as Record<string, string>)[locale] ?? L.whatContent3.en)}</p>
+      <LessonSection number={1} title={t('whatTitle')}>
+        <p style={bodyFont}>{t('whatContent')}</p>
+        <p className="mt-3" style={bodyFont}>{t('whatContent2')}</p>
+        <p className="mt-3" style={bodyFont}>{t('whatContent3')}</p>
 
         {/* 8 sources visual */}
         <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -165,8 +96,8 @@ export default function LearnAshtakavargaPage() {
       </LessonSection>
 
       {/* Section 2: How to Read the Table */}
-      <LessonSection number={2} title={((L.readTitle as Record<string, string>)[locale] ?? L.readTitle.en)}>
-        <p style={bodyFont}>{((L.readContent as Record<string, string>)[locale] ?? L.readContent.en)}</p>
+      <LessonSection number={2} title={t('readTitle')}>
+        <p style={bodyFont}>{t('readContent')}</p>
 
         {/* Example BAV table */}
         <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
@@ -223,8 +154,8 @@ export default function LearnAshtakavargaPage() {
       </LessonSection>
 
       {/* Section 2b: Threshold */}
-      <LessonSection number={3} title={((L.thresholdTitle as Record<string, string>)[locale] ?? L.thresholdTitle.en)}>
-        <p style={bodyFont}>{((L.thresholdContent as Record<string, string>)[locale] ?? L.thresholdContent.en)}</p>
+      <LessonSection number={3} title={t('thresholdTitle')}>
+        <p style={bodyFont}>{t('thresholdContent')}</p>
 
         {/* Visual bar */}
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
@@ -252,8 +183,8 @@ export default function LearnAshtakavargaPage() {
       </LessonSection>
 
       {/* Section 4: SAV */}
-      <LessonSection number={4} title={((L.savTitle as Record<string, string>)[locale] ?? L.savTitle.en)}>
-        <p style={bodyFont}>{((L.savContent as Record<string, string>)[locale] ?? L.savContent.en)}</p>
+      <LessonSection number={4} title={t('savTitle')}>
+        <p style={bodyFont}>{t('savContent')}</p>
 
         {/* SAV example */}
         <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
@@ -287,12 +218,12 @@ export default function LearnAshtakavargaPage() {
       </LessonSection>
 
       {/* Section 5: Practical worked example */}
-      <LessonSection number={5} title={((L.practicalTitle as Record<string, string>)[locale] ?? L.practicalTitle.en)} variant="highlight">
-        <p style={bodyFont}>{((L.practicalContent as Record<string, string>)[locale] ?? L.practicalContent.en)}</p>
+      <LessonSection number={5} title={t('practicalTitle')} variant="highlight">
+        <p style={bodyFont}>{t('practicalContent')}</p>
 
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-3" style={headingFont}>
-            {((L.workedTitle as Record<string, string>)[locale] ?? L.workedTitle.en)}
+            {t('workedTitle')}
           </p>
           <div className="space-y-2 text-gold-light/80 font-mono text-xs">
             <p>{isHi ? 'स्थिति: शनि वर्तमान में मकर में गोचर कर रहा है' : 'Situation: Saturn is currently transiting Capricorn'}</p>
@@ -309,9 +240,9 @@ export default function LearnAshtakavargaPage() {
       </LessonSection>
 
       {/* Section 6: Trikona Shodhana */}
-      <LessonSection number={6} title={((L.trikonaTitle as Record<string, string>)[locale] ?? L.trikonaTitle.en)}>
-        <p style={bodyFont}>{((L.trikonaContent as Record<string, string>)[locale] ?? L.trikonaContent.en)}</p>
-        <p className="mt-3" style={bodyFont}>{((L.trikonaContent2 as Record<string, string>)[locale] ?? L.trikonaContent2.en)}</p>
+      <LessonSection number={6} title={t('trikonaTitle')}>
+        <p style={bodyFont}>{t('trikonaContent')}</p>
+        <p className="mt-3" style={bodyFont}>{t('trikonaContent2')}</p>
 
         {/* Ekadhipati pairs */}
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -346,8 +277,8 @@ export default function LearnAshtakavargaPage() {
       </LessonSection>
 
       {/* Section 7: Kakshya */}
-      <LessonSection number={7} title={((L.kakshyaTitle as Record<string, string>)[locale] ?? L.kakshyaTitle.en)}>
-        <p style={bodyFont}>{((L.kakshyaContent as Record<string, string>)[locale] ?? L.kakshyaContent.en)}</p>
+      <LessonSection number={7} title={t('kakshyaTitle')}>
+        <p style={bodyFont}>{t('kakshyaContent')}</p>
 
         <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
           <table className="w-full text-xs">
@@ -383,7 +314,7 @@ export default function LearnAshtakavargaPage() {
       </LessonSection>
 
       {/* Section 8: Related modules */}
-      <LessonSection number={8} title={((L.modulesTitle as Record<string, string>)[locale] ?? L.modulesTitle.en)}>
+      <LessonSection number={8} title={t('modulesTitle')}>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             { href: '/learn/modules/18-3', label: { en: 'Lesson 18-3: Ashtakavarga Applications', hi: 'पाठ 18-3: अष्टकवर्ग अनुप्रयोग', sa: 'पाठः 18-3: अष्टकवर्गानुप्रयोगाः' } },
@@ -398,7 +329,7 @@ export default function LearnAshtakavargaPage() {
               className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 hover:border-gold-primary/30 transition-colors block"
             >
               <span className="text-gold-light text-xs font-medium" style={headingFont}>
-                {tl(mod.label, locale)}
+                {lt(mod.label as LocaleText, locale)}
               </span>
             </Link>
           ))}
@@ -410,7 +341,7 @@ export default function LearnAshtakavargaPage() {
           href="/kundali"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {((L.tryIt as Record<string, string>)[locale] ?? L.tryIt.en)} →
+          {t('tryIt')} →
         </Link>
       </div>
     </div>

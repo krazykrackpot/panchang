@@ -3,21 +3,16 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/21-4.json';
 
 const META: ModuleMeta = {
   id: 'mod_21_4', phase: 8, topic: 'Varshaphal', moduleNumber: '21.4',
-  title: { en: 'Tithi Pravesha — The Birthday Chart', hi: 'तिथि प्रवेश — जन्मदिन कुण्डली', sa: 'तिथि प्रवेश — जन्मदिन कुण्डली', mai: 'तिथि प्रवेश — जन्मदिन कुण्डली', mr: 'तिथि प्रवेश — जन्मदिन कुण्डली', ta: 'Tithi Pravesha — The Birthday Chart', te: 'Tithi Pravesha — The Birthday Chart', bn: 'Tithi Pravesha — The Birthday Chart', kn: 'Tithi Pravesha — The Birthday Chart', gu: 'Tithi Pravesha — The Birthday Chart' },
-  subtitle: {
-    en: 'The annual chart based on the Sun-Moon tithi recurrence — honoring the lunar birthday tradition for emotional and domestic predictions',
-    hi: 'सूर्य-चन्द्र तिथि पुनरावृत्ति पर आधारित वार्षिक कुण्डली — भावनात्मक और घरेलू फलादेश हेतु चान्द्र जन्मदिन परम्परा का सम्मान',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 12,
-  crossRefs: [
-    { label: { en: 'Module 21-1: Tajika Aspects', hi: 'मॉड्यूल 21-1: ताजिक दृष्टि', sa: 'मॉड्यूल 21-1: ताजिक दृष्टि', mai: 'मॉड्यूल 21-1: ताजिक दृष्टि', mr: 'मॉड्यूल 21-1: ताजिक दृष्टि', ta: 'Module 21-1: Tajika Aspects', te: 'Module 21-1: Tajika Aspects', bn: 'Module 21-1: Tajika Aspects', kn: 'Module 21-1: Tajika Aspects', gu: 'Module 21-1: Tajika Aspects' }, href: '/learn/modules/21-1' },
-    { label: { en: 'Module 21-2: Sahams', hi: 'मॉड्यूल 21-2: सहम', sa: 'मॉड्यूल 21-2: सहम', mai: 'मॉड्यूल 21-2: सहम', mr: 'मॉड्यूल 21-2: सहम', ta: 'Module 21-2: Sahams', te: 'Module 21-2: Sahams', bn: 'Module 21-2: Sahams', kn: 'Module 21-2: Sahams', gu: 'Module 21-2: Sahams' }, href: '/learn/modules/21-2' },
-    { label: { en: 'Module 21-3: Mudda Dasha', hi: 'मॉड्यूल 21-3: मुद्दा दशा', sa: 'मॉड्यूल 21-3: मुद्दा दशा', mai: 'मॉड्यूल 21-3: मुद्दा दशा', mr: 'मॉड्यूल 21-3: मुद्दा दशा', ta: 'Module 21-3: Mudda Dasha', te: 'Module 21-3: Mudda Dasha', bn: 'Module 21-3: Mudda Dasha', kn: 'Module 21-3: Mudda Dasha', gu: 'Module 21-3: Mudda Dasha' }, href: '/learn/modules/21-3' },
-    { label: { en: 'Varshaphal Tool', hi: 'वर्षफल उपकरण', sa: 'वर्षफल उपकरण', mai: 'वर्षफल उपकरण', mr: 'वर्षफल उपकरण', ta: 'Varshaphal Tool', te: 'Varshaphal Tool', bn: 'Varshaphal Tool', kn: 'Varshaphal Tool', gu: 'Varshaphal Tool' }, href: '/varshaphal' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

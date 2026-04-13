@@ -3,21 +3,16 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/19-4.json';
 
 const META: ModuleMeta = {
   id: 'mod_19_4', phase: 6, topic: 'Jaimini', moduleNumber: '19.4',
-  title: { en: 'Special Lagnas — Hora, Ghati, Bhava, Varnada', hi: 'विशेष लग्न — होरा, घटी, भाव, वर्णद', sa: 'विशेष लग्न — होरा, घटी, भाव, वर्णद', mai: 'विशेष लग्न — होरा, घटी, भाव, वर्णद', mr: 'विशेष लग्न — होरा, घटी, भाव, वर्णद', ta: 'Special Lagnas — Hora, Ghati, Bhava, Varnada', te: 'Special Lagnas — Hora, Ghati, Bhava, Varnada', bn: 'Special Lagnas — Hora, Ghati, Bhava, Varnada', kn: 'Special Lagnas — Hora, Ghati, Bhava, Varnada', gu: 'Special Lagnas — Hora, Ghati, Bhava, Varnada' },
-  subtitle: {
-    en: 'Beyond the birth Ascendant — Jaimini\'s multiple reference points for wealth, power, and life purpose',
-    hi: 'जन्म लग्न से परे — धन, शक्ति और जीवन उद्देश्य के लिए जैमिनी के बहुविध सन्दर्भ बिन्दु',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 13,
-  crossRefs: [
-    { label: { en: 'Module 19-1: Chara Karakas', hi: 'मॉड्यूल 19-1: चर कारक', sa: 'मॉड्यूल 19-1: चर कारक', mai: 'मॉड्यूल 19-1: चर कारक', mr: 'मॉड्यूल 19-1: चर कारक', ta: 'Module 19-1: Chara Karakas', te: 'Module 19-1: Chara Karakas', bn: 'Module 19-1: Chara Karakas', kn: 'Module 19-1: Chara Karakas', gu: 'Module 19-1: Chara Karakas' }, href: '/learn/modules/19-1' },
-    { label: { en: 'Module 19-2: Rashi Drishti', hi: 'मॉड्यूल 19-2: राशि दृष्टि', sa: 'मॉड्यूल 19-2: राशि दृष्टि', mai: 'मॉड्यूल 19-2: राशि दृष्टि', mr: 'मॉड्यूल 19-2: राशि दृष्टि', ta: 'Module 19-2: Rashi Drishti', te: 'Module 19-2: Rashi Drishti', bn: 'Module 19-2: Rashi Drishti', kn: 'Module 19-2: Rashi Drishti', gu: 'Module 19-2: Rashi Drishti' }, href: '/learn/modules/19-2' },
-    { label: { en: 'Module 19-3: Argala', hi: 'मॉड्यूल 19-3: अर्गला', sa: 'मॉड्यूल 19-3: अर्गला', mai: 'मॉड्यूल 19-3: अर्गला', mr: 'मॉड्यूल 19-3: अर्गला', ta: 'Module 19-3: Argala', te: 'Module 19-3: Argala', bn: 'Module 19-3: Argala', kn: 'Module 19-3: Argala', gu: 'Module 19-3: Argala' }, href: '/learn/modules/19-3' },
-    { label: { en: 'Kundali Generator', hi: 'कुण्डली निर्माता', sa: 'कुण्डली निर्माता', mai: 'कुण्डली निर्माता', mr: 'कुण्डली निर्माता', ta: 'Kundali Generator', te: 'Kundali Generator', bn: 'Kundali Generator', kn: 'Kundali Generator', gu: 'Kundali Generator' }, href: '/kundali' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

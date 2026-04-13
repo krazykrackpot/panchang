@@ -1,156 +1,15 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/hora.json';
 
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { BookOpen, ChevronRight } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
-import type { LocaleText, Locale } from '@/types/panchang';
+import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-
-/* ── Bilingual labels ─────────────────────────────────────────────── */
-const L = {
-  badge: { en: 'Reference', hi: 'सन्दर्भ', sa: 'सन्दर्भ', mai: 'सन्दर्भ', mr: 'सन्दर्भ', ta: 'Reference', te: 'Reference', bn: 'Reference', kn: 'Reference', gu: 'Reference' },
-  title: {
-    en: 'Why Exactly 7 Days in a Week?',
-    hi: 'सप्ताह में ठीक 7 दिन क्यों?',
-    ta: 'ஏன் ஒரு வாரத்தில் சரியாக 7 நாட்கள்?',
-  },
-  titleSub: {
-    en: 'And Why Does Tuesday Follow Monday? The Answer Is Over 2,000 Years Old.',
-    hi: 'और मंगलवार सोमवार के बाद क्यों? उत्तर 2,000 वर्ष से अधिक पुराना है।',
-  },
-  intro: {
-    en: 'Have you ever wondered why there are exactly 7 days in the week — not 5, not 10, not 12? Why does Tuesday follow Monday and not, say, Thursday? And why do completely unrelated cultures — Indian, Roman, Norse, Japanese — all name their days after the same 7 planets in the same sequence? The answer is one of the most elegant pieces of mathematics in human history, and it comes from ancient India. It starts with a word: "Hora" — derived from the Sanskrit "Ahoratra" (अहोरात्र), meaning "day + night" (Aho = day, Ratra = night). This Sanskrit word likely traveled to Greece as "Hora" (ὥρα), then to Latin, and eventually became the English "Hour". The very concept of an hour may have Indian origins. The Surya Siddhanta (Ch. 12) defines 24 Horas in one Ahoratra. Varahamihira confirms in Brihat Samhita (Ch. 2): "The lord of the first hora of each day gives that day its name." The Arthashastra of Kautilya (~300 BCE) already references the 7-day week with planetary names — centuries before it appeared in Roman records.',
-    hi: 'क्या आपने कभी सोचा है कि सप्ताह में ठीक 7 दिन क्यों हैं — 5 क्यों नहीं, 10 क्यों नहीं? मंगलवार सोमवार के बाद क्यों आता है, बृहस्पतिवार क्यों नहीं? और पूरी तरह असम्बन्धित संस्कृतियाँ — भारतीय, रोमन, नॉर्स, जापानी — सब अपने दिनों के नाम उन्हीं 7 ग्रहों पर उसी क्रम में क्यों रखती हैं? उत्तर मानव इतिहास का सबसे सुन्दर गणित है, और यह प्राचीन भारत से आता है। यह एक शब्द से शुरू होता है: "होरा" — संस्कृत "अहोरात्र" (अहो = दिन + रात्र = रात) से व्युत्पन्न। यह संस्कृत शब्द सम्भवतः ग्रीस में "ὥρα" (होरा), फिर लैटिन, और अन्ततः अंग्रेज़ी "Hour" बना। घण्टे की अवधारणा ही भारतीय मूल की हो सकती है। सूर्य सिद्धान्त (अ.12) एक अहोरात्र में 24 होरा परिभाषित करता है। वराहमिहिर बृहत् संहिता (अ.2) में पुष्टि करते हैं: "प्रत्येक दिन की पहली होरा का स्वामी उस दिन को अपना नाम देता है।" कौटिल्य का अर्थशास्त्र (~300 ई.पू.) पहले से ग्रह नामों वाले 7-दिवसीय सप्ताह का उल्लेख करता है — रोमन अभिलेखों से सदियों पहले।',
-  },
-
-  /* Section 1 */
-  s1Title: {
-    en: 'The Speed of Planets — Why 7 and Not 9?',
-    hi: 'ग्रहों की गति — 7 क्यों, 9 क्यों नहीं?',
-  },
-  s1p1: {
-    en: 'Ancient Indian astronomers observed 7 celestial bodies moving against the fixed stars. They ranked them by how fast each traverses the zodiac — the basis of all hora timekeeping. The Surya Siddhanta (Ch. 12, earliest layers ~400 CE, encoding much older knowledge) lists precise mean motions. The Aryabhatiya (Aryabhata, 499 CE) computes orbital periods to remarkable accuracy. The Yajnavalkya Smriti prescribes hora-based muhurta timing for rituals. The Romaka Siddhanta documents the transmission of this Indian astronomical framework to Alexandria and the wider Mediterranean world.',
-    hi: 'प्राचीन भारतीय खगोलविदों ने तारों के विरुद्ध चलते 7 खगोलीय पिण्ड देखे। उन्होंने प्रत्येक की राशिचक्र गति से क्रमबद्ध किया — सम्पूर्ण होरा काल-गणना का आधार। सूर्य सिद्धान्त (अ.12) माध्य गतियाँ सूचीबद्ध करता है। आर्यभटीय (499 ई.) असाधारण परिशुद्धता से कक्षीय काल गणना करता है। याज्ञवल्क्य स्मृति होरा-आधारित मुहूर्त काल निर्धारित करती है। रोमक सिद्धान्त इस भारतीय खगोलीय ढाँचे के अलेक्ज़ान्ड्रिया और भूमध्यसागरीय विश्व तक संचरण का दस्तावेज़ीकरण करता है।',
-  },
-  s1p2: {
-    en: 'The seven Grahas visible to the naked eye are: Sun (Surya), Moon (Chandra), Mars (Mangala), Mercury (Budha), Jupiter (Brihaspati), Venus (Shukra), and Saturn (Shani). These are the seven that constitute the Chaldean order and give their names to the seven days of the week.',
-    hi: 'नग्न नेत्र से दृश्य सात ग्रह हैं: सूर्य, चन्द्र, मंगल, बुध, बृहस्पति, शुक्र और शनि। ये सात ही कैल्डियन क्रम का निर्माण करते हैं और सप्ताह के सात दिनों को अपने नाम देते हैं।',
-  },
-  s1p3: {
-    en: 'Rahu and Ketu — the ascending and descending lunar nodes — are the 8th and 9th Grahas in the Indian Navagraha system. They are not physical bodies but mathematical points where the Moon\'s orbital plane intersects the ecliptic. Their ~18.6-year nodal cycle governs eclipse timing with remarkable precision, a contribution unique to Indian astronomy. No other ancient culture incorporated the lunar nodes as named "planets" with this level of sophistication.',
-    hi: 'राहु और केतु — आरोही और अवरोही चंद्र पात — भारतीय नवग्रह पद्धति में 8वें और 9वें ग्रह हैं। ये भौतिक पिण्ड नहीं बल्कि गणितीय बिन्दु हैं जहाँ चंद्रमा की कक्षीय तल क्रान्तिवृत्त को काटती है। उनका ~18.6 वर्षीय पात चक्र ग्रहण के समय को असाधारण परिशुद्धता से नियंत्रित करता है।',
-  },
-
-  /* Section 2 */
-  s2Title: {
-    en: 'The Speed Ranking — Slowest to Fastest',
-    hi: 'गति क्रम — सबसे धीमे से सबसे तेज़',
-  },
-  s2p1: {
-    en: 'Ancient astronomers observed how long each planet takes to complete one full circuit of the zodiac. The planet that takes the longest appears to move slowest against the fixed stars; the one that takes the least time appears fastest. This is the Chaldean order:',
-    hi: 'प्राचीन खगोलशास्त्रियों ने देखा कि प्रत्येक ग्रह राशिचक्र का एक पूर्ण परिक्रमा पूरी करने में कितना समय लेता है। जो ग्रह सबसे अधिक समय लेता है वह स्थिर तारों के सापेक्ष सबसे धीमा दिखता है; जो सबसे कम समय लेता है वह सबसे तेज़। यही कैल्डियन क्रम है:',
-  },
-  s2note: {
-    en: 'This order — Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon — is called the "Chaldean order" because Western historians first documented it through Babylonian (Chaldean) sources. But the astronomical knowledge underlying it was developed independently and in greater depth in India, where it predates the Babylonian attribution by centuries.',
-    hi: 'इस क्रम को — शनि, गुरु, मंगल, सूर्य, शुक्र, बुध, चन्द्र — "कैल्डियन क्रम" कहा जाता है क्योंकि पश्चिमी इतिहासकारों ने इसे पहले बेबीलोनियाई (कैल्डियन) स्रोतों के माध्यम से प्रलेखित किया। किन्तु इसके अन्तर्गत खगोलीय ज्ञान भारत में स्वतन्त्र रूप से और अधिक गहराई से विकसित हुआ।',
-  },
-
-  /* Section 3 */
-  s3Title: {
-    en: 'How the Hora System Works',
-    hi: 'होरा पद्धति कैसे काम करती है',
-  },
-  s3p1: {
-    en: 'A Hora (होरा) is one twenty-fourth of the day measured from sunrise to the next sunrise. Each of the 24 horas is ruled by one of the seven planets, cycling through the Chaldean order continuously. The first hora of each day belongs to that day\'s ruling planet.',
-    hi: 'होरा एक दिन (एक सूर्योदय से अगले सूर्योदय तक) का चौबीसवाँ भाग है। 24 होराओं में से प्रत्येक पर कैल्डियन क्रम में एक ग्रह का शासन होता है। प्रत्येक दिन की पहली होरा उस दिन के स्वामी ग्रह की होती है।',
-  },
-  s3p2: {
-    en: 'KEY MATHEMATICAL INSIGHT: After 24 horas, the sequence has advanced by 24 positions. Since 24 = 3 × 7 + 3, the 25th hora (which is the first hora of the NEXT day) falls 3 positions ahead in the Chaldean order. This "jump of 3" applied repeatedly to the Chaldean sequence generates exactly the order of the weekdays. This is NOT a coincidence — the 7-day week with these specific day-planet assignments is a direct mathematical consequence of the hora system.',
-    hi: 'मुख्य गणितीय अन्तर्दृष्टि: 24 होराओं के बाद अनुक्रम 24 स्थान आगे बढ़ा है। चूँकि 24 = 3 × 7 + 3, इसलिए 25वीं होरा (= अगले दिन की पहली होरा) कैल्डियन क्रम में 3 स्थान आगे पड़ती है। इस "3 की छलाँग" को बार-बार लागू करने से ठीक सप्ताह के दिनों का क्रम मिलता है। यह संयोग नहीं है — इन विशेष ग्रह नियुक्तियों वाला 7-दिवसीय सप्ताह होरा पद्धति का प्रत्यक्ष गणितीय परिणाम है।',
-  },
-  s3weekLabel: {
-    en: 'How each day\'s first hora determines the next day:',
-    hi: 'प्रत्येक दिन की पहली होरा अगले दिन को कैसे निर्धारित करती है:',
-  },
-
-  /* Section 4 */
-  s4Title: {
-    en: 'From India to the World — The Weekday Names',
-    hi: 'भारत से विश्व तक — सप्ताह के दिनों के नाम',
-  },
-  s4p1: {
-    en: 'The Sanskrit names for the days of the week directly use planet names followed by "vara" (वार, meaning "day"). English day names use Norse and Germanic gods — but these gods were explicitly mapped to the same planets by early medieval Europeans. The underlying planetary assignment is identical across every culture, because they all derive from the same hora system.',
-    hi: 'सप्ताह के दिनों के संस्कृत नाम सीधे ग्रह नामों के बाद "वार" (दिन) लगाकर बनते हैं। अंग्रेज़ी नाम नॉर्स और जर्मनिक देवताओं का उपयोग करते हैं — किन्तु इन देवताओं को प्रारम्भिक मध्यकालीन यूरोपीयों ने स्पष्ट रूप से उन्हीं ग्रहों से जोड़ा था। सभी संस्कृतियों में अन्तर्निहित ग्रह नियुक्ति समान है, क्योंकि सभी उसी होरा पद्धति से उत्पन्न हैं।',
-  },
-  s4p2: {
-    en: 'Tuesday = Tyr\'s day (Norse war god = Mars). Wednesday = Woden\'s day (Odin = Mercury). Thursday = Thor\'s day (thunder god = Jupiter). Friday = Freya\'s day (goddess of love = Venus). The correspondence is direct and intentional — medieval European scholars were fully aware they were mapping their gods to the Roman planetary week.',
-    hi: 'Tuesday = Tyr का दिन (नॉर्स युद्ध देवता = मंगल)। Wednesday = Woden का दिन (ओडिन = बुध)। Thursday = Thor का दिन (वज्र देवता = गुरु)। Friday = Freya का दिन (प्रेम देवी = शुक्र)। यह पत्राचार प्रत्यक्ष और जानबूझकर था।',
-  },
-
-  /* Section 5 */
-  s5Title: {
-    en: 'The Hora in Daily Practice',
-    hi: 'दैनिक अभ्यास में होरा',
-  },
-  s5p1: {
-    en: 'Hora is still used daily in Vedic astrology for Muhurta (electional timing). Choosing the right hora for an activity significantly strengthens the quality of that action according to classical texts. The hora system is one of the fastest and most practical tools in the Jyotishi\'s toolkit.',
-    hi: 'होरा का उपयोग आज भी वैदिक ज्योतिष में मुहूर्त (इष्ट समय निर्धारण) के लिए प्रतिदिन किया जाता है। किसी गतिविधि के लिए सही होरा चुनना शास्त्रीय ग्रन्थों के अनुसार उस कार्य की गुणवत्ता को महत्वपूर्ण रूप से बढ़ाता है।',
-  },
-
-  /* Section 6 */
-  s6Title: {
-    en: 'Rahu & Ketu — India\'s Unique Addition',
-    hi: 'राहु और केतु — भारत का अद्वितीय योगदान',
-  },
-  s6p1: {
-    en: 'The seven Chaldean planets are shared across ancient cultures — Babylonian, Greek, Roman, Indian. But India\'s unique contribution is the elevation of Rahu (the ascending lunar node) and Ketu (the descending lunar node) to the status of full Grahas — the 8th and 9th members of the Navagraha system.',
-    hi: 'सात कैल्डियन ग्रह प्राचीन संस्कृतियों — बेबीलोनियाई, यूनानी, रोमन, भारतीय — में समान हैं। किन्तु भारत का अद्वितीय योगदान राहु (आरोही चंद्र पात) और केतु (अवरोही चंद्र पात) को पूर्ण ग्रह की स्थिति में उठाना है — नवग्रह पद्धति के 8वें और 9वें सदस्य।',
-  },
-  s6p2: {
-    en: 'Rahu and Ketu are the points where the Moon\'s orbital plane crosses the Sun\'s apparent path (the ecliptic). An eclipse can ONLY occur when the Moon is near one of these nodes at the time of a new or full Moon. The ~18.6-year Saros-like nodal cycle that Indian astronomers tracked with precision is what makes eclipse prediction possible. No other ancient culture developed such a systematic mathematical treatment of the lunar nodes.',
-    hi: 'राहु और केतु वे बिन्दु हैं जहाँ चंद्रमा की कक्षीय तल सूर्य के आभासी पथ (क्रान्तिवृत्त) को काटती है। ग्रहण तभी हो सकता है जब नई या पूर्णिमा के समय चंद्रमा इन पातों के निकट हो। ~18.6 वर्षीय पात चक्र जिसे भारतीय खगोलशास्त्रियों ने परिशुद्धता से ट्रैक किया, ग्रहण भविष्यवाणी को सम्भव बनाता है।',
-  },
-  s6p3: {
-    en: 'Rahu Kaal — the inauspicious daily period ruled by Rahu — is calculated from a modified hora sequence applied to the weekday. Each weekday has a fixed Rahu Kaal slot (e.g., Monday 7:30–9:00 AM, Tuesday 3:00–4:30 PM in a standard 12-hour day). This shows how deeply the hora system and the node system are integrated in Indian timekeeping.',
-    hi: 'राहु काल — राहु द्वारा शासित दैनिक अशुभ अवधि — सप्ताह के दिन पर लागू एक संशोधित होरा अनुक्रम से गणना की जाती है। प्रत्येक सप्ताह के दिन में एक निश्चित राहु काल खण्ड होता है (जैसे सोमवार 7:30-9:00 बजे, मंगलवार 3:00-4:30 बजे मानक 12 घंटे के दिन में)।',
-  },
-
-  /* Section 7: Classical Sources */
-  s7Title: {
-    en: 'Classical Sources — The Texts That Built This System',
-    hi: 'शास्त्रीय स्रोत — जिन ग्रन्थों ने यह पद्धति बनाई',
-  },
-  srcSurya: {
-    en: 'Surya Siddhanta (Ch. 12, "Bhugola-adhyaya") — The foundational Indian astronomical treatise. Chapter 12 defines the hora system explicitly: "The lord of the first hora of the day gives the day its name" (दिनस्य प्रथमहोराधिपतिः तद्दिनस्य नामकारणम्). It provides precise mean daily motions for all 7 planets: Sun = 0°59\'8", Moon = 13°10\'35", Mars = 0°31\'26", Mercury = 4°5\'32", Jupiter = 0°4\'59", Venus = 1°36\'8", Saturn = 0°2\'0". These motions directly establish the speed ranking that generates the Chaldean order. The text also defines the 24-hora division of the Ahoratra and prescribes hora-based activity timing.',
-    hi: 'सूर्य सिद्धान्त (अ.12, "भूगोलाध्याय") — मूलभूत भारतीय खगोलीय ग्रन्थ। अध्याय 12 होरा पद्धति को स्पष्ट रूप से परिभाषित करता है: "दिन की प्रथम होरा का अधिपति उस दिन को अपना नाम देता है।" यह सभी 7 ग्रहों की सटीक माध्य दैनिक गतियाँ प्रदान करता है: सूर्य = 0°59\'8", चन्द्र = 13°10\'35", मंगल = 0°31\'26", बुध = 4°5\'32", गुरु = 0°4\'59", शुक्र = 1°36\'8", शनि = 0°2\'0"। ये गतियाँ सीधे गति क्रम स्थापित करती हैं।',
-  },
-  srcAryabhata: {
-    en: 'Aryabhatiya (Aryabhata, 499 CE) — Perhaps the most revolutionary Indian astronomical work. In the "Kalakriya-pada" (time reckoning section), Aryabhata provides: (1) The sidereal year = 365 days 6 hours 12 minutes 30 seconds — accurate to within 3 minutes of the modern value. (2) The sidereal rotation periods of all planets computed from first principles, not just observed tables. (3) A heliocentric hint: Aryabhata states the Earth rotates on its axis (not the sky rotating around Earth), which was 1,000 years ahead of Copernicus. (4) The kshaya (duration loss) concept for tithis — directly connected to the variable hora lengths used at higher latitudes. His orbital period calculations confirm the Chaldean speed ranking with mathematical rigour that Babylonian astronomy never achieved.',
-    hi: 'आर्यभटीय (आर्यभट, 499 ई.) — सम्भवतः सबसे क्रान्तिकारी भारतीय खगोलीय कृति। "कालक्रियापाद" में आर्यभट प्रदान करते हैं: (1) नाक्षत्र वर्ष = 365 दिन 6 घण्टे 12 मिनट 30 सेकण्ड — आधुनिक मान से 3 मिनट भीतर सटीक। (2) सभी ग्रहों की नाक्षत्र घूर्णन अवधि मूल सिद्धान्तों से गणित, केवल प्रेक्षित तालिकाओं से नहीं। (3) सूर्यकेन्द्री संकेत: आर्यभट कहते हैं कि पृथ्वी अपनी धुरी पर घूमती है — कॉपर्निकस से 1,000 वर्ष पहले। (4) तिथि क्षय अवधारणा — उच्च अक्षांशों पर प्रयुक्त परिवर्तनीय होरा अवधि से सीधे जुड़ी। उनकी कक्षीय अवधि गणनाएँ कैल्डियन गति क्रम की गणितीय कठोरता से पुष्टि करती हैं।',
-  },
-  srcBrihat: {
-    en: 'Brihat Samhita (Varahamihira, ~505 CE, Ch. 2) — The encyclopaedic work on mundane astrology. Chapter 2 ("Adityachara") explicitly states: "प्रथमहोराधिपो दिनेशः" — "The lord of the first hora is the lord of the day." Varahamihira provides the complete hora table for all 7 days and connects hora to muhurta timing for royal activities, military campaigns, and construction. He also documents the 7-day week as an established, universally accepted system — evidence that it was already ancient by the 6th century CE.',
-    hi: 'बृहत् संहिता (वराहमिहिर, ~505 ई., अ.2) — मुण्डन ज्योतिष पर विश्वकोशीय कृति। अध्याय 2 ("आदित्यचार") स्पष्ट रूप से कहता है: "प्रथमहोराधिपो दिनेशः" — "प्रथम होरा का अधिपति दिन का स्वामी है।" वराहमिहिर सभी 7 दिनों की पूर्ण होरा तालिका प्रदान करते हैं और होरा को राजकीय, सैन्य और निर्माण कार्यों के मुहूर्त से जोड़ते हैं। वे 7-दिवसीय सप्ताह को एक स्थापित, सर्वमान्य पद्धति के रूप में प्रलेखित करते हैं — प्रमाण कि यह 6वीं शताब्दी तक पहले से प्राचीन थी।',
-  },
-  srcArthashastra: {
-    en: 'Arthashastra (Kautilya, ~300 BCE) — The treatise on statecraft and governance. References the 7-day week with planet-based day names in the context of scheduling royal duties and tax collection cycles. This is among the earliest datable references to the planetary week — centuries before the Roman adoption of the 7-day week (which occurred only around 1st century CE). Kautilya\'s text proves the system was already established in India by at least the 4th century BCE.',
-    hi: 'अर्थशास्त्र (कौटिल्य, ~300 ई.पू.) — राजनीति और शासन पर ग्रन्थ। राजकीय कर्तव्यों और कर संग्रह चक्रों के सन्दर्भ में ग्रह-आधारित दिन नामों वाले 7-दिवसीय सप्ताह का उल्लेख करता है। यह ग्रह सप्ताह का सबसे पुराना दिनांकित सन्दर्भों में से एक है — रोमन 7-दिवसीय सप्ताह अपनाने (जो केवल ~1वीं शताब्दी ई. में हुआ) से सदियों पहले।',
-  },
-  srcYajnavalkya: {
-    en: 'Yajnavalkya Smriti (Ch. 1, "Achara-adhyaya") — The dharmic law code prescribes hora-based timing for Vedic rituals: "शुभकर्मसु शुभहोरा ग्राह्या" — "For auspicious deeds, choose an auspicious hora." It codifies the principle that the planetary ruler of the current hora influences the outcome of activities initiated during that period — the foundation of electional astrology (muhurta) that is still practiced daily.',
-    hi: 'याज्ञवल्क्य स्मृति (अ.1, "आचाराध्याय") — धर्मशास्त्रीय विधि संहिता वैदिक कर्मकाण्ड हेतु होरा-आधारित समय निर्धारित करती है: "शुभकर्मसु शुभहोरा ग्राह्या" — "शुभ कार्यों के लिए शुभ होरा चुनें।" यह सिद्धान्त संहिताबद्ध करती है कि वर्तमान होरा का ग्रह शासक उस अवधि में आरम्भ किए कार्यों के परिणाम को प्रभावित करता है — मुहूर्त ज्योतिष की नींव जो आज भी प्रतिदिन प्रचलित है।',
-  },
-  srcRomaka: {
-    en: 'Romaka Siddhanta — Documents the transmission route of Indian astronomical knowledge westward. "Romaka" literally means "Roman" — this text acknowledges the exchange between Indian and Mediterranean astronomical traditions. The planetary week, hora system, and precise orbital calculations traveled from India to Alexandria (Egypt), and from there to the Roman Empire, eventually becoming the universal calendar system we use today.',
-    hi: 'रोमक सिद्धान्त — भारतीय खगोलीय ज्ञान के पश्चिम की ओर संचरण मार्ग का दस्तावेज़। "रोमक" का शाब्दिक अर्थ "रोमन" है — यह ग्रन्थ भारतीय और भूमध्यसागरीय खगोलीय परम्पराओं के बीच आदान-प्रदान को स्वीकार करता है। ग्रह सप्ताह, होरा पद्धति और सटीक कक्षीय गणनाएँ भारत से अलेक्ज़ान्ड्रिया (मिस्र) और वहाँ से रोमन साम्राज्य तक पहुँचीं।',
-  },
-
-  /* Related */
-  related: { en: 'Explore Further', hi: 'और जानें', sa: 'और जानें', mai: 'और जानें', mr: 'और जानें', ta: 'Explore Further', te: 'Explore Further', bn: 'Explore Further', kn: 'Explore Further', gu: 'Explore Further' },
-};
 
 /* ── Planet speed data ────────────────────────────────────────────── */
 const SPEED_TABLE = [
@@ -374,7 +233,7 @@ export default function HoraChaldeanPage() {
     : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
-  const t = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
   return (
     <main className="min-h-screen px-4 py-12 max-w-4xl mx-auto" style={bodyFont}>
@@ -388,16 +247,16 @@ export default function HoraChaldeanPage() {
       >
         <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 mb-5">
           <span className="w-2 h-2 rounded-full bg-indigo-400" />
-          <span className="text-indigo-300 text-sm font-medium">{t(L.badge)}</span>
+          <span className="text-indigo-300 text-sm font-medium">{t('badge')}</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-bold text-gold-gradient mb-2" style={headingFont}>
-          {t(L.title)}
+          {t('title')}
         </h1>
         <p className="text-xl text-gold-light/70 mb-4" style={headingFont}>
-          {t(L.titleSub)}
+          {t('titleSub')}
         </p>
         <p className="text-text-secondary max-w-3xl mx-auto text-base leading-relaxed">
-          {t(L.intro)}
+          {t('intro')}
         </p>
       </motion.div>
 
@@ -414,12 +273,12 @@ export default function HoraChaldeanPage() {
             1
           </span>
           <h2 className="text-xl sm:text-2xl font-bold text-gold-gradient" style={headingFont}>
-            {t(L.s1Title)}
+            {t('s1Title')}
           </h2>
         </div>
         <div className="ml-12 space-y-4 text-text-secondary text-base leading-relaxed">
-          <p>{t(L.s1p1)}</p>
-          <p>{t(L.s1p2)}</p>
+          <p>{t('s1p1')}</p>
+          <p>{t('s1p2')}</p>
 
           {/* 7 Grahas visual row */}
           <div className="bg-black/20 border border-gold-primary/10 rounded-xl p-4 my-4">
@@ -444,7 +303,7 @@ export default function HoraChaldeanPage() {
             </div>
           </div>
 
-          <p>{t(L.s1p3)}</p>
+          <p>{t('s1p3')}</p>
 
           {/* Navagraha note */}
           <div className="flex gap-3 p-4 rounded-xl bg-purple-500/8 border border-purple-500/20">
@@ -476,11 +335,11 @@ export default function HoraChaldeanPage() {
             2
           </span>
           <h2 className="text-xl sm:text-2xl font-bold text-gold-gradient" style={headingFont}>
-            {t(L.s2Title)}
+            {t('s2Title')}
           </h2>
         </div>
         <div className="ml-12 space-y-4 text-text-secondary text-base leading-relaxed">
-          <p>{t(L.s2p1)}</p>
+          <p>{t('s2p1')}</p>
 
           {/* Speed table */}
           <div className="overflow-x-auto mt-4">
@@ -516,21 +375,21 @@ export default function HoraChaldeanPage() {
                         </span>
                         {row.label.en && (
                           <span className="text-xs text-text-tertiary hidden lg:inline">
-                            {t(row.label)}
+                            {lt(row.label as LocaleText, locale)}
                           </span>
                         )}
                       </div>
                     </td>
                     <td className="py-3 px-3">
                       <span className="font-bold" style={{ color: row.color }}>
-                        {t(row.planet)}
+                        {lt(row.planet as LocaleText, locale)}
                       </span>
                     </td>
                     <td className="py-3 px-3 font-mono text-xs text-text-primary">
-                      {t(row.period)}
+                      {lt(row.period as LocaleText, locale)}
                     </td>
                     <td className="py-3 px-3 text-text-tertiary text-xs hidden sm:table-cell">
-                      {t(row.note)}
+                      {lt(row.note as LocaleText, locale)}
                     </td>
                   </tr>
                 ))}
@@ -539,7 +398,7 @@ export default function HoraChaldeanPage() {
           </div>
 
           <div className="mt-4 p-4 rounded-xl bg-gold-primary/6 border border-gold-primary/20">
-            <p className="text-text-secondary text-sm leading-relaxed">{t(L.s2note)}</p>
+            <p className="text-text-secondary text-sm leading-relaxed">{t('s2note')}</p>
           </div>
         </div>
       </motion.section>
@@ -557,12 +416,12 @@ export default function HoraChaldeanPage() {
             3
           </span>
           <h2 className="text-xl sm:text-2xl font-bold text-gold-gradient" style={headingFont}>
-            {t(L.s3Title)}
+            {t('s3Title')}
           </h2>
         </div>
         <div className="ml-12 space-y-4 text-text-secondary text-base leading-relaxed">
-          <p>{t(L.s3p1)}</p>
-          <p>{t(L.s3p2)}</p>
+          <p>{t('s3p1')}</p>
+          <p>{t('s3p2')}</p>
 
           {/* Chaldean cycle visual */}
           <div className="bg-black/25 border border-gold-primary/15 rounded-xl p-4 my-2">
@@ -599,7 +458,7 @@ export default function HoraChaldeanPage() {
           {/* Weekday derivation step-by-step */}
           <div>
             <p className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3 mt-4">
-              {t(L.s3weekLabel)}
+              {t('s3weekLabel')}
             </p>
             <div className="space-y-2">
               {WEEKDAY_DERIVATION.map((row, i) => (
@@ -612,22 +471,22 @@ export default function HoraChaldeanPage() {
                   className="flex flex-wrap items-center gap-2 p-3 rounded-lg bg-white/3 border border-white/6 text-sm"
                 >
                   <span className="font-bold min-w-[90px]" style={{ color: row.color }}>
-                    {t(row.day)}
+                    {lt(row.day as LocaleText, locale)}
                   </span>
                   <span className="text-text-tertiary text-xs">
                     ({isHi ? 'स्वामी:' : 'lord:'}{' '}
-                    <span style={{ color: row.color }}>{t(row.lord)}</span>)
+                    <span style={{ color: row.color }}>{lt(row.lord as LocaleText, locale)}</span>)
                   </span>
                   <span className="text-text-tertiary mx-1">→</span>
                   <span className="text-text-tertiary text-xs">
                     {isHi ? '25वीं होरा =' : '25th hora ='}
                   </span>
                   <span className="font-bold text-xs" style={{ color: row.nextColor }}>
-                    {t(row.hora25)}
+                    {lt(row.hora25 as LocaleText, locale)}
                   </span>
                   <span className="text-text-tertiary mx-1">→</span>
                   <span className="font-bold text-xs" style={{ color: row.nextColor }}>
-                    {t(row.next)}
+                    {lt(row.next as LocaleText, locale)}
                   </span>
                 </motion.div>
               ))}
@@ -658,11 +517,11 @@ export default function HoraChaldeanPage() {
             4
           </span>
           <h2 className="text-xl sm:text-2xl font-bold text-gold-gradient" style={headingFont}>
-            {t(L.s4Title)}
+            {t('s4Title')}
           </h2>
         </div>
         <div className="ml-12 space-y-4 text-text-secondary text-base leading-relaxed">
-          <p>{t(L.s4p1)}</p>
+          <p>{t('s4p1')}</p>
 
           {/* Weekday comparison table */}
           <div className="overflow-x-auto mt-4">
@@ -700,17 +559,17 @@ export default function HoraChaldeanPage() {
                     <td className="py-3 px-2 text-text-tertiary text-xs italic hidden md:table-cell">{row.latin}</td>
                     <td className="py-3 px-2">
                       <span className="font-bold text-xs px-2 py-1 rounded-full" style={{ backgroundColor: row.color + '20', color: row.color }}>
-                        {t(row.planet)}
+                        {lt(row.planet as LocaleText, locale)}
                       </span>
                     </td>
-                    <td className="py-3 px-2 text-text-tertiary text-xs hidden lg:table-cell">{t(row.norse)}</td>
+                    <td className="py-3 px-2 text-text-tertiary text-xs hidden lg:table-cell">{lt(row.norse as LocaleText, locale)}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
 
-          <p>{t(L.s4p2)}</p>
+          <p>{t('s4p2')}</p>
 
           <div className="p-4 rounded-xl bg-gold-primary/6 border border-gold-primary/20">
             <p className="text-gold-light/90 text-sm leading-relaxed">
@@ -735,11 +594,11 @@ export default function HoraChaldeanPage() {
             5
           </span>
           <h2 className="text-xl sm:text-2xl font-bold text-gold-gradient" style={headingFont}>
-            {t(L.s5Title)}
+            {t('s5Title')}
           </h2>
         </div>
         <div className="ml-12 space-y-4 text-text-secondary text-base leading-relaxed">
-          <p>{t(L.s5p1)}</p>
+          <p>{t('s5p1')}</p>
 
           <div className="grid gap-3 sm:grid-cols-2 mt-4">
             {HORA_PRACTICE.map((hp, i) => (
@@ -749,9 +608,9 @@ export default function HoraChaldeanPage() {
                 className={`rounded-xl p-4 border ${hp.border} ${hp.bg} transition-colors`}
               >
                 <h4 className="font-bold text-sm mb-2" style={{ color: hp.color }}>
-                  {t(hp.planet)}
+                  {lt(hp.planet as LocaleText, locale)}
                 </h4>
-                <p className="text-xs text-text-secondary leading-relaxed">{t(hp.activities)}</p>
+                <p className="text-xs text-text-secondary leading-relaxed">{lt(hp.activities as LocaleText, locale)}</p>
               </motion.div>
             ))}
           </div>
@@ -788,12 +647,12 @@ export default function HoraChaldeanPage() {
             6
           </span>
           <h2 className="text-xl sm:text-2xl font-bold text-gold-gradient" style={headingFont}>
-            {t(L.s6Title)}
+            {t('s6Title')}
           </h2>
         </div>
         <div className="ml-12 space-y-4 text-text-secondary text-base leading-relaxed">
-          <p>{t(L.s6p1)}</p>
-          <p>{t(L.s6p2)}</p>
+          <p>{t('s6p1')}</p>
+          <p>{t('s6p2')}</p>
 
           {/* Rahu / Ketu visual cards */}
           <div className="grid sm:grid-cols-2 gap-4 my-4">
@@ -819,7 +678,7 @@ export default function HoraChaldeanPage() {
             </div>
           </div>
 
-          <p>{t(L.s6p3)}</p>
+          <p>{t('s6p3')}</p>
 
           <div className="flex flex-wrap gap-3 mt-2">
             <Link
@@ -842,7 +701,7 @@ export default function HoraChaldeanPage() {
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {t(L.s7Title)}
+          {t('s7Title')}
         </h3>
         <div className="space-y-5">
           {[
@@ -854,8 +713,8 @@ export default function HoraChaldeanPage() {
             { label: { en: 'Romaka Siddhanta', hi: 'रोमक सिद्धान्त', sa: 'रोमक सिद्धान्त', mai: 'रोमक सिद्धान्त', mr: 'रोमक सिद्धान्त', ta: 'Romaka Siddhanta', te: 'Romaka Siddhanta', bn: 'Romaka Siddhanta', kn: 'Romaka Siddhanta', gu: 'Romaka Siddhanta' }, text: L.srcRomaka, color: 'border-red-500/20' },
           ].map((src, i) => (
             <div key={i} className={`border ${src.color} rounded-xl p-4 bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27]`}>
-              <div className="text-gold-light font-bold text-sm mb-2" style={headingFont}>{t(src.label)}</div>
-              <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{t(src.text)}</p>
+              <div className="text-gold-light font-bold text-sm mb-2" style={headingFont}>{lt(src.label as LocaleText, locale)}</div>
+              <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{lt(src.text as LocaleText, locale)}</p>
             </div>
           ))}
         </div>
@@ -870,7 +729,7 @@ export default function HoraChaldeanPage() {
       >
         <h3 className="text-lg font-bold text-gold-gradient mb-4 flex items-center gap-2" style={headingFont}>
           <BookOpen className="w-5 h-5 text-gold-light flex-shrink-0" />
-          {t(L.related)}
+          {t('related')}
         </h3>
         <div className="flex flex-wrap gap-3">
           {[
@@ -887,7 +746,7 @@ export default function HoraChaldeanPage() {
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/20 transition-colors"
             >
               <ChevronRight className="w-3.5 h-3.5" />
-              {t(link.label)}
+              {lt(link.label as LocaleText, locale)}
             </Link>
           ))}
         </div>

@@ -3,21 +3,16 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/20-4.json';
 
 const META: ModuleMeta = {
   id: 'mod_20_4', phase: 7, topic: 'KP System', moduleNumber: '20.4',
-  title: { en: 'Ruling Planets — KP Timing Method', hi: 'शासक ग्रह — केपी समय-निर्धारण विधि', sa: 'शासक ग्रह — केपी समय-निर्धारण विधि', mai: 'शासक ग्रह — केपी समय-निर्धारण विधि', mr: 'शासक ग्रह — केपी समय-निर्धारण विधि', ta: 'Ruling Planets — KP Timing Method', te: 'Ruling Planets — KP Timing Method', bn: 'Ruling Planets — KP Timing Method', kn: 'Ruling Planets — KP Timing Method', gu: 'Ruling Planets — KP Timing Method' },
-  subtitle: {
-    en: 'How the five ruling planets at the moment of judgment reveal when an event will manifest through dasha-bhukti matching',
-    hi: 'निर्णय के क्षण पर पाँच शासक ग्रह कैसे दशा-भुक्ति मिलान द्वारा प्रकट करते हैं कि घटना कब घटित होगी',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 13,
-  crossRefs: [
-    { label: { en: 'Module 20-1: Placidus Houses', hi: 'मॉड्यूल 20-1: प्लेसिडस भाव', sa: 'मॉड्यूल 20-1: प्लेसिडस भाव', mai: 'मॉड्यूल 20-1: प्लेसिडस भाव', mr: 'मॉड्यूल 20-1: प्लेसिडस भाव', ta: 'Module 20-1: Placidus Houses', te: 'Module 20-1: Placidus Houses', bn: 'Module 20-1: Placidus Houses', kn: 'Module 20-1: Placidus Houses', gu: 'Module 20-1: Placidus Houses' }, href: '/learn/modules/20-1' },
-    { label: { en: 'Module 20-2: 249 Sub-Lord Table', hi: 'मॉड्यूल 20-2: 249 उप-स्वामी सारणी', sa: 'मॉड्यूल 20-2: 249 उप-स्वामी सारणी', mai: 'मॉड्यूल 20-2: 249 उप-स्वामी सारणी', mr: 'मॉड्यूल 20-2: 249 उप-स्वामी सारणी', ta: 'Module 20-2: 249 Sub-Lord Table', te: 'Module 20-2: 249 Sub-Lord Table', bn: 'Module 20-2: 249 Sub-Lord Table', kn: 'Module 20-2: 249 Sub-Lord Table', gu: 'Module 20-2: 249 Sub-Lord Table' }, href: '/learn/modules/20-2' },
-    { label: { en: 'Module 20-3: Significators', hi: 'मॉड्यूल 20-3: कारकत्व', sa: 'मॉड्यूल 20-3: कारकत्व', mai: 'मॉड्यूल 20-3: कारकत्व', mr: 'मॉड्यूल 20-3: कारकत्व', ta: 'Module 20-3: Significators', te: 'Module 20-3: Significators', bn: 'Module 20-3: Significators', kn: 'Module 20-3: Significators', gu: 'Module 20-3: Significators' }, href: '/learn/modules/20-3' },
-    { label: { en: 'KP System Tool', hi: 'केपी पद्धति उपकरण', sa: 'केपी पद्धति उपकरण', mai: 'केपी पद्धति उपकरण', mr: 'केपी पद्धति उपकरण', ta: 'KP System Tool', te: 'KP System Tool', bn: 'KP System Tool', kn: 'KP System Tool', gu: 'KP System Tool' }, href: '/kp-system' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

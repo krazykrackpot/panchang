@@ -2,188 +2,19 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/16-3.json';
 
 const META: ModuleMeta = {
   id: 'mod_16_3', phase: 5, topic: 'Classical', moduleNumber: '16.3',
-  title: {
-    en: 'Surya Siddhanta & Mathematical Texts',
-    hi: 'सूर्य सिद्धान्त एवं गणितीय ग्रन्थ',
-  },
-  subtitle: {
-    en: 'The astronomical foundation — planetary mean motions, sine tables, epicyclic theory, and the computational lineage from ancient India to our app',
-    hi: 'खगोलशास्त्रीय आधार — ग्रहों की मध्य गति, ज्या सारणी, अधिचक्र सिद्धान्त, और प्राचीन भारत से हमारे ऐप तक की गणनात्मक परम्परा',
-  },
+  title: L.title as unknown as ModuleMeta['title'],
+  subtitle: L.subtitle as unknown as ModuleMeta['subtitle'],
   estimatedMinutes: 16,
-  crossRefs: [
-    { label: { en: 'Module 16-1: Brihat Parashara Hora Shastra', hi: 'मॉड्यूल 16-1: बृहत् पाराशर होरा शास्त्र', sa: 'मॉड्यूल 16-1: बृहत् पाराशर होरा शास्त्र', mai: 'मॉड्यूल 16-1: बृहत् पाराशर होरा शास्त्र', mr: 'मॉड्यूल 16-1: बृहत् पाराशर होरा शास्त्र', ta: 'Module 16-1: Brihat Parashara Hora Shastra', te: 'Module 16-1: Brihat Parashara Hora Shastra', bn: 'Module 16-1: Brihat Parashara Hora Shastra', kn: 'Module 16-1: Brihat Parashara Hora Shastra', gu: 'Module 16-1: Brihat Parashara Hora Shastra' }, href: '/learn/modules/16-1' },
-    { label: { en: 'Module 16-2: Phaladeepika & Jataka Parijata', hi: 'मॉड्यूल 16-2: फलदीपिका एवं जातक पारिजात', sa: 'मॉड्यूल 16-2: फलदीपिका एवं जातक पारिजात', mai: 'मॉड्यूल 16-2: फलदीपिका एवं जातक पारिजात', mr: 'मॉड्यूल 16-2: फलदीपिका एवं जातक पारिजात', ta: 'Module 16-2: Phaladeepika & Jataka Parijata', te: 'Module 16-2: Phaladeepika & Jataka Parijata', bn: 'Module 16-2: Phaladeepika & Jataka Parijata', kn: 'Module 16-2: Phaladeepika & Jataka Parijata', gu: 'Module 16-2: Phaladeepika & Jataka Parijata' }, href: '/learn/modules/16-2' },
-  ],
+  crossRefs: (L.crossRefs as unknown as Array<{ label: ModuleMeta['title']; href: string }>).map(cr => ({ label: cr.label, href: cr.href })),
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q16_3_01', type: 'mcq',
-    question: {
-      en: 'What is the sidereal year length given by the Surya Siddhanta?',
-      hi: 'सूर्य सिद्धान्त में नाक्षत्र वर्ष की लम्बाई कितनी दी गई है?',
-    },
-    options: [
-      { en: '365.0000 days', hi: '365.0000 दिन', sa: '365.0000 दिन', mai: '365.0000 दिन', mr: '365.0000 दिन', ta: '365.0000 days', te: '365.0000 days', bn: '365.0000 days', kn: '365.0000 days', gu: '365.0000 days' },
-      { en: '365.2422 days', hi: '365.2422 दिन', sa: '365.2422 दिन', mai: '365.2422 दिन', mr: '365.2422 दिन', ta: '365.2422 days', te: '365.2422 days', bn: '365.2422 days', kn: '365.2422 days', gu: '365.2422 days' },
-      { en: '365.2587565 days', hi: '365.2587565 दिन', sa: '365.2587565 दिन', mai: '365.2587565 दिन', mr: '365.2587565 दिन', ta: '365.2587565 days', te: '365.2587565 days', bn: '365.2587565 days', kn: '365.2587565 days', gu: '365.2587565 days' },
-      { en: '366.0000 days', hi: '366.0000 दिन', sa: '366.0000 दिन', mai: '366.0000 दिन', mr: '366.0000 दिन', ta: '366.0000 days', te: '366.0000 days', bn: '366.0000 days', kn: '366.0000 days', gu: '366.0000 days' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'The Surya Siddhanta gives the sidereal year as 365.2587565 days. The modern value is 365.25636 days — an error of only about 1.4 seconds per year. This is remarkably accurate for a text composed without telescopes.',
-      hi: 'सूर्य सिद्धान्त नाक्षत्र वर्ष को 365.2587565 दिन बताता है। आधुनिक मान 365.25636 दिन है — प्रतिवर्ष केवल लगभग 1.4 सेकंड की त्रुटि। दूरबीन के बिना रचित ग्रन्थ के लिए यह उल्लेखनीय सटीकता है।',
-    },
-  },
-  {
-    id: 'q16_3_02', type: 'mcq',
-    question: {
-      en: 'The Surya Siddhanta uses which geometric model for planetary motion?',
-      hi: 'सूर्य सिद्धान्त ग्रहों की गति के लिए कौन-सा ज्यामितीय मॉडल प्रयोग करता है?',
-    },
-    options: [
-      { en: 'Heliocentric ellipses', hi: 'सूर्यकेन्द्री दीर्घवृत्त', sa: 'सूर्यकेन्द्री दीर्घवृत्त', mai: 'सूर्यकेन्द्री दीर्घवृत्त', mr: 'सूर्यकेन्द्री दीर्घवृत्त', ta: 'Heliocentric ellipses', te: 'Heliocentric ellipses', bn: 'Heliocentric ellipses', kn: 'Heliocentric ellipses', gu: 'Heliocentric ellipses' },
-      { en: 'Epicyclic theory (manda and shighra)', hi: 'अधिचक्र सिद्धान्त (मन्द और शीघ्र)', sa: 'अधिचक्र सिद्धान्त (मन्द और शीघ्र)', mai: 'अधिचक्र सिद्धान्त (मन्द और शीघ्र)', mr: 'अधिचक्र सिद्धान्त (मन्द और शीघ्र)', ta: 'Epicyclic theory (manda and shighra)', te: 'Epicyclic theory (manda and shighra)', bn: 'Epicyclic theory (manda and shighra)', kn: 'Epicyclic theory (manda and shighra)', gu: 'Epicyclic theory (manda and shighra)' },
-      { en: 'Simple circular orbits', hi: 'सरल वृत्ताकार कक्षाएँ', sa: 'सरल वृत्ताकार कक्षाएँ', mai: 'सरल वृत्ताकार कक्षाएँ', mr: 'सरल वृत्ताकार कक्षाएँ', ta: 'Simple circular orbits', te: 'Simple circular orbits', bn: 'Simple circular orbits', kn: 'Simple circular orbits', gu: 'Simple circular orbits' },
-      { en: 'Kepler\'s laws directly', hi: 'सीधे केपलर के नियम' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Surya Siddhanta uses epicyclic theory with two corrections: Manda (equation of center, accounting for elliptical orbit) and Shighra (synodic correction, converting heliocentric to geocentric). This is geometrically equivalent to Ptolemy\'s epicycles but developed independently.',
-      hi: 'सूर्य सिद्धान्त दो संशोधनों के साथ अधिचक्र सिद्धान्त का प्रयोग करता है: मन्द (केन्द्र का समीकरण, दीर्घवृत्ताकार कक्षा के लिए) और शीघ्र (सायन संशोधन, सूर्यकेन्द्री को भूकेन्द्री में परिवर्तित करता है)।',
-    },
-  },
-  {
-    id: 'q16_3_03', type: 'true_false',
-    question: {
-      en: 'Aryabhata (499 CE) improved upon the Surya Siddhanta by proposing that the Earth rotates on its axis.',
-      hi: 'आर्यभट (499 ई.) ने सूर्य सिद्धान्त में सुधार किया और प्रस्तावित किया कि पृथ्वी अपनी धुरी पर घूमती है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. In his Aryabhatiya, Aryabhata stated that the apparent rotation of the sky is due to Earth\'s axial rotation — over a millennium before Copernicus. He also refined planetary parameters and introduced improved sine tables.',
-      hi: 'सत्य। अपनी आर्यभटीय में आर्यभट ने कहा कि आकाश का प्रत्यक्ष घूर्णन पृथ्वी के अक्षीय घूर्णन के कारण है — कोपरनिकस से एक सहस्राब्दी से अधिक पूर्व। उन्होंने ग्रह मापदण्डों को भी परिष्कृत किया।',
-    },
-  },
-  {
-    id: 'q16_3_04', type: 'mcq',
-    question: {
-      en: 'The Indian mathematical concept of "jya" is equivalent to the modern:',
-      hi: 'भारतीय गणितीय अवधारणा "ज्या" आधुनिक किसके समतुल्य है?',
-    },
-    options: [
-      { en: 'Cosine function', hi: 'कोसाइन फलन', sa: 'कोसाइन फलन', mai: 'कोसाइन फलन', mr: 'कोसाइन फलन', ta: 'Cosine function', te: 'Cosine function', bn: 'Cosine function', kn: 'Cosine function', gu: 'Cosine function' },
-      { en: 'Sine function (R sin theta)', hi: 'साइन फलन (R sin theta)', sa: 'साइन फलन (R sin theta)', mai: 'साइन फलन (R sin theta)', mr: 'साइन फलन (R sin theta)', ta: 'Sine function (R sin theta)', te: 'Sine function (R sin theta)', bn: 'Sine function (R sin theta)', kn: 'Sine function (R sin theta)', gu: 'Sine function (R sin theta)' },
-      { en: 'Tangent function', hi: 'टैन्जेन्ट फलन', sa: 'टैन्जेन्ट फलन', mai: 'टैन्जेन्ट फलन', mr: 'टैन्जेन्ट फलन', ta: 'Tangent function', te: 'Tangent function', bn: 'Tangent function', kn: 'Tangent function', gu: 'Tangent function' },
-      { en: 'Logarithm', hi: 'लघुगणक', sa: 'लघुगणक', mai: 'लघुगणक', mr: 'लघुगणक', ta: 'Logarithm', te: 'Logarithm', bn: 'Logarithm', kn: 'Logarithm', gu: 'Logarithm' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Jya (ज्या) is the Indian sine function, defined as R * sin(theta) where R is the radius. The word "sine" itself derives from a Latin mistranslation of the Arabic "jiba," which was a transliteration of the Sanskrit "jya."',
-      hi: 'ज्या भारतीय साइन फलन है, जो R * sin(theta) के रूप में परिभाषित है जहाँ R त्रिज्या है। "sine" शब्द स्वयं अरबी "जीब" के लैटिन गलत अनुवाद से निकला है, जो संस्कृत "ज्या" का लिप्यन्तरण था।',
-    },
-  },
-  {
-    id: 'q16_3_05', type: 'mcq',
-    question: {
-      en: 'Approximately how accurate is the Surya Siddhanta for the Moon\'s position?',
-      hi: 'सूर्य सिद्धान्त चन्द्रमा की स्थिति में लगभग कितना सटीक है?',
-    },
-    options: [
-      { en: 'Within 0.01 degrees', hi: '0.01 अंश के भीतर', sa: '0.01 अंश के भीतर', mai: '0.01 अंश के भीतर', mr: '0.01 अंश के भीतर', ta: 'Within 0.01 degrees', te: 'Within 0.01 degrees', bn: 'Within 0.01 degrees', kn: 'Within 0.01 degrees', gu: 'Within 0.01 degrees' },
-      { en: 'Within about 1 degree', hi: 'लगभग 1 अंश के भीतर', sa: 'लगभग 1 अंश के भीतर', mai: 'लगभग 1 अंश के भीतर', mr: 'लगभग 1 अंश के भीतर', ta: 'Within about 1 degree', te: 'Within about 1 degree', bn: 'Within about 1 degree', kn: 'Within about 1 degree', gu: 'Within about 1 degree' },
-      { en: 'Within about 10 degrees', hi: 'लगभग 10 अंश के भीतर', sa: 'लगभग 10 अंश के भीतर', mai: 'लगभग 10 अंश के भीतर', mr: 'लगभग 10 अंश के भीतर', ta: 'Within about 10 degrees', te: 'Within about 10 degrees', bn: 'Within about 10 degrees', kn: 'Within about 10 degrees', gu: 'Within about 10 degrees' },
-      { en: 'Within about 30 degrees', hi: 'लगभग 30 अंश के भीतर', sa: 'लगभग 30 अंश के भीतर', mai: 'लगभग 30 अंश के भीतर', mr: 'लगभग 30 अंश के भीतर', ta: 'Within about 30 degrees', te: 'Within about 30 degrees', bn: 'Within about 30 degrees', kn: 'Within about 30 degrees', gu: 'Within about 30 degrees' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Surya Siddhanta achieves about 1 degree accuracy for the Moon. The Sun is better at about 0.1 degrees. By comparison, our app\'s Meeus algorithms achieve ~0.01 degrees for the Sun and ~0.3 degrees for the Moon.',
-      hi: 'सूर्य सिद्धान्त चन्द्रमा के लिए लगभग 1 अंश की सटीकता प्राप्त करता है। सूर्य बेहतर है, लगभग 0.1 अंश। तुलना में, हमारे ऐप के मीयस एल्गोरिदम सूर्य के लिए ~0.01 अंश और चन्द्रमा के लिए ~0.3 अंश प्राप्त करते हैं।',
-    },
-  },
-  {
-    id: 'q16_3_06', type: 'true_false',
-    question: {
-      en: 'Indian mathematicians computed planetary longitudes without telescopes, using only naked-eye observations and mathematics.',
-      hi: 'भारतीय गणितज्ञों ने दूरबीन के बिना, केवल नग्न आँखों से अवलोकन और गणित का प्रयोग करके ग्रहों के देशान्तर की गणना की।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. All Indian astronomical computations before the colonial period were based on naked-eye observations refined through mathematical models. The sine tables, epicyclic corrections, and iterative methods achieved remarkable precision without optical instruments.',
-      hi: 'सत्य। औपनिवेशिक काल से पूर्व सभी भारतीय खगोलीय गणनाएँ गणितीय मॉडलों से परिष्कृत नग्न-नेत्र अवलोकनों पर आधारित थीं। ज्या सारणियों, अधिचक्र संशोधनों और पुनरावृत्त विधियों ने प्रकाशीय उपकरणों के बिना उल्लेखनीय सटीकता प्राप्त की।',
-    },
-  },
-  {
-    id: 'q16_3_07', type: 'mcq',
-    question: {
-      en: 'The computational progression from ancient to modern astronomical methods is:',
-      hi: 'प्राचीन से आधुनिक खगोलीय विधियों तक की गणनात्मक प्रगति है:',
-    },
-    options: [
-      { en: 'Surya Siddhanta > JPL > Meeus > Swiss Ephemeris', hi: 'सूर्य सिद्धान्त > JPL > मीयस > स्विस एफेमेरिस', sa: 'सूर्य सिद्धान्त > JPL > मीयस > स्विस एफेमेरिस', mai: 'सूर्य सिद्धान्त > JPL > मीयस > स्विस एफेमेरिस', mr: 'सूर्य सिद्धान्त > JPL > मीयस > स्विस एफेमेरिस', ta: 'Surya Siddhanta > JPL > Meeus > Swiss Ephemeris', te: 'Surya Siddhanta > JPL > Meeus > Swiss Ephemeris', bn: 'Surya Siddhanta > JPL > Meeus > Swiss Ephemeris', kn: 'Surya Siddhanta > JPL > Meeus > Swiss Ephemeris', gu: 'Surya Siddhanta > JPL > Meeus > Swiss Ephemeris' },
-      { en: 'Surya Siddhanta > Meeus > Swiss Ephemeris > JPL DE440', hi: 'सूर्य सिद्धान्त > मीयस > स्विस एफेमेरिस > JPL DE440', sa: 'सूर्य सिद्धान्त > मीयस > स्विस एफेमेरिस > JPL DE440', mai: 'सूर्य सिद्धान्त > मीयस > स्विस एफेमेरिस > JPL DE440', mr: 'सूर्य सिद्धान्त > मीयस > स्विस एफेमेरिस > JPL DE440', ta: 'Surya Siddhanta > Meeus > Swiss Ephemeris > JPL DE440', te: 'Surya Siddhanta > Meeus > Swiss Ephemeris > JPL DE440', bn: 'Surya Siddhanta > Meeus > Swiss Ephemeris > JPL DE440', kn: 'Surya Siddhanta > Meeus > Swiss Ephemeris > JPL DE440', gu: 'Surya Siddhanta > Meeus > Swiss Ephemeris > JPL DE440' },
-      { en: 'Meeus > Surya Siddhanta > JPL > Swiss Ephemeris', hi: 'मीयस > सूर्य सिद्धान्त > JPL > स्विस एफेमेरिस', sa: 'मीयस > सूर्य सिद्धान्त > JPL > स्विस एफेमेरिस', mai: 'मीयस > सूर्य सिद्धान्त > JPL > स्विस एफेमेरिस', mr: 'मीयस > सूर्य सिद्धान्त > JPL > स्विस एफेमेरिस', ta: 'Meeus > Surya Siddhanta > JPL > Swiss Ephemeris', te: 'Meeus > Surya Siddhanta > JPL > Swiss Ephemeris', bn: 'Meeus > Surya Siddhanta > JPL > Swiss Ephemeris', kn: 'Meeus > Surya Siddhanta > JPL > Swiss Ephemeris', gu: 'Meeus > Surya Siddhanta > JPL > Swiss Ephemeris' },
-      { en: 'JPL > Swiss Ephemeris > Meeus > Surya Siddhanta', hi: 'JPL > स्विस एफेमेरिस > मीयस > सूर्य सिद्धान्त', sa: 'JPL > स्विस एफेमेरिस > मीयस > सूर्य सिद्धान्त', mai: 'JPL > स्विस एफेमेरिस > मीयस > सूर्य सिद्धान्त', mr: 'JPL > स्विस एफेमेरिस > मीयस > सूर्य सिद्धान्त', ta: 'JPL > Swiss Ephemeris > Meeus > Surya Siddhanta', te: 'JPL > Swiss Ephemeris > Meeus > Surya Siddhanta', bn: 'JPL > Swiss Ephemeris > Meeus > Surya Siddhanta', kn: 'JPL > Swiss Ephemeris > Meeus > Surya Siddhanta', gu: 'JPL > Swiss Ephemeris > Meeus > Surya Siddhanta' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The progression in increasing accuracy: Surya Siddhanta (ancient, ~1 degree Moon) > Meeus algorithms (1991, ~0.3 degree Moon) > Swiss Ephemeris (sub-arcsecond, based on JPL) > JPL DE440 (highest precision, NASA\'s standard). Our app uses Meeus, which is sufficient for Panchang.',
-      hi: 'बढ़ती सटीकता में प्रगति: सूर्य सिद्धान्त (प्राचीन, ~1 अंश चन्द्रमा) > मीयस एल्गोरिदम (1991, ~0.3 अंश चन्द्रमा) > स्विस एफेमेरिस (उप-आर्कसेकंड) > JPL DE440 (सर्वोच्च सटीकता)। हमारा ऐप मीयस का प्रयोग करता है।',
-    },
-  },
-  {
-    id: 'q16_3_08', type: 'mcq',
-    question: {
-      en: 'Our app uses which level of astronomical computation?',
-      hi: 'हमारा ऐप खगोलीय गणना के किस स्तर का प्रयोग करता है?',
-    },
-    options: [
-      { en: 'Surya Siddhanta directly', hi: 'सीधे सूर्य सिद्धान्त', sa: 'सीधे सूर्य सिद्धान्त', mai: 'सीधे सूर्य सिद्धान्त', mr: 'सीधे सूर्य सिद्धान्त', ta: 'Surya Siddhanta directly', te: 'Surya Siddhanta directly', bn: 'Surya Siddhanta directly', kn: 'Surya Siddhanta directly', gu: 'Surya Siddhanta directly' },
-      { en: 'Meeus algorithms (~0.01 degree Sun, ~0.3 degree Moon)', hi: 'मीयस एल्गोरिदम (~0.01 अंश सूर्य, ~0.3 अंश चन्द्रमा)', sa: 'मीयस एल्गोरिदम (~0.01 अंश सूर्य, ~0.3 अंश चन्द्रमा)', mai: 'मीयस एल्गोरिदम (~0.01 अंश सूर्य, ~0.3 अंश चन्द्रमा)', mr: 'मीयस एल्गोरिदम (~0.01 अंश सूर्य, ~0.3 अंश चन्द्रमा)', ta: 'Meeus algorithms (~0.01 degree Sun, ~0.3 degree Moon)', te: 'Meeus algorithms (~0.01 degree Sun, ~0.3 degree Moon)', bn: 'Meeus algorithms (~0.01 degree Sun, ~0.3 degree Moon)', kn: 'Meeus algorithms (~0.01 degree Sun, ~0.3 degree Moon)', gu: 'Meeus algorithms (~0.01 degree Sun, ~0.3 degree Moon)' },
-      { en: 'JPL DE440 directly', hi: 'सीधे JPL DE440', sa: 'सीधे JPL DE440', mai: 'सीधे JPL DE440', mr: 'सीधे JPL DE440', ta: 'JPL DE440 directly', te: 'JPL DE440 directly', bn: 'JPL DE440 directly', kn: 'JPL DE440 directly', gu: 'JPL DE440 directly' },
-      { en: 'No computation — uses pre-stored tables', hi: 'कोई गणना नहीं — पूर्व-संग्रहीत सारणियाँ प्रयुक्त', sa: 'कोई गणना नहीं — पूर्व-संग्रहीत सारणियाँ प्रयुक्त', mai: 'कोई गणना नहीं — पूर्व-संग्रहीत सारणियाँ प्रयुक्त', mr: 'कोई गणना नहीं — पूर्व-संग्रहीत सारणियाँ प्रयुक्त', ta: 'No computation — uses pre-stored tables', te: 'No computation — uses pre-stored tables', bn: 'No computation — uses pre-stored tables', kn: 'No computation — uses pre-stored tables', gu: 'No computation — uses pre-stored tables' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Our app implements Jean Meeus\'s "Astronomical Algorithms" — providing ~0.01 degree Sun accuracy and ~0.3 degree Moon accuracy. This is more than sufficient for Panchang calculations where tithi boundaries span 12 degrees.',
-      hi: 'हमारा ऐप जीन मीयस के "Astronomical Algorithms" का कार्यान्वयन करता है — ~0.01 अंश सूर्य सटीकता और ~0.3 अंश चन्द्रमा सटीकता प्रदान करता है। यह पंचांग गणनाओं के लिए पर्याप्त से अधिक है जहाँ तिथि सीमाएँ 12 अंश में फैली होती हैं।',
-    },
-  },
-  {
-    id: 'q16_3_09', type: 'true_false',
-    question: {
-      en: 'The English word "sine" derives ultimately from the Sanskrit word "jya" through Arabic and Latin.',
-      hi: 'अंग्रेजी शब्द "sine" अन्ततः संस्कृत शब्द "ज्या" से अरबी और लैटिन के माध्यम से निकला है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Sanskrit "jya" > Arabic "jiba" (transliteration) > Latin "sinus" (mistranslation, thinking "jiba" meant "fold/bay") > English "sine." This etymological chain is direct evidence of the transmission of Indian mathematics to the West.',
-      hi: 'सत्य। संस्कृत "ज्या" > अरबी "जीब" (लिप्यन्तरण) > लैटिन "sinus" (गलत अनुवाद, "जीब" को "मोड़/खाड़ी" समझकर) > अंग्रेजी "sine"। यह व्युत्पत्ति शृंखला भारतीय गणित के पश्चिम में संचरण का प्रत्यक्ष प्रमाण है।',
-    },
-  },
-  {
-    id: 'q16_3_10', type: 'mcq',
-    question: {
-      en: 'For Panchang calculations, Meeus-level accuracy is sufficient because:',
-      hi: 'पंचांग गणनाओं के लिए मीयस-स्तरीय सटीकता पर्याप्त है क्योंकि:',
-    },
-    options: [
-      { en: 'Panchang does not involve any calculation', hi: 'पंचांग में कोई गणना सम्मिलित नहीं है', sa: 'पंचांग में कोई गणना सम्मिलित नहीं है', mai: 'पंचांग में कोई गणना सम्मिलित नहीं है', mr: 'पंचांग में कोई गणना सम्मिलित नहीं है', ta: 'Panchang does not involve any calculation', te: 'Panchang does not involve any calculation', bn: 'Panchang does not involve any calculation', kn: 'Panchang does not involve any calculation', gu: 'Panchang does not involve any calculation' },
-      { en: 'Tithi spans 12 degrees, so 0.3 degree Moon error is negligible', hi: 'तिथि 12 अंश में फैली है, अतः 0.3 अंश चन्द्र त्रुटि नगण्य है', sa: 'तिथि 12 अंश में फैली है, अतः 0.3 अंश चन्द्र त्रुटि नगण्य है', mai: 'तिथि 12 अंश में फैली है, अतः 0.3 अंश चन्द्र त्रुटि नगण्य है', mr: 'तिथि 12 अंश में फैली है, अतः 0.3 अंश चन्द्र त्रुटि नगण्य है', ta: 'Tithi spans 12 degrees, so 0.3 degree Moon error is negligible', te: 'Tithi spans 12 degrees, so 0.3 degree Moon error is negligible', bn: 'Tithi spans 12 degrees, so 0.3 degree Moon error is negligible', kn: 'Tithi spans 12 degrees, so 0.3 degree Moon error is negligible', gu: 'Tithi spans 12 degrees, so 0.3 degree Moon error is negligible' },
-      { en: 'Meeus has zero error', hi: 'मीयस में शून्य त्रुटि है', sa: 'मीयस में शून्य त्रुटि है', mai: 'मीयस में शून्य त्रुटि है', mr: 'मीयस में शून्य त्रुटि है', ta: 'Meeus has zero error', te: 'Meeus has zero error', bn: 'Meeus has zero error', kn: 'Meeus has zero error', gu: 'Meeus has zero error' },
-      { en: 'Only the Sun matters for Panchang', hi: 'पंचांग के लिए केवल सूर्य महत्वपूर्ण है', sa: 'पंचांग के लिए केवल सूर्य महत्वपूर्ण है', mai: 'पंचांग के लिए केवल सूर्य महत्वपूर्ण है', mr: 'पंचांग के लिए केवल सूर्य महत्वपूर्ण है', ta: 'Only the Sun matters for Panchang', te: 'Only the Sun matters for Panchang', bn: 'Only the Sun matters for Panchang', kn: 'Only the Sun matters for Panchang', gu: 'Only the Sun matters for Panchang' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'A tithi spans 12 degrees of Moon-Sun elongation. Our Moon error of ~0.3 degrees means worst-case timing error of about 40 minutes for tithi transitions — comparable to Drik Panchang and acceptable for all practical purposes.',
-      hi: 'एक तिथि चन्द्र-सूर्य दूरी के 12 अंश में फैली है। हमारी ~0.3 अंश की चन्द्र त्रुटि का अर्थ है तिथि संक्रमण में अधिकतम लगभग 40 मिनट की समय त्रुटि — दृक् पंचांग के तुलनीय और सभी व्यावहारिक उद्देश्यों के लिए स्वीकार्य।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = (L.questions as unknown as ModuleQuestion[]);
 
 function Page1() {
   const locale = useModuleLocale();

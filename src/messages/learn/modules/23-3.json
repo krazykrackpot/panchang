@@ -1,0 +1,706 @@
+{
+  "title": {
+    "en": "Chakra Systems — Sarvatobhadra & Kota",
+    "hi": "चक्र प्रणालियाँ — सर्वतोभद्र और कोटा",
+    "sa": "चक्र प्रणालियाँ — सर्वतोभद्र और कोटा",
+    "mai": "चक्र प्रणालियाँ — सर्वतोभद्र और कोटा",
+    "mr": "चक्र प्रणालियाँ — सर्वतोभद्र और कोटा",
+    "ta": "Chakra Systems — Sarvatobhadra & Kota",
+    "te": "Chakra Systems — Sarvatobhadra & Kota",
+    "bn": "Chakra Systems — Sarvatobhadra & Kota",
+    "kn": "Chakra Systems — Sarvatobhadra & Kota",
+    "gu": "Chakra Systems — Sarvatobhadra & Kota"
+  },
+  "subtitle": {
+    "en": "Grid-based predictive tools for transit analysis and vedha",
+    "hi": "गोचर विश्लेषण और वेध के लिए ग्रिड-आधारित भविष्यवाणी उपकरण",
+    "sa": "गोचर विश्लेषण और वेध के लिए ग्रिड-आधारित भविष्यवाणी उपकरण",
+    "mai": "गोचर विश्लेषण और वेध के लिए ग्रिड-आधारित भविष्यवाणी उपकरण",
+    "mr": "गोचर विश्लेषण और वेध के लिए ग्रिड-आधारित भविष्यवाणी उपकरण",
+    "ta": "Grid-based predictive tools for transit analysis and vedha",
+    "te": "Grid-based predictive tools for transit analysis and vedha",
+    "bn": "Grid-based predictive tools for transit analysis and vedha",
+    "kn": "Grid-based predictive tools for transit analysis and vedha",
+    "gu": "Grid-based predictive tools for transit analysis and vedha"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "Module 23.1: Eclipse Prediction",
+        "hi": "मॉड्यूल 23.1: ग्रहण भविष्यवाणी",
+        "sa": "मॉड्यूल 23.1: ग्रहण भविष्यवाणी",
+        "mai": "मॉड्यूल 23.1: ग्रहण भविष्यवाणी",
+        "mr": "मॉड्यूल 23.1: ग्रहण भविष्यवाणी",
+        "ta": "Module 23.1: Eclipse Prediction",
+        "te": "Module 23.1: Eclipse Prediction",
+        "bn": "Module 23.1: Eclipse Prediction",
+        "kn": "Module 23.1: Eclipse Prediction",
+        "gu": "Module 23.1: Eclipse Prediction"
+      },
+      "href": "/learn/modules/23-1"
+    },
+    {
+      "label": {
+        "en": "Module 23.4: Sphutas & Sensitive Points",
+        "hi": "मॉड्यूल 23.4: स्फुट और संवेदनशील बिन्दु",
+        "sa": "मॉड्यूल 23.4: स्फुट और संवेदनशील बिन्दु",
+        "mai": "मॉड्यूल 23.4: स्फुट और संवेदनशील बिन्दु",
+        "mr": "मॉड्यूल 23.4: स्फुट और संवेदनशील बिन्दु",
+        "ta": "Module 23.4: Sphutas & Sensitive Points",
+        "te": "Module 23.4: Sphutas & Sensitive Points",
+        "bn": "Module 23.4: Sphutas & Sensitive Points",
+        "kn": "Module 23.4: Sphutas & Sensitive Points",
+        "gu": "Module 23.4: Sphutas & Sensitive Points"
+      },
+      "href": "/learn/modules/23-4"
+    },
+    {
+      "label": {
+        "en": "Module 23.5: Prashna Yogas",
+        "hi": "मॉड्यूल 23.5: प्रश्न योग",
+        "sa": "मॉड्यूल 23.5: प्रश्न योग",
+        "mai": "मॉड्यूल 23.5: प्रश्न योग",
+        "mr": "मॉड्यूल 23.5: प्रश्न योग",
+        "ta": "Module 23.5: Prashna Yogas",
+        "te": "Module 23.5: Prashna Yogas",
+        "bn": "Module 23.5: Prashna Yogas",
+        "kn": "Module 23.5: Prashna Yogas",
+        "gu": "Module 23.5: Prashna Yogas"
+      },
+      "href": "/learn/modules/23-5"
+    },
+    {
+      "label": {
+        "en": "Generate Kundali",
+        "hi": "कुण्डली बनाएँ",
+        "sa": "कुण्डली बनाएँ",
+        "mai": "कुण्डली बनाएँ",
+        "mr": "कुण्डली बनाएँ",
+        "ta": "Generate Kundali",
+        "te": "Generate Kundali",
+        "bn": "Generate Kundali",
+        "kn": "Generate Kundali",
+        "gu": "Generate Kundali"
+      },
+      "href": "/kundali"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q23_3_01",
+      "type": "mcq",
+      "question": {
+        "en": "What is the Sarvatobhadra Chakra?",
+        "hi": "सर्वतोभद्र चक्र क्या है?",
+        "sa": "सर्वतोभद्र चक्र क्या है?",
+        "mai": "सर्वतोभद्र चक्र क्या है?",
+        "mr": "सर्वतोभद्र चक्र क्या है?",
+        "ta": "What is the Sarvatobhadra Chakra?",
+        "te": "What is the Sarvatobhadra Chakra?",
+        "bn": "What is the Sarvatobhadra Chakra?",
+        "kn": "What is the Sarvatobhadra Chakra?",
+        "gu": "What is the Sarvatobhadra Chakra?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "The Sarvatobhadra Chakra is a comprehensive 9x9 grid that maps Sanskrit vowels, consonants, the 27 nakshatras, 30 tithis, and 7 varas (weekdays) into a single diagram. It is used primarily for Vedha (obstruction) analysis in transit predictions.",
+        "hi": "सर्वतोभद्र चक्र एक व्यापक 9×9 ग्रिड है जो संस्कृत स्वरों, व्यंजनों, 27 नक्षत्रों, 30 तिथियों और 7 वारों (सप्ताह के दिनों) को एक आरेख में मैप करती है। इसका उपयोग मुख्य रूप से गोचर भविष्यवाणियों में वेध (अवरोध) विश्लेषण के लिए होता है।",
+        "sa": "सर्वतोभद्र चक्र एक व्यापक 9×9 ग्रिड है जो संस्कृत स्वरों, व्यंजनों, 27 नक्षत्रों, 30 तिथियों और 7 वारों (सप्ताह के दिनों) को एक आरेख में मैप करती है। इसका उपयोग मुख्य रूप से गोचर भविष्यवाणियों में वेध (अवरोध) विश्लेषण के लिए होता है।",
+        "mai": "सर्वतोभद्र चक्र एक व्यापक 9×9 ग्रिड है जो संस्कृत स्वरों, व्यंजनों, 27 नक्षत्रों, 30 तिथियों और 7 वारों (सप्ताह के दिनों) को एक आरेख में मैप करती है। इसका उपयोग मुख्य रूप से गोचर भविष्यवाणियों में वेध (अवरोध) विश्लेषण के लिए होता है।",
+        "mr": "सर्वतोभद्र चक्र एक व्यापक 9×9 ग्रिड है जो संस्कृत स्वरों, व्यंजनों, 27 नक्षत्रों, 30 तिथियों और 7 वारों (सप्ताह के दिनों) को एक आरेख में मैप करती है। इसका उपयोग मुख्य रूप से गोचर भविष्यवाणियों में वेध (अवरोध) विश्लेषण के लिए होता है।",
+        "ta": "The Sarvatobhadra Chakra is a comprehensive 9x9 grid that maps Sanskrit vowels, consonants, the 27 nakshatras, 30 tithis, and 7 varas (weekdays) into a single diagram. It is used primarily for Vedha (obstruction) analysis in transit predictions.",
+        "te": "The Sarvatobhadra Chakra is a comprehensive 9x9 grid that maps Sanskrit vowels, consonants, the 27 nakshatras, 30 tithis, and 7 varas (weekdays) into a single diagram. It is used primarily for Vedha (obstruction) analysis in transit predictions.",
+        "bn": "The Sarvatobhadra Chakra is a comprehensive 9x9 grid that maps Sanskrit vowels, consonants, the 27 nakshatras, 30 tithis, and 7 varas (weekdays) into a single diagram. It is used primarily for Vedha (obstruction) analysis in transit predictions.",
+        "kn": "The Sarvatobhadra Chakra is a comprehensive 9x9 grid that maps Sanskrit vowels, consonants, the 27 nakshatras, 30 tithis, and 7 varas (weekdays) into a single diagram. It is used primarily for Vedha (obstruction) analysis in transit predictions.",
+        "gu": "The Sarvatobhadra Chakra is a comprehensive 9x9 grid that maps Sanskrit vowels, consonants, the 27 nakshatras, 30 tithis, and 7 varas (weekdays) into a single diagram. It is used primarily for Vedha (obstruction) analysis in transit predictions."
+      },
+      "options": [
+        {
+          "en": "A 12-house birth chart layout",
+          "hi": "12 भावों का जन्म कुण्डली विन्यास",
+          "sa": "12 भावों का जन्म कुण्डली विन्यास",
+          "mai": "12 भावों का जन्म कुण्डली विन्यास",
+          "mr": "12 भावों का जन्म कुण्डली विन्यास",
+          "ta": "A 12-house birth chart layout",
+          "te": "A 12-house birth chart layout",
+          "bn": "A 12-house birth chart layout",
+          "kn": "A 12-house birth chart layout",
+          "gu": "A 12-house birth chart layout"
+        },
+        {
+          "en": "A 9x9 grid mapping vowels, consonants, nakshatras, tithis, and varas",
+          "hi": "स्वर, व्यंजन, नक्षत्र, तिथि और वार को मैप करने वाली 9×9 ग्रिड",
+          "sa": "स्वर, व्यंजन, नक्षत्र, तिथि और वार को मैप करने वाली 9×9 ग्रिड",
+          "mai": "स्वर, व्यंजन, नक्षत्र, तिथि और वार को मैप करने वाली 9×9 ग्रिड",
+          "mr": "स्वर, व्यंजन, नक्षत्र, तिथि और वार को मैप करने वाली 9×9 ग्रिड",
+          "ta": "A 9x9 grid mapping vowels, consonants, nakshatras, tithis, and varas",
+          "te": "A 9x9 grid mapping vowels, consonants, nakshatras, tithis, and varas",
+          "bn": "A 9x9 grid mapping vowels, consonants, nakshatras, tithis, and varas",
+          "kn": "A 9x9 grid mapping vowels, consonants, nakshatras, tithis, and varas",
+          "gu": "A 9x9 grid mapping vowels, consonants, nakshatras, tithis, and varas"
+        },
+        {
+          "en": "A circular diagram of planetary orbits",
+          "hi": "ग्रहीय कक्षाओं का वृत्ताकार आरेख",
+          "sa": "ग्रहीय कक्षाओं का वृत्ताकार आरेख",
+          "mai": "ग्रहीय कक्षाओं का वृत्ताकार आरेख",
+          "mr": "ग्रहीय कक्षाओं का वृत्ताकार आरेख",
+          "ta": "A circular diagram of planetary orbits",
+          "te": "A circular diagram of planetary orbits",
+          "bn": "A circular diagram of planetary orbits",
+          "kn": "A circular diagram of planetary orbits",
+          "gu": "A circular diagram of planetary orbits"
+        },
+        {
+          "en": "A table of planetary dignities",
+          "hi": "ग्रहीय गरिमाओं की तालिका",
+          "sa": "ग्रहीय गरिमाओं की तालिका",
+          "mai": "ग्रहीय गरिमाओं की तालिका",
+          "mr": "ग्रहीय गरिमाओं की तालिका",
+          "ta": "A table of planetary dignities",
+          "te": "A table of planetary dignities",
+          "bn": "A table of planetary dignities",
+          "kn": "A table of planetary dignities",
+          "gu": "A table of planetary dignities"
+        }
+      ]
+    },
+    {
+      "id": "q23_3_02",
+      "type": "mcq",
+      "question": {
+        "en": "What is \"Vedha\" in the context of Sarvatobhadra Chakra?",
+        "hi": "सर्वतोभद्र चक्र के सन्दर्भ में \"वेध\" क्या है?",
+        "sa": "सर्वतोभद्र चक्र के सन्दर्भ में \"वेध\" क्या है?",
+        "mai": "सर्वतोभद्र चक्र के सन्दर्भ में \"वेध\" क्या है?",
+        "mr": "सर्वतोभद्र चक्र के सन्दर्भ में \"वेध\" क्या है?",
+        "ta": "What is \"Vedha\" in the context of Sarvatobhadra Chakra?",
+        "te": "What is \"Vedha\" in the context of Sarvatobhadra Chakra?",
+        "bn": "What is \"Vedha\" in the context of Sarvatobhadra Chakra?",
+        "kn": "What is \"Vedha\" in the context of Sarvatobhadra Chakra?",
+        "gu": "What is \"Vedha\" in the context of Sarvatobhadra Chakra?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Vedha means \"piercing\" or \"obstruction.\" In the Sarvatobhadra Chakra, when a transiting malefic planet occupies a position that lies on the same row or column as your birth nakshatra, it creates vedha — an obstruction or challenge in that life area. Benefic vedha from Jupiter or Venus creates support.",
+        "hi": "वेध का अर्थ \"छेदना\" या \"अवरोध\" है। सर्वतोभद्र चक्र में, जब कोई गोचर पाप ग्रह ऐसी स्थिति में हो जो आपके जन्म नक्षत्र की पंक्ति या स्तम्भ पर हो, तो यह वेध — उस जीवन क्षेत्र में अवरोध या चुनौती बनाता है। बृहस्पति या शुक्र का शुभ वेध सहायता प्रदान करता है।",
+        "sa": "वेध का अर्थ \"छेदना\" या \"अवरोध\" है। सर्वतोभद्र चक्र में, जब कोई गोचर पाप ग्रह ऐसी स्थिति में हो जो आपके जन्म नक्षत्र की पंक्ति या स्तम्भ पर हो, तो यह वेध — उस जीवन क्षेत्र में अवरोध या चुनौती बनाता है। बृहस्पति या शुक्र का शुभ वेध सहायता प्रदान करता है।",
+        "mai": "वेध का अर्थ \"छेदना\" या \"अवरोध\" है। सर्वतोभद्र चक्र में, जब कोई गोचर पाप ग्रह ऐसी स्थिति में हो जो आपके जन्म नक्षत्र की पंक्ति या स्तम्भ पर हो, तो यह वेध — उस जीवन क्षेत्र में अवरोध या चुनौती बनाता है। बृहस्पति या शुक्र का शुभ वेध सहायता प्रदान करता है।",
+        "mr": "वेध का अर्थ \"छेदना\" या \"अवरोध\" है। सर्वतोभद्र चक्र में, जब कोई गोचर पाप ग्रह ऐसी स्थिति में हो जो आपके जन्म नक्षत्र की पंक्ति या स्तम्भ पर हो, तो यह वेध — उस जीवन क्षेत्र में अवरोध या चुनौती बनाता है। बृहस्पति या शुक्र का शुभ वेध सहायता प्रदान करता है।",
+        "ta": "Vedha means \"piercing\" or \"obstruction.\" In the Sarvatobhadra Chakra, when a transiting malefic planet occupies a position that lies on the same row or column as your birth nakshatra, it creates vedha — an obstruction or challenge in that life area. Benefic vedha from Jupiter or Venus creates support.",
+        "te": "Vedha means \"piercing\" or \"obstruction.\" In the Sarvatobhadra Chakra, when a transiting malefic planet occupies a position that lies on the same row or column as your birth nakshatra, it creates vedha — an obstruction or challenge in that life area. Benefic vedha from Jupiter or Venus creates support.",
+        "bn": "Vedha means \"piercing\" or \"obstruction.\" In the Sarvatobhadra Chakra, when a transiting malefic planet occupies a position that lies on the same row or column as your birth nakshatra, it creates vedha — an obstruction or challenge in that life area. Benefic vedha from Jupiter or Venus creates support.",
+        "kn": "Vedha means \"piercing\" or \"obstruction.\" In the Sarvatobhadra Chakra, when a transiting malefic planet occupies a position that lies on the same row or column as your birth nakshatra, it creates vedha — an obstruction or challenge in that life area. Benefic vedha from Jupiter or Venus creates support.",
+        "gu": "Vedha means \"piercing\" or \"obstruction.\" In the Sarvatobhadra Chakra, when a transiting malefic planet occupies a position that lies on the same row or column as your birth nakshatra, it creates vedha — an obstruction or challenge in that life area. Benefic vedha from Jupiter or Venus creates support."
+      },
+      "options": [
+        {
+          "en": "A type of planetary dignity",
+          "hi": "ग्रहीय गरिमा का एक प्रकार",
+          "sa": "ग्रहीय गरिमा का एक प्रकार",
+          "mai": "ग्रहीय गरिमा का एक प्रकार",
+          "mr": "ग्रहीय गरिमा का एक प्रकार",
+          "ta": "A type of planetary dignity",
+          "te": "A type of planetary dignity",
+          "bn": "A type of planetary dignity",
+          "kn": "A type of planetary dignity",
+          "gu": "A type of planetary dignity"
+        },
+        {
+          "en": "An obstruction created when a transiting planet hits a row/column of your birth nakshatra",
+          "hi": "जब गोचर ग्रह आपके जन्म नक्षत्र की पंक्ति/स्तम्भ से टकराता है तब उत्पन्न अवरोध",
+          "sa": "जब गोचर ग्रह आपके जन्म नक्षत्र की पंक्ति/स्तम्भ से टकराता है तब उत्पन्न अवरोध",
+          "mai": "जब गोचर ग्रह आपके जन्म नक्षत्र की पंक्ति/स्तम्भ से टकराता है तब उत्पन्न अवरोध",
+          "mr": "जब गोचर ग्रह आपके जन्म नक्षत्र की पंक्ति/स्तम्भ से टकराता है तब उत्पन्न अवरोध",
+          "ta": "An obstruction created when a transiting planet hits a row/column of your birth nakshatra",
+          "te": "An obstruction created when a transiting planet hits a row/column of your birth nakshatra",
+          "bn": "An obstruction created when a transiting planet hits a row/column of your birth nakshatra",
+          "kn": "An obstruction created when a transiting planet hits a row/column of your birth nakshatra",
+          "gu": "An obstruction created when a transiting planet hits a row/column of your birth nakshatra"
+        },
+        {
+          "en": "A benefic yoga between Jupiter and Venus",
+          "hi": "बृहस्पति और शुक्र के बीच शुभ योग",
+          "sa": "बृहस्पति और शुक्र के बीच शुभ योग",
+          "mai": "बृहस्पति और शुक्र के बीच शुभ योग",
+          "mr": "बृहस्पति और शुक्र के बीच शुभ योग",
+          "ta": "A benefic yoga between Jupiter and Venus",
+          "te": "A benefic yoga between Jupiter and Venus",
+          "bn": "A benefic yoga between Jupiter and Venus",
+          "kn": "A benefic yoga between Jupiter and Venus",
+          "gu": "A benefic yoga between Jupiter and Venus"
+        },
+        {
+          "en": "The combustion of a planet",
+          "hi": "ग्रह का अस्त होना",
+          "sa": "ग्रह का अस्त होना",
+          "mai": "ग्रह का अस्त होना",
+          "mr": "ग्रह का अस्त होना",
+          "ta": "The combustion of a planet",
+          "te": "The combustion of a planet",
+          "bn": "The combustion of a planet",
+          "kn": "The combustion of a planet",
+          "gu": "The combustion of a planet"
+        }
+      ]
+    },
+    {
+      "id": "q23_3_03",
+      "type": "true_false",
+      "question": {
+        "en": "The Kota Chakra has 4 layers representing different levels of personal impact.",
+        "hi": "कोटा चक्र में 4 परतें हैं जो व्यक्तिगत प्रभाव के विभिन्न स्तरों का प्रतिनिधित्व करती हैं।",
+        "sa": "कोटा चक्र में 4 परतें हैं जो व्यक्तिगत प्रभाव के विभिन्न स्तरों का प्रतिनिधित्व करती हैं।",
+        "mai": "कोटा चक्र में 4 परतें हैं जो व्यक्तिगत प्रभाव के विभिन्न स्तरों का प्रतिनिधित्व करती हैं।",
+        "mr": "कोटा चक्र में 4 परतें हैं जो व्यक्तिगत प्रभाव के विभिन्न स्तरों का प्रतिनिधित्व करती हैं।",
+        "ta": "The Kota Chakra has 4 layers representing different levels of personal impact.",
+        "te": "The Kota Chakra has 4 layers representing different levels of personal impact.",
+        "bn": "The Kota Chakra has 4 layers representing different levels of personal impact.",
+        "kn": "The Kota Chakra has 4 layers representing different levels of personal impact.",
+        "gu": "The Kota Chakra has 4 layers representing different levels of personal impact."
+      },
+      "correctAnswer": 3,
+      "explanation": {
+        "en": "The Kota Chakra is a \"fort\" diagram with 4 concentric layers: Stambha (pillar/innermost), Madhya (middle), Praakara (wall), and Bahya (outer). Planets transiting your Stambha layer have the most direct personal impact, while those in the Bahya layer affect external circumstances.",
+        "hi": "कोटा चक्र 4 संकेन्द्रित परतों वाला \"किला\" आरेख है: स्तम्भ (खम्भा/अन्तरतम), मध्य (बीच), प्राकार (दीवार), और बाह्य (बाहरी)। आपकी स्तम्भ परत से गोचर करने वाले ग्रहों का सबसे प्रत्यक्ष व्यक्तिगत प्रभाव होता है, जबकि बाह्य परत वाले बाहरी परिस्थितियों को प्रभावित करते हैं।",
+        "sa": "कोटा चक्र 4 संकेन्द्रित परतों वाला \"किला\" आरेख है: स्तम्भ (खम्भा/अन्तरतम), मध्य (बीच), प्राकार (दीवार), और बाह्य (बाहरी)। आपकी स्तम्भ परत से गोचर करने वाले ग्रहों का सबसे प्रत्यक्ष व्यक्तिगत प्रभाव होता है, जबकि बाह्य परत वाले बाहरी परिस्थितियों को प्रभावित करते हैं।",
+        "mai": "कोटा चक्र 4 संकेन्द्रित परतों वाला \"किला\" आरेख है: स्तम्भ (खम्भा/अन्तरतम), मध्य (बीच), प्राकार (दीवार), और बाह्य (बाहरी)। आपकी स्तम्भ परत से गोचर करने वाले ग्रहों का सबसे प्रत्यक्ष व्यक्तिगत प्रभाव होता है, जबकि बाह्य परत वाले बाहरी परिस्थितियों को प्रभावित करते हैं।",
+        "mr": "कोटा चक्र 4 संकेन्द्रित परतों वाला \"किला\" आरेख है: स्तम्भ (खम्भा/अन्तरतम), मध्य (बीच), प्राकार (दीवार), और बाह्य (बाहरी)। आपकी स्तम्भ परत से गोचर करने वाले ग्रहों का सबसे प्रत्यक्ष व्यक्तिगत प्रभाव होता है, जबकि बाह्य परत वाले बाहरी परिस्थितियों को प्रभावित करते हैं।",
+        "ta": "The Kota Chakra is a \"fort\" diagram with 4 concentric layers: Stambha (pillar/innermost), Madhya (middle), Praakara (wall), and Bahya (outer). Planets transiting your Stambha layer have the most direct personal impact, while those in the Bahya layer affect external circumstances.",
+        "te": "The Kota Chakra is a \"fort\" diagram with 4 concentric layers: Stambha (pillar/innermost), Madhya (middle), Praakara (wall), and Bahya (outer). Planets transiting your Stambha layer have the most direct personal impact, while those in the Bahya layer affect external circumstances.",
+        "bn": "The Kota Chakra is a \"fort\" diagram with 4 concentric layers: Stambha (pillar/innermost), Madhya (middle), Praakara (wall), and Bahya (outer). Planets transiting your Stambha layer have the most direct personal impact, while those in the Bahya layer affect external circumstances.",
+        "kn": "The Kota Chakra is a \"fort\" diagram with 4 concentric layers: Stambha (pillar/innermost), Madhya (middle), Praakara (wall), and Bahya (outer). Planets transiting your Stambha layer have the most direct personal impact, while those in the Bahya layer affect external circumstances.",
+        "gu": "The Kota Chakra is a \"fort\" diagram with 4 concentric layers: Stambha (pillar/innermost), Madhya (middle), Praakara (wall), and Bahya (outer). Planets transiting your Stambha layer have the most direct personal impact, while those in the Bahya layer affect external circumstances."
+      }
+    },
+    {
+      "id": "q23_3_04",
+      "type": "mcq",
+      "question": {
+        "en": "In the Kota Chakra, which layer represents the most direct personal impact?",
+        "hi": "कोटा चक्र में, कौन सी परत सबसे प्रत्यक्ष व्यक्तिगत प्रभाव दर्शाती है?",
+        "sa": "कोटा चक्र में, कौन सी परत सबसे प्रत्यक्ष व्यक्तिगत प्रभाव दर्शाती है?",
+        "mai": "कोटा चक्र में, कौन सी परत सबसे प्रत्यक्ष व्यक्तिगत प्रभाव दर्शाती है?",
+        "mr": "कोटा चक्र में, कौन सी परत सबसे प्रत्यक्ष व्यक्तिगत प्रभाव दर्शाती है?",
+        "ta": "In the Kota Chakra, which layer represents the most direct personal impact?",
+        "te": "In the Kota Chakra, which layer represents the most direct personal impact?",
+        "bn": "In the Kota Chakra, which layer represents the most direct personal impact?",
+        "kn": "In the Kota Chakra, which layer represents the most direct personal impact?",
+        "gu": "In the Kota Chakra, which layer represents the most direct personal impact?"
+      },
+      "correctAnswer": 3,
+      "explanation": {
+        "en": "Stambha (the pillar or innermost layer) represents the core of the fort — the most personal area. When a planet transits through your Stambha layer, the impact is felt most directly and personally. A malefic in the Stambha layer = direct personal challenge; a benefic = direct personal blessing.",
+        "hi": "स्तम्भ (खम्भा या अन्तरतम परत) किले के केन्द्र — सबसे व्यक्तिगत क्षेत्र का प्रतिनिधित्व करती है। जब कोई ग्रह आपकी स्तम्भ परत से गोचर करता है, तो प्रभाव सबसे प्रत्यक्ष और व्यक्तिगत रूप से अनुभव होता है। स्तम्भ परत में पाप ग्रह = प्रत्यक्ष व्यक्तिगत चुनौती; शुभ ग्रह = प्रत्यक्ष व्यक्तिगत आशीर्वाद।",
+        "sa": "स्तम्भ (खम्भा या अन्तरतम परत) किले के केन्द्र — सबसे व्यक्तिगत क्षेत्र का प्रतिनिधित्व करती है। जब कोई ग्रह आपकी स्तम्भ परत से गोचर करता है, तो प्रभाव सबसे प्रत्यक्ष और व्यक्तिगत रूप से अनुभव होता है। स्तम्भ परत में पाप ग्रह = प्रत्यक्ष व्यक्तिगत चुनौती; शुभ ग्रह = प्रत्यक्ष व्यक्तिगत आशीर्वाद।",
+        "mai": "स्तम्भ (खम्भा या अन्तरतम परत) किले के केन्द्र — सबसे व्यक्तिगत क्षेत्र का प्रतिनिधित्व करती है। जब कोई ग्रह आपकी स्तम्भ परत से गोचर करता है, तो प्रभाव सबसे प्रत्यक्ष और व्यक्तिगत रूप से अनुभव होता है। स्तम्भ परत में पाप ग्रह = प्रत्यक्ष व्यक्तिगत चुनौती; शुभ ग्रह = प्रत्यक्ष व्यक्तिगत आशीर्वाद।",
+        "mr": "स्तम्भ (खम्भा या अन्तरतम परत) किले के केन्द्र — सबसे व्यक्तिगत क्षेत्र का प्रतिनिधित्व करती है। जब कोई ग्रह आपकी स्तम्भ परत से गोचर करता है, तो प्रभाव सबसे प्रत्यक्ष और व्यक्तिगत रूप से अनुभव होता है। स्तम्भ परत में पाप ग्रह = प्रत्यक्ष व्यक्तिगत चुनौती; शुभ ग्रह = प्रत्यक्ष व्यक्तिगत आशीर्वाद।",
+        "ta": "Stambha (the pillar or innermost layer) represents the core of the fort — the most personal area. When a planet transits through your Stambha layer, the impact is felt most directly and personally. A malefic in the Stambha layer = direct personal challenge; a benefic = direct personal blessing.",
+        "te": "Stambha (the pillar or innermost layer) represents the core of the fort — the most personal area. When a planet transits through your Stambha layer, the impact is felt most directly and personally. A malefic in the Stambha layer = direct personal challenge; a benefic = direct personal blessing.",
+        "bn": "Stambha (the pillar or innermost layer) represents the core of the fort — the most personal area. When a planet transits through your Stambha layer, the impact is felt most directly and personally. A malefic in the Stambha layer = direct personal challenge; a benefic = direct personal blessing.",
+        "kn": "Stambha (the pillar or innermost layer) represents the core of the fort — the most personal area. When a planet transits through your Stambha layer, the impact is felt most directly and personally. A malefic in the Stambha layer = direct personal challenge; a benefic = direct personal blessing.",
+        "gu": "Stambha (the pillar or innermost layer) represents the core of the fort — the most personal area. When a planet transits through your Stambha layer, the impact is felt most directly and personally. A malefic in the Stambha layer = direct personal challenge; a benefic = direct personal blessing."
+      },
+      "options": [
+        {
+          "en": "Bahya (outer)",
+          "hi": "बाह्य (बाहरी)",
+          "sa": "बाह्य (बाहरी)",
+          "mai": "बाह्य (बाहरी)",
+          "mr": "बाह्य (बाहरी)",
+          "ta": "Bahya (outer)",
+          "te": "Bahya (outer)",
+          "bn": "Bahya (outer)",
+          "kn": "Bahya (outer)",
+          "gu": "Bahya (outer)"
+        },
+        {
+          "en": "Praakara (wall)",
+          "hi": "प्राकार (दीवार)",
+          "sa": "प्राकार (दीवार)",
+          "mai": "प्राकार (दीवार)",
+          "mr": "प्राकार (दीवार)",
+          "ta": "Praakara (wall)",
+          "te": "Praakara (wall)",
+          "bn": "Praakara (wall)",
+          "kn": "Praakara (wall)",
+          "gu": "Praakara (wall)"
+        },
+        {
+          "en": "Madhya (middle)",
+          "hi": "मध्य (बीच)",
+          "sa": "मध्य (बीच)",
+          "mai": "मध्य (बीच)",
+          "mr": "मध्य (बीच)",
+          "ta": "Madhya (middle)",
+          "te": "Madhya (middle)",
+          "bn": "Madhya (middle)",
+          "kn": "Madhya (middle)",
+          "gu": "Madhya (middle)"
+        },
+        {
+          "en": "Stambha (pillar/innermost)",
+          "hi": "स्तम्भ (खम्भा/अन्तरतम)",
+          "sa": "स्तम्भ (खम्भा/अन्तरतम)",
+          "mai": "स्तम्भ (खम्भा/अन्तरतम)",
+          "mr": "स्तम्भ (खम्भा/अन्तरतम)",
+          "ta": "Stambha (pillar/innermost)",
+          "te": "Stambha (pillar/innermost)",
+          "bn": "Stambha (pillar/innermost)",
+          "kn": "Stambha (pillar/innermost)",
+          "gu": "Stambha (pillar/innermost)"
+        }
+      ]
+    },
+    {
+      "id": "q23_3_05",
+      "type": "mcq",
+      "question": {
+        "en": "What determines which Kota Chakra layer you are on?",
+        "hi": "आप कोटा चक्र की किस परत पर हैं, यह क्या निर्धारित करता है?",
+        "sa": "आप कोटा चक्र की किस परत पर हैं, यह क्या निर्धारित करता है?",
+        "mai": "आप कोटा चक्र की किस परत पर हैं, यह क्या निर्धारित करता है?",
+        "mr": "आप कोटा चक्र की किस परत पर हैं, यह क्या निर्धारित करता है?",
+        "ta": "What determines which Kota Chakra layer you are on?",
+        "te": "What determines which Kota Chakra layer you are on?",
+        "bn": "What determines which Kota Chakra layer you are on?",
+        "kn": "What determines which Kota Chakra layer you are on?",
+        "gu": "What determines which Kota Chakra layer you are on?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Your birth nakshatra (Janma Nakshatra — the nakshatra occupied by the Moon at birth) determines which layer of the Kota Chakra you belong to. The 27 nakshatras are distributed across the 4 layers, and your personal layer defines how transiting planets affect you.",
+        "hi": "आपका जन्म नक्षत्र (जन्म नक्षत्र — जन्म के समय चन्द्रमा जिस नक्षत्र में था) निर्धारित करता है कि आप कोटा चक्र की किस परत पर हैं। 27 नक्षत्र 4 परतों में वितरित हैं, और आपकी व्यक्तिगत परत परिभाषित करती है कि गोचर ग्रह आपको कैसे प्रभावित करते हैं।",
+        "sa": "आपका जन्म नक्षत्र (जन्म नक्षत्र — जन्म के समय चन्द्रमा जिस नक्षत्र में था) निर्धारित करता है कि आप कोटा चक्र की किस परत पर हैं। 27 नक्षत्र 4 परतों में वितरित हैं, और आपकी व्यक्तिगत परत परिभाषित करती है कि गोचर ग्रह आपको कैसे प्रभावित करते हैं।",
+        "mai": "आपका जन्म नक्षत्र (जन्म नक्षत्र — जन्म के समय चन्द्रमा जिस नक्षत्र में था) निर्धारित करता है कि आप कोटा चक्र की किस परत पर हैं। 27 नक्षत्र 4 परतों में वितरित हैं, और आपकी व्यक्तिगत परत परिभाषित करती है कि गोचर ग्रह आपको कैसे प्रभावित करते हैं।",
+        "mr": "आपका जन्म नक्षत्र (जन्म नक्षत्र — जन्म के समय चन्द्रमा जिस नक्षत्र में था) निर्धारित करता है कि आप कोटा चक्र की किस परत पर हैं। 27 नक्षत्र 4 परतों में वितरित हैं, और आपकी व्यक्तिगत परत परिभाषित करती है कि गोचर ग्रह आपको कैसे प्रभावित करते हैं।",
+        "ta": "Your birth nakshatra (Janma Nakshatra — the nakshatra occupied by the Moon at birth) determines which layer of the Kota Chakra you belong to. The 27 nakshatras are distributed across the 4 layers, and your personal layer defines how transiting planets affect you.",
+        "te": "Your birth nakshatra (Janma Nakshatra — the nakshatra occupied by the Moon at birth) determines which layer of the Kota Chakra you belong to. The 27 nakshatras are distributed across the 4 layers, and your personal layer defines how transiting planets affect you.",
+        "bn": "Your birth nakshatra (Janma Nakshatra — the nakshatra occupied by the Moon at birth) determines which layer of the Kota Chakra you belong to. The 27 nakshatras are distributed across the 4 layers, and your personal layer defines how transiting planets affect you.",
+        "kn": "Your birth nakshatra (Janma Nakshatra — the nakshatra occupied by the Moon at birth) determines which layer of the Kota Chakra you belong to. The 27 nakshatras are distributed across the 4 layers, and your personal layer defines how transiting planets affect you.",
+        "gu": "Your birth nakshatra (Janma Nakshatra — the nakshatra occupied by the Moon at birth) determines which layer of the Kota Chakra you belong to. The 27 nakshatras are distributed across the 4 layers, and your personal layer defines how transiting planets affect you."
+      },
+      "options": [
+        {
+          "en": "Your Sun sign",
+          "hi": "आपकी सूर्य राशि",
+          "sa": "आपकी सूर्य राशि",
+          "mai": "आपकी सूर्य राशि",
+          "mr": "आपकी सूर्य राशि",
+          "ta": "Your Sun sign",
+          "te": "Your Sun sign",
+          "bn": "Your Sun sign",
+          "kn": "Your Sun sign",
+          "gu": "Your Sun sign"
+        },
+        {
+          "en": "Your Lagna (ascendant)",
+          "hi": "आपका लग्न",
+          "sa": "आपका लग्न",
+          "mai": "आपका लग्न",
+          "mr": "आपका लग्न",
+          "ta": "Your Lagna (ascendant)",
+          "te": "Your Lagna (ascendant)",
+          "bn": "Your Lagna (ascendant)",
+          "kn": "Your Lagna (ascendant)",
+          "gu": "Your Lagna (ascendant)"
+        },
+        {
+          "en": "Your birth nakshatra",
+          "hi": "आपका जन्म नक्षत्र",
+          "sa": "आपका जन्म नक्षत्र",
+          "mai": "आपका जन्म नक्षत्र",
+          "mr": "आपका जन्म नक्षत्र",
+          "ta": "Your birth nakshatra",
+          "te": "Your birth nakshatra",
+          "bn": "Your birth nakshatra",
+          "kn": "Your birth nakshatra",
+          "gu": "Your birth nakshatra"
+        },
+        {
+          "en": "Your Moon sign",
+          "hi": "आपकी चन्द्र राशि",
+          "sa": "आपकी चन्द्र राशि",
+          "mai": "आपकी चन्द्र राशि",
+          "mr": "आपकी चन्द्र राशि",
+          "ta": "Your Moon sign",
+          "te": "Your Moon sign",
+          "bn": "Your Moon sign",
+          "kn": "Your Moon sign",
+          "gu": "Your Moon sign"
+        }
+      ]
+    },
+    {
+      "id": "q23_3_06",
+      "type": "true_false",
+      "question": {
+        "en": "A malefic planet breaching from the outer to inner layers of the Kota Chakra indicates increasing challenge.",
+        "hi": "कोटा चक्र की बाहरी से भीतरी परतों में प्रवेश करता पाप ग्रह बढ़ती चुनौती दर्शाता है।",
+        "sa": "कोटा चक्र की बाहरी से भीतरी परतों में प्रवेश करता पाप ग्रह बढ़ती चुनौती दर्शाता है।",
+        "mai": "कोटा चक्र की बाहरी से भीतरी परतों में प्रवेश करता पाप ग्रह बढ़ती चुनौती दर्शाता है।",
+        "mr": "कोटा चक्र की बाहरी से भीतरी परतों में प्रवेश करता पाप ग्रह बढ़ती चुनौती दर्शाता है।",
+        "ta": "A malefic planet breaching from the outer to inner layers of the Kota Chakra indicates increasing challenge.",
+        "te": "A malefic planet breaching from the outer to inner layers of the Kota Chakra indicates increasing challenge.",
+        "bn": "A malefic planet breaching from the outer to inner layers of the Kota Chakra indicates increasing challenge.",
+        "kn": "A malefic planet breaching from the outer to inner layers of the Kota Chakra indicates increasing challenge.",
+        "gu": "A malefic planet breaching from the outer to inner layers of the Kota Chakra indicates increasing challenge."
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Just as an invading army breaching a fort\"s walls represents increasing danger, a malefic transiting from the Bahya (outer) toward the Stambha (inner) layer indicates progressively greater personal challenge. The reverse — moving outward — shows the challenge is receding.",
+        "hi": "जैसे किले की दीवारों को तोड़ती आक्रमणकारी सेना बढ़ते खतरे का प्रतिनिधित्व करती है, बाह्य (बाहरी) से स्तम्भ (भीतरी) परत की ओर गोचर करता पाप ग्रह उत्तरोत्तर बड़ी व्यक्तिगत चुनौती दर्शाता है। विपरीत — बाहर की ओर जाना — दर्शाता है कि चुनौती घट रही है।"
+      }
+    },
+    {
+      "id": "q23_3_07",
+      "type": "mcq",
+      "question": {
+        "en": "What is the Surya-Kalanala Chakra used for?",
+        "hi": "सूर्य-कालानल चक्र किसके लिए उपयोग होता है?",
+        "sa": "सूर्य-कालानल चक्र किसके लिए उपयोग होता है?",
+        "mai": "सूर्य-कालानल चक्र किसके लिए उपयोग होता है?",
+        "mr": "सूर्य-कालानल चक्र किसके लिए उपयोग होता है?",
+        "ta": "What is the Surya-Kalanala Chakra used for?",
+        "te": "What is the Surya-Kalanala Chakra used for?",
+        "bn": "What is the Surya-Kalanala Chakra used for?",
+        "kn": "What is the Surya-Kalanala Chakra used for?",
+        "gu": "What is the Surya-Kalanala Chakra used for?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "The Surya-Kalanala Chakra is a \"fire-wheel\" diagram used for timing monthly predictions. It maps the Sun's transit through each nakshatra and identifies which birth nakshatras receive vedha (obstruction) during that month. When the Sun transits a nakshatra that creates vedha on yours, that month brings challenges.",
+        "hi": "सूर्य-कालानल चक्र मासिक भविष्यवाणियों के समय के लिए उपयोग होने वाला \"अग्नि-चक्र\" आरेख है। यह प्रत्येक नक्षत्र से सूर्य के गोचर को मैप करता है और पहचानता है कि उस महीने किन जन्म नक्षत्रों को वेध (अवरोध) प्राप्त होता है। जब सूर्य ऐसे नक्षत्र से गोचर करता है जो आपके पर वेध बनाता है, तो वह महीना चुनौतियाँ लाता है।"
+      },
+      "options": [
+        {
+          "en": "Calculating planetary periods (dashas)",
+          "hi": "ग्रहीय अवधियों (दशाओं) की गणना",
+          "sa": "ग्रहीय अवधियों (दशाओं) की गणना",
+          "mai": "ग्रहीय अवधियों (दशाओं) की गणना",
+          "mr": "ग्रहीय अवधियों (दशाओं) की गणना",
+          "ta": "Calculating planetary periods (dashas)",
+          "te": "Calculating planetary periods (dashas)",
+          "bn": "Calculating planetary periods (dashas)",
+          "kn": "Calculating planetary periods (dashas)",
+          "gu": "Calculating planetary periods (dashas)"
+        },
+        {
+          "en": "Timing monthly predictions based on the Sun\"s nakshatra transit",
+          "hi": "सूर्य के नक्षत्र गोचर पर आधारित मासिक भविष्यवाणियों का समय"
+        },
+        {
+          "en": "Computing birth chart houses",
+          "hi": "जन्म कुण्डली भावों की गणना",
+          "sa": "जन्म कुण्डली भावों की गणना",
+          "mai": "जन्म कुण्डली भावों की गणना",
+          "mr": "जन्म कुण्डली भावों की गणना",
+          "ta": "Computing birth chart houses",
+          "te": "Computing birth chart houses",
+          "bn": "Computing birth chart houses",
+          "kn": "Computing birth chart houses",
+          "gu": "Computing birth chart houses"
+        },
+        {
+          "en": "Determining marriage compatibility",
+          "hi": "विवाह अनुकूलता निर्धारित करना",
+          "sa": "विवाह अनुकूलता निर्धारित करना",
+          "mai": "विवाह अनुकूलता निर्धारित करना",
+          "mr": "विवाह अनुकूलता निर्धारित करना",
+          "ta": "Determining marriage compatibility",
+          "te": "Determining marriage compatibility",
+          "bn": "Determining marriage compatibility",
+          "kn": "Determining marriage compatibility",
+          "gu": "Determining marriage compatibility"
+        }
+      ]
+    },
+    {
+      "id": "q23_3_08",
+      "type": "true_false",
+      "question": {
+        "en": "The Sarvatobhadra Chakra includes Sanskrit vowels and consonants in its grid structure.",
+        "hi": "सर्वतोभद्र चक्र में अपनी ग्रिड संरचना में संस्कृत स्वर और व्यंजन शामिल हैं।",
+        "sa": "सर्वतोभद्र चक्र में अपनी ग्रिड संरचना में संस्कृत स्वर और व्यंजन शामिल हैं।",
+        "mai": "सर्वतोभद्र चक्र में अपनी ग्रिड संरचना में संस्कृत स्वर और व्यंजन शामिल हैं।",
+        "mr": "सर्वतोभद्र चक्र में अपनी ग्रिड संरचना में संस्कृत स्वर और व्यंजन शामिल हैं।",
+        "ta": "The Sarvatobhadra Chakra includes Sanskrit vowels and consonants in its grid structure.",
+        "te": "The Sarvatobhadra Chakra includes Sanskrit vowels and consonants in its grid structure.",
+        "bn": "The Sarvatobhadra Chakra includes Sanskrit vowels and consonants in its grid structure.",
+        "kn": "The Sarvatobhadra Chakra includes Sanskrit vowels and consonants in its grid structure.",
+        "gu": "The Sarvatobhadra Chakra includes Sanskrit vowels and consonants in its grid structure."
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "The Sarvatobhadra Chakra uniquely maps Sanskrit phonemes (vowels and consonants) alongside nakshatras, tithis, and varas. This connects the name-sound (Nama-akshar) to celestial positions, enabling name-based predictions through vedha analysis.",
+        "hi": "सर्वतोभद्र चक्र अद्वितीय रूप से संस्कृत ध्वनियों (स्वर और व्यंजन) को नक्षत्रों, तिथियों और वारों के साथ मैप करता है। यह नाम-ध्वनि (नामाक्षर) को आकाशीय स्थितियों से जोड़ता है, वेध विश्लेषण के माध्यम से नाम-आधारित भविष्यवाणियाँ सक्षम करता है।",
+        "sa": "सर्वतोभद्र चक्र अद्वितीय रूप से संस्कृत ध्वनियों (स्वर और व्यंजन) को नक्षत्रों, तिथियों और वारों के साथ मैप करता है। यह नाम-ध्वनि (नामाक्षर) को आकाशीय स्थितियों से जोड़ता है, वेध विश्लेषण के माध्यम से नाम-आधारित भविष्यवाणियाँ सक्षम करता है।",
+        "mai": "सर्वतोभद्र चक्र अद्वितीय रूप से संस्कृत ध्वनियों (स्वर और व्यंजन) को नक्षत्रों, तिथियों और वारों के साथ मैप करता है। यह नाम-ध्वनि (नामाक्षर) को आकाशीय स्थितियों से जोड़ता है, वेध विश्लेषण के माध्यम से नाम-आधारित भविष्यवाणियाँ सक्षम करता है।",
+        "mr": "सर्वतोभद्र चक्र अद्वितीय रूप से संस्कृत ध्वनियों (स्वर और व्यंजन) को नक्षत्रों, तिथियों और वारों के साथ मैप करता है। यह नाम-ध्वनि (नामाक्षर) को आकाशीय स्थितियों से जोड़ता है, वेध विश्लेषण के माध्यम से नाम-आधारित भविष्यवाणियाँ सक्षम करता है।",
+        "ta": "The Sarvatobhadra Chakra uniquely maps Sanskrit phonemes (vowels and consonants) alongside nakshatras, tithis, and varas. This connects the name-sound (Nama-akshar) to celestial positions, enabling name-based predictions through vedha analysis.",
+        "te": "The Sarvatobhadra Chakra uniquely maps Sanskrit phonemes (vowels and consonants) alongside nakshatras, tithis, and varas. This connects the name-sound (Nama-akshar) to celestial positions, enabling name-based predictions through vedha analysis.",
+        "bn": "The Sarvatobhadra Chakra uniquely maps Sanskrit phonemes (vowels and consonants) alongside nakshatras, tithis, and varas. This connects the name-sound (Nama-akshar) to celestial positions, enabling name-based predictions through vedha analysis.",
+        "kn": "The Sarvatobhadra Chakra uniquely maps Sanskrit phonemes (vowels and consonants) alongside nakshatras, tithis, and varas. This connects the name-sound (Nama-akshar) to celestial positions, enabling name-based predictions through vedha analysis.",
+        "gu": "The Sarvatobhadra Chakra uniquely maps Sanskrit phonemes (vowels and consonants) alongside nakshatras, tithis, and varas. This connects the name-sound (Nama-akshar) to celestial positions, enabling name-based predictions through vedha analysis."
+      }
+    },
+    {
+      "id": "q23_3_09",
+      "type": "mcq",
+      "question": {
+        "en": "In the Kota Chakra, the \"Praakara\" layer represents:",
+        "hi": "कोटा चक्र में, \"प्राकार\" परत किसका प्रतिनिधित्व करती है?",
+        "sa": "कोटा चक्र में, \"प्राकार\" परत किसका प्रतिनिधित्व करती है?",
+        "mai": "कोटा चक्र में, \"प्राकार\" परत किसका प्रतिनिधित्व करती है?",
+        "mr": "कोटा चक्र में, \"प्राकार\" परत किसका प्रतिनिधित्व करती है?",
+        "ta": "In the Kota Chakra, the \"Praakara\" layer represents:",
+        "te": "In the Kota Chakra, the \"Praakara\" layer represents:",
+        "bn": "In the Kota Chakra, the \"Praakara\" layer represents:",
+        "kn": "In the Kota Chakra, the \"Praakara\" layer represents:",
+        "gu": "In the Kota Chakra, the \"Praakara\" layer represents:"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Praakara literally means \"wall\" or \"rampart.\" In the Kota Chakra, it represents the protective layer — your external support systems, social networks, and defensive structures. Benefics transiting the Praakara strengthen your defenses; malefics weaken them.",
+        "hi": "प्राकार का शाब्दिक अर्थ \"दीवार\" या \"प्राचीर\" है। कोटा चक्र में, यह रक्षात्मक परत — आपकी बाहरी सहायता प्रणालियों, सामाजिक नेटवर्क और रक्षात्मक संरचनाओं का प्रतिनिधित्व करती है। प्राकार से गोचर करते शुभ ग्रह आपकी रक्षा मजबूत करते हैं; पाप ग्रह कमजोर करते हैं।",
+        "sa": "प्राकार का शाब्दिक अर्थ \"दीवार\" या \"प्राचीर\" है। कोटा चक्र में, यह रक्षात्मक परत — आपकी बाहरी सहायता प्रणालियों, सामाजिक नेटवर्क और रक्षात्मक संरचनाओं का प्रतिनिधित्व करती है। प्राकार से गोचर करते शुभ ग्रह आपकी रक्षा मजबूत करते हैं; पाप ग्रह कमजोर करते हैं।",
+        "mai": "प्राकार का शाब्दिक अर्थ \"दीवार\" या \"प्राचीर\" है। कोटा चक्र में, यह रक्षात्मक परत — आपकी बाहरी सहायता प्रणालियों, सामाजिक नेटवर्क और रक्षात्मक संरचनाओं का प्रतिनिधित्व करती है। प्राकार से गोचर करते शुभ ग्रह आपकी रक्षा मजबूत करते हैं; पाप ग्रह कमजोर करते हैं।",
+        "mr": "प्राकार का शाब्दिक अर्थ \"दीवार\" या \"प्राचीर\" है। कोटा चक्र में, यह रक्षात्मक परत — आपकी बाहरी सहायता प्रणालियों, सामाजिक नेटवर्क और रक्षात्मक संरचनाओं का प्रतिनिधित्व करती है। प्राकार से गोचर करते शुभ ग्रह आपकी रक्षा मजबूत करते हैं; पाप ग्रह कमजोर करते हैं।",
+        "ta": "Praakara literally means \"wall\" or \"rampart.\" In the Kota Chakra, it represents the protective layer — your external support systems, social networks, and defensive structures. Benefics transiting the Praakara strengthen your defenses; malefics weaken them.",
+        "te": "Praakara literally means \"wall\" or \"rampart.\" In the Kota Chakra, it represents the protective layer — your external support systems, social networks, and defensive structures. Benefics transiting the Praakara strengthen your defenses; malefics weaken them.",
+        "bn": "Praakara literally means \"wall\" or \"rampart.\" In the Kota Chakra, it represents the protective layer — your external support systems, social networks, and defensive structures. Benefics transiting the Praakara strengthen your defenses; malefics weaken them.",
+        "kn": "Praakara literally means \"wall\" or \"rampart.\" In the Kota Chakra, it represents the protective layer — your external support systems, social networks, and defensive structures. Benefics transiting the Praakara strengthen your defenses; malefics weaken them.",
+        "gu": "Praakara literally means \"wall\" or \"rampart.\" In the Kota Chakra, it represents the protective layer — your external support systems, social networks, and defensive structures. Benefics transiting the Praakara strengthen your defenses; malefics weaken them."
+      },
+      "options": [
+        {
+          "en": "The innermost core of personal identity",
+          "hi": "व्यक्तिगत पहचान का अन्तरतम केन्द्र",
+          "sa": "व्यक्तिगत पहचान का अन्तरतम केन्द्र",
+          "mai": "व्यक्तिगत पहचान का अन्तरतम केन्द्र",
+          "mr": "व्यक्तिगत पहचान का अन्तरतम केन्द्र",
+          "ta": "The innermost core of personal identity",
+          "te": "The innermost core of personal identity",
+          "bn": "The innermost core of personal identity",
+          "kn": "The innermost core of personal identity",
+          "gu": "The innermost core of personal identity"
+        },
+        {
+          "en": "The protective wall — external protection and social support",
+          "hi": "रक्षात्मक दीवार — बाहरी सुरक्षा और सामाजिक सहायता",
+          "sa": "रक्षात्मक दीवार — बाहरी सुरक्षा और सामाजिक सहायता",
+          "mai": "रक्षात्मक दीवार — बाहरी सुरक्षा और सामाजिक सहायता",
+          "mr": "रक्षात्मक दीवार — बाहरी सुरक्षा और सामाजिक सहायता",
+          "ta": "The protective wall — external protection and social support",
+          "te": "The protective wall — external protection and social support",
+          "bn": "The protective wall — external protection and social support",
+          "kn": "The protective wall — external protection and social support",
+          "gu": "The protective wall — external protection and social support"
+        },
+        {
+          "en": "The outermost worldly circumstances",
+          "hi": "बाहरी सबसे सांसारिक परिस्थितियाँ",
+          "sa": "बाहरी सबसे सांसारिक परिस्थितियाँ",
+          "mai": "बाहरी सबसे सांसारिक परिस्थितियाँ",
+          "mr": "बाहरी सबसे सांसारिक परिस्थितियाँ",
+          "ta": "The outermost worldly circumstances",
+          "te": "The outermost worldly circumstances",
+          "bn": "The outermost worldly circumstances",
+          "kn": "The outermost worldly circumstances",
+          "gu": "The outermost worldly circumstances"
+        },
+        {
+          "en": "The middle zone between self and world",
+          "hi": "आत्म और संसार के बीच मध्य क्षेत्र",
+          "sa": "आत्म और संसार के बीच मध्य क्षेत्र",
+          "mai": "आत्म और संसार के बीच मध्य क्षेत्र",
+          "mr": "आत्म और संसार के बीच मध्य क्षेत्र",
+          "ta": "The middle zone between self and world",
+          "te": "The middle zone between self and world",
+          "bn": "The middle zone between self and world",
+          "kn": "The middle zone between self and world",
+          "gu": "The middle zone between self and world"
+        }
+      ]
+    },
+    {
+      "id": "q23_3_10",
+      "type": "mcq",
+      "question": {
+        "en": "How does our engine use the Sarvatobhadra Chakra?",
+        "hi": "हमारा इंजन सर्वतोभद्र चक्र का उपयोग कैसे करता है?",
+        "sa": "हमारा इंजन सर्वतोभद्र चक्र का उपयोग कैसे करता है?",
+        "mai": "हमारा इंजन सर्वतोभद्र चक्र का उपयोग कैसे करता है?",
+        "mr": "हमारा इंजन सर्वतोभद्र चक्र का उपयोग कैसे करता है?",
+        "ta": "How does our engine use the Sarvatobhadra Chakra?",
+        "te": "How does our engine use the Sarvatobhadra Chakra?",
+        "bn": "How does our engine use the Sarvatobhadra Chakra?",
+        "kn": "How does our engine use the Sarvatobhadra Chakra?",
+        "gu": "How does our engine use the Sarvatobhadra Chakra?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Our engine pre-computes vedha relationships from the Sarvatobhadra Chakra, determining which transiting planets create obstructions or support for each birth nakshatra. This automated analysis removes the need for manual chart reading.",
+        "hi": "हमारा इंजन सर्वतोभद्र चक्र से वेध सम्बन्धों की स्वचालित पूर्व-गणना करता है, यह निर्धारित करता है कि कौन से गोचर ग्रह प्रत्येक जन्म नक्षत्र के लिए अवरोध या सहायता बनाते हैं। यह स्वचालित विश्लेषण मैन्युअल चार्ट पठन की आवश्यकता समाप्त करता है।",
+        "sa": "हमारा इंजन सर्वतोभद्र चक्र से वेध सम्बन्धों की स्वचालित पूर्व-गणना करता है, यह निर्धारित करता है कि कौन से गोचर ग्रह प्रत्येक जन्म नक्षत्र के लिए अवरोध या सहायता बनाते हैं। यह स्वचालित विश्लेषण मैन्युअल चार्ट पठन की आवश्यकता समाप्त करता है।",
+        "mai": "हमारा इंजन सर्वतोभद्र चक्र से वेध सम्बन्धों की स्वचालित पूर्व-गणना करता है, यह निर्धारित करता है कि कौन से गोचर ग्रह प्रत्येक जन्म नक्षत्र के लिए अवरोध या सहायता बनाते हैं। यह स्वचालित विश्लेषण मैन्युअल चार्ट पठन की आवश्यकता समाप्त करता है।",
+        "mr": "हमारा इंजन सर्वतोभद्र चक्र से वेध सम्बन्धों की स्वचालित पूर्व-गणना करता है, यह निर्धारित करता है कि कौन से गोचर ग्रह प्रत्येक जन्म नक्षत्र के लिए अवरोध या सहायता बनाते हैं। यह स्वचालित विश्लेषण मैन्युअल चार्ट पठन की आवश्यकता समाप्त करता है।",
+        "ta": "Our engine pre-computes vedha relationships from the Sarvatobhadra Chakra, determining which transiting planets create obstructions or support for each birth nakshatra. This automated analysis removes the need for manual chart reading.",
+        "te": "Our engine pre-computes vedha relationships from the Sarvatobhadra Chakra, determining which transiting planets create obstructions or support for each birth nakshatra. This automated analysis removes the need for manual chart reading.",
+        "bn": "Our engine pre-computes vedha relationships from the Sarvatobhadra Chakra, determining which transiting planets create obstructions or support for each birth nakshatra. This automated analysis removes the need for manual chart reading.",
+        "kn": "Our engine pre-computes vedha relationships from the Sarvatobhadra Chakra, determining which transiting planets create obstructions or support for each birth nakshatra. This automated analysis removes the need for manual chart reading.",
+        "gu": "Our engine pre-computes vedha relationships from the Sarvatobhadra Chakra, determining which transiting planets create obstructions or support for each birth nakshatra. This automated analysis removes the need for manual chart reading."
+      },
+      "options": [
+        {
+          "en": "It ignores chakra systems entirely",
+          "hi": "यह चक्र प्रणालियों को पूर्णतः अनदेखा करता है",
+          "sa": "यह चक्र प्रणालियों को पूर्णतः अनदेखा करता है",
+          "mai": "यह चक्र प्रणालियों को पूर्णतः अनदेखा करता है",
+          "mr": "यह चक्र प्रणालियों को पूर्णतः अनदेखा करता है",
+          "ta": "It ignores chakra systems entirely",
+          "te": "It ignores chakra systems entirely",
+          "bn": "It ignores chakra systems entirely",
+          "kn": "It ignores chakra systems entirely",
+          "gu": "It ignores chakra systems entirely"
+        },
+        {
+          "en": "It manually draws the chart for the user to interpret",
+          "hi": "यह उपयोगकर्ता की व्याख्या के लिए चार्ट मैन्युअली बनाता है",
+          "sa": "यह उपयोगकर्ता की व्याख्या के लिए चार्ट मैन्युअली बनाता है",
+          "mai": "यह उपयोगकर्ता की व्याख्या के लिए चार्ट मैन्युअली बनाता है",
+          "mr": "यह उपयोगकर्ता की व्याख्या के लिए चार्ट मैन्युअली बनाता है",
+          "ta": "It manually draws the chart for the user to interpret",
+          "te": "It manually draws the chart for the user to interpret",
+          "bn": "It manually draws the chart for the user to interpret",
+          "kn": "It manually draws the chart for the user to interpret",
+          "gu": "It manually draws the chart for the user to interpret"
+        },
+        {
+          "en": "It pre-computes vedha relationships automatically",
+          "hi": "यह स्वचालित रूप से वेध सम्बन्धों की पूर्व-गणना करता है",
+          "sa": "यह स्वचालित रूप से वेध सम्बन्धों की पूर्व-गणना करता है",
+          "mai": "यह स्वचालित रूप से वेध सम्बन्धों की पूर्व-गणना करता है",
+          "mr": "यह स्वचालित रूप से वेध सम्बन्धों की पूर्व-गणना करता है",
+          "ta": "It pre-computes vedha relationships automatically",
+          "te": "It pre-computes vedha relationships automatically",
+          "bn": "It pre-computes vedha relationships automatically",
+          "kn": "It pre-computes vedha relationships automatically",
+          "gu": "It pre-computes vedha relationships automatically"
+        },
+        {
+          "en": "It only uses the chart for name-based predictions",
+          "hi": "यह चार्ट का उपयोग केवल नाम-आधारित भविष्यवाणियों के लिए करता है",
+          "sa": "यह चार्ट का उपयोग केवल नाम-आधारित भविष्यवाणियों के लिए करता है",
+          "mai": "यह चार्ट का उपयोग केवल नाम-आधारित भविष्यवाणियों के लिए करता है",
+          "mr": "यह चार्ट का उपयोग केवल नाम-आधारित भविष्यवाणियों के लिए करता है",
+          "ta": "It only uses the chart for name-based predictions",
+          "te": "It only uses the chart for name-based predictions",
+          "bn": "It only uses the chart for name-based predictions",
+          "kn": "It only uses the chart for name-based predictions",
+          "gu": "It only uses the chart for name-based predictions"
+        }
+      ]
+    }
+  ]
+}

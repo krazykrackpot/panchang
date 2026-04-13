@@ -2,190 +2,19 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/17-3.json';
 
 const META: ModuleMeta = {
   id: 'mod_17_3', phase: 5, topic: 'Muhurta', moduleNumber: '17.3',
-  title: {
-    en: 'Muhurta for Property & Travel',
-    hi: 'सम्पत्ति एवं यात्रा मुहूर्त',
-  },
-  subtitle: {
-    en: 'Griha Pravesh, vehicle purchase, and travel muhurta — Bhoomi Dosha, Disha Shool, Tara Bala, and Chandrabala',
-    hi: 'गृह प्रवेश, वाहन क्रय और यात्रा मुहूर्त — भूमि दोष, दिशा शूल, तारा बल और चन्द्र बल',
-  },
+  title: L.title as unknown as ModuleMeta['title'],
+  subtitle: L.subtitle as unknown as ModuleMeta['subtitle'],
   estimatedMinutes: 15,
-  crossRefs: [
-    { label: { en: 'Module 17-1: The Science of Timing', hi: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान', sa: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान', mai: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान', mr: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान', ta: 'Module 17-1: The Science of Timing', te: 'Module 17-1: The Science of Timing', bn: 'Module 17-1: The Science of Timing', kn: 'Module 17-1: The Science of Timing', gu: 'Module 17-1: The Science of Timing' }, href: '/learn/modules/17-1' },
-    { label: { en: 'Module 17-2: Muhurta for Marriage', hi: 'मॉड्यूल 17-2: विवाह मुहूर्त', sa: 'मॉड्यूल 17-2: विवाह मुहूर्त', mai: 'मॉड्यूल 17-2: विवाह मुहूर्त', mr: 'मॉड्यूल 17-2: विवाह मुहूर्त', ta: 'Module 17-2: Muhurta for Marriage', te: 'Module 17-2: Muhurta for Marriage', bn: 'Module 17-2: Muhurta for Marriage', kn: 'Module 17-2: Muhurta for Marriage', gu: 'Module 17-2: Muhurta for Marriage' }, href: '/learn/modules/17-2' },
-    { label: { en: 'Module 17-4: Muhurta for Education & Naming', hi: 'मॉड्यूल 17-4: शिक्षा एवं नामकरण मुहूर्त', sa: 'मॉड्यूल 17-4: शिक्षा एवं नामकरण मुहूर्त', mai: 'मॉड्यूल 17-4: शिक्षा एवं नामकरण मुहूर्त', mr: 'मॉड्यूल 17-4: शिक्षा एवं नामकरण मुहूर्त', ta: 'Module 17-4: Muhurta for Education & Naming', te: 'Module 17-4: Muhurta for Education & Naming', bn: 'Module 17-4: Muhurta for Education & Naming', kn: 'Module 17-4: Muhurta for Education & Naming', gu: 'Module 17-4: Muhurta for Education & Naming' }, href: '/learn/modules/17-4' },
-    { label: { en: 'Muhurta AI Tool', hi: 'मुहूर्त AI उपकरण', sa: 'मुहूर्त AI उपकरण', mai: 'मुहूर्त AI उपकरण', mr: 'मुहूर्त AI उपकरण', ta: 'Muhurta AI Tool', te: 'Muhurta AI Tool', bn: 'Muhurta AI Tool', kn: 'Muhurta AI Tool', gu: 'Muhurta AI Tool' }, href: '/muhurta-ai' },
-  ],
+  crossRefs: (L.crossRefs as unknown as Array<{ label: ModuleMeta['title']; href: string }>).map(cr => ({ label: cr.label, href: cr.href })),
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q17_3_01', type: 'mcq',
-    question: {
-      en: 'Which nakshatras are specifically recommended for Griha Pravesh (house entry)?',
-      hi: 'गृह प्रवेश के लिए कौन-से नक्षत्र विशेष रूप से अनुशंसित हैं?',
-    },
-    options: [
-      { en: 'Ardra, Ashlesha, Bharani', hi: 'आर्द्रा, आश्लेषा, भरणी', sa: 'आर्द्रा, आश्लेषा, भरणी', mai: 'आर्द्रा, आश्लेषा, भरणी', mr: 'आर्द्रा, आश्लेषा, भरणी', ta: 'Ardra, Ashlesha, Bharani', te: 'Ardra, Ashlesha, Bharani', bn: 'Ardra, Ashlesha, Bharani', kn: 'Ardra, Ashlesha, Bharani', gu: 'Ardra, Ashlesha, Bharani' },
-      { en: 'Dhanishtha, Uttara Phalguni, Uttarabhadrapada, Rohini', hi: 'धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद, रोहिणी', sa: 'धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद, रोहिणी', mai: 'धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद, रोहिणी', mr: 'धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद, रोहिणी', ta: 'Dhanishtha, Uttara Phalguni, Uttarabhadrapada, Rohini', te: 'Dhanishtha, Uttara Phalguni, Uttarabhadrapada, Rohini', bn: 'Dhanishtha, Uttara Phalguni, Uttarabhadrapada, Rohini', kn: 'Dhanishtha, Uttara Phalguni, Uttarabhadrapada, Rohini', gu: 'Dhanishtha, Uttara Phalguni, Uttarabhadrapada, Rohini' },
-      { en: 'Mula, Jyeshtha, Ashwini', hi: 'मूल, ज्येष्ठा, अश्विनी', sa: 'मूल, ज्येष्ठा, अश्विनी', mai: 'मूल, ज्येष्ठा, अश्विनी', mr: 'मूल, ज्येष्ठा, अश्विनी', ta: 'Mula, Jyeshtha, Ashwini', te: 'Mula, Jyeshtha, Ashwini', bn: 'Mula, Jyeshtha, Ashwini', kn: 'Mula, Jyeshtha, Ashwini', gu: 'Mula, Jyeshtha, Ashwini' },
-      { en: 'Any nakshatra is acceptable', hi: 'कोई भी नक्षत्र स्वीकार्य है', sa: 'कोई भी नक्षत्र स्वीकार्य है', mai: 'कोई भी नक्षत्र स्वीकार्य है', mr: 'कोई भी नक्षत्र स्वीकार्य है', ta: 'Any nakshatra is acceptable', te: 'Any nakshatra is acceptable', bn: 'Any nakshatra is acceptable', kn: 'Any nakshatra is acceptable', gu: 'Any nakshatra is acceptable' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Dhanishtha, Uttara Phalguni, Uttarabhadrapada, and Rohini are the primary nakshatras for Griha Pravesh. These are Dhruva (fixed/stable) nakshatras — ideal for permanent works like entering a new home. Stability in the home is the key quality sought.',
-      hi: 'धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद और रोहिणी गृह प्रवेश के प्राथमिक नक्षत्र हैं। ये ध्रुव (स्थिर) नक्षत्र हैं — नए घर में प्रवेश जैसे स्थायी कार्यों के लिए आदर्श।',
-    },
-  },
-  {
-    id: 'q17_3_02', type: 'mcq',
-    question: {
-      en: 'For Griha Pravesh, in which houses from the natal Moon should the transit Moon ideally be?',
-      hi: 'गृह प्रवेश के लिए गोचर चन्द्रमा जन्म चन्द्रमा से आदर्श रूप से किन भावों में होना चाहिए?',
-    },
-    options: [
-      { en: 'Only in the 1st house', hi: 'केवल 1ले भाव में', sa: 'केवल 1ले भाव में', mai: 'केवल 1ले भाव में', mr: 'केवल 1ले भाव में', ta: 'Only in the 1st house', te: 'Only in the 1st house', bn: 'Only in the 1st house', kn: 'Only in the 1st house', gu: 'Only in the 1st house' },
-      { en: '2nd, 4th, 6th, 7th, 9th, 10th, or 11th from natal Moon', hi: 'जन्म चन्द्र से 2, 4, 6, 7, 9, 10, या 11वें भाव में', sa: 'जन्म चन्द्र से 2, 4, 6, 7, 9, 10, या 11वें भाव में', mai: 'जन्म चन्द्र से 2, 4, 6, 7, 9, 10, या 11वें भाव में', mr: 'जन्म चन्द्र से 2, 4, 6, 7, 9, 10, या 11वें भाव में', ta: '2nd, 4th, 6th, 7th, 9th, 10th, or 11th from natal Moon', te: '2nd, 4th, 6th, 7th, 9th, 10th, or 11th from natal Moon', bn: '2nd, 4th, 6th, 7th, 9th, 10th, or 11th from natal Moon', kn: '2nd, 4th, 6th, 7th, 9th, 10th, or 11th from natal Moon', gu: '2nd, 4th, 6th, 7th, 9th, 10th, or 11th from natal Moon' },
-      { en: '8th and 12th from natal Moon', hi: 'जन्म चन्द्र से 8वें और 12वें भाव में', sa: 'जन्म चन्द्र से 8वें और 12वें भाव में', mai: 'जन्म चन्द्र से 8वें और 12वें भाव में', mr: 'जन्म चन्द्र से 8वें और 12वें भाव में', ta: '8th and 12th from natal Moon', te: '8th and 12th from natal Moon', bn: '8th and 12th from natal Moon', kn: '8th and 12th from natal Moon', gu: '8th and 12th from natal Moon' },
-      { en: 'Moon position does not matter', hi: 'चन्द्रमा की स्थिति महत्वपूर्ण नहीं है', sa: 'चन्द्रमा की स्थिति महत्वपूर्ण नहीं है', mai: 'चन्द्रमा की स्थिति महत्वपूर्ण नहीं है', mr: 'चन्द्रमा की स्थिति महत्वपूर्ण नहीं है', ta: 'Moon position does not matter', te: 'Moon position does not matter', bn: 'Moon position does not matter', kn: 'Moon position does not matter', gu: 'Moon position does not matter' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'For Griha Pravesh, the transit Moon should be in the 2nd, 4th, 6th, 7th, 9th, 10th, or 11th house from the natal Moon. This is the Chandrabala (Moon strength) requirement. Moon in the 1st, 3rd, 5th, 8th, or 12th from natal Moon is unfavourable.',
-      hi: 'गृह प्रवेश के लिए गोचर चन्द्रमा जन्म चन्द्रमा से 2, 4, 6, 7, 9, 10, या 11वें भाव में होना चाहिए। यह चन्द्र बल की आवश्यकता है। जन्म चन्द्र से 1, 3, 5, 8, या 12वें भाव में चन्द्रमा अनुकूल नहीं है।',
-    },
-  },
-  {
-    id: 'q17_3_03', type: 'true_false',
-    question: {
-      en: 'Bhoomi Dosha is a directional defect based on the month and direction of the house entrance.',
-      hi: 'भूमि दोष मास और घर के प्रवेश द्वार की दिशा पर आधारित एक दिशात्मक दोष है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Bhoomi Dosha considers which direction is inauspicious based on the current month. For example, if the defected direction falls on the entrance direction of the house, the Griha Pravesh should be postponed. This is a unique factor specific to property-related muhurtas.',
-      hi: 'सत्य। भूमि दोष वर्तमान मास के आधार पर कौन-सी दिशा अशुभ है, इसका विचार करता है। उदाहरणार्थ, यदि दोषपूर्ण दिशा घर के प्रवेश द्वार की दिशा पर पड़ती है, तो गृह प्रवेश स्थगित किया जाना चाहिए।',
-    },
-  },
-  {
-    id: 'q17_3_04', type: 'mcq',
-    question: {
-      en: 'Which days of the week are recommended for Griha Pravesh?',
-      hi: 'गृह प्रवेश के लिए सप्ताह के कौन-से दिन अनुशंसित हैं?',
-    },
-    options: [
-      { en: 'Saturday and Tuesday', hi: 'शनिवार और मंगलवार', sa: 'शनिवार और मंगलवार', mai: 'शनिवार और मंगलवार', mr: 'शनिवार और मंगलवार', ta: 'Saturday and Tuesday', te: 'Saturday and Tuesday', bn: 'Saturday and Tuesday', kn: 'Saturday and Tuesday', gu: 'Saturday and Tuesday' },
-      { en: 'Monday, Wednesday, Thursday, Friday', hi: 'सोमवार, बुधवार, गुरुवार, शुक्रवार', sa: 'सोमवार, बुधवार, गुरुवार, शुक्रवार', mai: 'सोमवार, बुधवार, गुरुवार, शुक्रवार', mr: 'सोमवार, बुधवार, गुरुवार, शुक्रवार', ta: 'Monday, Wednesday, Thursday, Friday', te: 'Monday, Wednesday, Thursday, Friday', bn: 'Monday, Wednesday, Thursday, Friday', kn: 'Monday, Wednesday, Thursday, Friday', gu: 'Monday, Wednesday, Thursday, Friday' },
-      { en: 'Only Sunday', hi: 'केवल रविवार', sa: 'केवल रविवार', mai: 'केवल रविवार', mr: 'केवल रविवार', ta: 'Only Sunday', te: 'Only Sunday', bn: 'Only Sunday', kn: 'Only Sunday', gu: 'Only Sunday' },
-      { en: 'Any day is equally suitable', hi: 'कोई भी दिन समान रूप से उपयुक्त है', sa: 'कोई भी दिन समान रूप से उपयुक्त है', mai: 'कोई भी दिन समान रूप से उपयुक्त है', mr: 'कोई भी दिन समान रूप से उपयुक्त है', ta: 'Any day is equally suitable', te: 'Any day is equally suitable', bn: 'Any day is equally suitable', kn: 'Any day is equally suitable', gu: 'Any day is equally suitable' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Monday (Moon — emotional comfort), Wednesday (Mercury — communication), Thursday (Jupiter — blessings, growth), and Friday (Venus — luxury, beauty) are preferred for Griha Pravesh. Saturday (Saturn — delays) and Tuesday (Mars — conflict) are generally avoided for house entry.',
-      hi: 'सोमवार (चन्द्र — भावनात्मक सुख), बुधवार (बुध — संवाद), गुरुवार (बृहस्पति — आशीर्वाद), और शुक्रवार (शुक्र — विलासिता) गृह प्रवेश के लिए प्राथमिक हैं। शनिवार (शनि — विलम्ब) और मंगलवार (मंगल — संघर्ष) सामान्यतः टाले जाते हैं।',
-    },
-  },
-  {
-    id: 'q17_3_05', type: 'mcq',
-    question: {
-      en: 'For vehicle purchase muhurta, which house should be strong in the lagna chart?',
-      hi: 'वाहन क्रय मुहूर्त में लग्न कुण्डली में कौन-सा भाव बलवान होना चाहिए?',
-    },
-    options: [
-      { en: '7th house', hi: '7वाँ भाव', sa: '7वाँ भाव', mai: '7वाँ भाव', mr: '7वाँ भाव', ta: '7th house', te: '7th house', bn: '7th house', kn: '7th house', gu: '7th house' },
-      { en: '4th house', hi: '4वाँ भाव', sa: '4वाँ भाव', mai: '4वाँ भाव', mr: '4वाँ भाव', ta: '4th house', te: '4th house', bn: '4th house', kn: '4th house', gu: '4th house' },
-      { en: '12th house', hi: '12वाँ भाव', sa: '12वाँ भाव', mai: '12वाँ भाव', mr: '12वाँ भाव', ta: '12th house', te: '12th house', bn: '12th house', kn: '12th house', gu: '12th house' },
-      { en: '6th house', hi: '6वाँ भाव', sa: '6वाँ भाव', mai: '6वाँ भाव', mr: '6वाँ भाव', ta: '6th house', te: '6th house', bn: '6th house', kn: '6th house', gu: '6th house' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The 4th house represents vehicles, conveyances, and material comforts. A strong 4th house with benefic planets (or a benefic aspect) in the vehicle purchase muhurta chart ensures the vehicle brings comfort, safety, and no major issues.',
-      hi: '4वाँ भाव वाहनों, सवारियों और भौतिक सुखों का प्रतिनिधित्व करता है। वाहन क्रय मुहूर्त कुण्डली में शुभ ग्रहों या शुभ दृष्टि के साथ बलवान 4वाँ भाव सुनिश्चित करता है कि वाहन सुख, सुरक्षा और कोई बड़ी समस्या न लाए।',
-    },
-  },
-  {
-    id: 'q17_3_06', type: 'true_false',
-    question: {
-      en: 'Tuesday is considered significant for vehicle purchase because Mars rules vehicles and machinery.',
-      hi: 'वाहन क्रय के लिए मंगलवार महत्वपूर्ण माना जाता है क्योंकि मंगल वाहनों और यन्त्रों का स्वामी है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Mars is the karaka (significator) for vehicles, machinery, and engineering. Tuesday (Mars\'s day) can be favourable for vehicle purchase when Mars is well-placed. However, Mars should not be debilitated or afflicted in the muhurta chart.',
-      hi: 'सत्य। मंगल वाहनों, यन्त्रों और अभियान्त्रिकी का कारक है। मंगलवार (मंगल का दिन) वाहन क्रय के लिए अनुकूल हो सकता है जब मंगल सुस्थित हो। परन्तु मंगल मुहूर्त कुण्डली में नीच या पीड़ित नहीं होना चाहिए।',
-    },
-  },
-  {
-    id: 'q17_3_07', type: 'mcq',
-    question: {
-      en: 'What is Disha Shool in the context of travel muhurta?',
-      hi: 'यात्रा मुहूर्त के सन्दर्भ में दिशा शूल क्या है?',
-    },
-    options: [
-      { en: 'A type of yoga combination', hi: 'एक प्रकार का योग संयोजन', sa: 'एक प्रकार का योग संयोजन', mai: 'एक प्रकार का योग संयोजन', mr: 'एक प्रकार का योग संयोजन', ta: 'A type of yoga combination', te: 'A type of yoga combination', bn: 'A type of yoga combination', kn: 'A type of yoga combination', gu: 'A type of yoga combination' },
-      { en: 'A directional defect based on the weekday — certain directions are inauspicious on specific days', hi: 'वार पर आधारित दिशात्मक दोष — विशिष्ट दिनों में कुछ दिशाएँ अशुभ हैं', sa: 'वार पर आधारित दिशात्मक दोष — विशिष्ट दिनों में कुछ दिशाएँ अशुभ हैं', mai: 'वार पर आधारित दिशात्मक दोष — विशिष्ट दिनों में कुछ दिशाएँ अशुभ हैं', mr: 'वार पर आधारित दिशात्मक दोष — विशिष्ट दिनों में कुछ दिशाएँ अशुभ हैं', ta: 'A directional defect based on the weekday — certain directions are inauspicious on specific days', te: 'A directional defect based on the weekday — certain directions are inauspicious on specific days', bn: 'A directional defect based on the weekday — certain directions are inauspicious on specific days', kn: 'A directional defect based on the weekday — certain directions are inauspicious on specific days', gu: 'A directional defect based on the weekday — certain directions are inauspicious on specific days' },
-      { en: 'A planetary dasha transition', hi: 'ग्रह दशा संक्रमण', sa: 'ग्रह दशा संक्रमण', mai: 'ग्रह दशा संक्रमण', mr: 'ग्रह दशा संक्रमण', ta: 'A planetary dasha transition', te: 'A planetary dasha transition', bn: 'A planetary dasha transition', kn: 'A planetary dasha transition', gu: 'A planetary dasha transition' },
-      { en: 'A type of eclipse', hi: 'एक प्रकार का ग्रहण', sa: 'एक प्रकार का ग्रहण', mai: 'एक प्रकार का ग्रहण', mr: 'एक प्रकार का ग्रहण', ta: 'A type of eclipse', te: 'A type of eclipse', bn: 'A type of eclipse', kn: 'A type of eclipse', gu: 'A type of eclipse' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Disha Shool assigns inauspicious travel directions by weekday: Sunday = West, Monday = East, Tuesday = North, Wednesday = None (all safe), Thursday = South, Friday = West, Saturday = East. Travel in the Shool direction should be avoided or a remedial detour taken.',
-      hi: 'दिशा शूल वार के अनुसार अशुभ यात्रा दिशाएँ निर्दिष्ट करता है: रविवार = पश्चिम, सोमवार = पूर्व, मंगलवार = उत्तर, बुधवार = कोई नहीं, गुरुवार = दक्षिण, शुक्रवार = पश्चिम, शनिवार = पूर्व। शूल दिशा में यात्रा से बचना चाहिए।',
-    },
-  },
-  {
-    id: 'q17_3_08', type: 'mcq',
-    question: {
-      en: 'Tara Bala for travel is calculated from:',
-      hi: 'यात्रा के लिए तारा बल की गणना किससे होती है?',
-    },
-    options: [
-      { en: 'The Sun\'s current position', hi: 'सूर्य की वर्तमान स्थिति' },
-      { en: 'The birth nakshatra of the traveller', hi: 'यात्री के जन्म नक्षत्र से', sa: 'यात्री के जन्म नक्षत्र से', mai: 'यात्री के जन्म नक्षत्र से', mr: 'यात्री के जन्म नक्षत्र से', ta: 'The birth nakshatra of the traveller', te: 'The birth nakshatra of the traveller', bn: 'The birth nakshatra of the traveller', kn: 'The birth nakshatra of the traveller', gu: 'The birth nakshatra of the traveller' },
-      { en: 'The lagna at departure time', hi: 'प्रस्थान समय का लग्न', sa: 'प्रस्थान समय का लग्न', mai: 'प्रस्थान समय का लग्न', mr: 'प्रस्थान समय का लग्न', ta: 'The lagna at departure time', te: 'The lagna at departure time', bn: 'The lagna at departure time', kn: 'The lagna at departure time', gu: 'The lagna at departure time' },
-      { en: 'The nakshatra of the destination city', hi: 'गन्तव्य नगर का नक्षत्र', sa: 'गन्तव्य नगर का नक्षत्र', mai: 'गन्तव्य नगर का नक्षत्र', mr: 'गन्तव्य नगर का नक्षत्र', ta: 'The nakshatra of the destination city', te: 'The nakshatra of the destination city', bn: 'The nakshatra of the destination city', kn: 'The nakshatra of the destination city', gu: 'The nakshatra of the destination city' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Tara Bala is calculated by counting from the traveller\'s birth nakshatra to the current transit nakshatra and dividing by 9. Certain remainders (1=Janma, 3=Vipat, 5=Pratyari, 7=Vadha) are inauspicious, while others (2=Sampat, 4=Kshema, 6=Sadhaka, 8=Mitra, 9=Ati-Mitra) are favourable.',
-      hi: 'तारा बल यात्री के जन्म नक्षत्र से वर्तमान गोचर नक्षत्र तक गिनकर 9 से भाग देकर गणना होता है। कुछ शेषफल (1=जन्म, 3=विपत्, 5=प्रत्यरि, 7=वध) अशुभ हैं, जबकि अन्य (2=सम्पत्, 4=क्षेम, 6=साधक, 8=मित्र, 9=अतिमित्र) शुभ हैं।',
-    },
-  },
-  {
-    id: 'q17_3_09', type: 'true_false',
-    question: {
-      en: 'For short trips, only Disha Shool avoidance is needed, while long journeys require Tara Bala and Chandrabala as well.',
-      hi: 'छोटी यात्राओं के लिए केवल दिशा शूल से बचाव आवश्यक है, जबकि लम्बी यात्राओं में तारा बल और चन्द्र बल भी आवश्यक हैं।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Short local trips primarily need Disha Shool avoidance. Long journeys (interstate, international) should check all three: Disha Shool (directional safety), Tara Bala (star strength from birth nakshatra), and Chandrabala (Moon\'s position from natal Moon). All three must be favourable for important long-distance travel.',
-      hi: 'सत्य। छोटी स्थानीय यात्राओं में मुख्यतः दिशा शूल से बचाव आवश्यक है। लम्बी यात्राओं (अन्तर्राज्यीय, अन्तर्राष्ट्रीय) में तीनों की जाँच होनी चाहिए: दिशा शूल, तारा बल और चन्द्र बल। महत्वपूर्ण लम्बी यात्रा के लिए तीनों अनुकूल होने चाहिएँ।',
-    },
-  },
-  {
-    id: 'q17_3_10', type: 'mcq',
-    question: {
-      en: 'Which nakshatras are recommended for vehicle purchase?',
-      hi: 'वाहन क्रय के लिए कौन-से नक्षत्र अनुशंसित हैं?',
-    },
-    options: [
-      { en: 'Mula, Ardra, Ashlesha', hi: 'मूल, आर्द्रा, आश्लेषा', sa: 'मूल, आर्द्रा, आश्लेषा', mai: 'मूल, आर्द्रा, आश्लेषा', mr: 'मूल, आर्द्रा, आश्लेषा', ta: 'Mula, Ardra, Ashlesha', te: 'Mula, Ardra, Ashlesha', bn: 'Mula, Ardra, Ashlesha', kn: 'Mula, Ardra, Ashlesha', gu: 'Mula, Ardra, Ashlesha' },
-      { en: 'Ashwini, Rohini, Pushya, Hasta, Chitra', hi: 'अश्विनी, रोहिणी, पुष्य, हस्त, चित्रा', sa: 'अश्विनी, रोहिणी, पुष्य, हस्त, चित्रा', mai: 'अश्विनी, रोहिणी, पुष्य, हस्त, चित्रा', mr: 'अश्विनी, रोहिणी, पुष्य, हस्त, चित्रा', ta: 'Ashwini, Rohini, Pushya, Hasta, Chitra', te: 'Ashwini, Rohini, Pushya, Hasta, Chitra', bn: 'Ashwini, Rohini, Pushya, Hasta, Chitra', kn: 'Ashwini, Rohini, Pushya, Hasta, Chitra', gu: 'Ashwini, Rohini, Pushya, Hasta, Chitra' },
-      { en: 'Bharani, Krittika, Vishakha', hi: 'भरणी, कृत्तिका, विशाखा', sa: 'भरणी, कृत्तिका, विशाखा', mai: 'भरणी, कृत्तिका, विशाखा', mr: 'भरणी, कृत्तिका, विशाखा', ta: 'Bharani, Krittika, Vishakha', te: 'Bharani, Krittika, Vishakha', bn: 'Bharani, Krittika, Vishakha', kn: 'Bharani, Krittika, Vishakha', gu: 'Bharani, Krittika, Vishakha' },
-      { en: 'Only Revati', hi: 'केवल रेवती', sa: 'केवल रेवती', mai: 'केवल रेवती', mr: 'केवल रेवती', ta: 'Only Revati', te: 'Only Revati', bn: 'Only Revati', kn: 'Only Revati', gu: 'Only Revati' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Ashwini (swift, connected to horses/transport), Rohini (stability, beauty), Pushya (most auspicious for purchases), Hasta (skill, hands-on), and Chitra (beauty, craftsmanship) are the ideal nakshatras for vehicle purchase. Pushya is considered the best nakshatra for any purchase.',
-      hi: 'अश्विनी (शीघ्र, घोड़ों/परिवहन से जुड़ा), रोहिणी (स्थिरता, सौन्दर्य), पुष्य (क्रय के लिए सर्वाधिक शुभ), हस्त (कौशल), और चित्रा (सौन्दर्य, शिल्पकला) वाहन क्रय के लिए आदर्श नक्षत्र हैं। पुष्य किसी भी क्रय के लिए सर्वश्रेष्ठ नक्षत्र माना जाता है।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = (L.questions as unknown as ModuleQuestion[]);
 
 function Page1() {
   const locale = useModuleLocale();

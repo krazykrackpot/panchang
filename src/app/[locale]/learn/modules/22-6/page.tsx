@@ -2,21 +2,16 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/22-6.json';
 
 const META: ModuleMeta = {
   id: 'mod_22_6', phase: 9, topic: 'Astronomy', moduleNumber: '22.6',
-  title: { en: 'Equation of Time — Why Clocks Disagree With Sundials', hi: 'समय का समीकरण — घड़ियाँ धूपघड़ियों से क्यों असहमत हैं', sa: 'समय का समीकरण — घड़ियाँ धूपघड़ियों से क्यों असहमत हैं', mai: 'समय का समीकरण — घड़ियाँ धूपघड़ियों से क्यों असहमत हैं', mr: 'समय का समीकरण — घड़ियाँ धूपघड़ियों से क्यों असहमत हैं', ta: 'Equation of Time — Why Clocks Disagree With Sundials', te: 'Equation of Time — Why Clocks Disagree With Sundials', bn: 'Equation of Time — Why Clocks Disagree With Sundials', kn: 'Equation of Time — Why Clocks Disagree With Sundials', gu: 'Equation of Time — Why Clocks Disagree With Sundials' },
-  subtitle: {
-    en: 'Two causes, one formula, and a figure-8 in the sky that shifts solar noon by up to 16 minutes',
-    hi: 'दो कारण, एक सूत्र, और आकाश में एक अंक-8 आकृति जो सौर मध्याह्न को 16 मिनट तक खिसकाती है',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 12,
-  crossRefs: [
-    { label: { en: 'Module 22-1: Julian Day', hi: 'मॉड्यूल 22-1: जूलियन दिवस', sa: 'मॉड्यूल 22-1: जूलियन दिवस', mai: 'मॉड्यूल 22-1: जूलियन दिवस', mr: 'मॉड्यूल 22-1: जूलियन दिवस', ta: 'Module 22-1: Julian Day', te: 'Module 22-1: Julian Day', bn: 'Module 22-1: Julian Day', kn: 'Module 22-1: Julian Day', gu: 'Module 22-1: Julian Day' }, href: '/learn/modules/22-1' },
-    { label: { en: 'Module 22-2: Finding the Sun', hi: 'मॉड्यूल 22-2: सूर्य की स्थिति', sa: 'मॉड्यूल 22-2: सूर्य की स्थिति', mai: 'मॉड्यूल 22-2: सूर्य की स्थिति', mr: 'मॉड्यूल 22-2: सूर्य की स्थिति', ta: 'Module 22-2: Finding the Sun', te: 'Module 22-2: Finding the Sun', bn: 'Module 22-2: Finding the Sun', kn: 'Module 22-2: Finding the Sun', gu: 'Module 22-2: Finding the Sun' }, href: '/learn/modules/22-2' },
-    { label: { en: 'Module 22-4: Sunrise Calculation', hi: 'मॉड्यूल 22-4: सूर्योदय गणना', sa: 'मॉड्यूल 22-4: सूर्योदय गणना', mai: 'मॉड्यूल 22-4: सूर्योदय गणना', mr: 'मॉड्यूल 22-4: सूर्योदय गणना', ta: 'Module 22-4: Sunrise Calculation', te: 'Module 22-4: Sunrise Calculation', bn: 'Module 22-4: Sunrise Calculation', kn: 'Module 22-4: Sunrise Calculation', gu: 'Module 22-4: Sunrise Calculation' }, href: '/learn/modules/22-4' },
-    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग', mai: 'दैनिक पंचांग', mr: 'दैनिक पंचांग', ta: 'Daily Panchang', te: 'Daily Panchang', bn: 'Daily Panchang', kn: 'Daily Panchang', gu: 'Daily Panchang' }, href: '/panchang' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

@@ -2,189 +2,89 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/25-6.json';
 
 const META: ModuleMeta = {
   id: 'mod_25_6', phase: 6, topic: 'Indian Contributions', moduleNumber: '25.6',
-  title: { en: 'Fibonacci Started With Music', hi: 'फिबोनाची की शुरुआत संगीत से हुई', sa: 'फिबोनाची की शुरुआत संगीत से हुई', mai: 'फिबोनाची की शुरुआत संगीत से हुई', mr: 'फिबोनाची की शुरुआत संगीत से हुई', ta: 'Fibonacci Started With Music', te: 'Fibonacci Started With Music', bn: 'Fibonacci Started With Music', kn: 'Fibonacci Started With Music', gu: 'Fibonacci Started With Music' },
-  subtitle: {
-    en: 'How Indian musicians discovered the Fibonacci sequence 1,000 years before Fibonacci — through the mathematics of rhythm and tala',
-    hi: 'कैसे भारतीय संगीतज्ञों ने फिबोनाची से 1,000 वर्ष पहले ताल के गणित से फिबोनाची अनुक्रम की खोज की',
-  },
+  title: L.title as Record<string, string>,
+  subtitle: L.subtitle as Record<string, string>,
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 25-1: Zero & Place Value', hi: 'मॉड्यूल 25-1: शून्य और स्थानमान', sa: 'मॉड्यूल 25-1: शून्य और स्थानमान', mai: 'मॉड्यूल 25-1: शून्य और स्थानमान', mr: 'मॉड्यूल 25-1: शून्य और स्थानमान', ta: 'Module 25-1: Zero & Place Value', te: 'Module 25-1: Zero & Place Value', bn: 'Module 25-1: Zero & Place Value', kn: 'Module 25-1: Zero & Place Value', gu: 'Module 25-1: Zero & Place Value' }, href: '/learn/modules/25-1' },
-    { label: { en: 'Module 25-2: Decimal System', hi: 'मॉड्यूल 25-2: दशमलव प्रणाली', sa: 'मॉड्यूल 25-2: दशमलव प्रणाली', mai: 'मॉड्यूल 25-2: दशमलव प्रणाली', mr: 'मॉड्यूल 25-2: दशमलव प्रणाली', ta: 'Module 25-2: Decimal System', te: 'Module 25-2: Decimal System', bn: 'Module 25-2: Decimal System', kn: 'Module 25-2: Decimal System', gu: 'Module 25-2: Decimal System' }, href: '/learn/modules/25-2' },
+    { label: L.crossRefs[0].label as Record<string, string>, href: '/learn/modules/25-1' },
+    { label: L.crossRefs[1].label as Record<string, string>, href: '/learn/modules/25-2' },
   ],
 };
 
 const QUESTIONS: ModuleQuestion[] = [
   {
     id: 'q25_6_01', type: 'mcq',
-    question: {
-      en: 'Who first described the Fibonacci pattern in the context of music?',
-      hi: 'संगीत के संदर्भ में फिबोनाची पैटर्न का प्रथम वर्णन किसने किया?',
-    },
-    options: [
-      { en: 'Aryabhata', hi: 'आर्यभट', sa: 'आर्यभट', mai: 'आर्यभट', mr: 'आर्यभट', ta: 'Aryabhata', te: 'Aryabhata', bn: 'Aryabhata', kn: 'Aryabhata', gu: 'Aryabhata' },
-      { en: 'Bharata Muni', hi: 'भरत मुनि', sa: 'भरत मुनि', mai: 'भरत मुनि', mr: 'भरत मुनि', ta: 'Bharata Muni', te: 'Bharata Muni', bn: 'Bharata Muni', kn: 'Bharata Muni', gu: 'Bharata Muni' },
-      { en: 'Virahanka', hi: 'विरहांक', sa: 'विरहांक', mai: 'विरहांक', mr: 'विरहांक', ta: 'Virahanka', te: 'Virahanka', bn: 'Virahanka', kn: 'Virahanka', gu: 'Virahanka' },
-      { en: 'Hemachandra', hi: 'हेमचन्द्र', sa: 'हेमचन्द्र', mai: 'हेमचन्द्र', mr: 'हेमचन्द्र', ta: 'Hemachandra', te: 'Hemachandra', bn: 'Hemachandra', kn: 'Hemachandra', gu: 'Hemachandra' },
-    ],
+    question: L.questions[0].question as Record<string, string>,
+    options: L.questions[0].options as LocaleText[],
     correctAnswer: 1,
-    explanation: {
-      en: 'Bharata Muni, the author of the Natyashastra, first described a pattern corresponding to the Fibonacci sequence around 200 BCE while analysing the combinations of long and short syllables in poetic meters. He observed that counting the ways to arrange syllables of duration 1 and 2 in sequences of length n naturally generates what we now call the Fibonacci numbers. This predates Fibonacci himself by over 1,300 years.',
-      hi: 'नाट्यशास्त्र के रचयिता भरत मुनि ने लगभग 200 ईसा पूर्व काव्य छन्दों में लघु और गुरु अक्षरों के संयोजनों का विश्लेषण करते हुए फिबोनाची अनुक्रम के समकक्ष एक पैटर्न का प्रथम वर्णन किया। उन्होंने देखा कि n लम्बाई के अनुक्रमों में 1 और 2 मात्रा के अक्षरों को व्यवस्थित करने के तरीकों की गणना स्वाभाविक रूप से वे संख्याएँ उत्पन्न करती है जिन्हें हम आज फिबोनाची संख्याएँ कहते हैं। यह फिबोनाची से 1,300 वर्ष से अधिक पहले है।',
-    },
+    explanation: L.questions[0].explanation as Record<string, string>,
   },
   {
     id: 'q25_6_02', type: 'mcq',
-    question: {
-      en: 'In which text did Bharata Muni describe the rhythmic patterns that encode the Fibonacci sequence?',
-      hi: 'किस ग्रन्थ में भरत मुनि ने फिबोनाची अनुक्रम को एन्कोड करने वाले तालबद्ध पैटर्न का वर्णन किया?',
-    },
-    options: [
-      { en: 'Arthashastra', hi: 'अर्थशास्त्र', sa: 'अर्थशास्त्र', mai: 'अर्थशास्त्र', mr: 'अर्थशास्त्र', ta: 'Arthashastra', te: 'Arthashastra', bn: 'Arthashastra', kn: 'Arthashastra', gu: 'Arthashastra' },
-      { en: 'Chandahshastra', hi: 'छन्दःशास्त्र', sa: 'छन्दःशास्त्र', mai: 'छन्दःशास्त्र', mr: 'छन्दःशास्त्र', ta: 'Chandahshastra', te: 'Chandahshastra', bn: 'Chandahshastra', kn: 'Chandahshastra', gu: 'Chandahshastra' },
-      { en: 'Natyashastra', hi: 'नाट्यशास्त्र', sa: 'नाट्यशास्त्र', mai: 'नाट्यशास्त्र', mr: 'नाट्यशास्त्र', ta: 'Natyashastra', te: 'Natyashastra', bn: 'Natyashastra', kn: 'Natyashastra', gu: 'Natyashastra' },
-      { en: 'Aryabhatiya', hi: 'आर्यभटीय', sa: 'आर्यभटीय', mai: 'आर्यभटीय', mr: 'आर्यभटीय', ta: 'Aryabhatiya', te: 'Aryabhatiya', bn: 'Aryabhatiya', kn: 'Aryabhatiya', gu: 'Aryabhatiya' },
-    ],
+    question: L.questions[1].question as Record<string, string>,
+    options: L.questions[1].options as LocaleText[],
     correctAnswer: 2,
-    explanation: {
-      en: 'The Natyashastra (literally "treatise on drama") is an ancient Sanskrit text on the performing arts attributed to Bharata Muni, written around 200 BCE. The text covers music, dance, drama, and poetic meter in extraordinary depth. Its chapter on prosody (meter) analyses the ways syllables of different durations can combine, and the counting of these combinations gives the Fibonacci numbers. The Natyashastra remains one of the most comprehensive ancient texts on performing arts in any civilization.',
-      hi: 'नाट्यशास्त्र (शाब्दिक अर्थ "नाटक पर ग्रन्थ") भरत मुनि को आरोपित एक प्राचीन संस्कृत ग्रन्थ है जो लगभग 200 ईसा पूर्व रचा गया था। यह ग्रन्थ संगीत, नृत्य, नाटक और काव्य-छन्द को असाधारण गहराई से कवर करता है। छन्दशास्त्र पर इसका अध्याय विभिन्न मात्राओं के अक्षरों के संयोजन के तरीकों का विश्लेषण करता है, और इन संयोजनों की गणना फिबोनाची संख्याएँ देती है। नाट्यशास्त्र किसी भी सभ्यता के प्रदर्शन कला पर सबसे व्यापक प्राचीन ग्रन्थों में से एक है।',
-    },
+    explanation: L.questions[1].explanation as Record<string, string>,
   },
   {
     id: 'q25_6_03', type: 'mcq',
-    question: {
-      en: 'Approximately when did Bharata Muni write the Natyashastra?',
-      hi: 'भरत मुनि ने नाट्यशास्त्र लगभग कब लिखा?',
-    },
-    options: [
-      { en: '200 CE', hi: '200 ईस्वी', sa: '200 ईस्वी', mai: '200 ईस्वी', mr: '200 ईस्वी', ta: '200 CE', te: '200 CE', bn: '200 CE', kn: '200 CE', gu: '200 CE' },
-      { en: '200 BCE', hi: '200 ईसा पूर्व', sa: '200 ईसा पूर्व', mai: '200 ईसा पूर्व', mr: '200 ईसा पूर्व', ta: '200 BCE', te: '200 BCE', bn: '200 BCE', kn: '200 BCE', gu: '200 BCE' },
-      { en: '500 CE', hi: '500 ईस्वी', sa: '500 ईस्वी', mai: '500 ईस्वी', mr: '500 ईस्वी', ta: '500 CE', te: '500 CE', bn: '500 CE', kn: '500 CE', gu: '500 CE' },
-      { en: '800 BCE', hi: '800 ईसा पूर्व', sa: '800 ईसा पूर्व', mai: '800 ईसा पूर्व', mr: '800 ईसा पूर्व', ta: '800 BCE', te: '800 BCE', bn: '800 BCE', kn: '800 BCE', gu: '800 BCE' },
-    ],
+    question: L.questions[2].question as Record<string, string>,
+    options: L.questions[2].options as LocaleText[],
     correctAnswer: 1,
-    explanation: {
-      en: 'The Natyashastra is dated to approximately 200 BCE, though some scholars place it between 500 BCE and 200 CE. This makes the Fibonacci-related observations in its prosody section roughly 1,200–1,400 years older than Fibonacci\'s own work in the Liber Abaci (1202 CE). The exact date is debated because ancient Indian texts were often compiled over generations, but the core prosody chapters are consistently dated to the early centuries BCE.',
-      hi: 'नाट्यशास्त्र को लगभग 200 ईसा पूर्व का माना जाता है, हालाँकि कुछ विद्वान इसे 500 ईसा पूर्व और 200 ईस्वी के बीच रखते हैं। इससे इसके छन्दशास्त्र खंड में फिबोनाची-संबंधित अवलोकन फिबोनाची के स्वयं के लिबेर अबासी (1202 ईस्वी) से लगभग 1,200-1,400 वर्ष पुराने हो जाते हैं। सटीक तिथि विवादित है क्योंकि प्राचीन भारतीय ग्रन्थ अक्सर पीढ़ियों में संकलित होते थे, लेकिन मूल छन्दशास्त्र अध्याय लगातार ईसा पूर्व की प्रारंभिक शताब्दियों के हैं।',
-    },
+    explanation: L.questions[2].explanation as Record<string, string>,
   },
   {
     id: 'q25_6_04', type: 'mcq',
-    question: {
-      en: 'What musical concept connected to rhythm patterns gave rise to the Fibonacci numbers in Indian mathematics?',
-      hi: 'किस संगीत अवधारणा ने, तालबद्ध पैटर्न से जुड़कर, भारतीय गणित में फिबोनाची संख्याओं को जन्म दिया?',
-    },
-    options: [
-      { en: 'Raga — melodic frameworks', hi: 'राग — मेलोडिक ढाँचे', sa: 'राग — मेलोडिक ढाँचे', mai: 'राग — मेलोडिक ढाँचे', mr: 'राग — मेलोडिक ढाँचे', ta: 'Raga — melodic frameworks', te: 'Raga — melodic frameworks', bn: 'Raga — melodic frameworks', kn: 'Raga — melodic frameworks', gu: 'Raga — melodic frameworks' },
-      { en: 'Shruti — microtonal intervals', hi: 'श्रुति — माइक्रोटोनल अंतराल', sa: 'श्रुति — माइक्रोटोनल अंतराल', mai: 'श्रुति — माइक्रोटोनल अंतराल', mr: 'श्रुति — माइक्रोटोनल अंतराल', ta: 'Shruti — microtonal intervals', te: 'Shruti — microtonal intervals', bn: 'Shruti — microtonal intervals', kn: 'Shruti — microtonal intervals', gu: 'Shruti — microtonal intervals' },
-      { en: 'Tala — rhythmic patterns using short and long syllables', hi: 'ताल — लघु और दीर्घ अक्षरों का उपयोग करके तालबद्ध पैटर्न', sa: 'ताल — लघु और दीर्घ अक्षरों का उपयोग करके तालबद्ध पैटर्न', mai: 'ताल — लघु और दीर्घ अक्षरों का उपयोग करके तालबद्ध पैटर्न', mr: 'ताल — लघु और दीर्घ अक्षरों का उपयोग करके तालबद्ध पैटर्न', ta: 'Tala — rhythmic patterns using short and long syllables', te: 'Tala — rhythmic patterns using short and long syllables', bn: 'Tala — rhythmic patterns using short and long syllables', kn: 'Tala — rhythmic patterns using short and long syllables', gu: 'Tala — rhythmic patterns using short and long syllables' },
-      { en: 'Swara — the seven notes of the scale', hi: 'स्वर — सप्तक के सात स्वर', sa: 'स्वर — सप्तक के सात स्वर', mai: 'स्वर — सप्तक के सात स्वर', mr: 'स्वर — सप्तक के सात स्वर', ta: 'Swara — the seven notes of the scale', te: 'Swara — the seven notes of the scale', bn: 'Swara — the seven notes of the scale', kn: 'Swara — the seven notes of the scale', gu: 'Swara — the seven notes of the scale' },
-    ],
+    question: L.questions[3].question as Record<string, string>,
+    options: L.questions[3].options as LocaleText[],
     correctAnswer: 2,
-    explanation: {
-      en: 'Tala is the system of rhythmic cycles in Indian classical music. Sanskrit prosody uses two fundamental syllable durations: laghu (short, 1 beat) and guru (long, 2 beats). When counting how many ways you can fill a rhythmic line of n beats using combinations of laghus (1 beat) and gurus (2 beats), the answer is the nth Fibonacci number. For example: 1 beat = 1 way; 2 beats = 2 ways; 3 beats = 3 ways; 4 beats = 5 ways; 5 beats = 8 ways. The recursion F(n) = F(n-1) + F(n-2) emerges naturally from this musical counting problem.',
-      hi: 'ताल भारतीय शास्त्रीय संगीत में लयबद्ध चक्रों की प्रणाली है। संस्कृत छन्दशास्त्र दो मूलभूत अक्षर मात्राओं का उपयोग करता है: लघु (छोटा, 1 मात्रा) और गुरु (लम्बा, 2 मात्राएँ)। जब यह गिना जाए कि लघु (1 मात्रा) और गुरु (2 मात्राएँ) के संयोजनों का उपयोग करके n मात्राओं की एक तालबद्ध पंक्ति को कितने तरीकों से भरा जा सकता है, तो उत्तर n-वीं फिबोनाची संख्या है। उदाहरण: 1 मात्रा = 1 तरीका; 2 मात्राएँ = 2 तरीके; 3 मात्राएँ = 3 तरीके; 4 मात्राएँ = 5 तरीके; 5 मात्राएँ = 8 तरीके। पुनरावृत्ति F(n) = F(n-1) + F(n-2) इस संगीत गणना समस्या से स्वाभाविक रूप से उभरती है।',
-    },
+    explanation: L.questions[3].explanation as Record<string, string>,
   },
   {
     id: 'q25_6_05', type: 'mcq',
-    question: {
-      en: 'Who stated the explicit Fibonacci recurrence relation (that each number is the sum of the two before it)?',
-      hi: 'स्पष्ट फिबोनाची पुनरावृत्ति संबंध (कि प्रत्येक संख्या पिछली दो का योग है) किसने बताया?',
-    },
-    options: [
-      { en: 'Pingala', hi: 'पिंगल', sa: 'पिंगल', mai: 'पिंगल', mr: 'पिंगल', ta: 'Pingala', te: 'Pingala', bn: 'Pingala', kn: 'Pingala', gu: 'Pingala' },
-      { en: 'Bharata Muni', hi: 'भरत मुनि', sa: 'भरत मुनि', mai: 'भरत मुनि', mr: 'भरत मुनि', ta: 'Bharata Muni', te: 'Bharata Muni', bn: 'Bharata Muni', kn: 'Bharata Muni', gu: 'Bharata Muni' },
-      { en: 'Virahanka', hi: 'विरहांक', sa: 'विरहांक', mai: 'विरहांक', mr: 'विरहांक', ta: 'Virahanka', te: 'Virahanka', bn: 'Virahanka', kn: 'Virahanka', gu: 'Virahanka' },
-      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त', sa: 'ब्रह्मगुप्त', mai: 'ब्रह्मगुप्त', mr: 'ब्रह्मगुप्त', ta: 'Brahmagupta', te: 'Brahmagupta', bn: 'Brahmagupta', kn: 'Brahmagupta', gu: 'Brahmagupta' },
-    ],
+    question: L.questions[4].question as Record<string, string>,
+    options: L.questions[4].options as LocaleText[],
     correctAnswer: 2,
-    explanation: {
-      en: 'Virahanka (~600 CE) was the first to explicitly state the recurrence relation: that the number of metrical patterns of length n equals the sum of patterns of lengths n-1 and n-2. This is precisely the modern Fibonacci recurrence F(n) = F(n-1) + F(n-2). He wrote this in his commentary on Pingala\'s Chandahshastra. While Bharata Muni and Pingala had observed the pattern, Virahanka was the first to articulate the additive rule explicitly, making him the mathematician who formalized what we now call the Fibonacci recurrence.',
-      hi: 'विरहांक (~600 ईस्वी) वे पहले व्यक्ति थे जिन्होंने स्पष्ट रूप से पुनरावृत्ति संबंध बताया: कि लम्बाई n के मेट्रिकल पैटर्न की संख्या लम्बाई n-1 और n-2 के पैटर्न के योग के बराबर है। यह ठीक आधुनिक फिबोनाची पुनरावृत्ति F(n) = F(n-1) + F(n-2) है। उन्होंने यह पिंगल के छन्दःशास्त्र पर अपनी टिप्पणी में लिखा। जबकि भरत मुनि और पिंगल ने पैटर्न देखा था, विरहांक पहले थे जिन्होंने योगात्मक नियम को स्पष्ट रूप से व्यक्त किया, जिससे वे वह गणितज्ञ बने जिन्होंने आज की फिबोनाची पुनरावृत्ति को औपचारिक रूप दिया।',
-    },
+    explanation: L.questions[4].explanation as Record<string, string>,
   },
   {
     id: 'q25_6_06', type: 'mcq',
-    question: {
-      en: 'In approximately what century CE did Virahanka articulate the Fibonacci recurrence?',
-      hi: 'विरहांक ने फिबोनाची पुनरावृत्ति को लगभग किस शताब्दी ईस्वी में व्यक्त किया?',
-    },
-    options: [
-      { en: '2nd century CE', hi: '2री शताब्दी ईस्वी', sa: '2री शताब्दी ईस्वी', mai: '2री शताब्दी ईस्वी', mr: '2री शताब्दी ईस्वी', ta: '2nd century CE', te: '2nd century CE', bn: '2nd century CE', kn: '2nd century CE', gu: '2nd century CE' },
-      { en: '4th century CE', hi: '4थी शताब्दी ईस्वी', sa: '4थी शताब्दी ईस्वी', mai: '4थी शताब्दी ईस्वी', mr: '4थी शताब्दी ईस्वी', ta: '4th century CE', te: '4th century CE', bn: '4th century CE', kn: '4th century CE', gu: '4th century CE' },
-      { en: '6th century CE', hi: '6ठी शताब्दी ईस्वी', sa: '6ठी शताब्दी ईस्वी', mai: '6ठी शताब्दी ईस्वी', mr: '6ठी शताब्दी ईस्वी', ta: '6th century CE', te: '6th century CE', bn: '6th century CE', kn: '6th century CE', gu: '6th century CE' },
-      { en: '10th century CE', hi: '10वीं शताब्दी ईस्वी', sa: '10वीं शताब्दी ईस्वी', mai: '10वीं शताब्दी ईस्वी', mr: '10वीं शताब्दी ईस्वी', ta: '10th century CE', te: '10th century CE', bn: '10th century CE', kn: '10th century CE', gu: '10th century CE' },
-    ],
+    question: L.questions[5].question as Record<string, string>,
+    options: L.questions[5].options as LocaleText[],
     correctAnswer: 2,
-    explanation: {
-      en: 'Virahanka is dated to approximately the 6th century CE (around 600 CE). His work builds on Pingala\'s earlier Chandahshastra (around 300 BCE) and explicitly states the recurrence relation. This places the formal mathematical statement of the Fibonacci rule roughly 600 years before Fibonacci himself wrote Liber Abaci in 1202 CE, and about 400 years before Hemachandra (1150 CE) independently re-derived it in the context of Jain literature and poetry.',
-      hi: 'विरहांक को लगभग 6ठी शताब्दी ईस्वी (लगभग 600 ईस्वी) का माना जाता है। उनका कार्य पिंगल के पहले के छन्दःशास्त्र (लगभग 300 ईसा पूर्व) पर आधारित है और स्पष्ट रूप से पुनरावृत्ति संबंध बताता है। यह फिबोनाची नियम के औपचारिक गणितीय कथन को 1202 ईस्वी में फिबोनाची के लिबेर अबासी लिखने से लगभग 600 वर्ष पहले रखता है, और हेमचन्द्र (1150 ईस्वी) से लगभग 400 वर्ष पहले जिन्होंने जैन साहित्य और कविता के संदर्भ में इसे स्वतंत्र रूप से पुनः प्राप्त किया।',
-    },
+    explanation: L.questions[5].explanation as Record<string, string>,
   },
   {
     id: 'q25_6_07', type: 'mcq',
-    question: {
-      en: 'Who published results equivalent to the Fibonacci sequence 52 years before Fibonacci, and when?',
-      hi: 'फिबोनाची से 52 वर्ष पहले किसने फिबोनाची अनुक्रम के समकक्ष परिणाम प्रकाशित किए, और कब?',
-    },
-    options: [
-      { en: 'Virahanka in 600 CE', hi: 'विरहांक, 600 ईस्वी में', sa: 'विरहांक, 600 ईस्वी में', mai: 'विरहांक, 600 ईस्वी में', mr: 'विरहांक, 600 ईस्वी में', ta: 'Virahanka in 600 CE', te: 'Virahanka in 600 CE', bn: 'Virahanka in 600 CE', kn: 'Virahanka in 600 CE', gu: 'Virahanka in 600 CE' },
-      { en: 'Brahmagupta in 628 CE', hi: 'ब्रह्मगुप्त, 628 ईस्वी में', sa: 'ब्रह्मगुप्त, 628 ईस्वी में', mai: 'ब्रह्मगुप्त, 628 ईस्वी में', mr: 'ब्रह्मगुप्त, 628 ईस्वी में', ta: 'Brahmagupta in 628 CE', te: 'Brahmagupta in 628 CE', bn: 'Brahmagupta in 628 CE', kn: 'Brahmagupta in 628 CE', gu: 'Brahmagupta in 628 CE' },
-      { en: 'Hemachandra in 1150 CE', hi: 'हेमचन्द्र, 1150 ईस्वी में', sa: 'हेमचन्द्र, 1150 ईस्वी में', mai: 'हेमचन्द्र, 1150 ईस्वी में', mr: 'हेमचन्द्र, 1150 ईस्वी में', ta: 'Hemachandra in 1150 CE', te: 'Hemachandra in 1150 CE', bn: 'Hemachandra in 1150 CE', kn: 'Hemachandra in 1150 CE', gu: 'Hemachandra in 1150 CE' },
-      { en: 'Aryabhata in 499 CE', hi: 'आर्यभट, 499 ईस्वी में', sa: 'आर्यभट, 499 ईस्वी में', mai: 'आर्यभट, 499 ईस्वी में', mr: 'आर्यभट, 499 ईस्वी में', ta: 'Aryabhata in 499 CE', te: 'Aryabhata in 499 CE', bn: 'Aryabhata in 499 CE', kn: 'Aryabhata in 499 CE', gu: 'Aryabhata in 499 CE' },
-    ],
+    question: L.questions[6].question as Record<string, string>,
+    options: L.questions[6].options as LocaleText[],
     correctAnswer: 2,
-    explanation: {
-      en: 'Hemachandra (1089–1172 CE) published the sequence in 1150 CE — exactly 52 years before Fibonacci\'s Liber Abaci (1202 CE). Hemachandra was a prolific Jain scholar, mathematician, and poet. In his work on Jain poetic meters, he independently stated the same sequence: that the number of metrical patterns of length n is the sum of those of lengths n-1 and n-2. His work is so thorough on this topic that in India, the sequence is sometimes called the "Hemachandra sequence" rather than the Fibonacci sequence.',
-      hi: 'हेमचन्द्र (1089-1172 ईस्वी) ने 1150 ईस्वी में अनुक्रम प्रकाशित किया — फिबोनाची के लिबेर अबासी (1202 ईस्वी) से ठीक 52 वर्ष पहले। हेमचन्द्र एक विपुल जैन विद्वान, गणितज्ञ और कवि थे। जैन काव्य छन्दों पर अपने कार्य में, उन्होंने स्वतंत्र रूप से वही अनुक्रम बताया: कि लम्बाई n के मेट्रिकल पैटर्न की संख्या लम्बाई n-1 और n-2 के पैटर्न का योग है। इस विषय पर उनका कार्य इतना व्यापक है कि भारत में अनुक्रम को कभी-कभी फिबोनाची अनुक्रम के बजाय "हेमचन्द्र अनुक्रम" कहा जाता है।',
-    },
+    explanation: L.questions[6].explanation as Record<string, string>,
   },
   {
     id: 'q25_6_08', type: 'mcq',
-    question: {
-      en: 'How did Fibonacci learn the sequence that now bears his name?',
-      hi: 'फिबोनाची ने उस अनुक्रम को कैसे सीखा जो अब उनके नाम पर है?',
-    },
-    options: [
-      { en: 'He discovered it independently by studying rabbit populations', hi: 'उन्होंने खरगोश की आबादी का अध्ययन करके इसे स्वतंत्र रूप से खोजा', sa: 'उन्होंने खरगोश की आबादी का अध्ययन करके इसे स्वतंत्र रूप से खोजा', mai: 'उन्होंने खरगोश की आबादी का अध्ययन करके इसे स्वतंत्र रूप से खोजा', mr: 'उन्होंने खरगोश की आबादी का अध्ययन करके इसे स्वतंत्र रूप से खोजा', ta: 'He discovered it independently by studying rabbit populations', te: 'He discovered it independently by studying rabbit populations', bn: 'He discovered it independently by studying rabbit populations', kn: 'He discovered it independently by studying rabbit populations', gu: 'He discovered it independently by studying rabbit populations' },
-      { en: 'He learned it from Arab mathematicians who had translated Indian mathematical texts', hi: 'उन्होंने इसे अरब गणितज्ञों से सीखा जिन्होंने भारतीय गणितीय ग्रन्थों का अनुवाद किया था', sa: 'उन्होंने इसे अरब गणितज्ञों से सीखा जिन्होंने भारतीय गणितीय ग्रन्थों का अनुवाद किया था', mai: 'उन्होंने इसे अरब गणितज्ञों से सीखा जिन्होंने भारतीय गणितीय ग्रन्थों का अनुवाद किया था', mr: 'उन्होंने इसे अरब गणितज्ञों से सीखा जिन्होंने भारतीय गणितीय ग्रन्थों का अनुवाद किया था', ta: 'He learned it from Arab mathematicians who had translated Indian mathematical texts', te: 'He learned it from Arab mathematicians who had translated Indian mathematical texts', bn: 'He learned it from Arab mathematicians who had translated Indian mathematical texts', kn: 'He learned it from Arab mathematicians who had translated Indian mathematical texts', gu: 'He learned it from Arab mathematicians who had translated Indian mathematical texts' },
-      { en: 'He found it in ancient Greek texts by Euclid', hi: 'उन्होंने इसे यूक्लिड की प्राचीन ग्रीक रचनाओं में पाया', sa: 'उन्होंने इसे यूक्लिड की प्राचीन ग्रीक रचनाओं में पाया', mai: 'उन्होंने इसे यूक्लिड की प्राचीन ग्रीक रचनाओं में पाया', mr: 'उन्होंने इसे यूक्लिड की प्राचीन ग्रीक रचनाओं में पाया', ta: 'He found it in ancient Greek texts by Euclid', te: 'He found it in ancient Greek texts by Euclid', bn: 'He found it in ancient Greek texts by Euclid', kn: 'He found it in ancient Greek texts by Euclid', gu: 'He found it in ancient Greek texts by Euclid' },
-      { en: 'He invented it himself to solve a puzzle posed by the Holy Roman Emperor', hi: 'उन्होंने इसे पवित्र रोमन सम्राट द्वारा प्रस्तुत पहेली हल करने के लिए स्वयं आविष्कार किया', sa: 'उन्होंने इसे पवित्र रोमन सम्राट द्वारा प्रस्तुत पहेली हल करने के लिए स्वयं आविष्कार किया', mai: 'उन्होंने इसे पवित्र रोमन सम्राट द्वारा प्रस्तुत पहेली हल करने के लिए स्वयं आविष्कार किया', mr: 'उन्होंने इसे पवित्र रोमन सम्राट द्वारा प्रस्तुत पहेली हल करने के लिए स्वयं आविष्कार किया', ta: 'He invented it himself to solve a puzzle posed by the Holy Roman Emperor', te: 'He invented it himself to solve a puzzle posed by the Holy Roman Emperor', bn: 'He invented it himself to solve a puzzle posed by the Holy Roman Emperor', kn: 'He invented it himself to solve a puzzle posed by the Holy Roman Emperor', gu: 'He invented it himself to solve a puzzle posed by the Holy Roman Emperor' },
-    ],
+    question: L.questions[7].question as Record<string, string>,
+    options: L.questions[7].options as LocaleText[],
     correctAnswer: 1,
-    explanation: {
-      en: 'Leonardo of Pisa (Fibonacci) spent much of his youth in North Africa, where his father was a trading post administrator. There he studied under Arab mathematicians who had access to, and had translated, Indian mathematical texts — including works on Indian numeration (the decimal place-value system), algebra, and combinatorics. The famous rabbit problem in Liber Abaci was almost certainly inspired by knowledge of Indian metrical combinatorics transmitted through the Arab-Islamic mathematical tradition, which had absorbed and built upon Indian mathematics from the 8th century CE onwards.',
-      hi: 'पीसा के लियोनार्डो (फिबोनाची) ने अपनी युवावस्था का अधिकांश समय उत्तरी अफ्रीका में बिताया, जहाँ उनके पिता एक व्यापारिक पोस्ट के प्रशासक थे। वहाँ उन्होंने अरब गणितज्ञों के अधीन अध्ययन किया जिनके पास भारतीय गणितीय ग्रन्थों — भारतीय अंक प्रणाली (दशमलव स्थानमान प्रणाली), बीजगणित और संयोजनशास्त्र पर कार्यों सहित — का अनुवाद था। लिबेर अबासी में प्रसिद्ध खरगोश समस्या लगभग निश्चित रूप से अरब-इस्लामी गणितीय परम्परा के माध्यम से प्रेषित भारतीय मेट्रिकल कॉम्बिनेटरिक्स के ज्ञान से प्रेरित थी, जिसने 8वीं शताब्दी ईस्वी से भारतीय गणित को अवशोषित और उस पर निर्माण किया था।',
-    },
+    explanation: L.questions[7].explanation as Record<string, string>,
   },
   {
     id: 'q25_6_09', type: 'true_false',
-    question: {
-      en: 'The Fibonacci sequence (1, 1, 2, 3, 5, 8, 13…) appears repeatedly in natural phenomena such as flower petals, spiral shells, and plant branching.',
-      hi: 'फिबोनाची अनुक्रम (1, 1, 2, 3, 5, 8, 13…) फूलों की पंखुड़ियों, घुमावदार खोलों और पौधों की शाखाओं जैसी प्राकृतिक घटनाओं में बार-बार प्रकट होता है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. The Fibonacci sequence appears with remarkable frequency in nature: sunflower seed spirals count 34 and 55 clockwise and counter-clockwise; daisy petals often number 13, 21, or 34; pineapple scales trace 8 and 13 spirals; nautilus shells approximate the golden spiral (which is related to the golden ratio, the limit of successive Fibonacci ratios). This prevalence in nature is related to optimal packing and growth efficiency — Fibonacci numbers arise because they represent efficient solutions to packing problems that plants and other organisms have evolved to solve.',
-      hi: 'सत्य। फिबोनाची अनुक्रम प्रकृति में उल्लेखनीय आवृत्ति के साथ प्रकट होता है: सूरजमुखी के बीज के सर्पिलों में घड़ी की दिशा में और घड़ी के विपरीत 34 और 55 की गिनती होती है; डेज़ी की पंखुड़ियाँ अक्सर 13, 21, या 34 होती हैं; अनानास के तराजू 8 और 13 सर्पिल बनाते हैं; नॉटिलस के खोल सुनहरे सर्पिल के करीब होते हैं (जो सुनहरे अनुपात से संबंधित है, लगातार फिबोनाची अनुपातों की सीमा)। प्रकृति में यह व्यापकता इष्टतम पैकिंग और विकास दक्षता से संबंधित है।',
-    },
+    question: L.questions[8].question as Record<string, string>,
+    correctAnswer: 0,
+    explanation: L.questions[8].explanation as Record<string, string>,
   },
   {
     id: 'q25_6_10', type: 'true_false',
-    question: {
-      en: 'Fibonacci discovered the sequence independently, without any Indian mathematical influence.',
-      hi: 'फिबोनाची ने किसी भी भारतीय गणितीय प्रभाव के बिना, स्वतंत्र रूप से अनुक्रम की खोज की।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. Historical evidence strongly suggests that Fibonacci learned the sequence through Arab-Indian mathematical transmission. Fibonacci explicitly credited Indian mathematics in Liber Abaci — the book opens with praise for "the nine figures of the Indians" (the decimal numerals). He spent his formative years studying under Arab mathematicians in North Africa who had direct access to translated Indian texts. The sequence had been documented in India for at least 1,300 years before Fibonacci, with explicit recurrence formulas by Virahanka (~600 CE) and Hemachandra (1150 CE, just 52 years earlier). The independent discovery claim does not hold up to historical scrutiny.',
-      hi: 'असत्य। ऐतिहासिक साक्ष्य दृढ़ता से सुझाव देते हैं कि फिबोनाची ने अरब-भारतीय गणितीय प्रेषण के माध्यम से अनुक्रम सीखा। फिबोनाची ने लिबेर अबासी में स्पष्ट रूप से भारतीय गणित का श्रेय दिया — पुस्तक "भारतीयों के नौ अंकों" (दशमलव अंकों) की प्रशंसा से खुलती है। उन्होंने उत्तरी अफ्रीका में अरब गणितज्ञों के अधीन अध्ययन करते हुए अपने प्रारम्भिक वर्ष बिताए जिनके पास अनुवादित भारतीय ग्रन्थों तक सीधी पहुँच थी। अनुक्रम फिबोनाची से कम से कम 1,300 वर्ष पहले भारत में प्रलेखित था, विरहांक (~600 ईस्वी) और हेमचन्द्र (1150 ईस्वी, महज 52 वर्ष पहले) द्वारा स्पष्ट पुनरावृत्ति सूत्रों के साथ।',
-    },
+    question: L.questions[9].question as Record<string, string>,
+    correctAnswer: 0,
+    explanation: L.questions[9].explanation as Record<string, string>,
   },
 ];
 

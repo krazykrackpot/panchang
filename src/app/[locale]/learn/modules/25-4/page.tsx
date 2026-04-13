@@ -2,190 +2,90 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/25-4.json';
 
 const META: ModuleMeta = {
   id: 'mod_25_4', phase: 5, topic: 'Indian Mathematics', moduleNumber: '25.4',
-  title: { en: 'Negative Numbers — Debt Before Descartes', hi: 'ऋण संख्याएँ — देकार्त से पहले ऋण', sa: 'ऋण संख्याएँ — देकार्त से पहले ऋण', mai: 'ऋण संख्याएँ — देकार्त से पहले ऋण', mr: 'ऋण संख्याएँ — देकार्त से पहले ऋण', ta: 'Negative Numbers — Debt Before Descartes', te: 'Negative Numbers — Debt Before Descartes', bn: 'Negative Numbers — Debt Before Descartes', kn: 'Negative Numbers — Debt Before Descartes', gu: 'Negative Numbers — Debt Before Descartes' },
-  subtitle: {
-    en: 'How Brahmagupta formalised rules for negative numbers in 628 CE — 1000 years before Europe accepted them — and why Descartes called them "false"',
-    hi: 'ब्रह्मगुप्त ने 628 ई. में ऋण संख्याओं के नियम कैसे औपचारिक किए — यूरोप की स्वीकृति से 1000 वर्ष पहले — और देकार्त ने उन्हें "असत्य" क्यों कहा',
-  },
+  title: L.title as Record<string, string>,
+  subtitle: L.subtitle as Record<string, string>,
   estimatedMinutes: 11,
   crossRefs: [
-    { label: { en: 'Module 25-1: Zero', hi: 'मॉड्यूल 25-1: शून्य', sa: 'मॉड्यूल 25-1: शून्य', mai: 'मॉड्यूल 25-1: शून्य', mr: 'मॉड्यूल 25-1: शून्य', ta: 'Module 25-1: Zero', te: 'Module 25-1: Zero', bn: 'Module 25-1: Zero', kn: 'Module 25-1: Zero', gu: 'Module 25-1: Zero' }, href: '/learn/modules/25-1' },
-    { label: { en: 'Module 25-5: Binary Code', hi: 'मॉड्यूल 25-5: द्विआधारी संकेत', sa: 'मॉड्यूल 25-5: द्विआधारी संकेत', mai: 'मॉड्यूल 25-5: द्विआधारी संकेत', mr: 'मॉड्यूल 25-5: द्विआधारी संकेत', ta: 'Module 25-5: Binary Code', te: 'Module 25-5: Binary Code', bn: 'Module 25-5: Binary Code', kn: 'Module 25-5: Binary Code', gu: 'Module 25-5: Binary Code' }, href: '/learn/modules/25-5' },
-    { label: { en: 'Module 25-3: Pi = 3.1416', hi: 'मॉड्यूल 25-3: π = 3.1416', sa: 'मॉड्यूल 25-3: π = 3.1416', mai: 'मॉड्यूल 25-3: π = 3.1416', mr: 'मॉड्यूल 25-3: π = 3.1416', ta: 'Module 25-3: Pi = 3.1416', te: 'Module 25-3: Pi = 3.1416', bn: 'Module 25-3: Pi = 3.1416', kn: 'Module 25-3: Pi = 3.1416', gu: 'Module 25-3: Pi = 3.1416' }, href: '/learn/modules/25-3' },
+    { label: L.crossRefs[0].label as Record<string, string>, href: '/learn/modules/25-1' },
+    { label: L.crossRefs[1].label as Record<string, string>, href: '/learn/modules/25-5' },
+    { label: L.crossRefs[2].label as Record<string, string>, href: '/learn/modules/25-3' },
   ],
 };
 
 const QUESTIONS: ModuleQuestion[] = [
   {
     id: 'q25_4_01', type: 'mcq',
-    question: {
-      en: 'Who first formalised the rules for arithmetic with negative numbers?',
-      hi: 'ऋण संख्याओं के साथ गणित के नियम सबसे पहले किसने औपचारिक किए?',
-    },
-    options: [
-      { en: 'Mahavira', hi: 'महावीर', sa: 'महावीर', mai: 'महावीर', mr: 'महावीर', ta: 'Mahavira', te: 'Mahavira', bn: 'Mahavira', kn: 'Mahavira', gu: 'Mahavira' },
-      { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त', sa: 'ब्रह्मगुप्त', mai: 'ब्रह्मगुप्त', mr: 'ब्रह्मगुप्त', ta: 'Brahmagupta', te: 'Brahmagupta', bn: 'Brahmagupta', kn: 'Brahmagupta', gu: 'Brahmagupta' },
-      { en: 'Fibonacci', hi: 'फिबोनाची', sa: 'फिबोनाची', mai: 'फिबोनाची', mr: 'फिबोनाची', ta: 'Fibonacci', te: 'Fibonacci', bn: 'Fibonacci', kn: 'Fibonacci', gu: 'Fibonacci' },
-      { en: 'Diophantus', hi: 'डायोफेन्टस', sa: 'डायोफेन्टस', mai: 'डायोफेन्टस', mr: 'डायोफेन्टस', ta: 'Diophantus', te: 'Diophantus', bn: 'Diophantus', kn: 'Diophantus', gu: 'Diophantus' },
-    ],
+    question: L.questions[0].question as Record<string, string>,
+    options: L.questions[0].options as LocaleText[],
     correctAnswer: 1,
-    explanation: {
-      en: 'Brahmagupta (598–668 CE) was the first mathematician in history to formally define the rules of arithmetic with negative numbers in his Brahmasphutasiddhanta (628 CE). He laid out rules for adding, subtracting, multiplying, and dividing positive numbers ("dhana" — wealth), negative numbers ("rina" — debt), and zero. The Greek Diophantus encountered negative solutions but dismissed them as "absurd." Brahmagupta accepted them as full mathematical entities.',
-      hi: 'ब्रह्मगुप्त (598–668 ई.) इतिहास में पहले गणितज्ञ थे जिन्होंने अपने ब्रह्मस्फुटसिद्धान्त (628 ई.) में ऋण संख्याओं के साथ गणित के नियम औपचारिक रूप से परिभाषित किए। ग्रीक डायोफेन्टस को ऋण समाधान मिले लेकिन उन्होंने उन्हें "बेतुका" कहकर अस्वीकार कर दिया। ब्रह्मगुप्त ने उन्हें पूर्ण गणितीय सत्ताओं के रूप में स्वीकार किया।',
-    },
+    explanation: L.questions[0].explanation as Record<string, string>,
   },
   {
     id: 'q25_4_02', type: 'mcq',
-    question: {
-      en: 'What is the Sanskrit term Brahmagupta used for positive numbers?',
-      hi: 'ब्रह्मगुप्त ने धनात्मक संख्याओं के लिए कौन सा संस्कृत शब्द प्रयोग किया?',
-    },
-    options: [
-      { en: 'Rina (ऋण)', hi: 'ऋण', sa: 'ऋण', mai: 'ऋण', mr: 'ऋण', ta: 'Rina (ऋण)', te: 'Rina (ऋण)', bn: 'Rina (ऋण)', kn: 'Rina (ऋण)', gu: 'Rina (ऋण)' },
-      { en: 'Dhana (धन)', hi: 'धन', sa: 'धन', mai: 'धन', mr: 'धन', ta: 'Dhana (धन)', te: 'Dhana (धन)', bn: 'Dhana (धन)', kn: 'Dhana (धन)', gu: 'Dhana (धन)' },
-      { en: 'Shunya (शून्य)', hi: 'शून्य', sa: 'शून्य', mai: 'शून्य', mr: 'शून्य', ta: 'Shunya (शून्य)', te: 'Shunya (शून्य)', bn: 'Shunya (शून्य)', kn: 'Shunya (शून्य)', gu: 'Shunya (शून्य)' },
-      { en: 'Mithya (मिथ्या)', hi: 'मिथ्या', sa: 'मिथ्या', mai: 'मिथ्या', mr: 'मिथ्या', ta: 'Mithya (मिथ्या)', te: 'Mithya (मिथ्या)', bn: 'Mithya (मिथ्या)', kn: 'Mithya (मिथ्या)', gu: 'Mithya (मिथ्या)' },
-    ],
+    question: L.questions[1].question as Record<string, string>,
+    options: L.questions[1].options as LocaleText[],
     correctAnswer: 1,
-    explanation: {
-      en: '"Dhana" (धन) is the Sanskrit word meaning "wealth" or "assets" that Brahmagupta used for positive numbers. The accounting metaphor was deliberate: positive numbers represent assets you possess (dhana = wealth), and negative numbers represent debts you owe (rina = debt/negative). This practical framing — rooted in commerce and accounting — made negative numbers intuitively understandable in the Indian context, unlike in Greece where numbers had to be lengths and therefore couldn\'t be negative.',
-      hi: '"धन" संस्कृत शब्द है जिसका अर्थ "सम्पत्ति" या "परिसम्पत्ति" है, जिसे ब्रह्मगुप्त ने धनात्मक संख्याओं के लिए प्रयोग किया। लेखांकन रूपक जानबूझकर था: धनात्मक संख्याएँ आपके पास मौजूद परिसम्पत्तियों (धन) को और ऋण संख्याएँ आपके द्वारा देय ऋणों (ऋण) को दर्शाती हैं।',
-    },
+    explanation: L.questions[1].explanation as Record<string, string>,
   },
   {
     id: 'q25_4_03', type: 'mcq',
-    question: {
-      en: 'What is the Sanskrit term Brahmagupta used for negative numbers?',
-      hi: 'ब्रह्मगुप्त ने ऋण संख्याओं के लिए कौन सा संस्कृत शब्द प्रयोग किया?',
-    },
-    options: [
-      { en: 'Viyat (वियत्)', hi: 'वियत्', sa: 'वियत्', mai: 'वियत्', mr: 'वियत्', ta: 'Viyat (वियत्)', te: 'Viyat (वियत्)', bn: 'Viyat (वियत्)', kn: 'Viyat (वियत्)', gu: 'Viyat (वियत्)' },
-      { en: 'Ksaya (क्षय)', hi: 'क्षय', sa: 'क्षय', mai: 'क्षय', mr: 'क्षय', ta: 'Ksaya (क्षय)', te: 'Ksaya (क्षय)', bn: 'Ksaya (क्षय)', kn: 'Ksaya (क्षय)', gu: 'Ksaya (क्षय)' },
-      { en: 'Rina (ऋण)', hi: 'ऋण', sa: 'ऋण', mai: 'ऋण', mr: 'ऋण', ta: 'Rina (ऋण)', te: 'Rina (ऋण)', bn: 'Rina (ऋण)', kn: 'Rina (ऋण)', gu: 'Rina (ऋण)' },
-      { en: 'Apama (अपमा)', hi: 'अपमा', sa: 'अपमा', mai: 'अपमा', mr: 'अपमा', ta: 'Apama (अपमा)', te: 'Apama (अपमा)', bn: 'Apama (अपमा)', kn: 'Apama (अपमा)', gu: 'Apama (अपमा)' },
-    ],
+    question: L.questions[2].question as Record<string, string>,
+    options: L.questions[2].options as LocaleText[],
     correctAnswer: 2,
-    explanation: {
-      en: '"Rina" (ऋण) means "debt" in Sanskrit — the term Brahmagupta used for negative numbers. The word "rina" is still used in modern Hindi/Sanskrit to mean debt or loan. This monetary framing made negative numbers immediately practical: if you have 3 coins (dhana = +3) and owe 5 coins (rina = −5), your net worth is −2 (you are in debt). Commerce had used debts for millennia; Brahmagupta simply formalised the mathematics.',
-      hi: '"ऋण" संस्कृत में "कर्ज" का अर्थ रखता है — वह शब्द जो ब्रह्मगुप्त ने ऋण संख्याओं के लिए प्रयोग किया। "ऋण" आधुनिक हिन्दी/संस्कृत में अभी भी कर्ज का अर्थ रखता है। इस मौद्रिक रूपरेखा ने ऋण संख्याओं को तत्काल व्यावहारिक बना दिया: यदि आपके पास 3 सिक्के (धन = +3) हैं और आप 5 सिक्के देने हैं (ऋण = −5), तो आपकी शुद्ध सम्पत्ति −2 है।',
-    },
+    explanation: L.questions[2].explanation as Record<string, string>,
   },
   {
     id: 'q25_4_04', type: 'mcq',
-    question: {
-      en: 'What is the result of negative × negative according to Brahmagupta\'s rules?',
-      hi: 'ब्रह्मगुप्त के नियमों के अनुसार ऋण × ऋण का परिणाम क्या है?',
-    },
-    options: [
-      { en: 'Negative', hi: 'ऋण', sa: 'ऋण', mai: 'ऋण', mr: 'ऋण', ta: 'Negative', te: 'Negative', bn: 'Negative', kn: 'Negative', gu: 'Negative' },
-      { en: 'Zero', hi: 'शून्य', sa: 'शून्य', mai: 'शून्य', mr: 'शून्य', ta: 'Zero', te: 'Zero', bn: 'Zero', kn: 'Zero', gu: 'Zero' },
-      { en: 'Positive', hi: 'धन', sa: 'धन', mai: 'धन', mr: 'धन', ta: 'Positive', te: 'Positive', bn: 'Positive', kn: 'Positive', gu: 'Positive' },
-      { en: 'Undefined', hi: 'अपरिभाषित', sa: 'अपरिभाषित', mai: 'अपरिभाषित', mr: 'अपरिभाषित', ta: 'Undefined', te: 'Undefined', bn: 'Undefined', kn: 'Undefined', gu: 'Undefined' },
-    ],
+    question: L.questions[3].question as Record<string, string>,
+    options: L.questions[3].options as LocaleText[],
     correctAnswer: 2,
-    explanation: {
-      en: 'Brahmagupta correctly stated: rina (negative) × rina (negative) = dhana (positive). His debt-metaphor explanation: if you take away a debt (negate a negative), you gain wealth. Modern algebra confirms: (−a)(−b) = +ab. This rule, which many students find counterintuitive today, was stated clearly by Brahmagupta in 628 CE. European mathematicians debated this rule until the 18th century, with some calling the rule "absurd."',
-      hi: 'ब्रह्मगुप्त ने सही कहा: ऋण × ऋण = धन। उनका ऋण-रूपक: यदि आप एक ऋण हटाते हैं (ऋण का निषेध), तो आपको सम्पत्ति मिलती है। आधुनिक बीजगणित पुष्टि करता है: (−a)(−b) = +ab। यह नियम ब्रह्मगुप्त ने 628 ई. में स्पष्ट रूप से बताया था। यूरोपीय गणितज्ञों ने 18वीं शताब्दी तक इस नियम पर बहस की।',
-    },
+    explanation: L.questions[3].explanation as Record<string, string>,
   },
   {
     id: 'q25_4_05', type: 'mcq',
-    question: {
-      en: 'Who called negative roots of equations "false numbers" (numeri falsi)?',
-      hi: 'किसने समीकरणों के ऋण मूलों को "असत्य संख्याएँ" (numeri falsi) कहा?',
-    },
-    options: [
-      { en: 'Isaac Newton', hi: 'आइज़ैक न्यूटन', sa: 'आइज़ैक न्यूटन', mai: 'आइज़ैक न्यूटन', mr: 'आइज़ैक न्यूटन', ta: 'Isaac Newton', te: 'Isaac Newton', bn: 'Isaac Newton', kn: 'Isaac Newton', gu: 'Isaac Newton' },
-      { en: 'René Descartes', hi: 'रेने देकार्त', sa: 'रेने देकार्त', mai: 'रेने देकार्त', mr: 'रेने देकार्त', ta: 'René Descartes', te: 'René Descartes', bn: 'René Descartes', kn: 'René Descartes', gu: 'René Descartes' },
-      { en: 'Blaise Pascal', hi: 'ब्लेज़ पास्कल', sa: 'ब्लेज़ पास्कल', mai: 'ब्लेज़ पास्कल', mr: 'ब्लेज़ पास्कल', ta: 'Blaise Pascal', te: 'Blaise Pascal', bn: 'Blaise Pascal', kn: 'Blaise Pascal', gu: 'Blaise Pascal' },
-      { en: 'John Wallis', hi: 'जॉन वालिस', sa: 'जॉन वालिस', mai: 'जॉन वालिस', mr: 'जॉन वालिस', ta: 'John Wallis', te: 'John Wallis', bn: 'John Wallis', kn: 'John Wallis', gu: 'John Wallis' },
-    ],
+    question: L.questions[4].question as Record<string, string>,
+    options: L.questions[4].options as LocaleText[],
     correctAnswer: 1,
-    explanation: {
-      en: 'René Descartes (1596–1650), in his 1637 work "La Géométrie," called negative roots of polynomial equations "false roots" (fausses racines / numeri falsi). This was over 1000 years after Brahmagupta had fully formalised negative number arithmetic. Even Leibniz (1646–1716) expressed discomfort with negative numbers. The formal acceptance of negative numbers in European mathematics came only in the 18th–19th centuries, with the development of rigorous number theory.',
-      hi: 'रेने देकार्त (1596–1650) ने 1637 में "ला ज्योमेट्री" में बहुपद समीकरणों के ऋण मूलों को "असत्य मूल" (fausses racines / numeri falsi) कहा। यह ब्रह्मगुप्त द्वारा ऋण संख्या गणित के पूर्ण औपचारिककरण के 1000+ वर्ष बाद था। यूरोपीय गणित में ऋण संख्याओं की औपचारिक स्वीकृति 18वीं-19वीं शताब्दी में आई।',
-    },
+    explanation: L.questions[4].explanation as Record<string, string>,
   },
   {
     id: 'q25_4_06', type: 'mcq',
-    question: {
-      en: 'What was the practical origin that made negative numbers intuitive in Indian mathematics?',
-      hi: 'वह व्यावहारिक उत्पत्ति क्या थी जिसने भारतीय गणित में ऋण संख्याओं को सहज बनाया?',
-    },
-    options: [
-      { en: 'Measuring negative temperatures', hi: 'ऋण तापमान मापना', sa: 'ऋण तापमान मापना', mai: 'ऋण तापमान मापना', mr: 'ऋण तापमान मापना', ta: 'Measuring negative temperatures', te: 'Measuring negative temperatures', bn: 'Measuring negative temperatures', kn: 'Measuring negative temperatures', gu: 'Measuring negative temperatures' },
-      { en: 'Accounting and debt in commerce', hi: 'वाणिज्य में लेखांकन और ऋण', sa: 'वाणिज्य में लेखांकन और ऋण', mai: 'वाणिज्य में लेखांकन और ऋण', mr: 'वाणिज्य में लेखांकन और ऋण', ta: 'Accounting and debt in commerce', te: 'Accounting and debt in commerce', bn: 'Accounting and debt in commerce', kn: 'Accounting and debt in commerce', gu: 'Accounting and debt in commerce' },
-      { en: 'Representing underground depths', hi: 'भूमिगत गहराई दर्शाना', sa: 'भूमिगत गहराई दर्शाना', mai: 'भूमिगत गहराई दर्शाना', mr: 'भूमिगत गहराई दर्शाना', ta: 'Representing underground depths', te: 'Representing underground depths', bn: 'Representing underground depths', kn: 'Representing underground depths', gu: 'Representing underground depths' },
-      { en: 'Astronomical retrograde motion', hi: 'खगोलीय वक्री गति', sa: 'खगोलीय वक्री गति', mai: 'खगोलीय वक्री गति', mr: 'खगोलीय वक्री गति', ta: 'Astronomical retrograde motion', te: 'Astronomical retrograde motion', bn: 'Astronomical retrograde motion', kn: 'Astronomical retrograde motion', gu: 'Astronomical retrograde motion' },
-    ],
+    question: L.questions[5].question as Record<string, string>,
+    options: L.questions[5].options as LocaleText[],
     correctAnswer: 1,
-    explanation: {
-      en: 'The practical origin of negative numbers in India was accounting and debt in commerce. Indian merchants had been recording debts (rina = what you owe) and assets (dhana = what you have) for centuries before Brahmagupta. The natural question — "what is your net worth if your debts exceed your assets?" — required negative numbers. Greek mathematics, by contrast, was heavily geometric (numbers as lengths), which made negative lengths physically meaningless and blocked acceptance.',
-      hi: 'भारत में ऋण संख्याओं की व्यावहारिक उत्पत्ति वाणिज्य में लेखांकन और ऋण था। ब्रह्मगुप्त से सदियों पहले भारतीय व्यापारी ऋण (ऋण = जो देना है) और परिसम्पत्ति (धन = जो पास है) रिकॉर्ड करते थे। ग्रीक गणित, इसके विपरीत, अत्यधिक ज्यामितीय था (संख्याएँ लम्बाई के रूप में), जिसने ऋण लम्बाइयों को भौतिक रूप से अर्थहीन बना दिया।',
-    },
+    explanation: L.questions[5].explanation as Record<string, string>,
   },
   {
     id: 'q25_4_07', type: 'mcq',
-    question: {
-      en: 'In what year did Brahmagupta publish his rules for negative numbers?',
-      hi: 'ब्रह्मगुप्त ने ऋण संख्याओं के अपने नियम किस वर्ष प्रकाशित किए?',
-    },
-    options: [
-      { en: '476 CE', hi: '476 ई.', sa: '476 ई.', mai: '476 ई.', mr: '476 ई.', ta: '476 CE', te: '476 CE', bn: '476 CE', kn: '476 CE', gu: '476 CE' },
-      { en: '499 CE', hi: '499 ई.', sa: '499 ई.', mai: '499 ई.', mr: '499 ई.', ta: '499 CE', te: '499 CE', bn: '499 CE', kn: '499 CE', gu: '499 CE' },
-      { en: '628 CE', hi: '628 ई.', sa: '628 ई.', mai: '628 ई.', mr: '628 ई.', ta: '628 CE', te: '628 CE', bn: '628 CE', kn: '628 CE', gu: '628 CE' },
-      { en: '850 CE', hi: '850 ई.', sa: '850 ई.', mai: '850 ई.', mr: '850 ई.', ta: '850 CE', te: '850 CE', bn: '850 CE', kn: '850 CE', gu: '850 CE' },
-    ],
+    question: L.questions[6].question as Record<string, string>,
+    options: L.questions[6].options as LocaleText[],
     correctAnswer: 2,
-    explanation: {
-      en: '628 CE — the year Brahmagupta completed the Brahmasphutasiddhanta. This text contains the world\'s first formal rules for negative number arithmetic. The Brahmasphutasiddhanta also contains his zero rules (Module 25-1), Pythagorean triples, and what is now called "Brahmagupta\'s formula" for cyclic quadrilaterals. All in one text, 628 CE — a remarkable achievement in the history of mathematics.',
-      hi: '628 ई. — वह वर्ष जब ब्रह्मगुप्त ने ब्रह्मस्फुटसिद्धान्त पूरा किया। इस ग्रन्थ में ऋण संख्या गणित के विश्व के पहले औपचारिक नियम हैं। ब्रह्मस्फुटसिद्धान्त में उनके शून्य नियम (मॉड्यूल 25-1), पाइथागोरस त्रिक, और जिसे अब "ब्रह्मगुप्त का सूत्र" (चक्रीय चतुर्भुज के लिए) कहते हैं, भी हैं।',
-    },
+    explanation: L.questions[6].explanation as Record<string, string>,
   },
   {
     id: 'q25_4_08', type: 'mcq',
-    question: {
-      en: 'Which Indian mathematician extended Brahmagupta\'s rules for negative numbers in the 9th century?',
-      hi: 'किस भारतीय गणितज्ञ ने 9वीं शताब्दी में ब्रह्मगुप्त के ऋण संख्या नियमों का विस्तार किया?',
-    },
-    options: [
-      { en: 'Aryabhata II', hi: 'आर्यभट द्वितीय', sa: 'आर्यभट द्वितीय', mai: 'आर्यभट द्वितीय', mr: 'आर्यभट द्वितीय', ta: 'Aryabhata II', te: 'Aryabhata II', bn: 'Aryabhata II', kn: 'Aryabhata II', gu: 'Aryabhata II' },
-      { en: 'Mahavira', hi: 'महावीर', sa: 'महावीर', mai: 'महावीर', mr: 'महावीर', ta: 'Mahavira', te: 'Mahavira', bn: 'Mahavira', kn: 'Mahavira', gu: 'Mahavira' },
-      { en: 'Bhaskara I', hi: 'भास्कर प्रथम', sa: 'भास्कर प्रथम', mai: 'भास्कर प्रथम', mr: 'भास्कर प्रथम', ta: 'Bhaskara I', te: 'Bhaskara I', bn: 'Bhaskara I', kn: 'Bhaskara I', gu: 'Bhaskara I' },
-      { en: 'Sridharacharya', hi: 'श्रीधराचार्य', sa: 'श्रीधराचार्य', mai: 'श्रीधराचार्य', mr: 'श्रीधराचार्य', ta: 'Sridharacharya', te: 'Sridharacharya', bn: 'Sridharacharya', kn: 'Sridharacharya', gu: 'Sridharacharya' },
-    ],
+    question: L.questions[7].question as Record<string, string>,
+    options: L.questions[7].options as LocaleText[],
     correctAnswer: 1,
-    explanation: {
-      en: 'Mahavira (9th century CE), a Jain mathematician, extended and refined Brahmagupta\'s work on negative numbers in his Ganitasarasangraha (~850 CE). He worked extensively with what he called "negative quantities" in the context of algebra and geometric progressions. Mahavira also worked on square roots of negative numbers — anticipating complex numbers — though he ultimately declared that the square root of a negative number "does not exist" (not yet grasping the complex number concept).',
-      hi: 'महावीर (9वीं शताब्दी ई.), एक जैन गणितज्ञ, ने अपने गणितसारसंग्रह (~850 ई.) में ब्रह्मगुप्त के ऋण संख्याओं के कार्य का विस्तार और परिशोधन किया। उन्होंने बीजगणित और ज्यामितीय श्रेढ़ी के संदर्भ में "ऋण राशियों" के साथ व्यापक कार्य किया। महावीर ने ऋण संख्याओं के वर्गमूल पर भी काम किया — जटिल संख्याओं की आशा करते हुए।',
-    },
+    explanation: L.questions[7].explanation as Record<string, string>,
   },
   {
     id: 'q25_4_09', type: 'true_false',
-    question: {
-      en: 'European mathematicians readily accepted negative numbers once they were introduced via Arabic translations of Indian texts.',
-      hi: 'भारतीय ग्रन्थों के अरबी अनुवादों के माध्यम से प्रस्तुत होने के बाद यूरोपीय गणितज्ञों ने ऋण संख्याओं को आसानी से स्वीकार कर लिया।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. European resistance to negative numbers was intense and prolonged. Even after Arabic texts introduced them in the 12th century, many European mathematicians rejected them. Francis Maseres (1759) called negative numbers "fictitious." René Descartes (1637) called them "false roots." William Frend (1796) wrote a treatise rejecting negative numbers entirely. The formal acceptance of negative numbers as legitimate mathematical objects only came with the development of rigorous algebra in the 19th century.',
-      hi: 'असत्य। ऋण संख्याओं के प्रति यूरोपीय प्रतिरोध तीव्र और लम्बे समय तक रहा। 12वीं शताब्दी में अरबी ग्रन्थों के माध्यम से उन्हें प्रस्तुत किए जाने के बाद भी, कई यूरोपीय गणितज्ञों ने उन्हें अस्वीकार किया। फ्रांसिस मेसरेस (1759) ने उन्हें "काल्पनिक" कहा। देकार्त (1637) ने उन्हें "असत्य मूल" कहा। ऋण संख्याओं की औपचारिक स्वीकृति 19वीं शताब्दी में आई।',
-    },
+    question: L.questions[8].question as Record<string, string>,
+    correctAnswer: 0,
+    explanation: L.questions[8].explanation as Record<string, string>,
   },
   {
     id: 'q25_4_10', type: 'true_false',
-    question: {
-      en: 'Mahavira (9th century CE) extended Brahmagupta\'s rules on negative numbers and worked with them in the context of algebra and geometric progressions.',
-      hi: 'महावीर (9वीं शताब्दी ई.) ने ब्रह्मगुप्त के ऋण संख्या नियमों का विस्तार किया और बीजगणित तथा ज्यामितीय श्रेढ़ी के संदर्भ में उनके साथ काम किया।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Mahavira\'s Ganitasarasangraha (~850 CE) explicitly extended and refined Brahmagupta\'s work. Mahavira applied negative quantities to problems in series, permutations, combinations, and algebra. He also grappled with square roots of negative numbers — an early encounter with what would later become complex numbers. While he concluded that negative numbers "have no square root" (missing the complex number insight), his systematic treatment of negative arithmetic was a significant advance over Brahmagupta.',
-      hi: 'सत्य। महावीर के गणितसारसंग्रह (~850 ई.) ने ब्रह्मगुप्त के कार्य का स्पष्ट रूप से विस्तार और परिशोधन किया। महावीर ने श्रेढ़ी, क्रमचय, संचय और बीजगणित में ऋण राशियों को लागू किया। उन्होंने ऋण संख्याओं के वर्गमूल के साथ भी संघर्ष किया — जो जटिल संख्याओं से एक प्रारम्भिक मुठभेड़ थी।',
-    },
+    question: L.questions[9].question as Record<string, string>,
+    correctAnswer: 0,
+    explanation: L.questions[9].explanation as Record<string, string>,
   },
 ];
 

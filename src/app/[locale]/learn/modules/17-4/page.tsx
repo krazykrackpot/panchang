@@ -2,190 +2,19 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/17-4.json';
 
 const META: ModuleMeta = {
   id: 'mod_17_4', phase: 5, topic: 'Muhurta', moduleNumber: '17.4',
-  title: {
-    en: 'Muhurta for Education & Naming',
-    hi: 'शिक्षा एवं नामकरण मुहूर्त',
-  },
-  subtitle: {
-    en: 'Vidyarambha (beginning education), Namakarana (naming ceremony), and Upanayana (sacred thread) — nakshatras, syllables, and seasonal rules',
-    hi: 'विद्यारम्भ (शिक्षा आरम्भ), नामकरण (नाम संस्कार), और उपनयन (यज्ञोपवीत) — नक्षत्र, अक्षर, और ऋतु नियम',
-  },
+  title: L.title as unknown as ModuleMeta['title'],
+  subtitle: L.subtitle as unknown as ModuleMeta['subtitle'],
   estimatedMinutes: 15,
-  crossRefs: [
-    { label: { en: 'Module 17-1: The Science of Timing', hi: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान', sa: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान', mai: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान', mr: 'मॉड्यूल 17-1: समय निर्धारण का विज्ञान', ta: 'Module 17-1: The Science of Timing', te: 'Module 17-1: The Science of Timing', bn: 'Module 17-1: The Science of Timing', kn: 'Module 17-1: The Science of Timing', gu: 'Module 17-1: The Science of Timing' }, href: '/learn/modules/17-1' },
-    { label: { en: 'Module 17-2: Muhurta for Marriage', hi: 'मॉड्यूल 17-2: विवाह मुहूर्त', sa: 'मॉड्यूल 17-2: विवाह मुहूर्त', mai: 'मॉड्यूल 17-2: विवाह मुहूर्त', mr: 'मॉड्यूल 17-2: विवाह मुहूर्त', ta: 'Module 17-2: Muhurta for Marriage', te: 'Module 17-2: Muhurta for Marriage', bn: 'Module 17-2: Muhurta for Marriage', kn: 'Module 17-2: Muhurta for Marriage', gu: 'Module 17-2: Muhurta for Marriage' }, href: '/learn/modules/17-2' },
-    { label: { en: 'Module 17-3: Muhurta for Property & Travel', hi: 'मॉड्यूल 17-3: सम्पत्ति एवं यात्रा मुहूर्त', sa: 'मॉड्यूल 17-3: सम्पत्ति एवं यात्रा मुहूर्त', mai: 'मॉड्यूल 17-3: सम्पत्ति एवं यात्रा मुहूर्त', mr: 'मॉड्यूल 17-3: सम्पत्ति एवं यात्रा मुहूर्त', ta: 'Module 17-3: Muhurta for Property & Travel', te: 'Module 17-3: Muhurta for Property & Travel', bn: 'Module 17-3: Muhurta for Property & Travel', kn: 'Module 17-3: Muhurta for Property & Travel', gu: 'Module 17-3: Muhurta for Property & Travel' }, href: '/learn/modules/17-3' },
-    { label: { en: 'Baby Names Tool', hi: 'शिशु नाम उपकरण', sa: 'शिशु नाम उपकरण', mai: 'शिशु नाम उपकरण', mr: 'शिशु नाम उपकरण', ta: 'Baby Names Tool', te: 'Baby Names Tool', bn: 'Baby Names Tool', kn: 'Baby Names Tool', gu: 'Baby Names Tool' }, href: '/baby-names' },
-  ],
+  crossRefs: (L.crossRefs as unknown as Array<{ label: ModuleMeta['title']; href: string }>).map(cr => ({ label: cr.label, href: cr.href })),
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q17_4_01', type: 'mcq',
-    question: {
-      en: 'Which days of the week are ideal for Vidyarambha (beginning education)?',
-      hi: 'विद्यारम्भ (शिक्षा आरम्भ) के लिए सप्ताह के कौन-से दिन आदर्श हैं?',
-    },
-    options: [
-      { en: 'Saturday and Tuesday', hi: 'शनिवार और मंगलवार', sa: 'शनिवार और मंगलवार', mai: 'शनिवार और मंगलवार', mr: 'शनिवार और मंगलवार', ta: 'Saturday and Tuesday', te: 'Saturday and Tuesday', bn: 'Saturday and Tuesday', kn: 'Saturday and Tuesday', gu: 'Saturday and Tuesday' },
-      { en: 'Wednesday and Thursday', hi: 'बुधवार और गुरुवार', sa: 'बुधवार और गुरुवार', mai: 'बुधवार और गुरुवार', mr: 'बुधवार और गुरुवार', ta: 'Wednesday and Thursday', te: 'Wednesday and Thursday', bn: 'Wednesday and Thursday', kn: 'Wednesday and Thursday', gu: 'Wednesday and Thursday' },
-      { en: 'Sunday and Monday', hi: 'रविवार और सोमवार', sa: 'रविवार और सोमवार', mai: 'रविवार और सोमवार', mr: 'रविवार और सोमवार', ta: 'Sunday and Monday', te: 'Sunday and Monday', bn: 'Sunday and Monday', kn: 'Sunday and Monday', gu: 'Sunday and Monday' },
-      { en: 'Friday only', hi: 'केवल शुक्रवार', sa: 'केवल शुक्रवार', mai: 'केवल शुक्रवार', mr: 'केवल शुक्रवार', ta: 'Friday only', te: 'Friday only', bn: 'Friday only', kn: 'Friday only', gu: 'Friday only' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Wednesday (ruled by Mercury — the planet of intellect, communication, and learning) and Thursday (ruled by Jupiter — the planet of wisdom, knowledge, and the guru) are the ideal days for beginning education. Both planets directly govern the learning process.',
-      hi: 'बुधवार (बुध — बुद्धि, संवाद और शिक्षा का ग्रह) और गुरुवार (बृहस्पति — ज्ञान, विद्या और गुरु का ग्रह) शिक्षा आरम्भ के लिए आदर्श दिन हैं। दोनों ग्रह सीधे शिक्षण प्रक्रिया का शासन करते हैं।',
-    },
-  },
-  {
-    id: 'q17_4_02', type: 'mcq',
-    question: {
-      en: 'Which planets should be strong for Vidyarambha muhurta?',
-      hi: 'विद्यारम्भ मुहूर्त के लिए कौन-से ग्रह बलवान होने चाहिएँ?',
-    },
-    options: [
-      { en: 'Mars and Saturn', hi: 'मंगल और शनि', sa: 'मंगल और शनि', mai: 'मंगल और शनि', mr: 'मंगल और शनि', ta: 'Mars and Saturn', te: 'Mars and Saturn', bn: 'Mars and Saturn', kn: 'Mars and Saturn', gu: 'Mars and Saturn' },
-      { en: 'Mercury and Jupiter', hi: 'बुध और बृहस्पति', sa: 'बुध और बृहस्पति', mai: 'बुध और बृहस्पति', mr: 'बुध और बृहस्पति', ta: 'Mercury and Jupiter', te: 'Mercury and Jupiter', bn: 'Mercury and Jupiter', kn: 'Mercury and Jupiter', gu: 'Mercury and Jupiter' },
-      { en: 'Venus and Rahu', hi: 'शुक्र और राहु', sa: 'शुक्र और राहु', mai: 'शुक्र और राहु', mr: 'शुक्र और राहु', ta: 'Venus and Rahu', te: 'Venus and Rahu', bn: 'Venus and Rahu', kn: 'Venus and Rahu', gu: 'Venus and Rahu' },
-      { en: 'Sun and Ketu', hi: 'सूर्य और केतु', sa: 'सूर्य और केतु', mai: 'सूर्य और केतु', mr: 'सूर्य और केतु', ta: 'Sun and Ketu', te: 'Sun and Ketu', bn: 'Sun and Ketu', kn: 'Sun and Ketu', gu: 'Sun and Ketu' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Mercury (Budha) governs intellect, speech, and analytical ability. Jupiter (Guru) governs wisdom, higher knowledge, and the teacher-student relationship. Both should be strong — not debilitated, combust, or in dusthana houses — for the child to thrive in education.',
-      hi: 'बुध बुद्धि, वाणी और विश्लेषणात्मक क्षमता का शासन करता है। बृहस्पति ज्ञान, उच्च विद्या और गुरु-शिष्य सम्बन्ध का शासन करता है। दोनों बलवान होने चाहिएँ — नीच, अस्त, या दुष्टस्थान में नहीं।',
-    },
-  },
-  {
-    id: 'q17_4_03', type: 'true_false',
-    question: {
-      en: 'Vasanta Panchami and Akshaya Tritiya are considered especially auspicious for Vidyarambha.',
-      hi: 'वसन्त पञ्चमी और अक्षय तृतीया विद्यारम्भ के लिए विशेष रूप से शुभ मानी जाती हैं।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Vasanta Panchami is the festival of Saraswati (goddess of learning) — the most auspicious day to begin education. Akshaya Tritiya is a self-auspicious day (swayam-siddha muhurta) where any activity begun yields lasting results. Both are traditional choices for children\'s first lessons.',
-      hi: 'सत्य। वसन्त पञ्चमी सरस्वती (विद्या की देवी) का उत्सव है — शिक्षा आरम्भ के लिए सर्वाधिक शुभ दिन। अक्षय तृतीया स्वयंसिद्ध मुहूर्त है जहाँ कोई भी आरम्भ किया गया कार्य स्थायी परिणाम देता है। दोनों बालकों के प्रथम पाठ के लिए पारम्परिक विकल्प हैं।',
-    },
-  },
-  {
-    id: 'q17_4_04', type: 'mcq',
-    question: {
-      en: 'Which houses should be emphasized for Vidyarambha in the muhurta chart?',
-      hi: 'मुहूर्त कुण्डली में विद्यारम्भ के लिए कौन-से भावों पर बल दिया जाना चाहिए?',
-    },
-    options: [
-      { en: '6th and 8th', hi: '6वाँ और 8वाँ', sa: '6वाँ और 8वाँ', mai: '6वाँ और 8वाँ', mr: '6वाँ और 8वाँ', ta: '6th and 8th', te: '6th and 8th', bn: '6th and 8th', kn: '6th and 8th', gu: '6th and 8th' },
-      { en: '2nd and 5th', hi: '2रा और 5वाँ', sa: '2रा और 5वाँ', mai: '2रा और 5वाँ', mr: '2रा और 5वाँ', ta: '2nd and 5th', te: '2nd and 5th', bn: '2nd and 5th', kn: '2nd and 5th', gu: '2nd and 5th' },
-      { en: '7th and 12th', hi: '7वाँ और 12वाँ', sa: '7वाँ और 12वाँ', mai: '7वाँ और 12वाँ', mr: '7वाँ और 12वाँ', ta: '7th and 12th', te: '7th and 12th', bn: '7th and 12th', kn: '7th and 12th', gu: '7th and 12th' },
-      { en: '3rd and 11th', hi: '3रा और 11वाँ', sa: '3रा और 11वाँ', mai: '3रा और 11वाँ', mr: '3रा और 11वाँ', ta: '3rd and 11th', te: '3rd and 11th', bn: '3rd and 11th', kn: '3rd and 11th', gu: '3rd and 11th' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The 2nd house governs speech, early education, and accumulated knowledge. The 5th house governs intelligence, creativity, and higher learning. Both should have benefic influence — strong house lords, benefic aspects, or benefic planet placement — for educational success.',
-      hi: '2रा भाव वाणी, प्रारम्भिक शिक्षा और संचित ज्ञान का शासन करता है। 5वाँ भाव बुद्धि, सृजनशीलता और उच्च शिक्षा का शासन करता है। दोनों में शुभ प्रभाव होना चाहिए — बलवान भावेश, शुभ दृष्टि, या शुभ ग्रह स्थिति।',
-    },
-  },
-  {
-    id: 'q17_4_05', type: 'mcq',
-    question: {
-      en: 'When is the Namakarana (naming ceremony) traditionally performed?',
-      hi: 'नामकरण संस्कार पारम्परिक रूप से कब सम्पन्न किया जाता है?',
-    },
-    options: [
-      { en: 'Immediately at birth', hi: 'जन्म के तुरन्त बाद', sa: 'जन्म के तुरन्त बाद', mai: 'जन्म के तुरन्त बाद', mr: 'जन्म के तुरन्त बाद', ta: 'Immediately at birth', te: 'Immediately at birth', bn: 'Immediately at birth', kn: 'Immediately at birth', gu: 'Immediately at birth' },
-      { en: 'On the 11th or 12th day after birth', hi: 'जन्म के 11वें या 12वें दिन', sa: 'जन्म के 11वें या 12वें दिन', mai: 'जन्म के 11वें या 12वें दिन', mr: 'जन्म के 11वें या 12वें दिन', ta: 'On the 11th or 12th day after birth', te: 'On the 11th or 12th day after birth', bn: 'On the 11th or 12th day after birth', kn: 'On the 11th or 12th day after birth', gu: 'On the 11th or 12th day after birth' },
-      { en: 'On the first birthday', hi: 'प्रथम जन्मदिन पर', sa: 'प्रथम जन्मदिन पर', mai: 'प्रथम जन्मदिन पर', mr: 'प्रथम जन्मदिन पर', ta: 'On the first birthday', te: 'On the first birthday', bn: 'On the first birthday', kn: 'On the first birthday', gu: 'On the first birthday' },
-      { en: 'On the 40th day', hi: '40वें दिन', sa: '40वें दिन', mai: '40वें दिन', mr: '40वें दिन', ta: 'On the 40th day', te: 'On the 40th day', bn: 'On the 40th day', kn: 'On the 40th day', gu: 'On the 40th day' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Namakarana ceremony is traditionally performed on the 11th or 12th day after birth. By this time, the mother has completed the initial post-birth purification period, and the child\'s birth chart has been cast. The name\'s first syllable is determined by the birth nakshatra pada.',
-      hi: 'नामकरण संस्कार पारम्परिक रूप से जन्म के 11वें या 12वें दिन सम्पन्न किया जाता है। इस समय तक माता ने प्रसवोत्तर शुद्धिकाल पूर्ण कर लिया होता है, और शिशु की जन्म कुण्डली बना ली गई होती है। नाम का प्रथम अक्षर जन्म नक्षत्र पाद से निर्धारित होता है।',
-    },
-  },
-  {
-    id: 'q17_4_06', type: 'mcq',
-    question: {
-      en: 'In Namakarana, the first syllable of the name comes from:',
-      hi: 'नामकरण में नाम का प्रथम अक्षर किससे आता है?',
-    },
-    options: [
-      { en: 'The father\'s name', hi: 'पिता के नाम से' },
-      { en: 'The birth nakshatra\'s pada (4 syllables per nakshatra)', hi: 'जन्म नक्षत्र के पाद से (प्रत्येक नक्षत्र में 4 अक्षर)' },
-      { en: 'Random selection by the priest', hi: 'पुरोहित द्वारा यादृच्छिक चयन', sa: 'पुरोहित द्वारा यादृच्छिक चयन', mai: 'पुरोहित द्वारा यादृच्छिक चयन', mr: 'पुरोहित द्वारा यादृच्छिक चयन', ta: 'Random selection by the priest', te: 'Random selection by the priest', bn: 'Random selection by the priest', kn: 'Random selection by the priest', gu: 'Random selection by the priest' },
-      { en: 'The weekday of birth', hi: 'जन्म के वार से', sa: 'जन्म के वार से', mai: 'जन्म के वार से', mr: 'जन्म के वार से', ta: 'The weekday of birth', te: 'The weekday of birth', bn: 'The weekday of birth', kn: 'The weekday of birth', gu: 'The weekday of birth' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Each nakshatra has 4 padas, and each pada is assigned a specific syllable. For example, Ashwini: pada 1 = "Chu", pada 2 = "Che", pada 3 = "Cho", pada 4 = "La". The child\'s name should begin with the syllable of their birth nakshatra pada. Our baby-names tool implements this system.',
-      hi: 'प्रत्येक नक्षत्र में 4 पाद हैं, और प्रत्येक पाद को एक विशिष्ट अक्षर दिया गया है। उदाहरणार्थ, अश्विनी: पाद 1 = "चु", पाद 2 = "चे", पाद 3 = "चो", पाद 4 = "ला"। शिशु का नाम उनके जन्म नक्षत्र पाद के अक्षर से आरम्भ होना चाहिए।',
-    },
-  },
-  {
-    id: 'q17_4_07', type: 'true_false',
-    question: {
-      en: 'Rahu Kaal should be avoided during the Namakarana ceremony.',
-      hi: 'नामकरण संस्कार के दौरान राहु काल से बचना चाहिए।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Rahu Kaal is avoided for all auspicious ceremonies including Namakarana. Additionally, the Moon should be strong (not in 8th or 12th house from natal Moon), and a shubha nakshatra should be running at the time of the ceremony.',
-      hi: 'सत्य। नामकरण सहित सभी शुभ संस्कारों में राहु काल से बचा जाता है। इसके अतिरिक्त, चन्द्रमा बलवान होना चाहिए (जन्म चन्द्र से 8वें या 12वें भाव में नहीं), और संस्कार के समय शुभ नक्षत्र चल रहा होना चाहिए।',
-    },
-  },
-  {
-    id: 'q17_4_08', type: 'mcq',
-    question: {
-      en: 'Upanayana (sacred thread ceremony) should ideally be performed when the Sun is in:',
-      hi: 'उपनयन (यज्ञोपवीत संस्कार) आदर्श रूप से तब सम्पन्न होना चाहिए जब सूर्य किसमें हो:',
-    },
-    options: [
-      { en: 'Dakshinayana (Sun moving southward)', hi: 'दक्षिणायन (सूर्य दक्षिणगामी)', sa: 'दक्षिणायन (सूर्य दक्षिणगामी)', mai: 'दक्षिणायन (सूर्य दक्षिणगामी)', mr: 'दक्षिणायन (सूर्य दक्षिणगामी)', ta: 'Dakshinayana (Sun moving southward)', te: 'Dakshinayana (Sun moving southward)', bn: 'Dakshinayana (Sun moving southward)', kn: 'Dakshinayana (Sun moving southward)', gu: 'Dakshinayana (Sun moving southward)' },
-      { en: 'Uttarayana (Sun moving northward, January-June)', hi: 'उत्तरायण (सूर्य उत्तरगामी, जनवरी-जून)', sa: 'उत्तरायण (सूर्य उत्तरगामी, जनवरी-जून)', mai: 'उत्तरायण (सूर्य उत्तरगामी, जनवरी-जून)', mr: 'उत्तरायण (सूर्य उत्तरगामी, जनवरी-जून)', ta: 'Uttarayana (Sun moving northward, January-June)', te: 'Uttarayana (Sun moving northward, January-June)', bn: 'Uttarayana (Sun moving northward, January-June)', kn: 'Uttarayana (Sun moving northward, January-June)', gu: 'Uttarayana (Sun moving northward, January-June)' },
-      { en: 'During an eclipse', hi: 'ग्रहण के दौरान', sa: 'ग्रहण के दौरान', mai: 'ग्रहण के दौरान', mr: 'ग्रहण के दौरान', ta: 'During an eclipse', te: 'During an eclipse', bn: 'During an eclipse', kn: 'During an eclipse', gu: 'During an eclipse' },
-      { en: 'Any time of year', hi: 'वर्ष का कोई भी समय', sa: 'वर्ष का कोई भी समय', mai: 'वर्ष का कोई भी समय', mr: 'वर्ष का कोई भी समय', ta: 'Any time of year', te: 'Any time of year', bn: 'Any time of year', kn: 'Any time of year', gu: 'Any time of year' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Uttarayana (the Sun\'s northward journey, roughly January to June) is the auspicious half of the year for Upanayana. The Sun is associated with Atman (soul) and spiritual initiation. Its northward movement symbolizes ascending consciousness — appropriate for this spiritual milestone.',
-      hi: 'उत्तरायण (सूर्य की उत्तरगामी यात्रा, लगभग जनवरी से जून) उपनयन के लिए वर्ष का शुभ अर्धभाग है। सूर्य आत्मा और आध्यात्मिक दीक्षा से जुड़ा है। इसकी उत्तरगामी गति आरोही चेतना का प्रतीक है — इस आध्यात्मिक मील के पत्थर के लिए उपयुक्त।',
-    },
-  },
-  {
-    id: 'q17_4_09', type: 'mcq',
-    question: {
-      en: 'Which nakshatras are recommended for Upanayana?',
-      hi: 'उपनयन के लिए कौन-से नक्षत्र अनुशंसित हैं?',
-    },
-    options: [
-      { en: 'Ardra, Ashlesha, Bharani', hi: 'आर्द्रा, आश्लेषा, भरणी', sa: 'आर्द्रा, आश्लेषा, भरणी', mai: 'आर्द्रा, आश्लेषा, भरणी', mr: 'आर्द्रा, आश्लेषा, भरणी', ta: 'Ardra, Ashlesha, Bharani', te: 'Ardra, Ashlesha, Bharani', bn: 'Ardra, Ashlesha, Bharani', kn: 'Ardra, Ashlesha, Bharani', gu: 'Ardra, Ashlesha, Bharani' },
-      { en: 'Hasta, Chitra, Swati, Pushya, Dhanishtha, Shravana', hi: 'हस्त, चित्रा, स्वाति, पुष्य, धनिष्ठा, श्रवण', sa: 'हस्त, चित्रा, स्वाति, पुष्य, धनिष्ठा, श्रवण', mai: 'हस्त, चित्रा, स्वाति, पुष्य, धनिष्ठा, श्रवण', mr: 'हस्त, चित्रा, स्वाति, पुष्य, धनिष्ठा, श्रवण', ta: 'Hasta, Chitra, Swati, Pushya, Dhanishtha, Shravana', te: 'Hasta, Chitra, Swati, Pushya, Dhanishtha, Shravana', bn: 'Hasta, Chitra, Swati, Pushya, Dhanishtha, Shravana', kn: 'Hasta, Chitra, Swati, Pushya, Dhanishtha, Shravana', gu: 'Hasta, Chitra, Swati, Pushya, Dhanishtha, Shravana' },
-      { en: 'Mula, Jyeshtha, Uttara Bhadrapada', hi: 'मूल, ज्येष्ठा, उत्तरा भाद्रपद', sa: 'मूल, ज्येष्ठा, उत्तरा भाद्रपद', mai: 'मूल, ज्येष्ठा, उत्तरा भाद्रपद', mr: 'मूल, ज्येष्ठा, उत्तरा भाद्रपद', ta: 'Mula, Jyeshtha, Uttara Bhadrapada', te: 'Mula, Jyeshtha, Uttara Bhadrapada', bn: 'Mula, Jyeshtha, Uttara Bhadrapada', kn: 'Mula, Jyeshtha, Uttara Bhadrapada', gu: 'Mula, Jyeshtha, Uttara Bhadrapada' },
-      { en: 'Only Revati', hi: 'केवल रेवती', sa: 'केवल रेवती', mai: 'केवल रेवती', mr: 'केवल रेवती', ta: 'Only Revati', te: 'Only Revati', bn: 'Only Revati', kn: 'Only Revati', gu: 'Only Revati' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Hasta (skill, devotion), Chitra (brilliance), Swati (independence), Pushya (nourishment), Dhanishtha (wealth of knowledge), and Shravana (hearing/learning — the nakshatra of Saraswati) are the recommended nakshatras for Upanayana. Shravana is especially fitting as Upanayana begins the period of Vedic study through listening.',
-      hi: 'हस्त (कौशल, भक्ति), चित्रा (प्रतिभा), स्वाति (स्वतन्त्रता), पुष्य (पोषण), धनिष्ठा (ज्ञान की सम्पत्ति), और श्रवण (श्रवण/शिक्षा — सरस्वती का नक्षत्र) उपनयन के लिए अनुशंसित नक्षत्र हैं। श्रवण विशेष रूप से उपयुक्त है क्योंकि उपनयन श्रवण द्वारा वैदिक अध्ययन का काल आरम्भ करता है।',
-    },
-  },
-  {
-    id: 'q17_4_10', type: 'true_false',
-    question: {
-      en: 'The traditional age for Upanayana varies by varna — Brahmin at 8, Kshatriya at 11, Vaishya at 12.',
-      hi: 'उपनयन की पारम्परिक आयु वर्ण के अनुसार भिन्न होती है — ब्राह्मण 8, क्षत्रिय 11, वैश्य 12 वर्ष।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. These are the traditional ages given in Dharmashastra texts. In modern practice, Upanayana is commonly performed between ages 7-12 regardless of family background, often before the boy starts higher education. Some families perform it just before the wedding if not done earlier.',
-      hi: 'सत्य। ये धर्मशास्त्र ग्रन्थों में दी गई पारम्परिक आयु हैं। आधुनिक अभ्यास में, उपनयन सामान्यतः 7-12 वर्ष की आयु में पारिवारिक पृष्ठभूमि की परवाह किए बिना सम्पन्न किया जाता है, प्रायः बालक के उच्च शिक्षा आरम्भ करने से पूर्व।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = (L.questions as unknown as ModuleQuestion[]);
 
 function Page1() {
   const locale = useModuleLocale();

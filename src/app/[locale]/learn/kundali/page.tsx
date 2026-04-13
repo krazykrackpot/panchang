@@ -1,6 +1,9 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/kundali.json';
+
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
@@ -10,154 +13,6 @@ import ExampleKundaliChart from '@/components/learn/ExampleKundaliChart';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-
-/* ─── Trilingual Labels ─── */
-const L = {
-  title: { en: 'How a Kundali is Made', hi: 'कुण्डली कैसे बनती है', sa: 'कुण्डली कथं रच्यते' , ta: 'குண்டலி எப்படி உருவாக்கப்படுகிறது' },
-  subtitle: {
-    en: 'A complete step-by-step walkthrough — from birth data to finished chart — using a worked example',
-    hi: 'एक सम्पूर्ण चरणबद्ध मार्गदर्शिका — जन्म विवरण से पूर्ण कुण्डली तक — एक उदाहरण के साथ',
-    sa: 'सम्पूर्णं सोपानमार्गदर्शनम् — जन्मविवरणात् पूर्णकुण्डलीपर्यन्तम् — उदाहरणसहितम्',
-  },
-
-  // Overview
-  overviewTitle: { en: 'What is a Kundali?', hi: 'कुण्डली क्या है?', sa: 'कुण्डली का?' },
-  overviewText: {
-    en: 'A Kundali (Janam Patri / birth chart) is a map of the sky at the exact moment and place of your birth. It captures which zodiac signs and planets occupied which houses, forming a unique cosmic fingerprint. Every element — the rising sign (Lagna), the nine Grahas, the 12 Bhavas, the Dashas — flows from three simple inputs: date, time, and place of birth. This page walks through every step of how we turn those three inputs into a complete chart.',
-    hi: 'कुण्डली (जन्म पत्री) आपके जन्म के ठीक उस क्षण और स्थान पर आकाश का नक्शा है। यह दर्शाती है कि कौन सी राशियाँ और ग्रह किन भावों में थे। प्रत्येक तत्व — लग्न, नौ ग्रह, 12 भाव, दशाएँ — तीन सरल आदानों से उत्पन्न होते हैं: जन्म तिथि, समय और स्थान। यह पृष्ठ प्रत्येक चरण का मार्गदर्शन करता है।',
-    sa: 'कुण्डली जन्मक्षणे स्थाने च आकाशस्य मानचित्रम्। सर्वं तत्त्वं — लग्नं, नवग्रहाः, द्वादशभावाः — त्रिभिः आदानैः जायते: जन्मतिथिः, समयः, स्थानं च।',
-  },
-
-  // Example birth
-  exampleTitle: { en: 'Our Worked Example', hi: 'हमारा उदाहरण', sa: 'अस्माकम् उदाहरणम्' },
-  exampleText: {
-    en: 'We will follow one example birth through every step to show how abstract numbers become a living chart:',
-    hi: 'हम एक उदाहरण जन्म को प्रत्येक चरण में अनुसरण करेंगे ताकि दिखा सकें कि कैसे संख्याएँ एक जीवित कुण्डली बनती हैं:',
-    sa: 'वयम् एकं जन्मोदाहरणं प्रत्येकसोपाने अनुसरिष्यामः:',
-  },
-
-  // Step 1: Birth Data
-  s1Title: { en: 'Step 1: The Three Inputs', hi: 'चरण 1: तीन आवश्यक आदान', sa: 'सोपानम् 1: त्रीणि आवश्यकानि' },
-  s1Text: {
-    en: 'Every Kundali begins with exactly three pieces of information. Each determines a different aspect of the chart:',
-    hi: 'प्रत्येक कुण्डली ठीक तीन सूचनाओं से शुरू होती है। प्रत्येक कुण्डली के एक भिन्न पहलू को निर्धारित करती है:',
-    sa: 'प्रत्येका कुण्डली तिसृभिः सूचनाभिः आरभ्यते:',
-  },
-  s1Date: {
-    en: 'Date of Birth — determines where the Sun and planets are in the zodiac. The Sun moves ~1° per day, so even one day changes your chart.',
-    hi: 'जन्म तिथि — सूर्य और ग्रह राशिचक्र में कहाँ हैं यह निर्धारित करती है। सूर्य प्रतिदिन ~1° चलता है।',
-    sa: 'जन्मतिथिः — सूर्यः ग्रहाः च राशिचक्रे कुत्र सन्ति इति निर्धारयति।',
-  },
-  s1Time: {
-    en: 'Time of Birth — determines the Lagna (ascendant). The rising sign changes every ~2 hours, so accuracy to the minute matters. A 4-minute error can shift the Navamsha division.',
-    hi: 'जन्म समय — लग्न (उदय राशि) निर्धारित करता है। उदय राशि हर ~2 घण्टे बदलती है, इसलिए मिनट तक की सटीकता महत्वपूर्ण है।',
-    sa: 'जन्मसमयः — लग्नं निर्धारयति। उदयराशिः प्रत्येकं ~2 होरासु परिवर्तते।',
-  },
-  s1Place: {
-    en: 'Place of Birth — provides the geographic latitude and longitude. Latitude affects which sign rises, and longitude converts clock time to the exact local solar time.',
-    hi: 'जन्म स्थान — भौगोलिक अक्षांश और देशान्तर प्रदान करता है। अक्षांश प्रभावित करता है कौन सी राशि उदित होती है।',
-    sa: 'जन्मस्थानम् — भौगोलिकं अक्षांशं देशान्तरं च ददाति।',
-  },
-
-  // Step 2: Time Conversion
-  s2Title: { en: 'Step 2: Converting Time', hi: 'चरण 2: समय रूपान्तरण', sa: 'सोपानम् 2: समयपरिवर्तनम्' },
-  s2Text: {
-    en: 'Astronomical calculations require Universal Time (UT), not local clock time. We also need the Julian Day Number — a continuous day count used by astronomers since 4713 BCE.',
-    hi: 'खगोलीय गणनाओं के लिए सार्वभौमिक समय (UT) आवश्यक है, स्थानीय घड़ी का समय नहीं। हमें जूलियन दिन संख्या भी चाहिए — खगोलशास्त्रियों द्वारा प्रयुक्त निरन्तर दिन गणना।',
-    sa: 'खगोलीयगणनार्थं सार्वभौमिकसमयः (UT) आवश्यकः, न स्थानीयसमयः।',
-  },
-
-  // Step 3: Sidereal Time
-  s3Title: { en: 'Step 3: Local Sidereal Time (LST)', hi: 'चरण 3: स्थानीय नाक्षत्रिक समय (LST)', sa: 'सोपानम् 3: स्थानीयनाक्षत्रिकसमयः' },
-  s3Text: {
-    en: 'Sidereal time measures the Earth\'s rotation relative to the stars (not the Sun). It tells us which part of the zodiac is directly overhead right now. The LST at your birth location and time is the key to finding your Lagna.',
-    hi: 'नाक्षत्रिक समय पृथ्वी के घूर्णन को तारों (सूर्य नहीं) के सापेक्ष मापता है। यह बताता है कि राशिचक्र का कौन सा भाग अभी ठीक ऊपर है। आपके जन्म स्थान और समय पर LST लग्न ज्ञात करने की कुंजी है।',
-    sa: 'नाक्षत्रिकसमयः पृथिव्याः भ्रमणं ताराणां सापेक्षं (न सूर्यस्य) मापयति।',
-  },
-
-  // Step 4: Lagna
-  s4Title: { en: 'Step 4: Finding the Lagna', hi: 'चरण 4: लग्न ज्ञात करना', sa: 'सोपानम् 4: लग्नज्ञानम्' },
-  s4Text: {
-    en: 'The Lagna (ascendant) is the zodiac sign rising on the eastern horizon at the moment of birth. It becomes the 1st house and anchors the entire chart. The Lagna degree is calculated from LST and geographic latitude using spherical trigonometry.',
-    hi: 'लग्न (उदय राशि) जन्म के क्षण पूर्वी क्षितिज पर उदित होने वाली राशि है। यह प्रथम भाव बन जाती है और सम्पूर्ण कुण्डली की नींव रखती है।',
-    sa: 'लग्नं जन्मक्षणे पूर्वक्षितिजे उदयमाना राशिः। एषा प्रथमभावः भवति सम्पूर्णकुण्डल्याः आधारं करोति च।',
-  },
-
-  // Step 5: Ayanamsha
-  s5Title: { en: 'Step 5: Ayanamsha — Tropical to Sidereal', hi: 'चरण 5: अयनांश — उष्णकटिबन्धीय से नाक्षत्रिक', sa: 'सोपानम् 5: अयनांशः' },
-  s5Text: {
-    en: 'Our astronomical algorithms (Meeus) give tropical longitudes — positions relative to the spring equinox. But Vedic astrology uses sidereal longitudes — positions relative to the fixed stars. The difference is the Ayanamsha, currently ~24°. We subtract it from every calculated position.',
-    hi: 'हमारे खगोलीय एल्गोरिथ्म उष्णकटिबन्धीय देशान्तर देते हैं — वसन्त विषुव के सापेक्ष स्थिति। लेकिन वैदिक ज्योतिष नाक्षत्रिक देशान्तर का उपयोग करता है — स्थिर तारों के सापेक्ष। अन्तर अयनांश है, वर्तमान में ~24°।',
-    sa: 'अस्माकं खगोलीयगणितानि उष्णकटिबन्धीयदेशान्तरं ददति। वैदिकज्योतिषं नाक्षत्रिकदेशान्तरं प्रयुङ्क्ते। भेदः अयनांशः, इदानीं ~24°।',
-  },
-
-  // Step 6: Planet Positions
-  s6Title: { en: 'Step 6: Planet Positions', hi: 'चरण 6: ग्रह स्थिति', sa: 'सोपानम् 6: ग्रहस्थितिः' },
-  s6Text: {
-    en: 'Using the Julian Day, we calculate the sidereal longitude of each of the nine Grahas. The Sun and Moon use Meeus algorithms; Mars through Saturn use planetary perturbation models. Rahu and Ketu (lunar nodes) are derived from the Moon\'s orbital plane. Each planet lands in a specific Rashi (sign) and Nakshatra (lunar mansion).',
-    hi: 'जूलियन दिन का उपयोग करके, हम नौ ग्रहों में से प्रत्येक का नाक्षत्रिक देशान्तर गणना करते हैं। सूर्य और चन्द्र Meeus एल्गोरिथ्म का उपयोग करते हैं। प्रत्येक ग्रह एक विशिष्ट राशि और नक्षत्र में आता है।',
-    sa: 'जूलियनदिनं प्रयुज्य, वयं नवग्रहाणां प्रत्येकस्य नाक्षत्रिकदेशान्तरं गणयामः।',
-  },
-
-  // Step 7: House Mapping
-  s7Title: { en: 'Step 7: Mapping Planets to Houses', hi: 'चरण 7: ग्रहों को भावों में रखना', sa: 'सोपानम् 7: ग्रहाणां भावेषु स्थापनम्' },
-  s7Text: {
-    en: 'In the Whole-Sign house system (standard Vedic), the Lagna\'s Rashi becomes the entire 1st house. The next Rashi becomes the 2nd house, and so on around the zodiac. To place a planet, we simply count how many signs it is from the Lagna sign.',
-    hi: 'पूर्ण-राशि भाव पद्धति (मानक वैदिक) में, लग्न की राशि सम्पूर्ण प्रथम भाव बन जाती है। अगली राशि द्वितीय भाव बनती है, इत्यादि। ग्रह को रखने के लिए, हम गिनते हैं कि वह लग्न राशि से कितनी राशियाँ दूर है।',
-    sa: 'पूर्णराशिभावपद्धत्यां, लग्नस्य राशिः सकला प्रथमभावः भवति। अग्रिमा राशिः द्वितीयभावः, एवम् अग्रे।',
-  },
-
-  // Step 8: The Chart
-  s8Title: { en: 'Step 8: Drawing the Chart', hi: 'चरण 8: कुण्डली का चित्रण', sa: 'सोपानम् 8: कुण्डल्याः चित्रणम्' },
-  s8Text: {
-    en: 'The North Indian chart is a diamond grid where house positions are fixed — House 1 is always at the top. The Rashi names rotate based on the Lagna. Here is our completed example chart with all planets placed:',
-    hi: 'उत्तर भारतीय कुण्डली एक हीरे के आकार की जाली है जहाँ भाव स्थितियाँ स्थिर हैं — भाव 1 सदा शीर्ष पर है। राशि नाम लग्न के आधार पर घूमते हैं। यहाँ सभी ग्रहों सहित हमारी पूर्ण उदाहरण कुण्डली है:',
-    sa: 'उत्तरभारतीयकुण्डली हीराकारजाला यत्र भावस्थानानि स्थिराणि — भावः 1 सदा शीर्षे। यत्र सर्वे ग्रहाः स्थापिताः सा पूर्णोदाहरणकुण्डली:',
-  },
-
-  // Step 9: Planet Dignity
-  s9Title: { en: 'Step 9: Planet Dignity & Strength', hi: 'चरण 9: ग्रह गरिमा और बल', sa: 'सोपानम् 9: ग्रहगरिमा बलं च' },
-  s9Text: {
-    en: 'Not all planet placements are equal. Each Graha has signs where it is strongest (Uccha/exalted), weakest (Neecha/debilitated), or comfortable (Swa Rashi/own sign). A debilitated planet gives diminished results; an exalted one amplifies them. Combustion (Asta) occurs when a planet is too close to the Sun.',
-    hi: 'सभी ग्रह स्थितियाँ समान नहीं हैं। प्रत्येक ग्रह की ऐसी राशियाँ हैं जहाँ वह सबसे शक्तिशाली (उच्च), सबसे कमज़ोर (नीच), या सहज (स्वराशि) होता है। नीच ग्रह कम परिणाम देता है; उच्च ग्रह उन्हें बढ़ाता है।',
-    sa: 'सर्वाणि ग्रहस्थानानि न समानि। प्रत्येकस्य ग्रहस्य उच्चं, नीचं, स्वराशिः च अस्ति।',
-  },
-
-  // Step 10: Aspects & Lordships
-  s10Title: { en: 'Step 10: Aspects & House Lordships', hi: 'चरण 10: दृष्टि और भाव स्वामित्व', sa: 'सोपानम् 10: दृष्टिः भावस्वामित्वं च' },
-  s10Text: {
-    en: 'Every planet casts Drishti (aspect) on other houses. All planets have a 7th-house aspect (opposite). Mars additionally aspects the 4th and 8th; Jupiter the 5th and 9th; Saturn the 3rd and 10th. Each planet also lords over (owns) specific houses based on its rulership signs. The lord of a house carries that house\'s significations wherever it sits.',
-    hi: 'प्रत्येक ग्रह अन्य भावों पर दृष्टि डालता है। सभी ग्रहों की 7वें भाव पर दृष्टि होती है। मंगल की 4 और 8 पर, गुरु की 5 और 9 पर, शनि की 3 और 10 पर अतिरिक्त दृष्टि होती है। प्रत्येक ग्रह अपनी स्वामित्व राशियों के आधार पर विशिष्ट भावों का स्वामी होता है।',
-    sa: 'प्रत्येकः ग्रहः अन्यभावेषु दृष्टिं क्षिपति। सर्वग्रहाणां 7 भावे दृष्टिः। मङ्गलस्य 4, 8; गुरोः 5, 9; शनेः 3, 10 अतिरिक्तदृष्टिः।',
-  },
-
-  // Step 11: Dashas
-  s11Title: { en: 'Step 11: Dashas — The Timing System', hi: 'चरण 11: दशा — समय प्रणाली', sa: 'सोपानम् 11: दशाः — कालप्रणालिः' },
-  s11Text: {
-    en: 'The Vimshottari Dasha system divides life into planetary periods based on the Moon\'s Nakshatra at birth. The Nakshatra lord becomes the first Maha Dasha lord, and the Moon\'s progress through that Nakshatra determines how much of that period remains at birth. This creates a unique timeline for each person.',
-    hi: 'विंशोत्तरी दशा प्रणाली जन्म के समय चन्द्र के नक्षत्र के आधार पर जीवन को ग्रह अवधियों में विभाजित करती है। नक्षत्र स्वामी प्रथम महादशा स्वामी बनता है। यह प्रत्येक व्यक्ति के लिए एक अद्वितीय समयरेखा बनाता है।',
-    sa: 'विंशोत्तरीदशापद्धतिः जन्मसमये चन्द्रनक्षत्रस्य आधारेण जीवनं ग्रहकालखण्डेषु विभजति।',
-  },
-
-  // Step 12: Yogas & Doshas
-  s12Title: { en: 'Step 12: Yogas & Doshas', hi: 'चरण 12: योग और दोष', sa: 'सोपानम् 12: योगाः दोषाः च' },
-  s12Text: {
-    en: 'Yogas are special planetary combinations that indicate specific life patterns — wealth (Dhana Yoga), wisdom (Budhaditya Yoga), power (Raja Yoga), or spiritual inclination (Sanyasa Yoga). Doshas are afflictions: Mangal Dosha (Mars in certain houses), Kaal Sarpa (all planets between Rahu-Ketu), and Pitru Dosha (Sun afflicted). Our engine checks for 11 yogas and 3 doshas automatically.',
-    hi: 'योग विशेष ग्रह संयोजन हैं जो विशिष्ट जीवन प्रतिमानों को इंगित करते हैं — धन (धन योग), ज्ञान (बुधादित्य योग), शक्ति (राजयोग)। दोष कठिनाइयाँ हैं: मंगल दोष, काल सर्प दोष, पितृ दोष। हमारा इंजन 11 योगों और 3 दोषों की स्वचालित जाँच करता है।',
-    sa: 'योगाः विशेषग्रहसंयोजनानि — धनयोगः, बुधादित्ययोगः, राजयोगः। दोषाः कठिनतायाः — मङ्गलदोषः, कालसर्पदोषः, पितृदोषः।',
-  },
-
-  // Step 13: Reading the Chart
-  s13Title: { en: 'Putting It All Together', hi: 'सब कुछ एक साथ', sa: 'सर्वं समाहृत्य' },
-  s13Text: {
-    en: 'A Kundali reading weaves all these layers: the Lagna reveals personality, planet placements show life areas, dignity shows strength, aspects create connections, lordships link houses, Dashas provide timing, and Yogas/Doshas flag special patterns. No single factor is read in isolation — it is the interplay of all elements that forms the complete picture.',
-    hi: 'कुण्डली पठन इन सभी परतों को बुनता है: लग्न व्यक्तित्व प्रकट करता है, ग्रह स्थितियाँ जीवन क्षेत्र दिखाती हैं, गरिमा बल दिखाती है, दृष्टि सम्बन्ध बनाती है, स्वामित्व भावों को जोड़ता है, दशाएँ समय प्रदान करती हैं, और योग/दोष विशेष प्रतिमान इंगित करते हैं।',
-    sa: 'कुण्डलीपठनं सर्वाणि एतानि स्तराणि समावेशयति। एकमपि तत्त्वं पृथक् न पठ्यते — सर्वेषां तत्त्वानां परस्परक्रीडा सम्पूर्णचित्रं रचयति।',
-  },
-
-  deeper: { en: 'Dive Deeper', hi: 'और गहराई में', sa: 'गहनतरम्' },
-  tryIt: { en: 'Generate Your Kundali Now', hi: 'अभी अपनी कुण्डली बनाएँ', sa: 'इदानीं स्वकुण्डलीं रचयतु' },
-};
 
 /* ─── Data for Steps ─── */
 
@@ -212,15 +67,16 @@ const DEEPER_LINKS = [
 /* ─── Page Component ─── */
 export default function LearnKundaliPage() {
   const locale = useLocale() as Locale;
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
   return (
     <div>
       {/* Header */}
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
+          {t('title')}
         </h2>
-        <p className="text-text-secondary">{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
+        <p className="text-text-secondary">{t('subtitle')}</p>
       </div>
 
       {/* Key Terms */}
@@ -232,13 +88,13 @@ export default function LearnKundaliPage() {
       </div>
 
       {/* ─── Overview ─── */}
-      <LessonSection title={((L.overviewTitle as Record<string, string>)[locale] ?? L.overviewTitle.en)}>
-        <p>{((L.overviewText as Record<string, string>)[locale] ?? L.overviewText.en)}</p>
+      <LessonSection title={t('overviewTitle')}>
+        <p>{t('overviewText')}</p>
       </LessonSection>
 
       {/* ─── Example Introduction ─── */}
-      <LessonSection title={((L.exampleTitle as Record<string, string>)[locale] ?? L.exampleTitle.en)} variant="highlight">
-        <p>{((L.exampleText as Record<string, string>)[locale] ?? L.exampleText.en)}</p>
+      <LessonSection title={t('exampleTitle')} variant="highlight">
+        <p>{t('exampleText')}</p>
         <div className="mt-4 p-5 rounded-xl bg-gold-primary/5 border border-gold-primary/20">
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
@@ -261,8 +117,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 1: Birth Data ─── */}
-      <LessonSection number={1} title={((L.s1Title as Record<string, string>)[locale] ?? L.s1Title.en)}>
-        <p>{((L.s1Text as Record<string, string>)[locale] ?? L.s1Text.en)}</p>
+      <LessonSection number={1} title={t('s1Title')}>
+        <p>{t('s1Text')}</p>
         <div className="mt-4 space-y-3">
           {[
             { label: { en: 'Date of Birth', hi: 'जन्म तिथि', sa: 'जन्मतिथिः' }, text: L.s1Date, icon: '1' },
@@ -274,8 +130,8 @@ export default function LearnKundaliPage() {
                 {item.icon}
               </span>
               <div>
-                <div className="text-gold-light font-semibold text-sm mb-1">{tl(item.label, locale)}</div>
-                <p className="text-text-secondary text-sm">{tl(item.text, locale)}</p>
+                <div className="text-gold-light font-semibold text-sm mb-1">{lt(item.label as LocaleText, locale)}</div>
+                <p className="text-text-secondary text-sm">{lt(item.text as LocaleText, locale)}</p>
               </div>
             </div>
           ))}
@@ -283,8 +139,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 2: Time Conversion ─── */}
-      <LessonSection number={2} title={((L.s2Title as Record<string, string>)[locale] ?? L.s2Title.en)}>
-        <p>{((L.s2Text as Record<string, string>)[locale] ?? L.s2Text.en)}</p>
+      <LessonSection number={2} title={t('s2Title')}>
+        <p>{t('s2Text')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-3">{!isDevanagariLocale(locale) ? 'For our example:' : 'हमारे उदाहरण के लिए:'}</p>
           <div className="space-y-1">
@@ -298,8 +154,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 3: Sidereal Time ─── */}
-      <LessonSection number={3} title={((L.s3Title as Record<string, string>)[locale] ?? L.s3Title.en)}>
-        <p>{((L.s3Text as Record<string, string>)[locale] ?? L.s3Text.en)}</p>
+      <LessonSection number={3} title={t('s3Title')}>
+        <p>{t('s3Text')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-3">{!isDevanagariLocale(locale) ? 'For our example:' : 'हमारे उदाहरण के लिए:'}</p>
           <div className="space-y-1">
@@ -316,7 +172,7 @@ export default function LearnKundaliPage() {
       {/* ─── STEP 4: Lagna ─── */}
       <LessonSection
         number={4}
-        title={((L.s4Title as Record<string, string>)[locale] ?? L.s4Title.en)}
+        title={t('s4Title')}
         illustration={
           <HouseHighlightChart
             highlightHouses={[1]}
@@ -327,7 +183,7 @@ export default function LearnKundaliPage() {
           />
         }
       >
-        <p>{((L.s4Text as Record<string, string>)[locale] ?? L.s4Text.en)}</p>
+        <p>{t('s4Text')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-3">{!isDevanagariLocale(locale) ? 'For our example:' : 'हमारे उदाहरण के लिए:'}</p>
           <div className="space-y-1">
@@ -346,8 +202,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 5: Ayanamsha ─── */}
-      <LessonSection number={5} title={((L.s5Title as Record<string, string>)[locale] ?? L.s5Title.en)}>
-        <p>{((L.s5Text as Record<string, string>)[locale] ?? L.s5Text.en)}</p>
+      <LessonSection number={5} title={t('s5Title')}>
+        <p>{t('s5Text')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <div className="space-y-1">
             <p className="text-gold-light/80 font-mono text-xs">Lahiri Ayanamsha ≈ 23.85° + 1.397° × T</p>
@@ -368,8 +224,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 6: Planet Positions ─── */}
-      <LessonSection number={6} title={((L.s6Title as Record<string, string>)[locale] ?? L.s6Title.en)}>
-        <p>{((L.s6Text as Record<string, string>)[locale] ?? L.s6Text.en)}</p>
+      <LessonSection number={6} title={t('s6Title')}>
+        <p>{t('s6Text')}</p>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -383,10 +239,10 @@ export default function LearnKundaliPage() {
             <tbody>
               {EXAMPLE_PLANETS.map((p) => (
                 <tr key={p.id} className="border-b border-gold-primary/5">
-                  <td className="py-2 text-xs font-semibold" style={{ color: p.color }}>{tl(p.name, locale)}</td>
+                  <td className="py-2 text-xs font-semibold" style={{ color: p.color }}>{lt(p.name as LocaleText, locale)}</td>
                   <td className="py-2 text-gold-light/70 font-mono text-xs">{p.sidereal}</td>
-                  <td className="py-2 text-text-secondary text-xs">{tl(p.rashi, locale)}</td>
-                  <td className="py-2 text-text-secondary/75 text-xs hidden sm:table-cell" style={(isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(p.nak, locale)}</td>
+                  <td className="py-2 text-text-secondary text-xs">{lt(p.rashi as LocaleText, locale)}</td>
+                  <td className="py-2 text-text-secondary/75 text-xs hidden sm:table-cell" style={(isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{lt(p.nak as LocaleText, locale)}</td>
                 </tr>
               ))}
             </tbody>
@@ -400,8 +256,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 7: House Mapping ─── */}
-      <LessonSection number={7} title={((L.s7Title as Record<string, string>)[locale] ?? L.s7Title.en)}>
-        <p>{((L.s7Text as Record<string, string>)[locale] ?? L.s7Text.en)}</p>
+      <LessonSection number={7} title={t('s7Title')}>
+        <p>{t('s7Text')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">{!isDevanagariLocale(locale) ? 'Formula:' : 'सूत्र:'}</p>
           <p className="text-gold-light/80 font-mono text-xs">House = (Planet_Rashi_Number - Lagna_Rashi_Number + 12) % 12 + 1</p>
@@ -417,14 +273,14 @@ export default function LearnKundaliPage() {
           {EXAMPLE_HOUSES.map((h) => (
             <div
               key={h.house}
-              className={`rounded-lg p-3 border ${tl(h.planets, locale) !== '—' ? 'border-gold-primary/20 bg-gold-primary/5' : 'border-gold-primary/5 bg-bg-primary/30'}`}
+              className={`rounded-lg p-3 border ${lt(h.planets as LocaleText, locale) !== '—' ? 'border-gold-primary/20 bg-gold-primary/5' : 'border-gold-primary/5 bg-bg-primary/30'}`}
             >
               <div className="flex items-center gap-2 mb-1">
                 <span className="w-6 h-6 rounded-full bg-gold-primary/10 flex items-center justify-center text-gold-light text-xs font-bold">{h.house}</span>
-                <span className="text-text-secondary/75 text-xs">{tl(h.rashi, locale)}</span>
+                <span className="text-text-secondary/75 text-xs">{lt(h.rashi as LocaleText, locale)}</span>
               </div>
-              <div className={`text-xs font-semibold ${tl(h.planets, locale) !== '—' ? 'text-gold-light' : 'text-text-secondary/55'}`}>
-                {tl(h.planets, locale)}
+              <div className={`text-xs font-semibold ${lt(h.planets as LocaleText, locale) !== '—' ? 'text-gold-light' : 'text-text-secondary/55'}`}>
+                {lt(h.planets as LocaleText, locale)}
               </div>
             </div>
           ))}
@@ -439,11 +295,11 @@ export default function LearnKundaliPage() {
       {/* ─── STEP 8: The Chart ─── */}
       <LessonSection
         number={8}
-        title={((L.s8Title as Record<string, string>)[locale] ?? L.s8Title.en)}
+        title={t('s8Title')}
         variant="highlight"
         illustration={<ExampleKundaliChart size={380} />}
       >
-        <p>{((L.s8Text as Record<string, string>)[locale] ?? L.s8Text.en)}</p>
+        <p>{t('s8Text')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">{!isDevanagariLocale(locale) ? 'Reading the chart:' : 'कुण्डली पढ़ना:'}</p>
           <div className="space-y-1 text-gold-light/70 font-mono text-xs">
@@ -457,16 +313,16 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 9: Dignity ─── */}
-      <LessonSection number={9} title={((L.s9Title as Record<string, string>)[locale] ?? L.s9Title.en)}>
-        <p>{((L.s9Text as Record<string, string>)[locale] ?? L.s9Text.en)}</p>
+      <LessonSection number={9} title={t('s9Title')}>
+        <p>{t('s9Text')}</p>
         <div className="mt-4 space-y-2">
           {DIGNITY_EXAMPLES.map((d) => (
             <div key={d.planet.en} className="flex items-center gap-3 p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/5">
               <div className="w-2 h-8 rounded-full flex-shrink-0" style={{ backgroundColor: d.color }} />
               <div className="flex-1">
-                <span className="text-gold-light text-sm font-semibold">{tl(d.planet, locale)}</span>
+                <span className="text-gold-light text-sm font-semibold">{lt(d.planet as LocaleText, locale)}</span>
                 <span className="text-text-secondary/75 text-sm"> — </span>
-                <span className="text-sm" style={{ color: d.color }}>{tl(d.status, locale)}</span>
+                <span className="text-sm" style={{ color: d.color }}>{lt(d.status as LocaleText, locale)}</span>
               </div>
             </div>
           ))}
@@ -482,8 +338,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 10: Aspects ─── */}
-      <LessonSection number={10} title={((L.s10Title as Record<string, string>)[locale] ?? L.s10Title.en)}>
-        <p>{((L.s10Text as Record<string, string>)[locale] ?? L.s10Text.en)}</p>
+      <LessonSection number={10} title={t('s10Title')}>
+        <p>{t('s10Text')}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
             { planet: { en: 'All Planets', hi: 'सभी ग्रह', sa: 'सर्वे ग्रहाः' }, aspect: { en: '7th house from their position', hi: 'अपनी स्थिति से 7वें भाव पर', sa: 'स्वस्थानात् सप्तमभावे' }, color: '#d4a853' },
@@ -492,8 +348,8 @@ export default function LearnKundaliPage() {
             { planet: { en: 'Saturn (special)', hi: 'शनि (विशेष)', sa: 'शनिः (विशेषः)' }, aspect: { en: '+ 3rd and 10th houses', hi: '+ 3रे और 10वें भाव पर', sa: '+ तृतीयदशमभावयोः' }, color: '#3b82f6' },
           ].map((a) => (
             <div key={a.planet.en} className="rounded-lg p-3 border border-gold-primary/10 bg-bg-primary/30">
-              <div className="text-sm font-semibold mb-1" style={{ color: a.color }}>{tl(a.planet, locale)}</div>
-              <div className="text-text-secondary text-xs">{tl(a.aspect, locale)}</div>
+              <div className="text-sm font-semibold mb-1" style={{ color: a.color }}>{lt(a.planet as LocaleText, locale)}</div>
+              <div className="text-text-secondary text-xs">{lt(a.aspect as LocaleText, locale)}</div>
             </div>
           ))}
         </div>
@@ -508,8 +364,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 11: Dashas ─── */}
-      <LessonSection number={11} title={((L.s11Title as Record<string, string>)[locale] ?? L.s11Title.en)}>
-        <p>{((L.s11Text as Record<string, string>)[locale] ?? L.s11Text.en)}</p>
+      <LessonSection number={11} title={t('s11Title')}>
+        <p>{t('s11Text')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-3">{!isDevanagariLocale(locale) ? 'In our example:' : 'हमारे उदाहरण में:'}</p>
           <div className="space-y-1">
@@ -530,8 +386,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 12: Yogas & Doshas ─── */}
-      <LessonSection number={12} title={((L.s12Title as Record<string, string>)[locale] ?? L.s12Title.en)}>
-        <p>{((L.s12Text as Record<string, string>)[locale] ?? L.s12Text.en)}</p>
+      <LessonSection number={12} title={t('s12Title')}>
+        <p>{t('s12Text')}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="rounded-lg p-4 border border-emerald-400/20 bg-emerald-400/5">
             <h4 className="text-emerald-400 font-bold text-sm mb-2">{!isDevanagariLocale(locale) ? 'Yogas (Auspicious Combos)' : 'योग (शुभ संयोग)'}</h4>
@@ -561,8 +417,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 13: Synthesis ─── */}
-      <LessonSection title={((L.s13Title as Record<string, string>)[locale] ?? L.s13Title.en)} variant="highlight">
-        <p>{((L.s13Text as Record<string, string>)[locale] ?? L.s13Text.en)}</p>
+      <LessonSection title={t('s13Title')} variant="highlight">
+        <p>{t('s13Text')}</p>
 
         {/* Summary pipeline */}
         <div className="mt-6 flex flex-wrap justify-center gap-2">
@@ -592,7 +448,7 @@ export default function LearnKundaliPage() {
       {/* ─── Deeper Links ─── */}
       <div className="mt-8 mb-6">
         <h3 className="text-xl font-bold text-gold-gradient mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-          {((L.deeper as Record<string, string>)[locale] ?? L.deeper.en)}
+          {t('deeper')}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {DEEPER_LINKS.map((link) => (
@@ -601,8 +457,8 @@ export default function LearnKundaliPage() {
               href={link.href}
               className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 hover:border-gold-primary/30 transition-colors group"
             >
-              <div className="text-gold-light font-semibold text-sm group-hover:text-gold-primary transition-colors">{tl(link.label, locale)}</div>
-              <p className="text-text-secondary/75 text-xs mt-1">{tl(link.desc, locale)}</p>
+              <div className="text-gold-light font-semibold text-sm group-hover:text-gold-primary transition-colors">{lt(link.label as LocaleText, locale)}</div>
+              <p className="text-text-secondary/75 text-xs mt-1">{lt(link.desc as LocaleText, locale)}</p>
             </Link>
           ))}
         </div>
@@ -614,7 +470,7 @@ export default function LearnKundaliPage() {
           href="/kundali"
           className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gold-primary/15 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/25 transition-colors font-semibold"
         >
-          {((L.tryIt as Record<string, string>)[locale] ?? L.tryIt.en)} →
+          {t('tryIt')} →
         </Link>
       </div>
     </div>

@@ -2,18 +2,16 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/23-2.json';
 
 const META: ModuleMeta = {
   id: 'mod_23_2', phase: 10, topic: 'Prediction', moduleNumber: '23.2',
-  title: { en: 'Retrograde & Combustion Windows', hi: 'वक्री और अस्त अवधियाँ', sa: 'वक्री और अस्त अवधियाँ', mai: 'वक्री और अस्त अवधियाँ', mr: 'वक्री और अस्त अवधियाँ', ta: 'Retrograde & Combustion Windows', te: 'Retrograde & Combustion Windows', bn: 'Retrograde & Combustion Windows', kn: 'Retrograde & Combustion Windows', gu: 'Retrograde & Combustion Windows' },
-  subtitle: { en: 'When planets reverse course and vanish in the Sun\'s glare', hi: 'जब ग्रह उलटी दिशा लें और सूर्य की चमक में लुप्त हों' },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 13,
-  crossRefs: [
-    { label: { en: 'Module 23.1: Eclipse Prediction', hi: 'मॉड्यूल 23.1: ग्रहण भविष्यवाणी', sa: 'मॉड्यूल 23.1: ग्रहण भविष्यवाणी', mai: 'मॉड्यूल 23.1: ग्रहण भविष्यवाणी', mr: 'मॉड्यूल 23.1: ग्रहण भविष्यवाणी', ta: 'Module 23.1: Eclipse Prediction', te: 'Module 23.1: Eclipse Prediction', bn: 'Module 23.1: Eclipse Prediction', kn: 'Module 23.1: Eclipse Prediction', gu: 'Module 23.1: Eclipse Prediction' }, href: '/learn/modules/23-1' },
-    { label: { en: 'Module 23.3: Chakra Systems', hi: 'मॉड्यूल 23.3: चक्र प्रणालियाँ', sa: 'मॉड्यूल 23.3: चक्र प्रणालियाँ', mai: 'मॉड्यूल 23.3: चक्र प्रणालियाँ', mr: 'मॉड्यूल 23.3: चक्र प्रणालियाँ', ta: 'Module 23.3: Chakra Systems', te: 'Module 23.3: Chakra Systems', bn: 'Module 23.3: Chakra Systems', kn: 'Module 23.3: Chakra Systems', gu: 'Module 23.3: Chakra Systems' }, href: '/learn/modules/23-3' },
-    { label: { en: 'Module 2.4: Planetary Motion', hi: 'मॉड्यूल 2.4: ग्रह गति', sa: 'मॉड्यूल 2.4: ग्रह गति', mai: 'मॉड्यूल 2.4: ग्रह गति', mr: 'मॉड्यूल 2.4: ग्रह गति', ta: 'Module 2.4: Planetary Motion', te: 'Module 2.4: Planetary Motion', bn: 'Module 2.4: Planetary Motion', kn: 'Module 2.4: Planetary Motion', gu: 'Module 2.4: Planetary Motion' }, href: '/learn/modules/2-4' },
-    { label: { en: 'Retrograde Calendar', hi: 'वक्री पंचांग', sa: 'वक्री पंचांग', mai: 'वक्री पंचांग', mr: 'वक्री पंचांग', ta: 'Retrograde Calendar', te: 'Retrograde Calendar', bn: 'Retrograde Calendar', kn: 'Retrograde Calendar', gu: 'Retrograde Calendar' }, href: '/retrograde' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

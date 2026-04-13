@@ -3,20 +3,16 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/19-2.json';
 
 const META: ModuleMeta = {
   id: 'mod_19_2', phase: 6, topic: 'Jaimini', moduleNumber: '19.2',
-  title: { en: 'Rashi Drishti — Sign-Based Aspects', hi: 'राशि दृष्टि — राशि-आधारित दृष्टियाँ', sa: 'राशि दृष्टि — राशि-आधारित दृष्टियाँ', mai: 'राशि दृष्टि — राशि-आधारित दृष्टियाँ', mr: 'राशि दृष्टि — राशि-आधारित दृष्टियाँ', ta: 'Rashi Drishti — Sign-Based Aspects', te: 'Rashi Drishti — Sign-Based Aspects', bn: 'Rashi Drishti — Sign-Based Aspects', kn: 'Rashi Drishti — Sign-Based Aspects', gu: 'Rashi Drishti — Sign-Based Aspects' },
-  subtitle: {
-    en: 'Jaimini\'s aspect system where entire signs aspect entire signs — no orbs, no partial aspects, radically different from Parashari',
-    hi: 'जैमिनी की दृष्टि पद्धति जहाँ सम्पूर्ण राशियाँ सम्पूर्ण राशियों को दृष्ट करती हैं — कोई ओर्ब नहीं, कोई आंशिक दृष्टि नहीं, पाराशरी से मूलतः भिन्न',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 12,
-  crossRefs: [
-    { label: { en: 'Module 19-1: Chara Karakas', hi: 'मॉड्यूल 19-1: चर कारक', sa: 'मॉड्यूल 19-1: चर कारक', mai: 'मॉड्यूल 19-1: चर कारक', mr: 'मॉड्यूल 19-1: चर कारक', ta: 'Module 19-1: Chara Karakas', te: 'Module 19-1: Chara Karakas', bn: 'Module 19-1: Chara Karakas', kn: 'Module 19-1: Chara Karakas', gu: 'Module 19-1: Chara Karakas' }, href: '/learn/modules/19-1' },
-    { label: { en: 'Module 19-3: Argala', hi: 'मॉड्यूल 19-3: अर्गला', sa: 'मॉड्यूल 19-3: अर्गला', mai: 'मॉड्यूल 19-3: अर्गला', mr: 'मॉड्यूल 19-3: अर्गला', ta: 'Module 19-3: Argala', te: 'Module 19-3: Argala', bn: 'Module 19-3: Argala', kn: 'Module 19-3: Argala', gu: 'Module 19-3: Argala' }, href: '/learn/modules/19-3' },
-    { label: { en: 'Module 11-2: Planetary Aspects (Parashari)', hi: 'मॉड्यूल 11-2: ग्रह दृष्टि (पाराशरी)', sa: 'मॉड्यूल 11-2: ग्रह दृष्टि (पाराशरी)', mai: 'मॉड्यूल 11-2: ग्रह दृष्टि (पाराशरी)', mr: 'मॉड्यूल 11-2: ग्रह दृष्टि (पाराशरी)', ta: 'Module 11-2: Planetary Aspects (Parashari)', te: 'Module 11-2: Planetary Aspects (Parashari)', bn: 'Module 11-2: Planetary Aspects (Parashari)', kn: 'Module 11-2: Planetary Aspects (Parashari)', gu: 'Module 11-2: Planetary Aspects (Parashari)' }, href: '/learn/modules/11-2' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

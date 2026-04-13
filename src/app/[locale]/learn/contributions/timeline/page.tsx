@@ -1,41 +1,9 @@
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/contributions-timeline.json';
 import { Link } from '@/lib/i18n/navigation';
-import type { LocaleText, Locale } from '@/types/panchang';
+import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
-
-/* ════════════════════════════════════════════════════════════════
-   LABELS — bilingual (en / hi)
-   ════════════════════════════════════════════════════════════════ */
-const L = {
-  title: {
-    en: '2,000 Years of Indian Science — A Visual Timeline',
-    hi: '2,000 वर्षों का भारतीय विज्ञान — एक दृश्य कालरेखा',
-  },
-  subtitle: {
-    en: 'From Vedic mathematics to the Kerala School of Calculus, India\'s contributions to science span two millennia. Most are still attributed to European discoverers who came centuries later.',
-    hi: 'वैदिक गणित से लेकर केरल कलनशास्त्र विद्यालय तक, विज्ञान में भारत के योगदान दो सहस्राब्दियों में फैले हैं। अधिकांश का श्रेय अब भी उन यूरोपीय खोजकर्ताओं को दिया जाता है जो सदियों बाद आए।',
-  },
-  europeLabel: {
-    en: 'Europe:',
-    hi: 'यूरोप:',
-  },
-  learnMore: {
-    en: 'Learn more',
-    hi: 'और जानें',
-  },
-  summaryTitle: {
-    en: 'The Attribution Gap',
-    hi: 'श्रेय का अंतर',
-  },
-  summaryBody: {
-    en: 'Of these 16 discoveries, 14 are attributed to European scientists who came centuries later. Indian mathematicians and astronomers were solving differential equations, computing calculus, and describing gravity — while Europe was still centuries away from these ideas.',
-    hi: 'इन 16 खोजों में से 14 का श्रेय उन यूरोपीय वैज्ञानिकों को दिया जाता है जो सदियों बाद आए। भारतीय गणितज्ञ और खगोलशास्त्री अवकल समीकरण हल कर रहे थे, कलनशास्त्र की गणना कर रहे थे और गुरुत्वाकर्षण का वर्णन कर रहे थे — जबकि यूरोप इन विचारों से अभी भी सदियों दूर था।',
-  },
-  crossRefTitle: {
-    en: 'Explore the Full Stories',
-    hi: 'पूरी कहानियाँ देखें',
-  },
-};
 
 /* ════════════════════════════════════════════════════════════════
    TIMELINE DATA
@@ -301,7 +269,7 @@ function TimelineCard({
   index: number;
 }) {
   const loc = locale as Locale;
-  const t = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
   return (
     <div
@@ -325,7 +293,7 @@ function TimelineCard({
             className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-3 border border-gold-primary/40`}
             style={{ background: 'rgba(212,168,83,0.12)', color: '#f0d48a' }}
           >
-            {t(entry.date)}
+            {lt(entry.date as LocaleText, locale)}
           </div>
 
           {/* Person / source */}
@@ -333,12 +301,12 @@ function TimelineCard({
             className="text-base font-bold mb-2 leading-snug"
             style={{ color: '#e6e2d8' }}
           >
-            {t(entry.person)}
+            {lt(entry.person as LocaleText, locale)}
           </h3>
 
           {/* Contribution */}
           <p className="text-sm leading-relaxed mb-3" style={{ color: '#a09890' }}>
-            {t(entry.contribution)}
+            {lt(entry.contribution as LocaleText, locale)}
           </p>
 
           {/* Europe comparison */}
@@ -351,7 +319,7 @@ function TimelineCard({
                 {loc === 'hi' ? L.europeLabel.hi : L.europeLabel.en}{' '}
               </span>
               <span className="text-xs" style={{ color: '#d97706' }}>
-                {t(entry.europe)}
+                {lt(entry.europe as LocaleText, locale)}
               </span>
             </div>
           )}
@@ -397,7 +365,7 @@ function TimelineCardMobile({
   locale: string;
 }) {
   const loc = locale as Locale;
-  const t = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
+
 
   return (
     <div
@@ -422,13 +390,13 @@ function TimelineCardMobile({
           className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 border border-gold-primary/40"
           style={{ background: 'rgba(212,168,83,0.12)', color: '#f0d48a' }}
         >
-          {t(entry.date)}
+          {lt(entry.date as LocaleText, locale)}
         </div>
         <h3 className="text-sm font-bold mb-1" style={{ color: '#e6e2d8' }}>
-          {t(entry.person)}
+          {lt(entry.person as LocaleText, locale)}
         </h3>
         <p className="text-xs leading-relaxed mb-2" style={{ color: '#a09890' }}>
-          {t(entry.contribution)}
+          {lt(entry.contribution as LocaleText, locale)}
         </p>
         {entry.europe && (
           <div
@@ -439,7 +407,7 @@ function TimelineCardMobile({
               {loc === 'hi' ? L.europeLabel.hi : L.europeLabel.en}{' '}
             </span>
             <span className="text-xs" style={{ color: '#d97706' }}>
-              {t(entry.europe)}
+              {lt(entry.europe as LocaleText, locale)}
             </span>
           </div>
         )}
@@ -466,7 +434,7 @@ function TimelineCardMobile({
 export default async function TimelinePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const loc = locale as Locale;
-  const t = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
   return (
     <div className="min-h-screen" style={{ background: 'transparent' }}>
@@ -485,14 +453,14 @@ export default async function TimelinePage({ params }: { params: Promise<{ local
           className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight"
           style={{ color: '#f0d48a' }}
         >
-          {t(L.title)}
+          {t('title')}
         </h1>
 
         <p className="text-base sm:text-lg leading-relaxed" style={{ color: '#8a8478' }}>
-          {t(L.subtitle)}
+          {t('subtitle')}
         </p>
         <div className="flex justify-center mt-4">
-          <ShareRow pageTitle={t(L.title)} locale={locale as Locale} />
+          <ShareRow pageTitle={t('title')} locale={locale as Locale} />
         </div>
       </div>
 
@@ -566,11 +534,11 @@ export default async function TimelinePage({ params }: { params: Promise<{ local
             className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold mb-5 border border-red-500/40"
             style={{ background: 'rgba(239,68,68,0.12)', color: '#fca5a5' }}
           >
-            {t({ en: 'The Attribution Gap', hi: 'श्रेय का अंतर', sa: 'श्रेय का अंतर', mai: 'श्रेय का अंतर', mr: 'श्रेय का अंतर', ta: 'The Attribution Gap', te: 'The Attribution Gap', bn: 'The Attribution Gap', kn: 'The Attribution Gap', gu: 'The Attribution Gap' })}
+            {lt({ en: 'The Attribution Gap', hi: 'श्रेय का अंतर', sa: 'श्रेय का अंतर', mai: 'श्रेय का अंतर', mr: 'श्रेय का अंतर', ta: 'The Attribution Gap', te: 'The Attribution Gap', bn: 'The Attribution Gap', kn: 'The Attribution Gap', gu: 'The Attribution Gap' } as LocaleText, locale)}
           </div>
 
           <p className="text-base sm:text-lg font-medium leading-relaxed relative z-10" style={{ color: '#e6e2d8' }}>
-            {t(L.summaryBody)}
+            {t('summaryBody')}
           </p>
         </div>
       </div>
@@ -585,7 +553,7 @@ export default async function TimelinePage({ params }: { params: Promise<{ local
           className="text-xl font-bold mb-6 text-center"
           style={{ color: '#f0d48a' }}
         >
-          {t(L.crossRefTitle)}
+          {t('crossRefTitle')}
         </h2>
 
         <div className="flex flex-wrap gap-3 justify-center">
@@ -600,7 +568,7 @@ export default async function TimelinePage({ params }: { params: Promise<{ local
                 background: 'rgba(212,168,83,0.06)',
               }}
             >
-              {t(ref.label)}
+              {lt(ref.label as LocaleText, locale)}
             </Link>
           ))}
         </div>

@@ -1,5 +1,9 @@
 'use client';
 
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LJ from '@/messages/learn/tippanni.json';
+
 import { useLocale } from 'next-intl';
 import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
@@ -239,29 +243,30 @@ const L = {
 export default function TippanniPage() {
   const locale = useLocale() as Locale;
   const isHi = isDevanagariLocale(locale);
+  const t = (key: string) => lt((LJ as unknown as Record<string, LocaleText>)[key], locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   return (
     <article className="max-w-4xl mx-auto px-4 py-12 space-y-2">
       <header className="text-center mb-8">
         <h1 className="text-3xl sm:text-4xl font-bold text-gold-gradient mb-3" style={headingFont}>
-          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
+          {t('title')}
         </h1>
-        <p className="text-text-secondary max-w-2xl mx-auto">{isHi ? L.subtitle.hi : L.subtitle.en}</p>
+        <p className="text-text-secondary max-w-2xl mx-auto">{t('subtitle')}</p>
       </header>
 
       {/* 1. What is a Tippanni */}
-      <LessonSection number={1} title={isHi ? L.whatTitle.hi : L.whatTitle.en}>
+      <LessonSection number={1} title={t('whatTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.whatP1.hi : L.whatP1.en}</p>
-          <p>{isHi ? L.whatP2.hi : L.whatP2.en}</p>
+          <p>{t('whatP1')}</p>
+          <p>{t('whatP2')}</p>
         </div>
       </LessonSection>
 
       {/* 2. How it's generated */}
-      <LessonSection number={2} title={isHi ? L.howTitle.hi : L.howTitle.en}>
+      <LessonSection number={2} title={t('howTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.howP1.hi : L.howP1.en}</p>
+          <p>{t('howP1')}</p>
           <div className="space-y-2 mt-4">
             {L.convergenceFactors.map((f, i) => (
               <div key={i} className="flex gap-3 p-3 rounded-lg bg-bg-primary/40 border border-gold-primary/10">
@@ -277,9 +282,9 @@ export default function TippanniPage() {
       </LessonSection>
 
       {/* 3. Personality */}
-      <LessonSection number={3} title={isHi ? L.personalityTitle.hi : L.personalityTitle.en}>
+      <LessonSection number={3} title={t('personalityTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.personalityP1.hi : L.personalityP1.en}</p>
+          <p>{t('personalityP1')}</p>
           <div className="space-y-3 mt-4">
             {L.personalityPillars.map((p, i) => (
               <div key={i} className="rounded-lg bg-bg-primary/40 border border-gold-primary/10 p-4">
@@ -294,18 +299,18 @@ export default function TippanniPage() {
       </LessonSection>
 
       {/* 4. Planet insights */}
-      <LessonSection number={4} title={isHi ? L.planetInsightsTitle.hi : L.planetInsightsTitle.en}>
+      <LessonSection number={4} title={t('planetInsightsTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.planetInsightsP1.hi : L.planetInsightsP1.en}</p>
-          <p>{isHi ? L.planetInsightsP2.hi : L.planetInsightsP2.en}</p>
+          <p>{t('planetInsightsP1')}</p>
+          <p>{t('planetInsightsP2')}</p>
         </div>
       </LessonSection>
 
       {/* 5. Yogas */}
-      <LessonSection number={5} title={isHi ? L.yogasTitle.hi : L.yogasTitle.en}>
+      <LessonSection number={5} title={t('yogasTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.yogasP1.hi : L.yogasP1.en}</p>
-          <p>{isHi ? L.yogasP2.hi : L.yogasP2.en}</p>
+          <p>{t('yogasP1')}</p>
+          <p>{t('yogasP2')}</p>
           <p className="text-xs">
             <Link href="/learn/yogas" className="text-gold-primary/70 hover:text-gold-light transition-colors">
               {isHi ? 'योगों का गहन अध्ययन →' : 'Deep dive into Yogas →'}
@@ -315,9 +320,9 @@ export default function TippanniPage() {
       </LessonSection>
 
       {/* 6. Doshas */}
-      <LessonSection number={6} title={isHi ? L.doshasTitle.hi : L.doshasTitle.en}>
+      <LessonSection number={6} title={t('doshasTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.doshasP1.hi : L.doshasP1.en}</p>
+          <p>{t('doshasP1')}</p>
           <ul className="space-y-2 mt-3">
             {L.doshaPoints.map((d, i) => (
               <li key={i} className="flex gap-2 text-xs">
@@ -335,7 +340,7 @@ export default function TippanniPage() {
       </LessonSection>
 
       {/* 7. Life areas */}
-      <LessonSection number={7} title={isHi ? L.lifeAreasTitle.hi : L.lifeAreasTitle.en}>
+      <LessonSection number={7} title={t('lifeAreasTitle')}>
         <div className="space-y-3">
           {L.lifeAreas.map((la, i) => (
             <div key={i} className="rounded-lg bg-bg-primary/40 border border-gold-primary/10 p-4">
@@ -350,9 +355,9 @@ export default function TippanniPage() {
       </LessonSection>
 
       {/* 8. Dasha insight */}
-      <LessonSection number={8} title={isHi ? L.dashaInsightTitle.hi : L.dashaInsightTitle.en}>
+      <LessonSection number={8} title={t('dashaInsightTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.dashaInsightP1.hi : L.dashaInsightP1.en}</p>
+          <p>{t('dashaInsightP1')}</p>
           <ul className="space-y-2 mt-3">
             {L.dashaInsightPoints.map((d, i) => (
               <li key={i} className="flex gap-2 text-xs">
@@ -370,9 +375,9 @@ export default function TippanniPage() {
       </LessonSection>
 
       {/* 9. Strength */}
-      <LessonSection number={9} title={isHi ? L.strengthTitle.hi : L.strengthTitle.en}>
+      <LessonSection number={9} title={t('strengthTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.strengthP1.hi : L.strengthP1.en}</p>
+          <p>{t('strengthP1')}</p>
           <p className="text-xs">
             <Link href="/learn/shadbala" className="text-gold-primary/70 hover:text-gold-light transition-colors">
               {isHi ? 'षड्बल का गहन अध्ययन →' : 'Deep dive into Shadbala →'}
@@ -382,9 +387,9 @@ export default function TippanniPage() {
       </LessonSection>
 
       {/* 10. Year predictions */}
-      <LessonSection number={10} title={isHi ? L.yearPredictionsTitle.hi : L.yearPredictionsTitle.en}>
+      <LessonSection number={10} title={t('yearPredictionsTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.yearPredictionsP1.hi : L.yearPredictionsP1.en}</p>
+          <p>{t('yearPredictionsP1')}</p>
           <div className="space-y-3 mt-4">
             {L.yearPredictionsSystems.map((s, i) => (
               <div key={i} className="rounded-lg bg-bg-primary/40 border border-gold-primary/10 p-4">
@@ -399,9 +404,9 @@ export default function TippanniPage() {
       </LessonSection>
 
       {/* 11. Remedies */}
-      <LessonSection number={11} title={isHi ? L.remediesTitle.hi : L.remediesTitle.en}>
+      <LessonSection number={11} title={t('remediesTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.remediesP1.hi : L.remediesP1.en}</p>
+          <p>{t('remediesP1')}</p>
           <div className="space-y-3 mt-4">
             {L.remedyTypes.map((r, i) => (
               <div key={i} className="rounded-lg bg-bg-primary/40 border border-gold-primary/10 p-4">
@@ -416,9 +421,9 @@ export default function TippanniPage() {
       </LessonSection>
 
       {/* 12. Life Questions */}
-      <LessonSection number={12} title={isHi ? L.lifeQuestionsTitle.hi : L.lifeQuestionsTitle.en}>
+      <LessonSection number={12} title={t('lifeQuestionsTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.lifeQuestionsP1.hi : L.lifeQuestionsP1.en}</p>
+          <p>{t('lifeQuestionsP1')}</p>
           <div className="overflow-x-auto">
             <table className="w-full text-xs mt-2">
               <thead>
@@ -441,9 +446,9 @@ export default function TippanniPage() {
       </LessonSection>
 
       {/* 13. Convergence */}
-      <LessonSection number={13} title={isHi ? L.convergenceTitle.hi : L.convergenceTitle.en}>
+      <LessonSection number={13} title={t('convergenceTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.convergenceP1.hi : L.convergenceP1.en}</p>
+          <p>{t('convergenceP1')}</p>
           <div className="space-y-3 mt-4">
             {L.convergenceExamples.map((ex, i) => (
               <div key={i} className="rounded-lg bg-bg-primary/40 border border-gold-primary/10 p-4">
@@ -458,9 +463,9 @@ export default function TippanniPage() {
       </LessonSection>
 
       {/* 14. Human vs Algorithmic */}
-      <LessonSection number={14} title={isHi ? L.humanVsAutoTitle.hi : L.humanVsAutoTitle.en}>
+      <LessonSection number={14} title={t('humanVsAutoTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
-          <p>{isHi ? L.humanVsAutoP1.hi : L.humanVsAutoP1.en}</p>
+          <p>{t('humanVsAutoP1')}</p>
           <div className="overflow-x-auto mt-4">
             <table className="w-full text-xs">
               <thead>
@@ -481,12 +486,12 @@ export default function TippanniPage() {
               </tbody>
             </table>
           </div>
-          <p>{isHi ? L.humanVsAutoP2.hi : L.humanVsAutoP2.en}</p>
+          <p>{t('humanVsAutoP2')}</p>
         </div>
       </LessonSection>
 
       {/* 15. Reading tips */}
-      <LessonSection number={15} title={isHi ? L.readingTipsTitle.hi : L.readingTipsTitle.en}>
+      <LessonSection number={15} title={t('readingTipsTitle')}>
         <div className="space-y-3">
           {L.readingTips.map((t, i) => (
             <div key={i} className="flex gap-3 p-3 rounded-lg bg-bg-primary/40 border border-gold-primary/10">
@@ -498,7 +503,7 @@ export default function TippanniPage() {
       </LessonSection>
 
       {/* Further learning */}
-      <LessonSection title={isHi ? L.furtherTitle.hi : L.furtherTitle.en}>
+      <LessonSection title={t('furtherTitle')}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {L.furtherLinks.map((link, i) => (
             <Link

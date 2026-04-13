@@ -1,0 +1,715 @@
+{
+  "title": {
+    "en": "Mangal Dosha in Marriage",
+    "hi": "विवाह में मंगल दोष",
+    "sa": "विवाहे मङ्गलदोषः",
+    "ta": "திருமணத்தில் செவ்வாய் தோஷம்",
+    "te": "వివాహంలో కుజ దోషం",
+    "bn": "বিবাহে মঙ্গল দোষ",
+    "kn": "ವಿವಾಹದಲ್ಲಿ ಮಂಗಳ ದೋಷ",
+    "mr": "विवाहातील मंगळ दोष",
+    "gu": "લગ્નમાં મંગળ દોષ",
+    "mai": "विवाह मे मंगल दोष"
+  },
+  "subtitle": {
+    "en": "Mars in houses 1, 2, 4, 7, 8, 12 from Lagna/Moon/Venus — its real impact, cancellations, and modern perspective",
+    "hi": "लग्न/चन्द्र/शुक्र से भाव 1, 2, 4, 7, 8, 12 में मंगल — वास्तविक प्रभाव, निरस्तीकरण, और आधुनिक दृष्टिकोण",
+    "sa": "लग्न/चन्द्र/शुक्रतः भावेषु 1, 2, 4, 7, 8, 12 मङ्गलः — वास्तवप्रभावः, निरस्तीकरणम्, आधुनिकदृष्टिकोणश्च",
+    "ta": "லக்னம்/சந்திரன்/சுக்கிரனிலிருந்து 1, 2, 4, 7, 8, 12 வீடுகளில் செவ்வாய் — உண்மையான தாக்கம், நிவாரணம் மற்றும் நவீன பார்வை",
+    "te": "లగ్నం/చంద్రుడు/శుక్రుడి నుండి 1, 2, 4, 7, 8, 12 భావాలలో కుజుడు — నిజమైన ప్రభావం, రద్దు మరియు ఆధునిక దృక్కోణం",
+    "bn": "লগ্ন/চন্দ্র/শুক্র থেকে ১, ২, ৪, ৭, ৮, ১২ ভাবে মঙ্গল — প্রকৃত প্রভাব, নিরসন এবং আধুনিক দৃষ্টিভঙ্গি",
+    "kn": "ಲಗ್ನ/ಚಂದ್ರ/ಶುಕ್ರನಿಂದ 1, 2, 4, 7, 8, 12 ಭಾವಗಳಲ್ಲಿ ಕುಜ — ನಿಜವಾದ ಪ್ರಭಾವ, ರದ್ದು ಮತ್ತು ಆಧುನಿಕ ದೃಷ್ಟಿಕೋನ",
+    "mr": "लग्न/चंद्र/शुक्रापासून भाव 1, 2, 4, 7, 8, 12 मध्ये मंगळ — वास्तव प्रभाव, निरस्तीकरण आणि आधुनिक दृष्टिकोन",
+    "gu": "લગ્ન/ચંદ્ર/શુક્રથી ભાવ 1, 2, 4, 7, 8, 12માં મંગળ — વાસ્તવિક પ્રભાવ, નિરસ્તીકરણ અને આધુનિક દ્રષ્ટિકોણ",
+    "mai": "लग्न/चन्द्र/शुक्र सँ भाव 1, 2, 4, 7, 8, 12 मे मंगल — वास्तविक प्रभाव, निरस्तीकरण, आ आधुनिक दृष्टिकोण"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "Module 14-1: Kundali Milan",
+        "hi": "मॉड्यूल 14-1: कुण्डली मिलान",
+        "sa": "मॉड्यूल 14-1: कुण्डली मिलान",
+        "mai": "मॉड्यूल 14-1: कुण्डली मिलान",
+        "mr": "मॉड्यूल 14-1: कुण्डली मिलान",
+        "ta": "Module 14-1: Kundali Milan",
+        "te": "Module 14-1: Kundali Milan",
+        "bn": "Module 14-1: Kundali Milan",
+        "kn": "Module 14-1: Kundali Milan",
+        "gu": "Module 14-1: Kundali Milan"
+      },
+      "href": "/learn/modules/14-1"
+    },
+    {
+      "label": {
+        "en": "Module 14-3: Timing Marriage Events",
+        "hi": "मॉड्यूल 14-3: विवाह समय निर्धारण",
+        "sa": "मॉड्यूल 14-3: विवाह समय निर्धारण",
+        "mai": "मॉड्यूल 14-3: विवाह समय निर्धारण",
+        "mr": "मॉड्यूल 14-3: विवाह समय निर्धारण",
+        "ta": "Module 14-3: Timing Marriage Events",
+        "te": "Module 14-3: Timing Marriage Events",
+        "bn": "Module 14-3: Timing Marriage Events",
+        "kn": "Module 14-3: Timing Marriage Events",
+        "gu": "Module 14-3: Timing Marriage Events"
+      },
+      "href": "/learn/modules/14-3"
+    },
+    {
+      "label": {
+        "en": "Doshas Deep Dive",
+        "hi": "दोष विस्तार",
+        "sa": "दोष विस्तार",
+        "mai": "दोष विस्तार",
+        "mr": "दोष विस्तार",
+        "ta": "Doshas Deep Dive",
+        "te": "Doshas Deep Dive",
+        "bn": "Doshas Deep Dive",
+        "kn": "Doshas Deep Dive",
+        "gu": "Doshas Deep Dive"
+      },
+      "href": "/learn/doshas"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q14_2_01",
+      "type": "mcq",
+      "question": {
+        "en": "From which reference points is Mangal Dosha traditionally checked?",
+        "hi": "मंगल दोष पारम्परिक रूप से किन सन्दर्भ बिन्दुओं से जाँचा जाता है?",
+        "sa": "मंगल दोष पारम्परिक रूप से किन सन्दर्भ बिन्दुओं से जाँचा जाता है?",
+        "ta": "From which reference points is Mangal Dosha traditionally checked?",
+        "te": "From which reference points is Mangal Dosha traditionally checked?",
+        "bn": "From which reference points is Mangal Dosha traditionally checked?",
+        "kn": "From which reference points is Mangal Dosha traditionally checked?",
+        "mr": "मंगल दोष पारम्परिक रूप से किन सन्दर्भ बिन्दुओं से जाँचा जाता है?",
+        "gu": "From which reference points is Mangal Dosha traditionally checked?",
+        "mai": "मंगल दोष पारम्परिक रूप से किन सन्दर्भ बिन्दुओं से जाँचा जाता है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "The North Indian tradition checks Mars placement from Lagna, Moon, and Venus. If Mars occupies houses 1, 2, 4, 7, 8, or 12 from ANY of these three, Mangal Dosha is present. The South Indian tradition typically checks only from Lagna.",
+        "hi": "उत्तर भारतीय परम्परा लग्न, चन्द्र, और शुक्र से मंगल की स्थिति जाँचती है। यदि मंगल इन तीनों में से किसी से भी भाव 1, 2, 4, 7, 8, या 12 में हो, तो मंगल दोष है। दक्षिण भारतीय परम्परा सामान्यतः केवल लग्न से जाँचती है।",
+        "sa": "उत्तर भारतीय परम्परा लग्न, चन्द्र, और शुक्र से मंगल की स्थिति जाँचती है। यदि मंगल इन तीनों में से किसी से भी भाव 1, 2, 4, 7, 8, या 12 में हो, तो मंगल दोष है। दक्षिण भारतीय परम्परा सामान्यतः केवल लग्न से जाँचती है।",
+        "ta": "The North Indian tradition checks Mars placement from Lagna, Moon, and Venus. If Mars occupies houses 1, 2, 4, 7, 8, or 12 from ANY of these three, Mangal Dosha is present. The South Indian tradition typically checks only from Lagna.",
+        "te": "The North Indian tradition checks Mars placement from Lagna, Moon, and Venus. If Mars occupies houses 1, 2, 4, 7, 8, or 12 from ANY of these three, Mangal Dosha is present. The South Indian tradition typically checks only from Lagna.",
+        "bn": "The North Indian tradition checks Mars placement from Lagna, Moon, and Venus. If Mars occupies houses 1, 2, 4, 7, 8, or 12 from ANY of these three, Mangal Dosha is present. The South Indian tradition typically checks only from Lagna.",
+        "kn": "The North Indian tradition checks Mars placement from Lagna, Moon, and Venus. If Mars occupies houses 1, 2, 4, 7, 8, or 12 from ANY of these three, Mangal Dosha is present. The South Indian tradition typically checks only from Lagna.",
+        "mr": "उत्तर भारतीय परम्परा लग्न, चन्द्र, और शुक्र से मंगल की स्थिति जाँचती है। यदि मंगल इन तीनों में से किसी से भी भाव 1, 2, 4, 7, 8, या 12 में हो, तो मंगल दोष है। दक्षिण भारतीय परम्परा सामान्यतः केवल लग्न से जाँचती है।",
+        "gu": "The North Indian tradition checks Mars placement from Lagna, Moon, and Venus. If Mars occupies houses 1, 2, 4, 7, 8, or 12 from ANY of these three, Mangal Dosha is present. The South Indian tradition typically checks only from Lagna.",
+        "mai": "उत्तर भारतीय परम्परा लग्न, चन्द्र, और शुक्र से मंगल की स्थिति जाँचती है। यदि मंगल इन तीनों में से किसी से भी भाव 1, 2, 4, 7, 8, या 12 में हो, तो मंगल दोष है। दक्षिण भारतीय परम्परा सामान्यतः केवल लग्न से जाँचती है।"
+      },
+      "options": [
+        {
+          "en": "Only from Lagna (Ascendant)",
+          "hi": "केवल लग्न से",
+          "sa": "केवल लग्न से",
+          "ta": "Only from Lagna (Ascendant)",
+          "te": "Only from Lagna (Ascendant)",
+          "bn": "Only from Lagna (Ascendant)",
+          "kn": "Only from Lagna (Ascendant)",
+          "mr": "केवल लग्न से",
+          "gu": "Only from Lagna (Ascendant)",
+          "mai": "केवल लग्न से"
+        },
+        {
+          "en": "From Lagna, Moon, and Venus",
+          "hi": "लग्न, चन्द्र, और शुक्र से",
+          "sa": "लग्न, चन्द्र, और शुक्र से",
+          "ta": "From Lagna, Moon, and Venus",
+          "te": "From Lagna, Moon, and Venus",
+          "bn": "From Lagna, Moon, and Venus",
+          "kn": "From Lagna, Moon, and Venus",
+          "mr": "लग्न, चन्द्र, और शुक्र से",
+          "gu": "From Lagna, Moon, and Venus",
+          "mai": "लग्न, चन्द्र, और शुक्र से"
+        },
+        {
+          "en": "Only from Moon",
+          "hi": "केवल चन्द्र से",
+          "sa": "केवल चन्द्र से",
+          "ta": "Only from Moon",
+          "te": "Only from Moon",
+          "bn": "Only from Moon",
+          "kn": "Only from Moon",
+          "mr": "केवल चन्द्र से",
+          "gu": "Only from Moon",
+          "mai": "केवल चन्द्र से"
+        },
+        {
+          "en": "From Sun and Jupiter",
+          "hi": "सूर्य और बृहस्पति से",
+          "sa": "सूर्य और बृहस्पति से",
+          "ta": "From Sun and Jupiter",
+          "te": "From Sun and Jupiter",
+          "bn": "From Sun and Jupiter",
+          "kn": "From Sun and Jupiter",
+          "mr": "सूर्य और बृहस्पति से",
+          "gu": "From Sun and Jupiter",
+          "mai": "सूर्य और बृहस्पति से"
+        }
+      ]
+    },
+    {
+      "id": "q14_2_02",
+      "type": "mcq",
+      "question": {
+        "en": "Approximately what percentage of charts have some form of Mangal Dosha?",
+        "hi": "लगभग कितने प्रतिशत कुण्डलियों में किसी प्रकार का मंगल दोष होता है?",
+        "sa": "लगभग कितने प्रतिशत कुण्डलियों में किसी प्रकार का मंगल दोष होता है?",
+        "ta": "Approximately what percentage of charts have some form of Mangal Dosha?",
+        "te": "Approximately what percentage of charts have some form of Mangal Dosha?",
+        "bn": "Approximately what percentage of charts have some form of Mangal Dosha?",
+        "kn": "Approximately what percentage of charts have some form of Mangal Dosha?",
+        "mr": "लगभग कितने प्रतिशत कुण्डलियों में किसी प्रकार का मंगल दोष होता है?",
+        "gu": "Approximately what percentage of charts have some form of Mangal Dosha?",
+        "mai": "लगभग कितने प्रतिशत कुण्डलियों में किसी प्रकार का मंगल दोष होता है?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "When checking from all three reference points (Lagna, Moon, Venus) across 6 houses each, roughly 40% of all charts show some form of Mangal Dosha. This high frequency itself suggests that the dosha should be evaluated carefully rather than feared blindly.",
+        "hi": "तीनों सन्दर्भ बिन्दुओं (लग्न, चन्द्र, शुक्र) से प्रत्येक 6 भावों में जाँचने पर, लगभग 40% कुण्डलियों में किसी प्रकार का मंगल दोष दिखता है। यह उच्च आवृत्ति स्वयं सुझाती है कि दोष का मूल्यांकन सावधानी से होना चाहिए, न कि अन्धा भय।",
+        "sa": "तीनों सन्दर्भ बिन्दुओं (लग्न, चन्द्र, शुक्र) से प्रत्येक 6 भावों में जाँचने पर, लगभग 40% कुण्डलियों में किसी प्रकार का मंगल दोष दिखता है। यह उच्च आवृत्ति स्वयं सुझाती है कि दोष का मूल्यांकन सावधानी से होना चाहिए, न कि अन्धा भय।",
+        "ta": "When checking from all three reference points (Lagna, Moon, Venus) across 6 houses each, roughly 40% of all charts show some form of Mangal Dosha. This high frequency itself suggests that the dosha should be evaluated carefully rather than feared blindly.",
+        "te": "When checking from all three reference points (Lagna, Moon, Venus) across 6 houses each, roughly 40% of all charts show some form of Mangal Dosha. This high frequency itself suggests that the dosha should be evaluated carefully rather than feared blindly.",
+        "bn": "When checking from all three reference points (Lagna, Moon, Venus) across 6 houses each, roughly 40% of all charts show some form of Mangal Dosha. This high frequency itself suggests that the dosha should be evaluated carefully rather than feared blindly.",
+        "kn": "When checking from all three reference points (Lagna, Moon, Venus) across 6 houses each, roughly 40% of all charts show some form of Mangal Dosha. This high frequency itself suggests that the dosha should be evaluated carefully rather than feared blindly.",
+        "mr": "तीनों सन्दर्भ बिन्दुओं (लग्न, चन्द्र, शुक्र) से प्रत्येक 6 भावों में जाँचने पर, लगभग 40% कुण्डलियों में किसी प्रकार का मंगल दोष दिखता है। यह उच्च आवृत्ति स्वयं सुझाती है कि दोष का मूल्यांकन सावधानी से होना चाहिए, न कि अन्धा भय।",
+        "gu": "When checking from all three reference points (Lagna, Moon, Venus) across 6 houses each, roughly 40% of all charts show some form of Mangal Dosha. This high frequency itself suggests that the dosha should be evaluated carefully rather than feared blindly.",
+        "mai": "तीनों सन्दर्भ बिन्दुओं (लग्न, चन्द्र, शुक्र) से प्रत्येक 6 भावों में जाँचने पर, लगभग 40% कुण्डलियों में किसी प्रकार का मंगल दोष दिखता है। यह उच्च आवृत्ति स्वयं सुझाती है कि दोष का मूल्यांकन सावधानी से होना चाहिए, न कि अन्धा भय।"
+      },
+      "options": [
+        {
+          "en": "About 10%",
+          "hi": "लगभग 10%",
+          "sa": "लगभग 10%",
+          "ta": "About 10%",
+          "te": "About 10%",
+          "bn": "About 10%",
+          "kn": "About 10%",
+          "mr": "लगभग 10%",
+          "gu": "About 10%",
+          "mai": "लगभग 10%"
+        },
+        {
+          "en": "About 25%",
+          "hi": "लगभग 25%",
+          "sa": "लगभग 25%",
+          "ta": "About 25%",
+          "te": "About 25%",
+          "bn": "About 25%",
+          "kn": "About 25%",
+          "mr": "लगभग 25%",
+          "gu": "About 25%",
+          "mai": "लगभग 25%"
+        },
+        {
+          "en": "About 40%",
+          "hi": "लगभग 40%",
+          "sa": "लगभग 40%",
+          "ta": "About 40%",
+          "te": "About 40%",
+          "bn": "About 40%",
+          "kn": "About 40%",
+          "mr": "लगभग 40%",
+          "gu": "About 40%",
+          "mai": "लगभग 40%"
+        },
+        {
+          "en": "About 75%",
+          "hi": "लगभग 75%",
+          "sa": "लगभग 75%",
+          "ta": "About 75%",
+          "te": "About 75%",
+          "bn": "About 75%",
+          "kn": "About 75%",
+          "mr": "लगभग 75%",
+          "gu": "About 75%",
+          "mai": "लगभग 75%"
+        }
+      ]
+    },
+    {
+      "id": "q14_2_03",
+      "type": "true_false",
+      "question": {
+        "en": "Mangal Dosha is automatically cancelled if Mars is in its own sign (Aries or Scorpio) in the dosha house.",
+        "hi": "यदि दोष भाव में मंगल अपनी स्वयं की राशि (मेष या वृश्चिक) में हो तो मंगल दोष स्वतः निरस्त हो जाता है।",
+        "sa": "यदि दोष भाव में मंगल अपनी स्वयं की राशि (मेष या वृश्चिक) में हो तो मंगल दोष स्वतः निरस्त हो जाता है।",
+        "ta": "Mangal Dosha is automatically cancelled if Mars is in its own sign (Aries or Scorpio) in the dosha house.",
+        "te": "Mangal Dosha is automatically cancelled if Mars is in its own sign (Aries or Scorpio) in the dosha house.",
+        "bn": "Mangal Dosha is automatically cancelled if Mars is in its own sign (Aries or Scorpio) in the dosha house.",
+        "kn": "Mangal Dosha is automatically cancelled if Mars is in its own sign (Aries or Scorpio) in the dosha house.",
+        "mr": "यदि दोष भाव में मंगल अपनी स्वयं की राशि (मेष या वृश्चिक) में हो तो मंगल दोष स्वतः निरस्त हो जाता है।",
+        "gu": "Mangal Dosha is automatically cancelled if Mars is in its own sign (Aries or Scorpio) in the dosha house.",
+        "mai": "यदि दोष भाव में मंगल अपनी स्वयं की राशि (मेष या वृश्चिक) में हो तो मंगल दोष स्वतः निरस्त हो जाता है।"
+      },
+      "correctAnswer": true,
+      "explanation": {
+        "en": "True. Mars in its own sign (Aries or Scorpio) is one of the 6 classical cancellation conditions. A planet in its own sign is \"at home\" and behaves constructively — Mars here gives courage and assertiveness rather than destructive aggression.",
+        "hi": "सत्य। अपनी स्वयं की राशि (मेष या वृश्चिक) में मंगल 6 शास्त्रीय निरस्तीकरण शर्तों में से एक है। अपनी राशि में ग्रह \"अपने घर में\" होता है और रचनात्मक रूप से कार्य करता है — यहाँ मंगल विनाशकारी आक्रामकता के बजाय साहस और दृढ़ता प्रदान करता है।",
+        "sa": "सत्य। अपनी स्वयं की राशि (मेष या वृश्चिक) में मंगल 6 शास्त्रीय निरस्तीकरण शर्तों में से एक है। अपनी राशि में ग्रह \"अपने घर में\" होता है और रचनात्मक रूप से कार्य करता है — यहाँ मंगल विनाशकारी आक्रामकता के बजाय साहस और दृढ़ता प्रदान करता है।",
+        "ta": "True. Mars in its own sign (Aries or Scorpio) is one of the 6 classical cancellation conditions. A planet in its own sign is \"at home\" and behaves constructively — Mars here gives courage and assertiveness rather than destructive aggression.",
+        "te": "True. Mars in its own sign (Aries or Scorpio) is one of the 6 classical cancellation conditions. A planet in its own sign is \"at home\" and behaves constructively — Mars here gives courage and assertiveness rather than destructive aggression.",
+        "bn": "True. Mars in its own sign (Aries or Scorpio) is one of the 6 classical cancellation conditions. A planet in its own sign is \"at home\" and behaves constructively — Mars here gives courage and assertiveness rather than destructive aggression.",
+        "kn": "True. Mars in its own sign (Aries or Scorpio) is one of the 6 classical cancellation conditions. A planet in its own sign is \"at home\" and behaves constructively — Mars here gives courage and assertiveness rather than destructive aggression.",
+        "mr": "सत्य। अपनी स्वयं की राशि (मेष या वृश्चिक) में मंगल 6 शास्त्रीय निरस्तीकरण शर्तों में से एक है। अपनी राशि में ग्रह \"अपने घर में\" होता है और रचनात्मक रूप से कार्य करता है — यहाँ मंगल विनाशकारी आक्रामकता के बजाय साहस और दृढ़ता प्रदान करता है।",
+        "gu": "True. Mars in its own sign (Aries or Scorpio) is one of the 6 classical cancellation conditions. A planet in its own sign is \"at home\" and behaves constructively — Mars here gives courage and assertiveness rather than destructive aggression.",
+        "mai": "सत्य। अपनी स्वयं की राशि (मेष या वृश्चिक) में मंगल 6 शास्त्रीय निरस्तीकरण शर्तों में से एक है। अपनी राशि में ग्रह \"अपने घर में\" होता है और रचनात्मक रूप से कार्य करता है — यहाँ मंगल विनाशकारी आक्रामकता के बजाय साहस और दृढ़ता प्रदान करता है।"
+      }
+    },
+    {
+      "id": "q14_2_04",
+      "type": "mcq",
+      "question": {
+        "en": "What happens when both partners have Mangal Dosha?",
+        "hi": "जब दोनों साथियों को मंगल दोष हो तो क्या होता है?",
+        "sa": "जब दोनों साथियों को मंगल दोष हो तो क्या होता है?",
+        "ta": "What happens when both partners have Mangal Dosha?",
+        "te": "What happens when both partners have Mangal Dosha?",
+        "bn": "What happens when both partners have Mangal Dosha?",
+        "kn": "What happens when both partners have Mangal Dosha?",
+        "mr": "जब दोनों साथियों को मंगल दोष हो तो क्या होता है?",
+        "gu": "What happens when both partners have Mangal Dosha?",
+        "mai": "जब दोनों साथियों को मंगल दोष हो तो क्या होता है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "When both partners have Mangal Dosha, it is mutually cancelled — \"two negatives make a positive.\" Both carry similar Mars energy, so neither overwhelms the other. This is the most common and widely accepted cancellation.",
+        "hi": "जब दोनों साथियों को मंगल दोष हो, तो यह पारस्परिक रूप से निरस्त हो जाता है — \"दो ऋणात्मक मिलकर धनात्मक बनाते हैं।\" दोनों में समान मंगल ऊर्जा होती है, अतः कोई भी दूसरे पर हावी नहीं होता। यह सबसे सामान्य और व्यापक रूप से स्वीकृत निरस्तीकरण है।",
+        "sa": "जब दोनों साथियों को मंगल दोष हो, तो यह पारस्परिक रूप से निरस्त हो जाता है — \"दो ऋणात्मक मिलकर धनात्मक बनाते हैं।\" दोनों में समान मंगल ऊर्जा होती है, अतः कोई भी दूसरे पर हावी नहीं होता। यह सबसे सामान्य और व्यापक रूप से स्वीकृत निरस्तीकरण है।",
+        "ta": "When both partners have Mangal Dosha, it is mutually cancelled — \"two negatives make a positive.\" Both carry similar Mars energy, so neither overwhelms the other. This is the most common and widely accepted cancellation.",
+        "te": "When both partners have Mangal Dosha, it is mutually cancelled — \"two negatives make a positive.\" Both carry similar Mars energy, so neither overwhelms the other. This is the most common and widely accepted cancellation.",
+        "bn": "When both partners have Mangal Dosha, it is mutually cancelled — \"two negatives make a positive.\" Both carry similar Mars energy, so neither overwhelms the other. This is the most common and widely accepted cancellation.",
+        "kn": "When both partners have Mangal Dosha, it is mutually cancelled — \"two negatives make a positive.\" Both carry similar Mars energy, so neither overwhelms the other. This is the most common and widely accepted cancellation.",
+        "mr": "जब दोनों साथियों को मंगल दोष हो, तो यह पारस्परिक रूप से निरस्त हो जाता है — \"दो ऋणात्मक मिलकर धनात्मक बनाते हैं।\" दोनों में समान मंगल ऊर्जा होती है, अतः कोई भी दूसरे पर हावी नहीं होता। यह सबसे सामान्य और व्यापक रूप से स्वीकृत निरस्तीकरण है।",
+        "gu": "When both partners have Mangal Dosha, it is mutually cancelled — \"two negatives make a positive.\" Both carry similar Mars energy, so neither overwhelms the other. This is the most common and widely accepted cancellation.",
+        "mai": "जब दोनों साथियों को मंगल दोष हो, तो यह पारस्परिक रूप से निरस्त हो जाता है — \"दो ऋणात्मक मिलकर धनात्मक बनाते हैं।\" दोनों में समान मंगल ऊर्जा होती है, अतः कोई भी दूसरे पर हावी नहीं होता। यह सबसे सामान्य और व्यापक रूप से स्वीकृत निरस्तीकरण है।"
+      },
+      "options": [
+        {
+          "en": "The dosha doubles in severity",
+          "hi": "दोष की गम्भीरता दोगुनी हो जाती है",
+          "sa": "दोष की गम्भीरता दोगुनी हो जाती है",
+          "ta": "The dosha doubles in severity",
+          "te": "The dosha doubles in severity",
+          "bn": "The dosha doubles in severity",
+          "kn": "The dosha doubles in severity",
+          "mr": "दोष की गम्भीरता दोगुनी हो जाती है",
+          "gu": "The dosha doubles in severity",
+          "mai": "दोष की गम्भीरता दोगुनी हो जाती है"
+        },
+        {
+          "en": "It cancels out — mutual Mangal Dosha is considered a cancellation",
+          "hi": "यह निरस्त हो जाता है — पारस्परिक मंगल दोष निरस्तीकरण माना जाता है",
+          "sa": "यह निरस्त हो जाता है — पारस्परिक मंगल दोष निरस्तीकरण माना जाता है",
+          "ta": "It cancels out — mutual Mangal Dosha is considered a cancellation",
+          "te": "It cancels out — mutual Mangal Dosha is considered a cancellation",
+          "bn": "It cancels out — mutual Mangal Dosha is considered a cancellation",
+          "kn": "It cancels out — mutual Mangal Dosha is considered a cancellation",
+          "mr": "यह निरस्त हो जाता है — पारस्परिक मंगल दोष निरस्तीकरण माना जाता है",
+          "gu": "It cancels out — mutual Mangal Dosha is considered a cancellation",
+          "mai": "यह निरस्त हो जाता है — पारस्परिक मंगल दोष निरस्तीकरण माना जाता है"
+        },
+        {
+          "en": "Only the male partner's dosha counts",
+          "hi": "केवल पुरुष साथी का दोष गिना जाता है",
+          "sa": "केवल पुरुष साथी का दोष गिना जाता है",
+          "ta": "Only the male partner's dosha counts",
+          "te": "Only the male partner's dosha counts",
+          "bn": "Only the male partner's dosha counts",
+          "kn": "Only the male partner's dosha counts",
+          "mr": "केवल पुरुष साथी का दोष गिना जाता है",
+          "gu": "Only the male partner's dosha counts",
+          "mai": "केवल पुरुष साथी का दोष गिना जाता है"
+        },
+        {
+          "en": "The marriage must happen on Tuesday",
+          "hi": "विवाह मंगलवार को होना चाहिए",
+          "sa": "विवाह मंगलवार को होना चाहिए",
+          "ta": "The marriage must happen on Tuesday",
+          "te": "The marriage must happen on Tuesday",
+          "bn": "The marriage must happen on Tuesday",
+          "kn": "The marriage must happen on Tuesday",
+          "mr": "विवाह मंगलवार को होना चाहिए",
+          "gu": "The marriage must happen on Tuesday",
+          "mai": "विवाह मंगलवार को होना चाहिए"
+        }
+      ]
+    },
+    {
+      "id": "q14_2_05",
+      "type": "mcq",
+      "question": {
+        "en": "Which of these is NOT a classical cancellation condition for Mangal Dosha?",
+        "hi": "इनमें से कौन मंगल दोष की शास्त्रीय निरस्तीकरण शर्त नहीं है?",
+        "sa": "इनमें से कौन मंगल दोष की शास्त्रीय निरस्तीकरण शर्त नहीं है?",
+        "ta": "Which of these is NOT a classical cancellation condition for Mangal Dosha?",
+        "te": "Which of these is NOT a classical cancellation condition for Mangal Dosha?",
+        "bn": "Which of these is NOT a classical cancellation condition for Mangal Dosha?",
+        "kn": "Which of these is NOT a classical cancellation condition for Mangal Dosha?",
+        "mr": "इनमें से कौन मंगल दोष की शास्त्रीय निरस्तीकरण शर्त नहीं है?",
+        "gu": "Which of these is NOT a classical cancellation condition for Mangal Dosha?",
+        "mai": "इनमें से कौन मंगल दोष की शास्त्रीय निरस्तीकरण शर्त नहीं है?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Mercury retrograde has no connection to Mangal Dosha cancellation. The classical cancellations are: Mars in own sign, Mars exalted (Capricorn), Jupiter aspect on dosha house, mutual dosha (both partners), Mars in specific nakshatras, and Venus/Jupiter in 7th.",
+        "hi": "बुध वक्री का मंगल दोष निरस्तीकरण से कोई सम्बन्ध नहीं है। शास्त्रीय निरस्तीकरण हैं: स्वराशि में मंगल, उच्च मंगल (मकर), दोष भाव पर बृहस्पति दृष्टि, पारस्परिक दोष (दोनों साथी), विशिष्ट नक्षत्रों में मंगल, और सप्तम में शुक्र/बृहस्पति।",
+        "sa": "बुध वक्री का मंगल दोष निरस्तीकरण से कोई सम्बन्ध नहीं है। शास्त्रीय निरस्तीकरण हैं: स्वराशि में मंगल, उच्च मंगल (मकर), दोष भाव पर बृहस्पति दृष्टि, पारस्परिक दोष (दोनों साथी), विशिष्ट नक्षत्रों में मंगल, और सप्तम में शुक्र/बृहस्पति।",
+        "ta": "Mercury retrograde has no connection to Mangal Dosha cancellation. The classical cancellations are: Mars in own sign, Mars exalted (Capricorn), Jupiter aspect on dosha house, mutual dosha (both partners), Mars in specific nakshatras, and Venus/Jupiter in 7th.",
+        "te": "Mercury retrograde has no connection to Mangal Dosha cancellation. The classical cancellations are: Mars in own sign, Mars exalted (Capricorn), Jupiter aspect on dosha house, mutual dosha (both partners), Mars in specific nakshatras, and Venus/Jupiter in 7th.",
+        "bn": "Mercury retrograde has no connection to Mangal Dosha cancellation. The classical cancellations are: Mars in own sign, Mars exalted (Capricorn), Jupiter aspect on dosha house, mutual dosha (both partners), Mars in specific nakshatras, and Venus/Jupiter in 7th.",
+        "kn": "Mercury retrograde has no connection to Mangal Dosha cancellation. The classical cancellations are: Mars in own sign, Mars exalted (Capricorn), Jupiter aspect on dosha house, mutual dosha (both partners), Mars in specific nakshatras, and Venus/Jupiter in 7th.",
+        "mr": "बुध वक्री का मंगल दोष निरस्तीकरण से कोई सम्बन्ध नहीं है। शास्त्रीय निरस्तीकरण हैं: स्वराशि में मंगल, उच्च मंगल (मकर), दोष भाव पर बृहस्पति दृष्टि, पारस्परिक दोष (दोनों साथी), विशिष्ट नक्षत्रों में मंगल, और सप्तम में शुक्र/बृहस्पति।",
+        "gu": "Mercury retrograde has no connection to Mangal Dosha cancellation. The classical cancellations are: Mars in own sign, Mars exalted (Capricorn), Jupiter aspect on dosha house, mutual dosha (both partners), Mars in specific nakshatras, and Venus/Jupiter in 7th.",
+        "mai": "बुध वक्री का मंगल दोष निरस्तीकरण से कोई सम्बन्ध नहीं है। शास्त्रीय निरस्तीकरण हैं: स्वराशि में मंगल, उच्च मंगल (मकर), दोष भाव पर बृहस्पति दृष्टि, पारस्परिक दोष (दोनों साथी), विशिष्ट नक्षत्रों में मंगल, और सप्तम में शुक्र/बृहस्पति।"
+      },
+      "options": [
+        {
+          "en": "Mars in Capricorn (exalted)",
+          "hi": "मकर में मंगल (उच्च)",
+          "sa": "मकर में मंगल (उच्च)",
+          "ta": "Mars in Capricorn (exalted)",
+          "te": "Mars in Capricorn (exalted)",
+          "bn": "Mars in Capricorn (exalted)",
+          "kn": "Mars in Capricorn (exalted)",
+          "mr": "मकर में मंगल (उच्च)",
+          "gu": "Mars in Capricorn (exalted)",
+          "mai": "मकर में मंगल (उच्च)"
+        },
+        {
+          "en": "Jupiter aspects the dosha house",
+          "hi": "बृहस्पति की दोष भाव पर दृष्टि",
+          "sa": "बृहस्पति की दोष भाव पर दृष्टि",
+          "ta": "Jupiter aspects the dosha house",
+          "te": "Jupiter aspects the dosha house",
+          "bn": "Jupiter aspects the dosha house",
+          "kn": "Jupiter aspects the dosha house",
+          "mr": "बृहस्पति की दोष भाव पर दृष्टि",
+          "gu": "Jupiter aspects the dosha house",
+          "mai": "बृहस्पति की दोष भाव पर दृष्टि"
+        },
+        {
+          "en": "Mercury is retrograde in the chart",
+          "hi": "कुण्डली में बुध वक्री है",
+          "sa": "कुण्डली में बुध वक्री है",
+          "ta": "Mercury is retrograde in the chart",
+          "te": "Mercury is retrograde in the chart",
+          "bn": "Mercury is retrograde in the chart",
+          "kn": "Mercury is retrograde in the chart",
+          "mr": "कुण्डली में बुध वक्री है",
+          "gu": "Mercury is retrograde in the chart",
+          "mai": "कुण्डली में बुध वक्री है"
+        },
+        {
+          "en": "Partner also has Mangal Dosha",
+          "hi": "साथी को भी मंगल दोष है",
+          "sa": "साथी को भी मंगल दोष है",
+          "ta": "Partner also has Mangal Dosha",
+          "te": "Partner also has Mangal Dosha",
+          "bn": "Partner also has Mangal Dosha",
+          "kn": "Partner also has Mangal Dosha",
+          "mr": "साथी को भी मंगल दोष है",
+          "gu": "Partner also has Mangal Dosha",
+          "mai": "साथी को भी मंगल दोष है"
+        }
+      ]
+    },
+    {
+      "id": "q14_2_06",
+      "type": "true_false",
+      "question": {
+        "en": "The South Indian tradition checks Mangal Dosha from Lagna, Moon, and Venus — same as the North Indian tradition.",
+        "hi": "दक्षिण भारतीय परम्परा मंगल दोष को लग्न, चन्द्र, और शुक्र से जाँचती है — उत्तर भारतीय परम्परा के समान।",
+        "sa": "दक्षिण भारतीय परम्परा मंगल दोष को लग्न, चन्द्र, और शुक्र से जाँचती है — उत्तर भारतीय परम्परा के समान।",
+        "ta": "The South Indian tradition checks Mangal Dosha from Lagna, Moon, and Venus — same as the North Indian tradition.",
+        "te": "The South Indian tradition checks Mangal Dosha from Lagna, Moon, and Venus — same as the North Indian tradition.",
+        "bn": "The South Indian tradition checks Mangal Dosha from Lagna, Moon, and Venus — same as the North Indian tradition.",
+        "kn": "The South Indian tradition checks Mangal Dosha from Lagna, Moon, and Venus — same as the North Indian tradition.",
+        "mr": "दक्षिण भारतीय परम्परा मंगल दोष को लग्न, चन्द्र, और शुक्र से जाँचती है — उत्तर भारतीय परम्परा के समान।",
+        "gu": "The South Indian tradition checks Mangal Dosha from Lagna, Moon, and Venus — same as the North Indian tradition.",
+        "mai": "दक्षिण भारतीय परम्परा मंगल दोष को लग्न, चन्द्र, और शुक्र से जाँचती है — उत्तर भारतीय परम्परा के समान।"
+      },
+      "correctAnswer": false,
+      "explanation": {
+        "en": "False. The South Indian tradition typically checks Mangal Dosha only from Lagna (Ascendant). The triple-reference-point system (Lagna + Moon + Venus) is primarily a North Indian practice, which results in a wider net and higher detection rate.",
+        "hi": "असत्य। दक्षिण भारतीय परम्परा सामान्यतः मंगल दोष केवल लग्न से जाँचती है। त्रि-सन्दर्भ-बिन्दु पद्धति (लग्न + चन्द्र + शुक्र) मुख्य रूप से उत्तर भारतीय प्रथा है, जिसके परिणामस्वरूप व्यापक जाल और उच्चतर पता लगाने की दर होती है।",
+        "sa": "असत्य। दक्षिण भारतीय परम्परा सामान्यतः मंगल दोष केवल लग्न से जाँचती है। त्रि-सन्दर्भ-बिन्दु पद्धति (लग्न + चन्द्र + शुक्र) मुख्य रूप से उत्तर भारतीय प्रथा है, जिसके परिणामस्वरूप व्यापक जाल और उच्चतर पता लगाने की दर होती है।",
+        "ta": "False. The South Indian tradition typically checks Mangal Dosha only from Lagna (Ascendant). The triple-reference-point system (Lagna + Moon + Venus) is primarily a North Indian practice, which results in a wider net and higher detection rate.",
+        "te": "False. The South Indian tradition typically checks Mangal Dosha only from Lagna (Ascendant). The triple-reference-point system (Lagna + Moon + Venus) is primarily a North Indian practice, which results in a wider net and higher detection rate.",
+        "bn": "False. The South Indian tradition typically checks Mangal Dosha only from Lagna (Ascendant). The triple-reference-point system (Lagna + Moon + Venus) is primarily a North Indian practice, which results in a wider net and higher detection rate.",
+        "kn": "False. The South Indian tradition typically checks Mangal Dosha only from Lagna (Ascendant). The triple-reference-point system (Lagna + Moon + Venus) is primarily a North Indian practice, which results in a wider net and higher detection rate.",
+        "mr": "असत्य। दक्षिण भारतीय परम्परा सामान्यतः मंगल दोष केवल लग्न से जाँचती है। त्रि-सन्दर्भ-बिन्दु पद्धति (लग्न + चन्द्र + शुक्र) मुख्य रूप से उत्तर भारतीय प्रथा है, जिसके परिणामस्वरूप व्यापक जाल और उच्चतर पता लगाने की दर होती है।",
+        "gu": "False. The South Indian tradition typically checks Mangal Dosha only from Lagna (Ascendant). The triple-reference-point system (Lagna + Moon + Venus) is primarily a North Indian practice, which results in a wider net and higher detection rate.",
+        "mai": "असत्य। दक्षिण भारतीय परम्परा सामान्यतः मंगल दोष केवल लग्न से जाँचती है। त्रि-सन्दर्भ-बिन्दु पद्धति (लग्न + चन्द्र + शुक्र) मुख्य रूप से उत्तर भारतीय प्रथा है, जिसके परिणामस्वरूप व्यापक जाल और उच्चतर पता लगाने की दर होती है।"
+      }
+    },
+    {
+      "id": "q14_2_07",
+      "type": "mcq",
+      "question": {
+        "en": "What does Mangal Dosha actually indicate about a person's personality?",
+        "hi": "मंगल दोष वास्तव में व्यक्ति के व्यक्तित्व के बारे में क्या दर्शाता है?",
+        "sa": "मंगल दोष वास्तव में व्यक्ति के व्यक्तित्व के बारे में क्या दर्शाता है?",
+        "ta": "What does Mangal Dosha actually indicate about a person's personality?",
+        "te": "What does Mangal Dosha actually indicate about a person's personality?",
+        "bn": "What does Mangal Dosha actually indicate about a person's personality?",
+        "kn": "What does Mangal Dosha actually indicate about a person's personality?",
+        "mr": "मंगल दोष वास्तव में व्यक्ति के व्यक्तित्व के बारे में क्या दर्शाता है?",
+        "gu": "What does Mangal Dosha actually indicate about a person's personality?",
+        "mai": "मंगल दोष वास्तव में व्यक्ति के व्यक्तित्व के बारे में क्या दर्शाता है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Mars represents energy, assertiveness, courage, and passion. In marriage-related houses, this manifests as a strong-willed, passionate personality who may be prone to arguments and dominance. This is an energy to channel, not a curse to fear.",
+        "hi": "मंगल ऊर्जा, दृढ़ता, साहस, और जुनून का प्रतिनिधित्व करता है। विवाह-सम्बन्धी भावों में यह दृढ़ इच्छाशक्ति वाले, उत्साही व्यक्तित्व के रूप में प्रकट होता है जो वाद-विवाद और प्रभुत्व की प्रवृत्ति रख सकता है। यह दिशा देने योग्य ऊर्जा है, न कि भय करने योग्य शाप।",
+        "sa": "मंगल ऊर्जा, दृढ़ता, साहस, और जुनून का प्रतिनिधित्व करता है। विवाह-सम्बन्धी भावों में यह दृढ़ इच्छाशक्ति वाले, उत्साही व्यक्तित्व के रूप में प्रकट होता है जो वाद-विवाद और प्रभुत्व की प्रवृत्ति रख सकता है। यह दिशा देने योग्य ऊर्जा है, न कि भय करने योग्य शाप।",
+        "ta": "Mars represents energy, assertiveness, courage, and passion. In marriage-related houses, this manifests as a strong-willed, passionate personality who may be prone to arguments and dominance. This is an energy to channel, not a curse to fear.",
+        "te": "Mars represents energy, assertiveness, courage, and passion. In marriage-related houses, this manifests as a strong-willed, passionate personality who may be prone to arguments and dominance. This is an energy to channel, not a curse to fear.",
+        "bn": "Mars represents energy, assertiveness, courage, and passion. In marriage-related houses, this manifests as a strong-willed, passionate personality who may be prone to arguments and dominance. This is an energy to channel, not a curse to fear.",
+        "kn": "Mars represents energy, assertiveness, courage, and passion. In marriage-related houses, this manifests as a strong-willed, passionate personality who may be prone to arguments and dominance. This is an energy to channel, not a curse to fear.",
+        "mr": "मंगल ऊर्जा, दृढ़ता, साहस, और जुनून का प्रतिनिधित्व करता है। विवाह-सम्बन्धी भावों में यह दृढ़ इच्छाशक्ति वाले, उत्साही व्यक्तित्व के रूप में प्रकट होता है जो वाद-विवाद और प्रभुत्व की प्रवृत्ति रख सकता है। यह दिशा देने योग्य ऊर्जा है, न कि भय करने योग्य शाप।",
+        "gu": "Mars represents energy, assertiveness, courage, and passion. In marriage-related houses, this manifests as a strong-willed, passionate personality who may be prone to arguments and dominance. This is an energy to channel, not a curse to fear.",
+        "mai": "मंगल ऊर्जा, दृढ़ता, साहस, और जुनून का प्रतिनिधित्व करता है। विवाह-सम्बन्धी भावों में यह दृढ़ इच्छाशक्ति वाले, उत्साही व्यक्तित्व के रूप में प्रकट होता है जो वाद-विवाद और प्रभुत्व की प्रवृत्ति रख सकता है। यह दिशा देने योग्य ऊर्जा है, न कि भय करने योग्य शाप।"
+      },
+      "options": [
+        {
+          "en": "The person is cursed and will harm their spouse",
+          "hi": "व्यक्ति शापित है और अपने जीवनसाथी को हानि पहुँचाएगा",
+          "sa": "व्यक्ति शापित है और अपने जीवनसाथी को हानि पहुँचाएगा",
+          "ta": "The person is cursed and will harm their spouse",
+          "te": "The person is cursed and will harm their spouse",
+          "bn": "The person is cursed and will harm their spouse",
+          "kn": "The person is cursed and will harm their spouse",
+          "mr": "व्यक्ति शापित है और अपने जीवनसाथी को हानि पहुँचाएगा",
+          "gu": "The person is cursed and will harm their spouse",
+          "mai": "व्यक्ति शापित है और अपने जीवनसाथी को हानि पहुँचाएगा"
+        },
+        {
+          "en": "Assertive personality with passion and potential for arguments",
+          "hi": "जुनून और वाद-विवाद की सम्भावना सहित दृढ़ व्यक्तित्व",
+          "sa": "जुनून और वाद-विवाद की सम्भावना सहित दृढ़ व्यक्तित्व",
+          "ta": "Assertive personality with passion and potential for arguments",
+          "te": "Assertive personality with passion and potential for arguments",
+          "bn": "Assertive personality with passion and potential for arguments",
+          "kn": "Assertive personality with passion and potential for arguments",
+          "mr": "जुनून और वाद-विवाद की सम्भावना सहित दृढ़ व्यक्तित्व",
+          "gu": "Assertive personality with passion and potential for arguments",
+          "mai": "जुनून और वाद-विवाद की सम्भावना सहित दृढ़ व्यक्तित्व"
+        },
+        {
+          "en": "The person should never marry",
+          "hi": "व्यक्ति को कभी विवाह नहीं करना चाहिए",
+          "sa": "व्यक्ति को कभी विवाह नहीं करना चाहिए",
+          "ta": "The person should never marry",
+          "te": "The person should never marry",
+          "bn": "The person should never marry",
+          "kn": "The person should never marry",
+          "mr": "व्यक्ति को कभी विवाह नहीं करना चाहिए",
+          "gu": "The person should never marry",
+          "mai": "व्यक्ति को कभी विवाह नहीं करना चाहिए"
+        },
+        {
+          "en": "No personality significance — purely medical",
+          "hi": "कोई व्यक्तित्व महत्व नहीं — पूर्णतया चिकित्सीय",
+          "sa": "कोई व्यक्तित्व महत्व नहीं — पूर्णतया चिकित्सीय",
+          "ta": "No personality significance — purely medical",
+          "te": "No personality significance — purely medical",
+          "bn": "No personality significance — purely medical",
+          "kn": "No personality significance — purely medical",
+          "mr": "कोई व्यक्तित्व महत्व नहीं — पूर्णतया चिकित्सीय",
+          "gu": "No personality significance — purely medical",
+          "mai": "कोई व्यक्तित्व महत्व नहीं — पूर्णतया चिकित्सीय"
+        }
+      ]
+    },
+    {
+      "id": "q14_2_08",
+      "type": "mcq",
+      "question": {
+        "en": "What is Kumbha Vivah?",
+        "hi": "कुम्भ विवाह क्या है?",
+        "sa": "कुम्भ विवाह क्या है?",
+        "ta": "What is Kumbha Vivah?",
+        "te": "What is Kumbha Vivah?",
+        "bn": "What is Kumbha Vivah?",
+        "kn": "What is Kumbha Vivah?",
+        "mr": "कुम्भ विवाह क्या है?",
+        "gu": "What is Kumbha Vivah?",
+        "mai": "कुम्भ विवाह क्या है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Kumbha Vivah is a ritual where the Manglik person symbolically \"marries\" a clay pot (kumbha), a peepal tree, or a Vishnu idol before the actual marriage. This is believed to \"exhaust\" the Mars dosha energy on the symbolic spouse, protecting the real one.",
+        "hi": "कुम्भ विवाह एक अनुष्ठान है जिसमें मांगलिक व्यक्ति वास्तविक विवाह से पूर्व प्रतीकात्मक रूप से मिट्टी के घड़े (कुम्भ), पीपल के वृक्ष, या विष्णु प्रतिमा से \"विवाह\" करता है। माना जाता है कि यह प्रतीकात्मक जीवनसाथी पर मंगल दोष ऊर्जा \"समाप्त\" कर देता है, वास्तविक जीवनसाथी की रक्षा करता है।",
+        "sa": "कुम्भ विवाह एक अनुष्ठान है जिसमें मांगलिक व्यक्ति वास्तविक विवाह से पूर्व प्रतीकात्मक रूप से मिट्टी के घड़े (कुम्भ), पीपल के वृक्ष, या विष्णु प्रतिमा से \"विवाह\" करता है। माना जाता है कि यह प्रतीकात्मक जीवनसाथी पर मंगल दोष ऊर्जा \"समाप्त\" कर देता है, वास्तविक जीवनसाथी की रक्षा करता है।",
+        "ta": "Kumbha Vivah is a ritual where the Manglik person symbolically \"marries\" a clay pot (kumbha), a peepal tree, or a Vishnu idol before the actual marriage. This is believed to \"exhaust\" the Mars dosha energy on the symbolic spouse, protecting the real one.",
+        "te": "Kumbha Vivah is a ritual where the Manglik person symbolically \"marries\" a clay pot (kumbha), a peepal tree, or a Vishnu idol before the actual marriage. This is believed to \"exhaust\" the Mars dosha energy on the symbolic spouse, protecting the real one.",
+        "bn": "Kumbha Vivah is a ritual where the Manglik person symbolically \"marries\" a clay pot (kumbha), a peepal tree, or a Vishnu idol before the actual marriage. This is believed to \"exhaust\" the Mars dosha energy on the symbolic spouse, protecting the real one.",
+        "kn": "Kumbha Vivah is a ritual where the Manglik person symbolically \"marries\" a clay pot (kumbha), a peepal tree, or a Vishnu idol before the actual marriage. This is believed to \"exhaust\" the Mars dosha energy on the symbolic spouse, protecting the real one.",
+        "mr": "कुम्भ विवाह एक अनुष्ठान है जिसमें मांगलिक व्यक्ति वास्तविक विवाह से पूर्व प्रतीकात्मक रूप से मिट्टी के घड़े (कुम्भ), पीपल के वृक्ष, या विष्णु प्रतिमा से \"विवाह\" करता है। माना जाता है कि यह प्रतीकात्मक जीवनसाथी पर मंगल दोष ऊर्जा \"समाप्त\" कर देता है, वास्तविक जीवनसाथी की रक्षा करता है।",
+        "gu": "Kumbha Vivah is a ritual where the Manglik person symbolically \"marries\" a clay pot (kumbha), a peepal tree, or a Vishnu idol before the actual marriage. This is believed to \"exhaust\" the Mars dosha energy on the symbolic spouse, protecting the real one.",
+        "mai": "कुम्भ विवाह एक अनुष्ठान है जिसमें मांगलिक व्यक्ति वास्तविक विवाह से पूर्व प्रतीकात्मक रूप से मिट्टी के घड़े (कुम्भ), पीपल के वृक्ष, या विष्णु प्रतिमा से \"विवाह\" करता है। माना जाता है कि यह प्रतीकात्मक जीवनसाथी पर मंगल दोष ऊर्जा \"समाप्त\" कर देता है, वास्तविक जीवनसाथी की रक्षा करता है।"
+      },
+      "options": [
+        {
+          "en": "A marriage ceremony performed during Kumbh Mela",
+          "hi": "कुम्भ मेला के दौरान की जाने वाली विवाह उपचार",
+          "sa": "कुम्भ मेला के दौरान की जाने वाली विवाह उपचार",
+          "ta": "A marriage ceremony performed during Kumbh Mela",
+          "te": "A marriage ceremony performed during Kumbh Mela",
+          "bn": "A marriage ceremony performed during Kumbh Mela",
+          "kn": "A marriage ceremony performed during Kumbh Mela",
+          "mr": "कुम्भ मेला के दौरान की जाने वाली विवाह उपचार",
+          "gu": "A marriage ceremony performed during Kumbh Mela",
+          "mai": "कुम्भ मेला के दौरान की जाने वाली विवाह उपचार"
+        },
+        {
+          "en": "A symbolic marriage to a clay pot or tree to neutralize Mars dosha",
+          "hi": "मंगल दोष निष्प्रभाव करने के लिए मिट्टी के घड़े या वृक्ष से प्रतीकात्मक विवाह",
+          "sa": "मंगल दोष निष्प्रभाव करने के लिए मिट्टी के घड़े या वृक्ष से प्रतीकात्मक विवाह",
+          "ta": "A symbolic marriage to a clay pot or tree to neutralize Mars dosha",
+          "te": "A symbolic marriage to a clay pot or tree to neutralize Mars dosha",
+          "bn": "A symbolic marriage to a clay pot or tree to neutralize Mars dosha",
+          "kn": "A symbolic marriage to a clay pot or tree to neutralize Mars dosha",
+          "mr": "मंगल दोष निष्प्रभाव करने के लिए मिट्टी के घड़े या वृक्ष से प्रतीकात्मक विवाह",
+          "gu": "A symbolic marriage to a clay pot or tree to neutralize Mars dosha",
+          "mai": "मंगल दोष निष्प्रभाव करने के लिए मिट्टी के घड़े या वृक्ष से प्रतीकात्मक विवाह"
+        },
+        {
+          "en": "A type of Vedic wedding ceremony",
+          "hi": "एक प्रकार का वैदिक विवाह संस्कार",
+          "sa": "एक प्रकार का वैदिक विवाह संस्कार",
+          "ta": "A type of Vedic wedding ceremony",
+          "te": "A type of Vedic wedding ceremony",
+          "bn": "A type of Vedic wedding ceremony",
+          "kn": "A type of Vedic wedding ceremony",
+          "mr": "एक प्रकार का वैदिक विवाह संस्कार",
+          "gu": "A type of Vedic wedding ceremony",
+          "mai": "एक प्रकार का वैदिक विवाह संस्कार"
+        },
+        {
+          "en": "Marriage in Aquarius (Kumbha) season",
+          "hi": "कुम्भ ऋतु में विवाह",
+          "sa": "कुम्भ ऋतु में विवाह",
+          "ta": "Marriage in Aquarius (Kumbha) season",
+          "te": "Marriage in Aquarius (Kumbha) season",
+          "bn": "Marriage in Aquarius (Kumbha) season",
+          "kn": "Marriage in Aquarius (Kumbha) season",
+          "mr": "कुम्भ ऋतु में विवाह",
+          "gu": "Marriage in Aquarius (Kumbha) season",
+          "mai": "कुम्भ ऋतु में विवाह"
+        }
+      ]
+    },
+    {
+      "id": "q14_2_09",
+      "type": "true_false",
+      "question": {
+        "en": "Wearing red coral (Moonga) is universally recommended for all people with Mangal Dosha.",
+        "hi": "मूँगा (लाल प्रवाल) पहनना सभी मंगल दोष वाले व्यक्तियों के लिए सार्वभौमिक रूप से अनुशंसित है।",
+        "sa": "मूँगा (लाल प्रवाल) पहनना सभी मंगल दोष वाले व्यक्तियों के लिए सार्वभौमिक रूप से अनुशंसित है।",
+        "ta": "Wearing red coral (Moonga) is universally recommended for all people with Mangal Dosha.",
+        "te": "Wearing red coral (Moonga) is universally recommended for all people with Mangal Dosha.",
+        "bn": "Wearing red coral (Moonga) is universally recommended for all people with Mangal Dosha.",
+        "kn": "Wearing red coral (Moonga) is universally recommended for all people with Mangal Dosha.",
+        "mr": "मूँगा (लाल प्रवाल) पहनना सभी मंगल दोष वाले व्यक्तियों के लिए सार्वभौमिक रूप से अनुशंसित है।",
+        "gu": "Wearing red coral (Moonga) is universally recommended for all people with Mangal Dosha.",
+        "mai": "मूँगा (लाल प्रवाल) पहनना सभी मंगल दोष वाले व्यक्तियों के लिए सार्वभौमिक रूप से अनुशंसित है।"
+      },
+      "correctAnswer": false,
+      "explanation": {
+        "en": "False. Red coral strengthens Mars, which can be counterproductive if Mars is already too strong or a functional malefic for that ascendant. Gemstone recommendations must be based on the complete chart — for some lagnas, strengthening Mars makes the dosha worse, not better.",
+        "hi": "असत्य। मूँगा मंगल को शक्तिशाली बनाता है, जो प्रतिकूल हो सकता है यदि मंगल पहले से अत्यधिक शक्तिशाली हो या उस लग्न के लिए कार्यकारी पापी हो। रत्न सिफारिशें सम्पूर्ण कुण्डली पर आधारित होनी चाहिए — कुछ लग्नों के लिए, मंगल को शक्तिशाली बनाना दोष को बेहतर नहीं, बदतर बनाता है।",
+        "sa": "असत्य। मूँगा मंगल को शक्तिशाली बनाता है, जो प्रतिकूल हो सकता है यदि मंगल पहले से अत्यधिक शक्तिशाली हो या उस लग्न के लिए कार्यकारी पापी हो। रत्न सिफारिशें सम्पूर्ण कुण्डली पर आधारित होनी चाहिए — कुछ लग्नों के लिए, मंगल को शक्तिशाली बनाना दोष को बेहतर नहीं, बदतर बनाता है।",
+        "ta": "False. Red coral strengthens Mars, which can be counterproductive if Mars is already too strong or a functional malefic for that ascendant. Gemstone recommendations must be based on the complete chart — for some lagnas, strengthening Mars makes the dosha worse, not better.",
+        "te": "False. Red coral strengthens Mars, which can be counterproductive if Mars is already too strong or a functional malefic for that ascendant. Gemstone recommendations must be based on the complete chart — for some lagnas, strengthening Mars makes the dosha worse, not better.",
+        "bn": "False. Red coral strengthens Mars, which can be counterproductive if Mars is already too strong or a functional malefic for that ascendant. Gemstone recommendations must be based on the complete chart — for some lagnas, strengthening Mars makes the dosha worse, not better.",
+        "kn": "False. Red coral strengthens Mars, which can be counterproductive if Mars is already too strong or a functional malefic for that ascendant. Gemstone recommendations must be based on the complete chart — for some lagnas, strengthening Mars makes the dosha worse, not better.",
+        "mr": "असत्य। मूँगा मंगल को शक्तिशाली बनाता है, जो प्रतिकूल हो सकता है यदि मंगल पहले से अत्यधिक शक्तिशाली हो या उस लग्न के लिए कार्यकारी पापी हो। रत्न सिफारिशें सम्पूर्ण कुण्डली पर आधारित होनी चाहिए — कुछ लग्नों के लिए, मंगल को शक्तिशाली बनाना दोष को बेहतर नहीं, बदतर बनाता है।",
+        "gu": "False. Red coral strengthens Mars, which can be counterproductive if Mars is already too strong or a functional malefic for that ascendant. Gemstone recommendations must be based on the complete chart — for some lagnas, strengthening Mars makes the dosha worse, not better.",
+        "mai": "असत्य। मूँगा मंगल को शक्तिशाली बनाता है, जो प्रतिकूल हो सकता है यदि मंगल पहले से अत्यधिक शक्तिशाली हो या उस लग्न के लिए कार्यकारी पापी हो। रत्न सिफारिशें सम्पूर्ण कुण्डली पर आधारित होनी चाहिए — कुछ लग्नों के लिए, मंगल को शक्तिशाली बनाना दोष को बेहतर नहीं, बदतर बनाता है।"
+      }
+    },
+    {
+      "id": "q14_2_10",
+      "type": "mcq",
+      "question": {
+        "en": "Mars in which house from Lagna is considered the MOST severe form of Mangal Dosha?",
+        "hi": "लग्न से किस भाव में मंगल को मंगल दोष का सर्वाधिक गम्भीर रूप माना जाता है?",
+        "sa": "लग्न से किस भाव में मंगल को मंगल दोष का सर्वाधिक गम्भीर रूप माना जाता है?",
+        "ta": "Mars in which house from Lagna is considered the MOST severe form of Mangal Dosha?",
+        "te": "Mars in which house from Lagna is considered the MOST severe form of Mangal Dosha?",
+        "bn": "Mars in which house from Lagna is considered the MOST severe form of Mangal Dosha?",
+        "kn": "Mars in which house from Lagna is considered the MOST severe form of Mangal Dosha?",
+        "mr": "लग्न से किस भाव में मंगल को मंगल दोष का सर्वाधिक गम्भीर रूप माना जाता है?",
+        "gu": "Mars in which house from Lagna is considered the MOST severe form of Mangal Dosha?",
+        "mai": "लग्न से किस भाव में मंगल को मंगल दोष का सर्वाधिक गम्भीर रूप माना जाता है?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Mars in the 8th house is traditionally the most severe Mangal Dosha because the 8th rules longevity, and Mars (a violent planet) there was historically linked to spouse's life span. Mars in the 7th (direct marriage house) is the next most severe.",
+        "hi": "अष्टम भाव में मंगल पारम्परिक रूप से सबसे गम्भीर मंगल दोष है क्योंकि अष्टम दीर्घायु का शासक है, और वहाँ मंगल (एक हिंसक ग्रह) ऐतिहासिक रूप से जीवनसाथी के जीवनकाल से जोड़ा गया था। सप्तम (प्रत्यक्ष विवाह भाव) में मंगल अगला सबसे गम्भीर है।",
+        "sa": "अष्टम भाव में मंगल पारम्परिक रूप से सबसे गम्भीर मंगल दोष है क्योंकि अष्टम दीर्घायु का शासक है, और वहाँ मंगल (एक हिंसक ग्रह) ऐतिहासिक रूप से जीवनसाथी के जीवनकाल से जोड़ा गया था। सप्तम (प्रत्यक्ष विवाह भाव) में मंगल अगला सबसे गम्भीर है।",
+        "ta": "Mars in the 8th house is traditionally the most severe Mangal Dosha because the 8th rules longevity, and Mars (a violent planet) there was historically linked to spouse's life span. Mars in the 7th (direct marriage house) is the next most severe.",
+        "te": "Mars in the 8th house is traditionally the most severe Mangal Dosha because the 8th rules longevity, and Mars (a violent planet) there was historically linked to spouse's life span. Mars in the 7th (direct marriage house) is the next most severe.",
+        "bn": "Mars in the 8th house is traditionally the most severe Mangal Dosha because the 8th rules longevity, and Mars (a violent planet) there was historically linked to spouse's life span. Mars in the 7th (direct marriage house) is the next most severe.",
+        "kn": "Mars in the 8th house is traditionally the most severe Mangal Dosha because the 8th rules longevity, and Mars (a violent planet) there was historically linked to spouse's life span. Mars in the 7th (direct marriage house) is the next most severe.",
+        "mr": "अष्टम भाव में मंगल पारम्परिक रूप से सबसे गम्भीर मंगल दोष है क्योंकि अष्टम दीर्घायु का शासक है, और वहाँ मंगल (एक हिंसक ग्रह) ऐतिहासिक रूप से जीवनसाथी के जीवनकाल से जोड़ा गया था। सप्तम (प्रत्यक्ष विवाह भाव) में मंगल अगला सबसे गम्भीर है।",
+        "gu": "Mars in the 8th house is traditionally the most severe Mangal Dosha because the 8th rules longevity, and Mars (a violent planet) there was historically linked to spouse's life span. Mars in the 7th (direct marriage house) is the next most severe.",
+        "mai": "अष्टम भाव में मंगल पारम्परिक रूप से सबसे गम्भीर मंगल दोष है क्योंकि अष्टम दीर्घायु का शासक है, और वहाँ मंगल (एक हिंसक ग्रह) ऐतिहासिक रूप से जीवनसाथी के जीवनकाल से जोड़ा गया था। सप्तम (प्रत्यक्ष विवाह भाव) में मंगल अगला सबसे गम्भीर है।"
+      },
+      "options": [
+        {
+          "en": "1st house (Lagna itself)",
+          "hi": "प्रथम भाव (लग्न स्वयं)",
+          "sa": "प्रथम भाव (लग्न स्वयं)",
+          "ta": "1st house (Lagna itself)",
+          "te": "1st house (Lagna itself)",
+          "bn": "1st house (Lagna itself)",
+          "kn": "1st house (Lagna itself)",
+          "mr": "प्रथम भाव (लग्न स्वयं)",
+          "gu": "1st house (Lagna itself)",
+          "mai": "प्रथम भाव (लग्न स्वयं)"
+        },
+        {
+          "en": "7th house (house of marriage)",
+          "hi": "सप्तम भाव (विवाह का भाव)",
+          "sa": "सप्तम भाव (विवाह का भाव)",
+          "ta": "7th house (house of marriage)",
+          "te": "7th house (house of marriage)",
+          "bn": "7th house (house of marriage)",
+          "kn": "7th house (house of marriage)",
+          "mr": "सप्तम भाव (विवाह का भाव)",
+          "gu": "7th house (house of marriage)",
+          "mai": "सप्तम भाव (विवाह का भाव)"
+        },
+        {
+          "en": "8th house (house of longevity/transformation)",
+          "hi": "अष्टम भाव (दीर्घायु/रूपान्तरण का भाव)",
+          "sa": "अष्टम भाव (दीर्घायु/रूपान्तरण का भाव)",
+          "ta": "8th house (house of longevity/transformation)",
+          "te": "8th house (house of longevity/transformation)",
+          "bn": "8th house (house of longevity/transformation)",
+          "kn": "8th house (house of longevity/transformation)",
+          "mr": "अष्टम भाव (दीर्घायु/रूपान्तरण का भाव)",
+          "gu": "8th house (house of longevity/transformation)",
+          "mai": "अष्टम भाव (दीर्घायु/रूपान्तरण का भाव)"
+        },
+        {
+          "en": "12th house (house of losses)",
+          "hi": "द्वादश भाव (हानि का भाव)",
+          "sa": "द्वादश भाव (हानि का भाव)",
+          "ta": "12th house (house of losses)",
+          "te": "12th house (house of losses)",
+          "bn": "12th house (house of losses)",
+          "kn": "12th house (house of losses)",
+          "mr": "द्वादश भाव (हानि का भाव)",
+          "gu": "12th house (house of losses)",
+          "mai": "द्वादश भाव (हानि का भाव)"
+        }
+      ]
+    }
+  ]
+}

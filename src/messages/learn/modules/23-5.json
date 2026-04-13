@@ -1,0 +1,690 @@
+{
+  "title": {
+    "en": "Prashna Yogas — Horary Combinations",
+    "hi": "प्रश्न योग — होरारी संयोजन",
+    "sa": "प्रश्न योग — होरारी संयोजन",
+    "mai": "प्रश्न योग — होरारी संयोजन",
+    "mr": "प्रश्न योग — होरारी संयोजन",
+    "ta": "Prashna Yogas — Horary Combinations",
+    "te": "Prashna Yogas — Horary Combinations",
+    "bn": "Prashna Yogas — Horary Combinations",
+    "kn": "Prashna Yogas — Horary Combinations",
+    "gu": "Prashna Yogas — Horary Combinations"
+  },
+  "subtitle": {
+    "en": "Specific planetary combinations that give immediate yes/no answers to questions",
+    "hi": "विशिष्ट ग्रहीय संयोजन जो प्रश्नों के तत्काल हाँ/नहीं उत्तर देते हैं",
+    "sa": "विशिष्ट ग्रहीय संयोजन जो प्रश्नों के तत्काल हाँ/नहीं उत्तर देते हैं",
+    "mai": "विशिष्ट ग्रहीय संयोजन जो प्रश्नों के तत्काल हाँ/नहीं उत्तर देते हैं",
+    "mr": "विशिष्ट ग्रहीय संयोजन जो प्रश्नों के तत्काल हाँ/नहीं उत्तर देते हैं",
+    "ta": "Specific planetary combinations that give immediate yes/no answers to questions",
+    "te": "Specific planetary combinations that give immediate yes/no answers to questions",
+    "bn": "Specific planetary combinations that give immediate yes/no answers to questions",
+    "kn": "Specific planetary combinations that give immediate yes/no answers to questions",
+    "gu": "Specific planetary combinations that give immediate yes/no answers to questions"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "Module 23.3: Chakra Systems",
+        "hi": "मॉड्यूल 23.3: चक्र प्रणालियाँ",
+        "sa": "मॉड्यूल 23.3: चक्र प्रणालियाँ",
+        "mai": "मॉड्यूल 23.3: चक्र प्रणालियाँ",
+        "mr": "मॉड्यूल 23.3: चक्र प्रणालियाँ",
+        "ta": "Module 23.3: Chakra Systems",
+        "te": "Module 23.3: Chakra Systems",
+        "bn": "Module 23.3: Chakra Systems",
+        "kn": "Module 23.3: Chakra Systems",
+        "gu": "Module 23.3: Chakra Systems"
+      },
+      "href": "/learn/modules/23-3"
+    },
+    {
+      "label": {
+        "en": "Module 23.4: Sphutas & Sensitive Points",
+        "hi": "मॉड्यूल 23.4: स्फुट और संवेदनशील बिन्दु",
+        "sa": "मॉड्यूल 23.4: स्फुट और संवेदनशील बिन्दु",
+        "mai": "मॉड्यूल 23.4: स्फुट और संवेदनशील बिन्दु",
+        "mr": "मॉड्यूल 23.4: स्फुट और संवेदनशील बिन्दु",
+        "ta": "Module 23.4: Sphutas & Sensitive Points",
+        "te": "Module 23.4: Sphutas & Sensitive Points",
+        "bn": "Module 23.4: Sphutas & Sensitive Points",
+        "kn": "Module 23.4: Sphutas & Sensitive Points",
+        "gu": "Module 23.4: Sphutas & Sensitive Points"
+      },
+      "href": "/learn/modules/23-4"
+    },
+    {
+      "label": {
+        "en": "Module 15.3: Prashna Fundamentals",
+        "hi": "मॉड्यूल 15.3: प्रश्न मूलभूत तत्व",
+        "sa": "मॉड्यूल 15.3: प्रश्न मूलभूत तत्व",
+        "mai": "मॉड्यूल 15.3: प्रश्न मूलभूत तत्व",
+        "mr": "मॉड्यूल 15.3: प्रश्न मूलभूत तत्व",
+        "ta": "Module 15.3: Prashna Fundamentals",
+        "te": "Module 15.3: Prashna Fundamentals",
+        "bn": "Module 15.3: Prashna Fundamentals",
+        "kn": "Module 15.3: Prashna Fundamentals",
+        "gu": "Module 15.3: Prashna Fundamentals"
+      },
+      "href": "/learn/modules/15-3"
+    },
+    {
+      "label": {
+        "en": "Prashna Tool",
+        "hi": "प्रश्न उपकरण",
+        "sa": "प्रश्न उपकरण",
+        "mai": "प्रश्न उपकरण",
+        "mr": "प्रश्न उपकरण",
+        "ta": "Prashna Tool",
+        "te": "Prashna Tool",
+        "bn": "Prashna Tool",
+        "kn": "Prashna Tool",
+        "gu": "Prashna Tool"
+      },
+      "href": "/prashna"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q23_5_01",
+      "type": "mcq",
+      "question": {
+        "en": "In Prashna (horary) astrology, when is the chart cast?",
+        "hi": "प्रश्न (होरारी) ज्योतिष में कुण्डली कब बनाई जाती है?",
+        "sa": "प्रश्न (होरारी) ज्योतिष में कुण्डली कब बनाई जाती है?",
+        "mai": "प्रश्न (होरारी) ज्योतिष में कुण्डली कब बनाई जाती है?",
+        "mr": "प्रश्न (होरारी) ज्योतिष में कुण्डली कब बनाई जाती है?",
+        "ta": "In Prashna (horary) astrology, when is the chart cast?",
+        "te": "In Prashna (horary) astrology, when is the chart cast?",
+        "bn": "In Prashna (horary) astrology, when is the chart cast?",
+        "kn": "In Prashna (horary) astrology, when is the chart cast?",
+        "gu": "In Prashna (horary) astrology, when is the chart cast?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "A Prashna chart is cast at the exact moment when the question is asked (or when it arrives to the astrologer). The principle is that the cosmic configuration at the moment of the question contains the answer — the universe reflects the querent\"s concern at that precise instant.",
+        "hi": "प्रश्न कुण्डली ठीक उस क्षण बनाई जाती है जब प्रश्न पूछा जाता है (या जब वह ज्योतिषी तक पहुँचता है)। सिद्धान्त यह है कि प्रश्न के क्षण की ब्रह्माण्डीय विन्यास उत्तर समाहित करती है — ब्रह्माण्ड उस सटीक क्षण जिज्ञासु की चिन्ता को प्रतिबिम्बित करता है।"
+      },
+      "options": [
+        {
+          "en": "At the time of birth",
+          "hi": "जन्म के समय",
+          "sa": "जन्म के समय",
+          "mai": "जन्म के समय",
+          "mr": "जन्म के समय",
+          "ta": "At the time of birth",
+          "te": "At the time of birth",
+          "bn": "At the time of birth",
+          "kn": "At the time of birth",
+          "gu": "At the time of birth"
+        },
+        {
+          "en": "At the time the question is asked",
+          "hi": "प्रश्न पूछे जाने के समय",
+          "sa": "प्रश्न पूछे जाने के समय",
+          "mai": "प्रश्न पूछे जाने के समय",
+          "mr": "प्रश्न पूछे जाने के समय",
+          "ta": "At the time the question is asked",
+          "te": "At the time the question is asked",
+          "bn": "At the time the question is asked",
+          "kn": "At the time the question is asked",
+          "gu": "At the time the question is asked"
+        },
+        {
+          "en": "At sunrise on the day of the question",
+          "hi": "प्रश्न के दिन सूर्योदय पर",
+          "sa": "प्रश्न के दिन सूर्योदय पर",
+          "mai": "प्रश्न के दिन सूर्योदय पर",
+          "mr": "प्रश्न के दिन सूर्योदय पर",
+          "ta": "At sunrise on the day of the question",
+          "te": "At sunrise on the day of the question",
+          "bn": "At sunrise on the day of the question",
+          "kn": "At sunrise on the day of the question",
+          "gu": "At sunrise on the day of the question"
+        },
+        {
+          "en": "At the time of the next Full Moon",
+          "hi": "अगली पूर्णिमा के समय",
+          "sa": "अगली पूर्णिमा के समय",
+          "mai": "अगली पूर्णिमा के समय",
+          "mr": "अगली पूर्णिमा के समय",
+          "ta": "At the time of the next Full Moon",
+          "te": "At the time of the next Full Moon",
+          "bn": "At the time of the next Full Moon",
+          "kn": "At the time of the next Full Moon",
+          "gu": "At the time of the next Full Moon"
+        }
+      ]
+    },
+    {
+      "id": "q23_5_02",
+      "type": "mcq",
+      "question": {
+        "en": "What does \"Mook Prashna\" mean?",
+        "hi": "\"मूक प्रश्न\" का क्या अर्थ है?",
+        "sa": "\"मूक प्रश्न\" का क्या अर्थ है?",
+        "mai": "\"मूक प्रश्न\" का क्या अर्थ है?",
+        "mr": "\"मूक प्रश्न\" का क्या अर्थ है?",
+        "ta": "What does \"Mook Prashna\" mean?",
+        "te": "What does \"Mook Prashna\" mean?",
+        "bn": "What does \"Mook Prashna\" mean?",
+        "kn": "What does \"Mook Prashna\" mean?",
+        "gu": "What does \"Mook Prashna\" mean?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Mook Prashna (\"silent question\") means the querent doesn't need to verbally state their question. The chart cast at the moment of consultation already contains the question AND its answer. The astrologer reads the chart to determine both what the person is asking about and what the outcome will be.",
+        "hi": "मूक प्रश्न (\"मौन प्रश्न\") का अर्थ है कि जिज्ञासु को मौखिक रूप से प्रश्न बताने की आवश्यकता नहीं। परामर्श के क्षण की कुण्डली पहले से प्रश्न और उसका उत्तर दोनों समाहित करती है। ज्योतिषी कुण्डली पढ़कर निर्धारित करता है कि व्यक्ति किस बारे में पूछ रहा है और परिणाम क्या होगा।"
+      },
+      "options": [
+        {
+          "en": "A question asked in writing",
+          "hi": "लिखित में पूछा गया प्रश्न",
+          "sa": "लिखित में पूछा गया प्रश्न",
+          "mai": "लिखित में पूछा गया प्रश्न",
+          "mr": "लिखित में पूछा गया प्रश्न",
+          "ta": "A question asked in writing",
+          "te": "A question asked in writing",
+          "bn": "A question asked in writing",
+          "kn": "A question asked in writing",
+          "gu": "A question asked in writing"
+        },
+        {
+          "en": "A silent/unspoken question — the chart at consultation IS the question",
+          "hi": "मौन/अनकहा प्रश्न — परामर्श के समय की कुण्डली ही प्रश्न है",
+          "sa": "मौन/अनकहा प्रश्न — परामर्श के समय की कुण्डली ही प्रश्न है",
+          "mai": "मौन/अनकहा प्रश्न — परामर्श के समय की कुण्डली ही प्रश्न है",
+          "mr": "मौन/अनकहा प्रश्न — परामर्श के समय की कुण्डली ही प्रश्न है",
+          "ta": "A silent/unspoken question — the chart at consultation IS the question",
+          "te": "A silent/unspoken question — the chart at consultation IS the question",
+          "bn": "A silent/unspoken question — the chart at consultation IS the question",
+          "kn": "A silent/unspoken question — the chart at consultation IS the question",
+          "gu": "A silent/unspoken question — the chart at consultation IS the question"
+        },
+        {
+          "en": "A question about a mute person",
+          "hi": "एक गूँगे व्यक्ति के बारे में प्रश्न",
+          "sa": "एक गूँगे व्यक्ति के बारे में प्रश्न",
+          "mai": "एक गूँगे व्यक्ति के बारे में प्रश्न",
+          "mr": "एक गूँगे व्यक्ति के बारे में प्रश्न",
+          "ta": "A question about a mute person",
+          "te": "A question about a mute person",
+          "bn": "A question about a mute person",
+          "kn": "A question about a mute person",
+          "gu": "A question about a mute person"
+        },
+        {
+          "en": "A repeated question",
+          "hi": "दोहराया गया प्रश्न",
+          "sa": "दोहराया गया प्रश्न",
+          "mai": "दोहराया गया प्रश्न",
+          "mr": "दोहराया गया प्रश्न",
+          "ta": "A repeated question",
+          "te": "A repeated question",
+          "bn": "A repeated question",
+          "kn": "A repeated question",
+          "gu": "A repeated question"
+        }
+      ]
+    },
+    {
+      "id": "q23_5_03",
+      "type": "mcq",
+      "question": {
+        "en": "In a Prashna chart, the 1st house represents:",
+        "hi": "प्रश्न कुण्डली में, प्रथम भाव किसका प्रतिनिधित्व करता है?",
+        "sa": "प्रश्न कुण्डली में, प्रथम भाव किसका प्रतिनिधित्व करता है?",
+        "mai": "प्रश्न कुण्डली में, प्रथम भाव किसका प्रतिनिधित्व करता है?",
+        "mr": "प्रश्न कुण्डली में, प्रथम भाव किसका प्रतिनिधित्व करता है?",
+        "ta": "In a Prashna chart, the 1st house represents:",
+        "te": "In a Prashna chart, the 1st house represents:",
+        "bn": "In a Prashna chart, the 1st house represents:",
+        "kn": "In a Prashna chart, the 1st house represents:",
+        "gu": "In a Prashna chart, the 1st house represents:"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "The 1st house (Lagna) always represents the querent — the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc.",
+        "hi": "प्रथम भाव (लग्न) सदैव जिज्ञासु — प्रश्न पूछने वाले व्यक्ति का प्रतिनिधित्व करता है। सप्तम भाव पूछताछ के विषय या \"दूसरे पक्ष\" का प्रतिनिधित्व करता है। प्रश्न प्रकार के अनुसार सम्बन्धित भाव भी महत्वपूर्ण है: कैरियर प्रश्नों के लिए दशम, विवाह के लिए सप्तम, संतान के लिए पंचम आदि।",
+        "sa": "प्रथम भाव (लग्न) सदैव जिज्ञासु — प्रश्न पूछने वाले व्यक्ति का प्रतिनिधित्व करता है। सप्तम भाव पूछताछ के विषय या \"दूसरे पक्ष\" का प्रतिनिधित्व करता है। प्रश्न प्रकार के अनुसार सम्बन्धित भाव भी महत्वपूर्ण है: कैरियर प्रश्नों के लिए दशम, विवाह के लिए सप्तम, संतान के लिए पंचम आदि।",
+        "mai": "प्रथम भाव (लग्न) सदैव जिज्ञासु — प्रश्न पूछने वाले व्यक्ति का प्रतिनिधित्व करता है। सप्तम भाव पूछताछ के विषय या \"दूसरे पक्ष\" का प्रतिनिधित्व करता है। प्रश्न प्रकार के अनुसार सम्बन्धित भाव भी महत्वपूर्ण है: कैरियर प्रश्नों के लिए दशम, विवाह के लिए सप्तम, संतान के लिए पंचम आदि।",
+        "mr": "प्रथम भाव (लग्न) सदैव जिज्ञासु — प्रश्न पूछने वाले व्यक्ति का प्रतिनिधित्व करता है। सप्तम भाव पूछताछ के विषय या \"दूसरे पक्ष\" का प्रतिनिधित्व करता है। प्रश्न प्रकार के अनुसार सम्बन्धित भाव भी महत्वपूर्ण है: कैरियर प्रश्नों के लिए दशम, विवाह के लिए सप्तम, संतान के लिए पंचम आदि।",
+        "ta": "The 1st house (Lagna) always represents the querent — the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc.",
+        "te": "The 1st house (Lagna) always represents the querent — the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc.",
+        "bn": "The 1st house (Lagna) always represents the querent — the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc.",
+        "kn": "The 1st house (Lagna) always represents the querent — the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc.",
+        "gu": "The 1st house (Lagna) always represents the querent — the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc."
+      },
+      "options": [
+        {
+          "en": "The subject of the question",
+          "hi": "प्रश्न का विषय",
+          "sa": "प्रश्न का विषय",
+          "mai": "प्रश्न का विषय",
+          "mr": "प्रश्न का विषय",
+          "ta": "The subject of the question",
+          "te": "The subject of the question",
+          "bn": "The subject of the question",
+          "kn": "The subject of the question",
+          "gu": "The subject of the question"
+        },
+        {
+          "en": "The querent (person asking)",
+          "hi": "जिज्ञासु (पूछने वाला व्यक्ति)",
+          "sa": "जिज्ञासु (पूछने वाला व्यक्ति)",
+          "mai": "जिज्ञासु (पूछने वाला व्यक्ति)",
+          "mr": "जिज्ञासु (पूछने वाला व्यक्ति)",
+          "ta": "The querent (person asking)",
+          "te": "The querent (person asking)",
+          "bn": "The querent (person asking)",
+          "kn": "The querent (person asking)",
+          "gu": "The querent (person asking)"
+        },
+        {
+          "en": "The astrologer",
+          "hi": "ज्योतिषी",
+          "sa": "ज्योतिषी",
+          "mai": "ज्योतिषी",
+          "mr": "ज्योतिषी",
+          "ta": "The astrologer",
+          "te": "The astrologer",
+          "bn": "The astrologer",
+          "kn": "The astrologer",
+          "gu": "The astrologer"
+        },
+        {
+          "en": "The timing of the event",
+          "hi": "घटना का समय",
+          "sa": "घटना का समय",
+          "mai": "घटना का समय",
+          "mr": "घटना का समय",
+          "ta": "The timing of the event",
+          "te": "The timing of the event",
+          "bn": "The timing of the event",
+          "kn": "The timing of the event",
+          "gu": "The timing of the event"
+        }
+      ]
+    },
+    {
+      "id": "q23_5_04",
+      "type": "true_false",
+      "question": {
+        "en": "Moon in a Kendra or Trikona from Lagna in a Prashna chart indicates a positive outcome.",
+        "hi": "प्रश्न कुण्डली में लग्न से केन्द्र या त्रिकोण में चन्द्रमा सकारात्मक परिणाम दर्शाता है।",
+        "sa": "प्रश्न कुण्डली में लग्न से केन्द्र या त्रिकोण में चन्द्रमा सकारात्मक परिणाम दर्शाता है।",
+        "mai": "प्रश्न कुण्डली में लग्न से केन्द्र या त्रिकोण में चन्द्रमा सकारात्मक परिणाम दर्शाता है।",
+        "mr": "प्रश्न कुण्डली में लग्न से केन्द्र या त्रिकोण में चन्द्रमा सकारात्मक परिणाम दर्शाता है।",
+        "ta": "Moon in a Kendra or Trikona from Lagna in a Prashna chart indicates a positive outcome.",
+        "te": "Moon in a Kendra or Trikona from Lagna in a Prashna chart indicates a positive outcome.",
+        "bn": "Moon in a Kendra or Trikona from Lagna in a Prashna chart indicates a positive outcome.",
+        "kn": "Moon in a Kendra or Trikona from Lagna in a Prashna chart indicates a positive outcome.",
+        "gu": "Moon in a Kendra or Trikona from Lagna in a Prashna chart indicates a positive outcome."
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "The Moon in a Kendra (1, 4, 7, 10) or Trikona (1, 5, 9) from the Lagna is a strongly favorable yoga in Prashna. The Moon represents the querent\"s mind and the flow of events. Its placement in these auspicious houses indicates that circumstances are aligned for a positive outcome.",
+        "hi": "लग्न से केन्द्र (1, 4, 7, 10) या त्रिकोण (1, 5, 9) में चन्द्रमा प्रश्न में अत्यन्त अनुकूल योग है। चन्द्रमा जिज्ञासु के मन और घटनाओं के प्रवाह का प्रतिनिधित्व करता है। इन शुभ भावों में इसकी स्थिति दर्शाती है कि परिस्थितियाँ सकारात्मक परिणाम के लिए संरेखित हैं।"
+      }
+    },
+    {
+      "id": "q23_5_05",
+      "type": "mcq",
+      "question": {
+        "en": "What does \"Lagna lord in the 7th house\" indicate in a Prashna chart?",
+        "hi": "प्रश्न कुण्डली में \"लग्न स्वामी सप्तम भाव में\" क्या दर्शाता है?",
+        "sa": "प्रश्न कुण्डली में \"लग्न स्वामी सप्तम भाव में\" क्या दर्शाता है?",
+        "mai": "प्रश्न कुण्डली में \"लग्न स्वामी सप्तम भाव में\" क्या दर्शाता है?",
+        "mr": "प्रश्न कुण्डली में \"लग्न स्वामी सप्तम भाव में\" क्या दर्शाता है?",
+        "ta": "What does \"Lagna lord in the 7th house\" indicate in a Prashna chart?",
+        "te": "What does \"Lagna lord in the 7th house\" indicate in a Prashna chart?",
+        "bn": "What does \"Lagna lord in the 7th house\" indicate in a Prashna chart?",
+        "kn": "What does \"Lagna lord in the 7th house\" indicate in a Prashna chart?",
+        "gu": "What does \"Lagna lord in the 7th house\" indicate in a Prashna chart?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Lagna lord (representing the querent) going to the 7th house (the subject of inquiry/desired outcome) shows the querent is moving toward what they seek. It\"s one of the strongest favorable yogas — the person\"s energy and destiny are directed toward the desired object.",
+        "hi": "लग्न स्वामी (जिज्ञासु का प्रतिनिधि) सप्तम भाव (पूछताछ का विषय/वांछित परिणाम) में जाना दर्शाता है कि जिज्ञासु जो खोज रहा है उसकी ओर बढ़ रहा है। यह सबसे मजबूत अनुकूल योगों में से एक है — व्यक्ति की ऊर्जा और भाग्य वांछित वस्तु की ओर निर्देशित हैं।"
+      },
+      "options": [
+        {
+          "en": "The querent will face obstacles",
+          "hi": "जिज्ञासु को बाधाओं का सामना होगा",
+          "sa": "जिज्ञासु को बाधाओं का सामना होगा",
+          "mai": "जिज्ञासु को बाधाओं का सामना होगा",
+          "mr": "जिज्ञासु को बाधाओं का सामना होगा",
+          "ta": "The querent will face obstacles",
+          "te": "The querent will face obstacles",
+          "bn": "The querent will face obstacles",
+          "kn": "The querent will face obstacles",
+          "gu": "The querent will face obstacles"
+        },
+        {
+          "en": "The querent will get what they seek",
+          "hi": "जिज्ञासु को वह मिलेगा जो वे खोज रहे हैं",
+          "sa": "जिज्ञासु को वह मिलेगा जो वे खोज रहे हैं",
+          "mai": "जिज्ञासु को वह मिलेगा जो वे खोज रहे हैं",
+          "mr": "जिज्ञासु को वह मिलेगा जो वे खोज रहे हैं",
+          "ta": "The querent will get what they seek",
+          "te": "The querent will get what they seek",
+          "bn": "The querent will get what they seek",
+          "kn": "The querent will get what they seek",
+          "gu": "The querent will get what they seek"
+        },
+        {
+          "en": "The question is invalid",
+          "hi": "प्रश्न अमान्य है",
+          "sa": "प्रश्न अमान्य है",
+          "mai": "प्रश्न अमान्य है",
+          "mr": "प्रश्न अमान्य है",
+          "ta": "The question is invalid",
+          "te": "The question is invalid",
+          "bn": "The question is invalid",
+          "kn": "The question is invalid",
+          "gu": "The question is invalid"
+        },
+        {
+          "en": "The timing is not right",
+          "hi": "समय सही नहीं है",
+          "sa": "समय सही नहीं है",
+          "mai": "समय सही नहीं है",
+          "mr": "समय सही नहीं है",
+          "ta": "The timing is not right",
+          "te": "The timing is not right",
+          "bn": "The timing is not right",
+          "kn": "The timing is not right",
+          "gu": "The timing is not right"
+        }
+      ]
+    },
+    {
+      "id": "q23_5_06",
+      "type": "mcq",
+      "question": {
+        "en": "What does \"Moon void of course\" indicate in Prashna?",
+        "hi": "प्रश्न में \"चन्द्र शून्य पथ\" क्या दर्शाता है?",
+        "sa": "प्रश्न में \"चन्द्र शून्य पथ\" क्या दर्शाता है?",
+        "mai": "प्रश्न में \"चन्द्र शून्य पथ\" क्या दर्शाता है?",
+        "mr": "प्रश्न में \"चन्द्र शून्य पथ\" क्या दर्शाता है?",
+        "ta": "What does \"Moon void of course\" indicate in Prashna?",
+        "te": "What does \"Moon void of course\" indicate in Prashna?",
+        "bn": "What does \"Moon void of course\" indicate in Prashna?",
+        "kn": "What does \"Moon void of course\" indicate in Prashna?",
+        "gu": "What does \"Moon void of course\" indicate in Prashna?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter — no outcome, no resolution. The question fizzles out without a definitive result.",
+        "hi": "चन्द्र \"शून्य पथ\" का अर्थ है कि चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले किसी भी ग्रह से कोई आगामी दृष्टि नहीं बनाता। प्रश्न में, यह दर्शाता है कि मामले से कुछ नहीं होगा — कोई परिणाम नहीं, कोई समाधान नहीं। प्रश्न बिना निश्चित परिणाम के समाप्त हो जाता है।",
+        "sa": "चन्द्र \"शून्य पथ\" का अर्थ है कि चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले किसी भी ग्रह से कोई आगामी दृष्टि नहीं बनाता। प्रश्न में, यह दर्शाता है कि मामले से कुछ नहीं होगा — कोई परिणाम नहीं, कोई समाधान नहीं। प्रश्न बिना निश्चित परिणाम के समाप्त हो जाता है।",
+        "mai": "चन्द्र \"शून्य पथ\" का अर्थ है कि चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले किसी भी ग्रह से कोई आगामी दृष्टि नहीं बनाता। प्रश्न में, यह दर्शाता है कि मामले से कुछ नहीं होगा — कोई परिणाम नहीं, कोई समाधान नहीं। प्रश्न बिना निश्चित परिणाम के समाप्त हो जाता है।",
+        "mr": "चन्द्र \"शून्य पथ\" का अर्थ है कि चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले किसी भी ग्रह से कोई आगामी दृष्टि नहीं बनाता। प्रश्न में, यह दर्शाता है कि मामले से कुछ नहीं होगा — कोई परिणाम नहीं, कोई समाधान नहीं। प्रश्न बिना निश्चित परिणाम के समाप्त हो जाता है।",
+        "ta": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter — no outcome, no resolution. The question fizzles out without a definitive result.",
+        "te": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter — no outcome, no resolution. The question fizzles out without a definitive result.",
+        "bn": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter — no outcome, no resolution. The question fizzles out without a definitive result.",
+        "kn": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter — no outcome, no resolution. The question fizzles out without a definitive result.",
+        "gu": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter — no outcome, no resolution. The question fizzles out without a definitive result."
+      },
+      "options": [
+        {
+          "en": "A very positive outcome",
+          "hi": "अत्यन्त सकारात्मक परिणाम",
+          "sa": "अत्यन्त सकारात्मक परिणाम",
+          "mai": "अत्यन्त सकारात्मक परिणाम",
+          "mr": "अत्यन्त सकारात्मक परिणाम",
+          "ta": "A very positive outcome",
+          "te": "A very positive outcome",
+          "bn": "A very positive outcome",
+          "kn": "A very positive outcome",
+          "gu": "A very positive outcome"
+        },
+        {
+          "en": "A delayed but eventual success",
+          "hi": "विलम्बित लेकिन अन्ततः सफलता",
+          "sa": "विलम्बित लेकिन अन्ततः सफलता",
+          "mai": "विलम्बित लेकिन अन्ततः सफलता",
+          "mr": "विलम्बित लेकिन अन्ततः सफलता",
+          "ta": "A delayed but eventual success",
+          "te": "A delayed but eventual success",
+          "bn": "A delayed but eventual success",
+          "kn": "A delayed but eventual success",
+          "gu": "A delayed but eventual success"
+        },
+        {
+          "en": "No outcome — the matter will not materialize",
+          "hi": "कोई परिणाम नहीं — मामला साकार नहीं होगा",
+          "sa": "कोई परिणाम नहीं — मामला साकार नहीं होगा",
+          "mai": "कोई परिणाम नहीं — मामला साकार नहीं होगा",
+          "mr": "कोई परिणाम नहीं — मामला साकार नहीं होगा",
+          "ta": "No outcome — the matter will not materialize",
+          "te": "No outcome — the matter will not materialize",
+          "bn": "No outcome — the matter will not materialize",
+          "kn": "No outcome — the matter will not materialize",
+          "gu": "No outcome — the matter will not materialize"
+        },
+        {
+          "en": "A change of plans",
+          "hi": "योजनाओं में परिवर्तन",
+          "sa": "योजनाओं में परिवर्तन",
+          "mai": "योजनाओं में परिवर्तन",
+          "mr": "योजनाओं में परिवर्तन",
+          "ta": "A change of plans",
+          "te": "A change of plans",
+          "bn": "A change of plans",
+          "kn": "A change of plans",
+          "gu": "A change of plans"
+        }
+      ]
+    },
+    {
+      "id": "q23_5_07",
+      "type": "true_false",
+      "question": {
+        "en": "Malefics in the 7th house of a Prashna chart indicate that the subject of inquiry is problematic.",
+        "hi": "प्रश्न कुण्डली के सप्तम भाव में पाप ग्रह दर्शाते हैं कि पूछताछ का विषय समस्याग्रस्त है।",
+        "sa": "प्रश्न कुण्डली के सप्तम भाव में पाप ग्रह दर्शाते हैं कि पूछताछ का विषय समस्याग्रस्त है।",
+        "mai": "प्रश्न कुण्डली के सप्तम भाव में पाप ग्रह दर्शाते हैं कि पूछताछ का विषय समस्याग्रस्त है।",
+        "mr": "प्रश्न कुण्डली के सप्तम भाव में पाप ग्रह दर्शाते हैं कि पूछताछ का विषय समस्याग्रस्त है।",
+        "ta": "Malefics in the 7th house of a Prashna chart indicate that the subject of inquiry is problematic.",
+        "te": "Malefics in the 7th house of a Prashna chart indicate that the subject of inquiry is problematic.",
+        "bn": "Malefics in the 7th house of a Prashna chart indicate that the subject of inquiry is problematic.",
+        "kn": "Malefics in the 7th house of a Prashna chart indicate that the subject of inquiry is problematic.",
+        "gu": "Malefics in the 7th house of a Prashna chart indicate that the subject of inquiry is problematic."
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "The 7th house in Prashna represents the subject being asked about. Malefic planets (Saturn, Mars, Rahu, Ketu) here indicate the subject is flawed, problematic, or brings difficulties. For a marriage question: the partner has issues. For a business deal: the deal is risky.",
+        "hi": "प्रश्न में सप्तम भाव पूछे जा रहे विषय का प्रतिनिधित्व करता है। यहाँ पाप ग्रह (शनि, मंगल, राहु, केतु) दर्शाते हैं कि विषय दोषपूर्ण, समस्याग्रस्त है, या कठिनाइयाँ लाता है। विवाह प्रश्न के लिए: साथी में समस्याएँ हैं। व्यापार सौदे के लिए: सौदा जोखिमभरा है।",
+        "sa": "प्रश्न में सप्तम भाव पूछे जा रहे विषय का प्रतिनिधित्व करता है। यहाँ पाप ग्रह (शनि, मंगल, राहु, केतु) दर्शाते हैं कि विषय दोषपूर्ण, समस्याग्रस्त है, या कठिनाइयाँ लाता है। विवाह प्रश्न के लिए: साथी में समस्याएँ हैं। व्यापार सौदे के लिए: सौदा जोखिमभरा है।",
+        "mai": "प्रश्न में सप्तम भाव पूछे जा रहे विषय का प्रतिनिधित्व करता है। यहाँ पाप ग्रह (शनि, मंगल, राहु, केतु) दर्शाते हैं कि विषय दोषपूर्ण, समस्याग्रस्त है, या कठिनाइयाँ लाता है। विवाह प्रश्न के लिए: साथी में समस्याएँ हैं। व्यापार सौदे के लिए: सौदा जोखिमभरा है।",
+        "mr": "प्रश्न में सप्तम भाव पूछे जा रहे विषय का प्रतिनिधित्व करता है। यहाँ पाप ग्रह (शनि, मंगल, राहु, केतु) दर्शाते हैं कि विषय दोषपूर्ण, समस्याग्रस्त है, या कठिनाइयाँ लाता है। विवाह प्रश्न के लिए: साथी में समस्याएँ हैं। व्यापार सौदे के लिए: सौदा जोखिमभरा है।",
+        "ta": "The 7th house in Prashna represents the subject being asked about. Malefic planets (Saturn, Mars, Rahu, Ketu) here indicate the subject is flawed, problematic, or brings difficulties. For a marriage question: the partner has issues. For a business deal: the deal is risky.",
+        "te": "The 7th house in Prashna represents the subject being asked about. Malefic planets (Saturn, Mars, Rahu, Ketu) here indicate the subject is flawed, problematic, or brings difficulties. For a marriage question: the partner has issues. For a business deal: the deal is risky.",
+        "bn": "The 7th house in Prashna represents the subject being asked about. Malefic planets (Saturn, Mars, Rahu, Ketu) here indicate the subject is flawed, problematic, or brings difficulties. For a marriage question: the partner has issues. For a business deal: the deal is risky.",
+        "kn": "The 7th house in Prashna represents the subject being asked about. Malefic planets (Saturn, Mars, Rahu, Ketu) here indicate the subject is flawed, problematic, or brings difficulties. For a marriage question: the partner has issues. For a business deal: the deal is risky.",
+        "gu": "The 7th house in Prashna represents the subject being asked about. Malefic planets (Saturn, Mars, Rahu, Ketu) here indicate the subject is flawed, problematic, or brings difficulties. For a marriage question: the partner has issues. For a business deal: the deal is risky."
+      }
+    },
+    {
+      "id": "q23_5_08",
+      "type": "mcq",
+      "question": {
+        "en": "What do \"applying aspects\" between the Lagna lord and relevant house lord indicate?",
+        "hi": "लग्न स्वामी और सम्बन्धित भाव स्वामी के बीच \"आगामी दृष्टि\" क्या दर्शाती है?",
+        "sa": "लग्न स्वामी और सम्बन्धित भाव स्वामी के बीच \"आगामी दृष्टि\" क्या दर्शाती है?",
+        "mai": "लग्न स्वामी और सम्बन्धित भाव स्वामी के बीच \"आगामी दृष्टि\" क्या दर्शाती है?",
+        "mr": "लग्न स्वामी और सम्बन्धित भाव स्वामी के बीच \"आगामी दृष्टि\" क्या दर्शाती है?",
+        "ta": "What do \"applying aspects\" between the Lagna lord and relevant house lord indicate?",
+        "te": "What do \"applying aspects\" between the Lagna lord and relevant house lord indicate?",
+        "bn": "What do \"applying aspects\" between the Lagna lord and relevant house lord indicate?",
+        "kn": "What do \"applying aspects\" between the Lagna lord and relevant house lord indicate?",
+        "gu": "What do \"applying aspects\" between the Lagna lord and relevant house lord indicate?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching — it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed.",
+        "hi": "आगामी दृष्टि (जहाँ तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा है) दर्शाती है कि घटना निकट आ रही है — यह होगी। दृष्टि जितनी सटीक के निकट, घटना उतनी शीघ्र। वियोजी दृष्टि (दृष्टि पहले ही सटीक हो चुकी है) दर्शाती है कि अवसर बीत चुका है।",
+        "sa": "आगामी दृष्टि (जहाँ तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा है) दर्शाती है कि घटना निकट आ रही है — यह होगी। दृष्टि जितनी सटीक के निकट, घटना उतनी शीघ्र। वियोजी दृष्टि (दृष्टि पहले ही सटीक हो चुकी है) दर्शाती है कि अवसर बीत चुका है।",
+        "mai": "आगामी दृष्टि (जहाँ तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा है) दर्शाती है कि घटना निकट आ रही है — यह होगी। दृष्टि जितनी सटीक के निकट, घटना उतनी शीघ्र। वियोजी दृष्टि (दृष्टि पहले ही सटीक हो चुकी है) दर्शाती है कि अवसर बीत चुका है।",
+        "mr": "आगामी दृष्टि (जहाँ तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा है) दर्शाती है कि घटना निकट आ रही है — यह होगी। दृष्टि जितनी सटीक के निकट, घटना उतनी शीघ्र। वियोजी दृष्टि (दृष्टि पहले ही सटीक हो चुकी है) दर्शाती है कि अवसर बीत चुका है।",
+        "ta": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching — it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed.",
+        "te": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching — it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed.",
+        "bn": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching — it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed.",
+        "kn": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching — it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed.",
+        "gu": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching — it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed."
+      },
+      "options": [
+        {
+          "en": "The event has already passed",
+          "hi": "घटना पहले ही बीत चुकी है",
+          "sa": "घटना पहले ही बीत चुकी है",
+          "mai": "घटना पहले ही बीत चुकी है",
+          "mr": "घटना पहले ही बीत चुकी है",
+          "ta": "The event has already passed",
+          "te": "The event has already passed",
+          "bn": "The event has already passed",
+          "kn": "The event has already passed",
+          "gu": "The event has already passed"
+        },
+        {
+          "en": "The event will happen",
+          "hi": "घटना होगी",
+          "sa": "घटना होगी",
+          "mai": "घटना होगी",
+          "mr": "घटना होगी",
+          "ta": "The event will happen",
+          "te": "The event will happen",
+          "bn": "The event will happen",
+          "kn": "The event will happen",
+          "gu": "The event will happen"
+        },
+        {
+          "en": "The event will never happen",
+          "hi": "घटना कभी नहीं होगी",
+          "sa": "घटना कभी नहीं होगी",
+          "mai": "घटना कभी नहीं होगी",
+          "mr": "घटना कभी नहीं होगी",
+          "ta": "The event will never happen",
+          "te": "The event will never happen",
+          "bn": "The event will never happen",
+          "kn": "The event will never happen",
+          "gu": "The event will never happen"
+        },
+        {
+          "en": "The question is unclear",
+          "hi": "प्रश्न अस्पष्ट है",
+          "sa": "प्रश्न अस्पष्ट है",
+          "mai": "प्रश्न अस्पष्ट है",
+          "mr": "प्रश्न अस्पष्ट है",
+          "ta": "The question is unclear",
+          "te": "The question is unclear",
+          "bn": "The question is unclear",
+          "kn": "The question is unclear",
+          "gu": "The question is unclear"
+        }
+      ]
+    },
+    {
+      "id": "q23_5_09",
+      "type": "true_false",
+      "question": {
+        "en": "A combust Lagna lord in a Prashna chart indicates the querent is in a strong position.",
+        "hi": "प्रश्न कुण्डली में अस्त लग्न स्वामी दर्शाता है कि जिज्ञासु मजबूत स्थिति में है।",
+        "sa": "प्रश्न कुण्डली में अस्त लग्न स्वामी दर्शाता है कि जिज्ञासु मजबूत स्थिति में है।",
+        "mai": "प्रश्न कुण्डली में अस्त लग्न स्वामी दर्शाता है कि जिज्ञासु मजबूत स्थिति में है।",
+        "mr": "प्रश्न कुण्डली में अस्त लग्न स्वामी दर्शाता है कि जिज्ञासु मजबूत स्थिति में है।",
+        "ta": "A combust Lagna lord in a Prashna chart indicates the querent is in a strong position.",
+        "te": "A combust Lagna lord in a Prashna chart indicates the querent is in a strong position.",
+        "bn": "A combust Lagna lord in a Prashna chart indicates the querent is in a strong position.",
+        "kn": "A combust Lagna lord in a Prashna chart indicates the querent is in a strong position.",
+        "gu": "A combust Lagna lord in a Prashna chart indicates the querent is in a strong position."
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "A combust Lagna lord means the querent (represented by the Lagna lord) is weakened, overwhelmed, or unable to act effectively. The Sun's overpowering light \"burns\" the querent's capacity. This is an unfavorable indication — the person lacks the strength to achieve their desired outcome.",
+        "hi": "अस्त लग्न स्वामी का अर्थ है कि जिज्ञासु (लग्न स्वामी द्वारा प्रतिनिधित्व) दुर्बल, अभिभूत, या प्रभावी ढंग से कार्य करने में असमर्थ है। सूर्य का अत्यधिक प्रकाश जिज्ञासु की क्षमता को \"जला\" देता है। यह प्रतिकूल संकेत है — व्यक्ति में अपना वांछित परिणाम प्राप्त करने की शक्ति नहीं है।"
+      }
+    },
+    {
+      "id": "q23_5_10",
+      "type": "mcq",
+      "question": {
+        "en": "Our Prashna page evaluates horary yogas and assigns a verdict. What is the primary output?",
+        "hi": "हमारा प्रश्न पृष्ठ होरारी योगों का मूल्यांकन करता है और निर्णय देता है। प्राथमिक आउटपुट क्या है?",
+        "sa": "हमारा प्रश्न पृष्ठ होरारी योगों का मूल्यांकन करता है और निर्णय देता है। प्राथमिक आउटपुट क्या है?",
+        "mai": "हमारा प्रश्न पृष्ठ होरारी योगों का मूल्यांकन करता है और निर्णय देता है। प्राथमिक आउटपुट क्या है?",
+        "mr": "हमारा प्रश्न पृष्ठ होरारी योगों का मूल्यांकन करता है और निर्णय देता है। प्राथमिक आउटपुट क्या है?",
+        "ta": "Our Prashna page evaluates horary yogas and assigns a verdict. What is the primary output?",
+        "te": "Our Prashna page evaluates horary yogas and assigns a verdict. What is the primary output?",
+        "bn": "Our Prashna page evaluates horary yogas and assigns a verdict. What is the primary output?",
+        "kn": "Our Prashna page evaluates horary yogas and assigns a verdict. What is the primary output?",
+        "gu": "Our Prashna page evaluates horary yogas and assigns a verdict. What is the primary output?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Our Prashna page casts a chart for the moment of the question, evaluates all major Prashna yogas (Moon placement, Lagna lord position, benefic/malefic configurations, applying/separating aspects), and delivers an automatic verdict with detailed supporting analysis explaining why the outcome is favorable or unfavorable.",
+        "hi": "हमारा प्रश्न पृष्ठ प्रश्न के क्षण की कुण्डली बनाता है, सभी प्रमुख प्रश्न योगों (चन्द्र स्थिति, लग्न स्वामी स्थान, शुभ/पाप विन्यास, आगामी/वियोजी दृष्टि) का मूल्यांकन करता है, और विस्तृत सहायक विश्लेषण के साथ स्वचालित निर्णय देता है जो बताता है कि परिणाम अनुकूल या प्रतिकूल क्यों है।",
+        "sa": "हमारा प्रश्न पृष्ठ प्रश्न के क्षण की कुण्डली बनाता है, सभी प्रमुख प्रश्न योगों (चन्द्र स्थिति, लग्न स्वामी स्थान, शुभ/पाप विन्यास, आगामी/वियोजी दृष्टि) का मूल्यांकन करता है, और विस्तृत सहायक विश्लेषण के साथ स्वचालित निर्णय देता है जो बताता है कि परिणाम अनुकूल या प्रतिकूल क्यों है।",
+        "mai": "हमारा प्रश्न पृष्ठ प्रश्न के क्षण की कुण्डली बनाता है, सभी प्रमुख प्रश्न योगों (चन्द्र स्थिति, लग्न स्वामी स्थान, शुभ/पाप विन्यास, आगामी/वियोजी दृष्टि) का मूल्यांकन करता है, और विस्तृत सहायक विश्लेषण के साथ स्वचालित निर्णय देता है जो बताता है कि परिणाम अनुकूल या प्रतिकूल क्यों है।",
+        "mr": "हमारा प्रश्न पृष्ठ प्रश्न के क्षण की कुण्डली बनाता है, सभी प्रमुख प्रश्न योगों (चन्द्र स्थिति, लग्न स्वामी स्थान, शुभ/पाप विन्यास, आगामी/वियोजी दृष्टि) का मूल्यांकन करता है, और विस्तृत सहायक विश्लेषण के साथ स्वचालित निर्णय देता है जो बताता है कि परिणाम अनुकूल या प्रतिकूल क्यों है।",
+        "ta": "Our Prashna page casts a chart for the moment of the question, evaluates all major Prashna yogas (Moon placement, Lagna lord position, benefic/malefic configurations, applying/separating aspects), and delivers an automatic verdict with detailed supporting analysis explaining why the outcome is favorable or unfavorable.",
+        "te": "Our Prashna page casts a chart for the moment of the question, evaluates all major Prashna yogas (Moon placement, Lagna lord position, benefic/malefic configurations, applying/separating aspects), and delivers an automatic verdict with detailed supporting analysis explaining why the outcome is favorable or unfavorable.",
+        "bn": "Our Prashna page casts a chart for the moment of the question, evaluates all major Prashna yogas (Moon placement, Lagna lord position, benefic/malefic configurations, applying/separating aspects), and delivers an automatic verdict with detailed supporting analysis explaining why the outcome is favorable or unfavorable.",
+        "kn": "Our Prashna page casts a chart for the moment of the question, evaluates all major Prashna yogas (Moon placement, Lagna lord position, benefic/malefic configurations, applying/separating aspects), and delivers an automatic verdict with detailed supporting analysis explaining why the outcome is favorable or unfavorable.",
+        "gu": "Our Prashna page casts a chart for the moment of the question, evaluates all major Prashna yogas (Moon placement, Lagna lord position, benefic/malefic configurations, applying/separating aspects), and delivers an automatic verdict with detailed supporting analysis explaining why the outcome is favorable or unfavorable."
+      },
+      "options": [
+        {
+          "en": "Only a birth chart",
+          "hi": "केवल जन्म कुण्डली",
+          "sa": "केवल जन्म कुण्डली",
+          "mai": "केवल जन्म कुण्डली",
+          "mr": "केवल जन्म कुण्डली",
+          "ta": "Only a birth chart",
+          "te": "Only a birth chart",
+          "bn": "Only a birth chart",
+          "kn": "Only a birth chart",
+          "gu": "Only a birth chart"
+        },
+        {
+          "en": "A detailed natal analysis",
+          "hi": "विस्तृत जन्मकालीन विश्लेषण",
+          "sa": "विस्तृत जन्मकालीन विश्लेषण",
+          "mai": "विस्तृत जन्मकालीन विश्लेषण",
+          "mr": "विस्तृत जन्मकालीन विश्लेषण",
+          "ta": "A detailed natal analysis",
+          "te": "A detailed natal analysis",
+          "bn": "A detailed natal analysis",
+          "kn": "A detailed natal analysis",
+          "gu": "A detailed natal analysis"
+        },
+        {
+          "en": "An automatic yes/no verdict with supporting yoga analysis",
+          "hi": "सहायक योग विश्लेषण के साथ स्वचालित हाँ/नहीं निर्णय",
+          "sa": "सहायक योग विश्लेषण के साथ स्वचालित हाँ/नहीं निर्णय",
+          "mai": "सहायक योग विश्लेषण के साथ स्वचालित हाँ/नहीं निर्णय",
+          "mr": "सहायक योग विश्लेषण के साथ स्वचालित हाँ/नहीं निर्णय",
+          "ta": "An automatic yes/no verdict with supporting yoga analysis",
+          "te": "An automatic yes/no verdict with supporting yoga analysis",
+          "bn": "An automatic yes/no verdict with supporting yoga analysis",
+          "kn": "An automatic yes/no verdict with supporting yoga analysis",
+          "gu": "An automatic yes/no verdict with supporting yoga analysis"
+        },
+        {
+          "en": "Only transit predictions",
+          "hi": "केवल गोचर भविष्यवाणियाँ",
+          "sa": "केवल गोचर भविष्यवाणियाँ",
+          "mai": "केवल गोचर भविष्यवाणियाँ",
+          "mr": "केवल गोचर भविष्यवाणियाँ",
+          "ta": "Only transit predictions",
+          "te": "Only transit predictions",
+          "bn": "Only transit predictions",
+          "kn": "Only transit predictions",
+          "gu": "Only transit predictions"
+        }
+      ]
+    }
+  ]
+}

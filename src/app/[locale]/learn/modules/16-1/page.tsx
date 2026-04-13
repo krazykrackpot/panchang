@@ -2,188 +2,19 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/16-1.json';
 
 const META: ModuleMeta = {
   id: 'mod_16_1', phase: 5, topic: 'Classical', moduleNumber: '16.1',
-  title: {
-    en: 'Brihat Parashara Hora Shastra — The Foundation',
-    hi: 'बृहत् पाराशर होरा शास्त्र — आधारभूत ग्रन्थ',
-  },
-  subtitle: {
-    en: '97 chapters attributed to Maharishi Parashara covering every dimension of Jyotish — from graha properties to dasha systems to remedies',
-    hi: 'महर्षि पराशर को प्रदत्त 97 अध्याय जो ज्योतिष के प्रत्येक आयाम को समाहित करते हैं — ग्रह गुणों से दशा पद्धतियों तक, उपचारों तक',
-  },
+  title: L.title as unknown as ModuleMeta['title'],
+  subtitle: L.subtitle as unknown as ModuleMeta['subtitle'],
   estimatedMinutes: 16,
-  crossRefs: [
-    { label: { en: 'Module 16-2: Phaladeepika & Jataka Parijata', hi: 'मॉड्यूल 16-2: फलदीपिका एवं जातक पारिजात', sa: 'मॉड्यूल 16-2: फलदीपिका एवं जातक पारिजात', mai: 'मॉड्यूल 16-2: फलदीपिका एवं जातक पारिजात', mr: 'मॉड्यूल 16-2: फलदीपिका एवं जातक पारिजात', ta: 'Module 16-2: Phaladeepika & Jataka Parijata', te: 'Module 16-2: Phaladeepika & Jataka Parijata', bn: 'Module 16-2: Phaladeepika & Jataka Parijata', kn: 'Module 16-2: Phaladeepika & Jataka Parijata', gu: 'Module 16-2: Phaladeepika & Jataka Parijata' }, href: '/learn/modules/16-2' },
-    { label: { en: 'Module 16-3: Surya Siddhanta & Mathematical Texts', hi: 'मॉड्यूल 16-3: सूर्य सिद्धान्त एवं गणितीय ग्रन्थ', sa: 'मॉड्यूल 16-3: सूर्य सिद्धान्त एवं गणितीय ग्रन्थ', mai: 'मॉड्यूल 16-3: सूर्य सिद्धान्त एवं गणितीय ग्रन्थ', mr: 'मॉड्यूल 16-3: सूर्य सिद्धान्त एवं गणितीय ग्रन्थ', ta: 'Module 16-3: Surya Siddhanta & Mathematical Texts', te: 'Module 16-3: Surya Siddhanta & Mathematical Texts', bn: 'Module 16-3: Surya Siddhanta & Mathematical Texts', kn: 'Module 16-3: Surya Siddhanta & Mathematical Texts', gu: 'Module 16-3: Surya Siddhanta & Mathematical Texts' }, href: '/learn/modules/16-3' },
-  ],
+  crossRefs: (L.crossRefs as unknown as Array<{ label: ModuleMeta['title']; href: string }>).map(cr => ({ label: cr.label, href: cr.href })),
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q16_1_01', type: 'mcq',
-    question: {
-      en: 'How many chapters does the Brihat Parashara Hora Shastra contain?',
-      hi: 'बृहत् पाराशर होरा शास्त्र में कितने अध्याय हैं?',
-    },
-    options: [
-      { en: '28', hi: '28', sa: '28', mai: '28', mr: '28', ta: '28', te: '28', bn: '28', kn: '28', gu: '28' },
-      { en: '54', hi: '54', sa: '54', mai: '54', mr: '54', ta: '54', te: '54', bn: '54', kn: '54', gu: '54' },
-      { en: '97', hi: '97', sa: '97', mai: '97', mr: '97', ta: '97', te: '97', bn: '97', kn: '97', gu: '97' },
-      { en: '120', hi: '120', sa: '120', mai: '120', mr: '120', ta: '120', te: '120', bn: '120', kn: '120', gu: '120' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'BPHS contains 97 chapters (adhyayas) covering everything from planetary nature and sign descriptions to dasha systems, yogas, and remedial measures. It is the most comprehensive single text in Parashari Jyotish.',
-      hi: 'बृहत् पाराशर होरा शास्त्र में 97 अध्याय हैं जो ग्रहों के स्वभाव और राशि वर्णन से लेकर दशा पद्धतियों, योगों और उपचारात्मक उपायों तक सब कुछ समाहित करते हैं।',
-    },
-  },
-  {
-    id: 'q16_1_02', type: 'mcq',
-    question: {
-      en: 'BPHS is structured as a dialogue between which two figures?',
-      hi: 'बृहत् पाराशर होरा शास्त्र किन दो व्यक्तियों के संवाद के रूप में संरचित है?',
-    },
-    options: [
-      { en: 'Shiva and Parvati', hi: 'शिव और पार्वती', sa: 'शिव और पार्वती', mai: 'शिव और पार्वती', mr: 'शिव और पार्वती', ta: 'Shiva and Parvati', te: 'Shiva and Parvati', bn: 'Shiva and Parvati', kn: 'Shiva and Parvati', gu: 'Shiva and Parvati' },
-      { en: 'Parashara and Maitreya', hi: 'पराशर और मैत्रेय', sa: 'पराशर और मैत्रेय', mai: 'पराशर और मैत्रेय', mr: 'पराशर और मैत्रेय', ta: 'Parashara and Maitreya', te: 'Parashara and Maitreya', bn: 'Parashara and Maitreya', kn: 'Parashara and Maitreya', gu: 'Parashara and Maitreya' },
-      { en: 'Vyasa and Arjuna', hi: 'व्यास और अर्जुन', sa: 'व्यास और अर्जुन', mai: 'व्यास और अर्जुन', mr: 'व्यास और अर्जुन', ta: 'Vyasa and Arjuna', te: 'Vyasa and Arjuna', bn: 'Vyasa and Arjuna', kn: 'Vyasa and Arjuna', gu: 'Vyasa and Arjuna' },
-      { en: 'Narada and Brahma', hi: 'नारद और ब्रह्मा', sa: 'नारद और ब्रह्मा', mai: 'नारद और ब्रह्मा', mr: 'नारद और ब्रह्मा', ta: 'Narada and Brahma', te: 'Narada and Brahma', bn: 'Narada and Brahma', kn: 'Narada and Brahma', gu: 'Narada and Brahma' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'BPHS is presented as the sage Parashara teaching his disciple Maitreya. This guru-shishya dialogue format is common in Indian shastra tradition and allows progressive exposition from basic to advanced concepts.',
-      hi: 'बृहत् पाराशर होरा शास्त्र महर्षि पराशर द्वारा अपने शिष्य मैत्रेय को शिक्षा देने के रूप में प्रस्तुत है। यह गुरु-शिष्य संवाद शैली भारतीय शास्त्र परम्परा में सामान्य है।',
-    },
-  },
-  {
-    id: 'q16_1_03', type: 'true_false',
-    question: {
-      en: 'The Vimshottari Dasha system (120-year cycle) is described in BPHS Chapter 46.',
-      hi: 'विंशोत्तरी दशा पद्धति (120 वर्ष का चक्र) बृहत् पाराशर होरा शास्त्र के अध्याय 46 में वर्णित है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. BPHS Chapter 46 describes Vimshottari Dasha in detail, including the nakshatra-based allocation of planetary periods. This is the most widely used dasha system in modern Jyotish practice.',
-      hi: 'सत्य। अध्याय 46 में विंशोत्तरी दशा का विस्तृत वर्णन है, जिसमें नक्षत्र-आधारित ग्रह अवधि आवंटन सम्मिलित है। यह आधुनिक ज्योतिष में सर्वाधिक प्रयुक्त दशा पद्धति है।',
-    },
-  },
-  {
-    id: 'q16_1_04', type: 'mcq',
-    question: {
-      en: 'Which chapters of BPHS cover Bhava (house) results?',
-      hi: 'बृहत् पाराशर होरा शास्त्र के कौन-से अध्याय भाव फल का वर्णन करते हैं?',
-    },
-    options: [
-      { en: 'Chapters 1-3', hi: 'अध्याय 1-3', sa: 'अध्याय 1-3', mai: 'अध्याय 1-3', mr: 'अध्याय 1-3', ta: 'Chapters 1-3', te: 'Chapters 1-3', bn: 'Chapters 1-3', kn: 'Chapters 1-3', gu: 'Chapters 1-3' },
-      { en: 'Chapters 12-25', hi: 'अध्याय 12-25', sa: 'अध्याय 12-25', mai: 'अध्याय 12-25', mr: 'अध्याय 12-25', ta: 'Chapters 12-25', te: 'Chapters 12-25', bn: 'Chapters 12-25', kn: 'Chapters 12-25', gu: 'Chapters 12-25' },
-      { en: 'Chapters 87-97', hi: 'अध्याय 87-97', sa: 'अध्याय 87-97', mai: 'अध्याय 87-97', mr: 'अध्याय 87-97', ta: 'Chapters 87-97', te: 'Chapters 87-97', bn: 'Chapters 87-97', kn: 'Chapters 87-97', gu: 'Chapters 87-97' },
-      { en: 'Chapters 50-60', hi: 'अध्याय 50-60', sa: 'अध्याय 50-60', mai: 'अध्याय 50-60', mr: 'अध्याय 50-60', ta: 'Chapters 50-60', te: 'Chapters 50-60', bn: 'Chapters 50-60', kn: 'Chapters 50-60', gu: 'Chapters 50-60' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Chapters 12 through 25 of BPHS systematically cover each of the 12 houses (bhavas) and the results of various planetary placements within them. This section forms the core of predictive astrology.',
-      hi: 'अध्याय 12 से 25 में 12 भावों में से प्रत्येक और उनमें विभिन्न ग्रह स्थितियों के फलों का व्यवस्थित वर्णन है। यह खंड फलित ज्योतिष का मूल है।',
-    },
-  },
-  {
-    id: 'q16_1_05', type: 'mcq',
-    question: {
-      en: 'BPHS chapters 87-97 primarily deal with:',
-      hi: 'बृहत् पाराशर होरा शास्त्र के अध्याय 87-97 मुख्यतः किस विषय से सम्बन्धित हैं?',
-    },
-    options: [
-      { en: 'Planetary properties', hi: 'ग्रह गुण', sa: 'ग्रह गुण', mai: 'ग्रह गुण', mr: 'ग्रह गुण', ta: 'Planetary properties', te: 'Planetary properties', bn: 'Planetary properties', kn: 'Planetary properties', gu: 'Planetary properties' },
-      { en: 'Yoga combinations', hi: 'योग संयोजन', sa: 'योग संयोजन', mai: 'योग संयोजन', mr: 'योग संयोजन', ta: 'Yoga combinations', te: 'Yoga combinations', bn: 'Yoga combinations', kn: 'Yoga combinations', gu: 'Yoga combinations' },
-      { en: 'Remedial measures (upayas)', hi: 'उपचारात्मक उपाय', sa: 'उपचारात्मक उपाय', mai: 'उपचारात्मक उपाय', mr: 'उपचारात्मक उपाय', ta: 'Remedial measures (upayas)', te: 'Remedial measures (upayas)', bn: 'Remedial measures (upayas)', kn: 'Remedial measures (upayas)', gu: 'Remedial measures (upayas)' },
-      { en: 'Sign descriptions', hi: 'राशि वर्णन', sa: 'राशि वर्णन', mai: 'राशि वर्णन', mr: 'राशि वर्णन', ta: 'Sign descriptions', te: 'Sign descriptions', bn: 'Sign descriptions', kn: 'Sign descriptions', gu: 'Sign descriptions' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'The final chapters (87-97) of BPHS are devoted to remedial measures — gemstones, mantras, charity, fasting, and worship prescribed for planetary afflictions. This section makes BPHS unique as both a diagnostic and therapeutic manual.',
-      hi: 'अन्तिम अध्याय (87-97) उपचारात्मक उपायों — रत्न, मन्त्र, दान, व्रत और पूजा — को समर्पित हैं जो ग्रह पीड़ा के लिए निर्दिष्ट हैं। यह खंड बृहत् पाराशर होरा शास्त्र को निदान और चिकित्सा दोनों का ग्रन्थ बनाता है।',
-    },
-  },
-  {
-    id: 'q16_1_06', type: 'true_false',
-    question: {
-      en: 'BPHS describes only the Vimshottari Dasha system and no other dasha systems.',
-      hi: 'बृहत् पाराशर होरा शास्त्र में केवल विंशोत्तरी दशा पद्धति का वर्णन है और कोई अन्य दशा पद्धति नहीं है।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. BPHS describes over 40 dasha systems including Ashtottari (108-year), Yogini, Kalachakra, Chara, and many conditional dashas. Vimshottari is simply the most universally applicable and widely practiced.',
-      hi: 'असत्य। बृहत् पाराशर होरा शास्त्र में 40 से अधिक दशा पद्धतियों का वर्णन है जिनमें अष्टोत्तरी (108 वर्ष), योगिनी, कालचक्र, चर और अनेक सशर्त दशाएँ सम्मिलित हैं। विंशोत्तरी सर्वाधिक सार्वभौमिक रूप से प्रयोज्य है।',
-    },
-  },
-  {
-    id: 'q16_1_07', type: 'mcq',
-    question: {
-      en: 'Which chapter of BPHS covers Graha (planetary) properties and nature?',
-      hi: 'बृहत् पाराशर होरा शास्त्र का कौन-सा अध्याय ग्रह गुणों और स्वभाव का वर्णन करता है?',
-    },
-    options: [
-      { en: 'Chapter 3', hi: 'अध्याय 3', sa: 'अध्याय 3', mai: 'अध्याय 3', mr: 'अध्याय 3', ta: 'Chapter 3', te: 'Chapter 3', bn: 'Chapter 3', kn: 'Chapter 3', gu: 'Chapter 3' },
-      { en: 'Chapter 12', hi: 'अध्याय 12', sa: 'अध्याय 12', mai: 'अध्याय 12', mr: 'अध्याय 12', ta: 'Chapter 12', te: 'Chapter 12', bn: 'Chapter 12', kn: 'Chapter 12', gu: 'Chapter 12' },
-      { en: 'Chapter 34', hi: 'अध्याय 34', sa: 'अध्याय 34', mai: 'अध्याय 34', mr: 'अध्याय 34', ta: 'Chapter 34', te: 'Chapter 34', bn: 'Chapter 34', kn: 'Chapter 34', gu: 'Chapter 34' },
-      { en: 'Chapter 46', hi: 'अध्याय 46', sa: 'अध्याय 46', mai: 'अध्याय 46', mr: 'अध्याय 46', ta: 'Chapter 46', te: 'Chapter 46', bn: 'Chapter 46', kn: 'Chapter 46', gu: 'Chapter 46' },
-    ],
-    correctAnswer: 0,
-    explanation: {
-      en: 'Chapter 3 of BPHS (Graha Gunadhyaya) describes the inherent properties of each planet — their nature (benefic/malefic), element, caste, direction, deity, colour, and relationships with other planets.',
-      hi: 'अध्याय 3 (ग्रह गुणाध्याय) में प्रत्येक ग्रह के स्वाभाविक गुणों का वर्णन है — उनका स्वभाव (शुभ/अशुभ), तत्त्व, वर्ण, दिशा, देवता, रंग और अन्य ग्रहों से सम्बन्ध।',
-    },
-  },
-  {
-    id: 'q16_1_08', type: 'mcq',
-    question: {
-      en: 'Yoga combinations in BPHS are primarily described in which chapter range?',
-      hi: 'बृहत् पाराशर होरा शास्त्र में योग संयोजनों का वर्णन मुख्यतः किन अध्यायों में है?',
-    },
-    options: [
-      { en: 'Chapters 3-4', hi: 'अध्याय 3-4', sa: 'अध्याय 3-4', mai: 'अध्याय 3-4', mr: 'अध्याय 3-4', ta: 'Chapters 3-4', te: 'Chapters 3-4', bn: 'Chapters 3-4', kn: 'Chapters 3-4', gu: 'Chapters 3-4' },
-      { en: 'Chapters 12-25', hi: 'अध्याय 12-25', sa: 'अध्याय 12-25', mai: 'अध्याय 12-25', mr: 'अध्याय 12-25', ta: 'Chapters 12-25', te: 'Chapters 12-25', bn: 'Chapters 12-25', kn: 'Chapters 12-25', gu: 'Chapters 12-25' },
-      { en: 'Chapters 34-41', hi: 'अध्याय 34-41', sa: 'अध्याय 34-41', mai: 'अध्याय 34-41', mr: 'अध्याय 34-41', ta: 'Chapters 34-41', te: 'Chapters 34-41', bn: 'Chapters 34-41', kn: 'Chapters 34-41', gu: 'Chapters 34-41' },
-      { en: 'Chapters 87-97', hi: 'अध्याय 87-97', sa: 'अध्याय 87-97', mai: 'अध्याय 87-97', mr: 'अध्याय 87-97', ta: 'Chapters 87-97', te: 'Chapters 87-97', bn: 'Chapters 87-97', kn: 'Chapters 87-97', gu: 'Chapters 87-97' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'Chapters 34-41 of BPHS contain the yoga descriptions — Raja Yogas, Dhana Yogas, Daridra Yogas, and other special combinations. These chapters are some of the most frequently referenced in practical chart analysis.',
-      hi: 'अध्याय 34-41 में योगों का वर्णन है — राज योग, धन योग, दरिद्र योग और अन्य विशेष संयोजन। ये अध्याय व्यावहारिक कुण्डली विश्लेषण में सर्वाधिक संदर्भित हैं।',
-    },
-  },
-  {
-    id: 'q16_1_09', type: 'true_false',
-    question: {
-      en: 'The R. Santhanam translation of BPHS is considered one of the most accessible English translations.',
-      hi: 'बृहत् पाराशर होरा शास्त्र का आर. सन्तानम् अनुवाद सर्वाधिक सुलभ अंग्रेजी अनुवादों में से एक माना जाता है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. R. Santhanam\'s two-volume translation is widely used by English-speaking students. Girish Chand Sharma\'s Hindi translation is another major reference. Both provide verse-by-verse commentary essential for understanding the original Sanskrit.',
-      hi: 'सत्य। आर. सन्तानम् का दो-खण्डीय अनुवाद अंग्रेजी भाषी विद्यार्थियों द्वारा व्यापक रूप से प्रयुक्त है। गिरीश चन्द शर्मा का हिन्दी अनुवाद भी एक प्रमुख सन्दर्भ है।',
-    },
-  },
-  {
-    id: 'q16_1_10', type: 'mcq',
-    question: {
-      en: 'Which BPHS chapter describes the Rashi (zodiac sign) properties?',
-      hi: 'बृहत् पाराशर होरा शास्त्र का कौन-सा अध्याय राशि गुणों का वर्णन करता है?',
-    },
-    options: [
-      { en: 'Chapter 1', hi: 'अध्याय 1', sa: 'अध्याय 1', mai: 'अध्याय 1', mr: 'अध्याय 1', ta: 'Chapter 1', te: 'Chapter 1', bn: 'Chapter 1', kn: 'Chapter 1', gu: 'Chapter 1' },
-      { en: 'Chapter 4', hi: 'अध्याय 4', sa: 'अध्याय 4', mai: 'अध्याय 4', mr: 'अध्याय 4', ta: 'Chapter 4', te: 'Chapter 4', bn: 'Chapter 4', kn: 'Chapter 4', gu: 'Chapter 4' },
-      { en: 'Chapter 12', hi: 'अध्याय 12', sa: 'अध्याय 12', mai: 'अध्याय 12', mr: 'अध्याय 12', ta: 'Chapter 12', te: 'Chapter 12', bn: 'Chapter 12', kn: 'Chapter 12', gu: 'Chapter 12' },
-      { en: 'Chapter 34', hi: 'अध्याय 34', sa: 'अध्याय 34', mai: 'अध्याय 34', mr: 'अध्याय 34', ta: 'Chapter 34', te: 'Chapter 34', bn: 'Chapter 34', kn: 'Chapter 34', gu: 'Chapter 34' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Chapter 4 (Rashi Swarupadhyaya) describes the nature, element, quality, direction, and physical characteristics of each of the 12 zodiac signs. This foundational chapter informs all subsequent sign-based analysis.',
-      hi: 'अध्याय 4 (राशि स्वरूपाध्याय) में 12 राशियों में से प्रत्येक के स्वभाव, तत्त्व, गुण, दिशा और शारीरिक विशेषताओं का वर्णन है। यह मूलभूत अध्याय सभी राशि-आधारित विश्लेषण का आधार है।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = (L.questions as unknown as ModuleQuestion[]);
 
 function Page1() {
   const locale = useModuleLocale();

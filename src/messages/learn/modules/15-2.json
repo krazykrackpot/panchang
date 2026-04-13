@@ -1,0 +1,715 @@
+{
+  "title": {
+    "en": "Remedial Measures — Mantras & Pujas",
+    "hi": "उपचार — मन्त्र एवं पूजा",
+    "sa": "उपचाराः — मन्त्राः पूजाश्च",
+    "ta": "பரிகாரங்கள் — மந்திரம் மற்றும் பூஜை",
+    "te": "ఉపచారాలు — మంత్రాలు మరియు పూజలు",
+    "bn": "প্রতিকার — মন্ত্র ও পূজা",
+    "kn": "ಪರಿಹಾರಗಳು — ಮಂತ್ರ ಮತ್ತು ಪೂಜೆ",
+    "mr": "उपाय — मंत्र व पूजा",
+    "gu": "ઉપચાર — મંત્ર અને પૂજા",
+    "mai": "उपचार — मन्त्र एवं पूजा"
+  },
+  "subtitle": {
+    "en": "Beej mantras, Gayatri mantras, Navagraha puja, homa, and charity remedies for each planet",
+    "hi": "बीज मन्त्र, गायत्री मन्त्र, नवग्रह पूजा, होम और प्रत्येक ग्रह के लिए दान उपचार",
+    "sa": "बीजमन्त्राः, गायत्रीमन्त्राः, नवग्रहपूजा, होमः, प्रत्येकग्रहाय दानोपचाराश्च",
+    "ta": "பீஜ மந்திரங்கள், காயத்ரி மந்திரங்கள், நவகிரக பூஜை, ஹோமம் மற்றும் ஒவ்வொரு கிரகத்திற்கும் தான பரிகாரங்கள்",
+    "te": "బీజ మంత్రాలు, గాయత్రి మంత్రాలు, నవగ్రహ పూజ, హోమం మరియు ప్రతి గ్రహానికి దాన ఉపచారాలు",
+    "bn": "বীজ মন্ত্র, গায়ত্রী মন্ত্র, নবগ্রহ পূজা, হোম এবং প্রতিটি গ্রহের জন্য দান প্রতিকার",
+    "kn": "ಬೀಜ ಮಂತ್ರಗಳು, ಗಾಯತ್ರಿ ಮಂತ್ರಗಳು, ನವಗ್ರಹ ಪೂಜೆ, ಹೋಮ ಮತ್ತು ಪ್ರತಿ ಗ್ರಹಕ್ಕೆ ದಾನ ಪರಿಹಾರಗಳು",
+    "mr": "बीज मंत्र, गायत्री मंत्र, नवग्रह पूजा, होम आणि प्रत्येक ग्रहासाठी दान उपाय",
+    "gu": "બીજ મંત્ર, ગાયત્રી મંત્ર, નવગ્રહ પૂજા, હોમ અને દરેક ગ્રહ માટે દાન ઉપચાર",
+    "mai": "बीज मन्त्र, गायत्री मन्त्र, नवग्रह पूजा, होम आ प्रत्येक ग्रह लेल दान उपचार"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "Module 15-1: Gemstones",
+        "hi": "मॉड्यूल 15-1: रत्न",
+        "sa": "मॉड्यूल 15-1: रत्न",
+        "mai": "मॉड्यूल 15-1: रत्न",
+        "mr": "मॉड्यूल 15-1: रत्न",
+        "ta": "Module 15-1: Gemstones",
+        "te": "Module 15-1: Gemstones",
+        "bn": "Module 15-1: Gemstones",
+        "kn": "Module 15-1: Gemstones",
+        "gu": "Module 15-1: Gemstones"
+      },
+      "href": "/learn/modules/15-1"
+    },
+    {
+      "label": {
+        "en": "Module 15-3: Prashna Astrology",
+        "hi": "मॉड्यूल 15-3: प्रश्न ज्योतिष",
+        "sa": "मॉड्यूल 15-3: प्रश्न ज्योतिष",
+        "mai": "मॉड्यूल 15-3: प्रश्न ज्योतिष",
+        "mr": "मॉड्यूल 15-3: प्रश्न ज्योतिष",
+        "ta": "Module 15-3: Prashna Astrology",
+        "te": "Module 15-3: Prashna Astrology",
+        "bn": "Module 15-3: Prashna Astrology",
+        "kn": "Module 15-3: Prashna Astrology",
+        "gu": "Module 15-3: Prashna Astrology"
+      },
+      "href": "/learn/modules/15-3"
+    },
+    {
+      "label": {
+        "en": "Module 15-4: Varshaphal & KP",
+        "hi": "मॉड्यूल 15-4: वर्षफल एवं के.पी.",
+        "sa": "मॉड्यूल 15-4: वर्षफल एवं के.पी.",
+        "mai": "मॉड्यूल 15-4: वर्षफल एवं के.पी.",
+        "mr": "मॉड्यूल 15-4: वर्षफल एवं के.पी.",
+        "ta": "Module 15-4: Varshaphal & KP",
+        "te": "Module 15-4: Varshaphal & KP",
+        "bn": "Module 15-4: Varshaphal & KP",
+        "kn": "Module 15-4: Varshaphal & KP",
+        "gu": "Module 15-4: Varshaphal & KP"
+      },
+      "href": "/learn/modules/15-4"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q15_2_01",
+      "type": "mcq",
+      "question": {
+        "en": "What is the Beej (seed) mantra for the Sun?",
+        "hi": "सूर्य का बीज मन्त्र क्या है?",
+        "sa": "सूर्य का बीज मन्त्र क्या है?",
+        "ta": "What is the Beej (seed) mantra for the Sun?",
+        "te": "What is the Beej (seed) mantra for the Sun?",
+        "bn": "What is the Beej (seed) mantra for the Sun?",
+        "kn": "What is the Beej (seed) mantra for the Sun?",
+        "mr": "सूर्य का बीज मन्त्र क्या है?",
+        "gu": "What is the Beej (seed) mantra for the Sun?",
+        "mai": "सूर्य का बीज मन्त्र क्या है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "\"Om Hraam Hreem Hraum Sah Suryaya Namah\" is the Beej mantra for the Sun. The syllables Hraam, Hreem, Hraum are the seed sounds that resonate with Solar energy. It should be chanted 7,000 times (or multiples of 108) on Sundays during Surya Hora.",
+        "hi": "\"ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः\" सूर्य का बीज मन्त्र है। ह्रां, ह्रीं, ह्रौं बीजाक्षर हैं जो सौर ऊर्जा से अनुनादित होते हैं। इसे रविवार को सूर्य होरा में 7,000 बार (या 108 के गुणक में) जपना चाहिए।",
+        "sa": "\"ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः\" सूर्य का बीज मन्त्र है। ह्रां, ह्रीं, ह्रौं बीजाक्षर हैं जो सौर ऊर्जा से अनुनादित होते हैं। इसे रविवार को सूर्य होरा में 7,000 बार (या 108 के गुणक में) जपना चाहिए।",
+        "ta": "\"Om Hraam Hreem Hraum Sah Suryaya Namah\" is the Beej mantra for the Sun. The syllables Hraam, Hreem, Hraum are the seed sounds that resonate with Solar energy. It should be chanted 7,000 times (or multiples of 108) on Sundays during Surya Hora.",
+        "te": "\"Om Hraam Hreem Hraum Sah Suryaya Namah\" is the Beej mantra for the Sun. The syllables Hraam, Hreem, Hraum are the seed sounds that resonate with Solar energy. It should be chanted 7,000 times (or multiples of 108) on Sundays during Surya Hora.",
+        "bn": "\"Om Hraam Hreem Hraum Sah Suryaya Namah\" is the Beej mantra for the Sun. The syllables Hraam, Hreem, Hraum are the seed sounds that resonate with Solar energy. It should be chanted 7,000 times (or multiples of 108) on Sundays during Surya Hora.",
+        "kn": "\"Om Hraam Hreem Hraum Sah Suryaya Namah\" is the Beej mantra for the Sun. The syllables Hraam, Hreem, Hraum are the seed sounds that resonate with Solar energy. It should be chanted 7,000 times (or multiples of 108) on Sundays during Surya Hora.",
+        "mr": "\"ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः\" सूर्य का बीज मन्त्र है। ह्रां, ह्रीं, ह्रौं बीजाक्षर हैं जो सौर ऊर्जा से अनुनादित होते हैं। इसे रविवार को सूर्य होरा में 7,000 बार (या 108 के गुणक में) जपना चाहिए।",
+        "gu": "\"Om Hraam Hreem Hraum Sah Suryaya Namah\" is the Beej mantra for the Sun. The syllables Hraam, Hreem, Hraum are the seed sounds that resonate with Solar energy. It should be chanted 7,000 times (or multiples of 108) on Sundays during Surya Hora.",
+        "mai": "\"ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः\" सूर्य का बीज मन्त्र है। ह्रां, ह्रीं, ह्रौं बीजाक्षर हैं जो सौर ऊर्जा से अनुनादित होते हैं। इसे रविवार को सूर्य होरा में 7,000 बार (या 108 के गुणक में) जपना चाहिए।"
+      },
+      "options": [
+        {
+          "en": "Om Shraam Shreem Shraum Sah Chandraya Namah",
+          "hi": "ॐ श्रां श्रीं श्रौं सः चन्द्राय नमः",
+          "sa": "ॐ श्रां श्रीं श्रौं सः चन्द्राय नमः",
+          "ta": "Om Shraam Shreem Shraum Sah Chandraya Namah",
+          "te": "Om Shraam Shreem Shraum Sah Chandraya Namah",
+          "bn": "Om Shraam Shreem Shraum Sah Chandraya Namah",
+          "kn": "Om Shraam Shreem Shraum Sah Chandraya Namah",
+          "mr": "ॐ श्रां श्रीं श्रौं सः चन्द्राय नमः",
+          "gu": "Om Shraam Shreem Shraum Sah Chandraya Namah",
+          "mai": "ॐ श्रां श्रीं श्रौं सः चन्द्राय नमः"
+        },
+        {
+          "en": "Om Hraam Hreem Hraum Sah Suryaya Namah",
+          "hi": "ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः",
+          "sa": "ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः",
+          "ta": "Om Hraam Hreem Hraum Sah Suryaya Namah",
+          "te": "Om Hraam Hreem Hraum Sah Suryaya Namah",
+          "bn": "Om Hraam Hreem Hraum Sah Suryaya Namah",
+          "kn": "Om Hraam Hreem Hraum Sah Suryaya Namah",
+          "mr": "ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः",
+          "gu": "Om Hraam Hreem Hraum Sah Suryaya Namah",
+          "mai": "ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः"
+        },
+        {
+          "en": "Om Braam Breem Braum Sah Budhaya Namah",
+          "hi": "ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः",
+          "sa": "ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः",
+          "ta": "Om Braam Breem Braum Sah Budhaya Namah",
+          "te": "Om Braam Breem Braum Sah Budhaya Namah",
+          "bn": "Om Braam Breem Braum Sah Budhaya Namah",
+          "kn": "Om Braam Breem Braum Sah Budhaya Namah",
+          "mr": "ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः",
+          "gu": "Om Braam Breem Braum Sah Budhaya Namah",
+          "mai": "ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः"
+        },
+        {
+          "en": "Om Graam Greem Graum Sah Gurave Namah",
+          "hi": "ॐ ग्रां ग्रीं ग्रौं सः गुरवे नमः",
+          "sa": "ॐ ग्रां ग्रीं ग्रौं सः गुरवे नमः",
+          "ta": "Om Graam Greem Graum Sah Gurave Namah",
+          "te": "Om Graam Greem Graum Sah Gurave Namah",
+          "bn": "Om Graam Greem Graum Sah Gurave Namah",
+          "kn": "Om Graam Greem Graum Sah Gurave Namah",
+          "mr": "ॐ ग्रां ग्रीं ग्रौं सः गुरवे नमः",
+          "gu": "Om Graam Greem Graum Sah Gurave Namah",
+          "mai": "ॐ ग्रां ग्रीं ग्रौं सः गुरवे नमः"
+        }
+      ]
+    },
+    {
+      "id": "q15_2_02",
+      "type": "mcq",
+      "question": {
+        "en": "How many times is a planetary mantra typically chanted in one cycle?",
+        "hi": "ग्रह मन्त्र एक चक्र में सामान्यतः कितनी बार जपा जाता है?",
+        "sa": "ग्रह मन्त्र एक चक्र में सामान्यतः कितनी बार जपा जाता है?",
+        "ta": "How many times is a planetary mantra typically chanted in one cycle?",
+        "te": "How many times is a planetary mantra typically chanted in one cycle?",
+        "bn": "How many times is a planetary mantra typically chanted in one cycle?",
+        "kn": "How many times is a planetary mantra typically chanted in one cycle?",
+        "mr": "ग्रह मन्त्र एक चक्र में सामान्यतः कितनी बार जपा जाता है?",
+        "gu": "How many times is a planetary mantra typically chanted in one cycle?",
+        "mai": "ग्रह मन्त्र एक चक्र में सामान्यतः कितनी बार जपा जाता है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "108 is the sacred count in Vedic tradition — one full cycle of a japa mala (prayer bead rosary). The number 108 has deep mathematical and astronomical significance: the Sun's diameter is approximately 108 times the Earth's diameter. Planetary mantras are chanted in multiples of 108.",
+        "hi": "108 वैदिक परम्परा में पवित्र संख्या है — जप माला (प्रार्थना मनकों की माला) का एक पूर्ण चक्र। 108 का गहरा गणितीय और खगोलीय महत्त्व है: सूर्य का व्यास पृथ्वी के व्यास का लगभग 108 गुना है। ग्रह मन्त्रों को 108 के गुणक में जपा जाता है।",
+        "sa": "108 वैदिक परम्परा में पवित्र संख्या है — जप माला (प्रार्थना मनकों की माला) का एक पूर्ण चक्र। 108 का गहरा गणितीय और खगोलीय महत्त्व है: सूर्य का व्यास पृथ्वी के व्यास का लगभग 108 गुना है। ग्रह मन्त्रों को 108 के गुणक में जपा जाता है।",
+        "ta": "108 is the sacred count in Vedic tradition — one full cycle of a japa mala (prayer bead rosary). The number 108 has deep mathematical and astronomical significance: the Sun's diameter is approximately 108 times the Earth's diameter. Planetary mantras are chanted in multiples of 108.",
+        "te": "108 is the sacred count in Vedic tradition — one full cycle of a japa mala (prayer bead rosary). The number 108 has deep mathematical and astronomical significance: the Sun's diameter is approximately 108 times the Earth's diameter. Planetary mantras are chanted in multiples of 108.",
+        "bn": "108 is the sacred count in Vedic tradition — one full cycle of a japa mala (prayer bead rosary). The number 108 has deep mathematical and astronomical significance: the Sun's diameter is approximately 108 times the Earth's diameter. Planetary mantras are chanted in multiples of 108.",
+        "kn": "108 is the sacred count in Vedic tradition — one full cycle of a japa mala (prayer bead rosary). The number 108 has deep mathematical and astronomical significance: the Sun's diameter is approximately 108 times the Earth's diameter. Planetary mantras are chanted in multiples of 108.",
+        "mr": "108 वैदिक परम्परा में पवित्र संख्या है — जप माला (प्रार्थना मनकों की माला) का एक पूर्ण चक्र। 108 का गहरा गणितीय और खगोलीय महत्त्व है: सूर्य का व्यास पृथ्वी के व्यास का लगभग 108 गुना है। ग्रह मन्त्रों को 108 के गुणक में जपा जाता है।",
+        "gu": "108 is the sacred count in Vedic tradition — one full cycle of a japa mala (prayer bead rosary). The number 108 has deep mathematical and astronomical significance: the Sun's diameter is approximately 108 times the Earth's diameter. Planetary mantras are chanted in multiples of 108.",
+        "mai": "108 वैदिक परम्परा में पवित्र संख्या है — जप माला (प्रार्थना मनकों की माला) का एक पूर्ण चक्र। 108 का गहरा गणितीय और खगोलीय महत्त्व है: सूर्य का व्यास पृथ्वी के व्यास का लगभग 108 गुना है। ग्रह मन्त्रों को 108 के गुणक में जपा जाता है।"
+      },
+      "options": [
+        {
+          "en": "21 times",
+          "hi": "21 बार",
+          "sa": "21 बार",
+          "ta": "21 times",
+          "te": "21 times",
+          "bn": "21 times",
+          "kn": "21 times",
+          "mr": "21 बार",
+          "gu": "21 times",
+          "mai": "21 बार"
+        },
+        {
+          "en": "108 times (one mala)",
+          "hi": "108 बार (एक माला)",
+          "sa": "108 बार (एक माला)",
+          "ta": "108 times (one mala)",
+          "te": "108 times (one mala)",
+          "bn": "108 times (one mala)",
+          "kn": "108 times (one mala)",
+          "mr": "108 बार (एक माला)",
+          "gu": "108 times (one mala)",
+          "mai": "108 बार (एक माला)"
+        },
+        {
+          "en": "1000 times",
+          "hi": "1000 बार",
+          "sa": "1000 बार",
+          "ta": "1000 times",
+          "te": "1000 times",
+          "bn": "1000 times",
+          "kn": "1000 times",
+          "mr": "1000 बार",
+          "gu": "1000 times",
+          "mai": "1000 बार"
+        },
+        {
+          "en": "Any random number",
+          "hi": "कोई भी यादृच्छिक संख्या",
+          "sa": "कोई भी यादृच्छिक संख्या",
+          "ta": "Any random number",
+          "te": "Any random number",
+          "bn": "Any random number",
+          "kn": "Any random number",
+          "mr": "कोई भी यादृच्छिक संख्या",
+          "gu": "Any random number",
+          "mai": "कोई भी यादृच्छिक संख्या"
+        }
+      ]
+    },
+    {
+      "id": "q15_2_03",
+      "type": "true_false",
+      "question": {
+        "en": "The Sankalpa (intention) taken before a puja is considered as important as the puja ritual itself.",
+        "hi": "पूजा से पहले लिया गया संकल्प (इरादा) पूजा विधि जितना ही महत्त्वपूर्ण माना जाता है।",
+        "sa": "पूजा से पहले लिया गया संकल्प (इरादा) पूजा विधि जितना ही महत्त्वपूर्ण माना जाता है।",
+        "ta": "The Sankalpa (intention) taken before a puja is considered as important as the puja ritual itself.",
+        "te": "The Sankalpa (intention) taken before a puja is considered as important as the puja ritual itself.",
+        "bn": "The Sankalpa (intention) taken before a puja is considered as important as the puja ritual itself.",
+        "kn": "The Sankalpa (intention) taken before a puja is considered as important as the puja ritual itself.",
+        "mr": "पूजा से पहले लिया गया संकल्प (इरादा) पूजा विधि जितना ही महत्त्वपूर्ण माना जाता है।",
+        "gu": "The Sankalpa (intention) taken before a puja is considered as important as the puja ritual itself.",
+        "mai": "पूजा से पहले लिया गया संकल्प (इरादा) पूजा विधि जितना ही महत्त्वपूर्ण माना जाता है।"
+      },
+      "correctAnswer": true,
+      "explanation": {
+        "en": "True. The Sankalpa is a formal declaration of intent that directs the energy of the ritual. Without a clear Sankalpa, the puja becomes a mechanical exercise. The sincerity and clarity of intention are believed to determine the efficacy of any remedial measure.",
+        "hi": "सत्य। संकल्प इरादे की एक औपचारिक घोषणा है जो अनुष्ठान की ऊर्जा को दिशा देती है। स्पष्ट संकल्प के बिना पूजा एक यान्त्रिक क्रिया बन जाती है। इरादे की ईमानदारी और स्पष्टता किसी भी उपचार की प्रभावकारिता निर्धारित करती है।",
+        "sa": "सत्य। संकल्प इरादे की एक औपचारिक घोषणा है जो अनुष्ठान की ऊर्जा को दिशा देती है। स्पष्ट संकल्प के बिना पूजा एक यान्त्रिक क्रिया बन जाती है। इरादे की ईमानदारी और स्पष्टता किसी भी उपचार की प्रभावकारिता निर्धारित करती है।",
+        "ta": "True. The Sankalpa is a formal declaration of intent that directs the energy of the ritual. Without a clear Sankalpa, the puja becomes a mechanical exercise. The sincerity and clarity of intention are believed to determine the efficacy of any remedial measure.",
+        "te": "True. The Sankalpa is a formal declaration of intent that directs the energy of the ritual. Without a clear Sankalpa, the puja becomes a mechanical exercise. The sincerity and clarity of intention are believed to determine the efficacy of any remedial measure.",
+        "bn": "True. The Sankalpa is a formal declaration of intent that directs the energy of the ritual. Without a clear Sankalpa, the puja becomes a mechanical exercise. The sincerity and clarity of intention are believed to determine the efficacy of any remedial measure.",
+        "kn": "True. The Sankalpa is a formal declaration of intent that directs the energy of the ritual. Without a clear Sankalpa, the puja becomes a mechanical exercise. The sincerity and clarity of intention are believed to determine the efficacy of any remedial measure.",
+        "mr": "सत्य। संकल्प इरादे की एक औपचारिक घोषणा है जो अनुष्ठान की ऊर्जा को दिशा देती है। स्पष्ट संकल्प के बिना पूजा एक यान्त्रिक क्रिया बन जाती है। इरादे की ईमानदारी और स्पष्टता किसी भी उपचार की प्रभावकारिता निर्धारित करती है।",
+        "gu": "True. The Sankalpa is a formal declaration of intent that directs the energy of the ritual. Without a clear Sankalpa, the puja becomes a mechanical exercise. The sincerity and clarity of intention are believed to determine the efficacy of any remedial measure.",
+        "mai": "सत्य। संकल्प इरादे की एक औपचारिक घोषणा है जो अनुष्ठान की ऊर्जा को दिशा देती है। स्पष्ट संकल्प के बिना पूजा एक यान्त्रिक क्रिया बन जाती है। इरादे की ईमानदारी और स्पष्टता किसी भी उपचार की प्रभावकारिता निर्धारित करती है।"
+      }
+    },
+    {
+      "id": "q15_2_04",
+      "type": "mcq",
+      "question": {
+        "en": "Which puja/homa is specifically prescribed for Saturn-related afflictions like Sade Sati?",
+        "hi": "साढ़े साती जैसी शनि सम्बन्धी पीड़ाओं के लिए विशेष रूप से कौन-सी पूजा/होम निर्धारित है?",
+        "sa": "साढ़े साती जैसी शनि सम्बन्धी पीड़ाओं के लिए विशेष रूप से कौन-सी पूजा/होम निर्धारित है?",
+        "ta": "Which puja/homa is specifically prescribed for Saturn-related afflictions like Sade Sati?",
+        "te": "Which puja/homa is specifically prescribed for Saturn-related afflictions like Sade Sati?",
+        "bn": "Which puja/homa is specifically prescribed for Saturn-related afflictions like Sade Sati?",
+        "kn": "Which puja/homa is specifically prescribed for Saturn-related afflictions like Sade Sati?",
+        "mr": "साढ़े साती जैसी शनि सम्बन्धी पीड़ाओं के लिए विशेष रूप से कौन-सी पूजा/होम निर्धारित है?",
+        "gu": "Which puja/homa is specifically prescribed for Saturn-related afflictions like Sade Sati?",
+        "mai": "साढ़े साती जैसी शनि सम्बन्धी पीड़ाओं के लिए विशेष रूप से कौन-सी पूजा/होम निर्धारित है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Rudrabhishek (abhishek of Shiva Lingam with milk, water, honey) is the primary remedy for Saturn afflictions. Saturn is considered a devotee of Lord Shiva, and Shiva worship pacifies Saturn's harshness. Shani temples like Shingnapur are also visited for Saturn relief.",
+        "hi": "रुद्राभिषेक (शिवलिंग पर दुग्ध, जल, मधु से अभिषेक) शनि पीड़ाओं का प्राथमिक उपचार है। शनि को भगवान शिव का भक्त माना जाता है, और शिव पूजा शनि की कठोरता को शान्त करती है। शनि मन्दिर जैसे शिंगणापुर भी शनि राहत के लिए दर्शनीय हैं।",
+        "sa": "रुद्राभिषेक (शिवलिंग पर दुग्ध, जल, मधु से अभिषेक) शनि पीड़ाओं का प्राथमिक उपचार है। शनि को भगवान शिव का भक्त माना जाता है, और शिव पूजा शनि की कठोरता को शान्त करती है। शनि मन्दिर जैसे शिंगणापुर भी शनि राहत के लिए दर्शनीय हैं।",
+        "ta": "Rudrabhishek (abhishek of Shiva Lingam with milk, water, honey) is the primary remedy for Saturn afflictions. Saturn is considered a devotee of Lord Shiva, and Shiva worship pacifies Saturn's harshness. Shani temples like Shingnapur are also visited for Saturn relief.",
+        "te": "Rudrabhishek (abhishek of Shiva Lingam with milk, water, honey) is the primary remedy for Saturn afflictions. Saturn is considered a devotee of Lord Shiva, and Shiva worship pacifies Saturn's harshness. Shani temples like Shingnapur are also visited for Saturn relief.",
+        "bn": "Rudrabhishek (abhishek of Shiva Lingam with milk, water, honey) is the primary remedy for Saturn afflictions. Saturn is considered a devotee of Lord Shiva, and Shiva worship pacifies Saturn's harshness. Shani temples like Shingnapur are also visited for Saturn relief.",
+        "kn": "Rudrabhishek (abhishek of Shiva Lingam with milk, water, honey) is the primary remedy for Saturn afflictions. Saturn is considered a devotee of Lord Shiva, and Shiva worship pacifies Saturn's harshness. Shani temples like Shingnapur are also visited for Saturn relief.",
+        "mr": "रुद्राभिषेक (शिवलिंग पर दुग्ध, जल, मधु से अभिषेक) शनि पीड़ाओं का प्राथमिक उपचार है। शनि को भगवान शिव का भक्त माना जाता है, और शिव पूजा शनि की कठोरता को शान्त करती है। शनि मन्दिर जैसे शिंगणापुर भी शनि राहत के लिए दर्शनीय हैं।",
+        "gu": "Rudrabhishek (abhishek of Shiva Lingam with milk, water, honey) is the primary remedy for Saturn afflictions. Saturn is considered a devotee of Lord Shiva, and Shiva worship pacifies Saturn's harshness. Shani temples like Shingnapur are also visited for Saturn relief.",
+        "mai": "रुद्राभिषेक (शिवलिंग पर दुग्ध, जल, मधु से अभिषेक) शनि पीड़ाओं का प्राथमिक उपचार है। शनि को भगवान शिव का भक्त माना जाता है, और शिव पूजा शनि की कठोरता को शान्त करती है। शनि मन्दिर जैसे शिंगणापुर भी शनि राहत के लिए दर्शनीय हैं।"
+      },
+      "options": [
+        {
+          "en": "Chandi Path",
+          "hi": "चण्डी पाठ",
+          "sa": "चण्डी पाठ",
+          "ta": "Chandi Path",
+          "te": "Chandi Path",
+          "bn": "Chandi Path",
+          "kn": "Chandi Path",
+          "mr": "चण्डी पाठ",
+          "gu": "Chandi Path",
+          "mai": "चण्डी पाठ"
+        },
+        {
+          "en": "Rudrabhishek and Shani Shingnapur puja",
+          "hi": "रुद्राभिषेक और शनि शिंगणापुर पूजा",
+          "sa": "रुद्राभिषेक और शनि शिंगणापुर पूजा",
+          "ta": "Rudrabhishek and Shani Shingnapur puja",
+          "te": "Rudrabhishek and Shani Shingnapur puja",
+          "bn": "Rudrabhishek and Shani Shingnapur puja",
+          "kn": "Rudrabhishek and Shani Shingnapur puja",
+          "mr": "रुद्राभिषेक और शनि शिंगणापुर पूजा",
+          "gu": "Rudrabhishek and Shani Shingnapur puja",
+          "mai": "रुद्राभिषेक और शनि शिंगणापुर पूजा"
+        },
+        {
+          "en": "Satyanarayan Katha",
+          "hi": "सत्यनारायण कथा",
+          "sa": "सत्यनारायण कथा",
+          "ta": "Satyanarayan Katha",
+          "te": "Satyanarayan Katha",
+          "bn": "Satyanarayan Katha",
+          "kn": "Satyanarayan Katha",
+          "mr": "सत्यनारायण कथा",
+          "gu": "Satyanarayan Katha",
+          "mai": "सत्यनारायण कथा"
+        },
+        {
+          "en": "Hanuman Chalisa only",
+          "hi": "केवल हनुमान चालीसा",
+          "sa": "केवल हनुमान चालीसा",
+          "ta": "Hanuman Chalisa only",
+          "te": "Hanuman Chalisa only",
+          "bn": "Hanuman Chalisa only",
+          "kn": "Hanuman Chalisa only",
+          "mr": "केवल हनुमान चालीसा",
+          "gu": "Hanuman Chalisa only",
+          "mai": "केवल हनुमान चालीसा"
+        }
+      ]
+    },
+    {
+      "id": "q15_2_05",
+      "type": "mcq",
+      "question": {
+        "en": "What are the charity (Daan) items associated with Saturn?",
+        "hi": "शनि से सम्बन्धित दान की वस्तुएँ कौन-सी हैं?",
+        "sa": "शनि से सम्बन्धित दान की वस्तुएँ कौन-सी हैं?",
+        "ta": "What are the charity (Daan) items associated with Saturn?",
+        "te": "What are the charity (Daan) items associated with Saturn?",
+        "bn": "What are the charity (Daan) items associated with Saturn?",
+        "kn": "What are the charity (Daan) items associated with Saturn?",
+        "mr": "शनि से सम्बन्धित दान की वस्तुएँ कौन-सी हैं?",
+        "gu": "What are the charity (Daan) items associated with Saturn?",
+        "mai": "शनि से सम्बन्धित दान की वस्तुएँ कौन-सी हैं?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Saturn's charity items are black-colored: mustard oil, black sesame (til), black cloth, iron utensils or tools. These are donated on Saturday (Saturn's day) to the needy, particularly to laborers, the elderly, or the disabled — all Saturn-signified groups.",
+        "hi": "शनि की दान-वस्तुएँ काले रंग की होती हैं: सरसों का तेल, काले तिल, काला वस्त्र, लोहे के बर्तन या उपकरण। ये शनिवार (शनि का दिन) को जरूरतमन्दों को, विशेषकर श्रमिकों, वृद्धों या विकलांगों — सभी शनि-सूचित वर्गों — को दान किए जाते हैं।",
+        "sa": "शनि की दान-वस्तुएँ काले रंग की होती हैं: सरसों का तेल, काले तिल, काला वस्त्र, लोहे के बर्तन या उपकरण। ये शनिवार (शनि का दिन) को जरूरतमन्दों को, विशेषकर श्रमिकों, वृद्धों या विकलांगों — सभी शनि-सूचित वर्गों — को दान किए जाते हैं।",
+        "ta": "Saturn's charity items are black-colored: mustard oil, black sesame (til), black cloth, iron utensils or tools. These are donated on Saturday (Saturn's day) to the needy, particularly to laborers, the elderly, or the disabled — all Saturn-signified groups.",
+        "te": "Saturn's charity items are black-colored: mustard oil, black sesame (til), black cloth, iron utensils or tools. These are donated on Saturday (Saturn's day) to the needy, particularly to laborers, the elderly, or the disabled — all Saturn-signified groups.",
+        "bn": "Saturn's charity items are black-colored: mustard oil, black sesame (til), black cloth, iron utensils or tools. These are donated on Saturday (Saturn's day) to the needy, particularly to laborers, the elderly, or the disabled — all Saturn-signified groups.",
+        "kn": "Saturn's charity items are black-colored: mustard oil, black sesame (til), black cloth, iron utensils or tools. These are donated on Saturday (Saturn's day) to the needy, particularly to laborers, the elderly, or the disabled — all Saturn-signified groups.",
+        "mr": "शनि की दान-वस्तुएँ काले रंग की होती हैं: सरसों का तेल, काले तिल, काला वस्त्र, लोहे के बर्तन या उपकरण। ये शनिवार (शनि का दिन) को जरूरतमन्दों को, विशेषकर श्रमिकों, वृद्धों या विकलांगों — सभी शनि-सूचित वर्गों — को दान किए जाते हैं।",
+        "gu": "Saturn's charity items are black-colored: mustard oil, black sesame (til), black cloth, iron utensils or tools. These are donated on Saturday (Saturn's day) to the needy, particularly to laborers, the elderly, or the disabled — all Saturn-signified groups.",
+        "mai": "शनि की दान-वस्तुएँ काले रंग की होती हैं: सरसों का तेल, काले तिल, काला वस्त्र, लोहे के बर्तन या उपकरण। ये शनिवार (शनि का दिन) को जरूरतमन्दों को, विशेषकर श्रमिकों, वृद्धों या विकलांगों — सभी शनि-सूचित वर्गों — को दान किए जाते हैं।"
+      },
+      "options": [
+        {
+          "en": "Red lentils and jaggery on Tuesday",
+          "hi": "मंगलवार को लाल मसूर और गुड़",
+          "sa": "मंगलवार को लाल मसूर और गुड़",
+          "ta": "Red lentils and jaggery on Tuesday",
+          "te": "Red lentils and jaggery on Tuesday",
+          "bn": "Red lentils and jaggery on Tuesday",
+          "kn": "Red lentils and jaggery on Tuesday",
+          "mr": "मंगलवार को लाल मसूर और गुड़",
+          "gu": "Red lentils and jaggery on Tuesday",
+          "mai": "मंगलवार को लाल मसूर और गुड़"
+        },
+        {
+          "en": "Mustard oil, black sesame, iron tools on Saturday",
+          "hi": "शनिवार को सरसों का तेल, काले तिल, लोहे के उपकरण",
+          "sa": "शनिवार को सरसों का तेल, काले तिल, लोहे के उपकरण",
+          "ta": "Mustard oil, black sesame, iron tools on Saturday",
+          "te": "Mustard oil, black sesame, iron tools on Saturday",
+          "bn": "Mustard oil, black sesame, iron tools on Saturday",
+          "kn": "Mustard oil, black sesame, iron tools on Saturday",
+          "mr": "शनिवार को सरसों का तेल, काले तिल, लोहे के उपकरण",
+          "gu": "Mustard oil, black sesame, iron tools on Saturday",
+          "mai": "शनिवार को सरसों का तेल, काले तिल, लोहे के उपकरण"
+        },
+        {
+          "en": "Green moong dal and emeralds on Wednesday",
+          "hi": "बुधवार को हरी मूँग दाल और पन्ने",
+          "sa": "बुधवार को हरी मूँग दाल और पन्ने",
+          "ta": "Green moong dal and emeralds on Wednesday",
+          "te": "Green moong dal and emeralds on Wednesday",
+          "bn": "Green moong dal and emeralds on Wednesday",
+          "kn": "Green moong dal and emeralds on Wednesday",
+          "mr": "बुधवार को हरी मूँग दाल और पन्ने",
+          "gu": "Green moong dal and emeralds on Wednesday",
+          "mai": "बुधवार को हरी मूँग दाल और पन्ने"
+        },
+        {
+          "en": "White rice and pearls on Monday",
+          "hi": "सोमवार को सफ़ेद चावल और मोती",
+          "sa": "सोमवार को सफ़ेद चावल और मोती",
+          "ta": "White rice and pearls on Monday",
+          "te": "White rice and pearls on Monday",
+          "bn": "White rice and pearls on Monday",
+          "kn": "White rice and pearls on Monday",
+          "mr": "सोमवार को सफ़ेद चावल और मोती",
+          "gu": "White rice and pearls on Monday",
+          "mai": "सोमवार को सफ़ेद चावल और मोती"
+        }
+      ]
+    },
+    {
+      "id": "q15_2_06",
+      "type": "true_false",
+      "question": {
+        "en": "Charity (Daan) remedies work by redirecting karmic energy — you give away the significations of a troublesome planet to reduce its negative grip on your life.",
+        "hi": "दान उपचार कार्मिक ऊर्जा को पुनर्निर्देशित करके कार्य करते हैं — आप एक कठिन ग्रह की सूचनाओं को दान करके अपने जीवन पर उसकी नकारात्मक पकड़ कम करते हैं।",
+        "sa": "दान उपचार कार्मिक ऊर्जा को पुनर्निर्देशित करके कार्य करते हैं — आप एक कठिन ग्रह की सूचनाओं को दान करके अपने जीवन पर उसकी नकारात्मक पकड़ कम करते हैं।",
+        "ta": "Charity (Daan) remedies work by redirecting karmic energy — you give away the significations of a troublesome planet to reduce its negative grip on your life.",
+        "te": "Charity (Daan) remedies work by redirecting karmic energy — you give away the significations of a troublesome planet to reduce its negative grip on your life.",
+        "bn": "Charity (Daan) remedies work by redirecting karmic energy — you give away the significations of a troublesome planet to reduce its negative grip on your life.",
+        "kn": "Charity (Daan) remedies work by redirecting karmic energy — you give away the significations of a troublesome planet to reduce its negative grip on your life.",
+        "mr": "दान उपचार कार्मिक ऊर्जा को पुनर्निर्देशित करके कार्य करते हैं — आप एक कठिन ग्रह की सूचनाओं को दान करके अपने जीवन पर उसकी नकारात्मक पकड़ कम करते हैं।",
+        "gu": "Charity (Daan) remedies work by redirecting karmic energy — you give away the significations of a troublesome planet to reduce its negative grip on your life.",
+        "mai": "दान उपचार कार्मिक ऊर्जा को पुनर्निर्देशित करके कार्य करते हैं — आप एक कठिन ग्रह की सूचनाओं को दान करके अपने जीवन पर उसकी नकारात्मक पकड़ कम करते हैं।"
+      },
+      "correctAnswer": true,
+      "explanation": {
+        "en": "True. This is the traditional rationale for Daan. By voluntarily parting with items ruled by the afflicting planet (e.g., Saturn = black items, iron), you create a symbolic release of that planet's karmic burden. The recipient becomes a channel through which the excess negative energy is dispersed.",
+        "hi": "सत्य। यह दान का पारम्परिक तर्क है। पीड़ित ग्रह की शासित वस्तुओं (जैसे शनि = काली वस्तुएँ, लोहा) को स्वेच्छा से त्यागकर आप उस ग्रह के कार्मिक भार का प्रतीकात्मक विमोचन करते हैं। प्राप्तकर्ता एक माध्यम बनता है जिसके द्वारा अतिरिक्त नकारात्मक ऊर्जा विसर्जित होती है।",
+        "sa": "सत्य। यह दान का पारम्परिक तर्क है। पीड़ित ग्रह की शासित वस्तुओं (जैसे शनि = काली वस्तुएँ, लोहा) को स्वेच्छा से त्यागकर आप उस ग्रह के कार्मिक भार का प्रतीकात्मक विमोचन करते हैं। प्राप्तकर्ता एक माध्यम बनता है जिसके द्वारा अतिरिक्त नकारात्मक ऊर्जा विसर्जित होती है।",
+        "ta": "True. This is the traditional rationale for Daan. By voluntarily parting with items ruled by the afflicting planet (e.g., Saturn = black items, iron), you create a symbolic release of that planet's karmic burden. The recipient becomes a channel through which the excess negative energy is dispersed.",
+        "te": "True. This is the traditional rationale for Daan. By voluntarily parting with items ruled by the afflicting planet (e.g., Saturn = black items, iron), you create a symbolic release of that planet's karmic burden. The recipient becomes a channel through which the excess negative energy is dispersed.",
+        "bn": "True. This is the traditional rationale for Daan. By voluntarily parting with items ruled by the afflicting planet (e.g., Saturn = black items, iron), you create a symbolic release of that planet's karmic burden. The recipient becomes a channel through which the excess negative energy is dispersed.",
+        "kn": "True. This is the traditional rationale for Daan. By voluntarily parting with items ruled by the afflicting planet (e.g., Saturn = black items, iron), you create a symbolic release of that planet's karmic burden. The recipient becomes a channel through which the excess negative energy is dispersed.",
+        "mr": "सत्य। यह दान का पारम्परिक तर्क है। पीड़ित ग्रह की शासित वस्तुओं (जैसे शनि = काली वस्तुएँ, लोहा) को स्वेच्छा से त्यागकर आप उस ग्रह के कार्मिक भार का प्रतीकात्मक विमोचन करते हैं। प्राप्तकर्ता एक माध्यम बनता है जिसके द्वारा अतिरिक्त नकारात्मक ऊर्जा विसर्जित होती है।",
+        "gu": "True. This is the traditional rationale for Daan. By voluntarily parting with items ruled by the afflicting planet (e.g., Saturn = black items, iron), you create a symbolic release of that planet's karmic burden. The recipient becomes a channel through which the excess negative energy is dispersed.",
+        "mai": "सत्य। यह दान का पारम्परिक तर्क है। पीड़ित ग्रह की शासित वस्तुओं (जैसे शनि = काली वस्तुएँ, लोहा) को स्वेच्छा से त्यागकर आप उस ग्रह के कार्मिक भार का प्रतीकात्मक विमोचन करते हैं। प्राप्तकर्ता एक माध्यम बनता है जिसके द्वारा अतिरिक्त नकारात्मक ऊर्जा विसर्जित होती है।"
+      }
+    },
+    {
+      "id": "q15_2_07",
+      "type": "mcq",
+      "question": {
+        "en": "When should a planetary mantra ideally be chanted for maximum effect?",
+        "hi": "अधिकतम प्रभाव के लिए ग्रह मन्त्र आदर्श रूप से कब जपना चाहिए?",
+        "sa": "अधिकतम प्रभाव के लिए ग्रह मन्त्र आदर्श रूप से कब जपना चाहिए?",
+        "ta": "When should a planetary mantra ideally be chanted for maximum effect?",
+        "te": "When should a planetary mantra ideally be chanted for maximum effect?",
+        "bn": "When should a planetary mantra ideally be chanted for maximum effect?",
+        "kn": "When should a planetary mantra ideally be chanted for maximum effect?",
+        "mr": "अधिकतम प्रभाव के लिए ग्रह मन्त्र आदर्श रूप से कब जपना चाहिए?",
+        "gu": "When should a planetary mantra ideally be chanted for maximum effect?",
+        "mai": "अधिकतम प्रभाव के लिए ग्रह मन्त्र आदर्श रूप से कब जपना चाहिए?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "The ideal time is during the planet's hora on its own weekday: Sun mantra on Sunday during Surya Hora, Moon mantra on Monday during Chandra Hora, etc. Brahma Muhurta (1.5 hours before sunrise) is also considered universally auspicious for any japa.",
+        "hi": "आदर्श समय उस ग्रह के अपने वार में उसकी होरा में है: रविवार को सूर्य होरा में सूर्य मन्त्र, सोमवार को चन्द्र होरा में चन्द्र मन्त्र, आदि। ब्रह्म मुहूर्त (सूर्योदय से 1.5 घण्टे पहले) भी किसी भी जप के लिए सार्वभौमिक रूप से शुभ माना जाता है।",
+        "sa": "आदर्श समय उस ग्रह के अपने वार में उसकी होरा में है: रविवार को सूर्य होरा में सूर्य मन्त्र, सोमवार को चन्द्र होरा में चन्द्र मन्त्र, आदि। ब्रह्म मुहूर्त (सूर्योदय से 1.5 घण्टे पहले) भी किसी भी जप के लिए सार्वभौमिक रूप से शुभ माना जाता है।",
+        "ta": "The ideal time is during the planet's hora on its own weekday: Sun mantra on Sunday during Surya Hora, Moon mantra on Monday during Chandra Hora, etc. Brahma Muhurta (1.5 hours before sunrise) is also considered universally auspicious for any japa.",
+        "te": "The ideal time is during the planet's hora on its own weekday: Sun mantra on Sunday during Surya Hora, Moon mantra on Monday during Chandra Hora, etc. Brahma Muhurta (1.5 hours before sunrise) is also considered universally auspicious for any japa.",
+        "bn": "The ideal time is during the planet's hora on its own weekday: Sun mantra on Sunday during Surya Hora, Moon mantra on Monday during Chandra Hora, etc. Brahma Muhurta (1.5 hours before sunrise) is also considered universally auspicious for any japa.",
+        "kn": "The ideal time is during the planet's hora on its own weekday: Sun mantra on Sunday during Surya Hora, Moon mantra on Monday during Chandra Hora, etc. Brahma Muhurta (1.5 hours before sunrise) is also considered universally auspicious for any japa.",
+        "mr": "आदर्श समय उस ग्रह के अपने वार में उसकी होरा में है: रविवार को सूर्य होरा में सूर्य मन्त्र, सोमवार को चन्द्र होरा में चन्द्र मन्त्र, आदि। ब्रह्म मुहूर्त (सूर्योदय से 1.5 घण्टे पहले) भी किसी भी जप के लिए सार्वभौमिक रूप से शुभ माना जाता है।",
+        "gu": "The ideal time is during the planet's hora on its own weekday: Sun mantra on Sunday during Surya Hora, Moon mantra on Monday during Chandra Hora, etc. Brahma Muhurta (1.5 hours before sunrise) is also considered universally auspicious for any japa.",
+        "mai": "आदर्श समय उस ग्रह के अपने वार में उसकी होरा में है: रविवार को सूर्य होरा में सूर्य मन्त्र, सोमवार को चन्द्र होरा में चन्द्र मन्त्र, आदि। ब्रह्म मुहूर्त (सूर्योदय से 1.5 घण्टे पहले) भी किसी भी जप के लिए सार्वभौमिक रूप से शुभ माना जाता है।"
+      },
+      "options": [
+        {
+          "en": "Any time, it makes no difference",
+          "hi": "कभी भी, इससे कोई अन्तर नहीं पड़ता",
+          "sa": "कभी भी, इससे कोई अन्तर नहीं पड़ता",
+          "ta": "Any time, it makes no difference",
+          "te": "Any time, it makes no difference",
+          "bn": "Any time, it makes no difference",
+          "kn": "Any time, it makes no difference",
+          "mr": "कभी भी, इससे कोई अन्तर नहीं पड़ता",
+          "gu": "Any time, it makes no difference",
+          "mai": "कभी भी, इससे कोई अन्तर नहीं पड़ता"
+        },
+        {
+          "en": "During that planet's hora on that planet's day",
+          "hi": "उस ग्रह के दिन उस ग्रह की होरा में",
+          "sa": "उस ग्रह के दिन उस ग्रह की होरा में",
+          "ta": "During that planet's hora on that planet's day",
+          "te": "During that planet's hora on that planet's day",
+          "bn": "During that planet's hora on that planet's day",
+          "kn": "During that planet's hora on that planet's day",
+          "mr": "उस ग्रह के दिन उस ग्रह की होरा में",
+          "gu": "During that planet's hora on that planet's day",
+          "mai": "उस ग्रह के दिन उस ग्रह की होरा में"
+        },
+        {
+          "en": "Only during eclipses",
+          "hi": "केवल ग्रहण के समय",
+          "sa": "केवल ग्रहण के समय",
+          "ta": "Only during eclipses",
+          "te": "Only during eclipses",
+          "bn": "Only during eclipses",
+          "kn": "Only during eclipses",
+          "mr": "केवल ग्रहण के समय",
+          "gu": "Only during eclipses",
+          "mai": "केवल ग्रहण के समय"
+        },
+        {
+          "en": "Only during retrograde periods",
+          "hi": "केवल वक्री काल में",
+          "sa": "केवल वक्री काल में",
+          "ta": "Only during retrograde periods",
+          "te": "Only during retrograde periods",
+          "bn": "Only during retrograde periods",
+          "kn": "Only during retrograde periods",
+          "mr": "केवल वक्री काल में",
+          "gu": "Only during retrograde periods",
+          "mai": "केवल वक्री काल में"
+        }
+      ]
+    },
+    {
+      "id": "q15_2_08",
+      "type": "mcq",
+      "question": {
+        "en": "Which Homa (fire ritual) is prescribed specifically for Mars-related afflictions like Mangal Dosha?",
+        "hi": "मंगल दोष जैसी मंगल सम्बन्धी पीड़ाओं के लिए विशेष रूप से कौन-सा होम (अग्नि अनुष्ठान) निर्धारित है?",
+        "sa": "मंगल दोष जैसी मंगल सम्बन्धी पीड़ाओं के लिए विशेष रूप से कौन-सा होम (अग्नि अनुष्ठान) निर्धारित है?",
+        "ta": "Which Homa (fire ritual) is prescribed specifically for Mars-related afflictions like Mangal Dosha?",
+        "te": "Which Homa (fire ritual) is prescribed specifically for Mars-related afflictions like Mangal Dosha?",
+        "bn": "Which Homa (fire ritual) is prescribed specifically for Mars-related afflictions like Mangal Dosha?",
+        "kn": "Which Homa (fire ritual) is prescribed specifically for Mars-related afflictions like Mangal Dosha?",
+        "mr": "मंगल दोष जैसी मंगल सम्बन्धी पीड़ाओं के लिए विशेष रूप से कौन-सा होम (अग्नि अनुष्ठान) निर्धारित है?",
+        "gu": "Which Homa (fire ritual) is prescribed specifically for Mars-related afflictions like Mangal Dosha?",
+        "mai": "मंगल दोष जैसी मंगल सम्बन्धी पीड़ाओं के लिए विशेष रूप से कौन-सा होम (अग्नि अनुष्ठान) निर्धारित है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Mangal Shanti Homa is specifically for pacifying Mars. Chandi Path (700 verses from Markandeya Purana, invoking Goddess Durga) is also prescribed because Durga is the presiding deity associated with Mars's fierce energy. Red items (flowers, cloth) are offered.",
+        "hi": "मंगल शान्ति होम विशेष रूप से मंगल को शान्त करने के लिए है। चण्डी पाठ (मार्कण्डेय पुराण के 700 श्लोक, देवी दुर्गा का आह्वान) भी निर्धारित है क्योंकि दुर्गा मंगल की उग्र ऊर्जा से जुड़ी अधिष्ठात्री देवी हैं। लाल वस्तुएँ (पुष्प, वस्त्र) अर्पित की जाती हैं।",
+        "sa": "मंगल शान्ति होम विशेष रूप से मंगल को शान्त करने के लिए है। चण्डी पाठ (मार्कण्डेय पुराण के 700 श्लोक, देवी दुर्गा का आह्वान) भी निर्धारित है क्योंकि दुर्गा मंगल की उग्र ऊर्जा से जुड़ी अधिष्ठात्री देवी हैं। लाल वस्तुएँ (पुष्प, वस्त्र) अर्पित की जाती हैं।",
+        "ta": "Mangal Shanti Homa is specifically for pacifying Mars. Chandi Path (700 verses from Markandeya Purana, invoking Goddess Durga) is also prescribed because Durga is the presiding deity associated with Mars's fierce energy. Red items (flowers, cloth) are offered.",
+        "te": "Mangal Shanti Homa is specifically for pacifying Mars. Chandi Path (700 verses from Markandeya Purana, invoking Goddess Durga) is also prescribed because Durga is the presiding deity associated with Mars's fierce energy. Red items (flowers, cloth) are offered.",
+        "bn": "Mangal Shanti Homa is specifically for pacifying Mars. Chandi Path (700 verses from Markandeya Purana, invoking Goddess Durga) is also prescribed because Durga is the presiding deity associated with Mars's fierce energy. Red items (flowers, cloth) are offered.",
+        "kn": "Mangal Shanti Homa is specifically for pacifying Mars. Chandi Path (700 verses from Markandeya Purana, invoking Goddess Durga) is also prescribed because Durga is the presiding deity associated with Mars's fierce energy. Red items (flowers, cloth) are offered.",
+        "mr": "मंगल शान्ति होम विशेष रूप से मंगल को शान्त करने के लिए है। चण्डी पाठ (मार्कण्डेय पुराण के 700 श्लोक, देवी दुर्गा का आह्वान) भी निर्धारित है क्योंकि दुर्गा मंगल की उग्र ऊर्जा से जुड़ी अधिष्ठात्री देवी हैं। लाल वस्तुएँ (पुष्प, वस्त्र) अर्पित की जाती हैं।",
+        "gu": "Mangal Shanti Homa is specifically for pacifying Mars. Chandi Path (700 verses from Markandeya Purana, invoking Goddess Durga) is also prescribed because Durga is the presiding deity associated with Mars's fierce energy. Red items (flowers, cloth) are offered.",
+        "mai": "मंगल शान्ति होम विशेष रूप से मंगल को शान्त करने के लिए है। चण्डी पाठ (मार्कण्डेय पुराण के 700 श्लोक, देवी दुर्गा का आह्वान) भी निर्धारित है क्योंकि दुर्गा मंगल की उग्र ऊर्जा से जुड़ी अधिष्ठात्री देवी हैं। लाल वस्तुएँ (पुष्प, वस्त्र) अर्पित की जाती हैं।"
+      },
+      "options": [
+        {
+          "en": "Navagraha Homa",
+          "hi": "नवग्रह होम",
+          "sa": "नवग्रह होम",
+          "ta": "Navagraha Homa",
+          "te": "Navagraha Homa",
+          "bn": "Navagraha Homa",
+          "kn": "Navagraha Homa",
+          "mr": "नवग्रह होम",
+          "gu": "Navagraha Homa",
+          "mai": "नवग्रह होम"
+        },
+        {
+          "en": "Mangal Shanti Homa and Chandi Path",
+          "hi": "मंगल शान्ति होम और चण्डी पाठ",
+          "sa": "मंगल शान्ति होम और चण्डी पाठ",
+          "ta": "Mangal Shanti Homa and Chandi Path",
+          "te": "Mangal Shanti Homa and Chandi Path",
+          "bn": "Mangal Shanti Homa and Chandi Path",
+          "kn": "Mangal Shanti Homa and Chandi Path",
+          "mr": "मंगल शान्ति होम और चण्डी पाठ",
+          "gu": "Mangal Shanti Homa and Chandi Path",
+          "mai": "मंगल शान्ति होम और चण्डी पाठ"
+        },
+        {
+          "en": "Ganapati Homa",
+          "hi": "गणपति होम",
+          "sa": "गणपति होम",
+          "ta": "Ganapati Homa",
+          "te": "Ganapati Homa",
+          "bn": "Ganapati Homa",
+          "kn": "Ganapati Homa",
+          "mr": "गणपति होम",
+          "gu": "Ganapati Homa",
+          "mai": "गणपति होम"
+        },
+        {
+          "en": "Sudarshana Homa",
+          "hi": "सुदर्शन होम",
+          "sa": "सुदर्शन होम",
+          "ta": "Sudarshana Homa",
+          "te": "Sudarshana Homa",
+          "bn": "Sudarshana Homa",
+          "kn": "Sudarshana Homa",
+          "mr": "सुदर्शन होम",
+          "gu": "Sudarshana Homa",
+          "mai": "सुदर्शन होम"
+        }
+      ]
+    },
+    {
+      "id": "q15_2_09",
+      "type": "true_false",
+      "question": {
+        "en": "Paying large sums to astrologers or priests for \"special pujas\" is the most effective remedy in Jyotish.",
+        "hi": "\"विशेष पूजाओं\" के लिए ज्योतिषियों या पुजारियों को बड़ी रकम देना ज्योतिष में सबसे प्रभावी उपचार है।",
+        "sa": "\"विशेष पूजाओं\" के लिए ज्योतिषियों या पुजारियों को बड़ी रकम देना ज्योतिष में सबसे प्रभावी उपचार है।",
+        "ta": "Paying large sums to astrologers or priests for \"special pujas\" is the most effective remedy in Jyotish.",
+        "te": "Paying large sums to astrologers or priests for \"special pujas\" is the most effective remedy in Jyotish.",
+        "bn": "Paying large sums to astrologers or priests for \"special pujas\" is the most effective remedy in Jyotish.",
+        "kn": "Paying large sums to astrologers or priests for \"special pujas\" is the most effective remedy in Jyotish.",
+        "mr": "\"विशेष पूजाओं\" के लिए ज्योतिषियों या पुजारियों को बड़ी रकम देना ज्योतिष में सबसे प्रभावी उपचार है।",
+        "gu": "Paying large sums to astrologers or priests for \"special pujas\" is the most effective remedy in Jyotish.",
+        "mai": "\"विशेष पूजाओं\" के लिए ज्योतिषियों या पुजारियों को बड़ी रकम देना ज्योतिष में सबसे प्रभावी उपचार है।"
+      },
+      "correctAnswer": false,
+      "explanation": {
+        "en": "False. Classical texts emphasize sincerity, self-performed japa, and genuine charity over expensive rituals. The commercialization of remedies is a legitimate controversy in modern Jyotish. Simple, consistent mantra japa done with devotion is considered more powerful than an elaborate paid ceremony done without personal involvement.",
+        "hi": "असत्य। शास्त्रीय ग्रन्थ महँगे अनुष्ठानों से अधिक ईमानदारी, स्वयं किया गया जप और वास्तविक दान पर बल देते हैं। उपचारों का व्यावसायीकरण आधुनिक ज्योतिष में एक वैध विवाद है। भक्तिपूर्वक किया गया सरल, नियमित मन्त्र जप व्यक्तिगत सहभागिता के बिना किए गए विस्तृत सशुल्क अनुष्ठान से अधिक शक्तिशाली माना जाता है।",
+        "sa": "असत्य। शास्त्रीय ग्रन्थ महँगे अनुष्ठानों से अधिक ईमानदारी, स्वयं किया गया जप और वास्तविक दान पर बल देते हैं। उपचारों का व्यावसायीकरण आधुनिक ज्योतिष में एक वैध विवाद है। भक्तिपूर्वक किया गया सरल, नियमित मन्त्र जप व्यक्तिगत सहभागिता के बिना किए गए विस्तृत सशुल्क अनुष्ठान से अधिक शक्तिशाली माना जाता है।",
+        "ta": "False. Classical texts emphasize sincerity, self-performed japa, and genuine charity over expensive rituals. The commercialization of remedies is a legitimate controversy in modern Jyotish. Simple, consistent mantra japa done with devotion is considered more powerful than an elaborate paid ceremony done without personal involvement.",
+        "te": "False. Classical texts emphasize sincerity, self-performed japa, and genuine charity over expensive rituals. The commercialization of remedies is a legitimate controversy in modern Jyotish. Simple, consistent mantra japa done with devotion is considered more powerful than an elaborate paid ceremony done without personal involvement.",
+        "bn": "False. Classical texts emphasize sincerity, self-performed japa, and genuine charity over expensive rituals. The commercialization of remedies is a legitimate controversy in modern Jyotish. Simple, consistent mantra japa done with devotion is considered more powerful than an elaborate paid ceremony done without personal involvement.",
+        "kn": "False. Classical texts emphasize sincerity, self-performed japa, and genuine charity over expensive rituals. The commercialization of remedies is a legitimate controversy in modern Jyotish. Simple, consistent mantra japa done with devotion is considered more powerful than an elaborate paid ceremony done without personal involvement.",
+        "mr": "असत्य। शास्त्रीय ग्रन्थ महँगे अनुष्ठानों से अधिक ईमानदारी, स्वयं किया गया जप और वास्तविक दान पर बल देते हैं। उपचारों का व्यावसायीकरण आधुनिक ज्योतिष में एक वैध विवाद है। भक्तिपूर्वक किया गया सरल, नियमित मन्त्र जप व्यक्तिगत सहभागिता के बिना किए गए विस्तृत सशुल्क अनुष्ठान से अधिक शक्तिशाली माना जाता है।",
+        "gu": "False. Classical texts emphasize sincerity, self-performed japa, and genuine charity over expensive rituals. The commercialization of remedies is a legitimate controversy in modern Jyotish. Simple, consistent mantra japa done with devotion is considered more powerful than an elaborate paid ceremony done without personal involvement.",
+        "mai": "असत्य। शास्त्रीय ग्रन्थ महँगे अनुष्ठानों से अधिक ईमानदारी, स्वयं किया गया जप और वास्तविक दान पर बल देते हैं। उपचारों का व्यावसायीकरण आधुनिक ज्योतिष में एक वैध विवाद है। भक्तिपूर्वक किया गया सरल, नियमित मन्त्र जप व्यक्तिगत सहभागिता के बिना किए गए विस्तृत सशुल्क अनुष्ठान से अधिक शक्तिशाली माना जाता है।"
+      }
+    },
+    {
+      "id": "q15_2_10",
+      "type": "mcq",
+      "question": {
+        "en": "What are the charity items for Mars, donated on Tuesday?",
+        "hi": "मंगलवार को दान की जाने वाली मंगल की वस्तुएँ कौन-सी हैं?",
+        "sa": "मंगलवार को दान की जाने वाली मंगल की वस्तुएँ कौन-सी हैं?",
+        "ta": "What are the charity items for Mars, donated on Tuesday?",
+        "te": "What are the charity items for Mars, donated on Tuesday?",
+        "bn": "What are the charity items for Mars, donated on Tuesday?",
+        "kn": "What are the charity items for Mars, donated on Tuesday?",
+        "mr": "मंगलवार को दान की जाने वाली मंगल की वस्तुएँ कौन-सी हैं?",
+        "gu": "What are the charity items for Mars, donated on Tuesday?",
+        "mai": "मंगलवार को दान की जाने वाली मंगल की वस्तुएँ कौन-सी हैं?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Mars's charity items are red-colored: red lentils (masoor dal), jaggery (gur), red cloth, copper utensils, and wheat. These are donated on Tuesday to young men, soldiers, or brothers — Mars-signified recipients.",
+        "hi": "मंगल की दान-वस्तुएँ लाल रंग की होती हैं: लाल मसूर दाल, गुड़, लाल वस्त्र, ताँबे के बर्तन और गेहूँ। ये मंगलवार को युवकों, सैनिकों या भाइयों — मंगल-सूचित प्राप्तकर्ताओं — को दान की जाती हैं।",
+        "sa": "मंगल की दान-वस्तुएँ लाल रंग की होती हैं: लाल मसूर दाल, गुड़, लाल वस्त्र, ताँबे के बर्तन और गेहूँ। ये मंगलवार को युवकों, सैनिकों या भाइयों — मंगल-सूचित प्राप्तकर्ताओं — को दान की जाती हैं।",
+        "ta": "Mars's charity items are red-colored: red lentils (masoor dal), jaggery (gur), red cloth, copper utensils, and wheat. These are donated on Tuesday to young men, soldiers, or brothers — Mars-signified recipients.",
+        "te": "Mars's charity items are red-colored: red lentils (masoor dal), jaggery (gur), red cloth, copper utensils, and wheat. These are donated on Tuesday to young men, soldiers, or brothers — Mars-signified recipients.",
+        "bn": "Mars's charity items are red-colored: red lentils (masoor dal), jaggery (gur), red cloth, copper utensils, and wheat. These are donated on Tuesday to young men, soldiers, or brothers — Mars-signified recipients.",
+        "kn": "Mars's charity items are red-colored: red lentils (masoor dal), jaggery (gur), red cloth, copper utensils, and wheat. These are donated on Tuesday to young men, soldiers, or brothers — Mars-signified recipients.",
+        "mr": "मंगल की दान-वस्तुएँ लाल रंग की होती हैं: लाल मसूर दाल, गुड़, लाल वस्त्र, ताँबे के बर्तन और गेहूँ। ये मंगलवार को युवकों, सैनिकों या भाइयों — मंगल-सूचित प्राप्तकर्ताओं — को दान की जाती हैं।",
+        "gu": "Mars's charity items are red-colored: red lentils (masoor dal), jaggery (gur), red cloth, copper utensils, and wheat. These are donated on Tuesday to young men, soldiers, or brothers — Mars-signified recipients.",
+        "mai": "मंगल की दान-वस्तुएँ लाल रंग की होती हैं: लाल मसूर दाल, गुड़, लाल वस्त्र, ताँबे के बर्तन और गेहूँ। ये मंगलवार को युवकों, सैनिकों या भाइयों — मंगल-सूचित प्राप्तकर्ताओं — को दान की जाती हैं।"
+      },
+      "options": [
+        {
+          "en": "White rice, silver, milk",
+          "hi": "सफ़ेद चावल, चाँदी, दूध",
+          "sa": "सफ़ेद चावल, चाँदी, दूध",
+          "ta": "White rice, silver, milk",
+          "te": "White rice, silver, milk",
+          "bn": "White rice, silver, milk",
+          "kn": "White rice, silver, milk",
+          "mr": "सफ़ेद चावल, चाँदी, दूध",
+          "gu": "White rice, silver, milk",
+          "mai": "सफ़ेद चावल, चाँदी, दूध"
+        },
+        {
+          "en": "Red lentils (masoor dal), jaggery (gur), red cloth",
+          "hi": "लाल मसूर दाल, गुड़, लाल वस्त्र",
+          "sa": "लाल मसूर दाल, गुड़, लाल वस्त्र",
+          "ta": "Red lentils (masoor dal), jaggery (gur), red cloth",
+          "te": "Red lentils (masoor dal), jaggery (gur), red cloth",
+          "bn": "Red lentils (masoor dal), jaggery (gur), red cloth",
+          "kn": "Red lentils (masoor dal), jaggery (gur), red cloth",
+          "mr": "लाल मसूर दाल, गुड़, लाल वस्त्र",
+          "gu": "Red lentils (masoor dal), jaggery (gur), red cloth",
+          "mai": "लाल मसूर दाल, गुड़, लाल वस्त्र"
+        },
+        {
+          "en": "Yellow cloth, turmeric, bananas",
+          "hi": "पीला वस्त्र, हल्दी, केले",
+          "sa": "पीला वस्त्र, हल्दी, केले",
+          "ta": "Yellow cloth, turmeric, bananas",
+          "te": "Yellow cloth, turmeric, bananas",
+          "bn": "Yellow cloth, turmeric, bananas",
+          "kn": "Yellow cloth, turmeric, bananas",
+          "mr": "पीला वस्त्र, हल्दी, केले",
+          "gu": "Yellow cloth, turmeric, bananas",
+          "mai": "पीला वस्त्र, हल्दी, केले"
+        },
+        {
+          "en": "Black sesame, mustard oil, iron",
+          "hi": "काले तिल, सरसों का तेल, लोहा",
+          "sa": "काले तिल, सरसों का तेल, लोहा",
+          "ta": "Black sesame, mustard oil, iron",
+          "te": "Black sesame, mustard oil, iron",
+          "bn": "Black sesame, mustard oil, iron",
+          "kn": "Black sesame, mustard oil, iron",
+          "mr": "काले तिल, सरसों का तेल, लोहा",
+          "gu": "Black sesame, mustard oil, iron",
+          "mai": "काले तिल, सरसों का तेल, लोहा"
+        }
+      ]
+    }
+  ]
+}

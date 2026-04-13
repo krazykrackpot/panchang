@@ -3,184 +3,20 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/4-1.json';
 
 const META: ModuleMeta = {
   id: 'mod_4_1', phase: 1, topic: 'Ayanamsha', moduleNumber: '4.1',
-  title: { en: 'Precession & Ayanamsha — Where Tropical Meets Sidereal', hi: 'अयनांश एवं पुरस्सरण — जहाँ सायन और निरयन मिलते हैं', sa: 'अयनांश एवं पुरस्सरण — जहाँ सायन और निरयन मिलते हैं', mai: 'अयनांश एवं पुरस्सरण — जहाँ सायन और निरयन मिलते हैं', mr: 'अयनांश एवं पुरस्सरण — जहाँ सायन और निरयन मिलते हैं', ta: 'Precession & Ayanamsha — Where Tropical Meets Sidereal', te: 'Precession & Ayanamsha — Where Tropical Meets Sidereal', bn: 'Precession & Ayanamsha — Where Tropical Meets Sidereal', kn: 'Precession & Ayanamsha — Where Tropical Meets Sidereal', gu: 'Precession & Ayanamsha — Where Tropical Meets Sidereal' },
-  subtitle: {
-    en: 'Every 72 years your zodiac shifts by 1 degree. The physics, history, and great debate behind the ayanamsha.',
-    hi: 'प्रत्येक 72 वर्ष में आपकी राशि 1 अंश खिसकती है। अयनांश के पीछे का भौतिकशास्त्र, इतिहास और महान वाद-विवाद।',
-  },
+  title: L.title as unknown as ModuleMeta['title'],
+  subtitle: L.subtitle as unknown as ModuleMeta['subtitle'],
   estimatedMinutes: 15,
-  crossRefs: [
-    { label: { en: 'Module 4-2: Tropical vs Sidereal Zodiac', hi: 'मॉड्यूल 4-2: सायन बनाम निरयन राशिचक्र', sa: 'मॉड्यूल 4-2: सायन बनाम निरयन राशिचक्र', mai: 'मॉड्यूल 4-2: सायन बनाम निरयन राशिचक्र', mr: 'मॉड्यूल 4-2: सायन बनाम निरयन राशिचक्र', ta: 'Module 4-2: Tropical vs Sidereal Zodiac', te: 'Module 4-2: Tropical vs Sidereal Zodiac', bn: 'Module 4-2: Tropical vs Sidereal Zodiac', kn: 'Module 4-2: Tropical vs Sidereal Zodiac', gu: 'Module 4-2: Tropical vs Sidereal Zodiac' }, href: '/learn/modules/4-2' },
-    { label: { en: 'Module 4-3: Coordinate Systems', hi: 'मॉड्यूल 4-3: निर्देशांक पद्धतियाँ', sa: 'मॉड्यूल 4-3: निर्देशांक पद्धतियाँ', mai: 'मॉड्यूल 4-3: निर्देशांक पद्धतियाँ', mr: 'मॉड्यूल 4-3: निर्देशांक पद्धतियाँ', ta: 'Module 4-3: Coordinate Systems', te: 'Module 4-3: Coordinate Systems', bn: 'Module 4-3: Coordinate Systems', kn: 'Module 4-3: Coordinate Systems', gu: 'Module 4-3: Coordinate Systems' }, href: '/learn/modules/4-3' },
-    { label: { en: 'Ayanamsha Deep Dive', hi: 'अयनांश विस्तार', sa: 'अयनांश विस्तार', mai: 'अयनांश विस्तार', mr: 'अयनांश विस्तार', ta: 'Ayanamsha Deep Dive', te: 'Ayanamsha Deep Dive', bn: 'Ayanamsha Deep Dive', kn: 'Ayanamsha Deep Dive', gu: 'Ayanamsha Deep Dive' }, href: '/learn/ayanamsha' },
-  ],
+  crossRefs: L.crossRefs as unknown as ModuleMeta['crossRefs'],
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q4_1_01', type: 'mcq',
-    question: {
-      en: 'What is the primary cause of Earth\'s axial precession?',
-      hi: 'पृथ्वी के अक्षीय पुरस्सरण का प्रमुख कारण क्या है?',
-    },
-    options: [
-      { en: 'Earth\'s magnetic field reversals', hi: 'पृथ्वी के चुम्बकीय क्षेत्र का उत्क्रमण' },
-      { en: 'Gravitational pull of Sun and Moon on Earth\'s equatorial bulge', hi: 'पृथ्वी के भूमध्यरेखीय उभार पर सूर्य और चन्द्रमा का गुरुत्वाकर्षण' },
-      { en: 'Jupiter\'s orbital resonance', hi: 'बृहस्पति की कक्षीय अनुनाद' },
-      { en: 'Solar wind pressure on the magnetosphere', hi: 'चुम्बकमण्डल पर सौर पवन का दबाव', sa: 'चुम्बकमण्डल पर सौर पवन का दबाव', mai: 'चुम्बकमण्डल पर सौर पवन का दबाव', mr: 'चुम्बकमण्डल पर सौर पवन का दबाव', ta: 'Solar wind pressure on the magnetosphere', te: 'Solar wind pressure on the magnetosphere', bn: 'Solar wind pressure on the magnetosphere', kn: 'Solar wind pressure on the magnetosphere', gu: 'Solar wind pressure on the magnetosphere' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Sun and Moon\'s gravitational pull on Earth\'s equatorial bulge (Earth is 43km wider at the equator) creates a torque that drives axial precession at ~50.3 arcseconds per year.',
-      hi: 'पृथ्वी के भूमध्यरेखीय उभार (पृथ्वी भूमध्य रेखा पर 43 किमी अधिक चौड़ी है) पर सूर्य और चन्द्रमा का गुरुत्वाकर्षण एक बलाघूर्ण उत्पन्न करता है जो ~50.3 कलांश/वर्ष की दर से पुरस्सरण चलाता है।',
-    },
-  },
-  {
-    id: 'q4_1_02', type: 'true_false',
-    question: {
-      en: 'Precession completes one full cycle (the Platonic Year) in approximately 25,772 years.',
-      hi: 'पुरस्सरण एक पूर्ण चक्र (प्लेटोनिक वर्ष) लगभग 25,772 वर्षों में पूरा करता है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'Correct. At 50.3 arcseconds/year, one full 360-degree precession cycle takes about 25,772 years — known as the Platonic Year or Great Year.',
-      hi: 'सही। 50.3 कलांश/वर्ष की दर से, एक पूर्ण 360-अंश पुरस्सरण चक्र लगभग 25,772 वर्ष लेता है — जिसे प्लेटोनिक वर्ष या महावर्ष कहते हैं।',
-    },
-  },
-  {
-    id: 'q4_1_03', type: 'mcq',
-    question: {
-      en: 'The current Lahiri Ayanamsha (2026) is approximately:',
-      hi: 'वर्तमान लहिरी अयनांश (2026) लगभग कितना है?',
-    },
-    options: [
-      { en: '12 degrees', hi: '12 अंश', sa: '12 अंश', mai: '12 अंश', mr: '12 अंश', ta: '12 degrees', te: '12 degrees', bn: '12 degrees', kn: '12 degrees', gu: '12 degrees' },
-      { en: '24.2 degrees', hi: '24.2 अंश', sa: '24.2 अंश', mai: '24.2 अंश', mr: '24.2 अंश', ta: '24.2 degrees', te: '24.2 degrees', bn: '24.2 degrees', kn: '24.2 degrees', gu: '24.2 degrees' },
-      { en: '36 degrees', hi: '36 अंश', sa: '36 अंश', mai: '36 अंश', mr: '36 अंश', ta: '36 degrees', te: '36 degrees', bn: '36 degrees', kn: '36 degrees', gu: '36 degrees' },
-      { en: '0 degrees', hi: '0 अंश', sa: '0 अंश', mai: '0 अंश', mr: '0 अंश', ta: '0 degrees', te: '0 degrees', bn: '0 degrees', kn: '0 degrees', gu: '0 degrees' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Lahiri Ayanamsha in 2026 is approximately 24.22 degrees — the accumulated angular gap between the tropical and sidereal zodiacs since they were aligned around 285 CE.',
-      hi: 'लहिरी अयनांश 2026 में लगभग 24.22 अंश है — लगभग 285 ई. में राशिचक्रों के संरेखण के बाद से सायन और निरयन राशिचक्रों के बीच संचित कोणीय अन्तर।',
-    },
-  },
-  {
-    id: 'q4_1_04', type: 'true_false',
-    question: {
-      en: 'The Surya Siddhanta correctly described precession as a steady, one-directional increase.',
-      hi: 'सूर्य सिद्धान्त ने पुरस्सरण को स्थिर, एकदिशात्मक वृद्धि के रूप में सही वर्णित किया।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. The Surya Siddhanta used a trepidation (oscillating) model where precession swings back and forth with a maximum of ~27 degrees. Modern astronomy confirms precession is monotonic — it increases steadily and does not reverse.',
-      hi: 'असत्य। सूर्य सिद्धान्त ने एक कम्पन (दोलन) प्रतिरूप प्रयोग किया जहाँ पुरस्सरण ~27 अंश तक आगे-पीछे झूलता है। आधुनिक खगोलशास्त्र पुष्टि करता है कि पुरस्सरण एकदिशात्मक है — यह स्थिर रूप से बढ़ता है और उलटता नहीं।',
-    },
-  },
-  {
-    id: 'q4_1_05', type: 'mcq',
-    question: {
-      en: 'To convert a tropical longitude to sidereal, you:',
-      hi: 'सायन देशान्तर को निरयन में बदलने के लिए आप:',
-    },
-    options: [
-      { en: 'Add the ayanamsha', hi: 'अयनांश जोड़ते हैं', sa: 'अयनांश जोड़ते हैं', mai: 'अयनांश जोड़ते हैं', mr: 'अयनांश जोड़ते हैं', ta: 'Add the ayanamsha', te: 'Add the ayanamsha', bn: 'Add the ayanamsha', kn: 'Add the ayanamsha', gu: 'Add the ayanamsha' },
-      { en: 'Subtract the ayanamsha', hi: 'अयनांश घटाते हैं', sa: 'अयनांश घटाते हैं', mai: 'अयनांश घटाते हैं', mr: 'अयनांश घटाते हैं', ta: 'Subtract the ayanamsha', te: 'Subtract the ayanamsha', bn: 'Subtract the ayanamsha', kn: 'Subtract the ayanamsha', gu: 'Subtract the ayanamsha' },
-      { en: 'Multiply by the ayanamsha', hi: 'अयनांश से गुणा करते हैं', sa: 'अयनांश से गुणा करते हैं', mai: 'अयनांश से गुणा करते हैं', mr: 'अयनांश से गुणा करते हैं', ta: 'Multiply by the ayanamsha', te: 'Multiply by the ayanamsha', bn: 'Multiply by the ayanamsha', kn: 'Multiply by the ayanamsha', gu: 'Multiply by the ayanamsha' },
-      { en: 'Divide by the ayanamsha', hi: 'अयनांश से भाग देते हैं', sa: 'अयनांश से भाग देते हैं', mai: 'अयनांश से भाग देते हैं', mr: 'अयनांश से भाग देते हैं', ta: 'Divide by the ayanamsha', te: 'Divide by the ayanamsha', bn: 'Divide by the ayanamsha', kn: 'Divide by the ayanamsha', gu: 'Divide by the ayanamsha' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Sidereal longitude = Tropical longitude minus Ayanamsha. The tropical vernal equinox has moved forward (eastward) relative to the stars, so sidereal positions are behind by the ayanamsha amount.',
-      hi: 'निरयन देशान्तर = सायन देशान्तर ऋण अयनांश। सायन वसन्त सम्पात तारों के सापेक्ष आगे (पूर्व दिशा में) बढ़ गया है, इसलिए निरयन स्थितियाँ अयनांश मात्रा से पीछे हैं।',
-    },
-  },
-  {
-    id: 'q4_1_06', type: 'mcq',
-    question: {
-      en: 'Which star anchors the Lahiri (Chitrapaksha) ayanamsha at exactly 180 degrees sidereal longitude?',
-      hi: 'कौन-सा तारा लहिरी (चित्रापक्ष) अयनांश को ठीक 180 अंश निरयन देशान्तर पर स्थापित करता है?',
-    },
-    options: [
-      { en: 'Polaris (Dhruva)', hi: 'पोलारिस (ध्रुव)', sa: 'पोलारिस (ध्रुव)', mai: 'पोलारिस (ध्रुव)', mr: 'पोलारिस (ध्रुव)', ta: 'Polaris (Dhruva)', te: 'Polaris (Dhruva)', bn: 'Polaris (Dhruva)', kn: 'Polaris (Dhruva)', gu: 'Polaris (Dhruva)' },
-      { en: 'Spica (Chitra)', hi: 'स्पाइका (चित्रा)', sa: 'स्पाइका (चित्रा)', mai: 'स्पाइका (चित्रा)', mr: 'स्पाइका (चित्रा)', ta: 'Spica (Chitra)', te: 'Spica (Chitra)', bn: 'Spica (Chitra)', kn: 'Spica (Chitra)', gu: 'Spica (Chitra)' },
-      { en: 'Regulus (Magha)', hi: 'रेगुलस (मघा)', sa: 'रेगुलस (मघा)', mai: 'रेगुलस (मघा)', mr: 'रेगुलस (मघा)', ta: 'Regulus (Magha)', te: 'Regulus (Magha)', bn: 'Regulus (Magha)', kn: 'Regulus (Magha)', gu: 'Regulus (Magha)' },
-      { en: 'Aldebaran (Rohini)', hi: 'एल्डेबरान (रोहिणी)', sa: 'एल्डेबरान (रोहिणी)', mai: 'एल्डेबरान (रोहिणी)', mr: 'एल्डेबरान (रोहिणी)', ta: 'Aldebaran (Rohini)', te: 'Aldebaran (Rohini)', bn: 'Aldebaran (Rohini)', kn: 'Aldebaran (Rohini)', gu: 'Aldebaran (Rohini)' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Lahiri (Chitrapaksha) ayanamsha anchors the bright star Spica (Chitra) at exactly 180 degrees sidereal longitude — the exact opposite of the sidereal zero point. This was chosen by the Indian Calendar Reform Committee in 1955.',
-      hi: 'लहिरी (चित्रापक्ष) अयनांश चमकीले तारे स्पाइका (चित्रा) को ठीक 180 अंश निरयन देशान्तर पर स्थापित करता है — निरयन शून्य बिन्दु के ठीक विपरीत। इसे 1955 में भारतीय पंचांग सुधार समिति ने चुना था।',
-    },
-  },
-  {
-    id: 'q4_1_07', type: 'mcq',
-    question: {
-      en: 'Who first measured precession in the Western tradition?',
-      hi: 'पश्चिमी परम्परा में पुरस्सरण को सर्वप्रथम किसने मापा?',
-    },
-    options: [
-      { en: 'Ptolemy (~150 CE)', hi: 'टॉलेमी (~150 ई.)', sa: 'टॉलेमी (~150 ई.)', mai: 'टॉलेमी (~150 ई.)', mr: 'टॉलेमी (~150 ई.)', ta: 'Ptolemy (~150 CE)', te: 'Ptolemy (~150 CE)', bn: 'Ptolemy (~150 CE)', kn: 'Ptolemy (~150 CE)', gu: 'Ptolemy (~150 CE)' },
-      { en: 'Hipparchus (~150 BCE)', hi: 'हिपार्कस (~150 ई.पू.)', sa: 'हिपार्कस (~150 ई.पू.)', mai: 'हिपार्कस (~150 ई.पू.)', mr: 'हिपार्कस (~150 ई.पू.)', ta: 'Hipparchus (~150 BCE)', te: 'Hipparchus (~150 BCE)', bn: 'Hipparchus (~150 BCE)', kn: 'Hipparchus (~150 BCE)', gu: 'Hipparchus (~150 BCE)' },
-      { en: 'Copernicus (1543 CE)', hi: 'कोपर्निकस (1543 ई.)', sa: 'कोपर्निकस (1543 ई.)', mai: 'कोपर्निकस (1543 ई.)', mr: 'कोपर्निकस (1543 ई.)', ta: 'Copernicus (1543 CE)', te: 'Copernicus (1543 CE)', bn: 'Copernicus (1543 CE)', kn: 'Copernicus (1543 CE)', gu: 'Copernicus (1543 CE)' },
-      { en: 'Newton (1687 CE)', hi: 'न्यूटन (1687 ई.)', sa: 'न्यूटन (1687 ई.)', mai: 'न्यूटन (1687 ई.)', mr: 'न्यूटन (1687 ई.)', ta: 'Newton (1687 CE)', te: 'Newton (1687 CE)', bn: 'Newton (1687 CE)', kn: 'Newton (1687 CE)', gu: 'Newton (1687 CE)' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Greek astronomer Hipparchus (c. 150 BCE) first measured precession by comparing star catalogs 150 years apart. He estimated the rate at 36 arcseconds/year — the actual value is 50.3 arcseconds/year.',
-      hi: 'यूनानी खगोलशास्त्री हिपार्कस (लगभग 150 ई.पू.) ने 150 वर्षों के अन्तर पर तारा-सूचियों की तुलना करके पुरस्सरण को पहली बार मापा। उन्होंने दर 36 कलांश/वर्ष अनुमानित की — वास्तविक मान 50.3 कलांश/वर्ष है।',
-    },
-  },
-  {
-    id: 'q4_1_08', type: 'true_false',
-    question: {
-      en: 'The Lahiri and KP ayanamsha values differ by more than 2 degrees.',
-      hi: 'लहिरी और के.पी. अयनांश मान 2 अंश से अधिक भिन्न हैं।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. Lahiri and KP ayanamsha values are very close — they differ by only about 0.03 degrees (~2 arcminutes). Both anchor to Spica, but KP uses a slightly different polynomial refinement. The difference rarely changes planetary sign placements.',
-      hi: 'असत्य। लहिरी और के.पी. अयनांश मान बहुत निकट हैं — वे केवल लगभग 0.03 अंश (~2 कला) भिन्न हैं। दोनों चित्रा तारे पर आधारित हैं, किन्तु के.पी. थोड़ा भिन्न बहुपद शोधन प्रयोग करता है। यह अन्तर ग्रहों की राशि स्थिति शायद ही कभी बदलता है।',
-    },
-  },
-  {
-    id: 'q4_1_09', type: 'mcq',
-    question: {
-      en: 'A planet is at 24.5 degrees tropical longitude. With Lahiri ayanamsha (24.22 degrees) it falls at 0.28 degrees Aries. With Fagan-Bradley (25.10 degrees) it falls at:',
-      hi: 'एक ग्रह 24.5 अंश सायन देशान्तर पर है। लहिरी अयनांश (24.22 अंश) से यह 0.28 अंश मेष में आता है। फ़गन-ब्रैडली (25.10 अंश) से यह कहाँ आएगा?',
-    },
-    options: [
-      { en: '0.60 degrees Aries', hi: '0.60 अंश मेष', sa: '0.60 अंश मेष', mai: '0.60 अंश मेष', mr: '0.60 अंश मेष', ta: '0.60 degrees Aries', te: '0.60 degrees Aries', bn: '0.60 degrees Aries', kn: '0.60 degrees Aries', gu: '0.60 degrees Aries' },
-      { en: '29.40 degrees Pisces — a different sign!', hi: '29.40 अंश मीन — भिन्न राशि!', sa: '29.40 अंश मीन — भिन्न राशि!', mai: '29.40 अंश मीन — भिन्न राशि!', mr: '29.40 अंश मीन — भिन्न राशि!', ta: '29.40 degrees Pisces — a different sign!', te: '29.40 degrees Pisces — a different sign!', bn: '29.40 degrees Pisces — a different sign!', kn: '29.40 degrees Pisces — a different sign!', gu: '29.40 degrees Pisces — a different sign!' },
-      { en: '24.50 degrees Pisces', hi: '24.50 अंश मीन', sa: '24.50 अंश मीन', mai: '24.50 अंश मीन', mr: '24.50 अंश मीन', ta: '24.50 degrees Pisces', te: '24.50 degrees Pisces', bn: '24.50 degrees Pisces', kn: '24.50 degrees Pisces', gu: '24.50 degrees Pisces' },
-      { en: '1.10 degrees Aries', hi: '1.10 अंश मेष', sa: '1.10 अंश मेष', mai: '1.10 अंश मेष', mr: '1.10 अंश मेष', ta: '1.10 degrees Aries', te: '1.10 degrees Aries', bn: '1.10 degrees Aries', kn: '1.10 degrees Aries', gu: '1.10 degrees Aries' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: '24.5 minus 25.10 = -0.60 degrees, which wraps to 360 - 0.60 = 359.40 degrees = 29.40 degrees Pisces. A mere 0.88 degree difference in ayanamsha pushes the planet into an entirely different sign! This is why boundary cases matter.',
-      hi: '24.5 ऋण 25.10 = -0.60 अंश, जो 360 - 0.60 = 359.40 अंश = 29.40 अंश मीन बनता है। अयनांश में मात्र 0.88 अंश का अन्तर ग्रह को पूर्णतः भिन्न राशि में धकेल देता है! इसीलिए सीमारेखा के मामले महत्त्वपूर्ण हैं।',
-    },
-  },
-  {
-    id: 'q4_1_10', type: 'true_false',
-    question: {
-      en: 'Western tropical astrology is "wrong" because it ignores precession, while Vedic sidereal astrology is "correct."',
-      hi: 'पश्चिमी सायन ज्योतिष "गलत" है क्योंकि यह पुरस्सरण की उपेक्षा करता है, जबकि वैदिक निरयन ज्योतिष "सही" है।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. Both systems are internally consistent reference frames. Tropical astrology tracks seasonal/equinox relationships (valid for weather and agricultural cycles). Sidereal astrology tracks stellar relationships (essential for nakshatra-based systems). Neither is inherently "wrong" — they answer different questions using different anchors.',
-      hi: 'असत्य। दोनों पद्धतियाँ आन्तरिक रूप से सुसंगत सन्दर्भ ढाँचे हैं। सायन ज्योतिष मौसमी/सम्पात सम्बन्धों को ट्रैक करता है (मौसम और कृषि चक्रों के लिए मान्य)। निरयन ज्योतिष तारकीय सम्बन्धों को ट्रैक करता है (नक्षत्र-आधारित पद्धतियों के लिए आवश्यक)। कोई भी स्वाभाविक रूप से "गलत" नहीं है — वे भिन्न लंगरों का उपयोग करके भिन्न प्रश्नों का उत्तर देते हैं।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = L.questions as unknown as ModuleQuestion[];
 
-/* ═══════════════════════════════════════════════════════════════
-   PAGE 1 — What is Precession and Why It Matters
-   ═══════════════════════════════════════════════════════════════ */
 function Page1() {
   const locale = useModuleLocale();
   const isHi = isDevanagariLocale(locale);

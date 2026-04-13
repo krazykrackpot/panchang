@@ -2,197 +2,20 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/13-4.json';
 
 const META: ModuleMeta = {
   id: 'mod_13_4', phase: 3, topic: 'Transits', moduleNumber: '13.4',
-  title: { en: 'Eclipses — Grahan & the Rahu-Ketu Axis', hi: 'ग्रहण — राहु-केतु अक्ष', sa: 'ग्रहण — राहु-केतु अक्ष', mai: 'ग्रहण — राहु-केतु अक्ष', mr: 'ग्रहण — राहु-केतु अक्ष', ta: 'Eclipses — Grahan & the Rahu-Ketu Axis', te: 'Eclipses — Grahan & the Rahu-Ketu Axis', bn: 'Eclipses — Grahan & the Rahu-Ketu Axis', kn: 'Eclipses — Grahan & the Rahu-Ketu Axis', gu: 'Eclipses — Grahan & the Rahu-Ketu Axis' },
-  subtitle: {
-    en: 'How eclipses occur at the lunar nodes, their astronomical mechanics, Sutak rules, and how we compute them from first principles',
-    hi: 'चन्द्र पातों पर ग्रहण कैसे होते हैं, उनका खगोलीय यन्त्र, सूतक नियम, और हम उन्हें मूल सिद्धान्तों से कैसे गणना करते हैं',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 15,
-  crossRefs: [
-    { label: { en: 'Eclipse Calendar', hi: 'ग्रहण पञ्चाङ्ग', sa: 'ग्रहण पञ्चाङ्ग', mai: 'ग्रहण पञ्चाङ्ग', mr: 'ग्रहण पञ्चाङ्ग', ta: 'Eclipse Calendar', te: 'Eclipse Calendar', bn: 'Eclipse Calendar', kn: 'Eclipse Calendar', gu: 'Eclipse Calendar' }, href: '/eclipses' },
-    { label: { en: 'Module 13-1: How Transits Work', hi: 'मॉड्यूल 13-1: गोचर', sa: 'मॉड्यूल 13-1: गोचर', mai: 'मॉड्यूल 13-1: गोचर', mr: 'मॉड्यूल 13-1: गोचर', ta: 'Module 13-1: How Transits Work', te: 'Module 13-1: How Transits Work', bn: 'Module 13-1: How Transits Work', kn: 'Module 13-1: How Transits Work', gu: 'Module 13-1: How Transits Work' }, href: '/learn/modules/13-1' },
-    { label: { en: 'Deep Dive: Eclipses in Jyotish', hi: 'विस्तृत: ज्योतिष में ग्रहण', sa: 'विस्तृत: ज्योतिष में ग्रहण', mai: 'विस्तृत: ज्योतिष में ग्रहण', mr: 'विस्तृत: ज्योतिष में ग्रहण', ta: 'Deep Dive: Eclipses in Jyotish', te: 'Deep Dive: Eclipses in Jyotish', bn: 'Deep Dive: Eclipses in Jyotish', kn: 'Deep Dive: Eclipses in Jyotish', gu: 'Deep Dive: Eclipses in Jyotish' }, href: '/learn/eclipses' },
-    { label: { en: 'Tithis — Amavasya & Purnima', hi: 'तिथियाँ — अमावस्या और पूर्णिमा', sa: 'तिथियाँ — अमावस्या और पूर्णिमा', mai: 'तिथियाँ — अमावस्या और पूर्णिमा', mr: 'तिथियाँ — अमावस्या और पूर्णिमा', ta: 'Tithis — Amavasya & Purnima', te: 'Tithis — Amavasya & Purnima', bn: 'Tithis — Amavasya & Purnima', kn: 'Tithis — Amavasya & Purnima', gu: 'Tithis — Amavasya & Purnima' }, href: '/learn/tithis' },
-  ],
+  crossRefs: L.crossRefs.map(cr => ({ label: cr.label as unknown as Record<string, string>, href: cr.href })),
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q13_4_01', type: 'mcq',
-    question: {
-      en: 'In astronomical terms, what is Rahu (the ascending lunar node)?',
-      hi: 'खगोलीय शब्दों में राहु (आरोही चन्द्र पात) क्या है?',
-    },
-    options: [
-      { en: 'The point where the Moon crosses the ecliptic moving northward', hi: 'वह बिन्दु जहाँ चन्द्रमा उत्तर की ओर क्रान्तिवृत्त पार करता है', sa: 'वह बिन्दु जहाँ चन्द्रमा उत्तर की ओर क्रान्तिवृत्त पार करता है', mai: 'वह बिन्दु जहाँ चन्द्रमा उत्तर की ओर क्रान्तिवृत्त पार करता है', mr: 'वह बिन्दु जहाँ चन्द्रमा उत्तर की ओर क्रान्तिवृत्त पार करता है', ta: 'The point where the Moon crosses the ecliptic moving northward', te: 'The point where the Moon crosses the ecliptic moving northward', bn: 'The point where the Moon crosses the ecliptic moving northward', kn: 'The point where the Moon crosses the ecliptic moving northward', gu: 'The point where the Moon crosses the ecliptic moving northward' },
-      { en: 'A shadowy planet between Mars and Jupiter', hi: 'मंगल और गुरु के बीच एक छाया ग्रह', sa: 'मंगल और गुरु के बीच एक छाया ग्रह', mai: 'मंगल और गुरु के बीच एक छाया ग्रह', mr: 'मंगल और गुरु के बीच एक छाया ग्रह', ta: 'A shadowy planet between Mars and Jupiter', te: 'A shadowy planet between Mars and Jupiter', bn: 'A shadowy planet between Mars and Jupiter', kn: 'A shadowy planet between Mars and Jupiter', gu: 'A shadowy planet between Mars and Jupiter' },
-      { en: 'The north pole of the Moon', hi: 'चन्द्रमा का उत्तरी ध्रुव', sa: 'चन्द्रमा का उत्तरी ध्रुव', mai: 'चन्द्रमा का उत्तरी ध्रुव', mr: 'चन्द्रमा का उत्तरी ध्रुव', ta: 'The north pole of the Moon', te: 'The north pole of the Moon', bn: 'The north pole of the Moon', kn: 'The north pole of the Moon', gu: 'The north pole of the Moon' },
-      { en: 'The point of maximum lunar latitude', hi: 'अधिकतम चन्द्र अक्षांश का बिन्दु', sa: 'अधिकतम चन्द्र अक्षांश का बिन्दु', mai: 'अधिकतम चन्द्र अक्षांश का बिन्दु', mr: 'अधिकतम चन्द्र अक्षांश का बिन्दु', ta: 'The point of maximum lunar latitude', te: 'The point of maximum lunar latitude', bn: 'The point of maximum lunar latitude', kn: 'The point of maximum lunar latitude', gu: 'The point of maximum lunar latitude' },
-    ],
-    correctAnswer: 0,
-    explanation: {
-      en: 'Rahu is the ascending lunar node — the precise point where the Moon\'s orbital path crosses the ecliptic (the Sun\'s apparent path) as the Moon moves from south to north. It is not a physical body but a mathematical point. Its opposite, Ketu (descending node), is where the Moon crosses going south. These two points are always exactly 180° apart.',
-      hi: 'राहु आरोही चन्द्र पात है — वह सटीक बिन्दु जहाँ चन्द्रमा की कक्षीय पथ, क्रान्तिवृत्त (सूर्य का प्रत्यक्ष मार्ग) को दक्षिण से उत्तर की ओर जाते समय पार करती है। यह कोई भौतिक पिण्ड नहीं बल्कि एक गणितीय बिन्दु है। इसका विपरीत, केतु (अवरोही पात), वह है जहाँ चन्द्रमा दक्षिण की ओर जाते समय पार करता है। ये दोनों बिन्दु सदैव ठीक 180° दूर होते हैं।',
-    },
-  },
-  {
-    id: 'q13_4_02', type: 'mcq',
-    question: {
-      en: 'By how many degrees is the Moon\'s orbital plane tilted relative to the ecliptic?',
-      hi: 'चन्द्रमा की कक्षीय तल क्रान्तिवृत्त के सापेक्ष कितने अंश झुकी है?',
-    },
-    options: [
-      { en: '1.5°', hi: '1.5°', sa: '1.5°', mai: '1.5°', mr: '1.5°', ta: '1.5°', te: '1.5°', bn: '1.5°', kn: '1.5°', gu: '1.5°' },
-      { en: '5.15°', hi: '5.15°', sa: '5.15°', mai: '5.15°', mr: '5.15°', ta: '5.15°', te: '5.15°', bn: '5.15°', kn: '5.15°', gu: '5.15°' },
-      { en: '23.5°', hi: '23.5°', sa: '23.5°', mai: '23.5°', mr: '23.5°', ta: '23.5°', te: '23.5°', bn: '23.5°', kn: '23.5°', gu: '23.5°' },
-      { en: '18.6°', hi: '18.6°', sa: '18.6°', mai: '18.6°', mr: '18.6°', ta: '18.6°', te: '18.6°', bn: '18.6°', kn: '18.6°', gu: '18.6°' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Moon\'s orbit is tilted 5.15° relative to the ecliptic. This tilt is the reason eclipses don\'t happen every month — if the Moon orbited exactly in the plane of the ecliptic, every New Moon would be a solar eclipse and every Full Moon a lunar eclipse. The 5.15° tilt means the Moon passes above or below the Sun\'s shadow most of the time, with eclipses only occurring when New/Full Moon coincides with proximity to a node.',
-      hi: 'चन्द्रमा की कक्षा क्रान्तिवृत्त के सापेक्ष 5.15° झुकी है। यही झुकाव कारण है कि ग्रहण हर महीने नहीं होते — यदि चन्द्रमा ठीक क्रान्तिवृत्त के तल में परिक्रमा करता, तो प्रत्येक अमावस्या सूर्य ग्रहण और प्रत्येक पूर्णिमा चन्द्र ग्रहण होती। 5.15° झुकाव का अर्थ है कि चन्द्रमा अधिकतर समय सूर्य की छाया के ऊपर या नीचे से गुज़रता है, और ग्रहण तभी होते हैं जब अमावस्या/पूर्णिमा पात के निकट हो।',
-    },
-  },
-  {
-    id: 'q13_4_03', type: 'mcq',
-    question: {
-      en: 'A solar eclipse (Surya Grahan) can only occur on which tithi?',
-      hi: 'सूर्य ग्रहण (सूर्य ग्रहण) केवल किस तिथि को हो सकता है?',
-    },
-    options: [
-      { en: 'Purnima (15th tithi — Full Moon)', hi: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)', sa: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)', mai: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)', mr: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)', ta: 'Purnima (15th tithi — Full Moon)', te: 'Purnima (15th tithi — Full Moon)', bn: 'Purnima (15th tithi — Full Moon)', kn: 'Purnima (15th tithi — Full Moon)', gu: 'Purnima (15th tithi — Full Moon)' },
-      { en: 'Amavasya (30th tithi — New Moon)', hi: 'अमावस्या (30वीं तिथि — नया चन्द्र)', sa: 'अमावस्या (30वीं तिथि — नया चन्द्र)', mai: 'अमावस्या (30वीं तिथि — नया चन्द्र)', mr: 'अमावस्या (30वीं तिथि — नया चन्द्र)', ta: 'Amavasya (30th tithi — New Moon)', te: 'Amavasya (30th tithi — New Moon)', bn: 'Amavasya (30th tithi — New Moon)', kn: 'Amavasya (30th tithi — New Moon)', gu: 'Amavasya (30th tithi — New Moon)' },
-      { en: 'Ekadashi (11th tithi)', hi: 'एकादशी (11वीं तिथि)', sa: 'एकादशी (11वीं तिथि)', mai: 'एकादशी (11वीं तिथि)', mr: 'एकादशी (11वीं तिथि)', ta: 'Ekadashi (11th tithi)', te: 'Ekadashi (11th tithi)', bn: 'Ekadashi (11th tithi)', kn: 'Ekadashi (11th tithi)', gu: 'Ekadashi (11th tithi)' },
-      { en: 'Chaturdashi (14th tithi)', hi: 'चतुर्दशी (14वीं तिथि)', sa: 'चतुर्दशी (14वीं तिथि)', mai: 'चतुर्दशी (14वीं तिथि)', mr: 'चतुर्दशी (14वीं तिथि)', ta: 'Chaturdashi (14th tithi)', te: 'Chaturdashi (14th tithi)', bn: 'Chaturdashi (14th tithi)', kn: 'Chaturdashi (14th tithi)', gu: 'Chaturdashi (14th tithi)' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'A solar eclipse can only occur on Amavasya (the 30th tithi, New Moon day), because only then is the Moon positioned between the Earth and Sun. Solar eclipses require New Moon + proximity to a lunar node (Rahu or Ketu). If New Moon occurs when the Moon is near a node and its latitude is close to zero, the Moon\'s shadow falls on Earth, producing a solar eclipse.',
-      hi: 'सूर्य ग्रहण केवल अमावस्या (30वीं तिथि, नया चन्द्र दिन) को हो सकता है, क्योंकि तभी चन्द्रमा पृथ्वी और सूर्य के बीच स्थित होता है। सूर्य ग्रहण के लिए अमावस्या + चन्द्र पात (राहु या केतु) के निकट होना आवश्यक है। यदि अमावस्या तब होती है जब चन्द्रमा किसी पात के निकट हो और उसका अक्षांश शून्य के करीब हो, तो चन्द्रमा की छाया पृथ्वी पर पड़ती है और सूर्य ग्रहण होता है।',
-    },
-  },
-  {
-    id: 'q13_4_04', type: 'mcq',
-    question: {
-      en: 'A lunar eclipse (Chandra Grahan) can only occur on which tithi?',
-      hi: 'चन्द्र ग्रहण (चन्द्र ग्रहण) केवल किस तिथि को हो सकता है?',
-    },
-    options: [
-      { en: 'Amavasya (30th tithi — New Moon)', hi: 'अमावस्या (30वीं तिथि — नया चन्द्र)', sa: 'अमावस्या (30वीं तिथि — नया चन्द्र)', mai: 'अमावस्या (30वीं तिथि — नया चन्द्र)', mr: 'अमावस्या (30वीं तिथि — नया चन्द्र)', ta: 'Amavasya (30th tithi — New Moon)', te: 'Amavasya (30th tithi — New Moon)', bn: 'Amavasya (30th tithi — New Moon)', kn: 'Amavasya (30th tithi — New Moon)', gu: 'Amavasya (30th tithi — New Moon)' },
-      { en: 'Purnima (15th tithi — Full Moon)', hi: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)', sa: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)', mai: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)', mr: 'पूर्णिमा (15वीं तिथि — पूर्ण चन्द्र)', ta: 'Purnima (15th tithi — Full Moon)', te: 'Purnima (15th tithi — Full Moon)', bn: 'Purnima (15th tithi — Full Moon)', kn: 'Purnima (15th tithi — Full Moon)', gu: 'Purnima (15th tithi — Full Moon)' },
-      { en: 'Tritiya (3rd tithi)', hi: 'तृतीया (3री तिथि)', sa: 'तृतीया (3री तिथि)', mai: 'तृतीया (3री तिथि)', mr: 'तृतीया (3री तिथि)', ta: 'Tritiya (3rd tithi)', te: 'Tritiya (3rd tithi)', bn: 'Tritiya (3rd tithi)', kn: 'Tritiya (3rd tithi)', gu: 'Tritiya (3rd tithi)' },
-      { en: 'Ashtami (8th tithi)', hi: 'अष्टमी (8वीं तिथि)', sa: 'अष्टमी (8वीं तिथि)', mai: 'अष्टमी (8वीं तिथि)', mr: 'अष्टमी (8वीं तिथि)', ta: 'Ashtami (8th tithi)', te: 'Ashtami (8th tithi)', bn: 'Ashtami (8th tithi)', kn: 'Ashtami (8th tithi)', gu: 'Ashtami (8th tithi)' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'A lunar eclipse can only occur on Purnima (the 15th tithi, Full Moon day), because only then is the Earth positioned directly between the Sun and Moon. When the Full Moon occurs near a lunar node and the Moon passes through Earth\'s shadow (umbra or penumbra), a lunar eclipse results. This is why Purnima nights have special spiritual significance — the Moon is in direct opposition to the Sun, fully illuminated and potentially eclipsed.',
-      hi: 'चन्द्र ग्रहण केवल पूर्णिमा (15वीं तिथि, पूर्ण चन्द्र दिन) को हो सकता है, क्योंकि तभी पृथ्वी सूर्य और चन्द्रमा के बीच सीधे स्थित होती है। जब पूर्णिमा किसी चन्द्र पात के निकट होती है और चन्द्रमा पृथ्वी की छाया (छाया या उपछाया) से गुज़रता है, तो चन्द्र ग्रहण होता है। इसीलिए पूर्णिमा रातों का विशेष आध्यात्मिक महत्त्व है — चन्द्रमा सूर्य के सीधे विरोध में है, पूर्णतः प्रकाशित और सम्भवतः ग्रहण-ग्रस्त।',
-    },
-  },
-  {
-    id: 'q13_4_05', type: 'mcq',
-    question: {
-      en: 'What primarily determines whether a solar eclipse will be total, annular, or partial?',
-      hi: 'सूर्य ग्रहण पूर्ण, कंकणाकृति या आंशिक होगा, यह मुख्यतः क्या निर्धारित करता है?',
-    },
-    options: [
-      { en: 'The Moon\'s phase at the time of the eclipse', hi: 'ग्रहण के समय चन्द्रमा की कला' },
-      { en: 'The Moon\'s distance from Earth and its ecliptic latitude', hi: 'पृथ्वी से चन्द्रमा की दूरी और उसका क्रान्तिक अक्षांश' },
-      { en: 'The position of Jupiter in the natal chart', hi: 'जन्म कुण्डली में गुरु की स्थिति', sa: 'जन्म कुण्डली में गुरु की स्थिति', mai: 'जन्म कुण्डली में गुरु की स्थिति', mr: 'जन्म कुण्डली में गुरु की स्थिति', ta: 'The position of Jupiter in the natal chart', te: 'The position of Jupiter in the natal chart', bn: 'The position of Jupiter in the natal chart', kn: 'The position of Jupiter in the natal chart', gu: 'The position of Jupiter in the natal chart' },
-      { en: 'The day of the week on which the eclipse falls', hi: 'जिस सप्ताह के दिन ग्रहण पड़े', sa: 'जिस सप्ताह के दिन ग्रहण पड़े', mai: 'जिस सप्ताह के दिन ग्रहण पड़े', mr: 'जिस सप्ताह के दिन ग्रहण पड़े', ta: 'The day of the week on which the eclipse falls', te: 'The day of the week on which the eclipse falls', bn: 'The day of the week on which the eclipse falls', kn: 'The day of the week on which the eclipse falls', gu: 'The day of the week on which the eclipse falls' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The type of eclipse is determined by two factors: the Moon\'s ecliptic latitude (how closely aligned it is with the node, determining how central the eclipse is) and the Moon\'s distance from Earth (its apparent size). When the Moon is at perigee (closest to Earth), it appears larger than the Sun and produces a total eclipse. When near apogee (farthest), it appears smaller and leaves a ring of sunlight — the annular eclipse. Partial eclipses occur when alignment is off-centre.',
-      hi: 'ग्रहण का प्रकार दो कारकों से निर्धारित होता है: चन्द्रमा का क्रान्तिक अक्षांश (यह पात के साथ कितनी निकटता से संरेखित है, यह निर्धारित करता है कि ग्रहण कितना केन्द्रीय है) और पृथ्वी से चन्द्रमा की दूरी (उसका आभासी आकार)। जब चन्द्रमा उपभू (पृथ्वी के निकटतम) पर हो, वह सूर्य से बड़ा दिखता है और पूर्ण ग्रहण होता है। अपभू (दूरतम) के निकट होने पर, वह छोटा दिखता है और सूर्यप्रकाश का एक वलय छोड़ता है — कंकणाकृति ग्रहण। आंशिक ग्रहण तब होते हैं जब संरेखण केन्द्र से विचलित हो।',
-    },
-  },
-  {
-    id: 'q13_4_06', type: 'mcq',
-    question: {
-      en: 'What is a "Blood Moon" in astronomical terms?',
-      hi: '"ब्लड मून" खगोलीय शब्दों में क्या है?',
-    },
-    options: [
-      { en: 'A partial lunar eclipse where only the edge of the Moon enters Earth\'s shadow', hi: 'आंशिक चन्द्र ग्रहण जिसमें चन्द्रमा का केवल किनारा पृथ्वी की छाया में प्रवेश करता है' },
-      { en: 'A total lunar eclipse where the Moon appears red-orange due to Earth\'s atmospheric refraction', hi: 'पूर्ण चन्द्र ग्रहण जिसमें पृथ्वी के वायुमण्डलीय अपवर्तन के कारण चन्द्रमा लाल-नारंगी दिखता है' },
-      { en: 'A penumbral lunar eclipse visible only through telescopes', hi: 'दूरदर्शी से ही दृश्य उपछाया चन्द्र ग्रहण', sa: 'दूरदर्शी से ही दृश्य उपछाया चन्द्र ग्रहण', mai: 'दूरदर्शी से ही दृश्य उपछाया चन्द्र ग्रहण', mr: 'दूरदर्शी से ही दृश्य उपछाया चन्द्र ग्रहण', ta: 'A penumbral lunar eclipse visible only through telescopes', te: 'A penumbral lunar eclipse visible only through telescopes', bn: 'A penumbral lunar eclipse visible only through telescopes', kn: 'A penumbral lunar eclipse visible only through telescopes', gu: 'A penumbral lunar eclipse visible only through telescopes' },
-      { en: 'A supermoon coinciding with a lunar eclipse', hi: 'चन्द्र ग्रहण के साथ संयोग वाला सुपरमून', sa: 'चन्द्र ग्रहण के साथ संयोग वाला सुपरमून', mai: 'चन्द्र ग्रहण के साथ संयोग वाला सुपरमून', mr: 'चन्द्र ग्रहण के साथ संयोग वाला सुपरमून', ta: 'A supermoon coinciding with a lunar eclipse', te: 'A supermoon coinciding with a lunar eclipse', bn: 'A supermoon coinciding with a lunar eclipse', kn: 'A supermoon coinciding with a lunar eclipse', gu: 'A supermoon coinciding with a lunar eclipse' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'A Blood Moon is a total lunar eclipse. When the Moon passes completely into Earth\'s umbral shadow, all direct sunlight is blocked — but Earth\'s atmosphere bends (refracts) sunlight around the planet\'s edges. Only the longer red wavelengths pass through this atmospheric filter, painting the Moon with shades of red, orange, and copper. The same physics that makes sunrises and sunsets red. The deeper the Moon is in Earth\'s shadow, the darker and more dramatic the red colour.',
-      hi: 'ब्लड मून एक पूर्ण चन्द्र ग्रहण है। जब चन्द्रमा पूरी तरह पृथ्वी की छाया में प्रवेश करता है, तो सभी प्रत्यक्ष सूर्यप्रकाश अवरुद्ध हो जाता है — लेकिन पृथ्वी का वायुमण्डल ग्रह के किनारों के चारों ओर सूर्यप्रकाश को मोड़ता (अपवर्तित करता) है। केवल लंबे लाल तरंगदैर्घ्य इस वायुमण्डलीय छानने से गुज़रते हैं, चन्द्रमा को लाल, नारंगी और तांबे के रंगों से रंग देते हैं। वही भौतिकी जो सूर्योदय और सूर्यास्त को लाल बनाती है। चन्द्रमा जितना गहरा पृथ्वी की छाया में हो, लाल रंग उतना ही गहरा और नाटकीय।',
-    },
-  },
-  {
-    id: 'q13_4_07', type: 'mcq',
-    question: {
-      en: 'According to the Nirnaya Sindhu tradition, how long before a solar eclipse does Sutak begin?',
-      hi: 'निर्णय सिन्धु परम्परा के अनुसार, सूर्य ग्रहण से कितने समय पहले सूतक आरम्भ होता है?',
-    },
-    options: [
-      { en: '3 hours', hi: '3 घण्टे', sa: '3 घण्टे', mai: '3 घण्टे', mr: '3 घण्टे', ta: '3 hours', te: '3 hours', bn: '3 hours', kn: '3 hours', gu: '3 hours' },
-      { en: '4 hours', hi: '4 घण्टे', sa: '4 घण्टे', mai: '4 घण्टे', mr: '4 घण्टे', ta: '4 hours', te: '4 hours', bn: '4 hours', kn: '4 hours', gu: '4 hours' },
-      { en: '12 hours', hi: '12 घण्टे', sa: '12 घण्टे', mai: '12 घण्टे', mr: '12 घण्टे', ta: '12 hours', te: '12 hours', bn: '12 hours', kn: '12 hours', gu: '12 hours' },
-      { en: '24 hours', hi: '24 घण्टे', sa: '24 घण्टे', mai: '24 घण्टे', mr: '24 घण्टे', ta: '24 hours', te: '24 hours', bn: '24 hours', kn: '24 hours', gu: '24 hours' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'According to the Nirnaya Sindhu (a key authority on Dharmashastra), Sutak for a solar eclipse begins 12 hours (4 praharas) before the eclipse contact. Different texts prescribe different durations — Dharmasindhu says 12 hours for solar, 9 hours for lunar; Muhurta Chintamani says 3 praharas (about 9 hours) for solar. In practice, 12 hours for solar eclipse and 9 hours for lunar eclipse is widely observed across North India.',
-      hi: 'निर्णय सिन्धु (धर्मशास्त्र पर एक प्रमुख प्राधिकरण) के अनुसार, सूर्य ग्रहण के लिए सूतक ग्रहण स्पर्श से 12 घण्टे (4 प्रहर) पहले आरम्भ होता है। विभिन्न ग्रन्थ अलग-अलग अवधि निर्धारित करते हैं — धर्मसिन्धु सूर्य के लिए 12 घण्टे, चन्द्र के लिए 9 घण्टे कहता है; मुहूर्त चिन्तामणि सूर्य के लिए 3 प्रहर (लगभग 9 घण्टे) कहता है। व्यवहार में, सूर्य ग्रहण के लिए 12 घण्टे और चन्द्र ग्रहण के लिए 9 घण्टे उत्तर भारत में व्यापक रूप से पालन किए जाते हैं।',
-    },
-  },
-  {
-    id: 'q13_4_08', type: 'mcq',
-    question: {
-      en: 'Approximately how long is the Saros cycle — the period after which eclipses repeat in nearly the same geometry?',
-      hi: 'सारोस चक्र — जिसके बाद ग्रहण लगभग उसी ज्यामिति में दोहराते हैं — लगभग कितने समय का होता है?',
-    },
-    options: [
-      { en: '9 years, 5 months, 12 days', hi: '9 वर्ष, 5 माह, 12 दिन', sa: '9 वर्ष, 5 माह, 12 दिन', mai: '9 वर्ष, 5 माह, 12 दिन', mr: '9 वर्ष, 5 माह, 12 दिन', ta: '9 years, 5 months, 12 days', te: '9 years, 5 months, 12 days', bn: '9 years, 5 months, 12 days', kn: '9 years, 5 months, 12 days', gu: '9 years, 5 months, 12 days' },
-      { en: '18 years, 11 days, 8 hours', hi: '18 वर्ष, 11 दिन, 8 घण्टे', sa: '18 वर्ष, 11 दिन, 8 घण्टे', mai: '18 वर्ष, 11 दिन, 8 घण्टे', mr: '18 वर्ष, 11 दिन, 8 घण्टे', ta: '18 years, 11 days, 8 hours', te: '18 years, 11 days, 8 hours', bn: '18 years, 11 days, 8 hours', kn: '18 years, 11 days, 8 hours', gu: '18 years, 11 days, 8 hours' },
-      { en: '33 years exactly', hi: 'ठीक 33 वर्ष', sa: 'ठीक 33 वर्ष', mai: 'ठीक 33 वर्ष', mr: 'ठीक 33 वर्ष', ta: '33 years exactly', te: '33 years exactly', bn: '33 years exactly', kn: '33 years exactly', gu: '33 years exactly' },
-      { en: '54 years, 1 month', hi: '54 वर्ष, 1 माह', sa: '54 वर्ष, 1 माह', mai: '54 वर्ष, 1 माह', mr: '54 वर्ष, 1 माह', ta: '54 years, 1 month', te: '54 years, 1 month', bn: '54 years, 1 month', kn: '54 years, 1 month', gu: '54 years, 1 month' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Saros cycle is approximately 18 years, 11 days, and 8 hours. After exactly one Saros, the Sun, Moon, and Earth return to nearly the same geometric alignment, producing an eclipse of very similar type, duration, and magnitude. The extra 8 hours means the repeat eclipse occurs about 120° west of the previous one (since Earth rotates in that time). Three consecutive Saros cycles (called an Exeligmos, ~54 years) bring an eclipse back to nearly the same longitude.',
-      hi: 'सारोस चक्र लगभग 18 वर्ष, 11 दिन और 8 घण्टे का होता है। ठीक एक सारोस के बाद, सूर्य, चन्द्रमा और पृथ्वी लगभग उसी ज्यामितीय संरेखण में वापस आते हैं, जिससे बहुत समान प्रकार, अवधि और परिमाण का ग्रहण होता है। अतिरिक्त 8 घण्टे का अर्थ है कि दोहराने वाला ग्रहण पिछले वाले से लगभग 120° पश्चिम में होता है (चूँकि उस समय में पृथ्वी उतना घूमती है)। तीन लगातार सारोस चक्र (जिसे एक्सेलिग्मोस कहते हैं, ~54 वर्ष) एक ग्रहण को लगभग उसी देशान्तर पर वापस लाते हैं।',
-    },
-  },
-  {
-    id: 'q13_4_09', type: 'true_false',
-    question: {
-      en: 'Every Amavasya (New Moon) produces a solar eclipse.',
-      hi: 'प्रत्येक अमावस्या (नया चन्द्र) सूर्य ग्रहण उत्पन्न करती है।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. The Moon\'s orbital plane is tilted 5.15° relative to the ecliptic. On most New Moons, the Moon passes above or below the Sun in the sky — no eclipse occurs. A solar eclipse requires the New Moon to happen when the Moon is NEAR one of the lunar nodes (Rahu or Ketu), so its ecliptic latitude is close to zero and its shadow can fall on Earth. This alignment happens only about 2–3 times per year, producing eclipse seasons.',
-      hi: 'असत्य। चन्द्रमा की कक्षीय तल क्रान्तिवृत्त के सापेक्ष 5.15° झुकी है। अधिकतर अमावस्याओं पर, चन्द्रमा आकाश में सूर्य के ऊपर या नीचे से गुज़रता है — कोई ग्रहण नहीं होता। सूर्य ग्रहण के लिए अमावस्या तब होना आवश्यक है जब चन्द्रमा किसी चन्द्र पात (राहु या केतु) के निकट हो, ताकि उसका क्रान्तिक अक्षांश शून्य के करीब हो और उसकी छाया पृथ्वी पर पड़ सके। यह संरेखण केवल वर्ष में लगभग 2-3 बार होता है, जिससे ग्रहण ऋतुएँ बनती हैं।',
-    },
-  },
-  {
-    id: 'q13_4_10', type: 'true_false',
-    question: {
-      en: 'Penumbral lunar eclipses are easily visible to the naked eye because the Moon turns visibly dark.',
-      hi: 'उपछाया चन्द्र ग्रहण नग्न आँखों से आसानी से दिखते हैं क्योंकि चन्द्रमा स्पष्ट रूप से अंधेरा हो जाता है।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. In a penumbral lunar eclipse, the Moon passes only through Earth\'s penumbra (the outer, lighter shadow) rather than the umbra (the dark central shadow). The penumbra only slightly dims the Moon\'s brightness — the change is so subtle that casual observers rarely notice anything unusual. Only when the Moon is deep in the penumbra (penumbral magnitude > 0.7) does the darkening become faintly perceptible. Contrast this with total lunar eclipses, which are dramatic and unmistakable.',
-      hi: 'असत्य। उपछाया चन्द्र ग्रहण में, चन्द्रमा केवल पृथ्वी की उपछाया (बाहरी, हल्की छाया) से गुज़रता है, छाया (अंधेरी केन्द्रीय छाया) से नहीं। उपछाया केवल थोड़ी ही चन्द्रमा की चमक कम करती है — परिवर्तन इतना सूक्ष्म है कि सामान्य पर्यवेक्षक शायद ही कुछ असामान्य नोटिस करें। केवल तब जब चन्द्रमा उपछाया में गहरा हो (उपछाया परिमाण > 0.7), अंधकार हल्का-सा महसूस होता है। इसे पूर्ण चन्द्र ग्रहणों से तुलना करें, जो नाटकीय और अचूक होते हैं।',
-    },
-  },
-];
+const QUESTIONS = (L.questions as unknown) as ModuleQuestion[];
 
-/* ------------------------------------------------------------------ */
-/*  PAGE 1 — Why Eclipses Happen                                        */
-/* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
   const isHi = isDevanagariLocale(locale);
@@ -370,3 +193,4 @@ function Page3() {
 export default function Module13_4Page() {
   return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
 }
+

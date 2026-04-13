@@ -3,186 +3,19 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/10-2.json';
 
 const META: ModuleMeta = {
   id: 'mod_10_2', phase: 3, topic: 'Vargas', moduleNumber: '10.2',
-  title: { en: 'Navamsha Deep Dive (D9)', hi: 'नवांश गहन अध्ययन (D9)', sa: 'नवांश गहन अध्ययन (D9)', mai: 'नवांश गहन अध्ययन (D9)', mr: 'नवांश गहन अध्ययन (D9)', ta: 'Navamsha Deep Dive (D9)', te: 'Navamsha Deep Dive (D9)', bn: 'Navamsha Deep Dive (D9)', kn: 'Navamsha Deep Dive (D9)', gu: 'Navamsha Deep Dive (D9)' },
-  subtitle: {
-    en: 'Each sign divided into 9 parts of 3°20\' — the most important divisional chart for marriage, dharma, and inner planetary strength',
-    hi: 'प्रत्येक राशि 3°20\' के 9 भागों में विभक्त — विवाह, धर्म और ग्रहों के आन्तरिक बल के लिए सर्वाधिक महत्त्वपूर्ण विभागीय कुण्डली',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 18,
-  crossRefs: [
-    { label: { en: 'Module 10-1: Varga Charts Overview', hi: 'मॉड्यूल 10-1: वर्ग कुण्डली अवलोकन', sa: 'मॉड्यूल 10-1: वर्ग कुण्डली अवलोकन', mai: 'मॉड्यूल 10-1: वर्ग कुण्डली अवलोकन', mr: 'मॉड्यूल 10-1: वर्ग कुण्डली अवलोकन', ta: 'Module 10-1: Varga Charts Overview', te: 'Module 10-1: Varga Charts Overview', bn: 'Module 10-1: Varga Charts Overview', kn: 'Module 10-1: Varga Charts Overview', gu: 'Module 10-1: Varga Charts Overview' }, href: '/learn/modules/10-1' },
-    { label: { en: 'Module 10-3: Dasamsha & Other Vargas', hi: 'मॉड्यूल 10-3: दशांश एवं अन्य वर्ग', sa: 'मॉड्यूल 10-3: दशांश एवं अन्य वर्ग', mai: 'मॉड्यूल 10-3: दशांश एवं अन्य वर्ग', mr: 'मॉड्यूल 10-3: दशांश एवं अन्य वर्ग', ta: 'Module 10-3: Dasamsha & Other Vargas', te: 'Module 10-3: Dasamsha & Other Vargas', bn: 'Module 10-3: Dasamsha & Other Vargas', kn: 'Module 10-3: Dasamsha & Other Vargas', gu: 'Module 10-3: Dasamsha & Other Vargas' }, href: '/learn/modules/10-3' },
-    { label: { en: 'Vargas Reference', hi: 'वर्ग सन्दर्भ', sa: 'वर्ग सन्दर्भ', mai: 'वर्ग सन्दर्भ', mr: 'वर्ग सन्दर्भ', ta: 'Vargas Reference', te: 'Vargas Reference', bn: 'Vargas Reference', kn: 'Vargas Reference', gu: 'Vargas Reference' }, href: '/learn/vargas' },
-  ],
+  crossRefs: L.crossRefs.map(cr => ({ label: cr.label as unknown as Record<string, string>, href: cr.href })),
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q10_2_01', type: 'mcq',
-    question: {
-      en: 'How many degrees does each Navamsha division span within a sign?',
-      hi: 'एक राशि में प्रत्येक नवांश विभाग कितने अंशों में फैला होता है?',
-    },
-    options: [
-      { en: '2°30\'', hi: '2°30\'' },
-      { en: '3°20\'', hi: '3°20\'' },
-      { en: '4°17\'', hi: '4°17\'' },
-      { en: '3°00\'', hi: '3°00\'' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Each sign of 30 degrees is divided into 9 equal parts for the Navamsha. 30 ÷ 9 = 3°20\' (3 degrees and 20 minutes of arc). Each 3°20\' segment maps to a specific Navamsha sign.',
-      hi: 'नवांश के लिए प्रत्येक 30 अंश की राशि को 9 समान भागों में विभाजित किया जाता है। 30 ÷ 9 = 3°20\' (3 अंश और 20 कला)। प्रत्येक 3°20\' का खण्ड एक विशिष्ट नवांश राशि में स्थित होता है।',
-    },
-  },
-  {
-    id: 'q10_2_02', type: 'mcq',
-    question: {
-      en: 'For fire signs (Aries, Leo, Sagittarius), the Navamsha count begins from which sign?',
-      hi: 'अग्नि तत्त्व राशियों (मेष, सिंह, धनु) के लिए नवांश गणना किस राशि से आरम्भ होती है?',
-    },
-    options: [
-      { en: 'Cancer', hi: 'कर्क', sa: 'कर्क', mai: 'कर्क', mr: 'कर्क', ta: 'Cancer', te: 'Cancer', bn: 'Cancer', kn: 'Cancer', gu: 'Cancer' },
-      { en: 'Libra', hi: 'तुला', sa: 'तुला', mai: 'तुला', mr: 'तुला', ta: 'Libra', te: 'Libra', bn: 'Libra', kn: 'Libra', gu: 'Libra' },
-      { en: 'Aries', hi: 'मेष', sa: 'मेष', mai: 'मेष', mr: 'मेष', ta: 'Aries', te: 'Aries', bn: 'Aries', kn: 'Aries', gu: 'Aries' },
-      { en: 'Capricorn', hi: 'मकर', sa: 'मकर', mai: 'मकर', mr: 'मकर', ta: 'Capricorn', te: 'Capricorn', bn: 'Capricorn', kn: 'Capricorn', gu: 'Capricorn' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'The Navamsha starting sign follows the element: Fire signs (Aries, Leo, Sag) start from Aries. Earth signs (Taurus, Virgo, Cap) start from Capricorn. Air signs (Gemini, Libra, Aquarius) start from Libra. Water signs (Cancer, Scorpio, Pisces) start from Cancer.',
-      hi: 'नवांश की आरम्भिक राशि तत्त्व के अनुसार होती है: अग्नि राशियाँ (मेष, सिंह, धनु) मेष से, पृथ्वी राशियाँ (वृषभ, कन्या, मकर) मकर से, वायु राशियाँ (मिथुन, तुला, कुम्भ) तुला से, और जल राशियाँ (कर्क, वृश्चिक, मीन) कर्क से आरम्भ होती हैं।',
-    },
-  },
-  {
-    id: 'q10_2_03', type: 'mcq',
-    question: {
-      en: 'A planet at 15° Aries falls in which Navamsha? (Aries Navamsha starts from Aries)',
-      hi: '15° मेष पर स्थित ग्रह किस नवांश में आता है? (मेष का नवांश मेष से आरम्भ होता है)',
-    },
-    options: [
-      { en: '4th Navamsha — Cancer', hi: 'चतुर्थ नवांश — कर्क', sa: 'चतुर्थ नवांश — कर्क', mai: 'चतुर्थ नवांश — कर्क', mr: 'चतुर्थ नवांश — कर्क', ta: '4th Navamsha — Cancer', te: '4th Navamsha — Cancer', bn: '4th Navamsha — Cancer', kn: '4th Navamsha — Cancer', gu: '4th Navamsha — Cancer' },
-      { en: '5th Navamsha — Leo', hi: 'पञ्चम नवांश — सिंह', sa: 'पञ्चम नवांश — सिंह', mai: 'पञ्चम नवांश — सिंह', mr: 'पञ्चम नवांश — सिंह', ta: '5th Navamsha — Leo', te: '5th Navamsha — Leo', bn: '5th Navamsha — Leo', kn: '5th Navamsha — Leo', gu: '5th Navamsha — Leo' },
-      { en: '6th Navamsha — Virgo', hi: 'षष्ठ नवांश — कन्या', sa: 'षष्ठ नवांश — कन्या', mai: 'षष्ठ नवांश — कन्या', mr: 'षष्ठ नवांश — कन्या', ta: '6th Navamsha — Virgo', te: '6th Navamsha — Virgo', bn: '6th Navamsha — Virgo', kn: '6th Navamsha — Virgo', gu: '6th Navamsha — Virgo' },
-      { en: '3rd Navamsha — Gemini', hi: 'तृतीय नवांश — मिथुन', sa: 'तृतीय नवांश — मिथुन', mai: 'तृतीय नवांश — मिथुन', mr: 'तृतीय नवांश — मिथुन', ta: '3rd Navamsha — Gemini', te: '3rd Navamsha — Gemini', bn: '3rd Navamsha — Gemini', kn: '3rd Navamsha — Gemini', gu: '3rd Navamsha — Gemini' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: '15° ÷ 3°20\' = 4.5, so the planet is in the 5th Navamsha. Counting from Aries (the starting point for fire signs): Aries(1), Taurus(2), Gemini(3), Cancer(4), Leo(5). The 5th Navamsha of Aries is Leo.',
-      hi: '15° ÷ 3°20\' = 4.5, अतः ग्रह 5वें नवांश में है। मेष से गणना करें (अग्नि राशियों का आरम्भ बिन्दु): मेष(1), वृषभ(2), मिथुन(3), कर्क(4), सिंह(5)। मेष का 5वाँ नवांश सिंह है।',
-    },
-  },
-  {
-    id: 'q10_2_04', type: 'true_false',
-    question: {
-      en: 'The 7th house of the Navamsha chart is used to assess the qualities and nature of the spouse.',
-      hi: 'नवांश कुण्डली का सप्तम भाव पति/पत्नी के गुणों और स्वभाव का आकलन करने में प्रयुक्त होता है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. The 7th house of D9 is one of the most critical indicators of spouse qualities. The sign on the 7th cusp, planets in the 7th, and the 7th lord\'s placement all describe the partner\'s nature, appearance tendencies, and the quality of marital life.',
-      hi: 'सत्य। D9 का सप्तम भाव पति/पत्नी के गुणों का सबसे महत्त्वपूर्ण सूचक है। सप्तम भाव की राशि, उसमें स्थित ग्रह, और सप्तमेश की स्थिति — सब मिलकर जीवनसाथी के स्वभाव, रूप-प्रवृत्ति और वैवाहिक जीवन की गुणवत्ता का वर्णन करते हैं।',
-    },
-  },
-  {
-    id: 'q10_2_05', type: 'mcq',
-    question: {
-      en: 'Venus\'s placement in the Navamsha primarily reveals:',
-      hi: 'नवांश में शुक्र की स्थिति मुख्य रूप से क्या प्रकट करती है?',
-    },
-    options: [
-      { en: 'Career ambitions', hi: 'व्यावसायिक महत्त्वाकांक्षाएँ', sa: 'व्यावसायिक महत्त्वाकांक्षाएँ', mai: 'व्यावसायिक महत्त्वाकांक्षाएँ', mr: 'व्यावसायिक महत्त्वाकांक्षाएँ', ta: 'Career ambitions', te: 'Career ambitions', bn: 'Career ambitions', kn: 'Career ambitions', gu: 'Career ambitions' },
-      { en: 'The native\'s romantic nature, capacity for love, and marital harmony', hi: 'जातक का रोमांटिक स्वभाव, प्रेम की क्षमता और वैवाहिक सौहार्द' },
-      { en: 'Physical health and longevity', hi: 'शारीरिक स्वास्थ्य और दीर्घायु', sa: 'शारीरिक स्वास्थ्य और दीर्घायु', mai: 'शारीरिक स्वास्थ्य और दीर्घायु', mr: 'शारीरिक स्वास्थ्य और दीर्घायु', ta: 'Physical health and longevity', te: 'Physical health and longevity', bn: 'Physical health and longevity', kn: 'Physical health and longevity', gu: 'Physical health and longevity' },
-      { en: 'Relationship with father', hi: 'पिता से सम्बन्ध', sa: 'पिता से सम्बन्ध', mai: 'पिता से सम्बन्ध', mr: 'पिता से सम्बन्ध', ta: 'Relationship with father', te: 'Relationship with father', bn: 'Relationship with father', kn: 'Relationship with father', gu: 'Relationship with father' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Venus is the natural karaka (significator) of marriage, love, and romance. Its Navamsha placement shows the depth of romantic feelings, aesthetic sensibilities, and the capacity for marital happiness. Venus in own/exalted Navamsha sign gives strong romantic fulfillment.',
-      hi: 'शुक्र विवाह, प्रेम और रोमांस का नैसर्गिक कारक है। इसकी नवांश स्थिति रोमांटिक भावनाओं की गहराई, सौन्दर्यबोध और वैवाहिक सुख की क्षमता दिखाती है। स्वगृह/उच्च नवांश राशि में शुक्र प्रबल रोमांटिक सन्तुष्टि देता है।',
-    },
-  },
-  {
-    id: 'q10_2_06', type: 'true_false',
-    question: {
-      en: 'Vargottama status occurs when a planet is in the first 3°20\' of every sign without exception.',
-      hi: 'वर्गोत्तम स्थिति तब होती है जब ग्रह बिना किसी अपवाद के प्रत्येक राशि के प्रथम 3°20\' में हो।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. Vargottama occurs at different degree ranges depending on the sign type: first 3°20\' of cardinal signs (Aries, Cancer, Libra, Capricorn), middle portion (13°20\'-16°40\') of fixed signs (Taurus, Leo, Scorpio, Aquarius), and last 3°20\' (26°40\'-30°) of dual signs (Gemini, Virgo, Sagittarius, Pisces).',
-      hi: 'असत्य। वर्गोत्तम राशि के प्रकार के अनुसार भिन्न अंशों पर होता है: चर राशियों (मेष, कर्क, तुला, मकर) के प्रथम 3°20\' में, स्थिर राशियों (वृषभ, सिंह, वृश्चिक, कुम्भ) के मध्य भाग (13°20\'-16°40\') में, और द्विस्वभाव राशियों (मिथुन, कन्या, धनु, मीन) के अन्तिम 3°20\' (26°40\'-30°) में।',
-    },
-  },
-  {
-    id: 'q10_2_07', type: 'mcq',
-    question: {
-      en: 'The Navamsha Lagna lord\'s placement in the D9 chart indicates:',
-      hi: 'D9 कुण्डली में नवांश लग्नेश की स्थिति क्या दर्शाती है?',
-    },
-    options: [
-      { en: 'The native\'s wealth accumulation pattern', hi: 'जातक का धन संचय प्रतिरूप' },
-      { en: 'The overall quality and happiness of married life', hi: 'वैवाहिक जीवन की समग्र गुणवत्ता और सुख', sa: 'वैवाहिक जीवन की समग्र गुणवत्ता और सुख', mai: 'वैवाहिक जीवन की समग्र गुणवत्ता और सुख', mr: 'वैवाहिक जीवन की समग्र गुणवत्ता और सुख', ta: 'The overall quality and happiness of married life', te: 'The overall quality and happiness of married life', bn: 'The overall quality and happiness of married life', kn: 'The overall quality and happiness of married life', gu: 'The overall quality and happiness of married life' },
-      { en: 'The number of children the native will have', hi: 'जातक की सन्तानों की संख्या', sa: 'जातक की सन्तानों की संख्या', mai: 'जातक की सन्तानों की संख्या', mr: 'जातक की सन्तानों की संख्या', ta: 'The number of children the native will have', te: 'The number of children the native will have', bn: 'The number of children the native will have', kn: 'The number of children the native will have', gu: 'The number of children the native will have' },
-      { en: 'The native\'s spiritual guru', hi: 'जातक के आध्यात्मिक गुरु' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Navamsha Lagna lord represents the self within the marriage context. When well-placed (in kendra/trikona, own/exalted sign), it indicates marital contentment and a supportive partnership. When afflicted, it points to dissatisfaction or challenges in sustaining harmony.',
-      hi: 'नवांश लग्नेश विवाह के सन्दर्भ में स्वयं का प्रतिनिधित्व करता है। जब अच्छी स्थिति में हो (केन्द्र/त्रिकोण, स्वगृह/उच्च) तो वैवाहिक सन्तोष और सहयोगी साझेदारी दर्शाता है। पीड़ित होने पर सामंजस्य बनाए रखने में असन्तोष या चुनौतियों की ओर संकेत करता है।',
-    },
-  },
-  {
-    id: 'q10_2_08', type: 'mcq',
-    question: {
-      en: 'For earth signs (Taurus, Virgo, Capricorn), Navamsha counting starts from:',
-      hi: 'पृथ्वी तत्त्व राशियों (वृषभ, कन्या, मकर) के लिए नवांश गणना किससे आरम्भ होती है?',
-    },
-    options: [
-      { en: 'Aries', hi: 'मेष', sa: 'मेष', mai: 'मेष', mr: 'मेष', ta: 'Aries', te: 'Aries', bn: 'Aries', kn: 'Aries', gu: 'Aries' },
-      { en: 'Libra', hi: 'तुला', sa: 'तुला', mai: 'तुला', mr: 'तुला', ta: 'Libra', te: 'Libra', bn: 'Libra', kn: 'Libra', gu: 'Libra' },
-      { en: 'Cancer', hi: 'कर्क', sa: 'कर्क', mai: 'कर्क', mr: 'कर्क', ta: 'Cancer', te: 'Cancer', bn: 'Cancer', kn: 'Cancer', gu: 'Cancer' },
-      { en: 'Capricorn', hi: 'मकर', sa: 'मकर', mai: 'मकर', mr: 'मकर', ta: 'Capricorn', te: 'Capricorn', bn: 'Capricorn', kn: 'Capricorn', gu: 'Capricorn' },
-    ],
-    correctAnswer: 3,
-    explanation: {
-      en: 'Earth signs start their Navamsha count from Capricorn. So the first Navamsha of Taurus is Capricorn, the second is Aquarius, the third is Pisces, and so on. This follows the element-based starting rule: Fire→Aries, Earth→Capricorn, Air→Libra, Water→Cancer.',
-      hi: 'पृथ्वी राशियाँ अपनी नवांश गणना मकर से आरम्भ करती हैं। इसलिए वृषभ का प्रथम नवांश मकर, द्वितीय कुम्भ, तृतीय मीन, इत्यादि। यह तत्त्व-आधारित नियम है: अग्नि→मेष, पृथ्वी→मकर, वायु→तुला, जल→कर्क।',
-    },
-  },
-  {
-    id: 'q10_2_09', type: 'true_false',
-    question: {
-      en: 'A Vargottama Lagna (ascendant in same sign in D1 and D9) is considered a significant strength in the horoscope.',
-      hi: 'वर्गोत्तम लग्न (D1 और D9 में एक ही राशि में लग्न) कुण्डली में एक महत्त्वपूर्ण बल माना जाता है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. A Vargottama Lagna gives the native a strong, coherent personality where the outer persona and inner character are aligned. It strengthens the overall chart considerably and is treated with the dignity of being in its own sign.',
-      hi: 'सत्य। वर्गोत्तम लग्न जातक को एक सुदृढ़, सुसंगत व्यक्तित्व देता है जहाँ बाह्य रूप और आन्तरिक चरित्र एकरूप होते हैं। यह समग्र कुण्डली को काफी बल देता है और इसे स्वराशि की गरिमा के समान माना जाता है।',
-    },
-  },
-  {
-    id: 'q10_2_10', type: 'mcq',
-    question: {
-      en: 'Pushkara Navamsha positions always fall in signs ruled by:',
-      hi: 'पुष्कर नवांश स्थितियाँ सदैव किनके स्वामित्व वाली राशियों में आती हैं?',
-    },
-    options: [
-      { en: 'Mars and Saturn (malefics)', hi: 'मंगल और शनि (पापग्रह)', sa: 'मंगल और शनि (पापग्रह)', mai: 'मंगल और शनि (पापग्रह)', mr: 'मंगल और शनि (पापग्रह)', ta: 'Mars and Saturn (malefics)', te: 'Mars and Saturn (malefics)', bn: 'Mars and Saturn (malefics)', kn: 'Mars and Saturn (malefics)', gu: 'Mars and Saturn (malefics)' },
-      { en: 'Sun and Mars (fiery planets)', hi: 'सूर्य और मंगल (अग्नि ग्रह)', sa: 'सूर्य और मंगल (अग्नि ग्रह)', mai: 'सूर्य और मंगल (अग्नि ग्रह)', mr: 'सूर्य और मंगल (अग्नि ग्रह)', ta: 'Sun and Mars (fiery planets)', te: 'Sun and Mars (fiery planets)', bn: 'Sun and Mars (fiery planets)', kn: 'Sun and Mars (fiery planets)', gu: 'Sun and Mars (fiery planets)' },
-      { en: 'Benefics — Jupiter, Venus, Moon, Mercury', hi: 'शुभ ग्रह — बृहस्पति, शुक्र, चन्द्रमा, बुध', sa: 'शुभ ग्रह — बृहस्पति, शुक्र, चन्द्रमा, बुध', mai: 'शुभ ग्रह — बृहस्पति, शुक्र, चन्द्रमा, बुध', mr: 'शुभ ग्रह — बृहस्पति, शुक्र, चन्द्रमा, बुध', ta: 'Benefics — Jupiter, Venus, Moon, Mercury', te: 'Benefics — Jupiter, Venus, Moon, Mercury', bn: 'Benefics — Jupiter, Venus, Moon, Mercury', kn: 'Benefics — Jupiter, Venus, Moon, Mercury', gu: 'Benefics — Jupiter, Venus, Moon, Mercury' },
-      { en: 'Only Jupiter and Venus', hi: 'केवल बृहस्पति और शुक्र', sa: 'केवल बृहस्पति और शुक्र', mai: 'केवल बृहस्पति और शुक्र', mr: 'केवल बृहस्पति और शुक्र', ta: 'Only Jupiter and Venus', te: 'Only Jupiter and Venus', bn: 'Only Jupiter and Venus', kn: 'Only Jupiter and Venus', gu: 'Only Jupiter and Venus' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'Pushkara Navamsha positions always fall in signs owned by natural benefics: Cancer (Moon), Sagittarius/Pisces (Jupiter), Taurus/Libra (Venus), and Gemini/Virgo (Mercury). This ensures the nourishing, auspicious quality of these special degrees. A planet in Pushkara Navamsha receives inherent beneficence.',
-      hi: 'पुष्कर नवांश स्थितियाँ सदैव नैसर्गिक शुभ ग्रहों की राशियों में आती हैं: कर्क (चन्द्रमा), धनु/मीन (बृहस्पति), वृषभ/तुला (शुक्र), और मिथुन/कन्या (बुध)। इससे इन विशेष अंशों की पोषक, शुभ गुणवत्ता सुनिश्चित होती है। पुष्कर नवांश में स्थित ग्रह स्वभावतः शुभता प्राप्त करता है।',
-    },
-  },
-];
+const QUESTIONS = (L.questions as unknown) as ModuleQuestion[];
 
 function Page1() {
   const locale = useModuleLocale();
@@ -351,3 +184,4 @@ function Page3() {
 export default function Module10_2Page() {
   return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
 }
+

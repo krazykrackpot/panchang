@@ -2,96 +2,13 @@ import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowRight, Music } from 'lucide-react';
-import type { Locale, LocaleText } from '@/types/panchang';
-import { tl } from '@/lib/utils/trilingual';
+import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/contributions-fibonacci.json';
 
-/* ═══════════════════════════════════════════════════════════════
-   LABELS — bilingual (en / hi)
-   ═══════════════════════════════════════════════════════════════ */
-const L = {
-  title: {
-    en: "The 'Fibonacci' Sequence Was Indian — And It Started With Music",
-    hi: '"फिबोनाची" अनुक्रम भारतीय था — और यह संगीत से शुरू हुआ',
-  },
-  subtitle: {
-    en: "1, 1, 2, 3, 5, 8, 13, 21... Every textbook calls this \"Fibonacci's sequence.\" But the earliest known description comes from Bharata Muni's Natyashastra (~200 BCE) — in the context of musical rhythm patterns. Later, Virahanka (~600 CE) and Hemachandra (1150 CE) formalized it for Sanskrit poetic meters — all centuries before Fibonacci (1202 CE).",
-    hi: '1, 1, 2, 3, 5, 8, 13, 21... हर पाठ्यपुस्तक इसे "फिबोनाची का अनुक्रम" कहती है। लेकिन सबसे पुराना ज्ञात विवरण भरत मुनि की नाट्यशास्त्र (~200 ईसा पूर्व) से आता है — संगीत लय पैटर्न के संदर्भ में। बाद में, विरहांका (~600 ईस्वी) और हेमचंद्र (1150 ईस्वी) ने इसे संस्कृत काव्य छंदों के लिए औपचारिक रूप दिया — फिबोनाची (1202 ईस्वी) से सदियों पहले।',
-  },
-
-  s1Title: {
-    en: 'Bharata Muni & the Natyashastra (~200 BCE) — The World\'s Earliest Discovery',
-    hi: 'भरत मुनि और नाट्यशास्त्र (~200 ईसा पूर्व) — विश्व की सबसे पुरानी खोज',
-  },
-  s1Body: {
-    en: "The Natyashastra is the world's first and most comprehensive treatise on performing arts — theatre, dance, music, and poetics. Written by Bharata Muni around 200 BCE, it covers 6,000 verses across 36 chapters. In describing tala (rhythmic cycles), Bharata Muni enumerated all possible combinations of short (druta/laghu) and long (vilambit/guru) beats that can fill a rhythmic cycle of N matras (time units). The number of such combinations follows the exact Fibonacci pattern: for 1 matra = 1 way, 2 matras = 2 ways, 3 matras = 3 ways, 4 matras = 5 ways, 5 matras = 8 ways... This is the EARLIEST known occurrence of the sequence on Earth — and it arose from MUSIC, not mathematics. The same text contains the 22 shrutis (microtonal intervals) that form the mathematical foundation of Indian classical music — a system of musical mathematics that remains unparalleled.",
-    hi: 'नाट्यशास्त्र प्रदर्शन कलाओं पर विश्व का पहला और सबसे व्यापक ग्रंथ है — रंगमंच, नृत्य, संगीत और काव्यशास्त्र। भरत मुनि द्वारा लगभग 200 ईसा पूर्व लिखित, इसमें 36 अध्यायों में 6,000 श्लोक हैं। ताल (लयबद्ध चक्र) का वर्णन करते हुए, भरत मुनि ने N मात्राओं (समय इकाइयों) के लयबद्ध चक्र को भरने वाले लघु और गुरु बीट्स के सभी संभावित संयोजनों की गणना की। ऐसे संयोजनों की संख्या फिबोनाची पैटर्न का अनुसरण करती है। यह पृथ्वी पर अनुक्रम की सबसे पुरानी ज्ञात घटना है — और यह गणित से नहीं, संगीत से उत्पन्न हुई।',
-  },
-
-  s2Title: {
-    en: 'Pingala & Chandahshastra (~200 BCE) — From Music to Prosody',
-    hi: 'पिंगल और छन्दशास्त्र (~200 ईसा पूर्व) — संगीत से काव्यशास्त्र तक',
-  },
-  s2Body: {
-    en: "Around the same period (~200 BCE), the scholar Pingala wrote the Chandahshastra — the foundational text of Sanskrit prosody (the science of poetic meter). He developed a binary encoding of syllables: laghu (light, short = 0) and guru (heavy, long = 1). Any sequence of L laghu and G guru syllables gives 2^(L+G) possible meters. In examining how many ways you can arrange syllables to produce a meter of N beats, the count again follows the Fibonacci sequence. Pingala also discovered the Meruprastara — Mount Meru's Triangle — which is what the West calls Pascal's Triangle, predating Pascal by 1,800 years. The diagonal sums of the Meruprastara are exactly the Fibonacci numbers.",
-    hi: 'लगभग उसी काल (~200 ईसा पूर्व) में, विद्वान पिंगल ने छन्दशास्त्र लिखा — संस्कृत छंद-विज्ञान का मूल ग्रंथ। उन्होंने अक्षरों का द्विआधारी एन्कोडिंग विकसित किया: लघु (छोटा = 0) और गुरु (लंबा = 1)। पिंगल ने मेरुप्रस्तार भी खोजा — मेरु पर्वत का त्रिभुज — जिसे पश्चिम पास्कल त्रिभुज कहता है, पास्कल से 1,800 साल पहले। मेरुप्रस्तार के विकर्ण योग ठीक फिबोनाची संख्याएँ हैं।',
-  },
-
-  s3Title: {
-    en: 'Virahanka (~600 CE) — The First Explicit Recurrence Relation',
-    hi: 'विरहांका (~600 ईस्वी) — पहला स्पष्ट पुनरावृत्ति संबंध',
-  },
-  s3Body: {
-    en: "The Sanskrit scholar Virahanka (around 600 CE) wrote the Vrittajatisamuccaya — a text on poetic forms. He was the first to state the Fibonacci recurrence relation EXPLICITLY, in Sanskrit: the count for N matras equals the sum of the counts for (N−1) and (N−2) matras. This is F(n) = F(n−1) + F(n−2) — the defining recurrence relation. Pingala observed the pattern; Virahanka named the mechanism. His original Sanskrit reads: the next count in the sequence is obtained by adding the two preceding counts. He listed the first terms of the sequence and verified the rule holds throughout. This is 600 years before Fibonacci and contains everything modern mathematicians associate with Fibonacci's contribution.",
-    hi: 'संस्कृत विद्वान विरहांका (लगभग 600 ईस्वी) ने वृत्तजातिसमुच्चय लिखा — काव्य रूपों पर एक ग्रंथ। वे फिबोनाची पुनरावृत्ति संबंध को स्पष्ट रूप से कहने वाले पहले थे: N मात्राओं की गिनती (N−1) और (N−2) मात्राओं की गिनती के योग के बराबर है। यह F(n) = F(n−1) + F(n−2) है। पिंगल ने पैटर्न देखा; विरहांका ने तंत्र को नाम दिया। यह फिबोनाची से 600 साल पहले है।',
-  },
-
-  s4Title: {
-    en: 'Hemachandra (1150 CE) — Independent Derivation, 52 Years Before Fibonacci',
-    hi: 'हेमचंद्र (1150 ईस्वी) — स्वतंत्र व्युत्पत्ति, फिबोनाची से 52 साल पहले',
-  },
-  s4Body: {
-    en: "The Jain mathematician and polymath Hemachandra (1089–1172 CE) independently derived the same sequence in his Chandonushasana (a treatise on prosody), writing that the number of meters of length N equals the sum of meters of lengths (N−1) and (N−2). He gave the same explicit recurrence. He wrote this around 1150 CE — just 52 years before Fibonacci's Liber Abaci (1202 CE). Hemachandra was working in the same Indian tradition that had known this sequence for 1,300 years. Fibonacci encountered it in North Africa through Arabic sources. The sequence is known as the Hemachandra-Fibonacci sequence in some modern mathematical histories — a fairer attribution.",
-    hi: 'जैन गणितज्ञ और विद्वान हेमचंद्र (1089–1172 ईस्वी) ने स्वतंत्र रूप से अपने छन्दोनुशासन में उसी अनुक्रम को व्युत्पन्न किया। उन्होंने यह लगभग 1150 ईस्वी में लिखा — फिबोनाची की लिबर अबासी (1202 ईस्वी) से मात्र 52 साल पहले। कुछ आधुनिक गणितीय इतिहासों में इस अनुक्रम को हेमचंद्र-फिबोनाची अनुक्रम के रूप में जाना जाता है — एक अधिक उचित श्रेय।',
-  },
-
-  s5Title: {
-    en: 'How Fibonacci Got Credit — The Translation Chain',
-    hi: 'फिबोनाची को श्रेय कैसे मिला — अनुवाद श्रृंखला',
-  },
-  s5Body: {
-    en: "Leonardo of Pisa (Fibonacci) was not a plagiarist — he simply encountered Indian mathematics through the Arabic translation chain and introduced it to an audience that had never seen it. His father was a customs official in North Africa; Leonardo studied mathematics with Arab merchants who had access to translated Indian texts. His 1202 CE book Liber Abaci (Book of Calculation) presented the famous rabbit-breeding problem whose answer follows the Fibonacci sequence. He gets credit in the West because he was the first to publish it there, in a language Europeans read. But the sequence was already 1,400 years old by then — born in Indian music, refined in Indian poetry, and transmitted through Baghdad.",
-    hi: 'पीसा के लियोनार्डो (फिबोनाची) साहित्यिक चोर नहीं थे — उन्होंने बस अरबी अनुवाद श्रृंखला के माध्यम से भारतीय गणित का सामना किया। उनके पिता उत्तरी अफ्रीका में एक सीमा शुल्क अधिकारी थे; लियोनार्डो ने उन अरब व्यापारियों के साथ गणित का अध्ययन किया जिनके पास अनुवादित भारतीय ग्रंथों तक पहुँच थी। उनकी 1202 ईस्वी की पुस्तक लिबर अबासी ने प्रसिद्ध खरगोश-प्रजनन समस्या प्रस्तुत की। वे पश्चिम में श्रेय पाते हैं क्योंकि वे वहाँ इसे प्रकाशित करने वाले पहले थे।',
-  },
-
-  s6Title: {
-    en: 'The Sequence in Nature — Why It Appears Everywhere',
-    hi: 'प्रकृति में अनुक्रम — यह हर जगह क्यों दिखता है',
-  },
-  s6Body: {
-    en: "The reason the Fibonacci sequence appears throughout nature is deeply mathematical: it is the most efficient packing solution for organic growth. A sunflower arranges its seeds in 34 clockwise and 55 counterclockwise spirals — both Fibonacci numbers. Flower petals: 3 (lily), 5 (buttercup), 8 (delphinium), 13 (corn marigold), 21 (aster), 34 (plantain), 55 (daisy). The nautilus shell grows in a logarithmic spiral with ratio φ (phi = 1.618...) — the golden ratio, approached by successive Fibonacci fractions: 1/1, 2/1, 3/2, 5/3, 8/5, 13/8... converging to φ. The Fibonacci sequence is nature's algorithm for optimal growth — and India found it first, in the rhythms of music.",
-    hi: 'फिबोनाची अनुक्रम प्रकृति में इसलिए दिखता है क्योंकि यह जैविक विकास के लिए सबसे कुशल पैकिंग समाधान है। एक सूरजमुखी अपने बीजों को 34 दक्षिणावर्त और 55 वामावर्त सर्पिलों में व्यवस्थित करता है — दोनों फिबोनाची संख्याएँ। फूलों की पंखुड़ियाँ: 3 (लिली), 5 (बटरकप), 8, 13, 21, 34, 55... नॉटिलस शेल अनुपात φ (फाई = 1.618...) के साथ एक लघुगणकीय सर्पिल में बढ़ता है। फिबोनाची अनुक्रम प्रकृति का एल्गोरिदम है — और भारत ने इसे पहले खोजा, संगीत की लय में।',
-  },
-
-  s7Title: {
-    en: 'From Music to Mathematics — The Universal Pattern',
-    hi: 'संगीत से गणित तक — सार्वभौमिक पैटर्न',
-  },
-  s7Body: {
-    en: "The remarkable fact about the Fibonacci sequence is how the same mathematical pattern arises independently across radically different domains — and India discovered it in the most unexpected place: music. Bharata Muni found it in the rhythmic beats of tala. Pingala found it in the syllables of Sanskrit verse. Virahanka gave it its rule. Hemachandra calculated it further. Then nature expressed it in spirals and flowers. Modern finance sees it in Elliott wave theory. Computer science uses Fibonacci heaps and search algorithms. The sequence is not an artifact of how we count — it is a fundamental property of combinatorial growth, and it took a musical genius in ancient India to first notice it in the dance of rhythm.",
-    hi: 'फिबोनाची अनुक्रम के बारे में उल्लेखनीय तथ्य यह है कि एक ही गणितीय पैटर्न बिल्कुल अलग क्षेत्रों में स्वतंत्र रूप से उत्पन्न होता है — और भारत ने इसे सबसे अप्रत्याशित स्थान पर खोजा: संगीत। भरत मुनि ने इसे ताल की लयबद्ध धड़कनों में पाया। पिंगल ने इसे संस्कृत कविता के अक्षरों में पाया। यह अनुक्रम गणनात्मक विकास का एक मूलभूत गुण है, और प्राचीन भारत में एक संगीत प्रतिभाशाली व्यक्ति ने पहले इसे लय के नृत्य में देखा।',
-  },
-
-  s8Title: { en: 'Classical Sources Timeline', hi: 'शास्त्रीय स्रोत समयरेखा', sa: 'शास्त्रीय स्रोत समयरेखा', mai: 'शास्त्रीय स्रोत समयरेखा', mr: 'शास्त्रीय स्रोत समयरेखा', ta: 'Classical Sources Timeline', te: 'Classical Sources Timeline', bn: 'Classical Sources Timeline', kn: 'Classical Sources Timeline', gu: 'Classical Sources Timeline' },
-  s8Body: {
-    en: "The full chain of Indian priority — from Bharata Muni's musical discovery to the final European encounter via Fibonacci:",
-    hi: 'भारतीय प्राथमिकता की पूरी श्रृंखला — भरत मुनि की संगीत खोज से फिबोनाची के माध्यम से अंतिम यूरोपीय मुठभेड़ तक:',
-  },
-
-  backToContributions: { en: 'Back to Contributions', hi: 'योगदान पर वापस', sa: 'योगदान पर वापस', mai: 'योगदान पर वापस', mr: 'योगदान पर वापस', ta: 'Back to Contributions', te: 'Back to Contributions', bn: 'Back to Contributions', kn: 'Back to Contributions', gu: 'Back to Contributions' },
-  nextPage: { en: 'Next: Binary Numbers', hi: 'अगला: बाइनरी संख्याएँ', sa: 'अगला: बाइनरी संख्याएँ', mai: 'अगला: बाइनरी संख्याएँ', mr: 'अगला: बाइनरी संख्याएँ', ta: 'Next: Binary Numbers', te: 'Next: Binary Numbers', bn: 'Next: Binary Numbers', kn: 'Next: Binary Numbers', gu: 'Next: Binary Numbers' },
-};
 
 /* ═══════════════════════════════════════════════════════════════
    DATA
@@ -269,7 +186,7 @@ function MeruprastaraSVG({ hi }: { hi: boolean }) {
 export default async function FibonacciPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params as { locale: Locale };
   const hi = isDevanagariLocale(locale);
-  const t = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
   return (
     <div className="min-h-screen">
@@ -301,13 +218,13 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
               className="text-4xl sm:text-5xl lg:text-6xl font-black text-gold-gradient mb-4"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
-              {t(L.title)}
+              {t('title')}
             </h1>
             <p className="text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
-              {t(L.subtitle)}
+              {t('subtitle')}
             </p>
             <div className="flex justify-center mt-4">
-              <ShareRow pageTitle={t(L.title)} locale={locale} />
+              <ShareRow pageTitle={t('title')} locale={locale} />
             </div>
           </div>
 
@@ -347,11 +264,11 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pb-20 space-y-2">
 
         {/* ═══ SECTION 1 — BHARATA MUNI ═══ */}
-        <LessonSection number={1} title={t(L.s1Title)} variant="highlight">
+        <LessonSection number={1} title={t('s1Title')} variant="highlight">
           <div className="mb-4 inline-flex items-center gap-2 bg-gold-primary/15 border border-gold-primary/30 rounded-full px-4 py-1.5 text-xs font-bold text-gold-light uppercase tracking-wider">
             {hi ? 'सबसे पुरानी खोज — संगीत से' : 'Earliest Discovery — From Music'}
           </div>
-          <p>{t(L.s1Body)}</p>
+          <p>{t('s1Body')}</p>
 
           {/* tala combinations demo */}
           <div className="mt-6 space-y-3">
@@ -395,8 +312,8 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
         </LessonSection>
 
         {/* ═══ SECTION 2 — PINGALA ═══ */}
-        <LessonSection number={2} title={t(L.s2Title)}>
-          <p>{t(L.s2Body)}</p>
+        <LessonSection number={2} title={t('s2Title')}>
+          <p>{t('s2Body')}</p>
           <div className="mt-6">
             <div className="text-gold-light font-semibold text-sm mb-4 uppercase tracking-wider">
               {hi ? 'मेरुप्रस्तार — पास्कल से 1,800 साल पहले' : 'Meruprastara — 1,800 years before Pascal'}
@@ -413,8 +330,8 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
         </LessonSection>
 
         {/* ═══ SECTION 3 — VIRAHANKA ═══ */}
-        <LessonSection number={3} title={t(L.s3Title)} variant="highlight">
-          <p>{t(L.s3Body)}</p>
+        <LessonSection number={3} title={t('s3Title')} variant="highlight">
+          <p>{t('s3Body')}</p>
           <div
             className="my-5 bg-gradient-to-br from-[#2d1b69]/60 to-[#0a0e27] border border-gold-primary/20 rounded-xl p-6 text-center"
           >
@@ -437,8 +354,8 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
         </LessonSection>
 
         {/* ═══ SECTION 4 — HEMACHANDRA ═══ */}
-        <LessonSection number={4} title={t(L.s4Title)}>
-          <p>{t(L.s4Body)}</p>
+        <LessonSection number={4} title={t('s4Title')}>
+          <p>{t('s4Body')}</p>
           <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
               { label: { en: 'Hemachandra wrote', hi: 'हेमचंद्र ने लिखा', sa: 'हेमचंद्र ने लिखा', mai: 'हेमचंद्र ने लिखा', mr: 'हेमचंद्र ने लिखा', ta: 'Hemachandra wrote', te: 'Hemachandra wrote', bn: 'Hemachandra wrote', kn: 'Hemachandra wrote', gu: 'Hemachandra wrote' }, val: '1150 CE', color: 'border-violet-400/30' },
@@ -447,15 +364,15 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
             ].map((item, i) => (
               <div key={i} className={`rounded-xl bg-white/[0.02] border ${item.color} p-4 text-center`}>
                 <div className="text-gold-primary font-bold text-2xl">{item.val}</div>
-                <div className="text-text-secondary text-sm mt-1">{t(item.label)}</div>
+                <div className="text-text-secondary text-sm mt-1">{lt(item.label as LocaleText, locale)}</div>
               </div>
             ))}
           </div>
         </LessonSection>
 
         {/* ═══ SECTION 5 — HOW FIBONACCI GOT CREDIT ═══ */}
-        <LessonSection number={5} title={t(L.s5Title)} variant="highlight">
-          <p>{t(L.s5Body)}</p>
+        <LessonSection number={5} title={t('s5Title')} variant="highlight">
+          <p>{t('s5Body')}</p>
           <div className="mt-5 bg-white/[0.02] border border-amber-500/20 rounded-xl p-5">
             <div className="text-amber-400 font-semibold text-sm mb-2">
               {hi ? 'अनुवाद श्रृंखला' : 'The translation chain'}
@@ -475,7 +392,7 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
                 typeof item === 'string' ? (
                   <span key={i} className="text-gold-primary/50">{item}</span>
                 ) : (
-                  <span key={i} className="bg-white/[0.03] border border-white/[0.06] rounded px-2 py-0.5">{t(item)}</span>
+                  <span key={i} className="bg-white/[0.03] border border-white/[0.06] rounded px-2 py-0.5">{lt(item as LocaleText, locale)}</span>
                 )
               )}
             </div>
@@ -483,16 +400,16 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
         </LessonSection>
 
         {/* ═══ SECTION 6 — NATURE ═══ */}
-        <LessonSection number={6} title={t(L.s6Title)}>
-          <p>{t(L.s6Body)}</p>
+        <LessonSection number={6} title={t('s6Title')}>
+          <p>{t('s6Body')}</p>
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3">
             {NATURE_EXAMPLES.map((item, i) => (
               <div
                 key={i}
                 className="rounded-xl bg-white/[0.02] border border-gold-primary/15 p-4 text-center"
               >
-                <div className="text-gold-light font-semibold text-sm">{t(item.item)}</div>
-                <div className="text-text-secondary text-xs mt-1 font-mono">{t(item.detail)}</div>
+                <div className="text-gold-light font-semibold text-sm">{lt(item.item as LocaleText, locale)}</div>
+                <div className="text-text-secondary text-xs mt-1 font-mono">{lt(item.detail as LocaleText, locale)}</div>
               </div>
             ))}
           </div>
@@ -505,8 +422,8 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
         </LessonSection>
 
         {/* ═══ SECTION 7 — UNIVERSALITY ═══ */}
-        <LessonSection number={7} title={t(L.s7Title)} variant="highlight">
-          <p>{t(L.s7Body)}</p>
+        <LessonSection number={7} title={t('s7Title')} variant="highlight">
+          <p>{t('s7Body')}</p>
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
               { domain: { en: 'Music', hi: 'संगीत', sa: 'संगीत', mai: 'संगीत', mr: 'संगीत', ta: 'Music', te: 'Music', bn: 'Music', kn: 'Music', gu: 'Music' }, who: { en: 'Bharata Muni', hi: 'भरत मुनि', sa: 'भरत मुनि', mai: 'भरत मुनि', mr: 'भरत मुनि', ta: 'Bharata Muni', te: 'Bharata Muni', bn: 'Bharata Muni', kn: 'Bharata Muni', gu: 'Bharata Muni' }, year: '~200 BCE' },
@@ -518,8 +435,8 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
                 key={i}
                 className="rounded-xl bg-white/[0.02] border border-gold-primary/15 p-4 text-center"
               >
-                <div className="text-gold-light font-bold text-base mb-1">{t(item.domain)}</div>
-                <div className="text-text-secondary text-xs">{t(item.who)}</div>
+                <div className="text-gold-light font-bold text-base mb-1">{lt(item.domain as LocaleText, locale)}</div>
+                <div className="text-text-secondary text-xs">{lt(item.who as LocaleText, locale)}</div>
                 <div className="text-text-secondary/50 text-xs mt-0.5 font-mono">{item.year}</div>
               </div>
             ))}
@@ -527,8 +444,8 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
         </LessonSection>
 
         {/* ═══ SECTION 8 — TIMELINE ═══ */}
-        <LessonSection number={8} title={t(L.s8Title)}>
-          <p className="mb-6">{t(L.s8Body)}</p>
+        <LessonSection number={8} title={t('s8Title')}>
+          <p className="mb-6">{t('s8Body')}</p>
           <div className="space-y-3">
             {TIMELINE.map((item, i) => (
               <div
@@ -541,11 +458,11 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
                   <div className="text-text-secondary/50 text-xs italic">{item.text}</div>
                 </div>
                 <div className="flex-1">
-                  <div className="text-text-secondary text-sm leading-relaxed">{t(item.event)}</div>
+                  <div className="text-text-secondary text-sm leading-relaxed">{lt(item.event as LocaleText, locale)}</div>
                 </div>
                 <div className="flex-shrink-0">
                   <span className={`text-xs font-bold px-2 py-1 rounded-full ${item.badgeColor}`}>
-                    {t(item.badge)}
+                    {lt(item.badge as LocaleText, locale)}
                   </span>
                 </div>
               </div>
@@ -574,13 +491,13 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
             href="/learn/contributions"
             className="flex items-center gap-2 px-6 py-3 rounded-xl border border-gold-primary/20 text-gold-primary hover:border-gold-primary/50 hover:bg-gold-primary/5 transition-all text-sm font-medium"
           >
-            ← {t(L.backToContributions)}
+            ← {t('backToContributions')}
           </Link>
           <Link
             href="/learn/contributions/binary"
             className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-all text-sm font-medium"
           >
-            {t(L.nextPage)} <ArrowRight className="w-4 h-4" />
+            {t('nextPage')} <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>

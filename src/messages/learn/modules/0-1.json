@@ -1,0 +1,721 @@
+{
+  "title": {
+    "en": "What is Jyotish? (And What It Isn't)",
+    "hi": "ज्योतिष क्या है? (और क्या नहीं है)",
+    "sa": "ज्योतिषं किम्? (किञ्च न)",
+    "ta": "ஜோதிடம் என்றால் என்ன? (என்ன இல்லை)",
+    "te": "జ్యోతిషం అంటే ఏమిటి? (ఏమి కాదు)",
+    "bn": "জ্যোতিষ কী? (আর কী নয়)",
+    "kn": "ಜ್ಯೋತಿಷ ಎಂದರೇನು? (ಏನಲ್ಲ)",
+    "mr": "ज्योतिष म्हणजे काय? (आणि काय नाही)",
+    "gu": "જ્યોતિષ એટલે શું? (અને શું નથી)",
+    "mai": "ज्योतिष की छी? (आ की नै छी)"
+  },
+  "subtitle": {
+    "en": "India's oldest scientific tradition — astronomy, not fortune-telling",
+    "hi": "भारत की सबसे प्राचीन वैज्ञानिक परम्परा — खगोलशास्त्र, भविष्यवाणी नहीं",
+    "sa": "भारतस्य प्राचीनतमा वैज्ञानिकी परम्परा — खगोलशास्त्रम्, न भविष्यकथनम्",
+    "ta": "இந்தியாவின் மிகப் பழமையான அறிவியல் மரபு — வானியல், குறிசொல்லல் அல்ல",
+    "te": "భారతదేశపు అత్యంత ప్రాచీన శాస్త్రీయ సంప్రదాయం — ఖగోళశాస్త్రం, సోదె చెప్పడం కాదు",
+    "bn": "ভারতের প্রাচীনতম বৈজ্ঞানিক ঐতিহ্য — জ্যোতির্বিজ্ঞান, ভাগ্যগণনা নয়",
+    "kn": "ಭಾರತದ ಅತ್ಯಂತ ಪ್ರಾಚೀನ ವೈಜ್ಞಾನಿಕ ಸಂಪ್ರದಾಯ — ಖಗೋಳಶಾಸ್ತ್ರ, ಭವಿಷ್ಯ ಹೇಳುವುದಲ್ಲ",
+    "mr": "भारताची सर्वात प्राचीन शास्त्रीय परंपरा — खगोलशास्त्र, भविष्य सांगणे नाही",
+    "gu": "ભારતની સૌથી પ્રાચીન વૈજ્ઞાનિક પરંપરા — ખગોળશાસ્ત્ર, ભવિષ્ય ભાખવું નહીં",
+    "mai": "भारतक सबसँ प्राचीन वैज्ञानिक परम्परा — खगोलशास्त्र, भविष्यवाणी नै"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "0.2 The Hindu Calendar",
+        "hi": "0.2 हिन्दू पंचांग",
+        "sa": "0.2 हिन्दू पंचांग",
+        "mai": "0.2 हिन्दू पंचांग",
+        "mr": "0.2 हिन्दू पंचांग",
+        "ta": "0.2 The Hindu Calendar",
+        "te": "0.2 The Hindu Calendar",
+        "bn": "0.2 The Hindu Calendar",
+        "kn": "0.2 The Hindu Calendar",
+        "gu": "0.2 The Hindu Calendar"
+      },
+      "href": "/learn/modules/0-2"
+    },
+    {
+      "label": {
+        "en": "0.3 Your Cosmic Address",
+        "hi": "0.3 आपका ब्रह्माण्डीय पता",
+        "sa": "0.3 आपका ब्रह्माण्डीय पता",
+        "mai": "0.3 आपका ब्रह्माण्डीय पता",
+        "mr": "0.3 आपका ब्रह्माण्डीय पता",
+        "ta": "0.3 Your Cosmic Address",
+        "te": "0.3 Your Cosmic Address",
+        "bn": "0.3 Your Cosmic Address",
+        "kn": "0.3 Your Cosmic Address",
+        "gu": "0.3 Your Cosmic Address"
+      },
+      "href": "/learn/modules/0-3"
+    },
+    {
+      "label": {
+        "en": "1.1 The Night Sky & Ecliptic",
+        "hi": "1.1 रात्रि आकाश एवं क्रान्तिवृत्त",
+        "sa": "1.1 रात्रि आकाश एवं क्रान्तिवृत्त",
+        "mai": "1.1 रात्रि आकाश एवं क्रान्तिवृत्त",
+        "mr": "1.1 रात्रि आकाश एवं क्रान्तिवृत्त",
+        "ta": "1.1 The Night Sky & Ecliptic",
+        "te": "1.1 The Night Sky & Ecliptic",
+        "bn": "1.1 The Night Sky & Ecliptic",
+        "kn": "1.1 The Night Sky & Ecliptic",
+        "gu": "1.1 The Night Sky & Ecliptic"
+      },
+      "href": "/learn/modules/1-1"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q0_1_01",
+      "type": "mcq",
+      "question": {
+        "en": "What does the word \"Jyotish\" literally mean?",
+        "hi": "\"ज्योतिष\" शब्द का शाब्दिक अर्थ क्या है?",
+        "sa": "\"ज्योतिषम्\" इति शब्दस्य शाब्दिकः अर्थः कः?",
+        "mai": "\"ज्योतिष\" शब्दक शाब्दिक अर्थ की छी?",
+        "mr": "\"ज्योतिष\" शब्दाचा शाब्दिक अर्थ काय आहे?",
+        "ta": "\"ஜோதிடம்\" என்ற வார்த்தையின் நேரடி அர்த்தம் என்ன?",
+        "te": "\"జ్యోతిషం\" అనే పదం యొక్క అక్షరార్థం ఏమిటి?",
+        "bn": "\"জ্যোতিষ\" শব্দটির আক্ষরিক অর্থ কী?",
+        "kn": "\"ಜ್ಯೋತಿಷ\" ಪದದ ಅಕ್ಷರಶಃ ಅರ್ಥವೇನು?",
+        "gu": "\"જ્યોતિષ\" શબ્દનો શાબ્દિક અર્થ શું છે?"
+      },
+      "options": [
+        {
+          "en": "Science of fate",
+          "hi": "भाग्य का विज्ञान",
+          "sa": "दैवस्य शास्त्रम्",
+          "mai": "भाग्यक विज्ञान",
+          "mr": "भाग्याचे शास्त्र",
+          "ta": "விதியின் அறிவியல்",
+          "te": "విధి శాస్త్రం",
+          "bn": "ভাগ্যের বিজ্ঞান",
+          "kn": "ವಿಧಿಯ ವಿಜ್ಞಾನ",
+          "gu": "ભાગ્યનું વિજ્ઞાન"
+        },
+        {
+          "en": "Science of light/luminaries",
+          "hi": "ज्योति/प्रकाश का विज्ञान",
+          "sa": "ज्योतिषां शास्त्रम्",
+          "mai": "ज्योतिक विज्ञान",
+          "mr": "ज्योती/प्रकाशाचे शास्त्र",
+          "ta": "ஒளி/சுடர்களின் அறிவியல்",
+          "te": "జ్యోతి/తేజస్సుల శాస్త్రం",
+          "bn": "জ্যোতি/আলোকবিন্দুর বিজ্ঞান",
+          "kn": "ಜ್ಯೋತಿ/ಪ್ರಕಾಶಕಗಳ ವಿಜ್ಞಾನ",
+          "gu": "જ્યોતિ/પ્રકાશનું વિજ્ઞાન"
+        },
+        {
+          "en": "Science of stars",
+          "hi": "तारों का विज्ञान",
+          "sa": "तारकाणां शास्त्रम्",
+          "mai": "तारा सभक विज्ञान",
+          "mr": "ताऱ्यांचे शास्त्र",
+          "ta": "நட்சத்திரங்களின் அறிவியல்",
+          "te": "నక్షత్ర శాస్త్రం",
+          "bn": "তারার বিজ্ঞান",
+          "kn": "ನಕ್ಷತ್ರಗಳ ವಿಜ್ಞಾನ",
+          "gu": "તારાઓનું વિજ્ઞાન"
+        },
+        {
+          "en": "Science of time",
+          "hi": "समय का विज्ञान",
+          "sa": "कालस्य शास्त्रम्",
+          "mai": "समयक विज्ञान",
+          "mr": "कालाचे शास्त्र",
+          "ta": "காலத்தின் அறிவியல்",
+          "te": "కాల శాస్త్రం",
+          "bn": "সময়ের বিজ্ঞান",
+          "kn": "ಕಾಲದ ವಿಜ್ಞಾನ",
+          "gu": "સમયનું વિજ્ઞાન"
+        }
+      ],
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Jyotish comes from \"Jyoti\" (ज्योति) meaning light or luminaries. It is the science of celestial lights — the Sun, Moon, and planets. The term emphasizes observation of luminous bodies, not fortune-telling.",
+        "hi": "ज्योतिष \"ज्योति\" से आया है जिसका अर्थ है प्रकाश। यह आकाशीय ज्योतियों — सूर्य, चन्द्र और ग्रहों — का विज्ञान है।",
+        "sa": "ज्योतिषम् \"ज्योतिः\" इति शब्दात् आगतम्, यस्य अर्थः प्रकाशः। इदं आकाशीयज्योतिषां शास्त्रम् — सूर्यचन्द्रग्रहाणां पर्यवेक्षणम्, न भविष्यकथनम्।",
+        "mai": "ज्योतिष \"ज्योति\" (ज्योति) सँ आएल अछि जेकर अर्थ छी प्रकाश। ई आकाशीय ज्योतिक विज्ञान छी — सूर्य, चन्द्रमा आ ग्रहक अध्ययन।",
+        "mr": "ज्योतिष \"ज्योती\" (ज्योति) म्हणजे प्रकाश यावरून आले आहे. हे आकाशीय ज्योतींचे शास्त्र आहे — सूर्य, चंद्र आणि ग्रहांचा अभ्यास, भविष्य सांगणे नाही.",
+        "ta": "ஜோதிடம் \"ஜோதி\" (ज्योति) என்ற சொல்லிலிருந்து வந்தது, இது ஒளி அல்லது சுடர்களைக் குறிக்கும். இது வான சுடர்களான சூரியன், சந்திரன், கிரகங்களின் அறிவியல் — குறிசொல்லல் அல்ல.",
+        "te": "జ్యోతిషం \"జ్యోతి\" (ज्योति) అనే పదం నుండి వచ్చింది, అంటే వెలుగు లేదా తేజస్సు. ఇది ఆకాశ తేజస్సుల శాస్త్రం — సూర్యుడు, చంద్రుడు, గ్రహాల అధ్యయనం. సోదె చెప్పడం కాదు.",
+        "bn": "জ্যোতিষ \"জ্যোতি\" (ज्योति) থেকে এসেছে, যার অর্থ আলো বা জ্যোতি। এটি আকাশীয় জ্যোতির্ময়দের বিজ্ঞান — সূর্য, চন্দ্র ও গ্রহের পর্যবেক্ষণ, ভাগ্যগণনা নয়।",
+        "kn": "ಜ್ಯೋತಿಷ \"ಜ್ಯೋತಿ\" (ज्योति) ಎಂಬ ಪದದಿಂದ ಬಂದಿದೆ, ಅಂದರೆ ಬೆಳಕು. ಇದು ಆಕಾಶ ಜ್ಯೋತಿಗಳ ವಿಜ್ಞಾನ — ಸೂರ್ಯ, ಚಂದ್ರ ಮತ್ತು ಗ್ರಹಗಳ ಅಧ್ಯಯನ.",
+        "gu": "જ્યોતિષ \"જ્યોતિ\" (ज्योति) એટલે પ્રકાશ પરથી આવ્યું છે. આ આકાશીય જ્યોતિઓનું વિજ્ઞાન છે — સૂર્ય, ચંદ્ર અને ગ્રહોનો અભ્યાસ, ભવિષ્ય ભાખવું નહીં."
+      }
+    },
+    {
+      "id": "q0_1_02",
+      "type": "mcq",
+      "question": {
+        "en": "Which are the three branches of Jyotish?",
+        "hi": "ज्योतिष की तीन शाखाएँ कौन सी हैं?",
+        "sa": "ज्योतिषस्य तिस्रः शाखाः काः?",
+        "mai": "ज्योतिषक तीन शाखा कोन-कोन अछि?",
+        "mr": "ज्योतिषाच्या तीन शाखा कोणत्या?",
+        "ta": "ஜோதிடத்தின் மூன்று கிளைகள் எவை?",
+        "te": "జ్యోతిషం యొక్క మూడు శాఖలు ఏవి?",
+        "bn": "জ্যোতিষের তিনটি শাখা কোনগুলি?",
+        "kn": "ಜ್ಯೋತಿಷದ ಮೂರು ಶಾಖೆಗಳು ಯಾವುವು?",
+        "gu": "જ્યોતિષની ત્રણ શાખાઓ કઈ છે?"
+      },
+      "options": [
+        {
+          "en": "Vastu, Tantra, Mantra",
+          "hi": "वास्तु, तन्त्र, मन्त्र",
+          "sa": "वास्तु, तन्त्र, मन्त्र",
+          "mai": "वास्तु, तन्त्र, मन्त्र",
+          "mr": "वास्तु, तन्त्र, मन्त्र",
+          "ta": "வாஸ்து, தந்திரம், மந்திரம்",
+          "te": "వాస్తు, తంత్రం, మంత్రం",
+          "bn": "বাস্তু, তন্ত্র, মন্ত্র",
+          "kn": "ವಾಸ್ತು, ತಂತ್ರ, ಮಂತ್ರ",
+          "gu": "વાસ્તુ, તંત્ર, મંત્ર"
+        },
+        {
+          "en": "Siddhanta, Hora, Samhita",
+          "hi": "सिद्धान्त, होरा, संहिता",
+          "sa": "सिद्धान्त, होरा, संहिता",
+          "mai": "सिद्धान्त, होरा, संहिता",
+          "mr": "सिद्धान्त, होरा, संहिता",
+          "ta": "சித்தாந்தம், ஹோரா, சம்ஹிதா",
+          "te": "సిద్ధాంతం, హోర, సంహిత",
+          "bn": "সিদ্ধান্ত, হোরা, সংহিতা",
+          "kn": "ಸಿದ್ಧಾಂತ, ಹೋರಾ, ಸಂಹಿತಾ",
+          "gu": "સિદ્ધાંત, હોરા, સંહિતા"
+        },
+        {
+          "en": "Jataka, Prashna, Muhurta",
+          "hi": "जातक, प्रश्न, मुहूर्त",
+          "sa": "जातक, प्रश्न, मुहूर्त",
+          "mai": "जातक, प्रश्न, मुहूर्त",
+          "mr": "जातक, प्रश्न, मुहूर्त",
+          "ta": "ஜாதகம், பிரசுனம், முகூர்த்தம்",
+          "te": "జాతకం, ప్రశ్న, ముహూర్తం",
+          "bn": "জাতক, প্রশ্ন, মুহূর্ত",
+          "kn": "ಜಾತಕ, ಪ್ರಶ್ನೆ, ಮುಹೂರ್ತ",
+          "gu": "જાતક, પ્રશ્ન, મુહૂર્ત"
+        },
+        {
+          "en": "Ganita, Phalita, Shakuna",
+          "hi": "गणित, फलित, शकुन",
+          "sa": "गणित, फलित, शकुन",
+          "mai": "गणित, फलित, शकुन",
+          "mr": "गणित, फलित, शकुन",
+          "ta": "கணிதம், பலிதம், சகுனம்",
+          "te": "గణితం, ఫలితం, శకునం",
+          "bn": "গণিত, ফলিত, শকুন",
+          "kn": "ಗಣಿತ, ಫಲಿತ, ಶಕುನ",
+          "gu": "ગણિત, ફલિત, શકુન"
+        }
+      ],
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "The three classical branches are: Siddhanta (mathematical astronomy — eclipses, planetary positions), Hora (horoscopy — birth chart interpretation), and Samhita (mundane — weather, agriculture, national events).",
+        "hi": "तीन शास्त्रीय शाखाएँ: सिद्धान्त (गणितीय खगोलशास्त्र), होरा (जन्मकुण्डली व्याख्या), संहिता (सामूहिक — मौसम, कृषि, राष्ट्रीय घटनाएँ)।",
+        "sa": "तिस्रः शास्त्रीयशाखाः: सिद्धान्तः (गणितखगोलशास्त्रम्), होरा (जन्मकुण्डलीव्याख्या), संहिता (सामूहिकम् — ऋतुः, कृषिः, राष्ट्रीयघटनाः)।",
+        "mai": "तीन शास्त्रीय शाखा: सिद्धान्त (गणितीय खगोलशास्त्र), होरा (जन्मकुण्डली व्याख्या), संहिता (सामूहिक — मौसम, कृषि, राष्ट्रीय घटना)।",
+        "mr": "तीन शास्त्रीय शाखा: सिद्धांत (गणितीय खगोलशास्त्र), होरा (जन्मकुंडली अर्थबोध), संहिता (सामाजिक — हवामान, शेती, राष्ट्रीय घडामोडी).",
+        "ta": "மூன்று சாஸ்திரீய கிளைகள்: சித்தாந்தம் (கணித வானியல்), ஹோரா (ஜாதக விளக்கம்), சம்ஹிதா (பொது — வானிலை, விவசாயம், தேசிய நிகழ்வுகள்).",
+        "te": "మూడు శాస్త్రీయ శాఖలు: సిద్ధాంతం (గణిత ఖగోళశాస్త్రం), హోర (జాతక వ్యాఖ్యానం), సంహిత (సాంఘిక — వాతావరణం, వ్యవసాయం, జాతీయ సంఘటనలు).",
+        "bn": "তিনটি শাস্ত্রীয় শাখা: সিদ্ধান্ত (গাণিতিক জ্যোতির্বিজ্ঞান), হোরা (জন্মকুণ্ডলী ব্যাখ্যা), সংহিতা (সামাজিক — আবহাওয়া, কৃষি, জাতীয় ঘটনা)।",
+        "kn": "ಮೂರು ಶಾಸ್ತ್ರೀಯ ಶಾಖೆಗಳು: ಸಿದ್ಧಾಂತ (ಗಣಿತ ಖಗೋಳಶಾಸ್ತ್ರ), ಹೋರಾ (ಜನ್ಮ ಕುಂಡಲಿ ವ್ಯಾಖ್ಯಾನ), ಸಂಹಿತಾ (ಸಾಮಾಜಿಕ — ಹವಾಮಾನ, ಕೃಷಿ, ರಾಷ್ಟ್ರೀಯ ಘಟನೆಗಳು).",
+        "gu": "ત્રણ શાસ્ત્રીય શાખાઓ: સિદ્ધાંત (ગાણિતિક ખગોળશાસ્ત્ર), હોરા (જન્મકુંડળી અર્થઘટન), સંહિતા (સામાજિક — હવામાન, કૃષિ, રાષ્ટ્રીય ઘટનાઓ)."
+      },
+      "classicalRef": "Varahamihira, Brihat Samhita"
+    },
+    {
+      "id": "q0_1_03",
+      "type": "true_false",
+      "question": {
+        "en": "Aryabhata (476 CE) believed the Earth was fixed and did not rotate.",
+        "hi": "आर्यभट (476 ई.) मानते थे कि पृथ्वी स्थिर है और घूमती नहीं।",
+        "sa": "आर्यभटः (476 ई.) अमन्यत यत् पृथिवी स्थिरा न च भ्रमति।",
+        "mai": "आर्यभट (476 ई.) मानैत छलाह जे पृथ्वी स्थिर अछि आ नै घूमैत अछि।",
+        "mr": "आर्यभट (476 ई.) यांचा विश्वास होता की पृथ्वी स्थिर आहे आणि फिरत नाही.",
+        "ta": "ஆர்யபடர் (கி.பி. 476) பூமி நிலையானது, சுழலாது என்று நம்பினார்.",
+        "te": "ఆర్యభట్ (476 CE) భూమి స్థిరంగా ఉందని, తిరగదని నమ్మాడు.",
+        "bn": "আর্যভট (৪৭৬ খ্রি.) বিশ্বাস করতেন পৃথিবী স্থির ও ঘোরে না।",
+        "kn": "ಆರ್ಯಭಟ (476 CE) ಭೂಮಿ ಸ್ಥಿರವಾಗಿದೆ ಮತ್ತು ತಿರುಗುವುದಿಲ್ಲ ಎಂದು ನಂಬಿದ್ದರು.",
+        "gu": "આર્યભટ (476 ઈ.) માનતા હતા કે પૃથ્વી સ્થિર છે અને ફરતી નથી."
+      },
+      "correctAnswer": false,
+      "explanation": {
+        "en": "False. Aryabhata explicitly stated that the Earth rotates on its axis, causing the apparent movement of stars. This was a revolutionary idea — Europe would not accept heliocentrism for another thousand years.",
+        "hi": "गलत। आर्यभट ने स्पष्ट कहा कि पृथ्वी अपनी धुरी पर घूमती है। यूरोप ने यह बात हज़ार वर्ष बाद मानी।",
+        "sa": "असत्यम्। आर्यभटः स्पष्टम् उक्तवान् यत् पृथिवी स्वाक्षे भ्रमति। यूरोपः सहस्रवर्षानन्तरम् इदम् अङ्गीकृतवान्।",
+        "mai": "गलत। आर्यभट स्पष्ट कहलथि जे पृथ्वी अपन धुरी पर घूमैत अछि। यूरोप ई बात हजार वर्ष बाद मानलक।",
+        "mr": "चूक. आर्यभटांनी स्पष्ट सांगितले की पृथ्वी आपल्या अक्षावर फिरते. युरोपने हे हजार वर्षांनंतर मान्य केले.",
+        "ta": "தவறு. ஆர்யபடர் பூமி தன் அச்சில் சுழல்வதாக தெளிவாகக் கூறினார். ஐரோப்பா இதை ஆயிரம் ஆண்டுகளுக்குப் பிறகே ஏற்றுக்கொண்டது.",
+        "te": "తప్పు. ఆర్యభట్ భూమి తన అక్షం మీద తిరుగుతుందని స్పష్టంగా చెప్పాడు. యూరోప్ ఈ విషయాన్ని వేయి సంవత్సరాల తర్వాత అంగీకరించింది.",
+        "bn": "মিথ্যা। আর্যভট স্পষ্ট বলেছিলেন পৃথিবী নিজ অক্ষে ঘোরে। ইউরোপ হাজার বছর পরে এটি মেনেছিল।",
+        "kn": "ತಪ್ಪು. ಆರ್ಯಭಟ ಭೂಮಿ ತನ್ನ ಅಕ್ಷದ ಮೇಲೆ ತಿರುಗುತ್ತದೆ ಎಂದು ಸ್ಪಷ್ಟವಾಗಿ ಹೇಳಿದರು. ಯುರೋಪ್ ಸಾವಿರ ವರ್ಷಗಳ ನಂತರ ಒಪ್ಪಿಕೊಂಡಿತು.",
+        "gu": "ખોટું. આર્યભટે સ્પષ્ટ કહ્યું કે પૃથ્વી પોતાની ધરી પર ફરે છે. યુરોપે આ હજાર વર્ષ પછી સ્વીકાર્યું."
+      },
+      "classicalRef": "Aryabhatiya, Golapada v.9"
+    },
+    {
+      "id": "q0_1_04",
+      "type": "mcq",
+      "question": {
+        "en": "How accurate was Aryabhata's calculation of Earth's circumference?",
+        "hi": "आर्यभट द्वारा पृथ्वी की परिधि की गणना कितनी सटीक थी?",
+        "sa": "आर्यभटः पृथिव्याः परिधिं कियत् यथार्थतया गणितवान्?",
+        "ta": "ஆர்யபடர் பூமியின் சுற்றளவை எவ்வளவு துல்லியமாகக் கணக்கிட்டார்?",
+        "te": "ఆర్యభట్ భూమి చుట్టుకొలతను ఎంత ఖచ్చితంగా గణించాడు?",
+        "bn": "আর্যভট পৃথিবীর পরিধি কতটা নির্ভুলভাবে গণনা করেছিলেন?",
+        "kn": "ಆರ್ಯಭಟ ಭೂಮಿಯ ಸುತ್ತಳತೆಯನ್ನು ಎಷ್ಟು ನಿಖರವಾಗಿ ಲೆಕ್ಕ ಹಾಕಿದರು?",
+        "mr": "आर्यभटांनी पृथ्वीचा परिघ किती अचूक मोजला?",
+        "gu": "આર્યભટે પૃથ્વીની પરિધિ કેટલી સચોટ રીતે ગણી?",
+        "mai": "आर्यभट द्वारा पृथ्वीक परिधि कतेक सटीक गणित कएल गेल?"
+      },
+      "options": [
+        {
+          "en": "About 50% accurate",
+          "hi": "लगभग 50% सटीक",
+          "sa": "लगभग 50% सटीक",
+          "mai": "लगभग 50% सटीक",
+          "mr": "सुमारे ५०% अचूक",
+          "ta": "சுமார் 50% துல்லியம்",
+          "te": "సుమారు 50% ఖచ్చితం",
+          "bn": "প্রায় ৫০% নির্ভুল",
+          "kn": "ಸುಮಾರು 50% ನಿಖರ",
+          "gu": "લગભગ 50% સચોટ"
+        },
+        {
+          "en": "About 75% accurate",
+          "hi": "लगभग 75% सटीक",
+          "sa": "लगभग 75% सटीक",
+          "mai": "लगभग 75% सटीक",
+          "mr": "सुमारे ७५% अचूक",
+          "ta": "சுமார் 75% துல்லியம்",
+          "te": "సుమారు 75% ఖచ్చితం",
+          "bn": "প্রায় ৭৫% নির্ভুল",
+          "kn": "ಸುಮಾರು 75% ನಿಖರ",
+          "gu": "લગભગ 75% સચોટ"
+        },
+        {
+          "en": "About 90% accurate",
+          "hi": "लगभग 90% सटीक",
+          "sa": "लगभग 90% सटीक",
+          "mai": "लगभग 90% सटीक",
+          "mr": "सुमारे ९०% अचूक",
+          "ta": "சுமார் 90% துல்லியம்",
+          "te": "సుమారు 90% ఖచ్చితం",
+          "bn": "প্রায় ৯০% নির্ভুল",
+          "kn": "ಸುಮಾರು 90% ನಿಖರ",
+          "gu": "લગભગ 90% સચોટ"
+        },
+        {
+          "en": "About 99.8% accurate",
+          "hi": "लगभग 99.8% सटीक",
+          "sa": "लगभग 99.8% सटीक",
+          "mai": "लगभग 99.8% सटीक",
+          "mr": "सुमारे ९९.८% अचूक",
+          "ta": "சுமார் 99.8% துல்லியம்",
+          "te": "సుమారు 99.8% ఖచ్చితం",
+          "bn": "প্রায় ৯৯.৮% নির্ভুল",
+          "kn": "ಸುಮಾರು 99.8% ನಿಖರ",
+          "gu": "લગભગ 99.8% સચોટ"
+        }
+      ],
+      "correctAnswer": 3,
+      "explanation": {
+        "en": "Aryabhata calculated Earth's circumference as 39,968 km. The actual value is 40,075 km — an error of just 0.2%. This was achieved a thousand years before Columbus sailed, using pure mathematics and observation.",
+        "hi": "आर्यभट ने पृथ्वी की परिधि 39,968 किमी गणित की। वास्तविक मान 40,075 किमी है — केवल 0.2% त्रुटि। कोलम्बस से हज़ार वर्ष पहले!",
+        "sa": "आर्यभट ने पृथ्वी की परिधि 39,968 किमी गणित की। वास्तविक मान 40,075 किमी है — केवल 0.2% त्रुटि। कोलम्बस से हज़ार वर्ष पहले!",
+        "ta": "Aryabhata calculated Earth's circumference as 39,968 km. The actual value is 40,075 km — an error of just 0.2%. This was achieved a thousand years before Columbus sailed, using pure mathematics and observation.",
+        "te": "Aryabhata calculated Earth's circumference as 39,968 km. The actual value is 40,075 km — an error of just 0.2%. This was achieved a thousand years before Columbus sailed, using pure mathematics and observation.",
+        "bn": "Aryabhata calculated Earth's circumference as 39,968 km. The actual value is 40,075 km — an error of just 0.2%. This was achieved a thousand years before Columbus sailed, using pure mathematics and observation.",
+        "kn": "Aryabhata calculated Earth's circumference as 39,968 km. The actual value is 40,075 km — an error of just 0.2%. This was achieved a thousand years before Columbus sailed, using pure mathematics and observation.",
+        "mr": "आर्यभट ने पृथ्वी की परिधि 39,968 किमी गणित की। वास्तविक मान 40,075 किमी है — केवल 0.2% त्रुटि। कोलम्बस से हज़ार वर्ष पहले!",
+        "gu": "Aryabhata calculated Earth's circumference as 39,968 km. The actual value is 40,075 km — an error of just 0.2%. This was achieved a thousand years before Columbus sailed, using pure mathematics and observation.",
+        "mai": "आर्यभट ने पृथ्वी की परिधि 39,968 किमी गणित की। वास्तविक मान 40,075 किमी है — केवल 0.2% त्रुटि। कोलम्बस से हज़ार वर्ष पहले!"
+      },
+      "classicalRef": "Aryabhatiya, Golapada"
+    },
+    {
+      "id": "q0_1_05",
+      "type": "mcq",
+      "question": {
+        "en": "The English word \"sine\" (trigonometry) derives from which Sanskrit word?",
+        "hi": "अंग्रेजी शब्द \"sine\" (त्रिकोणमिति) किस संस्कृत शब्द से आया है?",
+        "sa": "\"sine\" इति आङ्ग्लशब्दः (त्रिकोणमितिः) कस्मात् संस्कृतशब्दात् आगतः?",
+        "mai": "अंग्रेजी शब्द \"sine\" (त्रिकोणमिति) कोन संस्कृत शब्दसँ आएल अछि?",
+        "mr": "इंग्रजी शब्द \"sine\" (त्रिकोणमिती) कोणत्या संस्कृत शब्दापासून आला?",
+        "ta": "ஆங்கிலச் சொல் \"sine\" (முக்கோணவியல்) எந்த சமஸ்கிருத வார்த்தையிலிருந்து வந்தது?",
+        "te": "ఆంగ్ల పదం \"sine\" (త్రికోణమితి) ఏ సంస్కృత పదం నుండి వచ్చింది?",
+        "bn": "ইংরেজি শব্দ \"sine\" (ত্রিকোণমিতি) কোন সংস্কৃত শব্দ থেকে এসেছে?",
+        "kn": "ಇಂಗ್ಲಿಷ್ ಪದ \"sine\" (ತ್ರಿಕೋಣಮಿತಿ) ಯಾವ ಸಂಸ್ಕೃತ ಪದದಿಂದ ಬಂದಿದೆ?",
+        "gu": "અંગ્રેજી શબ્દ \"sine\" (ત્રિકોણમિતિ) કયા સંસ્કૃત શબ્દમાંથી આવ્યો?"
+      },
+      "options": [
+        {
+          "en": "Jya (ज्या, bowstring)",
+          "hi": "ज्या (धनुष की डोरी)",
+          "sa": "ज्या (धनुष की डोरी)",
+          "ta": "Jya (ज्या, bowstring)",
+          "te": "Jya (ज्या, bowstring)",
+          "bn": "Jya (ज्या, bowstring)",
+          "kn": "Jya (ज्या, bowstring)",
+          "mr": "ज्या (धनुष की डोरी)",
+          "gu": "Jya (ज्या, bowstring)",
+          "mai": "ज्या (धनुष की डोरी)"
+        },
+        {
+          "en": "Koti (कोटि, side)",
+          "hi": "कोटि (भुजा)",
+          "sa": "कोटि (भुजा)",
+          "mai": "कोटि (भुजा)",
+          "mr": "कोटि (भुजा)",
+          "ta": "Koti (कोटि, side)",
+          "te": "Koti (कोटि, side)",
+          "bn": "Koti (कोटि, side)",
+          "kn": "Koti (कोटि, side)",
+          "gu": "Koti (कोटि, side)"
+        },
+        {
+          "en": "Trijya (त्रिज्या, radius)",
+          "hi": "त्रिज्या",
+          "sa": "त्रिज्या",
+          "mai": "त्रिज्या",
+          "mr": "त्रिज्या",
+          "ta": "Trijya (त्रिज्या, radius)",
+          "te": "Trijya (त्रिज्या, radius)",
+          "bn": "Trijya (त्रिज्या, radius)",
+          "kn": "Trijya (त्रिज्या, radius)",
+          "gu": "Trijya (त्रिज्या, radius)"
+        },
+        {
+          "en": "Karna (कर्ण, hypotenuse)",
+          "hi": "कर्ण",
+          "sa": "कर्ण",
+          "mai": "कर्ण",
+          "mr": "कर्ण",
+          "ta": "Karna (कर्ण, hypotenuse)",
+          "te": "Karna (कर्ण, hypotenuse)",
+          "bn": "Karna (कर्ण, hypotenuse)",
+          "kn": "Karna (कर्ण, hypotenuse)",
+          "gu": "Karna (कर्ण, hypotenuse)"
+        }
+      ],
+      "correctAnswer": 0,
+      "explanation": {
+        "en": "Sanskrit \"jya\" (bowstring) was transliterated to Arabic as \"jiba,\" which was misread as \"jaib\" (fold/pocket) by Latin translators, who rendered it as \"sinus\" — giving us \"sine.\" Indian mathematicians invented trigonometry for astronomical calculations.",
+        "hi": "संस्कृत \"ज्या\" अरबी में \"जिबा\" बना, फिर लैटिन में \"sinus\" — और अंग्रेज़ी में \"sine\"। भारतीय गणितज्ञों ने खगोलीय गणना के लिए त्रिकोणमिति का आविष्कार किया।",
+        "sa": "संस्कृत \"ज्या\" अरबी में \"जिबा\" बना, फिर लैटिन में \"sinus\" — और अंग्रेज़ी में \"sine\"। भारतीय गणितज्ञों ने खगोलीय गणना के लिए त्रिकोणमिति का आविष्कार किया।",
+        "ta": "Sanskrit \"jya\" (bowstring) was transliterated to Arabic as \"jiba,\" which was misread as \"jaib\" (fold/pocket) by Latin translators, who rendered it as \"sinus\" — giving us \"sine.\" Indian mathematicians invented trigonometry for astronomical calculations.",
+        "te": "Sanskrit \"jya\" (bowstring) was transliterated to Arabic as \"jiba,\" which was misread as \"jaib\" (fold/pocket) by Latin translators, who rendered it as \"sinus\" — giving us \"sine.\" Indian mathematicians invented trigonometry for astronomical calculations.",
+        "bn": "Sanskrit \"jya\" (bowstring) was transliterated to Arabic as \"jiba,\" which was misread as \"jaib\" (fold/pocket) by Latin translators, who rendered it as \"sinus\" — giving us \"sine.\" Indian mathematicians invented trigonometry for astronomical calculations.",
+        "kn": "Sanskrit \"jya\" (bowstring) was transliterated to Arabic as \"jiba,\" which was misread as \"jaib\" (fold/pocket) by Latin translators, who rendered it as \"sinus\" — giving us \"sine.\" Indian mathematicians invented trigonometry for astronomical calculations.",
+        "mr": "संस्कृत \"ज्या\" अरबी में \"जिबा\" बना, फिर लैटिन में \"sinus\" — और अंग्रेज़ी में \"sine\"। भारतीय गणितज्ञों ने खगोलीय गणना के लिए त्रिकोणमिति का आविष्कार किया।",
+        "gu": "Sanskrit \"jya\" (bowstring) was transliterated to Arabic as \"jiba,\" which was misread as \"jaib\" (fold/pocket) by Latin translators, who rendered it as \"sinus\" — giving us \"sine.\" Indian mathematicians invented trigonometry for astronomical calculations.",
+        "mai": "संस्कृत \"ज्या\" अरबी में \"जिबा\" बना, फिर लैटिन में \"sinus\" — और अंग्रेज़ी में \"sine\"। भारतीय गणितज्ञों ने खगोलीय गणना के लिए त्रिकोणमिति का आविष्कार किया।"
+      },
+      "classicalRef": "Aryabhatiya, Ganita section"
+    },
+    {
+      "id": "q0_1_06",
+      "type": "true_false",
+      "question": {
+        "en": "Vedic (Jyotish) and Western astrology use the same zodiac system.",
+        "hi": "वैदिक (ज्योतिष) और पश्चिमी ज्योतिष एक ही राशिचक्र प्रणाली का उपयोग करते हैं।",
+        "sa": "वैदिकज्योतिषं पाश्चात्यज्योतिषं च समानां राशिचक्रपद्धतिम् उपयुज्येते।",
+        "mai": "वैदिक (ज्योतिष) आ पश्चिमी ज्योतिष एकै राशिचक्र प्रणालीक उपयोग करैत अछि।",
+        "mr": "वैदिक (ज्योतिष) आणि पाश्चात्य ज्योतिष एकच राशीचक्र प्रणाली वापरतात.",
+        "ta": "வேத (ஜோதிட) மற்றும் மேற்கத்திய ஜோதிடம் ஒரே ராசி மண்டல முறையைப் பயன்படுத்துகின்றன.",
+        "te": "వైదిక (జ్యోతిష) మరియు పాశ్చాత్య జ్యోతిషం ఒకే రాశిచక్ర వ్యవస్థను ఉపయోగిస్తాయి.",
+        "bn": "বৈদিক (জ্যোতিষ) ও পাশ্চাত্য জ্যোতিষ একই রাশিচক্র পদ্ধতি ব্যবহার করে।",
+        "kn": "ವೈದಿಕ (ಜ್ಯೋತಿಷ) ಮತ್ತು ಪಾಶ್ಚಾತ್ಯ ಜ್ಯೋತಿಷ ಒಂದೇ ರಾಶಿಚಕ್ರ ವ್ಯವಸ್ಥೆಯನ್ನು ಬಳಸುತ್ತವೆ.",
+        "gu": "વૈદિક (જ્યોતિષ) અને પશ્ચિમી જ્યોતિષ એક જ રાશિચક્ર પ્રણાલીનો ઉપયોગ કરે છે."
+      },
+      "correctAnswer": false,
+      "explanation": {
+        "en": "False. Jyotish uses the sidereal zodiac (fixed to stars), while Western astrology uses the tropical zodiac (fixed to seasons). They have diverged by about 24 degrees today, which means your Vedic sign is usually one sign behind your Western sign.",
+        "hi": "गलत। ज्योतिष साइडरियल (तारा-स्थिर) राशिचक्र का उपयोग करता है, पश्चिमी ज्योतिष ट्रॉपिकल (ऋतु-स्थिर) का। आज ~24° का अन्तर है।",
+        "sa": "गलत। ज्योतिष साइडरियल (तारा-स्थिर) राशिचक्र का उपयोग करता है, पश्चिमी ज्योतिष ट्रॉपिकल (ऋतु-स्थिर) का। आज ~24° का अन्तर है।",
+        "mai": "गलत। ज्योतिष साइडरियल (तारा-स्थिर) राशिचक्र का उपयोग करता है, पश्चिमी ज्योतिष ट्रॉपिकल (ऋतु-स्थिर) का। आज ~24° का अन्तर है।",
+        "mr": "गलत। ज्योतिष साइडरियल (तारा-स्थिर) राशिचक्र का उपयोग करता है, पश्चिमी ज्योतिष ट्रॉपिकल (ऋतु-स्थिर) का। आज ~24° का अन्तर है।",
+        "ta": "False. Jyotish uses the sidereal zodiac (fixed to stars), while Western astrology uses the tropical zodiac (fixed to seasons). They have diverged by about 24 degrees today, which means your Vedic sign is usually one sign behind your Western sign.",
+        "te": "False. Jyotish uses the sidereal zodiac (fixed to stars), while Western astrology uses the tropical zodiac (fixed to seasons). They have diverged by about 24 degrees today, which means your Vedic sign is usually one sign behind your Western sign.",
+        "bn": "False. Jyotish uses the sidereal zodiac (fixed to stars), while Western astrology uses the tropical zodiac (fixed to seasons). They have diverged by about 24 degrees today, which means your Vedic sign is usually one sign behind your Western sign.",
+        "kn": "False. Jyotish uses the sidereal zodiac (fixed to stars), while Western astrology uses the tropical zodiac (fixed to seasons). They have diverged by about 24 degrees today, which means your Vedic sign is usually one sign behind your Western sign.",
+        "gu": "False. Jyotish uses the sidereal zodiac (fixed to stars), while Western astrology uses the tropical zodiac (fixed to seasons). They have diverged by about 24 degrees today, which means your Vedic sign is usually one sign behind your Western sign."
+      }
+    },
+    {
+      "id": "q0_1_07",
+      "type": "mcq",
+      "question": {
+        "en": "Which system has nakshatras (27 lunar mansions)?",
+        "hi": "किस प्रणाली में नक्षत्र (27 चन्द्र गृह) हैं?",
+        "sa": "कस्यां पद्धतौ नक्षत्राणि (सप्तविंशतिचान्द्रगृहाणि) सन्ति?",
+        "mai": "कोन प्रणालीमे नक्षत्र (27 चन्द्र गृह) अछि?",
+        "mr": "कोणत्या प्रणालीत नक्षत्र (27 चंद्र मंदिरे) आहेत?",
+        "ta": "எந்த முறையில் நட்சத்திரங்கள் (27 சந்திர மாளிகைகள்) உள்ளன?",
+        "te": "ఏ వ్యవస్థలో నక్షత్రాలు (27 చాంద్ర మందిరాలు) ఉన్నాయి?",
+        "bn": "কোন পদ্ধতিতে নক্ষত্র (২৭ চান্দ্র মন্দির) আছে?",
+        "kn": "ಯಾವ ವ್ಯವಸ್ಥೆಯಲ್ಲಿ ನಕ್ಷತ್ರಗಳು (27 ಚಂದ್ರ ಮಂದಿರಗಳು) ಇವೆ?",
+        "gu": "કઈ પ્રણાલીમાં નક્ષત્ર (27 ચંદ્ર મંદિર) છે?"
+      },
+      "options": [
+        {
+          "en": "Western astrology only",
+          "hi": "केवल पश्चिमी ज्योतिष",
+          "sa": "केवल पश्चिमी ज्योतिष",
+          "mai": "केवल पश्चिमी ज्योतिष",
+          "mr": "फक्त पाश्चात्य ज्योतिष",
+          "ta": "மேற்கத்திய ஜோதிடம் மட்டும்",
+          "te": "పాశ్చాత్య జ్యోతిషం మాత్రమే",
+          "bn": "শুধু পাশ্চাত্য জ্যোতিষ",
+          "kn": "ಪಾಶ್ಚಾತ್ಯ ಜ್ಯೋತಿಷ ಮಾತ್ರ",
+          "gu": "માત્ર પશ્ચિમી જ્યોતિષ"
+        },
+        {
+          "en": "Both Western and Vedic",
+          "hi": "पश्चिमी और वैदिक दोनों",
+          "sa": "पश्चिमी और वैदिक दोनों",
+          "mai": "पश्चिमी और वैदिक दोनों",
+          "mr": "पाश्चात्य आणि वैदिक दोन्ही",
+          "ta": "மேற்கத்திய மற்றும் வேத இரண்டும்",
+          "te": "పాశ్చాత్య మరియు వైదిక రెండూ",
+          "bn": "পাশ্চাত্য ও বৈদিক উভয়",
+          "kn": "ಪಾಶ್ಚಾತ್ಯ ಮತ್ತು ವೈದಿಕ ಎರಡೂ",
+          "gu": "પશ્ચિમી અને વૈદિક બંને"
+        },
+        {
+          "en": "Vedic Jyotish only",
+          "hi": "केवल वैदिक ज्योतिष",
+          "sa": "केवल वैदिक ज्योतिष",
+          "mai": "केवल वैदिक ज्योतिष",
+          "mr": "फक्त वैदिक ज्योतिष",
+          "ta": "வேத ஜோதிடம் மட்டும்",
+          "te": "వైదిక జ్యోతిషం మాత్రమే",
+          "bn": "শুধু বৈদিক জ্যোতিষ",
+          "kn": "ವೈದಿಕ ಜ್ಯೋತಿಷ ಮಾತ್ರ",
+          "gu": "માત્ર વૈદિક જ્યોતિષ"
+        },
+        {
+          "en": "Chinese astrology only",
+          "hi": "केवल चीनी ज्योतिष",
+          "sa": "केवल चीनी ज्योतिष",
+          "mai": "केवल चीनी ज्योतिष",
+          "mr": "फक्त चिनी ज्योतिष",
+          "ta": "சீன ஜோதிடம் மட்டும்",
+          "te": "చైనీస్ జ్యోతిషం మాత్రమే",
+          "bn": "শুধু চীনা জ্যোতিষ",
+          "kn": "ಚೀನೀ ಜ್ಯೋತಿಷ ಮಾತ್ರ",
+          "gu": "માત્ર ચીની જ્યોતિષ"
+        }
+      ],
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "The 27 nakshatras are unique to Vedic Jyotish. They divide the ecliptic into 27 equal parts of 13 degrees 20 minutes each, based on the Moon's ~27.3-day sidereal period. Western astrology has no equivalent system.",
+        "hi": "27 नक्षत्र वैदिक ज्योतिष की अनूठी विशेषता है। ये क्रान्तिवृत्त को 27 बराबर भागों में बाँटते हैं, प्रत्येक 13°20'। पश्चिमी ज्योतिष में ऐसी कोई प्रणाली नहीं।",
+        "sa": "27 नक्षत्र वैदिक ज्योतिष की अनूठी विशेषता है। ये क्रान्तिवृत्त को 27 बराबर भागों में बाँटते हैं, प्रत्येक 13°20'। पश्चिमी ज्योतिष में ऐसी कोई प्रणाली नहीं।",
+        "ta": "The 27 nakshatras are unique to Vedic Jyotish. They divide the ecliptic into 27 equal parts of 13 degrees 20 minutes each, based on the Moon's ~27.3-day sidereal period. Western astrology has no equivalent system.",
+        "te": "The 27 nakshatras are unique to Vedic Jyotish. They divide the ecliptic into 27 equal parts of 13 degrees 20 minutes each, based on the Moon's ~27.3-day sidereal period. Western astrology has no equivalent system.",
+        "bn": "The 27 nakshatras are unique to Vedic Jyotish. They divide the ecliptic into 27 equal parts of 13 degrees 20 minutes each, based on the Moon's ~27.3-day sidereal period. Western astrology has no equivalent system.",
+        "kn": "The 27 nakshatras are unique to Vedic Jyotish. They divide the ecliptic into 27 equal parts of 13 degrees 20 minutes each, based on the Moon's ~27.3-day sidereal period. Western astrology has no equivalent system.",
+        "mr": "27 नक्षत्र वैदिक ज्योतिष की अनूठी विशेषता है। ये क्रान्तिवृत्त को 27 बराबर भागों में बाँटते हैं, प्रत्येक 13°20'। पश्चिमी ज्योतिष में ऐसी कोई प्रणाली नहीं।",
+        "gu": "The 27 nakshatras are unique to Vedic Jyotish. They divide the ecliptic into 27 equal parts of 13 degrees 20 minutes each, based on the Moon's ~27.3-day sidereal period. Western astrology has no equivalent system.",
+        "mai": "27 नक्षत्र वैदिक ज्योतिष की अनूठी विशेषता है। ये क्रान्तिवृत्त को 27 बराबर भागों में बाँटते हैं, प्रत्येक 13°20'। पश्चिमी ज्योतिष में ऐसी कोई प्रणाली नहीं।"
+      }
+    },
+    {
+      "id": "q0_1_08",
+      "type": "mcq",
+      "question": {
+        "en": "Brahmagupta (628 CE) gave the first rules for zero and negative numbers in which type of text?",
+        "hi": "ब्रह्मगुप्त (628 ई.) ने शून्य और ऋणात्मक संख्याओं के नियम किस प्रकार के ग्रन्थ में दिए?",
+        "sa": "ब्रह्मगुप्तः (628 ई.) शून्यस्य ऋणात्मकसंख्यानां च नियमान् कीदृशे ग्रन्थे दत्तवान्?",
+        "mai": "ब्रह्मगुप्त (628 ई.) शून्य आ ऋणात्मक संख्याक नियम कोन प्रकारक ग्रन्थमे देलथि?",
+        "mr": "ब्रह्मगुप्त (628 ई.) यांनी शून्य आणि ऋणात्मक संख्यांचे नियम कोणत्या प्रकारच्या ग्रंथात दिले?",
+        "ta": "பிரம்மகுப்தர் (கி.பி. 628) பூஜ்ஜியம் மற்றும் எதிர்மறை எண்களுக்கான முதல் விதிகளை எந்த வகை நூலில் கொடுத்தார்?",
+        "te": "బ్రహ్మగుప్తుడు (628 CE) సున్న మరియు ఋణ సంఖ్యల నియమాలను ఏ రకమైన గ్రంథంలో ఇచ్చాడు?",
+        "bn": "ব্রহ্মগুপ্ত (628 খ্রি.) শূন্য ও ঋণাত্মক সংখ্যার নিয়ম কোন ধরনের গ্রন্থে দিয়েছিলেন?",
+        "kn": "ಬ್ರಹ್ಮಗುಪ್ತ (628 CE) ಶೂನ್ಯ ಮತ್ತು ಋಣಾತ್ಮಕ ಸಂಖ್ಯೆಗಳ ನಿಯಮಗಳನ್ನು ಯಾವ ರೀತಿಯ ಗ್ರಂಥದಲ್ಲಿ ನೀಡಿದರು?",
+        "gu": "બ્રહ્મગુપ્ત (628 ઈ.) શૂન્ય અને ઋણાત્મક સંખ્યાઓના નિયમો કયા પ્રકારના ગ્રંથમાં આપ્યા?"
+      },
+      "options": [
+        {
+          "en": "A philosophy text",
+          "hi": "एक दर्शन ग्रन्थ",
+          "sa": "दर्शनग्रन्थः",
+          "mai": "एक दर्शन ग्रन्थ",
+          "mr": "एक तत्त्वज्ञान ग्रंथ",
+          "ta": "ஒரு தத்துவ நூல்",
+          "te": "ఒక తత్వశాస్త్ర గ్రంథం",
+          "bn": "একটি দর্শন গ্রন্থ",
+          "kn": "ಒಂದು ತತ್ವಶಾಸ್ತ್ರ ಗ್ರಂಥ",
+          "gu": "એક દર્શન ગ્રંથ"
+        },
+        {
+          "en": "A medical text",
+          "hi": "एक चिकित्सा ग्रन्थ",
+          "sa": "आयुर्वेदग्रन्थः",
+          "mai": "एक चिकित्सा ग्रन्थ",
+          "mr": "एक वैद्यकीय ग्रंथ",
+          "ta": "ஒரு மருத்துவ நூல்",
+          "te": "ఒక వైద్య గ్రంథం",
+          "bn": "একটি চিকিৎসা গ্রন্থ",
+          "kn": "ಒಂದು ವೈದ್ಯ ಗ್ರಂಥ",
+          "gu": "એક ચિકિત્સા ગ્રંથ"
+        },
+        {
+          "en": "An astronomy text",
+          "hi": "एक खगोलशास्त्र ग्रन्थ",
+          "sa": "खगोलशास्त्रग्रन्थः",
+          "mai": "एक खगोलशास्त्र ग्रन्थ",
+          "mr": "एक खगोलशास्त्र ग्रंथ",
+          "ta": "ஒரு வானியல் நூல்",
+          "te": "ఒక ఖగోళశాస్త్ర గ్రంథం",
+          "bn": "একটি জ্যোতির্বিজ্ঞান গ্রন্থ",
+          "kn": "ಒಂದು ಖಗೋಳಶಾಸ್ತ್ರ ಗ್ರಂಥ",
+          "gu": "એક ખગોળશાસ્ત્ર ગ્રંથ"
+        },
+        {
+          "en": "A grammar text",
+          "hi": "एक व्याकरण ग्रन्थ",
+          "sa": "व्याकरणग्रन्थः",
+          "mai": "एक व्याकरण ग्रन्थ",
+          "mr": "एक व्याकरण ग्रंथ",
+          "ta": "ஒரு இலக்கண நூல்",
+          "te": "ఒక వ్యాకరణ గ్రంథం",
+          "bn": "একটি ব্যাকরণ গ্রন্থ",
+          "kn": "ಒಂದು ವ್ಯಾಕರಣ ಗ್ರಂಥ",
+          "gu": "એક વ્યાકરણ ગ્રંથ"
+        }
+      ],
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Brahmagupta formalized rules for zero and negative numbers in his Brahmasphutasiddhanta (628 CE), which is primarily an astronomy text. Mathematics and astronomy were deeply intertwined in India — mathematical breakthroughs were driven by the need for precise astronomical calculations.",
+        "hi": "ब्रह्मगुप्त ने ब्राह्मस्फुटसिद्धान्त में शून्य और ऋणात्मक संख्याओं के नियम दिए — यह मुख्यतः एक खगोलशास्त्र ग्रन्थ है। भारत में गणित और खगोलशास्त्र गहरे रूप से जुड़े थे।",
+        "sa": "ब्रह्मगुप्त ने ब्राह्मस्फुटसिद्धान्त में शून्य और ऋणात्मक संख्याओं के नियम दिए — यह मुख्यतः एक खगोलशास्त्र ग्रन्थ है। भारत में गणित और खगोलशास्त्र गहरे रूप से जुड़े थे।",
+        "mai": "ब्रह्मगुप्त ने ब्राह्मस्फुटसिद्धान्त में शून्य और ऋणात्मक संख्याओं के नियम दिए — यह मुख्यतः एक खगोलशास्त्र ग्रन्थ है। भारत में गणित और खगोलशास्त्र गहरे रूप से जुड़े थे।",
+        "mr": "ब्रह्मगुप्त ने ब्राह्मस्फुटसिद्धान्त में शून्य और ऋणात्मक संख्याओं के नियम दिए — यह मुख्यतः एक खगोलशास्त्र ग्रन्थ है। भारत में गणित और खगोलशास्त्र गहरे रूप से जुड़े थे।",
+        "ta": "Brahmagupta formalized rules for zero and negative numbers in his Brahmasphutasiddhanta (628 CE), which is primarily an astronomy text. Mathematics and astronomy were deeply intertwined in India — mathematical breakthroughs were driven by the need for precise astronomical calculations.",
+        "te": "Brahmagupta formalized rules for zero and negative numbers in his Brahmasphutasiddhanta (628 CE), which is primarily an astronomy text. Mathematics and astronomy were deeply intertwined in India — mathematical breakthroughs were driven by the need for precise astronomical calculations.",
+        "bn": "Brahmagupta formalized rules for zero and negative numbers in his Brahmasphutasiddhanta (628 CE), which is primarily an astronomy text. Mathematics and astronomy were deeply intertwined in India — mathematical breakthroughs were driven by the need for precise astronomical calculations.",
+        "kn": "Brahmagupta formalized rules for zero and negative numbers in his Brahmasphutasiddhanta (628 CE), which is primarily an astronomy text. Mathematics and astronomy were deeply intertwined in India — mathematical breakthroughs were driven by the need for precise astronomical calculations.",
+        "gu": "Brahmagupta formalized rules for zero and negative numbers in his Brahmasphutasiddhanta (628 CE), which is primarily an astronomy text. Mathematics and astronomy were deeply intertwined in India — mathematical breakthroughs were driven by the need for precise astronomical calculations."
+      },
+      "classicalRef": "Brahmasphutasiddhanta Ch.18"
+    },
+    {
+      "id": "q0_1_09",
+      "type": "true_false",
+      "question": {
+        "en": "The Surya Siddhanta calculated the sidereal year with an error of only 1.4 seconds per year.",
+        "hi": "सूर्य सिद्धान्त ने नाक्षत्र वर्ष की गणना केवल 1.4 सेकण्ड प्रति वर्ष की त्रुटि से की।",
+        "sa": "सूर्यसिद्धान्तः नाक्षत्रवर्षम् प्रतिवर्षम् केवलम् 1.4 क्षणस्य त्रुट्या गणितवान्।",
+        "mai": "सूर्य सिद्धान्त नाक्षत्र वर्षक गणना प्रति वर्ष मात्र 1.4 सेकण्ड त्रुटिसँ कएल छल।",
+        "mr": "सूर्य सिद्धांताने नाक्षत्रिक वर्ष दरवर्षी फक्त 1.4 सेकंद चुकीने मोजले.",
+        "ta": "சூர்ய சித்தாந்தம் நாட்சத்திர ஆண்டை ஆண்டுக்கு வெறும் 1.4 வினாடிகள் பிழையுடன் கணக்கிட்டது.",
+        "te": "సూర్య సిద్ధాంతం నక్షత్ర సంవత్సరాన్ని సంవత్సరానికి కేవలం 1.4 సెకన్ల తప్పుతో గణించింది.",
+        "bn": "সূর্য সিদ্ধান্ত নাক্ষত্রিক বর্ষ বার্ষিক মাত্র 1.4 সেকেন্ড ত্রুটি সহ গণনা করেছিল।",
+        "kn": "ಸೂರ್ಯ ಸಿದ್ಧಾಂತ ನಾಕ್ಷತ್ರಿಕ ವರ್ಷವನ್ನು ವರ್ಷಕ್ಕೆ ಕೇವಲ 1.4 ಸೆಕೆಂಡುಗಳ ದೋಷದಲ್ಲಿ ಲೆಕ್ಕ ಹಾಕಿತು.",
+        "gu": "સૂર્ય સિદ્ધાંતે નાક્ષત્રિક વર્ષ દર વર્ષે માત્ર 1.4 સેકન્ડની ભૂલ સાથે ગણ્યું."
+      },
+      "correctAnswer": true,
+      "explanation": {
+        "en": "The Surya Siddhanta gives the sidereal year as 365.2587565 days. The modern value is 365.25636 days. The difference is about 1.4 seconds per year — an extraordinary achievement for a text composed around 400 CE without telescopes or modern instruments.",
+        "hi": "सूर्य सिद्धान्त में नाक्षत्र वर्ष 365.2587565 दिन दिया गया। आधुनिक मान 365.25636 दिन है। अन्तर प्रति वर्ष केवल ~1.4 सेकण्ड — बिना दूरबीन के अद्भुत उपलब्धि!",
+        "sa": "सूर्य सिद्धान्त में नाक्षत्र वर्ष 365.2587565 दिन दिया गया। आधुनिक मान 365.25636 दिन है। अन्तर प्रति वर्ष केवल ~1.4 सेकण्ड — बिना दूरबीन के अद्भुत उपलब्धि!",
+        "ta": "The Surya Siddhanta gives the sidereal year as 365.2587565 days. The modern value is 365.25636 days. The difference is about 1.4 seconds per year — an extraordinary achievement for a text composed around 400 CE without telescopes or modern instruments.",
+        "te": "The Surya Siddhanta gives the sidereal year as 365.2587565 days. The modern value is 365.25636 days. The difference is about 1.4 seconds per year — an extraordinary achievement for a text composed around 400 CE without telescopes or modern instruments.",
+        "bn": "The Surya Siddhanta gives the sidereal year as 365.2587565 days. The modern value is 365.25636 days. The difference is about 1.4 seconds per year — an extraordinary achievement for a text composed around 400 CE without telescopes or modern instruments.",
+        "kn": "The Surya Siddhanta gives the sidereal year as 365.2587565 days. The modern value is 365.25636 days. The difference is about 1.4 seconds per year — an extraordinary achievement for a text composed around 400 CE without telescopes or modern instruments.",
+        "mr": "सूर्य सिद्धान्त में नाक्षत्र वर्ष 365.2587565 दिन दिया गया। आधुनिक मान 365.25636 दिन है। अन्तर प्रति वर्ष केवल ~1.4 सेकण्ड — बिना दूरबीन के अद्भुत उपलब्धि!",
+        "gu": "The Surya Siddhanta gives the sidereal year as 365.2587565 days. The modern value is 365.25636 days. The difference is about 1.4 seconds per year — an extraordinary achievement for a text composed around 400 CE without telescopes or modern instruments.",
+        "mai": "सूर्य सिद्धान्त में नाक्षत्र वर्ष 365.2587565 दिन दिया गया। आधुनिक मान 365.25636 दिन है। अन्तर प्रति वर्ष केवल ~1.4 सेकण्ड — बिना दूरबीन के अद्भुत उपलब्धि!"
+      },
+      "classicalRef": "Surya Siddhanta Ch.1"
+    },
+    {
+      "id": "q0_1_10",
+      "type": "mcq",
+      "question": {
+        "en": "What does the Dasha system in Jyotish predict that Western astrology cannot?",
+        "hi": "ज्योतिष की दशा प्रणाली क्या भविष्यवाणी करती है जो पश्चिमी ज्योतिष नहीं कर सकता?",
+        "sa": "ज्योतिषस्य दशापद्धतिः पाश्चात्यज्योतिषेण अशक्यं किम् भविष्यवदति?",
+        "mai": "ज्योतिषक दशा प्रणाली पश्चिमी ज्योतिष जे नै कए सकैत अछि से की भविष्यवाणी करैत अछि?",
+        "mr": "ज्योतिषातील दशा प्रणाली पाश्चात्य ज्योतिष करू न शकणारे काय भाकीत करते?",
+        "ta": "ஜோதிடத்தில் தசை முறை என்ன கணிக்கிறது, மேற்கத்திய ஜோதிடத்தால் முடியாத?",
+        "te": "జ్యోతిషంలో దశ వ్యవస్థ పాశ్చాత్య జ్యోతిషం చేయలేని ఏమి అంచనా వేస్తుంది?",
+        "bn": "জ্যোতিষের দশা পদ্ধতি এমন কী ভবিষ্যদ্বাণী করে যা পাশ্চাত্য জ্যোতিষ পারে না?",
+        "kn": "ಜ್ಯೋತಿಷದ ದಶಾ ವ್ಯವಸ್ಥೆ ಪಾಶ್ಚಾತ್ಯ ಜ್ಯೋತಿಷಕ್ಕೆ ಸಾಧ್ಯವಿಲ್ಲದ ಏನನ್ನು ಊಹಿಸುತ್ತದೆ?",
+        "gu": "જ્યોતિષની દશા પ્રણાલી પશ્ચિમી જ્યોતિષ ન કરી શકે એવું શું ભાખે છે?"
+      },
+      "options": [
+        {
+          "en": "Your personality type",
+          "hi": "आपका व्यक्तित्व प्रकार",
+          "sa": "आपका व्यक्तित्व प्रकार",
+          "mai": "आपका व्यक्तित्व प्रकार",
+          "mr": "तुमचा व्यक्तिमत्व प्रकार",
+          "ta": "உங்கள் ஆளுமை வகை",
+          "te": "మీ వ్యక్తిత్వ రకం",
+          "bn": "আপনার ব্যক্তিত্বের ধরন",
+          "kn": "ನಿಮ್ಮ ವ್ಯಕ್ತಿತ್ವ ಪ್ರಕಾರ",
+          "gu": "તમારો વ્યક્તિત્વ પ્રકાર"
+        },
+        {
+          "en": "Your lucky number",
+          "hi": "आपका भाग्यशाली अंक",
+          "sa": "आपका भाग्यशाली अंक",
+          "mai": "आपका भाग्यशाली अंक",
+          "mr": "तुमचा भाग्यांक",
+          "ta": "உங்கள் அதிர்ஷ்ட எண்",
+          "te": "మీ అదృష్ట సంఖ్య",
+          "bn": "আপনার ভাগ্যবান সংখ্যা",
+          "kn": "ನಿಮ್ಮ ಅದೃಷ್ಟ ಸಂಖ್ಯೆ",
+          "gu": "તમારો ભાગ્યશાળી અંક"
+        },
+        {
+          "en": "WHEN specific planetary periods activate in your life",
+          "hi": "कब विशिष्ट ग्रहकाल आपके जीवन में सक्रिय होंगे",
+          "sa": "कब विशिष्ट ग्रहकाल आपके जीवन में सक्रिय होंगे",
+          "mai": "कब विशिष्ट ग्रहकाल आपके जीवन में सक्रिय होंगे",
+          "mr": "कब विशिष्ट ग्रहकाल आपके जीवन में सक्रिय होंगे",
+          "ta": "உங்கள் வாழ்வில் குறிப்பிட்ட கிரக காலங்கள் எப்போது செயல்படும்",
+          "te": "మీ జీవితంలో నిర్దిష్ట గ్రహ కాలాలు ఎప్పుడు సక్రియమవుతాయి",
+          "bn": "আপনার জীবনে নির্দিষ্ট গ্রহ মহাদশা কখন সক্রিয় হয়",
+          "kn": "ನಿಮ್ಮ ಜೀವನದಲ್ಲಿ ನಿರ್ದಿಷ್ಟ ಗ್ರಹ ಅವಧಿಗಳು ಯಾವಾಗ ಸಕ್ರಿಯವಾಗುತ್ತವೆ",
+          "gu": "તમારા જીવનમાં ચોક્કસ ગ્રહ કાળ ક્યારે સક્રિય થાય"
+        },
+        {
+          "en": "What constellation is rising",
+          "hi": "कौन सा तारामंडल उदय हो रहा है",
+          "sa": "कौन सा तारामंडल उदय हो रहा है",
+          "mai": "कौन सा तारामंडल उदय हो रहा है",
+          "mr": "कौन सा तारामंडल उदय हो रहा है",
+          "ta": "எந்த நட்சத்திர மண்டலம் உதிக்கிறது",
+          "te": "ఏ రాశి ఉదయిస్తోంది",
+          "bn": "কোন তারামণ্ডল উদিত হচ্ছে",
+          "kn": "ಯಾವ ನಕ್ಷತ್ರ ಮಂಡಲ ಉದಯಿಸುತ್ತಿದೆ",
+          "gu": "કયો નક્ષત્ર સમૂહ ઉદય થઈ રહ્યો છે"
+        }
+      ],
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "The Vimshottari Dasha system is unique to Jyotish. It assigns specific time periods (up to 20 years each) ruled by different planets, providing a timeline of when different planetary influences become dominant. Western astrology has no comparable timing mechanism.",
+        "hi": "विंशोत्तरी दशा ज्योतिष की अनूठी प्रणाली है। यह विभिन्न ग्रहों द्वारा शासित विशिष्ट समयकाल निर्धारित करती है, बताती है कब कौन सा ग्रहीय प्रभाव प्रबल होगा।",
+        "sa": "विंशोत्तरी दशा ज्योतिष की अनूठी प्रणाली है। यह विभिन्न ग्रहों द्वारा शासित विशिष्ट समयकाल निर्धारित करती है, बताती है कब कौन सा ग्रहीय प्रभाव प्रबल होगा।",
+        "mai": "विंशोत्तरी दशा ज्योतिष की अनूठी प्रणाली है। यह विभिन्न ग्रहों द्वारा शासित विशिष्ट समयकाल निर्धारित करती है, बताती है कब कौन सा ग्रहीय प्रभाव प्रबल होगा।",
+        "mr": "विंशोत्तरी दशा ज्योतिष की अनूठी प्रणाली है। यह विभिन्न ग्रहों द्वारा शासित विशिष्ट समयकाल निर्धारित करती है, बताती है कब कौन सा ग्रहीय प्रभाव प्रबल होगा।",
+        "ta": "The Vimshottari Dasha system is unique to Jyotish. It assigns specific time periods (up to 20 years each) ruled by different planets, providing a timeline of when different planetary influences become dominant. Western astrology has no comparable timing mechanism.",
+        "te": "The Vimshottari Dasha system is unique to Jyotish. It assigns specific time periods (up to 20 years each) ruled by different planets, providing a timeline of when different planetary influences become dominant. Western astrology has no comparable timing mechanism.",
+        "bn": "The Vimshottari Dasha system is unique to Jyotish. It assigns specific time periods (up to 20 years each) ruled by different planets, providing a timeline of when different planetary influences become dominant. Western astrology has no comparable timing mechanism.",
+        "kn": "The Vimshottari Dasha system is unique to Jyotish. It assigns specific time periods (up to 20 years each) ruled by different planets, providing a timeline of when different planetary influences become dominant. Western astrology has no comparable timing mechanism.",
+        "gu": "The Vimshottari Dasha system is unique to Jyotish. It assigns specific time periods (up to 20 years each) ruled by different planets, providing a timeline of when different planetary influences become dominant. Western astrology has no comparable timing mechanism."
+      }
+    }
+  ]
+}

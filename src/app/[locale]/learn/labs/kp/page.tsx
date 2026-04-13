@@ -8,6 +8,9 @@ import { GRAHAS } from '@/lib/constants/grahas';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import type { Locale } from '@/types/panchang';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LJ from '@/messages/learn/labs-kp.json';
 
 // ── Vimshottari data ────────────────────────────────────────────
 const VIMSHOTTARI = [
@@ -66,10 +69,10 @@ function computeSubDivisions(nakStart: number, starLordIdx: number, posInNak: nu
 
 // ── Shared Wizard Components ─────────────────────────────────────
 
-function WhyBox({ children }: { children: React.ReactNode }) {
+function WhyBox({ children, heading = 'Why does this matter?' }: { children: React.ReactNode; heading?: string }) {
   return (
     <div className="rounded-xl border border-indigo-500/25 bg-indigo-500/8 p-4 my-4">
-      <div className="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">Why does this matter?</div>
+      <div className="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">{heading}</div>
       <div className="text-white/80 text-sm leading-relaxed">{children}</div>
     </div>
   );
@@ -84,10 +87,10 @@ function ConceptBox({ label, children }: { label: string; children: React.ReactN
   );
 }
 
-function FormulaBox({ children }: { children: React.ReactNode }) {
+function FormulaBox({ children, heading = 'Formula' }: { children: React.ReactNode; heading?: string }) {
   return (
     <div className="rounded-xl border border-amber-500/20 bg-[#1a1a0a] p-4 my-4 font-mono text-sm">
-      <div className="text-amber-400 text-xs font-bold uppercase tracking-wider mb-2 font-sans">Formula</div>
+      <div className="text-amber-400 text-xs font-bold uppercase tracking-wider mb-2 font-sans">{heading}</div>
       <div className="text-amber-200 leading-relaxed">{children}</div>
     </div>
   );
@@ -385,10 +388,11 @@ export default function KPSubLordLabPage() {
     setStep(next);
   }
 
+  const t = (key: string) => lt((LJ as unknown as Record<string, LocaleText>)[key], locale);
   const dir = step > prevStep ? 1 : -1;
 
   const STEP_LABELS = [
-    'Setup', 'What is KP?', 'Sign Lord', 'Star Lord', 'Sub Lord', 'Summary',
+    t('stepSetup'), t('stepWhatIsKP'), t('stepSignLord'), t('stepStarLord'), t('stepSubLord'), t('stepSummary'),
   ];
 
   return (
@@ -399,13 +403,13 @@ export default function KPSubLordLabPage() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 text-sm mb-4">
             <Crosshair className="w-4 h-4" />
-            <span>Lab 5 · KP System</span>
+            <span>{t('labBadge')}</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-violet-200 via-purple-100 to-violet-200 bg-clip-text text-transparent mb-3">
-            KP Sub-Lord Lookup
+            {t('pageTitle')}
           </h1>
           <p className="text-white/60 max-w-xl mx-auto text-sm">
-            Discover how Krishnamurti Paddhati zooms into any degree with three-level precision
+            {t('pageSubtitle')}
           </p>
         </motion.div>
 
@@ -440,14 +444,14 @@ export default function KPSubLordLabPage() {
             {/* ── STEP 0: Setup ── */}
             {step === 0 && (
               <div>
-                <h2 className="text-xl font-bold text-white mb-1">Choose a Degree</h2>
+                <h2 className="text-xl font-bold text-white mb-1">{t('chooseDegree')}</h2>
                 <p className="text-white/60 text-sm mb-5">
                   In astrology, every planet, house cusp, and sensitive point has a precise longitude — a number from 0° to 360°.
                   Pick any degree and we'll reveal its KP three-level ruler.
                 </p>
 
                 <label className="block text-sm text-white/70 mb-3">
-                  Degree: <span className="text-violet-300 font-mono text-lg">{degree.toFixed(2)}°</span>
+                  {t('degree')}: <span className="text-violet-300 font-mono text-lg">{degree.toFixed(2)}°</span>
                 </label>
                 <input
                   type="range" min={0} max={360} step={0.01} value={degree}
@@ -463,10 +467,10 @@ export default function KPSubLordLabPage() {
                     onChange={e => setDegree(Math.min(360, Math.max(0, parseFloat(e.target.value) || 0)))}
                     className="w-32 px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white font-mono text-center focus:border-violet-500/50 focus:outline-none"
                   />
-                  <span className="text-white/50 text-sm">degrees (0–360)</span>
+                  <span className="text-white/50 text-sm">{t('degrees')}</span>
                 </div>
 
-                <WhyBox>
+                <WhyBox heading={t('whyDoesThisMatter')}>
                   Regular Western astrology just says a planet is "in Aries" — that's 1 of 12 signs (30° slice).
                   KP astrology doesn't stop there. It keeps zooming in, narrowing down to a single small sliver of sky
                   with millimetre-like precision. This three-level zoom is what makes KP famous for specific predictions.
@@ -525,7 +529,7 @@ export default function KPSubLordLabPage() {
                   </div>
                 </div>
 
-                <WhyBox>
+                <WhyBox heading={t('whyDoesThisMatter')}>
                   Think of it like a postal address. The Sign Lord is the country, the Star Lord is the city,
                   and the Sub Lord is the street. KP astrologers say: "The sign shows the area, the star shows the result,
                   but the sub determines whether you'll actually get it."
@@ -551,7 +555,7 @@ export default function KPSubLordLabPage() {
                   To find which sign: divide the degree by 30, take the integer part. That's your sign number.
                 </ConceptBox>
 
-                <FormulaBox>
+                <FormulaBox heading={t('formula')}>
                   Sign Number = floor({result.deg.toFixed(2)} ÷ 30) = floor({(result.deg / 30).toFixed(4)}) = {result.signIdx}<br />
                   → Sign #{result.signIdx + 1}: {result.sign.name.en}<br />
                   → Ruler: {result.sign.ruler}<br />
@@ -590,7 +594,7 @@ export default function KPSubLordLabPage() {
                   cluster the Moon passes through. These became the 27 Nakshatras.
                 </ConceptBox>
 
-                <FormulaBox>
+                <FormulaBox heading={t('formula')}>
                   Nakshatra span = 360° ÷ 27 = 13.3333°<br />
                   Nakshatra # = floor({result.deg.toFixed(2)} ÷ 13.3333) = floor({(result.deg / NAK_SPAN).toFixed(4)}) = {result.nakIdx}<br />
                   → Nakshatra #{result.nakIdx + 1}: {result.nak.name.en}<br />
@@ -623,7 +627,7 @@ export default function KPSubLordLabPage() {
                   value={`${GRAHAS[VIMSHOTTARI[result.starLordIdx].id].symbol} ${GRAHAS[VIMSHOTTARI[result.starLordIdx].id].name.en} — ${result.nak.name.en}`}
                 />
 
-                <WhyBox>
+                <WhyBox heading={t('whyDoesThisMatter')}>
                   The Star Lord is determined entirely by which Nakshatra you're in. Each of the 27 Nakshatras has
                   a fixed planetary ruler assigned by the Vimshottari Dasha system. These 9 planets rule 3 Nakshatras each.
                   The Star Lord is considered the primary indicator of events in KP — more important than the Sign Lord.
@@ -667,7 +671,7 @@ export default function KPSubLordLabPage() {
                   </div>
                 </div>
 
-                <FormulaBox>
+                <FormulaBox heading={t('formula')}>
                   Sub-division span = (planet years ÷ 120) × 13.3333°<br />
                   Subdivisions start from the Star Lord's planet, cycling through all 9.<br />
                   Star Lord = {GRAHAS[VIMSHOTTARI[result.starLordIdx].id].name.en} → index {result.starLordIdx} in the Vimshottari order<br />
@@ -723,7 +727,7 @@ export default function KPSubLordLabPage() {
             {/* ── STEP 5: Summary ── */}
             {step === 5 && (
               <div>
-                <h2 className="text-xl font-bold text-white mb-1">Your KP Result</h2>
+                <h2 className="text-xl font-bold text-white mb-1">{t('yourKPResult')}</h2>
                 <p className="text-white/60 text-sm mb-5">
                   For <span className="font-mono text-violet-300">{result.deg.toFixed(2)}°</span>, here is the complete three-level KP hierarchy:
                 </p>
@@ -767,7 +771,7 @@ export default function KPSubLordLabPage() {
                   ))}
                 </div>
 
-                <WhyBox>
+                <WhyBox heading={t('whyDoesThisMatter')}>
                   <strong className="text-indigo-200">How KP astrologers use this:</strong> They analyse which houses
                   each of these three lords signify. If the Sub Lord signifies the 7th house (marriage), and you're
                   running a relevant dasha period, marriage is predicted. The Sub Lord is the deciding factor —
@@ -776,7 +780,7 @@ export default function KPSubLordLabPage() {
 
                 {/* Adjust degree right here */}
                 <div className="mt-5 p-4 rounded-xl bg-white/5 border border-white/10">
-                  <div className="text-white/60 text-xs mb-2">Try a different degree:</div>
+                  <div className="text-white/60 text-xs mb-2">{t('tryDifferentDegree')}</div>
                   <input
                     type="range" min={0} max={360} step={0.01} value={degree}
                     onChange={e => setDegree(parseFloat(e.target.value))}
@@ -792,8 +796,8 @@ export default function KPSubLordLabPage() {
               totalSteps={TOTAL_STEPS}
               onPrev={() => goTo(step - 1)}
               onNext={() => goTo(step + 1)}
-              prevLabel="← Back"
-              nextLabel={step === TOTAL_STEPS - 2 ? 'See Result →' : 'Next →'}
+              prevLabel={t('previous')}
+              nextLabel={step === TOTAL_STEPS - 2 ? t('seeResult') : t('next')}
             />
           </motion.div>
         </AnimatePresence>

@@ -1,84 +1,10 @@
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/contributions-sine.json';
 import { Link } from '@/lib/i18n/navigation';
-import type { LocaleText, Locale } from '@/types/panchang';
+import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-
-/* ════════════════════════════════════════════════════════════════
-   LABELS — bilingual (en / hi)
-   ════════════════════════════════════════════════════════════════ */
-const L = {
-  title: {
-    en: 'Did You Know "Sine" Is a Sanskrit Word?',
-    hi: 'क्या आप जानते हैं "Sine" एक संस्कृत शब्द है?',
-  },
-  subtitle: {
-    en: 'Every GPS satellite, every computer animation, every bridge ever built uses the sine function. But almost nobody knows that "sine" comes from Sanskrit "Jya" (ज्या, meaning bowstring) — a 1,500-year journey of mistranslation that spans three languages and three continents.',
-    hi: 'प्रत्येक GPS उपग्रह, प्रत्येक कंप्यूटर एनिमेशन, कभी बना प्रत्येक पुल — सभी ज्या फ़ंक्शन का उपयोग करते हैं। परंतु लगभग कोई नहीं जानता कि "sine" संस्कृत "ज्या" से आया है — एक 1,500 वर्ष की भ्रांत अनुवाद यात्रा जो तीन भाषाओं और तीन महाद्वीपों में फैली है।',
-  },
-
-  s1Title: { en: 'What Is Jya — The Sanskrit Bowstring', hi: 'ज्या क्या है — संस्कृत धनुष की प्रत्यंचा' },
-  s1Body: {
-    en: 'The Sanskrit word "Jya" (ज्या) or "Jiva" (जीवा) literally means the bowstring of a bow. Imagine a circle as a bow. Draw a chord across it — that chord is the "jya." Now, half that chord is the "Ardha-jya" (अर्धज्या) — half the bowstring. This half-chord is precisely what we call sine today. The ancient Indians defined the function using geometry they could see and touch: an archer\'s bow.',
-    hi: '"ज्या" या "जीवा" शब्द का शाब्दिक अर्थ है धनुष की प्रत्यंचा। एक वृत्त को धनुष की तरह कल्पना करें। उस पर एक जीवा (chord) खींचें — यही "ज्या" है। अब उस जीवा का आधा "अर्धज्या" है — आधी प्रत्यंचा। यही अर्धज्या आज हम sine कहते हैं। प्राचीन भारतीयों ने इस फ़ंक्शन को ऐसी ज्यामिति से परिभाषित किया जिसे वे देख और छू सकते थे: एक धनुर्धर का धनुष।',
-  },
-
-  s2Title: {
-    en: 'Aryabhata\'s Jya Table — The World\'s First Sine Table (499 CE)',
-    hi: 'आर्यभट की ज्या तालिका — विश्व की प्रथम ज्या तालिका (499 ई.)',
-  },
-  s2Body: {
-    en: 'In the Aryabhatiya (499 CE), the 23-year-old genius Aryabhata gave 24 values of Jya at 3.75° intervals, from 3.75° to 90°. He encoded them as a compact mnemonic verse in a base-225 system — an ingenious compression that let astronomers memorize the entire table. The accuracy is astonishing: correct to 3–4 decimal places, sufficient for celestial navigation.',
-    hi: 'आर्यभटीय (499 ई.) में 23 वर्षीय प्रतिभाशाली आर्यभट ने 3.75° अंतराल पर 24 ज्या मान दिए, 3.75° से 90° तक। उन्होंने इन्हें 225 के आधार पर एक संक्षिप्त स्मृतिसहायक श्लोक में एन्कोड किया — एक चतुर संपीड़न जिससे ज्योतिषी पूरी तालिका याद कर सकते थे। सटीकता आश्चर्यजनक है: 3-4 दशमलव स्थानों तक सही, खगोलीय नेविगेशन के लिए पर्याप्त।',
-  },
-  s2Source: {
-    en: 'Classical source: Aryabhatiya, Ganitapada (Mathematics Section), verse 12 — "makhi bhakhi phakhi dhakhi nakhi nakhi..." — a phonetic encoding of all 24 sine differences.',
-    hi: 'मूल स्रोत: आर्यभटीय, गणितपाद, श्लोक 12 — "मखि भखि फखि धखि नखि नखि..." — सभी 24 ज्या अंतरों का ध्वन्यात्मक कूट।',
-  },
-
-  s3Title: {
-    en: 'The Great Mistranslation: Jya → Sine',
-    hi: 'महान भ्रांत अनुवाद: ज्या → Sine',
-  },
-  s3Body: {
-    en: 'When Arab mathematicians translated Indian texts (~800 CE), they transliterated "Jiva" (जीवा) phonetically as "Jiba" in Arabic. Since Arabic is written without vowels, "Jiba" was later misread as "Jaib" (جيب) — an Arabic word meaning "fold, pocket, or bosom." When the 12th-century European translator Gerard of Cremona translated the Arabic text into Latin, he rendered "Jaib" as "Sinus" — the Latin word for fold or bay. "Sinus" then became the English "Sine." A pure naming accident. The mathematics was always Indian.',
-    hi: 'जब अरब गणितज्ञों ने भारतीय ग्रंथों का अनुवाद किया (~800 ई.), उन्होंने "जीवा" को "जिबा" के रूप में ध्वन्यात्मक रूप से लिप्यंतरित किया। चूँकि अरबी बिना स्वरों के लिखी जाती है, "जिबा" को बाद में "जैब" (جيب) पढ़ा गया — एक अरबी शब्द जिसका अर्थ है "मोड़, जेब, या वक्ष।" जब 12वीं सदी के यूरोपीय अनुवादक जेरार्ड ऑफ क्रेमोना ने इसे लैटिन में अनुवाद किया, उन्होंने "जैब" को "Sinus" — मोड़ या खाड़ी के लिए लैटिन शब्द — के रूप में प्रस्तुत किया। "Sinus" फिर अंग्रेजी "Sine" बन गया। एक शुद्ध नामकरण दुर्घटना। गणित हमेशा भारतीय था।',
-  },
-
-  s4Title: { en: 'Accuracy Comparison: Aryabhata vs Modern Values', hi: 'सटीकता तुलना: आर्यभट बनाम आधुनिक मान', sa: 'सटीकता तुलना: आर्यभट बनाम आधुनिक मान', mai: 'सटीकता तुलना: आर्यभट बनाम आधुनिक मान', mr: 'सटीकता तुलना: आर्यभट बनाम आधुनिक मान', ta: 'Accuracy Comparison: Aryabhata vs Modern Values', te: 'Accuracy Comparison: Aryabhata vs Modern Values', bn: 'Accuracy Comparison: Aryabhata vs Modern Values', kn: 'Accuracy Comparison: Aryabhata vs Modern Values', gu: 'Accuracy Comparison: Aryabhata vs Modern Values' },
-  s4Body: {
-    en: 'Aryabhata\'s values, computed in 499 CE, hold up remarkably well against IEEE 754 double-precision floating point. The worst-case deviation is under 0.2%. For most values, the error is under 0.05% — achieved with no calculators, no computers, and no earlier mathematical tradition to build on.',
-    hi: 'आर्यभट के मान, 499 ई. में गणित किए गए, IEEE 754 डबल-प्रिसिजन फ्लोटिंग पॉइंट के मुकाबले उल्लेखनीय रूप से सही हैं। सबसे खराब विचलन 0.2% से कम है। अधिकांश मानों के लिए त्रुटि 0.05% से कम — बिना कैलकुलेटर, बिना कंप्यूटर, और बिना किसी पूर्ववर्ती गणितीय परंपरा के हासिल।',
-  },
-
-  s5Title: {
-    en: 'Beyond Sine — Cosine, Versine, and the Full Indian Trigonometry',
-    hi: 'Sine से आगे — Cosine, Versine और पूर्ण भारतीय त्रिकोणमिति',
-  },
-  s5Body: {
-    en: 'Aryabhata did not stop at sine. He defined a full system: Kojya (कोज्या) — the complement-jya, our cosine. Utkrama-jya (उत्क्रमज्या) — the "reverse jya," our versine (1 − cosine). Brahmagupta (628 CE) later added interpolation formulas for computing sine at intermediate angles — a method equivalent to Newton\'s forward-difference formula, rediscovered 1,000 years later.',
-    hi: 'आर्यभट ने ज्या पर ही नहीं रुके। उन्होंने एक पूर्ण प्रणाली परिभाषित की: कोज्या — पूरक-ज्या, हमारा cosine। उत्क्रमज्या — "उलटी ज्या," हमारा versine (1 − cosine)। ब्रह्मगुप्त (628 ई.) ने बाद में मध्यवर्ती कोणों पर ज्या की गणना के लिए प्रक्षेप सूत्र जोड़े — एक विधि जो न्यूटन के फॉरवर्ड-डिफरेंस फॉर्मूला के समकक्ष है, जो 1,000 वर्ष बाद पुनः खोजी गई।',
-  },
-
-  s6Title: {
-    en: 'How This App Uses Indian Trigonometry Every Day',
-    hi: 'यह ऐप प्रतिदिन भारतीय त्रिकोणमिति का उपयोग कैसे करता है',
-  },
-  s6Body: {
-    en: 'Every calculation in this app traces back to Aryabhata\'s trigonometry. Planet longitudes use sine and cosine to convert between spherical and ecliptic coordinates. Sunrise and sunset times use the sine rule to solve the spherical triangle of the observer\'s horizon. Eclipse magnitude calculations use the versine formula — Aryabhata\'s own contribution. The moon\'s latitude uses the same Jya table values, just at higher precision. When you view today\'s Panchang, you are seeing Aryabhata\'s mathematics, running in real time.',
-    hi: 'इस ऐप में प्रत्येक गणना आर्यभट की त्रिकोणमिति से जुड़ती है। ग्रह देशान्तर गोलाकार और क्रांतिवृत्त निर्देशांकों के बीच रूपांतरण के लिए sine और cosine का उपयोग करते हैं। सूर्योदय और सूर्यास्त के समय की गणना के लिए sine नियम का उपयोग होता है। ग्रहण परिमाण गणना उत्क्रमज्या सूत्र का उपयोग करती है — आर्यभट का अपना योगदान। जब आप आज का पंचांग देखते हैं, तो आप आर्यभट का गणित वास्तविक समय में चलते देखते हैं।',
-  },
-
-  s7Title: {
-    en: 'The Chain Summarized — 1,500 Years in One Flow',
-    hi: 'श्रृंखला सारांश — एक प्रवाह में 1,500 वर्ष',
-  },
-
-  backLink: { en: '← Back to Learn', hi: '← सीखने पर वापस', sa: '← सीखने पर वापस', mai: '← सीखने पर वापस', mr: '← सीखने पर वापस', ta: '← Back to Learn', te: '← Back to Learn', bn: '← Back to Learn', kn: '← Back to Learn', gu: '← Back to Learn' },
-  exploreMore: { en: 'Continue Exploring', hi: 'और जानें', sa: 'और जानें', mai: 'और जानें', mr: 'और जानें', ta: 'Continue Exploring', te: 'Continue Exploring', bn: 'Continue Exploring', kn: 'Continue Exploring', gu: 'Continue Exploring' },
-  calculus: { en: 'Calculus in Kerala', hi: 'केरल में कलनशास्त्र', sa: 'केरल में कलनशास्त्र', mai: 'केरल में कलनशास्त्र', mr: 'केरल में कलनशास्त्र', ta: 'Calculus in Kerala', te: 'Calculus in Kerala', bn: 'Calculus in Kerala', kn: 'Calculus in Kerala', gu: 'Calculus in Kerala' },
-  earthRotation: { en: 'Earth Rotation (499 CE)', hi: 'पृथ्वी का घूर्णन (499 ई.)', sa: 'पृथ्वी का घूर्णन (499 ई.)', mai: 'पृथ्वी का घूर्णन (499 ई.)', mr: 'पृथ्वी का घूर्णन (499 ई.)', ta: 'Earth Rotation (499 CE)', te: 'Earth Rotation (499 CE)', bn: 'Earth Rotation (499 CE)', kn: 'Earth Rotation (499 CE)', gu: 'Earth Rotation (499 CE)' },
-};
 
 const JYA_TABLE = [
   { deg: '3.75°', aryabhata: '225', modern: '224.86', error: '0.06%' },
@@ -112,17 +38,17 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
   const { locale } = await params as { locale: Locale };
   const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const l = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
   return (
     <div className="space-y-10">
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <div>
-        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{l(L.title)}</h2>
-        <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">{l(L.subtitle)}</p>
+        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{t('title')}</h2>
+        <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">{t('subtitle')}</p>
         <div className="flex justify-center mt-4">
-          <ShareRow pageTitle={l(L.title)} locale={locale} />
+          <ShareRow pageTitle={t('title')} locale={locale} />
         </div>
       </div>
 
@@ -130,10 +56,10 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s1Title)}</h3>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s1Title')}</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <p className="text-text-secondary text-sm leading-relaxed mb-4">{l(L.s1Body)}</p>
+            <p className="text-text-secondary text-sm leading-relaxed mb-4">{t('s1Body')}</p>
             <div className="p-4 rounded-xl bg-gold-primary/8 border border-gold-primary/15">
               <p className="text-gold-light text-xs font-semibold mb-1">{isHi ? 'मूल संस्कृत श्लोक' : 'Original Sanskrit Verse'}</p>
               <p className="text-text-primary text-sm font-mono">ज्या = अर्धज्या = sin(θ)</p>
@@ -230,15 +156,15 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-2" style={hf}>{l(L.s2Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-4">{l(L.s2Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-2" style={hf}>{t('s2Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-4">{t('s2Body')}</p>
 
         {/* Source quote */}
         <div className="p-4 rounded-xl bg-gold-primary/8 border-l-4 border-gold-primary/50 mb-6">
           <p className="text-gold-light text-xs font-semibold mb-1">{isHi ? 'मूल स्रोत' : 'Classical Source'}</p>
           <p className="text-text-primary text-sm italic font-mono">आर्यभटीय, गणितपाद, श्लोक १२</p>
           <p className="text-text-secondary text-xs mt-1 font-mono">मखि भखि फखि धखि नखि नखि मखि फखि...</p>
-          <p className="text-text-secondary text-xs mt-1">{l(L.s2Source)}</p>
+          <p className="text-text-secondary text-xs mt-1">{t('s2Source')}</p>
         </div>
 
         {/* Accuracy table */}
@@ -271,8 +197,8 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s3Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-6">{l(L.s3Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s3Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-6">{t('s3Body')}</p>
 
         {/* Translation chain flow */}
         <div className="flex flex-col gap-3">
@@ -287,7 +213,7 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
                   <span className="text-text-secondary text-xs">·</span>
                   <span className="text-text-primary text-sm font-mono font-semibold">{step.word}</span>
                   <span className="text-text-secondary text-xs">·</span>
-                  <span className="text-text-secondary text-xs">{l(step.meaning)}</span>
+                  <span className="text-text-secondary text-xs">{lt(step.meaning as LocaleText, locale)}</span>
                   <span className="ml-auto text-text-secondary text-xs">{step.year}</span>
                 </div>
               </div>
@@ -311,8 +237,8 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s4Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-6">{l(L.s4Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s4Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-6">{t('s4Body')}</p>
 
         {/* Stat cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -324,7 +250,7 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
           ].map((stat, i) => (
             <div key={i} className="p-3 rounded-xl bg-gold-primary/8 border border-gold-primary/15 text-center">
               <div className="text-gold-light text-xl font-bold">{stat.value}</div>
-              <div className="text-text-secondary text-xs mt-1">{l(stat.label)}</div>
+              <div className="text-text-secondary text-xs mt-1">{lt(stat.label as LocaleText, locale)}</div>
             </div>
           ))}
         </div>
@@ -334,8 +260,8 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s5Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-5">{l(L.s5Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s5Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-5">{t('s5Body')}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {FUNCTIONS.map((fn, i) => (
@@ -344,7 +270,7 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
                 <span className="text-gold-light font-semibold text-sm">{fn.sanskrit}</span>
                 <span className="text-emerald-400 font-mono text-sm">{fn.formula}</span>
               </div>
-              <div className="text-text-secondary text-xs">{isHi ? fn.english + ' — ' : ''}{l(fn.desc)}</div>
+              <div className="text-text-secondary text-xs">{isHi ? fn.english + ' — ' : ''}{lt(fn.desc as LocaleText, locale)}</div>
             </div>
           ))}
         </div>
@@ -354,8 +280,8 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s6Title)}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-5">{l(L.s6Body)}</p>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s6Title')}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-5">{t('s6Body')}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {[
@@ -366,8 +292,8 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
             <div key={i} className="p-4 rounded-xl bg-white/[0.03] border border-gold-primary/10 flex items-start gap-3">
               <span className="text-2xl flex-shrink-0">{item.icon}</span>
               <div>
-                <div className="text-text-primary text-sm font-semibold mb-1">{l(item.label)}</div>
-                <div className="text-text-secondary text-xs">{l(item.detail)}</div>
+                <div className="text-text-primary text-sm font-semibold mb-1">{lt(item.label as LocaleText, locale)}</div>
+                <div className="text-text-secondary text-xs">{lt(item.detail as LocaleText, locale)}</div>
               </div>
             </div>
           ))}
@@ -378,7 +304,7 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
       <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
-        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s7Title)}</h3>
+        <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s7Title')}</h3>
         <div className="flex flex-wrap gap-2 items-center text-sm">
           {[
             { text: 'ज्या (Jya)', sub: 'Sanskrit, 499 CE', color: '#f0d48a' },
@@ -413,14 +339,14 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
         className="flex flex-col sm:flex-row gap-3 pt-4"
       >
         <Link href="/learn" className="text-text-secondary hover:text-gold-light text-sm transition-colors">
-          {l(L.backLink)}
+          {t('backLink')}
         </Link>
         <div className="flex gap-3 sm:ml-auto">
           <Link href="/learn/contributions/earth-rotation" className="px-4 py-2 rounded-xl bg-gold-primary/15 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/25 transition-colors">
-            {l(L.earthRotation)} →
+            {t('earthRotation')} →
           </Link>
           <Link href="/learn/contributions/calculus" className="px-4 py-2 rounded-xl bg-gold-primary/15 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/25 transition-colors">
-            {l(L.calculus)} →
+            {t('calculus')} →
           </Link>
         </div>
       </div>

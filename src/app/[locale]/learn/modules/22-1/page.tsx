@@ -3,20 +3,16 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/22-1.json';
 
 const META: ModuleMeta = {
   id: 'mod_22_1', phase: 9, topic: 'Astronomy', moduleNumber: '22.1',
-  title: { en: 'Julian Day — The Universal Clock', hi: 'जूलियन दिवस — सार्वभौमिक घड़ी', sa: 'जूलियन दिवस — सार्वभौमिक घड़ी', mai: 'जूलियन दिवस — सार्वभौमिक घड़ी', mr: 'जूलियन दिवस — सार्वभौमिक घड़ी', ta: 'Julian Day — The Universal Clock', te: 'Julian Day — The Universal Clock', bn: 'Julian Day — The Universal Clock', kn: 'Julian Day — The Universal Clock', gu: 'Julian Day — The Universal Clock' },
-  subtitle: {
-    en: 'Why astronomers count days from 4713 BCE, and how every Panchang calculation begins with converting a date to a single number',
-    hi: 'खगोलविद 4713 ई.पू. से दिनों की गणना क्यों करते हैं, और प्रत्येक पंचांग गणना एक तिथि को एकल संख्या में बदलने से कैसे आरम्भ होती है',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 12,
-  crossRefs: [
-    { label: { en: 'Module 22-2: Finding the Sun', hi: 'मॉड्यूल 22-2: सूर्य की स्थिति', sa: 'मॉड्यूल 22-2: सूर्य की स्थिति', mai: 'मॉड्यूल 22-2: सूर्य की स्थिति', mr: 'मॉड्यूल 22-2: सूर्य की स्थिति', ta: 'Module 22-2: Finding the Sun', te: 'Module 22-2: Finding the Sun', bn: 'Module 22-2: Finding the Sun', kn: 'Module 22-2: Finding the Sun', gu: 'Module 22-2: Finding the Sun' }, href: '/learn/modules/22-2' },
-    { label: { en: 'Module 22-3: Finding the Moon', hi: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', sa: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', mai: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', mr: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', ta: 'Module 22-3: Finding the Moon', te: 'Module 22-3: Finding the Moon', bn: 'Module 22-3: Finding the Moon', kn: 'Module 22-3: Finding the Moon', gu: 'Module 22-3: Finding the Moon' }, href: '/learn/modules/22-3' },
-    { label: { en: 'Module 22-4: Sunrise Calculation', hi: 'मॉड्यूल 22-4: सूर्योदय गणना', sa: 'मॉड्यूल 22-4: सूर्योदय गणना', mai: 'मॉड्यूल 22-4: सूर्योदय गणना', mr: 'मॉड्यूल 22-4: सूर्योदय गणना', ta: 'Module 22-4: Sunrise Calculation', te: 'Module 22-4: Sunrise Calculation', bn: 'Module 22-4: Sunrise Calculation', kn: 'Module 22-4: Sunrise Calculation', gu: 'Module 22-4: Sunrise Calculation' }, href: '/learn/modules/22-4' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

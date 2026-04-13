@@ -3,21 +3,16 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/20-3.json';
 
 const META: ModuleMeta = {
   id: 'mod_20_3', phase: 7, topic: 'KP System', moduleNumber: '20.3',
-  title: { en: 'Significators — 4-Level House Connection', hi: 'कारकत्व — 4 स्तरीय भाव सम्बन्ध', sa: 'कारकत्व — 4 स्तरीय भाव सम्बन्ध', mai: 'कारकत्व — 4 स्तरीय भाव सम्बन्ध', mr: 'कारकत्व — 4 स्तरीय भाव सम्बन्ध', ta: 'Significators — 4-Level House Connection', te: 'Significators — 4-Level House Connection', bn: 'Significators — 4-Level House Connection', kn: 'Significators — 4-Level House Connection', gu: 'Significators — 4-Level House Connection' },
-  subtitle: {
-    en: 'How every planet connects to houses through occupation, star lordship, ownership, and star-lord ownership — the foundation of KP event prediction',
-    hi: 'कैसे प्रत्येक ग्रह निवास, नक्षत्र स्वामित्व, भाव स्वामित्व और नक्षत्र-स्वामी स्वामित्व द्वारा भावों से जुड़ता है — केपी घटना भविष्यवाणी का आधार',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 14,
-  crossRefs: [
-    { label: { en: 'Module 20-1: Placidus Houses', hi: 'मॉड्यूल 20-1: प्लेसिडस भाव', sa: 'मॉड्यूल 20-1: प्लेसिडस भाव', mai: 'मॉड्यूल 20-1: प्लेसिडस भाव', mr: 'मॉड्यूल 20-1: प्लेसिडस भाव', ta: 'Module 20-1: Placidus Houses', te: 'Module 20-1: Placidus Houses', bn: 'Module 20-1: Placidus Houses', kn: 'Module 20-1: Placidus Houses', gu: 'Module 20-1: Placidus Houses' }, href: '/learn/modules/20-1' },
-    { label: { en: 'Module 20-2: 249 Sub-Lord Table', hi: 'मॉड्यूल 20-2: 249 उप-स्वामी सारणी', sa: 'मॉड्यूल 20-2: 249 उप-स्वामी सारणी', mai: 'मॉड्यूल 20-2: 249 उप-स्वामी सारणी', mr: 'मॉड्यूल 20-2: 249 उप-स्वामी सारणी', ta: 'Module 20-2: 249 Sub-Lord Table', te: 'Module 20-2: 249 Sub-Lord Table', bn: 'Module 20-2: 249 Sub-Lord Table', kn: 'Module 20-2: 249 Sub-Lord Table', gu: 'Module 20-2: 249 Sub-Lord Table' }, href: '/learn/modules/20-2' },
-    { label: { en: 'Module 20-4: Ruling Planets', hi: 'मॉड्यूल 20-4: शासक ग्रह', sa: 'मॉड्यूल 20-4: शासक ग्रह', mai: 'मॉड्यूल 20-4: शासक ग्रह', mr: 'मॉड्यूल 20-4: शासक ग्रह', ta: 'Module 20-4: Ruling Planets', te: 'Module 20-4: Ruling Planets', bn: 'Module 20-4: Ruling Planets', kn: 'Module 20-4: Ruling Planets', gu: 'Module 20-4: Ruling Planets' }, href: '/learn/modules/20-4' },
-    { label: { en: 'KP System Tool', hi: 'केपी पद्धति उपकरण', sa: 'केपी पद्धति उपकरण', mai: 'केपी पद्धति उपकरण', mr: 'केपी पद्धति उपकरण', ta: 'KP System Tool', te: 'KP System Tool', bn: 'KP System Tool', kn: 'KP System Tool', gu: 'KP System Tool' }, href: '/kp-system' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

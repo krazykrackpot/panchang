@@ -6,7 +6,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { BookOpen, ChevronDown, CheckCircle, XCircle, AlertTriangle } from 'lucide-react';
 import type { Locale, LocaleText } from '@/types/panchang';
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText as LT2 } from '@/lib/learn/translations';
+import CL from '@/messages/learn/classical-texts.json';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Text Data ──────────────────────────────────────────────────────────────
@@ -165,12 +167,14 @@ export default function ClassicalTextsPage() {
   const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedText, setExpandedText] = useState<string | null>('aryabhatiya');
+  const tc = (key: string) => lt((CL as unknown as Record<string, LT2>)[key], locale);
+  const l = (obj: LocaleText | Record<string, string>) => lt(obj as LT2, locale);
 
   return (
     <div className="space-y-10">
       <div>
         <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>
-          {isHi ? 'शास्त्रीय ग्रंथ — प्राचीन ज्ञान का मूल्यांकन' : 'Classical Texts — Evaluating Ancient Knowledge'}
+          {tc('pageTitle')}
         </h2>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">
           {isHi
@@ -181,7 +185,7 @@ export default function ClassicalTextsPage() {
 
       {/* Two traditions visual */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
-        <h3 className="text-gold-light font-bold text-sm mb-3" style={hf}>{isHi ? 'दो परंपराएं' : 'Two Traditions'}</h3>
+        <h3 className="text-gold-light font-bold text-sm mb-3" style={hf}>{tc('twoTraditions')}</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
             <div className="text-amber-400 font-bold text-sm mb-1">{isHi ? 'सिद्धांत (Astronomical)' : 'Siddhanta (Astronomical)'}</div>
@@ -201,14 +205,14 @@ export default function ClassicalTextsPage() {
         {Object.entries(STATUS_CONFIG).map(([key, cfg]) => {
           const Icon = cfg.icon;
           return (
-            <div key={key} className="flex items-center gap-1.5"><Icon className={`w-3.5 h-3.5 ${cfg.color}`} /><span className="text-text-secondary">{isHi ? cfg.label.hi : cfg.label.en}</span></div>
+            <div key={key} className="flex items-center gap-1.5"><Icon className={`w-3.5 h-3.5 ${cfg.color}`} /><span className="text-text-secondary">{l(cfg.label)}</span></div>
           );
         })}
       </div>
 
       {/* Timeline */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
-        <h3 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कालक्रम' : 'Timeline'}</h3>
+        <h3 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{tc('timeline')}</h3>
         <div className="flex flex-wrap gap-2 justify-center">
           {TEXTS.sort((a, b) => {
             const getYear = (d: string) => parseInt(d.replace(/[^0-9]/g, '')) || 500;
@@ -216,7 +220,7 @@ export default function ClassicalTextsPage() {
           }).map((t, i) => (
             <div key={i} className={`px-3 py-2 rounded-lg border ${t.border} text-center min-w-[100px]`}>
               <div className={`font-bold text-xs ${t.color}`}>{t.date}</div>
-              <div className="text-text-secondary text-xs">{isHi ? t.name.hi : t.name.en}</div>
+              <div className="text-text-secondary text-xs">{l(t.name)}</div>
             </div>
           ))}
         </div>
@@ -234,8 +238,8 @@ export default function ClassicalTextsPage() {
                 <div className="flex items-center gap-4">
                   <BookOpen className={`w-6 h-6 ${text.color} shrink-0`} />
                   <div className="text-left">
-                    <div className={`font-bold text-lg ${text.color}`} style={hf}>{isHi ? text.name.hi : text.name.en}</div>
-                    <div className="text-text-secondary text-xs">{isHi ? text.author.hi : text.author.en} · {text.date} · {text.chapters} {isHi ? 'अध्याय' : 'chapters'} · {text.verses} {isHi ? 'श्लोक' : 'verses'}</div>
+                    <div className={`font-bold text-lg ${text.color}`} style={hf}>{l(text.name)}</div>
+                    <div className="text-text-secondary text-xs">{l(text.author)} · {text.date} · {text.chapters} {tc('chapters')} · {text.verses} {tc('verses')}</div>
                   </div>
                 </div>
                 <ChevronDown className={`w-5 h-5 text-text-secondary transition-transform shrink-0 ${isExpanded ? 'rotate-180' : ''}`} />
@@ -246,12 +250,12 @@ export default function ClassicalTextsPage() {
                   <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
                     <div className="px-5 pb-6 space-y-5 border-t border-gold-primary/10 pt-4">
                       {/* Summary */}
-                      <p className="text-text-secondary text-sm leading-relaxed">{isHi ? text.summary.hi : text.summary.en}</p>
+                      <p className="text-text-secondary text-sm leading-relaxed">{l(text.summary)}</p>
 
                       {/* Accuracy table (if available) */}
                       {text.accuracyHighlights && (
                         <div>
-                          <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'सटीकता' : 'Accuracy Highlights'}</div>
+                          <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">{tc('accuracy')}</div>
                           <div className="overflow-x-auto">
                             <table className="w-full text-xs">
                               <thead><tr className="border-b border-gold-primary/10"><th className="text-left py-1.5 px-2 text-gold-dark">Value</th><th className="text-left py-1.5 px-2 text-gold-dark">Given</th><th className="text-left py-1.5 px-2 text-gold-dark">Modern</th><th className="text-left py-1.5 px-2 text-gold-dark">Error</th></tr></thead>
@@ -267,7 +271,7 @@ export default function ClassicalTextsPage() {
 
                       {/* Key contributions with relevance status */}
                       <div>
-                        <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'प्रमुख योगदान एवं आज की प्रासंगिकता' : 'Key Contributions & Modern Relevance'}</div>
+                        <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tc('keyContributions')}</div>
                         <div className="space-y-2">
                           {text.keyContributions.map((kc, i) => {
                             const status = STATUS_CONFIG[kc.status];
@@ -279,9 +283,9 @@ export default function ClassicalTextsPage() {
                                   <div className="flex-1">
                                     <div className="flex items-center gap-2 mb-1">
                                       <span className="text-text-primary font-bold text-xs">{kc.topic}</span>
-                                      <span className={`text-xs px-1.5 py-0.5 rounded ${status.bg} ${status.color} border ${text.border}`}>{isHi ? status.label.hi : status.label.en}</span>
+                                      <span className={`text-xs px-1.5 py-0.5 rounded ${status.bg} ${status.color} border ${text.border}`}>{l(status.label)}</span>
                                     </div>
-                                    <p className="text-text-secondary text-xs leading-relaxed">{isHi ? kc.detail.hi : kc.detail.en}</p>
+                                    <p className="text-text-secondary text-xs leading-relaxed">{l(kc.detail)}</p>
                                   </div>
                                 </div>
                               </div>
@@ -292,10 +296,10 @@ export default function ClassicalTextsPage() {
 
                       {/* Unique concepts still used */}
                       <div>
-                        <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'विशिष्ट अवधारणाएं (आज भी प्रयुक्त)' : 'Unique Concepts (Still Used Today)'}</div>
+                        <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tc('uniqueConcepts')}</div>
                         <div className="space-y-1">
                           {text.uniqueConcepts.map((uc, i) => (
-                            <div key={i} className="text-text-secondary text-xs flex gap-2"><span className="text-gold-dark shrink-0">•</span><span>{isHi ? uc.hi : uc.en}</span></div>
+                            <div key={i} className="text-text-secondary text-xs flex gap-2"><span className="text-gold-dark shrink-0">•</span><span>{l(uc)}</span></div>
                           ))}
                         </div>
                       </div>
@@ -315,7 +319,7 @@ export default function ClassicalTextsPage() {
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
           <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
-            <div className="text-emerald-400 font-bold text-sm mb-2">{isHi ? 'हम क्या उपयोग करते हैं' : 'What We Use'}</div>
+            <div className="text-emerald-400 font-bold text-sm mb-2">{tc('whatWeUse')}</div>
             <ul className="text-text-secondary space-y-1.5 leading-relaxed">
               <li>• {isHi ? 'Swiss Ephemeris (NASA JPL DE431) — उप-कोणीय-सेकंड सटीकता' : 'Swiss Ephemeris (NASA JPL DE431) — sub-arcsecond accuracy'}</li>
               <li>• {isHi ? 'Meeus एल्गोरिदम — सूर्य ~0.01°, चंद्र ~0.5° सटीक' : 'Meeus algorithms — Sun ~0.01°, Moon ~0.5° precision'}</li>
@@ -324,7 +328,7 @@ export default function ClassicalTextsPage() {
             </ul>
           </div>
           <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
-            <div className="text-red-400 font-bold text-sm mb-2">{isHi ? 'हमने क्या बदला' : 'What We\'ve Updated'}</div>
+            <div className="text-red-400 font-bold text-sm mb-2">{tc('whatWeUpdated')}</div>
             <ul className="text-text-secondary space-y-1.5 leading-relaxed">
               <li>• {isHi ? 'भूकेंद्रित → सूर्यकेंद्रित + केप्लर कक्षाएं (गणना में)' : 'Geocentric → Heliocentric + Keplerian orbits (for computation)'}</li>
               <li>• {isHi ? 'त्रेपिडेशन → एकदिशीय प्रिसेशन (~50.3"/वर्ष)' : 'Trepidation → Monotonic precession (~50.3"/year)'}</li>

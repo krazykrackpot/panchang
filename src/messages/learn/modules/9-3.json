@@ -1,0 +1,665 @@
+{
+  "title": {
+    "en": "Planetary Dignities in the Chart",
+    "hi": "कुण्डली में ग्रह गरिमाएँ",
+    "sa": "कुण्डल्यां ग्रहगरिमाः",
+    "mai": "कुंडलीमे ग्रह गरिमा",
+    "mr": "कुंडलीतील ग्रह गरिमा",
+    "ta": "ஜாதகத்தில் கிரக பலங்கள்",
+    "te": "జాతకంలో గ్రహ గౌరవాలు",
+    "bn": "কুণ্ডলীতে গ্রহ মর্যাদা",
+    "kn": "ಕುಂಡಲಿಯಲ್ಲಿ ಗ್ರಹ ಗೌರವಗಳು",
+    "gu": "કુંડળીમાં ગ્રહ ગૌરવ"
+  },
+  "subtitle": {
+    "en": "Exaltation, debilitation, own sign, and the dignity hierarchy",
+    "hi": "उच्च, नीच, स्वगृह, और गरिमा क्रम",
+    "sa": "उच्चनीचस्वक्षेत्रमूलत्रिकोणादयः — कुण्डल्यां ग्रहाणां बलदौर्बल्यनिर्धारणम्",
+    "mai": "उच्च, नीच, स्वक्षेत्र, मूलत्रिकोण — कुंडलीमे ग्रहक बल निर्धारण",
+    "mr": "उच्च, नीच, स्वक्षेत्र, मूलत्रिकोण — कुंडलीतील ग्रहांचे बल निर्धारण",
+    "ta": "உச்சம், நீச்சம், சொந்த வீடு, மூலத்திரிகோணம் — ஜாதகத்தில் கிரகங்களின் பலவீனம் தீர்மானித்தல்",
+    "te": "ఉచ్చ, నీచ, స్వక్షేత్ర, మూలత్రికోణం — జాతకంలో గ్రహాల బలం నిర్ణయం",
+    "bn": "উচ্চ, নীচ, স্বক্ষেত্র, মূলত্রিকোণ — কুণ্ডলীতে গ্রহের বল নির্ধারণ",
+    "kn": "ಉಚ್ಚ, ನೀಚ, ಸ್ವಕ್ಷೇತ್ರ, ಮೂಲತ್ರಿಕೋಣ — ಕುಂಡಲಿಯಲ್ಲಿ ಗ್ರಹಗಳ ಬಲ ನಿರ್ಣಯ",
+    "gu": "ઉચ્ચ, નીચ, સ્વક્ષેત્ર, મૂળત્રિકોણ — કુંડળીમાં ગ્રહોની શક્તિ નિર્ધારણ"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "Module 9.1: Birth Chart Basics",
+        "hi": "मॉड्यूल 9.1: कुण्डली की मूल बातें",
+        "sa": "मॉड्यूल 9.1: कुण्डली की मूल बातें",
+        "mai": "मॉड्यूल 9.1: कुण्डली की मूल बातें",
+        "mr": "मॉड्यूल 9.1: कुण्डली की मूल बातें",
+        "ta": "Module 9.1: Birth Chart Basics",
+        "te": "Module 9.1: Birth Chart Basics",
+        "bn": "Module 9.1: Birth Chart Basics",
+        "kn": "Module 9.1: Birth Chart Basics",
+        "gu": "Module 9.1: Birth Chart Basics"
+      },
+      "href": "/learn/modules/9-1"
+    },
+    {
+      "label": {
+        "en": "Module 9.2: Houses (Bhavas)",
+        "hi": "मॉड्यूल 9.2: भाव",
+        "sa": "मॉड्यूल 9.2: भाव",
+        "mai": "मॉड्यूल 9.2: भाव",
+        "mr": "मॉड्यूल 9.2: भाव",
+        "ta": "Module 9.2: Houses (Bhavas)",
+        "te": "Module 9.2: Houses (Bhavas)",
+        "bn": "Module 9.2: Houses (Bhavas)",
+        "kn": "Module 9.2: Houses (Bhavas)",
+        "gu": "Module 9.2: Houses (Bhavas)"
+      },
+      "href": "/learn/modules/9-2"
+    },
+    {
+      "label": {
+        "en": "Learn: Grahas",
+        "hi": "सीखें: ग्रह",
+        "sa": "सीखें: ग्रह",
+        "mai": "सीखें: ग्रह",
+        "mr": "सीखें: ग्रह",
+        "ta": "Learn: Grahas",
+        "te": "Learn: Grahas",
+        "bn": "Learn: Grahas",
+        "kn": "Learn: Grahas",
+        "gu": "Learn: Grahas"
+      },
+      "href": "/learn/grahas"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q9_3_01",
+      "type": "mcq",
+      "question": {
+        "en": "In which sign is the Sun exalted?",
+        "hi": "सूर्य किस राशि में उच्च का होता है?",
+        "sa": "सूर्य किस राशि में उच्च का होता है?",
+        "mai": "सूर्य किस राशि में उच्च का होता है?",
+        "mr": "सूर्य किस राशि में उच्च का होता है?",
+        "ta": "In which sign is the Sun exalted?",
+        "te": "In which sign is the Sun exalted?",
+        "bn": "In which sign is the Sun exalted?",
+        "kn": "In which sign is the Sun exalted?",
+        "gu": "In which sign is the Sun exalted?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "The Sun is exalted in Aries (Mesha) with deep exaltation at 10 degrees. In Aries, the Sun's leadership, initiative, and fiery nature find their fullest expression.",
+        "hi": "सूर्य मेष राशि में उच्च का होता है, परम उच्च 10 अंश पर। मेष में सूर्य का नेतृत्व, पहल और अग्नि स्वभाव अपनी पूर्ण अभिव्यक्ति पाता है।",
+        "sa": "सूर्य मेष राशि में उच्च का होता है, परम उच्च 10 अंश पर। मेष में सूर्य का नेतृत्व, पहल और अग्नि स्वभाव अपनी पूर्ण अभिव्यक्ति पाता है।",
+        "ta": "The Sun is exalted in Aries (Mesha) with deep exaltation at 10 degrees. In Aries, the Sun's leadership, initiative, and fiery nature find their fullest expression.",
+        "te": "The Sun is exalted in Aries (Mesha) with deep exaltation at 10 degrees. In Aries, the Sun's leadership, initiative, and fiery nature find their fullest expression.",
+        "bn": "The Sun is exalted in Aries (Mesha) with deep exaltation at 10 degrees. In Aries, the Sun's leadership, initiative, and fiery nature find their fullest expression.",
+        "kn": "The Sun is exalted in Aries (Mesha) with deep exaltation at 10 degrees. In Aries, the Sun's leadership, initiative, and fiery nature find their fullest expression.",
+        "mr": "सूर्य मेष राशि में उच्च का होता है, परम उच्च 10 अंश पर। मेष में सूर्य का नेतृत्व, पहल और अग्नि स्वभाव अपनी पूर्ण अभिव्यक्ति पाता है।",
+        "gu": "The Sun is exalted in Aries (Mesha) with deep exaltation at 10 degrees. In Aries, the Sun's leadership, initiative, and fiery nature find their fullest expression.",
+        "mai": "सूर्य मेष राशि में उच्च का होता है, परम उच्च 10 अंश पर। मेष में सूर्य का नेतृत्व, पहल और अग्नि स्वभाव अपनी पूर्ण अभिव्यक्ति पाता है।"
+      },
+      "options": [
+        {
+          "en": "Leo",
+          "hi": "सिंह",
+          "sa": "सिंह",
+          "mai": "सिंह",
+          "mr": "सिंह",
+          "ta": "Leo",
+          "te": "Leo",
+          "bn": "Leo",
+          "kn": "Leo",
+          "gu": "Leo"
+        },
+        {
+          "en": "Aries",
+          "hi": "मेष",
+          "sa": "मेष",
+          "mai": "मेष",
+          "mr": "मेष",
+          "ta": "Aries",
+          "te": "Aries",
+          "bn": "Aries",
+          "kn": "Aries",
+          "gu": "Aries"
+        },
+        {
+          "en": "Libra",
+          "hi": "तुला",
+          "sa": "तुला",
+          "mai": "तुला",
+          "mr": "तुला",
+          "ta": "Libra",
+          "te": "Libra",
+          "bn": "Libra",
+          "kn": "Libra",
+          "gu": "Libra"
+        },
+        {
+          "en": "Cancer",
+          "hi": "कर्क",
+          "sa": "कर्क",
+          "mai": "कर्क",
+          "mr": "कर्क",
+          "ta": "Cancer",
+          "te": "Cancer",
+          "bn": "Cancer",
+          "kn": "Cancer",
+          "gu": "Cancer"
+        }
+      ]
+    },
+    {
+      "id": "q9_3_02",
+      "type": "true_false",
+      "question": {
+        "en": "The debilitation sign of a planet is always the 7th sign (opposite) from its exaltation sign.",
+        "hi": "ग्रह की नीच राशि सदैव उसकी उच्च राशि से 7वीं (विपरीत) राशि होती है।",
+        "sa": "ग्रह की नीच राशि सदैव उसकी उच्च राशि से 7वीं (विपरीत) राशि होती है।",
+        "mai": "ग्रह की नीच राशि सदैव उसकी उच्च राशि से 7वीं (विपरीत) राशि होती है।",
+        "mr": "ग्रह की नीच राशि सदैव उसकी उच्च राशि से 7वीं (विपरीत) राशि होती है।",
+        "ta": "The debilitation sign of a planet is always the 7th sign (opposite) from its exaltation sign.",
+        "te": "The debilitation sign of a planet is always the 7th sign (opposite) from its exaltation sign.",
+        "bn": "The debilitation sign of a planet is always the 7th sign (opposite) from its exaltation sign.",
+        "kn": "The debilitation sign of a planet is always the 7th sign (opposite) from its exaltation sign.",
+        "gu": "The debilitation sign of a planet is always the 7th sign (opposite) from its exaltation sign."
+      },
+      "correctAnswer": true,
+      "explanation": {
+        "en": "This is a fundamental rule. Sun exalted in Aries (1st sign) is debilitated in Libra (7th sign). Moon exalted in Taurus is debilitated in Scorpio. Each exaltation-debilitation pair is exactly 180 degrees apart.",
+        "hi": "यह एक मूलभूत नियम है। सूर्य मेष (1ली राशि) में उच्च, तुला (7वीं राशि) में नीच। चन्द्र वृषभ में उच्च, वृश्चिक में नीच। प्रत्येक उच्च-नीच जोड़ी ठीक 180 अंश अलग होती है।",
+        "sa": "यह एक मूलभूत नियम है। सूर्य मेष (1ली राशि) में उच्च, तुला (7वीं राशि) में नीच। चन्द्र वृषभ में उच्च, वृश्चिक में नीच। प्रत्येक उच्च-नीच जोड़ी ठीक 180 अंश अलग होती है।",
+        "mai": "यह एक मूलभूत नियम है। सूर्य मेष (1ली राशि) में उच्च, तुला (7वीं राशि) में नीच। चन्द्र वृषभ में उच्च, वृश्चिक में नीच। प्रत्येक उच्च-नीच जोड़ी ठीक 180 अंश अलग होती है।",
+        "mr": "यह एक मूलभूत नियम है। सूर्य मेष (1ली राशि) में उच्च, तुला (7वीं राशि) में नीच। चन्द्र वृषभ में उच्च, वृश्चिक में नीच। प्रत्येक उच्च-नीच जोड़ी ठीक 180 अंश अलग होती है।",
+        "ta": "This is a fundamental rule. Sun exalted in Aries (1st sign) is debilitated in Libra (7th sign). Moon exalted in Taurus is debilitated in Scorpio. Each exaltation-debilitation pair is exactly 180 degrees apart.",
+        "te": "This is a fundamental rule. Sun exalted in Aries (1st sign) is debilitated in Libra (7th sign). Moon exalted in Taurus is debilitated in Scorpio. Each exaltation-debilitation pair is exactly 180 degrees apart.",
+        "bn": "This is a fundamental rule. Sun exalted in Aries (1st sign) is debilitated in Libra (7th sign). Moon exalted in Taurus is debilitated in Scorpio. Each exaltation-debilitation pair is exactly 180 degrees apart.",
+        "kn": "This is a fundamental rule. Sun exalted in Aries (1st sign) is debilitated in Libra (7th sign). Moon exalted in Taurus is debilitated in Scorpio. Each exaltation-debilitation pair is exactly 180 degrees apart.",
+        "gu": "This is a fundamental rule. Sun exalted in Aries (1st sign) is debilitated in Libra (7th sign). Moon exalted in Taurus is debilitated in Scorpio. Each exaltation-debilitation pair is exactly 180 degrees apart."
+      }
+    },
+    {
+      "id": "q9_3_03",
+      "type": "mcq",
+      "question": {
+        "en": "What is Neecha Bhanga Raja Yoga?",
+        "hi": "नीचभंग राजयोग क्या है?",
+        "sa": "नीचभंग राजयोग क्या है?",
+        "mai": "नीचभंग राजयोग क्या है?",
+        "mr": "नीचभंग राजयोग क्या है?",
+        "ta": "What is Neecha Bhanga Raja Yoga?",
+        "te": "What is Neecha Bhanga Raja Yoga?",
+        "bn": "What is Neecha Bhanga Raja Yoga?",
+        "kn": "What is Neecha Bhanga Raja Yoga?",
+        "gu": "What is Neecha Bhanga Raja Yoga?"
+      },
+      "correctAnswer": 0,
+      "explanation": {
+        "en": "Neecha Bhanga Raja Yoga occurs when a debilitated planet's weakness is cancelled by specific conditions (e.g., the ruler of the debilitation sign is in a Kendra). The initial weakness transforms into extraordinary strength — the \"phoenix\" principle.",
+        "hi": "नीचभंग राजयोग तब होता है जब नीच ग्रह की कमजोरी विशिष्ट शर्तों से रद्द हो जाती है (जैसे, नीच राशि का स्वामी केन्द्र में हो)। प्रारम्भिक दुर्बलता असाधारण शक्ति में बदल जाती है — \"फीनिक्स\" सिद्धांत।",
+        "sa": "नीचभंग राजयोग तब होता है जब नीच ग्रह की कमजोरी विशिष्ट शर्तों से रद्द हो जाती है (जैसे, नीच राशि का स्वामी केन्द्र में हो)। प्रारम्भिक दुर्बलता असाधारण शक्ति में बदल जाती है — \"फीनिक्स\" सिद्धांत।",
+        "ta": "Neecha Bhanga Raja Yoga occurs when a debilitated planet's weakness is cancelled by specific conditions (e.g., the ruler of the debilitation sign is in a Kendra). The initial weakness transforms into extraordinary strength — the \"phoenix\" principle.",
+        "te": "Neecha Bhanga Raja Yoga occurs when a debilitated planet's weakness is cancelled by specific conditions (e.g., the ruler of the debilitation sign is in a Kendra). The initial weakness transforms into extraordinary strength — the \"phoenix\" principle.",
+        "bn": "Neecha Bhanga Raja Yoga occurs when a debilitated planet's weakness is cancelled by specific conditions (e.g., the ruler of the debilitation sign is in a Kendra). The initial weakness transforms into extraordinary strength — the \"phoenix\" principle.",
+        "kn": "Neecha Bhanga Raja Yoga occurs when a debilitated planet's weakness is cancelled by specific conditions (e.g., the ruler of the debilitation sign is in a Kendra). The initial weakness transforms into extraordinary strength — the \"phoenix\" principle.",
+        "mr": "नीचभंग राजयोग तब होता है जब नीच ग्रह की कमजोरी विशिष्ट शर्तों से रद्द हो जाती है (जैसे, नीच राशि का स्वामी केन्द्र में हो)। प्रारम्भिक दुर्बलता असाधारण शक्ति में बदल जाती है — \"फीनिक्स\" सिद्धांत।",
+        "gu": "Neecha Bhanga Raja Yoga occurs when a debilitated planet's weakness is cancelled by specific conditions (e.g., the ruler of the debilitation sign is in a Kendra). The initial weakness transforms into extraordinary strength — the \"phoenix\" principle.",
+        "mai": "नीचभंग राजयोग तब होता है जब नीच ग्रह की कमजोरी विशिष्ट शर्तों से रद्द हो जाती है (जैसे, नीच राशि का स्वामी केन्द्र में हो)। प्रारम्भिक दुर्बलता असाधारण शक्ति में बदल जाती है — \"फीनिक्स\" सिद्धांत।"
+      },
+      "options": [
+        {
+          "en": "When a debilitated planet gets cancelled and becomes powerful",
+          "hi": "जब नीच ग्रह का नीच भंग हो और वह शक्तिशाली बन जाए",
+          "sa": "जब नीच ग्रह का नीच भंग हो और वह शक्तिशाली बन जाए",
+          "mai": "जब नीच ग्रह का नीच भंग हो और वह शक्तिशाली बन जाए",
+          "mr": "जब नीच ग्रह का नीच भंग हो और वह शक्तिशाली बन जाए",
+          "ta": "When a debilitated planet gets cancelled and becomes powerful",
+          "te": "When a debilitated planet gets cancelled and becomes powerful",
+          "bn": "When a debilitated planet gets cancelled and becomes powerful",
+          "kn": "When a debilitated planet gets cancelled and becomes powerful",
+          "gu": "When a debilitated planet gets cancelled and becomes powerful"
+        },
+        {
+          "en": "When an exalted planet loses its strength",
+          "hi": "जब उच्च ग्रह अपनी शक्ति खो दे",
+          "sa": "जब उच्च ग्रह अपनी शक्ति खो दे",
+          "mai": "जब उच्च ग्रह अपनी शक्ति खो दे",
+          "mr": "जब उच्च ग्रह अपनी शक्ति खो दे",
+          "ta": "When an exalted planet loses its strength",
+          "te": "When an exalted planet loses its strength",
+          "bn": "When an exalted planet loses its strength",
+          "kn": "When an exalted planet loses its strength",
+          "gu": "When an exalted planet loses its strength"
+        },
+        {
+          "en": "When two debilitated planets conjoin",
+          "hi": "जब दो नीच ग्रह युक्त हों",
+          "sa": "जब दो नीच ग्रह युक्त हों",
+          "mai": "जब दो नीच ग्रह युक्त हों",
+          "mr": "जब दो नीच ग्रह युक्त हों",
+          "ta": "When two debilitated planets conjoin",
+          "te": "When two debilitated planets conjoin",
+          "bn": "When two debilitated planets conjoin",
+          "kn": "When two debilitated planets conjoin",
+          "gu": "When two debilitated planets conjoin"
+        },
+        {
+          "en": "A type of financial yoga only",
+          "hi": "केवल एक प्रकार का धन योग",
+          "sa": "केवल एक प्रकार का धन योग",
+          "mai": "केवल एक प्रकार का धन योग",
+          "mr": "केवल एक प्रकार का धन योग",
+          "ta": "A type of financial yoga only",
+          "te": "A type of financial yoga only",
+          "bn": "A type of financial yoga only",
+          "kn": "A type of financial yoga only",
+          "gu": "A type of financial yoga only"
+        }
+      ]
+    },
+    {
+      "id": "q9_3_04",
+      "type": "mcq",
+      "question": {
+        "en": "Where is Jupiter exalted?",
+        "hi": "बृहस्पति किस राशि में उच्च का है?",
+        "sa": "बृहस्पति किस राशि में उच्च का है?",
+        "mai": "बृहस्पति किस राशि में उच्च का है?",
+        "mr": "बृहस्पति किस राशि में उच्च का है?",
+        "ta": "Where is Jupiter exalted?",
+        "te": "Where is Jupiter exalted?",
+        "bn": "Where is Jupiter exalted?",
+        "kn": "Where is Jupiter exalted?",
+        "gu": "Where is Jupiter exalted?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Jupiter is exalted in Cancer (Karka) with deep exaltation at 5 degrees. Cancer's nurturing, emotional, and protective qualities amplify Jupiter's wisdom, generosity, and expansive nature.",
+        "hi": "बृहस्पति कर्क राशि में उच्च का है, परम उच्च 5 अंश पर। कर्क के पोषण, भावनात्मक और सुरक्षात्मक गुण बृहस्पति के ज्ञान, उदारता और विस्तारशील स्वभाव को बढ़ाते हैं।",
+        "sa": "बृहस्पति कर्क राशि में उच्च का है, परम उच्च 5 अंश पर। कर्क के पोषण, भावनात्मक और सुरक्षात्मक गुण बृहस्पति के ज्ञान, उदारता और विस्तारशील स्वभाव को बढ़ाते हैं।",
+        "ta": "Jupiter is exalted in Cancer (Karka) with deep exaltation at 5 degrees. Cancer's nurturing, emotional, and protective qualities amplify Jupiter's wisdom, generosity, and expansive nature.",
+        "te": "Jupiter is exalted in Cancer (Karka) with deep exaltation at 5 degrees. Cancer's nurturing, emotional, and protective qualities amplify Jupiter's wisdom, generosity, and expansive nature.",
+        "bn": "Jupiter is exalted in Cancer (Karka) with deep exaltation at 5 degrees. Cancer's nurturing, emotional, and protective qualities amplify Jupiter's wisdom, generosity, and expansive nature.",
+        "kn": "Jupiter is exalted in Cancer (Karka) with deep exaltation at 5 degrees. Cancer's nurturing, emotional, and protective qualities amplify Jupiter's wisdom, generosity, and expansive nature.",
+        "mr": "बृहस्पति कर्क राशि में उच्च का है, परम उच्च 5 अंश पर। कर्क के पोषण, भावनात्मक और सुरक्षात्मक गुण बृहस्पति के ज्ञान, उदारता और विस्तारशील स्वभाव को बढ़ाते हैं।",
+        "gu": "Jupiter is exalted in Cancer (Karka) with deep exaltation at 5 degrees. Cancer's nurturing, emotional, and protective qualities amplify Jupiter's wisdom, generosity, and expansive nature.",
+        "mai": "बृहस्पति कर्क राशि में उच्च का है, परम उच्च 5 अंश पर। कर्क के पोषण, भावनात्मक और सुरक्षात्मक गुण बृहस्पति के ज्ञान, उदारता और विस्तारशील स्वभाव को बढ़ाते हैं।"
+      },
+      "options": [
+        {
+          "en": "Sagittarius",
+          "hi": "धनु",
+          "sa": "धनु",
+          "mai": "धनु",
+          "mr": "धनु",
+          "ta": "Sagittarius",
+          "te": "Sagittarius",
+          "bn": "Sagittarius",
+          "kn": "Sagittarius",
+          "gu": "Sagittarius"
+        },
+        {
+          "en": "Pisces",
+          "hi": "मीन",
+          "sa": "मीन",
+          "mai": "मीन",
+          "mr": "मीन",
+          "ta": "Pisces",
+          "te": "Pisces",
+          "bn": "Pisces",
+          "kn": "Pisces",
+          "gu": "Pisces"
+        },
+        {
+          "en": "Cancer",
+          "hi": "कर्क",
+          "sa": "कर्क",
+          "mai": "कर्क",
+          "mr": "कर्क",
+          "ta": "Cancer",
+          "te": "Cancer",
+          "bn": "Cancer",
+          "kn": "Cancer",
+          "gu": "Cancer"
+        },
+        {
+          "en": "Virgo",
+          "hi": "कन्या",
+          "sa": "कन्या",
+          "mai": "कन्या",
+          "mr": "कन्या",
+          "ta": "Virgo",
+          "te": "Virgo",
+          "bn": "Virgo",
+          "kn": "Virgo",
+          "gu": "Virgo"
+        }
+      ]
+    },
+    {
+      "id": "q9_3_05",
+      "type": "true_false",
+      "question": {
+        "en": "A planet in its Moolatrikona sign is stronger than in its own sign (Swakshetra).",
+        "hi": "मूलत्रिकोण राशि में ग्रह अपनी स्वराशि (स्वक्षेत्र) से अधिक शक्तिशाली होता है।",
+        "sa": "मूलत्रिकोण राशि में ग्रह अपनी स्वराशि (स्वक्षेत्र) से अधिक शक्तिशाली होता है।",
+        "mai": "मूलत्रिकोण राशि में ग्रह अपनी स्वराशि (स्वक्षेत्र) से अधिक शक्तिशाली होता है।",
+        "mr": "मूलत्रिकोण राशि में ग्रह अपनी स्वराशि (स्वक्षेत्र) से अधिक शक्तिशाली होता है।",
+        "ta": "A planet in its Moolatrikona sign is stronger than in its own sign (Swakshetra).",
+        "te": "A planet in its Moolatrikona sign is stronger than in its own sign (Swakshetra).",
+        "bn": "A planet in its Moolatrikona sign is stronger than in its own sign (Swakshetra).",
+        "kn": "A planet in its Moolatrikona sign is stronger than in its own sign (Swakshetra).",
+        "gu": "A planet in its Moolatrikona sign is stronger than in its own sign (Swakshetra)."
+      },
+      "correctAnswer": true,
+      "explanation": {
+        "en": "The dignity hierarchy is: Exalted > Moolatrikona > Own Sign > Friendly > Neutral > Enemy > Debilitated. Moolatrikona is the sign where a planet performs its highest duty — slightly stronger than merely being \"at home.\"",
+        "hi": "गरिमा क्रम है: उच्च > मूलत्रिकोण > स्वराशि > मित्र > सम > शत्रु > नीच। मूलत्रिकोण वह राशि है जहाँ ग्रह अपना सर्वोच्च कर्तव्य निभाता है — केवल \"घर पर\" होने से थोड़ा अधिक शक्तिशाली।",
+        "sa": "गरिमा क्रम है: उच्च > मूलत्रिकोण > स्वराशि > मित्र > सम > शत्रु > नीच। मूलत्रिकोण वह राशि है जहाँ ग्रह अपना सर्वोच्च कर्तव्य निभाता है — केवल \"घर पर\" होने से थोड़ा अधिक शक्तिशाली।",
+        "mai": "गरिमा क्रम है: उच्च > मूलत्रिकोण > स्वराशि > मित्र > सम > शत्रु > नीच। मूलत्रिकोण वह राशि है जहाँ ग्रह अपना सर्वोच्च कर्तव्य निभाता है — केवल \"घर पर\" होने से थोड़ा अधिक शक्तिशाली।",
+        "mr": "गरिमा क्रम है: उच्च > मूलत्रिकोण > स्वराशि > मित्र > सम > शत्रु > नीच। मूलत्रिकोण वह राशि है जहाँ ग्रह अपना सर्वोच्च कर्तव्य निभाता है — केवल \"घर पर\" होने से थोड़ा अधिक शक्तिशाली।",
+        "ta": "The dignity hierarchy is: Exalted > Moolatrikona > Own Sign > Friendly > Neutral > Enemy > Debilitated. Moolatrikona is the sign where a planet performs its highest duty — slightly stronger than merely being \"at home.\"",
+        "te": "The dignity hierarchy is: Exalted > Moolatrikona > Own Sign > Friendly > Neutral > Enemy > Debilitated. Moolatrikona is the sign where a planet performs its highest duty — slightly stronger than merely being \"at home.\"",
+        "bn": "The dignity hierarchy is: Exalted > Moolatrikona > Own Sign > Friendly > Neutral > Enemy > Debilitated. Moolatrikona is the sign where a planet performs its highest duty — slightly stronger than merely being \"at home.\"",
+        "kn": "The dignity hierarchy is: Exalted > Moolatrikona > Own Sign > Friendly > Neutral > Enemy > Debilitated. Moolatrikona is the sign where a planet performs its highest duty — slightly stronger than merely being \"at home.\"",
+        "gu": "The dignity hierarchy is: Exalted > Moolatrikona > Own Sign > Friendly > Neutral > Enemy > Debilitated. Moolatrikona is the sign where a planet performs its highest duty — slightly stronger than merely being \"at home.\""
+      }
+    },
+    {
+      "id": "q9_3_06",
+      "type": "mcq",
+      "question": {
+        "en": "Saturn is exalted in which sign?",
+        "hi": "शनि किस राशि में उच्च का है?",
+        "sa": "शनि किस राशि में उच्च का है?",
+        "mai": "शनि किस राशि में उच्च का है?",
+        "mr": "शनि किस राशि में उच्च का है?",
+        "ta": "Saturn is exalted in which sign?",
+        "te": "Saturn is exalted in which sign?",
+        "bn": "Saturn is exalted in which sign?",
+        "kn": "Saturn is exalted in which sign?",
+        "gu": "Saturn is exalted in which sign?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Saturn is exalted in Libra (Tula) with deep exaltation at 20 degrees. Libra's qualities of balance, fairness, and justice perfectly channel Saturn's disciplined, karmic, and structured energy.",
+        "hi": "शनि तुला राशि में उच्च का है, परम उच्च 20 अंश पर। तुला के संतुलन, निष्पक्षता और न्याय के गुण शनि की अनुशासित, कार्मिक और संरचित ऊर्जा को पूर्णतः प्रवाहित करते हैं।",
+        "sa": "शनि तुला राशि में उच्च का है, परम उच्च 20 अंश पर। तुला के संतुलन, निष्पक्षता और न्याय के गुण शनि की अनुशासित, कार्मिक और संरचित ऊर्जा को पूर्णतः प्रवाहित करते हैं।",
+        "ta": "Saturn is exalted in Libra (Tula) with deep exaltation at 20 degrees. Libra's qualities of balance, fairness, and justice perfectly channel Saturn's disciplined, karmic, and structured energy.",
+        "te": "Saturn is exalted in Libra (Tula) with deep exaltation at 20 degrees. Libra's qualities of balance, fairness, and justice perfectly channel Saturn's disciplined, karmic, and structured energy.",
+        "bn": "Saturn is exalted in Libra (Tula) with deep exaltation at 20 degrees. Libra's qualities of balance, fairness, and justice perfectly channel Saturn's disciplined, karmic, and structured energy.",
+        "kn": "Saturn is exalted in Libra (Tula) with deep exaltation at 20 degrees. Libra's qualities of balance, fairness, and justice perfectly channel Saturn's disciplined, karmic, and structured energy.",
+        "mr": "शनि तुला राशि में उच्च का है, परम उच्च 20 अंश पर। तुला के संतुलन, निष्पक्षता और न्याय के गुण शनि की अनुशासित, कार्मिक और संरचित ऊर्जा को पूर्णतः प्रवाहित करते हैं।",
+        "gu": "Saturn is exalted in Libra (Tula) with deep exaltation at 20 degrees. Libra's qualities of balance, fairness, and justice perfectly channel Saturn's disciplined, karmic, and structured energy.",
+        "mai": "शनि तुला राशि में उच्च का है, परम उच्च 20 अंश पर। तुला के संतुलन, निष्पक्षता और न्याय के गुण शनि की अनुशासित, कार्मिक और संरचित ऊर्जा को पूर्णतः प्रवाहित करते हैं।"
+      },
+      "options": [
+        {
+          "en": "Capricorn",
+          "hi": "मकर",
+          "sa": "मकर",
+          "mai": "मकर",
+          "mr": "मकर",
+          "ta": "Capricorn",
+          "te": "Capricorn",
+          "bn": "Capricorn",
+          "kn": "Capricorn",
+          "gu": "Capricorn"
+        },
+        {
+          "en": "Aquarius",
+          "hi": "कुम्भ",
+          "sa": "कुम्भ",
+          "mai": "कुम्भ",
+          "mr": "कुम्भ",
+          "ta": "Aquarius",
+          "te": "Aquarius",
+          "bn": "Aquarius",
+          "kn": "Aquarius",
+          "gu": "Aquarius"
+        },
+        {
+          "en": "Libra",
+          "hi": "तुला",
+          "sa": "तुला",
+          "mai": "तुला",
+          "mr": "तुला",
+          "ta": "Libra",
+          "te": "Libra",
+          "bn": "Libra",
+          "kn": "Libra",
+          "gu": "Libra"
+        },
+        {
+          "en": "Virgo",
+          "hi": "कन्या",
+          "sa": "कन्या",
+          "mai": "कन्या",
+          "mr": "कन्या",
+          "ta": "Virgo",
+          "te": "Virgo",
+          "bn": "Virgo",
+          "kn": "Virgo",
+          "gu": "Virgo"
+        }
+      ]
+    },
+    {
+      "id": "q9_3_07",
+      "type": "mcq",
+      "question": {
+        "en": "Which condition can create Neecha Bhanga (debilitation cancellation)?",
+        "hi": "कौन सी स्थिति नीचभंग (नीच का भंग) बना सकती है?",
+        "sa": "कौन सी स्थिति नीचभंग (नीच का भंग) बना सकती है?",
+        "mai": "कौन सी स्थिति नीचभंग (नीच का भंग) बना सकती है?",
+        "mr": "कौन सी स्थिति नीचभंग (नीच का भंग) बना सकती है?",
+        "ta": "Which condition can create Neecha Bhanga (debilitation cancellation)?",
+        "te": "Which condition can create Neecha Bhanga (debilitation cancellation)?",
+        "bn": "Which condition can create Neecha Bhanga (debilitation cancellation)?",
+        "kn": "Which condition can create Neecha Bhanga (debilitation cancellation)?",
+        "gu": "Which condition can create Neecha Bhanga (debilitation cancellation)?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "One of the classical Neecha Bhanga conditions from BPHS: if the lord of the sign where the planet is debilitated is placed in a Kendra (1, 4, 7, 10) from the Lagna or Moon, the debilitation is cancelled.",
+        "hi": "BPHS से एक शास्त्रीय नीचभंग शर्त: यदि जिस राशि में ग्रह नीच है उस राशि का स्वामी लग्न या चन्द्र से केन्द्र (1, 4, 7, 10) में हो, तो नीच भंग हो जाता है।",
+        "sa": "BPHS से एक शास्त्रीय नीचभंग शर्त: यदि जिस राशि में ग्रह नीच है उस राशि का स्वामी लग्न या चन्द्र से केन्द्र (1, 4, 7, 10) में हो, तो नीच भंग हो जाता है।",
+        "mai": "BPHS से एक शास्त्रीय नीचभंग शर्त: यदि जिस राशि में ग्रह नीच है उस राशि का स्वामी लग्न या चन्द्र से केन्द्र (1, 4, 7, 10) में हो, तो नीच भंग हो जाता है।",
+        "mr": "BPHS से एक शास्त्रीय नीचभंग शर्त: यदि जिस राशि में ग्रह नीच है उस राशि का स्वामी लग्न या चन्द्र से केन्द्र (1, 4, 7, 10) में हो, तो नीच भंग हो जाता है।",
+        "ta": "One of the classical Neecha Bhanga conditions from BPHS: if the lord of the sign where the planet is debilitated is placed in a Kendra (1, 4, 7, 10) from the Lagna or Moon, the debilitation is cancelled.",
+        "te": "One of the classical Neecha Bhanga conditions from BPHS: if the lord of the sign where the planet is debilitated is placed in a Kendra (1, 4, 7, 10) from the Lagna or Moon, the debilitation is cancelled.",
+        "bn": "One of the classical Neecha Bhanga conditions from BPHS: if the lord of the sign where the planet is debilitated is placed in a Kendra (1, 4, 7, 10) from the Lagna or Moon, the debilitation is cancelled.",
+        "kn": "One of the classical Neecha Bhanga conditions from BPHS: if the lord of the sign where the planet is debilitated is placed in a Kendra (1, 4, 7, 10) from the Lagna or Moon, the debilitation is cancelled.",
+        "gu": "One of the classical Neecha Bhanga conditions from BPHS: if the lord of the sign where the planet is debilitated is placed in a Kendra (1, 4, 7, 10) from the Lagna or Moon, the debilitation is cancelled."
+      },
+      "options": [
+        {
+          "en": "The debilitated planet is retrograde",
+          "hi": "नीच ग्रह वक्री हो",
+          "sa": "नीच ग्रह वक्री हो",
+          "mai": "नीच ग्रह वक्री हो",
+          "mr": "नीच ग्रह वक्री हो",
+          "ta": "The debilitated planet is retrograde",
+          "te": "The debilitated planet is retrograde",
+          "bn": "The debilitated planet is retrograde",
+          "kn": "The debilitated planet is retrograde",
+          "gu": "The debilitated planet is retrograde"
+        },
+        {
+          "en": "The lord of the sign of debilitation is in a Kendra from Lagna or Moon",
+          "hi": "नीच राशि का स्वामी लग्न या चन्द्र से केन्द्र में हो",
+          "sa": "नीच राशि का स्वामी लग्न या चन्द्र से केन्द्र में हो",
+          "mai": "नीच राशि का स्वामी लग्न या चन्द्र से केन्द्र में हो",
+          "mr": "नीच राशि का स्वामी लग्न या चन्द्र से केन्द्र में हो",
+          "ta": "The lord of the sign of debilitation is in a Kendra from Lagna or Moon",
+          "te": "The lord of the sign of debilitation is in a Kendra from Lagna or Moon",
+          "bn": "The lord of the sign of debilitation is in a Kendra from Lagna or Moon",
+          "kn": "The lord of the sign of debilitation is in a Kendra from Lagna or Moon",
+          "gu": "The lord of the sign of debilitation is in a Kendra from Lagna or Moon"
+        },
+        {
+          "en": "The debilitated planet is conjunct Rahu",
+          "hi": "नीच ग्रह राहु से युक्त हो",
+          "sa": "नीच ग्रह राहु से युक्त हो",
+          "mai": "नीच ग्रह राहु से युक्त हो",
+          "mr": "नीच ग्रह राहु से युक्त हो",
+          "ta": "The debilitated planet is conjunct Rahu",
+          "te": "The debilitated planet is conjunct Rahu",
+          "bn": "The debilitated planet is conjunct Rahu",
+          "kn": "The debilitated planet is conjunct Rahu",
+          "gu": "The debilitated planet is conjunct Rahu"
+        },
+        {
+          "en": "The native was born at night",
+          "hi": "जातक का जन्म रात में हुआ हो",
+          "sa": "जातक का जन्म रात में हुआ हो",
+          "mai": "जातक का जन्म रात में हुआ हो",
+          "mr": "जातक का जन्म रात में हुआ हो",
+          "ta": "The native was born at night",
+          "te": "The native was born at night",
+          "bn": "The native was born at night",
+          "kn": "The native was born at night",
+          "gu": "The native was born at night"
+        }
+      ]
+    },
+    {
+      "id": "q9_3_08",
+      "type": "true_false",
+      "question": {
+        "en": "Venus is exalted in Pisces (Meena).",
+        "hi": "शुक्र मीन राशि में उच्च का है।",
+        "sa": "शुक्र मीन राशि में उच्च का है।",
+        "mai": "शुक्र मीन राशि में उच्च का है।",
+        "mr": "शुक्र मीन राशि में उच्च का है।",
+        "ta": "Venus is exalted in Pisces (Meena).",
+        "te": "Venus is exalted in Pisces (Meena).",
+        "bn": "Venus is exalted in Pisces (Meena).",
+        "kn": "Venus is exalted in Pisces (Meena).",
+        "gu": "Venus is exalted in Pisces (Meena)."
+      },
+      "correctAnswer": true,
+      "explanation": {
+        "en": "Venus is exalted in Pisces with deep exaltation at 27 degrees. Pisces' spiritual, imaginative, and compassionate nature elevates Venus' love, beauty, and artistic expression to their highest form.",
+        "hi": "शुक्र मीन में उच्च का है, परम उच्च 27 अंश पर। मीन का आध्यात्मिक, कल्पनाशील और करुणामय स्वभाव शुक्र के प्रेम, सौन्दर्य और कलात्मक अभिव्यक्ति को उनके उच्चतम रूप तक ले जाता है।",
+        "sa": "शुक्र मीन में उच्च का है, परम उच्च 27 अंश पर। मीन का आध्यात्मिक, कल्पनाशील और करुणामय स्वभाव शुक्र के प्रेम, सौन्दर्य और कलात्मक अभिव्यक्ति को उनके उच्चतम रूप तक ले जाता है।",
+        "ta": "Venus is exalted in Pisces with deep exaltation at 27 degrees. Pisces' spiritual, imaginative, and compassionate nature elevates Venus' love, beauty, and artistic expression to their highest form.",
+        "te": "Venus is exalted in Pisces with deep exaltation at 27 degrees. Pisces' spiritual, imaginative, and compassionate nature elevates Venus' love, beauty, and artistic expression to their highest form.",
+        "bn": "Venus is exalted in Pisces with deep exaltation at 27 degrees. Pisces' spiritual, imaginative, and compassionate nature elevates Venus' love, beauty, and artistic expression to their highest form.",
+        "kn": "Venus is exalted in Pisces with deep exaltation at 27 degrees. Pisces' spiritual, imaginative, and compassionate nature elevates Venus' love, beauty, and artistic expression to their highest form.",
+        "mr": "शुक्र मीन में उच्च का है, परम उच्च 27 अंश पर। मीन का आध्यात्मिक, कल्पनाशील और करुणामय स्वभाव शुक्र के प्रेम, सौन्दर्य और कलात्मक अभिव्यक्ति को उनके उच्चतम रूप तक ले जाता है।",
+        "gu": "Venus is exalted in Pisces with deep exaltation at 27 degrees. Pisces' spiritual, imaginative, and compassionate nature elevates Venus' love, beauty, and artistic expression to their highest form.",
+        "mai": "शुक्र मीन में उच्च का है, परम उच्च 27 अंश पर। मीन का आध्यात्मिक, कल्पनाशील और करुणामय स्वभाव शुक्र के प्रेम, सौन्दर्य और कलात्मक अभिव्यक्ति को उनके उच्चतम रूप तक ले जाता है।"
+      }
+    },
+    {
+      "id": "q9_3_09",
+      "type": "mcq",
+      "question": {
+        "en": "What is the correct dignity hierarchy from strongest to weakest?",
+        "hi": "सबसे शक्तिशाली से कमजोर तक सही गरिमा क्रम क्या है?",
+        "sa": "सबसे शक्तिशाली से कमजोर तक सही गरिमा क्रम क्या है?",
+        "mai": "सबसे शक्तिशाली से कमजोर तक सही गरिमा क्रम क्या है?",
+        "mr": "सबसे शक्तिशाली से कमजोर तक सही गरिमा क्रम क्या है?",
+        "ta": "What is the correct dignity hierarchy from strongest to weakest?",
+        "te": "What is the correct dignity hierarchy from strongest to weakest?",
+        "bn": "What is the correct dignity hierarchy from strongest to weakest?",
+        "kn": "What is the correct dignity hierarchy from strongest to weakest?",
+        "gu": "What is the correct dignity hierarchy from strongest to weakest?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "The seven-tier dignity hierarchy determines a planet's ability to deliver its promised results. Exaltation is the peak, Moolatrikona just below, own sign provides comfort, and debilitation is the lowest rung.",
+        "hi": "सात-स्तरीय गरिमा क्रम ग्रह की प्रतिश्रुत फल देने की क्षमता निर्धारित करता है। उच्च शिखर है, मूलत्रिकोण उसके ठीक नीचे, स्वराशि सुविधा देती है, और नीच सबसे निम्न स्तर है।",
+        "sa": "सात-स्तरीय गरिमा क्रम ग्रह की प्रतिश्रुत फल देने की क्षमता निर्धारित करता है। उच्च शिखर है, मूलत्रिकोण उसके ठीक नीचे, स्वराशि सुविधा देती है, और नीच सबसे निम्न स्तर है।",
+        "ta": "The seven-tier dignity hierarchy determines a planet's ability to deliver its promised results. Exaltation is the peak, Moolatrikona just below, own sign provides comfort, and debilitation is the lowest rung.",
+        "te": "The seven-tier dignity hierarchy determines a planet's ability to deliver its promised results. Exaltation is the peak, Moolatrikona just below, own sign provides comfort, and debilitation is the lowest rung.",
+        "bn": "The seven-tier dignity hierarchy determines a planet's ability to deliver its promised results. Exaltation is the peak, Moolatrikona just below, own sign provides comfort, and debilitation is the lowest rung.",
+        "kn": "The seven-tier dignity hierarchy determines a planet's ability to deliver its promised results. Exaltation is the peak, Moolatrikona just below, own sign provides comfort, and debilitation is the lowest rung.",
+        "mr": "सात-स्तरीय गरिमा क्रम ग्रह की प्रतिश्रुत फल देने की क्षमता निर्धारित करता है। उच्च शिखर है, मूलत्रिकोण उसके ठीक नीचे, स्वराशि सुविधा देती है, और नीच सबसे निम्न स्तर है।",
+        "gu": "The seven-tier dignity hierarchy determines a planet's ability to deliver its promised results. Exaltation is the peak, Moolatrikona just below, own sign provides comfort, and debilitation is the lowest rung.",
+        "mai": "सात-स्तरीय गरिमा क्रम ग्रह की प्रतिश्रुत फल देने की क्षमता निर्धारित करता है। उच्च शिखर है, मूलत्रिकोण उसके ठीक नीचे, स्वराशि सुविधा देती है, और नीच सबसे निम्न स्तर है।"
+      },
+      "options": [
+        {
+          "en": "Own > Exalted > Friend > Neutral > Enemy > Debilitated",
+          "hi": "स्व > उच्च > मित्र > सम > शत्रु > नीच",
+          "sa": "स्व > उच्च > मित्र > सम > शत्रु > नीच",
+          "mai": "स्व > उच्च > मित्र > सम > शत्रु > नीच",
+          "mr": "स्व > उच्च > मित्र > सम > शत्रु > नीच",
+          "ta": "Own > Exalted > Friend > Neutral > Enemy > Debilitated",
+          "te": "Own > Exalted > Friend > Neutral > Enemy > Debilitated",
+          "bn": "Own > Exalted > Friend > Neutral > Enemy > Debilitated",
+          "kn": "Own > Exalted > Friend > Neutral > Enemy > Debilitated",
+          "gu": "Own > Exalted > Friend > Neutral > Enemy > Debilitated"
+        },
+        {
+          "en": "Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated",
+          "hi": "उच्च > मूलत्रिकोण > स्व > मित्र > सम > शत्रु > नीच",
+          "sa": "उच्च > मूलत्रिकोण > स्व > मित्र > सम > शत्रु > नीच",
+          "mai": "उच्च > मूलत्रिकोण > स्व > मित्र > सम > शत्रु > नीच",
+          "mr": "उच्च > मूलत्रिकोण > स्व > मित्र > सम > शत्रु > नीच",
+          "ta": "Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated",
+          "te": "Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated",
+          "bn": "Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated",
+          "kn": "Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated",
+          "gu": "Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated"
+        },
+        {
+          "en": "Moolatrikona > Exalted > Own > Friend > Neutral > Debilitated",
+          "hi": "मूलत्रिकोण > उच्च > स्व > मित्र > सम > नीच",
+          "sa": "मूलत्रिकोण > उच्च > स्व > मित्र > सम > नीच",
+          "mai": "मूलत्रिकोण > उच्च > स्व > मित्र > सम > नीच",
+          "mr": "मूलत्रिकोण > उच्च > स्व > मित्र > सम > नीच",
+          "ta": "Moolatrikona > Exalted > Own > Friend > Neutral > Debilitated",
+          "te": "Moolatrikona > Exalted > Own > Friend > Neutral > Debilitated",
+          "bn": "Moolatrikona > Exalted > Own > Friend > Neutral > Debilitated",
+          "kn": "Moolatrikona > Exalted > Own > Friend > Neutral > Debilitated",
+          "gu": "Moolatrikona > Exalted > Own > Friend > Neutral > Debilitated"
+        },
+        {
+          "en": "Exalted > Own > Debilitated > Neutral > Friend",
+          "hi": "उच्च > स्व > नीच > सम > मित्र",
+          "sa": "उच्च > स्व > नीच > सम > मित्र",
+          "mai": "उच्च > स्व > नीच > सम > मित्र",
+          "mr": "उच्च > स्व > नीच > सम > मित्र",
+          "ta": "Exalted > Own > Debilitated > Neutral > Friend",
+          "te": "Exalted > Own > Debilitated > Neutral > Friend",
+          "bn": "Exalted > Own > Debilitated > Neutral > Friend",
+          "kn": "Exalted > Own > Debilitated > Neutral > Friend",
+          "gu": "Exalted > Own > Debilitated > Neutral > Friend"
+        }
+      ]
+    },
+    {
+      "id": "q9_3_10",
+      "type": "true_false",
+      "question": {
+        "en": "Mars is exalted in Capricorn and debilitated in Cancer.",
+        "hi": "मंगल मकर में उच्च और कर्क में नीच होता है।",
+        "sa": "मंगल मकर में उच्च और कर्क में नीच होता है।",
+        "mai": "मंगल मकर में उच्च और कर्क में नीच होता है।",
+        "mr": "मंगल मकर में उच्च और कर्क में नीच होता है।",
+        "ta": "Mars is exalted in Capricorn and debilitated in Cancer.",
+        "te": "Mars is exalted in Capricorn and debilitated in Cancer.",
+        "bn": "Mars is exalted in Capricorn and debilitated in Cancer.",
+        "kn": "Mars is exalted in Capricorn and debilitated in Cancer.",
+        "gu": "Mars is exalted in Capricorn and debilitated in Cancer."
+      },
+      "correctAnswer": true,
+      "explanation": {
+        "en": "Mars is exalted in Capricorn (deep exaltation at 28 degrees) where Saturn's disciplined, structured environment channels Mars' raw energy productively. In Cancer, the emotional, receptive environment weakens Mars' assertive nature.",
+        "hi": "मंगल मकर में उच्च है (परम उच्च 28 अंश) जहाँ शनि का अनुशासित, संरचित वातावरण मंगल की कच्ची ऊर्जा को उत्पादक रूप से प्रवाहित करता है। कर्क में भावनात्मक, ग्रहणशील वातावरण मंगल के आक्रामक स्वभाव को कमजोर करता है।",
+        "sa": "मंगल मकर में उच्च है (परम उच्च 28 अंश) जहाँ शनि का अनुशासित, संरचित वातावरण मंगल की कच्ची ऊर्जा को उत्पादक रूप से प्रवाहित करता है। कर्क में भावनात्मक, ग्रहणशील वातावरण मंगल के आक्रामक स्वभाव को कमजोर करता है।",
+        "ta": "Mars is exalted in Capricorn (deep exaltation at 28 degrees) where Saturn's disciplined, structured environment channels Mars' raw energy productively. In Cancer, the emotional, receptive environment weakens Mars' assertive nature.",
+        "te": "Mars is exalted in Capricorn (deep exaltation at 28 degrees) where Saturn's disciplined, structured environment channels Mars' raw energy productively. In Cancer, the emotional, receptive environment weakens Mars' assertive nature.",
+        "bn": "Mars is exalted in Capricorn (deep exaltation at 28 degrees) where Saturn's disciplined, structured environment channels Mars' raw energy productively. In Cancer, the emotional, receptive environment weakens Mars' assertive nature.",
+        "kn": "Mars is exalted in Capricorn (deep exaltation at 28 degrees) where Saturn's disciplined, structured environment channels Mars' raw energy productively. In Cancer, the emotional, receptive environment weakens Mars' assertive nature.",
+        "mr": "मंगल मकर में उच्च है (परम उच्च 28 अंश) जहाँ शनि का अनुशासित, संरचित वातावरण मंगल की कच्ची ऊर्जा को उत्पादक रूप से प्रवाहित करता है। कर्क में भावनात्मक, ग्रहणशील वातावरण मंगल के आक्रामक स्वभाव को कमजोर करता है।",
+        "gu": "Mars is exalted in Capricorn (deep exaltation at 28 degrees) where Saturn's disciplined, structured environment channels Mars' raw energy productively. In Cancer, the emotional, receptive environment weakens Mars' assertive nature.",
+        "mai": "मंगल मकर में उच्च है (परम उच्च 28 अंश) जहाँ शनि का अनुशासित, संरचित वातावरण मंगल की कच्ची ऊर्जा को उत्पादक रूप से प्रवाहित करता है। कर्क में भावनात्मक, ग्रहणशील वातावरण मंगल के आक्रामक स्वभाव को कमजोर करता है।"
+      }
+    }
+  ]
+}

@@ -3,21 +3,16 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/20-1.json';
 
 const META: ModuleMeta = {
   id: 'mod_20_1', phase: 7, topic: 'KP System', moduleNumber: '20.1',
-  title: { en: 'Placidus Houses — Why KP Uses Unequal Houses', hi: 'प्लेसिडस भाव — केपी असमान भावों का उपयोग क्यों करता है', sa: 'प्लेसिडस भाव — केपी असमान भावों का उपयोग क्यों करता है', mai: 'प्लेसिडस भाव — केपी असमान भावों का उपयोग क्यों करता है', mr: 'प्लेसिडस भाव — केपी असमान भावों का उपयोग क्यों करता है', ta: 'Placidus Houses — Why KP Uses Unequal Houses', te: 'Placidus Houses — Why KP Uses Unequal Houses', bn: 'Placidus Houses — Why KP Uses Unequal Houses', kn: 'Placidus Houses — Why KP Uses Unequal Houses', gu: 'Placidus Houses — Why KP Uses Unequal Houses' },
-  subtitle: {
-    en: 'How the KP system replaced equal-house divisions with latitude-sensitive Placidus cusps for more accurate planet-house assignments',
-    hi: 'केपी पद्धति ने कैसे समान भाव विभाजन को अक्षांश-संवेदी प्लेसिडस भाव-सन्धियों से प्रतिस्थापित किया ताकि ग्रह-भाव आवंटन अधिक सटीक हो',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 13,
-  crossRefs: [
-    { label: { en: 'Module 20-2: The 249 Sub-Lord Table', hi: 'मॉड्यूल 20-2: 249 उप-स्वामी सारणी', sa: 'मॉड्यूल 20-2: 249 उप-स्वामी सारणी', mai: 'मॉड्यूल 20-2: 249 उप-स्वामी सारणी', mr: 'मॉड्यूल 20-2: 249 उप-स्वामी सारणी', ta: 'Module 20-2: The 249 Sub-Lord Table', te: 'Module 20-2: The 249 Sub-Lord Table', bn: 'Module 20-2: The 249 Sub-Lord Table', kn: 'Module 20-2: The 249 Sub-Lord Table', gu: 'Module 20-2: The 249 Sub-Lord Table' }, href: '/learn/modules/20-2' },
-    { label: { en: 'Module 20-3: Significators', hi: 'मॉड्यूल 20-3: कारकत्व', sa: 'मॉड्यूल 20-3: कारकत्व', mai: 'मॉड्यूल 20-3: कारकत्व', mr: 'मॉड्यूल 20-3: कारकत्व', ta: 'Module 20-3: Significators', te: 'Module 20-3: Significators', bn: 'Module 20-3: Significators', kn: 'Module 20-3: Significators', gu: 'Module 20-3: Significators' }, href: '/learn/modules/20-3' },
-    { label: { en: 'Module 20-4: Ruling Planets', hi: 'मॉड्यूल 20-4: शासक ग्रह', sa: 'मॉड्यूल 20-4: शासक ग्रह', mai: 'मॉड्यूल 20-4: शासक ग्रह', mr: 'मॉड्यूल 20-4: शासक ग्रह', ta: 'Module 20-4: Ruling Planets', te: 'Module 20-4: Ruling Planets', bn: 'Module 20-4: Ruling Planets', kn: 'Module 20-4: Ruling Planets', gu: 'Module 20-4: Ruling Planets' }, href: '/learn/modules/20-4' },
-    { label: { en: 'KP System Tool', hi: 'केपी पद्धति उपकरण', sa: 'केपी पद्धति उपकरण', mai: 'केपी पद्धति उपकरण', mr: 'केपी पद्धति उपकरण', ta: 'KP System Tool', te: 'KP System Tool', bn: 'KP System Tool', kn: 'KP System Tool', gu: 'KP System Tool' }, href: '/kp-system' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

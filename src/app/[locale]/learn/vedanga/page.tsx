@@ -1,6 +1,8 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/vedanga.json';
 
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -8,26 +10,8 @@ import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowRight, BookOpen, Star, Sparkles, Globe, Route } from 'lucide-react';
-import type { LocaleText, Locale } from '@/types/panchang';
+import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-
-/* ═══════════════════════════════════════════════════════════════
-   LABELS
-   ═══════════════════════════════════════════════════════════════ */
-const L = {
-  title: { en: 'Vedanga Jyotisha & Indian Astronomy Heritage', hi: 'वेदाङ्ग ज्योतिष एवं भारतीय खगोल विरासत' , ta: 'வேதாங்க ஜோதிடம் & இந்திய வானியல் பாரம்பரியம்' },
-  subtitle: {
-    en: 'The world\'s oldest astronomical tradition — where ritual precision demanded scientific discovery.',
-    hi: 'विश्व की सबसे प्राचीन खगोलीय परम्परा — जहाँ अनुष्ठान की सूक्ष्मता ने वैज्ञानिक खोज को जन्म दिया।',
-  },
-  s1Title: { en: 'Vedanga Jyotisha — The World\'s Oldest Astronomical Text', hi: 'वेदाङ्ग ज्योतिष — विश्व का सबसे प्राचीन खगोलशास्त्रीय ग्रन्थ' },
-  s2Title: { en: 'The Great Astronomers of India', hi: 'भारत के महान खगोलशास्त्री', sa: 'भारत के महान खगोलशास्त्री', mai: 'भारत के महान खगोलशास्त्री', mr: 'भारत के महान खगोलशास्त्री', ta: 'The Great Astronomers of India', te: 'The Great Astronomers of India', bn: 'The Great Astronomers of India', kn: 'The Great Astronomers of India', gu: 'The Great Astronomers of India' },
-  s3Title: { en: 'Key Texts Timeline', hi: 'प्रमुख ग्रन्थों की समयरेखा', sa: 'प्रमुख ग्रन्थों की समयरेखा', mai: 'प्रमुख ग्रन्थों की समयरेखा', mr: 'प्रमुख ग्रन्थों की समयरेखा', ta: 'Key Texts Timeline', te: 'Key Texts Timeline', bn: 'Key Texts Timeline', kn: 'Key Texts Timeline', gu: 'Key Texts Timeline' },
-  s4Title: { en: 'What India Knew Before the West', hi: 'जो भारत ने पश्चिम से पहले जाना', sa: 'जो भारत ने पश्चिम से पहले जाना', mai: 'जो भारत ने पश्चिम से पहले जाना', mr: 'जो भारत ने पश्चिम से पहले जाना', ta: 'What India Knew Before the West', te: 'What India Knew Before the West', bn: 'What India Knew Before the West', kn: 'What India Knew Before the West', gu: 'What India Knew Before the West' },
-  s5Title: { en: 'The Transmission Chain', hi: 'ज्ञान का संचरण मार्ग', sa: 'ज्ञान का संचरण मार्ग', mai: 'ज्ञान का संचरण मार्ग', mr: 'ज्ञान का संचरण मार्ग', ta: 'The Transmission Chain', te: 'The Transmission Chain', bn: 'The Transmission Chain', kn: 'The Transmission Chain', gu: 'The Transmission Chain' },
-  backToLearn: { en: 'Back to Learn', hi: 'सीखने पर वापस', sa: 'सीखने पर वापस', mai: 'सीखने पर वापस', mr: 'सीखने पर वापस', ta: 'Back to Learn', te: 'Back to Learn', bn: 'Back to Learn', kn: 'Back to Learn', gu: 'Back to Learn' },
-  exploreMore: { en: 'Continue Exploring', hi: 'और जानें', sa: 'और जानें', mai: 'और जानें', mr: 'और जानें', ta: 'Continue Exploring', te: 'Continue Exploring', bn: 'Continue Exploring', kn: 'Continue Exploring', gu: 'Continue Exploring' },
-};
 
 /* ═══════════════════════════════════════════════════════════════
    DATA
@@ -156,7 +140,7 @@ const PRIORITY_TABLE = [
 export default function VedangaPage() {
   const locale = useLocale() as Locale;
   const hi = isDevanagariLocale(locale);
-  const t = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
   return (
     <div className="min-h-screen py-8 sm:py-12 px-4 sm:px-6 max-w-4xl mx-auto">
@@ -167,14 +151,14 @@ export default function VedangaPage() {
           <span className="text-xs text-gold-light font-medium tracking-wider uppercase">{hi ? 'भारतीय खगोल विरासत' : 'Indian Astronomy Heritage'}</span>
         </div>
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gold-gradient leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
-          {t(L.title)}
+          {t('title')}
         </h1>
-        <p className="mt-4 text-text-secondary/70 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">{t(L.subtitle)}</p>
+        <p className="mt-4 text-text-secondary/70 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">{t('subtitle')}</p>
       </motion.header>
 
       <div className="space-y-6">
         {/* ═══ SECTION 1: Vedanga Jyotisha ═══ */}
-        <LessonSection number={1} title={t(L.s1Title)} variant="highlight">
+        <LessonSection number={1} title={t('s1Title')} variant="highlight">
           <p className="text-text-secondary/80 text-sm leading-relaxed">
             {hi
               ? 'वेदाङ्ग = "वेद का अंग।" ज्योतिष छः वेदाङ्गों में से एक है — और इसे सबसे श्रेष्ठ माना गया है।'
@@ -196,7 +180,7 @@ export default function VedangaPage() {
                 <div className={`font-bold text-sm ${v.highlight ? 'text-gold-primary' : 'text-gold-light'}`}>
                   {v.name} <span className="text-text-secondary/65 font-normal" style={{ fontFamily: 'var(--font-devanagari-body)' }}>({v.nameHi})</span>
                 </div>
-                <div className="text-xs text-text-secondary/75 mt-0.5">{t(v.meaning)}</div>
+                <div className="text-xs text-text-secondary/75 mt-0.5">{lt(v.meaning as LocaleText, locale)}</div>
               </motion.div>
             ))}
           </div>
@@ -237,7 +221,7 @@ export default function VedangaPage() {
         </LessonSection>
 
         {/* ═══ SECTION 2: Great Astronomers ═══ */}
-        <LessonSection number={2} title={t(L.s2Title)}>
+        <LessonSection number={2} title={t('s2Title')}>
           <p className="text-text-secondary/70 text-sm mb-4">
             {hi
               ? 'इन प्रतिभाओं ने न केवल भारतीय विज्ञान को, बल्कि सम्पूर्ण मानव ज्ञान को आकार दिया।'
@@ -266,13 +250,13 @@ export default function VedangaPage() {
                   {a.achievements.map((ach, j) => (
                     <li key={j} className="flex items-start gap-2.5">
                       <Sparkles className="w-3.5 h-3.5 text-gold-primary/50 flex-shrink-0 mt-0.5" />
-                      <span className="text-xs sm:text-sm text-text-secondary/80 leading-relaxed">{t(ach)}</span>
+                      <span className="text-xs sm:text-sm text-text-secondary/80 leading-relaxed">{lt(ach, locale)}</span>
                     </li>
                   ))}
                 </ul>
                 {a.quote && (
                   <blockquote className="mt-3 border-l-2 border-gold-primary/25 pl-3 py-1">
-                    <p className="text-xs italic text-gold-light/70 leading-relaxed">{t(a.quote)}</p>
+                    <p className="text-xs italic text-gold-light/70 leading-relaxed">{lt(a.quote as LocaleText, locale)}</p>
                   </blockquote>
                 )}
               </motion.div>
@@ -281,7 +265,7 @@ export default function VedangaPage() {
         </LessonSection>
 
         {/* ═══ SECTION 3: Timeline ═══ */}
-        <LessonSection number={3} title={t(L.s3Title)} variant="highlight">
+        <LessonSection number={3} title={t('s3Title')} variant="highlight">
           <div className="relative pl-6 sm:pl-8">
             {/* Vertical line */}
             <div className="absolute left-2 sm:left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b from-gold-primary/40 via-gold-primary/20 to-transparent" />
@@ -299,9 +283,9 @@ export default function VedangaPage() {
                   <div className={`absolute -left-[18px] sm:-left-[22px] top-1.5 w-3 h-3 rounded-full ${item.color} ring-2 ring-[#0a0e27]`} />
                   <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
                     <span className="text-xs font-mono text-gold-primary/80 font-bold min-w-[90px]">{item.year}</span>
-                    <span className="text-sm font-semibold text-gold-light">{t(item.text)}</span>
+                    <span className="text-sm font-semibold text-gold-light">{lt(item.text as LocaleText, locale)}</span>
                     <span className="text-xs text-text-secondary/70 hidden sm:inline">—</span>
-                    <span className="text-xs text-text-secondary/75">{t(item.detail)}</span>
+                    <span className="text-xs text-text-secondary/75">{lt(item.detail as LocaleText, locale)}</span>
                   </div>
                 </motion.div>
               ))}
@@ -313,7 +297,7 @@ export default function VedangaPage() {
         </LessonSection>
 
         {/* ═══ SECTION 4: India Knew First ═══ */}
-        <LessonSection number={4} title={t(L.s4Title)}>
+        <LessonSection number={4} title={t('s4Title')}>
           <div className="overflow-x-auto -mx-2">
             <table className="w-full text-xs sm:text-sm">
               <thead>
@@ -334,7 +318,7 @@ export default function VedangaPage() {
                     transition={{ delay: i * 0.06 }}
                     className="border-b border-white/[0.04] hover:bg-gold-primary/[0.03] transition-colors"
                   >
-                    <td className="py-2.5 px-2 text-gold-light font-medium">{t(row.concept)}</td>
+                    <td className="py-2.5 px-2 text-gold-light font-medium">{lt(row.concept as LocaleText, locale)}</td>
                     <td className="py-2.5 px-2 text-amber-300/80">{row.india}</td>
                     <td className="py-2.5 px-2 text-text-secondary/75">{row.west}</td>
                     <td className="py-2.5 px-2 text-right font-bold text-emerald-400/80">{row.gap}</td>
@@ -362,7 +346,7 @@ export default function VedangaPage() {
         </LessonSection>
 
         {/* ═══ SECTION 5: Transmission Chain ═══ */}
-        <LessonSection number={5} title={t(L.s5Title)}>
+        <LessonSection number={5} title={t('s5Title')}>
           <p className="text-text-secondary/70 text-sm mb-5 leading-relaxed">
             {hi
               ? 'भारतीय गणित और खगोल विज्ञान अरब विद्वानों के माध्यम से यूरोप तक कैसे पहुँचा — यह ज्ञान की सबसे महत्वपूर्ण यात्रा है।'
@@ -400,9 +384,9 @@ export default function VedangaPage() {
                 <div className={`rounded-xl border ${step.color} p-4 sm:p-5`}>
                   <div className="flex items-center gap-3 mb-2">
                     {step.icon}
-                    <h4 className="font-bold text-sm sm:text-base text-gold-light" style={{ fontFamily: 'var(--font-heading)' }}>{t(step.title)}</h4>
+                    <h4 className="font-bold text-sm sm:text-base text-gold-light" style={{ fontFamily: 'var(--font-heading)' }}>{lt(step.title as LocaleText, locale)}</h4>
                   </div>
-                  <p className="text-xs sm:text-sm text-text-secondary/75 leading-relaxed pl-8">{t(step.detail)}</p>
+                  <p className="text-xs sm:text-sm text-text-secondary/75 leading-relaxed pl-8">{lt(step.detail as LocaleText, locale)}</p>
                 </div>
               </motion.div>
             ))}
@@ -452,7 +436,7 @@ export default function VedangaPage() {
           transition={{ duration: 0.5 }}
           className="mt-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6"
         >
-          <h3 className="text-gold-light font-semibold text-sm uppercase tracking-wider mb-4">{t(L.exploreMore)}</h3>
+          <h3 className="text-gold-light font-semibold text-sm uppercase tracking-wider mb-4">{t('exploreMore')}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
               { href: '/learn/observatories' as const, label: { en: 'Jantar Mantar — Stone Observatories', hi: 'जन्तर मन्तर — पाषाण वेधशालाएँ', sa: 'जन्तर मन्तर — पाषाण वेधशालाएँ', mai: 'जन्तर मन्तर — पाषाण वेधशालाएँ', mr: 'जन्तर मन्तर — पाषाण वेधशालाएँ', ta: 'Jantar Mantar — Stone Observatories', te: 'Jantar Mantar — Stone Observatories', bn: 'Jantar Mantar — Stone Observatories', kn: 'Jantar Mantar — Stone Observatories', gu: 'Jantar Mantar — Stone Observatories' } },
@@ -465,14 +449,14 @@ export default function VedangaPage() {
                 href={link.href}
                 className="flex items-center justify-between bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg px-4 py-3 hover:border-gold-primary/30 hover:bg-gold-primary/[0.04] transition-all group"
               >
-                <span className="text-sm text-text-secondary group-hover:text-gold-light transition-colors">{t(link.label)}</span>
+                <span className="text-sm text-text-secondary group-hover:text-gold-light transition-colors">{lt(link.label as LocaleText, locale)}</span>
                 <ArrowRight className="w-4 h-4 text-gold-primary/40 group-hover:text-gold-primary group-hover:translate-x-1 transition-all" />
               </Link>
             ))}
           </div>
           <div className="mt-4 pt-4 border-t border-white/[0.05]">
             <Link href="/learn" className="text-sm text-text-secondary/75 hover:text-gold-light transition-colors">
-              &larr; {t(L.backToLearn)}
+              &larr; {t('backToLearn')}
             </Link>
           </div>
         </motion.nav>

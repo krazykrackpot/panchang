@@ -18,6 +18,9 @@ import { KARANAS } from '@/lib/constants/karanas';
 import { RASHIS } from '@/lib/constants/rashis';
 import { VARA_DATA } from '@/lib/constants/grahas';
 import type { Locale } from '@/types/panchang';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LJ from '@/messages/learn/labs-panchang.json';
 
 interface Location { name: string; lat: number; lng: number; timezone: string; }
 
@@ -43,10 +46,10 @@ function CalcRow({ label, value, highlight }: { label: string; value: string; hi
   );
 }
 
-function ResultBanner({ label, value, sub }: { label: string; value: string; sub?: string }) {
+function ResultBanner({ label, value, sub, resultLabel = 'Result' }: { label: string; value: string; sub?: string; resultLabel?: string }) {
   return (
     <div className="mt-6 p-5 rounded-2xl bg-gradient-to-br from-amber-500/15 to-orange-500/10 border border-amber-500/30 text-center">
-      <div className="text-xs text-amber-500/70 uppercase tracking-widest mb-1">Result</div>
+      <div className="text-xs text-amber-500/70 uppercase tracking-widest mb-1">{resultLabel}</div>
       <div className="text-3xl font-bold text-amber-200 mb-1">{label}</div>
       <div className="font-mono text-amber-400/80 text-sm">{value}</div>
       {sub && <div className="text-text-secondary text-xs mt-2">{sub}</div>}
@@ -101,19 +104,19 @@ function StepShell({ stepNum, totalSteps, title, subtitle, children }: {
   );
 }
 
-function WhyBox({ children }: { children: React.ReactNode }) {
+function WhyBox({ children, heading = 'Why do we need this?' }: { children: React.ReactNode; heading?: string }) {
   return (
     <div className="mb-6 p-4 rounded-xl bg-indigo-500/8 border border-indigo-500/20">
-      <div className="text-xs text-indigo-400 uppercase tracking-wider font-semibold mb-2">Why do we need this?</div>
+      <div className="text-xs text-indigo-400 uppercase tracking-wider font-semibold mb-2">{heading}</div>
       <div className="text-text-primary text-sm leading-relaxed">{children}</div>
     </div>
   );
 }
 
-function FormulaBox({ children }: { children: React.ReactNode }) {
+function FormulaBox({ children, heading = 'The Formula — Explained' }: { children: React.ReactNode; heading?: string }) {
   return (
     <div className="mb-5 p-4 rounded-xl bg-black/30 border border-white/8">
-      <div className="text-xs text-amber-500/60 uppercase tracking-wider font-semibold mb-3">The Formula — Explained</div>
+      <div className="text-xs text-amber-500/60 uppercase tracking-wider font-semibold mb-3">{heading}</div>
       <div className="text-sm leading-relaxed">{children}</div>
     </div>
   );
@@ -466,16 +469,13 @@ export default function PanchangLabPage() {
     };
   }, [date, location]);
 
-  const L = (obj: { en: string; hi?: string; sa?: string } | undefined) => {
-    if (!obj) return '';
-    return (obj as Record<string, string>)[locale] || obj.en || '';
-  };
+  const t = (key: string) => lt((LJ as unknown as Record<string, LocaleText>)[key], locale);
 
   const next = () => setStep(s => Math.min(s + 1, TOTAL_CALC_STEPS + 1));
   const back = () => setStep(s => Math.max(s - 1, 0));
 
   // ── Progress bar ────────────────────────────────────────────────
-  const progressSteps = ['Setup', 'Julian Day', 'Sun', 'Moon', 'Tithi', 'Nakshatra', 'Yoga', 'Karana', 'Vara', 'Summary'];
+  const progressSteps = [t('stepSetup'), t('stepJulianDay'), t('stepSun'), t('stepMoon'), t('stepTithi'), t('stepNakshatra'), t('stepYoga'), t('stepKarana'), t('stepVara'), t('stepSummary')];
 
   return (
     <div className="min-h-screen">
@@ -486,10 +486,10 @@ export default function PanchangLabPage() {
             <Calculator className="w-5 h-5 text-amber-400" />
           </div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-200 bg-clip-text text-transparent">
-            Compute Your Panchang
+            {t('pageTitle')}
           </h1>
         </div>
-        <p className="text-text-secondary text-base">A guided walkthrough — no prior knowledge needed</p>
+        <p className="text-text-secondary text-base">{t('pageSubtitle')}</p>
       </div>
 
       {/* Progress Steps */}
@@ -526,7 +526,7 @@ export default function PanchangLabPage() {
             <motion.div key="setup" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <div className="text-center mb-8">
                 <div className="text-4xl mb-3">🌅</div>
-                <h2 className="text-2xl font-bold text-white mb-2">Let's Build Your Panchang from Scratch</h2>
+                <h2 className="text-2xl font-bold text-white mb-2">{t('buildTitle')}</h2>
                 <p className="text-text-secondary text-sm leading-relaxed max-w-md mx-auto">
                   A Panchang is a Vedic almanac — it tells you the exact state of the Sun and Moon for any day and place on Earth.
                   We're going to calculate it step by step, and explain every single number along the way.
@@ -534,7 +534,7 @@ export default function PanchangLabPage() {
               </div>
 
               <div className="p-4 rounded-xl bg-amber-500/8 border border-amber-500/20 mb-6">
-                <div className="text-xs text-amber-400 uppercase tracking-wider font-semibold mb-2">What we'll calculate together</div>
+                <div className="text-xs text-amber-400 uppercase tracking-wider font-semibold mb-2">{t('whatWeCalculate')}</div>
                 <div className="grid grid-cols-2 gap-2">
                   {['Julian Day Number', 'Sun\'s Position', 'Moon\'s Position', 'Tithi (Lunar Day)', 'Nakshatra (Star)', 'Yoga', 'Karana', 'Vara (Weekday)'].map(item => (
                     <div key={item} className="flex items-center gap-2 text-text-primary text-xs">
@@ -547,7 +547,7 @@ export default function PanchangLabPage() {
 
               <div className="space-y-4 mb-8">
                 <div>
-                  <label className="block text-sm font-medium text-amber-300/80 mb-1.5">Date</label>
+                  <label className="block text-sm font-medium text-amber-300/80 mb-1.5">{t('date')}</label>
                   <input
                     type="date"
                     value={date}
@@ -556,19 +556,19 @@ export default function PanchangLabPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-amber-300/80 mb-1.5">Location <span className="text-text-secondary/60 font-normal">(needed for timezone)</span></label>
+                  <label className="block text-sm font-medium text-amber-300/80 mb-1.5">{t('location')} <span className="text-text-secondary/60 font-normal">{t('neededForTimezone')}</span></label>
                   <LocationSearch
                     value={locationName}
                     onSelect={loc => { setLocation(loc); setLocationName(loc.name); }}
-                    placeholder="Search city..."
+                    placeholder={t('searchCity')}
                     className="w-full"
                   />
-                  {!location && <p className="text-text-secondary/60 text-xs mt-1.5">If left blank, we'll use your device's local time.</p>}
+                  {!location && <p className="text-text-secondary/60 text-xs mt-1.5">{t('ifLeftBlank')}</p>}
                 </div>
               </div>
 
               <NavButtons
-                nextLabel="Start Calculating →"
+                nextLabel={t('startCalculating')}
                 onNext={() => setStep(1)}
                 disableNext={!date}
               />
@@ -581,13 +581,13 @@ export default function PanchangLabPage() {
               title="Julian Day Number"
               subtitle="Before we can find the Sun or Moon's position, we need a single, unambiguous way to refer to this exact moment in time."
             >
-              <WhyBox>
+              <WhyBox heading={t('whyDoWeNeedThis')}>
                 Imagine trying to calculate "how many days since January 1st, 2000?" — you'd have to count leap years, months of different lengths, calendar reforms... it's a mess. So astronomers invented the <strong className="text-white">Julian Day Number (JD)</strong>: a single, continuously-counting number that starts from noon on January 1st, 4713 BC and never resets. Every moment in history has exactly one JD. This makes time arithmetic trivial: to find how many days between two events, just subtract their JD numbers.
               </WhyBox>
 
               <JulianDayDiagram jd={calc.jd} />
 
-              <FormulaBox>
+              <FormulaBox heading={t('theFormulaExplained')}>
                 <div className="font-mono text-amber-200/90 text-center py-2 mb-4 text-base">
                   JD = 365.25 × (Y + 4716) + 30.6001 × (M + 1) + D + h/24 + B − 1524.5
                 </div>
@@ -612,13 +612,13 @@ export default function PanchangLabPage() {
                 <CalcRow label="Final Julian Day Number" value={calc.jd.toFixed(5)} highlight />
               </div>
 
-              <ResultBanner
+              <ResultBanner resultLabel={t('result')}
                 label={`JD ${calc.jd.toFixed(5)}`}
                 value="A unique timestamp for this exact moment in astronomical time"
                 sub="This single number is what all following calculations start from"
               />
 
-              <NavButtons onBack={back} onNext={next} />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
             </StepShell>
           )}
 
@@ -628,7 +628,7 @@ export default function PanchangLabPage() {
               title="Where is the Sun right now?"
               subtitle="We calculate the Sun's exact position in the sky as a degree from 0° to 360°."
             >
-              <WhyBox>
+              <WhyBox heading={t('whyDoWeNeedThis')}>
                 The Sun moves roughly 1° per day through the zodiac, completing one full circle in a year. Knowing its exact degree tells us which zodiac sign it's in — and that's needed to calculate Tithi, Yoga, and other Panchang elements. We compute this using Meeus's planetary equations — a set of sine and cosine terms derived from centuries of precise astronomical observation.
               </WhyBox>
 
@@ -641,7 +641,7 @@ export default function PanchangLabPage() {
                 </p>
               </div>
 
-              <FormulaBox>
+              <FormulaBox heading={t('theFormulaExplained')}>
                 <div className="font-mono text-amber-200/90 text-center py-2 mb-3 text-base">
                   Sidereal = Tropical − Ayanamsha
                 </div>
@@ -653,17 +653,17 @@ export default function PanchangLabPage() {
                 <CalcRow label="Tropical Sun longitude (Meeus algorithm)" value={`${calc.sunTrop.toFixed(4)}°`} />
                 <CalcRow label="Lahiri Ayanamsha (precession correction)" value={`${calc.ayan.toFixed(4)}°`} />
                 <CalcRow label="Sidereal Sun = Tropical − Ayanamsha" value={`${calc.sunSid.toFixed(4)}°`} highlight />
-                <CalcRow label="Zodiac sign (every 30° = 1 sign)" value={`${L(calc.sunRashi.name)}  (${calc.sunSid.toFixed(2)}° ÷ 30 = sign ${Math.floor(calc.sunSid / 30) + 1})`} />
+                <CalcRow label="Zodiac sign (every 30° = 1 sign)" value={`${lt(calc.sunRashi.name as LocaleText, locale)}  (${calc.sunSid.toFixed(2)}° ÷ 30 = sign ${Math.floor(calc.sunSid / 30) + 1})`} />
                 <CalcRow label="Degree within that sign" value={`${(calc.sunSid % 30).toFixed(2)}°`} />
               </div>
 
-              <ResultBanner
-                label={`Sun in ${L(calc.sunRashi.name)} ${calc.sunRashi.symbol}`}
+              <ResultBanner resultLabel={t('result')}
+                label={`Sun in ${lt(calc.sunRashi.name as LocaleText, locale)} ${calc.sunRashi.symbol}`}
                 value={`${calc.sunSid.toFixed(4)}° sidereal`}
-                sub={`The Sun has been in ${L(calc.sunRashi.name)} since roughly ${Math.round((calc.sunSid % 30) / 1)} day(s) into the sign`}
+                sub={`The Sun has been in ${lt(calc.sunRashi.name as LocaleText, locale)} since roughly ${Math.round((calc.sunSid % 30) / 1)} day(s) into the sign`}
               />
 
-              <NavButtons onBack={back} onNext={next} />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
             </StepShell>
           )}
 
@@ -673,11 +673,11 @@ export default function PanchangLabPage() {
               title="Where is the Moon right now?"
               subtitle="The Moon moves about 13° per day — much faster than the Sun. Its position drives most of the Panchang."
             >
-              <WhyBox>
+              <WhyBox heading={t('whyDoWeNeedThis')}>
                 While the Sun takes one year to circle the zodiac, the Moon does it in just 27.3 days. This rapid movement is what makes daily Panchang calculations meaningful — the Moon changes Nakshatra roughly every day, creates a new Tithi every ~24 hours, and its angle relative to the Sun defines the lunar calendar. Almost every element of the Panchang depends on the Moon's position.
               </WhyBox>
 
-              <FormulaBox>
+              <FormulaBox heading={t('theFormulaExplained')}>
                 <div className="font-mono text-amber-200/90 text-center py-2 mb-3 text-base">
                   Sidereal Moon = Tropical Moon − Ayanamsha
                 </div>
@@ -691,17 +691,17 @@ export default function PanchangLabPage() {
                 <CalcRow label="Tropical Moon longitude (Meeus)" value={`${calc.moonTrop.toFixed(4)}°`} />
                 <CalcRow label="Lahiri Ayanamsha (same as Sun)" value={`${calc.ayan.toFixed(4)}°`} />
                 <CalcRow label="Sidereal Moon = Tropical − Ayanamsha" value={`${calc.moonSid.toFixed(4)}°`} highlight />
-                <CalcRow label="Zodiac sign" value={`${L(calc.moonRashi.name)}  (${calc.moonSid.toFixed(2)}° ÷ 30 = sign ${Math.floor(calc.moonSid / 30) + 1})`} />
+                <CalcRow label="Zodiac sign" value={`${lt(calc.moonRashi.name as LocaleText, locale)}  (${calc.moonSid.toFixed(2)}° ÷ 30 = sign ${Math.floor(calc.moonSid / 30) + 1})`} />
                 <CalcRow label="Degree within that sign" value={`${(calc.moonSid % 30).toFixed(2)}°`} />
               </div>
 
-              <ResultBanner
-                label={`Moon in ${L(calc.moonRashi.name)} ${calc.moonRashi.symbol}`}
+              <ResultBanner resultLabel={t('result')}
+                label={`Moon in ${lt(calc.moonRashi.name as LocaleText, locale)} ${calc.moonRashi.symbol}`}
                 value={`${calc.moonSid.toFixed(4)}° sidereal`}
                 sub="The Moon's position drives Tithi, Nakshatra, and Yoga — the next three steps"
               />
 
-              <NavButtons onBack={back} onNext={next} />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
             </StepShell>
           )}
 
@@ -711,13 +711,13 @@ export default function PanchangLabPage() {
               title="Tithi — The Lunar Day"
               subtitle="A Tithi is NOT the same as a calendar day. It's the time it takes the Moon to gain exactly 12° on the Sun."
             >
-              <WhyBox>
+              <WhyBox heading={t('whyDoWeNeedThis')}>
                 Think of the Sun and Moon like two runners on a circular track. At New Moon (Amavasya), they're at the same position — 0° apart. Each day the Moon pulls ahead by about 12°. When the Moon is exactly 12° ahead, that's the 1st Tithi. At 24°, it's the 2nd. At 180° (opposite side), it's Full Moon (Purnima). There are 30 Tithis in a lunar month (15 in bright fortnight + 15 in dark fortnight). Since the Moon doesn't move at perfectly constant speed, a Tithi can be shorter or longer than 24 hours — sometimes two Tithis happen in one calendar day (Kshaya), sometimes a Tithi spans two calendar days (Vriddhi).
               </WhyBox>
 
               <TithiDiagram elongation={calc.elongation} tithiNum={calc.tithiResult.number} />
 
-              <FormulaBox>
+              <FormulaBox heading={t('theFormulaExplained')}>
                 <div className="font-mono text-amber-200/90 text-center py-2 mb-3 text-base">
                   Elongation = Moon − Sun  (mod 360°)
                   <br />
@@ -737,13 +737,13 @@ export default function PanchangLabPage() {
                 <CalcRow label="Paksha" value={calc.tithiData.paksha === 'shukla' ? 'Shukla Paksha (Bright / Waxing Moon)' : 'Krishna Paksha (Dark / Waning Moon)'} />
               </div>
 
-              <ResultBanner
-                label={L(calc.tithiData.name)}
+              <ResultBanner resultLabel={t('result')}
+                label={lt(calc.tithiData.name as LocaleText, locale)}
                 value={`Tithi ${calc.tithiResult.number} of 30`}
                 sub={calc.tithiData.paksha === 'shukla' ? `Shukla (bright) fortnight — Moon is waxing toward Full Moon` : `Krishna (dark) fortnight — Moon is waning toward New Moon`}
               />
 
-              <NavButtons onBack={back} onNext={next} />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
             </StepShell>
           )}
 
@@ -753,13 +753,13 @@ export default function PanchangLabPage() {
               title="Nakshatra — The Moon's Star Mansion"
               subtitle="While the zodiac has 12 signs, the sky is also divided into 27 Nakshatras — smaller star clusters the Moon passes through."
             >
-              <WhyBox>
+              <WhyBox heading={t('whyDoWeNeedThis')}>
                 Ancient Indian astronomers noticed that the Moon passes through a distinct group of stars every night over its 27-day cycle. They named these 27 star-clusters "Nakshatras" (lunar mansions). Each Nakshatra has a ruling planet, a presiding deity, and a distinct character. Your birth Nakshatra (where the Moon was when you were born) is considered even more personal than your Sun sign in Vedic astrology — it's the foundation of the Dasha system (life period predictions).
               </WhyBox>
 
               <NakshatraDiagram moonSid={calc.moonSid} nakNum={calc.nakNum} />
 
-              <FormulaBox>
+              <FormulaBox heading={t('theFormulaExplained')}>
                 <div className="font-mono text-amber-200/90 text-center py-2 mb-3 text-base">
                   Nakshatra = floor(Moon° ÷ 13.333°) + 1
                   <br />
@@ -779,16 +779,16 @@ export default function PanchangLabPage() {
                 <CalcRow label="floor(...) + 1 = Nakshatra number" value={String(calc.nakNum)} />
                 <CalcRow label="Position within Nakshatra" value={`${calc.posInNak.toFixed(4)}°`} />
                 <CalcRow label="Pada = floor(position ÷ 3.333°) + 1" value={`${calc.pada} / 4`} />
-                <CalcRow label="Ruling planet" value={L(calc.nakData.rulerName)} />
+                <CalcRow label="Ruling planet" value={lt(calc.nakData.rulerName as LocaleText, locale)} />
               </div>
 
-              <ResultBanner
-                label={`${L(calc.nakData.name)}, Pada ${calc.pada}`}
+              <ResultBanner resultLabel={t('result')}
+                label={`${lt(calc.nakData.name as LocaleText, locale)}, Pada ${calc.pada}`}
                 value={`Nakshatra ${calc.nakNum} of 27`}
-                sub={`Ruled by ${L(calc.nakData.rulerName)}`}
+                sub={`Ruled by ${lt(calc.nakData.rulerName as LocaleText, locale)}`}
               />
 
-              <NavButtons onBack={back} onNext={next} />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
             </StepShell>
           )}
 
@@ -798,11 +798,11 @@ export default function PanchangLabPage() {
               title="Yoga — The Sun–Moon Combination"
               subtitle="A Yoga is a quality of the day determined by adding the Sun and Moon positions together."
             >
-              <WhyBox>
+              <WhyBox heading={t('whyDoWeNeedThis')}>
                 While Tithi measures the Moon's angle <em>ahead of</em> the Sun, Yoga measures their combined angular <em>sum</em>. Think of it as the total energy of the day — how the Sun's solar energy and the Moon's lunar energy combine together. There are 27 Yogas (same count as Nakshatras), each with a distinct character ranging from auspicious (like Siddha — "perfect achievement") to inauspicious (like Vyatipata — "calamity"). Traditional texts prescribe avoiding certain activities on unfavorable Yoga days.
               </WhyBox>
 
-              <FormulaBox>
+              <FormulaBox heading={t('theFormulaExplained')}>
                 <div className="font-mono text-amber-200/90 text-center py-2 mb-3 text-base">
                   Sum = (Sun° + Moon°) mod 360°
                   <br />
@@ -823,13 +823,13 @@ export default function PanchangLabPage() {
                 <CalcRow label="Nature" value={calc.yogaData.nature === 'auspicious' ? 'Auspicious ✓' : calc.yogaData.nature === 'inauspicious' ? 'Inauspicious — avoid major activities' : 'Mixed'} />
               </div>
 
-              <ResultBanner
-                label={L(calc.yogaData.name)}
+              <ResultBanner resultLabel={t('result')}
+                label={lt(calc.yogaData.name as LocaleText, locale)}
                 value={`Yoga ${calc.yogaNum} of 27`}
-                sub={L(calc.yogaData.meaning)}
+                sub={lt(calc.yogaData.meaning as LocaleText, locale)}
               />
 
-              <NavButtons onBack={back} onNext={next} />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
             </StepShell>
           )}
 
@@ -839,11 +839,11 @@ export default function PanchangLabPage() {
               title="Karana — The Half-Tithi"
               subtitle="A Karana is simply half a Tithi — the Moon advancing 6° instead of 12°. There are two Karanas per Tithi."
             >
-              <WhyBox>
+              <WhyBox heading={t('whyDoWeNeedThis')}>
                 Ancient Vedic astrologers needed a finer-grained time unit than a Tithi for scheduling rituals and activities. They split each Tithi in half, calling each half a Karana. So a Karana lasts roughly 6 hours (half of ~12 hours). There are 11 types of Karanas: 7 "Chara" (movable, repeating) Karanas that cycle through the lunar month, and 4 "Sthira" (fixed, non-repeating) Karanas that appear only once each month at specific positions.
               </WhyBox>
 
-              <FormulaBox>
+              <FormulaBox heading={t('theFormulaExplained')}>
                 <div className="font-mono text-amber-200/90 text-center py-2 mb-3 text-base">
                   Raw Index = floor(Elongation ÷ 6°)
                   <br />
@@ -862,13 +862,13 @@ export default function PanchangLabPage() {
                 <CalcRow label="Type" value={calc.karanaData.type === 'chara' ? 'Chara (Movable) — repeats 8 times per month' : 'Sthira (Fixed) — appears only once per month'} />
               </div>
 
-              <ResultBanner
-                label={L(calc.karanaData.name)}
+              <ResultBanner resultLabel={t('result')}
+                label={lt(calc.karanaData.name as LocaleText, locale)}
                 value={`Karana ${calc.karanaNum} of 11`}
                 sub={calc.karanaData.type === 'chara' ? 'Movable Karana — auspicious for most activities' : 'Fixed Karana — check classical texts for specific guidance'}
               />
 
-              <NavButtons onBack={back} onNext={next} />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
             </StepShell>
           )}
 
@@ -878,11 +878,11 @@ export default function PanchangLabPage() {
               title="Vara — The Weekday"
               subtitle="The simplest element — but even here, the formula has a clever trick worth understanding."
             >
-              <WhyBox>
+              <WhyBox heading={t('whyDoWeNeedThis')}>
                 The Vedic week (Vara) uses the same 7-day cycle as the modern week, with the same planetary assignments: Sun→Sunday, Moon→Monday, Mars→Tuesday, Mercury→Wednesday, Jupiter→Thursday, Venus→Friday, Saturn→Saturday. The weekday influences the overall tone of the day and which deity is worshipped. The trick is extracting the weekday directly from the Julian Day Number — no calendar arithmetic needed.
               </WhyBox>
 
-              <FormulaBox>
+              <FormulaBox heading={t('theFormulaExplained')}>
                 <div className="font-mono text-amber-200/90 text-center py-2 mb-3 text-base">
                   Weekday = floor(JD + 1.5) mod 7
                   <br />
@@ -900,16 +900,16 @@ export default function PanchangLabPage() {
                 <CalcRow label="JD + 1.5" value={(calc.jd + 1.5).toFixed(5)} />
                 <CalcRow label="floor(JD + 1.5)" value={String(Math.floor(calc.jd + 1.5))} />
                 <CalcRow label="mod 7 = weekday index" value={String(calc.weekday)} highlight />
-                <CalcRow label="Ruling planet" value={L(calc.varaData.ruler)} />
+                <CalcRow label="Ruling planet" value={lt(calc.varaData.ruler as LocaleText, locale)} />
               </div>
 
-              <ResultBanner
-                label={L(calc.varaData.name)}
+              <ResultBanner resultLabel={t('result')}
+                label={lt(calc.varaData.name as LocaleText, locale)}
                 value={`Day index ${calc.weekday} (0 = Sunday)`}
-                sub={`Ruled by ${L(calc.varaData.ruler)} — ${L(calc.varaData.ruler)}'s day for worship and activities`}
+                sub={`Ruled by ${lt(calc.varaData.ruler as LocaleText, locale)} — ${lt(calc.varaData.ruler as LocaleText, locale)}'s day for worship and activities`}
               />
 
-              <NavButtons onBack={back} onNext={next} nextLabel="See Full Panchang →" />
+              <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('result')} />
             </StepShell>
           )}
 
@@ -927,13 +927,13 @@ export default function PanchangLabPage() {
 
               <div className="space-y-2.5">
                 {[
-                  { icon: '🌅', label: 'Vara (Weekday)', value: L(calc.varaData.name), sub: `Ruled by ${L(calc.varaData.ruler)}` },
-                  { icon: '🌙', label: 'Tithi (Lunar Day)', value: L(calc.tithiData.name), sub: calc.tithiData.paksha === 'shukla' ? 'Shukla Paksha · Waxing Moon' : 'Krishna Paksha · Waning Moon' },
-                  { icon: '⭐', label: 'Nakshatra (Star)', value: `${L(calc.nakData.name)}, Pada ${calc.pada}`, sub: `Ruled by ${L(calc.nakData.rulerName)}` },
-                  { icon: '☀️', label: 'Sun Position', value: `${L(calc.sunRashi.name)} ${calc.sunRashi.symbol}`, sub: `${calc.sunSid.toFixed(2)}° sidereal` },
-                  { icon: '🌕', label: 'Moon Position', value: `${L(calc.moonRashi.name)} ${calc.moonRashi.symbol}`, sub: `${calc.moonSid.toFixed(2)}° sidereal` },
-                  { icon: '✨', label: 'Yoga', value: L(calc.yogaData.name), sub: calc.yogaData.nature },
-                  { icon: '⚡', label: 'Karana', value: L(calc.karanaData.name), sub: calc.karanaData.type },
+                  { icon: '🌅', label: 'Vara (Weekday)', value: lt(calc.varaData.name as LocaleText, locale), sub: `Ruled by ${lt(calc.varaData.ruler as LocaleText, locale)}` },
+                  { icon: '🌙', label: 'Tithi (Lunar Day)', value: lt(calc.tithiData.name as LocaleText, locale), sub: calc.tithiData.paksha === 'shukla' ? 'Shukla Paksha · Waxing Moon' : 'Krishna Paksha · Waning Moon' },
+                  { icon: '⭐', label: 'Nakshatra (Star)', value: `${lt(calc.nakData.name as LocaleText, locale)}, Pada ${calc.pada}`, sub: `Ruled by ${lt(calc.nakData.rulerName as LocaleText, locale)}` },
+                  { icon: '☀️', label: 'Sun Position', value: `${lt(calc.sunRashi.name as LocaleText, locale)} ${calc.sunRashi.symbol}`, sub: `${calc.sunSid.toFixed(2)}° sidereal` },
+                  { icon: '🌕', label: 'Moon Position', value: `${lt(calc.moonRashi.name as LocaleText, locale)} ${calc.moonRashi.symbol}`, sub: `${calc.moonSid.toFixed(2)}° sidereal` },
+                  { icon: '✨', label: 'Yoga', value: lt(calc.yogaData.name as LocaleText, locale), sub: calc.yogaData.nature },
+                  { icon: '⚡', label: 'Karana', value: lt(calc.karanaData.name as LocaleText, locale), sub: calc.karanaData.type },
                 ].map(item => (
                   <div key={item.label} className="flex items-center gap-4 px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/8">
                     <span className="text-xl">{item.icon}</span>
@@ -952,7 +952,7 @@ export default function PanchangLabPage() {
                 </p>
               </div>
 
-              <NavButtons onBack={back} backLabel="Review Steps" onNext={() => setStep(0)} nextLabel="Try Another Date" />
+              <NavButtons onBack={back} backLabel={t('back')} onNext={() => setStep(0)} nextLabel={t('startCalculating')} />
             </motion.div>
           )}
 

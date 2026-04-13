@@ -1,188 +1,20 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
-import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/6-2.json';
 
 const META: ModuleMeta = {
   id: 'mod_6_2', phase: 2, topic: 'Nakshatra', moduleNumber: '6.2',
-  title: { en: 'Nakshatra Padas — The 108 Quarters', hi: 'नक्षत्र पाद — 108 चतुर्थांश', sa: 'नक्षत्र पाद — 108 चतुर्थांश', mai: 'नक्षत्र पाद — 108 चतुर्थांश', mr: 'नक्षत्र पाद — 108 चतुर्थांश', ta: 'Nakshatra Padas — The 108 Quarters', te: 'Nakshatra Padas — The 108 Quarters', bn: 'Nakshatra Padas — The 108 Quarters', kn: 'Nakshatra Padas — The 108 Quarters', gu: 'Nakshatra Padas — The 108 Quarters' },
-  subtitle: {
-    en: 'Each nakshatra divides into 4 padas of 3°20\', mapping to Navamsha signs and encoding the sacred number 108',
-    hi: 'प्रत्येक नक्षत्र 3°20\' के 4 पादों में विभक्त है, जो नवांश राशियों से मिलते हैं और पवित्र संख्या 108 को अभिव्यक्त करते हैं',
-  },
+  title: L.title as unknown as ModuleMeta['title'],
+  subtitle: L.subtitle as unknown as ModuleMeta['subtitle'],
   estimatedMinutes: 14,
-  crossRefs: [
-    { label: { en: 'Module 6-1: Nakshatra System', hi: 'मॉड्यूल 6-1: नक्षत्र पद्धति', sa: 'मॉड्यूल 6-1: नक्षत्र पद्धति', mai: 'मॉड्यूल 6-1: नक्षत्र पद्धति', mr: 'मॉड्यूल 6-1: नक्षत्र पद्धति', ta: 'Module 6-1: Nakshatra System', te: 'Module 6-1: Nakshatra System', bn: 'Module 6-1: Nakshatra System', kn: 'Module 6-1: Nakshatra System', gu: 'Module 6-1: Nakshatra System' }, href: '/learn/modules/6-1' },
-    { label: { en: 'Module 6-3: Nakshatra Compatibility', hi: 'मॉड्यूल 6-3: नक्षत्र मेलापक', sa: 'मॉड्यूल 6-3: नक्षत्र मेलापक', mai: 'मॉड्यूल 6-3: नक्षत्र मेलापक', mr: 'मॉड्यूल 6-3: नक्षत्र मेलापक', ta: 'Module 6-3: Nakshatra Compatibility', te: 'Module 6-3: Nakshatra Compatibility', bn: 'Module 6-3: Nakshatra Compatibility', kn: 'Module 6-3: Nakshatra Compatibility', gu: 'Module 6-3: Nakshatra Compatibility' }, href: '/learn/modules/6-3' },
-    { label: { en: 'Nakshatras Deep Dive', hi: 'नक्षत्र विस्तार', sa: 'नक्षत्र विस्तार', mai: 'नक्षत्र विस्तार', mr: 'नक्षत्र विस्तार', ta: 'Nakshatras Deep Dive', te: 'Nakshatras Deep Dive', bn: 'Nakshatras Deep Dive', kn: 'Nakshatras Deep Dive', gu: 'Nakshatras Deep Dive' }, href: '/learn/nakshatras' },
-  ],
+  crossRefs: L.crossRefs as unknown as ModuleMeta['crossRefs'],
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q6_2_01', type: 'mcq',
-    question: {
-      en: 'How many padas does each nakshatra have?',
-      hi: 'प्रत्येक नक्षत्र में कितने पाद होते हैं?',
-    },
-    options: [
-      { en: '2', hi: '2', sa: '2', mai: '2', mr: '2', ta: '2', te: '2', bn: '2', kn: '2', gu: '2' },
-      { en: '3', hi: '3', sa: '3', mai: '3', mr: '3', ta: '3', te: '3', bn: '3', kn: '3', gu: '3' },
-      { en: '4', hi: '4', sa: '4', mai: '4', mr: '4', ta: '4', te: '4', bn: '4', kn: '4', gu: '4' },
-      { en: '9', hi: '9', sa: '9', mai: '9', mr: '9', ta: '9', te: '9', bn: '9', kn: '9', gu: '9' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'Each nakshatra is divided into 4 equal padas (quarters), each spanning 3°20\' (3.333... degrees). 27 nakshatras x 4 padas = 108 total divisions.',
-      hi: 'प्रत्येक नक्षत्र 4 समान पादों (चतुर्थांशों) में विभक्त है, प्रत्येक 3°20\' (3.333... अंश) का। 27 नक्षत्र x 4 पाद = कुल 108 विभाजन।',
-    },
-  },
-  {
-    id: 'q6_2_02', type: 'mcq',
-    question: {
-      en: 'What is the angular span of each pada?',
-      hi: 'प्रत्येक पाद का कोणीय विस्तार कितना है?',
-    },
-    options: [
-      { en: '3 degrees 20 minutes', hi: '3 अंश 20 कला', sa: '3 अंश 20 कला', mai: '3 अंश 20 कला', mr: '3 अंश 20 कला', ta: '3 degrees 20 minutes', te: '3 degrees 20 minutes', bn: '3 degrees 20 minutes', kn: '3 degrees 20 minutes', gu: '3 degrees 20 minutes' },
-      { en: '13 degrees 20 minutes', hi: '13 अंश 20 कला', sa: '13 अंश 20 कला', mai: '13 अंश 20 कला', mr: '13 अंश 20 कला', ta: '13 degrees 20 minutes', te: '13 degrees 20 minutes', bn: '13 degrees 20 minutes', kn: '13 degrees 20 minutes', gu: '13 degrees 20 minutes' },
-      { en: '12 degrees', hi: '12 अंश', sa: '12 अंश', mai: '12 अंश', mr: '12 अंश', ta: '12 degrees', te: '12 degrees', bn: '12 degrees', kn: '12 degrees', gu: '12 degrees' },
-      { en: '2 degrees 30 minutes', hi: '2 अंश 30 कला', sa: '2 अंश 30 कला', mai: '2 अंश 30 कला', mr: '2 अंश 30 कला', ta: '2 degrees 30 minutes', te: '2 degrees 30 minutes', bn: '2 degrees 30 minutes', kn: '2 degrees 30 minutes', gu: '2 degrees 30 minutes' },
-    ],
-    correctAnswer: 0,
-    explanation: {
-      en: 'Each pada spans 3°20\' (3.333... degrees). This is one-fourth of a nakshatra (13°20\' / 4 = 3°20\') and corresponds exactly to one Navamsha division of the zodiac (360° / 108 = 3°20\').',
-      hi: 'प्रत्येक पाद 3°20\' (3.333... अंश) में फैला है। यह एक नक्षत्र का चौथाई भाग है (13°20\' / 4 = 3°20\') और राशिचक्र के एक नवांश विभाजन के ठीक बराबर है (360° / 108 = 3°20\')।',
-    },
-  },
-  {
-    id: 'q6_2_03', type: 'true_false',
-    question: {
-      en: 'The 108 padas map exactly to the 108 Navamsha divisions of the zodiac.',
-      hi: '108 पाद राशिचक्र के 108 नवांश विभाजनों से ठीक मेल खाते हैं।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Each pada equals one Navamsha. The Navamsha chart (D-9) is derived directly from the pada system: the sign of each Navamsha is determined by which pada the planet occupies.',
-      hi: 'सत्य। प्रत्येक पाद एक नवांश के बराबर है। नवांश कुण्डली (D-9) सीधे पाद पद्धति से व्युत्पन्न होती है: प्रत्येक नवांश की राशि इस बात से निर्धारित होती है कि ग्रह किस पाद में है।',
-    },
-  },
-  {
-    id: 'q6_2_04', type: 'mcq',
-    question: {
-      en: 'Ashwini pada 1 maps to which Navamsha sign?',
-      hi: 'अश्विनी पाद 1 किस नवांश राशि से मेल खाता है?',
-    },
-    options: [
-      { en: 'Taurus', hi: 'वृषभ', sa: 'वृषभ', mai: 'वृषभ', mr: 'वृषभ', ta: 'Taurus', te: 'Taurus', bn: 'Taurus', kn: 'Taurus', gu: 'Taurus' },
-      { en: 'Aries', hi: 'मेष', sa: 'मेष', mai: 'मेष', mr: 'मेष', ta: 'Aries', te: 'Aries', bn: 'Aries', kn: 'Aries', gu: 'Aries' },
-      { en: 'Cancer', hi: 'कर्क', sa: 'कर्क', mai: 'कर्क', mr: 'कर्क', ta: 'Cancer', te: 'Cancer', bn: 'Cancer', kn: 'Cancer', gu: 'Cancer' },
-      { en: 'Pisces', hi: 'मीन', sa: 'मीन', mai: 'मीन', mr: 'मीन', ta: 'Pisces', te: 'Pisces', bn: 'Pisces', kn: 'Pisces', gu: 'Pisces' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Ashwini pada 1 (0°-3°20\' Aries) maps to Aries Navamsha. The Navamsha cycle for fire signs (Aries, Leo, Sagittarius) begins from Aries. Each subsequent pada advances one sign: pada 2 = Taurus, pada 3 = Gemini, pada 4 = Cancer.',
-      hi: 'अश्विनी पाद 1 (मेष 0°-3°20\') मेष नवांश से मेल खाता है। अग्नि राशियों (मेष, सिंह, धनु) के लिए नवांश चक्र मेष से आरम्भ होता है। प्रत्येक अगला पाद एक राशि आगे बढ़ता है: पाद 2 = वृषभ, पाद 3 = मिथुन, पाद 4 = कर्क।',
-    },
-  },
-  {
-    id: 'q6_2_05', type: 'mcq',
-    question: {
-      en: 'Why is 108 considered sacred in Hinduism?',
-      hi: 'हिन्दू धर्म में 108 को पवित्र क्यों माना जाता है?',
-    },
-    options: [
-      { en: 'It is the number of Vedas', hi: 'यह वेदों की संख्या है', sa: 'यह वेदों की संख्या है', mai: 'यह वेदों की संख्या है', mr: 'यह वेदों की संख्या है', ta: 'It is the number of Vedas', te: 'It is the number of Vedas', bn: 'It is the number of Vedas', kn: 'It is the number of Vedas', gu: 'It is the number of Vedas' },
-      { en: 'It equals 27 nakshatras x 4 padas, linking cosmic structure to spiritual practice', hi: 'यह 27 नक्षत्र x 4 पाद = ब्रह्माण्डीय संरचना और आध्यात्मिक साधना का सम्बन्ध', sa: 'यह 27 नक्षत्र x 4 पाद = ब्रह्माण्डीय संरचना और आध्यात्मिक साधना का सम्बन्ध', mai: 'यह 27 नक्षत्र x 4 पाद = ब्रह्माण्डीय संरचना और आध्यात्मिक साधना का सम्बन्ध', mr: 'यह 27 नक्षत्र x 4 पाद = ब्रह्माण्डीय संरचना और आध्यात्मिक साधना का सम्बन्ध', ta: 'It equals 27 nakshatras x 4 padas, linking cosmic structure to spiritual practice', te: 'It equals 27 nakshatras x 4 padas, linking cosmic structure to spiritual practice', bn: 'It equals 27 nakshatras x 4 padas, linking cosmic structure to spiritual practice', kn: 'It equals 27 nakshatras x 4 padas, linking cosmic structure to spiritual practice', gu: 'It equals 27 nakshatras x 4 padas, linking cosmic structure to spiritual practice' },
-      { en: 'It is the number of planets in Vedic astrology', hi: 'यह वैदिक ज्योतिष में ग्रहों की संख्या है', sa: 'यह वैदिक ज्योतिष में ग्रहों की संख्या है', mai: 'यह वैदिक ज्योतिष में ग्रहों की संख्या है', mr: 'यह वैदिक ज्योतिष में ग्रहों की संख्या है', ta: 'It is the number of planets in Vedic astrology', te: 'It is the number of planets in Vedic astrology', bn: 'It is the number of planets in Vedic astrology', kn: 'It is the number of planets in Vedic astrology', gu: 'It is the number of planets in Vedic astrology' },
-      { en: 'It is an arbitrary number chosen by ancient priests', hi: 'यह प्राचीन पुरोहितों द्वारा चुनी गई मनमानी संख्या है', sa: 'यह प्राचीन पुरोहितों द्वारा चुनी गई मनमानी संख्या है', mai: 'यह प्राचीन पुरोहितों द्वारा चुनी गई मनमानी संख्या है', mr: 'यह प्राचीन पुरोहितों द्वारा चुनी गई मनमानी संख्या है', ta: 'It is an arbitrary number chosen by ancient priests', te: 'It is an arbitrary number chosen by ancient priests', bn: 'It is an arbitrary number chosen by ancient priests', kn: 'It is an arbitrary number chosen by ancient priests', gu: 'It is an arbitrary number chosen by ancient priests' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: '108 = 27 nakshatras x 4 padas. This astronomical origin connects to the 108 beads of the japa mala, 108 Upanishads, 108 names of deities, and many other spiritual traditions.',
-      hi: '108 = 27 नक्षत्र x 4 पाद। यह खगोलीय उत्पत्ति जप माला की 108 मनकों, 108 उपनिषदों, देवताओं के 108 नामों और अनेक अन्य आध्यात्मिक परम्पराओं से जुड़ती है।',
-    },
-  },
-  {
-    id: 'q6_2_06', type: 'true_false',
-    question: {
-      en: 'All four padas of a nakshatra produce identical personality traits in the native.',
-      hi: 'एक नक्षत्र के चारों पाद जातक में समान व्यक्तित्व गुण उत्पन्न करते हैं।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. Each pada modifies the base nakshatra energy through its Navamsha sign. For example, Ashwini pada 1 (Aries navamsha) adds cardinal fire energy, while Ashwini pada 4 (Cancer navamsha) adds emotional nurturing energy.',
-      hi: 'असत्य। प्रत्येक पाद अपनी नवांश राशि द्वारा मूल नक्षत्र ऊर्जा को परिवर्तित करता है। उदाहरणार्थ, अश्विनी पाद 1 (मेष नवांश) कार्डिनल अग्नि ऊर्जा जोड़ता है, जबकि अश्विनी पाद 4 (कर्क नवांश) भावनात्मक पोषण ऊर्जा जोड़ता है।',
-    },
-  },
-  {
-    id: 'q6_2_07', type: 'mcq',
-    question: {
-      en: 'What is a Pushkara Navamsha?',
-      hi: 'पुष्कर नवांश क्या है?',
-    },
-    options: [
-      { en: 'A nakshatra pada considered highly inauspicious', hi: 'एक अत्यन्त अशुभ माना जाने वाला नक्षत्र पाद', sa: 'एक अत्यन्त अशुभ माना जाने वाला नक्षत्र पाद', mai: 'एक अत्यन्त अशुभ माना जाने वाला नक्षत्र पाद', mr: 'एक अत्यन्त अशुभ माना जाने वाला नक्षत्र पाद', ta: 'A nakshatra pada considered highly inauspicious', te: 'A nakshatra pada considered highly inauspicious', bn: 'A nakshatra pada considered highly inauspicious', kn: 'A nakshatra pada considered highly inauspicious', gu: 'A nakshatra pada considered highly inauspicious' },
-      { en: 'A special auspicious pada where planets gain extra benefic strength', hi: 'एक विशेष शुभ पाद जहाँ ग्रहों को अतिरिक्त शुभ बल प्राप्त होता है', sa: 'एक विशेष शुभ पाद जहाँ ग्रहों को अतिरिक्त शुभ बल प्राप्त होता है', mai: 'एक विशेष शुभ पाद जहाँ ग्रहों को अतिरिक्त शुभ बल प्राप्त होता है', mr: 'एक विशेष शुभ पाद जहाँ ग्रहों को अतिरिक्त शुभ बल प्राप्त होता है', ta: 'A special auspicious pada where planets gain extra benefic strength', te: 'A special auspicious pada where planets gain extra benefic strength', bn: 'A special auspicious pada where planets gain extra benefic strength', kn: 'A special auspicious pada where planets gain extra benefic strength', gu: 'A special auspicious pada where planets gain extra benefic strength' },
-      { en: 'The first pada of every nakshatra', hi: 'प्रत्येक नक्षत्र का प्रथम पाद', sa: 'प्रत्येक नक्षत्र का प्रथम पाद', mai: 'प्रत्येक नक्षत्र का प्रथम पाद', mr: 'प्रत्येक नक्षत्र का प्रथम पाद', ta: 'The first pada of every nakshatra', te: 'The first pada of every nakshatra', bn: 'The first pada of every nakshatra', kn: 'The first pada of every nakshatra', gu: 'The first pada of every nakshatra' },
-      { en: 'A pada that cancels all doshas', hi: 'एक पाद जो सभी दोषों का निवारण करता है', sa: 'एक पाद जो सभी दोषों का निवारण करता है', mai: 'एक पाद जो सभी दोषों का निवारण करता है', mr: 'एक पाद जो सभी दोषों का निवारण करता है', ta: 'A pada that cancels all doshas', te: 'A pada that cancels all doshas', bn: 'A pada that cancels all doshas', kn: 'A pada that cancels all doshas', gu: 'A pada that cancels all doshas' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Pushkara Navamshas are specific padas considered exceptionally auspicious. Planets placed in these padas gain enhanced positive significations. There are 24 Pushkara Navamshas across the zodiac.',
-      hi: 'पुष्कर नवांश विशिष्ट पाद हैं जो असाधारण रूप से शुभ माने जाते हैं। इन पादों में स्थित ग्रहों के शुभ फल बढ़ जाते हैं। राशिचक्र में 24 पुष्कर नवांश हैं।',
-    },
-  },
-  {
-    id: 'q6_2_08', type: 'mcq',
-    question: {
-      en: 'Given Moon at 167.3°, what nakshatra and pada is the Moon in?',
-      hi: 'चन्द्रमा 167.3° पर हो तो कौन-सा नक्षत्र और पाद है?',
-    },
-    options: [
-      { en: 'Hasta pada 2', hi: 'हस्त पाद 2', sa: 'हस्त पाद 2', mai: 'हस्त पाद 2', mr: 'हस्त पाद 2', ta: 'Hasta pada 2', te: 'Hasta pada 2', bn: 'Hasta pada 2', kn: 'Hasta pada 2', gu: 'Hasta pada 2' },
-      { en: 'Hasta pada 3', hi: 'हस्त पाद 3', sa: 'हस्त पाद 3', mai: 'हस्त पाद 3', mr: 'हस्त पाद 3', ta: 'Hasta pada 3', te: 'Hasta pada 3', bn: 'Hasta pada 3', kn: 'Hasta pada 3', gu: 'Hasta pada 3' },
-      { en: 'Chitra pada 1', hi: 'चित्रा पाद 1', sa: 'चित्रा पाद 1', mai: 'चित्रा पाद 1', mr: 'चित्रा पाद 1', ta: 'Chitra pada 1', te: 'Chitra pada 1', bn: 'Chitra pada 1', kn: 'Chitra pada 1', gu: 'Chitra pada 1' },
-      { en: 'Uttara Phalguni pada 4', hi: 'उत्तरा फाल्गुनी पाद 4', sa: 'उत्तरा फाल्गुनी पाद 4', mai: 'उत्तरा फाल्गुनी पाद 4', mr: 'उत्तरा फाल्गुनी पाद 4', ta: 'Uttara Phalguni pada 4', te: 'Uttara Phalguni pada 4', bn: 'Uttara Phalguni pada 4', kn: 'Uttara Phalguni pada 4', gu: 'Uttara Phalguni pada 4' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'floor(167.3 / 13.333) = 12 → Nakshatra 13 (Hasta, starting at 160°). Position within = 167.3 - 160 = 7.3°. Pada = floor(7.3 / 3.333) + 1 = 3. Answer: Hasta pada 3.',
-      hi: 'floor(167.3 / 13.333) = 12 → नक्षत्र 13 (हस्त, 160° से आरम्भ)। नक्षत्र में स्थिति = 167.3 - 160 = 7.3°। पाद = floor(7.3 / 3.333) + 1 = 3। उत्तर: हस्त पाद 3।',
-    },
-  },
-  {
-    id: 'q6_2_09', type: 'true_false',
-    question: {
-      en: 'The Navamsha sign cycle for nakshatras in earth signs (Taurus, Virgo, Capricorn) begins from Capricorn.',
-      hi: 'पृथ्वी राशियों (वृषभ, कन्या, मकर) के नक्षत्रों के लिए नवांश राशि चक्र मकर से आरम्भ होता है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. The Navamsha starting sign follows the element: Fire signs start from Aries; Earth signs from Capricorn; Air signs from Libra; Water signs from Cancer.',
-      hi: 'सत्य। नवांश आरम्भ राशि तत्त्व के अनुसार है: अग्नि राशियाँ मेष से; पृथ्वी राशियाँ मकर से; वायु राशियाँ तुला से; जल राशियाँ कर्क से आरम्भ होती हैं।',
-    },
-  },
-  {
-    id: 'q6_2_10', type: 'mcq',
-    question: {
-      en: 'How many total Navamsha divisions exist in the full zodiac?',
-      hi: 'सम्पूर्ण राशिचक्र में कुल कितने नवांश विभाजन हैं?',
-    },
-    options: [
-      { en: '27', hi: '27', sa: '27', mai: '27', mr: '27', ta: '27', te: '27', bn: '27', kn: '27', gu: '27' },
-      { en: '36', hi: '36', sa: '36', mai: '36', mr: '36', ta: '36', te: '36', bn: '36', kn: '36', gu: '36' },
-      { en: '108', hi: '108', sa: '108', mai: '108', mr: '108', ta: '108', te: '108', bn: '108', kn: '108', gu: '108' },
-      { en: '144', hi: '144', sa: '144', mai: '144', mr: '144', ta: '144', te: '144', bn: '144', kn: '144', gu: '144' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: '360° / 3.333° = 108 Navamsha divisions. Each rashi (30°) contains 9 Navamshas. 12 rashis x 9 Navamshas = 108. This equals 27 nakshatras x 4 padas.',
-      hi: '360° / 3.333° = 108 नवांश विभाजन। प्रत्येक राशि (30°) में 9 नवांश हैं। 12 राशियाँ x 9 नवांश = 108। यह 27 नक्षत्र x 4 पाद के बराबर है।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = L.questions as unknown as ModuleQuestion[];
 
 function Page1() {
   const locale = useModuleLocale();

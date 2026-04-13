@@ -3,21 +3,16 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/21-1.json';
 
 const META: ModuleMeta = {
   id: 'mod_21_1', phase: 8, topic: 'Varshaphal', moduleNumber: '21.1',
-  title: { en: 'Tajika Aspects — Ithasala, Easarapha, Nakta', hi: 'ताजिक दृष्टि — इत्थशाल, ईषराफ, नक्त', sa: 'ताजिक दृष्टि — इत्थशाल, ईषराफ, नक्त', mai: 'ताजिक दृष्टि — इत्थशाल, ईषराफ, नक्त', mr: 'ताजिक दृष्टि — इत्थशाल, ईषराफ, नक्त', ta: 'Tajika Aspects — Ithasala, Easarapha, Nakta', te: 'Tajika Aspects — Ithasala, Easarapha, Nakta', bn: 'Tajika Aspects — Ithasala, Easarapha, Nakta', kn: 'Tajika Aspects — Ithasala, Easarapha, Nakta', gu: 'Tajika Aspects — Ithasala, Easarapha, Nakta' },
-  subtitle: {
-    en: 'The Perso-Arabic aspect system that determines whether events promised in the annual chart will actually manifest through applying and separating yogas',
-    hi: 'फारसी-अरबी दृष्टि पद्धति जो निर्धारित करती है कि वार्षिक कुण्डली में वादित घटनाएँ आवेदक और पृथक्करण योगों द्वारा वास्तव में प्रकट होंगी या नहीं',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 14,
-  crossRefs: [
-    { label: { en: 'Module 21-2: Sahams', hi: 'मॉड्यूल 21-2: सहम', sa: 'मॉड्यूल 21-2: सहम', mai: 'मॉड्यूल 21-2: सहम', mr: 'मॉड्यूल 21-2: सहम', ta: 'Module 21-2: Sahams', te: 'Module 21-2: Sahams', bn: 'Module 21-2: Sahams', kn: 'Module 21-2: Sahams', gu: 'Module 21-2: Sahams' }, href: '/learn/modules/21-2' },
-    { label: { en: 'Module 21-3: Mudda Dasha', hi: 'मॉड्यूल 21-3: मुद्दा दशा', sa: 'मॉड्यूल 21-3: मुद्दा दशा', mai: 'मॉड्यूल 21-3: मुद्दा दशा', mr: 'मॉड्यूल 21-3: मुद्दा दशा', ta: 'Module 21-3: Mudda Dasha', te: 'Module 21-3: Mudda Dasha', bn: 'Module 21-3: Mudda Dasha', kn: 'Module 21-3: Mudda Dasha', gu: 'Module 21-3: Mudda Dasha' }, href: '/learn/modules/21-3' },
-    { label: { en: 'Module 21-4: Tithi Pravesha', hi: 'मॉड्यूल 21-4: तिथि प्रवेश', sa: 'मॉड्यूल 21-4: तिथि प्रवेश', mai: 'मॉड्यूल 21-4: तिथि प्रवेश', mr: 'मॉड्यूल 21-4: तिथि प्रवेश', ta: 'Module 21-4: Tithi Pravesha', te: 'Module 21-4: Tithi Pravesha', bn: 'Module 21-4: Tithi Pravesha', kn: 'Module 21-4: Tithi Pravesha', gu: 'Module 21-4: Tithi Pravesha' }, href: '/learn/modules/21-4' },
-    { label: { en: 'Varshaphal Tool', hi: 'वर्षफल उपकरण', sa: 'वर्षफल उपकरण', mai: 'वर्षफल उपकरण', mr: 'वर्षफल उपकरण', ta: 'Varshaphal Tool', te: 'Varshaphal Tool', bn: 'Varshaphal Tool', kn: 'Varshaphal Tool', gu: 'Varshaphal Tool' }, href: '/varshaphal' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

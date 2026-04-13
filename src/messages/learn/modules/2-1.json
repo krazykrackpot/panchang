@@ -1,0 +1,723 @@
+{
+  "title": {
+    "en": "The Nine Grahas — Nature & Karakatva",
+    "hi": "नवग्रह — प्रकृति एवं कारकत्व",
+    "sa": "नवग्रहाः — प्रकृतिः कारकत्वं च",
+    "ta": "நவகிரகங்கள் — இயல்பு & காரகத்துவம்",
+    "te": "నవగ్రహాలు — స్వభావం & కారకత్వం",
+    "bn": "নবগ্রহ — প্রকৃতি ও কারকত্ব",
+    "kn": "ನವಗ್ರಹಗಳು — ಸ್ವಭಾವ & ಕಾರಕತ್ವ",
+    "mr": "नवग्रह — प्रकृती आणि कारकत्व",
+    "gu": "નવગ્રહ — પ્રકૃતિ અને કારકત્વ",
+    "mai": "नवग्रह — प्रकृति आ कारकत्व"
+  },
+  "subtitle": {
+    "en": "Understanding each planet's fundamental nature, attributes, and what it signifies in a birth chart",
+    "hi": "प्रत्येक ग्रह की मूल प्रकृति, गुण और जन्म कुण्डली में कारकत्व समझें",
+    "sa": "प्रत्येकग्रहस्य मूलप्रकृतिं गुणान् जन्मकुण्डल्यां कारकत्वं च जानीत",
+    "ta": "ஒவ்வொரு கிரகத்தின் அடிப்படை இயல்பு, பண்புகள் மற்றும் ஜாதகத்தில் அது குறிக்கும் அர்த்தம்",
+    "te": "ప్రతి గ్రహం యొక్క మూల స్వభావం, లక్షణాలు మరియు జాతకంలో కారకత్వం",
+    "bn": "প্রতিটি গ্রহের মৌলিক প্রকৃতি, গুণাবলি এবং জন্মকুণ্ডলীতে কারকত্ব",
+    "kn": "ಪ್ರತಿ ಗ್ರಹದ ಮೂಲ ಸ್ವಭಾವ, ಗುಣಲಕ್ಷಣಗಳು ಮತ್ತು ಜನ್ಮ ಕುಂಡಲಿಯಲ್ಲಿ ಕಾರಕತ್ವ",
+    "mr": "प्रत्येक ग्रहाची मूळ प्रकृती, गुण आणि जन्म कुंडलीतील कारकत्व",
+    "gu": "દરેક ગ્રહની મૂળ પ્રકૃતિ, ગુણો અને જન્મ કુંડળીમાં કારકત્વ",
+    "mai": "हरेक ग्रहक मूल प्रकृति, गुण आ जन्म कुण्डलीमे कारकत्व बुझू"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "2.2 Planetary Relationships",
+        "hi": "2.2 ग्रह संबंध",
+        "sa": "2.2 ग्रह संबंध",
+        "mai": "2.2 ग्रह संबंध",
+        "mr": "2.2 ग्रह संबंध",
+        "ta": "2.2 Planetary Relationships",
+        "te": "2.2 Planetary Relationships",
+        "bn": "2.2 Planetary Relationships",
+        "kn": "2.2 Planetary Relationships",
+        "gu": "2.2 Planetary Relationships"
+      },
+      "href": "/learn/modules/2-2"
+    },
+    {
+      "label": {
+        "en": "2.3 Dignities",
+        "hi": "2.3 गरिमाएं",
+        "sa": "2.3 गरिमाएं",
+        "mai": "2.3 गरिमाएं",
+        "mr": "2.3 गरिमाएं",
+        "ta": "2.3 Dignities",
+        "te": "2.3 Dignities",
+        "bn": "2.3 Dignities",
+        "kn": "2.3 Dignities",
+        "gu": "2.3 Dignities"
+      },
+      "href": "/learn/modules/2-3"
+    },
+    {
+      "label": {
+        "en": "Grahas reference",
+        "hi": "ग्रह संदर्भ",
+        "sa": "ग्रह संदर्भ",
+        "mai": "ग्रह संदर्भ",
+        "mr": "ग्रह संदर्भ",
+        "ta": "Grahas reference",
+        "te": "Grahas reference",
+        "bn": "Grahas reference",
+        "kn": "Grahas reference",
+        "gu": "Grahas reference"
+      },
+      "href": "/learn/grahas"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q2_1_01",
+      "type": "mcq",
+      "question": {
+        "en": "The Sanskrit word \"Graha\" literally means:",
+        "hi": "संस्कृत शब्द \"ग्रह\" का शाब्दिक अर्थ है:",
+        "sa": "संस्कृत शब्द \"ग्रह\" का शाब्दिक अर्थ है:",
+        "mai": "संस्कृत शब्द \"ग्रह\" का शाब्दिक अर्थ है:",
+        "mr": "संस्कृत शब्द \"ग्रह\" का शाब्दिक अर्थ है:",
+        "ta": "The Sanskrit word \"Graha\" literally means:",
+        "te": "The Sanskrit word \"Graha\" literally means:",
+        "bn": "The Sanskrit word \"Graha\" literally means:",
+        "kn": "The Sanskrit word \"Graha\" literally means:",
+        "gu": "The Sanskrit word \"Graha\" literally means:"
+      },
+      "options": [
+        {
+          "en": "Planet",
+          "hi": "ग्रह (planet)",
+          "sa": "ग्रह (planet)",
+          "mai": "ग्रह (planet)",
+          "mr": "ग्रह (planet)",
+          "ta": "Planet",
+          "te": "Planet",
+          "bn": "Planet",
+          "kn": "Planet",
+          "gu": "Planet"
+        },
+        {
+          "en": "That which grasps or seizes",
+          "hi": "जो पकड़ता या आक्रमण करता है",
+          "sa": "जो पकड़ता या आक्रमण करता है",
+          "mai": "जो पकड़ता या आक्रमण करता है",
+          "mr": "जो पकड़ता या आक्रमण करता है",
+          "ta": "That which grasps or seizes",
+          "te": "That which grasps or seizes",
+          "bn": "That which grasps or seizes",
+          "kn": "That which grasps or seizes",
+          "gu": "That which grasps or seizes"
+        },
+        {
+          "en": "Star",
+          "hi": "तारा",
+          "sa": "तारा",
+          "mai": "तारा",
+          "mr": "तारा",
+          "ta": "Star",
+          "te": "Star",
+          "bn": "Star",
+          "kn": "Star",
+          "gu": "Star"
+        },
+        {
+          "en": "Heavenly body",
+          "hi": "आकाशीय पिंड",
+          "sa": "आकाशीय पिंड",
+          "mai": "आकाशीय पिंड",
+          "mr": "आकाशीय पिंड",
+          "ta": "Heavenly body",
+          "te": "Heavenly body",
+          "bn": "Heavenly body",
+          "kn": "Heavenly body",
+          "gu": "Heavenly body"
+        }
+      ],
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Graha comes from the root \"grah\" (ग्रह्) meaning to seize, grasp, or eclipse. A Graha doesn't just exist — it ACTS on the native. This is why Rahu and Ketu (mathematical points, not physical bodies) are Grahas — they \"grasp\" the luminaries during eclipses.",
+        "hi": "\"ग्रह\" धातु \"ग्रह्\" से — जो पकड़े, ग्रसे या ग्रहण करे। ग्रह केवल अस्तित्व नहीं रखता — जातक पर कार्य करता है। इसलिए राहु-केतु (गणितीय बिंदु) भी ग्रह हैं — वे ग्रहण में ज्योतिर्मय पिंडों को ग्रसते हैं।",
+        "sa": "\"ग्रह\" धातु \"ग्रह्\" से — जो पकड़े, ग्रसे या ग्रहण करे। ग्रह केवल अस्तित्व नहीं रखता — जातक पर कार्य करता है। इसलिए राहु-केतु (गणितीय बिंदु) भी ग्रह हैं — वे ग्रहण में ज्योतिर्मय पिंडों को ग्रसते हैं।",
+        "ta": "Graha comes from the root \"grah\" (ग्रह्) meaning to seize, grasp, or eclipse. A Graha doesn't just exist — it ACTS on the native. This is why Rahu and Ketu (mathematical points, not physical bodies) are Grahas — they \"grasp\" the luminaries during eclipses.",
+        "te": "Graha comes from the root \"grah\" (ग्रह्) meaning to seize, grasp, or eclipse. A Graha doesn't just exist — it ACTS on the native. This is why Rahu and Ketu (mathematical points, not physical bodies) are Grahas — they \"grasp\" the luminaries during eclipses.",
+        "bn": "Graha comes from the root \"grah\" (ग्रह्) meaning to seize, grasp, or eclipse. A Graha doesn't just exist — it ACTS on the native. This is why Rahu and Ketu (mathematical points, not physical bodies) are Grahas — they \"grasp\" the luminaries during eclipses.",
+        "kn": "Graha comes from the root \"grah\" (ग्रह्) meaning to seize, grasp, or eclipse. A Graha doesn't just exist — it ACTS on the native. This is why Rahu and Ketu (mathematical points, not physical bodies) are Grahas — they \"grasp\" the luminaries during eclipses.",
+        "mr": "\"ग्रह\" धातु \"ग्रह्\" से — जो पकड़े, ग्रसे या ग्रहण करे। ग्रह केवल अस्तित्व नहीं रखता — जातक पर कार्य करता है। इसलिए राहु-केतु (गणितीय बिंदु) भी ग्रह हैं — वे ग्रहण में ज्योतिर्मय पिंडों को ग्रसते हैं।",
+        "gu": "Graha comes from the root \"grah\" (ग्रह्) meaning to seize, grasp, or eclipse. A Graha doesn't just exist — it ACTS on the native. This is why Rahu and Ketu (mathematical points, not physical bodies) are Grahas — they \"grasp\" the luminaries during eclipses.",
+        "mai": "\"ग्रह\" धातु \"ग्रह्\" से — जो पकड़े, ग्रसे या ग्रहण करे। ग्रह केवल अस्तित्व नहीं रखता — जातक पर कार्य करता है। इसलिए राहु-केतु (गणितीय बिंदु) भी ग्रह हैं — वे ग्रहण में ज्योतिर्मय पिंडों को ग्रसते हैं।"
+      },
+      "classicalRef": "BPHS Ch.3 v.1"
+    },
+    {
+      "id": "q2_1_02",
+      "type": "mcq",
+      "question": {
+        "en": "Which planet is the Karaka (significator) of the father?",
+        "hi": "पिता का कारक ग्रह कौन है?",
+        "sa": "पिता का कारक ग्रह कौन है?",
+        "mai": "पिता का कारक ग्रह कौन है?",
+        "mr": "पिता का कारक ग्रह कौन है?",
+        "ta": "Which planet is the Karaka (significator) of the father?",
+        "te": "Which planet is the Karaka (significator) of the father?",
+        "bn": "Which planet is the Karaka (significator) of the father?",
+        "kn": "Which planet is the Karaka (significator) of the father?",
+        "gu": "Which planet is the Karaka (significator) of the father?"
+      },
+      "options": [
+        {
+          "en": "Moon",
+          "hi": "चन्द्र",
+          "sa": "चन्द्र",
+          "mai": "चन्द्र",
+          "mr": "चन्द्र",
+          "ta": "சந்திரன்",
+          "te": "చంద్రుడు",
+          "bn": "চন্দ্র",
+          "kn": "ಚಂದ್ರ",
+          "gu": "ચંદ્ર"
+        },
+        {
+          "en": "Mars",
+          "hi": "मंगल",
+          "sa": "मंगल",
+          "mai": "मंगल",
+          "mr": "मंगल",
+          "ta": "செவ்வாய்",
+          "te": "కుజుడు",
+          "bn": "মঙ্গল",
+          "kn": "ಕುಜ",
+          "gu": "મંગળ"
+        },
+        {
+          "en": "Sun",
+          "hi": "सूर्य",
+          "sa": "सूर्य",
+          "mai": "सूर्य",
+          "mr": "सूर्य",
+          "ta": "சூரியன்",
+          "te": "సూర్యుడు",
+          "bn": "সূর্য",
+          "kn": "ಸೂರ್ಯ",
+          "gu": "સૂર્ય"
+        },
+        {
+          "en": "Saturn",
+          "hi": "शनि",
+          "sa": "शनि",
+          "mai": "शनि",
+          "mr": "शनि",
+          "ta": "சனி",
+          "te": "శని",
+          "bn": "শনি",
+          "kn": "ಶನಿ",
+          "gu": "શનિ"
+        }
+      ],
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Sun is the Naisargika (natural) Karaka of the father, authority, government, soul (Atma), ego, vitality, and bones. Moon is mother, Mars is siblings/land, Mercury is speech/intellect, Jupiter is wisdom/children, Venus is marriage/luxury, Saturn is longevity/servants.",
+        "hi": "सूर्य पिता, अधिकार, सरकार, आत्मा, अहंकार, जीवन शक्ति और अस्थियों का नैसर्गिक कारक है। चन्द्र=माता, मंगल=भाई/भूमि, बुध=वाणी/बुद्धि, गुरु=ज्ञान/संतान, शुक्र=विवाह/विलासिता, शनि=दीर्घायु/सेवक।",
+        "sa": "सूर्य पिता, अधिकार, सरकार, आत्मा, अहंकार, जीवन शक्ति और अस्थियों का नैसर्गिक कारक है। चन्द्र=माता, मंगल=भाई/भूमि, बुध=वाणी/बुद्धि, गुरु=ज्ञान/संतान, शुक्र=विवाह/विलासिता, शनि=दीर्घायु/सेवक।",
+        "mai": "सूर्य पिता, अधिकार, सरकार, आत्मा, अहंकार, जीवन शक्ति और अस्थियों का नैसर्गिक कारक है। चन्द्र=माता, मंगल=भाई/भूमि, बुध=वाणी/बुद्धि, गुरु=ज्ञान/संतान, शुक्र=विवाह/विलासिता, शनि=दीर्घायु/सेवक।",
+        "mr": "सूर्य पिता, अधिकार, सरकार, आत्मा, अहंकार, जीवन शक्ति और अस्थियों का नैसर्गिक कारक है। चन्द्र=माता, मंगल=भाई/भूमि, बुध=वाणी/बुद्धि, गुरु=ज्ञान/संतान, शुक्र=विवाह/विलासिता, शनि=दीर्घायु/सेवक।",
+        "ta": "Sun is the Naisargika (natural) Karaka of the father, authority, government, soul (Atma), ego, vitality, and bones. Moon is mother, Mars is siblings/land, Mercury is speech/intellect, Jupiter is wisdom/children, Venus is marriage/luxury, Saturn is longevity/servants.",
+        "te": "Sun is the Naisargika (natural) Karaka of the father, authority, government, soul (Atma), ego, vitality, and bones. Moon is mother, Mars is siblings/land, Mercury is speech/intellect, Jupiter is wisdom/children, Venus is marriage/luxury, Saturn is longevity/servants.",
+        "bn": "Sun is the Naisargika (natural) Karaka of the father, authority, government, soul (Atma), ego, vitality, and bones. Moon is mother, Mars is siblings/land, Mercury is speech/intellect, Jupiter is wisdom/children, Venus is marriage/luxury, Saturn is longevity/servants.",
+        "kn": "Sun is the Naisargika (natural) Karaka of the father, authority, government, soul (Atma), ego, vitality, and bones. Moon is mother, Mars is siblings/land, Mercury is speech/intellect, Jupiter is wisdom/children, Venus is marriage/luxury, Saturn is longevity/servants.",
+        "gu": "Sun is the Naisargika (natural) Karaka of the father, authority, government, soul (Atma), ego, vitality, and bones. Moon is mother, Mars is siblings/land, Mercury is speech/intellect, Jupiter is wisdom/children, Venus is marriage/luxury, Saturn is longevity/servants."
+      },
+      "classicalRef": "BPHS Ch.3"
+    },
+    {
+      "id": "q2_1_03",
+      "type": "mcq",
+      "question": {
+        "en": "Rahu and Ketu are called \"shadow planets\" because:",
+        "hi": "राहु और केतु \"छाया ग्रह\" कहलाते हैं क्योंकि:",
+        "sa": "राहु और केतु \"छाया ग्रह\" कहलाते हैं क्योंकि:",
+        "mai": "राहु और केतु \"छाया ग्रह\" कहलाते हैं क्योंकि:",
+        "mr": "राहु और केतु \"छाया ग्रह\" कहलाते हैं क्योंकि:",
+        "ta": "Rahu and Ketu are called \"shadow planets\" because:",
+        "te": "Rahu and Ketu are called \"shadow planets\" because:",
+        "bn": "Rahu and Ketu are called \"shadow planets\" because:",
+        "kn": "Rahu and Ketu are called \"shadow planets\" because:",
+        "gu": "Rahu and Ketu are called \"shadow planets\" because:"
+      },
+      "options": [
+        {
+          "en": "They are always in the shadow of the Sun",
+          "hi": "वे हमेशा सूर्य की छाया में रहते हैं",
+          "sa": "वे हमेशा सूर्य की छाया में रहते हैं",
+          "mai": "वे हमेशा सूर्य की छाया में रहते हैं",
+          "mr": "वे हमेशा सूर्य की छाया में रहते हैं",
+          "ta": "They are always in the shadow of the Sun",
+          "te": "They are always in the shadow of the Sun",
+          "bn": "They are always in the shadow of the Sun",
+          "kn": "They are always in the shadow of the Sun",
+          "gu": "They are always in the shadow of the Sun"
+        },
+        {
+          "en": "They are mathematical points (lunar nodes) without physical bodies",
+          "hi": "वे भौतिक शरीर रहित गणितीय बिंदु (चंद्र नोड) हैं",
+          "sa": "वे भौतिक शरीर रहित गणितीय बिंदु (चंद्र नोड) हैं",
+          "mai": "वे भौतिक शरीर रहित गणितीय बिंदु (चंद्र नोड) हैं",
+          "mr": "वे भौतिक शरीर रहित गणितीय बिंदु (चंद्र नोड) हैं",
+          "ta": "They are mathematical points (lunar nodes) without physical bodies",
+          "te": "They are mathematical points (lunar nodes) without physical bodies",
+          "bn": "They are mathematical points (lunar nodes) without physical bodies",
+          "kn": "They are mathematical points (lunar nodes) without physical bodies",
+          "gu": "They are mathematical points (lunar nodes) without physical bodies"
+        },
+        {
+          "en": "They can only be seen at night",
+          "hi": "वे केवल रात में दिखते हैं",
+          "sa": "वे केवल रात में दिखते हैं",
+          "mai": "वे केवल रात में दिखते हैं",
+          "mr": "वे केवल रात में दिखते हैं",
+          "ta": "They can only be seen at night",
+          "te": "They can only be seen at night",
+          "bn": "They can only be seen at night",
+          "kn": "They can only be seen at night",
+          "gu": "They can only be seen at night"
+        },
+        {
+          "en": "They move very slowly",
+          "hi": "वे बहुत धीरे चलते हैं",
+          "sa": "वे बहुत धीरे चलते हैं",
+          "mai": "वे बहुत धीरे चलते हैं",
+          "mr": "वे बहुत धीरे चलते हैं",
+          "ta": "They move very slowly",
+          "te": "They move very slowly",
+          "bn": "They move very slowly",
+          "kn": "They move very slowly",
+          "gu": "They move very slowly"
+        }
+      ],
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Rahu (ascending node) and Ketu (descending node) are the two points where the Moon's orbit intersects the ecliptic. They have no physical body — they are mathematical points. But they CAUSE eclipses (when Sun/Moon are near these points), hence \"Chaya Graha\" (shadow planets). They are always exactly 180° apart and move retrograde at ~19.4° per year.",
+        "hi": "राहु (आरोही नोड) और केतु (अवरोही नोड) वे बिंदु हैं जहां चंद्र की कक्षा क्रान्तिवृत्त को काटती है। कोई भौतिक शरीर नहीं — गणितीय बिंदु। लेकिन ग्रहण इन्हीं के कारण — इसलिए \"छाया ग्रह\"।",
+        "sa": "राहु (आरोही नोड) और केतु (अवरोही नोड) वे बिंदु हैं जहां चंद्र की कक्षा क्रान्तिवृत्त को काटती है। कोई भौतिक शरीर नहीं — गणितीय बिंदु। लेकिन ग्रहण इन्हीं के कारण — इसलिए \"छाया ग्रह\"।",
+        "ta": "Rahu (ascending node) and Ketu (descending node) are the two points where the Moon's orbit intersects the ecliptic. They have no physical body — they are mathematical points. But they CAUSE eclipses (when Sun/Moon are near these points), hence \"Chaya Graha\" (shadow planets). They are always exactly 180° apart and move retrograde at ~19.4° per year.",
+        "te": "Rahu (ascending node) and Ketu (descending node) are the two points where the Moon's orbit intersects the ecliptic. They have no physical body — they are mathematical points. But they CAUSE eclipses (when Sun/Moon are near these points), hence \"Chaya Graha\" (shadow planets). They are always exactly 180° apart and move retrograde at ~19.4° per year.",
+        "bn": "Rahu (ascending node) and Ketu (descending node) are the two points where the Moon's orbit intersects the ecliptic. They have no physical body — they are mathematical points. But they CAUSE eclipses (when Sun/Moon are near these points), hence \"Chaya Graha\" (shadow planets). They are always exactly 180° apart and move retrograde at ~19.4° per year.",
+        "kn": "Rahu (ascending node) and Ketu (descending node) are the two points where the Moon's orbit intersects the ecliptic. They have no physical body — they are mathematical points. But they CAUSE eclipses (when Sun/Moon are near these points), hence \"Chaya Graha\" (shadow planets). They are always exactly 180° apart and move retrograde at ~19.4° per year.",
+        "mr": "राहु (आरोही नोड) और केतु (अवरोही नोड) वे बिंदु हैं जहां चंद्र की कक्षा क्रान्तिवृत्त को काटती है। कोई भौतिक शरीर नहीं — गणितीय बिंदु। लेकिन ग्रहण इन्हीं के कारण — इसलिए \"छाया ग्रह\"।",
+        "gu": "Rahu (ascending node) and Ketu (descending node) are the two points where the Moon's orbit intersects the ecliptic. They have no physical body — they are mathematical points. But they CAUSE eclipses (when Sun/Moon are near these points), hence \"Chaya Graha\" (shadow planets). They are always exactly 180° apart and move retrograde at ~19.4° per year.",
+        "mai": "राहु (आरोही नोड) और केतु (अवरोही नोड) वे बिंदु हैं जहां चंद्र की कक्षा क्रान्तिवृत्त को काटती है। कोई भौतिक शरीर नहीं — गणितीय बिंदु। लेकिन ग्रहण इन्हीं के कारण — इसलिए \"छाया ग्रह\"।"
+      },
+      "classicalRef": "Surya Siddhanta Ch.2"
+    },
+    {
+      "id": "q2_1_04",
+      "type": "mcq",
+      "question": {
+        "en": "Which classification system divides the 9 Grahas into Sattvic, Rajasic, and Tamasic?",
+        "hi": "कौन सी वर्गीकरण प्रणाली 9 ग्रहों को सात्विक, राजसिक और तामसिक में बांटती है?",
+        "sa": "कौन सी वर्गीकरण प्रणाली 9 ग्रहों को सात्विक, राजसिक और तामसिक में बांटती है?",
+        "mai": "कौन सी वर्गीकरण प्रणाली 9 ग्रहों को सात्विक, राजसिक और तामसिक में बांटती है?",
+        "mr": "कौन सी वर्गीकरण प्रणाली 9 ग्रहों को सात्विक, राजसिक और तामसिक में बांटती है?",
+        "ta": "Which classification system divides the 9 Grahas into Sattvic, Rajasic, and Tamasic?",
+        "te": "Which classification system divides the 9 Grahas into Sattvic, Rajasic, and Tamasic?",
+        "bn": "Which classification system divides the 9 Grahas into Sattvic, Rajasic, and Tamasic?",
+        "kn": "Which classification system divides the 9 Grahas into Sattvic, Rajasic, and Tamasic?",
+        "gu": "Which classification system divides the 9 Grahas into Sattvic, Rajasic, and Tamasic?"
+      },
+      "options": [
+        {
+          "en": "The Guna system",
+          "hi": "गुण प्रणाली",
+          "sa": "गुण प्रणाली",
+          "mai": "गुण प्रणाली",
+          "mr": "गुण प्रणाली",
+          "ta": "The Guna system",
+          "te": "The Guna system",
+          "bn": "The Guna system",
+          "kn": "The Guna system",
+          "gu": "The Guna system"
+        },
+        {
+          "en": "The Drishti system",
+          "hi": "दृष्टि प्रणाली",
+          "sa": "दृष्टि प्रणाली",
+          "mai": "दृष्टि प्रणाली",
+          "mr": "दृष्टि प्रणाली",
+          "ta": "The Drishti system",
+          "te": "The Drishti system",
+          "bn": "The Drishti system",
+          "kn": "The Drishti system",
+          "gu": "The Drishti system"
+        },
+        {
+          "en": "The Varga system",
+          "hi": "वर्ग प्रणाली",
+          "sa": "वर्ग प्रणाली",
+          "mai": "वर्ग प्रणाली",
+          "mr": "वर्ग प्रणाली",
+          "ta": "The Varga system",
+          "te": "The Varga system",
+          "bn": "The Varga system",
+          "kn": "The Varga system",
+          "gu": "The Varga system"
+        },
+        {
+          "en": "The Dasha system",
+          "hi": "दशा प्रणाली",
+          "sa": "दशा प्रणाली",
+          "mai": "दशा प्रणाली",
+          "mr": "दशा प्रणाली",
+          "ta": "The Dasha system",
+          "te": "The Dasha system",
+          "bn": "The Dasha system",
+          "kn": "The Dasha system",
+          "gu": "The Dasha system"
+        }
+      ],
+      "correctAnswer": 0,
+      "explanation": {
+        "en": "The three Gunas (qualities): Sattvic (pure/spiritual) = Sun, Moon, Jupiter. Rajasic (active/passionate) = Mercury, Venus. Tamasic (inert/dark) = Mars, Saturn, Rahu, Ketu. This classification from BPHS Ch.3 determines the fundamental nature of each planet's influence.",
+        "hi": "तीन गुण: सात्विक (शुद्ध) = सूर्य, चन्द्र, गुरु। राजसिक (सक्रिय) = बुध, शुक्र। तामसिक (जड़) = मंगल, शनि, राहु, केतु। BPHS अध्याय 3 से।",
+        "sa": "तीन गुण: सात्विक (शुद्ध) = सूर्य, चन्द्र, गुरु। राजसिक (सक्रिय) = बुध, शुक्र। तामसिक (जड़) = मंगल, शनि, राहु, केतु। BPHS अध्याय 3 से।",
+        "ta": "The three Gunas (qualities): Sattvic (pure/spiritual) = Sun, Moon, Jupiter. Rajasic (active/passionate) = Mercury, Venus. Tamasic (inert/dark) = Mars, Saturn, Rahu, Ketu. This classification from BPHS Ch.3 determines the fundamental nature of each planet's influence.",
+        "te": "The three Gunas (qualities): Sattvic (pure/spiritual) = Sun, Moon, Jupiter. Rajasic (active/passionate) = Mercury, Venus. Tamasic (inert/dark) = Mars, Saturn, Rahu, Ketu. This classification from BPHS Ch.3 determines the fundamental nature of each planet's influence.",
+        "bn": "The three Gunas (qualities): Sattvic (pure/spiritual) = Sun, Moon, Jupiter. Rajasic (active/passionate) = Mercury, Venus. Tamasic (inert/dark) = Mars, Saturn, Rahu, Ketu. This classification from BPHS Ch.3 determines the fundamental nature of each planet's influence.",
+        "kn": "The three Gunas (qualities): Sattvic (pure/spiritual) = Sun, Moon, Jupiter. Rajasic (active/passionate) = Mercury, Venus. Tamasic (inert/dark) = Mars, Saturn, Rahu, Ketu. This classification from BPHS Ch.3 determines the fundamental nature of each planet's influence.",
+        "mr": "तीन गुण: सात्विक (शुद्ध) = सूर्य, चन्द्र, गुरु। राजसिक (सक्रिय) = बुध, शुक्र। तामसिक (जड़) = मंगल, शनि, राहु, केतु। BPHS अध्याय 3 से।",
+        "gu": "The three Gunas (qualities): Sattvic (pure/spiritual) = Sun, Moon, Jupiter. Rajasic (active/passionate) = Mercury, Venus. Tamasic (inert/dark) = Mars, Saturn, Rahu, Ketu. This classification from BPHS Ch.3 determines the fundamental nature of each planet's influence.",
+        "mai": "तीन गुण: सात्विक (शुद्ध) = सूर्य, चन्द्र, गुरु। राजसिक (सक्रिय) = बुध, शुक्र। तामसिक (जड़) = मंगल, शनि, राहु, केतु। BPHS अध्याय 3 से।"
+      },
+      "classicalRef": "BPHS Ch.3 v.14"
+    },
+    {
+      "id": "q2_1_05",
+      "type": "true_false",
+      "question": {
+        "en": "Mercury is naturally classified as a benefic planet.",
+        "hi": "बुध स्वभावतः शुभ ग्रह है।",
+        "sa": "बुध स्वभावतः शुभ ग्रह है।",
+        "mai": "बुध स्वभावतः शुभ ग्रह है।",
+        "mr": "बुध स्वभावतः शुभ ग्रह है।",
+        "ta": "Mercury is naturally classified as a benefic planet.",
+        "te": "Mercury is naturally classified as a benefic planet.",
+        "bn": "Mercury is naturally classified as a benefic planet.",
+        "kn": "Mercury is naturally classified as a benefic planet.",
+        "gu": "Mercury is naturally classified as a benefic planet."
+      },
+      "correctAnswer": false,
+      "explanation": {
+        "en": "Mercury is NEUTRAL by nature — neither naturally benefic nor naturally malefic. It takes on the nature of the planets it associates with. When conjunct benefics (Jupiter, Venus), Mercury acts as benefic. When conjunct malefics (Mars, Saturn), it acts as malefic. This is why Mercury is called the \"prince\" — adaptable and impressionable.",
+        "hi": "बुध स्वभावतः तटस्थ है — न शुभ न अशुभ। यह संगत ग्रहों का स्वभाव अपनाता है। शुभ ग्रहों के साथ शुभ, अशुभ के साथ अशुभ। इसलिए बुध \"कुमार\" (राजकुमार) — अनुकूलनीय और प्रभावशील।",
+        "sa": "बुध स्वभावतः तटस्थ है — न शुभ न अशुभ। यह संगत ग्रहों का स्वभाव अपनाता है। शुभ ग्रहों के साथ शुभ, अशुभ के साथ अशुभ। इसलिए बुध \"कुमार\" (राजकुमार) — अनुकूलनीय और प्रभावशील।",
+        "mai": "बुध स्वभावतः तटस्थ है — न शुभ न अशुभ। यह संगत ग्रहों का स्वभाव अपनाता है। शुभ ग्रहों के साथ शुभ, अशुभ के साथ अशुभ। इसलिए बुध \"कुमार\" (राजकुमार) — अनुकूलनीय और प्रभावशील।",
+        "mr": "बुध स्वभावतः तटस्थ है — न शुभ न अशुभ। यह संगत ग्रहों का स्वभाव अपनाता है। शुभ ग्रहों के साथ शुभ, अशुभ के साथ अशुभ। इसलिए बुध \"कुमार\" (राजकुमार) — अनुकूलनीय और प्रभावशील।",
+        "ta": "Mercury is NEUTRAL by nature — neither naturally benefic nor naturally malefic. It takes on the nature of the planets it associates with. When conjunct benefics (Jupiter, Venus), Mercury acts as benefic. When conjunct malefics (Mars, Saturn), it acts as malefic. This is why Mercury is called the \"prince\" — adaptable and impressionable.",
+        "te": "Mercury is NEUTRAL by nature — neither naturally benefic nor naturally malefic. It takes on the nature of the planets it associates with. When conjunct benefics (Jupiter, Venus), Mercury acts as benefic. When conjunct malefics (Mars, Saturn), it acts as malefic. This is why Mercury is called the \"prince\" — adaptable and impressionable.",
+        "bn": "Mercury is NEUTRAL by nature — neither naturally benefic nor naturally malefic. It takes on the nature of the planets it associates with. When conjunct benefics (Jupiter, Venus), Mercury acts as benefic. When conjunct malefics (Mars, Saturn), it acts as malefic. This is why Mercury is called the \"prince\" — adaptable and impressionable.",
+        "kn": "Mercury is NEUTRAL by nature — neither naturally benefic nor naturally malefic. It takes on the nature of the planets it associates with. When conjunct benefics (Jupiter, Venus), Mercury acts as benefic. When conjunct malefics (Mars, Saturn), it acts as malefic. This is why Mercury is called the \"prince\" — adaptable and impressionable.",
+        "gu": "Mercury is NEUTRAL by nature — neither naturally benefic nor naturally malefic. It takes on the nature of the planets it associates with. When conjunct benefics (Jupiter, Venus), Mercury acts as benefic. When conjunct malefics (Mars, Saturn), it acts as malefic. This is why Mercury is called the \"prince\" — adaptable and impressionable."
+      },
+      "classicalRef": "BPHS Ch.3 v.11"
+    },
+    {
+      "id": "q2_1_06",
+      "type": "mcq",
+      "question": {
+        "en": "Which planet is the Karaka (significator) of marriage and romantic relationships?",
+        "hi": "विवाह और प्रेम संबंधों का कारक ग्रह कौन है?",
+        "sa": "विवाह और प्रेम संबंधों का कारक ग्रह कौन है?",
+        "mai": "विवाह और प्रेम संबंधों का कारक ग्रह कौन है?",
+        "mr": "विवाह और प्रेम संबंधों का कारक ग्रह कौन है?",
+        "ta": "Which planet is the Karaka (significator) of marriage and romantic relationships?",
+        "te": "Which planet is the Karaka (significator) of marriage and romantic relationships?",
+        "bn": "Which planet is the Karaka (significator) of marriage and romantic relationships?",
+        "kn": "Which planet is the Karaka (significator) of marriage and romantic relationships?",
+        "gu": "Which planet is the Karaka (significator) of marriage and romantic relationships?"
+      },
+      "options": [
+        {
+          "en": "Moon",
+          "hi": "चन्द्र",
+          "sa": "चन्द्र",
+          "mai": "चन्द्र",
+          "mr": "चन्द्र",
+          "ta": "சந்திரன்",
+          "te": "చంద్రుడు",
+          "bn": "চন্দ্র",
+          "kn": "ಚಂದ್ರ",
+          "gu": "ચંદ્ર"
+        },
+        {
+          "en": "Mars",
+          "hi": "मंगल",
+          "sa": "मंगल",
+          "mai": "मंगल",
+          "mr": "मंगल",
+          "ta": "செவ்வாய்",
+          "te": "కుజుడు",
+          "bn": "মঙ্গল",
+          "kn": "ಕುಜ",
+          "gu": "મંગળ"
+        },
+        {
+          "en": "Jupiter",
+          "hi": "गुरु",
+          "sa": "गुरु",
+          "mai": "गुरु",
+          "mr": "गुरु",
+          "ta": "குரு",
+          "te": "గురుడు",
+          "bn": "বৃহস্পতি",
+          "kn": "ಗುರು",
+          "gu": "ગુરુ"
+        },
+        {
+          "en": "Venus",
+          "hi": "शुक्र",
+          "sa": "शुक्र",
+          "mai": "शुक्र",
+          "mr": "शुक्र",
+          "ta": "சுக்கிரன்",
+          "te": "శుక్రుడు",
+          "bn": "শুক্র",
+          "kn": "ಶುಕ್ರ",
+          "gu": "શુક્ર"
+        }
+      ],
+      "correctAnswer": 3,
+      "explanation": {
+        "en": "Venus (Shukra) is the Karaka of marriage, romance, beauty, luxury, arts, vehicles, and sensual pleasures. In a man's chart, Venus represents the wife. Venus is the Guru (teacher) of the Asuras — and his knowledge includes the science of Sanjeevani (revival from death), making him the most materially powerful planet.",
+        "hi": "शुक्र विवाह, प्रेम, सौंदर्य, विलासिता, कला, वाहन और इंद्रिय सुख का कारक है। पुरुष की कुण्डली में शुक्र पत्नी का प्रतिनिधित्व करता है। शुक्र असुरों का गुरु — संजीवनी विद्या का ज्ञाता।",
+        "sa": "शुक्र विवाह, प्रेम, सौंदर्य, विलासिता, कला, वाहन और इंद्रिय सुख का कारक है। पुरुष की कुण्डली में शुक्र पत्नी का प्रतिनिधित्व करता है। शुक्र असुरों का गुरु — संजीवनी विद्या का ज्ञाता।",
+        "ta": "Venus (Shukra) is the Karaka of marriage, romance, beauty, luxury, arts, vehicles, and sensual pleasures. In a man's chart, Venus represents the wife. Venus is the Guru (teacher) of the Asuras — and his knowledge includes the science of Sanjeevani (revival from death), making him the most materially powerful planet.",
+        "te": "Venus (Shukra) is the Karaka of marriage, romance, beauty, luxury, arts, vehicles, and sensual pleasures. In a man's chart, Venus represents the wife. Venus is the Guru (teacher) of the Asuras — and his knowledge includes the science of Sanjeevani (revival from death), making him the most materially powerful planet.",
+        "bn": "Venus (Shukra) is the Karaka of marriage, romance, beauty, luxury, arts, vehicles, and sensual pleasures. In a man's chart, Venus represents the wife. Venus is the Guru (teacher) of the Asuras — and his knowledge includes the science of Sanjeevani (revival from death), making him the most materially powerful planet.",
+        "kn": "Venus (Shukra) is the Karaka of marriage, romance, beauty, luxury, arts, vehicles, and sensual pleasures. In a man's chart, Venus represents the wife. Venus is the Guru (teacher) of the Asuras — and his knowledge includes the science of Sanjeevani (revival from death), making him the most materially powerful planet.",
+        "mr": "शुक्र विवाह, प्रेम, सौंदर्य, विलासिता, कला, वाहन और इंद्रिय सुख का कारक है। पुरुष की कुण्डली में शुक्र पत्नी का प्रतिनिधित्व करता है। शुक्र असुरों का गुरु — संजीवनी विद्या का ज्ञाता।",
+        "gu": "Venus (Shukra) is the Karaka of marriage, romance, beauty, luxury, arts, vehicles, and sensual pleasures. In a man's chart, Venus represents the wife. Venus is the Guru (teacher) of the Asuras — and his knowledge includes the science of Sanjeevani (revival from death), making him the most materially powerful planet.",
+        "mai": "शुक्र विवाह, प्रेम, सौंदर्य, विलासिता, कला, वाहन और इंद्रिय सुख का कारक है। पुरुष की कुण्डली में शुक्र पत्नी का प्रतिनिधित्व करता है। शुक्र असुरों का गुरु — संजीवनी विद्या का ज्ञाता।"
+      },
+      "classicalRef": "BPHS Ch.3 v.23"
+    },
+    {
+      "id": "q2_1_07",
+      "type": "true_false",
+      "question": {
+        "en": "Jyotish includes Uranus, Neptune, and Pluto as Grahas.",
+        "hi": "ज्योतिष में यूरेनस, नेप्च्यून और प्लूटो ग्रहों के रूप में शामिल हैं।",
+        "sa": "ज्योतिष में यूरेनस, नेप्च्यून और प्लूटो ग्रहों के रूप में शामिल हैं।",
+        "mai": "ज्योतिष में यूरेनस, नेप्च्यून और प्लूटो ग्रहों के रूप में शामिल हैं।",
+        "mr": "ज्योतिष में यूरेनस, नेप्च्यून और प्लूटो ग्रहों के रूप में शामिल हैं।",
+        "ta": "Jyotish includes Uranus, Neptune, and Pluto as Grahas.",
+        "te": "Jyotish includes Uranus, Neptune, and Pluto as Grahas.",
+        "bn": "Jyotish includes Uranus, Neptune, and Pluto as Grahas.",
+        "kn": "Jyotish includes Uranus, Neptune, and Pluto as Grahas.",
+        "gu": "Jyotish includes Uranus, Neptune, and Pluto as Grahas."
+      },
+      "correctAnswer": false,
+      "explanation": {
+        "en": "Traditional Jyotish does NOT include outer planets. Reasons: (1) They are invisible to the naked eye — ancient texts are based on visible observation. (2) Their orbital inclinations are high (Pluto: 17°), taking them outside the zodiac belt. (3) The 9-Graha system is mathematically complete — Vimshottari Dasha uses exactly 9 lords for 27 nakshatras. Adding more would break this elegance. Some modern practitioners experiment with them, but classical Jyotish is explicit: 9 Grahas only.",
+        "hi": "पारंपरिक ज्योतिष बाह्य ग्रह शामिल नहीं करता। कारण: (1) नंगी आंखों से अदृश्य। (2) उच्च कक्षीय झुकाव (प्लूटो: 17°)। (3) 9-ग्रह प्रणाली गणितीय रूप से पूर्ण — विंशोत्तरी दशा 27 नक्षत्रों के लिए ठीक 9 स्वामी प्रयोग करती है।",
+        "sa": "पारंपरिक ज्योतिष बाह्य ग्रह शामिल नहीं करता। कारण: (1) नंगी आंखों से अदृश्य। (2) उच्च कक्षीय झुकाव (प्लूटो: 17°)। (3) 9-ग्रह प्रणाली गणितीय रूप से पूर्ण — विंशोत्तरी दशा 27 नक्षत्रों के लिए ठीक 9 स्वामी प्रयोग करती है।",
+        "mai": "पारंपरिक ज्योतिष बाह्य ग्रह शामिल नहीं करता। कारण: (1) नंगी आंखों से अदृश्य। (2) उच्च कक्षीय झुकाव (प्लूटो: 17°)। (3) 9-ग्रह प्रणाली गणितीय रूप से पूर्ण — विंशोत्तरी दशा 27 नक्षत्रों के लिए ठीक 9 स्वामी प्रयोग करती है।",
+        "mr": "पारंपरिक ज्योतिष बाह्य ग्रह शामिल नहीं करता। कारण: (1) नंगी आंखों से अदृश्य। (2) उच्च कक्षीय झुकाव (प्लूटो: 17°)। (3) 9-ग्रह प्रणाली गणितीय रूप से पूर्ण — विंशोत्तरी दशा 27 नक्षत्रों के लिए ठीक 9 स्वामी प्रयोग करती है।",
+        "ta": "Traditional Jyotish does NOT include outer planets. Reasons: (1) They are invisible to the naked eye — ancient texts are based on visible observation. (2) Their orbital inclinations are high (Pluto: 17°), taking them outside the zodiac belt. (3) The 9-Graha system is mathematically complete — Vimshottari Dasha uses exactly 9 lords for 27 nakshatras. Adding more would break this elegance. Some modern practitioners experiment with them, but classical Jyotish is explicit: 9 Grahas only.",
+        "te": "Traditional Jyotish does NOT include outer planets. Reasons: (1) They are invisible to the naked eye — ancient texts are based on visible observation. (2) Their orbital inclinations are high (Pluto: 17°), taking them outside the zodiac belt. (3) The 9-Graha system is mathematically complete — Vimshottari Dasha uses exactly 9 lords for 27 nakshatras. Adding more would break this elegance. Some modern practitioners experiment with them, but classical Jyotish is explicit: 9 Grahas only.",
+        "bn": "Traditional Jyotish does NOT include outer planets. Reasons: (1) They are invisible to the naked eye — ancient texts are based on visible observation. (2) Their orbital inclinations are high (Pluto: 17°), taking them outside the zodiac belt. (3) The 9-Graha system is mathematically complete — Vimshottari Dasha uses exactly 9 lords for 27 nakshatras. Adding more would break this elegance. Some modern practitioners experiment with them, but classical Jyotish is explicit: 9 Grahas only.",
+        "kn": "Traditional Jyotish does NOT include outer planets. Reasons: (1) They are invisible to the naked eye — ancient texts are based on visible observation. (2) Their orbital inclinations are high (Pluto: 17°), taking them outside the zodiac belt. (3) The 9-Graha system is mathematically complete — Vimshottari Dasha uses exactly 9 lords for 27 nakshatras. Adding more would break this elegance. Some modern practitioners experiment with them, but classical Jyotish is explicit: 9 Grahas only.",
+        "gu": "Traditional Jyotish does NOT include outer planets. Reasons: (1) They are invisible to the naked eye — ancient texts are based on visible observation. (2) Their orbital inclinations are high (Pluto: 17°), taking them outside the zodiac belt. (3) The 9-Graha system is mathematically complete — Vimshottari Dasha uses exactly 9 lords for 27 nakshatras. Adding more would break this elegance. Some modern practitioners experiment with them, but classical Jyotish is explicit: 9 Grahas only."
+      }
+    },
+    {
+      "id": "q2_1_08",
+      "type": "mcq",
+      "question": {
+        "en": "In Jyotish, the Sun and Moon are called:",
+        "hi": "ज्योतिष में सूर्य और चन्द्र को कहते हैं:",
+        "sa": "ज्योतिष में सूर्य और चन्द्र को कहते हैं:",
+        "mai": "ज्योतिष में सूर्य और चन्द्र को कहते हैं:",
+        "mr": "ज्योतिष में सूर्य और चन्द्र को कहते हैं:",
+        "ta": "In Jyotish, the Sun and Moon are called:",
+        "te": "In Jyotish, the Sun and Moon are called:",
+        "bn": "In Jyotish, the Sun and Moon are called:",
+        "kn": "In Jyotish, the Sun and Moon are called:",
+        "gu": "In Jyotish, the Sun and Moon are called:"
+      },
+      "options": [
+        {
+          "en": "Stars",
+          "hi": "तारे",
+          "sa": "तारे",
+          "mai": "तारे",
+          "mr": "तारे",
+          "ta": "Stars",
+          "te": "Stars",
+          "bn": "Stars",
+          "kn": "Stars",
+          "gu": "Stars"
+        },
+        {
+          "en": "Luminaries (Jyoti)",
+          "hi": "ज्योतिर्मय पिंड (ज्योति)",
+          "sa": "ज्योतिर्मय पिंड (ज्योति)",
+          "mai": "ज्योतिर्मय पिंड (ज्योति)",
+          "mr": "ज्योतिर्मय पिंड (ज्योति)",
+          "ta": "Luminaries (Jyoti)",
+          "te": "Luminaries (Jyoti)",
+          "bn": "Luminaries (Jyoti)",
+          "kn": "Luminaries (Jyoti)",
+          "gu": "Luminaries (Jyoti)"
+        },
+        {
+          "en": "Inner planets",
+          "hi": "आंतरिक ग्रह",
+          "sa": "आंतरिक ग्रह",
+          "mai": "आंतरिक ग्रह",
+          "mr": "आंतरिक ग्रह",
+          "ta": "Inner planets",
+          "te": "Inner planets",
+          "bn": "Inner planets",
+          "kn": "Inner planets",
+          "gu": "Inner planets"
+        },
+        {
+          "en": "Gas giants",
+          "hi": "गैस विशालकाय",
+          "sa": "गैस विशालकाय",
+          "mai": "गैस विशालकाय",
+          "mr": "गैस विशालकाय",
+          "ta": "Gas giants",
+          "te": "Gas giants",
+          "bn": "Gas giants",
+          "kn": "Gas giants",
+          "gu": "Gas giants"
+        }
+      ],
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Sun and Moon are the two \"luminaries\" (Jyoti, ज्योति) — sources of light. The word Jyotish itself comes from \"Jyoti\" (light) + \"Isha\" (lord/science) = the science of celestial light. The Sun emits its own light; the Moon reflects the Sun's light. Together they govern the two most visible cycles: the year (Sun) and the month (Moon).",
+        "hi": "सूर्य और चन्द्र दो \"ज्योतिर्मय पिंड\" (ज्योति) हैं। ज्योतिष शब्द \"ज्योति\" (प्रकाश) + \"ईश\" (स्वामी/विज्ञान) = आकाशीय प्रकाश का विज्ञान।",
+        "sa": "सूर्य और चन्द्र दो \"ज्योतिर्मय पिंड\" (ज्योति) हैं। ज्योतिष शब्द \"ज्योति\" (प्रकाश) + \"ईश\" (स्वामी/विज्ञान) = आकाशीय प्रकाश का विज्ञान।",
+        "ta": "Sun and Moon are the two \"luminaries\" (Jyoti, ज्योति) — sources of light. The word Jyotish itself comes from \"Jyoti\" (light) + \"Isha\" (lord/science) = the science of celestial light. The Sun emits its own light; the Moon reflects the Sun's light. Together they govern the two most visible cycles: the year (Sun) and the month (Moon).",
+        "te": "Sun and Moon are the two \"luminaries\" (Jyoti, ज्योति) — sources of light. The word Jyotish itself comes from \"Jyoti\" (light) + \"Isha\" (lord/science) = the science of celestial light. The Sun emits its own light; the Moon reflects the Sun's light. Together they govern the two most visible cycles: the year (Sun) and the month (Moon).",
+        "bn": "Sun and Moon are the two \"luminaries\" (Jyoti, ज्योति) — sources of light. The word Jyotish itself comes from \"Jyoti\" (light) + \"Isha\" (lord/science) = the science of celestial light. The Sun emits its own light; the Moon reflects the Sun's light. Together they govern the two most visible cycles: the year (Sun) and the month (Moon).",
+        "kn": "Sun and Moon are the two \"luminaries\" (Jyoti, ज्योति) — sources of light. The word Jyotish itself comes from \"Jyoti\" (light) + \"Isha\" (lord/science) = the science of celestial light. The Sun emits its own light; the Moon reflects the Sun's light. Together they govern the two most visible cycles: the year (Sun) and the month (Moon).",
+        "mr": "सूर्य और चन्द्र दो \"ज्योतिर्मय पिंड\" (ज्योति) हैं। ज्योतिष शब्द \"ज्योति\" (प्रकाश) + \"ईश\" (स्वामी/विज्ञान) = आकाशीय प्रकाश का विज्ञान।",
+        "gu": "Sun and Moon are the two \"luminaries\" (Jyoti, ज्योति) — sources of light. The word Jyotish itself comes from \"Jyoti\" (light) + \"Isha\" (lord/science) = the science of celestial light. The Sun emits its own light; the Moon reflects the Sun's light. Together they govern the two most visible cycles: the year (Sun) and the month (Moon).",
+        "mai": "सूर्य और चन्द्र दो \"ज्योतिर्मय पिंड\" (ज्योति) हैं। ज्योतिष शब्द \"ज्योति\" (प्रकाश) + \"ईश\" (स्वामी/विज्ञान) = आकाशीय प्रकाश का विज्ञान।"
+      }
+    },
+    {
+      "id": "q2_1_09",
+      "type": "mcq",
+      "question": {
+        "en": "Which planet rules both the 10th and 11th signs (Capricorn and Aquarius)?",
+        "hi": "कौन सा ग्रह 10वीं और 11वीं राशि (मकर और कुम्भ) दोनों का स्वामी है?",
+        "sa": "कौन सा ग्रह 10वीं और 11वीं राशि (मकर और कुम्भ) दोनों का स्वामी है?",
+        "mai": "कौन सा ग्रह 10वीं और 11वीं राशि (मकर और कुम्भ) दोनों का स्वामी है?",
+        "mr": "कौन सा ग्रह 10वीं और 11वीं राशि (मकर और कुम्भ) दोनों का स्वामी है?",
+        "ta": "Which planet rules both the 10th and 11th signs (Capricorn and Aquarius)?",
+        "te": "Which planet rules both the 10th and 11th signs (Capricorn and Aquarius)?",
+        "bn": "Which planet rules both the 10th and 11th signs (Capricorn and Aquarius)?",
+        "kn": "Which planet rules both the 10th and 11th signs (Capricorn and Aquarius)?",
+        "gu": "Which planet rules both the 10th and 11th signs (Capricorn and Aquarius)?"
+      },
+      "options": [
+        {
+          "en": "Jupiter",
+          "hi": "गुरु",
+          "sa": "गुरु",
+          "mai": "गुरु",
+          "mr": "गुरु",
+          "ta": "குரு",
+          "te": "గురుడు",
+          "bn": "বৃহস্পতি",
+          "kn": "ಗುರು",
+          "gu": "ગુરુ"
+        },
+        {
+          "en": "Mars",
+          "hi": "मंगल",
+          "sa": "मंगल",
+          "mai": "मंगल",
+          "mr": "मंगल",
+          "ta": "செவ்வாய்",
+          "te": "కుజుడు",
+          "bn": "মঙ্গল",
+          "kn": "ಕುಜ",
+          "gu": "મંગળ"
+        },
+        {
+          "en": "Saturn",
+          "hi": "शनि",
+          "sa": "शनि",
+          "mai": "शनि",
+          "mr": "शनि",
+          "ta": "சனி",
+          "te": "శని",
+          "bn": "শনি",
+          "kn": "ಶನಿ",
+          "gu": "શનિ"
+        },
+        {
+          "en": "Mercury",
+          "hi": "बुध",
+          "sa": "बुध",
+          "mai": "बुध",
+          "mr": "बुध",
+          "ta": "புதன்",
+          "te": "బుధుడు",
+          "bn": "বুধ",
+          "kn": "ಬುಧ",
+          "gu": "બુધ"
+        }
+      ],
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Saturn rules Capricorn (10th sign, earth, movable) and Aquarius (11th sign, air, fixed). The lordship pattern is symmetric: Sun and Moon each rule one sign (Leo and Cancer), then pairs outward: Mercury (Gemini/Virgo), Venus (Taurus/Libra), Mars (Aries/Scorpio), Jupiter (Sagittarius/Pisces), Saturn (Capricorn/Aquarius).",
+        "hi": "शनि मकर (10वीं, पृथ्वी, चर) और कुम्भ (11वीं, वायु, स्थिर) का स्वामी है। स्वामित्व सममित है: सूर्य-चन्द्र एक-एक, फिर बाहर जोड़ियाँ: बुध, शुक्र, मंगल, गुरु, शनि।",
+        "sa": "शनि मकर (10वीं, पृथ्वी, चर) और कुम्भ (11वीं, वायु, स्थिर) का स्वामी है। स्वामित्व सममित है: सूर्य-चन्द्र एक-एक, फिर बाहर जोड़ियाँ: बुध, शुक्र, मंगल, गुरु, शनि।",
+        "mai": "शनि मकर (10वीं, पृथ्वी, चर) और कुम्भ (11वीं, वायु, स्थिर) का स्वामी है। स्वामित्व सममित है: सूर्य-चन्द्र एक-एक, फिर बाहर जोड़ियाँ: बुध, शुक्र, मंगल, गुरु, शनि।",
+        "mr": "शनि मकर (10वीं, पृथ्वी, चर) और कुम्भ (11वीं, वायु, स्थिर) का स्वामी है। स्वामित्व सममित है: सूर्य-चन्द्र एक-एक, फिर बाहर जोड़ियाँ: बुध, शुक्र, मंगल, गुरु, शनि।",
+        "ta": "Saturn rules Capricorn (10th sign, earth, movable) and Aquarius (11th sign, air, fixed). The lordship pattern is symmetric: Sun and Moon each rule one sign (Leo and Cancer), then pairs outward: Mercury (Gemini/Virgo), Venus (Taurus/Libra), Mars (Aries/Scorpio), Jupiter (Sagittarius/Pisces), Saturn (Capricorn/Aquarius).",
+        "te": "Saturn rules Capricorn (10th sign, earth, movable) and Aquarius (11th sign, air, fixed). The lordship pattern is symmetric: Sun and Moon each rule one sign (Leo and Cancer), then pairs outward: Mercury (Gemini/Virgo), Venus (Taurus/Libra), Mars (Aries/Scorpio), Jupiter (Sagittarius/Pisces), Saturn (Capricorn/Aquarius).",
+        "bn": "Saturn rules Capricorn (10th sign, earth, movable) and Aquarius (11th sign, air, fixed). The lordship pattern is symmetric: Sun and Moon each rule one sign (Leo and Cancer), then pairs outward: Mercury (Gemini/Virgo), Venus (Taurus/Libra), Mars (Aries/Scorpio), Jupiter (Sagittarius/Pisces), Saturn (Capricorn/Aquarius).",
+        "kn": "Saturn rules Capricorn (10th sign, earth, movable) and Aquarius (11th sign, air, fixed). The lordship pattern is symmetric: Sun and Moon each rule one sign (Leo and Cancer), then pairs outward: Mercury (Gemini/Virgo), Venus (Taurus/Libra), Mars (Aries/Scorpio), Jupiter (Sagittarius/Pisces), Saturn (Capricorn/Aquarius).",
+        "gu": "Saturn rules Capricorn (10th sign, earth, movable) and Aquarius (11th sign, air, fixed). The lordship pattern is symmetric: Sun and Moon each rule one sign (Leo and Cancer), then pairs outward: Mercury (Gemini/Virgo), Venus (Taurus/Libra), Mars (Aries/Scorpio), Jupiter (Sagittarius/Pisces), Saturn (Capricorn/Aquarius)."
+      },
+      "classicalRef": "BPHS Ch.3"
+    },
+    {
+      "id": "q2_1_10",
+      "type": "true_false",
+      "question": {
+        "en": "Jupiter is considered the most benefic (auspicious) planet in Jyotish.",
+        "hi": "गुरु (बृहस्पति) ज्योतिष में सबसे शुभ ग्रह माना जाता है।",
+        "sa": "गुरु (बृहस्पति) ज्योतिष में सबसे शुभ ग्रह माना जाता है।",
+        "mai": "गुरु (बृहस्पति) ज्योतिष में सबसे शुभ ग्रह माना जाता है।",
+        "mr": "गुरु (बृहस्पति) ज्योतिष में सबसे शुभ ग्रह माना जाता है।",
+        "ta": "Jupiter is considered the most benefic (auspicious) planet in Jyotish.",
+        "te": "Jupiter is considered the most benefic (auspicious) planet in Jyotish.",
+        "bn": "Jupiter is considered the most benefic (auspicious) planet in Jyotish.",
+        "kn": "Jupiter is considered the most benefic (auspicious) planet in Jyotish.",
+        "gu": "Jupiter is considered the most benefic (auspicious) planet in Jyotish."
+      },
+      "correctAnswer": true,
+      "explanation": {
+        "en": "Correct. Jupiter (Guru/Brihaspati) is the greatest natural benefic. As the Guru (teacher) of the Devas, he represents wisdom, dharma, expansion, children, and divine grace. Jupiter's aspect on ANY house or planet improves it. Even Jupiter in a dusthana (6/8/12) gives some protection. BPHS calls him \"Devaguru\" and assigns him the Sattvic guna.",
+        "hi": "सही। गुरु (बृहस्पति) सबसे बड़ा नैसर्गिक शुभ ग्रह है। देवताओं के गुरु — ज्ञान, धर्म, विस्तार, संतान और दिव्य कृपा का प्रतिनिधि। गुरु की दृष्टि किसी भी भाव/ग्रह को सुधारती है।",
+        "sa": "सही। गुरु (बृहस्पति) सबसे बड़ा नैसर्गिक शुभ ग्रह है। देवताओं के गुरु — ज्ञान, धर्म, विस्तार, संतान और दिव्य कृपा का प्रतिनिधि। गुरु की दृष्टि किसी भी भाव/ग्रह को सुधारती है।",
+        "ta": "Correct. Jupiter (Guru/Brihaspati) is the greatest natural benefic. As the Guru (teacher) of the Devas, he represents wisdom, dharma, expansion, children, and divine grace. Jupiter's aspect on ANY house or planet improves it. Even Jupiter in a dusthana (6/8/12) gives some protection. BPHS calls him \"Devaguru\" and assigns him the Sattvic guna.",
+        "te": "Correct. Jupiter (Guru/Brihaspati) is the greatest natural benefic. As the Guru (teacher) of the Devas, he represents wisdom, dharma, expansion, children, and divine grace. Jupiter's aspect on ANY house or planet improves it. Even Jupiter in a dusthana (6/8/12) gives some protection. BPHS calls him \"Devaguru\" and assigns him the Sattvic guna.",
+        "bn": "Correct. Jupiter (Guru/Brihaspati) is the greatest natural benefic. As the Guru (teacher) of the Devas, he represents wisdom, dharma, expansion, children, and divine grace. Jupiter's aspect on ANY house or planet improves it. Even Jupiter in a dusthana (6/8/12) gives some protection. BPHS calls him \"Devaguru\" and assigns him the Sattvic guna.",
+        "kn": "Correct. Jupiter (Guru/Brihaspati) is the greatest natural benefic. As the Guru (teacher) of the Devas, he represents wisdom, dharma, expansion, children, and divine grace. Jupiter's aspect on ANY house or planet improves it. Even Jupiter in a dusthana (6/8/12) gives some protection. BPHS calls him \"Devaguru\" and assigns him the Sattvic guna.",
+        "mr": "सही। गुरु (बृहस्पति) सबसे बड़ा नैसर्गिक शुभ ग्रह है। देवताओं के गुरु — ज्ञान, धर्म, विस्तार, संतान और दिव्य कृपा का प्रतिनिधि। गुरु की दृष्टि किसी भी भाव/ग्रह को सुधारती है।",
+        "gu": "Correct. Jupiter (Guru/Brihaspati) is the greatest natural benefic. As the Guru (teacher) of the Devas, he represents wisdom, dharma, expansion, children, and divine grace. Jupiter's aspect on ANY house or planet improves it. Even Jupiter in a dusthana (6/8/12) gives some protection. BPHS calls him \"Devaguru\" and assigns him the Sattvic guna.",
+        "mai": "सही। गुरु (बृहस्पति) सबसे बड़ा नैसर्गिक शुभ ग्रह है। देवताओं के गुरु — ज्ञान, धर्म, विस्तार, संतान और दिव्य कृपा का प्रतिनिधि। गुरु की दृष्टि किसी भी भाव/ग्रह को सुधारती है।"
+      },
+      "classicalRef": "BPHS Ch.3 v.20"
+    }
+  ]
+}

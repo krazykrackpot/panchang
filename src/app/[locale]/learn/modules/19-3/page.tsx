@@ -3,20 +3,16 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/19-3.json';
 
 const META: ModuleMeta = {
   id: 'mod_19_3', phase: 6, topic: 'Jaimini', moduleNumber: '19.3',
-  title: { en: 'Argala — Planetary Intervention System', hi: 'अर्गला — ग्रहीय हस्तक्षेप पद्धति', sa: 'अर्गला — ग्रहीय हस्तक्षेप पद्धति', mai: 'अर्गला — ग्रहीय हस्तक्षेप पद्धति', mr: 'अर्गला — ग्रहीय हस्तक्षेप पद्धति', ta: 'Argala — Planetary Intervention System', te: 'Argala — Planetary Intervention System', bn: 'Argala — Planetary Intervention System', kn: 'Argala — Planetary Intervention System', gu: 'Argala — Planetary Intervention System' },
-  subtitle: {
-    en: 'How planets in the 2nd, 4th, and 11th "bolt" a house with support — and how counter-planets in the 3rd, 10th, and 12th can obstruct that intervention',
-    hi: 'कैसे दूसरे, चौथे और ग्यारहवें भाव के ग्रह किसी भाव को सहायता से "बन्द" करते हैं — और कैसे तीसरे, दसवें और बारहवें के प्रतिग्रह उस हस्तक्षेप को बाधित कर सकते हैं',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 13,
-  crossRefs: [
-    { label: { en: 'Module 19-1: Chara Karakas', hi: 'मॉड्यूल 19-1: चर कारक', sa: 'मॉड्यूल 19-1: चर कारक', mai: 'मॉड्यूल 19-1: चर कारक', mr: 'मॉड्यूल 19-1: चर कारक', ta: 'Module 19-1: Chara Karakas', te: 'Module 19-1: Chara Karakas', bn: 'Module 19-1: Chara Karakas', kn: 'Module 19-1: Chara Karakas', gu: 'Module 19-1: Chara Karakas' }, href: '/learn/modules/19-1' },
-    { label: { en: 'Module 19-2: Rashi Drishti', hi: 'मॉड्यूल 19-2: राशि दृष्टि', sa: 'मॉड्यूल 19-2: राशि दृष्टि', mai: 'मॉड्यूल 19-2: राशि दृष्टि', mr: 'मॉड्यूल 19-2: राशि दृष्टि', ta: 'Module 19-2: Rashi Drishti', te: 'Module 19-2: Rashi Drishti', bn: 'Module 19-2: Rashi Drishti', kn: 'Module 19-2: Rashi Drishti', gu: 'Module 19-2: Rashi Drishti' }, href: '/learn/modules/19-2' },
-    { label: { en: 'Module 19-4: Special Lagnas', hi: 'मॉड्यूल 19-4: विशेष लग्न', sa: 'मॉड्यूल 19-4: विशेष लग्न', mai: 'मॉड्यूल 19-4: विशेष लग्न', mr: 'मॉड्यूल 19-4: विशेष लग्न', ta: 'Module 19-4: Special Lagnas', te: 'Module 19-4: Special Lagnas', bn: 'Module 19-4: Special Lagnas', kn: 'Module 19-4: Special Lagnas', gu: 'Module 19-4: Special Lagnas' }, href: '/learn/modules/19-4' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

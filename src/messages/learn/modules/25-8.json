@@ -1,0 +1,589 @@
+{
+  "title": {
+    "en": "The 'Pythagorean' Theorem — 300 Years Before Pythagoras",
+    "hi": "'पाइथागोरस प्रमेय' — पाइथागोरस से 300 वर्ष पहले"
+  },
+  "subtitle": {
+    "en": "How Baudhayana stated a² + b² = c² in ~800 BCE — three centuries before Pythagoras was born — in a Vedic fire altar manual, with √2 accurate to 5 decimal places",
+    "hi": "बौधायन ने ~800 ईपू में a² + b² = c² कैसे कही — पाइथागोरस के जन्म से तीन शताब्दी पहले — एक वैदिक अग्निकुण्ड पुस्तिका में, √2 पाँच दशमलव स्थानों तक सटीक"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "Module 25-1: Zero",
+        "hi": "मॉड्यूल 25-1: शून्य",
+        "sa": "मॉड्यूल 25-1: शून्य",
+        "mai": "मॉड्यूल 25-1: शून्य",
+        "mr": "मॉड्यूल 25-1: शून्य",
+        "ta": "Module 25-1: Zero",
+        "te": "Module 25-1: Zero",
+        "bn": "Module 25-1: Zero",
+        "kn": "Module 25-1: Zero",
+        "gu": "Module 25-1: Zero"
+      },
+      "href": "/learn/modules/25-1"
+    },
+    {
+      "label": {
+        "en": "Module 25-2: Sine (Sanskrit)",
+        "hi": "मॉड्यूल 25-2: ज्या",
+        "sa": "मॉड्यूल 25-2: ज्या",
+        "mai": "मॉड्यूल 25-2: ज्या",
+        "mr": "मॉड्यूल 25-2: ज्या",
+        "ta": "Module 25-2: Sine (Sanskrit)",
+        "te": "Module 25-2: Sine (Sanskrit)",
+        "bn": "Module 25-2: Sine (Sanskrit)",
+        "kn": "Module 25-2: Sine (Sanskrit)",
+        "gu": "Module 25-2: Sine (Sanskrit)"
+      },
+      "href": "/learn/modules/25-2"
+    },
+    {
+      "label": {
+        "en": "Module 25-3: π = 3.1416",
+        "hi": "मॉड्यूल 25-3: π",
+        "sa": "मॉड्यूल 25-3: π",
+        "mai": "मॉड्यूल 25-3: π",
+        "mr": "मॉड्यूल 25-3: π",
+        "ta": "Module 25-3: π = 3.1416",
+        "te": "Module 25-3: π = 3.1416",
+        "bn": "Module 25-3: π = 3.1416",
+        "kn": "Module 25-3: π = 3.1416",
+        "gu": "Module 25-3: π = 3.1416"
+      },
+      "href": "/learn/modules/25-3"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q25_8_01",
+      "type": "mcq",
+      "question": {
+        "en": "Who first stated the general theorem that the diagonal of a rectangle equals √(length² + breadth²)?",
+        "hi": "सबसे पहले किसने सामान्य प्रमेय कही कि आयत का विकर्ण = √(लम्बाई² + चौड़ाई²)?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Baudhayana, in the Baudhayana Sulba Sutra (~800 BCE), stated the theorem in verse 1.48: 'The diagonal of a rectangle produces both [areas] which its length and breadth produce separately.' This is the Pythagorean theorem in general form — stated roughly 230 years before Pythagoras was born (~570 BCE). Euclid's proof came even later, around 300 BCE.",
+        "hi": "बौधायन ने, बौधायन शुल्ब सूत्र (~800 ईपू) में, श्लोक 1.48 में प्रमेय कही: \"आयत का विकर्ण वह दोनों [क्षेत्रफल] उत्पन्न करता है जो उसकी लम्बाई और चौड़ाई अलग-अलग उत्पन्न करती हैं।\" यह पाइथागोरस प्रमेय सामान्य रूप में है — पाइथागोरस के जन्म (~570 ईपू) से लगभग 230 वर्ष पहले।"
+      },
+      "options": [
+        {
+          "en": "Pythagoras",
+          "hi": "पाइथागोरस",
+          "sa": "पाइथागोरस",
+          "mai": "पाइथागोरस",
+          "mr": "पाइथागोरस",
+          "ta": "Pythagoras",
+          "te": "Pythagoras",
+          "bn": "Pythagoras",
+          "kn": "Pythagoras",
+          "gu": "Pythagoras"
+        },
+        {
+          "en": "Euclid",
+          "hi": "यूक्लिड",
+          "sa": "यूक्लिड",
+          "mai": "यूक्लिड",
+          "mr": "यूक्लिड",
+          "ta": "Euclid",
+          "te": "Euclid",
+          "bn": "Euclid",
+          "kn": "Euclid",
+          "gu": "Euclid"
+        },
+        {
+          "en": "Baudhayana",
+          "hi": "बौधायन",
+          "sa": "बौधायन",
+          "mai": "बौधायन",
+          "mr": "बौधायन",
+          "ta": "Baudhayana",
+          "te": "Baudhayana",
+          "bn": "Baudhayana",
+          "kn": "Baudhayana",
+          "gu": "Baudhayana"
+        },
+        {
+          "en": "Aryabhata",
+          "hi": "आर्यभट",
+          "sa": "आर्यभट",
+          "mai": "आर्यभट",
+          "mr": "आर्यभट",
+          "ta": "Aryabhata",
+          "te": "Aryabhata",
+          "bn": "Aryabhata",
+          "kn": "Aryabhata",
+          "gu": "Aryabhata"
+        }
+      ]
+    },
+    {
+      "id": "q25_8_02",
+      "type": "mcq",
+      "question": {
+        "en": "In which text does Baudhayana's theorem appear?",
+        "hi": "बौधायन की प्रमेय किस ग्रन्थ में मिलती है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "The theorem appears in the Baudhayana Sulba Sutra, specifically in verse 1.48. The Sulba Sutras are geometrical appendices to the Vedas, written to provide the mathematical instructions needed for constructing precise Vedic fire altars. The Baudhayana Sulba Sutra is the oldest of the four principal Sulba Sutras, dating to approximately 800 BCE.",
+        "hi": "प्रमेय बौधायन शुल्ब सूत्र में, विशेष रूप से श्लोक 1.48 में मिलती है। शुल्ब सूत्र वेदों के ज्यामितीय परिशिष्ट हैं, जो वैदिक अग्निकुण्डों के निर्माण के लिए गणितीय निर्देश प्रदान करने के लिए लिखे गए थे।"
+      },
+      "options": [
+        {
+          "en": "Aryabhatiya",
+          "hi": "आर्यभटीय",
+          "sa": "आर्यभटीय",
+          "mai": "आर्यभटीय",
+          "mr": "आर्यभटीय",
+          "ta": "Aryabhatiya",
+          "te": "Aryabhatiya",
+          "bn": "Aryabhatiya",
+          "kn": "Aryabhatiya",
+          "gu": "Aryabhatiya"
+        },
+        {
+          "en": "Baudhayana Sulba Sutra",
+          "hi": "बौधायन शुल्ब सूत्र",
+          "sa": "बौधायन शुल्ब सूत्र",
+          "mai": "बौधायन शुल्ब सूत्र",
+          "mr": "बौधायन शुल्ब सूत्र",
+          "ta": "Baudhayana Sulba Sutra",
+          "te": "Baudhayana Sulba Sutra",
+          "bn": "Baudhayana Sulba Sutra",
+          "kn": "Baudhayana Sulba Sutra",
+          "gu": "Baudhayana Sulba Sutra"
+        },
+        {
+          "en": "Brahmasphutasiddhanta",
+          "hi": "ब्रह्मस्फुटसिद्धान्त",
+          "sa": "ब्रह्मस्फुटसिद्धान्त",
+          "mai": "ब्रह्मस्फुटसिद्धान्त",
+          "mr": "ब्रह्मस्फुटसिद्धान्त",
+          "ta": "Brahmasphutasiddhanta",
+          "te": "Brahmasphutasiddhanta",
+          "bn": "Brahmasphutasiddhanta",
+          "kn": "Brahmasphutasiddhanta",
+          "gu": "Brahmasphutasiddhanta"
+        },
+        {
+          "en": "Rigveda",
+          "hi": "ऋग्वेद",
+          "sa": "ऋग्वेद",
+          "mai": "ऋग्वेद",
+          "mr": "ऋग्वेद",
+          "ta": "Rigveda",
+          "te": "Rigveda",
+          "bn": "Rigveda",
+          "kn": "Rigveda",
+          "gu": "Rigveda"
+        }
+      ]
+    },
+    {
+      "id": "q25_8_03",
+      "type": "mcq",
+      "question": {
+        "en": "Approximately when was the Baudhayana Sulba Sutra written?",
+        "hi": "बौधायन शुल्ब सूत्र लगभग कब लिखा गया?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "The Baudhayana Sulba Sutra is dated to approximately 800 BCE, making it one of the oldest mathematical texts in the world. This places it roughly 230 years before Pythagoras was born (~570 BCE) and about 500 years before Euclid's Elements (~300 BCE). The other Sulba Sutras followed: Apastamba (~600 BCE) and Katyayana (~300 BCE).",
+        "hi": "बौधायन शुल्ब सूत्र लगभग 800 ईपू का है, जो इसे विश्व के सबसे पुराने गणितीय ग्रन्थों में से एक बनाता है। यह पाइथागोरस के जन्म (~570 ईपू) से लगभग 230 वर्ष पहले और यूक्लिड के Elements (~300 ईपू) से लगभग 500 वर्ष पहले है।"
+      },
+      "options": [
+        {
+          "en": "~300 BCE",
+          "hi": "~300 ईपू",
+          "sa": "~300 ईपू",
+          "mai": "~300 ईपू",
+          "mr": "~300 ईपू",
+          "ta": "~300 BCE",
+          "te": "~300 BCE",
+          "bn": "~300 BCE",
+          "kn": "~300 BCE",
+          "gu": "~300 BCE"
+        },
+        {
+          "en": "~500 BCE",
+          "hi": "~500 ईपू",
+          "sa": "~500 ईपू",
+          "mai": "~500 ईपू",
+          "mr": "~500 ईपू",
+          "ta": "~500 BCE",
+          "te": "~500 BCE",
+          "bn": "~500 BCE",
+          "kn": "~500 BCE",
+          "gu": "~500 BCE"
+        },
+        {
+          "en": "~800 BCE",
+          "hi": "~800 ईपू",
+          "sa": "~800 ईपू",
+          "mai": "~800 ईपू",
+          "mr": "~800 ईपू",
+          "ta": "~800 BCE",
+          "te": "~800 BCE",
+          "bn": "~800 BCE",
+          "kn": "~800 BCE",
+          "gu": "~800 BCE"
+        },
+        {
+          "en": "~1200 BCE",
+          "hi": "~1200 ईपू",
+          "sa": "~1200 ईपू",
+          "mai": "~1200 ईपू",
+          "mr": "~1200 ईपू",
+          "ta": "~1200 BCE",
+          "te": "~1200 BCE",
+          "bn": "~1200 BCE",
+          "kn": "~1200 BCE",
+          "gu": "~1200 BCE"
+        }
+      ]
+    },
+    {
+      "id": "q25_8_04",
+      "type": "mcq",
+      "question": {
+        "en": "What does the Sanskrit word 'Sulba' (शुल्ब) mean?",
+        "hi": "'शुल्ब' संस्कृत शब्द का क्या अर्थ है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "'Sulba' (शुल्ब) means cord or rope. The Sulba Sutras were literally rope-and-peg geometry manuals — the ancient Indian equivalent of a surveyor's handbook. They gave instructions for using ropes (cords) and pegs to lay out sacred fire altar spaces with geometric precision. The rope was used to create right angles, circles, and precise distances.",
+        "hi": "'शुल्ब' का अर्थ है रस्सी या डोरी। शुल्ब सूत्र वस्तुतः रस्सी-और-खूँटी ज्यामिति की पुस्तिकाएँ थीं — प्राचीन भारतीय सर्वेक्षक की पुस्तिका के समतुल्य। वे पवित्र अग्निकुण्ड स्थानों को ज्यामितीय परिशुद्धता के साथ रखने के लिए रस्सी और खूँटी का उपयोग करने के निर्देश देती थीं।"
+      },
+      "options": [
+        {
+          "en": "Geometry",
+          "hi": "ज्यामिति",
+          "sa": "ज्यामिति",
+          "mai": "ज्यामिति",
+          "mr": "ज्यामिति",
+          "ta": "Geometry",
+          "te": "Geometry",
+          "bn": "Geometry",
+          "kn": "Geometry",
+          "gu": "Geometry"
+        },
+        {
+          "en": "Cord or rope",
+          "hi": "रस्सी या डोरी",
+          "sa": "रस्सी या डोरी",
+          "mai": "रस्सी या डोरी",
+          "mr": "रस्सी या डोरी",
+          "ta": "Cord or rope",
+          "te": "Cord or rope",
+          "bn": "Cord or rope",
+          "kn": "Cord or rope",
+          "gu": "Cord or rope"
+        },
+        {
+          "en": "Fire altar",
+          "hi": "अग्निकुण्ड",
+          "sa": "अग्निकुण्ड",
+          "mai": "अग्निकुण्ड",
+          "mr": "अग्निकुण्ड",
+          "ta": "Fire altar",
+          "te": "Fire altar",
+          "bn": "Fire altar",
+          "kn": "Fire altar",
+          "gu": "Fire altar"
+        },
+        {
+          "en": "Measurement",
+          "hi": "मापन",
+          "sa": "मापन",
+          "mai": "मापन",
+          "mr": "मापन",
+          "ta": "Measurement",
+          "te": "Measurement",
+          "bn": "Measurement",
+          "kn": "Measurement",
+          "gu": "Measurement"
+        }
+      ]
+    },
+    {
+      "id": "q25_8_05",
+      "type": "mcq",
+      "question": {
+        "en": "What were the Sulba Sutras primarily used for?",
+        "hi": "शुल्ब सूत्रों का मुख्य उपयोग किस लिए था?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "The Sulba Sutras provided the geometry needed to construct Vedic fire altars (Agni) of specific shapes — falcon, tortoise, wheel, chariot wheel — with exact areas. Ritual law demanded mathematical precision: the altars had to be exactly the right shape and size. This religious necessity drove the development of sophisticated geometry, including the Pythagorean theorem, √2, and Pythagorean triples.",
+        "hi": "शुल्ब सूत्रों ने वैदिक अग्निकुण्डों (अग्नि) के निर्माण के लिए ज्यामिति प्रदान की — बाज, कछुआ, चक्र — सटीक क्षेत्रफल के साथ। अनुष्ठान नियम ने गणितीय परिशुद्धता की माँग की। इस धार्मिक आवश्यकता ने परिष्कृत ज्यामिति के विकास को प्रेरित किया।"
+      },
+      "options": [
+        {
+          "en": "Teaching arithmetic to students",
+          "hi": "विद्यार्थियों को अंकगणित पढ़ाना",
+          "sa": "विद्यार्थियों को अंकगणित पढ़ाना",
+          "mai": "विद्यार्थियों को अंकगणित पढ़ाना",
+          "mr": "विद्यार्थियों को अंकगणित पढ़ाना",
+          "ta": "Teaching arithmetic to students",
+          "te": "Teaching arithmetic to students",
+          "bn": "Teaching arithmetic to students",
+          "kn": "Teaching arithmetic to students",
+          "gu": "Teaching arithmetic to students"
+        },
+        {
+          "en": "Astronomical calculations",
+          "hi": "खगोलीय गणनाएँ",
+          "sa": "खगोलीय गणनाएँ",
+          "mai": "खगोलीय गणनाएँ",
+          "mr": "खगोलीय गणनाएँ",
+          "ta": "Astronomical calculations",
+          "te": "Astronomical calculations",
+          "bn": "Astronomical calculations",
+          "kn": "Astronomical calculations",
+          "gu": "Astronomical calculations"
+        },
+        {
+          "en": "Constructing Vedic fire altars of precise shapes and areas",
+          "hi": "सटीक आकार और क्षेत्रफल की वैदिक अग्निकुण्ड बनाना",
+          "sa": "सटीक आकार और क्षेत्रफल की वैदिक अग्निकुण्ड बनाना",
+          "mai": "सटीक आकार और क्षेत्रफल की वैदिक अग्निकुण्ड बनाना",
+          "mr": "सटीक आकार और क्षेत्रफल की वैदिक अग्निकुण्ड बनाना",
+          "ta": "Constructing Vedic fire altars of precise shapes and areas",
+          "te": "Constructing Vedic fire altars of precise shapes and areas",
+          "bn": "Constructing Vedic fire altars of precise shapes and areas",
+          "kn": "Constructing Vedic fire altars of precise shapes and areas",
+          "gu": "Constructing Vedic fire altars of precise shapes and areas"
+        },
+        {
+          "en": "Navigation by sea",
+          "hi": "समुद्री नेविगेशन",
+          "sa": "समुद्री नेविगेशन",
+          "mai": "समुद्री नेविगेशन",
+          "mr": "समुद्री नेविगेशन",
+          "ta": "Navigation by sea",
+          "te": "Navigation by sea",
+          "bn": "Navigation by sea",
+          "kn": "Navigation by sea",
+          "gu": "Navigation by sea"
+        }
+      ]
+    },
+    {
+      "id": "q25_8_06",
+      "type": "mcq",
+      "question": {
+        "en": "Baudhayana gives an approximation for √2. To how many decimal places is it accurate?",
+        "hi": "बौधायन √2 का सन्निकटन देते हैं। यह कितने दशमलव स्थानों तक सटीक है?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Baudhayana's formula √2 ≈ 1 + 1/3 + 1/(3×4) − 1/(3×4×34) gives 1.4142156..., while the modern value is 1.4142135... — a difference of only 0.0000021, accurate to 5 decimal places. This was needed to compute the diagonal of a unit square (which equals s√2) for altar construction. No other ancient civilisation came close to this precision for √2.",
+        "hi": "बौधायन का सूत्र √2 ≈ 1 + 1/3 + 1/(3×4) − 1/(3×4×34) देता है 1.4142156..., जबकि आधुनिक मान है 1.4142135... — केवल 0.0000021 का अंतर, 5 दशमलव स्थानों तक सटीक। किसी अन्य प्राचीन सभ्यता ने √2 के लिए इतनी परिशुद्धता नहीं छुई।"
+      },
+      "options": [
+        {
+          "en": "2 decimal places",
+          "hi": "2 दशमलव स्थान",
+          "sa": "2 दशमलव स्थान",
+          "mai": "2 दशमलव स्थान",
+          "mr": "2 दशमलव स्थान",
+          "ta": "2 decimal places",
+          "te": "2 decimal places",
+          "bn": "2 decimal places",
+          "kn": "2 decimal places",
+          "gu": "2 decimal places"
+        },
+        {
+          "en": "3 decimal places",
+          "hi": "3 दशमलव स्थान",
+          "sa": "3 दशमलव स्थान",
+          "mai": "3 दशमलव स्थान",
+          "mr": "3 दशमलव स्थान",
+          "ta": "3 decimal places",
+          "te": "3 decimal places",
+          "bn": "3 decimal places",
+          "kn": "3 decimal places",
+          "gu": "3 decimal places"
+        },
+        {
+          "en": "5 decimal places",
+          "hi": "5 दशमलव स्थान",
+          "sa": "5 दशमलव स्थान",
+          "mai": "5 दशमलव स्थान",
+          "mr": "5 दशमलव स्थान",
+          "ta": "5 decimal places",
+          "te": "5 decimal places",
+          "bn": "5 decimal places",
+          "kn": "5 decimal places",
+          "gu": "5 decimal places"
+        },
+        {
+          "en": "10 decimal places",
+          "hi": "10 दशमलव स्थान",
+          "sa": "10 दशमलव स्थान",
+          "mai": "10 दशमलव स्थान",
+          "mr": "10 दशमलव स्थान",
+          "ta": "10 decimal places",
+          "te": "10 decimal places",
+          "bn": "10 decimal places",
+          "kn": "10 decimal places",
+          "gu": "10 decimal places"
+        }
+      ]
+    },
+    {
+      "id": "q25_8_07",
+      "type": "mcq",
+      "question": {
+        "en": "Which of the following is a Pythagorean triple listed in the Baudhayana Sulba Sutra?",
+        "hi": "बौधायन शुल्ब सूत्र में सूचीबद्ध निम्नलिखित में से कौन सा पाइथागोरीय त्रिक है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "The Baudhayana Sulba Sutra lists four Pythagorean triples: (3, 4, 5), (5, 12, 13), (8, 15, 17), and (7, 24, 25). The triple (3, 4, 5) is the most famous: 3² + 4² = 9 + 16 = 25 = 5². A rope of length 12 (3+4+5) tied with knots at positions 3 and 7 creates a perfect right angle — this is how ancient builders made right angles before modern tools.",
+        "hi": "बौधायन शुल्ब सूत्र चार पाइथागोरीय त्रिकों की सूची देता है: (3, 4, 5), (5, 12, 13), (8, 15, 17), और (7, 24, 25)। त्रिक (3, 4, 5) सबसे प्रसिद्ध है: 3² + 4² = 9 + 16 = 25 = 5²।"
+      },
+      "options": [
+        {
+          "en": "(2, 3, 4)",
+          "hi": "(2, 3, 4)",
+          "sa": "(2, 3, 4)",
+          "mai": "(2, 3, 4)",
+          "mr": "(2, 3, 4)",
+          "ta": "(2, 3, 4)",
+          "te": "(2, 3, 4)",
+          "bn": "(2, 3, 4)",
+          "kn": "(2, 3, 4)",
+          "gu": "(2, 3, 4)"
+        },
+        {
+          "en": "(3, 4, 5)",
+          "hi": "(3, 4, 5)",
+          "sa": "(3, 4, 5)",
+          "mai": "(3, 4, 5)",
+          "mr": "(3, 4, 5)",
+          "ta": "(3, 4, 5)",
+          "te": "(3, 4, 5)",
+          "bn": "(3, 4, 5)",
+          "kn": "(3, 4, 5)",
+          "gu": "(3, 4, 5)"
+        },
+        {
+          "en": "(4, 6, 8)",
+          "hi": "(4, 6, 8)",
+          "sa": "(4, 6, 8)",
+          "mai": "(4, 6, 8)",
+          "mr": "(4, 6, 8)",
+          "ta": "(4, 6, 8)",
+          "te": "(4, 6, 8)",
+          "bn": "(4, 6, 8)",
+          "kn": "(4, 6, 8)",
+          "gu": "(4, 6, 8)"
+        },
+        {
+          "en": "(1, 2, 3)",
+          "hi": "(1, 2, 3)",
+          "sa": "(1, 2, 3)",
+          "mai": "(1, 2, 3)",
+          "mr": "(1, 2, 3)",
+          "ta": "(1, 2, 3)",
+          "te": "(1, 2, 3)",
+          "bn": "(1, 2, 3)",
+          "kn": "(1, 2, 3)",
+          "gu": "(1, 2, 3)"
+        }
+      ]
+    },
+    {
+      "id": "q25_8_08",
+      "type": "mcq",
+      "question": {
+        "en": "Approximately when was Pythagoras born?",
+        "hi": "पाइथागोरस का जन्म लगभग कब हुआ?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Pythagoras was born approximately 570 BCE in Samos, Greece. The Baudhayana Sulba Sutra was written approximately 800 BCE — making it about 230 years older than Pythagoras. Adding the time until Pythagoras could have stated the theorem (~495 BCE), the Indian statement precedes the Greek attribution by approximately 300 years. This gap is why the theorem's conventional name is disputed by historians of mathematics.",
+        "hi": "पाइथागोरस का जन्म लगभग 570 ईपू में ग्रीस के सामोस में हुआ। बौधायन शुल्ब सूत्र लगभग 800 ईपू में लिखा गया — पाइथागोरस से लगभग 230 वर्ष पहले। भारतीय कथन ग्रीक आरोपण से लगभग 300 वर्ष पहले है।"
+      },
+      "options": [
+        {
+          "en": "~900 BCE",
+          "hi": "~900 ईपू",
+          "sa": "~900 ईपू",
+          "mai": "~900 ईपू",
+          "mr": "~900 ईपू",
+          "ta": "~900 BCE",
+          "te": "~900 BCE",
+          "bn": "~900 BCE",
+          "kn": "~900 BCE",
+          "gu": "~900 BCE"
+        },
+        {
+          "en": "~700 BCE",
+          "hi": "~700 ईपू",
+          "sa": "~700 ईपू",
+          "mai": "~700 ईपू",
+          "mr": "~700 ईपू",
+          "ta": "~700 BCE",
+          "te": "~700 BCE",
+          "bn": "~700 BCE",
+          "kn": "~700 BCE",
+          "gu": "~700 BCE"
+        },
+        {
+          "en": "~570 BCE",
+          "hi": "~570 ईपू",
+          "sa": "~570 ईपू",
+          "mai": "~570 ईपू",
+          "mr": "~570 ईपू",
+          "ta": "~570 BCE",
+          "te": "~570 BCE",
+          "bn": "~570 BCE",
+          "kn": "~570 BCE",
+          "gu": "~570 BCE"
+        },
+        {
+          "en": "~400 BCE",
+          "hi": "~400 ईपू",
+          "sa": "~400 ईपू",
+          "mai": "~400 ईपू",
+          "mr": "~400 ईपू",
+          "ta": "~400 BCE",
+          "te": "~400 BCE",
+          "bn": "~400 BCE",
+          "kn": "~400 BCE",
+          "gu": "~400 BCE"
+        }
+      ]
+    },
+    {
+      "id": "q25_8_09",
+      "type": "true_false",
+      "question": {
+        "en": "True or False: Baudhayana stated the theorem only for specific triangles (like 3-4-5), not as a general rule.",
+        "hi": "सत्य या असत्य: बौधायन ने प्रमेय केवल विशेष त्रिभुजों (जैसे 3-4-5) के लिए कही, सामान्य नियम के रूप में नहीं।"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "FALSE. Baudhayana's verse 1.48 states the theorem in general form: 'The diagonal of a rectangle produces both [areas] which its length and breadth produce separately.' This applies to ALL rectangles, not just specific cases. The mention of specific triples (3,4,5 etc.) elsewhere in the Sulba Sutras is additional — the theorem itself is stated generally.",
+        "hi": "असत्य। बौधायन का श्लोक 1.48 प्रमेय सामान्य रूप में कहता है: \"आयत का विकर्ण वह दोनों [क्षेत्रफल] उत्पन्न करता है जो उसकी लम्बाई और चौड़ाई अलग-अलग उत्पन्न करती हैं।\" यह सभी आयतों पर लागू होता है, केवल विशेष मामलों पर नहीं।"
+      }
+    },
+    {
+      "id": "q25_8_10",
+      "type": "true_false",
+      "question": {
+        "en": "True or False: No written work by Pythagoras himself survives — all attributions come from later followers and writers.",
+        "hi": "सत्य या असत्य: पाइथागोरस का कोई लिखित कार्य स्वयं नहीं बचा — सभी आरोपण बाद के अनुयायियों और लेखकों से आते हैं।"
+      },
+      "correctAnswer": 0,
+      "explanation": {
+        "en": "TRUE. Not a single written work by Pythagoras himself has survived. Everything attributed to him — the theorem, other mathematical results, his philosophical teachings — comes from the writings of later followers (the Pythagoreans) and ancient commentators. The earliest surviving Greek proof of the theorem appears in Euclid's Elements (~300 BCE), written roughly 200 years after Pythagoras died. This makes it difficult to determine exactly what Pythagoras himself contributed.",
+        "hi": "सत्य। पाइथागोरस का एक भी लिखित कार्य स्वयं नहीं बचा। उनसे सम्बन्धित सब कुछ — प्रमेय, अन्य गणितीय परिणाम, दार्शनिक शिक्षाएँ — बाद के अनुयायियों (पाइथागोरियन) और प्राचीन टिप्पणीकारों के लेखन से आता है।"
+      }
+    }
+  ]
+}

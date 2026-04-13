@@ -3,181 +3,19 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/7-3.json';
 
 const META: ModuleMeta = {
   id: 'mod_7_3', phase: 2, topic: 'Yoga Karana', moduleNumber: '7.3',
-  title: { en: 'Vara — The Weekday', hi: 'वार — सप्ताह का दिन', sa: 'वार — सप्ताह का दिन', mai: 'वार — सप्ताह का दिन', mr: 'वार — सप्ताह का दिन', ta: 'Vara — The Weekday', te: 'Vara — The Weekday', bn: 'Vara — The Weekday', kn: 'Vara — The Weekday', gu: 'Vara — The Weekday' },
-  subtitle: {
-    en: 'Seven weekdays ruled by seven grahas, their sequence explained by the Hora system, and their role in Panchang muhurta selection',
-    hi: 'सात ग्रहों द्वारा शासित सात वार, होरा प्रणाली से उनका क्रम, और पंचांग मुहूर्त चयन में उनकी भूमिका',
-  },
+  title: L.title as unknown as ModuleMeta['title'],
+  subtitle: L.subtitle as unknown as ModuleMeta['subtitle'],
   estimatedMinutes: 13,
-  crossRefs: [
-    { label: { en: 'Module 7-1: Yoga', hi: 'मॉड्यूल 7-1: योग', sa: 'मॉड्यूल 7-1: योग', mai: 'मॉड्यूल 7-1: योग', mr: 'मॉड्यूल 7-1: योग', ta: 'Module 7-1: Yoga', te: 'Module 7-1: Yoga', bn: 'Module 7-1: Yoga', kn: 'Module 7-1: Yoga', gu: 'Module 7-1: Yoga' }, href: '/learn/modules/7-1' },
-    { label: { en: 'Module 7-2: Karana', hi: 'मॉड्यूल 7-2: करण', sa: 'मॉड्यूल 7-2: करण', mai: 'मॉड्यूल 7-2: करण', mr: 'मॉड्यूल 7-2: करण', ta: 'Module 7-2: Karana', te: 'Module 7-2: Karana', bn: 'Module 7-2: Karana', kn: 'Module 7-2: Karana', gu: 'Module 7-2: Karana' }, href: '/learn/modules/7-2' },
-    { label: { en: 'Vara Deep Dive', hi: 'वार विस्तार', sa: 'वार विस्तार', mai: 'वार विस्तार', mr: 'वार विस्तार', ta: 'Vara Deep Dive', te: 'Vara Deep Dive', bn: 'Vara Deep Dive', kn: 'Vara Deep Dive', gu: 'Vara Deep Dive' }, href: '/learn/vara' },
-    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग', mai: 'दैनिक पंचांग', mr: 'दैनिक पंचांग', ta: 'Daily Panchang', te: 'Daily Panchang', bn: 'Daily Panchang', kn: 'Daily Panchang', gu: 'Daily Panchang' }, href: '/panchang' },
-  ],
+  crossRefs: L.crossRefs as unknown as ModuleMeta['crossRefs'],
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q7_3_01', type: 'mcq',
-    question: {
-      en: 'The Chaldean order of planets (by decreasing orbital period) is Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon. Why does the weekday sequence skip two planets each time?',
-      hi: 'कैल्डियन ग्रह क्रम (घटती कक्षीय अवधि) शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, चन्द्र है। वार क्रम में प्रत्येक बार दो ग्रह क्यों छोड़े जाते हैं?',
-    },
-    options: [
-      { en: 'It is arbitrary with no mathematical basis', hi: 'यह यादृच्छिक है, कोई गणितीय आधार नहीं', sa: 'यह यादृच्छिक है, कोई गणितीय आधार नहीं', mai: 'यह यादृच्छिक है, कोई गणितीय आधार नहीं', mr: 'यह यादृच्छिक है, कोई गणितीय आधार नहीं', ta: 'It is arbitrary with no mathematical basis', te: 'It is arbitrary with no mathematical basis', bn: 'It is arbitrary with no mathematical basis', kn: 'It is arbitrary with no mathematical basis', gu: 'It is arbitrary with no mathematical basis' },
-      { en: 'Because 24 hours mod 7 = 3, each day\'s ruler is 3 steps forward in the Chaldean sequence', hi: 'क्योंकि 24 घण्टे mod 7 = 3, प्रत्येक दिन का स्वामी कैल्डियन क्रम में 3 स्थान आगे होता है' },
-      { en: 'The planets are ordered by brightness', hi: 'ग्रह चमक के अनुसार क्रमित हैं', sa: 'ग्रह चमक के अनुसार क्रमित हैं', mai: 'ग्रह चमक के अनुसार क्रमित हैं', mr: 'ग्रह चमक के अनुसार क्रमित हैं', ta: 'The planets are ordered by brightness', te: 'The planets are ordered by brightness', bn: 'The planets are ordered by brightness', kn: 'The planets are ordered by brightness', gu: 'The planets are ordered by brightness' },
-      { en: 'It follows the zodiac sign order', hi: 'यह राशि क्रम का अनुसरण करता है', sa: 'यह राशि क्रम का अनुसरण करता है', mai: 'यह राशि क्रम का अनुसरण करता है', mr: 'यह राशि क्रम का अनुसरण करता है', ta: 'It follows the zodiac sign order', te: 'It follows the zodiac sign order', bn: 'It follows the zodiac sign order', kn: 'It follows the zodiac sign order', gu: 'It follows the zodiac sign order' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Each day has 24 horas, each ruled by the next planet in Chaldean order. After 24 horas (24 mod 7 = 3), the ruler of the first hora of the next day is 3 positions ahead. This produces the weekday sequence: Sun (Ravi) → Moon (Soma) → Mars (Mangal) → Mercury (Budha) → Jupiter (Guru) → Venus (Shukra) → Saturn (Shani).',
-      hi: 'प्रत्येक दिन में 24 होरा होती हैं, प्रत्येक कैल्डियन क्रम के अगले ग्रह द्वारा शासित। 24 होरा के बाद (24 mod 7 = 3), अगले दिन की प्रथम होरा का स्वामी 3 स्थान आगे होता है। इससे वार क्रम बनता है: रवि → सोम → मंगल → बुध → गुरु → शुक्र → शनि।',
-    },
-  },
-  {
-    id: 'q7_3_02', type: 'mcq',
-    question: {
-      en: 'What is the Sanskrit name for Wednesday?',
-      hi: 'बुधवार का संस्कृत नाम क्या है?',
-    },
-    options: [
-      { en: 'Mangalavara', hi: 'मंगलवार', sa: 'मंगलवार', mai: 'मंगलवार', mr: 'मंगलवार', ta: 'Mangalavara', te: 'Mangalavara', bn: 'Mangalavara', kn: 'Mangalavara', gu: 'Mangalavara' },
-      { en: 'Budhavara', hi: 'बुधवार', sa: 'बुधवार', mai: 'बुधवार', mr: 'बुधवार', ta: 'Budhavara', te: 'Budhavara', bn: 'Budhavara', kn: 'Budhavara', gu: 'Budhavara' },
-      { en: 'Guruvara', hi: 'गुरुवार', sa: 'गुरुवार', mai: 'गुरुवार', mr: 'गुरुवार', ta: 'Guruvara', te: 'Guruvara', bn: 'Guruvara', kn: 'Guruvara', gu: 'Guruvara' },
-      { en: 'Shukravara', hi: 'शुक्रवार', sa: 'शुक्रवार', mai: 'शुक्रवार', mr: 'शुक्रवार', ta: 'Shukravara', te: 'Shukravara', bn: 'Shukravara', kn: 'Shukravara', gu: 'Shukravara' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The seven varas in Sanskrit are: Ravivara (Sunday/Sun), Somavara (Monday/Moon), Mangalavara (Tuesday/Mars), Budhavara (Wednesday/Mercury), Guruvara (Thursday/Jupiter), Shukravara (Friday/Venus), Shanivara (Saturday/Saturn).',
-      hi: 'सात वारों के संस्कृत नाम: रविवार (सूर्य), सोमवार (चन्द्र), मंगलवार (मंगल), बुधवार (बुध), गुरुवार (बृहस्पति), शुक्रवार (शुक्र), शनिवार (शनि)।',
-    },
-  },
-  {
-    id: 'q7_3_03', type: 'true_false',
-    question: {
-      en: 'Tuesday (Mangalavara) and Saturday (Shanivara) are generally considered auspicious for initiating new ventures in Vedic tradition.',
-      hi: 'मंगलवार और शनिवार वैदिक परम्परा में नये कार्यों के आरम्भ हेतु सामान्यतः शुभ माने जाते हैं।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. Tuesday (Mars) and Saturday (Saturn) are generally considered inauspicious for starting new ventures, as Mars and Saturn are natural malefics. These days are better suited for activities requiring courage, discipline, or overcoming obstacles. Thursday (Jupiter/Guru) is considered the most universally auspicious day.',
-      hi: 'असत्य। मंगलवार (मंगल) और शनिवार (शनि) नये कार्यों के लिए सामान्यतः अशुभ माने जाते हैं, क्योंकि मंगल और शनि प्राकृतिक पापग्रह हैं। ये दिन साहस, अनुशासन या बाधा-निवारण वाले कार्यों के लिए उपयुक्त हैं। गुरुवार (बृहस्पति) सर्वाधिक शुभ वार माना जाता है।',
-    },
-  },
-  {
-    id: 'q7_3_04', type: 'mcq',
-    question: {
-      en: 'Which vara is considered the most universally auspicious in Vedic tradition?',
-      hi: 'वैदिक परम्परा में कौन-सा वार सर्वाधिक शुभ माना जाता है?',
-    },
-    options: [
-      { en: 'Ravivara (Sunday)', hi: 'रविवार', sa: 'रविवार', mai: 'रविवार', mr: 'रविवार', ta: 'Ravivara (Sunday)', te: 'Ravivara (Sunday)', bn: 'Ravivara (Sunday)', kn: 'Ravivara (Sunday)', gu: 'Ravivara (Sunday)' },
-      { en: 'Somavara (Monday)', hi: 'सोमवार', sa: 'सोमवार', mai: 'सोमवार', mr: 'सोमवार', ta: 'Somavara (Monday)', te: 'Somavara (Monday)', bn: 'Somavara (Monday)', kn: 'Somavara (Monday)', gu: 'Somavara (Monday)' },
-      { en: 'Guruvara (Thursday)', hi: 'गुरुवार', sa: 'गुरुवार', mai: 'गुरुवार', mr: 'गुरुवार', ta: 'Guruvara (Thursday)', te: 'Guruvara (Thursday)', bn: 'Guruvara (Thursday)', kn: 'Guruvara (Thursday)', gu: 'Guruvara (Thursday)' },
-      { en: 'Shukravara (Friday)', hi: 'शुक्रवार', sa: 'शुक्रवार', mai: 'शुक्रवार', mr: 'शुक्रवार', ta: 'Shukravara (Friday)', te: 'Shukravara (Friday)', bn: 'Shukravara (Friday)', kn: 'Shukravara (Friday)', gu: 'Shukravara (Friday)' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'Thursday (Guruvara), ruled by Jupiter (Guru/Brihaspati), is considered the most universally auspicious day. Jupiter is the greatest benefic in Jyotish — the planet of wisdom, dharma, expansion, and good fortune. Thursday is preferred for initiating education, rituals, marriages, and business ventures.',
-      hi: 'गुरुवार, बृहस्पति (गुरु) द्वारा शासित, सर्वाधिक शुभ दिन माना जाता है। बृहस्पति ज्योतिष में सबसे बड़ा शुभग्रह है — ज्ञान, धर्म, विस्तार और सौभाग्य का ग्रह। गुरुवार शिक्षा, अनुष्ठान, विवाह और व्यापार आरम्भ के लिए उत्तम है।',
-    },
-  },
-  {
-    id: 'q7_3_05', type: 'mcq',
-    question: {
-      en: 'The vara (weekday) from a Julian Day Number is computed as:',
-      hi: 'जूलियन दिवस संख्या से वार की गणना इस प्रकार होती है:',
-    },
-    options: [
-      { en: 'floor(JD) mod 12', hi: 'floor(JD) mod 12', sa: 'floor(JD) mod 12', mai: 'floor(JD) mod 12', mr: 'floor(JD) mod 12', ta: 'floor(JD) mod 12', te: 'floor(JD) mod 12', bn: 'floor(JD) mod 12', kn: 'floor(JD) mod 12', gu: 'floor(JD) mod 12' },
-      { en: 'floor(JD + 1.5) mod 7', hi: 'floor(JD + 1.5) mod 7', sa: 'floor(JD + 1.5) mod 7', mai: 'floor(JD + 1.5) mod 7', mr: 'floor(JD + 1.5) mod 7', ta: 'floor(JD + 1.5) mod 7', te: 'floor(JD + 1.5) mod 7', bn: 'floor(JD + 1.5) mod 7', kn: 'floor(JD + 1.5) mod 7', gu: 'floor(JD + 1.5) mod 7' },
-      { en: 'floor(JD) mod 30', hi: 'floor(JD) mod 30', sa: 'floor(JD) mod 30', mai: 'floor(JD) mod 30', mr: 'floor(JD) mod 30', ta: 'floor(JD) mod 30', te: 'floor(JD) mod 30', bn: 'floor(JD) mod 30', kn: 'floor(JD) mod 30', gu: 'floor(JD) mod 30' },
-      { en: 'floor(JD - 0.5) mod 7', hi: 'floor(JD - 0.5) mod 7', sa: 'floor(JD - 0.5) mod 7', mai: 'floor(JD - 0.5) mod 7', mr: 'floor(JD - 0.5) mod 7', ta: 'floor(JD - 0.5) mod 7', te: 'floor(JD - 0.5) mod 7', bn: 'floor(JD - 0.5) mod 7', kn: 'floor(JD - 0.5) mod 7', gu: 'floor(JD - 0.5) mod 7' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The formula floor(JD + 1.5) mod 7 gives the day of the week, where 0 = Monday. This is the simplest of all Panchang computations — a single modular arithmetic operation on the Julian Day Number.',
-      hi: 'सूत्र floor(JD + 1.5) mod 7 सप्ताह का दिन देता है, जहाँ 0 = सोमवार। यह सभी पंचांग गणनाओं में सबसे सरल है — जूलियन दिवस संख्या पर एक मॉड्यूलर अंकगणित संक्रिया।',
-    },
-  },
-  {
-    id: 'q7_3_06', type: 'true_false',
-    question: {
-      en: 'A "hora" is a one-hour planetary period, and each day contains exactly 24 horas cycling through the 7 planets in Chaldean order.',
-      hi: '"होरा" एक घण्टे की ग्रहीय अवधि है, और प्रत्येक दिन में 7 ग्रहों के कैल्डियन क्रम में चक्रित 24 होरा होती हैं।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Each day is divided into 24 horas of one hour each. The first hora of the day is ruled by the day\'s ruling planet (e.g., Sunday starts with Sun hora). Subsequent horas follow the Chaldean order: Saturn → Jupiter → Mars → Sun → Venus → Mercury → Moon, repeating.',
-      hi: 'सत्य। प्रत्येक दिन 24 होराओं में विभाजित होता है, प्रत्येक एक घण्टे की। दिन की प्रथम होरा उस दिन के स्वामी ग्रह की होती है (जैसे रविवार सूर्य होरा से आरम्भ)। आगे की होरा कैल्डियन क्रम: शनि → बृहस्पति → मंगल → सूर्य → शुक्र → बुध → चन्द्र का अनुसरण करती हैं।',
-    },
-  },
-  {
-    id: 'q7_3_07', type: 'mcq',
-    question: {
-      en: 'Sarvartha Siddhi Yoga is formed by specific combinations of:',
-      hi: 'सर्वार्थ सिद्धि योग किन विशिष्ट संयोगों से बनता है?',
-    },
-    options: [
-      { en: 'Vara and Nakshatra', hi: 'वार और नक्षत्र', sa: 'वार और नक्षत्र', mai: 'वार और नक्षत्र', mr: 'वार और नक्षत्र', ta: 'Vara and Nakshatra', te: 'Vara and Nakshatra', bn: 'Vara and Nakshatra', kn: 'Vara and Nakshatra', gu: 'Vara and Nakshatra' },
-      { en: 'Tithi and Karana only', hi: 'केवल तिथि और करण', sa: 'केवल तिथि और करण', mai: 'केवल तिथि और करण', mr: 'केवल तिथि और करण', ta: 'Tithi and Karana only', te: 'Tithi and Karana only', bn: 'Tithi and Karana only', kn: 'Tithi and Karana only', gu: 'Tithi and Karana only' },
-      { en: 'Yoga and Graha only', hi: 'केवल योग और ग्रह', sa: 'केवल योग और ग्रह', mai: 'केवल योग और ग्रह', mr: 'केवल योग और ग्रह', ta: 'Yoga and Graha only', te: 'Yoga and Graha only', bn: 'Yoga and Graha only', kn: 'Yoga and Graha only', gu: 'Yoga and Graha only' },
-      { en: 'Rashi and Lagna only', hi: 'केवल राशि और लग्न', sa: 'केवल राशि और लग्न', mai: 'केवल राशि और लग्न', mr: 'केवल राशि और लग्न', ta: 'Rashi and Lagna only', te: 'Rashi and Lagna only', bn: 'Rashi and Lagna only', kn: 'Rashi and Lagna only', gu: 'Rashi and Lagna only' },
-    ],
-    correctAnswer: 0,
-    explanation: {
-      en: 'Sarvartha Siddhi Yoga ("all-purpose success yoga") is formed when specific Vara-Nakshatra combinations align. For example, Sunday + Pushya, Monday + Hasta, Thursday + Anuradha. These combinations amplify auspiciousness beyond what either element provides alone.',
-      hi: 'सर्वार्थ सिद्धि योग ("सर्व-उद्देश्यीय सफलता योग") विशिष्ट वार-नक्षत्र संयोगों से बनता है। उदाहरण: रविवार + पुष्य, सोमवार + हस्त, गुरुवार + अनुराधा। ये संयोग प्रत्येक तत्व की व्यक्तिगत शुभता से अधिक शुभता प्रदान करते हैं।',
-    },
-  },
-  {
-    id: 'q7_3_08', type: 'true_false',
-    question: {
-      en: 'Amrita Siddhi Yoga is formed by specific Vara + Tithi combinations.',
-      hi: 'अमृत सिद्धि योग विशिष्ट वार + तिथि संयोगों से बनता है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Amrita Siddhi Yoga ("nectar of success") is formed when certain Vara-Tithi combinations occur. For example, Sunday + Dvadashi, Monday + Ekadashi, Wednesday + Dashami. These are extremely auspicious windows that override many other negative factors.',
-      hi: 'सत्य। अमृत सिद्धि योग ("सफलता का अमृत") विशिष्ट वार-तिथि संयोगों से बनता है। उदाहरण: रविवार + द्वादशी, सोमवार + एकादशी, बुधवार + दशमी। ये अत्यन्त शुभ खिड़कियाँ हैं जो अन्य अनेक नकारात्मक कारकों को निरस्त कर देती हैं।',
-    },
-  },
-  {
-    id: 'q7_3_09', type: 'mcq',
-    question: {
-      en: 'Among the common auspicious days for new beginnings, which set is considered most favourable?',
-      hi: 'नये कार्यारम्भ के लिए शुभ दिनों में कौन-सा समूह सर्वाधिक अनुकूल माना जाता है?',
-    },
-    options: [
-      { en: 'Tuesday, Saturday, Sunday', hi: 'मंगलवार, शनिवार, रविवार', sa: 'मंगलवार, शनिवार, रविवार', mai: 'मंगलवार, शनिवार, रविवार', mr: 'मंगलवार, शनिवार, रविवार', ta: 'Tuesday, Saturday, Sunday', te: 'Tuesday, Saturday, Sunday', bn: 'Tuesday, Saturday, Sunday', kn: 'Tuesday, Saturday, Sunday', gu: 'Tuesday, Saturday, Sunday' },
-      { en: 'Monday, Wednesday, Thursday, Friday', hi: 'सोमवार, बुधवार, गुरुवार, शुक्रवार', sa: 'सोमवार, बुधवार, गुरुवार, शुक्रवार', mai: 'सोमवार, बुधवार, गुरुवार, शुक्रवार', mr: 'सोमवार, बुधवार, गुरुवार, शुक्रवार', ta: 'Monday, Wednesday, Thursday, Friday', te: 'Monday, Wednesday, Thursday, Friday', bn: 'Monday, Wednesday, Thursday, Friday', kn: 'Monday, Wednesday, Thursday, Friday', gu: 'Monday, Wednesday, Thursday, Friday' },
-      { en: 'Only Sunday', hi: 'केवल रविवार', sa: 'केवल रविवार', mai: 'केवल रविवार', mr: 'केवल रविवार', ta: 'Only Sunday', te: 'Only Sunday', bn: 'Only Sunday', kn: 'Only Sunday', gu: 'Only Sunday' },
-      { en: 'Only Saturday', hi: 'केवल शनिवार', sa: 'केवल शनिवार', mai: 'केवल शनिवार', mr: 'केवल शनिवार', ta: 'Only Saturday', te: 'Only Saturday', bn: 'Only Saturday', kn: 'Only Saturday', gu: 'Only Saturday' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Monday (Moon), Wednesday (Mercury), Thursday (Jupiter), and Friday (Venus) are generally considered auspicious for new beginnings. These are ruled by benefic or mild planets. Thursday is the best among them. Tuesday and Saturday are ruled by malefics (Mars, Saturn) and Sunday by the authoritative Sun.',
-      hi: 'सोमवार (चन्द्र), बुधवार (बुध), गुरुवार (बृहस्पति), और शुक्रवार (शुक्र) नये कार्यारम्भ हेतु शुभ माने जाते हैं। इनके स्वामी शुभ या सौम्य ग्रह हैं। इनमें गुरुवार सर्वोत्तम है। मंगलवार और शनिवार पापग्रहों (मंगल, शनि) और रविवार सत्तात्मक सूर्य द्वारा शासित हैं।',
-    },
-  },
-  {
-    id: 'q7_3_10', type: 'true_false',
-    question: {
-      en: 'Vara is the most computationally complex of the five Panchang elements.',
-      hi: 'वार पंचांग के पाँच अंगों में गणनात्मक रूप से सबसे जटिल है।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. Vara is by far the simplest Panchang element to compute. It requires only the formula floor(JD + 1.5) mod 7. Compare this with Tithi (requiring precise Moon and Sun longitudes), Nakshatra (precise Moon longitude), Yoga (Sun+Moon sum), and Karana (derived from elongation).',
-      hi: 'असत्य। वार गणनात्मक रूप से सबसे सरल पंचांग तत्व है। इसके लिए केवल सूत्र floor(JD + 1.5) mod 7 आवश्यक है। इसकी तुलना तिथि (सटीक चन्द्र और सूर्य अंश), नक्षत्र (सटीक चन्द्र अंश), योग (सूर्य+चन्द्र योग), और करण (कोणीय दूरी से व्युत्पन्न) से करें।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = L.questions as unknown as ModuleQuestion[];
 
 function Page1() {
   const locale = useModuleLocale();

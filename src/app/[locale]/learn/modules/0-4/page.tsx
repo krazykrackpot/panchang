@@ -3,187 +3,22 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/0-4.json';
+
 const META: ModuleMeta = {
-  id: 'mod_0_4', phase: 0, topic: 'Foundations', moduleNumber: '0.4',
-  title: { en: 'Reading Today\'s Panchang — A Practical Walkthrough', hi: 'आज का पंचांग पढ़ना — एक व्यावहारिक मार्गदर्शिका' },
-  subtitle: {
-    en: 'Open the Panchang page and learn what every element means in plain language',
-    hi: 'पंचांग पृष्ठ खोलें और हर तत्त्व का अर्थ सरल भाषा में समझें',
-  },
+  id: 'mod_0_4',
+  phase: 0,
+  topic: 'Foundations',
+  moduleNumber: '0.4',
+  title: L.title as unknown as ModuleMeta['title'],
+  subtitle: L.subtitle as unknown as ModuleMeta['subtitle'],
   estimatedMinutes: 12,
-  crossRefs: [
-    { label: { en: 'Module 0-5: What is a Kundali?', hi: 'मॉड्यूल 0-5: कुण्डली क्या है?', sa: 'मॉड्यूल 0-5: कुण्डली क्या है?', mai: 'मॉड्यूल 0-5: कुण्डली क्या है?', mr: 'मॉड्यूल 0-5: कुण्डली क्या है?', ta: 'Module 0-5: What is a Kundali?', te: 'Module 0-5: What is a Kundali?', bn: 'Module 0-5: What is a Kundali?', kn: 'Module 0-5: What is a Kundali?', gu: 'Module 0-5: What is a Kundali?' }, href: '/learn/modules/0-5' },
-    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग', mai: 'दैनिक पंचांग', mr: 'दैनिक पंचांग', ta: 'Daily Panchang', te: 'Daily Panchang', bn: 'Daily Panchang', kn: 'Daily Panchang', gu: 'Daily Panchang' }, href: '/panchang' },
-    { label: { en: 'Module 5-1: Tithi Deep Dive', hi: 'मॉड्यूल 5-1: तिथि विस्तार', sa: 'मॉड्यूल 5-1: तिथि विस्तार', mai: 'मॉड्यूल 5-1: तिथि विस्तार', mr: 'मॉड्यूल 5-1: तिथि विस्तार', ta: 'Module 5-1: Tithi Deep Dive', te: 'Module 5-1: Tithi Deep Dive', bn: 'Module 5-1: Tithi Deep Dive', kn: 'Module 5-1: Tithi Deep Dive', gu: 'Module 5-1: Tithi Deep Dive' }, href: '/learn/modules/5-1' },
-    { label: { en: 'Module 7-1: Yoga System', hi: 'मॉड्यूल 7-1: योग पद्धति', sa: 'मॉड्यूल 7-1: योग पद्धति', mai: 'मॉड्यूल 7-1: योग पद्धति', mr: 'मॉड्यूल 7-1: योग पद्धति', ta: 'Module 7-1: Yoga System', te: 'Module 7-1: Yoga System', bn: 'Module 7-1: Yoga System', kn: 'Module 7-1: Yoga System', gu: 'Module 7-1: Yoga System' }, href: '/learn/modules/7-1' },
-    { label: { en: 'Module 8-1: Karana System', hi: 'मॉड्यूल 8-1: करण पद्धति', sa: 'मॉड्यूल 8-1: करण पद्धति', mai: 'मॉड्यूल 8-1: करण पद्धति', mr: 'मॉड्यूल 8-1: करण पद्धति', ta: 'Module 8-1: Karana System', te: 'Module 8-1: Karana System', bn: 'Module 8-1: Karana System', kn: 'Module 8-1: Karana System', gu: 'Module 8-1: Karana System' }, href: '/learn/modules/8-1' },
-  ],
+  crossRefs: L.crossRefs as unknown as ModuleMeta['crossRefs'],
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q0_4_01', type: 'mcq',
-    question: {
-      en: 'How many tithis are there in a complete lunar month?',
-      hi: 'एक पूर्ण चान्द्र मास में कितनी तिथियाँ होती हैं?',
-    },
-    options: [
-      { en: '15', hi: '15', sa: '15', mai: '15', mr: '15', ta: '15', te: '15', bn: '15', kn: '15', gu: '15' },
-      { en: '27', hi: '27', sa: '27', mai: '27', mr: '27', ta: '27', te: '27', bn: '27', kn: '27', gu: '27' },
-      { en: '30', hi: '30', sa: '30', mai: '30', mr: '30', ta: '30', te: '30', bn: '30', kn: '30', gu: '30' },
-      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: '30 tithis: 15 in Shukla Paksha (waxing) from Pratipada to Purnima, and 15 in Krishna Paksha (waning) from Pratipada to Amavasya. Each tithi spans 12° of Moon-Sun elongation.',
-      hi: '30 तिथियाँ: शुक्ल पक्ष (बढ़ता चन्द्रमा) में प्रतिपदा से पूर्णिमा तक 15, और कृष्ण पक्ष (घटता चन्द्रमा) में प्रतिपदा से अमावस्या तक 15। प्रत्येक तिथि चन्द्र-सूर्य कोण के 12° में फैली है।',
-    },
-  },
-  {
-    id: 'q0_4_02', type: 'true_false',
-    question: {
-      en: 'The 7-day week order (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) was invented independently in both India and Babylon using the same planetary hora system.',
-      hi: '7-दिवसीय सप्ताह का क्रम (सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि) भारत और बेबीलोन दोनों में एक ही ग्रह होरा पद्धति से स्वतन्त्र रूप से आविष्कृत हुआ।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. The weekday order emerges naturally from the planetary hora system: assign each hour to a planet in the Chaldean order (Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon), and every 24th hour gives the ruler of the next day — yielding the familiar Sun→Moon→Mars sequence.',
-      hi: 'सत्य। सप्ताह का क्रम ग्रह होरा पद्धति से स्वाभाविक रूप से निकलता है: प्रत्येक होरा को कल्डियन क्रम (शनि, गुरु, मंगल, सूर्य, शुक्र, बुध, चन्द्र) में एक ग्रह दें, और प्रत्येक 24वीं होरा अगले दिन का स्वामी देती है — जिससे सूर्य→चन्द्र→मंगल का परिचित क्रम बनता है।',
-    },
-  },
-  {
-    id: 'q0_4_03', type: 'mcq',
-    question: {
-      en: 'What does "Shukla Paksha" mean?',
-      hi: '"शुक्ल पक्ष" का क्या अर्थ है?',
-    },
-    options: [
-      { en: 'The waning (dark) fortnight', hi: 'घटता (अँधेरा) पखवाड़ा', sa: 'घटता (अँधेरा) पखवाड़ा', mai: 'घटता (अँधेरा) पखवाड़ा', mr: 'घटता (अँधेरा) पखवाड़ा', ta: 'The waning (dark) fortnight', te: 'The waning (dark) fortnight', bn: 'The waning (dark) fortnight', kn: 'The waning (dark) fortnight', gu: 'The waning (dark) fortnight' },
-      { en: 'The waxing (bright) fortnight', hi: 'बढ़ता (उज्ज्वल) पखवाड़ा', sa: 'बढ़ता (उज्ज्वल) पखवाड़ा', mai: 'बढ़ता (उज्ज्वल) पखवाड़ा', mr: 'बढ़ता (उज्ज्वल) पखवाड़ा', ta: 'The waxing (bright) fortnight', te: 'The waxing (bright) fortnight', bn: 'The waxing (bright) fortnight', kn: 'The waxing (bright) fortnight', gu: 'The waxing (bright) fortnight' },
-      { en: 'The eclipse period', hi: 'ग्रहण काल', sa: 'ग्रहण काल', mai: 'ग्रहण काल', mr: 'ग्रहण काल', ta: 'The eclipse period', te: 'The eclipse period', bn: 'The eclipse period', kn: 'The eclipse period', gu: 'The eclipse period' },
-      { en: 'The full moon day', hi: 'पूर्णिमा का दिन', sa: 'पूर्णिमा का दिन', mai: 'पूर्णिमा का दिन', mr: 'पूर्णिमा का दिन', ta: 'The full moon day', te: 'The full moon day', bn: 'The full moon day', kn: 'The full moon day', gu: 'The full moon day' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Shukla means "bright" or "white." Shukla Paksha is the waxing fortnight when the Moon grows from new to full. Krishna Paksha is the waning (dark) fortnight.',
-      hi: 'शुक्ल का अर्थ है "उज्ज्वल" या "श्वेत।" शुक्ल पक्ष बढ़ता पखवाड़ा है जब चन्द्रमा अमावस्या से पूर्णिमा तक बढ़ता है। कृष्ण पक्ष घटता (अँधेरा) पखवाड़ा है।',
-    },
-  },
-  {
-    id: 'q0_4_04', type: 'mcq',
-    question: {
-      en: 'How many nakshatras does the Moon visit in approximately 27 days?',
-      hi: 'चन्द्रमा लगभग 27 दिनों में कितने नक्षत्रों से होकर गुजरता है?',
-    },
-    options: [
-      { en: '12', hi: '12', sa: '12', mai: '12', mr: '12', ta: '12', te: '12', bn: '12', kn: '12', gu: '12' },
-      { en: '27', hi: '27', sa: '27', mai: '27', mr: '27', ta: '27', te: '27', bn: '27', kn: '27', gu: '27' },
-      { en: '30', hi: '30', sa: '30', mai: '30', mr: '30', ta: '30', te: '30', bn: '30', kn: '30', gu: '30' },
-      { en: '9', hi: '9', sa: '9', mai: '9', mr: '9', ta: '9', te: '9', bn: '9', kn: '9', gu: '9' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Moon visits all 27 nakshatras in one sidereal month (~27.3 days), spending roughly one day in each. This is why nakshatras are called "lunar mansions."',
-      hi: 'चन्द्रमा एक नाक्षत्र मास (~27.3 दिन) में सभी 27 नक्षत्रों से होकर गुजरता है, प्रत्येक में लगभग एक दिन रहता है। इसीलिए नक्षत्रों को "चन्द्र भवन" कहते हैं।',
-    },
-  },
-  {
-    id: 'q0_4_05', type: 'mcq',
-    question: {
-      en: 'In the Panchang, "Yoga" refers to:',
-      hi: 'पंचांग में "योग" का अर्थ है:',
-    },
-    options: [
-      { en: 'Physical stretching exercises', hi: 'शारीरिक खिंचाव व्यायाम', sa: 'शारीरिक खिंचाव व्यायाम', mai: 'शारीरिक खिंचाव व्यायाम', mr: 'शारीरिक खिंचाव व्यायाम', ta: 'Physical stretching exercises', te: 'Physical stretching exercises', bn: 'Physical stretching exercises', kn: 'Physical stretching exercises', gu: 'Physical stretching exercises' },
-      { en: 'The combined longitude of Sun + Moon divided into 27 segments', hi: 'सूर्य + चन्द्र का संयुक्त देशान्तर 27 खण्डों में विभक्त', sa: 'सूर्य + चन्द्र का संयुक्त देशान्तर 27 खण्डों में विभक्त', mai: 'सूर्य + चन्द्र का संयुक्त देशान्तर 27 खण्डों में विभक्त', mr: 'सूर्य + चन्द्र का संयुक्त देशान्तर 27 खण्डों में विभक्त', ta: 'The combined longitude of Sun + Moon divided into 27 segments', te: 'The combined longitude of Sun + Moon divided into 27 segments', bn: 'The combined longitude of Sun + Moon divided into 27 segments', kn: 'The combined longitude of Sun + Moon divided into 27 segments', gu: 'The combined longitude of Sun + Moon divided into 27 segments' },
-      { en: 'A type of meditation', hi: 'एक प्रकार का ध्यान', sa: 'एक प्रकार का ध्यान', mai: 'एक प्रकार का ध्यान', mr: 'एक प्रकार का ध्यान', ta: 'A type of meditation', te: 'A type of meditation', bn: 'A type of meditation', kn: 'A type of meditation', gu: 'A type of meditation' },
-      { en: 'The Moon\'s distance from Earth', hi: 'चन्द्रमा की पृथ्वी से दूरी' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Panchang Yoga is calculated by adding the sidereal longitudes of Sun and Moon, then dividing by 13°20\' to get one of 27 yogas. The word "yuj" means combination — not the physical practice.',
-      hi: 'पंचांग योग की गणना सूर्य और चन्द्रमा के निरयन देशान्तरों को जोड़कर, फिर 13°20\' से विभाजित कर 27 योगों में से एक प्राप्त करने से होती है। "युज" शब्द का अर्थ संयोग है — शारीरिक अभ्यास नहीं।',
-    },
-  },
-  {
-    id: 'q0_4_06', type: 'true_false',
-    question: {
-      en: 'Varahamihira\'s Brihat Samhita (6th century CE) used Panchang elements to predict monsoon timing and crop yields.',
-      hi: 'वराहमिहिर की बृहत्संहिता (छठी शताब्दी ई.) ने पंचांग तत्त्वों का उपयोग मानसून समय और फसल उपज की भविष्यवाणी के लिए किया।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Varahamihira devoted several chapters to weather prediction using lunar phases, nakshatras, and planetary positions. Modern studies have found statistical correlations between lunar phases and Indian rainfall patterns.',
-      hi: 'सत्य। वराहमिहिर ने चन्द्र कलाओं, नक्षत्रों और ग्रह स्थितियों का उपयोग करते हुए मौसम पूर्वानुमान पर कई अध्याय समर्पित किए। आधुनिक अध्ययनों ने चन्द्र कलाओं और भारतीय वर्षा प्रतिरूपों के बीच सांख्यिकीय सहसम्बन्ध पाया है।',
-    },
-  },
-  {
-    id: 'q0_4_07', type: 'mcq',
-    question: {
-      en: 'What is Vishti (Bhadra) Karana known for?',
-      hi: 'विष्टि (भद्रा) करण किसलिए जाना जाता है?',
-    },
-    options: [
-      { en: 'Most auspicious for starting new ventures', hi: 'नए कार्य आरम्भ करने के लिए सर्वाधिक शुभ', sa: 'नए कार्य आरम्भ करने के लिए सर्वाधिक शुभ', mai: 'नए कार्य आरम्भ करने के लिए सर्वाधिक शुभ', mr: 'नए कार्य आरम्भ करने के लिए सर्वाधिक शुभ', ta: 'Most auspicious for starting new ventures', te: 'Most auspicious for starting new ventures', bn: 'Most auspicious for starting new ventures', kn: 'Most auspicious for starting new ventures', gu: 'Most auspicious for starting new ventures' },
-      { en: 'Best for marriages', hi: 'विवाह के लिए सर्वोत्तम', sa: 'विवाह के लिए सर्वोत्तम', mai: 'विवाह के लिए सर्वोत्तम', mr: 'विवाह के लिए सर्वोत्तम', ta: 'Best for marriages', te: 'Best for marriages', bn: 'Best for marriages', kn: 'Best for marriages', gu: 'Best for marriages' },
-      { en: 'Inauspicious — avoid new beginnings', hi: 'अशुभ — नए कार्य टालें', sa: 'अशुभ — नए कार्य टालें', mai: 'अशुभ — नए कार्य टालें', mr: 'अशुभ — नए कार्य टालें', ta: 'Inauspicious — avoid new beginnings', te: 'Inauspicious — avoid new beginnings', bn: 'Inauspicious — avoid new beginnings', kn: 'Inauspicious — avoid new beginnings', gu: 'Inauspicious — avoid new beginnings' },
-      { en: 'Ideal for travel', hi: 'यात्रा के लिए आदर्श', sa: 'यात्रा के लिए आदर्श', mai: 'यात्रा के लिए आदर्श', mr: 'यात्रा के लिए आदर्श', ta: 'Ideal for travel', te: 'Ideal for travel', bn: 'Ideal for travel', kn: 'Ideal for travel', gu: 'Ideal for travel' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'Vishti (Bhadra) Karana is considered inauspicious. Traditional Panchang advice is to avoid starting important new activities during this half-tithi period.',
-      hi: 'विष्टि (भद्रा) करण अशुभ माना जाता है। पारम्परिक पंचांग में इस अर्ध-तिथि काल में महत्त्वपूर्ण नए कार्य न आरम्भ करने की सलाह दी जाती है।',
-    },
-  },
-  {
-    id: 'q0_4_08', type: 'mcq',
-    question: {
-      en: 'Rahu Kaal is approximately how long each day?',
-      hi: 'राहु काल प्रतिदिन लगभग कितना लम्बा होता है?',
-    },
-    options: [
-      { en: 'About 30 minutes', hi: 'लगभग 30 मिनट', sa: 'लगभग 30 मिनट', mai: 'लगभग 30 मिनट', mr: 'लगभग 30 मिनट', ta: 'About 30 minutes', te: 'About 30 minutes', bn: 'About 30 minutes', kn: 'About 30 minutes', gu: 'About 30 minutes' },
-      { en: 'About 1.5 hours', hi: 'लगभग 1.5 घण्टे', sa: 'लगभग 1.5 घण्टे', mai: 'लगभग 1.5 घण्टे', mr: 'लगभग 1.5 घण्टे', ta: 'About 1.5 hours', te: 'About 1.5 hours', bn: 'About 1.5 hours', kn: 'About 1.5 hours', gu: 'About 1.5 hours' },
-      { en: 'About 3 hours', hi: 'लगभग 3 घण्टे', sa: 'लगभग 3 घण्टे', mai: 'लगभग 3 घण्टे', mr: 'लगभग 3 घण्टे', ta: 'About 3 hours', te: 'About 3 hours', bn: 'About 3 hours', kn: 'About 3 hours', gu: 'About 3 hours' },
-      { en: 'About 6 hours', hi: 'लगभग 6 घण्टे', sa: 'लगभग 6 घण्टे', mai: 'लगभग 6 घण्टे', mr: 'लगभग 6 घण्टे', ta: 'About 6 hours', te: 'About 6 hours', bn: 'About 6 hours', kn: 'About 6 hours', gu: 'About 6 hours' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Rahu Kaal is approximately 1.5 hours (one-eighth of the daytime period). It falls at a different time each weekday and is calculated based on sunrise and sunset for your location.',
-      hi: 'राहु काल लगभग 1.5 घण्टे (दिन की अवधि का आठवाँ भाग) का होता है। यह प्रत्येक वार को अलग समय पर आता है और आपके स्थान के सूर्योदय-सूर्यास्त के आधार पर गणित होता है।',
-    },
-  },
-  {
-    id: 'q0_4_09', type: 'true_false',
-    question: {
-      en: 'Abhijit Muhurta, which falls around midday, is considered universally auspicious.',
-      hi: 'अभिजित मुहूर्त, जो मध्याह्न के आसपास आता है, सार्वभौमिक रूप से शुभ माना जाता है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Abhijit Muhurta is the 8th muhurta of the day, centered around local noon. It is ruled by Vishnu and considered auspicious for virtually all activities, regardless of other Panchang factors.',
-      hi: 'सत्य। अभिजित मुहूर्त दिन का 8वाँ मुहूर्त है, स्थानीय मध्याह्न के आसपास केन्द्रित। यह विष्णु शासित है और अन्य पंचांग तत्त्वों की परवाह किए बिना लगभग सभी कार्यों के लिए शुभ माना जाता है।',
-    },
-  },
-  {
-    id: 'q0_4_10', type: 'mcq',
-    question: {
-      en: 'Each muhurta (time division) of the day is approximately how long?',
-      hi: 'दिन का प्रत्येक मुहूर्त (समय विभाजन) लगभग कितना लम्बा होता है?',
-    },
-    options: [
-      { en: 'About 24 minutes', hi: 'लगभग 24 मिनट', sa: 'लगभग 24 मिनट', mai: 'लगभग 24 मिनट', mr: 'लगभग 24 मिनट', ta: 'About 24 minutes', te: 'About 24 minutes', bn: 'About 24 minutes', kn: 'About 24 minutes', gu: 'About 24 minutes' },
-      { en: 'About 48 minutes', hi: 'लगभग 48 मिनट', sa: 'लगभग 48 मिनट', mai: 'लगभग 48 मिनट', mr: 'लगभग 48 मिनट', ta: 'About 48 minutes', te: 'About 48 minutes', bn: 'About 48 minutes', kn: 'About 48 minutes', gu: 'About 48 minutes' },
-      { en: 'About 90 minutes', hi: 'लगभग 90 मिनट', sa: 'लगभग 90 मिनट', mai: 'लगभग 90 मिनट', mr: 'लगभग 90 मिनट', ta: 'About 90 minutes', te: 'About 90 minutes', bn: 'About 90 minutes', kn: 'About 90 minutes', gu: 'About 90 minutes' },
-      { en: 'About 2 hours', hi: 'लगभग 2 घण्टे', sa: 'लगभग 2 घण्टे', mai: 'लगभग 2 घण्टे', mr: 'लगभग 2 घण्टे', ta: 'About 2 hours', te: 'About 2 hours', bn: 'About 2 hours', kn: 'About 2 hours', gu: 'About 2 hours' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'A day is divided into 30 muhurtas, each approximately 48 minutes long (24 hours / 30 = 48 minutes). 15 muhurtas fall in the daytime and 15 at night.',
-      hi: 'एक दिन 30 मुहूर्तों में विभक्त है, प्रत्येक लगभग 48 मिनट (24 घण्टे / 30 = 48 मिनट)। 15 मुहूर्त दिन में और 15 रात में आते हैं।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = L.questions as unknown as ModuleQuestion[];
 
 function Page1() {
   const locale = useModuleLocale();

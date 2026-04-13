@@ -3,187 +3,22 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/0-6.json';
+
 const META: ModuleMeta = {
-  id: 'mod_0_6', phase: 0, topic: 'Foundations', moduleNumber: '0.6',
-  title: { en: 'How Hindu Rituals Connect to Astronomy', hi: 'हिन्दू कर्मकाण्ड और खगोलशास्त्र का सम्बन्ध', sa: 'हिन्दू कर्मकाण्ड और खगोलशास्त्र का सम्बन्ध', mai: 'हिन्दू कर्मकाण्ड और खगोलशास्त्र का सम्बन्ध', mr: 'हिन्दू कर्मकाण्ड और खगोलशास्त्र का सम्बन्ध', ta: 'How Hindu Rituals Connect to Astronomy', te: 'How Hindu Rituals Connect to Astronomy', bn: 'How Hindu Rituals Connect to Astronomy', kn: 'How Hindu Rituals Connect to Astronomy', gu: 'How Hindu Rituals Connect to Astronomy' },
-  subtitle: {
-    en: 'Every festival, fast, and puja has an astronomical basis — here\'s the science behind the tradition',
-    hi: 'प्रत्येक त्योहार, व्रत और पूजा का खगोलीय आधार है — परम्परा के पीछे का विज्ञान',
-  },
+  id: 'mod_0_6',
+  phase: 0,
+  topic: 'Foundations',
+  moduleNumber: '0.6',
+  title: L.title as unknown as ModuleMeta['title'],
+  subtitle: L.subtitle as unknown as ModuleMeta['subtitle'],
   estimatedMinutes: 10,
-  crossRefs: [
-    { label: { en: 'Module 1-1: The Ecliptic & Degrees', hi: 'मॉड्यूल 1-1: क्रान्तिवृत्त और अंश', sa: 'मॉड्यूल 1-1: क्रान्तिवृत्त और अंश', mai: 'मॉड्यूल 1-1: क्रान्तिवृत्त और अंश', mr: 'मॉड्यूल 1-1: क्रान्तिवृत्त और अंश', ta: 'Module 1-1: The Ecliptic & Degrees', te: 'Module 1-1: The Ecliptic & Degrees', bn: 'Module 1-1: The Ecliptic & Degrees', kn: 'Module 1-1: The Ecliptic & Degrees', gu: 'Module 1-1: The Ecliptic & Degrees' }, href: '/learn/modules/1-1' },
-    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग', mai: 'दैनिक पंचांग', mr: 'दैनिक पंचांग', ta: 'Daily Panchang', te: 'Daily Panchang', bn: 'Daily Panchang', kn: 'Daily Panchang', gu: 'Daily Panchang' }, href: '/panchang' },
-    { label: { en: 'Generate Kundali', hi: 'कुण्डली बनाएँ', sa: 'कुण्डली बनाएँ', mai: 'कुण्डली बनाएँ', mr: 'कुण्डली बनाएँ', ta: 'Generate Kundali', te: 'Generate Kundali', bn: 'Generate Kundali', kn: 'Generate Kundali', gu: 'Generate Kundali' }, href: '/kundali' },
-    { label: { en: 'Sankalpa Generator', hi: 'संकल्प जनक', sa: 'संकल्प जनक', mai: 'संकल्प जनक', mr: 'संकल्प जनक', ta: 'Sankalpa Generator', te: 'Sankalpa Generator', bn: 'Sankalpa Generator', kn: 'Sankalpa Generator', gu: 'Sankalpa Generator' }, href: '/sankalpa' },
-    { label: { en: 'Muhurta AI', hi: 'मुहूर्त AI', sa: 'मुहूर्त AI', mai: 'मुहूर्त AI', mr: 'मुहूर्त AI', ta: 'Muhurta AI', te: 'Muhurta AI', bn: 'Muhurta AI', kn: 'Muhurta AI', gu: 'Muhurta AI' }, href: '/muhurta-ai' },
-  ],
+  crossRefs: L.crossRefs as unknown as ModuleMeta['crossRefs'],
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q0_6_01', type: 'mcq',
-    question: {
-      en: 'What is the astronomical basis of Ekadashi fasting (11th tithi)?',
-      hi: 'एकादशी व्रत (11वीं तिथि) का खगोलीय आधार क्या है?',
-    },
-    options: [
-      { en: 'The Sun is at its brightest', hi: 'सूर्य सबसे तेज होता है', sa: 'सूर्य सबसे तेज होता है', mai: 'सूर्य सबसे तेज होता है', mr: 'सूर्य सबसे तेज होता है', ta: 'The Sun is at its brightest', te: 'The Sun is at its brightest', bn: 'The Sun is at its brightest', kn: 'The Sun is at its brightest', gu: 'The Sun is at its brightest' },
-      { en: 'Moon-Sun elongation is 120°-132°, affecting tidal forces', hi: 'चन्द्र-सूर्य कोण 120°-132° होता है, ज्वारीय बलों को प्रभावित करता है', sa: 'चन्द्र-सूर्य कोण 120°-132° होता है, ज्वारीय बलों को प्रभावित करता है', mai: 'चन्द्र-सूर्य कोण 120°-132° होता है, ज्वारीय बलों को प्रभावित करता है', mr: 'चन्द्र-सूर्य कोण 120°-132° होता है, ज्वारीय बलों को प्रभावित करता है', ta: 'Moon-Sun elongation is 120°-132°, affecting tidal forces', te: 'Moon-Sun elongation is 120°-132°, affecting tidal forces', bn: 'Moon-Sun elongation is 120°-132°, affecting tidal forces', kn: 'Moon-Sun elongation is 120°-132°, affecting tidal forces', gu: 'Moon-Sun elongation is 120°-132°, affecting tidal forces' },
-      { en: 'Mars is in opposition', hi: 'मंगल प्रतियोग में होता है', sa: 'मंगल प्रतियोग में होता है', mai: 'मंगल प्रतियोग में होता है', mr: 'मंगल प्रतियोग में होता है', ta: 'Mars is in opposition', te: 'Mars is in opposition', bn: 'Mars is in opposition', kn: 'Mars is in opposition', gu: 'Mars is in opposition' },
-      { en: 'An eclipse is occurring', hi: 'ग्रहण हो रहा होता है', sa: 'ग्रहण हो रहा होता है', mai: 'ग्रहण हो रहा होता है', mr: 'ग्रहण हो रहा होता है', ta: 'An eclipse is occurring', te: 'An eclipse is occurring', bn: 'An eclipse is occurring', kn: 'An eclipse is occurring', gu: 'An eclipse is occurring' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'On Ekadashi, the Moon-Sun elongation is between 120°-132°. The Moon\'s gravitational pull on Earth\'s water is at a specific phase. Ayurveda links this to digestive changes, recommending fasting.',
-      hi: 'एकादशी पर चन्द्र-सूर्य कोण 120°-132° के बीच होता है। पृथ्वी के जल पर चन्द्रमा का गुरुत्वाकर्षण एक विशेष चरण में होता है। आयुर्वेद इसे पाचन परिवर्तनों से जोड़ता है और उपवास की सलाह देता है।',
-    },
-  },
-  {
-    id: 'q0_6_02', type: 'true_false',
-    question: {
-      en: 'Aryabhata correctly explained in 499 CE that the Moon shines by reflected sunlight and eclipses are caused by Earth\'s shadow.',
-      hi: 'आर्यभट ने 499 ई. में सही ढंग से समझाया कि चन्द्रमा परावर्तित सूर्य प्रकाश से चमकता है और ग्रहण पृथ्वी की छाया से होते हैं।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Aryabhata wrote in his Aryabhatiya (499 CE) that the Moon and planets shine by reflected sunlight, and that eclipses are caused by Earth\'s shadow on the Moon (lunar) or Moon\'s shadow on Earth (solar) — while Europe was in the Dark Ages.',
-      hi: 'सत्य। आर्यभट ने अपनी आर्यभटीय (499 ई.) में लिखा कि चन्द्रमा और ग्रह परावर्तित सूर्य प्रकाश से चमकते हैं, और ग्रहण पृथ्वी की छाया (चन्द्र ग्रहण) या चन्द्रमा की छाया (सूर्य ग्रहण) से होते हैं — जब यूरोप अन्धकार युग में था।',
-    },
-  },
-  {
-    id: 'q0_6_03', type: 'mcq',
-    question: {
-      en: 'Why is Hanuman worshipped specifically on Tuesday (Mangalavara)?',
-      hi: 'हनुमान की पूजा विशेष रूप से मंगलवार (मंगलवार) को क्यों होती है?',
-    },
-    options: [
-      { en: 'It\'s a random tradition with no astrological basis', hi: 'यह बिना ज्योतिषीय आधार की यादृच्छिक परम्परा है' },
-      { en: 'Tuesday is Mars-day; Mars rules courage and warfare; Hanuman is the warrior-deity', hi: 'मंगलवार मंगल-दिवस है; मंगल साहस और युद्ध का शासक है; हनुमान योद्धा-देवता हैं', sa: 'मंगलवार मंगल-दिवस है; मंगल साहस और युद्ध का शासक है; हनुमान योद्धा-देवता हैं', mai: 'मंगलवार मंगल-दिवस है; मंगल साहस और युद्ध का शासक है; हनुमान योद्धा-देवता हैं', mr: 'मंगलवार मंगल-दिवस है; मंगल साहस और युद्ध का शासक है; हनुमान योद्धा-देवता हैं', ta: 'Tuesday is Mars-day; Mars rules courage and warfare; Hanuman is the warrior-deity', te: 'Tuesday is Mars-day; Mars rules courage and warfare; Hanuman is the warrior-deity', bn: 'Tuesday is Mars-day; Mars rules courage and warfare; Hanuman is the warrior-deity', kn: 'Tuesday is Mars-day; Mars rules courage and warfare; Hanuman is the warrior-deity', gu: 'Tuesday is Mars-day; Mars rules courage and warfare; Hanuman is the warrior-deity' },
-      { en: 'Hanuman was born on a Tuesday', hi: 'हनुमान का जन्म मंगलवार को हुआ था', sa: 'हनुमान का जन्म मंगलवार को हुआ था', mai: 'हनुमान का जन्म मंगलवार को हुआ था', mr: 'हनुमान का जन्म मंगलवार को हुआ था', ta: 'Hanuman was born on a Tuesday', te: 'Hanuman was born on a Tuesday', bn: 'Hanuman was born on a Tuesday', kn: 'Hanuman was born on a Tuesday', gu: 'Hanuman was born on a Tuesday' },
-      { en: 'The Moon is strongest on Tuesdays', hi: 'मंगलवार को चन्द्रमा सबसे बलवान होता है', sa: 'मंगलवार को चन्द्रमा सबसे बलवान होता है', mai: 'मंगलवार को चन्द्रमा सबसे बलवान होता है', mr: 'मंगलवार को चन्द्रमा सबसे बलवान होता है', ta: 'The Moon is strongest on Tuesdays', te: 'The Moon is strongest on Tuesdays', bn: 'The Moon is strongest on Tuesdays', kn: 'The Moon is strongest on Tuesdays', gu: 'The Moon is strongest on Tuesdays' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Mangalavara (Tuesday) is ruled by Mars (Mangala), the planet of courage, energy, and conflict. Hanuman embodies Mars qualities — strength, valor, devotion. Worshipping Hanuman on Mars-day = invoking Mars energy through the warrior-deity.',
-      hi: 'मंगलवार मंगल ग्रह द्वारा शासित है, जो साहस, ऊर्जा और संघर्ष का ग्रह है। हनुमान मंगल गुणों के मूर्तिमान रूप हैं — बल, पराक्रम, भक्ति। मंगल-दिवस पर हनुमान पूजा = योद्धा-देवता के माध्यम से मंगल ऊर्जा का आह्वान।',
-    },
-  },
-  {
-    id: 'q0_6_04', type: 'mcq',
-    question: {
-      en: 'What does the Sankalpa before a puja essentially declare?',
-      hi: 'पूजा से पहले संकल्प मूलतः क्या घोषित करता है?',
-    },
-    options: [
-      { en: 'The amount of donation being offered', hi: 'दान की राशि', sa: 'दान की राशि', mai: 'दान की राशि', mr: 'दान की राशि', ta: 'The amount of donation being offered', te: 'The amount of donation being offered', bn: 'The amount of donation being offered', kn: 'The amount of donation being offered', gu: 'The amount of donation being offered' },
-      { en: 'A cosmic timestamp — the exact astronomical moment of the vow', hi: 'एक ब्रह्माण्डीय समय-चिह्न — प्रतिज्ञा का सटीक खगोलीय क्षण', sa: 'एक ब्रह्माण्डीय समय-चिह्न — प्रतिज्ञा का सटीक खगोलीय क्षण', mai: 'एक ब्रह्माण्डीय समय-चिह्न — प्रतिज्ञा का सटीक खगोलीय क्षण', mr: 'एक ब्रह्माण्डीय समय-चिह्न — प्रतिज्ञा का सटीक खगोलीय क्षण', ta: 'A cosmic timestamp — the exact astronomical moment of the vow', te: 'A cosmic timestamp — the exact astronomical moment of the vow', bn: 'A cosmic timestamp — the exact astronomical moment of the vow', kn: 'A cosmic timestamp — the exact astronomical moment of the vow', gu: 'A cosmic timestamp — the exact astronomical moment of the vow' },
-      { en: 'The names of attending family members', hi: 'उपस्थित परिवार के सदस्यों के नाम', sa: 'उपस्थित परिवार के सदस्यों के नाम', mai: 'उपस्थित परिवार के सदस्यों के नाम', mr: 'उपस्थित परिवार के सदस्यों के नाम', ta: 'The names of attending family members', te: 'The names of attending family members', bn: 'The names of attending family members', kn: 'The names of attending family members', gu: 'The names of attending family members' },
-      { en: 'A prayer for forgiveness of sins', hi: 'पापों की क्षमा की प्रार्थना', sa: 'पापों की क्षमा की प्रार्थना', mai: 'पापों की क्षमा की प्रार्थना', mr: 'पापों की क्षमा की प्रार्थना', ta: 'A prayer for forgiveness of sins', te: 'A prayer for forgiveness of sins', bn: 'A prayer for forgiveness of sins', kn: 'A prayer for forgiveness of sins', gu: 'A prayer for forgiveness of sins' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'A Sankalpa states the samvatsara, ayana, ritu, masa, paksha, tithi, vara, and nakshatra — literally declaring "at THIS precise astronomical moment, I make this vow." It is a cosmic timestamp for your intention.',
-      hi: 'संकल्प में सम्वत्सर, अयन, ऋतु, मास, पक्ष, तिथि, वार और नक्षत्र कहा जाता है — शाब्दिक रूप से "इस सटीक खगोलीय क्षण पर, मैं यह प्रतिज्ञा करता हूँ।" यह आपके संकल्प का ब्रह्माण्डीय समय-चिह्न है।',
-    },
-  },
-  {
-    id: 'q0_6_05', type: 'true_false',
-    question: {
-      en: 'The Surya Siddhanta describes a time unit called "truti" which equals approximately 29.6 microseconds.',
-      hi: 'सूर्य सिद्धान्त "त्रुटि" नामक समय इकाई का वर्णन करता है जो लगभग 29.6 माइक्रोसेकण्ड के बराबर है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. The Surya Siddhanta describes time from the truti (29.6 microseconds) up to the kalpa (4.32 billion years — remarkably close to Earth\'s actual age of 4.54 billion years). This scale of thinking was unique to Indian civilization.',
-      hi: 'सत्य। सूर्य सिद्धान्त त्रुटि (29.6 माइक्रोसेकण्ड) से कल्प (4.32 अरब वर्ष — पृथ्वी की वास्तविक आयु 4.54 अरब वर्ष के उल्लेखनीय रूप से निकट) तक समय का वर्णन करता है। विचार का यह पैमाना भारतीय सभ्यता की विशेषता था।',
-    },
-  },
-  {
-    id: 'q0_6_06', type: 'mcq',
-    question: {
-      en: 'What astronomical condition is required for a good marriage muhurta?',
-      hi: 'शुभ विवाह मुहूर्त के लिए कौन-सी खगोलीय शर्त आवश्यक है?',
-    },
-    options: [
-      { en: 'Only the bride\'s birth chart matters', hi: 'केवल वधू की जन्म कुण्डली महत्त्वपूर्ण है' },
-      { en: 'Moon in gentle nakshatra, Venus not combust, Jupiter aspecting 7th house, no Rahu Kaal', hi: 'सौम्य नक्षत्र में चन्द्रमा, शुक्र अस्त नहीं, गुरु की 7वें भाव पर दृष्टि, राहु काल नहीं', sa: 'सौम्य नक्षत्र में चन्द्रमा, शुक्र अस्त नहीं, गुरु की 7वें भाव पर दृष्टि, राहु काल नहीं', mai: 'सौम्य नक्षत्र में चन्द्रमा, शुक्र अस्त नहीं, गुरु की 7वें भाव पर दृष्टि, राहु काल नहीं', mr: 'सौम्य नक्षत्र में चन्द्रमा, शुक्र अस्त नहीं, गुरु की 7वें भाव पर दृष्टि, राहु काल नहीं', ta: 'Moon in gentle nakshatra, Venus not combust, Jupiter aspecting 7th house, no Rahu Kaal', te: 'Moon in gentle nakshatra, Venus not combust, Jupiter aspecting 7th house, no Rahu Kaal', bn: 'Moon in gentle nakshatra, Venus not combust, Jupiter aspecting 7th house, no Rahu Kaal', kn: 'Moon in gentle nakshatra, Venus not combust, Jupiter aspecting 7th house, no Rahu Kaal', gu: 'Moon in gentle nakshatra, Venus not combust, Jupiter aspecting 7th house, no Rahu Kaal' },
-      { en: 'It must be a Sunday', hi: 'रविवार होना चाहिए', sa: 'रविवार होना चाहिए', mai: 'रविवार होना चाहिए', mr: 'रविवार होना चाहिए', ta: 'It must be a Sunday', te: 'It must be a Sunday', bn: 'It must be a Sunday', kn: 'It must be a Sunday', gu: 'It must be a Sunday' },
-      { en: 'All planets must be in one sign', hi: 'सभी ग्रह एक राशि में होने चाहिए', sa: 'सभी ग्रह एक राशि में होने चाहिए', mai: 'सभी ग्रह एक राशि में होने चाहिए', mr: 'सभी ग्रह एक राशि में होने चाहिए', ta: 'All planets must be in one sign', te: 'All planets must be in one sign', bn: 'All planets must be in one sign', kn: 'All planets must be in one sign', gu: 'All planets must be in one sign' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'A marriage muhurta requires multiple astronomical conditions: Moon in a gentle nakshatra (like Rohini or Revati), Venus visible (not combust by Sun proximity), Jupiter aspecting the 7th house of marriage, and the time should not fall in Rahu Kaal.',
-      hi: 'विवाह मुहूर्त के लिए अनेक खगोलीय शर्तें चाहिए: सौम्य नक्षत्र (जैसे रोहिणी या रेवती) में चन्द्रमा, शुक्र दृश्य (सूर्य की निकटता से अस्त नहीं), गुरु की विवाह के 7वें भाव पर दृष्टि, और राहु काल में न हो।',
-    },
-  },
-  {
-    id: 'q0_6_07', type: 'mcq',
-    question: {
-      en: 'On Purnima (full moon), the Moon is:',
-      hi: 'पूर्णिमा पर चन्द्रमा:',
-    },
-    options: [
-      { en: 'Conjunct (next to) the Sun', hi: 'सूर्य के साथ (युति में)', sa: 'सूर्य के साथ (युति में)', mai: 'सूर्य के साथ (युति में)', mr: 'सूर्य के साथ (युति में)', ta: 'Conjunct (next to) the Sun', te: 'Conjunct (next to) the Sun', bn: 'Conjunct (next to) the Sun', kn: 'Conjunct (next to) the Sun', gu: 'Conjunct (next to) the Sun' },
-      { en: 'Directly opposite the Sun', hi: 'सूर्य के ठीक विपरीत', sa: 'सूर्य के ठीक विपरीत', mai: 'सूर्य के ठीक विपरीत', mr: 'सूर्य के ठीक विपरीत', ta: 'Directly opposite the Sun', te: 'Directly opposite the Sun', bn: 'Directly opposite the Sun', kn: 'Directly opposite the Sun', gu: 'Directly opposite the Sun' },
-      { en: '90° from the Sun', hi: 'सूर्य से 90° पर', sa: 'सूर्य से 90° पर', mai: 'सूर्य से 90° पर', mr: 'सूर्य से 90° पर', ta: '90° from the Sun', te: '90° from the Sun', bn: '90° from the Sun', kn: '90° from the Sun', gu: '90° from the Sun' },
-      { en: 'At its closest to Earth', hi: 'पृथ्वी के सबसे निकट', sa: 'पृथ्वी के सबसे निकट', mai: 'पृथ्वी के सबसे निकट', mr: 'पृथ्वी के सबसे निकट', ta: 'At its closest to Earth', te: 'At its closest to Earth', bn: 'At its closest to Earth', kn: 'At its closest to Earth', gu: 'At its closest to Earth' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'On Purnima, the Moon is directly opposite the Sun (180° elongation). Maximum reflected light reaches Earth. Tidal forces peak. Vedic thought considers the mind (manas) most active at this time.',
-      hi: 'पूर्णिमा पर चन्द्रमा सूर्य के ठीक विपरीत (180° कोण) होता है। अधिकतम परावर्तित प्रकाश पृथ्वी पर आता है। ज्वारीय बल चरम पर होते हैं। वैदिक विचार में इस समय मन (मानस) सर्वाधिक सक्रिय माना जाता है।',
-    },
-  },
-  {
-    id: 'q0_6_08', type: 'true_false',
-    question: {
-      en: 'Amavasya (new moon) is traditionally associated with ancestor remembrance (Pitru Tarpana) because the Moon is invisible — conjunct with the Sun.',
-      hi: 'अमावस्या (अमावस) पारम्परिक रूप से पितृ तर्पण से जुड़ी है क्योंकि चन्द्रमा अदृश्य होता है — सूर्य के साथ युति में।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. On Amavasya, the Moon is conjunct the Sun (0° elongation) and invisible. This "darkest" time is associated with ancestor remembrance. The astronomical alignment is precise; the cultural meaning layers onto the observable phenomenon.',
-      hi: 'सत्य। अमावस्या पर चन्द्रमा सूर्य के साथ युति (0° कोण) में और अदृश्य होता है। यह "सबसे अँधेरा" समय पितृ स्मरण से जुड़ा है। खगोलीय संरेखण सटीक है; सांस्कृतिक अर्थ प्रेक्षणीय घटना पर आधारित है।',
-    },
-  },
-  {
-    id: 'q0_6_09', type: 'mcq',
-    question: {
-      en: 'The Surya Siddhanta\'s "kalpa" (4.32 billion years) is remarkably close to:',
-      hi: 'सूर्य सिद्धान्त का "कल्प" (4.32 अरब वर्ष) किसके उल्लेखनीय रूप से निकट है?',
-    },
-    options: [
-      { en: 'The age of the Moon (4.5 billion years)', hi: 'चन्द्रमा की आयु (4.5 अरब वर्ष)', sa: 'चन्द्रमा की आयु (4.5 अरब वर्ष)', mai: 'चन्द्रमा की आयु (4.5 अरब वर्ष)', mr: 'चन्द्रमा की आयु (4.5 अरब वर्ष)', ta: 'The age of the Moon (4.5 billion years)', te: 'The age of the Moon (4.5 billion years)', bn: 'The age of the Moon (4.5 billion years)', kn: 'The age of the Moon (4.5 billion years)', gu: 'The age of the Moon (4.5 billion years)' },
-      { en: 'Earth\'s actual age (4.54 billion years)', hi: 'पृथ्वी की वास्तविक आयु (4.54 अरब वर्ष)' },
-      { en: 'The age of the Universe (13.8 billion years)', hi: 'ब्रह्माण्ड की आयु (13.8 अरब वर्ष)', sa: 'ब्रह्माण्ड की आयु (13.8 अरब वर्ष)', mai: 'ब्रह्माण्ड की आयु (13.8 अरब वर्ष)', mr: 'ब्रह्माण्ड की आयु (13.8 अरब वर्ष)', ta: 'The age of the Universe (13.8 billion years)', te: 'The age of the Universe (13.8 billion years)', bn: 'The age of the Universe (13.8 billion years)', kn: 'The age of the Universe (13.8 billion years)', gu: 'The age of the Universe (13.8 billion years)' },
-      { en: 'The Sun\'s expected lifespan (10 billion years)', hi: 'सूर्य की अपेक्षित आयु (10 अरब वर्ष)' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The kalpa of 4.32 billion years is remarkably close to Earth\'s scientifically determined age of 4.54 billion years. This scale of cosmic thinking — from microseconds to billions of years — was unique to Indian astronomical tradition.',
-      hi: 'कल्प (4.32 अरब वर्ष) पृथ्वी की वैज्ञानिक रूप से निर्धारित आयु 4.54 अरब वर्ष के उल्लेखनीय रूप से निकट है। माइक्रोसेकण्ड से अरबों वर्षों तक ब्रह्माण्डीय चिन्तन का यह पैमाना भारतीय खगोलीय परम्परा की विशेषता थी।',
-    },
-  },
-  {
-    id: 'q0_6_10', type: 'mcq',
-    question: {
-      en: 'Saturday (Shanivara) is associated with visits to Shani temples because:',
-      hi: 'शनिवार (शनिवार) शनि मन्दिर दर्शन से जुड़ा है क्योंकि:',
-    },
-    options: [
-      { en: 'Saturn is visible only on Saturdays', hi: 'शनि केवल शनिवार को दिखता है', sa: 'शनि केवल शनिवार को दिखता है', mai: 'शनि केवल शनिवार को दिखता है', mr: 'शनि केवल शनिवार को दिखता है', ta: 'Saturn is visible only on Saturdays', te: 'Saturn is visible only on Saturdays', bn: 'Saturn is visible only on Saturdays', kn: 'Saturn is visible only on Saturdays', gu: 'Saturn is visible only on Saturdays' },
-      { en: 'Saturn rules discipline, karma, and hardship — Saturday worship acknowledges Saturn\'s lessons', hi: 'शनि अनुशासन, कर्म और कठिनाई का शासक है — शनिवार की पूजा शनि के पाठों को स्वीकार करती है' },
-      { en: 'Temples are only open on Saturdays', hi: 'मन्दिर केवल शनिवार को खुलते हैं', sa: 'मन्दिर केवल शनिवार को खुलते हैं', mai: 'मन्दिर केवल शनिवार को खुलते हैं', mr: 'मन्दिर केवल शनिवार को खुलते हैं', ta: 'Temples are only open on Saturdays', te: 'Temples are only open on Saturdays', bn: 'Temples are only open on Saturdays', kn: 'Temples are only open on Saturdays', gu: 'Temples are only open on Saturdays' },
-      { en: 'It is the only day without Rahu Kaal', hi: 'यह बिना राहु काल का एकमात्र दिन है', sa: 'यह बिना राहु काल का एकमात्र दिन है', mai: 'यह बिना राहु काल का एकमात्र दिन है', mr: 'यह बिना राहु काल का एकमात्र दिन है', ta: 'It is the only day without Rahu Kaal', te: 'It is the only day without Rahu Kaal', bn: 'It is the only day without Rahu Kaal', kn: 'It is the only day without Rahu Kaal', gu: 'It is the only day without Rahu Kaal' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Shanivara (Saturday) is Saturn\'s day. Saturn governs discipline, karma, perseverance, and life\'s hardships. Visiting Shani temples on Saturday is a way of acknowledging and working with Saturn\'s lessons — not avoiding them.',
-      hi: 'शनिवार शनि का दिन है। शनि अनुशासन, कर्म, धैर्य और जीवन की कठिनाइयों का शासक है। शनिवार को शनि मन्दिर जाना शनि के पाठों को स्वीकार करने और उनके साथ कार्य करने का तरीका है — उनसे बचने का नहीं।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = L.questions as unknown as ModuleQuestion[];
 
 function Page1() {
   const locale = useModuleLocale();

@@ -1,6 +1,8 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/matching.json';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
@@ -9,60 +11,6 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-const L = {
-  title: { en: 'Kundali Matching — Ashta Kuta', hi: 'कुण्डली मिलान — अष्ट कूट', sa: 'कुण्डलीमेलनम् — अष्टकूटम्' , ta: 'குண்டலி பொருத்தம் — அஷ்ட கூடம்' },
-  subtitle: { en: 'The 8-fold compatibility system used for marriage matching', hi: 'विवाह मिलान के लिए प्रयुक्त 8 कूट अनुकूलता प्रणाली', sa: 'विवाहमेलनार्थं प्रयुक्ता अष्टकूटानुकूलतापद्धतिः' },
-  whatTitle: { en: 'What is Kundali Matching?', hi: 'कुण्डली मिलान क्या है?', sa: 'कुण्डलीमेलनं किम्?' },
-  whatContent: {
-    en: 'Kundali Matching (Horoscope Matching) compares two birth charts to assess compatibility for marriage. The primary system is Ashta Kuta — 8 factors scored from the Moon\'s Nakshatra of both partners. The maximum score is 36 points (Gunas). Traditionally, a minimum of 18 Gunas (50%) is required for an acceptable match.',
-    hi: 'कुण्डली मिलान दो जन्म कुण्डलियों की तुलना करता है विवाह के लिए अनुकूलता आँकने हेतु। प्राथमिक प्रणाली अष्ट कूट है — दोनों साथियों के चन्द्र नक्षत्र से 8 कारक अंकित किए जाते हैं। अधिकतम अंक 36 (गुण) है।',
-    sa: 'कुण्डलीमेलनं द्वयोः जन्मकुण्डल्योः तुलनां करोति विवाहार्थम् अनुकूलतायाः आकलनाय।'
-  },
-  whatContentDeep: {
-    en: 'The system originates from the Muhurta Chintamani and other classical Jyotish texts. It is based on the principle that the Moon governs the mind (Manas), and therefore the Moon\'s Nakshatra at birth reveals one\'s emotional and psychological nature. By comparing the Nakshatras of two individuals, astrologers can assess harmony across spiritual, emotional, physical, and health dimensions. The 8 Kutas are weighted progressively — from 1 point (Varna) to 8 points (Nadi) — reflecting the increasing importance of each factor.',
-    hi: 'यह प्रणाली मुहूर्त चिन्तामणि और अन्य शास्त्रीय ज्योतिष ग्रन्थों से उद्भव हुई है। यह इस सिद्धान्त पर आधारित है कि चन्द्रमा मन (मानस) का शासक है, और इसलिए जन्म का चन्द्र नक्षत्र व्यक्ति की भावनात्मक और मनोवैज्ञानिक प्रकृति प्रकट करता है। दो व्यक्तियों के नक्षत्रों की तुलना से ज्योतिषी आध्यात्मिक, भावनात्मक, शारीरिक और स्वास्थ्य आयामों में सामंजस्य आँक सकते हैं।',
-    sa: 'इयं पद्धतिः मुहूर्तचिन्तामणेः अन्येभ्यः शास्त्रीयज्योतिषग्रन्थेभ्यः च उद्भवति।'
-  },
-  kutaTitle: { en: 'The 8 Kutas in Detail', hi: 'अष्ट कूट — विस्तृत व्याख्या', sa: 'अष्टकूटानि — विस्तृतव्याख्या' },
-  calcTitle: { en: 'How Matching is Calculated', hi: 'मिलान कैसे गणना होती है', sa: 'मेलनं कथं गण्यते' },
-  calcContent: {
-    en: 'Our software calculates matching using the birth Moon Nakshatra of both partners. Each Kuta has specific rules — some use Nakshatra number, some use Rashi number, some use Nakshatra lord, and some use the Nakshatra\'s Yoni (animal symbol) or Gana (temperament). The algorithm checks all 8 factors and sums the points.',
-    hi: 'हमारा सॉफ़्टवेयर दोनों साथियों के जन्म चन्द्र नक्षत्र से मिलान की गणना करता है। प्रत्येक कूट के विशिष्ट नियम हैं। एल्गोरिथ्म सभी 8 कारकों की जाँच करता है और अंकों का योग करता है।',
-    sa: 'अस्माकं सॉफ़्टवेयरं उभयोः जन्मचन्द्रनक्षत्राभ्यां मेलनस्य गणनां करोति।'
-  },
-  scoreTitle: { en: 'Score Interpretation & Thresholds', hi: 'अंकों की व्याख्या और सीमाएँ', sa: 'अङ्कानां व्याख्या सीमाश्च' },
-  scoreNote: {
-    en: 'Important: A high score does not guarantee a happy marriage, nor does a low score doom one. The score is a starting point for deeper analysis. Many astrologers recommend that if the score is between 18-24, one should examine individual Kuta breakdowns — a score of 20 with Nadi Dosha (0/8 on Nadi) is far worse than a score of 20 with balanced distribution.',
-    hi: 'महत्वपूर्ण: उच्च अंक सुखी विवाह की गारन्टी नहीं देते, न ही कम अंक विवाह को विफल करते हैं। अंक गहन विश्लेषण का प्रारम्भिक बिन्दु है। कई ज्योतिषी सलाह देते हैं कि यदि अंक 18-24 के बीच है तो व्यक्तिगत कूट विश्लेषण किया जाए।',
-    sa: 'उच्चाङ्काः सुखविवाहस्य प्रत्याभूतिं न ददति।'
-  },
-  nadiDoshaTitle: { en: 'Nadi Dosha — The Most Critical Defect', hi: 'नाड़ी दोष — सबसे गम्भीर दोष', sa: 'नाडीदोषः — सर्वगुरुतरदोषः' },
-  nadiDoshaContent: {
-    en: 'Nadi Dosha occurs when both partners have the same Nadi (Aadi/Vata, Madhya/Pitta, or Antya/Kapha). Since Nadi carries the highest weight (8 points), this dosha alone reduces the score by 8 points. Classical texts warn that same-Nadi couples may face health issues in progeny. However, several cancellation conditions exist:',
-    hi: 'नाड़ी दोष तब होता है जब दोनों साथियों की एक ही नाड़ी हो (आदि/वात, मध्य/पित्त, या अन्त्य/कफ)। चूँकि नाड़ी का भार सबसे अधिक (8 अंक) है, यह दोष अकेले 8 अंक घटा देता है। शास्त्रीय ग्रन्थ चेतावनी देते हैं कि समान नाड़ी दम्पत्ति को सन्तान में स्वास्थ्य समस्याएँ हो सकती हैं। हालाँकि, कई निरसन शर्तें हैं:',
-    sa: 'नाडीदोषः भवति यदा उभयोः साथिनोः समाना नाडी भवति। शास्त्रीयग्रन्थाः चेतयन्ति यत् समाननाडीदम्पत्योः सन्ततौ स्वास्थ्यसमस्याः भवेयुः।'
-  },
-  bhakootDoshaTitle: { en: 'Bhakoot Dosha — Emotional & Financial Impact', hi: 'भकूट दोष — भावनात्मक और आर्थिक प्रभाव', sa: 'भकूटदोषः — भावनात्मकार्थिकप्रभावः' },
-  bhakootDoshaContent: {
-    en: 'Bhakoot Dosha arises from certain Moon-sign combinations between partners. Three inauspicious pairs exist, each affecting a different life area:',
-    hi: 'भकूट दोष साथियों के बीच कुछ चन्द्र-राशि संयोजनों से उत्पन्न होता है। तीन अशुभ जोड़े हैं, प्रत्येक जीवन के अलग क्षेत्र को प्रभावित करता है:',
-    sa: 'भकूटदोषः साथिनोः मध्ये केषाञ्चित् चन्द्रराशिसंयोजनेभ्यः उद्भवति।'
-  },
-  mangalTitle: { en: 'Mangal Dosha — Beyond Ashta Kuta', hi: 'मांगलिक दोष — अष्ट कूट से परे', sa: 'माङ्गलिकदोषः — अष्टकूटात् परम्' },
-  mangalContent: {
-    en: 'Mangal Dosha (Kuja Dosha) is not part of the Ashta Kuta point system, but it is always checked separately during marriage matching. Mars is a fiery, aggressive planet; when poorly placed, it is believed to bring conflict, accidents, or even danger to the spouse. A person is considered Manglik if Mars occupies houses 1, 4, 7, 8, or 12 from the Lagna, Moon, or Venus.',
-    hi: 'मांगलिक दोष (कुज दोष) अष्ट कूट अंक प्रणाली का भाग नहीं है, किन्तु विवाह मिलान में इसे सदैव अलग से जाँचा जाता है। मंगल एक उग्र, आक्रामक ग्रह है; जब अनुचित स्थिति में हो तो ऐसा माना जाता है कि यह कलह, दुर्घटना, या जीवनसाथी को ख़तरा ला सकता है। एक व्यक्ति मांगलिक माना जाता है यदि मंगल लग्न, चन्द्र, या शुक्र से 1, 4, 7, 8, या 12वें भाव में हो।',
-    sa: 'माङ्गलिकदोषः अष्टकूटाङ्कपद्धतेः भागः नास्ति, किन्तु विवाहमेलने सदा पृथक् परीक्ष्यते।'
-  },
-  modernTitle: { en: 'Modern Considerations', hi: 'आधुनिक विचार', sa: 'आधुनिकविचाराः' },
-  modernContent: {
-    en: 'While Ashta Kuta matching is a time-tested system rooted in Vedic wisdom, modern astrologers and scholars recognize that it is one tool among many. Here are important nuances:',
-    hi: 'जबकि अष्ट कूट मिलान वैदिक ज्ञान में निहित एक कालजयी प्रणाली है, आधुनिक ज्योतिषी और विद्वान पहचानते हैं कि यह अनेक उपकरणों में से एक है। कुछ महत्वपूर्ण सूक्ष्मताएँ:',
-    sa: 'अष्टकूटमेलनं वैदिकज्ञाने निहिता कालजयी पद्धतिः। आधुनिकज्योतिषिणः विद्वांसश्च जानन्ति यदिदम् अनेकेषु उपकरणेषु एकम्।'
-  },
-  crossRefTitle: { en: 'Cross-References', hi: 'सम्बन्धित विषय', sa: 'सम्बद्धविषयाः' },
-  tryIt: { en: 'Try Kundali Matching →', hi: 'कुण्डली मिलान करें →', sa: 'कुण्डलीमेलनं कुर्वन्तु →' },
-};
 
 const KUTAS = [
   {
@@ -170,14 +118,16 @@ const CROSS_REFS = [
 
 export default function LearnMatchingPage() {
   const locale = useLocale() as Locale;
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
+  const l = (obj: Record<string, string>) => lt(obj as LocaleText, locale);
 
   return (
     <div>
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
+          {t('title')}
         </h2>
-        <p className="text-text-secondary">{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
+        <p className="text-text-secondary">{t('subtitle')}</p>
       </div>
 
       {/* Sanskrit Key Terms */}
@@ -189,9 +139,9 @@ export default function LearnMatchingPage() {
       </div>
 
       {/* Section 1: Overview */}
-      <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}>
-        <p>{((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}</p>
-        <p className="mt-3 text-text-secondary text-sm">{((L.whatContentDeep as Record<string, string>)[locale] ?? L.whatContentDeep.en)}</p>
+      <LessonSection number={1} title={t('whatTitle')}>
+        <p>{t('whatContent')}</p>
+        <p className="mt-3 text-text-secondary text-sm">{t('whatContentDeep')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">
             {!isDevanagariLocale(locale) ? 'Total Ashta Kuta Points: 1+2+3+4+5+6+7+8 = 36 Gunas' : 'कुल अष्ट कूट अंक: 1+2+3+4+5+6+7+8 = 36 गुण'}
@@ -209,7 +159,7 @@ export default function LearnMatchingPage() {
       </LessonSection>
 
       {/* Section 2: The 8 Kutas in Detail */}
-      <LessonSection number={2} title={((L.kutaTitle as Record<string, string>)[locale] ?? L.kutaTitle.en)}>
+      <LessonSection number={2} title={t('kutaTitle')}>
         <div className="space-y-5">
           {KUTAS.map((k, i) => (
             <motion.div
@@ -225,18 +175,18 @@ export default function LearnMatchingPage() {
                   {k.num}
                 </span>
                 <div className="flex items-center gap-2 flex-1">
-                  <span className="text-gold-light font-semibold text-lg">{tl(k.name, locale)}</span>
+                  <span className="text-gold-light font-semibold text-lg">{l(k.name)}</span>
                   {locale === 'en' && <span className="text-gold-primary/50 text-sm" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{k.name.sa}</span>}
                   <span className="ml-auto text-gold-primary font-mono text-sm font-bold">{k.points} {!isDevanagariLocale(locale) ? 'pts' : 'अंक'}</span>
                 </div>
               </div>
               <div className="ml-12 space-y-2">
-                <p className="text-amber-300/90 text-sm font-medium">{tl(k.what, locale)}</p>
-                <p className="text-text-secondary text-sm">{tl(k.how, locale)}</p>
+                <p className="text-amber-300/90 text-sm font-medium">{l(k.what)}</p>
+                <p className="text-text-secondary text-sm">{l(k.how)}</p>
                 <div className="mt-2 p-3 bg-bg-primary/40 rounded-md border border-gold-primary/5">
-                  <p className="text-gold-light/80 font-mono text-xs">{tl(k.scoring, locale)}</p>
+                  <p className="text-gold-light/80 font-mono text-xs">{l(k.scoring)}</p>
                 </div>
-                <p className="text-text-secondary/70 text-xs italic">{tl(k.example, locale)}</p>
+                <p className="text-text-secondary/70 text-xs italic">{l(k.example)}</p>
               </div>
             </motion.div>
           ))}
@@ -244,8 +194,8 @@ export default function LearnMatchingPage() {
       </LessonSection>
 
       {/* Section 3: Calculation */}
-      <LessonSection number={3} title={((L.calcTitle as Record<string, string>)[locale] ?? L.calcTitle.en)}>
-        <p>{((L.calcContent as Record<string, string>)[locale] ?? L.calcContent.en)}</p>
+      <LessonSection number={3} title={t('calcTitle')}>
+        <p>{t('calcContent')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {!isDevanagariLocale(locale) ? 'Algorithm Steps:' : 'एल्गोरिथ्म चरण:'}
@@ -261,26 +211,26 @@ export default function LearnMatchingPage() {
       </LessonSection>
 
       {/* Section 4: Score Interpretation */}
-      <LessonSection number={4} title={((L.scoreTitle as Record<string, string>)[locale] ?? L.scoreTitle.en)} variant="highlight">
+      <LessonSection number={4} title={t('scoreTitle')} variant="highlight">
         <div className="space-y-3 mb-4">
           {SCORE_RANGES.map((s) => (
             <div key={s.range} className={`rounded-lg p-3 border ${s.bg}`}>
               <div className="flex items-center gap-3">
                 <span className={`font-mono font-bold ${s.color}`}>{s.range}</span>
-                <span className={`font-semibold text-sm ${s.color}`}>{tl(s.label, locale)}</span>
+                <span className={`font-semibold text-sm ${s.color}`}>{l(s.label)}</span>
               </div>
-              <p className="text-text-secondary text-xs mt-1">{tl(s.desc, locale)}</p>
+              <p className="text-text-secondary text-xs mt-1">{l(s.desc)}</p>
             </div>
           ))}
         </div>
         <div className="p-4 bg-bg-primary/50 rounded-lg border border-amber-400/20">
-          <p className="text-amber-300/90 text-sm">{((L.scoreNote as Record<string, string>)[locale] ?? L.scoreNote.en)}</p>
+          <p className="text-amber-300/90 text-sm">{t('scoreNote')}</p>
         </div>
       </LessonSection>
 
       {/* Section 5: Nadi Dosha */}
-      <LessonSection number={5} title={((L.nadiDoshaTitle as Record<string, string>)[locale] ?? L.nadiDoshaTitle.en)}>
-        <p className="text-text-secondary">{((L.nadiDoshaContent as Record<string, string>)[locale] ?? L.nadiDoshaContent.en)}</p>
+      <LessonSection number={5} title={t('nadiDoshaTitle')}>
+        <p className="text-text-secondary">{t('nadiDoshaContent')}</p>
         <div className="mt-4 space-y-2">
           {NADI_CANCELLATIONS.map((rule, i) => (
             <motion.div
@@ -294,7 +244,7 @@ export default function LearnMatchingPage() {
               <span className="w-6 h-6 rounded-full bg-emerald-400/15 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold flex-shrink-0 text-xs">
                 {i + 1}
               </span>
-              <p className="text-text-secondary text-sm">{tl(rule, locale)}</p>
+              <p className="text-text-secondary text-sm">{l(rule)}</p>
             </motion.div>
           ))}
         </div>
@@ -308,8 +258,8 @@ export default function LearnMatchingPage() {
       </LessonSection>
 
       {/* Section 6: Bhakoot Dosha */}
-      <LessonSection number={6} title={((L.bhakootDoshaTitle as Record<string, string>)[locale] ?? L.bhakootDoshaTitle.en)}>
-        <p className="text-text-secondary mb-4">{((L.bhakootDoshaContent as Record<string, string>)[locale] ?? L.bhakootDoshaContent.en)}</p>
+      <LessonSection number={6} title={t('bhakootDoshaTitle')}>
+        <p className="text-text-secondary mb-4">{t('bhakootDoshaContent')}</p>
         <div className="space-y-4">
           {BHAKOOT_PAIRS.map((bp, i) => (
             <motion.div
@@ -326,10 +276,10 @@ export default function LearnMatchingPage() {
                   {!isDevanagariLocale(locale) ? 'position pair' : 'स्थिति जोड़ा'}
                 </span>
               </div>
-              <p className="text-text-secondary text-sm mb-2">{tl(bp.effect, locale)}</p>
+              <p className="text-text-secondary text-sm mb-2">{l(bp.effect)}</p>
               <div className="p-2 rounded bg-emerald-400/5 border border-emerald-400/10">
                 <p className="text-emerald-400/80 text-xs">
-                  {!isDevanagariLocale(locale) ? 'Cancellation: ' : 'निरसन: '}{tl(bp.cancel, locale)}
+                  {!isDevanagariLocale(locale) ? 'Cancellation: ' : 'निरसन: '}{l(bp.cancel)}
                 </p>
               </div>
             </motion.div>
@@ -338,8 +288,8 @@ export default function LearnMatchingPage() {
       </LessonSection>
 
       {/* Section 7: Mangal Dosha */}
-      <LessonSection number={7} title={((L.mangalTitle as Record<string, string>)[locale] ?? L.mangalTitle.en)}>
-        <p className="text-text-secondary">{((L.mangalContent as Record<string, string>)[locale] ?? L.mangalContent.en)}</p>
+      <LessonSection number={7} title={t('mangalTitle')}>
+        <p className="text-text-secondary">{t('mangalContent')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10 mb-4">
           <p className="text-gold-light font-mono text-sm mb-2">
             {!isDevanagariLocale(locale) ? 'Mars in houses 1, 4, 7, 8, 12 from:' : 'भाव 1, 4, 7, 8, 12 में मंगल — इनसे:'}
@@ -370,15 +320,15 @@ export default function LearnMatchingPage() {
               <span className="w-6 h-6 rounded-full bg-emerald-400/15 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold flex-shrink-0 text-xs">
                 {i + 1}
               </span>
-              <p className="text-text-secondary text-sm">{tl(rule, locale)}</p>
+              <p className="text-text-secondary text-sm">{l(rule)}</p>
             </motion.div>
           ))}
         </div>
       </LessonSection>
 
       {/* Section 8: Modern Considerations */}
-      <LessonSection number={8} title={((L.modernTitle as Record<string, string>)[locale] ?? L.modernTitle.en)}>
-        <p className="text-text-secondary mb-4">{((L.modernContent as Record<string, string>)[locale] ?? L.modernContent.en)}</p>
+      <LessonSection number={8} title={t('modernTitle')}>
+        <p className="text-text-secondary mb-4">{t('modernContent')}</p>
         <div className="space-y-3">
           {MODERN_POINTS.map((point, i) => (
             <motion.div
@@ -392,14 +342,14 @@ export default function LearnMatchingPage() {
               <span className="w-6 h-6 rounded-full bg-gold-primary/10 border border-gold-primary/20 flex items-center justify-center text-gold-light/70 font-bold flex-shrink-0 text-xs">
                 {i + 1}
               </span>
-              <p className="text-text-secondary text-sm">{tl(point, locale)}</p>
+              <p className="text-text-secondary text-sm">{l(point)}</p>
             </motion.div>
           ))}
         </div>
       </LessonSection>
 
       {/* Section 9: Cross-References */}
-      <LessonSection number={9} title={((L.crossRefTitle as Record<string, string>)[locale] ?? L.crossRefTitle.en)}>
+      <LessonSection number={9} title={t('crossRefTitle')}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {CROSS_REFS.map((ref) => (
             <Link
@@ -408,7 +358,7 @@ export default function LearnMatchingPage() {
               className="flex items-center gap-3 p-3 rounded-lg bg-bg-primary/40 border border-gold-primary/10 hover:bg-gold-primary/10 hover:border-gold-primary/25 transition-colors group"
             >
               <span className="text-gold-primary/50 group-hover:text-gold-primary transition-colors text-lg">&#8594;</span>
-              <span className="text-text-secondary group-hover:text-gold-light text-sm transition-colors">{tl(ref.label, locale)}</span>
+              <span className="text-text-secondary group-hover:text-gold-light text-sm transition-colors">{l(ref.label)}</span>
             </Link>
           ))}
         </div>
@@ -419,7 +369,7 @@ export default function LearnMatchingPage() {
           href="/matching"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {((L.tryIt as Record<string, string>)[locale] ?? L.tryIt.en)}
+          {t('tryIt')}
         </Link>
       </div>
     </div>

@@ -1,75 +1,17 @@
 'use client';
 
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/cosmology.json';
+
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowRight, Clock, Infinity as InfinityIcon, Sparkles } from 'lucide-react';
-import type { Locale, LocaleText } from '@/types/panchang';
-import { tl } from '@/lib/utils/trilingual';
+import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-
-/* ═══════════════════════════════════════════════════════════════
-   LABELS — bilingual (en / hi) via ternaries on locale
-   ═══════════════════════════════════════════════════════════════ */
-const L = {
-  title: { en: 'Hindu Cosmological Time Scales', hi: 'हिन्दू ब्रह्माण्डीय कालमान' , ta: 'இந்து அண்டவியல் கால அளவுகள்' },
-  subtitle: {
-    en: 'The only ancient civilization that measured time in BILLIONS of years — matching modern cosmology 2,000 years before the telescope.',
-    hi: 'एकमात्र प्राचीन सभ्यता जिसने समय को अरबों वर्षों में मापा — दूरबीन से 2,000 वर्ष पहले आधुनिक ब्रह्माण्ड विज्ञान से मेल खाती।',
-  },
-
-  /* Section 1 */
-  s1Title: { en: 'The Scale That Awed Scientists', hi: 'वह पैमाना जिसने वैज्ञानिकों को चकित किया', sa: 'वह पैमाना जिसने वैज्ञानिकों को चकित किया', mai: 'वह पैमाना जिसने वैज्ञानिकों को चकित किया', mr: 'वह पैमाना जिसने वैज्ञानिकों को चकित किया', ta: 'The Scale That Awed Scientists', te: 'The Scale That Awed Scientists', bn: 'The Scale That Awed Scientists', kn: 'The Scale That Awed Scientists', gu: 'The Scale That Awed Scientists' },
-  s1Quote: {
-    en: '"The Hindu religion is the only one of the world\'s great faiths dedicated to the idea that the Cosmos itself undergoes an immense, indeed an infinite, number of deaths and rebirths."',
-    hi: '"हिन्दू धर्म विश्व के महान धर्मों में एकमात्र है जो इस विचार को समर्पित है कि ब्रह्माण्ड स्वयं असीम मृत्यु और पुनर्जन्मों से गुजरता है।"',
-  },
-  s1Attr: { en: '— Carl Sagan, Cosmos (1980)', hi: '— कार्ल सेगन, कॉस्मॉस (1980)', sa: '— कार्ल सेगन, कॉस्मॉस (1980)', mai: '— कार्ल सेगन, कॉस्मॉस (1980)', mr: '— कार्ल सेगन, कॉस्मॉस (1980)', ta: '— Carl Sagan, Cosmos (1980)', te: '— Carl Sagan, Cosmos (1980)', bn: '— Carl Sagan, Cosmos (1980)', kn: '— Carl Sagan, Cosmos (1980)', gu: '— Carl Sagan, Cosmos (1980)' },
-  s1Body: {
-    en: 'No other ancient civilization conceived of time on this scale. While Greek, Roman, and Biblical traditions measured creation in thousands of years, Vedic cosmology spoke of billions — with a cyclic model of creation and dissolution that resonates with cutting-edge physics today.',
-    hi: 'किसी अन्य प्राचीन सभ्यता ने इस पैमाने पर समय की कल्पना नहीं की। जहाँ ग्रीक, रोमन और बाइबिल परम्पराओं ने सृष्टि को हजारों वर्षों में मापा, वैदिक ब्रह्माण्ड विज्ञान ने अरबों की बात की — सृष्टि और प्रलय के चक्रीय मॉडल के साथ जो आज के अत्याधुनिक भौतिकी से मेल खाता है।',
-  },
-
-  /* Section 2 */
-  s2Title: { en: 'From Truti to Brahma — The Full Scale', hi: 'त्रुटि से ब्रह्मा तक — सम्पूर्ण पैमाना', sa: 'त्रुटि से ब्रह्मा तक — सम्पूर्ण पैमाना', mai: 'त्रुटि से ब्रह्मा तक — सम्पूर्ण पैमाना', mr: 'त्रुटि से ब्रह्मा तक — सम्पूर्ण पैमाना', ta: 'From Truti to Brahma — The Full Scale', te: 'From Truti to Brahma — The Full Scale', bn: 'From Truti to Brahma — The Full Scale', kn: 'From Truti to Brahma — The Full Scale', gu: 'From Truti to Brahma — The Full Scale' },
-  s2Intro: {
-    en: 'The Surya Siddhanta (~400 CE) defined time units ranging from microseconds to trillions of years. The smallest unit, Truti, is in the range of atomic clock precision — defined over 1,600 years ago.',
-    hi: 'सूर्य सिद्धान्त (~400 ई.) ने माइक्रोसेकंड से लेकर खरबों वर्षों तक की समय इकाइयाँ परिभाषित कीं। सबसे छोटी इकाई, त्रुटि, परमाणु घड़ी की सटीकता की सीमा में है — 1,600 वर्ष पहले परिभाषित।',
-  },
-
-  /* Section 3 */
-  s3Title: { en: 'The Four Yugas — Ages of Humanity', hi: 'चार युग — मानवता की अवस्थाएँ', sa: 'चार युग — मानवता की अवस्थाएँ', mai: 'चार युग — मानवता की अवस्थाएँ', mr: 'चार युग — मानवता की अवस्थाएँ', ta: 'The Four Yugas — Ages of Humanity', te: 'The Four Yugas — Ages of Humanity', bn: 'The Four Yugas — Ages of Humanity', kn: 'The Four Yugas — Ages of Humanity', gu: 'The Four Yugas — Ages of Humanity' },
-  s3Intro: {
-    en: 'Time cycles through four ages (Yugas) in a mathematically perfect 4:3:2:1 ratio. Each successive age sees a decline in dharma, lifespan, and human virtue. Together they form one Maha Yuga of 4,320,000 years.',
-    hi: 'समय चार युगों में गणितीय रूप से सटीक 4:3:2:1 अनुपात में चक्रित होता है। प्रत्येक आगामी युग में धर्म, आयु और मानवीय सद्गुणों में ह्रास होता है। मिलकर ये एक महायुग 43,20,000 वर्ष बनाते हैं।',
-  },
-
-  /* Section 4 */
-  s4Title: { en: 'Manvantara & Kalpa — Brahma\'s Day', hi: 'मन्वन्तर एवं कल्प — ब्रह्मा का दिन' },
-  s4Comparison: {
-    en: 'One Kalpa = 4.32 billion years. Earth\'s actual age = 4.54 billion years. The Hindu concept of Brahma\'s "day" is within 5% of Earth\'s scientifically measured age.',
-    hi: 'एक कल्प = 4.32 अरब वर्ष। पृथ्वी की वास्तविक आयु = 4.54 अरब वर्ष। ब्रह्मा के "दिन" की हिन्दू अवधारणा पृथ्वी की वैज्ञानिक रूप से मापी गई आयु के 5% के भीतर है।',
-  },
-
-  /* Section 5 */
-  s5Title: { en: 'Brahma\'s Lifespan — The Ultimate Scale', hi: 'ब्रह्मा की आयु — चरम पैमाना' },
-
-  /* Section 6 */
-  s6Title: { en: 'Why This Matters for Jyotish', hi: 'ज्योतिष के लिए यह क्यों महत्वपूर्ण है', sa: 'ज्योतिष के लिए यह क्यों महत्वपूर्ण है', mai: 'ज्योतिष के लिए यह क्यों महत्वपूर्ण है', mr: 'ज्योतिष के लिए यह क्यों महत्वपूर्ण है', ta: 'Why This Matters for Jyotish', te: 'Why This Matters for Jyotish', bn: 'Why This Matters for Jyotish', kn: 'Why This Matters for Jyotish', gu: 'Why This Matters for Jyotish' },
-  s6Body: {
-    en: 'The Sankalpa (puja resolution) places you precisely in this cosmic timeline. When a priest recites "Shri Shveta Varaha Kalpe, Vaivasvata Manvantare, Ashtavimshatitame Kaliyuge..." — he is specifying your exact position across billions of years of cosmic time. The Kali Ahargana (days elapsed since the start of Kali Yuga) is the mathematical foundation for all Panchang calculations.',
-    hi: 'सङ्कल्प (पूजा संकल्प) आपको इस ब्रह्माण्डीय समयरेखा में सटीक रूप से स्थापित करता है। जब पुरोहित "श्री श्वेतवाराहकल्पे, वैवस्वतमन्वन्तरे, अष्टाविंशतितमे कलियुगे..." का पाठ करते हैं — वे अरबों वर्षों में आपकी सटीक स्थिति निर्दिष्ट कर रहे हैं। कलि अहर्गण (कलियुग आरम्भ से बीते दिन) सभी पंचांग गणनाओं का गणितीय आधार है।',
-  },
-
-  /* Section 7 */
-  s7Title: { en: 'What No Other Civilization Conceived', hi: 'जो किसी अन्य सभ्यता ने नहीं सोचा', sa: 'जो किसी अन्य सभ्यता ने नहीं सोचा', mai: 'जो किसी अन्य सभ्यता ने नहीं सोचा', mr: 'जो किसी अन्य सभ्यता ने नहीं सोचा', ta: 'What No Other Civilization Conceived', te: 'What No Other Civilization Conceived', bn: 'What No Other Civilization Conceived', kn: 'What No Other Civilization Conceived', gu: 'What No Other Civilization Conceived' },
-
-  /* Navigation */
-  backToLearn: { en: 'Back to Learn', hi: 'सीखने पर वापस', sa: 'सीखने पर वापस', mai: 'सीखने पर वापस', mr: 'सीखने पर वापस', ta: 'Back to Learn', te: 'Back to Learn', bn: 'Back to Learn', kn: 'Back to Learn', gu: 'Back to Learn' },
-  exploreMore: { en: 'Continue Exploring', hi: 'और जानें', sa: 'और जानें', mai: 'और जानें', mr: 'और जानें', ta: 'Continue Exploring', te: 'Continue Exploring', bn: 'Continue Exploring', kn: 'Continue Exploring', gu: 'Continue Exploring' },
-};
 
 /* ═══════════════════════════════════════════════════════════════
    DATA
@@ -127,7 +69,7 @@ export default function CosmologyPage() {
   const locale = useLocale() as Locale;
   const hi = isDevanagariLocale(locale);
 
-  const t = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
   /* log scale helper for the comparison bars */
   const logWidth = (years: number) => {
@@ -169,10 +111,10 @@ export default function CosmologyPage() {
               className="text-4xl sm:text-5xl lg:text-6xl font-black text-gold-gradient mb-4"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
-              {t(L.title)}
+              {t('title')}
             </h1>
             <p className="text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
-              {t(L.subtitle)}
+              {t('subtitle')}
             </p>
           </motion.div>
 
@@ -199,7 +141,7 @@ export default function CosmologyPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pb-20 space-y-2">
 
         {/* ═══ SECTION 1: The Scale That Awed Scientists ═══ */}
-        <LessonSection number={1} title={t(L.s1Title)} variant="highlight">
+        <LessonSection number={1} title={t('s1Title')} variant="highlight">
           {/* Sagan Quote */}
           <motion.blockquote
             initial={{ opacity: 0, x: -20 }}
@@ -208,11 +150,11 @@ export default function CosmologyPage() {
             transition={{ duration: 0.6 }}
             className="border-l-4 border-gold-primary/50 pl-6 py-3 my-6 italic text-gold-light/90 text-lg sm:text-xl leading-relaxed"
           >
-            {t(L.s1Quote)}
-            <footer className="text-gold-primary/60 text-sm mt-2 not-italic font-semibold">{t(L.s1Attr)}</footer>
+            {t('s1Quote')}
+            <footer className="text-gold-primary/60 text-sm mt-2 not-italic font-semibold">{t('s1Attr')}</footer>
           </motion.blockquote>
 
-          <p>{t(L.s1Body)}</p>
+          <p>{t('s1Body')}</p>
 
           {/* ── LOGARITHMIC SCALE COMPARISON ── */}
           <div className="mt-8 space-y-3">
@@ -230,7 +172,7 @@ export default function CosmologyPage() {
               >
                 <div className="flex items-center gap-3 mb-1">
                   <span className="text-xs text-text-secondary/80 w-44 sm:w-56 text-right flex-shrink-0 truncate">
-                    {t(bar.label)}
+                    {lt(bar.label as LocaleText, locale)}
                   </span>
                   <div className="flex-1 relative h-7 rounded-md overflow-hidden bg-white/[0.03] border border-white/[0.05]">
                     <motion.div
@@ -254,8 +196,8 @@ export default function CosmologyPage() {
         </LessonSection>
 
         {/* ═══ SECTION 2: From Truti to Brahma ═══ */}
-        <LessonSection number={2} title={t(L.s2Title)}>
-          <p>{t(L.s2Intro)}</p>
+        <LessonSection number={2} title={t('s2Title')}>
+          <p>{t('s2Intro')}</p>
 
           {/* Time units table */}
           <div className="mt-6 overflow-x-auto -mx-2">
@@ -281,7 +223,7 @@ export default function CosmologyPage() {
                     <td className="py-2.5 px-2 font-medium text-text-primary whitespace-nowrap">{row.unit}</td>
                     <td className="py-2.5 px-2 font-mono text-xs text-amber-300/80">{row.duration}</td>
                     <td className="py-2.5 px-2 text-text-secondary/70 hidden sm:table-cell">{row.modern}</td>
-                    <td className="py-2.5 px-2 text-text-secondary/70 text-xs italic hidden md:table-cell">{row.wow ? t(row.wow) : ''}</td>
+                    <td className="py-2.5 px-2 text-text-secondary/70 text-xs italic hidden md:table-cell">{row.wow ? lt(row.wow as LocaleText, locale) : ''}</td>
                   </motion.tr>
                 ))}
               </tbody>
@@ -300,8 +242,8 @@ export default function CosmologyPage() {
         </LessonSection>
 
         {/* ═══ SECTION 3: The Four Yugas ═══ */}
-        <LessonSection number={3} title={t(L.s3Title)} variant="highlight">
-          <p>{t(L.s3Intro)}</p>
+        <LessonSection number={3} title={t('s3Title')} variant="highlight">
+          <p>{t('s3Intro')}</p>
 
           {/* Yuga proportional bars */}
           <div className="mt-8 space-y-4">
@@ -337,7 +279,7 @@ export default function CosmologyPage() {
                   </div>
                 </div>
                 <p className="text-xs text-text-secondary/75 ml-32 sm:ml-40">
-                  {t(yuga.desc)}
+                  {lt(yuga.desc as LocaleText, locale)}
                 </p>
               </motion.div>
             ))}
@@ -360,14 +302,14 @@ export default function CosmologyPage() {
                 className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4"
               >
                 <div className="text-2xl font-black text-gold-primary mb-1" style={{ fontFamily: 'var(--font-heading)' }}>{fact.n}</div>
-                <div className="text-xs text-text-secondary/70">{t(fact.d)}</div>
+                <div className="text-xs text-text-secondary/70">{lt(fact.d as LocaleText, locale)}</div>
               </motion.div>
             ))}
           </div>
         </LessonSection>
 
         {/* ═══ SECTION 4: Manvantara & Kalpa ═══ */}
-        <LessonSection number={4} title={t(L.s4Title)}>
+        <LessonSection number={4} title={t('s4Title')}>
           {/* Nested hierarchy boxes */}
           <div className="mt-4 space-y-3">
             {[
@@ -387,7 +329,7 @@ export default function CosmologyPage() {
               >
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                   <div>
-                    <span className="text-gold-light font-bold text-sm">{t(item.label)}</span>
+                    <span className="text-gold-light font-bold text-sm">{lt(item.label as LocaleText, locale)}</span>
                     <span className="text-text-secondary/70 text-xs ml-2">= {item.formula}</span>
                   </div>
                   <span className="text-amber-300 font-mono font-bold text-sm sm:text-base">{item.value}</span>
@@ -416,7 +358,7 @@ export default function CosmologyPage() {
               </div>
             </div>
             <p className="text-gold-light/90 text-sm sm:text-base font-semibold max-w-xl mx-auto">
-              {t(L.s4Comparison)}
+              {t('s4Comparison')}
             </p>
             <p className="text-text-secondary/70 text-xs mt-3 italic">
               {hi ? 'यह संयोग का दावा नहीं है — लेकिन सोच का पैमाना असाधारण है।' : 'This is NOT a coincidence claim — but the scale of thinking is extraordinary.'}
@@ -438,8 +380,8 @@ export default function CosmologyPage() {
                   transition={{ delay: i * 0.1 }}
                   className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 text-center"
                 >
-                  <div className="text-xs uppercase tracking-wider text-text-secondary/70 mb-1">{t(pos.label)}</div>
-                  <div className="text-xs sm:text-sm font-semibold text-gold-light">{t(pos.value)}</div>
+                  <div className="text-xs uppercase tracking-wider text-text-secondary/70 mb-1">{lt(pos.label as LocaleText, locale)}</div>
+                  <div className="text-xs sm:text-sm font-semibold text-gold-light">{lt(pos.value as LocaleText, locale)}</div>
                 </motion.div>
               ))}
             </div>
@@ -466,7 +408,7 @@ export default function CosmologyPage() {
         </LessonSection>
 
         {/* ═══ SECTION 5: Brahma's Lifespan ═══ */}
-        <LessonSection number={5} title={t(L.s5Title)} variant="highlight">
+        <LessonSection number={5} title={t('s5Title')} variant="highlight">
           {/* Grand calculation */}
           <div className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -484,8 +426,8 @@ export default function CosmologyPage() {
                   transition={{ delay: i * 0.1 }}
                   className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4"
                 >
-                  <div className="text-xs text-text-secondary/70 mb-1">{t(item.label)}</div>
-                  <div className="text-sm font-semibold text-gold-light">{t(item.value)}</div>
+                  <div className="text-xs text-text-secondary/70 mb-1">{lt(item.label as LocaleText, locale)}</div>
+                  <div className="text-sm font-semibold text-gold-light">{lt(item.value as LocaleText, locale)}</div>
                 </motion.div>
               ))}
             </div>
@@ -518,8 +460,8 @@ export default function CosmologyPage() {
         </LessonSection>
 
         {/* ═══ SECTION 6: Why This Matters for Jyotish ═══ */}
-        <LessonSection number={6} title={t(L.s6Title)}>
-          <p>{t(L.s6Body)}</p>
+        <LessonSection number={6} title={t('s6Title')}>
+          <p>{t('s6Body')}</p>
 
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
@@ -536,16 +478,16 @@ export default function CosmologyPage() {
               >
                 <div className="flex items-center gap-2 mb-2">
                   <item.icon className="w-4 h-4 text-gold-primary" />
-                  <span className="text-gold-light font-semibold text-sm">{t(item.title)}</span>
+                  <span className="text-gold-light font-semibold text-sm">{lt(item.title as LocaleText, locale)}</span>
                 </div>
-                <p className="text-xs text-text-secondary/70 leading-relaxed">{t(item.desc)}</p>
+                <p className="text-xs text-text-secondary/70 leading-relaxed">{lt(item.desc as LocaleText, locale)}</p>
               </motion.div>
             ))}
           </div>
         </LessonSection>
 
         {/* ═══ SECTION 7: What No Other Civilization Conceived ═══ */}
-        <LessonSection number={7} title={t(L.s7Title)} variant="highlight">
+        <LessonSection number={7} title={t('s7Title')} variant="highlight">
           {/* Comparison facts */}
           <div className="space-y-4 mt-2">
             {[
@@ -564,7 +506,7 @@ export default function CosmologyPage() {
                 className="flex items-start gap-3"
               >
                 <div className="w-1.5 h-1.5 rounded-full bg-gold-primary/60 flex-shrink-0 mt-2" />
-                <p className="text-sm text-text-secondary/80 leading-relaxed">{t(item.fact)}</p>
+                <p className="text-sm text-text-secondary/80 leading-relaxed">{lt(item.fact as LocaleText, locale)}</p>
               </motion.div>
             ))}
           </div>
@@ -650,7 +592,7 @@ export default function CosmologyPage() {
           transition={{ duration: 0.5 }}
           className="mt-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6"
         >
-          <h3 className="text-gold-light font-semibold text-sm uppercase tracking-wider mb-4">{t(L.exploreMore)}</h3>
+          <h3 className="text-gold-light font-semibold text-sm uppercase tracking-wider mb-4">{t('exploreMore')}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
               { href: '/learn/modules/0-2' as const, label: { en: 'The Hindu Calendar', hi: 'हिन्दू पंचांग', sa: 'हिन्दू पंचांग', mai: 'हिन्दू पंचांग', mr: 'हिन्दू पंचांग', ta: 'The Hindu Calendar', te: 'The Hindu Calendar', bn: 'The Hindu Calendar', kn: 'The Hindu Calendar', gu: 'The Hindu Calendar' } },
@@ -663,7 +605,7 @@ export default function CosmologyPage() {
                 href={link.href}
                 className="flex items-center justify-between bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg px-4 py-3 hover:border-gold-primary/30 hover:bg-gold-primary/[0.04] transition-all group"
               >
-                <span className="text-sm text-text-secondary group-hover:text-gold-light transition-colors">{t(link.label)}</span>
+                <span className="text-sm text-text-secondary group-hover:text-gold-light transition-colors">{lt(link.label as LocaleText, locale)}</span>
                 <ArrowRight className="w-4 h-4 text-gold-primary/40 group-hover:text-gold-primary group-hover:translate-x-1 transition-all" />
               </Link>
             ))}
@@ -674,7 +616,7 @@ export default function CosmologyPage() {
               href="/learn"
               className="text-sm text-text-secondary/75 hover:text-gold-light transition-colors"
             >
-              &larr; {t(L.backToLearn)}
+              &larr; {t('backToLearn')}
             </Link>
           </div>
         </motion.nav>

@@ -2,20 +2,16 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/22-2.json';
 
 const META: ModuleMeta = {
   id: 'mod_22_2', phase: 9, topic: 'Astronomy', moduleNumber: '22.2',
-  title: { en: 'Finding the Sun — Meeus Algorithm Step by Step', hi: 'सूर्य की खोज — मीयस एल्गोरिदम चरणबद्ध', sa: 'सूर्य की खोज — मीयस एल्गोरिदम चरणबद्ध', mai: 'सूर्य की खोज — मीयस एल्गोरिदम चरणबद्ध', mr: 'सूर्य की खोज — मीयस एल्गोरिदम चरणबद्ध', ta: 'Finding the Sun — Meeus Algorithm Step by Step', te: 'Finding the Sun — Meeus Algorithm Step by Step', bn: 'Finding the Sun — Meeus Algorithm Step by Step', kn: 'Finding the Sun — Meeus Algorithm Step by Step', gu: 'Finding the Sun — Meeus Algorithm Step by Step' },
-  subtitle: {
-    en: 'How 3 sine terms, an elliptical orbit correction, and nutation give us the Sun\'s apparent longitude to 0.01-degree accuracy',
-    hi: 'कैसे 3 ज्या पद, दीर्घवृत्तीय कक्षा सुधार और अयन-चलन हमें सूर्य का दृश्य भोगांश 0.01 अंश सटीकता तक देते हैं',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 15,
-  crossRefs: [
-    { label: { en: 'Module 22-1: Julian Day', hi: 'मॉड्यूल 22-1: जूलियन दिवस', sa: 'मॉड्यूल 22-1: जूलियन दिवस', mai: 'मॉड्यूल 22-1: जूलियन दिवस', mr: 'मॉड्यूल 22-1: जूलियन दिवस', ta: 'Module 22-1: Julian Day', te: 'Module 22-1: Julian Day', bn: 'Module 22-1: Julian Day', kn: 'Module 22-1: Julian Day', gu: 'Module 22-1: Julian Day' }, href: '/learn/modules/22-1' },
-    { label: { en: 'Module 22-3: Finding the Moon', hi: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', sa: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', mai: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', mr: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', ta: 'Module 22-3: Finding the Moon', te: 'Module 22-3: Finding the Moon', bn: 'Module 22-3: Finding the Moon', kn: 'Module 22-3: Finding the Moon', gu: 'Module 22-3: Finding the Moon' }, href: '/learn/modules/22-3' },
-    { label: { en: 'Module 22-4: Sunrise Calculation', hi: 'मॉड्यूल 22-4: सूर्योदय गणना', sa: 'मॉड्यूल 22-4: सूर्योदय गणना', mai: 'मॉड्यूल 22-4: सूर्योदय गणना', mr: 'मॉड्यूल 22-4: सूर्योदय गणना', ta: 'Module 22-4: Sunrise Calculation', te: 'Module 22-4: Sunrise Calculation', bn: 'Module 22-4: Sunrise Calculation', kn: 'Module 22-4: Sunrise Calculation', gu: 'Module 22-4: Sunrise Calculation' }, href: '/learn/modules/22-4' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

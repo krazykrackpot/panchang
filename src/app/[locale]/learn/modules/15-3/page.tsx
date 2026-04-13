@@ -3,187 +3,19 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/15-3.json';
 
 const META: ModuleMeta = {
   id: 'mod_15_3', phase: 4, topic: 'Prashna & Advanced', moduleNumber: '15.3',
-  title: { en: 'Prashna (Horary) Astrology', hi: 'प्रश्न (होरेरी) ज्योतिष', sa: 'प्रश्न (होरेरी) ज्योतिष', mai: 'प्रश्न (होरेरी) ज्योतिष', mr: 'प्रश्न (होरेरी) ज्योतिष', ta: 'Prashna (Horary) Astrology', te: 'Prashna (Horary) Astrology', bn: 'Prashna (Horary) Astrology', kn: 'Prashna (Horary) Astrology', gu: 'Prashna (Horary) Astrology' },
-  subtitle: {
-    en: 'Chart cast for the moment a question arises — no birth data needed, the cosmic moment answers',
-    hi: 'प्रश्न उत्पन्न होने के क्षण की कुण्डली — जन्म डेटा की आवश्यकता नहीं, ब्रह्माण्डीय क्षण उत्तर देता है',
-  },
+  title: L.title as unknown as ModuleMeta['title'],
+  subtitle: L.subtitle as unknown as ModuleMeta['subtitle'],
   estimatedMinutes: 15,
-  crossRefs: [
-    { label: { en: 'Module 15-1: Gemstones', hi: 'मॉड्यूल 15-1: रत्न', sa: 'मॉड्यूल 15-1: रत्न', mai: 'मॉड्यूल 15-1: रत्न', mr: 'मॉड्यूल 15-1: रत्न', ta: 'Module 15-1: Gemstones', te: 'Module 15-1: Gemstones', bn: 'Module 15-1: Gemstones', kn: 'Module 15-1: Gemstones', gu: 'Module 15-1: Gemstones' }, href: '/learn/modules/15-1' },
-    { label: { en: 'Module 15-4: Varshaphal & KP', hi: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.', sa: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.', mai: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.', mr: 'मॉड्यूल 15-4: वर्षफल एवं के.पी.', ta: 'Module 15-4: Varshaphal & KP', te: 'Module 15-4: Varshaphal & KP', bn: 'Module 15-4: Varshaphal & KP', kn: 'Module 15-4: Varshaphal & KP', gu: 'Module 15-4: Varshaphal & KP' }, href: '/learn/modules/15-4' },
-    { label: { en: 'Prashna Tool', hi: 'प्रश्न टूल', sa: 'प्रश्न टूल', mai: 'प्रश्न टूल', mr: 'प्रश्न टूल', ta: 'Prashna Tool', te: 'Prashna Tool', bn: 'Prashna Tool', kn: 'Prashna Tool', gu: 'Prashna Tool' }, href: '/prashna' },
-    { label: { en: 'Ashtamangala Prashna', hi: 'अष्टमंगल प्रश्न', sa: 'अष्टमंगल प्रश्न', mai: 'अष्टमंगल प्रश्न', mr: 'अष्टमंगल प्रश्न', ta: 'Ashtamangala Prashna', te: 'Ashtamangala Prashna', bn: 'Ashtamangala Prashna', kn: 'Ashtamangala Prashna', gu: 'Ashtamangala Prashna' }, href: '/prashna-ashtamangala' },
-  ],
+  crossRefs: (L.crossRefs as unknown as Array<{ label: ModuleMeta['title']; href: string }>).map(cr => ({ label: cr.label, href: cr.href })),
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q15_3_01', type: 'mcq',
-    question: {
-      en: 'In Prashna astrology, a chart is cast for:',
-      hi: 'प्रश्न ज्योतिष में कुण्डली किसके लिए बनाई जाती है?',
-    },
-    options: [
-      { en: 'The birth time of the querent', hi: 'प्रश्नकर्ता का जन्म समय', sa: 'प्रश्नकर्ता का जन्म समय', mai: 'प्रश्नकर्ता का जन्म समय', mr: 'प्रश्नकर्ता का जन्म समय', ta: 'The birth time of the querent', te: 'The birth time of the querent', bn: 'The birth time of the querent', kn: 'The birth time of the querent', gu: 'The birth time of the querent' },
-      { en: 'The exact moment the question arises in the querent\'s mind', hi: 'प्रश्नकर्ता के मन में प्रश्न उत्पन्न होने का सटीक क्षण' },
-      { en: 'The next sunrise after the question', hi: 'प्रश्न के बाद अगला सूर्योदय', sa: 'प्रश्न के बाद अगला सूर्योदय', mai: 'प्रश्न के बाद अगला सूर्योदय', mr: 'प्रश्न के बाद अगला सूर्योदय', ta: 'The next sunrise after the question', te: 'The next sunrise after the question', bn: 'The next sunrise after the question', kn: 'The next sunrise after the question', gu: 'The next sunrise after the question' },
-      { en: 'A randomly chosen auspicious time', hi: 'यादृच्छिक रूप से चुना गया शुभ समय', sa: 'यादृच्छिक रूप से चुना गया शुभ समय', mai: 'यादृच्छिक रूप से चुना गया शुभ समय', mr: 'यादृच्छिक रूप से चुना गया शुभ समय', ta: 'A randomly chosen auspicious time', te: 'A randomly chosen auspicious time', bn: 'A randomly chosen auspicious time', kn: 'A randomly chosen auspicious time', gu: 'A randomly chosen auspicious time' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Prashna astrology casts the chart for the precise moment the question is sincerely formed — when it crystallizes in the querent\'s mind or is verbally asked to the astrologer. This moment is believed to carry the seed of the answer within its planetary configuration.',
-      hi: 'प्रश्न ज्योतिष उस सटीक क्षण की कुण्डली बनाता है जब प्रश्न ईमानदारी से निर्मित होता है — जब यह प्रश्नकर्ता के मन में स्फटिकीकृत होता है या ज्योतिषी से मौखिक रूप से पूछा जाता है। इस क्षण में ग्रहीय विन्यास के भीतर उत्तर का बीज होने की मान्यता है।',
-    },
-  },
-  {
-    id: 'q15_3_02', type: 'true_false',
-    question: {
-      en: 'Prashna astrology requires the querent\'s exact birth time and location.',
-      hi: 'प्रश्न ज्योतिष के लिए प्रश्नकर्ता का सटीक जन्म समय और स्थान आवश्यक है।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. This is the key advantage of Prashna — no birth data is needed. The chart is cast for the moment and place of the question itself. This makes it invaluable when birth data is unknown, disputed, or unreliable.',
-      hi: 'असत्य। यही प्रश्न का मुख्य लाभ है — जन्म डेटा की आवश्यकता नहीं। कुण्डली प्रश्न के क्षण और स्थान के लिए बनाई जाती है। यह तब अमूल्य है जब जन्म डेटा अज्ञात, विवादित या अविश्वसनीय हो।',
-    },
-  },
-  {
-    id: 'q15_3_03', type: 'mcq',
-    question: {
-      en: 'In a Prashna chart, the Lagna (ascendant) represents:',
-      hi: 'प्रश्न कुण्डली में लग्न (उदयलग्न) किसका प्रतिनिधित्व करता है?',
-    },
-    options: [
-      { en: 'The astrologer', hi: 'ज्योतिषी', sa: 'ज्योतिषी', mai: 'ज्योतिषी', mr: 'ज्योतिषी', ta: 'The astrologer', te: 'The astrologer', bn: 'The astrologer', kn: 'The astrologer', gu: 'The astrologer' },
-      { en: 'The querent (person asking the question)', hi: 'प्रश्नकर्ता (प्रश्न पूछने वाला व्यक्ति)', sa: 'प्रश्नकर्ता (प्रश्न पूछने वाला व्यक्ति)', mai: 'प्रश्नकर्ता (प्रश्न पूछने वाला व्यक्ति)', mr: 'प्रश्नकर्ता (प्रश्न पूछने वाला व्यक्ति)', ta: 'The querent (person asking the question)', te: 'The querent (person asking the question)', bn: 'The querent (person asking the question)', kn: 'The querent (person asking the question)', gu: 'The querent (person asking the question)' },
-      { en: 'The subject of the question', hi: 'प्रश्न का विषय', sa: 'प्रश्न का विषय', mai: 'प्रश्न का विषय', mr: 'प्रश्न का विषय', ta: 'The subject of the question', te: 'The subject of the question', bn: 'The subject of the question', kn: 'The subject of the question', gu: 'The subject of the question' },
-      { en: 'The weather conditions', hi: 'मौसम की स्थिति', sa: 'मौसम की स्थिति', mai: 'मौसम की स्थिति', mr: 'मौसम की स्थिति', ta: 'The weather conditions', te: 'The weather conditions', bn: 'The weather conditions', kn: 'The weather conditions', gu: 'The weather conditions' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'In Prashna, the Lagna represents the querent and the 7th house represents the subject of inquiry (the "other" — opponent, spouse, business partner, or the matter being asked about). This 1st-7th axis is the foundation of all Prashna interpretation.',
-      hi: 'प्रश्न में लग्न प्रश्नकर्ता का प्रतिनिधित्व करता है और 7वाँ भाव पूछताछ के विषय ("अन्य" — प्रतिद्वन्द्वी, पति/पत्नी, व्यापारिक साझेदार, या जिस विषय पर पूछा जा रहा है) का प्रतिनिधित्व करता है। यह 1-7 अक्ष सम्पूर्ण प्रश्न व्याख्या का आधार है।',
-    },
-  },
-  {
-    id: 'q15_3_04', type: 'mcq',
-    question: {
-      en: 'What does "Moon void of course" signify in a Prashna chart?',
-      hi: 'प्रश्न कुण्डली में "चन्द्रमा शून्य गति" (Moon void of course) का क्या अर्थ है?',
-    },
-    options: [
-      { en: 'The question will be answered favorably', hi: 'प्रश्न का उत्तर अनुकूल होगा', sa: 'प्रश्न का उत्तर अनुकूल होगा', mai: 'प्रश्न का उत्तर अनुकूल होगा', mr: 'प्रश्न का उत्तर अनुकूल होगा', ta: 'The question will be answered favorably', te: 'The question will be answered favorably', bn: 'The question will be answered favorably', kn: 'The question will be answered favorably', gu: 'The question will be answered favorably' },
-      { en: 'The matter will not come to fruition — no definitive result', hi: 'मामला फलीभूत नहीं होगा — कोई निश्चित परिणाम नहीं', sa: 'मामला फलीभूत नहीं होगा — कोई निश्चित परिणाम नहीं', mai: 'मामला फलीभूत नहीं होगा — कोई निश्चित परिणाम नहीं', mr: 'मामला फलीभूत नहीं होगा — कोई निश्चित परिणाम नहीं', ta: 'The matter will not come to fruition — no definitive result', te: 'The matter will not come to fruition — no definitive result', bn: 'The matter will not come to fruition — no definitive result', kn: 'The matter will not come to fruition — no definitive result', gu: 'The matter will not come to fruition — no definitive result' },
-      { en: 'The Moon is very strong in the chart', hi: 'कुण्डली में चन्द्रमा बहुत बलवान है', sa: 'कुण्डली में चन्द्रमा बहुत बलवान है', mai: 'कुण्डली में चन्द्रमा बहुत बलवान है', mr: 'कुण्डली में चन्द्रमा बहुत बलवान है', ta: 'The Moon is very strong in the chart', te: 'The Moon is very strong in the chart', bn: 'The Moon is very strong in the chart', kn: 'The Moon is very strong in the chart', gu: 'The Moon is very strong in the chart' },
-      { en: 'The querent should ask again tomorrow', hi: 'प्रश्नकर्ता को कल फिर पूछना चाहिए', sa: 'प्रश्नकर्ता को कल फिर पूछना चाहिए', mai: 'प्रश्नकर्ता को कल फिर पूछना चाहिए', mr: 'प्रश्नकर्ता को कल फिर पूछना चाहिए', ta: 'The querent should ask again tomorrow', te: 'The querent should ask again tomorrow', bn: 'The querent should ask again tomorrow', kn: 'The querent should ask again tomorrow', gu: 'The querent should ask again tomorrow' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'When the Moon makes no further applying aspects before leaving its current sign, it is "void of course." In Prashna, this is a strong indicator that the matter asked about will not produce a result — it fizzles out or remains unresolved. The querent is advised that the situation is stagnant.',
-      hi: 'जब चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले कोई और अनुप्रयुक्त दृष्टि (applying aspect) नहीं बनाता, तो वह "शून्य गति" (void of course) है। प्रश्न में यह एक प्रबल सूचक है कि पूछा गया मामला परिणाम नहीं देगा — यह निष्प्रभ होगा या अनसुलझा रहेगा।',
-    },
-  },
-  {
-    id: 'q15_3_05', type: 'mcq',
-    question: {
-      en: 'What is the difference between applying and separating aspects in Prashna?',
-      hi: 'प्रश्न में अनुप्रयुक्त (applying) और पृथक्करण (separating) दृष्टियों में क्या अन्तर है?',
-    },
-    options: [
-      { en: 'There is no difference, both give the same result', hi: 'कोई अन्तर नहीं, दोनों एक ही परिणाम देते हैं', sa: 'कोई अन्तर नहीं, दोनों एक ही परिणाम देते हैं', mai: 'कोई अन्तर नहीं, दोनों एक ही परिणाम देते हैं', mr: 'कोई अन्तर नहीं, दोनों एक ही परिणाम देते हैं', ta: 'There is no difference, both give the same result', te: 'There is no difference, both give the same result', bn: 'There is no difference, both give the same result', kn: 'There is no difference, both give the same result', gu: 'There is no difference, both give the same result' },
-      { en: 'Applying = event will happen; Separating = event was possible but the window has passed', hi: 'अनुप्रयुक्त = घटना होगी; पृथक्करण = घटना सम्भव थी परन्तु अवसर बीत गया', sa: 'अनुप्रयुक्त = घटना होगी; पृथक्करण = घटना सम्भव थी परन्तु अवसर बीत गया', mai: 'अनुप्रयुक्त = घटना होगी; पृथक्करण = घटना सम्भव थी परन्तु अवसर बीत गया', mr: 'अनुप्रयुक्त = घटना होगी; पृथक्करण = घटना सम्भव थी परन्तु अवसर बीत गया', ta: 'Applying = event will happen; Separating = event was possible but the window has passed', te: 'Applying = event will happen; Separating = event was possible but the window has passed', bn: 'Applying = event will happen; Separating = event was possible but the window has passed', kn: 'Applying = event will happen; Separating = event was possible but the window has passed', gu: 'Applying = event will happen; Separating = event was possible but the window has passed' },
-      { en: 'Applying = past event; Separating = future event', hi: 'अनुप्रयुक्त = भूतकालीन घटना; पृथक्करण = भविष्य की घटना', sa: 'अनुप्रयुक्त = भूतकालीन घटना; पृथक्करण = भविष्य की घटना', mai: 'अनुप्रयुक्त = भूतकालीन घटना; पृथक्करण = भविष्य की घटना', mr: 'अनुप्रयुक्त = भूतकालीन घटना; पृथक्करण = भविष्य की घटना', ta: 'Applying = past event; Separating = future event', te: 'Applying = past event; Separating = future event', bn: 'Applying = past event; Separating = future event', kn: 'Applying = past event; Separating = future event', gu: 'Applying = past event; Separating = future event' },
-      { en: 'Only applies in Western astrology, not Vedic', hi: 'केवल पश्चिमी ज्योतिष में लागू, वैदिक में नहीं', sa: 'केवल पश्चिमी ज्योतिष में लागू, वैदिक में नहीं', mai: 'केवल पश्चिमी ज्योतिष में लागू, वैदिक में नहीं', mr: 'केवल पश्चिमी ज्योतिष में लागू, वैदिक में नहीं', ta: 'Only applies in Western astrology, not Vedic', te: 'Only applies in Western astrology, not Vedic', bn: 'Only applies in Western astrology, not Vedic', kn: 'Only applies in Western astrology, not Vedic', gu: 'Only applies in Western astrology, not Vedic' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'An applying aspect (faster planet moving toward exact aspect with slower planet) indicates the event is coming together — it WILL happen. A separating aspect (planets moving apart from exactitude) means the opportunity existed but has passed — the event will NOT happen or has already occurred.',
-      hi: 'अनुप्रयुक्त दृष्टि (तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा) इंगित करता है कि घटना निर्मित हो रही है — यह होगी। पृथक्करण दृष्टि (ग्रह सटीकता से दूर जा रहे) का अर्थ है अवसर विद्यमान था परन्तु बीत गया — घटना नहीं होगी या पहले ही घटित हो चुकी है।',
-    },
-  },
-  {
-    id: 'q15_3_06', type: 'true_false',
-    question: {
-      en: 'The sincerity principle in Prashna states that the question must arise naturally and spontaneously, not be asked frivolously or repeatedly to "test" the system.',
-      hi: 'प्रश्न में ईमानदारी का सिद्धान्त कहता है कि प्रश्न स्वाभाविक और स्वतःस्फूर्त रूप से उत्पन्न होना चाहिए, तंत्र की "परीक्षा" लेने के लिए व्यर्थ या बार-बार नहीं पूछा जाना चाहिए।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Classical Prashna texts insist that a genuine cosmic connection exists between a sincerely felt question and the planetary configuration at that moment. Testing, frivolous, or repeated questions break this connection. The querent\'s anxiety or urgency imprints on the cosmic moment.',
-      hi: 'सत्य। शास्त्रीय प्रश्न ग्रन्थ इस बात पर बल देते हैं कि ईमानदारी से अनुभव किए गए प्रश्न और उस क्षण की ग्रहीय विन्यास के बीच वास्तविक ब्रह्माण्डीय सम्बन्ध विद्यमान है। परीक्षणात्मक, व्यर्थ या बार-बार के प्रश्न इस सम्बन्ध को तोड़ते हैं। प्रश्नकर्ता की चिन्ता या तात्कालिकता ब्रह्माण्डीय क्षण पर अंकित होती है।',
-    },
-  },
-  {
-    id: 'q15_3_07', type: 'mcq',
-    question: {
-      en: 'In Ashtamangala Prashna (Kerala tradition), how many auspicious objects are used?',
-      hi: 'अष्टमंगल प्रश्न (केरल परम्परा) में कितनी शुभ वस्तुओं का प्रयोग होता है?',
-    },
-    options: [
-      { en: '5', hi: '5', sa: '5', mai: '5', mr: '5', ta: '5', te: '5', bn: '5', kn: '5', gu: '5' },
-      { en: '7', hi: '7', sa: '7', mai: '7', mr: '7', ta: '7', te: '7', bn: '7', kn: '7', gu: '7' },
-      { en: '8', hi: '8', sa: '8', mai: '8', mr: '8', ta: '8', te: '8', bn: '8', kn: '8', gu: '8' },
-      { en: '9', hi: '9', sa: '9', mai: '9', mr: '9', ta: '9', te: '9', bn: '9', kn: '9', gu: '9' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'Ashtamangala means "eight auspicious things." The 8 objects are: Mirror (Darpana), Vessel (Bhringara), Fish (Matsya), Lamp (Deepa), Throne (Simhasana), Bull (Vrishabha), Flag (Dhvaja), and Fan (Chamara). Three random numbers (1-108) are given by the querent, which select specific objects and generate the analysis.',
-      hi: 'अष्टमंगल का अर्थ है "आठ शुभ वस्तुएँ।" 8 वस्तुएँ हैं: दर्पण, भृंगार (कलश), मत्स्य, दीप, सिंहासन, वृषभ, ध्वज और चामर। प्रश्नकर्ता तीन यादृच्छिक संख्याएँ (1-108) देता है, जो विशिष्ट वस्तुओं का चयन करती हैं और विश्लेषण उत्पन्न करती हैं।',
-    },
-  },
-  {
-    id: 'q15_3_08', type: 'mcq',
-    question: {
-      en: 'Which muhurtas are considered the best times to ask a Prashna question?',
-      hi: 'प्रश्न पूछने के लिए कौन-से मुहूर्त सर्वोत्तम माने जाते हैं?',
-    },
-    options: [
-      { en: 'Rahu Kalam and Yamagandam', hi: 'राहु काल और यमगण्डम', sa: 'राहु काल और यमगण्डम', mai: 'राहु काल और यमगण्डम', mr: 'राहु काल और यमगण्डम', ta: 'Rahu Kalam and Yamagandam', te: 'Rahu Kalam and Yamagandam', bn: 'Rahu Kalam and Yamagandam', kn: 'Rahu Kalam and Yamagandam', gu: 'Rahu Kalam and Yamagandam' },
-      { en: 'Brahma Muhurta and Abhijit Muhurta', hi: 'ब्रह्म मुहूर्त और अभिजित मुहूर्त', sa: 'ब्रह्म मुहूर्त और अभिजित मुहूर्त', mai: 'ब्रह्म मुहूर्त और अभिजित मुहूर्त', mr: 'ब्रह्म मुहूर्त और अभिजित मुहूर्त', ta: 'Brahma Muhurta and Abhijit Muhurta', te: 'Brahma Muhurta and Abhijit Muhurta', bn: 'Brahma Muhurta and Abhijit Muhurta', kn: 'Brahma Muhurta and Abhijit Muhurta', gu: 'Brahma Muhurta and Abhijit Muhurta' },
-      { en: 'Midnight and noon only', hi: 'केवल मध्यरात्रि और मध्याह्न', sa: 'केवल मध्यरात्रि और मध्याह्न', mai: 'केवल मध्यरात्रि और मध्याह्न', mr: 'केवल मध्यरात्रि और मध्याह्न', ta: 'Midnight and noon only', te: 'Midnight and noon only', bn: 'Midnight and noon only', kn: 'Midnight and noon only', gu: 'Midnight and noon only' },
-      { en: 'Any time on Amavasya (new moon)', hi: 'अमावस्या (नवचन्द्र) पर कोई भी समय', sa: 'अमावस्या (नवचन्द्र) पर कोई भी समय', mai: 'अमावस्या (नवचन्द्र) पर कोई भी समय', mr: 'अमावस्या (नवचन्द्र) पर कोई भी समय', ta: 'Any time on Amavasya (new moon)', te: 'Any time on Amavasya (new moon)', bn: 'Any time on Amavasya (new moon)', kn: 'Any time on Amavasya (new moon)', gu: 'Any time on Amavasya (new moon)' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Brahma Muhurta (approximately 1.5 hours before sunrise) and Abhijit Muhurta (the 8th muhurta of the day, around midday) are considered the most sattvic and clear-headed times. Questions asked during these periods are believed to yield the most accurate and reliable Prashna readings.',
-      hi: 'ब्रह्म मुहूर्त (सूर्योदय से लगभग 1.5 घण्टे पहले) और अभिजित मुहूर्त (दिन का 8वाँ मुहूर्त, लगभग मध्याह्न) सबसे सात्त्विक और स्वच्छ-चित्त समय माने जाते हैं। इन अवधियों में पूछे गए प्रश्न सबसे सटीक और विश्वसनीय प्रश्न पठन देते हैं।',
-    },
-  },
-  {
-    id: 'q15_3_09', type: 'true_false',
-    question: {
-      en: 'In Ashtamangala Prashna, the querent provides three numbers between 1 and 108 which determine the selection of objects.',
-      hi: 'अष्टमंगल प्रश्न में प्रश्नकर्ता 1 से 108 के बीच तीन संख्याएँ देता है जो वस्तुओं के चयन को निर्धारित करती हैं।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. The three numbers provided by the querent are processed through a mathematical system that maps them to specific Ashtamangala objects, disha (directions), and deities. This creates a multi-layered symbolic reading that is combined with the Prashna chart for comprehensive analysis.',
-      hi: 'सत्य। प्रश्नकर्ता द्वारा दी गई तीन संख्याओं को एक गणितीय प्रणाली से प्रसंस्कृत किया जाता है जो उन्हें विशिष्ट अष्टमंगल वस्तुओं, दिशाओं और देवताओं से मैप करती है। यह एक बहु-स्तरीय प्रतीकात्मक पठन बनाता है जिसे व्यापक विश्लेषण के लिए प्रश्न कुण्डली के साथ संयुक्त किया जाता है।',
-    },
-  },
-  {
-    id: 'q15_3_10', type: 'mcq',
-    question: {
-      en: 'What does it mean when the Moon is in the 7th house of a Prashna chart about a marriage proposal?',
-      hi: 'जब प्रश्न कुण्डली में चन्द्रमा विवाह प्रस्ताव के बारे में 7वें भाव में हो तो क्या अर्थ है?',
-    },
-    options: [
-      { en: 'The marriage will never happen', hi: 'विवाह कभी नहीं होगा', sa: 'विवाह कभी नहीं होगा', mai: 'विवाह कभी नहीं होगा', mr: 'विवाह कभी नहीं होगा', ta: 'The marriage will never happen', te: 'The marriage will never happen', bn: 'The marriage will never happen', kn: 'The marriage will never happen', gu: 'The marriage will never happen' },
-      { en: 'Strong positive indication — the querent\'s mind (Moon) is focused on the subject of inquiry (7th house)', hi: 'प्रबल सकारात्मक संकेत — प्रश्नकर्ता का मन (चन्द्र) पूछताछ के विषय (7वें भाव) पर केन्द्रित है' },
-      { en: 'The Moon is debilitated', hi: 'चन्द्रमा नीच है', sa: 'चन्द्रमा नीच है', mai: 'चन्द्रमा नीच है', mr: 'चन्द्रमा नीच है', ta: 'The Moon is debilitated', te: 'The Moon is debilitated', bn: 'The Moon is debilitated', kn: 'The Moon is debilitated', gu: 'The Moon is debilitated' },
-      { en: 'It has no significance', hi: 'इसका कोई महत्त्व नहीं', sa: 'इसका कोई महत्त्व नहीं', mai: 'इसका कोई महत्त्व नहीं', mr: 'इसका कोई महत्त्व नहीं', ta: 'It has no significance', te: 'It has no significance', bn: 'It has no significance', kn: 'It has no significance', gu: 'It has no significance' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Moon in the 7th house of a Prashna chart about marriage is a strong positive indicator. The Moon (mind, emotions) placed in the house of partnerships shows the querent\'s emotional investment and focus on the matter. Combined with benefic aspects, it suggests the proposal will likely succeed.',
-      hi: 'विवाह सम्बन्धी प्रश्न कुण्डली में 7वें भाव में चन्द्रमा एक प्रबल सकारात्मक संकेतक है। साझेदारी के भाव में चन्द्रमा (मन, भावनाएँ) की स्थिति प्रश्नकर्ता के भावनात्मक निवेश और विषय पर ध्यान दर्शाती है। शुभ दृष्टियों के साथ मिलकर यह सुझाता है कि प्रस्ताव सम्भवतः सफल होगा।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = (L.questions as unknown as ModuleQuestion[]);
 
 function Page1() {
   const locale = useModuleLocale();

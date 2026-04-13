@@ -3,22 +3,16 @@
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/22-4.json';
 
 const META: ModuleMeta = {
   id: 'mod_22_4', phase: 9, topic: 'Astronomy', moduleNumber: '22.4',
-  title: { en: 'Sunrise — 2-Pass Hour Angle Method', hi: 'सूर्योदय — 2-पास घण्टा कोण विधि', sa: 'सूर्योदय — 2-पास घण्टा कोण विधि', mai: 'सूर्योदय — 2-पास घण्टा कोण विधि', mr: 'सूर्योदय — 2-पास घण्टा कोण विधि', ta: 'Sunrise — 2-Pass Hour Angle Method', te: 'Sunrise — 2-Pass Hour Angle Method', bn: 'Sunrise — 2-Pass Hour Angle Method', kn: 'Sunrise — 2-Pass Hour Angle Method', gu: 'Sunrise — 2-Pass Hour Angle Method' },
-  subtitle: {
-    en: 'How refraction, the Equation of Time, and a clever 2-pass algorithm give us sunrise accurate to the minute',
-    hi: 'कैसे अपवर्तन, समय का समीकरण और एक चतुर 2-पास एल्गोरिदम हमें मिनट-सटीक सूर्योदय देते हैं',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 14,
-  crossRefs: [
-    { label: { en: 'Module 22-1: Julian Day', hi: 'मॉड्यूल 22-1: जूलियन दिवस', sa: 'मॉड्यूल 22-1: जूलियन दिवस', mai: 'मॉड्यूल 22-1: जूलियन दिवस', mr: 'मॉड्यूल 22-1: जूलियन दिवस', ta: 'Module 22-1: Julian Day', te: 'Module 22-1: Julian Day', bn: 'Module 22-1: Julian Day', kn: 'Module 22-1: Julian Day', gu: 'Module 22-1: Julian Day' }, href: '/learn/modules/22-1' },
-    { label: { en: 'Module 22-2: Finding the Sun', hi: 'मॉड्यूल 22-2: सूर्य की स्थिति', sa: 'मॉड्यूल 22-2: सूर्य की स्थिति', mai: 'मॉड्यूल 22-2: सूर्य की स्थिति', mr: 'मॉड्यूल 22-2: सूर्य की स्थिति', ta: 'Module 22-2: Finding the Sun', te: 'Module 22-2: Finding the Sun', bn: 'Module 22-2: Finding the Sun', kn: 'Module 22-2: Finding the Sun', gu: 'Module 22-2: Finding the Sun' }, href: '/learn/modules/22-2' },
-    { label: { en: 'Module 22-5: Moonrise', hi: 'मॉड्यूल 22-5: चन्द्रोदय', sa: 'मॉड्यूल 22-5: चन्द्रोदय', mai: 'मॉड्यूल 22-5: चन्द्रोदय', mr: 'मॉड्यूल 22-5: चन्द्रोदय', ta: 'Module 22-5: Moonrise', te: 'Module 22-5: Moonrise', bn: 'Module 22-5: Moonrise', kn: 'Module 22-5: Moonrise', gu: 'Module 22-5: Moonrise' }, href: '/learn/modules/22-5' },
-    { label: { en: 'Module 22-6: Equation of Time', hi: 'मॉड्यूल 22-6: समय का समीकरण', sa: 'मॉड्यूल 22-6: समय का समीकरण', mai: 'मॉड्यूल 22-6: समय का समीकरण', mr: 'मॉड्यूल 22-6: समय का समीकरण', ta: 'Module 22-6: Equation of Time', te: 'Module 22-6: Equation of Time', bn: 'Module 22-6: Equation of Time', kn: 'Module 22-6: Equation of Time', gu: 'Module 22-6: Equation of Time' }, href: '/learn/modules/22-6' },
-    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग', mai: 'दैनिक पंचांग', mr: 'दैनिक पंचांग', ta: 'Daily Panchang', te: 'Daily Panchang', bn: 'Daily Panchang', kn: 'Daily Panchang', gu: 'Daily Panchang' }, href: '/panchang' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

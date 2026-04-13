@@ -10,6 +10,9 @@ import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import ProgressIndicator from '@/components/learn/ProgressIndicator';
 import LevelBadge from '@/components/learn/LevelBadge';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import LI from '@/messages/learn/modules-index.json';
 
 const PHASES = [
   { phase: 0, label: { en: 'Pre-Foundation', hi: 'पूर्व-आधार', sa: 'पूर्व-आधार', mai: 'पूर्व-आधार', mr: 'पूर्व-आधार', ta: 'Pre-Foundation', te: 'Pre-Foundation', bn: 'Pre-Foundation', kn: 'Pre-Foundation', gu: 'Pre-Foundation' }, color: 'border-gold-primary/20', topics: [
@@ -154,12 +157,10 @@ export default function ModuleIndexPage() {
     <div className="space-y-8">
       <div>
         <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>
-          {isHi ? 'सम्पूर्ण पाठ्यक्रम — 50 मॉड्यूल' : 'Complete Curriculum — 50 Modules'}
+          {lt(LI.pageTitle as LocaleText, locale)}
         </h2>
         <p className="text-text-secondary text-sm leading-relaxed max-w-2xl">
-          {isHi
-            ? 'प्रत्येक मॉड्यूल 10-15 मिनट का गहन पाठ है — सामग्री, उदाहरण, और ज्ञान परीक्षा के साथ। मॉड्यूल 1.1 से शुरू करें और क्रम में आगे बढ़ें।'
-            : 'Each module is a 10-15 minute deep lesson with content, worked examples, and a knowledge check. Start with Module 1.1 and progress in order.'}
+          {lt(LI.pageSubtitle as LocaleText, locale)}
         </p>
       </div>
 
@@ -168,7 +169,7 @@ export default function ModuleIndexPage() {
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
           <div className="flex items-center justify-between mb-2">
             <span className="text-gold-light font-bold text-lg" style={hf}>
-              {isHi ? 'आपकी प्रगति' : 'Your Progress'}
+              {lt(LI.yourProgress as LocaleText, locale)}
             </span>
             <span className="text-gold-primary text-sm font-mono">{overall.mastered}/{overall.total}</span>
           </div>
@@ -177,7 +178,7 @@ export default function ModuleIndexPage() {
           </div>
           <div className="flex items-center justify-between">
             <p className="text-text-secondary/60 text-xs">
-              {isHi ? `${overall.percent}% पूर्ण` : `${overall.percent}% complete`}
+              {`${overall.percent}% ${lt(LI.percentComplete as LocaleText, locale)}`}
             </p>
             <LevelBadge masteredCount={overall.mastered} locale={locale} variant="compact" />
           </div>
@@ -187,11 +188,11 @@ export default function ModuleIndexPage() {
       {/* Start button */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 bg-gradient-to-r from-gold-primary/5 to-indigo-500/5 flex items-center justify-between">
         <div>
-          <div className="text-gold-light font-bold text-lg" style={hf}>{isHi ? 'शुरू करें' : 'Start Learning'}</div>
-          <p className="text-text-secondary text-xs mt-1">{isHi ? 'मॉड्यूल 1.1 — रात्रि आकाश एवं क्रान्तिवृत्त' : 'Module 1.1 — The Night Sky & Ecliptic'}</p>
+          <div className="text-gold-light font-bold text-lg" style={hf}>{lt(LI.startLearning as LocaleText, locale)}</div>
+          <p className="text-text-secondary text-xs mt-1">{lt(LI.startSubtitle as LocaleText, locale)}</p>
         </div>
         <Link href="/learn/modules/1-1" className="shrink-0 px-6 py-2.5 rounded-xl bg-gold-primary text-bg-primary font-semibold text-sm hover:bg-gold-light transition-colors">
-          {isHi ? 'आरम्भ →' : 'Begin →'}
+          {lt(LI.begin as LocaleText, locale)}
         </Link>
       </div>
 
@@ -200,7 +201,7 @@ export default function ModuleIndexPage() {
         <div key={phase.phase}>
           <div className="flex items-center gap-2 mb-4">
             <span className="w-6 h-6 rounded-full bg-gold-primary/10 border border-gold-primary/20 flex items-center justify-center text-xs text-gold-primary font-bold">{phase.phase}</span>
-            <h3 className="text-gold-light font-bold text-lg" style={hf}>{isHi ? phase.label.hi : phase.label.en}</h3>
+            <h3 className="text-gold-light font-bold text-lg" style={hf}>{lt(phase.label, locale)}</h3>
             {hydrated && (() => {
               const pp = getPhaseProgress(phase.phase);
               return pp.mastered > 0 ? (
@@ -232,11 +233,11 @@ export default function ModuleIndexPage() {
                           <span className={`text-sm group-hover:text-gold-light transition-colors ${
                             hydrated && getModuleStatus(mod.id) === 'mastered' ? 'text-text-secondary/60' : 'text-text-primary'
                           }`} style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                            {isHi ? mod.title.hi : mod.title.en}
+                            {lt(mod.title, locale)}
                           </span>
                           {mod.id === nextModuleId && (
                             <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/20 font-bold">
-                              {isHi ? 'अगला' : 'NEXT'}
+                              {lt(LI.next as LocaleText, locale)}
                             </span>
                           )}
                         </div>

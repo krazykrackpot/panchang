@@ -2,20 +2,16 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/22-3.json';
 
 const META: ModuleMeta = {
   id: 'mod_22_3', phase: 9, topic: 'Astronomy', moduleNumber: '22.3',
-  title: { en: 'Finding the Moon — 60 Sine Terms', hi: 'चन्द्रमा की खोज — 60 ज्या पद', sa: 'चन्द्रमा की खोज — 60 ज्या पद', mai: 'चन्द्रमा की खोज — 60 ज्या पद', mr: 'चन्द्रमा की खोज — 60 ज्या पद', ta: 'Finding the Moon — 60 Sine Terms', te: 'Finding the Moon — 60 Sine Terms', bn: 'Finding the Moon — 60 Sine Terms', kn: 'Finding the Moon — 60 Sine Terms', gu: 'Finding the Moon — 60 Sine Terms' },
-  subtitle: {
-    en: 'Why the Moon is the hardest object to track, and how five fundamental arguments and 60 correction terms give us its position',
-    hi: 'चन्द्रमा सबसे कठिन पिण्ड क्यों है ट्रैक करने में, और पाँच मूलभूत तर्क तथा 60 सुधार पद इसकी स्थिति कैसे देते हैं',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 15,
-  crossRefs: [
-    { label: { en: 'Module 22-1: Julian Day', hi: 'मॉड्यूल 22-1: जूलियन दिवस', sa: 'मॉड्यूल 22-1: जूलियन दिवस', mai: 'मॉड्यूल 22-1: जूलियन दिवस', mr: 'मॉड्यूल 22-1: जूलियन दिवस', ta: 'Module 22-1: Julian Day', te: 'Module 22-1: Julian Day', bn: 'Module 22-1: Julian Day', kn: 'Module 22-1: Julian Day', gu: 'Module 22-1: Julian Day' }, href: '/learn/modules/22-1' },
-    { label: { en: 'Module 22-2: Finding the Sun', hi: 'मॉड्यूल 22-2: सूर्य की स्थिति', sa: 'मॉड्यूल 22-2: सूर्य की स्थिति', mai: 'मॉड्यूल 22-2: सूर्य की स्थिति', mr: 'मॉड्यूल 22-2: सूर्य की स्थिति', ta: 'Module 22-2: Finding the Sun', te: 'Module 22-2: Finding the Sun', bn: 'Module 22-2: Finding the Sun', kn: 'Module 22-2: Finding the Sun', gu: 'Module 22-2: Finding the Sun' }, href: '/learn/modules/22-2' },
-    { label: { en: 'Module 22-5: Moonrise', hi: 'मॉड्यूल 22-5: चन्द्रोदय', sa: 'मॉड्यूल 22-5: चन्द्रोदय', mai: 'मॉड्यूल 22-5: चन्द्रोदय', mr: 'मॉड्यूल 22-5: चन्द्रोदय', ta: 'Module 22-5: Moonrise', te: 'Module 22-5: Moonrise', bn: 'Module 22-5: Moonrise', kn: 'Module 22-5: Moonrise', gu: 'Module 22-5: Moonrise' }, href: '/learn/modules/22-5' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

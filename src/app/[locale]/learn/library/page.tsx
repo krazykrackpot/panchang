@@ -1,5 +1,9 @@
 'use client';
 
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/library.json';
+
 import { useState } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -387,6 +391,7 @@ const CATEGORY_COLOR: Record<Category, string> = {
 
 export default function LibraryPage() {
   const locale = useLocale() as Locale;
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
   const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont   = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
@@ -406,13 +411,11 @@ export default function LibraryPage() {
         <div className="flex items-center gap-3 mb-3">
           <BookOpen className="w-7 h-7 text-gold-primary" />
           <h1 className="text-4xl sm:text-5xl font-bold text-gold-gradient" style={headingFont}>
-            {isHi ? 'शास्त्रीय ग्रंथागार' : 'Classical Texts Library'}
+            {t('title')}
           </h1>
         </div>
         <p className="text-text-secondary text-base max-w-3xl" style={bodyFont}>
-          {isHi
-            ? '28 शास्त्रीय ज्योतिष एवं खगोलशास्त्र ग्रंथों का संकलन — सभी archive.org पर निःशुल्क उपलब्ध। नाम पर क्लिक करके पढ़ें या डाउनलोड करें।'
-            : '28 classical Vedic astronomy and astrology texts — all free to read and download via archive.org. Click any title to open the source.'}
+          {t('subtitle')}
         </p>
         <div className="mt-4 flex flex-wrap gap-3 text-xs">
           {Object.entries(LICENSE_BADGE).map(([key, b]) => (
@@ -455,6 +458,7 @@ export default function LibraryPage() {
           <span>{isHi ? 'वर्ष' : 'Year'}</span>
           <span>{isHi ? 'श्रेणी' : 'Category'}</span>
           <span>{isHi ? 'लाइसेंस' : 'License'}</span>
+
         </div>
 
         {/* Rows */}
@@ -546,7 +550,7 @@ export default function LibraryPage() {
                     className="inline-flex items-center gap-1.5 mt-3 text-gold-primary text-xs font-semibold hover:text-gold-light transition-colors"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
-                    {isHi ? 'archive.org पर खोलें / डाउनलोड करें' : 'Open on archive.org / Download'}
+                    {t('readOnline')}
                   </a>
                 </motion.div>
               )}

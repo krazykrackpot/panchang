@@ -2,187 +2,19 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/15-4.json';
 
 const META: ModuleMeta = {
   id: 'mod_15_4', phase: 4, topic: 'Prashna & Advanced', moduleNumber: '15.4',
-  title: { en: 'Varshaphal (Annual Chart) & KP System', hi: 'वर्षफल (वार्षिक कुण्डली) एवं के.पी. पद्धति', sa: 'वर्षफल (वार्षिक कुण्डली) एवं के.पी. पद्धति', mai: 'वर्षफल (वार्षिक कुण्डली) एवं के.पी. पद्धति', mr: 'वर्षफल (वार्षिक कुण्डली) एवं के.पी. पद्धति', ta: 'Varshaphal (Annual Chart) & KP System', te: 'Varshaphal (Annual Chart) & KP System', bn: 'Varshaphal (Annual Chart) & KP System', kn: 'Varshaphal (Annual Chart) & KP System', gu: 'Varshaphal (Annual Chart) & KP System' },
-  subtitle: {
-    en: 'Solar Return charts with Tajika yogas, and the Krishnamurti Paddhati sub-lord system',
-    hi: 'ताजिक योगों सहित सौर प्रत्यावर्तन कुण्डली, और कृष्णमूर्ति पद्धति उप-स्वामी प्रणाली',
-  },
+  title: L.title as unknown as ModuleMeta['title'],
+  subtitle: L.subtitle as unknown as ModuleMeta['subtitle'],
   estimatedMinutes: 16,
-  crossRefs: [
-    { label: { en: 'Module 15-1: Gemstones', hi: 'मॉड्यूल 15-1: रत्न', sa: 'मॉड्यूल 15-1: रत्न', mai: 'मॉड्यूल 15-1: रत्न', mr: 'मॉड्यूल 15-1: रत्न', ta: 'Module 15-1: Gemstones', te: 'Module 15-1: Gemstones', bn: 'Module 15-1: Gemstones', kn: 'Module 15-1: Gemstones', gu: 'Module 15-1: Gemstones' }, href: '/learn/modules/15-1' },
-    { label: { en: 'Module 15-3: Prashna Astrology', hi: 'मॉड्यूल 15-3: प्रश्न ज्योतिष', sa: 'मॉड्यूल 15-3: प्रश्न ज्योतिष', mai: 'मॉड्यूल 15-3: प्रश्न ज्योतिष', mr: 'मॉड्यूल 15-3: प्रश्न ज्योतिष', ta: 'Module 15-3: Prashna Astrology', te: 'Module 15-3: Prashna Astrology', bn: 'Module 15-3: Prashna Astrology', kn: 'Module 15-3: Prashna Astrology', gu: 'Module 15-3: Prashna Astrology' }, href: '/learn/modules/15-3' },
-    { label: { en: 'Varshaphal Tool', hi: 'वर्षफल टूल', sa: 'वर्षफल टूल', mai: 'वर्षफल टूल', mr: 'वर्षफल टूल', ta: 'Varshaphal Tool', te: 'Varshaphal Tool', bn: 'Varshaphal Tool', kn: 'Varshaphal Tool', gu: 'Varshaphal Tool' }, href: '/varshaphal' },
-    { label: { en: 'KP System Tool', hi: 'के.पी. पद्धति टूल', sa: 'के.पी. पद्धति टूल', mai: 'के.पी. पद्धति टूल', mr: 'के.पी. पद्धति टूल', ta: 'KP System Tool', te: 'KP System Tool', bn: 'KP System Tool', kn: 'KP System Tool', gu: 'KP System Tool' }, href: '/kp-system' },
-  ],
+  crossRefs: (L.crossRefs as unknown as Array<{ label: ModuleMeta['title']; href: string }>).map(cr => ({ label: cr.label, href: cr.href })),
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q15_4_01', type: 'mcq',
-    question: {
-      en: 'A Varshaphal chart is cast for the exact moment when:',
-      hi: 'वर्षफल कुण्डली उस सटीक क्षण के लिए बनाई जाती है जब:',
-    },
-    options: [
-      { en: 'January 1st of each year begins', hi: 'प्रत्येक वर्ष 1 जनवरी आरम्भ होती है', sa: 'प्रत्येक वर्ष 1 जनवरी आरम्भ होती है', mai: 'प्रत्येक वर्ष 1 जनवरी आरम्भ होती है', mr: 'प्रत्येक वर्ष 1 जनवरी आरम्भ होती है', ta: 'January 1st of each year begins', te: 'January 1st of each year begins', bn: 'January 1st of each year begins', kn: 'January 1st of each year begins', gu: 'January 1st of each year begins' },
-      { en: 'The Sun returns to its exact natal sidereal longitude each year', hi: 'सूर्य प्रत्येक वर्ष अपने सटीक जन्मकालीन निरयन देशान्तर पर लौटता है', sa: 'सूर्य प्रत्येक वर्ष अपने सटीक जन्मकालीन निरयन देशान्तर पर लौटता है', mai: 'सूर्य प्रत्येक वर्ष अपने सटीक जन्मकालीन निरयन देशान्तर पर लौटता है', mr: 'सूर्य प्रत्येक वर्ष अपने सटीक जन्मकालीन निरयन देशान्तर पर लौटता है', ta: 'The Sun returns to its exact natal sidereal longitude each year', te: 'The Sun returns to its exact natal sidereal longitude each year', bn: 'The Sun returns to its exact natal sidereal longitude each year', kn: 'The Sun returns to its exact natal sidereal longitude each year', gu: 'The Sun returns to its exact natal sidereal longitude each year' },
-      { en: 'The Moon returns to its natal position', hi: 'चन्द्रमा अपनी जन्मकालीन स्थिति पर लौटता है', sa: 'चन्द्रमा अपनी जन्मकालीन स्थिति पर लौटता है', mai: 'चन्द्रमा अपनी जन्मकालीन स्थिति पर लौटता है', mr: 'चन्द्रमा अपनी जन्मकालीन स्थिति पर लौटता है', ta: 'The Moon returns to its natal position', te: 'The Moon returns to its natal position', bn: 'The Moon returns to its natal position', kn: 'The Moon returns to its natal position', gu: 'The Moon returns to its natal position' },
-      { en: 'The birthday falls on the calendar', hi: 'कैलेंडर पर जन्मदिन आता है', sa: 'कैलेंडर पर जन्मदिन आता है', mai: 'कैलेंडर पर जन्मदिन आता है', mr: 'कैलेंडर पर जन्मदिन आता है', ta: 'The birthday falls on the calendar', te: 'The birthday falls on the calendar', bn: 'The birthday falls on the calendar', kn: 'The birthday falls on the calendar', gu: 'The birthday falls on the calendar' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Varshaphal (also called Solar Return) is cast for the precise astronomical moment when the transiting Sun reaches the exact sidereal longitude it occupied at birth. This may not fall on the calendar birthday — it can differ by a day or two due to the Sun\'s variable speed.',
-      hi: 'वर्षफल (सौर प्रत्यावर्तन भी कहलाता है) उस सटीक खगोलीय क्षण के लिए बनाया जाता है जब गोचरी सूर्य जन्म के समय की अपनी सटीक निरयन देशान्तर तक पहुँचता है। यह कैलेंडर जन्मदिन पर नहीं पड़ सकता — सूर्य की परिवर्तनशील गति के कारण एक-दो दिन का अन्तर हो सकता है।',
-    },
-  },
-  {
-    id: 'q15_4_02', type: 'mcq',
-    question: {
-      en: 'The Tajika system in Varshaphal has its origins in:',
-      hi: 'वर्षफल में ताजिक पद्धति का मूल कहाँ है?',
-    },
-    options: [
-      { en: 'Pure Vedic tradition from the Rigveda', hi: 'ऋग्वेद से शुद्ध वैदिक परम्परा', sa: 'ऋग्वेद से शुद्ध वैदिक परम्परा', mai: 'ऋग्वेद से शुद्ध वैदिक परम्परा', mr: 'ऋग्वेद से शुद्ध वैदिक परम्परा', ta: 'Pure Vedic tradition from the Rigveda', te: 'Pure Vedic tradition from the Rigveda', bn: 'Pure Vedic tradition from the Rigveda', kn: 'Pure Vedic tradition from the Rigveda', gu: 'Pure Vedic tradition from the Rigveda' },
-      { en: 'Perso-Arabic astrological influences that were integrated into Indian astrology', hi: 'फ़ारसी-अरबी ज्योतिषीय प्रभाव जो भारतीय ज्योतिष में समाहित किए गए', sa: 'फ़ारसी-अरबी ज्योतिषीय प्रभाव जो भारतीय ज्योतिष में समाहित किए गए', mai: 'फ़ारसी-अरबी ज्योतिषीय प्रभाव जो भारतीय ज्योतिष में समाहित किए गए', mr: 'फ़ारसी-अरबी ज्योतिषीय प्रभाव जो भारतीय ज्योतिष में समाहित किए गए', ta: 'Perso-Arabic astrological influences that were integrated into Indian astrology', te: 'Perso-Arabic astrological influences that were integrated into Indian astrology', bn: 'Perso-Arabic astrological influences that were integrated into Indian astrology', kn: 'Perso-Arabic astrological influences that were integrated into Indian astrology', gu: 'Perso-Arabic astrological influences that were integrated into Indian astrology' },
-      { en: 'Chinese astrology', hi: 'चीनी ज्योतिष', sa: 'चीनी ज्योतिष', mai: 'चीनी ज्योतिष', mr: 'चीनी ज्योतिष', ta: 'Chinese astrology', te: 'Chinese astrology', bn: 'Chinese astrology', kn: 'Chinese astrology', gu: 'Chinese astrology' },
-      { en: 'Greek Ptolemaic astrology only', hi: 'केवल यूनानी टोलेमिक ज्योतिष', sa: 'केवल यूनानी टोलेमिक ज्योतिष', mai: 'केवल यूनानी टोलेमिक ज्योतिष', mr: 'केवल यूनानी टोलेमिक ज्योतिष', ta: 'Greek Ptolemaic astrology only', te: 'Greek Ptolemaic astrology only', bn: 'Greek Ptolemaic astrology only', kn: 'Greek Ptolemaic astrology only', gu: 'Greek Ptolemaic astrology only' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Tajika system entered Indian astrology through Perso-Arabic channels during medieval times (approximately 13th-14th century CE). Neelakantha\'s "Tajika Neelakanthi" formalized these techniques within the Indian framework. Tajika yogas use aspect-based analysis different from classical Parashari methods.',
-      hi: 'ताजिक पद्धति मध्यकाल (लगभग 13वीं-14वीं शताब्दी ई.) में फ़ारसी-अरबी माध्यमों से भारतीय ज्योतिष में प्रवेश की। नीलकण्ठ की "ताजिक नीलकण्ठी" ने इन तकनीकों को भारतीय ढाँचे में औपचारिक किया। ताजिक योग शास्त्रीय पाराशरी विधियों से भिन्न दृष्टि-आधारित विश्लेषण का प्रयोग करते हैं।',
-    },
-  },
-  {
-    id: 'q15_4_03', type: 'true_false',
-    question: {
-      en: 'Muntha is a progressed point in Varshaphal that advances exactly one sign (30 degrees) per year from the natal Lagna.',
-      hi: 'मुन्था वर्षफल में एक प्रगतिशील बिन्दु है जो जन्म लग्न से प्रतिवर्ष ठीक एक राशि (30 अंश) आगे बढ़ता है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Muntha starts at the natal Lagna (age 0) and progresses one sign per year. At age 12, it returns to the natal Lagna. The house placement of Muntha in the Varshaphal chart and its lord\'s condition indicate the general fortune for that year.',
-      hi: 'सत्य। मुन्था जन्म लग्न (आयु 0) से आरम्भ होता है और प्रतिवर्ष एक राशि आगे बढ़ता है। 12 वर्ष की आयु में यह जन्म लग्न पर लौटता है। वर्षफल कुण्डली में मुन्था की भाव स्थिति और उसके स्वामी की दशा उस वर्ष के सामान्य भाग्य का संकेत देती है।',
-    },
-  },
-  {
-    id: 'q15_4_04', type: 'mcq',
-    question: {
-      en: 'What does Ithasala yoga in Tajika signify?',
-      hi: 'ताजिक में इत्थसाल योग क्या दर्शाता है?',
-    },
-    options: [
-      { en: 'An event that was possible but has passed (separating aspect)', hi: 'एक घटना जो सम्भव थी परन्तु बीत गई (पृथक्करण दृष्टि)', sa: 'एक घटना जो सम्भव थी परन्तु बीत गई (पृथक्करण दृष्टि)', mai: 'एक घटना जो सम्भव थी परन्तु बीत गई (पृथक्करण दृष्टि)', mr: 'एक घटना जो सम्भव थी परन्तु बीत गई (पृथक्करण दृष्टि)', ta: 'An event that was possible but has passed (separating aspect)', te: 'An event that was possible but has passed (separating aspect)', bn: 'An event that was possible but has passed (separating aspect)', kn: 'An event that was possible but has passed (separating aspect)', gu: 'An event that was possible but has passed (separating aspect)' },
-      { en: 'An event will happen — two planets are in applying aspect', hi: 'घटना होगी — दो ग्रह अनुप्रयुक्त दृष्टि में हैं', sa: 'घटना होगी — दो ग्रह अनुप्रयुक्त दृष्टि में हैं', mai: 'घटना होगी — दो ग्रह अनुप्रयुक्त दृष्टि में हैं', mr: 'घटना होगी — दो ग्रह अनुप्रयुक्त दृष्टि में हैं', ta: 'An event will happen — two planets are in applying aspect', te: 'An event will happen — two planets are in applying aspect', bn: 'An event will happen — two planets are in applying aspect', kn: 'An event will happen — two planets are in applying aspect', gu: 'An event will happen — two planets are in applying aspect' },
-      { en: 'Transfer of light between planets', hi: 'ग्रहों के बीच प्रकाश का हस्तान्तरण', sa: 'ग्रहों के बीच प्रकाश का हस्तान्तरण', mai: 'ग्रहों के बीच प्रकाश का हस्तान्तरण', mr: 'ग्रहों के बीच प्रकाश का हस्तान्तरण', ta: 'Transfer of light between planets', te: 'Transfer of light between planets', bn: 'Transfer of light between planets', kn: 'Transfer of light between planets', gu: 'Transfer of light between planets' },
-      { en: 'Prohibition of an event by a third planet', hi: 'तीसरे ग्रह द्वारा घटना का निषेध', sa: 'तीसरे ग्रह द्वारा घटना का निषेध', mai: 'तीसरे ग्रह द्वारा घटना का निषेध', mr: 'तीसरे ग्रह द्वारा घटना का निषेध', ta: 'Prohibition of an event by a third planet', te: 'Prohibition of an event by a third planet', bn: 'Prohibition of an event by a third planet', kn: 'Prohibition of an event by a third planet', gu: 'Prohibition of an event by a third planet' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Ithasala (applying aspect) is the most important Tajika yoga. When the significator of a question (faster planet) is applying to an aspect with the planet signifying the desired outcome (slower planet), the event WILL happen. The closer they are to exactitude, the sooner the result.',
-      hi: 'इत्थसाल (अनुप्रयुक्त दृष्टि) सबसे महत्त्वपूर्ण ताजिक योग है। जब प्रश्न का सूचक (तीव्र ग्रह) वांछित परिणाम के सूचक ग्रह (धीमा ग्रह) के साथ दृष्टि की ओर बढ़ रहा है, तो घटना होगी। वे सटीकता के जितने निकट हैं, परिणाम उतना ही शीघ्र।',
-    },
-  },
-  {
-    id: 'q15_4_05', type: 'mcq',
-    question: {
-      en: 'In the KP (Krishnamurti Paddhati) system, which house system is used instead of the Vedic equal-house system?',
-      hi: 'के.पी. (कृष्णमूर्ति पद्धति) में वैदिक समभाव पद्धति के स्थान पर कौन-सी भाव पद्धति प्रयुक्त होती है?',
-    },
-    options: [
-      { en: 'Whole sign houses', hi: 'सम्पूर्ण राशि भाव', sa: 'सम्पूर्ण राशि भाव', mai: 'सम्पूर्ण राशि भाव', mr: 'सम्पूर्ण राशि भाव', ta: 'Whole sign houses', te: 'Whole sign houses', bn: 'Whole sign houses', kn: 'Whole sign houses', gu: 'Whole sign houses' },
-      { en: 'Placidus house system', hi: 'प्लेसिडस भाव पद्धति', sa: 'प्लेसिडस भाव पद्धति', mai: 'प्लेसिडस भाव पद्धति', mr: 'प्लेसिडस भाव पद्धति', ta: 'Placidus house system', te: 'Placidus house system', bn: 'Placidus house system', kn: 'Placidus house system', gu: 'Placidus house system' },
-      { en: 'Koch house system', hi: 'कोख भाव पद्धति', sa: 'कोख भाव पद्धति', mai: 'कोख भाव पद्धति', mr: 'कोख भाव पद्धति', ta: 'Koch house system', te: 'Koch house system', bn: 'Koch house system', kn: 'Koch house system', gu: 'Koch house system' },
-      { en: 'Campanus house system', hi: 'कैम्पनस भाव पद्धति', sa: 'कैम्पनस भाव पद्धति', mai: 'कैम्पनस भाव पद्धति', mr: 'कैम्पनस भाव पद्धति', ta: 'Campanus house system', te: 'Campanus house system', bn: 'Campanus house system', kn: 'Campanus house system', gu: 'Campanus house system' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'KP uses the Placidus house system, which produces unequal house sizes based on the geographic latitude of birth. This is a major departure from traditional Vedic astrology which uses equal houses (each house = 30 degrees). The unequal houses create more nuanced cusp positions.',
-      hi: 'के.पी. प्लेसिडस भाव पद्धति का प्रयोग करती है, जो जन्म के भौगोलिक अक्षांश के आधार पर असमान भाव आकार उत्पन्न करती है। यह पारम्परिक वैदिक ज्योतिष से एक प्रमुख विचलन है जो समान भाव (प्रत्येक भाव = 30 अंश) प्रयोग करती है। असमान भाव अधिक सूक्ष्म भावमुख स्थितियाँ बनाते हैं।',
-    },
-  },
-  {
-    id: 'q15_4_06', type: 'mcq',
-    question: {
-      en: 'In KP astrology, each cusp has three levels of lordship. What are they?',
-      hi: 'के.पी. ज्योतिष में प्रत्येक भावमुख के तीन स्तरीय स्वामित्व होते हैं। वे कौन-से हैं?',
-    },
-    options: [
-      { en: 'Sun lord, Moon lord, Ascendant lord', hi: 'सूर्य स्वामी, चन्द्र स्वामी, लग्न स्वामी', sa: 'सूर्य स्वामी, चन्द्र स्वामी, लग्न स्वामी', mai: 'सूर्य स्वामी, चन्द्र स्वामी, लग्न स्वामी', mr: 'सूर्य स्वामी, चन्द्र स्वामी, लग्न स्वामी', ta: 'Sun lord, Moon lord, Ascendant lord', te: 'Sun lord, Moon lord, Ascendant lord', bn: 'Sun lord, Moon lord, Ascendant lord', kn: 'Sun lord, Moon lord, Ascendant lord', gu: 'Sun lord, Moon lord, Ascendant lord' },
-      { en: 'Sign Lord, Star Lord, and Sub Lord', hi: 'राशि स्वामी, नक्षत्र स्वामी और उप स्वामी', sa: 'राशि स्वामी, नक्षत्र स्वामी और उप स्वामी', mai: 'राशि स्वामी, नक्षत्र स्वामी और उप स्वामी', mr: 'राशि स्वामी, नक्षत्र स्वामी और उप स्वामी', ta: 'Sign Lord, Star Lord, and Sub Lord', te: 'Sign Lord, Star Lord, and Sub Lord', bn: 'Sign Lord, Star Lord, and Sub Lord', kn: 'Sign Lord, Star Lord, and Sub Lord', gu: 'Sign Lord, Star Lord, and Sub Lord' },
-      { en: 'Dasha lord, Bhukti lord, Antara lord', hi: 'दशा स्वामी, भुक्ति स्वामी, अन्तरा स्वामी', sa: 'दशा स्वामी, भुक्ति स्वामी, अन्तरा स्वामी', mai: 'दशा स्वामी, भुक्ति स्वामी, अन्तरा स्वामी', mr: 'दशा स्वामी, भुक्ति स्वामी, अन्तरा स्वामी', ta: 'Dasha lord, Bhukti lord, Antara lord', te: 'Dasha lord, Bhukti lord, Antara lord', bn: 'Dasha lord, Bhukti lord, Antara lord', kn: 'Dasha lord, Bhukti lord, Antara lord', gu: 'Dasha lord, Bhukti lord, Antara lord' },
-      { en: 'Day lord, Hora lord, Yoga lord', hi: 'वार स्वामी, होरा स्वामी, योग स्वामी', sa: 'वार स्वामी, होरा स्वामी, योग स्वामी', mai: 'वार स्वामी, होरा स्वामी, योग स्वामी', mr: 'वार स्वामी, होरा स्वामी, योग स्वामी', ta: 'Day lord, Hora lord, Yoga lord', te: 'Day lord, Hora lord, Yoga lord', bn: 'Day lord, Hora lord, Yoga lord', kn: 'Day lord, Hora lord, Yoga lord', gu: 'Day lord, Hora lord, Yoga lord' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Every cusp in KP has a Sign Lord (the rashi it falls in), a Star Lord (the nakshatra it falls in), and a Sub Lord (a further subdivision of the nakshatra). The Sub Lord is the decisive factor — KP\'s unique contribution is that the Sub Lord determines whether a house\'s signification will actually manifest.',
-      hi: 'के.पी. में प्रत्येक भावमुख का एक राशि स्वामी (जिस राशि में पड़ता है), नक्षत्र स्वामी (जिस नक्षत्र में पड़ता है), और उप स्वामी (नक्षत्र का आगे उपविभाजन) होता है। उप स्वामी निर्णायक कारक है — के.पी. का अनूठा योगदान यह है कि उप स्वामी निर्धारित करता है कि किसी भाव का फलादेश वास्तव में प्रकट होगा या नहीं।',
-    },
-  },
-  {
-    id: 'q15_4_07', type: 'true_false',
-    question: {
-      en: 'The KP system uses a table of 249 sub-lord divisions that subdivide each nakshatra based on Vimshottari Dasha proportions.',
-      hi: 'के.पी. पद्धति 249 उप-स्वामी विभाजनों की एक सारणी का प्रयोग करती है जो विंशोत्तरी दशा अनुपातों के आधार पर प्रत्येक नक्षत्र को उपविभाजित करती है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. The 249 sub-lord table is KP\'s signature innovation. Each nakshatra (13°20\') is divided into 9 sub-divisions in the same proportion as the Vimshottari Dasha periods (Ketu 7, Venus 20, Sun 6, Moon 10, Mars 7, Rahu 18, Jupiter 16, Saturn 19, Mercury 17 years). 27 nakshatras x 9 sub-divisions = 243 + 6 extra for boundary adjustments = 249.',
-      hi: 'सत्य। 249 उप-स्वामी सारणी के.पी. का विशिष्ट नवाचार है। प्रत्येक नक्षत्र (13°20\') को विंशोत्तरी दशा अवधि (केतु 7, शुक्र 20, सूर्य 6, चन्द्र 10, मंगल 7, राहु 18, गुरु 16, शनि 19, बुध 17 वर्ष) के समान अनुपात में 9 उपविभाजनों में बाँटा गया है। 27 नक्षत्र x 9 उपविभाजन = 243 + सीमा समायोजन के लिए 6 अतिरिक्त = 249।',
-    },
-  },
-  {
-    id: 'q15_4_08', type: 'mcq',
-    question: {
-      en: 'What is the Varsheshvara (Year Lord) in Varshaphal?',
-      hi: 'वर्षफल में वर्षेश्वर (वर्ष स्वामी) क्या है?',
-    },
-    options: [
-      { en: 'The Sun, because Varshaphal is a Solar Return', hi: 'सूर्य, क्योंकि वर्षफल सौर प्रत्यावर्तन है', sa: 'सूर्य, क्योंकि वर्षफल सौर प्रत्यावर्तन है', mai: 'सूर्य, क्योंकि वर्षफल सौर प्रत्यावर्तन है', mr: 'सूर्य, क्योंकि वर्षफल सौर प्रत्यावर्तन है', ta: 'The Sun, because Varshaphal is a Solar Return', te: 'The Sun, because Varshaphal is a Solar Return', bn: 'The Sun, because Varshaphal is a Solar Return', kn: 'The Sun, because Varshaphal is a Solar Return', gu: 'The Sun, because Varshaphal is a Solar Return' },
-      { en: 'The planet that rules the day of the week on which the solar return falls', hi: 'वह ग्रह जो सौर प्रत्यावर्तन वाले सप्ताह के दिन का स्वामी है', sa: 'वह ग्रह जो सौर प्रत्यावर्तन वाले सप्ताह के दिन का स्वामी है', mai: 'वह ग्रह जो सौर प्रत्यावर्तन वाले सप्ताह के दिन का स्वामी है', mr: 'वह ग्रह जो सौर प्रत्यावर्तन वाले सप्ताह के दिन का स्वामी है', ta: 'The planet that rules the day of the week on which the solar return falls', te: 'The planet that rules the day of the week on which the solar return falls', bn: 'The planet that rules the day of the week on which the solar return falls', kn: 'The planet that rules the day of the week on which the solar return falls', gu: 'The planet that rules the day of the week on which the solar return falls' },
-      { en: 'Always Jupiter', hi: 'सदैव बृहस्पति', sa: 'सदैव बृहस्पति', mai: 'सदैव बृहस्पति', mr: 'सदैव बृहस्पति', ta: 'Always Jupiter', te: 'Always Jupiter', bn: 'Always Jupiter', kn: 'Always Jupiter', gu: 'Always Jupiter' },
-      { en: 'The natal lagna lord', hi: 'जन्म लग्नेश', sa: 'जन्म लग्नेश', mai: 'जन्म लग्नेश', mr: 'जन्म लग्नेश', ta: 'The natal lagna lord', te: 'The natal lagna lord', bn: 'The natal lagna lord', kn: 'The natal lagna lord', gu: 'The natal lagna lord' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Varsheshvara is determined by a specific algorithm involving the weekday lord of the solar return moment, combined with the hora lord at that time. This planet becomes the overall significator for the year\'s events — its strength and placement color the entire annual experience.',
-      hi: 'वर्षेश्वर सौर प्रत्यावर्तन क्षण के वार स्वामी और उस समय के होरा स्वामी को संयुक्त करने वाले एक विशिष्ट एल्गोरिदम द्वारा निर्धारित होता है। यह ग्रह वर्ष की घटनाओं का समग्र सूचक बनता है — इसकी शक्ति और स्थिति सम्पूर्ण वार्षिक अनुभव को रंगती है।',
-    },
-  },
-  {
-    id: 'q15_4_09', type: 'mcq',
-    question: {
-      en: 'In KP, the "Ruling Planets" method is used for:',
-      hi: 'के.पी. में "शासक ग्रह" (Ruling Planets) विधि का प्रयोग किसके लिए होता है?',
-    },
-    options: [
-      { en: 'Determining the birth chart only', hi: 'केवल जन्म कुण्डली निर्धारण', sa: 'केवल जन्म कुण्डली निर्धारण', mai: 'केवल जन्म कुण्डली निर्धारण', mr: 'केवल जन्म कुण्डली निर्धारण', ta: 'Determining the birth chart only', te: 'Determining the birth chart only', bn: 'Determining the birth chart only', kn: 'Determining the birth chart only', gu: 'Determining the birth chart only' },
-      { en: 'Timing events — identifying when a signified event will actually manifest', hi: 'घटनाओं का समयनिर्धारण — पहचानना कि एक सूचित घटना वास्तव में कब प्रकट होगी', sa: 'घटनाओं का समयनिर्धारण — पहचानना कि एक सूचित घटना वास्तव में कब प्रकट होगी', mai: 'घटनाओं का समयनिर्धारण — पहचानना कि एक सूचित घटना वास्तव में कब प्रकट होगी', mr: 'घटनाओं का समयनिर्धारण — पहचानना कि एक सूचित घटना वास्तव में कब प्रकट होगी', ta: 'Timing events — identifying when a signified event will actually manifest', te: 'Timing events — identifying when a signified event will actually manifest', bn: 'Timing events — identifying when a signified event will actually manifest', kn: 'Timing events — identifying when a signified event will actually manifest', gu: 'Timing events — identifying when a signified event will actually manifest' },
-      { en: 'Choosing gemstones', hi: 'रत्न चयन', sa: 'रत्न चयन', mai: 'रत्न चयन', mr: 'रत्न चयन', ta: 'Choosing gemstones', te: 'Choosing gemstones', bn: 'Choosing gemstones', kn: 'Choosing gemstones', gu: 'Choosing gemstones' },
-      { en: 'Calculating ayanamsa', hi: 'अयनांश गणना', sa: 'अयनांश गणना', mai: 'अयनांश गणना', mr: 'अयनांश गणना', ta: 'Calculating ayanamsa', te: 'Calculating ayanamsa', bn: 'Calculating ayanamsa', kn: 'Calculating ayanamsa', gu: 'Calculating ayanamsa' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Ruling Planets method is KP\'s powerful timing technique. At the moment of judgment (horary or query), the Sign lord, Star lord, and Sub lord of the Ascendant and Moon are identified. Events will manifest when dasha/bhukti periods are running of planets that are among these ruling planets — creating a precise timing mechanism.',
-      hi: 'शासक ग्रह विधि के.पी. की शक्तिशाली समयनिर्धारण तकनीक है। निर्णय के क्षण (होरेरी या प्रश्न) पर लग्न और चन्द्रमा के राशि स्वामी, नक्षत्र स्वामी और उप स्वामी पहचाने जाते हैं। घटनाएँ तब प्रकट होंगी जब इन शासक ग्रहों में से किन्हीं की दशा/भुक्ति चल रही हो — एक सटीक समयनिर्धारण तन्त्र बनाता है।',
-    },
-  },
-  {
-    id: 'q15_4_10', type: 'true_false',
-    question: {
-      en: 'Sahams in Tajika Varshaphal are sensitive mathematical points (similar to Arabic Parts in Western astrology) calculated from specific planet positions.',
-      hi: 'ताजिक वर्षफल में सहम संवेदनशील गणितीय बिन्दु हैं (पश्चिमी ज्योतिष में अरबी भागों के समान) जो विशिष्ट ग्रह स्थितियों से गणित होते हैं।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Sahams are calculated as: Saham = Ascendant + Planet A - Planet B. The most important is Punya Saham (Fortune Saham) = Ascendant + Moon - Sun. Others include Vidya Saham (education), Vivaha Saham (marriage), Rog Saham (disease), etc. Each Saham\'s house placement and lord condition indicate that life area\'s prospects for the year.',
-      hi: 'सत्य। सहम इस प्रकार गणित होते हैं: सहम = लग्न + ग्रह A - ग्रह B। सबसे महत्त्वपूर्ण पुण्य सहम (भाग्य सहम) = लग्न + चन्द्र - सूर्य। अन्य में विद्या सहम (शिक्षा), विवाह सहम (विवाह), रोग सहम (रोग), आदि सम्मिलित हैं। प्रत्येक सहम की भाव स्थिति और स्वामी की दशा उस वर्ष उस जीवन क्षेत्र की सम्भावनाओं का संकेत देती है।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = (L.questions as unknown as ModuleQuestion[]);
 
 function Page1() {
   const locale = useModuleLocale();

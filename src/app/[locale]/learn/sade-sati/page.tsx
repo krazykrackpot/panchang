@@ -1,6 +1,8 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/sade-sati.json';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Moon, Clock, ShieldAlert, Heart, Sparkles, Star, AlertTriangle, CheckCircle, ArrowRight } from 'lucide-react';
@@ -9,58 +11,6 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-/* ── Inline trilingual labels ─────────────────────────────────────── */
-const L = {
-  title: { en: 'Sade Sati — Saturn\'s 7.5-Year Transit', hi: 'साढ़े साती — शनि का साढ़े सात वर्षीय गोचर', sa: 'साढेसाती — शनेः सार्धसप्तवर्षीयगोचरः' , ta: 'சாடே சாதி — சனியின் 7.5 ஆண்டு பயணம்' },
-  subtitle: {
-    en: 'Saturn\'s transit over your Moon sign is the most discussed period in Vedic astrology. Understanding its three phases — and why it affects each person differently — transforms fear into preparation.',
-    hi: 'आपकी चन्द्र राशि पर शनि का गोचर वैदिक ज्योतिष में सबसे अधिक चर्चित अवधि है। इसके तीन चरणों को समझना — और यह प्रत्येक व्यक्ति को अलग-अलग क्यों प्रभावित करता है — भय को तैयारी में बदल देता है।',
-    sa: 'चन्द्रराशौ शनेः गोचरः वैदिकज्योतिषे सर्वाधिकचर्चिता अवधिः। तस्य त्रयाणां चरणानाम् अवगमनं भयं सज्जतायां परिवर्तयति।'
-  },
-  whatTitle: { en: 'What is Sade Sati?', hi: 'साढ़े साती क्या है?', sa: 'साढेसाती का?' },
-  whatContent: {
-    en: '"Sade Sati" literally means "seven and a half" in Hindi — referring to the approximately 7.5 years Saturn takes to transit through three consecutive signs: the 12th from your Moon sign, your Moon sign itself, and the 2nd from your Moon sign. Since Saturn spends roughly 2.5 years in each sign, the total transit spans about 7.5 years.',
-    hi: '"साढ़े साती" का शाब्दिक अर्थ है "साढ़े सात" — यह लगभग 7.5 वर्षों को संदर्भित करता है जो शनि को तीन क्रमिक राशियों से गुज़रने में लगते हैं: आपकी चन्द्र राशि से 12वीं, स्वयं आपकी चन्द्र राशि, और आपकी चन्द्र राशि से 2री। चूँकि शनि प्रत्येक राशि में लगभग 2.5 वर्ष बिताता है, कुल गोचर लगभग 7.5 वर्ष का होता है।',
-    sa: '"साढेसाती" इत्यस्य शाब्दिकार्थः "सार्धसप्त" — प्रायः 7.5 वर्षान् सूचयति यान् शनिः चन्द्रराशेः 12 तमे, स्वयं चन्द्रराश्यां, चन्द्रराशेः 2 तमे च गोचरन् व्यतीतयति।'
-  },
-  whatContent2: {
-    en: 'The Moon represents the mind (Manas) in Vedic astrology. When Saturn — the planet of discipline, restriction, karma, and hard lessons — transits over the Moon, it directly pressures your mental and emotional state. This is not random suffering — it is a structured period of karmic acceleration where Saturn forces you to confront unresolved issues.',
-    hi: 'वैदिक ज्योतिष में चन्द्र मन (मानस) का प्रतिनिधित्व करता है। जब शनि — अनुशासन, प्रतिबन्ध, कर्म और कठिन सबक का ग्रह — चन्द्र पर गोचर करता है, तो यह सीधे आपकी मानसिक और भावनात्मक स्थिति पर दबाव डालता है। यह यादृच्छिक कष्ट नहीं है — यह कार्मिक त्वरण की संरचित अवधि है।',
-    sa: 'वैदिकज्योतिषे चन्द्रः मनसः (मानसस्य) प्रतिनिधिः। यदा शनिः — अनुशासनस्य कर्मणः कठिनपाठानां च ग्रहः — चन्द्रं गोचरति, मानसिकभावनात्मकस्थितौ सीधा दबावं करोति।'
-  },
-  phasesTitle: { en: 'The Three Phases', hi: 'तीन चरण', sa: 'त्रयः चरणाः' },
-  phasesContent: {
-    en: 'Sade Sati unfolds in three distinct phases, each lasting approximately 2.5 years. Each phase challenges a different dimension of life.',
-    hi: 'साढ़े साती तीन विशिष्ट चरणों में प्रकट होती है, प्रत्येक लगभग 2.5 वर्ष का। प्रत्येक चरण जीवन के एक अलग आयाम को चुनौती देता है।',
-    sa: 'साढेसाती त्रिषु विशिष्टचरणेषु प्रकटति, प्रत्येकं प्रायः 2.5 वर्षस्य। प्रत्येकचरणः जीवनस्य भिन्नम् आयामं चुनौतयति।'
-  },
-  severityTitle: { en: 'How Severe is YOUR Sade Sati?', hi: 'आपकी साढ़े साती कितनी कठिन है?', sa: 'भवतः साढेसाती कियती कठिना?' },
-  severityContent: {
-    en: 'Not all Sade Satis are equal. The severity depends on multiple factors in your natal chart. Some people thrive during Sade Sati — they build empires, gain wisdom, and achieve lasting success. Others struggle. The difference lies in the birth chart configuration.',
-    hi: 'सभी साढ़े साती समान नहीं होतीं। गम्भीरता आपकी जन्म कुण्डली के कई कारकों पर निर्भर करती है। कुछ लोग साढ़े साती में फलते-फूलते हैं — वे साम्राज्य बनाते हैं, ज्ञान प्राप्त करते हैं। अन्तर जन्म कुण्डली विन्यास में है।',
-    sa: 'सर्वाः साढेसात्यः न समानाः। गाम्भीर्यं जन्मकुण्डल्याः अनेकेषु कारकेषु निर्भरति।'
-  },
-  lifeCycleTitle: { en: 'Life Cycle Patterns', hi: 'जीवन चक्र प्रतिरूप', sa: 'जीवनचक्रप्रतिरूपाणि' },
-  lifeCycleContent: {
-    en: 'Most people experience 2-3 Sade Satis in a lifetime (Saturn\'s orbit is ~29.5 years, so the cycle repeats roughly every 30 years). Each occurrence corresponds to a major life transition.',
-    hi: 'अधिकांश लोग जीवनकाल में 2-3 साढ़े साती अनुभव करते हैं (शनि की कक्षा ~29.5 वर्ष है, इसलिए चक्र लगभग हर 30 वर्ष में दोहराता है)। प्रत्येक घटना एक बड़े जीवन परिवर्तन से मेल खाती है।',
-    sa: 'अधिकांशाः जनाः जीवनकाले 2-3 साढेसातीः अनुभवन्ति (शनेः कक्षा ~29.5 वर्षाः)। प्रत्येकं घटना महत्जीवनपरिवर्तनेन सह मेलति।'
-  },
-  remediesTitle: { en: 'Remedies & Mitigation', hi: 'उपाय एवं शमन', sa: 'उपायाः शमनं च' },
-  remediesContent: {
-    en: 'Traditional remedies for Sade Sati are designed to align your actions with Saturn\'s principles: discipline, service, and karmic responsibility. Saturn rewards those who work with its energy rather than against it.',
-    hi: 'साढ़े साती के पारंपरिक उपाय आपके कार्यों को शनि के सिद्धान्तों के अनुरूप बनाने के लिए हैं: अनुशासन, सेवा और कार्मिक उत्तरदायित्व। शनि उन्हें पुरस्कृत करता है जो उसकी ऊर्जा के साथ कार्य करते हैं, उसके विरुद्ध नहीं।',
-    sa: 'साढेसात्याः पारम्परिकोपायाः कर्माणि शनेः सिद्धान्तैः सह संरेखयितुं निर्मिताः: अनुशासनं, सेवा, कार्मिकोत्तरदायित्वं च।'
-  },
-  mythsTitle: { en: 'Myths Debunked', hi: 'मिथक खंडन', sa: 'मिथकखण्डनम्' },
-  mythsContent: {
-    en: 'Fear-mongering about Sade Sati has been a staple of commercial astrology for centuries. Let us separate fact from fiction.',
-    hi: 'साढ़े साती के बारे में भय फैलाना सदियों से व्यावसायिक ज्योतिष का मुख्य आधार रहा है। आइए तथ्य और कल्पना को अलग करें।',
-    sa: 'साढेसात्याः विषये भयप्रसारणं शताब्दीभ्यः वाणिज्यज्योतिषस्य प्रधानम् आधारम्। तथ्यं कल्पनां च पृथक्कुर्मः।'
-  },
-  famousTitle: { en: 'Famous People Who Thrived During Sade Sati', hi: 'साढ़े साती में सफल प्रसिद्ध व्यक्ति', sa: 'साढेसात्यां सफलाः प्रसिद्धजनाः' },
-  crossRefTitle: { en: 'Related Topics', hi: 'सम्बन्धित विषय', sa: 'सम्बद्धविषयाः' },
-};
 
 /* ── Three phases data ────────────────────────────────────────────── */
 const PHASES = [
@@ -173,6 +123,7 @@ const CROSS_REFS = [
 /* ── Page component ───────────────────────────────────────────────── */
 export default function SadeSatiLearnPage() {
   const locale = useLocale() as Locale;
+  const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
   const loc = isDevanagariLocale(locale) ? 'hi' as const : 'en' as const;
 
   return (
@@ -191,17 +142,17 @@ export default function SadeSatiLearnPage() {
           className="text-3xl sm:text-4xl md:text-5xl font-bold text-gold-gradient mb-4"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
-          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
+          {t('title')}
         </h1>
         <p className="text-text-secondary max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
-          {((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}
+          {t('subtitle')}
         </p>
       </motion.div>
 
       {/* ── Section 1: What is Sade Sati? ─────────────────────────── */}
-      <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}>
-        <p>{((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}</p>
-        <p>{((L.whatContent2 as Record<string, string>)[locale] ?? L.whatContent2.en)}</p>
+      <LessonSection number={1} title={t('whatTitle')}>
+        <p>{t('whatContent')}</p>
+        <p>{t('whatContent2')}</p>
 
         {/* Visual timeline */}
         <div className="mt-6 p-4 rounded-xl bg-bg-primary/40 border border-gold-primary/10">
@@ -235,8 +186,8 @@ export default function SadeSatiLearnPage() {
       </LessonSection>
 
       {/* ── Section 2: The Three Phases ────────────────────────────── */}
-      <LessonSection number={2} title={((L.phasesTitle as Record<string, string>)[locale] ?? L.phasesTitle.en)}>
-        <p>{((L.phasesContent as Record<string, string>)[locale] ?? L.phasesContent.en)}</p>
+      <LessonSection number={2} title={t('phasesTitle')}>
+        <p>{t('phasesContent')}</p>
 
         <div className="mt-6 space-y-4">
           {PHASES.map((phase, i) => (
@@ -256,15 +207,15 @@ export default function SadeSatiLearnPage() {
                   {phase.num}
                 </div>
                 <div>
-                  <h4 className="text-gold-light font-semibold">{tl(phase.name, locale)}</h4>
-                  <span className="text-text-secondary/70 text-xs font-mono">{tl(phase.transit, locale)}</span>
+                  <h4 className="text-gold-light font-semibold">{lt(phase.name as LocaleText, locale)}</h4>
+                  <span className="text-text-secondary/70 text-xs font-mono">{lt(phase.transit as LocaleText, locale)}</span>
                 </div>
               </div>
-              <p className="text-text-secondary text-sm mb-3 leading-relaxed">{tl(phase.themes, locale)}</p>
+              <p className="text-text-secondary text-sm mb-3 leading-relaxed">{lt(phase.themes as LocaleText, locale)}</p>
               <div className="p-3 rounded-lg bg-gold-primary/5 border border-gold-primary/10">
                 <p className="text-gold-light/80 text-sm">
                   <span className="font-semibold">{!isDevanagariLocale(locale) ? 'Advice: ' : 'सलाह: '}</span>
-                  {tl(phase.advice, locale)}
+                  {lt(phase.advice as LocaleText, locale)}
                 </p>
               </div>
             </motion.div>
@@ -273,8 +224,8 @@ export default function SadeSatiLearnPage() {
       </LessonSection>
 
       {/* ── Section 3: Severity ────────────────────────────────────── */}
-      <LessonSection number={3} title={((L.severityTitle as Record<string, string>)[locale] ?? L.severityTitle.en)}>
-        <p>{((L.severityContent as Record<string, string>)[locale] ?? L.severityContent.en)}</p>
+      <LessonSection number={3} title={t('severityTitle')}>
+        <p>{t('severityContent')}</p>
 
         <div className="mt-6 overflow-x-auto">
           <table className="w-full text-sm border-collapse">
@@ -295,9 +246,9 @@ export default function SadeSatiLearnPage() {
                   transition={{ delay: i * 0.06 }}
                   className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors"
                 >
-                  <td className="py-3 px-3 text-gold-primary/80 font-medium">{tl(row.factor, locale)}</td>
-                  <td className="py-3 px-3 text-emerald-300/70">{tl(row.mild, locale)}</td>
-                  <td className="py-3 px-3 text-red-300/70">{tl(row.severe, locale)}</td>
+                  <td className="py-3 px-3 text-gold-primary/80 font-medium">{lt(row.factor as LocaleText, locale)}</td>
+                  <td className="py-3 px-3 text-emerald-300/70">{lt(row.mild as LocaleText, locale)}</td>
+                  <td className="py-3 px-3 text-red-300/70">{lt(row.severe as LocaleText, locale)}</td>
                 </motion.tr>
               ))}
             </tbody>
@@ -306,8 +257,8 @@ export default function SadeSatiLearnPage() {
       </LessonSection>
 
       {/* ── Section 4: Life Cycle Patterns ─────────────────────────── */}
-      <LessonSection number={4} title={((L.lifeCycleTitle as Record<string, string>)[locale] ?? L.lifeCycleTitle.en)}>
-        <p>{((L.lifeCycleContent as Record<string, string>)[locale] ?? L.lifeCycleContent.en)}</p>
+      <LessonSection number={4} title={t('lifeCycleTitle')}>
+        <p>{t('lifeCycleContent')}</p>
 
         <div className="mt-6 space-y-4">
           {LIFE_CYCLES.map((lc, i) => (
@@ -321,8 +272,8 @@ export default function SadeSatiLearnPage() {
             >
               <Clock className="w-5 h-5 text-gold-primary flex-shrink-0 mt-0.5" />
               <div>
-                <h4 className="text-gold-light font-semibold text-sm mb-1">{tl(lc.cycle, locale)}</h4>
-                <p className="text-text-secondary text-sm leading-relaxed">{tl(lc.theme, locale)}</p>
+                <h4 className="text-gold-light font-semibold text-sm mb-1">{lt(lc.cycle as LocaleText, locale)}</h4>
+                <p className="text-text-secondary text-sm leading-relaxed">{lt(lc.theme as LocaleText, locale)}</p>
               </div>
             </motion.div>
           ))}
@@ -330,8 +281,8 @@ export default function SadeSatiLearnPage() {
       </LessonSection>
 
       {/* ── Section 5: Remedies ────────────────────────────────────── */}
-      <LessonSection number={5} title={((L.remediesTitle as Record<string, string>)[locale] ?? L.remediesTitle.en)}>
-        <p>{((L.remediesContent as Record<string, string>)[locale] ?? L.remediesContent.en)}</p>
+      <LessonSection number={5} title={t('remediesTitle')}>
+        <p>{t('remediesContent')}</p>
 
         <div className="mt-6 space-y-4">
           {REMEDIES.map((rem, i) => (
@@ -350,8 +301,8 @@ export default function SadeSatiLearnPage() {
                   rem.icon === AlertTriangle ? 'text-amber-400' : 'text-gold-primary'
                 }`} />
                 <div>
-                  <h4 className="text-gold-light font-semibold text-sm mb-1">{tl(rem.name, locale)}</h4>
-                  <p className="text-text-secondary text-sm leading-relaxed">{tl(rem.desc, locale)}</p>
+                  <h4 className="text-gold-light font-semibold text-sm mb-1">{lt(rem.name as LocaleText, locale)}</h4>
+                  <p className="text-text-secondary text-sm leading-relaxed">{lt(rem.desc as LocaleText, locale)}</p>
                 </div>
               </div>
             </motion.div>
@@ -360,8 +311,8 @@ export default function SadeSatiLearnPage() {
       </LessonSection>
 
       {/* ── Section 6: Myths Debunked ─────────────────────────────── */}
-      <LessonSection number={6} title={((L.mythsTitle as Record<string, string>)[locale] ?? L.mythsTitle.en)}>
-        <p>{((L.mythsContent as Record<string, string>)[locale] ?? L.mythsContent.en)}</p>
+      <LessonSection number={6} title={t('mythsTitle')}>
+        <p>{t('mythsContent')}</p>
 
         <div className="mt-6 space-y-4">
           {MYTHS.map((m, i) => (
@@ -383,16 +334,16 @@ export default function SadeSatiLearnPage() {
                 ) : (
                   <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
                 )}
-                <h4 className="text-gold-light font-semibold text-sm">{tl(m.myth, locale)}</h4>
+                <h4 className="text-gold-light font-semibold text-sm">{lt(m.myth as LocaleText, locale)}</h4>
               </div>
-              <p className="text-text-secondary text-sm leading-relaxed ml-7">{tl(m.truth, locale)}</p>
+              <p className="text-text-secondary text-sm leading-relaxed ml-7">{lt(m.truth as LocaleText, locale)}</p>
             </motion.div>
           ))}
         </div>
       </LessonSection>
 
       {/* ── Section 7: Cross References ───────────────────────────── */}
-      <LessonSection number={7} title={((L.crossRefTitle as Record<string, string>)[locale] ?? L.crossRefTitle.en)}>
+      <LessonSection number={7} title={t('crossRefTitle')}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {CROSS_REFS.map((ref) => (
             <Link

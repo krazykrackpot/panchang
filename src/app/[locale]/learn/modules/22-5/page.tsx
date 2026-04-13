@@ -2,21 +2,16 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/22-5.json';
 
 const META: ModuleMeta = {
   id: 'mod_22_5', phase: 9, topic: 'Astronomy', moduleNumber: '22.5',
-  title: { en: 'Moonrise — Parallax, Latitude & Binary Search', hi: 'चन्द्रोदय — लम्बन, अक्षांश एवं द्विआधारी खोज', sa: 'चन्द्रोदय — लम्बन, अक्षांश एवं द्विआधारी खोज', mai: 'चन्द्रोदय — लम्बन, अक्षांश एवं द्विआधारी खोज', mr: 'चन्द्रोदय — लम्बन, अक्षांश एवं द्विआधारी खोज', ta: 'Moonrise — Parallax, Latitude & Binary Search', te: 'Moonrise — Parallax, Latitude & Binary Search', bn: 'Moonrise — Parallax, Latitude & Binary Search', kn: 'Moonrise — Parallax, Latitude & Binary Search', gu: 'Moonrise — Parallax, Latitude & Binary Search' },
-  subtitle: {
-    en: 'Why the Moon is too fast for hour-angle formulas, and how iterative scanning with parallax correction finds moonrise to 2-minute accuracy',
-    hi: 'चन्द्रमा घण्टा-कोण सूत्रों के लिए अत्यधिक तेज़ क्यों है, और लम्बन सुधार सहित पुनरावृत्तीय अन्वेषण 2-मिनट सटीकता तक चन्द्रोदय कैसे ढूँढता है',
-  },
+  title: L.title as unknown as Record<string, string>,
+  subtitle: L.subtitle as unknown as Record<string, string>,
   estimatedMinutes: 14,
-  crossRefs: [
-    { label: { en: 'Module 22-3: Finding the Moon', hi: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', sa: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', mai: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', mr: 'मॉड्यूल 22-3: चन्द्रमा की स्थिति', ta: 'Module 22-3: Finding the Moon', te: 'Module 22-3: Finding the Moon', bn: 'Module 22-3: Finding the Moon', kn: 'Module 22-3: Finding the Moon', gu: 'Module 22-3: Finding the Moon' }, href: '/learn/modules/22-3' },
-    { label: { en: 'Module 22-4: Sunrise Calculation', hi: 'मॉड्यूल 22-4: सूर्योदय गणना', sa: 'मॉड्यूल 22-4: सूर्योदय गणना', mai: 'मॉड्यूल 22-4: सूर्योदय गणना', mr: 'मॉड्यूल 22-4: सूर्योदय गणना', ta: 'Module 22-4: Sunrise Calculation', te: 'Module 22-4: Sunrise Calculation', bn: 'Module 22-4: Sunrise Calculation', kn: 'Module 22-4: Sunrise Calculation', gu: 'Module 22-4: Sunrise Calculation' }, href: '/learn/modules/22-4' },
-    { label: { en: 'Module 22-6: Equation of Time', hi: 'मॉड्यूल 22-6: समय का समीकरण', sa: 'मॉड्यूल 22-6: समय का समीकरण', mai: 'मॉड्यूल 22-6: समय का समीकरण', mr: 'मॉड्यूल 22-6: समय का समीकरण', ta: 'Module 22-6: Equation of Time', te: 'Module 22-6: Equation of Time', bn: 'Module 22-6: Equation of Time', kn: 'Module 22-6: Equation of Time', gu: 'Module 22-6: Equation of Time' }, href: '/learn/modules/22-6' },
-    { label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग', mai: 'दैनिक पंचांग', mr: 'दैनिक पंचांग', ta: 'Daily Panchang', te: 'Daily Panchang', bn: 'Daily Panchang', kn: 'Daily Panchang', gu: 'Daily Panchang' }, href: '/panchang' },
-  ],
+  crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
 const QUESTIONS: ModuleQuestion[] = [

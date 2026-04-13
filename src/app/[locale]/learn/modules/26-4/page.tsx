@@ -2,190 +2,90 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import L from '@/messages/learn/modules/26-4.json';
 
 const META: ModuleMeta = {
   id: 'mod_26_4', phase: 6, topic: 'Indian Contributions', moduleNumber: '26.4',
-  title: { en: '4.32 Billion Years — Cosmic Time', hi: '4.32 अरब वर्ष — ब्रह्मांडीय समय', sa: '4.32 अरब वर्ष — ब्रह्मांडीय समय', mai: '4.32 अरब वर्ष — ब्रह्मांडीय समय', mr: '4.32 अरब वर्ष — ब्रह्मांडीय समय', ta: '4.32 Billion Years — Cosmic Time', te: '4.32 Billion Years — Cosmic Time', bn: '4.32 Billion Years — Cosmic Time', kn: '4.32 Billion Years — Cosmic Time', gu: '4.32 Billion Years — Cosmic Time' },
-  subtitle: {
-    en: 'How ancient Hindu cosmology computed a cosmic time cycle of 4.32 billion years — remarkably close to Earth\'s actual age of 4.54 billion years',
-    hi: 'प्राचीन हिन्दू ब्रह्मांडविज्ञान ने 4.32 अरब वर्षों का एक ब्रह्मांडीय समय चक्र कैसे गणना किया — पृथ्वी की वास्तविक आयु 4.54 अरब वर्षों के उल्लेखनीय रूप से करीब',
-  },
+  title: L.title as Record<string, string>,
+  subtitle: L.subtitle as Record<string, string>,
   estimatedMinutes: 12,
   crossRefs: [
-    { label: { en: 'Module 26-1: Earth Rotates', hi: 'मॉड्यूल 26-1: पृथ्वी घूमती है', sa: 'मॉड्यूल 26-1: पृथ्वी घूमती है', mai: 'मॉड्यूल 26-1: पृथ्वी घूमती है', mr: 'मॉड्यूल 26-1: पृथ्वी घूमती है', ta: 'Module 26-1: Earth Rotates', te: 'Module 26-1: Earth Rotates', bn: 'Module 26-1: Earth Rotates', kn: 'Module 26-1: Earth Rotates', gu: 'Module 26-1: Earth Rotates' }, href: '/learn/modules/26-1' },
-    { label: { en: 'Module 26-2: Gravity Before Newton', hi: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण', sa: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण', mai: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण', mr: 'मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण', ta: 'Module 26-2: Gravity Before Newton', te: 'Module 26-2: Gravity Before Newton', bn: 'Module 26-2: Gravity Before Newton', kn: 'Module 26-2: Gravity Before Newton', gu: 'Module 26-2: Gravity Before Newton' }, href: '/learn/modules/26-2' },
-    { label: { en: 'Panchang Calendar', hi: 'पञ्चाङ्ग पञ्जिका', sa: 'पञ्चाङ्ग पञ्जिका', mai: 'पञ्चाङ्ग पञ्जिका', mr: 'पञ्चाङ्ग पञ्जिका', ta: 'Panchang Calendar', te: 'Panchang Calendar', bn: 'Panchang Calendar', kn: 'Panchang Calendar', gu: 'Panchang Calendar' }, href: '/calendar' },
+    { label: L.crossRefs[0].label as Record<string, string>, href: '/learn/modules/26-1' },
+    { label: L.crossRefs[1].label as Record<string, string>, href: '/learn/modules/26-2' },
+    { label: L.crossRefs[2].label as Record<string, string>, href: '/calendar' },
   ],
 };
 
 const QUESTIONS: ModuleQuestion[] = [
   {
     id: 'q26_4_01', type: 'mcq',
-    question: {
-      en: 'In Hindu cosmology, what is a Kalpa?',
-      hi: 'हिन्दू ब्रह्मांडविज्ञान में, कल्प क्या है?',
-    },
-    options: [
-      { en: 'A single year in the life of Brahma', hi: 'ब्रह्मा के जीवन में एक वर्ष', sa: 'ब्रह्मा के जीवन में एक वर्ष', mai: 'ब्रह्मा के जीवन में एक वर्ष', mr: 'ब्रह्मा के जीवन में एक वर्ष', ta: 'A single year in the life of Brahma', te: 'A single year in the life of Brahma', bn: 'A single year in the life of Brahma', kn: 'A single year in the life of Brahma', gu: 'A single year in the life of Brahma' },
-      { en: 'One day in the life of Brahma', hi: 'ब्रह्मा के जीवन में एक दिन', sa: 'ब्रह्मा के जीवन में एक दिन', mai: 'ब्रह्मा के जीवन में एक दिन', mr: 'ब्रह्मा के जीवन में एक दिन', ta: 'One day in the life of Brahma', te: 'One day in the life of Brahma', bn: 'One day in the life of Brahma', kn: 'One day in the life of Brahma', gu: 'One day in the life of Brahma' },
-      { en: 'The duration of a single universe', hi: 'एक ब्रह्मांड की अवधि', sa: 'एक ब्रह्मांड की अवधि', mai: 'एक ब्रह्मांड की अवधि', mr: 'एक ब्रह्मांड की अवधि', ta: 'The duration of a single universe', te: 'The duration of a single universe', bn: 'The duration of a single universe', kn: 'The duration of a single universe', gu: 'The duration of a single universe' },
-      { en: 'The time between two Mahayugas', hi: 'दो महायुगों के बीच का समय', sa: 'दो महायुगों के बीच का समय', mai: 'दो महायुगों के बीच का समय', mr: 'दो महायुगों के बीच का समय', ta: 'The time between two Mahayugas', te: 'The time between two Mahayugas', bn: 'The time between two Mahayugas', kn: 'The time between two Mahayugas', gu: 'The time between two Mahayugas' },
-    ],
+    question: L.questions[0].question as Record<string, string>,
+    options: L.questions[0].options as LocaleText[],
     correctAnswer: 1,
-    explanation: {
-      en: 'A Kalpa is defined as one full day (not including the night) in the life of Brahma, the creator god. It equals 4.32 billion human years. The corresponding night of Brahma is also 4.32 billion years, making a full day-night cycle 8.64 billion years. Brahma\'s full lifespan is 100 Brahma years (each year = 360 Brahma days), totalling approximately 311 trillion human years. Hindu cosmology describes cyclic time at multiple scales, from a Kali Yuga (432,000 years) all the way up to Brahma\'s lifespan, with each cycle representing a complete cosmic epoch.',
-      hi: 'कल्प को ब्रह्मा, सृष्टिकर्ता देव, के जीवन में एक पूर्ण दिन (रात को शामिल नहीं करते हुए) के रूप में परिभाषित किया गया है। यह 4.32 अरब मानव वर्षों के बराबर है। ब्रह्मा की संगत रात भी 4.32 अरब वर्ष है, जिससे एक पूर्ण दिन-रात चक्र 8.64 अरब वर्ष बनता है। ब्रह्मा का पूर्ण जीवनकाल 100 ब्रह्मा वर्ष है (प्रत्येक वर्ष = 360 ब्रह्मा दिन), कुल लगभग 311 ट्रिलियन मानव वर्ष। हिन्दू ब्रह्मांडविज्ञान कई पैमानों पर चक्रीय समय का वर्णन करता है।',
-    },
+    explanation: L.questions[0].explanation as Record<string, string>,
   },
   {
     id: 'q26_4_02', type: 'mcq',
-    question: {
-      en: 'How long is one Kalpa in human years?',
-      hi: 'मानव वर्षों में एक कल्प कितना लम्बा है?',
-    },
-    options: [
-      { en: '432,000 years', hi: '432,000 वर्ष', sa: '432,000 वर्ष', mai: '432,000 वर्ष', mr: '432,000 वर्ष', ta: '432,000 years', te: '432,000 years', bn: '432,000 years', kn: '432,000 years', gu: '432,000 years' },
-      { en: '4.32 million years', hi: '4.32 मिलियन वर्ष', sa: '4.32 मिलियन वर्ष', mai: '4.32 मिलियन वर्ष', mr: '4.32 मिलियन वर्ष', ta: '4.32 million years', te: '4.32 million years', bn: '4.32 million years', kn: '4.32 million years', gu: '4.32 million years' },
-      { en: '4.32 billion years', hi: '4.32 अरब वर्ष', sa: '4.32 अरब वर्ष', mai: '4.32 अरब वर्ष', mr: '4.32 अरब वर्ष', ta: '4.32 billion years', te: '4.32 billion years', bn: '4.32 billion years', kn: '4.32 billion years', gu: '4.32 billion years' },
-      { en: '432 billion years', hi: '432 अरब वर्ष', sa: '432 अरब वर्ष', mai: '432 अरब वर्ष', mr: '432 अरब वर्ष', ta: '432 billion years', te: '432 billion years', bn: '432 billion years', kn: '432 billion years', gu: '432 billion years' },
-    ],
+    question: L.questions[1].question as Record<string, string>,
+    options: L.questions[1].options as LocaleText[],
     correctAnswer: 2,
-    explanation: {
-      en: 'One Kalpa = 4,320,000,000 (4.32 billion) human years = 1,000 Mahayugas. This number is consistent across the major astronomical texts: Surya Siddhanta, Aryabhatiya, Brahmasphutasiddhanta, and Vishnu Purana. Compare this to Earth\'s actual age: 4.54 billion years (determined by radiometric dating of the oldest rocks and meteorites). The Kalpa is 4.32 billion years — within about 5% of Earth\'s actual age. This correspondence has fascinated modern scientists and historians of science, though the reason for this remarkable proximity is debated.',
-      hi: 'एक कल्प = 4,320,000,000 (4.32 अरब) मानव वर्ष = 1,000 महायुग। यह संख्या प्रमुख खगोलीय ग्रन्थों में सुसंगत है: सूर्य सिद्धान्त, आर्यभटीय, ब्रह्मस्फुटसिद्धान्त, और विष्णु पुराण। पृथ्वी की वास्तविक आयु: 4.54 अरब वर्ष (सबसे पुरानी चट्टानों और उल्काओं के रेडियोमेट्रिक डेटिंग द्वारा निर्धारित) से तुलना करें। कल्प 4.32 अरब वर्ष है — पृथ्वी की वास्तविक आयु के लगभग 5% के भीतर। यह समझौता आधुनिक वैज्ञानिकों और विज्ञान के इतिहासकारों को आकर्षित करता है।',
-    },
+    explanation: L.questions[1].explanation as Record<string, string>,
   },
   {
     id: 'q26_4_03', type: 'mcq',
-    question: {
-      en: 'How many Mahayugas make up one Kalpa?',
-      hi: 'एक कल्प में कितने महायुग हैं?',
-    },
-    options: [
-      { en: '100 Mahayugas', hi: '100 महायुग', sa: '100 महायुग', mai: '100 महायुग', mr: '100 महायुग', ta: '100 Mahayugas', te: '100 Mahayugas', bn: '100 Mahayugas', kn: '100 Mahayugas', gu: '100 Mahayugas' },
-      { en: '1,000 Mahayugas', hi: '1,000 महायुग', sa: '1,000 महायुग', mai: '1,000 महायुग', mr: '1,000 महायुग', ta: '1,000 Mahayugas', te: '1,000 Mahayugas', bn: '1,000 Mahayugas', kn: '1,000 Mahayugas', gu: '1,000 Mahayugas' },
-      { en: '10,000 Mahayugas', hi: '10,000 महायुग', sa: '10,000 महायुग', mai: '10,000 महायुग', mr: '10,000 महायुग', ta: '10,000 Mahayugas', te: '10,000 Mahayugas', bn: '10,000 Mahayugas', kn: '10,000 Mahayugas', gu: '10,000 Mahayugas' },
-      { en: '100,000 Mahayugas', hi: '100,000 महायुग', sa: '100,000 महायुग', mai: '100,000 महायुग', mr: '100,000 महायुग', ta: '100,000 Mahayugas', te: '100,000 Mahayugas', bn: '100,000 Mahayugas', kn: '100,000 Mahayugas', gu: '100,000 Mahayugas' },
-    ],
+    question: L.questions[2].question as Record<string, string>,
+    options: L.questions[2].options as LocaleText[],
     correctAnswer: 1,
-    explanation: {
-      en: 'One Kalpa = 1,000 Mahayugas (also called Chaturyugas). Each Mahayuga = 4,320,000 years (4.32 million years), consisting of four Yugas: Krita/Satya Yuga (1,728,000 years), Treta Yuga (1,296,000 years), Dvapara Yuga (864,000 years), and Kali Yuga (432,000 years). The four Yugas are in the ratio 4:3:2:1. Total Mahayuga = 4,320,000 years × 1,000 Mahayugas = 4,320,000,000 (4.32 billion) years = one Kalpa. The mathematical structure is elegant: all numbers are multiples of 432,000, which is the length of the Kali Yuga.',
-      hi: 'एक कल्प = 1,000 महायुग (चतुर्युग भी कहलाते हैं)। प्रत्येक महायुग = 4,320,000 वर्ष (4.32 मिलियन वर्ष), चार युगों से मिलकर: कृत/सत्य युग (1,728,000 वर्ष), त्रेता युग (1,296,000 वर्ष), द्वापर युग (864,000 वर्ष), और कलियुग (432,000 वर्ष)। चार युग 4:3:2:1 के अनुपात में हैं। कुल महायुग = 4,320,000 वर्ष × 1,000 महायुग = 4,320,000,000 (4.32 अरब) वर्ष = एक कल्प। गणितीय संरचना सुरुचिपूर्ण है: सभी संख्याएँ 432,000 के गुणज हैं।',
-    },
+    explanation: L.questions[2].explanation as Record<string, string>,
   },
   {
     id: 'q26_4_04', type: 'mcq',
-    question: {
-      en: 'How long is one Mahayuga (the four-yuga cycle)?',
-      hi: 'एक महायुग (चार-युग चक्र) कितना लम्बा है?',
-    },
-    options: [
-      { en: '432,000 years', hi: '432,000 वर्ष', sa: '432,000 वर्ष', mai: '432,000 वर्ष', mr: '432,000 वर्ष', ta: '432,000 years', te: '432,000 years', bn: '432,000 years', kn: '432,000 years', gu: '432,000 years' },
-      { en: '4.32 million years', hi: '4.32 मिलियन वर्ष', sa: '4.32 मिलियन वर्ष', mai: '4.32 मिलियन वर्ष', mr: '4.32 मिलियन वर्ष', ta: '4.32 million years', te: '4.32 million years', bn: '4.32 million years', kn: '4.32 million years', gu: '4.32 million years' },
-      { en: '43.2 million years', hi: '43.2 मिलियन वर्ष', sa: '43.2 मिलियन वर्ष', mai: '43.2 मिलियन वर्ष', mr: '43.2 मिलियन वर्ष', ta: '43.2 million years', te: '43.2 million years', bn: '43.2 million years', kn: '43.2 million years', gu: '43.2 million years' },
-      { en: '432 million years', hi: '432 मिलियन वर्ष', sa: '432 मिलियन वर्ष', mai: '432 मिलियन वर्ष', mr: '432 मिलियन वर्ष', ta: '432 million years', te: '432 million years', bn: '432 million years', kn: '432 million years', gu: '432 million years' },
-    ],
+    question: L.questions[3].question as Record<string, string>,
+    options: L.questions[3].options as LocaleText[],
     correctAnswer: 1,
-    explanation: {
-      en: 'One Mahayuga (also called Chaturyuga = four Yugas) = 4,320,000 (4.32 million) years. Structure: Krita Yuga = 1,728,000 years; Treta Yuga = 1,296,000 years; Dvapara Yuga = 864,000 years; Kali Yuga = 432,000 years. Sum = 4,320,000 years. The base unit is 432,000 (Kali Yuga), and each older Yuga is 2×, 3×, 4× the Kali Yuga. We are currently in Kali Yuga, which began on 18 February 3102 BCE (the traditional date of Krishna\'s departure) according to the Surya Siddhanta — meaning approximately 5,127 years of the current Kali Yuga have elapsed as of 2025 CE.',
-      hi: 'एक महायुग (चतुर्युग भी = चार युग) = 4,320,000 (4.32 मिलियन) वर्ष। संरचना: कृत युग = 1,728,000 वर्ष; त्रेता युग = 1,296,000 वर्ष; द्वापर युग = 864,000 वर्ष; कलियुग = 432,000 वर्ष। योग = 4,320,000 वर्ष। आधार इकाई 432,000 (कलियुग) है, और प्रत्येक पुराने युग की लम्बाई कलियुग की 2×, 3×, 4× है। हम वर्तमान में कलियुग में हैं, जो 18 फरवरी 3102 ईसा पूर्व (कृष्ण के प्रस्थान की पारंपरिक तिथि) को आरम्भ हुआ।',
-    },
+    explanation: L.questions[3].explanation as Record<string, string>,
   },
   {
     id: 'q26_4_05', type: 'mcq',
-    question: {
-      en: 'What is Earth\'s actual age according to modern science?',
-      hi: 'आधुनिक विज्ञान के अनुसार पृथ्वी की वास्तविक आयु क्या है?',
-    },
-    options: [
-      { en: '4.32 billion years', hi: '4.32 अरब वर्ष', sa: '4.32 अरब वर्ष', mai: '4.32 अरब वर्ष', mr: '4.32 अरब वर्ष', ta: '4.32 billion years', te: '4.32 billion years', bn: '4.32 billion years', kn: '4.32 billion years', gu: '4.32 billion years' },
-      { en: '4.54 billion years', hi: '4.54 अरब वर्ष', sa: '4.54 अरब वर्ष', mai: '4.54 अरब वर्ष', mr: '4.54 अरब वर्ष', ta: '4.54 billion years', te: '4.54 billion years', bn: '4.54 billion years', kn: '4.54 billion years', gu: '4.54 billion years' },
-      { en: '6.0 billion years', hi: '6.0 अरब वर्ष', sa: '6.0 अरब वर्ष', mai: '6.0 अरब वर्ष', mr: '6.0 अरब वर्ष', ta: '6.0 billion years', te: '6.0 billion years', bn: '6.0 billion years', kn: '6.0 billion years', gu: '6.0 billion years' },
-      { en: '13.8 billion years', hi: '13.8 अरब वर्ष', sa: '13.8 अरब वर्ष', mai: '13.8 अरब वर्ष', mr: '13.8 अरब वर्ष', ta: '13.8 billion years', te: '13.8 billion years', bn: '13.8 billion years', kn: '13.8 billion years', gu: '13.8 billion years' },
-    ],
+    question: L.questions[4].question as Record<string, string>,
+    options: L.questions[4].options as LocaleText[],
     correctAnswer: 1,
-    explanation: {
-      en: 'Earth\'s age is 4.54 ± 0.05 billion years, determined by radiometric dating of the oldest meteorites (carbonaceous chondrites from the early solar system) and the oldest Earth rocks. The uranium-lead dating method on zircon crystals gives the most precise values. The Hindu Kalpa is 4.32 billion years — a difference of about 0.22 billion years, or approximately 5%. The age of the entire universe (Big Bang) is approximately 13.8 billion years. The Brahma day-night cycle (8.64 billion years) is closer to the total age of Earth and the Sun (~5 billion years each).',
-      hi: 'पृथ्वी की आयु 4.54 ± 0.05 अरब वर्ष है, जो सबसे पुरानी उल्काओं (प्रारम्भिक सौरमंडल से कार्बोनेसियस कॉन्ड्राइट) और सबसे पुरानी पृथ्वी की चट्टानों के रेडियोमेट्रिक डेटिंग द्वारा निर्धारित है। जिरकॉन क्रिस्टल पर यूरेनियम-सीसा डेटिंग विधि सबसे सटीक मान देती है। हिन्दू कल्प 4.32 अरब वर्ष है — लगभग 0.22 अरब वर्ष या लगभग 5% का अंतर।',
-    },
+    explanation: L.questions[4].explanation as Record<string, string>,
   },
   {
     id: 'q26_4_06', type: 'mcq',
-    question: {
-      en: 'How accurate is the Hindu Kalpa (4.32 billion years) compared to Earth\'s actual age (4.54 billion years)?',
-      hi: 'पृथ्वी की वास्तविक आयु (4.54 अरब वर्ष) की तुलना में हिन्दू कल्प (4.32 अरब वर्ष) कितना सटीक है?',
-    },
-    options: [
-      { en: 'About 75% accurate', hi: 'लगभग 75% सटीक', sa: 'लगभग 75% सटीक', mai: 'लगभग 75% सटीक', mr: 'लगभग 75% सटीक', ta: 'About 75% accurate', te: 'About 75% accurate', bn: 'About 75% accurate', kn: 'About 75% accurate', gu: 'About 75% accurate' },
-      { en: 'About 85% accurate', hi: 'लगभग 85% सटीक', sa: 'लगभग 85% सटीक', mai: 'लगभग 85% सटीक', mr: 'लगभग 85% सटीक', ta: 'About 85% accurate', te: 'About 85% accurate', bn: 'About 85% accurate', kn: 'About 85% accurate', gu: 'About 85% accurate' },
-      { en: 'About 95% accurate', hi: 'लगभग 95% सटीक', sa: 'लगभग 95% सटीक', mai: 'लगभग 95% सटीक', mr: 'लगभग 95% सटीक', ta: 'About 95% accurate', te: 'About 95% accurate', bn: 'About 95% accurate', kn: 'About 95% accurate', gu: 'About 95% accurate' },
-      { en: 'About 99% accurate', hi: 'लगभग 99% सटीक', sa: 'लगभग 99% सटीक', mai: 'लगभग 99% सटीक', mr: 'लगभग 99% सटीक', ta: 'About 99% accurate', te: 'About 99% accurate', bn: 'About 99% accurate', kn: 'About 99% accurate', gu: 'About 99% accurate' },
-    ],
+    question: L.questions[5].question as Record<string, string>,
+    options: L.questions[5].options as LocaleText[],
     correctAnswer: 2,
-    explanation: {
-      en: 'The accuracy depends on how you frame the comparison. If comparing the Kalpa (4.32 billion years) to Earth\'s age (4.54 billion years): the Kalpa is 95.2% of Earth\'s age, or within 4.8% error. If using the Kalpa as representing a cosmic epoch (roughly comparable to the age of the solar system), the match is even better, since the Sun\'s age is approximately 4.6 billion years and the Kalpa (4.32 billion years) is within 6% of that. The value of ~95% accuracy is commonly cited. The question is whether this represents intentional cosmological knowledge or a coincidental number chosen for its elegance.',
-      hi: 'सटीकता इस बात पर निर्भर करती है कि आप तुलना को कैसे तैयार करते हैं। यदि कल्प (4.32 अरब वर्ष) की पृथ्वी की आयु (4.54 अरब वर्ष) से तुलना की जाए: कल्प पृथ्वी की आयु का 95.2% है, या 4.8% त्रुटि के भीतर। ~95% सटीकता का मान आमतौर पर उद्धृत किया जाता है। प्रश्न यह है कि क्या यह जानबूझकर ब्रह्माण्डीय ज्ञान का प्रतिनिधित्व करता है या अपनी सुंदरता के लिए चुनी गई एक संयोगपूर्ण संख्या है।',
-    },
+    explanation: L.questions[5].explanation as Record<string, string>,
   },
   {
     id: 'q26_4_07', type: 'mcq',
-    question: {
-      en: 'Which primary ancient text gives the Kalpa and Mahayuga numbers in most detail?',
-      hi: 'कौन सा प्राथमिक प्राचीन ग्रन्थ कल्प और महायुग की संख्याओं को सबसे विस्तार से देता है?',
-    },
-    options: [
-      { en: 'Rig Veda', hi: 'ऋग्वेद', sa: 'ऋग्वेद', mai: 'ऋग्वेद', mr: 'ऋग्वेद', ta: 'Rig Veda', te: 'Rig Veda', bn: 'Rig Veda', kn: 'Rig Veda', gu: 'Rig Veda' },
-      { en: 'Arthashastra', hi: 'अर्थशास्त्र', sa: 'अर्थशास्त्र', mai: 'अर्थशास्त्र', mr: 'अर्थशास्त्र', ta: 'Arthashastra', te: 'Arthashastra', bn: 'Arthashastra', kn: 'Arthashastra', gu: 'Arthashastra' },
-      { en: 'Surya Siddhanta', hi: 'सूर्य सिद्धान्त', sa: 'सूर्य सिद्धान्त', mai: 'सूर्य सिद्धान्त', mr: 'सूर्य सिद्धान्त', ta: 'Surya Siddhanta', te: 'Surya Siddhanta', bn: 'Surya Siddhanta', kn: 'Surya Siddhanta', gu: 'Surya Siddhanta' },
-      { en: 'Natyashastra', hi: 'नाट्यशास्त्र', sa: 'नाट्यशास्त्र', mai: 'नाट्यशास्त्र', mr: 'नाट्यशास्त्र', ta: 'Natyashastra', te: 'Natyashastra', bn: 'Natyashastra', kn: 'Natyashastra', gu: 'Natyashastra' },
-    ],
+    question: L.questions[6].question as Record<string, string>,
+    options: L.questions[6].options as LocaleText[],
     correctAnswer: 2,
-    explanation: {
-      en: 'The Surya Siddhanta is the primary astronomical text that gives the Kalpa and Mahayuga numbers with mathematical precision. It is an ancient Sanskrit text on mathematical astronomy, with the current version likely dating to around 400–500 CE (though it claims to be far older). The text gives detailed calculations: 1 Kalpa = 4,320,000,000 years = 1,000 Mahayugas = 14 Manvantaras; it also specifies the number of planetary revolutions in a Kalpa. Aryabhata\'s Aryabhatiya (499 CE) uses the same fundamental numbers with some modifications, and Brahmagupta\'s Brahmasphutasiddhanta (628 CE) also uses these values.',
-      hi: 'सूर्य सिद्धान्त वह प्राथमिक खगोलीय ग्रन्थ है जो कल्प और महायुग की संख्याओं को गणितीय सटीकता के साथ देता है। यह गणितीय खगोल विज्ञान पर एक प्राचीन संस्कृत ग्रन्थ है, जिसका वर्तमान संस्करण संभवतः लगभग 400-500 ईस्वी का है (हालाँकि यह बहुत पुराना होने का दावा करता है)। ग्रन्थ विस्तृत गणनाएँ देता है: 1 कल्प = 4,320,000,000 वर्ष = 1,000 महायुग = 14 मन्वन्तर।',
-    },
+    explanation: L.questions[6].explanation as Record<string, string>,
   },
   {
     id: 'q26_4_08', type: 'mcq',
-    question: {
-      en: 'Which famous scientist quoted Hindu cosmic time approvingly, saying it matched modern cosmology?',
-      hi: 'किस प्रसिद्ध वैज्ञानिक ने हिन्दू ब्रह्मांडीय समय को सहमति से उद्धृत किया, यह कहते हुए कि यह आधुनिक ब्रह्मांड विज्ञान से मेल खाता है?',
-    },
-    options: [
-      { en: 'Albert Einstein', hi: 'अल्बर्ट आइंस्टीन', sa: 'अल्बर्ट आइंस्टीन', mai: 'अल्बर्ट आइंस्टीन', mr: 'अल्बर्ट आइंस्टीन', ta: 'Albert Einstein', te: 'Albert Einstein', bn: 'Albert Einstein', kn: 'Albert Einstein', gu: 'Albert Einstein' },
-      { en: 'Stephen Hawking', hi: 'स्टीफन हॉकिंग', sa: 'स्टीफन हॉकिंग', mai: 'स्टीफन हॉकिंग', mr: 'स्टीफन हॉकिंग', ta: 'Stephen Hawking', te: 'Stephen Hawking', bn: 'Stephen Hawking', kn: 'Stephen Hawking', gu: 'Stephen Hawking' },
-      { en: 'Carl Sagan', hi: 'कार्ल सागन', sa: 'कार्ल सागन', mai: 'कार्ल सागन', mr: 'कार्ल सागन', ta: 'Carl Sagan', te: 'Carl Sagan', bn: 'Carl Sagan', kn: 'Carl Sagan', gu: 'Carl Sagan' },
-      { en: 'Neil deGrasse Tyson', hi: 'नील डेग्रास टायसन', sa: 'नील डेग्रास टायसन', mai: 'नील डेग्रास टायसन', mr: 'नील डेग्रास टायसन', ta: 'Neil deGrasse Tyson', te: 'Neil deGrasse Tyson', bn: 'Neil deGrasse Tyson', kn: 'Neil deGrasse Tyson', gu: 'Neil deGrasse Tyson' },
-    ],
+    question: L.questions[7].question as Record<string, string>,
+    options: L.questions[7].options as LocaleText[],
     correctAnswer: 2,
-    explanation: {
-      en: 'Carl Sagan (1934–1996), the celebrated American astronomer and science communicator, quoted Hindu cosmic time approvingly in his television series Cosmos (1980) and in his book. He said: "The Hindu religion is the only one of the world\'s great faiths dedicated to the idea that the Cosmos itself undergoes an immense number of deaths and rebirths. It is the only religion in which the time scales correspond to those of modern scientific cosmology." He specifically noted that the Kalpa (4.32 billion years) is comparable to the age of the Earth and the Sun, and that Hindu cosmology is "in the right ballpark" for modern estimates.',
-      hi: 'कार्ल सागन (1934-1996), प्रसिद्ध अमेरिकी खगोलशास्त्री और विज्ञान संचारक, ने अपनी टेलीविजन श्रृंखला कॉस्मोस (1980) और अपनी पुस्तक में हिन्दू ब्रह्मांडीय समय को सहमति से उद्धृत किया। उन्होंने कहा: "हिन्दू धर्म दुनिया के महान धर्मों में एकमात्र ऐसा है जो इस विचार के लिए समर्पित है कि ब्रह्मांड स्वयं असंख्य मृत्यु और पुनर्जन्म से गुज़रता है।" उन्होंने विशेष रूप से नोट किया कि कल्प (4.32 अरब वर्ष) पृथ्वी और सूर्य की आयु के तुलनीय है।',
-    },
+    explanation: L.questions[7].explanation as Record<string, string>,
   },
   {
     id: 'q26_4_09', type: 'true_false',
-    question: {
-      en: 'Hindu cosmology describes cyclic creation and destruction of the universe, rather than a single linear beginning and end.',
-      hi: 'हिन्दू ब्रह्मांडविज्ञान एक एकल रेखीय आरम्भ और अन्त के बजाय ब्रह्मांड की चक्रीय सृष्टि और विनाश का वर्णन करता है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Hindu cosmology is fundamentally cyclic. At the end of each Kalpa (4.32 billion years), the universe undergoes a Pralaya (dissolution), after which Brahma sleeps for an equal period (the Brahma night, also 4.32 billion years), and then creates again. At the end of Brahma\'s full life (311 trillion years), a Maha Pralaya occurs, after which a new Brahma is born and the cycle begins anew. This cyclic cosmology stands in contrast to the linear cosmologies of the Abrahamic faiths (single creation event, single end time). Modern cosmology also considers cyclic models (cyclic Big Bang-Big Crunch scenarios), making Hindu cosmology particularly interesting from a scientific philosophy perspective.',
-      hi: 'सत्य। हिन्दू ब्रह्मांडविज्ञान मूलभूत रूप से चक्रीय है। प्रत्येक कल्प (4.32 अरब वर्ष) के अन्त में, ब्रह्मांड एक प्रलय (विघटन) से गुज़रता है, जिसके बाद ब्रह्मा समान अवधि (ब्रह्मा रात, भी 4.32 अरब वर्ष) के लिए सोते हैं, और फिर पुनः सृजन करते हैं। यह चक्रीय ब्रह्मांडविज्ञान अब्राहमिक विश्वासों के रेखीय ब्रह्मांडविज्ञान (एकल सृजन घटना, एकल अन्त समय) के विपरीत है।',
-    },
+    question: L.questions[8].question as Record<string, string>,
+    correctAnswer: 0,
+    explanation: L.questions[8].explanation as Record<string, string>,
   },
   {
     id: 'q26_4_10', type: 'true_false',
-    question: {
-      en: 'The Kali Yuga is the longest of the four Yugas in a Mahayuga.',
-      hi: 'एक महायुग में कलियुग चार युगों में सबसे लम्बा है।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. The Kali Yuga is the SHORTEST of the four Yugas. The four Yugas in order from longest to shortest: Krita/Satya Yuga = 1,728,000 years (4 units); Treta Yuga = 1,296,000 years (3 units); Dvapara Yuga = 864,000 years (2 units); Kali Yuga = 432,000 years (1 unit). The ratio is 4:3:2:1. Kali Yuga is the "darkest" and shortest age — an era of spiritual decline, conflict, and moral degradation in Hindu cosmology. We are currently in Kali Yuga, which began in 3102 BCE and has approximately 426,000 years remaining. The Krita Yuga (Golden Age) is four times longer than the Kali Yuga.',
-      hi: 'असत्य। कलियुग चार युगों में सबसे छोटा है। सबसे लम्बे से छोटे के क्रम में चार युग: कृत/सत्य युग = 1,728,000 वर्ष (4 इकाइयाँ); त्रेता युग = 1,296,000 वर्ष (3 इकाइयाँ); द्वापर युग = 864,000 वर्ष (2 इकाइयाँ); कलियुग = 432,000 वर्ष (1 इकाई)। अनुपात 4:3:2:1 है। कलियुग सबसे "अंधकारमय" और सबसे छोटा युग है — हिन्दू ब्रह्मांडविज्ञान में आध्यात्मिक पतन, संघर्ष और नैतिक अधःपतन का युग। हम वर्तमान में कलियुग में हैं, जो 3102 ईसा पूर्व में आरम्भ हुआ और इसमें लगभग 426,000 वर्ष शेष हैं।',
-    },
+    question: L.questions[9].question as Record<string, string>,
+    correctAnswer: 0,
+    explanation: L.questions[9].explanation as Record<string, string>,
   },
 ];
 

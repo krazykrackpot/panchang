@@ -930,14 +930,14 @@ export default function KundaliPage() {
                 if (!chartInsight) return null;
                 const isHi = isDevanagariLocale(locale);
                 const sC: Record<string, string> = { strong: 'border-emerald-500/20', moderate: 'border-amber-500/20', weak: 'border-red-500/20' };
-                const sL: Record<string, string> = { strong: isHi ? 'बलवान' : 'Strong', moderate: isHi ? 'मध्यम' : 'Moderate', weak: isHi ? 'दुर्बल' : 'Weak' };
+                const sL: Record<string, string> = { strong: tl({ en: 'Strong', hi: 'बलवान', sa: 'बलवान', ta: 'Strong', te: 'Strong', bn: 'Strong', kn: 'Strong', gu: 'Strong', mai: 'बलवान', mr: 'बलवान' }, locale), moderate: tl({ en: 'Moderate', hi: 'मध्यम', sa: 'मध्यम', ta: 'Moderate', te: 'Moderate', bn: 'Moderate', kn: 'Moderate', gu: 'Moderate', mai: 'मध्यम', mr: 'मध्यम' }, locale), weak: tl({ en: 'Weak', hi: 'दुर्बल', sa: 'दुर्बल', ta: 'Weak', te: 'Weak', bn: 'Weak', kn: 'Weak', gu: 'Weak', mai: 'दुर्बल', mr: 'दुर्बल' }, locale) };
                 const sClr: Record<string, string> = { strong: 'text-emerald-400', moderate: 'text-amber-400', weak: 'text-red-400' };
                 return (
                   <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} key={activeChart}
                     className={`mt-8 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 border ${sC[chartInsight.strength]}`}>
                     <div className="flex items-center justify-between mb-3">
                       <h4 className="text-gold-light font-bold text-sm" style={headingFont}>
-                        {chartInsight.chart} — {isHi ? chartInsight.meaning.hi : chartInsight.meaning.en}
+                        {chartInsight.chart} — {tl(chartInsight.meaning, locale)}
                       </h4>
                       <span className={`text-xs font-bold px-2 py-0.5 rounded-full border ${sC[chartInsight.strength]} ${sClr[chartInsight.strength]}`}>
                         {sL[chartInsight.strength]}
@@ -946,20 +946,20 @@ export default function KundaliPage() {
 
                     {/* Overall Commentary */}
                     <div className="text-text-secondary text-xs leading-relaxed mb-3 whitespace-pre-line">
-                      {isHi ? chartInsight.overallCommentary.hi : chartInsight.overallCommentary.en}
+                      {tl(chartInsight.overallCommentary, locale)}
                     </div>
 
                     {/* Key Findings */}
                     {chartInsight.keyFindings.length > 0 && (
                       <div className="mb-3">
                         <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1.5">
-                          {isHi ? 'प्रमुख निष्कर्ष' : 'Key Findings'}
+                          {tl({ en: 'Key Findings', hi: 'प्रमुख निष्कर्ष', sa: 'प्रमुख निष्कर्ष', ta: 'Key Findings', te: 'Key Findings', bn: 'Key Findings', kn: 'Key Findings', gu: 'Key Findings', mai: 'प्रमुख निष्कर्ष', mr: 'प्रमुख निष्कर्ष' }, locale)}
                         </div>
                         <div className="space-y-1">
                           {chartInsight.keyFindings.map((f, j) => (
                             <div key={j} className="text-text-secondary text-xs leading-relaxed flex gap-2">
                               <span className="text-gold-dark mt-0.5 shrink-0">•</span>
-                              <span>{isHi ? f.hi : f.en}</span>
+                              <span>{tl(f, locale)}</span>
                             </div>
                           ))}
                         </div>
@@ -969,10 +969,10 @@ export default function KundaliPage() {
                     {/* Prognosis */}
                     <div className="p-3 rounded-xl bg-indigo-500/5 border border-indigo-500/15">
                       <div className="text-indigo-400 text-xs uppercase tracking-widest font-bold mb-1">
-                        {isHi ? '1-2 वर्ष की प्रगति' : '1-2 Year Prognosis'}
+                        {tl({ en: '1-2 Year Prognosis', hi: '1-2 वर्ष की प्रगति', sa: '1-2 वर्ष की प्रगति', ta: '1-2 Year Prognosis', te: '1-2 Year Prognosis', bn: '1-2 Year Prognosis', kn: '1-2 Year Prognosis', gu: '1-2 Year Prognosis', mai: '1-2 वर्ष की प्रगति', mr: '1-2 वर्ष की प्रगति' }, locale)}
                       </div>
                       <div className="text-text-secondary text-xs leading-relaxed">
-                        {isHi ? chartInsight.prognosis.hi : chartInsight.prognosis.en}
+                        {tl(chartInsight.prognosis, locale)}
                       </div>
                     </div>
                   </motion.div>
@@ -3064,23 +3064,23 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
       {/* Overall Synthesis */}
       <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
         <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
-          {isHi ? 'वर्ग संश्लेषण — समस्त विभागीय चार्ट' : 'Varga Synthesis — All Divisional Charts'}
+          {tl({ en: 'Varga Synthesis — All Divisional Charts', hi: 'वर्ग संश्लेषण — समस्त विभागीय चार्ट', sa: 'वर्ग संश्लेषण — समस्त विभागीय चार्ट', ta: 'Varga Synthesis — All Divisional Charts', te: 'Varga Synthesis — All Divisional Charts', bn: 'Varga Synthesis — All Divisional Charts', kn: 'Varga Synthesis — All Divisional Charts', gu: 'Varga Synthesis — All Divisional Charts', mai: 'वर्ग संश्लेषण — समस्त विभागीय चार्ट', mr: 'वर्ग संश्लेषण — समस्त विभागीय चार्ट' }, locale)}
         </h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-4">{isHi ? synthesis.overall.hi : synthesis.overall.en}</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-4">{tl(synthesis.overall, locale)}</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {synthesis.strongAreas.length > 0 && (
             <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
-              <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">{isHi ? 'बलवान क्षेत्र' : 'Strong Areas'}</div>
+              <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">{tl({ en: 'Strong Areas', hi: 'बलवान क्षेत्र', sa: 'बलवान क्षेत्र', ta: 'Strong Areas', te: 'Strong Areas', bn: 'Strong Areas', kn: 'Strong Areas', gu: 'Strong Areas', mai: 'बलवान क्षेत्र', mr: 'बलवान क्षेत्र' }, locale)}</div>
               {synthesis.strongAreas.map((a, i) => (
-                <div key={i} className="text-emerald-300 text-xs mb-1">+ {isHi ? a.hi : a.en}</div>
+                <div key={i} className="text-emerald-300 text-xs mb-1">+ {tl(a, locale)}</div>
               ))}
             </div>
           )}
           {synthesis.weakAreas.length > 0 && (
             <div className="p-4 rounded-xl bg-red-500/5 border border-red-500/15">
-              <div className="text-red-400 text-xs uppercase tracking-wider font-bold mb-2">{isHi ? 'ध्यान देने योग्य' : 'Needs Attention'}</div>
+              <div className="text-red-400 text-xs uppercase tracking-wider font-bold mb-2">{tl({ en: 'Needs Attention', hi: 'ध्यान देने योग्य', sa: 'ध्यान देने योग्य', ta: 'Needs Attention', te: 'Needs Attention', bn: 'Needs Attention', kn: 'Needs Attention', gu: 'Needs Attention', mai: 'ध्यान देने योग्य', mr: 'ध्यान देने योग्य' }, locale)}</div>
               {synthesis.weakAreas.map((a, i) => (
-                <div key={i} className="text-red-300 text-xs mb-1">- {isHi ? a.hi : a.en}</div>
+                <div key={i} className="text-red-300 text-xs mb-1">- {tl(a, locale)}</div>
               ))}
             </div>
           )}
@@ -3090,10 +3090,10 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
       {/* Clickable strength grid */}
       <div>
         <h3 className="text-gold-light text-lg font-bold mb-2 text-center" style={headingFont}>
-          {isHi ? 'वर्ग बल अवलोकन' : 'Varga Strength Overview'}
+          {tl({ en: 'Varga Strength Overview', hi: 'वर्ग बल अवलोकन', sa: 'वर्ग बल अवलोकन', ta: 'Varga Strength Overview', te: 'Varga Strength Overview', bn: 'Varga Strength Overview', kn: 'Varga Strength Overview', gu: 'Varga Strength Overview', mai: 'वर्ग बल अवलोकन', mr: 'वर्ग बल अवलोकन' }, locale)}
         </h3>
         <p className="text-text-secondary/60 text-xs text-center mb-4">
-          {isHi ? 'विस्तृत विश्लेषण के लिए किसी चार्ट पर क्लिक करें' : 'Click any chart for detailed analysis'}
+          {tl({ en: 'Click any chart for detailed analysis', hi: 'विस्तृत विश्लेषण के लिए किसी चार्ट पर क्लिक करें', sa: 'विस्तृत विश्लेषण के लिए किसी चार्ट पर क्लिक करें', ta: 'Click any chart for detailed analysis', te: 'Click any chart for detailed analysis', bn: 'Click any chart for detailed analysis', kn: 'Click any chart for detailed analysis', gu: 'Click any chart for detailed analysis', mai: 'विस्तृत विश्लेषण के लिए किसी चार्ट पर क्लिक करें', mr: 'विस्तृत विश्लेषण के लिए किसी चार्ट पर क्लिक करें' }, locale)}
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-1.5">
           {synthesis.vargaInsights.map((v, i) => (
@@ -3102,7 +3102,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
               className={`rounded-lg p-2 border text-center transition-all cursor-pointer ${sC[v.strength]} ${selectedVarga === v.chart ? 'ring-2 ring-gold-primary/50 scale-105' : 'hover:scale-[1.03] hover:brightness-110'}`}
             >
               <div className="font-bold text-xs">{v.chart}</div>
-              <div className="text-xs text-text-tertiary leading-tight mt-0.5">{isHi ? v.meaning.hi : v.meaning.en}</div>
+              <div className="text-xs text-text-tertiary leading-tight mt-0.5">{tl(v.meaning, locale)}</div>
               <div className="text-xs font-medium mt-0.5">{isHi ? sL[v.strength].hi : sL[v.strength].en}</div>
             </button>
           ))}
@@ -3121,7 +3121,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
               <div className={`flex items-center justify-between px-5 py-3 border-b border-gold-primary/10 ${sC[selectedInsight.strength].split(' ').slice(1).join(' ')}`}>
                 <div className="flex items-center gap-3">
                   <span className="text-gold-light font-bold text-lg">{selectedInsight.chart}</span>
-                  <span className="text-text-secondary text-xs">{isHi ? selectedInsight.label.hi : selectedInsight.label.en}</span>
+                  <span className="text-text-secondary text-xs">{tl(selectedInsight.label, locale)}</span>
                 </div>
                 <span className={`text-xs font-bold px-2 py-0.5 rounded-full border ${sC[selectedInsight.strength]}`}>
                   {isHi ? sL[selectedInsight.strength].hi : sL[selectedInsight.strength].en}
@@ -3132,10 +3132,10 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                 {/* Overall Commentary */}
                 <div>
                   <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-                    {isHi ? 'समग्र टिप्पणी' : 'Overall Commentary'}
+                    {tl({ en: 'Overall Commentary', hi: 'समग्र टिप्पणी', sa: 'समग्र टिप्पणी', ta: 'Overall Commentary', te: 'Overall Commentary', bn: 'Overall Commentary', kn: 'Overall Commentary', gu: 'Overall Commentary', mai: 'समग्र टिप्पणी', mr: 'समग्र टिप्पणी' }, locale)}
                   </div>
                   <div className="text-text-secondary text-xs leading-relaxed whitespace-pre-line">
-                    {isHi ? selectedInsight.overallCommentary.hi : selectedInsight.overallCommentary.en}
+                    {tl(selectedInsight.overallCommentary, locale)}
                   </div>
                 </div>
 
@@ -3143,13 +3143,13 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                 {selectedInsight.keyFindings.length > 0 && (
                   <div>
                     <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-                      {isHi ? 'प्रमुख निष्कर्ष' : 'Key Findings'}
+                      {tl({ en: 'Key Findings', hi: 'प्रमुख निष्कर्ष', sa: 'प्रमुख निष्कर्ष', ta: 'Key Findings', te: 'Key Findings', bn: 'Key Findings', kn: 'Key Findings', gu: 'Key Findings', mai: 'प्रमुख निष्कर्ष', mr: 'प्रमुख निष्कर्ष' }, locale)}
                     </div>
                     <div className="space-y-1">
                       {selectedInsight.keyFindings.map((f, j) => (
                         <div key={j} className="text-text-secondary text-xs leading-relaxed flex gap-2">
                           <span className="text-gold-dark mt-0.5 shrink-0">•</span>
-                          <span>{isHi ? f.hi : f.en}</span>
+                          <span>{tl(f, locale)}</span>
                         </div>
                       ))}
                     </div>
@@ -3159,10 +3159,10 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                 {/* Prognosis */}
                 <div className="p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/15">
                   <div className="text-indigo-400 text-xs uppercase tracking-widest font-bold mb-2">
-                    {isHi ? '1-2 वर्ष की प्रगति' : '1-2 Year Prognosis'}
+                    {tl({ en: '1-2 Year Prognosis', hi: '1-2 वर्ष की प्रगति', sa: '1-2 वर्ष की प्रगति', ta: '1-2 Year Prognosis', te: '1-2 Year Prognosis', bn: '1-2 Year Prognosis', kn: '1-2 Year Prognosis', gu: '1-2 Year Prognosis', mai: '1-2 वर्ष की प्रगति', mr: '1-2 वर्ष की प्रगति' }, locale)}
                   </div>
                   <div className="text-text-secondary text-xs leading-relaxed">
-                    {isHi ? selectedInsight.prognosis.hi : selectedInsight.prognosis.en}
+                    {tl(selectedInsight.prognosis, locale)}
                   </div>
                 </div>
               </div>
@@ -3226,7 +3226,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
         return (
           <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20 p-6">
             <h3 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
-              {isHi ? 'D2 होरा — धन व संसाधन विश्लेषण' : 'D2 Hora — Wealth & Resource Analysis'}
+              {tl({ en: 'D2 Hora — Wealth & Resource Analysis', hi: 'D2 होरा — धन व संसाधन विश्लेषण', sa: 'D2 होरा — धन व संसाधन विश्लेषण', ta: 'D2 Hora — Wealth & Resource Analysis', te: 'D2 Hora — Wealth & Resource Analysis', bn: 'D2 Hora — Wealth & Resource Analysis', kn: 'D2 Hora — Wealth & Resource Analysis', gu: 'D2 Hora — Wealth & Resource Analysis', mai: 'D2 होरा — धन व संसाधन विश्लेषण', mr: 'D2 होरा — धन व संसाधन विश्लेषण' }, locale)}
             </h3>
             <p className="text-text-secondary/70 text-xs text-center mb-5" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
               {isHi
@@ -3237,13 +3237,13 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
             <div className={`rounded-xl p-4 mb-4 text-center border ${dominantHora === 'sun' ? 'bg-amber-500/10 border-amber-500/25' : 'bg-blue-500/10 border-blue-500/25'}`}>
               <div className={`font-bold text-lg mb-1 ${dominantHora === 'sun' ? 'text-amber-300' : 'text-blue-300'}`} style={headingFont}>
                 {dominantHora === 'sun'
-                  ? (isHi ? 'सूर्य होरा प्रबल' : 'Sun Hora Dominant')
-                  : (isHi ? 'चन्द्र होरा प्रबल' : 'Moon Hora Dominant')}
+                  ? (tl({ en: 'Sun Hora Dominant', hi: 'सूर्य होरा प्रबल', sa: 'सूर्य होरा प्रबल', ta: 'Sun Hora Dominant', te: 'Sun Hora Dominant', bn: 'Sun Hora Dominant', kn: 'Sun Hora Dominant', gu: 'Sun Hora Dominant', mai: 'सूर्य होरा प्रबल', mr: 'सूर्य होरा प्रबल' }, locale))
+                  : (tl({ en: 'Moon Hora Dominant', hi: 'चन्द्र होरा प्रबल', sa: 'चन्द्र होरा प्रबल', ta: 'Moon Hora Dominant', te: 'Moon Hora Dominant', bn: 'Moon Hora Dominant', kn: 'Moon Hora Dominant', gu: 'Moon Hora Dominant', mai: 'चन्द्र होरा प्रबल', mr: 'चन्द्र होरा प्रबल' }, locale))}
               </div>
               <p className="text-text-secondary/70 text-xs" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                 {dominantHora === 'sun'
-                  ? (isHi ? 'धन सूर्य होरा से आता है — अधिकार, स्वतन्त्र प्रयास, पिता, और सरकारी स्रोतों से। मर्दाना, दृढ़, और प्रत्यक्ष।' : 'Wealth comes through Sun hora — authority, independent effort, paternal sources, and government. Income is direct, assertive, and masculine in quality.')
-                  : (isHi ? 'धन चन्द्र होरा से आता है — जनता, भावनात्मक बुद्धि, माता, और सेवा से। स्त्री, पोषणकारी, और उतार-चढ़ाव वाला।' : 'Wealth comes through Moon hora — public, emotional intelligence, maternal sources, and service. Income fluctuates but nurtures. Feminine quality dominates.')}
+                  ? (tl({ en: 'Wealth comes through Sun hora — authority, independent effort, paternal sources, and government. Income is direct, assertive, and masculine in quality.', hi: 'धन सूर्य होरा से आता है — अधिकार, स्वतन्त्र प्रयास, पिता, और सरकारी स्रोतों से। मर्दाना, दृढ़, और प्रत्यक्ष।', sa: 'धन सूर्य होरा से आता है — अधिकार, स्वतन्त्र प्रयास, पिता, और सरकारी स्रोतों से। मर्दाना, दृढ़, और प्रत्यक्ष।', ta: 'Wealth comes through Sun hora — authority, independent effort, paternal sources, and government. Income is direct, assertive, and masculine in quality.', te: 'Wealth comes through Sun hora — authority, independent effort, paternal sources, and government. Income is direct, assertive, and masculine in quality.', bn: 'Wealth comes through Sun hora — authority, independent effort, paternal sources, and government. Income is direct, assertive, and masculine in quality.', kn: 'Wealth comes through Sun hora — authority, independent effort, paternal sources, and government. Income is direct, assertive, and masculine in quality.', gu: 'Wealth comes through Sun hora — authority, independent effort, paternal sources, and government. Income is direct, assertive, and masculine in quality.', mai: 'धन सूर्य होरा से आता है — अधिकार, स्वतन्त्र प्रयास, पिता, और सरकारी स्रोतों से। मर्दाना, दृढ़, और प्रत्यक्ष।', mr: 'धन सूर्य होरा से आता है — अधिकार, स्वतन्त्र प्रयास, पिता, और सरकारी स्रोतों से। मर्दाना, दृढ़, और प्रत्यक्ष।' }, locale))
+                  : (tl({ en: 'Wealth comes through Moon hora — public, emotional intelligence, maternal sources, and service. Income fluctuates but nurtures. Feminine quality dominates.', hi: 'धन चन्द्र होरा से आता है — जनता, भावनात्मक बुद्धि, माता, और सेवा से। स्त्री, पोषणकारी, और उतार-चढ़ाव वाला।', sa: 'धन चन्द्र होरा से आता है — जनता, भावनात्मक बुद्धि, माता, और सेवा से। स्त्री, पोषणकारी, और उतार-चढ़ाव वाला।', ta: 'Wealth comes through Moon hora — public, emotional intelligence, maternal sources, and service. Income fluctuates but nurtures. Feminine quality dominates.', te: 'Wealth comes through Moon hora — public, emotional intelligence, maternal sources, and service. Income fluctuates but nurtures. Feminine quality dominates.', bn: 'Wealth comes through Moon hora — public, emotional intelligence, maternal sources, and service. Income fluctuates but nurtures. Feminine quality dominates.', kn: 'Wealth comes through Moon hora — public, emotional intelligence, maternal sources, and service. Income fluctuates but nurtures. Feminine quality dominates.', gu: 'Wealth comes through Moon hora — public, emotional intelligence, maternal sources, and service. Income fluctuates but nurtures. Feminine quality dominates.', mai: 'धन चन्द्र होरा से आता है — जनता, भावनात्मक बुद्धि, माता, और सेवा से। स्त्री, पोषणकारी, और उतार-चढ़ाव वाला।', mr: 'धन चन्द्र होरा से आता है — जनता, भावनात्मक बुद्धि, माता, और सेवा से। स्त्री, पोषणकारी, और उतार-चढ़ाव वाला।' }, locale))}
               </p>
             </div>
             {/* Planet grid */}
@@ -3252,14 +3252,14 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                 <div key={i} className={`rounded-xl p-3 border ${ph.hora === 'sun' ? 'border-amber-500/15 bg-amber-500/5' : 'border-blue-500/15 bg-blue-500/5'}`}>
                   <div className="flex items-center gap-2 mb-1.5">
                     <span className={`text-xs font-bold px-1.5 py-0.5 rounded ${ph.hora === 'sun' ? 'bg-amber-500/20 text-amber-300' : 'bg-blue-500/20 text-blue-300'}`}>
-                      {ph.hora === 'sun' ? (isHi ? 'सूर्य' : 'Sun') : (isHi ? 'चन्द्र' : 'Moon')}
+                      {ph.hora === 'sun' ? (tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun', mai: 'सूर्य', mr: 'सूर्य' }, locale)) : (tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon', mai: 'चन्द्र', mr: 'चन्द्र' }, locale))}
                     </span>
                     <span className="text-gold-light font-semibold text-sm" style={headingFont}>{ph.planet.planet.name[locale as Locale] || ph.planet.planet.name.en}</span>
                     <span className="text-text-secondary/65 text-xs">H{ph.planet.house} · {ph.planet.signName[locale as Locale] || ph.planet.signName.en}</span>
                   </div>
                   {ph.interpretation && (
                     <p className="text-text-secondary/75 text-xs leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                      {ph.interpretation[isHi ? 'hi' : 'en']}
+                      {ph.interpretation[tl({ en: 'en', hi: 'hi', sa: 'hi', ta: 'en', te: 'en', bn: 'en', kn: 'en', gu: 'en', mai: 'hi', mr: 'hi' }, locale)]}
                     </p>
                   )}
                 </div>
@@ -3328,7 +3328,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
         return (
           <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/20 p-6 mt-8">
             <h3 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
-              {isHi ? 'D9 नवांश — विवाह, धर्म और आत्म स्वरूप' : 'D9 Navamsha — Marriage, Dharma & Soul Nature'}
+              {tl({ en: 'D9 Navamsha — Marriage, Dharma & Soul Nature', hi: 'D9 नवांश — विवाह, धर्म और आत्म स्वरूप', sa: 'D9 नवांश — विवाह, धर्म और आत्म स्वरूप', ta: 'D9 Navamsha — Marriage, Dharma & Soul Nature', te: 'D9 Navamsha — Marriage, Dharma & Soul Nature', bn: 'D9 Navamsha — Marriage, Dharma & Soul Nature', kn: 'D9 Navamsha — Marriage, Dharma & Soul Nature', gu: 'D9 Navamsha — Marriage, Dharma & Soul Nature', mai: 'D9 नवांश — विवाह, धर्म और आत्म स्वरूप', mr: 'D9 नवांश — विवाह, धर्म और आत्म स्वरूप' }, locale)}
             </h3>
             <p className="text-text-secondary/70 text-xs text-center mb-5">
               {isHi
@@ -3339,11 +3339,11 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
             {/* D9 Lagna */}
             <div className={`rounded-xl p-4 mb-4 text-center border ${isVargottamaLagna ? 'bg-emerald-500/10 border-emerald-500/25' : 'bg-purple-500/10 border-purple-500/25'}`}>
               <div className={`font-bold text-lg mb-1 ${isVargottamaLagna ? 'text-emerald-300' : 'text-purple-300'}`} style={headingFont}>
-                {isHi ? 'D9 लग्न: ' : 'D9 Ascendant: '}{d9AscName?.[locale] || d9AscName?.en}
+                {tl({ en: 'D9 Ascendant: ', hi: 'D9 लग्न: ', sa: 'D9 लग्न: ', ta: 'D9 Ascendant: ', te: 'D9 Ascendant: ', bn: 'D9 Ascendant: ', kn: 'D9 Ascendant: ', gu: 'D9 Ascendant: ', mai: 'D9 लग्न: ', mr: 'D9 लग्न: ' }, locale)}{d9AscName?.[locale] || d9AscName?.en}
               </div>
               <p className="text-text-secondary/70 text-xs">
                 {isVargottamaLagna
-                  ? (isHi ? 'वर्गोत्तम लग्न — D1 और D9 में एक ही राशि। आपका बाहरी व्यक्तित्व और आंतरिक आत्मा एक ही दिशा में हैं। अत्यंत शुभ।' : 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.')
+                  ? (tl({ en: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', hi: 'वर्गोत्तम लग्न — D1 और D9 में एक ही राशि। आपका बाहरी व्यक्तित्व और आंतरिक आत्मा एक ही दिशा में हैं। अत्यंत शुभ।', sa: 'वर्गोत्तम लग्न — D1 और D9 में एक ही राशि। आपका बाहरी व्यक्तित्व और आंतरिक आत्मा एक ही दिशा में हैं। अत्यंत शुभ।', ta: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', te: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', bn: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', kn: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', gu: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', mai: 'वर्गोत्तम लग्न — D1 और D9 में एक ही राशि। आपका बाहरी व्यक्तित्व और आंतरिक आत्मा एक ही दिशा में हैं। अत्यंत शुभ।', mr: 'वर्गोत्तम लग्न — D1 और D9 में एक ही राशि। आपका बाहरी व्यक्तित्व और आंतरिक आत्मा एक ही दिशा में हैं। अत्यंत शुभ।' }, locale))
                   : (isHi ? `D1 लग्न ${RASHIS[(d1Asc-1)%12]?.name?.hi} से D9 लग्न ${d9AscName?.hi} में — यह आपका आंतरिक स्व है, जो विशेषतः 36 वर्ष के बाद प्रमुख होता है।` : `D1 Ascendant ${RASHIS[(d1Asc-1)%12]?.name?.en} shifts to D9 ${d9AscName?.en} — this is your inner self, which becomes dominant especially after age 36.`)}
               </p>
             </div>
@@ -3367,7 +3367,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                     <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                       <span className="text-gold-light font-semibold text-sm" style={headingFont}>{pd.planet.planet.name[locale] || pd.planet.planet.name.en}</span>
                       <span className="text-text-secondary/65 text-xs">
-                        {isHi ? 'D9 राशि:' : 'D9 Sign:'} {d9SignName?.[locale] || d9SignName?.en}
+                        {tl({ en: 'D9 Sign:', hi: 'D9 राशि:', sa: 'D9 राशि:', ta: 'D9 Sign:', te: 'D9 Sign:', bn: 'D9 Sign:', kn: 'D9 Sign:', gu: 'D9 Sign:', mai: 'D9 राशि:', mr: 'D9 राशि:' }, locale)} {d9SignName?.[locale] || d9SignName?.en}
                       </span>
                       {dignity && (
                         <span className={`text-xs font-bold px-1.5 py-0.5 rounded ${
@@ -3376,18 +3376,18 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                           dignity === 'own' ? 'bg-sky-500/20 text-sky-300' :
                           'bg-red-500/20 text-red-300'
                         }`}>
-                          {dignity === 'vargottama' ? 'Vgm' : dignity === 'exalted' ? (isHi ? 'उच्च' : 'Exalted') : dignity === 'own' ? (isHi ? 'स्वगृह' : 'Own') : (isHi ? 'नीच' : 'Debil.')}
+                          {dignity === 'vargottama' ? 'Vgm' : dignity === 'exalted' ? (tl({ en: 'Exalted', hi: 'उच्च', sa: 'उच्च', ta: 'Exalted', te: 'Exalted', bn: 'Exalted', kn: 'Exalted', gu: 'Exalted', mai: 'उच्च', mr: 'उच्च' }, locale)) : dignity === 'own' ? (tl({ en: 'Own', hi: 'स्वगृह', sa: 'स्वगृह', ta: 'Own', te: 'Own', bn: 'Own', kn: 'Own', gu: 'Own', mai: 'स्वगृह', mr: 'स्वगृह' }, locale)) : (tl({ en: 'Debil.', hi: 'नीच', sa: 'नीच', ta: 'Debil.', te: 'Debil.', bn: 'Debil.', kn: 'Debil.', gu: 'Debil.', mai: 'नीच', mr: 'नीच' }, locale))}
                         </span>
                       )}
                     </div>
                     {meaning && (
-                      <p className="text-text-secondary/75 text-xs leading-relaxed">{meaning[isHi ? 'hi' : 'en']}</p>
+                      <p className="text-text-secondary/75 text-xs leading-relaxed">{meaning[tl({ en: 'en', hi: 'hi', sa: 'hi', ta: 'en', te: 'en', bn: 'en', kn: 'en', gu: 'en', mai: 'hi', mr: 'hi' }, locale)]}</p>
                     )}
                     {dignityInfo && (
                       <p className={`text-xs leading-relaxed mt-1 italic ${
                         dignity === 'exalted' || dignity === 'vargottama' ? 'text-emerald-400/80' :
                         dignity === 'debilitated' ? 'text-red-400/80' : 'text-sky-400/80'
-                      }`}>{dignityInfo[isHi ? 'hi' : 'en']}</p>
+                      }`}>{dignityInfo[tl({ en: 'en', hi: 'hi', sa: 'hi', ta: 'en', te: 'en', bn: 'en', kn: 'en', gu: 'en', mai: 'hi', mr: 'hi' }, locale)]}</p>
                     )}
                   </div>
                 );
@@ -3402,13 +3402,13 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
               return (
                 <div className="mt-4 p-4 rounded-xl bg-purple-500/5 border border-purple-500/15">
                   <div className="text-purple-300 text-xs uppercase tracking-wider font-bold mb-2">
-                    {isHi ? 'D9 7वां भाव — जीवनसाथी संकेत' : 'D9 7th House — Spouse Indicator'}
+                    {tl({ en: 'D9 7th House — Spouse Indicator', hi: 'D9 7वां भाव — जीवनसाथी संकेत', sa: 'D9 7वां भाव — जीवनसाथी संकेत', ta: 'D9 7th House — Spouse Indicator', te: 'D9 7th House — Spouse Indicator', bn: 'D9 7th House — Spouse Indicator', kn: 'D9 7th House — Spouse Indicator', gu: 'D9 7th House — Spouse Indicator', mai: 'D9 7वां भाव — जीवनसाथी संकेत', mr: 'D9 7वां भाव — जीवनसाथी संकेत' }, locale)}
                   </div>
                   <p className="text-text-secondary/75 text-xs leading-relaxed">
                     {isHi ? `7वां भाव ${h7SignName?.hi} में` : `7th house in ${h7SignName?.en}`}
                     {h7planets.length > 0
                       ? (isHi ? ` — ग्रह: ${h7planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ये ग्रह जीवनसाथी के स्वभाव और विवाह गुणवत्ता को सीधे प्रभावित करते हैं।` : ` — planets: ${h7planets.map(p => PLANET_NAMES_EN[p] || '').join(', ')}. These planets directly influence spouse nature and marriage quality.`)
-                      : (isHi ? '। कोई ग्रह नहीं — जीवनसाथी का स्वभाव 7वें भावेश और उसके D9 स्थान से निर्धारित।' : '. No planets — spouse nature determined by 7th lord and its D9 placement.')}
+                      : (tl({ en: '. No planets — spouse nature determined by 7th lord and its D9 placement.', hi: '। कोई ग्रह नहीं — जीवनसाथी का स्वभाव 7वें भावेश और उसके D9 स्थान से निर्धारित।', sa: '। कोई ग्रह नहीं — जीवनसाथी का स्वभाव 7वें भावेश और उसके D9 स्थान से निर्धारित।', ta: '. No planets — spouse nature determined by 7th lord and its D9 placement.', te: '. No planets — spouse nature determined by 7th lord and its D9 placement.', bn: '. No planets — spouse nature determined by 7th lord and its D9 placement.', kn: '. No planets — spouse nature determined by 7th lord and its D9 placement.', gu: '. No planets — spouse nature determined by 7th lord and its D9 placement.', mai: '। कोई ग्रह नहीं — जीवनसाथी का स्वभाव 7वें भावेश और उसके D9 स्थान से निर्धारित।', mr: '। कोई ग्रह नहीं — जीवनसाथी का स्वभाव 7वें भावेश और उसके D9 स्थान से निर्धारित।' }, locale))}
                   </p>
                 </div>
               );
@@ -3449,7 +3449,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
         return (
           <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-sky-500/20 p-6 mt-8">
             <h3 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
-              {isHi ? 'D10 दशांश — करियर और व्यावसायिक जीवन' : 'D10 Dashamsha — Career & Professional Life'}
+              {tl({ en: 'D10 Dashamsha — Career & Professional Life', hi: 'D10 दशांश — करियर और व्यावसायिक जीवन', sa: 'D10 दशांश — करियर और व्यावसायिक जीवन', ta: 'D10 Dashamsha — Career & Professional Life', te: 'D10 Dashamsha — Career & Professional Life', bn: 'D10 Dashamsha — Career & Professional Life', kn: 'D10 Dashamsha — Career & Professional Life', gu: 'D10 Dashamsha — Career & Professional Life', mai: 'D10 दशांश — करियर और व्यावसायिक जीवन', mr: 'D10 दशांश — करियर और व्यावसायिक जीवन' }, locale)}
             </h3>
             <p className="text-text-secondary/70 text-xs text-center mb-5">
               {isHi
@@ -3460,7 +3460,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
             {/* D10 Lagna */}
             <div className="rounded-xl p-4 mb-4 text-center border bg-sky-500/10 border-sky-500/25">
               <div className="font-bold text-lg mb-1 text-sky-300" style={headingFont}>
-                {isHi ? 'D10 लग्न: ' : 'D10 Ascendant: '}{d10AscName?.[locale] || d10AscName?.en}
+                {tl({ en: 'D10 Ascendant: ', hi: 'D10 लग्न: ', sa: 'D10 लग्न: ', ta: 'D10 Ascendant: ', te: 'D10 Ascendant: ', bn: 'D10 Ascendant: ', kn: 'D10 Ascendant: ', gu: 'D10 Ascendant: ', mai: 'D10 लग्न: ', mr: 'D10 लग्न: ' }, locale)}{d10AscName?.[locale] || d10AscName?.en}
               </div>
               <p className="text-text-secondary/70 text-xs">
                 {isHi
@@ -3488,35 +3488,35 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                     <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                       <span className="text-gold-light font-semibold text-sm" style={headingFont}>{pd.planet.planet.name[locale] || pd.planet.planet.name.en}</span>
                       <span className="text-text-secondary/65 text-xs">
-                        {isHi ? 'D10 भाव:' : 'D10 House:'} {pd.d10House}
+                        {tl({ en: 'D10 House:', hi: 'D10 भाव:', sa: 'D10 भाव:', ta: 'D10 House:', te: 'D10 House:', bn: 'D10 House:', kn: 'D10 House:', gu: 'D10 House:', mai: 'D10 भाव:', mr: 'D10 भाव:' }, locale)} {pd.d10House}
                       </span>
                       {isInKendra && (
                         <span className="text-xs font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">
-                          {isHi ? 'केंद्र' : 'Kendra'}
+                          {tl({ en: 'Kendra', hi: 'केंद्र', sa: 'केंद्र', ta: 'Kendra', te: 'Kendra', bn: 'Kendra', kn: 'Kendra', gu: 'Kendra', mai: 'केंद्र', mr: 'केंद्र' }, locale)}
                         </span>
                       )}
                       {isInTrikona && !isInKendra && (
                         <span className="text-xs font-bold px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300">
-                          {isHi ? 'त्रिकोण' : 'Trikona'}
+                          {tl({ en: 'Trikona', hi: 'त्रिकोण', sa: 'त्रिकोण', ta: 'Trikona', te: 'Trikona', bn: 'Trikona', kn: 'Trikona', gu: 'Trikona', mai: 'त्रिकोण', mr: 'त्रिकोण' }, locale)}
                         </span>
                       )}
                       {isInDusthana && (
                         <span className="text-xs font-bold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300">
-                          {isHi ? 'दुःस्थान' : 'Dusthana'}
+                          {tl({ en: 'Dusthana', hi: 'दुःस्थान', sa: 'दुःस्थान', ta: 'Dusthana', te: 'Dusthana', bn: 'Dusthana', kn: 'Dusthana', gu: 'Dusthana', mai: 'दुःस्थान', mr: 'दुःस्थान' }, locale)}
                         </span>
                       )}
                     </div>
                     {meaning && (
-                      <p className="text-text-secondary/75 text-xs leading-relaxed">{meaning[isHi ? 'hi' : 'en']}</p>
+                      <p className="text-text-secondary/75 text-xs leading-relaxed">{meaning[tl({ en: 'en', hi: 'hi', sa: 'hi', ta: 'en', te: 'en', bn: 'en', kn: 'en', gu: 'en', mai: 'hi', mr: 'hi' }, locale)]}</p>
                     )}
                     {isInKendra && (
                       <p className="text-emerald-400/80 text-xs mt-1 italic">
-                        {isHi ? 'केंद्र स्थान — करियर में प्रत्यक्ष, शक्तिशाली प्रभाव।' : 'Kendra placement — direct, powerful career influence.'}
+                        {tl({ en: 'Kendra placement — direct, powerful career influence.', hi: 'केंद्र स्थान — करियर में प्रत्यक्ष, शक्तिशाली प्रभाव।', sa: 'केंद्र स्थान — करियर में प्रत्यक्ष, शक्तिशाली प्रभाव।', ta: 'Kendra placement — direct, powerful career influence.', te: 'Kendra placement — direct, powerful career influence.', bn: 'Kendra placement — direct, powerful career influence.', kn: 'Kendra placement — direct, powerful career influence.', gu: 'Kendra placement — direct, powerful career influence.', mai: 'केंद्र स्थान — करियर में प्रत्यक्ष, शक्तिशाली प्रभाव।', mr: 'केंद्र स्थान — करियर में प्रत्यक्ष, शक्तिशाली प्रभाव।' }, locale)}
                       </p>
                     )}
                     {isInDusthana && (
                       <p className="text-amber-400/80 text-xs mt-1 italic">
-                        {isHi ? 'दुःस्थान — करियर में चुनौतियां, लेकिन इनसे पार पाने पर विशेष शक्ति मिलती है।' : 'Dusthana placement — career challenges exist, but overcoming them builds unique professional strength.'}
+                        {tl({ en: 'Dusthana placement — career challenges exist, but overcoming them builds unique professional strength.', hi: 'दुःस्थान — करियर में चुनौतियां, लेकिन इनसे पार पाने पर विशेष शक्ति मिलती है।', sa: 'दुःस्थान — करियर में चुनौतियां, लेकिन इनसे पार पाने पर विशेष शक्ति मिलती है।', ta: 'Dusthana placement — career challenges exist, but overcoming them builds unique professional strength.', te: 'Dusthana placement — career challenges exist, but overcoming them builds unique professional strength.', bn: 'Dusthana placement — career challenges exist, but overcoming them builds unique professional strength.', kn: 'Dusthana placement — career challenges exist, but overcoming them builds unique professional strength.', gu: 'Dusthana placement — career challenges exist, but overcoming them builds unique professional strength.', mai: 'दुःस्थान — करियर में चुनौतियां, लेकिन इनसे पार पाने पर विशेष शक्ति मिलती है।', mr: 'दुःस्थान — करियर में चुनौतियां, लेकिन इनसे पार पाने पर विशेष शक्ति मिलती है।' }, locale)}
                       </p>
                     )}
                   </div>
@@ -3532,13 +3532,13 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
               return (
                 <div className="mt-4 p-4 rounded-xl bg-sky-500/5 border border-sky-500/15">
                   <div className="text-sky-300 text-xs uppercase tracking-wider font-bold mb-2">
-                    {isHi ? 'D10 10वां भाव — करियर शिखर' : 'D10 10th House — Career Zenith'}
+                    {tl({ en: 'D10 10th House — Career Zenith', hi: 'D10 10वां भाव — करियर शिखर', sa: 'D10 10वां भाव — करियर शिखर', ta: 'D10 10th House — Career Zenith', te: 'D10 10th House — Career Zenith', bn: 'D10 10th House — Career Zenith', kn: 'D10 10th House — Career Zenith', gu: 'D10 10th House — Career Zenith', mai: 'D10 10वां भाव — करियर शिखर', mr: 'D10 10वां भाव — करियर शिखर' }, locale)}
                   </div>
                   <p className="text-text-secondary/75 text-xs leading-relaxed">
                     {isHi ? `10वां भाव ${h10SignName?.hi} में` : `10th house in ${h10SignName?.en}`}
                     {h10planets.length > 0
                       ? (isHi ? ` — ग्रह: ${h10planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ये ग्रह सीधे करियर के उच्चतम बिंदु को प्रभावित करते हैं — आपकी सबसे दृश्यमान व्यावसायिक उपलब्धियां।` : ` — planets: ${h10planets.map(p => PLANET_NAMES_EN[p] || '').join(', ')}. These planets directly influence your career zenith — your most visible professional achievements.`)
-                      : (isHi ? '। कोई ग्रह नहीं — करियर शिखर 10वें भावेश और उसकी D10 स्थिति से निर्धारित।' : '. No planets — career zenith determined by 10th lord and its placement in D10.')}
+                      : (tl({ en: '. No planets — career zenith determined by 10th lord and its placement in D10.', hi: '। कोई ग्रह नहीं — करियर शिखर 10वें भावेश और उसकी D10 स्थिति से निर्धारित।', sa: '। कोई ग्रह नहीं — करियर शिखर 10वें भावेश और उसकी D10 स्थिति से निर्धारित।', ta: '. No planets — career zenith determined by 10th lord and its placement in D10.', te: '. No planets — career zenith determined by 10th lord and its placement in D10.', bn: '. No planets — career zenith determined by 10th lord and its placement in D10.', kn: '. No planets — career zenith determined by 10th lord and its placement in D10.', gu: '. No planets — career zenith determined by 10th lord and its placement in D10.', mai: '। कोई ग्रह नहीं — करियर शिखर 10वें भावेश और उसकी D10 स्थिति से निर्धारित।', mr: '। कोई ग्रह नहीं — करियर शिखर 10वें भावेश और उसकी D10 स्थिति से निर्धारित।' }, locale))}
                   </p>
                 </div>
               );
@@ -3560,7 +3560,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
         return (
           <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-teal-500/20 p-6 mt-8">
             <h3 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
-              {isHi ? 'D7 सप्तांश — संतान और वंश' : 'D7 Saptamsha — Children & Progeny'}
+              {tl({ en: 'D7 Saptamsha — Children & Progeny', hi: 'D7 सप्तांश — संतान और वंश', sa: 'D7 सप्तांश — संतान और वंश', ta: 'D7 Saptamsha — Children & Progeny', te: 'D7 Saptamsha — Children & Progeny', bn: 'D7 Saptamsha — Children & Progeny', kn: 'D7 Saptamsha — Children & Progeny', gu: 'D7 Saptamsha — Children & Progeny', mai: 'D7 सप्तांश — संतान और वंश', mr: 'D7 सप्तांश — संतान और वंश' }, locale)}
             </h3>
             <p className="text-text-secondary/70 text-xs text-center mb-5">
               {isHi
@@ -3572,25 +3572,25 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
               {/* Jupiter placement — most important for children */}
               <div className={`rounded-xl p-4 border ${jupHouse && new Set([1,4,5,7,9,10]).has(jupHouse) ? 'border-emerald-500/20 bg-emerald-500/5' : 'border-teal-500/15 bg-teal-500/5'}`}>
                 <div className="text-teal-300 text-xs uppercase tracking-wider font-bold mb-2">
-                  {isHi ? 'गुरु स्थिति (सबसे महत्वपूर्ण)' : 'Jupiter Placement (Most Important)'}
+                  {tl({ en: 'Jupiter Placement (Most Important)', hi: 'गुरु स्थिति (सबसे महत्वपूर्ण)', sa: 'गुरु स्थिति (सबसे महत्वपूर्ण)', ta: 'Jupiter Placement (Most Important)', te: 'Jupiter Placement (Most Important)', bn: 'Jupiter Placement (Most Important)', kn: 'Jupiter Placement (Most Important)', gu: 'Jupiter Placement (Most Important)', mai: 'गुरु स्थिति (सबसे महत्वपूर्ण)', mr: 'गुरु स्थिति (सबसे महत्वपूर्ण)' }, locale)}
                 </div>
                 <p className="text-text-secondary/75 text-xs leading-relaxed">
                   {jupHouse
                     ? (isHi ? `D7 में गुरु ${jupHouse}वें भाव में — ${new Set([1,4,5,7,9,10]).has(jupHouse) ? 'शुभ स्थान — संतान सुख और उनकी सफलता का बलवान संकेत।' : new Set([6,8,12]).has(jupHouse) ? 'चुनौतीपूर्ण स्थान — संतान में विलंब या कठिनाई संभव। गुरु उपाय सहायक।' : 'मध्यम स्थान — सामान्य संतान सुख।'}` : `Jupiter in ${jupHouse}th house of D7 — ${new Set([1,4,5,7,9,10]).has(jupHouse) ? 'Auspicious position — strong indicator of children\'s happiness and success.' : new Set([6,8,12]).has(jupHouse) ? 'Challenging position — delay or difficulty with children possible. Jupiter remedies help.' : 'Moderate position — normal children fortune.'}`)
-                    : (isHi ? 'D7 में गुरु की स्थिति अनिर्धारित।' : 'Jupiter position in D7 undetermined.')}
+                    : (tl({ en: 'Jupiter position in D7 undetermined.', hi: 'D7 में गुरु की स्थिति अनिर्धारित।', sa: 'D7 में गुरु की स्थिति अनिर्धारित।', ta: 'Jupiter position in D7 undetermined.', te: 'Jupiter position in D7 undetermined.', bn: 'Jupiter position in D7 undetermined.', kn: 'Jupiter position in D7 undetermined.', gu: 'Jupiter position in D7 undetermined.', mai: 'D7 में गुरु की स्थिति अनिर्धारित।', mr: 'D7 में गुरु की स्थिति अनिर्धारित।' }, locale))}
                 </p>
               </div>
 
               {/* 5th house — first child */}
               <div className="rounded-xl p-4 border border-teal-500/15 bg-teal-500/5">
                 <div className="text-teal-300 text-xs uppercase tracking-wider font-bold mb-2">
-                  {isHi ? '5वां भाव — प्रथम संतान' : '5th House — First Child'}
+                  {tl({ en: '5th House — First Child', hi: '5वां भाव — प्रथम संतान', sa: '5वां भाव — प्रथम संतान', ta: '5th House — First Child', te: '5th House — First Child', bn: '5th House — First Child', kn: '5th House — First Child', gu: '5th House — First Child', mai: '5वां भाव — प्रथम संतान', mr: '5वां भाव — प्रथम संतान' }, locale)}
                 </div>
                 <p className="text-text-secondary/75 text-xs leading-relaxed">
                   {isHi ? `${RASHIS[(h5Sign-1)%12]?.name?.hi} में` : `In ${RASHIS[(h5Sign-1)%12]?.name?.en}`}
                   {h5planets.length > 0
                     ? (isHi ? ` — ग्रह: ${h5planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ${h5planets.some(p => new Set([1,3,4,5]).has(p)) ? 'शुभ ग्रह — प्रथम संतान से सुख।' : 'पाप ग्रह — प्रथम संतान में चुनौतियां संभव।'}` : ` — planets: ${h5planets.map(p => PLANET_NAMES_EN[p] || '').join(', ')}. ${h5planets.some(p => new Set([1,3,4,5]).has(p)) ? 'Benefic influence — happiness from first child.' : 'Malefic influence — challenges possible with first child.'}`)
-                    : (isHi ? '। कोई ग्रह नहीं — 5वें भावेश की स्थिति से आकलन।' : '. No planets — assess from 5th lord placement.')}
+                    : (tl({ en: '. No planets — assess from 5th lord placement.', hi: '। कोई ग्रह नहीं — 5वें भावेश की स्थिति से आकलन।', sa: '। कोई ग्रह नहीं — 5वें भावेश की स्थिति से आकलन।', ta: '. No planets — assess from 5th lord placement.', te: '. No planets — assess from 5th lord placement.', bn: '. No planets — assess from 5th lord placement.', kn: '. No planets — assess from 5th lord placement.', gu: '. No planets — assess from 5th lord placement.', mai: '। कोई ग्रह नहीं — 5वें भावेश की स्थिति से आकलन।', mr: '। कोई ग्रह नहीं — 5वें भावेश की स्थिति से आकलन।' }, locale))}
                 </p>
               </div>
             </div>
@@ -4865,7 +4865,7 @@ function YogasTab({ yogas, locale, isDevanagari, headingFont }: {
         return (
           <div key={cat}>
             <h4 className="text-gold-primary text-xs uppercase tracking-wider mb-3 font-bold" style={bodyFont}>
-              {catLabel[isDevanagariLocale(locale) ? 'hi' as const : 'en' as const]}
+              {tl(catLabel, locale)}
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
               {catYogas.map(y => (
@@ -5003,7 +5003,7 @@ function ShadbalaTab({ shadbala, locale, isDevanagari, headingFont }: {
                 return (
                   <th key={s.planetId} className="text-center py-3 px-2 min-w-[70px]">
                     <GrahaIconById id={s.planetId} size={20} />
-                    <p className="text-gold-light text-xs font-medium mt-1" style={bodyFont}>{label[isDevanagariLocale(locale) ? 'hi' as const : 'en' as const]}</p>
+                    <p className="text-gold-light text-xs font-medium mt-1" style={bodyFont}>{tl(label, locale)}</p>
                   </th>
                 );
               })}
@@ -5018,7 +5018,7 @@ function ShadbalaTab({ shadbala, locale, isDevanagari, headingFont }: {
               return (
                 <tr key={row.key} className={isSummary ? 'bg-gold-primary/5' : 'hover:bg-gold-primary/3'}>
                   <td className={`py-2 px-2 text-xs ${isSummary ? 'text-gold-light font-bold' : 'text-text-secondary'}`} style={bodyFont}>
-                    {row[isDevanagariLocale(locale) ? 'hi' as const : 'en' as const]}
+                    {tl(row, locale)}
                   </td>
                   {shadbala.map(s => (
                     <td key={s.planetId} className={`py-2 px-2 text-center font-mono text-xs ${isSummary ? 'font-bold ' : ''}${getColor(s, row.key)}`}>
@@ -5091,7 +5091,7 @@ function BhavabalaTab({ bhavabala, locale, isDevanagari, headingFont }: {
               return (
                 <tr key={b.bhava} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
                   <td className="py-2.5 px-2 text-gold-light font-bold">{b.bhava}</td>
-                  <td className="py-2.5 px-2 text-text-secondary text-xs" style={bodyFont}>{houseName[isDevanagariLocale(locale) ? 'hi' as const : 'en' as const]}</td>
+                  <td className="py-2.5 px-2 text-text-secondary text-xs" style={bodyFont}>{tl(houseName, locale)}</td>
                   <td className="py-2.5 px-2">
                     {b.lordId <= 6 && <GrahaIconById id={b.lordId} size={16} />}
                     <span className="text-text-primary text-xs ml-1">{b.lordName}</span>
@@ -5125,7 +5125,7 @@ function BhavabalaTab({ bhavabala, locale, isDevanagari, headingFont }: {
             return (
               <div key={b.bhava} className="flex items-center gap-3">
                 <div className="w-6 text-right text-xs text-gold-light font-bold">{b.bhava}</div>
-                <div className="w-16 sm:w-24 text-right text-xs text-text-secondary truncate" style={bodyFont}>{houseName[isDevanagariLocale(locale) ? 'hi' as const : 'en' as const]}</div>
+                <div className="w-16 sm:w-24 text-right text-xs text-text-secondary truncate" style={bodyFont}>{tl(houseName, locale)}</div>
                 <div className="flex-1 bg-gold-primary/10 rounded-full h-4 overflow-hidden">
                   <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, backgroundColor: color }} />
                 </div>

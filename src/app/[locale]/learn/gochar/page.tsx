@@ -77,7 +77,7 @@ export default function LearnGocharPage() {
         <p className="mt-3" style={bodyFont}>{t('moonContent2')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">
-            {!isDevanagariLocale(locale) ? 'Transit house = Current planet sign - Birth Moon sign + 1' : 'गोचर भाव = ग्रह की वर्तमान राशि - जन्म चन्द्र राशि + 1'}
+            {tl({ en: 'Transit house = Current planet sign - Birth Moon sign + 1', hi: 'गोचर भाव = ग्रह की वर्तमान राशि - जन्म चन्द्र राशि + 1', sa: 'गोचर भाव = ग्रह की वर्तमान राशि - जन्म चन्द्र राशि + 1', ta: 'Transit house = Current planet sign - Birth Moon sign + 1', te: 'Transit house = Current planet sign - Birth Moon sign + 1', bn: 'Transit house = Current planet sign - Birth Moon sign + 1', kn: 'Transit house = Current planet sign - Birth Moon sign + 1', gu: 'Transit house = Current planet sign - Birth Moon sign + 1', mai: 'गोचर भाव = ग्रह की वर्तमान राशि - जन्म चन्द्र राशि + 1', mr: 'गोचर भाव = ग्रह की वर्तमान राशि - जन्म चन्द्र राशि + 1' }, locale)}
           </p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">
             {locale === 'en'
@@ -120,21 +120,21 @@ export default function LearnGocharPage() {
         <p className="mt-3" style={bodyFont}>{t('saturnContent2')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-blue-400/20">
           <p className="text-blue-300 font-mono text-sm mb-2">
-            {!isDevanagariLocale(locale) ? 'Three Phases of Sade Sati:' : 'साढ़े साती के तीन चरण:'}
+            {tl({ en: 'Three Phases of Sade Sati:', hi: 'साढ़े साती के तीन चरण:', sa: 'साढ़े साती के तीन चरण:', ta: 'Three Phases of Sade Sati:', te: 'Three Phases of Sade Sati:', bn: 'Three Phases of Sade Sati:', kn: 'Three Phases of Sade Sati:', gu: 'Three Phases of Sade Sati:', mai: 'साढ़े साती के तीन चरण:', mr: 'साढ़े साती के तीन चरण:' }, locale)}
           </p>
           <div className="space-y-1">
             <p className="text-blue-200/80 font-mono text-xs">
-              {!isDevanagariLocale(locale) ? '1st Phase (12th from Moon): Rising phase — mental stress, financial pressure, doubt about direction' : 'प्रथम चरण (चन्द्र से 12वाँ): उदय चरण — मानसिक तनाव, आर्थिक दबाव, दिशा पर संदेह'}
+              {tl({ en: '1st Phase (12th from Moon): Rising phase — mental stress, financial pressure, doubt about direction', hi: 'प्रथम चरण (चन्द्र से 12वाँ): उदय चरण — मानसिक तनाव, आर्थिक दबाव, दिशा पर संदेह', sa: 'प्रथम चरण (चन्द्र से 12वाँ): उदय चरण — मानसिक तनाव, आर्थिक दबाव, दिशा पर संदेह', ta: '1st Phase (12th from Moon): Rising phase — mental stress, financial pressure, doubt about direction', te: '1st Phase (12th from Moon): Rising phase — mental stress, financial pressure, doubt about direction', bn: '1st Phase (12th from Moon): Rising phase — mental stress, financial pressure, doubt about direction', kn: '1st Phase (12th from Moon): Rising phase — mental stress, financial pressure, doubt about direction', gu: '1st Phase (12th from Moon): Rising phase — mental stress, financial pressure, doubt about direction', mai: 'प्रथम चरण (चन्द्र से 12वाँ): उदय चरण — मानसिक तनाव, आर्थिक दबाव, दिशा पर संदेह', mr: 'प्रथम चरण (चन्द्र से 12वाँ): उदय चरण — मानसिक तनाव, आर्थिक दबाव, दिशा पर संदेह' }, locale)}
             </p>
             <p className="text-blue-200/80 font-mono text-xs">
-              {!isDevanagariLocale(locale) ? '2nd Phase (1st from Moon): Peak intensity — identity transformation, health challenges, career upheaval' : 'द्वितीय चरण (चन्द्र से 1ला): चरम तीव्रता — पहचान परिवर्तन, स्वास्थ्य चुनौती, करियर उथल-पुथल'}
+              {tl({ en: '2nd Phase (1st from Moon): Peak intensity — identity transformation, health challenges, career upheaval', hi: 'द्वितीय चरण (चन्द्र से 1ला): चरम तीव्रता — पहचान परिवर्तन, स्वास्थ्य चुनौती, करियर उथल-पुथल', sa: 'द्वितीय चरण (चन्द्र से 1ला): चरम तीव्रता — पहचान परिवर्तन, स्वास्थ्य चुनौती, करियर उथल-पुथल', ta: '2nd Phase (1st from Moon): Peak intensity — identity transformation, health challenges, career upheaval', te: '2nd Phase (1st from Moon): Peak intensity — identity transformation, health challenges, career upheaval', bn: '2nd Phase (1st from Moon): Peak intensity — identity transformation, health challenges, career upheaval', kn: '2nd Phase (1st from Moon): Peak intensity — identity transformation, health challenges, career upheaval', gu: '2nd Phase (1st from Moon): Peak intensity — identity transformation, health challenges, career upheaval', mai: 'द्वितीय चरण (चन्द्र से 1ला): चरम तीव्रता — पहचान परिवर्तन, स्वास्थ्य चुनौती, करियर उथल-पुथल', mr: 'द्वितीय चरण (चन्द्र से 1ला): चरम तीव्रता — पहचान परिवर्तन, स्वास्थ्य चुनौती, करियर उथल-पुथल' }, locale)}
             </p>
             <p className="text-blue-200/80 font-mono text-xs">
-              {!isDevanagariLocale(locale) ? '3rd Phase (2nd from Moon): Setting phase — financial restructuring, speech issues, family adjustments' : 'तृतीय चरण (चन्द्र से 2रा): अस्त चरण — आर्थिक पुनर्गठन, वाणी सम्बन्धी, पारिवारिक समायोजन'}
+              {tl({ en: '3rd Phase (2nd from Moon): Setting phase — financial restructuring, speech issues, family adjustments', hi: 'तृतीय चरण (चन्द्र से 2रा): अस्त चरण — आर्थिक पुनर्गठन, वाणी सम्बन्धी, पारिवारिक समायोजन', sa: 'तृतीय चरण (चन्द्र से 2रा): अस्त चरण — आर्थिक पुनर्गठन, वाणी सम्बन्धी, पारिवारिक समायोजन', ta: '3rd Phase (2nd from Moon): Setting phase — financial restructuring, speech issues, family adjustments', te: '3rd Phase (2nd from Moon): Setting phase — financial restructuring, speech issues, family adjustments', bn: '3rd Phase (2nd from Moon): Setting phase — financial restructuring, speech issues, family adjustments', kn: '3rd Phase (2nd from Moon): Setting phase — financial restructuring, speech issues, family adjustments', gu: '3rd Phase (2nd from Moon): Setting phase — financial restructuring, speech issues, family adjustments', mai: 'तृतीय चरण (चन्द्र से 2रा): अस्त चरण — आर्थिक पुनर्गठन, वाणी सम्बन्धी, पारिवारिक समायोजन', mr: 'तृतीय चरण (चन्द्र से 2रा): अस्त चरण — आर्थिक पुनर्गठन, वाणी सम्बन्धी, पारिवारिक समायोजन' }, locale)}
             </p>
           </div>
           <p className="text-blue-200/50 font-mono text-xs mt-2">
-            {!isDevanagariLocale(locale) ? 'Saturn orbit: 29.46 years → everyone faces Sade Sati 2-3 times in life' : 'शनि कक्षा: 29.46 वर्ष → हर व्यक्ति जीवन में 2-3 बार साढ़े साती का सामना करता है'}
+            {tl({ en: 'Saturn orbit: 29.46 years → everyone faces Sade Sati 2-3 times in life', hi: 'शनि कक्षा: 29.46 वर्ष → हर व्यक्ति जीवन में 2-3 बार साढ़े साती का सामना करता है', sa: 'शनि कक्षा: 29.46 वर्ष → हर व्यक्ति जीवन में 2-3 बार साढ़े साती का सामना करता है', ta: 'Saturn orbit: 29.46 years → everyone faces Sade Sati 2-3 times in life', te: 'Saturn orbit: 29.46 years → everyone faces Sade Sati 2-3 times in life', bn: 'Saturn orbit: 29.46 years → everyone faces Sade Sati 2-3 times in life', kn: 'Saturn orbit: 29.46 years → everyone faces Sade Sati 2-3 times in life', gu: 'Saturn orbit: 29.46 years → everyone faces Sade Sati 2-3 times in life', mai: 'शनि कक्षा: 29.46 वर्ष → हर व्यक्ति जीवन में 2-3 बार साढ़े साती का सामना करता है', mr: 'शनि कक्षा: 29.46 वर्ष → हर व्यक्ति जीवन में 2-3 बार साढ़े साती का सामना करता है' }, locale)}
           </p>
         </div>
       </LessonSection>
@@ -145,7 +145,7 @@ export default function LearnGocharPage() {
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
             <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-1">
-              {!isDevanagariLocale(locale) ? 'Auspicious Jupiter transit houses' : 'शुभ गुरु गोचर भाव'}
+              {tl({ en: 'Auspicious Jupiter transit houses', hi: 'शुभ गुरु गोचर भाव', sa: 'शुभ गुरु गोचर भाव', ta: 'Auspicious Jupiter transit houses', te: 'Auspicious Jupiter transit houses', bn: 'Auspicious Jupiter transit houses', kn: 'Auspicious Jupiter transit houses', gu: 'Auspicious Jupiter transit houses', mai: 'शुभ गुरु गोचर भाव', mr: 'शुभ गुरु गोचर भाव' }, locale)}
             </div>
             <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
               {locale === 'en'
@@ -155,7 +155,7 @@ export default function LearnGocharPage() {
           </div>
           <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
             <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">
-              {!isDevanagariLocale(locale) ? 'Challenging Jupiter transit houses' : 'कठिन गुरु गोचर भाव'}
+              {tl({ en: 'Challenging Jupiter transit houses', hi: 'कठिन गुरु गोचर भाव', sa: 'कठिन गुरु गोचर भाव', ta: 'Challenging Jupiter transit houses', te: 'Challenging Jupiter transit houses', bn: 'Challenging Jupiter transit houses', kn: 'Challenging Jupiter transit houses', gu: 'Challenging Jupiter transit houses', mai: 'कठिन गुरु गोचर भाव', mr: 'कठिन गुरु गोचर भाव' }, locale)}
             </div>
             <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
               {locale === 'en'
@@ -172,16 +172,16 @@ export default function LearnGocharPage() {
         <p className="mt-3" style={bodyFont}>{t('doubleTransitContent2')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {!isDevanagariLocale(locale) ? 'Double Transit Examples:' : 'दोहरा गोचर उदाहरण:'}
+            {tl({ en: 'Double Transit Examples:', hi: 'दोहरा गोचर उदाहरण:', sa: 'दोहरा गोचर उदाहरण:', ta: 'Double Transit Examples:', te: 'Double Transit Examples:', bn: 'Double Transit Examples:', kn: 'Double Transit Examples:', gu: 'Double Transit Examples:', mai: 'दोहरा गोचर उदाहरण:', mr: 'दोहरा गोचर उदाहरण:' }, locale)}
           </p>
           <div className="space-y-1.5 text-gold-light/80 font-mono text-xs">
-            <p>{!isDevanagariLocale(locale) ? 'Marriage: Jupiter + Saturn both aspect 7th house from Moon' : 'विवाह: गुरु + शनि दोनों चन्द्र से 7वें भाव को दृष्टि करें'}</p>
-            <p>{!isDevanagariLocale(locale) ? 'Job change: Jupiter + Saturn both aspect 10th house from Moon' : 'नौकरी परिवर्तन: गुरु + शनि दोनों 10वें भाव को दृष्टि करें'}</p>
-            <p>{!isDevanagariLocale(locale) ? 'Child birth: Jupiter + Saturn both aspect 5th house from Moon' : 'संतान जन्म: गुरु + शनि दोनों 5वें भाव को दृष्टि करें'}</p>
-            <p>{!isDevanagariLocale(locale) ? 'Property purchase: Jupiter + Saturn both aspect 4th house from Moon' : 'सम्पत्ति खरीद: गुरु + शनि दोनों 4वें भाव को दृष्टि करें'}</p>
+            <p>{tl({ en: 'Marriage: Jupiter + Saturn both aspect 7th house from Moon', hi: 'विवाह: गुरु + शनि दोनों चन्द्र से 7वें भाव को दृष्टि करें', sa: 'विवाह: गुरु + शनि दोनों चन्द्र से 7वें भाव को दृष्टि करें', ta: 'Marriage: Jupiter + Saturn both aspect 7th house from Moon', te: 'Marriage: Jupiter + Saturn both aspect 7th house from Moon', bn: 'Marriage: Jupiter + Saturn both aspect 7th house from Moon', kn: 'Marriage: Jupiter + Saturn both aspect 7th house from Moon', gu: 'Marriage: Jupiter + Saturn both aspect 7th house from Moon', mai: 'विवाह: गुरु + शनि दोनों चन्द्र से 7वें भाव को दृष्टि करें', mr: 'विवाह: गुरु + शनि दोनों चन्द्र से 7वें भाव को दृष्टि करें' }, locale)}</p>
+            <p>{tl({ en: 'Job change: Jupiter + Saturn both aspect 10th house from Moon', hi: 'नौकरी परिवर्तन: गुरु + शनि दोनों 10वें भाव को दृष्टि करें', sa: 'नौकरी परिवर्तन: गुरु + शनि दोनों 10वें भाव को दृष्टि करें', ta: 'Job change: Jupiter + Saturn both aspect 10th house from Moon', te: 'Job change: Jupiter + Saturn both aspect 10th house from Moon', bn: 'Job change: Jupiter + Saturn both aspect 10th house from Moon', kn: 'Job change: Jupiter + Saturn both aspect 10th house from Moon', gu: 'Job change: Jupiter + Saturn both aspect 10th house from Moon', mai: 'नौकरी परिवर्तन: गुरु + शनि दोनों 10वें भाव को दृष्टि करें', mr: 'नौकरी परिवर्तन: गुरु + शनि दोनों 10वें भाव को दृष्टि करें' }, locale)}</p>
+            <p>{tl({ en: 'Child birth: Jupiter + Saturn both aspect 5th house from Moon', hi: 'संतान जन्म: गुरु + शनि दोनों 5वें भाव को दृष्टि करें', sa: 'संतान जन्म: गुरु + शनि दोनों 5वें भाव को दृष्टि करें', ta: 'Child birth: Jupiter + Saturn both aspect 5th house from Moon', te: 'Child birth: Jupiter + Saturn both aspect 5th house from Moon', bn: 'Child birth: Jupiter + Saturn both aspect 5th house from Moon', kn: 'Child birth: Jupiter + Saturn both aspect 5th house from Moon', gu: 'Child birth: Jupiter + Saturn both aspect 5th house from Moon', mai: 'संतान जन्म: गुरु + शनि दोनों 5वें भाव को दृष्टि करें', mr: 'संतान जन्म: गुरु + शनि दोनों 5वें भाव को दृष्टि करें' }, locale)}</p>
+            <p>{tl({ en: 'Property purchase: Jupiter + Saturn both aspect 4th house from Moon', hi: 'सम्पत्ति खरीद: गुरु + शनि दोनों 4वें भाव को दृष्टि करें', sa: 'सम्पत्ति खरीद: गुरु + शनि दोनों 4वें भाव को दृष्टि करें', ta: 'Property purchase: Jupiter + Saturn both aspect 4th house from Moon', te: 'Property purchase: Jupiter + Saturn both aspect 4th house from Moon', bn: 'Property purchase: Jupiter + Saturn both aspect 4th house from Moon', kn: 'Property purchase: Jupiter + Saturn both aspect 4th house from Moon', gu: 'Property purchase: Jupiter + Saturn both aspect 4th house from Moon', mai: 'सम्पत्ति खरीद: गुरु + शनि दोनों 4वें भाव को दृष्टि करें', mr: 'सम्पत्ति खरीद: गुरु + शनि दोनों 4वें भाव को दृष्टि करें' }, locale)}</p>
           </div>
           <p className="text-gold-light/50 font-mono text-xs mt-2 italic">
-            {!isDevanagariLocale(locale) ? 'Note: The event must also be supported by the running Dasha — double transit provides the timing window, Dasha provides the promise.' : 'नोट: घटना को चल रही दशा का समर्थन भी होना चाहिए — दोहरा गोचर समय विंडो देता है, दशा वादा देती है।'}
+            {tl({ en: 'Note: The event must also be supported by the running Dasha — double transit provides the timing window, Dasha provides the promise.', hi: 'नोट: घटना को चल रही दशा का समर्थन भी होना चाहिए — दोहरा गोचर समय विंडो देता है, दशा वादा देती है।', sa: 'नोट: घटना को चल रही दशा का समर्थन भी होना चाहिए — दोहरा गोचर समय विंडो देता है, दशा वादा देती है।', ta: 'Note: The event must also be supported by the running Dasha — double transit provides the timing window, Dasha provides the promise.', te: 'Note: The event must also be supported by the running Dasha — double transit provides the timing window, Dasha provides the promise.', bn: 'Note: The event must also be supported by the running Dasha — double transit provides the timing window, Dasha provides the promise.', kn: 'Note: The event must also be supported by the running Dasha — double transit provides the timing window, Dasha provides the promise.', gu: 'Note: The event must also be supported by the running Dasha — double transit provides the timing window, Dasha provides the promise.', mai: 'नोट: घटना को चल रही दशा का समर्थन भी होना चाहिए — दोहरा गोचर समय विंडो देता है, दशा वादा देती है।', mr: 'नोट: घटना को चल रही दशा का समर्थन भी होना चाहिए — दोहरा गोचर समय विंडो देता है, दशा वादा देती है।' }, locale)}
           </p>
         </div>
       </LessonSection>
@@ -198,24 +198,24 @@ export default function LearnGocharPage() {
         <p className="mt-3" style={bodyFont}>{t('ashtakavargaContent2')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {!isDevanagariLocale(locale) ? 'Ashtakavarga Scoring:' : 'अष्टकवर्ग अंकन:'}
+            {tl({ en: 'Ashtakavarga Scoring:', hi: 'अष्टकवर्ग अंकन:', sa: 'अष्टकवर्ग अंकन:', ta: 'Ashtakavarga Scoring:', te: 'Ashtakavarga Scoring:', bn: 'Ashtakavarga Scoring:', kn: 'Ashtakavarga Scoring:', gu: 'Ashtakavarga Scoring:', mai: 'अष्टकवर्ग अंकन:', mr: 'अष्टकवर्ग अंकन:' }, locale)}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
             <div className="p-2 rounded bg-red-400/10 border border-red-400/15">
               <span className="text-red-400 font-mono font-bold">0-2</span>
-              <span className="text-text-secondary ml-2">{!isDevanagariLocale(locale) ? 'Very weak' : 'अत्यन्त दुर्बल'}</span>
+              <span className="text-text-secondary ml-2">{tl({ en: 'Very weak', hi: 'अत्यन्त दुर्बल', sa: 'अत्यन्त दुर्बल', ta: 'Very weak', te: 'Very weak', bn: 'Very weak', kn: 'Very weak', gu: 'Very weak', mai: 'अत्यन्त दुर्बल', mr: 'अत्यन्त दुर्बल' }, locale)}</span>
             </div>
             <div className="p-2 rounded bg-amber-400/10 border border-amber-400/15">
               <span className="text-amber-400 font-mono font-bold">3</span>
-              <span className="text-text-secondary ml-2">{!isDevanagariLocale(locale) ? 'Below average' : 'औसत से नीचे'}</span>
+              <span className="text-text-secondary ml-2">{tl({ en: 'Below average', hi: 'औसत से नीचे', sa: 'औसत से नीचे', ta: 'Below average', te: 'Below average', bn: 'Below average', kn: 'Below average', gu: 'Below average', mai: 'औसत से नीचे', mr: 'औसत से नीचे' }, locale)}</span>
             </div>
             <div className="p-2 rounded bg-blue-400/10 border border-blue-400/15">
               <span className="text-blue-400 font-mono font-bold">4-5</span>
-              <span className="text-text-secondary ml-2">{!isDevanagariLocale(locale) ? 'Good' : 'शुभ'}</span>
+              <span className="text-text-secondary ml-2">{tl({ en: 'Good', hi: 'शुभ', sa: 'शुभ', ta: 'Good', te: 'Good', bn: 'Good', kn: 'Good', gu: 'Good', mai: 'शुभ', mr: 'शुभ' }, locale)}</span>
             </div>
             <div className="p-2 rounded bg-emerald-400/10 border border-emerald-400/15">
               <span className="text-emerald-400 font-mono font-bold">6-8</span>
-              <span className="text-text-secondary ml-2">{!isDevanagariLocale(locale) ? 'Excellent' : 'उत्कृष्ट'}</span>
+              <span className="text-text-secondary ml-2">{tl({ en: 'Excellent', hi: 'उत्कृष्ट', sa: 'उत्कृष्ट', ta: 'Excellent', te: 'Excellent', bn: 'Excellent', kn: 'Excellent', gu: 'Excellent', mai: 'उत्कृष्ट', mr: 'उत्कृष्ट' }, locale)}</span>
             </div>
           </div>
         </div>
@@ -227,9 +227,9 @@ export default function LearnGocharPage() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/10">
-                <th className="text-left py-2 px-2 text-gold-dark w-12">{!isDevanagariLocale(locale) ? 'House' : 'भाव'}</th>
-                <th className="text-left py-2 px-2 text-blue-400">{!isDevanagariLocale(locale) ? 'Saturn Transit Effect' : 'शनि गोचर प्रभाव'}</th>
-                <th className="text-left py-2 px-2 text-amber-400">{!isDevanagariLocale(locale) ? 'Jupiter Transit Effect' : 'गुरु गोचर प्रभाव'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark w-12">{tl({ en: 'House', hi: 'भाव', sa: 'भाव', ta: 'House', te: 'House', bn: 'House', kn: 'House', gu: 'House', mai: 'भाव', mr: 'भाव' }, locale)}</th>
+                <th className="text-left py-2 px-2 text-blue-400">{tl({ en: 'Saturn Transit Effect', hi: 'शनि गोचर प्रभाव', sa: 'शनि गोचर प्रभाव', ta: 'Saturn Transit Effect', te: 'Saturn Transit Effect', bn: 'Saturn Transit Effect', kn: 'Saturn Transit Effect', gu: 'Saturn Transit Effect', mai: 'शनि गोचर प्रभाव', mr: 'शनि गोचर प्रभाव' }, locale)}</th>
+                <th className="text-left py-2 px-2 text-amber-400">{tl({ en: 'Jupiter Transit Effect', hi: 'गुरु गोचर प्रभाव', sa: 'गुरु गोचर प्रभाव', ta: 'Jupiter Transit Effect', te: 'Jupiter Transit Effect', bn: 'Jupiter Transit Effect', kn: 'Jupiter Transit Effect', gu: 'Jupiter Transit Effect', mai: 'गुरु गोचर प्रभाव', mr: 'गुरु गोचर प्रभाव' }, locale)}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gold-primary/5">
@@ -250,7 +250,7 @@ export default function LearnGocharPage() {
         <p style={bodyFont}>{t('balamContent')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {!isDevanagariLocale(locale) ? 'Chandra Balam (Moon Strength):' : 'चन्द्र बलम (चन्द्र शक्ति):'}
+            {tl({ en: 'Chandra Balam (Moon Strength):', hi: 'चन्द्र बलम (चन्द्र शक्ति):', sa: 'चन्द्र बलम (चन्द्र शक्ति):', ta: 'Chandra Balam (Moon Strength):', te: 'Chandra Balam (Moon Strength):', bn: 'Chandra Balam (Moon Strength):', kn: 'Chandra Balam (Moon Strength):', gu: 'Chandra Balam (Moon Strength):', mai: 'चन्द्र बलम (चन्द्र शक्ति):', mr: 'चन्द्र बलम (चन्द्र शक्ति):' }, locale)}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
             {locale === 'en'
@@ -263,7 +263,7 @@ export default function LearnGocharPage() {
               : 'अशुभ: 1, 2, 4, 5, 8, 9, 12'}
           </p>
           <p className="text-gold-light font-mono text-sm mb-2 mt-3">
-            {!isDevanagariLocale(locale) ? 'Tara Balam (Star Strength):' : 'तारा बलम (तारा शक्ति):'}
+            {tl({ en: 'Tara Balam (Star Strength):', hi: 'तारा बलम (तारा शक्ति):', sa: 'तारा बलम (तारा शक्ति):', ta: 'Tara Balam (Star Strength):', te: 'Tara Balam (Star Strength):', bn: 'Tara Balam (Star Strength):', kn: 'Tara Balam (Star Strength):', gu: 'Tara Balam (Star Strength):', mai: 'तारा बलम (तारा शक्ति):', mr: 'तारा बलम (तारा शक्ति):' }, locale)}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
             {locale === 'en'
@@ -301,7 +301,7 @@ export default function LearnGocharPage() {
               </span>
               {'tool' in mod && (
                 <span className="text-text-tertiary text-xs block mt-0.5">
-                  {!isDevanagariLocale(locale) ? 'Tool' : 'उपकरण'} →
+                  {tl({ en: 'Tool', hi: 'उपकरण', sa: 'उपकरण', ta: 'Tool', te: 'Tool', bn: 'Tool', kn: 'Tool', gu: 'Tool', mai: 'उपकरण', mr: 'उपकरण' }, locale)} →
                 </span>
               )}
             </Link>

@@ -326,7 +326,7 @@ export default function UpagrahaPage() {
 
   const natureColor = (n: string) => n === 'malefic' ? 'text-red-400' : n === 'benefic' ? 'text-emerald-400' : 'text-amber-400';
   const natureBg = (n: string) => n === 'malefic' ? 'bg-red-500/15 border-red-500/25 text-red-300' : n === 'benefic' ? 'bg-emerald-500/15 border-emerald-500/25 text-emerald-300' : 'bg-amber-500/15 border-amber-500/25 text-amber-300';
-  const natureLabel = (n: string) => n === 'malefic' ? (!isDevanagariLocale(locale) ? 'Malefic' : 'पापी') : n === 'benefic' ? (!isDevanagariLocale(locale) ? 'Benefic' : 'शुभ') : (!isDevanagariLocale(locale) ? 'Mixed' : 'मिश्र');
+  const natureLabel = (n: string) => n === 'malefic' ? (tl({ en: 'Malefic', hi: 'पापी', sa: 'पापी', ta: 'Malefic', te: 'Malefic', bn: 'Malefic', kn: 'Malefic', gu: 'Malefic', mai: 'पापी', mr: 'पापी' }, locale)) : n === 'benefic' ? (tl({ en: 'Benefic', hi: 'शुभ', sa: 'शुभ', ta: 'Benefic', te: 'Benefic', bn: 'Benefic', kn: 'Benefic', gu: 'Benefic', mai: 'शुभ', mr: 'शुभ' }, locale)) : (tl({ en: 'Mixed', hi: 'मिश्र', sa: 'मिश्र', ta: 'Mixed', te: 'Mixed', bn: 'Mixed', kn: 'Mixed', gu: 'Mixed', mai: 'मिश्र', mr: 'मिश्र' }, locale));
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -334,7 +334,7 @@ export default function UpagrahaPage() {
       {/* Hero */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
-          <span className="text-gold-gradient">{!isDevanagariLocale(locale) ? 'Upagraha' : 'उपग्रह'}</span>
+          <span className="text-gold-gradient">{tl({ en: 'Upagraha', hi: 'उपग्रह', sa: 'उपग्रह', ta: 'Upagraha', te: 'Upagraha', bn: 'Upagraha', kn: 'Upagraha', gu: 'Upagraha', mai: 'उपग्रह', mr: 'उपग्रह' }, locale)}</span>
         </h1>
         <p className="text-2xl text-gold-dark mb-4" style={headingFont}>
           {locale !== 'en' && 'Upagraha'}
@@ -349,7 +349,7 @@ export default function UpagrahaPage() {
       {/* Context box */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 mb-10">
         <h3 className="text-gold-light font-bold text-sm mb-3" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'Why Upagrahas Matter' : 'उपग्रह क्यों महत्वपूर्ण हैं'}
+          {tl({ en: 'Why Upagrahas Matter', hi: 'उपग्रह क्यों महत्वपूर्ण हैं', sa: 'उपग्रह क्यों महत्वपूर्ण हैं', ta: 'Why Upagrahas Matter', te: 'Why Upagrahas Matter', bn: 'Why Upagrahas Matter', kn: 'Why Upagrahas Matter', gu: 'Why Upagrahas Matter', mai: 'उपग्रह क्यों महत्वपूर्ण हैं', mr: 'उपग्रह क्यों महत्वपूर्ण हैं' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-4" style={bodyFont}>
           {locale === 'en'
@@ -358,9 +358,9 @@ export default function UpagrahaPage() {
         </p>
         <div className="grid grid-cols-3 gap-3">
           {[
-            { label: !isDevanagariLocale(locale) ? 'Malefic' : 'पापी', names: 'Dhuma, Vyatipata', color: 'border-red-500/20 bg-red-500/5', dot: 'bg-red-400' },
-            { label: !isDevanagariLocale(locale) ? 'Benefic' : 'शुभ', names: 'Parivesha, Chapa', color: 'border-emerald-500/20 bg-emerald-500/5', dot: 'bg-emerald-400' },
-            { label: !isDevanagariLocale(locale) ? 'Mixed' : 'मिश्र', names: 'Upaketu', color: 'border-amber-500/20 bg-amber-500/5', dot: 'bg-amber-400' },
+            { label: tl({ en: 'Malefic', hi: 'पापी', sa: 'पापी', ta: 'Malefic', te: 'Malefic', bn: 'Malefic', kn: 'Malefic', gu: 'Malefic', mai: 'पापी', mr: 'पापी' }, locale), names: 'Dhuma, Vyatipata', color: 'border-red-500/20 bg-red-500/5', dot: 'bg-red-400' },
+            { label: tl({ en: 'Benefic', hi: 'शुभ', sa: 'शुभ', ta: 'Benefic', te: 'Benefic', bn: 'Benefic', kn: 'Benefic', gu: 'Benefic', mai: 'शुभ', mr: 'शुभ' }, locale), names: 'Parivesha, Chapa', color: 'border-emerald-500/20 bg-emerald-500/5', dot: 'bg-emerald-400' },
+            { label: tl({ en: 'Mixed', hi: 'मिश्र', sa: 'मिश्र', ta: 'Mixed', te: 'Mixed', bn: 'Mixed', kn: 'Mixed', gu: 'Mixed', mai: 'मिश्र', mr: 'मिश्र' }, locale), names: 'Upaketu', color: 'border-amber-500/20 bg-amber-500/5', dot: 'bg-amber-400' },
           ].map(c => (
             <div key={c.label} className={`rounded-lg p-3 border ${c.color} text-center`}>
               <div className="flex items-center justify-center gap-1.5 mb-1">
@@ -476,16 +476,16 @@ export default function UpagrahaPage() {
               </div>
               <div>
                 <h3 className="text-gold-light font-bold text-lg" style={headingFont}>
-                  {!isDevanagariLocale(locale) ? 'Your Upagraha Snapshot' : 'आपका उपग्रह सारांश'}
+                  {tl({ en: 'Your Upagraha Snapshot', hi: 'आपका उपग्रह सारांश', sa: 'आपका उपग्रह सारांश', ta: 'Your Upagraha Snapshot', te: 'Your Upagraha Snapshot', bn: 'Your Upagraha Snapshot', kn: 'Your Upagraha Snapshot', gu: 'Your Upagraha Snapshot', mai: 'आपका उपग्रह सारांश', mr: 'आपका उपग्रह सारांश' }, locale)}
                 </h3>
                 <div className="flex items-center gap-2 text-xs text-text-secondary">
                   <Shield className="w-3 h-3 text-emerald-400" />
-                  <span>{!isDevanagariLocale(locale) ? `Moon in ${moonName?.en}` : `चन्द्र ${moonName?.hi} में`}</span>
+                  <span>{tl({ en: 'Moon in ${moonName?.en}', hi: 'चन्द्र ${moonName?.hi} में', sa: 'चन्द्र ${moonName?.hi} में', ta: 'Moon in ${moonName?.en}', te: 'Moon in ${moonName?.en}', bn: 'Moon in ${moonName?.en}', kn: 'Moon in ${moonName?.en}', gu: 'Moon in ${moonName?.en}', mai: 'चन्द्र ${moonName?.hi} में', mr: 'चन्द्र ${moonName?.hi} में' }, locale)}</span>
                   <span className="text-gold-primary/20">|</span>
                   <span className={`font-bold ${toneColor === 'emerald' ? 'text-emerald-400' : toneColor === 'red' ? 'text-red-400' : 'text-amber-400'}`}>
-                    {tone === 'positive' ? (!isDevanagariLocale(locale) ? 'Favorable Day' : 'अनुकूल दिन') :
-                     tone === 'challenging' ? (!isDevanagariLocale(locale) ? 'Caution Needed' : 'सावधानी आवश्यक') :
-                     (!isDevanagariLocale(locale) ? 'Mixed Influences' : 'मिश्रित प्रभाव')}
+                    {tone === 'positive' ? (tl({ en: 'Favorable Day', hi: 'अनुकूल दिन', sa: 'अनुकूल दिन', ta: 'Favorable Day', te: 'Favorable Day', bn: 'Favorable Day', kn: 'Favorable Day', gu: 'Favorable Day', mai: 'अनुकूल दिन', mr: 'अनुकूल दिन' }, locale)) :
+                     tone === 'challenging' ? (tl({ en: 'Caution Needed', hi: 'सावधानी आवश्यक', sa: 'सावधानी आवश्यक', ta: 'Caution Needed', te: 'Caution Needed', bn: 'Caution Needed', kn: 'Caution Needed', gu: 'Caution Needed', mai: 'सावधानी आवश्यक', mr: 'सावधानी आवश्यक' }, locale)) :
+                     (tl({ en: 'Mixed Influences', hi: 'मिश्रित प्रभाव', sa: 'मिश्रित प्रभाव', ta: 'Mixed Influences', te: 'Mixed Influences', bn: 'Mixed Influences', kn: 'Mixed Influences', gu: 'Mixed Influences', mai: 'मिश्रित प्रभाव', mr: 'मिश्रित प्रभाव' }, locale))}
                   </span>
                 </div>
               </div>
@@ -532,7 +532,7 @@ export default function UpagrahaPage() {
               : 'आज के उपग्रह आपके विशिष्ट भावों को कैसे प्रभावित करते हैं, इसका व्यक्तिगत सारांश दे���ने के लिए कुंडली बनाएँ।'}
             {' '}
             <Link href="/kundali" className="text-gold-primary hover:text-gold-light font-bold underline">
-              {!isDevanagariLocale(locale) ? 'Generate Kundali' : 'कुंडली बनाएँ'}
+              {tl({ en: 'Generate Kundali', hi: 'कुंडली बनाएँ', sa: 'कुंडली बनाएँ', ta: 'Generate Kundali', te: 'Generate Kundali', bn: 'Generate Kundali', kn: 'Generate Kundali', gu: 'Generate Kundali', mai: 'कुंडली बनाएँ', mr: 'कुंडली बनाएँ' }, locale)}
             </Link>
           </p>
         </div>
@@ -577,7 +577,7 @@ export default function UpagrahaPage() {
                           {natureLabel(u.info.nature)}
                         </span>
                         <span className="text-text-secondary/70 text-xs">
-                          {!isDevanagariLocale(locale) ? 'Ruler:' : 'स्वामी:'} <span className={natureColor(u.info.nature)}>{tl(u.info.ruler, locale)}</span>
+                          {tl({ en: 'Ruler:', hi: 'स्वामी:', sa: 'स्वामी:', ta: 'Ruler:', te: 'Ruler:', bn: 'Ruler:', kn: 'Ruler:', gu: 'Ruler:', mai: 'स्वामी:', mr: 'स्वामी:' }, locale)} <span className={natureColor(u.info.nature)}>{tl(u.info.ruler, locale)}</span>
                         </span>
                       </div>
 
@@ -585,7 +585,7 @@ export default function UpagrahaPage() {
                       <div className="flex items-center gap-3 mb-3 flex-wrap">
                         <span className="text-gold-primary font-bold text-lg font-mono">{u.degree}</span>
                         <span className="text-text-secondary text-sm" style={bodyFont}>
-                          {!isDevanagariLocale(locale) ? 'in' : 'में'} <span className="text-gold-light font-semibold">{tl(u.signName, locale)}</span>
+                          {tl({ en: 'in', hi: 'में', sa: 'में', ta: 'in', te: 'in', bn: 'in', kn: 'in', gu: 'in', mai: 'में', mr: 'में' }, locale)} <span className="text-gold-light font-semibold">{tl(u.signName, locale)}</span>
                         </span>
                         <span className="text-text-secondary/65 text-xs font-mono">({u.longitude.toFixed(2)}°)</span>
                       </div>
@@ -593,7 +593,7 @@ export default function UpagrahaPage() {
                       {/* Sign-specific interpretation — always visible */}
                       <div className="rounded-xl p-4 bg-bg-primary/50 border border-gold-primary/10 mb-3">
                         <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1.5">
-                          {!isDevanagariLocale(locale) ? `${u.info.name.en} in ${u.signName.en} — What it means for you` : `${u.info.name.hi} ${u.signName.hi} में — आपके लिए क्या अर्थ है`}
+                          {tl({ en: '${u.info.name.en} in ${u.signName.en} — What it means for you', hi: '${u.info.name.hi} ${u.signName.hi} में — आपके लिए क्या अर्थ है', sa: '${u.info.name.hi} ${u.signName.hi} में — आपके लिए क्या अर्थ है', ta: '${u.info.name.en} in ${u.signName.en} — What it means for you', te: '${u.info.name.en} in ${u.signName.en} — What it means for you', bn: '${u.info.name.en} in ${u.signName.en} — What it means for you', kn: '${u.info.name.en} in ${u.signName.en} — What it means for you', gu: '${u.info.name.en} in ${u.signName.en} — What it means for you', mai: '${u.info.name.hi} ${u.signName.hi} में — आपके लिए क्या अर्थ है', mr: '${u.info.name.hi} ${u.signName.hi} में — आपके लिए क्या अर्थ है' }, locale)}
                         </div>
                         <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>
                           {t2(signEffect)}
@@ -606,7 +606,7 @@ export default function UpagrahaPage() {
                           <div className="flex items-center gap-2 mb-2">
                             <Zap className="w-3.5 h-3.5 text-emerald-400" />
                             <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">
-                              {!isDevanagariLocale(locale) ? `For you — ${house}${['st','nd','rd'][house-1] || 'th'} house from Moon` : `आपके लिए — चन्द्र से ${house}वाँ भाव`}
+                              {tl({ en: 'For you — ${house}${[\'st\',\'nd\',\'rd\'][house-1] || \'th\'} house from Moon', hi: 'आपके लिए — चन्द्र से ${house}वाँ भाव', sa: 'आपके लिए — चन्द्र से ${house}वाँ भाव', ta: 'For you — ${house}${[\'st\',\'nd\',\'rd\'][house-1] || \'th\'} house from Moon', te: 'For you — ${house}${[\'st\',\'nd\',\'rd\'][house-1] || \'th\'} house from Moon', bn: 'For you — ${house}${[\'st\',\'nd\',\'rd\'][house-1] || \'th\'} house from Moon', kn: 'For you — ${house}${[\'st\',\'nd\',\'rd\'][house-1] || \'th\'} house from Moon', gu: 'For you — ${house}${[\'st\',\'nd\',\'rd\'][house-1] || \'th\'} house from Moon', mai: 'आपके लिए — चन्द्र से ${house}वाँ भाव', mr: 'आपके लिए — चन्द्र से ${house}वाँ भाव' }, locale)}
                             </span>
                           </div>
                           <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>
@@ -629,8 +629,8 @@ export default function UpagrahaPage() {
                   className="w-full px-6 py-3 text-center text-xs font-bold uppercase tracking-wider border-t border-gold-primary/10 text-gold-dark hover:text-gold-light hover:bg-gold-primary/5 transition-all"
                 >
                   {isExpanded
-                    ? (!isDevanagariLocale(locale) ? 'Show less' : 'कम दिखाएँ')
-                    : (!isDevanagariLocale(locale) ? 'Show detailed analysis' : 'विस्तृत विश्लेषण दिखाएँ')}
+                    ? (tl({ en: 'Show less', hi: 'कम दिखाएँ', sa: 'कम दिखाएँ', ta: 'Show less', te: 'Show less', bn: 'Show less', kn: 'Show less', gu: 'Show less', mai: 'कम दिखाएँ', mr: 'कम दिखाएँ' }, locale))
+                    : (tl({ en: 'Show detailed analysis', hi: 'विस्तृत विश्लेषण दिखाएँ', sa: 'विस्तृत विश्लेषण दिखाएँ', ta: 'Show detailed analysis', te: 'Show detailed analysis', bn: 'Show detailed analysis', kn: 'Show detailed analysis', gu: 'Show detailed analysis', mai: 'विस्तृत विश्लेषण दिखाएँ', mr: 'विस्तृत विश्लेषण दिखाएँ' }, locale))}
                 </button>
 
                 {/* Expanded detail */}
@@ -644,7 +644,7 @@ export default function UpagrahaPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="rounded-xl p-4 bg-emerald-500/5 border border-emerald-500/15">
                         <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">
-                          {!isDevanagariLocale(locale) ? 'When Well-Placed' : 'शुभ स्थिति में'}
+                          {tl({ en: 'When Well-Placed', hi: 'शुभ स्थिति में', sa: 'शुभ स्थिति में', ta: 'When Well-Placed', te: 'When Well-Placed', bn: 'When Well-Placed', kn: 'When Well-Placed', gu: 'When Well-Placed', mai: 'शुभ स्थिति में', mr: 'शुभ स्थिति में' }, locale)}
                         </div>
                         <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
                           {t2(u.info.whenStrong)}
@@ -652,7 +652,7 @@ export default function UpagrahaPage() {
                       </div>
                       <div className="rounded-xl p-4 bg-red-500/5 border border-red-500/15">
                         <div className="text-red-400 text-xs uppercase tracking-wider font-bold mb-2">
-                          {!isDevanagariLocale(locale) ? 'When Afflicted' : 'पीड़ित स्थिति में'}
+                          {tl({ en: 'When Afflicted', hi: 'पीड़ित स्थिति में', sa: 'पीड़ित स्थिति में', ta: 'When Afflicted', te: 'When Afflicted', bn: 'When Afflicted', kn: 'When Afflicted', gu: 'When Afflicted', mai: 'पीड़ित स्थिति में', mr: 'पीड़ित स्थिति में' }, locale)}
                         </div>
                         <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
                           {t2(u.info.whenAfflicted)}
@@ -663,7 +663,7 @@ export default function UpagrahaPage() {
                     {/* All 12 sign effects */}
                     <div>
                       <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-3">
-                        {!isDevanagariLocale(locale) ? `${u.info.name.en} through the 12 Signs` : `12 राशियों में ${u.info.name.hi}`}
+                        {tl({ en: '${u.info.name.en} through the 12 Signs', hi: '12 राशियों में ${u.info.name.hi}', sa: '12 राशियों में ${u.info.name.hi}', ta: '${u.info.name.en} through the 12 Signs', te: '${u.info.name.en} through the 12 Signs', bn: '${u.info.name.en} through the 12 Signs', kn: '${u.info.name.en} through the 12 Signs', gu: '${u.info.name.en} through the 12 Signs', mai: '12 राशियों में ${u.info.name.hi}', mr: '12 राशियों में ${u.info.name.hi}' }, locale)}
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {Array.from({ length: 12 }, (_, idx) => {
@@ -680,7 +680,7 @@ export default function UpagrahaPage() {
                                   <span className={`font-bold text-xs ${isCurrent ? 'text-gold-light' : 'text-text-primary'}`}>
                                     {tl(RASHIS[signId - 1].name, locale)}
                                   </span>
-                                  {isCurrent && <span className="px-1 py-0 text-xs bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">{!isDevanagariLocale(locale) ? 'NOW' : 'अभी'}</span>}
+                                  {isCurrent && <span className="px-1 py-0 text-xs bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">{tl({ en: 'NOW', hi: 'अभी', sa: 'अभी', ta: 'NOW', te: 'NOW', bn: 'NOW', kn: 'NOW', gu: 'NOW', mai: 'अभी', mr: 'अभी' }, locale)}</span>}
                                 </div>
                                 <p className="text-text-secondary/75 text-xs leading-snug mt-0.5" style={bodyFont}>{t2(effect)}</p>
                               </div>
@@ -700,7 +700,7 @@ export default function UpagrahaPage() {
       {/* Formula explanation */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-gold-light text-lg font-bold mb-2" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'Derivation Formulae' : 'व्युत्पत्ति सूत्र'}
+          {tl({ en: 'Derivation Formulae', hi: 'व्युत्पत्ति सूत्र', sa: 'व्युत्पत्ति सूत्र', ta: 'Derivation Formulae', te: 'Derivation Formulae', bn: 'Derivation Formulae', kn: 'Derivation Formulae', gu: 'Derivation Formulae', mai: 'व्युत्पत्ति सूत्र', mr: 'व्युत्पत्ति सूत्र' }, locale)}
         </h3>
         <p className="text-text-secondary text-xs mb-4 leading-relaxed" style={bodyFont}>
           {locale === 'en'
@@ -709,11 +709,11 @@ export default function UpagrahaPage() {
         </p>
         <div className="space-y-2 text-sm font-mono">
           {[
-            { formula: 'Dhuma = Sun + 133°20\'', desc: !isDevanagariLocale(locale) ? 'Sun\'s smoke — always ahead of the Sun' : 'सूर्य का धूम — सदैव सूर्य से आगे' },
-            { formula: 'Vyatipata = 360° − Dhuma', desc: !isDevanagariLocale(locale) ? 'Mirror of Dhuma — the fall point' : 'धूम का दर्पण — पतन बिंदु' },
-            { formula: 'Parivesha = Vyatipata + 180°', desc: !isDevanagariLocale(locale) ? 'Opposite of the fall — the halo' : 'पतन का विपरीत — प्रभामंडल' },
-            { formula: 'Chapa = 360° − Parivesha', desc: !isDevanagariLocale(locale) ? 'Mirror of halo — Indra\'s rainbow' : 'प्रभामंडल का दर्पण — इन्द्रधनुष' },
-            { formula: 'Upaketu = Chapa + 16°40\'', desc: !isDevanagariLocale(locale) ? 'Chapa\'s karmic tail — the sub-Ketu' : 'चाप की कार्मिक पूँछ — उपकेतु' },
+            { formula: 'Dhuma = Sun + 133°20\'', desc: tl({ en: `Sun's smoke — always ahead of the Sun`, hi: 'सूर्य का धूम — सदैव सूर्य से आगे', sa: 'सूर्य का धूम — सदैव सूर्य से आगे', ta: `Sun's smoke — always ahead of the Sun`, te: `Sun's smoke — always ahead of the Sun`, bn: `Sun's smoke — always ahead of the Sun`, kn: `Sun's smoke — always ahead of the Sun`, gu: `Sun's smoke — always ahead of the Sun`, mai: 'सूर्य का धूम — सदैव सूर्य से आगे', mr: 'सूर्य का धूम — सदैव सूर्य से आगे' }, locale) },
+            { formula: 'Vyatipata = 360° − Dhuma', desc: tl({ en: 'Mirror of Dhuma — the fall point', hi: 'धूम का दर्पण — पतन बिंदु', sa: 'धूम का दर्पण — पतन बिंदु', ta: 'Mirror of Dhuma — the fall point', te: 'Mirror of Dhuma — the fall point', bn: 'Mirror of Dhuma — the fall point', kn: 'Mirror of Dhuma — the fall point', gu: 'Mirror of Dhuma — the fall point', mai: 'धूम का दर्पण — पतन बिंदु', mr: 'धूम का दर्पण — पतन बिंदु' }, locale) },
+            { formula: 'Parivesha = Vyatipata + 180°', desc: tl({ en: 'Opposite of the fall — the halo', hi: 'पतन का विपरीत — प्रभामंडल', sa: 'पतन का विपरीत — प्रभामंडल', ta: 'Opposite of the fall — the halo', te: 'Opposite of the fall — the halo', bn: 'Opposite of the fall — the halo', kn: 'Opposite of the fall — the halo', gu: 'Opposite of the fall — the halo', mai: 'पतन का विपरीत — प्रभामंडल', mr: 'पतन का विपरीत — प्रभामंडल' }, locale) },
+            { formula: 'Chapa = 360° − Parivesha', desc: tl({ en: `Mirror of halo — Indra's rainbow`, hi: 'प्रभामंडल का दर्पण — इन्द्रधनुष', sa: 'प्रभामंडल का दर्पण — इन्द्रधनुष', ta: `Mirror of halo — Indra's rainbow`, te: `Mirror of halo — Indra's rainbow`, bn: `Mirror of halo — Indra's rainbow`, kn: `Mirror of halo — Indra's rainbow`, gu: `Mirror of halo — Indra's rainbow`, mai: 'प्रभामंडल का दर्पण — इन्द्रधनुष', mr: 'प्रभामंडल का दर्पण — इन्द्रधनुष' }, locale) },
+            { formula: 'Upaketu = Chapa + 16°40\'', desc: tl({ en: `Chapa's karmic tail — the sub-Ketu`, hi: 'चाप की कार्मिक पूँछ — उपकेतु', sa: 'चाप की कार्मिक पूँछ — उपकेतु', ta: `Chapa's karmic tail — the sub-Ketu`, te: `Chapa's karmic tail — the sub-Ketu`, bn: `Chapa's karmic tail — the sub-Ketu`, kn: `Chapa's karmic tail — the sub-Ketu`, gu: `Chapa's karmic tail — the sub-Ketu`, mai: 'चाप की कार्मिक पूँछ — उपकेतु', mr: 'चाप की कार्मिक पूँछ — उपकेतु' }, locale) },
           ].map(f => (
             <div key={f.formula} className="flex items-start gap-3 rounded-lg p-3 bg-bg-primary/30 border border-gold-primary/5">
               <span className="text-gold-light font-bold text-xs flex-shrink-0 w-56">{f.formula}</span>

@@ -1,5 +1,7 @@
 'use client';
 
+
+import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/calculations.json';
@@ -44,13 +46,13 @@ export default function LearnCalculationsPage() {
         <p>{t('jdContent')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {!isDevanagariLocale(locale) ? 'Julian Day Conversion (Meeus formula):' : 'जूलियन दिन रूपान्तरण:'}
+            {tl({ en: 'Julian Day Conversion (Meeus formula):', hi: 'जूलियन दिन रूपान्तरण:', sa: 'जूलियन दिन रूपान्तरण:', ta: 'Julian Day Conversion (Meeus formula):', te: 'Julian Day Conversion (Meeus formula):', bn: 'Julian Day Conversion (Meeus formula):', kn: 'Julian Day Conversion (Meeus formula):', gu: 'Julian Day Conversion (Meeus formula):', mai: 'जूलियन दिन रूपान्तरण:', mr: 'जूलियन दिन रूपान्तरण:' }, locale)}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">A = floor(Y / 100)</p>
           <p className="text-gold-light/80 font-mono text-xs">B = 2 - A + floor(A / 4)</p>
           <p className="text-gold-light/80 font-mono text-xs">JD = floor(365.25 × (Y + 4716)) + floor(30.6001 × (M + 1)) + D + H/24 + B - 1524.5</p>
           <p className="text-gold-light/60 font-mono text-xs mt-2">
-            {!isDevanagariLocale(locale) ? 'Then: T = (JD - 2451545.0) / 36525.0  → centuries from J2000.0' : 'फिर: T = (JD - 2451545.0) / 36525.0  → J2000.0 से शताब्दियाँ'}
+            {tl({ en: 'Then: T = (JD - 2451545.0) / 36525.0  → centuries from J2000.0', hi: 'फिर: T = (JD - 2451545.0) / 36525.0  → J2000.0 से शताब्दियाँ', sa: 'फिर: T = (JD - 2451545.0) / 36525.0  → J2000.0 से शताब्दियाँ', ta: 'Then: T = (JD - 2451545.0) / 36525.0  → centuries from J2000.0', te: 'Then: T = (JD - 2451545.0) / 36525.0  → centuries from J2000.0', bn: 'Then: T = (JD - 2451545.0) / 36525.0  → centuries from J2000.0', kn: 'Then: T = (JD - 2451545.0) / 36525.0  → centuries from J2000.0', gu: 'Then: T = (JD - 2451545.0) / 36525.0  → centuries from J2000.0', mai: 'फिर: T = (JD - 2451545.0) / 36525.0  → J2000.0 से शताब्दियाँ', mr: 'फिर: T = (JD - 2451545.0) / 36525.0  → J2000.0 से शताब्दियाँ' }, locale)}
           </p>
         </div>
       </LessonSection>
@@ -59,7 +61,7 @@ export default function LearnCalculationsPage() {
         <p>{t('sunContent')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {!isDevanagariLocale(locale) ? 'Our Sun algorithm (Meeus Ch. 25):' : 'हमारा सूर्य एल्गोरिथ्म:'}
+            {tl({ en: 'Our Sun algorithm (Meeus Ch. 25):', hi: 'हमारा सूर्य एल्गोरिथ्म:', sa: 'हमारा सूर्य एल्गोरिथ्म:', ta: 'Our Sun algorithm (Meeus Ch. 25):', te: 'Our Sun algorithm (Meeus Ch. 25):', bn: 'Our Sun algorithm (Meeus Ch. 25):', kn: 'Our Sun algorithm (Meeus Ch. 25):', gu: 'Our Sun algorithm (Meeus Ch. 25):', mai: 'हमारा सूर्य एल्गोरिथ्म:', mr: 'हमारा सूर्य एल्गोरिथ्म:' }, locale)}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">L0 = 280.46646 + 36000.76983 × T    <span className="text-gold-light/40">// mean longitude</span></p>
           <p className="text-gold-light/80 font-mono text-xs">M  = 357.52911 + 35999.05029 × T    <span className="text-gold-light/40">// mean anomaly</span></p>
@@ -73,7 +75,7 @@ export default function LearnCalculationsPage() {
         <p>{t('moonContent')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {!isDevanagariLocale(locale) ? 'Moon longitude — 60-term algorithm:' : 'चन्द्र देशान्तर — 60-पद एल्गोरिथ्म:'}
+            {tl({ en: 'Moon longitude — 60-term algorithm:', hi: 'चन्द्र देशान्तर — 60-पद एल्गोरिथ्म:', sa: 'चन्द्र देशान्तर — 60-पद एल्गोरिथ्म:', ta: 'Moon longitude — 60-term algorithm:', te: 'Moon longitude — 60-term algorithm:', bn: 'Moon longitude — 60-term algorithm:', kn: 'Moon longitude — 60-term algorithm:', gu: 'Moon longitude — 60-term algorithm:', mai: 'चन्द्र देशान्तर — 60-पद एल्गोरिथ्म:', mr: 'चन्द्र देशान्तर — 60-पद एल्गोरिथ्म:' }, locale)}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">L&apos; = 218.316 + 481267.881 × T  <span className="text-gold-light/40">// Moon mean longitude</span></p>
           <p className="text-gold-light/80 font-mono text-xs">D  = 297.850 + 445267.111 × T  <span className="text-gold-light/40">// mean elongation</span></p>
@@ -99,11 +101,11 @@ export default function LearnCalculationsPage() {
         <p>{t('ayanamshaContent')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {!isDevanagariLocale(locale) ? 'Lahiri Ayanamsha polynomial:' : 'लहिरी अयनांश बहुपद:'}
+            {tl({ en: 'Lahiri Ayanamsha polynomial:', hi: 'लहिरी अयनांश बहुपद:', sa: 'लहिरी अयनांश बहुपद:', ta: 'Lahiri Ayanamsha polynomial:', te: 'Lahiri Ayanamsha polynomial:', bn: 'Lahiri Ayanamsha polynomial:', kn: 'Lahiri Ayanamsha polynomial:', gu: 'Lahiri Ayanamsha polynomial:', mai: 'लहिरी अयनांश बहुपद:', mr: 'लहिरी अयनांश बहुपद:' }, locale)}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">Ayanamsha = 23.85306° + 1.39722° × T + 0.00018° × T²</p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">
-            {!isDevanagariLocale(locale) ? 'where T = centuries from J2000.0' : 'जहाँ T = J2000.0 से शताब्दियाँ'}
+            {tl({ en: 'where T = centuries from J2000.0', hi: 'जहाँ T = J2000.0 से शताब्दियाँ', sa: 'जहाँ T = J2000.0 से शताब्दियाँ', ta: 'where T = centuries from J2000.0', te: 'where T = centuries from J2000.0', bn: 'where T = centuries from J2000.0', kn: 'where T = centuries from J2000.0', gu: 'where T = centuries from J2000.0', mai: 'जहाँ T = J2000.0 से शताब्दियाँ', mr: 'जहाँ T = J2000.0 से शताब्दियाँ' }, locale)}
           </p>
           <p className="text-gold-light/80 font-mono text-xs mt-2">Sidereal_longitude = Tropical_longitude - Ayanamsha</p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">
@@ -146,7 +148,7 @@ export default function LearnCalculationsPage() {
         <p>{t('transitionContent')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {!isDevanagariLocale(locale) ? 'Binary Search Algorithm:' : 'बाइनरी खोज एल्गोरिथ्म:'}
+            {tl({ en: 'Binary Search Algorithm:', hi: 'बाइनरी खोज एल्गोरिथ्म:', sa: 'बाइनरी खोज एल्गोरिथ्म:', ta: 'Binary Search Algorithm:', te: 'Binary Search Algorithm:', bn: 'Binary Search Algorithm:', kn: 'Binary Search Algorithm:', gu: 'Binary Search Algorithm:', mai: 'बाइनरी खोज एल्गोरिथ्म:', mr: 'बाइनरी खोज एल्गोरिथ्म:' }, locale)}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">jd_low = sunrise_JD</p>
           <p className="text-gold-light/80 font-mono text-xs">jd_high = sunrise_JD + 1.5  <span className="text-gold-light/40">// 36 hours window</span></p>
@@ -157,7 +159,7 @@ export default function LearnCalculationsPage() {
           <p className="text-gold-light/80 font-mono text-xs">  else:</p>
           <p className="text-gold-light/80 font-mono text-xs">    jd_high = mid  <span className="text-gold-light/40">// transition is before mid</span></p>
           <p className="text-gold-light/60 font-mono text-xs mt-2">
-            {!isDevanagariLocale(locale) ? 'Converges in ~20 iterations → ~40 function evaluations per element' : '~20 पुनरावृत्तियों में अभिसरित → प्रति तत्व ~40 फ़ंक्शन मूल्यांकन'}
+            {tl({ en: 'Converges in ~20 iterations → ~40 function evaluations per element', hi: '~20 पुनरावृत्तियों में अभिसरित → प्रति तत्व ~40 फ़ंक्शन मूल्यांकन', sa: '~20 पुनरावृत्तियों में अभिसरित → प्रति तत्व ~40 फ़ंक्शन मूल्यांकन', ta: 'Converges in ~20 iterations → ~40 function evaluations per element', te: 'Converges in ~20 iterations → ~40 function evaluations per element', bn: 'Converges in ~20 iterations → ~40 function evaluations per element', kn: 'Converges in ~20 iterations → ~40 function evaluations per element', gu: 'Converges in ~20 iterations → ~40 function evaluations per element', mai: '~20 पुनरावृत्तियों में अभिसरित → प्रति तत्व ~40 फ़ंक्शन मूल्यांकन', mr: '~20 पुनरावृत्तियों में अभिसरित → प्रति तत्व ~40 फ़ंक्शन मूल्यांकन' }, locale)}
           </p>
         </div>
       </LessonSection>
@@ -166,7 +168,7 @@ export default function LearnCalculationsPage() {
         <p>{t('sunriseContent')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {!isDevanagariLocale(locale) ? 'Sunrise calculation:' : 'सूर्योदय गणना:'}
+            {tl({ en: 'Sunrise calculation:', hi: 'सूर्योदय गणना:', sa: 'सूर्योदय गणना:', ta: 'Sunrise calculation:', te: 'Sunrise calculation:', bn: 'Sunrise calculation:', kn: 'Sunrise calculation:', gu: 'Sunrise calculation:', mai: 'सूर्योदय गणना:', mr: 'सूर्योदय गणना:' }, locale)}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">decl = asin(sin(23.44°) × sin(Sun_long))</p>
           <p className="text-gold-light/80 font-mono text-xs">cos(H) = (sin(-0.833°) - sin(lat) × sin(decl)) / (cos(lat) × cos(decl))</p>
@@ -184,9 +186,9 @@ export default function LearnCalculationsPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-2 text-gold-primary font-semibold">{!isDevanagariLocale(locale) ? 'Calculation' : 'गणना'}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold">{!isDevanagariLocale(locale) ? 'Accuracy' : 'सटीकता'}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold">{!isDevanagariLocale(locale) ? 'Practical Impact' : 'व्यावहारिक प्रभाव'}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold">{tl({ en: 'Calculation', hi: 'गणना', sa: 'गणना', ta: 'Calculation', te: 'Calculation', bn: 'Calculation', kn: 'Calculation', gu: 'Calculation', mai: 'गणना', mr: 'गणना' }, locale)}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold">{tl({ en: 'Accuracy', hi: 'सटीकता', sa: 'सटीकता', ta: 'Accuracy', te: 'Accuracy', bn: 'Accuracy', kn: 'Accuracy', gu: 'Accuracy', mai: 'सटीकता', mr: 'सटीकता' }, locale)}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold">{tl({ en: 'Practical Impact', hi: 'व्यावहारिक प्रभाव', sa: 'व्यावहारिक प्रभाव', ta: 'Practical Impact', te: 'Practical Impact', bn: 'Practical Impact', kn: 'Practical Impact', gu: 'Practical Impact', mai: 'व्यावहारिक प्रभाव', mr: 'व्यावहारिक प्रभाव' }, locale)}</th>
               </tr>
             </thead>
             <tbody>

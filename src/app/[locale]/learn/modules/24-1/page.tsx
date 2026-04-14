@@ -1,5 +1,7 @@
 'use client';
 
+
+import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
@@ -268,10 +270,10 @@ function ZodiacWheel({ locale }: { locale: string }) {
   }
 
   const legendItems = [
-    { label: !isDevanagariLocale(locale) ? 'Fire' : 'अग्नि', color: 'rgba(239, 68, 68, 0.5)' },
-    { label: !isDevanagariLocale(locale) ? 'Earth' : 'पृथ्वी', color: 'rgba(16, 185, 129, 0.4)' },
-    { label: !isDevanagariLocale(locale) ? 'Air' : 'वायु', color: 'rgba(14, 165, 233, 0.4)' },
-    { label: !isDevanagariLocale(locale) ? 'Water' : 'जल', color: 'rgba(59, 130, 246, 0.5)' },
+    { label: tl({ en: 'Fire', hi: 'अग्नि', sa: 'अग्नि', ta: 'Fire', te: 'Fire', bn: 'Fire', kn: 'Fire', gu: 'Fire', mai: 'अग्नि', mr: 'अग्नि' }, locale), color: 'rgba(239, 68, 68, 0.5)' },
+    { label: tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी', ta: 'Earth', te: 'Earth', bn: 'Earth', kn: 'Earth', gu: 'Earth', mai: 'पृथ्वी', mr: 'पृथ्वी' }, locale), color: 'rgba(16, 185, 129, 0.4)' },
+    { label: tl({ en: 'Air', hi: 'वायु', sa: 'वायु', ta: 'Air', te: 'Air', bn: 'Air', kn: 'Air', gu: 'Air', mai: 'वायु', mr: 'वायु' }, locale), color: 'rgba(14, 165, 233, 0.4)' },
+    { label: tl({ en: 'Water', hi: 'जल', sa: 'जल', ta: 'Water', te: 'Water', bn: 'Water', kn: 'Water', gu: 'Water', mai: 'जल', mr: 'जल' }, locale), color: 'rgba(59, 130, 246, 0.5)' },
   ];
 
   return (
@@ -292,7 +294,7 @@ function ZodiacWheel({ locale }: { locale: string }) {
             <path d={arcPath(i, innerR, outerR)} fill={es.fill} stroke={es.stroke} strokeWidth={1} />
             <text x={lp.x} y={lp.y} textAnchor="middle" dominantBaseline="central"
               fill="#f0d48a" fontSize={!isDevanagariLocale(locale) ? 11 : 10} fontWeight="600">
-              {sign[!isDevanagariLocale(locale) ? 'en' : 'hi']}
+              {tl(sign, locale)}
             </text>
           </g>
         );
@@ -301,10 +303,10 @@ function ZodiacWheel({ locale }: { locale: string }) {
       {/* Center label */}
       <circle cx={cx} cy={cy} r={innerR - 5} fill="rgba(10, 14, 39, 0.8)" stroke="rgba(212, 168, 83, 0.2)" strokeWidth={1} />
       <text x={cx} y={cy - 8} textAnchor="middle" fill="#d4a853" fontSize={12} fontWeight="700">
-        {!isDevanagariLocale(locale) ? 'Ganda Mula' : 'गण्ड मूल'}
+        {tl({ en: 'Ganda Mula', hi: 'गण्ड मूल', sa: 'गण्ड मूल', ta: 'Ganda Mula', te: 'Ganda Mula', bn: 'Ganda Mula', kn: 'Ganda Mula', gu: 'Ganda Mula', mai: 'गण्ड मूल', mr: 'गण्ड मूल' }, locale)}
       </text>
       <text x={cx} y={cy + 8} textAnchor="middle" fill="#8a8478" fontSize={10}>
-        {!isDevanagariLocale(locale) ? 'Junctions' : 'सन्धि'}
+        {tl({ en: 'Junctions', hi: 'सन्धि', sa: 'सन्धि', ta: 'Junctions', te: 'Junctions', bn: 'Junctions', kn: 'Junctions', gu: 'Junctions', mai: 'सन्धि', mr: 'सन्धि' }, locale)}
       </text>
 
       {/* Junction markers */}
@@ -536,10 +538,10 @@ export default function GandaMulaModule() {
                 <NakshatraIconById id={nak.id} size={40} />
                 <div>
                   <h3 className="text-xl font-bold text-gold-light" style={hf}>
-                    {nak.name[!isDevanagariLocale(locale) ? 'en' : 'hi']}
+                    {tl(nak.name, locale)}
                   </h3>
                   <p className="text-text-secondary text-xs">
-                    {nak.sign[!isDevanagariLocale(locale) ? 'en' : 'hi']} &mdash; {lt(L.ruler as LocaleText, locale)}: {nak.ruler[!isDevanagariLocale(locale) ? 'en' : 'hi']} &mdash; {lt(L.deity as LocaleText, locale)}: {nak.deity[!isDevanagariLocale(locale) ? 'en' : 'hi']}
+                    {tl(nak.sign, locale)} &mdash; {lt(L.ruler as LocaleText, locale)}: {tl(nak.ruler, locale)} &mdash; {lt(L.deity as LocaleText, locale)}: {tl(nak.deity, locale)}
                   </p>
                 </div>
               </div>
@@ -549,11 +551,11 @@ export default function GandaMulaModule() {
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
                   <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3">
                     <div className="text-xs uppercase tracking-wider text-text-secondary/75">{lt(L.junction as LocaleText, locale)}</div>
-                    <div className="text-text-primary mt-0.5">{nak.junction[!isDevanagariLocale(locale) ? 'en' : 'hi']}</div>
+                    <div className="text-text-primary mt-0.5">{tl(nak.junction, locale)}</div>
                   </div>
                   <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3">
                     <div className="text-xs uppercase tracking-wider text-text-secondary/75">{lt(L.affectedRelation as LocaleText, locale)}</div>
-                    <div className="text-text-primary mt-0.5">{nak.affected[!isDevanagariLocale(locale) ? 'en' : 'hi']}</div>
+                    <div className="text-text-primary mt-0.5">{tl(nak.affected, locale)}</div>
                   </div>
                   <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3">
                     <div className="text-xs uppercase tracking-wider text-text-secondary/75">{lt(L.criticalPadas as LocaleText, locale)}</div>
@@ -564,7 +566,7 @@ export default function GandaMulaModule() {
                 {/* Effects */}
                 <div>
                   <h4 className="text-sm font-bold text-gold-primary uppercase tracking-wider mb-2">{lt(L.effectsTitle as LocaleText, locale)}</h4>
-                  <p className="text-text-secondary leading-relaxed text-sm">{nak.effects[!isDevanagariLocale(locale) ? 'en' : 'hi']}</p>
+                  <p className="text-text-secondary leading-relaxed text-sm">{tl(nak.effects, locale)}</p>
                 </div>
 
                 {/* Upayas */}

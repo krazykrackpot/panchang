@@ -1,5 +1,7 @@
 'use client';
 
+
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -351,7 +353,7 @@ export default function CalendarPage() {
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
         <div className="flex justify-center mt-4">
           <ShareRow
-            pageTitle={!isDevanagariLocale(locale) ? 'Hindu Festival Calendar' : 'हिन्दू त्योहार पंचांग'}
+            pageTitle={tl({ en: 'Hindu Festival Calendar', hi: 'हिन्दू त्योहार पंचांग', sa: 'हिन्दू त्योहार पंचांग', ta: 'Hindu Festival Calendar', te: 'Hindu Festival Calendar', bn: 'Hindu Festival Calendar', kn: 'Hindu Festival Calendar', gu: 'Hindu Festival Calendar', mai: 'हिन्दू त्योहार पंचांग', mr: 'हिन्दू त्योहार पंचांग' }, locale)}
             shareText={locale === 'en'
               ? 'Hindu Festival Calendar with Ekadashi, Purnima & Vrat details — Dekho Panchang'
               : 'हिन्दू त्योहार पंचांग — एकादशी, पूर्णिमा और व्रत विवरण सहित — Dekho Panchang'}
@@ -375,13 +377,13 @@ export default function CalendarPage() {
       {detectingLocation ? (
         <div className="flex flex-col items-center gap-3 mb-8 py-8">
           <Loader2 className="w-8 h-8 text-gold-primary animate-spin" />
-          <p className="text-text-secondary text-sm">{!isDevanagariLocale(locale) ? 'Detecting your location…' : 'आपका स्थान पहचान रहे हैं…'}</p>
+          <p className="text-text-secondary text-sm">{tl({ en: 'Detecting your location…', hi: 'आपका स्थान पहचान रहे हैं…', sa: 'आपका स्थान पहचान रहे हैं…', ta: 'Detecting your location…', te: 'Detecting your location…', bn: 'Detecting your location…', kn: 'Detecting your location…', gu: 'Detecting your location…', mai: 'आपका स्थान पहचान रहे हैं…', mr: 'आपका स्थान पहचान रहे हैं…' }, locale)}</p>
         </div>
       ) : !location ? (
         <div className="flex flex-col items-center gap-4 mb-8 py-8 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border-2 border-gold-primary/30 rounded-2xl max-w-lg mx-auto px-3 sm:px-4 md:px-6">
           <MapPin className="w-10 h-10 text-gold-primary" />
           <h3 className="text-gold-light font-bold text-lg" style={headingFont}>
-            {!isDevanagariLocale(locale) ? 'Location Required' : 'स्थान आवश्यक है'}
+            {tl({ en: 'Location Required', hi: 'स्थान आवश्यक है', sa: 'स्थान आवश्यक है', ta: 'Location Required', te: 'Location Required', bn: 'Location Required', kn: 'Location Required', gu: 'Location Required', mai: 'स्थान आवश्यक है', mr: 'स्थान आवश्यक है' }, locale)}
           </h3>
           <p className="text-text-secondary text-sm text-center">
             {locale === 'en'
@@ -394,7 +396,7 @@ export default function CalendarPage() {
               value={locationInput}
               onChange={e => setLocationInput(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleLocationSearch()}
-              placeholder={!isDevanagariLocale(locale) ? 'Enter your city…' : 'अपना शहर दर्ज करें…'}
+              placeholder={tl({ en: 'Enter your city…', hi: 'अपना शहर दर्ज करें…', sa: 'अपना शहर दर्ज करें…', ta: 'Enter your city…', te: 'Enter your city…', bn: 'Enter your city…', kn: 'Enter your city…', gu: 'Enter your city…', mai: 'अपना शहर दर्ज करें…', mr: 'अपना शहर दर्ज करें…' }, locale)}
               className="flex-1 px-4 py-3 rounded-lg bg-bg-tertiary border border-gold-primary/30 text-text-primary text-sm placeholder:text-text-secondary/70 focus:outline-none focus:border-gold-primary/60"
               autoFocus
             />
@@ -425,7 +427,7 @@ export default function CalendarPage() {
                 value={locationInput}
                 onChange={e => setLocationInput(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleLocationSearch()}
-                placeholder={!isDevanagariLocale(locale) ? 'Enter city or location…' : 'शहर या स्थान दर्ज करें…'}
+                placeholder={tl({ en: 'Enter city or location…', hi: 'शहर या स्थान दर्ज करें…', sa: 'शहर या स्थान दर्ज करें…', ta: 'Enter city or location…', te: 'Enter city or location…', bn: 'Enter city or location…', kn: 'Enter city or location…', gu: 'Enter city or location…', mai: 'शहर या स्थान दर्ज करें…', mr: 'शहर या स्थान दर्ज करें…' }, locale)}
                 className="flex-1 px-3 py-2 rounded-lg bg-bg-tertiary border border-gold-primary/20 text-text-primary text-sm placeholder:text-text-secondary/70 focus:outline-none focus:border-gold-primary/50"
               />
               <button
@@ -450,7 +452,7 @@ export default function CalendarPage() {
               : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
           }`}
         >
-          {!isDevanagariLocale(locale) ? 'Western Months' : 'अंग्रेज़ी महीने'}
+          {tl({ en: 'Western Months', hi: 'अंग्रेज़ी महीने', sa: 'अंग्रेज़ी महीने', ta: 'Western Months', te: 'Western Months', bn: 'Western Months', kn: 'Western Months', gu: 'Western Months', mai: 'अंग्रेज़ी महीने', mr: 'अंग्रेज़ी महीने' }, locale)}
         </button>
         <button
           onClick={() => { setViewMode('lunar'); setSelectedMonth(null); }}
@@ -460,7 +462,7 @@ export default function CalendarPage() {
               : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
           }`}
         >
-          {!isDevanagariLocale(locale) ? 'Hindu Lunar Months' : 'हिन्दू चान्द्र मास'}
+          {tl({ en: 'Hindu Lunar Months', hi: 'हिन्दू चान्द्र मास', sa: 'हिन्दू चान्द्र मास', ta: 'Hindu Lunar Months', te: 'Hindu Lunar Months', bn: 'Hindu Lunar Months', kn: 'Hindu Lunar Months', gu: 'Hindu Lunar Months', mai: 'हिन्दू चान्द्र मास', mr: 'हिन्दू चान्द्र मास' }, locale)}
         </button>
       </div>
 
@@ -474,7 +476,7 @@ export default function CalendarPage() {
               : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
           }`}
         >
-          {!isDevanagariLocale(locale) ? 'All' : 'सभी'}
+          {tl({ en: 'All', hi: 'सभी', sa: 'सभी', ta: 'All', te: 'All', bn: 'All', kn: 'All', gu: 'All', mai: 'सभी', mr: 'सभी' }, locale)}
         </button>
         {viewMode === 'western' ? (
           MONTH_NAMES.map((name, i) => (
@@ -527,7 +529,7 @@ export default function CalendarPage() {
       {/* Calendar Export */}
       {location && (
         <div className="flex flex-wrap gap-2 justify-center mt-4 pt-4 border-t border-gold-primary/10">
-          <span className="text-text-secondary text-xs mr-2 self-center">{!isDevanagariLocale(locale) ? 'Subscribe:' : 'सदस्यता:'}</span>
+          <span className="text-text-secondary text-xs mr-2 self-center">{tl({ en: 'Subscribe:', hi: 'सदस्यता:', sa: 'सदस्यता:', ta: 'Subscribe:', te: 'Subscribe:', bn: 'Subscribe:', kn: 'Subscribe:', gu: 'Subscribe:', mai: 'सदस्यता:', mr: 'सदस्यता:' }, locale)}</span>
           {([
             { cat: 'all', label: { en: 'All Events', hi: 'सभी', sa: 'सर्वाणि', mai: 'सभ', mr: 'सर्व', ta: 'அனைத்தும்', te: 'అన్నీ', bn: 'সব', kn: 'ಎಲ್ಲಾ', gu: 'બધા' } },
             { cat: 'major', label: { en: 'Festivals', hi: 'त्योहार', sa: 'उत्सवाः', mai: 'पर्व', mr: 'सण', ta: 'பண்டிகைகள்', te: 'పండుగలు', bn: 'উৎসব', kn: 'ಹಬ್ಬಗಳು', gu: 'તહેવારો' } },
@@ -616,7 +618,7 @@ export default function CalendarPage() {
                   {f.paranaStart && f.paranaDate && (
                     <div className="flex items-center gap-2 mt-1.5">
                       <span className="text-xs font-bold text-amber-400">
-                        {!isDevanagariLocale(locale) ? 'Parana' : 'पारण'}:
+                        {tl({ en: 'Parana', hi: 'पारण', sa: 'पारण', ta: 'Parana', te: 'Parana', bn: 'Parana', kn: 'Parana', gu: 'Parana', mai: 'पारण', mr: 'पारण' }, locale)}:
                       </span>
                       <span className="font-mono text-xs font-bold text-gold-light">
                         {f.paranaStart} — {f.paranaEnd}
@@ -640,21 +642,21 @@ export default function CalendarPage() {
                 {f.slug && recommendedSlugs.has(f.slug) && (
                   <span className="hidden sm:inline-flex items-center gap-1 text-xs px-1.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold shrink-0">
                     <Sparkles className="w-3 h-3" />
-                    {!isDevanagariLocale(locale) ? 'For You' : 'आपके लिए'}
+                    {tl({ en: 'For You', hi: 'आपके लिए', sa: 'आपके लिए', ta: 'For You', te: 'For You', bn: 'For You', kn: 'For You', gu: 'For You', mai: 'आपके लिए', mr: 'आपके लिए' }, locale)}
                   </span>
                 )}
 
                 {/* Puja Vidhi indicator */}
                 {hasPujaVidhi(f.slug) && (
                   <span className="hidden sm:inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold shrink-0">
-                    {!isDevanagariLocale(locale) ? 'Puja Vidhi' : 'पूजा विधि'}
+                    {tl({ en: 'Puja Vidhi', hi: 'पूजा विधि', sa: 'पूजा विधि', ta: 'Puja Vidhi', te: 'Puja Vidhi', bn: 'Puja Vidhi', kn: 'Puja Vidhi', gu: 'Puja Vidhi', mai: 'पूजा विधि', mr: 'पूजा विधि' }, locale)}
                   </span>
                 )}
 
                 {/* Parana time indicator */}
                 {f.paranaStart && (
                   <div className="text-right flex-shrink-0">
-                    <div className="text-text-secondary text-xs uppercase tracking-wider">{!isDevanagariLocale(locale) ? 'Parana' : 'पारण'}</div>
+                    <div className="text-text-secondary text-xs uppercase tracking-wider">{tl({ en: 'Parana', hi: 'पारण', sa: 'पारण', ta: 'Parana', te: 'Parana', bn: 'Parana', kn: 'Parana', gu: 'Parana', mai: 'पारण', mr: 'पारण' }, locale)}</div>
                     <div className="text-emerald-400 text-xs font-mono">{f.paranaStart} – {f.paranaEnd}</div>
                     {f.paranaDate && <div className="text-text-secondary/65 text-xs">{f.paranaDate}</div>}
                   </div>
@@ -663,7 +665,7 @@ export default function CalendarPage() {
                 {/* Tithi */}
                 {f.tithi && !f.paranaStart && (
                   <div className="hidden sm:block text-right flex-shrink-0">
-                    <div className="text-text-secondary text-xs uppercase tracking-wider">{!isDevanagariLocale(locale) ? 'Tithi' : 'तिथि'}</div>
+                    <div className="text-text-secondary text-xs uppercase tracking-wider">{tl({ en: 'Tithi', hi: 'तिथि', sa: 'तिथि', ta: 'Tithi', te: 'Tithi', bn: 'Tithi', kn: 'Tithi', gu: 'Tithi', mai: 'तिथि', mr: 'तिथि' }, locale)}</div>
                     <div className="text-gold-dark text-xs font-mono">{f.tithi}</div>
                   </div>
                 )}
@@ -678,7 +680,7 @@ export default function CalendarPage() {
           <div className="my-10 space-y-10">
             {filteredFestivals.length === 0 ? (
               <div className="text-center py-12 text-text-secondary">
-                {!isDevanagariLocale(locale) ? 'No festivals found for this filter.' : 'इस फ़िल्टर के लिए कोई त्योहार नहीं मिला।'}
+                {tl({ en: 'No festivals found for this filter.', hi: 'इस फ़िल्टर के लिए कोई त्योहार नहीं मिला।', sa: 'इस फ़िल्टर के लिए कोई त्योहार नहीं मिला।', ta: 'No festivals found for this filter.', te: 'No festivals found for this filter.', bn: 'No festivals found for this filter.', kn: 'No festivals found for this filter.', gu: 'No festivals found for this filter.', mai: 'इस फ़िल्टर के लिए कोई त्योहार नहीं मिला।', mr: 'इस फ़िल्टर के लिए कोई त्योहार नहीं मिला।' }, locale)}
               </div>
             ) : (
               <>
@@ -686,7 +688,7 @@ export default function CalendarPage() {
                 {showFestivals && festivalItems.length > 0 && (
                   <div>
                     <h3 className="text-xl font-bold text-gold-gradient mb-4" style={headingFont}>
-                      {!isDevanagariLocale(locale) ? `Festivals (${festivalItems.length})` : `त्योहार (${festivalItems.length})`}
+                      {tl({ en: 'Festivals (${festivalItems.length})', hi: 'त्योहार (${festivalItems.length})', sa: 'त्योहार (${festivalItems.length})', ta: 'Festivals (${festivalItems.length})', te: 'Festivals (${festivalItems.length})', bn: 'Festivals (${festivalItems.length})', kn: 'Festivals (${festivalItems.length})', gu: 'Festivals (${festivalItems.length})', mai: 'त्योहार (${festivalItems.length})', mr: 'त्योहार (${festivalItems.length})' }, locale)}
                     </h3>
                     <div className="space-y-3">
                       {festivalItems.map((f, i) => renderCard(f, i))}
@@ -698,7 +700,7 @@ export default function CalendarPage() {
                 {showVrats && vratItems.length > 0 && (
                   <div>
                     <h3 className="text-xl font-bold text-gold-gradient mb-4" style={headingFont}>
-                      {!isDevanagariLocale(locale) ? `Vrats & Observances (${vratItems.length})` : `व्रत एवं अनुष्ठान (${vratItems.length})`}
+                      {tl({ en: 'Vrats & Observances (${vratItems.length})', hi: 'व्रत एवं अनुष्ठान (${vratItems.length})', sa: 'व्रत एवं अनुष्ठान (${vratItems.length})', ta: 'Vrats & Observances (${vratItems.length})', te: 'Vrats & Observances (${vratItems.length})', bn: 'Vrats & Observances (${vratItems.length})', kn: 'Vrats & Observances (${vratItems.length})', gu: 'Vrats & Observances (${vratItems.length})', mai: 'व्रत एवं अनुष्ठान (${vratItems.length})', mr: 'व्रत एवं अनुष्ठान (${vratItems.length})' }, locale)}
                     </h3>
                     <div className="space-y-3">
                       {vratItems.map((f, i) => renderCard(f, i))}
@@ -707,7 +709,7 @@ export default function CalendarPage() {
                 )}
 
                 <div className="text-center text-text-secondary text-sm mt-6">
-                  {filteredFestivals.length} {!isDevanagariLocale(locale) ? 'entries' : 'प्रविष्टियाँ'}
+                  {filteredFestivals.length} {tl({ en: 'entries', hi: 'प्रविष्टियाँ', sa: 'प्रविष्टियाँ', ta: 'entries', te: 'entries', bn: 'entries', kn: 'entries', gu: 'entries', mai: 'प्रविष्टियाँ', mr: 'प्रविष्टियाँ' }, locale)}
                 </div>
               </>
             )}

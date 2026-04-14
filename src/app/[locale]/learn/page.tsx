@@ -151,10 +151,10 @@ export default function LearnPage() {
 
           <div className="flex flex-wrap gap-6 mb-6">
             {[
-              { val: STATS.modules, label: !isDevanagariLocale(locale) ? 'Modules' : 'मॉड्यूल', icon: BookOpen },
-              { val: STATS.references, label: !isDevanagariLocale(locale) ? 'References' : 'संदर्भ', icon: Star },
-              { val: STATS.labs, label: !isDevanagariLocale(locale) ? 'Labs' : 'प्रयोगशाला', icon: CheckCircle },
-              { val: STATS.tracks, label: !isDevanagariLocale(locale) ? 'Tracks' : 'ट्रैक', icon: Clock },
+              { val: STATS.modules, label: tl({ en: 'Modules', hi: 'मॉड्यूल', sa: 'मॉड्यूल', ta: 'Modules', te: 'Modules', bn: 'Modules', kn: 'Modules', gu: 'Modules', mai: 'मॉड्यूल', mr: 'मॉड्यूल' }, locale), icon: BookOpen },
+              { val: STATS.references, label: tl({ en: 'References', hi: 'संदर्भ', sa: 'संदर्भ', ta: 'References', te: 'References', bn: 'References', kn: 'References', gu: 'References', mai: 'संदर्भ', mr: 'संदर्भ' }, locale), icon: Star },
+              { val: STATS.labs, label: tl({ en: 'Labs', hi: 'प्रयोगशाला', sa: 'प्रयोगशाला', ta: 'Labs', te: 'Labs', bn: 'Labs', kn: 'Labs', gu: 'Labs', mai: 'प्रयोगशाला', mr: 'प्रयोगशाला' }, locale), icon: CheckCircle },
+              { val: STATS.tracks, label: tl({ en: 'Tracks', hi: 'ट्रैक', sa: 'ट्रैक', ta: 'Tracks', te: 'Tracks', bn: 'Tracks', kn: 'Tracks', gu: 'Tracks', mai: 'ट्रैक', mr: 'ट्रैक' }, locale), icon: Clock },
             ].map(s => (
               <div key={s.label} className="flex items-center gap-2">
                 <s.icon className="w-4 h-4 text-gold-dark" />
@@ -213,7 +213,7 @@ export default function LearnPage() {
                   </div>
 
                   <div className="flex items-center gap-2 mt-4 text-gold-primary/70 group-hover:text-gold-primary transition-colors">
-                    <span className="text-sm font-medium">{!isDevanagariLocale(locale) ? 'Explore Track' : 'ट्रैक देखें'}</span>
+                    <span className="text-sm font-medium">{tl({ en: 'Explore Track', hi: 'ट्रैक देखें', sa: 'ट्रैक देखें', ta: 'Explore Track', te: 'Explore Track', bn: 'Explore Track', kn: 'Explore Track', gu: 'Explore Track', mai: 'ट्रैक देखें', mr: 'ट्रैक देखें' }, locale)}</span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -308,7 +308,7 @@ export default function LearnPage() {
                     {!isDevanagariLocale(locale) ? 'Web Stories' : isDevanagari ? 'वेब स्टोरीज़' : 'जालस्टोरीज़'}
                   </span>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-300 border border-purple-500/20 font-medium">
-                    {!isDevanagariLocale(locale) ? '5 stories' : '5 स्टोरीज़'}
+                    {tl({ en: '5 stories', hi: '5 स्टोरीज़', sa: '5 स्टोरीज़', ta: '5 stories', te: '5 stories', bn: '5 stories', kn: '5 stories', gu: '5 stories', mai: '5 स्टोरीज़', mr: '5 स्टोरीज़' }, locale)}
                   </span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-purple-200 group-hover:text-purple-100 transition-colors mb-1" style={hf}>

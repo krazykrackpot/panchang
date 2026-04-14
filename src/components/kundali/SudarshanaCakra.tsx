@@ -1,4 +1,5 @@
 'use client';
+import { tl } from '@/lib/utils/trilingual';
 /**
  * Sudarshana Chakra — Three concentric rings
  * Source: BPHS Ch. 22
@@ -71,7 +72,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
   const sunMap   = buildHouseMap(sunSign);
 
   const isHi = isDevanagariLocale(locale);
-  const signAbbr = (signId: number) => isHi ? SIGN_ABBR_HI[signId - 1] : SIGN_ABBR_EN[signId - 1];
+  const signAbbr = (signId: number) => tl({ en: SIGN_ABBR_EN[signId - 1], hi: SIGN_ABBR_HI[signId - 1], sa: SIGN_ABBR_HI[signId - 1], ta: SIGN_ABBR_EN[signId - 1], te: SIGN_ABBR_EN[signId - 1], bn: SIGN_ABBR_EN[signId - 1], kn: SIGN_ABBR_EN[signId - 1], gu: SIGN_ABBR_EN[signId - 1], mai: SIGN_ABBR_HI[signId - 1], mr: SIGN_ABBR_HI[signId - 1] }, locale);
 
   // SVG dimensions
   const cx = 250, cy = 250;
@@ -126,7 +127,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
           <text x={tx} y={ty - 6} textAnchor="middle" dominantBaseline="middle"
             fontSize={ringIdx === 0 ? 8 : ringIdx === 1 ? 7 : 6}
             fill="rgba(212,168,83,0.6)"
-            style={{ fontFamily: isHi ? 'var(--font-devanagari-body)' : 'monospace' }}>
+            style={{ fontFamily: tl({ en: 'monospace', hi: 'var(--font-devanagari-body)', sa: 'var(--font-devanagari-body)', ta: 'monospace', te: 'monospace', bn: 'monospace', kn: 'monospace', gu: 'monospace', mai: 'var(--font-devanagari-body)', mr: 'var(--font-devanagari-body)' }, locale) }}>
             {signAbbr(signId)}
           </text>
           {/* House number */}
@@ -150,8 +151,8 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
                 fontSize={ringIdx === 0 ? 7 : ringIdx === 1 ? 6 : 5.5}
                 fill={PLANET_ABBR[pid]?.color || '#e6e2d8'}
                 fontWeight="bold"
-                style={{ fontFamily: isHi ? 'var(--font-devanagari-body)' : 'monospace' }}>
-                {isHi ? PLANET_ABBR[pid]?.hi : PLANET_ABBR[pid]?.en}
+                style={{ fontFamily: tl({ en: 'monospace', hi: 'var(--font-devanagari-body)', sa: 'var(--font-devanagari-body)', ta: 'monospace', te: 'monospace', bn: 'monospace', kn: 'monospace', gu: 'monospace', mai: 'var(--font-devanagari-body)', mr: 'var(--font-devanagari-body)' }, locale) }}>
+                {tl(PLANET_ABBR[pid], locale)}
               </text>
             );
           })}
@@ -163,9 +164,9 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
 
   // Reference point labels for center
   const refPoints = [
-    { label: isHi ? 'लग्न' : 'Lagna', sign: lagnaSign, color: '#d4a853' },
-    { label: isHi ? 'चन्द्र' : 'Moon',  sign: moonSign,  color: '#ecf0f1' },
-    { label: isHi ? 'सूर्य' : 'Sun',    sign: sunSign,   color: '#e67e22' },
+    { label: tl({ en: 'Lagna', hi: 'लग्न', sa: 'लग्न', ta: 'Lagna', te: 'Lagna', bn: 'Lagna', kn: 'Lagna', gu: 'Lagna', mai: 'लग्न', mr: 'लग्न' }, locale), sign: lagnaSign, color: '#d4a853' },
+    { label: tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon', mai: 'चन्द्र', mr: 'चन्द्र' }, locale),  sign: moonSign,  color: '#ecf0f1' },
+    { label: tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun', mai: 'सूर्य', mr: 'सूर्य' }, locale),    sign: sunSign,   color: '#e67e22' },
   ];
 
   return (
@@ -173,7 +174,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
       {/* Header */}
       <div className="text-center">
         <h3 className="text-gold-gradient text-2xl font-bold mb-2" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'Sudarshana Chakra' : 'सुदर्शन चक्र'}
+          {tl({ en: 'Sudarshana Chakra', hi: 'सुदर्शन चक्र', sa: 'सुदर्शन चक्र', ta: 'Sudarshana Chakra', te: 'Sudarshana Chakra', bn: 'Sudarshana Chakra', kn: 'Sudarshana Chakra', gu: 'Sudarshana Chakra', mai: 'सुदर्शन चक्र', mr: 'सुदर्शन चक्र' }, locale)}
         </h3>
         <p className="text-text-secondary/75 text-sm max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
           {locale === 'en'
@@ -188,7 +189,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
           <div key={i} className="flex items-center gap-2">
             <span className="w-4 h-4 rounded-full border-2" style={{ borderColor: rp.color, backgroundColor: rp.color + '22' }} />
             <span className="text-text-secondary/70">{rp.label}: {RASHIS[rp.sign - 1]?.name[locale]}</span>
-            <span className="text-text-secondary/65 text-[10px]">{i === 0 ? (!isDevanagariLocale(locale) ? 'outer' : 'बाह्य') : i === 1 ? (!isDevanagariLocale(locale) ? 'middle' : 'मध्य') : (!isDevanagariLocale(locale) ? 'inner' : 'आन्तरिक')}</span>
+            <span className="text-text-secondary/65 text-[10px]">{i === 0 ? (tl({ en: 'outer', hi: 'बाह्य', sa: 'बाह्य', ta: 'outer', te: 'outer', bn: 'outer', kn: 'outer', gu: 'outer', mai: 'बाह्य', mr: 'बाह्य' }, locale)) : i === 1 ? (tl({ en: 'middle', hi: 'मध्य', sa: 'मध्य', ta: 'middle', te: 'middle', bn: 'middle', kn: 'middle', gu: 'middle', mai: 'मध्य', mr: 'मध्य' }, locale)) : (tl({ en: 'inner', hi: 'आन्तरिक', sa: 'आन्तरिक', ta: 'inner', te: 'inner', bn: 'inner', kn: 'inner', gu: 'inner', mai: 'आन्तरिक', mr: 'आन्तरिक' }, locale))}</span>
           </div>
         ))}
       </div>
@@ -211,21 +212,21 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
           {/* Center label */}
           <circle cx={cx} cy={cy} r={r[2]} fill="rgba(10,14,39,0.98)" stroke="rgba(212,168,83,0.3)" strokeWidth="1" />
           <text x={cx} y={cy - 8} textAnchor="middle" dominantBaseline="middle" fontSize="10" fill="rgba(212,168,83,0.8)" style={{ fontFamily: 'var(--font-heading)' }}>
-            {!isDevanagariLocale(locale) ? 'Sudarshana' : 'सुदर्शन'}
+            {tl({ en: 'Sudarshana', hi: 'सुदर्शन', sa: 'सुदर्शन', ta: 'Sudarshana', te: 'Sudarshana', bn: 'Sudarshana', kn: 'Sudarshana', gu: 'Sudarshana', mai: 'सुदर्शन', mr: 'सुदर्शन' }, locale)}
           </text>
           <text x={cx} y={cy + 8} textAnchor="middle" dominantBaseline="middle" fontSize="10" fill="rgba(212,168,83,0.5)" style={{ fontFamily: 'var(--font-heading)' }}>
-            {!isDevanagariLocale(locale) ? 'Chakra' : 'चक्र'}
+            {tl({ en: 'Chakra', hi: 'चक्र', sa: 'चक्र', ta: 'Chakra', te: 'Chakra', bn: 'Chakra', kn: 'Chakra', gu: 'Chakra', mai: 'चक्र', mr: 'चक्र' }, locale)}
           </text>
 
           {/* Ring separator labels */}
           <text x={cx + R[0] - 18} y={cy - 5} fontSize="8" fill="rgba(212,168,83,0.5)" textAnchor="middle">
-            {!isDevanagariLocale(locale) ? 'Lg' : 'ल'}
+            {tl({ en: 'Lg', hi: 'ल', sa: 'ल', ta: 'Lg', te: 'Lg', bn: 'Lg', kn: 'Lg', gu: 'Lg', mai: 'ल', mr: 'ल' }, locale)}
           </text>
           <text x={cx + R[1] - 15} y={cy - 5} fontSize="7" fill="rgba(236,240,241,0.4)" textAnchor="middle">
-            {!isDevanagariLocale(locale) ? 'Mo' : 'च'}
+            {tl({ en: 'Mo', hi: 'च', sa: 'च', ta: 'Mo', te: 'Mo', bn: 'Mo', kn: 'Mo', gu: 'Mo', mai: 'च', mr: 'च' }, locale)}
           </text>
           <text x={cx + R[2] - 10} y={cy - 5} fontSize="7" fill="rgba(230,126,34,0.5)" textAnchor="middle">
-            {!isDevanagariLocale(locale) ? 'Su' : 'सू'}
+            {tl({ en: 'Su', hi: 'सू', sa: 'सू', ta: 'Su', te: 'Su', bn: 'Su', kn: 'Su', gu: 'Su', mai: 'सू', mr: 'सू' }, locale)}
           </text>
         </svg>
       </div>
@@ -233,7 +234,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
       {/* House concordance table */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 p-4">
         <div className="text-gold-primary/70 text-xs uppercase tracking-wider font-bold mb-3">
-          {!isDevanagariLocale(locale) ? 'Triple Concordance — Planets in all 3 rings (Strongest indicators)' : 'त्रिवलय सामञ्जस्य — तीनों वलयों में ग्रह (सबसे बलवान संकेत)'}
+          {tl({ en: 'Triple Concordance — Planets in all 3 rings (Strongest indicators)', hi: 'त्रिवलय सामञ्जस्य — तीनों वलयों में ग्रह (सबसे बलवान संकेत)', sa: 'त्रिवलय सामञ्जस्य — तीनों वलयों में ग्रह (सबसे बलवान संकेत)', ta: 'Triple Concordance — Planets in all 3 rings (Strongest indicators)', te: 'Triple Concordance — Planets in all 3 rings (Strongest indicators)', bn: 'Triple Concordance — Planets in all 3 rings (Strongest indicators)', kn: 'Triple Concordance — Planets in all 3 rings (Strongest indicators)', gu: 'Triple Concordance — Planets in all 3 rings (Strongest indicators)', mai: 'त्रिवलय सामञ्जस्य — तीनों वलयों में ग्रह (सबसे बलवान संकेत)', mr: 'त्रिवलय सामञ्जस्य — तीनों वलयों में ग्रह (सबसे बलवान संकेत)' }, locale)}
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
           {kundali.planets.map(p => {
@@ -249,7 +250,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
               <div key={p.planet.id} className={`rounded-lg border p-2.5 ${allTrikona ? 'border-gold-primary/30 bg-gold-primary/8' : allKendra ? 'border-purple-500/20 bg-purple-500/8' : someAgree ? 'border-emerald-500/15 bg-emerald-500/5' : 'border-gold-primary/6 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27]'}`}>
                 <div className="flex items-center gap-1.5 mb-1">
                   <span className="font-bold text-sm" style={{ color: abbr?.color }}>
-                    {isHi ? p.planet.name.hi : p.planet.name.en}
+                    {tl(p.planet.name, locale)}
                   </span>
                   {allTrikona && <span className="text-[9px] px-1 py-0.5 rounded bg-gold-primary/20 text-gold-light">Trikona ✦</span>}
                   {allKendra && !allTrikona && <span className="text-[9px] px-1 py-0.5 rounded bg-purple-500/15 text-purple-300">Kendra</span>}

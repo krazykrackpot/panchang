@@ -1,4 +1,5 @@
 'use client';
+import { tl } from '@/lib/utils/trilingual';
 
 import { useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -100,7 +101,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
       <div className="rounded-2xl p-5 border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] text-center">
         <Sparkles className="w-8 h-8 text-gold-primary mx-auto mb-3" />
         <h3 className="text-gold-light font-bold text-lg mb-2" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'AI-Powered Personal Reading' : 'AI-संचालित व्यक्तिगत विश्लेषण'}
+          {tl({ en: 'AI-Powered Personal Reading', hi: 'AI-संचालित व्यक्तिगत विश्लेषण', sa: 'AI-संचालित व्यक्तिगत विश्लेषण', ta: 'AI-Powered Personal Reading', te: 'AI-Powered Personal Reading', bn: 'AI-Powered Personal Reading', kn: 'AI-Powered Personal Reading', gu: 'AI-Powered Personal Reading', mai: 'AI-संचालित व्यक्तिगत विश्लेषण', mr: 'AI-संचालित व्यक्तिगत विश्लेषण' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm mb-4" style={bodyFont}>
           {locale === 'en'
@@ -109,7 +110,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
         </p>
         <a href="/pricing" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gold-dark to-gold-primary text-bg-primary font-bold text-sm rounded-xl hover:from-gold-primary hover:to-gold-light transition-all">
           <Sparkles className="w-4 h-4" />
-          {!isDevanagariLocale(locale) ? 'Upgrade to Pro' : 'प्रो में अपग्रेड करें'}
+          {tl({ en: 'Upgrade to Pro', hi: 'प्रो में अपग्रेड करें', sa: 'प्रो में अपग्रेड करें', ta: 'Upgrade to Pro', te: 'Upgrade to Pro', bn: 'Upgrade to Pro', kn: 'Upgrade to Pro', gu: 'Upgrade to Pro', mai: 'प्रो में अपग्रेड करें', mr: 'प्रो में अपग्रेड करें' }, locale)}
         </a>
       </div>
     );
@@ -129,7 +130,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
           <div className="flex items-center justify-center gap-3">
             <Sparkles className="w-6 h-6 text-gold-primary group-hover:text-gold-light transition-colors" />
             <span className="text-gold-light font-bold text-lg" style={headingFont}>
-              {!isDevanagariLocale(locale) ? 'Get AI Reading' : 'AI विश्लेषण प्राप्त करें'}
+              {tl({ en: 'Get AI Reading', hi: 'AI विश्लेषण प्राप्त करें', sa: 'AI विश्लेषण प्राप्त करें', ta: 'Get AI Reading', te: 'Get AI Reading', bn: 'Get AI Reading', kn: 'Get AI Reading', gu: 'Get AI Reading', mai: 'AI विश्लेषण प्राप्त करें', mr: 'AI विश्लेषण प्राप्त करें' }, locale)}
             </span>
           </div>
           <p className="text-text-secondary/75 text-xs mt-2">
@@ -154,12 +155,12 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-gold-primary" />
                 <span className="text-gold-light font-bold" style={headingFont}>
-                  {!isDevanagariLocale(locale) ? 'AI Personal Reading' : 'AI व्यक्तिगत विश्लेषण'}
+                  {tl({ en: 'AI Personal Reading', hi: 'AI व्यक्तिगत विश्लेषण', sa: 'AI व्यक्तिगत विश्लेषण', ta: 'AI Personal Reading', te: 'AI Personal Reading', bn: 'AI Personal Reading', kn: 'AI Personal Reading', gu: 'AI Personal Reading', mai: 'AI व्यक्तिगत विश्लेषण', mr: 'AI व्यक्तिगत विश्लेषण' }, locale)}
                 </span>
                 {loading && (
                   <span className="flex items-center gap-1.5 text-[10px] text-amber-300 bg-amber-500/15 border border-amber-500/25 rounded-full px-2 py-0.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                    {!isDevanagariLocale(locale) ? 'Writing...' : 'लिख रहा है...'}
+                    {tl({ en: 'Writing...', hi: 'लिख रहा है...', sa: 'लिख रहा है...', ta: 'Writing...', te: 'Writing...', bn: 'Writing...', kn: 'Writing...', gu: 'Writing...', mai: 'लिख रहा है...', mr: 'लिख रहा है...' }, locale)}
                   </span>
                 )}
               </div>
@@ -178,7 +179,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
                   <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="text-amber-200 text-sm font-bold">
-                      {!isDevanagariLocale(locale) ? 'AI Reading Limit Reached' : 'AI विश्लेषण सीमा पूर्ण'}
+                      {tl({ en: 'AI Reading Limit Reached', hi: 'AI विश्लेषण सीमा पूर्ण', sa: 'AI विश्लेषण सीमा पूर्ण', ta: 'AI Reading Limit Reached', te: 'AI Reading Limit Reached', bn: 'AI Reading Limit Reached', kn: 'AI Reading Limit Reached', gu: 'AI Reading Limit Reached', mai: 'AI विश्लेषण सीमा पूर्ण', mr: 'AI विश्लेषण सीमा पूर्ण' }, locale)}
                     </p>
                     <p className="text-text-secondary text-xs mt-1">
                       {rateLimitMsg || (locale === 'en'
@@ -194,7 +195,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
                   <AlertTriangle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="text-red-300 text-sm font-bold">
-                      {!isDevanagariLocale(locale) ? 'AI Reading Unavailable' : 'AI विश्लेषण अनुपलब्ध'}
+                      {tl({ en: 'AI Reading Unavailable', hi: 'AI विश्लेषण अनुपलब्ध', sa: 'AI विश्लेषण अनुपलब्ध', ta: 'AI Reading Unavailable', te: 'AI Reading Unavailable', bn: 'AI Reading Unavailable', kn: 'AI Reading Unavailable', gu: 'AI Reading Unavailable', mai: 'AI विश्लेषण अनुपलब्ध', mr: 'AI विश्लेषण अनुपलब्ध' }, locale)}
                     </p>
                     <p className="text-text-secondary text-xs mt-1">{error}</p>
                   </div>
@@ -221,7 +222,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
                   <div className="flex items-center gap-3">
                     <div className="animate-spin rounded-full h-6 w-6 border-2 border-gold-primary border-t-transparent" />
                     <span className="text-text-secondary text-sm">
-                      {!isDevanagariLocale(locale) ? 'Preparing your personal reading...' : 'आपका व्यक्तिगत विश्लेषण तैयार हो रहा है...'}
+                      {tl({ en: 'Preparing your personal reading...', hi: 'आपका व्यक्तिगत विश्लेषण तैयार हो रहा है...', sa: 'आपका व्यक्तिगत विश्लेषण तैयार हो रहा है...', ta: 'Preparing your personal reading...', te: 'Preparing your personal reading...', bn: 'Preparing your personal reading...', kn: 'Preparing your personal reading...', gu: 'Preparing your personal reading...', mai: 'आपका व्यक्तिगत विश्लेषण तैयार हो रहा है...', mr: 'आपका व्यक्तिगत विश्लेषण तैयार हो रहा है...' }, locale)}
                     </span>
                   </div>
                 </div>

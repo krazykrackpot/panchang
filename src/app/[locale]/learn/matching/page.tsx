@@ -1,5 +1,7 @@
 'use client';
 
+
+import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/matching.json';
@@ -9,9 +11,6 @@ import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-
-
 const KUTAS = [
   {
     num: 1, name: { en: 'Varna', hi: 'वर्ण', sa: 'वर्णः' }, points: 1,
@@ -144,16 +143,16 @@ export default function LearnMatchingPage() {
         <p className="mt-3 text-text-secondary text-sm">{t('whatContentDeep')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">
-            {!isDevanagariLocale(locale) ? 'Total Ashta Kuta Points: 1+2+3+4+5+6+7+8 = 36 Gunas' : 'कुल अष्ट कूट अंक: 1+2+3+4+5+6+7+8 = 36 गुण'}
+            {tl({ en: 'Total Ashta Kuta Points: 1+2+3+4+5+6+7+8 = 36 Gunas', hi: 'कुल अष्ट कूट अंक: 1+2+3+4+5+6+7+8 = 36 गुण', sa: 'कुल अष्ट कूट अंक: 1+2+3+4+5+6+7+8 = 36 गुण', ta: 'Total Ashta Kuta Points: 1+2+3+4+5+6+7+8 = 36 Gunas', te: 'Total Ashta Kuta Points: 1+2+3+4+5+6+7+8 = 36 Gunas', bn: 'Total Ashta Kuta Points: 1+2+3+4+5+6+7+8 = 36 Gunas', kn: 'Total Ashta Kuta Points: 1+2+3+4+5+6+7+8 = 36 Gunas', gu: 'Total Ashta Kuta Points: 1+2+3+4+5+6+7+8 = 36 Gunas', mai: 'कुल अष्ट कूट अंक: 1+2+3+4+5+6+7+8 = 36 गुण', mr: 'कुल अष्ट कूट अंक: 1+2+3+4+5+6+7+8 = 36 गुण' }, locale)}
           </p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">
-            {!isDevanagariLocale(locale) ? 'Minimum for marriage: 18/36 (50%)' : 'विवाह के लिए न्यूनतम: 18/36 (50%)'}
+            {tl({ en: 'Minimum for marriage: 18/36 (50%)', hi: 'विवाह के लिए न्यूनतम: 18/36 (50%)', sa: 'विवाह के लिए न्यूनतम: 18/36 (50%)', ta: 'Minimum for marriage: 18/36 (50%)', te: 'Minimum for marriage: 18/36 (50%)', bn: 'Minimum for marriage: 18/36 (50%)', kn: 'Minimum for marriage: 18/36 (50%)', gu: 'Minimum for marriage: 18/36 (50%)', mai: 'विवाह के लिए न्यूनतम: 18/36 (50%)', mr: 'विवाह के लिए न्यूनतम: 18/36 (50%)' }, locale)}
           </p>
           <p className="text-gold-light/60 font-mono text-xs">
-            {!isDevanagariLocale(locale) ? 'Both charts compared using Moon\'s Nakshatra position' : 'दोनों कुण्डलियों की चन्द्र नक्षत्र स्थिति से तुलना'}
+            {tl({ en: `Both charts compared using Moon's Nakshatra position`, hi: 'दोनों कुण्डलियों की चन्द्र नक्षत्र स्थिति से तुलना', sa: 'दोनों कुण्डलियों की चन्द्र नक्षत्र स्थिति से तुलना', ta: `Both charts compared using Moon's Nakshatra position`, te: `Both charts compared using Moon's Nakshatra position`, bn: `Both charts compared using Moon's Nakshatra position`, kn: `Both charts compared using Moon's Nakshatra position`, gu: `Both charts compared using Moon's Nakshatra position`, mai: 'दोनों कुण्डलियों की चन्द्र नक्षत्र स्थिति से तुलना', mr: 'दोनों कुण्डलियों की चन्द्र नक्षत्र स्थिति से तुलना' }, locale)}
           </p>
           <p className="text-gold-light/60 font-mono text-xs">
-            {!isDevanagariLocale(locale) ? 'Higher weight → higher importance: Nadi (8) > Bhakoot (7) > Gana (6) > ...' : 'अधिक भार → अधिक महत्व: नाड़ी (8) > भकूट (7) > गण (6) > ...'}
+            {tl({ en: 'Higher weight → higher importance: Nadi (8) > Bhakoot (7) > Gana (6) > ...', hi: 'अधिक भार → अधिक महत्व: नाड़ी (8) > भकूट (7) > गण (6) > ...', sa: 'अधिक भार → अधिक महत्व: नाड़ी (8) > भकूट (7) > गण (6) > ...', ta: 'Higher weight → higher importance: Nadi (8) > Bhakoot (7) > Gana (6) > ...', te: 'Higher weight → higher importance: Nadi (8) > Bhakoot (7) > Gana (6) > ...', bn: 'Higher weight → higher importance: Nadi (8) > Bhakoot (7) > Gana (6) > ...', kn: 'Higher weight → higher importance: Nadi (8) > Bhakoot (7) > Gana (6) > ...', gu: 'Higher weight → higher importance: Nadi (8) > Bhakoot (7) > Gana (6) > ...', mai: 'अधिक भार → अधिक महत्व: नाड़ी (8) > भकूट (7) > गण (6) > ...', mr: 'अधिक भार → अधिक महत्व: नाड़ी (8) > भकूट (7) > गण (6) > ...' }, locale)}
           </p>
         </div>
       </LessonSection>
@@ -177,7 +176,7 @@ export default function LearnMatchingPage() {
                 <div className="flex items-center gap-2 flex-1">
                   <span className="text-gold-light font-semibold text-lg">{l(k.name)}</span>
                   {locale === 'en' && <span className="text-gold-primary/50 text-sm" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{k.name.sa}</span>}
-                  <span className="ml-auto text-gold-primary font-mono text-sm font-bold">{k.points} {!isDevanagariLocale(locale) ? 'pts' : 'अंक'}</span>
+                  <span className="ml-auto text-gold-primary font-mono text-sm font-bold">{k.points} {tl({ en: 'pts', hi: 'अंक', sa: 'अंक', ta: 'pts', te: 'pts', bn: 'pts', kn: 'pts', gu: 'pts', mai: 'अंक', mr: 'अंक' }, locale)}</span>
                 </div>
               </div>
               <div className="ml-12 space-y-2">
@@ -198,15 +197,15 @@ export default function LearnMatchingPage() {
         <p>{t('calcContent')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {!isDevanagariLocale(locale) ? 'Algorithm Steps:' : 'एल्गोरिथ्म चरण:'}
+            {tl({ en: 'Algorithm Steps:', hi: 'एल्गोरिथ्म चरण:', sa: 'एल्गोरिथ्म चरण:', ta: 'Algorithm Steps:', te: 'Algorithm Steps:', bn: 'Algorithm Steps:', kn: 'Algorithm Steps:', gu: 'Algorithm Steps:', mai: 'एल्गोरिथ्म चरण:', mr: 'एल्गोरिथ्म चरण:' }, locale)}
           </p>
-          <p className="text-gold-light/80 font-mono text-xs">1. {!isDevanagariLocale(locale) ? 'Input: Birth Moon Nakshatra and Rashi of both partners' : 'इनपुट: दोनों साथियों का जन्म चन्द्र नक्षत्र और राशि'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">2. {!isDevanagariLocale(locale) ? 'For each Kuta, apply specific comparison rules' : 'प्रत्येक कूट के लिए, विशिष्ट तुलना नियम लागू करें'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">3. {!isDevanagariLocale(locale) ? 'Sum all points → total Guna score out of 36' : 'सभी अंकों का योग → 36 में से कुल गुण अंक'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">4. {!isDevanagariLocale(locale) ? 'Check for Doshas (Nadi, Bhakoot, Mangal)' : 'दोषों की जाँच (नाड़ी, भकूट, मांगलिक)'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">5. {!isDevanagariLocale(locale) ? 'Apply cancellation rules if applicable' : 'यदि लागू हो तो निरसन नियम लागू करें'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">6. {!isDevanagariLocale(locale) ? 'Assess Mangal Dosha separately from Lagna, Moon, and Venus' : 'मांगलिक दोष का लग्न, चन्द्र और शुक्र से अलग मूल्यांकन'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">7. {!isDevanagariLocale(locale) ? 'Generate detailed compatibility report with Kuta-wise breakdown' : 'कूट-अनुसार विस्तृत अनुकूलता रिपोर्ट तैयार करें'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">1. {tl({ en: 'Input: Birth Moon Nakshatra and Rashi of both partners', hi: 'इनपुट: दोनों साथियों का जन्म चन्द्र नक्षत्र और राशि', sa: 'इनपुट: दोनों साथियों का जन्म चन्द्र नक्षत्र और राशि', ta: 'Input: Birth Moon Nakshatra and Rashi of both partners', te: 'Input: Birth Moon Nakshatra and Rashi of both partners', bn: 'Input: Birth Moon Nakshatra and Rashi of both partners', kn: 'Input: Birth Moon Nakshatra and Rashi of both partners', gu: 'Input: Birth Moon Nakshatra and Rashi of both partners', mai: 'इनपुट: दोनों साथियों का जन्म चन्द्र नक्षत्र और राशि', mr: 'इनपुट: दोनों साथियों का जन्म चन्द्र नक्षत्र और राशि' }, locale)}</p>
+          <p className="text-gold-light/80 font-mono text-xs">2. {tl({ en: 'For each Kuta, apply specific comparison rules', hi: 'प्रत्येक कूट के लिए, विशिष्ट तुलना नियम लागू करें', sa: 'प्रत्येक कूट के लिए, विशिष्ट तुलना नियम लागू करें', ta: 'For each Kuta, apply specific comparison rules', te: 'For each Kuta, apply specific comparison rules', bn: 'For each Kuta, apply specific comparison rules', kn: 'For each Kuta, apply specific comparison rules', gu: 'For each Kuta, apply specific comparison rules', mai: 'प्रत्येक कूट के लिए, विशिष्ट तुलना नियम लागू करें', mr: 'प्रत्येक कूट के लिए, विशिष्ट तुलना नियम लागू करें' }, locale)}</p>
+          <p className="text-gold-light/80 font-mono text-xs">3. {tl({ en: 'Sum all points → total Guna score out of 36', hi: 'सभी अंकों का योग → 36 में से कुल गुण अंक', sa: 'सभी अंकों का योग → 36 में से कुल गुण अंक', ta: 'Sum all points → total Guna score out of 36', te: 'Sum all points → total Guna score out of 36', bn: 'Sum all points → total Guna score out of 36', kn: 'Sum all points → total Guna score out of 36', gu: 'Sum all points → total Guna score out of 36', mai: 'सभी अंकों का योग → 36 में से कुल गुण अंक', mr: 'सभी अंकों का योग → 36 में से कुल गुण अंक' }, locale)}</p>
+          <p className="text-gold-light/80 font-mono text-xs">4. {tl({ en: 'Check for Doshas (Nadi, Bhakoot, Mangal)', hi: 'दोषों की जाँच (नाड़ी, भकूट, मांगलिक)', sa: 'दोषों की जाँच (नाड़ी, भकूट, मांगलिक)', ta: 'Check for Doshas (Nadi, Bhakoot, Mangal)', te: 'Check for Doshas (Nadi, Bhakoot, Mangal)', bn: 'Check for Doshas (Nadi, Bhakoot, Mangal)', kn: 'Check for Doshas (Nadi, Bhakoot, Mangal)', gu: 'Check for Doshas (Nadi, Bhakoot, Mangal)', mai: 'दोषों की जाँच (नाड़ी, भकूट, मांगलिक)', mr: 'दोषों की जाँच (नाड़ी, भकूट, मांगलिक)' }, locale)}</p>
+          <p className="text-gold-light/80 font-mono text-xs">5. {tl({ en: 'Apply cancellation rules if applicable', hi: 'यदि लागू हो तो निरसन नियम लागू करें', sa: 'यदि लागू हो तो निरसन नियम लागू करें', ta: 'Apply cancellation rules if applicable', te: 'Apply cancellation rules if applicable', bn: 'Apply cancellation rules if applicable', kn: 'Apply cancellation rules if applicable', gu: 'Apply cancellation rules if applicable', mai: 'यदि लागू हो तो निरसन नियम लागू करें', mr: 'यदि लागू हो तो निरसन नियम लागू करें' }, locale)}</p>
+          <p className="text-gold-light/80 font-mono text-xs">6. {tl({ en: 'Assess Mangal Dosha separately from Lagna, Moon, and Venus', hi: 'मांगलिक दोष का लग्न, चन्द्र और शुक्र से अलग मूल्यांकन', sa: 'मांगलिक दोष का लग्न, चन्द्र और शुक्र से अलग मूल्यांकन', ta: 'Assess Mangal Dosha separately from Lagna, Moon, and Venus', te: 'Assess Mangal Dosha separately from Lagna, Moon, and Venus', bn: 'Assess Mangal Dosha separately from Lagna, Moon, and Venus', kn: 'Assess Mangal Dosha separately from Lagna, Moon, and Venus', gu: 'Assess Mangal Dosha separately from Lagna, Moon, and Venus', mai: 'मांगलिक दोष का लग्न, चन्द्र और शुक्र से अलग मूल्यांकन', mr: 'मांगलिक दोष का लग्न, चन्द्र और शुक्र से अलग मूल्यांकन' }, locale)}</p>
+          <p className="text-gold-light/80 font-mono text-xs">7. {tl({ en: 'Generate detailed compatibility report with Kuta-wise breakdown', hi: 'कूट-अनुसार विस्तृत अनुकूलता रिपोर्ट तैयार करें', sa: 'कूट-अनुसार विस्तृत अनुकूलता रिपोर्ट तैयार करें', ta: 'Generate detailed compatibility report with Kuta-wise breakdown', te: 'Generate detailed compatibility report with Kuta-wise breakdown', bn: 'Generate detailed compatibility report with Kuta-wise breakdown', kn: 'Generate detailed compatibility report with Kuta-wise breakdown', gu: 'Generate detailed compatibility report with Kuta-wise breakdown', mai: 'कूट-अनुसार विस्तृत अनुकूलता रिपोर्ट तैयार करें', mr: 'कूट-अनुसार विस्तृत अनुकूलता रिपोर्ट तैयार करें' }, locale)}</p>
         </div>
       </LessonSection>
 
@@ -273,13 +272,13 @@ export default function LearnMatchingPage() {
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-red-400 font-mono font-bold text-lg">{bp.pair}</span>
                 <span className="text-red-400/60 text-xs font-mono">
-                  {!isDevanagariLocale(locale) ? 'position pair' : 'स्थिति जोड़ा'}
+                  {tl({ en: 'position pair', hi: 'स्थिति जोड़ा', sa: 'स्थिति जोड़ा', ta: 'position pair', te: 'position pair', bn: 'position pair', kn: 'position pair', gu: 'position pair', mai: 'स्थिति जोड़ा', mr: 'स्थिति जोड़ा' }, locale)}
                 </span>
               </div>
               <p className="text-text-secondary text-sm mb-2">{l(bp.effect)}</p>
               <div className="p-2 rounded bg-emerald-400/5 border border-emerald-400/10">
                 <p className="text-emerald-400/80 text-xs">
-                  {!isDevanagariLocale(locale) ? 'Cancellation: ' : 'निरसन: '}{l(bp.cancel)}
+                  {tl({ en: 'Cancellation: ', hi: 'निरसन: ', sa: 'निरसन: ', ta: 'Cancellation: ', te: 'Cancellation: ', bn: 'Cancellation: ', kn: 'Cancellation: ', gu: 'Cancellation: ', mai: 'निरसन: ', mr: 'निरसन: ' }, locale)}{l(bp.cancel)}
                 </p>
               </div>
             </motion.div>
@@ -292,20 +291,20 @@ export default function LearnMatchingPage() {
         <p className="text-text-secondary">{t('mangalContent')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10 mb-4">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {!isDevanagariLocale(locale) ? 'Mars in houses 1, 4, 7, 8, 12 from:' : 'भाव 1, 4, 7, 8, 12 में मंगल — इनसे:'}
+            {tl({ en: 'Mars in houses 1, 4, 7, 8, 12 from:', hi: 'भाव 1, 4, 7, 8, 12 में मंगल — इनसे:', sa: 'भाव 1, 4, 7, 8, 12 में मंगल — इनसे:', ta: 'Mars in houses 1, 4, 7, 8, 12 from:', te: 'Mars in houses 1, 4, 7, 8, 12 from:', bn: 'Mars in houses 1, 4, 7, 8, 12 from:', kn: 'Mars in houses 1, 4, 7, 8, 12 from:', gu: 'Mars in houses 1, 4, 7, 8, 12 from:', mai: 'भाव 1, 4, 7, 8, 12 में मंगल — इनसे:', mr: 'भाव 1, 4, 7, 8, 12 में मंगल — इनसे:' }, locale)}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
-            {!isDevanagariLocale(locale) ? '• Lagna (Ascendant) — checked in all traditions' : '• लग्न — सभी परम्पराओं में जाँचा जाता है'}
+            {tl({ en: '• Lagna (Ascendant) — checked in all traditions', hi: '• लग्न — सभी परम्पराओं में जाँचा जाता है', sa: '• लग्न — सभी परम्पराओं में जाँचा जाता है', ta: '• Lagna (Ascendant) — checked in all traditions', te: '• Lagna (Ascendant) — checked in all traditions', bn: '• Lagna (Ascendant) — checked in all traditions', kn: '• Lagna (Ascendant) — checked in all traditions', gu: '• Lagna (Ascendant) — checked in all traditions', mai: '• लग्न — सभी परम्पराओं में जाँचा जाता है', mr: '• लग्न — सभी परम्पराओं में जाँचा जाता है' }, locale)}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
-            {!isDevanagariLocale(locale) ? '• Moon — checked in most North Indian traditions' : '• चन्द्र — अधिकांश उत्तर भारतीय परम्पराओं में'}
+            {tl({ en: '• Moon — checked in most North Indian traditions', hi: '• चन्द्र — अधिकांश उत्तर भारतीय परम्पराओं में', sa: '• चन्द्र — अधिकांश उत्तर भारतीय परम्पराओं में', ta: '• Moon — checked in most North Indian traditions', te: '• Moon — checked in most North Indian traditions', bn: '• Moon — checked in most North Indian traditions', kn: '• Moon — checked in most North Indian traditions', gu: '• Moon — checked in most North Indian traditions', mai: '• चन्द्र — अधिकांश उत्तर भारतीय परम्पराओं में', mr: '• चन्द्र — अधिकांश उत्तर भारतीय परम्पराओं में' }, locale)}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
-            {!isDevanagariLocale(locale) ? '• Venus — checked in South Indian traditions (Kalathra Dosha)' : '• शुक्र — दक्षिण भारतीय परम्पराओं में (कलत्र दोष)'}
+            {tl({ en: '• Venus — checked in South Indian traditions (Kalathra Dosha)', hi: '• शुक्र — दक्षिण भारतीय परम्पराओं में (कलत्र दोष)', sa: '• शुक्र — दक्षिण भारतीय परम्पराओं में (कलत्र दोष)', ta: '• Venus — checked in South Indian traditions (Kalathra Dosha)', te: '• Venus — checked in South Indian traditions (Kalathra Dosha)', bn: '• Venus — checked in South Indian traditions (Kalathra Dosha)', kn: '• Venus — checked in South Indian traditions (Kalathra Dosha)', gu: '• Venus — checked in South Indian traditions (Kalathra Dosha)', mai: '• शुक्र — दक्षिण भारतीय परम्पराओं में (कलत्र दोष)', mr: '• शुक्र — दक्षिण भारतीय परम्पराओं में (कलत्र दोष)' }, locale)}
           </p>
         </div>
         <h4 className="text-gold-light font-semibold text-sm mb-3">
-          {!isDevanagariLocale(locale) ? 'Mangal Dosha Cancellation Conditions:' : 'मांगलिक दोष निरसन शर्तें:'}
+          {tl({ en: 'Mangal Dosha Cancellation Conditions:', hi: 'मांगलिक दोष निरसन शर्तें:', sa: 'मांगलिक दोष निरसन शर्तें:', ta: 'Mangal Dosha Cancellation Conditions:', te: 'Mangal Dosha Cancellation Conditions:', bn: 'Mangal Dosha Cancellation Conditions:', kn: 'Mangal Dosha Cancellation Conditions:', gu: 'Mangal Dosha Cancellation Conditions:', mai: 'मांगलिक दोष निरसन शर्तें:', mr: 'मांगलिक दोष निरसन शर्तें:' }, locale)}
         </h4>
         <div className="space-y-2">
           {MANGAL_CANCEL.map((rule, i) => (

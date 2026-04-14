@@ -117,7 +117,7 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
         <PrintButton
           contentHtml={generateKundaliPrintHtml(kundali, locale as 'en' | 'hi' | 'sa')}
           title={`Patrika — ${bd.name}`}
-          label={!isDevanagariLocale(locale) ? 'Print' : 'प्रिंट'}
+          label={tl({ en: 'Print', hi: 'प्रिंट', sa: 'प्रिंट', ta: 'Print', te: 'Print', bn: 'Print', kn: 'Print', gu: 'Print', mai: 'प्रिंट', mr: 'प्रिंट' }, locale)}
           className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
         />
       </div>
@@ -130,22 +130,22 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
           <div className="text-5xl text-red-500" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>卐</div>
           <div className="text-orange-500 text-xl font-bold" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>ॐ श्री गणेशाय नमः॥</div>
           <h2 className="text-2xl sm:text-3xl font-bold text-gold-light" style={headingFont}>
-            {!isDevanagariLocale(locale) ? 'Janma Patrika' : 'जन्म पत्रिका'}
+            {tl({ en: 'Janma Patrika', hi: 'जन्म पत्रिका', sa: 'जन्म पत्रिका', ta: 'Janma Patrika', te: 'Janma Patrika', bn: 'Janma Patrika', kn: 'Janma Patrika', gu: 'Janma Patrika', mai: 'जन्म पत्रिका', mr: 'जन्म पत्रिका' }, locale)}
           </h2>
 
           {/* Name */}
-          <p className="text-gold-primary text-xl font-bold" style={headingFont}>{bd.name || (!isDevanagariLocale(locale) ? 'Native' : 'जातक')}</p>
+          <p className="text-gold-primary text-xl font-bold" style={headingFont}>{bd.name || (tl({ en: 'Native', hi: 'जातक', sa: 'जातक', ta: 'Native', te: 'Native', bn: 'Native', kn: 'Native', gu: 'Native', mai: 'जातक', mr: 'जातक' }, locale))}</p>
 
           {/* Birth data grid */}
           <div className="max-w-lg mx-auto">
             <div className="grid grid-cols-2 gap-x-8 gap-y-1.5 text-sm">
-              <span className="text-gold-dark text-right">{!isDevanagariLocale(locale) ? 'Date of Birth' : 'जन्म दिनांक'}</span>
+              <span className="text-gold-dark text-right">{tl({ en: 'Date of Birth', hi: 'जन्म दिनांक', sa: 'जन्म दिनांक', ta: 'Date of Birth', te: 'Date of Birth', bn: 'Date of Birth', kn: 'Date of Birth', gu: 'Date of Birth', mai: 'जन्म दिनांक', mr: 'जन्म दिनांक' }, locale)}</span>
               <span className="text-text-secondary text-left font-mono">{bd.date}</span>
-              <span className="text-gold-dark text-right">{!isDevanagariLocale(locale) ? 'Time of Birth' : 'जन्म समय'}</span>
+              <span className="text-gold-dark text-right">{tl({ en: 'Time of Birth', hi: 'जन्म समय', sa: 'जन्म समय', ta: 'Time of Birth', te: 'Time of Birth', bn: 'Time of Birth', kn: 'Time of Birth', gu: 'Time of Birth', mai: 'जन्म समय', mr: 'जन्म समय' }, locale)}</span>
               <span className="text-text-secondary text-left font-mono">{bd.time}</span>
-              <span className="text-gold-dark text-right">{!isDevanagariLocale(locale) ? 'Place of Birth' : 'जन्म स्थान'}</span>
+              <span className="text-gold-dark text-right">{tl({ en: 'Place of Birth', hi: 'जन्म स्थान', sa: 'जन्म स्थान', ta: 'Place of Birth', te: 'Place of Birth', bn: 'Place of Birth', kn: 'Place of Birth', gu: 'Place of Birth', mai: 'जन्म स्थान', mr: 'जन्म स्थान' }, locale)}</span>
               <span className="text-text-secondary text-left">{bd.place || `${bd.lat.toFixed(2)}°N, ${bd.lng.toFixed(2)}°E`}</span>
-              <span className="text-gold-dark text-right">{!isDevanagariLocale(locale) ? 'Ayanamsha' : 'अयनांश'}</span>
+              <span className="text-gold-dark text-right">{tl({ en: 'Ayanamsha', hi: 'अयनांश', sa: 'अयनांश', ta: 'Ayanamsha', te: 'Ayanamsha', bn: 'Ayanamsha', kn: 'Ayanamsha', gu: 'Ayanamsha', mai: 'अयनांश', mr: 'अयनांश' }, locale)}</span>
               <span className="text-text-secondary text-left font-mono">{bd.ayanamsha} ({kundali.ayanamshaValue.toFixed(4)}°)</span>
             </div>
           </div>
@@ -176,19 +176,19 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
             return (
               <div className="max-w-2xl mx-auto">
                 <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-xs">
-                  <span><span className="text-text-secondary/70">{!isDevanagariLocale(locale) ? 'Lagna' : 'लग्न'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(lagnaR?.name, locale)} ({kundali.ascendant.degree.toFixed(1)}°)</span></span>
+                  <span><span className="text-text-secondary/70">{tl({ en: 'Lagna', hi: 'लग्न', sa: 'लग्न', ta: 'Lagna', te: 'Lagna', bn: 'Lagna', kn: 'Lagna', gu: 'Lagna', mai: 'लग्न', mr: 'लग्न' }, locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(lagnaR?.name, locale)} ({kundali.ascendant.degree.toFixed(1)}°)</span></span>
                   <span className="text-gold-primary/15">|</span>
-                  <span><span className="text-text-secondary/70">{!isDevanagariLocale(locale) ? 'Chandra' : 'चन्द्र'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{moonR?.name[locale] || '—'}</span></span>
+                  <span><span className="text-text-secondary/70">{tl({ en: 'Chandra', hi: 'चन्द्र', sa: 'चन्द्र', ta: 'Chandra', te: 'Chandra', bn: 'Chandra', kn: 'Chandra', gu: 'Chandra', mai: 'चन्द्र', mr: 'चन्द्र' }, locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{moonR?.name[locale] || '—'}</span></span>
                   <span className="text-gold-primary/15">|</span>
-                  <span><span className="text-text-secondary/70">{!isDevanagariLocale(locale) ? 'Surya' : 'सूर्य'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{sunR?.name[locale] || '—'}</span></span>
+                  <span><span className="text-text-secondary/70">{tl({ en: 'Surya', hi: 'सूर्य', sa: 'सूर्य', ta: 'Surya', te: 'Surya', bn: 'Surya', kn: 'Surya', gu: 'Surya', mai: 'सूर्य', mr: 'सूर्य' }, locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{sunR?.name[locale] || '—'}</span></span>
                   <span className="text-gold-primary/15">|</span>
-                  <span><span className="text-text-secondary/70">{!isDevanagariLocale(locale) ? 'Nakshatra' : 'नक्षत्र'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{moonP?.nakshatra?.name?.[locale] || '—'} ({!isDevanagariLocale(locale) ? 'Pada' : 'पाद'} {moonP?.pada || '—'})</span></span>
+                  <span><span className="text-text-secondary/70">{tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्र', ta: 'Nakshatra', te: 'Nakshatra', bn: 'Nakshatra', kn: 'Nakshatra', gu: 'Nakshatra', mai: 'नक्षत्र', mr: 'नक्षत्र' }, locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{moonP?.nakshatra?.name?.[locale] || '—'} ({tl({ en: 'Pada', hi: 'पाद', sa: 'पाद', ta: 'Pada', te: 'Pada', bn: 'Pada', kn: 'Pada', gu: 'Pada', mai: 'पाद', mr: 'पाद' }, locale)} {moonP?.pada || '—'})</span></span>
                   <span className="text-gold-primary/15">|</span>
-                  <span><span className="text-text-secondary/70">{!isDevanagariLocale(locale) ? 'Tithi' : 'तिथि'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tD?.name?.[locale] || '—'} ({tD?.paksha === 'shukla' ? (!isDevanagariLocale(locale) ? 'Shukla' : 'शुक्ल') : (!isDevanagariLocale(locale) ? 'Krishna' : 'कृष्ण')})</span></span>
+                  <span><span className="text-text-secondary/70">{tl({ en: 'Tithi', hi: 'तिथि', sa: 'तिथि', ta: 'Tithi', te: 'Tithi', bn: 'Tithi', kn: 'Tithi', gu: 'Tithi', mai: 'तिथि', mr: 'तिथि' }, locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tD?.name?.[locale] || '—'} ({tD?.paksha === 'shukla' ? (tl({ en: 'Shukla', hi: 'शुक्ल', sa: 'शुक्ल', ta: 'Shukla', te: 'Shukla', bn: 'Shukla', kn: 'Shukla', gu: 'Shukla', mai: 'शुक्ल', mr: 'शुक्ल' }, locale)) : (tl({ en: 'Krishna', hi: 'कृष्ण', sa: 'कृष्ण', ta: 'Krishna', te: 'Krishna', bn: 'Krishna', kn: 'Krishna', gu: 'Krishna', mai: 'कृष्ण', mr: 'कृष्ण' }, locale))})</span></span>
                   <span className="text-gold-primary/15">|</span>
-                  <span><span className="text-text-secondary/70">{!isDevanagariLocale(locale) ? 'Yoga' : 'योग'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{yD?.name?.[locale] || '—'}</span></span>
+                  <span><span className="text-text-secondary/70">{tl({ en: 'Yoga', hi: 'योग', sa: 'योग', ta: 'Yoga', te: 'Yoga', bn: 'Yoga', kn: 'Yoga', gu: 'Yoga', mai: 'योग', mr: 'योग' }, locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{yD?.name?.[locale] || '—'}</span></span>
                   <span className="text-gold-primary/15">|</span>
-                  <span><span className="text-text-secondary/70">{!isDevanagariLocale(locale) ? 'Masa' : 'मास'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{mD?.[locale] || '—'}</span></span>
+                  <span><span className="text-text-secondary/70">{tl({ en: 'Masa', hi: 'मास', sa: 'मास', ta: 'Masa', te: 'Masa', bn: 'Masa', kn: 'Masa', gu: 'Masa', mai: 'मास', mr: 'मास' }, locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{mD?.[locale] || '—'}</span></span>
                 </div>
               </div>
             );
@@ -202,25 +202,25 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="text-center">
               <h3 className="text-gold-primary text-sm font-bold uppercase tracking-wider mb-3">
-                {!isDevanagariLocale(locale) ? 'D1 — Rashi Chart' : 'D1 — राशि चक्र'}
+                {tl({ en: 'D1 — Rashi Chart', hi: 'D1 — राशि चक्र', sa: 'D1 — राशि चक्र', ta: 'D1 — Rashi Chart', te: 'D1 — Rashi Chart', bn: 'D1 — Rashi Chart', kn: 'D1 — Rashi Chart', gu: 'D1 — Rashi Chart', mai: 'D1 — राशि चक्र', mr: 'D1 — राशि चक्र' }, locale)}
               </h3>
               <div className="flex justify-center">
                 {chartStyle === 'south' ? (
-                  <ChartSouth data={kundali.chart} title={!isDevanagariLocale(locale) ? 'D1 Rashi' : 'D1 राशि'} size={280} retrogradeIds={retrogradeIds} combustIds={combustIds} />
+                  <ChartSouth data={kundali.chart} title={tl({ en: 'D1 Rashi', hi: 'D1 राशि', sa: 'D1 राशि', ta: 'D1 Rashi', te: 'D1 Rashi', bn: 'D1 Rashi', kn: 'D1 Rashi', gu: 'D1 Rashi', mai: 'D1 राशि', mr: 'D1 राशि' }, locale)} size={280} retrogradeIds={retrogradeIds} combustIds={combustIds} />
                 ) : (
-                  <ChartNorth data={kundali.chart} title={!isDevanagariLocale(locale) ? 'D1 Rashi' : 'D1 राशि'} size={280} retrogradeIds={retrogradeIds} combustIds={combustIds} />
+                  <ChartNorth data={kundali.chart} title={tl({ en: 'D1 Rashi', hi: 'D1 राशि', sa: 'D1 राशि', ta: 'D1 Rashi', te: 'D1 Rashi', bn: 'D1 Rashi', kn: 'D1 Rashi', gu: 'D1 Rashi', mai: 'D1 राशि', mr: 'D1 राशि' }, locale)} size={280} retrogradeIds={retrogradeIds} combustIds={combustIds} />
                 )}
               </div>
             </div>
             <div className="text-center">
               <h3 className="text-gold-primary text-sm font-bold uppercase tracking-wider mb-3">
-                {!isDevanagariLocale(locale) ? 'D9 — Navamsha Chart' : 'D9 — नवांश चक्र'}
+                {tl({ en: 'D9 — Navamsha Chart', hi: 'D9 — नवांश चक्र', sa: 'D9 — नवांश चक्र', ta: 'D9 — Navamsha Chart', te: 'D9 — Navamsha Chart', bn: 'D9 — Navamsha Chart', kn: 'D9 — Navamsha Chart', gu: 'D9 — Navamsha Chart', mai: 'D9 — नवांश चक्र', mr: 'D9 — नवांश चक्र' }, locale)}
               </h3>
               <div className="flex justify-center">
                 {chartStyle === 'south' ? (
-                  <ChartSouth data={kundali.navamshaChart} title={!isDevanagariLocale(locale) ? 'D9 Navamsha' : 'D9 नवांश'} size={280} />
+                  <ChartSouth data={kundali.navamshaChart} title={tl({ en: 'D9 Navamsha', hi: 'D9 नवांश', sa: 'D9 नवांश', ta: 'D9 Navamsha', te: 'D9 Navamsha', bn: 'D9 Navamsha', kn: 'D9 Navamsha', gu: 'D9 Navamsha', mai: 'D9 नवांश', mr: 'D9 नवांश' }, locale)} size={280} />
                 ) : (
-                  <ChartNorth data={kundali.navamshaChart} title={!isDevanagariLocale(locale) ? 'D9 Navamsha' : 'D9 नवांश'} size={280} />
+                  <ChartNorth data={kundali.navamshaChart} title={tl({ en: 'D9 Navamsha', hi: 'D9 नवांश', sa: 'D9 नवांश', ta: 'D9 Navamsha', te: 'D9 Navamsha', bn: 'D9 Navamsha', kn: 'D9 Navamsha', gu: 'D9 Navamsha', mai: 'D9 नवांश', mr: 'D9 नवांश' }, locale)} size={280} />
                 )}
               </div>
             </div>
@@ -232,18 +232,18 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
         {/* Planet Positions Table */}
         <div>
           <h3 className="text-gold-gradient text-xl font-bold text-center mb-4" style={headingFont}>
-            {!isDevanagariLocale(locale) ? 'Planet Positions' : 'ग्रह स्थिति'}
+            {tl({ en: 'Planet Positions', hi: 'ग्रह स्थिति', sa: 'ग्रह स्थिति', ta: 'Planet Positions', te: 'Planet Positions', bn: 'Planet Positions', kn: 'Planet Positions', gu: 'Planet Positions', mai: 'ग्रह स्थिति', mr: 'ग्रह स्थिति' }, locale)}
           </h3>
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-gold-primary/20">
-                  <th className="text-gold-dark text-left py-2 px-3 font-semibold">{!isDevanagariLocale(locale) ? 'Planet' : 'ग्रह'}</th>
-                  <th className="text-gold-dark text-left py-2 px-3 font-semibold">{!isDevanagariLocale(locale) ? 'Sign' : 'राशि'}</th>
-                  <th className="text-gold-dark text-center py-2 px-3 font-semibold">{!isDevanagariLocale(locale) ? 'House' : 'भाव'}</th>
-                  <th className="text-gold-dark text-right py-2 px-3 font-semibold">{!isDevanagariLocale(locale) ? 'Degree' : 'अंश'}</th>
-                  <th className="text-gold-dark text-left py-2 px-3 font-semibold">{!isDevanagariLocale(locale) ? 'Nakshatra' : 'नक्षत्र'}</th>
-                  <th className="text-gold-dark text-center py-2 px-3 font-semibold">{!isDevanagariLocale(locale) ? 'Pada' : 'पाद'}</th>
+                  <th className="text-gold-dark text-left py-2 px-3 font-semibold">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रह', ta: 'Planet', te: 'Planet', bn: 'Planet', kn: 'Planet', gu: 'Planet', mai: 'ग्रह', mr: 'ग्रह' }, locale)}</th>
+                  <th className="text-gold-dark text-left py-2 px-3 font-semibold">{tl({ en: 'Sign', hi: 'राशि', sa: 'राशि', ta: 'Sign', te: 'Sign', bn: 'Sign', kn: 'Sign', gu: 'Sign', mai: 'राशि', mr: 'राशि' }, locale)}</th>
+                  <th className="text-gold-dark text-center py-2 px-3 font-semibold">{tl({ en: 'House', hi: 'भाव', sa: 'भाव', ta: 'House', te: 'House', bn: 'House', kn: 'House', gu: 'House', mai: 'भाव', mr: 'भाव' }, locale)}</th>
+                  <th className="text-gold-dark text-right py-2 px-3 font-semibold">{tl({ en: 'Degree', hi: 'अंश', sa: 'अंश', ta: 'Degree', te: 'Degree', bn: 'Degree', kn: 'Degree', gu: 'Degree', mai: 'अंश', mr: 'अंश' }, locale)}</th>
+                  <th className="text-gold-dark text-left py-2 px-3 font-semibold">{tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्र', ta: 'Nakshatra', te: 'Nakshatra', bn: 'Nakshatra', kn: 'Nakshatra', gu: 'Nakshatra', mai: 'नक्षत्र', mr: 'नक्षत्र' }, locale)}</th>
+                  <th className="text-gold-dark text-center py-2 px-3 font-semibold">{tl({ en: 'Pada', hi: 'पाद', sa: 'पाद', ta: 'Pada', te: 'Pada', bn: 'Pada', kn: 'Pada', gu: 'Pada', mai: 'पाद', mr: 'पाद' }, locale)}</th>
                   <th className="text-gold-dark text-center py-2 px-3 font-semibold">R</th>
                 </tr>
               </thead>
@@ -277,7 +277,7 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
         {/* Vimshottari Dasha Summary */}
         <div>
           <h3 className="text-gold-gradient text-xl font-bold text-center mb-4" style={headingFont}>
-            {!isDevanagariLocale(locale) ? 'Vimshottari Maha Dasha' : 'विंशोत्तरी महादशा'}
+            {tl({ en: 'Vimshottari Maha Dasha', hi: 'विंशोत्तरी महादशा', sa: 'विंशोत्तरी महादशा', ta: 'Vimshottari Maha Dasha', te: 'Vimshottari Maha Dasha', bn: 'Vimshottari Maha Dasha', kn: 'Vimshottari Maha Dasha', gu: 'Vimshottari Maha Dasha', mai: 'विंशोत्तरी महादशा', mr: 'विंशोत्तरी महादशा' }, locale)}
           </h3>
           <div className="space-y-2">
             {mahaDashas.map((d, i) => {
@@ -292,7 +292,7 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
                     <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                       {tl(d.planetName, locale)}
                     </span>
-                    {isCurrent && <span className="text-xs text-gold-primary font-bold uppercase tracking-wider">{!isDevanagariLocale(locale) ? 'Current' : 'वर्तमान'}</span>}
+                    {isCurrent && <span className="text-xs text-gold-primary font-bold uppercase tracking-wider">{tl({ en: 'Current', hi: 'वर्तमान', sa: 'वर्तमान', ta: 'Current', te: 'Current', bn: 'Current', kn: 'Current', gu: 'Current', mai: 'वर्तमान', mr: 'वर्तमान' }, locale)}</span>}
                   </div>
                   <span className="text-text-secondary text-xs font-mono">{d.startDate} → {d.endDate}</span>
                 </div>
@@ -306,7 +306,7 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
         {/* Key Doshas */}
         <div>
           <h3 className="text-gold-gradient text-xl font-bold text-center mb-4" style={headingFont}>
-            {!isDevanagariLocale(locale) ? 'Key Doshas' : 'प्रमुख दोष'}
+            {tl({ en: 'Key Doshas', hi: 'प्रमुख दोष', sa: 'प्रमुख दोष', ta: 'Key Doshas', te: 'Key Doshas', bn: 'Key Doshas', kn: 'Key Doshas', gu: 'Key Doshas', mai: 'प्रमुख दोष', mr: 'प्रमुख दोष' }, locale)}
           </h3>
           {doshas.some(d => d.present) ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -315,18 +315,18 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
                 <div className="flex items-center gap-2 mb-1">
                   <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
                   <span className="text-gold-light font-semibold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                    {dosha.name[!isDevanagariLocale(locale) ? 'en' : 'hi']}
+                    {dosha.name[tl({ en: 'en', hi: 'hi', sa: 'hi', ta: 'en', te: 'en', bn: 'en', kn: 'en', gu: 'en', mai: 'hi', mr: 'hi' }, locale)]}
                   </span>
                 </div>
                 <p className="text-text-secondary/75 text-xs ml-4" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {dosha.detail[!isDevanagariLocale(locale) ? 'en' : 'hi']}
+                  {dosha.detail[tl({ en: 'en', hi: 'hi', sa: 'hi', ta: 'en', te: 'en', bn: 'en', kn: 'en', gu: 'en', mai: 'hi', mr: 'hi' }, locale)]}
                 </p>
               </div>
             ))}
           </div>
           ) : (
           <p className="text-emerald-400/70 text-sm text-center py-2">
-            {!isDevanagariLocale(locale) ? 'None present' : 'कोई दोष नहीं'}
+            {tl({ en: 'None present', hi: 'कोई दोष नहीं', sa: 'कोई दोष नहीं', ta: 'None present', te: 'None present', bn: 'None present', kn: 'None present', gu: 'None present', mai: 'कोई दोष नहीं', mr: 'कोई दोष नहीं' }, locale)}
           </p>
           )}
         </div>

@@ -1,4 +1,5 @@
 'use client';
+import { tl } from '@/lib/utils/trilingual';
 
 import { useState, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
@@ -130,7 +131,7 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             className="w-full bg-bg-tertiary/50 border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 transition-colors"
-            placeholder={!isDevanagariLocale(locale) ? 'Enter your name' : 'अपना नाम दर्ज करें'}
+            placeholder={tl({ en: 'Enter your name', hi: 'अपना नाम दर्ज करें', sa: 'अपना नाम दर्ज करें', ta: 'Enter your name', te: 'Enter your name', bn: 'Enter your name', kn: 'Enter your name', gu: 'Enter your name', mai: 'अपना नाम दर्ज करें', mr: 'अपना नाम दर्ज करें' }, locale)}
           />
         </div>
 
@@ -173,10 +174,10 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
               });
               setPlaceTimezone(loc.timezone || null);
             }}
-            placeholder={!isDevanagariLocale(locale) ? 'Search birth city...' : 'जन्म शहर खोजें...'}
+            placeholder={tl({ en: 'Search birth city...', hi: 'जन्म शहर खोजें...', sa: 'जन्म शहर खोजें...', ta: 'Search birth city...', te: 'Search birth city...', bn: 'Search birth city...', kn: 'Search birth city...', gu: 'Search birth city...', mai: 'जन्म शहर खोजें...', mr: 'जन्म शहर खोजें...' }, locale)}
           />
           {locationError && (
-            <p className="text-red-400 text-xs mt-1">{!isDevanagariLocale(locale) ? 'Please select a birth location' : 'कृपया जन्म स्थान चुनें'}</p>
+            <p className="text-red-400 text-xs mt-1">{tl({ en: 'Please select a birth location', hi: 'कृपया जन्म स्थान चुनें', sa: 'कृपया जन्म स्थान चुनें', ta: 'Please select a birth location', te: 'Please select a birth location', bn: 'Please select a birth location', kn: 'Please select a birth location', gu: 'Please select a birth location', mai: 'कृपया जन्म स्थान चुनें', mr: 'कृपया जन्म स्थान चुनें' }, locale)}</p>
           )}
         </div>
 
@@ -188,23 +189,23 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
             onChange={(e) => setFormData({ ...formData, ayanamsha: e.target.value })}
             className="w-full bg-bg-tertiary/50 border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 transition-colors"
           >
-            <optgroup label={!isDevanagariLocale(locale) ? 'Standard' : 'मानक'}>
-              <option value="lahiri">{!isDevanagariLocale(locale) ? 'Lahiri (Chitrapaksha) — Indian Standard' : 'लाहिरी (चित्रपक्ष) — भारतीय मानक'}</option>
-              <option value="true_chitra">{!isDevanagariLocale(locale) ? 'True Chitrapaksha — Tracks Spica live' : 'यथार्थ चित्रपक्ष — चित्रा तारे की वास्तविक स्थिति'}</option>
-              <option value="kp">{!isDevanagariLocale(locale) ? 'KP (Krishnamurti)' : 'केपी (कृष्णमूर्ति)'}</option>
+            <optgroup label={tl({ en: 'Standard', hi: 'मानक', sa: 'मानक', ta: 'Standard', te: 'Standard', bn: 'Standard', kn: 'Standard', gu: 'Standard', mai: 'मानक', mr: 'मानक' }, locale)}>
+              <option value="lahiri">{tl({ en: 'Lahiri (Chitrapaksha) — Indian Standard', hi: 'लाहिरी (चित्रपक्ष) — भारतीय मानक', sa: 'लाहिरी (चित्रपक्ष) — भारतीय मानक', ta: 'Lahiri (Chitrapaksha) — Indian Standard', te: 'Lahiri (Chitrapaksha) — Indian Standard', bn: 'Lahiri (Chitrapaksha) — Indian Standard', kn: 'Lahiri (Chitrapaksha) — Indian Standard', gu: 'Lahiri (Chitrapaksha) — Indian Standard', mai: 'लाहिरी (चित्रपक्ष) — भारतीय मानक', mr: 'लाहिरी (चित्रपक्ष) — भारतीय मानक' }, locale)}</option>
+              <option value="true_chitra">{tl({ en: 'True Chitrapaksha — Tracks Spica live', hi: 'यथार्थ चित्रपक्ष — चित्रा तारे की वास्तविक स्थिति', sa: 'यथार्थ चित्रपक्ष — चित्रा तारे की वास्तविक स्थिति', ta: 'True Chitrapaksha — Tracks Spica live', te: 'True Chitrapaksha — Tracks Spica live', bn: 'True Chitrapaksha — Tracks Spica live', kn: 'True Chitrapaksha — Tracks Spica live', gu: 'True Chitrapaksha — Tracks Spica live', mai: 'यथार्थ चित्रपक्ष — चित्रा तारे की वास्तविक स्थिति', mr: 'यथार्थ चित्रपक्ष — चित्रा तारे की वास्तविक स्थिति' }, locale)}</option>
+              <option value="kp">{tl({ en: 'KP (Krishnamurti)', hi: 'केपी (कृष्णमूर्ति)', sa: 'केपी (कृष्णमूर्ति)', ta: 'KP (Krishnamurti)', te: 'KP (Krishnamurti)', bn: 'KP (Krishnamurti)', kn: 'KP (Krishnamurti)', gu: 'KP (Krishnamurti)', mai: 'केपी (कृष्णमूर्ति)', mr: 'केपी (कृष्णमूर्ति)' }, locale)}</option>
             </optgroup>
-            <optgroup label={!isDevanagariLocale(locale) ? 'Classical' : 'शास्त्रीय'}>
-              <option value="raman">{!isDevanagariLocale(locale) ? 'BV Raman' : 'बीवी रमण'}</option>
-              <option value="yukteshwar">{!isDevanagariLocale(locale) ? 'Sri Yukteshwar' : 'श्री युक्तेश्वर'}</option>
-              <option value="jn_bhasin">{!isDevanagariLocale(locale) ? 'JN Bhasin' : 'जेएन भसीन'}</option>
+            <optgroup label={tl({ en: 'Classical', hi: 'शास्त्रीय', sa: 'शास्त्रीय', ta: 'Classical', te: 'Classical', bn: 'Classical', kn: 'Classical', gu: 'Classical', mai: 'शास्त्रीय', mr: 'शास्त्रीय' }, locale)}>
+              <option value="raman">{tl({ en: 'BV Raman', hi: 'बीवी रमण', sa: 'बीवी रमण', ta: 'BV Raman', te: 'BV Raman', bn: 'BV Raman', kn: 'BV Raman', gu: 'BV Raman', mai: 'बीवी रमण', mr: 'बीवी रमण' }, locale)}</option>
+              <option value="yukteshwar">{tl({ en: 'Sri Yukteshwar', hi: 'श्री युक्तेश्वर', sa: 'श्री युक्तेश्वर', ta: 'Sri Yukteshwar', te: 'Sri Yukteshwar', bn: 'Sri Yukteshwar', kn: 'Sri Yukteshwar', gu: 'Sri Yukteshwar', mai: 'श्री युक्तेश्वर', mr: 'श्री युक्तेश्वर' }, locale)}</option>
+              <option value="jn_bhasin">{tl({ en: 'JN Bhasin', hi: 'जेएन भसीन', sa: 'जेएन भसीन', ta: 'JN Bhasin', te: 'JN Bhasin', bn: 'JN Bhasin', kn: 'JN Bhasin', gu: 'JN Bhasin', mai: 'जेएन भसीन', mr: 'जेएन भसीन' }, locale)}</option>
             </optgroup>
-            <optgroup label={!isDevanagariLocale(locale) ? 'Star-Anchored' : 'तारा-आधारित'}>
-              <option value="true_revati">{!isDevanagariLocale(locale) ? 'True Revati — Revati star at 0° Aries' : 'यथार्थ रेवती — रेवती तारा 0° मेष पर'}</option>
-              <option value="true_pushya">{!isDevanagariLocale(locale) ? 'True Pushya — Pushya star anchored' : 'यथार्थ पुष्य — पुष्य तारा आधारित'}</option>
-              <option value="galactic_center">{!isDevanagariLocale(locale) ? 'Galactic Center at 0° Sagittarius' : 'गैलेक्टिक केन्द्र 0° धनु पर'}</option>
+            <optgroup label={tl({ en: 'Star-Anchored', hi: 'तारा-आधारित', sa: 'तारा-आधारित', ta: 'Star-Anchored', te: 'Star-Anchored', bn: 'Star-Anchored', kn: 'Star-Anchored', gu: 'Star-Anchored', mai: 'तारा-आधारित', mr: 'तारा-आधारित' }, locale)}>
+              <option value="true_revati">{tl({ en: 'True Revati — Revati star at 0° Aries', hi: 'यथार्थ रेवती — रेवती तारा 0° मेष पर', sa: 'यथार्थ रेवती — रेवती तारा 0° मेष पर', ta: 'True Revati — Revati star at 0° Aries', te: 'True Revati — Revati star at 0° Aries', bn: 'True Revati — Revati star at 0° Aries', kn: 'True Revati — Revati star at 0° Aries', gu: 'True Revati — Revati star at 0° Aries', mai: 'यथार्थ रेवती — रेवती तारा 0° मेष पर', mr: 'यथार्थ रेवती — रेवती तारा 0° मेष पर' }, locale)}</option>
+              <option value="true_pushya">{tl({ en: 'True Pushya — Pushya star anchored', hi: 'यथार्थ पुष्य — पुष्य तारा आधारित', sa: 'यथार्थ पुष्य — पुष्य तारा आधारित', ta: 'True Pushya — Pushya star anchored', te: 'True Pushya — Pushya star anchored', bn: 'True Pushya — Pushya star anchored', kn: 'True Pushya — Pushya star anchored', gu: 'True Pushya — Pushya star anchored', mai: 'यथार्थ पुष्य — पुष्य तारा आधारित', mr: 'यथार्थ पुष्य — पुष्य तारा आधारित' }, locale)}</option>
+              <option value="galactic_center">{tl({ en: 'Galactic Center at 0° Sagittarius', hi: 'गैलेक्टिक केन्द्र 0° धनु पर', sa: 'गैलेक्टिक केन्द्र 0° धनु पर', ta: 'Galactic Center at 0° Sagittarius', te: 'Galactic Center at 0° Sagittarius', bn: 'Galactic Center at 0° Sagittarius', kn: 'Galactic Center at 0° Sagittarius', gu: 'Galactic Center at 0° Sagittarius', mai: 'गैलेक्टिक केन्द्र 0° धनु पर', mr: 'गैलेक्टिक केन्द्र 0° धनु पर' }, locale)}</option>
             </optgroup>
-            <optgroup label={!isDevanagariLocale(locale) ? 'Western Sidereal' : 'पश्चिमी सायन'}>
-              <option value="fagan_bradley">{!isDevanagariLocale(locale) ? 'Fagan-Bradley' : 'फगन-ब्रैडले'}</option>
+            <optgroup label={tl({ en: 'Western Sidereal', hi: 'पश्चिमी सायन', sa: 'पश्चिमी सायन', ta: 'Western Sidereal', te: 'Western Sidereal', bn: 'Western Sidereal', kn: 'Western Sidereal', gu: 'Western Sidereal', mai: 'पश्चिमी सायन', mr: 'पश्चिमी सायन' }, locale)}>
+              <option value="fagan_bradley">{tl({ en: 'Fagan-Bradley', hi: 'फगन-ब्रैडले', sa: 'फगन-ब्रैडले', ta: 'Fagan-Bradley', te: 'Fagan-Bradley', bn: 'Fagan-Bradley', kn: 'Fagan-Bradley', gu: 'Fagan-Bradley', mai: 'फगन-ब्रैडले', mr: 'फगन-ब्रैडले' }, locale)}</option>
             </optgroup>
           </select>
         </div>

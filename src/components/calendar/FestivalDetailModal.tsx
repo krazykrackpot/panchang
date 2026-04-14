@@ -276,7 +276,7 @@ export default function FestivalDetailModal({
                             <span className="ml-auto text-xs text-text-secondary font-mono">
                               {(() => {
                                 const pd = new Date(paranaDate + 'T00:00:00');
-                                return `${pd.getDate()} ${!isDevanagariLocale(locale) ? MONTH_NAMES[pd.getMonth()]?.slice(0, 3) : MONTH_NAMES_HI[pd.getMonth()]?.slice(0, 4)}`;
+                                return `${pd.getDate()} ${tl({ en: MONTH_NAMES[pd.getMonth()]?.slice(0, 3), hi: MONTH_NAMES_HI[pd.getMonth()]?.slice(0, 4), sa: MONTH_NAMES_HI[pd.getMonth()]?.slice(0, 4), ta: MONTH_NAMES[pd.getMonth()]?.slice(0, 3), te: MONTH_NAMES[pd.getMonth()]?.slice(0, 3), bn: MONTH_NAMES[pd.getMonth()]?.slice(0, 3), kn: MONTH_NAMES[pd.getMonth()]?.slice(0, 3), gu: MONTH_NAMES[pd.getMonth()]?.slice(0, 3), mai: MONTH_NAMES_HI[pd.getMonth()]?.slice(0, 4), mr: MONTH_NAMES_HI[pd.getMonth()]?.slice(0, 4) }, locale)}`;
                               })()}
                             </span>
                           )}
@@ -528,24 +528,24 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
       <div className="flex items-center gap-3">
         <div className="flex-1 h-px bg-gold-primary/20" />
         <span className="text-gold-primary text-xs font-bold uppercase tracking-wider" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'Puja Vidhi' : 'पूजा विधि'}
+          {tl({ en: 'Puja Vidhi', hi: 'पूजा विधि', sa: 'पूजा विधि', ta: 'Puja Vidhi', te: 'Puja Vidhi', bn: 'Puja Vidhi', kn: 'Puja Vidhi', gu: 'Puja Vidhi', mai: 'पूजा विधि', mr: 'पूजा विधि' }, locale)}
         </span>
         <div className="flex-1 h-px bg-gold-primary/20" />
       </div>
 
       {/* Deity + Muhurta */}
       <div className="flex items-center gap-3 text-sm">
-        <span className="text-gold-dark text-xs">{!isDevanagariLocale(locale) ? 'Deity' : 'देवता'}:</span>
+        <span className="text-gold-dark text-xs">{tl({ en: 'Deity', hi: 'देवता', sa: 'देवता', ta: 'Deity', te: 'Deity', bn: 'Deity', kn: 'Deity', gu: 'Deity', mai: 'देवता', mr: 'देवता' }, locale)}:</span>
         <span className="text-gold-light font-bold" style={bodyFont}>{t(puja.deity)}</span>
         <span className="text-gold-primary/30">|</span>
-        <span className="text-gold-dark text-xs">{!isDevanagariLocale(locale) ? 'Muhurta' : 'मुहूर्त'}:</span>
+        <span className="text-gold-dark text-xs">{tl({ en: 'Muhurta', hi: 'मुहूर्त', sa: 'मुहूर्त', ta: 'Muhurta', te: 'Muhurta', bn: 'Muhurta', kn: 'Muhurta', gu: 'Muhurta', mai: 'मुहूर्त', mr: 'मुहूर्त' }, locale)}:</span>
         <span className="text-text-secondary text-xs" style={bodyFont}>{t(puja.muhurtaDescription)}</span>
       </div>
 
       {/* Samagri */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-3">
         <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
-          {!isDevanagariLocale(locale) ? 'Materials (Samagri)' : 'सामग्री'}
+          {tl({ en: 'Materials (Samagri)', hi: 'सामग्री', sa: 'सामग्री', ta: 'Materials (Samagri)', te: 'Materials (Samagri)', bn: 'Materials (Samagri)', kn: 'Materials (Samagri)', gu: 'Materials (Samagri)', mai: 'सामग्री', mr: 'सामग्री' }, locale)}
         </p>
         <div className="flex flex-wrap gap-1.5">
           {puja.samagri.map((item, i) => (
@@ -559,7 +559,7 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
       {/* Vidhi Steps */}
       <div>
         <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
-          {!isDevanagariLocale(locale) ? 'Procedure' : 'विधि'}
+          {tl({ en: 'Procedure', hi: 'विधि', sa: 'विधि', ta: 'Procedure', te: 'Procedure', bn: 'Procedure', kn: 'Procedure', gu: 'Procedure', mai: 'विधि', mr: 'विधि' }, locale)}
         </p>
         <div className="space-y-2">
           {puja.vidhiSteps.map((step) => (
@@ -579,7 +579,7 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
       {/* Mantras */}
       <div>
         <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
-          {!isDevanagariLocale(locale) ? 'Mantras' : 'मन्त्र'}
+          {tl({ en: 'Mantras', hi: 'मन्त्र', sa: 'मन्त्र', ta: 'Mantras', te: 'Mantras', bn: 'Mantras', kn: 'Mantras', gu: 'Mantras', mai: 'मन्त्र', mr: 'मन्त्र' }, locale)}
         </p>
         <div className="space-y-2">
           {puja.mantras.map((m) => (
@@ -591,7 +591,7 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
       {/* Aarti */}
       {puja.aarti && (
         <div className="rounded-xl bg-orange-500/5 border border-orange-500/15 p-3">
-          <p className="text-orange-400 text-xs uppercase tracking-wider font-bold mb-2">{!isDevanagariLocale(locale) ? 'Aarti' : 'आरती'}</p>
+          <p className="text-orange-400 text-xs uppercase tracking-wider font-bold mb-2">{tl({ en: 'Aarti', hi: 'आरती', sa: 'आरती', ta: 'Aarti', te: 'Aarti', bn: 'Aarti', kn: 'Aarti', gu: 'Aarti', mai: 'आरती', mr: 'आरती' }, locale)}</p>
           <p className="text-gold-light text-sm whitespace-pre-line leading-relaxed" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
             {puja.aarti.devanagari}
           </p>
@@ -600,13 +600,13 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
 
       {/* Naivedya */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-3">
-        <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{!isDevanagariLocale(locale) ? 'Offering (Naivedya)' : 'नैवेद्य'}</p>
+        <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{tl({ en: 'Offering (Naivedya)', hi: 'नैवेद्य', sa: 'नैवेद्य', ta: 'Offering (Naivedya)', te: 'Offering (Naivedya)', bn: 'Offering (Naivedya)', kn: 'Offering (Naivedya)', gu: 'Offering (Naivedya)', mai: 'नैवेद्य', mr: 'नैवेद्य' }, locale)}</p>
         <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.naivedya)}</p>
       </div>
 
       {/* Precautions */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20 p-3">
-        <p className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-2">{!isDevanagariLocale(locale) ? 'Precautions' : 'सावधानियाँ'}</p>
+        <p className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-2">{tl({ en: 'Precautions', hi: 'सावधानियाँ', sa: 'सावधानियाँ', ta: 'Precautions', te: 'Precautions', bn: 'Precautions', kn: 'Precautions', gu: 'Precautions', mai: 'सावधानियाँ', mr: 'सावधानियाँ' }, locale)}</p>
         <ul className="space-y-1">
           {puja.precautions.map((p, i) => (
             <li key={i} className="flex gap-2 text-text-secondary text-xs" style={bodyFont}>
@@ -619,14 +619,14 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
 
       {/* Phala */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/20 p-3">
-        <p className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-1">{!isDevanagariLocale(locale) ? 'Benefits (Phala)' : 'फल'}</p>
+        <p className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-1">{tl({ en: 'Benefits (Phala)', hi: 'फल', sa: 'फल', ta: 'Benefits (Phala)', te: 'Benefits (Phala)', bn: 'Benefits (Phala)', kn: 'Benefits (Phala)', gu: 'Benefits (Phala)', mai: 'फल', mr: 'फल' }, locale)}</p>
         <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.phala)}</p>
       </div>
 
       {/* Visarjan */}
       {puja.visarjan && (
         <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-3">
-          <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{!isDevanagariLocale(locale) ? 'Visarjan (Conclusion)' : 'विसर्जन'}</p>
+          <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{tl({ en: 'Visarjan (Conclusion)', hi: 'विसर्जन', sa: 'विसर्जन', ta: 'Visarjan (Conclusion)', te: 'Visarjan (Conclusion)', bn: 'Visarjan (Conclusion)', kn: 'Visarjan (Conclusion)', gu: 'Visarjan (Conclusion)', mai: 'विसर्जन', mr: 'विसर्जन' }, locale)}</p>
           <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.visarjan)}</p>
         </div>
       )}

@@ -21,7 +21,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: 'sulba',
     date: { en: '~1500 BCE', hi: '~1500 ईसा पूर्व', sa: '~1500 ईसा पूर्व', mai: '~1500 ईसा पूर्व', mr: '~1500 ईसा पूर्व', ta: '~1500 BCE', te: '~1500 BCE', bn: '~1500 BCE', kn: '~1500 BCE', gu: '~1500 BCE' },
-    person: { en: 'Sulba Sutras — Baudhayana', hi: 'शुल्बसूत्र — बौधायन', sa: 'शुल्बसूत्र — बौधायन', mai: 'शुल्बसूत्र — बौधायन', mr: 'शुल्बसूत्र — बौधायन', ta: 'Sulba Sutras — Baudhayana', te: 'Sulba Sutras — Baudhayana', bn: 'Sulba Sutras — Baudhayana', kn: 'Sulba Sutras — Baudhayana', gu: 'Sulba Sutras — Baudhayana' },
+    person: { en: 'Sulba Sutras — Baudhayana', hi: 'शुल्बसूत्र — बौधायन', sa: 'शुल्बसूत्र — बौधायन', mai: 'शुल्बसूत्र — बौधायन', mr: 'शुल्बसूत्र — बौधायन', ta: 'சுல்ப சூத்திரங்கள் — பௌதாயனர்', te: 'శుల్బ సూత్రాలు — బౌధాయన', bn: 'শুল্বসূত্র — বৌধায়ন', kn: 'ಶುಲ್ಬ ಸೂತ್ರಗಳು — ಬೌಧಾಯನ', gu: 'શુલ્બસૂત્ર — બૌધાયન' },
     contribution: {
       en: 'Pythagorean theorem stated and proved. √2 computed to 1.41421356 — accurate to 5 decimal places.',
       hi: 'पाइथागोरस प्रमेय का कथन और प्रमाण। √2 = 1.41421356 — 5 दशमलव स्थानों तक सटीक।',
@@ -35,7 +35,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: 'panini',
     date: { en: '~500 BCE', hi: '~500 ईसा पूर्व', sa: '~500 ईसा पूर्व', mai: '~500 ईसा पूर्व', mr: '~500 ईसा पूर्व', ta: '~500 BCE', te: '~500 BCE', bn: '~500 BCE', kn: '~500 BCE', gu: '~500 BCE' },
-    person: { en: 'Panini', hi: 'पाणिनि', sa: 'पाणिनि', mai: 'पाणिनि', mr: 'पाणिनि', ta: 'Panini', te: 'Panini', bn: 'Panini', kn: 'Panini', gu: 'Panini' },
+    person: { en: 'Panini', hi: 'पाणिनि', sa: 'पाणिनि', mai: 'पाणिनि', mr: 'पाणिनि', ta: 'பாணினி', te: 'పాణిని', bn: 'পাণিনি', kn: 'ಪಾಣಿನಿ', gu: 'પાણિની' },
     contribution: {
       en: 'Ashtadhyayi — the world\'s first formal grammar system, equivalent to a programming language. 3,959 rules describing Sanskrit with zero ambiguity.',
       hi: 'अष्टाध्यायी — विश्व की पहली औपचारिक व्याकरण प्रणाली, एक प्रोग्रामिंग भाषा के समतुल्य। संस्कृत का बिना किसी अस्पष्टता के 3,959 नियमों में वर्णन।',
@@ -49,7 +49,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: 'pingala-binary',
     date: { en: '~200 BCE', hi: '~200 ईसा पूर्व', sa: '~200 ईसा पूर्व', mai: '~200 ईसा पूर्व', mr: '~200 ईसा पूर्व', ta: '~200 BCE', te: '~200 BCE', bn: '~200 BCE', kn: '~200 BCE', gu: '~200 BCE' },
-    person: { en: 'Pingala', hi: 'पिंगल', sa: 'पिंगल', mai: 'पिंगल', mr: 'पिंगल', ta: 'Pingala', te: 'Pingala', bn: 'Pingala', kn: 'Pingala', gu: 'Pingala' },
+    person: { en: 'Pingala', hi: 'पिंगल', sa: 'पिंगल', mai: 'पिंगल', mr: 'पिंगल', ta: 'பிங்கலர்', te: 'పింగళ', bn: 'পিঙ্গল', kn: 'ಪಿಂಗಳ', gu: 'પિંગલ' },
     contribution: {
       en: 'Binary number system described in Chandahshastra. Meruprastara (Pascal\'s triangle) and Fibonacci-like sequences in prosody — 1,800 years before Pascal and Fibonacci.',
       hi: 'छंदशास्त्र में द्विआधारी संख्या प्रणाली का वर्णन। मेरुप्रस्तार (पास्कल त्रिभुज) और फिबोनाची जैसी अनुक्रमणियाँ — पास्कल और फिबोनाची से 1,800 वर्ष पूर्व।',
@@ -63,7 +63,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: 'pingala-fibonacci',
     date: { en: '~200 BCE', hi: '~200 ईसा पूर्व', sa: '~200 ईसा पूर्व', mai: '~200 ईसा पूर्व', mr: '~200 ईसा पूर्व', ta: '~200 BCE', te: '~200 BCE', bn: '~200 BCE', kn: '~200 BCE', gu: '~200 BCE' },
-    person: { en: 'Bharata Muni', hi: 'भरत मुनि', sa: 'भरत मुनि', mai: 'भरत मुनि', mr: 'भरत मुनि', ta: 'Bharata Muni', te: 'Bharata Muni', bn: 'Bharata Muni', kn: 'Bharata Muni', gu: 'Bharata Muni' },
+    person: { en: 'Bharata Muni', hi: 'भरत मुनि', sa: 'भरत मुनि', mai: 'भरत मुनि', mr: 'भरत मुनि', ta: 'பரத முனி', te: 'భరత ముని', bn: 'ভরত মুনি', kn: 'ಭರತ ಮುನಿ', gu: 'ભરત મુનિ' },
     contribution: {
       en: 'Natyashastra — 22 shrutis (microtonal intervals), Fibonacci-like sequences embedded in tala (rhythmic cycles). First systematic musicology.',
       hi: 'नाट्यशास्त्र — 22 श्रुतियाँ (सूक्ष्म स्वर अंतराल), ताल चक्रों में फिबोनाची जैसी अनुक्रमणियाँ। पहला व्यवस्थित संगीतशास्त्र।',
@@ -74,7 +74,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: 'bakhshali',
     date: { en: '~150 CE', hi: '~150 ई.', sa: '~150 ई.', mai: '~150 ई.', mr: '~150 ई.', ta: '~150 CE', te: '~150 CE', bn: '~150 CE', kn: '~150 CE', gu: '~150 CE' },
-    person: { en: 'Bakhshali Manuscript', hi: 'बख्शाली पांडुलिपि', sa: 'बख्शाली पांडुलिपि', mai: 'बख्शाली पांडुलिपि', mr: 'बख्शाली पांडुलिपि', ta: 'Bakhshali Manuscript', te: 'Bakhshali Manuscript', bn: 'Bakhshali Manuscript', kn: 'Bakhshali Manuscript', gu: 'Bakhshali Manuscript' },
+    person: { en: 'Bakhshali Manuscript', hi: 'बख्शाली पांडुलिपि', sa: 'बख्शाली पांडुलिपि', mai: 'बख्शाली पांडुलिपि', mr: 'बख्शाली पांडुलिपि', ta: 'பக்ஷாலி கையெழுத்துப்பிரதி', te: 'బఖ్షాలి వ్రాతప్రతి', bn: 'বখশালি পাণ্ডুলিপি', kn: 'ಬಖ್ಷಾಲಿ ಹಸ್ತಪ್ರತಿ', gu: 'બખશાલી હસ્તપ્રત' },
     contribution: {
       en: 'Earliest known use of the zero symbol (a dot, ṣūnya) as a placeholder in positional notation. Predates Brahmagupta\'s formal zero by ~500 years.',
       hi: 'स्थानीय मान में शून्य प्रतीक (बिंदु, शून्य) के रूप में प्रयोग का सबसे पुराना ज्ञात उदाहरण। ब्रह्मगुप्त के औपचारिक शून्य से ~500 वर्ष पूर्व।',
@@ -88,7 +88,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: 'surya-siddhanta',
     date: { en: '~400 CE', hi: '~400 ई.', sa: '~400 ई.', mai: '~400 ई.', mr: '~400 ई.', ta: '~400 CE', te: '~400 CE', bn: '~400 CE', kn: '~400 CE', gu: '~400 CE' },
-    person: { en: 'Surya Siddhanta', hi: 'सूर्य सिद्धान्त', sa: 'सूर्य सिद्धान्त', mai: 'सूर्य सिद्धान्त', mr: 'सूर्य सिद्धान्त', ta: 'Surya Siddhanta', te: 'Surya Siddhanta', bn: 'Surya Siddhanta', kn: 'Surya Siddhanta', gu: 'Surya Siddhanta' },
+    person: { en: 'Surya Siddhanta', hi: 'सूर्य सिद्धान्त', sa: 'सूर्य सिद्धान्त', mai: 'सूर्य सिद्धान्त', mr: 'सूर्य सिद्धान्त', ta: 'சூர்ய சித்தாந்தம்', te: 'సూర్య సిద్ధాంతం', bn: 'সূর্য সিদ্ধান্ত', kn: 'ಸೂರ್ಯ ಸಿದ್ಧಾಂತ', gu: 'સૂર્ય સિદ્ધાંત' },
     contribution: {
       en: 'Precise planetary orbital periods accurate to seconds. Codified the 24-hora system (our "hour" derives from hora). Ahoratra — the concept of a sidereal day.',
       hi: 'ग्रहों की कक्षीय अवधि सेकंड तक सटीक। 24-होरा प्रणाली का संहिताकरण (हमारा "hour" होरा से आया है)। अहोरात्र — नाक्षत्र दिवस की अवधारणा।',
@@ -99,7 +99,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: 'aryabhata',
     date: { en: '499 CE', hi: '499 ई.', sa: '499 ई.', mai: '499 ई.', mr: '499 ई.', ta: '499 CE', te: '499 CE', bn: '499 CE', kn: '499 CE', gu: '499 CE' },
-    person: { en: 'Aryabhata', hi: 'आर्यभट', sa: 'आर्यभट', mai: 'आर्यभट', mr: 'आर्यभट', ta: 'Aryabhata', te: 'Aryabhata', bn: 'Aryabhata', kn: 'Aryabhata', gu: 'Aryabhata' },
+    person: { en: 'Aryabhata', hi: 'आर्यभट', sa: 'आर्यभट', mai: 'आर्यभट', mr: 'आर्यभट', ta: 'ஆர்யபட்டர்', te: 'ఆర్యభట', bn: 'আর্যভট', kn: 'ಆರ್ಯಭಟ', gu: 'આર્યભટ્ટ' },
     contribution: {
       en: 'Earth rotates on its axis (not the sky). π = 3.1416 (correct to 4 decimal places). Complete sine tables. Earth\'s circumference within 0.3% of actual value.',
       hi: 'पृथ्वी अपनी धुरी पर घूमती है (आकाश नहीं)। π = 3.1416 (4 दशमलव स्थानों तक सही)। पूर्ण ज्या सारणी। पृथ्वी की परिधि वास्तविक मान के 0.3% के भीतर।',
@@ -138,7 +138,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: 'mahavira',
     date: { en: '~850 CE', hi: '~850 ई.', sa: '~850 ई.', mai: '~850 ई.', mr: '~850 ई.', ta: '~850 CE', te: '~850 CE', bn: '~850 CE', kn: '~850 CE', gu: '~850 CE' },
-    person: { en: 'Mahavira', hi: 'महावीर', sa: 'महावीर', mai: 'महावीर', mr: 'महावीर', ta: 'Mahavira', te: 'Mahavira', bn: 'Mahavira', kn: 'Mahavira', gu: 'Mahavira' },
+    person: { en: 'Mahavira', hi: 'महावीर', sa: 'महावीर', mai: 'महावीर', mr: 'महावीर', ta: 'மஹாவீரர்', te: 'మహావీర', bn: 'মহাবীর', kn: 'ಮಹಾವೀರ', gu: 'મહાવીર' },
     contribution: {
       en: 'Ganitasarasangraha — extended negative number arithmetic, combinatorics, permutations and combinations with full proofs, LCM and GCD algorithms.',
       hi: 'गणितसारसंग्रह — ऋण संख्या अंकगणित का विस्तार, क्रमचय-संचय के पूर्ण प्रमाण, LCM और GCD एल्गोरिदम।',
@@ -152,7 +152,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: 'bhaskara',
     date: { en: '1150 CE', hi: '1150 ई.', sa: '1150 ई.', mai: '1150 ई.', mr: '1150 ई.', ta: '1150 CE', te: '1150 CE', bn: '1150 CE', kn: '1150 CE', gu: '1150 CE' },
-    person: { en: 'Bhaskaracharya II', hi: 'भास्कराचार्य II', sa: 'भास्कराचार्य II', mai: 'भास्कराचार्य II', mr: 'भास्कराचार्य II', ta: 'Bhaskaracharya II', te: 'Bhaskaracharya II', bn: 'Bhaskaracharya II', kn: 'Bhaskaracharya II', gu: 'Bhaskaracharya II' },
+    person: { en: 'Bhaskaracharya II', hi: 'भास्कराचार्य II', sa: 'भास्कराचार्य II', mai: 'भास्कराचार्य II', mr: 'भास्कराचार्य II', ta: 'பாஸ்கராச்சார்யர் II', te: 'భాస్కరాచార్య II', bn: 'ভাস্করাচার্য II', kn: 'ಭಾಸ್ಕರಾಚಾರ್ಯ II', gu: 'ભાસ્કરાચાર્ય II' },
     contribution: {
       en: 'Siddhanta Shiromani — explicit statement that "Earth attracts all objects by its own force." Differential calculus concepts (instantaneous velocity). Lilavati — first algebra textbook with solved examples.',
       hi: 'सिद्धान्तशिरोमणि — स्पष्ट कथन कि "पृथ्वी अपनी शक्ति से सभी वस्तुओं को आकर्षित करती है।" अवकल कलनशास्त्र की अवधारणाएँ (तात्कालिक वेग)। लीलावती — हल उदाहरणों सहित पहली बीजगणित पाठ्यपुस्तक।',
@@ -180,7 +180,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: 'sayana',
     date: { en: '~1350 CE', hi: '~1350 ई.', sa: '~1350 ई.', mai: '~1350 ई.', mr: '~1350 ई.', ta: '~1350 CE', te: '~1350 CE', bn: '~1350 CE', kn: '~1350 CE', gu: '~1350 CE' },
-    person: { en: 'Sayana', hi: 'सायण', sa: 'सायण', mai: 'सायण', mr: 'सायण', ta: 'Sayana', te: 'Sayana', bn: 'Sayana', kn: 'Sayana', gu: 'Sayana' },
+    person: { en: 'Sayana', hi: 'सायण', sa: 'सायण', mai: 'सायण', mr: 'सायण', ta: 'சாயணர்', te: 'సాయణ', bn: 'সায়ণ', kn: 'ಸಾಯಣ', gu: 'સાયણ' },
     contribution: {
       en: 'Commentary on Rigveda yields a speed-of-light calculation: 2,202 yojanas per half-nimesa. Modern conversion: ~299,000 km/s — within 0.14% of the actual value (299,792 km/s).',
       hi: 'ऋग्वेद की टीका से प्रकाश गति की गणना: आधे निमेष में 2,202 योजन। आधुनिक परिवर्तन: ~299,000 किमी/से — वास्तविक मान (299,792 किमी/से) के 0.14% के भीतर।',

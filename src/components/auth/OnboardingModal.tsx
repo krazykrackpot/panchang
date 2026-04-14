@@ -33,6 +33,9 @@ const LABELS = {
     saving: 'Saving...',
     skip: 'Skip for now',
     skipHint: 'You can add birth details later in Settings',
+    errorName: 'Please enter your name',
+    errorPlace: 'Please select a birth place from the suggestions',
+    errorNameMin: 'Please enter at least your name',
   },
   hi: {
     title: 'देखो पंचांग में आपका स्वागत है!',
@@ -49,6 +52,9 @@ const LABELS = {
     saving: 'सहेज रहे हैं...',
     skip: 'अभी छोड़ें',
     skipHint: 'जन्म विवरण बाद में सेटिंग्स में जोड़ सकते हैं',
+    errorName: 'कृपया अपना नाम दर्ज करें',
+    errorPlace: 'कृपया सुझावों से जन्म स्थान चुनें',
+    errorNameMin: 'कृपया कम से कम अपना नाम दर्ज करें',
   },
   sa: {
     title: 'देखो पञ्चाङ्गे स्वागतम्!',
@@ -65,6 +71,9 @@ const LABELS = {
     saving: 'सञ्चिनोति...',
     skip: 'अधुना त्यजतु',
     skipHint: 'जन्मविवरणं पश्चात् सेटिंग्स मध्ये योजयितुं शक्यते',
+    errorName: 'कृपया स्वनाम लिखतु',
+    errorPlace: 'कृपया सुझावों से जन्म स्थान चुनें',
+    errorNameMin: 'कृपया न्यूनतम स्वनाम लिखतु',
   },
 };
 
@@ -101,12 +110,12 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
     setError('');
 
     if (!fullName.trim()) {
-      setError(tl({ en: 'Please enter your name', hi: 'कृपया अपना नाम दर्ज करें', sa: 'कृपया अपना नाम दर्ज करें' }, locale));
+      setError(L.errorName);
       return;
     }
     // DOB and POB are optional — user can skip
     if (birthDate && !birthLocation) {
-      setError(tl({ en: 'Please select a birth place from the suggestions', hi: 'कृपया सुझावों से जन्म स्थान चुनें', sa: 'कृपया सुझावों से जन्म स्थान चुनें' }, locale));
+      setError(L.errorPlace);
       return;
     }
 
@@ -296,7 +305,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
             type="button"
             onClick={async () => {
               if (!fullName.trim()) {
-                setError(tl({ en: 'Please enter at least your name', hi: 'कृपया कम से कम अपना नाम दर्ज करें', sa: 'कृपया कम से कम अपना नाम दर्ज करें' }, locale));
+                setError(L.errorNameMin);
                 return;
               }
               setSaving(true);

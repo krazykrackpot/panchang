@@ -12,6 +12,13 @@ interface TransitRadarProps {
   locale: string;
 }
 
+
+const LABELS = {
+  title: { en: "Transit Radar — What's Activating Your Chart", hi: "गोचर राडार — आपकी कुण्डली पर वर्तमान प्रभाव", sa: "गोचर राडार — आपकी कुण्डली पर वर्तमान प्रभाव" },
+  subtitle: { en: 'Current slow-planet positions mapped to your Ashtakavarga strength', hi: 'धीमे ग्रहों की वर्तमान स्थिति और आपकी अष्टकवर्ग शक्ति', sa: 'धीमे ग्रहों की वर्तमान स्थिति और आपकी अष्टकवर्ग शक्ति' },
+  upcoming: { en: 'Upcoming Sign Changes (Next 6 Months)', hi: 'आगामी परिवर्तन (अगले 6 माह)', sa: 'आगामी परिवर्तन (अगले 6 माह)' },
+};
+
 export default function TransitRadar({ ascendantSign, savTable, locale }: TransitRadarProps) {
   const isHi = isDevanagariLocale(locale);
   const transits = useMemo(() => computePersonalTransits(ascendantSign, savTable), [ascendantSign, savTable]);
@@ -30,10 +37,10 @@ export default function TransitRadar({ ascendantSign, savTable, locale }: Transi
       {/* Header */}
       <div className="px-6 sm:px-8 pt-6 sm:pt-8 pb-4">
         <h3 className="text-xl text-gold-light font-bold">
-          {tl({ en: "Transit Radar — What\'s Activating Your Chart", hi: "गोचर राडार — आपकी कुण्डली पर वर्तमान प्रभाव", sa: "गोचर राडार — आपकी कुण्डली पर वर्तमान प्रभाव" }, locale)}
+          {tl(LABELS.title, locale)}
         </h3>
         <p className="text-text-secondary/60 text-xs mt-1">
-          {tl({ en: 'Current slow-planet positions mapped to your Ashtakavarga strength', hi: 'धीमे ग्रहों की वर्तमान स्थिति और आपकी अष्टकवर्ग शक्ति', sa: 'धीमे ग्रहों की वर्तमान स्थिति और आपकी अष्टकवर्ग शक्ति' }, locale)}
+          {tl(LABELS.subtitle, locale)}
         </p>
       </div>
 
@@ -71,7 +78,7 @@ export default function TransitRadar({ ascendantSign, savTable, locale }: Transi
       {upcoming.length > 0 && (
         <div className="px-6 sm:px-8 pb-6 sm:pb-8">
           <h4 className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
-            {tl({ en: 'Upcoming Sign Changes (Next 6 Months)', hi: 'आगामी परिवर्तन (अगले 6 माह)', sa: 'आगामी परिवर्तन (अगले 6 माह)' }, locale)}
+            {tl(LABELS.upcoming, locale)}
           </h4>
           <div className="space-y-1.5">
             {upcoming.map((u, i) => (

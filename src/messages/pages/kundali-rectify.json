@@ -1,0 +1,18 @@
+{
+  "title": { "en": "Birth Time Rectification", "hi": "जन्म समय शोधन", "sa": "जन्म समय शोधन" },
+  "subtitle": { "en": "Estimate correct birth time based on major life events and dasha alignment", "hi": "जीवन की प्रमुख घटनाओं के आधार पर सही जन्म समय का अनुमान लगाएं", "sa": "जीवन की प्रमुख घटनाओं के आधार पर सही जन्म समय का अनुमान लगाएं" },
+  "backKundali": { "en": "← Kundali", "hi": "← कुण्डली", "sa": "← कुण्डली" },
+  "approxDate": { "en": "Approximate Birth Date", "hi": "अनुमानित जन्म तिथि", "sa": "अनुमानित जन्म तिथि" },
+  "approxTime": { "en": "Approximate Birth Time", "hi": "अनुमानित जन्म समय", "sa": "अनुमानित जन्म समय" },
+  "uncertainty": { "en": "Uncertainty (hrs)", "hi": "अनिश्चितता (घंटे)", "sa": "अनिश्चितता (घंटे)" },
+  "birthPlace": { "en": "Birth Place", "hi": "जन्म स्थान", "sa": "जन्म स्थान" },
+  "birthPlacePlaceholder": { "en": "Search birth place...", "hi": "जन्म स्थान खोजें...", "sa": "जन्म स्थान खोजें..." },
+  "lifeEvents": { "en": "Life Events", "hi": "जीवन घटनाएँ", "sa": "जीवन घटनाएँ" },
+  "rectifyBtn": { "en": "Rectify Birth Time", "hi": "जन्म समय शोधन करें", "sa": "जन्म समय शोधन करें" },
+  "suggestedTime": { "en": "Suggested Birth Time", "hi": "सुझाया गया जन्म समय", "sa": "सुझाया गया जन्म समय" },
+  "lagna": { "en": "Lagna", "hi": "लग्न", "sa": "लग्न" },
+  "confidence": { "en": "Confidence", "hi": "विश्वसनीयता", "sa": "विश्वसनीयता" },
+  "needPlace": { "en": "Please select a birth place", "hi": "कृपया जन्म स्थान चुनें", "sa": "कृपया जन्म स्थान चुनें" },
+  "needEvents": { "en": "Please enter at least 2 life events", "hi": "कम से कम 2 जीवन घटनाएँ दर्ज करें", "sa": "कम से कम 2 जीवन घटनाएँ दर्ज करें" },
+  "calcError": { "en": "Calculation error", "hi": "गणना में त्रुटि", "sa": "गणना में त्रुटि" }
+}

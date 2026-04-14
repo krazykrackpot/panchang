@@ -1,6 +1,40 @@
 'use client';
 
 import { tl } from '@/lib/utils/trilingual';
+
+// ── Trilingual labels (extracted from inline tl() calls) ─────────────────────
+const LABELS = {
+  title: { en: 'Life Timeline — Complete Synthesis', hi: 'जीवन-रेखा — सम्पूर्ण काल-संश्लेषण', sa: 'जीवन-रेखा — सम्पूर्ण काल-संश्लेषण' },
+  subtitle: { en: 'All astrological systems synthesized on a single timeline', hi: 'सभी ज्योतिषीय तत्त्वों का कालानुक्रमिक समन्वय', sa: 'सभी ज्योतिषीय तत्त्वों का कालानुक्रमिक समन्वय' },
+  vimshottari: { en: 'Vimshottari Dasha', hi: 'विंशोत्तरी दशा', sa: 'विंशोत्तरी दशा' },
+  sadeSati: { en: 'Sade Sati (♄ transit)', hi: 'साढ़े साती (♄ गोचर)', sa: 'साढ़े साती (♄ गोचर)' },
+  majorYoga: { en: 'Major Yoga Active', hi: 'योग सक्रिय', sa: 'योग सक्रिय' },
+  jupiterYogi: { en: '⭐ Jupiter→Yogi Pt', hi: '⭐ बृहस्पति→योगी', sa: '⭐ बृहस्पति→योगी' },
+  saturnAvayogi: { en: '⚠ Saturn→Avayogi', hi: '⚠ शनि→अवयोगी', sa: '⚠ शनि→अवयोगी' },
+  rahuAxis: { en: '◉ Rahu Axis Shift', hi: '◉ राहु-अक्ष', sa: '◉ राहु-अक्ष' },
+  today: { en: 'Today', hi: 'आज', sa: 'आज' },
+  yoga: { en: 'Yoga', hi: 'योग', sa: 'योग' },
+  sadeSatiLabel: { en: 'Sade Sati', hi: 'साढ़े साती', sa: 'साढ़े साती' },
+  peak: { en: 'Peak', hi: 'उत्तम', sa: 'उत्तम' },
+  hard: { en: 'Hard', hi: 'कठिन', sa: 'कठिन' },
+  avg: { en: 'Avg', hi: 'मध्यम', sa: 'मध्यम' },
+  now: { en: '● Now', hi: '● आज', sa: '● आज' },
+  upcoming: { en: 'Upcoming Key Periods', hi: 'आगामी महत्त्वपूर्ण काल', sa: 'आगामी महत्त्वपूर्ण काल' },
+  recent: { en: 'Recent Key Periods', hi: 'हाल की महत्त्वपूर्ण अवधियाँ', sa: 'हाल की महत्त्वपूर्ण अवधियाँ' },
+  synthesis: { en: 'Period-by-Period Synthesis', hi: 'दशा-वार संश्लेषण', sa: 'दशा-वार संश्लेषण' },
+  noteLabel: { en: 'Note:', hi: 'ध्यान दें:', sa: 'ध्यान दें:' },
+  noteText: { en: " Sade Sati is based on Saturn's current sky transit — independent of Vimshottari dasha. It repeats every ~30 years regardless of which planet's dasha is running. 'Yes' in different non-consecutive dashas means different Sade Sati cycles, not one long one.", hi: ' साढ़े साती शनि के वर्तमान गोचर (आकाश में स्थिति) पर आधारित है — विंशोत्तरी दशा पर नहीं। यह हर ~30 वर्षों में होती है, चाहे कोई भी दशा चल रही हो। अलग-अलग दशाओं में "हाँ" का अर्थ है भिन्न साढ़े साती चक्र।', sa: ' साढ़े साती शनि के वर्तमान गोचर (आकाश में स्थिति) पर आधारित है — विंशोत्तरी दशा पर नहीं। यह हर ~30 वर्षों में होती है, चाहे कोई भी दशा चल रही हो। अलग-अलग दशाओं में "हाँ" का अर्थ है भिन्न साढ़े साती चक्र।' },
+  mahadasha: { en: 'Mahadasha', hi: 'महादशा', sa: 'महादशा' },
+  period: { en: 'Period', hi: 'काल', sa: 'काल' },
+  shadbala: { en: 'Shadbala', hi: 'षड्बल', sa: 'षड्बल' },
+  yogas: { en: 'Yogas', hi: 'योग', sa: 'योग' },
+  saturnTransit: { en: '♄ Transit (Sade Sati)', hi: '♄ गोचर (साढ़े साती)', sa: '♄ गोचर (साढ़े साती)' },
+  quality: { en: 'Quality', hi: 'गुण-स्कोर', sa: 'गुणः' },
+  strong: { en: '★ Strong', hi: '★ बलवान', sa: '★ बलवान' },
+  weak: { en: '▽ Weak', hi: '▽ दुर्बल', sa: '▽ दुर्बल' },
+  average: { en: '◇ Average', hi: '◇ मध्यम', sa: '◇ मध्यम' },
+  active: { en: '❆ Active', hi: '❆ सक्रिय', sa: '❆ सक्रिय' },
+};
 import { useMemo, useRef, useEffect, useState } from 'react';
 import type { KundaliData } from '@/types/kundali';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -63,6 +97,7 @@ interface Props {
 }
 
 export default function LifeTimeline({ kundali, locale, isDevanagari, headingFont }: Props) {
+  const msg = (key: keyof typeof LABELS) => tl(LABELS[key], locale);
   const isHi = isDevanagariLocale(locale);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
@@ -96,23 +131,23 @@ export default function LifeTimeline({ kundali, locale, isDevanagari, headingFon
     <div className="space-y-6">
       <div className="text-center">
         <h3 className="text-2xl font-bold mb-1" style={{ ...headingFont, background: 'linear-gradient(135deg, #f0d48a, #d4a853)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-          {tl({ en: 'Life Timeline — Complete Synthesis', hi: 'जीवन-रेखा — सम्पूर्ण काल-संश्लेषण', sa: 'जीवन-रेखा — सम्पूर्ण काल-संश्लेषण' }, locale)}
+          {msg('title')}
         </h3>
         <p className="text-text-secondary text-sm">
-          {tl({ en: 'All astrological systems synthesized on a single timeline', hi: 'सभी ज्योतिषीय तत्त्वों का कालानुक्रमिक समन्वय', sa: 'सभी ज्योतिषीय तत्त्वों का कालानुक्रमिक समन्वय' }, locale)}
+          {msg('subtitle')}
         </p>
       </div>
 
       {/* Legend */}
       <div className="flex flex-wrap gap-2 justify-center text-xs">
         {[
-          { color: '#f0b429', label: tl({ en: 'Vimshottari Dasha', hi: 'विंशोत्तरी दशा', sa: 'विंशोत्तरी दशा' }, locale) },
-          { color: '#e74c3c', label: tl({ en: 'Sade Sati (♄ transit)', hi: 'साढ़े साती (♄ गोचर)', sa: 'साढ़े साती (♄ गोचर)' }, locale), opacity: '60%' },
-          { color: '#2ecc71', label: tl({ en: 'Major Yoga Active', hi: 'योग सक्रिय', sa: 'योग सक्रिय' }, locale) },
-          { color: '#f0b429', label: tl({ en: '⭐ Jupiter→Yogi Pt', hi: '⭐ बृहस्पति→योगी', sa: '⭐ बृहस्पति→योगी' }, locale) },
-          { color: '#e74c3c', label: tl({ en: '⚠ Saturn→Avayogi', hi: '⚠ शनि→अवयोगी', sa: '⚠ शनि→अवयोगी' }, locale) },
-          { color: '#9b59b6', label: tl({ en: '◉ Rahu Axis Shift', hi: '◉ राहु-अक्ष', sa: '◉ राहु-अक्ष' }, locale) },
-          { color: '#d4a853', label: tl({ en: 'Today', hi: 'आज', sa: 'आज' }, locale), dashed: true },
+          { color: '#f0b429', label: msg('vimshottari') },
+          { color: '#e74c3c', label: msg('sadeSati'), opacity: '60%' },
+          { color: '#2ecc71', label: msg('majorYoga') },
+          { color: '#f0b429', label: msg('jupiterYogi') },
+          { color: '#e74c3c', label: msg('saturnAvayogi') },
+          { color: '#9b59b6', label: msg('rahuAxis') },
+          { color: '#d4a853', label: msg('today'), dashed: true },
         ].map((l, i) => (
           <div key={i} className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-[#111633] border border-white/5">
             {l.dashed
@@ -258,7 +293,7 @@ export default function LifeTimeline({ kundali, locale, isDevanagari, headingFon
                 {/* Yoga badge */}
                 {w > 70 && hasYoga && (
                   <text x={x1 + 6} y={T.dasha.y + 14} fontSize="8" fill="#f0b429" opacity="0.9">
-                    {tl({ en: 'Yoga', hi: 'योग', sa: 'योग' }, locale)}
+                    {msg('yoga')}
                   </text>
                 )}
                 {/* Year spans inside wide bands */}
@@ -300,7 +335,7 @@ export default function LifeTimeline({ kundali, locale, isDevanagari, headingFon
                 {w > 50 && (
                   <text x={x1 + w / 2} y={T.sadesati.y + T.sadesati.h / 2 + 4}
                     textAnchor="middle" fontSize="8" fill="#e88" opacity="0.8" fontFamily="system-ui">
-                    {tl({ en: 'Sade Sati', hi: 'साढ़े साती', sa: 'साढ़े साती' }, locale)}
+                    {msg('sadeSatiLabel')}
                   </text>
                 )}
                 {/* Also overlay on dasha band */}
@@ -446,7 +481,7 @@ export default function LifeTimeline({ kundali, locale, isDevanagari, headingFon
             const x2 = Math.min(TW - 4, yearToX(seg.endYear));
             const w = x2 - x1;
             if (w < 40) return null;
-            const label = seg.score >= 60 ? tl({ en: 'Peak', hi: 'उत्तम', sa: 'उत्तम' }, locale) : seg.score <= 35 ? tl({ en: 'Hard', hi: 'कठिन', sa: 'कठिन' }, locale) : tl({ en: 'Avg', hi: 'मध्यम', sa: 'मध्यम' }, locale);
+            const label = seg.score >= 60 ? msg('peak') : seg.score <= 35 ? msg('hard') : msg('avg');
             return (
               <text key={i} x={x1 + w / 2} y={T.synthesis.y + T.synthesis.h / 2 + 4}
                 textAnchor="middle" fontSize="9" fill="#d4c8b0" fontFamily="system-ui">{label}</text>
@@ -482,7 +517,7 @@ export default function LifeTimeline({ kundali, locale, isDevanagari, headingFon
                 stroke="#d4a853" strokeWidth="1.5" strokeDasharray="5,3" />
               <text x={data.todayX} y={T.yearRuler.y + 10} textAnchor="middle"
                 fontSize="9" fill="#d4a853" fontWeight="bold" fontFamily="system-ui">
-                {tl({ en: '● Now', hi: '● आज', sa: '● आज' }, locale)}
+                {msg('now')}
               </text>
             </g>
           )}
@@ -516,13 +551,14 @@ function KeyPeriodsSummary({ data, locale, isDevanagari, headingFont }: {
   headingFont?: React.CSSProperties;
 }) {
   const isHi = isDevanagariLocale(locale);
+  const msg = (key: keyof typeof LABELS) => tl(LABELS[key], locale);
   const upcoming = data.keyPeriods.filter(p => p.year >= data.todayYear).slice(0, 8);
   const past = data.keyPeriods.filter(p => p.year < data.todayYear).slice(-3).reverse();
 
   return (
     <div className="space-y-4">
       <h4 className="text-gold-light font-semibold text-base" style={headingFont}>
-        {tl({ en: 'Upcoming Key Periods', hi: 'आगामी महत्त्वपूर्ण काल', sa: 'आगामी महत्त्वपूर्ण काल' }, locale)}
+        {msg('upcoming')}
       </h4>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {upcoming.map((p, i) => (
@@ -551,7 +587,7 @@ function KeyPeriodsSummary({ data, locale, isDevanagari, headingFont }: {
       {past.length > 0 && (
         <>
           <h4 className="text-text-secondary font-semibold text-sm mt-4" style={headingFont}>
-            {tl({ en: 'Recent Key Periods', hi: 'हाल की महत्त्वपूर्ण अवधियाँ', sa: 'हाल की महत्त्वपूर्ण अवधियाँ' }, locale)}
+            {msg('recent')}
           </h4>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 opacity-60">
             {past.map((p, i) => (
@@ -580,27 +616,28 @@ function DashaSynthesisTable({ data, locale, headingFont }: {
   headingFont?: React.CSSProperties;
 }) {
   const isHi = isDevanagariLocale(locale);
+  const msg = (key: keyof typeof LABELS) => tl(LABELS[key], locale);
   return (
     <div>
       <h4 className="text-gold-light font-semibold text-base mb-3" style={headingFont}>
-        {tl({ en: 'Period-by-Period Synthesis', hi: 'दशा-वार संश्लेषण', sa: 'दशा-वार संश्लेषण' }, locale)}
+        {msg('synthesis')}
       </h4>
       {/* Clarifying note about Sade Sati independence */}
       <div className="mb-3 rounded-lg bg-amber-500/8 border border-amber-500/15 px-3 py-2 text-xs text-amber-200/70 leading-relaxed">
-        <strong className="text-amber-300">{tl({ en: 'Note:', hi: 'ध्यान दें:', sa: 'ध्यान दें:' }, locale)}</strong>
-        {tl({ en: " Sade Sati is based on Saturn's current sky transit — independent of Vimshottari dasha. It repeats every ~30 years regardless of which planet's dasha is running. 'Yes' in different non-consecutive dashas means different Sade Sati cycles, not one long one.", hi: ' साढ़े साती शनि के वर्तमान गोचर (आकाश में स्थिति) पर आधारित है — विंशोत्तरी दशा पर नहीं। यह हर ~30 वर्षों में होती है, चाहे कोई भी दशा चल रही हो। अलग-अलग दशाओं में "हाँ" का अर्थ है भिन्न साढ़े साती चक्र।', sa: ' साढ़े साती शनि के वर्तमान गोचर (आकाश में स्थिति) पर आधारित है — विंशोत्तरी दशा पर नहीं। यह हर ~30 वर्षों में होती है, चाहे कोई भी दशा चल रही हो। अलग-अलग दशाओं में "हाँ" का अर्थ है भिन्न साढ़े साती चक्र।' }, locale)}
+        <strong className="text-amber-300">{msg('noteLabel')}</strong>
+        {msg('noteText')}
       </div>
       <div className="overflow-x-auto rounded-xl border border-gold-primary/10">
         <table className="w-full text-xs" style={{ minWidth: 580 }}>
           <thead>
             <tr className="border-b border-white/8" style={{ background: '#111633' }}>
               {[
-                tl({ en: 'Mahadasha', hi: 'महादशा', sa: 'महादशा' }, locale),
-                tl({ en: 'Period', hi: 'काल', sa: 'काल' }, locale),
-                tl({ en: 'Shadbala', hi: 'षड्बल', sa: 'षड्बल' }, locale),
-                tl({ en: 'Yogas', hi: 'योग', sa: 'योग' }, locale),
-                tl({ en: '♄ Transit (Sade Sati)', hi: '♄ गोचर (साढ़े साती)', sa: '♄ गोचर (साढ़े साती)' }, locale),
-                tl({ en: 'Quality', hi: 'गुण-स्कोर', sa: 'गुणः' }, locale),
+                msg('mahadasha'),
+                msg('period'),
+                msg('shadbala'),
+                msg('yogas'),
+                msg('saturnTransit'),
+                msg('quality'),
               ].map((h, i) => (
                 <th key={i} className="px-3 py-2.5 text-left font-semibold text-text-secondary">{h}</th>
               ))}
@@ -619,10 +656,10 @@ function DashaSynthesisTable({ data, locale, headingFont }: {
                 });
               const qualityColor = d.quality === 'strong' ? 'text-emerald-300' : d.quality === 'weak' ? 'text-red-300' : 'text-amber-300';
               const qualityLabel = d.quality === 'strong'
-                ? tl({ en: '★ Strong', hi: '★ बलवान', sa: '★ बलवान' }, locale)
+                ? msg('strong')
                 : d.quality === 'weak'
-                ? tl({ en: '▽ Weak', hi: '▽ दुर्बल', sa: '▽ दुर्बल' }, locale)
-                : tl({ en: '◇ Average', hi: '◇ मध्यम', sa: '◇ मध्यम' }, locale);
+                ? msg('weak')
+                : msg('average');
               const score = d.synthesisScore;
               const scorePct = Math.round(score);
               const scoreColor = score >= 60 ? '#2ecc71' : score <= 35 ? '#e74c3c' : '#f0b429';
@@ -642,7 +679,7 @@ function DashaSynthesisTable({ data, locale, headingFont }: {
                   <td className={`px-3 py-2 font-semibold ${qualityColor}`}>{qualityLabel}</td>
                   <td className="px-3 py-2">
                     {d.hasYoga
-                      ? <span className="text-emerald-300 font-semibold">{tl({ en: '✦ Active', hi: '✦ सक्रिय', sa: '✦ सक्रिय' }, locale)}</span>
+                      ? <span className="text-emerald-300 font-semibold">{msg('active')}</span>
                       : <span className="text-text-secondary opacity-40">—</span>}
                   </td>
                   <td className="px-3 py-2">

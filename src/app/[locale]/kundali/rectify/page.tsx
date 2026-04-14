@@ -1,6 +1,7 @@
 'use client';
 
 import { tl } from '@/lib/utils/trilingual';
+import M from '@/messages/pages/kundali-rectify.json';
 import { useState, useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { authedFetch } from '@/lib/api/authed-fetch';
@@ -18,6 +19,8 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
  * Uses known life events to narrow down the correct birth time.
  * Adjusts lagna placement by matching event types to house significations.
  */
+
+type LocaleText = Record<string, string>;
 
 const LIFE_EVENTS = [
   { key: 'marriage', label: { en: 'Marriage', hi: 'विवाह', sa: 'विवाहः', mai: 'बियाह', mr: 'विवाह', ta: 'திருமணம்', te: 'వివాహం', bn: 'বিবাহ', kn: 'ವಿವಾಹ', gu: 'લગ્ન' }, houses: [7, 2], weight: 3 },
@@ -43,6 +46,8 @@ export default function RectifyPage() {
   const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
+  const msg = (key: string) => tl((M as unknown as Record<string, LocaleText>)[key], locale);
+
   const [birthYear, setBirthYear] = useState(1990);
   const [birthMonth, setBirthMonth] = useState(1);
   const [birthDay, setBirthDay] = useState(1);
@@ -66,11 +71,11 @@ export default function RectifyPage() {
 
   const rectify = async () => {
     if (placeLat === null || placeLng === null) {
-      alert(tl({ en: 'Please select a birth place', hi: 'कृपया जन्म स्थान चुनें', sa: 'कृपया जन्म स्थान चुनें' }, locale));
+      alert(msg('needPlace'));
       return;
     }
     if (events.length < 2) {
-      alert(tl({ en: 'Please enter at least 2 life events', hi: 'कम से कम 2 जीवन घटनाएँ दर्ज करें', sa: 'कम से कम 2 जीवन घटनाएँ दर्ज करें' }, locale));
+      alert(msg('needEvents'));
       return;
     }
     const [y, m, d] = [birthYear, birthMonth, birthDay];
@@ -134,7 +139,7 @@ export default function RectifyPage() {
     }
 
     if (results.length === 0) {
-      alert(tl({ en: 'Calculation error', hi: 'गणना में त्रुटि', sa: 'गणना में त्रुटि' }, locale));
+      alert(msg('calcError'));
       return;
     }
 
@@ -162,20 +167,20 @@ export default function RectifyPage() {
               </div>
             </div>
             <h1 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>
-              {tl({ en: 'Birth Time Rectification', hi: 'जन्म समय शोधन', sa: 'जन्म समय शोधन' }, locale)}
+              {msg('title')}
             </h1>
             <p className="text-text-secondary text-sm max-w-lg mx-auto">
-              {tl({ en: 'Estimate correct birth time based on major life events and dasha alignment', hi: 'जीवन की प्रमुख घटनाओं के आधार पर सही जन्म समय का अनुमान लगाएं', sa: 'जीवन की प्रमुख घटनाओं के आधार पर सही जन्म समय का अनुमान लगाएं' }, locale)}
+              {msg('subtitle')}
             </p>
             <Link href="/kundali" className="text-xs text-gold-primary/60 hover:text-gold-primary mt-2 inline-block">
-              {tl({ en: '← Kundali', hi: '← कुण्डली', sa: '← कुण्डली' }, locale)}
+              {msg('backKundali')}
             </Link>
           </div>
 
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 space-y-6">
             {/* Approximate birth details */}
             <div>
-              <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{tl({ en: 'Approximate Birth Date', hi: 'अनुमानित जन्म तिथि', sa: 'अनुमानित जन्म तिथि' }, locale)}</label>
+              <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{msg('approxDate')}</label>
               <div className="grid grid-cols-3 gap-3">
                 <input type="number" value={birthYear} onChange={e => setBirthYear(+e.target.value)} placeholder="Year" className="px-3 py-2 rounded-lg bg-bg-secondary border border-gold-primary/15 text-text-primary text-sm" />
                 <input type="number" min={1} max={12} value={birthMonth} onChange={e => setBirthMonth(+e.target.value)} placeholder="Month" className="px-3 py-2 rounded-lg bg-bg-secondary border border-gold-primary/15 text-text-primary text-sm" />
@@ -184,12 +189,12 @@ export default function RectifyPage() {
             </div>
 
             <div>
-              <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{tl({ en: 'Approximate Birth Time', hi: 'अनुमानित जन्म समय', sa: 'अनुमानित जन्म समय' }, locale)}</label>
+              <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{msg('approxTime')}</label>
               <div className="grid grid-cols-3 gap-3">
                 <input type="number" min={0} max={23} value={approxHour} onChange={e => setApproxHour(+e.target.value)} className="px-3 py-2 rounded-lg bg-bg-secondary border border-gold-primary/15 text-text-primary text-sm" />
                 <input type="number" min={0} max={59} value={approxMin} onChange={e => setApproxMin(+e.target.value)} className="px-3 py-2 rounded-lg bg-bg-secondary border border-gold-primary/15 text-text-primary text-sm" />
                 <div>
-                  <label className="text-text-tertiary text-xs">{tl({ en: 'Uncertainty (hrs)', hi: 'अनिश्चितता (घंटे)', sa: 'अनिश्चितता (घंटे)' }, locale)}</label>
+                  <label className="text-text-tertiary text-xs">{msg('uncertainty')}</label>
                   <input type="number" min={1} max={6} value={uncertainty} onChange={e => setUncertainty(+e.target.value)} className="w-full px-3 py-2 rounded-lg bg-bg-secondary border border-gold-primary/15 text-text-primary text-sm" />
                 </div>
               </div>
@@ -197,14 +202,14 @@ export default function RectifyPage() {
 
             {/* Birth place */}
             <div>
-              <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{tl({ en: 'Birth Place', hi: 'जन्म स्थान', sa: 'जन्म स्थान' }, locale)}</label>
-              <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); setPlaceTimezone(loc.timezone || null); }} placeholder={tl({ en: 'Search birth place...', hi: 'जन्म स्थान खोजें...', sa: 'जन्म स्थान खोजें...' }, locale)} />
+              <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{msg('birthPlace')}</label>
+              <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); setPlaceTimezone(loc.timezone || null); }} placeholder={msg('birthPlacePlaceholder')} />
             </div>
 
             {/* Life events */}
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold">{tl({ en: 'Life Events', hi: 'जीवन घटनाएँ', sa: 'जीवन घटनाएँ' }, locale)} ({events.length})</label>
+                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold">{msg('lifeEvents')} ({events.length})</label>
                 <button onClick={() => setShowEvents(!showEvents)} className="text-gold-primary text-xs">
                   {showEvents ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                 </button>
@@ -238,17 +243,17 @@ export default function RectifyPage() {
 
             <button onClick={rectify}
               className="w-full py-3 rounded-xl bg-gold-primary text-bg-primary font-bold hover:bg-gold-light transition-colors">
-              {tl({ en: 'Rectify Birth Time', hi: 'जन्म समय शोधन करें', sa: 'जन्म समय शोधन करें' }, locale)}
+              {msg('rectifyBtn')}
             </button>
 
             {/* Result */}
             {result && (
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 className="p-6 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-center">
-                <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">{tl({ en: 'Suggested Birth Time', hi: 'सुझाया गया जन्म समय', sa: 'सुझाया गया जन्म समय' }, locale)}</div>
+                <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">{msg('suggestedTime')}</div>
                 <div className="text-gold-light text-4xl font-bold font-mono mb-2">{result.suggestedTime}</div>
-                <div className="text-text-secondary text-sm mb-1">{tl({ en: 'Lagna', hi: 'लग्न', sa: 'लग्न' }, locale)}: <span className="text-gold-light font-bold">{result.lagna}</span></div>
-                <div className="text-emerald-300 text-xs">{tl({ en: 'Confidence', hi: 'विश्वसनीयता', sa: 'विश्वसनीयता' }, locale)}: {result.confidence}%</div>
+                <div className="text-text-secondary text-sm mb-1">{msg('lagna')}: <span className="text-gold-light font-bold">{result.lagna}</span></div>
+                <div className="text-emerald-300 text-xs">{msg('confidence')}: {result.confidence}%</div>
               </motion.div>
             )}
           </div>

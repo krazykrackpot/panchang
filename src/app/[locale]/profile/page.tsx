@@ -1,6 +1,7 @@
 'use client';
 
 import { tl } from '@/lib/utils/trilingual';
+import PM from '@/messages/pages/profile.json';
 
 import { useState, useEffect, useCallback } from 'react';
 import { useLocale } from 'next-intl';
@@ -17,6 +18,7 @@ import type { ChartData } from '@/types/kundali';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 type Trilingual = LocaleText;
+type LocaleTextRecord = Record<string, string>;
 
 interface SnapshotData {
   ascendant_sign: number;
@@ -435,6 +437,7 @@ const L = {
 
 export default function ProfilePage() {
   const locale = useLocale() as Locale;
+  const msg = (key: string) => tl((PM as unknown as Record<string, LocaleTextRecord>)[key], locale);
   const T = (L as Record<string, typeof L.en>)[locale] || L.en;
   const { user, initialized } = useAuthStore();
 
@@ -500,7 +503,7 @@ export default function ProfilePage() {
 
   const formatDate = (d: string) => {
     if (!d) return '';
-    return new Date(d + 'T00:00:00').toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'en-IN' }, locale), { year: 'numeric', month: 'long', day: 'numeric' });
+    return new Date(d + 'T00:00:00').toLocaleDateString(msg('localeId'), { year: 'numeric', month: 'long', day: 'numeric' });
   };
 
   const hasData = snapshot && profileInfo?.date_of_birth;
@@ -649,7 +652,7 @@ export default function ProfilePage() {
                       <p className="text-xs uppercase tracking-wider text-text-secondary/75">{T.mahaDasha}</p>
                       <p className="text-2xl font-bold text-gold-light">{snapshot.currentDasha.maha.planetName?.[locale] || snapshot.currentDasha.maha.planet}</p>
                       <p className="text-xs text-text-secondary mt-0.5">
-                        {T.dashaEnds} {new Date(snapshot.currentDasha.maha.endDate).toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'en-IN' }, locale), { year: 'numeric', month: 'short' })}
+                        {T.dashaEnds} {new Date(snapshot.currentDasha.maha.endDate).toLocaleDateString(msg('localeId'), { year: 'numeric', month: 'short' })}
                       </p>
                     </div>
                     {snapshot.currentDasha.antar && (
@@ -659,7 +662,7 @@ export default function ProfilePage() {
                           <p className="text-xs uppercase tracking-wider text-text-secondary/75">{T.antarDasha}</p>
                           <p className="text-2xl font-bold text-gold-light">{snapshot.currentDasha.antar.planetName?.[locale] || snapshot.currentDasha.antar.planet}</p>
                           <p className="text-xs text-text-secondary mt-0.5">
-                            {T.dashaEnds} {new Date(snapshot.currentDasha.antar.endDate).toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'en-IN' }, locale), { year: 'numeric', month: 'short' })}
+                            {T.dashaEnds} {new Date(snapshot.currentDasha.antar.endDate).toLocaleDateString(msg('localeId'), { year: 'numeric', month: 'short' })}
                           </p>
                         </div>
                       </>

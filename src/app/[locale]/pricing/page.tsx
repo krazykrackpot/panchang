@@ -1,6 +1,7 @@
 'use client';
 
 import { tl } from '@/lib/utils/trilingual';
+import PM from '@/messages/pages/pricing.json';
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
@@ -150,6 +151,7 @@ function t(obj: { en: string; hi: string; ta?: string; te?: string; bn?: string;
 
 export default function PricingPage() {
   const locale = useLocale() as Locale;
+  const msg = (key: string) => tl((PM as unknown as Record<string, Record<string, string>>)[key], locale);
   const isTamil = String(locale) === 'ta';
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
@@ -181,7 +183,7 @@ export default function PricingPage() {
   const handleCheckout = async (tier: 'pro' | 'jyotishi') => {
     const user = useAuthStore.getState().user;
     if (!user) {
-      alert(tl({ en: 'Please sign in first', hi: 'पहले साइन इन करें', sa: 'पहले साइन इन करें' }, locale));
+      alert(msg('signInFirst'));
       return;
     }
     try {
@@ -190,7 +192,7 @@ export default function PricingPage() {
       const session = await supabase?.auth.getSession();
       const token = session?.data.session?.access_token;
       if (!token) {
-        alert(tl({ en: 'Please sign in first', hi: 'पहले साइन इन करें', sa: 'पहले साइन इन करें' }, locale));
+        alert(msg('signInFirst'));
         return;
       }
 
@@ -215,7 +217,7 @@ export default function PricingPage() {
 
   const formatPrice = (amount: number) => {
     if (amount === 0) {
-      return tl({ en: 'Free', hi: 'नि:शुल्क', sa: 'नि:शुल्क' }, locale);
+      return msg('free');
     }
     return currency === 'INR' ? `₹${amount}` : `$${amount}`;
   };

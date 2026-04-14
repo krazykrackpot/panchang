@@ -173,49 +173,49 @@ const WEEKDAYS = [
 /* ── Hora practice data ───────────────────────────────────────────── */
 const HORA_PRACTICE = [
   {
-    planet: { en: 'Sun Hora', hi: 'सूर्य होरा', sa: 'सूर्य होरा', mai: 'सूर्य होरा', mr: 'सूर्य होरा', ta: 'Sun Hora', te: 'Sun Hora', bn: 'Sun Hora', kn: 'Sun Hora', gu: 'Sun Hora' }, color: '#f59e0b', bg: 'bg-amber-500/8', border: 'border-amber-500/25',
+    planet: { en: 'Sun Hora', hi: 'सूर्य होरा', sa: 'सूर्य होरा', mai: 'सूर्य होरा', mr: 'सूर्य होरा', ta: 'சூரிய ஹோரா', te: 'సూర్య హోరా', bn: 'সূর্য হোরা', kn: 'ಸೂರ್ಯ ಹೋರಾ', gu: 'સૂર્ય હોરા' }, color: '#f59e0b', bg: 'bg-amber-500/8', border: 'border-amber-500/25',
     activities: {
       en: 'Authority, government work, meetings with officials, leadership tasks, father-related matters, self-expression and command',
       hi: 'अधिकार, सरकारी कार्य, अधिकारियों से मिलना, नेतृत्व, पिता सम्बन्धित, आत्म-अभिव्यक्ति',
     },
   },
   {
-    planet: { en: 'Moon Hora', hi: 'चन्द्र होरा', sa: 'चन्द्र होरा', mai: 'चन्द्र होरा', mr: 'चन्द्र होरा', ta: 'Moon Hora', te: 'Moon Hora', bn: 'Moon Hora', kn: 'Moon Hora', gu: 'Moon Hora' }, color: '#94a3b8', bg: 'bg-slate-400/8', border: 'border-slate-400/25',
+    planet: { en: 'Moon Hora', hi: 'चन्द्र होरा', sa: 'चन्द्र होरा', mai: 'चन्द्र होरा', mr: 'चन्द्र होरा', ta: 'சந்திர ஹோரா', te: 'చంద్ర హోరా', bn: 'চন্দ্র হোরা', kn: 'ಚಂದ್ರ ಹೋರಾ', gu: 'ચંદ્ર હોરા' }, color: '#94a3b8', bg: 'bg-slate-400/8', border: 'border-slate-400/25',
     activities: {
       en: 'Travel, emotional conversations, mother-related, public dealings, water work, starting creative projects',
       hi: 'यात्रा, भावनात्मक बातचीत, माता सम्बन्धित, सार्वजनिक व्यवहार, जल कार्य, रचनात्मक परियोजना',
     },
   },
   {
-    planet: { en: 'Mars Hora', hi: 'मंगल होरा', sa: 'मंगल होरा', mai: 'मंगल होरा', mr: 'मंगल होरा', ta: 'Mars Hora', te: 'Mars Hora', bn: 'Mars Hora', kn: 'Mars Hora', gu: 'Mars Hora' }, color: '#ef4444', bg: 'bg-red-500/8', border: 'border-red-500/25',
+    planet: { en: 'Mars Hora', hi: 'मंगल होरा', sa: 'मंगल होरा', mai: 'मंगल होरा', mr: 'मंगल होरा', ta: 'செவ்வாய் ஹோரா', te: 'కుజ హోరా', bn: 'মঙ্গল হোরা', kn: 'ಮಂಗಳ ಹೋರಾ', gu: 'મંગળ હોરા' }, color: '#ef4444', bg: 'bg-red-500/8', border: 'border-red-500/25',
     activities: {
       en: 'Surgery, property work, sports, engineering and machinery, military or police matters, unavoidable confrontation',
       hi: 'शल्यक्रिया, सम्पत्ति कार्य, खेल, यन्त्र-अभियान्त्रिकी, सेना/पुलिस, अपरिहार्य संघर्ष',
     },
   },
   {
-    planet: { en: 'Mercury Hora', hi: 'बुध होरा', sa: 'बुध होरा', mai: 'बुध होरा', mr: 'बुध होरा', ta: 'Mercury Hora', te: 'Mercury Hora', bn: 'Mercury Hora', kn: 'Mercury Hora', gu: 'Mercury Hora' }, color: '#4ade80', bg: 'bg-emerald-500/8', border: 'border-emerald-500/25',
+    planet: { en: 'Mercury Hora', hi: 'बुध होरा', sa: 'बुध होरा', mai: 'बुध होरा', mr: 'बुध होरा', ta: 'புதன் ஹோரா', te: 'బుధ హోరా', bn: 'বুধ হোরা', kn: 'ಬುಧ ಹೋರಾ', gu: 'બુધ હોરા' }, color: '#4ade80', bg: 'bg-emerald-500/8', border: 'border-emerald-500/25',
     activities: {
       en: 'Business deals, contract signing, communication, education, writing, accounting, banking, technology, short trips',
       hi: 'व्यापारिक सौदे, अनुबन्ध, संचार, शिक्षा, लेखन, लेखांकन, बैंकिंग, प्रौद्योगिकी, छोटी यात्रा',
     },
   },
   {
-    planet: { en: 'Jupiter Hora', hi: 'गुरु होरा', sa: 'गुरु होरा', mai: 'गुरु होरा', mr: 'गुरु होरा', ta: 'Jupiter Hora', te: 'Jupiter Hora', bn: 'Jupiter Hora', kn: 'Jupiter Hora', gu: 'Jupiter Hora' }, color: '#facc15', bg: 'bg-yellow-500/8', border: 'border-yellow-500/25',
+    planet: { en: 'Jupiter Hora', hi: 'गुरु होरा', sa: 'गुरु होरा', mai: 'गुरु होरा', mr: 'गुरु होरा', ta: 'வியாழ ஹோரா', te: 'గురు హోరా', bn: 'বৃহস্পতি হোরা', kn: 'ಗುರು ಹೋರಾ', gu: 'ગુરુ હોરા' }, color: '#facc15', bg: 'bg-yellow-500/8', border: 'border-yellow-500/25',
     activities: {
       en: 'Spiritual work, teaching, consulting advisors, charity, legal proceedings, religious ceremonies, financial expansion',
       hi: 'आध्यात्मिक कार्य, अध्यापन, सलाहकार परामर्श, दान, कानूनी कार्यवाही, धार्मिक अनुष्ठान, वित्त',
     },
   },
   {
-    planet: { en: 'Venus Hora', hi: 'शुक्र होरा', sa: 'शुक्र होरा', mai: 'शुक्र होरा', mr: 'शुक्र होरा', ta: 'Venus Hora', te: 'Venus Hora', bn: 'Venus Hora', kn: 'Venus Hora', gu: 'Venus Hora' }, color: '#f472b6', bg: 'bg-pink-500/8', border: 'border-pink-500/25',
+    planet: { en: 'Venus Hora', hi: 'शुक्र होरा', sa: 'शुक्र होरा', mai: 'शुक्र होरा', mr: 'शुक्र होरा', ta: 'சுக்கிர ஹோரா', te: 'శుక్ర హోరా', bn: 'শুক্র হোরা', kn: 'ಶುಕ್ರ ಹೋರಾ', gu: 'શુક્ર હોરા' }, color: '#f472b6', bg: 'bg-pink-500/8', border: 'border-pink-500/25',
     activities: {
       en: 'Romance, marriage-related, arts and music, buying luxury items, beauty treatments, fashion, jewelry purchase',
       hi: 'प्रेम-प्रणय, विवाह सम्बन्धित, कला-संगीत, विलासिता वस्तुएँ, सौन्दर्य उपचार, आभूषण',
     },
   },
   {
-    planet: { en: 'Saturn Hora', hi: 'शनि होरा', sa: 'शनि होरा', mai: 'शनि होरा', mr: 'शनि होरा', ta: 'Saturn Hora', te: 'Saturn Hora', bn: 'Saturn Hora', kn: 'Saturn Hora', gu: 'Saturn Hora' }, color: '#60a5fa', bg: 'bg-blue-500/8', border: 'border-blue-500/25',
+    planet: { en: 'Saturn Hora', hi: 'शनि होरा', sa: 'शनि होरा', mai: 'शनि होरा', mr: 'शनि होरा', ta: 'சனி ஹோரா', te: 'శని హోరా', bn: 'শনি হোরা', kn: 'ಶನಿ ಹೋರಾ', gu: 'શનિ હોરા' }, color: '#60a5fa', bg: 'bg-blue-500/8', border: 'border-blue-500/25',
     activities: {
       en: 'Completing unfinished work, agriculture, iron/steel, deep meditation, dealing with laborers, mining, oil — AVOID starting new ventures',
       hi: 'अधूरा कार्य पूरा करें, कृषि, लोहा/इस्पात, गहन ध्यान, श्रमिकों से व्यवहार — नई शुरुआत से बचें',
@@ -705,12 +705,12 @@ export default function HoraChaldeanPage() {
         </h3>
         <div className="space-y-5">
           {[
-            { label: { en: 'Surya Siddhanta (Ch. 12)', hi: 'सूर्य सिद्धान्त (अ.12)', sa: 'सूर्य सिद्धान्त (अ.12)', mai: 'सूर्य सिद्धान्त (अ.12)', mr: 'सूर्य सिद्धान्त (अ.12)', ta: 'Surya Siddhanta (Ch. 12)', te: 'Surya Siddhanta (Ch. 12)', bn: 'Surya Siddhanta (Ch. 12)', kn: 'Surya Siddhanta (Ch. 12)', gu: 'Surya Siddhanta (Ch. 12)' }, text: L.srcSurya, color: 'border-amber-500/20' },
-            { label: { en: 'Aryabhatiya (499 CE)', hi: 'आर्यभटीय (499 ई.)', sa: 'आर्यभटीय (499 ई.)', mai: 'आर्यभटीय (499 ई.)', mr: 'आर्यभटीय (499 ई.)', ta: 'Aryabhatiya (499 CE)', te: 'Aryabhatiya (499 CE)', bn: 'Aryabhatiya (499 CE)', kn: 'Aryabhatiya (499 CE)', gu: 'Aryabhatiya (499 CE)' }, text: L.srcAryabhata, color: 'border-emerald-500/20' },
-            { label: { en: 'Brihat Samhita (Ch. 2)', hi: 'बृहत् संहिता (अ.2)', sa: 'बृहत् संहिता (अ.2)', mai: 'बृहत् संहिता (अ.2)', mr: 'बृहत् संहिता (अ.2)', ta: 'Brihat Samhita (Ch. 2)', te: 'Brihat Samhita (Ch. 2)', bn: 'Brihat Samhita (Ch. 2)', kn: 'Brihat Samhita (Ch. 2)', gu: 'Brihat Samhita (Ch. 2)' }, text: L.srcBrihat, color: 'border-violet-500/20' },
-            { label: { en: 'Arthashastra (~300 BCE)', hi: 'अर्थशास्त्र (~300 ई.पू.)', sa: 'अर्थशास्त्र (~300 ई.पू.)', mai: 'अर्थशास्त्र (~300 ई.पू.)', mr: 'अर्थशास्त्र (~300 ई.पू.)', ta: 'Arthashastra (~300 BCE)', te: 'Arthashastra (~300 BCE)', bn: 'Arthashastra (~300 BCE)', kn: 'Arthashastra (~300 BCE)', gu: 'Arthashastra (~300 BCE)' }, text: L.srcArthashastra, color: 'border-blue-500/20' },
-            { label: { en: 'Yajnavalkya Smriti (Ch. 1)', hi: 'याज्ञवल्क्य स्मृति (अ.1)', sa: 'याज्ञवल्क्य स्मृति (अ.1)', mai: 'याज्ञवल्क्य स्मृति (अ.1)', mr: 'याज्ञवल्क्य स्मृति (अ.1)', ta: 'Yajnavalkya Smriti (Ch. 1)', te: 'Yajnavalkya Smriti (Ch. 1)', bn: 'Yajnavalkya Smriti (Ch. 1)', kn: 'Yajnavalkya Smriti (Ch. 1)', gu: 'Yajnavalkya Smriti (Ch. 1)' }, text: L.srcYajnavalkya, color: 'border-gold-primary/20' },
-            { label: { en: 'Romaka Siddhanta', hi: 'रोमक सिद्धान्त', sa: 'रोमक सिद्धान्त', mai: 'रोमक सिद्धान्त', mr: 'रोमक सिद्धान्त', ta: 'Romaka Siddhanta', te: 'Romaka Siddhanta', bn: 'Romaka Siddhanta', kn: 'Romaka Siddhanta', gu: 'Romaka Siddhanta' }, text: L.srcRomaka, color: 'border-red-500/20' },
+            { label: { en: 'Surya Siddhanta (Ch. 12)', hi: 'सूर्य सिद्धान्त (अ.12)', sa: 'सूर्य सिद्धान्त (अ.12)', mai: 'सूर्य सिद्धान्त (अ.12)', mr: 'सूर्य सिद्धान्त (अ.12)', ta: 'சூர்ய சித்தாந்தம் (அத். 12)', te: 'సూర్య సిద్ధాంతం (అ. 12)', bn: 'সূর্য সিদ্ধান্ত (অ. 12)', kn: 'ಸೂರ್ಯ ಸಿದ್ಧಾಂತ (ಅ. 12)', gu: 'સૂર્ય સિદ્ધાંત (અ. 12)' }, text: L.srcSurya, color: 'border-amber-500/20' },
+            { label: { en: 'Aryabhatiya (499 CE)', hi: 'आर्यभटीय (499 ई.)', sa: 'आर्यभटीय (499 ई.)', mai: 'आर्यभटीय (499 ई.)', mr: 'आर्यभटीय (499 ई.)', ta: 'ஆர்யபடீயம் (499 CE)', te: 'ఆర్యభటీయం (499 CE)', bn: 'আর্যভটীয় (499 CE)', kn: 'ಆರ್ಯಭಟೀಯ (499 CE)', gu: 'આર્યભટીય (499 CE)' }, text: L.srcAryabhata, color: 'border-emerald-500/20' },
+            { label: { en: 'Brihat Samhita (Ch. 2)', hi: 'बृहत् संहिता (अ.2)', sa: 'बृहत् संहिता (अ.2)', mai: 'बृहत् संहिता (अ.2)', mr: 'बृहत् संहिता (अ.2)', ta: 'பிருஹத் சம்ஹிதா (அத். 2)', te: 'బృహత్ సంహిత (అ. 2)', bn: 'বৃহৎ সংহিতা (অ. 2)', kn: 'ಬೃಹತ್ ಸಂಹಿತಾ (ಅ. 2)', gu: 'બૃહત્ સંહિતા (અ. 2)' }, text: L.srcBrihat, color: 'border-violet-500/20' },
+            { label: { en: 'Arthashastra (~300 BCE)', hi: 'अर्थशास्त्र (~300 ई.पू.)', sa: 'अर्थशास्त्र (~300 ई.पू.)', mai: 'अर्थशास्त्र (~300 ई.पू.)', mr: 'अर्थशास्त्र (~300 ई.पू.)', ta: 'அர்த்தசாஸ்திரம் (~300 BCE)', te: 'అర్థశాస్త్రం (~300 BCE)', bn: 'অর্থশাস্ত্র (~300 BCE)', kn: 'ಅರ್ಥಶಾಸ್ತ್ರ (~300 BCE)', gu: 'અર્થશાસ્ત્ર (~300 BCE)' }, text: L.srcArthashastra, color: 'border-blue-500/20' },
+            { label: { en: 'Yajnavalkya Smriti (Ch. 1)', hi: 'याज्ञवल्क्य स्मृति (अ.1)', sa: 'याज्ञवल्क्य स्मृति (अ.1)', mai: 'याज्ञवल्क्य स्मृति (अ.1)', mr: 'याज्ञवल्क्य स्मृति (अ.1)', ta: 'யாஜ்ஞவல்க்ய ஸ்மிருதி (அத். 1)', te: 'యాజ్ఞవల్క్య స్మృతి (అ. 1)', bn: 'যাজ্ঞবল্ক্য স্মৃতি (অ. 1)', kn: 'ಯಾಜ್ಞವಲ್ಕ್ಯ ಸ್ಮೃತಿ (ಅ. 1)', gu: 'યાજ્ઞવલ્ક્ય સ્મૃતિ (અ. 1)' }, text: L.srcYajnavalkya, color: 'border-gold-primary/20' },
+            { label: { en: 'Romaka Siddhanta', hi: 'रोमक सिद्धान्त', sa: 'रोमक सिद्धान्त', mai: 'रोमक सिद्धान्त', mr: 'रोमक सिद्धान्त', ta: 'ரோமக சித்தாந்தம்', te: 'రోమక సిద్ధాంతం', bn: 'রোমক সিদ্ধান্ত', kn: 'ರೋಮಕ ಸಿದ್ಧಾಂತ', gu: 'રોમક સિદ્ધાંત' }, text: L.srcRomaka, color: 'border-red-500/20' },
           ].map((src, i) => (
             <div key={i} className={`border ${src.color} rounded-xl p-4 bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27]`}>
               <div className="text-gold-light font-bold text-sm mb-2" style={headingFont}>{lt(src.label as LocaleText, locale)}</div>
@@ -733,12 +733,12 @@ export default function HoraChaldeanPage() {
         </h3>
         <div className="flex flex-wrap gap-3">
           {[
-            { href: '/vedic-time', label: { en: 'Vedic Time', hi: 'वैदिक समय', sa: 'वैदिक समय', mai: 'वैदिक समय', mr: 'वैदिक समय', ta: 'Vedic Time', te: 'Vedic Time', bn: 'Vedic Time', kn: 'Vedic Time', gu: 'Vedic Time' } },
-            { href: '/learn/vara', label: { en: 'Learn: Vara (Weekdays)', hi: 'सीखें: वार', sa: 'सीखें: वार', mai: 'सीखें: वार', mr: 'सीखें: वार', ta: 'Learn: Vara (Weekdays)', te: 'Learn: Vara (Weekdays)', bn: 'Learn: Vara (Weekdays)', kn: 'Learn: Vara (Weekdays)', gu: 'Learn: Vara (Weekdays)' } },
-            { href: '/learn/muhurtas', label: { en: 'Learn: Muhurtas', hi: 'सीखें: मुहूर्त', sa: 'सीखें: मुहूर्त', mai: 'सीखें: मुहूर्त', mr: 'सीखें: मुहूर्त', ta: 'Learn: Muhurtas', te: 'Learn: Muhurtas', bn: 'Learn: Muhurtas', kn: 'Learn: Muhurtas', gu: 'Learn: Muhurtas' } },
-            { href: '/learn/eclipses', label: { en: 'Learn: Eclipses', hi: 'सीखें: ग्रहण', sa: 'सीखें: ग्रहण', mai: 'सीखें: ग्रहण', mr: 'सीखें: ग्रहण', ta: 'Learn: Eclipses', te: 'Learn: Eclipses', bn: 'Learn: Eclipses', kn: 'Learn: Eclipses', gu: 'Learn: Eclipses' } },
-            { href: '/learn/grahas', label: { en: 'Learn: The Nine Grahas', hi: 'सीखें: नवग्रह', sa: 'सीखें: नवग्रह', mai: 'सीखें: नवग्रह', mr: 'सीखें: नवग्रह', ta: 'Learn: The Nine Grahas', te: 'Learn: The Nine Grahas', bn: 'Learn: The Nine Grahas', kn: 'Learn: The Nine Grahas', gu: 'Learn: The Nine Grahas' } },
-            { href: '/muhurta-ai', label: { en: 'Muhurta AI', hi: 'मुहूर्त AI', sa: 'मुहूर्त AI', mai: 'मुहूर्त AI', mr: 'मुहूर्त AI', ta: 'Muhurta AI', te: 'Muhurta AI', bn: 'Muhurta AI', kn: 'Muhurta AI', gu: 'Muhurta AI' } },
+            { href: '/vedic-time', label: { en: 'Vedic Time', hi: 'वैदिक समय', sa: 'वैदिक समय', mai: 'वैदिक समय', mr: 'वैदिक समय', ta: 'வேத காலம்', te: 'వేద కాలం', bn: 'বৈদিক সময়', kn: 'ವೈದಿಕ ಕಾಲ', gu: 'વૈદિક સમય' } },
+            { href: '/learn/vara', label: { en: 'Learn: Vara (Weekdays)', hi: 'सीखें: वार', sa: 'सीखें: वार', mai: 'सीखें: वार', mr: 'सीखें: वार', ta: 'கற்றுக்கொள்: வாரம் (வாரநாட்கள்)', te: 'నేర్చుకోండి: వారం (వారదినాలు)', bn: 'শিখুন: বার (সপ্তাহের দিন)', kn: 'ಕಲಿಯಿರಿ: ವಾರ (ವಾರದ ದಿನಗಳು)', gu: 'શીખો: વાર (અઠવાડિયાના દિવસો)' } },
+            { href: '/learn/muhurtas', label: { en: 'Learn: Muhurtas', hi: 'सीखें: मुहूर्त', sa: 'सीखें: मुहूर्त', mai: 'सीखें: मुहूर्त', mr: 'सीखें: मुहूर्त', ta: 'கற்றுக்கொள்: முகூர்த்தம்', te: 'నేర్చుకోండి: ముహూర్తం', bn: 'শিখুন: মুহূর্ত', kn: 'ಕಲಿಯಿರಿ: ಮುಹೂರ್ತ', gu: 'શીખો: મુહૂર્ત' } },
+            { href: '/learn/eclipses', label: { en: 'Learn: Eclipses', hi: 'सीखें: ग्रहण', sa: 'सीखें: ग्रहण', mai: 'सीखें: ग्रहण', mr: 'सीखें: ग्रहण', ta: 'கற்றுக்கொள்: கிரகணங்கள்', te: 'నేర్చుకోండి: గ్రహణాలు', bn: 'শিখুন: গ্রহণ', kn: 'ಕಲಿಯಿರಿ: ಗ್ರಹಣ', gu: 'શીખો: ગ્રહણ' } },
+            { href: '/learn/grahas', label: { en: 'Learn: The Nine Grahas', hi: 'सीखें: नवग्रह', sa: 'सीखें: नवग्रह', mai: 'सीखें: नवग्रह', mr: 'सीखें: नवग्रह', ta: 'கற்றுக்கொள்: நவகிரகங்கள்', te: 'నేర్చుకోండి: నవగ్రహాలు', bn: 'শিখুন: নবগ্রহ', kn: 'ಕಲಿಯಿರಿ: ನವಗ್ರಹ', gu: 'શીખો: નવગ્રહ' } },
+            { href: '/muhurta-ai', label: { en: 'Muhurta AI', hi: 'मुहूर्त AI', sa: 'मुहूर्त AI', mai: 'मुहूर्त AI', mr: 'मुहूर्त AI', ta: 'முகூர்த்த AI', te: 'ముహూర్త AI', bn: 'মুহূর্ত AI', kn: 'ಮುಹೂರ್ತ AI', gu: 'મુહૂર્ત AI' } },
           ].map((link) => (
             <Link
               key={link.href}

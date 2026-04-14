@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState } from 'react';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import type { Locale } from '@/types/panchang';
@@ -62,7 +63,7 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
           <div key={round}>
             <div className="flex items-center gap-2 mb-2">
               <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold">
-                {isHi ? `चक्र ${round + 1}` : `Round ${round + 1}`}
+                {tl({ en: `Round ${round + 1}`, hi: `चक्र ${round + 1}`, sa: `चक्र ${round + 1}` }, locale)}
               </div>
               <div className="flex-1 h-px bg-gold-primary/10" />
               <div className="text-text-secondary/55 text-[10px]">
@@ -128,7 +129,7 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
       {/* Vertical alignment lines — show the 3-round pattern */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/8 p-4">
         <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3 text-center">
-          {isHi ? 'तीन चक्रों में समान स्वामी' : 'Same Lord Across Three Rounds'}
+          {tl({ en: 'Same Lord Across Three Rounds', hi: 'तीन चक्रों में समान स्वामी', sa: 'तीन चक्रों में समान स्वामी' }, locale)}
         </div>
         <div className="space-y-1.5">
           {DASHA_SEQUENCE.map((planet, pi) => {
@@ -163,9 +164,7 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
           })}
         </div>
         <div className="text-center text-text-secondary/55 text-[10px] mt-3">
-          {isHi
-            ? 'प्रत्येक ग्रह ठीक 3 नक्षत्रों का शासन करता है, 9 अन्तराल पर (जैसे केतु: #1, #10, #19)'
-            : 'Each planet rules exactly 3 nakshatras, spaced 9 apart (e.g., Ketu: #1, #10, #19)'}
+          {tl({ en: 'Each planet rules exactly 3 nakshatras, spaced 9 apart (e.g., Ketu: #1, #10, #19)', hi: 'प्रत्येक ग्रह ठीक 3 नक्षत्रों का शासन करता है, 9 अन्तराल पर (जैसे केतु: #1, #10, #19)', sa: 'प्रत्येक ग्रह ठीक 3 नक्षत्रों का शासन करता है, 9 अन्तराल पर (जैसे केतु: #1, #10, #19)' }, locale)}
         </div>
       </div>
     </div>

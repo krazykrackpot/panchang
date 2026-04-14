@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
@@ -222,7 +223,7 @@ export default function CosmologyTrackPage() {
                   <div className="flex items-center gap-3">
                     {isRef ? (
                       <span className="text-xs font-bold px-2 py-0.5 rounded bg-violet-500/20 text-violet-300 uppercase tracking-wider">
-                        {!isDevanagariLocale(locale) ? 'Ref' : 'सन्दर्भ'}
+                        {tl({ en: 'Ref', hi: 'सन्दर्भ', sa: 'सन्दर्भ' }, locale)}
                       </span>
                     ) : (
                       <span className="text-xs font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-gold-light">

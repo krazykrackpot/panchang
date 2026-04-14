@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
@@ -54,7 +55,7 @@ export default function StreakCalendar() {
 
   if (!hydrated) return null;
 
-  const title = isHi ? '4 सप्ताह' : '4 Weeks';
+  const title = tl({ en: '4 Weeks', hi: '4 सप्ताह', sa: '4 सप्ताह' }, locale);
 
   return (
     <div>

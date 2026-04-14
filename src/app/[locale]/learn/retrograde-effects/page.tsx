@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/retrograde-effects.json';
@@ -43,7 +44,7 @@ const TRANSIT_EFFECTS: { planet: Record<string, string>; doList: Record<string, 
 ];
 
 /* ── SVG Orbital Retrograde Diagram ──────────────────────────────── */
-function RetrogradeOrbitalDiagram({ isHi }: { isHi: boolean }) {
+function RetrogradeOrbitalDiagram({ locale }: { locale: string }) {
   return (
     <svg viewBox="0 0 600 320" className="w-full max-w-[600px] mx-auto">
       <defs>
@@ -72,7 +73,7 @@ function RetrogradeOrbitalDiagram({ isHi }: { isHi: boolean }) {
       <circle cx="300" cy="160" r="20" fill="url(#rg-sun)" />
       <circle cx="300" cy="160" r="24" fill="none" stroke="#fbbf24" strokeWidth="0.5" strokeOpacity="0.3" />
       <text x="300" y="164" textAnchor="middle" fill="#fbbf24" fontSize="9" fontWeight="bold">
-        {isHi ? 'सूर्य' : 'Sun'}
+        {tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य' }, locale)}
       </text>
 
       {/* Earth orbit */}
@@ -115,7 +116,7 @@ function RetrogradeOrbitalDiagram({ isHi }: { isHi: boolean }) {
 
       {/* Apparent sky positions */}
       <rect x="520" y="60" width="70" height="200" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(212,168,83,0.15)" strokeWidth="0.5" />
-      <text x="555" y="55" textAnchor="middle" fill="rgba(212,168,83,0.4)" fontSize="8">{isHi ? 'आकाश दृश्य' : 'Sky View'}</text>
+      <text x="555" y="55" textAnchor="middle" fill="rgba(212,168,83,0.4)" fontSize="8">{tl({ en: 'Sky View', hi: 'आकाश दृश्य', sa: 'आकाश दृश्य' }, locale)}</text>
 
       <circle cx="555" cy="90" r="5" fill="rgba(239,68,68,0.5)" />
       <text x="570" y="93" fill="rgba(239,68,68,0.6)" fontSize="7">1</text>
@@ -134,7 +135,7 @@ function RetrogradeOrbitalDiagram({ isHi }: { isHi: boolean }) {
         </marker>
       </defs>
       <text x="532" y="170" textAnchor="middle" fill="#ef4444" fontSize="7" fontWeight="bold" transform="rotate(-90,532,170)">
-        {isHi ? 'वक्री गति' : 'RETRO'}
+        {tl({ en: 'RETRO', hi: 'वक्री गति', sa: 'वक्री गति' }, locale)}
       </text>
 
       {/* Earth overtaking arrow */}
@@ -147,7 +148,7 @@ function RetrogradeOrbitalDiagram({ isHi }: { isHi: boolean }) {
 
       {/* Labels */}
       <text x="300" y="300" textAnchor="middle" fill="rgba(212,168,83,0.4)" fontSize="9" fontStyle="italic">
-        {isHi ? 'पृथ्वी तीव्र ग्रह को पार करती है → ग्रह पीछे चलता प्रतीत होता है' : 'Earth overtakes slower planet → planet APPEARS to move backward'}
+        {tl({ en: 'Earth overtakes slower planet → planet APPEARS to move backward', hi: 'पृथ्वी तीव्र ग्रह को पार करती है → ग्रह पीछे चलता प्रतीत होता है', sa: 'पृथ्वी तीव्र ग्रह को पार करती है → ग्रह पीछे चलता प्रतीत होता है' }, locale)}
       </text>
     </svg>
   );
@@ -169,7 +170,7 @@ export default function RetrogradeEffectsPage() {
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-xs font-medium mb-4">
           <RotateCcw className="w-3.5 h-3.5" />
-          {isHi ? 'वक्री ग्रह विश्लेषण' : 'Retrograde Analysis'}
+          {tl({ en: 'Retrograde Analysis', hi: 'वक्री ग्रह विश्लेषण', sa: 'वक्री ग्रह विश्लेषण' }, locale)}
         </div>
         <h1 className="text-3xl sm:text-4xl font-bold text-gold-gradient mb-4" style={hf}>{t('title')}</h1>
         <p className="text-text-secondary text-sm leading-relaxed max-w-2xl mx-auto">{t('subtitle')}</p>
@@ -178,17 +179,15 @@ export default function RetrogradeEffectsPage() {
       {/* SVG Orbital Diagram */}
       <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }} className="mb-12">
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
-          <RetrogradeOrbitalDiagram isHi={isHi} />
+          <RetrogradeOrbitalDiagram locale={locale} />
           <p className="text-text-tertiary text-xs mt-3 text-center">
-            {isHi
-              ? 'जैसे तेज कार धीमी कार को पार करती है, धीमी कार पीछे जाती प्रतीत होती है। पृथ्वी बाहरी ग्रह को पार करती है → वक्री गति का भ्रम।'
-              : 'Like a fast car passing a slow car — the slow car APPEARS to go backward. Earth overtakes the outer planet, creating the retrograde illusion.'}
+            {tl({ en: 'Like a fast car passing a slow car — the slow car APPEARS to go backward. Earth overtakes the outer planet, creating the retrograde illusion.', hi: 'जैसे तेज कार धीमी कार को पार करती है, धीमी कार पीछे जाती प्रतीत होती है। पृथ्वी बाहरी ग्रह को पार करती है → वक्री गति का भ्रम।', sa: 'जैसे तेज कार धीमी कार को पार करती है, धीमी कार पीछे जाती प्रतीत होती है। पृथ्वी बाहरी ग्रह को पार करती है → वक्री गति का भ्रम।' }, locale)}
           </p>
         </div>
       </motion.div>
 
       {/* Section 1: What is Retrograde */}
-      <LessonSection number={1} title={isHi ? 'वक्री गति क्या है?' : 'What is Retrograde?'} variant="highlight">
+      <LessonSection number={1} title={tl({ en: 'What is Retrograde?', hi: 'वक्री गति क्या है?', sa: 'वक्री गति क्या है?' }, locale)} variant="highlight">
         <div className="space-y-4">
           {[
             { icon: ArrowLeftRight, point: { en: 'NOT actually moving backward', hi: 'वास्तव में पीछे नहीं चलता', sa: 'वास्तव में पीछे नहीं चलता', mai: 'वास्तव में पीछे नहीं चलता', mr: 'वास्तव में पीछे नहीं चलता', ta: 'உண்மையில் பின்னால் செல்வதில்லை', te: 'నిజానికి వెనక్కి కదలడం లేదు', bn: 'প্রকৃতপক্ষে পিছনে যাচ্ছে না', kn: 'ವಾಸ್ತವದಲ್ಲಿ ಹಿಂದಕ್ಕೆ ಚಲಿಸುತ್ತಿಲ್ಲ', gu: 'ખરેખર પાછળ જતું નથી' }, detail: { en: 'It is a perspective illusion caused by Earth overtaking a slower outer planet (or an inner planet passing between Earth and Sun). The planet\'s orbital speed hasn\'t changed.', hi: 'यह एक दृष्टि भ्रम है जो पृथ्वी द्वारा धीमे बाहरी ग्रह को पार करने से (या आन्तरिक ग्रह पृथ्वी और सूर्य के बीच से गुजरने से) उत्पन्न होता है।' }, color: 'text-cyan-400' },
@@ -212,15 +211,15 @@ export default function RetrogradeEffectsPage() {
       </LessonSection>
 
       {/* Section 2: Retrograde Frequency Table */}
-      <LessonSection number={2} title={isHi ? 'वक्री आवृत्ति सारणी' : 'Retrograde Frequency Table'}>
+      <LessonSection number={2} title={tl({ en: 'Retrograde Frequency Table', hi: 'वक्री आवृत्ति सारणी', sa: 'वक्री आवृत्ति सारणी' }, locale)}>
         <div className="overflow-x-auto">
           <table className="w-full text-sm border-collapse">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-2 px-3 text-gold-light font-bold text-xs">{isHi ? 'ग्रह' : 'Planet'}</th>
-                <th className="text-left py-2 px-3 text-gold-light font-bold text-xs">{isHi ? 'आवृत्ति' : 'Frequency'}</th>
-                <th className="text-left py-2 px-3 text-gold-light font-bold text-xs">{isHi ? 'अवधि' : 'Duration'}</th>
-                <th className="text-left py-2 px-3 text-gold-light font-bold text-xs">{isHi ? 'वैदिक दृष्टिकोण' : 'Vedic View'}</th>
+                <th className="text-left py-2 px-3 text-gold-light font-bold text-xs">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रह' }, locale)}</th>
+                <th className="text-left py-2 px-3 text-gold-light font-bold text-xs">{tl({ en: 'Frequency', hi: 'आवृत्ति', sa: 'आवृत्ति' }, locale)}</th>
+                <th className="text-left py-2 px-3 text-gold-light font-bold text-xs">{tl({ en: 'Duration', hi: 'अवधि', sa: 'अवधि' }, locale)}</th>
+                <th className="text-left py-2 px-3 text-gold-light font-bold text-xs">{tl({ en: 'Vedic View', hi: 'वैदिक दृष्टिकोण', sa: 'वैदिक दृष्टिकोण' }, locale)}</th>
               </tr>
             </thead>
             <tbody>
@@ -238,11 +237,9 @@ export default function RetrogradeEffectsPage() {
       </LessonSection>
 
       {/* Section 3: Natal Retrograde Effects */}
-      <LessonSection number={3} title={isHi ? 'जन्म कुण्डली में वक्री ग्रह' : 'Retrograde in Your Birth Chart (Natal)'}>
+      <LessonSection number={3} title={tl({ en: 'Retrograde in Your Birth Chart (Natal)', hi: 'जन्म कुण्डली में वक्री ग्रह', sa: 'जन्म कुण्डली में वक्री ग्रह' }, locale)}>
         <p className="text-text-secondary text-sm mb-5">
-          {isHi
-            ? 'जन्म समय वक्री ग्रह आपके व्यक्तित्व में गहरा आन्तरिक आयाम जोड़ते हैं:'
-            : 'Planets retrograde at the time of your birth add a deep, internalized dimension to your personality:'}
+          {tl({ en: 'Planets retrograde at the time of your birth add a deep, internalized dimension to your personality:', hi: 'जन्म समय वक्री ग्रह आपके व्यक्तित्व में गहरा आन्तरिक आयाम जोड़ते हैं:', sa: 'जन्म समय वक्री ग्रह आपके व्यक्तित्व में गहरा आन्तरिक आयाम जोड़ते हैं:' }, locale)}
         </p>
         <div className="space-y-3">
           {NATAL_EFFECTS.map((n, i) => {
@@ -265,11 +262,11 @@ export default function RetrogradeEffectsPage() {
                       <div className="px-4 pb-4 space-y-3 ml-11">
                         <p className="text-text-secondary text-sm leading-relaxed">{tObj(n.traits)}</p>
                         <div className="p-3 rounded-lg bg-gold-primary/5 border border-gold-primary/10">
-                          <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{isHi ? 'गहरा अर्थ' : 'Deeper Meaning'}</span>
+                          <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{tl({ en: 'Deeper Meaning', hi: 'गहरा अर्थ', sa: 'गहरा अर्थ' }, locale)}</span>
                           <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{tObj(n.depth)}</p>
                         </div>
                         <div className="text-text-tertiary text-xs">
-                          <span className="text-gold-dark font-bold">{isHi ? 'प्रसिद्ध उदाहरण:' : 'Famous examples:'}</span> {tObj(n.famous)}
+                          <span className="text-gold-dark font-bold">{tl({ en: 'Famous examples:', hi: 'प्रसिद्ध उदाहरण:', sa: 'प्रसिद्ध उदाहरण:' }, locale)}</span> {tObj(n.famous)}
                         </div>
                       </div>
                     </motion.div>
@@ -282,9 +279,9 @@ export default function RetrogradeEffectsPage() {
       </LessonSection>
 
       {/* Section 4: Transit Retrograde Effects */}
-      <LessonSection number={4} title={isHi ? 'गोचर में वक्री प्रभाव (वर्तमान आकाश)' : 'Retrograde in Transit (Current Sky)'}>
+      <LessonSection number={4} title={tl({ en: 'Retrograde in Transit (Current Sky)', hi: 'गोचर में वक्री प्रभाव (वर्तमान आकाश)', sa: 'गोचर में वक्री प्रभाव (वर्तमान आकाश)' }, locale)}>
         <p className="text-text-secondary text-sm mb-5">
-          {isHi ? 'जब ग्रह वर्तमान गोचर में वक्री होता है — क्या करें और क्या न करें:' : 'When a planet goes retrograde in current transit — practical do\'s and don\'ts:'}
+          {tl({ en: "When a planet goes retrograde in current transit — practical do\'s and don\'ts:", hi: "जब ग्रह वर्तमान गोचर में वक्री होता है — क्या करें और क्या न करें:", sa: "जब ग्रह वर्तमान गोचर में वक्री होता है — क्या करें और क्या न करें:" }, locale)}
         </p>
         <div className="space-y-3">
           {TRANSIT_EFFECTS.map((te, i) => {
@@ -302,11 +299,11 @@ export default function RetrogradeEffectsPage() {
                       className="overflow-hidden">
                       <div className="px-4 pb-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div className="p-3 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
-                          <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">{isHi ? 'करें' : 'Do'}</span>
+                          <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">{tl({ en: 'Do', hi: 'करें', sa: 'करें' }, locale)}</span>
                           <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{tObj(te.doList)}</p>
                         </div>
                         <div className="p-3 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
-                          <span className="text-red-400 text-xs uppercase tracking-wider font-bold">{isHi ? 'न करें' : 'Don\'t'}</span>
+                          <span className="text-red-400 text-xs uppercase tracking-wider font-bold">{tl({ en: "Don\'t", hi: "न करें", sa: "न करें" }, locale)}</span>
                           <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{tObj(te.dontList)}</p>
                         </div>
                       </div>
@@ -320,10 +317,10 @@ export default function RetrogradeEffectsPage() {
       </LessonSection>
 
       {/* Section 5: Mathematical Note */}
-      <LessonSection number={5} title={isHi ? 'गणितीय टिप्पणी' : 'Mathematical Note'} variant="formula">
+      <LessonSection number={5} title={tl({ en: 'Mathematical Note', hi: 'गणितीय टिप्पणी', sa: 'गणितीय टिप्पणी' }, locale)} variant="formula">
         <div className="space-y-4">
           <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10 font-mono text-sm">
-            <div className="text-emerald-400 mb-2">// {isHi ? 'वक्री पहचान' : 'Retrograde detection'}</div>
+            <div className="text-emerald-400 mb-2">// {tl({ en: 'Retrograde detection', hi: 'वक्री पहचान', sa: 'वक्री पहचान' }, locale)}</div>
             <div className="text-text-secondary">
               <span className="text-cyan-400">if</span> (planet.speed {'<'} <span className="text-amber-400">0</span>) {'{'}
             </div>
@@ -349,9 +346,9 @@ export default function RetrogradeEffectsPage() {
       <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
         className="mt-10 flex flex-wrap justify-center gap-3">
         {[
-          { href: '/kundali' as const, label: isHi ? 'कुण्डली बनाएं' : 'Generate Kundali' },
-          { href: '/learn/planets' as const, label: isHi ? 'ग्रह विस्तार' : 'Learn Planets' },
-          { href: '/learn/shadbala' as const, label: isHi ? 'षड्बल' : 'Shadbala Strength' },
+          { href: '/kundali' as const, label: tl({ en: 'Generate Kundali', hi: 'कुण्डली बनाएं', sa: 'कुण्डली बनाएं' }, locale) },
+          { href: '/learn/planets' as const, label: tl({ en: 'Learn Planets', hi: 'ग्रह विस्तार', sa: 'ग्रह विस्तार' }, locale) },
+          { href: '/learn/shadbala' as const, label: tl({ en: 'Shadbala Strength', hi: 'षड्बल', sa: 'षड्बल' }, locale) },
         ].map((link) => (
           <Link key={link.href} href={link.href}
             className="px-4 py-2 rounded-full bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-xs font-medium hover:bg-gold-primary/20 transition-colors">

@@ -95,11 +95,11 @@ function barColor(score: number): string {
   return 'bg-red-500';
 }
 
-function scoreLabel(score: number, isHi: boolean): string {
-  if (score >= 8) return isHi ? 'उत्कृष्ट' : 'Excellent';
-  if (score >= 6.5) return isHi ? 'शुभ' : 'Good';
-  if (score >= 4) return isHi ? 'मिश्रित' : 'Mixed';
-  return isHi ? 'चुनौतीपूर्ण' : 'Challenging';
+function scoreLabel(score: number, locale: string): string {
+  if (score >= 8) return tl({ en: 'Excellent', hi: 'उत्कृष्ट', sa: 'उत्कृष्ट' }, locale);
+  if (score >= 6.5) return tl({ en: 'Good', hi: 'शुभ', sa: 'शुभ' }, locale);
+  if (score >= 4) return tl({ en: 'Mixed', hi: 'मिश्रित', sa: 'मिश्रित' }, locale);
+  return tl({ en: 'Challenging', hi: 'चुनौतीपूर्ण', sa: 'चुनौतीपूर्ण' }, locale);
 }
 
 export default function RashiHoroscopePage() {
@@ -228,7 +228,7 @@ export default function RashiHoroscopePage() {
                       {horoscope.overallScore}<span className="text-lg text-text-secondary">/10</span>
                     </p>
                     <p className={`text-sm font-medium mt-1 ${scoreColor(horoscope.overallScore)}`}>
-                      {scoreLabel(horoscope.overallScore, isHi)}
+                      {scoreLabel(horoscope.overallScore, locale)}
                     </p>
                   </div>
                   {/* Circular gauge */}

@@ -214,7 +214,7 @@ export default function FestivalCountdown() {
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString(isHi ? 'hi-IN' : 'en-IN', {
+    return d.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale), {
       weekday: 'short',
       day: 'numeric',
       month: 'short',

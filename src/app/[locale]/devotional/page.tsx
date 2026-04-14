@@ -93,7 +93,7 @@ export default function DevotionalPage() {
           {varaDeity.mantra}
         </div>
         <p className="text-text-secondary text-sm mt-3">
-          {!isDevanagariLocale(locale) ? 'Today\'s presiding deity and primary mantra' : 'आज के अधिष्ठाता देवता और प्रमुख मन्त्र'}
+          {tl({ en: "Today\'s presiding deity and primary mantra", hi: "आज के अधिष्ठाता देवता और प्रमुख मन्त्र", sa: "आज के अधिष्ठाता देवता और प्रमुख मन्त्र" }, locale)}
         </p>
       </div>
 
@@ -101,7 +101,7 @@ export default function DevotionalPage() {
       {tithiSuggestion && (
         <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 mb-6">
           <div className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-2">
-            {!isDevanagariLocale(locale) ? 'Tithi Significance' : 'तिथि महत्त्व'}
+            {tl({ en: 'Tithi Significance', hi: 'तिथि महत्त्व', sa: 'तिथि महत्त्व' }, locale)}
           </div>
           <p className="text-text-secondary text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
             {tl(tithiSuggestion, locale)}
@@ -115,7 +115,7 @@ export default function DevotionalPage() {
           <NakshatraIconById id={today.nakshatra} size={36} />
           <div>
             <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">
-              {!isDevanagariLocale(locale) ? 'Today\'s Nakshatra' : 'आज का नक्षत्र'}
+              {tl({ en: "Today\'s Nakshatra", hi: "आज का नक्षत्र", sa: "आज का नक्षत्र" }, locale)}
             </div>
             <div className="text-gold-light text-sm font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
               {tl(NAKSHATRAS[today.nakshatra - 1]?.name, locale) ?? `Nakshatra ${today.nakshatra}`}
@@ -129,7 +129,7 @@ export default function DevotionalPage() {
       {/* Universal mantras */}
       <div className="my-10">
         <h3 className="text-gold-gradient text-2xl font-bold mb-6 text-center" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'Universal Mantras' : 'सार्वभौमिक मन्त्र'}
+          {tl({ en: 'Universal Mantras', hi: 'सार्वभौमिक मन्त्र', sa: 'सार्वभौमिक मन्त्र' }, locale)}
         </h3>
         <div className="space-y-4">
           {UNIVERSAL_MANTRAS.map((m, i) => (
@@ -153,7 +153,7 @@ export default function DevotionalPage() {
       {/* Weekly guide */}
       <div className="my-10">
         <h3 className="text-gold-gradient text-2xl font-bold mb-6 text-center" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'Weekly Worship Guide' : 'साप्ताहिक पूजा मार्गदर्शिका'}
+          {tl({ en: 'Weekly Worship Guide', hi: 'साप्ताहिक पूजा मार्गदर्शिका', sa: 'साप्ताहिक पूजा मार्गदर्शिका' }, locale)}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {Object.entries(VARA_DEITIES).map(([day, info]) => {
@@ -175,7 +175,7 @@ export default function DevotionalPage() {
                 <div className="text-text-secondary text-xs mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                   {tl(info.deity, locale)}
                 </div>
-                {isToday && <div className="text-gold-primary text-xs font-bold mt-1 animate-pulse">{!isDevanagariLocale(locale) ? 'TODAY' : 'आज'}</div>}
+                {isToday && <div className="text-gold-primary text-xs font-bold mt-1 animate-pulse">{tl({ en: 'TODAY', hi: 'आज', sa: 'आज' }, locale)}</div>}
               </div>
             );
           })}

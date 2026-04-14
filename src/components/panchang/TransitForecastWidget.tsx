@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect } from 'react';
 import { useAuthStore } from '@/stores/auth-store';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
@@ -43,13 +44,13 @@ export default function TransitForecastWidget({ locale }: Props) {
     return (
       <div className="rounded-xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-5 text-center">
         <p className="text-gold-light text-sm font-semibold mb-1">
-          {isHi ? 'व्यक्तिगत गोचर पूर्वानुमान' : 'Personalized Transit Forecast'}
+          {tl({ en: 'Personalized Transit Forecast', hi: 'व्यक्तिगत गोचर पूर्वानुमान', sa: 'व्यक्तिगत गोचर पूर्वानुमान' }, locale)}
         </p>
         <p className="text-text-secondary/70 text-xs mb-3">
-          {isHi ? 'अपनी जन्म कुण्डली बनाएं और देखें कि वर्तमान ग्रह गोचर आपको कैसे प्रभावित कर रहे हैं' : 'Generate your birth chart to see how current planetary transits affect you'}
+          {tl({ en: 'Generate your birth chart to see how current planetary transits affect you', hi: 'अपनी जन्म कुण्डली बनाएं और देखें कि वर्तमान ग्रह गोचर आपको कैसे प्रभावित कर रहे हैं', sa: 'अपनी जन्म कुण्डली बनाएं और देखें कि वर्तमान ग्रह गोचर आपको कैसे प्रभावित कर रहे हैं' }, locale)}
         </p>
         <a href={`/${locale}/kundali`} className="inline-block px-4 py-2 rounded-lg bg-gold-primary/20 text-gold-light text-xs font-bold border border-gold-primary/30 hover:bg-gold-primary/30 transition-colors">
-          {isHi ? 'कुण्डली बनाएं →' : 'Generate Kundali →'}
+          {tl({ en: 'Generate Kundali →', hi: 'कुण्डली बनाएं →', sa: 'कुण्डली बनाएं →' }, locale)}
         </a>
       </div>
     );
@@ -63,10 +64,10 @@ export default function TransitForecastWidget({ locale }: Props) {
     <div className="rounded-xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-5">
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-gold-light text-sm font-bold">
-          {isHi ? 'आपका गोचर पूर्वानुमान' : 'Your Transit Forecast'}
+          {tl({ en: 'Your Transit Forecast', hi: 'आपका गोचर पूर्वानुमान', sa: 'आपका गोचर पूर्वानुमान' }, locale)}
         </h3>
         <a href={`/${locale}/kundali`} className="text-gold-primary/70 text-[10px] hover:text-gold-light transition-colors">
-          {isHi ? 'विस्तार →' : 'Details →'}
+          {tl({ en: 'Details →', hi: 'विस्तार →', sa: 'विस्तार →' }, locale)}
         </a>
       </div>
       <div className="space-y-2">

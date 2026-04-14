@@ -1,3 +1,4 @@
+import { tl } from '@/lib/utils/trilingual';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -39,17 +40,13 @@ export async function generateMetadata({
   const isHi = isDevanagariLocale(locale);
   const cityName = isHi ? city.name.hi : city.name.en;
   const today = new Date();
-  const dateStr = today.toLocaleDateString(isHi ? 'hi-IN' : 'en-IN', {
+  const dateStr = today.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale), {
     day: 'numeric', month: 'long', year: 'numeric',
   });
 
-  const title = isHi
-    ? `${cityName} पंचांग आज — ${dateStr} | तिथि, नक्षत्र, योग, करण`
-    : `${cityName} Panchang Today — ${dateStr} | Tithi, Nakshatra, Yoga, Karana`;
+  const title = tl({ en: `${cityName} Panchang Today — ${dateStr} | Tithi, Nakshatra, Yoga, Karana`, hi: `${cityName} पंचांग आज — ${dateStr} | तिथि, नक्षत्र, योग, करण`, sa: `${cityName} पंचांग आज — ${dateStr} | तिथि, नक्षत्र, योग, करण` }, locale);
 
-  const description = isHi
-    ? `${cityName}, ${city.state} का आज का पंचांग — सटीक सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, करण, राहुकाल, यमगण्ड और गुलिक काल। लाहिरी अयनांश पर आधारित वैदिक गणना।`
-    : `Today's Panchang for ${cityName}, ${city.state} — accurate sunrise, sunset, tithi, nakshatra, yoga, karana, Rahu Kaal, Yamaganda & Gulika timings. Vedic calculations using Lahiri Ayanamsha.`;
+  const description = tl({ en: `Today's Panchang for ${cityName}, ${city.state} — accurate sunrise, sunset, tithi, nakshatra, yoga, karana, Rahu Kaal, Yamaganda & Gulika timings. Vedic calculations using Lahiri Ayanamsha.`, hi: `${cityName}, ${city.state} का आज का पंचांग — सटीक सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, करण, राहुकाल, यमगण्ड और गुलिक काल। लाहिरी अयनांश पर आधारित वैदिक गणना।`, sa: `${cityName}, ${city.state} का आज का पंचांग — सटीक सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, करण, राहुकाल, यमगण्ड और गुलिक काल। लाहिरी अयनांश पर आधारित वैदिक गणना।` }, locale);
 
   const url = `${BASE_URL}/${locale}/panchang/${citySlug}`;
 
@@ -79,7 +76,7 @@ export async function generateMetadata({
 
 function formatTransitionEnd(t: TransitionInfo | undefined, locale: string): string {
   const isHi = isDevanagariLocale(locale);
-  if (!t) return isHi ? 'समाप्त' : 'Ended';
+  if (!t) return tl({ en: 'Ended', hi: 'समाप्त', sa: 'समाप्त' }, locale);
   const time = t.endTime;
   if (t.endDate) {
     const [, m, d] = t.endDate.split('-').map(Number);
@@ -127,7 +124,7 @@ export default async function CityPanchangPage({
   const panchang = computePanchang(input);
 
   // Date display
-  const dateDisplay = now.toLocaleDateString(isHi ? 'hi-IN' : 'en-IN', {
+  const dateDisplay = now.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale), {
     weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
   });
 
@@ -179,11 +176,11 @@ export default async function CityPanchangPage({
       {/* ═══ BREADCRUMB ═══ */}
       <nav className="flex items-center gap-2 text-xs text-text-secondary mb-8">
         <Link href={`/${locale}`} className="hover:text-gold-primary transition-colors">
-          {isHi ? 'होम' : 'Home'}
+          {tl({ en: 'Home', hi: 'होम', sa: 'होम' }, locale)}
         </Link>
         <ChevronRight size={12} />
         <Link href={`/${locale}/panchang`} className="hover:text-gold-primary transition-colors">
-          {isHi ? 'पंचांग' : 'Panchang'}
+          {tl({ en: 'Panchang', hi: 'पंचांग', sa: 'पंचांग' }, locale)}
         </Link>
         <ChevronRight size={12} />
         <span className="text-gold-primary font-medium">{cityName}</span>
@@ -196,7 +193,7 @@ export default async function CityPanchangPage({
           {city.state}
         </div>
         <h1 className="text-4xl sm:text-5xl font-bold text-gold-light mb-3">
-          {isHi ? `${cityName} पंचांग आज` : `${cityName} Panchang Today`}
+          {tl({ en: `${cityName} Panchang Today`, hi: `${cityName} पंचांग आज`, sa: `${cityName} पंचांग आज` }, locale)}
         </h1>
         <p className="text-text-secondary text-lg mb-2">
           <Calendar size={16} className="inline mr-2 -mt-0.5" />
@@ -210,9 +207,7 @@ export default async function CityPanchangPage({
       {/* ═══ SEO INTRO TEXT ═══ */}
       <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-6 mb-10">
         <p className="text-text-primary/80 text-sm leading-relaxed">
-          {isHi
-            ? `${cityName}, ${city.state} के लिए आज का पंचांग — ${cityName} के सटीक निर्देशांक (${latStr}, ${lngStr}) के अनुसार गणना किए गए सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, और करण का समय। सभी वैदिक पंचांग तत्व लाहिरी अयनांश और मीउस खगोलीय एल्गोरिदम द्वारा उप-चाप-सेकंड सटीकता के साथ गणना किए गए हैं। यह पृष्ठ प्रतिदिन ${cityName} के स्थानीय समय के अनुसार अपडेट होता है।`
-            : `Today's Panchang for ${city.name.en}, ${city.state} — accurate sunrise, sunset, tithi, nakshatra, yoga, and karana timings computed for ${city.name.en}'s exact coordinates (${latStr}, ${lngStr}). All Vedic calendar elements are calculated using the Lahiri Ayanamsha and Meeus astronomical algorithms for sub-arcsecond accuracy. This page updates daily with ${city.name.en}'s local timings, including Rahu Kaal, Yamaganda Kaal, and Gulika Kaal — essential for planning auspicious activities.`}
+          {tl({ en: `Today's Panchang for ${city.name.en}, ${city.state} — accurate sunrise, sunset, tithi, nakshatra, yoga, and karana timings computed for ${city.name.en}'s exact coordinates (${latStr}, ${lngStr}). All Vedic calendar elements are calculated using the Lahiri Ayanamsha and Meeus astronomical algorithms for sub-arcsecond accuracy. This page updates daily with ${city.name.en}'s local timings, including Rahu Kaal, Yamaganda Kaal, and Gulika Kaal — essential for planning auspicious activities.`, hi: `${cityName}, ${city.state} के लिए आज का पंचांग — ${cityName} के सटीक निर्देशांक (${latStr}, ${lngStr}) के अनुसार गणना किए गए सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, और करण का समय। सभी वैदिक पंचांग तत्व लाहिरी अयनांश और मीउस खगोलीय एल्गोरिदम द्वारा उप-चाप-सेकंड सटीकता के साथ गणना किए गए हैं। यह पृष्ठ प्रतिदिन ${cityName} के स्थानीय समय के अनुसार अपडेट होता है।`, sa: `${cityName}, ${city.state} के लिए आज का पंचांग — ${cityName} के सटीक निर्देशांक (${latStr}, ${lngStr}) के अनुसार गणना किए गए सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, और करण का समय। सभी वैदिक पंचांग तत्व लाहिरी अयनांश और मीउस खगोलीय एल्गोरिदम द्वारा उप-चाप-सेकंड सटीकता के साथ गणना किए गए हैं। यह पृष्ठ प्रतिदिन ${cityName} के स्थानीय समय के अनुसार अपडेट होता है।` }, locale)}
         </p>
       </div>
 
@@ -221,14 +216,14 @@ export default async function CityPanchangPage({
         <div className="rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-transparent border border-amber-500/15 p-5 text-center">
           <Sunrise size={28} className="mx-auto mb-2 text-amber-400" />
           <div className="text-xs uppercase tracking-wider text-amber-400/70 font-bold mb-1">
-            {isHi ? 'सूर्योदय' : 'Sunrise'}
+            {tl({ en: 'Sunrise', hi: 'सूर्योदय', sa: 'सूर्योदय' }, locale)}
           </div>
           <div className="text-2xl font-bold text-amber-300">{panchang.sunrise}</div>
         </div>
         <div className="rounded-2xl bg-gradient-to-br from-orange-500/10 via-red-500/5 to-transparent border border-orange-500/15 p-5 text-center">
           <Sunset size={28} className="mx-auto mb-2 text-orange-400" />
           <div className="text-xs uppercase tracking-wider text-orange-400/70 font-bold mb-1">
-            {isHi ? 'सूर्यास्त' : 'Sunset'}
+            {tl({ en: 'Sunset', hi: 'सूर्यास्त', sa: 'सूर्यास्त' }, locale)}
           </div>
           <div className="text-2xl font-bold text-orange-300">{panchang.sunset}</div>
         </div>
@@ -238,30 +233,30 @@ export default async function CityPanchangPage({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
         {/* Tithi */}
         <PanchangCard
-          label={isHi ? 'तिथि' : 'Tithi'}
+          label={tl({ en: 'Tithi', hi: 'तिथि', sa: 'तिथि' }, locale)}
           value={tithiName}
-          detail={`${isHi ? 'समाप्ति' : 'Ends'}: ${formatTransitionEnd(panchang.tithiTransition, loc)}`}
+          detail={`${tl({ en: 'Ends', hi: 'समाप्ति', sa: 'समाप्ति' }, locale)}: ${formatTransitionEnd(panchang.tithiTransition, loc)}`}
           gradient="from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27]"
         />
         {/* Nakshatra */}
         <PanchangCard
-          label={isHi ? 'नक्षत्र' : 'Nakshatra'}
+          label={tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्र' }, locale)}
           value={nakshatraName}
-          detail={`${isHi ? 'पाद' : 'Pada'} ${panchang.nakshatra.pada ?? '—'} · ${isHi ? 'समाप्ति' : 'Ends'}: ${formatTransitionEnd(panchang.nakshatraTransition, loc)}`}
+          detail={`${tl({ en: 'Pada', hi: 'पाद', sa: 'पाद' }, locale)} ${panchang.nakshatra.pada ?? '—'} · ${tl({ en: 'Ends', hi: 'समाप्ति', sa: 'समाप्ति' }, locale)}: ${formatTransitionEnd(panchang.nakshatraTransition, loc)}`}
           gradient="from-[#1b2d69]/50 via-[#101a40]/60 to-[#0a0e27]"
         />
         {/* Yoga */}
         <PanchangCard
-          label={isHi ? 'योग' : 'Yoga'}
+          label={tl({ en: 'Yoga', hi: 'योग', sa: 'योग' }, locale)}
           value={yogaName}
-          detail={`${isHi ? 'समाप्ति' : 'Ends'}: ${formatTransitionEnd(panchang.yogaTransition, loc)}`}
+          detail={`${tl({ en: 'Ends', hi: 'समाप्ति', sa: 'समाप्ति' }, locale)}: ${formatTransitionEnd(panchang.yogaTransition, loc)}`}
           gradient="from-[#691b4a]/50 via-[#401030]/60 to-[#0a0e27]"
         />
         {/* Karana */}
         <PanchangCard
-          label={isHi ? 'करण' : 'Karana'}
+          label={tl({ en: 'Karana', hi: 'करण', sa: 'करण' }, locale)}
           value={karanaName}
-          detail={`${isHi ? 'समाप्ति' : 'Ends'}: ${formatTransitionEnd(panchang.karanaTransition, loc)}`}
+          detail={`${tl({ en: 'Ends', hi: 'समाप्ति', sa: 'समाप्ति' }, locale)}: ${formatTransitionEnd(panchang.karanaTransition, loc)}`}
           gradient="from-[#1b6945]/50 via-[#104030]/60 to-[#0a0e27]"
         />
       </div>
@@ -270,7 +265,7 @@ export default async function CityPanchangPage({
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
         <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center">
           <div className="text-xs uppercase tracking-wider text-gold-dark font-bold mb-1">
-            {isHi ? 'वार' : 'Vara (Day)'}
+            {tl({ en: 'Vara (Day)', hi: 'वार', sa: 'वार' }, locale)}
           </div>
           <div className="text-xl font-bold text-gold-light">
             {panchang.vara.name[loc] || panchang.vara.name.en}
@@ -278,18 +273,18 @@ export default async function CityPanchangPage({
         </div>
         <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center">
           <div className="text-xs uppercase tracking-wider text-gold-dark font-bold mb-1">
-            {isHi ? 'मास' : 'Masa (Month)'}
+            {tl({ en: 'Masa (Month)', hi: 'मास', sa: 'मास' }, locale)}
           </div>
           <div className="text-xl font-bold text-gold-light">
             {panchang.masa[loc] || panchang.masa.en}
           </div>
           <div className="text-text-secondary text-xs mt-1">
-            {panchang.tithi.paksha === 'shukla' ? (isHi ? 'शुक्ल पक्ष' : 'Shukla Paksha') : (isHi ? 'कृष्ण पक्ष' : 'Krishna Paksha')}
+            {panchang.tithi.paksha === 'shukla' ? tl({ en: 'Shukla Paksha', hi: 'शुक्ल पक्ष', sa: 'शुक्ल पक्ष' }, locale) : tl({ en: 'Krishna Paksha', hi: 'कृष्ण पक्ष', sa: 'कृष्ण पक्ष' }, locale)}
           </div>
         </div>
         <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center">
           <div className="text-xs uppercase tracking-wider text-gold-dark font-bold mb-1">
-            {isHi ? 'संवत्सर' : 'Samvatsara'}
+            {tl({ en: 'Samvatsara', hi: 'संवत्सर', sa: 'संवत्सर' }, locale)}
           </div>
           <div className="text-xl font-bold text-gold-light">
             {panchang.samvatsara?.[loc] || panchang.samvatsara?.en || '—'}
@@ -300,21 +295,21 @@ export default async function CityPanchangPage({
       {/* ═══ RAHU KAAL / YAMAGANDA / GULIKA ═══ */}
       <div className="mb-10">
         <h2 className="text-2xl font-bold text-gold-light mb-5 text-center">
-          {isHi ? 'अशुभ काल' : 'Inauspicious Periods'}
+          {tl({ en: 'Inauspicious Periods', hi: 'अशुभ काल', sa: 'अशुभ काल' }, locale)}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <InauspiciousCard
-            label={isHi ? 'राहुकाल' : 'Rahu Kaal'}
+            label={tl({ en: 'Rahu Kaal', hi: 'राहुकाल', sa: 'राहुकाल' }, locale)}
             value={panchang.rahuKaal ? `${panchang.rahuKaal.start} – ${panchang.rahuKaal.end}` : '—'}
             colorClass="text-red-400 border-red-500/20 bg-red-500/5"
           />
           <InauspiciousCard
-            label={isHi ? 'यमगण्ड' : 'Yamaganda'}
+            label={tl({ en: 'Yamaganda', hi: 'यमगण्ड', sa: 'यमगण्ड' }, locale)}
             value={panchang.yamaganda ? `${panchang.yamaganda.start} – ${panchang.yamaganda.end}` : '—'}
             colorClass="text-orange-400 border-orange-500/20 bg-orange-500/5"
           />
           <InauspiciousCard
-            label={isHi ? 'गुलिक काल' : 'Gulika Kaal'}
+            label={tl({ en: 'Gulika Kaal', hi: 'गुलिक काल', sa: 'गुलिक काल' }, locale)}
             value={panchang.gulikaKaal ? `${panchang.gulikaKaal.start} – ${panchang.gulikaKaal.end}` : '—'}
             colorClass="text-amber-400 border-amber-500/20 bg-amber-500/5"
           />
@@ -325,7 +320,7 @@ export default async function CityPanchangPage({
       {panchang.muhurtas && panchang.muhurtas.length > 0 && (
         <div className="mb-10">
           <h2 className="text-2xl font-bold text-gold-light mb-5 text-center">
-            {isHi ? 'मुहूर्त' : 'Muhurtas'}
+            {tl({ en: 'Muhurtas', hi: 'मुहूर्त', sa: 'मुहूर्त' }, locale)}
           </h2>
           <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 overflow-hidden">
             <div className="grid grid-cols-1 divide-y divide-gold-primary/8">
@@ -348,18 +343,16 @@ export default async function CityPanchangPage({
       {/* ═══ CTA — DETAILED PANCHANG ═══ */}
       <div className="rounded-2xl bg-gradient-to-r from-gold-primary/10 via-gold-primary/5 to-transparent border border-gold-primary/20 p-6 text-center mb-12">
         <h3 className="text-lg font-bold text-gold-light mb-2">
-          {isHi ? 'विस्तृत पंचांग देखें' : 'View Detailed Panchang'}
+          {tl({ en: 'View Detailed Panchang', hi: 'विस्तृत पंचांग देखें', sa: 'विस्तृत पंचांग देखें' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm mb-4">
-          {isHi
-            ? `ग्रह स्थिति, चौघड़िया, होरा, दिशा शूल — ${cityName} के लिए सब कुछ`
-            : `Planetary positions, Choghadiya, Hora, Disha Shool — everything for ${city.name.en}`}
+          {tl({ en: `Planetary positions, Choghadiya, Hora, Disha Shool — everything for ${city.name.en}`, hi: `ग्रह स्थिति, चौघड़िया, होरा, दिशा शूल — ${cityName} के लिए सब कुछ`, sa: `ग्रह स्थिति, चौघड़िया, होरा, दिशा शूल — ${cityName} के लिए सब कुछ` }, locale)}
         </p>
         <Link
           href={`/${locale}/panchang?lat=${city.lat}&lng=${city.lng}&name=${encodeURIComponent(city.name.en)}`}
           className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gold-primary/20 border border-gold-primary/40 text-gold-light font-bold hover:bg-gold-primary/30 transition-colors"
         >
-          {isHi ? 'विस्तृत पंचांग' : 'Full Panchang'}
+          {tl({ en: 'Full Panchang', hi: 'विस्तृत पंचांग', sa: 'विस्तृत पंचांग' }, locale)}
           <ArrowRight size={16} />
         </Link>
       </div>
@@ -367,7 +360,7 @@ export default async function CityPanchangPage({
       {/* ═══ ABOUT THIS CITY PANCHANG — SEO CONTENT ═══ */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold text-gold-light mb-4">
-          {isHi ? `${cityName} पंचांग के बारे में` : `About ${city.name.en} Panchang`}
+          {tl({ en: `About ${city.name.en} Panchang`, hi: `${cityName} पंचांग के बारे में`, sa: `${cityName} पंचांग के बारे में` }, locale)}
         </h2>
         <div className="prose prose-invert max-w-none text-text-primary/75 text-sm leading-relaxed space-y-4">
           {isHi ? (
@@ -398,7 +391,7 @@ export default async function CityPanchangPage({
       {/* ═══ OTHER CITIES ═══ */}
       <div className="mb-10">
         <h2 className="text-2xl font-bold text-gold-light mb-6 text-center">
-          {isHi ? 'अन्य शहरों का पंचांग' : 'Panchang for Other Cities'}
+          {tl({ en: 'Panchang for Other Cities', hi: 'अन्य शहरों का पंचांग', sa: 'अन्य शहरों का पंचांग' }, locale)}
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
           {popularCities.slice(0, 15).map(c => (
@@ -419,7 +412,7 @@ export default async function CityPanchangPage({
             href={`/${locale}/panchang`}
             className="text-gold-primary text-sm hover:text-gold-light transition-colors inline-flex items-center gap-1"
           >
-            {isHi ? 'सभी शहर देखें' : 'View all cities'}
+            {tl({ en: 'View all cities', hi: 'सभी शहर देखें', sa: 'सभी शहर देखें' }, locale)}
             <ArrowRight size={14} />
           </Link>
         </div>

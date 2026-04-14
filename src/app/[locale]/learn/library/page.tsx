@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/library.json';
@@ -453,11 +454,11 @@ export default function LibraryPage() {
 
         {/* Table header — desktop */}
         <div className="hidden md:grid grid-cols-[2fr_1.4fr_0.8fr_0.9fr_auto] gap-4 px-5 py-3 bg-gold-primary/5 border-b border-gold-primary/10 text-text-secondary text-xs uppercase tracking-wider font-semibold">
-          <span>{isHi ? 'ग्रंथ' : 'Text'}</span>
-          <span>{isHi ? 'लेखक' : 'Author'}</span>
-          <span>{isHi ? 'वर्ष' : 'Year'}</span>
-          <span>{isHi ? 'श्रेणी' : 'Category'}</span>
-          <span>{isHi ? 'लाइसेंस' : 'License'}</span>
+          <span>{tl({ en: 'Text', hi: 'ग्रंथ', sa: 'ग्रंथ' }, locale)}</span>
+          <span>{tl({ en: 'Author', hi: 'लेखक', sa: 'लेखक' }, locale)}</span>
+          <span>{tl({ en: 'Year', hi: 'वर्ष', sa: 'वर्ष' }, locale)}</span>
+          <span>{tl({ en: 'Category', hi: 'श्रेणी', sa: 'श्रेणी' }, locale)}</span>
+          <span>{tl({ en: 'License', hi: 'लाइसेंस', sa: 'लाइसेंस' }, locale)}</span>
 
         </div>
 
@@ -561,9 +562,7 @@ export default function LibraryPage() {
 
       {/* Footer note */}
       <div className="mt-6 rounded-xl bg-gold-primary/5 border border-gold-primary/10 px-5 py-4 text-text-secondary text-xs leading-relaxed" style={bodyFont}>
-        {isHi
-          ? 'सभी ग्रंथ archive.org पर निःशुल्क उपलब्ध हैं। "Public Domain" ग्रंथ निश्चित रूप से मुक्त हैं (1928 से पूर्व प्रकाशित)। "CC0" ग्रंथ अपलोडकर्ता द्वारा सार्वजनिक डोमेन में दिए गए हैं। "Open Access" ग्रंथ archive.org पर स्वतंत्र रूप से उपलब्ध हैं।'
-          : 'All texts are freely available on archive.org. "Public Domain" entries are definitively clear (pre-1928 publications or explicitly cleared). "CC0" entries are dedicated to the public domain by their uploader. "Open Access" entries are freely hosted on archive.org — individual copyright status for post-1928 Indian publications may vary, but no active enforcement is known.'}
+        {tl({ en: 'All texts are freely available on archive.org. "Public Domain" entries are definitively clear (pre-1928 publications or explicitly cleared). "CC0" entries are dedicated to the public domain by their uploader. "Open Access" entries are freely hosted on archive.org — individual copyright status for post-1928 Indian publications may vary, but no active enforcement is known.', hi: 'सभी ग्रंथ archive.org पर निःशुल्क उपलब्ध हैं। "Public Domain" ग्रंथ निश्चित रूप से मुक्त हैं (1928 से पूर्व प्रकाशित)। "CC0" ग्रंथ अपलोडकर्ता द्वारा सार्वजनिक डोमेन में दिए गए हैं। "Open Access" ग्रंथ archive.org पर स्वतंत्र रूप से उपलब्ध हैं।', sa: 'सभी ग्रंथ archive.org पर निःशुल्क उपलब्ध हैं। "Public Domain" ग्रंथ निश्चित रूप से मुक्त हैं (1928 से पूर्व प्रकाशित)। "CC0" ग्रंथ अपलोडकर्ता द्वारा सार्वजनिक डोमेन में दिए गए हैं। "Open Access" ग्रंथ archive.org पर स्वतंत्र रूप से उपलब्ध हैं।' }, locale)}
       </div>
     </div>
   );

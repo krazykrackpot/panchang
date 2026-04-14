@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
@@ -180,7 +181,7 @@ export default function PricingPage() {
   const handleCheckout = async (tier: 'pro' | 'jyotishi') => {
     const user = useAuthStore.getState().user;
     if (!user) {
-      alert(!isDevanagariLocale(locale) ? 'Please sign in first' : 'पहले साइन इन करें');
+      alert(tl({ en: 'Please sign in first', hi: 'पहले साइन इन करें', sa: 'पहले साइन इन करें' }, locale));
       return;
     }
     try {
@@ -189,7 +190,7 @@ export default function PricingPage() {
       const session = await supabase?.auth.getSession();
       const token = session?.data.session?.access_token;
       if (!token) {
-        alert(!isDevanagariLocale(locale) ? 'Please sign in first' : 'पहले साइन इन करें');
+        alert(tl({ en: 'Please sign in first', hi: 'पहले साइन इन करें', sa: 'पहले साइन इन करें' }, locale));
         return;
       }
 
@@ -214,7 +215,7 @@ export default function PricingPage() {
 
   const formatPrice = (amount: number) => {
     if (amount === 0) {
-      return !isDevanagariLocale(locale) ? 'Free' : 'नि:शुल्क';
+      return tl({ en: 'Free', hi: 'नि:शुल्क', sa: 'नि:शुल्क' }, locale);
     }
     return currency === 'INR' ? `₹${amount}` : `$${amount}`;
   };

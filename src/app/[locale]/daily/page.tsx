@@ -1,3 +1,4 @@
+import { tl } from '@/lib/utils/trilingual';
 import { generateDailyArticle } from '@/lib/horoscope/daily-article';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -9,10 +10,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const isHi = isDevanagariLocale(locale);
   return {
-    title: isHi ? 'दैनिक पंचांग लेख — देखो पंचांग' : 'Daily Panchang Articles — Dekho Panchang',
-    description: isHi
-      ? 'प्रतिदिन का वैदिक पंचांग विश्लेषण — तिथि, नक्षत्र, योग, शुभ-अशुभ काल और मार्गदर्शन।'
-      : 'Daily Vedic panchang analysis — tithi, nakshatra, yoga, auspicious/inauspicious windows, and guidance.',
+    title: tl({ en: 'Daily Panchang Articles — Dekho Panchang', hi: 'दैनिक पंचांग लेख — देखो पंचांग', sa: 'दैनिक पंचांग लेख — देखो पंचांग' }, locale),
+    description: tl({ en: 'Daily Vedic panchang analysis — tithi, nakshatra, yoga, auspicious/inauspicious windows, and guidance.', hi: 'प्रतिदिन का वैदिक पंचांग विश्लेषण — तिथि, नक्षत्र, योग, शुभ-अशुभ काल और मार्गदर्शन।', sa: 'प्रतिदिन का वैदिक पंचांग विश्लेषण — तिथि, नक्षत्र, योग, शुभ-अशुभ काल और मार्गदर्शन।' }, locale),
     alternates: {
       canonical: `${BASE_URL}/${locale}/daily`,
       languages: { en: `${BASE_URL}/en/daily`, hi: `${BASE_URL}/hi/daily` },
@@ -37,13 +36,13 @@ export default async function DailyIndexPage({ params }: { params: Promise<{ loc
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
       <div className="text-center mb-10">
         <p className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-          {isHi ? 'दैनिक पंचांग' : 'Daily Panchang'}
+          {tl({ en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग' }, locale)}
         </p>
         <h1 className="text-3xl font-bold text-gold-light" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'दैनिक पंचांग लेख' : 'Daily Panchang Articles'}
+          {tl({ en: 'Daily Panchang Articles', hi: 'दैनिक पंचांग लेख', sa: 'दैनिक पंचांग लेख' }, locale)}
         </h1>
         <p className="text-text-secondary text-sm mt-2">
-          {isHi ? 'प्रतिदिन का वैदिक पंचांग विश्लेषण और मार्गदर्शन' : 'Daily Vedic panchang analysis and guidance'}
+          {tl({ en: 'Daily Vedic panchang analysis and guidance', hi: 'प्रतिदिन का वैदिक पंचांग विश्लेषण और मार्गदर्शन', sa: 'प्रतिदिन का वैदिक पंचांग विश्लेषण और मार्गदर्शन' }, locale)}
         </p>
       </div>
 
@@ -69,7 +68,7 @@ export default async function DailyIndexPage({ params }: { params: Promise<{ loc
               </div>
               {i === 0 && (
                 <span className="text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded bg-gold-primary/20 text-gold-light flex-shrink-0">
-                  {isHi ? 'आज' : 'Today'}
+                  {tl({ en: 'Today', hi: 'आज', sa: 'आज' }, locale)}
                 </span>
               )}
             </div>

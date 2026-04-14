@@ -250,7 +250,7 @@ export default function DashaTransitionAlert({ dashaTimeline, locale, kundaliId 
             const interp = PLANET_INTERPRETATIONS[planetKey];
             const isUrgent = tr.daysUntil <= 7;
             const dateFormatted = new Date(tr.startDate).toLocaleDateString(
-              isHi ? 'hi-IN' : 'en-IN',
+              tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale),
               { month: 'short', day: 'numeric', year: 'numeric' }
             );
 

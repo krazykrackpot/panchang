@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -177,9 +178,7 @@ export default function ClassicalTextsPage() {
           {tc('pageTitle')}
         </h2>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">
-          {isHi
-            ? 'वैदिक ज्योतिष 6 प्रमुख शास्त्रीय ग्रंथों पर आधारित है। यहाँ हम प्रत्येक ग्रंथ का मूल्यांकन करते हैं — क्या अभी भी सटीक है, क्या आधुनिक विज्ञान द्वारा प्रतिस्थापित हुआ है, और क्या विशिष्ट योगदान आज भी प्रयुक्त हैं।'
-            : 'Vedic Jyotish rests on 6 major classical texts spanning astronomy and predictive astrology. Here we evaluate each — what\'s still accurate, what\'s been superseded by modern science, and what unique contributions are still used today. Every claim includes its source chapter.'}
+          {tl({ en: "Vedic Jyotish rests on 6 major classical texts spanning astronomy and predictive astrology. Here we evaluate each — what\'s still accurate, what\'s been superseded by modern science, and what unique contributions are still used today. Every claim includes its source chapter.", hi: "वैदिक ज्योतिष 6 प्रमुख शास्त्रीय ग्रंथों पर आधारित है। यहाँ हम प्रत्येक ग्रंथ का मूल्यांकन करते हैं — क्या अभी भी सटीक है, क्या आधुनिक विज्ञान द्वारा प्रतिस्थापित हुआ है, और क्या विशिष्ट योगदान आज भी प्रयुक्त हैं।", sa: "वैदिक ज्योतिष 6 प्रमुख शास्त्रीय ग्रंथों पर आधारित है। यहाँ हम प्रत्येक ग्रंथ का मूल्यांकन करते हैं — क्या अभी भी सटीक है, क्या आधुनिक विज्ञान द्वारा प्रतिस्थापित हुआ है, और क्या विशिष्ट योगदान आज भी प्रयुक्त हैं।" }, locale)}
         </p>
       </div>
 
@@ -188,13 +187,13 @@ export default function ClassicalTextsPage() {
         <h3 className="text-gold-light font-bold text-sm mb-3" style={hf}>{tc('twoTraditions')}</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
-            <div className="text-amber-400 font-bold text-sm mb-1">{isHi ? 'सिद्धांत (Astronomical)' : 'Siddhanta (Astronomical)'}</div>
-            <p className="text-text-secondary text-xs mb-2">{isHi ? 'गणितीय खगोल विज्ञान — ग्रह कहाँ हैं की गणना' : 'Mathematical astronomy — computing WHERE planets are'}</p>
+            <div className="text-amber-400 font-bold text-sm mb-1">{tl({ en: 'Siddhanta (Astronomical)', hi: 'सिद्धांत (Astronomical)', sa: 'सिद्धांत (Astronomical)' }, locale)}</div>
+            <p className="text-text-secondary text-xs mb-2">{tl({ en: 'Mathematical astronomy — computing WHERE planets are', hi: 'गणितीय खगोल विज्ञान — ग्रह कहाँ हैं की गणना', sa: 'गणितीय खगोल विज्ञान — ग्रह कहाँ हैं की गणना' }, locale)}</p>
             <div className="text-text-tertiary text-xs">Surya Siddhanta, Aryabhatiya</div>
           </div>
           <div className="p-4 rounded-xl bg-gold-primary/5 border border-gold-primary/15">
-            <div className="text-gold-light font-bold text-sm mb-1">{isHi ? 'होरा (Predictive)' : 'Hora (Predictive)'}</div>
-            <p className="text-text-secondary text-xs mb-2">{isHi ? 'फलित ज्योतिष — ग्रहों का क्या अर्थ है' : 'Interpretive astrology — what planet positions MEAN'}</p>
+            <div className="text-gold-light font-bold text-sm mb-1">{tl({ en: 'Hora (Predictive)', hi: 'होरा (Predictive)', sa: 'होरा (Predictive)' }, locale)}</div>
+            <p className="text-text-secondary text-xs mb-2">{tl({ en: 'Interpretive astrology — what planet positions MEAN', hi: 'फलित ज्योतिष — ग्रहों का क्या अर्थ है', sa: 'फलित ज्योतिष — ग्रहों का क्या अर्थ है' }, locale)}</p>
             <div className="text-text-tertiary text-xs">BPHS, Brihat Jataka, Phaladeepika, Saravali</div>
           </div>
         </div>
@@ -315,32 +314,30 @@ export default function ClassicalTextsPage() {
       {/* Modern synthesis */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
         <h3 className="text-gold-gradient font-bold text-xl mb-4" style={hf}>
-          {isHi ? 'आधुनिक संश्लेषण — हमारा दृष्टिकोण' : 'Modern Synthesis — Our Approach'}
+          {tl({ en: 'Modern Synthesis — Our Approach', hi: 'आधुनिक संश्लेषण — हमारा दृष्टिकोण', sa: 'आधुनिक संश्लेषण — हमारा दृष्टिकोण' }, locale)}
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
           <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
             <div className="text-emerald-400 font-bold text-sm mb-2">{tc('whatWeUse')}</div>
             <ul className="text-text-secondary space-y-1.5 leading-relaxed">
-              <li>• {isHi ? 'Swiss Ephemeris (NASA JPL DE431) — उप-कोणीय-सेकंड सटीकता' : 'Swiss Ephemeris (NASA JPL DE431) — sub-arcsecond accuracy'}</li>
-              <li>• {isHi ? 'Meeus एल्गोरिदम — सूर्य ~0.01°, चंद्र ~0.5° सटीक' : 'Meeus algorithms — Sun ~0.01°, Moon ~0.5° precision'}</li>
-              <li>• {isHi ? 'BPHS संपूर्ण भविष्यवाणी प्रणाली — दशा, वर्ग, अष्टकवर्ग' : 'BPHS complete predictive framework — Dashas, Vargas, Ashtakavarga'}</li>
-              <li>• {isHi ? 'लाहिरी अयनांश (भारत सरकार आधिकारिक)' : 'Lahiri Ayanamsha (Indian Govt official)'}</li>
+              <li>• {tl({ en: 'Swiss Ephemeris (NASA JPL DE431) — sub-arcsecond accuracy', hi: 'Swiss Ephemeris (NASA JPL DE431) — उप-कोणीय-सेकंड सटीकता', sa: 'Swiss Ephemeris (NASA JPL DE431) — उप-कोणीय-सेकंड सटीकता' }, locale)}</li>
+              <li>• {tl({ en: 'Meeus algorithms — Sun ~0.01°, Moon ~0.5° precision', hi: 'Meeus एल्गोरिदम — सूर्य ~0.01°, चंद्र ~0.5° सटीक', sa: 'Meeus एल्गोरिदम — सूर्य ~0.01°, चंद्र ~0.5° सटीक' }, locale)}</li>
+              <li>• {tl({ en: 'BPHS complete predictive framework — Dashas, Vargas, Ashtakavarga', hi: 'BPHS संपूर्ण भविष्यवाणी प्रणाली — दशा, वर्ग, अष्टकवर्ग', sa: 'BPHS संपूर्ण भविष्यवाणी प्रणाली — दशा, वर्ग, अष्टकवर्ग' }, locale)}</li>
+              <li>• {tl({ en: 'Lahiri Ayanamsha (Indian Govt official)', hi: 'लाहिरी अयनांश (भारत सरकार आधिकारिक)', sa: 'लाहिरी अयनांश (भारत सरकार आधिकारिक)' }, locale)}</li>
             </ul>
           </div>
           <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
             <div className="text-red-400 font-bold text-sm mb-2">{tc('whatWeUpdated')}</div>
             <ul className="text-text-secondary space-y-1.5 leading-relaxed">
-              <li>• {isHi ? 'भूकेंद्रित → सूर्यकेंद्रित + केप्लर कक्षाएं (गणना में)' : 'Geocentric → Heliocentric + Keplerian orbits (for computation)'}</li>
-              <li>• {isHi ? 'त्रेपिडेशन → एकदिशीय प्रिसेशन (~50.3"/वर्ष)' : 'Trepidation → Monotonic precession (~50.3"/year)'}</li>
-              <li>• {isHi ? 'पौराणिक ब्रह्मांड विज्ञान → आधुनिक खगोल विज्ञान' : 'Mythological cosmography → Modern astronomy'}</li>
-              <li>• {isHi ? 'अधिचक्र → NASA/JPL दीर्घवृत्ताकार कक्षा डेटा' : 'Epicycles → NASA/JPL elliptical orbit data'}</li>
+              <li>• {tl({ en: 'Geocentric → Heliocentric + Keplerian orbits (for computation)', hi: 'भूकेंद्रित → सूर्यकेंद्रित + केप्लर कक्षाएं (गणना में)', sa: 'भूकेंद्रित → सूर्यकेंद्रित + केप्लर कक्षाएं (गणना में)' }, locale)}</li>
+              <li>• {tl({ en: 'Trepidation → Monotonic precession (~50.3"/year)', hi: 'त्रेपिडेशन → एकदिशीय प्रिसेशन (~50.3"/वर्ष)', sa: 'त्रेपिडेशन → एकदिशीय प्रिसेशन (~50.3"/वर्ष)' }, locale)}</li>
+              <li>• {tl({ en: 'Mythological cosmography → Modern astronomy', hi: 'पौराणिक ब्रह्मांड विज्ञान → आधुनिक खगोल विज्ञान', sa: 'पौराणिक ब्रह्मांड विज्ञान → आधुनिक खगोल विज्ञान' }, locale)}</li>
+              <li>• {tl({ en: 'Epicycles → NASA/JPL elliptical orbit data', hi: 'अधिचक्र → NASA/JPL दीर्घवृत्ताकार कक्षा डेटा', sa: 'अधिचक्र → NASA/JPL दीर्घवृत्ताकार कक्षा डेटा' }, locale)}</li>
             </ul>
           </div>
         </div>
         <p className="text-text-tertiary text-xs text-center mt-4">
-          {isHi
-            ? '💡 सूत्र: आधुनिक गणना (कहाँ) + शास्त्रीय व्याख्या (क्या अर्थ) = सर्वोत्तम ज्योतिष'
-            : '💡 Formula: Modern computation (WHERE) + Classical interpretation (WHAT IT MEANS) = Best Jyotish'}
+          {tl({ en: '💡 Formula: Modern computation (WHERE) + Classical interpretation (WHAT IT MEANS) = Best Jyotish', hi: '💡 सूत्र: आधुनिक गणना (कहाँ) + शास्त्रीय व्याख्या (क्या अर्थ) = सर्वोत्तम ज्योतिष', sa: '💡 सूत्र: आधुनिक गणना (कहाँ) + शास्त्रीय व्याख्या (क्या अर्थ) = सर्वोत्तम ज्योतिष' }, locale)}
         </p>
       </div>
     </div>

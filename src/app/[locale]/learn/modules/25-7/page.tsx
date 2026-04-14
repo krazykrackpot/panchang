@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
@@ -99,7 +100,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'माधव और केरल स्कूल — कलन का असली जन्मस्थान' : 'Madhava and the Kerala School — The Real Birthplace of Calculus'}
+          {tl({ en: 'Madhava and the Kerala School — The Real Birthplace of Calculus', hi: 'माधव और केरल स्कूल — कलन का असली जन्मस्थान', sa: 'माधव और केरल स्कूल — कलन का असली जन्मस्थान' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -110,35 +111,35 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'माधव की महान खोजें' : "Madhava's Great Discoveries"}
+          {tl({ en: "Madhava's Great Discoveries", hi: "माधव की महान खोजें", sa: "माधव की महान खोजें" }, locale)}
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'π के लिए अनन्त श्रृंखला:' : 'Infinite series for π:'}</span>{' '}
-            {isHi ? 'π/4 = 1 − 1/3 + 1/5 − 1/7 + ... (माधव-लाइबनित्ज़ श्रृंखला)। Europe में 1673 में।' : 'π/4 = 1 − 1/3 + 1/5 − 1/7 + ... (Madhava-Leibniz series). In Europe only in 1673.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Infinite series for π:', hi: 'π के लिए अनन्त श्रृंखला:', sa: 'π के लिए अनन्त श्रृंखला:' }, locale)}</span>{' '}
+            {tl({ en: 'π/4 = 1 − 1/3 + 1/5 − 1/7 + ... (Madhava-Leibniz series). In Europe only in 1673.', hi: 'π/4 = 1 − 1/3 + 1/5 − 1/7 + ... (माधव-लाइबनित्ज़ श्रृंखला)। Europe में 1673 में।', sa: 'π/4 = 1 − 1/3 + 1/5 − 1/7 + ... (माधव-लाइबनित्ज़ श्रृंखला)। Europe में 1673 में।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'sine की अनन्त श्रृंखला:' : 'Infinite series for sine:'}</span>{' '}
-            {isHi ? 'sin(x) = x − x³/3! + x⁵/5! − x⁷/7! + ... (माधव-Newton श्रृंखला)। Newton को श्रेय ~1670।' : 'sin(x) = x − x³/3! + x⁵/5! − x⁷/7! + ... (Madhava-Newton series). Credit to Newton ~1670.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Infinite series for sine:', hi: 'sine की अनन्त श्रृंखला:', sa: 'sine की अनन्त श्रृंखला:' }, locale)}</span>{' '}
+            {tl({ en: 'sin(x) = x − x³/3! + x⁵/5! − x⁷/7! + ... (Madhava-Newton series). Credit to Newton ~1670.', hi: 'sin(x) = x − x³/3! + x⁵/5! − x⁷/7! + ... (माधव-Newton श्रृंखला)। Newton को श्रेय ~1670।', sa: 'sin(x) = x − x³/3! + x⁵/5! − x⁷/7! + ... (माधव-Newton श्रृंखला)। Newton को श्रेय ~1670।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'cosine की अनन्त श्रृंखला:' : 'Infinite series for cosine:'}</span>{' '}
-            {isHi ? 'cos(x) = 1 − x²/2! + x⁴/4! − x⁶/6! + ... Newton को श्रेय।' : 'cos(x) = 1 − x²/2! + x⁴/4! − x⁶/6! + ... Credit to Newton.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Infinite series for cosine:', hi: 'cosine की अनन्त श्रृंखला:', sa: 'cosine की अनन्त श्रृंखला:' }, locale)}</span>{' '}
+            {tl({ en: 'cos(x) = 1 − x²/2! + x⁴/4! − x⁶/6! + ... Credit to Newton.', hi: 'cos(x) = 1 − x²/2! + x⁴/4! − x⁶/6! + ... Newton को श्रेय।', sa: 'cos(x) = 1 − x²/2! + x⁴/4! − x⁶/6! + ... Newton को श्रेय।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'π का 11 दशमलव तक मान:' : 'Pi to 11 decimal places:'}</span>{' '}
-            {isHi ? '3.14159265359 — यूरोप में ~1600 ई. तक नहीं।' : '3.14159265359 — not matched in Europe until ~1600 CE.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Pi to 11 decimal places:', hi: 'π का 11 दशमलव तक मान:', sa: 'π का 11 दशमलव तक मान:' }, locale)}</span>{' '}
+            {tl({ en: '3.14159265359 — not matched in Europe until ~1600 CE.', hi: '3.14159265359 — यूरोप में ~1600 ई. तक नहीं।', sa: '3.14159265359 — यूरोप में ~1600 ई. तक नहीं।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'अभिसरण त्वरण:' : 'Convergence acceleration:'}</span>{' '}
-            {isHi ? 'श्रृंखलाओं के लिए सुधार पद जो तेज़ अभिसरण देते हैं — Euler से 300+ वर्ष पहले।' : 'Correction terms for series giving faster convergence — 300+ years before Euler.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Convergence acceleration:', hi: 'अभिसरण त्वरण:', sa: 'अभिसरण त्वरण:' }, locale)}</span>{' '}
+            {tl({ en: 'Correction terms for series giving faster convergence — 300+ years before Euler.', hi: 'श्रृंखलाओं के लिए सुधार पद जो तेज़ अभिसरण देते हैं — Euler से 300+ वर्ष पहले।', sa: 'श्रृंखलाओं के लिए सुधार पद जो तेज़ अभिसरण देते हैं — Euler से 300+ वर्ष पहले।' }, locale)}
           </p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'माधव की ऐतिहासिक स्थिति' : "Madhava's Historical Position"}
+          {tl({ en: "Madhava's Historical Position", hi: "माधव की ऐतिहासिक स्थिति", sa: "माधव की ऐतिहासिक स्थिति" }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -165,7 +166,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'युक्तिभाषा — प्रोटो-कलन की प्रमाण-पुस्तक' : 'Yuktibhasha — The Proof-Text of Proto-Calculus'}
+          {tl({ en: 'Yuktibhasha — The Proof-Text of Proto-Calculus', hi: 'युक्तिभाषा — प्रोटो-कलन की प्रमाण-पुस्तक', sa: 'युक्तिभाषा — प्रोटो-कलन की प्रमाण-पुस्तक' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -176,44 +177,44 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'युक्तिभाषा में क्या है?' : 'What Is in the Yuktibhasha?'}
+          {tl({ en: 'What Is in the Yuktibhasha?', hi: 'युक्तिभाषा में क्या है?', sa: 'युक्तिभाषा में क्या है?' }, locale)}
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'π की अनन्त श्रृंखला का प्रमाण:' : 'Proof of the infinite series for π:'}</span>{' '}
-            {isHi ? 'एक जटिल लेकिन कठोर ज्यामितीय-बीजगणितीय प्रमाण जो माधव की π श्रृंखला को व्युत्पन्न करता है।' : 'A complex but rigorous geometric-algebraic proof that derives Madhava\'s π series.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Proof of the infinite series for π:', hi: 'π की अनन्त श्रृंखला का प्रमाण:', sa: 'π की अनन्त श्रृंखला का प्रमाण:' }, locale)}</span>{' '}
+            {tl({ en: "A complex but rigorous geometric-algebraic proof that derives Madhava\'s π series.", hi: "एक जटिल लेकिन कठोर ज्यामितीय-बीजगणितीय प्रमाण जो माधव की π श्रृंखला को व्युत्पन्न करता है।", sa: "एक जटिल लेकिन कठोर ज्यामितीय-बीजगणितीय प्रमाण जो माधव की π श्रृंखला को व्युत्पन्न करता है।" }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'Sine और Cosine श्रृंखलाओं के प्रमाण:' : 'Proofs of sine and cosine series:'}</span>{' '}
-            {isHi ? 'विस्तृत प्रमाण जो sin(x) और cos(x) को अनन्त बहुपदों के रूप में व्यक्त करते हैं।' : 'Detailed proofs expressing sin(x) and cos(x) as infinite polynomials.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Proofs of sine and cosine series:', hi: 'Sine और Cosine श्रृंखलाओं के प्रमाण:', sa: 'Sine और Cosine श्रृंखलाओं के प्रमाण:' }, locale)}</span>{' '}
+            {tl({ en: 'Detailed proofs expressing sin(x) and cos(x) as infinite polynomials.', hi: 'विस्तृत प्रमाण जो sin(x) और cos(x) को अनन्त बहुपदों के रूप में व्यक्त करते हैं।', sa: 'विस्तृत प्रमाण जो sin(x) और cos(x) को अनन्त बहुपदों के रूप में व्यक्त करते हैं।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'पुनरावृत्ति और सीमाएँ:' : 'Iteration and limits:'}</span>{' '}
-            {isHi ? 'आधुनिक "limit" अवधारणा के अग्रदूत — किसी प्रक्रिया को अनन्त बार दोहराकर एक निश्चित मान पर पहुँचना।' : 'Precursor to modern "limit" concept — reaching a definite value by iterating a process infinitely many times.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Iteration and limits:', hi: 'पुनरावृत्ति और सीमाएँ:', sa: 'पुनरावृत्ति और सीमाएँ:' }, locale)}</span>{' '}
+            {tl({ en: 'Precursor to modern "limit" concept — reaching a definite value by iterating a process infinitely many times.', hi: 'आधुनिक "limit" अवधारणा के अग्रदूत — किसी प्रक्रिया को अनन्त बार दोहराकर एक निश्चित मान पर पहुँचना।', sa: 'आधुनिक "limit" अवधारणा के अग्रदूत — किसी प्रक्रिया को अनन्त बार दोहराकर एक निश्चित मान पर पहुँचना।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'सुधार पद:' : 'Correction terms:'}</span>{' '}
-            {isHi ? 'n/(4n²+1) रूप के सुधार पद जो श्रृंखला को बहुत तेज़ी से अभिसरण करते हैं।' : 'Correction terms of the form n/(4n²+1) that make the series converge much faster.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Correction terms:', hi: 'सुधार पद:', sa: 'सुधार पद:' }, locale)}</span>{' '}
+            {tl({ en: 'Correction terms of the form n/(4n²+1) that make the series converge much faster.', hi: 'n/(4n²+1) रूप के सुधार पद जो श्रृंखला को बहुत तेज़ी से अभिसरण करते हैं।', sa: 'n/(4n²+1) रूप के सुधार पद जो श्रृंखला को बहुत तेज़ी से अभिसरण करते हैं।' }, locale)}
           </p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15 rounded-xl p-5">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'कलन की मूल अवधारणाएँ — केरल स्कूल में' : 'Core Calculus Concepts — in the Kerala School'}
+          {tl({ en: 'Core Calculus Concepts — in the Kerala School', hi: 'कलन की मूल अवधारणाएँ — केरल स्कूल में', sa: 'कलन की मूल अवधारणाएँ — केरल स्कूल में' }, locale)}
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'सीमा (Limit):' : 'Limit:'}</span>{' '}
-            {isHi ? 'युक्तिभाषा में अनन्त प्रक्रियाओं के माध्यम से निश्चित मानों पर पहुँचने का स्पष्ट विचार।' : 'Clear idea of reaching definite values through infinite processes in the Yuktibhasha.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Limit:', hi: 'सीमा (Limit):', sa: 'सीमा (Limit):' }, locale)}</span>{' '}
+            {tl({ en: 'Clear idea of reaching definite values through infinite processes in the Yuktibhasha.', hi: 'युक्तिभाषा में अनन्त प्रक्रियाओं के माध्यम से निश्चित मानों पर पहुँचने का स्पष्ट विचार।', sa: 'युक्तिभाषा में अनन्त प्रक्रियाओं के माध्यम से निश्चित मानों पर पहुँचने का स्पष्ट विचार।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'अनन्त श्रृंखला योग:' : 'Infinite series summation:'}</span>{' '}
-            {isHi ? 'अनन्त पदों के योग के परिणामस्वरूप परिमित संख्या — कलन का मूल तत्व।' : 'The sum of infinitely many terms resulting in a finite number — a core element of calculus.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Infinite series summation:', hi: 'अनन्त श्रृंखला योग:', sa: 'अनन्त श्रृंखला योग:' }, locale)}</span>{' '}
+            {tl({ en: 'The sum of infinitely many terms resulting in a finite number — a core element of calculus.', hi: 'अनन्त पदों के योग के परिणामस्वरूप परिमित संख्या — कलन का मूल तत्व।', sa: 'अनन्त पदों के योग के परिणामस्वरूप परिमित संख्या — कलन का मूल तत्व।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'सूक्ष्म भिन्नता (Infinitesimal):' : 'Infinitesimals:'}</span>{' '}
-            {isHi ? 'श्रृंखला व्युत्पत्तियों में अनन्त रूप से छोटे मात्राओं का अंतर्निहित उपयोग।' : 'Implicit use of infinitely small quantities in the series derivations.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Infinitesimals:', hi: 'सूक्ष्म भिन्नता (Infinitesimal):', sa: 'सूक्ष्म भिन्नता (Infinitesimal):' }, locale)}</span>{' '}
+            {tl({ en: 'Implicit use of infinitely small quantities in the series derivations.', hi: 'श्रृंखला व्युत्पत्तियों में अनन्त रूप से छोटे मात्राओं का अंतर्निहित उपयोग।', sa: 'श्रृंखला व्युत्पत्तियों में अनन्त रूप से छोटे मात्राओं का अंतर्निहित उपयोग।' }, locale)}
           </p>
         </div>
       </section>
@@ -231,7 +232,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'संचरण प्रश्न और विरासत' : 'The Transmission Question and Legacy'}
+          {tl({ en: 'The Transmission Question and Legacy', hi: 'संचरण प्रश्न और विरासत', sa: 'संचरण प्रश्न और विरासत' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -242,7 +243,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'क्या ज्ञान यूरोप पहुँचा? — बहस' : 'Did Knowledge Reach Europe? — The Debate'}
+          {tl({ en: 'Did Knowledge Reach Europe? — The Debate', hi: 'क्या ज्ञान यूरोप पहुँचा? — बहस', sa: 'क्या ज्ञान यूरोप पहुँचा? — बहस' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -263,7 +264,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/15 rounded-xl p-5">
         <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'केरल स्कूल की विरासत' : "The Kerala School's Legacy"}
+          {tl({ en: "The Kerala School's Legacy", hi: "केरल स्कूल की विरासत", sa: "केरल स्कूल की विरासत" }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi

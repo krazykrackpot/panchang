@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState } from 'react';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -47,12 +48,10 @@ export default function RashiNakshatraWheel({ locale }: Props) {
   return (
     <div className="space-y-4">
       <h3 className="text-gold-gradient text-xl font-bold text-center" style={{ fontFamily: 'var(--font-heading)' }}>
-        {isHi ? 'राशि-नक्षत्र सम्बन्ध चक्र' : 'Rashi–Nakshatra Relationship Wheel'}
+        {tl({ en: 'Rashi–Nakshatra Relationship Wheel', hi: 'राशि-नक्षत्र सम्बन्ध चक्र', sa: 'राशि-नक्षत्र सम्बन्ध चक्र' }, locale)}
       </h3>
       <p className="text-text-secondary/75 text-sm text-center max-w-xl mx-auto">
-        {isHi
-          ? 'बाहरी वलय: 12 राशियाँ (30° प्रत्येक)। भीतरी वलय: 27 नक्षत्र (13°20\' प्रत्येक)। देखें कैसे नक्षत्र राशियों में फैले हुए हैं।'
-          : 'Outer ring: 12 Rashis (30° each). Inner ring: 27 Nakshatras (13°20\' each). See how nakshatras span across rashi boundaries.'}
+        {tl({ en: "Outer ring: 12 Rashis (30° each). Inner ring: 27 Nakshatras (13°20\' each). See how nakshatras span across rashi boundaries.", hi: "बाहरी वलय: 12 राशियाँ (30° प्रत्येक)। भीतरी वलय: 27 नक्षत्र (13°20\' प्रत्येक)। देखें कैसे नक्षत्र राशियों में फैले हुए हैं।", sa: "बाहरी वलय: 12 राशियाँ (30° प्रत्येक)। भीतरी वलय: 27 नक्षत्र (13°20\' प्रत्येक)। देखें कैसे नक्षत्र राशियों में फैले हुए हैं।" }, locale)}
       </p>
 
       <div className="flex justify-center">
@@ -149,10 +148,10 @@ export default function RashiNakshatraWheel({ locale }: Props) {
                   {n.name[locale]}
                 </text>
                 <text x={cx} y={cy - 20} textAnchor="middle" fill="rgba(255,255,255,0.5)" fontSize={9}>
-                  {startDeg.toFixed(1)}° – {endDeg.toFixed(1)}° | {isHi ? 'स्वामी' : 'Lord'}: {n.rulerName[locale]}
+                  {startDeg.toFixed(1)}° – {endDeg.toFixed(1)}° | {tl({ en: 'Lord', hi: 'स्वामी', sa: 'स्वामी' }, locale)}: {n.rulerName[locale]}
                 </text>
                 <text x={cx} y={cy - 6} textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize={9}>
-                  {isHi ? 'राशि' : 'Rashi'}: {RASHIS[rashi1].name[locale]}{spans ? ` → ${RASHIS[rashi2].name[locale]}` : ''}
+                  {tl({ en: 'Rashi', hi: 'राशि', sa: 'राशि' }, locale)}: {RASHIS[rashi1].name[locale]}{spans ? ` → ${RASHIS[rashi2].name[locale]}` : ''}
                 </text>
               </g>
             );
@@ -170,10 +169,10 @@ export default function RashiNakshatraWheel({ locale }: Props) {
                   {r.name[locale]}
                 </text>
                 <text x={cx} y={cy - 20} textAnchor="middle" fill="rgba(255,255,255,0.5)" fontSize={9}>
-                  {hoveredRashi * 30}° – {(hoveredRashi + 1) * 30}° | {isHi ? 'तत्व' : 'Element'}: {isHi ? ELEMENT_HI[hoveredRashi] : ELEMENTS[hoveredRashi]}
+                  {hoveredRashi * 30}° – {(hoveredRashi + 1) * 30}° | {tl({ en: 'Element', hi: 'तत्व', sa: 'तत्व' }, locale)}: {isHi ? ELEMENT_HI[hoveredRashi] : ELEMENTS[hoveredRashi]}
                 </text>
                 <text x={cx} y={cy - 6} textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize={9}>
-                  {isHi ? 'नक्षत्र' : 'Nakshatras'}: {NAKSHATRAS[startNak].name[locale]} – {NAKSHATRAS[endNak].name[locale]}
+                  {tl({ en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्र' }, locale)}: {NAKSHATRAS[startNak].name[locale]} – {NAKSHATRAS[endNak].name[locale]}
                 </text>
               </g>
             );
@@ -183,9 +182,7 @@ export default function RashiNakshatraWheel({ locale }: Props) {
 
       {/* Key insight */}
       <div className="text-center text-text-secondary/70 text-xs max-w-lg mx-auto leading-relaxed">
-        {isHi
-          ? 'ध्यान दें: कुछ नक्षत्र दो राशियों में फैले हैं (जैसे कृत्तिका मेष और वृषभ दोनों में)। इसीलिए एक ही नक्षत्र के अलग-अलग पादों में जन्मे लोगों की राशि भिन्न हो सकती है।'
-          : 'Notice: Some nakshatras span two rashis (e.g., Krittika spans Aries and Taurus). This is why people born in the same nakshatra but different padas can have different rashis.'}
+        {tl({ en: 'Notice: Some nakshatras span two rashis (e.g., Krittika spans Aries and Taurus). This is why people born in the same nakshatra but different padas can have different rashis.', hi: 'ध्यान दें: कुछ नक्षत्र दो राशियों में फैले हैं (जैसे कृत्तिका मेष और वृषभ दोनों में)। इसीलिए एक ही नक्षत्र के अलग-अलग पादों में जन्मे लोगों की राशि भिन्न हो सकती है।', sa: 'ध्यान दें: कुछ नक्षत्र दो राशियों में फैले हैं (जैसे कृत्तिका मेष और वृषभ दोनों में)। इसीलिए एक ही नक्षत्र के अलग-अलग पादों में जन्मे लोगों की राशि भिन्न हो सकती है।' }, locale)}
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -187,7 +188,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'राशियाँ राशियों को दृष्ट करती हैं' : 'Signs Aspect Signs'}
+          {tl({ en: 'Signs Aspect Signs', hi: 'राशियाँ राशियों को दृष्ट करती हैं', sa: 'राशियाँ राशियों को दृष्ट करती हैं' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -202,7 +203,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'सम्पूर्ण दृष्टि सारणी' : 'Complete Aspect Table'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Complete Aspect Table', hi: 'सम्पूर्ण दृष्टि सारणी', sa: 'सम्पूर्ण दृष्टि सारणी' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-1">
           <span className="text-gold-light font-medium">Aries (Movable):</span> aspects Leo, Scorpio, Aquarius (not Taurus)
         </p>
@@ -242,13 +243,13 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'राशि दृष्टि भिन्न प्रतिरूप क्यों बनाती है' : 'Why Rashi Drishti Creates Different Patterns'}
+          {tl({ en: 'Why Rashi Drishti Creates Different Patterns', hi: 'राशि दृष्टि भिन्न प्रतिरूप क्यों बनाती है', sa: 'राशि दृष्टि भिन्न प्रतिरूप क्यों बनाती है' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
             ? <>एक कुण्डली पर विचार करें जिसमें मंगल मेष में और शुक्र वृश्चिक में है। पाराशरी में मंगल मेष से चौथे (कर्क), सातवें (तुला) और आठवें (वृश्चिक) को दृष्ट करता है — अतः मंगल वृश्चिक में शुक्र को दृष्ट करता है। शुक्र की केवल सातवीं दृष्टि वृश्चिक से वृषभ पर है — शुक्र मेष में मंगल को दृष्ट नहीं करता। सम्बन्ध एकदिशीय है। जैमिनी में, मेष (चर) सिंह, वृश्चिक और कुम्भ को दृष्ट करता है — मेष के सभी ग्रह वृश्चिक के सभी ग्रहों को दृष्ट करते हैं। वृश्चिक (स्थिर) मेष, कर्क और मकर को दृष्ट करता है — वृश्चिक के सभी ग्रह मेष के सभी ग्रहों को दृष्ट करते हैं। सम्बन्ध पारस्परिक और पूर्ण है।</>
             : <>Consider a chart with Mars in Aries and Venus in Scorpio. In Parashari astrology, Mars aspects the 4th (Cancer), 7th (Libra), and 8th (Scorpio) from Aries — so Mars aspects Venus in Scorpio. Venus has only a 7th aspect from Scorpio to Taurus — Venus does NOT aspect Mars in Aries. The relationship is one-directional. In Jaimini, Aries (movable) aspects Leo, Scorpio, and Aquarius — ALL planets in Aries aspect ALL planets in Scorpio. Scorpio (fixed) aspects Aries, Cancer, and Capricorn — ALL planets in Scorpio aspect ALL planets in Aries. The relationship is mutual and total.</>}
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={isHi ? 'उदाहरण कुण्डली' : 'Example Chart'} />
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरण कुण्डली' }, locale)} />
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
           This means that Jaimini aspects create broader webs of mutual influence. Where Parashari might show a one-sided power dynamic (Mars dominates Venus through its special aspect), Jaimini shows a mutual exchange. This fundamentally changes how relationships, conflicts, and collaborations are interpreted in the chart.
@@ -256,7 +257,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित तुलना' : 'Worked Comparison'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Comparison', hi: 'कार्यान्वित तुलना', sa: 'कार्यान्वित तुलना' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Chart:</span> Sun and Mercury in Gemini, Mars in Virgo, Jupiter in Sagittarius, Venus in Pisces.
         </p>
@@ -280,7 +281,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'चर दशा के साथ व्यावहारिक अनुप्रयोग' : 'Practical Application with Char Dasha'}
+          {tl({ en: 'Practical Application with Char Dasha', hi: 'चर दशा के साथ व्यावहारिक अनुप्रयोग', sa: 'चर दशा के साथ व्यावहारिक अनुप्रयोग' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -291,7 +292,7 @@ function Page3() {
 
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'सम्पूर्ण-राशि स्वभाव — कोई ओर्ब नहीं' : 'Whole-Sign Nature — No Orbs'}
+          {tl({ en: 'Whole-Sign Nature — No Orbs', hi: 'सम्पूर्ण-राशि स्वभाव — कोई ओर्ब नहीं', sa: 'सम्पूर्ण-राशि स्वभाव — कोई ओर्ब नहीं' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -301,7 +302,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
             ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;राशि दृष्टि पाराशरी दृष्टियों का प्रतिस्थापन है।&quot; कोई भी पद्धति दूसरी का प्रतिस्थापन नहीं करती। ये भिन्न ऋषियों के समान्तर ढाँचे हैं। पाराशरी दृष्टियों का प्रयोग विंशोत्तरी दशा और पाराशरी नियमों के साथ करें। राशि दृष्टि का प्रयोग चर दशा और जैमिनी नियमों के साथ। अनेक उन्नत ज्योतिषी दोनों पद्धतियों का प्रयोग पारस्परिक सत्यापन हेतु साथ-साथ करते हैं, किन्तु एक विश्लेषण श्रृंखला में कभी मिलाते नहीं।</>
@@ -310,7 +311,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
             ? <>जैमिनी राशि दृष्टि ने 21वीं शताब्दी में पुनरुत्थान देखा है, विशेषकर के.एन. राव और संजय रथ जैसे विद्वानों के कार्य से जिन्होंने आधुनिक अभ्यासकर्ताओं के लिए जैमिनी तकनीकों को व्यवस्थित किया। राशि-आधारित दृष्टियों की सरलता उन्हें कम्प्यूटरीकृत ज्योतिष के लिए उपयुक्त बनाती है — कोई अस्पष्ट ओर्ब गणना आवश्यक नहीं। हमारा कुण्डली इंजन राशि दृष्टि सम्बन्धों की तत्काल गणना कर सकता है, पारम्परिक पाराशरी दृष्टियों के साथ एक अतिरिक्त विश्लेषणात्मक परत प्रदान करता है।</>

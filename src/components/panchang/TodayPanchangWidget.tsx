@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { MapPin, Loader2, Search, X } from 'lucide-react';
@@ -117,7 +118,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={!isDevanagariLocale(locale) ? 'Search city or place...' : 'शहर या स्थान खोजें...'}
+              placeholder={tl({ en: 'Search city or place...', hi: 'शहर या स्थान खोजें...', sa: 'शहर या स्थान खोजें...' }, locale)}
               className="flex-1 bg-transparent text-text-primary text-sm placeholder:text-text-secondary/70 focus:outline-none"
               autoFocus
             />
@@ -143,7 +144,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
           {locationStore.detecting ? (
             <span className="flex items-center gap-2 text-text-secondary text-sm">
               <Loader2 className="w-4 h-4 animate-spin text-gold-primary" />
-              {!isDevanagariLocale(locale) ? 'Detecting your location...' : 'आपका स्थान खोज रहे हैं...'}
+              {tl({ en: 'Detecting your location...', hi: 'आपका स्थान खोज रहे हैं...', sa: 'आपका स्थान खोज रहे हैं...' }, locale)}
             </span>
           ) : locationStore.confirmed || panchang ? (
             <>
@@ -151,7 +152,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
               <span className="text-gold-light text-sm font-medium">{locationStore.name || serverLocation?.name || ''}</span>
               <button onClick={() => setShowSearch(true)}
                 className="text-gold-primary/70 text-xs hover:text-gold-light ml-2 underline underline-offset-2">
-                {!isDevanagariLocale(locale) ? 'Change' : 'बदलें'}
+                {tl({ en: 'Change', hi: 'बदलें', sa: 'बदलें' }, locale)}
               </button>
             </>
           ) : (
@@ -159,7 +160,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
               className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gold-primary/20 hover:border-gold-primary/40 transition-colors">
               <MapPin className="w-4 h-4 text-gold-primary" />
               <span className="text-gold-light text-sm">
-                {!isDevanagariLocale(locale) ? 'Set your location to see Panchang' : 'पंचांग देखने के लिए स्थान चुनें'}
+                {tl({ en: 'Set your location to see Panchang', hi: 'पंचांग देखने के लिए स्थान चुनें', sa: 'पंचांग देखने के लिए स्थान चुनें' }, locale)}
               </span>
             </button>
           )}
@@ -176,14 +177,14 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 sm:p-8 md:p-12 text-center">
           <MapPin className="w-12 h-12 text-gold-primary/40 mx-auto mb-4" />
           <p className="text-text-secondary text-lg mb-2" style={getBodyFont(locale)}>
-            {!isDevanagariLocale(locale) ? 'Location required for accurate Panchang' : 'सटीक पंचांग के लिए स्थान आवश्यक'}
+            {tl({ en: 'Location required for accurate Panchang', hi: 'सटीक पंचांग के लिए स्थान आवश्यक', sa: 'सटीक पंचांग के लिए स्थान आवश्यक' }, locale)}
           </p>
           <p className="text-text-secondary/75 text-sm mb-6">
-            {!isDevanagariLocale(locale) ? 'Panchang calculations depend on sunrise/sunset at your location' : 'पंचांग गणना आपके स्थान के सूर्योदय/सूर्यास्त पर निर्भर है'}
+            {tl({ en: 'Panchang calculations depend on sunrise/sunset at your location', hi: 'पंचांग गणना आपके स्थान के सूर्योदय/सूर्यास्त पर निर्भर है', sa: 'पंचांग गणना आपके स्थान के सूर्योदय/सूर्यास्त पर निर्भर है' }, locale)}
           </p>
           <button onClick={() => setShowSearch(true)}
             className="px-6 py-3 bg-gradient-to-r from-gold-primary/20 to-gold-primary/10 border border-gold-primary/30 rounded-xl text-gold-light font-bold hover:bg-gold-primary/30 transition-all">
-            {!isDevanagariLocale(locale) ? 'Search Location' : 'स्थान खोजें'}
+            {tl({ en: 'Search Location', hi: 'स्थान खोजें', sa: 'स्थान खोजें' }, locale)}
           </button>
         </div>
       </div>
@@ -234,12 +235,12 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
               <div className="mt-3 pt-3 border-t border-gold-primary/10 w-full">
                 <div className="flex items-center justify-center gap-3">
                   <div className="text-center">
-                    <div className="text-xs uppercase tracking-wider text-text-secondary/65 mb-0.5">{!isDevanagariLocale(locale) ? 'Starts' : 'आरम्भ'}</div>
+                    <div className="text-xs uppercase tracking-wider text-text-secondary/65 mb-0.5">{tl({ en: 'Starts', hi: 'आरम्भ', sa: 'आरम्भ' }, locale)}</div>
                     <div className="font-mono text-sm font-bold text-amber-300">{el.timing.start}</div>
                   </div>
                   <span className="text-text-secondary/50 text-lg">&rarr;</span>
                   <div className="text-center">
-                    <div className="text-xs uppercase tracking-wider text-text-secondary/65 mb-0.5">{!isDevanagariLocale(locale) ? 'Ends' : 'समाप्ति'}</div>
+                    <div className="text-xs uppercase tracking-wider text-text-secondary/65 mb-0.5">{tl({ en: 'Ends', hi: 'समाप्ति', sa: 'समाप्ति' }, locale)}</div>
                     <div className="font-mono text-sm font-bold text-rose-300">{el.timing.end}</div>
                   </div>
                 </div>

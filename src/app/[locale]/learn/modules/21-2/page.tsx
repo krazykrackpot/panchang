@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -187,7 +188,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'सहम क्या हैं?' : 'What Are Sahams?'}
+          {tl({ en: 'What Are Sahams?', hi: 'सहम क्या हैं?', sa: 'सहम क्या हैं?' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -195,15 +196,13 @@ function Page1() {
             : <>Sahams (also called &quot;Arabic Parts&quot; or &quot;Lots&quot;) are mathematically computed sensitive points in the zodiac that concentrate the signification of specific life areas into a single degree. Each Saham is calculated using a simple formula: Saham = Point_A + Point_B - Point_C, where the three points are typically planets or the Ascendant. The resulting degree in the zodiac becomes a powerful indicator for that life area in the annual chart.</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {isHi
-            ? 'सबसे महत्त्वपूर्ण सहम हैं: पुण्य सहम (भाग्य) = चन्द्र + सूर्य - लग्न; विद्या सहम (शिक्षा) = गुरु + बुध - लग्न; कर्म सहम (करियर) = शनि + सूर्य - लग्न; यशस सहम (यश) = गुरु + सूर्य - लग्न; मित्र सहम (मित्रता) = गुरु + चन्द्र - लग्न; विवाह सहम = शुक्र + शनि - लग्न; पुत्र सहम (सन्तान) = गुरु + चन्द्र - लग्न; रोग सहम (रोग) = शनि + मंगल - लग्न; और मृत्यु सहम (मृत्यु/रूपान्तरण) = शनि + चन्द्र - लग्न। ताजिक अभ्यास में लगभग 16 सहम मानक हैं।'
-            : 'The most important Sahams are: Punya Saham (fortune) = Moon + Sun - Lagna; Vidya Saham (education) = Jupiter + Mercury - Lagna; Karma Saham (career) = Saturn + Sun - Lagna; Yashas Saham (fame) = Jupiter + Sun - Lagna; Mitra Saham (friendship) = Jupiter + Moon - Lagna; Vivaha Saham (marriage) = Venus + Saturn - Lagna; Putra Saham (children) = Jupiter + Moon - Lagna; Roga Saham (disease) = Saturn + Mars - Lagna; and Mrityu Saham (death/transformation) = Saturn + Moon - Lagna. Approximately 16 Sahams are standard in Tajika practice.'}
+          {tl({ en: 'The most important Sahams are: Punya Saham (fortune) = Moon + Sun - Lagna; Vidya Saham (education) = Jupiter + Mercury - Lagna; Karma Saham (career) = Saturn + Sun - Lagna; Yashas Saham (fame) = Jupiter + Sun - Lagna; Mitra Saham (friendship) = Jupiter + Moon - Lagna; Vivaha Saham (marriage) = Venus + Saturn - Lagna; Putra Saham (children) = Jupiter + Moon - Lagna; Roga Saham (disease) = Saturn + Mars - Lagna; and Mrityu Saham (death/transformation) = Saturn + Moon - Lagna. Approximately 16 Sahams are standard in Tajika practice.', hi: 'सबसे महत्त्वपूर्ण सहम हैं: पुण्य सहम (भाग्य) = चन्द्र + सूर्य - लग्न; विद्या सहम (शिक्षा) = गुरु + बुध - लग्न; कर्म सहम (करियर) = शनि + सूर्य - लग्न; यशस सहम (यश) = गुरु + सूर्य - लग्न; मित्र सहम (मित्रता) = गुरु + चन्द्र - लग्न; विवाह सहम = शुक्र + शनि - लग्न; पुत्र सहम (सन्तान) = गुरु + चन्द्र - लग्न; रोग सहम (रोग) = शनि + मंगल - लग्न; और मृत्यु सहम (मृत्यु/रूपान्तरण) = शनि + चन्द्र - लग्न। ताजिक अभ्यास में लगभग 16 सहम मानक हैं।', sa: 'सबसे महत्त्वपूर्ण सहम हैं: पुण्य सहम (भाग्य) = चन्द्र + सूर्य - लग्न; विद्या सहम (शिक्षा) = गुरु + बुध - लग्न; कर्म सहम (करियर) = शनि + सूर्य - लग्न; यशस सहम (यश) = गुरु + सूर्य - लग्न; मित्र सहम (मित्रता) = गुरु + चन्द्र - लग्न; विवाह सहम = शुक्र + शनि - लग्न; पुत्र सहम (सन्तान) = गुरु + चन्द्र - लग्न; रोग सहम (रोग) = शनि + मंगल - लग्न; और मृत्यु सहम (मृत्यु/रूपान्तरण) = शनि + चन्द्र - लग्न। ताजिक अभ्यास में लगभग 16 सहम मानक हैं।' }, locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-          {isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}
+          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
@@ -222,7 +221,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'सहम गणना और व्याख्या' : 'Computing and Interpreting Sahams'}
+          {tl({ en: 'Computing and Interpreting Sahams', hi: 'सहम गणना और व्याख्या', sa: 'सहम गणना और व्याख्या' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -236,8 +235,8 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={isHi ? 'उदाहरण कुण्डली' : 'Example Chart'} />
+          {tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरण कुण्डली' }, locale)} />
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -256,18 +255,16 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'प्रमुख सहम सन्दर्भ' : 'Key Sahams Reference'}
+          {tl({ en: 'Key Sahams Reference', hi: 'प्रमुख सहम सन्दर्भ', sa: 'प्रमुख सहम सन्दर्भ' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {isHi
-            ? 'सबसे महत्त्वपूर्ण सहम उनके सूत्रों और व्याख्या केन्द्र सहित: पुण्य (चन्द्र+सूर्य-लग्न) सामान्य भाग्य और सौभाग्य हेतु। विद्या (गुरु+बुध-लग्न) शिक्षा, परीक्षा और विद्या हेतु। यशस (गुरु+सूर्य-लग्न) यश, प्रतिष्ठा और सार्वजनिक मान्यता हेतु। मित्र (गुरु+चन्द्र-लग्न) मित्रता और सामाजिक सम्बन्ध हेतु। कर्म (शनि+सूर्य-लग्न) करियर, व्यवसाय और अधिकार हेतु। रोग (शनि+मंगल-लग्न) रोग और स्वास्थ्य समस्याओं हेतु। विवाह (शुक्र+शनि-लग्न) विवाह और प्रणय साझेदारी हेतु। पुत्र (गुरु+चन्द्र-लग्न) सन्तान हेतु। मृत्यु (शनि+चन्द्र-लग्न) मृत्यु, रूपान्तरण और समाप्तियों हेतु।'
-            : 'Here are the most important Sahams with their formulas and interpretive focus: Punya (Moon+Sun-Lagna) for general fortune and luck. Vidya (Jupiter+Mercury-Lagna) for education, exams, and learning. Yashas (Jupiter+Sun-Lagna) for fame, reputation, and public recognition. Mitra (Jupiter+Moon-Lagna) for friendships and social connections. Karma (Saturn+Sun-Lagna) for career, profession, and authority. Roga (Saturn+Mars-Lagna) for disease and health issues. Vivaha (Venus+Saturn-Lagna) for marriage and romantic partnerships. Putra (Jupiter+Moon-Lagna) for children and progeny. Mrityu (Saturn+Moon-Lagna) for death, transformation, and endings.'}
+          {tl({ en: 'Here are the most important Sahams with their formulas and interpretive focus: Punya (Moon+Sun-Lagna) for general fortune and luck. Vidya (Jupiter+Mercury-Lagna) for education, exams, and learning. Yashas (Jupiter+Sun-Lagna) for fame, reputation, and public recognition. Mitra (Jupiter+Moon-Lagna) for friendships and social connections. Karma (Saturn+Sun-Lagna) for career, profession, and authority. Roga (Saturn+Mars-Lagna) for disease and health issues. Vivaha (Venus+Saturn-Lagna) for marriage and romantic partnerships. Putra (Jupiter+Moon-Lagna) for children and progeny. Mrityu (Saturn+Moon-Lagna) for death, transformation, and endings.', hi: 'सबसे महत्त्वपूर्ण सहम उनके सूत्रों और व्याख्या केन्द्र सहित: पुण्य (चन्द्र+सूर्य-लग्न) सामान्य भाग्य और सौभाग्य हेतु। विद्या (गुरु+बुध-लग्न) शिक्षा, परीक्षा और विद्या हेतु। यशस (गुरु+सूर्य-लग्न) यश, प्रतिष्ठा और सार्वजनिक मान्यता हेतु। मित्र (गुरु+चन्द्र-लग्न) मित्रता और सामाजिक सम्बन्ध हेतु। कर्म (शनि+सूर्य-लग्न) करियर, व्यवसाय और अधिकार हेतु। रोग (शनि+मंगल-लग्न) रोग और स्वास्थ्य समस्याओं हेतु। विवाह (शुक्र+शनि-लग्न) विवाह और प्रणय साझेदारी हेतु। पुत्र (गुरु+चन्द्र-लग्न) सन्तान हेतु। मृत्यु (शनि+चन्द्र-लग्न) मृत्यु, रूपान्तरण और समाप्तियों हेतु।', sa: 'सबसे महत्त्वपूर्ण सहम उनके सूत्रों और व्याख्या केन्द्र सहित: पुण्य (चन्द्र+सूर्य-लग्न) सामान्य भाग्य और सौभाग्य हेतु। विद्या (गुरु+बुध-लग्न) शिक्षा, परीक्षा और विद्या हेतु। यशस (गुरु+सूर्य-लग्न) यश, प्रतिष्ठा और सार्वजनिक मान्यता हेतु। मित्र (गुरु+चन्द्र-लग्न) मित्रता और सामाजिक सम्बन्ध हेतु। कर्म (शनि+सूर्य-लग्न) करियर, व्यवसाय और अधिकार हेतु। रोग (शनि+मंगल-लग्न) रोग और स्वास्थ्य समस्याओं हेतु। विवाह (शुक्र+शनि-लग्न) विवाह और प्रणय साझेदारी हेतु। पुत्र (गुरु+चन्द्र-लग्न) सन्तान हेतु। मृत्यु (शनि+चन्द्र-लग्न) मृत्यु, रूपान्तरण और समाप्तियों हेतु।' }, locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}
+          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -278,7 +275,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}
+          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi

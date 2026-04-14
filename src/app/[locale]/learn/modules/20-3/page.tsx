@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -187,12 +188,10 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? '4-स्तरीय कारक पद्धति' : 'The 4-Level Significator System'}
+          {tl({ en: 'The 4-Level Significator System', hi: '4-स्तरीय कारक पद्धति', sa: '4-स्तरीय कारक पद्धति' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          {isHi
-            ? 'केपी ज्योतिष में प्रत्येक ग्रह एक सटीक 4-स्तरीय पदानुक्रम के माध्यम से कुछ भावों से जुड़ा होता है। इन स्तरों को समझना आवश्यक है क्योंकि ये निर्धारित करते हैं कि कौन-से ग्रह किन जीवन क्षेत्रों के लिए परिणाम देंगे, और प्रबलता के किस क्रम में। पारम्परिक ज्योतिष जहाँ भाव स्वामित्व प्रधान है, वहीं केपी निवास और नक्षत्र-स्वामी सम्बन्धों को सर्वोच्च प्राथमिकता देता है।'
-            : 'In KP astrology, every planet is connected to certain houses through a precise 4-level hierarchy. Understanding these levels is essential because they determine WHICH planets will deliver results for WHICH life areas, and in what order of strength. Unlike traditional astrology where house lordship dominates, KP gives the highest priority to occupancy and star-lord connections.'}
+          {tl({ en: 'In KP astrology, every planet is connected to certain houses through a precise 4-level hierarchy. Understanding these levels is essential because they determine WHICH planets will deliver results for WHICH life areas, and in what order of strength. Unlike traditional astrology where house lordship dominates, KP gives the highest priority to occupancy and star-lord connections.', hi: 'केपी ज्योतिष में प्रत्येक ग्रह एक सटीक 4-स्तरीय पदानुक्रम के माध्यम से कुछ भावों से जुड़ा होता है। इन स्तरों को समझना आवश्यक है क्योंकि ये निर्धारित करते हैं कि कौन-से ग्रह किन जीवन क्षेत्रों के लिए परिणाम देंगे, और प्रबलता के किस क्रम में। पारम्परिक ज्योतिष जहाँ भाव स्वामित्व प्रधान है, वहीं केपी निवास और नक्षत्र-स्वामी सम्बन्धों को सर्वोच्च प्राथमिकता देता है।', sa: 'केपी ज्योतिष में प्रत्येक ग्रह एक सटीक 4-स्तरीय पदानुक्रम के माध्यम से कुछ भावों से जुड़ा होता है। इन स्तरों को समझना आवश्यक है क्योंकि ये निर्धारित करते हैं कि कौन-से ग्रह किन जीवन क्षेत्रों के लिए परिणाम देंगे, और प्रबलता के किस क्रम में। पारम्परिक ज्योतिष जहाँ भाव स्वामित्व प्रधान है, वहीं केपी निवास और नक्षत्र-स्वामी सम्बन्धों को सर्वोच्च प्राथमिकता देता है।' }, locale)}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
@@ -203,7 +202,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-          {isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}
+          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
@@ -222,7 +221,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'कारक सारणी निर्माण' : 'Building the Significator Table'}
+          {tl({ en: 'Building the Significator Table', hi: 'कारक सारणी निर्माण', sa: 'कारक सारणी निर्माण' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -236,8 +235,8 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={isHi ? 'उदाहरण कुण्डली' : 'Example Chart'} />
+          {tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरण कुण्डली' }, locale)} />
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -256,7 +255,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'विरोधाभास समाधान' : 'Resolving Conflicts'}
+          {tl({ en: 'Resolving Conflicts', hi: 'विरोधाभास समाधान', sa: 'विरोधाभास समाधान' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -270,7 +269,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}
+          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -281,12 +280,10 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}
+          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
-          {isHi
-            ? 'सभी 12 भावों के लिए कारक सारणी मैनुअली बनाना थकाऊ कार्य है जिसमें केपी अभ्यासकर्ताओं को प्रति कुण्डली 30-60 मिनट लगते थे। हमारा केपी सिस्टम उपकरण इसे पूर्णतः स्वचालित करता है — यह सभी 12 भावों में प्रत्येक ग्रह के लिए कारकत्व के सभी 4 स्तर गणित करता है और एक स्वच्छ, क्रमबद्ध कारक सारणी प्रस्तुत करता है। इससे ज्योतिषी तत्काल देख सकता है कि किसी भी घटना के लिए कौन-से ग्रह सबसे प्रबल कारक हैं, जो मानवीय गणना त्रुटियों को समाप्त करते हुए विश्लेषण प्रक्रिया को नाटकीय रूप से तेज़ करता है।'
-            : 'Building the significator table manually for all 12 houses is tedious work that used to take KP practitioners 30-60 minutes per chart. Our KP System tool automates this entirely — it computes all 4 levels of significatorship for every planet across all 12 houses and presents a clean, sortable significator table. This allows the astrologer to immediately see which planets are the strongest significators for any event, dramatically speeding up the analysis process while eliminating human calculation errors.'}
+          {tl({ en: 'Building the significator table manually for all 12 houses is tedious work that used to take KP practitioners 30-60 minutes per chart. Our KP System tool automates this entirely — it computes all 4 levels of significatorship for every planet across all 12 houses and presents a clean, sortable significator table. This allows the astrologer to immediately see which planets are the strongest significators for any event, dramatically speeding up the analysis process while eliminating human calculation errors.', hi: 'सभी 12 भावों के लिए कारक सारणी मैनुअली बनाना थकाऊ कार्य है जिसमें केपी अभ्यासकर्ताओं को प्रति कुण्डली 30-60 मिनट लगते थे। हमारा केपी सिस्टम उपकरण इसे पूर्णतः स्वचालित करता है — यह सभी 12 भावों में प्रत्येक ग्रह के लिए कारकत्व के सभी 4 स्तर गणित करता है और एक स्वच्छ, क्रमबद्ध कारक सारणी प्रस्तुत करता है। इससे ज्योतिषी तत्काल देख सकता है कि किसी भी घटना के लिए कौन-से ग्रह सबसे प्रबल कारक हैं, जो मानवीय गणना त्रुटियों को समाप्त करते हुए विश्लेषण प्रक्रिया को नाटकीय रूप से तेज़ करता है।', sa: 'सभी 12 भावों के लिए कारक सारणी मैनुअली बनाना थकाऊ कार्य है जिसमें केपी अभ्यासकर्ताओं को प्रति कुण्डली 30-60 मिनट लगते थे। हमारा केपी सिस्टम उपकरण इसे पूर्णतः स्वचालित करता है — यह सभी 12 भावों में प्रत्येक ग्रह के लिए कारकत्व के सभी 4 स्तर गणित करता है और एक स्वच्छ, क्रमबद्ध कारक सारणी प्रस्तुत करता है। इससे ज्योतिषी तत्काल देख सकता है कि किसी भी घटना के लिए कौन-से ग्रह सबसे प्रबल कारक हैं, जो मानवीय गणना त्रुटियों को समाप्त करते हुए विश्लेषण प्रक्रिया को नाटकीय रूप से तेज़ करता है।' }, locale)}
         </p>
       </section>
     </div>

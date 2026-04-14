@@ -1,3 +1,4 @@
+import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/contributions-kerala-school.json';
@@ -131,7 +132,7 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
         </div>
 
         <div className="p-4 rounded-xl bg-gold-primary/6 border-l-4 border-gold-primary/50">
-          <p className="text-text-secondary text-xs font-semibold mb-1">{isHi ? 'केरल ही क्यों?' : 'Why Kerala?'}</p>
+          <p className="text-text-secondary text-xs font-semibold mb-1">{tl({ en: 'Why Kerala?', hi: 'केरल ही क्यों?', sa: 'केरल ही क्यों?' }, locale)}</p>
           <p className="text-text-secondary text-xs leading-relaxed">{t('s1Why')}</p>
         </div>
       </div>
@@ -143,9 +144,9 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
 
         {/* Main formula */}
         <div className="p-5 rounded-xl bg-gold-primary/8 border border-gold-primary/20 mb-5 text-center">
-          <p className="text-xs text-text-secondary mb-2">{isHi ? 'माधव-लाइबनिज श्रेणी' : 'The Madhava-Leibniz Series'}</p>
+          <p className="text-xs text-text-secondary mb-2">{tl({ en: 'The Madhava-Leibniz Series', hi: 'माधव-लाइबनिज श्रेणी', sa: 'माधव-लाइबनिज श्रेणी' }, locale)}</p>
           <p className="text-gold-light text-xl font-mono tracking-wider">&pi;/4 = 1 &minus; 1/3 + 1/5 &minus; 1/7 + 1/9 &minus; ...</p>
-          <p className="text-text-secondary text-xs mt-2">{isHi ? 'माधव ~1350 ई. | लाइबनिज 1674 ई. — 324 वर्ष बाद' : 'Madhava ~1350 CE | Leibniz 1674 CE \u2014 324 years later'}</p>
+          <p className="text-text-secondary text-xs mt-2">{tl({ en: 'Madhava ~1350 CE | Leibniz 1674 CE \u2014 324 years later', hi: 'माधव ~1350 ई. | लाइबनिज 1674 ई. — 324 वर्ष बाद', sa: 'माधव ~1350 ई. | लाइबनिज 1674 ई. — 324 वर्ष बाद' }, locale)}</p>
         </div>
 
         {/* Slow convergence explanation */}
@@ -154,9 +155,9 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
         {/* Correction term */}
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{t('s2Genius')}</p>
         <div className="p-5 rounded-xl bg-emerald-500/8 border border-emerald-500/20 mb-5 text-center">
-          <p className="text-xs text-emerald-300 mb-2">{isHi ? 'माधव का सुधार पद (correction term)' : "Madhava's Correction Term"}</p>
+          <p className="text-xs text-emerald-300 mb-2">{tl({ en: "Madhava's Correction Term", hi: "माधव का सुधार पद (correction term)", sa: "माधव का सुधार पद (correction term)" }, locale)}</p>
           <p className="text-emerald-200 text-lg font-mono">(-1)<sup>N+1</sup> &times; (N/2) / ((N/2)&sup2; + 1)</p>
-          <p className="text-text-secondary text-xs mt-2">{isHi ? 'N पदों के योग के बाद इस सुधार को जोड़ें' : 'Add this correction after summing N terms'}</p>
+          <p className="text-text-secondary text-xs mt-2">{tl({ en: 'Add this correction after summing N terms', hi: 'N पदों के योग के बाद इस सुधार को जोड़ें', sa: 'N पदों के योग के बाद इस सुधार को जोड़ें' }, locale)}</p>
         </div>
 
         {/* Convergence table */}
@@ -164,10 +165,10 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/15">
-                <th className="text-left text-gold-light py-2 pr-3">{isHi ? 'पद' : 'Terms'}</th>
-                <th className="text-left text-gold-light py-2 pr-3">{isHi ? 'कच्ची श्रेणी' : 'Raw Series'}</th>
-                <th className="text-left text-gold-light py-2 pr-3">{isHi ? 'माधव सुधार सहित' : 'With Madhava Correction'}</th>
-                <th className="text-right text-gold-light py-2">{isHi ? 'वास्तविक \u03C0' : 'Actual \u03C0'}</th>
+                <th className="text-left text-gold-light py-2 pr-3">{tl({ en: 'Terms', hi: 'पद', sa: 'पद' }, locale)}</th>
+                <th className="text-left text-gold-light py-2 pr-3">{tl({ en: 'Raw Series', hi: 'कच्ची श्रेणी', sa: 'कच्ची श्रेणी' }, locale)}</th>
+                <th className="text-left text-gold-light py-2 pr-3">{tl({ en: 'With Madhava Correction', hi: 'माधव सुधार सहित', sa: 'माधव सुधार सहित' }, locale)}</th>
+                <th className="text-right text-gold-light py-2">{tl({ en: 'Actual \u03C0', hi: 'वास्तविक \u03C0', sa: 'वास्तविक \u03C0' }, locale)}</th>
               </tr>
             </thead>
             <tbody>
@@ -193,24 +194,24 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
 
         {/* Sine formula */}
         <div className="p-5 rounded-xl bg-gold-primary/8 border border-gold-primary/20 mb-5 text-center">
-          <p className="text-xs text-text-secondary mb-2">{isHi ? 'माधव की Sine श्रेणी (~1400 ई.)' : "Madhava's Sine Series (~1400 CE)"}</p>
+          <p className="text-xs text-text-secondary mb-2">{tl({ en: "Madhava's Sine Series (~1400 CE)", hi: "माधव की Sine श्रेणी (~1400 ई.)", sa: "माधव की Sine श्रेणी (~1400 ई.)" }, locale)}</p>
           <p className="text-gold-light text-lg font-mono">sin(x) = x &minus; x&sup3;/3! + x&#8309;/5! &minus; x&#8311;/7! + ...</p>
-          <p className="text-text-secondary text-xs mt-2">{isHi ? 'जहाँ 3! = 6, 5! = 120, 7! = 5040 (क्रमगुणित)' : 'where 3! = 6, 5! = 120, 7! = 5040 (factorial)'}</p>
+          <p className="text-text-secondary text-xs mt-2">{tl({ en: 'where 3! = 6, 5! = 120, 7! = 5040 (factorial)', hi: 'जहाँ 3! = 6, 5! = 120, 7! = 5040 (क्रमगुणित)', sa: 'जहाँ 3! = 6, 5! = 120, 7! = 5040 (क्रमगुणित)' }, locale)}</p>
         </div>
 
         {/* Worked example */}
         <div className="p-5 rounded-xl bg-amber-500/8 border border-amber-500/20 mb-5">
           <p className="text-amber-300 font-semibold text-xs mb-3">
-            {isHi ? 'हल किया गया उदाहरण: sin(30\u00B0)' : 'Worked Example: sin(30\u00B0)'}
+            {tl({ en: 'Worked Example: sin(30\u00B0)', hi: 'हल किया गया उदाहरण: sin(30\u00B0)', sa: 'हल किया गया उदाहरण: sin(30\u00B0)' }, locale)}
           </p>
           <p className="text-text-secondary text-xs mb-3">{t('s3Worked')}</p>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
                 <tr className="border-b border-amber-500/15">
-                  <th className="text-left text-amber-300 py-1.5 pr-3">{isHi ? 'पद' : 'Term'}</th>
-                  <th className="text-left text-amber-300 py-1.5 pr-3">{isHi ? 'मान' : 'Value'}</th>
-                  <th className="text-right text-amber-300 py-1.5">{isHi ? 'चलता योग' : 'Running Sum'}</th>
+                  <th className="text-left text-amber-300 py-1.5 pr-3">{tl({ en: 'Term', hi: 'पद', sa: 'पद' }, locale)}</th>
+                  <th className="text-left text-amber-300 py-1.5 pr-3">{tl({ en: 'Value', hi: 'मान', sa: 'मान' }, locale)}</th>
+                  <th className="text-right text-amber-300 py-1.5">{tl({ en: 'Running Sum', hi: 'चलता योग', sa: 'चलता योग' }, locale)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -225,13 +226,13 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
             </table>
           </div>
           <p className="text-emerald-300 text-xs mt-3 font-semibold">
-            {isHi ? 'परिणाम: 0.50000 \u2248 0.5 \u2714 (वास्तविक sin(30\u00B0) = 0.5 ठीक)' : 'Result: 0.50000 \u2248 0.5 \u2714 (actual sin(30\u00B0) = 0.5 exactly)'}
+            {tl({ en: 'Result: 0.50000 \u2248 0.5 \u2714 (actual sin(30\u00B0) = 0.5 exactly)', hi: 'परिणाम: 0.50000 \u2248 0.5 \u2714 (वास्तविक sin(30\u00B0) = 0.5 ठीक)', sa: 'परिणाम: 0.50000 \u2248 0.5 \u2714 (वास्तविक sin(30\u00B0) = 0.5 ठीक)' }, locale)}
           </p>
         </div>
 
         {/* Cosine series */}
         <div className="p-5 rounded-xl bg-gold-primary/8 border border-gold-primary/20 mb-4 text-center">
-          <p className="text-xs text-text-secondary mb-2">{isHi ? 'माधव की Cosine श्रेणी' : "Madhava's Cosine Series"}</p>
+          <p className="text-xs text-text-secondary mb-2">{tl({ en: "Madhava's Cosine Series", hi: "माधव की Cosine श्रेणी", sa: "माधव की Cosine श्रेणी" }, locale)}</p>
           <p className="text-gold-light text-lg font-mono">cos(x) = 1 &minus; x&sup2;/2! + x&#8308;/4! &minus; x&#8310;/6! + ...</p>
         </div>
         <p className="text-text-secondary text-sm leading-relaxed">{t('s3Cosine')}</p>
@@ -244,14 +245,14 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
 
         {/* Arctan formula */}
         <div className="p-5 rounded-xl bg-gold-primary/8 border border-gold-primary/20 mb-5 text-center">
-          <p className="text-xs text-text-secondary mb-2">{isHi ? 'माधव की Arctangent श्रेणी' : "Madhava's Arctangent Series"}</p>
+          <p className="text-xs text-text-secondary mb-2">{tl({ en: "Madhava's Arctangent Series", hi: "माधव की Arctangent श्रेणी", sa: "माधव की Arctangent श्रेणी" }, locale)}</p>
           <p className="text-gold-light text-lg font-mono mb-2">arctan(x) = x &minus; x&sup3;/3 + x&#8309;/5 &minus; x&#8311;/7 + ...</p>
-          <p className="text-text-secondary text-xs">{isHi ? '|x| \u2264 1 के लिए मान्य' : 'valid for |x| \u2264 1'}</p>
+          <p className="text-text-secondary text-xs">{tl({ en: 'valid for |x| \u2264 1', hi: '|x| \u2264 1 के लिए मान्य', sa: '|x| \u2264 1 के लिए मान्य' }, locale)}</p>
         </div>
 
         {/* Faster convergence with 1/sqrt(3) */}
         <div className="p-5 rounded-xl bg-purple-500/8 border border-purple-500/20 mb-5 text-center">
-          <p className="text-xs text-purple-300 mb-2">{isHi ? 'x = 1/\u221A3 रखने पर (तेज़ अभिसरण)' : 'Setting x = 1/\u221A3 (faster convergence)'}</p>
+          <p className="text-xs text-purple-300 mb-2">{tl({ en: 'Setting x = 1/\u221A3 (faster convergence)', hi: 'x = 1/\u221A3 रखने पर (तेज़ अभिसरण)', sa: 'x = 1/\u221A3 रखने पर (तेज़ अभिसरण)' }, locale)}</p>
           <p className="text-purple-200 text-base font-mono">{t('s4Formula')}</p>
         </div>
 
@@ -281,7 +282,7 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
         </div>
 
         <div className="p-4 rounded-xl bg-gold-primary/6 border-l-4 border-gold-primary/50">
-          <p className="text-gold-light text-xs font-semibold mb-1">{isHi ? 'निर्णायक तर्क' : 'The Critical Argument'}</p>
+          <p className="text-gold-light text-xs font-semibold mb-1">{tl({ en: 'The Critical Argument', hi: 'निर्णायक तर्क', sa: 'निर्णायक तर्क' }, locale)}</p>
           <p className="text-text-secondary text-xs leading-relaxed">{t('s5Key')}</p>
         </div>
       </div>
@@ -293,19 +294,15 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 rounded-xl bg-purple-500/8 border border-purple-500/20">
-            <p className="text-purple-300 font-semibold text-xs mb-2">{isHi ? 'नीलकण्ठ का मॉडल (1500 ई.)' : "Nilakantha's Model (1500 CE)"}</p>
+            <p className="text-purple-300 font-semibold text-xs mb-2">{tl({ en: "Nilakantha's Model (1500 CE)", hi: "नीलकण्ठ का मॉडल (1500 ई.)", sa: "नीलकण्ठ का मॉडल (1500 ई.)" }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
-              {isHi
-                ? 'बुध और शुक्र \u2192 सूर्य की परिक्रमा | सूर्य \u2192 पृथ्वी की परिक्रमा। यह ज्यामितीय रूप से ब्राहे (1588) की टाइकोनिक प्रणाली के समरूप है।'
-                : 'Mercury & Venus \u2192 orbit the Sun | Sun \u2192 orbits Earth. Geometrically identical to Brahe\'s (1588) Tychonic system.'}
+              {tl({ en: "Mercury & Venus \u2192 orbit the Sun | Sun \u2192 orbits Earth. Geometrically identical to Brahe\'s (1588) Tychonic system.", hi: "बुध और शुक्र \u2192 सूर्य की परिक्रमा | सूर्य \u2192 पृथ्वी की परिक्रमा। यह ज्यामितीय रूप से ब्राहे (1588) की टाइकोनिक प्रणाली के समरूप है।", sa: "बुध और शुक्र \u2192 सूर्य की परिक्रमा | सूर्य \u2192 पृथ्वी की परिक्रमा। यह ज्यामितीय रूप से ब्राहे (1588) की टाइकोनिक प्रणाली के समरूप है।" }, locale)}
             </p>
           </div>
           <div className="p-4 rounded-xl bg-amber-500/8 border border-amber-500/20">
-            <p className="text-amber-300 font-semibold text-xs mb-2">{isHi ? 'टायको ब्राहे का मॉडल (1588 ई.)' : "Tycho Brahe's Model (1588 CE)"}</p>
+            <p className="text-amber-300 font-semibold text-xs mb-2">{tl({ en: "Tycho Brahe's Model (1588 CE)", hi: "टायको ब्राहे का मॉडल (1588 ई.)", sa: "टायको ब्राहे का मॉडल (1588 ई.)" }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
-              {isHi
-                ? 'ठीक वही संरचना \u2014 लेकिन 88 वर्ष बाद। ब्राहे ने कोपर्निकस और टॉलेमी के बीच समझौते के रूप में इसे प्रस्तावित किया।'
-                : 'Exact same structure \u2014 but 88 years later. Brahe proposed it as a compromise between Copernicus and Ptolemy.'}
+              {tl({ en: 'Exact same structure \u2014 but 88 years later. Brahe proposed it as a compromise between Copernicus and Ptolemy.', hi: 'ठीक वही संरचना \u2014 लेकिन 88 वर्ष बाद। ब्राहे ने कोपर्निकस और टॉलेमी के बीच समझौते के रूप में इसे प्रस्तावित किया।', sa: 'ठीक वही संरचना \u2014 लेकिन 88 वर्ष बाद। ब्राहे ने कोपर्निकस और टॉलेमी के बीच समझौते के रूप में इसे प्रस्तावित किया।' }, locale)}
             </p>
           </div>
         </div>
@@ -340,27 +337,27 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
           <div className="p-4 rounded-xl bg-amber-500/8 border border-amber-500/20">
-            <p className="text-amber-300 font-semibold text-xs mb-2">{isHi ? '1. प्रत्यक्ष संचरण' : '1. Direct Transmission'}</p>
+            <p className="text-amber-300 font-semibold text-xs mb-2">{tl({ en: '1. Direct Transmission', hi: '1. प्रत्यक्ष संचरण', sa: '1. प्रत्यक्ष संचरण' }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
-              {isHi ? 'केरल परिणाम जेसुइट के माध्यम से यूरोप पहुँचे' : 'Kerala results reached Europe via Jesuit missionaries'}
+              {tl({ en: 'Kerala results reached Europe via Jesuit missionaries', hi: 'केरल परिणाम जेसुइट के माध्यम से यूरोप पहुँचे', sa: 'केरल परिणाम जेसुइट के माध्यम से यूरोप पहुँचे' }, locale)}
             </p>
           </div>
           <div className="p-4 rounded-xl bg-blue-500/8 border border-blue-500/20">
-            <p className="text-blue-300 font-semibold text-xs mb-2">{isHi ? '2. स्वतन्त्र खोज' : '2. Independent Discovery'}</p>
+            <p className="text-blue-300 font-semibold text-xs mb-2">{tl({ en: '2. Independent Discovery', hi: '2. स्वतन्त्र खोज', sa: '2. स्वतन्त्र खोज' }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
-              {isHi ? 'न्यूटन और लाइबनिज ने बिना भारतीय प्रभाव के कलनशास्त्र विकसित किया' : 'Newton and Leibniz developed calculus without Indian influence'}
+              {tl({ en: 'Newton and Leibniz developed calculus without Indian influence', hi: 'न्यूटन और लाइबनिज ने बिना भारतीय प्रभाव के कलनशास्त्र विकसित किया', sa: 'न्यूटन और लाइबनिज ने बिना भारतीय प्रभाव के कलनशास्त्र विकसित किया' }, locale)}
             </p>
           </div>
           <div className="p-4 rounded-xl bg-purple-500/8 border border-purple-500/20">
-            <p className="text-purple-300 font-semibold text-xs mb-2">{isHi ? '3. उद्दीपन प्रसार' : '3. Stimulus Diffusion'}</p>
+            <p className="text-purple-300 font-semibold text-xs mb-2">{tl({ en: '3. Stimulus Diffusion', hi: '3. उद्दीपन प्रसार', sa: '3. उद्दीपन प्रसार' }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
-              {isHi ? 'सामान्य विचार यूरोप पहुँचे, स्वतन्त्र विकास को प्रेरित किया' : 'General ideas reached Europe, inspiring independent development'}
+              {tl({ en: 'General ideas reached Europe, inspiring independent development', hi: 'सामान्य विचार यूरोप पहुँचे, स्वतन्त्र विकास को प्रेरित किया', sa: 'सामान्य विचार यूरोप पहुँचे, स्वतन्त्र विकास को प्रेरित किया' }, locale)}
             </p>
           </div>
         </div>
 
         <div className="p-4 rounded-xl bg-emerald-500/8 border border-emerald-500/20">
-          <p className="text-emerald-300 font-semibold text-xs mb-2">{isHi ? 'जो बहस से परे है' : 'What Is Beyond Debate'}</p>
+          <p className="text-emerald-300 font-semibold text-xs mb-2">{tl({ en: 'What Is Beyond Debate', hi: 'जो बहस से परे है', sa: 'जो बहस से परे है' }, locale)}</p>
           <p className="text-text-secondary text-xs leading-relaxed">{t('s8Conclusion')}</p>
         </div>
       </div>
@@ -421,10 +418,10 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/15">
-                <th className="text-left text-gold-light py-2 pr-3">{isHi ? 'पश्चिमी नाम' : 'Western Name'}</th>
-                <th className="text-left text-gold-light py-2 pr-3">{isHi ? 'श्रेय दिया गया' : 'Attributed To'}</th>
-                <th className="text-left text-gold-light py-2 pr-3">{isHi ? 'केरल खोजकर्ता' : 'Kerala Discoverer'}</th>
-                <th className="text-right text-gold-light py-2">{isHi ? 'अन्तर' : 'Years Earlier'}</th>
+                <th className="text-left text-gold-light py-2 pr-3">{tl({ en: 'Western Name', hi: 'पश्चिमी नाम', sa: 'पश्चिमी नाम' }, locale)}</th>
+                <th className="text-left text-gold-light py-2 pr-3">{tl({ en: 'Attributed To', hi: 'श्रेय दिया गया', sa: 'श्रेय दिया गया' }, locale)}</th>
+                <th className="text-left text-gold-light py-2 pr-3">{tl({ en: 'Kerala Discoverer', hi: 'केरल खोजकर्ता', sa: 'केरल खोजकर्ता' }, locale)}</th>
+                <th className="text-right text-gold-light py-2">{tl({ en: 'Years Earlier', hi: 'अन्तर', sa: 'अन्तर' }, locale)}</th>
               </tr>
             </thead>
             <tbody>

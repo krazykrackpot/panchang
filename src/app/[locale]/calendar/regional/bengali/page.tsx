@@ -178,10 +178,10 @@ export default function BengaliCalendarPage() {
               <thead>
                 <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">#</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'मास' : 'Month'}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'বাংলা' : 'Bangla'}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'ग्रेगोरियन' : 'Gregorian'}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'दिन' : 'Days'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Month', hi: 'मास', sa: 'मास' }, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Bangla', hi: 'বাংলা', sa: 'বাংলা' }, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Gregorian', hi: 'ग्रेगोरियन', sa: 'ग्रेगोरियन' }, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Days', hi: 'दिन', sa: 'दिन' }, locale)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -265,13 +265,13 @@ export default function BengaliCalendarPage() {
               href={`/${locale}/calendar`}
               className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
             >
-              {isHi ? 'त्योहार कैलेंडर 2026' : 'Festival Calendar 2026'}
+              {tl({ en: 'Festival Calendar 2026', hi: 'त्योहार कैलेंडर 2026', sa: 'त्योहार कैलेंडर 2026' }, locale)}
             </a>
             <a
               href={`/${locale}/calendar/regional/tamil`}
               className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
             >
-              {isHi ? 'तमिल कैलेंडर (पंचांगम्)' : 'Tamil Calendar (Panchangam)'}
+              {tl({ en: 'Tamil Calendar (Panchangam)', hi: 'तमिल कैलेंडर (पंचांगम्)', sa: 'तमिल कैलेंडर (पंचांगम्)' }, locale)}
             </a>
           </div>
         </section>

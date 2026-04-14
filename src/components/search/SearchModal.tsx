@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { Search, X, ArrowRight } from 'lucide-react';
@@ -152,7 +153,7 @@ export default function SearchModal() {
         aria-label="Search"
       >
         <Search className="w-3.5 h-3.5" />
-        <span className="hidden sm:inline">{!isDevanagariLocale(locale) ? 'Search' : 'खोजें'}</span>
+        <span className="hidden sm:inline">{tl({ en: 'Search', hi: 'खोजें', sa: 'खोजें' }, locale)}</span>
         <kbd className="hidden sm:inline text-xs px-1.5 py-0.5 rounded bg-bg-secondary/50 border border-gold-primary/10 text-text-secondary/65 font-mono ml-1" suppressHydrationWarning>
           {isMac ? '⌘' : 'Ctrl+'}K
         </kbd>
@@ -177,7 +178,7 @@ export default function SearchModal() {
               value={query}
               onChange={e => { setQuery(e.target.value); setSelectedIdx(0); }}
               onKeyDown={handleKeyDown}
-              placeholder={!isDevanagariLocale(locale) ? 'Search pages, festivals, tools...' : 'पृष्ठ, त्योहार, उपकरण खोजें...'}
+              placeholder={tl({ en: 'Search pages, festivals, tools...', hi: 'पृष्ठ, त्योहार, उपकरण खोजें...', sa: 'पृष्ठ, त्योहार, उपकरण खोजें...' }, locale)}
               className="flex-1 bg-transparent text-text-primary text-base placeholder:text-text-secondary/65 focus:outline-none"
               autoComplete="off"
             />
@@ -190,7 +191,7 @@ export default function SearchModal() {
           <div className="max-h-[50vh] overflow-y-auto py-2">
             {results.length === 0 ? (
               <div className="px-5 py-8 text-center text-text-secondary/65 text-sm">
-                {!isDevanagariLocale(locale) ? 'No results found' : 'कोई परिणाम नहीं'}
+                {tl({ en: 'No results found', hi: 'कोई परिणाम नहीं', sa: 'कोई परिणाम नहीं' }, locale)}
               </div>
             ) : (
               results.map((item, i) => (

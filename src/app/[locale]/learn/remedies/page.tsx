@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/remedies.json';
@@ -282,10 +283,10 @@ function FlowchartDiagram({ locale }: { locale: Locale }) {
         {t('strengthenTitle')}
       </text>
       <text x="100" y="158" textAnchor="middle" fill="#8b8fa3" fontSize="8" fontFamily={bodyFont}>
-        {!isDevanagariLocale(locale) ? 'Gemstone, mantra for power,' : locale === 'sa' ? 'रत्नम्, शक्तिमन्त्रः,' : 'रत्न, शक्ति मंत्र,'}
+        {tl({ en: 'Gemstone, mantra for power,', hi: 'रत्न, शक्ति मंत्र,', sa: 'रत्नम्, शक्तिमन्त्रः,' }, locale)}
       </text>
       <text x="100" y="170" textAnchor="middle" fill="#8b8fa3" fontSize="8" fontFamily={bodyFont}>
-        {!isDevanagariLocale(locale) ? 'favorable colors, worship deity' : locale === 'sa' ? 'अनुकूलवर्णाः, देवतापूजा' : 'अनुकूल रंग, देवता पूजा'}
+        {tl({ en: 'favorable colors, worship deity', hi: 'अनुकूल रंग, देवता पूजा', sa: 'अनुकूलवर्णाः, देवतापूजा' }, locale)}
       </text>
 
       {/* Question 2 box (right) */}
@@ -311,19 +312,19 @@ function FlowchartDiagram({ locale }: { locale: Locale }) {
         {t('pacifyTitle')}
       </text>
       <text x="297" y="268" textAnchor="middle" fill="#8b8fa3" fontSize="8" fontFamily={bodyFont}>
-        {!isDevanagariLocale(locale) ? 'Donation, fasting, mantra for peace' : locale === 'sa' ? 'दानम्, उपवासः, शान्तिमन्त्रः' : 'दान, उपवास, शान्ति मंत्र'}
+        {tl({ en: 'Donation, fasting, mantra for peace', hi: 'दान, उपवास, शान्ति मंत्र', sa: 'दानम्, उपवासः, शान्तिमन्त्रः' }, locale)}
       </text>
       <text x="297" y="280" textAnchor="middle" fill="#ef4444" fontSize="8" fontWeight="bold" fontFamily={bodyFont}>
-        {!isDevanagariLocale(locale) ? 'DO NOT wear gemstone!' : locale === 'sa' ? 'रत्नं न धारयेत्!' : 'रत्न न पहनें!'}
+        {tl({ en: 'DO NOT wear gemstone!', hi: 'रत्न न पहनें!', sa: 'रत्नं न धारयेत्!' }, locale)}
       </text>
 
       {/* Neutral: Check context box */}
       <rect x="400" y="230" width="90" height="50" rx="10" fill="#facc1510" stroke="#facc1540" strokeWidth="1" />
       <text x="445" y="252" textAnchor="middle" fill="#facc15" fontSize="9" fontWeight="bold" fontFamily={bodyFont}>
-        {!isDevanagariLocale(locale) ? 'Context' : locale === 'sa' ? 'सन्दर्भः' : 'सन्दर्भ'}
+        {tl({ en: 'Context', hi: 'सन्दर्भ', sa: 'सन्दर्भः' }, locale)}
       </text>
       <text x="445" y="266" textAnchor="middle" fill="#8b8fa3" fontSize="7" fontFamily={bodyFont}>
-        {!isDevanagariLocale(locale) ? 'Analyze chart' : locale === 'sa' ? 'कुण्डलीविश्लेषणम्' : 'कुण्डली विश्लेषण'}
+        {tl({ en: 'Analyze chart', hi: 'कुण्डली विश्लेषण', sa: 'कुण्डलीविश्लेषणम्' }, locale)}
       </text>
     </svg>
   );
@@ -397,12 +398,12 @@ export default function RemediesPage() {
           <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
             <span className="text-emerald-400 font-medium">{t('strengthenTitle')}</span>
-            <span className="text-text-secondary">= {!isDevanagariLocale(locale) ? 'Gemstone + Mantra' : isHi ? 'रत्न + मंत्र' : 'रत्नम् + मन्त्रः'}</span>
+            <span className="text-text-secondary">= {tl({ en: 'Gemstone + Mantra', hi: 'रत्न + मंत्र', sa: 'रत्न + मंत्र' }, locale)}</span>
           </span>
           <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
             <span className="text-red-400 font-medium">{t('pacifyTitle')}</span>
-            <span className="text-text-secondary">= {!isDevanagariLocale(locale) ? 'Charity + Fasting' : isHi ? 'दान + उपवास' : 'दानम् + उपवासः'}</span>
+            <span className="text-text-secondary">= {tl({ en: 'Charity + Fasting', hi: 'दान + उपवास', sa: 'दान + उपवास' }, locale)}</span>
           </span>
         </div>
       </motion.div>

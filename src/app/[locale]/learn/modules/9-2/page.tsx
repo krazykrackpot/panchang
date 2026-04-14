@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -24,7 +25,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? '12 भाव: जीवन का नक्शा' : 'The 12 Houses: A Map of Life'}
+          {tl({ en: 'The 12 Houses: A Map of Life', hi: '12 भाव: जीवन का नक्शा', sa: '12 भाव: जीवन का नक्शा' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>12 भाव आकाश को 12 खण्डों में विभाजित करते हैं, प्रत्येक मानव अनुभव के एक विशिष्ट क्षेत्र पर शासन करता है। जन्म से मृत्यु तक, धन से मोक्ष तक, जीवन का हर पहलू इन भावों में से किसी एक में अपना स्थान पाता है। भावों को समझना किसी भी कुण्डली पढ़ने का पहला कदम है।</> : <>The 12 houses (Bhavas) divide the sky into 12 sectors, each governing a specific domain of human experience. From birth to death, from wealth to liberation, every aspect of life finds its place in one of these houses. Understanding the houses is the first step in reading any chart.</>}</p>
 
@@ -53,7 +54,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>भाव सूचकताएँ BPHS अध्याय 11-12, फलदीपिका अध्याय 2, और सारावली में वर्णित हैं। पराशर ने व्यवस्थित रूप से प्रत्येक भाव के शासन क्षेत्र सूचीबद्ध किए, और बाद के टीकाकारों जैसे वराहमिहिर और मन्त्रेश्वर ने इन सूचियों को परिष्कृत और विस्तारित किया। 12-भाव प्रणाली दो सहस्राब्दियों से उल्लेखनीय रूप से स्थिर रही है।</> : <>The house significations are described in BPHS Chapters 11-12, Phaladeepika Chapter 2, and Saravali. Parashara systematically lists what each house governs, and later commentators like Varahamihira and Mantreshwara refined and expanded these lists. The 12-house system has remained remarkably stable for over two millennia.</>}</p>
       </section>
     </div>
@@ -69,7 +70,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'भाव वर्गीकरण' : 'House Classifications'}
+          {tl({ en: 'House Classifications', hi: 'भाव वर्गीकरण', sa: 'भाव वर्गीकरण' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>भावों को कार्यात्मक श्रेणियों में बाँटा जाता है जो निर्धारित करती हैं कि उनके स्वामी कुण्डली में कैसा व्यवहार करते हैं। यह वर्गीकरण अत्यंत महत्वपूर्ण है — त्रिकोण भाव का स्वामी स्वभावतः शुभ होता है, जबकि दुःस्थान भाव का स्वामी चुनौतियाँ लाता है। ये समूह योगों (ग्रह संयोजन) का आधार बनाते हैं।</> : <>Houses are grouped into functional categories that determine how their lords behave in the chart. This classification is crucial — a planet ruling a Trikona house is inherently auspicious, while a planet ruling a Dusthana house carries challenges. These groupings form the foundation of yogas (planetary combinations).</>}</p>
 
@@ -94,7 +95,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'केन्द्र + त्रिकोण = राजयोग क्यों' : 'Why Kendra + Trikona = Raja Yoga'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Why Kendra + Trikona = Raja Yoga', hi: 'केन्द्र + त्रिकोण = राजयोग क्यों', sa: 'केन्द्र + त्रिकोण = राजयोग क्यों' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>केन्द्र विष्णु (धारण शक्ति) और त्रिकोण लक्ष्मी (भाग्य, कृपा) का प्रतिनिधित्व करते हैं। जब उनके स्वामी एक साथ आते हैं — युति, परस्पर दृष्टि, या राशि परिवर्तन से — शक्ति और भाग्य का मिलन राजयोग बनाता है, अर्थात &quot;राजसी संयोजन।&quot; यह पाराशरी ज्योतिष का सबसे महत्वपूर्ण योग सिद्धांत है।</> : <>Kendras represent Vishnu (sustaining power) and Trikonas represent Lakshmi (fortune, grace). When their lords come together — by conjunction, mutual aspect, or sign exchange — the union of power and fortune creates Raja Yoga, literally &quot;royal combination.&quot; This is the single most important yoga principle in Parashari Jyotish.</>}</p>
       </section>
     </div>
@@ -110,18 +111,18 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'भाव स्वामी — किस भाव का मालिक कौन?' : 'House Lords — Who Owns Which House?'}
+          {tl({ en: 'House Lords — Who Owns Which House?', hi: 'भाव स्वामी — किस भाव का मालिक कौन?', sa: 'भाव स्वामी — किस भाव का मालिक कौन?' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>प्रत्येक भाव का &quot;स्वामी&quot; वह ग्रह है जो उसमें स्थित राशि का शासक है। उदाहरण के लिए, यदि मेष पंचम भाव में है, तो मंगल पंचम भाव का स्वामी है। यदि तुला एकादश भाव में है, तो शुक्र एकादश का स्वामी है। भाव स्वामी जहाँ भी जाता है वहाँ भाव की सूचकताएँ ले जाता है — यदि पंचम स्वामी दशम भाव में जाता है, तो संतान/रचनात्मकता (पंचम) कर्म (दशम) से मिलता है, शायद शिक्षा, मनोरंजन, या बच्चों से जुड़े कार्य में कैरियर।</> : <>Every house is &quot;owned&quot; by the planet that rules the sign occupying it. For example, if Aries falls in the 5th house, Mars rules the 5th house. If Libra falls in the 11th house, Venus rules the 11th. The house lord carries the house&apos;s significations wherever it goes — if the 5th lord goes to the 10th house, children/creativity (5th) merges with career (10th), perhaps indicating a career in education, entertainment, or work involving children.</>}</p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>मुख्य सिद्धांत: <strong className="text-gold-light">प्रथम भाव स्वामी दशम में</strong> = आत्म (प्रथम) कर्म और सार्वजनिक जीवन (दशम) की ओर — स्वाभाविक नेता। <strong className="text-gold-light">सप्तम स्वामी द्वादश में</strong> = विवाह (सप्तम) का विदेश (द्वादश) से संबंध — अक्सर विदेशी जीवनसाथी या विवाह के बाद विदेश बसना। <strong className="text-gold-light">नवम स्वामी पंचम में</strong> = पिता का भाग्य (नवम) संतान/शिक्षा (पंचम) की ओर — सौभाग्यशाली पालन-पोषण, सशक्त उच्च शिक्षा।</> : <>Key principle: <strong className="text-gold-light">The lord of the 1st house placed in the 10th house</strong> = the self (1st) directed toward career and public life (10th) — a natural leader. <strong className="text-gold-light">The lord of the 7th in the 12th</strong> = marriage (7th) connecting to foreign lands (12th) — often a foreign spouse or settling abroad after marriage. <strong className="text-gold-light">The lord of the 9th in the 5th</strong> = father&apos;s fortune (9th) flowing to children/education (5th) — privileged upbringing, strong higher education.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Examples', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}</h4>
         <ExampleChart
           ascendant={1}
           planets={{ 1: [2], 2: [5], 9: [4] }}
-          title={isHi ? 'मेष लग्न — मंगल प्रथम में, शुक्र द्वितीय में, बृहस्पति नवम में' : 'Aries Lagna — Mars in 1st, Venus in 2nd, Jupiter in 9th'}
+          title={tl({ en: 'Aries Lagna — Mars in 1st, Venus in 2nd, Jupiter in 9th', hi: 'मेष लग्न — मंगल प्रथम में, शुक्र द्वितीय में, बृहस्पति नवम में', sa: 'मेष लग्न — मंगल प्रथम में, शुक्र द्वितीय में, बृहस्पति नवम में' }, locale)}
           highlight={[1, 2, 9]}
         />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">मेष लग्न:</span> मंगल प्रथम (मेष) और अष्टम (वृश्चिक) दोनों का स्वामी है। शुक्र द्वितीय (वृषभ) और सप्तम (तुला) का स्वामी है। बृहस्पति नवम (धनु) और द्वादश (मीन) का स्वामी है। यहाँ बृहस्पति नवम स्वामी के रूप में सर्वाधिक शुभ ग्रह है — यदि यह लग्न पर दृष्टि डाले या केन्द्र में बैठे, तो पूरी कुण्डली उन्नत होती है।</> : <><span className="text-gold-light font-medium">Aries Lagna:</span> Mars owns both the 1st (Aries) and 8th (Scorpio). Venus owns the 2nd (Taurus) and 7th (Libra). Jupiter owns the 9th (Sagittarius) and 12th (Pisces). Here, Jupiter as 9th lord is the most benefic planet — if it aspects the Lagna or sits in a Kendra, it uplifts the entire chart.</>}</p>
@@ -129,12 +130,12 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रांतियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रांतियाँ', sa: 'सामान्य भ्रांतियाँ' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><strong className="text-gold-light">भ्रांति:</strong> &quot;बृहस्पति सदैव शुभ और शनि सदैव अशुभ है।&quot; यह मूलतः गलत है। कारक स्वभाव स्वामित्व पर निर्भर करता है। वृषभ लग्न के लिए बृहस्पति अष्टम और एकादश का स्वामी है — विशेष शुभ नहीं। शनि नवम और दशम का स्वामी है — कुण्डली का सर्वश्रेष्ठ ग्रह जो योगकारक बनता है। प्राकृतिक शुभ ग्रह दुःस्थान का स्वामी होने पर हानिकारक बनते हैं; प्राकृतिक पापग्रह त्रिकोण का स्वामी होने पर सहायक बनते हैं।</> : <><strong className="text-gold-light">Misconception:</strong> &quot;Jupiter is always good and Saturn is always bad.&quot; This is fundamentally wrong. Functional nature depends on lordship. For Taurus Lagna, Jupiter rules the 8th and 11th — not especially benefic. Saturn rules the 9th and 10th — the best planet in the chart forming Yoga Karaka. Natural benefics owning Dusthanas become harmful; natural malefics owning Trikonas become helpful.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा कुण्डली इंजन लग्न राशि और समभाव पद्धति के आधार पर प्रत्येक कुण्डली के भाव स्वामियों की स्वचालित गणना करता है। टिप्पणी (व्याख्यात्मक भाष्य) प्रत्येक भाव स्वामी की स्थिति का विश्लेषण करती है, योगों की पहचान करती है, शक्ति का मूल्यांकन करती है, और जीवन-क्षेत्र भविष्यवाणियाँ प्रदान करती है।</> : <>Our Kundali engine automatically calculates house lords for every chart based on the Lagna sign and the Equal House system. The tippanni (interpretive commentary) analyzes each house lord&apos;s placement, identifying yogas, evaluating strength, and providing life-area predictions. You can generate your chart and see exactly which planet rules each house in your life.</>}</p>
       </section>
     </div>

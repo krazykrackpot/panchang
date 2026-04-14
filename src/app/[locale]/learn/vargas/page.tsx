@@ -495,7 +495,7 @@ export default function LearnVargasPage() {
       </LessonSection>
 
       {/* ─── THE 16 SHODASVARGA CHARTS ─── */}
-      <LessonSection number={2} title={!isDevanagariLocale(locale) ? 'The 16 Shodasvarga Charts' : tl({ en: '16 षोडशवर्गकुण्डल्यः', hi: '16 षोडशवर्ग कुण्डलियाँ', sa: '16 षोडशवर्ग कुण्डलियाँ', ta: '16 षोडशवर्गकुण्डल्यः', te: '16 षोडशवर्गकुण्डल्यः', bn: '16 षोडशवर्गकुण्डल्यः', kn: '16 षोडशवर्गकुण्डल्यः', gu: '16 षोडशवर्गकुण्डल्यः', mai: '16 षोडशवर्ग कुण्डलियाँ', mr: '16 षोडशवर्ग कुण्डलियाँ' }, locale)}>
+      <LessonSection number={2} title={tl({ en: 'The 16 Shodasvarga Charts', hi: '16 षोडशवर्ग कुण्डलियाँ', sa: '16 षोडशवर्ग कुण्डलियाँ' }, locale)}>
         <p className="mb-4">
           {locale === 'en'
             ? 'Each chart zooms into a specific area of life. Charts are grouped into three tiers based on their interpretive weight in the Vimshopak scoring system:'

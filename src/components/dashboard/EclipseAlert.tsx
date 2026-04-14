@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect, useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -87,7 +88,7 @@ export default function EclipseAlert() {
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString(isHi ? 'hi-IN' : 'en-IN', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
+    return d.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale), { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
   };
 
   return (
@@ -122,7 +123,7 @@ export default function EclipseAlert() {
               {/* Title */}
               <div className="flex items-center gap-2 flex-wrap mb-1">
                 <h3 className={`text-sm font-bold ${accentColor}`} style={headingFont}>
-                  {isHi ? '🔮 आगामी ग्रहण' : '🔮 Upcoming Eclipse'}
+                  {tl({ en: '🔮 Upcoming Eclipse', hi: '🔮 आगामी ग्रहण', sa: '🔮 आगामी ग्रहण' }, locale)}
                 </h3>
                 <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold border ${
                   isSolar ? 'bg-amber-500/10 text-amber-300 border-amber-500/20' : 'bg-indigo-500/10 text-indigo-300 border-indigo-500/20'
@@ -146,9 +147,9 @@ export default function EclipseAlert() {
                   daysUntil <= 90 ? 'bg-amber-500/10 text-amber-300 border border-amber-500/20' :
                   'bg-blue-500/10 text-blue-300 border border-blue-500/20'
                 }`}>
-                  {daysUntil === 0 ? (isHi ? 'आज!' : 'Today!') :
-                   daysUntil === 1 ? (isHi ? 'कल!' : 'Tomorrow!') :
-                   isHi ? `${daysUntil} दिन शेष` : `${daysUntil} days away`}
+                  {daysUntil === 0 ? tl({ en: 'Today!', hi: 'आज!', sa: 'आज!' }, locale) :
+                   daysUntil === 1 ? tl({ en: 'Tomorrow!', hi: 'कल!', sa: 'कल!' }, locale) :
+                   tl({ en: `${daysUntil} days away`, hi: `${daysUntil} दिन शेष`, sa: `${daysUntil} दिन शेष` }, locale)}
                 </span>
               </div>
 
@@ -156,13 +157,13 @@ export default function EclipseAlert() {
               {local && (
                 <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-text-secondary/70" style={bodyFont}>
                   {local.eclipseStart && (
-                    <span><Eye className="w-3 h-3 inline mr-1 text-emerald-400" />{isHi ? 'आरम्भ' : 'Start'}: <span className="text-gold-light font-mono">{local.eclipseStart}</span></span>
+                    <span><Eye className="w-3 h-3 inline mr-1 text-emerald-400" />{tl({ en: 'Start', hi: 'आरम्भ', sa: 'आरम्भ' }, locale)}: <span className="text-gold-light font-mono">{local.eclipseStart}</span></span>
                   )}
                   {local.maximum && (
-                    <span>{isHi ? 'अधिकतम' : 'Max'}: <span className="text-gold-light font-mono">{local.maximum}</span></span>
+                    <span>{tl({ en: 'Max', hi: 'अधिकतम', sa: 'अधिकतम' }, locale)}: <span className="text-gold-light font-mono">{local.maximum}</span></span>
                   )}
                   {local.maxMagnitude > 0 && (
-                    <span>{isHi ? 'परिमाण' : 'Mag'}: <span className="text-gold-light font-mono">{local.maxMagnitude.toFixed(2)}</span></span>
+                    <span>{tl({ en: 'Mag', hi: 'परिमाण', sa: 'परिमाण' }, locale)}: <span className="text-gold-light font-mono">{local.maxMagnitude.toFixed(2)}</span></span>
                   )}
                 </div>
               )}

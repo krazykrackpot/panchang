@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -187,7 +188,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'शासक ग्रह क्या हैं?' : 'What Are Ruling Planets?'}
+          {tl({ en: 'What Are Ruling Planets?', hi: 'शासक ग्रह क्या हैं?', sa: 'शासक ग्रह क्या हैं?' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -203,12 +204,10 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-          {isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}
+          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {isHi
-            ? 'प्रश्न के क्षण में उसका उत्तर निहित है यह विचार वैदिक ज्योतिष की प्राचीन प्रश्न (होरेरी) परम्परा में निहित है। प्रश्न मार्ग और ताजिक नीलकण्ठी जैसे ग्रन्थ बल देते हैं कि प्रश्न के क्षण की कुण्डली परिणाम की सम्पूर्ण सूचना रखती है। कृष्णमूर्ति ने इसे शासक ग्रह अवधारणा में परिशोधित किया — प्रश्न क्षण से पाँच प्रमुख ग्रह संकेतक निकालकर उन्हें जन्म कुण्डली से दशा समय को सीमित करने के फिल्टर के रूप में उपयोग करना। होरेरी सिद्धान्तों का जन्म दशा विश्लेषण के साथ यह संश्लेषण विशिष्ट रूप से केपी है।'
-            : 'The idea that the moment of a question carries its own answer is rooted in the ancient Prashna (horary) tradition of Vedic astrology. Texts like Prashna Marga and Tajika Neelakanthi emphasize that the chart cast for the moment of query contains all information about the outcome. Krishnamurti refined this into the ruling planets concept — extracting five key planetary pointers from the query moment and using them as a filter to narrow down dasha timing from the birth chart. This synthesis of horary principles with natal dasha analysis is uniquely KP.'}
+          {tl({ en: 'The idea that the moment of a question carries its own answer is rooted in the ancient Prashna (horary) tradition of Vedic astrology. Texts like Prashna Marga and Tajika Neelakanthi emphasize that the chart cast for the moment of query contains all information about the outcome. Krishnamurti refined this into the ruling planets concept — extracting five key planetary pointers from the query moment and using them as a filter to narrow down dasha timing from the birth chart. This synthesis of horary principles with natal dasha analysis is uniquely KP.', hi: 'प्रश्न के क्षण में उसका उत्तर निहित है यह विचार वैदिक ज्योतिष की प्राचीन प्रश्न (होरेरी) परम्परा में निहित है। प्रश्न मार्ग और ताजिक नीलकण्ठी जैसे ग्रन्थ बल देते हैं कि प्रश्न के क्षण की कुण्डली परिणाम की सम्पूर्ण सूचना रखती है। कृष्णमूर्ति ने इसे शासक ग्रह अवधारणा में परिशोधित किया — प्रश्न क्षण से पाँच प्रमुख ग्रह संकेतक निकालकर उन्हें जन्म कुण्डली से दशा समय को सीमित करने के फिल्टर के रूप में उपयोग करना। होरेरी सिद्धान्तों का जन्म दशा विश्लेषण के साथ यह संश्लेषण विशिष्ट रूप से केपी है।', sa: 'प्रश्न के क्षण में उसका उत्तर निहित है यह विचार वैदिक ज्योतिष की प्राचीन प्रश्न (होरेरी) परम्परा में निहित है। प्रश्न मार्ग और ताजिक नीलकण्ठी जैसे ग्रन्थ बल देते हैं कि प्रश्न के क्षण की कुण्डली परिणाम की सम्पूर्ण सूचना रखती है। कृष्णमूर्ति ने इसे शासक ग्रह अवधारणा में परिशोधित किया — प्रश्न क्षण से पाँच प्रमुख ग्रह संकेतक निकालकर उन्हें जन्म कुण्डली से दशा समय को सीमित करने के फिल्टर के रूप में उपयोग करना। होरेरी सिद्धान्तों का जन्म दशा विश्लेषण के साथ यह संश्लेषण विशिष्ट रूप से केपी है।' }, locale)}
         </p>
       </section>
     </div>
@@ -222,12 +221,10 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'समय-निर्धारण हेतु शासक ग्रहों का उपयोग' : 'Using Ruling Planets for Timing'}
+          {tl({ en: 'Using Ruling Planets for Timing', hi: 'समय-निर्धारण हेतु शासक ग्रहों का उपयोग', sa: 'समय-निर्धारण हेतु शासक ग्रहों का उपयोग' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          {isHi
-            ? 'प्रक्रिया तीन चरणों में कार्य करती है। पहला, वर्तमान क्षण (जब आप प्रश्न विश्लेषण हेतु बैठते हैं) की कुण्डली बनाएँ और पाँच शासक ग्रह गणित करें। दूसरा, इन शासक ग्रहों की जन्म कुण्डली की कारक सारणी से तुलना करें। ज्ञात करें कि कौन-से शासक ग्रह सम्बन्धित घटना भावों के कारक भी हैं। तीसरा, जिस दशा/भुक्ति/अन्तरा क्रम में सर्वाधिक शासक-ग्रह-कारक मिलान हों वह घटना की समय खिड़की है।'
-            : 'The process works in three steps. First, cast a chart for the current moment (when you sit down to analyze the question) and compute the five ruling planets. Second, compare these ruling planets against the significator table from the birth chart. Find which ruling planets are also significators of the relevant event houses. Third, the dasha/bhukti/antara sequence that involves the most ruling-planet-significator matches is the timing window for the event.'}
+          {tl({ en: 'The process works in three steps. First, cast a chart for the current moment (when you sit down to analyze the question) and compute the five ruling planets. Second, compare these ruling planets against the significator table from the birth chart. Find which ruling planets are also significators of the relevant event houses. Third, the dasha/bhukti/antara sequence that involves the most ruling-planet-significator matches is the timing window for the event.', hi: 'प्रक्रिया तीन चरणों में कार्य करती है। पहला, वर्तमान क्षण (जब आप प्रश्न विश्लेषण हेतु बैठते हैं) की कुण्डली बनाएँ और पाँच शासक ग्रह गणित करें। दूसरा, इन शासक ग्रहों की जन्म कुण्डली की कारक सारणी से तुलना करें। ज्ञात करें कि कौन-से शासक ग्रह सम्बन्धित घटना भावों के कारक भी हैं। तीसरा, जिस दशा/भुक्ति/अन्तरा क्रम में सर्वाधिक शासक-ग्रह-कारक मिलान हों वह घटना की समय खिड़की है।', sa: 'प्रक्रिया तीन चरणों में कार्य करती है। पहला, वर्तमान क्षण (जब आप प्रश्न विश्लेषण हेतु बैठते हैं) की कुण्डली बनाएँ और पाँच शासक ग्रह गणित करें। दूसरा, इन शासक ग्रहों की जन्म कुण्डली की कारक सारणी से तुलना करें। ज्ञात करें कि कौन-से शासक ग्रह सम्बन्धित घटना भावों के कारक भी हैं। तीसरा, जिस दशा/भुक्ति/अन्तरा क्रम में सर्वाधिक शासक-ग्रह-कारक मिलान हों वह घटना की समय खिड़की है।' }, locale)}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
           If a ruling planet appears multiple times (e.g., it is both the Moon&apos;s star lord and the Lagna sign lord), it carries extra weight. If 3 or more of the 5 ruling planets also signify the event&apos;s houses, the prediction carries high confidence. If fewer than 2 match, the astrologer may need to wait for a more favorable moment to re-analyze, or the event may be denied.
@@ -236,8 +233,8 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={isHi ? 'उदाहरण कुण्डली' : 'Example Chart'} />
+          {tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरण कुण्डली' }, locale)} />
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Query: &quot;When will I get married?&quot;</span> Analysis moment: Tuesday at 10:15 AM. Moon at 22 degrees Taurus (Rohini nakshatra). Ascendant at 8 degrees Cancer (Pushya nakshatra). Ruling planets: (1) Moon&apos;s sign lord = Venus (Taurus). (2) Moon&apos;s star lord = Moon (Rohini). (3) Lagna sign lord = Moon (Cancer). (4) Lagna star lord = Saturn (Pushya). (5) Day lord = Mars (Tuesday). Ruling planets: Venus, Moon (repeated), Saturn, Mars.
@@ -259,7 +256,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'गोचर द्वारा परिशोधन' : 'Refining with Transits'}
+          {tl({ en: 'Refining with Transits', hi: 'गोचर द्वारा परिशोधन', sa: 'गोचर द्वारा परिशोधन' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -273,7 +270,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}
+          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -284,7 +281,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}
+          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi

@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
@@ -99,7 +100,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'वह प्रमेय जिसे हम गलत नाम से जानते हैं' : "The Theorem We Know By the Wrong Name"}
+          {tl({ en: 'The Theorem We Know By the Wrong Name', hi: 'वह प्रमेय जिसे हम गलत नाम से जानते हैं', sa: 'वह प्रमेय जिसे हम गलत नाम से जानते हैं' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -110,7 +111,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'शुल्ब सूत्र — कर्मकाण्ड से जन्मा गणित' : "Sulba Sutras — Mathematics Born From Ritual"}
+          {tl({ en: 'Sulba Sutras — Mathematics Born From Ritual', hi: 'शुल्ब सूत्र — कर्मकाण्ड से जन्मा गणित', sa: 'शुल्ब सूत्र — कर्मकाण्ड से जन्मा गणित' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-3">
           {isHi
@@ -136,7 +137,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'बौधायन शुल्ब सूत्र 1.48' : "Baudhayana Sulba Sutra 1.48"}
+          {tl({ en: 'Baudhayana Sulba Sutra 1.48', hi: 'बौधायन शुल्ब सूत्र 1.48', sa: 'बौधायन शुल्ब सूत्र 1.48' }, locale)}
         </h4>
         <p
           className="text-gold-primary text-base font-bold mb-2 leading-relaxed text-center"
@@ -145,12 +146,10 @@ function Page1() {
           दीर्घचतुरश्रस्याक्ष्णयारज्जुः पार्श्वमानी तिर्यङ्मानी च यत्पृथग्भूते कुरुतस्तदुभयं करोति
         </p>
         <p className="text-gold-light/80 text-sm italic text-center mb-1">
-          {isHi
-            ? '"आयत का विकर्ण वह दोनों [क्षेत्रफल] उत्पन्न करता है जो उसकी लम्बाई और चौड़ाई अलग-अलग उत्पन्न करती हैं।"'
-            : '"The diagonal of a rectangle produces both [areas] which its length and breadth produce separately."'}
+          {tl({ en: '"The diagonal of a rectangle produces both [areas] which its length and breadth produce separately."', hi: '"आयत का विकर्ण वह दोनों [क्षेत्रफल] उत्पन्न करता है जो उसकी लम्बाई और चौड़ाई अलग-अलग उत्पन्न करती हैं।"', sa: '"आयत का विकर्ण वह दोनों [क्षेत्रफल] उत्पन्न करता है जो उसकी लम्बाई और चौड़ाई अलग-अलग उत्पन्न करती हैं।"' }, locale)}
         </p>
         <p className="text-text-secondary/60 text-xs text-center">
-          {isHi ? '= a² + b² = c² — सभी आयतों के लिए सामान्य नियम' : '= a² + b² = c² — a general rule for ALL rectangles'}
+          {tl({ en: '= a² + b² = c² — a general rule for ALL rectangles', hi: '= a² + b² = c² — सभी आयतों के लिए सामान्य नियम', sa: '= a² + b² = c² — सभी आयतों के लिए सामान्य नियम' }, locale)}
         </p>
       </section>
     </div>
@@ -167,7 +166,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? '√2, त्रिक और वेदी ज्यामिति' : '√2, Triples, and Altar Geometry'}
+          {tl({ en: '√2, Triples, and Altar Geometry', hi: '√2, त्रिक और वेदी ज्यामिति', sa: '√2, त्रिक और वेदी ज्यामिति' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -178,7 +177,7 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? '√2 — 800 ईपू में पाँच दशमलव' : '√2 — Five Decimal Places in 800 BCE'}
+          {tl({ en: '√2 — Five Decimal Places in 800 BCE', hi: '√2 — 800 ईपू में पाँच दशमलव', sa: '√2 — 800 ईपू में पाँच दशमलव' }, locale)}
         </h4>
         <div className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10 text-center mb-3">
           <p className="text-amber-300 font-mono text-sm font-bold">√2 ≈ 1 + 1/3 + 1/(3×4) − 1/(3×4×34)</p>
@@ -190,15 +189,13 @@ function Page2() {
             : <>Why this approximation? Because doubling a square altar requires its diagonal — which is s√2. Starting from an altar of side s=1, the new side = √2. Without accurate √2, the doubled altar isn't right.</>}
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
-          {isHi
-            ? 'बौधायन का मान आधुनिक मान से केवल 0.0000021 अलग है। अपस्तम्ब शुल्ब सूत्र (~600 ईपू) ने इसे और परिष्कृत किया।'
-            : "Baudhayana's value differs from the modern IEEE 754 value by only 0.0000021. Apastamba Sulba Sutra (~600 BCE) refined it further."}
+          {tl({ en: "Baudhayana's value differs from the modern IEEE 754 value by only 0.0000021. Apastamba Sulba Sutra (~600 BCE) refined it further.", hi: "बौधायन का मान आधुनिक मान से केवल 0.0000021 अलग है। अपस्तम्ब शुल्ब सूत्र (~600 ईपू) ने इसे और परिष्कृत किया।", sa: "बौधायन का मान आधुनिक मान से केवल 0.0000021 अलग है। अपस्तम्ब शुल्ब सूत्र (~600 ईपू) ने इसे और परिष्कृत किया।" }, locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'पाइथागोरीय त्रिक — वेदी में समकोण' : "Pythagorean Triples — Right Angles for the Altar"}
+          {tl({ en: 'Pythagorean Triples — Right Angles for the Altar', hi: 'पाइथागोरीय त्रिक — वेदी में समकोण', sa: 'पाइथागोरीय त्रिक — वेदी में समकोण' }, locale)}
         </h4>
         <div className="grid grid-cols-2 gap-2 mb-3">
           {[
@@ -214,9 +211,7 @@ function Page2() {
           ))}
         </div>
         <p className="text-text-secondary text-xs leading-relaxed">
-          {isHi
-            ? 'इन त्रिकों का व्यावहारिक उपयोग: लम्बाई (a+b+c) की रस्सी में a और a+b पर गाँठें बाँधें, तीनों खूँटों पर फैलाएँ — एक सटीक समकोण बनता है। यही प्राचीन निर्माणकर्ता समकोण बनाते थे।'
-            : 'Practical use: tie a rope of length (a+b+c) with knots at a and a+b, stretch on three pegs — a perfect right angle. This is how ancient builders made right angles without modern instruments.'}
+          {tl({ en: 'Practical use: tie a rope of length (a+b+c) with knots at a and a+b, stretch on three pegs — a perfect right angle. This is how ancient builders made right angles without modern instruments.', hi: 'इन त्रिकों का व्यावहारिक उपयोग: लम्बाई (a+b+c) की रस्सी में a और a+b पर गाँठें बाँधें, तीनों खूँटों पर फैलाएँ — एक सटीक समकोण बनता है। यही प्राचीन निर्माणकर्ता समकोण बनाते थे।', sa: 'इन त्रिकों का व्यावहारिक उपयोग: लम्बाई (a+b+c) की रस्सी में a और a+b पर गाँठें बाँधें, तीनों खूँटों पर फैलाएँ — एक सटीक समकोण बनता है। यही प्राचीन निर्माणकर्ता समकोण बनाते थे।' }, locale)}
         </p>
       </section>
     </div>
@@ -233,7 +228,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'पाइथागोरस ने वास्तव में क्या किया?' : "What Did Pythagoras Actually Do?"}
+          {tl({ en: 'What Did Pythagoras Actually Do?', hi: 'पाइथागोरस ने वास्तव में क्या किया?', sa: 'पाइथागोरस ने वास्तव में क्या किया?' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -244,7 +239,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'कालक्रम' : 'The Timeline'}
+          {tl({ en: 'The Timeline', hi: 'कालक्रम', sa: 'कालक्रम' }, locale)}
         </h4>
         <div className="space-y-3">
           {[
@@ -264,25 +259,19 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15 rounded-xl p-5">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'निष्पक्ष मूल्यांकन' : 'The Fair Assessment'}
+          {tl({ en: 'The Fair Assessment', hi: 'निष्पक्ष मूल्यांकन', sa: 'निष्पक्ष मूल्यांकन' }, locale)}
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'भारतीय योगदान:' : 'Indian contribution:'}</span>{' '}
-            {isHi
-              ? 'सामान्य प्रमेय की खोज और व्यावहारिक उपयोग (~800 ईपू), √2 पाँच दशमलव तक, चार पाइथागोरीय त्रिक।'
-              : 'Discovery and systematic practical use of the general theorem (~800 BCE), √2 to 5 decimal places, four Pythagorean triples.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Indian contribution:', hi: 'भारतीय योगदान:', sa: 'भारतीय योगदान:' }, locale)}</span>{' '}
+            {tl({ en: 'Discovery and systematic practical use of the general theorem (~800 BCE), √2 to 5 decimal places, four Pythagorean triples.', hi: 'सामान्य प्रमेय की खोज और व्यावहारिक उपयोग (~800 ईपू), √2 पाँच दशमलव तक, चार पाइथागोरीय त्रिक।', sa: 'सामान्य प्रमेय की खोज और व्यावहारिक उपयोग (~800 ईपू), √2 पाँच दशमलव तक, चार पाइथागोरीय त्रिक।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'ग्रीक योगदान:' : 'Greek contribution:'}</span>{' '}
-            {isHi
-              ? 'सम्भवतः प्रथम औपचारिक निगमनात्मक प्रमाण — हालाँकि पाइथागोरस का कोई लिखित कार्य नहीं बचा, इसलिए यूक्लिड (~300 ईपू) ही सबसे पुराना जीवित स्रोत है।'
-              : 'Possibly the first formal deductive proof — though no work by Pythagoras survives, so Euclid (~300 BCE) is the oldest surviving source.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Greek contribution:', hi: 'ग्रीक योगदान:', sa: 'ग्रीक योगदान:' }, locale)}</span>{' '}
+            {tl({ en: 'Possibly the first formal deductive proof — though no work by Pythagoras survives, so Euclid (~300 BCE) is the oldest surviving source.', hi: 'सम्भवतः प्रथम औपचारिक निगमनात्मक प्रमाण — हालाँकि पाइथागोरस का कोई लिखित कार्य नहीं बचा, इसलिए यूक्लिड (~300 ईपू) ही सबसे पुराना जीवित स्रोत है।', sa: 'सम्भवतः प्रथम औपचारिक निगमनात्मक प्रमाण — हालाँकि पाइथागोरस का कोई लिखित कार्य नहीं बचा, इसलिए यूक्लिड (~300 ईपू) ही सबसे पुराना जीवित स्रोत है।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed mt-2 italic">
-            {isHi
-              ? 'गणित के इतिहासकार अब "बौधायन प्रमेय" नाम की ओर झुक रहे हैं। भारतीय गणित पाठ्यपुस्तकों में यह पहले से ही "बौधायन प्रमेय" कही जाती है।'
-              : 'Historians of mathematics increasingly favour the name "Baudhayana theorem." Indian mathematics textbooks already call it that.'}
+            {tl({ en: 'Historians of mathematics increasingly favour the name "Baudhayana theorem." Indian mathematics textbooks already call it that.', hi: 'गणित के इतिहासकार अब "बौधायन प्रमेय" नाम की ओर झुक रहे हैं। भारतीय गणित पाठ्यपुस्तकों में यह पहले से ही "बौधायन प्रमेय" कही जाती है।', sa: 'गणित के इतिहासकार अब "बौधायन प्रमेय" नाम की ओर झुक रहे हैं। भारतीय गणित पाठ्यपुस्तकों में यह पहले से ही "बौधायन प्रमेय" कही जाती है।' }, locale)}
           </p>
         </div>
       </section>

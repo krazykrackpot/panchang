@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocale } from 'next-intl';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -94,12 +95,12 @@ export default function InstallPrompt() {
         {/* Text */}
         <div className="flex-1 min-w-0">
           <p className="text-sm font-medium text-text-primary truncate">
-            {isHi ? 'देखो पंचांग इंस्टॉल करें' : 'Install Dekho Panchang'}
+            {tl({ en: 'Install Dekho Panchang', hi: 'देखो पंचांग इंस्टॉल करें', sa: 'देखो पंचांग इंस्टॉल करें' }, locale)}
           </p>
           <p className="text-xs text-text-secondary truncate">
             {isIOS
-              ? (isHi ? 'Share → "होम स्क्रीन पर जोड़ें" दबाएं' : 'Tap Share → "Add to Home Screen"')
-              : (isHi ? 'होम स्क्रीन से तुरंत खोलें — ऑफ़लाइन भी' : 'Quick access from home screen — works offline')}
+              ? tl({ en: 'Tap Share → "Add to Home Screen"', hi: 'Share → "होम स्क्रीन पर जोड़ें" दबाएं', sa: 'Share → "होम स्क्रीन पर जोड़ें" दबाएं' }, locale)
+              : tl({ en: 'Quick access from home screen — works offline', hi: 'होम स्क्रीन से तुरंत खोलें — ऑफ़लाइन भी', sa: 'होम स्क्रीन से तुरंत खोलें — ऑफ़लाइन भी' }, locale)}
           </p>
         </div>
 
@@ -110,14 +111,14 @@ export default function InstallPrompt() {
             className="px-3 py-1.5 text-xs text-text-tertiary hover:text-text-secondary transition-colors"
             aria-label="Dismiss install prompt"
           >
-            {isHi ? 'बाद में' : 'Not now'}
+            {tl({ en: 'Not now', hi: 'बाद में', sa: 'बाद में' }, locale)}
           </button>
           {!isIOS && (
             <button
               onClick={handleInstall}
               className="px-4 py-1.5 rounded-lg bg-gradient-to-r from-[#d4a853] to-[#b8912e] text-[#0a0e27] text-xs font-semibold hover:shadow-lg hover:shadow-[#d4a853]/25 transition-all active:scale-95"
             >
-              {isHi ? 'इंस्टॉल' : 'Install'}
+              {tl({ en: 'Install', hi: 'इंस्टॉल', sa: 'इंस्टॉल' }, locale)}
             </button>
           )}
         </div>

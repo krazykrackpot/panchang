@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -187,7 +188,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'तिथि प्रवेश क्या है?' : 'What Is Tithi Pravesha?'}
+          {tl({ en: 'What Is Tithi Pravesha?', hi: 'तिथि प्रवेश क्या है?', sa: 'तिथि प्रवेश क्या है?' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -195,20 +196,16 @@ function Page1() {
             : <>Tithi Pravesha is an annual chart cast for the moment when the Sun-Moon angular relationship at birth (the natal tithi) recurs each year. While Varshaphal (solar return) tracks the Sun&apos;s return to its exact natal longitude, Tithi Pravesha tracks the return of the Sun-Moon RELATIONSHIP — the same tithi, in the same solar month. This is deeply rooted in Hindu tradition where a person&apos;s &quot;real&quot; birthday is their Janma Tithi (birth tithi), not the Gregorian date.</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {isHi
-            ? 'उदाहरणार्थ, यदि आपका जन्म शुक्ल पंचमी (शुक्ल पक्ष की 5वीं तिथि) पर हुआ जब सूर्य वृषभ में था, तो आपका प्रत्येक वर्ष का तिथि प्रवेश वह क्षण है जब चन्द्र-सूर्य विस्तार पुनः पंचमी मान (48-60 अंश) पर पहुँचता है जबकि सूर्य वृषभ में हो। यह क्षण आपके ग्रेगोरियन जन्मदिन से कुछ दिन पहले या बाद में पड़ सकता है।'
-            : 'For example, if you were born on Shukla Panchami (5th tithi of the bright half) when the Sun was in Taurus, your Tithi Pravesha each year is the moment when the Moon-Sun elongation again reaches the Panchami value (48-60 degrees) while the Sun is in Taurus. This moment may fall a few days before or after your Gregorian birthday.'}
+          {tl({ en: 'For example, if you were born on Shukla Panchami (5th tithi of the bright half) when the Sun was in Taurus, your Tithi Pravesha each year is the moment when the Moon-Sun elongation again reaches the Panchami value (48-60 degrees) while the Sun is in Taurus. This moment may fall a few days before or after your Gregorian birthday.', hi: 'उदाहरणार्थ, यदि आपका जन्म शुक्ल पंचमी (शुक्ल पक्ष की 5वीं तिथि) पर हुआ जब सूर्य वृषभ में था, तो आपका प्रत्येक वर्ष का तिथि प्रवेश वह क्षण है जब चन्द्र-सूर्य विस्तार पुनः पंचमी मान (48-60 अंश) पर पहुँचता है जबकि सूर्य वृषभ में हो। यह क्षण आपके ग्रेगोरियन जन्मदिन से कुछ दिन पहले या बाद में पड़ सकता है।', sa: 'उदाहरणार्थ, यदि आपका जन्म शुक्ल पंचमी (शुक्ल पक्ष की 5वीं तिथि) पर हुआ जब सूर्य वृषभ में था, तो आपका प्रत्येक वर्ष का तिथि प्रवेश वह क्षण है जब चन्द्र-सूर्य विस्तार पुनः पंचमी मान (48-60 अंश) पर पहुँचता है जबकि सूर्य वृषभ में हो। यह क्षण आपके ग्रेगोरियन जन्मदिन से कुछ दिन पहले या बाद में पड़ सकता है।' }, locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-          {isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}
+          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {isHi
-            ? 'तिथि प्रवेश की जड़ें सौर तिथि के बजाय तिथि द्वारा जन्मदिन मनाने की वैदिक परम्परा में गहरी हैं। धर्मशास्त्र ग्रन्थ प्रत्येक वर्ष जन्म तिथि पर अनुष्ठान निर्धारित करते हैं। ज्योतिषीय अनुप्रयोग — TP क्षण के लिए भविष्यवाणी कुण्डली बनाना — संजय रथ और अन्य आधुनिक ज्योतिष विद्वानों द्वारा प्रचारित किया गया जिन्होंने तर्क दिया कि तिथि-आधारित प्रत्यावर्तन विशुद्ध सौर वर्षफल से बेहतर वैदिक ज्योतिष के चान्द्र सार का सम्मान करता है। TP तकनीक पाराशरी सिद्धान्तों (भाव, स्वामित्व) और ताजिक पद्धति (वार्षिक कुण्डली व्याख्या) दोनों से ग्रहण करती है।'
-            : 'Tithi Pravesha has deep roots in the Vedic tradition of celebrating birthdays by tithi rather than solar date. The Dharmashastra texts prescribe rituals on the Janma Tithi (birth tithi) each year. The astrological application — casting a predictive chart for the TP moment — was championed by Sanjay Rath and other modern Jyotish scholars who argued that the tithi-based return honors the lunar essence of Vedic astrology better than the purely solar Varshaphal. The TP technique draws from both Parashari principles (houses, lordships) and Tajika methodology (annual chart interpretation).'}
+          {tl({ en: 'Tithi Pravesha has deep roots in the Vedic tradition of celebrating birthdays by tithi rather than solar date. The Dharmashastra texts prescribe rituals on the Janma Tithi (birth tithi) each year. The astrological application — casting a predictive chart for the TP moment — was championed by Sanjay Rath and other modern Jyotish scholars who argued that the tithi-based return honors the lunar essence of Vedic astrology better than the purely solar Varshaphal. The TP technique draws from both Parashari principles (houses, lordships) and Tajika methodology (annual chart interpretation).', hi: 'तिथि प्रवेश की जड़ें सौर तिथि के बजाय तिथि द्वारा जन्मदिन मनाने की वैदिक परम्परा में गहरी हैं। धर्मशास्त्र ग्रन्थ प्रत्येक वर्ष जन्म तिथि पर अनुष्ठान निर्धारित करते हैं। ज्योतिषीय अनुप्रयोग — TP क्षण के लिए भविष्यवाणी कुण्डली बनाना — संजय रथ और अन्य आधुनिक ज्योतिष विद्वानों द्वारा प्रचारित किया गया जिन्होंने तर्क दिया कि तिथि-आधारित प्रत्यावर्तन विशुद्ध सौर वर्षफल से बेहतर वैदिक ज्योतिष के चान्द्र सार का सम्मान करता है। TP तकनीक पाराशरी सिद्धान्तों (भाव, स्वामित्व) और ताजिक पद्धति (वार्षिक कुण्डली व्याख्या) दोनों से ग्रहण करती है।', sa: 'तिथि प्रवेश की जड़ें सौर तिथि के बजाय तिथि द्वारा जन्मदिन मनाने की वैदिक परम्परा में गहरी हैं। धर्मशास्त्र ग्रन्थ प्रत्येक वर्ष जन्म तिथि पर अनुष्ठान निर्धारित करते हैं। ज्योतिषीय अनुप्रयोग — TP क्षण के लिए भविष्यवाणी कुण्डली बनाना — संजय रथ और अन्य आधुनिक ज्योतिष विद्वानों द्वारा प्रचारित किया गया जिन्होंने तर्क दिया कि तिथि-आधारित प्रत्यावर्तन विशुद्ध सौर वर्षफल से बेहतर वैदिक ज्योतिष के चान्द्र सार का सम्मान करता है। TP तकनीक पाराशरी सिद्धान्तों (भाव, स्वामित्व) और ताजिक पद्धति (वार्षिक कुण्डली व्याख्या) दोनों से ग्रहण करती है।' }, locale)}
         </p>
       </section>
     </div>
@@ -222,7 +219,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'तिथि प्रवेश गणना' : 'Computing Tithi Pravesha'}
+          {tl({ en: 'Computing Tithi Pravesha', hi: 'तिथि प्रवेश गणना', sa: 'तिथि प्रवेश गणना' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -230,16 +227,14 @@ function Page2() {
             : <>Computing the Tithi Pravesha moment requires finding the Julian Day (JD) when two conditions simultaneously hold: (1) the Moon-Sun elongation (Moon&apos;s longitude minus Sun&apos;s longitude) equals the natal elongation, AND (2) the Sun is within the same zodiacal sign as at birth. The first condition ensures the same tithi; the second ensures it occurs in the correct annual cycle (not at any random time during the year when the tithi recurs).</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {isHi
-            ? 'चूँकि तिथि लगभग प्रत्येक चान्द्र मास (~29.5 दिन) में पुनरावृत्त होती है, वर्ष में आपकी जन्म तिथि के लगभग 12-13 अवसर होते हैं। सूर्य-राशि शर्त इसे ठीक एक अवसर तक सीमित करती है — वह जब सूर्य जन्म की ही राशि में हो। यह आपका वार्षिक तिथि प्रवेश क्षण है।'
-            : 'Since the tithi recurs roughly every lunar month (~29.5 days), there are about 12-13 occurrences of your birth tithi each year. The Sun-sign condition filters this down to exactly ONE occurrence — the one when the Sun is in the same sign as at your birth. This is your annual Tithi Pravesha moment.'}
+          {tl({ en: 'Since the tithi recurs roughly every lunar month (~29.5 days), there are about 12-13 occurrences of your birth tithi each year. The Sun-sign condition filters this down to exactly ONE occurrence — the one when the Sun is in the same sign as at your birth. This is your annual Tithi Pravesha moment.', hi: 'चूँकि तिथि लगभग प्रत्येक चान्द्र मास (~29.5 दिन) में पुनरावृत्त होती है, वर्ष में आपकी जन्म तिथि के लगभग 12-13 अवसर होते हैं। सूर्य-राशि शर्त इसे ठीक एक अवसर तक सीमित करती है — वह जब सूर्य जन्म की ही राशि में हो। यह आपका वार्षिक तिथि प्रवेश क्षण है।', sa: 'चूँकि तिथि लगभग प्रत्येक चान्द्र मास (~29.5 दिन) में पुनरावृत्त होती है, वर्ष में आपकी जन्म तिथि के लगभग 12-13 अवसर होते हैं। सूर्य-राशि शर्त इसे ठीक एक अवसर तक सीमित करती है — वह जब सूर्य जन्म की ही राशि में हो। यह आपका वार्षिक तिथि प्रवेश क्षण है।' }, locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={isHi ? 'उदाहरण कुण्डली' : 'Example Chart'} />
+          {tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरण कुण्डली' }, locale)} />
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -258,7 +253,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'TP बनाम वर्षफल: पूरक दृष्टिकोण' : 'TP vs Varshaphal: Complementary Perspectives'}
+          {tl({ en: 'TP vs Varshaphal: Complementary Perspectives', hi: 'TP बनाम वर्षफल: पूरक दृष्टिकोण', sa: 'TP बनाम वर्षफल: पूरक दृष्टिकोण' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -272,7 +267,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}
+          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -283,7 +278,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}
+          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi

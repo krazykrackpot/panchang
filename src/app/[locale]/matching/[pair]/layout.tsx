@@ -28,12 +28,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const name1 = tl(r1.name, locale);
   const name2 = tl(r2.name, locale);
   return {
-    title: isDevanagariLocale(locale)
-      ? `${name1} और ${name2} संगतता — वैदिक ज्योतिष`
-      : `${name1} and ${name2} Compatibility — Vedic Astrology`,
-    description: isDevanagariLocale(locale)
-      ? `${name1} और ${name2} राशि वैदिक संगतता विश्लेषण। अष्ट कूट स्कोर, स्वभाव, प्रेम, करियर साझेदारी।`
-      : `${name1} and ${name2} Vedic compatibility analysis with Ashta Kuta score, temperament, romance, career partnership.`,
+    title: tl({ en: `${name1} and ${name2} Compatibility — Vedic Astrology`, hi: `${name1} और ${name2} संगतता — वैदिक ज्योतिष`, sa: `${name1} और ${name2} संगतता — वैदिक ज्योतिष` }, locale),
+    description: tl({ en: `${name1} and ${name2} Vedic compatibility analysis with Ashta Kuta score, temperament, romance, career partnership.`, hi: `${name1} और ${name2} राशि वैदिक संगतता विश्लेषण। अष्ट कूट स्कोर, स्वभाव, प्रेम, करियर साझेदारी।`, sa: `${name1} और ${name2} राशि वैदिक संगतता विश्लेषण। अष्ट कूट स्कोर, स्वभाव, प्रेम, करियर साझेदारी।` }, locale),
     alternates: { canonical: `${BASE_URL}/${locale}/matching/${canonical}` },
   };
 }

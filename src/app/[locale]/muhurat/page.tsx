@@ -93,7 +93,7 @@ export default function MuhuratPage() {
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString(!isDevanagariLocale(locale) ? 'en-IN' : 'hi-IN', { day: 'numeric', weekday: 'short' });
+    return d.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale), { day: 'numeric', weekday: 'short' });
   };
 
   return (
@@ -101,7 +101,7 @@ export default function MuhuratPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">
-            {!isDevanagariLocale(locale) ? 'Muhurat Finder' : 'मुहूर्त खोजक'}
+            {tl({ en: 'Muhurat Finder', hi: 'मुहूर्त खोजक', sa: 'मुहूर्त खोजक' }, locale)}
           </span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">
@@ -151,7 +151,7 @@ export default function MuhuratPage() {
       ) : dates.length === 0 ? (
         <div className="text-center py-16 text-text-secondary">
           <p className="text-lg" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-            {!isDevanagariLocale(locale) ? 'No auspicious dates found for this month.' : 'इस माह कोई शुभ तिथि नहीं मिली।'}
+            {tl({ en: 'No auspicious dates found for this month.', hi: 'इस माह कोई शुभ तिथि नहीं मिली।', sa: 'इस माह कोई शुभ तिथि नहीं मिली।' }, locale)}
           </p>
         </div>
       ) : (
@@ -188,13 +188,13 @@ export default function MuhuratPage() {
                       </div>
                       <div className="text-text-secondary text-sm flex flex-wrap gap-x-4 gap-y-0.5">
                         <span style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                          <span className="text-gold-dark">{!isDevanagariLocale(locale) ? 'Nak:' : 'नक्ष:'}</span> {tl(nak?.name, locale)}
+                          <span className="text-gold-dark">{tl({ en: 'Nak:', hi: 'नक्ष:', sa: 'नक्ष:' }, locale)}</span> {tl(nak?.name, locale)}
                         </span>
                         <span style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                          <span className="text-gold-dark">{!isDevanagariLocale(locale) ? 'Moon:' : 'चन्द्र:'}</span> {tl(rashi?.name, locale)}
+                          <span className="text-gold-dark">{tl({ en: 'Moon:', hi: 'चन्द्र:', sa: 'चन्द्र:' }, locale)}</span> {tl(rashi?.name, locale)}
                         </span>
                         <span>
-                          <span className="text-gold-dark">{!isDevanagariLocale(locale) ? 'Tithi:' : 'तिथि:'}</span> {d.tithi}
+                          <span className="text-gold-dark">{tl({ en: 'Tithi:', hi: 'तिथि:', sa: 'तिथि:' }, locale)}</span> {d.tithi}
                         </span>
                       </div>
                     </div>
@@ -205,7 +205,7 @@ export default function MuhuratPage() {
           </AnimatePresence>
 
           <div className="text-center text-text-secondary text-sm mt-6">
-            {dates.length} {!isDevanagariLocale(locale) ? 'auspicious dates found' : 'शुभ तिथियाँ मिलीं'}
+            {dates.length} {tl({ en: 'auspicious dates found', hi: 'शुभ तिथियाँ मिलीं', sa: 'शुभ तिथियाँ मिलीं' }, locale)}
           </div>
 
           {/* Legend */}

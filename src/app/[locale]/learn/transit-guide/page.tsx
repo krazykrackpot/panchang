@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/transit-guide.json';
@@ -90,7 +91,7 @@ export default function TransitGuidePage() {
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
         <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 mb-4">
           <Orbit className="w-4 h-4 text-indigo-400" />
-          <span className="text-indigo-300 text-sm font-medium">{isDevanagariLocale(locale) ? 'सन्दर्भ' : 'Reference'}</span>
+          <span className="text-indigo-300 text-sm font-medium">{tl({ en: 'Reference', hi: 'सन्दर्भ', sa: 'सन्दर्भ' }, locale)}</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-bold text-gold-gradient mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {t('title')}
@@ -127,7 +128,7 @@ export default function TransitGuidePage() {
       <AnimatePresence mode="wait">
         {houseData && (
           <motion.div key={selected} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
-            <LessonSection number={2} title={`${lt(activeTab.label as LocaleText, locale)} — ${isDevanagariLocale(locale) ? '12 भावों में गोचर' : 'Transit Through 12 Houses'}`}>
+            <LessonSection number={2} title={`${lt(activeTab.label as LocaleText, locale)} — ${tl({ en: 'Transit Through 12 Houses', hi: '12 भावों में गोचर', sa: '12 भावों में गोचर' }, locale)}`}>
               <div className="grid gap-3 sm:grid-cols-2">
                 {houseData.map(h => (
                   <motion.div key={h.house} whileHover={{ scale: 1.015 }}
@@ -135,7 +136,7 @@ export default function TransitGuidePage() {
                   >
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-bold" style={{ color: activeTab.color }}>
-                        {isDevanagariLocale(locale) ? `${h.house}वाँ भाव` : `House ${h.house}`}
+                        {tl({ en: `House ${h.house}`, hi: `${h.house}वाँ भाव`, sa: `${h.house}वाँ भाव` }, locale)}
                       </span>
                       <Rating stars={h.stars} />
                     </div>
@@ -149,11 +150,9 @@ export default function TransitGuidePage() {
 
         {axisData && (
           <motion.div key="rahu_ketu" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
-            <LessonSection number={2} title={`${lt(activeTab.label as LocaleText, locale)} — ${isDevanagariLocale(locale) ? 'अक्ष प्रभाव' : 'Axis Effects'}`}>
+            <LessonSection number={2} title={`${lt(activeTab.label as LocaleText, locale)} — ${tl({ en: 'Axis Effects', hi: 'अक्ष प्रभाव', sa: 'अक्ष प्रभाव' }, locale)}`}>
               <p className="mb-4 text-sm">
-                {isDevanagariLocale(locale)
-                  ? 'राहु-केतु सदैव 180° विपरीत होते हैं। प्रभाव अक्ष (axis) जोड़ियों में पढ़ा जाता है।'
-                  : 'Rahu and Ketu are always 180 degrees apart. Their effects are read as axis pairs.'}
+                {tl({ en: 'Rahu and Ketu are always 180 degrees apart. Their effects are read as axis pairs.', hi: 'राहु-केतु सदैव 180° विपरीत होते हैं। प्रभाव अक्ष (axis) जोड़ियों में पढ़ा जाता है।', sa: 'राहु-केतु सदैव 180° विपरीत होते हैं। प्रभाव अक्ष (axis) जोड़ियों में पढ़ा जाता है।' }, locale)}
               </p>
               <div className="grid gap-4">
                 {axisData.map(a => (
@@ -162,7 +161,7 @@ export default function TransitGuidePage() {
                   >
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-purple-300 font-bold text-sm">
-                        {isDevanagariLocale(locale) ? `राहु ${a.rahu}वें / केतु ${a.ketu}वें` : `Rahu ${a.rahu}th / Ketu ${a.ketu}th`}
+                        {tl({ en: `Rahu ${a.rahu}th / Ketu ${a.ketu}th`, hi: `राहु ${a.rahu}वें / केतु ${a.ketu}वें`, sa: `राहु ${a.rahu}वें / केतु ${a.ketu}वें` }, locale)}
                       </span>
                     </div>
                     <p className="text-sm text-text-secondary leading-relaxed">{lt(a.theme as LocaleText, locale)}</p>
@@ -187,7 +186,7 @@ export default function TransitGuidePage() {
             <div key={d.house} className="text-center p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/10">
               <div className="w-10 h-10 rounded-full bg-gold-primary/15 border border-gold-primary/30 flex items-center justify-center mx-auto mb-2 text-gold-light font-bold text-sm">{d.icon}</div>
               <p className="text-sm font-semibold text-gold-light">{lt(d.event as LocaleText, locale)}</p>
-              <p className="text-xs text-text-tertiary mt-1">{isDevanagariLocale(locale) ? `गुरु + शनि → ${d.house}` : `Jup + Sat → ${d.house}`}</p>
+              <p className="text-xs text-text-tertiary mt-1">{tl({ en: `Jup + Sat → ${d.house}`, hi: `गुरु + शनि → ${d.house}`, sa: `गुरु + शनि → ${d.house}` }, locale)}</p>
             </div>
           ))}
         </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -187,26 +188,20 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'नक्षत्र उप-विभाग: केपी का नवाचार' : 'Nakshatra Sub-Divisions: The KP Innovation'}
+          {tl({ en: 'Nakshatra Sub-Divisions: The KP Innovation', hi: 'नक्षत्र उप-विभाग: केपी का नवाचार', sa: 'नक्षत्र उप-विभाग: केपी का नवाचार' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          {isHi
-            ? 'पारम्परिक वैदिक ज्योतिष में प्रत्येक नक्षत्र 13 अंश 20 कला में फैला है और 3 अंश 20 कला के 4 समान पादों (चतुर्थांशों) में विभक्त है। केपी ने इसे आगे बढ़ाया: इसने प्रत्येक नक्षत्र को 9 ग्रहों के विंशोत्तरी दशा अनुपातों के आधार पर 9 असमान उप-विभागों में बाँटा। जैसे 120 वर्ष का विंशोत्तरी चक्र प्रत्येक ग्रह को भिन्न अवधि आवंटित करता है (केतु 7, शुक्र 20, सूर्य 6, चन्द्र 10, मंगल 7, राहु 18, गुरु 16, शनि 19, बुध 17 वर्ष), केपी प्रत्येक 13 अंश 20 कला नक्षत्र के आनुपातिक खण्ड प्रत्येक ग्रह को आवंटित करता है।'
-            : 'In traditional Vedic astrology, each nakshatra spans 13 degrees 20 minutes and is divided into 4 equal padas (quarters) of 3 degrees 20 minutes each. KP took this further: it divided each nakshatra into 9 UNEQUAL sub-divisions based on the Vimshottari dasha proportions of the 9 planets. Just as the 120-year Vimshottari cycle allocates different periods to each planet (Ketu 7, Venus 20, Sun 6, Moon 10, Mars 7, Rahu 18, Jupiter 16, Saturn 19, Mercury 17 years), KP allocates proportional slices of each 13-degree-20-minute nakshatra to each planet.'}
+          {tl({ en: 'In traditional Vedic astrology, each nakshatra spans 13 degrees 20 minutes and is divided into 4 equal padas (quarters) of 3 degrees 20 minutes each. KP took this further: it divided each nakshatra into 9 UNEQUAL sub-divisions based on the Vimshottari dasha proportions of the 9 planets. Just as the 120-year Vimshottari cycle allocates different periods to each planet (Ketu 7, Venus 20, Sun 6, Moon 10, Mars 7, Rahu 18, Jupiter 16, Saturn 19, Mercury 17 years), KP allocates proportional slices of each 13-degree-20-minute nakshatra to each planet.', hi: 'पारम्परिक वैदिक ज्योतिष में प्रत्येक नक्षत्र 13 अंश 20 कला में फैला है और 3 अंश 20 कला के 4 समान पादों (चतुर्थांशों) में विभक्त है। केपी ने इसे आगे बढ़ाया: इसने प्रत्येक नक्षत्र को 9 ग्रहों के विंशोत्तरी दशा अनुपातों के आधार पर 9 असमान उप-विभागों में बाँटा। जैसे 120 वर्ष का विंशोत्तरी चक्र प्रत्येक ग्रह को भिन्न अवधि आवंटित करता है (केतु 7, शुक्र 20, सूर्य 6, चन्द्र 10, मंगल 7, राहु 18, गुरु 16, शनि 19, बुध 17 वर्ष), केपी प्रत्येक 13 अंश 20 कला नक्षत्र के आनुपातिक खण्ड प्रत्येक ग्रह को आवंटित करता है।', sa: 'पारम्परिक वैदिक ज्योतिष में प्रत्येक नक्षत्र 13 अंश 20 कला में फैला है और 3 अंश 20 कला के 4 समान पादों (चतुर्थांशों) में विभक्त है। केपी ने इसे आगे बढ़ाया: इसने प्रत्येक नक्षत्र को 9 ग्रहों के विंशोत्तरी दशा अनुपातों के आधार पर 9 असमान उप-विभागों में बाँटा। जैसे 120 वर्ष का विंशोत्तरी चक्र प्रत्येक ग्रह को भिन्न अवधि आवंटित करता है (केतु 7, शुक्र 20, सूर्य 6, चन्द्र 10, मंगल 7, राहु 18, गुरु 16, शनि 19, बुध 17 वर्ष), केपी प्रत्येक 13 अंश 20 कला नक्षत्र के आनुपातिक खण्ड प्रत्येक ग्रह को आवंटित करता है।' }, locale)}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {isHi
-            ? 'परिणाम: 27 नक्षत्र गुणा प्रत्येक में लगभग 9 उप-भाग = 249 अद्वितीय उप-विभाग जो पूर्ण 360 अंश आवृत करते हैं। प्रत्येक उप-विभाग तीन स्वामियों द्वारा विशेषित है: राशि स्वामी (उस अंश की राशि का शासक ग्रह), नक्षत्र स्वामी (नक्षत्र का शासक ग्रह), और उप स्वामी (विशिष्ट उप-विभाग का शासक ग्रह)। यह त्रि-स्तरीय स्वामित्व प्रणाली सम्पूर्ण केपी विश्लेषण की रीढ़ है।'
-            : 'The result: 27 nakshatras times approximately 9 subs each = 249 unique sub-divisions covering the full 360 degrees. Each sub-division is characterized by three lords: the Sign Lord (planet ruling the rashi in which the degree falls), the Star Lord (planet ruling the nakshatra), and the Sub Lord (planet ruling the specific sub-division). This three-tier lordship system is the backbone of all KP analysis.'}
+          {tl({ en: 'The result: 27 nakshatras times approximately 9 subs each = 249 unique sub-divisions covering the full 360 degrees. Each sub-division is characterized by three lords: the Sign Lord (planet ruling the rashi in which the degree falls), the Star Lord (planet ruling the nakshatra), and the Sub Lord (planet ruling the specific sub-division). This three-tier lordship system is the backbone of all KP analysis.', hi: 'परिणाम: 27 नक्षत्र गुणा प्रत्येक में लगभग 9 उप-भाग = 249 अद्वितीय उप-विभाग जो पूर्ण 360 अंश आवृत करते हैं। प्रत्येक उप-विभाग तीन स्वामियों द्वारा विशेषित है: राशि स्वामी (उस अंश की राशि का शासक ग्रह), नक्षत्र स्वामी (नक्षत्र का शासक ग्रह), और उप स्वामी (विशिष्ट उप-विभाग का शासक ग्रह)। यह त्रि-स्तरीय स्वामित्व प्रणाली सम्पूर्ण केपी विश्लेषण की रीढ़ है।', sa: 'परिणाम: 27 नक्षत्र गुणा प्रत्येक में लगभग 9 उप-भाग = 249 अद्वितीय उप-विभाग जो पूर्ण 360 अंश आवृत करते हैं। प्रत्येक उप-विभाग तीन स्वामियों द्वारा विशेषित है: राशि स्वामी (उस अंश की राशि का शासक ग्रह), नक्षत्र स्वामी (नक्षत्र का शासक ग्रह), और उप स्वामी (विशिष्ट उप-विभाग का शासक ग्रह)। यह त्रि-स्तरीय स्वामित्व प्रणाली सम्पूर्ण केपी विश्लेषण की रीढ़ है।' }, locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {isHi
-            ? 'नक्षत्रों को उप-विभाजित करने की अवधारणा नई नहीं है — पाराशरी ज्योतिष 4-पाद पद्धति (कुल 108 पाद, जो नवांश बनाते हैं) का उपयोग करता है। केपी का नवाचार था समान पादों को असमान विंशोत्तरी-अनुपातित उप-भागों से प्रतिस्थापित करना। कृष्णमूर्ति का तर्क था कि चूँकि विंशोत्तरी दशा जीवन घटनाओं के समय को नियन्त्रित करती है, वही आनुपातिक तर्क राशिचक्र के स्थानिक विभाजन को भी नियन्त्रित करना चाहिए। समान विंशोत्तरी अनुपातों का उपयोग करके कालिक (दशा) और स्थानिक (उप-स्वामी) पद्धतियों का यह सुन्दर एकीकरण ही केपी को आन्तरिक रूप से सुसंगत बनाता है।'
-            : 'The concept of subdividing nakshatras is not new — Parashari astrology uses the 4-pada system (108 padas total, forming the Navamsha). KP\'s innovation was replacing equal padas with UNEQUAL Vimshottari-proportioned subs. Krishnamurti argued that since the Vimshottari dasha governs the timing of life events, the same proportional logic should govern the spatial division of the zodiac. This elegant unification of temporal (dasha) and spatial (sub-lord) systems using the same Vimshottari ratios is what makes KP internally consistent.'}
+          {tl({ en: "The concept of subdividing nakshatras is not new — Parashari astrology uses the 4-pada system (108 padas total, forming the Navamsha). KP\'s innovation was replacing equal padas with UNEQUAL Vimshottari-proportioned subs. Krishnamurti argued that since the Vimshottari dasha governs the timing of life events, the same proportional logic should govern the spatial division of the zodiac. This elegant unification of temporal (dasha) and spatial (sub-lord) systems using the same Vimshottari ratios is what makes KP internally consistent.", hi: "नक्षत्रों को उप-विभाजित करने की अवधारणा नई नहीं है — पाराशरी ज्योतिष 4-पाद पद्धति (कुल 108 पाद, जो नवांश बनाते हैं) का उपयोग करता है। केपी का नवाचार था समान पादों को असमान विंशोत्तरी-अनुपातित उप-भागों से प्रतिस्थापित करना। कृष्णमूर्ति का तर्क था कि चूँकि विंशोत्तरी दशा जीवन घटनाओं के समय को नियन्त्रित करती है, वही आनुपातिक तर्क राशिचक्र के स्थानिक विभाजन को भी नियन्त्रित करना चाहिए। समान विंशोत्तरी अनुपातों का उपयोग करके कालिक (दशा) और स्थानिक (उप-स्वामी) पद्धतियों का यह सुन्दर एकीकरण ही केपी को आन्तरिक रूप से सुसंगत बनाता है।", sa: "नक्षत्रों को उप-विभाजित करने की अवधारणा नई नहीं है — पाराशरी ज्योतिष 4-पाद पद्धति (कुल 108 पाद, जो नवांश बनाते हैं) का उपयोग करता है। केपी का नवाचार था समान पादों को असमान विंशोत्तरी-अनुपातित उप-भागों से प्रतिस्थापित करना। कृष्णमूर्ति का तर्क था कि चूँकि विंशोत्तरी दशा जीवन घटनाओं के समय को नियन्त्रित करती है, वही आनुपातिक तर्क राशिचक्र के स्थानिक विभाजन को भी नियन्त्रित करना चाहिए। समान विंशोत्तरी अनुपातों का उपयोग करके कालिक (दशा) और स्थानिक (उप-स्वामी) पद्धतियों का यह सुन्दर एकीकरण ही केपी को आन्तरिक रूप से सुसंगत बनाता है।" }, locale)}
         </p>
       </section>
     </div>
@@ -220,7 +215,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'उप स्वामी ज्ञात करना: चरण दर चरण' : 'Finding the Sub Lord: Step by Step'}
+          {tl({ en: 'Finding the Sub Lord: Step by Step', hi: 'उप स्वामी ज्ञात करना: चरण दर चरण', sa: 'उप स्वामी ज्ञात करना: चरण दर चरण' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -236,8 +231,8 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={isHi ? 'उदाहरण कुण्डली' : 'Example Chart'} />
+          {tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरण कुण्डली' }, locale)} />
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -259,7 +254,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'उप स्वामी क्यों कुञ्जी है' : 'Why the Sub Lord Is the Key'}
+          {tl({ en: 'Why the Sub Lord Is the Key', hi: 'उप स्वामी क्यों कुञ्जी है', sa: 'उप स्वामी क्यों कुञ्जी है' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -267,15 +262,13 @@ function Page3() {
             : <>KP&apos;s revolutionary insight is that the Sub Lord of a house cusp DECIDES whether that house&apos;s significations will manifest in the native&apos;s life. The Sign Lord shows the general area or environment. The Star Lord reveals the source from which results will come. But the Sub Lord delivers the final verdict: &quot;yes, this will happen&quot; or &quot;no, this will not happen.&quot;</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {isHi
-            ? 'उदाहरणार्थ, विवाह सम्भावना का आकलन करने के लिए सप्तम भाव सन्धि के उप स्वामी की जाँच करें। यदि यह उप स्वामी भाव 2, 7 और 11 (विवाह-सहायक समूह) का कारक है, तो जातक का विवाह अवश्य होगा। यदि उप स्वामी भाव 1, 6, 10 (स्वतन्त्र/साझेदारी-विरोधी) का कारक है, तो विवाह अस्वीकृत या अत्यन्त विलम्बित हो सकता है। राशि स्वामी और नक्षत्र स्वामी सन्दर्भ जोड़ते हैं, किन्तु उप स्वामी निर्णायक मत है।'
-            : 'For example, to judge marriage potential, examine the Sub Lord of the 7th house cusp. If this Sub Lord signifies houses 2, 7, and 11 (the marriage-supporting group), the native WILL marry. If the Sub Lord signifies houses 1, 6, 10 (independent/adverse to partnership), marriage may be denied or severely delayed. The Sign Lord and Star Lord add context, but the Sub Lord is the deciding vote.'}
+          {tl({ en: 'For example, to judge marriage potential, examine the Sub Lord of the 7th house cusp. If this Sub Lord signifies houses 2, 7, and 11 (the marriage-supporting group), the native WILL marry. If the Sub Lord signifies houses 1, 6, 10 (independent/adverse to partnership), marriage may be denied or severely delayed. The Sign Lord and Star Lord add context, but the Sub Lord is the deciding vote.', hi: 'उदाहरणार्थ, विवाह सम्भावना का आकलन करने के लिए सप्तम भाव सन्धि के उप स्वामी की जाँच करें। यदि यह उप स्वामी भाव 2, 7 और 11 (विवाह-सहायक समूह) का कारक है, तो जातक का विवाह अवश्य होगा। यदि उप स्वामी भाव 1, 6, 10 (स्वतन्त्र/साझेदारी-विरोधी) का कारक है, तो विवाह अस्वीकृत या अत्यन्त विलम्बित हो सकता है। राशि स्वामी और नक्षत्र स्वामी सन्दर्भ जोड़ते हैं, किन्तु उप स्वामी निर्णायक मत है।', sa: 'उदाहरणार्थ, विवाह सम्भावना का आकलन करने के लिए सप्तम भाव सन्धि के उप स्वामी की जाँच करें। यदि यह उप स्वामी भाव 2, 7 और 11 (विवाह-सहायक समूह) का कारक है, तो जातक का विवाह अवश्य होगा। यदि उप स्वामी भाव 1, 6, 10 (स्वतन्त्र/साझेदारी-विरोधी) का कारक है, तो विवाह अस्वीकृत या अत्यन्त विलम्बित हो सकता है। राशि स्वामी और नक्षत्र स्वामी सन्दर्भ जोड़ते हैं, किन्तु उप स्वामी निर्णायक मत है।' }, locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}
+          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -286,12 +279,10 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}
+          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
-          {isHi
-            ? 'कम्प्यूटर से पहले, केपी अभ्यासकर्ताओं को मुद्रित पुस्तकों से 249 उप-स्वामी सारणी मैनुअली खोजनी पड़ती थी — एक थकाऊ और त्रुटि-प्रवण प्रक्रिया। आज हमारा केपी सिस्टम उपकरण कुण्डली में प्रत्येक ग्रह और भाव सन्धि का राशि स्वामी, नक्षत्र स्वामी और उप स्वामी तत्काल गणित करता है। इस स्वचालन ने केपी ज्योतिष का लोकतन्त्रीकरण किया है, जिससे विद्यार्थी सारणी खोज के बजाय व्याख्या पर ध्यान केन्द्रित कर सकते हैं। उप-स्वामी गणना की सटीकता के लिए सही जन्म समय अनिवार्य है — 2 मिनट का अन्तर भी सन्धि उप-स्वामी बदल सकता है, इसीलिए केपी ज्योतिषी जन्म समय शोधन के सबसे प्रबल समर्थकों में हैं।'
-            : 'Before computers, KP practitioners had to manually look up the 249 sub-lord table from printed books — a tedious and error-prone process. Today, our KP System tool instantly computes the Sign Lord, Star Lord, and Sub Lord for every planet and house cusp in the chart. This automation has democratized KP astrology, allowing students to focus on interpretation rather than table lookups. The precision of sub-lord computation demands accurate birth time — even a 2-minute difference can shift a cusp sub-lord, which is why KP astrologers are among the strongest advocates for birth time rectification.'}
+          {tl({ en: 'Before computers, KP practitioners had to manually look up the 249 sub-lord table from printed books — a tedious and error-prone process. Today, our KP System tool instantly computes the Sign Lord, Star Lord, and Sub Lord for every planet and house cusp in the chart. This automation has democratized KP astrology, allowing students to focus on interpretation rather than table lookups. The precision of sub-lord computation demands accurate birth time — even a 2-minute difference can shift a cusp sub-lord, which is why KP astrologers are among the strongest advocates for birth time rectification.', hi: 'कम्प्यूटर से पहले, केपी अभ्यासकर्ताओं को मुद्रित पुस्तकों से 249 उप-स्वामी सारणी मैनुअली खोजनी पड़ती थी — एक थकाऊ और त्रुटि-प्रवण प्रक्रिया। आज हमारा केपी सिस्टम उपकरण कुण्डली में प्रत्येक ग्रह और भाव सन्धि का राशि स्वामी, नक्षत्र स्वामी और उप स्वामी तत्काल गणित करता है। इस स्वचालन ने केपी ज्योतिष का लोकतन्त्रीकरण किया है, जिससे विद्यार्थी सारणी खोज के बजाय व्याख्या पर ध्यान केन्द्रित कर सकते हैं। उप-स्वामी गणना की सटीकता के लिए सही जन्म समय अनिवार्य है — 2 मिनट का अन्तर भी सन्धि उप-स्वामी बदल सकता है, इसीलिए केपी ज्योतिषी जन्म समय शोधन के सबसे प्रबल समर्थकों में हैं।', sa: 'कम्प्यूटर से पहले, केपी अभ्यासकर्ताओं को मुद्रित पुस्तकों से 249 उप-स्वामी सारणी मैनुअली खोजनी पड़ती थी — एक थकाऊ और त्रुटि-प्रवण प्रक्रिया। आज हमारा केपी सिस्टम उपकरण कुण्डली में प्रत्येक ग्रह और भाव सन्धि का राशि स्वामी, नक्षत्र स्वामी और उप स्वामी तत्काल गणित करता है। इस स्वचालन ने केपी ज्योतिष का लोकतन्त्रीकरण किया है, जिससे विद्यार्थी सारणी खोज के बजाय व्याख्या पर ध्यान केन्द्रित कर सकते हैं। उप-स्वामी गणना की सटीकता के लिए सही जन्म समय अनिवार्य है — 2 मिनट का अन्तर भी सन्धि उप-स्वामी बदल सकता है, इसीलिए केपी ज्योतिषी जन्म समय शोधन के सबसे प्रबल समर्थकों में हैं।' }, locale)}
         </p>
       </section>
     </div>

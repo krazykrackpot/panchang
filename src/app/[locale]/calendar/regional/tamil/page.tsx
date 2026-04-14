@@ -1,3 +1,4 @@
+import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -182,11 +183,11 @@ export default function TamilCalendarPage() {
               <thead>
                 <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">#</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'மாதம்' : isHi ? 'मास' : 'Month'}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'தமிழ்' : isHi ? 'तमिल' : 'Tamil'}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'ராசி' : isHi ? 'राशि' : 'Rashi (Zodiac)'}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'கிரிகோரியன்' : isHi ? 'ग्रेगोरियन' : 'Gregorian'}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'நாட்கள்' : isHi ? 'दिन' : 'Days'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'மாதம்' : tl({ en: 'Month', hi: 'मास', sa: 'मास' }, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'தமிழ்' : tl({ en: 'Tamil', hi: 'तमिल', sa: 'तमिल' }, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'ராசி' : tl({ en: 'Rashi (Zodiac)', hi: 'राशि', sa: 'राशि' }, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'கிரிகோரியன்' : tl({ en: 'Gregorian', hi: 'ग्रेगोरियन', sa: 'ग्रेगोरियन' }, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'நாட்கள்' : tl({ en: 'Days', hi: 'दिन', sa: 'दिन' }, locale)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -281,13 +282,13 @@ export default function TamilCalendarPage() {
               href={`/${locale}/calendar`}
               className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
             >
-              {isTamil ? 'திருவிழா நாட்காட்டி 2026' : isHi ? 'त्योहार कैलेंडर 2026' : 'Festival Calendar 2026'}
+              {isTamil ? 'திருவிழா நாட்காட்டி 2026' : tl({ en: 'Festival Calendar 2026', hi: 'त्योहार कैलेंडर 2026', sa: 'त्योहार कैलेंडर 2026' }, locale)}
             </a>
             <a
               href={`/${locale}/calendar/regional/bengali`}
               className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
             >
-              {isTamil ? 'வங்காள நாட்காட்டி (பஞ்சிகா)' : isHi ? 'बंगाली कैलेंडर (पंजिका)' : 'Bengali Calendar (Panjika)'}
+              {isTamil ? 'வங்காள நாட்காட்டி (பஞ்சிகா)' : tl({ en: 'Bengali Calendar (Panjika)', hi: 'बंगाली कैलेंडर (पंजिका)', sa: 'बंगाली कैलेंडर (पंजिका)' }, locale)}
             </a>
           </div>
         </section>

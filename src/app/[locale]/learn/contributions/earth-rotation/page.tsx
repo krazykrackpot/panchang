@@ -1,3 +1,4 @@
+import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/contributions-earth-rotation.json';
@@ -55,7 +56,7 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
 
         {/* Sanskrit verse */}
         <div className="p-5 rounded-xl bg-gold-primary/8 border border-gold-primary/20 mb-4">
-          <p className="text-xs text-text-secondary mb-2 font-semibold">{isHi ? 'आर्यभटीय, गोलपाद, श्लोक 9' : 'Aryabhatiya, Golapada, Verse 9'}</p>
+          <p className="text-xs text-text-secondary mb-2 font-semibold">{tl({ en: 'Aryabhatiya, Golapada, Verse 9', hi: 'आर्यभटीय, गोलपाद, श्लोक 9', sa: 'आर्यभटीय, गोलपाद, श्लोक 9' }, locale)}</p>
           <p className="text-gold-light text-base font-mono leading-relaxed mb-3" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
             {t('s1Sanskrit')}
           </p>
@@ -66,9 +67,7 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
 
         <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
           <p className="text-emerald-300 text-xs">
-            {isHi
-              ? '✦ आर्यभट ने नाव के उपमा का उपयोग किया — एक चलती नाव पर एक व्यक्ति स्थिर किनारे को पीछे जाते देखता है। यह आइंस्टाइन के सापेक्षता के सिद्धांत का वही प्रारंभिक बिंदु है।'
-              : '✦ Aryabhata used the boat analogy — a person on a moving boat sees the stationary shore moving backward. This is the same starting point as Einstein\'s principle of relativity.'}
+            {tl({ en: "✦ Aryabhata used the boat analogy — a person on a moving boat sees the stationary shore moving backward. This is the same starting point as Einstein\'s principle of relativity.", hi: "✦ आर्यभट ने नाव के उपमा का उपयोग किया — एक चलती नाव पर एक व्यक्ति स्थिर किनारे को पीछे जाते देखता है। यह आइंस्टाइन के सापेक्षता के सिद्धांत का वही प्रारंभिक बिंदु है।", sa: "✦ आर्यभट ने नाव के उपमा का उपयोग किया — एक चलती नाव पर एक व्यक्ति स्थिर किनारे को पीछे जाते देखता है। यह आइंस्टाइन के सापेक्षता के सिद्धांत का वही प्रारंभिक बिंदु है।" }, locale)}
           </p>
         </div>
       </div>
@@ -83,21 +82,21 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
         {/* Comparison */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 rounded-xl bg-red-500/8 border border-red-500/15">
-            <div className="text-red-300 font-semibold text-sm mb-2">{isHi ? 'टॉलेमी का मॉडल (~150 CE)' : 'Ptolemaic Model (~150 CE)'}</div>
+            <div className="text-red-300 font-semibold text-sm mb-2">{tl({ en: 'Ptolemaic Model (~150 CE)', hi: 'टॉलेमी का मॉडल (~150 CE)', sa: 'टॉलेमी का मॉडल (~150 CE)' }, locale)}</div>
             <ul className="text-text-secondary text-xs space-y-1">
-              <li>• {isHi ? 'पृथ्वी केंद्र में स्थिर' : 'Earth fixed at center'}</li>
-              <li>• {isHi ? 'सूर्य, चंद्रमा, ग्रह — पृथ्वी के चारों ओर घूमते हैं' : 'Sun, Moon, planets orbit Earth'}</li>
-              <li>• {isHi ? '1,400 वर्षों तक यूरोप में प्रभुत्व' : 'Dominated Europe for 1,400 years'}</li>
-              <li>• {isHi ? 'चर्च द्वारा हठधर्मिता के रूप में स्वीकृत' : 'Accepted as Church dogma'}</li>
+              <li>• {tl({ en: 'Earth fixed at center', hi: 'पृथ्वी केंद्र में स्थिर', sa: 'पृथ्वी केंद्र में स्थिर' }, locale)}</li>
+              <li>• {tl({ en: 'Sun, Moon, planets orbit Earth', hi: 'सूर्य, चंद्रमा, ग्रह — पृथ्वी के चारों ओर घूमते हैं', sa: 'सूर्य, चंद्रमा, ग्रह — पृथ्वी के चारों ओर घूमते हैं' }, locale)}</li>
+              <li>• {tl({ en: 'Dominated Europe for 1,400 years', hi: '1,400 वर्षों तक यूरोप में प्रभुत्व', sa: '1,400 वर्षों तक यूरोप में प्रभुत्व' }, locale)}</li>
+              <li>• {tl({ en: 'Accepted as Church dogma', hi: 'चर्च द्वारा हठधर्मिता के रूप में स्वीकृत', sa: 'चर्च द्वारा हठधर्मिता के रूप में स्वीकृत' }, locale)}</li>
             </ul>
           </div>
           <div className="p-4 rounded-xl bg-emerald-500/8 border border-emerald-500/15">
-            <div className="text-emerald-300 font-semibold text-sm mb-2">{isHi ? 'आर्यभट का मॉडल (499 CE)' : "Aryabhata's Model (499 CE)"}</div>
+            <div className="text-emerald-300 font-semibold text-sm mb-2">{tl({ en: "Aryabhata's Model (499 CE)", hi: "आर्यभट का मॉडल (499 CE)", sa: "आर्यभट का मॉडल (499 CE)" }, locale)}</div>
             <ul className="text-text-secondary text-xs space-y-1">
-              <li>• {isHi ? 'पृथ्वी अपनी धुरी पर घूमती है' : 'Earth rotates on its axis'}</li>
-              <li>• {isHi ? 'तारों की स्पष्ट गति पृथ्वी के घूर्णन के कारण' : "Stars' apparent motion due to Earth's rotation"}</li>
-              <li>• {isHi ? 'सापेक्ष गति का सिद्धांत प्रस्तुत किया' : 'Principle of relative motion stated'}</li>
-              <li>• {isHi ? 'आगे चलकर केरल स्कूल ने इसे विकसित किया' : 'Later extended by Kerala School'}</li>
+              <li>• {tl({ en: 'Earth rotates on its axis', hi: 'पृथ्वी अपनी धुरी पर घूमती है', sa: 'पृथ्वी अपनी धुरी पर घूमती है' }, locale)}</li>
+              <li>• {tl({ en: "Stars' apparent motion due to Earth's rotation", hi: "तारों की स्पष्ट गति पृथ्वी के घूर्णन के कारण", sa: "तारों की स्पष्ट गति पृथ्वी के घूर्णन के कारण" }, locale)}</li>
+              <li>• {tl({ en: 'Principle of relative motion stated', hi: 'सापेक्ष गति का सिद्धांत प्रस्तुत किया', sa: 'सापेक्ष गति का सिद्धांत प्रस्तुत किया' }, locale)}</li>
+              <li>• {tl({ en: 'Later extended by Kerala School', hi: 'आगे चलकर केरल स्कूल ने इसे विकसित किया', sa: 'आगे चलकर केरल स्कूल ने इसे विकसित किया' }, locale)}</li>
             </ul>
           </div>
         </div>
@@ -111,16 +110,12 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
         <p className="text-text-secondary text-sm leading-relaxed mb-4">{t('s3Body')}</p>
 
         <div className="p-4 rounded-xl bg-blue-500/8 border border-blue-500/15">
-          <p className="text-blue-200 font-semibold text-xs mb-2">{isHi ? 'ब्रह्मगुप्त की आपत्ति (628 CE)' : "Brahmagupta's Objection (628 CE)"}</p>
+          <p className="text-blue-200 font-semibold text-xs mb-2">{tl({ en: "Brahmagupta's Objection (628 CE)", hi: "ब्रह्मगुप्त की आपत्ति (628 CE)", sa: "ब्रह्मगुप्त की आपत्ति (628 CE)" }, locale)}</p>
           <p className="text-text-secondary text-sm italic">
-            {isHi
-              ? '"यदि पृथ्वी घूमती है, तो ऊपर फेंकी गई वस्तु पश्चिम में क्यों नहीं गिरती?" — ब्रह्मस्फुटसिद्धांत, अध्याय 11'
-              : '"If the Earth rotates, why does an object thrown upward not land to the west?" — Brahmasphutasiddhanta, Ch. 11'}
+            {tl({ en: '"If the Earth rotates, why does an object thrown upward not land to the west?" — Brahmasphutasiddhanta, Ch. 11', hi: '"यदि पृथ्वी घूमती है, तो ऊपर फेंकी गई वस्तु पश्चिम में क्यों नहीं गिरती?" — ब्रह्मस्फुटसिद्धांत, अध्याय 11', sa: '"यदि पृथ्वी घूमती है, तो ऊपर फेंकी गई वस्तु पश्चिम में क्यों नहीं गिरती?" — ब्रह्मस्फुटसिद्धांत, अध्याय 11' }, locale)}
           </p>
           <p className="text-text-secondary text-xs mt-2">
-            {isHi
-              ? '→ उत्तर: न्यूटन का जड़त्व — वस्तु पृथ्वी की गति को साथ लेती है। 1,059 वर्षों में खोजा गया।'
-              : '→ Answer: Newton\'s inertia — the object carries the Earth\'s motion with it. Discovered 1,059 years later.'}
+            {tl({ en: "→ Answer: Newton\'s inertia — the object carries the Earth\'s motion with it. Discovered 1,059 years later.", hi: "→ उत्तर: न्यूटन का जड़त्व — वस्तु पृथ्वी की गति को साथ लेती है। 1,059 वर्षों में खोजा गया।", sa: "→ उत्तर: न्यूटन का जड़त्व — वस्तु पृथ्वी की गति को साथ लेती है। 1,059 वर्षों में खोजा गया।" }, locale)}
           </p>
         </div>
       </div>
@@ -135,15 +130,15 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <div className="p-4 rounded-xl bg-gold-primary/8 border border-gold-primary/15 text-center">
             <div className="text-gold-light text-2xl font-bold">39,968 km</div>
-            <div className="text-text-secondary text-xs mt-1">{isHi ? 'आर्यभट की गणना' : "Aryabhata's calculation"}</div>
+            <div className="text-text-secondary text-xs mt-1">{tl({ en: "Aryabhata's calculation", hi: "आर्यभट की गणना", sa: "आर्यभट की गणना" }, locale)}</div>
           </div>
           <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 text-center">
             <div className="text-text-primary text-2xl font-bold">40,075 km</div>
-            <div className="text-text-secondary text-xs mt-1">{isHi ? 'आधुनिक मान' : 'Modern value'}</div>
+            <div className="text-text-secondary text-xs mt-1">{tl({ en: 'Modern value', hi: 'आधुनिक मान', sa: 'आधुनिक मान' }, locale)}</div>
           </div>
           <div className="p-4 rounded-xl bg-emerald-500/8 border border-emerald-500/15 text-center">
             <div className="text-emerald-400 text-2xl font-bold">99.7%</div>
-            <div className="text-text-secondary text-xs mt-1">{isHi ? 'सटीकता (499 CE में!)' : 'Accuracy (in 499 CE!)'}</div>
+            <div className="text-text-secondary text-xs mt-1">{tl({ en: 'Accuracy (in 499 CE!)', hi: 'सटीकता (499 CE में!)', sa: 'सटीकता (499 CE में!)' }, locale)}</div>
           </div>
         </div>
       </div>
@@ -157,18 +152,16 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 rounded-xl bg-white/[0.03] border border-gold-primary/10">
-            <div className="text-text-secondary text-xs mb-2 font-semibold">{isHi ? 'नाक्षत्र दिन — आर्यभट' : 'Sidereal Day — Aryabhata'}</div>
+            <div className="text-text-secondary text-xs mb-2 font-semibold">{tl({ en: 'Sidereal Day — Aryabhata', hi: 'नाक्षत्र दिन — आर्यभट', sa: 'नाक्षत्र दिन — आर्यभट' }, locale)}</div>
             <div className="text-gold-light text-lg font-mono">23h 56m 4.1s</div>
           </div>
           <div className="p-4 rounded-xl bg-white/[0.03] border border-gold-primary/10">
-            <div className="text-text-secondary text-xs mb-2 font-semibold">{isHi ? 'नाक्षत्र दिन — आधुनिक' : 'Sidereal Day — Modern'}</div>
+            <div className="text-text-secondary text-xs mb-2 font-semibold">{tl({ en: 'Sidereal Day — Modern', hi: 'नाक्षत्र दिन — आधुनिक', sa: 'नाक्षत्र दिन — आधुनिक' }, locale)}</div>
             <div className="text-emerald-400 text-lg font-mono">23h 56m 4.091s</div>
           </div>
         </div>
         <p className="text-text-secondary text-xs mt-3 italic">
-          {isHi
-            ? '→ अंतर: 0.009 सेकंड। 1,500 वर्षों के बाद। यह इसलिए नहीं है कि उन्होंने भाग्य से अनुमान लगाया — यह इसलिए है कि उनके पास गणितीय मॉडल था।'
-            : '→ Difference: 0.009 seconds. After 1,500 years. This is not because he guessed lucky — it\'s because he had a mathematical model.'}
+          {tl({ en: "→ Difference: 0.009 seconds. After 1,500 years. This is not because he guessed lucky — it\'s because he had a mathematical model.", hi: "→ अंतर: 0.009 सेकंड। 1,500 वर्षों के बाद। यह इसलिए नहीं है कि उन्होंने भाग्य से अनुमान लगाया — यह इसलिए है कि उनके पास गणितीय मॉडल था।", sa: "→ अंतर: 0.009 सेकंड। 1,500 वर्षों के बाद। यह इसलिए नहीं है कि उन्होंने भाग्य से अनुमान लगाया — यह इसलिए है कि उनके पास गणितीय मॉडल था।" }, locale)}
         </p>
       </div>
 
@@ -207,10 +200,10 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/15">
-                <th className="text-left text-gold-light py-2 pr-4">{isHi ? 'माप' : 'Measurement'}</th>
-                <th className="text-right text-gold-light py-2 pr-4">{isHi ? 'आर्यभट (499 CE)' : 'Aryabhata (499 CE)'}</th>
-                <th className="text-right text-gold-light py-2 pr-4">{isHi ? 'आधुनिक मान' : 'Modern Value'}</th>
-                <th className="text-right text-gold-light py-2">{isHi ? 'सटीकता' : 'Accuracy'}</th>
+                <th className="text-left text-gold-light py-2 pr-4">{tl({ en: 'Measurement', hi: 'माप', sa: 'माप' }, locale)}</th>
+                <th className="text-right text-gold-light py-2 pr-4">{tl({ en: 'Aryabhata (499 CE)', hi: 'आर्यभट (499 CE)', sa: 'आर्यभट (499 CE)' }, locale)}</th>
+                <th className="text-right text-gold-light py-2 pr-4">{tl({ en: 'Modern Value', hi: 'आधुनिक मान', sa: 'आधुनिक मान' }, locale)}</th>
+                <th className="text-right text-gold-light py-2">{tl({ en: 'Accuracy', hi: 'सटीकता', sa: 'सटीकता' }, locale)}</th>
               </tr>
             </thead>
             <tbody>

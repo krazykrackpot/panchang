@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -24,7 +25,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'अष्टकवर्ग क्या है?' : 'What is Ashtakavarga?'}
+          {tl({ en: 'What is Ashtakavarga?', hi: 'अष्टकवर्ग क्या है?', sa: 'अष्टकवर्ग क्या है?' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -38,7 +39,7 @@ function Page1() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उद्गम' : 'Classical Origin'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उद्गम', sa: 'शास्त्रीय उद्गम' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? <>अष्टकवर्ग का विस्तृत वर्णन बृहत् पाराशर होरा शास्त्र (अध्याय 66-72) में है और वराहमिहिर की बृहत् जातक में इसे और विस्तृत किया गया। यह पद्धति कम्प्यूटर-युग के एल्गोरिदम से दो सहस्राब्दी से अधिक पुरानी है, फिर भी ग्रह प्रभाव अंकन के प्रति इसका मैट्रिक्स-आधारित दृष्टिकोण आधुनिक गणनात्मक विधियों की पूर्वकल्पना करता है।</>
@@ -56,7 +57,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'BAV और SAV तालिकाएँ पढ़ना' : 'Reading BAV and SAV Tables'}
+          {tl({ en: 'Reading BAV and SAV Tables', hi: 'BAV और SAV तालिकाएँ पढ़ना', sa: 'BAV और SAV तालिकाएँ पढ़ना' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -70,11 +71,11 @@ function Page2() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यरत उदाहरण: शनि का BAV' : 'Worked Example: Saturn&apos;s BAV'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example: Saturn&apos;s BAV', hi: 'कार्यरत उदाहरण: शनि का BAV', sa: 'कार्यरत उदाहरण: शनि का BAV' }, locale)}</h4>
         <ExampleChart
           ascendant={4}
           planets={{ 7: [6], 1: [0, 3], 4: [1], 9: [4], 11: [5] }}
-          title={isHi ? 'कर्क लग्न — शनि मकर (7वें) में — BAV विश्लेषण' : 'Cancer Lagna — Saturn in Capricorn (7th) — BAV Analysis'}
+          title={tl({ en: 'Cancer Lagna — Saturn in Capricorn (7th) — BAV Analysis', hi: 'कर्क लग्न — शनि मकर (7वें) में — BAV विश्लेषण', sa: 'कर्क लग्न — शनि मकर (7वें) में — BAV विश्लेषण' }, locale)}
           highlight={[7]}
         />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
@@ -89,7 +90,7 @@ function Page2() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'सामान्य भ्रम' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रम', sa: 'सामान्य भ्रम' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? <>कई छात्र BAV और SAV को भ्रमित करते हैं और परस्पर विनिमय से प्रयोग करते हैं। BAV ग्रह-विशिष्ट है &mdash; यह एक ग्रह के गोचर गुणवत्ता के बारे में बताता है। SAV समग्र है और एक राशि की समग्र शुभ शक्ति बताता है। एक अन्य सामान्य त्रुटि त्रिकोण शोधन और एकाधिपति शोधन (न्यूनीकरण तकनीकें) की उपेक्षा करना है। कच्चा BAV/SAV प्रथम अनुमान देता है, पर शोधन प्रक्रिया सूक्ष्म प्रतिरूप दर्शाती है।</>
@@ -107,7 +108,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'अष्टकवर्ग से गोचर भविष्यवाणी' : 'Transit Prediction with Ashtakavarga'}
+          {tl({ en: 'Transit Prediction with Ashtakavarga', hi: 'अष्टकवर्ग से गोचर भविष्यवाणी', sa: 'अष्टकवर्ग से गोचर भविष्यवाणी' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -121,7 +122,7 @@ function Page3() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? <>अष्टकवर्ग का पुनर्जागरण ठीक इसलिए हो रहा है क्योंकि यह अन्तर्निहित रूप से गणनात्मक है। बिन्दु तालिकाएँ मूलतः 12 (राशि) गुणा 8 (स्रोत) आकार के 7 मैट्रिक्स हैं, गणना में अत्यन्त तीव्र। हमारा कुण्डली इंजन पूर्ण BAV और SAV तालिकाएँ मिलीसेकण्ड में उत्पन्न करता है। यह गोचर भविष्यवाणियों को विशिष्ट और सत्यापन-योग्य बनाता है। अष्टकवर्ग बिन्दुओं को विंशोत्तरी दशा अवधियों के साथ संयोजित करने से ज्योतिष में सबसे सटीक समय ढाँचा प्राप्त होता है: दशा बताती है क्या; अष्टकवर्ग बताता है कहाँ; मिलकर वे बताते हैं कब।</>

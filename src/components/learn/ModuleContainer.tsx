@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect, createContext, useContext, type ReactNode } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -173,15 +174,15 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 border border-gold-primary/15 bg-gradient-to-br from-gold-primary/5 to-transparent">
         <div className="flex items-center gap-2 text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
           <BookOpen className="w-3.5 h-3.5" />
-          {isHi ? `चरण ${meta.phase} · ${meta.topic}` : `Phase ${meta.phase} · ${meta.topic}`}
+          {tl({ en: `Phase ${meta.phase} · ${meta.topic}`, hi: `चरण ${meta.phase} · ${meta.topic}`, sa: `चरण ${meta.phase} · ${meta.topic}` }, locale)}
         </div>
         <h2 className="text-2xl font-bold text-gold-gradient mb-1" style={hf}>
-          {isHi ? `${meta.moduleNumber}  ${meta.title.hi}` : `${meta.moduleNumber}  ${meta.title.en}`}
+          {tl({ en: `${meta.moduleNumber}  ${meta.title.en}`, hi: `${meta.moduleNumber}  ${meta.title.hi}`, sa: `${meta.moduleNumber}  ${meta.title.hi}` }, locale)}
         </h2>
         <p className="text-text-secondary text-sm">{isHi ? meta.subtitle.hi : meta.subtitle.en}</p>
         <div className="flex items-center gap-4 mt-3 text-text-tertiary text-xs">
-          <span>~{meta.estimatedMinutes} {isHi ? 'मिनट' : 'min'}</span>
-          <span>{totalContentPages} {isHi ? 'पृष्ठ' : 'pages'} + {isHi ? 'ज्ञान परीक्षा' : 'knowledge check'}</span>
+          <span>~{meta.estimatedMinutes} {tl({ en: 'min', hi: 'मिनट', sa: 'मिनट' }, locale)}</span>
+          <span>{totalContentPages} {tl({ en: 'pages', hi: 'पृष्ठ', sa: 'पृष्ठ' }, locale)} + {tl({ en: 'knowledge check', hi: 'ज्ञान परीक्षा', sa: 'ज्ञान परीक्षा' }, locale)}</span>
         </div>
 
         {/* Progress bar */}
@@ -191,7 +192,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
               style={{ width: showQuiz ? '100%' : `${((currentPage + 1) / (totalContentPages + 1)) * 100}%` }} />
           </div>
           <span className="text-text-tertiary text-xs font-mono shrink-0">
-            {showQuiz ? (isHi ? 'परीक्षा' : 'Quiz') : `${currentPage + 1}/${totalContentPages}`}
+            {showQuiz ? tl({ en: 'Quiz', hi: 'परीक्षा', sa: 'परीक्षा' }, locale) : `${currentPage + 1}/${totalContentPages}`}
           </span>
         </div>
       </div>
@@ -216,7 +217,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                 <div className="flex items-center gap-2">
                   <HelpCircle className="w-5 h-5 text-indigo-400" />
                   <span className="text-indigo-400 text-xs uppercase tracking-widest font-bold">
-                    {isHi ? 'ज्ञान परीक्षा' : 'Knowledge Check'}
+                    {tl({ en: 'Knowledge Check', hi: 'ज्ञान परीक्षा', sa: 'ज्ञान परीक्षा' }, locale)}
                   </span>
                 </div>
                 <span className="text-text-tertiary text-xs font-mono">{currentQ + 1}/{quizQuestions.length}</span>
@@ -271,7 +272,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                             <button key={String(val)} onClick={() => !answered && setSelectedAnswer(val)}
                               disabled={answered}
                               className={`flex-1 px-4 py-3 rounded-xl border transition-all text-sm font-medium ${cls}`}>
-                              {val ? (isHi ? 'सत्य' : 'True') : (isHi ? 'असत्य' : 'False')}
+                              {val ? tl({ en: 'True', hi: 'सत्य', sa: 'सत्य' }, locale) : tl({ en: 'False', hi: 'असत्य', sa: 'असत्य' }, locale)}
                             </button>
                           );
                         })}
@@ -283,7 +284,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
                         className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10">
                         <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1">
-                          {isHi ? 'व्याख्या' : 'Explanation'}
+                          {tl({ en: 'Explanation', hi: 'व्याख्या', sa: 'व्याख्या' }, locale)}
                         </div>
                         <p className="text-text-secondary text-xs leading-relaxed">{isHi ? q.explanation.hi : q.explanation.en}</p>
                         {q.classicalRef && <p className="text-text-tertiary text-xs mt-1">{q.classicalRef}</p>}
@@ -295,13 +296,13 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                       {!answered && (
                         <button onClick={handleAnswer} disabled={selectedAnswer === null}
                           className="px-5 py-2 rounded-xl bg-indigo-500/20 text-indigo-300 text-sm font-medium hover:bg-indigo-500/30 transition-colors disabled:opacity-40">
-                          {isHi ? 'जाँचें' : 'Check Answer'}
+                          {tl({ en: 'Check Answer', hi: 'जाँचें', sa: 'जाँचें' }, locale)}
                         </button>
                       )}
                       {answered && (
                         <button onClick={handleNextQuestion}
                           className="px-5 py-2 rounded-xl bg-gold-primary text-bg-primary text-sm font-semibold hover:bg-gold-light transition-colors">
-                          {currentQ < quizQuestions.length - 1 ? (isHi ? 'अगला प्रश्न →' : 'Next Question →') : (isHi ? 'परिणाम देखें' : 'See Results')}
+                          {currentQ < quizQuestions.length - 1 ? tl({ en: 'Next Question →', hi: 'अगला प्रश्न →', sa: 'अगला प्रश्न →' }, locale) : tl({ en: 'See Results', hi: 'परिणाम देखें', sa: 'परिणाम देखें' }, locale)}
                         </button>
                       )}
                     </div>
@@ -318,7 +319,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                 <>
                   <div className="text-5xl mb-3">🎉</div>
                   <h3 className="text-2xl font-bold text-emerald-400 mb-1" style={hf}>
-                    {isHi ? 'उत्तीर्ण!' : 'Mastered!'}
+                    {tl({ en: 'Mastered!', hi: 'उत्तीर्ण!', sa: 'उत्तीर्ण!' }, locale)}
                   </h3>
                   <p className="text-text-secondary text-lg font-mono mb-4">{score}/{quizQuestions.length}</p>
 
@@ -326,7 +327,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                     <div className="max-w-xs mx-auto mb-6">
                       {lastInPhase && phaseProgress.mastered === phaseProgress.total ? (
                         <div className="text-sm text-gold-light font-semibold mb-2" style={hf}>
-                          {isHi ? `चरण ${meta.phase} पूर्ण!` : `Phase ${meta.phase} Complete!`}
+                          {tl({ en: `Phase ${meta.phase} Complete!`, hi: `चरण ${meta.phase} पूर्ण!`, sa: `चरण ${meta.phase} पूर्ण!` }, locale)}
                         </div>
                       ) : null}
                       <div className="h-1.5 bg-white/5 rounded-full overflow-hidden mb-1">
@@ -338,9 +339,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                         />
                       </div>
                       <p className="text-text-secondary/60 text-xs">
-                        {isHi
-                          ? `चरण ${meta.phase} — ${phaseProgress.mastered}/${phaseProgress.total} पूर्ण`
-                          : `Phase ${meta.phase} — ${phaseProgress.mastered}/${phaseProgress.total} mastered`}
+                        {tl({ en: `Phase ${meta.phase} — ${phaseProgress.mastered}/${phaseProgress.total} mastered`, hi: `चरण ${meta.phase} — ${phaseProgress.mastered}/${phaseProgress.total} पूर्ण`, sa: `चरण ${meta.phase} — ${phaseProgress.mastered}/${phaseProgress.total} पूर्ण` }, locale)}
                       </p>
                     </div>
                   )}
@@ -350,11 +349,11 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                       <Link href={`/learn/modules/${nextRef.id}`}
                         className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-emerald-500/15 border-2 border-emerald-500/30 text-emerald-300 font-bold text-sm hover:bg-emerald-500/25 transition-colors"
                         style={hf}>
-                        {isHi ? 'अगला:' : 'Next:'} {nextRef.id.replace('-', '.')} {isHi ? nextRef.title.hi : nextRef.title.en} →
+                        {tl({ en: 'Next:', hi: 'अगला:', sa: 'अगला:' }, locale)} {nextRef.id.replace('-', '.')} {isHi ? nextRef.title.hi : nextRef.title.en} →
                       </Link>
                     ) : (
                       <div className="px-8 py-3 rounded-xl bg-gold-primary/15 border-2 border-gold-primary/30 text-gold-light font-bold text-sm" style={hf}>
-                        {isHi ? 'सम्पूर्ण पाठ्यक्रम पूर्ण!' : 'Entire Curriculum Complete!'}
+                        {tl({ en: 'Entire Curriculum Complete!', hi: 'सम्पूर्ण पाठ्यक्रम पूर्ण!', sa: 'सम्पूर्ण पाठ्यक्रम पूर्ण!' }, locale)}
                       </div>
                     )}
 
@@ -364,7 +363,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                       className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-indigo-500/15 border border-indigo-500/25 text-indigo-300 text-sm font-medium hover:bg-indigo-500/25 hover:border-indigo-500/40 transition-colors"
                     >
                       <Users className="w-4 h-4" />
-                      {isHi ? 'मित्र को चुनौती दें' : 'Challenge a Friend'}
+                      {tl({ en: 'Challenge a Friend', hi: 'मित्र को चुनौती दें', sa: 'मित्र को चुनौती दें' }, locale)}
                     </button>
 
                     <AnimatePresence>
@@ -379,9 +378,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                             <ShareButton
                               title={isHi ? meta.title.hi : meta.title.en}
                               text={
-                                isHi
-                                  ? `\u092E\u0948\u0902\u0928\u0947 '${meta.title.hi}' \u092E\u0947\u0902 ${score}/${quizQuestions.length} \u0938\u094D\u0915\u094B\u0930 \u0915\u093F\u092F\u093E \u2014 \u0915\u094D\u092F\u093E \u0906\u092A \u092E\u0941\u091D\u0938\u0947 \u092C\u0947\u0939\u0924\u0930 \u0915\u0930 \u0938\u0915\u0924\u0947 \u0939\u0948\u0902? \u{1F9E0}`
-                                  : `I scored ${score}/${quizQuestions.length} on '${meta.title.en}' \u2014 Can you beat me? \u{1F9E0}`
+                                tl({ en: `I scored ${score}/${quizQuestions.length} on '${meta.title.en}' \u2014 Can you beat me? \u{1F9E0}`, hi: `\u092E\u0948\u0902\u0928\u0947 '${meta.title.hi}' \u092E\u0947\u0902 ${score}/${quizQuestions.length} \u0938\u094D\u0915\u094B\u0930 \u0915\u093F\u092F\u093E \u2014 \u0915\u094D\u092F\u093E \u0906\u092A \u092E\u0941\u091D\u0938\u0947 \u092C\u0947\u0939\u0924\u0930 \u0915\u0930 \u0938\u0915\u0924\u0947 \u0939\u0948\u0902? \u{1F9E0}`, sa: `\u092E\u0948\u0902\u0928\u0947 '${meta.title.hi}' \u092E\u0947\u0902 ${score}/${quizQuestions.length} \u0938\u094D\u0915\u094B\u0930 \u0915\u093F\u092F\u093E \u2014 \u0915\u094D\u092F\u093E \u0906\u092A \u092E\u0941\u091D\u0938\u0947 \u092C\u0947\u0939\u0924\u0930 \u0915\u0930 \u0938\u0915\u0924\u0947 \u0939\u0948\u0902? \u{1F9E0}` }, locale)
                               }
                               url={`https://dekhopanchang.com/learn/modules/${meta.id}`}
                               locale={locale}
@@ -396,11 +393,11 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                     <div className="flex gap-3">
                       <button onClick={() => { setShowQuiz(false); setCurrentPage(0); }}
                         className="px-4 py-2 rounded-xl border border-gold-primary/15 text-text-secondary text-xs hover:text-text-primary transition-colors">
-                        {isHi ? 'सामग्री समीक्षा' : 'Review Content'}
+                        {tl({ en: 'Review Content', hi: 'सामग्री समीक्षा', sa: 'सामग्री समीक्षा' }, locale)}
                       </button>
                       <Link href="/learn/modules"
                         className="px-4 py-2 rounded-xl border border-gold-primary/15 text-text-secondary text-xs hover:text-text-primary transition-colors">
-                        {isHi ? 'सभी मॉड्यूल' : 'All Modules'}
+                        {tl({ en: 'All Modules', hi: 'सभी मॉड्यूल', sa: 'सभी मॉड्यूल' }, locale)}
                       </Link>
                     </div>
                   </div>
@@ -409,22 +406,20 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                 <>
                   <div className="text-5xl mb-4">📚</div>
                   <h3 className="text-2xl font-bold text-red-400 mb-2" style={hf}>
-                    {isHi ? 'पुनः प्रयास करें' : 'Try Again'}
+                    {tl({ en: 'Try Again', hi: 'पुनः प्रयास करें', sa: 'पुनः प्रयास करें' }, locale)}
                   </h3>
                   <p className="text-text-secondary text-lg font-mono mb-2">{score}/{quizQuestions.length}</p>
                   <p className="text-text-secondary text-sm mb-6">
-                    {isHi
-                      ? `उत्तीर्ण के लिए ${passThreshold}/${quizQuestions.length} आवश्यक। सामग्री की समीक्षा करें और पुनः प्रयास करें।`
-                      : `Need ${passThreshold}/${quizQuestions.length} to pass. Review the content and try again.`}
+                    {tl({ en: `Need ${passThreshold}/${quizQuestions.length} to pass. Review the content and try again.`, hi: `उत्तीर्ण के लिए ${passThreshold}/${quizQuestions.length} आवश्यक। सामग्री की समीक्षा करें और पुनः प्रयास करें।`, sa: `उत्तीर्ण के लिए ${passThreshold}/${quizQuestions.length} आवश्यक। सामग्री की समीक्षा करें और पुनः प्रयास करें।` }, locale)}
                   </p>
                   <div className="flex justify-center gap-3">
                     <button onClick={handleRetry}
                       className="px-6 py-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/25 text-gold-light text-sm font-medium hover:bg-gold-primary/20 transition-colors">
-                      {isHi ? 'पुनः प्रयास' : 'Retry Quiz'}
+                      {tl({ en: 'Retry Quiz', hi: 'पुनः प्रयास', sa: 'पुनः प्रयास' }, locale)}
                     </button>
                     <button onClick={() => { setShowQuiz(false); setCurrentPage(0); }}
                       className="px-6 py-2.5 rounded-xl border border-gold-primary/15 text-text-secondary text-sm hover:text-text-primary transition-colors">
-                      {isHi ? 'सामग्री पर वापस' : 'Back to Content'}
+                      {tl({ en: 'Back to Content', hi: 'सामग्री पर वापस', sa: 'सामग्री पर वापस' }, locale)}
                     </button>
                   </div>
                 </>
@@ -441,7 +436,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
             disabled={currentPage === 0 && !showQuiz}
             className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm text-text-secondary hover:text-text-primary disabled:opacity-30 disabled:cursor-not-allowed transition-colors">
             <ChevronLeft className="w-4 h-4" />
-            {isHi ? 'पिछला' : 'Previous'}
+            {tl({ en: 'Previous', hi: 'पिछला', sa: 'पिछला' }, locale)}
           </button>
           <button onClick={handleNextPage}
             disabled={showQuiz}
@@ -452,7 +447,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                 ? 'bg-indigo-500/20 text-indigo-300 hover:bg-indigo-500/30'
                 : 'bg-gold-primary/10 text-gold-light hover:bg-gold-primary/20'
             }`}>
-            {isLastContentPage && !showQuiz ? (isHi ? 'ज्ञान परीक्षा →' : 'Take Quiz →') : (isHi ? 'अगला' : 'Next')}
+            {isLastContentPage && !showQuiz ? tl({ en: 'Take Quiz →', hi: 'ज्ञान परीक्षा →', sa: 'ज्ञान परीक्षा →' }, locale) : tl({ en: 'Next', hi: 'अगला', sa: 'अगला' }, locale)}
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>

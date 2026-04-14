@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/combustion.json';
@@ -84,12 +85,12 @@ function CombustionDiagram({ locale }: { locale: Locale }) {
       {/* Central Sun */}
       <circle cx={cx} cy={cy} r="28" fill="url(#comb-sun)" filter="url(#comb-glow)" />
       <text x={cx} y={cy + 1} fill="#1a1a2e" fontSize="13" fontWeight="bold" textAnchor="middle" dominantBaseline="middle">
-        {isDevanagariLocale(locale) ? 'सूर्य' : 'SUN'}
+        {tl({ en: 'SUN', hi: 'सूर्य', sa: 'सूर्य' }, locale)}
       </text>
 
       {/* Legend */}
       <text x={cx} y="385" fill="#a0a0b8" fontSize="10" textAnchor="middle">
-        {isDevanagariLocale(locale) ? 'दूरी अंशों में (° देशान्तर) — R = वक्री दूरी' : 'Distance in degrees (° longitude) — R = retrograde distance'}
+        {tl({ en: 'Distance in degrees (° longitude) — R = retrograde distance', hi: 'दूरी अंशों में (° देशान्तर) — R = वक्री दूरी', sa: 'दूरी अंशों में (° देशान्तर) — R = वक्री दूरी' }, locale)}
       </text>
     </svg>
   );
@@ -118,7 +119,7 @@ export default function CombustionPage() {
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-300 text-sm mb-4">
             <Flame className="w-4 h-4" />
-            {isDevanagariLocale(locale) ? 'ग्रह अवस्था' : 'Planetary Condition'}
+            {tl({ en: 'Planetary Condition', hi: 'ग्रह अवस्था', sa: 'ग्रह अवस्था' }, locale)}
           </div>
           <h1 className="text-3xl sm:text-5xl font-bold text-gold-gradient mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
             {t('title')}

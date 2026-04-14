@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
@@ -98,7 +99,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'एक संगीत समस्या से जन्म' : 'Born From a Music Problem'}
+          {tl({ en: 'Born From a Music Problem', hi: 'एक संगीत समस्या से जन्म', sa: 'एक संगीत समस्या से जन्म' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -109,7 +110,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'ताल और छन्द की समस्या' : 'The Tala and Meter Problem'}
+          {tl({ en: 'The Tala and Meter Problem', hi: 'ताल और छन्द की समस्या', sa: 'ताल और छन्द की समस्या' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -117,20 +118,20 @@ function Page1() {
             : <>Sanskrit poetry uses two types of syllables: <span className="text-gold-light font-medium">laghu (L)</span> — 1 beat, and <span className="text-gold-light font-medium">guru (G)</span> — 2 beats. The question: how many ways can a line of n beats be filled using laghus and gurus?</>}
         </p>
         <div className="mt-3 space-y-1 font-mono text-xs">
-          <p className="text-text-secondary"><span className="text-gold-light">n=1:</span> {isHi ? 'L → 1 तरीका' : 'L → 1 way'}</p>
-          <p className="text-text-secondary"><span className="text-gold-light">n=2:</span> {isHi ? 'LL, G → 2 तरीके' : 'LL, G → 2 ways'}</p>
-          <p className="text-text-secondary"><span className="text-gold-light">n=3:</span> {isHi ? 'LLL, LG, GL → 3 तरीके' : 'LLL, LG, GL → 3 ways'}</p>
-          <p className="text-text-secondary"><span className="text-gold-light">n=4:</span> {isHi ? 'LLLL, LLG, LGL, GLL, GG → 5 तरीके' : 'LLLL, LLG, LGL, GLL, GG → 5 ways'}</p>
-          <p className="text-text-secondary"><span className="text-gold-light">n=5:</span> {isHi ? '8 तरीके' : '8 ways'} &nbsp;<span className="text-gold-light">n=6:</span> {isHi ? '13 तरीके' : '13 ways'}</p>
+          <p className="text-text-secondary"><span className="text-gold-light">n=1:</span> {tl({ en: 'L → 1 way', hi: 'L → 1 तरीका', sa: 'L → 1 तरीका' }, locale)}</p>
+          <p className="text-text-secondary"><span className="text-gold-light">n=2:</span> {tl({ en: 'LL, G → 2 ways', hi: 'LL, G → 2 तरीके', sa: 'LL, G → 2 तरीके' }, locale)}</p>
+          <p className="text-text-secondary"><span className="text-gold-light">n=3:</span> {tl({ en: 'LLL, LG, GL → 3 ways', hi: 'LLL, LG, GL → 3 तरीके', sa: 'LLL, LG, GL → 3 तरीके' }, locale)}</p>
+          <p className="text-text-secondary"><span className="text-gold-light">n=4:</span> {tl({ en: 'LLLL, LLG, LGL, GLL, GG → 5 ways', hi: 'LLLL, LLG, LGL, GLL, GG → 5 तरीके', sa: 'LLLL, LLG, LGL, GLL, GG → 5 तरीके' }, locale)}</p>
+          <p className="text-text-secondary"><span className="text-gold-light">n=5:</span> {tl({ en: '8 ways', hi: '8 तरीके', sa: '8 तरीके' }, locale)} &nbsp;<span className="text-gold-light">n=6:</span> {tl({ en: '13 ways', hi: '13 तरीके', sa: '13 तरीके' }, locale)}</p>
         </div>
         <p className="text-text-secondary text-xs leading-relaxed mt-3">
-          {isHi ? 'पैटर्न: 1, 2, 3, 5, 8, 13… — यही फिबोनाची अनुक्रम है!' : 'The pattern: 1, 2, 3, 5, 8, 13… — that is the Fibonacci sequence!'}
+          {tl({ en: 'The pattern: 1, 2, 3, 5, 8, 13… — that is the Fibonacci sequence!', hi: 'पैटर्न: 1, 2, 3, 5, 8, 13… — यही फिबोनाची अनुक्रम है!', sa: 'पैटर्न: 1, 2, 3, 5, 8, 13… — यही फिबोनाची अनुक्रम है!' }, locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'भरत मुनि — 200 ईसा पूर्व' : 'Bharata Muni — 200 BCE'}
+          {tl({ en: 'Bharata Muni — 200 BCE', hi: 'भरत मुनि — 200 ईसा पूर्व', sa: 'भरत मुनि — 200 ईसा पूर्व' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -152,7 +153,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'विरहांक से हेमचन्द्र तक' : 'From Virahanka to Hemachandra'}
+          {tl({ en: 'From Virahanka to Hemachandra', hi: 'विरहांक से हेमचन्द्र तक', sa: 'विरहांक से हेमचन्द्र तक' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -163,37 +164,37 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'भारतीय वंश-वृक्ष' : 'The Indian Lineage'}
+          {tl({ en: 'The Indian Lineage', hi: 'भारतीय वंश-वृक्ष', sa: 'भारतीय वंश-वृक्ष' }, locale)}
         </h4>
         <div className="space-y-3">
           <div>
-            <p className="text-gold-light font-semibold text-xs mb-1">{isHi ? 'पिंगल (~300 ईसा पूर्व)' : 'Pingala (~300 BCE)'}</p>
+            <p className="text-gold-light font-semibold text-xs mb-1">{tl({ en: 'Pingala (~300 BCE)', hi: 'पिंगल (~300 ईसा पूर्व)', sa: 'पिंगल (~300 ईसा पूर्व)' }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
-              {isHi ? 'छन्दःशास्त्र — मेट्रिकल अनुक्रमों पर सबसे पुराना ज्ञात ग्रन्थ। पिंगल ने द्विआधारी अनुक्रमों का एक कोडिंग सिस्टम विकसित किया और मेट्रिकल पैटर्न की गणना की चर्चा की जो अनुक्रम को निहित रूप से एन्कोड करती है।' : 'Chandahshastra — the oldest known treatise on metrical sequences. Pingala developed a coding system for binary sequences and discussed the counting of metrical patterns that implicitly encodes the sequence.'}
+              {tl({ en: 'Chandahshastra — the oldest known treatise on metrical sequences. Pingala developed a coding system for binary sequences and discussed the counting of metrical patterns that implicitly encodes the sequence.', hi: 'छन्दःशास्त्र — मेट्रिकल अनुक्रमों पर सबसे पुराना ज्ञात ग्रन्थ। पिंगल ने द्विआधारी अनुक्रमों का एक कोडिंग सिस्टम विकसित किया और मेट्रिकल पैटर्न की गणना की चर्चा की जो अनुक्रम को निहित रूप से एन्कोड करती है।', sa: 'छन्दःशास्त्र — मेट्रिकल अनुक्रमों पर सबसे पुराना ज्ञात ग्रन्थ। पिंगल ने द्विआधारी अनुक्रमों का एक कोडिंग सिस्टम विकसित किया और मेट्रिकल पैटर्न की गणना की चर्चा की जो अनुक्रम को निहित रूप से एन्कोड करती है।' }, locale)}
             </p>
           </div>
           <div>
-            <p className="text-gold-light font-semibold text-xs mb-1">{isHi ? 'भरत मुनि (~200 ईसा पूर्व)' : 'Bharata Muni (~200 BCE)'}</p>
+            <p className="text-gold-light font-semibold text-xs mb-1">{tl({ en: 'Bharata Muni (~200 BCE)', hi: 'भरत मुनि (~200 ईसा पूर्व)', sa: 'भरत मुनि (~200 ईसा पूर्व)' }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
-              {isHi ? 'नाट्यशास्त्र — ताल पैटर्न के विश्लेषण में अनुक्रम का प्रथम स्पष्ट वर्णन। संगीत और कविता में व्यावहारिक अनुप्रयोग।' : 'Natyashastra — first explicit description of the sequence in the analysis of tala patterns. Practical applications in music and poetry.'}
+              {tl({ en: 'Natyashastra — first explicit description of the sequence in the analysis of tala patterns. Practical applications in music and poetry.', hi: 'नाट्यशास्त्र — ताल पैटर्न के विश्लेषण में अनुक्रम का प्रथम स्पष्ट वर्णन। संगीत और कविता में व्यावहारिक अनुप्रयोग।', sa: 'नाट्यशास्त्र — ताल पैटर्न के विश्लेषण में अनुक्रम का प्रथम स्पष्ट वर्णन। संगीत और कविता में व्यावहारिक अनुप्रयोग।' }, locale)}
             </p>
           </div>
           <div>
-            <p className="text-gold-light font-semibold text-xs mb-1">{isHi ? 'विरहांक (~600 ईस्वी)' : 'Virahanka (~600 CE)'}</p>
+            <p className="text-gold-light font-semibold text-xs mb-1">{tl({ en: 'Virahanka (~600 CE)', hi: 'विरहांक (~600 ईस्वी)', sa: 'विरहांक (~600 ईस्वी)' }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
-              {isHi ? 'पिंगल पर टिप्पणी — स्पष्ट रूप से पुनरावृत्ति नियम बताया: F(n) = F(n-1) + F(n-2)। यह पहली बार था जब नियम को गणितीय रूप से स्पष्ट किया गया।' : 'Commentary on Pingala — explicitly stated the recurrence rule: F(n) = F(n-1) + F(n-2). This was the first time the rule was made mathematically explicit.'}
+              {tl({ en: 'Commentary on Pingala — explicitly stated the recurrence rule: F(n) = F(n-1) + F(n-2). This was the first time the rule was made mathematically explicit.', hi: 'पिंगल पर टिप्पणी — स्पष्ट रूप से पुनरावृत्ति नियम बताया: F(n) = F(n-1) + F(n-2)। यह पहली बार था जब नियम को गणितीय रूप से स्पष्ट किया गया।', sa: 'पिंगल पर टिप्पणी — स्पष्ट रूप से पुनरावृत्ति नियम बताया: F(n) = F(n-1) + F(n-2)। यह पहली बार था जब नियम को गणितीय रूप से स्पष्ट किया गया।' }, locale)}
             </p>
           </div>
           <div>
-            <p className="text-gold-light font-semibold text-xs mb-1">{isHi ? 'गोपाल (~1100 ईस्वी)' : 'Gopala (~1100 CE)'}</p>
+            <p className="text-gold-light font-semibold text-xs mb-1">{tl({ en: 'Gopala (~1100 CE)', hi: 'गोपाल (~1100 ईस्वी)', sa: 'गोपाल (~1100 ईस्वी)' }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
-              {isHi ? 'अनुक्रम और उसके गुणों पर विस्तारित कार्य। छन्द कविता में पैटर्न की व्यापक सूची।' : 'Extended work on the sequence and its properties. Comprehensive listing of patterns in metrical poetry.'}
+              {tl({ en: 'Extended work on the sequence and its properties. Comprehensive listing of patterns in metrical poetry.', hi: 'अनुक्रम और उसके गुणों पर विस्तारित कार्य। छन्द कविता में पैटर्न की व्यापक सूची।', sa: 'अनुक्रम और उसके गुणों पर विस्तारित कार्य। छन्द कविता में पैटर्न की व्यापक सूची।' }, locale)}
             </p>
           </div>
           <div>
-            <p className="text-gold-light font-semibold text-xs mb-1">{isHi ? 'हेमचन्द्र (1150 ईस्वी)' : 'Hemachandra (1150 CE)'}</p>
+            <p className="text-gold-light font-semibold text-xs mb-1">{tl({ en: 'Hemachandra (1150 CE)', hi: 'हेमचन्द्र (1150 ईस्वी)', sa: 'हेमचन्द्र (1150 ईस्वी)' }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
-              {isHi ? 'जैन काव्य छन्दों पर व्यापक ग्रन्थ। फिबोनाची से ठीक 52 वर्ष पहले पुनरावृत्ति और अनुक्रम का पूर्ण उपचार। भारत में कभी-कभी "हेमचन्द्र अनुक्रम" कहा जाता है।' : 'Comprehensive treatise on Jain poetic meters. Full treatment of the recurrence and sequence, exactly 52 years before Fibonacci. Sometimes called the "Hemachandra sequence" in India.'}
+              {tl({ en: 'Comprehensive treatise on Jain poetic meters. Full treatment of the recurrence and sequence, exactly 52 years before Fibonacci. Sometimes called the "Hemachandra sequence" in India.', hi: 'जैन काव्य छन्दों पर व्यापक ग्रन्थ। फिबोनाची से ठीक 52 वर्ष पहले पुनरावृत्ति और अनुक्रम का पूर्ण उपचार। भारत में कभी-कभी "हेमचन्द्र अनुक्रम" कहा जाता है।', sa: 'जैन काव्य छन्दों पर व्यापक ग्रन्थ। फिबोनाची से ठीक 52 वर्ष पहले पुनरावृत्ति और अनुक्रम का पूर्ण उपचार। भारत में कभी-कभी "हेमचन्द्र अनुक्रम" कहा जाता है।' }, locale)}
             </p>
           </div>
         </div>
@@ -201,7 +202,7 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15 rounded-xl p-5">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'क्यों संगीत गणित पैदा करता है' : 'Why Music Generates Mathematics'}
+          {tl({ en: 'Why Music Generates Mathematics', hi: 'क्यों संगीत गणित पैदा करता है', sa: 'क्यों संगीत गणित पैदा करता है' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -223,7 +224,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'अरब-भारतीय प्रेषण और विरासत' : 'Arab-Indian Transmission and Legacy'}
+          {tl({ en: 'Arab-Indian Transmission and Legacy', hi: 'अरब-भारतीय प्रेषण और विरासत', sa: 'अरब-भारतीय प्रेषण और विरासत' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -234,19 +235,19 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'ज्ञान का मार्ग' : 'The Path of Knowledge'}
+          {tl({ en: 'The Path of Knowledge', hi: 'ज्ञान का मार्ग', sa: 'ज्ञान का मार्ग' }, locale)}
         </h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
-          <p><span className="text-gold-light font-medium">{isHi ? '200 ईसा पूर्व – 1150 ईस्वी:' : '200 BCE – 1150 CE:'}</span> {isHi ? 'भारतीय छन्दशास्त्र में अनुक्रम का विकास — भरत मुनि से हेमचन्द्र तक।' : 'Sequence developed in Indian prosody — Bharata Muni to Hemachandra.'}</p>
-          <p><span className="text-gold-light font-medium">{isHi ? '8वीं–10वीं शताब्दी ईस्वी:' : '8th–10th century CE:'}</span> {isHi ? 'अरब विद्वानों ने भारतीय गणितीय ग्रन्थों का अनुवाद किया — अल-खवारिज्मी, अल-बिरूनी। भारतीय बीजगणित, अंक प्रणाली और छन्दशास्त्र अरबी में उपलब्ध हो गए।' : 'Arab scholars translate Indian mathematical texts — Al-Khwarizmi, Al-Biruni. Indian algebra, numeral system, and prosody became available in Arabic.'}</p>
-          <p><span className="text-gold-light font-medium">{isHi ? '1170–1190 ईस्वी:' : '1170–1190 CE:'}</span> {isHi ? 'फिबोनाची का युवाकाल। उनके पिता पीसा के व्यापारिक प्रतिनिधि के रूप में बुगिया (आधुनिक अल्जीरिया) में थे। फिबोनाची ने वहाँ और बाद में भूमध्यसागरीय अरब केन्द्रों में अध्ययन किया।' : 'Fibonacci\'s youth. His father was a Pisan trading representative in Bugia (modern Algeria). Fibonacci studied there and later at Arab centres around the Mediterranean.'}</p>
-          <p><span className="text-gold-light font-medium">{isHi ? '1202 ईस्वी:' : '1202 CE:'}</span> {isHi ? 'लिबेर अबासी प्रकाशित। फिबोनाची स्पष्ट रूप से भारतीय अंक प्रणाली का श्रेय देते हैं। खरगोश समस्या अनुक्रम प्रस्तुत करती है।' : 'Liber Abaci published. Fibonacci explicitly credits the Indian numeral system. The rabbit problem presents the sequence.'}</p>
+          <p><span className="text-gold-light font-medium">{tl({ en: '200 BCE – 1150 CE:', hi: '200 ईसा पूर्व – 1150 ईस्वी:', sa: '200 ईसा पूर्व – 1150 ईस्वी:' }, locale)}</span> {tl({ en: 'Sequence developed in Indian prosody — Bharata Muni to Hemachandra.', hi: 'भारतीय छन्दशास्त्र में अनुक्रम का विकास — भरत मुनि से हेमचन्द्र तक।', sa: 'भारतीय छन्दशास्त्र में अनुक्रम का विकास — भरत मुनि से हेमचन्द्र तक।' }, locale)}</p>
+          <p><span className="text-gold-light font-medium">{tl({ en: '8th–10th century CE:', hi: '8वीं–10वीं शताब्दी ईस्वी:', sa: '8वीं–10वीं शताब्दी ईस्वी:' }, locale)}</span> {tl({ en: 'Arab scholars translate Indian mathematical texts — Al-Khwarizmi, Al-Biruni. Indian algebra, numeral system, and prosody became available in Arabic.', hi: 'अरब विद्वानों ने भारतीय गणितीय ग्रन्थों का अनुवाद किया — अल-खवारिज्मी, अल-बिरूनी। भारतीय बीजगणित, अंक प्रणाली और छन्दशास्त्र अरबी में उपलब्ध हो गए।', sa: 'अरब विद्वानों ने भारतीय गणितीय ग्रन्थों का अनुवाद किया — अल-खवारिज्मी, अल-बिरूनी। भारतीय बीजगणित, अंक प्रणाली और छन्दशास्त्र अरबी में उपलब्ध हो गए।' }, locale)}</p>
+          <p><span className="text-gold-light font-medium">{tl({ en: '1170–1190 CE:', hi: '1170–1190 ईस्वी:', sa: '1170–1190 ईस्वी:' }, locale)}</span> {tl({ en: "Fibonacci\'s youth. His father was a Pisan trading representative in Bugia (modern Algeria). Fibonacci studied there and later at Arab centres around the Mediterranean.", hi: "फिबोनाची का युवाकाल। उनके पिता पीसा के व्यापारिक प्रतिनिधि के रूप में बुगिया (आधुनिक अल्जीरिया) में थे। फिबोनाची ने वहाँ और बाद में भूमध्यसागरीय अरब केन्द्रों में अध्ययन किया।", sa: "फिबोनाची का युवाकाल। उनके पिता पीसा के व्यापारिक प्रतिनिधि के रूप में बुगिया (आधुनिक अल्जीरिया) में थे। फिबोनाची ने वहाँ और बाद में भूमध्यसागरीय अरब केन्द्रों में अध्ययन किया।" }, locale)}</p>
+          <p><span className="text-gold-light font-medium">{tl({ en: '1202 CE:', hi: '1202 ईस्वी:', sa: '1202 ईस्वी:' }, locale)}</span> {tl({ en: 'Liber Abaci published. Fibonacci explicitly credits the Indian numeral system. The rabbit problem presents the sequence.', hi: 'लिबेर अबासी प्रकाशित। फिबोनाची स्पष्ट रूप से भारतीय अंक प्रणाली का श्रेय देते हैं। खरगोश समस्या अनुक्रम प्रस्तुत करती है।', sa: 'लिबेर अबासी प्रकाशित। फिबोनाची स्पष्ट रूप से भारतीय अंक प्रणाली का श्रेय देते हैं। खरगोश समस्या अनुक्रम प्रस्तुत करती है।' }, locale)}</p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/15 rounded-xl p-5">
         <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'विरासत: क्या नाम रखा जाए?' : 'Legacy: What Shall We Call It?'}
+          {tl({ en: 'Legacy: What Shall We Call It?', hi: 'विरासत: क्या नाम रखा जाए?', sa: 'विरासत: क्या नाम रखा जाए?' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -254,9 +255,9 @@ function Page3() {
             : <>Historians of mathematics increasingly acknowledge that identifying the sequence as the "Fibonacci sequence" is historically inaccurate. Some proposals:</>}
         </p>
         <ul className="text-text-secondary text-xs space-y-1 list-disc list-inside">
-          <li>{isHi ? '"हेमचन्द्र-फिबोनाची अनुक्रम" — दोनों की भूमिका को स्वीकार करता है' : '"Hemachandra-Fibonacci sequence" — acknowledges both contributions'}</li>
-          <li>{isHi ? '"विरहांक अनुक्रम" — जिसने पहले पुनरावृत्ति को स्पष्ट किया' : '"Virahanka sequence" — for who first made the recurrence explicit'}</li>
-          <li>{isHi ? 'भारत में "हेमचन्द्र अनुक्रम" — सबसे हाल के पूर्ण भारतीय उपचार के लिए' : '"Hemachandra sequence" in India — for the most recent complete Indian treatment'}</li>
+          <li>{tl({ en: '"Hemachandra-Fibonacci sequence" — acknowledges both contributions', hi: '"हेमचन्द्र-फिबोनाची अनुक्रम" — दोनों की भूमिका को स्वीकार करता है', sa: '"हेमचन्द्र-फिबोनाची अनुक्रम" — दोनों की भूमिका को स्वीकार करता है' }, locale)}</li>
+          <li>{tl({ en: '"Virahanka sequence" — for who first made the recurrence explicit', hi: '"विरहांक अनुक्रम" — जिसने पहले पुनरावृत्ति को स्पष्ट किया', sa: '"विरहांक अनुक्रम" — जिसने पहले पुनरावृत्ति को स्पष्ट किया' }, locale)}</li>
+          <li>{tl({ en: '"Hemachandra sequence" in India — for the most recent complete Indian treatment', hi: 'भारत में "हेमचन्द्र अनुक्रम" — सबसे हाल के पूर्ण भारतीय उपचार के लिए', sa: 'भारत में "हेमचन्द्र अनुक्रम" — सबसे हाल के पूर्ण भारतीय उपचार के लिए' }, locale)}</li>
         </ul>
         <p className="text-text-secondary text-xs leading-relaxed mt-3">
           {isHi

@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
@@ -23,26 +24,20 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'रत्न शास्त्र — रत्नों का विज्ञान' : 'Ratna Shastra — The Science of Gemstones'}
+          {tl({ en: 'Ratna Shastra — The Science of Gemstones', hi: 'रत्न शास्त्र — रत्नों का विज्ञान', sa: 'रत्न शास्त्र — रत्नों का विज्ञान' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          {isHi
-            ? 'रत्न शास्त्र ज्योतिष उपचारों की सबसे लोकप्रिय शाखाओं में से एक है। मूल सिद्धान्त सरल है: नौ ग्रहों में से प्रत्येक एक विशिष्ट रत्न से अनुनादित होता है, और उस रत्न को त्वचा के सम्पर्क में पहनने से धारक के जीवन में उस ग्रह की ऊर्जा प्रवर्धित होती है। यह केवल अलंकार नहीं है — यह जन्म कुण्डली की ग्रह गतिकी में एक जानबूझकर किया गया हस्तक्षेप है।'
-            : 'Ratna Shastra (gem science) is one of the most popular branches of Jyotish remedial measures. The core principle is straightforward: each of the nine grahas (planets) resonates with a specific gemstone, and wearing that gemstone in contact with the skin amplifies the planet\u2019s energy in the wearer\u2019s life. This is not merely ornamental — it is a deliberate intervention in the planetary dynamics of one\u2019s birth chart.'}
+          {tl({ en: 'Ratna Shastra (gem science) is one of the most popular branches of Jyotish remedial measures. The core principle is straightforward: each of the nine grahas (planets) resonates with a specific gemstone, and wearing that gemstone in contact with the skin amplifies the planet\u2019s energy in the wearer\u2019s life. This is not merely ornamental — it is a deliberate intervention in the planetary dynamics of one\u2019s birth chart.', hi: 'रत्न शास्त्र ज्योतिष उपचारों की सबसे लोकप्रिय शाखाओं में से एक है। मूल सिद्धान्त सरल है: नौ ग्रहों में से प्रत्येक एक विशिष्ट रत्न से अनुनादित होता है, और उस रत्न को त्वचा के सम्पर्क में पहनने से धारक के जीवन में उस ग्रह की ऊर्जा प्रवर्धित होती है। यह केवल अलंकार नहीं है — यह जन्म कुण्डली की ग्रह गतिकी में एक जानबूझकर किया गया हस्तक्षेप है।', sa: 'रत्न शास्त्र ज्योतिष उपचारों की सबसे लोकप्रिय शाखाओं में से एक है। मूल सिद्धान्त सरल है: नौ ग्रहों में से प्रत्येक एक विशिष्ट रत्न से अनुनादित होता है, और उस रत्न को त्वचा के सम्पर्क में पहनने से धारक के जीवन में उस ग्रह की ऊर्जा प्रवर्धित होती है। यह केवल अलंकार नहीं है — यह जन्म कुण्डली की ग्रह गतिकी में एक जानबूझकर किया गया हस्तक्षेप है।' }, locale)}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {isHi
-            ? 'नौ ग्रह-रत्न सम्बन्ध हैं: सूर्य = माणिक्य (रूबी), चन्द्र = मोती (पर्ल), मंगल = मूँगा (रेड कोरल), बुध = पन्ना (एमरल्ड), गुरु = पुखराज (यलो सैफायर), शुक्र = हीरा (डायमंड), शनि = नीलम (ब्लू सैफायर), राहु = गोमेद (हेसोनाइट), और केतु = लहसुनिया (कैट्स आई)। प्रत्येक रत्न अपने ग्रह से जुड़ी ब्रह्माण्डीय ऊर्जा की विशिष्ट तरंगदैर्ध्य को ग्रहण और संचारित करता है। रत्न एक एंटीना की भाँति कार्य करता है — यह ऊर्जा उत्पन्न नहीं करता बल्कि जो पहले से विद्यमान है उसे केन्द्रित और संचालित करता है।'
-            : 'The nine planet-gem correspondences are: Sun = Ruby (Manikya), Moon = Pearl (Moti), Mars = Red Coral (Moonga), Mercury = Emerald (Panna), Jupiter = Yellow Sapphire (Pukhraj), Venus = Diamond (Heera), Saturn = Blue Sapphire (Neelam), Rahu = Hessonite (Gomed), and Ketu = Cat\u2019s Eye (Lehsunia). Each gemstone captures and transmits the specific wavelength of cosmic energy associated with its planet. The gem acts as an antenna — it does not generate energy but focuses and channels what is already present.'}
+          {tl({ en: 'The nine planet-gem correspondences are: Sun = Ruby (Manikya), Moon = Pearl (Moti), Mars = Red Coral (Moonga), Mercury = Emerald (Panna), Jupiter = Yellow Sapphire (Pukhraj), Venus = Diamond (Heera), Saturn = Blue Sapphire (Neelam), Rahu = Hessonite (Gomed), and Ketu = Cat\u2019s Eye (Lehsunia). Each gemstone captures and transmits the specific wavelength of cosmic energy associated with its planet. The gem acts as an antenna — it does not generate energy but focuses and channels what is already present.', hi: 'नौ ग्रह-रत्न सम्बन्ध हैं: सूर्य = माणिक्य (रूबी), चन्द्र = मोती (पर्ल), मंगल = मूँगा (रेड कोरल), बुध = पन्ना (एमरल्ड), गुरु = पुखराज (यलो सैफायर), शुक्र = हीरा (डायमंड), शनि = नीलम (ब्लू सैफायर), राहु = गोमेद (हेसोनाइट), और केतु = लहसुनिया (कैट्स आई)। प्रत्येक रत्न अपने ग्रह से जुड़ी ब्रह्माण्डीय ऊर्जा की विशिष्ट तरंगदैर्ध्य को ग्रहण और संचारित करता है। रत्न एक एंटीना की भाँति कार्य करता है — यह ऊर्जा उत्पन्न नहीं करता बल्कि जो पहले से विद्यमान है उसे केन्द्रित और संचालित करता है।', sa: 'नौ ग्रह-रत्न सम्बन्ध हैं: सूर्य = माणिक्य (रूबी), चन्द्र = मोती (पर्ल), मंगल = मूँगा (रेड कोरल), बुध = पन्ना (एमरल्ड), गुरु = पुखराज (यलो सैफायर), शुक्र = हीरा (डायमंड), शनि = नीलम (ब्लू सैफायर), राहु = गोमेद (हेसोनाइट), और केतु = लहसुनिया (कैट्स आई)। प्रत्येक रत्न अपने ग्रह से जुड़ी ब्रह्माण्डीय ऊर्जा की विशिष्ट तरंगदैर्ध्य को ग्रहण और संचारित करता है। रत्न एक एंटीना की भाँति कार्य करता है — यह ऊर्जा उत्पन्न नहीं करता बल्कि जो पहले से विद्यमान है उसे केन्द्रित और संचालित करता है।' }, locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'नौ रत्न एक दृष्टि में' : 'The Nine Gems at a Glance'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'The Nine Gems at a Glance', hi: 'नौ रत्न एक दृष्टि में', sa: 'नौ रत्न एक दृष्टि में' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {isHi
-            ? 'रत्न प्राकृतिक, अनुपचारित और प्रमुख दोषों (दरारें, समावेशन, धुँधलापन) से मुक्त होना चाहिए। दोषपूर्ण रत्न बिना रत्न से भी बदतर है — यह विकृत ऊर्जा संचारित करता है। रत्न को त्वचा को स्पर्श करना चाहिए (ओपन-बैक सेटिंग) ताकि इसके कम्पन सीधे शरीर से सम्पर्क करें। कृत्रिम या प्रयोगशाला-निर्मित रत्न ज्योतिष परम्परा में प्रभावी नहीं माने जाते, क्योंकि उनमें वह प्राकृतिक क्रिस्टलीकरण प्रक्रिया नहीं होती जो ग्रहीय अनुनाद को संकेतित करती है।'
-            : 'The gemstone must be natural, untreated, and free of major flaws (cracks, inclusions, cloudiness). A flawed gemstone is worse than no gemstone — it transmits distorted energy. The gem must touch the skin (open-back setting) so that its vibrations make direct contact with the body. Synthetic or lab-created stones are not considered effective in Jyotish tradition, as they lack the natural crystallization process that is believed to encode planetary resonance.'}
+          {tl({ en: 'The gemstone must be natural, untreated, and free of major flaws (cracks, inclusions, cloudiness). A flawed gemstone is worse than no gemstone — it transmits distorted energy. The gem must touch the skin (open-back setting) so that its vibrations make direct contact with the body. Synthetic or lab-created stones are not considered effective in Jyotish tradition, as they lack the natural crystallization process that is believed to encode planetary resonance.', hi: 'रत्न प्राकृतिक, अनुपचारित और प्रमुख दोषों (दरारें, समावेशन, धुँधलापन) से मुक्त होना चाहिए। दोषपूर्ण रत्न बिना रत्न से भी बदतर है — यह विकृत ऊर्जा संचारित करता है। रत्न को त्वचा को स्पर्श करना चाहिए (ओपन-बैक सेटिंग) ताकि इसके कम्पन सीधे शरीर से सम्पर्क करें। कृत्रिम या प्रयोगशाला-निर्मित रत्न ज्योतिष परम्परा में प्रभावी नहीं माने जाते, क्योंकि उनमें वह प्राकृतिक क्रिस्टलीकरण प्रक्रिया नहीं होती जो ग्रहीय अनुनाद को संकेतित करती है।', sa: 'रत्न प्राकृतिक, अनुपचारित और प्रमुख दोषों (दरारें, समावेशन, धुँधलापन) से मुक्त होना चाहिए। दोषपूर्ण रत्न बिना रत्न से भी बदतर है — यह विकृत ऊर्जा संचारित करता है। रत्न को त्वचा को स्पर्श करना चाहिए (ओपन-बैक सेटिंग) ताकि इसके कम्पन सीधे शरीर से सम्पर्क करें। कृत्रिम या प्रयोगशाला-निर्मित रत्न ज्योतिष परम्परा में प्रभावी नहीं माने जाते, क्योंकि उनमें वह प्राकृतिक क्रिस्टलीकरण प्रक्रिया नहीं होती जो ग्रहीय अनुनाद को संकेतित करती है।' }, locale)}
         </p>
       </section>
     </div>
@@ -56,22 +51,18 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'कब पहनें और कब न पहनें' : 'When to Wear and When NOT to Wear'}
+          {tl({ en: 'When to Wear and When NOT to Wear', hi: 'कब पहनें और कब न पहनें', sa: 'कब पहनें और कब न पहनें' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          {isHi
-            ? 'रत्न शास्त्र का मूल नियम: कार्यात्मक पापी ग्रह का रत्न कभी न पहनें। जो ग्रह आपके लग्न से 6, 8 या 12वें भाव का स्वामी हो, वह अपनी प्राकृतिक शुभता की परवाह किए बिना कार्यात्मक पापी बन जाता है। उदाहरणार्थ, बृहस्पति प्राकृतिक शुभ है, परन्तु वृषभ लग्न के लिए यह 8वें और 11वें भाव का स्वामी है — पुखराज पहनने से 8वें भाव की समस्याएँ (दुर्घटनाएँ, दीर्घकालिक रोग, आकस्मिक हानि) प्रवर्धित होंगी। किसी भी रत्न निर्धारण से पहले विशिष्ट लग्न से भाव स्वामित्व का विश्लेषण अनिवार्य है।'
-            : 'The cardinal rule of Ratna Shastra: never wear a gemstone for a functional malefic planet. A planet that lords over the 6th, 8th, or 12th house from your lagna becomes a functional malefic regardless of its natural benefic status. For example, Jupiter is a natural benefic, but for Taurus lagna it rules the 8th and 11th houses — wearing Yellow Sapphire would amplify 8th-house problems (accidents, chronic illness, sudden losses). You must always analyze house lordships from the specific lagna before prescribing any gem.'}
+          {tl({ en: 'The cardinal rule of Ratna Shastra: never wear a gemstone for a functional malefic planet. A planet that lords over the 6th, 8th, or 12th house from your lagna becomes a functional malefic regardless of its natural benefic status. For example, Jupiter is a natural benefic, but for Taurus lagna it rules the 8th and 11th houses — wearing Yellow Sapphire would amplify 8th-house problems (accidents, chronic illness, sudden losses). You must always analyze house lordships from the specific lagna before prescribing any gem.', hi: 'रत्न शास्त्र का मूल नियम: कार्यात्मक पापी ग्रह का रत्न कभी न पहनें। जो ग्रह आपके लग्न से 6, 8 या 12वें भाव का स्वामी हो, वह अपनी प्राकृतिक शुभता की परवाह किए बिना कार्यात्मक पापी बन जाता है। उदाहरणार्थ, बृहस्पति प्राकृतिक शुभ है, परन्तु वृषभ लग्न के लिए यह 8वें और 11वें भाव का स्वामी है — पुखराज पहनने से 8वें भाव की समस्याएँ (दुर्घटनाएँ, दीर्घकालिक रोग, आकस्मिक हानि) प्रवर्धित होंगी। किसी भी रत्न निर्धारण से पहले विशिष्ट लग्न से भाव स्वामित्व का विश्लेषण अनिवार्य है।', sa: 'रत्न शास्त्र का मूल नियम: कार्यात्मक पापी ग्रह का रत्न कभी न पहनें। जो ग्रह आपके लग्न से 6, 8 या 12वें भाव का स्वामी हो, वह अपनी प्राकृतिक शुभता की परवाह किए बिना कार्यात्मक पापी बन जाता है। उदाहरणार्थ, बृहस्पति प्राकृतिक शुभ है, परन्तु वृषभ लग्न के लिए यह 8वें और 11वें भाव का स्वामी है — पुखराज पहनने से 8वें भाव की समस्याएँ (दुर्घटनाएँ, दीर्घकालिक रोग, आकस्मिक हानि) प्रवर्धित होंगी। किसी भी रत्न निर्धारण से पहले विशिष्ट लग्न से भाव स्वामित्व का विश्लेषण अनिवार्य है।' }, locale)}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {isHi
-            ? 'रत्नों के लिए सर्वोत्तम उम्मीदवार हैं: (1) लग्नेश — सदैव कार्यात्मक शुभ, इसे सशक्त करना समग्र स्वास्थ्य, आत्मविश्वास और जीवन दिशा में सुधार करता है; (2) योगकारक — वह ग्रह जो एक साथ केन्द्र और त्रिकोण का स्वामी हो, उस लग्न का सबसे शुभ ग्रह; (3) प्रबल त्रिकोण स्वामी (5वाँ और 9वाँ) — ये भाग्य, विद्या और सन्तान लाते हैं। उन ग्रहों को प्राथमिकता दें जो कार्यात्मक शुभ हों परन्तु दुर्बल स्थिति में हों (नीच, अस्त, दुस्थान में) — इन्हें रत्न सहायता से सर्वाधिक लाभ होता है।'
-            : 'The best candidates for gemstones are: (1) the Lagna Lord — always a functional benefic, strengthening it improves overall health, confidence, and life direction; (2) the Yogakaraka — a planet that simultaneously lords a kendra and a trikona, the most auspicious planet for that lagna; (3) strong trine lords (5th and 9th) — they bring fortune, wisdom, and children. Prioritize planets that are functional benefics but placed in weak positions (debilitated, combust, in dusthana) — these benefit most from gemstone support.'}
+          {tl({ en: 'The best candidates for gemstones are: (1) the Lagna Lord — always a functional benefic, strengthening it improves overall health, confidence, and life direction; (2) the Yogakaraka — a planet that simultaneously lords a kendra and a trikona, the most auspicious planet for that lagna; (3) strong trine lords (5th and 9th) — they bring fortune, wisdom, and children. Prioritize planets that are functional benefics but placed in weak positions (debilitated, combust, in dusthana) — these benefit most from gemstone support.', hi: 'रत्नों के लिए सर्वोत्तम उम्मीदवार हैं: (1) लग्नेश — सदैव कार्यात्मक शुभ, इसे सशक्त करना समग्र स्वास्थ्य, आत्मविश्वास और जीवन दिशा में सुधार करता है; (2) योगकारक — वह ग्रह जो एक साथ केन्द्र और त्रिकोण का स्वामी हो, उस लग्न का सबसे शुभ ग्रह; (3) प्रबल त्रिकोण स्वामी (5वाँ और 9वाँ) — ये भाग्य, विद्या और सन्तान लाते हैं। उन ग्रहों को प्राथमिकता दें जो कार्यात्मक शुभ हों परन्तु दुर्बल स्थिति में हों (नीच, अस्त, दुस्थान में) — इन्हें रत्न सहायता से सर्वाधिक लाभ होता है।', sa: 'रत्नों के लिए सर्वोत्तम उम्मीदवार हैं: (1) लग्नेश — सदैव कार्यात्मक शुभ, इसे सशक्त करना समग्र स्वास्थ्य, आत्मविश्वास और जीवन दिशा में सुधार करता है; (2) योगकारक — वह ग्रह जो एक साथ केन्द्र और त्रिकोण का स्वामी हो, उस लग्न का सबसे शुभ ग्रह; (3) प्रबल त्रिकोण स्वामी (5वाँ और 9वाँ) — ये भाग्य, विद्या और सन्तान लाते हैं। उन ग्रहों को प्राथमिकता दें जो कार्यात्मक शुभ हों परन्तु दुर्बल स्थिति में हों (नीच, अस्त, दुस्थान में) — इन्हें रत्न सहायता से सर्वाधिक लाभ होता है।' }, locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'ग्रह-रत्न-धातु-उँगली सन्दर्भ' : 'Planet-Gem-Metal-Finger Reference'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Planet-Gem-Metal-Finger Reference', hi: 'ग्रह-रत्न-धातु-उँगली सन्दर्भ', sa: 'ग्रह-रत्न-धातु-उँगली सन्दर्भ' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
 
           {isHi
@@ -87,7 +78,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'नीलम चेतावनी' : 'Blue Sapphire Warning'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Blue Sapphire Warning', hi: 'नीलम चेतावनी', sa: 'नीलम चेतावनी' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           Blue Sapphire (Neelam) is the most powerful and potentially dangerous gemstone in Jyotish. Saturn&apos;s energy is intense, karmic, and unforgiving. If Blue Sapphire suits your chart, results can be spectacularly positive — rapid financial gains, career breakthroughs, obstacles dissolving overnight. But if it doesn&apos;t suit you, the consequences are equally dramatic — accidents, losses, depression, or sudden downturns within days of wearing it.
         </p>
@@ -127,7 +118,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'नवरत्न विकल्प' : 'The Navaratna Alternative'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'The Navaratna Alternative', hi: 'नवरत्न विकल्प', sa: 'नवरत्न विकल्प' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
 
           {isHi
@@ -140,7 +131,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'गलत रत्न हानिकारक क्यों' : 'Why a Wrong Gemstone Can Cause Harm'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Why a Wrong Gemstone Can Cause Harm', hi: 'गलत रत्न हानिकारक क्यों', sa: 'गलत रत्न हानिकारक क्यों' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
 
           {isHi
@@ -153,7 +144,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य से ऊपर कुण्डली-विशिष्ट' : 'Chart-Specific Over Generic'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Chart-Specific Over Generic', hi: 'सामान्य से ऊपर कुण्डली-विशिष्ट', sa: 'सामान्य से ऊपर कुण्डली-विशिष्ट' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           The most important takeaway from Ratna Shastra: gemstone prescription must be chart-specific. Generic advice like &quot;Sagittarius people should wear Yellow Sapphire&quot; is dangerously oversimplified. The same Jupiter that blesses one chart can devastate another depending on house lordships from the lagna. Always consult a competent astrologer who analyzes your full birth chart — lagna, planetary dignities, dasha periods, and transits — before investing in a gemstone. Our Kundali tool provides the foundation for this analysis.
         </p>

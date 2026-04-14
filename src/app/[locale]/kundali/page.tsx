@@ -3229,9 +3229,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
               {tl({ en: 'D2 Hora — Wealth & Resource Analysis', hi: 'D2 होरा — धन व संसाधन विश्लेषण', sa: 'D2 होरा — धन व संसाधन विश्लेषण', ta: 'D2 Hora — Wealth & Resource Analysis', te: 'D2 Hora — Wealth & Resource Analysis', bn: 'D2 Hora — Wealth & Resource Analysis', kn: 'D2 Hora — Wealth & Resource Analysis', gu: 'D2 Hora — Wealth & Resource Analysis', mai: 'D2 होरा — धन व संसाधन विश्लेषण', mr: 'D2 होरा — धन व संसाधन विश्लेषण' }, locale)}
             </h3>
             <p className="text-text-secondary/70 text-xs text-center mb-5" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-              {isHi
-                ? 'होरा चार्ट सूर्य होरा (सिंह) और चन्द्र होरा (कर्क) के बीच ग्रहों को विभाजित करता है। स्रोत: बृहज्जातक, BPHS अ. 6'
-                : 'Hora chart divides planets between Sun hora (Leo) and Moon hora (Cancer). Source: Brihat Jataka, BPHS Ch. 6'}
+              {tl({ en: 'Hora chart divides planets between Sun hora (Leo) and Moon hora (Cancer). Source: Brihat Jataka, BPHS Ch. 6', hi: 'होरा चार्ट सूर्य होरा (सिंह) और चन्द्र होरा (कर्क) के बीच ग्रहों को विभाजित करता है। स्रोत: बृहज्जातक, BPHS अ. 6', sa: 'होरा चार्ट सूर्य होरा (सिंह) और चन्द्र होरा (कर्क) के बीच ग्रहों को विभाजित करता है। स्रोत: बृहज्जातक, BPHS अ. 6' }, locale)}
             </p>
             {/* Dominant Hora */}
             <div className={`rounded-xl p-4 mb-4 text-center border ${dominantHora === 'sun' ? 'bg-amber-500/10 border-amber-500/25' : 'bg-blue-500/10 border-blue-500/25'}`}>
@@ -3266,9 +3264,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
               ))}
             </div>
             <p className="text-text-secondary/55 text-xs text-center mt-4">
-              {isHi
-                ? `सूर्य होरा: ${sunHoraCount} ग्रह | चन्द्र होरा: ${moonHoraCount} ग्रह | लग्न राशि: ${RASHIS[lagnaSign-1]?.name?.hi || lagnaSign}`
-                : `Sun Hora: ${sunHoraCount} planets | Moon Hora: ${moonHoraCount} planets | Lagna: ${RASHIS[lagnaSign-1]?.name?.en || lagnaSign}`}
+              {tl({ en: `Sun Hora: ${sunHoraCount} planets | Moon Hora: ${moonHoraCount} planets | Lagna: ${RASHIS[lagnaSign-1]?.name?.en || lagnaSign}`, hi: `सूर्य होरा: ${sunHoraCount} ग्रह | चन्द्र होरा: ${moonHoraCount} ग्रह | लग्न राशि: ${RASHIS[lagnaSign-1]?.name?.hi || lagnaSign}`, sa: `सूर्य होरा: ${sunHoraCount} ग्रह | चन्द्र होरा: ${moonHoraCount} ग्रह | लग्न राशि: ${RASHIS[lagnaSign-1]?.name?.hi || lagnaSign}` }, locale)}
             </p>
           </div>
         );
@@ -3331,9 +3327,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
               {tl({ en: 'D9 Navamsha — Marriage, Dharma & Soul Nature', hi: 'D9 नवांश — विवाह, धर्म और आत्म स्वरूप', sa: 'D9 नवांश — विवाह, धर्म और आत्म स्वरूप', ta: 'D9 Navamsha — Marriage, Dharma & Soul Nature', te: 'D9 Navamsha — Marriage, Dharma & Soul Nature', bn: 'D9 Navamsha — Marriage, Dharma & Soul Nature', kn: 'D9 Navamsha — Marriage, Dharma & Soul Nature', gu: 'D9 Navamsha — Marriage, Dharma & Soul Nature', mai: 'D9 नवांश — विवाह, धर्म और आत्म स्वरूप', mr: 'D9 नवांश — विवाह, धर्म और आत्म स्वरूप' }, locale)}
             </h3>
             <p className="text-text-secondary/70 text-xs text-center mb-5">
-              {isHi
-                ? 'नवांश D1 के बाद सबसे महत्वपूर्ण चार्ट है। यह विवाह, आध्यात्मिक विकास और आपके आंतरिक स्व को दर्शाता है। स्रोत: BPHS अ. 6'
-                : 'Navamsha is the most important chart after D1. It reveals marriage quality, spiritual evolution, and your inner self. Source: BPHS Ch. 6'}
+              {tl({ en: 'Navamsha is the most important chart after D1. It reveals marriage quality, spiritual evolution, and your inner self. Source: BPHS Ch. 6', hi: 'नवांश D1 के बाद सबसे महत्वपूर्ण चार्ट है। यह विवाह, आध्यात्मिक विकास और आपके आंतरिक स्व को दर्शाता है। स्रोत: BPHS अ. 6', sa: 'नवांश D1 के बाद सबसे महत्वपूर्ण चार्ट है। यह विवाह, आध्यात्मिक विकास और आपके आंतरिक स्व को दर्शाता है। स्रोत: BPHS अ. 6' }, locale)}
             </p>
 
             {/* D9 Lagna */}
@@ -3344,7 +3338,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
               <p className="text-text-secondary/70 text-xs">
                 {isVargottamaLagna
                   ? (tl({ en: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', hi: 'वर्गोत्तम लग्न — D1 और D9 में एक ही राशि। आपका बाहरी व्यक्तित्व और आंतरिक आत्मा एक ही दिशा में हैं। अत्यंत शुभ।', sa: 'वर्गोत्तम लग्न — D1 और D9 में एक ही राशि। आपका बाहरी व्यक्तित्व और आंतरिक आत्मा एक ही दिशा में हैं। अत्यंत शुभ।', ta: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', te: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', bn: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', kn: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', gu: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', mai: 'वर्गोत्तम लग्न — D1 और D9 में एक ही राशि। आपका बाहरी व्यक्तित्व और आंतरिक आत्मा एक ही दिशा में हैं। अत्यंत शुभ।', mr: 'वर्गोत्तम लग्न — D1 और D9 में एक ही राशि। आपका बाहरी व्यक्तित्व और आंतरिक आत्मा एक ही दिशा में हैं। अत्यंत शुभ।' }, locale))
-                  : (isHi ? `D1 लग्न ${RASHIS[(d1Asc-1)%12]?.name?.hi} से D9 लग्न ${d9AscName?.hi} में — यह आपका आंतरिक स्व है, जो विशेषतः 36 वर्ष के बाद प्रमुख होता है।` : `D1 Ascendant ${RASHIS[(d1Asc-1)%12]?.name?.en} shifts to D9 ${d9AscName?.en} — this is your inner self, which becomes dominant especially after age 36.`)}
+                  : tl({ en: `D1 Ascendant ${RASHIS[(d1Asc-1)%12]?.name?.en} shifts to D9 ${d9AscName?.en} — this is your inner self, which becomes dominant especially after age 36.`, hi: `D1 लग्न ${RASHIS[(d1Asc-1)%12]?.name?.hi} से D9 लग्न ${d9AscName?.hi} में — यह आपका आंतरिक स्व है, जो विशेषतः 36 वर्ष के बाद प्रमुख होता है।`, sa: `D1 लग्न ${RASHIS[(d1Asc-1)%12]?.name?.hi} से D9 लग्न ${d9AscName?.hi} में — यह आपका आंतरिक स्व है, जो विशेषतः 36 वर्ष के बाद प्रमुख होता है।` }, locale)}
               </p>
             </div>
 
@@ -3405,9 +3399,9 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                     {tl({ en: 'D9 7th House — Spouse Indicator', hi: 'D9 7वां भाव — जीवनसाथी संकेत', sa: 'D9 7वां भाव — जीवनसाथी संकेत', ta: 'D9 7th House — Spouse Indicator', te: 'D9 7th House — Spouse Indicator', bn: 'D9 7th House — Spouse Indicator', kn: 'D9 7th House — Spouse Indicator', gu: 'D9 7th House — Spouse Indicator', mai: 'D9 7वां भाव — जीवनसाथी संकेत', mr: 'D9 7वां भाव — जीवनसाथी संकेत' }, locale)}
                   </div>
                   <p className="text-text-secondary/75 text-xs leading-relaxed">
-                    {isHi ? `7वां भाव ${h7SignName?.hi} में` : `7th house in ${h7SignName?.en}`}
+                    {tl({ en: `7th house in ${h7SignName?.en}`, hi: `7वां भाव ${h7SignName?.hi} में`, sa: `7वां भाव ${h7SignName?.hi} में` }, locale)}
                     {h7planets.length > 0
-                      ? (isHi ? ` — ग्रह: ${h7planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ये ग्रह जीवनसाथी के स्वभाव और विवाह गुणवत्ता को सीधे प्रभावित करते हैं।` : ` — planets: ${h7planets.map(p => PLANET_NAMES_EN[p] || '').join(', ')}. These planets directly influence spouse nature and marriage quality.`)
+                      ? tl({ en: ` — planets: ${h7planets.map(p => PLANET_NAMES_EN[p] || '').join(', ')}. These planets directly influence spouse nature and marriage quality.`, hi: ` — ग्रह: ${h7planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ये ग्रह जीवनसाथी के स्वभाव और विवाह गुणवत्ता को सीधे प्रभावित करते हैं।`, sa: ` — ग्रह: ${h7planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ये ग्रह जीवनसाथी के स्वभाव और विवाह गुणवत्ता को सीधे प्रभावित करते हैं।` }, locale)
                       : (tl({ en: '. No planets — spouse nature determined by 7th lord and its D9 placement.', hi: '। कोई ग्रह नहीं — जीवनसाथी का स्वभाव 7वें भावेश और उसके D9 स्थान से निर्धारित।', sa: '। कोई ग्रह नहीं — जीवनसाथी का स्वभाव 7वें भावेश और उसके D9 स्थान से निर्धारित।', ta: '. No planets — spouse nature determined by 7th lord and its D9 placement.', te: '. No planets — spouse nature determined by 7th lord and its D9 placement.', bn: '. No planets — spouse nature determined by 7th lord and its D9 placement.', kn: '. No planets — spouse nature determined by 7th lord and its D9 placement.', gu: '. No planets — spouse nature determined by 7th lord and its D9 placement.', mai: '। कोई ग्रह नहीं — जीवनसाथी का स्वभाव 7वें भावेश और उसके D9 स्थान से निर्धारित।', mr: '। कोई ग्रह नहीं — जीवनसाथी का स्वभाव 7वें भावेश और उसके D9 स्थान से निर्धारित।' }, locale))}
                   </p>
                 </div>
@@ -3452,9 +3446,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
               {tl({ en: 'D10 Dashamsha — Career & Professional Life', hi: 'D10 दशांश — करियर और व्यावसायिक जीवन', sa: 'D10 दशांश — करियर और व्यावसायिक जीवन', ta: 'D10 Dashamsha — Career & Professional Life', te: 'D10 Dashamsha — Career & Professional Life', bn: 'D10 Dashamsha — Career & Professional Life', kn: 'D10 Dashamsha — Career & Professional Life', gu: 'D10 Dashamsha — Career & Professional Life', mai: 'D10 दशांश — करियर और व्यावसायिक जीवन', mr: 'D10 दशांश — करियर और व्यावसायिक जीवन' }, locale)}
             </h3>
             <p className="text-text-secondary/70 text-xs text-center mb-5">
-              {isHi
-                ? 'दशांश चार्ट करियर, व्यवसाय और सार्वजनिक जीवन का विशिष्ट सूचक है। केंद्र में ग्रह करियर को शक्तिशाली बनाते हैं। स्रोत: BPHS अ. 6'
-                : 'Dashamsha chart is the specific indicator of career, profession, and public life. Planets in kendras powerfully shape career. Source: BPHS Ch. 6'}
+              {tl({ en: 'Dashamsha chart is the specific indicator of career, profession, and public life. Planets in kendras powerfully shape career. Source: BPHS Ch. 6', hi: 'दशांश चार्ट करियर, व्यवसाय और सार्वजनिक जीवन का विशिष्ट सूचक है। केंद्र में ग्रह करियर को शक्तिशाली बनाते हैं। स्रोत: BPHS अ. 6', sa: 'दशांश चार्ट करियर, व्यवसाय और सार्वजनिक जीवन का विशिष्ट सूचक है। केंद्र में ग्रह करियर को शक्तिशाली बनाते हैं। स्रोत: BPHS अ. 6' }, locale)}
             </p>
 
             {/* D10 Lagna */}
@@ -3463,9 +3455,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                 {tl({ en: 'D10 Ascendant: ', hi: 'D10 लग्न: ', sa: 'D10 लग्न: ', ta: 'D10 Ascendant: ', te: 'D10 Ascendant: ', bn: 'D10 Ascendant: ', kn: 'D10 Ascendant: ', gu: 'D10 Ascendant: ', mai: 'D10 लग्न: ', mr: 'D10 लग्न: ' }, locale)}{d10AscName?.[locale] || d10AscName?.en}
               </div>
               <p className="text-text-secondary/70 text-xs">
-                {isHi
-                  ? 'D10 लग्न आपके करियर के स्वरूप और पेशेवर व्यक्तित्व को दर्शाता है — आप कार्यस्थल पर कैसे दिखते हैं।'
-                  : 'D10 ascendant shows the nature of your professional persona — how you appear in the workplace and your career\'s fundamental character.'}
+                {tl({ en: "D10 ascendant shows the nature of your professional persona — how you appear in the workplace and your career\'s fundamental character.", hi: "D10 लग्न आपके करियर के स्वरूप और पेशेवर व्यक्तित्व को दर्शाता है — आप कार्यस्थल पर कैसे दिखते हैं।", sa: "D10 लग्न आपके करियर के स्वरूप और पेशेवर व्यक्तित्व को दर्शाता है — आप कार्यस्थल पर कैसे दिखते हैं।" }, locale)}
               </p>
             </div>
 
@@ -3535,9 +3525,9 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                     {tl({ en: 'D10 10th House — Career Zenith', hi: 'D10 10वां भाव — करियर शिखर', sa: 'D10 10वां भाव — करियर शिखर', ta: 'D10 10th House — Career Zenith', te: 'D10 10th House — Career Zenith', bn: 'D10 10th House — Career Zenith', kn: 'D10 10th House — Career Zenith', gu: 'D10 10th House — Career Zenith', mai: 'D10 10वां भाव — करियर शिखर', mr: 'D10 10वां भाव — करियर शिखर' }, locale)}
                   </div>
                   <p className="text-text-secondary/75 text-xs leading-relaxed">
-                    {isHi ? `10वां भाव ${h10SignName?.hi} में` : `10th house in ${h10SignName?.en}`}
+                    {tl({ en: `10th house in ${h10SignName?.en}`, hi: `10वां भाव ${h10SignName?.hi} में`, sa: `10वां भाव ${h10SignName?.hi} में` }, locale)}
                     {h10planets.length > 0
-                      ? (isHi ? ` — ग्रह: ${h10planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ये ग्रह सीधे करियर के उच्चतम बिंदु को प्रभावित करते हैं — आपकी सबसे दृश्यमान व्यावसायिक उपलब्धियां।` : ` — planets: ${h10planets.map(p => PLANET_NAMES_EN[p] || '').join(', ')}. These planets directly influence your career zenith — your most visible professional achievements.`)
+                      ? tl({ en: ` — planets: ${h10planets.map(p => PLANET_NAMES_EN[p] || '').join(', ')}. These planets directly influence your career zenith — your most visible professional achievements.`, hi: ` — ग्रह: ${h10planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ये ग्रह सीधे करियर के उच्चतम बिंदु को प्रभावित करते हैं — आपकी सबसे दृश्यमान व्यावसायिक उपलब्धियां।`, sa: ` — ग्रह: ${h10planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ये ग्रह सीधे करियर के उच्चतम बिंदु को प्रभावित करते हैं — आपकी सबसे दृश्यमान व्यावसायिक उपलब्धियां।` }, locale)
                       : (tl({ en: '. No planets — career zenith determined by 10th lord and its placement in D10.', hi: '। कोई ग्रह नहीं — करियर शिखर 10वें भावेश और उसकी D10 स्थिति से निर्धारित।', sa: '। कोई ग्रह नहीं — करियर शिखर 10वें भावेश और उसकी D10 स्थिति से निर्धारित।', ta: '. No planets — career zenith determined by 10th lord and its placement in D10.', te: '. No planets — career zenith determined by 10th lord and its placement in D10.', bn: '. No planets — career zenith determined by 10th lord and its placement in D10.', kn: '. No planets — career zenith determined by 10th lord and its placement in D10.', gu: '. No planets — career zenith determined by 10th lord and its placement in D10.', mai: '। कोई ग्रह नहीं — करियर शिखर 10वें भावेश और उसकी D10 स्थिति से निर्धारित।', mr: '। कोई ग्रह नहीं — करियर शिखर 10वें भावेश और उसकी D10 स्थिति से निर्धारित।' }, locale))}
                   </p>
                 </div>
@@ -3563,9 +3553,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
               {tl({ en: 'D7 Saptamsha — Children & Progeny', hi: 'D7 सप्तांश — संतान और वंश', sa: 'D7 सप्तांश — संतान और वंश', ta: 'D7 Saptamsha — Children & Progeny', te: 'D7 Saptamsha — Children & Progeny', bn: 'D7 Saptamsha — Children & Progeny', kn: 'D7 Saptamsha — Children & Progeny', gu: 'D7 Saptamsha — Children & Progeny', mai: 'D7 सप्तांश — संतान और वंश', mr: 'D7 सप्तांश — संतान और वंश' }, locale)}
             </h3>
             <p className="text-text-secondary/70 text-xs text-center mb-5">
-              {isHi
-                ? 'सप्तांश चार्ट संतान का प्राथमिक सूचक है — संख्या, स्वभाव, जातक से संबंध और उनकी सफलता। स्रोत: BPHS अ. 6'
-                : 'Saptamsha is the primary children indicator — number, nature, relationship with you, and their success. Source: BPHS Ch. 6'}
+              {tl({ en: 'Saptamsha is the primary children indicator — number, nature, relationship with you, and their success. Source: BPHS Ch. 6', hi: 'सप्तांश चार्ट संतान का प्राथमिक सूचक है — संख्या, स्वभाव, जातक से संबंध और उनकी सफलता। स्रोत: BPHS अ. 6', sa: 'सप्तांश चार्ट संतान का प्राथमिक सूचक है — संख्या, स्वभाव, जातक से संबंध और उनकी सफलता। स्रोत: BPHS अ. 6' }, locale)}
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -3576,7 +3564,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                 </div>
                 <p className="text-text-secondary/75 text-xs leading-relaxed">
                   {jupHouse
-                    ? (isHi ? `D7 में गुरु ${jupHouse}वें भाव में — ${new Set([1,4,5,7,9,10]).has(jupHouse) ? 'शुभ स्थान — संतान सुख और उनकी सफलता का बलवान संकेत।' : new Set([6,8,12]).has(jupHouse) ? 'चुनौतीपूर्ण स्थान — संतान में विलंब या कठिनाई संभव। गुरु उपाय सहायक।' : 'मध्यम स्थान — सामान्य संतान सुख।'}` : `Jupiter in ${jupHouse}th house of D7 — ${new Set([1,4,5,7,9,10]).has(jupHouse) ? 'Auspicious position — strong indicator of children\'s happiness and success.' : new Set([6,8,12]).has(jupHouse) ? 'Challenging position — delay or difficulty with children possible. Jupiter remedies help.' : 'Moderate position — normal children fortune.'}`)
+                    ? tl({ en: `Jupiter in ${jupHouse}th house of D7 — ${new Set([1,4,5,7,9,10]).has(jupHouse) ? 'Auspicious position — strong indicator of children\'s happiness and success.' : new Set([6,8,12]).has(jupHouse) ? 'Challenging position — delay or difficulty with children possible. Jupiter remedies help.' : 'Moderate position — normal children fortune.'}`, hi: `D7 में गुरु ${jupHouse}वें भाव में — ${new Set([1,4,5,7,9,10]).has(jupHouse) ? 'शुभ स्थान — संतान सुख और उनकी सफलता का बलवान संकेत।' : new Set([6,8,12]).has(jupHouse) ? 'चुनौतीपूर्ण स्थान — संतान में विलंब या कठिनाई संभव। गुरु उपाय सहायक।' : 'मध्यम स्थान — सामान्य संतान सुख।'}`, sa: `D7 में गुरु ${jupHouse}वें भाव में — ${new Set([1,4,5,7,9,10]).has(jupHouse) ? 'शुभ स्थान — संतान सुख और उनकी सफलता का बलवान संकेत।' : new Set([6,8,12]).has(jupHouse) ? 'चुनौतीपूर्ण स्थान — संतान में विलंब या कठिनाई संभव। गुरु उपाय सहायक।' : 'मध्यम स्थान — सामान्य संतान सुख।'}` }, locale)
                     : (tl({ en: 'Jupiter position in D7 undetermined.', hi: 'D7 में गुरु की स्थिति अनिर्धारित।', sa: 'D7 में गुरु की स्थिति अनिर्धारित।', ta: 'Jupiter position in D7 undetermined.', te: 'Jupiter position in D7 undetermined.', bn: 'Jupiter position in D7 undetermined.', kn: 'Jupiter position in D7 undetermined.', gu: 'Jupiter position in D7 undetermined.', mai: 'D7 में गुरु की स्थिति अनिर्धारित।', mr: 'D7 में गुरु की स्थिति अनिर्धारित।' }, locale))}
                 </p>
               </div>
@@ -3587,9 +3575,9 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                   {tl({ en: '5th House — First Child', hi: '5वां भाव — प्रथम संतान', sa: '5वां भाव — प्रथम संतान', ta: '5th House — First Child', te: '5th House — First Child', bn: '5th House — First Child', kn: '5th House — First Child', gu: '5th House — First Child', mai: '5वां भाव — प्रथम संतान', mr: '5वां भाव — प्रथम संतान' }, locale)}
                 </div>
                 <p className="text-text-secondary/75 text-xs leading-relaxed">
-                  {isHi ? `${RASHIS[(h5Sign-1)%12]?.name?.hi} में` : `In ${RASHIS[(h5Sign-1)%12]?.name?.en}`}
+                  {tl({ en: `In ${RASHIS[(h5Sign-1)%12]?.name?.en}`, hi: `${RASHIS[(h5Sign-1)%12]?.name?.hi} में`, sa: `${RASHIS[(h5Sign-1)%12]?.name?.hi} में` }, locale)}
                   {h5planets.length > 0
-                    ? (isHi ? ` — ग्रह: ${h5planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ${h5planets.some(p => new Set([1,3,4,5]).has(p)) ? 'शुभ ग्रह — प्रथम संतान से सुख।' : 'पाप ग्रह — प्रथम संतान में चुनौतियां संभव।'}` : ` — planets: ${h5planets.map(p => PLANET_NAMES_EN[p] || '').join(', ')}. ${h5planets.some(p => new Set([1,3,4,5]).has(p)) ? 'Benefic influence — happiness from first child.' : 'Malefic influence — challenges possible with first child.'}`)
+                    ? tl({ en: ` — planets: ${h5planets.map(p => PLANET_NAMES_EN[p] || '').join(', ')}. ${h5planets.some(p => new Set([1,3,4,5]).has(p)) ? 'Benefic influence — happiness from first child.' : 'Malefic influence — challenges possible with first child.'}`, hi: ` — ग्रह: ${h5planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ${h5planets.some(p => new Set([1,3,4,5]).has(p)) ? 'शुभ ग्रह — प्रथम संतान से सुख।' : 'पाप ग्रह — प्रथम संतान में चुनौतियां संभव।'}`, sa: ` — ग्रह: ${h5planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ${h5planets.some(p => new Set([1,3,4,5]).has(p)) ? 'शुभ ग्रह — प्रथम संतान से सुख।' : 'पाप ग्रह — प्रथम संतान में चुनौतियां संभव।'}` }, locale)
                     : (tl({ en: '. No planets — assess from 5th lord placement.', hi: '। कोई ग्रह नहीं — 5वें भावेश की स्थिति से आकलन।', sa: '। कोई ग्रह नहीं — 5वें भावेश की स्थिति से आकलन।', ta: '. No planets — assess from 5th lord placement.', te: '. No planets — assess from 5th lord placement.', bn: '. No planets — assess from 5th lord placement.', kn: '. No planets — assess from 5th lord placement.', gu: '. No planets — assess from 5th lord placement.', mai: '। कोई ग्रह नहीं — 5वें भावेश की स्थिति से आकलन।', mr: '। कोई ग्रह नहीं — 5वें भावेश की स्थिति से आकलन।' }, locale))}
                 </p>
               </div>

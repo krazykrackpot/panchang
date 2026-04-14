@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect, useCallback } from 'react';
 import { Bell, BellOff, BellRing } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
@@ -107,7 +108,7 @@ export default function PushPermission({ locale }: PushPermissionProps) {
       <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
         <BellRing className="w-4 h-4 text-emerald-400 shrink-0" />
         <span className="text-emerald-300 text-xs font-medium flex-1">
-          {isHi ? 'सूचनाएं सक्रिय — दैनिक पंचांग, ग्रहण, दशा अलर्ट' : 'Notifications active — daily panchang, eclipses, dasha alerts'}
+          {tl({ en: 'Notifications active — daily panchang, eclipses, dasha alerts', hi: 'सूचनाएं सक्रिय — दैनिक पंचांग, ग्रहण, दशा अलर्ट', sa: 'सूचनाएं सक्रिय — दैनिक पंचांग, ग्रहण, दशा अलर्ट' }, locale)}
         </span>
         <button
           onClick={unsubscribe}
@@ -124,14 +125,14 @@ export default function PushPermission({ locale }: PushPermissionProps) {
     <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-[#2d1b69]/30 to-purple-900/20 border border-purple-500/20">
       <Bell className="w-4 h-4 text-gold-primary shrink-0" />
       <span className="text-text-secondary text-xs flex-1">
-        {isHi ? 'दैनिक पंचांग, त्योहार और ग्रहण की सूचनाएं प्राप्त करें' : 'Get daily panchang, festival, and eclipse notifications'}
+        {tl({ en: 'Get daily panchang, festival, and eclipse notifications', hi: 'दैनिक पंचांग, त्योहार और ग्रहण की सूचनाएं प्राप्त करें', sa: 'दैनिक पंचांग, त्योहार और ग्रहण की सूचनाएं प्राप्त करें' }, locale)}
       </span>
       <button
         onClick={subscribe}
         disabled={loading}
         className="px-3 py-1 rounded-lg bg-gold-primary/15 border border-gold-primary/30 text-gold-light text-xs font-medium hover:bg-gold-primary/25 transition-colors disabled:opacity-50"
       >
-        {loading ? '...' : isHi ? 'सक्रिय करें' : 'Enable'}
+        {loading ? '...' : tl({ en: 'Enable', hi: 'सक्रिय करें', sa: 'सक्रिय करें' }, locale)}
       </button>
     </div>
   );

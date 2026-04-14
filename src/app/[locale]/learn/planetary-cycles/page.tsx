@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LJ from '@/messages/learn/planetary-cycles.json';
@@ -299,7 +300,7 @@ const SectionIcon = ({ icon: Icon, className = '' }: { icon: typeof Orbit; class
 );
 
 // ── SVG: Lunar Nodes Diagram (compact, fills space) ─────────────
-function NodalDiagram({ isHi }: { isHi: boolean }) {
+function NodalDiagram({ locale }: { locale: string }) {
   // Tighter viewBox, larger orbits relative to container
   const cx = 200, cy = 110, r = 150;
   return (
@@ -336,70 +337,70 @@ function NodalDiagram({ isHi }: { isHi: boolean }) {
 
       {/* Legend (top-left, compact) */}
       <line x1="8" y1="12" x2="22" y2="12" stroke="#f59e0b" strokeWidth="2" strokeDasharray="4 2" />
-      <text x="25" y="15" fill="#f59e0b" fontSize="6.5" opacity="0.9">{isHi ? 'क्रान्तिवृत्त' : 'Ecliptic'}</text>
+      <text x="25" y="15" fill="#f59e0b" fontSize="6.5" opacity="0.9">{tl({ en: 'Ecliptic', hi: 'क्रान्तिवृत्त', sa: 'क्रान्तिवृत्त' }, locale)}</text>
       <line x1="8" y1="24" x2="22" y2="24" stroke="#818cf8" strokeWidth="2" />
-      <text x="25" y="27" fill="#818cf8" fontSize="6.5" opacity="0.9">{isHi ? 'चन्द्र कक्षा' : "Moon's orbit"}</text>
+      <text x="25" y="27" fill="#818cf8" fontSize="6.5" opacity="0.9">{tl({ en: "Moon's orbit", hi: "चन्द्र कक्षा", sa: "चन्द्र कक्षा" }, locale)}</text>
 
       {/* ── Rahu node (ascending) — left intersection ── */}
       <circle cx={cx - r + 8} cy={cy + 12} r="14" fill="rgba(239,68,68,0.25)" stroke="#ef4444" strokeWidth="2.5" filter="url(#nodeGlow)" />
       <text x={cx - r + 8} y={cy + 16} textAnchor="middle" fill="#fca5a5" fontSize="10" fontWeight="bold">
-        {isHi ? 'रा' : 'Ra'}
+        {tl({ en: 'Ra', hi: 'रा', sa: 'रा' }, locale)}
       </text>
       {/* Label below */}
       <text x={cx - r + 8} y={cy + 35} textAnchor="middle" fill="#fca5a5" fontSize="9" fontWeight="bold">
-        {isHi ? 'राहु' : 'Rahu'}
+        {tl({ en: 'Rahu', hi: 'राहु', sa: 'राहु' }, locale)}
       </text>
       <text x={cx - r + 8} y={cy + 46} textAnchor="middle" fill="#fca5a5" fontSize="7" opacity="0.7">
-        {isHi ? 'आरोही पात' : 'Ascending Node'}
+        {tl({ en: 'Ascending Node', hi: 'आरोही पात', sa: 'आरोही पात' }, locale)}
       </text>
       {/* Up arrow showing Moon crossing upward */}
       <path d={`M ${cx - r - 8} ${cy + 5} L ${cx - r + 8} ${cy - 8} L ${cx - r + 24} ${cy + 5}`} fill="none" stroke="#818cf8" strokeWidth="1" opacity="0.5" markerMid="url(#arrowUp)" />
-      <text x={cx - r - 14} y={cy - 2} fill="#818cf8" fontSize="6" opacity="0.6" textAnchor="end">{isHi ? 'चन्द्र ↗' : 'Moon ↗'}</text>
+      <text x={cx - r - 14} y={cy - 2} fill="#818cf8" fontSize="6" opacity="0.6" textAnchor="end">{tl({ en: 'Moon ↗', hi: 'चन्द्र ↗', sa: 'चन्द्र ↗' }, locale)}</text>
 
       {/* ── Ketu node (descending) — right intersection ── */}
       <circle cx={cx + r - 8} cy={cy - 12} r="14" fill="rgba(168,85,247,0.25)" stroke="#a855f7" strokeWidth="2.5" filter="url(#nodeGlow)" />
       <text x={cx + r - 8} y={cy - 8} textAnchor="middle" fill="#c084fc" fontSize="10" fontWeight="bold">
-        {isHi ? 'के' : 'Ke'}
+        {tl({ en: 'Ke', hi: 'के', sa: 'के' }, locale)}
       </text>
       {/* Label above */}
       <text x={cx + r - 8} y={cy - 32} textAnchor="middle" fill="#c084fc" fontSize="9" fontWeight="bold">
-        {isHi ? 'केतु' : 'Ketu'}
+        {tl({ en: 'Ketu', hi: 'केतु', sa: 'केतु' }, locale)}
       </text>
       <text x={cx + r - 8} y={cy - 43} textAnchor="middle" fill="#c084fc" fontSize="7" opacity="0.7">
-        {isHi ? 'अवरोही पात' : 'Descending Node'}
+        {tl({ en: 'Descending Node', hi: 'अवरोही पात', sa: 'अवरोही पात' }, locale)}
       </text>
       {/* Down arrow showing Moon crossing downward */}
-      <text x={cx + r + 20} y={cy + 2} fill="#818cf8" fontSize="6" opacity="0.6">{isHi ? 'चन्द्र ↘' : 'Moon ↘'}</text>
+      <text x={cx + r + 20} y={cy + 2} fill="#818cf8" fontSize="6" opacity="0.6">{tl({ en: 'Moon ↘', hi: 'चन्द्र ↘', sa: 'चन्द्र ↘' }, locale)}</text>
 
       {/* Earth at center (this is geocentric view) */}
       <circle cx={cx} cy={cy} r="12" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" strokeWidth="1.5" />
       <text x={cx} y={cy + 4} textAnchor="middle" fill="#93c5fd" fontSize="7" fontWeight="bold">
-        {isHi ? 'पृथ्वी' : 'Earth'}
+        {tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी' }, locale)}
       </text>
 
       {/* Nodal line (Rahu-Ketu axis) */}
       <line x1={cx - r + 8} y1={cy + 12} x2={cx + r - 8} y2={cy - 12} stroke="#ef4444" strokeWidth="0.8" strokeDasharray="4 4" opacity="0.3" />
       <text x={cx} y={cy + 24} textAnchor="middle" fill="#f0d48a" fontSize="7" opacity="0.5">
-        {isHi ? '← राहु-केतु अक्ष →' : '← Rahu-Ketu axis →'}
+        {tl({ en: '← Rahu-Ketu axis →', hi: '← राहु-केतु अक्ष →', sa: '← राहु-केतु अक्ष →' }, locale)}
       </text>
 
       {/* Moon position on its orbit */}
       <circle cx={cx + 80} cy={cy - 30} r="7" fill="rgba(226,232,240,0.2)" stroke="#e2e8f0" strokeWidth="1.5" />
-      <text x={cx + 80} y={cy - 27} textAnchor="middle" fill="#e2e8f0" fontSize="6" fontWeight="bold">{isHi ? 'चन्द्र' : 'Moon'}</text>
+      <text x={cx + 80} y={cy - 27} textAnchor="middle" fill="#e2e8f0" fontSize="6" fontWeight="bold">{tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र' }, locale)}</text>
 
       {/* Bottom explanation */}
       <text x={cx} y={196} textAnchor="middle" fill="#f0d48a" fontSize="7" fontWeight="bold" opacity="0.8">
-        {isHi ? 'राहु-केतु धीरे-धीरे राशि चक्र में पीछे खिसकते हैं' : 'Rahu & Ketu slowly drift backward through the zodiac'}
+        {tl({ en: 'Rahu & Ketu slowly drift backward through the zodiac', hi: 'राहु-केतु धीरे-धीरे राशि चक्र में पीछे खिसकते हैं', sa: 'राहु-केतु धीरे-धीरे राशि चक्र में पीछे खिसकते हैं' }, locale)}
       </text>
       <text x={cx} y={208} textAnchor="middle" fill="#f0d48a" fontSize="6.5" opacity="0.55">
-        {isHi ? 'एक पूर्ण चक्र = 18.6 वर्ष — यही सारोस ग्रहण चक्र का आधार है' : 'One full loop = 18.6 years — this is why eclipses repeat on a similar schedule'}
+        {tl({ en: 'One full loop = 18.6 years — this is why eclipses repeat on a similar schedule', hi: 'एक पूर्ण चक्र = 18.6 वर्ष — यही सारोस ग्रहण चक्र का आधार है', sa: 'एक पूर्ण चक्र = 18.6 वर्ष — यही सारोस ग्रहण चक्र का आधार है' }, locale)}
       </text>
     </svg>
   );
 }
 
 // ── SVG: Synodic Period Visual ──────────────────────────────────
-function SynodicVisual({ isHi }: { isHi: boolean }) {
+function SynodicVisual({ locale }: { locale: string }) {
   const cx = 180, cy = 150;
   // Show Earth at two positions and Saturn barely moving
   const earthR = 70, saturnR = 130;
@@ -426,7 +427,7 @@ function SynodicVisual({ isHi }: { isHi: boolean }) {
 
       {/* Sun center */}
       <circle cx={cx} cy={cy} r="10" fill="rgba(251,191,36,0.15)" stroke="#fbbf24" strokeWidth="1" />
-      <text x={cx} y={cy + 4} textAnchor="middle" fill="#fbbf24" fontSize="7" fontWeight="bold">{isHi ? 'सूर्य' : 'Sun'}</text>
+      <text x={cx} y={cy + 4} textAnchor="middle" fill="#fbbf24" fontSize="7" fontWeight="bold">{tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य' }, locale)}</text>
 
       {/* Earth Position 1 */}
       <circle cx={cx + earthR * Math.cos(e1Angle)} cy={cy + earthR * Math.sin(e1Angle)} r="7" fill="rgba(59,130,246,0.3)" stroke="#3b82f6" strokeWidth="1.5" />
@@ -456,19 +457,19 @@ function SynodicVisual({ isHi }: { isHi: boolean }) {
 
       {/* Labels */}
       <text x={cx} y={18} textAnchor="middle" fill="#f0d48a" fontSize="9" fontWeight="bold">
-        {isHi ? 'सिनोडिक काल: पृथ्वी शनि को पछाड़ती है' : 'Synodic Period: Earth Overtaking Saturn'}
+        {tl({ en: 'Synodic Period: Earth Overtaking Saturn', hi: 'सिनोडिक काल: पृथ्वी शनि को पछाड़ती है', sa: 'सिनोडिक काल: पृथ्वी शनि को पछाड़ती है' }, locale)}
       </text>
 
       <text x={20} y={cy + 8} fill="#ef4444" fontSize="7" opacity="0.7">
-        {isHi ? 'प्रतियुति 1' : 'Opposition 1'}
+        {tl({ en: 'Opposition 1', hi: 'प्रतियुति 1', sa: 'प्रतियुति 1' }, locale)}
       </text>
       <text x={cx + saturnR * Math.cos(s2Angle) + 14} y={cy + saturnR * Math.sin(s2Angle) + 18} fill="#22c55e" fontSize="7" opacity="0.7">
-        {isHi ? 'प्रतियुति 2' : 'Opposition 2'}
+        {tl({ en: 'Opposition 2', hi: 'प्रतियुति 2', sa: 'प्रतियुति 2' }, locale)}
       </text>
 
       {/* Bottom annotation */}
       <text x={cx} y={280} textAnchor="middle" fill="#94a3b8" fontSize="7">
-        {isHi ? '378 दिनों में: पृथ्वी = 1.035 चक्कर | शनि = 12.2° चाप' : '378 days: Earth = 1.035 orbits | Saturn = 12.2° arc'}
+        {tl({ en: '378 days: Earth = 1.035 orbits | Saturn = 12.2° arc', hi: '378 दिनों में: पृथ्वी = 1.035 चक्कर | शनि = 12.2° चाप', sa: '378 दिनों में: पृथ्वी = 1.035 चक्कर | शनि = 12.2° चाप' }, locale)}
       </text>
       <text x={cx} y={295} textAnchor="middle" fill="#f0d48a" fontSize="7" fontWeight="bold">
         1/P_sid = 1/P_earth - 1/P_syn
@@ -478,11 +479,11 @@ function SynodicVisual({ isHi }: { isHi: boolean }) {
 }
 
 // ── SVG: Saros Timeline ─────────────────────────────────────────
-function SarosTimeline({ isHi }: { isHi: boolean }) {
+function SarosTimeline({ locale }: { locale: string }) {
   const eclipses = [
-    { year: '2008', type: isHi ? 'कुल सूर्य' : 'Total Solar', x: 40 },
-    { year: '2026', type: isHi ? 'कुल सूर्य' : 'Total Solar', x: 160 },
-    { year: '2044', type: isHi ? 'कुल सूर्य' : 'Total Solar', x: 280 },
+    { year: '2008', type: tl({ en: 'Total Solar', hi: 'कुल सूर्य', sa: 'कुल सूर्य' }, locale), x: 40 },
+    { year: '2026', type: tl({ en: 'Total Solar', hi: 'कुल सूर्य', sa: 'कुल सूर्य' }, locale), x: 160 },
+    { year: '2044', type: tl({ en: 'Total Solar', hi: 'कुल सूर्य', sa: 'कुल सूर्य' }, locale), x: 280 },
   ];
   return (
     <svg viewBox="0 0 360 80" className="w-full">
@@ -658,15 +659,15 @@ export default function PlanetaryCyclesPage() {
               })}
               {/* Center */}
               <circle cx="160" cy="160" r="24" fill="rgba(240,212,138,0.05)" stroke="#f0d48a" strokeWidth="0.5" opacity="0.4" />
-              <text x="160" y="155" textAnchor="middle" fill="#f0d48a" fontSize="7" fontWeight="bold" opacity="0.8">{isHi ? 'चन्द्र' : 'Moon'}</text>
-              <text x="160" y="165" textAnchor="middle" fill="#f0d48a" fontSize="6" opacity="0.5">{isHi ? 'राशि' : 'Sign'}</text>
+              <text x="160" y="155" textAnchor="middle" fill="#f0d48a" fontSize="7" fontWeight="bold" opacity="0.8">{tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र' }, locale)}</text>
+              <text x="160" y="165" textAnchor="middle" fill="#f0d48a" fontSize="6" opacity="0.5">{tl({ en: 'Sign', hi: 'राशि', sa: 'राशि' }, locale)}</text>
               {/* Sade Sati arc label */}
               <text x="160" y="22" textAnchor="middle" fill="#fca5a5" fontSize="8" fontWeight="bold">
-                {isHi ? 'साढ़े साती = 7.5 वर्ष' : 'Sade Sati = 7.5 yrs'}
+                {tl({ en: 'Sade Sati = 7.5 yrs', hi: 'साढ़े साती = 7.5 वर्ष', sa: 'साढ़े साती = 7.5 वर्ष' }, locale)}
               </text>
               {/* Saturn icon */}
               <circle cx={160 + 130 * Math.cos((-90 + 330) * Math.PI / 180)} cy={160 + 130 * Math.sin((-90 + 330) * Math.PI / 180)} r="5" fill="#f0d48a" opacity="0.9" />
-              <text x={160 + 130 * Math.cos((-90 + 330) * Math.PI / 180)} y={160 + 130 * Math.sin((-90 + 330) * Math.PI / 180) - 10} textAnchor="middle" fill="#f0d48a" fontSize="7" fontWeight="bold">{isHi ? 'शनि' : 'Saturn'}</text>
+              <text x={160 + 130 * Math.cos((-90 + 330) * Math.PI / 180)} y={160 + 130 * Math.sin((-90 + 330) * Math.PI / 180) - 10} textAnchor="middle" fill="#f0d48a" fontSize="7" fontWeight="bold">{tl({ en: 'Saturn', hi: 'शनि', sa: 'शनि' }, locale)}</text>
             </svg>
           </div>
         </div>
@@ -703,11 +704,11 @@ export default function PlanetaryCyclesPage() {
                 );
               })}
               <circle cx="160" cy="160" r="24" fill="rgba(240,212,138,0.05)" stroke="#f0d48a" strokeWidth="0.5" opacity="0.4" />
-              <text x="160" y="155" textAnchor="middle" fill="#f0d48a" fontSize="7" fontWeight="bold" opacity="0.8">{isHi ? 'चन्द्र' : 'Moon'}</text>
-              <text x="160" y="165" textAnchor="middle" fill="#f0d48a" fontSize="6" opacity="0.5">{isHi ? 'राशि' : 'Sign'}</text>
+              <text x="160" y="155" textAnchor="middle" fill="#f0d48a" fontSize="7" fontWeight="bold" opacity="0.8">{tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र' }, locale)}</text>
+              <text x="160" y="165" textAnchor="middle" fill="#f0d48a" fontSize="6" opacity="0.5">{tl({ en: 'Sign', hi: 'राशि', sa: 'राशि' }, locale)}</text>
               {/* Label */}
               <text x="160" y="22" textAnchor="middle" fill="#86efac" fontSize="8" fontWeight="bold">
-                {isHi ? '5/12 वर्ष अनुकूल = 42%' : '5/12 years favorable = 42%'}
+                {tl({ en: '5/12 years favorable = 42%', hi: '5/12 वर्ष अनुकूल = 42%', sa: '5/12 वर्ष अनुकूल = 42%' }, locale)}
               </text>
             </svg>
           </div>
@@ -718,9 +719,9 @@ export default function PlanetaryCyclesPage() {
             <p className="text-text-secondary text-sm leading-relaxed" style={bf}>{l.sec3text2}</p>
             <div className="grid grid-cols-3 gap-3 pt-2">
               {[
-                { num: '60', label: isHi ? 'संवत्सर चक्र' : 'Samvatsara cycle', unit: isHi ? 'वर्ष' : 'yrs' },
-                { num: '5', label: isHi ? 'बृहस्पति कक्षाएँ' : 'Jupiter orbits', unit: 'x 12' },
-                { num: '2', label: isHi ? 'शनि कक्षाएँ' : 'Saturn orbits', unit: 'x 30' },
+                { num: '60', label: tl({ en: 'Samvatsara cycle', hi: 'संवत्सर चक्र', sa: 'संवत्सर चक्र' }, locale), unit: tl({ en: 'yrs', hi: 'वर्ष', sa: 'वर्ष' }, locale) },
+                { num: '5', label: tl({ en: 'Jupiter orbits', hi: 'बृहस्पति कक्षाएँ', sa: 'बृहस्पति कक्षाएँ' }, locale), unit: 'x 12' },
+                { num: '2', label: tl({ en: 'Saturn orbits', hi: 'शनि कक्षाएँ', sa: 'शनि कक्षाएँ' }, locale), unit: 'x 30' },
               ].map((item, i) => (
                 <div key={i} className="text-center p-3 rounded-xl bg-black/20 border border-indigo-500/10">
                   <div className="text-2xl font-bold text-gold-light font-mono">{item.num}</div>
@@ -772,7 +773,7 @@ export default function PlanetaryCyclesPage() {
                 ))}
                 {/* Total row */}
                 <tr className="bg-gold-primary/5 border-t border-gold-primary/15">
-                  <td className="px-5 py-3 text-gold-light font-bold" style={hf}>{isHi ? 'कुल' : 'Total'}</td>
+                  <td className="px-5 py-3 text-gold-light font-bold" style={hf}>{tl({ en: 'Total', hi: 'कुल', sa: 'कुल' }, locale)}</td>
                   <td className="px-4 py-3 text-center">
                     <span className="inline-flex items-center justify-center w-10 h-8 rounded-lg bg-gold-primary/20 border border-gold-primary/30 text-gold-light font-mono font-bold text-sm">
                       120
@@ -810,10 +811,10 @@ export default function PlanetaryCyclesPage() {
           {/* Key numbers */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
-              { num: '27.32', label: isHi ? 'दिन (नाक्षत्र काल)' : 'days (sidereal period)', sub: isHi ? 'चन्द्रमा' : 'Moon' },
-              { num: '27', label: isHi ? 'नक्षत्र' : 'Nakshatras', sub: isHi ? 'चन्द्र स्थान' : 'lunar stations' },
-              { num: '13.33', label: isHi ? 'अंश प्रत्येक' : 'degrees each', sub: '360 / 27' },
-              { num: '13.2', label: isHi ? 'अंश/दिन' : 'deg/day', sub: isHi ? 'चन्द्र गति' : 'lunar motion' },
+              { num: '27.32', label: tl({ en: 'days (sidereal period)', hi: 'दिन (नाक्षत्र काल)', sa: 'दिन (नाक्षत्र काल)' }, locale), sub: tl({ en: 'Moon', hi: 'चन्द्रमा', sa: 'चन्द्रमा' }, locale) },
+              { num: '27', label: tl({ en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्र' }, locale), sub: tl({ en: 'lunar stations', hi: 'चन्द्र स्थान', sa: 'चन्द्र स्थान' }, locale) },
+              { num: '13.33', label: tl({ en: 'degrees each', hi: 'अंश प्रत्येक', sa: 'अंश प्रत्येक' }, locale), sub: '360 / 27' },
+              { num: '13.2', label: tl({ en: 'deg/day', hi: 'अंश/दिन', sa: 'अंश/दिन' }, locale), sub: tl({ en: 'lunar motion', hi: 'चन्द्र गति', sa: 'चन्द्र गति' }, locale) },
             ].map((item, i) => (
               <div key={i} className="text-center p-4 rounded-xl bg-black/20 border border-indigo-500/10">
                 <div className="text-xl sm:text-2xl font-bold text-gold-light font-mono">{item.num}</div>
@@ -842,7 +843,7 @@ export default function PlanetaryCyclesPage() {
 
         {/* Nodal Diagram */}
         <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] px-5 py-3">
-          <NodalDiagram isHi={isHi} />
+          <NodalDiagram locale={locale} />
         </div>
 
         {/* How Eclipses Happen */}
@@ -859,25 +860,25 @@ export default function PlanetaryCyclesPage() {
           </div>
 
           {/* Saros Timeline */}
-          <SarosTimeline isHi={isHi} />
+          <SarosTimeline locale={locale} />
 
           {/* Key numbers */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
             <div className="text-center p-4 rounded-xl bg-black/20 border border-indigo-500/10">
               <div className="text-2xl font-bold text-amber-300 font-mono">18.03</div>
-              <div className="text-xs text-text-secondary mt-1" style={bf}>{isHi ? 'सारोस चक्र (वर्ष)' : 'Saros Cycle (yrs)'}</div>
+              <div className="text-xs text-text-secondary mt-1" style={bf}>{tl({ en: 'Saros Cycle (yrs)', hi: 'सारोस चक्र (वर्ष)', sa: 'सारोस चक्र (वर्ष)' }, locale)}</div>
             </div>
             <div className="text-center p-4 rounded-xl bg-black/20 border border-indigo-500/10">
               <div className="text-2xl font-bold text-amber-300 font-mono">18.61</div>
-              <div className="text-xs text-text-secondary mt-1" style={bf}>{isHi ? 'राहु-केतु काल (वर्ष)' : 'Rahu-Ketu Period (yrs)'}</div>
+              <div className="text-xs text-text-secondary mt-1" style={bf}>{tl({ en: 'Rahu-Ketu Period (yrs)', hi: 'राहु-केतु काल (वर्ष)', sa: 'राहु-केतु काल (वर्ष)' }, locale)}</div>
             </div>
             <div className="text-center p-4 rounded-xl bg-black/20 border border-indigo-500/10">
               <div className="text-2xl font-bold text-amber-300 font-mono">223</div>
-              <div className="text-xs text-text-secondary mt-1" style={bf}>{isHi ? 'सिनोडिक मास' : 'Synodic months'}</div>
+              <div className="text-xs text-text-secondary mt-1" style={bf}>{tl({ en: 'Synodic months', hi: 'सिनोडिक मास', sa: 'सिनोडिक मास' }, locale)}</div>
             </div>
             <div className="text-center p-4 rounded-xl bg-black/20 border border-indigo-500/10">
               <div className="text-2xl font-bold text-amber-300 font-mono">242</div>
-              <div className="text-xs text-text-secondary mt-1" style={bf}>{isHi ? 'ड्रैकोनिक मास' : 'Draconic months'}</div>
+              <div className="text-xs text-text-secondary mt-1" style={bf}>{tl({ en: 'Draconic months', hi: 'ड्रैकोनिक मास', sa: 'ड्रैकोनिक मास' }, locale)}</div>
             </div>
           </div>
         </div>
@@ -920,7 +921,7 @@ export default function PlanetaryCyclesPage() {
 
         {/* Synodic Visual */}
         <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-6 flex items-center justify-center">
-          <SynodicVisual isHi={isHi} />
+          <SynodicVisual locale={locale} />
         </div>
 
         {/* Master Formula */}

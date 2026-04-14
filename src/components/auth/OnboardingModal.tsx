@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { Loader2 } from 'lucide-react';
@@ -100,12 +101,12 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
     setError('');
 
     if (!fullName.trim()) {
-      setError(!isDevanagariLocale(locale) ? 'Please enter your name' : 'कृपया अपना नाम दर्ज करें');
+      setError(tl({ en: 'Please enter your name', hi: 'कृपया अपना नाम दर्ज करें', sa: 'कृपया अपना नाम दर्ज करें' }, locale));
       return;
     }
     // DOB and POB are optional — user can skip
     if (birthDate && !birthLocation) {
-      setError(!isDevanagariLocale(locale) ? 'Please select a birth place from the suggestions' : 'कृपया सुझावों से जन्म स्थान चुनें');
+      setError(tl({ en: 'Please select a birth place from the suggestions', hi: 'कृपया सुझावों से जन्म स्थान चुनें', sa: 'कृपया सुझावों से जन्म स्थान चुनें' }, locale));
       return;
     }
 
@@ -295,7 +296,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
             type="button"
             onClick={async () => {
               if (!fullName.trim()) {
-                setError(!isDevanagariLocale(locale) ? 'Please enter at least your name' : 'कृपया कम से कम अपना नाम दर्ज करें');
+                setError(tl({ en: 'Please enter at least your name', hi: 'कृपया कम से कम अपना नाम दर्ज करें', sa: 'कृपया कम से कम अपना नाम दर्ज करें' }, locale));
                 return;
               }
               setSaving(true);

@@ -51,7 +51,7 @@ function formatNextDayDate(vratDate: Date, locale: Locale): string {
     month: 'short',
   };
 
-  const loc = isDevanagariLocale(locale) ? 'hi-IN' : 'en-US';
+  const loc = tl({ en: 'en-US', hi: 'hi-IN', sa: 'hi-IN' }, locale);
   try {
     return nextDay.toLocaleDateString(loc, options);
   } catch {

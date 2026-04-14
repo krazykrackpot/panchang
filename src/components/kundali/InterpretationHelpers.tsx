@@ -1,3 +1,4 @@
+import { tl } from '@/lib/utils/trilingual';
 import type { LocaleText } from '@/types/panchang';
 'use client';
 
@@ -271,10 +272,10 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
   }
 
   const TIER_LABELS = {
-    strong: isHi ? 'बलवान' : 'Strong',
-    adequate: isHi ? 'पर्याप्त' : 'Adequate',
-    weak: isHi ? 'कमज़ोर' : 'Weak',
-    node: isHi ? 'छाया ग्रह' : 'Shadow Planet',
+    strong: tl({ en: 'Strong', hi: 'बलवान', sa: 'बलवान' }, locale),
+    adequate: tl({ en: 'Adequate', hi: 'पर्याप्त', sa: 'पर्याप्त' }, locale),
+    weak: tl({ en: 'Weak', hi: 'कमज़ोर', sa: 'कमज़ोर' }, locale),
+    node: tl({ en: 'Shadow Planet', hi: 'छाया ग्रह', sa: 'छाया ग्रह' }, locale),
   };
 
   const currentDasha = mahadashas.find(d => new Date(d.startDate) <= now && new Date(d.endDate) >= now);
@@ -309,7 +310,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
   return (
     <div className="space-y-3 mt-6">
       <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold border-b border-gold-primary/20 pb-2">
-        {isHi ? 'षड्बल — आपके लिए इसका अर्थ' : 'Shadbala — What It Means For You'}
+        {tl({ en: 'Shadbala — What It Means For You', hi: 'षड्बल — आपके लिए इसका अर्थ', sa: 'षड्बल — आपके लिए इसका अर्थ' }, locale)}
       </h3>
 
       {/* Current period */}
@@ -324,11 +325,11 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
         return (
           <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 p-4">
             <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-2">
-              {isHi ? 'आपका अभी का दशा काल' : 'Your Current Dasha Period'}
+              {tl({ en: 'Your Current Dasha Period', hi: 'आपका अभी का दशा काल', sa: 'आपका अभी का दशा काल' }, locale)}
             </div>
             <div className="flex items-center gap-2 flex-wrap mb-2">
               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: TIER_COLORS[tier] }} />
-              <span className="text-gold-light font-semibold text-sm">{displayName} {isHi ? 'महादशा' : 'Mahadasha'}</span>
+              <span className="text-gold-light font-semibold text-sm">{displayName} {tl({ en: 'Mahadasha', hi: 'महादशा', sa: 'महादशा' }, locale)}</span>
               <span className={`text-xs px-2 py-0.5 rounded-full bg-white/5 font-medium ${tierColor}`}>
                 {TIER_LABELS[tier]}{rupas > 0 ? ` · ${rupas.toFixed(2)} R` : ''}
               </span>
@@ -337,7 +338,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
             {forecast && <p className="text-text-secondary text-sm leading-relaxed">{forecast}</p>}
             {action && (
               <p className="text-gold-primary/80 text-xs mt-2 italic">
-                {isHi ? 'अभी करें: ' : 'Best actions now: '}{action}
+                {tl({ en: 'Best actions now: ', hi: 'अभी करें: ', sa: 'अभी करें: ' }, locale)}{action}
               </p>
             )}
           </div>
@@ -348,7 +349,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
       {mahadashas.length > 0 && (
         <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4">
           <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-3">
-            {isHi ? 'जीवन दशा समयरेखा' : 'Life Dasha Timeline'}
+            {tl({ en: 'Life Dasha Timeline', hi: 'जीवन दशा समयरेखा', sa: 'जीवन दशा समयरेखा' }, locale)}
           </div>
 
           {/* Proportional bar */}
@@ -381,7 +382,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
             ))}
             <div className="flex items-center gap-1">
               <div className="w-px h-3.5 bg-white/70" />
-              <span className="text-text-secondary text-xs">{isHi ? 'अभी' : 'Now'}</span>
+              <span className="text-text-secondary text-xs">{tl({ en: 'Now', hi: 'अभी', sa: 'अभी' }, locale)}</span>
             </div>
           </div>
 
@@ -404,7 +405,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
                     <span className={`font-medium text-sm ${isCurrent ? 'text-gold-light' : 'text-text-secondary'}`}>{displayName}</span>
                     <span className="text-text-secondary/70 text-xs">{startY}–{endY}</span>
                     {isCurrent && (
-                      <span className="text-xs bg-gold-primary/20 text-gold-light px-1.5 py-0.5 rounded-full font-medium">{isHi ? 'अभी' : 'Now'}</span>
+                      <span className="text-xs bg-gold-primary/20 text-gold-light px-1.5 py-0.5 rounded-full font-medium">{tl({ en: 'Now', hi: 'अभी', sa: 'अभी' }, locale)}</span>
                     )}
                     <span className={`text-xs ml-auto ${tierColor}`}>
                       {TIER_LABELS[tier]}{rupas > 0 ? ` · ${rupas.toFixed(1)}R` : ''}
@@ -424,7 +425,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
       {strongest && (
         <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 p-4">
           <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-2">
-            {isHi ? 'आपकी कुंडली का सेनापति' : 'Your Chart Captain'}
+            {tl({ en: 'Your Chart Captain', hi: 'आपकी कुंडली का सेनापति', sa: 'आपकी कुंडली का सेनापति' }, locale)}
           </div>
           <div className="flex items-start gap-3">
             <div className="w-8 h-8 rounded-full bg-green-500/15 flex items-center justify-center shrink-0">
@@ -436,13 +437,11 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
                 <span className="text-xs bg-green-500/15 text-green-400 px-2 py-0.5 rounded-full font-medium">{strongest.rupas.toFixed(2)} Rupas</span>
               </div>
               <p className="text-text-secondary text-sm leading-relaxed mb-2">
-                {isHi
-                  ? `${pName(strongest.planetId, true)} आपकी सर्वाधिक बलवान ग्रह है। इसके विषय — ${PLANET_THEMES[strongest.planetId]?.strongHi ?? ''} — आपके जीवन पर प्रभुत्व रखते हैं।`
-                  : `${pName(strongest.planetId, false)} is your most powerful planet. Its themes — ${PLANET_THEMES[strongest.planetId]?.strong ?? ''} — run through your life most powerfully.`}
+                {tl({ en: `${pName(strongest.planetId, false)} is your most powerful planet. Its themes — ${PLANET_THEMES[strongest.planetId]?.strong ?? ''} — run through your life most powerfully.`, hi: `${pName(strongest.planetId, true)} आपकी सर्वाधिक बलवान ग्रह है। इसके विषय — ${PLANET_THEMES[strongest.planetId]?.strongHi ?? ''} — आपके जीवन पर प्रभुत्व रखते हैं।`, sa: `${pName(strongest.planetId, true)} आपकी सर्वाधिक बलवान ग्रह है। इसके विषय — ${PLANET_THEMES[strongest.planetId]?.strongHi ?? ''} — आपके जीवन पर प्रभुत्व रखते हैं।` }, locale)}
               </p>
               {PLANET_DASHA_FORECAST[strongest.planetId] && (
                 <p className="text-gold-primary/80 text-xs italic">
-                  {isHi ? 'इसकी महादशा में: ' : 'During its Mahadasha: '}
+                  {tl({ en: 'During its Mahadasha: ', hi: 'इसकी महादशा में: ', sa: 'इसकी महादशा में: ' }, locale)}
                   {isHi ? PLANET_DASHA_FORECAST[strongest.planetId].strongHi : PLANET_DASHA_FORECAST[strongest.planetId].strongEn}
                 </p>
               )}
@@ -455,7 +454,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
       {(upcomingStrong.length > 0 || upcomingWeak.length > 0) && (
         <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4">
           <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-3">
-            {isHi ? 'आने वाले महत्वपूर्ण काल' : 'Upcoming Key Periods'}
+            {tl({ en: 'Upcoming Key Periods', hi: 'आने वाले महत्वपूर्ण काल', sa: 'आने वाले महत्वपूर्ण काल' }, locale)}
           </div>
           <div className="space-y-2">
             {upcomingStrong.slice(0, 2).map((d, i) => {
@@ -469,7 +468,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
                   <div className="w-1.5 h-1.5 rounded-full bg-green-400 mt-1.5 shrink-0" />
                   <div>
                     <span className="text-green-400 font-medium text-sm">{displayName} ({startY}–{endY})</span>
-                    <span className="text-text-secondary text-xs ml-2">{isHi ? '— सुनहरा काल' : '— Golden period'}</span>
+                    <span className="text-text-secondary text-xs ml-2">{tl({ en: '— Golden period', hi: '— सुनहरा काल', sa: '— सुनहरा काल' }, locale)}</span>
                     {PLANET_DASHA_FORECAST[id] && (
                       <p className="text-text-secondary/75 text-xs mt-0.5">
                         {isHi ? PLANET_DASHA_FORECAST[id].actionHi : PLANET_DASHA_FORECAST[id].actionEn}
@@ -490,10 +489,10 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
                   <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
                   <div>
                     <span className="text-amber-400 font-medium text-sm">{displayName} ({startY}–{endY})</span>
-                    <span className="text-text-secondary text-xs ml-2">{isHi ? '— सावधान रहें' : '— Proceed with care'}</span>
+                    <span className="text-text-secondary text-xs ml-2">{tl({ en: '— Proceed with care', hi: '— सावधान रहें', sa: '— सावधान रहें' }, locale)}</span>
                     {PLANET_REMEDIES[id] && (
                       <p className="text-text-secondary/75 text-xs mt-0.5">
-                        {isHi ? `उपाय: ${PLANET_REMEDIES[id].hi}` : `Remedy: ${PLANET_REMEDIES[id].en}`}
+                        {tl({ en: `Remedy: ${PLANET_REMEDIES[id].en}`, hi: `उपाय: ${PLANET_REMEDIES[id].hi}`, sa: `उपाय: ${PLANET_REMEDIES[id].hi}` }, locale)}
                       </p>
                     )}
                   </div>
@@ -508,7 +507,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
       {weakPlanets.length > 0 && (
         <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4">
           <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-3">
-            {isHi ? 'सहायता चाहिए' : 'Planets Needing Support'}
+            {tl({ en: 'Planets Needing Support', hi: 'सहायता चाहिए', sa: 'सहायता चाहिए' }, locale)}
           </div>
           <div className="space-y-2">
             {weakPlanets.map(wp => {
@@ -527,11 +526,11 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
                     {isHi ? PLANET_THEMES[wp.planetId]?.weakHi : PLANET_THEMES[wp.planetId]?.weak}
                   </p>
                   <p className="text-gold-primary/70 text-xs italic">
-                    {isHi ? 'उपाय: ' : 'Remedy: '}{isHi ? PLANET_REMEDIES[wp.planetId]?.hi : PLANET_REMEDIES[wp.planetId]?.en}
+                    {tl({ en: 'Remedy: ', hi: 'उपाय: ', sa: 'उपाय: ' }, locale)}{isHi ? PLANET_REMEDIES[wp.planetId]?.hi : PLANET_REMEDIES[wp.planetId]?.en}
                   </p>
                   {PLANET_REMEDIES[wp.planetId]?.whyEn && (
                     <p className="text-text-secondary/50 text-xs mt-1">
-                      {isHi ? `क्यों: ${PLANET_REMEDIES[wp.planetId].whyHi}` : `Why: ${PLANET_REMEDIES[wp.planetId].whyEn}`}
+                      {tl({ en: `Why: ${PLANET_REMEDIES[wp.planetId].whyEn}`, hi: `क्यों: ${PLANET_REMEDIES[wp.planetId].whyHi}`, sa: `क्यों: ${PLANET_REMEDIES[wp.planetId].whyHi}` }, locale)}
                     </p>
                   )}
                 </div>
@@ -545,18 +544,18 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4">
         <div className="flex items-center justify-between mb-1">
           <div className="text-gold-primary text-xs uppercase tracking-wider font-bold">
-            {isHi ? 'बल क्रमांकन — अनुपात सहित' : 'Strength Ranking & Ratio'}
+            {tl({ en: 'Strength Ranking & Ratio', hi: 'बल क्रमांकन — अनुपात सहित', sa: 'बल क्रमांकन — अनुपात सहित' }, locale)}
           </div>
           <div className="text-text-secondary/65 text-xs font-mono">
-            {isHi ? 'न्यूनतम = 1.0' : 'Min. = 1.0'}
+            {tl({ en: 'Min. = 1.0', hi: 'न्यूनतम = 1.0', sa: 'न्यूनतम = 1.0' }, locale)}
           </div>
         </div>
         {/* Legend */}
         <div className="flex gap-3 mb-3 text-[10px]">
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-green-400 inline-block" />{isHi ? 'प्रबल ≥1.5×' : 'Strong ≥1.5× min'}</span>
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />{isHi ? 'पर्याप्त ≥1.0×' : 'Adequate ≥1.0× min'}</span>
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-400 inline-block" />{isHi ? 'दुर्बल <1.0×' : 'Weak <1.0× min'}</span>
-          <span className="text-text-tertiary/40 ml-1">{isHi ? '(BPHS अ.27)' : '(BPHS Ch.27)'}</span>
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-green-400 inline-block" />{tl({ en: 'Strong ≥1.5× min', hi: 'प्रबल ≥1.5×', sa: 'प्रबल ≥1.5×' }, locale)}</span>
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />{tl({ en: 'Adequate ≥1.0× min', hi: 'पर्याप्त ≥1.0×', sa: 'पर्याप्त ≥1.0×' }, locale)}</span>
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-400 inline-block" />{tl({ en: 'Weak <1.0× min', hi: 'दुर्बल <1.0×', sa: 'दुर्बल <1.0×' }, locale)}</span>
+          <span className="text-text-tertiary/40 ml-1">{tl({ en: '(BPHS Ch.27)', hi: '(BPHS अ.27)', sa: '(BPHS अ.27)' }, locale)}</span>
         </div>
         <div className="space-y-3">
           {sorted.map((sb, i) => {
@@ -618,23 +617,21 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
   return (
     <div className="space-y-4 mt-6">
       <h3 className="text-xl font-bold text-[#d4a853] border-b border-[#d4a853]/20 pb-2">
-        {isHi ? 'योग विश्लेषण' : 'Yogas Interpretation'}
+        {tl({ en: 'Yogas Interpretation', hi: 'योग विश्लेषण', sa: 'योग विश्लेषण' }, locale)}
       </h3>
 
       {/* Summary */}
       <SectionCard>
-        <SectionHeading>{isHi ? 'सारांश' : 'Summary'}</SectionHeading>
+        <SectionHeading>{tl({ en: 'Summary', hi: 'सारांश', sa: 'सारांश' }, locale)}</SectionHeading>
         <InfoParagraph>
-          {isHi
-            ? `आपकी कुंडली में ${present.length} योग पाए गए: ${auspicious.length} शुभ, ${inauspicious.length} अशुभ, ${mixed.length} मिश्रित।`
-            : `Your chart has ${present.length} yogas detected: ${auspicious.length} auspicious, ${inauspicious.length} inauspicious, ${mixed.length} mixed.`}
+          {tl({ en: `Your chart has ${present.length} yogas detected: ${auspicious.length} auspicious, ${inauspicious.length} inauspicious, ${mixed.length} mixed.`, hi: `आपकी कुंडली में ${present.length} योग पाए गए: ${auspicious.length} शुभ, ${inauspicious.length} अशुभ, ${mixed.length} मिश्रित।`, sa: `आपकी कुंडली में ${present.length} योग पाए गए: ${auspicious.length} शुभ, ${inauspicious.length} अशुभ, ${mixed.length} मिश्रित।` }, locale)}
         </InfoParagraph>
       </SectionCard>
 
       {/* Auspicious Yogas */}
       {auspicious.length > 0 && (
         <SectionCard border="border-emerald-500/15">
-          <SectionHeading>{isHi ? 'शुभ योग' : 'Top Auspicious Yogas'}</SectionHeading>
+          <SectionHeading>{tl({ en: 'Top Auspicious Yogas', hi: 'शुभ योग', sa: 'शुभ योग' }, locale)}</SectionHeading>
           <div className="space-y-4">
             {auspicious.map(y => (
               <div key={y.id} className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10">
@@ -649,17 +646,15 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
                   </span>
                 </div>
                 <p className="text-xs text-text-primary leading-relaxed mb-1">
-                  <span className="text-text-secondary/60">{isHi ? 'आपके लिए अर्थ: ' : 'What it means for you: '}</span>
+                  <span className="text-text-secondary/60">{tl({ en: 'What it means for you: ', hi: 'आपके लिए अर्थ: ', sa: 'आपके लिए अर्थ: ' }, locale)}</span>
                   {isHi ? y.description.hi : y.description.en}
                 </p>
                 <p className="text-xs text-text-secondary">
-                  <span className="text-text-secondary/60">{isHi ? 'निर्माण नियम: ' : 'Formation: '}</span>
+                  <span className="text-text-secondary/60">{tl({ en: 'Formation: ', hi: 'निर्माण नियम: ', sa: 'निर्माण नियम: ' }, locale)}</span>
                   {isHi ? y.formationRule.hi : y.formationRule.en}
                 </p>
                 <p className="text-xs text-sky-400 mt-1">
-                  {isHi
-                    ? 'अधिकतम लाभ हेतु: इसके निर्माणकारी ग्रह की दशा में सक्रिय होता है। उस अवधि में सकारात्मक कार्य करें।'
-                    : 'How to maximize: This yoga activates most during the Mahadasha of its forming planets. Take positive action during those periods.'}
+                  {tl({ en: 'How to maximize: This yoga activates most during the Mahadasha of its forming planets. Take positive action during those periods.', hi: 'अधिकतम लाभ हेतु: इसके निर्माणकारी ग्रह की दशा में सक्रिय होता है। उस अवधि में सकारात्मक कार्य करें।', sa: 'अधिकतम लाभ हेतु: इसके निर्माणकारी ग्रह की दशा में सक्रिय होता है। उस अवधि में सकारात्मक कार्य करें।' }, locale)}
                 </p>
               </div>
             ))}
@@ -670,7 +665,7 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
       {/* Inauspicious Yogas */}
       {inauspicious.length > 0 && (
         <SectionCard border="border-amber-500/15">
-          <SectionHeading>{isHi ? 'अशुभ योग एवं उपाय' : 'Inauspicious Yogas & What To Do'}</SectionHeading>
+          <SectionHeading>{tl({ en: 'Inauspicious Yogas & What To Do', hi: 'अशुभ योग एवं उपाय', sa: 'अशुभ योग एवं उपाय' }, locale)}</SectionHeading>
           <div className="space-y-4">
             {inauspicious.map(y => (
               <div key={y.id} className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10">
@@ -685,16 +680,14 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
                   </span>
                 </div>
                 <p className="text-xs text-text-primary leading-relaxed mb-1">
-                  <span className="text-text-secondary/60">{isHi ? 'संकेत: ' : 'What this indicates: '}</span>
+                  <span className="text-text-secondary/60">{tl({ en: 'What this indicates: ', hi: 'संकेत: ', sa: 'संकेत: ' }, locale)}</span>
                   {isHi ? y.description.hi : y.description.en}
                 </p>
                 <p className="text-xs text-emerald-400/80 italic mb-1">
-                  {isHi
-                    ? 'यह कोई श्राप नहीं है — यह एक कार्मिक प्रारूप है जिस पर कार्य किया जा सकता है।'
-                    : 'This is NOT a curse — it\'s a karmic pattern that can be worked with.'}
+                  {tl({ en: "This is NOT a curse — it\'s a karmic pattern that can be worked with.", hi: "यह कोई श्राप नहीं है — यह एक कार्मिक प्रारूप है जिस पर कार्य किया जा सकता है।", sa: "यह कोई श्राप नहीं है — यह एक कार्मिक प्रारूप है जिस पर कार्य किया जा सकता है।" }, locale)}
                 </p>
                 <p className="text-xs text-text-secondary">
-                  <span className="text-text-secondary/60">{isHi ? 'निर्माण: ' : 'Formation: '}</span>
+                  <span className="text-text-secondary/60">{tl({ en: 'Formation: ', hi: 'निर्माण: ', sa: 'निर्माण: ' }, locale)}</span>
                   {isHi ? y.formationRule.hi : y.formationRule.en}
                 </p>
               </div>
@@ -705,14 +698,14 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
 
       {/* Common Yoga Remedies Table */}
       <SectionCard border="border-emerald-500/15">
-        <SectionHeading>{isHi ? 'सामान्य योग उपाय' : 'Common Yoga Remedies'}</SectionHeading>
+        <SectionHeading>{tl({ en: 'Common Yoga Remedies', hi: 'सामान्य योग उपाय', sa: 'सामान्य योग उपाय' }, locale)}</SectionHeading>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="text-left py-2 px-2 text-text-secondary font-medium">{isHi ? 'योग' : 'Yoga'}</th>
-                <th className="text-left py-2 px-2 text-text-secondary font-medium">{isHi ? 'समस्या' : 'Issue'}</th>
-                <th className="text-left py-2 px-2 text-text-secondary font-medium">{isHi ? 'उपाय' : 'Remedy'}</th>
+                <th className="text-left py-2 px-2 text-text-secondary font-medium">{tl({ en: 'Yoga', hi: 'योग', sa: 'योग' }, locale)}</th>
+                <th className="text-left py-2 px-2 text-text-secondary font-medium">{tl({ en: 'Issue', hi: 'समस्या', sa: 'समस्या' }, locale)}</th>
+                <th className="text-left py-2 px-2 text-text-secondary font-medium">{tl({ en: 'Remedy', hi: 'उपाय', sa: 'उपाय' }, locale)}</th>
               </tr>
             </thead>
             <tbody>
@@ -967,16 +960,14 @@ export function AvasthasInterpretation({ avasthas, planets: _planets, locale }: 
   return (
     <div className="space-y-4 mt-6">
       <h3 className="text-xl font-bold text-[#d4a853] border-b border-[#d4a853]/20 pb-2">
-        {isHi ? 'अवस्था विश्लेषण' : 'Avasthas — Planetary State Analysis'}
+        {tl({ en: 'Avasthas — Planetary State Analysis', hi: 'अवस्था विश्लेषण', sa: 'अवस्था विश्लेषण' }, locale)}
       </h3>
 
       {/* Intro */}
       <SectionCard>
-        <SectionHeading>{isHi ? 'अवस्था क्या हैं?' : 'What are Avasthas?'}</SectionHeading>
+        <SectionHeading>{tl({ en: 'What are Avasthas?', hi: 'अवस्था क्या हैं?', sa: 'अवस्था क्या हैं?' }, locale)}</SectionHeading>
         <InfoParagraph>
-          {isHi
-            ? 'अवस्थाएं बताती हैं कि प्रत्येक ग्रह किस मनोदशा और गुणवत्ता के साथ अपने परिणाम देता है। पांच प्रणालियां एक साथ काम करती हैं — बलादि (आयु-शक्ति), जाग्रदादि (जागरूकता), दीप्तादि (चमक), लज्जितादि (भावनात्मक स्थिति), और शयनादि (गतिविधि) — और मिलकर बताती हैं कि ग्रह वास्तव में आपके जीवन में कैसा प्रदर्शन कर रहा है।'
-            : 'Avasthas describe the MOOD and QUALITY with which each planet delivers its results. Five separate systems operate simultaneously — Baladi (age-strength), Jagradadi (wakefulness), Deeptadi (luminosity), Lajjitadi (emotional state), and Shayanadi (activity pattern) — together revealing exactly how each planet is actually performing in your life. Click any planet to see the full breakdown.'}
+          {tl({ en: 'Avasthas describe the MOOD and QUALITY with which each planet delivers its results. Five separate systems operate simultaneously — Baladi (age-strength), Jagradadi (wakefulness), Deeptadi (luminosity), Lajjitadi (emotional state), and Shayanadi (activity pattern) — together revealing exactly how each planet is actually performing in your life. Click any planet to see the full breakdown.', hi: 'अवस्थाएं बताती हैं कि प्रत्येक ग्रह किस मनोदशा और गुणवत्ता के साथ अपने परिणाम देता है। पांच प्रणालियां एक साथ काम करती हैं — बलादि (आयु-शक्ति), जाग्रदादि (जागरूकता), दीप्तादि (चमक), लज्जितादि (भावनात्मक स्थिति), और शयनादि (गतिविधि) — और मिलकर बताती हैं कि ग्रह वास्तव में आपके जीवन में कैसा प्रदर्शन कर रहा है।', sa: 'अवस्थाएं बताती हैं कि प्रत्येक ग्रह किस मनोदशा और गुणवत्ता के साथ अपने परिणाम देता है। पांच प्रणालियां एक साथ काम करती हैं — बलादि (आयु-शक्ति), जाग्रदादि (जागरूकता), दीप्तादि (चमक), लज्जितादि (भावनात्मक स्थिति), और शयनादि (गतिविधि) — और मिलकर बताती हैं कि ग्रह वास्तव में आपके जीवन में कैसा प्रदर्शन कर रहा है।' }, locale)}
         </InfoParagraph>
       </SectionCard>
 
@@ -1124,7 +1115,7 @@ export function AvasthasInterpretation({ avasthas, planets: _planets, locale }: 
           onClick={() => setShowHowChange(v => !v)}
         >
           <span className="font-semibold text-[#d4a853] text-sm">
-            {isHi ? 'अवस्थाएं कैसे बदलती हैं?' : 'How Do Avasthas Change?'}
+            {tl({ en: 'How Do Avasthas Change?', hi: 'अवस्थाएं कैसे बदलती हैं?', sa: 'अवस्थाएं कैसे बदलती हैं?' }, locale)}
           </span>
           <span className="text-text-secondary/60 text-xs">{showHowChange ? '▲ Close' : '▼ Expand'}</span>
         </button>
@@ -1169,23 +1160,21 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
   return (
     <div className="space-y-4 mt-6">
       <h3 className="text-xl font-bold text-[#d4a853] border-b border-[#d4a853]/20 pb-2">
-        {isHi ? 'भावबल विश्लेषण' : 'Bhavabala Interpretation'}
+        {tl({ en: 'Bhavabala Interpretation', hi: 'भावबल विश्लेषण', sa: 'भावबल विश्लेषण' }, locale)}
       </h3>
 
       {/* Strongest house */}
       <SectionCard border="border-emerald-500/15">
-        <SectionHeading>{isHi ? 'सबसे बलवान जीवन क्षेत्र' : 'Strongest Life Area'}</SectionHeading>
+        <SectionHeading>{tl({ en: 'Strongest Life Area', hi: 'सबसे बलवान जीवन क्षेत्र', sa: 'सबसे बलवान जीवन क्षेत्र' }, locale)}</SectionHeading>
         <div className="flex items-start gap-4">
-          <HouseVisual highlight={strongest.bhava} color="emerald" size="md" label={isHi ? 'बलवान' : 'Strong'} />
+          <HouseVisual highlight={strongest.bhava} color="emerald" size="md" label={tl({ en: 'Strong', hi: 'बलवान', sa: 'बलवान' }, locale)} />
           <div>
             <div className="flex items-center gap-2 mb-1">
               <HouseBadge house={strongest.bhava} locale={locale} color="emerald" />
-              <span className="text-emerald-300 text-xs font-bold">{strongest.total.toFixed(1)} {isHi ? 'अंक' : 'pts'}</span>
+              <span className="text-emerald-300 text-xs font-bold">{strongest.total.toFixed(1)} {tl({ en: 'pts', hi: 'अंक', sa: 'अंक' }, locale)}</span>
             </div>
             <p className="text-sm text-gray-200 leading-relaxed">
-              {isHi
-                ? `आपका सबसे बलवान भाव ${strongest.bhava}वां भाव है (${strongSig?.hi ?? ''})। यही वह क्षेत्र है जहां जीवन सबसे सहज रूप से आता है। इस भाव से जुड़े कार्यों में आपको स्वाभाविक सफलता मिलती है।`
-                : `Your strongest house is House ${strongest.bhava} (${strongSig?.en ?? ''}). This is where life comes most easily to you. Activities related to this house bring natural success with less effort.`}
+              {tl({ en: `Your strongest house is House ${strongest.bhava} (${strongSig?.en ?? ''}). This is where life comes most easily to you. Activities related to this house bring natural success with less effort.`, hi: `आपका सबसे बलवान भाव ${strongest.bhava}वां भाव है (${strongSig?.hi ?? ''})। यही वह क्षेत्र है जहां जीवन सबसे सहज रूप से आता है। इस भाव से जुड़े कार्यों में आपको स्वाभाविक सफलता मिलती है।`, sa: `आपका सबसे बलवान भाव ${strongest.bhava}वां भाव है (${strongSig?.hi ?? ''})। यही वह क्षेत्र है जहां जीवन सबसे सहज रूप से आता है। इस भाव से जुड़े कार्यों में आपको स्वाभाविक सफलता मिलती है।` }, locale)}
             </p>
           </div>
         </div>
@@ -1193,21 +1182,19 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
 
       {/* Weakest house */}
       <SectionCard border="border-amber-500/15">
-        <SectionHeading>{isHi ? 'सबसे कमजोर जीवन क्षेत्र' : 'Weakest Life Area'}</SectionHeading>
+        <SectionHeading>{tl({ en: 'Weakest Life Area', hi: 'सबसे कमजोर जीवन क्षेत्र', sa: 'सबसे कमजोर जीवन क्षेत्र' }, locale)}</SectionHeading>
         <div className="flex items-start gap-4">
-          <HouseVisual highlight={weakest.bhava} color="amber" size="md" label={isHi ? 'कमजोर' : 'Weak'} />
+          <HouseVisual highlight={weakest.bhava} color="amber" size="md" label={tl({ en: 'Weak', hi: 'कमजोर', sa: 'कमजोर' }, locale)} />
           <div>
             <div className="flex items-center gap-2 mb-1">
               <HouseBadge house={weakest.bhava} locale={locale} color="amber" />
-              <span className="text-amber-300 text-xs font-bold">{weakest.total.toFixed(1)} {isHi ? 'अंक' : 'pts'}</span>
+              <span className="text-amber-300 text-xs font-bold">{weakest.total.toFixed(1)} {tl({ en: 'pts', hi: 'अंक', sa: 'अंक' }, locale)}</span>
             </div>
             <p className="text-sm text-gray-200 leading-relaxed">
-              {isHi
-                ? `आपका सबसे कमजोर भाव ${weakest.bhava}वां भाव है (${weakSig?.hi ?? ''})। इस क्षेत्र में सचेत प्रयास की आवश्यकता है।`
-                : `Your weakest house is House ${weakest.bhava} (${weakSig?.en ?? ''}). This area needs conscious effort.`}
+              {tl({ en: `Your weakest house is House ${weakest.bhava} (${weakSig?.en ?? ''}). This area needs conscious effort.`, hi: `आपका सबसे कमजोर भाव ${weakest.bhava}वां भाव है (${weakSig?.hi ?? ''})। इस क्षेत्र में सचेत प्रयास की आवश्यकता है।`, sa: `आपका सबसे कमजोर भाव ${weakest.bhava}वां भाव है (${weakSig?.hi ?? ''})। इस क्षेत्र में सचेत प्रयास की आवश्यकता है।` }, locale)}
             </p>
             <p className="text-xs text-emerald-400 mt-1">
-              {isHi ? 'उपाय: ' : 'Remedies: '}
+              {tl({ en: 'Remedies: ', hi: 'उपाय: ', sa: 'उपाय: ' }, locale)}
               {isHi ? weakSig?.remedy_hi : weakSig?.remedy_en}
             </p>
           </div>
@@ -1216,9 +1203,9 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
 
       {/* Combined House Strength — horizontal bar chart ranked by strength */}
       <SectionCard border="border-sky-500/15">
-        <SectionHeading>{isHi ? 'भाव बल रैंकिंग' : 'House Strength'}</SectionHeading>
+        <SectionHeading>{tl({ en: 'House Strength', hi: 'भाव बल रैंकिंग', sa: 'भाव बल रैंकिंग' }, locale)}</SectionHeading>
         <p className="text-xs text-text-secondary mb-4">
-          {isHi ? 'हरा = बलवान, पीला = मध्यम, लाल = कमजोर' : 'Green = strong, Amber = moderate, Red = weak'}
+          {tl({ en: 'Green = strong, Amber = moderate, Red = weak', hi: 'हरा = बलवान, पीला = मध्यम, लाल = कमजोर', sa: 'हरा = बलवान, पीला = मध्यम, लाल = कमजोर' }, locale)}
         </p>
         <div className="space-y-1.5">
           {sorted.map((bh, i) => {
@@ -1347,22 +1334,20 @@ export function PlanetsInterpretation({ planets, ascendant, locale }: PlanetsInt
   return (
     <div className="space-y-4 mt-6">
       <h3 className="text-xl font-bold text-[#d4a853] border-b border-[#d4a853]/20 pb-2">
-        {isHi ? 'ग्रह विश्लेषण' : 'Planets Interpretation'}
+        {tl({ en: 'Planets Interpretation', hi: 'ग्रह विश्लेषण', sa: 'ग्रह विश्लेषण' }, locale)}
       </h3>
 
       {/* Intro — clarifies this is birth chart data */}
       <SectionCard>
-        <SectionHeading>{isHi ? 'आपकी जन्म कुंडली एक नज़र में' : 'Your Birth Chart at a Glance'}</SectionHeading>
+        <SectionHeading>{tl({ en: 'Your Birth Chart at a Glance', hi: 'आपकी जन्म कुंडली एक नज़र में', sa: 'आपकी जन्म कुंडली एक नज़र में' }, locale)}</SectionHeading>
         <InfoParagraph>
-          {isHi
-            ? 'यह आपके जन्म के क्षण आकाश में ग्रहों की स्थिति है — एक स्थायी स्नैपशॉट जो आपके जन्म के समय तय हुआ था। यह वर्तमान ग्रह स्थिति नहीं है।'
-            : 'This shows where the planets were at the exact moment of your birth — a permanent snapshot fixed at that instant. These are your natal (birth) positions, not the current sky.'}
+          {tl({ en: 'This shows where the planets were at the exact moment of your birth — a permanent snapshot fixed at that instant. These are your natal (birth) positions, not the current sky.', hi: 'यह आपके जन्म के क्षण आकाश में ग्रहों की स्थिति है — एक स्थायी स्नैपशॉट जो आपके जन्म के समय तय हुआ था। यह वर्तमान ग्रह स्थिति नहीं है।', sa: 'यह आपके जन्म के क्षण आकाश में ग्रहों की स्थिति है — एक स्थायी स्नैपशॉट जो आपके जन्म के समय तय हुआ था। यह वर्तमान ग्रह स्थिति नहीं है।' }, locale)}
         </InfoParagraph>
       </SectionCard>
 
       {/* Overall Takeaway */}
       <SectionCard border="border-[#d4a853]/20" className="bg-[#d4a853]/5">
-        <SectionHeading>{isHi ? 'समग्र सारांश' : 'Overall Takeaway'}</SectionHeading>
+        <SectionHeading>{tl({ en: 'Overall Takeaway', hi: 'समग्र सारांश', sa: 'समग्र सारांश' }, locale)}</SectionHeading>
         <p className="text-sm text-gray-200 leading-relaxed">
           {isHi ? overallTakeaway.hi : overallTakeaway.en}
         </p>
@@ -1370,22 +1355,18 @@ export function PlanetsInterpretation({ planets, ascendant, locale }: PlanetsInt
 
       {/* Lagna */}
       <SectionCard border="border-emerald-500/15">
-        <SectionHeading>{isHi ? 'लग्न (उदय राशि)' : 'Lagna (Ascendant)'}</SectionHeading>
+        <SectionHeading>{tl({ en: 'Lagna (Ascendant)', hi: 'लग्न (उदय राशि)', sa: 'लग्न (उदय राशि)' }, locale)}</SectionHeading>
         <p className="text-sm text-gray-200 leading-relaxed">
-          {isHi
-            ? `आपका लग्न ${lagnaName} है। यह आपकी "उदय राशि" है — दुनिया आपको बाहर से ऐसे देखती है। ${lagnaSketch?.hi ?? ''}`
-            : `Your Lagna is ${lagnaName}. This is your rising sign — your outer self, how the world perceives you. ${lagnaSketch?.en ?? ''}`}
+          {tl({ en: `Your Lagna is ${lagnaName}. This is your rising sign — your outer self, how the world perceives you. ${lagnaSketch?.en ?? ''}`, hi: `आपका लग्न ${lagnaName} है। यह आपकी "उदय राशि" है — दुनिया आपको बाहर से ऐसे देखती है। ${lagnaSketch?.hi ?? ''}`, sa: `आपका लग्न ${lagnaName} है। यह आपकी "उदय राशि" है — दुनिया आपको बाहर से ऐसे देखती है। ${lagnaSketch?.hi ?? ''}` }, locale)}
         </p>
       </SectionCard>
 
       {/* Moon Sign */}
       {moonPlanet && (
         <SectionCard border="border-sky-500/15">
-          <SectionHeading>{isHi ? 'चन्द्र राशि (मन)' : 'Moon Sign (Rashi)'}</SectionHeading>
+          <SectionHeading>{tl({ en: 'Moon Sign (Rashi)', hi: 'चन्द्र राशि (मन)', sa: 'चन्द्र राशि (मन)' }, locale)}</SectionHeading>
           <p className="text-sm text-gray-200 leading-relaxed">
-            {isHi
-              ? `आपका चन्द्रमा ${moonNameHi} राशि में है। यह आपका आंतरिक स्वभाव है — आपकी भावनाएं, मानसिक आवश्यकताएं और वह जो आपको भीतर से सुकून देता है। ${moonSketch?.hi ?? ''}`
-              : `Your Moon is in ${moonNameEn}. This is your inner world — your emotional needs, instinctive reactions, and what truly gives you comfort beneath the surface. ${moonSketch?.en ?? ''}`}
+            {tl({ en: `Your Moon is in ${moonNameEn}. This is your inner world — your emotional needs, instinctive reactions, and what truly gives you comfort beneath the surface. ${moonSketch?.en ?? ''}`, hi: `आपका चन्द्रमा ${moonNameHi} राशि में है। यह आपका आंतरिक स्वभाव है — आपकी भावनाएं, मानसिक आवश्यकताएं और वह जो आपको भीतर से सुकून देता है। ${moonSketch?.hi ?? ''}`, sa: `आपका चन्द्रमा ${moonNameHi} राशि में है। यह आपका आंतरिक स्वभाव है — आपकी भावनाएं, मानसिक आवश्यकताएं और वह जो आपको भीतर से सुकून देता है। ${moonSketch?.hi ?? ''}` }, locale)}
           </p>
         </SectionCard>
       )}
@@ -1393,15 +1374,13 @@ export function PlanetsInterpretation({ planets, ascendant, locale }: PlanetsInt
       {/* Key Dignities */}
       {(exalted.length > 0 || debilitated.length > 0 || retrograde.length > 0 || ownSign.length > 0) && (
         <SectionCard border="border-sky-500/15">
-          <SectionHeading>{isHi ? 'प्रमुख गरिमाएं' : 'Key Dignities'}</SectionHeading>
+          <SectionHeading>{tl({ en: 'Key Dignities', hi: 'प्रमुख गरिमाएं', sa: 'प्रमुख गरिमाएं' }, locale)}</SectionHeading>
           <div className="space-y-3">
             {exalted.map(p => (
               <div key={`ex-${p.planet.id}`} className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10">
                 <p className="text-sm text-gray-200 leading-relaxed">
                   <span className="font-semibold text-emerald-400">{pNameFull(p.planet.id, isHi)}</span>
-                  {isHi
-                    ? ` उच्च है — अत्यंत बलवान। ${pNameFull(p.planet.id, true)} के कारकत्वों से उत्कृष्ट परिणाम अपेक्षित हैं।`
-                    : ` is exalted — extremely strong. Expect excellent results from ${pNameFull(p.planet.id, false)}'s significations.`}
+                  {tl({ en: ` is exalted — extremely strong. Expect excellent results from ${pNameFull(p.planet.id, false)}'s significations.`, hi: ` उच्च है — अत्यंत बलवान। ${pNameFull(p.planet.id, true)} के कारकत्वों से उत्कृष्ट परिणाम अपेक्षित हैं।`, sa: ` उच्च है — अत्यंत बलवान। ${pNameFull(p.planet.id, true)} के कारकत्वों से उत्कृष्ट परिणाम अपेक्षित हैं।` }, locale)}
                 </p>
               </div>
             ))}
@@ -1409,9 +1388,7 @@ export function PlanetsInterpretation({ planets, ascendant, locale }: PlanetsInt
               <div key={`deb-${p.planet.id}`} className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10">
                 <p className="text-sm text-gray-200 leading-relaxed">
                   <span className="font-semibold text-amber-400">{pNameFull(p.planet.id, isHi)}</span>
-                  {isHi
-                    ? ` नीच है — चुनौतीपूर्ण। ${pNameFull(p.planet.id, true)} के विषयों में बाधाएं आ सकती हैं। नीच भंग (निरस्तीकरण) की जांच करें।`
-                    : ` is debilitated — challenged. ${pNameFull(p.planet.id, false)}'s themes may face obstacles. Check for Neecha Bhanga (cancellation).`}
+                  {tl({ en: ` is debilitated — challenged. ${pNameFull(p.planet.id, false)}'s themes may face obstacles. Check for Neecha Bhanga (cancellation).`, hi: ` नीच है — चुनौतीपूर्ण। ${pNameFull(p.planet.id, true)} के विषयों में बाधाएं आ सकती हैं। नीच भंग (निरस्तीकरण) की जांच करें।`, sa: ` नीच है — चुनौतीपूर्ण। ${pNameFull(p.planet.id, true)} के विषयों में बाधाएं आ सकती हैं। नीच भंग (निरस्तीकरण) की जांच करें।` }, locale)}
                 </p>
               </div>
             ))}
@@ -1419,9 +1396,7 @@ export function PlanetsInterpretation({ planets, ascendant, locale }: PlanetsInt
               <div key={`own-${p.planet.id}`} className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10">
                 <p className="text-sm text-gray-200 leading-relaxed">
                   <span className="font-semibold text-emerald-400">{pNameFull(p.planet.id, isHi)}</span>
-                  {isHi
-                    ? ` अपनी ही राशि में है — सहज और स्वाभाविक। मजबूत, विश्वसनीय परिणाम।`
-                    : ` is in its own sign — comfortable and natural. Strong, reliable results.`}
+                  {tl({ en: ' is in its own sign — comfortable and natural. Strong, reliable results.', hi: ' अपनी ही राशि में है — सहज और स्वाभाविक। मजबूत, विश्वसनीय परिणाम।', sa: ' अपनी ही राशि में है — सहज और स्वाभाविक। मजबूत, विश्वसनीय परिणाम।' }, locale)}
                 </p>
               </div>
             ))}
@@ -1429,9 +1404,7 @@ export function PlanetsInterpretation({ planets, ascendant, locale }: PlanetsInt
               <div key={`ret-${p.planet.id}`} className="p-3 rounded-lg bg-sky-500/5 border border-sky-500/10">
                 <p className="text-sm text-gray-200 leading-relaxed">
                   <span className="font-semibold text-sky-400">{pNameFull(p.planet.id, isHi)}</span>
-                  {isHi
-                    ? ` वक्री है — आंतरिक ऊर्जा। परिणाम पुनर्विचार, पुनरावलोकन और गहन प्रयास से आते हैं।`
-                    : ` is retrograde — internalized energy. Results come through revisiting, rethinking, and deeper effort.`}
+                  {tl({ en: ' is retrograde — internalized energy. Results come through revisiting, rethinking, and deeper effort.', hi: ' वक्री है — आंतरिक ऊर्जा। परिणाम पुनर्विचार, पुनरावलोकन और गहन प्रयास से आते हैं।', sa: ' वक्री है — आंतरिक ऊर्जा। परिणाम पुनर्विचार, पुनरावलोकन और गहन प्रयास से आते हैं।' }, locale)}
                 </p>
               </div>
             ))}
@@ -1442,15 +1415,13 @@ export function PlanetsInterpretation({ planets, ascendant, locale }: PlanetsInt
       {/* Combustion warning */}
       {combust.length > 0 && (
         <SectionCard border="border-amber-500/15">
-          <SectionHeading>{isHi ? 'अस्त ग्रह चेतावनी' : 'Combustion Warning'}</SectionHeading>
+          <SectionHeading>{tl({ en: 'Combustion Warning', hi: 'अस्त ग्रह चेतावनी', sa: 'अस्त ग्रह चेतावनी' }, locale)}</SectionHeading>
           <div className="space-y-2">
             {combust.map(p => (
               <div key={`comb-${p.planet.id}`} className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10">
                 <p className="text-sm text-gray-200 leading-relaxed">
                   <span className="font-semibold text-amber-400">{pNameFull(p.planet.id, isHi)}</span>
-                  {isHi
-                    ? ` सूर्य के बहुत निकट है (अस्त) — इसके कारकत्व सूर्य की छाया में आ सकते हैं।`
-                    : ` is too close to the Sun (combust) — its significations may be overshadowed.`}
+                  {tl({ en: ' is too close to the Sun (combust) — its significations may be overshadowed.', hi: ' सूर्य के बहुत निकट है (अस्त) — इसके कारकत्व सूर्य की छाया में आ सकते हैं।', sa: ' सूर्य के बहुत निकट है (अस्त) — इसके कारकत्व सूर्य की छाया में आ सकते हैं।' }, locale)}
                 </p>
               </div>
             ))}
@@ -1530,7 +1501,7 @@ export function DashaInterpretation({ dashas, planets, locale }: DashaInterpreta
   const formatDate = (dateStr: string) => {
     try {
       const d = new Date(dateStr);
-      return d.toLocaleDateString(isHi ? 'hi-IN' : 'en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
+      return d.toLocaleDateString(tl({ en: 'en-GB', hi: 'hi-IN', sa: 'hi-IN' }, locale), { year: 'numeric', month: 'short', day: 'numeric' });
     } catch { return dateStr; }
   };
 
@@ -1550,8 +1521,8 @@ export function DashaInterpretation({ dashas, planets, locale }: DashaInterpreta
           <GrahaIconById id={mahaPlanetId} size={28} />
         </div>
         <div>
-          <h3 className="text-xl font-bold text-gold-light">{isHi ? 'दशा विश्लेषण' : 'Dasha Interpretation'}</h3>
-          <p className="text-text-secondary/50 text-xs">{isHi ? 'आपका वर्तमान ग्रह काल' : 'Your current planetary period'}</p>
+          <h3 className="text-xl font-bold text-gold-light">{tl({ en: 'Dasha Interpretation', hi: 'दशा विश्लेषण', sa: 'दशा विश्लेषण' }, locale)}</h3>
+          <p className="text-text-secondary/50 text-xs">{tl({ en: 'Your current planetary period', hi: 'आपका वर्तमान ग्रह काल', sa: 'आपका वर्तमान ग्रह काल' }, locale)}</p>
         </div>
       </div>
 
@@ -1560,14 +1531,12 @@ export function DashaInterpretation({ dashas, planets, locale }: DashaInterpreta
         <div className="flex items-center gap-3 mb-3">
           <span className="w-2.5 h-2.5 rounded-full animate-pulse" style={{ backgroundColor: mahaGraha?.color || '#d4a853' }} />
           <span className="text-gold-light font-bold text-lg">
-            {isHi ? `${mahaPlanet} महादशा` : `${mahaPlanet} Mahadasha`}
+            {tl({ en: `${mahaPlanet} Mahadasha`, hi: `${mahaPlanet} महादशा`, sa: `${mahaPlanet} महादशा` }, locale)}
           </span>
           <span className="text-text-secondary/60 text-xs ml-auto">{formatDate(currentMaha.startDate)} — {formatDate(currentMaha.endDate)}</span>
         </div>
         <p className="text-sm text-gray-200/80 leading-relaxed mb-2">
-          {isHi
-            ? `${mahaDuration} वर्षों की अवधि जो ${mahaPlanet} के विषयों से प्रभावित है।`
-            : `A ${mahaDuration}-year period dominated by ${mahaPlanet}'s themes.`}
+          {tl({ en: `A ${mahaDuration}-year period dominated by ${mahaPlanet}'s themes.`, hi: `${mahaDuration} वर्षों की अवधि जो ${mahaPlanet} के विषयों से प्रभावित है।`, sa: `${mahaDuration} वर्षों की अवधि जो ${mahaPlanet} के विषयों से प्रभावित है।` }, locale)}
         </p>
         {mahaTheme && (
           <p className="text-sm text-text-primary/80 leading-relaxed">
@@ -1585,15 +1554,13 @@ export function DashaInterpretation({ dashas, planets, locale }: DashaInterpreta
             </div>
             <div>
               <span className="font-semibold text-sm" style={{ color: antarGraha?.color || '#e6e2d8' }}>
-                {isHi ? `${mahaPlanet}-${antarPlanet} अन्तर्दशा` : `${mahaPlanet}-${antarPlanet} Antardasha`}
+                {tl({ en: `${mahaPlanet}-${antarPlanet} Antardasha`, hi: `${mahaPlanet}-${antarPlanet} अन्तर्दशा`, sa: `${mahaPlanet}-${antarPlanet} अन्तर्दशा` }, locale)}
               </span>
               <p className="text-text-secondary/50 text-[10px]">{formatDate(currentAntar.startDate)} — {formatDate(currentAntar.endDate)}</p>
             </div>
           </div>
           <p className="text-text-secondary text-sm leading-relaxed ml-11">
-            {isHi
-              ? `${mahaPlanet} के व्यापक विषयों में ${antarPlanet} की ऊर्जा मिलती है${antarTheme ? `: ${antarTheme.hi!.split('.')[0]}.` : '।'}`
-              : `${antarPlanet}'s energy blends with ${mahaPlanet}'s broader themes${antarTheme ? `: ${antarTheme.en.split('.')[0]}.` : '.'}`}
+            {tl({ en: `${antarPlanet}'s energy blends with ${mahaPlanet}'s broader themes${antarTheme ? `: ${antarTheme.en.split('.')[0]}.` : '.'}`, hi: `${mahaPlanet} के व्यापक विषयों में ${antarPlanet} की ऊर्जा मिलती है${antarTheme ? `: ${antarTheme.hi!.split('.')[0]}.` : '।'}`, sa: `${mahaPlanet} के व्यापक विषयों में ${antarPlanet} की ऊर्जा मिलती है${antarTheme ? `: ${antarTheme.hi!.split('.')[0]}.` : '।'}` }, locale)}
           </p>
         </div>
       )}
@@ -1606,13 +1573,11 @@ export function DashaInterpretation({ dashas, planets, locale }: DashaInterpreta
           <div className="rounded-xl p-4 border border-indigo-500/15 bg-indigo-500/5 ml-2 sm:ml-4">
             <div className="flex items-center gap-2 mb-2">
               <GrahaIconById id={nextId} size={16} />
-              <span className="text-indigo-400 text-xs uppercase tracking-wider font-bold">{isHi ? 'अगला परिवर्तन' : 'Next Transition'}</span>
+              <span className="text-indigo-400 text-xs uppercase tracking-wider font-bold">{tl({ en: 'Next Transition', hi: 'अगला परिवर्तन', sa: 'अगला परिवर्तन' }, locale)}</span>
               <span className="w-4 h-px bg-indigo-500/30 flex-1" />
             </div>
             <p className="text-text-secondary/80 text-sm">
-              {isHi
-                ? `${nextPlanet} महादशा ${formatDate(nextMaha.startDate)} से शुरू होगी। जीवन के विषयों में बदलाव के लिए तैयार रहें।`
-                : `${nextPlanet} Mahadasha starts on ${formatDate(nextMaha.startDate)}. Prepare for a shift in life themes.`}
+              {tl({ en: `${nextPlanet} Mahadasha starts on ${formatDate(nextMaha.startDate)}. Prepare for a shift in life themes.`, hi: `${nextPlanet} महादशा ${formatDate(nextMaha.startDate)} से शुरू होगी। जीवन के विषयों में बदलाव के लिए तैयार रहें।`, sa: `${nextPlanet} महादशा ${formatDate(nextMaha.startDate)} से शुरू होगी। जीवन के विषयों में बदलाव के लिए तैयार रहें।` }, locale)}
             </p>
           </div>
         );
@@ -1701,7 +1666,7 @@ interface JaiminiInterpretationProps {
 
 export function JaiminiInterpretation({ jaimini, locale }: JaiminiInterpretationProps) {
   const isHi = isDevanagariLocale(locale);
-  const L = isHi ? 'hi' : 'en';
+  const L = tl({ en: 'en', hi: 'hi', sa: 'hi' }, locale);
 
   if (!jaimini) return null;
 
@@ -1726,10 +1691,10 @@ export function JaiminiInterpretation({ jaimini, locale }: JaiminiInterpretation
   };
 
   const getPlanetDisplay = (karaka: any): string => {
-    if (!karaka) return isHi ? 'अज्ञात' : 'Unknown';
+    if (!karaka) return tl({ en: 'Unknown', hi: 'अज्ञात', sa: 'अज्ञात' }, locale);
     if (karaka.planetName) return isHi ? (karaka.planetName.hi || karaka.planetName.en) : karaka.planetName.en;
     if (typeof karaka.planet === 'string') return karaka.planet;
-    return isHi ? 'अज्ञात' : 'Unknown';
+    return tl({ en: 'Unknown', hi: 'अज्ञात', sa: 'अज्ञात' }, locale);
   };
 
   const akKey = getPlanetKey(atmakaraka);
@@ -1747,19 +1712,17 @@ export function JaiminiInterpretation({ jaimini, locale }: JaiminiInterpretation
   return (
     <div className="space-y-4 mt-6">
       <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold border-b border-gold-primary/20 pb-2">
-        {isHi ? 'जैमिनी विश्लेषण' : 'Jaimini Interpretation'}
+        {tl({ en: 'Jaimini Interpretation', hi: 'जैमिनी विश्लेषण', sa: 'जैमिनी विश्लेषण' }, locale)}
       </h3>
 
       {/* ── Atmakaraka ── */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/25 p-4 space-y-3">
         <div>
           <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-1">
-            {isHi ? 'आत्मकारक — आत्मा का राजा' : 'Atmakaraka — King of the Soul'}
+            {tl({ en: 'Atmakaraka — King of the Soul', hi: 'आत्मकारक — आत्मा का राजा', sa: 'आत्मकारक — आत्मा का राजा' }, locale)}
           </div>
           <p className="text-text-secondary text-sm leading-relaxed">
-            {isHi
-              ? `आपका आत्मकारक ${akDisplay} है — कुंडली में सर्वाधिक अंश वाला ग्रह और आत्मा का मुख्य प्रतिनिधि। सभी अन्य कारक इसी की सेवा में हैं।`
-              : `Your Atmakaraka is ${akDisplay} — the planet with the highest degree in your chart and the ruler of your soul. Every other karaka serves this planet's agenda.`}
+            {tl({ en: `Your Atmakaraka is ${akDisplay} — the planet with the highest degree in your chart and the ruler of your soul. Every other karaka serves this planet's agenda.`, hi: `आपका आत्मकारक ${akDisplay} है — कुंडली में सर्वाधिक अंश वाला ग्रह और आत्मा का मुख्य प्रतिनिधि। सभी अन्य कारक इसी की सेवा में हैं।`, sa: `आपका आत्मकारक ${akDisplay} है — कुंडली में सर्वाधिक अंश वाला ग्रह और आत्मा का मुख्य प्रतिनिधि। सभी अन्य कारक इसी की सेवा में हैं।` }, locale)}
           </p>
         </div>
 
@@ -1767,25 +1730,25 @@ export function JaiminiInterpretation({ jaimini, locale }: JaiminiInterpretation
           <div className="grid grid-cols-1 gap-2">
             <div className="rounded-lg bg-emerald-500/8 border border-emerald-500/20 px-3 py-2">
               <div className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-1">
-                {isHi ? 'आत्मा की इच्छा' : "Soul's Desire"}
+                {tl({ en: "Soul's Desire", hi: "आत्मा की इच्छा", sa: "आत्मा की इच्छा" }, locale)}
               </div>
               <p className="text-emerald-100/80 text-sm leading-relaxed">{ak.desire[L]}</p>
             </div>
             <div className="rounded-lg bg-sky-500/8 border border-sky-500/20 px-3 py-2">
               <div className="text-sky-400 text-[10px] uppercase tracking-widest font-bold mb-1">
-                {isHi ? 'जीवन-पाठ' : 'Life Lessons'}
+                {tl({ en: 'Life Lessons', hi: 'जीवन-पाठ', sa: 'जीवन-पाठ' }, locale)}
               </div>
               <p className="text-sky-100/80 text-sm leading-relaxed">{ak.lessons[L]}</p>
             </div>
             <div className="rounded-lg bg-rose-500/8 border border-rose-500/20 px-3 py-2">
               <div className="text-rose-400 text-[10px] uppercase tracking-widest font-bold mb-1">
-                {isHi ? 'छाया / जाल' : 'Shadow / Trap'}
+                {tl({ en: 'Shadow / Trap', hi: 'छाया / जाल', sa: 'छाया / जाल' }, locale)}
               </div>
               <p className="text-rose-100/80 text-sm leading-relaxed">{ak.shadow[L]}</p>
             </div>
             <div className="rounded-lg bg-amber-500/8 border border-amber-500/20 px-3 py-2">
               <div className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-1">
-                {isHi ? 'कर्म-मिशन' : 'Karmic Mission'}
+                {tl({ en: 'Karmic Mission', hi: 'कर्म-मिशन', sa: 'कर्म-मिशन' }, locale)}
               </div>
               <p className="text-amber-100/80 text-sm leading-relaxed">{ak.karma[L]}</p>
             </div>
@@ -1797,12 +1760,10 @@ export function JaiminiInterpretation({ jaimini, locale }: JaiminiInterpretation
       <div className="rounded-xl bg-gradient-to-br from-[#1b3a2d]/40 via-[#0f2018]/50 to-[#0a0e27] border border-emerald-500/20 p-4 space-y-3">
         <div>
           <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-1">
-            {isHi ? 'अमात्यकारक — करियर-कारक' : 'Amatyakaraka — Career Significator'}
+            {tl({ en: 'Amatyakaraka — Career Significator', hi: 'अमात्यकारक — करियर-कारक', sa: 'अमात्यकारक — करियर-कारक' }, locale)}
           </div>
           <p className="text-text-secondary text-sm leading-relaxed">
-            {isHi
-              ? `आपका अमात्यकारक ${amkDisplay} है। यह उन क्षेत्रों और कार्यशैली को दर्शाता है जिनमें आत्मा का कार्य सबसे अच्छे से प्रकट होता है।`
-              : `Your Amatyakaraka is ${amkDisplay}. This reveals the fields and working style through which your soul's mission best expresses itself.`}
+            {tl({ en: `Your Amatyakaraka is ${amkDisplay}. This reveals the fields and working style through which your soul's mission best expresses itself.`, hi: `आपका अमात्यकारक ${amkDisplay} है। यह उन क्षेत्रों और कार्यशैली को दर्शाता है जिनमें आत्मा का कार्य सबसे अच्छे से प्रकट होता है।`, sa: `आपका अमात्यकारक ${amkDisplay} है। यह उन क्षेत्रों और कार्यशैली को दर्शाता है जिनमें आत्मा का कार्य सबसे अच्छे से प्रकट होता है।` }, locale)}
           </p>
         </div>
 
@@ -1810,13 +1771,13 @@ export function JaiminiInterpretation({ jaimini, locale }: JaiminiInterpretation
           <div className="grid grid-cols-1 gap-2">
             <div className="rounded-lg bg-emerald-500/8 border border-emerald-500/20 px-3 py-2">
               <div className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-1">
-                {isHi ? 'क्षेत्र' : 'Fields'}
+                {tl({ en: 'Fields', hi: 'क्षेत्र', sa: 'क्षेत्र' }, locale)}
               </div>
               <p className="text-emerald-100/80 text-sm leading-relaxed">{amk.fields[L]}</p>
             </div>
             <div className="rounded-lg bg-teal-500/8 border border-teal-500/20 px-3 py-2">
               <div className="text-teal-400 text-[10px] uppercase tracking-widest font-bold mb-1">
-                {isHi ? 'कार्यशैली' : 'Working Style'}
+                {tl({ en: 'Working Style', hi: 'कार्यशैली', sa: 'कार्यशैली' }, locale)}
               </div>
               <p className="text-teal-100/80 text-sm leading-relaxed">{amk.style[L]}</p>
             </div>
@@ -1828,12 +1789,10 @@ export function JaiminiInterpretation({ jaimini, locale }: JaiminiInterpretation
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b40]/40 via-[#1a0f28]/50 to-[#0a0e27] border border-purple-500/20 p-4 space-y-3">
         <div>
           <div className="text-purple-400 text-xs uppercase tracking-wider font-bold mb-1">
-            {isHi ? 'दारकारक — जीवनसाथी-कारक' : 'Darakaraka — Spouse Significator'}
+            {tl({ en: 'Darakaraka — Spouse Significator', hi: 'दारकारक — जीवनसाथी-कारक', sa: 'दारकारक — जीवनसाथी-कारक' }, locale)}
           </div>
           <p className="text-text-secondary text-sm leading-relaxed">
-            {isHi
-              ? `आपका दारकारक ${dkDisplay} है — सबसे कम अंश वाला ग्रह। यह आपके जीवनसाथी के स्वभाव और सम्बन्ध की गतिशीलता को दर्शाता है।`
-              : `Your Darakaraka is ${dkDisplay} — the planet with the lowest degree. This reveals the nature of your spouse and the dynamic of your primary partnership.`}
+            {tl({ en: `Your Darakaraka is ${dkDisplay} — the planet with the lowest degree. This reveals the nature of your spouse and the dynamic of your primary partnership.`, hi: `आपका दारकारक ${dkDisplay} है — सबसे कम अंश वाला ग्रह। यह आपके जीवनसाथी के स्वभाव और सम्बन्ध की गतिशीलता को दर्शाता है।`, sa: `आपका दारकारक ${dkDisplay} है — सबसे कम अंश वाला ग्रह। यह आपके जीवनसाथी के स्वभाव और सम्बन्ध की गतिशीलता को दर्शाता है।` }, locale)}
           </p>
         </div>
 
@@ -1841,13 +1800,13 @@ export function JaiminiInterpretation({ jaimini, locale }: JaiminiInterpretation
           <div className="grid grid-cols-1 gap-2">
             <div className="rounded-lg bg-purple-500/8 border border-purple-500/20 px-3 py-2">
               <div className="text-purple-400 text-[10px] uppercase tracking-widest font-bold mb-1">
-                {isHi ? 'साथी का स्वभाव' : "Partner's Nature"}
+                {tl({ en: "Partner's Nature", hi: "साथी का स्वभाव", sa: "साथी का स्वभाव" }, locale)}
               </div>
               <p className="text-purple-100/80 text-sm leading-relaxed">{dk.nature[L]}</p>
             </div>
             <div className="rounded-lg bg-pink-500/8 border border-pink-500/20 px-3 py-2">
               <div className="text-pink-400 text-[10px] uppercase tracking-widest font-bold mb-1">
-                {isHi ? 'सम्बन्ध-गतिशीलता' : 'Partnership Dynamic'}
+                {tl({ en: 'Partnership Dynamic', hi: 'सम्बन्ध-गतिशीलता', sa: 'सम्बन्ध-गतिशीलता' }, locale)}
               </div>
               <p className="text-pink-100/80 text-sm leading-relaxed">{dk.dynamic[L]}</p>
             </div>

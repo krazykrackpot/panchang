@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Loader2, Bot, User } from 'lucide-react';
@@ -45,7 +46,7 @@ export default function ChartChatTab({ kundali, locale, headingFont }: ChartChat
   const [error, setError] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
   const isHi = isDevanagariLocale(locale);
-  const suggestions = SUGGESTED_QUESTIONS[isHi ? 'hi' : 'en'];
+  const suggestions = SUGGESTED_QUESTIONS[tl({ en: 'en', hi: 'hi', sa: 'hi' }, locale) as keyof typeof SUGGESTED_QUESTIONS];
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
@@ -79,7 +80,7 @@ export default function ChartChatTab({ kundali, locale, headingFont }: ChartChat
       const data = await res.json();
       setMessages([...newMessages, { role: 'assistant', content: data.response }]);
     } catch (err) {
-      setError(isHi ? 'उत्तर प्राप्त करने में त्रुटि। पुनः प्रयास करें।' : 'Error getting response. Please try again.');
+      setError(tl({ en: 'Error getting response. Please try again.', hi: 'उत्तर प्राप्त करने में त्रुटि। पुनः प्रयास करें।', sa: 'उत्तर प्राप्त करने में त्रुटि। पुनः प्रयास करें।' }, locale));
     } finally {
       setLoading(false);
     }
@@ -88,10 +89,10 @@ export default function ChartChatTab({ kundali, locale, headingFont }: ChartChat
   return (
     <div className="flex flex-col h-[calc(100vh-200px)] sm:h-[500px] md:h-[600px]">
       <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
-        {isHi ? 'अपनी कुण्डली से चर्चा करें' : 'Chat with Your Chart'}
+        {tl({ en: 'Chat with Your Chart', hi: 'अपनी कुण्डली से चर्चा करें', sa: 'अपनी कुण्डली से चर्चा करें' }, locale)}
       </h3>
       <p className="text-text-secondary text-xs text-center mb-4">
-        {isHi ? 'अपनी जन्म कुण्डली के बारे में कोई भी प्रश्न पूछें' : 'Ask any question about your birth chart'}
+        {tl({ en: 'Ask any question about your birth chart', hi: 'अपनी जन्म कुण्डली के बारे में कोई भी प्रश्न पूछें', sa: 'अपनी जन्म कुण्डली के बारे में कोई भी प्रश्न पूछें' }, locale)}
       </p>
 
       {/* Messages */}
@@ -99,7 +100,7 @@ export default function ChartChatTab({ kundali, locale, headingFont }: ChartChat
         {messages.length === 0 && (
           <div className="space-y-2">
             <p className="text-text-tertiary text-xs text-center mb-3">
-              {isHi ? 'सुझावित प्रश्न:' : 'Suggested questions:'}
+              {tl({ en: 'Suggested questions:', hi: 'सुझावित प्रश्न:', sa: 'सुझावित प्रश्न:' }, locale)}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {suggestions.map((q, i) => (
@@ -156,7 +157,7 @@ export default function ChartChatTab({ kundali, locale, headingFont }: ChartChat
           value={input}
           onChange={e => setInput(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && sendMessage(input)}
-          placeholder={isHi ? 'अपना प्रश्न टाइप करें...' : 'Type your question...'}
+          placeholder={tl({ en: 'Type your question...', hi: 'अपना प्रश्न टाइप करें...', sa: 'अपना प्रश्न टाइप करें...' }, locale)}
           disabled={loading}
           className="flex-1 px-4 py-2.5 rounded-xl bg-bg-secondary border border-gold-primary/15 text-text-primary text-sm focus:outline-none focus:border-gold-primary/40 placeholder:text-text-tertiary disabled:opacity-50"
           style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}

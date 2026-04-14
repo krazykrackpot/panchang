@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useMemo } from 'react';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { computePersonalTransits, computeUpcomingTransitions } from '@/lib/transit/personal-transits';
@@ -29,10 +30,10 @@ export default function TransitRadar({ ascendantSign, savTable, locale }: Transi
       {/* Header */}
       <div className="px-6 sm:px-8 pt-6 sm:pt-8 pb-4">
         <h3 className="text-xl text-gold-light font-bold">
-          {isHi ? 'गोचर राडार — आपकी कुण्डली पर वर्तमान प्रभाव' : 'Transit Radar — What\'s Activating Your Chart'}
+          {tl({ en: "Transit Radar — What\'s Activating Your Chart", hi: "गोचर राडार — आपकी कुण्डली पर वर्तमान प्रभाव", sa: "गोचर राडार — आपकी कुण्डली पर वर्तमान प्रभाव" }, locale)}
         </h3>
         <p className="text-text-secondary/60 text-xs mt-1">
-          {isHi ? 'धीमे ग्रहों की वर्तमान स्थिति और आपकी अष्टकवर्ग शक्ति' : 'Current slow-planet positions mapped to your Ashtakavarga strength'}
+          {tl({ en: 'Current slow-planet positions mapped to your Ashtakavarga strength', hi: 'धीमे ग्रहों की वर्तमान स्थिति और आपकी अष्टकवर्ग शक्ति', sa: 'धीमे ग्रहों की वर्तमान स्थिति और आपकी अष्टकवर्ग शक्ति' }, locale)}
         </p>
       </div>
 
@@ -70,7 +71,7 @@ export default function TransitRadar({ ascendantSign, savTable, locale }: Transi
       {upcoming.length > 0 && (
         <div className="px-6 sm:px-8 pb-6 sm:pb-8">
           <h4 className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
-            {isHi ? 'आगामी परिवर्तन (अगले 6 माह)' : 'Upcoming Sign Changes (Next 6 Months)'}
+            {tl({ en: 'Upcoming Sign Changes (Next 6 Months)', hi: 'आगामी परिवर्तन (अगले 6 माह)', sa: 'आगामी परिवर्तन (अगले 6 माह)' }, locale)}
           </h4>
           <div className="space-y-1.5">
             {upcoming.map((u, i) => (

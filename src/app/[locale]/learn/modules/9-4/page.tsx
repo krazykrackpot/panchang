@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -24,7 +25,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? '5-चरणीय व्यवस्थित दृष्टिकोण' : 'The 5-Step Systematic Approach'}
+          {tl({ en: 'The 5-Step Systematic Approach', hi: '5-चरणीय व्यवस्थित दृष्टिकोण', sa: '5-चरणीय व्यवस्थित दृष्टिकोण' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>कुण्डली पढ़ना पहली नाटकीय विशेषता पर कूद पड़ने के बारे में नहीं है। इसके लिए एक अनुशासित, व्यवस्थित दृष्टिकोण आवश्यक है — जैसे एक डॉक्टर एक लक्षण से अनुमान लगाने के बजाय व्यवस्थित रूप से रोगी की जाँच करता है। यहाँ अनुभवी ज्योतिषियों द्वारा उपयोग किया जाने वाला ढाँचा है:</> : <>Reading a Kundali is not about jumping to the first dramatic feature you notice. It requires a disciplined, systematic approach — just as a doctor examines a patient methodically rather than guessing from one symptom. Here is the framework used by experienced Jyotishis:</>}</p>
 
@@ -53,7 +54,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रांतियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रांतियाँ', sa: 'सामान्य भ्रांतियाँ' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><strong className="text-gold-light">भ्रांति:</strong> &quot;मैं सप्तम भाव में शनि देख रहा हूँ, तो विवाह में विलम्ब/कठिनाई होगी।&quot; यह एक शास्त्रीय शुरुआती गलती है — एक कारक से निष्कर्ष पर पहुँचना। सप्तम में शनि का अर्थ हो सकता है: विलम्बित लेकिन स्थिर विवाह (शनि = धीमा लेकिन स्थायी), परिपक्व/बड़ी उम्र का साथी, शनि-संबंधित पेशे में भागीदार, या साझेदारियों में अनुशासन। आपको शनि की गरिमा, स्वामित्व, शुभ ग्रहों की दृष्टि, सप्तम स्वामी की स्थिति, शुक्र (विवाह कारक), नवमांश सप्तम भाव, और दशा काल की जाँच करनी चाहिए। तभी आप निष्कर्ष का संश्लेषण कर सकते हैं।</> : <><strong className="text-gold-light">Misconception:</strong> &quot;I see Saturn in the 7th house, so marriage will be delayed/troubled.&quot; This is a classic beginner error — jumping to conclusions from one factor. Saturn in the 7th could mean: delayed but stable marriage (Saturn = slow but lasting), a mature/older spouse, a partner in a Saturn-related profession, or discipline in partnerships. You must check Saturn&apos;s dignity, lordship, aspects from benefics, the 7th lord&apos;s condition, Venus (karaka for marriage), Navamsha 7th house, and the dasha period. Only then can you synthesize a conclusion.</>}</p>
       </section>
     </div>
@@ -69,7 +70,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'षड्बल — छह शक्तियाँ' : 'Shadbala — The Six Strengths'}
+          {tl({ en: 'Shadbala — The Six Strengths', hi: 'षड्बल — छह शक्तियाँ', sa: 'षड्बल — छह शक्तियाँ' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>षड्बल BPHS से व्यापक शक्ति मूल्यांकन प्रणाली है जो मापता है कि किसी कुण्डली में प्रत्येक ग्रह कितना शक्तिशाली है। ग्रह गरिमा से उच्च (शक्तिशाली) हो सकता है लेकिन अन्य मापदंडों से दुर्बल। षड्बल छह स्वतंत्र शक्ति गणनाओं को रूप (इकाई) में मापे गए एकल अंक में संयोजित करता है।</> : <>Shadbala is the comprehensive strength assessment system from BPHS that quantifies how powerful each planet is in a given chart. A planet may be exalted (strong by dignity) but weak by other measures. Shadbala combines six independent strength calculations into a single score measured in Rupas (units).</>}</p>
 
@@ -113,19 +114,19 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'कार्यान्वित उदाहरण: वृश्चिक लग्न कुण्डली' : 'Worked Example: Scorpio Lagna Chart'}
+          {tl({ en: 'Worked Example: Scorpio Lagna Chart', hi: 'कार्यान्वित उदाहरण: वृश्चिक लग्न कुण्डली', sa: 'कार्यान्वित उदाहरण: वृश्चिक लग्न कुण्डली' }, locale)}
         </h3>
         <ExampleChart
           ascendant={8}
           planets={{ 10: [0], 5: [4], 7: [6], 6: [1], 3: [2] }}
-          title={isHi ? 'वृश्चिक लग्न — सूर्य दशम, बृहस्पति पंचम, शनि सप्तम, चन्द्र षष्ठ, मंगल तृतीय' : 'Scorpio Lagna — Sun 10th, Jupiter 5th, Saturn 7th, Moon 6th, Mars 3rd'}
+          title={tl({ en: 'Scorpio Lagna — Sun 10th, Jupiter 5th, Saturn 7th, Moon 6th, Mars 3rd', hi: 'वृश्चिक लग्न — सूर्य दशम, बृहस्पति पंचम, शनि सप्तम, चन्द्र षष्ठ, मंगल तृतीय', sa: 'वृश्चिक लग्न — सूर्य दशम, बृहस्पति पंचम, शनि सप्तम, चन्द्र षष्ठ, मंगल तृतीय' }, locale)}
           highlight={[10, 5, 7, 3]}
         />
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>हमारे 5-चरणीय ढाँचे का उपयोग करके एक पूर्ण कुण्डली पठन करते हैं। विचार करें: <strong className="text-gold-light">वृश्चिक लग्न</strong>, सूर्य सिंह (दशम भाव) में, बृहस्पति मीन (पंचम भाव) में, शनि वृषभ (सप्तम भाव) में, चन्द्र मेष (षष्ठ भाव) में, मंगल मकर (तृतीय भाव) में।</> : <>Let us walk through a complete chart reading using our 5-step framework. Consider a chart with: <strong className="text-gold-light">Scorpio (Vrishchika) Lagna</strong>, Sun in Leo (10th house), Jupiter in Pisces (5th house), Saturn in Taurus (7th house), Moon in Aries (6th house), Mars in Capricorn (3rd house).</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'चरण-दर-चरण विश्लेषण' : 'Step-by-Step Analysis'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Step-by-Step Analysis', hi: 'चरण-दर-चरण विश्लेषण', sa: 'चरण-दर-चरण विश्लेषण' }, locale)}</h4>
 
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">चरण 1 — लग्न:</span> वृश्चिक लग्न, स्वामी मंगल। मंगल मकर (तृतीय भाव) में — उसकी <strong className="text-gold-light">उच्च</strong> राशि। यह उत्कृष्ट है: लग्न स्वामी उपचय भाव (तृतीय = साहस, पहल) में शिखर शक्ति पर है। जातक साहसी, स्वनिर्मित है और बोल्ड कार्रवाई करता है।</> : <><span className="text-gold-light font-medium">Step 1 — Lagna:</span> Scorpio Lagna, ruled by Mars. Mars is in Capricorn (3rd house) — its sign of <strong className="text-gold-light">exaltation</strong>. This is excellent: the Lagna lord is at peak strength in an Upachaya house (3rd = courage, initiative). The native is courageous, self-made, and takes bold action.</>}</p>
 
@@ -137,12 +138,12 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'संश्लेषण — सब कुछ मिलाकर' : 'Synthesis — Putting It All Together'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Synthesis — Putting It All Together', hi: 'संश्लेषण — सब कुछ मिलाकर', sa: 'संश्लेषण — सब कुछ मिलाकर' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>यह कुण्डली एक साहसी, स्वनिर्मित व्यक्ति (उच्च मंगल लग्न स्वामी) की है जिसके पास सशक्त कैरियर अधिकार (सूर्य स्वराशि दशम में), संतान/शिक्षा में ज्ञान और सौभाग्य (बृहस्पति स्वराशि पंचम में), और स्थिर, परिपक्व विवाह (शनि मित्र सप्तम में) है। पंचम और दशम स्वामियों के बीच राजयोग दर्शाता है कि भाग्य, शिक्षा और कैरियर सफलता गहराई से जुड़े हैं — शायद एक सफल शिक्षाविद्, आध्यात्मिक गुरु, या रचनात्मक नेता। शनि की लग्न पर दृष्टि गम्भीरता और सहनशक्ति जोड़ती है।</> : <>This chart belongs to a courageous, self-made individual (exalted Mars Lagna lord) with strong career authority (Sun in own 10th), wisdom and good fortune in children/education (Jupiter in own 5th), and a stable, mature marriage (Saturn in friendly 7th). The Raja Yoga between the 5th and 10th lords indicates that fortune, education, and career success are deeply connected — perhaps a successful academic, spiritual teacher, or creative leader. Saturn&apos;s aspect on the Lagna adds gravitas and endurance.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा ऐप यह सम्पूर्ण विश्लेषण स्वचालित रूप से करता है। जब आप कुण्डली बनाते हैं, तो टिप्पणी इंजन प्रत्येक ग्रह की गरिमा का मूल्यांकन करता है, सभी प्रमुख योगों और दोषों की पहचान करता है, षड्बल अंकों की गणना करता है, और एक व्यापक व्याख्यात्मक वर्णन का संश्लेषण करता है। इस मॉड्यूल में वर्णित व्यवस्थित ढाँचा ठीक वही है जो हमारे एल्गोरिदम लागू करते हैं — वही शास्त्रीय नियम, अब आधुनिक सटीकता के साथ गणित।</> : <>Our app performs this entire analysis automatically. When you generate a Kundali, the tippanni engine evaluates every planet&apos;s dignity, identifies all major yogas and doshas, calculates Shadbala scores, and synthesizes a comprehensive interpretive narrative. The systematic framework described in this module is exactly what our algorithms implement — the same classical rules, now computed with modern precision.</>}</p>
       </section>
     </div>

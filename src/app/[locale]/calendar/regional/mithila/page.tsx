@@ -1,3 +1,4 @@
+import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -175,9 +176,9 @@ export default function MithilaCalendarPage() {
               <thead>
                 <tr className="bg-gold-primary/10 text-gold-light">
                   <th className="px-4 py-3 text-left font-bold">#</th>
-                  <th className="px-4 py-3 text-left font-bold">{isHi ? 'मास' : 'Month'}</th>
-                  <th className="px-4 py-3 text-left font-bold">{isHi ? 'मैथिली' : 'Maithili'}</th>
-                  <th className="px-4 py-3 text-left font-bold">{isHi ? 'ग्रेगोरियन' : 'Gregorian'}</th>
+                  <th className="px-4 py-3 text-left font-bold">{tl({ en: 'Month', hi: 'मास', sa: 'मास' }, locale)}</th>
+                  <th className="px-4 py-3 text-left font-bold">{tl({ en: 'Maithili', hi: 'मैथिली', sa: 'मैथिली' }, locale)}</th>
+                  <th className="px-4 py-3 text-left font-bold">{tl({ en: 'Gregorian', hi: 'ग्रेगोरियन', sa: 'ग्रेगोरियन' }, locale)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -244,11 +245,11 @@ export default function MithilaCalendarPage() {
             ))}
             <Link href="/calendar"
               className="rounded-xl border border-gold-primary/12 bg-bg-secondary/30 px-4 py-3 text-sm text-gold-light hover:border-gold-primary/30 hover:bg-gold-primary/5 transition-colors">
-              {isHi ? 'त्योहार कैलेंडर' : 'Festival Calendar'}
+              {tl({ en: 'Festival Calendar', hi: 'त्योहार कैलेंडर', sa: 'त्योहार कैलेंडर' }, locale)}
             </Link>
             <Link href="/panchang"
               className="rounded-xl border border-gold-primary/12 bg-bg-secondary/30 px-4 py-3 text-sm text-gold-light hover:border-gold-primary/30 hover:bg-gold-primary/5 transition-colors">
-              {isHi ? 'आज का पंचांग' : "Today's Panchang"}
+              {tl({ en: "Today's Panchang", hi: "आज का पंचांग", sa: "आज का पंचांग" }, locale)}
             </Link>
           </div>
         </section>

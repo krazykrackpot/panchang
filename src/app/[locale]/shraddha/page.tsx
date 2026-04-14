@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -107,7 +108,7 @@ export default function ShraddhaPage() {
       {/* Shraddha Intro */}
       <InfoBlock
         id="shraddha-intro"
-        title={!isDevanagariLocale(locale) ? 'What is Shraddha?' : 'श्राद्ध क्या है?'}
+        title={tl({ en: 'What is Shraddha?', hi: 'श्राद्ध क्या है?', sa: 'श्राद्ध क्या है?' }, locale)}
         defaultOpen={true}
       >
         {isDevanagari ? (
@@ -122,7 +123,7 @@ export default function ShraddhaPage() {
         <div className="space-y-6">
           <div>
             <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-3">
-              {!isDevanagariLocale(locale) ? 'Paksha (Lunar Phase)' : 'पक्ष'}
+              {tl({ en: 'Paksha (Lunar Phase)', hi: 'पक्ष', sa: 'पक्ष' }, locale)}
             </label>
             <div className="flex gap-3">
               {PAKSHA_OPTIONS.map(p => (
@@ -136,7 +137,7 @@ export default function ShraddhaPage() {
 
           <div>
             <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-3">
-              {!isDevanagariLocale(locale) ? 'Death Tithi' : 'मृत्यु तिथि'}
+              {tl({ en: 'Death Tithi', hi: 'मृत्यु तिथि', sa: 'मृत्यु तिथि' }, locale)}
             </label>
             <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
               {TITHI_NAMES.map((t, i) => (
@@ -160,20 +161,20 @@ export default function ShraddhaPage() {
               {result.date && (
                 <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 border-2 border-gold-primary/30 bg-gradient-to-br from-gold-primary/5 to-transparent text-center">
                   <div className="text-gold-dark text-xs uppercase tracking-[0.3em] font-bold mb-2">
-                    {currentYear} {!isDevanagariLocale(locale) ? 'Shraddha Date' : 'श्राद्ध तिथि'}
+                    {currentYear} {tl({ en: 'Shraddha Date', hi: 'श्राद्ध तिथि', sa: 'श्राद्ध तिथि' }, locale)}
                   </div>
                   <div className="text-gold-light text-3xl font-bold" style={headingFont}>
-                    {new Date(result.date + 'T00:00:00').toLocaleDateString(!isDevanagariLocale(locale) ? 'en-IN' : 'hi-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    {new Date(result.date + 'T00:00:00').toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale), { day: 'numeric', month: 'long', year: 'numeric' })}
                   </div>
                 </div>
               )}
               {result.nextDate && (
                 <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 text-center">
                   <div className="text-text-secondary text-xs uppercase tracking-wider mb-1">
-                    {currentYear + 1} {!isDevanagariLocale(locale) ? 'Shraddha Date' : 'श्राद्ध तिथि'}
+                    {currentYear + 1} {tl({ en: 'Shraddha Date', hi: 'श्राद्ध तिथि', sa: 'श्राद्ध तिथि' }, locale)}
                   </div>
                   <div className="text-gold-light text-xl font-bold" style={headingFont}>
-                    {new Date(result.nextDate + 'T00:00:00').toLocaleDateString(!isDevanagariLocale(locale) ? 'en-IN' : 'hi-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    {new Date(result.nextDate + 'T00:00:00').toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale), { day: 'numeric', month: 'long', year: 'numeric' })}
                   </div>
                 </div>
               )}

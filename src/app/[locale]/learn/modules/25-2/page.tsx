@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
@@ -99,7 +100,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'आर्यभट और विश्व की पहली ज्या सारणी' : "Aryabhata and the World's First Sine Table"}
+          {tl({ en: "Aryabhata and the World's First Sine Table", hi: "आर्यभट और विश्व की पहली ज्या सारणी", sa: "आर्यभट और विश्व की पहली ज्या सारणी" }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -110,7 +111,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'ज्या से Sine — एक धनुष की कहानी' : 'Jya to Sine — A Story of Bows'}
+          {tl({ en: 'Jya to Sine — A Story of Bows', hi: 'ज्या से Sine — एक धनुष की कहानी', sa: 'ज्या से Sine — एक धनुष की कहानी' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -131,7 +132,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'आर्यभटीय का एन्कोडिंग जादू' : "Aryabhatiya's Encoding Magic"}
+          {tl({ en: "Aryabhatiya's Encoding Magic", hi: "आर्यभटीय का एन्कोडिंग जादू", sa: "आर्यभटीय का एन्कोडिंग जादू" }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -153,7 +154,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'महान गलत-अनुवाद: ज्या से Sine' : 'The Great Mistranslation: Jya to Sine'}
+          {tl({ en: 'The Great Mistranslation: Jya to Sine', hi: 'महान गलत-अनुवाद: ज्या से Sine', sa: 'महान गलत-अनुवाद: ज्या से Sine' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -164,44 +165,44 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'चरण-दर-चरण: ज्या → Sine' : 'Step by Step: Jya → Sine'}
+          {tl({ en: 'Step by Step: Jya → Sine', hi: 'चरण-दर-चरण: ज्या → Sine', sa: 'चरण-दर-चरण: ज्या → Sine' }, locale)}
         </h4>
         <div className="space-y-3">
           <div>
-            <p className="text-gold-light font-medium text-xs">{isHi ? '1. संस्कृत: ज्या (Jya)' : '1. Sanskrit: Jya (ज्या)'}</p>
-            <p className="text-text-secondary text-xs leading-relaxed">{isHi ? 'अर्थ: धनुष की डोरी। आर्यभट का शब्द, 499 ई.।' : 'Meaning: bowstring. Aryabhata\'s word, 499 CE.'}</p>
+            <p className="text-gold-light font-medium text-xs">{tl({ en: '1. Sanskrit: Jya (ज्या)', hi: '1. संस्कृत: ज्या (Jya)', sa: '1. संस्कृत: ज्या (Jya)' }, locale)}</p>
+            <p className="text-text-secondary text-xs leading-relaxed">{tl({ en: "Meaning: bowstring. Aryabhata\'s word, 499 CE.", hi: "अर्थ: धनुष की डोरी। आर्यभट का शब्द, 499 ई.।", sa: "अर्थ: धनुष की डोरी। आर्यभट का शब्द, 499 ई.।" }, locale)}</p>
           </div>
           <div>
-            <p className="text-gold-light font-medium text-xs">{isHi ? '2. अरबी: जिबा (جيب Jiba)' : '2. Arabic: Jiba (جيب)'}</p>
-            <p className="text-text-secondary text-xs leading-relaxed">{isHi ? 'अरब अनुवादकों ने "ज्या" को "जिबा" के रूप में लिप्यंतरित किया। अरबी में इसका कोई अर्थ नहीं था। ~820 ई. में अल-ख्वारिज़्मी के समय।' : 'Arab translators transliterated "jya" as "jiba." This word has no meaning in Arabic — it was a phonetic approximation. ~820 CE, time of Al-Khwarizmi.'}</p>
+            <p className="text-gold-light font-medium text-xs">{tl({ en: '2. Arabic: Jiba (جيب)', hi: '2. अरबी: जिबा (جيب Jiba)', sa: '2. अरबी: जिबा (جيب Jiba)' }, locale)}</p>
+            <p className="text-text-secondary text-xs leading-relaxed">{tl({ en: 'Arab translators transliterated "jya" as "jiba." This word has no meaning in Arabic — it was a phonetic approximation. ~820 CE, time of Al-Khwarizmi.', hi: 'अरब अनुवादकों ने "ज्या" को "जिबा" के रूप में लिप्यंतरित किया। अरबी में इसका कोई अर्थ नहीं था। ~820 ई. में अल-ख्वारिज़्मी के समय।', sa: 'अरब अनुवादकों ने "ज्या" को "जिबा" के रूप में लिप्यंतरित किया। अरबी में इसका कोई अर्थ नहीं था। ~820 ई. में अल-ख्वारिज़्मी के समय।' }, locale)}</p>
           </div>
           <div>
-            <p className="text-gold-light font-medium text-xs">{isHi ? '3. लैटिन: Sinus' : '3. Latin: Sinus'}</p>
-            <p className="text-text-secondary text-xs leading-relaxed">{isHi ? 'मध्ययुगीन लैटिन अनुवादकों (जैसे गेरार्डो ऑफ क्रेमोना, ~1150 ई.) ने अरबी "जिबा" को "जैब" पढ़ा, जिसका अरबी में अर्थ है "जेब/तह।" फिर "जैब" का लैटिन अनुवाद "sinus" (तह, खाड़ी, वक्ष) कर दिया।' : 'Medieval Latin translators (like Gerard of Cremona, ~1150 CE) misread Arabic "jiba" as "jaib," which means "pocket/fold/bay" in Arabic. Then translated "jaib" to Latin "sinus" (fold, bay, bosom).'}</p>
+            <p className="text-gold-light font-medium text-xs">{tl({ en: '3. Latin: Sinus', hi: '3. लैटिन: Sinus', sa: '3. लैटिन: Sinus' }, locale)}</p>
+            <p className="text-text-secondary text-xs leading-relaxed">{tl({ en: 'Medieval Latin translators (like Gerard of Cremona, ~1150 CE) misread Arabic "jiba" as "jaib," which means "pocket/fold/bay" in Arabic. Then translated "jaib" to Latin "sinus" (fold, bay, bosom).', hi: 'मध्ययुगीन लैटिन अनुवादकों (जैसे गेरार्डो ऑफ क्रेमोना, ~1150 ई.) ने अरबी "जिबा" को "जैब" पढ़ा, जिसका अरबी में अर्थ है "जेब/तह।" फिर "जैब" का लैटिन अनुवाद "sinus" (तह, खाड़ी, वक्ष) कर दिया।', sa: 'मध्ययुगीन लैटिन अनुवादकों (जैसे गेरार्डो ऑफ क्रेमोना, ~1150 ई.) ने अरबी "जिबा" को "जैब" पढ़ा, जिसका अरबी में अर्थ है "जेब/तह।" फिर "जैब" का लैटिन अनुवाद "sinus" (तह, खाड़ी, वक्ष) कर दिया।' }, locale)}</p>
           </div>
           <div>
-            <p className="text-gold-light font-medium text-xs">{isHi ? '4. अंग्रेजी: Sine' : '4. English: Sine'}</p>
-            <p className="text-text-secondary text-xs leading-relaxed">{isHi ? 'लैटिन "sinus" को अंग्रेजी "sine" में संक्षिप्त कर दिया गया। मूल धनुष की डोरी से "खाड़ी/तह" तक — भाषाई विडम्बना की पराकाष्ठा।' : 'Latin "sinus" was shortened to English "sine." From a bowstring to a bay/fold — linguistic irony at its finest.'}</p>
+            <p className="text-gold-light font-medium text-xs">{tl({ en: '4. English: Sine', hi: '4. अंग्रेजी: Sine', sa: '4. अंग्रेजी: Sine' }, locale)}</p>
+            <p className="text-text-secondary text-xs leading-relaxed">{tl({ en: 'Latin "sinus" was shortened to English "sine." From a bowstring to a bay/fold — linguistic irony at its finest.', hi: 'लैटिन "sinus" को अंग्रेजी "sine" में संक्षिप्त कर दिया गया। मूल धनुष की डोरी से "खाड़ी/तह" तक — भाषाई विडम्बना की पराकाष्ठा।', sa: 'लैटिन "sinus" को अंग्रेजी "sine" में संक्षिप्त कर दिया गया। मूल धनुष की डोरी से "खाड़ी/तह" तक — भाषाई विडम्बना की पराकाष्ठा।' }, locale)}</p>
           </div>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/15 rounded-xl p-5">
         <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'अन्य त्रिकोणमितीय शब्दों की भारतीय जड़ें' : 'Indian Roots of Other Trig Words'}
+          {tl({ en: 'Indian Roots of Other Trig Words', hi: 'अन्य त्रिकोणमितीय शब्दों की भारतीय जड़ें', sa: 'अन्य त्रिकोणमितीय शब्दों की भारतीय जड़ें' }, locale)}
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'Cosine:' : 'Cosine:'}</span>{' '}
-            {isHi ? 'संस्कृत "कोज्या" (ko-jya = पूरक कोण की ज्या) से। सीधे भारतीय।' : 'From Sanskrit "kojya" (ko-jya = sine of complementary angle). Directly Indian.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Cosine:', hi: 'Cosine:', sa: 'Cosine:' }, locale)}</span>{' '}
+            {tl({ en: 'From Sanskrit "kojya" (ko-jya = sine of complementary angle). Directly Indian.', hi: 'संस्कृत "कोज्या" (ko-jya = पूरक कोण की ज्या) से। सीधे भारतीय।', sa: 'संस्कृत "कोज्या" (ko-jya = पूरक कोण की ज्या) से। सीधे भारतीय।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'Versine:' : 'Versine:'}</span>{' '}
-            {isHi ? 'संस्कृत "उत्क्रमज्या" (1 − cos θ) — भारतीय नौवहन गणनाओं में व्यापक। बाद में यूरोपीय नौवहन में भी।' : 'Sanskrit "utkramajya" (1 − cos θ) — widely used in Indian navigation calculations. Later adopted in European navigation too.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Versine:', hi: 'Versine:', sa: 'Versine:' }, locale)}</span>{' '}
+            {tl({ en: 'Sanskrit "utkramajya" (1 − cos θ) — widely used in Indian navigation calculations. Later adopted in European navigation too.', hi: 'संस्कृत "उत्क्रमज्या" (1 − cos θ) — भारतीय नौवहन गणनाओं में व्यापक। बाद में यूरोपीय नौवहन में भी।', sa: 'संस्कृत "उत्क्रमज्या" (1 − cos θ) — भारतीय नौवहन गणनाओं में व्यापक। बाद में यूरोपीय नौवहन में भी।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'Tangent / Secant:' : 'Tangent / Secant:'}</span>{' '}
-            {isHi ? 'ये सीधे भारतीय नहीं — यूरोपीय विकास — लेकिन Indian sine/cosine के बिना इनकी परिभाषा असम्भव थी।' : 'Not directly Indian — European development — but impossible to define without Indian sine/cosine foundations.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Tangent / Secant:', hi: 'Tangent / Secant:', sa: 'Tangent / Secant:' }, locale)}</span>{' '}
+            {tl({ en: 'Not directly Indian — European development — but impossible to define without Indian sine/cosine foundations.', hi: 'ये सीधे भारतीय नहीं — यूरोपीय विकास — लेकिन Indian sine/cosine के बिना इनकी परिभाषा असम्भव थी।', sa: 'ये सीधे भारतीय नहीं — यूरोपीय विकास — लेकिन Indian sine/cosine के बिना इनकी परिभाषा असम्भव थी।' }, locale)}
           </p>
         </div>
       </section>
@@ -219,7 +220,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'खगोल विज्ञान, नौवहन और केरल गणित पर प्रभाव' : 'Impact on Astronomy, Navigation and Kerala Mathematics'}
+          {tl({ en: 'Impact on Astronomy, Navigation and Kerala Mathematics', hi: 'खगोल विज्ञान, नौवहन और केरल गणित पर प्रभाव', sa: 'खगोल विज्ञान, नौवहन और केरल गणित पर प्रभाव' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -230,31 +231,31 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15 rounded-xl p-5">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'व्यावहारिक उपयोग' : 'Practical Applications'}
+          {tl({ en: 'Practical Applications', hi: 'व्यावहारिक उपयोग', sa: 'व्यावहारिक उपयोग' }, locale)}
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'ग्रहण गणना:' : 'Eclipse prediction:'}</span>{' '}
-            {isHi ? 'सूर्य और चन्द्रमा की सटीक स्थिति — ज्या के बिना असम्भव। इस पञ्चाङ्ग के ग्रहण एल्गोरिदम में आर्यभट की त्रिकोणमिति है।' : 'Precise positions of Sun and Moon — impossible without jya. This Panchang\'s eclipse algorithm has Aryabhata\'s trigonometry at its core.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Eclipse prediction:', hi: 'ग्रहण गणना:', sa: 'ग्रहण गणना:' }, locale)}</span>{' '}
+            {tl({ en: "Precise positions of Sun and Moon — impossible without jya. This Panchang\'s eclipse algorithm has Aryabhata\'s trigonometry at its core.", hi: "सूर्य और चन्द्रमा की सटीक स्थिति — ज्या के बिना असम्भव। इस पञ्चाङ्ग के ग्रहण एल्गोरिदम में आर्यभट की त्रिकोणमिति है।", sa: "सूर्य और चन्द्रमा की सटीक स्थिति — ज्या के बिना असम्भव। इस पञ्चाङ्ग के ग्रहण एल्गोरिदम में आर्यभट की त्रिकोणमिति है।" }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'नौवहन:' : 'Navigation:'}</span>{' '}
-            {isHi ? 'भारतीय नाविक ध्रुव तारे की ऊँचाई और ज्या सारणियों का उपयोग करके अक्षांश निर्धारित करते थे — GPS से पहले एकमात्र विश्वसनीय तरीका।' : 'Indian sailors used pole star altitude and jya tables to determine latitude — the only reliable method before GPS.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Navigation:', hi: 'नौवहन:', sa: 'नौवहन:' }, locale)}</span>{' '}
+            {tl({ en: 'Indian sailors used pole star altitude and jya tables to determine latitude — the only reliable method before GPS.', hi: 'भारतीय नाविक ध्रुव तारे की ऊँचाई और ज्या सारणियों का उपयोग करके अक्षांश निर्धारित करते थे — GPS से पहले एकमात्र विश्वसनीय तरीका।', sa: 'भारतीय नाविक ध्रुव तारे की ऊँचाई और ज्या सारणियों का उपयोग करके अक्षांश निर्धारित करते थे — GPS से पहले एकमात्र विश्वसनीय तरीका।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'मन्दिर वास्तुकला:' : 'Temple architecture:'}</span>{' '}
-            {isHi ? 'मन्दिर के शिखरों की वक्र रेखाएँ, मेहराब का कोण, छाया गणना — सब ज्या के अनुप्रयोग।' : 'The curved profiles of temple shikharas, arch angles, shadow calculations — all applications of jya.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Temple architecture:', hi: 'मन्दिर वास्तुकला:', sa: 'मन्दिर वास्तुकला:' }, locale)}</span>{' '}
+            {tl({ en: 'The curved profiles of temple shikharas, arch angles, shadow calculations — all applications of jya.', hi: 'मन्दिर के शिखरों की वक्र रेखाएँ, मेहराब का कोण, छाया गणना — सब ज्या के अनुप्रयोग।', sa: 'मन्दिर के शिखरों की वक्र रेखाएँ, मेहराब का कोण, छाया गणना — सब ज्या के अनुप्रयोग।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'मुहूर्त गणना:' : 'Muhurta calculation:'}</span>{' '}
-            {isHi ? 'सूर्योदय/अस्त का सटीक समय, ग्रहों की ऊँचाई — सब ज्या पर आधारित। यह पञ्चाङ्ग प्रतिदिन यही करता है।' : 'Precise sunrise/sunset times, planetary altitudes — all based on jya. This Panchang does this every day.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Muhurta calculation:', hi: 'मुहूर्त गणना:', sa: 'मुहूर्त गणना:' }, locale)}</span>{' '}
+            {tl({ en: 'Precise sunrise/sunset times, planetary altitudes — all based on jya. This Panchang does this every day.', hi: 'सूर्योदय/अस्त का सटीक समय, ग्रहों की ऊँचाई — सब ज्या पर आधारित। यह पञ्चाङ्ग प्रतिदिन यही करता है।', sa: 'सूर्योदय/अस्त का सटीक समय, ग्रहों की ऊँचाई — सब ज्या पर आधारित। यह पञ्चाङ्ग प्रतिदिन यही करता है।' }, locale)}
           </p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'केरल का आगे विकास' : "Kerala's Advancement"}
+          {tl({ en: "Kerala's Advancement", hi: "केरल का आगे विकास", sa: "केरल का आगे विकास" }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi

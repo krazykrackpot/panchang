@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
@@ -99,7 +100,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'सायण की ऋग्वेद टिप्पणी' : 'Sayana\'s Rig Veda Commentary'}
+          {tl({ en: "Sayana\'s Rig Veda Commentary", hi: "सायण की ऋग्वेद टिप्पणी", sa: "सायण की ऋग्वेद टिप्पणी" }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -110,34 +111,32 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'मूल संस्कृत और अनुवाद' : 'Original Sanskrit and Translation'}
+          {tl({ en: 'Original Sanskrit and Translation', hi: 'मूल संस्कृत और अनुवाद', sa: 'मूल संस्कृत और अनुवाद' }, locale)}
         </h4>
         <blockquote className="border-l-2 border-gold-primary/40 pl-4 mb-3">
           <p className="text-gold-light text-xs italic leading-relaxed font-devanagari">
             "तथा च स्मर्यते योजनानां सहस्रे द्वे द्वे शते द्वे च योजने  एकेन निमिषार्धेन क्रममाण नमोऽस्तु ते"
           </p>
           <p className="text-text-secondary text-xs mt-2 leading-relaxed">
-            {isHi
-              ? '"इस प्रकार स्मरण किया जाता है: हे [सूर्य], जो आधे निमेष में दो हज़ार दो सौ दो योजन पार करता है, तुम्हें नमस्कार है।"'
-              : '"Thus it is remembered: O [Surya], you who traverse two thousand two hundred and two yojanas in half a nimesha, salutations to you."'}
+            {tl({ en: '"Thus it is remembered: O [Surya], you who traverse two thousand two hundred and two yojanas in half a nimesha, salutations to you."', hi: '"इस प्रकार स्मरण किया जाता है: हे [सूर्य], जो आधे निमेष में दो हज़ार दो सौ दो योजन पार करता है, तुम्हें नमस्कार है।"', sa: '"इस प्रकार स्मरण किया जाता है: हे [सूर्य], जो आधे निमेष में दो हज़ार दो सौ दो योजन पार करता है, तुम्हें नमस्कार है।"' }, locale)}
           </p>
-          <p className="text-text-secondary text-xs mt-1">— {isHi ? 'सायण, ऋग्वेदभाष्य, भजन 1.50.4 पर टिप्पणी (~1380 ईस्वी)' : 'Sayana, Rigvedabhashya, commentary on hymn 1.50.4 (~1380 CE)'}</p>
+          <p className="text-text-secondary text-xs mt-1">— {tl({ en: 'Sayana, Rigvedabhashya, commentary on hymn 1.50.4 (~1380 CE)', hi: 'सायण, ऋग्वेदभाष्य, भजन 1.50.4 पर टिप्पणी (~1380 ईस्वी)', sa: 'सायण, ऋग्वेदभाष्य, भजन 1.50.4 पर टिप्पणी (~1380 ईस्वी)' }, locale)}</p>
         </blockquote>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'इकाइयाँ समझना' : 'Understanding the Units'}
+          {tl({ en: 'Understanding the Units', hi: 'इकाइयाँ समझना', sa: 'इकाइयाँ समझना' }, locale)}
         </h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
-          <p><span className="text-gold-light font-medium">{isHi ? 'योजन:' : 'Yojana:'}</span> {isHi ? 'प्राचीन भारतीय दूरी की इकाई। अर्थशास्त्र के अनुसार ≈ 9.09 मील (14.6 किमी)।' : 'Ancient Indian distance unit. Per Arthashastra ≈ 9.09 miles (14.6 km).'}</p>
-          <p><span className="text-gold-light font-medium">{isHi ? 'निमेष:' : 'Nimesha:'}</span> {isHi ? 'पलक झपकाने का समय — प्राचीन भारतीय समय की इकाई। ≈ 16/75 सेकंड।' : 'A blink of an eye — ancient Indian time unit. ≈ 16/75 seconds.'}</p>
-          <p><span className="text-gold-light font-medium">{isHi ? 'अर्ध-निमेष:' : 'Half-nimesha:'}</span> {isHi ? '≈ 8/75 सेकंड ≈ 0.1067 सेकंड।' : '≈ 8/75 seconds ≈ 0.1067 seconds.'}</p>
+          <p><span className="text-gold-light font-medium">{tl({ en: 'Yojana:', hi: 'योजन:', sa: 'योजन:' }, locale)}</span> {tl({ en: 'Ancient Indian distance unit. Per Arthashastra ≈ 9.09 miles (14.6 km).', hi: 'प्राचीन भारतीय दूरी की इकाई। अर्थशास्त्र के अनुसार ≈ 9.09 मील (14.6 किमी)।', sa: 'प्राचीन भारतीय दूरी की इकाई। अर्थशास्त्र के अनुसार ≈ 9.09 मील (14.6 किमी)।' }, locale)}</p>
+          <p><span className="text-gold-light font-medium">{tl({ en: 'Nimesha:', hi: 'निमेष:', sa: 'निमेष:' }, locale)}</span> {tl({ en: 'A blink of an eye — ancient Indian time unit. ≈ 16/75 seconds.', hi: 'पलक झपकाने का समय — प्राचीन भारतीय समय की इकाई। ≈ 16/75 सेकंड।', sa: 'पलक झपकाने का समय — प्राचीन भारतीय समय की इकाई। ≈ 16/75 सेकंड।' }, locale)}</p>
+          <p><span className="text-gold-light font-medium">{tl({ en: 'Half-nimesha:', hi: 'अर्ध-निमेष:', sa: 'अर्ध-निमेष:' }, locale)}</span> {tl({ en: '≈ 8/75 seconds ≈ 0.1067 seconds.', hi: '≈ 8/75 सेकंड ≈ 0.1067 सेकंड।', sa: '≈ 8/75 सेकंड ≈ 0.1067 सेकंड।' }, locale)}</p>
           <div className="mt-3 pt-3 border-t border-gold-primary/10">
-            <p className="text-gold-light font-medium mb-1">{isHi ? 'गणना:' : 'Calculation:'}</p>
+            <p className="text-gold-light font-medium mb-1">{tl({ en: 'Calculation:', hi: 'गणना:', sa: 'गणना:' }, locale)}</p>
             <p className="font-mono text-xs text-gold-primary">2,202 × 9.09 mi / 0.1067 s ≈ 186,536 mi/s</p>
-            <p className="font-mono text-xs text-emerald-400 mt-1">{isHi ? 'आधुनिक: 186,282 मील/सेकंड' : 'Modern: 186,282 mi/s'}</p>
-            <p className="font-mono text-xs text-gold-light mt-1">{isHi ? 'त्रुटि: 0.14%' : 'Error: 0.14%'}</p>
+            <p className="font-mono text-xs text-emerald-400 mt-1">{tl({ en: 'Modern: 186,282 mi/s', hi: 'आधुनिक: 186,282 मील/सेकंड', sa: 'आधुनिक: 186,282 मील/सेकंड' }, locale)}</p>
+            <p className="font-mono text-xs text-gold-light mt-1">{tl({ en: 'Error: 0.14%', hi: 'त्रुटि: 0.14%', sa: 'त्रुटि: 0.14%' }, locale)}</p>
           </div>
         </div>
       </section>
@@ -155,7 +154,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'विद्वत् बहस: संयोग या ज्ञान?' : 'The Scholarly Debate: Coincidence or Knowledge?'}
+          {tl({ en: 'The Scholarly Debate: Coincidence or Knowledge?', hi: 'विद्वत् बहस: संयोग या ज्ञान?', sa: 'विद्वत् बहस: संयोग या ज्ञान?' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -166,32 +165,32 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15 rounded-xl p-5">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'समर्थन में तर्क' : 'Arguments in Support'}
+          {tl({ en: 'Arguments in Support', hi: 'समर्थन में तर्क', sa: 'समर्थन में तर्क' }, locale)}
         </h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
-          <p>→ {isHi ? 'संख्यात्मक संयोग बेहद सटीक है (0.14% त्रुटि)' : 'The numerical coincidence is extraordinarily precise (0.14% error)'}</p>
-          <p>→ {isHi ? 'सायण स्पष्ट रूप से कहते हैं यह "स्मरण किया जाता है" — एक पुरानी परम्परा को उद्धृत कर रहे हैं' : 'Sayana explicitly says this "is remembered" — citing an older tradition'}</p>
-          <p>→ {isHi ? 'भारतीय खगोल विज्ञान ने अत्यन्त सटीक माप हासिल किए (आर्यभट, ब्रह्मगुप्त)' : 'Indian astronomy achieved extremely precise measurements (Aryabhata, Brahmagupta)'}</p>
-          <p>→ {isHi ? 'नाक्षत्र वेग की गणना के लिए प्रकाश की सीमित गति की आवश्यकता हो सकती थी' : 'Computing stellar velocities may have required knowledge of finite light speed'}</p>
+          <p>→ {tl({ en: 'The numerical coincidence is extraordinarily precise (0.14% error)', hi: 'संख्यात्मक संयोग बेहद सटीक है (0.14% त्रुटि)', sa: 'संख्यात्मक संयोग बेहद सटीक है (0.14% त्रुटि)' }, locale)}</p>
+          <p>→ {tl({ en: 'Sayana explicitly says this "is remembered" — citing an older tradition', hi: 'सायण स्पष्ट रूप से कहते हैं यह "स्मरण किया जाता है" — एक पुरानी परम्परा को उद्धृत कर रहे हैं', sa: 'सायण स्पष्ट रूप से कहते हैं यह "स्मरण किया जाता है" — एक पुरानी परम्परा को उद्धृत कर रहे हैं' }, locale)}</p>
+          <p>→ {tl({ en: 'Indian astronomy achieved extremely precise measurements (Aryabhata, Brahmagupta)', hi: 'भारतीय खगोल विज्ञान ने अत्यन्त सटीक माप हासिल किए (आर्यभट, ब्रह्मगुप्त)', sa: 'भारतीय खगोल विज्ञान ने अत्यन्त सटीक माप हासिल किए (आर्यभट, ब्रह्मगुप्त)' }, locale)}</p>
+          <p>→ {tl({ en: 'Computing stellar velocities may have required knowledge of finite light speed', hi: 'नाक्षत्र वेग की गणना के लिए प्रकाश की सीमित गति की आवश्यकता हो सकती थी', sa: 'नाक्षत्र वेग की गणना के लिए प्रकाश की सीमित गति की आवश्यकता हो सकती थी' }, locale)}</p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15 rounded-xl p-5">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'संदेह के तर्क' : 'Arguments for Scepticism'}
+          {tl({ en: 'Arguments for Scepticism', hi: 'संदेह के तर्क', sa: 'संदेह के तर्क' }, locale)}
         </h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
-          <p>→ {isHi ? 'योजन की लम्बाई ग्रन्थों में 9-16 किमी तक भिन्न होती है — "सही" मान चुनना परिणाम को प्रभावित करता है' : 'Yojana length varies 9–16 km across texts — choosing the "right" value affects the result'}</p>
-          <p>→ {isHi ? 'यह एक धार्मिक टिप्पणी है, न कि वैज्ञानिक ग्रन्थ' : 'This is a religious commentary, not a scientific treatise'}</p>
-          <p>→ {isHi ? 'कोई व्याख्या नहीं दी गई कि यह माप कैसे किया गया' : 'No explanation given for how such a measurement could have been made'}</p>
-          <p>→ {isHi ? 'प्राचीन काव्य में "सूर्य की गति" के लिए परंपरागत अतिशयोक्ति आम थी' : 'Conventional hyperbole for "speed of the Sun" was common in ancient poetry'}</p>
-          <p>→ {isHi ? 'कोई अन्य भारतीय ग्रन्थ इस विशिष्ट मान का हवाला नहीं देता' : 'No other Indian text cites this specific value'}</p>
+          <p>→ {tl({ en: 'Yojana length varies 9–16 km across texts — choosing the "right" value affects the result', hi: 'योजन की लम्बाई ग्रन्थों में 9-16 किमी तक भिन्न होती है — "सही" मान चुनना परिणाम को प्रभावित करता है', sa: 'योजन की लम्बाई ग्रन्थों में 9-16 किमी तक भिन्न होती है — "सही" मान चुनना परिणाम को प्रभावित करता है' }, locale)}</p>
+          <p>→ {tl({ en: 'This is a religious commentary, not a scientific treatise', hi: 'यह एक धार्मिक टिप्पणी है, न कि वैज्ञानिक ग्रन्थ', sa: 'यह एक धार्मिक टिप्पणी है, न कि वैज्ञानिक ग्रन्थ' }, locale)}</p>
+          <p>→ {tl({ en: 'No explanation given for how such a measurement could have been made', hi: 'कोई व्याख्या नहीं दी गई कि यह माप कैसे किया गया', sa: 'कोई व्याख्या नहीं दी गई कि यह माप कैसे किया गया' }, locale)}</p>
+          <p>→ {tl({ en: 'Conventional hyperbole for "speed of the Sun" was common in ancient poetry', hi: 'प्राचीन काव्य में "सूर्य की गति" के लिए परंपरागत अतिशयोक्ति आम थी', sa: 'प्राचीन काव्य में "सूर्य की गति" के लिए परंपरागत अतिशयोक्ति आम थी' }, locale)}</p>
+          <p>→ {tl({ en: 'No other Indian text cites this specific value', hi: 'कोई अन्य भारतीय ग्रन्थ इस विशिष्ट मान का हवाला नहीं देता', sa: 'कोई अन्य भारतीय ग्रन्थ इस विशिष्ट मान का हवाला नहीं देता' }, locale)}</p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'निष्पक्ष निष्कर्ष' : 'Fair Conclusion'}
+          {tl({ en: 'Fair Conclusion', hi: 'निष्पक्ष निष्कर्ष', sa: 'निष्पक्ष निष्कर्ष' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -213,7 +212,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'सायण और व्यापक परम्परा' : 'Sayana and the Broader Tradition'}
+          {tl({ en: 'Sayana and the Broader Tradition', hi: 'सायण और व्यापक परम्परा', sa: 'सायण और व्यापक परम्परा' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -224,28 +223,28 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'सायण कौन थे' : 'Who Was Sayana'}
+          {tl({ en: 'Who Was Sayana', hi: 'सायण कौन थे', sa: 'सायण कौन थे' }, locale)}
         </h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
-          <p>→ {isHi ? 'विजयनगर साम्राज्य (1336-1646 ईस्वी) के प्रधानमंत्री' : 'Prime minister of the Vijayanagara Empire (1336–1646 CE)'}</p>
-          <p>→ {isHi ? 'राजा बुक्कराय और हरिहर द्वितीय के संरक्षण में कार्य किया' : 'Worked under patronage of kings Bukkaraya and Harihara II'}</p>
-          <p>→ {isHi ? 'चारों वेदों पर व्यापक टिप्पणियाँ लिखीं — अभी भी Vedic व्याख्या की प्राथमिक संदर्भ' : 'Wrote comprehensive commentaries on all four Vedas — still the primary reference for Vedic interpretation'}</p>
-          <p>→ {isHi ? '~1380 ईस्वी में रचित ऋग्वेद टिप्पणी सबसे महत्त्वपूर्ण मानी जाती है' : 'Rig Veda commentary (~1380 CE) considered most important'}</p>
-          <p>→ {isHi ? 'उनका कार्य भारत की संस्कृत विद्वत्ता की अखंड परम्परा का प्रतिनिधित्व करता है' : 'His work represents the unbroken tradition of Sanskrit scholarship in India'}</p>
+          <p>→ {tl({ en: 'Prime minister of the Vijayanagara Empire (1336–1646 CE)', hi: 'विजयनगर साम्राज्य (1336-1646 ईस्वी) के प्रधानमंत्री', sa: 'विजयनगर साम्राज्य (1336-1646 ईस्वी) के प्रधानमंत्री' }, locale)}</p>
+          <p>→ {tl({ en: 'Worked under patronage of kings Bukkaraya and Harihara II', hi: 'राजा बुक्कराय और हरिहर द्वितीय के संरक्षण में कार्य किया', sa: 'राजा बुक्कराय और हरिहर द्वितीय के संरक्षण में कार्य किया' }, locale)}</p>
+          <p>→ {tl({ en: 'Wrote comprehensive commentaries on all four Vedas — still the primary reference for Vedic interpretation', hi: 'चारों वेदों पर व्यापक टिप्पणियाँ लिखीं — अभी भी Vedic व्याख्या की प्राथमिक संदर्भ', sa: 'चारों वेदों पर व्यापक टिप्पणियाँ लिखीं — अभी भी Vedic व्याख्या की प्राथमिक संदर्भ' }, locale)}</p>
+          <p>→ {tl({ en: 'Rig Veda commentary (~1380 CE) considered most important', hi: '~1380 ईस्वी में रचित ऋग्वेद टिप्पणी सबसे महत्त्वपूर्ण मानी जाती है', sa: '~1380 ईस्वी में रचित ऋग्वेद टिप्पणी सबसे महत्त्वपूर्ण मानी जाती है' }, locale)}</p>
+          <p>→ {tl({ en: 'His work represents the unbroken tradition of Sanskrit scholarship in India', hi: 'उनका कार्य भारत की संस्कृत विद्वत्ता की अखंड परम्परा का प्रतिनिधित्व करता है', sa: 'उनका कार्य भारत की संस्कृत विद्वत्ता की अखंड परम्परा का प्रतिनिधित्व करता है' }, locale)}</p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/15 rounded-xl p-5">
         <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'प्रकाश की गति — एक समयरेखा' : 'Speed of Light — A Timeline'}
+          {tl({ en: 'Speed of Light — A Timeline', hi: 'प्रकाश की गति — एक समयरेखा', sa: 'प्रकाश की गति — एक समयरेखा' }, locale)}
         </h4>
         <div className="space-y-1 text-text-secondary text-xs leading-relaxed">
-          <p><span className="text-gold-light font-medium">~1380 ईस्वी / ~1380 CE:</span> {isHi ? 'सायण — ऋग्वेद टिप्पणी में 2,202 योजन/अर्ध-निमेष' : 'Sayana — 2,202 yojanas per half-nimesha in Rig Veda commentary'}</p>
-          <p><span className="text-gold-light font-medium">1676 ईस्वी / 1676 CE:</span> {isHi ? 'ओले रोमर — बृहस्पति के चन्द्रमाओं से पहला यूरोपीय माप' : 'Ole Rømer — first European measurement from Jupiter\'s moons'}</p>
-          <p><span className="text-gold-light font-medium">1729 ईस्वी / 1729 CE:</span> {isHi ? 'जेम्स ब्रैडली — स्टारलाइट विपथन से बेहतर माप' : 'James Bradley — improved measurement from starlight aberration'}</p>
-          <p><span className="text-gold-light font-medium">1849 ईस्वी / 1849 CE:</span> {isHi ? 'फिज़ो — पहला प्रयोगशाला माप (गियर-पहिया विधि)' : 'Fizeau — first laboratory measurement (gear-wheel method)'}</p>
-          <p><span className="text-gold-light font-medium">1865 ईस्वी / 1865 CE:</span> {isHi ? 'मैक्सवेल — विद्युत चुम्बकीय सिद्धान्त से c व्युत्पन्न' : 'Maxwell — derived c from electromagnetic theory'}</p>
-          <p><span className="text-gold-light font-medium">1983 ईस्वी / 1983 CE:</span> {isHi ? 'c को 299,792,458 m/s पर परिभाषित किया — मीटर की परिभाषा का आधार' : 'c defined as exactly 299,792,458 m/s — basis of metre definition'}</p>
+          <p><span className="text-gold-light font-medium">~1380 ईस्वी / ~1380 CE:</span> {tl({ en: 'Sayana — 2,202 yojanas per half-nimesha in Rig Veda commentary', hi: 'सायण — ऋग्वेद टिप्पणी में 2,202 योजन/अर्ध-निमेष', sa: 'सायण — ऋग्वेद टिप्पणी में 2,202 योजन/अर्ध-निमेष' }, locale)}</p>
+          <p><span className="text-gold-light font-medium">1676 ईस्वी / 1676 CE:</span> {tl({ en: "Ole Rømer — first European measurement from Jupiter\'s moons", hi: "ओले रोमर — बृहस्पति के चन्द्रमाओं से पहला यूरोपीय माप", sa: "ओले रोमर — बृहस्पति के चन्द्रमाओं से पहला यूरोपीय माप" }, locale)}</p>
+          <p><span className="text-gold-light font-medium">1729 ईस्वी / 1729 CE:</span> {tl({ en: 'James Bradley — improved measurement from starlight aberration', hi: 'जेम्स ब्रैडली — स्टारलाइट विपथन से बेहतर माप', sa: 'जेम्स ब्रैडली — स्टारलाइट विपथन से बेहतर माप' }, locale)}</p>
+          <p><span className="text-gold-light font-medium">1849 ईस्वी / 1849 CE:</span> {tl({ en: 'Fizeau — first laboratory measurement (gear-wheel method)', hi: 'फिज़ो — पहला प्रयोगशाला माप (गियर-पहिया विधि)', sa: 'फिज़ो — पहला प्रयोगशाला माप (गियर-पहिया विधि)' }, locale)}</p>
+          <p><span className="text-gold-light font-medium">1865 ईस्वी / 1865 CE:</span> {tl({ en: 'Maxwell — derived c from electromagnetic theory', hi: 'मैक्सवेल — विद्युत चुम्बकीय सिद्धान्त से c व्युत्पन्न', sa: 'मैक्सवेल — विद्युत चुम्बकीय सिद्धान्त से c व्युत्पन्न' }, locale)}</p>
+          <p><span className="text-gold-light font-medium">1983 ईस्वी / 1983 CE:</span> {tl({ en: 'c defined as exactly 299,792,458 m/s — basis of metre definition', hi: 'c को 299,792,458 m/s पर परिभाषित किया — मीटर की परिभाषा का आधार', sa: 'c को 299,792,458 m/s पर परिभाषित किया — मीटर की परिभाषा का आधार' }, locale)}</p>
         </div>
       </section>
     </div>

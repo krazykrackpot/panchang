@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -501,7 +502,7 @@ export default function SettingsPage() {
   }
 
   const memberSince = user.created_at
-    ? new Date(user.created_at).toLocaleDateString(!isDevanagariLocale(locale) ? 'en-IN' : 'hi-IN', {
+    ? new Date(user.created_at).toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale), {
         year: 'numeric', month: 'long', day: 'numeric',
       })
     : '—';
@@ -755,7 +756,7 @@ export default function SettingsPage() {
                   birth_lng: loc.lng,
                   birth_timezone: loc.timezone,
                 })}
-                placeholder={isDevanagariLocale(locale) ? 'शहर खोजें...' : 'Search city or place...'}
+                placeholder={tl({ en: 'Search city or place...', hi: 'शहर खोजें...', sa: 'शहर खोजें...' }, locale)}
               />
               {profile.birth_place && profile.birth_lat != null && (
                 <p className="text-xs text-text-secondary/75 mt-1.5 flex items-center gap-1">

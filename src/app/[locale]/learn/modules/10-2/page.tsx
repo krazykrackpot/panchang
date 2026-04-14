@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -40,7 +41,7 @@ function Page1() {
               <div key={e.element} className="bg-bg-primary/40 rounded-lg p-3 border border-white/5">
                 <span className="text-gold-light font-bold text-xs">{isHi ? e.elementHi : e.element}</span>
                 <p className="text-text-secondary/70 text-xs mt-1">{isHi ? e.signsHi : e.signs}</p>
-                <p className="text-emerald-400 text-xs mt-1">{isHi ? `${e.startHi} से आरम्भ` : `Starts from: ${e.start}`}</p>
+                <p className="text-emerald-400 text-xs mt-1">{tl({ en: `Starts from: ${e.start}`, hi: `${e.startHi} से आरम्भ`, sa: `${e.startHi} से आरम्भ` }, locale)}</p>
               </div>
             ))}
           </div>

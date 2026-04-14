@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/hora.json';
@@ -283,7 +284,7 @@ export default function HoraChaldeanPage() {
           {/* 7 Grahas visual row */}
           <div className="bg-black/20 border border-gold-primary/10 rounded-xl p-4 my-4">
             <p className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3 text-center">
-              {isHi ? 'सात दृश्य ग्रह (सप्तग्रह)' : 'The Seven Visible Grahas (Saptagraha)'}
+              {tl({ en: 'The Seven Visible Grahas (Saptagraha)', hi: 'सात दृश्य ग्रह (सप्तग्रह)', sa: 'सात दृश्य ग्रह (सप्तग्रह)' }, locale)}
             </p>
             <div className="flex flex-wrap justify-center gap-2">
               {[
@@ -310,12 +311,10 @@ export default function HoraChaldeanPage() {
             <div className="flex-shrink-0 w-1 rounded-full bg-purple-400/50" />
             <div>
               <p className="text-purple-300 text-xs font-bold uppercase tracking-widest mb-1">
-                {isHi ? 'नवग्रह = सप्त + राहु + केतु' : 'Navagraha = Sapta + Rahu + Ketu'}
+                {tl({ en: 'Navagraha = Sapta + Rahu + Ketu', hi: 'नवग्रह = सप्त + राहु + केतु', sa: 'नवग्रह = सप्त + राहु + केतु' }, locale)}
               </p>
               <p className="text-text-secondary text-sm leading-relaxed">
-                {isHi
-                  ? 'भारतीय नवग्रह पद्धति सात कैल्डियन ग्रहों को राहु और केतु के साथ जोड़ती है — कुल 9 ग्रह। यह विस्तार अन्य किसी प्राचीन संस्कृति में नहीं मिलता।'
-                  : 'The Indian Navagraha system extends the seven Chaldean planets with Rahu and Ketu — totaling 9. This extension is not found in any other ancient astronomical tradition.'}
+                {tl({ en: 'The Indian Navagraha system extends the seven Chaldean planets with Rahu and Ketu — totaling 9. This extension is not found in any other ancient astronomical tradition.', hi: 'भारतीय नवग्रह पद्धति सात कैल्डियन ग्रहों को राहु और केतु के साथ जोड़ती है — कुल 9 ग्रह। यह विस्तार अन्य किसी प्राचीन संस्कृति में नहीं मिलता।', sa: 'भारतीय नवग्रह पद्धति सात कैल्डियन ग्रहों को राहु और केतु के साथ जोड़ती है — कुल 9 ग्रह। यह विस्तार अन्य किसी प्राचीन संस्कृति में नहीं मिलता।' }, locale)}
               </p>
             </div>
           </div>
@@ -347,16 +346,16 @@ export default function HoraChaldeanPage() {
               <thead>
                 <tr className="border-b border-gold-primary/20">
                   <th className="text-left py-2.5 px-3 text-gold-dark text-xs uppercase tracking-widest font-bold">
-                    {isHi ? 'क्रम' : 'Rank'}
+                    {tl({ en: 'Rank', hi: 'क्रम', sa: 'क्रम' }, locale)}
                   </th>
                   <th className="text-left py-2.5 px-3 text-gold-dark text-xs uppercase tracking-widest font-bold">
-                    {isHi ? 'ग्रह' : 'Planet'}
+                    {tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रह' }, locale)}
                   </th>
                   <th className="text-left py-2.5 px-3 text-gold-dark text-xs uppercase tracking-widest font-bold">
-                    {isHi ? 'परिक्रमण काल' : 'Sidereal Period'}
+                    {tl({ en: 'Sidereal Period', hi: 'परिक्रमण काल', sa: 'परिक्रमण काल' }, locale)}
                   </th>
                   <th className="text-left py-2.5 px-3 text-gold-dark text-xs uppercase tracking-widest font-bold hidden sm:table-cell">
-                    {isHi ? 'विशेषता' : 'Note'}
+                    {tl({ en: 'Note', hi: 'विशेषता', sa: 'विशेषता' }, locale)}
                   </th>
                 </tr>
               </thead>
@@ -426,7 +425,7 @@ export default function HoraChaldeanPage() {
           {/* Chaldean cycle visual */}
           <div className="bg-black/25 border border-gold-primary/15 rounded-xl p-4 my-2">
             <p className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3 text-center">
-              {isHi ? 'कैल्डियन चक्र (होरा क्रम)' : 'Chaldean Cycle (Hora Sequence)'}
+              {tl({ en: 'Chaldean Cycle (Hora Sequence)', hi: 'कैल्डियन चक्र (होरा क्रम)', sa: 'कैल्डियन चक्र (होरा क्रम)' }, locale)}
             </p>
             <div className="flex flex-wrap justify-center items-center gap-1.5">
               {[
@@ -451,7 +450,7 @@ export default function HoraChaldeanPage() {
               ))}
             </div>
             <p className="text-text-tertiary text-xs text-center mt-2">
-              {isHi ? '24 होराएँ = 3 पूर्ण चक्र + 3 अतिरिक्त → अगले दिन का स्वामी' : '24 horas = 3 full cycles + 3 extra → determines next day\'s lord'}
+              {tl({ en: "24 horas = 3 full cycles + 3 extra → determines next day\'s lord", hi: "24 होराएँ = 3 पूर्ण चक्र + 3 अतिरिक्त → अगले दिन का स्वामी", sa: "24 होराएँ = 3 पूर्ण चक्र + 3 अतिरिक्त → अगले दिन का स्वामी" }, locale)}
             </p>
           </div>
 
@@ -474,12 +473,12 @@ export default function HoraChaldeanPage() {
                     {lt(row.day as LocaleText, locale)}
                   </span>
                   <span className="text-text-tertiary text-xs">
-                    ({isHi ? 'स्वामी:' : 'lord:'}{' '}
+                    ({tl({ en: 'lord:', hi: 'स्वामी:', sa: 'स्वामी:' }, locale)}{' '}
                     <span style={{ color: row.color }}>{lt(row.lord as LocaleText, locale)}</span>)
                   </span>
                   <span className="text-text-tertiary mx-1">→</span>
                   <span className="text-text-tertiary text-xs">
-                    {isHi ? '25वीं होरा =' : '25th hora ='}
+                    {tl({ en: '25th hora =', hi: '25वीं होरा =', sa: '25वीं होरा =' }, locale)}
                   </span>
                   <span className="font-bold text-xs" style={{ color: row.nextColor }}>
                     {lt(row.hora25 as LocaleText, locale)}
@@ -496,9 +495,7 @@ export default function HoraChaldeanPage() {
           {/* Highlight callout */}
           <div className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/25 mt-4">
             <p className="text-indigo-200 text-sm leading-relaxed font-medium">
-              {isHi
-                ? 'यह संयोग नहीं है। इन विशेष ग्रह-दिन नियुक्तियों वाला 7-दिवसीय सप्ताह कैल्डियन क्रम पर लागू होरा पद्धति का प्रत्यक्ष गणितीय परिणाम है।'
-                : 'This is NOT a coincidence. The 7-day week with these specific day-planet assignments is a DIRECT mathematical consequence of the hora system applied to the Chaldean order.'}
+              {tl({ en: 'This is NOT a coincidence. The 7-day week with these specific day-planet assignments is a DIRECT mathematical consequence of the hora system applied to the Chaldean order.', hi: 'यह संयोग नहीं है। इन विशेष ग्रह-दिन नियुक्तियों वाला 7-दिवसीय सप्ताह कैल्डियन क्रम पर लागू होरा पद्धति का प्रत्यक्ष गणितीय परिणाम है।', sa: 'यह संयोग नहीं है। इन विशेष ग्रह-दिन नियुक्तियों वाला 7-दिवसीय सप्ताह कैल्डियन क्रम पर लागू होरा पद्धति का प्रत्यक्ष गणितीय परिणाम है।' }, locale)}
             </p>
           </div>
         </div>
@@ -530,22 +527,22 @@ export default function HoraChaldeanPage() {
                 <tr className="border-b border-gold-primary/20">
                   <th className="text-left py-2.5 px-2 text-gold-dark text-xs uppercase tracking-widest font-bold">#</th>
                   <th className="text-left py-2.5 px-2 text-gold-dark text-xs uppercase tracking-widest font-bold">
-                    {isHi ? 'संस्कृत' : 'Sanskrit'}
+                    {tl({ en: 'Sanskrit', hi: 'संस्कृत', sa: 'संस्कृत' }, locale)}
                   </th>
                   <th className="text-left py-2.5 px-2 text-gold-dark text-xs uppercase tracking-widest font-bold">
-                    {isHi ? 'हिन्दी' : 'Hindi'}
+                    {tl({ en: 'Hindi', hi: 'हिन्दी', sa: 'हिन्दी' }, locale)}
                   </th>
                   <th className="text-left py-2.5 px-2 text-gold-dark text-xs uppercase tracking-widest font-bold hidden sm:table-cell">
-                    {isHi ? 'अंग्रेज़ी' : 'English'}
+                    {tl({ en: 'English', hi: 'अंग्रेज़ी', sa: 'अंग्रेज़ी' }, locale)}
                   </th>
                   <th className="text-left py-2.5 px-2 text-gold-dark text-xs uppercase tracking-widest font-bold hidden md:table-cell">
-                    {isHi ? 'लैटिन' : 'Latin'}
+                    {tl({ en: 'Latin', hi: 'लैटिन', sa: 'लैटिन' }, locale)}
                   </th>
                   <th className="text-left py-2.5 px-2 text-gold-dark text-xs uppercase tracking-widest font-bold">
-                    {isHi ? 'ग्रह' : 'Planet'}
+                    {tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रह' }, locale)}
                   </th>
                   <th className="text-left py-2.5 px-2 text-gold-dark text-xs uppercase tracking-widest font-bold hidden lg:table-cell">
-                    {isHi ? 'अंग्रेज़ी व्युत्पत्ति' : 'English etymology'}
+                    {tl({ en: 'English etymology', hi: 'अंग्रेज़ी व्युत्पत्ति', sa: 'अंग्रेज़ी व्युत्पत्ति' }, locale)}
                   </th>
                 </tr>
               </thead>
@@ -573,9 +570,7 @@ export default function HoraChaldeanPage() {
 
           <div className="p-4 rounded-xl bg-gold-primary/6 border border-gold-primary/20">
             <p className="text-gold-light/90 text-sm leading-relaxed">
-              {isHi
-                ? 'संस्कृत नाम सीधे ग्रह नाम + "वार" का उपयोग करते हैं। अंग्रेज़ी नाम नॉर्स/जर्मनिक देवताओं का उपयोग करते हैं जिन्हें उन्हीं ग्रहों से मैप किया गया था। सभी संस्कृतियों में अन्तर्निहित ग्रह नियुक्ति समान है — क्योंकि वे सभी एक ही होरा पद्धति से उत्पन्न हैं।'
-                : 'Sanskrit names directly use the planet name + "vara" (वार = day). English names use Norse/Germanic gods mapped to the same planets. The underlying planetary assignment is identical across all cultures — because they all derive from the same hora system.'}
+              {tl({ en: 'Sanskrit names directly use the planet name + "vara" (वार = day). English names use Norse/Germanic gods mapped to the same planets. The underlying planetary assignment is identical across all cultures — because they all derive from the same hora system.', hi: 'संस्कृत नाम सीधे ग्रह नाम + "वार" का उपयोग करते हैं। अंग्रेज़ी नाम नॉर्स/जर्मनिक देवताओं का उपयोग करते हैं जिन्हें उन्हीं ग्रहों से मैप किया गया था। सभी संस्कृतियों में अन्तर्निहित ग्रह नियुक्ति समान है — क्योंकि वे सभी एक ही होरा पद्धति से उत्पन्न हैं।', sa: 'संस्कृत नाम सीधे ग्रह नाम + "वार" का उपयोग करते हैं। अंग्रेज़ी नाम नॉर्स/जर्मनिक देवताओं का उपयोग करते हैं जिन्हें उन्हीं ग्रहों से मैप किया गया था। सभी संस्कृतियों में अन्तर्निहित ग्रह नियुक्ति समान है — क्योंकि वे सभी एक ही होरा पद्धति से उत्पन्न हैं।' }, locale)}
             </p>
           </div>
         </div>
@@ -621,14 +616,14 @@ export default function HoraChaldeanPage() {
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/20 transition-colors"
             >
               <ChevronRight className="w-3.5 h-3.5" />
-              {isHi ? 'वैदिक समय उपकरण' : 'Vedic Time Tool'}
+              {tl({ en: 'Vedic Time Tool', hi: 'वैदिक समय उपकरण', sa: 'वैदिक समय उपकरण' }, locale)}
             </Link>
             <Link
               href="/muhurta-ai"
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/20 transition-colors"
             >
               <ChevronRight className="w-3.5 h-3.5" />
-              {isHi ? 'मुहूर्त AI' : 'Muhurta AI Tool'}
+              {tl({ en: 'Muhurta AI Tool', hi: 'मुहूर्त AI', sa: 'मुहूर्त AI' }, locale)}
             </Link>
           </div>
         </div>
@@ -658,22 +653,18 @@ export default function HoraChaldeanPage() {
           <div className="grid sm:grid-cols-2 gap-4 my-4">
             <div className="p-4 rounded-xl bg-purple-500/8 border border-purple-500/20">
               <h4 className="text-purple-300 font-bold text-sm mb-2">
-                {isHi ? 'राहु (Rahu)' : 'Rahu — Ascending Node'}
+                {tl({ en: 'Rahu — Ascending Node', hi: 'राहु (Rahu)', sa: 'राहु (Rahu)' }, locale)}
               </h4>
               <p className="text-text-secondary text-xs leading-relaxed">
-                {isHi
-                  ? 'आरोही चंद्र पात — वह बिन्दु जहाँ चंद्रमा दक्षिण से उत्तर की ओर क्रान्तिवृत्त को पार करता है। उत्तर नोड। ~18.6 वर्षीय चक्र। राहु काल प्रत्येक दिन होरा अनुक्रम से व्युत्पन्न होता है।'
-                  : 'The ascending lunar node — where the Moon crosses the ecliptic moving northward. The North Node. ~18.6-year cycle. Rahu Kaal each day is derived from the hora sequence.'}
+                {tl({ en: 'The ascending lunar node — where the Moon crosses the ecliptic moving northward. The North Node. ~18.6-year cycle. Rahu Kaal each day is derived from the hora sequence.', hi: 'आरोही चंद्र पात — वह बिन्दु जहाँ चंद्रमा दक्षिण से उत्तर की ओर क्रान्तिवृत्त को पार करता है। उत्तर नोड। ~18.6 वर्षीय चक्र। राहु काल प्रत्येक दिन होरा अनुक्रम से व्युत्पन्न होता है।', sa: 'आरोही चंद्र पात — वह बिन्दु जहाँ चंद्रमा दक्षिण से उत्तर की ओर क्रान्तिवृत्त को पार करता है। उत्तर नोड। ~18.6 वर्षीय चक्र। राहु काल प्रत्येक दिन होरा अनुक्रम से व्युत्पन्न होता है।' }, locale)}
               </p>
             </div>
             <div className="p-4 rounded-xl bg-slate-500/8 border border-slate-500/20">
               <h4 className="text-slate-300 font-bold text-sm mb-2">
-                {isHi ? 'केतु (Ketu)' : 'Ketu — Descending Node'}
+                {tl({ en: 'Ketu — Descending Node', hi: 'केतु (Ketu)', sa: 'केतु (Ketu)' }, locale)}
               </h4>
               <p className="text-text-secondary text-xs leading-relaxed">
-                {isHi
-                  ? 'अवरोही चंद्र पात — वह बिन्दु जहाँ चंद्रमा उत्तर से दक्षिण की ओर क्रान्तिवृत्त को पार करता है। दक्षिण नोड। राहु के ठीक सामने (180° विपरीत)। दोनों सदा विपरीत दिशाओं में होते हैं।'
-                  : 'The descending lunar node — where the Moon crosses the ecliptic moving southward. South Node. Always exactly opposite Rahu (180° apart). Eclipses require the Moon near a node at new/full Moon.'}
+                {tl({ en: 'The descending lunar node — where the Moon crosses the ecliptic moving southward. South Node. Always exactly opposite Rahu (180° apart). Eclipses require the Moon near a node at new/full Moon.', hi: 'अवरोही चंद्र पात — वह बिन्दु जहाँ चंद्रमा उत्तर से दक्षिण की ओर क्रान्तिवृत्त को पार करता है। दक्षिण नोड। राहु के ठीक सामने (180° विपरीत)। दोनों सदा विपरीत दिशाओं में होते हैं।', sa: 'अवरोही चंद्र पात — वह बिन्दु जहाँ चंद्रमा उत्तर से दक्षिण की ओर क्रान्तिवृत्त को पार करता है। दक्षिण नोड। राहु के ठीक सामने (180° विपरीत)। दोनों सदा विपरीत दिशाओं में होते हैं।' }, locale)}
               </p>
             </div>
           </div>
@@ -686,7 +677,7 @@ export default function HoraChaldeanPage() {
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-200 text-sm hover:bg-purple-500/20 transition-colors"
             >
               <ChevronRight className="w-3.5 h-3.5" />
-              {isHi ? 'ग्रहण के बारे में जानें' : 'Learn about Eclipses'}
+              {tl({ en: 'Learn about Eclipses', hi: 'ग्रहण के बारे में जानें', sa: 'ग्रहण के बारे में जानें' }, locale)}
             </Link>
           </div>
         </div>

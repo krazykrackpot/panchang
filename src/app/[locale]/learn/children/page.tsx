@@ -102,7 +102,7 @@ export default function ChildrenPredictionPage() {
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-xs font-medium mb-4">
           <Baby className="w-3.5 h-3.5" />
-          {isHi ? 'सन्तान विश्लेषण' : 'Progeny Analysis'}
+          {tl({ en: 'Progeny Analysis', hi: 'सन्तान विश्लेषण', sa: 'सन्तान विश्लेषण' })}
         </div>
         <h1 className="text-3xl sm:text-4xl font-bold text-gold-gradient mb-4" style={hf}>{t('title')}</h1>
         <p className="text-text-secondary text-sm leading-relaxed max-w-2xl mx-auto">{t('subtitle')}</p>
@@ -113,15 +113,13 @@ export default function ChildrenPredictionPage() {
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 flex flex-col items-center">
           <FifthHouseChart />
           <p className="text-text-tertiary text-xs mt-3 text-center">
-            {isHi
-              ? 'पञ्चम भाव (5H) सन्तान का प्रमुख भाव। गुरु (Ju) प्राकृतिक पुत्रकारक। नवम भाव (9H) = 5वें से 5वां = पौत्र। D7 सप्तमांश = सन्तान विभाजन कुण्डली।'
-              : '5th house (5H) is the primary house of children. Jupiter (Ju) is the natural Putrakaraka. 9th house (9H) = 5th from 5th = grandchildren. D7 Saptamsha = children divisional chart.'}
+            {tl({ en: '5th house (5H) is the primary house of children. Jupiter (Ju) is the natural Putrakaraka. 9th house (9H) = 5th from 5th = grandchildren. D7 Saptamsha = children divisional chart.', hi: 'पञ्चम भाव (5H) सन्तान का प्रमुख भाव। गुरु (Ju) प्राकृतिक पुत्रकारक। नवम भाव (9H) = 5वें से 5वां = पौत्र। D7 सप्तमांश = सन्तान विभाजन कुण्डली।', sa: 'पञ्चम भाव (5H) सन्तान का प्रमुख भाव। गुरु (Ju) प्राकृतिक पुत्रकारक। नवम भाव (9H) = 5वें से 5वां = पौत्र। D7 सप्तमांश = सन्तान विभाजन कुण्डली।' })}
           </p>
         </div>
       </motion.div>
 
       {/* Section 1: Children Analysis Framework */}
-      <LessonSection number={1} title={isHi ? 'सन्तान विश्लेषण ढांचा' : 'The Children Analysis Framework'} variant="highlight">
+      <LessonSection number={1} title={tl({ en: 'The Children Analysis Framework', hi: 'सन्तान विश्लेषण ढांचा', sa: 'सन्तान विश्लेषण ढांचा' })} variant="highlight">
         <div className="space-y-4">
           {[
             { step: 1, icon: Star, title: { en: '5th House Sign', hi: 'पञ्चम भाव राशि', sa: 'पञ्चम भाव राशि', mai: 'पञ्चम भाव राशि', mr: 'पञ्चम भाव राशि', ta: '5வது வீடு ராசி', te: '5వ భావ రాశి', bn: '5ম ভাব রাশি', kn: '5ನೇ ಭಾವ ರಾಶಿ', gu: '5મો ભાવ રાશિ' }, desc: { en: 'The sign on the 5th house determines the nature, gender tendency, and temperament of the first child. Fire/Air signs lean male; Earth/Water lean female.', hi: 'पञ्चम भाव की राशि प्रथम सन्तान की प्रकृति, लिंग प्रवृत्ति और स्वभाव निर्धारित करती है। अग्नि/वायु = पुत्र; पृथ्वी/जल = कन्या।', sa: 'पञ्चम भाव की राशि प्रथम सन्तान की प्रकृति, लिंग प्रवृत्ति और स्वभाव निर्धारित करती है। अग्नि/वायु = पुत्र; पृथ्वी/जल = कन्या।', mai: 'पञ्चम भाव की राशि प्रथम सन्तान की प्रकृति, लिंग प्रवृत्ति और स्वभाव निर्धारित करती है। अग्नि/वायु = पुत्र; पृथ्वी/जल = कन्या।', mr: 'पञ्चम भाव की राशि प्रथम सन्तान की प्रकृति, लिंग प्रवृत्ति और स्वभाव निर्धारित करती है। अग्नि/वायु = पुत्र; पृथ्वी/जल = कन्या।', ta: '5வது வீட்டின் ராசி முதல் குழந்தையின் இயல்பு, பாலின போக்கு மற்றும் குணத்தை நிர்ணயிக்கிறது. நெருப்பு/காற்று ராசிகள் ஆண் சார்பு; நிலம்/நீர் ராசிகள் பெண் சார்பு.', te: '5వ భావ రాశి మొదటి బిడ్డ స్వభావం, లింగ ధోరణి మరియు స్వభావాన్ని నిర్ణయిస్తుంది. అగ్ని/వాయు రాశులు పురుష ధోరణి; భూమి/జల రాశులు స్త్రీ ధోరణి.', bn: '5ম ভাবের রাশি প্রথম সন্তানের প্রকৃতি, লিঙ্গ প্রবণতা এবং স্বভাব নির্ধারণ করে। অগ্নি/বায়ু রাশি পুরুষ প্রবণ; পৃথিবী/জল রাশি মহিলা প্রবণ।', kn: '5ನೇ ಭಾವದ ರಾಶಿ ಮೊದಲ ಮಗುವಿನ ಸ್ವಭಾವ, ಲಿಂಗ ಪ್ರವೃತ್ತಿ ಮತ್ತು ಮನೋಭಾವ ನಿರ್ಧರಿಸುತ್ತದೆ. ಅಗ್ನಿ/ವಾಯು ರಾಶಿಗಳು ಪುರುಷ ಒಲವು; ಭೂಮಿ/ಜಲ ರಾಶಿಗಳು ಮಹಿಳಾ ಒಲವು.', gu: '5મા ભાવની રાશિ પ્રથમ સંતાનની પ્રકૃતિ, લિંગ વલણ અને સ્વભાવ નક્કી કરે છે. અગ્નિ/વાયુ રાશિઓ પુરુષ વલણ; પૃથ્વી/જળ રાશિઓ સ્ત્રી વલણ.' }, color: 'text-amber-400' },
@@ -138,7 +136,7 @@ export default function ChildrenPredictionPage() {
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-gold-dark text-xs font-bold uppercase tracking-wider">{isHi ? `चरण ${s.step}` : `Step ${s.step}`}</span>
+                    <span className="text-gold-dark text-xs font-bold uppercase tracking-wider">{tl({ en: `Step ${s.step}`, hi: `चरण ${s.step}`, sa: `चरण ${s.step}` })}</span>
                     <h3 className="text-gold-light font-bold text-sm" style={hf}>{tl(s.title)}</h3>
                   </div>
                   <p className="text-text-secondary text-sm leading-relaxed">{tl(s.desc)}</p>
@@ -150,10 +148,10 @@ export default function ChildrenPredictionPage() {
       </LessonSection>
 
       {/* Section 2: Timing of Childbirth */}
-      <LessonSection number={2} title={isHi ? 'सन्तान प्राप्ति का समय' : 'Timing of Childbirth'} variant="formula">
+      <LessonSection number={2} title={tl({ en: 'Timing of Childbirth', hi: 'सन्तान प्राप्ति का समय', sa: 'सन्तान प्राप्ति का समय' })} variant="formula">
         <div className="space-y-4">
           <p className="text-text-secondary text-sm">
-            {isHi ? 'कब सन्तान होगी — दशा और गोचर का संयुक्त विश्लेषण:' : 'When children will come — combined analysis of dasha periods and planetary transits:'}
+            {tl({ en: 'When children will come — combined analysis of dasha periods and planetary transits:', hi: 'कब सन्तान होगी — दशा और गोचर का संयुक्त विश्लेषण:', sa: 'कब सन्तान होगी — दशा और गोचर का संयुक्त विश्लेषण:' })}
           </p>
           {[
             { trigger: { en: '5th lord Dasha / Antardasha', hi: 'पञ्चमेश दशा / अन्तर्दशा', sa: 'पञ्चमेश दशा / अन्तर्दशा', mai: 'पञ्चमेश दशा / अन्तर्दशा', mr: 'पञ्चमेश दशा / अन्तर्दशा', ta: '5வது அதிபதி தசா / அந்தர்தசா', te: '5వ అధిపతి దశా / అంతర్దశ', bn: '5ম অধিপতি দশা / অন্তর্দশা', kn: '5ನೇ ಅಧಿಪತಿ ದಶಾ / ಅಂತರ್ದಶಾ', gu: '5મા અધિપતિ દશા / અંતર્દશા' }, effect: { en: 'The primary conception/birth period. When the 5th lord runs its dasha or antardasha, the native is most likely to conceive or have a child.', hi: 'प्रमुख गर्भधारण/जन्म काल। जब पञ्चमेश की दशा या अन्तर्दशा चलती है तब सन्तान प्राप्ति सर्वाधिक सम्भव।', sa: 'प्रमुख गर्भधारण/जन्म काल। जब पञ्चमेश की दशा या अन्तर्दशा चलती है तब सन्तान प्राप्ति सर्वाधिक सम्भव।', mai: 'प्रमुख गर्भधारण/जन्म काल। जब पञ्चमेश की दशा या अन्तर्दशा चलती है तब सन्तान प्राप्ति सर्वाधिक सम्भव।', mr: 'प्रमुख गर्भधारण/जन्म काल। जब पञ्चमेश की दशा या अन्तर्दशा चलती है तब सन्तान प्राप्ति सर्वाधिक सम्भव।', ta: 'முதன்மை கருத்தரிப்பு/பிறப்பு காலம். 5வது அதிபதி தசா அல்லது அந்தர்தசா நடக்கும்போது, ஜாதகருக்கு கருத்தரிக்கும் அல்லது குழந்தை பெறும் வாய்ப்பு அதிகம்.', te: 'ప్రాథమిక గర్భధారణ/జనన కాలం. 5వ అధిపతి దశా లేదా అంతర్దశ నడిచినప్పుడు, జాతకుడికి గర్భధారణ లేదా సంతానం యొక్క అవకాశం ఎక్కువ.', bn: 'প্রাথমিক গর্ভধারণ/জন্ম সময়কাল। 5ম অধিপতি দশা বা অন্তর্দশা চলাকালে, জাতকের গর্ভধারণ বা সন্তান হওয়ার সম্ভাবনা সবচেয়ে বেশি।', kn: 'ಪ್ರಾಥಮಿಕ ಗರ್ಭಧಾರಣೆ/ಜನನ ಅವಧಿ. 5ನೇ ಅಧಿಪತಿ ದಶಾ ಅಥವಾ ಅಂತರ್ದಶಾ ನಡೆಯುವಾಗ, ಜಾತಕನಿಗೆ ಗರ್ಭಧಾರಣೆ ಅಥವಾ ಮಗು ಆಗುವ ಸಾಧ್ಯತೆ ಹೆಚ್ಚು.', gu: 'પ્રાથમિક ગર્ભધારણ/જન્મ સમયગાળો. 5મા અધિપતિ દશા અથવા અંતર્દશા ચાલે ત્યારે, જાતકને ગર્ભધારણ અથવા સંતાન થવાની સૌથી વધુ શક્યતા.' }, icon: Clock, color: 'text-amber-400' },
@@ -176,31 +174,27 @@ export default function ChildrenPredictionPage() {
       </LessonSection>
 
       {/* Section 3: Fertility Assessment */}
-      <LessonSection number={3} title={isHi ? 'प्रजनन मूल्यांकन' : 'Fertility Assessment'}>
+      <LessonSection number={3} title={tl({ en: 'Fertility Assessment', hi: 'प्रजनन मूल्यांकन', sa: 'प्रजनन मूल्यांकन' })}>
         <div className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <motion.div whileHover={{ scale: 1.02 }} className="p-5 rounded-xl bg-gradient-to-br from-amber-500/10 to-yellow-500/10 border border-gold-primary/15">
               <div className="flex items-center gap-2 mb-3">
                 <Calculator className="w-4 h-4 text-amber-400" />
-                <h4 className="text-gold-light font-bold text-sm" style={hf}>{isHi ? 'बीज स्फुट (पुरुष)' : 'Bija Sphuta (Male)'}</h4>
+                <h4 className="text-gold-light font-bold text-sm" style={hf}>{tl({ en: 'Bija Sphuta (Male)', hi: 'बीज स्फुट (पुरुष)', sa: 'बीज स्फुट (पुरुष)' })}</h4>
               </div>
-              <p className="text-text-secondary text-xs mb-2">{isHi ? 'सूर्य + शुक्र + गुरु के अंश = बीज स्फुट' : 'Sun + Venus + Jupiter longitudes = Bija Sphuta'}</p>
+              <p className="text-text-secondary text-xs mb-2">{tl({ en: 'Sun + Venus + Jupiter longitudes = Bija Sphuta', hi: 'सूर्य + शुक्र + गुरु के अंश = बीज स्फुट', sa: 'सूर्य + शुक्र + गुरु के अंश = बीज स्फुट' })}</p>
               <p className="text-text-tertiary text-xs leading-relaxed">
-                {isHi
-                  ? 'विषम राशि में + शुभ नक्षत्र में = सशक्त प्रजनन क्षमता। सम राशि + पाप नक्षत्र = दुर्बल।'
-                  : 'In odd sign + benefic nakshatra = strong fertility. Even sign + malefic nakshatra = weak. This ancient formula assesses male reproductive potential.'}
+                {tl({ en: 'In odd sign + benefic nakshatra = strong fertility. Even sign + malefic nakshatra = weak. This ancient formula assesses male reproductive potential.', hi: 'विषम राशि में + शुभ नक्षत्र में = सशक्त प्रजनन क्षमता। सम राशि + पाप नक्षत्र = दुर्बल।', sa: 'विषम राशि में + शुभ नक्षत्र में = सशक्त प्रजनन क्षमता। सम राशि + पाप नक्षत्र = दुर्बल।' })}
               </p>
             </motion.div>
             <motion.div whileHover={{ scale: 1.02 }} className="p-5 rounded-xl bg-gradient-to-br from-pink-500/10 to-rose-500/10 border border-pink-500/15">
               <div className="flex items-center gap-2 mb-3">
                 <Calculator className="w-4 h-4 text-pink-400" />
-                <h4 className="text-pink-300 font-bold text-sm" style={hf}>{isHi ? 'क्षेत्र स्फुट (स्त्री)' : 'Kshetra Sphuta (Female)'}</h4>
+                <h4 className="text-pink-300 font-bold text-sm" style={hf}>{tl({ en: 'Kshetra Sphuta (Female)', hi: 'क्षेत्र स्फुट (स्त्री)', sa: 'क्षेत्र स्फुट (स्त्री)' })}</h4>
               </div>
-              <p className="text-text-secondary text-xs mb-2">{isHi ? 'चन्द्र + मंगल + गुरु के अंश = क्षेत्र स्फुट' : 'Moon + Mars + Jupiter longitudes = Kshetra Sphuta'}</p>
+              <p className="text-text-secondary text-xs mb-2">{tl({ en: 'Moon + Mars + Jupiter longitudes = Kshetra Sphuta', hi: 'चन्द्र + मंगल + गुरु के अंश = क्षेत्र स्फुट', sa: 'चन्द्र + मंगल + गुरु के अंश = क्षेत्र स्फुट' })}</p>
               <p className="text-text-tertiary text-xs leading-relaxed">
-                {isHi
-                  ? 'सम राशि में = अनुकूल। शुभ ग्रह दृष्टि = प्रजनन क्षमता उत्तम। पाप दृष्टि = चिकित्सा आवश्यक।'
-                  : 'In even sign = favorable. Benefic aspect = excellent fertility. Malefic aspect = medical support may be needed. Ancient gynecological astrology formula.'}
+                {tl({ en: 'In even sign = favorable. Benefic aspect = excellent fertility. Malefic aspect = medical support may be needed. Ancient gynecological astrology formula.', hi: 'सम राशि में = अनुकूल। शुभ ग्रह दृष्टि = प्रजनन क्षमता उत्तम। पाप दृष्टि = चिकित्सा आवश्यक।', sa: 'सम राशि में = अनुकूल। शुभ ग्रह दृष्टि = प्रजनन क्षमता उत्तम। पाप दृष्टि = चिकित्सा आवश्यक।' })}
               </p>
             </motion.div>
           </div>
@@ -221,9 +215,9 @@ export default function ChildrenPredictionPage() {
       </LessonSection>
 
       {/* Section 4: 5th House Sign Nature */}
-      <LessonSection number={4} title={isHi ? 'पञ्चम भाव राशि अनुसार सन्तान स्वभाव' : 'Child Nature by 5th House Sign'}>
+      <LessonSection number={4} title={tl({ en: 'Child Nature by 5th House Sign', hi: 'पञ्चम भाव राशि अनुसार सन्तान स्वभाव', sa: 'पञ्चम भाव राशि अनुसार सन्तान स्वभाव' })}>
         <p className="text-text-secondary text-sm mb-4">
-          {isHi ? 'आपकी पञ्चम भाव राशि प्रथम सन्तान का स्वभाव और प्रवृत्ति दर्शाती है:' : 'Your 5th house sign reveals the nature and tendencies of your first child:'}
+          {tl({ en: 'Your 5th house sign reveals the nature and tendencies of your first child:', hi: 'आपकी पञ्चम भाव राशि प्रथम सन्तान का स्वभाव और प्रवृत्ति दर्शाती है:', sa: 'आपकी पञ्चम भाव राशि प्रथम सन्तान का स्वभाव और प्रवृत्ति दर्शाती है:' })}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {FIFTH_SIGN.map((s, i) => (
@@ -245,11 +239,9 @@ export default function ChildrenPredictionPage() {
       </LessonSection>
 
       {/* Section 5: Challenges & Remedies */}
-      <LessonSection number={5} title={isHi ? 'चुनौतियां एवं उपाय' : 'Challenges & Remedies'}>
+      <LessonSection number={5} title={tl({ en: 'Challenges & Remedies', hi: 'चुनौतियां एवं उपाय', sa: 'चुनौतियां एवं उपाय' })}>
         <p className="text-text-secondary text-sm mb-5">
-          {isHi
-            ? 'सन्तान सम्बन्धी कठिनाइयां और उनके ज्योतिषीय उपाय:'
-            : 'Common children-related difficulties and their astrological remedies:'}
+          {tl({ en: 'Common children-related difficulties and their astrological remedies:', hi: 'सन्तान सम्बन्धी कठिनाइयां और उनके ज्योतिषीय उपाय:', sa: 'सन्तान सम्बन्धी कठिनाइयां और उनके ज्योतिषीय उपाय:' })}
         </p>
         <div className="space-y-4">
           {CHALLENGES.map((c, i) => (
@@ -257,7 +249,7 @@ export default function ChildrenPredictionPage() {
               <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{tl(c.condition)}</h4>
               <p className="text-text-secondary text-sm leading-relaxed mb-3">{tl(c.meaning)}</p>
               <div className="p-3 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
-                <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">{isHi ? 'उपाय' : 'Remedy'}</span>
+                <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">{tl({ en: 'Remedy', hi: 'उपाय', sa: 'उपाय' })}</span>
                 <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{tl(c.remedy)}</p>
               </div>
             </div>
@@ -269,9 +261,9 @@ export default function ChildrenPredictionPage() {
       <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
         className="mt-10 flex flex-wrap justify-center gap-3">
         {[
-          { href: '/kundali' as const, label: isHi ? 'कुण्डली बनाएं' : 'Generate Kundali' },
-          { href: '/learn/sphutas' as const, label: isHi ? 'स्फुट विवरण' : 'Fertility Sphutas' },
-          { href: '/learn/planet-in-house' as const, label: isHi ? 'भाव में ग्रह' : 'Planet in House' },
+          { href: '/kundali' as const, label: tl({ en: 'Generate Kundali', hi: 'कुण्डली बनाएं', sa: 'कुण्डली बनाएं' }) },
+          { href: '/learn/sphutas' as const, label: tl({ en: 'Fertility Sphutas', hi: 'स्फुट विवरण', sa: 'स्फुट विवरण' }) },
+          { href: '/learn/planet-in-house' as const, label: tl({ en: 'Planet in House', hi: 'भाव में ग्रह', sa: 'भाव में ग्रह' }) },
         ].map((link) => (
           <Link key={link.href} href={link.href}
             className="px-4 py-2 rounded-full bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-xs font-medium hover:bg-gold-primary/20 transition-colors">

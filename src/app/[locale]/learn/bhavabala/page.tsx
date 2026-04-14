@@ -98,9 +98,9 @@ export default function LearnBhavabalaPage() {
             <thead>
               <tr className="text-gold-dark text-xs uppercase tracking-widest border-b border-gold-primary/15">
                 <th className="text-left py-3 px-3">#</th>
-                <th className="text-left py-3 px-3">{isHi ? 'भाव' : 'House'}</th>
-                <th className="text-left py-3 px-3">{isHi ? 'कारकत्व' : 'Significations'}</th>
-                <th className="text-center py-3 px-3">{isHi ? 'वर्ग' : 'Type'}</th>
+                <th className="text-left py-3 px-3">{tl({ en: 'House', hi: 'भाव', sa: 'भाव' }, locale)}</th>
+                <th className="text-left py-3 px-3">{tl({ en: 'Significations', hi: 'कारकत्व', sa: 'कारकत्व' }, locale)}</th>
+                <th className="text-center py-3 px-3">{tl({ en: 'Type', hi: 'वर्ग', sa: 'वर्ग' }, locale)}</th>
               </tr>
             </thead>
             <tbody>
@@ -125,11 +125,11 @@ export default function LearnBhavabalaPage() {
                   <td className="py-2.5 px-3 text-text-secondary text-xs leading-relaxed">{t(h.sigKey)}</td>
                   <td className="py-2.5 px-3 text-center">
                     <span className={`text-xs px-2 py-0.5 rounded border ${classificationColor(h.classification)}`}>
-                      {h.classification === 'kendra' ? (isHi ? 'केन्द्र' : 'Kendra') :
-                       h.classification === 'trikona' ? (isHi ? 'त्रिकोण' : 'Trikona') :
-                       h.classification === 'dusthana' ? (isHi ? 'दुःस्थान' : 'Dusthana') :
-                       h.classification === 'upachaya' ? (isHi ? 'उपचय' : 'Upachaya') :
-                       (isHi ? 'मारक' : 'Maraka')}
+                      {h.classification === 'kendra' ? tl({ en: 'Kendra', hi: 'केन्द्र', sa: 'केन्द्र' }, locale) :
+                       h.classification === 'trikona' ? tl({ en: 'Trikona', hi: 'त्रिकोण', sa: 'त्रिकोण' }, locale) :
+                       h.classification === 'dusthana' ? tl({ en: 'Dusthana', hi: 'दुःस्थान', sa: 'दुःस्थान' }, locale) :
+                       h.classification === 'upachaya' ? tl({ en: 'Upachaya', hi: 'उपचय', sa: 'उपचय' }, locale) :
+                       tl({ en: 'Maraka', hi: 'मारक', sa: 'मारक' }, locale)}
                     </span>
                   </td>
                 </motion.tr>
@@ -156,7 +156,7 @@ export default function LearnBhavabalaPage() {
                 className="w-full flex items-center justify-between px-6 py-4 hover:bg-gold-primary/5 transition-colors">
                 <div className="flex items-center gap-3">
                   <span className={`font-bold text-lg ${cls.color}`} style={headingFont}>{t(cls.labelKey)}</span>
-                  <span className="text-text-tertiary text-xs">{isHi ? 'भाव' : 'Houses'}: {cls.houses}</span>
+                  <span className="text-text-tertiary text-xs">{tl({ en: 'Houses', hi: 'भाव', sa: 'भाव' }, locale)}: {cls.houses}</span>
                 </div>
                 <ChevronDown className={`w-5 h-5 text-text-secondary transition-transform ${isExp ? 'rotate-180' : ''}`} />
               </button>
@@ -191,8 +191,8 @@ export default function LearnBhavabalaPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="text-gold-dark text-xs uppercase tracking-widest border-b border-gold-primary/15">
-                <th className="text-left py-3 px-3">{isHi ? 'भाव' : 'House'}</th>
-                <th className="text-left py-3 px-3">{isHi ? 'उपचार' : 'Remedies'}</th>
+                <th className="text-left py-3 px-3">{tl({ en: 'House', hi: 'भाव', sa: 'भाव' }, locale)}</th>
+                <th className="text-left py-3 px-3">{tl({ en: 'Remedies', hi: 'उपचार', sa: 'उपचार' }, locale)}</th>
               </tr>
             </thead>
             <tbody>

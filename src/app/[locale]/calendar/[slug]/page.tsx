@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { useParams, useSearchParams } from 'next/navigation';
@@ -361,14 +362,14 @@ export default function FestivalDetailPage() {
                   className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-gold-primary/80 to-gold-primary text-[#0a0e27] font-bold text-sm hover:from-gold-primary hover:to-gold-light transition-all shadow-lg shadow-gold-primary/20"
                   style={headingFont}
                 >
-                  {!isDevanagariLocale(locale) ? 'Start Full Puja' : isDevanagari ? 'पूर्ण पूजा आरम्भ करें' : 'पूर्णपूजाम् आरभतु'}
+                  {tl({ en: 'Start Full Puja', hi: 'पूर्ण पूजा आरम्भ करें', sa: 'पूर्णपूजाम् आरभतु' }, locale)}
                 </button>
                 <button
                   onClick={() => { setQuickMode(true); setPujaMode(true); }}
                   className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-gold-primary/25 text-gold-primary font-bold text-sm hover:bg-gold-primary/10 transition-all"
                   style={headingFont}
                 >
-                  {!isDevanagariLocale(locale) ? 'Quick Mode (~15 min)' : isDevanagari ? 'संक्षिप्त (~15 मिनट)' : 'संक्षिप्तम् (~15 निमेषाः)'}
+                  {tl({ en: 'Quick Mode (~15 min)', hi: 'संक्षिप्त (~15 मिनट)', sa: 'संक्षिप्तम् (~15 निमेषाः)' }, locale)}
                 </button>
               </div>
 
@@ -379,7 +380,7 @@ export default function FestivalDetailPage() {
           {/* ═══ Section 3: Ekadashi-specific ═══ */}
           {ekadashiDetail && (
             <motion.div {...fadeInUp} className="space-y-5">
-              <SectionHeading icon={<Star className="w-5 h-5" />} title={category === 'ekadashi' ? (!isDevanagariLocale(locale) ? 'Ekadashi Details' : 'एकादशी विवरण') : ''} headingFont={headingFont} />
+              <SectionHeading icon={<Star className="w-5 h-5" />} title={category === 'ekadashi' ? tl({ en: 'Ekadashi Details', hi: 'एकादशी विवरण', sa: 'एकादशी विवरण' }, locale) : ''} headingFont={headingFont} />
 
               <ContentCard
                 icon={<BookOpen className="w-5 h-5" />}

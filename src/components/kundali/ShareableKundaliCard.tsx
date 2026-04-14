@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Share2, X } from 'lucide-react';
@@ -79,7 +80,7 @@ export default function ShareableKundaliCard({ kundali, locale }: Props) {
   const sunP = kundali.planets.find(p => p.planet.id === 0);
   const mahadasha = getCurrentMahadasha(kundali, locale);
   const topYogas = getTopYogas(kundali, locale);
-  const name = kundali.birthData.name || (!isDevanagariLocale(locale) ? 'Chart' : 'कुण्डली');
+  const name = kundali.birthData.name || tl({ en: 'Chart', hi: 'कुण्डली', sa: 'कुण्डली' }, locale);
 
   // Build share text
   const ascName = kundali.ascendant.signName.en;

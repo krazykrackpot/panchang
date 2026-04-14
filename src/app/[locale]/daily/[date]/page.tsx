@@ -64,7 +64,7 @@ export default async function DailyPanchangArticle({ params }: { params: Promise
 
   const article = generateDailyArticle(parsed);
   const isHi = isDevanagariLocale(locale);
-  const loc = (isHi ? 'hi' : 'en') as 'en' | 'hi';
+  const loc = tl({ en: 'en', hi: 'hi', sa: 'hi' }, locale) as 'en' | 'hi';
   const body = article.body[loc];
   const title = article.title[loc];
   const hLabels = HOROSCOPE_LABELS[locale] || HOROSCOPE_LABELS.en;
@@ -91,14 +91,14 @@ export default async function DailyPanchangArticle({ params }: { params: Promise
       <article className="prose prose-invert prose-gold max-w-none">
         <div className="text-center mb-8">
           <p className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-            {isHi ? 'दैनिक पंचांग' : 'Daily Panchang'}
+            {tl({ en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग' }, locale)}
           </p>
           <h1 className="text-2xl sm:text-3xl font-bold text-gold-light leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
             {title}
           </h1>
           <p className="text-text-secondary text-sm mt-3">{article.description[loc]}</p>
           <time className="text-text-secondary/60 text-xs mt-1 block" dateTime={article.publishedAt}>
-            {parsed.toLocaleDateString(isHi ? 'hi-IN' : 'en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+            {parsed.toLocaleDateString(tl({ en: 'en-US', hi: 'hi-IN', sa: 'hi-IN' }, locale), { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
           </time>
         </div>
 
@@ -122,7 +122,7 @@ export default async function DailyPanchangArticle({ params }: { params: Promise
         {/* CTA */}
         <div className="text-center">
           <a href={`/${locale}/panchang`} className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-primary/15 border border-gold-primary/30 text-gold-light font-bold text-sm hover:bg-gold-primary/25 transition-colors">
-            {isHi ? 'अपने स्थान का पंचांग देखें' : 'View Panchang for Your Location'}
+            {tl({ en: 'View Panchang for Your Location', hi: 'अपने स्थान का पंचांग देखें', sa: 'अपने स्थान का पंचांग देखें' }, locale)}
           </a>
         </div>
 
@@ -178,7 +178,7 @@ export default async function DailyPanchangArticle({ params }: { params: Promise
         {/* City links */}
         <div className="mt-12">
           <h2 className="text-gold-light font-bold text-lg mb-4 text-center" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isHi ? 'अन्य शहरों का पंचांग देखें' : 'View Panchang for Other Cities'}
+            {tl({ en: 'View Panchang for Other Cities', hi: 'अन्य शहरों का पंचांग देखें', sa: 'अन्य शहरों का पंचांग देखें' }, locale)}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
             {DAILY_CITIES.map(slug => {

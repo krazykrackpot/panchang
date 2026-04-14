@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -48,7 +49,7 @@ function Page1() {
         </div>
         <p className="text-text-secondary text-sm leading-relaxed">
           <span className="text-gold-light font-medium">Example:</span> A planet at 17° Leo. Leo is odd, so we count from Leo. 17 ÷ 3 = 5.67, so the planet is in the 6th D10 division. Counting from Leo: Leo(1), Virgo(2), Libra(3), Scorpio(4), Sagittarius(5), <span className="text-gold-light font-medium">Capricorn(6)</span>. The planet sits in Capricorn in D10 — structured, authority-oriented, corporate career energy. If this were the D10 Lagna, it would suggest a career in management, government, or structured organizations.
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={isHi ? 'उदाहरण कुण्डली' : 'Example Chart'} />
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरण कुण्डली' }, locale)} />
         </p>
       </section>
 

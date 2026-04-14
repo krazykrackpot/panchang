@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect, useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -80,11 +81,11 @@ export default function GraphicTransitPage() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gold-gradient mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isHi ? 'ग्राफिक गोचर पंचांग' : 'Graphic Transit Ephemeris'}
+            {tl({ en: 'Graphic Transit Ephemeris', hi: 'ग्राफिक गोचर पंचांग', sa: 'ग्राफिक गोचर पंचांग' }, locale)}
           </h1>
-          <p className="text-text-secondary text-sm">{isHi ? 'मासिक ग्रह गति — राशि परिवर्तन और वक्री गति' : 'Monthly planet positions — sign changes and retrogrades'}</p>
+          <p className="text-text-secondary text-sm">{tl({ en: 'Monthly planet positions — sign changes and retrogrades', hi: 'मासिक ग्रह गति — राशि परिवर्तन और वक्री गति', sa: 'मासिक ग्रह गति — राशि परिवर्तन और वक्री गति' }, locale)}</p>
           <Link href="/transits" className="text-xs text-gold-primary/60 hover:text-gold-primary mt-2 inline-block">
-            {isHi ? '← गोचर सूची' : '← Transit List'}
+            {tl({ en: '← Transit List', hi: '← गोचर सूची', sa: '← गोचर सूची' }, locale)}
           </Link>
         </div>
 
@@ -137,7 +138,7 @@ export default function GraphicTransitPage() {
             {events.length > 0 && (
               <div>
                 <h3 className="text-gold-light text-lg font-bold mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-                  {isHi ? 'इस माह की प्रमुख घटनाएं' : 'Key Events This Month'}
+                  {tl({ en: 'Key Events This Month', hi: 'इस माह की प्रमुख घटनाएं', sa: 'इस माह की प्रमुख घटनाएं' }, locale)}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                   {events.map((evt, i) => (
@@ -150,8 +151,8 @@ export default function GraphicTransitPage() {
                       </div>
                       <div className="text-text-secondary text-xs">
                         {evt.type === 'ingress' && `${RASHIS[(evt.fromSign! - 1) % 12]?.name[locale]} → ${RASHIS[(evt.toSign! - 1) % 12]?.name[locale]}`}
-                        {evt.type === 'retro_start' && (isHi ? 'वक्री गति आरम्भ ℞' : 'Retrograde begins ℞')}
-                        {evt.type === 'retro_end' && (isHi ? 'मार्गी गति ↑' : 'Direct motion resumes ↑')}
+                        {evt.type === 'retro_start' && tl({ en: 'Retrograde begins ℞', hi: 'वक्री गति आरम्भ ℞', sa: 'वक्री गति आरम्भ ℞' }, locale)}
+                        {evt.type === 'retro_end' && tl({ en: 'Direct motion resumes ↑', hi: 'मार्गी गति ↑', sa: 'मार्गी गति ↑' }, locale)}
                       </div>
                     </motion.div>
                   ))}

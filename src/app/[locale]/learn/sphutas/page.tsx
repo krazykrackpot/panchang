@@ -150,7 +150,7 @@ export default function LearnSphutasPage() {
                     transition={{ duration: 0.3, ease: 'easeInOut' as const }} className="overflow-hidden">
                     <div className="px-6 pb-5 space-y-3 border-t border-gold-primary/10 pt-4">
                       <div className="p-3 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-                        <span className="text-gold-dark text-xs uppercase tracking-widest font-bold">{isHi ? 'सूत्र' : 'Formula'}: </span>
+                        <span className="text-gold-dark text-xs uppercase tracking-widest font-bold">{tl({ en: 'Formula', hi: 'सूत्र', sa: 'सूत्र' })}: </span>
                         <span className="text-gold-light font-mono text-sm">{tl(sp.formula)}</span>
                       </div>
                       <p className="text-text-secondary text-sm leading-relaxed">{tl(sp.interpretation)}</p>
@@ -175,7 +175,7 @@ export default function LearnSphutasPage() {
           <div key={i} className={`p-4 rounded-xl border ${sp.color === 'text-blue-400' ? 'border-blue-500/15 bg-blue-500/5' : 'border-pink-500/15 bg-pink-500/5'}`}>
             <div className={`font-bold text-sm mb-1 ${sp.color}`}>{tl(sp.name)}</div>
             <div className="p-2 bg-bg-primary/30 rounded-lg mb-2">
-              <span className="text-gold-dark text-xs uppercase tracking-widest font-bold">{isHi ? 'सूत्र' : 'Formula'}: </span>
+              <span className="text-gold-dark text-xs uppercase tracking-widest font-bold">{tl({ en: 'Formula', hi: 'सूत्र', sa: 'सूत्र' })}: </span>
               <span className="text-gold-light font-mono text-xs">{tl(sp.formula)}</span>
             </div>
             <div className="text-text-secondary text-xs leading-relaxed">{tl(sp.interpretation)}</div>
@@ -183,9 +183,7 @@ export default function LearnSphutasPage() {
         ))}
         <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
           <p className="text-amber-400 text-xs leading-relaxed">
-            {isHi
-              ? 'नोट: विषम राशि + शुभ नक्षत्र = अनुकूल (बीज); सम राशि + शुभ नक्षत्र = अनुकूल (क्षेत्र)। दोनों स्फुट अनुकूल होने पर दम्पति की प्रजनन क्षमता प्रबल मानी जाती है।'
-              : 'Note: Odd sign + benefic Nakshatra = favorable (Bija); Even sign + benefic Nakshatra = favorable (Kshetra). When both Sphutas are favorable, the couple\'s collective fertility is considered strong.'}
+            {tl({ en: "Note: Odd sign + benefic Nakshatra = favorable (Bija); Even sign + benefic Nakshatra = favorable (Kshetra). When both Sphutas are favorable, the couple\'s collective fertility is considered strong.", hi: "नोट: विषम राशि + शुभ नक्षत्र = अनुकूल (बीज); सम राशि + शुभ नक्षत्र = अनुकूल (क्षेत्र)। दोनों स्फुट अनुकूल होने पर दम्पति की प्रजनन क्षमता प्रबल मानी जाती है।", sa: "नोट: विषम राशि + शुभ नक्षत्र = अनुकूल (बीज); सम राशि + शुभ नक्षत्र = अनुकूल (क्षेत्र)। दोनों स्फुट अनुकूल होने पर दम्पति की प्रजनन क्षमता प्रबल मानी जाती है।" })}
           </p>
         </div>
       </motion.section>

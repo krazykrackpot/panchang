@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
@@ -99,7 +100,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'पिंगल और छन्दःशास्त्र — कविता का द्विआधारी विज्ञान' : 'Pingala and Chandahshastra — The Binary Science of Poetry'}
+          {tl({ en: 'Pingala and Chandahshastra — The Binary Science of Poetry', hi: 'पिंगल और छन्दःशास्त्र — कविता का द्विआधारी विज्ञान', sa: 'पिंगल और छन्दःशास्त्र — कविता का द्विआधारी विज्ञान' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -110,7 +111,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'संस्कृत कविता और छन्द की समस्या' : 'Sanskrit Poetry and the Problem of Meter'}
+          {tl({ en: 'Sanskrit Poetry and the Problem of Meter', hi: 'संस्कृत कविता और छन्द की समस्या', sa: 'संस्कृत कविता और छन्द की समस्या' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -131,7 +132,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'द्विआधारी एल्गोरिदम — "द्विः शून्ये"' : 'The Binary Algorithm — "Dvih Shunye"'}
+          {tl({ en: 'The Binary Algorithm — "Dvih Shunye"', hi: 'द्विआधारी एल्गोरिदम — "द्विः शून्ये"', sa: 'द्विआधारी एल्गोरिदम — "द्विः शून्ये"' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -139,13 +140,13 @@ function Page1() {
             : <>Pingala's "dvih shunye" ("two zeros") rule: to convert a meter number to binary —</>}
         </p>
         <div className="space-y-1">
-          <p className="text-text-secondary text-xs">1. {isHi ? 'यदि संख्या विषम: 1 घटाएँ, "G" (गुरु=1) नोट करें' : 'If number is odd: subtract 1, note "G" (guru=1)'}</p>
-          <p className="text-text-secondary text-xs">2. {isHi ? 'यदि संख्या सम: 2 से भाग दें, "L" (लघु=0) नोट करें' : 'If even: divide by 2, note "L" (laghu=0)'}</p>
-          <p className="text-text-secondary text-xs">3. {isHi ? 'संख्या 0 होने तक दोहराएँ' : 'Repeat until number reaches 0'}</p>
-          <p className="text-text-secondary text-xs">4. {isHi ? 'नोट किए गए अक्षरों को उल्टे क्रम में पढ़ें = द्विआधारी प्रतिनिधित्व' : 'Read noted syllables in reverse = binary representation'}  </p>
+          <p className="text-text-secondary text-xs">1. {tl({ en: 'If number is odd: subtract 1, note "G" (guru=1)', hi: 'यदि संख्या विषम: 1 घटाएँ, "G" (गुरु=1) नोट करें', sa: 'यदि संख्या विषम: 1 घटाएँ, "G" (गुरु=1) नोट करें' }, locale)}</p>
+          <p className="text-text-secondary text-xs">2. {tl({ en: 'If even: divide by 2, note "L" (laghu=0)', hi: 'यदि संख्या सम: 2 से भाग दें, "L" (लघु=0) नोट करें', sa: 'यदि संख्या सम: 2 से भाग दें, "L" (लघु=0) नोट करें' }, locale)}</p>
+          <p className="text-text-secondary text-xs">3. {tl({ en: 'Repeat until number reaches 0', hi: 'संख्या 0 होने तक दोहराएँ', sa: 'संख्या 0 होने तक दोहराएँ' }, locale)}</p>
+          <p className="text-text-secondary text-xs">4. {tl({ en: 'Read noted syllables in reverse = binary representation', hi: 'नोट किए गए अक्षरों को उल्टे क्रम में पढ़ें = द्विआधारी प्रतिनिधित्व', sa: 'नोट किए गए अक्षरों को उल्टे क्रम में पढ़ें = द्विआधारी प्रतिनिधित्व' }, locale)}  </p>
         </div>
         <p className="text-text-secondary text-xs leading-relaxed mt-2">
-          {isHi ? 'यह ठीक वही एल्गोरिदम है जो आज स्कूलों में दशमलव-से-द्विआधारी रूपान्तरण के लिए पढ़ाया जाता है।' : 'This is exactly the algorithm taught in schools today for decimal-to-binary conversion.'}
+          {tl({ en: 'This is exactly the algorithm taught in schools today for decimal-to-binary conversion.', hi: 'यह ठीक वही एल्गोरिदम है जो आज स्कूलों में दशमलव-से-द्विआधारी रूपान्तरण के लिए पढ़ाया जाता है।', sa: 'यह ठीक वही एल्गोरिदम है जो आज स्कूलों में दशमलव-से-द्विआधारी रूपान्तरण के लिए पढ़ाया जाता है।' }, locale)}
         </p>
       </section>
     </div>
@@ -162,7 +163,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'मेरुप्रस्तार — पास्कल त्रिभुज 2000 वर्ष पहले' : 'Meruprastara — Pascal\'s Triangle 2000 Years Early'}
+          {tl({ en: "Meruprastara — Pascal\'s Triangle 2000 Years Early", hi: "मेरुप्रस्तार — पास्कल त्रिभुज 2000 वर्ष पहले", sa: "मेरुप्रस्तार — पास्कल त्रिभुज 2000 वर्ष पहले" }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -173,7 +174,7 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'मेरुप्रस्तार की संरचना' : 'Structure of Meruprastara'}
+          {tl({ en: 'Structure of Meruprastara', hi: 'मेरुप्रस्तार की संरचना', sa: 'मेरुप्रस्तार की संरचना' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-3 font-mono text-center text-gold-light/70">
           {'    1\n   1 1\n  1 2 1\n 1 3 3 1\n1 4 6 4 1'}
@@ -192,13 +193,13 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/15 rounded-xl p-5">
         <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'प्राथमिकता का सवाल' : 'The Question of Priority'}
+          {tl({ en: 'The Question of Priority', hi: 'प्राथमिकता का सवाल', sa: 'प्राथमिकता का सवाल' }, locale)}
         </h4>
         <div className="space-y-2">
-          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{isHi ? 'पिंगल (~200 BCE):' : 'Pingala (~200 BCE):'}</span> {isHi ? 'मेरुप्रस्तार — पहली ज्ञात घटना' : 'Meruprastara — first known occurrence'}</p>
-          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{isHi ? 'हलयुध (~10वीं सदी CE):' : 'Halayudha (~10th century CE):'}</span> {isHi ? 'मेरुप्रस्तार पर विस्तृत टीका' : 'Extensive commentary on Meruprastara'}</p>
-          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{isHi ? 'यांग हुई (1261 CE):' : 'Yang Hui (1261 CE):'}</span> {isHi ? 'चीनी स्वतन्त्र खोज' : 'Chinese independent discovery'}</p>
-          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{isHi ? 'ब्लेज़ पास्कल (1653 CE):' : 'Blaise Pascal (1653 CE):'}</span> {isHi ? 'यूरोपीय खोज — पिंगल से ~1850 वर्ष बाद' : 'European discovery — ~1850 years after Pingala'}</p>
+          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{tl({ en: 'Pingala (~200 BCE):', hi: 'पिंगल (~200 BCE):', sa: 'पिंगल (~200 BCE):' }, locale)}</span> {tl({ en: 'Meruprastara — first known occurrence', hi: 'मेरुप्रस्तार — पहली ज्ञात घटना', sa: 'मेरुप्रस्तार — पहली ज्ञात घटना' }, locale)}</p>
+          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{tl({ en: 'Halayudha (~10th century CE):', hi: 'हलयुध (~10वीं सदी CE):', sa: 'हलयुध (~10वीं सदी CE):' }, locale)}</span> {tl({ en: 'Extensive commentary on Meruprastara', hi: 'मेरुप्रस्तार पर विस्तृत टीका', sa: 'मेरुप्रस्तार पर विस्तृत टीका' }, locale)}</p>
+          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{tl({ en: 'Yang Hui (1261 CE):', hi: 'यांग हुई (1261 CE):', sa: 'यांग हुई (1261 CE):' }, locale)}</span> {tl({ en: 'Chinese independent discovery', hi: 'चीनी स्वतन्त्र खोज', sa: 'चीनी स्वतन्त्र खोज' }, locale)}</p>
+          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{tl({ en: 'Blaise Pascal (1653 CE):', hi: 'ब्लेज़ पास्कल (1653 CE):', sa: 'ब्लेज़ पास्कल (1653 CE):' }, locale)}</span> {tl({ en: 'European discovery — ~1850 years after Pingala', hi: 'यूरोपीय खोज — पिंगल से ~1850 वर्ष बाद', sa: 'यूरोपीय खोज — पिंगल से ~1850 वर्ष बाद' }, locale)}</p>
         </div>
       </section>
     </div>
@@ -215,7 +216,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'विरासत: क्रमचय-संचय और संगणना' : 'Legacy: Combinatorics and Computing'}
+          {tl({ en: 'Legacy: Combinatorics and Computing', hi: 'विरासत: क्रमचय-संचय और संगणना', sa: 'विरासत: क्रमचय-संचय और संगणना' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -226,27 +227,27 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15 rounded-xl p-5">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'पिंगल की तीन महान खोजें' : "Pingala's Three Great Discoveries"}
+          {tl({ en: "Pingala's Three Great Discoveries", hi: "पिंगल की तीन महान खोजें", sa: "पिंगल की तीन महान खोजें" }, locale)}
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? '1. द्विआधारी संख्या प्रणाली:' : '1. Binary number system:'}</span>{' '}
-            {isHi ? 'लघु=0, गुरु=1 — दो प्रतीकों से किसी भी अनुक्रम को एन्कोड करने का सिद्धान्त। आधुनिक संगणना का आधार।' : 'laghu=0, guru=1 — the principle of encoding any sequence with two symbols. Foundation of modern computing.'}
+            <span className="text-gold-light font-semibold">{tl({ en: '1. Binary number system:', hi: '1. द्विआधारी संख्या प्रणाली:', sa: '1. द्विआधारी संख्या प्रणाली:' }, locale)}</span>{' '}
+            {tl({ en: 'laghu=0, guru=1 — the principle of encoding any sequence with two symbols. Foundation of modern computing.', hi: 'लघु=0, गुरु=1 — दो प्रतीकों से किसी भी अनुक्रम को एन्कोड करने का सिद्धान्त। आधुनिक संगणना का आधार।', sa: 'लघु=0, गुरु=1 — दो प्रतीकों से किसी भी अनुक्रम को एन्कोड करने का सिद्धान्त। आधुनिक संगणना का आधार।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? '2. मेरुप्रस्तार (पास्कल त्रिभुज):' : '2. Meruprastara (Pascal\'s triangle):'}</span>{' '}
-            {isHi ? 'द्विपद गुणांकों की त्रिभुजाकार व्यवस्था। C(n,k) की गणना, द्विपद प्रमेय, प्रायिकता सिद्धान्त।' : 'Triangular arrangement of binomial coefficients. Computes C(n,k), binomial theorem, probability theory.'}
+            <span className="text-gold-light font-semibold">{tl({ en: "2. Meruprastara (Pascal\'s triangle):", hi: "2. मेरुप्रस्तार (पास्कल त्रिभुज):", sa: "2. मेरुप्रस्तार (पास्कल त्रिभुज):" }, locale)}</span>{' '}
+            {tl({ en: 'Triangular arrangement of binomial coefficients. Computes C(n,k), binomial theorem, probability theory.', hi: 'द्विपद गुणांकों की त्रिभुजाकार व्यवस्था। C(n,k) की गणना, द्विपद प्रमेय, प्रायिकता सिद्धान्त।', sa: 'द्विपद गुणांकों की त्रिभुजाकार व्यवस्था। C(n,k) की गणना, द्विपद प्रमेय, प्रायिकता सिद्धान्त।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? '3. क्रमचय-संचय सूत्र:' : '3. Combinatorics formulas:'}</span>{' '}
-            {isHi ? 'n वस्तुओं में से r चुनने के तरीकों की संख्या — C(n,r) = n! / (r! × (n-r)!)।' : 'Number of ways to choose r items from n — C(n,r) = n! / (r! × (n-r)!).'}
+            <span className="text-gold-light font-semibold">{tl({ en: '3. Combinatorics formulas:', hi: '3. क्रमचय-संचय सूत्र:', sa: '3. क्रमचय-संचय सूत्र:' }, locale)}</span>{' '}
+            {tl({ en: 'Number of ways to choose r items from n — C(n,r) = n! / (r! × (n-r)!).', hi: 'n वस्तुओं में से r चुनने के तरीकों की संख्या — C(n,r) = n! / (r! × (n-r)!)।', sa: 'n वस्तुओं में से r चुनने के तरीकों की संख्या — C(n,r) = n! / (r! × (n-r)!)।' }, locale)}
           </p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'कविता से कम्प्यूटर तक — एक सीधी रेखा' : 'From Poetry to Computers — A Direct Line'}
+          {tl({ en: 'From Poetry to Computers — A Direct Line', hi: 'कविता से कम्प्यूटर तक — एक सीधी रेखा', sa: 'कविता से कम्प्यूटर तक — एक सीधी रेखा' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi

@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
@@ -99,7 +100,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'शून्य: रिक्तता से संख्या तक' : 'Zero: From Void to Number'}
+          {tl({ en: 'Zero: From Void to Number', hi: 'शून्य: रिक्तता से संख्या तक', sa: 'शून्य: रिक्तता से संख्या तक' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -110,35 +111,35 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'ब्रह्मगुप्त के नियम (628 ई.)' : "Brahmagupta's Rules (628 CE)"}
+          {tl({ en: "Brahmagupta's Rules (628 CE)", hi: "ब्रह्मगुप्त के नियम (628 ई.)", sa: "ब्रह्मगुप्त के नियम (628 ई.)" }, locale)}
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'जोड़:' : 'Addition:'}</span>{' '}
-            {isHi ? 'कोई भी संख्या + शून्य = वही संख्या। (a + 0 = a)' : 'Any number + zero = that number. (a + 0 = a)'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Addition:', hi: 'जोड़:', sa: 'जोड़:' }, locale)}</span>{' '}
+            {tl({ en: 'Any number + zero = that number. (a + 0 = a)', hi: 'कोई भी संख्या + शून्य = वही संख्या। (a + 0 = a)', sa: 'कोई भी संख्या + शून्य = वही संख्या। (a + 0 = a)' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'घटाव:' : 'Subtraction:'}</span>{' '}
-            {isHi ? 'कोई भी संख्या − शून्य = वही संख्या। (a − 0 = a)' : 'Any number − zero = that number. (a − 0 = a)'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Subtraction:', hi: 'घटाव:', sa: 'घटाव:' }, locale)}</span>{' '}
+            {tl({ en: 'Any number − zero = that number. (a − 0 = a)', hi: 'कोई भी संख्या − शून्य = वही संख्या। (a − 0 = a)', sa: 'कोई भी संख्या − शून्य = वही संख्या। (a − 0 = a)' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'शून्य − शून्य:' : 'Zero minus zero:'}</span>{' '}
-            {isHi ? 'शून्य − शून्य = शून्य। (0 − 0 = 0)' : 'Zero minus zero = zero. (0 − 0 = 0)'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Zero minus zero:', hi: 'शून्य − शून्य:', sa: 'शून्य − शून्य:' }, locale)}</span>{' '}
+            {tl({ en: 'Zero minus zero = zero. (0 − 0 = 0)', hi: 'शून्य − शून्य = शून्य। (0 − 0 = 0)', sa: 'शून्य − शून्य = शून्य। (0 − 0 = 0)' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'गुणन:' : 'Multiplication:'}</span>{' '}
-            {isHi ? 'कोई भी संख्या × शून्य = शून्य। (a × 0 = 0)' : 'Any number × zero = zero. (a × 0 = 0)'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Multiplication:', hi: 'गुणन:', sa: 'गुणन:' }, locale)}</span>{' '}
+            {tl({ en: 'Any number × zero = zero. (a × 0 = 0)', hi: 'कोई भी संख्या × शून्य = शून्य। (a × 0 = 0)', sa: 'कोई भी संख्या × शून्य = शून्य। (a × 0 = 0)' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'शून्य ÷ शून्य:' : 'Zero ÷ zero:'}</span>{' '}
-            {isHi ? 'ब्रह्मगुप्त ने 0÷0 = 0 कहा — यह उनकी प्रसिद्ध भूल थी। आधुनिक गणित में यह "अनिर्धार्य" है।' : 'Brahmagupta claimed 0÷0 = 0 — his famous error. Modern mathematics says this is "indeterminate."'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Zero ÷ zero:', hi: 'शून्य ÷ शून्य:', sa: 'शून्य ÷ शून्य:' }, locale)}</span>{' '}
+            {tl({ en: 'Brahmagupta claimed 0÷0 = 0 — his famous error. Modern mathematics says this is "indeterminate."', hi: 'ब्रह्मगुप्त ने 0÷0 = 0 कहा — यह उनकी प्रसिद्ध भूल थी। आधुनिक गणित में यह "अनिर्धार्य" है।', sa: 'ब्रह्मगुप्त ने 0÷0 = 0 कहा — यह उनकी प्रसिद्ध भूल थी। आधुनिक गणित में यह "अनिर्धार्य" है।' }, locale)}
           </p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'शून्य से पहले — प्लेसहोल्डर और रिक्तता' : 'Before Zero — Placeholders and Emptiness'}
+          {tl({ en: 'Before Zero — Placeholders and Emptiness', hi: 'शून्य से पहले — प्लेसहोल्डर और रिक्तता', sa: 'शून्य से पहले — प्लेसहोल्डर और रिक्तता' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -165,7 +166,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'यूरोप तक खतरनाक यात्रा' : 'The Dangerous Journey to Europe'}
+          {tl({ en: 'The Dangerous Journey to Europe', hi: 'यूरोप तक खतरनाक यात्रा', sa: 'यूरोप तक खतरनाक यात्रा' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -176,35 +177,35 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'संचरण की श्रृंखला' : 'The Chain of Transmission'}
+          {tl({ en: 'The Chain of Transmission', hi: 'संचरण की श्रृंखला', sa: 'संचरण की श्रृंखला' }, locale)}
         </h4>
         <div className="space-y-3">
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? '628 ई. — ब्रह्मगुप्त:' : '628 CE — Brahmagupta:'}</span>{' '}
-            {isHi ? 'ब्रह्मस्फुटसिद्धान्त में शून्य के नियम परिभाषित।' : 'Defines zero arithmetic in Brahmasphutasiddhanta.'}
+            <span className="text-gold-light font-semibold">{tl({ en: '628 CE — Brahmagupta:', hi: '628 ई. — ब्रह्मगुप्त:', sa: '628 ई. — ब्रह्मगुप्त:' }, locale)}</span>{' '}
+            {tl({ en: 'Defines zero arithmetic in Brahmasphutasiddhanta.', hi: 'ब्रह्मस्फुटसिद्धान्त में शून्य के नियम परिभाषित।', sa: 'ब्रह्मस्फुटसिद्धान्त में शून्य के नियम परिभाषित।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? '~820 ई. — अल-ख्वारिज़्मी:' : '~820 CE — Al-Khwarizmi:'}</span>{' '}
-            {isHi ? 'बगदाद के ज्ञान के घर में भारतीय गणित का अरबी में अनुवाद। उनका नाम "algorithm" शब्द का स्रोत है।' : 'Translates Indian mathematics into Arabic at the House of Wisdom in Baghdad. His name is the root of the word "algorithm."'}
+            <span className="text-gold-light font-semibold">{tl({ en: '~820 CE — Al-Khwarizmi:', hi: '~820 ई. — अल-ख्वारिज़्मी:', sa: '~820 ई. — अल-ख्वारिज़्मी:' }, locale)}</span>{' '}
+            {tl({ en: 'Translates Indian mathematics into Arabic at the House of Wisdom in Baghdad. His name is the root of the word "algorithm."', hi: 'बगदाद के ज्ञान के घर में भारतीय गणित का अरबी में अनुवाद। उनका नाम "algorithm" शब्द का स्रोत है।', sa: 'बगदाद के ज्ञान के घर में भारतीय गणित का अरबी में अनुवाद। उनका नाम "algorithm" शब्द का स्रोत है।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? '1202 ई. — फिबोनाची:' : '1202 CE — Fibonacci:'}</span>{' '}
-            {isHi ? 'लिबर अबाची में हिन्दू-अरबी अंक प्रणाली यूरोपीय व्यापारियों को सिखाई।' : 'Introduces Hindu-Arabic numerals to European merchants in Liber Abaci.'}
+            <span className="text-gold-light font-semibold">{tl({ en: '1202 CE — Fibonacci:', hi: '1202 ई. — फिबोनाची:', sa: '1202 ई. — फिबोनाची:' }, locale)}</span>{' '}
+            {tl({ en: 'Introduces Hindu-Arabic numerals to European merchants in Liber Abaci.', hi: 'लिबर अबाची में हिन्दू-अरबी अंक प्रणाली यूरोपीय व्यापारियों को सिखाई।', sa: 'लिबर अबाची में हिन्दू-अरबी अंक प्रणाली यूरोपीय व्यापारियों को सिखाई।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? '1299 ई. — फ्लोरेंस प्रतिबन्ध:' : '1299 CE — Florence ban:'}</span>{' '}
-            {isHi ? 'Arte del Cambio ने धोखाधड़ी के डर से अरबी अंकों पर प्रतिबन्ध लगाया।' : 'Arte del Cambio bans Arabic numerals, fearing fraud with easily-modified zeros.'}
+            <span className="text-gold-light font-semibold">{tl({ en: '1299 CE — Florence ban:', hi: '1299 ई. — फ्लोरेंस प्रतिबन्ध:', sa: '1299 ई. — फ्लोरेंस प्रतिबन्ध:' }, locale)}</span>{' '}
+            {tl({ en: 'Arte del Cambio bans Arabic numerals, fearing fraud with easily-modified zeros.', hi: 'Arte del Cambio ने धोखाधड़ी के डर से अरबी अंकों पर प्रतिबन्ध लगाया।', sa: 'Arte del Cambio ने धोखाधड़ी के डर से अरबी अंकों पर प्रतिबन्ध लगाया।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? '~1500 ई. — यूरोपीय स्वीकृति:' : '~1500 CE — European acceptance:'}</span>{' '}
-            {isHi ? 'मुद्रण और व्यापार की जरूरतों ने आखिरकार शून्य को स्वीकार करा दिया।' : 'The practical needs of printing and commerce finally force acceptance of zero.'}
+            <span className="text-gold-light font-semibold">{tl({ en: '~1500 CE — European acceptance:', hi: '~1500 ई. — यूरोपीय स्वीकृति:', sa: '~1500 ई. — यूरोपीय स्वीकृति:' }, locale)}</span>{' '}
+            {tl({ en: 'The practical needs of printing and commerce finally force acceptance of zero.', hi: 'मुद्रण और व्यापार की जरूरतों ने आखिरकार शून्य को स्वीकार करा दिया।', sa: 'मुद्रण और व्यापार की जरूरतों ने आखिरकार शून्य को स्वीकार करा दिया।' }, locale)}
           </p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15 rounded-xl p-5">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'यूरोप ने विरोध क्यों किया?' : 'Why Did Europe Resist?'}
+          {tl({ en: 'Why Did Europe Resist?', hi: 'यूरोप ने विरोध क्यों किया?', sa: 'यूरोप ने विरोध क्यों किया?' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -231,7 +232,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'शून्य और आधुनिक संगणना' : 'Zero and Modern Computing'}
+          {tl({ en: 'Zero and Modern Computing', hi: 'शून्य और आधुनिक संगणना', sa: 'शून्य और आधुनिक संगणना' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -242,31 +243,31 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15 rounded-xl p-5">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'शून्य पर टिकी दुनिया' : 'The World Built on Zero'}
+          {tl({ en: 'The World Built on Zero', hi: 'शून्य पर टिकी दुनिया', sa: 'शून्य पर टिकी दुनिया' }, locale)}
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'द्विआधारी संगणना:' : 'Binary computing:'}</span>{' '}
-            {isHi ? 'हर बिट 0 या 1 है। अरबों ट्रांजिस्टर प्रति सेकण्ड 0 और 1 के बीच स्विच करते हैं। यह सब शून्य के बिना असम्भव।' : 'Every bit is 0 or 1. Billions of transistors switch between 0 and 1 per second. All impossible without zero.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Binary computing:', hi: 'द्विआधारी संगणना:', sa: 'द्विआधारी संगणना:' }, locale)}</span>{' '}
+            {tl({ en: 'Every bit is 0 or 1. Billions of transistors switch between 0 and 1 per second. All impossible without zero.', hi: 'हर बिट 0 या 1 है। अरबों ट्रांजिस्टर प्रति सेकण्ड 0 और 1 के बीच स्विच करते हैं। यह सब शून्य के बिना असम्भव।', sa: 'हर बिट 0 या 1 है। अरबों ट्रांजिस्टर प्रति सेकण्ड 0 और 1 के बीच स्विच करते हैं। यह सब शून्य के बिना असम्भव।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'कलन (Calculus):' : 'Calculus:'}</span>{' '}
-            {isHi ? 'न्यूटन और लाइबनित्ज़ की कलन शून्य की ओर सीमाओं (limits) पर आधारित है। शून्य के बिना कोई अवकल गणित नहीं — भौतिकी के सभी नियम विफल।' : 'Newton and Leibniz\'s calculus is built on limits approaching zero. No zero = no differential calculus = all laws of physics fail.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Calculus:', hi: 'कलन (Calculus):', sa: 'कलन (Calculus):' }, locale)}</span>{' '}
+            {tl({ en: "Newton and Leibniz\'s calculus is built on limits approaching zero. No zero = no differential calculus = all laws of physics fail.", hi: "न्यूटन और लाइबनित्ज़ की कलन शून्य की ओर सीमाओं (limits) पर आधारित है। शून्य के बिना कोई अवकल गणित नहीं — भौतिकी के सभी नियम विफल।", sa: "न्यूटन और लाइबनित्ज़ की कलन शून्य की ओर सीमाओं (limits) पर आधारित है। शून्य के बिना कोई अवकल गणित नहीं — भौतिकी के सभी नियम विफल।" }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'बीजगणित:' : 'Algebra:'}</span>{' '}
-            {isHi ? 'समीकरण हल करना — शून्य को एक तरफ लाना — केवल तभी सम्भव जब शून्य एक संख्या हो।' : 'Solving equations — bringing everything to zero — is only possible when zero is a number you can manipulate.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Algebra:', hi: 'बीजगणित:', sa: 'बीजगणित:' }, locale)}</span>{' '}
+            {tl({ en: 'Solving equations — bringing everything to zero — is only possible when zero is a number you can manipulate.', hi: 'समीकरण हल करना — शून्य को एक तरफ लाना — केवल तभी सम्भव जब शून्य एक संख्या हो।', sa: 'समीकरण हल करना — शून्य को एक तरफ लाना — केवल तभी सम्भव जब शून्य एक संख्या हो।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{isHi ? 'निर्देशांक प्रणाली:' : 'Coordinate systems:'}</span>{' '}
-            {isHi ? 'कार्तेसियन निर्देशांकों का केन्द्रबिन्दु (0,0) — जिस पर सारी भौतिकी, इंजीनियरिंग और GPS आधारित है।' : 'The origin (0,0) of Cartesian coordinates — the foundation of all physics, engineering, GPS, and maps.'}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Coordinate systems:', hi: 'निर्देशांक प्रणाली:', sa: 'निर्देशांक प्रणाली:' }, locale)}</span>{' '}
+            {tl({ en: 'The origin (0,0) of Cartesian coordinates — the foundation of all physics, engineering, GPS, and maps.', hi: 'कार्तेसियन निर्देशांकों का केन्द्रबिन्दु (0,0) — जिस पर सारी भौतिकी, इंजीनियरिंग और GPS आधारित है।', sa: 'कार्तेसियन निर्देशांकों का केन्द्रबिन्दु (0,0) — जिस पर सारी भौतिकी, इंजीनियरिंग और GPS आधारित है।' }, locale)}
           </p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/15 rounded-xl p-5">
         <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'शून्य की विरासत' : "Zero's Legacy"}
+          {tl({ en: "Zero's Legacy", hi: "शून्य की विरासत", sa: "शून्य की विरासत" }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi

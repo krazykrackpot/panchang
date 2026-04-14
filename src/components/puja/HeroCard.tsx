@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { motion } from 'framer-motion';
 import type { PujaVidhi, MuhurtaWindowType } from '@/lib/constants/puja-vidhi/types';
 import type { Locale ,LocaleText} from '@/types/panchang';
@@ -44,7 +45,7 @@ interface HeroCardProps {
 /* ── Date formatter ────────────────────────────────────────── */
 
 function formatFestivalDate(date: Date, locale: Locale, timezone?: string): string {
-  const localeTag = isDevanagariLocale(locale) ? 'hi-IN' : 'en-US';
+  const localeTag = tl({ en: 'en-US', hi: 'hi-IN', sa: 'hi-IN' }, locale);
   return date.toLocaleDateString(localeTag, {
     weekday: 'long',
     day: 'numeric',

@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
@@ -55,7 +56,7 @@ export default function StoriesIndexPage() {
   const isDevanagari = isDevanagariLocale(locale);
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
-  const l = L[isDevanagariLocale(locale) ? 'hi' : 'en'];
+  const l = L[tl({ en: 'en', hi: 'hi', sa: 'hi' }, locale) as keyof typeof L];
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -147,7 +148,7 @@ export default function StoriesIndexPage() {
           className="text-gold-primary/70 hover:text-gold-primary text-sm transition-colors"
           style={bf}
         >
-          {isDevanagariLocale(locale) ? 'सभी भारतीय योगदान देखें' : 'View all Indian Contributions'} &rarr;
+          {tl({ en: 'View all Indian Contributions', hi: 'सभी भारतीय योगदान देखें', sa: 'सभी भारतीय योगदान देखें' }, locale)} &rarr;
         </Link>
       </div>
     </div>

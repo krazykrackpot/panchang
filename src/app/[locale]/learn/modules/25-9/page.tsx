@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
@@ -100,7 +101,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'संगमग्राम से विश्व तक' : 'From Sangamagrama to the World'}
+          {tl({ en: 'From Sangamagrama to the World', hi: 'संगमग्राम से विश्व तक', sa: 'संगमग्राम से विश्व तक' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -111,7 +112,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'माधव-लाइबनिज \u03C0 श्रेणी' : 'The Madhava-Leibniz \u03C0 Series'}
+          {tl({ en: 'The Madhava-Leibniz \u03C0 Series', hi: 'माधव-लाइबनिज \u03C0 श्रेणी', sa: 'माधव-लाइबनिज \u03C0 श्रेणी' }, locale)}
         </h4>
         <p className="text-gold-light text-lg font-mono text-center mb-3">&pi;/4 = 1 &minus; 1/3 + 1/5 &minus; 1/7 + ...</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-3">
@@ -128,7 +129,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'Sine और Cosine श्रेणी' : 'The Sine and Cosine Series'}
+          {tl({ en: 'The Sine and Cosine Series', hi: 'Sine और Cosine श्रेणी', sa: 'Sine और Cosine श्रेणी' }, locale)}
         </h4>
         <p className="text-gold-light text-base font-mono text-center mb-2">sin(x) = x &minus; x&sup3;/3! + x&#8309;/5! &minus; ...</p>
         <p className="text-gold-light text-base font-mono text-center mb-3">cos(x) = 1 &minus; x&sup2;/2! + x&#8308;/4! &minus; ...</p>
@@ -146,7 +147,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/15 rounded-xl p-5">
         <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'तेज़ अभिसरण की चतुराई' : 'The Clever Trick for Fast Convergence'}
+          {tl({ en: 'The Clever Trick for Fast Convergence', hi: 'तेज़ अभिसरण की चतुराई', sa: 'तेज़ अभिसरण की चतुराई' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -168,7 +169,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'प्रतिभा की वंश-परम्परा' : 'A Lineage of Genius'}
+          {tl({ en: 'A Lineage of Genius', hi: 'प्रतिभा की वंश-परम्परा', sa: 'प्रतिभा की वंश-परम्परा' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -194,7 +195,7 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15 rounded-xl p-5">
         <h4 className="text-emerald-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'संचरण प्रश्न' : 'The Transmission Question'}
+          {tl({ en: 'The Transmission Question', hi: 'संचरण प्रश्न', sa: 'संचरण प्रश्न' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -202,9 +203,7 @@ function Page2() {
             : <>Did these results reach Europe? Jesuit missionaries were in Kerala from the 1540s, had access to manuscripts, and the timeline is suggestive. But no conclusive proof has been found.</>}
         </p>
         <p className="text-emerald-300 text-xs leading-relaxed font-semibold">
-          {isHi
-            ? 'जो बहस से परे है: केरल स्कूल ने ये परिणाम 250\u2013340 वर्ष पहले प्राप्त किए।'
-            : 'What is beyond debate: the Kerala School achieved these results 250\u2013340 years earlier.'}
+          {tl({ en: 'What is beyond debate: the Kerala School achieved these results 250\u2013340 years earlier.', hi: 'जो बहस से परे है: केरल स्कूल ने ये परिणाम 250\u2013340 वर्ष पहले प्राप्त किए।', sa: 'जो बहस से परे है: केरल स्कूल ने ये परिणाम 250\u2013340 वर्ष पहले प्राप्त किए।' }, locale)}
         </p>
       </section>
     </div>
@@ -221,7 +220,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'जीवित विरासत' : 'The Living Legacy'}
+          {tl({ en: 'The Living Legacy', hi: 'जीवित विरासत', sa: 'जीवित विरासत' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -232,15 +231,15 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'नाम बदलने का समय' : 'Time to Rename'}
+          {tl({ en: 'Time to Rename', hi: 'नाम बदलने का समय', sa: 'नाम बदलने का समय' }, locale)}
         </h4>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/15">
-                <th className="text-left text-gold-light py-1.5 pr-3">{isHi ? 'पश्चिमी नाम' : 'Western Name'}</th>
-                <th className="text-left text-gold-light py-1.5 pr-3">{isHi ? 'केरल खोजकर्ता' : 'Kerala Discoverer'}</th>
-                <th className="text-right text-gold-light py-1.5">{isHi ? 'अन्तर' : 'Gap'}</th>
+                <th className="text-left text-gold-light py-1.5 pr-3">{tl({ en: 'Western Name', hi: 'पश्चिमी नाम', sa: 'पश्चिमी नाम' }, locale)}</th>
+                <th className="text-left text-gold-light py-1.5 pr-3">{tl({ en: 'Kerala Discoverer', hi: 'केरल खोजकर्ता', sa: 'केरल खोजकर्ता' }, locale)}</th>
+                <th className="text-right text-gold-light py-1.5">{tl({ en: 'Gap', hi: 'अन्तर', sa: 'अन्तर' }, locale)}</th>
               </tr>
             </thead>
             <tbody>
@@ -265,7 +264,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/15 rounded-xl p-5">
         <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'निर्णायक तर्क' : 'The Definitive Argument'}
+          {tl({ en: 'The Definitive Argument', hi: 'निर्णायक तर्क', sa: 'निर्णायक तर्क' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -275,7 +274,7 @@ function Page3() {
       </section>
 
       <section className="p-4 rounded-xl bg-gold-primary/6 border-l-4 border-gold-primary/50">
-        <p className="text-gold-light text-xs font-semibold mb-1">{isHi ? 'गहन अध्ययन' : 'Deep Dive'}</p>
+        <p className="text-gold-light text-xs font-semibold mb-1">{tl({ en: 'Deep Dive', hi: 'गहन अध्ययन', sa: 'गहन अध्ययन' }, locale)}</p>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
             ? <>अभिसरण सारणी, हल किए गए उदाहरण, और विस्तृत गणितीय व्युत्पत्ति के लिए हमारा पूर्ण केरल स्कूल पृष्ठ देखें।</>

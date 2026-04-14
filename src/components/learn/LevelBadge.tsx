@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import type { Locale } from '@/types/panchang';
 import { getLevel } from '@/lib/learn/badges';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -35,7 +36,7 @@ export default function LevelBadge({ masteredCount, locale, variant = 'compact' 
           {level.nextLevel && (
             <span className="text-[10px] text-text-secondary">
               ({masteredCount}/{masteredCount + level.nextLevel.modulesNeeded}{' '}
-              {isHi ? `→ ${level.nextLevel.label.hi}` : `to ${level.nextLevel.label.en}`})
+              {tl({ en: `to ${level.nextLevel.label.en}`, hi: `→ ${level.nextLevel.label.hi}`, sa: `→ ${level.nextLevel.label.hi}` }, locale)})
             </span>
           )}
         </div>
@@ -65,7 +66,7 @@ export default function LevelBadge({ masteredCount, locale, variant = 'compact' 
             {isHi ? level.label.hi : level.label.en}
           </span>
           <span className="text-xs text-text-secondary font-mono">
-            {masteredCount} {isHi ? 'मॉड्यूल' : 'modules'}
+            {masteredCount} {tl({ en: 'modules', hi: 'मॉड्यूल', sa: 'मॉड्यूल' }, locale)}
           </span>
         </div>
         <p className="text-xs text-text-secondary mt-0.5">
@@ -82,7 +83,7 @@ export default function LevelBadge({ masteredCount, locale, variant = 'compact' 
               />
             </div>
             <span className="text-[10px] text-text-secondary">
-              {level.nextLevel.modulesNeeded} {isHi ? `और → ${level.nextLevel.label.hi}` : `more to ${level.nextLevel.label.en}`}
+              {level.nextLevel.modulesNeeded} {tl({ en: `more to ${level.nextLevel.label.en}`, hi: `और → ${level.nextLevel.label.hi}`, sa: `और → ${level.nextLevel.label.hi}` }, locale)}
             </span>
           </div>
         )}

@@ -295,25 +295,25 @@ export default function FestivalDetailModal({
                         {/* ─── Three Rules Summary ─── */}
                         <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-3 mb-3">
                           <div className="text-xs text-gold-primary/70 uppercase tracking-wider font-bold mb-2">
-                            {!isDevanagariLocale(locale) ? 'Three Rules of Parana' : locale === 'sa' ? 'पारणस्य त्रयो नियमाः' : 'पारण के तीन नियम'}
+                            {tl({ en: 'Three Rules of Parana', hi: 'पारण के तीन नियम', sa: 'पारणस्य त्रयो नियमाः' }, locale)}
                           </div>
                           <div className="space-y-1 text-xs" style={bodyFont}>
                             <div className="flex items-start gap-2">
                               <span className="text-blue-400 font-bold mt-0.5">1.</span>
                               <span className="text-text-secondary">
-                                {!isDevanagariLocale(locale) ? 'Do NOT break fast during Hari Vasara (first 1/4 of Dwadashi)' : locale === 'sa' ? 'हरिवासरे (द्वादश्याः प्रथमचतुर्थांशे) पारणं न कुर्यात्' : 'हरि वासर (द्वादशी के प्रथम 1/4) में पारण न करें'}
+                                {tl({ en: 'Do NOT break fast during Hari Vasara (first 1/4 of Dwadashi)', hi: 'हरि वासर (द्वादशी के प्रथम 1/4) में पारण न करें', sa: 'हरिवासरे (द्वादश्याः प्रथमचतुर्थांशे) पारणं न कुर्यात्' }, locale)}
                               </span>
                             </div>
                             <div className="flex items-start gap-2">
                               <span className="text-amber-400 font-bold mt-0.5">2.</span>
                               <span className="text-text-secondary">
-                                {!isDevanagariLocale(locale) ? 'Do NOT break fast during Madhyahna (midday period)' : locale === 'sa' ? 'मध्याह्ने पारणं न कुर्यात्' : 'मध्याह्न (दोपहर) में पारण न करें'}
+                                {tl({ en: 'Do NOT break fast during Madhyahna (midday period)', hi: 'मध्याह्न (दोपहर) में पारण न करें', sa: 'मध्याह्ने पारणं न कुर्यात्' }, locale)}
                               </span>
                             </div>
                             <div className="flex items-start gap-2">
                               <span className="text-orange-400 font-bold mt-0.5">3.</span>
                               <span className="text-text-secondary">
-                                {!isDevanagariLocale(locale) ? 'MUST break fast before Dwadashi tithi ends' : locale === 'sa' ? 'द्वादशीतिथ्यन्तात् पूर्वं पारणम् अवश्यम्' : 'द्वादशी तिथि समाप्ति से पहले पारण अवश्य करें'}
+                                {tl({ en: 'MUST break fast before Dwadashi tithi ends', hi: 'द्वादशी तिथि समाप्ति से पहले पारण अवश्य करें', sa: 'द्वादशीतिथ्यन्तात् पूर्वं पारणम् अवश्यम्' }, locale)}
                               </span>
                             </div>
                           </div>
@@ -326,7 +326,7 @@ export default function FestivalDetailModal({
                             {paranaSunrise && (
                               <div className="flex items-center justify-between text-xs rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] px-3 py-2">
                                 <span className="text-amber-300/80 font-medium" style={bodyFont}>
-                                  {!isDevanagariLocale(locale) ? 'Sunrise' : locale === 'sa' ? 'सूर्योदयः' : 'सूर्योदय'}
+                                  {tl({ en: 'Sunrise', hi: 'सूर्योदय', sa: 'सूर्योदयः' }, locale)}
                                 </span>
                                 <span className="text-amber-300 font-mono font-bold">{paranaSunrise}</span>
                               </div>
@@ -345,8 +345,8 @@ export default function FestivalDetailModal({
                                   paranaHariVasaraEnd === paranaSunrise ? 'text-emerald-300/80' : paranaEarlyEnd ? 'text-red-300/80' : 'text-blue-300/80'
                                 }`} style={bodyFont}>
                                   {paranaHariVasaraEnd === paranaSunrise
-                                    ? (!isDevanagariLocale(locale) ? 'Hari Vasara — already over before sunrise' : locale === 'sa' ? 'हरिवासरः — सूर्योदयात् पूर्वं समाप्तः' : 'हरि वासर — सूर्योदय से पहले समाप्त')
-                                    : (!isDevanagariLocale(locale) ? 'Hari Vasara ends (no food before)' : locale === 'sa' ? 'हरिवासरान्तः' : 'हरि वासर समाप्ति (इससे पहले भोजन वर्जित)')
+                                    ? tl({ en: 'Hari Vasara — already over before sunrise', hi: 'हरि वासर — सूर्योदय से पहले समाप्त', sa: 'हरिवासरः — सूर्योदयात् पूर्वं समाप्तः' }, locale)
+                                    : tl({ en: 'Hari Vasara ends (no food before)', hi: 'हरि वासर समाप्ति (इससे पहले भोजन वर्जित)', sa: 'हरिवासरान्तः' }, locale)
                                   }
                                 </span>
                                 {paranaHariVasaraEnd !== paranaSunrise && (
@@ -359,7 +359,7 @@ export default function FestivalDetailModal({
                             {paranaMadhyahnaStart && paranaMadhyahnaEnd && (
                               <div className="flex items-center justify-between text-xs rounded-lg bg-amber-500/10 border border-amber-500/15 px-3 py-2">
                                 <span className="text-amber-300/80 font-medium" style={bodyFont}>
-                                  {!isDevanagariLocale(locale) ? 'Madhyahna (no food during)' : locale === 'sa' ? 'मध्याह्नः (वर्जनीयः)' : 'मध्याह्न (इसमें भोजन वर्जित)'}
+                                  {tl({ en: 'Madhyahna (no food during)', hi: 'मध्याह्न (इसमें भोजन वर्जित)', sa: 'मध्याह्नः (वर्जनीयः)' }, locale)}
                                 </span>
                                 <span className="text-amber-300 font-mono font-bold">{paranaMadhyahnaStart}–{paranaMadhyahnaEnd}</span>
                               </div>
@@ -369,7 +369,7 @@ export default function FestivalDetailModal({
                             {paranaDwadashiEnd && (
                               <div className="flex items-center justify-between text-xs rounded-lg bg-orange-500/10 border border-orange-500/15 px-3 py-2">
                                 <span className="text-orange-300/80 font-medium" style={bodyFont}>
-                                  {!isDevanagariLocale(locale) ? 'Dwadashi ends (must eat before)' : locale === 'sa' ? 'द्वादशीतिथ्यन्तः (अस्मात् पूर्वं भोजनम्)' : 'द्वादशी समाप्ति (इससे पहले खाएँ)'}
+                                  {tl({ en: 'Dwadashi ends (must eat before)', hi: 'द्वादशी समाप्ति (इससे पहले खाएँ)', sa: 'द्वादशीतिथ्यन्तः (अस्मात् पूर्वं भोजनम्)' }, locale)}
                                 </span>
                                 <span className="text-orange-300 font-mono font-bold">{paranaDwadashiEnd}</span>
                               </div>

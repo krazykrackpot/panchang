@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useRef, useEffect } from 'react';
 import { Share2, Check, Copy, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -252,7 +253,7 @@ export function ShareRow({ pageTitle, shareText, url, locale, className = '' }: 
   return (
     <div className={`flex items-center gap-3 ${className}`}>
       <span className="text-text-secondary/50 text-xs hidden sm:inline">
-        {!isDevanagariLocale(locale) ? 'Share:' : locale === 'sa' ? 'प्रसारः:' : 'शेयर:'}
+        {tl({ en: 'Share:', hi: 'शेयर:', sa: 'प्रसारः:' }, locale)}
       </span>
       <ShareButton
         title={pageTitle}

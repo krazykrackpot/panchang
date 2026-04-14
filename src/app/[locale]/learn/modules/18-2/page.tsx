@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -24,7 +25,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'भाव शक्ति बनाम ग्रह शक्ति' : 'House Strength vs. Planet Strength'}
+          {tl({ en: 'House Strength vs. Planet Strength', hi: 'भाव शक्ति बनाम ग्रह शक्ति', sa: 'भाव शक्ति बनाम ग्रह शक्ति' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -38,7 +39,7 @@ function Page1() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उद्गम' : 'Classical Origin'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उद्गम', sa: 'शास्त्रीय उद्गम' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? <>भावबल BPHS (बृहत् पाराशर होरा शास्त्र) में षड्बल के स्वाभाविक विस्तार के रूप में परिभाषित है। पराशर ने पहचाना कि केवल ग्रह शक्ति जानना अपर्याप्त है &mdash; ज्योतिषी को यह भी जानना चाहिए कि कौन-से जीवन क्षेत्र बलवान या दुर्बल हैं। त्रिपक्षीय सूत्र (स्वामी बल + स्थिति गरिमा + दृष्टि प्रभाव) उन तीन तरीकों को सुन्दर रूप से पकड़ता है जिनसे भाव शक्ति प्राप्त कर सकता है।</>
@@ -56,7 +57,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'प्रत्येक घटक की गणना' : 'Computing Each Component'}
+          {tl({ en: 'Computing Each Component', hi: 'प्रत्येक घटक की गणना', sa: 'प्रत्येक घटक की गणना' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -70,11 +71,11 @@ function Page2() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यरत उदाहरण: विवाह हेतु सप्तम भाव' : 'Worked Example: 7th House for Marriage'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example: 7th House for Marriage', hi: 'कार्यरत उदाहरण: विवाह हेतु सप्तम भाव', sa: 'कार्यरत उदाहरण: विवाह हेतु सप्तम भाव' }, locale)}</h4>
         <ExampleChart
           ascendant={1}
           planets={{ 12: [5], 5: [4], 3: [6] }}
-          title={isHi ? 'मेष लग्न — शुक्र मीन में (12वें), बृहस्पति 5वें में, शनि 3रे में' : 'Aries Lagna — Venus in Pisces (12th), Jupiter in 5th, Saturn in 3rd'}
+          title={tl({ en: 'Aries Lagna — Venus in Pisces (12th), Jupiter in 5th, Saturn in 3rd', hi: 'मेष लग्न — शुक्र मीन में (12वें), बृहस्पति 5वें में, शनि 3रे में', sa: 'मेष लग्न — शुक्र मीन में (12वें), बृहस्पति 5वें में, शनि 3रे में' }, locale)}
           highlight={[7, 12]}
         />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
@@ -90,7 +91,7 @@ function Page2() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'सामान्य भ्रम' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रम', sa: 'सामान्य भ्रम' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? <>एक सामान्य त्रुटि भाव शक्ति को उसमें स्थित ग्रहों की संख्या से समकक्ष करना है। तीन ग्रहों वाला भाव स्वतः उस रिक्त भाव से बलवान नहीं है जिसके स्वामी का उत्कृष्ट षड्बल हो और बृहस्पति की दृष्टि प्राप्त हो। अधिभोग भाव में सक्रियता बनाता है, पर भावबल भाव की सकारात्मक परिणाम देने की अन्तर्निहित क्षमता मापता है। पापी ग्रहों से भरा भाव वास्तव में सुदृष्ट रिक्त भाव से कम भावबल रख सकता है।</>
@@ -108,7 +109,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'व्यावहारिक व्याख्या' : 'Practical Interpretation'}
+          {tl({ en: 'Practical Interpretation', hi: 'व्यावहारिक व्याख्या', sa: 'व्यावहारिक व्याख्या' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -122,7 +123,7 @@ function Page3() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? <>भावबल कुण्डली व्याख्या को अस्पष्ट सामान्यीकरण (&ldquo;आपका सप्तम भाव ठीक है&rdquo;) से सटीक परिमाणित मूल्यांकन (&ldquo;आपका सप्तम भाव 142 षष्ट्यंश अंकित है, 12 भावों में तीसरे स्थान पर&rdquo;) में बदलता है। हमारा ऐप कुण्डली बल टैब में षड्बल के साथ भावबल की गणना करता है, जिससे उपयोगकर्ता शीघ्र अपने सबसे बलवान और दुर्बल जीवन क्षेत्रों की पहचान कर सकते हैं। यह अधिक लक्षित टिप्पणी विवरण को शक्ति देता है।</>

@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
@@ -44,7 +45,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'मुन्था एवं वर्षेश्वर' : 'Muntha & Varsheshvara'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Muntha & Varsheshvara', hi: 'मुन्था एवं वर्षेश्वर', sa: 'मुन्था एवं वर्षेश्वर' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
 
           {isHi
@@ -87,7 +88,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सहम एवं मुद्दा दशा' : 'Sahams & Mudda Dasha'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Sahams & Mudda Dasha', hi: 'सहम एवं मुद्दा दशा', sa: 'सहम एवं मुद्दा दशा' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
 
           {isHi
@@ -100,7 +101,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य ताजिक भ्रान्तियाँ' : 'Common Tajika Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Tajika Misconceptions', hi: 'सामान्य ताजिक भ्रान्तियाँ', sa: 'सामान्य ताजिक भ्रान्तियाँ' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           A frequent error is confusing Tajika yogas with Parashari yogas. They are fundamentally different systems. Parashari yogas (Raja Yoga, Dhana Yoga, etc.) are based on house lordships and permanent placements. Tajika yogas (Ithasala, Easarapha, Nakta, Yamaya) are based on dynamic aspect relationships — whether planets are applying to or separating from exact aspects. Another misconception is that Varshaphal replaces natal chart analysis. It does not — Varshaphal provides annual refinement of the lifelong patterns shown in the natal chart. A strong natal chart with a weak Varshaphal means a generally good life with a challenging year, not the reverse.
         </p>
@@ -134,7 +135,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'उप स्वामी निर्णय करता है' : 'The Sub Lord Decides'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'The Sub Lord Decides', hi: 'उप स्वामी निर्णय करता है', sa: 'उप स्वामी निर्णय करता है' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
 
           {isHi
@@ -147,7 +148,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'समयनिर्धारण हेतु शासक ग्रह' : 'Ruling Planets for Timing'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Ruling Planets for Timing', hi: 'समयनिर्धारण हेतु शासक ग्रह', sa: 'समयनिर्धारण हेतु शासक ग्रह' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
 
           {isHi

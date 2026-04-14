@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -109,7 +110,7 @@ export default function LearnSidebarMobile() {
               <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-3 bg-[#0a0e27]/95 backdrop-blur-sm border-b border-gold-primary/10">
                 <div className="flex items-center gap-3">
                   <span className="text-gold-light font-semibold text-base">
-                    {isHi ? 'शिक्षा प्रगति' : 'Learning Progress'}
+                    {tl({ en: 'Learning Progress', hi: 'शिक्षा प्रगति', sa: 'शिक्षा प्रगति' }, locale)}
                   </span>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-gold-primary/15 text-gold-primary font-medium">
                     {overall.percent}%
@@ -135,21 +136,21 @@ export default function LearnSidebarMobile() {
                             <Flame key={i} size={16} className="text-amber-400 fill-amber-400/60" />
                           ))}
                           <span className="text-base font-bold text-amber-400">
-                            {streak.streakDays} {isHi ? 'दिन की लय' : 'Day Streak'}
+                            {streak.streakDays} {tl({ en: 'Day Streak', hi: 'दिन की लय', sa: 'दिन की लय' }, locale)}
                           </span>
                         </>
                       ) : (
                         <>
                           <Flame size={16} className="text-text-secondary/40" />
                           <span className="text-base font-medium text-text-secondary/60">
-                            {isHi ? 'लय शुरू करें' : 'Start a streak'}
+                            {tl({ en: 'Start a streak', hi: 'लय शुरू करें', sa: 'लय शुरू करें' }, locale)}
                           </span>
                         </>
                       )}
                     </div>
                     {streak.longestStreak > 0 && (
                       <p className="text-xs text-text-secondary">
-                        {isHi ? 'सर्वोच्च' : 'Longest'}: {streak.longestStreak} {isHi ? 'दिन' : 'days'}
+                        {tl({ en: 'Longest', hi: 'सर्वोच्च', sa: 'सर्वोच्च' }, locale)}: {streak.longestStreak} {tl({ en: 'days', hi: 'दिन', sa: 'दिन' }, locale)}
                       </p>
                     )}
                   </div>
@@ -163,15 +164,13 @@ export default function LearnSidebarMobile() {
                     className="block p-4 rounded-xl bg-gold-primary/10 border border-gold-primary/25 hover:bg-gold-primary/15 transition-colors"
                   >
                     <p className="text-xs text-text-secondary mb-1">
-                      {isHi ? 'जारी रखें' : 'Continue'}
+                      {tl({ en: 'Continue', hi: 'जारी रखें', sa: 'जारी रखें' }, locale)}
                     </p>
                     <p className="text-sm font-semibold text-gold-light leading-snug">
                       {isHi ? nextModuleRef.title.hi : nextModuleRef.title.en}
                     </p>
                     <p className="text-xs text-text-secondary mt-1">
-                      {isHi
-                        ? `चरण ${nextModuleRef.phase} · ${nextModuleRef.topic}`
-                        : `Phase ${nextModuleRef.phase} · ${nextModuleRef.topic}`}
+                      {tl({ en: `Phase ${nextModuleRef.phase} · ${nextModuleRef.topic}`, hi: `चरण ${nextModuleRef.phase} · ${nextModuleRef.topic}`, sa: `चरण ${nextModuleRef.phase} · ${nextModuleRef.topic}` }, locale)}
                     </p>
                   </Link>
                 )}

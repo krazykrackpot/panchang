@@ -1,3 +1,4 @@
+import { tl } from '@/lib/utils/trilingual';
 import type { Metadata } from 'next';
 import { getCityBySlug } from '@/lib/constants/cities';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -9,9 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const cityData = getCityBySlug(city);
   const cityName = cityData ? (isDevanagariLocale(locale) ? cityData.name.hi : cityData.name.en) : city;
   return {
-    title: isDevanagariLocale(locale)
-      ? `${cityName} पंचांग ${date} — तिथि, नक्षत्र, राहु काल`
-      : `${cityName} Panchang ${date} — Tithi, Nakshatra, Rahu Kaal`,
+    title: tl({ en: `${cityName} Panchang ${date} — Tithi, Nakshatra, Rahu Kaal`, hi: `${cityName} पंचांग ${date} — तिथि, नक्षत्र, राहु काल`, sa: `${cityName} पंचांग ${date} — तिथि, नक्षत्र, राहु काल` }, locale),
     alternates: {
       canonical: `${BASE_URL}/${locale}/daily/${date}/${city}`,
       languages: {

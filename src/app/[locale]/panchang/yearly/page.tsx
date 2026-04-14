@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -77,12 +78,12 @@ export default function YearlyPanchangPage() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="text-3xl md:text-4xl font-bold text-gold-gradient mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-              {isHi ? 'वार्षिक पञ्चाङ्ग' : 'Yearly Panchang'}
+              {tl({ en: 'Yearly Panchang', hi: 'वार्षिक पञ्चाङ्ग', sa: 'वार्षिक पञ्चाङ्ग' }, locale)}
             </h1>
-            <p className="text-text-secondary text-sm">{isHi ? 'प्रत्येक दिन की तिथि और नक्षत्र एक नजर में' : 'Daily tithi and nakshatra at a glance'}</p>
+            <p className="text-text-secondary text-sm">{tl({ en: 'Daily tithi and nakshatra at a glance', hi: 'प्रत्येक दिन की तिथि और नक्षत्र एक नजर में', sa: 'प्रत्येक दिन की तिथि और नक्षत्र एक नजर में' }, locale)}</p>
             <div className="mt-3">
               <Link href="/panchang" className="text-sm text-gold-primary/60 hover:text-gold-primary transition-colors">
-                {isHi ? '← दैनिक पञ्चाङ्ग' : '← Daily Panchang'}
+                {tl({ en: '← Daily Panchang', hi: '← दैनिक पञ्चाङ्ग', sa: '← दैनिक पञ्चाङ्ग' }, locale)}
               </Link>
             </div>
           </div>
@@ -152,9 +153,9 @@ export default function YearlyPanchangPage() {
 
                 {/* Legend */}
                 <div className="flex justify-center gap-4 mt-4 text-xs text-text-tertiary">
-                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400" /> {isHi ? 'शुक्ल' : 'Shukla'}</span>
-                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-indigo-400" /> {isHi ? 'कृष्ण' : 'Krishna'}</span>
-                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-gold-primary" /> {isHi ? 'आज' : 'Today'}</span>
+                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400" /> {tl({ en: 'Shukla', hi: 'शुक्ल', sa: 'शुक्ल' }, locale)}</span>
+                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-indigo-400" /> {tl({ en: 'Krishna', hi: 'कृष्ण', sa: 'कृष्ण' }, locale)}</span>
+                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-gold-primary" /> {tl({ en: 'Today', hi: 'आज', sa: 'आज' }, locale)}</span>
                 </div>
               </>
             )}

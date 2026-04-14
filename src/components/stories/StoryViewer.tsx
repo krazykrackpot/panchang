@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocale } from 'next-intl';
 import { useParams, useRouter } from 'next/navigation';
@@ -93,7 +94,7 @@ export default function StoryViewer() {
   const handleShare = async () => {
     if (!story) return;
     const url = window.location.href;
-    const text = story.title[isDevanagariLocale(locale) ? 'hi' : 'en'];
+    const text = story.title[tl({ en: 'en', hi: 'hi', sa: 'hi' }, locale)];
     if (navigator.share) {
       try { await navigator.share({ title: text, url }); } catch { /* user cancelled */ }
     } else {
@@ -444,7 +445,7 @@ function SlideContent({
               onClick={(e) => e.stopPropagation()}
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gold-primary text-bg-primary font-bold text-base hover:bg-gold-light transition-colors"
             >
-              {isDevanagariLocale(locale) ? 'पूरा लेख पढ़ें' : 'Read Full Article'}
+              {tl({ en: 'Read Full Article', hi: 'पूरा लेख पढ़ें', sa: 'पूरा लेख पढ़ें' }, locale)}
               <ChevronRight className="w-5 h-5" />
             </Link>
           </motion.div>

@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useRef, useEffect } from 'react';
 import { User, LogOut, Settings } from 'lucide-react';
 import { useLocale } from 'next-intl';
@@ -98,7 +99,7 @@ export default function UserMenu() {
             <p className="text-text-secondary text-xs truncate">{user.email}</p>
             {profileIncomplete && (
               <a href={`/${locale}/settings`} className="block mt-1.5 px-2 py-1 rounded-md bg-amber-500/10 border border-amber-500/15 text-amber-400 text-xs leading-tight hover:bg-amber-500/15 transition-colors">
-                {!isDevanagariLocale(locale) ? 'Add birth details for personalized insights' : 'व्यक्तिगत अन्तर्दृष्टि के लिए जन्म विवरण जोड़ें'}
+                {tl({ en: 'Add birth details for personalized insights', hi: 'व्यक्तिगत अन्तर्दृष्टि के लिए जन्म विवरण जोड़ें', sa: 'व्यक्तिगत अन्तर्दृष्टि के लिए जन्म विवरण जोड़ें' }, locale)}
               </a>
             )}
           </div>
@@ -114,7 +115,7 @@ export default function UserMenu() {
             className="flex items-center gap-2 px-4 py-2 text-sm text-text-secondary hover:text-gold-light hover:bg-gold-primary/10 transition-colors"
           >
             <Settings className="w-3.5 h-3.5" />
-            {isDevanagariLocale(locale) ? 'सेटिंग्स' : 'Settings'}
+            {tl({ en: 'Settings', hi: 'सेटिंग्स', sa: 'सेटिंग्स' }, locale)}
           </a>
           <button
             onClick={() => { signOut(); setMenuOpen(false); }}

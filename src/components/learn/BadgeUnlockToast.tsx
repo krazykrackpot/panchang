@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Badge } from '@/lib/learn/badges';
@@ -52,7 +53,7 @@ export default function BadgeUnlockToast({ badges, locale }: BadgeUnlockToastPro
             <span className="text-3xl">{current.icon}</span>
             <div>
               <p className="text-gold-light text-xs font-bold uppercase tracking-widest">
-                {isHi ? 'बैज अनलॉक!' : 'Badge Unlocked!'}
+                {tl({ en: 'Badge Unlocked!', hi: 'बैज अनलॉक!', sa: 'बैज अनलॉक!' }, locale)}
               </p>
               <p className="text-text-primary text-sm font-semibold">
                 {isHi ? current.label.hi : current.label.en}

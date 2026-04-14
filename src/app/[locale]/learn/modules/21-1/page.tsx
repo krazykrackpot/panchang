@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -187,7 +188,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'ताजिक: भारतीय ज्योतिष की फारसी-अरबी परत' : 'Tajika: The Perso-Arabic Layer of Indian Astrology'}
+          {tl({ en: 'Tajika: The Perso-Arabic Layer of Indian Astrology', hi: 'ताजिक: भारतीय ज्योतिष की फारसी-अरबी परत', sa: 'ताजिक: भारतीय ज्योतिष की फारसी-अरबी परत' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -201,7 +202,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-          {isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}
+          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
@@ -220,7 +221,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'पाँच ताजिक योग' : 'The Five Tajika Yogas'}
+          {tl({ en: 'The Five Tajika Yogas', hi: 'पाँच ताजिक योग', sa: 'पाँच ताजिक योग' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -241,8 +242,8 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={isHi ? 'उदाहरण कुण्डली' : 'Example Chart'} />
+          {tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरण कुण्डली' }, locale)} />
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -261,12 +262,10 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'वर्षफल विश्लेषण में ताजिक का अनुप्रयोग' : 'Applying Tajika in Varshaphal Analysis'}
+          {tl({ en: 'Applying Tajika in Varshaphal Analysis', hi: 'वर्षफल विश्लेषण में ताजिक का अनुप्रयोग', sa: 'वर्षफल विश्लेषण में ताजिक का अनुप्रयोग' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          {isHi
-            ? 'व्यवहार में, ज्योतिषी वर्षफल (वार्षिक प्रत्यावर्तन) कुण्डली की जाँच करता है और पहचानता है कि वर्ष स्वामी (वर्षेश्वर) और अन्य ग्रहों के बीच कौन-से ताजिक योग बनते हैं। वर्ष स्वामी वार्षिक कुण्डली में सर्वोच्च बल वाला ग्रह है, प्रायः पंचवर्गीय बल द्वारा निर्धारित। वर्ष स्वामी द्वारा वादित घटनाएँ वर्ष की सर्वाधिक महत्त्वपूर्ण हैं। यदि वर्ष स्वामी सप्तम स्वामी से इत्थशाल बनाता है → विवाह/साझेदारी वर्ष। दशम स्वामी से इत्थशाल → करियर वर्ष। पंचम स्वामी से ईषराफ → शैक्षिक अवसर छूटा।'
-            : 'In practice, the astrologer examines the Varshaphal (annual return) chart and identifies which Tajika yogas form between the year lord (Varsheshvara) and other planets. The year lord is the planet with the highest strength in the annual chart, often determined by the Pancha-vargiya Bala (five-fold strength). Events promised by the year lord are the most significant for the year. If the year lord forms Ithasala with the 7th lord → marriage/partnership year. Ithasala with 10th lord → career year. Easarapha with 5th lord → educational opportunity missed.'}
+          {tl({ en: 'In practice, the astrologer examines the Varshaphal (annual return) chart and identifies which Tajika yogas form between the year lord (Varsheshvara) and other planets. The year lord is the planet with the highest strength in the annual chart, often determined by the Pancha-vargiya Bala (five-fold strength). Events promised by the year lord are the most significant for the year. If the year lord forms Ithasala with the 7th lord → marriage/partnership year. Ithasala with 10th lord → career year. Easarapha with 5th lord → educational opportunity missed.', hi: 'व्यवहार में, ज्योतिषी वर्षफल (वार्षिक प्रत्यावर्तन) कुण्डली की जाँच करता है और पहचानता है कि वर्ष स्वामी (वर्षेश्वर) और अन्य ग्रहों के बीच कौन-से ताजिक योग बनते हैं। वर्ष स्वामी वार्षिक कुण्डली में सर्वोच्च बल वाला ग्रह है, प्रायः पंचवर्गीय बल द्वारा निर्धारित। वर्ष स्वामी द्वारा वादित घटनाएँ वर्ष की सर्वाधिक महत्त्वपूर्ण हैं। यदि वर्ष स्वामी सप्तम स्वामी से इत्थशाल बनाता है → विवाह/साझेदारी वर्ष। दशम स्वामी से इत्थशाल → करियर वर्ष। पंचम स्वामी से ईषराफ → शैक्षिक अवसर छूटा।', sa: 'व्यवहार में, ज्योतिषी वर्षफल (वार्षिक प्रत्यावर्तन) कुण्डली की जाँच करता है और पहचानता है कि वर्ष स्वामी (वर्षेश्वर) और अन्य ग्रहों के बीच कौन-से ताजिक योग बनते हैं। वर्ष स्वामी वार्षिक कुण्डली में सर्वोच्च बल वाला ग्रह है, प्रायः पंचवर्गीय बल द्वारा निर्धारित। वर्ष स्वामी द्वारा वादित घटनाएँ वर्ष की सर्वाधिक महत्त्वपूर्ण हैं। यदि वर्ष स्वामी सप्तम स्वामी से इत्थशाल बनाता है → विवाह/साझेदारी वर्ष। दशम स्वामी से इत्थशाल → करियर वर्ष। पंचम स्वामी से ईषराफ → शैक्षिक अवसर छूटा।' }, locale)}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
           The timing within the year is refined using Mudda Dasha (Module 21-3). The Tajika yoga tells you IF the event will happen; the Mudda Dasha tells you WHICH MONTH. Together with Sahams (Module 21-2), this creates a comprehensive annual prediction framework that goes far beyond what a natal chart alone can provide.
@@ -275,7 +274,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}
+          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -286,7 +285,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}
+          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi

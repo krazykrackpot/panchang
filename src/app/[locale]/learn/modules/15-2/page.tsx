@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
@@ -44,7 +45,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'जप संख्या एवं समय' : 'Repetition Counts & Timing'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Repetition Counts & Timing', hi: 'जप संख्या एवं समय', sa: 'जप संख्या एवं समय' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
 
           {isHi
@@ -87,7 +88,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'संकल्प की भूमिका' : 'The Role of Sankalpa'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'The Role of Sankalpa', hi: 'संकल्प की भूमिका', sa: 'संकल्प की भूमिका' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
 
           {isHi
@@ -100,7 +101,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'ग्रह अनुसार मन्दिर पूजा' : 'Temple Worship by Planet'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Temple Worship by Planet', hi: 'ग्रह अनुसार मन्दिर पूजा', sa: 'ग्रह अनुसार मन्दिर पूजा' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Each planet has associated deities and temples: Sun — Surya temples (Konark, Modhera), offer red flowers; Moon — Shiva temples (Chandra is a devotee of Shiva), offer white flowers and milk; Mars — Hanuman and Kartikeya temples, offer red flowers and sindoor; Mercury — Vishnu temples, offer green items and durva grass; Jupiter — any temple (guru of devas), offer yellow flowers and turmeric; Venus — Lakshmi temples, offer white flowers and sweets; Saturn — Shani temples (Shingnapur, Thirunallar), offer mustard oil lamps; Rahu — Durga temples, offer blue flowers; Ketu — Ganesha temples, offer kusha grass. Visiting the relevant temple on the planet&apos;s weekday enhances the remedial effect.
         </p>
@@ -134,7 +135,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'विवाद — उपचारों के लिए भुगतान' : 'The Controversy — Paying for Remedies'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'The Controversy — Paying for Remedies', hi: 'विवाद — उपचारों के लिए भुगतान', sa: 'विवाद — उपचारों के लिए भुगतान' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
 
           {isHi
@@ -147,7 +148,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'उपचारों का क्रम' : 'Hierarchy of Remedies'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Hierarchy of Remedies', hi: 'उपचारों का क्रम', sa: 'उपचारों का क्रम' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Classical texts suggest a hierarchy of remedial effectiveness: (1) Mantra japa — the most personal and powerful, requires only time and devotion; (2) Daan (charity) — directly generates positive karma by helping others; (3) Puja and Homa — formal rituals that invoke divine intervention; (4) Gemstones — passive remedies that work continuously but amplify rather than pacify; (5) Yantra — mystical diagrams that serve as focal points for planetary energy. The best approach combines multiple levels: wear the appropriate gemstone while performing daily japa and regular charity on the relevant day. Consistency matters more than intensity — 108 mantras daily for a year outweighs a one-time elaborate homa.
         </p>

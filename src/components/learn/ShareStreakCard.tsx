@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useLocale } from 'next-intl';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { getLevel, checkBadges } from '@/lib/learn/badges';
@@ -40,9 +41,7 @@ export default function ShareStreakCard() {
   const levelName = isHi ? level.label.hi : level.label.en;
   const { earned } = checkBadges(progress, streak);
 
-  const shareText = isDevanagariLocale(locale)
-    ? `${icon} ${levelName} | \u{1F525} ${streak.streakDays} दिन की लय | \u{1F3C5} ${earned.length} बैज — देखो पंचांग पर वैदिक ज्योतिष सीख रहे हैं!`
-    : `${icon} ${levelName} | \u{1F525} ${streak.streakDays} Day Streak | \u{1F3C5} ${earned.length} Badges — Learning Vedic Astrology on Dekho Panchang!`;
+  const shareText = tl({ en: `${icon} ${levelName} | \u{1F525} ${streak.streakDays} Day Streak | \u{1F3C5} ${earned.length} Badges — Learning Vedic Astrology on Dekho Panchang!`, hi: `${icon} ${levelName} | \u{1F525} ${streak.streakDays} दिन की लय | \u{1F3C5} ${earned.length} बैज — देखो पंचांग पर वैदिक ज्योतिष सीख रहे हैं!`, sa: `${icon} ${levelName} | \u{1F525} ${streak.streakDays} दिन की लय | \u{1F3C5} ${earned.length} बैज — देखो पंचांग पर वैदिक ज्योतिष सीख रहे हैं!` }, locale);
 
   return (
     <div>

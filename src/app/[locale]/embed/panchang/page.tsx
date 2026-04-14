@@ -1,5 +1,6 @@
 'use client';
 
+import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import type { Locale , LocaleText} from '@/types/panchang';
@@ -44,13 +45,13 @@ export default function PanchangWidget() {
 
   if (error) return (
     <div style={{ fontFamily: 'Inter, system-ui, sans-serif', background: '#0a0e27', color: '#8a8478', padding: '16px', borderRadius: '12px', textAlign: 'center', fontSize: '12px' }}>
-      {isHi ? 'पंचांग लोड नहीं हो सका। कृपया स्थान अनुमति दें।' : 'Could not load panchang. Please allow location access.'}
+      {tl({ en: 'Could not load panchang. Please allow location access.', hi: 'पंचांग लोड नहीं हो सका। कृपया स्थान अनुमति दें।', sa: 'पंचांग लोड नहीं हो सका। कृपया स्थान अनुमति दें।' }, locale)}
     </div>
   );
 
   if (!data) return (
     <div style={{ fontFamily: 'Inter, system-ui, sans-serif', background: '#0a0e27', color: '#d4a853', padding: '20px', borderRadius: '12px', textAlign: 'center', fontSize: '12px' }}>
-      {isHi ? 'पंचांग लोड हो रहा है...' : 'Loading panchang...'}
+      {tl({ en: 'Loading panchang...', hi: 'पंचांग लोड हो रहा है...', sa: 'पंचांग लोड हो रहा है...' }, locale)}
     </div>
   );
 
@@ -76,7 +77,7 @@ export default function PanchangWidget() {
       {/* Header */}
       <div style={{ background: `linear-gradient(135deg, ${bgCard}, ${bg})`, padding: '12px 16px', borderBottom: `1px solid ${gold}20` }}>
         <div style={{ color: goldLight, fontWeight: 700, fontSize: '14px', marginBottom: '2px' }}>
-          {isHi ? 'आज का पंचांग' : "Today's Panchang"}
+          {tl({ en: "Today's Panchang", hi: "आज का पंचांग", sa: "आज का पंचांग" }, locale)}
         </div>
         <div style={{ color: textSec, fontSize: '10px' }}>
           {L(data.vara.name)} — {data.date}
@@ -88,11 +89,11 @@ export default function PanchangWidget() {
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <tbody>
             {[
-              { label: isHi ? 'तिथि' : 'Tithi', value: L(data.tithi.name) },
-              { label: isHi ? 'नक्षत्र' : 'Nakshatra', value: `${L(data.nakshatra.name)} (${isHi ? 'पाद' : 'Pada'} ${data.nakshatra.pada})` },
-              { label: isHi ? 'योग' : 'Yoga', value: L(data.yoga.name) },
-              { label: isHi ? 'करण' : 'Karana', value: L(data.karana.name) },
-              { label: isHi ? 'वार' : 'Vara', value: L(data.vara.name) },
+              { label: tl({ en: 'Tithi', hi: 'तिथि', sa: 'तिथि' }, locale), value: L(data.tithi.name) },
+              { label: tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्र' }, locale), value: `${L(data.nakshatra.name)} (${tl({ en: 'Pada', hi: 'पाद', sa: 'पाद' }, locale)} ${data.nakshatra.pada})` },
+              { label: tl({ en: 'Yoga', hi: 'योग', sa: 'योग' }, locale), value: L(data.yoga.name) },
+              { label: tl({ en: 'Karana', hi: 'करण', sa: 'करण' }, locale), value: L(data.karana.name) },
+              { label: tl({ en: 'Vara', hi: 'वार', sa: 'वार' }, locale), value: L(data.vara.name) },
             ].map(({ label, value }) => (
               <tr key={label}>
                 <td style={{ padding: '3px 0', color: textSec, width: '35%', verticalAlign: 'top' }}>{label}</td>
@@ -106,15 +107,15 @@ export default function PanchangWidget() {
       {/* Timing row */}
       <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 16px', background: bgCard, borderTop: `1px solid ${gold}15` }}>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ color: textSec, fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{isHi ? 'सूर्योदय' : 'Sunrise'}</div>
+          <div style={{ color: textSec, fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{tl({ en: 'Sunrise', hi: 'सूर्योदय', sa: 'सूर्योदय' }, locale)}</div>
           <div style={{ color: '#e67e22', fontWeight: 700, fontFamily: 'monospace' }}>{data.sunrise}</div>
         </div>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ color: textSec, fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{isHi ? 'सूर्यास्त' : 'Sunset'}</div>
+          <div style={{ color: textSec, fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{tl({ en: 'Sunset', hi: 'सूर्यास्त', sa: 'सूर्यास्त' }, locale)}</div>
           <div style={{ color: '#3498db', fontWeight: 700, fontFamily: 'monospace' }}>{data.sunset}</div>
         </div>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ color: textSec, fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{isHi ? 'राहु काल' : 'Rahu Kaal'}</div>
+          <div style={{ color: textSec, fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{tl({ en: 'Rahu Kaal', hi: 'राहु काल', sa: 'राहु काल' }, locale)}</div>
           <div style={{ color: '#e74c3c', fontWeight: 700, fontFamily: 'monospace', fontSize: '10px' }}>{data.rahuKaal.start}–{data.rahuKaal.end}</div>
         </div>
       </div>

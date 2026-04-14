@@ -239,19 +239,19 @@ const TIMELINE: TimelineEntry[] = [
    CROSS-REFERENCE LINKS
    ════════════════════════════════════════════════════════════════ */
 const CROSS_REFS: { label: Record<string, string>; href: string }[] = [
-  { label: { en: 'Calculus', hi: 'कलनशास्त्र', sa: 'कलनशास्त्र', mai: 'कलनशास्त्र', mr: 'कलनशास्त्र', ta: 'Calculus', te: 'Calculus', bn: 'Calculus', kn: 'Calculus', gu: 'Calculus' }, href: '/learn/contributions/calculus' },
-  { label: { en: 'Zero', hi: 'शून्य', sa: 'शून्य', mai: 'शून्य', mr: 'शून्य', ta: 'Zero', te: 'Zero', bn: 'Zero', kn: 'Zero', gu: 'Zero' }, href: '/learn/contributions/zero' },
-  { label: { en: 'Gravity', hi: 'गुरुत्वाकर्षण', sa: 'गुरुत्वाकर्षण', mai: 'गुरुत्वाकर्षण', mr: 'गुरुत्वाकर्षण', ta: 'Gravity', te: 'Gravity', bn: 'Gravity', kn: 'Gravity', gu: 'Gravity' }, href: '/learn/contributions/gravity' },
+  { label: { en: 'Calculus', hi: 'कलनशास्त्र', sa: 'कलनशास्त्र', mai: 'कलनशास्त्र', mr: 'कलनशास्त्र', ta: 'நுண்கணிதம்', te: 'కలనశాస్త్రం', bn: 'ক্যালকুলাস', kn: 'ಕಲನಶಾಸ್ತ್ರ', gu: 'કેલ્ક્યુલસ' }, href: '/learn/contributions/calculus' },
+  { label: { en: 'Zero', hi: 'शून्य', sa: 'शून्य', mai: 'शून्य', mr: 'शून्य', ta: 'பூஜ்யம்', te: 'సున్న', bn: 'শূন্য', kn: 'ಶೂನ್ಯ', gu: 'શૂન્ય' }, href: '/learn/contributions/zero' },
+  { label: { en: 'Gravity', hi: 'गुरुत्वाकर्षण', sa: 'गुरुत्वाकर्षण', mai: 'गुरुत्वाकर्षण', mr: 'गुरुत्वाकर्षण', ta: 'புவியீர்ப்பு', te: 'గురుత్వాకర్షణ', bn: 'মাধ্যাকর্ষণ', kn: 'ಗುರುತ್ವಾಕರ್ಷಣೆ', gu: 'ગુરુત્વાકર્ષણ' }, href: '/learn/contributions/gravity' },
   { label: { en: 'Pi (π)', hi: 'पाई (π)', sa: 'पाई (π)', mai: 'पाई (π)', mr: 'पाई (π)', ta: 'Pi (π)', te: 'Pi (π)', bn: 'Pi (π)', kn: 'Pi (π)', gu: 'Pi (π)' }, href: '/learn/contributions/pi' },
-  { label: { en: 'Sine Tables', hi: 'ज्या सारणी', sa: 'ज्या सारणी', mai: 'ज्या सारणी', mr: 'ज्या सारणी', ta: 'Sine Tables', te: 'Sine Tables', bn: 'Sine Tables', kn: 'Sine Tables', gu: 'Sine Tables' }, href: '/learn/contributions/sine' },
-  { label: { en: 'Binary Numbers', hi: 'द्विआधारी संख्याएँ', sa: 'द्विआधारी संख्याएँ', mai: 'द्विआधारी संख्याएँ', mr: 'द्विआधारी संख्याएँ', ta: 'Binary Numbers', te: 'Binary Numbers', bn: 'Binary Numbers', kn: 'Binary Numbers', gu: 'Binary Numbers' }, href: '/learn/contributions/binary' },
-  { label: { en: 'Fibonacci Sequence', hi: 'फिबोनाची अनुक्रम', sa: 'फिबोनाची अनुक्रम', mai: 'फिबोनाची अनुक्रम', mr: 'फिबोनाची अनुक्रम', ta: 'Fibonacci Sequence', te: 'Fibonacci Sequence', bn: 'Fibonacci Sequence', kn: 'Fibonacci Sequence', gu: 'Fibonacci Sequence' }, href: '/learn/contributions/fibonacci' },
-  { label: { en: 'Negative Numbers', hi: 'ऋण संख्याएँ', sa: 'ऋण संख्याएँ', mai: 'ऋण संख्याएँ', mr: 'ऋण संख्याएँ', ta: 'Negative Numbers', te: 'Negative Numbers', bn: 'Negative Numbers', kn: 'Negative Numbers', gu: 'Negative Numbers' }, href: '/learn/contributions/negative-numbers' },
+  { label: { en: 'Sine Tables', hi: 'ज्या सारणी', sa: 'ज्या सारणी', mai: 'ज्या सारणी', mr: 'ज्या सारणी', ta: 'ஜ்யா அட்டவணைகள்', te: 'జ్యా పట్టికలు', bn: 'জ্যা সারণি', kn: 'ಜ್ಯಾ ಕೋಷ್ಟಕ', gu: 'જ્યા કોષ્ટકો' }, href: '/learn/contributions/sine' },
+  { label: { en: 'Binary Numbers', hi: 'द्विआधारी संख्याएँ', sa: 'द्विआधारी संख्याएँ', mai: 'द्विआधारी संख्याएँ', mr: 'द्विआधारी संख्याएँ', ta: 'இரும எண்கள்', te: 'బైనరీ సంఖ్యలు', bn: 'বাইনারি সংখ্যা', kn: 'ಬೈನರಿ ಸಂಖ್ಯೆ', gu: 'બાઈનરી સંખ્યાઓ' }, href: '/learn/contributions/binary' },
+  { label: { en: 'Fibonacci Sequence', hi: 'फिबोनाची अनुक्रम', sa: 'फिबोनाची अनुक्रम', mai: 'फिबोनाची अनुक्रम', mr: 'फिबोनाची अनुक्रम', ta: 'ஃபிபொனாச்சி தொடர்', te: 'ఫిబొనాచ్చి శ్రేణి', bn: 'ফিবোনাচ্চি ক্রম', kn: 'ಫಿಬೊನಾಚ್ಚಿ ಅನುಕ್ರಮ', gu: 'ફિબોનાચ્ચી શ્રેણી' }, href: '/learn/contributions/fibonacci' },
+  { label: { en: 'Negative Numbers', hi: 'ऋण संख्याएँ', sa: 'ऋण संख्याएँ', mai: 'ऋण संख्याएँ', mr: 'ऋण संख्याएँ', ta: 'எதிர்மறை எண்கள்', te: 'ఋణ సంఖ్యలు', bn: 'ঋণাত্মক সংখ্যা', kn: 'ಋಣಾತ್ಮಕ ಸಂಖ್ಯೆ', gu: 'ઋણ સંખ્યાઓ' }, href: '/learn/contributions/negative-numbers' },
   { label: { en: 'Earth\'s Rotation', hi: 'पृथ्वी का घूर्णन' }, href: '/learn/contributions/earth-rotation' },
-  { label: { en: 'Speed of Light', hi: 'प्रकाश की गति', sa: 'प्रकाश की गति', mai: 'प्रकाश की गति', mr: 'प्रकाश की गति', ta: 'Speed of Light', te: 'Speed of Light', bn: 'Speed of Light', kn: 'Speed of Light', gu: 'Speed of Light' }, href: '/learn/contributions/speed-of-light' },
-  { label: { en: 'Cosmic Time', hi: 'ब्रह्मांडीय समय', sa: 'ब्रह्मांडीय समय', mai: 'ब्रह्मांडीय समय', mr: 'ब्रह्मांडीय समय', ta: 'Cosmic Time', te: 'Cosmic Time', bn: 'Cosmic Time', kn: 'Cosmic Time', gu: 'Cosmic Time' }, href: '/learn/contributions/cosmic-time' },
-  { label: { en: 'Hora System', hi: 'होरा प्रणाली', sa: 'होरा प्रणाली', mai: 'होरा प्रणाली', mr: 'होरा प्रणाली', ta: 'Hora System', te: 'Hora System', bn: 'Hora System', kn: 'Hora System', gu: 'Hora System' }, href: '/learn/hora' },
-  { label: { en: 'Eclipses', hi: 'ग्रहण', sa: 'ग्रहण', mai: 'ग्रहण', mr: 'ग्रहण', ta: 'Eclipses', te: 'Eclipses', bn: 'Eclipses', kn: 'Eclipses', gu: 'Eclipses' }, href: '/learn/eclipses' },
+  { label: { en: 'Speed of Light', hi: 'प्रकाश की गति', sa: 'प्रकाश की गति', mai: 'प्रकाश की गति', mr: 'प्रकाश की गति', ta: 'ஒளியின் வேகம்', te: 'కాంతి వేగం', bn: 'আলোর গতি', kn: 'ಬೆಳಕಿನ ವೇಗ', gu: 'પ્રકાશની ગતિ' }, href: '/learn/contributions/speed-of-light' },
+  { label: { en: 'Cosmic Time', hi: 'ब्रह्मांडीय समय', sa: 'ब्रह्मांडीय समय', mai: 'ब्रह्मांडीय समय', mr: 'ब्रह्मांडीय समय', ta: 'அண்ட காலம்', te: 'విశ్వ కాలం', bn: 'মহাজাগতিক সময়', kn: 'ಬ್ರಹ್ಮಾಂಡ ಕಾಲ', gu: 'બ્રહ્માંડ કાળ' }, href: '/learn/contributions/cosmic-time' },
+  { label: { en: 'Hora System', hi: 'होरा प्रणाली', sa: 'होरा प्रणाली', mai: 'होरा प्रणाली', mr: 'होरा प्रणाली', ta: 'ஹோரா முறை', te: 'హోర పద్ధతి', bn: 'হোরা পদ্ধতি', kn: 'ಹೋರಾ ಪದ್ಧತಿ', gu: 'હોરા પદ્ધતિ' }, href: '/learn/hora' },
+  { label: { en: 'Eclipses', hi: 'ग्रहण', sa: 'ग्रहण', mai: 'ग्रहण', mr: 'ग्रहण', ta: 'கிரகணங்கள்', te: 'గ్రహణాలు', bn: 'গ্রহণ', kn: 'ಗ್ರಹಣಗಳು', gu: 'ગ્રહણો' }, href: '/learn/eclipses' },
 ];
 
 /* ════════════════════════════════════════════════════════════════
@@ -534,7 +534,7 @@ export default async function TimelinePage({ params }: { params: Promise<{ local
             className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold mb-5 border border-red-500/40"
             style={{ background: 'rgba(239,68,68,0.12)', color: '#fca5a5' }}
           >
-            {lt({ en: 'The Attribution Gap', hi: 'श्रेय का अंतर', sa: 'श्रेय का अंतर', mai: 'श्रेय का अंतर', mr: 'श्रेय का अंतर', ta: 'The Attribution Gap', te: 'The Attribution Gap', bn: 'The Attribution Gap', kn: 'The Attribution Gap', gu: 'The Attribution Gap' } as LocaleText, locale)}
+            {lt({ en: 'The Attribution Gap', hi: 'श्रेय का अंतर', sa: 'श्रेय का अंतर', mai: 'श्रेय का अंतर', mr: 'श्रेय का अंतर', ta: 'காரணிய இடைவெளி', te: 'ఆపాదన అంతరం', bn: 'কৃতিত্ব ব্যবধান', kn: 'ಶ್ರೇಯ ಅಂತರ', gu: 'શ્રેય અંતર' } as LocaleText, locale)}
           </div>
 
           <p className="text-base sm:text-lg font-medium leading-relaxed relative z-10" style={{ color: '#e6e2d8' }}>

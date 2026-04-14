@@ -40,7 +40,7 @@ export const RASHI_DETAILS: RashiDetail[] = [
     luckyColors: {
       en: 'Red, Scarlet, Copper', hi: 'लाल, सिंदूरी, ताम्र', sa: 'रक्तवर्णः, सिन्दूरवर्णः, ताम्रवर्णः', mai: 'लाल, सिंदूरी, ताम्र', mr: 'लाल, सिंदूरी, ताम्र', ta: 'Red, Scarlet, Copper', te: 'Red, Scarlet, Copper', bn: 'Red, Scarlet, Copper', kn: 'Red, Scarlet, Copper', gu: 'Red, Scarlet, Copper' },
     luckyGems: {
-      en: 'Red Coral (Moonga)', hi: 'लाल मूंगा (मूंगा)', sa: 'प्रवालः (विद्रुमः)', mai: 'लाल मूंगा (मूंगा)', mr: 'लाल मूंगा (मूंगा)', ta: 'Red Coral (Moonga)', te: 'Red Coral (Moonga)', bn: 'Red Coral (Moonga)', kn: 'Red Coral (Moonga)', gu: 'Red Coral (Moonga)' },
+      en: 'Red Coral (Moonga)', hi: 'लाल मूंगा (मूंगा)', sa: 'प्रवालः (विद्रुमः)', mai: 'लाल मूंगा (मूंगा)', mr: 'लाल मूंगा (मूंगा)', ta: 'சிவப்பு பவளம் (மூங்கா)', te: 'ఎర్ర పగడం (మూంగా)', bn: 'লাল প্রবাল (মুঙ্গা)', kn: 'ಕೆಂಪು ಹವಳ (ಮೂಂಗಾ)', gu: 'લાલ પરવાળું (મૂંગા)' },
     compatibleRashis: [5, 9, 3, 11],
     faqs: [
       {
@@ -126,7 +126,7 @@ export const RASHI_DETAILS: RashiDetail[] = [
     luckyColors: {
       en: 'Green, Yellow, Light Blue', hi: 'हरा, पीला, हल्का नीला', sa: 'हरितवर्णः, पीतवर्णः, ईषन्नीलवर्णः', mai: 'हरा, पीला, हल्का नीला', mr: 'हरा, पीला, हल्का नीला', ta: 'Green, Yellow, Light Blue', te: 'Green, Yellow, Light Blue', bn: 'Green, Yellow, Light Blue', kn: 'Green, Yellow, Light Blue', gu: 'Green, Yellow, Light Blue' },
     luckyGems: {
-      en: 'Emerald (Panna)', hi: 'पन्ना', sa: 'मरकतमणिः (पन्ना)', mai: 'पन्ना', mr: 'पन्ना', ta: 'Emerald (Panna)', te: 'Emerald (Panna)', bn: 'Emerald (Panna)', kn: 'Emerald (Panna)', gu: 'Emerald (Panna)' },
+      en: 'Emerald (Panna)', hi: 'पन्ना', sa: 'मरकतमणिः (पन्ना)', mai: 'पन्ना', mr: 'पन्ना', ta: 'மரகதம் (பன்னா)', te: 'మరకతం (పన్నా)', bn: 'পান্না', kn: 'ಪಚ್ಚೆ (ಪನ್ನಾ)', gu: 'પન્ના' },
     compatibleRashis: [7, 11, 1, 5],
     faqs: [
       {
@@ -165,7 +165,7 @@ export const RASHI_DETAILS: RashiDetail[] = [
     luckyColors: {
       en: 'White, Silver, Pale Yellow', hi: 'सफ़ेद, चाँदी, हल्का पीला', sa: 'श्वेतवर्णः, रजतवर्णः, ईषत्पीतवर्णः', mai: 'सफ़ेद, चाँदी, हल्का पीला', mr: 'सफ़ेद, चाँदी, हल्का पीला', ta: 'White, Silver, Pale Yellow', te: 'White, Silver, Pale Yellow', bn: 'White, Silver, Pale Yellow', kn: 'White, Silver, Pale Yellow', gu: 'White, Silver, Pale Yellow' },
     luckyGems: {
-      en: 'Pearl (Moti)', hi: 'मोती', sa: 'मुक्ताफलम् (मौक्तिकम्)', mai: 'मोती', mr: 'मोती', ta: 'Pearl (Moti)', te: 'Pearl (Moti)', bn: 'Pearl (Moti)', kn: 'Pearl (Moti)', gu: 'Pearl (Moti)' },
+      en: 'Pearl (Moti)', hi: 'मोती', sa: 'मुक्ताफलम् (मौक्तिकम्)', mai: 'मोती', mr: 'मोती', ta: 'முத்து (மோதி)', te: 'ముత్యం (మోతీ)', bn: 'মুক্তা (মোতি)', kn: 'ಮುತ್ತು (ಮೋತಿ)', gu: 'મોતી' },
     compatibleRashis: [8, 12, 2, 6],
     faqs: [
       {
@@ -210,7 +210,7 @@ export const RASHI_DETAILS: RashiDetail[] = [
     luckyColors: {
       en: 'Gold, Orange, Royal Red', hi: 'सुनहरा, नारंगी, शाही लाल', sa: 'सुवर्णवर्णः, नारङ्गवर्णः, राजरक्तवर्णः', mai: 'सुनहरा, नारंगी, शाही लाल', mr: 'सुनहरा, नारंगी, शाही लाल', ta: 'Gold, Orange, Royal Red', te: 'Gold, Orange, Royal Red', bn: 'Gold, Orange, Royal Red', kn: 'Gold, Orange, Royal Red', gu: 'Gold, Orange, Royal Red' },
     luckyGems: {
-      en: 'Ruby (Manik)', hi: 'माणिक्य (माणिक)', sa: 'माणिक्यम् (पद्मरागः)', mai: 'माणिक्य (माणिक)', mr: 'माणिक्य (माणिक)', ta: 'Ruby (Manik)', te: 'Ruby (Manik)', bn: 'Ruby (Manik)', kn: 'Ruby (Manik)', gu: 'Ruby (Manik)' },
+      en: 'Ruby (Manik)', hi: 'माणिक्य (माणिक)', sa: 'माणिक्यम् (पद्मरागः)', mai: 'माणिक्य (माणिक)', mr: 'माणिक्य (माणिक)', ta: 'மாணிக்கம்', te: 'మాణిక్యం', bn: 'চুনি (মাণিক্য)', kn: 'ಮಾಣಿಕ್ಯ', gu: 'માણેક' },
     compatibleRashis: [1, 9, 3, 7],
     faqs: [
       {
@@ -251,7 +251,7 @@ export const RASHI_DETAILS: RashiDetail[] = [
     luckyColors: {
       en: 'Green, Dark Green, Earthy Brown', hi: 'हरा, गहरा हरा, मिट्टी जैसा भूरा', sa: 'हरितवर्णः, गहनहरितवर्णः, मृत्तिकावर्णः', mai: 'हरा, गहरा हरा, मिट्टी जैसा भूरा', mr: 'हरा, गहरा हरा, मिट्टी जैसा भूरा', ta: 'Green, Dark Green, Earthy Brown', te: 'Green, Dark Green, Earthy Brown', bn: 'Green, Dark Green, Earthy Brown', kn: 'Green, Dark Green, Earthy Brown', gu: 'Green, Dark Green, Earthy Brown' },
     luckyGems: {
-      en: 'Emerald (Panna)', hi: 'पन्ना', sa: 'मरकतमणिः (पन्ना)', mai: 'पन्ना', mr: 'पन्ना', ta: 'Emerald (Panna)', te: 'Emerald (Panna)', bn: 'Emerald (Panna)', kn: 'Emerald (Panna)', gu: 'Emerald (Panna)' },
+      en: 'Emerald (Panna)', hi: 'पन्ना', sa: 'मरकतमणिः (पन्ना)', mai: 'पन्ना', mr: 'पन्ना', ta: 'மரகதம் (பன்னா)', te: 'మరకతం (పన్నా)', bn: 'পান্না', kn: 'ಪಚ್ಚೆ (ಪನ್ನಾ)', gu: 'પન્ના' },
     compatibleRashis: [2, 10, 4, 8],
     faqs: [
       {
@@ -329,9 +329,9 @@ export const RASHI_DETAILS: RashiDetail[] = [
       en: 'Jealous, secretive, vengeful, controlling, obsessive, mistrustful, manipulative, self-destructive tendencies', hi: 'ईर्ष्यालु, गोपनीय, प्रतिशोधी, नियंत्रणकारी, जुनूनी, अविश्वासी, चालाक, आत्मविनाशकारी प्रवृत्तियाँ', sa: 'ईर्ष्या, गोपनशीलता, प्रतीकारभावः, नियन्त्रणप्रवृत्तिः, आसक्तिः, अविश्वासः, छलम्, आत्मविनाशप्रवणता', mai: 'ईर्ष्यालु, गोपनीय, प्रतिशोधी, नियंत्रणकारी, जुनूनी, अविश्वासी, चालाक, आत्मविनाशकारी प्रवृत्तियाँ', mr: 'ईर्ष्यालु, गोपनीय, प्रतिशोधी, नियंत्रणकारी, जुनूनी, अविश्वासी, चालाक, आत्मविनाशकारी प्रवृत्तियाँ', ta: 'Jealous, secretive, vengeful, controlling, obsessive, mistrustful, manipulative, self-destructive tendencies', te: 'Jealous, secretive, vengeful, controlling, obsessive, mistrustful, manipulative, self-destructive tendencies', bn: 'Jealous, secretive, vengeful, controlling, obsessive, mistrustful, manipulative, self-destructive tendencies', kn: 'Jealous, secretive, vengeful, controlling, obsessive, mistrustful, manipulative, self-destructive tendencies', gu: 'Jealous, secretive, vengeful, controlling, obsessive, mistrustful, manipulative, self-destructive tendencies' },
     luckyNumbers: [9, 1, 3],
     luckyColors: {
-      en: 'Deep Red, Maroon, Black', hi: 'गहरा लाल, मैरून, काला', sa: 'गहनरक्तवर्णः, कषायवर्णः, कृष्णवर्णः', mai: 'गहरा लाल, मैरून, काला', mr: 'गहरा लाल, मैरून, काला', ta: 'Deep Red, Maroon, Black', te: 'Deep Red, Maroon, Black', bn: 'Deep Red, Maroon, Black', kn: 'Deep Red, Maroon, Black', gu: 'Deep Red, Maroon, Black' },
+      en: 'Deep Red, Maroon, Black', hi: 'गहरा लाल, मैरून, काला', sa: 'गहनरक्तवर्णः, कषायवर्णः, कृष्णवर्णः', mai: 'गहरा लाल, मैरून, काला', mr: 'गहरा लाल, मैरून, काला', ta: 'அடர் சிவப்பு, கருஞ்சிவப்பு, கருப்பு', te: 'ముదురు ఎరుపు, మెరూన్, నల్లం', bn: 'গাঢ় লাল, মেরুন, কালো', kn: 'ಕಡು ಕೆಂಪು, ಮೆರೂನ್, ಕಪ್ಪು', gu: 'ઘેરો લાલ, મરૂન, કાળો' },
     luckyGems: {
-      en: 'Red Coral (Moonga)', hi: 'लाल मूंगा (मूंगा)', sa: 'प्रवालः (विद्रुमः)', mai: 'लाल मूंगा (मूंगा)', mr: 'लाल मूंगा (मूंगा)', ta: 'Red Coral (Moonga)', te: 'Red Coral (Moonga)', bn: 'Red Coral (Moonga)', kn: 'Red Coral (Moonga)', gu: 'Red Coral (Moonga)' },
+      en: 'Red Coral (Moonga)', hi: 'लाल मूंगा (मूंगा)', sa: 'प्रवालः (विद्रुमः)', mai: 'लाल मूंगा (मूंगा)', mr: 'लाल मूंगा (मूंगा)', ta: 'சிவப்பு பவளம் (மூங்கா)', te: 'ఎర్ర పగడం (మూంగా)', bn: 'লাল প্রবাল (মুঙ্গা)', kn: 'ಕೆಂಪು ಹವಳ (ಮೂಂಗಾ)', gu: 'લાલ પરવાળું (મૂંગા)' },
     compatibleRashis: [4, 12, 6, 10],
     faqs: [
       {
@@ -376,7 +376,7 @@ export const RASHI_DETAILS: RashiDetail[] = [
     luckyColors: {
       en: 'Yellow, Golden, Orange', hi: 'पीला, सुनहरा, नारंगी', sa: 'पीतवर्णः, सुवर्णवर्णः, नारङ्गवर्णः', mai: 'पीला, सुनहरा, नारंगी', mr: 'पीला, सुनहरा, नारंगी', ta: 'Yellow, Golden, Orange', te: 'Yellow, Golden, Orange', bn: 'Yellow, Golden, Orange', kn: 'Yellow, Golden, Orange', gu: 'Yellow, Golden, Orange' },
     luckyGems: {
-      en: 'Yellow Sapphire (Pukhraj)', hi: 'पुखराज', sa: 'पुष्परागः (पुखराजः)', mai: 'पुखराज', mr: 'पुखराज', ta: 'Yellow Sapphire (Pukhraj)', te: 'Yellow Sapphire (Pukhraj)', bn: 'Yellow Sapphire (Pukhraj)', kn: 'Yellow Sapphire (Pukhraj)', gu: 'Yellow Sapphire (Pukhraj)' },
+      en: 'Yellow Sapphire (Pukhraj)', hi: 'पुखराज', sa: 'पुष्परागः (पुखराजः)', mai: 'पुखराज', mr: 'पुखराज', ta: 'மஞ்சள் புஷ்பராகம் (புக்ராஜ்)', te: 'పుష్యరాగం (పుఖ్‌రాజ్)', bn: 'পোখরাজ (পুষ্পরাগ)', kn: 'ಪುಷ್ಯರಾಗ (ಪುಖ್‌ರಾಜ್)', gu: 'પોખરાજ (પુષ્પરાગ)' },
     compatibleRashis: [1, 5, 3, 7],
     faqs: [
       {
@@ -419,7 +419,7 @@ export const RASHI_DETAILS: RashiDetail[] = [
     luckyColors: {
       en: 'Black, Dark Blue, Brown', hi: 'काला, गहरा नीला, भूरा', sa: 'कृष्णवर्णः, गहननीलवर्णः, कपिलवर्णः', mai: 'काला, गहरा नीला, भूरा', mr: 'काला, गहरा नीला, भूरा', ta: 'Black, Dark Blue, Brown', te: 'Black, Dark Blue, Brown', bn: 'Black, Dark Blue, Brown', kn: 'Black, Dark Blue, Brown', gu: 'Black, Dark Blue, Brown' },
     luckyGems: {
-      en: 'Blue Sapphire (Neelam)', hi: 'नीलम', sa: 'नीलमणिः (इन्द्रनीलः)', mai: 'नीलम', mr: 'नीलम', ta: 'Blue Sapphire (Neelam)', te: 'Blue Sapphire (Neelam)', bn: 'Blue Sapphire (Neelam)', kn: 'Blue Sapphire (Neelam)', gu: 'Blue Sapphire (Neelam)' },
+      en: 'Blue Sapphire (Neelam)', hi: 'नीलम', sa: 'नीलमणिः (इन्द्रनीलः)', mai: 'नीलम', mr: 'नीलम', ta: 'நீலக்கல் (நீலம்)', te: 'నీలం', bn: 'নীলম', kn: 'ನೀಲಮಣಿ (ನೀಲಂ)', gu: 'નીલમ' },
     compatibleRashis: [2, 6, 8, 12],
     faqs: [
       {
@@ -462,7 +462,7 @@ export const RASHI_DETAILS: RashiDetail[] = [
     luckyColors: {
       en: 'Electric Blue, Dark Blue, Grey', hi: 'विद्युत नीला, गहरा नीला, धूसर', sa: 'विद्युन्नीलवर्णः, गहननीलवर्णः, धूसरवर्णः', mai: 'विद्युत नीला, गहरा नीला, धूसर', mr: 'विद्युत नीला, गहरा नीला, धूसर', ta: 'Electric Blue, Dark Blue, Grey', te: 'Electric Blue, Dark Blue, Grey', bn: 'Electric Blue, Dark Blue, Grey', kn: 'Electric Blue, Dark Blue, Grey', gu: 'Electric Blue, Dark Blue, Grey' },
     luckyGems: {
-      en: 'Blue Sapphire (Neelam)', hi: 'नीलम', sa: 'नीलमणिः (इन्द्रनीलः)', mai: 'नीलम', mr: 'नीलम', ta: 'Blue Sapphire (Neelam)', te: 'Blue Sapphire (Neelam)', bn: 'Blue Sapphire (Neelam)', kn: 'Blue Sapphire (Neelam)', gu: 'Blue Sapphire (Neelam)' },
+      en: 'Blue Sapphire (Neelam)', hi: 'नीलम', sa: 'नीलमणिः (इन्द्रनीलः)', mai: 'नीलम', mr: 'नीलम', ta: 'நீலக்கல் (நீலம்)', te: 'నీలం', bn: 'নীলম', kn: 'ನೀಲಮಣಿ (ನೀಲಂ)', gu: 'નીલમ' },
     compatibleRashis: [3, 7, 1, 9],
     faqs: [
       {
@@ -503,7 +503,7 @@ export const RASHI_DETAILS: RashiDetail[] = [
     luckyColors: {
       en: 'Sea Green, Yellow, Lavender', hi: 'समुद्री हरा, पीला, लैवेंडर', sa: 'सागरहरितवर्णः, पीतवर्णः, लवण्डवर्णः', mai: 'समुद्री हरा, पीला, लैवेंडर', mr: 'समुद्री हरा, पीला, लैवेंडर', ta: 'Sea Green, Yellow, Lavender', te: 'Sea Green, Yellow, Lavender', bn: 'Sea Green, Yellow, Lavender', kn: 'Sea Green, Yellow, Lavender', gu: 'Sea Green, Yellow, Lavender' },
     luckyGems: {
-      en: 'Yellow Sapphire (Pukhraj)', hi: 'पुखराज', sa: 'पुष्परागः (पुखराजः)', mai: 'पुखराज', mr: 'पुखराज', ta: 'Yellow Sapphire (Pukhraj)', te: 'Yellow Sapphire (Pukhraj)', bn: 'Yellow Sapphire (Pukhraj)', kn: 'Yellow Sapphire (Pukhraj)', gu: 'Yellow Sapphire (Pukhraj)' },
+      en: 'Yellow Sapphire (Pukhraj)', hi: 'पुखराज', sa: 'पुष्परागः (पुखराजः)', mai: 'पुखराज', mr: 'पुखराज', ta: 'மஞ்சள் புஷ்பராகம் (புக்ராஜ்)', te: 'పుష్యరాగం (పుఖ్‌రాజ్)', bn: 'পোখরাজ (পুষ্পরাগ)', kn: 'ಪುಷ್ಯರಾಗ (ಪುಖ್‌ರಾಜ್)', gu: 'પોખરાજ (પુષ્પરાગ)' },
     compatibleRashis: [4, 8, 6, 10],
     faqs: [
       {

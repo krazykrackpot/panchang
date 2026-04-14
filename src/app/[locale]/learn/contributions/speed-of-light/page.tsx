@@ -13,9 +13,9 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 const CALC_STEPS = [
   {
     step: 1,
-    label: { en: 'Distance given by Sayana', hi: 'सायण द्वारा दी गई दूरी', sa: 'सायण द्वारा दी गई दूरी', mai: 'सायण द्वारा दी गई दूरी', mr: 'सायण द्वारा दी गई दूरी', ta: 'Distance given by Sayana', te: 'Distance given by Sayana', bn: 'Distance given by Sayana', kn: 'Distance given by Sayana', gu: 'Distance given by Sayana' },
+    label: { en: 'Distance given by Sayana', hi: 'सायण द्वारा दी गई दूरी', sa: 'सायण द्वारा दी गई दूरी', mai: 'सायण द्वारा दी गई दूरी', mr: 'सायण द्वारा दी गई दूरी', ta: 'சாயணர் கொடுத்த தூரம்', te: 'సాయణ ఇచ్చిన దూరం', bn: 'সায়ণ কর্তৃক প্রদত্ত দূরত্ব', kn: 'ಸಾಯಣ ನೀಡಿದ ದೂರ', gu: 'સાયણ દ્વારા આપેલ અંતર' },
     value: '2,202 yojanas',
-    note: { en: 'per half-nimesha', hi: 'प्रति अर्ध-निमेष', sa: 'प्रति अर्ध-निमेष', mai: 'प्रति अर्ध-निमेष', mr: 'प्रति अर्ध-निमेष', ta: 'per half-nimesha', te: 'per half-nimesha', bn: 'per half-nimesha', kn: 'per half-nimesha', gu: 'per half-nimesha' },
+    note: { en: 'per half-nimesha', hi: 'प्रति अर्ध-निमेष', sa: 'प्रति अर्ध-निमेष', mai: 'प्रति अर्ध-निमेष', mr: 'प्रति अर्ध-निमेष', ta: 'அரை-நிமேஷத்திற்கு', te: 'అర్ధ-నిమేషానికి', bn: 'অর্ধ-নিমেষ প্রতি', kn: 'ಅರ್ಧ-ನಿಮೇಷಕ್ಕೆ', gu: 'અર્ધ-નિમેષ દીઠ' },
     color: '#f0d48a',
   },
   {
@@ -34,16 +34,16 @@ const CALC_STEPS = [
   },
   {
     step: 4,
-    label: { en: 'Distance in miles', hi: 'मील में दूरी', sa: 'मील में दूरी', mai: 'मील में दूरी', mr: 'मील में दूरी', ta: 'Distance in miles', te: 'Distance in miles', bn: 'Distance in miles', kn: 'Distance in miles', gu: 'Distance in miles' },
+    label: { en: 'Distance in miles', hi: 'मील में दूरी', sa: 'मील में दूरी', mai: 'मील में दूरी', mr: 'मील में दूरी', ta: 'மைல்களில் தூரம்', te: 'మైళ్లలో దూరం', bn: 'মাইলে দূরত্ব', kn: 'ಮೈಲುಗಳಲ್ಲಿ ದೂರ', gu: 'માઈલમાં અંતર' },
     value: '2,202 × 9.09 = 20,016 miles',
-    note: { en: 'per half-nimesha', hi: 'प्रति अर्ध-निमेष', sa: 'प्रति अर्ध-निमेष', mai: 'प्रति अर्ध-निमेष', mr: 'प्रति अर्ध-निमेष', ta: 'per half-nimesha', te: 'per half-nimesha', bn: 'per half-nimesha', kn: 'per half-nimesha', gu: 'per half-nimesha' },
+    note: { en: 'per half-nimesha', hi: 'प्रति अर्ध-निमेष', sa: 'प्रति अर्ध-निमेष', mai: 'प्रति अर्ध-निमेष', mr: 'प्रति अर्ध-निमेष', ta: 'அரை-நிமேஷத்திற்கு', te: 'అర్ధ-నిమేషానికి', bn: 'অর্ধ-নিমেষ প্রতি', kn: 'ಅರ್ಧ-ನಿಮೇಷಕ್ಕೆ', gu: 'અર્ધ-નિમેષ દીઠ' },
     color: '#34d399',
   },
   {
     step: 5,
-    label: { en: 'Speed = Distance / Time', hi: 'गति = दूरी / समय', sa: 'गति = दूरी / समय', mai: 'गति = दूरी / समय', mr: 'गति = दूरी / समय', ta: 'Speed = Distance / Time', te: 'Speed = Distance / Time', bn: 'Speed = Distance / Time', kn: 'Speed = Distance / Time', gu: 'Speed = Distance / Time' },
+    label: { en: 'Speed = Distance / Time', hi: 'गति = दूरी / समय', sa: 'गति = दूरी / समय', mai: 'गति = दूरी / समय', mr: 'गति = दूरी / समय', ta: 'வேகம் = தூரம் / நேரம்', te: 'వేగం = దూరం / సమయం', bn: 'গতি = দূরত্ব / সময়', kn: 'ವೇಗ = ದೂರ / ಸಮಯ', gu: 'ઝડપ = અંતર / સમય' },
     value: '20,016 / 0.1067 = 187,638 mi/s',
-    note: { en: 'Using Arthashastra yojana', hi: 'अर्थशास्त्र योजन का उपयोग करके', sa: 'अर्थशास्त्र योजन का उपयोग करके', mai: 'अर्थशास्त्र योजन का उपयोग करके', mr: 'अर्थशास्त्र योजन का उपयोग करके', ta: 'Using Arthashastra yojana', te: 'Using Arthashastra yojana', bn: 'Using Arthashastra yojana', kn: 'Using Arthashastra yojana', gu: 'Using Arthashastra yojana' },
+    note: { en: 'Using Arthashastra yojana', hi: 'अर्थशास्त्र योजन का उपयोग करके', sa: 'अर्थशास्त्र योजन का उपयोग करके', mai: 'अर्थशास्त्र योजन का उपयोग करके', mr: 'अर्थशास्त्र योजन का उपयोग करके', ta: 'அர்த்தசாஸ்திர யோஜனை பயன்படுத்தி', te: 'అర్థశాస్త్ర యోజన ఉపయోగించి', bn: 'অর্থশাস্ত্র যোজন ব্যবহার করে', kn: 'ಅರ್ಥಶಾಸ್ತ್ರ ಯೋಜನ ಬಳಸಿ', gu: 'અર્થશાસ્ત્ર યોજન વાપરીને' },
     color: '#f87171',
   },
   {
@@ -203,10 +203,10 @@ export default async function SpeedOfLightPage({ params }: { params: Promise<{ l
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
-            { label: { en: 'Period', hi: 'काल', sa: 'काल', mai: 'काल', mr: 'काल', ta: 'Period', te: 'Period', bn: 'Period', kn: 'Period', gu: 'Period' }, value: 'c. 1315–1387 CE' },
-            { label: { en: 'Role', hi: 'भूमिका', sa: 'भूमिका', mai: 'भूमिका', mr: 'भूमिका', ta: 'Role', te: 'Role', bn: 'Role', kn: 'Role', gu: 'Role' }, value: 'Mahamantri' },
-            { label: { en: 'Empire', hi: 'साम्राज्य', sa: 'साम्राज्य', mai: 'साम्राज्य', mr: 'साम्राज्य', ta: 'Empire', te: 'Empire', bn: 'Empire', kn: 'Empire', gu: 'Empire' }, value: 'Vijayanagara' },
-            { label: { en: 'Pages written', hi: 'लिखे पृष्ठ', sa: 'लिखे पृष्ठ', mai: 'लिखे पृष्ठ', mr: 'लिखे पृष्ठ', ta: 'Pages written', te: 'Pages written', bn: 'Pages written', kn: 'Pages written', gu: 'Pages written' }, value: '20,000+' },
+            { label: { en: 'Period', hi: 'काल', sa: 'काल', mai: 'काल', mr: 'काल', ta: 'காலம்', te: 'కాలం', bn: 'কাল', kn: 'ಅವಧಿ', gu: 'સમયગાળો' }, value: 'c. 1315–1387 CE' },
+            { label: { en: 'Role', hi: 'भूमिका', sa: 'भूमिका', mai: 'भूमिका', mr: 'भूमिका', ta: 'பங்கு', te: 'పాత్ర', bn: 'ভূমিকা', kn: 'ಪಾತ್ರ', gu: 'ભૂમિકા' }, value: 'Mahamantri' },
+            { label: { en: 'Empire', hi: 'साम्राज्य', sa: 'साम्राज्य', mai: 'साम्राज्य', mr: 'साम्राज्य', ta: 'சாம்ராஜ்யம்', te: 'సామ్రాజ్యం', bn: 'সাম্রাজ্য', kn: 'ಸಾಮ್ರಾಜ್ಯ', gu: 'સામ્રાજ્ય' }, value: 'Vijayanagara' },
+            { label: { en: 'Pages written', hi: 'लिखे पृष्ठ', sa: 'लिखे पृष्ठ', mai: 'लिखे पृष्ठ', mr: 'लिखे पृष्ठ', ta: 'எழுதப்பட்ட பக்கங்கள்', te: 'రాసిన పేజీలు', bn: 'লিখিত পৃষ্ঠা', kn: 'ಬರೆದ ಪುಟಗಳು', gu: 'લખાયેલ પૃષ્ઠો' }, value: '20,000+' },
           ].map((stat, i) => (
             <div key={i} className="p-3 rounded-xl bg-gold-primary/8 border border-gold-primary/15 text-center">
               <div className="text-gold-light text-sm font-bold">{stat.value}</div>

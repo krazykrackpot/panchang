@@ -398,12 +398,12 @@ export default function RemediesPage() {
           <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
             <span className="text-emerald-400 font-medium">{t('strengthenTitle')}</span>
-            <span className="text-text-secondary">= {tl({ en: 'Gemstone + Mantra', hi: 'रत्न + मंत्र', sa: 'रत्न + मंत्र' }, locale)}</span>
+            <span className="text-text-secondary">= {tl({ en: 'Gemstone + Mantra', hi: 'रत्न + मंत्र', sa: 'रत्नम् + मन्त्रः' }, locale)}</span>
           </span>
           <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
             <span className="text-red-400 font-medium">{t('pacifyTitle')}</span>
-            <span className="text-text-secondary">= {tl({ en: 'Charity + Fasting', hi: 'दान + उपवास', sa: 'दान + उपवास' }, locale)}</span>
+            <span className="text-text-secondary">= {tl({ en: 'Charity + Fasting', hi: 'दान + उपवास', sa: 'दानम् + उपवासः' }, locale)}</span>
           </span>
         </div>
       </motion.div>

@@ -124,9 +124,9 @@ export default function DoshasPage() {
 
       {/* Severity legend */}
       <div className="flex gap-4 text-xs">
-        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-red-500" /> {!isIndicLocale(locale) ? 'Severe' : tl({ en: 'गम्भीरम्', hi: 'गंभीर', sa: 'गंभीर' }, locale)}</span>
-        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-amber-500" /> {!isIndicLocale(locale) ? 'Moderate' : tl({ en: 'मध्यमम्', hi: 'मध्यम', sa: 'मध्यम' }, locale)}</span>
-        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-blue-500" /> {!isIndicLocale(locale) ? 'Mild' : tl({ en: 'लघु', hi: 'हल्का', sa: 'हल्का' }, locale)}</span>
+        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-red-500" /> {!isIndicLocale(locale) ? 'Severe' : tl({ en: 'गम्भीरम्', hi: 'गंभीर', sa: 'गम्भीरम्' }, locale)}</span>
+        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-amber-500" /> {!isIndicLocale(locale) ? 'Moderate' : tl({ en: 'मध्यमम्', hi: 'मध्यम', sa: 'मध्यमम्' }, locale)}</span>
+        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-blue-500" /> {!isIndicLocale(locale) ? 'Mild' : tl({ en: 'लघु', hi: 'हल्का', sa: 'लघु' }, locale)}</span>
       </div>
 
       {/* Dosha cards */}
@@ -153,23 +153,23 @@ export default function DoshasPage() {
                     <div className="p-5 space-y-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">{!isIndicLocale(locale) ? 'Formation' : tl({ en: 'निर्माणशर्तः', hi: 'निर्माण शर्त', sa: 'निर्माण शर्त' }, locale)}</div>
+                          <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">{!isIndicLocale(locale) ? 'Formation' : tl({ en: 'निर्माणशर्तः', hi: 'निर्माण शर्त', sa: 'निर्माणशर्तः' }, locale)}</div>
                           <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{tObj(dosha.condition)}</div>
                         </div>
                         <div>
-                          <div className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-1">{!isIndicLocale(locale) ? 'Effects' : tl({ en: 'प्रभावः', hi: 'प्रभाव', sa: 'प्रभाव' }, locale)}</div>
+                          <div className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-1">{!isIndicLocale(locale) ? 'Effects' : tl({ en: 'प्रभावः', hi: 'प्रभाव', sa: 'प्रभावः' }, locale)}</div>
                           <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{tObj(dosha.effect)}</div>
                         </div>
                       </div>
                       <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
                         <div className="flex items-center gap-2 mb-1">
                           <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
-                          <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold">{!isIndicLocale(locale) ? 'Cancellation Conditions' : tl({ en: 'शमनशर्ताः', hi: 'रद्दीकरण शर्तें', sa: 'रद्दीकरण शर्तें' }, locale)}</div>
+                          <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold">{!isIndicLocale(locale) ? 'Cancellation Conditions' : tl({ en: 'शमनशर्ताः', hi: 'रद्दीकरण शर्तें', sa: 'शमनशर्ताः' }, locale)}</div>
                         </div>
                         <div className="text-emerald-300 text-xs leading-relaxed" style={bodyFont}>{tObj(dosha.cancellation)}</div>
                       </div>
                       <div className="p-3 rounded-xl bg-gold-primary/5 border border-gold-primary/15">
-                        <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1">{!isIndicLocale(locale) ? 'Remedies' : tl({ en: 'उपायाः', hi: 'उपाय', sa: 'उपाय' }, locale)}</div>
+                        <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1">{!isIndicLocale(locale) ? 'Remedies' : tl({ en: 'उपायाः', hi: 'उपाय', sa: 'उपायाः' }, locale)}</div>
                         <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{tObj(dosha.remedy)}</div>
                       </div>
                       <div className="text-text-tertiary text-xs">{dosha.classical}</div>
@@ -193,7 +193,7 @@ export default function DoshasPage() {
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
             <div className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-1">
-              {!isIndicLocale(locale) ? 'Detection' : tl({ en: 'पहचानम्', hi: 'पहचान', sa: 'पहचान' }, locale)}
+              {!isIndicLocale(locale) ? 'Detection' : tl({ en: 'पहचानम्', hi: 'पहचान', sa: 'पहचानम्' }, locale)}
             </div>
             <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
               {!isIndicLocale(locale) ? 'Jupiter and Rahu in the same sign (within 15 degrees orb is strongest). Check in both Rashi and Navamsa charts.' : 'गुरु और राहु एक ही राशि में (15 अंश के भीतर सबसे प्रबल)। राशि और नवमांश दोनों में जाँचें।'}
@@ -201,7 +201,7 @@ export default function DoshasPage() {
           </div>
           <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
             <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-1">
-              {!isIndicLocale(locale) ? 'Silver lining' : tl({ en: 'सकारात्मकपक्षः', hi: 'सकारात्मक पक्ष', sa: 'सकारात्मक पक्ष' }, locale)}
+              {!isIndicLocale(locale) ? 'Silver lining' : tl({ en: 'सकारात्मकपक्षः', hi: 'सकारात्मक पक्ष', sa: 'सकारात्मकपक्षः' }, locale)}
             </div>
             <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
               {!isIndicLocale(locale) ? 'Can give extraordinary unconventional wisdom, success in foreign/cutting-edge fields, ability to challenge established norms productively.' : 'असाधारण अपरम्परागत ज्ञान, विदेशी/अग्रणी क्षेत्रों में सफलता, स्थापित मानदंडों को रचनात्मक रूप से चुनौती देने की क्षमता दे सकता है।'}
@@ -220,7 +220,7 @@ export default function DoshasPage() {
         </p>
         <div className="mt-4 p-3 rounded-xl bg-blue-400/5 border border-blue-400/15">
           <div className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-1">
-            {!isIndicLocale(locale) ? 'Important nuance' : tl({ en: 'महत्त्वपूर्णसूक्ष्मता', hi: 'महत्वपूर्ण सूक्ष्मता', sa: 'महत्वपूर्ण सूक्ष्मता' }, locale)}
+            {!isIndicLocale(locale) ? 'Important nuance' : tl({ en: 'महत्त्वपूर्णसूक्ष्मता', hi: 'महत्वपूर्ण सूक्ष्मता', sa: 'महत्त्वपूर्णसूक्ष्मता' }, locale)}
           </div>
           <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
             {locale === 'en'
@@ -259,12 +259,12 @@ export default function DoshasPage() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/10">
-                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Planet' : tl({ en: 'ग्रहः', hi: 'ग्रह', sa: 'ग्रह' }, locale)}</th>
-                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Gemstone' : tl({ en: 'रत्नम्', hi: 'रत्न', sa: 'रत्न' }, locale)}</th>
-                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Day' : tl({ en: 'दिनम्', hi: 'दिन', sa: 'दिन' }, locale)}</th>
-                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Color' : tl({ en: 'वर्णः', hi: 'रंग', sa: 'रंग' }, locale)}</th>
-                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Charity' : tl({ en: 'दानम्', hi: 'दान', sa: 'दान' }, locale)}</th>
-                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Beej Mantra' : tl({ en: 'बीजमन्त्रः', hi: 'बीज मंत्र', sa: 'बीज मंत्र' }, locale)}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Planet' : tl({ en: 'ग्रहः', hi: 'ग्रह', sa: 'ग्रहः' }, locale)}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Gemstone' : tl({ en: 'रत्नम्', hi: 'रत्न', sa: 'रत्नम्' }, locale)}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Day' : tl({ en: 'दिनम्', hi: 'दिन', sa: 'दिनम्' }, locale)}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Color' : tl({ en: 'वर्णः', hi: 'रंग', sa: 'वर्णः' }, locale)}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Charity' : tl({ en: 'दानम्', hi: 'दान', sa: 'दानम्' }, locale)}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isIndicLocale(locale) ? 'Beej Mantra' : tl({ en: 'बीजमन्त्रः', hi: 'बीज मंत्र', sa: 'बीजमन्त्रः' }, locale)}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gold-primary/5">
@@ -299,7 +299,7 @@ export default function DoshasPage() {
           <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
           <div>
             <h4 className="text-amber-300 font-bold text-sm mb-2" style={headingFont}>
-              {!isIndicLocale(locale) ? 'A Note on Dosha Assessment' : tl({ en: 'दोषमूल्याङ्कने टिप्पणी', hi: 'दोष मूल्यांकन पर टिप्पणी', sa: 'दोष मूल्यांकन पर टिप्पणी' }, locale)}
+              {!isIndicLocale(locale) ? 'A Note on Dosha Assessment' : tl({ en: 'दोषमूल्याङ्कने टिप्पणी', hi: 'दोष मूल्यांकन पर टिप्पणी', sa: 'दोषमूल्याङ्कने टिप्पणी' }, locale)}
             </h4>
             <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
               {locale === 'en'

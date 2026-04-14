@@ -30,10 +30,10 @@ export default function EclipseAnimation({ locale }: Props) {
           {tl({ en: 'Orbital Planes & Nodes', hi: 'कक्षीय तल और पात', sa: 'कक्षीय तल और पात' }, locale)}
         </button>
         <button onClick={() => setTab('solar')} className={`${tabBase} ${tab === 'solar' ? tabActive : tabInactive}`}>
-          ☀ {tl({ en: 'Solar Eclipse', hi: 'सूर्य ग्रहण', sa: 'सूर्य ग्रहण' }, locale)}
+          ☀ {tl({ en: 'Solar Eclipse', hi: 'सूर्य ग्रहण', sa: 'सूर्यग्रहणम्' }, locale)}
         </button>
         <button onClick={() => setTab('lunar')} className={`${tabBase} ${tab === 'lunar' ? tabActive : tabInactive}`}>
-          ☽ {tl({ en: 'Lunar Eclipse', hi: 'चन्द्र ग्रहण', sa: 'चन्द्र ग्रहण' }, locale)}
+          ☽ {tl({ en: 'Lunar Eclipse', hi: 'चन्द्र ग्रहण', sa: 'चन्द्रग्रहणम्' }, locale)}
         </button>
       </div>
 

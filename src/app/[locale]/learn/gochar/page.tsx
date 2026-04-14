@@ -227,7 +227,7 @@ export default function LearnGocharPage() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/10">
-                <th className="text-left py-2 px-2 text-gold-dark w-12">{tl({ en: 'House', hi: 'भाव', sa: 'भाव', ta: 'House', te: 'House', bn: 'House', kn: 'House', gu: 'House', mai: 'भाव', mr: 'भाव' }, locale)}</th>
+                <th className="text-left py-2 px-2 text-gold-dark w-12">{tl({ en: 'House', hi: 'भाव', sa: 'भावः', ta: 'பாவம்', te: 'భావం', bn: 'ভাব', kn: 'ಭಾವ', gu: 'ભાવ', mai: 'भाव', mr: 'भाव' }, locale)}</th>
                 <th className="text-left py-2 px-2 text-blue-400">{tl({ en: 'Saturn Transit Effect', hi: 'शनि गोचर प्रभाव', sa: 'शनि गोचर प्रभाव', ta: 'Saturn Transit Effect', te: 'Saturn Transit Effect', bn: 'Saturn Transit Effect', kn: 'Saturn Transit Effect', gu: 'Saturn Transit Effect', mai: 'शनि गोचर प्रभाव', mr: 'शनि गोचर प्रभाव' }, locale)}</th>
                 <th className="text-left py-2 px-2 text-amber-400">{tl({ en: 'Jupiter Transit Effect', hi: 'गुरु गोचर प्रभाव', sa: 'गुरु गोचर प्रभाव', ta: 'Jupiter Transit Effect', te: 'Jupiter Transit Effect', bn: 'Jupiter Transit Effect', kn: 'Jupiter Transit Effect', gu: 'Jupiter Transit Effect', mai: 'गुरु गोचर प्रभाव', mr: 'गुरु गोचर प्रभाव' }, locale)}</th>
               </tr>

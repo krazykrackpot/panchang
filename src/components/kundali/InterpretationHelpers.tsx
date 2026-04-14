@@ -705,7 +705,7 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
               <tr className="border-b border-white/10">
                 <th className="text-left py-2 px-2 text-text-secondary font-medium">{tl({ en: 'Yoga', hi: 'योग', sa: 'योग' }, locale)}</th>
                 <th className="text-left py-2 px-2 text-text-secondary font-medium">{tl({ en: 'Issue', hi: 'समस्या', sa: 'समस्या' }, locale)}</th>
-                <th className="text-left py-2 px-2 text-text-secondary font-medium">{tl({ en: 'Remedy', hi: 'उपाय', sa: 'उपाय' }, locale)}</th>
+                <th className="text-left py-2 px-2 text-text-secondary font-medium">{tl({ en: 'Remedy', hi: 'उपाय', sa: 'उपायः' }, locale)}</th>
               </tr>
             </thead>
             <tbody>
@@ -1115,7 +1115,7 @@ export function AvasthasInterpretation({ avasthas, planets: _planets, locale }: 
           onClick={() => setShowHowChange(v => !v)}
         >
           <span className="font-semibold text-[#d4a853] text-sm">
-            {tl({ en: 'How Do Avasthas Change?', hi: 'अवस्थाएं कैसे बदलती हैं?', sa: 'अवस्थाएं कैसे बदलती हैं?' }, locale)}
+            {tl({ en: 'How Do Avasthas Change?', hi: 'अवस्थाएं कैसे बदलती हैं?', sa: 'अवस्थाः कथं परिवर्तन्ते?' }, locale)}
           </span>
           <span className="text-text-secondary/60 text-xs">{showHowChange ? '▲ Close' : '▼ Expand'}</span>
         </button>

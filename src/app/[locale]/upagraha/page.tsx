@@ -680,7 +680,7 @@ export default function UpagrahaPage() {
                                   <span className={`font-bold text-xs ${isCurrent ? 'text-gold-light' : 'text-text-primary'}`}>
                                     {tl(RASHIS[signId - 1].name, locale)}
                                   </span>
-                                  {isCurrent && <span className="px-1 py-0 text-xs bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">{tl({ en: 'NOW', hi: 'अभी', sa: 'अभी', ta: 'NOW', te: 'NOW', bn: 'NOW', kn: 'NOW', gu: 'NOW', mai: 'अभी', mr: 'अभी' }, locale)}</span>}
+                                  {isCurrent && <span className="px-1 py-0 text-xs bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">{tl({ en: 'NOW', hi: 'अभी', sa: 'अधुना', ta: 'இப்போது', te: 'ఇప్పుడు', bn: 'এখন', kn: 'ಈಗ', gu: 'હવે', mai: 'अखन', mr: 'आत्ता' }, locale)}</span>}
                                 </div>
                                 <p className="text-text-secondary/75 text-xs leading-snug mt-0.5" style={bodyFont}>{t2(effect)}</p>
                               </div>

@@ -400,7 +400,7 @@ export default function TransitsPage() {
                   <span className="text-text-tertiary text-xs">{monthEvents.length} {tl({ en: 'events', hi: 'घटनाएँ', sa: 'घटनाः', ta: 'நிகழ்வுகள்', te: 'సంఘటనలు', bn: 'ঘটনা', kn: 'ಘಟನೆಗಳು', gu: 'ઘટનાઓ', mai: 'घटना', mr: 'घटना' }, locale)}</span>
                   {isCurrentMonth && (
                     <span className="px-2 py-0.5 bg-gold-primary/20 text-gold-light text-xs rounded-full font-bold">
-                      {tl({ en: 'NOW', hi: 'अभी', sa: 'अधुना', ta: 'இப்போது', te: 'ఇప్పుడు', bn: 'এখন', kn: 'ಈಗ', gu: 'હવે', mai: 'अखन', mr: 'आता' }, locale)}
+                      {tl({ en: 'NOW', hi: 'अभी', sa: 'अधुना', ta: 'இப்போது', te: 'ఇప్పుడు', bn: 'এখন', kn: 'ಈಗ', gu: 'હવે', mai: 'अखन', mr: 'आत्ता' }, locale)}
                     </span>
                   )}
                   <div className="flex-1 h-px bg-gradient-to-r from-gold-primary/20 to-transparent" />

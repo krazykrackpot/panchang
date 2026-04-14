@@ -1050,7 +1050,7 @@ export default function KaalNirnayaPage() {
                     {tl({ en: 'Unit', hi: 'इकाई', ta: 'அலகு', te: 'యూనిట్', bn: 'একক', kn: 'ಘಟಕ', gu: 'એકમ' } as LocaleText, locale)}
                   </th>
                   <th className="text-left px-5 py-4 text-gold-primary text-xs uppercase tracking-wider font-bold">
-                    {tl({ en: 'Sanskrit', hi: 'संस्कृत', ta: 'சம்ஸ்கிருதம்', te: 'సంస్కృతం', bn: 'সংস্কৃত', kn: 'ಸಂಸ್ಕೃತ', gu: 'সংস্কৃত' } as LocaleText, locale)}
+                    {tl({ en: 'Sanskrit', hi: 'संस्कृत', ta: 'சம்ஸ்கிருதம்', te: 'సంస్కృతం', bn: 'সংস্কৃত', kn: 'ಸಂಸ್ಕೃತ', gu: 'સંસ્કૃત' } as LocaleText, locale)}
                   </th>
                   <th className="text-left px-5 py-4 text-gold-primary text-xs uppercase tracking-wider font-bold">
                     {tl({ en: 'Composition', hi: 'संरचना', ta: 'அமைப்பு', te: 'నిర్మాణం', bn: 'রচনা', kn: 'ರಚನೆ', gu: 'રચના' } as LocaleText, locale)}

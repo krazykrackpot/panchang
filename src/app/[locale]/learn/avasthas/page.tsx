@@ -435,7 +435,7 @@ export default function LearnAvasthasPage() {
                 <div className="flex items-center gap-3">
                   <Icon className={`w-6 h-6 ${color}`} />
                   <span className={`font-bold text-lg ${color}`} style={headingFont}>{t(sys.titleKey)}</span>
-                  <span className="text-text-tertiary text-xs">{sys.states.length} {tl({ en: 'states', hi: 'दशाएं', sa: 'दशाएं' }, locale)}</span>
+                  <span className="text-text-tertiary text-xs">{sys.states.length} {tl({ en: 'states', hi: 'दशाएं', sa: 'अवस्थाः' }, locale)}</span>
                 </div>
                 <ChevronDown className={`w-5 h-5 text-text-secondary transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
               </button>
@@ -452,7 +452,7 @@ export default function LearnAvasthasPage() {
                               <span className={`font-bold text-sm ${state.color}`}>{lt(state.name as LocaleText, locale)}</span>
                               {state.tier && <span className={`text-xs px-1.5 py-0.5 rounded ml-auto ${tierColor(state.tier)}`}>{state.tier}</span>}
                             </div>
-                            {state.condition && <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-0.5">{tl({ en: 'Condition', hi: 'स्थिति', sa: 'स्थिति' }, locale)}: <span className="normal-case tracking-normal text-text-secondary font-normal">{lt(state.condition as LocaleText, locale)}</span></div>}
+                            {state.condition && <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-0.5">{tl({ en: 'Condition', hi: 'स्थिति', sa: 'स्थितिः' }, locale)}: <span className="normal-case tracking-normal text-text-secondary font-normal">{lt(state.condition as LocaleText, locale)}</span></div>}
                             {state.result && <div className="text-text-secondary text-xs leading-relaxed">{lt(state.result as LocaleText, locale)}</div>}
                             {state.effect && <div className="text-text-secondary text-xs leading-relaxed">{lt(state.effect as LocaleText, locale)}</div>}
                             {state.desc && <div className="text-text-secondary text-xs leading-relaxed">{lt(state.desc as LocaleText, locale)}</div>}
@@ -474,7 +474,7 @@ export default function LearnAvasthasPage() {
         <div className="flex items-center gap-3 mb-2">
           <RefreshCw className="w-6 h-6 text-violet-400" />
           <h2 className="text-2xl font-bold text-gold-gradient" style={headingFont}>
-            {tl({ en: 'How Do Avasthas Change?', hi: 'अवस्थाएं कैसे बदलती हैं?', sa: 'अवस्थाएं कैसे बदलती हैं?' }, locale)}
+            {tl({ en: 'How Do Avasthas Change?', hi: 'अवस्थाएं कैसे बदलती हैं?', sa: 'अवस्थाः कथं परिवर्तन्ते?' }, locale)}
           </h2>
         </div>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">
@@ -531,7 +531,7 @@ export default function LearnAvasthasPage() {
                 <span className="font-bold text-sm">{lt(tier.tier as LocaleText, locale)}</span>
                 <span className="font-mono text-xs opacity-70">{tier.pct}</span>
               </div>
-              <div className="text-text-tertiary text-xs uppercase tracking-widest mb-1">{tl({ en: 'Examples', hi: 'उदाहरण', sa: 'उदाहरण' }, locale)}: {lt(tier.examples as LocaleText, locale)}</div>
+              <div className="text-text-tertiary text-xs uppercase tracking-widest mb-1">{tl({ en: 'Examples', hi: 'उदाहरण', sa: 'उदाहरणानि' }, locale)}: {lt(tier.examples as LocaleText, locale)}</div>
               <div className="text-text-secondary text-xs leading-relaxed">{lt(tier.desc as LocaleText, locale)}</div>
             </div>
           ))}
@@ -543,11 +543,11 @@ export default function LearnAvasthasPage() {
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 space-y-4">
         <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t('synthesisTitle')}</h2>
         <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
-          <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Example: Strong Jupiter', hi: 'उदाहरण: बलवान गुरु', sa: 'उदाहरण: बलवान गुरु' }, locale)}</div>
+          <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Example: Strong Jupiter', hi: 'उदाहरण: बलवान गुरु', sa: 'उदाहरणम्: बलवान् गुरुः' }, locale)}</div>
           <p className="text-text-secondary text-sm leading-relaxed">{t('synthesisP1')}</p>
         </div>
         <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
-          <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Example: Weak Venus', hi: 'उदाहरण: दुर्बल शुक्र', sa: 'उदाहरण: दुर्बल शुक्र' }, locale)}</div>
+          <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Example: Weak Venus', hi: 'उदाहरण: दुर्बल शुक्र', sa: 'उदाहरणम्: दुर्बलः शुक्रः' }, locale)}</div>
           <p className="text-text-secondary text-sm leading-relaxed">{t('synthesisP2')}</p>
         </div>
       </motion.section>

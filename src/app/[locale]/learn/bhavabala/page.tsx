@@ -98,9 +98,9 @@ export default function LearnBhavabalaPage() {
             <thead>
               <tr className="text-gold-dark text-xs uppercase tracking-widest border-b border-gold-primary/15">
                 <th className="text-left py-3 px-3">#</th>
-                <th className="text-left py-3 px-3">{tl({ en: 'House', hi: 'भाव', sa: 'भाव' }, locale)}</th>
-                <th className="text-left py-3 px-3">{tl({ en: 'Significations', hi: 'कारकत्व', sa: 'कारकत्व' }, locale)}</th>
-                <th className="text-center py-3 px-3">{tl({ en: 'Type', hi: 'वर्ग', sa: 'वर्ग' }, locale)}</th>
+                <th className="text-left py-3 px-3">{tl({ en: 'House', hi: 'भाव', sa: 'भावः' }, locale)}</th>
+                <th className="text-left py-3 px-3">{tl({ en: 'Significations', hi: 'कारकत्व', sa: 'कारकत्वानि' }, locale)}</th>
+                <th className="text-center py-3 px-3">{tl({ en: 'Type', hi: 'वर्ग', sa: 'प्रकारः' }, locale)}</th>
               </tr>
             </thead>
             <tbody>
@@ -125,11 +125,11 @@ export default function LearnBhavabalaPage() {
                   <td className="py-2.5 px-3 text-text-secondary text-xs leading-relaxed">{t(h.sigKey)}</td>
                   <td className="py-2.5 px-3 text-center">
                     <span className={`text-xs px-2 py-0.5 rounded border ${classificationColor(h.classification)}`}>
-                      {h.classification === 'kendra' ? tl({ en: 'Kendra', hi: 'केन्द्र', sa: 'केन्द्र' }, locale) :
-                       h.classification === 'trikona' ? tl({ en: 'Trikona', hi: 'त्रिकोण', sa: 'त्रिकोण' }, locale) :
-                       h.classification === 'dusthana' ? tl({ en: 'Dusthana', hi: 'दुःस्थान', sa: 'दुःस्थान' }, locale) :
-                       h.classification === 'upachaya' ? tl({ en: 'Upachaya', hi: 'उपचय', sa: 'उपचय' }, locale) :
-                       tl({ en: 'Maraka', hi: 'मारक', sa: 'मारक' }, locale)}
+                      {h.classification === 'kendra' ? tl({ en: 'Kendra', hi: 'केन्द्र', sa: 'केन्द्रम्' }, locale) :
+                       h.classification === 'trikona' ? tl({ en: 'Trikona', hi: 'त्रिकोण', sa: 'त्रिकोणम्' }, locale) :
+                       h.classification === 'dusthana' ? tl({ en: 'Dusthana', hi: 'दुःस्थान', sa: 'दुःस्थानम्' }, locale) :
+                       h.classification === 'upachaya' ? tl({ en: 'Upachaya', hi: 'उपचय', sa: 'उपचयः' }, locale) :
+                       tl({ en: 'Maraka', hi: 'मारक', sa: 'मारकः' }, locale)}
                     </span>
                   </td>
                 </motion.tr>
@@ -191,8 +191,8 @@ export default function LearnBhavabalaPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="text-gold-dark text-xs uppercase tracking-widest border-b border-gold-primary/15">
-                <th className="text-left py-3 px-3">{tl({ en: 'House', hi: 'भाव', sa: 'भाव' }, locale)}</th>
-                <th className="text-left py-3 px-3">{tl({ en: 'Remedies', hi: 'उपचार', sa: 'उपचार' }, locale)}</th>
+                <th className="text-left py-3 px-3">{tl({ en: 'House', hi: 'भाव', sa: 'भावः' }, locale)}</th>
+                <th className="text-left py-3 px-3">{tl({ en: 'Remedies', hi: 'उपचार', sa: 'उपायाः' }, locale)}</th>
               </tr>
             </thead>
             <tbody>

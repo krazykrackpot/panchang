@@ -158,7 +158,7 @@ export default function SadeSatiLearnPage() {
         {/* Visual timeline */}
         <div className="mt-6 p-4 rounded-xl bg-bg-primary/40 border border-gold-primary/10">
           <p className="text-gold-light text-xs font-semibold text-center mb-4">
-            {tl({ en: 'Sade Sati Transit Path', hi: 'साढ़े साती गोचर मार्ग', sa: 'साढ़े साती गोचर मार्ग' }, locale)}
+            {tl({ en: 'Sade Sati Transit Path', hi: 'साढ़े साती गोचर मार्ग', sa: 'साढे-साती-गोचर-मार्गः' }, locale)}
           </p>
           <div className="flex items-center justify-center gap-2 sm:gap-4 flex-wrap">
             {[
@@ -181,7 +181,7 @@ export default function SadeSatiLearnPage() {
             ))}
           </div>
           <p className="text-center text-gold-primary/60 text-xs font-mono mt-3">
-            {tl({ en: 'Total: 2.5 + 2.5 + 2.5 = 7.5 years', hi: 'कुल: 2.5 + 2.5 + 2.5 = 7.5 वर्ष', sa: 'कुल: 2.5 + 2.5 + 2.5 = 7.5 वर्ष' }, locale)}
+            {tl({ en: 'Total: 2.5 + 2.5 + 2.5 = 7.5 years', hi: 'कुल: 2.5 + 2.5 + 2.5 = 7.5 वर्ष', sa: 'कुलम्: 2.5 + 2.5 + 2.5 = 7.5 वर्षाणि' }, locale)}
           </p>
         </div>
       </LessonSection>
@@ -215,7 +215,7 @@ export default function SadeSatiLearnPage() {
               <p className="text-text-secondary text-sm mb-3 leading-relaxed">{lt(phase.themes as LocaleText, locale)}</p>
               <div className="p-3 rounded-lg bg-gold-primary/5 border border-gold-primary/10">
                 <p className="text-gold-light/80 text-sm">
-                  <span className="font-semibold">{tl({ en: 'Advice: ', hi: 'सलाह: ', sa: 'सलाह: ' }, locale)}</span>
+                  <span className="font-semibold">{tl({ en: 'Advice: ', hi: 'सलाह: ', sa: 'परामर्शः: ' }, locale)}</span>
                   {lt(phase.advice as LocaleText, locale)}
                 </p>
               </div>
@@ -233,8 +233,8 @@ export default function SadeSatiLearnPage() {
             <thead>
               <tr className="border-b border-gold-primary/20">
                 <th className="text-left py-3 px-3 text-gold-light font-semibold">{tl({ en: 'Factor', hi: 'कारक', sa: 'कारकः' }, locale)}</th>
-                <th className="text-left py-3 px-3 text-emerald-400 font-semibold">{tl({ en: 'Mild Sade Sati', hi: 'हल्की साढ़े साती', sa: 'हल्की साढ़े साती' }, locale)}</th>
-                <th className="text-left py-3 px-3 text-red-400 font-semibold">{tl({ en: 'Severe Sade Sati', hi: 'कठिन साढ़े साती', sa: 'कठिन साढ़े साती' }, locale)}</th>
+                <th className="text-left py-3 px-3 text-emerald-400 font-semibold">{tl({ en: 'Mild Sade Sati', hi: 'हल्की साढ़े साती', sa: 'मृदु साढे-साती' }, locale)}</th>
+                <th className="text-left py-3 px-3 text-red-400 font-semibold">{tl({ en: 'Severe Sade Sati', hi: 'कठिन साढ़े साती', sa: 'तीव्र साढे-साती' }, locale)}</th>
               </tr>
             </thead>
             <tbody>
@@ -365,7 +365,7 @@ export default function SadeSatiLearnPage() {
           href="/sade-sati"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {tl({ en: 'Check Your Sade Sati Status', hi: 'अपनी साढ़े साती स्थिति जाँचें', sa: 'अपनी साढ़े साती स्थिति जाँचें' }, locale)}
+          {tl({ en: 'Check Your Sade Sati Status', hi: 'अपनी साढ़े साती स्थिति जाँचें', sa: 'स्वकीयां साढे-साती-स्थितिं परीक्षताम्' }, locale)}
         </Link>
       </div>
     </div>

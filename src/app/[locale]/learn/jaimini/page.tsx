@@ -330,7 +330,7 @@ export default function JaiminiPage() {
           href="/kundali"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {tl({ en: 'Find Your Atmakaraka', hi: 'अपना आत्मकारक खोजें', sa: 'अपना आत्मकारक खोजें' }, locale)}
+          {tl({ en: 'Find Your Atmakaraka', hi: 'अपना आत्मकारक खोजें', sa: 'स्वस्य आत्मकारकं विन्दतु' }, locale)}
         </Link>
       </div>
     </div>

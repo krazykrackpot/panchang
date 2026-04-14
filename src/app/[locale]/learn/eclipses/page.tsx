@@ -228,7 +228,7 @@ export default function LearnEclipsesPage() {
           <div className="flex justify-center my-6">
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 max-w-lg w-full">
               <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-5 text-center">
-                {tl({ en: 'Rahu → Solar Eclipse · Ketu → Lunar Eclipse', hi: 'राहु → सूर्य ग्रहण · केतु → चन्द्र ग्रहण', sa: 'राहु → सूर्य ग्रहण · केतु → चन्द्र ग्रहण' }, locale)}
+                {tl({ en: 'Rahu → Solar Eclipse · Ketu → Lunar Eclipse', hi: 'राहु → सूर्य ग्रहण · केतु → चन्द्र ग्रहण', sa: 'राहुः → सूर्यग्रहणम् · केतुः → चन्द्रग्रहणम्' }, locale)}
               </div>
               <svg viewBox="0 0 400 100" className="w-full h-24" aria-hidden="true">
                 {/* Ecliptic line */}
@@ -259,12 +259,12 @@ export default function LearnEclipsesPage() {
               </svg>
               <div className="grid grid-cols-2 gap-3 mt-4 text-xs text-center">
                 <div className="p-2 bg-amber-500/5 border border-amber-500/15 rounded-lg">
-                  <div className="text-amber-300 font-bold mb-1">{tl({ en: 'Solar Eclipse', hi: 'सूर्य ग्रहण', sa: 'सूर्य ग्रहण' }, locale)}</div>
-                  <div className="text-text-secondary/70">{tl({ en: 'Amavasya + Moon near Rahu/Ketu', hi: 'अमावस्या + राहु/केतु के निकट', sa: 'अमावस्या + राहु/केतु के निकट' }, locale)}</div>
+                  <div className="text-amber-300 font-bold mb-1">{tl({ en: 'Solar Eclipse', hi: 'सूर्य ग्रहण', sa: 'सूर्यग्रहणम्' }, locale)}</div>
+                  <div className="text-text-secondary/70">{tl({ en: 'Amavasya + Moon near Rahu/Ketu', hi: 'अमावस्या + राहु/केतु के निकट', sa: 'अमावस्या + चन्द्रः राहोः/केतोः निकटे' }, locale)}</div>
                 </div>
                 <div className="p-2 bg-blue-500/5 border border-blue-500/15 rounded-lg">
-                  <div className="text-blue-300 font-bold mb-1">{tl({ en: 'Lunar Eclipse', hi: 'चन्द्र ग्रहण', sa: 'चन्द्र ग्रहण' }, locale)}</div>
-                  <div className="text-text-secondary/70">{tl({ en: 'Purnima + Moon near Rahu/Ketu', hi: 'पूर्णिमा + राहु/केतु के निकट', sa: 'पूर्णिमा + राहु/केतु के निकट' }, locale)}</div>
+                  <div className="text-blue-300 font-bold mb-1">{tl({ en: 'Lunar Eclipse', hi: 'चन्द्र ग्रहण', sa: 'चन्द्रग्रहणम्' }, locale)}</div>
+                  <div className="text-text-secondary/70">{tl({ en: 'Purnima + Moon near Rahu/Ketu', hi: 'पूर्णिमा + राहु/केतु के निकट', sa: 'पूर्णिमा + चन्द्रः राहोः/केतोः निकटे' }, locale)}</div>
                 </div>
               </div>
             </div>
@@ -321,7 +321,7 @@ export default function LearnEclipsesPage() {
                 <text x="60" y="98" textAnchor="middle" fontSize="7" fill="#8a8478">{tl({ en: 'β = −4°', hi: 'β = −4°', sa: 'β = −4°' }, locale)}</text>
                 <circle cx="160" cy="48" r="5" fill="#e2e8f0" opacity="0.7" stroke="#e2e8f0" strokeWidth="1" />
                 <text x="160" y="40" textAnchor="middle" fontSize="7" fill="#e2e8f0">{tl({ en: 'β ≈ 0°', hi: 'β ≈ 0°', sa: 'β ≈ 0°' }, locale)}</text>
-                <text x="160" y="32" textAnchor="middle" fontSize="7" fill="#22c55e">{tl({ en: '→ Eclipse!', hi: '→ ग्रहण!', sa: '→ ग्रहण!' }, locale)}</text>
+                <text x="160" y="32" textAnchor="middle" fontSize="7" fill="#22c55e">{tl({ en: '→ Eclipse!', hi: '→ ग्रहण!', sa: '→ ग्रहणम्!' }, locale)}</text>
                 <circle cx="270" cy="35" r="5" fill="none" stroke="#e2e8f0" strokeWidth="1.2" opacity="0.5" />
                 <text x="270" y="28" textAnchor="middle" fontSize="7" fill="#8a8478">{tl({ en: 'β = +3°', hi: 'β = +3°', sa: 'β = +3°' }, locale)}</text>
               </svg>
@@ -355,8 +355,8 @@ export default function LearnEclipsesPage() {
             <div className="px-5 py-4 text-text-secondary text-sm leading-relaxed" style={bodyFont}>
               <p>{t('step1')}</p>
               <div className="mt-3 p-3 bg-bg-primary/50 rounded-lg font-mono text-xs text-gold-light/80 space-y-1">
-                <p>{tl({ en: '// Tithi #30 (Amavasya) → solar eclipse candidate', hi: '// तिथि #30 (अमावस्या) → सूर्य ग्रहण उम्मीदवार', sa: '// तिथि #30 (अमावस्या) → सूर्य ग्रहण उम्मीदवार' }, locale)}</p>
-                <p>{tl({ en: '// Tithi #15 (Purnima) → lunar eclipse candidate', hi: '// तिथि #15 (पूर्णिमा) → चन्द्र ग्रहण उम्मीदवार', sa: '// तिथि #15 (पूर्णिमा) → चन्द्र ग्रहण उम्मीदवार' }, locale)}</p>
+                <p>{tl({ en: '// Tithi #30 (Amavasya) → solar eclipse candidate', hi: '// तिथि #30 (अमावस्या) → सूर्य ग्रहण उम्मीदवार', sa: '// तिथिः #30 (अमावस्या) → सूर्यग्रहण-उम्मीदवारः' }, locale)}</p>
+                <p>{tl({ en: '// Tithi #15 (Purnima) → lunar eclipse candidate', hi: '// तिथि #15 (पूर्णिमा) → चन्द्र ग्रहण उम्मीदवार', sa: '// तिथिः #15 (पूर्णिमा) → चन्द्रग्रहण-उम्मीदवारः' }, locale)}</p>
                 <p className="text-text-secondary/60">t_mid = (entry.startJd + entry.endJd) / 2</p>
               </div>
             </div>
@@ -371,9 +371,9 @@ export default function LearnEclipsesPage() {
             <div className="px-5 py-4 text-text-secondary text-sm leading-relaxed" style={bodyFont}>
               <p>{t('step2')}</p>
               <div className="mt-3 p-3 bg-bg-primary/50 rounded-lg font-mono text-xs text-gold-light/80 space-y-1">
-                <p className="text-text-secondary/60">{tl({ en: '// Query Moon ecliptic latitude', hi: '// चन्द्र अक्षांश प्राप्त करें', sa: '// चन्द्र अक्षांश प्राप्त करें' }, locale)}</p>
+                <p className="text-text-secondary/60">{tl({ en: '// Query Moon ecliptic latitude', hi: '// चन्द्र अक्षांश प्राप्त करें', sa: '// चन्द्रस्य क्रान्तिवृत्त-अक्षांशं पृच्छतु' }, locale)}</p>
                 <p>β = moonEclipticLatitude(t_mid)  <span className="text-text-secondary/50">// degrees</span></p>
-                <p>{tl({ en: '// β = 0° at node, ±5.15° furthest from node', hi: '// β = 0° पर नोड, ±5.15° पर नोड से दूर', sa: '// β = 0° पर नोड, ±5.15° पर नोड से दूर' }, locale)}</p>
+                <p>{tl({ en: '// β = 0° at node, ±5.15° furthest from node', hi: '// β = 0° पर नोड, ±5.15° पर नोड से दूर', sa: '// β = 0° पर्वणि, ±5.15° पर्वणः अतिदूरे' }, locale)}</p>
               </div>
             </div>
           </div>
@@ -390,7 +390,7 @@ export default function LearnEclipsesPage() {
                 {/* Solar thresholds */}
                 <div>
                   <div className="text-amber-400 text-xs font-bold uppercase tracking-wider mb-2">
-                    {tl({ en: 'Solar Eclipse — At New Moon', hi: 'सूर्य ग्रहण — अमावस्या पर', sa: 'सूर्य ग्रहण — अमावस्या पर' }, locale)}
+                    {tl({ en: 'Solar Eclipse — At New Moon', hi: 'सूर्य ग्रहण — अमावस्या पर', sa: 'सूर्यग्रहणम् — अमावस्यायाम्' }, locale)}
                   </div>
                   <div className="space-y-1.5">
                     {[
@@ -404,14 +404,14 @@ export default function LearnEclipsesPage() {
                       </div>
                     ))}
                     <div className="text-text-secondary/60 text-xs px-1 mt-1">
-                      {tl({ en: 'Total vs Annular: depends on Moon distance — closer = total, farther = annular', hi: 'पूर्ण बनाम कण्कण: चन्द्र दूरी पर निर्भर — निकट = पूर्ण, दूर = कण्कण', sa: 'पूर्ण बनाम कण्कण: चन्द्र दूरी पर निर्भर — निकट = पूर्ण, दूर = कण्कण' }, locale)}
+                      {tl({ en: 'Total vs Annular: depends on Moon distance — closer = total, farther = annular', hi: 'पूर्ण बनाम कण्कण: चन्द्र दूरी पर निर्भर — निकट = पूर्ण, दूर = कण्कण', sa: 'पूर्णं वलयाकारं वा: चन्द्रस्य दूरत्वे निर्भरम् — निकटः = पूर्णं, दूरः = वलयाकारम्' }, locale)}
                     </div>
                   </div>
                 </div>
                 {/* Lunar thresholds */}
                 <div>
                   <div className="text-blue-300 text-xs font-bold uppercase tracking-wider mb-2">
-                    {tl({ en: 'Lunar Eclipse — At Full Moon', hi: 'चन्द्र ग्रहण — पूर्णिमा पर', sa: 'चन्द्र ग्रहण — पूर्णिमा पर' }, locale)}
+                    {tl({ en: 'Lunar Eclipse — At Full Moon', hi: 'चन्द्र ग्रहण — पूर्णिमा पर', sa: 'चन्द्रग्रहणम् — पूर्णिमायाम्' }, locale)}
                   </div>
                   <div className="space-y-1.5">
                     {[
@@ -516,7 +516,7 @@ export default function LearnEclipsesPage() {
         {/* Contact times visual timeline */}
         <div className="mt-6 p-4 bg-bg-primary/40 rounded-xl border border-gold-primary/10">
           <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3 text-center">
-            {tl({ en: 'Lunar Eclipse Timeline', hi: 'चन्द्र ग्रहण कालक्रम', sa: 'चन्द्र ग्रहण कालक्रम' }, locale)}
+            {tl({ en: 'Lunar Eclipse Timeline', hi: 'चन्द्र ग्रहण कालक्रम', sa: 'चन्द्रग्रहणस्य कालक्रमः' }, locale)}
           </div>
           <div className="flex items-center gap-0 w-full overflow-x-auto">
             {[
@@ -567,8 +567,8 @@ export default function LearnEclipsesPage() {
             <thead>
               <tr className="border-b border-gold-primary/15">
                 <th className="text-left py-2 px-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Text', hi: 'ग्रन्थ', sa: 'ग्रन्थः' }, locale)}</th>
-                <th className="text-left py-2 px-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Solar Eclipse', hi: 'सूर्य ग्रहण', sa: 'सूर्य ग्रहण' }, locale)}</th>
-                <th className="text-left py-2 px-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Lunar Eclipse', hi: 'चन्द्र ग्रहण', sa: 'चन्द्र ग्रहण' }, locale)}</th>
+                <th className="text-left py-2 px-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Solar Eclipse', hi: 'सूर्य ग्रहण', sa: 'सूर्यग्रहणम्' }, locale)}</th>
+                <th className="text-left py-2 px-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Lunar Eclipse', hi: 'चन्द्र ग्रहण', sa: 'चन्द्रग्रहणम्' }, locale)}</th>
               </tr>
             </thead>
             <tbody>
@@ -704,7 +704,7 @@ export default function LearnEclipsesPage() {
 
           {/* Saros lifecycle diagram */}
           <div className="border border-gold-primary/10 rounded-xl p-4 bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27]">
-            <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-3">{tl({ en: 'Lifecycle of a Saros Series (~1,200-1,500 years)', hi: 'सारोस श्रृंखला का जीवन चक्र (~1,200-1,500 वर्ष)', sa: 'सारोस श्रृंखला का जीवन चक्र (~1,200-1,500 वर्ष)' }, locale)}</div>
+            <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-3">{tl({ en: 'Lifecycle of a Saros Series (~1,200-1,500 years)', hi: 'सारोस श्रृंखला का जीवन चक्र (~1,200-1,500 वर्ष)', sa: 'सारोस-श्रृंखलायाः जीवनचक्रम् (~1,200-1,500 वर्षाणि)' }, locale)}</div>
             <div className="flex items-center gap-1 text-[10px]">
               <div className="flex-1 h-3 rounded-l-full bg-gradient-to-r from-transparent to-amber-500/30" />
               <div className="flex-1 h-3 bg-gradient-to-r from-amber-500/30 to-amber-500/60" />
@@ -716,11 +716,11 @@ export default function LearnEclipsesPage() {
               <div className="flex-1 h-3 rounded-r-full bg-gradient-to-r from-amber-500/30 to-transparent" />
             </div>
             <div className="flex justify-between mt-1 text-[9px] text-text-secondary/50">
-              <span>{tl({ en: 'Start: Small partials (pole)', hi: 'शुरू: छोटे आंशिक (ध्रुव)', sa: 'शुरू: छोटे आंशिक (ध्रुव)' }, locale)}</span>
-              <span className="text-red-400">{tl({ en: 'Peak: Total/Annular (equator)', hi: 'चरम: पूर्ण/वलयाकार (भूमध्य)', sa: 'चरम: पूर्ण/वलयाकार (भूमध्य)' }, locale)}</span>
-              <span>{tl({ en: 'End: Small partials (opp. pole)', hi: 'अंत: छोटे आंशिक (विपरीत ध्रुव)', sa: 'अंत: छोटे आंशिक (विपरीत ध्रुव)' }, locale)}</span>
+              <span>{tl({ en: 'Start: Small partials (pole)', hi: 'शुरू: छोटे आंशिक (ध्रुव)', sa: 'आरम्भः: लघु आंशिकग्रहणानि (ध्रुवे)' }, locale)}</span>
+              <span className="text-red-400">{tl({ en: 'Peak: Total/Annular (equator)', hi: 'चरम: पूर्ण/वलयाकार (भूमध्य)', sa: 'चरमम्: पूर्णं/वलयाकारम् (विषुवत्-रेखायाम्)' }, locale)}</span>
+              <span>{tl({ en: 'End: Small partials (opp. pole)', hi: 'अंत: छोटे आंशिक (विपरीत ध्रुव)', sa: 'अन्तः: लघु आंशिकग्रहणानि (विपरीत-ध्रुवे)' }, locale)}</span>
             </div>
-            <div className="text-center text-text-secondary/40 text-[9px] mt-1">70-85 {tl({ en: 'eclipses per series', hi: 'ग्रहण प्रति श्रृंखला', sa: 'ग्रहण प्रति श्रृंखला' }, locale)}</div>
+            <div className="text-center text-text-secondary/40 text-[9px] mt-1">70-85 {tl({ en: 'eclipses per series', hi: 'ग्रहण प्रति श्रृंखला', sa: 'ग्रहणानि प्रति श्रृंखलाम्' }, locale)}</div>
           </div>
 
           {/* Series stats */}
@@ -764,14 +764,14 @@ export default function LearnEclipsesPage() {
           {/* Solar: Saros 126 chain */}
           <div className="border border-amber-500/15 rounded-xl overflow-hidden">
             <div className="px-4 py-2 bg-amber-500/5 border-b border-amber-500/10">
-              <span className="text-amber-300 font-bold text-sm">{tl({ en: 'Saros 126 — Total Solar Eclipse Chain', hi: 'सारोस 126 — पूर्ण सूर्य ग्रहण श्रृंखला', sa: 'सारोस 126 — पूर्ण सूर्य ग्रहण श्रृंखला' }, locale)}</span>
+              <span className="text-amber-300 font-bold text-sm">{tl({ en: 'Saros 126 — Total Solar Eclipse Chain', hi: 'सारोस 126 — पूर्ण सूर्य ग्रहण श्रृंखला', sa: 'सारोस 126 — पूर्ण-सूर्यग्रहण-श्रृंखला' }, locale)}</span>
             </div>
             <div className="divide-y divide-gold-primary/5">
               {[
-                { date: 'Jul 22, 1990', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Finland → Siberia → Pacific', hi: 'फिनलैण्ड → साइबेरिया → प्रशान्त', sa: 'फिनलैण्ड → साइबेरिया → प्रशान्त' }, locale), mag: '1.039', highlight: false },
-                { date: 'Aug 1, 2008', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Canada → Arctic → Siberia → China', hi: 'कनाडा → आर्कटिक → साइबेरिया → चीन', sa: 'कनाडा → आर्कटिक → साइबेरिया → चीन' }, locale), mag: '1.039', highlight: false },
+                { date: 'Jul 22, 1990', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Finland → Siberia → Pacific', hi: 'फिनलैण्ड → साइबेरिया → प्रशान्त', sa: 'फिनलैण्ड → साइबेरिया → प्रशान्त-महासागरः' }, locale), mag: '1.039', highlight: false },
+                { date: 'Aug 1, 2008', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Canada → Arctic → Siberia → China', hi: 'कनाडा → आर्कटिक → साइबेरिया → चीन', sa: 'कनाडा → आर्कटिक → साइबेरिया → चीनः' }, locale), mag: '1.039', highlight: false },
                 { date: 'Aug 12, 2026', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Arctic → Greenland → Iceland → Spain', hi: 'आर्कटिक → ग्रीनलैण्ड → आइसलैण्ड → स्पेन', sa: 'आर्कटिक → ग्रीनलैण्ड → आइसलैण्ड → स्पेन' }, locale), mag: '1.039', highlight: true },
-                { date: 'Aug 24, 2044', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Canada → Montana → N. Dakota', hi: 'कनाडा → मोन्टाना → उत्तरी डकोटा', sa: 'कनाडा → मोन्टाना → उत्तरी डकोटा' }, locale), mag: '1.036', highlight: false },
+                { date: 'Aug 24, 2044', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Canada → Montana → N. Dakota', hi: 'कनाडा → मोन्टाना → उत्तरी डकोटा', sa: 'कनाडा → मोन्टाना → उत्तर-डकोटा' }, locale), mag: '1.036', highlight: false },
                 { date: 'Sep 3, 2062', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Indonesia → Australia', hi: 'इण्डोनेशिया → ऑस्ट्रेलिया', sa: 'इण्डोनेशिया → ऑस्ट्रेलिया' }, locale), mag: '1.031', highlight: false },
               ].map((row, i) => (
                 <div key={i} className={`flex items-center gap-4 px-4 py-2.5 text-sm ${row.highlight ? 'bg-amber-500/8' : ''}`}>
@@ -779,12 +779,12 @@ export default function LearnEclipsesPage() {
                   <span className={`text-xs px-2 py-0.5 rounded-full border shrink-0 ${row.highlight ? 'bg-amber-500/15 text-amber-300 border-amber-500/25' : 'bg-amber-500/5 text-amber-400/60 border-amber-500/10'}`}>{row.type}</span>
                   <span className="text-text-secondary/70 text-xs flex-1" style={bodyFont}>{row.path}</span>
                   <span className="font-mono text-xs text-text-secondary/50">{row.mag}</span>
-                  {row.highlight && <span className="text-[9px] text-gold-light font-bold">← {tl({ en: 'NEXT!', hi: 'अगला!', sa: 'अगला!' }, locale)}</span>}
+                  {row.highlight && <span className="text-[9px] text-gold-light font-bold">← {tl({ en: 'NEXT!', hi: 'अगला!', sa: 'अग्रिमम्!' }, locale)}</span>}
                 </div>
               ))}
             </div>
             <div className="px-4 py-2 bg-amber-500/3 text-[10px] text-text-secondary/40">
-              {tl({ en: 'Between each: +18 years 11 days 8 hours. Path shifts ~120° westward.', hi: 'प्रत्येक ग्रहण के बीच: +18 वर्ष 11 दिन 8 घण्टे। पथ ~120° पश्चिम खिसकता है।', sa: 'प्रत्येक ग्रहण के बीच: +18 वर्ष 11 दिन 8 घण्टे। पथ ~120° पश्चिम खिसकता है।' }, locale)}
+              {tl({ en: 'Between each: +18 years 11 days 8 hours. Path shifts ~120° westward.', hi: 'प्रत्येक ग्रहण के बीच: +18 वर्ष 11 दिन 8 घण्टे। पथ ~120° पश्चिम खिसकता है।', sa: 'प्रत्येकयोः मध्ये: +18 वर्षाणि 11 दिनानि 8 घण्टाः। पथः ~120° पश्चिमं सरति।' }, locale)}
             </div>
           </div>
 
@@ -794,27 +794,27 @@ export default function LearnEclipsesPage() {
           <p className="text-sm mt-2">{t('sarosLunarExample')}</p>
           <div className="border border-indigo-500/15 rounded-xl overflow-hidden">
             <div className="px-4 py-2 bg-indigo-500/5 border-b border-indigo-500/10">
-              <span className="text-indigo-300 font-bold text-sm">{tl({ en: 'Saros 133 — Total Lunar Eclipse Chain', hi: 'सारोस 133 — पूर्ण चन्द्र ग्रहण श्रृंखला', sa: 'सारोस 133 — पूर्ण चन्द्र ग्रहण श्रृंखला' }, locale)}</span>
+              <span className="text-indigo-300 font-bold text-sm">{tl({ en: 'Saros 133 — Total Lunar Eclipse Chain', hi: 'सारोस 133 — पूर्ण चन्द्र ग्रहण श्रृंखला', sa: 'सारोस 133 — पूर्ण-चन्द्रग्रहण-श्रृंखला' }, locale)}</span>
             </div>
             <div className="divide-y divide-gold-primary/5">
               {[
-                { date: 'Feb 9, 1990', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), region: tl({ en: 'Europe, Africa, Asia', hi: 'यूरोप, अफ्रीका, एशिया', sa: 'यूरोप, अफ्रीका, एशिया' }, locale), mag: '1.073', highlight: false },
-                { date: 'Feb 20, 2008', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), region: tl({ en: 'Americas, Europe, Africa', hi: 'अमेरिका, यूरोप, अफ्रीका', sa: 'अमेरिका, यूरोप, अफ्रीका' }, locale), mag: '1.107', highlight: false },
-                { date: 'Mar 3, 2026', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), region: tl({ en: 'Americas, Europe, Africa', hi: 'अमेरिका, यूरोप, अफ्रीका', sa: 'अमेरिका, यूरोप, अफ्रीका' }, locale), mag: '1.151', highlight: true },
-                { date: 'Mar 14, 2044', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), region: tl({ en: 'Asia, Australia, Pacific', hi: 'एशिया, ऑस्ट्रेलिया, प्रशान्त', sa: 'एशिया, ऑस्ट्रेलिया, प्रशान्त' }, locale), mag: '1.193', highlight: false },
-                { date: 'Mar 25, 2062', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), region: tl({ en: 'Americas, Europe', hi: 'अमेरिका, यूरोप', sa: 'अमेरिका, यूरोप' }, locale), mag: '1.227', highlight: false },
+                { date: 'Feb 9, 1990', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), region: tl({ en: 'Europe, Africa, Asia', hi: 'यूरोप, अफ्रीका, एशिया', sa: 'यूरोपः, अफ्रीका, एशिया' }, locale), mag: '1.073', highlight: false },
+                { date: 'Feb 20, 2008', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), region: tl({ en: 'Americas, Europe, Africa', hi: 'अमेरिका, यूरोप, अफ्रीका', sa: 'अमेरिका, यूरोपः, अफ्रीका' }, locale), mag: '1.107', highlight: false },
+                { date: 'Mar 3, 2026', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), region: tl({ en: 'Americas, Europe, Africa', hi: 'अमेरिका, यूरोप, अफ्रीका', sa: 'अमेरिका, यूरोपः, अफ्रीका' }, locale), mag: '1.151', highlight: true },
+                { date: 'Mar 14, 2044', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), region: tl({ en: 'Asia, Australia, Pacific', hi: 'एशिया, ऑस्ट्रेलिया, प्रशान्त', sa: 'एशिया, ऑस्ट्रेलिया, प्रशान्त-महासागरः' }, locale), mag: '1.193', highlight: false },
+                { date: 'Mar 25, 2062', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), region: tl({ en: 'Americas, Europe', hi: 'अमेरिका, यूरोप', sa: 'अमेरिका, यूरोपः' }, locale), mag: '1.227', highlight: false },
               ].map((row, i) => (
                 <div key={i} className={`flex items-center gap-4 px-4 py-2.5 text-sm ${row.highlight ? 'bg-indigo-500/8' : ''}`}>
                   <span className={`font-mono text-xs w-28 shrink-0 ${row.highlight ? 'text-indigo-300 font-bold' : 'text-text-secondary/70'}`}>{row.date}</span>
                   <span className={`text-xs px-2 py-0.5 rounded-full border shrink-0 ${row.highlight ? 'bg-indigo-500/15 text-indigo-300 border-indigo-500/25' : 'bg-indigo-500/5 text-indigo-400/60 border-indigo-500/10'}`}>{row.type}</span>
                   <span className="text-text-secondary/70 text-xs flex-1" style={bodyFont}>{row.region}</span>
                   <span className="font-mono text-xs text-text-secondary/50">{row.mag}</span>
-                  {row.highlight && <span className="text-[9px] text-indigo-300 font-bold">← {tl({ en: 'NEXT!', hi: 'अगला!', sa: 'अगला!' }, locale)}</span>}
+                  {row.highlight && <span className="text-[9px] text-indigo-300 font-bold">← {tl({ en: 'NEXT!', hi: 'अगला!', sa: 'अग्रिमम्!' }, locale)}</span>}
                 </div>
               ))}
             </div>
             <div className="px-4 py-2 bg-indigo-500/3 text-[10px] text-text-secondary/40">
-              {tl({ en: 'Magnitude is increasing (1.073 → 1.227) — this series is heading toward its peak!', hi: 'परिमाण बढ़ रहा है (1.073 → 1.227) — यह श्रृंखला अपने चरम की ओर है!', sa: 'परिमाण बढ़ रहा है (1.073 → 1.227) — यह श्रृंखला अपने चरम की ओर है!' }, locale)}
+              {tl({ en: 'Magnitude is increasing (1.073 → 1.227) — this series is heading toward its peak!', hi: 'परिमाण बढ़ रहा है (1.073 → 1.227) — यह श्रृंखला अपने चरम की ओर है!', sa: 'परिमाणं वर्धते (1.073 → 1.227) — इयं श्रृंखला स्वचरमं प्रति गच्छति!' }, locale)}
             </div>
           </div>
 
@@ -825,31 +825,31 @@ export default function LearnEclipsesPage() {
           {/* Eclipse season shift table */}
           <div className="border border-gold-primary/10 rounded-xl overflow-hidden">
             <div className="px-4 py-2 bg-gold-primary/5 border-b border-gold-primary/10">
-              <span className="text-gold-light font-bold text-sm">{tl({ en: 'Eclipse Season Drift (due to Nodal Precession)', hi: 'ग्रहण ऋतु विचलन (पात पुरस्सरण के कारण)', sa: 'ग्रहण ऋतु विचलन (पात पुरस्सरण के कारण)' }, locale)}</span>
+              <span className="text-gold-light font-bold text-sm">{tl({ en: 'Eclipse Season Drift (due to Nodal Precession)', hi: 'ग्रहण ऋतु विचलन (पात पुरस्सरण के कारण)', sa: 'ग्रहण-ऋतु-विचलनम् (पात-पुरस्सरण-कारणात्)' }, locale)}</span>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
                   <tr className="border-b border-gold-primary/10 bg-gold-primary/3">
-                    <th className="text-left px-4 py-2 text-gold-dark font-bold">{tl({ en: 'Year', hi: 'वर्ष', sa: 'वर्ष' }, locale)}</th>
-                    <th className="text-left px-4 py-2 text-gold-dark font-bold">{tl({ en: 'Season 1', hi: 'ऋतु 1', sa: 'ऋतु 1' }, locale)}</th>
-                    <th className="text-left px-4 py-2 text-gold-dark font-bold">{tl({ en: 'Season 2', hi: 'ऋतु 2', sa: 'ऋतु 2' }, locale)}</th>
-                    <th className="text-left px-4 py-2 text-gold-dark font-bold">{tl({ en: 'Rahu Sign', hi: 'राहु राशि', sa: 'राहु राशि' }, locale)}</th>
+                    <th className="text-left px-4 py-2 text-gold-dark font-bold">{tl({ en: 'Year', hi: 'वर्ष', sa: 'वर्षम्' }, locale)}</th>
+                    <th className="text-left px-4 py-2 text-gold-dark font-bold">{tl({ en: 'Season 1', hi: 'ऋतु 1', sa: 'ऋतुः 1' }, locale)}</th>
+                    <th className="text-left px-4 py-2 text-gold-dark font-bold">{tl({ en: 'Season 2', hi: 'ऋतु 2', sa: 'ऋतुः 2' }, locale)}</th>
+                    <th className="text-left px-4 py-2 text-gold-dark font-bold">{tl({ en: 'Rahu Sign', hi: 'राहु राशि', sa: 'राहोः राशिः' }, locale)}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gold-primary/5">
                   {[
-                    { year: '2024', s1: 'Mar-Apr', s2: 'Sep-Oct', rahu: tl({ en: 'Pisces', hi: 'मीन', sa: 'मीन' }, locale), current: false },
-                    { year: '2025', s1: 'Mar', s2: 'Sep', rahu: tl({ en: 'Pisces', hi: 'मीन', sa: 'मीन' }, locale), current: false },
-                    { year: '2026', s1: 'Feb-Mar', s2: 'Aug', rahu: tl({ en: 'Pisces → Aquarius', hi: 'मीन → कुम्भ', sa: 'मीन → कुम्भ' }, locale), current: true },
-                    { year: '2028', s1: 'Jan', s2: 'Jul', rahu: tl({ en: 'Aquarius', hi: 'कुम्भ', sa: 'कुम्भ' }, locale), current: false },
-                    { year: '2030', s1: 'Jun', s2: 'Nov-Dec', rahu: tl({ en: 'Capricorn → Sagittarius', hi: 'मकर → धनु', sa: 'मकर → धनु' }, locale), current: false },
-                    { year: '2033', s1: 'Mar-Apr', s2: 'Sep-Oct', rahu: tl({ en: 'Scorpio', hi: 'वृश्चिक', sa: 'वृश्चिक' }, locale), current: false },
+                    { year: '2024', s1: 'Mar-Apr', s2: 'Sep-Oct', rahu: tl({ en: 'Pisces', hi: 'मीन', sa: 'मीनः' }, locale), current: false },
+                    { year: '2025', s1: 'Mar', s2: 'Sep', rahu: tl({ en: 'Pisces', hi: 'मीन', sa: 'मीनः' }, locale), current: false },
+                    { year: '2026', s1: 'Feb-Mar', s2: 'Aug', rahu: tl({ en: 'Pisces → Aquarius', hi: 'मीन → कुम्भ', sa: 'मीनः → कुम्भः' }, locale), current: true },
+                    { year: '2028', s1: 'Jan', s2: 'Jul', rahu: tl({ en: 'Aquarius', hi: 'कुम्भ', sa: 'कुम्भः' }, locale), current: false },
+                    { year: '2030', s1: 'Jun', s2: 'Nov-Dec', rahu: tl({ en: 'Capricorn → Sagittarius', hi: 'मकर → धनु', sa: 'मकरः → धनुः' }, locale), current: false },
+                    { year: '2033', s1: 'Mar-Apr', s2: 'Sep-Oct', rahu: tl({ en: 'Scorpio', hi: 'वृश्चिक', sa: 'वृश्चिकः' }, locale), current: false },
                     { year: '2035', s1: 'Mar', s2: 'Sep', rahu: tl({ en: 'Libra → Virgo', hi: 'तुला → कन्या', sa: 'तुला → कन्या' }, locale), current: false },
                   ].map((row, i) => (
                     <tr key={i} className={row.current ? 'bg-gold-primary/5' : ''}>
                       <td className={`px-4 py-2 font-mono ${row.current ? 'text-gold-light font-bold' : 'text-text-secondary/70'}`}>
-                        {row.year} {row.current && <span className="text-[9px] text-gold-primary">← {tl({ en: 'NOW', hi: 'अभी', sa: 'अभी' }, locale)}</span>}
+                        {row.year} {row.current && <span className="text-[9px] text-gold-primary">← {tl({ en: 'NOW', hi: 'अभी', sa: 'अधुना' }, locale)}</span>}
                       </td>
                       <td className="px-4 py-2 text-text-secondary/70">{row.s1}</td>
                       <td className="px-4 py-2 text-text-secondary/70">{row.s2}</td>
@@ -860,7 +860,7 @@ export default function LearnEclipsesPage() {
               </table>
             </div>
             <div className="px-4 py-2 bg-gold-primary/3 text-[10px] text-text-secondary/40">
-              {tl({ en: 'Eclipse seasons shift ~19 days earlier each year. Rahu enters a new sign every ~1.5 years.', hi: 'ग्रहण ऋतुएँ प्रत्येक वर्ष ~19 दिन पहले खिसकती हैं। राहु हर ~1.5 वर्ष में नई राशि में प्रवेश करता है।', sa: 'ग्रहण ऋतुएँ प्रत्येक वर्ष ~19 दिन पहले खिसकती हैं। राहु हर ~1.5 वर्ष में नई राशि में प्रवेश करता है।' }, locale)}
+              {tl({ en: 'Eclipse seasons shift ~19 days earlier each year. Rahu enters a new sign every ~1.5 years.', hi: 'ग्रहण ऋतुएँ प्रत्येक वर्ष ~19 दिन पहले खिसकती हैं। राहु हर ~1.5 वर्ष में नई राशि में प्रवेश करता है।', sa: 'ग्रहण-ऋतवः प्रतिवर्षं ~19 दिनानि पूर्वं सरन्ति। राहुः प्रति ~1.5 वर्षं नवराशिं प्रविशति।' }, locale)}
             </div>
           </div>
         </div>
@@ -893,7 +893,7 @@ export default function LearnEclipsesPage() {
               </div>
               <div className="px-4 py-2 bg-amber-500/3 border-t border-amber-500/8">
                 <div className="text-[10px] text-amber-400/60 font-mono">
-                  {tl({ en: 'Nature: Ambition, illusion, material upheaval', hi: 'स्वरूप: महत्वाकांक्षा, भ्रम, भौतिक उथल-पुथल', sa: 'स्वरूप: महत्वाकांक्षा, भ्रम, भौतिक उथल-पुथल' }, locale)}
+                  {tl({ en: 'Nature: Ambition, illusion, material upheaval', hi: 'स्वरूप: महत्वाकांक्षा, भ्रम, भौतिक उथल-पुथल', sa: 'स्वभावः: महत्त्वाकाङ्क्षा, माया, भौतिक-उथल-पुथलः' }, locale)}
                 </div>
               </div>
             </div>
@@ -909,7 +909,7 @@ export default function LearnEclipsesPage() {
               </div>
               <div className="px-4 py-2 bg-violet-500/3 border-t border-violet-500/8">
                 <div className="text-[10px] text-violet-400/60 font-mono">
-                  {tl({ en: 'Nature: Detachment, karmic reckoning, spiritual awakening', hi: 'स्वरूप: वैराग्य, कर्म परिपाक, आध्यात्मिक जागृति', sa: 'स्वरूप: वैराग्य, कर्म परिपाक, आध्यात्मिक जागृति' }, locale)}
+                  {tl({ en: 'Nature: Detachment, karmic reckoning, spiritual awakening', hi: 'स्वरूप: वैराग्य, कर्म परिपाक, आध्यात्मिक जागृति', sa: 'स्वभावः: वैराग्यम्, कर्म-परिपाकः, आध्यात्मिक-जागृतिः' }, locale)}
                 </div>
               </div>
             </div>
@@ -925,7 +925,7 @@ export default function LearnEclipsesPage() {
               </div>
               <div className="px-4 py-2 bg-amber-500/3 border-t border-amber-500/8">
                 <div className="text-[10px] text-amber-400/60 font-mono">
-                  {tl({ en: 'Nature: Emotional illusion, mass anxiety, psychic awakening', hi: 'स्वरूप: भावनात्मक भ्रम, सामूहिक चिन्ता, मानसिक जागृति', sa: 'स्वरूप: भावनात्मक भ्रम, सामूहिक चिन्ता, मानसिक जागृति' }, locale)}
+                  {tl({ en: 'Nature: Emotional illusion, mass anxiety, psychic awakening', hi: 'स्वरूप: भावनात्मक भ्रम, सामूहिक चिन्ता, मानसिक जागृति', sa: 'स्वभावः: भावनात्मक-माया, सामूहिक-चिन्ता, मानसिक-जागृतिः' }, locale)}
                 </div>
               </div>
             </div>
@@ -941,7 +941,7 @@ export default function LearnEclipsesPage() {
               </div>
               <div className="px-4 py-2 bg-red-500/3 border-t border-red-500/8">
                 <div className="text-[10px] text-red-400/60 font-mono">
-                  {tl({ en: 'Nature: Ancestral karma, grief, moksha, most spiritual of all 4', hi: 'स्वरूप: पूर्वज कर्म, शोक, मोक्ष, सर्वाधिक आध्यात्मिक', sa: 'स्वरूप: पूर्वज कर्म, शोक, मोक्ष, सर्वाधिक आध्यात्मिक' }, locale)}
+                  {tl({ en: 'Nature: Ancestral karma, grief, moksha, most spiritual of all 4', hi: 'स्वरूप: पूर्वज कर्म, शोक, मोक्ष, सर्वाधिक आध्यात्मिक', sa: 'स्वभावः: पितृ-कर्म, शोकः, मोक्षः, चतुर्षु सर्वाधिक-आध्यात्मिकम्' }, locale)}
                 </div>
               </div>
             </div>
@@ -953,18 +953,18 @@ export default function LearnEclipsesPage() {
               <thead>
                 <tr className="border-b border-gold-primary/10 bg-gold-primary/3">
                   <th className="text-left px-4 py-2 text-gold-dark font-bold"></th>
-                  <th className="text-left px-4 py-2 text-amber-400 font-bold">☊ {tl({ en: 'At Rahu', hi: 'राहु पर', sa: 'राहु पर' }, locale)}</th>
-                  <th className="text-left px-4 py-2 text-violet-400 font-bold">☋ {tl({ en: 'At Ketu', hi: 'केतु पर', sa: 'केतु पर' }, locale)}</th>
+                  <th className="text-left px-4 py-2 text-amber-400 font-bold">☊ {tl({ en: 'At Rahu', hi: 'राहु पर', sa: 'राहौ' }, locale)}</th>
+                  <th className="text-left px-4 py-2 text-violet-400 font-bold">☋ {tl({ en: 'At Ketu', hi: 'केतु पर', sa: 'केतौ' }, locale)}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gold-primary/5">
                 <tr>
-                  <td className="px-4 py-2.5 text-amber-300 font-bold">☀ {tl({ en: 'Solar', hi: 'सूर्य', sa: 'सूर्य' }, locale)}</td>
+                  <td className="px-4 py-2.5 text-amber-300 font-bold">☀ {tl({ en: 'Solar', hi: 'सूर्य', sa: 'सौरम्' }, locale)}</td>
                   <td className="px-4 py-2.5 text-text-secondary/70" style={bodyFont}>{isHi ? 'सत्ता उथल-पुथल, भ्रम, विदेश प्रभाव' : 'Power upheaval, deception, foreign influence'}</td>
                   <td className="px-4 py-2.5 text-text-secondary/70" style={bodyFont}>{isHi ? 'अहंकार पतन, कर्म परिपाक, आध्यात्मिक मोड़' : 'Ego fall, karmic reckoning, spiritual turning point'}</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2.5 text-indigo-300 font-bold">☽ {tl({ en: 'Lunar', hi: 'चन्द्र', sa: 'चन्द्र' }, locale)}</td>
+                  <td className="px-4 py-2.5 text-indigo-300 font-bold">☽ {tl({ en: 'Lunar', hi: 'चन्द्र', sa: 'चान्द्रम्' }, locale)}</td>
                   <td className="px-4 py-2.5 text-text-secondary/70" style={bodyFont}>{isHi ? 'सामूहिक भय, मानसिक धुंध, इच्छा-प्रेरित भ्रम' : 'Mass fear, mental fog, desire-driven illusion'}</td>
                   <td className="px-4 py-2.5 text-text-secondary/70" style={bodyFont}>{isHi ? 'पूर्वज कर्म सतह पर, शोक, मोक्ष, रक्त चन्द्र' : 'Ancestral karma surfaces, grief, moksha, Blood Moon'}</td>
                 </tr>

@@ -100,7 +100,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'The Theorem We Know By the Wrong Name', hi: 'वह प्रमेय जिसे हम गलत नाम से जानते हैं', sa: 'वह प्रमेय जिसे हम गलत नाम से जानते हैं' }, locale)}
+          {tl({ en: 'The Theorem We Know By the Wrong Name', hi: 'वह प्रमेय जिसे हम गलत नाम से जानते हैं', sa: 'तत् प्रमेयं यत् वयं मिथ्यानाम्ना जानीमः' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -111,7 +111,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Sulba Sutras — Mathematics Born From Ritual', hi: 'शुल्ब सूत्र — कर्मकाण्ड से जन्मा गणित', sa: 'शुल्ब सूत्र — कर्मकाण्ड से जन्मा गणित' }, locale)}
+          {tl({ en: 'Sulba Sutras — Mathematics Born From Ritual', hi: 'शुल्ब सूत्र — कर्मकाण्ड से जन्मा गणित', sa: 'शुल्बसूत्राणि — कर्मकाण्डाद् जातं गणितम्' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-3">
           {isHi
@@ -137,7 +137,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Baudhayana Sulba Sutra 1.48', hi: 'बौधायन शुल्ब सूत्र 1.48', sa: 'बौधायन शुल्ब सूत्र 1.48' }, locale)}
+          {tl({ en: 'Baudhayana Sulba Sutra 1.48', hi: 'बौधायन शुल्ब सूत्र 1.48', sa: 'बौधायनशुल्बसूत्रम् १.४८' }, locale)}
         </h4>
         <p
           className="text-gold-primary text-base font-bold mb-2 leading-relaxed text-center"
@@ -146,10 +146,10 @@ function Page1() {
           दीर्घचतुरश्रस्याक्ष्णयारज्जुः पार्श्वमानी तिर्यङ्मानी च यत्पृथग्भूते कुरुतस्तदुभयं करोति
         </p>
         <p className="text-gold-light/80 text-sm italic text-center mb-1">
-          {tl({ en: '"The diagonal of a rectangle produces both [areas] which its length and breadth produce separately."', hi: '"आयत का विकर्ण वह दोनों [क्षेत्रफल] उत्पन्न करता है जो उसकी लम्बाई और चौड़ाई अलग-अलग उत्पन्न करती हैं।"', sa: '"आयत का विकर्ण वह दोनों [क्षेत्रफल] उत्पन्न करता है जो उसकी लम्बाई और चौड़ाई अलग-अलग उत्पन्न करती हैं।"' }, locale)}
+          {tl({ en: '"The diagonal of a rectangle produces both [areas] which its length and breadth produce separately."', hi: '"आयत का विकर्ण वह दोनों [क्षेत्रफल] उत्पन्न करता है जो उसकी लम्बाई और चौड़ाई अलग-अलग उत्पन्न करती हैं।"', sa: '"आयतस्य कर्णः तयोः [क्षेत्रफलयोः] उभयोः उत्पत्तिं करोति यत् तस्य दैर्घ्यं विस्तारश्च पृथक् पृथक् उत्पादयतः।"' }, locale)}
         </p>
         <p className="text-text-secondary/60 text-xs text-center">
-          {tl({ en: '= a² + b² = c² — a general rule for ALL rectangles', hi: '= a² + b² = c² — सभी आयतों के लिए सामान्य नियम', sa: '= a² + b² = c² — सभी आयतों के लिए सामान्य नियम' }, locale)}
+          {tl({ en: '= a² + b² = c² — a general rule for ALL rectangles', hi: '= a² + b² = c² — सभी आयतों के लिए सामान्य नियम', sa: '= a² + b² = c² — सर्वेषाम् आयतानां सामान्यनियमः' }, locale)}
         </p>
       </section>
     </div>
@@ -166,7 +166,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: '√2, Triples, and Altar Geometry', hi: '√2, त्रिक और वेदी ज्यामिति', sa: '√2, त्रिक और वेदी ज्यामिति' }, locale)}
+          {tl({ en: '√2, Triples, and Altar Geometry', hi: '√2, त्रिक और वेदी ज्यामिति', sa: '√2, त्रिकाणि, यज्ञवेदीज्यामितिश्च' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -177,7 +177,7 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: '√2 — Five Decimal Places in 800 BCE', hi: '√2 — 800 ईपू में पाँच दशमलव', sa: '√2 — 800 ईपू में पाँच दशमलव' }, locale)}
+          {tl({ en: '√2 — Five Decimal Places in 800 BCE', hi: '√2 — 800 ईपू में पाँच दशमलव', sa: '√2 — ८०० ईपू में पञ्चदशमलवस्थाने' }, locale)}
         </h4>
         <div className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10 text-center mb-3">
           <p className="text-amber-300 font-mono text-sm font-bold">√2 ≈ 1 + 1/3 + 1/(3×4) − 1/(3×4×34)</p>
@@ -195,7 +195,7 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Pythagorean Triples — Right Angles for the Altar', hi: 'पाइथागोरीय त्रिक — वेदी में समकोण', sa: 'पाइथागोरीय त्रिक — वेदी में समकोण' }, locale)}
+          {tl({ en: 'Pythagorean Triples — Right Angles for the Altar', hi: 'पाइथागोरीय त्रिक — वेदी में समकोण', sa: 'पाइथागोरीयत्रिकाणि — वेद्यर्थं समकोणाः' }, locale)}
         </h4>
         <div className="grid grid-cols-2 gap-2 mb-3">
           {[
@@ -228,7 +228,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'What Did Pythagoras Actually Do?', hi: 'पाइथागोरस ने वास्तव में क्या किया?', sa: 'पाइथागोरस ने वास्तव में क्या किया?' }, locale)}
+          {tl({ en: 'What Did Pythagoras Actually Do?', hi: 'पाइथागोरस ने वास्तव में क्या किया?', sa: 'पाइथागोरसः वास्तवतः किम् अकरोत्?' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -239,7 +239,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'The Timeline', hi: 'कालक्रम', sa: 'कालक्रम' }, locale)}
+          {tl({ en: 'The Timeline', hi: 'कालक्रम', sa: 'कालरेखा' }, locale)}
         </h4>
         <div className="space-y-3">
           {[
@@ -259,7 +259,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15 rounded-xl p-5">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'The Fair Assessment', hi: 'निष्पक्ष मूल्यांकन', sa: 'निष्पक्ष मूल्यांकन' }, locale)}
+          {tl({ en: 'The Fair Assessment', hi: 'निष्पक्ष मूल्यांकन', sa: 'निष्पक्षं मूल्यांकनम्' }, locale)}
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">

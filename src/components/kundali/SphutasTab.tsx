@@ -348,7 +348,7 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
       {(kundali.sphutas!.bijaSphuta || kundali.sphutas!.kshetraSphuta) && (
         <div>
           <h4 className="text-gold-light text-sm font-bold mb-3 text-center" style={headingFont}>
-            {tl({ en: 'Fertility Sphutas', hi: 'प्रजनन स्फुट', sa: 'प्रजनन स्फुट' }, locale)}
+            {tl({ en: 'Fertility Sphutas', hi: 'प्रजनन स्फुट', sa: 'प्रजनकस्फुटानि' }, locale)}
           </h4>
           <p className="text-text-secondary text-xs text-center mb-4 max-w-xl mx-auto">
             {tl({ en: 'These points assess fertility and progeny potential. Odd signs and benefic nakshatras = favorable. Used alongside 5th house and Jupiter analysis for childbirth timing.', hi: 'ये बिंदु प्रजनन क्षमता और सन्तान योग का आकलन करते हैं। विषम राशि/नक्षत्र = अनुकूल।', sa: 'ये बिंदु प्रजनन क्षमता और सन्तान योग का आकलन करते हैं। विषम राशि/नक्षत्र = अनुकूल।' }, locale)}

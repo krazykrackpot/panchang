@@ -3482,7 +3482,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                       </span>
                       {isInKendra && (
                         <span className="text-xs font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">
-                          {tl({ en: 'Kendra', hi: 'केंद्र', sa: 'केन्द्रम्', ta: 'கேந்திரம்', te: 'కేంద్రం', bn: 'কেন্দ্র', kn: 'ಕೇಂದ್ರ', gu: 'કેન્દ્ર', mai: 'केन्द्र', mr: 'केंद्र' }, locale)}
+                          {tl({ en: 'Kendra', hi: 'केंद्र', sa: 'केन्द्रम्', ta: 'கேந்திரம்', te: 'కేంద్రం', bn: 'কেন্দ্র', kn: 'ಕೇಂದ್ರ', gu: 'કેન્દ્ર', mai: 'केंद्र', mr: 'केंद्र' }, locale)}
                         </span>
                       )}
                       {isInTrikona && !isInKendra && (
@@ -3492,7 +3492,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                       )}
                       {isInDusthana && (
                         <span className="text-xs font-bold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300">
-                          {tl({ en: 'Dusthana', hi: 'दुःस्थान', sa: 'दुःस्थानम्', ta: 'துஷ்டானம்', te: 'దుష్టానం', bn: 'দুঃস্থান', kn: 'ದುಃಸ್ಥಾನ', gu: 'દુઃસ્થાન', mai: 'दुःस्थान', mr: 'दुःस्थान' }, locale)}
+                          {tl({ en: 'Dusthana', hi: 'दुःस्थान', sa: 'दुःस्थानम्', ta: 'துஷ்டானம்', te: 'దుఃస్థానం', bn: 'দুঃস্থান', kn: 'ದುಃಸ್ಥಾನ', gu: 'દુઃસ્થાન', mai: 'दुःस्थान', mr: 'दुःस्थान' }, locale)}
                         </span>
                       )}
                     </div>

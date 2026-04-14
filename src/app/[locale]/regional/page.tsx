@@ -449,7 +449,7 @@ export default function RegionalCalendarsPage() {
                         <div className="text-text-secondary/65 text-xs mt-0.5">{month.approxGregorian}</div>
                         {isCurrent && (
                           <div className="text-gold-primary text-xs font-bold mt-1 animate-pulse">
-                            {tl({ en: 'NOW', hi: 'अभी', sa: 'अभी', ta: 'NOW', te: 'NOW', bn: 'NOW', kn: 'NOW', gu: 'NOW', mai: 'अभी', mr: 'अभी' }, locale)}
+                            {tl({ en: 'NOW', hi: 'अभी', sa: 'अधुना', ta: 'இப்போது', te: 'ఇప్పుడు', bn: 'এখন', kn: 'ಈಗ', gu: 'હવે', mai: 'अखन', mr: 'आत्ता' }, locale)}
                           </div>
                         )}
                       </div>
@@ -490,7 +490,7 @@ export default function RegionalCalendarsPage() {
             <thead>
               <tr className="border-b border-gold-primary/20">
                 <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Tradition', hi: 'परम्परा', sa: 'परम्परा', ta: 'Tradition', te: 'Tradition', bn: 'Tradition', kn: 'Tradition', gu: 'Tradition', mai: 'परम्परा', mr: 'परम्परा' }, locale)}</th>
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Type', hi: 'प्रकार', sa: 'प्रकार', ta: 'Type', te: 'Type', bn: 'Type', kn: 'Type', gu: 'Type', mai: 'प्रकार', mr: 'प्रकार' }, locale)}</th>
+                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Type', hi: 'प्रकार', sa: 'प्रकारः', ta: 'வகை', te: 'రకం', bn: 'প্রকার', kn: 'ಪ್ರಕಾರ', gu: 'પ્રકાર', mai: 'प्रकार', mr: 'प्रकार' }, locale)}</th>
                 <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Era', hi: 'युग', sa: 'युग', ta: 'Era', te: 'Era', bn: 'Era', kn: 'Era', gu: 'Era', mai: 'युग', mr: 'युग' }, locale)}</th>
                 <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Year Starts', hi: 'वर्षारम्भ', sa: 'वर्षारम्भ', ta: 'Year Starts', te: 'Year Starts', bn: 'Year Starts', kn: 'Year Starts', gu: 'Year Starts', mai: 'वर्षारम्भ', mr: 'वर्षारम्भ' }, locale)}</th>
                 <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'First Month', hi: 'प्रथम मास', sa: 'प्रथम मास', ta: 'First Month', te: 'First Month', bn: 'First Month', kn: 'First Month', gu: 'First Month', mai: 'प्रथम मास', mr: 'प्रथम मास' }, locale)}</th>

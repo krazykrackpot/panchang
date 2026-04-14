@@ -187,7 +187,7 @@ export default function SharedKundaliPage() {
                   <th className="text-left py-2 px-3">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः', ta: 'கிரகம்', te: 'గ్రహం', bn: 'গ্রহ', kn: 'ಗ್ರಹ', gu: 'ગ્રહ', mai: 'ग्रह', mr: 'ग्रह' }, locale)}</th>
                   <th className="text-left py-2 px-3">{tl({ en: 'Sign', hi: 'राशि', sa: 'राशिः', ta: 'ராசி', te: 'రాశి', bn: 'রাশি', kn: 'ರಾಶಿ', gu: 'રાશિ', mai: 'राशि', mr: 'राशी' }, locale)}</th>
                   <th className="text-right py-2 px-3">{tl({ en: 'Degree', hi: 'अंश', sa: 'अंश', ta: 'Degree', te: 'Degree', bn: 'Degree', kn: 'Degree', gu: 'Degree', mai: 'अंश', mr: 'अंश' }, locale)}</th>
-                  <th className="text-center py-2 px-3">{tl({ en: 'House', hi: 'भाव', sa: 'भाव', ta: 'House', te: 'House', bn: 'House', kn: 'House', gu: 'House', mai: 'भाव', mr: 'भाव' }, locale)}</th>
+                  <th className="text-center py-2 px-3">{tl({ en: 'House', hi: 'भाव', sa: 'भावः', ta: 'பாவம்', te: 'భావం', bn: 'ভাব', kn: 'ಭಾವ', gu: 'ભાવ', mai: 'भाव', mr: 'भाव' }, locale)}</th>
                   <th className="text-center py-2 px-3">{tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्रम्', ta: 'நட்சத்திரம்', te: 'నక్షత్రము', bn: 'নক্ষত্র', kn: 'ನಕ್ಷತ್ರ', gu: 'નક્ષત્ર', mai: 'नक्षत्र', mr: 'नक्षत्र' }, locale)}</th>
                 </tr>
               </thead>

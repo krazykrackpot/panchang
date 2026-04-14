@@ -158,7 +158,7 @@ export default function DashasPage() {
                       <GrahaIconById id={PLANET_ID[d.planet] ?? 0} size={24} />
                       <div>
                         <span className={`font-bold text-sm ${isCurrent ? 'text-gold-light' : 'text-text-secondary'}`} style={bf}>{tl(d.planetName, locale)}</span>
-                        {isCurrent && <span className="ml-2 text-xs px-2 py-0.5 bg-gold-primary/20 text-gold-primary rounded-full font-bold">{tl({ en: 'NOW', hi: 'अभी', sa: 'अधुना', ta: 'இப்போது', te: 'ఇప్పుడు', bn: 'এখন', kn: 'ಈಗ', gu: 'હવે', mai: 'अखन', mr: 'आता' }, locale)}</span>}
+                        {isCurrent && <span className="ml-2 text-xs px-2 py-0.5 bg-gold-primary/20 text-gold-primary rounded-full font-bold">{tl({ en: 'NOW', hi: 'अभी', sa: 'अधुना', ta: 'இப்போது', te: 'ఇప్పుడు', bn: 'এখন', kn: 'ಈಗ', gu: 'હવે', mai: 'अखन', mr: 'आत्ता' }, locale)}</span>}
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
@@ -178,7 +178,7 @@ export default function DashasPage() {
                           <GrahaIconById id={PLANET_ID[s.planet] ?? 0} size={14} />
                           <span className={isCurrentAntar ? 'text-gold-light font-bold' : 'text-text-secondary'} style={bf}>{tl(s.planetName, locale)}</span>
                           <span className="text-text-secondary/65 font-mono ml-auto">{s.startDate} — {s.endDate}</span>
-                          {isCurrentAntar && <span className="text-gold-primary text-xs font-bold">{tl({ en: 'NOW', hi: 'अभी', sa: 'अधुना', ta: 'இப்போது', te: 'ఇప్పుడు', bn: 'এখন', kn: 'ಈಗ', gu: 'હવે', mai: 'अखन', mr: 'आता' }, locale)}</span>}
+                          {isCurrentAntar && <span className="text-gold-primary text-xs font-bold">{tl({ en: 'NOW', hi: 'अभी', sa: 'अधुना', ta: 'இப்போது', te: 'ఇప్పుడు', bn: 'এখন', kn: 'ಈಗ', gu: 'હવે', mai: 'अखन', mr: 'आत्ता' }, locale)}</span>}
                         </div>
                       );
                     })}

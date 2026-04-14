@@ -237,8 +237,8 @@ function Page3() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/15">
-                <th className="text-left text-gold-light py-1.5 pr-3">{tl({ en: 'Western Name', hi: 'पश्चिमी नाम', sa: 'पश्चिमी नाम' }, locale)}</th>
-                <th className="text-left text-gold-light py-1.5 pr-3">{tl({ en: 'Kerala Discoverer', hi: 'केरल खोजकर्ता', sa: 'केरल खोजकर्ता' }, locale)}</th>
+                <th className="text-left text-gold-light py-1.5 pr-3">{tl({ en: 'Western Name', hi: 'पश्चिमी नाम', sa: 'पाश्चात्यं नाम' }, locale)}</th>
+                <th className="text-left text-gold-light py-1.5 pr-3">{tl({ en: 'Kerala Discoverer', hi: 'केरल खोजकर्ता', sa: 'केरल-अन्वेषकः' }, locale)}</th>
                 <th className="text-right text-gold-light py-1.5">{tl({ en: 'Gap', hi: 'अन्तर', sa: 'अन्तरालः' }, locale)}</th>
               </tr>
             </thead>

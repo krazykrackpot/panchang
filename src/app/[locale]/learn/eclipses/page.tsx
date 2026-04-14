@@ -238,11 +238,11 @@ export default function LearnEclipsesPage() {
                 {/* Rahu node */}
                 <circle cx="120" cy="50" r="8" fill="#d4a853" opacity="0.15" stroke="#d4a853" strokeWidth="1.5" />
                 <text x="120" y="54" textAnchor="middle" fontSize="10" fill="#d4a853" fontWeight="bold">☊</text>
-                <text x="120" y="68" textAnchor="middle" fontSize="9" fill="#d4a853" opacity="0.8">{tl({ en: 'Rahu', hi: 'राहु', sa: 'राहु' }, locale)}</text>
+                <text x="120" y="68" textAnchor="middle" fontSize="9" fill="#d4a853" opacity="0.8">{tl({ en: 'Rahu', hi: 'राहु', sa: 'राहुः' }, locale)}</text>
                 {/* Ketu node */}
                 <circle cx="280" cy="50" r="8" fill="#8b5cf6" opacity="0.15" stroke="#8b5cf6" strokeWidth="1.5" />
                 <text x="280" y="54" textAnchor="middle" fontSize="10" fill="#8b5cf6" fontWeight="bold">☋</text>
-                <text x="280" y="68" textAnchor="middle" fontSize="9" fill="#8b5cf6" opacity="0.8">{tl({ en: 'Ketu', hi: 'केतु', sa: 'केतु' }, locale)}</text>
+                <text x="280" y="68" textAnchor="middle" fontSize="9" fill="#8b5cf6" opacity="0.8">{tl({ en: 'Ketu', hi: 'केतु', sa: 'केतुः' }, locale)}</text>
                 {/* Sun label */}
                 <circle cx="60" cy="50" r="12" fill="#f59e0b" opacity="0.2" stroke="#f59e0b" strokeWidth="1" />
                 <text x="60" y="54" textAnchor="middle" fontSize="11" fill="#f59e0b">☀</text>
@@ -302,7 +302,7 @@ export default function LearnEclipsesPage() {
               <svg viewBox="0 0 320 120" className="w-full h-28" aria-hidden="true">
                 {/* Ecliptic plane */}
                 <line x1="10" y1="60" x2="310" y2="60" stroke="#d4a853" strokeWidth="1.5" opacity="0.5" />
-                <text x="315" y="63" fontSize="8" fill="#d4a853" opacity="0.6">{tl({ en: 'Ecliptic', hi: 'क्रान्तिवृत्त', sa: 'क्रान्तिवृत्त' }, locale)}</text>
+                <text x="315" y="63" fontSize="8" fill="#d4a853" opacity="0.6">{tl({ en: 'Ecliptic', hi: 'क्रान्तिवृत्त', sa: 'क्रान्तिवृत्तम्' }, locale)}</text>
                 {/* Moon orbit — tilted line */}
                 <line x1="10" y1="95" x2="310" y2="25" stroke="#8b5cf6" strokeWidth="1.5" opacity="0.6" strokeDasharray="5 3" />
                 {/* 5.15° arc indicator */}
@@ -311,11 +311,11 @@ export default function LearnEclipsesPage() {
                 {/* Rahu node (ascending) */}
                 <circle cx="90" cy="60" r="5" fill="#d4a853" opacity="0.2" stroke="#d4a853" strokeWidth="1.5" />
                 <text x="90" y="64" textAnchor="middle" fontSize="9" fill="#d4a853">☊</text>
-                <text x="90" y="78" textAnchor="middle" fontSize="8" fill="#d4a853" opacity="0.7">{tl({ en: 'Rahu', hi: 'राहु', sa: 'राहु' }, locale)}</text>
+                <text x="90" y="78" textAnchor="middle" fontSize="8" fill="#d4a853" opacity="0.7">{tl({ en: 'Rahu', hi: 'राहु', sa: 'राहुः' }, locale)}</text>
                 {/* Ketu node (descending) */}
                 <circle cx="230" cy="60" r="5" fill="#8b5cf6" opacity="0.2" stroke="#8b5cf6" strokeWidth="1.5" />
                 <text x="230" y="64" textAnchor="middle" fontSize="9" fill="#8b5cf6">☋</text>
-                <text x="230" y="78" textAnchor="middle" fontSize="8" fill="#8b5cf6" opacity="0.7">{tl({ en: 'Ketu', hi: 'केतु', sa: 'केतु' }, locale)}</text>
+                <text x="230" y="78" textAnchor="middle" fontSize="8" fill="#8b5cf6" opacity="0.7">{tl({ en: 'Ketu', hi: 'केतु', sa: 'केतुः' }, locale)}</text>
                 {/* Moon positions */}
                 <circle cx="60" cy="82" r="5" fill="none" stroke="#e2e8f0" strokeWidth="1.2" opacity="0.5" />
                 <text x="60" y="98" textAnchor="middle" fontSize="7" fill="#8a8478">{tl({ en: 'β = −4°', hi: 'β = −4°', sa: 'β = −4°' }, locale)}</text>
@@ -566,7 +566,7 @@ export default function LearnEclipsesPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gold-primary/15">
-                <th className="text-left py-2 px-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Text', hi: 'ग्रन्थ', sa: 'ग्रन्थ' }, locale)}</th>
+                <th className="text-left py-2 px-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Text', hi: 'ग्रन्थ', sa: 'ग्रन्थः' }, locale)}</th>
                 <th className="text-left py-2 px-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Solar Eclipse', hi: 'सूर्य ग्रहण', sa: 'सूर्य ग्रहण' }, locale)}</th>
                 <th className="text-left py-2 px-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Lunar Eclipse', hi: 'चन्द्र ग्रहण', sa: 'चन्द्र ग्रहण' }, locale)}</th>
               </tr>

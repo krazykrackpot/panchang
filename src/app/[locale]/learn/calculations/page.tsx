@@ -187,7 +187,7 @@ export default function LearnCalculationsPage() {
             <thead>
               <tr className="border-b border-gold-primary/20">
                 <th className="text-left py-2 text-gold-primary font-semibold">{tl({ en: 'Calculation', hi: 'गणना', sa: 'गणना', ta: 'Calculation', te: 'Calculation', bn: 'Calculation', kn: 'Calculation', gu: 'Calculation', mai: 'गणना', mr: 'गणना' }, locale)}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold">{tl({ en: 'Accuracy', hi: 'सटीकता', sa: 'सटीकता', ta: 'Accuracy', te: 'Accuracy', bn: 'Accuracy', kn: 'Accuracy', gu: 'Accuracy', mai: 'सटीकता', mr: 'सटीकता' }, locale)}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold">{tl({ en: 'Accuracy', hi: 'सटीकता', sa: 'सूक्ष्मता', ta: 'துல்லியம்', te: 'ఖచ్చితత్వం', bn: 'নির্ভুলতা', kn: 'ನಿಖರತೆ', gu: 'ચોકસાઈ', mai: 'सटीकता', mr: 'अचूकता' }, locale)}</th>
                 <th className="text-left py-2 text-gold-primary font-semibold">{tl({ en: 'Practical Impact', hi: 'व्यावहारिक प्रभाव', sa: 'व्यावहारिक प्रभाव', ta: 'Practical Impact', te: 'Practical Impact', bn: 'Practical Impact', kn: 'Practical Impact', gu: 'Practical Impact', mai: 'व्यावहारिक प्रभाव', mr: 'व्यावहारिक प्रभाव' }, locale)}</th>
               </tr>
             </thead>

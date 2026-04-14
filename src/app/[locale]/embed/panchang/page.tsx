@@ -90,7 +90,7 @@ export default function PanchangWidget() {
           <tbody>
             {[
               { label: tl({ en: 'Tithi', hi: 'तिथि', sa: 'तिथि' }, locale), value: L(data.tithi.name) },
-              { label: tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्र' }, locale), value: `${L(data.nakshatra.name)} (${tl({ en: 'Pada', hi: 'पाद', sa: 'पाद' }, locale)} ${data.nakshatra.pada})` },
+              { label: tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्रम्' }, locale), value: `${L(data.nakshatra.name)} (${tl({ en: 'Pada', hi: 'पाद', sa: 'पाद' }, locale)} ${data.nakshatra.pada})` },
               { label: tl({ en: 'Yoga', hi: 'योग', sa: 'योग' }, locale), value: L(data.yoga.name) },
               { label: tl({ en: 'Karana', hi: 'करण', sa: 'करण' }, locale), value: L(data.karana.name) },
               { label: tl({ en: 'Vara', hi: 'वार', sa: 'वार' }, locale), value: L(data.vara.name) },

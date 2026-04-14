@@ -478,7 +478,7 @@ export default function KaranaPage() {
               viewport={{ once: true }}
             >
               <p className="text-gold-light font-mono text-sm">
-                {tl({ en: 'Formula:', hi: 'सूत्र:', sa: 'सूत्रम्:', ta: 'சூத்திரம்:', te: 'సూత్రం:', bn: 'সূত্র:', kn: 'ಸೂತ್ರ:', gu: 'સૂત્ર:', mai: 'सूत्र:', mr: 'सूत्र:' }, locale)} Karana_index = floor((Moon_long - Sun_long) / 6°)
+                {tl({ en: 'Formula:', hi: 'सूत्र:', sa: 'सूत्रम्:', ta: 'சூத்திரம்:', te: 'సూత్రము:', bn: 'সূত্র:', kn: 'ಸೂತ್ರ:', gu: 'સૂત્ર:', mai: 'सूत्र:', mr: 'सूत्र:' }, locale)} Karana_index = floor((Moon_long - Sun_long) / 6°)
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
                 {tl({ en: '60 Karanas = 7 Chara (cycle 8x) + 4 Sthira (once each)', hi: '60 करण = 7 चर (8 बार) + 4 स्थिर (एक बार)', sa: 'षष्टिः करणानि = सप्त चराणि (अष्टवारम्) + चत्वारि स्थिराणि (एकवारम्)', ta: '60 கரணங்கள் = 7 சர (8 முறை சுழல்) + 4 ஸ்திர (ஒவ்வொன்றும் ஒரு முறை)', te: '60 కరణాలు = 7 చర (8 సార్లు) + 4 స్థిర (ఒక్కొక్కటి ఒకసారి)', bn: '60 করণ = 7 চর (8 বার) + 4 স্থির (প্রতিটি একবার)', kn: '60 ಕರಣಗಳು = 7 ಚರ (8 ಬಾರಿ) + 4 ಸ್ಥಿರ (ಪ್ರತಿಯೊಂದೂ ಒಮ್ಮೆ)', gu: '60 કરણ = 7 ચર (8 વખત) + 4 સ્થિર (દરેક એકવાર)', mai: '60 करण = 7 चर (8 बेर) + 4 स्थिर (एक-एक बेर)', mr: '60 करण = 7 चर (8 वेळा) + 4 स्थिर (प्रत्येकी एकदा)' }, locale)}

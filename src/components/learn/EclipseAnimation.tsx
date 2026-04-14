@@ -120,16 +120,16 @@ function OrbitalPlanesDiagram({ locale }: { locale: string }) {
       <circle cx={rahuX} cy={rahuY} r="14" fill="#f0d48a" opacity="0.08" />
       <circle cx={rahuX} cy={rahuY} r="14" fill="none" stroke="#f0d48a" strokeWidth="2.5" opacity="0.8" />
       <text x={rahuX} y={rahuY + 5} textAnchor="middle" fontSize="16" fill="#f0d48a" fontWeight="bold">☊</text>
-      <Label x={rahuX} y={rahuY - 22} text={tl({ en: 'Rahu', hi: 'राहु', sa: 'राहु' }, locale)} color="#f0d48a" size={12} bold />
-      <Label x={rahuX} y={rahuY + 28} text={tl({ en: 'Ascending Node', hi: 'आरोही पात', sa: 'आरोही पात' }, locale)} color="#d4a853" size={8} />
+      <Label x={rahuX} y={rahuY - 22} text={tl({ en: 'Rahu', hi: 'राहु', sa: 'राहुः' }, locale)} color="#f0d48a" size={12} bold />
+      <Label x={rahuX} y={rahuY + 28} text={tl({ en: 'Ascending Node', hi: 'आरोही पात', sa: 'आरोहीपातः' }, locale)} color="#d4a853" size={8} />
       <Label x={rahuX} y={rahuY + 38} text={tl({ en: '(Moon crosses upward)', hi: '(चन्द्र ऊपर जाता है)', sa: '(चन्द्र ऊपर जाता है)' }, locale)} color="#d4a853" size={7} />
 
       {/* ── KETU NODE ── */}
       <circle cx={ketuX} cy={ketuY} r="14" fill="#c4b5fd" opacity="0.08" />
       <circle cx={ketuX} cy={ketuY} r="14" fill="none" stroke="#c4b5fd" strokeWidth="2.5" opacity="0.8" />
       <text x={ketuX} y={ketuY + 5} textAnchor="middle" fontSize="16" fill="#c4b5fd" fontWeight="bold">☋</text>
-      <Label x={ketuX} y={ketuY - 22} text={tl({ en: 'Ketu', hi: 'केतु', sa: 'केतु' }, locale)} color="#c4b5fd" size={12} bold />
-      <Label x={ketuX} y={ketuY + 28} text={tl({ en: 'Descending Node', hi: 'अवरोही पात', sa: 'अवरोही पात' }, locale)} color="#a78bfa" size={8} />
+      <Label x={ketuX} y={ketuY - 22} text={tl({ en: 'Ketu', hi: 'केतु', sa: 'केतुः' }, locale)} color="#c4b5fd" size={12} bold />
+      <Label x={ketuX} y={ketuY + 28} text={tl({ en: 'Descending Node', hi: 'अवरोही पात', sa: 'अवरोहीपातः' }, locale)} color="#a78bfa" size={8} />
       <Label x={ketuX} y={ketuY + 38} text={tl({ en: '(Moon crosses downward)', hi: '(चन्द्र नीचे जाता है)', sa: '(चन्द्र नीचे जाता है)' }, locale)} color="#a78bfa" size={7} />
 
       {/* ── Moon positions showing above/below ecliptic ── */}
@@ -203,14 +203,14 @@ function SolarEclipseDiagram({ locale }: { locale: string }) {
       {/* ☊ RAHU — where eclipse happens */}
       <circle cx={rahuX} cy={Y} r="24" fill="none" stroke="#22c55e" strokeWidth="2.5" opacity="0.6" />
       <text x={rahuX - 30} y={Y + 44} fontSize="14" fill="#f0d48a" fontWeight="bold">☊</text>
-      <text x={rahuX - 14} y={Y + 44} fontSize="11" fill="#f0d48a" fontWeight="bold">{tl({ en: 'Rahu', hi: 'राहु', sa: 'राहु' }, locale)}</text>
+      <text x={rahuX - 14} y={Y + 44} fontSize="11" fill="#f0d48a" fontWeight="bold">{tl({ en: 'Rahu', hi: 'राहु', sa: 'राहुः' }, locale)}</text>
       <text x={rahuX - 30} y={Y + 56} fontSize="8" fill="#d4a853" opacity="0.6">{tl({ en: 'Ascending Node — Eclipse here!', hi: 'आरोही पात — ग्रहण यहाँ!', sa: 'आरोही पात — ग्रहण यहाँ!' }, locale)}</text>
 
       {/* ☋ KETU — on the opposite side of the tilted orbit */}
       <circle cx={rahuX - orbitExtent + 20} cy={Y + ketuY_offset - 6} r="10" fill="none" stroke="#c4b5fd" strokeWidth="2" opacity="0.6" />
       <text x={rahuX - orbitExtent + 20} y={Y + ketuY_offset - 2} textAnchor="middle" fontSize="12" fill="#c4b5fd" fontWeight="bold">☋</text>
-      <text x={rahuX - orbitExtent + 20} y={Y + ketuY_offset + 12} textAnchor="middle" fontSize="9" fill="#c4b5fd" fontWeight="bold">{tl({ en: 'Ketu', hi: 'केतु', sa: 'केतु' }, locale)}</text>
-      <text x={rahuX - orbitExtent + 20} y={Y + ketuY_offset + 22} textAnchor="middle" fontSize="7" fill="#a78bfa" opacity="0.5">{tl({ en: 'Descending Node', hi: 'अवरोही पात', sa: 'अवरोही पात' }, locale)}</text>
+      <text x={rahuX - orbitExtent + 20} y={Y + ketuY_offset + 12} textAnchor="middle" fontSize="9" fill="#c4b5fd" fontWeight="bold">{tl({ en: 'Ketu', hi: 'केतु', sa: 'केतुः' }, locale)}</text>
+      <text x={rahuX - orbitExtent + 20} y={Y + ketuY_offset + 22} textAnchor="middle" fontSize="7" fill="#a78bfa" opacity="0.5">{tl({ en: 'Descending Node', hi: 'अवरोही पात', sa: 'अवरोहीपातः' }, locale)}</text>
 
       {/* Earth */}
       <EarthIcon cx={earthX} cy={Y} r={18} />
@@ -281,14 +281,14 @@ function LunarEclipseDiagram({ locale }: { locale: string }) {
       {/* ☋ KETU — where this eclipse happens */}
       <circle cx={ketuX} cy={Y} r="24" fill="none" stroke="#ef4444" strokeWidth="2.5" opacity="0.6" />
       <text x={ketuX + 30} y={Y + 44} fontSize="14" fill="#c4b5fd" fontWeight="bold">☋</text>
-      <text x={ketuX + 46} y={Y + 44} fontSize="11" fill="#c4b5fd" fontWeight="bold">{tl({ en: 'Ketu', hi: 'केतु', sa: 'केतु' }, locale)}</text>
+      <text x={ketuX + 46} y={Y + 44} fontSize="11" fill="#c4b5fd" fontWeight="bold">{tl({ en: 'Ketu', hi: 'केतु', sa: 'केतुः' }, locale)}</text>
       <text x={ketuX + 30} y={Y + 56} fontSize="8" fill="#a78bfa" opacity="0.6">{tl({ en: 'Descending Node — Eclipse here!', hi: 'अवरोही पात — ग्रहण यहाँ!', sa: 'अवरोही पात — ग्रहण यहाँ!' }, locale)}</text>
 
       {/* ☊ RAHU — on the opposite side of the tilted orbit */}
       <circle cx={ketuX + orbitExtent - 20} cy={Y - ketuY_offset + 6} r="10" fill="none" stroke="#f0d48a" strokeWidth="2" opacity="0.6" />
       <text x={ketuX + orbitExtent - 20} y={Y - ketuY_offset + 10} textAnchor="middle" fontSize="12" fill="#f0d48a" fontWeight="bold">☊</text>
-      <text x={ketuX + orbitExtent - 20} y={Y - ketuY_offset - 6} textAnchor="middle" fontSize="9" fill="#f0d48a" fontWeight="bold">{tl({ en: 'Rahu', hi: 'राहु', sa: 'राहु' }, locale)}</text>
-      <text x={ketuX + orbitExtent - 20} y={Y - ketuY_offset + 22} textAnchor="middle" fontSize="7" fill="#d4a853" opacity="0.5">{tl({ en: 'Ascending Node', hi: 'आरोही पात', sa: 'आरोही पात' }, locale)}</text>
+      <text x={ketuX + orbitExtent - 20} y={Y - ketuY_offset - 6} textAnchor="middle" fontSize="9" fill="#f0d48a" fontWeight="bold">{tl({ en: 'Rahu', hi: 'राहु', sa: 'राहुः' }, locale)}</text>
+      <text x={ketuX + orbitExtent - 20} y={Y - ketuY_offset + 22} textAnchor="middle" fontSize="7" fill="#d4a853" opacity="0.5">{tl({ en: 'Ascending Node', hi: 'आरोही पात', sa: 'आरोहीपातः' }, locale)}</text>
 
       {/* Title */}
       <rect x={W / 2 - 190} y={H - 52} width="380" height="40" rx="8" fill="#2a0a0a" opacity="0.8" stroke="#ef4444" strokeWidth="0.5" strokeOpacity="0.4" />

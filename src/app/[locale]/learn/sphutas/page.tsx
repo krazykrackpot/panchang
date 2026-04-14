@@ -150,7 +150,7 @@ export default function LearnSphutasPage() {
                     transition={{ duration: 0.3, ease: 'easeInOut' as const }} className="overflow-hidden">
                     <div className="px-6 pb-5 space-y-3 border-t border-gold-primary/10 pt-4">
                       <div className="p-3 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-                        <span className="text-gold-dark text-xs uppercase tracking-widest font-bold">{tl({ en: 'Formula', hi: 'सूत्र', sa: 'सूत्र' })}: </span>
+                        <span className="text-gold-dark text-xs uppercase tracking-widest font-bold">{tl({ en: 'Formula', hi: 'सूत्र', sa: 'सूत्रम्' })}: </span>
                         <span className="text-gold-light font-mono text-sm">{tl(sp.formula)}</span>
                       </div>
                       <p className="text-text-secondary text-sm leading-relaxed">{tl(sp.interpretation)}</p>
@@ -175,7 +175,7 @@ export default function LearnSphutasPage() {
           <div key={i} className={`p-4 rounded-xl border ${sp.color === 'text-blue-400' ? 'border-blue-500/15 bg-blue-500/5' : 'border-pink-500/15 bg-pink-500/5'}`}>
             <div className={`font-bold text-sm mb-1 ${sp.color}`}>{tl(sp.name)}</div>
             <div className="p-2 bg-bg-primary/30 rounded-lg mb-2">
-              <span className="text-gold-dark text-xs uppercase tracking-widest font-bold">{tl({ en: 'Formula', hi: 'सूत्र', sa: 'सूत्र' })}: </span>
+              <span className="text-gold-dark text-xs uppercase tracking-widest font-bold">{tl({ en: 'Formula', hi: 'सूत्र', sa: 'सूत्रम्' })}: </span>
               <span className="text-gold-light font-mono text-xs">{tl(sp.formula)}</span>
             </div>
             <div className="text-text-secondary text-xs leading-relaxed">{tl(sp.interpretation)}</div>

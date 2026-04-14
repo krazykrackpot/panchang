@@ -93,7 +93,7 @@ export default async function SpeedOfLightPage({ params }: { params: Promise<{ l
         {/* Sanskrit verse */}
         <div className="p-5 rounded-xl bg-gold-primary/8 border border-gold-primary/20 mb-4">
           <p className="text-xs text-text-secondary mb-2 font-semibold">
-            {tl({ en: 'Sayana, Rigveda-Samhita-Bhasya, on 1.50.4 (~1375 CE)', hi: 'सायण, ऋग्वेद-संहिता-भाष्य, 1.50.4 पर (~1375 CE)', sa: 'सायण, ऋग्वेद-संहिता-भाष्य, 1.50.4 पर (~1375 CE)' }, locale)}
+            {tl({ en: 'Sayana, Rigveda-Samhita-Bhasya, on 1.50.4 (~1375 CE)', hi: 'सायण, ऋग्वेद-संहिता-भाष्य, 1.50.4 पर (~1375 CE)', sa: 'सायणः, ऋग्वेद-संहिता-भाष्यम्, 1.50.4 उपरि (~1375 CE)' }, locale)}
           </p>
           <p className="text-gold-light text-base font-mono leading-relaxed mb-3" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
             {t('s1Sanskrit')}
@@ -105,14 +105,14 @@ export default async function SpeedOfLightPage({ params }: { params: Promise<{ l
 
         <div className="grid grid-cols-2 gap-3">
           <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 text-center">
-            <div className="text-text-secondary text-xs mb-1">{tl({ en: 'Distance', hi: 'दूरी', sa: 'दूरी' }, locale)}</div>
+            <div className="text-text-secondary text-xs mb-1">{tl({ en: 'Distance', hi: 'दूरी', sa: 'दूरत्वम्' }, locale)}</div>
             <div className="text-gold-light font-bold text-lg font-mono">2,202</div>
-            <div className="text-text-secondary text-xs">{tl({ en: 'yojanas', hi: 'योजन', sa: 'योजन' }, locale)}</div>
+            <div className="text-text-secondary text-xs">{tl({ en: 'yojanas', hi: 'योजन', sa: 'योजनानि' }, locale)}</div>
           </div>
           <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 text-center">
-            <div className="text-text-secondary text-xs mb-1">{tl({ en: 'Time', hi: 'समय', sa: 'समय' }, locale)}</div>
+            <div className="text-text-secondary text-xs mb-1">{tl({ en: 'Time', hi: 'समय', sa: 'कालः' }, locale)}</div>
             <div className="text-gold-light font-bold text-lg font-mono">½</div>
-            <div className="text-text-secondary text-xs">{tl({ en: 'nimesha', hi: 'निमेष', sa: 'निमेष' }, locale)}</div>
+            <div className="text-text-secondary text-xs">{tl({ en: 'nimesha', hi: 'निमेष', sa: 'निमेषः' }, locale)}</div>
           </div>
         </div>
       </div>
@@ -155,19 +155,19 @@ export default async function SpeedOfLightPage({ params }: { params: Promise<{ l
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="p-4 rounded-xl bg-gold-primary/8 border border-gold-primary/20 text-center">
-            <div className="text-text-secondary text-xs mb-1">{tl({ en: 'Sayana (~1375 CE)', hi: 'सायण (~1375 CE)', sa: 'सायण (~1375 CE)' }, locale)}</div>
+            <div className="text-text-secondary text-xs mb-1">{tl({ en: 'Sayana (~1375 CE)', hi: 'सायण (~1375 CE)', sa: 'सायणः (~1375 CE)' }, locale)}</div>
             <div className="text-gold-light text-xl font-bold font-mono">186,536</div>
-            <div className="text-text-secondary text-xs">{tl({ en: 'miles/second', hi: 'मील/सेकंड', sa: 'मील/सेकंड' }, locale)}</div>
+            <div className="text-text-secondary text-xs">{tl({ en: 'miles/second', hi: 'मील/सेकंड', sa: 'मील/सेकण्डम्' }, locale)}</div>
           </div>
           <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 text-center">
             <div className="text-text-secondary text-xs mb-1">{tl({ en: 'Modern Value', hi: 'आधुनिक मान', sa: 'आधुनिकमानम्' }, locale)}</div>
             <div className="text-text-primary text-xl font-bold font-mono">186,282</div>
-            <div className="text-text-secondary text-xs">{tl({ en: 'miles/second (in vacuum)', hi: 'मील/सेकंड (निर्वात में)', sa: 'मील/सेकंड (निर्वात में)' }, locale)}</div>
+            <div className="text-text-secondary text-xs">{tl({ en: 'miles/second (in vacuum)', hi: 'मील/सेकंड (निर्वात में)', sa: 'मील/सेकण्डम् (शून्ये)' }, locale)}</div>
           </div>
           <div className="p-4 rounded-xl bg-emerald-500/8 border border-emerald-500/20 text-center">
-            <div className="text-text-secondary text-xs mb-1">{tl({ en: 'Difference', hi: 'त्रुटि', sa: 'त्रुटि' }, locale)}</div>
+            <div className="text-text-secondary text-xs mb-1">{tl({ en: 'Difference', hi: 'त्रुटि', sa: 'अन्तरम्' }, locale)}</div>
             <div className="text-emerald-400 text-xl font-bold">0.14%</div>
-            <div className="text-text-secondary text-xs">{tl({ en: '253 miles/sec difference', hi: '253 मील/सेकंड का अंतर', sa: '253 मील/सेकंड का अंतर' }, locale)}</div>
+            <div className="text-text-secondary text-xs">{tl({ en: '253 miles/sec difference', hi: '253 मील/सेकंड का अंतर', sa: '253 मील/सेकण्डस्य अन्तरम्' }, locale)}</div>
           </div>
         </div>
       </div>
@@ -180,17 +180,17 @@ export default async function SpeedOfLightPage({ params }: { params: Promise<{ l
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
           <div className="p-4 rounded-xl bg-emerald-500/8 border border-emerald-500/20">
-            <p className="text-emerald-300 font-semibold text-xs mb-2 uppercase tracking-wide">{tl({ en: 'In Favor', hi: 'पक्ष में', sa: 'पक्ष में' }, locale)}</p>
+            <p className="text-emerald-300 font-semibold text-xs mb-2 uppercase tracking-wide">{tl({ en: 'In Favor', hi: 'पक्ष में', sa: 'पक्षे' }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">{t('s4For')}</p>
           </div>
           <div className="p-4 rounded-xl bg-amber-500/8 border border-amber-500/20">
-            <p className="text-amber-300 font-semibold text-xs mb-2 uppercase tracking-wide">{tl({ en: 'Against', hi: 'विरुद्ध', sa: 'विरुद्ध' }, locale)}</p>
+            <p className="text-amber-300 font-semibold text-xs mb-2 uppercase tracking-wide">{tl({ en: 'Against', hi: 'विरुद्ध', sa: 'विपक्षे' }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">{t('s4Against')}</p>
           </div>
         </div>
 
         <div className="p-4 rounded-xl bg-blue-500/8 border border-blue-500/20">
-          <p className="text-blue-200 font-semibold text-xs mb-1">{tl({ en: 'Our Assessment', hi: 'हमारा आकलन', sa: 'हमारा आकलन' }, locale)}</p>
+          <p className="text-blue-200 font-semibold text-xs mb-1">{tl({ en: 'Our Assessment', hi: 'हमारा आकलन', sa: 'अस्माकम् आकलनम्' }, locale)}</p>
           <p className="text-text-secondary text-xs leading-relaxed">{t('s4Conclusion')}</p>
         </div>
       </div>

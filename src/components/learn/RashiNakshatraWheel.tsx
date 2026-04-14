@@ -148,10 +148,10 @@ export default function RashiNakshatraWheel({ locale }: Props) {
                   {n.name[locale]}
                 </text>
                 <text x={cx} y={cy - 20} textAnchor="middle" fill="rgba(255,255,255,0.5)" fontSize={9}>
-                  {startDeg.toFixed(1)}° – {endDeg.toFixed(1)}° | {tl({ en: 'Lord', hi: 'स्वामी', sa: 'स्वामी' }, locale)}: {n.rulerName[locale]}
+                  {startDeg.toFixed(1)}° – {endDeg.toFixed(1)}° | {tl({ en: 'Lord', hi: 'स्वामी', sa: 'अधिपतिः' }, locale)}: {n.rulerName[locale]}
                 </text>
                 <text x={cx} y={cy - 6} textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize={9}>
-                  {tl({ en: 'Rashi', hi: 'राशि', sa: 'राशि' }, locale)}: {RASHIS[rashi1].name[locale]}{spans ? ` → ${RASHIS[rashi2].name[locale]}` : ''}
+                  {tl({ en: 'Rashi', hi: 'राशि', sa: 'राशिः' }, locale)}: {RASHIS[rashi1].name[locale]}{spans ? ` → ${RASHIS[rashi2].name[locale]}` : ''}
                 </text>
               </g>
             );
@@ -169,10 +169,10 @@ export default function RashiNakshatraWheel({ locale }: Props) {
                   {r.name[locale]}
                 </text>
                 <text x={cx} y={cy - 20} textAnchor="middle" fill="rgba(255,255,255,0.5)" fontSize={9}>
-                  {hoveredRashi * 30}° – {(hoveredRashi + 1) * 30}° | {tl({ en: 'Element', hi: 'तत्व', sa: 'तत्व' }, locale)}: {isHi ? ELEMENT_HI[hoveredRashi] : ELEMENTS[hoveredRashi]}
+                  {hoveredRashi * 30}° – {(hoveredRashi + 1) * 30}° | {tl({ en: 'Element', hi: 'तत्व', sa: 'तत्त्वम्' }, locale)}: {isHi ? ELEMENT_HI[hoveredRashi] : ELEMENTS[hoveredRashi]}
                 </text>
                 <text x={cx} y={cy - 6} textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize={9}>
-                  {tl({ en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्र' }, locale)}: {NAKSHATRAS[startNak].name[locale]} – {NAKSHATRAS[endNak].name[locale]}
+                  {tl({ en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्राणि' }, locale)}: {NAKSHATRAS[startNak].name[locale]} – {NAKSHATRAS[endNak].name[locale]}
                 </text>
               </g>
             );

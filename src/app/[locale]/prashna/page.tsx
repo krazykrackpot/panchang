@@ -344,7 +344,7 @@ export default function PrashnaPage() {
                     <thead>
                       <tr className="border-b border-gold-primary/10 bg-bg-tertiary/30">
                         <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः' }, locale)}</th>
-                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{tl({ en: 'Sign', hi: 'राशि', sa: 'राशि' }, locale)}</th>
+                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{tl({ en: 'Sign', hi: 'राशि', sa: 'राशिः' }, locale)}</th>
                         <th className="text-center px-4 py-3 text-text-secondary font-bold text-xs uppercase">{tl({ en: 'House', hi: 'भाव', sa: 'भाव' }, locale)}</th>
                         <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{tl({ en: 'Status', hi: 'स्थिति', sa: 'स्थिति' }, locale)}</th>
                         <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{tl({ en: 'Role', hi: 'भूमिका', sa: 'भूमिका' }, locale)}</th>

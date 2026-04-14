@@ -30,7 +30,7 @@ export default function NakshatraPage() {
         <NakshatraIcon size={72} />
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-2" style={headingFont}>
-            <span className="text-gold-gradient">{tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्रम्', ta: 'நட்சத்திரம்', te: 'నక్షత్రం', bn: 'নক্ষত্র', kn: 'ನಕ್ಷತ್ರ', gu: 'નક્ષત્ર', mai: 'नक्षत्र', mr: 'नक्षत्र' }, locale)}</span>
+            <span className="text-gold-gradient">{tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्रम्', ta: 'நட்சத்திரம்', te: 'నక్షత్రము', bn: 'নক্ষত্র', kn: 'ನಕ್ಷತ್ರ', gu: 'નક્ષત્ર', mai: 'नक्षत्र', mr: 'नक्षत्र' }, locale)}</span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
             {tl({ en: 'The 27 Lunar Mansions — Stars that Map the Ecliptic', hi: '27 चन्द्र गृह — क्रान्तिवृत्त के तारामण्डल', sa: 'सप्तविंशतिचन्द्रगृहाणि — क्रान्तिवृत्तं मापयन्ति ये ताराः', ta: '27 சந்திர மாளிகைகள் — கிரகண வட்டத்தை வரையறுக்கும் நட்சத்திரங்கள்', te: '27 చాంద్ర మందిరాలు — క్రాంతివృత్తాన్ని మ్యాప్ చేసే నక్షత్రాలు', bn: '27 চন্দ্র মনসিল — ক্রান্তিবৃত্তের মানচিত্র তৈরিকারী তারাগুলি', kn: '27 ಚಂದ್ರ ಮನೆಗಳು — ಕ್ರಾಂತಿವೃತ್ತವನ್ನು ಗುರುತಿಸುವ ನಕ್ಷತ್ರಗಳು', gu: '27 ચંદ્ર ભવنો — ક્રાંતિવૃત્ત દર્શાવતા તારા', mai: '27 चन्द्र गृह — क्रान्तिवृत्त मापनेवाला तारागण', mr: '27 चंद्र गृहे — क्रांतिवृत्त मोजणारे तारे' }, locale)}
@@ -91,7 +91,7 @@ export default function NakshatraPage() {
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {tl({ en: 'Formula:', hi: 'सूत्र:', sa: 'सूत्रम्:', ta: 'சூத்திரம்:', te: 'సూత్రం:', bn: 'সূত্র:', kn: 'ಸೂತ್ರ:', gu: 'સૂત્ર:', mai: 'सूत्र:', mr: 'सूत्र:' }, locale)} Nakshatra = floor(Moon_sidereal_longitude / 13.333) + 1
+                {tl({ en: 'Formula:', hi: 'सूत्र:', sa: 'सूत्रम्:', ta: 'சூத்திரம்:', te: 'సూత్రము:', bn: 'সূত্র:', kn: 'ಸೂತ್ರ:', gu: 'સૂત્ર:', mai: 'सूत्र:', mr: 'सूत्र:' }, locale)} Nakshatra = floor(Moon_sidereal_longitude / 13.333) + 1
               </p>
             </div>
           </div>

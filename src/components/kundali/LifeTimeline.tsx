@@ -600,7 +600,7 @@ function DashaSynthesisTable({ data, locale, headingFont }: {
                 tl({ en: 'Shadbala', hi: 'षड्बल', sa: 'षड्बल' }, locale),
                 tl({ en: 'Yogas', hi: 'योग', sa: 'योग' }, locale),
                 tl({ en: '♄ Transit (Sade Sati)', hi: '♄ गोचर (साढ़े साती)', sa: '♄ गोचर (साढ़े साती)' }, locale),
-                tl({ en: 'Quality', hi: 'गुण-स्कोर', sa: 'गुण-स्कोर' }, locale),
+                tl({ en: 'Quality', hi: 'गुण-स्कोर', sa: 'गुणः' }, locale),
               ].map((h, i) => (
                 <th key={i} className="px-3 py-2.5 text-left font-semibold text-text-secondary">{h}</th>
               ))}

@@ -354,8 +354,8 @@ export default function BirthChartPage() {
             <table className="w-full text-xs mt-4">
               <thead>
                 <tr className="border-b border-gold-primary/20">
-                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Factor', hi: 'कारक', sa: 'कारक' }, locale)}</th>
-                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'What it Changes', hi: 'क्या बदलता है', sa: 'क्या बदलता है' }, locale)}</th>
+                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Factor', hi: 'कारक', sa: 'कारकः' }, locale)}</th>
+                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'What it Changes', hi: 'क्या बदलता है', sa: 'किं परिवर्तयति' }, locale)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -397,7 +397,7 @@ export default function BirthChartPage() {
 
           <p className="text-xs">
             <Link href="/learn/bhavas" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-              {tl({ en: 'Deep dive into the 12 houses →', hi: 'भावों का गहन अध्ययन →', sa: 'भावों का गहन अध्ययन →' }, locale)}
+              {tl({ en: 'Deep dive into the 12 houses →', hi: 'भावों का गहन अध्ययन →', sa: '12 भावानां गहनाध्ययनम् →' }, locale)}
             </Link>
           </p>
         </div>
@@ -413,8 +413,8 @@ export default function BirthChartPage() {
               <thead>
                 <tr className="border-b border-gold-primary/20">
                   <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः' }, locale)}</th>
-                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Governs', hi: 'शासन करता है', sa: 'शासन करता है' }, locale)}</th>
-                  <th className="text-center text-gold-light py-2 px-3">{tl({ en: 'Dasha Yrs', hi: 'दशा वर्ष', sa: 'दशा वर्ष' }, locale)}</th>
+                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Governs', hi: 'शासन करता है', sa: 'शासति' }, locale)}</th>
+                  <th className="text-center text-gold-light py-2 px-3">{tl({ en: 'Dasha Yrs', hi: 'दशा वर्ष', sa: 'दशावर्षाणि' }, locale)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -431,7 +431,7 @@ export default function BirthChartPage() {
 
           <p className="text-xs">
             <Link href="/learn/grahas" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-              {tl({ en: 'Deep dive into the 9 planets →', hi: 'ग्रहों का गहन अध्ययन →', sa: 'ग्रहों का गहन अध्ययन →' }, locale)}
+              {tl({ en: 'Deep dive into the 9 planets →', hi: 'ग्रहों का गहन अध्ययन →', sa: 'नव ग्रहाणां गहनाध्ययनम् →' }, locale)}
             </Link>
           </p>
         </div>
@@ -448,10 +448,10 @@ export default function BirthChartPage() {
               <thead>
                 <tr className="border-b border-gold-primary/20">
                   <th className="text-center text-gold-light py-2 px-2">#</th>
-                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Sign', hi: 'राशि', sa: 'राशि' }, locale)}</th>
-                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Lord', hi: 'स्वामी', sa: 'स्वामी' }, locale)}</th>
-                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Element', hi: 'तत्व', sa: 'तत्व' }, locale)}</th>
-                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Quality', hi: 'गुण', sa: 'गुण' }, locale)}</th>
+                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Sign', hi: 'राशि', sa: 'राशिः' }, locale)}</th>
+                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Lord', hi: 'स्वामी', sa: 'अधिपतिः' }, locale)}</th>
+                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Element', hi: 'तत्व', sa: 'तत्त्वम्' }, locale)}</th>
+                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Quality', hi: 'गुण', sa: 'गुणः' }, locale)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -470,7 +470,7 @@ export default function BirthChartPage() {
 
           <p className="text-xs">
             <Link href="/learn/rashis" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-              {tl({ en: 'Deep dive into the 12 signs →', hi: 'राशियों का गहन अध्ययन →', sa: 'राशियों का गहन अध्ययन →' }, locale)}
+              {tl({ en: 'Deep dive into the 12 signs →', hi: 'राशियों का गहन अध्ययन →', sa: 'द्वादशराशीनां गहनाध्ययनम् →' }, locale)}
             </Link>
           </p>
         </div>
@@ -548,7 +548,7 @@ export default function BirthChartPage() {
           </ul>
           <p className="text-xs">
             <Link href="/learn/nakshatras" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-              {tl({ en: 'Deep dive into the 27 Nakshatras →', hi: '27 नक्षत्रों का गहन अध्ययन →', sa: '27 नक्षत्रों का गहन अध्ययन →' }, locale)}
+              {tl({ en: 'Deep dive into the 27 Nakshatras →', hi: '27 नक्षत्रों का गहन अध्ययन →', sa: 'सप्तविंशतिनक्षत्राणां गहनाध्ययनम् →' }, locale)}
             </Link>
           </p>
         </div>
@@ -594,7 +594,7 @@ export default function BirthChartPage() {
               href="/kundali"
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gold-primary/15 border border-gold-primary/30 text-gold-light text-sm font-semibold hover:bg-gold-primary/25 transition-all"
             >
-              {tl({ en: 'Generate Your Kundali →', hi: 'अपनी कुण्डली बनाएं →', sa: 'अपनी कुण्डली बनाएं →' }, locale)}
+              {tl({ en: 'Generate Your Kundali →', hi: 'अपनी कुण्डली बनाएं →', sa: 'स्वकीयां कुण्डलीं निर्मातु →' }, locale)}
             </Link>
           </div>
         </div>

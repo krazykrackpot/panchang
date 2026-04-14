@@ -320,7 +320,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
       <motion.circle cx="240" cy="80" r="16" fill="#2563eb" opacity="0.3" variants={fadeUp} custom={0.3} />
       <motion.circle cx="240" cy="80" r="12" fill="#2563eb" opacity="0.5" variants={fadeUp} custom={0.35} />
       <motion.text x="240" y="110" fill="#60a5fa" fontSize="9" textAnchor="middle" variants={fadeUp} custom={0.4}>
-        {tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथिवी', ta: 'பூமி', te: 'భూమి', bn: 'পৃথিবী', kn: 'ಭೂಮಿ', gu: 'પૃથ્વી', mai: 'पृथ्वी', mr: 'पृथ्वी' }, locale)}
+        {tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी', ta: 'பூமி', te: 'భూమి', bn: 'পৃথিবী', kn: 'ಭೂಮಿ', gu: 'પૃથ્વી', mai: 'पृथ्वी', mr: 'पृथ्वी' }, locale)}
       </motion.text>
 
       {/* ── Lunar Eclipse ── */}
@@ -348,7 +348,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
       <motion.circle cx="440" cy="80" r="16" fill="#2563eb" opacity="0.3" variants={fadeUp} custom={0.35} />
       <motion.circle cx="440" cy="80" r="12" fill="#2563eb" opacity="0.5" variants={fadeUp} custom={0.4} />
       <motion.text x="440" y="110" fill="#60a5fa" fontSize="9" textAnchor="middle" variants={fadeUp} custom={0.45}>
-        {tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथिवी', ta: 'பூமி', te: 'భూమి', bn: 'পৃথিবী', kn: 'ಭೂಮಿ', gu: 'પૃથ્વી', mai: 'पृथ्वी', mr: 'पृथ्वी' }, locale)}
+        {tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी', ta: 'பூமி', te: 'భూమి', bn: 'পৃথিবী', kn: 'ಭೂಮಿ', gu: 'પૃથ્વી', mai: 'पृथ्वी', mr: 'पृथ्वी' }, locale)}
       </motion.text>
 
       {/* Shadow cone grows (lunar) */}

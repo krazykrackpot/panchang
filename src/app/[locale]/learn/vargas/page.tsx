@@ -583,7 +583,7 @@ export default function LearnVargasPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{tl({ en: 'Element', hi: 'तत्व', sa: 'तत्व', ta: 'Element', te: 'Element', bn: 'Element', kn: 'Element', gu: 'Element', mai: 'तत्व', mr: 'तत्व' }, locale)}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{tl({ en: 'Element', hi: 'तत्व', sa: 'तत्त्वम्', ta: 'தத்துவம்', te: 'తత్వం', bn: 'তত্ত্ব', kn: 'ತತ್ವ', gu: 'તત્ત્વ', mai: 'तत्व', mr: 'तत्त्व' }, locale)}</th>
                 <th className="text-left py-2 text-gold-primary font-semibold text-xs">{tl({ en: 'Signs', hi: 'राशियाँ', sa: 'राशियाँ', ta: 'Signs', te: 'Signs', bn: 'Signs', kn: 'Signs', gu: 'Signs', mai: 'राशियाँ', mr: 'राशियाँ' }, locale)}</th>
                 <th className="text-left py-2 text-gold-primary font-semibold text-xs">{tl({ en: 'Navamsha Starts From', hi: 'नवांश प्रारम्भ', sa: 'नवांश प्रारम्भ', ta: 'Navamsha Starts From', te: 'Navamsha Starts From', bn: 'Navamsha Starts From', kn: 'Navamsha Starts From', gu: 'Navamsha Starts From', mai: 'नवांश प्रारम्भ', mr: 'नवांश प्रारम्भ' }, locale)}</th>
                 <th className="text-left py-2 text-gold-primary font-semibold text-xs hidden sm:table-cell">{tl({ en: '9 Navamsha Signs', hi: '9 नवांश राशियाँ', sa: '9 नवांश राशियाँ', ta: '9 Navamsha Signs', te: '9 Navamsha Signs', bn: '9 Navamsha Signs', kn: '9 Navamsha Signs', gu: '9 Navamsha Signs', mai: '9 नवांश राशियाँ', mr: '9 नवांश राशियाँ' }, locale)}</th>
@@ -597,7 +597,7 @@ export default function LearnVargasPage() {
                 <td className="py-2 text-text-secondary/75 hidden sm:table-cell font-mono">1→2→3→4→5→6→7→8→9</td>
               </tr>
               <tr className="border-b border-gold-primary/5">
-                <td className="py-2 text-emerald-400 font-semibold">{tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी', ta: 'Earth', te: 'Earth', bn: 'Earth', kn: 'Earth', gu: 'Earth', mai: 'पृथ्वी', mr: 'पृथ्वी' }, locale)}</td>
+                <td className="py-2 text-emerald-400 font-semibold">{tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी', ta: 'பூமி', te: 'భూమి', bn: 'পৃথিবী', kn: 'ಭೂಮಿ', gu: 'પૃથ્વી', mai: 'पृथ्वी', mr: 'पृथ्वी' }, locale)}</td>
                 <td className="py-2 text-text-secondary">{tl({ en: 'Taurus, Virgo, Capricorn', hi: 'वृषभ, कन्या, मकर', sa: 'वृषभ, कन्या, मकर', ta: 'Taurus, Virgo, Capricorn', te: 'Taurus, Virgo, Capricorn', bn: 'Taurus, Virgo, Capricorn', kn: 'Taurus, Virgo, Capricorn', gu: 'Taurus, Virgo, Capricorn', mai: 'वृषभ, कन्या, मकर', mr: 'वृषभ, कन्या, मकर' }, locale)}</td>
                 <td className="py-2 text-gold-light font-semibold">{tl({ en: 'Capricorn (10)', hi: 'मकर (10)', sa: 'मकर (10)', ta: 'Capricorn (10)', te: 'Capricorn (10)', bn: 'Capricorn (10)', kn: 'Capricorn (10)', gu: 'Capricorn (10)', mai: 'मकर (10)', mr: 'मकर (10)' }, locale)}</td>
                 <td className="py-2 text-text-secondary/75 hidden sm:table-cell font-mono">10→11→12→1→2→3→4→5→6</td>

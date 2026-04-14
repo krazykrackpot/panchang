@@ -232,7 +232,7 @@ export default function SadeSatiLearnPage() {
           <table className="w-full text-sm border-collapse">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-3 px-3 text-gold-light font-semibold">{tl({ en: 'Factor', hi: 'कारक', sa: 'कारक' }, locale)}</th>
+                <th className="text-left py-3 px-3 text-gold-light font-semibold">{tl({ en: 'Factor', hi: 'कारक', sa: 'कारकः' }, locale)}</th>
                 <th className="text-left py-3 px-3 text-emerald-400 font-semibold">{tl({ en: 'Mild Sade Sati', hi: 'हल्की साढ़े साती', sa: 'हल्की साढ़े साती' }, locale)}</th>
                 <th className="text-left py-3 px-3 text-red-400 font-semibold">{tl({ en: 'Severe Sade Sati', hi: 'कठिन साढ़े साती', sa: 'कठिन साढ़े साती' }, locale)}</th>
               </tr>

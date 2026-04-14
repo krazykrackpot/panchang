@@ -170,7 +170,7 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'The Madhava-Leibniz Series', hi: 'माधव-लाइबनित्ज़ श्रृंखला', sa: 'माधव-लाइबनित्ज़ श्रृंखला' }, locale)}
+          {tl({ en: 'The Madhava-Leibniz Series', hi: 'माधव-लाइबनित्ज़ श्रृंखला', sa: 'माधव-लाइब्निज़-श्रेणी' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-3 text-center font-mono text-gold-light/90">
           π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − 1/11 + ...

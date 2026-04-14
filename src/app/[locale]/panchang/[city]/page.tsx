@@ -240,7 +240,7 @@ export default async function CityPanchangPage({
         />
         {/* Nakshatra */}
         <PanchangCard
-          label={tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्र' }, locale)}
+          label={tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्रम्' }, locale)}
           value={nakshatraName}
           detail={`${tl({ en: 'Pada', hi: 'पाद', sa: 'पाद' }, locale)} ${panchang.nakshatra.pada ?? '—'} · ${tl({ en: 'Ends', hi: 'समाप्ति', sa: 'समाप्ति' }, locale)}: ${formatTransitionEnd(panchang.nakshatraTransition, loc)}`}
           gradient="from-[#1b2d69]/50 via-[#101a40]/60 to-[#0a0e27]"

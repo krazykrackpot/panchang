@@ -139,7 +139,7 @@ function Page2() {
                 <td className="py-2 pr-3" colSpan={2}>{tl({ en: 'About 24 degrees today — your Vedic sign is usually ONE sign behind your Western sign', hi: 'आज ~24° — आपकी वैदिक राशि प्रायः एक राशि पीछे होती है', sa: 'आज ~24° — आपकी वैदिक राशि प्रायः एक राशि पीछे होती है' }, locale)}</td>
               </tr>
               <tr className="border-b border-white/5">
-                <td className="py-2 pr-3 text-text-tertiary">{tl({ en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्र' }, locale)}</td>
+                <td className="py-2 pr-3 text-text-tertiary">{tl({ en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्राणि' }, locale)}</td>
                 <td className="py-2 pr-3">{tl({ en: '27 lunar mansions', hi: '27 चन्द्र नक्षत्र', sa: '27 चन्द्र नक्षत्र' }, locale)}</td>
                 <td className="py-2">{tl({ en: 'No equivalent', hi: 'कोई समकक्ष नहीं', sa: 'कोई समकक्ष नहीं' }, locale)}</td>
               </tr>

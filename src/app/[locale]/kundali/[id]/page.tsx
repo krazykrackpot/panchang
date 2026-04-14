@@ -155,7 +155,7 @@ export default function SharedKundaliPage() {
               <p className="text-gold-light font-semibold">{kundali.planets.find(p => p.planet.id === 0)?.signName[locale] || '-'}</p>
             </div>
             <div className="p-3 bg-bg-primary/30 rounded-lg text-center">
-              <p className="text-text-tertiary text-xs mb-1">{tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्र', ta: 'Nakshatra', te: 'Nakshatra', bn: 'Nakshatra', kn: 'Nakshatra', gu: 'Nakshatra', mai: 'नक्षत्र', mr: 'नक्षत्र' }, locale)}</p>
+              <p className="text-text-tertiary text-xs mb-1">{tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्रम्', ta: 'நட்சத்திரம்', te: 'నక్షత్రము', bn: 'নক্ষত্র', kn: 'ನಕ್ಷತ್ರ', gu: 'નક્ષત્ર', mai: 'नक्षत्र', mr: 'नक्षत्र' }, locale)}</p>
               <p className="text-gold-light font-semibold">{kundali.planets.find(p => p.planet.id === 1)?.nakshatra?.name?.[locale] || '-'}</p>
             </div>
           </div>
@@ -185,10 +185,10 @@ export default function SharedKundaliPage() {
               <thead>
                 <tr className="text-gold-primary border-b border-gold-primary/10">
                   <th className="text-left py-2 px-3">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः', ta: 'கிரகம்', te: 'గ్రహం', bn: 'গ্রহ', kn: 'ಗ್ರಹ', gu: 'ગ્રહ', mai: 'ग्रह', mr: 'ग्रह' }, locale)}</th>
-                  <th className="text-left py-2 px-3">{tl({ en: 'Sign', hi: 'राशि', sa: 'राशि', ta: 'Sign', te: 'Sign', bn: 'Sign', kn: 'Sign', gu: 'Sign', mai: 'राशि', mr: 'राशि' }, locale)}</th>
+                  <th className="text-left py-2 px-3">{tl({ en: 'Sign', hi: 'राशि', sa: 'राशिः', ta: 'ராசி', te: 'రాశి', bn: 'রাশি', kn: 'ರಾಶಿ', gu: 'રાશિ', mai: 'राशि', mr: 'राशी' }, locale)}</th>
                   <th className="text-right py-2 px-3">{tl({ en: 'Degree', hi: 'अंश', sa: 'अंश', ta: 'Degree', te: 'Degree', bn: 'Degree', kn: 'Degree', gu: 'Degree', mai: 'अंश', mr: 'अंश' }, locale)}</th>
                   <th className="text-center py-2 px-3">{tl({ en: 'House', hi: 'भाव', sa: 'भाव', ta: 'House', te: 'House', bn: 'House', kn: 'House', gu: 'House', mai: 'भाव', mr: 'भाव' }, locale)}</th>
-                  <th className="text-center py-2 px-3">{tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्र', ta: 'Nakshatra', te: 'Nakshatra', bn: 'Nakshatra', kn: 'Nakshatra', gu: 'Nakshatra', mai: 'नक्षत्र', mr: 'नक्षत्र' }, locale)}</th>
+                  <th className="text-center py-2 px-3">{tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्रम्', ta: 'நட்சத்திரம்', te: 'నక్షత్రము', bn: 'নক্ষত্র', kn: 'ನಕ್ಷತ್ರ', gu: 'નક્ષત્ર', mai: 'नक्षत्र', mr: 'नक्षत्र' }, locale)}</th>
                 </tr>
               </thead>
               <tbody>

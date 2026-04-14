@@ -271,7 +271,7 @@ function ZodiacWheel({ locale }: { locale: string }) {
 
   const legendItems = [
     { label: tl({ en: 'Fire', hi: 'अग्नि', sa: 'अग्नि', ta: 'Fire', te: 'Fire', bn: 'Fire', kn: 'Fire', gu: 'Fire', mai: 'अग्नि', mr: 'अग्नि' }, locale), color: 'rgba(239, 68, 68, 0.5)' },
-    { label: tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी', ta: 'Earth', te: 'Earth', bn: 'Earth', kn: 'Earth', gu: 'Earth', mai: 'पृथ्वी', mr: 'पृथ्वी' }, locale), color: 'rgba(16, 185, 129, 0.4)' },
+    { label: tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी', ta: 'பூமி', te: 'భూమి', bn: 'পৃথিবী', kn: 'ಭೂಮಿ', gu: 'પૃથ્વી', mai: 'पृथ्वी', mr: 'पृथ्वी' }, locale), color: 'rgba(16, 185, 129, 0.4)' },
     { label: tl({ en: 'Air', hi: 'वायु', sa: 'वायु', ta: 'Air', te: 'Air', bn: 'Air', kn: 'Air', gu: 'Air', mai: 'वायु', mr: 'वायु' }, locale), color: 'rgba(14, 165, 233, 0.4)' },
     { label: tl({ en: 'Water', hi: 'जल', sa: 'जल', ta: 'Water', te: 'Water', bn: 'Water', kn: 'Water', gu: 'Water', mai: 'जल', mr: 'जल' }, locale), color: 'rgba(59, 130, 246, 0.5)' },
   ];

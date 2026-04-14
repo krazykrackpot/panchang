@@ -532,7 +532,7 @@ export default function UpagrahaPage() {
               : 'आज के उपग्रह आपके विशिष्ट भावों को कैसे प्रभावित करते हैं, इसका व्यक्तिगत सारांश दे���ने के लिए कुंडली बनाएँ।'}
             {' '}
             <Link href="/kundali" className="text-gold-primary hover:text-gold-light font-bold underline">
-              {tl({ en: 'Generate Kundali', hi: 'कुंडली बनाएँ', sa: 'कुंडली बनाएँ', ta: 'Generate Kundali', te: 'Generate Kundali', bn: 'Generate Kundali', kn: 'Generate Kundali', gu: 'Generate Kundali', mai: 'कुंडली बनाएँ', mr: 'कुंडली बनाएँ' }, locale)}
+              {tl({ en: 'Generate Kundali', hi: 'कुंडली बनाएँ', sa: 'कुण्डलीं निर्मातु', ta: 'ஜாதகம் உருவாக்கு', te: 'కుండలి రూపొందించండి', bn: 'কুণ্ডলী তৈরি করুন', kn: 'ಕುಂಡಲಿ ರಚಿಸಿ', gu: 'કુંડળી બનાવો', mai: 'कुण्डली बनाउ', mr: 'कुंडली तयार करा' }, locale)}
             </Link>
           </p>
         </div>

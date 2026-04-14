@@ -44,7 +44,7 @@ export default function Footer() {
               {tl({ en: 'Privacy', hi: 'गोपनीयता', sa: 'गोपनीयता' }, locale)}
             </Link>
             <Link href="/terms" className="hover:text-gold-light transition-colors">
-              {tl({ en: 'Terms', hi: 'शर्तें', sa: 'शर्तें' }, locale)}
+              {tl({ en: 'Terms', hi: 'शर्तें', sa: 'पदानि' }, locale)}
             </Link>
           </div>
 

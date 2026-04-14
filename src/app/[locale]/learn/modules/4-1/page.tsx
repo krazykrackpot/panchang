@@ -219,7 +219,7 @@ function Page2() {
                 <td className="py-2 text-amber-400 font-bold">{tl({ en: 'NAK. CHANGED!', hi: 'नक्षत्र बदला!', sa: 'नक्षत्र बदला!' }, locale)}</td>
               </tr>
               <tr className="border-b border-white/5 bg-amber-500/5">
-                <td className="py-2 pr-3 font-medium text-gold-light">{tl({ en: 'Ketu', hi: 'केतु', sa: 'केतु' }, locale)}</td>
+                <td className="py-2 pr-3 font-medium text-gold-light">{tl({ en: 'Ketu', hi: 'केतु', sa: 'केतुः' }, locale)}</td>
                 <td className="py-2 pr-3">{tl({ en: 'P. Phalguni Nak.', hi: 'पूर्वा फाल्गुनी', sa: 'पूर्वा फाल्गुनी' }, locale)}</td>
                 <td className="py-2 pr-3">{tl({ en: 'U. Phalguni Nak.', hi: 'उत्तरा फाल्गुनी', sa: 'उत्तरा फाल्गुनी' }, locale)}</td>
                 <td className="py-2 text-amber-400 font-bold">{tl({ en: 'NAK. CHANGED!', hi: 'नक्षत्र बदला!', sa: 'नक्षत्र बदला!' }, locale)}</td>

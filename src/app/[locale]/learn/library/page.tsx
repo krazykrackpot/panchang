@@ -454,8 +454,8 @@ export default function LibraryPage() {
 
         {/* Table header — desktop */}
         <div className="hidden md:grid grid-cols-[2fr_1.4fr_0.8fr_0.9fr_auto] gap-4 px-5 py-3 bg-gold-primary/5 border-b border-gold-primary/10 text-text-secondary text-xs uppercase tracking-wider font-semibold">
-          <span>{tl({ en: 'Text', hi: 'ग्रंथ', sa: 'ग्रंथ' }, locale)}</span>
-          <span>{tl({ en: 'Author', hi: 'लेखक', sa: 'लेखक' }, locale)}</span>
+          <span>{tl({ en: 'Text', hi: 'ग्रंथ', sa: 'ग्रन्थः' }, locale)}</span>
+          <span>{tl({ en: 'Author', hi: 'लेखक', sa: 'रचयिता' }, locale)}</span>
           <span>{tl({ en: 'Year', hi: 'वर्ष', sa: 'वर्ष' }, locale)}</span>
           <span>{tl({ en: 'Category', hi: 'श्रेणी', sa: 'श्रेणी' }, locale)}</span>
           <span>{tl({ en: 'License', hi: 'लाइसेंस', sa: 'लाइसेंस' }, locale)}</span>

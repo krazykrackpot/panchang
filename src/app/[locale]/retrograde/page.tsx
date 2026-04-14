@@ -353,7 +353,7 @@ export default function RetrogradePage() {
               : 'वक्री और अस्त आपके विशिष्ट भावों को कैसे प्रभावित करते हैं, इसका व्यक्तिगत विश्लेषण देखने के लिए कुंडली बनाएँ।'}
             {' '}
             <Link href="/kundali" className="text-gold-primary hover:text-gold-light font-bold underline">
-              {tl({ en: 'Generate Kundali', hi: 'कुंडली बनाएँ', sa: 'कुण्डलीं रचयतु', ta: 'ஜாதகம் உருவாக்கு', te: 'కుండలి రూపొందించండి', bn: 'কুণ্ডলী তৈরি করুন', kn: 'ಕುಂಡಲಿ ರಚಿಸಿ', gu: 'કુંડળી બનાવો', mai: 'कुण्डली बनाउ', mr: 'कुंडली तयार करा' }, locale)}
+              {tl({ en: 'Generate Kundali', hi: 'कुंडली बनाएँ', sa: 'कुण्डलीं निर्मातु', ta: 'ஜாதகம் உருவாக்கு', te: 'కుండలి రూపొందించండి', bn: 'কুণ্ডলী তৈরি করুন', kn: 'ಕುಂಡಲಿ ರಚಿಸಿ', gu: 'કુંડળી બનાવો', mai: 'कुण्डली बनाउ', mr: 'कुंडली तयार करा' }, locale)}
             </Link>
           </p>
         </div>

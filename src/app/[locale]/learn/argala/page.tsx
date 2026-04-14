@@ -168,7 +168,7 @@ export default function ArgalaPage() {
                 <div>
                   <h4 className="text-gold-light font-semibold text-sm">{lt(a.name as LocaleText, locale)}</h4>
                   <span className="text-text-secondary/70 text-xs font-mono">
-                    {tl({ en: 'Virodha:', hi: 'विरोध:', sa: 'विरोध:' }, locale)} {a.virodha}
+                    {tl({ en: 'Virodha:', hi: 'विरोध:', sa: 'विरोधः:' }, locale)} {a.virodha}
                   </span>
                 </div>
               </div>
@@ -188,9 +188,9 @@ export default function ArgalaPage() {
           <table className="w-full text-sm border-collapse">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-3 px-4 text-gold-light font-semibold">{tl({ en: 'Argala House', hi: 'अर्गला भाव', sa: 'अर्गला भाव' }, locale)}</th>
-                <th className="text-left py-3 px-4 text-gold-light font-semibold">{tl({ en: 'Virodha House', hi: 'विरोध भाव', sa: 'विरोध भाव' }, locale)}</th>
-                <th className="text-left py-3 px-4 text-gold-light font-semibold">{tl({ en: 'Dynamic', hi: 'गतिशीलता', sa: 'गतिशीलता' }, locale)}</th>
+                <th className="text-left py-3 px-4 text-gold-light font-semibold">{tl({ en: 'Argala House', hi: 'अर्गला भाव', sa: 'अर्गलाभावः' }, locale)}</th>
+                <th className="text-left py-3 px-4 text-gold-light font-semibold">{tl({ en: 'Virodha House', hi: 'विरोध भाव', sa: 'विरोधभावः' }, locale)}</th>
+                <th className="text-left py-3 px-4 text-gold-light font-semibold">{tl({ en: 'Dynamic', hi: 'गतिशीलता', sa: 'गतिशीलः' }, locale)}</th>
               </tr>
             </thead>
             <tbody>
@@ -258,7 +258,7 @@ export default function ArgalaPage() {
         {/* Summary */}
         <div className="mt-6 p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/20">
           <p className="text-emerald-300/80 text-sm font-semibold mb-1">
-            {tl({ en: 'Verdict: This 7th house is WELL-SUPPORTED', hi: 'निष्कर्ष: यह 7वाँ भाव सुसमर्थित है', sa: 'निष्कर्ष: यह 7वाँ भाव सुसमर्थित है' }, locale)}
+            {tl({ en: 'Verdict: This 7th house is WELL-SUPPORTED', hi: 'निष्कर्ष: यह 7वाँ भाव सुसमर्थित है', sa: 'निर्णयः: अयं सप्तमभावः सुसमर्थितः अस्ति' }, locale)}
           </p>
           <p className="text-emerald-200/60 text-sm">
             {locale === 'en'
@@ -277,7 +277,7 @@ export default function ArgalaPage() {
           <div className="p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
             <div className="flex items-center gap-2 mb-2">
               <ShieldCheck className="w-5 h-5 text-emerald-400" />
-              <h4 className="text-emerald-300 font-semibold text-sm">{tl({ en: 'Supported House', hi: 'समर्थित भाव', sa: 'समर्थित भाव' }, locale)}</h4>
+              <h4 className="text-emerald-300 font-semibold text-sm">{tl({ en: 'Supported House', hi: 'समर्थित भाव', sa: 'समर्थितभावः' }, locale)}</h4>
             </div>
             <p className="text-emerald-200/60 text-sm">
               {locale === 'en'
@@ -288,7 +288,7 @@ export default function ArgalaPage() {
           <div className="p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
             <div className="flex items-center gap-2 mb-2">
               <ShieldX className="w-5 h-5 text-red-400" />
-              <h4 className="text-red-300 font-semibold text-sm">{tl({ en: 'Obstructed House', hi: 'अवरुद्ध भाव', sa: 'अवरुद्ध भाव' }, locale)}</h4>
+              <h4 className="text-red-300 font-semibold text-sm">{tl({ en: 'Obstructed House', hi: 'अवरुद्ध भाव', sa: 'अवरुद्धभावः' }, locale)}</h4>
             </div>
             <p className="text-red-200/60 text-sm">
               {locale === 'en'
@@ -364,7 +364,7 @@ export default function ArgalaPage() {
           href="/kundali"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {tl({ en: 'Analyze Your Argala', hi: 'अपनी अर्गला का विश्लेषण करें', sa: 'अपनी अर्गला का विश्लेषण करें' }, locale)}
+          {tl({ en: 'Analyze Your Argala', hi: 'अपनी अर्गला का विश्लेषण करें', sa: 'स्वकीयाम् अर्गलां विश्लेषयतु' }, locale)}
         </Link>
       </div>
     </div>

@@ -175,7 +175,7 @@ function Page3() {
             — {tl({ en: 'What tithi is it? Shukla Paksha or Krishna Paksha?', hi: 'आज कौन सी तिथि है? शुक्ल पक्ष या कृष्ण पक्ष?', sa: 'आज कौन सी तिथि है? शुक्ल पक्ष या कृष्ण पक्ष?' }, locale)}
           </li>
           <li>
-            <span className="text-gold-light font-medium">{tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्र' }, locale)}</span>{' '}
+            <span className="text-gold-light font-medium">{tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्रम्' }, locale)}</span>{' '}
             — {tl({ en: 'Which nakshatra is the Moon in today?', hi: 'चन्द्रमा आज किस नक्षत्र में है?', sa: 'चन्द्रमा आज किस नक्षत्र में है?' }, locale)}
           </li>
           <li>

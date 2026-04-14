@@ -261,7 +261,7 @@ export default function ChildrenPredictionPage() {
       <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
         className="mt-10 flex flex-wrap justify-center gap-3">
         {[
-          { href: '/kundali' as const, label: tl({ en: 'Generate Kundali', hi: 'कुण्डली बनाएं', sa: 'कुण्डली बनाएं' }) },
+          { href: '/kundali' as const, label: tl({ en: 'Generate Kundali', hi: 'कुण्डली बनाएं', sa: 'कुण्डलीं निर्मातु' }) },
           { href: '/learn/sphutas' as const, label: tl({ en: 'Fertility Sphutas', hi: 'स्फुट विवरण', sa: 'स्फुट विवरण' }) },
           { href: '/learn/planet-in-house' as const, label: tl({ en: 'Planet in House', hi: 'भाव में ग्रह', sa: 'भाव में ग्रह' }) },
         ].map((link) => (

@@ -613,7 +613,7 @@ export default function MuhurtaPage() {
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {tl({ en: 'Formula:', hi: 'सूत्र:', sa: 'सूत्रम्:', ta: 'சூத்திரம்:', te: 'సూత్రం:', bn: 'সূত্র:', kn: 'ಸೂತ್ರ:', gu: 'સૂત્ર:', mai: 'सूत्र:', mr: 'सूत्र:' }, locale)} 1 Muhurta = (Sunrise to Sunset) / 15 = ~48 min
+                {tl({ en: 'Formula:', hi: 'सूत्र:', sa: 'सूत्रम्:', ta: 'சூத்திரம்:', te: 'సూత్రము:', bn: 'সূত্র:', kn: 'ಸೂತ್ರ:', gu: 'સૂત્ર:', mai: 'सूत्र:', mr: 'सूत्र:' }, locale)} 1 Muhurta = (Sunrise to Sunset) / 15 = ~48 min
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
                 {tl({ en: '1 day = 30 Muhurtas = 15 daytime + 15 nighttime', hi: '1 दिन = 30 मुहूर्त = 15 दिवा + 15 रात्रि', sa: '1 दिवसः = 30 मुहूर्ताः = 15 दिवामुहूर्ताः + 15 रात्रिमुहूर्ताः', ta: '1 நாள் = 30 முஹூர்த்தங்கள் = 15 பகல் + 15 இரவு', te: '1 రోజు = 30 ముహూర్తాలు = 15 పగటి + 15 రాత్రి', bn: '1 দিন = 30 মুহূর্ত = 15 দিন + 15 রাত', kn: '1 ದಿನ = 30 ಮುಹೂರ್ತಗಳು = 15 ಹಗಲು + 15 ರಾತ್ರಿ', gu: '1 દિવસ = 30 મુહૂર્ત = 15 દિવસ + 15 રાત્રિ', mai: '1 दिन = 30 मुहूर्त = 15 दिवा + 15 रात्रि', mr: '1 दिवस = 30 मुहूर्त = 15 दिवस + 15 रात्र' }, locale)}

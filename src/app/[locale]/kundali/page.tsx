@@ -930,7 +930,7 @@ export default function KundaliPage() {
                 if (!chartInsight) return null;
                 const isHi = isDevanagariLocale(locale);
                 const sC: Record<string, string> = { strong: 'border-emerald-500/20', moderate: 'border-amber-500/20', weak: 'border-red-500/20' };
-                const sL: Record<string, string> = { strong: tl({ en: 'Strong', hi: 'बलवान', sa: 'बलवान', ta: 'Strong', te: 'Strong', bn: 'Strong', kn: 'Strong', gu: 'Strong', mai: 'बलवान', mr: 'बलवान' }, locale), moderate: tl({ en: 'Moderate', hi: 'मध्यम', sa: 'मध्यम', ta: 'Moderate', te: 'Moderate', bn: 'Moderate', kn: 'Moderate', gu: 'Moderate', mai: 'मध्यम', mr: 'मध्यम' }, locale), weak: tl({ en: 'Weak', hi: 'दुर्बल', sa: 'दुर्बल', ta: 'Weak', te: 'Weak', bn: 'Weak', kn: 'Weak', gu: 'Weak', mai: 'दुर्बल', mr: 'दुर्बल' }, locale) };
+                const sL: Record<string, string> = { strong: tl({ en: 'Strong', hi: 'बलवान', sa: 'बलवान्', ta: 'வலிமையானது', te: 'బలవంతమైన', bn: 'শক্তিশালী', kn: 'ಬಲಿಷ್ಠ', gu: 'બળવાન', mai: 'बलगर', mr: 'बलवान' }, locale), moderate: tl({ en: 'Moderate', hi: 'मध्यम', sa: 'मध्यमः', ta: 'மிதமான', te: 'మధ్యమం', bn: 'মধ্যম', kn: 'ಮಧ್ಯಮ', gu: 'મધ્યમ', mai: 'मध्यम', mr: 'मध्यम' }, locale), weak: tl({ en: 'Weak', hi: 'दुर्बल', sa: 'दुर्बलः', ta: 'பலவீனமானது', te: 'బలహీనమైన', bn: 'দুর্বল', kn: 'ದುರ್ಬಲ', gu: 'નિર્બળ', mai: 'दुर्बल', mr: 'दुर्बल' }, locale) };
                 const sClr: Record<string, string> = { strong: 'text-emerald-400', moderate: 'text-amber-400', weak: 'text-red-400' };
                 return (
                   <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} key={activeChart}
@@ -953,7 +953,7 @@ export default function KundaliPage() {
                     {chartInsight.keyFindings.length > 0 && (
                       <div className="mb-3">
                         <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1.5">
-                          {tl({ en: 'Key Findings', hi: 'प्रमुख निष्कर्ष', sa: 'प्रमुख निष्कर्ष', ta: 'Key Findings', te: 'Key Findings', bn: 'Key Findings', kn: 'Key Findings', gu: 'Key Findings', mai: 'प्रमुख निष्कर्ष', mr: 'प्रमुख निष्कर्ष' }, locale)}
+                          {tl({ en: 'Key Findings', hi: 'प्रमुख निष्कर्ष', sa: 'प्रमुखनिष्कर्षाः', ta: 'முக்கிய கண்டுபிடிப்புகள்', te: 'ముఖ్య నిర్ధారణలు', bn: 'মূল নিষ্কর্ষ', kn: 'ಪ್ರಮುಖ ಸಂಶೋಧನೆಗಳು', gu: 'મુખ્ય તારણો', mai: 'प्रमुख निष्कर्ष', mr: 'प्रमुख निष्कर्ष' }, locale)}
                         </div>
                         <div className="space-y-1">
                           {chartInsight.keyFindings.map((f, j) => (
@@ -969,7 +969,7 @@ export default function KundaliPage() {
                     {/* Prognosis */}
                     <div className="p-3 rounded-xl bg-indigo-500/5 border border-indigo-500/15">
                       <div className="text-indigo-400 text-xs uppercase tracking-widest font-bold mb-1">
-                        {tl({ en: '1-2 Year Prognosis', hi: '1-2 वर्ष की प्रगति', sa: '1-2 वर्ष की प्रगति', ta: '1-2 Year Prognosis', te: '1-2 Year Prognosis', bn: '1-2 Year Prognosis', kn: '1-2 Year Prognosis', gu: '1-2 Year Prognosis', mai: '1-2 वर्ष की प्रगति', mr: '1-2 वर्ष की प्रगति' }, locale)}
+                        {tl({ en: '1-2 Year Prognosis', hi: '1-2 वर्ष की प्रगति', sa: 'एक-द्विवर्षीयपूर्वानुमानम्', ta: '1-2 ஆண்டு முன்கணிப்பு', te: '1-2 సంవత్సర అంచనా', bn: '১-২ বছরের পূর্বাভাস', kn: '1-2 ವರ್ಷದ ಮುನ್ಸೂಚನೆ', gu: '1-2 વર્ષનું પૂર્વાનુમાન', mai: '1-2 वर्षक प्रगति', mr: '1-2 वर्षांचे भविष्यकथन' }, locale)}
                       </div>
                       <div className="text-text-secondary text-xs leading-relaxed">
                         {tl(chartInsight.prognosis, locale)}
@@ -3064,13 +3064,13 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
       {/* Overall Synthesis */}
       <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
         <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
-          {tl({ en: 'Varga Synthesis — All Divisional Charts', hi: 'वर्ग संश्लेषण — समस्त विभागीय चार्ट', sa: 'वर्ग संश्लेषण — समस्त विभागीय चार्ट', ta: 'Varga Synthesis — All Divisional Charts', te: 'Varga Synthesis — All Divisional Charts', bn: 'Varga Synthesis — All Divisional Charts', kn: 'Varga Synthesis — All Divisional Charts', gu: 'Varga Synthesis — All Divisional Charts', mai: 'वर्ग संश्लेषण — समस्त विभागीय चार्ट', mr: 'वर्ग संश्लेषण — समस्त विभागीय चार्ट' }, locale)}
+          {tl({ en: 'Varga Synthesis — All Divisional Charts', hi: 'वर्ग संश्लेषण — समस्त विभागीय चार्ट', sa: 'वर्गसंश्लेषणम् — सर्वे विभागचार्टाः', ta: 'வர்க சமன்பாடு — அனைத்து பிரிவு சார்ட்கள்', te: 'వర్గ సంశ్లేషణ — అన్ని విభాగ చార్టులు', bn: 'বর্গ সংশ্লেষণ — সমস্ত বিভাগীয় চার্ট', kn: 'ವರ್ಗ ಸಂಶ್ಲೇಷಣ — ಎಲ್ಲಾ ವಿಭಾಗೀಯ ಚಾರ್ಟ್‌ಗಳು', gu: 'વર્ગ સંશ્લેષણ — સમસ્ત વિભાગીય ચાર્ટ', mai: 'वर्ग संश्लेषण — सभ विभागीय चार्ट', mr: 'वर्ग संश्लेषण — सर्व विभागीय चार्ट' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-4">{tl(synthesis.overall, locale)}</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {synthesis.strongAreas.length > 0 && (
             <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
-              <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">{tl({ en: 'Strong Areas', hi: 'बलवान क्षेत्र', sa: 'बलवान क्षेत्र', ta: 'Strong Areas', te: 'Strong Areas', bn: 'Strong Areas', kn: 'Strong Areas', gu: 'Strong Areas', mai: 'बलवान क्षेत्र', mr: 'बलवान क्षेत्र' }, locale)}</div>
+              <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">{tl({ en: 'Strong Areas', hi: 'बलवान क्षेत्र', sa: 'बलवन्तः क्षेत्राः', ta: 'வலிமையான துறைகள்', te: 'బలమైన రంగాలు', bn: 'শক্তিশালী ক্ষেত্রসমূহ', kn: 'ಬಲವಾದ ಕ್ಷೇತ್ರಗಳು', gu: 'મજબૂત ક્ષેત્રો', mai: 'बलवान क्षेत्र', mr: 'बलवान क्षेत्रे' }, locale)}</div>
               {synthesis.strongAreas.map((a, i) => (
                 <div key={i} className="text-emerald-300 text-xs mb-1">+ {tl(a, locale)}</div>
               ))}
@@ -3078,7 +3078,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
           )}
           {synthesis.weakAreas.length > 0 && (
             <div className="p-4 rounded-xl bg-red-500/5 border border-red-500/15">
-              <div className="text-red-400 text-xs uppercase tracking-wider font-bold mb-2">{tl({ en: 'Needs Attention', hi: 'ध्यान देने योग्य', sa: 'ध्यान देने योग्य', ta: 'Needs Attention', te: 'Needs Attention', bn: 'Needs Attention', kn: 'Needs Attention', gu: 'Needs Attention', mai: 'ध्यान देने योग्य', mr: 'ध्यान देने योग्य' }, locale)}</div>
+              <div className="text-red-400 text-xs uppercase tracking-wider font-bold mb-2">{tl({ en: 'Needs Attention', hi: 'ध्यान देने योग्य', sa: 'ध्यानयोग्यम्', ta: 'கவனம் தேவை', te: 'శ్రద్ధ అవసరం', bn: 'মনোযোগ প্রয়োজন', kn: 'ಗಮನ ಅಗತ್ಯ', gu: 'ધ્યાન આપવું જરૂરી', mai: 'ध्यान देबाक योग्य', mr: 'लक्ष देण्यायोग्य' }, locale)}</div>
               {synthesis.weakAreas.map((a, i) => (
                 <div key={i} className="text-red-300 text-xs mb-1">- {tl(a, locale)}</div>
               ))}
@@ -3090,10 +3090,10 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
       {/* Clickable strength grid */}
       <div>
         <h3 className="text-gold-light text-lg font-bold mb-2 text-center" style={headingFont}>
-          {tl({ en: 'Varga Strength Overview', hi: 'वर्ग बल अवलोकन', sa: 'वर्ग बल अवलोकन', ta: 'Varga Strength Overview', te: 'Varga Strength Overview', bn: 'Varga Strength Overview', kn: 'Varga Strength Overview', gu: 'Varga Strength Overview', mai: 'वर्ग बल अवलोकन', mr: 'वर्ग बल अवलोकन' }, locale)}
+          {tl({ en: 'Varga Strength Overview', hi: 'वर्ग बल अवलोकन', sa: 'वर्गबलावलोकनम्', ta: 'வர்க பலன் கண்ணோட்டம்', te: 'వర్గ బల అవలోకనం', bn: 'বর্গ বল পর্যালোচনা', kn: 'ವರ್ಗ ಬಲ ಅವಲೋಕನ', gu: 'વર્ગ બળ અવલોકન', mai: 'वर्ग बल अवलोकन', mr: 'वर्ग बल आढावा' }, locale)}
         </h3>
         <p className="text-text-secondary/60 text-xs text-center mb-4">
-          {tl({ en: 'Click any chart for detailed analysis', hi: 'विस्तृत विश्लेषण के लिए किसी चार्ट पर क्लिक करें', sa: 'विस्तृत विश्लेषण के लिए किसी चार्ट पर क्लिक करें', ta: 'Click any chart for detailed analysis', te: 'Click any chart for detailed analysis', bn: 'Click any chart for detailed analysis', kn: 'Click any chart for detailed analysis', gu: 'Click any chart for detailed analysis', mai: 'विस्तृत विश्लेषण के लिए किसी चार्ट पर क्लिक करें', mr: 'विस्तृत विश्लेषण के लिए किसी चार्ट पर क्लिक करें' }, locale)}
+          {tl({ en: 'Click any chart for detailed analysis', hi: 'विस्तृत विश्लेषण के लिए किसी चार्ट पर क्लिक करें', sa: 'विस्तृतविश्लेषणाय कमपि चार्टं स्पृशत', ta: 'விரிவான பகுப்பாய்வுக்கு எந்த சார்ட்டையும் கிளிக் செய்யவும்', te: 'వివరణాత్మక విశ్లేషణ కోసం ఏదైనా చార్ట్‌ను క్లిక్ చేయండి', bn: 'বিস্তারিত বিশ্লেষণের জন্য যেকোনো চার্টে ক্লিক করুন', kn: 'ವಿಸ್ತೃತ ವಿಶ್ಲೇಷಣೆಗಾಗಿ ಯಾವುದೇ ಚಾರ್ಟ್ ಕ್ಲಿಕ್ ಮಾಡಿ', gu: 'વિગતવાર વિશ્લેષણ માટે કોઈ પણ ચાર્ટ પર ક્લિક કરો', mai: 'विस्तृत विश्लेषण लेल कोनो चार्ट पर क्लिक करू', mr: 'तपशीलवार विश्लेषणासाठी कोणत्याही चार्टवर क्लिक करा' }, locale)}
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-1.5">
           {synthesis.vargaInsights.map((v, i) => (
@@ -3132,7 +3132,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                 {/* Overall Commentary */}
                 <div>
                   <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-                    {tl({ en: 'Overall Commentary', hi: 'समग्र टिप्पणी', sa: 'समग्र टिप्पणी', ta: 'Overall Commentary', te: 'Overall Commentary', bn: 'Overall Commentary', kn: 'Overall Commentary', gu: 'Overall Commentary', mai: 'समग्र टिप्पणी', mr: 'समग्र टिप्पणी' }, locale)}
+                    {tl({ en: 'Overall Commentary', hi: 'समग्र टिप्पणी', sa: 'समग्रटिप्पणी', ta: 'ஒட்டுமொத்த விளக்கம்', te: 'మొత్తం వ్యాఖ్యానం', bn: 'সামগ্রিক ভাষ্য', kn: 'ಒಟ್ಟಾರೆ ವ್ಯಾಖ್ಯಾನ', gu: 'સામગ્રિક ભાષ્ય', mai: 'समग्र टिप्पणी', mr: 'एकूण भाष्य' }, locale)}
                   </div>
                   <div className="text-text-secondary text-xs leading-relaxed whitespace-pre-line">
                     {tl(selectedInsight.overallCommentary, locale)}
@@ -3143,7 +3143,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                 {selectedInsight.keyFindings.length > 0 && (
                   <div>
                     <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-                      {tl({ en: 'Key Findings', hi: 'प्रमुख निष्कर्ष', sa: 'प्रमुख निष्कर्ष', ta: 'Key Findings', te: 'Key Findings', bn: 'Key Findings', kn: 'Key Findings', gu: 'Key Findings', mai: 'प्रमुख निष्कर्ष', mr: 'प्रमुख निष्कर्ष' }, locale)}
+                      {tl({ en: 'Key Findings', hi: 'प्रमुख निष्कर्ष', sa: 'प्रमुखनिष्कर्षाः', ta: 'முக்கிய கண்டுபிடிப்புகள்', te: 'ముఖ్య నిర్ధారణలు', bn: 'মূল নিষ্কর্ষ', kn: 'ಪ್ರಮುಖ ಸಂಶೋಧನೆಗಳು', gu: 'મુખ્ય તારણો', mai: 'प्रमुख निष्कर्ष', mr: 'प्रमुख निष्कर्ष' }, locale)}
                     </div>
                     <div className="space-y-1">
                       {selectedInsight.keyFindings.map((f, j) => (
@@ -3159,7 +3159,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                 {/* Prognosis */}
                 <div className="p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/15">
                   <div className="text-indigo-400 text-xs uppercase tracking-widest font-bold mb-2">
-                    {tl({ en: '1-2 Year Prognosis', hi: '1-2 वर्ष की प्रगति', sa: '1-2 वर्ष की प्रगति', ta: '1-2 Year Prognosis', te: '1-2 Year Prognosis', bn: '1-2 Year Prognosis', kn: '1-2 Year Prognosis', gu: '1-2 Year Prognosis', mai: '1-2 वर्ष की प्रगति', mr: '1-2 वर्ष की प्रगति' }, locale)}
+                    {tl({ en: '1-2 Year Prognosis', hi: '1-2 वर्ष की प्रगति', sa: 'एक-द्विवर्षीयपूर्वानुमानम्', ta: '1-2 ஆண்டு முன்கணிப்பு', te: '1-2 సంవత్సర అంచనా', bn: '১-২ বছরের পূর্বাভাস', kn: '1-2 ವರ್ಷದ ಮುನ್ಸೂಚನೆ', gu: '1-2 વર્ષનું પૂર્વાનુમાન', mai: '1-2 वर्षक प्रगति', mr: '1-2 वर्षांचे भविष्यकथन' }, locale)}
                   </div>
                   <div className="text-text-secondary text-xs leading-relaxed">
                     {tl(selectedInsight.prognosis, locale)}
@@ -3226,22 +3226,22 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
         return (
           <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20 p-6">
             <h3 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
-              {tl({ en: 'D2 Hora — Wealth & Resource Analysis', hi: 'D2 होरा — धन व संसाधन विश्लेषण', sa: 'D2 होरा — धन व संसाधन विश्लेषण', ta: 'D2 Hora — Wealth & Resource Analysis', te: 'D2 Hora — Wealth & Resource Analysis', bn: 'D2 Hora — Wealth & Resource Analysis', kn: 'D2 Hora — Wealth & Resource Analysis', gu: 'D2 Hora — Wealth & Resource Analysis', mai: 'D2 होरा — धन व संसाधन विश्लेषण', mr: 'D2 होरा — धन व संसाधन विश्लेषण' }, locale)}
+              {tl({ en: 'D2 Hora — Wealth & Resource Analysis', hi: 'D2 होरा — धन व संसाधन विश्लेषण', sa: 'D2 होरा — धनसंसाधनविश्लेषणम्', ta: 'D2 ஹோரா — செல்வம் மற்றும் வளங்கள் பகுப்பாய்வு', te: 'D2 హోరా — సంపద మరియు వనరుల విశ్లేషణ', bn: 'D2 হোরা — সম্পদ ও সম্পত্তি বিশ্লেষণ', kn: 'D2 ಹೋರಾ — ಸಂಪತ್ತು ಮತ್ತು ಸಂಪನ್ಮೂಲ ವಿಶ್ಲೇಷಣೆ', gu: 'D2 હોરા — સંપત્તિ અને સંસાધન વિશ્લેષણ', mai: 'D2 होरा — धन आ संसाधन विश्लेषण', mr: 'D2 होरा — संपत्ती व संसाधन विश्लेषण' }, locale)}
             </h3>
             <p className="text-text-secondary/70 text-xs text-center mb-5" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-              {tl({ en: 'Hora chart divides planets between Sun hora (Leo) and Moon hora (Cancer). Source: Brihat Jataka, BPHS Ch. 6', hi: 'होरा चार्ट सूर्य होरा (सिंह) और चन्द्र होरा (कर्क) के बीच ग्रहों को विभाजित करता है। स्रोत: बृहज्जातक, BPHS अ. 6', sa: 'होरा चार्ट सूर्य होरा (सिंह) और चन्द्र होरा (कर्क) के बीच ग्रहों को विभाजित करता है। स्रोत: बृहज्जातक, BPHS अ. 6' }, locale)}
+              {tl({ en: 'Hora chart divides planets between Sun hora (Leo) and Moon hora (Cancer). Source: Brihat Jataka, BPHS Ch. 6', hi: 'होरा चार्ट सूर्य होरा (सिंह) और चन्द्र होरा (कर्क) के बीच ग्रहों को विभाजित करता है। स्रोत: बृहज्जातक, BPHS अ. 6', sa: 'होराचार्टः सूर्यहोरायाः (सिंहः) चन्द्रहोरायाः (कर्कः) च मध्ये ग्रहान् विभजति। स्रोतः बृहज्जातकम्, BPHS अ. 6' }, locale)}
             </p>
             {/* Dominant Hora */}
             <div className={`rounded-xl p-4 mb-4 text-center border ${dominantHora === 'sun' ? 'bg-amber-500/10 border-amber-500/25' : 'bg-blue-500/10 border-blue-500/25'}`}>
               <div className={`font-bold text-lg mb-1 ${dominantHora === 'sun' ? 'text-amber-300' : 'text-blue-300'}`} style={headingFont}>
                 {dominantHora === 'sun'
-                  ? (tl({ en: 'Sun Hora Dominant', hi: 'सूर्य होरा प्रबल', sa: 'सूर्य होरा प्रबल', ta: 'Sun Hora Dominant', te: 'Sun Hora Dominant', bn: 'Sun Hora Dominant', kn: 'Sun Hora Dominant', gu: 'Sun Hora Dominant', mai: 'सूर्य होरा प्रबल', mr: 'सूर्य होरा प्रबल' }, locale))
-                  : (tl({ en: 'Moon Hora Dominant', hi: 'चन्द्र होरा प्रबल', sa: 'चन्द्र होरा प्रबल', ta: 'Moon Hora Dominant', te: 'Moon Hora Dominant', bn: 'Moon Hora Dominant', kn: 'Moon Hora Dominant', gu: 'Moon Hora Dominant', mai: 'चन्द्र होरा प्रबल', mr: 'चन्द्र होरा प्रबल' }, locale))}
+                  ? (tl({ en: 'Sun Hora Dominant', hi: 'सूर्य होरा प्रबल', sa: 'सूर्यहोराप्रबला', ta: 'சூர்ய ஹோரா மேலோங்கி', te: 'సూర్య హోరా ప్రబలం', bn: 'সূর্য হোরা প্রবল', kn: 'ಸೂರ್ಯ ಹೋರಾ ಪ್ರಬಲ', gu: 'સૂર્ય હોરા પ્રબળ', mai: 'सूर्य होरा प्रबल', mr: 'सूर्य होरा प्रबळ' }, locale))
+                  : (tl({ en: 'Moon Hora Dominant', hi: 'चन्द्र होरा प्रबल', sa: 'चन्द्रहोराप्रबला', ta: 'சந்திர ஹோரா மேலோங்கி', te: 'చంద్ర హోరా ప్రబలం', bn: 'চন্দ্র হোরা প্রবল', kn: 'ಚಂದ್ರ ಹೋರಾ ಪ್ರಬಲ', gu: 'ચંદ્ર હોરા પ્રબળ', mai: 'चन्द्र होरा प्रबल', mr: 'चंद्र होरा प्रबळ' }, locale))}
               </div>
               <p className="text-text-secondary/70 text-xs" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                 {dominantHora === 'sun'
-                  ? (tl({ en: 'Wealth comes through Sun hora — authority, independent effort, paternal sources, and government. Income is direct, assertive, and masculine in quality.', hi: 'धन सूर्य होरा से आता है — अधिकार, स्वतन्त्र प्रयास, पिता, और सरकारी स्रोतों से। मर्दाना, दृढ़, और प्रत्यक्ष।', sa: 'धन सूर्य होरा से आता है — अधिकार, स्वतन्त्र प्रयास, पिता, और सरकारी स्रोतों से। मर्दाना, दृढ़, और प्रत्यक्ष।', ta: 'Wealth comes through Sun hora — authority, independent effort, paternal sources, and government. Income is direct, assertive, and masculine in quality.', te: 'Wealth comes through Sun hora — authority, independent effort, paternal sources, and government. Income is direct, assertive, and masculine in quality.', bn: 'Wealth comes through Sun hora — authority, independent effort, paternal sources, and government. Income is direct, assertive, and masculine in quality.', kn: 'Wealth comes through Sun hora — authority, independent effort, paternal sources, and government. Income is direct, assertive, and masculine in quality.', gu: 'Wealth comes through Sun hora — authority, independent effort, paternal sources, and government. Income is direct, assertive, and masculine in quality.', mai: 'धन सूर्य होरा से आता है — अधिकार, स्वतन्त्र प्रयास, पिता, और सरकारी स्रोतों से। मर्दाना, दृढ़, और प्रत्यक्ष।', mr: 'धन सूर्य होरा से आता है — अधिकार, स्वतन्त्र प्रयास, पिता, और सरकारी स्रोतों से। मर्दाना, दृढ़, और प्रत्यक्ष।' }, locale))
-                  : (tl({ en: 'Wealth comes through Moon hora — public, emotional intelligence, maternal sources, and service. Income fluctuates but nurtures. Feminine quality dominates.', hi: 'धन चन्द्र होरा से आता है — जनता, भावनात्मक बुद्धि, माता, और सेवा से। स्त्री, पोषणकारी, और उतार-चढ़ाव वाला।', sa: 'धन चन्द्र होरा से आता है — जनता, भावनात्मक बुद्धि, माता, और सेवा से। स्त्री, पोषणकारी, और उतार-चढ़ाव वाला।', ta: 'Wealth comes through Moon hora — public, emotional intelligence, maternal sources, and service. Income fluctuates but nurtures. Feminine quality dominates.', te: 'Wealth comes through Moon hora — public, emotional intelligence, maternal sources, and service. Income fluctuates but nurtures. Feminine quality dominates.', bn: 'Wealth comes through Moon hora — public, emotional intelligence, maternal sources, and service. Income fluctuates but nurtures. Feminine quality dominates.', kn: 'Wealth comes through Moon hora — public, emotional intelligence, maternal sources, and service. Income fluctuates but nurtures. Feminine quality dominates.', gu: 'Wealth comes through Moon hora — public, emotional intelligence, maternal sources, and service. Income fluctuates but nurtures. Feminine quality dominates.', mai: 'धन चन्द्र होरा से आता है — जनता, भावनात्मक बुद्धि, माता, और सेवा से। स्त्री, पोषणकारी, और उतार-चढ़ाव वाला।', mr: 'धन चन्द्र होरा से आता है — जनता, भावनात्मक बुद्धि, माता, और सेवा से। स्त्री, पोषणकारी, और उतार-चढ़ाव वाला।' }, locale))}
+                  ? (tl({ en: 'Wealth comes through Sun hora — authority, independent effort, paternal sources, and government. Income is direct, assertive, and masculine in quality.', hi: 'धन सूर्य होरा से आता है — अधिकार, स्वतन्त्र प्रयास, पिता, और सरकारी स्रोतों से। मर्दाना, दृढ़, और प्रत्यक्ष।', sa: 'धनं सूर्यहोरया आगच्छति — अधिकारात्, स्वतन्त्रप्रयत्नात्, पितृस्रोतसः, शासनाच्च। आयः प्रत्यक्षः, दृढः, पौरुषयुक्तश्च।', ta: 'சூர்ய ஹோரா வழியாக செல்வம் வருகிறது — அதிகாரம், சுதந்திர முயற்சி, தந்தையர் ஆதாரங்கள் மற்றும் அரசு மூலம். வருமானம் நேரடியானது, உறுதியானது மற்றும் ஆண்மை தன்மை கொண்டது.', te: 'సూర్య హోరా ద్వారా సంపద వస్తుంది — అధికారం, స్వతంత్ర ప్రయత్నం, పితృ మూలాలు మరియు ప్రభుత్వం నుండి. ఆదాయం ప్రత్యక్షంగా, దృఢంగా మరియు పురుష స్వభావంతో ఉంటుంది.', bn: 'সূর্য হোরার মাধ্যমে সম্পদ আসে — কর্তৃত্ব, স্বাধীন প্রচেষ্টা, পিতৃসূত্র এবং সরকারের কাছ থেকে। আয় প্রত্যক্ষ, দৃঢ় এবং পৌরুষ গুণসম্পন্ন।', kn: 'ಸೂರ್ಯ ಹೋರಾ ಮೂಲಕ ಸಂಪತ್ತು ಬರುತ್ತದೆ — ಅಧಿಕಾರ, ಸ್ವತಂತ್ರ ಪ್ರಯತ್ನ, ಪಿತೃ ಮೂಲಗಳು ಮತ್ತು ಸರ್ಕಾರದಿಂದ. ಆದಾಯವು ನೇರ, ದೃಢ ಮತ್ತು ಪೌರುಷ ಗುಣವುಳ್ಳದ್ದು.', gu: 'સૂર્ય હોરા દ્વારા ધન આવે છે — અધિકાર, સ્વતંત્ર પ્રયત્ન, પિતૃ સ્ત્રોત અને સરકાર દ્વારા. આવક સીધી, દૃઢ અને પૌરુષ ગુણવાળી હોય છે.', mai: 'धन सूर्य होरासँ आबैत अछि — अधिकार, स्वतन्त्र प्रयास, पितृस्रोत, आ सरकारसँ। आय प्रत्यक्ष, दृढ़, आ पुरुषोचित होइत अछि।', mr: 'धन सूर्य होरातून येते — अधिकार, स्वतंत्र प्रयत्न, पितृस्रोत आणि सरकारकडून। उत्पन्न थेट, ठाम आणि पौरुषी स्वरूपाचे असते।' }, locale))
+                  : (tl({ en: 'Wealth comes through Moon hora — public, emotional intelligence, maternal sources, and service. Income fluctuates but nurtures. Feminine quality dominates.', hi: 'धन चन्द्र होरा से आता है — जनता, भावनात्मक बुद्धि, माता, और सेवा से। स्त्री, पोषणकारी, और उतार-चढ़ाव वाला।', sa: 'धनं चन्द्रहोरया आगच्छति — जनसामान्यात्, भावनात्मकबुद्धितः, मातृस्रोतसः, सेवायाश्च। आयः चञ्चलः परन्तु पोषणकारकः। स्त्रीत्वं प्रधानम्।', ta: 'சந்திர ஹோரா வழியாக செல்வம் வருகிறது — பொதுமக்கள், உணர்வுநுண்ணறிவு, தாயார் ஆதாரங்கள் மற்றும் சேவை மூலம். வருமானம் மாறுபடும் ஆனால் போஷிக்கும். பெண்மை குணம் மேலோங்கும்.', te: 'చంద్ర హోరా ద్వారా సంపద వస్తుంది — జనసామాన్యం, భావోద్వేగ మేధస్సు, మాతృ మూలాలు మరియు సేవ నుండి. ఆదాయం హెచ్చుతగ్గులుంటుంది కానీ పోషకమైనది. స్త్రీ స్వభావం ఆధిపత్యం వహిస్తుంది.', bn: 'চন্দ্র হোরার মাধ্যমে সম্পদ আসে — জনসাধারণ, আবেগীয় বুদ্ধিমত্তা, মাতৃসূত্র এবং সেবা থেকে। আয় ওঠানামা করে কিন্তু পোষণশীল। স্ত্রীত্ব প্রধান হয়।', kn: 'ಚಂದ್ರ ಹೋರಾ ಮೂಲಕ ಸಂಪತ್ತು ಬರುತ್ತದೆ — ಸಾರ್ವಜನಿಕ, ಭಾವನಾತ್ಮಕ ಬುದ್ಧಿ, ಮಾತೃ ಮೂಲಗಳು ಮತ್ತು ಸೇವೆಯಿಂದ. ಆದಾಯ ಏರಿಳಿತ ಕಾಣಿಸುತ್ತದೆ ಆದರೆ ಪೋಷಣೆ ನೀಡುತ್ತದೆ. ಸ್ತ್ರೀ ಗುಣ ಪ್ರಧಾನವಾಗಿರುತ್ತದೆ.', gu: 'ચંદ્ર હોરા દ્વારા ધન આવે છે — જનસામાન્ય, ભાવનાત્મક બુદ્ધિ, માતૃ સ્ત્રોત અને સેવા દ્વારા. આવક ઉતાર-ચઢાવ ભરી પરંતુ પોષણકારી હોય છે. સ્ત્રીત્વ પ્રધાન હોય છે.', mai: 'धन चन्द्र होरासँ आबैत अछि — जनता, भावनात्मक बुद्धि, मातृस्रोत, आ सेवासँ। आय उतार-चढ़ावयुक्त मुदा पोषणकारी होइत अछि। स्त्रीत्व प्रधान रहैत अछि।', mr: 'धन चंद्र होरातून येते — जनता, भावनिक बुद्धिमत्ता, मातृस्रोत आणि सेवेतून। उत्पन्न चढउतार होते पण पोषणकारक असते। स्त्रीत्व प्रधान असते।' }, locale))}
               </p>
             </div>
             {/* Planet grid */}
@@ -3250,7 +3250,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                 <div key={i} className={`rounded-xl p-3 border ${ph.hora === 'sun' ? 'border-amber-500/15 bg-amber-500/5' : 'border-blue-500/15 bg-blue-500/5'}`}>
                   <div className="flex items-center gap-2 mb-1.5">
                     <span className={`text-xs font-bold px-1.5 py-0.5 rounded ${ph.hora === 'sun' ? 'bg-amber-500/20 text-amber-300' : 'bg-blue-500/20 text-blue-300'}`}>
-                      {ph.hora === 'sun' ? (tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun', mai: 'सूर्य', mr: 'सूर्य' }, locale)) : (tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon', mai: 'चन्द्र', mr: 'चन्द्र' }, locale))}
+                      {ph.hora === 'sun' ? (tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun', mai: 'सूर्य', mr: 'सूर्य' }, locale)) : (tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्रः', ta: 'சந்திரன்', te: 'చంద్రుడు', bn: 'চন্দ্র', kn: 'ಚಂದ್ರ', gu: 'ચંદ્ર', mai: 'चन्द्रमा', mr: 'चंद्र' }, locale))}
                     </span>
                     <span className="text-gold-light font-semibold text-sm" style={headingFont}>{ph.planet.planet.name[locale as Locale] || ph.planet.planet.name.en}</span>
                     <span className="text-text-secondary/65 text-xs">H{ph.planet.house} · {ph.planet.signName[locale as Locale] || ph.planet.signName.en}</span>
@@ -3324,20 +3324,20 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
         return (
           <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/20 p-6 mt-8">
             <h3 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
-              {tl({ en: 'D9 Navamsha — Marriage, Dharma & Soul Nature', hi: 'D9 नवांश — विवाह, धर्म और आत्म स्वरूप', sa: 'D9 नवांश — विवाह, धर्म और आत्म स्वरूप', ta: 'D9 Navamsha — Marriage, Dharma & Soul Nature', te: 'D9 Navamsha — Marriage, Dharma & Soul Nature', bn: 'D9 Navamsha — Marriage, Dharma & Soul Nature', kn: 'D9 Navamsha — Marriage, Dharma & Soul Nature', gu: 'D9 Navamsha — Marriage, Dharma & Soul Nature', mai: 'D9 नवांश — विवाह, धर्म और आत्म स्वरूप', mr: 'D9 नवांश — विवाह, धर्म और आत्म स्वरूप' }, locale)}
+              {tl({ en: 'D9 Navamsha — Marriage, Dharma & Soul Nature', hi: 'D9 नवांश — विवाह, धर्म और आत्म स्वरूप', sa: 'D9 नवांशः — विवाहः, धर्मः, आत्मस्वरूपञ्च', ta: 'D9 நவாம்சம் — திருமணம், தர்மம் மற்றும் ஆத்ம இயல்பு', te: 'D9 నవాంశం — వివాహం, ధర్మం మరియు ఆత్మ స్వభావం', bn: 'D9 নবাংশ — বিবাহ, ধর্ম ও আত্মার স্বরূপ', kn: 'D9 ನವಾಂಶ — ವಿವಾಹ, ಧರ್ಮ ಮತ್ತು ಆತ್ಮ ಸ್ವರೂಪ', gu: 'D9 નવાંશ — વિવાહ, ધર્મ અને આત્મ-સ્વરૂપ', mai: 'D9 नवांश — विवाह, धर्म आ आत्मस्वरूप', mr: 'D9 नवांश — विवाह, धर्म आणि आत्मस्वरूप' }, locale)}
             </h3>
             <p className="text-text-secondary/70 text-xs text-center mb-5">
-              {tl({ en: 'Navamsha is the most important chart after D1. It reveals marriage quality, spiritual evolution, and your inner self. Source: BPHS Ch. 6', hi: 'नवांश D1 के बाद सबसे महत्वपूर्ण चार्ट है। यह विवाह, आध्यात्मिक विकास और आपके आंतरिक स्व को दर्शाता है। स्रोत: BPHS अ. 6', sa: 'नवांश D1 के बाद सबसे महत्वपूर्ण चार्ट है। यह विवाह, आध्यात्मिक विकास और आपके आंतरिक स्व को दर्शाता है। स्रोत: BPHS अ. 6' }, locale)}
+              {tl({ en: 'Navamsha is the most important chart after D1. It reveals marriage quality, spiritual evolution, and your inner self. Source: BPHS Ch. 6', hi: 'नवांश D1 के बाद सबसे महत्वपूर्ण चार्ट है। यह विवाह, आध्यात्मिक विकास और आपके आंतरिक स्व को दर्शाता है। स्रोत: BPHS अ. 6', sa: 'नवांशः D1 पश्चात् सर्वप्रमुखः चक्रः अस्ति। सः विवाहगुणम्, आध्यात्मिकविकासं, आन्तरिकस्वरूपं च प्रकाशयति। स्रोतः: BPHS अ. 6' }, locale)}
             </p>
 
             {/* D9 Lagna */}
             <div className={`rounded-xl p-4 mb-4 text-center border ${isVargottamaLagna ? 'bg-emerald-500/10 border-emerald-500/25' : 'bg-purple-500/10 border-purple-500/25'}`}>
               <div className={`font-bold text-lg mb-1 ${isVargottamaLagna ? 'text-emerald-300' : 'text-purple-300'}`} style={headingFont}>
-                {tl({ en: 'D9 Ascendant: ', hi: 'D9 लग्न: ', sa: 'D9 लग्न: ', ta: 'D9 Ascendant: ', te: 'D9 Ascendant: ', bn: 'D9 Ascendant: ', kn: 'D9 Ascendant: ', gu: 'D9 Ascendant: ', mai: 'D9 लग्न: ', mr: 'D9 लग्न: ' }, locale)}{d9AscName?.[locale] || d9AscName?.en}
+                {tl({ en: 'D9 Ascendant: ', hi: 'D9 लग्न: ', sa: 'D9 लग्नम्: ', ta: 'D9 லக்னம்: ', te: 'D9 లగ్నం: ', bn: 'D9 লগ্ন: ', kn: 'D9 ಲಗ್ನ: ', gu: 'D9 લગ્ન: ', mai: 'D9 लग्न: ', mr: 'D9 लग्न: ' }, locale)}{d9AscName?.[locale] || d9AscName?.en}
               </div>
               <p className="text-text-secondary/70 text-xs">
                 {isVargottamaLagna
-                  ? (tl({ en: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', hi: 'वर्गोत्तम लग्न — D1 और D9 में एक ही राशि। आपका बाहरी व्यक्तित्व और आंतरिक आत्मा एक ही दिशा में हैं। अत्यंत शुभ।', sa: 'वर्गोत्तम लग्न — D1 और D9 में एक ही राशि। आपका बाहरी व्यक्तित्व और आंतरिक आत्मा एक ही दिशा में हैं। अत्यंत शुभ।', ta: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', te: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', bn: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', kn: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', gu: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', mai: 'वर्गोत्तम लग्न — D1 और D9 में एक ही राशि। आपका बाहरी व्यक्तित्व और आंतरिक आत्मा एक ही दिशा में हैं। अत्यंत शुभ।', mr: 'वर्गोत्तम लग्न — D1 और D9 में एक ही राशि। आपका बाहरी व्यक्तित्व और आंतरिक आत्मा एक ही दिशा में हैं। अत्यंत शुभ।' }, locale))
+                  ? (tl({ en: 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.', hi: 'वर्गोत्तम लग्न — D1 और D9 में एक ही राशि। आपका बाहरी व्यक्तित्व और आंतरिक आत्मा एक ही दिशा में हैं। अत्यंत शुभ।', sa: 'वर्गोत्तमलग्नम् — D1 D9 च एकैव राशिः। बाह्यव्यक्तित्वं आन्तरिकात्मा च एकदिशाभूतौ स्तः। अत्यन्तं शुभम्।', ta: 'வர்கோத்தம லக்னம் — D1 மற்றும் D9-ல் ஒரே ராசி. உங்கள் வெளி ஆளுமையும் உள்ளான ஆத்மாவும் ஒத்திசைந்துள்ளன. மிகவும் சுபமானது.', te: 'వర్గోత్తమ లగ్నం — D1 మరియు D9లో అదే రాశి. మీ బాహ్య వ్యక్తిత్వం మరియు అంతరంగిక ఆత్మ ఒకే దిశలో ఉన్నాయి. అత్యంత శుభప్రదం.', bn: 'বর্গোত্তম লগ্ন — D1 এবং D9-এ একই রাশি। আপনার বাহ্যিক ব্যক্তিত্ব এবং আন্তরিক আত্মা একই দিকে আছে। অত্যন্ত শুভ।', kn: 'ವರ್ಗೋತ್ತಮ ಲಗ್ನ — D1 ಮತ್ತು D9 ರಲ್ಲಿ ಒಂದೇ ರಾಶಿ. ನಿಮ್ಮ ಬಾಹ್ಯ ವ್ಯಕ್ತಿತ್ವ ಮತ್ತು ಆಂತರಿಕ ಆತ್ಮ ಒಂದೇ ದಿಕ್ಕಿನಲ್ಲಿವೆ. ಅತ್ಯಂತ ಶುಭ.', gu: 'વર્ગોત્તમ લગ્ન — D1 અને D9 માં એક જ રાશિ. તમારું બાહ્ય વ્યક્તિત્વ અને આંતરિક આત્મા એક જ દિશામાં છે. અત્યંત શુભ.', mai: 'वर्गोत्तम लग्न — D1 आ D9 मे एकहि राशि। अहाँक बाह्य व्यक्तित्व आ आन्तरिक आत्मा एके दिशा मे छथि। अत्यन्त शुभ।', mr: 'वर्गोत्तम लग्न — D1 आणि D9 मध्ये समान राशी. तुमचे बाह्य व्यक्तिमत्त्व आणि आंतरिक आत्मा एकाच दिशेत आहेत. अत्यंत शुभ.' }, locale))
                   : tl({ en: `D1 Ascendant ${RASHIS[(d1Asc-1)%12]?.name?.en} shifts to D9 ${d9AscName?.en} — this is your inner self, which becomes dominant especially after age 36.`, hi: `D1 लग्न ${RASHIS[(d1Asc-1)%12]?.name?.hi} से D9 लग्न ${d9AscName?.hi} में — यह आपका आंतरिक स्व है, जो विशेषतः 36 वर्ष के बाद प्रमुख होता है।`, sa: `D1 लग्न ${RASHIS[(d1Asc-1)%12]?.name?.hi} से D9 लग्न ${d9AscName?.hi} में — यह आपका आंतरिक स्व है, जो विशेषतः 36 वर्ष के बाद प्रमुख होता है।` }, locale)}
               </p>
             </div>
@@ -3361,7 +3361,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                     <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                       <span className="text-gold-light font-semibold text-sm" style={headingFont}>{pd.planet.planet.name[locale] || pd.planet.planet.name.en}</span>
                       <span className="text-text-secondary/65 text-xs">
-                        {tl({ en: 'D9 Sign:', hi: 'D9 राशि:', sa: 'D9 राशि:', ta: 'D9 Sign:', te: 'D9 Sign:', bn: 'D9 Sign:', kn: 'D9 Sign:', gu: 'D9 Sign:', mai: 'D9 राशि:', mr: 'D9 राशि:' }, locale)} {d9SignName?.[locale] || d9SignName?.en}
+                        {tl({ en: 'D9 Sign:', hi: 'D9 राशि:', sa: 'D9 राशिः:', ta: 'D9 ராசி:', te: 'D9 రాశి:', bn: 'D9 রাশি:', kn: 'D9 ರಾಶಿ:', gu: 'D9 રાશિ:', mai: 'D9 राशि:', mr: 'D9 राशी:' }, locale)} {d9SignName?.[locale] || d9SignName?.en}
                       </span>
                       {dignity && (
                         <span className={`text-xs font-bold px-1.5 py-0.5 rounded ${
@@ -3370,7 +3370,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                           dignity === 'own' ? 'bg-sky-500/20 text-sky-300' :
                           'bg-red-500/20 text-red-300'
                         }`}>
-                          {dignity === 'vargottama' ? 'Vgm' : dignity === 'exalted' ? (tl({ en: 'Exalted', hi: 'उच्च', sa: 'उच्च', ta: 'Exalted', te: 'Exalted', bn: 'Exalted', kn: 'Exalted', gu: 'Exalted', mai: 'उच्च', mr: 'उच्च' }, locale)) : dignity === 'own' ? (tl({ en: 'Own', hi: 'स्वगृह', sa: 'स्वगृह', ta: 'Own', te: 'Own', bn: 'Own', kn: 'Own', gu: 'Own', mai: 'स्वगृह', mr: 'स्वगृह' }, locale)) : (tl({ en: 'Debil.', hi: 'नीच', sa: 'नीच', ta: 'Debil.', te: 'Debil.', bn: 'Debil.', kn: 'Debil.', gu: 'Debil.', mai: 'नीच', mr: 'नीच' }, locale))}
+                          {dignity === 'vargottama' ? 'Vgm' : dignity === 'exalted' ? (tl({ en: 'Exalted', hi: 'उच्च', sa: 'उच्चस्थः', ta: 'உச்சம்', te: 'ఉచ్చం', bn: 'উচ্চ', kn: 'ಉಚ್ಚ', gu: 'ઉચ્ચ', mai: 'उच्च', mr: 'उच्च' }, locale)) : dignity === 'own' ? (tl({ en: 'Own', hi: 'स्वगृह', sa: 'स्वगृह', ta: 'Own', te: 'Own', bn: 'Own', kn: 'Own', gu: 'Own', mai: 'स्वगृह', mr: 'स्वगृह' }, locale)) : (tl({ en: 'Debil.', hi: 'नीच', sa: 'नीचस्थः', ta: 'நீசம்', te: 'నీచం', bn: 'নীচ', kn: 'ನೀಚ', gu: 'નીચ', mai: 'नीच', mr: 'नीच' }, locale))}
                         </span>
                       )}
                     </div>
@@ -3396,13 +3396,13 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
               return (
                 <div className="mt-4 p-4 rounded-xl bg-purple-500/5 border border-purple-500/15">
                   <div className="text-purple-300 text-xs uppercase tracking-wider font-bold mb-2">
-                    {tl({ en: 'D9 7th House — Spouse Indicator', hi: 'D9 7वां भाव — जीवनसाथी संकेत', sa: 'D9 7वां भाव — जीवनसाथी संकेत', ta: 'D9 7th House — Spouse Indicator', te: 'D9 7th House — Spouse Indicator', bn: 'D9 7th House — Spouse Indicator', kn: 'D9 7th House — Spouse Indicator', gu: 'D9 7th House — Spouse Indicator', mai: 'D9 7वां भाव — जीवनसाथी संकेत', mr: 'D9 7वां भाव — जीवनसाथी संकेत' }, locale)}
+                    {tl({ en: 'D9 7th House — Spouse Indicator', hi: 'D9 7वां भाव — जीवनसाथी संकेत', sa: 'D9 सप्तमभावः — दारसूचकः', ta: 'D9 7ஆம் பாவம் — துணைவர் காரகம்', te: 'D9 7వ భావం — జీవిత భాగస్వామి సూచిక', bn: 'D9 সপ্তম ভাব — জীবনসঙ্গী সূচক', kn: 'D9 7ನೇ ಭಾವ — ಜೀವನಸಂಗಾತಿ ಸೂಚಕ', gu: 'D9 7મું ભાવ — જીવનસાથી સૂચક', mai: 'D9 7म भाव — जीवनसाथी संकेत', mr: 'D9 7वे घर — जोडीदाराचे सूचक' }, locale)}
                   </div>
                   <p className="text-text-secondary/75 text-xs leading-relaxed">
                     {tl({ en: `7th house in ${h7SignName?.en}`, hi: `7वां भाव ${h7SignName?.hi} में`, sa: `7वां भाव ${h7SignName?.hi} में` }, locale)}
                     {h7planets.length > 0
                       ? tl({ en: ` — planets: ${h7planets.map(p => PLANET_NAMES_EN[p] || '').join(', ')}. These planets directly influence spouse nature and marriage quality.`, hi: ` — ग्रह: ${h7planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ये ग्रह जीवनसाथी के स्वभाव और विवाह गुणवत्ता को सीधे प्रभावित करते हैं।`, sa: ` — ग्रह: ${h7planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ये ग्रह जीवनसाथी के स्वभाव और विवाह गुणवत्ता को सीधे प्रभावित करते हैं।` }, locale)
-                      : (tl({ en: '. No planets — spouse nature determined by 7th lord and its D9 placement.', hi: '। कोई ग्रह नहीं — जीवनसाथी का स्वभाव 7वें भावेश और उसके D9 स्थान से निर्धारित।', sa: '। कोई ग्रह नहीं — जीवनसाथी का स्वभाव 7वें भावेश और उसके D9 स्थान से निर्धारित।', ta: '. No planets — spouse nature determined by 7th lord and its D9 placement.', te: '. No planets — spouse nature determined by 7th lord and its D9 placement.', bn: '. No planets — spouse nature determined by 7th lord and its D9 placement.', kn: '. No planets — spouse nature determined by 7th lord and its D9 placement.', gu: '. No planets — spouse nature determined by 7th lord and its D9 placement.', mai: '। कोई ग्रह नहीं — जीवनसाथी का स्वभाव 7वें भावेश और उसके D9 स्थान से निर्धारित।', mr: '। कोई ग्रह नहीं — जीवनसाथी का स्वभाव 7वें भावेश और उसके D9 स्थान से निर्धारित।' }, locale))}
+                      : (tl({ en: '. No planets — spouse nature determined by 7th lord and its D9 placement.', hi: '। कोई ग्रह नहीं — जीवनसाथी का स्वभाव 7वें भावेश और उसके D9 स्थान से निर्धारित।', sa: '। ग्रहाः न सन्ति — दारस्वभावः सप्तमेशेन तस्य D9 स्थानेन च निर्धार्यते।', ta: '। கிரகங்கள் இல்லை — துணைவர் இயல்பு 7ஆம் அதிபதி மற்றும் அதன் D9 நிலையால் தீர்மானிக்கப்படுகிறது.', te: '। గ్రహాలు లేవు — జీవిత భాగస్వామి స్వభావం 7వ భావాధిపతి మరియు దాని D9 స్థానం ద్వారా నిర్ణయించబడుతుంది.', bn: '। কোনো গ্রহ নেই — জীবনসঙ্গীর স্বভাব ৭ম ভাবাধিপতি ও তার D9 স্থান থেকে নির্ধারিত হয়।', kn: '। ಗ್ರಹಗಳಿಲ್ಲ — ಜೀವನಸಂಗಾತಿಯ ಸ್ವಭಾವ 7ನೇ ಭಾವಾಧಿಪತಿ ಮತ್ತು ಅದರ D9 ಸ್ಥಾನದಿಂದ ನಿರ್ಧರಿಸಲ್ಪಡುತ್ತದೆ.', gu: '। કોઈ ગ્રહ નથી — જીવનસાથીનો સ્વભાવ 7મા ભાવાધિપ અને તેની D9 સ્થિતિ દ્વારા નક્કી થાય છે.', mai: '। कोनो ग्रह नहि — जीवनसाथीक स्वभाव 7म भावेशसँ आ हुनकर D9 स्थानसँ निर्धारित अछि।', mr: '। कोणतेही ग्रह नाहीत — जोडीदाराचा स्वभाव 7व्या घरपतीवरून आणि त्याच्या D9 स्थानावरून निर्धारित होतो.' }, locale))}
                   </p>
                 </div>
               );
@@ -3443,16 +3443,16 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
         return (
           <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-sky-500/20 p-6 mt-8">
             <h3 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
-              {tl({ en: 'D10 Dashamsha — Career & Professional Life', hi: 'D10 दशांश — करियर और व्यावसायिक जीवन', sa: 'D10 दशांश — करियर और व्यावसायिक जीवन', ta: 'D10 Dashamsha — Career & Professional Life', te: 'D10 Dashamsha — Career & Professional Life', bn: 'D10 Dashamsha — Career & Professional Life', kn: 'D10 Dashamsha — Career & Professional Life', gu: 'D10 Dashamsha — Career & Professional Life', mai: 'D10 दशांश — करियर और व्यावसायिक जीवन', mr: 'D10 दशांश — करियर और व्यावसायिक जीवन' }, locale)}
+              {tl({ en: 'D10 Dashamsha — Career & Professional Life', hi: 'D10 दशांश — करियर और व्यावसायिक जीवन', sa: 'D10 दशांशः — जीविका व्यावसायिकजीवनं च', ta: 'D10 தசாம்சம் — தொழில் மற்றும் வாழ்க்கை வாழ்வு', te: 'D10 దశాంశం — వృత్తి మరియు వ్యావహారిక జీవితం', bn: 'D10 দশাংশ — কর্মজীবন ও পেশাদার জীবন', kn: 'D10 ದಶಾಂಶ — ವೃತ್ತಿ ಮತ್ತು ವ್ಯಾವಸಾಯಿಕ ಜೀವನ', gu: 'D10 દશાંશ — કારકિર્દી અને વ્યાવસાયિક જીવન', mai: 'D10 दशांश — करियर आ व्यावसायिक जीवन', mr: 'D10 दशांश — करिअर आणि व्यावसायिक जीवन' }, locale)}
             </h3>
             <p className="text-text-secondary/70 text-xs text-center mb-5">
-              {tl({ en: 'Dashamsha chart is the specific indicator of career, profession, and public life. Planets in kendras powerfully shape career. Source: BPHS Ch. 6', hi: 'दशांश चार्ट करियर, व्यवसाय और सार्वजनिक जीवन का विशिष्ट सूचक है। केंद्र में ग्रह करियर को शक्तिशाली बनाते हैं। स्रोत: BPHS अ. 6', sa: 'दशांश चार्ट करियर, व्यवसाय और सार्वजनिक जीवन का विशिष्ट सूचक है। केंद्र में ग्रह करियर को शक्तिशाली बनाते हैं। स्रोत: BPHS अ. 6' }, locale)}
+              {tl({ en: 'Dashamsha chart is the specific indicator of career, profession, and public life. Planets in kendras powerfully shape career. Source: BPHS Ch. 6', hi: 'दशांश चार्ट करियर, व्यवसाय और सार्वजनिक जीवन का विशिष्ट सूचक है। केंद्र में ग्रह करियर को शक्तिशाली बनाते हैं। स्रोत: BPHS अ. 6', sa: 'दशांशचक्रं जीविका-व्यवसाय-सार्वजनिकजीवनानां विशिष्टसूचकमस्ति। केन्द्रस्थग्रहाः जीविकां दृढतया निर्मान्ति। स्रोतः: BPHS अ. 6' }, locale)}
             </p>
 
             {/* D10 Lagna */}
             <div className="rounded-xl p-4 mb-4 text-center border bg-sky-500/10 border-sky-500/25">
               <div className="font-bold text-lg mb-1 text-sky-300" style={headingFont}>
-                {tl({ en: 'D10 Ascendant: ', hi: 'D10 लग्न: ', sa: 'D10 लग्न: ', ta: 'D10 Ascendant: ', te: 'D10 Ascendant: ', bn: 'D10 Ascendant: ', kn: 'D10 Ascendant: ', gu: 'D10 Ascendant: ', mai: 'D10 लग्न: ', mr: 'D10 लग्न: ' }, locale)}{d10AscName?.[locale] || d10AscName?.en}
+                {tl({ en: 'D10 Ascendant: ', hi: 'D10 लग्न: ', sa: 'D10 लग्नम्: ', ta: 'D10 லக்னம்: ', te: 'D10 లగ్నం: ', bn: 'D10 লগ্ন: ', kn: 'D10 ಲಗ್ನ: ', gu: 'D10 લગ્ન: ', mai: 'D10 लग्न: ', mr: 'D10 लग्न: ' }, locale)}{d10AscName?.[locale] || d10AscName?.en}
               </div>
               <p className="text-text-secondary/70 text-xs">
                 {tl({ en: "D10 ascendant shows the nature of your professional persona — how you appear in the workplace and your career\'s fundamental character.", hi: "D10 लग्न आपके करियर के स्वरूप और पेशेवर व्यक्तित्व को दर्शाता है — आप कार्यस्थल पर कैसे दिखते हैं।", sa: "D10 लग्न आपके करियर के स्वरूप और पेशेवर व्यक्तित्व को दर्शाता है — आप कार्यस्थल पर कैसे दिखते हैं।" }, locale)}
@@ -3478,21 +3478,21 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                     <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                       <span className="text-gold-light font-semibold text-sm" style={headingFont}>{pd.planet.planet.name[locale] || pd.planet.planet.name.en}</span>
                       <span className="text-text-secondary/65 text-xs">
-                        {tl({ en: 'D10 House:', hi: 'D10 भाव:', sa: 'D10 भाव:', ta: 'D10 House:', te: 'D10 House:', bn: 'D10 House:', kn: 'D10 House:', gu: 'D10 House:', mai: 'D10 भाव:', mr: 'D10 भाव:' }, locale)} {pd.d10House}
+                        {tl({ en: 'D10 House:', hi: 'D10 भाव:', sa: 'D10 भावः:', ta: 'D10 பாவம்:', te: 'D10 భావం:', bn: 'D10 ভাব:', kn: 'D10 ಭಾವ:', gu: 'D10 ભાવ:', mai: 'D10 भाव:', mr: 'D10 घर:' }, locale)} {pd.d10House}
                       </span>
                       {isInKendra && (
                         <span className="text-xs font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">
-                          {tl({ en: 'Kendra', hi: 'केंद्र', sa: 'केंद्र', ta: 'Kendra', te: 'Kendra', bn: 'Kendra', kn: 'Kendra', gu: 'Kendra', mai: 'केंद्र', mr: 'केंद्र' }, locale)}
+                          {tl({ en: 'Kendra', hi: 'केंद्र', sa: 'केन्द्रम्', ta: 'கேந்திரம்', te: 'కేంద్రం', bn: 'কেন্দ্র', kn: 'ಕೇಂದ್ರ', gu: 'કેન્દ્ર', mai: 'केन्द्र', mr: 'केंद्र' }, locale)}
                         </span>
                       )}
                       {isInTrikona && !isInKendra && (
                         <span className="text-xs font-bold px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300">
-                          {tl({ en: 'Trikona', hi: 'त्रिकोण', sa: 'त्रिकोण', ta: 'Trikona', te: 'Trikona', bn: 'Trikona', kn: 'Trikona', gu: 'Trikona', mai: 'त्रिकोण', mr: 'त्रिकोण' }, locale)}
+                          {tl({ en: 'Trikona', hi: 'त्रिकोण', sa: 'त्रिकोणम्', ta: 'திரிகோணம்', te: 'త్రికోణం', bn: 'ত্রিকোণ', kn: 'ತ್ರಿಕೋಣ', gu: 'ત્રિકોણ', mai: 'त्रिकोण', mr: 'त्रिकोण' }, locale)}
                         </span>
                       )}
                       {isInDusthana && (
                         <span className="text-xs font-bold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300">
-                          {tl({ en: 'Dusthana', hi: 'दुःस्थान', sa: 'दुःस्थान', ta: 'Dusthana', te: 'Dusthana', bn: 'Dusthana', kn: 'Dusthana', gu: 'Dusthana', mai: 'दुःस्थान', mr: 'दुःस्थान' }, locale)}
+                          {tl({ en: 'Dusthana', hi: 'दुःस्थान', sa: 'दुःस्थानम्', ta: 'துஷ்டானம்', te: 'దుష్టానం', bn: 'দুঃস্থান', kn: 'ದುಃಸ್ಥಾನ', gu: 'દુઃસ્થાન', mai: 'दुःस्थान', mr: 'दुःस्थान' }, locale)}
                         </span>
                       )}
                     </div>
@@ -3501,12 +3501,12 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                     )}
                     {isInKendra && (
                       <p className="text-emerald-400/80 text-xs mt-1 italic">
-                        {tl({ en: 'Kendra placement — direct, powerful career influence.', hi: 'केंद्र स्थान — करियर में प्रत्यक्ष, शक्तिशाली प्रभाव।', sa: 'केंद्र स्थान — करियर में प्रत्यक्ष, शक्तिशाली प्रभाव।', ta: 'Kendra placement — direct, powerful career influence.', te: 'Kendra placement — direct, powerful career influence.', bn: 'Kendra placement — direct, powerful career influence.', kn: 'Kendra placement — direct, powerful career influence.', gu: 'Kendra placement — direct, powerful career influence.', mai: 'केंद्र स्थान — करियर में प्रत्यक्ष, शक्तिशाली प्रभाव।', mr: 'केंद्र स्थान — करियर में प्रत्यक्ष, शक्तिशाली प्रभाव।' }, locale)}
+                        {tl({ en: 'Kendra placement — direct, powerful career influence.', hi: 'केंद्र स्थान — करियर में प्रत्यक्ष, शक्तिशाली प्रभाव।', sa: 'केन्द्रस्थितिः — जीविकायां प्रत्यक्षः सशक्तः प्रभावः।', ta: 'கேந்திர நிலை — நேரடியான, வலிமையான தொழில் தாக்கம்.', te: 'కేంద్ర స్థానం — నేరుగా, శక్తివంతమైన వృత్తి ప్రభావం.', bn: 'কেন্দ্র অবস্থান — সরাসরি, শক্তিশালী কর্মজীবন প্রভাব।', kn: 'ಕೇಂದ್ರ ಸ್ಥಾನ — ನೇರ, ಶಕ್ತಿಶಾಲಿ ವೃತ್ತಿ ಪ್ರಭಾವ.', gu: 'કેન્દ્ર સ્થાન — સીધો, શક્તિશાળી કારકિર્દી પ્રભાવ.', mai: 'केन्द्र स्थान — करियर मे प्रत्यक्ष, शक्तिशाली प्रभाव।', mr: 'केंद्र स्थान — करिअरवर थेट, शक्तिशाली प्रभाव.' }, locale)}
                       </p>
                     )}
                     {isInDusthana && (
                       <p className="text-amber-400/80 text-xs mt-1 italic">
-                        {tl({ en: 'Dusthana placement — career challenges exist, but overcoming them builds unique professional strength.', hi: 'दुःस्थान — करियर में चुनौतियां, लेकिन इनसे पार पाने पर विशेष शक्ति मिलती है।', sa: 'दुःस्थान — करियर में चुनौतियां, लेकिन इनसे पार पाने पर विशेष शक्ति मिलती है।', ta: 'Dusthana placement — career challenges exist, but overcoming them builds unique professional strength.', te: 'Dusthana placement — career challenges exist, but overcoming them builds unique professional strength.', bn: 'Dusthana placement — career challenges exist, but overcoming them builds unique professional strength.', kn: 'Dusthana placement — career challenges exist, but overcoming them builds unique professional strength.', gu: 'Dusthana placement — career challenges exist, but overcoming them builds unique professional strength.', mai: 'दुःस्थान — करियर में चुनौतियां, लेकिन इनसे पार पाने पर विशेष शक्ति मिलती है।', mr: 'दुःस्थान — करियर में चुनौतियां, लेकिन इनसे पार पाने पर विशेष शक्ति मिलती है।' }, locale)}
+                        {tl({ en: 'Dusthana placement — career challenges exist, but overcoming them builds unique professional strength.', hi: 'दुःस्थान — करियर में चुनौतियां, लेकिन इनसे पार पाने पर विशेष शक्ति मिलती है।', sa: 'दुःस्थानस्थितिः — जीविकायां बाधाः सन्ति, किन्तु तासां जये विशिष्टा व्यावसायिकशक्तिः जायते।', ta: 'துஷ்டான நிலை — தொழிலில் சவால்கள் உள்ளன, ஆனால் அவற்றை வெல்வது தனிப்பட்ட வலிமையை உருவாக்குகிறது.', te: 'దుష్టాన స్థానం — వృత్తిలో సవాళ్లు ఉన్నాయి, కానీ వాటిని అధిగమించడం ప్రత్యేక వ్యావహారిక బలాన్ని తెస్తుంది.', bn: 'দুঃস্থান অবস্থান — কর্মজীবনে চ্যালেঞ্জ আছে, কিন্তু সেগুলি অতিক্রম করলে অনন্য পেশাদার শক্তি তৈরি হয়।', kn: 'ದುಃಸ್ಥಾನ ಸ್ಥಾನ — ವೃತ್ತಿಯಲ್ಲಿ ಸವಾಲುಗಳಿವೆ, ಆದರೆ ಅವುಗಳನ್ನು ಮೆಟ್ಟಿದರೆ ವಿಶೇಷ ವ್ಯಾವಸಾಯಿಕ ಶಕ್ತಿ ಸಿಗುತ್ತದೆ.', gu: 'દુઃસ્થાન — કારકિર્દીમાં પડકારો છે, પણ તેને પાર કરવાથી અનોખી વ્યાવસાયિક શક્તિ મળે છે.', mai: 'दुःस्थान — करियर मे चुनौती अछि, मुदा एकरा पार करलासँ विशेष शक्ति भेटैत अछि।', mr: 'दुःस्थान — करिअरमध्ये आव्हाने आहेत, पण त्यांवर मात केल्यास अनोखी व्यावसायिक शक्ती मिळते.' }, locale)}
                       </p>
                     )}
                   </div>
@@ -3522,13 +3522,13 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
               return (
                 <div className="mt-4 p-4 rounded-xl bg-sky-500/5 border border-sky-500/15">
                   <div className="text-sky-300 text-xs uppercase tracking-wider font-bold mb-2">
-                    {tl({ en: 'D10 10th House — Career Zenith', hi: 'D10 10वां भाव — करियर शिखर', sa: 'D10 10वां भाव — करियर शिखर', ta: 'D10 10th House — Career Zenith', te: 'D10 10th House — Career Zenith', bn: 'D10 10th House — Career Zenith', kn: 'D10 10th House — Career Zenith', gu: 'D10 10th House — Career Zenith', mai: 'D10 10वां भाव — करियर शिखर', mr: 'D10 10वां भाव — करियर शिखर' }, locale)}
+                    {tl({ en: 'D10 10th House — Career Zenith', hi: 'D10 10वां भाव — करियर शिखर', sa: 'D10 दशमभावः — जीविकाशिखरम्', ta: 'D10 10ஆம் பாவம் — தொழில் உச்சம்', te: 'D10 10వ భావం — వృత్తి శిఖరం', bn: 'D10 দশম ভাব — কর্মজীবনের শীর্ষ', kn: 'D10 10ನೇ ಭಾವ — ವೃತ್ತಿ ಶಿಖರ', gu: 'D10 10મું ભાવ — કારકિર્દી શિખર', mai: 'D10 10म भाव — करियर शिखर', mr: 'D10 10वे घर — करिअर शिखर' }, locale)}
                   </div>
                   <p className="text-text-secondary/75 text-xs leading-relaxed">
                     {tl({ en: `10th house in ${h10SignName?.en}`, hi: `10वां भाव ${h10SignName?.hi} में`, sa: `10वां भाव ${h10SignName?.hi} में` }, locale)}
                     {h10planets.length > 0
                       ? tl({ en: ` — planets: ${h10planets.map(p => PLANET_NAMES_EN[p] || '').join(', ')}. These planets directly influence your career zenith — your most visible professional achievements.`, hi: ` — ग्रह: ${h10planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ये ग्रह सीधे करियर के उच्चतम बिंदु को प्रभावित करते हैं — आपकी सबसे दृश्यमान व्यावसायिक उपलब्धियां।`, sa: ` — ग्रह: ${h10planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ये ग्रह सीधे करियर के उच्चतम बिंदु को प्रभावित करते हैं — आपकी सबसे दृश्यमान व्यावसायिक उपलब्धियां।` }, locale)
-                      : (tl({ en: '. No planets — career zenith determined by 10th lord and its placement in D10.', hi: '। कोई ग्रह नहीं — करियर शिखर 10वें भावेश और उसकी D10 स्थिति से निर्धारित।', sa: '। कोई ग्रह नहीं — करियर शिखर 10वें भावेश और उसकी D10 स्थिति से निर्धारित।', ta: '. No planets — career zenith determined by 10th lord and its placement in D10.', te: '. No planets — career zenith determined by 10th lord and its placement in D10.', bn: '. No planets — career zenith determined by 10th lord and its placement in D10.', kn: '. No planets — career zenith determined by 10th lord and its placement in D10.', gu: '. No planets — career zenith determined by 10th lord and its placement in D10.', mai: '। कोई ग्रह नहीं — करियर शिखर 10वें भावेश और उसकी D10 स्थिति से निर्धारित।', mr: '। कोई ग्रह नहीं — करियर शिखर 10वें भावेश और उसकी D10 स्थिति से निर्धारित।' }, locale))}
+                      : (tl({ en: '. No planets — career zenith determined by 10th lord and its placement in D10.', hi: '। कोई ग्रह नहीं — करियर शिखर 10वें भावेश और उसकी D10 स्थिति से निर्धारित।', sa: '। ग्रहाः न सन्ति — जीविकाशिखरं दशमेशेन तस्य D10 स्थानेन च निर्धार्यते।', ta: '। கிரகங்கள் இல்லை — தொழில் உச்சம் 10ஆம் அதிபதி மற்றும் அதன் D10 நிலையால் தீர்மானிக்கப்படுகிறது.', te: '। గ్రహాలు లేవు — వృత్తి శిఖరం 10వ భావాధిపతి మరియు దాని D10 స్థానం ద్వారా నిర్ణయించబడుతుంది.', bn: '। কোনো গ্রহ নেই — কর্মজীবনের শীর্ষ দশম ভাবাধিপতি ও তার D10 স্থান থেকে নির্ধারিত হয়।', kn: '। ಗ್ರಹಗಳಿಲ್ಲ — ವೃತ್ತಿ ಶಿಖರ 10ನೇ ಭಾವಾಧಿಪತಿ ಮತ್ತು ಅದರ D10 ಸ್ಥಾನದಿಂದ ನಿರ್ಧರಿಸಲ್ಪಡುತ್ತದೆ.', gu: '। કોઈ ગ્રહ નથી — કારકિર્દી શિખર 10મા ભાવાધિપ અને તેની D10 સ્થિતિ દ્વારા નક્કી થાય છે.', mai: '। कोनो ग्रह नहि — करियर शिखर 10म भावेशसँ आ हुनकर D10 स्थितिसँ निर्धारित अछि।', mr: '। कोणतेही ग्रह नाहीत — करिअर शिखर 10व्या घरपतीवरून आणि त्याच्या D10 स्थानावरून निर्धारित होते.' }, locale))}
                   </p>
                 </div>
               );
@@ -3550,35 +3550,35 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
         return (
           <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-teal-500/20 p-6 mt-8">
             <h3 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
-              {tl({ en: 'D7 Saptamsha — Children & Progeny', hi: 'D7 सप्तांश — संतान और वंश', sa: 'D7 सप्तांश — संतान और वंश', ta: 'D7 Saptamsha — Children & Progeny', te: 'D7 Saptamsha — Children & Progeny', bn: 'D7 Saptamsha — Children & Progeny', kn: 'D7 Saptamsha — Children & Progeny', gu: 'D7 Saptamsha — Children & Progeny', mai: 'D7 सप्तांश — संतान और वंश', mr: 'D7 सप्तांश — संतान और वंश' }, locale)}
+              {tl({ en: 'D7 Saptamsha — Children & Progeny', hi: 'D7 सप्तांश — संतान और वंश', sa: 'D7 सप्तांशः — सन्तानं वंशः च', ta: 'D7 சப்தாம்சம் — பிள்ளைகள் மற்றும் வழித்தோன்றல்', te: 'D7 సప్తాంశం — సంతానం మరియు వంశం', bn: 'D7 সপ্তাংশ — সন্তান ও বংশ', kn: 'D7 ಸಪ್ತಾಂಶ — ಮಕ್ಕಳು ಮತ್ತು ವಂಶ', gu: 'D7 સપ્તાંશ — સંતાન અને વંશ', mai: 'D7 सप्तांश — संतान आ वंश', mr: 'D7 सप्तांश — संतती आणि वंश' }, locale)}
             </h3>
             <p className="text-text-secondary/70 text-xs text-center mb-5">
-              {tl({ en: 'Saptamsha is the primary children indicator — number, nature, relationship with you, and their success. Source: BPHS Ch. 6', hi: 'सप्तांश चार्ट संतान का प्राथमिक सूचक है — संख्या, स्वभाव, जातक से संबंध और उनकी सफलता। स्रोत: BPHS अ. 6', sa: 'सप्तांश चार्ट संतान का प्राथमिक सूचक है — संख्या, स्वभाव, जातक से संबंध और उनकी सफलता। स्रोत: BPHS अ. 6' }, locale)}
+              {tl({ en: 'Saptamsha is the primary children indicator — number, nature, relationship with you, and their success. Source: BPHS Ch. 6', hi: 'सप्तांश चार्ट संतान का प्राथमिक सूचक है — संख्या, स्वभाव, जातक से संबंध और उनकी सफलता। स्रोत: BPHS अ. 6', sa: 'सप्तांशः सन्तानस्य प्रमुखसूचकः — संख्या, स्वभावः, जातकेन सह सम्बन्धः, तेषां सफलता च। स्रोतः: BPHS अ. 6' }, locale)}
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {/* Jupiter placement — most important for children */}
               <div className={`rounded-xl p-4 border ${jupHouse && new Set([1,4,5,7,9,10]).has(jupHouse) ? 'border-emerald-500/20 bg-emerald-500/5' : 'border-teal-500/15 bg-teal-500/5'}`}>
                 <div className="text-teal-300 text-xs uppercase tracking-wider font-bold mb-2">
-                  {tl({ en: 'Jupiter Placement (Most Important)', hi: 'गुरु स्थिति (सबसे महत्वपूर्ण)', sa: 'गुरु स्थिति (सबसे महत्वपूर्ण)', ta: 'Jupiter Placement (Most Important)', te: 'Jupiter Placement (Most Important)', bn: 'Jupiter Placement (Most Important)', kn: 'Jupiter Placement (Most Important)', gu: 'Jupiter Placement (Most Important)', mai: 'गुरु स्थिति (सबसे महत्वपूर्ण)', mr: 'गुरु स्थिति (सबसे महत्वपूर्ण)' }, locale)}
+                  {tl({ en: 'Jupiter Placement (Most Important)', hi: 'गुरु स्थिति (सबसे महत्वपूर्ण)', sa: 'गुरोः स्थितिः (सर्वप्रमुखम्)', ta: 'குரு நிலை (மிக முக்கியம்)', te: 'గురు స్థానం (అత్యంత ముఖ్యమైనది)', bn: 'বৃহস্পতির অবস্থান (সবচেয়ে গুরুত্বপূর্ণ)', kn: 'ಗುರು ಸ್ಥಾನ (ಅತ್ಯಂತ ಮಹತ್ವದ್ದು)', gu: 'ગુરુ સ્થાન (સૌથી મહત્ત્વનું)', mai: 'गुरु स्थिति (सभसँ महत्त्वपूर्ण)', mr: 'गुरूचे स्थान (सर्वात महत्त्वाचे)' }, locale)}
                 </div>
                 <p className="text-text-secondary/75 text-xs leading-relaxed">
                   {jupHouse
                     ? tl({ en: `Jupiter in ${jupHouse}th house of D7 — ${new Set([1,4,5,7,9,10]).has(jupHouse) ? 'Auspicious position — strong indicator of children\'s happiness and success.' : new Set([6,8,12]).has(jupHouse) ? 'Challenging position — delay or difficulty with children possible. Jupiter remedies help.' : 'Moderate position — normal children fortune.'}`, hi: `D7 में गुरु ${jupHouse}वें भाव में — ${new Set([1,4,5,7,9,10]).has(jupHouse) ? 'शुभ स्थान — संतान सुख और उनकी सफलता का बलवान संकेत।' : new Set([6,8,12]).has(jupHouse) ? 'चुनौतीपूर्ण स्थान — संतान में विलंब या कठिनाई संभव। गुरु उपाय सहायक।' : 'मध्यम स्थान — सामान्य संतान सुख।'}`, sa: `D7 में गुरु ${jupHouse}वें भाव में — ${new Set([1,4,5,7,9,10]).has(jupHouse) ? 'शुभ स्थान — संतान सुख और उनकी सफलता का बलवान संकेत।' : new Set([6,8,12]).has(jupHouse) ? 'चुनौतीपूर्ण स्थान — संतान में विलंब या कठिनाई संभव। गुरु उपाय सहायक।' : 'मध्यम स्थान — सामान्य संतान सुख।'}` }, locale)
-                    : (tl({ en: 'Jupiter position in D7 undetermined.', hi: 'D7 में गुरु की स्थिति अनिर्धारित।', sa: 'D7 में गुरु की स्थिति अनिर्धारित।', ta: 'Jupiter position in D7 undetermined.', te: 'Jupiter position in D7 undetermined.', bn: 'Jupiter position in D7 undetermined.', kn: 'Jupiter position in D7 undetermined.', gu: 'Jupiter position in D7 undetermined.', mai: 'D7 में गुरु की स्थिति अनिर्धारित।', mr: 'D7 में गुरु की स्थिति अनिर्धारित।' }, locale))}
+                    : (tl({ en: 'Jupiter position in D7 undetermined.', hi: 'D7 में गुरु की स्थिति अनिर्धारित।', sa: 'D7 मध्ये गुरोः स्थितिः अनिर्धारिता।', ta: 'D7-ல் குரு நிலை தீர்மானிக்கப்படவில்லை.', te: 'D7లో గురు స్థానం నిర్ణయించబడలేదు.', bn: 'D7-এ বৃহস্পতির অবস্থান অনির্ধারিত।', kn: 'D7 ರಲ್ಲಿ ಗುರು ಸ್ಥಾನ ಅನಿರ್ಧಾರಿತ.', gu: 'D7 માં ગુરુ સ્થાન અનિર્ધારિત છે.', mai: 'D7 मे गुरुक स्थिति अनिर्धारित अछि।', mr: 'D7 मध्ये गुरूचे स्थान अनिर्धारित आहे.' }, locale))}
                 </p>
               </div>
 
               {/* 5th house — first child */}
               <div className="rounded-xl p-4 border border-teal-500/15 bg-teal-500/5">
                 <div className="text-teal-300 text-xs uppercase tracking-wider font-bold mb-2">
-                  {tl({ en: '5th House — First Child', hi: '5वां भाव — प्रथम संतान', sa: '5वां भाव — प्रथम संतान', ta: '5th House — First Child', te: '5th House — First Child', bn: '5th House — First Child', kn: '5th House — First Child', gu: '5th House — First Child', mai: '5वां भाव — प्रथम संतान', mr: '5वां भाव — प्रथम संतान' }, locale)}
+                  {tl({ en: '5th House — First Child', hi: '5वां भाव — प्रथम संतान', sa: 'पञ्चमभावः — प्रथमसन्तानम्', ta: '5ஆம் பாவம் — முதல் குழந்தை', te: '5వ భావం — మొదటి సంతానం', bn: 'পঞ্চম ভাব — প্রথম সন্তান', kn: '5ನೇ ಭಾವ — ಮೊದಲ ಮಗು', gu: '5મું ભાવ — પ્રથમ સંતાન', mai: '5म भाव — प्रथम संतान', mr: '5वे घर — पहिले अपत्य' }, locale)}
                 </div>
                 <p className="text-text-secondary/75 text-xs leading-relaxed">
                   {tl({ en: `In ${RASHIS[(h5Sign-1)%12]?.name?.en}`, hi: `${RASHIS[(h5Sign-1)%12]?.name?.hi} में`, sa: `${RASHIS[(h5Sign-1)%12]?.name?.hi} में` }, locale)}
                   {h5planets.length > 0
                     ? tl({ en: ` — planets: ${h5planets.map(p => PLANET_NAMES_EN[p] || '').join(', ')}. ${h5planets.some(p => new Set([1,3,4,5]).has(p)) ? 'Benefic influence — happiness from first child.' : 'Malefic influence — challenges possible with first child.'}`, hi: ` — ग्रह: ${h5planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ${h5planets.some(p => new Set([1,3,4,5]).has(p)) ? 'शुभ ग्रह — प्रथम संतान से सुख।' : 'पाप ग्रह — प्रथम संतान में चुनौतियां संभव।'}`, sa: ` — ग्रह: ${h5planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ${h5planets.some(p => new Set([1,3,4,5]).has(p)) ? 'शुभ ग्रह — प्रथम संतान से सुख।' : 'पाप ग्रह — प्रथम संतान में चुनौतियां संभव।'}` }, locale)
-                    : (tl({ en: '. No planets — assess from 5th lord placement.', hi: '। कोई ग्रह नहीं — 5वें भावेश की स्थिति से आकलन।', sa: '। कोई ग्रह नहीं — 5वें भावेश की स्थिति से आकलन।', ta: '. No planets — assess from 5th lord placement.', te: '. No planets — assess from 5th lord placement.', bn: '. No planets — assess from 5th lord placement.', kn: '. No planets — assess from 5th lord placement.', gu: '. No planets — assess from 5th lord placement.', mai: '। कोई ग्रह नहीं — 5वें भावेश की स्थिति से आकलन।', mr: '। कोई ग्रह नहीं — 5वें भावेश की स्थिति से आकलन।' }, locale))}
+                    : (tl({ en: '. No planets — assess from 5th lord placement.', hi: '। कोई ग्रह नहीं — 5वें भावेश की स्थिति से आकलन।', sa: '। ग्रहाः न सन्ति — पञ्चमेशस्थानेन मूल्याङ्कनं करणीयम्।', ta: '। கிரகங்கள் இல்லை — 5ஆம் அதிபதி நிலையிலிருந்து மதிப்பிடுக.', te: '। గ్రహాలు లేవు — 5వ భావాధిపతి స్థానం నుండి అంచనా వేయండి.', bn: '। কোনো গ্রহ নেই — পঞ্চম ভাবাধিপতির স্থান থেকে মূল্যায়ন করুন।', kn: '। ಗ್ರಹಗಳಿಲ್ಲ — 5ನೇ ಭಾವಾಧಿಪತಿ ಸ್ಥಾನದಿಂದ ಮೌಲ್ಯಮಾಪನ ಮಾಡಿ.', gu: '। કોઈ ગ્રહ નથી — 5મા ભાવાધિપ સ્થિતિ પ્રમાણે આકલન કરો.', mai: '। कोनो ग्रह नहि — 5म भावेशक स्थितिसँ आकलन करू।', mr: '। कोणतेही ग्रह नाहीत — 5व्या घरपतीच्या स्थानावरून मूल्यांकन करा.' }, locale))}
                 </p>
               </div>
             </div>

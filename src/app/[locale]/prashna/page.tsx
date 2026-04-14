@@ -1,6 +1,7 @@
 'use client';
 
 import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
 import { useState, useCallback, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { authedFetch } from '@/lib/api/authed-fetch';
@@ -18,9 +19,12 @@ import { useLocationStore } from '@/stores/location-store';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { analyzePrashna, PRASHNA_CATEGORIES } from '@/lib/prashna/horary-analysis';
 import type { PrashnaCategory, PrashnaAnalysis, PrashnaInsight } from '@/lib/prashna/horary-analysis';
-import type { Locale } from '@/types/panchang';
+import type { Locale, LocaleText } from '@/types/panchang';
 import type { KundaliData, ChartStyle } from '@/types/kundali';
+import MSG from '@/messages/pages/prashna.json';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+
+const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 
 // ── Trilingual labels ──
 const L = {
@@ -111,7 +115,7 @@ export default function PrashnaPage() {
     if (locationStore.lat === null || locationStore.lng === null) return;
     setLoading(true);
     const now = new Date();
-    setCastTime(now.toLocaleString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'en-IN' }, locale)));
+    setCastTime(now.toLocaleString(msg('localeDateLocale', locale)));
     const ianaTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
     const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTimezone);
 
@@ -119,7 +123,7 @@ export default function PrashnaPage() {
       const res = await authedFetch('/api/kundali', {
         method: 'POST',
         body: JSON.stringify({
-          name: tl({ en: 'Prashna Chart', hi: 'प्रश्न कुण्डली', sa: 'प्रश्न कुण्डली' }, locale),
+          name: msg('prashnaChartName', locale),
           date: now.toISOString().split('T')[0],
           time: `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`,
           place: locationStore.name || 'Current Location',
@@ -305,7 +309,7 @@ export default function PrashnaPage() {
                   <div className="flex items-center justify-center gap-2 mb-2 text-xs text-text-secondary">
                     <RashiIconById id={kundali.ascendant.sign} size={20} />
                     <span style={bf}>
-                      {tl({ en: 'Ascendant', hi: 'लग्न', sa: 'लग्न' }, locale)}: {kundali.ascendant.signName[locale]} ({kundali.ascendant.degree.toFixed(1)}&deg;)
+                      {msg('ascendantLabel', locale)}: {kundali.ascendant.signName[locale]} ({kundali.ascendant.degree.toFixed(1)}&deg;)
                     </span>
                   </div>
                   {chartStyle === 'north' ? (
@@ -343,11 +347,11 @@ export default function PrashnaPage() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-gold-primary/10 bg-bg-tertiary/30">
-                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः' }, locale)}</th>
-                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{tl({ en: 'Sign', hi: 'राशि', sa: 'राशिः' }, locale)}</th>
-                        <th className="text-center px-4 py-3 text-text-secondary font-bold text-xs uppercase">{tl({ en: 'House', hi: 'भाव', sa: 'भावः' }, locale)}</th>
-                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{tl({ en: 'Status', hi: 'स्थिति', sa: 'स्थिति' }, locale)}</th>
-                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{tl({ en: 'Role', hi: 'भूमिका', sa: 'भूमिका' }, locale)}</th>
+                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{msg('planetHeader', locale)}</th>
+                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{msg('signHeader', locale)}</th>
+                        <th className="text-center px-4 py-3 text-text-secondary font-bold text-xs uppercase">{msg('houseHeader', locale)}</th>
+                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{msg('statusHeader', locale)}</th>
+                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{msg('roleHeader', locale)}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -481,7 +485,7 @@ function VerdictBanner({ analysis, locale, hf, bf }: {
           <div className="text-3xl font-bold font-mono">
             {analysis.verdict.score > 0 ? '+' : ''}{analysis.verdict.score}
           </div>
-          <div className="text-xs text-text-secondary uppercase">{tl({ en: 'Score', hi: 'अंक', sa: 'अंक' }, locale)}</div>
+          <div className="text-xs text-text-secondary uppercase">{msg('scoreLabel', locale)}</div>
         </div>
       </div>
       <p className="text-sm leading-relaxed opacity-90" style={bf}>

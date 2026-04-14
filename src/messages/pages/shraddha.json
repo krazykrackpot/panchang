@@ -1,0 +1,27 @@
+{
+  "infoBlockTitle": {
+    "en": "What is Shraddha?",
+    "hi": "श्राद्ध क्या है?",
+    "sa": "श्राद्ध क्या है?"
+  },
+  "pakshaLabel": {
+    "en": "Paksha (Lunar Phase)",
+    "hi": "पक्ष",
+    "sa": "पक्ष"
+  },
+  "deathTithiLabel": {
+    "en": "Death Tithi",
+    "hi": "मृत्यु तिथि",
+    "sa": "मृत्यु तिथि"
+  },
+  "shraddhaDate": {
+    "en": "Shraddha Date",
+    "hi": "श्राद्ध तिथि",
+    "sa": "श्राद्ध तिथि"
+  },
+  "localeDateLocale": {
+    "en": "en-IN",
+    "hi": "hi-IN",
+    "sa": "en-IN"
+  }
+}

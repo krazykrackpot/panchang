@@ -1,0 +1,92 @@
+{
+  "localeDateLocale": {
+    "en": "en-IN",
+    "hi": "hi-IN",
+    "sa": "en-IN"
+  },
+  "pageTitle": {
+    "en": "Muhurat Finder",
+    "hi": "मुहूर्त खोजक",
+    "sa": "मुहूर्तान्वेषकः"
+  },
+  "noAuspiciousDates": {
+    "en": "No auspicious dates found for this month.",
+    "hi": "इस माह कोई शुभ तिथि नहीं मिली।",
+    "sa": "अस्मिन् मासे कोऽपि शुभः दिनाङ्कः न प्राप्तः।"
+  },
+  "nakLabel": {
+    "en": "Nak:",
+    "hi": "नक्ष:",
+    "sa": "नक्षत्रम्:"
+  },
+  "moonLabel": {
+    "en": "Moon:",
+    "hi": "चन्द्र:",
+    "sa": "चन्द्रः:"
+  },
+  "tithiLabel": {
+    "en": "Tithi:",
+    "hi": "तिथि:",
+    "sa": "तिथिः:"
+  },
+  "auspiciousDatesFound": {
+    "en": "auspicious dates found",
+    "hi": "शुभ तिथियाँ मिलीं",
+    "sa": "शुभाः तिथयः प्राप्ताः"
+  },
+  "infoBlockTitle": {
+    "en": "What is Muhurta?",
+    "hi": "मुहूर्त क्या है?",
+    "sa": "मुहूर्तम् किम्?"
+  },
+  "searchCityPlaceholder": {
+    "en": "Search city...",
+    "hi": "शहर खोजें...",
+    "sa": "शहर खोजें..."
+  },
+  "panchangaShuddhi": {
+    "en": "Panchanga Shuddhi",
+    "hi": "पञ्चाङ्ग शुद्धि",
+    "sa": "पञ्चाङ्ग शुद्धि"
+  },
+  "taraBala": {
+    "en": "Tara Bala",
+    "hi": "तारा बल",
+    "sa": "तारा बल"
+  },
+  "chandraBala": {
+    "en": "Chandra Bala",
+    "hi": "चन्द्र बल",
+    "sa": "चन्द्र बल"
+  },
+  "chandraPresent": {
+    "en": "✓ Present",
+    "hi": "✓ उपस्थित",
+    "sa": "✓ उपस्थित"
+  },
+  "chandraAbsent": {
+    "en": "✗ Absent",
+    "hi": "✗ अनुपस्थित",
+    "sa": "✗ अनुपस्थित"
+  },
+  "saveBirthChartNote": {
+    "en": "Save birth chart for Tara & Chandra Bala",
+    "hi": "तारा/चन्द्र बल के लिए जन्म कुण्डली सहेजें",
+    "sa": "तारा/चन्द्र बल के लिए जन्म कुण्डली सहेजें"
+  },
+  "shuddhi": {
+    "en": "Shuddhi",
+    "hi": "शुद्धि",
+    "sa": "शुद्धि"
+  },
+  "tara": {
+    "en": "Tara",
+    "hi": "तारा",
+    "sa": "तारा"
+  },
+  "chandra": {
+    "en": "Chandra",
+    "hi": "चन्द्र",
+    "sa": "चन्द्र"
+  }
+}

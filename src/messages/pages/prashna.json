@@ -1,0 +1,47 @@
+{
+  "localeDateLocale": {
+    "en": "en-IN",
+    "hi": "hi-IN",
+    "sa": "en-IN"
+  },
+  "prashnaChartName": {
+    "en": "Prashna Chart",
+    "hi": "प्रश्न कुण्डली",
+    "sa": "प्रश्न कुण्डली"
+  },
+  "ascendantLabel": {
+    "en": "Ascendant",
+    "hi": "लग्न",
+    "sa": "लग्न"
+  },
+  "planetHeader": {
+    "en": "Planet",
+    "hi": "ग्रह",
+    "sa": "ग्रहः"
+  },
+  "signHeader": {
+    "en": "Sign",
+    "hi": "राशि",
+    "sa": "राशिः"
+  },
+  "houseHeader": {
+    "en": "House",
+    "hi": "भाव",
+    "sa": "भावः"
+  },
+  "statusHeader": {
+    "en": "Status",
+    "hi": "स्थिति",
+    "sa": "स्थिति"
+  },
+  "roleHeader": {
+    "en": "Role",
+    "hi": "भूमिका",
+    "sa": "भूमिका"
+  },
+  "scoreLabel": {
+    "en": "Score",
+    "hi": "अंक",
+    "sa": "अंक"
+  }
+}

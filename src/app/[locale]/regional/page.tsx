@@ -7,7 +7,11 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import { dateToJD, sunLongitude, toSidereal, getRashiNumber, moonLongitude, calculateTithi } from '@/lib/ephem/astronomical';
 import type { LocaleText, Locale} from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import MSG from '@/messages/pages/regional.json';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+
+const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 
 // =================================================================
 // Regional Calendar Data
@@ -370,11 +374,11 @@ export default function RegionalCalendarsPage() {
       <div className="flex justify-center gap-6 mb-10">
         <div className="flex items-center gap-2">
           <span className="w-3 h-3 rounded-full bg-amber-500/60" />
-          <span className="text-text-secondary text-sm">{tl({ en: 'Solar Calendar', hi: 'सौर पंचांग', sa: 'सौर पंचांग', ta: 'Solar Calendar', te: 'Solar Calendar', bn: 'Solar Calendar', kn: 'Solar Calendar', gu: 'Solar Calendar', mai: 'सौर पंचांग', mr: 'सौर पंचांग' }, locale)}</span>
+          <span className="text-text-secondary text-sm">{msg('solarCalendar', locale)}</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="w-3 h-3 rounded-full bg-indigo-500/60" />
-          <span className="text-text-secondary text-sm">{tl({ en: 'Lunisolar Calendar', hi: 'चान्द्र-सौर पंचांग', sa: 'चान्द्र-सौर पंचांग', ta: 'Lunisolar Calendar', te: 'Lunisolar Calendar', bn: 'Lunisolar Calendar', kn: 'Lunisolar Calendar', gu: 'Lunisolar Calendar', mai: 'चान्द्र-सौर पंचांग', mr: 'चान्द्र-सौर पंचांग' }, locale)}</span>
+          <span className="text-text-secondary text-sm">{msg('lunisolarCalendar', locale)}</span>
         </div>
       </div>
 
@@ -406,7 +410,7 @@ export default function RegionalCalendarsPage() {
                   </div>
                   <div className="text-right">
                     <div className="text-gold-dark text-xs uppercase tracking-wider mb-1">
-                      {tl({ en: 'Current Month', hi: 'वर्तमान मास', sa: 'वर्तमान मास', ta: 'Current Month', te: 'Current Month', bn: 'Current Month', kn: 'Current Month', gu: 'Current Month', mai: 'वर्तमान मास', mr: 'वर्तमान मास' }, locale)}
+                      {msg('currentMonth', locale)}
                     </div>
                     <div className="text-gold-light text-lg font-bold">{cal.current.monthName}</div>
                   </div>
@@ -419,7 +423,7 @@ export default function RegionalCalendarsPage() {
               {/* New Year */}
               <div className="px-6 sm:px-8 py-4 border-t border-b border-gold-primary/10 bg-gold-primary/5">
                 <div className="flex items-center gap-2 text-sm">
-                  <span className="text-gold-primary font-bold">{tl({ en: 'New Year:', hi: 'नववर्ष:', sa: 'नववर्ष:', ta: 'New Year:', te: 'New Year:', bn: 'New Year:', kn: 'New Year:', gu: 'New Year:', mai: 'नववर्ष:', mr: 'नववर्ष:' }, locale)}</span>
+                  <span className="text-gold-primary font-bold">{msg('newYear', locale)}</span>
                   <span className="text-gold-light font-bold">{cal.newYear.name}</span>
                   <span className="text-text-secondary/70">—</span>
                   <span className="text-text-secondary text-xs">{cal.newYear.approxDate}</span>
@@ -429,7 +433,7 @@ export default function RegionalCalendarsPage() {
               {/* Month Grid */}
               <div className="p-6 sm:p-8">
                 <h3 className="text-gold-dark text-xs uppercase tracking-[0.2em] font-bold mb-4">
-                  {tl({ en: 'Months', hi: 'मास', sa: 'मास', ta: 'Months', te: 'Months', bn: 'Months', kn: 'Months', gu: 'Months', mai: 'मास', mr: 'मास' }, locale)}
+                  {msg('months', locale)}
                 </h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
                   {cal.months.map((month, j) => {
@@ -449,7 +453,7 @@ export default function RegionalCalendarsPage() {
                         <div className="text-text-secondary/65 text-xs mt-0.5">{month.approxGregorian}</div>
                         {isCurrent && (
                           <div className="text-gold-primary text-xs font-bold mt-1 animate-pulse">
-                            {tl({ en: 'NOW', hi: 'अभी', sa: 'अधुना', ta: 'இப்போது', te: 'ఇప్పుడు', bn: 'এখন', kn: 'ಈಗ', gu: 'હવે', mai: 'अखन', mr: 'आत्ता' }, locale)}
+                            {msg('now', locale)}
                           </div>
                         )}
                       </div>
@@ -462,7 +466,7 @@ export default function RegionalCalendarsPage() {
               <div className="px-6 sm:px-8 pb-6 sm:pb-8">
                 <GoldDivider />
                 <h3 className="text-gold-dark text-xs uppercase tracking-[0.2em] font-bold mb-4 mt-4">
-                  {tl({ en: 'Key Festivals', hi: 'प्रमुख उत्सव', sa: 'प्रमुख उत्सव', ta: 'Key Festivals', te: 'Key Festivals', bn: 'Key Festivals', kn: 'Key Festivals', gu: 'Key Festivals', mai: 'प्रमुख उत्सव', mr: 'प्रमुख उत्सव' }, locale)}
+                  {msg('keyFestivals', locale)}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {cal.festivals.map((fest, k) => (
@@ -483,17 +487,17 @@ export default function RegionalCalendarsPage() {
       {/* Comparison Table */}
       <div className="mt-12">
         <h2 className="text-gold-gradient text-2xl font-bold text-center mb-6" style={headingFont}>
-          {tl({ en: 'Calendar Comparison', hi: 'पंचांग तुलना', sa: 'पंचांग तुलना', ta: 'Calendar Comparison', te: 'Calendar Comparison', bn: 'Calendar Comparison', kn: 'Calendar Comparison', gu: 'Calendar Comparison', mai: 'पंचांग तुलना', mr: 'पंचांग तुलना' }, locale)}
+          {msg('calendarComparison', locale)}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Tradition', hi: 'परम्परा', sa: 'परम्परा', ta: 'Tradition', te: 'Tradition', bn: 'Tradition', kn: 'Tradition', gu: 'Tradition', mai: 'परम्परा', mr: 'परम्परा' }, locale)}</th>
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Type', hi: 'प्रकार', sa: 'प्रकारः', ta: 'வகை', te: 'రకం', bn: 'প্রকার', kn: 'ಪ್ರಕಾರ', gu: 'પ્રકાર', mai: 'प्रकार', mr: 'प्रकार' }, locale)}</th>
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Era', hi: 'युग', sa: 'युग', ta: 'Era', te: 'Era', bn: 'Era', kn: 'Era', gu: 'Era', mai: 'युग', mr: 'युग' }, locale)}</th>
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'Year Starts', hi: 'वर्षारम्भ', sa: 'वर्षारम्भ', ta: 'Year Starts', te: 'Year Starts', bn: 'Year Starts', kn: 'Year Starts', gu: 'Year Starts', mai: 'वर्षारम्भ', mr: 'वर्षारम्भ' }, locale)}</th>
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{tl({ en: 'First Month', hi: 'प्रथम मास', sa: 'प्रथम मास', ta: 'First Month', te: 'First Month', bn: 'First Month', kn: 'First Month', gu: 'First Month', mai: 'प्रथम मास', mr: 'प्रथम मास' }, locale)}</th>
+                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{msg('tradition', locale)}</th>
+                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{msg('type', locale)}</th>
+                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{msg('era', locale)}</th>
+                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{msg('yearStarts', locale)}</th>
+                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{msg('firstMonth', locale)}</th>
               </tr>
             </thead>
             <tbody>

@@ -14,7 +14,11 @@ import { dateToJD, sunLongitude, toSidereal, getRashiNumber } from '@/lib/ephem/
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale , LocaleText} from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import MSG from '@/messages/pages/retrograde.json';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+
+const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 
 interface RetroPeriod {
   planetId: number;
@@ -198,7 +202,7 @@ export default function RetrogradePage() {
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'en-IN', ta: 'en-IN', te: 'en-IN', bn: 'en-IN', kn: 'en-IN', gu: 'en-IN', mai: 'en-IN', mr: 'en-IN' }, locale), { day: 'numeric', month: 'short' });
+    return d.toLocaleDateString(msg('localeDateLocale', locale), { day: 'numeric', month: 'short' });
   };
 
   // Check if a period is currently active
@@ -212,7 +216,7 @@ export default function RetrogradePage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">
-            {tl({ en: 'Retrograde & Combustion', hi: 'वक्री एवं अस्त', sa: 'वक्रता च अस्तङ्गमः', ta: 'வக்கிரம் மற்றும் அஸ்தமனம்', te: 'వక్రత మరియు అస్తమయం', bn: 'বক্রী ও অস্তাচল', kn: 'ವಕ್ರ ಮತ್ತು ಅಸ್ತ', gu: 'વક્રી અને અસ્ત', mai: 'वक्री आ अस्त', mr: 'वक्री आणि अस्त' }, locale)}
+            {msg('pageTitle', locale)}
           </span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto leading-relaxed" style={bodyFont}>
@@ -306,7 +310,7 @@ export default function RetrogradePage() {
               </div>
               <div>
                 <h3 className="text-gold-light font-bold text-lg" style={headingFont}>
-                  {tl({ en: 'Current Cosmic Weather', hi: 'वर्तमान ब्रह्मांडीय मौसम', sa: 'वर्तमानः ब्रह्माण्डीयः वातावरणः', ta: 'தற்போதைய பிரபஞ்ச நிலை', te: 'ప్రస్తుత విశ్వ వాతావరణం', bn: 'বর্তমান মহাজাগতিক আবহাওয়া', kn: 'ಪ್ರಸ್ತುತ ಬ್ರಹ್ಮಾಂಡೀಯ ವಾತಾವರಣ', gu: 'વર્તમાન બ્રહ્માંડીય હવામાન', mai: 'वर्तमान ब्रह्माण्डीय मौसम', mr: 'सध्याचे खगोलीय वातावरण' }, locale)}
+                  {msg('currentCosmicWeather', locale)}
                 </h3>
                 <div className="flex items-center gap-2 text-xs text-text-secondary">
                   <Shield className="w-3 h-3 text-emerald-400" />
@@ -314,8 +318,8 @@ export default function RetrogradePage() {
                   <span className="text-gold-primary/20">|</span>
                   <span className={`font-bold ${toneColor === 'emerald' ? 'text-emerald-400' : toneColor === 'red' ? 'text-red-400' : 'text-amber-400'}`}>
                     {totalActive === 0
-                      ? (tl({ en: 'All Clear', hi: 'सब स्पष्ट', sa: 'सर्वं स्वच्छम्', ta: 'அனைத்தும் தெளிவு', te: 'అన్నీ స్పష్టంగా ఉన్నాయి', bn: 'সব পরিষ্কার', kn: 'ಎಲ್ಲವೂ ಸ್ಪಷ್ಟ', gu: 'સ્પષ્ટ', mai: 'सभ स्पष्ट अछि', mr: 'सर्व स्पष्ट' }, locale))
-                      : `${totalActive} ${tl({ en: 'Active', hi: 'सक्रिय', sa: 'सक्रियः', ta: 'செயலில்', te: 'క్రియాశీలం', bn: 'সক্রিয়', kn: 'ಸಕ್ರಿಯ', gu: 'સક્રિય', mai: 'सक्रिय', mr: 'सक्रिय' }, locale)}`}
+                      ? (msg('allClear', locale))
+                      : `${totalActive} ${msg('active', locale)}`}
                   </span>
                 </div>
               </div>
@@ -331,14 +335,14 @@ export default function RetrogradePage() {
                 {activeRetros.map(r => (
                   <div key={`r-${r.planetId}`} className="rounded-lg p-3 border border-red-500/20 bg-red-500/5 text-center">
                     <div className="text-xs font-bold mb-1" style={{ color: r.planetColor }}>{tl(r.planetName, locale)}</div>
-                    <div className="text-red-400 text-xs font-bold uppercase">{tl({ en: 'Retrograde', hi: 'वक्री', sa: 'वक्रगतिः', ta: 'வக்கிரம்', te: 'వక్రగతి', bn: 'বক্রী', kn: 'ವಕ್ರಗತಿ', gu: 'વક્રી', mai: 'वक्री', mr: 'वक्री' }, locale)}</div>
+                    <div className="text-red-400 text-xs font-bold uppercase">{msg('retrogradeLabel', locale)}</div>
                     {hasBirthData && <div className="text-text-secondary/70 text-xs mt-1">{tl({ en: '${getHouseFromMoon(birthRashi, r.startSign)}${[\'st\',\'nd\',\'rd\'][getHouseFromMoon(birthRashi, r.startSign)-1]||\'th\'} house', hi: '${getHouseFromMoon(birthRashi, r.startSign)}वाँ भाव', sa: '${getHouseFromMoon(birthRashi, r.startSign)}वाँ भाव', ta: '${getHouseFromMoon(birthRashi, r.startSign)}${[\'st\',\'nd\',\'rd\'][getHouseFromMoon(birthRashi, r.startSign)-1]||\'th\'} house', te: '${getHouseFromMoon(birthRashi, r.startSign)}${[\'st\',\'nd\',\'rd\'][getHouseFromMoon(birthRashi, r.startSign)-1]||\'th\'} house', bn: '${getHouseFromMoon(birthRashi, r.startSign)}${[\'st\',\'nd\',\'rd\'][getHouseFromMoon(birthRashi, r.startSign)-1]||\'th\'} house', kn: '${getHouseFromMoon(birthRashi, r.startSign)}${[\'st\',\'nd\',\'rd\'][getHouseFromMoon(birthRashi, r.startSign)-1]||\'th\'} house', gu: '${getHouseFromMoon(birthRashi, r.startSign)}${[\'st\',\'nd\',\'rd\'][getHouseFromMoon(birthRashi, r.startSign)-1]||\'th\'} house', mai: '${getHouseFromMoon(birthRashi, r.startSign)}वाँ भाव', mr: '${getHouseFromMoon(birthRashi, r.startSign)}वाँ भाव' }, locale)}</div>}
                   </div>
                 ))}
                 {activeCombusts.map(c => (
                   <div key={`c-${c.planetId}`} className="rounded-lg p-3 border border-orange-500/20 bg-orange-500/5 text-center">
                     <div className="text-xs font-bold mb-1" style={{ color: c.planetColor }}>{tl(c.planetName, locale)}</div>
-                    <div className="text-orange-400 text-xs font-bold uppercase">{tl({ en: 'Combust', hi: 'अस्त', sa: 'अस्तङ्गतः', ta: 'அஸ்தமனம்', te: 'అస్తమయం', bn: 'অস্তগত', kn: 'ಅಸ್ತಂಗತ', gu: 'અસ્ત', mai: 'अस्त', mr: 'अस्त' }, locale)}</div>
+                    <div className="text-orange-400 text-xs font-bold uppercase">{msg('combustLabel', locale)}</div>
                   </div>
                 ))}
               </div>
@@ -353,7 +357,7 @@ export default function RetrogradePage() {
               : 'वक्री और अस्त आपके विशिष्ट भावों को कैसे प्रभावित करते हैं, इसका व्यक्तिगत विश्लेषण देखने के लिए कुंडली बनाएँ।'}
             {' '}
             <Link href="/kundali" className="text-gold-primary hover:text-gold-light font-bold underline">
-              {tl({ en: 'Generate Kundali', hi: 'कुंडली बनाएँ', sa: 'कुण्डलीं निर्मातु', ta: 'ஜாதகம் உருவாக்கு', te: 'కుండలి రూపొందించండి', bn: 'কুণ্ডলী তৈরি করুন', kn: 'ಕುಂಡಲಿ ರಚಿಸಿ', gu: 'કુંડળી બનાવો', mai: 'कुण्डली बनाउ', mr: 'कुंडली तयार करा' }, locale)}
+              {msg('generateKundali', locale)}
             </Link>
           </p>
         </div>
@@ -417,7 +421,7 @@ export default function RetrogradePage() {
               {tl({ en: '${year} Retrograde & Combustion Timeline', hi: '${year} वक्री और अस्त समयरेखा', sa: '${year} वक्री और अस्त समयरेखा', ta: '${year} Retrograde & Combustion Timeline', te: '${year} Retrograde & Combustion Timeline', bn: '${year} Retrograde & Combustion Timeline', kn: '${year} Retrograde & Combustion Timeline', gu: '${year} Retrograde & Combustion Timeline', mai: '${year} वक्री और अस्त समयरेखा', mr: '${year} वक्री और अस्त समयरेखा' }, locale)}
             </h3>
             <p className="text-text-secondary/50 text-xs mb-4">
-              {tl({ en: 'Red = retrograde, Orange = combust. Hover for dates.', hi: 'लाल = वक्री, नारंगी = अस्त।', sa: 'रक्तम् = वक्रगतिः, नारङ्गम् = अस्तङ्गतः। दिनाङ्कार्थं माउसं नयतु।', ta: 'சிவப்பு = வக்கிரம், ஆரஞ்சு = அஸ்தமனம். தேதிகளுக்கு மேலே செல்லுங்கள்.', te: 'ఎరుపు = వక్రగతి, నారింజ = అస్తమయం. తేదీలకు హోవర్ చేయండి.', bn: 'লাল = বক্রী, কমলা = অস্তগত। তারিখের জন্য হোভার করুন।', kn: 'ಕೆಂಪು = ವಕ್ರ, ಕಿತ್ತಳೆ = ಅಸ್ತ. ದಿನಾಂಕಗಳಿಗೆ ಹোভರ್ ಮಾಡಿ.', gu: 'લાલ = વક્રી, નારંગી = અસ્ત. તારીખ માટે હૉવર કરો.', mai: 'लाल = वक्री, नारंगी = अस्त। तिथिक लेल होवर करू।', mr: 'लाल = वक्री, नारंगी = अस्त. तारखांसाठी होव्हर करा.' }, locale)}
+              {msg('timelineHint', locale)}
             </p>
 
             {/* Month axis */}
@@ -495,8 +499,8 @@ export default function RetrogradePage() {
 
             {/* Legend */}
             <div className="flex items-center gap-4 mt-3 ml-16 sm:ml-20 text-[10px]">
-              <span className="flex items-center gap-1"><span className="w-3 h-2 rounded-sm bg-red-500/70" /><span className="text-gray-500">{tl({ en: 'Retrograde', hi: 'वक्री', sa: 'वक्रगतिः', ta: 'வக்கிரம்', te: 'వక్రగతి', bn: 'বক্রী', kn: 'ವಕ್ರಗತಿ', gu: 'વક્રી', mai: 'वक्री', mr: 'वक्री' }, locale)}</span></span>
-              <span className="flex items-center gap-1"><span className="w-3 h-2 rounded-sm bg-orange-500/60" /><span className="text-gray-500">{tl({ en: 'Combust', hi: 'अस्त', sa: 'अस्तङ्गतः', ta: 'அஸ்தமனம்', te: 'అస్తమయం', bn: 'অস্তগত', kn: 'ಅಸ್ತಂಗತ', gu: 'અસ્ત', mai: 'अस्त', mr: 'अस्त' }, locale)}</span></span>
+              <span className="flex items-center gap-1"><span className="w-3 h-2 rounded-sm bg-red-500/70" /><span className="text-gray-500">{msg('retrogradeLabel', locale)}</span></span>
+              <span className="flex items-center gap-1"><span className="w-3 h-2 rounded-sm bg-orange-500/60" /><span className="text-gray-500">{msg('combustLabel', locale)}</span></span>
               {year === new Date().getFullYear() && <span className="flex items-center gap-1"><span className="w-px h-3 bg-gold-primary/80" /><span className="text-gold-primary/70">NOW</span></span>}
             </div>
           </div>
@@ -513,7 +517,7 @@ export default function RetrogradePage() {
         <div className="space-y-5 my-10">
           {retroPeriods.length === 0 ? (
             <div className="text-center py-12 text-text-secondary">
-              {tl({ en: 'No retrograde periods found.', hi: 'कोई वक्री अवधि नहीं मिली।', sa: 'कापि वक्रगति-अवधिः न प्राप्ता।', ta: 'வக்கிர காலங்கள் எதுவும் இல்லை.', te: 'వక్రగతి కాలాలు ఏమీ కనుగొనబడలేదు.', bn: 'কোনো বক্রী সময়কাল পাওয়া যায়নি।', kn: 'ಯಾವುದೇ ವಕ್ರಗತಿ ಅವಧಿ ಕಂಡುಬಂದಿಲ್ಲ.', gu: 'કોઈ વક્રી સમયગાળો મળ્યો નથી.', mai: 'कोनो वक्री अवधि नहि भेटल।', mr: 'कोणताही वक्री कालावधी आढळला नाही.' }, locale)}
+              {msg('noRetrogradePeriods', locale)}
             </div>
           ) : retroPeriods.map((p, i) => {
             const active = isActive(p.startDate, p.endDate);
@@ -539,12 +543,12 @@ export default function RetrogradePage() {
                           {tl(p.planetName, locale)}
                         </span>
                         <span className="text-red-400 text-xs font-bold px-2 py-0.5 bg-red-500/15 border border-red-500/25 rounded-full">
-                          {tl({ en: 'RETROGRADE', hi: 'वक्री', sa: 'वक्रगतिः', ta: 'வக்கிரம்', te: 'వక్రగతి', bn: 'বক্রী', kn: 'ವಕ್ರಗತಿ', gu: 'વક્રી', mai: 'वक्री', mr: 'वक्री' }, locale)}
+                          {msg('retrogradeUpper', locale)}
                         </span>
                         {active && (
                           <span className="flex items-center gap-1 text-xs font-bold px-2 py-0.5 bg-amber-500/15 border border-amber-500/25 rounded-full text-amber-300">
                             <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                            {tl({ en: 'ACTIVE NOW', hi: 'अभी सक्रिय', sa: 'इदानीं सक्रियः', ta: 'இப்போது செயலில்', te: 'ఇప్పుడు క్రియాశీలం', bn: 'এখন সক্রিয়', kn: 'ಈಗ ಸಕ್ರಿಯ', gu: 'હાલ સક્રિય', mai: 'अखन सक्रिय अछि', mr: 'आत्ता सक्रिय' }, locale)}
+                            {msg('activeNow', locale)}
                           </span>
                         )}
                       </div>
@@ -554,7 +558,7 @@ export default function RetrogradePage() {
                         <span className="text-gold-light font-mono text-sm font-bold">{formatDate(p.startDate)}</span>
                         <span className="text-gold-dark">→</span>
                         <span className="text-gold-light font-mono text-sm font-bold">{formatDate(p.endDate)}</span>
-                        <span className="text-text-secondary/65 text-xs">({p.durationDays} {tl({ en: 'days', hi: 'दिन', sa: 'दिनानि', ta: 'நாட்கள்', te: 'రోజులు', bn: 'দিন', kn: 'ದಿನಗಳು', gu: 'દિવસ', mai: 'दिन', mr: 'दिवस' }, locale)})</span>
+                        <span className="text-text-secondary/65 text-xs">({p.durationDays} {msg('days', locale)})</span>
                       </div>
                       <div className="flex items-center gap-2 text-xs mb-3">
                         <RashiIconById id={p.startSign} size={16} />
@@ -592,14 +596,14 @@ export default function RetrogradePage() {
                           <div className="rounded-lg p-3 bg-emerald-500/5 border border-emerald-500/15">
                             <div className="flex items-center gap-1.5 mb-1.5">
                               <Shield className="w-3 h-3 text-emerald-400" />
-                              <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">{tl({ en: 'Do', hi: 'करें', sa: 'करें', ta: 'Do', te: 'Do', bn: 'Do', kn: 'Do', gu: 'Do', mai: 'करें', mr: 'करें' }, locale)}</span>
+                              <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">{msg('doLabel', locale)}</span>
                             </div>
                             <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{t2(meaning.dos)}</p>
                           </div>
                           <div className="rounded-lg p-3 bg-red-500/5 border border-red-500/15">
                             <div className="flex items-center gap-1.5 mb-1.5">
                               <AlertTriangle className="w-3 h-3 text-red-400" />
-                              <span className="text-red-400 text-xs uppercase tracking-wider font-bold">{tl({ en: `Don't`, hi: 'न करें', sa: 'न करें', ta: `Don't`, te: `Don't`, bn: `Don't`, kn: `Don't`, gu: `Don't`, mai: 'न करें', mr: 'न करें' }, locale)}</span>
+                              <span className="text-red-400 text-xs uppercase tracking-wider font-bold">{msg('dontLabel', locale)}</span>
                             </div>
                             <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{t2(meaning.donts)}</p>
                           </div>
@@ -617,7 +621,7 @@ export default function RetrogradePage() {
         <div className="space-y-4 my-10">
           {combustEvents.length === 0 ? (
             <div className="text-center py-12 text-text-secondary">
-              {tl({ en: 'No combustion events found.', hi: 'कोई अस्त घटना नहीं मिली।', sa: 'काऽपि अस्तङ्गम-घटना न प्राप्ता।', ta: 'அஸ்தமன நிகழ்வுகள் எதுவும் இல்லை.', te: 'అస్తమయ సంఘటనలు ఏమీ కనుగొనబడలేదు.', bn: 'কোনো অস্তাচল ঘটনা পাওয়া যায়নি।', kn: 'ಯಾವುದೇ ಅಸ್ತ ಘಟನೆ ಕಂಡುಬಂದಿಲ್ಲ.', gu: 'કોઈ અસ્ત ઘટના મળી નથી.', mai: 'कोनो अस्त घटना नहि भेटल।', mr: 'कोणतीही अस्त घटना आढळली नाही.' }, locale)}
+              {msg('noCombustionEvents', locale)}
             </div>
           ) : combustEvents.map((e, i) => {
             const active = isActive(e.startDate, e.endDate);
@@ -648,12 +652,12 @@ export default function RetrogradePage() {
                         {tl(e.planetName, locale)}
                       </span>
                       <span className="text-orange-400 text-xs font-bold px-2 py-0.5 bg-orange-500/15 border border-orange-500/25 rounded-full">
-                        {tl({ en: 'COMBUST', hi: 'अस्त', sa: 'अस्तङ्गतः', ta: 'அஸ்தமனம்', te: 'అస్తమయం', bn: 'অস্তগত', kn: 'ಅಸ್ತ', gu: 'અસ્ત', mai: 'अस्त', mr: 'अस्त' }, locale)}
+                        {msg('combustUpper', locale)}
                       </span>
                       {active && (
                         <span className="flex items-center gap-1 text-xs font-bold px-2 py-0.5 bg-amber-500/15 border border-amber-500/25 rounded-full text-amber-300">
                           <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                          {tl({ en: 'ACTIVE NOW', hi: 'अभी सक्रिय', sa: 'इदानीं सक्रियः', ta: 'இப்போது செயலில்', te: 'ఇప్పుడు క్రియాశీలం', bn: 'এখন সক্রিয়', kn: 'ಈಗ ಸಕ್ರಿಯ', gu: 'હાલ સક્રિય', mai: 'अखन सक्रिय अछि', mr: 'आत्ता सक्रिय' }, locale)}
+                          {msg('activeNow', locale)}
                         </span>
                       )}
                     </div>
@@ -661,7 +665,7 @@ export default function RetrogradePage() {
                       <span className="text-gold-light font-mono font-bold">{formatDate(e.startDate)}</span>
                       <span className="text-gold-dark">→</span>
                       <span className="text-gold-light font-mono font-bold">{formatDate(e.endDate)}</span>
-                      <span className="text-text-secondary/65 text-xs">({e.durationDays} {tl({ en: 'days', hi: 'दिन', sa: 'दिनानि', ta: 'நாட்கள்', te: 'రోజులు', bn: 'দিন', kn: 'ದಿನಗಳು', gu: 'દિવસ', mai: 'दिन', mr: 'दिवस' }, locale)})</span>
+                      <span className="text-text-secondary/65 text-xs">({e.durationDays} {msg('days', locale)})</span>
                       {sunSignName && (
                         <>
                           <span className="text-gold-primary/20">|</span>

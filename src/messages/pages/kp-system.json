@@ -1,0 +1,67 @@
+{
+  "infoBlockTitle": {
+    "en": "What is the KP System?",
+    "hi": "केपी पद्धति क्या है?",
+    "sa": "केपी पद्धतिः किम्?"
+  },
+  "searchBirthPlace": {
+    "en": "Search birth place...",
+    "hi": "जन्म स्थान खोजें...",
+    "sa": "जन्म स्थान खोजें..."
+  },
+  "promised": {
+    "en": "PROMISED",
+    "hi": "फलदायी",
+    "sa": "फलितम्"
+  },
+  "withheld": {
+    "en": "WITHHELD",
+    "hi": "अभाव",
+    "sa": "अभावः"
+  },
+  "ascSignLord": {
+    "en": "Asc Sign Lord",
+    "hi": "लग्न राशि स्वामी",
+    "sa": "लग्नराशिस्वामी"
+  },
+  "ascStarLord": {
+    "en": "Asc Star Lord",
+    "hi": "लग्न नक्षत्र स्वामी",
+    "sa": "लग्ननक्षत्रस्वामी"
+  },
+  "moonSignLord": {
+    "en": "Moon Sign Lord",
+    "hi": "चन्द्र राशि स्वामी",
+    "sa": "चन्द्रराशिस्वामी"
+  },
+  "moonStarLord": {
+    "en": "Moon Star Lord",
+    "hi": "चन्द्र नक्षत्र स्वामी",
+    "sa": "चन्द्रनक्षत्रस्वामी"
+  },
+  "dayLord": {
+    "en": "Day Lord",
+    "hi": "वार स्वामी",
+    "sa": "वारस्वामी"
+  },
+  "combinedOracle": {
+    "en": "Combined Oracle",
+    "hi": "संयुक्त ओरेकल",
+    "sa": "संयुक्तओरेकल"
+  },
+  "subLordNote": {
+    "en": "The sub-lord of each cusp determines whether that house's matters will materialise in this lifetime.",
+    "hi": "प्रत्येक कस्प के उप-स्वामी से उस भाव के फल का निर्धारण होता है।",
+    "sa": "प्रत्येककस्पस्योपस्वामी तद्भावफलं निर्धारयति।"
+  },
+  "hide": {
+    "en": "Hide",
+    "hi": "छुपाएं",
+    "sa": "छुपाएं"
+  },
+  "showTables": {
+    "en": "Show tables",
+    "hi": "तालिकाएं देखें",
+    "sa": "तालिकाएं देखें"
+  }
+}

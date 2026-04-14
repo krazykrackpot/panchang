@@ -1,7 +1,8 @@
 'use client';
 
-
 import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import MSG from '@/messages/pages/calendar.json';
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -33,6 +34,8 @@ import { FESTIVAL_DETAILS, CATEGORY_DETAILS, EKADASHI_NAMES, getHinduMonth } fro
 import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-details';
 import type { LocaleText, Locale} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+
+const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 
 interface FestivalEntry {
   name: LocaleText;
@@ -353,7 +356,7 @@ export default function CalendarPage() {
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
         <div className="flex justify-center mt-4">
           <ShareRow
-            pageTitle={tl({ en: 'Hindu Festival Calendar', hi: 'हिन्दू त्योहार पंचांग', sa: 'हिन्दूपर्वपञ्चाङ्गम्', ta: 'இந்து திருவிழா நாட்காட்டி', te: 'హిందూ పండుగ క్యాలెండర్', bn: 'হিন্দু উৎসব পঞ্জিকা', kn: 'ಹಿಂದೂ ಹಬ್ಬ ಕ್ಯಾಲೆಂಡರ್', gu: 'હિન્દૂ તહેવાર પંચાંગ', mai: 'हिन्दू त्योहार पञ्चाङ्ग', mr: 'हिंदू सण दिनदर्शिका' }, locale)}
+            pageTitle={msg('sharePageTitle', locale)}
             shareText={locale === 'en'
               ? 'Hindu Festival Calendar with Ekadashi, Purnima & Vrat details — Dekho Panchang'
               : 'हिन्दू त्योहार पंचांग — एकादशी, पूर्णिमा और व्रत विवरण सहित — Dekho Panchang'}
@@ -377,13 +380,13 @@ export default function CalendarPage() {
       {detectingLocation ? (
         <div className="flex flex-col items-center gap-3 mb-8 py-8">
           <Loader2 className="w-8 h-8 text-gold-primary animate-spin" />
-          <p className="text-text-secondary text-sm">{tl({ en: 'Detecting your location…', hi: 'आपका स्थान पहचान रहे हैं…', sa: 'भवतः स्थानं निश्चीयते…', ta: 'உங்கள் இருப்பிடம் கண்டறியப்படுகிறது…', te: 'మీ స్థానం గుర్తించబడుతోంది…', bn: 'আপনার অবস্থান নির্ধারণ করা হচ্ছে…', kn: 'ನಿಮ್ಮ ಸ್ಥಳ ಪತ್ತೆ ಮಾಡಲಾಗುತ್ತಿದೆ…', gu: 'તમારું સ્થળ શોધવામાં આવી રહ્યું છે…', mai: 'अहाँक स्थान पहचानल जा रहल अछि…', mr: 'तुमचे स्थान शोधत आहे…' }, locale)}</p>
+          <p className="text-text-secondary text-sm">{msg('detectingLocation', locale)}</p>
         </div>
       ) : !location ? (
         <div className="flex flex-col items-center gap-4 mb-8 py-8 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border-2 border-gold-primary/30 rounded-2xl max-w-lg mx-auto px-3 sm:px-4 md:px-6">
           <MapPin className="w-10 h-10 text-gold-primary" />
           <h3 className="text-gold-light font-bold text-lg" style={headingFont}>
-            {tl({ en: 'Location Required', hi: 'स्थान आवश्यक है', sa: 'स्थानमावश्यकम्', ta: 'இருப்பிடம் தேவை', te: 'స్థానం అవసరం', bn: 'অবস্থান প্রয়োজন', kn: 'ಸ್ಥಳ ಅಗತ್ಯ', gu: 'સ્થળ જરૂરી છે', mai: 'स्थान आवश्यक अछि', mr: 'स्थान आवश्यक आहे' }, locale)}
+            {msg('locationRequired', locale)}
           </h3>
           <p className="text-text-secondary text-sm text-center">
             {locale === 'en'
@@ -396,7 +399,7 @@ export default function CalendarPage() {
               value={locationInput}
               onChange={e => setLocationInput(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleLocationSearch()}
-              placeholder={tl({ en: 'Enter your city…', hi: 'अपना शहर दर्ज करें…', sa: 'स्वनगरं प्रविशतु…', ta: 'உங்கள் நகரை உள்ளிடவும்…', te: 'మీ నగరాన్ని నమోదు చేయండి…', bn: 'আপনার শহর লিখুন…', kn: 'ನಿಮ್ಮ ನಗರ ನಮೂದಿಸಿ…', gu: 'તમારું શહેર દાખલ કરો…', mai: 'अपन शहर दर्ज करू…', mr: 'तुमचे शहर प्रविष्ट करा…' }, locale)}
+              placeholder={msg('enterCityPlaceholder', locale)}
               className="flex-1 px-4 py-3 rounded-lg bg-bg-tertiary border border-gold-primary/30 text-text-primary text-sm placeholder:text-text-secondary/70 focus:outline-none focus:border-gold-primary/60"
               autoFocus
             />
@@ -427,7 +430,7 @@ export default function CalendarPage() {
                 value={locationInput}
                 onChange={e => setLocationInput(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleLocationSearch()}
-                placeholder={tl({ en: 'Enter city or location…', hi: 'शहर या स्थान दर्ज करें…', sa: 'नगरं स्थानं वा प्रविशतु…', ta: 'நகர் அல்லது இடத்தை உள்ளிடவும்…', te: 'నగరం లేదా స్థానాన్ని నమోదు చేయండి…', bn: 'শহর বা স্থান লিখুন…', kn: 'ನಗರ ಅಥವಾ ಸ್ಥಳ ನಮೂದಿಸಿ…', gu: 'શહેર અથવા સ્થળ દાખલ કરો…', mai: 'शहर या स्थान दर्ज करू…', mr: 'शहर किंवा स्थान प्रविष्ट करा…' }, locale)}
+                placeholder={msg('enterCityOrLocationPlaceholder', locale)}
                 className="flex-1 px-3 py-2 rounded-lg bg-bg-tertiary border border-gold-primary/20 text-text-primary text-sm placeholder:text-text-secondary/70 focus:outline-none focus:border-gold-primary/50"
               />
               <button
@@ -452,7 +455,7 @@ export default function CalendarPage() {
               : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
           }`}
         >
-          {tl({ en: 'Western Months', hi: 'अंग्रेज़ी महीने', sa: 'पाश्चात्यमासाः', ta: 'மேலைத்தேய மாதங்கள்', te: 'పాశ్చాత్య మాసాలు', bn: 'পাশ্চাত্য মাস', kn: 'ಪಾಶ್ಚಿಮಾತ್ಯ ತಿಂಗಳುಗಳು', gu: 'પાશ્ચાત્ય મહિના', mai: 'अंग्रेजी महीना', mr: 'पाश्चिमात्य महिने' }, locale)}
+          {msg('westernMonths', locale)}
         </button>
         <button
           onClick={() => { setViewMode('lunar'); setSelectedMonth(null); }}
@@ -462,7 +465,7 @@ export default function CalendarPage() {
               : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
           }`}
         >
-          {tl({ en: 'Hindu Lunar Months', hi: 'हिन्दू चान्द्र मास', sa: 'हिन्दुचान्द्रमासाः', ta: 'இந்து சந்திர மாதங்கள்', te: 'హిందూ చాంద్రమాన మాసాలు', bn: 'হিন্দু চান্দ্র মাস', kn: 'ಹಿಂದೂ ಚಾಂದ್ರಮಾಸಗಳು', gu: 'હિન્દૂ ચાંદ્ર મહિના', mai: 'हिन्दू चान्द्र मास', mr: 'हिंदू चांद्र महिने' }, locale)}
+          {msg('hinduLunarMonths', locale)}
         </button>
       </div>
 
@@ -476,7 +479,7 @@ export default function CalendarPage() {
               : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
           }`}
         >
-          {tl({ en: 'All', hi: 'सभी', sa: 'सर्वे', ta: 'அனைத்தும்', te: 'అన్నీ', bn: 'সব', kn: 'ಎಲ್ಲಾ', gu: 'બધા', mai: 'सभ', mr: 'सर्व' }, locale)}
+          {msg('filterAll', locale)}
         </button>
         {viewMode === 'western' ? (
           MONTH_NAMES.map((name, i) => (
@@ -529,7 +532,7 @@ export default function CalendarPage() {
       {/* Calendar Export */}
       {location && (
         <div className="flex flex-wrap gap-2 justify-center mt-4 pt-4 border-t border-gold-primary/10">
-          <span className="text-text-secondary text-xs mr-2 self-center">{tl({ en: 'Subscribe:', hi: 'सदस्यता:', sa: 'सदस्यतां गृह्णातु:', ta: 'சந்தா செலுத்துக:', te: 'సభ్యత్వం తీసుకోండి:', bn: 'সদস্যতা নিন:', kn: 'ಚಂದಾ ಮಾಡಿ:', gu: 'સભ્ય બનો:', mai: 'सदस्यता लिअ:', mr: 'सदस्यता घ्या:' }, locale)}</span>
+          <span className="text-text-secondary text-xs mr-2 self-center">{msg('subscribeLabel', locale)}</span>
           {([
             { cat: 'all', label: { en: 'All Events', hi: 'सभी', sa: 'सर्वाणि', mai: 'सभ', mr: 'सर्व', ta: 'அனைத்தும்', te: 'అన్నీ', bn: 'সব', kn: 'ಎಲ್ಲಾ', gu: 'બધા' } },
             { cat: 'major', label: { en: 'Festivals', hi: 'त्योहार', sa: 'उत्सवाः', mai: 'पर्व', mr: 'सण', ta: 'பண்டிகைகள்', te: 'పండుగలు', bn: 'উৎসব', kn: 'ಹಬ್ಬಗಳು', gu: 'તહેવારો' } },
@@ -618,7 +621,7 @@ export default function CalendarPage() {
                   {f.paranaStart && f.paranaDate && (
                     <div className="flex items-center gap-2 mt-1.5">
                       <span className="text-xs font-bold text-amber-400">
-                        {tl({ en: 'Parana', hi: 'पारण', sa: 'पारणम्', ta: 'பாரணம்', te: 'పారణ', bn: 'পারণ', kn: 'ಪಾರಣ', gu: 'પારણ', mai: 'पारण', mr: 'पारणा' }, locale)}:
+                        {msg('parana', locale)}:
                       </span>
                       <span className="font-mono text-xs font-bold text-gold-light">
                         {f.paranaStart} — {f.paranaEnd}
@@ -642,21 +645,21 @@ export default function CalendarPage() {
                 {f.slug && recommendedSlugs.has(f.slug) && (
                   <span className="hidden sm:inline-flex items-center gap-1 text-xs px-1.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold shrink-0">
                     <Sparkles className="w-3 h-3" />
-                    {tl({ en: 'For You', hi: 'आपके लिए', sa: 'भवतः कृते', ta: 'உங்களுக்காக', te: 'మీ కోసం', bn: 'আপনার জন্য', kn: 'ನಿಮಗಾಗಿ', gu: 'તમારા માટે', mai: 'अहाँक लेल', mr: 'तुमच्यासाठी' }, locale)}
+                    {msg('forYou', locale)}
                   </span>
                 )}
 
                 {/* Puja Vidhi indicator */}
                 {hasPujaVidhi(f.slug) && (
                   <span className="hidden sm:inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold shrink-0">
-                    {tl({ en: 'Puja Vidhi', hi: 'पूजा विधि', sa: 'पूजाविधिः', ta: 'பூஜை விதி', te: 'పూజా విధి', bn: 'পূজা বিধি', kn: 'ಪೂಜಾ ವಿಧಿ', gu: 'પૂજા વિધિ', mai: 'पूजा विधि', mr: 'पूजा विधी' }, locale)}
+                    {msg('pujaVidhi', locale)}
                   </span>
                 )}
 
                 {/* Parana time indicator */}
                 {f.paranaStart && (
                   <div className="text-right flex-shrink-0">
-                    <div className="text-text-secondary text-xs uppercase tracking-wider">{tl({ en: 'Parana', hi: 'पारण', sa: 'पारणम्', ta: 'பாரணம்', te: 'పారణ', bn: 'পারণ', kn: 'ಪಾರಣ', gu: 'પારણ', mai: 'पारण', mr: 'पारणा' }, locale)}</div>
+                    <div className="text-text-secondary text-xs uppercase tracking-wider">{msg('parana', locale)}</div>
                     <div className="text-emerald-400 text-xs font-mono">{f.paranaStart} – {f.paranaEnd}</div>
                     {f.paranaDate && <div className="text-text-secondary/65 text-xs">{f.paranaDate}</div>}
                   </div>
@@ -665,7 +668,7 @@ export default function CalendarPage() {
                 {/* Tithi */}
                 {f.tithi && !f.paranaStart && (
                   <div className="hidden sm:block text-right flex-shrink-0">
-                    <div className="text-text-secondary text-xs uppercase tracking-wider">{tl({ en: 'Tithi', hi: 'तिथि', sa: 'तिथिः', ta: 'திதி', te: 'తిథి', bn: 'তিথি', kn: 'ತಿಥಿ', gu: 'તિથિ', mai: 'तिथि', mr: 'तिथी' }, locale)}</div>
+                    <div className="text-text-secondary text-xs uppercase tracking-wider">{msg('tithi', locale)}</div>
                     <div className="text-gold-dark text-xs font-mono">{f.tithi}</div>
                   </div>
                 )}
@@ -680,7 +683,7 @@ export default function CalendarPage() {
           <div className="my-10 space-y-10">
             {filteredFestivals.length === 0 ? (
               <div className="text-center py-12 text-text-secondary">
-                {tl({ en: 'No festivals found for this filter.', hi: 'इस फ़िल्टर के लिए कोई त्योहार नहीं मिला।', sa: 'एतस्मिन् निस्यन्दे कोऽपि पर्वः न प्राप्तः।', ta: 'இந்த வடிகட்டிக்கு எந்த திருவிழாவும் கிடைக்கவில்லை.', te: 'ఈ ఫిల్టర్‌కు పండుగలు ఏవీ కనుగొనబడలేదు.', bn: 'এই ফিল্টারের জন্য কোনো উৎসব পাওয়া যায়নি।', kn: 'ಈ ಫಿಲ್ಟರ್‌ಗೆ ಯಾವುದೇ ಹಬ್ಬಗಳು ಕಂಡುಬಂದಿಲ್ಲ.', gu: 'આ ફિલ્ટર માટે કોઈ તહેવાર મળ્યો નથી.', mai: 'एहि फिल्टर लेल कोनो त्योहार नहि भेटल।', mr: 'या फिल्टरसाठी कोणताही सण सापडला नाही.' }, locale)}
+                {msg('noFestivalsFound', locale)}
               </div>
             ) : (
               <>
@@ -709,7 +712,7 @@ export default function CalendarPage() {
                 )}
 
                 <div className="text-center text-text-secondary text-sm mt-6">
-                  {filteredFestivals.length} {tl({ en: 'entries', hi: 'प्रविष्टियाँ', sa: 'प्रविष्टयः', ta: 'பதிவுகள்', te: 'ఎంట్రీలు', bn: 'এন্ট্রি', kn: 'ನಮೂದುಗಳು', gu: 'નોંધો', mai: 'प्रविष्टि', mr: 'नोंदी' }, locale)}
+                  {filteredFestivals.length} {msg('entries', locale)}
                 </div>
               </>
             )}

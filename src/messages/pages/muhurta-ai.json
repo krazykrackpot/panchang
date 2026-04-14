@@ -1,0 +1,57 @@
+{
+  "infoBlockTitle": {
+    "en": "What is Muhurta?",
+    "hi": "मुहूर्त क्या है?",
+    "sa": "मुहूर्तम् किम्?"
+  },
+  "searchCityPlaceholder": {
+    "en": "Search city...",
+    "hi": "शहर खोजें...",
+    "sa": "शहर खोजें..."
+  },
+  "panchangaShuddhi": {
+    "en": "Panchanga Shuddhi",
+    "hi": "पञ्चाङ्ग शुद्धि",
+    "sa": "पञ्चाङ्ग शुद्धि"
+  },
+  "taraBala": {
+    "en": "Tara Bala",
+    "hi": "तारा बल",
+    "sa": "तारा बल"
+  },
+  "chandraBala": {
+    "en": "Chandra Bala",
+    "hi": "चन्द्र बल",
+    "sa": "चन्द्र बल"
+  },
+  "chandraPresent": {
+    "en": "✓ Present",
+    "hi": "✓ उपस्थित",
+    "sa": "✓ उपस्थित"
+  },
+  "chandraAbsent": {
+    "en": "✗ Absent",
+    "hi": "✗ अनुपस्थित",
+    "sa": "✗ अनुपस्थित"
+  },
+  "saveBirthChartNote": {
+    "en": "Save birth chart for Tara & Chandra Bala",
+    "hi": "तारा/चन्द्र बल के लिए जन्म कुण्डली सहेजें",
+    "sa": "तारा/चन्द्र बल के लिए जन्म कुण्डली सहेजें"
+  },
+  "shuddhi": {
+    "en": "Shuddhi",
+    "hi": "शुद्धि",
+    "sa": "शुद्धि"
+  },
+  "tara": {
+    "en": "Tara",
+    "hi": "तारा",
+    "sa": "तारा"
+  },
+  "chandra": {
+    "en": "Chandra",
+    "hi": "चन्द्र",
+    "sa": "चन्द्र"
+  }
+}

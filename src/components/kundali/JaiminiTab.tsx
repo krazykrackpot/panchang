@@ -173,12 +173,12 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
       {/* System intro */}
       <div className="text-center">
         <h3 className="text-gold-gradient text-2xl font-bold mb-3" style={headingFont}>
-          {tl({ en: 'Jaimini Astrology', hi: 'जैमिनी ज्योतिष', sa: 'जैमिनी ज्योतिष', ta: 'Jaimini Astrology', te: 'Jaimini Astrology', bn: 'Jaimini Astrology', kn: 'Jaimini Astrology', gu: 'Jaimini Astrology', mai: 'जैमिनी ज्योतिष', mr: 'जैमिनी ज्योतिष' }, locale)}
+          {tl({ en: 'Jaimini Astrology', hi: 'जैमिनी ज्योतिष', sa: 'जैमिनीज्योतिषम्', ta: 'ஜைமினி ஜோதிடம்', te: 'జైమిని జ్యోతిష్యం', bn: 'জৈমিনী জ্যোতিষ', kn: 'ಜೈಮಿನಿ ಜ್ಯೋತಿಷ್ಯ', gu: 'જૈમિની જ્યોતિષ', mai: 'जैमिनी ज्योतिष', mr: 'जैमिनी ज्योतिष' }, locale)}
         </h3>
       </div>
       <InfoBlock
         id="kundali-jaimini"
-        title={tl({ en: 'What is Jaimini Astrology and how is it different?', hi: 'जैमिनी ज्योतिष क्या है और यह कैसे भिन्न है?', sa: 'जैमिनी ज्योतिष क्या है और यह कैसे भिन्न है?', ta: 'What is Jaimini Astrology and how is it different?', te: 'What is Jaimini Astrology and how is it different?', bn: 'What is Jaimini Astrology and how is it different?', kn: 'What is Jaimini Astrology and how is it different?', gu: 'What is Jaimini Astrology and how is it different?', mai: 'जैमिनी ज्योतिष क्या है और यह कैसे भिन्न है?', mr: 'जैमिनी ज्योतिष क्या है और यह कैसे भिन्न है?' }, locale)}
+        title={tl({ en: 'What is Jaimini Astrology and how is it different?', hi: 'जैमिनी ज्योतिष क्या है और यह कैसे भिन्न है?', sa: 'जैमिनीज्योतिषं किम् अस्ति तथा च तत् कथं भिन्नम् अस्ति?', ta: 'ஜைமினி ஜோதிடம் என்றால் என்ன, அது எவ்வாறு வேறுபட்டது?', te: 'జైమిని జ్యోతిష్యం అంటే ఏమిటి మరియు అది ఎలా భిన్నంగా ఉంటుంది?', bn: 'জৈমিনী জ্যোতিষ কী এবং এটি কীভাবে আলাদা?', kn: 'ಜೈಮಿನಿ ಜ್ಯೋತಿಷ್ಯ ಎಂದರೇನು ಮತ್ತು ಅದು ಹೇಗೆ ಭಿನ್ನವಾಗಿದೆ?', gu: 'જૈમિની જ્યોતિષ શું છે અને તે અલગ કેવી રીતે છે?', mai: 'जैमिनी ज्योतिष की अछि आ ई कोना भिन्न अछि?', mr: 'जैमिनी ज्योतिष म्हणजे काय आणि ते वेगळे कसे आहे?' }, locale)}
         defaultOpen={false}
       >
         {!isDevanagariLocale(locale) ? (
@@ -210,10 +210,10 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
       {/* Chara Karakas */}
       <div>
         <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-          {tl({ en: 'Chara Karakas (Variable Significators)', hi: 'चर कारक (परिवर्तनशील कारक)', sa: 'चर कारक (परिवर्तनशील कारक)', ta: 'Chara Karakas (Variable Significators)', te: 'Chara Karakas (Variable Significators)', bn: 'Chara Karakas (Variable Significators)', kn: 'Chara Karakas (Variable Significators)', gu: 'Chara Karakas (Variable Significators)', mai: 'चर कारक (परिवर्तनशील कारक)', mr: 'चर कारक (परिवर्तनशील कारक)' }, locale)}
+          {tl({ en: 'Chara Karakas (Variable Significators)', hi: 'चर कारक (परिवर्तनशील कारक)', sa: 'चरकारकाः (परिवर्तनशीलाः कारकाः)', ta: 'சர காரகர்கள் (மாறுபட்ட காரகர்கள்)', te: 'చర కారకులు (పరివర్తన కారకులు)', bn: 'চর কারক (পরিবর্তনশীল কারক)', kn: 'ಚರ ಕಾರಕರು (ಪರಿವರ್ತನಶೀಲ ಕಾರಕರು)', gu: 'ચર કારક (પરિવર્તનશીલ કારક)', mai: 'चर कारक (परिवर्तनशील कारक)', mr: 'चर कारक (परिवर्तनशील कारक)' }, locale)}
         </h3>
         <p className="text-text-secondary/85 text-xs text-center mb-4">
-          {tl({ en: 'Planets ranked by degree — highest to lowest — each assigned a life role', hi: 'ग्रह अंश के अनुसार क्रमबद्ध — उच्चतम से निम्नतम — प्रत्येक को जीवन भूमिका', sa: 'ग्रह अंश के अनुसार क्रमबद्ध — उच्चतम से निम्नतम — प्रत्येक को जीवन भूमिका', ta: 'Planets ranked by degree — highest to lowest — each assigned a life role', te: 'Planets ranked by degree — highest to lowest — each assigned a life role', bn: 'Planets ranked by degree — highest to lowest — each assigned a life role', kn: 'Planets ranked by degree — highest to lowest — each assigned a life role', gu: 'Planets ranked by degree — highest to lowest — each assigned a life role', mai: 'ग्रह अंश के अनुसार क्रमबद्ध — उच्चतम से निम्नतम — प्रत्येक को जीवन भूमिका', mr: 'ग्रह अंश के अनुसार क्रमबद्ध — उच्चतम से निम्नतम — प्रत्येक को जीवन भूमिका' }, locale)}
+          {tl({ en: 'Planets ranked by degree — highest to lowest — each assigned a life role', hi: 'ग्रह अंश के अनुसार क्रमबद्ध — उच्चतम से निम्नतम — प्रत्येक को जीवन भूमिका', sa: 'ग्रहाः अंशेन क्रमिताः — उच्चतमात् निम्नतमं — प्रत्येकस्मै जीवनभूमिका निर्धारिता', ta: 'கிரகங்கள் பாகையால் வரிசைப்படுத்தப்பட்டவை — அதிகம் முதல் குறைவு வரை — ஒவ்வொன்றுக்கும் வாழ்க்கை பாத்திரம்', te: 'గ్రహాలు అంశం ద్వారా వరుసగా — అత్యధికం నుండి అల్పం వరకు — ప్రతి ఒక్కదానికి జీవిత పాత్ర', bn: 'গ্রহগুলি অংশ অনুসারে ক্রমবদ্ধ — সর্বোচ্চ থেকে সর্বনিম্ন — প্রতিটিকে জীবন-ভূমিকা', kn: 'ಗ್ರಹಗಳು ಅಂಶದಿಂದ ಕ್ರಮಪಡಿಸಲ್ಪಟ್ಟಿವೆ — ಅತ್ಯಧಿಕದಿಂದ ಅತ್ಯಲ್ಪಕ್ಕೆ — ಪ್ರತಿಯೊಂದಕ್ಕೂ ಜೀವನ-ಪಾತ್ರ', gu: 'ગ્રહો અંશ અનુસાર ક્રમબદ્ધ — ઉચ્ચતમ થી નિમ્નતમ — દરેકને જીવન-ભૂમિકા', mai: 'ग्रह अंशक अनुसार क्रमबद्ध — उच्चतम सँ निम्नतम — प्रत्येकेँ जीवन-भूमिका', mr: 'ग्रह अंशानुसार क्रमबद्ध — उच्चतम ते निम्नतम — प्रत्येकाला जीवन-भूमिका' }, locale)}
         </p>
         <div className="space-y-3">
           {jaimini.charaKarakas.map((ck, i) => {
@@ -250,10 +250,10 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
       {/* Karakamsha */}
       <div>
         <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-          {tl({ en: 'Karakamsha', hi: 'कारकांश', sa: 'कारकांश', ta: 'Karakamsha', te: 'Karakamsha', bn: 'Karakamsha', kn: 'Karakamsha', gu: 'Karakamsha', mai: 'कारकांश', mr: 'कारकांश' }, locale)}
+          {tl({ en: 'Karakamsha', hi: 'कारकांश', sa: 'कारकांशः', ta: 'காரகாம்சம்', te: 'కారకాంశం', bn: 'কারকাংশ', kn: 'ಕಾರಕಾಂಶ', gu: 'કારકાંશ', mai: 'कारकांश', mr: 'कारकांश' }, locale)}
         </h3>
         <p className="text-text-secondary/85 text-xs text-center mb-4">
-          {tl({ en: "The Navamsha sign of your Atmakaraka — reveals your soul's ultimate destination", hi: 'आत्मकारक की नवांश राशि — आत्मा का अन्तिम गन्तव्य', sa: 'आत्मकारक की नवांश राशि — आत्मा का अन्तिम गन्तव्य', ta: "The Navamsha sign of your Atmakaraka — reveals your soul's ultimate destination", te: "The Navamsha sign of your Atmakaraka — reveals your soul's ultimate destination", bn: "The Navamsha sign of your Atmakaraka — reveals your soul's ultimate destination", kn: "The Navamsha sign of your Atmakaraka — reveals your soul's ultimate destination", gu: "The Navamsha sign of your Atmakaraka — reveals your soul's ultimate destination", mai: 'आत्मकारक की नवांश राशि — आत्मा का अन्तिम गन्तव्य', mr: 'आत्मकारक की नवांश राशि — आत्मा का अन्तिम गन्तव्य' }, locale)}
+          {tl({ en: "The Navamsha sign of your Atmakaraka — reveals your soul's ultimate destination", hi: 'आत्मकारक की नवांश राशि — आत्मा का अन्तिम गन्तव्य', sa: 'भवतः आत्मकारकस्य नवांशराशिः — आत्मनः अन्तिमं गन्तव्यं प्रकाशयति', ta: "The Navamsha sign of your Atmakaraka — reveals your soul's ultimate destination", te: "The Navamsha sign of your Atmakaraka — reveals your soul's ultimate destination", bn: "The Navamsha sign of your Atmakaraka — reveals your soul's ultimate destination", kn: "The Navamsha sign of your Atmakaraka — reveals your soul's ultimate destination", gu: "The Navamsha sign of your Atmakaraka — reveals your soul's ultimate destination", mai: 'अहाँक आत्मकारकक नवांश राशि — आत्माक अन्तिम गन्तव्य प्रकट करैत अछि', mr: 'तुमच्या आत्मकारकाची नवांश राशी — आत्म्याचे अंतिम गंतव्य दर्शवते' }, locale)}
         </p>
         <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/18 p-6">
           <div className="text-center mb-3">
@@ -274,10 +274,10 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
       {/* Arudha Padas */}
       <div>
         <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-          {tl({ en: 'Arudha Padas (Image Points)', hi: 'आरूढ़ पद (छवि बिन्दु)', sa: 'आरूढ़ पद (छवि बिन्दु)', ta: 'Arudha Padas (Image Points)', te: 'Arudha Padas (Image Points)', bn: 'Arudha Padas (Image Points)', kn: 'Arudha Padas (Image Points)', gu: 'Arudha Padas (Image Points)', mai: 'आरूढ़ पद (छवि बिन्दु)', mr: 'आरूढ़ पद (छवि बिन्दु)' }, locale)}
+          {tl({ en: 'Arudha Padas (Image Points)', hi: 'आरूढ़ पद (छवि बिन्दु)', sa: 'आरूढपदानि (प्रतिबिम्बबिन्दवः)', ta: 'ஆரூட பதங்கள் (உருவப் புள்ளிகள்)', te: 'ఆరూఢ పదాలు (ప్రతిబింబ బిందువులు)', bn: 'আরূঢ় পদ (প্রতিচ্ছবি বিন্দু)', kn: 'ಆರೂಢ ಪದಗಳು (ಪ್ರತಿಬಿಂಬ ಬಿಂದುಗಳು)', gu: 'આરૂઢ પદ (છબી બિંદુ)', mai: 'आरूढ़ पद (छवि बिन्दु)', mr: 'आरूढ पद (प्रतिमा बिंदू)' }, locale)}
         </h3>
         <p className="text-text-secondary/85 text-xs text-center mb-4">
-          {tl({ en: 'How the world perceives each area of your life — the "maya" or illusion projected outward', hi: 'विश्व आपके जीवन के प्रत्येक क्षेत्र को कैसे देखता है — बाहर प्रक्षेपित "माया"', sa: 'विश्व आपके जीवन के प्रत्येक क्षेत्र को कैसे देखता है — बाहर प्रक्षेपित "माया"', ta: 'How the world perceives each area of your life — the "maya" or illusion projected outward', te: 'How the world perceives each area of your life — the "maya" or illusion projected outward', bn: 'How the world perceives each area of your life — the "maya" or illusion projected outward', kn: 'How the world perceives each area of your life — the "maya" or illusion projected outward', gu: 'How the world perceives each area of your life — the "maya" or illusion projected outward', mai: 'विश्व आपके जीवन के प्रत्येक क्षेत्र को कैसे देखता है — बाहर प्रक्षेपित "माया"', mr: 'विश्व आपके जीवन के प्रत्येक क्षेत्र को कैसे देखता है — बाहर प्रक्षेपित "माया"' }, locale)}
+          {tl({ en: 'How the world perceives each area of your life — the "maya" or illusion projected outward', hi: 'विश्व आपके जीवन के प्रत्येक क्षेत्र को कैसे देखता है — बाहर प्रक्षेपित "माया"', sa: 'जगत् भवतः जीवनस्य प्रत्येकं क्षेत्रं कथं पश्यति — बहिः प्रक्षिप्ता "माया" भ्रमो वा', ta: 'உலகம் உங்கள் வாழ்க்கையின் ஒவ்வொரு பகுதியையும் எவ்வாறு உணர்கிறது — வெளியே வெளிப்படும் "மாயை"', te: 'ప్రపంచం మీ జీవితంలోని ప్రతి ప్రాంతాన్ని ఎలా గ్రహిస్తుంది — బయటకు ప్రక్షేపించబడిన "మాయ"', bn: 'বিশ্ব আপনার জীবনের প্রতিটি ক্ষেত্রকে কীভাবে দেখে — বাইরে প্রক্ষিপ্ত "মায়া" বা ভ্রম', kn: 'ಜಗತ್ತು ನಿಮ್ಮ ಜೀವನದ ಪ್ರತಿ ಕ್ಷೇತ್ರವನ್ನು ಹೇಗೆ ಗ್ರಹಿಸುತ್ತದೆ — ಹೊರಕ್ಕೆ ಪ್ರಕ್ಷೇಪಿಸಿದ "ಮಾಯೆ"', gu: 'વિશ્વ તમારા જીવનના પ્રત્યેક ક્ષેત્રને કેવી રીતે જુએ છે — બહાર પ્રક્ષેપિત "માયા"', mai: 'संसार अहाँक जीवनक प्रत्येक क्षेत्रकेँ कोना देखैत अछि — बाहर प्रक्षेपित "माया"', mr: 'जग तुमच्या जीवनाच्या प्रत्येक क्षेत्राला कसे पाहते — बाहेर प्रक्षेपित "माया" किंवा भ्रम' }, locale)}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {jaimini.arudhaPadas.map((ap, i) => {
@@ -317,10 +317,10 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
       {jaimini.grahaArudhas && jaimini.grahaArudhas.length > 0 && (
         <div>
           <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-            {tl({ en: 'Graha Arudhas (Planet Projections)', hi: 'ग्रह आरूढ़ (ग्रह प्रक्षेपण)', sa: 'ग्रह आरूढ़ (ग्रह प्रक्षेपण)', ta: 'Graha Arudhas (Planet Projections)', te: 'Graha Arudhas (Planet Projections)', bn: 'Graha Arudhas (Planet Projections)', kn: 'Graha Arudhas (Planet Projections)', gu: 'Graha Arudhas (Planet Projections)', mai: 'ग्रह आरूढ़ (ग्रह प्रक्षेपण)', mr: 'ग्रह आरूढ़ (ग्रह प्रक्षेपण)' }, locale)}
+            {tl({ en: 'Graha Arudhas (Planet Projections)', hi: 'ग्रह आरूढ़ (ग्रह प्रक्षेपण)', sa: 'ग्रहारूढाः (ग्रहप्रक्षेपणानि)', ta: 'கிரக ஆரூடங்கள் (கிரக நிழல் புள்ளிகள்)', te: 'గ్రహ ఆరూఢాలు (గ్రహ ప్రక్షేపణలు)', bn: 'গ্রহ আরূঢ় (গ্রহ প্রক্ষেপণ)', kn: 'ಗ್ರಹ ಆರೂಢಗಳು (ಗ್ರಹ ಪ್ರಕ್ಷೇಪಣಗಳು)', gu: 'ગ્રહ આરૂઢ (ગ્રહ પ્રક્ષેપણ)', mai: 'ग्रह आरूढ़ (ग्रह प्रक्षेपण)', mr: 'ग्रह आरूढ (ग्रह प्रक्षेपण)' }, locale)}
           </h3>
           <p className="text-text-secondary/85 text-xs text-center mb-4">
-            {tl({ en: 'The Arudha of each planet — where its energy projects outward into the world', hi: 'प्रत्येक ग्रह का आरूढ़ — जहाँ इसकी ऊर्जा बाहर की ओर प्रक्षेपित होती है', sa: 'प्रत्येक ग्रह का आरूढ़ — जहाँ इसकी ऊर्जा बाहर की ओर प्रक्षेपित होती है', ta: 'The Arudha of each planet — where its energy projects outward into the world', te: 'The Arudha of each planet — where its energy projects outward into the world', bn: 'The Arudha of each planet — where its energy projects outward into the world', kn: 'The Arudha of each planet — where its energy projects outward into the world', gu: 'The Arudha of each planet — where its energy projects outward into the world', mai: 'प्रत्येक ग्रह का आरूढ़ — जहाँ इसकी ऊर्जा बाहर की ओर प्रक्षेपित होती है', mr: 'प्रत्येक ग्रह का आरूढ़ — जहाँ इसकी ऊर्जा बाहर की ओर प्रक्षेपित होती है' }, locale)}
+            {tl({ en: 'The Arudha of each planet — where its energy projects outward into the world', hi: 'प्रत्येक ग्रह का आरूढ़ — जहाँ इसकी ऊर्जा बाहर की ओर प्रक्षेपित होती है', sa: 'प्रत्येकग्रहस्य आरूढः — यत्र तस्य ऊर्जा विश्वे बहिः प्रक्षिप्यते', ta: 'ஒவ்வொரு கிரகத்தின் ஆரூடம் — அதன் ஆற்றல் உலகில் வெளியே எங்கு வெளிப்படுகிறது', te: 'ప్రతి గ్రహం యొక్క ఆరూఢం — దాని శక్తి ప్రపంచంలో ఎక్కడ బయటకు ప్రక్షేపించబడుతుంది', bn: 'প্রতিটি গ্রহের আরূঢ় — যেখানে তার শক্তি বিশ্বে বাইরে প্রক্ষিপ্ত হয়', kn: 'ಪ್ರತಿ ಗ್ರಹದ ಆರೂಢ — ಅದರ ಶಕ್ತಿ ಜಗತ್ತಿಗೆ ಹೊರಕ್ಕೆ ಎಲ್ಲಿ ಪ್ರಕ್ಷೇಪಿಸಲ್ಪಡುತ್ತದೆ', gu: 'પ્રત્યેક ગ્રહનો આરૂઢ — જ્યાં તેની ઊર્જા વિશ્વમાં બહાર પ્રક્ષેપિત થાય છે', mai: 'प्रत्येक ग्रहक आरूढ़ — जतय ओकर ऊर्जा विश्वमे बाहर प्रक्षेपित होइत अछि', mr: 'प्रत्येक ग्रहाचे आरूढ — जिथे त्याची ऊर्जा जगात बाहेर प्रक्षेपित होते' }, locale)}
           </p>
           <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/18 overflow-hidden">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 divide-x divide-y divide-gold-primary/10">
@@ -346,7 +346,7 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
       {/* Chara Dasha */}
       <div>
         <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
-          {tl({ en: 'Chara Dasha (Sign-Based Periods)', hi: 'चर दशा (राशि आधारित)', sa: 'चर दशा (राशि आधारित)', ta: 'Chara Dasha (Sign-Based Periods)', te: 'Chara Dasha (Sign-Based Periods)', bn: 'Chara Dasha (Sign-Based Periods)', kn: 'Chara Dasha (Sign-Based Periods)', gu: 'Chara Dasha (Sign-Based Periods)', mai: 'चर दशा (राशि आधारित)', mr: 'चर दशा (राशि आधारित)' }, locale)}
+          {tl({ en: 'Chara Dasha (Sign-Based Periods)', hi: 'चर दशा (राशि आधारित)', sa: 'चरदशा (राश्याधारितकालखण्डाः)', ta: 'சர தசை (ராசி அடிப்படையிலான காலங்கள்)', te: 'చర దశ (రాశి ఆధారిత కాలాలు)', bn: 'চর দশা (রাশি-ভিত্তিক কাল)', kn: 'ಚರ ದಶೆ (ರಾಶಿ-ಆಧಾರಿತ ಅವಧಿಗಳು)', gu: 'ચર દશા (રાશિ-આધારિત સમયગાળા)', mai: 'चर दशा (राशि-आधारित अवधि)', mr: 'चर दशा (राशी-आधारित कालखंड)' }, locale)}
         </h3>
         <div className="space-y-2">
           {jaimini.charaDasha.map((cd, i) => {
@@ -360,7 +360,7 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
                 <div className="flex items-center gap-3">
                   <span className={`w-2.5 h-2.5 rounded-full ${isCurrent ? 'bg-gold-primary animate-pulse' : isPast ? 'bg-text-secondary/30' : 'bg-gold-dark/50'}`} />
                   <span className="text-gold-light font-bold" style={headingFont}>{tl(cd.signName, locale)}</span>
-                  <span className="text-text-tertiary text-xs">{cd.years} {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्ष', ta: 'years', te: 'years', bn: 'years', kn: 'years', gu: 'years', mai: 'वर्ष', mr: 'वर्ष' }, locale)}</span>
+                  <span className="text-text-tertiary text-xs">{cd.years} {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि', ta: 'ஆண்டுகள்', te: 'సంవత్సరాలు', bn: 'বছর', kn: 'ವರ್ಷಗಳು', gu: 'વર્ષ', mai: 'वर्ष', mr: 'वर्षे' }, locale)}</span>
                 </div>
                 <span className="text-text-secondary text-xs font-mono">{cd.startDate} → {cd.endDate}</span>
               </div>
@@ -373,7 +373,7 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
       {jaimini.rajayogas && jaimini.rajayogas.length > 0 && (
         <div>
           <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-            {tl({ en: 'Jaimini Rajayogas (from Karakamsha)', hi: 'जैमिनी राजयोग (कारकांश से)', sa: 'जैमिनी राजयोग (कारकांश से)', ta: 'Jaimini Rajayogas (from Karakamsha)', te: 'Jaimini Rajayogas (from Karakamsha)', bn: 'Jaimini Rajayogas (from Karakamsha)', kn: 'Jaimini Rajayogas (from Karakamsha)', gu: 'Jaimini Rajayogas (from Karakamsha)', mai: 'जैमिनी राजयोग (कारकांश से)', mr: 'जैमिनी राजयोग (कारकांश से)' }, locale)}
+            {tl({ en: 'Jaimini Rajayogas (from Karakamsha)', hi: 'जैमिनी राजयोग (कारकांश से)', sa: 'जैमिनीराजयोगाः (कारकांशात्)', ta: 'ஜைமினி ராஜயோகங்கள் (காரகாம்சத்திலிருந்து)', te: 'జైమిని రాజయోగాలు (కారకాంశం నుండి)', bn: 'জৈমিনী রাজযোগ (কারকাংশ থেকে)', kn: 'ಜೈಮಿನಿ ರಾಜಯೋಗಗಳು (ಕಾರಕಾಂಶದಿಂದ)', gu: 'જૈમિની રાજયોગ (કારકાંશ થી)', mai: 'जैमिनी राजयोग (कारकांश सँ)', mr: 'जैमिनी राजयोग (कारकांशातून)' }, locale)}
           </h3>
           <p className="text-text-secondary/85 text-xs text-center mb-4 max-w-2xl mx-auto">
             {locale === 'en'
@@ -392,9 +392,9 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
                     yoga.strength === 'moderate' ? 'bg-purple-500/20 text-purple-300' :
                                                    'bg-bg-secondary text-text-secondary/85'
                   }`}>
-                    {yoga.strength === 'strong' ? (tl({ en: 'Strong', hi: 'प्रबल', sa: 'प्रबल', ta: 'Strong', te: 'Strong', bn: 'Strong', kn: 'Strong', gu: 'Strong', mai: 'प्रबल', mr: 'प्रबल' }, locale)) :
-                     yoga.strength === 'moderate' ? (tl({ en: 'Moderate', hi: 'मध्यम', sa: 'मध्यम', ta: 'Moderate', te: 'Moderate', bn: 'Moderate', kn: 'Moderate', gu: 'Moderate', mai: 'मध्यम', mr: 'मध्यम' }, locale)) :
-                     (tl({ en: 'Mild', hi: 'मृदु', sa: 'मृदु', ta: 'Mild', te: 'Mild', bn: 'Mild', kn: 'Mild', gu: 'Mild', mai: 'मृदु', mr: 'मृदु' }, locale))}
+                    {yoga.strength === 'strong' ? (tl({ en: 'Strong', hi: 'प्रबल', sa: 'प्रबलः', ta: 'வலிமையான', te: 'బలమైన', bn: 'শক্তিশালী', kn: 'ಬಲಿಷ್ಠ', gu: 'પ્રબળ', mai: 'प्रबल', mr: 'प्रबळ' }, locale)) :
+                     yoga.strength === 'moderate' ? (tl({ en: 'Moderate', hi: 'मध्यम', sa: 'मध्यमः', ta: 'மிதமான', te: 'మధ్యమ', bn: 'মধ্যম', kn: 'ಮಧ್ಯಮ', gu: 'મધ્યમ', mai: 'मध्यम', mr: 'मध्यम' }, locale)) :
+                     (tl({ en: 'Mild', hi: 'मृदु', sa: 'मृदुः', ta: 'மென்மையான', te: 'మృదువైన', bn: 'মৃদু', kn: 'ಮೃದು', gu: 'મૃદુ', mai: 'मृदु', mr: 'सौम्य' }, locale))}
                   </span>
                   <div className="flex-1">
                     <div className="text-gold-primary font-bold text-sm mb-1" style={headingFont}>
@@ -434,18 +434,18 @@ function SwamshaProfile({ kundali, locale, isDevanagari, headingFont }: JaiminiT
   return (
     <div>
       <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-        {tl({ en: 'Swamsha Profile (Karakamsha Combinations)', hi: 'स्वांश प्रोफाइल (कारकांश संयोग)', sa: 'स्वांश प्रोफाइल (कारकांश संयोग)', ta: 'Swamsha Profile (Karakamsha Combinations)', te: 'Swamsha Profile (Karakamsha Combinations)', bn: 'Swamsha Profile (Karakamsha Combinations)', kn: 'Swamsha Profile (Karakamsha Combinations)', gu: 'Swamsha Profile (Karakamsha Combinations)', mai: 'स्वांश प्रोफाइल (कारकांश संयोग)', mr: 'स्वांश प्रोफाइल (कारकांश संयोग)' }, locale)}
+        {tl({ en: 'Swamsha Profile (Karakamsha Combinations)', hi: 'स्वांश प्रोफाइल (कारकांश संयोग)', sa: 'स्वांशप्रोफाइलः (कारकांशसंयोगाः)', ta: 'ஸ்வாம்ச சுயவிவரம் (காரகாம்ச கலவைகள்)', te: 'స్వాంశ ప్రొఫైల్ (కారకాంశ సంయోగాలు)', bn: 'স্বাংশ প্রোফাইল (কারকাংশ সংযোগ)', kn: 'ಸ್ವಾಂಶ ಪ್ರೊಫೈಲ್ (ಕಾರಕಾಂಶ ಸಂಯೋಗಗಳು)', gu: 'સ્વાંશ પ્રોફાઇલ (કારકાંશ સંયોગ)', mai: 'स्वांश प्रोफाइल (कारकांश संयोग)', mr: 'स्वांश प्रोफाइल (कारकांश संयोग)' }, locale)}
       </h3>
       <p className="text-text-secondary/85 text-xs text-center mb-4">
-        {tl({ en: 'Classical planetary combinations in your Karakamsha sign — Jaimini Sutras interpretation', hi: 'आपकी कारकांश राशि में ग्रह संयोग — जैमिनी सूत्र व्याख्या', sa: 'आपकी कारकांश राशि में ग्रह संयोग — जैमिनी सूत्र व्याख्या', ta: 'Classical planetary combinations in your Karakamsha sign — Jaimini Sutras interpretation', te: 'Classical planetary combinations in your Karakamsha sign — Jaimini Sutras interpretation', bn: 'Classical planetary combinations in your Karakamsha sign — Jaimini Sutras interpretation', kn: 'Classical planetary combinations in your Karakamsha sign — Jaimini Sutras interpretation', gu: 'Classical planetary combinations in your Karakamsha sign — Jaimini Sutras interpretation', mai: 'आपकी कारकांश राशि में ग्रह संयोग — जैमिनी सूत्र व्याख्या', mr: 'आपकी कारकांश राशि में ग्रह संयोग — जैमिनी सूत्र व्याख्या' }, locale)}
+        {tl({ en: 'Classical planetary combinations in your Karakamsha sign — Jaimini Sutras interpretation', hi: 'आपकी कारकांश राशि में ग्रह संयोग — जैमिनी सूत्र व्याख्या', sa: 'भवतः कारकांशराशौ शास्त्रीयाः ग्रहसंयोगाः — जैमिनीसूत्राणां व्याख्या', ta: 'உங்கள் காரகாம்ச ராசியில் சாஸ்திரீய கிரக சேர்க்கைகள் — ஜைமினி சூத்திர விளக்கம்', te: 'మీ కారకాంశ రాశిలో శాస్త్రీయ గ్రహ సంయోగాలు — జైమిని సూత్రాల వ్యాఖ్యానం', bn: 'আপনার কারকাংশ রাশিতে শাস্ত্রীয় গ্রহ-সংযোগ — জৈমিনী সূত্রের ব্যাখ্যা', kn: 'ನಿಮ್ಮ ಕಾರಕಾಂಶ ರಾಶಿಯಲ್ಲಿ ಶಾಸ್ತ್ರೀಯ ಗ್ರಹ ಸಂಯೋಗಗಳು — ಜೈಮಿನಿ ಸೂತ್ರಗಳ ವ್ಯಾಖ್ಯಾನ', gu: 'તમારી કારકાંશ રાશિમાં શાસ્ત્રીય ગ્રહ-સંયોગ — જૈમિની સૂત્ર વ્યાખ્યા', mai: 'अहाँक कारकांश राशिमे शास्त्रीय ग्रह-संयोग — जैमिनी सूत्रक व्याख्या', mr: 'तुमच्या कारकांश राशीतील शास्त्रीय ग्रह संयोग — जैमिनी सूत्र व्याख्या' }, locale)}
       </p>
       {planetsInKM.length === 0 ? (
         <p className="text-text-secondary/80 text-sm text-center">
-          {tl({ en: "No planets occupy the Karakamsha sign in D9 — soul's path is shaped purely by the Karakamsha sign's qualities above.", hi: 'D9 में कारकांश राशि में कोई ग्रह नहीं — आत्मा का पथ शुद्ध रूप से ऊपर की कारकांश राशि के गुणों द्वारा आकार पाता है।', sa: 'D9 में कारकांश राशि में कोई ग्रह नहीं — आत्मा का पथ शुद्ध रूप से ऊपर की कारकांश राशि के गुणों द्वारा आकार पाता है।', ta: "No planets occupy the Karakamsha sign in D9 — soul's path is shaped purely by the Karakamsha sign's qualities above.", te: "No planets occupy the Karakamsha sign in D9 — soul's path is shaped purely by the Karakamsha sign's qualities above.", bn: "No planets occupy the Karakamsha sign in D9 — soul's path is shaped purely by the Karakamsha sign's qualities above.", kn: "No planets occupy the Karakamsha sign in D9 — soul's path is shaped purely by the Karakamsha sign's qualities above.", gu: "No planets occupy the Karakamsha sign in D9 — soul's path is shaped purely by the Karakamsha sign's qualities above.", mai: 'D9 में कारकांश राशि में कोई ग्रह नहीं — आत्मा का पथ शुद्ध रूप से ऊपर की कारकांश राशि के गुणों द्वारा आकार पाता है।', mr: 'D9 में कारकांश राशि में कोई ग्रह नहीं — आत्मा का पथ शुद्ध रूप से ऊपर की कारकांश राशि के गुणों द्वारा आकार पाता है।' }, locale)}
+          {tl({ en: "No planets occupy the Karakamsha sign in D9 — soul's path is shaped purely by the Karakamsha sign's qualities above.", hi: 'D9 में कारकांश राशि में कोई ग्रह नहीं — आत्मा का पथ शुद्ध रूप से ऊपर की कारकांश राशि के गुणों द्वारा आकार पाता है।', sa: 'D9 कारकांशराशौ कोऽपि ग्रहो नास्ति — आत्मनः पथः शुद्धरूपेण उपर्युक्तस्य कारकांशराशेः गुणैः आकार्यते।', ta: "No planets occupy the Karakamsha sign in D9 — soul's path is shaped purely by the Karakamsha sign's qualities above.", te: "No planets occupy the Karakamsha sign in D9 — soul's path is shaped purely by the Karakamsha sign's qualities above.", bn: "No planets occupy the Karakamsha sign in D9 — soul's path is shaped purely by the Karakamsha sign's qualities above.", kn: "No planets occupy the Karakamsha sign in D9 — soul's path is shaped purely by the Karakamsha sign's qualities above.", gu: "No planets occupy the Karakamsha sign in D9 — soul's path is shaped purely by the Karakamsha sign's qualities above.", mai: 'D9 मे कारकांश राशिमे कोनो ग्रह नहि — आत्माक पथ शुद्ध रूपसँ ऊपरक कारकांश राशिक गुणों द्वारा आकार पाबैत अछि।', mr: 'D9 मध्ये कारकांश राशीत कोणताही ग्रह नाही — आत्म्याचा मार्ग केवळ वरील कारकांश राशीच्या गुणांनी आकारला जातो।' }, locale)}
         </p>
       ) : matchedCombos.length === 0 ? (
         <p className="text-text-secondary/80 text-sm text-center">
-          {tl({ en: 'Planets present but no specific classical combination applies — see individual planet meanings above.', hi: 'ग्रह उपस्थित हैं किन्तु कोई विशिष्ट संयोग नहीं — ऊपर ग्रह अर्थ देखें।', sa: 'ग्रह उपस्थित हैं किन्तु कोई विशिष्ट संयोग नहीं — ऊपर ग्रह अर्थ देखें।', ta: 'Planets present but no specific classical combination applies — see individual planet meanings above.', te: 'Planets present but no specific classical combination applies — see individual planet meanings above.', bn: 'Planets present but no specific classical combination applies — see individual planet meanings above.', kn: 'Planets present but no specific classical combination applies — see individual planet meanings above.', gu: 'Planets present but no specific classical combination applies — see individual planet meanings above.', mai: 'ग्रह उपस्थित हैं किन्तु कोई विशिष्ट संयोग नहीं — ऊपर ग्रह अर्थ देखें।', mr: 'ग्रह उपस्थित हैं किन्तु कोई विशिष्ट संयोग नहीं — ऊपर ग्रह अर्थ देखें।' }, locale)}
+          {tl({ en: 'Planets present but no specific classical combination applies — see individual planet meanings above.', hi: 'ग्रह उपस्थित हैं किन्तु कोई विशिष्ट संयोग नहीं — ऊपर ग्रह अर्थ देखें।', sa: 'ग्रहाः उपस्थिताः किन्तु कोऽपि विशिष्टः संयोगो न प्रयुज्यते — उपर्युक्तानां ग्रहाणामर्थान् पश्यतु।', ta: 'கிரகங்கள் உள்ளன ஆனால் குறிப்பிட்ட சாஸ்திரீய சேர்க்கை பொருந்தவில்லை — மேலே உள்ள கிரக அர்த்தங்களைப் பாருங்கள்.', te: 'గ్రహాలు ఉన్నాయి కానీ నిర్దిష్ట శాస్త్రీయ సంయోగం వర్తించదు — పైన ఉన్న గ్రహ అర్థాలు చూడండి.', bn: 'গ্রহগুলি উপস্থিত কিন্তু কোনো নির্দিষ্ট সংযোগ প্রযোজ্য নয় — উপরের গ্রহ অর্থ দেখুন।', kn: 'ಗ್ರಹಗಳು ಇದ್ದಾರೆ ಆದರೆ ಯಾವುದೇ ನಿರ್ದಿಷ್ಟ ಶಾಸ್ತ್ರೀಯ ಸಂಯೋಗ ಅನ್ವಯಿಸುವುದಿಲ್ಲ — ಮೇಲಿನ ಗ್ರಹ ಅರ್ಥಗಳನ್ನು ನೋಡಿ.', gu: 'ગ્રહો ઉપસ્થિત છે પરંતુ કોઈ ચોક્કસ સંયોગ લાગુ પડતો નથી — ઉપર ગ્રહ-અર્થ જુઓ.', mai: 'ग्रह उपस्थित छथि किन्तु कोनो विशिष्ट संयोग नहि — ऊपर ग्रह-अर्थ देखू।', mr: 'ग्रह उपस्थित आहेत परंतु कोणताही विशिष्ट संयोग लागू होत नाही — वरील ग्रह अर्थ पाहा।' }, locale)}
         </p>
       ) : (
         <div className="space-y-3 max-w-2xl mx-auto">
@@ -454,7 +454,7 @@ function SwamshaProfile({ kundali, locale, isDevanagari, headingFont }: JaiminiT
               <div className="flex items-start justify-between gap-3 mb-1">
                 <div className="text-gold-light font-semibold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                   {combo.ids.map(id => kundali.planets.find(p => p.planet.id === id)?.planet.name[locale] || '').filter(Boolean).join(' + ')}
-                  <span className="text-text-secondary/80 font-normal"> {tl({ en: 'in Swamsha', hi: 'स्वांश में', sa: 'स्वांश में', ta: 'in Swamsha', te: 'in Swamsha', bn: 'in Swamsha', kn: 'in Swamsha', gu: 'in Swamsha', mai: 'स्वांश में', mr: 'स्वांश में' }, locale)}</span>
+                  <span className="text-text-secondary/80 font-normal"> {tl({ en: 'in Swamsha', hi: 'स्वांश में', sa: 'स्वांशे', ta: 'ஸ்வாம்சத்தில்', te: 'స్వాంశంలో', bn: 'স্বাংশে', kn: 'ಸ್ವಾಂಶದಲ್ಲಿ', gu: 'સ્વાંશમાં', mai: 'स्वांशमे', mr: 'स्वांशात' }, locale)}</span>
                 </div>
                 {combo.tag && (
                   <span className={`shrink-0 text-xs px-2 py-0.5 rounded-full font-medium ${TAG_COLORS[combo.tag]}`}>
@@ -486,7 +486,7 @@ function RashiDrishtiSection({ kundali, locale, isDevanagari, headingFont }: Jai
   return (
     <div>
       <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-        {tl({ en: 'Rashi Drishti (Sign Aspects)', hi: 'राशि दृष्टि (राशि पहलू)', sa: 'राशि दृष्टि (राशि पहलू)', ta: 'Rashi Drishti (Sign Aspects)', te: 'Rashi Drishti (Sign Aspects)', bn: 'Rashi Drishti (Sign Aspects)', kn: 'Rashi Drishti (Sign Aspects)', gu: 'Rashi Drishti (Sign Aspects)', mai: 'राशि दृष्टि (राशि पहलू)', mr: 'राशि दृष्टि (राशि पहलू)' }, locale)}
+        {tl({ en: 'Rashi Drishti (Sign Aspects)', hi: 'राशि दृष्टि (राशि पहलू)', sa: 'राशिदृष्टिः (राशिपहलवः)', ta: 'ராசி திருஷ்டி (ராசி அம்சங்கள்)', te: 'రాశి దృష్టి (రాశి అంశాలు)', bn: 'রাশি দৃষ্টি (রাশি পহলু)', kn: 'ರಾಶಿ ದೃಷ್ಟಿ (ರಾಶಿ ಅಂಶಗಳು)', gu: 'રાશિ દૃષ્ટિ (રાશિ પાસાઓ)', mai: 'राशि दृष्टि (राशि पहलू)', mr: 'राशी दृष्टी (राशी पैलू)' }, locale)}
       </h3>
       <p className="text-text-secondary/85 text-xs text-center mb-1 max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
         {locale === 'en'
@@ -558,7 +558,7 @@ function RashiDrishtiSection({ kundali, locale, isDevanagari, headingFont }: Jai
       {mutualAspects.length > 0 && (
         <div className="mt-4 rounded-xl bg-purple-500/5 border border-purple-500/15 p-3">
           <div className="text-purple-300/70 text-xs font-bold mb-2">
-            {tl({ en: 'Mutual Sign Aspects (↔ Both aspects each other)', hi: 'परस्पर राशि दृष्टि (↔ दोनों परस्पर देखती हैं)', sa: 'परस्पर राशि दृष्टि (↔ दोनों परस्पर देखती हैं)', ta: 'Mutual Sign Aspects (↔ Both aspects each other)', te: 'Mutual Sign Aspects (↔ Both aspects each other)', bn: 'Mutual Sign Aspects (↔ Both aspects each other)', kn: 'Mutual Sign Aspects (↔ Both aspects each other)', gu: 'Mutual Sign Aspects (↔ Both aspects each other)', mai: 'परस्पर राशि दृष्टि (↔ दोनों परस्पर देखती हैं)', mr: 'परस्पर राशि दृष्टि (↔ दोनों परस्पर देखती हैं)' }, locale)}
+            {tl({ en: 'Mutual Sign Aspects (↔ Both aspects each other)', hi: 'परस्पर राशि दृष्टि (↔ दोनों परस्पर देखती हैं)', sa: 'परस्परराशिदृष्टयः (↔ उभे परस्परं पश्यतः)', ta: 'பரஸ்பர ராசி திருஷ்டி (↔ இரண்டும் ஒன்றையொன்று பார்க்கின்றன)', te: 'పరస్పర రాశి దృష్టి (↔ రెండూ ఒకదానికొకటి చూస్తాయి)', bn: 'পারস্পরিক রাশি দৃষ্টি (↔ উভয়ই পরস্পরকে দেখে)', kn: 'ಪರಸ್ಪರ ರಾಶಿ ದೃಷ್ಟಿ (↔ ಎರಡೂ ಪರಸ್ಪರ ನೋಡುತ್ತವೆ)', gu: 'પારસ્પરિક રાશિ દૃષ્ટિ (↔ બંને પરસ્પર જુએ છે)', mai: 'परस्पर राशि दृष्टि (↔ दूनू परस्पर देखैत छथि)', mr: 'परस्पर राशी दृष्टी (↔ दोन्ही एकमेकांना पाहतात)' }, locale)}
           </div>
           <div className="flex flex-wrap gap-1.5">
             {mutualAspects.map(m => {
@@ -587,7 +587,7 @@ function ArgalaSection({ kundali, locale, isDevanagari, headingFont }: JaiminiTa
   return (
     <div>
       <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-        {tl({ en: 'Argala (Planetary Interventions)', hi: 'अर्गल (ग्रह हस्तक्षेप)', sa: 'अर्गल (ग्रह हस्तक्षेप)', ta: 'Argala (Planetary Interventions)', te: 'Argala (Planetary Interventions)', bn: 'Argala (Planetary Interventions)', kn: 'Argala (Planetary Interventions)', gu: 'Argala (Planetary Interventions)', mai: 'अर्गल (ग्रह हस्तक्षेप)', mr: 'अर्गल (ग्रह हस्तक्षेप)' }, locale)}
+        {tl({ en: 'Argala (Planetary Interventions)', hi: 'अर्गल (ग्रह हस्तक्षेप)', sa: 'अर्गलः (ग्रहहस्तक्षेपाः)', ta: 'அர்கலம் (கிரக தலையீடுகள்)', te: 'అర్గళం (గ్రహ జోక్యాలు)', bn: 'অর্গল (গ্রহ হস্তক্ষেপ)', kn: 'ಅರ್ಗಳ (ಗ್ರಹ ಹಸ್ತಕ್ಷೇಪಗಳು)', gu: 'અર્ગળ (ગ્રહ હસ્તક્ષેપ)', mai: 'अर्गल (ग्रह हस्तक्षेप)', mr: 'अर्गल (ग्रह हस्तक्षेप)' }, locale)}
       </h3>
       <p className="text-text-secondary/85 text-xs text-center mb-4 max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
         {locale === 'en'
@@ -619,9 +619,9 @@ function ArgalaSection({ kundali, locale, isDevanagari, headingFont }: JaiminiTa
                   ar.netEffect === 'supported' ? 'bg-emerald-500/15 text-emerald-400' :
                   ar.netEffect === 'obstructed' ? 'bg-red-500/12 text-red-400' : 'bg-bg-secondary/75 text-text-secondary/85'
                 }`}>
-                  {ar.netEffect === 'supported' ? (tl({ en: '✦ Active', hi: '✦ सक्रिय', sa: '✦ सक्रिय', ta: '✦ Active', te: '✦ Active', bn: '✦ Active', kn: '✦ Active', gu: '✦ Active', mai: '✦ सक्रिय', mr: '✦ सक्रिय' }, locale)) :
-                   ar.netEffect === 'obstructed' ? (tl({ en: '↓ Blocked', hi: '↓ अवरुद्ध', sa: '↓ अवरुद्ध', ta: '↓ Blocked', te: '↓ Blocked', bn: '↓ Blocked', kn: '↓ Blocked', gu: '↓ Blocked', mai: '↓ अवरुद्ध', mr: '↓ अवरुद्ध' }, locale)) :
-                   (tl({ en: '— Neutral', hi: '— तटस्थ', sa: '— तटस्थ', ta: '— Neutral', te: '— Neutral', bn: '— Neutral', kn: '— Neutral', gu: '— Neutral', mai: '— तटस्थ', mr: '— तटस्थ' }, locale))}
+                  {ar.netEffect === 'supported' ? (tl({ en: '✦ Active', hi: '✦ सक्रिय', sa: '✦ सक्रियः', ta: '✦ செயலில்', te: '✦ క్రియాశీల', bn: '✦ সক্রিয়', kn: '✦ ಸಕ್ರಿಯ', gu: '✦ સક્રિય', mai: '✦ सक्रिय', mr: '✦ सक्रिय' }, locale)) :
+                   ar.netEffect === 'obstructed' ? (tl({ en: '↓ Blocked', hi: '↓ अवरुद्ध', sa: '↓ अवरुद्धः', ta: '↓ தடுக்கப்பட்டது', te: '↓ నిరోధించబడింది', bn: '↓ অবরুদ্ধ', kn: '↓ ನಿರ್ಬಂಧಿಸಲ್ಪಟ್ಟಿದೆ', gu: '↓ અવરોધિત', mai: '↓ अवरुद्ध', mr: '↓ अवरुद्ध' }, locale)) :
+                   (tl({ en: '— Neutral', hi: '— तटस्थ', sa: '— तटस्थः', ta: '— நடுநிலை', te: '— తటస్థ', bn: '— নিরপেক্ষ', kn: '— ತಟಸ್ಥ', gu: '— તટસ્થ', mai: '— तटस्थ', mr: '— तटस्थ' }, locale))}
                 </span>
               </div>
 
@@ -650,7 +650,7 @@ function ArgalaSection({ kundali, locale, isDevanagari, headingFont }: JaiminiTa
               )}
 
               {strongArgalas.length === 0 && strongVirodha.length === 0 && (
-                <p className="text-text-secondary/85 text-[10px]">{tl({ en: 'No strong interventions', hi: 'कोई प्रबल हस्तक्षेप नहीं', sa: 'कोई प्रबल हस्तक्षेप नहीं', ta: 'No strong interventions', te: 'No strong interventions', bn: 'No strong interventions', kn: 'No strong interventions', gu: 'No strong interventions', mai: 'कोई प्रबल हस्तक्षेप नहीं', mr: 'कोई प्रबल हस्तक्षेप नहीं' }, locale)}</p>
+                <p className="text-text-secondary/85 text-[10px]">{tl({ en: 'No strong interventions', hi: 'कोई प्रबल हस्तक्षेप नहीं', sa: 'कोऽपि प्रबलः हस्तक्षेपो नास्ति', ta: 'வலிமையான தலையீடுகள் எதுவும் இல்லை', te: 'బలమైన జోక్యాలు లేవు', bn: 'কোনো শক্তিশালী হস্তক্ষেপ নেই', kn: 'ಯಾವುದೇ ಬಲಿಷ್ಠ ಹಸ್ತಕ್ಷೇಪಗಳಿಲ್ಲ', gu: 'કોઈ પ્રબળ હસ્તક્ષેપ નથી', mai: 'कोनो प्रबल हस्तक्षेप नहि', mr: 'कोणताही प्रबळ हस्तक्षेप नाही' }, locale)}</p>
               )}
             </div>
           );
@@ -700,10 +700,10 @@ function BrahmaRudraMaheshwara({ kundali, locale, isDevanagari, headingFont }: J
   return (
     <div>
       <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-        {tl({ en: 'Brahma · Rudra · Maheshvara', hi: 'ब्रह्मा · रुद्र · महेश्वर', sa: 'ब्रह्मा · रुद्र · महेश्वर', ta: 'Brahma · Rudra · Maheshvara', te: 'Brahma · Rudra · Maheshvara', bn: 'Brahma · Rudra · Maheshvara', kn: 'Brahma · Rudra · Maheshvara', gu: 'Brahma · Rudra · Maheshvara', mai: 'ब्रह्मा · रुद्र · महेश्वर', mr: 'ब्रह्मा · रुद्र · महेश्वर' }, locale)}
+        {tl({ en: 'Brahma · Rudra · Maheshvara', hi: 'ब्रह्मा · रुद्र · महेश्वर', sa: 'ब्रह्मा · रुद्रः · महेश्वरः', ta: 'பிரம்மா · ருத்ரன் · மகேஸ்வரன்', te: 'బ్రహ్మ · రుద్ర · మహేశ్వర', bn: 'ব্রহ্মা · রুদ্র · মহেশ্বর', kn: 'ಬ್ರಹ್ಮ · ರುದ್ರ · ಮಹೇಶ್ವರ', gu: 'બ્રહ્મા · રુદ્ર · મહેશ્વર', mai: 'ब्रह्मा · रुद्र · महेश्वर', mr: 'ब्रह्मा · रुद्र · महेश्वर' }, locale)}
       </h3>
       <p className="text-text-secondary/85 text-xs text-center mb-4 max-w-2xl mx-auto">
-        {tl({ en: 'Jaimini longevity significators — these three planets govern the arc of life, health transformation, and karmic release', hi: 'जैमिनी आयुकारक — ये तीन ग्रह जीवन, स्वास्थ्य परिवर्तन और कार्मिक मुक्ति के चाप को नियंत्रित करते हैं', sa: 'जैमिनी आयुकारक — ये तीन ग्रह जीवन, स्वास्थ्य परिवर्तन और कार्मिक मुक्ति के चाप को नियंत्रित करते हैं', ta: 'Jaimini longevity significators — these three planets govern the arc of life, health transformation, and karmic release', te: 'Jaimini longevity significators — these three planets govern the arc of life, health transformation, and karmic release', bn: 'Jaimini longevity significators — these three planets govern the arc of life, health transformation, and karmic release', kn: 'Jaimini longevity significators — these three planets govern the arc of life, health transformation, and karmic release', gu: 'Jaimini longevity significators — these three planets govern the arc of life, health transformation, and karmic release', mai: 'जैमिनी आयुकारक — ये तीन ग्रह जीवन, स्वास्थ्य परिवर्तन और कार्मिक मुक्ति के चाप को नियंत्रित करते हैं', mr: 'जैमिनी आयुकारक — ये तीन ग्रह जीवन, स्वास्थ्य परिवर्तन और कार्मिक मुक्ति के चाप को नियंत्रित करते हैं' }, locale)}
+        {tl({ en: 'Jaimini longevity significators — these three planets govern the arc of life, health transformation, and karmic release', hi: 'जैमिनी आयुकारक — ये तीन ग्रह जीवन, स्वास्थ्य परिवर्तन और कार्मिक मुक्ति के चाप को नियंत्रित करते हैं', sa: 'जैमिनीआयुकारकाः — एते त्रयो ग्रहाः जीवनचापं, स्वास्थ्यपरिवर्तनं, कर्मिकमुक्तिं च नियन्त्रयन्ति', ta: 'ஜைமினி ஆயுள் காரகர்கள் — இந்த மூன்று கிரகங்கள் வாழ்க்கையின் வளைவு, உடல்நலம் மாற்றம் மற்றும் கர்ம விடுதலையை நிர்வகிக்கின்றன', te: 'జైమిని ఆయుః కారకులు — ఈ మూడు గ్రహాలు జీవిత చాపాన్ని, ఆరోగ్య మార్పును మరియు కర్మిక విముక్తిని నిర్వహిస్తాయి', bn: 'জৈমিনী আয়ুকারক — এই তিনটি গ্রহ জীবনের চাপ, স্বাস্থ্য পরিবর্তন এবং কার্মিক মুক্তি নিয়ন্ত্রণ করে', kn: 'ಜೈಮಿನಿ ಆಯುಕಾರಕರು — ಈ ಮೂರು ಗ್ರಹಗಳು ಜೀವನದ ಚಾಪ, ಆರೋಗ್ಯ ಪರಿವರ್ತನೆ ಮತ್ತು ಕಾರ್ಮಿಕ ಮುಕ್ತಿಯನ್ನು ನಿಯಂತ್ರಿಸುತ್ತವೆ', gu: 'જૈમિની આયુ-કારક — આ ત્રણ ગ્રહો જીવનના ચાપ, સ્વાસ્થ્ય-રૂપાંતર અને કર્મ-મુક્તિ પર શાસન કરે છે', mai: 'जैमिनी आयुकारक — ई तीनू ग्रह जीवन-चाप, स्वास्थ्य-परिवर्तन आ कर्मिक-मुक्तिकेँ नियंत्रित करैत छथि', mr: 'जैमिनी आयुकारक — हे तीन ग्रह जीवनाचा चाप, आरोग्य परिवर्तन आणि कार्मिक मुक्ती यांना नियंत्रित करतात' }, locale)}
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {triplet.map(({ titleEn, titleHi, planet, descEn, descHi, color }) => (

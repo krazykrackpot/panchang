@@ -182,18 +182,18 @@ function AnimatedTithiWheel({ locale, onSelect }: { locale: Locale; onSelect: (i
       {/* Center labels */}
       <circle cx="250" cy="250" r="80" fill="#0a0e27" stroke="rgba(212,168,83,0.15)" strokeWidth="0.5" />
       <text x="250" y="235" fill="#f0d48a" fontSize="14" textAnchor="middle" fontWeight="bold" fontFamily="var(--font-heading)">
-        {tl({ en: 'TITHI', hi: 'तिथि', sa: 'तिथि', ta: 'TITHI', te: 'TITHI', bn: 'TITHI', kn: 'TITHI', gu: 'TITHI', mai: 'तिथि', mr: 'तिथि' }, locale)}
+        {tl({ en: 'TITHI', hi: 'तिथि', sa: 'तिथिः', ta: 'திதி', te: 'తిథి', bn: 'তিথি', kn: 'ತಿಥಿ', gu: 'તિથિ', mai: 'तिथि', mr: 'तिथी' }, locale)}
       </text>
       <text x="250" y="255" fill="rgba(212,168,83,0.5)" fontSize="9" textAnchor="middle">
-        {tl({ en: '30 Lunar Days', hi: '३० चान्द्र दिवस', sa: '३० चान्द्र दिवस', ta: '30 Lunar Days', te: '30 Lunar Days', bn: '30 Lunar Days', kn: '30 Lunar Days', gu: '30 Lunar Days', mai: '३० चान्द्र दिवस', mr: '३० चान्द्र दिवस' }, locale)}
+        {tl({ en: '30 Lunar Days', hi: '३० चान्द्र दिवस', sa: 'त्रिंशत् चान्द्रदिवसाः', ta: '30 சந்திர நாட்கள்', te: '30 చాంద్రమాన రోజులు', bn: '৩০টি চান্দ্র দিবস', kn: '30 ಚಾಂದ್ರ ದಿನಗಳು', gu: '30 ચાંદ્ર દિવસ', mai: '30 चान्द्र दिवस', mr: '30 चांद्र दिवस' }, locale)}
       </text>
 
       {/* Shukla/Krishna labels */}
       <text x="250" y="50" fill="#f0d48a" fontSize="10" textAnchor="middle" fontWeight="600">
-        {tl({ en: 'SHUKLA PAKSHA', hi: 'शुक्ल पक्ष', sa: 'शुक्ल पक्ष', ta: 'SHUKLA PAKSHA', te: 'SHUKLA PAKSHA', bn: 'SHUKLA PAKSHA', kn: 'SHUKLA PAKSHA', gu: 'SHUKLA PAKSHA', mai: 'शुक्ल पक्ष', mr: 'शुक्ल पक्ष' }, locale)}
+        {tl({ en: 'SHUKLA PAKSHA', hi: 'शुक्ल पक्ष', sa: 'शुक्लपक्षः', ta: 'சுக்ல பக்ஷம்', te: 'శుక్ల పక్షం', bn: 'শুক্ল পক্ষ', kn: 'ಶುಕ್ಲ ಪಕ್ಷ', gu: 'શુક્લ પક્ષ', mai: 'शुक्ल पक्ष', mr: 'शुक्ल पक्ष' }, locale)}
       </text>
       <text x="250" y="462" fill="#8a6d2b" fontSize="10" textAnchor="middle" fontWeight="600">
-        {tl({ en: 'KRISHNA PAKSHA', hi: 'कृष्ण पक्ष', sa: 'कृष्ण पक्ष', ta: 'KRISHNA PAKSHA', te: 'KRISHNA PAKSHA', bn: 'KRISHNA PAKSHA', kn: 'KRISHNA PAKSHA', gu: 'KRISHNA PAKSHA', mai: 'कृष्ण पक्ष', mr: 'कृष्ण पक्ष' }, locale)}
+        {tl({ en: 'KRISHNA PAKSHA', hi: 'कृष्ण पक्ष', sa: 'कृष्णपक्षः', ta: 'கிருஷ்ண பக்ஷம்', te: 'కృష్ణ పక్షం', bn: 'কৃষ্ণ পক্ষ', kn: 'ಕೃಷ್ಣ ಪಕ್ಷ', gu: 'કૃષ્ણ પક્ષ', mai: 'कृष्ण पक्ष', mr: 'कृष्ण पक्ष' }, locale)}
       </text>
     </motion.svg>
   );
@@ -237,7 +237,7 @@ function SunMoonDiagram({ locale }: { locale: Locale }) {
         <circle cx="100" cy="100" r="30" fill="url(#sunGrad)" />
         <circle cx="100" cy="100" r="35" fill="none" stroke="#f39c12" strokeWidth="0.5" opacity="0.3" />
         <text x="100" y="155" fill="#f39c12" fontSize="11" textAnchor="middle" fontWeight="600">
-          {tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun', mai: 'सूर्य', mr: 'सूर्य' }, locale)}
+          {tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः', ta: 'சூரியன்', te: 'సూర్యుడు', bn: 'সূর্য', kn: 'ಸೂರ್ಯ', gu: 'સૂર્ય', mai: 'सूर्य', mr: 'सूर्य' }, locale)}
         </text>
       </motion.g>
 
@@ -245,7 +245,7 @@ function SunMoonDiagram({ locale }: { locale: Locale }) {
       <motion.g initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.5, type: 'spring' }}>
         <circle cx="300" cy="100" r="18" fill="url(#earthGrad)" />
         <text x="300" y="145" fill="#3498db" fontSize="11" textAnchor="middle" fontWeight="600">
-          {tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी', ta: 'Earth', te: 'Earth', bn: 'Earth', kn: 'Earth', gu: 'Earth', mai: 'पृथ्वी', mr: 'पृथ्वी' }, locale)}
+          {tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी', ta: 'பூமி', te: 'భూమి', bn: 'পৃথিবী', kn: 'ಭೂಮಿ', gu: 'પૃથ્વી', mai: 'पृथ्वी', mr: 'पृथ्वी' }, locale)}
         </text>
       </motion.g>
 
@@ -257,7 +257,7 @@ function SunMoonDiagram({ locale }: { locale: Locale }) {
       >
         <circle cx="420" cy="100" r="12" fill="url(#moonGradDiag)" />
         <text x="420" y="135" fill="#d4a853" fontSize="11" textAnchor="middle" fontWeight="600">
-          {tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon', mai: 'चन्द्र', mr: 'चन्द्र' }, locale)}
+          {tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्रः', ta: 'சந்திரன்', te: 'చంద్రుడు', bn: 'চন্দ্র', kn: 'ಚಂದ್ರ', gu: 'ચંદ્ર', mai: 'चन्द्र', mr: 'चंद्र' }, locale)}
         </text>
       </motion.g>
 
@@ -273,7 +273,7 @@ function SunMoonDiagram({ locale }: { locale: Locale }) {
         initial={{ opacity: 0 }} animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
       >
-        12° = 1 {tl({ en: 'Tithi', hi: 'तिथि', sa: 'तिथि', ta: 'Tithi', te: 'Tithi', bn: 'Tithi', kn: 'Tithi', gu: 'Tithi', mai: 'तिथि', mr: 'तिथि' }, locale)}
+        12° = 1 {tl({ en: 'Tithi', hi: 'तिथि', sa: 'तिथिः', ta: 'திதி', te: 'తిథి', bn: 'তিথি', kn: 'ತಿಥಿ', gu: 'તિથિ', mai: 'तिथि', mr: 'तिथी' }, locale)}
       </motion.text>
     </motion.svg>
   );
@@ -302,10 +302,10 @@ export default function TithiPage() {
         <TithiIcon size={72} />
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-2" style={headingFont}>
-            <span className="text-gold-gradient">{tl({ en: 'Tithi', hi: 'तिथि', sa: 'तिथिः', ta: 'திதி', te: 'Tithi', bn: 'Tithi', kn: 'Tithi', gu: 'Tithi', mai: 'तिथि', mr: 'तिथि' }, locale)}</span>
+            <span className="text-gold-gradient">{tl({ en: 'Tithi', hi: 'तिथि', sa: 'तिथिः', ta: 'திதி', te: 'తిథి', bn: 'তিথি', kn: 'ತಿಥಿ', gu: 'તિથિ', mai: 'तिथि', mr: 'तिथी' }, locale)}</span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {tl({ en: 'The Lunar Day — Foundation of the Panchang', hi: 'चान्द्र दिवस — पञ्चाङ्ग का आधार', sa: 'चान्द्रदिवसः — पञ्चाङ्गस्य आधारः', ta: 'சந்திர நாள் — பஞ்சாங்கத்தின் அடிப்படை', te: 'The Lunar Day — Foundation of the Panchang', bn: 'The Lunar Day — Foundation of the Panchang', kn: 'The Lunar Day — Foundation of the Panchang', gu: 'The Lunar Day — Foundation of the Panchang', mai: 'चान्द्र दिवस — पञ्चाङ्ग का आधार', mr: 'चान्द्र दिवस — पञ्चाङ्ग का आधार' }, locale)}
+            {tl({ en: 'The Lunar Day — Foundation of the Panchang', hi: 'चान्द्र दिवस — पञ्चाङ्ग का आधार', sa: 'चान्द्रदिवसः — पञ्चाङ्गस्य आधारः', ta: 'சந்திர நாள் — பஞ்சாங்கத்தின் அடிப்படை', te: 'చాంద్రమాన రోజు — పంచాంగం యొక్క ఆధారం', bn: 'চান্দ্র দিবস — পঞ্চাঙ্গের ভিত্তি', kn: 'ಚಾಂದ್ರ ದಿನ — ಪಂಚಾಂಗದ ಆಧಾರ', gu: 'ચાંદ્ર દિવસ — પંચાંગનો આધાર', mai: 'चान्द्र दिवस — पञ्चाङ्गक आधार', mr: 'चांद्र दिवस — पंचांगाचा आधार' }, locale)}
           </p>
         </div>
       </motion.div>
@@ -330,7 +330,7 @@ export default function TithiPage() {
               viewport={{ once: true }}
             >
               <p className="text-gold-light font-mono text-sm">
-                {tl({ en: 'Formula:', hi: 'सूत्र:', sa: 'सूत्र:', ta: 'Formula:', te: 'Formula:', bn: 'Formula:', kn: 'Formula:', gu: 'Formula:', mai: 'सूत्र:', mr: 'सूत्र:' }, locale)} Tithi = ⌊(Moon_longitude - Sun_longitude) / 12°⌋ + 1
+                {tl({ en: 'Formula:', hi: 'सूत्र:', sa: 'सूत्रम्:', ta: 'சூத்திரம்:', te: 'సూత్రం:', bn: 'সূত্র:', kn: 'ಸೂತ್ರ:', gu: 'સૂત્ર:', mai: 'सूत्र:', mr: 'सूत्र:' }, locale)} Tithi = ⌊(Moon_longitude - Sun_longitude) / 12°⌋ + 1
               </p>
             </motion.div>
           </div>
@@ -340,7 +340,7 @@ export default function TithiPage() {
       {/* Interactive Lunar Phase Wheel */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {tl({ en: 'Interactive Lunar Phase Wheel', hi: 'इंटरैक्टिव चन्द्र कला चक्र', sa: 'संवादात्मकं चन्द्रकलाचक्रम्', ta: 'Interactive Lunar Phase Wheel', te: 'Interactive Lunar Phase Wheel', bn: 'Interactive Lunar Phase Wheel', kn: 'Interactive Lunar Phase Wheel', gu: 'Interactive Lunar Phase Wheel', mai: 'इंटरैक्टिव चन्द्र कला चक्र', mr: 'इंटरैक्टिव चन्द्र कला चक्र' }, locale)}
+          {tl({ en: 'Interactive Lunar Phase Wheel', hi: 'इंटरैक्टिव चन्द्र कला चक्र', sa: 'सक्रियचन्द्रकलाचक्रम्', ta: 'ஊடாடும் சந்திர கலை சக்கரம்', te: 'ఇంటరాక్టివ్ చంద్ర కళా చక్రం', bn: 'ইন্টারঅ্যাক্টিভ চন্দ্র কলা চক্র', kn: 'ಸಂವಾದಾತ್ಮಕ ಚಂದ್ರ ಕಲಾ ಚಕ್ರ', gu: 'ઇન્ટરૅક્ટિવ ચંદ્ર કળા ચક્ર', mai: 'इंटरैक्टिव चन्द्र कला चक्र', mr: 'इंटरॅक्टिव्ह चंद्र कला चक्र' }, locale)}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           {mounted ? <AnimatedTithiWheel locale={locale} onSelect={setSelectedTithi} /> : (
@@ -365,21 +365,21 @@ export default function TithiPage() {
                   </h3>
                   <span className={`text-xs px-2 py-1 rounded-full ${TITHIS[selectedTithi].paksha === 'shukla' ? 'bg-gold-primary/20 text-gold-light' : 'bg-gold-dark/20 text-gold-dark'}`}>
                     {TITHIS[selectedTithi].paksha === 'shukla'
-                      ? (tl({ en: 'Shukla Paksha', hi: 'शुक्ल पक्ष', sa: 'शुक्ल पक्ष', ta: 'Shukla Paksha', te: 'Shukla Paksha', bn: 'Shukla Paksha', kn: 'Shukla Paksha', gu: 'Shukla Paksha', mai: 'शुक्ल पक्ष', mr: 'शुक्ल पक्ष' }, locale))
-                      : (tl({ en: 'Krishna Paksha', hi: 'कृष्ण पक्ष', sa: 'कृष्ण पक्ष', ta: 'Krishna Paksha', te: 'Krishna Paksha', bn: 'Krishna Paksha', kn: 'Krishna Paksha', gu: 'Krishna Paksha', mai: 'कृष्ण पक्ष', mr: 'कृष्ण पक्ष' }, locale))}
+                      ? (tl({ en: 'Shukla Paksha', hi: 'शुक्ल पक्ष', sa: 'शुक्लपक्षः', ta: 'சுக்ல பக்ஷம்', te: 'శుక్ల పక్షం', bn: 'শুক্ল পক্ষ', kn: 'ಶುಕ್ಲ ಪಕ್ಷ', gu: 'શુક્લ પક્ષ', mai: 'शुक्ल पक्ष', mr: 'शुक्ल पक्ष' }, locale))
+                      : (tl({ en: 'Krishna Paksha', hi: 'कृष्ण पक्ष', sa: 'कृष्णपक्षः', ta: 'கிருஷ்ண பக்ஷம்', te: 'కృష్ణ పక్షం', bn: 'কৃষ্ণ পক্ষ', kn: 'ಕೃಷ್ಣ ಪಕ್ಷ', gu: 'કૃષ્ણ પક્ષ', mai: 'कृष्ण पक्ष', mr: 'कृष्ण पक्ष' }, locale))}
                   </span>
                 </div>
                 <div className="text-text-secondary text-sm">
-                  <p><span className="text-gold-dark">{tl({ en: 'Deity:', hi: 'देवता:', sa: 'देवता:', ta: 'Deity:', te: 'Deity:', bn: 'Deity:', kn: 'Deity:', gu: 'Deity:', mai: 'देवता:', mr: 'देवता:' }, locale)}</span> {TITHIS[selectedTithi].deity[locale]}</p>
-                  <p className="mt-1"><span className="text-gold-dark">{tl({ en: 'Tithi Number:', hi: 'तिथि संख्या:', sa: 'तिथि संख्या:', ta: 'Tithi Number:', te: 'Tithi Number:', bn: 'Tithi Number:', kn: 'Tithi Number:', gu: 'Tithi Number:', mai: 'तिथि संख्या:', mr: 'तिथि संख्या:' }, locale)}</span> {selectedTithi + 1} / 30</p>
-                  <p className="mt-1"><span className="text-gold-dark">{tl({ en: 'Angular Span:', hi: 'कोणीय विस्तार:', sa: 'कोणीय विस्तार:', ta: 'Angular Span:', te: 'Angular Span:', bn: 'Angular Span:', kn: 'Angular Span:', gu: 'Angular Span:', mai: 'कोणीय विस्तार:', mr: 'कोणीय विस्तार:' }, locale)}</span> {selectedTithi * 12}° — {(selectedTithi + 1) * 12}°</p>
+                  <p><span className="text-gold-dark">{tl({ en: 'Deity:', hi: 'देवता:', sa: 'देवता:', ta: 'தெய்வம்:', te: 'దేవత:', bn: 'দেবতা:', kn: 'ದೇವತೆ:', gu: 'દેવતા:', mai: 'देवता:', mr: 'देवता:' }, locale)}</span> {TITHIS[selectedTithi].deity[locale]}</p>
+                  <p className="mt-1"><span className="text-gold-dark">{tl({ en: 'Tithi Number:', hi: 'तिथि संख्या:', sa: 'तिथिसंख्या:', ta: 'திதி எண்:', te: 'తిథి సంఖ్య:', bn: 'তিথি সংখ্যা:', kn: 'ತಿಥಿ ಸಂಖ್ಯೆ:', gu: 'તિથિ ક્રમાંક:', mai: 'तिथि संख्या:', mr: 'तिथी क्रमांक:' }, locale)}</span> {selectedTithi + 1} / 30</p>
+                  <p className="mt-1"><span className="text-gold-dark">{tl({ en: 'Angular Span:', hi: 'कोणीय विस्तार:', sa: 'कोणीयविस्तारः:', ta: 'கோண வீச்சு:', te: 'కోణీయ విస్తీర్ణం:', bn: 'কোণীয় বিস্তার:', kn: 'ಕೋನೀಯ ವ್ಯಾಪ್ತಿ:', gu: 'કોણીય વ્યાપ:', mai: 'कोणीय विस्तार:', mr: 'कोनीय विस्तार:' }, locale)}</span> {selectedTithi * 12}° — {(selectedTithi + 1) * 12}°</p>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
 
           <p className="text-text-secondary text-xs text-center mt-4">
-            {tl({ en: 'Click on any sector to see details', hi: 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें', sa: 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें', ta: 'Click on any sector to see details', te: 'Click on any sector to see details', bn: 'Click on any sector to see details', kn: 'Click on any sector to see details', gu: 'Click on any sector to see details', mai: 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें', mr: 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें' }, locale)}
+            {tl({ en: 'Click on any sector to see details', hi: 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें', sa: 'विवरणार्थं यस्मिंश्चित् खण्डे क्लिक्कयत', ta: 'விவரங்கள் காண எந்த பகுதியிலும் கிளிக் செய்யுங்கள்', te: 'వివరాలు చూడటానికి ఏదైనా విభాగంపై క్లిక్ చేయండి', bn: 'বিবরণ দেখতে যেকোনো বিভাগে ক্লিক করুন', kn: 'ವಿವರಗಳನ್ನು ನೋಡಲು ಯಾವುದಾದರೂ ವಿಭಾಗದಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ', gu: 'વિગતો જોવા માટે કોઈ પણ વિભાગ પર ક્લિક કરો', mai: 'विवरण देखबाक लेल कोनो खंड पर क्लिक करू', mr: 'तपशील पाहण्यासाठी कोणत्याही विभागावर क्लिक करा' }, locale)}
           </p>
         </div>
       </section>
@@ -389,7 +389,7 @@ export default function TithiPage() {
       {/* Moon Phase Progression */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {tl({ en: 'Moon Phase Progression', hi: 'चन्द्र कला क्रम', sa: 'चन्द्रकलाक्रमः', ta: 'Moon Phase Progression', te: 'Moon Phase Progression', bn: 'Moon Phase Progression', kn: 'Moon Phase Progression', gu: 'Moon Phase Progression', mai: 'चन्द्र कला क्रम', mr: 'चन्द्र कला क्रम' }, locale)}
+          {tl({ en: 'Moon Phase Progression', hi: 'चन्द्र कला क्रम', sa: 'चन्द्रकलाक्रमः', ta: 'சந்திர கலை வரிசை', te: 'చంద్ర కళా క్రమం', bn: 'চন্দ্র কলার ক্রম', kn: 'ಚಂದ್ರ ಕಲಾ ಕ್ರಮ', gu: 'ચંદ્ર કળા ક્રમ', mai: 'चन्द्र कला क्रम', mr: 'चंद्र कलेचा क्रम' }, locale)}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <div className="flex flex-wrap justify-center gap-3">
@@ -411,9 +411,9 @@ export default function TithiPage() {
             })}
           </div>
           <div className="flex justify-between mt-4 text-xs text-text-secondary">
-            <span>{tl({ en: 'Amavasya (New Moon)', hi: 'अमावस्या', sa: 'अमावस्या', ta: 'Amavasya (New Moon)', te: 'Amavasya (New Moon)', bn: 'Amavasya (New Moon)', kn: 'Amavasya (New Moon)', gu: 'Amavasya (New Moon)', mai: 'अमावस्या', mr: 'अमावस्या' }, locale)}</span>
-            <span>{tl({ en: 'Purnima (Full Moon)', hi: 'पूर्णिमा', sa: 'पूर्णिमा', ta: 'Purnima (Full Moon)', te: 'Purnima (Full Moon)', bn: 'Purnima (Full Moon)', kn: 'Purnima (Full Moon)', gu: 'Purnima (Full Moon)', mai: 'पूर्णिमा', mr: 'पूर्णिमा' }, locale)}</span>
-            <span>{tl({ en: 'Amavasya (New Moon)', hi: 'अमावस्या', sa: 'अमावस्या', ta: 'Amavasya (New Moon)', te: 'Amavasya (New Moon)', bn: 'Amavasya (New Moon)', kn: 'Amavasya (New Moon)', gu: 'Amavasya (New Moon)', mai: 'अमावस्या', mr: 'अमावस्या' }, locale)}</span>
+            <span>{tl({ en: 'Amavasya (New Moon)', hi: 'अमावस्या', sa: 'अमावास्या (नवचन्द्रः)', ta: 'அமாவாசை (அமாவாசை)', te: 'అమావాస్య (నూతన చంద్రుడు)', bn: 'অমাবস্যা (নতুন চাঁদ)', kn: 'ಅಮಾವಾಸ್ಯೆ (ಹೊಸ ಚಂದ್ರ)', gu: 'અમાવાસ્યા (નવો ચંદ્ર)', mai: 'अमावस्या (नव चन्द्रमा)', mr: 'अमावास्या (अमावस्या)' }, locale)}</span>
+            <span>{tl({ en: 'Purnima (Full Moon)', hi: 'पूर्णिमा', sa: 'पूर्णिमा (पूर्णचन्द्रः)', ta: 'பௌர்ணமி (நிறைநிலவு)', te: 'పూర్ణిమ (పూర్ణ చంద్రుడు)', bn: 'পূর্ণিমা (পূর্ণ চাঁদ)', kn: 'ಹುಣ್ಣಿಮೆ (ಪೂರ್ಣ ಚಂದ್ರ)', gu: 'પૂર્ણિમા (પૂર્ણ ચંદ્ર)', mai: 'पूर्णिमा (पूर्ण चन्द्रमा)', mr: 'पौर्णिमा (पूर्ण चंद्र)' }, locale)}</span>
+            <span>{tl({ en: 'Amavasya (New Moon)', hi: 'अमावस्या', sa: 'अमावास्या (नवचन्द्रः)', ta: 'அமாவாசை (அமாவாசை)', te: 'అమావాస్య (నూతన చంద్రుడు)', bn: 'অমাবস্যা (নতুন চাঁদ)', kn: 'ಅಮಾವಾಸ್ಯೆ (ಹೊಸ ಚಂದ್ರ)', gu: 'અમાવાસ્યા (નવો ચંદ્ર)', mai: 'अमावस्या (नव चन्द्रमा)', mr: 'अमावास्या (अमावस्या)' }, locale)}</span>
           </div>
         </div>
       </section>
@@ -426,7 +426,7 @@ export default function TithiPage() {
 
         {/* Shukla Paksha */}
         <h3 className="text-xl text-gold-light mb-4" style={headingFont}>
-          {tl({ en: 'Shukla Paksha (Waxing Moon)', hi: 'शुक्ल पक्ष (बढ़ता चाँद)', sa: 'शुक्लपक्षः', ta: 'Shukla Paksha (Waxing Moon)', te: 'Shukla Paksha (Waxing Moon)', bn: 'Shukla Paksha (Waxing Moon)', kn: 'Shukla Paksha (Waxing Moon)', gu: 'Shukla Paksha (Waxing Moon)', mai: 'शुक्ल पक्ष (बढ़ता चाँद)', mr: 'शुक्ल पक्ष (बढ़ता चाँद)' }, locale)}
+          {tl({ en: 'Shukla Paksha (Waxing Moon)', hi: 'शुक्ल पक्ष (बढ़ता चाँद)', sa: 'शुक्लपक्षः (वर्धमानचन्द्रः)', ta: 'சுக்ல பக்ஷம் (வளரும் சந்திரன்)', te: 'శుక్ల పక్షం (వర్ధమాన చంద్రుడు)', bn: 'শুক্ল পক্ষ (বাড়ন্ত চাঁদ)', kn: 'ಶುಕ್ಲ ಪಕ್ಷ (ಬೆಳೆಯುವ ಚಂದ್ರ)', gu: 'શુક્લ પક્ષ (વધતો ચંદ્ર)', mai: 'शुक्ल पक्ष (बढ़ैत चन्द्रमा)', mr: 'शुक्ल पक्ष (वाढता चंद्र)' }, locale)}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
           {shukla.map((tithi, i) => (
@@ -453,7 +453,7 @@ export default function TithiPage() {
 
         {/* Krishna Paksha */}
         <h3 className="text-xl text-gold-dark mb-4" style={headingFont}>
-          {tl({ en: 'Krishna Paksha (Waning Moon)', hi: 'कृष्ण पक्ष (घटता चाँद)', sa: 'कृष्णपक्षः', ta: 'Krishna Paksha (Waning Moon)', te: 'Krishna Paksha (Waning Moon)', bn: 'Krishna Paksha (Waning Moon)', kn: 'Krishna Paksha (Waning Moon)', gu: 'Krishna Paksha (Waning Moon)', mai: 'कृष्ण पक्ष (घटता चाँद)', mr: 'कृष्ण पक्ष (घटता चाँद)' }, locale)}
+          {tl({ en: 'Krishna Paksha (Waning Moon)', hi: 'कृष्ण पक्ष (घटता चाँद)', sa: 'कृष्णपक्षः (क्षयमानचन्द्रः)', ta: 'கிருஷ்ண பக்ஷம் (தேயும் சந்திரன்)', te: 'కృష్ణ పక్షం (క్షీణించే చంద్రుడు)', bn: 'কৃষ্ণ পক্ষ (ক্ষয়িষ্ণু চাঁদ)', kn: 'ಕೃಷ್ಣ ಪಕ್ಷ (ಕ್ಷೀಣಿಸುವ ಚಂದ್ರ)', gu: 'કૃષ્ણ પક્ષ (ઘટતો ચંદ્ર)', mai: 'कृष्ण पक्ष (घटैत चन्द्रमा)', mr: 'कृष्ण पक्ष (कमी होणारा चंद्र)' }, locale)}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
           {krishna.map((tithi, i) => (
@@ -483,7 +483,7 @@ export default function TithiPage() {
       <GoldDivider />
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {tl({ en: 'Special Tithis', hi: 'विशेष तिथियाँ', sa: 'विशेषतिथयः', ta: 'Special Tithis', te: 'Special Tithis', bn: 'Special Tithis', kn: 'Special Tithis', gu: 'Special Tithis', mai: 'विशेष तिथियाँ', mr: 'विशेष तिथियाँ' }, locale)}
+          {tl({ en: 'Special Tithis', hi: 'विशेष तिथियाँ', sa: 'विशेषतिथयः', ta: 'சிறப்பு திதிகள்', te: 'విశేష తిథులు', bn: 'বিশেষ তিথি', kn: 'ವಿಶೇಷ ತಿಥಿಗಳು', gu: 'વિશેષ તિથિ', mai: 'विशेष तिथि', mr: 'विशेष तिथी' }, locale)}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[

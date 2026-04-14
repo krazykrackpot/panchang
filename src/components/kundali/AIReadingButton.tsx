@@ -101,7 +101,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
       <div className="rounded-2xl p-5 border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] text-center">
         <Sparkles className="w-8 h-8 text-gold-primary mx-auto mb-3" />
         <h3 className="text-gold-light font-bold text-lg mb-2" style={headingFont}>
-          {tl({ en: 'AI-Powered Personal Reading', hi: 'AI-संचालित व्यक्तिगत विश्लेषण', sa: 'AI-संचालित व्यक्तिगत विश्लेषण', ta: 'AI-Powered Personal Reading', te: 'AI-Powered Personal Reading', bn: 'AI-Powered Personal Reading', kn: 'AI-Powered Personal Reading', gu: 'AI-Powered Personal Reading', mai: 'AI-संचालित व्यक्तिगत विश्लेषण', mr: 'AI-संचालित व्यक्तिगत विश्लेषण' }, locale)}
+          {tl({ en: 'AI-Powered Personal Reading', hi: 'AI-संचालित व्यक्तिगत विश्लेषण', sa: 'AI-चालितं वैयक्तिकं विश्लेषणम्', ta: 'AI-இயங்கும் தனிப்பட்ட வாசிப்பு', te: 'AI-ఆధారిత వ్యక్తిగత పఠనం', bn: 'AI-চালিত ব্যক্তিগত বিশ্লেষণ', kn: 'AI-ಚಾಲಿತ ವೈಯಕ್ತಿಕ ವಾಚನ', gu: 'AI-સંચાલિત વ્યક્તિગત વિશ્લેષણ', mai: 'AI-संचालित व्यक्तिगत विश्लेषण', mr: 'AI-चालित वैयक्तिक विश्लेषण' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm mb-4" style={bodyFont}>
           {locale === 'en'
@@ -110,7 +110,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
         </p>
         <a href="/pricing" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gold-dark to-gold-primary text-bg-primary font-bold text-sm rounded-xl hover:from-gold-primary hover:to-gold-light transition-all">
           <Sparkles className="w-4 h-4" />
-          {tl({ en: 'Upgrade to Pro', hi: 'प्रो में अपग्रेड करें', sa: 'प्रो में अपग्रेड करें', ta: 'Upgrade to Pro', te: 'Upgrade to Pro', bn: 'Upgrade to Pro', kn: 'Upgrade to Pro', gu: 'Upgrade to Pro', mai: 'प्रो में अपग्रेड करें', mr: 'प्रो में अपग्रेड करें' }, locale)}
+          {tl({ en: 'Upgrade to Pro', hi: 'प्रो में अपग्रेड करें', sa: 'प्रो-स्तरं प्राप्नुत', ta: 'புரோவிற்கு மேம்படுத்துங்கள்', te: 'ప్రోకి అప్‌గ్రేడ్ చేయండి', bn: 'প্রোতে আপগ্রেড করুন', kn: 'ಪ್ರೋಗೆ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ', gu: 'પ્રોમાં અપગ્રેડ કરો', mai: 'प्रो मे अपग्रेड करू', mr: 'प्रोमध्ये श्रेणी वाढवा' }, locale)}
         </a>
       </div>
     );
@@ -130,7 +130,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
           <div className="flex items-center justify-center gap-3">
             <Sparkles className="w-6 h-6 text-gold-primary group-hover:text-gold-light transition-colors" />
             <span className="text-gold-light font-bold text-lg" style={headingFont}>
-              {tl({ en: 'Get AI Reading', hi: 'AI विश्लेषण प्राप्त करें', sa: 'AI विश्लेषण प्राप्त करें', ta: 'Get AI Reading', te: 'Get AI Reading', bn: 'Get AI Reading', kn: 'Get AI Reading', gu: 'Get AI Reading', mai: 'AI विश्लेषण प्राप्त करें', mr: 'AI विश्लेषण प्राप्त करें' }, locale)}
+              {tl({ en: 'Get AI Reading', hi: 'AI विश्लेषण प्राप्त करें', sa: 'AI-विश्लेषणं प्राप्नुत', ta: 'AI வாசிப்பைப் பெறுங்கள்', te: 'AI పఠనాన్ని పొందండి', bn: 'AI বিশ্লেষণ পান', kn: 'AI ವಾಚನ ಪಡೆಯಿರಿ', gu: 'AI વિશ્લેષણ મેળવો', mai: 'AI विश्लेषण प्राप्त करू', mr: 'AI विश्लेषण मिळवा' }, locale)}
             </span>
           </div>
           <p className="text-text-secondary/75 text-xs mt-2">
@@ -155,12 +155,12 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-gold-primary" />
                 <span className="text-gold-light font-bold" style={headingFont}>
-                  {tl({ en: 'AI Personal Reading', hi: 'AI व्यक्तिगत विश्लेषण', sa: 'AI व्यक्तिगत विश्लेषण', ta: 'AI Personal Reading', te: 'AI Personal Reading', bn: 'AI Personal Reading', kn: 'AI Personal Reading', gu: 'AI Personal Reading', mai: 'AI व्यक्तिगत विश्लेषण', mr: 'AI व्यक्तिगत विश्लेषण' }, locale)}
+                  {tl({ en: 'AI Personal Reading', hi: 'AI व्यक्तिगत विश्लेषण', sa: 'AI-वैयक्तिकविश्लेषणम्', ta: 'AI தனிப்பட்ட வாசிப்பு', te: 'AI వ్యక్తిగత పఠనం', bn: 'AI ব্যক্তিগত বিশ্লেষণ', kn: 'AI ವೈಯಕ್ತಿಕ ವಾಚನ', gu: 'AI વ્યક્તિગત વિશ્લેષણ', mai: 'AI व्यक्तिगत विश्लेषण', mr: 'AI वैयक्तिक विश्लेषण' }, locale)}
                 </span>
                 {loading && (
                   <span className="flex items-center gap-1.5 text-[10px] text-amber-300 bg-amber-500/15 border border-amber-500/25 rounded-full px-2 py-0.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                    {tl({ en: 'Writing...', hi: 'लिख रहा है...', sa: 'लिख रहा है...', ta: 'Writing...', te: 'Writing...', bn: 'Writing...', kn: 'Writing...', gu: 'Writing...', mai: 'लिख रहा है...', mr: 'लिख रहा है...' }, locale)}
+                    {tl({ en: 'Writing...', hi: 'लिख रहा है...', sa: 'लिखति...', ta: 'எழுதுகிறது...', te: 'వ్రాస్తోంది...', bn: 'লিখছে...', kn: 'ಬರೆಯುತ್ತಿದೆ...', gu: 'લખી રહ્યું છે...', mai: 'लिखि रहल अछि...', mr: 'लिहित आहे...' }, locale)}
                   </span>
                 )}
               </div>
@@ -179,7 +179,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
                   <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="text-amber-200 text-sm font-bold">
-                      {tl({ en: 'AI Reading Limit Reached', hi: 'AI विश्लेषण सीमा पूर्ण', sa: 'AI विश्लेषण सीमा पूर्ण', ta: 'AI Reading Limit Reached', te: 'AI Reading Limit Reached', bn: 'AI Reading Limit Reached', kn: 'AI Reading Limit Reached', gu: 'AI Reading Limit Reached', mai: 'AI विश्लेषण सीमा पूर्ण', mr: 'AI विश्लेषण सीमा पूर्ण' }, locale)}
+                      {tl({ en: 'AI Reading Limit Reached', hi: 'AI विश्लेषण सीमा पूर्ण', sa: 'AI-विश्लेषणसीमा पूर्णा', ta: 'AI வாசிப்பு வரம்பு அடைந்தது', te: 'AI పఠన పరిమితి చేరుకుంది', bn: 'AI বিশ্লেষণ সীমা পূর্ণ', kn: 'AI ವಾಚನ ಮಿತಿ ತಲುಪಿದೆ', gu: 'AI વિશ્લેષણ મર્યાદા પૂર્ણ', mai: 'AI विश्लेषण सीमा पूर्ण भेल', mr: 'AI विश्लेषण मर्यादा पूर्ण' }, locale)}
                     </p>
                     <p className="text-text-secondary text-xs mt-1">
                       {rateLimitMsg || (locale === 'en'
@@ -195,7 +195,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
                   <AlertTriangle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="text-red-300 text-sm font-bold">
-                      {tl({ en: 'AI Reading Unavailable', hi: 'AI विश्लेषण अनुपलब्ध', sa: 'AI विश्लेषण अनुपलब्ध', ta: 'AI Reading Unavailable', te: 'AI Reading Unavailable', bn: 'AI Reading Unavailable', kn: 'AI Reading Unavailable', gu: 'AI Reading Unavailable', mai: 'AI विश्लेषण अनुपलब्ध', mr: 'AI विश्लेषण अनुपलब्ध' }, locale)}
+                      {tl({ en: 'AI Reading Unavailable', hi: 'AI विश्लेषण अनुपलब्ध', sa: 'AI-विश्लेषणम् अनुपलब्धम्', ta: 'AI வாசிப்பு கிடைக்கவில்லை', te: 'AI పఠనం అందుబాటులో లేదు', bn: 'AI বিশ্লেষণ অনুপলব্ধ', kn: 'AI ವಾಚನ ಲಭ್ಯವಿಲ್ಲ', gu: 'AI વિશ્લેષણ અનુપલબ્ધ', mai: 'AI विश्लेषण अनुपलब्ध अछि', mr: 'AI विश्लेषण अनुपलब्ध आहे' }, locale)}
                     </p>
                     <p className="text-text-secondary text-xs mt-1">{error}</p>
                   </div>
@@ -222,7 +222,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
                   <div className="flex items-center gap-3">
                     <div className="animate-spin rounded-full h-6 w-6 border-2 border-gold-primary border-t-transparent" />
                     <span className="text-text-secondary text-sm">
-                      {tl({ en: 'Preparing your personal reading...', hi: 'आपका व्यक्तिगत विश्लेषण तैयार हो रहा है...', sa: 'आपका व्यक्तिगत विश्लेषण तैयार हो रहा है...', ta: 'Preparing your personal reading...', te: 'Preparing your personal reading...', bn: 'Preparing your personal reading...', kn: 'Preparing your personal reading...', gu: 'Preparing your personal reading...', mai: 'आपका व्यक्तिगत विश्लेषण तैयार हो रहा है...', mr: 'आपका व्यक्तिगत विश्लेषण तैयार हो रहा है...' }, locale)}
+                      {tl({ en: 'Preparing your personal reading...', hi: 'आपका व्यक्तिगत विश्लेषण तैयार हो रहा है...', sa: 'भवतः वैयक्तिकविश्लेषणं सज्जीक्रियते...', ta: 'உங்கள் தனிப்பட்ட வாசிப்பு தயாரிக்கப்படுகிறது...', te: 'మీ వ్యక్తిగత పఠనం సిద్ధమవుతోంది...', bn: 'আপনার ব্যক্তিগত বিশ্লেষণ প্রস্তুত হচ্ছে...', kn: 'ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ವಾಚನ ತಯಾರಾಗುತ್ತಿದೆ...', gu: 'તમારું વ્યક્તિગત વિશ્લેષણ તૈયાર થઈ રહ્યું છે...', mai: 'अहाँक व्यक्तिगत विश्लेषण तैयार होइत अछि...', mr: 'तुमचे वैयक्तिक विश्लेषण तयार होत आहे...' }, locale)}
                     </span>
                   </div>
                 </div>

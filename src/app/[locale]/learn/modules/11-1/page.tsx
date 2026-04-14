@@ -56,7 +56,7 @@ function Page1() {
           <table className="w-full text-xs border-collapse">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-gold-light text-left py-2 px-2 font-semibold">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रह' }, locale)}</th>
+                <th className="text-gold-light text-left py-2 px-2 font-semibold">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः' }, locale)}</th>
                 <th className="text-gold-light text-left py-2 px-2 font-semibold">{tl({ en: 'Sanskrit', hi: 'संस्कृत', sa: 'संस्कृत' }, locale)}</th>
                 <th className="text-gold-light text-center py-2 px-2 font-semibold">{tl({ en: 'Years', hi: 'वर्ष', sa: 'वर्ष' }, locale)}</th>
                 <th className="text-gold-light text-left py-2 px-2 font-semibold">{tl({ en: 'Nakshatras Ruled', hi: 'नक्षत्र', sa: 'नक्षत्र' }, locale)}</th>

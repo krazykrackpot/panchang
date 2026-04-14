@@ -103,16 +103,16 @@ export default function LearnAshtakavargaPage() {
         {/* Example BAV table */}
         <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
           <p className="text-gold-light text-sm font-semibold mb-3" style={headingFont}>
-            {tl({ en: 'Example: Saturn BAV', hi: 'उदाहरण: शनि BAV', sa: 'उदाहरण: शनि BAV' }, locale)}
+            {tl({ en: 'Example: Saturn BAV', hi: 'उदाहरण: शनि BAV', sa: 'उदाहरणम्: शनि-BAV' }, locale)}
           </p>
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/10">
-                <th className="text-left py-2 px-1 text-gold-dark">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रह' }, locale)}</th>
+                <th className="text-left py-2 px-1 text-gold-dark">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः' }, locale)}</th>
                 {SIGNS_SHORT.map((s, i) => (
                   <th key={i} className="text-center py-2 px-1 text-gold-dark font-mono">{isHi ? s.hi : s.en}</th>
                 ))}
-                <th className="text-center py-2 px-1 text-gold-dark">{tl({ en: 'Total', hi: 'योग', sa: 'योग' }, locale)}</th>
+                <th className="text-center py-2 px-1 text-gold-dark">{tl({ en: 'Total', hi: 'योग', sa: 'योगः' }, locale)}</th>
               </tr>
             </thead>
             <tbody>
@@ -130,14 +130,14 @@ export default function LearnAshtakavargaPage() {
             </tbody>
           </table>
           <p className="mt-2 text-text-tertiary text-xs">
-            {tl({ en: 'Green = 4+ (favourable) | Yellow = 3 (mixed) | Red = 0-2 (challenging)', hi: 'हरा = 4+ (शुभ) | पीला = 3 (मध्यम) | लाल = 0-2 (कठिन)', sa: 'हरा = 4+ (शुभ) | पीला = 3 (मध्यम) | लाल = 0-2 (कठिन)' }, locale)}
+            {tl({ en: 'Green = 4+ (favourable) | Yellow = 3 (mixed) | Red = 0-2 (challenging)', hi: 'हरा = 4+ (शुभ) | पीला = 3 (मध्यम) | लाल = 0-2 (कठिन)', sa: 'हरितः = 4+ (अनुकूलः) | पीतः = 3 (मिश्रितः) | रक्तः = 0-2 (कठिनः)' }, locale)}
           </p>
         </div>
 
         {/* Score meanings */}
         <div className="mt-4">
           <p className="text-gold-light text-sm font-semibold mb-2" style={headingFont}>
-            {tl({ en: 'Bindu Score Meanings', hi: 'बिन्दु स्कोर अर्थ', sa: 'बिन्दु स्कोर अर्थ' }, locale)}
+            {tl({ en: 'Bindu Score Meanings', hi: 'बिन्दु स्कोर अर्थ', sa: 'बिन्दु-अङ्क-अर्थाः' }, locale)}
           </p>
           <div className="space-y-2">
             {SCORE_MEANINGS.map((sm) => (
@@ -174,9 +174,9 @@ export default function LearnAshtakavargaPage() {
             ))}
           </div>
           <div className="flex justify-between mt-1 text-xs">
-            <span className="text-red-400">{tl({ en: 'Challenging', hi: 'कठिन', sa: 'कठिन' }, locale)}</span>
+            <span className="text-red-400">{tl({ en: 'Challenging', hi: 'कठिन', sa: 'कठिनः' }, locale)}</span>
             <span className="text-gold-light">{tl({ en: 'Threshold = 4', hi: 'सीमा = 4', sa: 'सीमा = 4' }, locale)}</span>
-            <span className="text-emerald-400">{tl({ en: 'Favourable', hi: 'अनुकूल', sa: 'अनुकूल' }, locale)}</span>
+            <span className="text-emerald-400">{tl({ en: 'Favourable', hi: 'अनुकूल', sa: 'अनुकूलः' }, locale)}</span>
           </div>
         </div>
       </LessonSection>
@@ -188,7 +188,7 @@ export default function LearnAshtakavargaPage() {
         {/* SAV example */}
         <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
           <p className="text-gold-light text-sm font-semibold mb-3" style={headingFont}>
-            {tl({ en: 'Example: Sarvashtakavarga (SAV)', hi: 'उदाहरण: सर्वाष्टकवर्ग (SAV)', sa: 'उदाहरण: सर्वाष्टकवर्ग (SAV)' }, locale)}
+            {tl({ en: 'Example: Sarvashtakavarga (SAV)', hi: 'उदाहरण: सर्वाष्टकवर्ग (SAV)', sa: 'उदाहरणम्: सर्वाष्टकवर्गः (SAV)' }, locale)}
           </p>
           <table className="w-full text-xs">
             <thead>
@@ -201,7 +201,7 @@ export default function LearnAshtakavargaPage() {
             </thead>
             <tbody>
               <tr>
-                <td className="py-2 px-1 font-medium text-gold-light">{tl({ en: 'Total', hi: 'योग', sa: 'योग' }, locale)}</td>
+                <td className="py-2 px-1 font-medium text-gold-light">{tl({ en: 'Total', hi: 'योग', sa: 'योगः' }, locale)}</td>
                 {SAV_EXAMPLE.map((score, i) => (
                   <td key={i} className={`text-center py-2 px-1 font-mono font-bold ${score >= 28 ? 'text-emerald-400' : score <= 24 ? 'text-red-400' : 'text-amber-400'}`}>
                     {score}
@@ -211,7 +211,7 @@ export default function LearnAshtakavargaPage() {
             </tbody>
           </table>
           <p className="mt-2 text-text-tertiary text-xs font-mono">
-            {tl({ en: 'Total: 337 | Average per sign: ~28', hi: 'कुल: 337 | औसत प्रति राशि: ~28', sa: 'कुल: 337 | औसत प्रति राशि: ~28' }, locale)}
+            {tl({ en: 'Total: 337 | Average per sign: ~28', hi: 'कुल: 337 | औसत प्रति राशि: ~28', sa: 'योगः: 337 | राशि-प्रति-औसतम्: ~28' }, locale)}
           </p>
         </div>
       </LessonSection>
@@ -225,14 +225,14 @@ export default function LearnAshtakavargaPage() {
             {t('workedTitle')}
           </p>
           <div className="space-y-2 text-gold-light/80 font-mono text-xs">
-            <p>{tl({ en: 'Situation: Saturn is currently transiting Capricorn', hi: 'स्थिति: शनि वर्तमान में मकर में गोचर कर रहा है', sa: 'स्थिति: शनि वर्तमान में मकर में गोचर कर रहा है' }, locale)}</p>
-            <p>{tl({ en: 'Your Saturn BAV score in Capricorn: 6 bindus', hi: 'आपके BAV में शनि का मकर स्कोर: 6 बिन्दु', sa: 'आपके BAV में शनि का मकर स्कोर: 6 बिन्दु' }, locale)}</p>
-            <p className="text-emerald-400">{tl({ en: 'Analysis: Saturn transiting its own sign Capricorn with 6 bindus (above 4 threshold).', hi: 'निष्कर्ष: शनि अपनी स्वराशि मकर में 6 बिन्दु (4+ सीमा से ऊपर) के साथ गोचर कर रहा है।', sa: 'निष्कर्ष: शनि अपनी स्वराशि मकर में 6 बिन्दु (4+ सीमा से ऊपर) के साथ गोचर कर रहा है।' }, locale)}</p>
-            <p className="text-emerald-400">{tl({ en: 'This transit will bring structured career growth, disciplined success, and steady progress.', hi: 'यह गोचर करियर में संरचित वृद्धि, अनुशासन से सफलता, और स्थिर प्रगति लाएगा।', sa: 'यह गोचर करियर में संरचित वृद्धि, अनुशासन से सफलता, और स्थिर प्रगति लाएगा।' }, locale)}</p>
+            <p>{tl({ en: 'Situation: Saturn is currently transiting Capricorn', hi: 'स्थिति: शनि वर्तमान में मकर में गोचर कर रहा है', sa: 'स्थितिः: शनिः सम्प्रति मकर-राशौ गोचरं करोति' }, locale)}</p>
+            <p>{tl({ en: 'Your Saturn BAV score in Capricorn: 6 bindus', hi: 'आपके BAV में शनि का मकर स्कोर: 6 बिन्दु', sa: 'भवतः मकर-राशौ शनि-BAV-अङ्कः: 6 बिन्दवः' }, locale)}</p>
+            <p className="text-emerald-400">{tl({ en: 'Analysis: Saturn transiting its own sign Capricorn with 6 bindus (above 4 threshold).', hi: 'निष्कर्ष: शनि अपनी स्वराशि मकर में 6 बिन्दु (4+ सीमा से ऊपर) के साथ गोचर कर रहा है।', sa: 'विश्लेषणम्: शनिः स्वराशौ मकरे 6 बिन्दुभिः (4-सीमातः उपरि) गोचरं करोति।' }, locale)}</p>
+            <p className="text-emerald-400">{tl({ en: 'This transit will bring structured career growth, disciplined success, and steady progress.', hi: 'यह गोचर करियर में संरचित वृद्धि, अनुशासन से सफलता, और स्थिर प्रगति लाएगा।', sa: 'अयं गोचरः संरचित-जीविका-वृद्धिम्, अनुशासित-सफलताम्, स्थिर-प्रगतिं च आनेष्यति।' }, locale)}</p>
             <div className="mt-3 border-t border-gold-primary/10 pt-3">
               <p>{tl({ en: "Compare: Your friend\'s Saturn BAV score in Capricorn: 2 bindus", hi: "तुलना: मित्र की कुण्डली में शनि का मकर स्कोर: 2 बिन्दु", sa: "तुलना: मित्र की कुण्डली में शनि का मकर स्कोर: 2 बिन्दु" }, locale)}</p>
-              <p className="text-red-400">{tl({ en: 'During the same Saturn-in-Capricorn transit, your friend will experience obstacles, delays, and pressure.', hi: 'उसी शनि-मकर गोचर में, आपके मित्र को कठिनाइयाँ, देरी और बाधाएँ अनुभव होंगी।', sa: 'उसी शनि-मकर गोचर में, आपके मित्र को कठिनाइयाँ, देरी और बाधाएँ अनुभव होंगी।' }, locale)}</p>
-              <p className="text-amber-400 mt-1">{tl({ en: 'Same transit, two very different experiences — this is the power of Ashtakavarga.', hi: 'एक ही गोचर, दो बहुत अलग अनुभव — यह अष्टकवर्ग की शक्ति है।', sa: 'एक ही गोचर, दो बहुत अलग अनुभव — यह अष्टकवर्ग की शक्ति है।' }, locale)}</p>
+              <p className="text-red-400">{tl({ en: 'During the same Saturn-in-Capricorn transit, your friend will experience obstacles, delays, and pressure.', hi: 'उसी शनि-मकर गोचर में, आपके मित्र को कठिनाइयाँ, देरी और बाधाएँ अनुभव होंगी।', sa: 'तस्मिन्नेव शनि-मकर-गोचरे भवतः मित्रं विघ्नान्, विलम्बान्, दबावं च अनुभविष्यति।' }, locale)}</p>
+              <p className="text-amber-400 mt-1">{tl({ en: 'Same transit, two very different experiences — this is the power of Ashtakavarga.', hi: 'एक ही गोचर, दो बहुत अलग अनुभव — यह अष्टकवर्ग की शक्ति है।', sa: 'एकः गोचरः, अत्यन्त-भिन्नौ द्वौ अनुभवौ — एतत् अष्टकवर्गस्य सामर्थ्यम्।' }, locale)}</p>
             </div>
           </div>
         </div>
@@ -264,13 +264,13 @@ export default function LearnAshtakavargaPage() {
         {/* Worked reduction example */}
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {tl({ en: 'Reduction Example (Saturn BAV):', hi: 'शोधन उदाहरण (शनि BAV):', sa: 'शोधन उदाहरण (शनि BAV):' }, locale)}
+            {tl({ en: 'Reduction Example (Saturn BAV):', hi: 'शोधन उदाहरण (शनि BAV):', sa: 'शोधन-उदाहरणम् (शनि-BAV):' }, locale)}
           </p>
           <div className="space-y-1 text-gold-light/80 font-mono text-xs">
-            <p>{tl({ en: 'Before: Aries = 3, Scorpio = 1 (Mars pair)', hi: 'शोधन पूर्व: मेष = 3, वृश्चिक = 1 (मंगल जोड़ी)', sa: 'शोधन पूर्व: मेष = 3, वृश्चिक = 1 (मंगल जोड़ी)' }, locale)}</p>
-            <p>{tl({ en: 'Minimum = 1, subtract from both', hi: 'न्यूनतम = 1, दोनों से घटाएँ', sa: 'न्यूनतम = 1, दोनों से घटाएँ' }, locale)}</p>
-            <p className="text-emerald-400">{tl({ en: 'After: Aries = 2, Scorpio = 0', hi: 'शोधन पश्चात: मेष = 2, वृश्चिक = 0', sa: 'शोधन पश्चात: मेष = 2, वृश्चिक = 0' }, locale)}</p>
-            <p className="text-text-tertiary mt-1">{tl({ en: 'Saturn transit through Scorpio now appears ineffective.', hi: 'वृश्चिक में शनि गोचर अब निष्प्रभावी प्रतीत होता है।', sa: 'वृश्चिक में शनि गोचर अब निष्प्रभावी प्रतीत होता है।' }, locale)}</p>
+            <p>{tl({ en: 'Before: Aries = 3, Scorpio = 1 (Mars pair)', hi: 'शोधन पूर्व: मेष = 3, वृश्चिक = 1 (मंगल जोड़ी)', sa: 'शोधनात् पूर्वम्: मेषः = 3, वृश्चिकः = 1 (मङ्गल-युग्मम्)' }, locale)}</p>
+            <p>{tl({ en: 'Minimum = 1, subtract from both', hi: 'न्यूनतम = 1, दोनों से घटाएँ', sa: 'न्यूनतमम् = 1, उभाभ्यां व्यवकलनम्' }, locale)}</p>
+            <p className="text-emerald-400">{tl({ en: 'After: Aries = 2, Scorpio = 0', hi: 'शोधन पश्चात: मेष = 2, वृश्चिक = 0', sa: 'शोधनानन्तरम्: मेषः = 2, वृश्चिकः = 0' }, locale)}</p>
+            <p className="text-text-tertiary mt-1">{tl({ en: 'Saturn transit through Scorpio now appears ineffective.', hi: 'वृश्चिक में शनि गोचर अब निष्प्रभावी प्रतीत होता है।', sa: 'वृश्चिके शनि-गोचरः साम्प्रतम् अप्रभावी प्रतीयते।' }, locale)}</p>
           </div>
         </div>
       </LessonSection>
@@ -285,7 +285,7 @@ export default function LearnAshtakavargaPage() {
               <tr className="border-b border-gold-primary/10">
                 <th className="text-left py-2 px-2 text-gold-dark">{tl({ en: 'Kakshya', hi: 'कक्ष्या', sa: 'कक्ष्या' }, locale)}</th>
                 <th className="text-left py-2 px-2 text-gold-dark">{tl({ en: 'Ruler', hi: 'स्वामी', sa: 'स्वामी' }, locale)}</th>
-                <th className="text-left py-2 px-2 text-gold-dark">{tl({ en: 'Degree Range', hi: 'अंश सीमा', sa: 'अंश सीमा' }, locale)}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{tl({ en: 'Degree Range', hi: 'अंश सीमा', sa: 'अंश-सीमा' }, locale)}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gold-primary/5">

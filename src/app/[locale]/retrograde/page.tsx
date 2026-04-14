@@ -198,7 +198,7 @@ export default function RetrogradePage() {
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'sa-IN', ta: 'ta-IN', te: 'te-IN', bn: 'bn-IN', kn: 'kn-IN', gu: 'gu-IN', mai: 'mai-IN', mr: 'mr-IN' }, locale), { day: 'numeric', month: 'short' });
+    return d.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'en-IN', ta: 'en-IN', te: 'en-IN', bn: 'en-IN', kn: 'en-IN', gu: 'en-IN', mai: 'en-IN', mr: 'en-IN' }, locale), { day: 'numeric', month: 'short' });
   };
 
   // Check if a period is currently active

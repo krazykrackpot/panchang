@@ -201,8 +201,8 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
             <thead>
               <tr className="border-b border-gold-primary/15">
                 <th className="text-left text-gold-light py-2 pr-4">{tl({ en: 'Measurement', hi: 'माप', sa: 'माप' }, locale)}</th>
-                <th className="text-right text-gold-light py-2 pr-4">{tl({ en: 'Aryabhata (499 CE)', hi: 'आर्यभट (499 CE)', sa: 'आर्यभट (499 CE)' }, locale)}</th>
-                <th className="text-right text-gold-light py-2 pr-4">{tl({ en: 'Modern Value', hi: 'आधुनिक मान', sa: 'आधुनिक मान' }, locale)}</th>
+                <th className="text-right text-gold-light py-2 pr-4">{tl({ en: 'Aryabhata (499 CE)', hi: 'आर्यभट (499 CE)', sa: 'आर्यभटः (499 CE)' }, locale)}</th>
+                <th className="text-right text-gold-light py-2 pr-4">{tl({ en: 'Modern Value', hi: 'आधुनिक मान', sa: 'आधुनिकमानम्' }, locale)}</th>
                 <th className="text-right text-gold-light py-2">{tl({ en: 'Accuracy', hi: 'सटीकता', sa: 'सटीकता' }, locale)}</th>
               </tr>
             </thead>

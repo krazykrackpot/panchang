@@ -96,7 +96,7 @@ function OrbitalPlanesDiagram({ locale }: { locale: string }) {
 
       {/* ── Sun ── */}
       <SunIcon cx={CX} cy={CY} r={24} />
-      <Label x={CX} y={CY + 38} text={tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य' }, locale)} color="#f0d48a" size={11} bold />
+      <Label x={CX} y={CY + 38} text={tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' }, locale)} color="#f0d48a" size={11} bold />
 
       {/* ── Earth ── */}
       <EarthIcon cx={earthX} cy={earthY} r={12} />
@@ -193,7 +193,7 @@ function SolarEclipseDiagram({ locale }: { locale: string }) {
 
       {/* Sun */}
       <SunIcon cx={sunX} cy={Y} r={35} />
-      <Label x={sunX} y={Y + 52} text={tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य' }, locale)} color="#f0d48a" size={12} bold />
+      <Label x={sunX} y={Y + 52} text={tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' }, locale)} color="#f0d48a" size={12} bold />
 
       {/* Moon at Rahu */}
       <circle cx={rahuX} cy={Y} r="16" fill="#64748b" />
@@ -267,7 +267,7 @@ function LunarEclipseDiagram({ locale }: { locale: string }) {
 
       {/* Sun */}
       <SunIcon cx={sunX} cy={Y} r={35} />
-      <Label x={sunX} y={Y + 52} text={tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य' }, locale)} color="#f0d48a" size={12} bold />
+      <Label x={sunX} y={Y + 52} text={tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' }, locale)} color="#f0d48a" size={12} bold />
 
       {/* Earth */}
       <EarthIcon cx={earthX} cy={Y} r={18} />

@@ -62,16 +62,16 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
           <div>
             <p className="text-text-secondary text-sm leading-relaxed mb-4">{t('s1Body')}</p>
             <div className="p-4 rounded-xl bg-gold-primary/8 border border-gold-primary/15">
-              <p className="text-gold-light text-xs font-semibold mb-1">{tl({ en: 'Original Sanskrit Verse', hi: 'मूल संस्कृत श्लोक', sa: 'मूल संस्कृत श्लोक' }, locale)}</p>
+              <p className="text-gold-light text-xs font-semibold mb-1">{tl({ en: 'Original Sanskrit Verse', hi: 'मूल संस्कृत श्लोक', sa: 'मूलं संस्कृतश्लोकः' }, locale)}</p>
               <p className="text-text-primary text-sm font-mono">ज्या = अर्धज्या = sin(θ)</p>
-              <p className="text-text-secondary text-xs mt-1">{tl({ en: '"Jya" = bowstring of bow | "Ardha" = half', hi: '"ज्या" = धनुष की प्रत्यंचा | "अर्ध" = आधा', sa: '"ज्या" = धनुष की प्रत्यंचा | "अर्ध" = आधा' }, locale)}</p>
+              <p className="text-text-secondary text-xs mt-1">{tl({ en: '"Jya" = bowstring of bow | "Ardha" = half', hi: '"ज्या" = धनुष की प्रत्यंचा | "अर्ध" = आधा', sa: '"ज्या" = धनुषः प्रत्यञ्चा | "अर्ध" = अर्धम्' }, locale)}</p>
             </div>
           </div>
           {/* TWO diagrams side by side: Greek chord vs Indian half-chord */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Greek approach: full chord */}
             <div className="text-center">
-              <div className="text-red-400 text-xs font-bold mb-2 uppercase tracking-wider">{tl({ en: 'Greek Method — Full Chord', hi: 'यूनानी विधि — पूर्ण जीवा', sa: 'यूनानी विधि — पूर्ण जीवा' }, locale)}</div>
+              <div className="text-red-400 text-xs font-bold mb-2 uppercase tracking-wider">{tl({ en: 'Greek Method — Full Chord', hi: 'यूनानी विधि — पूर्ण जीवा', sa: 'ग्रीकपद्धतिः — पूर्णजीवा' }, locale)}</div>
               <svg viewBox="0 0 200 200" className="w-full max-w-[180px] mx-auto">
                 <circle cx="100" cy="100" r="80" fill="none" stroke="#f87171" strokeWidth="1.5" opacity="0.3" />
                 <circle cx="100" cy="100" r="2.5" fill="#f87171" opacity="0.5" />
@@ -84,13 +84,13 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
                 <path d="M 36 60 A 80 80 0 0 1 180 60" fill="none" stroke="#f87171" strokeWidth="2" opacity="0.6" />
                 <text x="100" y="50" textAnchor="middle" fill="#f87171" fontSize="9" fontWeight="bold">crd(2θ)</text>
                 <text x="100" y="180" textAnchor="middle" fill="#8a8478" fontSize="7">{tl({ en: "Ptolemy's chord → full chord", hi: "टॉलेमी का जीवा → पूरी जीवा", sa: "टॉलेमी का जीवा → पूरी जीवा" }, locale)}</text>
-                <text x="100" y="192" textAnchor="middle" fill="#8a8478" fontSize="7">{tl({ en: 'Awkward — needs double angle', hi: 'अजीब, दो कोणों की आवश्यकता', sa: 'अजीब, दो कोणों की आवश्यकता' }, locale)}</text>
+                <text x="100" y="192" textAnchor="middle" fill="#8a8478" fontSize="7">{tl({ en: 'Awkward — needs double angle', hi: 'अजीब, दो कोणों की आवश्यकता', sa: 'कठिनम् — द्विकोणापेक्षा' }, locale)}</text>
               </svg>
             </div>
 
             {/* Indian approach: half-chord = Jya = sine */}
             <div className="text-center">
-              <div className="text-emerald-400 text-xs font-bold mb-2 uppercase tracking-wider">{tl({ en: 'Indian Method — Ardha-jya (= Sine!)', hi: 'भारतीय विधि — अर्धज्या (= Sine!)', sa: 'भारतीय विधि — अर्धज्या (= Sine!)' }, locale)}</div>
+              <div className="text-emerald-400 text-xs font-bold mb-2 uppercase tracking-wider">{tl({ en: 'Indian Method — Ardha-jya (= Sine!)', hi: 'भारतीय विधि — अर्धज्या (= Sine!)', sa: 'भारतीयपद्धतिः — अर्धज्या (= Sine!)' }, locale)}</div>
               <svg viewBox="0 0 200 200" className="w-full max-w-[180px] mx-auto">
                 <circle cx="100" cy="100" r="80" fill="none" stroke="#34d399" strokeWidth="1.5" opacity="0.3" />
                 <circle cx="100" cy="100" r="2.5" fill="#34d399" opacity="0.5" />
@@ -108,7 +108,7 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
                 <text x="140" y="35" textAnchor="middle" fill="#34d399" fontSize="9" fontWeight="bold">sin(θ)</text>
                 <text x="88" y="72" textAnchor="end" fill="#f0d48a" fontSize="7" opacity="0.7">cos(θ)</text>
                 <text x="100" y="180" textAnchor="middle" fill="#8a8478" fontSize="7">{tl({ en: "Aryabhata's Jya → SINE is born", hi: "आर्यभट की ज्या → SINE का जन्म", sa: "आर्यभट की ज्या → SINE का जन्म" }, locale)}</text>
-                <text x="100" y="192" textAnchor="middle" fill="#34d399" fontSize="7">{tl({ en: 'Elegant — one angle, directly useful', hi: 'सुंदर, प्रत्यक्ष, एक कोण पर्याप्त', sa: 'सुंदर, प्रत्यक्ष, एक कोण पर्याप्त' }, locale)}</text>
+                <text x="100" y="192" textAnchor="middle" fill="#34d399" fontSize="7">{tl({ en: 'Elegant — one angle, directly useful', hi: 'सुंदर, प्रत्यक्ष, एक कोण पर्याप्त', sa: 'सुन्दरम् — एकः कोणः, प्रत्यक्षोपयोगी' }, locale)}</text>
               </svg>
             </div>
           </div>
@@ -132,7 +132,7 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
               <circle cx="130" cy="110" r="3" fill="#f0d48a" />
               {/* Chord (full Jya) */}
               <line x1="55" y1="65" x2="205" y2="65" stroke="url(#sineGold)" strokeWidth="2.5" />
-              <text x="130" y="55" textAnchor="middle" fill="#f0d48a" fontSize="9" fontWeight="bold">{tl({ en: 'Jya (full chord)', hi: 'ज्या (पूर्ण जीवा)', sa: 'ज्या (पूर्ण जीवा)' }, locale)}</text>
+              <text x="130" y="55" textAnchor="middle" fill="#f0d48a" fontSize="9" fontWeight="bold">{tl({ en: 'Jya (full chord)', hi: 'ज्या (पूर्ण जीवा)', sa: 'ज्या (पूर्णजीवा)' }, locale)}</text>
               {/* Half chord = Ardha-jya = sine */}
               <line x1="130" y1="65" x2="205" y2="65" stroke="#34d399" strokeWidth="3" />
               <text x="170" y="80" textAnchor="middle" fill="#34d399" fontSize="8" fontWeight="bold">{tl({ en: 'Ardha-jya = sin', hi: 'अर्धज्या = sin', sa: 'अर्धज्या = sin' }, locale)}</text>
@@ -145,7 +145,7 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
               <path d="M 155 110 A 25 25 0 0 0 144 88" fill="none" stroke="#fbbf24" strokeWidth="1.2" />
               <text x="162" y="100" fill="#fbbf24" fontSize="8">θ</text>
               {/* Labels */}
-              <text x="130" y="200" textAnchor="middle" fill="#8a8478" fontSize="7">{tl({ en: 'Circle = Bow | Jya = Bowstring', hi: 'वृत्त = धनुष | ज्या = प्रत्यंचा', sa: 'वृत्त = धनुष | ज्या = प्रत्यंचा' }, locale)}</text>
+              <text x="130" y="200" textAnchor="middle" fill="#8a8478" fontSize="7">{tl({ en: 'Circle = Bow | Jya = Bowstring', hi: 'वृत्त = धनुष | ज्या = प्रत्यंचा', sa: 'वृत्तम् = धनुः | ज्या = प्रत्यञ्चा' }, locale)}</text>
             </svg>
           </div>
         </div>
@@ -160,7 +160,7 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
 
         {/* Source quote */}
         <div className="p-4 rounded-xl bg-gold-primary/8 border-l-4 border-gold-primary/50 mb-6">
-          <p className="text-gold-light text-xs font-semibold mb-1">{tl({ en: 'Classical Source', hi: 'मूल स्रोत', sa: 'मूल स्रोत' }, locale)}</p>
+          <p className="text-gold-light text-xs font-semibold mb-1">{tl({ en: 'Classical Source', hi: 'मूल स्रोत', sa: 'शास्त्रीयस्रोतः' }, locale)}</p>
           <p className="text-text-primary text-sm italic font-mono">आर्यभटीय, गणितपाद, श्लोक १२</p>
           <p className="text-text-secondary text-xs mt-1 font-mono">मखि भखि फखि धखि नखि नखि मखि फखि...</p>
           <p className="text-text-secondary text-xs mt-1">{t('s2Source')}</p>
@@ -171,10 +171,10 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/15">
-                <th className="text-left text-gold-light py-2 pr-4">{tl({ en: 'Angle', hi: 'कोण', sa: 'कोण' }, locale)}</th>
-                <th className="text-right text-gold-light py-2 pr-4">{tl({ en: 'Aryabhata (499 CE)', hi: 'आर्यभट (499 ई.)', sa: 'आर्यभट (499 ई.)' }, locale)}</th>
-                <th className="text-right text-gold-light py-2 pr-4">{tl({ en: 'Modern Value', hi: 'आधुनिक मान', sa: 'आधुनिक मान' }, locale)}</th>
-                <th className="text-right text-gold-light py-2">{tl({ en: 'Error', hi: 'त्रुटि', sa: 'त्रुटि' }, locale)}</th>
+                <th className="text-left text-gold-light py-2 pr-4">{tl({ en: 'Angle', hi: 'कोण', sa: 'कोणः' }, locale)}</th>
+                <th className="text-right text-gold-light py-2 pr-4">{tl({ en: 'Aryabhata (499 CE)', hi: 'आर्यभट (499 ई.)', sa: 'आर्यभटः (499 CE)' }, locale)}</th>
+                <th className="text-right text-gold-light py-2 pr-4">{tl({ en: 'Modern Value', hi: 'आधुनिक मान', sa: 'आधुनिकमानम्' }, locale)}</th>
+                <th className="text-right text-gold-light py-2">{tl({ en: 'Error', hi: 'त्रुटि', sa: 'त्रुटिः' }, locale)}</th>
               </tr>
             </thead>
             <tbody>
@@ -189,7 +189,7 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
             </tbody>
           </table>
         </div>
-        <p className="text-text-secondary text-xs mt-2 italic">{tl({ en: '* Values on scale of R=3438 (radius in arc-minutes)', hi: '* मान R=3438 (चाप-मिनट त्रिज्या) के पैमाने पर', sa: '* मान R=3438 (चाप-मिनट त्रिज्या) के पैमाने पर' }, locale)}</p>
+        <p className="text-text-secondary text-xs mt-2 italic">{tl({ en: '* Values on scale of R=3438 (radius in arc-minutes)', hi: '* मान R=3438 (चाप-मिनट त्रिज्या) के पैमाने पर', sa: '* मानानि R=3438 (चापकलायाः त्रिज्यायाः) मापदण्डे' }, locale)}</p>
       </div>
 
       {/* ── Section 3: The Mistranslation Chain ──────────────────── */}
@@ -325,7 +325,7 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
           ))}
         </div>
         <p className="text-text-secondary text-xs mt-4 italic">
-          {tl({ en: 'The mathematics was always Indian. Only the name got lost.', hi: 'गणित हमेशा भारतीय था। केवल नाम खो गया।', sa: 'गणित हमेशा भारतीय था। केवल नाम खो गया।' }, locale)}
+          {tl({ en: 'The mathematics was always Indian. Only the name got lost.', hi: 'गणित हमेशा भारतीय था। केवल नाम खो गया।', sa: 'गणितं सर्वदा भारतीयमेव आसीत्। केवलं नाम एव नष्टम् अभवत्।' }, locale)}
         </p>
       </div>
 

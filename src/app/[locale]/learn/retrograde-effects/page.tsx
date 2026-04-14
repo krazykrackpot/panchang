@@ -73,7 +73,7 @@ function RetrogradeOrbitalDiagram({ locale }: { locale: string }) {
       <circle cx="300" cy="160" r="20" fill="url(#rg-sun)" />
       <circle cx="300" cy="160" r="24" fill="none" stroke="#fbbf24" strokeWidth="0.5" strokeOpacity="0.3" />
       <text x="300" y="164" textAnchor="middle" fill="#fbbf24" fontSize="9" fontWeight="bold">
-        {tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य' }, locale)}
+        {tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' }, locale)}
       </text>
 
       {/* Earth orbit */}
@@ -216,7 +216,7 @@ export default function RetrogradeEffectsPage() {
           <table className="w-full text-sm border-collapse">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-2 px-3 text-gold-light font-bold text-xs">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रह' }, locale)}</th>
+                <th className="text-left py-2 px-3 text-gold-light font-bold text-xs">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः' }, locale)}</th>
                 <th className="text-left py-2 px-3 text-gold-light font-bold text-xs">{tl({ en: 'Frequency', hi: 'आवृत्ति', sa: 'आवृत्ति' }, locale)}</th>
                 <th className="text-left py-2 px-3 text-gold-light font-bold text-xs">{tl({ en: 'Duration', hi: 'अवधि', sa: 'अवधि' }, locale)}</th>
                 <th className="text-left py-2 px-3 text-gold-light font-bold text-xs">{tl({ en: 'Vedic View', hi: 'वैदिक दृष्टिकोण', sa: 'वैदिक दृष्टिकोण' }, locale)}</th>

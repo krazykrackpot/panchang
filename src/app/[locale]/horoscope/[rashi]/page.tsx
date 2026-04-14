@@ -99,7 +99,7 @@ function scoreLabel(score: number, locale: string): string {
   if (score >= 8) return tl({ en: 'Excellent', hi: 'उत्कृष्ट', sa: 'उत्कृष्ट' }, locale);
   if (score >= 6.5) return tl({ en: 'Good', hi: 'शुभ', sa: 'शुभ' }, locale);
   if (score >= 4) return tl({ en: 'Mixed', hi: 'मिश्रित', sa: 'मिश्रित' }, locale);
-  return tl({ en: 'Challenging', hi: 'चुनौतीपूर्ण', sa: 'चुनौतीपूर्ण' }, locale);
+  return tl({ en: 'Challenging', hi: 'चुनौतीपूर्ण', sa: 'कठिनः' }, locale);
 }
 
 export default function RashiHoroscopePage() {

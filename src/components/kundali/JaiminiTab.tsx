@@ -360,7 +360,7 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
                 <div className="flex items-center gap-3">
                   <span className={`w-2.5 h-2.5 rounded-full ${isCurrent ? 'bg-gold-primary animate-pulse' : isPast ? 'bg-text-secondary/30' : 'bg-gold-dark/50'}`} />
                   <span className="text-gold-light font-bold" style={headingFont}>{tl(cd.signName, locale)}</span>
-                  <span className="text-text-tertiary text-xs">{cd.years} {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि', ta: 'ஆண்டுகள்', te: 'సంవత్సరాలు', bn: 'বছর', kn: 'ವರ್ಷಗಳು', gu: 'વર્ષ', mai: 'वर्ष', mr: 'वर्षे' }, locale)}</span>
+                  <span className="text-text-tertiary text-xs">{cd.years} {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि', ta: 'ஆண்டுகள்', te: 'సంవత్సరాలు', bn: 'বছর', kn: 'ವರ್ಷಗಳು', gu: 'વર્ષો', mai: 'वर्ष', mr: 'वर्षे' }, locale)}</span>
                 </div>
                 <span className="text-text-secondary text-xs font-mono">{cd.startDate} → {cd.endDate}</span>
               </div>

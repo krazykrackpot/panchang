@@ -95,7 +95,7 @@ export default async function CosmicTimePage({ params }: { params: Promise<{ loc
                   </div>
                   <div className="text-right">
                     <span className="font-mono text-sm" style={{ color: yuga.color }}>{yuga.years.toLocaleString()}</span>
-                    <span className="text-text-secondary text-xs ml-1">{tl({ en: 'years', hi: 'वर्ष', sa: 'वर्ष' }, locale)}</span>
+                    <span className="text-text-secondary text-xs ml-1">{tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि' }, locale)}</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 mb-1">
@@ -111,10 +111,10 @@ export default async function CosmicTimePage({ params }: { params: Promise<{ loc
         </div>
 
         <div className="p-4 rounded-xl bg-gold-primary/8 border border-gold-primary/20 text-center">
-          <p className="text-text-secondary text-xs mb-1">{tl({ en: '1 Mahayuga = Satya + Treta + Dwapara + Kali', hi: '1 महायुग = सत्य + त्रेता + द्वापर + कलि', sa: '1 महायुग = सत्य + त्रेता + द्वापर + कलि' }, locale)}</p>
+          <p className="text-text-secondary text-xs mb-1">{tl({ en: '1 Mahayuga = Satya + Treta + Dwapara + Kali', hi: '1 महायुग = सत्य + त्रेता + द्वापर + कलि', sa: '1 महायुगम् = सत्य + त्रेता + द्वापर + कलि' }, locale)}</p>
           <p className="text-gold-light text-lg font-mono font-bold">1,728,000 + 1,296,000 + 864,000 + 432,000</p>
-          <p className="text-gold-light text-2xl font-mono font-bold mt-1">= 4,320,000 {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्ष' }, locale)}</p>
-          <p className="text-text-secondary text-xs mt-2">{tl({ en: '× 1,000 = 1 Kalpa = 4,320,000,000 years', hi: '× 1,000 = 1 कल्प = 4,320,000,000 वर्ष', sa: '× 1,000 = 1 कल्प = 4,320,000,000 वर्ष' }, locale)}</p>
+          <p className="text-gold-light text-2xl font-mono font-bold mt-1">= 4,320,000 {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि' }, locale)}</p>
+          <p className="text-text-secondary text-xs mt-2">{tl({ en: '× 1,000 = 1 Kalpa = 4,320,000,000 years', hi: '× 1,000 = 1 कल्प = 4,320,000,000 वर्ष', sa: '× 1,000 = 1 कल्पः = 4,320,000,000 वर्षाणि' }, locale)}</p>
         </div>
       </div>
 
@@ -129,10 +129,10 @@ export default async function CosmicTimePage({ params }: { params: Promise<{ loc
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/15">
-                <th className="text-left text-gold-light py-2 pr-4">{tl({ en: 'Unit', hi: 'इकाई', sa: 'इकाई' }, locale)}</th>
-                <th className="text-right text-gold-light py-2 pr-4">{tl({ en: 'Vedic', hi: 'वैदिक', sa: 'वैदिक' }, locale)}</th>
-                <th className="text-right text-gold-light py-2 pr-4">{tl({ en: 'Modern Science', hi: 'आधुनिक विज्ञान', sa: 'आधुनिक विज्ञान' }, locale)}</th>
-                <th className="text-right text-gold-light py-2">{tl({ en: 'Match', hi: 'मिलान', sa: 'मिलान' }, locale)}</th>
+                <th className="text-left text-gold-light py-2 pr-4">{tl({ en: 'Unit', hi: 'इकाई', sa: 'एककम्' }, locale)}</th>
+                <th className="text-right text-gold-light py-2 pr-4">{tl({ en: 'Vedic', hi: 'वैदिक', sa: 'वैदिकम्' }, locale)}</th>
+                <th className="text-right text-gold-light py-2 pr-4">{tl({ en: 'Modern Science', hi: 'आधुनिक विज्ञान', sa: 'आधुनिकं विज्ञानम्' }, locale)}</th>
+                <th className="text-right text-gold-light py-2">{tl({ en: 'Match', hi: 'मिलान', sa: 'मिलनम्' }, locale)}</th>
               </tr>
             </thead>
             <tbody>
@@ -172,23 +172,23 @@ export default async function CosmicTimePage({ params }: { params: Promise<{ loc
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 rounded-xl bg-gold-primary/8 border border-gold-primary/20">
-            <p className="text-gold-light font-semibold text-sm mb-2">{tl({ en: 'Surya Siddhanta (~400 CE)', hi: 'सूर्य सिद्धांत (~400 CE)', sa: 'सूर्य सिद्धांत (~400 CE)' }, locale)}</p>
+            <p className="text-gold-light font-semibold text-sm mb-2">{tl({ en: 'Surya Siddhanta (~400 CE)', hi: 'सूर्य सिद्धांत (~400 CE)', sa: 'सूर्यसिद्धान्तः (~400 CE)' }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed mb-3">
-              {tl({ en: 'One of the oldest surviving astronomical texts. Gives the precise number: 1 Kalpa = 4,320,000,000 years, and derives planetary revolutions from this epoch.', hi: 'प्राचीनतम जीवित खगोलीय ग्रंथों में से एक। एक कल्प = 4,320,000,000 वर्ष की सटीक संख्या प्रदान करता है और ग्रहीय चक्करों की गणना इसी आधार पर करता है।', sa: 'प्राचीनतम जीवित खगोलीय ग्रंथों में से एक। एक कल्प = 4,320,000,000 वर्ष की सटीक संख्या प्रदान करता है और ग्रहीय चक्करों की गणना इसी आधार पर करता है।' }, locale)}
+              {tl({ en: 'One of the oldest surviving astronomical texts. Gives the precise number: 1 Kalpa = 4,320,000,000 years, and derives planetary revolutions from this epoch.', hi: 'प्राचीनतम जीवित खगोलीय ग्रंथों में से एक। एक कल्प = 4,320,000,000 वर्ष की सटीक संख्या प्रदान करता है और ग्रहीय चक्करों की गणना इसी आधार पर करता है।', sa: 'जीवितेषु प्राचीनतमेषु खगोलशास्त्रग्रन्थेषु अन्यतमः। एकः कल्पः = 4,320,000,000 वर्षाणि इति स्पष्टसंख्यां ददाति, तथा च अस्मादेव युगात् ग्रहपरिक्रमणानि व्युत्पादयति।' }, locale)}
             </p>
             <div className="p-2 rounded-lg bg-white/[0.04] border border-gold-primary/10">
-              <p className="text-gold-light font-mono text-xs">{tl({ en: '1 Kalpa = 4,320,000,000 years', hi: '1 कल्प = 4,32,00,00,000 वर्ष', sa: '1 कल्प = 4,32,00,00,000 वर्ष' }, locale)}</p>
-              <p className="text-text-secondary text-xs mt-0.5">{tl({ en: '= 1000 Mahayugas × 4,320,000', hi: '= 1000 महायुग × 4,320,000', sa: '= 1000 महायुग × 4,320,000' }, locale)}</p>
+              <p className="text-gold-light font-mono text-xs">{tl({ en: '1 Kalpa = 4,320,000,000 years', hi: '1 कल्प = 4,32,00,00,000 वर्ष', sa: '1 कल्पः = 4,320,000,000 वर्षाणि' }, locale)}</p>
+              <p className="text-text-secondary text-xs mt-0.5">{tl({ en: '= 1000 Mahayugas × 4,320,000', hi: '= 1000 महायुग × 4,320,000', sa: '= 1000 महायुगानि × 4,320,000' }, locale)}</p>
             </div>
           </div>
           <div className="p-4 rounded-xl bg-purple-500/8 border border-purple-500/20">
-            <p className="text-purple-300 font-semibold text-sm mb-2">{tl({ en: 'Vishnu Purana', hi: 'विष्णु पुराण', sa: 'विष्णु पुराण' }, locale)}</p>
+            <p className="text-purple-300 font-semibold text-sm mb-2">{tl({ en: 'Vishnu Purana', hi: 'विष्णु पुराण', sa: 'विष्णुपुराणम्' }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed mb-3">
               {tl({ en: "Describes the full nested hierarchy from Kali Yuga to Brahma\'s lifespan. Numbers are consistent and interlocking — not folklore, but mathematics.", hi: "कलि युग से ब्रह्मा के जीवनकाल तक पूर्ण नेस्टेड पदानुक्रम का वर्णन करता है। संख्याएँ सुसंगत और परस्पर जुड़ी हुई हैं — लोककथा नहीं, गणित।", sa: "कलि युग से ब्रह्मा के जीवनकाल तक पूर्ण नेस्टेड पदानुक्रम का वर्णन करता है। संख्याएँ सुसंगत और परस्पर जुड़ी हुई हैं — लोककथा नहीं, गणित।" }, locale)}
             </p>
             <div className="p-2 rounded-lg bg-white/[0.04] border border-purple-500/10">
               <p className="text-purple-300 font-mono text-xs">{tl({ en: "Brahma's lifespan = 311,040,000,000,000 years", hi: "ब्रह्मा का जीवनकाल = 311,040,000,000,000 वर्ष", sa: "ब्रह्मा का जीवनकाल = 311,040,000,000,000 वर्ष" }, locale)}</p>
-              <p className="text-text-secondary text-xs mt-0.5">{tl({ en: '= 2 × 360 × 1000 × 2 × 1000 Mahayugas', hi: '= 2 × 360 × 1000 × 2 × 1000 महायुग', sa: '= 2 × 360 × 1000 × 2 × 1000 महायुग' }, locale)}</p>
+              <p className="text-text-secondary text-xs mt-0.5">{tl({ en: '= 2 × 360 × 1000 × 2 × 1000 Mahayugas', hi: '= 2 × 360 × 1000 × 2 × 1000 महायुग', sa: '= 2 × 360 × 1000 × 2 × 1000 महायुगानि' }, locale)}</p>
             </div>
           </div>
         </div>
@@ -247,7 +247,7 @@ export default async function CosmicTimePage({ params }: { params: Promise<{ loc
           href="/vedic-time"
           className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gold-primary/15 border border-gold-primary/25 text-gold-light text-sm font-semibold hover:bg-gold-primary/25 transition-colors"
         >
-          {tl({ en: 'Explore Vedic Time Tool', hi: 'वैदिक समय उपकरण देखें', sa: 'वैदिक समय उपकरण देखें' }, locale)} →
+          {tl({ en: 'Explore Vedic Time Tool', hi: 'वैदिक समय उपकरण देखें', sa: 'वैदिककालोपकरणम् अन्वेषयतु' }, locale)} →
         </Link>
       </div>
 

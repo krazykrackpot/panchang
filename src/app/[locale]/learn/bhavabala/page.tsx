@@ -156,7 +156,7 @@ export default function LearnBhavabalaPage() {
                 className="w-full flex items-center justify-between px-6 py-4 hover:bg-gold-primary/5 transition-colors">
                 <div className="flex items-center gap-3">
                   <span className={`font-bold text-lg ${cls.color}`} style={headingFont}>{t(cls.labelKey)}</span>
-                  <span className="text-text-tertiary text-xs">{tl({ en: 'Houses', hi: 'भाव', sa: 'भाव' }, locale)}: {cls.houses}</span>
+                  <span className="text-text-tertiary text-xs">{tl({ en: 'Houses', hi: 'भाव', sa: 'भावाः' }, locale)}: {cls.houses}</span>
                 </div>
                 <ChevronDown className={`w-5 h-5 text-text-secondary transition-transform ${isExp ? 'rotate-180' : ''}`} />
               </button>

@@ -101,7 +101,7 @@ export default function DashasPage() {
             <GrahaIconById id={PLANET_ID[currentMaha.planet] ?? 0} size={40} />
             <div className="flex-1">
               <p className="text-gold-light font-bold text-lg" style={hf}>{tl(currentMaha.planetName, locale)} {tl({ en: 'Mahadasha', hi: 'महादशा', sa: 'महादशा', ta: 'மகாதசை', te: 'మహాదశ', bn: 'মহাদশা', kn: 'ಮಹಾದಶೆ', gu: 'મહાદશા', mai: 'महादशा', mr: 'महादशा' }, locale)}</p>
-              <p className="text-text-secondary text-xs font-mono">{currentMaha.startDate} — {currentMaha.endDate} ({yearsDiff(currentMaha.startDate, currentMaha.endDate)} {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि', ta: 'ஆண்டுகள்', te: 'సంవత్సరాలు', bn: 'বছর', kn: 'ವರ್ಷಗಳು', gu: 'વર્ષ', mai: 'वर्ष', mr: 'वर्षे' }, locale)})</p>
+              <p className="text-text-secondary text-xs font-mono">{currentMaha.startDate} — {currentMaha.endDate} ({yearsDiff(currentMaha.startDate, currentMaha.endDate)} {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि', ta: 'ஆண்டுகள்', te: 'సంవత్సరాలు', bn: 'বছর', kn: 'ವರ್ಷಗಳು', gu: 'વર્ષો', mai: 'वर्ष', mr: 'वर्षे' }, locale)})</p>
               <div className="mt-2 h-2 bg-bg-tertiary/40 rounded-full overflow-hidden">
                 <div className="h-full bg-gradient-to-r from-gold-primary to-gold-light rounded-full" style={{ width: `${progressPercent(currentMaha.startDate, currentMaha.endDate)}%` }} />
               </div>

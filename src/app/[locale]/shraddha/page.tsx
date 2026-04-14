@@ -164,7 +164,7 @@ export default function ShraddhaPage() {
                     {currentYear} {tl({ en: 'Shraddha Date', hi: 'श्राद्ध तिथि', sa: 'श्राद्ध तिथि' }, locale)}
                   </div>
                   <div className="text-gold-light text-3xl font-bold" style={headingFont}>
-                    {new Date(result.date + 'T00:00:00').toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale), { day: 'numeric', month: 'long', year: 'numeric' })}
+                    {new Date(result.date + 'T00:00:00').toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'en-IN' }, locale), { day: 'numeric', month: 'long', year: 'numeric' })}
                   </div>
                 </div>
               )}
@@ -174,7 +174,7 @@ export default function ShraddhaPage() {
                     {currentYear + 1} {tl({ en: 'Shraddha Date', hi: 'श्राद्ध तिथि', sa: 'श्राद्ध तिथि' }, locale)}
                   </div>
                   <div className="text-gold-light text-xl font-bold" style={headingFont}>
-                    {new Date(result.nextDate + 'T00:00:00').toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale), { day: 'numeric', month: 'long', year: 'numeric' })}
+                    {new Date(result.nextDate + 'T00:00:00').toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'en-IN' }, locale), { day: 'numeric', month: 'long', year: 'numeric' })}
                   </div>
                 </div>
               )}

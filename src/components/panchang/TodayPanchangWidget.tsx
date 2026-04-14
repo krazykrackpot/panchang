@@ -118,7 +118,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={tl({ en: 'Search city or place...', hi: 'शहर या स्थान खोजें...', sa: 'शहर या स्थान खोजें...' }, locale)}
+              placeholder={tl({ en: 'Search city or place...', hi: 'शहर या स्थान खोजें...', sa: 'नगरं स्थानं वा अन्विष्यतु...' }, locale)}
               className="flex-1 bg-transparent text-text-primary text-sm placeholder:text-text-secondary/70 focus:outline-none"
               autoFocus
             />

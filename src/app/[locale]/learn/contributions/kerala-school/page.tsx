@@ -210,7 +210,7 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
               <thead>
                 <tr className="border-b border-amber-500/15">
                   <th className="text-left text-amber-300 py-1.5 pr-3">{tl({ en: 'Term', hi: 'पद', sa: 'पद' }, locale)}</th>
-                  <th className="text-left text-amber-300 py-1.5 pr-3">{tl({ en: 'Value', hi: 'मान', sa: 'मान' }, locale)}</th>
+                  <th className="text-left text-amber-300 py-1.5 pr-3">{tl({ en: 'Value', hi: 'मान', sa: 'मूल्यम्' }, locale)}</th>
                   <th className="text-right text-amber-300 py-1.5">{tl({ en: 'Running Sum', hi: 'चलता योग', sa: 'चलता योग' }, locale)}</th>
                 </tr>
               </thead>

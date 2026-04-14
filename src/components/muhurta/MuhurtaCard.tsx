@@ -70,7 +70,7 @@ export default function MuhurtaCard({ muhurta, locale }: MuhurtaCardProps) {
             <div className="px-4 pb-4 pt-0 ml-11 space-y-3 border-t border-gold-primary/5">
               <div className="pt-3">
                 <h4 className="text-xs font-semibold text-gold-primary/70 uppercase tracking-wider mb-1">
-                  {tl({ en: 'Significance', hi: 'महत्त्व', sa: 'महत्त्व', ta: 'Significance', te: 'Significance', bn: 'Significance', kn: 'Significance', gu: 'Significance', mai: 'महत्त्व', mr: 'महत्त्व' }, locale)}
+                  {tl({ en: 'Significance', hi: 'महत्त्व', sa: 'महत्त्वम्', ta: 'முக்கியத்துவம்', te: 'ప్రాముఖ్యత', bn: 'তাৎপর্য', kn: 'ಮಹತ್ವ', gu: 'મહત્ત્વ', mai: 'महत्त्व', mr: 'महत्त्व' }, locale)}
                 </h4>
                 <p className="text-text-secondary text-sm leading-relaxed">{m.significance[locale]}</p>
               </div>

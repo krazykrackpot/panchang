@@ -92,18 +92,18 @@ function Page2() {
         {/* Rashi grid */}
         <div className="grid grid-cols-2 gap-2 mb-4">
           {[
-            { n: 1, en: 'Mesha', hi: 'मेष', sym: 'Aries', ruler: tl({ en: 'Mars', hi: 'मंगल', sa: 'मंगल' }, locale), elem: tl({ en: 'Fire', hi: 'अग्नि', sa: 'अग्नि' }, locale) },
-            { n: 2, en: 'Vrishabha', hi: 'वृषभ', sym: 'Taurus', ruler: tl({ en: 'Venus', hi: 'शुक्र', sa: 'शुक्र' }, locale), elem: tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी' }, locale) },
-            { n: 3, en: 'Mithuna', hi: 'मिथुन', sym: 'Gemini', ruler: tl({ en: 'Mercury', hi: 'बुध', sa: 'बुध' }, locale), elem: tl({ en: 'Air', hi: 'वायु', sa: 'वायु' }, locale) },
-            { n: 4, en: 'Karka', hi: 'कर्क', sym: 'Cancer', ruler: tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र' }, locale), elem: tl({ en: 'Water', hi: 'जल', sa: 'जल' }, locale) },
-            { n: 5, en: 'Simha', hi: 'सिंह', sym: 'Leo', ruler: tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य' }, locale), elem: tl({ en: 'Fire', hi: 'अग्नि', sa: 'अग्नि' }, locale) },
-            { n: 6, en: 'Kanya', hi: 'कन्या', sym: 'Virgo', ruler: tl({ en: 'Mercury', hi: 'बुध', sa: 'बुध' }, locale), elem: tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी' }, locale) },
-            { n: 7, en: 'Tula', hi: 'तुला', sym: 'Libra', ruler: tl({ en: 'Venus', hi: 'शुक्र', sa: 'शुक्र' }, locale), elem: tl({ en: 'Air', hi: 'वायु', sa: 'वायु' }, locale) },
-            { n: 8, en: 'Vrischika', hi: 'वृश्चिक', sym: 'Scorpio', ruler: tl({ en: 'Mars', hi: 'मंगल', sa: 'मंगल' }, locale), elem: tl({ en: 'Water', hi: 'जल', sa: 'जल' }, locale) },
-            { n: 9, en: 'Dhanu', hi: 'धनु', sym: 'Sagittarius', ruler: tl({ en: 'Jupiter', hi: 'गुरु', sa: 'गुरु' }, locale), elem: tl({ en: 'Fire', hi: 'अग्नि', sa: 'अग्नि' }, locale) },
-            { n: 10, en: 'Makara', hi: 'मकर', sym: 'Capricorn', ruler: tl({ en: 'Saturn', hi: 'शनि', sa: 'शनि' }, locale), elem: tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी' }, locale) },
-            { n: 11, en: 'Kumbha', hi: 'कुम्भ', sym: 'Aquarius', ruler: tl({ en: 'Saturn', hi: 'शनि', sa: 'शनि' }, locale), elem: tl({ en: 'Air', hi: 'वायु', sa: 'वायु' }, locale) },
-            { n: 12, en: 'Meena', hi: 'मीन', sym: 'Pisces', ruler: tl({ en: 'Jupiter', hi: 'गुरु', sa: 'गुरु' }, locale), elem: tl({ en: 'Water', hi: 'जल', sa: 'जल' }, locale) },
+            { n: 1, en: 'Mesha', hi: 'मेष', sym: 'Aries', ruler: tl({ en: 'Mars', hi: 'मंगल', sa: 'मङ्गलः' }, locale), elem: tl({ en: 'Fire', hi: 'अग्नि', sa: 'अग्नि' }, locale) },
+            { n: 2, en: 'Vrishabha', hi: 'वृषभ', sym: 'Taurus', ruler: tl({ en: 'Venus', hi: 'शुक्र', sa: 'शुक्रः' }, locale), elem: tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी' }, locale) },
+            { n: 3, en: 'Mithuna', hi: 'मिथुन', sym: 'Gemini', ruler: tl({ en: 'Mercury', hi: 'बुध', sa: 'बुधः' }, locale), elem: tl({ en: 'Air', hi: 'वायु', sa: 'वायु' }, locale) },
+            { n: 4, en: 'Karka', hi: 'कर्क', sym: 'Cancer', ruler: tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्रः' }, locale), elem: tl({ en: 'Water', hi: 'जल', sa: 'जल' }, locale) },
+            { n: 5, en: 'Simha', hi: 'सिंह', sym: 'Leo', ruler: tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' }, locale), elem: tl({ en: 'Fire', hi: 'अग्नि', sa: 'अग्नि' }, locale) },
+            { n: 6, en: 'Kanya', hi: 'कन्या', sym: 'Virgo', ruler: tl({ en: 'Mercury', hi: 'बुध', sa: 'बुधः' }, locale), elem: tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी' }, locale) },
+            { n: 7, en: 'Tula', hi: 'तुला', sym: 'Libra', ruler: tl({ en: 'Venus', hi: 'शुक्र', sa: 'शुक्रः' }, locale), elem: tl({ en: 'Air', hi: 'वायु', sa: 'वायु' }, locale) },
+            { n: 8, en: 'Vrischika', hi: 'वृश्चिक', sym: 'Scorpio', ruler: tl({ en: 'Mars', hi: 'मंगल', sa: 'मङ्गलः' }, locale), elem: tl({ en: 'Water', hi: 'जल', sa: 'जल' }, locale) },
+            { n: 9, en: 'Dhanu', hi: 'धनु', sym: 'Sagittarius', ruler: tl({ en: 'Jupiter', hi: 'गुरु', sa: 'गुरुः' }, locale), elem: tl({ en: 'Fire', hi: 'अग्नि', sa: 'अग्नि' }, locale) },
+            { n: 10, en: 'Makara', hi: 'मकर', sym: 'Capricorn', ruler: tl({ en: 'Saturn', hi: 'शनि', sa: 'शनिः' }, locale), elem: tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी' }, locale) },
+            { n: 11, en: 'Kumbha', hi: 'कुम्भ', sym: 'Aquarius', ruler: tl({ en: 'Saturn', hi: 'शनि', sa: 'शनिः' }, locale), elem: tl({ en: 'Air', hi: 'वायु', sa: 'वायु' }, locale) },
+            { n: 12, en: 'Meena', hi: 'मीन', sym: 'Pisces', ruler: tl({ en: 'Jupiter', hi: 'गुरु', sa: 'गुरुः' }, locale), elem: tl({ en: 'Water', hi: 'जल', sa: 'जल' }, locale) },
           ].map(r => (
             <div key={r.n} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-2 text-center">
               <p className="text-gold-light text-xs font-bold">{r.n}. {isHi ? r.hi : r.en}</p>

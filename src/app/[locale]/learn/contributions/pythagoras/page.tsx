@@ -69,7 +69,7 @@ export default async function PythagorasPage({ params }: { params: Promise<{ loc
           {/* Sulba Sutra lineage */}
           <div className="space-y-2">
             <p className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-              {tl({ en: 'Principal Sulba Sutras', hi: 'प्रमुख शुल्ब सूत्र', sa: 'प्रमुख शुल्ब सूत्र' }, locale)}
+              {tl({ en: 'Principal Sulba Sutras', hi: 'प्रमुख शुल्ब सूत्र', sa: 'प्रमुखाः शुल्बसूत्राणि' }, locale)}
             </p>
             {[
               { name: 'Baudhayana', date: '~800 BCE', note: { en: 'Oldest — contains the general theorem', hi: 'सबसे पुराना — सामान्य प्रमेय', sa: 'सबसे पुराना — सामान्य प्रमेय', mai: 'सबसे पुराना — सामान्य प्रमेय', mr: 'सबसे पुराना — सामान्य प्रमेय', ta: 'மிகப் பழமையானது — பொது தேற்றம் கொண்டுள்ளது', te: 'అత్యంత పురాతనమైనది — సాధారణ సిద్ధాంతం కలిగి ఉంది', bn: 'সবচেয়ে পুরানো — সাধারণ উপপাদ্য রয়েছে', kn: 'ಅತ್ಯಂತ ಪುರಾತನ — ಸಾಮಾನ್ಯ ಪ್ರಮೇಯವನ್ನು ಹೊಂದಿದೆ', gu: 'સૌથી જૂનું — સામાન્ય પ્રમેય ધરાવે છે' }, accent: '#f0d48a' },
@@ -142,13 +142,13 @@ export default async function PythagorasPage({ params }: { params: Promise<{ loc
             <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.05]">
               <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{tl({ en: "Baudhayana's meaning", hi: "बौधायन की व्याख्या", sa: "बौधायन की व्याख्या" }, locale)}</p>
               <p className="text-text-secondary text-xs leading-relaxed">
-                {tl({ en: '"The diagonal of a rectangle produces" the area that "its length and breadth produce separately." In modern notation: c² = a² + b². A general rule for ALL rectangles.', hi: '"आयत का विकर्ण" वह दोनों क्षेत्रफल उत्पन्न करता है जो "लम्बाई और चौड़ाई अलग-अलग" उत्पन्न करती हैं। अर्थात: c² = a² + b²। सभी आयतों के लिए सामान्य नियम।', sa: '"आयत का विकर्ण" वह दोनों क्षेत्रफल उत्पन्न करता है जो "लम्बाई और चौड़ाई अलग-अलग" उत्पन्न करती हैं। अर्थात: c² = a² + b²। सभी आयतों के लिए सामान्य नियम।' }, locale)}
+                {tl({ en: '"The diagonal of a rectangle produces" the area that "its length and breadth produce separately." In modern notation: c² = a² + b². A general rule for ALL rectangles.', hi: '"आयत का विकर्ण" वह दोनों क्षेत्रफल उत्पन्न करता है जो "लम्बाई और चौड़ाई अलग-अलग" उत्पन्न करती हैं। अर्थात: c² = a² + b²। सभी आयतों के लिए सामान्य नियम।', sa: '"आयतस्य कर्णः" तम् क्षेत्रफलम् "उत्पादयति यत् तस्य दैर्घ्यं विस्तारश्च पृथक् पृथक् उत्पादयतः।" आधुनिकसंकेते: c² = a² + b²। सर्वेषां आयतानां सामान्यनियमः।' }, locale)}
               </p>
             </div>
             <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
-              <p className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-1">{tl({ en: 'Significance', hi: 'महत्त्व', sa: 'महत्त्व' }, locale)}</p>
+              <p className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-1">{tl({ en: 'Significance', hi: 'महत्त्व', sa: 'महत्त्वम्' }, locale)}</p>
               <p className="text-text-secondary text-xs leading-relaxed">
-                {tl({ en: 'This is not a special case — it is a general theorem. Baudhayana states it as a universal rule applying to all rectangles.', hi: 'यह एक विशेष मामला नहीं है — यह एक सामान्य प्रमेय है। बौधायन ने इसे सभी आयतों पर लागू होने वाले सार्वभौमिक नियम के रूप में कहा।', sa: 'यह एक विशेष मामला नहीं है — यह एक सामान्य प्रमेय है। बौधायन ने इसे सभी आयतों पर लागू होने वाले सार्वभौमिक नियम के रूप में कहा।' }, locale)}
+                {tl({ en: 'This is not a special case — it is a general theorem. Baudhayana states it as a universal rule applying to all rectangles.', hi: 'यह एक विशेष मामला नहीं है — यह एक सामान्य प्रमेय है। बौधायन ने इसे सभी आयतों पर लागू होने वाले सार्वभौमिक नियम के रूप में कहा।', sa: 'एतत् विशेषप्रकरणं नास्ति — एतत् सामान्यप्रमेयम् अस्ति। बौधायनः एतत् सर्वेषां आयतानां विषये प्रयोज्यं विश्वव्यापीनियमम् इव कथयति।' }, locale)}
               </p>
             </div>
           </div>
@@ -166,7 +166,7 @@ export default async function PythagorasPage({ params }: { params: Promise<{ loc
         <div className="p-4 rounded-xl bg-gold-primary/8 border border-gold-primary/20 text-center mb-5">
           <p className="text-gold-primary font-mono text-base font-bold mb-1">{t('s3Formula')}</p>
           <p className="text-text-secondary text-xs">
-            {tl({ en: '= 1.4142156... (modern: 1.4142135...)', hi: '= 1.4142156... (आधुनिक: 1.4142135...)', sa: '= 1.4142156... (आधुनिक: 1.4142135...)' }, locale)}
+            {tl({ en: '= 1.4142156... (modern: 1.4142135...)', hi: '= 1.4142156... (आधुनिक: 1.4142135...)', sa: '= 1.4142156... (आधुनिकम्: 1.4142135...)' }, locale)}
           </p>
         </div>
 
@@ -175,9 +175,9 @@ export default async function PythagorasPage({ params }: { params: Promise<{ loc
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gold-primary/15">
-                <th className="text-left py-2 pr-4 text-gold-dark text-xs uppercase tracking-wider font-bold">{tl({ en: 'Source', hi: 'स्रोत', sa: 'स्रोत' }, locale)}</th>
-                <th className="text-right py-2 pr-4 text-gold-dark text-xs uppercase tracking-wider font-bold">{tl({ en: 'Value', hi: 'मान', sa: 'मान' }, locale)}</th>
-                <th className="text-right py-2 text-gold-dark text-xs uppercase tracking-wider font-bold">{tl({ en: 'Delta', hi: 'अंतर', sa: 'अंतर' }, locale)}</th>
+                <th className="text-left py-2 pr-4 text-gold-dark text-xs uppercase tracking-wider font-bold">{tl({ en: 'Source', hi: 'स्रोत', sa: 'स्रोतः' }, locale)}</th>
+                <th className="text-right py-2 pr-4 text-gold-dark text-xs uppercase tracking-wider font-bold">{tl({ en: 'Value', hi: 'मान', sa: 'मूल्यम्' }, locale)}</th>
+                <th className="text-right py-2 text-gold-dark text-xs uppercase tracking-wider font-bold">{tl({ en: 'Delta', hi: 'अंतर', sa: 'अन्तरम्' }, locale)}</th>
               </tr>
             </thead>
             <tbody>
@@ -216,7 +216,7 @@ export default async function PythagorasPage({ params }: { params: Promise<{ loc
           ))}
         </div>
         <p className="text-text-secondary text-xs mt-4 italic">
-          {tl({ en: 'All used in altar construction to create precise right angles using rope-and-peg geometry.', hi: 'इन सभी का उपयोग वेदी निर्माण में सटीक समकोण बनाने के लिए किया गया था।', sa: 'इन सभी का उपयोग वेदी निर्माण में सटीक समकोण बनाने के लिए किया गया था।' }, locale)}
+          {tl({ en: 'All used in altar construction to create precise right angles using rope-and-peg geometry.', hi: 'इन सभी का उपयोग वेदी निर्माण में सटीक समकोण बनाने के लिए किया गया था।', sa: 'सर्वाणि वेदीनिर्माणे रज्जु-शङ्कु-ज्यामितिमाध्यमेन सटीककोणनिर्माणाय प्रयुक्तानि।' }, locale)}
         </p>
       </div>
 
@@ -229,9 +229,9 @@ export default async function PythagorasPage({ params }: { params: Promise<{ loc
           <div>
             <p className="text-text-secondary text-sm leading-relaxed mb-4">{t('s5Body')}</p>
             <div className="p-3 rounded-xl bg-amber-500/5 border border-amber-500/15">
-              <p className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-1">{tl({ en: 'The formula', hi: 'सूत्र', sa: 'सूत्र' }, locale)}</p>
+              <p className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-1">{tl({ en: 'The formula', hi: 'सूत्र', sa: 'सूत्रम्' }, locale)}</p>
               <p className="text-text-secondary text-xs leading-relaxed">
-                {tl({ en: 'If original square has side s, the doubled-area square has side = diagonal of original = s√2. Because: diagonal² = s² + s² = 2s².', hi: 'यदि मूल वर्ग की भुजा s है, तो दोगुने क्षेत्रफल वाले वर्ग की भुजा = मूल का विकर्ण = s√2। विकर्ण² = s² + s² = 2s²।', sa: 'यदि मूल वर्ग की भुजा s है, तो दोगुने क्षेत्रफल वाले वर्ग की भुजा = मूल का विकर्ण = s√2। विकर्ण² = s² + s² = 2s²।' }, locale)}
+                {tl({ en: 'If original square has side s, the doubled-area square has side = diagonal of original = s√2. Because: diagonal² = s² + s² = 2s².', hi: 'यदि मूल वर्ग की भुजा s है, तो दोगुने क्षेत्रफल वाले वर्ग की भुजा = मूल का विकर्ण = s√2। विकर्ण² = s² + s² = 2s²।', sa: 'यदि मूलवर्गस्य भुजा s अस्ति, तर्हि द्विगुणक्षेत्रफलस्य वर्गस्य भुजा = मूलस्य कर्णः = s√2। यतः: कर्णः² = s² + s² = 2s²।' }, locale)}
               </p>
             </div>
           </div>
@@ -246,7 +246,7 @@ export default async function PythagorasPage({ params }: { params: Promise<{ loc
             {/* Original small square */}
             <rect x="20" y="60" width="80" height="80" fill="#f0d48a" fillOpacity="0.07" stroke="#d4a853" strokeWidth="1.5" />
             <text x="60" y="105" textAnchor="middle" fill="#d4a853" fontSize="10" fontWeight="bold">s</text>
-            <text x="60" y="155" textAnchor="middle" fill="#8a6d2b" fontSize="9">{tl({ en: 'original altar', hi: 'मूल वेदी', sa: 'मूल वेदी' }, locale)}</text>
+            <text x="60" y="155" textAnchor="middle" fill="#8a6d2b" fontSize="9">{tl({ en: 'original altar', hi: 'मूल वेदी', sa: 'मूलवेदिः' }, locale)}</text>
             {/* Arrow */}
             <text x="115" y="100" fill="#8a8478" fontSize="18">→</text>
             {/* Diagonal of original */}
@@ -256,7 +256,7 @@ export default async function PythagorasPage({ params }: { params: Promise<{ loc
             <g transform="translate(170, 100)">
               <rect x="-56" y="-56" width="80" height="80" fill="#f0d48a" fillOpacity="0.10" stroke="#f0d48a" strokeWidth="1.5" transform="rotate(45)" />
               <text x="0" y="5" textAnchor="middle" fill="#f0d48a" fontSize="10" fontWeight="bold">s√2</text>
-              <text x="0" y="82" textAnchor="middle" fill="#8a8478" fontSize="9">{tl({ en: 'doubled altar', hi: 'दोगुनी वेदी', sa: 'दोगुनी वेदी' }, locale)}</text>
+              <text x="0" y="82" textAnchor="middle" fill="#8a8478" fontSize="9">{tl({ en: 'doubled altar', hi: 'दोगुनी वेदी', sa: 'द्विगुणिता वेदिः' }, locale)}</text>
             </g>
           </svg>
         </div>

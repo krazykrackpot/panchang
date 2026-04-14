@@ -502,7 +502,7 @@ export default function SettingsPage() {
   }
 
   const memberSince = user.created_at
-    ? new Date(user.created_at).toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale), {
+    ? new Date(user.created_at).toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'en-IN' }, locale), {
         year: 'numeric', month: 'long', day: 'numeric',
       })
     : '—';
@@ -756,7 +756,7 @@ export default function SettingsPage() {
                   birth_lng: loc.lng,
                   birth_timezone: loc.timezone,
                 })}
-                placeholder={tl({ en: 'Search city or place...', hi: 'शहर खोजें...', sa: 'शहर खोजें...' }, locale)}
+                placeholder={tl({ en: 'Search city or place...', hi: 'शहर खोजें...', sa: 'नगरं स्थानं वा अन्विष्यतु...' }, locale)}
               />
               {profile.birth_place && profile.birth_lat != null && (
                 <p className="text-xs text-text-secondary/75 mt-1.5 flex items-center gap-1">

@@ -1171,7 +1171,7 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
           <div>
             <div className="flex items-center gap-2 mb-1">
               <HouseBadge house={strongest.bhava} locale={locale} color="emerald" />
-              <span className="text-emerald-300 text-xs font-bold">{strongest.total.toFixed(1)} {tl({ en: 'pts', hi: 'अंक', sa: 'अंक' }, locale)}</span>
+              <span className="text-emerald-300 text-xs font-bold">{strongest.total.toFixed(1)} {tl({ en: 'pts', hi: 'अंक', sa: 'अङ्काः' }, locale)}</span>
             </div>
             <p className="text-sm text-gray-200 leading-relaxed">
               {tl({ en: `Your strongest house is House ${strongest.bhava} (${strongSig?.en ?? ''}). This is where life comes most easily to you. Activities related to this house bring natural success with less effort.`, hi: `आपका सबसे बलवान भाव ${strongest.bhava}वां भाव है (${strongSig?.hi ?? ''})। यही वह क्षेत्र है जहां जीवन सबसे सहज रूप से आता है। इस भाव से जुड़े कार्यों में आपको स्वाभाविक सफलता मिलती है।`, sa: `आपका सबसे बलवान भाव ${strongest.bhava}वां भाव है (${strongSig?.hi ?? ''})। यही वह क्षेत्र है जहां जीवन सबसे सहज रूप से आता है। इस भाव से जुड़े कार्यों में आपको स्वाभाविक सफलता मिलती है।` }, locale)}
@@ -1188,7 +1188,7 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
           <div>
             <div className="flex items-center gap-2 mb-1">
               <HouseBadge house={weakest.bhava} locale={locale} color="amber" />
-              <span className="text-amber-300 text-xs font-bold">{weakest.total.toFixed(1)} {tl({ en: 'pts', hi: 'अंक', sa: 'अंक' }, locale)}</span>
+              <span className="text-amber-300 text-xs font-bold">{weakest.total.toFixed(1)} {tl({ en: 'pts', hi: 'अंक', sa: 'अङ्काः' }, locale)}</span>
             </div>
             <p className="text-sm text-gray-200 leading-relaxed">
               {tl({ en: `Your weakest house is House ${weakest.bhava} (${weakSig?.en ?? ''}). This area needs conscious effort.`, hi: `आपका सबसे कमजोर भाव ${weakest.bhava}वां भाव है (${weakSig?.hi ?? ''})। इस क्षेत्र में सचेत प्रयास की आवश्यकता है।`, sa: `आपका सबसे कमजोर भाव ${weakest.bhava}वां भाव है (${weakSig?.hi ?? ''})। इस क्षेत्र में सचेत प्रयास की आवश्यकता है।` }, locale)}

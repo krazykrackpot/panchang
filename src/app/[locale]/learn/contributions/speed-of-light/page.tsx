@@ -160,7 +160,7 @@ export default async function SpeedOfLightPage({ params }: { params: Promise<{ l
             <div className="text-text-secondary text-xs">{tl({ en: 'miles/second', hi: 'मील/सेकंड', sa: 'मील/सेकंड' }, locale)}</div>
           </div>
           <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 text-center">
-            <div className="text-text-secondary text-xs mb-1">{tl({ en: 'Modern Value', hi: 'आधुनिक मान', sa: 'आधुनिक मान' }, locale)}</div>
+            <div className="text-text-secondary text-xs mb-1">{tl({ en: 'Modern Value', hi: 'आधुनिक मान', sa: 'आधुनिकमानम्' }, locale)}</div>
             <div className="text-text-primary text-xl font-bold font-mono">186,282</div>
             <div className="text-text-secondary text-xs">{tl({ en: 'miles/second (in vacuum)', hi: 'मील/सेकंड (निर्वात में)', sa: 'मील/सेकंड (निर्वात में)' }, locale)}</div>
           </div>

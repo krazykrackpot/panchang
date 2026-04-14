@@ -297,7 +297,7 @@ export default function VarshaphalPage() {
             {/* Solar Return Moment + Age */}
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6 text-center">
               <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-2 font-bold">{t.solarReturn}</h2>
-              <p className="text-gold-light text-2xl font-bold" style={headingFont}>{new Date(data.solarReturnMoment).toLocaleString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale))}</p>
+              <p className="text-gold-light text-2xl font-bold" style={headingFont}>{new Date(data.solarReturnMoment).toLocaleString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'en-IN' }, locale))}</p>
               <p className="text-text-secondary mt-2">{t.age}: <span className="text-gold-light font-bold">{data.age}</span></p>
             </div>
 

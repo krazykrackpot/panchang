@@ -199,7 +199,7 @@ function Page2() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-violet-500/20">
-                <th className="text-left text-text-tertiary py-2 pr-3">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रह' }, locale)}</th>
+                <th className="text-left text-text-tertiary py-2 pr-3">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः' }, locale)}</th>
                 <th className="text-left text-gold-light py-2 pr-3">{tl({ en: 'Lahiri', hi: 'लहिरी', sa: 'लहिरी' }, locale)}</th>
                 <th className="text-left text-cyan-300 py-2 pr-3">{tl({ en: 'Raman', hi: 'रमन', sa: 'रमन' }, locale)}</th>
                 <th className="text-left text-red-400 py-2">{tl({ en: 'Changed?', hi: 'परिवर्तन', sa: 'परिवर्तन' }, locale)}</th>
@@ -207,13 +207,13 @@ function Page2() {
             </thead>
             <tbody className="text-text-secondary">
               <tr className="border-b border-white/5 bg-red-500/5">
-                <td className="py-2 pr-3 font-medium text-gold-light">{tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य' }, locale)}</td>
+                <td className="py-2 pr-3 font-medium text-gold-light">{tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' }, locale)}</td>
                 <td className="py-2 pr-3">{tl({ en: 'Aries 29.75°', hi: 'मेष 29.75°', sa: 'मेष 29.75°' }, locale)}</td>
                 <td className="py-2 pr-3">{tl({ en: 'Taurus 1.14°', hi: 'वृषभ 1.14°', sa: 'वृषभ 1.14°' }, locale)}</td>
                 <td className="py-2 text-red-400 font-bold">{tl({ en: 'SIGN CHANGED!', hi: 'राशि बदली!', sa: 'राशि बदली!' }, locale)}</td>
               </tr>
               <tr className="border-b border-white/5 bg-amber-500/5">
-                <td className="py-2 pr-3 font-medium text-gold-light">{tl({ en: 'Venus', hi: 'शुक्र', sa: 'शुक्र' }, locale)}</td>
+                <td className="py-2 pr-3 font-medium text-gold-light">{tl({ en: 'Venus', hi: 'शुक्र', sa: 'शुक्रः' }, locale)}</td>
                 <td className="py-2 pr-3">{tl({ en: 'Mrigashira Nak.', hi: 'मृगशिरा नक्षत्र', sa: 'मृगशिरा नक्षत्र' }, locale)}</td>
                 <td className="py-2 pr-3">{tl({ en: 'Ardra Nak.', hi: 'आर्द्रा नक्षत्र', sa: 'आर्द्रा नक्षत्र' }, locale)}</td>
                 <td className="py-2 text-amber-400 font-bold">{tl({ en: 'NAK. CHANGED!', hi: 'नक्षत्र बदला!', sa: 'नक्षत्र बदला!' }, locale)}</td>

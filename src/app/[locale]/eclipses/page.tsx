@@ -97,7 +97,7 @@ export default function EclipsesPage() {
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'sa-IN' }, locale), { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    return d.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'en-IN' }, locale), { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
   };
 
   const toggleExpand = (key: string) => setExpanded(prev => prev === key ? null : key);
@@ -625,11 +625,11 @@ function NextSignificantCard({
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'sa-IN' }, locale), { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    return d.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'en-IN' }, locale), { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
   };
 
   const subtypeLabel = {
-    total: tl({ en: 'Total', hi: 'पूर्ण', sa: 'पूर्णम्' }, locale),
+    total: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale),
     annular: tl({ en: 'Annular', hi: 'वलयाकार', sa: 'वलयाकारम्' }, locale),
     partial: tl({ en: 'Partial', hi: 'आंशिक', sa: 'आंशिकम्' }, locale),
     hybrid: tl({ en: 'Hybrid', hi: 'संकर', sa: 'संकरम्' }, locale),

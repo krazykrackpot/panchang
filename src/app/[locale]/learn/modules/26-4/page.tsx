@@ -116,23 +116,23 @@ function Page1() {
         <div className="space-y-2 text-text-secondary text-xs">
           <div className="flex justify-between items-center">
             <span className="text-gold-light font-medium">{tl({ en: 'Kali Yuga', hi: 'कलियुग', sa: 'कलियुग' }, locale)}</span>
-            <span className="font-mono">432,000 {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्ष' }, locale)}</span>
+            <span className="font-mono">432,000 {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि' }, locale)}</span>
           </div>
           <div className="flex justify-between items-center">
             <span className="text-gold-light font-medium">{tl({ en: 'Dvapara Yuga', hi: 'द्वापर युग', sa: 'द्वापर युग' }, locale)}</span>
-            <span className="font-mono">864,000 {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्ष' }, locale)}</span>
+            <span className="font-mono">864,000 {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि' }, locale)}</span>
           </div>
           <div className="flex justify-between items-center">
             <span className="text-gold-light font-medium">{tl({ en: 'Treta Yuga', hi: 'त्रेता युग', sa: 'त्रेता युग' }, locale)}</span>
-            <span className="font-mono">1,296,000 {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्ष' }, locale)}</span>
+            <span className="font-mono">1,296,000 {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि' }, locale)}</span>
           </div>
           <div className="flex justify-between items-center">
             <span className="text-gold-light font-medium">{tl({ en: 'Krita/Satya Yuga', hi: 'कृत/सत्य युग', sa: 'कृत/सत्य युग' }, locale)}</span>
-            <span className="font-mono">1,728,000 {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्ष' }, locale)}</span>
+            <span className="font-mono">1,728,000 {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि' }, locale)}</span>
           </div>
           <div className="flex justify-between items-center pt-2 border-t border-gold-primary/10">
             <span className="text-amber-400 font-semibold">{tl({ en: 'Mahayuga (1 Chaturyuga)', hi: 'महायुग (1 चतुर्युग)', sa: 'महायुग (1 चतुर्युग)' }, locale)}</span>
-            <span className="font-mono text-amber-400">4,320,000 {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्ष' }, locale)}</span>
+            <span className="font-mono text-amber-400">4,320,000 {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि' }, locale)}</span>
           </div>
           <div className="flex justify-between items-center">
             <span className="text-gold-light font-medium">{tl({ en: '1 Kalpa = 1,000 Mahayugas', hi: '1 कल्प = 1,000 महायुग', sa: '1 कल्प = 1,000 महायुग' }, locale)}</span>

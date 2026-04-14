@@ -1047,7 +1047,7 @@ export default function KaalNirnayaPage() {
               <thead>
                 <tr className="border-b border-gold-primary/20 bg-gold-primary/5">
                   <th className="text-left px-5 py-4 text-gold-primary text-xs uppercase tracking-wider font-bold">
-                    {tl({ en: 'Unit', hi: 'इकाई', ta: 'அலகு', te: 'యూనిట్', bn: 'একক', kn: 'ಘಟಕ', gu: 'একক' } as LocaleText, locale)}
+                    {tl({ en: 'Unit', hi: 'इकाई', ta: 'அலகு', te: 'యూనిట్', bn: 'একক', kn: 'ಘಟಕ', gu: 'એકમ' } as LocaleText, locale)}
                   </th>
                   <th className="text-left px-5 py-4 text-gold-primary text-xs uppercase tracking-wider font-bold">
                     {tl({ en: 'Sanskrit', hi: 'संस्कृत', ta: 'சம்ஸ்கிருதம்', te: 'సంస్కృతం', bn: 'সংস্কৃত', kn: 'ಸಂಸ್ಕೃತ', gu: 'সংস্কৃত' } as LocaleText, locale)}

@@ -122,11 +122,11 @@ export default async function CalculusPage({ params }: { params: Promise<{ local
         <div className="p-5 rounded-xl bg-gold-primary/8 border border-gold-primary/20 mb-4 text-center">
           <p className="text-xs text-text-secondary mb-2">{tl({ en: "Madhava's π Series (~1375 CE)", hi: "माधव की π श्रेणी (~1375 CE)", sa: "माधव की π श्रेणी (~1375 CE)" }, locale)}</p>
           <p className="text-gold-light text-lg font-mono">π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...</p>
-          <p className="text-text-secondary text-xs mt-2">{tl({ en: 'Called "Leibniz formula" in the West, 1676 CE', hi: 'पश्चिम में "लाइबनिज फॉर्मूला" कहा जाता है, 1676 CE', sa: 'पश्चिम में "लाइबनिज फॉर्मूला" कहा जाता है, 1676 CE' }, locale)}</p>
+          <p className="text-text-secondary text-xs mt-2">{tl({ en: 'Called "Leibniz formula" in the West, 1676 CE', hi: 'पश्चिम में "लाइबनिज फॉर्मूला" कहा जाता है, 1676 CE', sa: 'पाश्चात्यदेशेषु "Leibniz सूत्रम्" इति कथितम्, 1676 CE' }, locale)}</p>
         </div>
 
         <div className="p-4 rounded-xl bg-gold-primary/6 border-l-4 border-gold-primary/50">
-          <p className="text-text-secondary text-xs font-semibold mb-1">{tl({ en: 'Yuktibhasha (~1530 CE)', hi: 'युक्तिभाषा (Yuktibhasha), ~1530 CE', sa: 'युक्तिभाषा (Yuktibhasha), ~1530 CE' }, locale)}</p>
+          <p className="text-text-secondary text-xs font-semibold mb-1">{tl({ en: 'Yuktibhasha (~1530 CE)', hi: 'युक्तिभाषा (Yuktibhasha), ~1530 CE', sa: 'युक्तिभाषा (~1530 CE)' }, locale)}</p>
           <p className="text-text-secondary text-xs">{t('s2Source')}</p>
         </div>
       </div>
@@ -143,9 +143,9 @@ export default async function CalculusPage({ params }: { params: Promise<{ local
             <thead>
               <tr className="border-b border-gold-primary/15">
                 <th className="text-left text-gold-light py-2 pr-3">{tl({ en: 'Series', hi: 'श्रेणी', sa: 'श्रेणी' }, locale)}</th>
-                <th className="text-left text-gold-light py-2 pr-3">{tl({ en: 'India', hi: 'भारत में', sa: 'भारत में' }, locale)}</th>
-                <th className="text-left text-gold-light py-2 pr-3">{tl({ en: 'Europe', hi: 'यूरोप में', sa: 'यूरोप में' }, locale)}</th>
-                <th className="text-right text-gold-light py-2">{tl({ en: 'Gap', hi: 'अंतर', sa: 'अंतर' }, locale)}</th>
+                <th className="text-left text-gold-light py-2 pr-3">{tl({ en: 'India', hi: 'भारत में', sa: 'भारतवर्षम्' }, locale)}</th>
+                <th className="text-left text-gold-light py-2 pr-3">{tl({ en: 'Europe', hi: 'यूरोप में', sa: 'यूरोपः' }, locale)}</th>
+                <th className="text-right text-gold-light py-2">{tl({ en: 'Gap', hi: 'अंतर', sa: 'अन्तरालः' }, locale)}</th>
               </tr>
             </thead>
             <tbody>
@@ -205,19 +205,19 @@ export default async function CalculusPage({ params }: { params: Promise<{ local
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 rounded-xl bg-amber-500/8 border border-amber-500/20">
-            <p className="text-amber-300 font-semibold text-xs mb-2">{tl({ en: 'Possible Transmission Evidence', hi: 'संभावित संचरण साक्ष्य', sa: 'संभावित संचरण साक्ष्य' }, locale)}</p>
+            <p className="text-amber-300 font-semibold text-xs mb-2">{tl({ en: 'Possible Transmission Evidence', hi: 'संभावित संचरण साक्ष्य', sa: 'सम्भाव्यप्रेषणसाक्ष्यम्' }, locale)}</p>
             <ul className="text-text-secondary text-xs space-y-1">
-              <li>• {tl({ en: 'Jesuit presence in Kerala from ~1500 CE', hi: '1500 CE से केरल में जेसुइट उपस्थिति', sa: '1500 CE से केरल में जेसुइट उपस्थिति' }, locale)}</li>
-              <li>• {tl({ en: 'Jesuit College at Cochin — Indian manuscripts', hi: 'कोचीन जेसुइट कॉलेज — भारतीय पांडुलिपियाँ', sa: 'कोचीन जेसुइट कॉलेज — भारतीय पांडुलिपियाँ' }, locale)}</li>
-              <li>• {tl({ en: 'Mersenne ↔ India Jesuit correspondence', hi: 'मेर्सेन ↔ भारत जेसुइट पत्राचार', sa: 'मेर्सेन ↔ भारत जेसुइट पत्राचार' }, locale)}</li>
+              <li>• {tl({ en: 'Jesuit presence in Kerala from ~1500 CE', hi: '1500 CE से केरल में जेसुइट उपस्थिति', sa: '~1500 CE तः केरले जेसुइट-उपस्थितिः' }, locale)}</li>
+              <li>• {tl({ en: 'Jesuit College at Cochin — Indian manuscripts', hi: 'कोचीन जेसुइट कॉलेज — भारतीय पांडुलिपियाँ', sa: 'कोच्चिनस्थं जेसुइट-महाविद्यालयम् — भारतीयपाण्डुलिपयः' }, locale)}</li>
+              <li>• {tl({ en: 'Mersenne ↔ India Jesuit correspondence', hi: 'मेर्सेन ↔ भारत जेसुइट पत्राचार', sa: 'Mersenne ↔ भारत-जेसुइट-पत्राचारः' }, locale)}</li>
             </ul>
           </div>
           <div className="p-4 rounded-xl bg-emerald-500/8 border border-emerald-500/20">
-            <p className="text-emerald-300 font-semibold text-xs mb-2">{tl({ en: 'What Is Undisputed', hi: 'जो निर्विवाद है', sa: 'जो निर्विवाद है' }, locale)}</p>
+            <p className="text-emerald-300 font-semibold text-xs mb-2">{tl({ en: 'What Is Undisputed', hi: 'जो निर्विवाद है', sa: 'यत् निर्विवादम् अस्ति' }, locale)}</p>
             <ul className="text-text-secondary text-xs space-y-1">
               <li>• {tl({ en: "Madhava's results are 250–350 years earlier", hi: "माधव के परिणाम — 250-350 वर्ष पहले", sa: "माधव के परिणाम — 250-350 वर्ष पहले" }, locale)}</li>
-              <li>• {tl({ en: 'Kerala texts contain full proofs', hi: 'केरल ग्रंथों में पूर्ण प्रमाण हैं', sa: 'केरल ग्रंथों में पूर्ण प्रमाण हैं' }, locale)}</li>
-              <li>• {tl({ en: 'Priority of discovery is Indian', hi: 'खोज की प्राथमिकता भारतीय है', sa: 'खोज की प्राथमिकता भारतीय है' }, locale)}</li>
+              <li>• {tl({ en: 'Kerala texts contain full proofs', hi: 'केरल ग्रंथों में पूर्ण प्रमाण हैं', sa: 'केरलग्रन्थेषु पूर्णप्रमाणानि सन्ति' }, locale)}</li>
+              <li>• {tl({ en: 'Priority of discovery is Indian', hi: 'खोज की प्राथमिकता भारतीय है', sa: 'आविष्कारस्य प्राथमिकता भारतीयाः सन्ति' }, locale)}</li>
             </ul>
           </div>
         </div>

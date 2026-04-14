@@ -305,7 +305,7 @@ export default function SamvatsaraPage() {
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
                 {tl({ en: 'Cycle:', hi: 'चक्र:', sa: 'चक्रम्:', ta: 'சுழற்சி:', te: 'చక్రం:', bn: 'চক্র:', kn: 'ಚಕ್ರ:', gu: 'ચક્ર:', mai: 'चक्र:', mr: 'चक्र:' }, locale)} Jupiter_orbit (~12 yr) x 5 = 60{' '}
-                {tl({ en: 'years', hi: 'वर्षाणि', sa: 'वर्षाणि', ta: 'ஆண்டுகள்', te: 'సంవత్సరాలు', bn: 'বছর', kn: 'ವರ್ಷಗಳು', gu: 'વર્ષ', mai: 'वर्ष', mr: 'वर्षे' }, locale)}
+                {tl({ en: 'years', hi: 'वर्षाणि', sa: 'वर्षाणि', ta: 'ஆண்டுகள்', te: 'సంవత్సరాలు', bn: 'বছর', kn: 'ವರ್ಷಗಳು', gu: 'વર્ષો', mai: 'वर्ष', mr: 'वर्षे' }, locale)}
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
                 {locale === 'en'

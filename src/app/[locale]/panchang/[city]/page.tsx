@@ -40,7 +40,7 @@ export async function generateMetadata({
   const isHi = isDevanagariLocale(locale);
   const cityName = isHi ? city.name.hi : city.name.en;
   const today = new Date();
-  const dateStr = today.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale), {
+  const dateStr = today.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'en-IN' }, locale), {
     day: 'numeric', month: 'long', year: 'numeric',
   });
 
@@ -124,7 +124,7 @@ export default async function CityPanchangPage({
   const panchang = computePanchang(input);
 
   // Date display
-  const dateDisplay = now.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale), {
+  const dateDisplay = now.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'en-IN' }, locale), {
     weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
   });
 

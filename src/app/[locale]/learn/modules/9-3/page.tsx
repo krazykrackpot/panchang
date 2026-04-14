@@ -33,20 +33,20 @@ function Page1() {
           <table className="w-full text-xs border-collapse">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="text-gold-light text-left p-2">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रह' }, locale)}</th>
+                <th className="text-gold-light text-left p-2">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः' }, locale)}</th>
                 <th className="text-gold-light text-left p-2">{tl({ en: 'Exalted In', hi: 'उच्च', sa: 'उच्च' }, locale)}</th>
                 <th className="text-gold-light text-left p-2">{tl({ en: 'Deep Exaltation', hi: 'परम उच्च', sa: 'परम उच्च' }, locale)}</th>
                 <th className="text-gold-light text-left p-2">{tl({ en: 'Why', hi: 'कारण', sa: 'कारण' }, locale)}</th>
               </tr>
             </thead>
             <tbody className="text-text-secondary">
-              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य' }, locale)}</td><td className="p-2">{tl({ en: 'Aries', hi: 'मेष', sa: 'मेष' }, locale)}</td><td className="p-2">10°</td><td className="p-2">Fire + initiative = peak authority</td></tr>
-              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र' }, locale)}</td><td className="p-2">{tl({ en: 'Taurus', hi: 'वृषभ', sa: 'वृषभ' }, locale)}</td><td className="p-2">3°</td><td className="p-2">Earth stability nourishes emotions</td></tr>
-              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Mars', hi: 'मंगल', sa: 'मंगल' }, locale)}</td><td className="p-2">{tl({ en: 'Capricorn', hi: 'मकर', sa: 'मकर' }, locale)}</td><td className="p-2">28°</td><td className="p-2">Discipline channels raw courage</td></tr>
-              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Mercury', hi: 'बुध', sa: 'बुध' }, locale)}</td><td className="p-2">{tl({ en: 'Virgo', hi: 'कन्या', sa: 'कन्या' }, locale)}</td><td className="p-2">15°</td><td className="p-2">Analytical sign perfects intellect</td></tr>
-              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Jupiter', hi: 'बृहस्पति', sa: 'बृहस्पति' }, locale)}</td><td className="p-2">{tl({ en: 'Cancer', hi: 'कर्क', sa: 'कर्क' }, locale)}</td><td className="p-2">5°</td><td className="p-2">Nurturing amplifies wisdom</td></tr>
-              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Venus', hi: 'शुक्र', sa: 'शुक्र' }, locale)}</td><td className="p-2">{tl({ en: 'Pisces', hi: 'मीन', sa: 'मीन' }, locale)}</td><td className="p-2">27°</td><td className="p-2">Spiritual love = highest beauty</td></tr>
-              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Saturn', hi: 'शनि', sa: 'शनि' }, locale)}</td><td className="p-2">{tl({ en: 'Libra', hi: 'तुला', sa: 'तुला' }, locale)}</td><td className="p-2">20°</td><td className="p-2">Justice + balance = ideal discipline</td></tr>
+              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' }, locale)}</td><td className="p-2">{tl({ en: 'Aries', hi: 'मेष', sa: 'मेष' }, locale)}</td><td className="p-2">10°</td><td className="p-2">Fire + initiative = peak authority</td></tr>
+              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्रः' }, locale)}</td><td className="p-2">{tl({ en: 'Taurus', hi: 'वृषभ', sa: 'वृषभ' }, locale)}</td><td className="p-2">3°</td><td className="p-2">Earth stability nourishes emotions</td></tr>
+              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Mars', hi: 'मंगल', sa: 'मङ्गलः' }, locale)}</td><td className="p-2">{tl({ en: 'Capricorn', hi: 'मकर', sa: 'मकर' }, locale)}</td><td className="p-2">28°</td><td className="p-2">Discipline channels raw courage</td></tr>
+              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Mercury', hi: 'बुध', sa: 'बुधः' }, locale)}</td><td className="p-2">{tl({ en: 'Virgo', hi: 'कन्या', sa: 'कन्या' }, locale)}</td><td className="p-2">15°</td><td className="p-2">Analytical sign perfects intellect</td></tr>
+              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Jupiter', hi: 'बृहस्पति', sa: 'गुरुः' }, locale)}</td><td className="p-2">{tl({ en: 'Cancer', hi: 'कर्क', sa: 'कर्क' }, locale)}</td><td className="p-2">5°</td><td className="p-2">Nurturing amplifies wisdom</td></tr>
+              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Venus', hi: 'शुक्र', sa: 'शुक्रः' }, locale)}</td><td className="p-2">{tl({ en: 'Pisces', hi: 'मीन', sa: 'मीन' }, locale)}</td><td className="p-2">27°</td><td className="p-2">Spiritual love = highest beauty</td></tr>
+              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Saturn', hi: 'शनि', sa: 'शनिः' }, locale)}</td><td className="p-2">{tl({ en: 'Libra', hi: 'तुला', sa: 'तुला' }, locale)}</td><td className="p-2">20°</td><td className="p-2">Justice + balance = ideal discipline</td></tr>
               <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Rahu', hi: 'राहु', sa: 'राहु' }, locale)}</td><td className="p-2">{tl({ en: 'Taurus', hi: 'वृषभ*', sa: 'वृषभ*' }, locale)}</td><td className="p-2">20°</td><td className="p-2">Material mastery (per BPHS)</td></tr>
               <tr><td className="p-2">{tl({ en: 'Ketu', hi: 'केतु', sa: 'केतु' }, locale)}</td><td className="p-2">{tl({ en: 'Scorpio', hi: 'वृश्चिक*', sa: 'वृश्चिक*' }, locale)}</td><td className="p-2">20°</td><td className="p-2">Occult depth (per BPHS)</td></tr>
             </tbody>
@@ -125,19 +125,19 @@ function Page3() {
           <table className="w-full text-xs border-collapse">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="text-gold-light text-left p-2">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रह' }, locale)}</th>
+                <th className="text-gold-light text-left p-2">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः' }, locale)}</th>
                 <th className="text-gold-light text-left p-2">{tl({ en: 'Moolatrikona', hi: 'मूलत्रिकोण', sa: 'मूलत्रिकोण' }, locale)}</th>
                 <th className="text-gold-light text-left p-2">{tl({ en: 'Own Signs', hi: 'स्वराशि', sa: 'स्वराशि' }, locale)}</th>
               </tr>
             </thead>
             <tbody className="text-text-secondary">
-              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य' }, locale)}</td><td className="p-2">Leo 0°-20°</td><td className="p-2">{tl({ en: 'Leo', hi: 'सिंह', sa: 'सिंह' }, locale)}</td></tr>
-              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र' }, locale)}</td><td className="p-2">Taurus 4°-20°</td><td className="p-2">{tl({ en: 'Cancer', hi: 'कर्क', sa: 'कर्क' }, locale)}</td></tr>
-              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Mars', hi: 'मंगल', sa: 'मंगल' }, locale)}</td><td className="p-2">Aries 0°-12°</td><td className="p-2">{tl({ en: 'Aries, Scorpio', hi: 'मेष, वृश्चिक', sa: 'मेष, वृश्चिक' }, locale)}</td></tr>
-              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Mercury', hi: 'बुध', sa: 'बुध' }, locale)}</td><td className="p-2">Virgo 16°-20°</td><td className="p-2">{tl({ en: 'Gemini, Virgo', hi: 'मिथुन, कन्या', sa: 'मिथुन, कन्या' }, locale)}</td></tr>
-              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Jupiter', hi: 'बृहस्पति', sa: 'बृहस्पति' }, locale)}</td><td className="p-2">Sagittarius 0°-10°</td><td className="p-2">{tl({ en: 'Sagittarius, Pisces', hi: 'धनु, मीन', sa: 'धनु, मीन' }, locale)}</td></tr>
-              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Venus', hi: 'शुक्र', sa: 'शुक्र' }, locale)}</td><td className="p-2">Libra 0°-15°</td><td className="p-2">{tl({ en: 'Taurus, Libra', hi: 'वृषभ, तुला', sa: 'वृषभ, तुला' }, locale)}</td></tr>
-              <tr><td className="p-2">{tl({ en: 'Saturn', hi: 'शनि', sa: 'शनि' }, locale)}</td><td className="p-2">Aquarius 0°-20°</td><td className="p-2">{tl({ en: 'Capricorn, Aquarius', hi: 'मकर, कुम्भ', sa: 'मकर, कुम्भ' }, locale)}</td></tr>
+              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' }, locale)}</td><td className="p-2">Leo 0°-20°</td><td className="p-2">{tl({ en: 'Leo', hi: 'सिंह', sa: 'सिंह' }, locale)}</td></tr>
+              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्रः' }, locale)}</td><td className="p-2">Taurus 4°-20°</td><td className="p-2">{tl({ en: 'Cancer', hi: 'कर्क', sa: 'कर्क' }, locale)}</td></tr>
+              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Mars', hi: 'मंगल', sa: 'मङ्गलः' }, locale)}</td><td className="p-2">Aries 0°-12°</td><td className="p-2">{tl({ en: 'Aries, Scorpio', hi: 'मेष, वृश्चिक', sa: 'मेष, वृश्चिक' }, locale)}</td></tr>
+              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Mercury', hi: 'बुध', sa: 'बुधः' }, locale)}</td><td className="p-2">Virgo 16°-20°</td><td className="p-2">{tl({ en: 'Gemini, Virgo', hi: 'मिथुन, कन्या', sa: 'मिथुन, कन्या' }, locale)}</td></tr>
+              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Jupiter', hi: 'बृहस्पति', sa: 'गुरुः' }, locale)}</td><td className="p-2">Sagittarius 0°-10°</td><td className="p-2">{tl({ en: 'Sagittarius, Pisces', hi: 'धनु, मीन', sa: 'धनु, मीन' }, locale)}</td></tr>
+              <tr className="border-b border-white/5"><td className="p-2">{tl({ en: 'Venus', hi: 'शुक्र', sa: 'शुक्रः' }, locale)}</td><td className="p-2">Libra 0°-15°</td><td className="p-2">{tl({ en: 'Taurus, Libra', hi: 'वृषभ, तुला', sa: 'वृषभ, तुला' }, locale)}</td></tr>
+              <tr><td className="p-2">{tl({ en: 'Saturn', hi: 'शनि', sa: 'शनिः' }, locale)}</td><td className="p-2">Aquarius 0°-20°</td><td className="p-2">{tl({ en: 'Capricorn, Aquarius', hi: 'मकर, कुम्भ', sa: 'मकर, कुम्भ' }, locale)}</td></tr>
             </tbody>
           </table>
         </div>

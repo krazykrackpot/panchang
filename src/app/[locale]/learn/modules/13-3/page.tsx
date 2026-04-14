@@ -30,7 +30,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: '6 Cancellation Conditions', hi: '6 निवारण शर्तें', sa: '6 निवारण शर्तें' }, locale)}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: '6 Cancellation Conditions', hi: '6 निवारण शर्तें', sa: 'षट् निरसनशर्ताः' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">1. Jupiter&apos;s aspect on Mars:</span> Jupiter&apos;s benevolent gaze on Mars tames its aggression. The native channels Mars energy constructively — passion becomes purposeful drive rather than destructive force.
         </p>

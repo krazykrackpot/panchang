@@ -246,7 +246,7 @@ export default function LearnEclipsesPage() {
                 {/* Sun label */}
                 <circle cx="60" cy="50" r="12" fill="#f59e0b" opacity="0.2" stroke="#f59e0b" strokeWidth="1" />
                 <text x="60" y="54" textAnchor="middle" fontSize="11" fill="#f59e0b">☀</text>
-                <text x="60" y="82" textAnchor="middle" fontSize="8" fill="#f59e0b" opacity="0.7">{tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य' }, locale)}</text>
+                <text x="60" y="82" textAnchor="middle" fontSize="8" fill="#f59e0b" opacity="0.7">{tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' }, locale)}</text>
                 {/* Moon near Rahu */}
                 <circle cx="140" cy="42" r="7" fill="#e2e8f0" opacity="0.25" stroke="#e2e8f0" strokeWidth="1" />
                 <text x="140" y="46" textAnchor="middle" fontSize="9" fill="#e2e8f0">☽</text>
@@ -768,11 +768,11 @@ export default function LearnEclipsesPage() {
             </div>
             <div className="divide-y divide-gold-primary/5">
               {[
-                { date: 'Jul 22, 1990', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'पूर्ण' }, locale), path: tl({ en: 'Finland → Siberia → Pacific', hi: 'फिनलैण्ड → साइबेरिया → प्रशान्त', sa: 'फिनलैण्ड → साइबेरिया → प्रशान्त' }, locale), mag: '1.039', highlight: false },
-                { date: 'Aug 1, 2008', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'पूर्ण' }, locale), path: tl({ en: 'Canada → Arctic → Siberia → China', hi: 'कनाडा → आर्कटिक → साइबेरिया → चीन', sa: 'कनाडा → आर्कटिक → साइबेरिया → चीन' }, locale), mag: '1.039', highlight: false },
-                { date: 'Aug 12, 2026', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'पूर्ण' }, locale), path: tl({ en: 'Arctic → Greenland → Iceland → Spain', hi: 'आर्कटिक → ग्रीनलैण्ड → आइसलैण्ड → स्पेन', sa: 'आर्कटिक → ग्रीनलैण्ड → आइसलैण्ड → स्पेन' }, locale), mag: '1.039', highlight: true },
-                { date: 'Aug 24, 2044', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'पूर्ण' }, locale), path: tl({ en: 'Canada → Montana → N. Dakota', hi: 'कनाडा → मोन्टाना → उत्तरी डकोटा', sa: 'कनाडा → मोन्टाना → उत्तरी डकोटा' }, locale), mag: '1.036', highlight: false },
-                { date: 'Sep 3, 2062', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'पूर्ण' }, locale), path: tl({ en: 'Indonesia → Australia', hi: 'इण्डोनेशिया → ऑस्ट्रेलिया', sa: 'इण्डोनेशिया → ऑस्ट्रेलिया' }, locale), mag: '1.031', highlight: false },
+                { date: 'Jul 22, 1990', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Finland → Siberia → Pacific', hi: 'फिनलैण्ड → साइबेरिया → प्रशान्त', sa: 'फिनलैण्ड → साइबेरिया → प्रशान्त' }, locale), mag: '1.039', highlight: false },
+                { date: 'Aug 1, 2008', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Canada → Arctic → Siberia → China', hi: 'कनाडा → आर्कटिक → साइबेरिया → चीन', sa: 'कनाडा → आर्कटिक → साइबेरिया → चीन' }, locale), mag: '1.039', highlight: false },
+                { date: 'Aug 12, 2026', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Arctic → Greenland → Iceland → Spain', hi: 'आर्कटिक → ग्रीनलैण्ड → आइसलैण्ड → स्पेन', sa: 'आर्कटिक → ग्रीनलैण्ड → आइसलैण्ड → स्पेन' }, locale), mag: '1.039', highlight: true },
+                { date: 'Aug 24, 2044', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Canada → Montana → N. Dakota', hi: 'कनाडा → मोन्टाना → उत्तरी डकोटा', sa: 'कनाडा → मोन्टाना → उत्तरी डकोटा' }, locale), mag: '1.036', highlight: false },
+                { date: 'Sep 3, 2062', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Indonesia → Australia', hi: 'इण्डोनेशिया → ऑस्ट्रेलिया', sa: 'इण्डोनेशिया → ऑस्ट्रेलिया' }, locale), mag: '1.031', highlight: false },
               ].map((row, i) => (
                 <div key={i} className={`flex items-center gap-4 px-4 py-2.5 text-sm ${row.highlight ? 'bg-amber-500/8' : ''}`}>
                   <span className={`font-mono text-xs w-28 shrink-0 ${row.highlight ? 'text-gold-light font-bold' : 'text-text-secondary/70'}`}>{row.date}</span>
@@ -798,11 +798,11 @@ export default function LearnEclipsesPage() {
             </div>
             <div className="divide-y divide-gold-primary/5">
               {[
-                { date: 'Feb 9, 1990', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'पूर्ण' }, locale), region: tl({ en: 'Europe, Africa, Asia', hi: 'यूरोप, अफ्रीका, एशिया', sa: 'यूरोप, अफ्रीका, एशिया' }, locale), mag: '1.073', highlight: false },
-                { date: 'Feb 20, 2008', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'पूर्ण' }, locale), region: tl({ en: 'Americas, Europe, Africa', hi: 'अमेरिका, यूरोप, अफ्रीका', sa: 'अमेरिका, यूरोप, अफ्रीका' }, locale), mag: '1.107', highlight: false },
-                { date: 'Mar 3, 2026', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'पूर्ण' }, locale), region: tl({ en: 'Americas, Europe, Africa', hi: 'अमेरिका, यूरोप, अफ्रीका', sa: 'अमेरिका, यूरोप, अफ्रीका' }, locale), mag: '1.151', highlight: true },
-                { date: 'Mar 14, 2044', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'पूर्ण' }, locale), region: tl({ en: 'Asia, Australia, Pacific', hi: 'एशिया, ऑस्ट्रेलिया, प्रशान्त', sa: 'एशिया, ऑस्ट्रेलिया, प्रशान्त' }, locale), mag: '1.193', highlight: false },
-                { date: 'Mar 25, 2062', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'पूर्ण' }, locale), region: tl({ en: 'Americas, Europe', hi: 'अमेरिका, यूरोप', sa: 'अमेरिका, यूरोप' }, locale), mag: '1.227', highlight: false },
+                { date: 'Feb 9, 1990', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), region: tl({ en: 'Europe, Africa, Asia', hi: 'यूरोप, अफ्रीका, एशिया', sa: 'यूरोप, अफ्रीका, एशिया' }, locale), mag: '1.073', highlight: false },
+                { date: 'Feb 20, 2008', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), region: tl({ en: 'Americas, Europe, Africa', hi: 'अमेरिका, यूरोप, अफ्रीका', sa: 'अमेरिका, यूरोप, अफ्रीका' }, locale), mag: '1.107', highlight: false },
+                { date: 'Mar 3, 2026', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), region: tl({ en: 'Americas, Europe, Africa', hi: 'अमेरिका, यूरोप, अफ्रीका', sa: 'अमेरिका, यूरोप, अफ्रीका' }, locale), mag: '1.151', highlight: true },
+                { date: 'Mar 14, 2044', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), region: tl({ en: 'Asia, Australia, Pacific', hi: 'एशिया, ऑस्ट्रेलिया, प्रशान्त', sa: 'एशिया, ऑस्ट्रेलिया, प्रशान्त' }, locale), mag: '1.193', highlight: false },
+                { date: 'Mar 25, 2062', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), region: tl({ en: 'Americas, Europe', hi: 'अमेरिका, यूरोप', sa: 'अमेरिका, यूरोप' }, locale), mag: '1.227', highlight: false },
               ].map((row, i) => (
                 <div key={i} className={`flex items-center gap-4 px-4 py-2.5 text-sm ${row.highlight ? 'bg-indigo-500/8' : ''}`}>
                   <span className={`font-mono text-xs w-28 shrink-0 ${row.highlight ? 'text-indigo-300 font-bold' : 'text-text-secondary/70'}`}>{row.date}</span>

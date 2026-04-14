@@ -111,7 +111,7 @@ export default function PrashnaPage() {
     if (locationStore.lat === null || locationStore.lng === null) return;
     setLoading(true);
     const now = new Date();
-    setCastTime(now.toLocaleString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale)));
+    setCastTime(now.toLocaleString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'en-IN' }, locale)));
     const ianaTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
     const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTimezone);
 
@@ -343,7 +343,7 @@ export default function PrashnaPage() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-gold-primary/10 bg-bg-tertiary/30">
-                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रह' }, locale)}</th>
+                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः' }, locale)}</th>
                         <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{tl({ en: 'Sign', hi: 'राशि', sa: 'राशि' }, locale)}</th>
                         <th className="text-center px-4 py-3 text-text-secondary font-bold text-xs uppercase">{tl({ en: 'House', hi: 'भाव', sa: 'भाव' }, locale)}</th>
                         <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{tl({ en: 'Status', hi: 'स्थिति', sa: 'स्थिति' }, locale)}</th>

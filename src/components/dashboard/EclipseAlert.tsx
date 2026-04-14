@@ -88,7 +88,7 @@ export default function EclipseAlert() {
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale), { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
+    return d.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'en-IN' }, locale), { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
   };
 
   return (

@@ -118,7 +118,7 @@ function Page2() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gold-primary/10">
-                <th className="text-left text-text-tertiary text-xs py-2 pr-3">{tl({ en: 'Aspect', hi: 'पहलू', sa: 'पहलू' }, locale)}</th>
+                <th className="text-left text-text-tertiary text-xs py-2 pr-3">{tl({ en: 'Aspect', hi: 'पहलू', sa: 'दृष्टिः' }, locale)}</th>
                 <th className="text-left text-gold-light text-xs py-2 pr-3">{tl({ en: 'Vedic (Jyotish)', hi: 'वैदिक (ज्योतिष)', sa: 'वैदिक (ज्योतिष)' }, locale)}</th>
                 <th className="text-left text-blue-300 text-xs py-2">{tl({ en: 'Western', hi: 'पश्चिमी', sa: 'पश्चिमी' }, locale)}</th>
               </tr>

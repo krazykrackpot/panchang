@@ -181,7 +181,7 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{t('s3Title')}</h3>
         <div className="p-5 rounded-xl bg-blue-500/8 border border-blue-500/20 mb-4">
-          <p className="text-blue-200 font-semibold text-xs mb-2">{tl({ en: 'Brahmasphutasiddhanta, 628 CE', hi: 'ब्रह्मस्फुटसिद्धांत, 628 CE', sa: 'ब्रह्मस्फुटसिद्धांत, 628 CE' }, locale)}</p>
+          <p className="text-blue-200 font-semibold text-xs mb-2">{tl({ en: 'Brahmasphutasiddhanta, 628 CE', hi: 'ब्रह्मस्फुटसिद्धांत, 628 CE', sa: 'ब्रह्मस्फुटसिद्धान्तः, 628 CE' }, locale)}</p>
           <p className="text-text-secondary text-sm italic leading-relaxed">{t('s3Quote')}</p>
         </div>
       </div>
@@ -194,11 +194,11 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div className="p-4 rounded-xl bg-gold-primary/8 border border-gold-primary/20">
-            <p className="text-gold-light font-semibold text-sm mb-2">{tl({ en: 'India — Description (505–1150 CE)', hi: 'भारत — वर्णन (505-1150 CE)', sa: 'भारत — वर्णन (505-1150 CE)' }, locale)}</p>
+            <p className="text-gold-light font-semibold text-sm mb-2">{tl({ en: 'India — Description (505–1150 CE)', hi: 'भारत — वर्णन (505-1150 CE)', sa: 'भारतवर्षम् — वर्णनम् (505–1150 CE)' }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">{t('s4India')}</p>
           </div>
           <div className="p-4 rounded-xl bg-emerald-500/8 border border-emerald-500/20">
-            <p className="text-emerald-300 font-semibold text-sm mb-2">{tl({ en: 'Newton — Quantitative Law (1687 CE)', hi: 'न्यूटन — मात्रात्मक नियम (1687 CE)', sa: 'न्यूटन — मात्रात्मक नियम (1687 CE)' }, locale)}</p>
+            <p className="text-emerald-300 font-semibold text-sm mb-2">{tl({ en: 'Newton — Quantitative Law (1687 CE)', hi: 'न्यूटन — मात्रात्मक नियम (1687 CE)', sa: 'न्यूटनः — मात्रात्मकः नियमः (1687 CE)' }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">{t('s4Newton')}</p>
           </div>
         </div>
@@ -207,7 +207,7 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
         <div className="p-4 rounded-xl bg-white/[0.03] border border-white/8 text-center">
           <p className="text-text-secondary text-xs mb-2">{tl({ en: "Newton's formula — what India did NOT have", hi: "न्यूटन का सूत्र — जो भारत में नहीं था", sa: "न्यूटन का सूत्र — जो भारत में नहीं था" }, locale)}</p>
           <p className="text-text-primary text-2xl font-mono font-bold">F = G · m₁m₂ / r²</p>
-          <p className="text-text-secondary text-xs mt-2">{tl({ en: 'G = gravitational constant | r = distance between masses', hi: 'G = गुरुत्वाकर्षण स्थिरांक | r = दोनों द्रव्यमानों के बीच दूरी', sa: 'G = गुरुत्वाकर्षण स्थिरांक | r = दोनों द्रव्यमानों के बीच दूरी' }, locale)}</p>
+          <p className="text-text-secondary text-xs mt-2">{tl({ en: 'G = gravitational constant | r = distance between masses', hi: 'G = गुरुत्वाकर्षण स्थिरांक | r = दोनों द्रव्यमानों के बीच दूरी', sa: 'G = गुरुत्वाकर्षणस्थिरांकः | r = द्रव्यमानयोः मध्ये दूरत्वम्' }, locale)}</p>
         </div>
       </div>
 

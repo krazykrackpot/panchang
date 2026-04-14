@@ -314,7 +314,7 @@ export default function TippanniPage() {
           <p>{t('yogasP2')}</p>
           <p className="text-xs">
             <Link href="/learn/yogas" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-              {tl({ en: 'Deep dive into Yogas →', hi: 'योगों का गहन अध्ययन →', sa: 'योगों का गहन अध्ययन →' }, locale)}
+              {tl({ en: 'Deep dive into Yogas →', hi: 'योगों का गहन अध्ययन →', sa: 'योगानां गभीरविश्लेषणम् →' }, locale)}
             </Link>
           </p>
         </div>
@@ -334,7 +334,7 @@ export default function TippanniPage() {
           </ul>
           <p className="text-xs">
             <Link href="/learn/doshas" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-              {tl({ en: 'Deep dive into Doshas →', hi: 'दोषों का गहन अध्ययन →', sa: 'दोषों का गहन अध्ययन →' }, locale)}
+              {tl({ en: 'Deep dive into Doshas →', hi: 'दोषों का गहन अध्ययन →', sa: 'दोषाणां गभीरविश्लेषणम् →' }, locale)}
             </Link>
           </p>
         </div>
@@ -347,7 +347,7 @@ export default function TippanniPage() {
             <div key={i} className="rounded-lg bg-bg-primary/40 border border-gold-primary/10 p-4">
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-gold-light font-bold text-sm">{isHi ? la.area.hi : la.area.en}</span>
-                <span className="text-text-secondary/40 text-xs ml-auto">{tl({ en: 'Houses', hi: 'भाव', sa: 'भाव' }, locale)}: {la.houses}</span>
+                <span className="text-text-secondary/40 text-xs ml-auto">{tl({ en: 'Houses', hi: 'भाव', sa: 'भावाः' }, locale)}: {la.houses}</span>
               </div>
               <p className="text-text-secondary text-xs leading-relaxed">{isHi ? la.detail.hi : la.detail.en}</p>
             </div>
@@ -369,7 +369,7 @@ export default function TippanniPage() {
           </ul>
           <p className="text-xs">
             <Link href="/learn/dashas" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-              {tl({ en: 'Deep dive into the Dasha system →', hi: 'दशा प्रणाली का गहन अध्ययन →', sa: 'दशा प्रणाली का गहन अध्ययन →' }, locale)}
+              {tl({ en: 'Deep dive into the Dasha system →', hi: 'दशा प्रणाली का गहन अध्ययन →', sa: 'दशाप्रणाल्याः गभीरविश्लेषणम् →' }, locale)}
             </Link>
           </p>
         </div>
@@ -381,7 +381,7 @@ export default function TippanniPage() {
           <p>{t('strengthP1')}</p>
           <p className="text-xs">
             <Link href="/learn/shadbala" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-              {tl({ en: 'Deep dive into Shadbala →', hi: 'षड्बल का गहन अध्ययन →', sa: 'षड्बल का गहन अध्ययन →' }, locale)}
+              {tl({ en: 'Deep dive into Shadbala →', hi: 'षड्बल का गहन अध्ययन →', sa: 'षड्बलस्य गभीरविश्लेषणम् →' }, locale)}
             </Link>
           </p>
         </div>
@@ -429,8 +429,8 @@ export default function TippanniPage() {
             <table className="w-full text-xs mt-2">
               <thead>
                 <tr className="border-b border-gold-primary/20">
-                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Question', hi: 'प्रश्न', sa: 'प्रश्न' }, locale)}</th>
-                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Which Section to Check', hi: 'कौन सा खण्ड देखें', sa: 'कौन सा खण्ड देखें' }, locale)}</th>
+                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Question', hi: 'प्रश्न', sa: 'प्रश्नः' }, locale)}</th>
+                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Which Section to Check', hi: 'कौन सा खण्ड देखें', sa: 'कः विभागः परीक्षणीयः' }, locale)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -471,9 +471,9 @@ export default function TippanniPage() {
             <table className="w-full text-xs">
               <thead>
                 <tr className="border-b border-gold-primary/20">
-                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Aspect', hi: 'पहलू', sa: 'पहलू' }, locale)}</th>
-                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Algorithmic', hi: 'एल्गोरिदमिक', sa: 'एल्गोरिदमिक' }, locale)}</th>
-                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Human', hi: 'मानवीय', sa: 'मानवीय' }, locale)}</th>
+                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Aspect', hi: 'पहलू', sa: 'दृष्टिः' }, locale)}</th>
+                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Algorithmic', hi: 'एल्गोरिदमिक', sa: 'एल्गोरिथ्मात्मकम्' }, locale)}</th>
+                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Human', hi: 'मानवीय', sa: 'मानवीयम्' }, locale)}</th>
                 </tr>
               </thead>
               <tbody>

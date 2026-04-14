@@ -151,10 +151,10 @@ export default function LearnPage() {
 
           <div className="flex flex-wrap gap-6 mb-6">
             {[
-              { val: STATS.modules, label: tl({ en: 'Modules', hi: 'मॉड्यूल', sa: 'मॉड्यूल', ta: 'Modules', te: 'Modules', bn: 'Modules', kn: 'Modules', gu: 'Modules', mai: 'मॉड्यूल', mr: 'मॉड्यूल' }, locale), icon: BookOpen },
-              { val: STATS.references, label: tl({ en: 'References', hi: 'संदर्भ', sa: 'संदर्भ', ta: 'References', te: 'References', bn: 'References', kn: 'References', gu: 'References', mai: 'संदर्भ', mr: 'संदर्भ' }, locale), icon: Star },
-              { val: STATS.labs, label: tl({ en: 'Labs', hi: 'प्रयोगशाला', sa: 'प्रयोगशाला', ta: 'Labs', te: 'Labs', bn: 'Labs', kn: 'Labs', gu: 'Labs', mai: 'प्रयोगशाला', mr: 'प्रयोगशाला' }, locale), icon: CheckCircle },
-              { val: STATS.tracks, label: tl({ en: 'Tracks', hi: 'ट्रैक', sa: 'ट्रैक', ta: 'Tracks', te: 'Tracks', bn: 'Tracks', kn: 'Tracks', gu: 'Tracks', mai: 'ट्रैक', mr: 'ट्रैक' }, locale), icon: Clock },
+              { val: STATS.modules, label: tl({ en: 'Modules', hi: 'मॉड्यूल', sa: 'विभागाः', ta: 'பகுதிகள்', te: 'మాడ్యూళ్ళు', bn: 'মডিউল', kn: 'ಮಾಡ್ಯೂಲ್‌ಗಳು', gu: 'મોડ્યુલ', mai: 'मॉड्यूल', mr: 'विभाग' }, locale), icon: BookOpen },
+              { val: STATS.references, label: tl({ en: 'References', hi: 'संदर्भ', sa: 'सन्दर्भाः', ta: 'குறிப்புகள்', te: 'సూచనలు', bn: 'রেফারেন্স', kn: 'ಉಲ್ಲೇಖಗಳು', gu: 'સંદર્ભ', mai: 'संदर्भ', mr: 'संदर्भ' }, locale), icon: Star },
+              { val: STATS.labs, label: tl({ en: 'Labs', hi: 'प्रयोगशाला', sa: 'प्रयोगशालाः', ta: 'ஆய்வகங்கள்', te: 'ప్రయోగశాలలు', bn: 'ল্যাবস', kn: 'ಪ್ರಯೋಗಾಲಯಗಳು', gu: 'લેબ્સ', mai: 'प्रयोगशाला', mr: 'प्रयोगशाळा' }, locale), icon: CheckCircle },
+              { val: STATS.tracks, label: tl({ en: 'Tracks', hi: 'ट्रैक', sa: 'मार्गाः', ta: 'பாதைகள்', te: 'ట్రాక్‌లు', bn: 'ট্র্যাক', kn: 'ಟ್ರ್ಯಾಕ್‌ಗಳು', gu: 'ટ્રેક', mai: 'ट्रैक', mr: 'ट्रॅक' }, locale), icon: Clock },
             ].map(s => (
               <div key={s.label} className="flex items-center gap-2">
                 <s.icon className="w-4 h-4 text-gold-dark" />
@@ -213,7 +213,7 @@ export default function LearnPage() {
                   </div>
 
                   <div className="flex items-center gap-2 mt-4 text-gold-primary/70 group-hover:text-gold-primary transition-colors">
-                    <span className="text-sm font-medium">{tl({ en: 'Explore Track', hi: 'ट्रैक देखें', sa: 'ट्रैक देखें', ta: 'Explore Track', te: 'Explore Track', bn: 'Explore Track', kn: 'Explore Track', gu: 'Explore Track', mai: 'ट्रैक देखें', mr: 'ट्रैक देखें' }, locale)}</span>
+                    <span className="text-sm font-medium">{tl({ en: 'Explore Track', hi: 'ट्रैक देखें', sa: 'मार्गं पश्यतु', ta: 'பாதையை ஆராயுங்கள்', te: 'ట్రాక్ చూడండి', bn: 'ট্র্যাক দেখুন', kn: 'ಟ್ರ್ಯಾಕ್ ನೋಡಿ', gu: 'ટ્રેક જુઓ', mai: 'ट्रैक देखू', mr: 'ट्रॅक पाहा' }, locale)}</span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -308,7 +308,7 @@ export default function LearnPage() {
                     {tl({ en: 'Web Stories', hi: 'वेब स्टोरीज़', sa: 'जालस्टोरीज़' }, locale)}
                   </span>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-300 border border-purple-500/20 font-medium">
-                    {tl({ en: '5 stories', hi: '5 स्टोरीज़', sa: '5 स्टोरीज़', ta: '5 stories', te: '5 stories', bn: '5 stories', kn: '5 stories', gu: '5 stories', mai: '5 स्टोरीज़', mr: '5 स्टोरीज़' }, locale)}
+                    {tl({ en: '5 stories', hi: '5 स्टोरीज़', sa: '5 कथाः', ta: '5 கதைகள்', te: '5 కథలు', bn: '5 গল্প', kn: '5 ಕಥೆಗಳು', gu: '5 વાર્તાઓ', mai: '5 स्टोरीज़', mr: '5 कथा' }, locale)}
                   </span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-purple-200 group-hover:text-purple-100 transition-colors mb-1" style={hf}>

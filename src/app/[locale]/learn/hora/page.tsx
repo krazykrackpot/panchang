@@ -349,7 +349,7 @@ export default function HoraChaldeanPage() {
                     {tl({ en: 'Rank', hi: 'क्रम', sa: 'क्रम' }, locale)}
                   </th>
                   <th className="text-left py-2.5 px-3 text-gold-dark text-xs uppercase tracking-widest font-bold">
-                    {tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रह' }, locale)}
+                    {tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः' }, locale)}
                   </th>
                   <th className="text-left py-2.5 px-3 text-gold-dark text-xs uppercase tracking-widest font-bold">
                     {tl({ en: 'Sidereal Period', hi: 'परिक्रमण काल', sa: 'परिक्रमण काल' }, locale)}
@@ -539,7 +539,7 @@ export default function HoraChaldeanPage() {
                     {tl({ en: 'Latin', hi: 'लैटिन', sa: 'लैटिन' }, locale)}
                   </th>
                   <th className="text-left py-2.5 px-2 text-gold-dark text-xs uppercase tracking-widest font-bold">
-                    {tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रह' }, locale)}
+                    {tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः' }, locale)}
                   </th>
                   <th className="text-left py-2.5 px-2 text-gold-dark text-xs uppercase tracking-widest font-bold hidden lg:table-cell">
                     {tl({ en: 'English etymology', hi: 'अंग्रेज़ी व्युत्पत्ति', sa: 'अंग्रेज़ी व्युत्पत्ति' }, locale)}

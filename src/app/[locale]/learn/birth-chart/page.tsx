@@ -412,7 +412,7 @@ export default function BirthChartPage() {
             <table className="w-full text-xs mt-2">
               <thead>
                 <tr className="border-b border-gold-primary/20">
-                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रह' }, locale)}</th>
+                  <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः' }, locale)}</th>
                   <th className="text-left text-gold-light py-2 px-3">{tl({ en: 'Governs', hi: 'शासन करता है', sa: 'शासन करता है' }, locale)}</th>
                   <th className="text-center text-gold-light py-2 px-3">{tl({ en: 'Dasha Yrs', hi: 'दशा वर्ष', sa: 'दशा वर्ष' }, locale)}</th>
                 </tr>

@@ -184,7 +184,7 @@ export default function SharedKundaliPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="text-gold-primary border-b border-gold-primary/10">
-                  <th className="text-left py-2 px-3">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रह', ta: 'Planet', te: 'Planet', bn: 'Planet', kn: 'Planet', gu: 'Planet', mai: 'ग्रह', mr: 'ग्रह' }, locale)}</th>
+                  <th className="text-left py-2 px-3">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः', ta: 'கிரகம்', te: 'గ్రహం', bn: 'গ্রহ', kn: 'ಗ್ರಹ', gu: 'ગ્રહ', mai: 'ग्रह', mr: 'ग्रह' }, locale)}</th>
                   <th className="text-left py-2 px-3">{tl({ en: 'Sign', hi: 'राशि', sa: 'राशि', ta: 'Sign', te: 'Sign', bn: 'Sign', kn: 'Sign', gu: 'Sign', mai: 'राशि', mr: 'राशि' }, locale)}</th>
                   <th className="text-right py-2 px-3">{tl({ en: 'Degree', hi: 'अंश', sa: 'अंश', ta: 'Degree', te: 'Degree', bn: 'Degree', kn: 'Degree', gu: 'Degree', mai: 'अंश', mr: 'अंश' }, locale)}</th>
                   <th className="text-center py-2 px-3">{tl({ en: 'House', hi: 'भाव', sa: 'भाव', ta: 'House', te: 'House', bn: 'House', kn: 'House', gu: 'House', mai: 'भाव', mr: 'भाव' }, locale)}</th>

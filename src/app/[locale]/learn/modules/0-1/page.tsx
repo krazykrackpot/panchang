@@ -63,7 +63,7 @@ function Page1() {
       {/* Classical Origin — Gold card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}
+          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीयः उद्भवः' }, locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {tl({ en: 'Indian astronomical achievements are staggering — and shockingly under-known in the West:', hi: 'भारतीय खगोलशास्त्र की उपलब्धियाँ विस्मयकारी हैं — और पश्चिम में बहुत कम ज्ञात हैं:', sa: 'भारतीय खगोलशास्त्र की उपलब्धियाँ विस्मयकारी हैं — और पश्चिम में बहुत कम ज्ञात हैं:' }, locale)}
@@ -221,7 +221,7 @@ function Page3() {
       {/* Red — Misconceptions */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}
+          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}
         </h4>
         <div className="space-y-3 text-text-secondary text-xs leading-relaxed">
           <p>
@@ -258,7 +258,7 @@ function Page3() {
       {/* Blue — Modern Relevance */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}
+          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {tl({ en: 'The mathematics of Jyotish is still completely valid today. The same algorithms described in the Surya Siddhanta, modernized — that is what our app runs. We use Meeus algorithms: Sun accurate to ~0.01 degrees, Moon to ~0.5 degrees. No external APIs — pure math.', hi: 'ज्योतिष का गणित आज भी पूर्णतः मान्य है। वही कलनविधि जो सूर्य सिद्धान्त में वर्णित हैं, आधुनिक रूप में — हमारा ऐप उन्हें चलाता है। हम Meeus कलनविधि का उपयोग करते हैं: सूर्य ~0.01°, चन्द्रमा ~0.5° सटीकता। कोई बाहरी API नहीं — शुद्ध गणित।', sa: 'ज्योतिष का गणित आज भी पूर्णतः मान्य है। वही कलनविधि जो सूर्य सिद्धान्त में वर्णित हैं, आधुनिक रूप में — हमारा ऐप उन्हें चलाता है। हम Meeus कलनविधि का उपयोग करते हैं: सूर्य ~0.01°, चन्द्रमा ~0.5° सटीकता। कोई बाहरी API नहीं — शुद्ध गणित।' }, locale)}

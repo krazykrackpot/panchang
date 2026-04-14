@@ -68,8 +68,8 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}</h4>
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरण कुण्डली' }, locale)} />
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'सोदाहरणं कार्यम्' }, locale)}</h4>
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरणकुण्डली' }, locale)} />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Given positions:</span> Sun at 25°14&apos; Aries, Moon at 18°07&apos; Gemini, Mars at 22°45&apos; Leo, Mercury at 10°33&apos; Virgo, Jupiter at 28°02&apos; Taurus, Venus at 15°21&apos; Libra, Saturn at 8°48&apos; Capricorn.
         </p>
@@ -87,7 +87,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
             ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;चर कारक के लिए ग्रह का कुल भोगांश (राशिचक्र में निरपेक्ष अंश) प्रयोग होता है।&quot; यह गलत है। केवल अपनी राशि में अंश (0° से 30°) ही मायने रखता है। मेष में 5° (निरपेक्ष 5°) का ग्रह और वृश्चिक में 5° (निरपेक्ष 215°) का ग्रह समान माना जाता है — दोनों अपनी राशि में 5° पर हैं।</>
@@ -96,7 +96,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
             ? <>चर कारकों ने आधुनिक ज्योतिष अभ्यासकर्ताओं में नवीन रुचि प्राप्त की है क्योंकि वे कुण्डली व्याख्या में गहन व्यक्तिगत परत जोड़ते हैं। जहाँ पाराशरी स्थिर कारक सामान्य सिद्धान्त देते हैं, वहीं चर कारक प्रकट करते हैं कि प्रत्येक व्यक्ति के लिए विशिष्ट रूप से क्या महत्त्वपूर्ण है। सॉफ्टवेयर इन्हें तत्काल गणित कर सकता है, जिससे जैमिनी तकनीकें पहले से कहीं अधिक सुलभ हो गयी हैं।</>
@@ -135,7 +135,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'सोदाहरणं कार्यम्' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
             ? <><span className="text-gold-light font-medium">उदाहरण:</span> बृहस्पति AK है 28° वृषभ में। D9 में बृहस्पति मकर में पड़ता है। अतः कारकांश मकर है। D1 कुण्डली में मकर को लग्न मानकर देखें: यदि शुक्र मकर (कारकांश) में हो, तो जातक में कलात्मक प्रतिभा है और वह स्त्री देवताओं की उपासना कर सकता है। यदि मंगल कर्क से मकर को दृष्ट करे (सप्तम दृष्टि), तो जातक का अनुशासित, योद्धा-सदृश आध्यात्मिक अभ्यास है। कारकांश से दशम (तुला) आत्मा की सच्ची व्यावसायिक पुकार निर्धारित करता है।</>

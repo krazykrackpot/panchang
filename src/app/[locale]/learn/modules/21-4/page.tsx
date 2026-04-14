@@ -202,7 +202,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}
+          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीयः उद्भवः' }, locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {tl({ en: 'Tithi Pravesha has deep roots in the Vedic tradition of celebrating birthdays by tithi rather than solar date. The Dharmashastra texts prescribe rituals on the Janma Tithi (birth tithi) each year. The astrological application — casting a predictive chart for the TP moment — was championed by Sanjay Rath and other modern Jyotish scholars who argued that the tithi-based return honors the lunar essence of Vedic astrology better than the purely solar Varshaphal. The TP technique draws from both Parashari principles (houses, lordships) and Tajika methodology (annual chart interpretation).', hi: 'तिथि प्रवेश की जड़ें सौर तिथि के बजाय तिथि द्वारा जन्मदिन मनाने की वैदिक परम्परा में गहरी हैं। धर्मशास्त्र ग्रन्थ प्रत्येक वर्ष जन्म तिथि पर अनुष्ठान निर्धारित करते हैं। ज्योतिषीय अनुप्रयोग — TP क्षण के लिए भविष्यवाणी कुण्डली बनाना — संजय रथ और अन्य आधुनिक ज्योतिष विद्वानों द्वारा प्रचारित किया गया जिन्होंने तर्क दिया कि तिथि-आधारित प्रत्यावर्तन विशुद्ध सौर वर्षफल से बेहतर वैदिक ज्योतिष के चान्द्र सार का सम्मान करता है। TP तकनीक पाराशरी सिद्धान्तों (भाव, स्वामित्व) और ताजिक पद्धति (वार्षिक कुण्डली व्याख्या) दोनों से ग्रहण करती है।', sa: 'तिथि प्रवेश की जड़ें सौर तिथि के बजाय तिथि द्वारा जन्मदिन मनाने की वैदिक परम्परा में गहरी हैं। धर्मशास्त्र ग्रन्थ प्रत्येक वर्ष जन्म तिथि पर अनुष्ठान निर्धारित करते हैं। ज्योतिषीय अनुप्रयोग — TP क्षण के लिए भविष्यवाणी कुण्डली बनाना — संजय रथ और अन्य आधुनिक ज्योतिष विद्वानों द्वारा प्रचारित किया गया जिन्होंने तर्क दिया कि तिथि-आधारित प्रत्यावर्तन विशुद्ध सौर वर्षफल से बेहतर वैदिक ज्योतिष के चान्द्र सार का सम्मान करता है। TP तकनीक पाराशरी सिद्धान्तों (भाव, स्वामित्व) और ताजिक पद्धति (वार्षिक कुण्डली व्याख्या) दोनों से ग्रहण करती है।' }, locale)}
@@ -233,8 +233,8 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरण कुण्डली' }, locale)} />
+          {tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'सोदाहरणं कार्यम्' }, locale)}
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरणकुण्डली' }, locale)} />
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -267,7 +267,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}
+          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -278,7 +278,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}
+          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi

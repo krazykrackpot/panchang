@@ -65,7 +65,7 @@ function Page1() {
       {/* Classical Origin Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}
+          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीयः उद्भवः' }, locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {tl({ en: `Surya Siddhanta, Chapter 3: "The solstitial points move along the ecliptic, sometimes eastward, sometimes westward, at the rate of 54 arcseconds (per year)." This was the trepidation model — the idea that the direction reverses was the Surya Siddhanta's one major error. Yet the fact that ancient Indian astronomers recognized precession at all was a remarkable achievement.`, hi: `सूर्य सिद्धान्त, अध्याय 3: "सम्पात बिन्दु क्रान्तिवृत्त के अनुदिश गति करते हैं, कभी पूर्व की ओर, कभी पश्चिम की ओर, 54 कलांश (प्रति वर्ष) की दर से।" यह कम्पन प्रतिरूप था — दिशा उलटने का विचार सूर्य सिद्धान्त की एकमात्र बड़ी त्रुटि थी। फिर भी, यह तथ्य कि प्राचीन भारतीय खगोलशास्त्रियों ने पुरस्सरण को बिल्कुल भी पहचाना, एक उल्लेखनीय उपलब्धि है।`, sa: `सूर्य सिद्धान्त, अध्याय 3: "सम्पात बिन्दु क्रान्तिवृत्त के अनुदिश गति करते हैं, कभी पूर्व की ओर, कभी पश्चिम की ओर, 54 कलांश (प्रति वर्ष) की दर से।" यह कम्पन प्रतिरूप था — दिशा उलटने का विचार सूर्य सिद्धान्त की एकमात्र बड़ी त्रुटि थी। फिर भी, यह तथ्य कि प्राचीन भारतीय खगोलशास्त्रियों ने पुरस्सरण को बिल्कुल भी पहचाना, एक उल्लेखनीय उपलब्धि है।` }, locale)}
@@ -360,7 +360,7 @@ function Page3() {
       {/* Misconceptions Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}
+          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-3">
           <span className="text-red-300 font-medium">{tl({ en: 'Myth:', hi: 'भ्रान्ति:', sa: 'भ्रान्ति:' }, locale)}</span>{' '}
@@ -375,7 +375,7 @@ function Page3() {
       {/* Modern Relevance Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}
+          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {tl({ en: 'The IAU (International Astronomical Union) uses the ICRS (International Celestial Reference System) anchored to distant quasars — neither tropical nor sidereal. All ayanamsha systems are human-chosen reference frames. What matters is consistency, not absolute "truth." NASA uses precession in all orbital calculations. Our app uses the same mathematics — a polynomial based on the IAU precession rate, anchored to the star Spica at 180 degrees sidereal.', hi: 'अन्तर्राष्ट्रीय खगोलीय संघ (IAU) ICRS (अन्तर्राष्ट्रीय खगोलीय सन्दर्भ पद्धति) प्रयोग करता है जो दूरस्थ क्वेसारों पर आधारित है — न सायन, न निरयन। सभी अयनांश पद्धतियाँ मानव-चयनित सन्दर्भ ढाँचे हैं। जो महत्त्वपूर्ण है वह सुसंगतता है, न कि परम "सत्य"। नासा कक्षीय गणनाओं में पुरस्सरण प्रयोग करता है। हमारा ऐप वही गणित प्रयोग करता है — IAU पुरस्सरण दर पर आधारित बहुपद, चित्रा तारे से 180° पर स्थिर।', sa: 'अन्तर्राष्ट्रीय खगोलीय संघ (IAU) ICRS (अन्तर्राष्ट्रीय खगोलीय सन्दर्भ पद्धति) प्रयोग करता है जो दूरस्थ क्वेसारों पर आधारित है — न सायन, न निरयन। सभी अयनांश पद्धतियाँ मानव-चयनित सन्दर्भ ढाँचे हैं। जो महत्त्वपूर्ण है वह सुसंगतता है, न कि परम "सत्य"। नासा कक्षीय गणनाओं में पुरस्सरण प्रयोग करता है। हमारा ऐप वही गणित प्रयोग करता है — IAU पुरस्सरण दर पर आधारित बहुपद, चित्रा तारे से 180° पर स्थिर।' }, locale)}

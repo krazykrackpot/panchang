@@ -94,7 +94,7 @@ export default function NakshatraDetailPage() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
         {[
           { label: tl({ en: 'Deity', hi: 'देवता', sa: 'देवता', ta: 'தெய்வம்', te: 'దేవత', bn: 'দেবতা', kn: 'ದೇವತೆ', gu: 'દેવતા', mai: 'देवता', mr: 'देवता' }, locale), value: nak.deity[locale] },
-          { label: tl({ en: 'Ruler', hi: 'स्वामी', sa: 'स्वामी', ta: 'ஆட்சியாளர்', te: 'స్వామి', bn: 'স্বামী', kn: 'ಸ್ವಾಮಿ', gu: 'સ્વામી', mai: 'स्वामी', mr: 'स्वामी' }, locale), value: nak.rulerName[locale] },
+          { label: tl({ en: 'Ruler', hi: 'स्वामी', sa: 'स्वामी', ta: 'ஆட்சியாளர்', te: 'పాలకుడు', bn: 'শাসক', kn: 'ಆಡಳಿತಗಾರ', gu: 'સ્વામી', mai: 'स्वामी', mr: 'स्वामी' }, locale), value: nak.rulerName[locale] },
           { label: tl({ en: 'Nature', hi: 'स्वभाव', sa: 'स्वभावः', ta: 'இயல்பு', te: 'స్వభావం', bn: 'স্বভাব', kn: 'ಸ್ವಭಾವ', gu: 'સ્વભાવ', mai: 'स्वभाव', mr: 'स्वभाव' }, locale), value: nak.nature[locale] },
           { label: tl({ en: 'Gana', hi: 'गण', sa: 'गणः', ta: 'கணம்', te: 'గణం', bn: 'গণ', kn: 'ಗಣ', gu: 'ગણ', mai: 'गण', mr: 'गण' }, locale), value: detail.gana[locale] },
           { label: tl({ en: 'Guna', hi: 'गुण', sa: 'गुणः', ta: 'குணம்', te: 'గుణం', bn: 'গুণ', kn: 'ಗುಣ', gu: 'ગુણ', mai: 'गुण', mr: 'गुण' }, locale), value: detail.guna[locale] },

@@ -115,15 +115,15 @@ function Page1() {
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{tl({ en: 'Addition:', hi: 'जोड़:', sa: 'जोड़:' }, locale)}</span>{' '}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Addition:', hi: 'जोड़:', sa: 'योजनम्:' }, locale)}</span>{' '}
             {tl({ en: 'dhana + dhana = dhana. rina + rina = rina. dhana + rina = the sign of the larger magnitude.', hi: 'धन + धन = धन। ऋण + ऋण = ऋण। धन + ऋण = उनके अन्तर की दिशा।', sa: 'धन + धन = धन। ऋण + ऋण = ऋण। धन + ऋण = उनके अन्तर की दिशा।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{tl({ en: 'Subtraction:', hi: 'घटाव:', sa: 'घटाव:' }, locale)}</span>{' '}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Subtraction:', hi: 'घटाव:', sa: 'व्यवकलनम्:' }, locale)}</span>{' '}
             {tl({ en: 'rina − rina = dhana or rina (whichever is larger). dhana − rina = dhana.', hi: 'ऋण में से ऋण घटाना = धन या ऋण (जो बड़ा)। धन में से ऋण घटाना = धन।', sa: 'ऋण में से ऋण घटाना = धन या ऋण (जो बड़ा)। धन में से ऋण घटाना = धन।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{tl({ en: 'Multiplication:', hi: 'गुणा:', sa: 'गुणा:' }, locale)}</span>{' '}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Multiplication:', hi: 'गुणा:', sa: 'गुणनम्:' }, locale)}</span>{' '}
             {tl({ en: 'dhana × dhana = dhana. rina × rina = dhana. dhana × rina = rina.', hi: 'धन × धन = धन। ऋण × ऋण = धन। धन × ऋण = ऋण।', sa: 'धन × धन = धन। ऋण × ऋण = धन। धन × ऋण = ऋण।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
@@ -205,7 +205,7 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Why Did Europe Resist?', hi: 'यूरोप ने विरोध क्यों किया?', sa: 'यूरोप ने विरोध क्यों किया?' }, locale)}
+          {tl({ en: 'Why Did Europe Resist?', hi: 'यूरोप ने विरोध क्यों किया?', sa: 'यूरोपः किमर्थं विरोधं कृतवान्?' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi

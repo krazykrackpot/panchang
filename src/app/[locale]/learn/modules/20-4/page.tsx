@@ -204,7 +204,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}
+          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीयः उद्भवः' }, locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {tl({ en: 'The idea that the moment of a question carries its own answer is rooted in the ancient Prashna (horary) tradition of Vedic astrology. Texts like Prashna Marga and Tajika Neelakanthi emphasize that the chart cast for the moment of query contains all information about the outcome. Krishnamurti refined this into the ruling planets concept — extracting five key planetary pointers from the query moment and using them as a filter to narrow down dasha timing from the birth chart. This synthesis of horary principles with natal dasha analysis is uniquely KP.', hi: 'प्रश्न के क्षण में उसका उत्तर निहित है यह विचार वैदिक ज्योतिष की प्राचीन प्रश्न (होरेरी) परम्परा में निहित है। प्रश्न मार्ग और ताजिक नीलकण्ठी जैसे ग्रन्थ बल देते हैं कि प्रश्न के क्षण की कुण्डली परिणाम की सम्पूर्ण सूचना रखती है। कृष्णमूर्ति ने इसे शासक ग्रह अवधारणा में परिशोधित किया — प्रश्न क्षण से पाँच प्रमुख ग्रह संकेतक निकालकर उन्हें जन्म कुण्डली से दशा समय को सीमित करने के फिल्टर के रूप में उपयोग करना। होरेरी सिद्धान्तों का जन्म दशा विश्लेषण के साथ यह संश्लेषण विशिष्ट रूप से केपी है।', sa: 'प्रश्न के क्षण में उसका उत्तर निहित है यह विचार वैदिक ज्योतिष की प्राचीन प्रश्न (होरेरी) परम्परा में निहित है। प्रश्न मार्ग और ताजिक नीलकण्ठी जैसे ग्रन्थ बल देते हैं कि प्रश्न के क्षण की कुण्डली परिणाम की सम्पूर्ण सूचना रखती है। कृष्णमूर्ति ने इसे शासक ग्रह अवधारणा में परिशोधित किया — प्रश्न क्षण से पाँच प्रमुख ग्रह संकेतक निकालकर उन्हें जन्म कुण्डली से दशा समय को सीमित करने के फिल्टर के रूप में उपयोग करना। होरेरी सिद्धान्तों का जन्म दशा विश्लेषण के साथ यह संश्लेषण विशिष्ट रूप से केपी है।' }, locale)}
@@ -233,8 +233,8 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरण कुण्डली' }, locale)} />
+          {tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'सोदाहरणं कार्यम्' }, locale)}
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरणकुण्डली' }, locale)} />
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Query: &quot;When will I get married?&quot;</span> Analysis moment: Tuesday at 10:15 AM. Moon at 22 degrees Taurus (Rohini nakshatra). Ascendant at 8 degrees Cancer (Pushya nakshatra). Ruling planets: (1) Moon&apos;s sign lord = Venus (Taurus). (2) Moon&apos;s star lord = Moon (Rohini). (3) Lagna sign lord = Moon (Cancer). (4) Lagna star lord = Saturn (Pushya). (5) Day lord = Mars (Tuesday). Ruling planets: Venus, Moon (repeated), Saturn, Mars.
@@ -270,7 +270,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}
+          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -281,7 +281,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}
+          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi

@@ -242,7 +242,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा moonLongitude(jd) फ़ंक्शन सारणी 47.A के सभी 60 ज्या पद लागू करता है, उत्केन्द्रता सुधार E गणित करता है, और चन्द्रमा का भूकेन्द्रीय सायन भोगांश लौटाता है। यह प्रत्येक पंचांग तत्व के लिए बुलाया जाता है जो चन्द्रमा पर निर्भर है: तिथि (चन्द्र-सूर्य कोण), नक्षत्र (चन्द्र निरयन स्थिति), योग (सूर्य+चन्द्र योग), करण (अर्ध-तिथि), और चन्द्रोदय/चन्द्रास्त समय। 60-पद गणना आधुनिक हार्डवेयर पर माइक्रोसेकण्ड में चलती है — मीयस ने शताब्दियों के चन्द्र सिद्धान्त को कितनी कुशलता से संक्षिप्त एल्गोरिदम में संकलित किया, इसका प्रमाण।</> : <>Our moonLongitude(jd) function implements all 60 sine terms from Table 47.A, computes the eccentricity correction E, and returns the Moon&apos;s geocentric tropical longitude. This is called for every Panchang element that depends on the Moon: Tithi (Moon-Sun angle), Nakshatra (Moon&apos;s sidereal position), Yoga (Sun+Moon sum), Karana (half-tithi), and moonrise/moonset timing. The 60-term computation runs in microseconds on modern hardware — a testament to how efficiently Meeus distilled centuries of lunar theory into a compact algorithm.</>}</p>
       </section>
     </div>

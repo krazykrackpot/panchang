@@ -211,8 +211,8 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}</h4>
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरण कुण्डली' }, locale)} />
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'सोदाहरणं कार्यम्' }, locale)}</h4>
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरणकुण्डली' }, locale)} />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Location:</span> Corseaux, Switzerland (46.47°N, 6.80°E), April 2, 2026. Timezone: Europe/Zurich (CEST, UTC+2).
         </p>
@@ -246,7 +246,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;सौर मध्याह्न सदैव 12:00 पर होता है।&quot; सौर मध्याह्न तीन कारकों पर निर्भर है: (1) समयक्षेत्र केन्द्रीय याम्योत्तर से आपका देशान्तर अन्तर, (2) समय का समीकरण, और (3) दिवालोक बचत समय। कोर्सो (6.8°E, 15°E पर केन्द्रित समयक्षेत्र) में सौर मध्याह्न ग्रीष्म में सामान्यतः लगभग 13:25-13:35 CEST होता है — घड़ी पर &quot;12:00&quot; से 90 मिनट से अधिक बाद।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Solar noon is always at 12:00.&quot; Solar noon depends on three factors: (1) your longitude offset from the timezone central meridian, (2) the Equation of Time, and (3) daylight saving time. In Corseaux (6.8°E, timezone centered on 15°E), solar noon is typically around 13:25-13:35 CEST in summer — over 90 minutes after &quot;12:00&quot; on the clock.</>}</p>
       </section>
     </div>

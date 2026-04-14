@@ -244,7 +244,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
             ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;होरा लग्न और D2 (होरा) कुण्डली एक ही हैं।&quot; ये पूर्णतया भिन्न हैं। D2 होरा कुण्डली पाराशरी ज्योतिष में धन मूल्यांकन हेतु प्रयुक्त एक विभागीय कुण्डली है। होरा लग्न जैमिनी ज्योतिष में प्रयुक्त एक संवेदनशील बिन्दु (गणितीय लग्न-सदृश) है। दोनों &quot;होरा&quot; शब्द साझा करते हैं किन्तु भिन्न गणना और अनुप्रयोग वाली अलग अवधारणाएँ हैं।</>
@@ -272,8 +272,8 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}</h4>
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरण कुण्डली' }, locale)} />
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'सोदाहरणं कार्यम्' }, locale)}</h4>
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरणकुण्डली' }, locale)} />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Given:</span> Lagna in Aries (odd, sign 1), Hora Lagna in Leo (odd, sign 5). Both are odd — use Rule 1.
         </p>
@@ -300,7 +300,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
             ? <>विशेष लग्न कुण्डली व्याख्या में उल्लेखनीय गहराई जोड़ते हैं। यद्यपि उन्हें सटीक जन्म समय चाहिए (विशेषकर घटी लग्न को), आधुनिक सॉफ्टवेयर चारों विशेष लग्नों की तत्काल गणना कर सकता है। परामर्श में ज्योतिषी पा सकता है कि जन्म लग्न एक जीविका दिशा सुझाता है जबकि होरा लग्न और वर्णद लग्न दूसरी ओर संकेत करते हैं — प्रकट करते हुए कि जातक जीविकार्थ क्या करता है और उसकी आत्मा वास्तव में क्या चाहती है, इसके बीच का तनाव। ये बहुविध दृष्टिकोण वैदिक ज्योतिष में जैमिनी के महानतम योगदानों में से एक हैं।</>

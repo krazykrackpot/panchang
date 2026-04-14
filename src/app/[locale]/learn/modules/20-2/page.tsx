@@ -199,7 +199,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीयः उद्भवः' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {tl({ en: "The concept of subdividing nakshatras is not new — Parashari astrology uses the 4-pada system (108 padas total, forming the Navamsha). KP\'s innovation was replacing equal padas with UNEQUAL Vimshottari-proportioned subs. Krishnamurti argued that since the Vimshottari dasha governs the timing of life events, the same proportional logic should govern the spatial division of the zodiac. This elegant unification of temporal (dasha) and spatial (sub-lord) systems using the same Vimshottari ratios is what makes KP internally consistent.", hi: "नक्षत्रों को उप-विभाजित करने की अवधारणा नई नहीं है — पाराशरी ज्योतिष 4-पाद पद्धति (कुल 108 पाद, जो नवांश बनाते हैं) का उपयोग करता है। केपी का नवाचार था समान पादों को असमान विंशोत्तरी-अनुपातित उप-भागों से प्रतिस्थापित करना। कृष्णमूर्ति का तर्क था कि चूँकि विंशोत्तरी दशा जीवन घटनाओं के समय को नियन्त्रित करती है, वही आनुपातिक तर्क राशिचक्र के स्थानिक विभाजन को भी नियन्त्रित करना चाहिए। समान विंशोत्तरी अनुपातों का उपयोग करके कालिक (दशा) और स्थानिक (उप-स्वामी) पद्धतियों का यह सुन्दर एकीकरण ही केपी को आन्तरिक रूप से सुसंगत बनाता है।", sa: "नक्षत्रों को उप-विभाजित करने की अवधारणा नई नहीं है — पाराशरी ज्योतिष 4-पाद पद्धति (कुल 108 पाद, जो नवांश बनाते हैं) का उपयोग करता है। केपी का नवाचार था समान पादों को असमान विंशोत्तरी-अनुपातित उप-भागों से प्रतिस्थापित करना। कृष्णमूर्ति का तर्क था कि चूँकि विंशोत्तरी दशा जीवन घटनाओं के समय को नियन्त्रित करती है, वही आनुपातिक तर्क राशिचक्र के स्थानिक विभाजन को भी नियन्त्रित करना चाहिए। समान विंशोत्तरी अनुपातों का उपयोग करके कालिक (दशा) और स्थानिक (उप-स्वामी) पद्धतियों का यह सुन्दर एकीकरण ही केपी को आन्तरिक रूप से सुसंगत बनाता है।" }, locale)}
         </p>
@@ -231,8 +231,8 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरण कुण्डली' }, locale)} />
+          {tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'सोदाहरणं कार्यम्' }, locale)}
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरणकुण्डली' }, locale)} />
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -268,7 +268,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}
+          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -279,7 +279,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}
+          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {tl({ en: 'Before computers, KP practitioners had to manually look up the 249 sub-lord table from printed books — a tedious and error-prone process. Today, our KP System tool instantly computes the Sign Lord, Star Lord, and Sub Lord for every planet and house cusp in the chart. This automation has democratized KP astrology, allowing students to focus on interpretation rather than table lookups. The precision of sub-lord computation demands accurate birth time — even a 2-minute difference can shift a cusp sub-lord, which is why KP astrologers are among the strongest advocates for birth time rectification.', hi: 'कम्प्यूटर से पहले, केपी अभ्यासकर्ताओं को मुद्रित पुस्तकों से 249 उप-स्वामी सारणी मैनुअली खोजनी पड़ती थी — एक थकाऊ और त्रुटि-प्रवण प्रक्रिया। आज हमारा केपी सिस्टम उपकरण कुण्डली में प्रत्येक ग्रह और भाव सन्धि का राशि स्वामी, नक्षत्र स्वामी और उप स्वामी तत्काल गणित करता है। इस स्वचालन ने केपी ज्योतिष का लोकतन्त्रीकरण किया है, जिससे विद्यार्थी सारणी खोज के बजाय व्याख्या पर ध्यान केन्द्रित कर सकते हैं। उप-स्वामी गणना की सटीकता के लिए सही जन्म समय अनिवार्य है — 2 मिनट का अन्तर भी सन्धि उप-स्वामी बदल सकता है, इसीलिए केपी ज्योतिषी जन्म समय शोधन के सबसे प्रबल समर्थकों में हैं।', sa: 'कम्प्यूटर से पहले, केपी अभ्यासकर्ताओं को मुद्रित पुस्तकों से 249 उप-स्वामी सारणी मैनुअली खोजनी पड़ती थी — एक थकाऊ और त्रुटि-प्रवण प्रक्रिया। आज हमारा केपी सिस्टम उपकरण कुण्डली में प्रत्येक ग्रह और भाव सन्धि का राशि स्वामी, नक्षत्र स्वामी और उप स्वामी तत्काल गणित करता है। इस स्वचालन ने केपी ज्योतिष का लोकतन्त्रीकरण किया है, जिससे विद्यार्थी सारणी खोज के बजाय व्याख्या पर ध्यान केन्द्रित कर सकते हैं। उप-स्वामी गणना की सटीकता के लिए सही जन्म समय अनिवार्य है — 2 मिनट का अन्तर भी सन्धि उप-स्वामी बदल सकता है, इसीलिए केपी ज्योतिषी जन्म समय शोधन के सबसे प्रबल समर्थकों में हैं।' }, locale)}

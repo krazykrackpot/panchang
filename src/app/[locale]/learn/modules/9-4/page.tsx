@@ -54,7 +54,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रांतियाँ', sa: 'सामान्य भ्रांतियाँ' }, locale)}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रांतियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><strong className="text-gold-light">भ्रांति:</strong> &quot;मैं सप्तम भाव में शनि देख रहा हूँ, तो विवाह में विलम्ब/कठिनाई होगी।&quot; यह एक शास्त्रीय शुरुआती गलती है — एक कारक से निष्कर्ष पर पहुँचना। सप्तम में शनि का अर्थ हो सकता है: विलम्बित लेकिन स्थिर विवाह (शनि = धीमा लेकिन स्थायी), परिपक्व/बड़ी उम्र का साथी, शनि-संबंधित पेशे में भागीदार, या साझेदारियों में अनुशासन। आपको शनि की गरिमा, स्वामित्व, शुभ ग्रहों की दृष्टि, सप्तम स्वामी की स्थिति, शुक्र (विवाह कारक), नवमांश सप्तम भाव, और दशा काल की जाँच करनी चाहिए। तभी आप निष्कर्ष का संश्लेषण कर सकते हैं।</> : <><strong className="text-gold-light">Misconception:</strong> &quot;I see Saturn in the 7th house, so marriage will be delayed/troubled.&quot; This is a classic beginner error — jumping to conclusions from one factor. Saturn in the 7th could mean: delayed but stable marriage (Saturn = slow but lasting), a mature/older spouse, a partner in a Saturn-related profession, or discipline in partnerships. You must check Saturn&apos;s dignity, lordship, aspects from benefics, the 7th lord&apos;s condition, Venus (karaka for marriage), Navamsha 7th house, and the dasha period. Only then can you synthesize a conclusion.</>}</p>
       </section>
     </div>
@@ -143,7 +143,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा ऐप यह सम्पूर्ण विश्लेषण स्वचालित रूप से करता है। जब आप कुण्डली बनाते हैं, तो टिप्पणी इंजन प्रत्येक ग्रह की गरिमा का मूल्यांकन करता है, सभी प्रमुख योगों और दोषों की पहचान करता है, षड्बल अंकों की गणना करता है, और एक व्यापक व्याख्यात्मक वर्णन का संश्लेषण करता है। इस मॉड्यूल में वर्णित व्यवस्थित ढाँचा ठीक वही है जो हमारे एल्गोरिदम लागू करते हैं — वही शास्त्रीय नियम, अब आधुनिक सटीकता के साथ गणित।</> : <>Our app performs this entire analysis automatically. When you generate a Kundali, the tippanni engine evaluates every planet&apos;s dignity, identifies all major yogas and doshas, calculates Shadbala scores, and synthesizes a comprehensive interpretive narrative. The systematic framework described in this module is exactly what our algorithms implement — the same classical rules, now computed with modern precision.</>}</p>
       </section>
     </div>

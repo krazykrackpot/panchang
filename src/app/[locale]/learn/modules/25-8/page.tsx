@@ -263,15 +263,15 @@ function Page3() {
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{tl({ en: 'Indian contribution:', hi: 'भारतीय योगदान:', sa: 'भारतीय योगदान:' }, locale)}</span>{' '}
-            {tl({ en: 'Discovery and systematic practical use of the general theorem (~800 BCE), √2 to 5 decimal places, four Pythagorean triples.', hi: 'सामान्य प्रमेय की खोज और व्यावहारिक उपयोग (~800 ईपू), √2 पाँच दशमलव तक, चार पाइथागोरीय त्रिक।', sa: 'सामान्य प्रमेय की खोज और व्यावहारिक उपयोग (~800 ईपू), √2 पाँच दशमलव तक, चार पाइथागोरीय त्रिक।' }, locale)}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Indian contribution:', hi: 'भारतीय योगदान:', sa: 'भारतीयानां योगदानम्:' }, locale)}</span>{' '}
+            {tl({ en: 'Discovery and systematic practical use of the general theorem (~800 BCE), √2 to 5 decimal places, four Pythagorean triples.', hi: 'सामान्य प्रमेय की खोज और व्यावहारिक उपयोग (~800 ईपू), √2 पाँच दशमलव तक, चार पाइथागोरीय त्रिक।', sa: 'सामान्यप्रमेयस्य आविष्कारः व्यवस्थितं व्यावहारिकं च उपयोगः (~800 ईपू), √2 पञ्चदशमलवपर्यन्तम्, चत्वारि पाइथागोरीयत्रिकाणि।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{tl({ en: 'Greek contribution:', hi: 'ग्रीक योगदान:', sa: 'ग्रीक योगदान:' }, locale)}</span>{' '}
-            {tl({ en: 'Possibly the first formal deductive proof — though no work by Pythagoras survives, so Euclid (~300 BCE) is the oldest surviving source.', hi: 'सम्भवतः प्रथम औपचारिक निगमनात्मक प्रमाण — हालाँकि पाइथागोरस का कोई लिखित कार्य नहीं बचा, इसलिए यूक्लिड (~300 ईपू) ही सबसे पुराना जीवित स्रोत है।', sa: 'सम्भवतः प्रथम औपचारिक निगमनात्मक प्रमाण — हालाँकि पाइथागोरस का कोई लिखित कार्य नहीं बचा, इसलिए यूक्लिड (~300 ईपू) ही सबसे पुराना जीवित स्रोत है।' }, locale)}
+            <span className="text-gold-light font-semibold">{tl({ en: 'Greek contribution:', hi: 'ग्रीक योगदान:', sa: 'ग्रीकानां योगदानम्:' }, locale)}</span>{' '}
+            {tl({ en: 'Possibly the first formal deductive proof — though no work by Pythagoras survives, so Euclid (~300 BCE) is the oldest surviving source.', hi: 'सम्भवतः प्रथम औपचारिक निगमनात्मक प्रमाण — हालाँकि पाइथागोरस का कोई लिखित कार्य नहीं बचा, इसलिए यूक्लिड (~300 ईपू) ही सबसे पुराना जीवित स्रोत है।', sa: 'सम्भवतः प्रथमः औपचारिकः निगमनात्मकः प्रमाणम् — यद्यपि पाइथागोरसस्य कोऽपि ग्रन्थः न उपलब्धः, अतः यूक्लिड (~300 ईपू) एव प्राचीनतमः उपलब्धः स्रोतः अस्ति।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed mt-2 italic">
-            {tl({ en: 'Historians of mathematics increasingly favour the name "Baudhayana theorem." Indian mathematics textbooks already call it that.', hi: 'गणित के इतिहासकार अब "बौधायन प्रमेय" नाम की ओर झुक रहे हैं। भारतीय गणित पाठ्यपुस्तकों में यह पहले से ही "बौधायन प्रमेय" कही जाती है।', sa: 'गणित के इतिहासकार अब "बौधायन प्रमेय" नाम की ओर झुक रहे हैं। भारतीय गणित पाठ्यपुस्तकों में यह पहले से ही "बौधायन प्रमेय" कही जाती है।' }, locale)}
+            {tl({ en: 'Historians of mathematics increasingly favour the name "Baudhayana theorem." Indian mathematics textbooks already call it that.', hi: 'गणित के इतिहासकार अब "बौधायन प्रमेय" नाम की ओर झुक रहे हैं। भारतीय गणित पाठ्यपुस्तकों में यह पहले से ही "बौधायन प्रमेय" कही जाती है।', sa: 'गणितस्य इतिहासकाराः क्रमशः "बौधायनप्रमेयम्" इति नाम अनुमोदयन्ति। भारतीयगणितपाठ्यपुस्तकेषु तत् नाम पूर्वमेव प्रचलितम् अस्ति।' }, locale)}
           </p>
         </div>
       </section>

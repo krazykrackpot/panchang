@@ -45,7 +45,7 @@ function Page1() {
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">Worked Example</h4>
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरण कुण्डली' }, locale)} />
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरणकुण्डली' }, locale)} />
         <p className="text-text-secondary text-xs leading-relaxed">
           Jupiter at 5&deg; Cancer. In D1, Jupiter is exalted in Cancer = full 3.5 points. In D9 (Navamsha), 5&deg; Cancer falls in the first navamsha pada, which maps to Cancer itself — still exalted = full 3.0 points. Already 6.5 out of 20 from just two vargas. If Jupiter is also well-placed in D60, that adds up to 4.0 more. Three favourable vargas alone could yield 10.5/20 — already in the &ldquo;good&rdquo; range before checking the other 13.
         </p>

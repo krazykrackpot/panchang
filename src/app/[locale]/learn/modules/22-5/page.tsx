@@ -242,12 +242,12 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;चन्द्रोदय लम्बन सूर्य की तरह नगण्य है।&quot; सूर्य का लम्बन (8.8&quot;) वास्तव में नगण्य है। चन्द्रमा का लम्बन (~57&apos;) 400 गुना बड़ा है और दृश्य चन्द्रोदय समय को 3-5 मिनट खिसकाता है। इसकी अनदेखी करने से हमारा चन्द्रोदय लगातार कई मिनट देर से आता।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Moonrise parallax is negligible like the Sun&apos;s.&quot; The Sun&apos;s parallax (8.8&quot;) is indeed negligible. The Moon&apos;s parallax (~57&apos;) is 400 times larger and shifts the apparent moonrise time by 3-5 minutes. Ignoring it would make our moonrise consistently late by several minutes.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>चन्द्रोदय समय पंचांग के लिए अत्यन्त महत्त्वपूर्ण है: करवा चौथ पर चन्द्रोदय समय व्रत-भंग अनुष्ठान निर्धारित करता है। शरद पूर्णिमा पर चन्द्रोदय समय अनुष्ठान समय-निर्धारण प्रभावित करता है। हमारा अन्वेषण + द्विआधारी खोज दृष्टिकोण पूर्ण 60-पद चन्द्र स्थिति ~300 बार (288 अन्वेषण बिन्दु + ~15 द्विआधारी खोज पुनरावृत्तियाँ) गणित करने के बावजूद आधुनिक हार्डवेयर पर 100ms से कम में चलता है, जिससे यह वास्तविक-समय वेब अनुप्रयोगों के लिए व्यावहारिक है।</> : <>Moonrise timing is crucial for Panchang: the Chandrodaya (moonrise) time on Karva Chauth determines when the fast-breaking ritual occurs. On Sharad Purnima, moonrise timing affects ritual scheduling. Our scanning + binary search approach runs in under 100ms on modern hardware despite computing the full 60-term Moon position ~300 times (288 scan points + ~15 binary search iterations), making it practical for real-time web applications.</>}</p>
       </section>
     </div>

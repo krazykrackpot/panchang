@@ -56,7 +56,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीयः उद्भवः' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>उच्च अंश BPHS अध्याय 3 (श्लोक 51) और फलदीपिका अध्याय 2 में सूचीबद्ध हैं। ये विशिष्ट राशि-अंश संयोजन सभी ज्योतिष परम्पराओं में 2000 से अधिक वर्षों से अपरिवर्तित हैं। परम उच्च अंश वह है जहाँ ग्रह पूर्ण अधिकतम शक्ति पर पहुँचता है — ठीक 10° मेष सूर्य या 5° कर्क बृहस्पति अपने शिखर पर होता है।</> : <>Exaltation degrees are listed in BPHS Chapter 3 (Shloka 51) and Phaladeepika Chapter 2. These specific sign-degree combinations have remained unchanged for over 2000 years across all Jyotish traditions. The deep exaltation degree is where the planet reaches absolute maximum potency — a planet at exactly 10° Aries Sun or 5° Cancer Jupiter is at its peak.</>}</p>
       </section>
     </div>
@@ -101,7 +101,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रांतियाँ', sa: 'सामान्य भ्रांतियाँ' }, locale)}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रांतियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><strong className="text-gold-light">भ्रांति:</strong> &quot;नीच ग्रह का अर्थ है कि वह जीवन क्षेत्र बर्बाद है।&quot; यह दो स्तरों पर गलत है। पहला, नीचभंग की शर्तें बहुत सामान्य हैं — अधिकांश कुण्डलियों में कम से कम एक भंग होता है। दूसरा, भंग के बिना भी, नीच ग्रह ऐसी चुनौतियाँ उत्पन्न करता है जो विकास के लिए बाध्य करती हैं। कई अत्यंत सफल लोगों के पास नीच ग्रह होते हैं जो क्षतिपूर्ति के संघर्ष से उनकी महत्वाकांक्षा को संचालित करते हैं।</> : <><strong className="text-gold-light">Misconception:</strong> &quot;A debilitated planet means that life area is doomed.&quot; This is wrong on two levels. First, Neecha Bhanga conditions are very common — most charts have at least one cancellation. Second, even without cancellation, a debilitated planet produces challenges that force growth. Many highly successful people have debilitated planets driving their ambition through the struggle to compensate.</>}</p>
       </section>
     </div>
@@ -156,7 +156,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा कुण्डली इंजन स्वचालित रूप से आपकी कुण्डली में प्रत्येक ग्रह की गरिमा का मूल्यांकन करता है। टिप्पणी उच्च और नीच ग्रहों की पहचान करती है, नीचभंग शर्तों की जाँच करती है, और समझाती है कि गरिमा प्रत्येक ग्रह की अपने भाव में फल देने की क्षमता को कैसे प्रभावित करती है। यह षड्बल शक्ति मूल्यांकन में एकीकृत है।</> : <>Our Kundali engine automatically evaluates every planet&apos;s dignity in your chart. The tippanni commentary identifies exalted and debilitated planets, checks for Neecha Bhanga conditions, and explains how dignity affects each planet&apos;s ability to deliver results in its house. This is integrated into the Shadbala strength assessment for a complete picture of planetary power.</>}</p>
       </section>
     </div>

@@ -87,7 +87,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;केवल विंशोत्तरी प्रामाणिक है; अन्य दशा पद्धतियाँ आधुनिक आविष्कार हैं।&quot; यह पूर्णतया असत्य है। जैमिनी सूत्र (महर्षि जैमिनी, व्यास के शिष्य को समर्पित) अनेक पाराशरी टीकाओं से पूर्ववर्ती हैं। योगिनी दशा मध्यकालीन भारत के तान्त्रिक साहित्य में प्रकट होती है और शाक्त परम्परा में इसकी गहरी जड़ें हैं। तीनों पद्धतियों का प्राचीन वंशक्रम है और ये परस्पर पूरक हैं, प्रतिस्पर्धी नहीं।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Only Vimshottari is authentic; other dasha systems are modern inventions.&quot; This is completely false. Jaimini Sutras (attributed to Maharishi Jaimini, a disciple of Vyasa) predate many Parashari commentaries. Yogini Dasha appears in Tantric literature from medieval India and has deep roots in the Shakta tradition. All three systems have ancient pedigrees and are mutually complementary, not competing.</>}</p>
       </section>
 

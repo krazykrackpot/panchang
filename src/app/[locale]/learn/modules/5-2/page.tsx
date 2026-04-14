@@ -35,7 +35,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीयः उद्भवः' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {tl({ en: 'The concept of paksha is deeply embedded in Vedic literature. The Rig Veda refers to the bright and dark halves of the Moon\u2019s cycle. The Arthashastra of Kautilya (c. 300 BCE) uses paksha as an administrative time unit. Surya Siddhanta provides the astronomical basis by defining Shukla and Krishna Paksha in terms of Moon-Sun elongation. The dual-paksha structure is the cornerstone upon which the entire Hindu festival calendar rests.', hi: 'पक्ष की अवधारणा वैदिक साहित्य में गहराई से समाहित है। ऋग्वेद में चन्द्र चक्र के उज्ज्वल और अन्धकार अर्धों का उल्लेख है। कौटिल्य के अर्थशास्त्र (लगभग 300 ई.पू.) में पक्ष को प्रशासनिक समय इकाई के रूप में प्रयुक्त किया गया है। सूर्य सिद्धान्त चन्द्र-सूर्य कोणीय दूरी के सन्दर्भ में शुक्ल और कृष्ण पक्ष को परिभाषित करके खगोलीय आधार प्रदान करता है। द्वि-पक्ष संरचना सम्पूर्ण हिन्दू त्योहार पंचांग की आधारशिला है।', sa: 'पक्ष की अवधारणा वैदिक साहित्य में गहराई से समाहित है। ऋग्वेद में चन्द्र चक्र के उज्ज्वल और अन्धकार अर्धों का उल्लेख है। कौटिल्य के अर्थशास्त्र (लगभग 300 ई.पू.) में पक्ष को प्रशासनिक समय इकाई के रूप में प्रयुक्त किया गया है। सूर्य सिद्धान्त चन्द्र-सूर्य कोणीय दूरी के सन्दर्भ में शुक्ल और कृष्ण पक्ष को परिभाषित करके खगोलीय आधार प्रदान करता है। द्वि-पक्ष संरचना सम्पूर्ण हिन्दू त्योहार पंचांग की आधारशिला है।' }, locale)}
         </p>
@@ -72,7 +72,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;अमान्त और पूर्णिमान्त में त्योहारों की तिथियाँ भिन्न होती हैं।&quot; शुक्ल पक्ष के त्योहारों के लिए यह असत्य है — चैत्र शुक्ल नवमी (राम नवमी) दोनों पद्धतियों में एक ही ग्रेगोरियन दिन पर और एक ही मास-नाम से आती है। भ्रम केवल कृष्ण पक्ष के अनुष्ठानों में उत्पन्न होता है जहाँ मास-नाम भिन्न होता है, वास्तविक तारीख नहीं।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Amanta and Purnimanta give different festival dates.&quot; This is false for Shukla Paksha festivals — Chaitra Shukla Navami (Ram Navami) falls on the same Gregorian day in both systems with the same month name. The confusion arises only for Krishna Paksha observances where the month name differs, not the actual date.</>}
         </p>
@@ -115,14 +115,14 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;कृष्ण पक्ष पूर्णतया नकारात्मक है और कोई शुभ कार्य नहीं करना चाहिए।&quot; यद्यपि कृष्ण पक्ष वृद्धि-उन्मुख मुहूर्तों के लिए आदर्श नहीं है, वह वास्तव में महत्वपूर्ण आध्यात्मिक साधनाओं का निर्धारित समय है — शनि प्रदोष व्रत, मास शिवरात्रि (चतुर्दशी) और सभी पितृ कर्म। काली और भैरव सहित अनेक शक्तिशाली देवता विशेष रूप से अन्धकार पखवाड़े में पूजित होते हैं।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Krishna Paksha is entirely negative and nothing good should be done.&quot; While Krishna Paksha is not ideal for growth-oriented muhurtas, it is actually the prescribed time for important spiritual practices — Shani Pradosh vrat, Masa Shivaratri (Chaturdashi), and all ancestral rites. Many powerful deities including Kali and Bhairava are specifically worshipped during the dark fortnight.</>}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {tl({ en: 'Understanding the Amanta/Purnimanta distinction is essential for any pan-Indian digital Panchang. Our application implements both systems with a user toggle, computing the correct month name for any given Krishna Paksha date based on the selected convention. This eliminates confusion when users from different regions look up the same festival or vrat.', hi: 'अमान्त/पूर्णिमान्त भेद को समझना किसी भी अखिल भारतीय डिजिटल पंचांग के लिए आवश्यक है। हमारा अनुप्रयोग दोनों पद्धतियों को उपयोगकर्ता टॉगल के साथ लागू करता है, चयनित पद्धति के अनुसार किसी भी कृष्ण पक्ष तिथि का सही मास-नाम प्रदर्शित करता है। इससे भिन्न क्षेत्रों के उपयोगकर्ताओं को एक ही त्योहार या व्रत देखते समय भ्रम नहीं होता।', sa: 'अमान्त/पूर्णिमान्त भेद को समझना किसी भी अखिल भारतीय डिजिटल पंचांग के लिए आवश्यक है। हमारा अनुप्रयोग दोनों पद्धतियों को उपयोगकर्ता टॉगल के साथ लागू करता है, चयनित पद्धति के अनुसार किसी भी कृष्ण पक्ष तिथि का सही मास-नाम प्रदर्शित करता है। इससे भिन्न क्षेत्रों के उपयोगकर्ताओं को एक ही त्योहार या व्रत देखते समय भ्रम नहीं होता।' }, locale)}
         </p>

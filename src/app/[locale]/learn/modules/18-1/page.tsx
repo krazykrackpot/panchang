@@ -37,7 +37,7 @@ function Page1() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उद्गम', sa: 'शास्त्रीय उद्गम' }, locale)}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उद्गम', sa: 'शास्त्रीयः उद्भवः' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {tl({ en: 'Shadbala originates from Parashara\u2019s Brihat Parashara Hora Shastra (BPHS), chapters 27-30, where Maharishi Parashara systematically defines each strength component. The system was later refined by Varahamihira in Brihat Jataka and by Nilakantha in Tajika Neelakanthi. The mathematical precision of Shadbala reflects the empirical astronomical tradition of ancient Indian scholars who sought to move beyond subjective judgment to measurable planetary potency.', hi: 'षड्बल का उद्गम पराशर की बृहत् पाराशर होरा शास्त्र (BPHS), अध्याय 27-30 से है, जहाँ महर्षि पराशर ने प्रत्येक बल घटक को व्यवस्थित रूप से परिभाषित किया। इस पद्धति को बाद में वराहमिहिर ने बृहत् जातक में और नीलकण्ठ ने ताजिक नीलकण्ठी में परिष्कृत किया। षड्बल की गणितीय सटीकता प्राचीन भारतीय विद्वानों की प्रायोगिक खगोलीय परम्परा को दर्शाती है।', sa: 'षड्बल का उद्गम पराशर की बृहत् पाराशर होरा शास्त्र (BPHS), अध्याय 27-30 से है, जहाँ महर्षि पराशर ने प्रत्येक बल घटक को व्यवस्थित रूप से परिभाषित किया। इस पद्धति को बाद में वराहमिहिर ने बृहत् जातक में और नीलकण्ठ ने ताजिक नीलकण्ठी में परिष्कृत किया। षड्बल की गणितीय सटीकता प्राचीन भारतीय विद्वानों की प्रायोगिक खगोलीय परम्परा को दर्शाती है।' }, locale)}
         </p>
@@ -75,7 +75,7 @@ function Page2() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example', hi: 'कार्यरत उदाहरण', sa: 'कार्यरत उदाहरण' }, locale)}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example', hi: 'कार्यरत उदाहरण', sa: 'सोदाहरणं कार्यम्' }, locale)}</h4>
         <ExampleChart
           ascendant={1}
           planets={{ 10: [2], 2: [4] }}
@@ -98,7 +98,7 @@ function Page2() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रम', sa: 'सामान्य भ्रम' }, locale)}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रम', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {tl({ en: 'Many beginners assume that an exalted planet is automatically the strongest in the chart. Exaltation only contributes to Uccha Bala (one sub-component of Sthana Bala). A debilitated planet with strong Dig Bala, Kala Bala, and benefic Drig Bala can outperform an exalted planet that is combust, retrograde in an unfavorable direction, and aspected by malefics. Shadbala\u2019s whole purpose is to go beyond simplistic single-factor assessments.', hi: 'कई आरम्भकर्ता मानते हैं कि उच्च ग्रह स्वतः कुण्डली में सबसे बलवान होता है। उच्च केवल उच्चबल (स्थानबल का एक उप-घटक) में योगदान करता है। एक नीच ग्रह जिसका दिग्बल, कालबल और शुभ दृग्बल प्रबल हो, वह उच्च ग्रह से श्रेष्ठ प्रदर्शन कर सकता है जो अस्त, प्रतिकूल दिशा में वक्री और पापी दृष्टि से ग्रस्त हो। षड्बल का सम्पूर्ण उद्देश्य सरल एकल-कारक मूल्यांकन से परे जाना है।', sa: 'कई आरम्भकर्ता मानते हैं कि उच्च ग्रह स्वतः कुण्डली में सबसे बलवान होता है। उच्च केवल उच्चबल (स्थानबल का एक उप-घटक) में योगदान करता है। एक नीच ग्रह जिसका दिग्बल, कालबल और शुभ दृग्बल प्रबल हो, वह उच्च ग्रह से श्रेष्ठ प्रदर्शन कर सकता है जो अस्त, प्रतिकूल दिशा में वक्री और पापी दृष्टि से ग्रस्त हो। षड्बल का सम्पूर्ण उद्देश्य सरल एकल-कारक मूल्यांकन से परे जाना है।' }, locale)}
         </p>
@@ -124,7 +124,7 @@ function Page3() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {tl({ en: 'Shadbala has gained renewed interest in the age of computation. Before computers, calculating all six components for all seven planets was a tedious multi-hour task done only by advanced pandits. Today, our Kundali engine computes complete Shadbala in milliseconds and displays it in the Strength tab. This democratization means every user can access the same depth of analysis that was once reserved for royal court astrologers. The planetary strength ranking directly affects our Tippanni commentary, dasha predictions, and remedy recommendations.', hi: 'कम्प्यूटर युग में षड्बल को नवीन रुचि प्राप्त हुई है। कम्प्यूटर से पहले, सात ग्रहों के सभी छह घटकों की गणना कई घण्टों का श्रमसाध्य कार्य था जो केवल उन्नत पण्डित करते थे। आज हमारा कुण्डली इंजन मिलीसेकण्ड में पूर्ण षड्बल गणना करता है और बल टैब में प्रदर्शित करता है। यह लोकतान्त्रीकरण हर उपयोगकर्ता को वही विश्लेषण गहराई प्रदान करता है जो कभी राजदरबारी ज्योतिषियों के लिए आरक्षित थी।', sa: 'कम्प्यूटर युग में षड्बल को नवीन रुचि प्राप्त हुई है। कम्प्यूटर से पहले, सात ग्रहों के सभी छह घटकों की गणना कई घण्टों का श्रमसाध्य कार्य था जो केवल उन्नत पण्डित करते थे। आज हमारा कुण्डली इंजन मिलीसेकण्ड में पूर्ण षड्बल गणना करता है और बल टैब में प्रदर्शित करता है। यह लोकतान्त्रीकरण हर उपयोगकर्ता को वही विश्लेषण गहराई प्रदान करता है जो कभी राजदरबारी ज्योतिषियों के लिए आरक्षित थी।' }, locale)}
         </p>

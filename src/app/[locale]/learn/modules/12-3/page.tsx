@@ -25,13 +25,13 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Jupiter Transit', hi: 'गुरु गोचर', sa: 'गुरु गोचर' }, locale)}
+          {tl({ en: 'Jupiter Transit', hi: 'गुरु गोचर', sa: 'गुरुगोचरः' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>गुरु (बृहस्पति) वैदिक ज्योतिष में सबसे बड़ा नैसर्गिक शुभ ग्रह है। राशिचक्र में इसका गोचर — लगभग प्रत्येक 13 मास में राशि परिवर्तन — सर्वाधिक महत्वपूर्ण वार्षिक ज्योतिषीय घटनाओं में से एक है। गुरु जो भी छूता है उसे विस्तारित करता है: धन, ज्ञान, आध्यात्मिकता, सम्बन्ध या सन्तान। इसका राशि परिवर्तन प्रायः आपके जीवन के प्रमुख विषय में दृश्य बदलाव से सहसम्बद्ध होता है।</> : <>Jupiter (Guru/Brihaspati) is the greatest natural benefic in Vedic astrology. Its transit through the zodiac — changing signs approximately every 13 months — is one of the most significant annual astrological events. Jupiter expands whatever it touches: wealth, knowledge, spirituality, relationships, or children. Its sign change often correlates with a visible shift in the dominant theme of your life.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Transit Results from Moon', hi: 'चन्द्र से गोचर फल', sa: 'चन्द्र से गोचर फल' }, locale)}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Transit Results from Moon', hi: 'चन्द्र से गोचर फल', sa: 'चन्द्रात् गोचरफलानि' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Highly Auspicious — Trikona (1, 5, 9):</span> Jupiter in the 1st brings personal growth, optimism, and new beginnings. In the 5th, it enhances intelligence, creativity, romance, and children&apos;s well-being. In the 9th, it brings fortune, dharma, long-distance travel, guru blessings, and spiritual elevation. These are Jupiter&apos;s most powerful positions.
         </p>
@@ -63,13 +63,13 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Rahu-Ketu Transit', hi: 'राहु-केतु गोचर', sa: 'राहु-केतु गोचर' }, locale)}
+          {tl({ en: 'Rahu-Ketu Transit', hi: 'राहु-केतु गोचर', sa: 'राहु-केतुगोचरः' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>राहु (उत्तर पात) और केतु (दक्षिण पात) छाया ग्रह हैं — गणितीय बिन्दु जहाँ चन्द्रमा का कक्षा तल क्रान्तिवृत्त को काटता है। ये सदैव वक्री गति (राशिचक्र में पीछे की ओर) से गोचर करते हैं, प्रत्येक राशि में लगभग 18 मास रहते हैं और पूर्ण चक्र लगभग 18 वर्षों में पूरा करते हैं। इनका गोचर अद्वितीय रूप से कार्मिक है — ये प्रभावित भावों में इच्छाएँ (राहु) और विमोचन (केतु) जगाते हैं।</> : <>Rahu (North Node) and Ketu (South Node) are the shadow planets — mathematical points where the Moon&apos;s orbital plane intersects the ecliptic. They always transit in retrograde motion (backward through the zodiac), spending approximately 18 months in each sign and completing a full cycle in about 18 years. Their transits are uniquely karmic — they stir desires (Rahu) and trigger release (Ketu) in the houses they affect.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Rahu Transit Results', hi: 'राहु गोचर फल', sa: 'राहु गोचर फल' }, locale)}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Rahu Transit Results', hi: 'राहु गोचर फल', sa: 'राहुगोचरफलानि' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-emerald-400 font-medium">शुभ (चन्द्र से 1, 3, 6, 10, 11):</span> 1ले में राहु व्यक्तिगत आकर्षण और महत्वाकांक्षा देता है। 3वें में साहस, रोमांच और मीडिया/संचार में सफलता। 6वें में शत्रुओं और रोग पर विजय। 10वें में करियर उन्नति और सार्वजनिक मान्यता। 11वें में बड़ा आर्थिक लाभ और प्रभावशाली सम्पर्क।</> : <><span className="text-emerald-400 font-medium">Favorable (1, 3, 6, 10, 11 from Moon):</span> Rahu in the 1st gives personal magnetism and ambition. In the 3rd, it brings courage, adventure, and success in media/communication. In the 6th, it gives victory over enemies and disease. In the 10th, career rise and public recognition. In the 11th, large financial gains and powerful connections.</>}</p>
         <p className="text-text-secondary text-xs leading-relaxed">
           <span className="text-red-400 font-medium">Challenging (2, 4, 5, 7, 8, 9, 12):</span> Rahu in these houses creates confusion, obsessive desires, and sudden disruptions. Rahu in the 8th is especially intense — bringing sudden transformations, hidden dangers, or occult experiences. Rahu in the 7th can create relationship turbulence and attraction to unconventional partners.

@@ -186,7 +186,7 @@ export default function LearnCalculationsPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-2 text-gold-primary font-semibold">{tl({ en: 'Calculation', hi: 'गणना', sa: 'गणना', ta: 'கணக்கீடு', te: 'గణన', bn: 'গণনা', kn: 'ಲೆಕ್ಕಾಚಾರ', gu: 'ગણતરી', mai: 'गणना', mr: 'गणना' }, locale)}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold">{tl({ en: 'Calculation', hi: 'गणना', sa: 'गणनम्', ta: 'கணக்கீடு', te: 'గణన', bn: 'গণনা', kn: 'ಲೆಕ್ಕಾಚಾರ', gu: 'ગણતરી', mai: 'गणना', mr: 'गणना' }, locale)}</th>
                 <th className="text-left py-2 text-gold-primary font-semibold">{tl({ en: 'Accuracy', hi: 'सटीकता', sa: 'सूक्ष्मता', ta: 'துல்லியம்', te: 'ఖచ్చితత్వం', bn: 'নির্ভুলতা', kn: 'ನಿಖರತೆ', gu: 'ચોકસાઈ', mai: 'सटीकता', mr: 'अचूकता' }, locale)}</th>
                 <th className="text-left py-2 text-gold-primary font-semibold">{tl({ en: 'Practical Impact', hi: 'व्यावहारिक प्रभाव', sa: 'व्यावहारिकः प्रभावः', ta: 'நடைமுறை தாக்கம்', te: 'ఆచరణాత్మక ప్రభావం', bn: 'ব্যবহারিক প্রভাব', kn: 'ಪ್ರಾಯೋಗಿಕ ಪ್ರಭಾವ', gu: 'વ્યવહારુ પ્રભાવ', mai: 'व्यावहारिक प्रभाव', mr: 'व्यावहारिक प्रभाव' }, locale)}</th>
               </tr>

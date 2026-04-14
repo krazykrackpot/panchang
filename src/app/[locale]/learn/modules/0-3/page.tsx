@@ -66,7 +66,7 @@ function Page1() {
       {/* Classical Origin — Gold card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}
+          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीयः उद्भवः' }, locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {tl({ en: 'The 12 zodiac signs originated in Mesopotamia but were independently adopted and MODIFIED in India. The Indian system added the 27-nakshatra overlay, which has no Mesopotamian equivalent.', hi: '12 राशियाँ मेसोपोटामिया में उत्पन्न हुईं किन्तु भारत में स्वतन्त्र रूप से अपनाई और संशोधित की गईं। भारतीय प्रणाली ने 27-नक्षत्र परत जोड़ी, जिसका कोई मेसोपोटामियाई समकक्ष नहीं।', sa: '12 राशियाँ मेसोपोटामिया में उत्पन्न हुईं किन्तु भारत में स्वतन्त्र रूप से अपनाई और संशोधित की गईं। भारतीय प्रणाली ने 27-नक्षत्र परत जोड़ी, जिसका कोई मेसोपोटामियाई समकक्ष नहीं।' }, locale)}
@@ -134,7 +134,7 @@ function Page2() {
         />
         <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
           <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-            {tl({ en: 'Worked Example', hi: 'उदाहरण', sa: 'उदाहरण' }, locale)}
+            {tl({ en: 'Worked Example', hi: 'उदाहरण', sa: 'सोदाहरणं कार्यम्' }, locale)}
           </h4>
           <p className="text-text-secondary text-xs leading-relaxed mb-2">
             {tl({ en: `Suppose the Moon was in Hasta nakshatra at birth. Hasta\'s lord is the Moon. Therefore:`, hi: `मान लीजिए जन्म के समय चन्द्रमा हस्त नक्षत्र में था। हस्त का स्वामी चन्द्रमा है। इसलिए:`, sa: `मान लीजिए जन्म के समय चन्द्रमा हस्त नक्षत्र में था। हस्त का स्वामी चन्द्रमा है। इसलिए:` }, locale)}
@@ -205,7 +205,7 @@ function Page3() {
       {/* Red — Misconceptions */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}
+          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}
         </h4>
         <div className="space-y-3 text-text-secondary text-xs leading-relaxed">
           <p>
@@ -228,7 +228,7 @@ function Page3() {
       {/* Blue — Modern Relevance */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}
+          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-blue-300 font-bold">{tl({ en: 'Historical record:', hi: 'ऐतिहासिक रिकॉर्ड:', sa: 'ऐतिहासिक रिकॉर्ड:' }, locale)}</span>{' '}

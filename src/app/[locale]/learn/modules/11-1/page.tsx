@@ -173,7 +173,7 @@ function Page1() {
 
       {/* Classical Origin Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीयः उद्भवः' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {isHi
             ? <>विंशोत्तरी पद्धति बृहत् पराशर होराशास्त्र (BPHS), अध्याय 46 से उत्पन्न है। पराशर इसे सामान्य उपयोग के लिए सर्वाधिक उपयुक्त दशा बताते हैं — जब चन्द्रमा 0° से 360° के बीच हो (अर्थात् सदा)। पराशर 40 से अधिक दशा पद्धतियों (अष्टोत्तरी, योगिनी, आदि) का वर्णन करते हैं, किन्तु वे विशिष्ट चन्द्र स्थितियों के लिए निर्दिष्ट हैं। विंशोत्तरी कलियुग की सार्वभौमिक दशा है।</>
@@ -463,7 +463,7 @@ function Page3() {
 
       {/* Misconceptions Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
             ? <><span className="text-gold-light font-medium">&quot;राहु और शनि दशा सदा बुरी होती है&quot;</span> — यह असत्य है। राहु दशा असाधारण सांसारिक सफलता ला सकती है (विदेशी अवसर, प्रौद्योगिकी कैरियर, अपरम्परागत उपलब्धियाँ)। शनि दशा स्थायी संरचनाएँ बनाती है (कैरियर शिखर, सम्पत्ति संचय, अनुशासन)। परिणामों की गुणवत्ता आपकी कुण्डली में ग्रह की मर्यादा और भावेशत्व पर निर्भर करती है, ग्रह की सामान्य प्रतिष्ठा पर नहीं।</>

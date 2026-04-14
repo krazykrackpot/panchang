@@ -770,7 +770,7 @@ export default function LearnEclipsesPage() {
               {[
                 { date: 'Jul 22, 1990', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Finland → Siberia → Pacific', hi: 'फिनलैण्ड → साइबेरिया → प्रशान्त', sa: 'फिनलैण्ड → साइबेरिया → प्रशान्त-महासागरः' }, locale), mag: '1.039', highlight: false },
                 { date: 'Aug 1, 2008', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Canada → Arctic → Siberia → China', hi: 'कनाडा → आर्कटिक → साइबेरिया → चीन', sa: 'कनाडा → आर्कटिक → साइबेरिया → चीनः' }, locale), mag: '1.039', highlight: false },
-                { date: 'Aug 12, 2026', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Arctic → Greenland → Iceland → Spain', hi: 'आर्कटिक → ग्रीनलैण्ड → आइसलैण्ड → स्पेन', sa: 'आर्कटिक → ग्रीनलैण्ड → आइसलैण्ड → स्पेन' }, locale), mag: '1.039', highlight: true },
+                { date: 'Aug 12, 2026', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Arctic → Greenland → Iceland → Spain', hi: 'आर्कटिक → ग्रीनलैण्ड → आइसलैण्ड → स्पेन', sa: 'आर्क्टिक → ग्रीनलैण्ड → आइसलैण्ड → स्पेन' }, locale), mag: '1.039', highlight: true },
                 { date: 'Aug 24, 2044', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Canada → Montana → N. Dakota', hi: 'कनाडा → मोन्टाना → उत्तरी डकोटा', sa: 'कनाडा → मोन्टाना → उत्तर-डकोटा' }, locale), mag: '1.036', highlight: false },
                 { date: 'Sep 3, 2062', type: tl({ en: 'Total', hi: 'पूर्ण', sa: 'योगः' }, locale), path: tl({ en: 'Indonesia → Australia', hi: 'इण्डोनेशिया → ऑस्ट्रेलिया', sa: 'इण्डोनेशिया → ऑस्ट्रेलिया' }, locale), mag: '1.031', highlight: false },
               ].map((row, i) => (

@@ -173,7 +173,7 @@ function Page3() {
 
         <div className="space-y-3">
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3">
-            <p className="text-gold-light font-bold text-sm">{tl({ en: 'Calculation', hi: 'गणना', sa: 'गणना' }, locale)}</p>
+            <p className="text-gold-light font-bold text-sm">{tl({ en: 'Calculation', hi: 'गणना', sa: 'गणनम्' }, locale)}</p>
             <p className="text-text-secondary text-xs mt-1">{isHi ? <>भृगु बिन्दु = (राहु का देशान्तर + चन्द्र का देशान्तर) / 2। लघु चाप मध्य बिन्दु का उपयोग करें। उदाहरण: यदि राहु 120° पर और चन्द्र 240° पर है, तो मध्य बिन्दु 180° है (0° नहीं)। यह बिन्दु एक विशिष्ट राशि, भाव और नक्षत्र में पड़ता है — जो सभी रंग देते हैं कि सक्रिय होने पर घटनाएँ कैसे प्रकट होती हैं।</> : <>Bhrigu Bindu = (Rahu&apos;s longitude + Moon&apos;s longitude) / 2. Use the shorter arc midpoint. For example, if Rahu is at 120° and Moon at 240°, the midpoint is 180° (not 0°). This point falls in a specific sign, house, and nakshatra — all of which color how events manifest when it is activated.</>}</p>
           </div>
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-emerald-500/10">

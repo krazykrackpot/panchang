@@ -32,7 +32,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीयः उद्भवः' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>कुण्डली निर्माण की प्रणाली बृहत् पराशर होरा शास्त्र (BPHS) में संहिताबद्ध है, जो ऋषि पराशर (~1500 ई.पू.) को श्रेय दी जाती है। अध्याय 2 में राशिचक्र, अध्याय 3 में ग्रह स्वभाव, और अध्याय 4-5 में भाव निर्माण वर्णित है। वराहमिहिर की बृहत् जातक (छठी शताब्दी) ने गणना विधियों को परिष्कृत किया।</> : <>The system of Kundali construction is codified in Brihat Parashara Hora Shastra (BPHS), attributed to Sage Parashara (~1500 BCE). Chapter 2 defines the zodiac, Chapter 3 describes planetary natures, and Chapters 4-5 lay out house construction. Varahamihira&apos;s Brihat Jataka (6th century CE) refined the computational methods.</>}</p>
       </section>
 
@@ -63,12 +63,12 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'सोदाहरणं कार्यम्' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">उदाहरण:</span> दिल्ली में सुबह 6:15 बजे जन्मे बच्चे का सिंह लग्न होगा। प्रथम भाव सिंह, द्वितीय कन्या, सप्तम कुम्भ (विवाह), दशम वृषभ (कर्म)। यदि वही बच्चा 20 मिनट बाद 6:35 बजे जन्मे, तो लग्न लगभग 5 अंश बढ़ जाता है — अभी भी सिंह, लेकिन वर्ग कुण्डलियों (नवमांश, दशमांश) पर प्रभाव पड़ता है। 2 घंटे बाद जन्म हो तो? अब कन्या लग्न होगा और पूरी भाव संरचना बदल जाएगी।</> : <><span className="text-gold-light font-medium">Example:</span> A child born at 6:15 AM in Delhi has Leo (Simha) rising. Their 1st house is Leo, 2nd is Virgo, 7th is Aquarius (marriage), 10th is Taurus (career). If the same child were born just 20 minutes later at 6:35 AM, the Lagna shifts about 5 degrees — still Leo, but with a noticeably different Lagna degree affecting divisional charts (Navamsha, Dashamsha). Born 2 hours later? Now Virgo rises, and the entire house structure reshuffles.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रांतियाँ', sa: 'सामान्य भ्रांतियाँ' }, locale)}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रांतियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><strong className="text-gold-light">भ्रांति:</strong> &quot;मेरी सूर्य राशि ही मेरी कुण्डली है।&quot; वैदिक ज्योतिष में सूर्य राशि दर्जनों कारकों में से केवल एक है। समान सूर्य राशि किन्तु भिन्न लग्न वाले दो व्यक्तियों के जीवन पथ बहुत अलग होंगे। लग्न सूर्य राशि से कहीं अधिक निर्णायक है।</> : <><strong className="text-gold-light">Misconception:</strong> &quot;My Sun sign IS my chart.&quot; In Vedic astrology, the Sun sign (Surya Rashi) is just one of dozens of factors. Two people with the same Sun sign but different Lagnas will have vastly different life patterns. The Lagna is far more defining than the Sun sign.</>}</p>
       </section>
     </div>
@@ -104,7 +104,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा ऐप मीअस खगोलीय एल्गोरिदम का उपयोग करके आपकी पूर्ण कुण्डली बनाता है — वही गणितीय सटीकता जो वेधशाला सॉफ़्टवेयर में उपयोग होती है। ग्रहों की गणना सूर्य के लिए 0.01 अंश और चन्द्र के लिए 0.5 अंश तक की जाती है, फिर लहिरी अयनांश से सायन राशिचक्र में स्थापित किया जाता है। आप उत्तर भारतीय हीरा प्रारूप में अपनी कुण्डली देख सकते हैं, हर भाव और ग्रह स्थिति का अन्वेषण कर सकते हैं, और AI-जनित टिप्पणी (व्याख्यात्मक भाष्य) प्राप्त कर सकते हैं।</> : <>Our app generates your complete Kundali using Meeus astronomical algorithms — the same mathematical precision used in observatory software. Planets are calculated to within 0.01 degrees for the Sun and 0.5 degrees for the Moon, then placed into the sidereal zodiac using Lahiri Ayanamsha. You can view your chart in North Indian diamond format, explore every house and planet placement, and receive AI-generated tippanni (interpretive commentary).</>}</p>
       </section>
     </div>

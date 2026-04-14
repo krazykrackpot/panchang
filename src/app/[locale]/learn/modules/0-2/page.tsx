@@ -74,7 +74,7 @@ function Page1() {
       {/* Classical Origin — Gold card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}
+          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीयः उद्भवः' }, locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {tl({ en: 'India developed the lunisolar calendar independently. The Metonic cycle (19-year repeat pattern where lunar phases recur on the same solar dates) was known in India before Meton of Athens (432 BCE).', hi: 'भारत ने चान्द्र-सौर पंचांग स्वतन्त्र रूप से विकसित किया। मेटोनिक चक्र (19 वर्षीय पुनरावृत्ति) भारत में एथेंस के मेटोन से पहले ज्ञात था।', sa: 'भारत ने चान्द्र-सौर पंचांग स्वतन्त्र रूप से विकसित किया। मेटोनिक चक्र (19 वर्षीय पुनरावृत्ति) भारत में एथेंस के मेटोन से पहले ज्ञात था।' }, locale)}
@@ -192,7 +192,7 @@ function Page3() {
       {/* Red — Misconceptions */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}
+          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}
         </h4>
         <div className="space-y-3 text-text-secondary text-xs leading-relaxed">
           <p>
@@ -215,7 +215,7 @@ function Page3() {
       {/* Blue — Modern Relevance */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}
+          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {tl({ en: 'The Hindu concept of time is cyclic, not linear — Yugas cycle in 4,320,000-year periods. The smallest time unit mentioned in texts is the "truti" = 29.6 microseconds. For comparison, modern atomic clocks measure in microseconds. Indian astronomers were thinking at this scale 2,000 years ago.', hi: 'हिन्दू समय की अवधारणा चक्रीय है, रेखीय नहीं — युग 4,320,000 वर्षों में चक्रित होते हैं। ग्रन्थों में उल्लिखित सबसे छोटी समय इकाई "त्रुटि" = 29.6 माइक्रोसेकण्ड है। तुलना: आधुनिक परमाणु घड़ियाँ माइक्रोसेकण्ड में मापती हैं। भारतीय खगोलशास्त्री 2,000 वर्ष पहले इस पैमाने पर विचार कर रहे थे।', sa: 'हिन्दू समय की अवधारणा चक्रीय है, रेखीय नहीं — युग 4,320,000 वर्षों में चक्रित होते हैं। ग्रन्थों में उल्लिखित सबसे छोटी समय इकाई "त्रुटि" = 29.6 माइक्रोसेकण्ड है। तुलना: आधुनिक परमाणु घड़ियाँ माइक्रोसेकण्ड में मापती हैं। भारतीय खगोलशास्त्री 2,000 वर्ष पहले इस पैमाने पर विचार कर रहे थे।' }, locale)}

@@ -224,8 +224,8 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}</h4>
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरण कुण्डली' }, locale)} />
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'सोदाहरणं कार्यम्' }, locale)}</h4>
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरणकुण्डली' }, locale)} />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">2 अप्रैल, 2026, 12:00 UT:</span> Y = 2026, M = 4, D = 2, H = 12। M &gt; 2 होने से कोई समायोजन नहीं। A = floor(2026/100) = 20। B = 2 - 20 + floor(20/4) = 2 - 20 + 5 = -13। JD = floor(365.25 × 6742) + floor(30.6001 × 5) + 2 + 0.5 + (-13) - 1524.5 = 2,462,979.5 + 153 + 2 + 0.5 - 13 - 1524.5 = 2,461,132.0।</> : <><span className="text-gold-light font-medium">April 2, 2026, 12:00 UT:</span> Y = 2026, M = 4, D = 2, H = 12. Since M &gt; 2, no adjustment needed. A = floor(2026/100) = 20. B = 2 - 20 + floor(20/4) = 2 - 20 + 5 = -13. JD = floor(365.25 x 6742) + floor(30.6001 x 5) + 2 + 0.5 + (-13) - 1524.5 = 2,462,979.5 + 153 + 2 + 0.5 - 13 - 1524.5 = 2,461,132.0.</>}</p>
       </section>
     </div>
@@ -251,7 +251,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;जूलियन दिवस बस भिन्न इकाइयों में यूनिक्स टाइमस्टैम्प है।&quot; दोनों निरन्तर समय गणनाएँ हैं, किन्तु यूनिक्स टाइमस्टैम्प 1 जनवरी, 1970 से आरम्भ होकर सेकण्ड गिनता है, जबकि JD 4713 ई.पू. से आरम्भ होकर दिन गिनता है। महत्त्वपूर्ण बात, JD मध्याह्न UT (मध्यरात्रि नहीं) से आरम्भ होता है, अर्थात JD .0 = मध्याह्न और JD .5 = मध्यरात्रि — अधिकांश प्रोग्रामरों की अपेक्षा के विपरीत।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Julian Day is just a Unix timestamp in different units.&quot; While both are continuous time counts, Unix timestamps start at January 1, 1970 and count seconds, while JD starts at 4713 BCE and counts days. More importantly, JD begins at noon UT (not midnight), which means JD .0 = noon and JD .5 = midnight — the opposite of what most programmers expect.</>}</p>
       </section>
     </div>

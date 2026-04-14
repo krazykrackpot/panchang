@@ -101,7 +101,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'From Sangamagrama to the World', hi: 'संगमग्राम से विश्व तक', sa: 'संगमग्राम से विश्व तक' }, locale)}
+          {tl({ en: 'From Sangamagrama to the World', hi: 'संगमग्राम से विश्व तक', sa: 'संगमग्रामात् विश्वपर्यन्तम्' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -129,7 +129,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'The Sine and Cosine Series', hi: 'Sine और Cosine श्रेणी', sa: 'Sine और Cosine श्रेणी' }, locale)}
+          {tl({ en: 'The Sine and Cosine Series', hi: 'Sine और Cosine श्रेणी', sa: 'ज्या-कोज्याश्रेण्यौ' }, locale)}
         </h4>
         <p className="text-gold-light text-base font-mono text-center mb-2">sin(x) = x &minus; x&sup3;/3! + x&#8309;/5! &minus; ...</p>
         <p className="text-gold-light text-base font-mono text-center mb-3">cos(x) = 1 &minus; x&sup2;/2! + x&#8308;/4! &minus; ...</p>
@@ -147,7 +147,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/15 rounded-xl p-5">
         <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'The Clever Trick for Fast Convergence', hi: 'तेज़ अभिसरण की चतुराई', sa: 'तेज़ अभिसरण की चतुराई' }, locale)}
+          {tl({ en: 'The Clever Trick for Fast Convergence', hi: 'तेज़ अभिसरण की चतुराई', sa: 'शीघ्राभिसरणाय चातुर्युक्तिः' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -169,7 +169,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'A Lineage of Genius', hi: 'प्रतिभा की वंश-परम्परा', sa: 'प्रतिभा की वंश-परम्परा' }, locale)}
+          {tl({ en: 'A Lineage of Genius', hi: 'प्रतिभा की वंश-परम्परा', sa: 'प्रतिभायाः वंशपरम्परा' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -195,7 +195,7 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15 rounded-xl p-5">
         <h4 className="text-emerald-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'The Transmission Question', hi: 'संचरण प्रश्न', sa: 'संचरण प्रश्न' }, locale)}
+          {tl({ en: 'The Transmission Question', hi: 'संचरण प्रश्न', sa: 'संचरणप्रश्नः' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -220,7 +220,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'The Living Legacy', hi: 'जीवित विरासत', sa: 'जीवित विरासत' }, locale)}
+          {tl({ en: 'The Living Legacy', hi: 'जीवित विरासत', sa: 'जीवन्ती विरासतः' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -231,7 +231,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Time to Rename', hi: 'नाम बदलने का समय', sa: 'नाम बदलने का समय' }, locale)}
+          {tl({ en: 'Time to Rename', hi: 'नाम बदलने का समय', sa: 'नामपरिवर्तनस्य समयः' }, locale)}
         </h4>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -264,7 +264,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/15 rounded-xl p-5">
         <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'The Definitive Argument', hi: 'निर्णायक तर्क', sa: 'निर्णायक तर्क' }, locale)}
+          {tl({ en: 'The Definitive Argument', hi: 'निर्णायक तर्क', sa: 'निर्णायकः तर्कः' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -274,7 +274,7 @@ function Page3() {
       </section>
 
       <section className="p-4 rounded-xl bg-gold-primary/6 border-l-4 border-gold-primary/50">
-        <p className="text-gold-light text-xs font-semibold mb-1">{tl({ en: 'Deep Dive', hi: 'गहन अध्ययन', sa: 'गहन अध्ययन' }, locale)}</p>
+        <p className="text-gold-light text-xs font-semibold mb-1">{tl({ en: 'Deep Dive', hi: 'गहन अध्ययन', sa: 'गभीरानुशीलनम्' }, locale)}</p>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
             ? <>अभिसरण सारणी, हल किए गए उदाहरण, और विस्तृत गणितीय व्युत्पत्ति के लिए हमारा पूर्ण केरल स्कूल पृष्ठ देखें।</>

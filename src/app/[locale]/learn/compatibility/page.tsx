@@ -125,7 +125,7 @@ export default function CompatibilityPage() {
           <button key={id} onClick={() => setActive(id)} className={`flex items-center gap-2 px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all ${active === id ? 'border-2 text-gold-light scale-105' : 'border border-white/10 text-text-secondary hover:text-text-primary'}`} style={active === id ? { borderColor: color, backgroundColor: `${color}18` } : {}}>
             <Icon size={14} style={{ color }} />
             <span className="hidden md:inline">{L[titleKey][locale]}</span>
-            <span className="md:hidden">{(id === 'beyond' ? tl({ en: 'Kuta+', hi: 'कूट+', sa: 'कूट+' }, locale) : id === 'approach' ? tl({ en: 'Steps', hi: 'चरण', sa: 'चरणाः' }, locale) : (L[titleKey][locale] || L[titleKey].en || '').split(' ')[0])}</span>
+            <span className="md:hidden">{(id === 'beyond' ? tl({ en: 'Kuta+', hi: 'कूट+', sa: 'कूटम्+' }, locale) : id === 'approach' ? tl({ en: 'Steps', hi: 'चरण', sa: 'चरणाः' }, locale) : (L[titleKey][locale] || L[titleKey].en || '').split(' ')[0])}</span>
           </button>
         ))}
       </div>

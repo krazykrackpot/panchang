@@ -59,7 +59,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;दशा सन्धि सदा विपत्ति लाती है।&quot; सत्य नहीं। दो शुभ दशाओं के बीच सन्धि (जैसे गुरु से बुध, जब दोनों शुभ स्थित हों) केवल पुनर्संशोधन काल जैसा अनुभव हो सकता है — संकट नहीं, हल्की बेचैनी। गम्भीरता इस पर निर्भर करती है कि दोनों महादशा स्वामी स्वभाव और स्थिति में कितने भिन्न हैं, और वे परस्पर मित्र हैं या शत्रु।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Dasha sandhi always brings disaster.&quot; Not true. The sandhi between two benefic dashas (e.g., Jupiter to Mercury for a chart where both are well-placed) can simply feel like a period of recalibration — mild restlessness rather than crisis. The severity depends on how different the two Mahadasha lords are in nature and placement, and whether they are mutual friends or enemies.</>}</p>
       </section>
     </div>
@@ -80,7 +80,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'सोदाहरणं कार्यम्' }, locale)}</h4>
         <ExampleChart
           ascendant={2}
           planets={{ 6: [6], 9: [5] }}

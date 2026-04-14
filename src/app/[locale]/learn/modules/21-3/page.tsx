@@ -200,7 +200,7 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}
+          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीयः उद्भवः' }, locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {tl({ en: 'The concept of compressed dashas for annual charts appears in Tajika Neelakanthi and other Tajika texts. The underlying logic is elegant: if the Vimshottari proportions govern the 120-year life cycle, the same proportions should govern the 1-year micro-cycle. This principle of self-similar scaling (the year mirrors the life) is reminiscent of fractal patterns in nature. Indian astrologers also use Yogini Dasha compressed into a year as an alternative, but Mudda Dasha (Vimshottari-based) remains the most widely used annual dasha system.', hi: 'वार्षिक कुण्डलियों के लिए संकुचित दशाओं की अवधारणा ताजिक नीलकण्ठी और अन्य ताजिक ग्रन्थों में आती है। अन्तर्निहित तर्क सुन्दर है: यदि विंशोत्तरी अनुपात 120 वर्ष के जीवन चक्र को नियन्त्रित करते हैं, तो वही अनुपात 1 वर्ष के सूक्ष्म-चक्र को भी नियन्त्रित करने चाहिए। स्व-समान मापन का यह सिद्धान्त (वर्ष जीवन को प्रतिबिम्बित करता है) प्रकृति में भग्नगणित (फ्रैक्टल) प्रतिमानों की स्मृति दिलाता है। भारतीय ज्योतिषी विकल्प के रूप में योगिनी दशा को भी एक वर्ष में संकुचित करते हैं, किन्तु मुद्दा दशा (विंशोत्तरी-आधारित) सर्वाधिक प्रचलित वार्षिक दशा पद्धति बनी हुई है।', sa: 'वार्षिक कुण्डलियों के लिए संकुचित दशाओं की अवधारणा ताजिक नीलकण्ठी और अन्य ताजिक ग्रन्थों में आती है। अन्तर्निहित तर्क सुन्दर है: यदि विंशोत्तरी अनुपात 120 वर्ष के जीवन चक्र को नियन्त्रित करते हैं, तो वही अनुपात 1 वर्ष के सूक्ष्म-चक्र को भी नियन्त्रित करने चाहिए। स्व-समान मापन का यह सिद्धान्त (वर्ष जीवन को प्रतिबिम्बित करता है) प्रकृति में भग्नगणित (फ्रैक्टल) प्रतिमानों की स्मृति दिलाता है। भारतीय ज्योतिषी विकल्प के रूप में योगिनी दशा को भी एक वर्ष में संकुचित करते हैं, किन्तु मुद्दा दशा (विंशोत्तरी-आधारित) सर्वाधिक प्रचलित वार्षिक दशा पद्धति बनी हुई है।' }, locale)}
@@ -231,8 +231,8 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'कार्यान्वित उदाहरण' }, locale)}
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरण कुण्डली' }, locale)} />
+          {tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'सोदाहरणं कार्यम्' }, locale)}
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरणकुण्डली' }, locale)} />
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -265,7 +265,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्य भ्रान्तियाँ' }, locale)}
+          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -276,7 +276,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}
+          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi

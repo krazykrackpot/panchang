@@ -54,7 +54,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीय उत्पत्ति' }, locale)}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीयः उद्भवः' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>भाव सूचकताएँ BPHS अध्याय 11-12, फलदीपिका अध्याय 2, और सारावली में वर्णित हैं। पराशर ने व्यवस्थित रूप से प्रत्येक भाव के शासन क्षेत्र सूचीबद्ध किए, और बाद के टीकाकारों जैसे वराहमिहिर और मन्त्रेश्वर ने इन सूचियों को परिष्कृत और विस्तारित किया। 12-भाव प्रणाली दो सहस्राब्दियों से उल्लेखनीय रूप से स्थिर रही है।</> : <>The house significations are described in BPHS Chapters 11-12, Phaladeepika Chapter 2, and Saravali. Parashara systematically lists what each house governs, and later commentators like Varahamihira and Mantreshwara refined and expanded these lists. The 12-house system has remained remarkably stable for over two millennia.</>}</p>
       </section>
     </div>
@@ -130,12 +130,12 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रांतियाँ', sa: 'सामान्य भ्रांतियाँ' }, locale)}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रांतियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><strong className="text-gold-light">भ्रांति:</strong> &quot;बृहस्पति सदैव शुभ और शनि सदैव अशुभ है।&quot; यह मूलतः गलत है। कारक स्वभाव स्वामित्व पर निर्भर करता है। वृषभ लग्न के लिए बृहस्पति अष्टम और एकादश का स्वामी है — विशेष शुभ नहीं। शनि नवम और दशम का स्वामी है — कुण्डली का सर्वश्रेष्ठ ग्रह जो योगकारक बनता है। प्राकृतिक शुभ ग्रह दुःस्थान का स्वामी होने पर हानिकारक बनते हैं; प्राकृतिक पापग्रह त्रिकोण का स्वामी होने पर सहायक बनते हैं।</> : <><strong className="text-gold-light">Misconception:</strong> &quot;Jupiter is always good and Saturn is always bad.&quot; This is fundamentally wrong. Functional nature depends on lordship. For Taurus Lagna, Jupiter rules the 8th and 11th — not especially benefic. Saturn rules the 9th and 10th — the best planet in the chart forming Yoga Karaka. Natural benefics owning Dusthanas become harmful; natural malefics owning Trikonas become helpful.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिक प्रासंगिकता' }, locale)}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा कुण्डली इंजन लग्न राशि और समभाव पद्धति के आधार पर प्रत्येक कुण्डली के भाव स्वामियों की स्वचालित गणना करता है। टिप्पणी (व्याख्यात्मक भाष्य) प्रत्येक भाव स्वामी की स्थिति का विश्लेषण करती है, योगों की पहचान करती है, शक्ति का मूल्यांकन करती है, और जीवन-क्षेत्र भविष्यवाणियाँ प्रदान करती है।</> : <>Our Kundali engine automatically calculates house lords for every chart based on the Lagna sign and the Equal House system. The tippanni (interpretive commentary) analyzes each house lord&apos;s placement, identifying yogas, evaluating strength, and providing life-area predictions. You can generate your chart and see exactly which planet rules each house in your life.</>}</p>
       </section>
     </div>

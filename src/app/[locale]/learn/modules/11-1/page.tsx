@@ -1,12 +1,13 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/11-1.json';
+
+const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
 const META: ModuleMeta = {
   id: 'mod_11_1', phase: 3, topic: 'Dashas', moduleNumber: '11.1',
@@ -26,14 +27,14 @@ function Page1() {
       {/* Opening Hook */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <p className="text-gold-light text-sm leading-relaxed italic">
-          {tl({ en: `"Imagine knowing in advance which planet will be the dominant force in your life for the next 7, 10, or even 20 years. That's what the Vimshottari Dasha system gives you — a 120-year planetary timeline computed from a single data point: the Moon's nakshatra at your birth."`, hi: `"कल्पना कीजिए कि आप पहले से जान सकें कि अगले 7, 10, या 20 वर्षों तक कौन-सा ग्रह आपके जीवन में प्रभावी शक्ति रहेगा। विंशोत्तरी दशा पद्धति आपको यही देती है — एकमात्र डेटा बिन्दु से गणित 120 वर्षीय ग्रह समयरेखा: जन्म के समय चन्द्रमा का नक्षत्र।"`, sa: `"कल्पना कीजिए कि आप पहले से जान सकें कि अगले 7, 10, या 20 वर्षों तक कौन-सा ग्रह आपके जीवन में प्रभावी शक्ति रहेगा। विंशोत्तरी दशा पद्धति आपको यही देती है — एकमात्र डेटा बिन्दु से गणित 120 वर्षीय ग्रह समयरेखा: जन्म के समय चन्द्रमा का नक्षत्र।"` }, locale)}
+          {t('imagineKnowingInAdvanceWhich', locale)}
         </p>
       </section>
 
       {/* What is Vimshottari? */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'What Is Vimshottari?', hi: 'विंशोत्तरी क्या है?', sa: 'विंशोत्तरी क्या है?' }, locale)}
+          {t('whatIsVimshottari', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -50,18 +51,18 @@ function Page1() {
       {/* The 9 Mahadasha Periods — Full Table */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'The 9 Mahadasha Periods', hi: 'नौ महादशा काल', sa: 'नौ महादशा काल' }, locale)}
+          {t('the9MahadashaPeriods', locale)}
         </h3>
         <div className="overflow-x-auto -mx-1">
           <table className="w-full text-xs border-collapse">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-gold-light text-left py-2 px-2 font-semibold">{tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः' }, locale)}</th>
-                <th className="text-gold-light text-left py-2 px-2 font-semibold">{tl({ en: 'Sanskrit', hi: 'संस्कृत', sa: 'संस्कृतम्' }, locale)}</th>
-                <th className="text-gold-light text-center py-2 px-2 font-semibold">{tl({ en: 'Years', hi: 'वर्ष', sa: 'वर्ष' }, locale)}</th>
-                <th className="text-gold-light text-left py-2 px-2 font-semibold">{tl({ en: 'Nakshatras Ruled', hi: 'नक्षत्र', sa: 'नक्षत्र' }, locale)}</th>
-                <th className="text-gold-light text-left py-2 px-2 font-semibold">{tl({ en: 'Nature', hi: 'प्रकृति', sa: 'प्रकृति' }, locale)}</th>
-                <th className="text-gold-light text-left py-2 px-2 font-semibold">{tl({ en: 'Life Themes', hi: 'जीवन विषय', sa: 'जीवन विषय' }, locale)}</th>
+                <th className="text-gold-light text-left py-2 px-2 font-semibold">{t('planet', locale)}</th>
+                <th className="text-gold-light text-left py-2 px-2 font-semibold">{t('sanskrit', locale)}</th>
+                <th className="text-gold-light text-center py-2 px-2 font-semibold">{t('years', locale)}</th>
+                <th className="text-gold-light text-left py-2 px-2 font-semibold">{t('nakshatrasRuled', locale)}</th>
+                <th className="text-gold-light text-left py-2 px-2 font-semibold">{t('nature', locale)}</th>
+                <th className="text-gold-light text-left py-2 px-2 font-semibold">{t('lifeThemes', locale)}</th>
               </tr>
             </thead>
             <tbody className="text-text-secondary">
@@ -69,73 +70,73 @@ function Page1() {
                 <td className="py-2 px-2 font-medium text-text-primary">Ketu</td>
                 <td className="py-2 px-2">केतु</td>
                 <td className="py-2 px-2 text-center text-gold-dark font-bold">7</td>
-                <td className="py-2 px-2">{tl({ en: 'Ashwini, Magha, Mula', hi: 'अश्विनी, मघा, मूल', sa: 'अश्विनी, मघा, मूल' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Spiritual disruption', hi: 'आध्यात्मिक विघटन', sa: 'आध्यात्मिक विघटन' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Detachment, past karma, sudden changes, spiritual awakening', hi: 'वैराग्य, पूर्व कर्म, अकस्मात परिवर्तन, आध्यात्मिक जागृति', sa: 'वैराग्य, पूर्व कर्म, अकस्मात परिवर्तन, आध्यात्मिक जागृति' }, locale)}</td>
+                <td className="py-2 px-2">{t('ashwiniMaghaMula', locale)}</td>
+                <td className="py-2 px-2">{t('spiritualDisruption', locale)}</td>
+                <td className="py-2 px-2">{t('detachmentPastKarmaSuddenChanges', locale)}</td>
               </tr>
               <tr className="border-b border-white/5 bg-white/[0.02]">
                 <td className="py-2 px-2 font-medium text-text-primary">Venus</td>
                 <td className="py-2 px-2">शुक्र</td>
                 <td className="py-2 px-2 text-center text-gold-dark font-bold">20</td>
-                <td className="py-2 px-2">{tl({ en: 'Bharani, P.Phalguni, P.Ashadha', hi: 'भरणी, पू.फा., पू.आषा.', sa: 'भरणी, पू.फा., पू.आषा.' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Material abundance', hi: 'भौतिक प्रचुरता', sa: 'भौतिक प्रचुरता' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Marriage, luxury, arts, relationships, comfort', hi: 'विवाह, विलासिता, कला, सम्बन्ध, सुख-सुविधा', sa: 'विवाह, विलासिता, कला, सम्बन्ध, सुख-सुविधा' }, locale)}</td>
+                <td className="py-2 px-2">{t('bharaniPPhalguniPAshadha', locale)}</td>
+                <td className="py-2 px-2">{t('materialAbundance', locale)}</td>
+                <td className="py-2 px-2">{t('marriageLuxuryArtsRelationshipsComfort', locale)}</td>
               </tr>
               <tr className="border-b border-white/5">
                 <td className="py-2 px-2 font-medium text-text-primary">Sun</td>
                 <td className="py-2 px-2">सूर्य</td>
                 <td className="py-2 px-2 text-center text-gold-dark font-bold">6</td>
-                <td className="py-2 px-2">{tl({ en: 'Krittika, U.Phalguni, U.Ashadha', hi: 'कृत्तिका, उ.फा., उ.आषा.', sa: 'कृत्तिका, उ.फा., उ.आषा.' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Authority', hi: 'अधिकार', sa: 'अधिकार' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Career recognition, father, government, leadership', hi: 'कैरियर मान्यता, पिता, सरकार, नेतृत्व', sa: 'कैरियर मान्यता, पिता, सरकार, नेतृत्व' }, locale)}</td>
+                <td className="py-2 px-2">{t('krittikaUPhalguniUAshadha', locale)}</td>
+                <td className="py-2 px-2">{t('authority', locale)}</td>
+                <td className="py-2 px-2">{t('careerRecognitionFatherGovernmentLeadership', locale)}</td>
               </tr>
               <tr className="border-b border-white/5 bg-white/[0.02]">
                 <td className="py-2 px-2 font-medium text-text-primary">Moon</td>
                 <td className="py-2 px-2">चन्द्र</td>
                 <td className="py-2 px-2 text-center text-gold-dark font-bold">10</td>
-                <td className="py-2 px-2">{tl({ en: 'Rohini, Hasta, Shravana', hi: 'रोहिणी, हस्त, श्रवण', sa: 'रोहिणी, हस्त, श्रवण' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Emotional', hi: 'भावनात्मक', sa: 'भावनात्मक' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Mother, emotions, travel, public image, mind', hi: 'माता, भावनाएँ, यात्रा, लोक छवि, मन', sa: 'माता, भावनाएँ, यात्रा, लोक छवि, मन' }, locale)}</td>
+                <td className="py-2 px-2">{t('rohiniHastaShravana', locale)}</td>
+                <td className="py-2 px-2">{t('emotional', locale)}</td>
+                <td className="py-2 px-2">{t('motherEmotionsTravelPublicImage', locale)}</td>
               </tr>
               <tr className="border-b border-white/5">
                 <td className="py-2 px-2 font-medium text-text-primary">Mars</td>
                 <td className="py-2 px-2">मंगल</td>
                 <td className="py-2 px-2 text-center text-gold-dark font-bold">7</td>
-                <td className="py-2 px-2">{tl({ en: 'Mrigashira, Chitra, Dhanishtha', hi: 'मृगशिरा, चित्रा, धनिष्ठा', sa: 'मृगशिरा, चित्रा, धनिष्ठा' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Action', hi: 'क्रिया', sa: 'क्रिया' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Property, siblings, courage, surgery, conflicts', hi: 'सम्पत्ति, भाई-बहन, साहस, शल्यक्रिया, संघर्ष', sa: 'सम्पत्ति, भाई-बहन, साहस, शल्यक्रिया, संघर्ष' }, locale)}</td>
+                <td className="py-2 px-2">{t('mrigashiraChitraDhanishtha', locale)}</td>
+                <td className="py-2 px-2">{t('action', locale)}</td>
+                <td className="py-2 px-2">{t('propertySiblingsCourageSurgeryConflicts', locale)}</td>
               </tr>
               <tr className="border-b border-white/5 bg-white/[0.02]">
                 <td className="py-2 px-2 font-medium text-text-primary">Rahu</td>
                 <td className="py-2 px-2">राहु</td>
                 <td className="py-2 px-2 text-center text-gold-dark font-bold">18</td>
-                <td className="py-2 px-2">{tl({ en: 'Ardra, Swati, Shatabhisha', hi: 'आर्द्रा, स्वाती, शतभिषा', sa: 'आर्द्रा, स्वाती, शतभिषा' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Obsession', hi: 'आसक्ति', sa: 'आसक्ति' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Foreign connections, technology, unconventional success, desire', hi: 'विदेश सम्बन्ध, प्रौद्योगिकी, अपरम्परागत सफलता, इच्छा', sa: 'विदेश सम्बन्ध, प्रौद्योगिकी, अपरम्परागत सफलता, इच्छा' }, locale)}</td>
+                <td className="py-2 px-2">{t('ardraSwatiShatabhisha', locale)}</td>
+                <td className="py-2 px-2">{t('obsession', locale)}</td>
+                <td className="py-2 px-2">{t('foreignConnectionsTechnologyUnconventionalSuccess', locale)}</td>
               </tr>
               <tr className="border-b border-white/5">
                 <td className="py-2 px-2 font-medium text-text-primary">Jupiter</td>
                 <td className="py-2 px-2">बृहस्पति</td>
                 <td className="py-2 px-2 text-center text-gold-dark font-bold">16</td>
-                <td className="py-2 px-2">{tl({ en: 'Punarvasu, Vishakha, P.Bhadrapada', hi: 'पुनर्वसु, विशाखा, पू.भा.', sa: 'पुनर्वसु, विशाखा, पू.भा.' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Expansion', hi: 'विस्तार', sa: 'विस्तार' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Children, education, wisdom, dharma, wealth', hi: 'सन्तान, शिक्षा, ज्ञान, धर्म, सम्पत्ति', sa: 'सन्तान, शिक्षा, ज्ञान, धर्म, सम्पत्ति' }, locale)}</td>
+                <td className="py-2 px-2">{t('punarvasuVishakhaPBhadrapada', locale)}</td>
+                <td className="py-2 px-2">{t('expansion', locale)}</td>
+                <td className="py-2 px-2">{t('childrenEducationWisdomDharmaWealth', locale)}</td>
               </tr>
               <tr className="border-b border-white/5 bg-white/[0.02]">
                 <td className="py-2 px-2 font-medium text-text-primary">Saturn</td>
                 <td className="py-2 px-2">शनि</td>
                 <td className="py-2 px-2 text-center text-gold-dark font-bold">19</td>
-                <td className="py-2 px-2">{tl({ en: 'Pushya, Anuradha, U.Bhadrapada', hi: 'पुष्य, अनुराधा, उ.भा.', sa: 'पुष्य, अनुराधा, उ.भा.' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Discipline', hi: 'अनुशासन', sa: 'अनुशासन' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Career grind, chronic issues, structure, karma, responsibility', hi: 'कैरियर परिश्रम, दीर्घकालिक समस्याएँ, संरचना, कर्म, उत्तरदायित्व', sa: 'कैरियर परिश्रम, दीर्घकालिक समस्याएँ, संरचना, कर्म, उत्तरदायित्व' }, locale)}</td>
+                <td className="py-2 px-2">{t('pushyaAnuradhaUBhadrapada', locale)}</td>
+                <td className="py-2 px-2">{t('discipline', locale)}</td>
+                <td className="py-2 px-2">{t('careerGrindChronicIssuesStructure', locale)}</td>
               </tr>
               <tr>
                 <td className="py-2 px-2 font-medium text-text-primary">Mercury</td>
                 <td className="py-2 px-2">बुध</td>
                 <td className="py-2 px-2 text-center text-gold-dark font-bold">17</td>
-                <td className="py-2 px-2">{tl({ en: 'Ashlesha, Jyeshtha, Revati', hi: 'आश्लेषा, ज्येष्ठा, रेवती', sa: 'आश्लेषा, ज्येष्ठा, रेवती' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Intelligence', hi: 'बुद्धि', sa: 'बुद्धि' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Business, communication, skills, analysis, adaptability', hi: 'व्यापार, संवाद, कौशल, विश्लेषण, अनुकूलनशीलता', sa: 'व्यापार, संवाद, कौशल, विश्लेषण, अनुकूलनशीलता' }, locale)}</td>
+                <td className="py-2 px-2">{t('ashleshaJyeshthaRevati', locale)}</td>
+                <td className="py-2 px-2">{t('intelligence', locale)}</td>
+                <td className="py-2 px-2">{t('businessCommunicationSkillsAnalysisAdaptability', locale)}</td>
               </tr>
             </tbody>
           </table>
@@ -145,7 +146,7 @@ function Page1() {
       {/* Why These Specific Years? */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Why These Specific Years?', hi: 'ये विशिष्ट वर्ष क्यों?', sa: 'ये विशिष्ट वर्ष क्यों?' }, locale)}
+          {t('whyTheseSpecificYears', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -157,7 +158,7 @@ function Page1() {
       {/* The Sequence */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'The Sequence and Nakshatra Connection', hi: 'क्रम और नक्षत्र सम्बन्ध', sa: 'क्रम और नक्षत्र सम्बन्ध' }, locale)}
+          {t('theSequenceAndNakshatraConnection', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -173,7 +174,7 @@ function Page1() {
 
       {/* Classical Origin Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीयः उद्भवः' }, locale)}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{t('classicalOrigin', locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {isHi
             ? <>विंशोत्तरी पद्धति बृहत् पराशर होराशास्त्र (BPHS), अध्याय 46 से उत्पन्न है। पराशर इसे सामान्य उपयोग के लिए सर्वाधिक उपयुक्त दशा बताते हैं — जब चन्द्रमा 0° से 360° के बीच हो (अर्थात् सदा)। पराशर 40 से अधिक दशा पद्धतियों (अष्टोत्तरी, योगिनी, आदि) का वर्णन करते हैं, किन्तु वे विशिष्ट चन्द्र स्थितियों के लिए निर्दिष्ट हैं। विंशोत्तरी कलियुग की सार्वभौमिक दशा है।</>
@@ -183,7 +184,7 @@ function Page1() {
 
       {/* Key Fact Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Key Fact', hi: 'मुख्य तथ्य', sa: 'मुख्य तथ्य' }, locale)}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">{t('keyFact', locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? <>विंशोत्तरी को विश्व की अन्य सभी समय-निर्धारण प्रणालियों से जो अद्वितीय बनाता है: यह भविष्यवाणी कर सकती है कि घटनाएँ कब होंगी, न कि केवल क्या हो सकता है। एक पश्चिमी ज्योतिषी कह सकता है &quot;आपका विवाह हो सकता है।&quot; दशा प्रयोग करने वाला वैदिक ज्योतिषी कह सकता है &quot;विवाह की सर्वाधिक सम्भावना शुक्र-गुरु काल में, अक्टूबर 2027 से फरवरी 2029 के बीच है।&quot; यह विशिष्टता पदानुक्रमिक उपविभाजन प्रणाली के कारण सम्भव है — जिसे अगले पृष्ठ पर विस्तार से समझाया गया है।</>
@@ -203,11 +204,11 @@ function Page2() {
       {/* Step 1 */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Computing Your Dasha — Step by Step', hi: 'आपकी दशा की गणना — चरण दर चरण', sa: 'आपकी दशा की गणना — चरण दर चरण' }, locale)}
+          {t('computingYourDashaStepBy', locale)}
         </h3>
 
         <h4 className="text-gold-dark font-semibold text-sm mb-2">
-          {tl({ en: `Step 1: Find the Birth Moon\'s Nakshatra`, hi: `चरण 1: जन्म चन्द्रमा का नक्षत्र ज्ञात करें`, sa: `चरण 1: जन्म चन्द्रमा का नक्षत्र ज्ञात करें` }, locale)}
+          {t('step1FindTheBirth', locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -216,7 +217,7 @@ function Page2() {
         </p>
 
         <h4 className="text-gold-dark font-semibold text-sm mb-2">
-          {tl({ en: 'Step 2: Determine the Starting Mahadasha', hi: 'चरण 2: आरम्भिक महादशा निर्धारित करें', sa: 'चरण 2: आरम्भिक महादशा निर्धारित करें' }, locale)}
+          {t('step2DetermineTheStarting', locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -225,7 +226,7 @@ function Page2() {
         </p>
 
         <h4 className="text-gold-dark font-semibold text-sm mb-2">
-          {tl({ en: 'Step 3: Calculate the Remaining Balance', hi: 'चरण 3: शेष दशा की गणना करें', sa: 'चरण 3: शेष दशा की गणना करें' }, locale)}
+          {t('step3CalculateTheRemaining', locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -234,7 +235,7 @@ function Page2() {
         </p>
 
         <h4 className="text-gold-dark font-semibold text-sm mb-2">
-          {tl({ en: 'Step 4: Build the Full Sequence', hi: 'चरण 4: पूर्ण अनुक्रम बनाएँ', sa: 'चरण 4: पूर्ण अनुक्रम बनाएँ' }, locale)}
+          {t('step4BuildTheFull', locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -246,42 +247,42 @@ function Page2() {
       {/* The Subdivision Hierarchy */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'The Subdivision Hierarchy: 5 Levels Deep', hi: 'उपविभाजन पदानुक्रम: 5 स्तर', sa: 'उपविभाजन पदानुक्रम: 5 स्तर' }, locale)}
+          {t('theSubdivisionHierarchy5Levels', locale)}
         </h3>
         <div className="space-y-2 mb-4">
           <div className="flex items-start gap-3 text-sm">
             <span className="text-gold-dark font-bold min-w-[2rem]">1.</span>
             <div>
-              <span className="text-text-primary font-semibold">{tl({ en: 'Mahadasha', hi: 'महादशा', sa: 'महादशा' }, locale)}</span>
-              <span className="text-text-secondary"> — {tl({ en: 'Major period: 6-20 years. The broad chapter of life.', hi: 'प्रमुख काल: 6-20 वर्ष। जीवन का व्यापक अध्याय।', sa: 'प्रमुख काल: 6-20 वर्ष। जीवन का व्यापक अध्याय।' }, locale)}</span>
+              <span className="text-text-primary font-semibold">{t('mahadasha', locale)}</span>
+              <span className="text-text-secondary"> — {t('majorPeriod620Years', locale)}</span>
             </div>
           </div>
           <div className="flex items-start gap-3 text-sm">
             <span className="text-gold-dark font-bold min-w-[2rem]">2.</span>
             <div>
-              <span className="text-text-primary font-semibold">{tl({ en: 'Antardasha (Bhukti)', hi: 'अन्तर्दशा (भुक्ति)', sa: 'अन्तर्दशा (भुक्ति)' }, locale)}</span>
-              <span className="text-text-secondary"> — {tl({ en: 'Sub-period: months to years. The scene within the chapter.', hi: 'उप-काल: मासों से वर्षों तक। अध्याय के भीतर दृश्य।', sa: 'उप-काल: मासों से वर्षों तक। अध्याय के भीतर दृश्य।' }, locale)}</span>
+              <span className="text-text-primary font-semibold">{t('antardashaBhukti', locale)}</span>
+              <span className="text-text-secondary"> — {t('subPeriodMonthsToYears', locale)}</span>
             </div>
           </div>
           <div className="flex items-start gap-3 text-sm">
             <span className="text-gold-dark font-bold min-w-[2rem]">3.</span>
             <div>
-              <span className="text-text-primary font-semibold">{tl({ en: 'Pratyantardasha', hi: 'प्रत्यन्तर्दशा', sa: 'प्रत्यन्तर्दशा' }, locale)}</span>
-              <span className="text-text-secondary"> — {tl({ en: 'Sub-sub-period: weeks to months. The dialogue within the scene.', hi: 'उप-उप-काल: सप्ताहों से मासों तक। दृश्य के भीतर संवाद।', sa: 'उप-उप-काल: सप्ताहों से मासों तक। दृश्य के भीतर संवाद।' }, locale)}</span>
+              <span className="text-text-primary font-semibold">{t('pratyantardasha', locale)}</span>
+              <span className="text-text-secondary"> — {t('subSubPeriodWeeksTo', locale)}</span>
             </div>
           </div>
           <div className="flex items-start gap-3 text-sm">
             <span className="text-gold-dark font-bold min-w-[2rem]">4.</span>
             <div>
-              <span className="text-text-primary font-semibold">{tl({ en: 'Sookshma Dasha', hi: 'सूक्ष्म दशा', sa: 'सूक्ष्म दशा' }, locale)}</span>
-              <span className="text-text-secondary"> — {tl({ en: 'Period of days. The sentence within the dialogue.', hi: 'दिनों का काल। संवाद के भीतर वाक्य।', sa: 'दिनों का काल। संवाद के भीतर वाक्य।' }, locale)}</span>
+              <span className="text-text-primary font-semibold">{t('sookshmaDasha', locale)}</span>
+              <span className="text-text-secondary"> — {t('periodOfDaysTheSentence', locale)}</span>
             </div>
           </div>
           <div className="flex items-start gap-3 text-sm">
             <span className="text-gold-dark font-bold min-w-[2rem]">5.</span>
             <div>
-              <span className="text-text-primary font-semibold">{tl({ en: 'Prana Dasha', hi: 'प्राण दशा', sa: 'प्राण दशा' }, locale)}</span>
-              <span className="text-text-secondary"> — {tl({ en: 'Period of hours. The word within the sentence.', hi: 'घण्टों का काल। वाक्य के भीतर शब्द।', sa: 'घण्टों का काल। वाक्य के भीतर शब्द।' }, locale)}</span>
+              <span className="text-text-primary font-semibold">{t('pranaDasha', locale)}</span>
+              <span className="text-text-secondary"> — {t('periodOfHoursTheWord', locale)}</span>
             </div>
           </div>
         </div>
@@ -290,7 +291,7 @@ function Page2() {
       {/* Antardasha Calculation */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Antardasha Calculation Formula', hi: 'अन्तर्दशा गणना सूत्र', sa: 'अन्तर्दशा गणना सूत्र' }, locale)}
+          {t('antardashaCalculationFormula', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -306,11 +307,11 @@ function Page2() {
 
       {/* Worked Example Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example: Delhi Birth Chart', hi: 'कार्यान्वित उदाहरण: दिल्ली जन्म कुण्डली', sa: 'कार्यान्वित उदाहरण: दिल्ली जन्म कुण्डली' }, locale)}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{t('workedExampleDelhiBirthChart', locale)}</h4>
         <ExampleChart
           ascendant={1}
           planets={{ 10: [0], 4: [1], 9: [4] }}
-          title={tl({ en: 'Aries Lagna — Sun in 10th, Moon in 4th, Jupiter in 9th', hi: 'मेष लग्न — सूर्य दशम में, चन्द्र चतुर्थ में, बृहस्पति नवम में', sa: 'मेष लग्न — सूर्य दशम में, चन्द्र चतुर्थ में, बृहस्पति नवम में' }, locale)}
+          title={t('ariesLagnaSunIn10th', locale)}
         />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -331,7 +332,7 @@ function Page2() {
 
       {/* Mind-blown fact */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-purple-500/15">
-        <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Staggering Precision', hi: 'अद्भुत सटीकता', sa: 'अद्भुत सटीकता' }, locale)}</h4>
+        <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-2">{t('staggeringPrecision', locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? <>विंशोत्तरी पद्धति 9 x 9 = 81 अद्वितीय महादशा-अन्तर्दशा संयोजन उत्पन्न करती है। प्रत्यन्तर्दशा के साथ 729। सूक्ष्म दशा के साथ 6,561। प्राण दशा के साथ 59,049। यह एकमात्र जन्म क्षण से घण्टों की समय सटीकता उत्पन्न करता है। इतिहास की किसी अन्य ज्योतिष पद्धति में कालिक विस्तार (temporal granularity) का यह स्तर नहीं है।</>
@@ -351,7 +352,7 @@ function Page3() {
       {/* The Fundamental Rule */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'The Fundamental Rule: Dasha Activation', hi: 'मूल सिद्धान्त: दशा सक्रियण', sa: 'मूल सिद्धान्त: दशा सक्रियण' }, locale)}
+          {t('theFundamentalRuleDashaActivation', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -368,7 +369,7 @@ function Page3() {
       {/* Mahadasha + Antardasha Interaction */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Mahadasha + Antardasha Interaction', hi: 'महादशा + अन्तर्दशा अन्तःक्रिया', sa: 'महादशा + अन्तर्दशा अन्तःक्रिया' }, locale)}
+          {t('mahadashaAntardashaInteraction', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -380,7 +381,7 @@ function Page3() {
       {/* When Do Events Happen? */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'When Do Events Happen? The Double Transit Theory', hi: 'घटनाएँ कब घटती हैं? दोहरा गोचर सिद्धान्त', sa: 'घटनाएँ कब घटती हैं? दोहरा गोचर सिद्धान्त' }, locale)}
+          {t('whenDoEventsHappenThe', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -397,7 +398,7 @@ function Page3() {
       {/* Dasha Sandhi */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Dasha Sandhi: The Turbulent Transition Zone', hi: 'दशा सन्धि: संक्रमण का अशान्त क्षेत्र', sa: 'दशा सन्धि: संक्रमण का अशान्त क्षेत्र' }, locale)}
+          {t('dashaSandhiTheTurbulentTransition', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -409,7 +410,7 @@ function Page3() {
       {/* Real-life Pattern Walkthrough */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Real-Life Pattern: Dasha-Life Phase Mapping', hi: 'वास्तविक जीवन प्रतिरूप: दशा-जीवन चरण मानचित्रण', sa: 'वास्तविक जीवन प्रतिरूप: दशा-जीवन चरण मानचित्रण' }, locale)}
+          {t('realLifePatternDashaLife', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {isHi
@@ -418,40 +419,40 @@ function Page3() {
         </p>
         <div className="space-y-2 mb-3">
           <div className="flex items-start gap-3 text-sm">
-            <span className="text-gold-dark font-bold min-w-[6rem]">{tl({ en: 'Ketu (0-7)', hi: 'केतु (0-7)', sa: 'केतु (0-7)' }, locale)}</span>
-            <span className="text-text-secondary">{tl({ en: 'Childhood disruptions, karmic family patterns, relocations', hi: 'बचपन की विघटनकारी घटनाएँ, कार्मिक पारिवारिक प्रतिरूप, स्थान परिवर्तन', sa: 'बचपन की विघटनकारी घटनाएँ, कार्मिक पारिवारिक प्रतिरूप, स्थान परिवर्तन' }, locale)}</span>
+            <span className="text-gold-dark font-bold min-w-[6rem]">{t('ketu07', locale)}</span>
+            <span className="text-text-secondary">{t('childhoodDisruptionsKarmicFamilyPatterns', locale)}</span>
           </div>
           <div className="flex items-start gap-3 text-sm">
-            <span className="text-gold-dark font-bold min-w-[6rem]">{tl({ en: 'Venus (7-27)', hi: 'शुक्र (7-27)', sa: 'शुक्र (7-27)' }, locale)}</span>
-            <span className="text-text-secondary">{tl({ en: 'Education, first love, marriage for many, art/beauty awakening, material aspirations', hi: 'शिक्षा, पहला प्रेम, विवाह, कला/सौन्दर्य जागृति, भौतिक आकांक्षाएँ', sa: 'शिक्षा, पहला प्रेम, विवाह, कला/सौन्दर्य जागृति, भौतिक आकांक्षाएँ' }, locale)}</span>
+            <span className="text-gold-dark font-bold min-w-[6rem]">{t('venus727', locale)}</span>
+            <span className="text-text-secondary">{t('educationFirstLoveMarriageFor', locale)}</span>
           </div>
           <div className="flex items-start gap-3 text-sm">
-            <span className="text-gold-dark font-bold min-w-[6rem]">{tl({ en: 'Sun (27-33)', hi: 'सूर्य (27-33)', sa: 'सूर्य (27-33)' }, locale)}</span>
-            <span className="text-text-secondary">{tl({ en: 'Career establishment, father-related events, gaining authority, self-identity', hi: 'कैरियर स्थापना, पिता सम्बन्धी घटनाएँ, अधिकार प्राप्ति, आत्म-पहचान', sa: 'कैरियर स्थापना, पिता सम्बन्धी घटनाएँ, अधिकार प्राप्ति, आत्म-पहचान' }, locale)}</span>
+            <span className="text-gold-dark font-bold min-w-[6rem]">{t('sun2733', locale)}</span>
+            <span className="text-text-secondary">{t('careerEstablishmentFatherRelatedEvents', locale)}</span>
           </div>
           <div className="flex items-start gap-3 text-sm">
-            <span className="text-gold-dark font-bold min-w-[6rem]">{tl({ en: 'Moon (33-43)', hi: 'चन्द्र (33-43)', sa: 'चन्द्र (33-43)' }, locale)}</span>
-            <span className="text-text-secondary">{tl({ en: 'Emotional maturity, mother, travel, home, public image, mental growth', hi: 'भावनात्मक परिपक्वता, माता, यात्रा, गृह, सार्वजनिक छवि, मानसिक वृद्धि', sa: 'भावनात्मक परिपक्वता, माता, यात्रा, गृह, सार्वजनिक छवि, मानसिक वृद्धि' }, locale)}</span>
+            <span className="text-gold-dark font-bold min-w-[6rem]">{t('moon3343', locale)}</span>
+            <span className="text-text-secondary">{t('emotionalMaturityMotherTravelHome', locale)}</span>
           </div>
           <div className="flex items-start gap-3 text-sm">
-            <span className="text-gold-dark font-bold min-w-[6rem]">{tl({ en: 'Mars (43-50)', hi: 'मंगल (43-50)', sa: 'मंगल (43-50)' }, locale)}</span>
-            <span className="text-text-secondary">{tl({ en: 'Property, health/surgery, sibling issues, energy shifts, bold actions', hi: 'सम्पत्ति, स्वास्थ्य/शल्यक्रिया, भाई-बहन मामले, ऊर्जा गिरावट, साहस', sa: 'सम्पत्ति, स्वास्थ्य/शल्यक्रिया, भाई-बहन मामले, ऊर्जा गिरावट, साहस' }, locale)}</span>
+            <span className="text-gold-dark font-bold min-w-[6rem]">{t('mars4350', locale)}</span>
+            <span className="text-text-secondary">{t('propertyHealthSurgerySiblingIssues', locale)}</span>
           </div>
           <div className="flex items-start gap-3 text-sm">
-            <span className="text-gold-dark font-bold min-w-[6rem]">{tl({ en: 'Rahu (50-68)', hi: 'राहु (50-68)', sa: 'राहु (50-68)' }, locale)}</span>
-            <span className="text-text-secondary">{tl({ en: 'Unconventional success, foreign experiences, technology, intense desires, illusions', hi: 'अपरम्परागत सफलता, विदेशी अनुभव, प्रौद्योगिकी, तीव्र इच्छाएँ, भ्रम', sa: 'अपरम्परागत सफलता, विदेशी अनुभव, प्रौद्योगिकी, तीव्र इच्छाएँ, भ्रम' }, locale)}</span>
+            <span className="text-gold-dark font-bold min-w-[6rem]">{t('rahu5068', locale)}</span>
+            <span className="text-text-secondary">{t('unconventionalSuccessForeignExperiencesTechnology', locale)}</span>
           </div>
           <div className="flex items-start gap-3 text-sm">
-            <span className="text-gold-dark font-bold min-w-[6rem]">{tl({ en: 'Jupiter (68-84)', hi: 'गुरु (68-84)', sa: 'गुरु (68-84)' }, locale)}</span>
-            <span className="text-text-secondary">{tl({ en: 'Wisdom accumulation, grandchildren, pilgrimages, charity, legacy building', hi: 'ज्ञान संचय, पोते-पोतियाँ, धार्मिक तीर्थयात्रा, दान, विरासत निर्माण', sa: 'ज्ञान संचय, पोते-पोतियाँ, धार्मिक तीर्थयात्रा, दान, विरासत निर्माण' }, locale)}</span>
+            <span className="text-gold-dark font-bold min-w-[6rem]">{t('jupiter6884', locale)}</span>
+            <span className="text-text-secondary">{t('wisdomAccumulationGrandchildrenPilgrimagesCharity', locale)}</span>
           </div>
           <div className="flex items-start gap-3 text-sm">
-            <span className="text-gold-dark font-bold min-w-[6rem]">{tl({ en: 'Saturn (84-103)', hi: 'शनि (84-103)', sa: 'शनि (84-103)' }, locale)}</span>
-            <span className="text-text-secondary">{tl({ en: 'Karmic maturity, chronic health, completion of structures, renunciation', hi: 'कर्म परिपक्वता, दीर्घकालिक स्वास्थ्य, संरचनाओं का पूर्ण होना, त्याग', sa: 'कर्म परिपक्वता, दीर्घकालिक स्वास्थ्य, संरचनाओं का पूर्ण होना, त्याग' }, locale)}</span>
+            <span className="text-gold-dark font-bold min-w-[6rem]">{t('saturn84103', locale)}</span>
+            <span className="text-text-secondary">{t('karmicMaturityChronicHealthCompletion', locale)}</span>
           </div>
           <div className="flex items-start gap-3 text-sm">
-            <span className="text-gold-dark font-bold min-w-[6rem]">{tl({ en: 'Mercury (103-120)', hi: 'बुध (103-120)', sa: 'बुध (103-120)' }, locale)}</span>
-            <span className="text-text-secondary">{tl({ en: 'Intellectual legacy, communication, final adaptations, life cycle complete', hi: 'बौद्धिक विरासत, संवाद, अन्तिम अनुकूलन, जीवन चक्र पूर्ण', sa: 'बौद्धिक विरासत, संवाद, अन्तिम अनुकूलन, जीवन चक्र पूर्ण' }, locale)}</span>
+            <span className="text-gold-dark font-bold min-w-[6rem]">{t('mercury103120', locale)}</span>
+            <span className="text-text-secondary">{t('intellectualLegacyCommunicationFinalAdaptations', locale)}</span>
           </div>
         </div>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
@@ -463,7 +464,7 @@ function Page3() {
 
       {/* Misconceptions Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{t('commonMisconceptions', locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
             ? <><span className="text-gold-light font-medium">&quot;राहु और शनि दशा सदा बुरी होती है&quot;</span> — यह असत्य है। राहु दशा असाधारण सांसारिक सफलता ला सकती है (विदेशी अवसर, प्रौद्योगिकी कैरियर, अपरम्परागत उपलब्धियाँ)। शनि दशा स्थायी संरचनाएँ बनाती है (कैरियर शिखर, सम्पत्ति संचय, अनुशासन)। परिणामों की गुणवत्ता आपकी कुण्डली में ग्रह की मर्यादा और भावेशत्व पर निर्भर करती है, ग्रह की सामान्य प्रतिष्ठा पर नहीं।</>
@@ -484,52 +485,52 @@ function Page3() {
       {/* Practical Application: Event Timing */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Practical Application: Life Event Timing', hi: 'व्यावहारिक प्रयोग: जीवन घटना समय-निर्धारण', sa: 'व्यावहारिक प्रयोग: जीवन घटना समय-निर्धारण' }, locale)}
+          {t('practicalApplicationLifeEventTiming', locale)}
         </h3>
         <div className="overflow-x-auto -mx-1">
           <table className="w-full text-xs border-collapse">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-gold-light text-left py-2 px-2 font-semibold">{tl({ en: 'Event', hi: 'घटना', sa: 'घटना' }, locale)}</th>
-                <th className="text-gold-light text-left py-2 px-2 font-semibold">{tl({ en: 'Primary Dasha Indicators', hi: 'प्राथमिक दशा संकेतक', sa: 'प्राथमिक दशा संकेतक' }, locale)}</th>
-                <th className="text-gold-light text-left py-2 px-2 font-semibold">{tl({ en: 'Transit Confirmation', hi: 'गोचर पुष्टि', sa: 'गोचर पुष्टि' }, locale)}</th>
+                <th className="text-gold-light text-left py-2 px-2 font-semibold">{t('event', locale)}</th>
+                <th className="text-gold-light text-left py-2 px-2 font-semibold">{t('primaryDashaIndicators', locale)}</th>
+                <th className="text-gold-light text-left py-2 px-2 font-semibold">{t('transitConfirmation', locale)}</th>
               </tr>
             </thead>
             <tbody className="text-text-secondary">
               <tr className="border-b border-white/5">
-                <td className="py-2 px-2 font-medium text-text-primary">{tl({ en: 'Marriage', hi: 'विवाह', sa: 'विवाह' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Venus / 7th lord dasha-antardasha', hi: 'शुक्र / सप्तमेश दशा-अन्तर्दशा', sa: 'शुक्र / सप्तमेश दशा-अन्तर्दशा' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Jupiter in 7th + Saturn aspecting 7th', hi: 'गुरु 7वें में + शनि 7वें पर दृष्टि', sa: 'गुरु 7वें में + शनि 7वें पर दृष्टि' }, locale)}</td>
+                <td className="py-2 px-2 font-medium text-text-primary">{t('marriage', locale)}</td>
+                <td className="py-2 px-2">{t('venus7thLordDashaAntardasha', locale)}</td>
+                <td className="py-2 px-2">{t('jupiterIn7thSaturnAspecting', locale)}</td>
               </tr>
               <tr className="border-b border-white/5 bg-white/[0.02]">
-                <td className="py-2 px-2 font-medium text-text-primary">{tl({ en: 'Career Rise', hi: 'कैरियर उन्नति', sa: 'कैरियर उन्नति' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Sun / 10th lord / Jupiter dasha', hi: 'सूर्य / दशमेश / गुरु दशा', sa: 'सूर्य / दशमेश / गुरु दशा' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Saturn transiting 10th or 11th', hi: 'शनि 10वें या 11वें में गोचर', sa: 'शनि 10वें या 11वें में गोचर' }, locale)}</td>
+                <td className="py-2 px-2 font-medium text-text-primary">{t('careerRise', locale)}</td>
+                <td className="py-2 px-2">{t('sun10thLordJupiterDasha', locale)}</td>
+                <td className="py-2 px-2">{t('saturnTransiting10thOr11th', locale)}</td>
               </tr>
               <tr className="border-b border-white/5">
-                <td className="py-2 px-2 font-medium text-text-primary">{tl({ en: 'Children', hi: 'सन्तान', sa: 'सन्तान' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Jupiter / 5th lord dasha-antardasha', hi: 'गुरु / पंचमेश दशा-अन्तर्दशा', sa: 'गुरु / पंचमेश दशा-अन्तर्दशा' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Jupiter transiting 5th or 9th', hi: 'गुरु 5वें या 9वें में गोचर', sa: 'गुरु 5वें या 9वें में गोचर' }, locale)}</td>
+                <td className="py-2 px-2 font-medium text-text-primary">{t('children', locale)}</td>
+                <td className="py-2 px-2">{t('jupiter5thLordDashaAntardasha', locale)}</td>
+                <td className="py-2 px-2">{t('jupiterTransiting5thOr9th', locale)}</td>
               </tr>
               <tr className="border-b border-white/5 bg-white/[0.02]">
-                <td className="py-2 px-2 font-medium text-text-primary">{tl({ en: 'Health Crisis', hi: 'स्वास्थ्य संकट', sa: 'स्वास्थ्य संकट' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: '6th lord / 8th lord dasha', hi: 'षष्ठेश / अष्टमेश दशा', sa: 'षष्ठेश / अष्टमेश दशा' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Saturn in 6/8/12 + Rahu/Ketu axis', hi: 'शनि 6/8/12 में + राहु/केतु अक्ष', sa: 'शनि 6/8/12 में + राहु/केतु अक्ष' }, locale)}</td>
+                <td className="py-2 px-2 font-medium text-text-primary">{t('healthCrisis', locale)}</td>
+                <td className="py-2 px-2">{t('k6thLord8thLordDasha', locale)}</td>
+                <td className="py-2 px-2">{t('saturnIn6812', locale)}</td>
               </tr>
               <tr className="border-b border-white/5">
-                <td className="py-2 px-2 font-medium text-text-primary">{tl({ en: 'Foreign Travel', hi: 'विदेश यात्रा', sa: 'विदेश यात्रा' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Rahu / 12th lord / 9th lord dasha', hi: 'राहु / द्वादशेश / नवमेश दशा', sa: 'राहु / द्वादशेश / नवमेश दशा' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Jupiter transiting 9th/12th', hi: 'गुरु 9/12 में गोचर', sa: 'गुरु 9/12 में गोचर' }, locale)}</td>
+                <td className="py-2 px-2 font-medium text-text-primary">{t('foreignTravel', locale)}</td>
+                <td className="py-2 px-2">{t('rahu12thLord9thLord', locale)}</td>
+                <td className="py-2 px-2">{t('jupiterTransiting9th12th', locale)}</td>
               </tr>
               <tr className="border-b border-white/5 bg-white/[0.02]">
-                <td className="py-2 px-2 font-medium text-text-primary">{tl({ en: 'Spiritual Awakening', hi: 'आध्यात्मिक जागृति', sa: 'आध्यात्मिक जागृति' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Ketu / 12th lord dasha', hi: 'केतु / द्वादशेश दशा', sa: 'केतु / द्वादशेश दशा' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Ketu transiting 12th or 9th', hi: 'केतु 12 या 9 में गोचर', sa: 'केतु 12 या 9 में गोचर' }, locale)}</td>
+                <td className="py-2 px-2 font-medium text-text-primary">{t('spiritualAwakening', locale)}</td>
+                <td className="py-2 px-2">{t('ketu12thLordDasha', locale)}</td>
+                <td className="py-2 px-2">{t('ketuTransiting12thOr9th', locale)}</td>
               </tr>
               <tr>
-                <td className="py-2 px-2 font-medium text-text-primary">{tl({ en: 'Property Purchase', hi: 'सम्पत्ति क्रय', sa: 'सम्पत्ति क्रय' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Mars / 4th lord dasha', hi: 'मंगल / चतुर्थेश दशा', sa: 'मंगल / चतुर्थेश दशा' }, locale)}</td>
-                <td className="py-2 px-2">{tl({ en: 'Saturn in 4th + Jupiter aspecting 4th', hi: 'शनि 4वें में + गुरु 4वें पर दृष्टि', sa: 'शनि 4वें में + गुरु 4वें पर दृष्टि' }, locale)}</td>
+                <td className="py-2 px-2 font-medium text-text-primary">{t('propertyPurchase', locale)}</td>
+                <td className="py-2 px-2">{t('mars4thLordDasha', locale)}</td>
+                <td className="py-2 px-2">{t('saturnIn4thJupiterAspecting', locale)}</td>
               </tr>
             </tbody>
           </table>
@@ -538,7 +539,7 @@ function Page3() {
 
       {/* Modern Relevance Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Try It In Our App', hi: 'हमारे ऐप में प्रयोग करें', sa: 'हमारे ऐप में प्रयोग करें' }, locale)}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{t('tryItInOurApp', locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {isHi
             ? <>हमारा कुण्डली इंजन (/kundali) जन्म से 120 वर्षों तक की पूर्ण विंशोत्तरी दशा तालिका गणित करता है — चन्द्रमा का सटीक निरयन भोगांश, जन्म नक्षत्र, दशा शेष, और सटीक आरम्भ-समाप्ति तिथियों सहित महादशा एवं अन्तर्दशा काल। टिप्पणी (व्याख्यात्मक भाष्य) बताता है कि वर्तमान में कौन-सी दशा चल रही है और आपकी विशिष्ट कुण्डली के लिए उसके सक्रियण का क्या अर्थ है।</>

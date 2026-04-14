@@ -791,5 +791,555 @@
         }
       ]
     }
-  ]
+  ],
+  "imagineKnowingInAdvanceWhich": {
+    "en": "\"Imagine knowing in advance which planet will be the dominant force in your life for the next 7, 10, or even 20 years. That's what the Vimshottari Dasha system gives you — a 120-year planetary timeline computed from a single data point: the Moon's nakshatra at your birth.\"",
+    "hi": "\"कल्पना कीजिए कि आप पहले से जान सकें कि अगले 7, 10, या 20 वर्षों तक कौन-सा ग्रह आपके जीवन में प्रभावी शक्ति रहेगा। विंशोत्तरी दशा पद्धति आपको यही देती है — एकमात्र डेटा बिन्दु से गणित 120 वर्षीय ग्रह समयरेखा: जन्म के समय चन्द्रमा का नक्षत्र।\"",
+    "sa": "\"कल्पना कीजिए कि आप पहले से जान सकें कि अगले 7, 10, या 20 वर्षों तक कौन-सा ग्रह आपके जीवन में प्रभावी शक्ति रहेगा। विंशोत्तरी दशा पद्धति आपको यही देती है — एकमात्र डेटा बिन्दु से गणित 120 वर्षीय ग्रह समयरेखा: जन्म के समय चन्द्रमा का नक्षत्र।\""
+  },
+  "whatIsVimshottari": {
+    "en": "What Is Vimshottari?",
+    "hi": "विंशोत्तरी क्या है?",
+    "sa": "विंशोत्तरी क्या है?"
+  },
+  "the9MahadashaPeriods": {
+    "en": "The 9 Mahadasha Periods",
+    "hi": "नौ महादशा काल",
+    "sa": "नौ महादशा काल"
+  },
+  "planet": {
+    "en": "Planet",
+    "hi": "ग्रह",
+    "sa": "ग्रहः"
+  },
+  "sanskrit": {
+    "en": "Sanskrit",
+    "hi": "संस्कृत",
+    "sa": "संस्कृतम्"
+  },
+  "years": {
+    "en": "Years",
+    "hi": "वर्ष",
+    "sa": "वर्ष"
+  },
+  "nakshatrasRuled": {
+    "en": "Nakshatras Ruled",
+    "hi": "नक्षत्र",
+    "sa": "नक्षत्र"
+  },
+  "nature": {
+    "en": "Nature",
+    "hi": "प्रकृति",
+    "sa": "प्रकृति"
+  },
+  "lifeThemes": {
+    "en": "Life Themes",
+    "hi": "जीवन विषय",
+    "sa": "जीवन विषय"
+  },
+  "ashwiniMaghaMula": {
+    "en": "Ashwini, Magha, Mula",
+    "hi": "अश्विनी, मघा, मूल",
+    "sa": "अश्विनी, मघा, मूल"
+  },
+  "spiritualDisruption": {
+    "en": "Spiritual disruption",
+    "hi": "आध्यात्मिक विघटन",
+    "sa": "आध्यात्मिक विघटन"
+  },
+  "detachmentPastKarmaSuddenChanges": {
+    "en": "Detachment, past karma, sudden changes, spiritual awakening",
+    "hi": "वैराग्य, पूर्व कर्म, अकस्मात परिवर्तन, आध्यात्मिक जागृति",
+    "sa": "वैराग्य, पूर्व कर्म, अकस्मात परिवर्तन, आध्यात्मिक जागृति"
+  },
+  "bharaniPPhalguniPAshadha": {
+    "en": "Bharani, P.Phalguni, P.Ashadha",
+    "hi": "भरणी, पू.फा., पू.आषा.",
+    "sa": "भरणी, पू.फा., पू.आषा."
+  },
+  "materialAbundance": {
+    "en": "Material abundance",
+    "hi": "भौतिक प्रचुरता",
+    "sa": "भौतिक प्रचुरता"
+  },
+  "marriageLuxuryArtsRelationshipsComfort": {
+    "en": "Marriage, luxury, arts, relationships, comfort",
+    "hi": "विवाह, विलासिता, कला, सम्बन्ध, सुख-सुविधा",
+    "sa": "विवाह, विलासिता, कला, सम्बन्ध, सुख-सुविधा"
+  },
+  "krittikaUPhalguniUAshadha": {
+    "en": "Krittika, U.Phalguni, U.Ashadha",
+    "hi": "कृत्तिका, उ.फा., उ.आषा.",
+    "sa": "कृत्तिका, उ.फा., उ.आषा."
+  },
+  "authority": {
+    "en": "Authority",
+    "hi": "अधिकार",
+    "sa": "अधिकार"
+  },
+  "careerRecognitionFatherGovernmentLeadership": {
+    "en": "Career recognition, father, government, leadership",
+    "hi": "कैरियर मान्यता, पिता, सरकार, नेतृत्व",
+    "sa": "कैरियर मान्यता, पिता, सरकार, नेतृत्व"
+  },
+  "rohiniHastaShravana": {
+    "en": "Rohini, Hasta, Shravana",
+    "hi": "रोहिणी, हस्त, श्रवण",
+    "sa": "रोहिणी, हस्त, श्रवण"
+  },
+  "emotional": {
+    "en": "Emotional",
+    "hi": "भावनात्मक",
+    "sa": "भावनात्मक"
+  },
+  "motherEmotionsTravelPublicImage": {
+    "en": "Mother, emotions, travel, public image, mind",
+    "hi": "माता, भावनाएँ, यात्रा, लोक छवि, मन",
+    "sa": "माता, भावनाएँ, यात्रा, लोक छवि, मन"
+  },
+  "mrigashiraChitraDhanishtha": {
+    "en": "Mrigashira, Chitra, Dhanishtha",
+    "hi": "मृगशिरा, चित्रा, धनिष्ठा",
+    "sa": "मृगशिरा, चित्रा, धनिष्ठा"
+  },
+  "action": {
+    "en": "Action",
+    "hi": "क्रिया",
+    "sa": "क्रिया"
+  },
+  "propertySiblingsCourageSurgeryConflicts": {
+    "en": "Property, siblings, courage, surgery, conflicts",
+    "hi": "सम्पत्ति, भाई-बहन, साहस, शल्यक्रिया, संघर्ष",
+    "sa": "सम्पत्ति, भाई-बहन, साहस, शल्यक्रिया, संघर्ष"
+  },
+  "ardraSwatiShatabhisha": {
+    "en": "Ardra, Swati, Shatabhisha",
+    "hi": "आर्द्रा, स्वाती, शतभिषा",
+    "sa": "आर्द्रा, स्वाती, शतभिषा"
+  },
+  "obsession": {
+    "en": "Obsession",
+    "hi": "आसक्ति",
+    "sa": "आसक्ति"
+  },
+  "foreignConnectionsTechnologyUnconventionalSuccess": {
+    "en": "Foreign connections, technology, unconventional success, desire",
+    "hi": "विदेश सम्बन्ध, प्रौद्योगिकी, अपरम्परागत सफलता, इच्छा",
+    "sa": "विदेश सम्बन्ध, प्रौद्योगिकी, अपरम्परागत सफलता, इच्छा"
+  },
+  "punarvasuVishakhaPBhadrapada": {
+    "en": "Punarvasu, Vishakha, P.Bhadrapada",
+    "hi": "पुनर्वसु, विशाखा, पू.भा.",
+    "sa": "पुनर्वसु, विशाखा, पू.भा."
+  },
+  "expansion": {
+    "en": "Expansion",
+    "hi": "विस्तार",
+    "sa": "विस्तार"
+  },
+  "childrenEducationWisdomDharmaWealth": {
+    "en": "Children, education, wisdom, dharma, wealth",
+    "hi": "सन्तान, शिक्षा, ज्ञान, धर्म, सम्पत्ति",
+    "sa": "सन्तान, शिक्षा, ज्ञान, धर्म, सम्पत्ति"
+  },
+  "pushyaAnuradhaUBhadrapada": {
+    "en": "Pushya, Anuradha, U.Bhadrapada",
+    "hi": "पुष्य, अनुराधा, उ.भा.",
+    "sa": "पुष्य, अनुराधा, उ.भा."
+  },
+  "discipline": {
+    "en": "Discipline",
+    "hi": "अनुशासन",
+    "sa": "अनुशासन"
+  },
+  "careerGrindChronicIssuesStructure": {
+    "en": "Career grind, chronic issues, structure, karma, responsibility",
+    "hi": "कैरियर परिश्रम, दीर्घकालिक समस्याएँ, संरचना, कर्म, उत्तरदायित्व",
+    "sa": "कैरियर परिश्रम, दीर्घकालिक समस्याएँ, संरचना, कर्म, उत्तरदायित्व"
+  },
+  "ashleshaJyeshthaRevati": {
+    "en": "Ashlesha, Jyeshtha, Revati",
+    "hi": "आश्लेषा, ज्येष्ठा, रेवती",
+    "sa": "आश्लेषा, ज्येष्ठा, रेवती"
+  },
+  "intelligence": {
+    "en": "Intelligence",
+    "hi": "बुद्धि",
+    "sa": "बुद्धि"
+  },
+  "businessCommunicationSkillsAnalysisAdaptability": {
+    "en": "Business, communication, skills, analysis, adaptability",
+    "hi": "व्यापार, संवाद, कौशल, विश्लेषण, अनुकूलनशीलता",
+    "sa": "व्यापार, संवाद, कौशल, विश्लेषण, अनुकूलनशीलता"
+  },
+  "whyTheseSpecificYears": {
+    "en": "Why These Specific Years?",
+    "hi": "ये विशिष्ट वर्ष क्यों?",
+    "sa": "ये विशिष्ट वर्ष क्यों?"
+  },
+  "theSequenceAndNakshatraConnection": {
+    "en": "The Sequence and Nakshatra Connection",
+    "hi": "क्रम और नक्षत्र सम्बन्ध",
+    "sa": "क्रम और नक्षत्र सम्बन्ध"
+  },
+  "classicalOrigin": {
+    "en": "Classical Origin",
+    "hi": "शास्त्रीय उत्पत्ति",
+    "sa": "शास्त्रीयः उद्भवः"
+  },
+  "keyFact": {
+    "en": "Key Fact",
+    "hi": "मुख्य तथ्य",
+    "sa": "मुख्य तथ्य"
+  },
+  "computingYourDashaStepBy": {
+    "en": "Computing Your Dasha — Step by Step",
+    "hi": "आपकी दशा की गणना — चरण दर चरण",
+    "sa": "आपकी दशा की गणना — चरण दर चरण"
+  },
+  "step1FindTheBirth": {
+    "en": "Step 1: Find the Birth Moon's Nakshatra",
+    "hi": "चरण 1: जन्म चन्द्रमा का नक्षत्र ज्ञात करें",
+    "sa": "चरण 1: जन्म चन्द्रमा का नक्षत्र ज्ञात करें"
+  },
+  "step2DetermineTheStarting": {
+    "en": "Step 2: Determine the Starting Mahadasha",
+    "hi": "चरण 2: आरम्भिक महादशा निर्धारित करें",
+    "sa": "चरण 2: आरम्भिक महादशा निर्धारित करें"
+  },
+  "step3CalculateTheRemaining": {
+    "en": "Step 3: Calculate the Remaining Balance",
+    "hi": "चरण 3: शेष दशा की गणना करें",
+    "sa": "चरण 3: शेष दशा की गणना करें"
+  },
+  "step4BuildTheFull": {
+    "en": "Step 4: Build the Full Sequence",
+    "hi": "चरण 4: पूर्ण अनुक्रम बनाएँ",
+    "sa": "चरण 4: पूर्ण अनुक्रम बनाएँ"
+  },
+  "theSubdivisionHierarchy5Levels": {
+    "en": "The Subdivision Hierarchy: 5 Levels Deep",
+    "hi": "उपविभाजन पदानुक्रम: 5 स्तर",
+    "sa": "उपविभाजन पदानुक्रम: 5 स्तर"
+  },
+  "mahadasha": {
+    "en": "Mahadasha",
+    "hi": "महादशा",
+    "sa": "महादशा"
+  },
+  "majorPeriod620Years": {
+    "en": "Major period: 6-20 years. The broad chapter of life.",
+    "hi": "प्रमुख काल: 6-20 वर्ष। जीवन का व्यापक अध्याय।",
+    "sa": "प्रमुख काल: 6-20 वर्ष। जीवन का व्यापक अध्याय।"
+  },
+  "antardashaBhukti": {
+    "en": "Antardasha (Bhukti)",
+    "hi": "अन्तर्दशा (भुक्ति)",
+    "sa": "अन्तर्दशा (भुक्ति)"
+  },
+  "subPeriodMonthsToYears": {
+    "en": "Sub-period: months to years. The scene within the chapter.",
+    "hi": "उप-काल: मासों से वर्षों तक। अध्याय के भीतर दृश्य।",
+    "sa": "उप-काल: मासों से वर्षों तक। अध्याय के भीतर दृश्य।"
+  },
+  "pratyantardasha": {
+    "en": "Pratyantardasha",
+    "hi": "प्रत्यन्तर्दशा",
+    "sa": "प्रत्यन्तर्दशा"
+  },
+  "subSubPeriodWeeksTo": {
+    "en": "Sub-sub-period: weeks to months. The dialogue within the scene.",
+    "hi": "उप-उप-काल: सप्ताहों से मासों तक। दृश्य के भीतर संवाद।",
+    "sa": "उप-उप-काल: सप्ताहों से मासों तक। दृश्य के भीतर संवाद।"
+  },
+  "sookshmaDasha": {
+    "en": "Sookshma Dasha",
+    "hi": "सूक्ष्म दशा",
+    "sa": "सूक्ष्म दशा"
+  },
+  "periodOfDaysTheSentence": {
+    "en": "Period of days. The sentence within the dialogue.",
+    "hi": "दिनों का काल। संवाद के भीतर वाक्य।",
+    "sa": "दिनों का काल। संवाद के भीतर वाक्य।"
+  },
+  "pranaDasha": {
+    "en": "Prana Dasha",
+    "hi": "प्राण दशा",
+    "sa": "प्राण दशा"
+  },
+  "periodOfHoursTheWord": {
+    "en": "Period of hours. The word within the sentence.",
+    "hi": "घण्टों का काल। वाक्य के भीतर शब्द।",
+    "sa": "घण्टों का काल। वाक्य के भीतर शब्द।"
+  },
+  "antardashaCalculationFormula": {
+    "en": "Antardasha Calculation Formula",
+    "hi": "अन्तर्दशा गणना सूत्र",
+    "sa": "अन्तर्दशा गणना सूत्र"
+  },
+  "workedExampleDelhiBirthChart": {
+    "en": "Worked Example: Delhi Birth Chart",
+    "hi": "कार्यान्वित उदाहरण: दिल्ली जन्म कुण्डली",
+    "sa": "कार्यान्वित उदाहरण: दिल्ली जन्म कुण्डली"
+  },
+  "ariesLagnaSunIn10th": {
+    "en": "Aries Lagna — Sun in 10th, Moon in 4th, Jupiter in 9th",
+    "hi": "मेष लग्न — सूर्य दशम में, चन्द्र चतुर्थ में, बृहस्पति नवम में",
+    "sa": "मेष लग्न — सूर्य दशम में, चन्द्र चतुर्थ में, बृहस्पति नवम में"
+  },
+  "staggeringPrecision": {
+    "en": "Staggering Precision",
+    "hi": "अद्भुत सटीकता",
+    "sa": "अद्भुत सटीकता"
+  },
+  "theFundamentalRuleDashaActivation": {
+    "en": "The Fundamental Rule: Dasha Activation",
+    "hi": "मूल सिद्धान्त: दशा सक्रियण",
+    "sa": "मूल सिद्धान्त: दशा सक्रियण"
+  },
+  "mahadashaAntardashaInteraction": {
+    "en": "Mahadasha + Antardasha Interaction",
+    "hi": "महादशा + अन्तर्दशा अन्तःक्रिया",
+    "sa": "महादशा + अन्तर्दशा अन्तःक्रिया"
+  },
+  "whenDoEventsHappenThe": {
+    "en": "When Do Events Happen? The Double Transit Theory",
+    "hi": "घटनाएँ कब घटती हैं? दोहरा गोचर सिद्धान्त",
+    "sa": "घटनाएँ कब घटती हैं? दोहरा गोचर सिद्धान्त"
+  },
+  "dashaSandhiTheTurbulentTransition": {
+    "en": "Dasha Sandhi: The Turbulent Transition Zone",
+    "hi": "दशा सन्धि: संक्रमण का अशान्त क्षेत्र",
+    "sa": "दशा सन्धि: संक्रमण का अशान्त क्षेत्र"
+  },
+  "realLifePatternDashaLife": {
+    "en": "Real-Life Pattern: Dasha-Life Phase Mapping",
+    "hi": "वास्तविक जीवन प्रतिरूप: दशा-जीवन चरण मानचित्रण",
+    "sa": "वास्तविक जीवन प्रतिरूप: दशा-जीवन चरण मानचित्रण"
+  },
+  "ketu07": {
+    "en": "Ketu (0-7)",
+    "hi": "केतु (0-7)",
+    "sa": "केतु (0-7)"
+  },
+  "childhoodDisruptionsKarmicFamilyPatterns": {
+    "en": "Childhood disruptions, karmic family patterns, relocations",
+    "hi": "बचपन की विघटनकारी घटनाएँ, कार्मिक पारिवारिक प्रतिरूप, स्थान परिवर्तन",
+    "sa": "बचपन की विघटनकारी घटनाएँ, कार्मिक पारिवारिक प्रतिरूप, स्थान परिवर्तन"
+  },
+  "venus727": {
+    "en": "Venus (7-27)",
+    "hi": "शुक्र (7-27)",
+    "sa": "शुक्र (7-27)"
+  },
+  "educationFirstLoveMarriageFor": {
+    "en": "Education, first love, marriage for many, art/beauty awakening, material aspirations",
+    "hi": "शिक्षा, पहला प्रेम, विवाह, कला/सौन्दर्य जागृति, भौतिक आकांक्षाएँ",
+    "sa": "शिक्षा, पहला प्रेम, विवाह, कला/सौन्दर्य जागृति, भौतिक आकांक्षाएँ"
+  },
+  "sun2733": {
+    "en": "Sun (27-33)",
+    "hi": "सूर्य (27-33)",
+    "sa": "सूर्य (27-33)"
+  },
+  "careerEstablishmentFatherRelatedEvents": {
+    "en": "Career establishment, father-related events, gaining authority, self-identity",
+    "hi": "कैरियर स्थापना, पिता सम्बन्धी घटनाएँ, अधिकार प्राप्ति, आत्म-पहचान",
+    "sa": "कैरियर स्थापना, पिता सम्बन्धी घटनाएँ, अधिकार प्राप्ति, आत्म-पहचान"
+  },
+  "moon3343": {
+    "en": "Moon (33-43)",
+    "hi": "चन्द्र (33-43)",
+    "sa": "चन्द्र (33-43)"
+  },
+  "emotionalMaturityMotherTravelHome": {
+    "en": "Emotional maturity, mother, travel, home, public image, mental growth",
+    "hi": "भावनात्मक परिपक्वता, माता, यात्रा, गृह, सार्वजनिक छवि, मानसिक वृद्धि",
+    "sa": "भावनात्मक परिपक्वता, माता, यात्रा, गृह, सार्वजनिक छवि, मानसिक वृद्धि"
+  },
+  "mars4350": {
+    "en": "Mars (43-50)",
+    "hi": "मंगल (43-50)",
+    "sa": "मंगल (43-50)"
+  },
+  "propertyHealthSurgerySiblingIssues": {
+    "en": "Property, health/surgery, sibling issues, energy shifts, bold actions",
+    "hi": "सम्पत्ति, स्वास्थ्य/शल्यक्रिया, भाई-बहन मामले, ऊर्जा गिरावट, साहस",
+    "sa": "सम्पत्ति, स्वास्थ्य/शल्यक्रिया, भाई-बहन मामले, ऊर्जा गिरावट, साहस"
+  },
+  "rahu5068": {
+    "en": "Rahu (50-68)",
+    "hi": "राहु (50-68)",
+    "sa": "राहु (50-68)"
+  },
+  "unconventionalSuccessForeignExperiencesTechnology": {
+    "en": "Unconventional success, foreign experiences, technology, intense desires, illusions",
+    "hi": "अपरम्परागत सफलता, विदेशी अनुभव, प्रौद्योगिकी, तीव्र इच्छाएँ, भ्रम",
+    "sa": "अपरम्परागत सफलता, विदेशी अनुभव, प्रौद्योगिकी, तीव्र इच्छाएँ, भ्रम"
+  },
+  "jupiter6884": {
+    "en": "Jupiter (68-84)",
+    "hi": "गुरु (68-84)",
+    "sa": "गुरु (68-84)"
+  },
+  "wisdomAccumulationGrandchildrenPilgrimagesCharity": {
+    "en": "Wisdom accumulation, grandchildren, pilgrimages, charity, legacy building",
+    "hi": "ज्ञान संचय, पोते-पोतियाँ, धार्मिक तीर्थयात्रा, दान, विरासत निर्माण",
+    "sa": "ज्ञान संचय, पोते-पोतियाँ, धार्मिक तीर्थयात्रा, दान, विरासत निर्माण"
+  },
+  "saturn84103": {
+    "en": "Saturn (84-103)",
+    "hi": "शनि (84-103)",
+    "sa": "शनि (84-103)"
+  },
+  "karmicMaturityChronicHealthCompletion": {
+    "en": "Karmic maturity, chronic health, completion of structures, renunciation",
+    "hi": "कर्म परिपक्वता, दीर्घकालिक स्वास्थ्य, संरचनाओं का पूर्ण होना, त्याग",
+    "sa": "कर्म परिपक्वता, दीर्घकालिक स्वास्थ्य, संरचनाओं का पूर्ण होना, त्याग"
+  },
+  "mercury103120": {
+    "en": "Mercury (103-120)",
+    "hi": "बुध (103-120)",
+    "sa": "बुध (103-120)"
+  },
+  "intellectualLegacyCommunicationFinalAdaptations": {
+    "en": "Intellectual legacy, communication, final adaptations, life cycle complete",
+    "hi": "बौद्धिक विरासत, संवाद, अन्तिम अनुकूलन, जीवन चक्र पूर्ण",
+    "sa": "बौद्धिक विरासत, संवाद, अन्तिम अनुकूलन, जीवन चक्र पूर्ण"
+  },
+  "commonMisconceptions": {
+    "en": "Common Misconceptions",
+    "hi": "सामान्य भ्रान्तियाँ",
+    "sa": "सामान्याः भ्रान्तयः"
+  },
+  "practicalApplicationLifeEventTiming": {
+    "en": "Practical Application: Life Event Timing",
+    "hi": "व्यावहारिक प्रयोग: जीवन घटना समय-निर्धारण",
+    "sa": "व्यावहारिक प्रयोग: जीवन घटना समय-निर्धारण"
+  },
+  "event": {
+    "en": "Event",
+    "hi": "घटना",
+    "sa": "घटना"
+  },
+  "primaryDashaIndicators": {
+    "en": "Primary Dasha Indicators",
+    "hi": "प्राथमिक दशा संकेतक",
+    "sa": "प्राथमिक दशा संकेतक"
+  },
+  "transitConfirmation": {
+    "en": "Transit Confirmation",
+    "hi": "गोचर पुष्टि",
+    "sa": "गोचर पुष्टि"
+  },
+  "marriage": {
+    "en": "Marriage",
+    "hi": "विवाह",
+    "sa": "विवाह"
+  },
+  "venus7thLordDashaAntardasha": {
+    "en": "Venus / 7th lord dasha-antardasha",
+    "hi": "शुक्र / सप्तमेश दशा-अन्तर्दशा",
+    "sa": "शुक्र / सप्तमेश दशा-अन्तर्दशा"
+  },
+  "jupiterIn7thSaturnAspecting": {
+    "en": "Jupiter in 7th + Saturn aspecting 7th",
+    "hi": "गुरु 7वें में + शनि 7वें पर दृष्टि",
+    "sa": "गुरु 7वें में + शनि 7वें पर दृष्टि"
+  },
+  "careerRise": {
+    "en": "Career Rise",
+    "hi": "कैरियर उन्नति",
+    "sa": "कैरियर उन्नति"
+  },
+  "sun10thLordJupiterDasha": {
+    "en": "Sun / 10th lord / Jupiter dasha",
+    "hi": "सूर्य / दशमेश / गुरु दशा",
+    "sa": "सूर्य / दशमेश / गुरु दशा"
+  },
+  "saturnTransiting10thOr11th": {
+    "en": "Saturn transiting 10th or 11th",
+    "hi": "शनि 10वें या 11वें में गोचर",
+    "sa": "शनि 10वें या 11वें में गोचर"
+  },
+  "children": {
+    "en": "Children",
+    "hi": "सन्तान",
+    "sa": "सन्तान"
+  },
+  "jupiter5thLordDashaAntardasha": {
+    "en": "Jupiter / 5th lord dasha-antardasha",
+    "hi": "गुरु / पंचमेश दशा-अन्तर्दशा",
+    "sa": "गुरु / पंचमेश दशा-अन्तर्दशा"
+  },
+  "jupiterTransiting5thOr9th": {
+    "en": "Jupiter transiting 5th or 9th",
+    "hi": "गुरु 5वें या 9वें में गोचर",
+    "sa": "गुरु 5वें या 9वें में गोचर"
+  },
+  "healthCrisis": {
+    "en": "Health Crisis",
+    "hi": "स्वास्थ्य संकट",
+    "sa": "स्वास्थ्य संकट"
+  },
+  "k6thLord8thLordDasha": {
+    "en": "6th lord / 8th lord dasha",
+    "hi": "षष्ठेश / अष्टमेश दशा",
+    "sa": "षष्ठेश / अष्टमेश दशा"
+  },
+  "saturnIn6812": {
+    "en": "Saturn in 6/8/12 + Rahu/Ketu axis",
+    "hi": "शनि 6/8/12 में + राहु/केतु अक्ष",
+    "sa": "शनि 6/8/12 में + राहु/केतु अक्ष"
+  },
+  "foreignTravel": {
+    "en": "Foreign Travel",
+    "hi": "विदेश यात्रा",
+    "sa": "विदेश यात्रा"
+  },
+  "rahu12thLord9thLord": {
+    "en": "Rahu / 12th lord / 9th lord dasha",
+    "hi": "राहु / द्वादशेश / नवमेश दशा",
+    "sa": "राहु / द्वादशेश / नवमेश दशा"
+  },
+  "jupiterTransiting9th12th": {
+    "en": "Jupiter transiting 9th/12th",
+    "hi": "गुरु 9/12 में गोचर",
+    "sa": "गुरु 9/12 में गोचर"
+  },
+  "spiritualAwakening": {
+    "en": "Spiritual Awakening",
+    "hi": "आध्यात्मिक जागृति",
+    "sa": "आध्यात्मिक जागृति"
+  },
+  "ketu12thLordDasha": {
+    "en": "Ketu / 12th lord dasha",
+    "hi": "केतु / द्वादशेश दशा",
+    "sa": "केतु / द्वादशेश दशा"
+  },
+  "ketuTransiting12thOr9th": {
+    "en": "Ketu transiting 12th or 9th",
+    "hi": "केतु 12 या 9 में गोचर",
+    "sa": "केतु 12 या 9 में गोचर"
+  },
+  "propertyPurchase": {
+    "en": "Property Purchase",
+    "hi": "सम्पत्ति क्रय",
+    "sa": "सम्पत्ति क्रय"
+  },
+  "mars4thLordDasha": {
+    "en": "Mars / 4th lord dasha",
+    "hi": "मंगल / चतुर्थेश दशा",
+    "sa": "मंगल / चतुर्थेश दशा"
+  },
+  "saturnIn4thJupiterAspecting": {
+    "en": "Saturn in 4th + Jupiter aspecting 4th",
+    "hi": "शनि 4वें में + गुरु 4वें पर दृष्टि",
+    "sa": "शनि 4वें में + गुरु 4वें पर दृष्टि"
+  },
+  "tryItInOurApp": {
+    "en": "Try It In Our App",
+    "hi": "हमारे ऐप में प्रयोग करें",
+    "sa": "हमारे ऐप में प्रयोग करें"
+  }
 }

@@ -585,5 +585,210 @@
         "hi": "असत्य। यह विद्वानों के बीच सक्रिय रूप से बहस में है। संदेहकर्ता बताते हैं: (1) योजन की सटीक लम्बाई ग्रन्थों में भिन्न होती है, और वह विशिष्ट मान जो 0.14% सटीकता देता है एक विशेष योजन लम्बाई चुनने की आवश्यकता है; (2) सायण एक पारंपरिक काव्यात्मक अभिव्यक्ति का उपयोग कर रहे होंगे, न कि वैज्ञानिक माप कर रहे; (3) यह अंश एक धार्मिक टिप्पणी में है, न कि वैज्ञानिक ग्रन्थ में; (4) यह नहीं बताया गया कि ऐसा माप कैसे किया गया होगा। समर्थक बताते हैं: संख्यात्मक संयोग असाधारण रूप से सटीक है।"
       }
     }
-  ]
+  ],
+  "sayanaSRigVedaCommentary": {
+    "en": "Sayana's Rig Veda Commentary",
+    "hi": "सायण की ऋग्वेद टिप्पणी",
+    "sa": "सायण की ऋग्वेद टिप्पणी"
+  },
+  "originalSanskritAndTranslation": {
+    "en": "Original Sanskrit and Translation",
+    "hi": "मूल संस्कृत और अनुवाद",
+    "sa": "मूल संस्कृत और अनुवाद"
+  },
+  "thusItIsRememberedO": {
+    "en": "\"Thus it is remembered: O [Surya], you who traverse two thousand two hundred and two yojanas in half a nimesha, salutations to you.\"",
+    "hi": "\"इस प्रकार स्मरण किया जाता है: हे [सूर्य], जो आधे निमेष में दो हज़ार दो सौ दो योजन पार करता है, तुम्हें नमस्कार है।\"",
+    "sa": "\"इस प्रकार स्मरण किया जाता है: हे [सूर्य], जो आधे निमेष में दो हज़ार दो सौ दो योजन पार करता है, तुम्हें नमस्कार है।\""
+  },
+  "sayanaRigvedabhashyaCommentaryOnHymn": {
+    "en": "Sayana, Rigvedabhashya, commentary on hymn 1.50.4 (~1380 CE)",
+    "hi": "सायण, ऋग्वेदभाष्य, भजन 1.50.4 पर टिप्पणी (~1380 ईस्वी)",
+    "sa": "सायण, ऋग्वेदभाष्य, भजन 1.50.4 पर टिप्पणी (~1380 ईस्वी)"
+  },
+  "understandingTheUnits": {
+    "en": "Understanding the Units",
+    "hi": "इकाइयाँ समझना",
+    "sa": "इकाइयाँ समझना"
+  },
+  "yojana": {
+    "en": "Yojana:",
+    "hi": "योजन:",
+    "sa": "योजन:"
+  },
+  "ancientIndianDistanceUnitPer": {
+    "en": "Ancient Indian distance unit. Per Arthashastra ≈ 9.09 miles (14.6 km).",
+    "hi": "प्राचीन भारतीय दूरी की इकाई। अर्थशास्त्र के अनुसार ≈ 9.09 मील (14.6 किमी)।",
+    "sa": "प्राचीन भारतीय दूरी की इकाई। अर्थशास्त्र के अनुसार ≈ 9.09 मील (14.6 किमी)।"
+  },
+  "nimesha": {
+    "en": "Nimesha:",
+    "hi": "निमेष:",
+    "sa": "निमेष:"
+  },
+  "aBlinkOfAnEye": {
+    "en": "A blink of an eye — ancient Indian time unit. ≈ 16/75 seconds.",
+    "hi": "पलक झपकाने का समय — प्राचीन भारतीय समय की इकाई। ≈ 16/75 सेकंड।",
+    "sa": "पलक झपकाने का समय — प्राचीन भारतीय समय की इकाई। ≈ 16/75 सेकंड।"
+  },
+  "halfNimesha": {
+    "en": "Half-nimesha:",
+    "hi": "अर्ध-निमेष:",
+    "sa": "अर्ध-निमेष:"
+  },
+  "k875Seconds01067": {
+    "en": "≈ 8/75 seconds ≈ 0.1067 seconds.",
+    "hi": "≈ 8/75 सेकंड ≈ 0.1067 सेकंड।",
+    "sa": "≈ 8/75 सेकंड ≈ 0.1067 सेकंड।"
+  },
+  "calculation": {
+    "en": "Calculation:",
+    "hi": "गणना:",
+    "sa": "गणना:"
+  },
+  "modern186282MiS": {
+    "en": "Modern: 186,282 mi/s",
+    "hi": "आधुनिक: 186,282 मील/सेकंड",
+    "sa": "आधुनिक: 186,282 मील/सेकंड"
+  },
+  "error014": {
+    "en": "Error: 0.14%",
+    "hi": "त्रुटि: 0.14%",
+    "sa": "त्रुटि: 0.14%"
+  },
+  "theScholarlyDebateCoincidenceOr": {
+    "en": "The Scholarly Debate: Coincidence or Knowledge?",
+    "hi": "विद्वत् बहस: संयोग या ज्ञान?",
+    "sa": "विद्वत् बहस: संयोग या ज्ञान?"
+  },
+  "argumentsInSupport": {
+    "en": "Arguments in Support",
+    "hi": "समर्थन में तर्क",
+    "sa": "समर्थन में तर्क"
+  },
+  "theNumericalCoincidenceIsExtraordinarily": {
+    "en": "The numerical coincidence is extraordinarily precise (0.14% error)",
+    "hi": "संख्यात्मक संयोग बेहद सटीक है (0.14% त्रुटि)",
+    "sa": "संख्यात्मक संयोग बेहद सटीक है (0.14% त्रुटि)"
+  },
+  "sayanaExplicitlySaysThisIs": {
+    "en": "Sayana explicitly says this \"is remembered\" — citing an older tradition",
+    "hi": "सायण स्पष्ट रूप से कहते हैं यह \"स्मरण किया जाता है\" — एक पुरानी परम्परा को उद्धृत कर रहे हैं",
+    "sa": "सायण स्पष्ट रूप से कहते हैं यह \"स्मरण किया जाता है\" — एक पुरानी परम्परा को उद्धृत कर रहे हैं"
+  },
+  "indianAstronomyAchievedExtremelyPrecise": {
+    "en": "Indian astronomy achieved extremely precise measurements (Aryabhata, Brahmagupta)",
+    "hi": "भारतीय खगोल विज्ञान ने अत्यन्त सटीक माप हासिल किए (आर्यभट, ब्रह्मगुप्त)",
+    "sa": "भारतीय खगोल विज्ञान ने अत्यन्त सटीक माप हासिल किए (आर्यभट, ब्रह्मगुप्त)"
+  },
+  "computingStellarVelocitiesMayHave": {
+    "en": "Computing stellar velocities may have required knowledge of finite light speed",
+    "hi": "नाक्षत्र वेग की गणना के लिए प्रकाश की सीमित गति की आवश्यकता हो सकती थी",
+    "sa": "नाक्षत्र वेग की गणना के लिए प्रकाश की सीमित गति की आवश्यकता हो सकती थी"
+  },
+  "argumentsForScepticism": {
+    "en": "Arguments for Scepticism",
+    "hi": "संदेह के तर्क",
+    "sa": "संदेह के तर्क"
+  },
+  "yojanaLengthVaries916": {
+    "en": "Yojana length varies 9–16 km across texts — choosing the \"right\" value affects the result",
+    "hi": "योजन की लम्बाई ग्रन्थों में 9-16 किमी तक भिन्न होती है — \"सही\" मान चुनना परिणाम को प्रभावित करता है",
+    "sa": "योजन की लम्बाई ग्रन्थों में 9-16 किमी तक भिन्न होती है — \"सही\" मान चुनना परिणाम को प्रभावित करता है"
+  },
+  "thisIsAReligiousCommentary": {
+    "en": "This is a religious commentary, not a scientific treatise",
+    "hi": "यह एक धार्मिक टिप्पणी है, न कि वैज्ञानिक ग्रन्थ",
+    "sa": "यह एक धार्मिक टिप्पणी है, न कि वैज्ञानिक ग्रन्थ"
+  },
+  "noExplanationGivenForHow": {
+    "en": "No explanation given for how such a measurement could have been made",
+    "hi": "कोई व्याख्या नहीं दी गई कि यह माप कैसे किया गया",
+    "sa": "कोई व्याख्या नहीं दी गई कि यह माप कैसे किया गया"
+  },
+  "conventionalHyperboleForSpeedOf": {
+    "en": "Conventional hyperbole for \"speed of the Sun\" was common in ancient poetry",
+    "hi": "प्राचीन काव्य में \"सूर्य की गति\" के लिए परंपरागत अतिशयोक्ति आम थी",
+    "sa": "प्राचीन काव्य में \"सूर्य की गति\" के लिए परंपरागत अतिशयोक्ति आम थी"
+  },
+  "noOtherIndianTextCites": {
+    "en": "No other Indian text cites this specific value",
+    "hi": "कोई अन्य भारतीय ग्रन्थ इस विशिष्ट मान का हवाला नहीं देता",
+    "sa": "कोई अन्य भारतीय ग्रन्थ इस विशिष्ट मान का हवाला नहीं देता"
+  },
+  "fairConclusion": {
+    "en": "Fair Conclusion",
+    "hi": "निष्पक्ष निष्कर्ष",
+    "sa": "निष्पक्ष निष्कर्ष"
+  },
+  "sayanaAndTheBroaderTradition": {
+    "en": "Sayana and the Broader Tradition",
+    "hi": "सायण और व्यापक परम्परा",
+    "sa": "सायण और व्यापक परम्परा"
+  },
+  "whoWasSayana": {
+    "en": "Who Was Sayana",
+    "hi": "सायण कौन थे",
+    "sa": "सायण कौन थे"
+  },
+  "primeMinisterOfTheVijayanagara": {
+    "en": "Prime minister of the Vijayanagara Empire (1336–1646 CE)",
+    "hi": "विजयनगर साम्राज्य (1336-1646 ईस्वी) के प्रधानमंत्री",
+    "sa": "विजयनगर साम्राज्य (1336-1646 ईस्वी) के प्रधानमंत्री"
+  },
+  "workedUnderPatronageOfKings": {
+    "en": "Worked under patronage of kings Bukkaraya and Harihara II",
+    "hi": "राजा बुक्कराय और हरिहर द्वितीय के संरक्षण में कार्य किया",
+    "sa": "राजा बुक्कराय और हरिहर द्वितीय के संरक्षण में कार्य किया"
+  },
+  "wroteComprehensiveCommentariesOnAll": {
+    "en": "Wrote comprehensive commentaries on all four Vedas — still the primary reference for Vedic interpretation",
+    "hi": "चारों वेदों पर व्यापक टिप्पणियाँ लिखीं — अभी भी Vedic व्याख्या की प्राथमिक संदर्भ",
+    "sa": "चारों वेदों पर व्यापक टिप्पणियाँ लिखीं — अभी भी Vedic व्याख्या की प्राथमिक संदर्भ"
+  },
+  "rigVedaCommentary1380Ce": {
+    "en": "Rig Veda commentary (~1380 CE) considered most important",
+    "hi": "~1380 ईस्वी में रचित ऋग्वेद टिप्पणी सबसे महत्त्वपूर्ण मानी जाती है",
+    "sa": "~1380 ईस्वी में रचित ऋग्वेद टिप्पणी सबसे महत्त्वपूर्ण मानी जाती है"
+  },
+  "hisWorkRepresentsTheUnbroken": {
+    "en": "His work represents the unbroken tradition of Sanskrit scholarship in India",
+    "hi": "उनका कार्य भारत की संस्कृत विद्वत्ता की अखंड परम्परा का प्रतिनिधित्व करता है",
+    "sa": "उनका कार्य भारत की संस्कृत विद्वत्ता की अखंड परम्परा का प्रतिनिधित्व करता है"
+  },
+  "speedOfLightATimeline": {
+    "en": "Speed of Light — A Timeline",
+    "hi": "प्रकाश की गति — एक समयरेखा",
+    "sa": "प्रकाश की गति — एक समयरेखा"
+  },
+  "sayana2202YojanasPer": {
+    "en": "Sayana — 2,202 yojanas per half-nimesha in Rig Veda commentary",
+    "hi": "सायण — ऋग्वेद टिप्पणी में 2,202 योजन/अर्ध-निमेष",
+    "sa": "सायण — ऋग्वेद टिप्पणी में 2,202 योजन/अर्ध-निमेष"
+  },
+  "oleRømerFirstEuropeanMeasurement": {
+    "en": "Ole Rømer — first European measurement from Jupiter's moons",
+    "hi": "ओले रोमर — बृहस्पति के चन्द्रमाओं से पहला यूरोपीय माप",
+    "sa": "ओले रोमर — बृहस्पति के चन्द्रमाओं से पहला यूरोपीय माप"
+  },
+  "jamesBradleyImprovedMeasurementFrom": {
+    "en": "James Bradley — improved measurement from starlight aberration",
+    "hi": "जेम्स ब्रैडली — स्टारलाइट विपथन से बेहतर माप",
+    "sa": "जेम्स ब्रैडली — स्टारलाइट विपथन से बेहतर माप"
+  },
+  "fizeauFirstLaboratoryMeasurementGear": {
+    "en": "Fizeau — first laboratory measurement (gear-wheel method)",
+    "hi": "फिज़ो — पहला प्रयोगशाला माप (गियर-पहिया विधि)",
+    "sa": "फिज़ो — पहला प्रयोगशाला माप (गियर-पहिया विधि)"
+  },
+  "maxwellDerivedCFromElectromagnetic": {
+    "en": "Maxwell — derived c from electromagnetic theory",
+    "hi": "मैक्सवेल — विद्युत चुम्बकीय सिद्धान्त से c व्युत्पन्न",
+    "sa": "मैक्सवेल — विद्युत चुम्बकीय सिद्धान्त से c व्युत्पन्न"
+  },
+  "cDefinedAsExactly299": {
+    "en": "c defined as exactly 299,792,458 m/s — basis of metre definition",
+    "hi": "c को 299,792,458 m/s पर परिभाषित किया — मीटर की परिभाषा का आधार",
+    "sa": "c को 299,792,458 m/s पर परिभाषित किया — मीटर की परिभाषा का आधार"
+  }
 }

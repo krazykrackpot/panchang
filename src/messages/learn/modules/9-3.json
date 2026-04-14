@@ -661,5 +661,200 @@
         "mai": "मंगल मकर में उच्च है (परम उच्च 28 अंश) जहाँ शनि का अनुशासित, संरचित वातावरण मंगल की कच्ची ऊर्जा को उत्पादक रूप से प्रवाहित करता है। कर्क में भावनात्मक, ग्रहणशील वातावरण मंगल के आक्रामक स्वभाव को कमजोर करता है।"
       }
     }
-  ]
+  ],
+  "exaltationUcchaPeakPlanetaryStrength": {
+    "en": "Exaltation (Uccha) — Peak Planetary Strength",
+    "hi": "उच्च — ग्रह की शिखर शक्ति",
+    "sa": "उच्च — ग्रह की शिखर शक्ति"
+  },
+  "planet": {
+    "en": "Planet",
+    "hi": "ग्रह",
+    "sa": "ग्रहः"
+  },
+  "exaltedIn": {
+    "en": "Exalted In",
+    "hi": "उच्च",
+    "sa": "उच्च"
+  },
+  "deepExaltation": {
+    "en": "Deep Exaltation",
+    "hi": "परम उच्च",
+    "sa": "परम उच्च"
+  },
+  "why": {
+    "en": "Why",
+    "hi": "कारण",
+    "sa": "कारण"
+  },
+  "sun": {
+    "en": "Sun",
+    "hi": "सूर्य",
+    "sa": "सूर्यः"
+  },
+  "aries": {
+    "en": "Aries",
+    "hi": "मेष",
+    "sa": "मेष"
+  },
+  "moon": {
+    "en": "Moon",
+    "hi": "चन्द्र",
+    "sa": "चन्द्रः"
+  },
+  "taurus": {
+    "en": "Taurus",
+    "hi": "वृषभ",
+    "sa": "वृषभ"
+  },
+  "mars": {
+    "en": "Mars",
+    "hi": "मंगल",
+    "sa": "मङ्गलः"
+  },
+  "capricorn": {
+    "en": "Capricorn",
+    "hi": "मकर",
+    "sa": "मकर"
+  },
+  "mercury": {
+    "en": "Mercury",
+    "hi": "बुध",
+    "sa": "बुधः"
+  },
+  "virgo": {
+    "en": "Virgo",
+    "hi": "कन्या",
+    "sa": "कन्या"
+  },
+  "jupiter": {
+    "en": "Jupiter",
+    "hi": "बृहस्पति",
+    "sa": "गुरुः"
+  },
+  "cancer": {
+    "en": "Cancer",
+    "hi": "कर्क",
+    "sa": "कर्क"
+  },
+  "venus": {
+    "en": "Venus",
+    "hi": "शुक्र",
+    "sa": "शुक्रः"
+  },
+  "pisces": {
+    "en": "Pisces",
+    "hi": "मीन",
+    "sa": "मीनः"
+  },
+  "saturn": {
+    "en": "Saturn",
+    "hi": "शनि",
+    "sa": "शनिः"
+  },
+  "libra": {
+    "en": "Libra",
+    "hi": "तुला",
+    "sa": "तुला"
+  },
+  "rahu": {
+    "en": "Rahu",
+    "hi": "राहु",
+    "sa": "राहुः"
+  },
+  "ketu": {
+    "en": "Ketu",
+    "hi": "केतु",
+    "sa": "केतुः"
+  },
+  "scorpio": {
+    "en": "Scorpio",
+    "hi": "वृश्चिक*",
+    "sa": "वृश्चिकः"
+  },
+  "classicalOrigin": {
+    "en": "Classical Origin",
+    "hi": "शास्त्रीय उत्पत्ति",
+    "sa": "शास्त्रीयः उद्भवः"
+  },
+  "debilitationNeechaAndItsCancellation": {
+    "en": "Debilitation (Neecha) and Its Cancellation",
+    "hi": "नीच और उसका भंग",
+    "sa": "नीच और उसका भंग"
+  },
+  "workedExampleNeechaBhanga": {
+    "en": "Worked Example: Neecha Bhanga",
+    "hi": "कार्यान्वित उदाहरण: नीचभंग",
+    "sa": "कार्यान्वित उदाहरण: नीचभंग"
+  },
+  "cancerLagnaJupiterDebilitatedIn": {
+    "en": "Cancer Lagna — Jupiter debilitated in 7th, Saturn in 10th",
+    "hi": "कर्क लग्न — बृहस्पति नीच सप्तम में, शनि दशम में",
+    "sa": "कर्क लग्न — बृहस्पति नीच सप्तम में, शनि दशम में"
+  },
+  "commonMisconceptions": {
+    "en": "Common Misconceptions",
+    "hi": "सामान्य भ्रांतियाँ",
+    "sa": "सामान्याः भ्रान्तयः"
+  },
+  "ownSignMoolatrikonaAndThe": {
+    "en": "Own Sign, Moolatrikona, and the Full Hierarchy",
+    "hi": "स्वराशि, मूलत्रिकोण, और पूर्ण क्रम",
+    "sa": "स्वराशि, मूलत्रिकोण, और पूर्ण क्रम"
+  },
+  "moolatrikona": {
+    "en": "Moolatrikona",
+    "hi": "मूलत्रिकोण",
+    "sa": "मूलत्रिकोण"
+  },
+  "ownSigns": {
+    "en": "Own Signs",
+    "hi": "स्वराशि",
+    "sa": "स्वराशि"
+  },
+  "leo": {
+    "en": "Leo",
+    "hi": "सिंह",
+    "sa": "सिंह"
+  },
+  "ariesScorpio": {
+    "en": "Aries, Scorpio",
+    "hi": "मेष, वृश्चिक",
+    "sa": "मेष, वृश्चिक"
+  },
+  "geminiVirgo": {
+    "en": "Gemini, Virgo",
+    "hi": "मिथुन, कन्या",
+    "sa": "मिथुन, कन्या"
+  },
+  "sagittariusPisces": {
+    "en": "Sagittarius, Pisces",
+    "hi": "धनु, मीन",
+    "sa": "धनु, मीन"
+  },
+  "taurusLibra": {
+    "en": "Taurus, Libra",
+    "hi": "वृषभ, तुला",
+    "sa": "वृषभ, तुला"
+  },
+  "capricornAquarius": {
+    "en": "Capricorn, Aquarius",
+    "hi": "मकर, कुम्भ",
+    "sa": "मकर, कुम्भ"
+  },
+  "friendAndEnemySigns": {
+    "en": "Friend and Enemy Signs",
+    "hi": "मित्र और शत्रु राशियाँ",
+    "sa": "मित्र और शत्रु राशियाँ"
+  },
+  "theCompleteHierarchy": {
+    "en": "The Complete Hierarchy",
+    "hi": "पूर्ण गरिमा क्रम",
+    "sa": "पूर्ण गरिमा क्रम"
+  },
+  "modernRelevance": {
+    "en": "Modern Relevance",
+    "hi": "आधुनिक प्रासंगिकता",
+    "sa": "आधुनिकी प्रासङ्गिकता"
+  }
 }

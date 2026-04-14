@@ -776,5 +776,235 @@
         "mai": "असत्य। उपछाया चन्द्र ग्रहण में, चन्द्रमा केवल पृथ्वी की उपछाया (बाहरी, हल्की छाया) से गुज़रता है, छाया (अंधेरी केन्द्रीय छाया) से नहीं। उपछाया केवल थोड़ी ही चन्द्रमा की चमक कम करती है — परिवर्तन इतना सूक्ष्म है कि सामान्य पर्यवेक्षक शायद ही कुछ असामान्य नोटिस करें। केवल तब जब चन्द्रमा उपछाया में गहरा हो (उपछाया परिमाण > 0.7), अंधकार हल्का-सा महसूस होता है। इसे पूर्ण चन्द्र ग्रहणों से तुलना करें, जो नाटकीय और अचूक होते हैं।"
       }
     }
-  ]
+  ],
+  "whyEclipsesHappen": {
+    "en": "Why Eclipses Happen",
+    "hi": "ग्रहण क्यों होते हैं",
+    "sa": "ग्रहण क्यों होते हैं"
+  },
+  "theAstronomicalMechanism": {
+    "en": "The Astronomical Mechanism",
+    "hi": "खगोलीय यन्त्र",
+    "sa": "खगोलीय यन्त्र"
+  },
+  "eclipseSeasons": {
+    "en": "Eclipse Seasons",
+    "hi": "ग्रहण ऋतु",
+    "sa": "ग्रहण ऋतु"
+  },
+  "typesPhasesOurCalculation": {
+    "en": "Types, Phases & Our Calculation",
+    "hi": "प्रकार, चरण और गणना",
+    "sa": "प्रकार, चरण और गणना"
+  },
+  "k6TypesOfEclipse": {
+    "en": "6 Types of Eclipse",
+    "hi": "6 प्रकार के ग्रहण",
+    "sa": "6 प्रकार के ग्रहण"
+  },
+  "totalSolar": {
+    "en": "Total Solar:",
+    "hi": "पूर्ण सूर्य ग्रहण:",
+    "sa": "पूर्ण सूर्य ग्रहण:"
+  },
+  "moonFullyCoversTheSun": {
+    "en": "Moon fully covers the Sun. Only the corona is visible. The Moon's umbra traces a narrow path on Earth.",
+    "hi": "चन्द्रमा सूर्य को पूर्णतः ढक लेता है। केवल कोरोना दिखता है। चन्द्रमा की छाया (अम्ब्रा) पृथ्वी पर एक संकीर्ण पट्टी बनाती है।",
+    "sa": "चन्द्रमा सूर्य को पूर्णतः ढक लेता है। केवल कोरोना दिखता है। चन्द्रमा की छाया (अम्ब्रा) पृथ्वी पर एक संकीर्ण पट्टी बनाती है।"
+  },
+  "annularSolar": {
+    "en": "Annular Solar:",
+    "hi": "कंकणाकृति सूर्य ग्रहण:",
+    "sa": "कंकणाकृति सूर्य ग्रहण:"
+  },
+  "moonNearApogeeAppearsSmaller": {
+    "en": "Moon near apogee appears smaller than Sun. A ring (\"annulus\") of sunlight surrounds the Moon.",
+    "hi": "चन्द्रमा अपभू के निकट होने से सूर्य से छोटा दिखता है। सूर्य का एक वलय (कंकण) चन्द्रमा के चारों ओर दिखता है।",
+    "sa": "चन्द्रमा अपभू के निकट होने से सूर्य से छोटा दिखता है। सूर्य का एक वलय (कंकण) चन्द्रमा के चारों ओर दिखता है।"
+  },
+  "partialSolar": {
+    "en": "Partial Solar:",
+    "hi": "आंशिक सूर्य ग्रहण:",
+    "sa": "आंशिक सूर्य ग्रहण:"
+  },
+  "moonCoversOnlyPartOf": {
+    "en": "Moon covers only part of the Sun. Observers in the penumbra zone see this.",
+    "hi": "चन्द्रमा सूर्य का केवल एक भाग ढकता है। उपछाया क्षेत्र में पर्यवेक्षक इसे देखते हैं।",
+    "sa": "चन्द्रमा सूर्य का केवल एक भाग ढकता है। उपछाया क्षेत्र में पर्यवेक्षक इसे देखते हैं।"
+  },
+  "totalLunarBloodMoon": {
+    "en": "Total Lunar (Blood Moon):",
+    "hi": "पूर्ण चन्द्र ग्रहण (ब्लड मून):",
+    "sa": "पूर्ण चन्द्र ग्रहण (ब्लड मून):"
+  },
+  "moonFullyWithinEarthS": {
+    "en": "Moon fully within Earth's umbra. Atmospheric refraction turns the Moon red-orange.",
+    "hi": "चन्द्रमा पूरी तरह पृथ्वी की छाया में। पृथ्वी का वायुमण्डलीय अपवर्तन चन्द्रमा को लाल-नारंगी रंग देता है।",
+    "sa": "चन्द्रमा पूरी तरह पृथ्वी की छाया में। पृथ्वी का वायुमण्डलीय अपवर्तन चन्द्रमा को लाल-नारंगी रंग देता है।"
+  },
+  "partialLunar": {
+    "en": "Partial Lunar:",
+    "hi": "आंशिक चन्द्र ग्रहण:",
+    "sa": "आंशिक चन्द्र ग्रहण:"
+  },
+  "partOfTheMoonEnters": {
+    "en": "Part of the Moon enters Earth's umbra. The shadowed portion is visibly darker.",
+    "hi": "चन्द्रमा का एक भाग पृथ्वी की छाया में। छाया वाला भाग स्पष्ट रूप से गहरा दिखता है।",
+    "sa": "चन्द्रमा का एक भाग पृथ्वी की छाया में। छाया वाला भाग स्पष्ट रूप से गहरा दिखता है।"
+  },
+  "penumbralLunar": {
+    "en": "Penumbral Lunar:",
+    "hi": "उपछाया चन्द्र ग्रहण:",
+    "sa": "उपछाया चन्द्र ग्रहण:"
+  },
+  "moonPassesOnlyThroughEarth": {
+    "en": "Moon passes only through Earth's penumbra. Change is very subtle — barely perceptible to the naked eye.",
+    "hi": "चन्द्रमा केवल पृथ्वी की उपछाया से गुज़रता है। परिवर्तन बहुत सूक्ष्म — नग्न आँखों से शायद ही दिखे।",
+    "sa": "चन्द्रमा केवल पृथ्वी की उपछाया से गुज़रता है। परिवर्तन बहुत सूक्ष्म — नग्न आँखों से शायद ही दिखे।"
+  },
+  "eclipsePhases": {
+    "en": "Eclipse Phases",
+    "hi": "ग्रहण के चरण",
+    "sa": "ग्रहण के चरण"
+  },
+  "howWeCalculate": {
+    "en": "How We Calculate",
+    "hi": "हमारी गणना पद्धति",
+    "sa": "हमारी गणना पद्धति"
+  },
+  "step1": {
+    "en": "Step 1:",
+    "hi": "चरण 1:",
+    "sa": "चरण 1:"
+  },
+  "findAllAmavasyaPurnimaFrom": {
+    "en": "Find all Amavasya/Purnima from the tithi table (pre-computed for the full year).",
+    "hi": "तिथि तालिका से सभी अमावस्या/पूर्णिमा का पता लगाएँ (पूरे वर्ष के लिए)।",
+    "sa": "तिथि तालिका से सभी अमावस्या/पूर्णिमा का पता लगाएँ (पूरे वर्ष के लिए)।"
+  },
+  "step2": {
+    "en": "Step 2:",
+    "hi": "चरण 2:",
+    "sa": "चरण 2:"
+  },
+  "getMoonSEclipticLatitude": {
+    "en": "Get Moon's ecliptic latitude at that instant from Swiss Ephemeris.",
+    "hi": "स्विस एफेमेरिस से उस क्षण चन्द्रमा का क्रान्तिक अक्षांश प्राप्त करें।",
+    "sa": "स्विस एफेमेरिस से उस क्षण चन्द्रमा का क्रान्तिक अक्षांश प्राप्त करें।"
+  },
+  "step3": {
+    "en": "Step 3:",
+    "hi": "चरण 3:",
+    "sa": "चरण 3:"
+  },
+  "applyDistanceScaledThresholdΒ": {
+    "en": "Apply distance-scaled threshold: |β| < 1.57° (solar), |β| < 1.02° (lunar). If crossed, eclipse occurs.",
+    "hi": "दूरी-अनुमापित सीमा लागू करें: |β| < 1.57° (सूर्य), |β| < 1.02° (चन्द्र)। यदि पार हो, ग्रहण।",
+    "sa": "दूरी-अनुमापित सीमा लागू करें: |β| < 1.57° (सूर्य), |β| < 1.02° (चन्द्र)। यदि पार हो, ग्रहण।"
+  },
+  "step4": {
+    "en": "Step 4:",
+    "hi": "चरण 4:",
+    "sa": "चरण 4:"
+  },
+  "computeLocalContactTimesUsing": {
+    "en": "Compute local contact times using topocentric parallax — eclipse timing varies with observer location.",
+    "hi": "स्थलाकृतिक लम्बन का उपयोग करके स्थानीय संपर्क समय गणना करें — ग्रहण का समय पर्यवेक्षक की स्थिति के अनुसार भिन्न होता है।",
+    "sa": "स्थलाकृतिक लम्बन का उपयोग करके स्थानीय संपर्क समय गणना करें — ग्रहण का समय पर्यवेक्षक की स्थिति के अनुसार भिन्न होता है।"
+  },
+  "step5": {
+    "en": "Step 5:",
+    "hi": "चरण 5:",
+    "sa": "चरण 5:"
+  },
+  "computeMagnitudeForSolarFraction": {
+    "en": "Compute magnitude: for solar — fraction of Sun covered; for lunar — fraction of Moon in shadow (umbra).",
+    "hi": "परिमाण गणना: सूर्य ग्रहण के लिए — ढके सूर्य का भाग; चन्द्र ग्रहण के लिए — छाया में चन्द्रमा का भाग।",
+    "sa": "परिमाण गणना: सूर्य ग्रहण के लिए — ढके सूर्य का भाग; चन्द्र ग्रहण के लिए — छाया में चन्द्रमा का भाग।"
+  },
+  "sutakKundaliImpactSaros": {
+    "en": "Sutak, Kundali Impact & Saros",
+    "hi": "सूतक, कुण्डली प्रभाव एवं सारोस",
+    "sa": "सूतक, कुण्डली प्रभाव एवं सारोस"
+  },
+  "sutakRulesThreeTraditions": {
+    "en": "Sutak Rules — Three Traditions",
+    "hi": "सूतक नियम — तीन परम्पराएँ",
+    "sa": "सूतक नियम — तीन परम्पराएँ"
+  },
+  "dharmasindhu": {
+    "en": "Dharmasindhu:",
+    "hi": "धर्मसिन्धु:",
+    "sa": "धर्मसिन्धु:"
+  },
+  "solarEclipse12Hours4": {
+    "en": "Solar eclipse — 12 hours (4 praharas) before; lunar eclipse — 9 hours (3 praharas) before.",
+    "hi": "सूर्य ग्रहण के लिए 12 घण्टे (4 प्रहर), चन्द्र ग्रहण के लिए 9 घण्टे (3 प्रहर)।",
+    "sa": "सूर्य ग्रहण के लिए 12 घण्टे (4 प्रहर), चन्द्र ग्रहण के लिए 9 घण्टे (3 प्रहर)।"
+  },
+  "nirnayaSindhu": {
+    "en": "Nirnaya Sindhu:",
+    "hi": "निर्णय सिन्धु:",
+    "sa": "निर्णय सिन्धु:"
+  },
+  "solarEclipse12HoursBefore": {
+    "en": "Solar eclipse — 12 hours before contact. The most widely followed tradition.",
+    "hi": "सूर्य ग्रहण के लिए 12 घण्टे। व्यापक रूप से पालित परम्परा।",
+    "sa": "सूर्य ग्रहण के लिए 12 घण्टे। व्यापक रूप से पालित परम्परा।"
+  },
+  "muhurtaChintamani": {
+    "en": "Muhurta Chintamani:",
+    "hi": "मुहूर्त चिन्तामणि:",
+    "sa": "मुहूर्त चिन्तामणि:"
+  },
+  "solarEclipse3Praharas9": {
+    "en": "Solar eclipse — 3 praharas (~9 hours); lunar eclipse — 3 praharas before contact.",
+    "hi": "सूर्य ग्रहण के लिए 3 प्रहर (लगभग 9 घण्टे), चन्द्र ग्रहण के लिए 3 प्रहर।",
+    "sa": "सूर्य ग्रहण के लिए 3 प्रहर (लगभग 9 घण्टे), चन्द्र ग्रहण के लिए 3 प्रहर।"
+  },
+  "whatToDoAvoidDuring": {
+    "en": "What to do / avoid during Sutak:",
+    "hi": "सूतक में क्या करें / क्या न करें:",
+    "sa": "सूतक में क्या करें / क्या न करें:"
+  },
+  "eclipseImpactOnTheNatal": {
+    "en": "Eclipse Impact on the Natal Chart",
+    "hi": "कुण्डली पर ग्रहण का प्रभाव",
+    "sa": "कुण्डली पर ग्रहण का प्रभाव"
+  },
+  "eclipseOnNatalPlanets": {
+    "en": "Eclipse on natal planets:",
+    "hi": "जन्मकालीन ग्रहों पर ग्रहण:",
+    "sa": "जन्मकालीन ग्रहों पर ग्रहण:"
+  },
+  "whenAnEclipseFallsOn": {
+    "en": "When an eclipse falls on a natal planet (±5°), that planet's significations are intensely activated — eclipse on natal Sun (father, status, health); on Moon (mother, mind, emotions); on Mars (energy, conflict, accidents); on Jupiter (wisdom, children, dharma).",
+    "hi": "जब ग्रहण जन्म कुण्डली के किसी ग्रह पर (±5°) पड़े, तो उस ग्रह के कारकत्व तीव्र रूप से सक्रिय होते हैं — सूर्य पर ग्रहण (पिता, प्रतिष्ठा, स्वास्थ्य); चन्द्रमा पर (माता, मन, भावनाएँ)।",
+    "sa": "जब ग्रहण जन्म कुण्डली के किसी ग्रह पर (±5°) पड़े, तो उस ग्रह के कारकत्व तीव्र रूप से सक्रिय होते हैं — सूर्य पर ग्रहण (पिता, प्रतिष्ठा, स्वास्थ्य); चन्द्रमा पर (माता, मन, भावनाएँ)।"
+  },
+  "eclipseInASpecificHouse": {
+    "en": "Eclipse in a specific house:",
+    "hi": "ग्रहण का भाव:",
+    "sa": "ग्रहण का भाव:"
+  },
+  "eclipseInAHouseActivates": {
+    "en": "Eclipse in a house activates events in that life area for up to 6 months. Example: eclipse in 7th house — shifts in marriage or partnerships; 10th house — career changes; 4th house — home and family events.",
+    "hi": "ग्रहण जिस भाव में हो, उस जीवन क्षेत्र में घटनाएँ 6 माह तक प्रकट हो सकती हैं। उदाहरण: 7वें भाव में ग्रहण — विवाह, साझेदारी में परिवर्तन; 10वें भाव में — करियर बदलाव।",
+    "sa": "ग्रहण जिस भाव में हो, उस जीवन क्षेत्र में घटनाएँ 6 माह तक प्रकट हो सकती हैं। उदाहरण: 7वें भाव में ग्रहण — विवाह, साझेदारी में परिवर्तन; 10वें भाव में — करियर बदलाव।"
+  },
+  "timeline": {
+    "en": "Timeline:",
+    "hi": "समयरेखा:",
+    "sa": "समयरेखा:"
+  },
+  "eclipseEffectsAreNotAlways": {
+    "en": "Eclipse effects are not always immediate — they unfold over 3–6 months. This is the window when eclipse-related themes emerge, shift, or close.",
+    "hi": "ग्रहण के प्रभाव तत्काल नहीं होते — वे 3–6 माह में प्रकट होते हैं। यह वह काल है जब ग्रहण-सम्बन्धित विषय उभरते, परिवर्तित या समाप्त होते हैं।",
+    "sa": "ग्रहण के प्रभाव तत्काल नहीं होते — वे 3–6 माह में प्रकट होते हैं। यह वह काल है जब ग्रहण-सम्बन्धित विषय उभरते, परिवर्तित या समाप्त होते हैं।"
+  },
+  "theSarosCycle": {
+    "en": "The Saros Cycle",
+    "hi": "सारोस चक्र",
+    "sa": "सारोस चक्र"
+  }
 }

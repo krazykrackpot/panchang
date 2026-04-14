@@ -1,11 +1,12 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/26-4.json';
+
+const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
 const META: ModuleMeta = {
   id: 'mod_26_4', phase: 6, topic: 'Indian Contributions', moduleNumber: '26.4',
@@ -100,7 +101,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Cosmic Time: The Yuga System', hi: 'ब्रह्मांडीय समय: युग प्रणाली', sa: 'ब्रह्मांडीय समय: युग प्रणाली' }, locale)}
+          {t('cosmicTimeTheYugaSystem', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -111,43 +112,43 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'The Hierarchy of Time', hi: 'समय के पदानुक्रम', sa: 'समय के पदानुक्रम' }, locale)}
+          {t('theHierarchyOfTime', locale)}
         </h4>
         <div className="space-y-2 text-text-secondary text-xs">
           <div className="flex justify-between items-center">
-            <span className="text-gold-light font-medium">{tl({ en: 'Kali Yuga', hi: 'कलियुग', sa: 'कलियुग' }, locale)}</span>
-            <span className="font-mono">432,000 {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि' }, locale)}</span>
+            <span className="text-gold-light font-medium">{t('kaliYuga', locale)}</span>
+            <span className="font-mono">432,000 {t('years', locale)}</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-gold-light font-medium">{tl({ en: 'Dvapara Yuga', hi: 'द्वापर युग', sa: 'द्वापर युग' }, locale)}</span>
-            <span className="font-mono">864,000 {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि' }, locale)}</span>
+            <span className="text-gold-light font-medium">{t('dvaparaYuga', locale)}</span>
+            <span className="font-mono">864,000 {t('years', locale)}</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-gold-light font-medium">{tl({ en: 'Treta Yuga', hi: 'त्रेता युग', sa: 'त्रेता युग' }, locale)}</span>
-            <span className="font-mono">1,296,000 {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि' }, locale)}</span>
+            <span className="text-gold-light font-medium">{t('tretaYuga', locale)}</span>
+            <span className="font-mono">1,296,000 {t('years', locale)}</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-gold-light font-medium">{tl({ en: 'Krita/Satya Yuga', hi: 'कृत/सत्य युग', sa: 'कृत/सत्य युग' }, locale)}</span>
-            <span className="font-mono">1,728,000 {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि' }, locale)}</span>
+            <span className="text-gold-light font-medium">{t('kritaSatyaYuga', locale)}</span>
+            <span className="font-mono">1,728,000 {t('years', locale)}</span>
           </div>
           <div className="flex justify-between items-center pt-2 border-t border-gold-primary/10">
-            <span className="text-amber-400 font-semibold">{tl({ en: 'Mahayuga (1 Chaturyuga)', hi: 'महायुग (1 चतुर्युग)', sa: 'महायुग (1 चतुर्युग)' }, locale)}</span>
-            <span className="font-mono text-amber-400">4,320,000 {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि' }, locale)}</span>
+            <span className="text-amber-400 font-semibold">{t('mahayuga1Chaturyuga', locale)}</span>
+            <span className="font-mono text-amber-400">4,320,000 {t('years', locale)}</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-gold-light font-medium">{tl({ en: '1 Kalpa = 1,000 Mahayugas', hi: '1 कल्प = 1,000 महायुग', sa: '1 कल्प = 1,000 महायुग' }, locale)}</span>
-            <span className="font-mono text-gold-light">4.32 {tl({ en: 'billion years', hi: 'अरब वर्ष', sa: 'अरब वर्ष' }, locale)}</span>
+            <span className="text-gold-light font-medium">{t('k1Kalpa1000Mahayugas', locale)}</span>
+            <span className="font-mono text-gold-light">4.32 {t('billionYears', locale)}</span>
           </div>
           <div className="flex justify-between items-center pt-2 border-t border-gold-primary/10">
-            <span className="text-emerald-400 font-semibold">{tl({ en: "Earth\'s actual age", hi: "पृथ्वी की वास्तविक आयु", sa: "पृथ्वी की वास्तविक आयु" }, locale)}</span>
-            <span className="font-mono text-emerald-400">4.54 {tl({ en: 'billion years', hi: 'अरब वर्ष', sa: 'अरब वर्ष' }, locale)}</span>
+            <span className="text-emerald-400 font-semibold">{t('earthSActualAge', locale)}</span>
+            <span className="font-mono text-emerald-400">4.54 {t('billionYears', locale)}</span>
           </div>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'The Base Number: 432', hi: 'मूल संख्या: 432', sa: 'मूल संख्या: 432' }, locale)}
+          {t('theBaseNumber432', locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -169,7 +170,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: "The Cosmological Scale and Brahma\'s Lifespan", hi: "ब्रह्मांडीय पैमाना और ब्रह्मा का जीवन", sa: "ब्रह्मांडीय पैमाना और ब्रह्मा का जीवन" }, locale)}
+          {t('theCosmologicalScaleAndBrahma', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -180,39 +181,39 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: "Brahma\'s Calendar", hi: "ब्रह्मा का कैलेंडर", sa: "ब्रह्मा का कैलेंडर" }, locale)}
+          {t('brahmaSCalendar', locale)}
         </h4>
         <div className="space-y-2 text-text-secondary text-xs">
           <div className="flex justify-between">
-            <span>{tl({ en: '1 Brahma day (Kalpa):', hi: '1 ब्रह्मा दिन (कल्प):', sa: '1 ब्रह्मा दिन (कल्प):' }, locale)}</span>
-            <span className="font-mono text-gold-light">4.32 {tl({ en: 'billion years', hi: 'अरब वर्ष', sa: 'अरब वर्ष' }, locale)}</span>
+            <span>{t('k1BrahmaDayKalpa', locale)}</span>
+            <span className="font-mono text-gold-light">4.32 {t('billionYears', locale)}</span>
           </div>
           <div className="flex justify-between">
-            <span>{tl({ en: '1 Brahma night:', hi: '1 ब्रह्मा रात:', sa: '1 ब्रह्मा रात:' }, locale)}</span>
-            <span className="font-mono text-gold-light">4.32 {tl({ en: 'billion years', hi: 'अरब वर्ष', sa: 'अरब वर्ष' }, locale)}</span>
+            <span>{t('k1BrahmaNight', locale)}</span>
+            <span className="font-mono text-gold-light">4.32 {t('billionYears', locale)}</span>
           </div>
           <div className="flex justify-between">
-            <span>{tl({ en: '1 Brahma day+night:', hi: '1 ब्रह्मा दिन+रात:', sa: '1 ब्रह्मा दिन+रात:' }, locale)}</span>
-            <span className="font-mono text-gold-light">8.64 {tl({ en: 'billion years', hi: 'अरब वर्ष', sa: 'अरब वर्ष' }, locale)}</span>
+            <span>{t('k1BrahmaDayNight', locale)}</span>
+            <span className="font-mono text-gold-light">8.64 {t('billionYears', locale)}</span>
           </div>
           <div className="flex justify-between">
-            <span>{tl({ en: '1 Brahma year (360 days):', hi: '1 ब्रह्मा वर्ष (360 दिन):', sa: '1 ब्रह्मा वर्ष (360 दिन):' }, locale)}</span>
-            <span className="font-mono text-gold-light">3.11 {tl({ en: 'trillion years', hi: 'ट्रिलियन वर्ष', sa: 'ट्रिलियन वर्ष' }, locale)}</span>
+            <span>{t('k1BrahmaYear360Days', locale)}</span>
+            <span className="font-mono text-gold-light">3.11 {t('trillionYears', locale)}</span>
           </div>
           <div className="flex justify-between pt-2 border-t border-gold-primary/10">
-            <span className="text-amber-400 font-semibold">{tl({ en: '1 Brahma lifespan (100 years):', hi: '1 ब्रह्मा जीवन (100 वर्ष):', sa: '1 ब्रह्मा जीवन (100 वर्ष):' }, locale)}</span>
-            <span className="font-mono text-amber-400">311 {tl({ en: 'trillion years', hi: 'ट्रिलियन वर्ष', sa: 'ट्रिलियन वर्ष' }, locale)}</span>
+            <span className="text-amber-400 font-semibold">{t('k1BrahmaLifespan100Years', locale)}</span>
+            <span className="font-mono text-amber-400">311 {t('trillionYears', locale)}</span>
           </div>
           <div className="flex justify-between pt-2 border-t border-gold-primary/10">
-            <span className="text-emerald-400 font-semibold">{tl({ en: 'Modern universe age:', hi: 'ब्रह्मांड की आधुनिक आयु:', sa: 'ब्रह्मांड की आधुनिक आयु:' }, locale)}</span>
-            <span className="font-mono text-emerald-400">13.8 {tl({ en: 'billion years', hi: 'अरब वर्ष', sa: 'अरब वर्ष' }, locale)}</span>
+            <span className="text-emerald-400 font-semibold">{t('modernUniverseAge', locale)}</span>
+            <span className="font-mono text-emerald-400">13.8 {t('billionYears', locale)}</span>
           </div>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/15 rounded-xl p-5">
         <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Cyclic Universe — A Philosophical Achievement', hi: 'चक्रीय ब्रह्मांड — एक दार्शनिक उपलब्धि', sa: 'चक्रीय ब्रह्मांड — एक दार्शनिक उपलब्धि' }, locale)}
+          {t('cyclicUniverseAPhilosophicalAchievement', locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -239,7 +240,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Kali Yuga: Our Place in Cosmic Time', hi: 'कलियुग: ब्रह्मांडीय समय में हमारा स्थान', sa: 'कलियुग: ब्रह्मांडीय समय में हमारा स्थान' }, locale)}
+          {t('kaliYugaOurPlaceIn', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -250,21 +251,21 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Current Cosmic Position', hi: 'वर्तमान ब्रह्मांडीय स्थिति', sa: 'वर्तमान ब्रह्मांडीय स्थिति' }, locale)}
+          {t('currentCosmicPosition', locale)}
         </h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
-          <p><span className="text-gold-light font-medium">{tl({ en: 'Current Brahma day:', hi: 'वर्तमान ब्रह्मा दिन:', sa: 'वर्तमान ब्रह्मा दिन:' }, locale)}</span> {tl({ en: "Shveta Varaha Kalpa (1st day of Brahma\'s 51st year)", hi: "श्वेत वाराह कल्प (51वें ब्रह्मा वर्ष का पहला दिन)", sa: "श्वेत वाराह कल्प (51वें ब्रह्मा वर्ष का पहला दिन)" }, locale)}</p>
-          <p><span className="text-gold-light font-medium">{tl({ en: 'Current Manvantara:', hi: 'वर्तमान मन्वन्तर:', sa: 'वर्तमान मन्वन्तर:' }, locale)}</span> {tl({ en: 'Vaivasvata Manvantara (7th of 14)', hi: 'वैवस्वत मन्वन्तर (7वाँ में से 14 का)', sa: 'वैवस्वत मन्वन्तर (7वाँ में से 14 का)' }, locale)}</p>
-          <p><span className="text-gold-light font-medium">{tl({ en: 'Current Mahayuga:', hi: 'वर्तमान महायुग:', sa: 'वर्तमान महायुग:' }, locale)}</span> {tl({ en: '28th Mahayuga (of 71)', hi: '28वाँ महायुग (71 में से)', sa: '28वाँ महायुग (71 में से)' }, locale)}</p>
-          <p><span className="text-gold-light font-medium">{tl({ en: 'Current Yuga:', hi: 'वर्तमान युग:', sa: 'वर्तमान युग:' }, locale)}</span> {tl({ en: 'Kali Yuga (began 3102 BCE)', hi: 'कलियुग (शुरू 3102 ईसा पूर्व)', sa: 'कलियुग (शुरू 3102 ईसा पूर्व)' }, locale)}</p>
-          <p><span className="text-gold-light font-medium">{tl({ en: 'Kali Yuga elapsed:', hi: 'कलियुग बीता:', sa: 'कलियुग बीता:' }, locale)}</span> {tl({ en: 'approximately 5,127 years (as of 2025 CE)', hi: 'लगभग 5,127 वर्ष (2025 ईस्वी में)', sa: 'लगभग 5,127 वर्ष (2025 ईस्वी में)' }, locale)}</p>
-          <p><span className="text-gold-light font-medium">{tl({ en: 'Kali Yuga remaining:', hi: 'कलियुग शेष:', sa: 'कलियुग शेष:' }, locale)}</span> {tl({ en: 'approximately 426,873 years', hi: 'लगभग 426,873 वर्ष', sa: 'लगभग 426,873 वर्ष' }, locale)}</p>
+          <p><span className="text-gold-light font-medium">{t('currentBrahmaDay', locale)}</span> {t('shvetaVarahaKalpa1stDay', locale)}</p>
+          <p><span className="text-gold-light font-medium">{t('currentManvantara', locale)}</span> {t('vaivasvataManvantara7thOf14', locale)}</p>
+          <p><span className="text-gold-light font-medium">{t('currentMahayuga', locale)}</span> {t('k28thMahayugaOf71', locale)}</p>
+          <p><span className="text-gold-light font-medium">{t('currentYuga', locale)}</span> {t('kaliYugaBegan3102Bce', locale)}</p>
+          <p><span className="text-gold-light font-medium">{t('kaliYugaElapsed', locale)}</span> {t('approximately5127YearsAs', locale)}</p>
+          <p><span className="text-gold-light font-medium">{t('kaliYugaRemaining', locale)}</span> {t('approximately426873Years', locale)}</p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Cosmic Perspective', hi: 'ब्रह्मांडीय दृष्टिकोण', sa: 'ब्रह्मांडीय दृष्टिकोण' }, locale)}
+          {t('cosmicPerspective', locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi

@@ -10,6 +10,7 @@ import { getSupabase } from '@/lib/supabase/client';
 import type { DashaEntry } from '@/types/kundali';
 import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { tl } from '@/lib/utils/trilingual';
 
 const PLANET_ID: Record<string, number> = { Sun: 0, Moon: 1, Mars: 2, Mercury: 3, Jupiter: 4, Venus: 5, Saturn: 6, Rahu: 7, Ketu: 8 };
 
@@ -42,7 +43,6 @@ function yearsDiff(start: string, end: string): string {
 
 export default function DashasPage() {
   const locale = useLocale() as Locale;
-  const lk = (isDevanagariLocale(locale)) ? 'hi' as const : 'en' as const;
   const hf = (isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = (isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const user = useAuthStore(s => s.user);
@@ -72,7 +72,7 @@ export default function DashasPage() {
   }, [user]);
 
   if (!user) {
-    return <div className="max-w-2xl mx-auto px-4 py-20 text-center"><p className="text-text-secondary">{!isDevanagariLocale(locale) ? 'Sign in to view your dashas' : 'दशा देखने के लिए साइन इन करें'}</p></div>;
+    return <div className="max-w-2xl mx-auto px-4 py-20 text-center"><p className="text-text-secondary">{tl({ en: 'Sign in to view your dashas', hi: 'दशा देखने के लिए साइन इन करें', sa: 'दशाः द्रष्टुं साइन इन कुर्वन्तु', ta: 'உங்கள் தசைகளைக் காண உள்நுழையவும்', te: 'మీ దశలు చూడటానికి సైన్ ఇన్ చేయండి', bn: 'আপনার দশা দেখতে সাইন ইন করুন', kn: 'ನಿಮ್ಮ ದಶೆಗಳನ್ನು ನೋಡಲು ಸೈನ್ ಇನ್ ಮಾಡಿ', gu: 'તમારી દશાઓ જોવા સાઇન ઇન કરો', mai: 'दशा देखबाक लेल साइन इन करू', mr: 'दशा पाहण्यासाठी साइन इन करा' }, locale)}</p></div>;
   }
 
   if (loading) {
@@ -85,27 +85,27 @@ export default function DashasPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <a href={`/${locale}/dashboard`} className="text-gold-primary text-sm hover:text-gold-light mb-6 inline-flex items-center gap-1"><ArrowLeft className="w-4 h-4" />{!isDevanagariLocale(locale) ? 'Dashboard' : 'डैशबोर्ड'}</a>
+      <a href={`/${locale}/dashboard`} className="text-gold-primary text-sm hover:text-gold-light mb-6 inline-flex items-center gap-1"><ArrowLeft className="w-4 h-4" />{tl({ en: 'Dashboard', hi: 'डैशबोर्ड', sa: 'पटलम्', ta: 'டாஷ்போர்டு', te: 'డాష్‌బోర్డ్', bn: 'ড্যাশবোর্ড', kn: 'ಡ್ಯಾಶ್‌ಬೋರ್ಡ್', gu: 'ડેશબોર્ડ', mai: 'डैशबोर्ड', mr: 'डॅशबोर्ड' }, locale)}</a>
 
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-        <h1 className="text-4xl font-bold mb-3" style={hf}><span className="text-gold-gradient">{!isDevanagariLocale(locale) ? 'Dasha Timeline' : 'दशा समयरेखा'}</span></h1>
+        <h1 className="text-4xl font-bold mb-3" style={hf}><span className="text-gold-gradient">{tl({ en: 'Dasha Timeline', hi: 'दशा समयरेखा', sa: 'दशासमयरेखा', ta: 'தசா காலவரிசை', te: 'దశ కాలరేఖ', bn: 'দশা সময়রেখা', kn: 'ದಶೆ ಕಾಲರೇಖೆ', gu: 'દશા સમયરેખા', mai: 'दशा समयरेखा', mr: 'दशा कालरेखा' }, locale)}</span></h1>
       </motion.div>
 
       {/* Current Period */}
       {currentMaha && (
         <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 mb-8">
-          <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-4">{!isDevanagariLocale(locale) ? 'Current Period' : 'वर्तमान काल'}</p>
+          <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-4">{tl({ en: 'Current Period', hi: 'वर्तमान काल', sa: 'वर्तमानकालः', ta: 'தற்போதைய காலம்', te: 'ప్రస్తుత కాలం', bn: 'বর্তমান কাল', kn: 'ಪ್ರಸ್ತುತ ಅವಧಿ', gu: 'વર્તમાન કાળ', mai: 'वर्तमान काल', mr: 'सध्याचा काळ' }, locale)}</p>
 
           {/* Mahadasha */}
           <div className="flex items-center gap-4 mb-4">
             <GrahaIconById id={PLANET_ID[currentMaha.planet] ?? 0} size={40} />
             <div className="flex-1">
-              <p className="text-gold-light font-bold text-lg" style={hf}>{currentMaha.planetName[lk as keyof typeof currentMaha.planetName]} {!isDevanagariLocale(locale) ? 'Mahadasha' : 'महादशा'}</p>
-              <p className="text-text-secondary text-xs font-mono">{currentMaha.startDate} — {currentMaha.endDate} ({yearsDiff(currentMaha.startDate, currentMaha.endDate)} {!isDevanagariLocale(locale) ? 'years' : 'वर्ष'})</p>
+              <p className="text-gold-light font-bold text-lg" style={hf}>{tl(currentMaha.planetName, locale)} {tl({ en: 'Mahadasha', hi: 'महादशा', sa: 'महादशा', ta: 'மகாதசா', te: 'మహాదశ', bn: 'মহাদশা', kn: 'ಮಹಾದಶಾ', gu: 'મહાદશા', mai: 'महादशा', mr: 'महादशा' }, locale)}</p>
+              <p className="text-text-secondary text-xs font-mono">{currentMaha.startDate} — {currentMaha.endDate} ({yearsDiff(currentMaha.startDate, currentMaha.endDate)} {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि', ta: 'ஆண்டுகள்', te: 'సంవత్సరాలు', bn: 'বছর', kn: 'ವರ್ಷಗಳು', gu: 'વર્ષ', mai: 'वर्ष', mr: 'वर्षे' }, locale)})</p>
               <div className="mt-2 h-2 bg-bg-tertiary/40 rounded-full overflow-hidden">
                 <div className="h-full bg-gradient-to-r from-gold-primary to-gold-light rounded-full" style={{ width: `${progressPercent(currentMaha.startDate, currentMaha.endDate)}%` }} />
               </div>
-              <p className="text-text-secondary/70 text-xs mt-1">{progressPercent(currentMaha.startDate, currentMaha.endDate)}% {!isDevanagariLocale(locale) ? 'complete' : 'पूर्ण'}</p>
+              <p className="text-text-secondary/70 text-xs mt-1">{progressPercent(currentMaha.startDate, currentMaha.endDate)}% {tl({ en: 'complete', hi: 'पूर्ण', sa: 'पूर्णम्', ta: 'நிறைவு', te: 'పూర్తి', bn: 'সম্পূর্ণ', kn: 'ಪೂರ್ಣ', gu: 'પૂર્ણ', mai: 'पूर्ण', mr: 'पूर्ण' }, locale)}</p>
             </div>
           </div>
 
@@ -114,7 +114,7 @@ export default function DashasPage() {
             <div className="flex items-center gap-4 ml-8 pl-4 border-l-2 border-gold-primary/20">
               <GrahaIconById id={PLANET_ID[currentAntar.planet] ?? 0} size={28} />
               <div className="flex-1">
-                <p className="text-gold-light font-semibold text-sm" style={bf}>{currentAntar.planetName[lk as keyof typeof currentAntar.planetName]} {!isDevanagariLocale(locale) ? 'Antardasha' : 'अंतर्दशा'}</p>
+                <p className="text-gold-light font-semibold text-sm" style={bf}>{tl(currentAntar.planetName, locale)} {tl({ en: 'Antardasha', hi: 'अंतर्दशा', sa: 'अन्तर्दशा', ta: 'அந்தர்தசா', te: 'అంతర్దశ', bn: 'অন্তর্দশা', kn: 'ಅಂತರ್ದಶಾ', gu: 'અંતર્દશા', mai: 'अंतर्दशा', mr: 'अंतर्दशा' }, locale)}</p>
                 <p className="text-text-secondary text-xs font-mono">{currentAntar.startDate} — {currentAntar.endDate}</p>
                 <div className="mt-1 h-1.5 bg-bg-tertiary/40 rounded-full overflow-hidden">
                   <div className="h-full bg-gold-primary/60 rounded-full" style={{ width: `${progressPercent(currentAntar.startDate, currentAntar.endDate)}%` }} />
@@ -126,14 +126,14 @@ export default function DashasPage() {
           {/* Effect */}
           <div className="mt-4 p-3 rounded-lg bg-gold-primary/5 border border-gold-primary/10">
             <p className="text-text-secondary text-xs" style={bf}>
-              {DASHA_EFFECTS[currentMaha.planet]?.[lk as 'en' | 'hi'] || DASHA_EFFECTS[currentMaha.planet]?.en || ''}
+              {tl(DASHA_EFFECTS[currentMaha.planet], locale)}
             </p>
           </div>
         </motion.div>
       )}
 
       {/* Full Timeline */}
-      <h2 className="text-xl font-bold text-gold-gradient mb-4" style={hf}>{!isDevanagariLocale(locale) ? 'Full Timeline' : 'पूर्ण समयरेखा'}</h2>
+      <h2 className="text-xl font-bold text-gold-gradient mb-4" style={hf}>{tl({ en: 'Full Timeline', hi: 'पूर्ण समयरेखा', sa: 'पूर्णसमयरेखा', ta: 'முழு காலவரிசை', te: 'పూర్తి కాలరేఖ', bn: 'সম্পূর্ণ সময়রেখা', kn: 'ಪೂರ್ಣ ಕಾಲರೇಖೆ', gu: 'પૂર્ણ સમયરેખા', mai: 'पूर्ण समयरेखा', mr: 'पूर्ण कालरेखा' }, locale)}</h2>
 
       <div className="relative">
         <div className="absolute left-5 top-0 bottom-0 w-px bg-gold-primary/15" />
@@ -157,8 +157,8 @@ export default function DashasPage() {
                     <div className="flex items-center gap-3">
                       <GrahaIconById id={PLANET_ID[d.planet] ?? 0} size={24} />
                       <div>
-                        <span className={`font-bold text-sm ${isCurrent ? 'text-gold-light' : 'text-text-secondary'}`} style={bf}>{d.planetName[lk as keyof typeof d.planetName]}</span>
-                        {isCurrent && <span className="ml-2 text-xs px-2 py-0.5 bg-gold-primary/20 text-gold-primary rounded-full font-bold">{!isDevanagariLocale(locale) ? 'NOW' : 'अभी'}</span>}
+                        <span className={`font-bold text-sm ${isCurrent ? 'text-gold-light' : 'text-text-secondary'}`} style={bf}>{tl(d.planetName, locale)}</span>
+                        {isCurrent && <span className="ml-2 text-xs px-2 py-0.5 bg-gold-primary/20 text-gold-primary rounded-full font-bold">{tl({ en: 'NOW', hi: 'अभी', sa: 'अधुना', ta: 'இப்போது', te: 'ఇప్పుడు', bn: 'এখন', kn: 'ಈಗ', gu: 'હમણાં', mai: 'अखन', mr: 'आत्ता' }, locale)}</span>}
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
@@ -176,9 +176,9 @@ export default function DashasPage() {
                       return (
                         <div key={j} className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs ${isCurrentAntar ? 'bg-gold-primary/10 border border-gold-primary/20' : ''}`}>
                           <GrahaIconById id={PLANET_ID[s.planet] ?? 0} size={14} />
-                          <span className={isCurrentAntar ? 'text-gold-light font-bold' : 'text-text-secondary'} style={bf}>{s.planetName[lk as keyof typeof s.planetName]}</span>
+                          <span className={isCurrentAntar ? 'text-gold-light font-bold' : 'text-text-secondary'} style={bf}>{tl(s.planetName, locale)}</span>
                           <span className="text-text-secondary/65 font-mono ml-auto">{s.startDate} — {s.endDate}</span>
-                          {isCurrentAntar && <span className="text-gold-primary text-xs font-bold">{!isDevanagariLocale(locale) ? 'NOW' : 'अभी'}</span>}
+                          {isCurrentAntar && <span className="text-gold-primary text-xs font-bold">{tl({ en: 'NOW', hi: 'अभी', sa: 'अधुना', ta: 'இப்போது', te: 'ఇప్పుడు', bn: 'এখন', kn: 'ಈಗ', gu: 'હમણાં', mai: 'अखन', mr: 'आत्ता' }, locale)}</span>}
                         </div>
                       );
                     })}

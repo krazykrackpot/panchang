@@ -655,7 +655,7 @@ export default function SankalpaPage() {
                 setPlaceLng(loc.lng);
                 setPlaceTimezone(loc.timezone);
               }}
-              placeholder={!isDevanagariLocale(locale) ? 'Search city or place...' : 'स्थान खोजें...'}
+              placeholder={tl({ en: 'Search city or place...', hi: 'स्थान खोजें...', sa: 'नगरं अन्विष्यतु...', ta: 'நகரம் அல்லது இடம் தேடு...', te: 'నగరం లేదా ప్రదేశం శోధించండి...', bn: 'শহর বা স্থান খুঁজুন...', kn: 'ನಗರ ಅಥವಾ ಸ್ಥಳ ಹುಡುಕಿ...', gu: 'શહેર અથવા સ્થળ શોધો...', mai: 'शहर या स्थान खोजू...', mr: 'शहर किंवा ठिकाण शोधा...' }, locale)}
             />
           </label>
 
@@ -673,7 +673,7 @@ export default function SankalpaPage() {
           {/* Masa System Toggle */}
           <div>
             <span className={labelCls} style={bodyFont}>
-              {!isDevanagariLocale(locale) ? 'Calendar System' : isDevanagari ? 'पंचांग पद्धति' : 'पञ्चाङ्गपद्धतिः'}
+              {tl({ en: 'Calendar System', hi: 'पंचांग पद्धति', sa: 'पञ्चाङ्गपद्धतिः', ta: 'நாட்காட்டி முறை', te: 'క్యాలెండర్ విధానం', bn: 'পঞ্জিকা পদ্ধতি', kn: 'ಕ್ಯಾಲೆಂಡರ್ ಪದ್ಧತಿ', gu: 'કેલેન્ડર પદ્ધતિ', mai: 'पंचांग पद्धति', mr: 'दिनदर्शिका पद्धती' }, locale)}
             </span>
             <div className="flex gap-2 mt-2">
               <button
@@ -684,9 +684,9 @@ export default function SankalpaPage() {
                     : 'border-gold-primary/10 text-text-secondary hover:border-gold-primary/25'
                 }`}
               >
-                {!isDevanagariLocale(locale) ? 'Purnimant' : 'पूर्णिमान्त'}
+                {tl({ en: 'Purnimant', hi: 'पूर्णिमान्त', sa: 'पूर्णिमान्तम्', ta: 'பூர்ணிமாந்த', te: 'పూర్ణిమాంత', bn: 'পূর্ণিমান্ত', kn: 'ಪೂರ್ಣಿಮಾಂತ', gu: 'પૂર્ણિમાંત', mai: 'पूर्णिमान्त', mr: 'पौर्णिमान्त' }, locale)}
                 <span className="block text-xs text-text-secondary/75 mt-0.5">
-                  {!isDevanagariLocale(locale) ? 'North India' : 'उत्तर भारत'}
+                  {tl({ en: 'North India', hi: 'उत्तर भारत', sa: 'उत्तरभारतम्', ta: 'வட இந்தியா', te: 'ఉత్తర భారతం', bn: 'উত্তর ভারত', kn: 'ಉತ್ತರ ಭಾರತ', gu: 'ઉત્તર ભારત', mai: 'उत्तर भारत', mr: 'उत्तर भारत' }, locale)}
                 </span>
               </button>
               <button
@@ -697,9 +697,9 @@ export default function SankalpaPage() {
                     : 'border-gold-primary/10 text-text-secondary hover:border-gold-primary/25'
                 }`}
               >
-                {!isDevanagariLocale(locale) ? 'Amant' : 'अमान्त'}
+                {tl({ en: 'Amant', hi: 'अमान्त', sa: 'अमान्तम्', ta: 'அமாந்த', te: 'అమాంత', bn: 'অমান্ত', kn: 'ಅಮಾಂತ', gu: 'અમાંત', mai: 'अमान्त', mr: 'अमान्त' }, locale)}
                 <span className="block text-xs text-text-secondary/75 mt-0.5">
-                  {!isDevanagariLocale(locale) ? 'South India' : 'दक्षिण भारत'}
+                  {tl({ en: 'South India', hi: 'दक्षिण भारत', sa: 'दक्षिणभारतम्', ta: 'தென் இந்தியா', te: 'దక్షిణ భారతం', bn: 'দক্ষিণ ভারত', kn: 'ದಕ್ಷಿಣ ಭಾರತ', gu: 'દક્ષિણ ભારત', mai: 'दक्षिण भारत', mr: 'दक्षिण भारत' }, locale)}
                 </span>
               </button>
             </div>

@@ -204,11 +204,7 @@ export default function KaalNirnayaPage() {
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
-  // Helper for bilingual objects (en/hi) — falls back to hi for sa, then en
-  const t2 = (obj: LocaleText): string => {
-    if (locale === 'en') return obj.en;
-    return obj.hi || ""; // hi serves as fallback for sa
-  };
+  // t2 removed — use tl() from trilingual.ts instead
 
   const [kaalData, setKaalData] = useState<KaalData | null>(null);
   const [loadingKaal, setLoadingKaal] = useState(true);
@@ -305,7 +301,7 @@ export default function KaalNirnayaPage() {
               {yuga.current && (
                 <div className="absolute top-3 right-3 flex items-center gap-1 px-2 py-0.5 bg-red-500/20 border border-red-500/40 rounded-full">
                   <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
-                  <span className="text-red-300 text-xs font-bold uppercase">{!isDevanagariLocale(locale) ? 'NOW' : 'अभी'}</span>
+                  <span className="text-red-300 text-xs font-bold uppercase">{tl({ en: 'NOW', hi: 'अभी', ta: 'இப்போது', te: 'ఇప్పుడు', bn: 'এখন', kn: 'ಈಗ', gu: 'હમણાં' } as LocaleText, locale)}</span>
                 </div>
               )}
               <div className="mb-4">
@@ -319,7 +315,7 @@ export default function KaalNirnayaPage() {
               {/* Dharma meter */}
               <div className="mb-4">
                 <div className="flex justify-between text-xs text-text-secondary mb-1">
-                  <span>{!isDevanagariLocale(locale) ? 'Dharma' : 'धर्म'}</span>
+                  <span>{tl({ en: 'Dharma', hi: 'धर्म', ta: 'தர்மம்', te: 'ధర్మం', bn: 'ধর্ম', kn: 'ಧರ್ಮ', gu: 'ધર્મ' } as LocaleText, locale)}</span>
                   <span className={yuga.text}>{yuga.dharma}%</span>
                 </div>
                 <div className="h-2 bg-bg-tertiary rounded-full overflow-hidden">
@@ -336,7 +332,7 @@ export default function KaalNirnayaPage() {
               {yuga.current && (
                 <div className="mt-4 pt-4 border-t border-red-500/20">
                   <div className="text-xs text-text-secondary mb-1.5 font-bold uppercase tracking-wider">
-                    {!isDevanagariLocale(locale) ? 'Current Progress' : 'वर्तमान प्रगति'}
+                    {tl({ en: 'Current Progress', hi: 'वर्तमान प्रगति', ta: 'தற்போதைய முன்னேற்றம்', te: 'ప్రస్తుత పురోగతి', bn: 'বর্তমান অগ্রগতি', kn: 'ಪ್ರಸ್ತುತ ಪ್ರಗತಿ', gu: 'વર્તમાન પ્રગતિ' } as LocaleText, locale)}
                   </div>
                   <div className="h-2 bg-bg-tertiary rounded-full overflow-hidden mb-1">
                     <div className="h-full bg-red-400/50 rounded-full" style={{ width: `${kaliPct}%` }} />
@@ -358,7 +354,7 @@ export default function KaalNirnayaPage() {
       <motion.section initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.13 }} className="mb-20">
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-5 md:p-8 border-2 border-gold-primary/30 bg-gradient-to-br from-gold-primary/5 via-transparent to-purple-500/5">
           <h2 className="text-3xl font-bold text-gold-gradient mb-5 text-center" style={headingFont}>
-            {!isDevanagariLocale(locale) ? 'Where Are We Now?' : 'हम अभी कहाँ हैं?'}
+            {tl({ en: 'Where Are We Now?', hi: 'हम अभी कहाँ हैं?', ta: 'நாம் இப்போது எங்கே?', te: 'మనం ఇప్పుడు ఎక్కడ?', bn: 'আমরা এখন কোথায়?', kn: 'ನಾವು ಈಗ ಎಲ್ಲಿ?', gu: 'આપણે અત્યારે ક્યાં છીએ?' } as LocaleText, locale)}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             {[
@@ -370,8 +366,8 @@ export default function KaalNirnayaPage() {
               { label: { en: 'Kali Yuga elapsed', hi: 'कलियुग बीत चुका', sa: 'कलियुगं व्यतीतम्', mai: 'कलियुग बीतल', mr: 'कलियुग उलटले', ta: 'கலியுகம் கழிந்தது', te: 'కలియుగం గడిచింది', bn: 'কলিযুগ অতিক্রান্ত', kn: 'ಕಲಿಯುಗ ಕಳೆದಿದೆ', gu: 'કલિયુગ વીત્યું' }, value: { en: '~5,128 of 432,000 years', hi: '4,32,000 में से ~5,128 वर्ष', sa: '4,32,000 वर्षेषु ~5,128 व्यतीतानि', mai: '4,32,000 मे सँ ~5,128 वर्ष', mr: '4,32,000 पैकी ~5,128 वर्षे', ta: '4,32,000 ஆண்டுகளில் ~5,128', te: '4,32,000 సంవత్సరాలలో ~5,128', bn: '4,32,000 বছরের মধ্যে ~5,128', kn: '4,32,000 ವರ್ಷಗಳಲ್ಲಿ ~5,128', gu: '4,32,000 વર્ષમાંથી ~5,128' }, color: 'text-amber-300' },
             ].map((item) => (
               <div key={item.label.en} className="rounded-xl p-4 bg-bg-primary/40 border border-gold-primary/10 text-center">
-                <div className="text-gold-dark/60 text-xs uppercase tracking-wider font-bold mb-1.5">{t2(item.label)}</div>
-                <div className={`font-bold text-sm ${item.color}`}>{t2(item.value)}</div>
+                <div className="text-gold-dark/60 text-xs uppercase tracking-wider font-bold mb-1.5">{tl(item.label, locale)}</div>
+                <div className={`font-bold text-sm ${item.color}`}>{tl(item.value, locale)}</div>
               </div>
             ))}
           </div>
@@ -379,7 +375,7 @@ export default function KaalNirnayaPage() {
           {/* Visual: Brahma's life progress */}
           <div className="mb-4">
             <div className="flex justify-between text-xs text-text-secondary mb-1.5 font-bold uppercase tracking-wider">
-              <span>{!isDevanagariLocale(locale) ? "Brahma's Life Progress" : 'ब्रह्मा के जीवन की प्रगति'}</span>
+              <span>{tl({ en: "Brahma's Life Progress", hi: 'ब्रह्मा के जीवन की प्रगति', ta: 'பிரம்மாவின் ஆயுள் முன்னேற்றம்', te: 'బ్రహ్మ జీవిత పురోగతి', bn: 'ব্রহ্মার জীবন অগ্রগতি', kn: 'ಬ್ರಹ್ಮನ ಜೀವನ ಪ್ರಗತಿ', gu: 'બ્રહ્માના જીવનની પ્રગતિ' } as LocaleText, locale)}</span>
               <span className="text-gold-primary">~50%</span>
             </div>
             <div className="h-3 bg-bg-tertiary rounded-full overflow-hidden relative">
@@ -387,16 +383,16 @@ export default function KaalNirnayaPage() {
               <div className="absolute top-0 left-[50.5%] w-0.5 h-full bg-gold-light animate-pulse" />
             </div>
             <div className="flex justify-between text-xs text-text-secondary/70 mt-1 font-mono">
-              <span>{!isDevanagariLocale(locale) ? 'Brahma born' : 'ब्रह्मा जन्म'}</span>
-              <span className="text-gold-light/60">{!isDevanagariLocale(locale) ? 'WE ARE HERE' : 'हम यहाँ हैं'}</span>
-              <span>{!isDevanagariLocale(locale) ? 'Mahapralaya' : 'महाप्रलय'}</span>
+              <span>{tl({ en: 'Brahma born', hi: 'ब्रह्मा जन्म', ta: 'பிரம்மா பிறப்பு', te: 'బ్రహ్మ జన్మ', bn: 'ব্রহ্মা জন্ম', kn: 'ಬ್ರಹ್ಮ ಜನ್ಮ', gu: 'બ્રહ્મા જન્મ' } as LocaleText, locale)}</span>
+              <span className="text-gold-light/60">{tl({ en: 'WE ARE HERE', hi: 'हम यहाँ हैं', ta: 'நாம் இங்கே இருக்கிறோம்', te: 'మనం ఇక్కడ ఉన్నాము', bn: 'আমরা এখানে আছি', kn: 'ನಾವು ಇಲ್ಲಿ ಇದ್ದೇವೆ', gu: 'આપણે અહીં છીએ' } as LocaleText, locale)}</span>
+              <span>{tl({ en: 'Mahapralaya', hi: 'महाप्रलय', ta: 'மகாபிரளயம்', te: 'మహాప్రళయం', bn: 'মহাপ্রলয়', kn: 'ಮಹಾಪ್ರಳಯ', gu: 'મહાપ્રલય' } as LocaleText, locale)}</span>
             </div>
           </div>
 
           {/* Parardha explanation */}
           <div className="mt-6 pt-6 border-t border-gold-primary/15 mb-6">
             <h4 className="text-gold-light font-bold text-sm mb-3" style={headingFont}>
-              {!isDevanagariLocale(locale) ? 'What is a Parardha?' : 'परार्ध क्या है?'}
+              {tl({ en: 'What is a Parardha?', hi: 'परार्ध क्या है?', ta: 'பரார்த்தம் என்றால் என்ன?', te: 'పరార్ధం అంటే ఏమిటి?', bn: 'পরার্ধ কী?', kn: 'ಪರಾರ್ಧ ಎಂದರೇನು?', gu: 'પરાર્ધ શું છે?' } as LocaleText, locale)}
             </h4>
             <p className="text-text-secondary text-sm leading-relaxed mb-4">
               {locale === 'en'
@@ -406,8 +402,8 @@ export default function KaalNirnayaPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="rounded-xl p-4 bg-bg-primary/40 border border-gold-primary/10">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-emerald-400 font-bold text-sm">{!isDevanagariLocale(locale) ? 'Prathama Parardha' : 'प्रथम परार्ध'}</span>
-                  <span className="text-text-secondary/65 text-xs">{!isDevanagariLocale(locale) ? '(First Half)' : '(पहला भाग)'}</span>
+                  <span className="text-emerald-400 font-bold text-sm">{tl({ en: 'Prathama Parardha', hi: 'प्रथम परार्ध', ta: 'முதல் பரார்த்தம்', te: 'ప్రథమ పరార్ధం', bn: 'প্রথম পরার্ধ', kn: 'ಪ್ರಥಮ ಪರಾರ್ಧ', gu: 'પ્રથમ પરાર્ધ' } as LocaleText, locale)}</span>
+                  <span className="text-text-secondary/65 text-xs">{tl({ en: '(First Half)', hi: '(पहला भाग)', ta: '(முதல் பாதி)', te: '(మొదటి సగం)', bn: '(প্রথম অর্ধ)', kn: '(ಮೊದಲ ಅರ್ಧ)', gu: '(પહેલો ભાગ)' } as LocaleText, locale)}</span>
                 </div>
                 <div className="text-text-secondary text-xs leading-relaxed mb-2">
                   {locale === 'en'
@@ -416,13 +412,13 @@ export default function KaalNirnayaPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="h-1.5 flex-1 bg-emerald-500/30 rounded-full" />
-                  <span className="text-emerald-400/60 text-xs font-mono">{!isDevanagariLocale(locale) ? 'COMPLETE' : 'पूर्ण'}</span>
+                  <span className="text-emerald-400/60 text-xs font-mono">{tl({ en: 'COMPLETE', hi: 'पूर्ण', ta: 'முடிந்தது', te: 'పూర్తి', bn: 'সম্পূর্ণ', kn: 'ಪೂರ್ಣ', gu: 'પૂર્ણ' } as LocaleText, locale)}</span>
                 </div>
               </div>
               <div className="rounded-xl p-4 bg-bg-primary/40 border border-rose-500/20">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-rose-300 font-bold text-sm">{!isDevanagariLocale(locale) ? 'Dvitiya Parardha' : 'द्वितीय परार्ध'}</span>
-                  <span className="px-1.5 py-0.5 text-xs bg-rose-500/20 text-rose-300 rounded font-bold uppercase border border-rose-500/30">{!isDevanagariLocale(locale) ? 'NOW' : 'अभी'}</span>
+                  <span className="text-rose-300 font-bold text-sm">{tl({ en: 'Dvitiya Parardha', hi: 'द्वितीय परार्ध', ta: 'இரண்டாம் பரார்த்தம்', te: 'ద్వితీయ పరార్ధం', bn: 'দ্বিতীয় পরার্ধ', kn: 'ದ್ವಿತೀಯ ಪರಾರ್ಧ', gu: 'દ્વિતીય પરાર્ધ' } as LocaleText, locale)}</span>
+                  <span className="px-1.5 py-0.5 text-xs bg-rose-500/20 text-rose-300 rounded font-bold uppercase border border-rose-500/30">{tl({ en: 'NOW', hi: 'अभी', ta: 'இப்போது', te: 'ఇప్పుడు', bn: 'এখন', kn: 'ಈಗ', gu: 'હમણાં' } as LocaleText, locale)}</span>
                 </div>
                 <div className="text-text-secondary text-xs leading-relaxed mb-2">
                   {locale === 'en'
@@ -442,7 +438,7 @@ export default function KaalNirnayaPage() {
           {/* The 30 Kalpas */}
           <div className="mt-6 pt-6 border-t border-gold-primary/15 mb-6">
             <h4 className="text-gold-light font-bold text-sm mb-2" style={headingFont}>
-              {!isDevanagariLocale(locale) ? 'The 30 Kalpas — Days of Brahma' : '30 कल्प — ब्रह्मा के दिन'}
+              {tl({ en: 'The 30 Kalpas — Days of Brahma', hi: '30 कल्प — ब्रह्मा के दिन', ta: '30 கல்பங்கள் — பிரம்மாவின் நாட்கள்', te: '30 కల్పాలు — బ్రహ్మ రోజులు', bn: '30 কল্প — ব্রহ্মার দিন', kn: '30 ಕಲ್ಪಗಳು — ಬ್ರಹ್ಮನ ದಿನಗಳು', gu: '30 કલ્પ — બ્રહ્માના દિવસો' } as LocaleText, locale)}
             </h4>
             <p className="text-text-secondary text-xs mb-4 leading-relaxed">
               {locale === 'en'
@@ -486,11 +482,11 @@ export default function KaalNirnayaPage() {
                   <span className={`text-xs font-mono font-bold mt-0.5 flex-shrink-0 ${k.current ? 'text-gold-primary' : 'text-text-secondary/65'}`}>{String(k.n).padStart(2, '0')}</span>
                   <div className="min-w-0">
                     <div className="flex items-center gap-1.5 flex-wrap">
-                      <span className={`font-bold text-xs ${k.current ? 'text-gold-light' : 'text-text-primary'}`}>{!isDevanagariLocale(locale) ? k.en : k.hi}</span>
+                      <span className={`font-bold text-xs ${k.current ? 'text-gold-light' : 'text-text-primary'}`}>{tl(k as unknown as LocaleText, locale)}</span>
                       {locale === 'en' && <span className="text-gold-dark/40 text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{k.hi}</span>}
-                      {k.current && <span className="px-1 py-0 text-xs bg-gold-primary/20 text-gold-primary rounded font-bold uppercase leading-tight">{!isDevanagariLocale(locale) ? 'CURRENT' : 'वर्तमान'}</span>}
+                      {k.current && <span className="px-1 py-0 text-xs bg-gold-primary/20 text-gold-primary rounded font-bold uppercase leading-tight">{tl({ en: 'CURRENT', hi: 'वर्तमान', ta: 'தற்போதைய', te: 'ప్రస్తుతం', bn: 'বর্তমান', kn: 'ಪ್ರಸ್ತುತ', gu: 'વર્તમાન' } as LocaleText, locale)}</span>}
                     </div>
-                    <p className="text-text-secondary/75 text-xs leading-snug mt-0.5">{t2(k.meaning)}</p>
+                    <p className="text-text-secondary/75 text-xs leading-snug mt-0.5">{tl(k.meaning, locale)}</p>
                   </div>
                 </div>
               ))}
@@ -500,7 +496,7 @@ export default function KaalNirnayaPage() {
           {/* Pralaya types */}
           <div className="pt-6 border-t border-gold-primary/15">
             <h4 className="text-gold-light font-bold text-sm mb-4" style={headingFont}>
-              {!isDevanagariLocale(locale) ? 'The Four Types of Pralaya (Dissolution)' : 'प्रलय के चार प्रकार'}
+              {tl({ en: 'The Four Types of Pralaya (Dissolution)', hi: 'प्रलय के चार प्रकार', ta: 'பிரளயத்தின் நான்கு வகைகள்', te: 'ప్రళయం నాలుగు రకాలు', bn: 'প্রলয়ের চার প্রকার', kn: 'ಪ್ರಳಯದ ನಾಲ್ಕು ವಿಧಗಳು', gu: 'પ્રલયના ચાર પ્રકાર' } as LocaleText, locale)}
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
@@ -526,8 +522,8 @@ export default function KaalNirnayaPage() {
                 },
               ].map((p) => (
                 <div key={p.name.en} className={`rounded-lg p-4 border ${p.border} bg-bg-primary/30`}>
-                  <div className={`font-bold text-sm mb-1 ${p.color}`}>{t2(p.name)}</div>
-                  <p className="text-text-secondary text-xs leading-relaxed">{t2(p.desc)}</p>
+                  <div className={`font-bold text-sm mb-1 ${p.color}`}>{tl(p.name, locale)}</div>
+                  <p className="text-text-secondary text-xs leading-relaxed">{tl(p.desc, locale)}</p>
                 </div>
               ))}
             </div>
@@ -563,7 +559,7 @@ export default function KaalNirnayaPage() {
             </svg>
           </div>
           <h2 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>
-            {!isDevanagariLocale(locale) ? 'The Cosmic Time Hierarchy' : isDevanagari ? 'ब्रह्मांडीय काल पदानुक्रम' : 'ब्रह्माण्डीय काल पदानुक्रमः'}
+            {tl({ en: 'The Cosmic Time Hierarchy', hi: 'ब्रह्मांडीय काल पदानुक्रम', sa: 'ब्रह्माण्डीय काल पदानुक्रमः', ta: 'அண்ட கால படிநிலை', te: 'విశ్వ కాల శ్రేణి', bn: 'মহাজাগতিক কাল শ্রেণিবিন্যাস', kn: 'ವಿಶ್ವ ಕಾಲ ಶ್ರೇಣಿ', gu: 'બ્રહ્માંડીય કાળ ક્રમ' } as LocaleText, locale)}
           </h2>
           <p className="text-text-secondary text-sm max-w-2xl mx-auto">
             {locale === 'en'
@@ -688,30 +684,30 @@ export default function KaalNirnayaPage() {
                   {/* Level badge + vertical dot */}
                   <div className="flex items-center sm:flex-col sm:items-center gap-3 sm:gap-1 flex-shrink-0 sm:w-16">
                     <div className={`w-3 h-3 rounded-full ${tier.dotColor}`} />
-                    <span className="text-text-secondary/65 text-xs font-mono uppercase">{!isDevanagariLocale(locale) ? `Level ${tier.level}` : `स्तर ${tier.level}`}</span>
+                    <span className="text-text-secondary/65 text-xs font-mono uppercase">{tl({ en: `Level ${tier.level}`, hi: `स्तर ${tier.level}` } as LocaleText, locale)}</span>
                   </div>
 
                   <div className="flex-1 min-w-0">
                     {/* Title row */}
                     <div className="flex flex-wrap items-baseline gap-2 mb-1">
-                      <h4 className="text-gold-light font-bold text-lg" style={headingFont}>{t2(tier.name)}</h4>
+                      <h4 className="text-gold-light font-bold text-lg" style={headingFont}>{tl(tier.name, locale)}</h4>
                       <span className="text-gold-dark/50 text-sm" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{tier.sanskrit}</span>
                     </div>
 
                     {/* Value */}
                     <div className="flex items-baseline gap-2 mb-3">
                       <span className="text-gold-light text-2xl sm:text-3xl font-black font-mono">{tier.value}</span>
-                      <span className="text-text-secondary text-sm">{t2(tier.unit)}</span>
+                      <span className="text-text-secondary text-sm">{tl(tier.unit, locale)}</span>
                     </div>
 
                     {/* Formula */}
                     <div className="mb-3 p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/10">
-                      <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{!isDevanagariLocale(locale) ? 'Formula' : 'सूत्र'}: </span>
-                      <span className="text-gold-light/70 font-mono text-xs">{t2(tier.formula)}</span>
+                      <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{tl({ en: 'Formula', hi: 'सूत्र', ta: 'சூத்திரம்', te: 'సూత్రం', bn: 'সূত্র', kn: 'ಸೂತ್ರ', gu: 'સૂત્ર' } as LocaleText, locale)}: </span>
+                      <span className="text-gold-light/70 font-mono text-xs">{tl(tier.formula, locale)}</span>
                     </div>
 
                     {/* Description */}
-                    <p className="text-text-secondary text-sm leading-relaxed">{t2(tier.desc)}</p>
+                    <p className="text-text-secondary text-sm leading-relaxed">{tl(tier.desc, locale)}</p>
                   </div>
                 </div>
               </div>
@@ -745,7 +741,7 @@ export default function KaalNirnayaPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-6">
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6">
             <h3 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
-              {!isDevanagariLocale(locale) ? 'What is Precession?' : 'अग्रगमन क्या है?'}
+              {tl({ en: 'What is Precession?', hi: 'अग्रगमन क्या है?', ta: 'புரசேஷன் என்றால் என்ன?', te: 'ప్రిసెషన్ అంటే ఏమిటి?', bn: 'প্রিসেশন কী?', kn: 'ಪ್ರಿಸೆಶನ್ ಎಂದರೇನು?', gu: 'પ્રિસેશન શું છે?' } as LocaleText, locale)}
             </h3>
             <p className="text-text-secondary text-sm leading-relaxed mb-4">
               {locale === 'en'
@@ -755,11 +751,11 @@ export default function KaalNirnayaPage() {
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4">
               <div className="grid grid-cols-2 gap-3 text-center">
                 <div>
-                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{!isDevanagariLocale(locale) ? 'Rate' : 'दर'}</div>
+                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{tl({ en: 'Rate', hi: 'दर', ta: 'வீதம்', te: 'రేటు', bn: 'হার', kn: 'ದರ', gu: 'દર' } as LocaleText, locale)}</div>
                   <div className="text-gold-light font-bold text-lg font-mono">50.3″/yr</div>
                 </div>
                 <div>
-                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{!isDevanagariLocale(locale) ? 'Full Cycle' : 'पूर्ण चक्र'}</div>
+                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{tl({ en: 'Full Cycle', hi: 'पूर्ण चक्र', ta: 'முழு சுழற்சி', te: 'పూర్తి చక్రం', bn: 'পূর্ণ চক্র', kn: 'ಪೂರ್ಣ ಚಕ್ರ', gu: 'પૂર્ણ ચક્ર' } as LocaleText, locale)}</div>
                   <div className="text-gold-light font-bold text-lg font-mono">~25,772 yrs</div>
                 </div>
               </div>
@@ -768,20 +764,20 @@ export default function KaalNirnayaPage() {
 
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6">
             <h3 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
-              {!isDevanagariLocale(locale) ? 'Ayanamsha Systems' : 'अयनांश प्रणालियाँ'}
+              {tl({ en: 'Ayanamsha Systems', hi: 'अयनांश प्रणालियाँ', ta: 'அயனாம்ச முறைகள்', te: 'అయనాంశ వ్యవస్థలు', bn: 'অয়নাংশ পদ্ধতি', kn: 'ಅಯನಾಂಶ ವ್ಯವಸ್ಥೆಗಳು', gu: 'અયનાંશ પ્રણાલીઓ' } as LocaleText, locale)}
             </h3>
             <div className="space-y-3">
               {[
-                { name: 'Lahiri (Chitrapaksha)', value: '~24.12°', official: true, desc: !isDevanagariLocale(locale) ? 'Official Govt of India. Most widely used in India.' : 'भारत सरकार की आधिकारिक। भारत में सर्वाधिक प्रयुक्त।' },
-                { name: 'Raman', value: '~23.04°', official: false, desc: !isDevanagariLocale(locale) ? 'Used by B.V. Raman school.' : 'बी.वी. रमण परंपरा में प्रयुक्त।' },
-                { name: 'Krishnamurti (KP)', value: '~23.86°', official: false, desc: !isDevanagariLocale(locale) ? 'Used in KP System (Placidus houses).' : 'KP प्रणाली में प्रयुक्त।' },
-                { name: 'Fagan-Bradley', value: '~24.74°', official: false, desc: !isDevanagariLocale(locale) ? 'Western sidereal astrology.' : 'पश्चिमी सायन ज्योतिष।' },
+                { name: 'Lahiri (Chitrapaksha)', value: '~24.12°', official: true, desc: tl({ en: 'Official Govt of India. Most widely used in India.', hi: 'भारत सरकार की आधिकारिक। भारत में सर्वाधिक प्रयुक्त।' } as LocaleText, locale) },
+                { name: 'Raman', value: '~23.04°', official: false, desc: tl({ en: 'Used by B.V. Raman school.', hi: 'बी.वी. रमण परंपरा में प्रयुक्त।' } as LocaleText, locale) },
+                { name: 'Krishnamurti (KP)', value: '~23.86°', official: false, desc: tl({ en: 'Used in KP System (Placidus houses).', hi: 'KP प्रणाली में प्रयुक्त।' } as LocaleText, locale) },
+                { name: 'Fagan-Bradley', value: '~24.74°', official: false, desc: tl({ en: 'Western sidereal astrology.', hi: 'पश्चिमी सायन ज्योतिष।' } as LocaleText, locale) },
               ].map((a) => (
                 <div key={a.name} className={`rounded-lg p-3 border ${a.official ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10'}`}>
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-2">
                       <span className="text-text-primary font-semibold text-sm">{a.name}</span>
-                      {a.official && <span className="px-1.5 py-0.5 text-xs bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">{!isDevanagariLocale(locale) ? 'Official' : 'आधिकारिक'}</span>}
+                      {a.official && <span className="px-1.5 py-0.5 text-xs bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">{tl({ en: 'Official', hi: 'आधिकारिक', ta: 'அதிகாரப்பூர்வ', te: 'అధికారిక', bn: 'আনুষ্ঠানিক', kn: 'ಅಧಿಕೃತ', gu: 'સત્તાવાર' } as LocaleText, locale)}</span>}
                     </div>
                     <span className="font-mono text-gold-light text-sm font-bold">{a.value}</span>
                   </div>
@@ -796,7 +792,7 @@ export default function KaalNirnayaPage() {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
           className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6 border-2 border-gold-primary/30 bg-gradient-to-r from-gold-primary/5 to-transparent text-center">
           <div className="text-gold-dark text-xs uppercase tracking-[0.3em] font-bold mb-2">
-            {!isDevanagariLocale(locale) ? 'Current Lahiri Ayanamsha (2026 CE)' : 'वर्तमान लाहिरी अयनांश (2026 CE)'}
+            {tl({ en: 'Current Lahiri Ayanamsha (2026 CE)', hi: 'वर्तमान लाहिरी अयनांश (2026 CE)', ta: 'தற்போதைய லாஹிரி அயனாம்சம் (2026 CE)', te: 'ప్రస్తుత లాహిరి అయనాంశం (2026 CE)', bn: 'বর্তমান লাহিরি অয়নাংশ (2026 CE)', kn: 'ಪ್ರಸ್ತುತ ಲಾಹಿರಿ ಅಯನಾಂಶ (2026 CE)', gu: 'વર્તમાન લાહિરી અયનાંશ (2026 CE)' } as LocaleText, locale)}
           </div>
           <div className="text-gold-light text-5xl font-bold font-mono">
             {loadingKaal ? <Loader2 className="w-10 h-10 animate-spin inline text-gold-primary" /> : (kaalData?.ayanamsha ? `${kaalData.ayanamsha.toFixed(4)}°` : '24.1213°')}
@@ -830,7 +826,7 @@ export default function KaalNirnayaPage() {
                 <div className="flex-shrink-0"><limb.icon size={48} /></div>
                 <div>
                   <div className={`text-xs uppercase tracking-[0.2em] font-bold mb-0.5 ${limb.color}`}>
-                    {!isDevanagariLocale(locale) ? `Anga ${limb.number}` : `अंग ${limb.number}`}
+                    {tl({ en: `Anga ${limb.number}`, hi: `अंग ${limb.number}` } as LocaleText, locale)}
                   </div>
                   <div className="text-gold-light font-bold text-xl" style={headingFont}>{tl(limb.name, locale)}</div>
                 </div>
@@ -838,7 +834,7 @@ export default function KaalNirnayaPage() {
               <p className="text-text-secondary text-sm leading-relaxed mb-4">{tl(limb.desc, locale)}</p>
               <div className="rounded-lg p-3 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/35 to-[#0a0e27] border border-gold-primary/12">
                 <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">
-                  {!isDevanagariLocale(locale) ? 'Formula' : 'सूत्र'}
+                  {tl({ en: 'Formula', hi: 'सूत्र', ta: 'சூத்திரம்', te: 'సూత్రం', bn: 'সূত্র', kn: 'ಸೂತ್ರ', gu: 'સૂત્ર' } as LocaleText, locale)}
                 </div>
                 <div className="text-text-primary text-xs font-mono">{tl(limb.formula, locale)}</div>
               </div>
@@ -881,7 +877,7 @@ export default function KaalNirnayaPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-6">
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6">
             <h3 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
-              {!isDevanagariLocale(locale) ? '30 Muhurtas in a Day' : 'दिन में 30 मुहूर्त'}
+              {tl({ en: '30 Muhurtas in a Day', hi: 'दिन में 30 मुहूर्त', ta: 'ஒரு நாளில் 30 முகூர்த்தங்கள்', te: 'ఒక రోజులో 30 ముహూర్తాలు', bn: 'এক দিনে 30 মুহূর্ত', kn: 'ಒಂದು ದಿನದಲ್ಲಿ 30 ಮುಹೂರ್ತ', gu: 'એક દિવસમાં 30 મુહૂર્ત' } as LocaleText, locale)}
             </h3>
             <p className="text-text-secondary text-sm leading-relaxed mb-4">
               {locale === 'en'
@@ -890,9 +886,9 @@ export default function KaalNirnayaPage() {
             </p>
             <div className="grid grid-cols-3 gap-3 text-center">
               {[
-                { label: !isDevanagariLocale(locale) ? 'Total Muhurtas' : 'कुल मुहूर्त', value: '30' },
-                { label: !isDevanagariLocale(locale) ? 'Day Muhurtas' : 'दिवा मुहूर्त', value: '15' },
-                { label: !isDevanagariLocale(locale) ? 'Duration each' : 'प्रत्येक की अवधि', value: '~48m' },
+                { label: tl({ en: 'Total Muhurtas', hi: 'कुल मुहूर्त' } as LocaleText, locale), value: '30' },
+                { label: tl({ en: 'Day Muhurtas', hi: 'दिवा मुहूर्त' } as LocaleText, locale), value: '15' },
+                { label: tl({ en: 'Duration each', hi: 'प्रत्येक की अवधि' } as LocaleText, locale), value: '~48m' },
               ].map(item => (
                 <div key={item.label} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3">
                   <div className="text-gold-light font-bold text-2xl font-mono">{item.value}</div>
@@ -904,33 +900,33 @@ export default function KaalNirnayaPage() {
 
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6">
             <h3 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
-              {!isDevanagariLocale(locale) ? 'Key Auspicious Muhurtas' : 'प्रमुख शुभ मुहूर्त'}
+              {tl({ en: 'Key Auspicious Muhurtas', hi: 'प्रमुख शुभ मुहूर्त', ta: 'முக்கிய சுப முகூர்த்தங்கள்', te: 'ప్రధాన శుభ ముహూర్తాలు', bn: 'প্রধান শুভ মুহূর্ত', kn: 'ಪ್ರಮುಖ ಶುಭ ಮುಹೂರ್ತ', gu: 'મુખ્ય શુભ મુહૂર્ત' } as LocaleText, locale)}
             </h3>
             <div className="space-y-3">
               {[
                 {
-                  name: !isDevanagariLocale(locale) ? 'Brahma Muhurta' : 'ब्राह्म मुहूर्त',
-                  time: !isDevanagariLocale(locale) ? '~1h 36m before sunrise' : 'सूर्योदय से ~1:36 पहले',
+                  name: tl({ en: 'Brahma Muhurta', hi: 'ब्राह्म मुहूर्त', ta: 'பிரம்ம முகூர்த்தம்' } as LocaleText, locale),
+                  time: tl({ en: '~1h 36m before sunrise', hi: 'सूर्योदय से ~1:36 पहले' } as LocaleText, locale),
                   color: 'text-indigo-400',
-                  desc: !isDevanagariLocale(locale) ? 'Best for spiritual practice, study, meditation' : 'अध्यात्म, अध्ययन, ध्यान के लिए श्रेष्ठ',
+                  desc: tl({ en: 'Best for spiritual practice, study, meditation', hi: 'अध्यात्म, अध्ययन, ध्यान के लिए श्रेष्ठ' } as LocaleText, locale),
                 },
                 {
-                  name: !isDevanagariLocale(locale) ? 'Abhijit Muhurta' : 'अभिजित् मुहूर्त',
-                  time: !isDevanagariLocale(locale) ? '~12 min either side of local noon' : 'स्थानीय दोपहर के ~12 मिनट पूर्व/बाद',
+                  name: tl({ en: 'Abhijit Muhurta', hi: 'अभिजित् मुहूर्त', ta: 'அபிஜித் முகூர்த்தம்' } as LocaleText, locale),
+                  time: tl({ en: '~12 min either side of local noon', hi: 'स्थानीय दोपहर के ~12 मिनट पूर्व/बाद' } as LocaleText, locale),
                   color: 'text-gold-primary',
-                  desc: !isDevanagariLocale(locale) ? 'Most auspicious of the day — all activities' : 'दिन का सर्वश्रेष्ठ — सभी कार्यों के लिए',
+                  desc: tl({ en: 'Most auspicious of the day — all activities', hi: 'दिन का सर्वश्रेष्ठ — सभी कार्यों के लिए' } as LocaleText, locale),
                 },
                 {
-                  name: !isDevanagariLocale(locale) ? 'Vijaya Muhurta' : 'विजय मुहूर्त',
-                  time: !isDevanagariLocale(locale) ? '10th day muhurta' : '10वाँ दिवा मुहूर्त',
+                  name: tl({ en: 'Vijaya Muhurta', hi: 'विजय मुहूर्त', ta: 'விஜய முகூர்த்தம்' } as LocaleText, locale),
+                  time: tl({ en: '10th day muhurta', hi: '10वाँ दिवा मुहूर्त' } as LocaleText, locale),
                   color: 'text-amber-400',
-                  desc: !isDevanagariLocale(locale) ? 'Victory in competitions, military, legal' : 'प्रतियोगिता, सैन्य, कानूनी मामलों में विजय',
+                  desc: tl({ en: 'Victory in competitions, military, legal', hi: 'प्रतियोगिता, सैन्य, कानूनी मामलों में विजय' } as LocaleText, locale),
                 },
                 {
-                  name: !isDevanagariLocale(locale) ? 'Amrit Kalam' : 'अमृत काल',
-                  time: !isDevanagariLocale(locale) ? 'Moon\'s most auspicious window' : 'चंद्र का सर्वोत्तम काल',
+                  name: tl({ en: 'Amrit Kalam', hi: 'अमृत काल', ta: 'அமிர்த காலம்' } as LocaleText, locale),
+                  time: tl({ en: "Moon's most auspicious window", hi: 'चंद्र का सर्वोत्तम काल' } as LocaleText, locale),
                   color: 'text-emerald-400',
-                  desc: !isDevanagariLocale(locale) ? 'Lunar nectar period — excellent for all' : 'चंद्र अमृत काल — सभी कार्यों के लिए उत्तम',
+                  desc: tl({ en: 'Lunar nectar period — excellent for all', hi: 'चंद्र अमृत काल — सभी कार्यों के लिए उत्तम' } as LocaleText, locale),
                 },
               ].map(m => (
                 <div key={m.name} className="flex items-start gap-3">
@@ -952,7 +948,7 @@ export default function KaalNirnayaPage() {
           <Link href="/panchang"
             className="inline-flex items-center gap-2 px-6 py-3 bg-gold-primary/20 border border-gold-primary/40 rounded-xl text-gold-light font-bold hover:bg-gold-primary/30 transition-all">
             <MuhurtaIcon size={20} />
-            {!isDevanagariLocale(locale) ? 'See Today\'s Muhurtas' : 'आज के मुहूर्त देखें'}
+            {tl({ en: "See Today's Muhurtas", hi: 'आज के मुहूर्त देखें', ta: 'இன்றைய முகூர்த்தங்களைக் காண்க', te: 'నేటి ముహూర్తాలు చూడండి', bn: 'আজকের মুহূর্ত দেখুন', kn: 'ಇಂದಿನ ಮುಹೂರ್ತ ನೋಡಿ', gu: 'આજના મુહૂર્ત જુઓ' } as LocaleText, locale)}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -974,7 +970,7 @@ export default function KaalNirnayaPage() {
         {loadingKaal ? (
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-12 text-center">
             <Loader2 className="w-10 h-10 animate-spin text-gold-primary mx-auto mb-3" />
-            <div className="text-text-secondary text-sm">{!isDevanagariLocale(locale) ? 'Calculating astronomical data...' : 'खगोलशास्त्रीय डेटा की गणना हो रही है...'}</div>
+            <div className="text-text-secondary text-sm">{tl({ en: 'Calculating astronomical data...', hi: 'खगोलशास्त्रीय डेटा की गणना हो रही है...', ta: 'வானியல் தரவு கணக்கிடப்படுகிறது...', te: 'ఖగోళ డేటా లెక్కించబడుతోంది...', bn: 'জ্যোতির্বিজ্ঞান তথ্য গণনা করা হচ্ছে...', kn: 'ಖಗೋಳ ಡೇಟಾ ಲೆಕ್ಕಾಚಾರ ಮಾಡಲಾಗುತ್ತಿದೆ...', gu: 'ખગોળશાસ્ત્ર ડેટા ગણતરી થઈ રહી છે...' } as LocaleText, locale)}</div>
           </div>
         ) : (
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl overflow-hidden">
@@ -1031,7 +1027,7 @@ export default function KaalNirnayaPage() {
         <div className="text-center mt-6">
           <Link href="/panchang"
             className="inline-flex items-center gap-2 text-gold-primary hover:text-gold-light transition-colors text-sm font-medium">
-            {!isDevanagariLocale(locale) ? 'View Full Panchang' : 'पूर्ण पंचांग देखें'}
+            {tl({ en: 'View Full Panchang', hi: 'पूर्ण पंचांग देखें', ta: 'முழு பஞ்சாங்கம் காண்க', te: 'పూర్తి పంచాంగం చూడండి', bn: 'পূর্ণ পঞ্চাঙ্গ দেখুন', kn: 'ಪೂರ್ಣ ಪಂಚಾಂಗ ನೋಡಿ', gu: 'પૂર્ણ પંચાંગ જુઓ' } as LocaleText, locale)}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -1051,16 +1047,16 @@ export default function KaalNirnayaPage() {
               <thead>
                 <tr className="border-b border-gold-primary/20 bg-gold-primary/5">
                   <th className="text-left px-5 py-4 text-gold-primary text-xs uppercase tracking-wider font-bold">
-                    {!isDevanagariLocale(locale) ? 'Unit' : 'इकाई'}
+                    {tl({ en: 'Unit', hi: 'इकाई', ta: 'அலகு', te: 'యూనిట్', bn: 'একক', kn: 'ಘಟಕ', gu: 'એકમ' } as LocaleText, locale)}
                   </th>
                   <th className="text-left px-5 py-4 text-gold-primary text-xs uppercase tracking-wider font-bold">
-                    {!isDevanagariLocale(locale) ? 'Sanskrit' : 'संस्कृत'}
+                    {tl({ en: 'Sanskrit', hi: 'संस्कृत', ta: 'சமஸ்கிருதம்', te: 'సంస్కృతం', bn: 'সংস্কৃত', kn: 'ಸಂಸ್ಕೃತ', gu: 'સંસ્કૃત' } as LocaleText, locale)}
                   </th>
                   <th className="text-left px-5 py-4 text-gold-primary text-xs uppercase tracking-wider font-bold">
-                    {!isDevanagariLocale(locale) ? 'Composition' : 'संरचना'}
+                    {tl({ en: 'Composition', hi: 'संरचना', ta: 'கலவை', te: 'కూర్పు', bn: 'গঠন', kn: 'ರಚನೆ', gu: 'રચના' } as LocaleText, locale)}
                   </th>
                   <th className="text-left px-5 py-4 text-gold-primary text-xs uppercase tracking-wider font-bold">
-                    {!isDevanagariLocale(locale) ? 'Modern Equivalent' : 'आधुनिक समतुल्य'}
+                    {tl({ en: 'Modern Equivalent', hi: 'आधुनिक समतुल्य', ta: 'நவீன சமமான', te: 'ఆధునిక సమానం', bn: 'আধুনিক সমতুল্য', kn: 'ಆಧುನಿಕ ಸಮಾನ', gu: 'આધુનિક સમકક્ષ' } as LocaleText, locale)}
                   </th>
                 </tr>
               </thead>

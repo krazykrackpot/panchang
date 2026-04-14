@@ -36,6 +36,7 @@ import type { Locale, PanchangData , LocaleText} from '@/types/panchang';
 import type { PersonalizedDay, UserSnapshot, TransitAlert } from '@/lib/personalization/types';
 import type { ChartData, DashaEntry } from '@/types/kundali';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { tl } from '@/lib/utils/trilingual';
 
 // ---------------------------------------------------------------------------
 // Labels
@@ -981,18 +982,18 @@ export default function DashboardPage() {
               {earnedBadges.length > 0 && (
                 <div className="mt-3 pt-3 border-t border-amber-500/10">
                   <p className="text-[10px] text-text-secondary uppercase tracking-widest font-bold mb-2">
-                    {!isDevanagariLocale(locale) ? 'Badges Earned' : isDevanagariLocale(locale) ? 'अर्जित बैज' : 'अर्जिताः बैजाः'}
+                    {tl({ en: 'Badges Earned', hi: 'अर्जित बैज', sa: 'अर्जिताः बैजाः', ta: 'பெற்ற பேட்ஜ்கள்', te: 'సాధించిన బ్యాడ్జ్‌లు', bn: 'অর্জিত ব্যাজ', kn: 'ಗಳಿಸಿದ ಬ್ಯಾಡ್ಜ್‌ಗಳು', gu: 'મેળવેલા બેજ', mai: 'अर्जित बैज', mr: 'मिळवलेले बॅज' }, locale)}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {earnedBadges.map(badge => (
                       <div
                         key={badge.id}
                         className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gold-primary/8 border border-gold-primary/15"
-                        title={isDevanagariLocale(locale) ? badge.description.hi : badge.description.en}
+                        title={tl(badge.description, locale)}
                       >
                         <span className="text-sm">{badge.icon}</span>
                         <span className="text-[11px] text-text-primary font-medium">
-                          {isDevanagariLocale(locale) ? badge.label.hi : badge.label.en}
+                          {tl(badge.label, locale)}
                         </span>
                       </div>
                     ))}
@@ -1001,7 +1002,7 @@ export default function DashboardPage() {
                     href="/learn#badges"
                     className="inline-block mt-2 text-[11px] text-gold-primary hover:text-gold-light transition-colors font-medium"
                   >
-                    {!isDevanagariLocale(locale) ? 'View All Badges \u2192' : isDevanagariLocale(locale) ? 'सभी बैज देखें \u2192' : 'सर्वान् बैजान् पश्यतु \u2192'}
+                    {tl({ en: 'View All Badges \u2192', hi: 'सभी बैज देखें \u2192', sa: 'सर्वान् बैजान् पश्यतु \u2192', ta: 'அனைத்து பேட்ஜ்களையும் காண \u2192', te: 'అన్ని బ్యాడ్జ్‌లు చూడండి \u2192', bn: 'সব ব্যাজ দেখুন \u2192', kn: 'ಎಲ್ಲಾ ಬ್ಯಾಡ್ಜ್‌ಗಳನ್ನು ನೋಡಿ \u2192', gu: 'બધા બેજ જુઓ \u2192', mai: 'सभी बैज देखू \u2192', mr: 'सर्व बॅज पहा \u2192' }, locale)}
                   </Link>
                 </div>
               )}
@@ -1311,12 +1312,12 @@ export default function DashboardPage() {
           <h3 className="text-lg font-semibold text-text-primary mb-4">{L.quickLinks}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { href: '/dashboard/chart' as const, label: !isDevanagariLocale(locale) ? 'Birth Chart' : 'जन्म कुण्डली', icon: Eye },
-              { href: '/dashboard/dashas' as const, label: !isDevanagariLocale(locale) ? 'Dasha Timeline' : 'दशा समयरेखा', icon: TrendingUp },
-              { href: '/dashboard/muhurta' as const, label: !isDevanagariLocale(locale) ? 'Personal Muhurta' : 'व्यक्तिगत मुहूर्त', icon: Clock },
+              { href: '/dashboard/chart' as const, label: tl({ en: 'Birth Chart', hi: 'जन्म कुण्डली', sa: 'जन्मकुण्डली', ta: 'ஜாதகம்', te: 'జన్మ చార్ట్', bn: 'জন্ম কুণ্ডলী', kn: 'ಜನ್ಮ ಜಾತಕ', gu: 'જન્મ કુંડળી', mai: 'जन्म कुण्डली', mr: 'जन्म कुंडली' }, locale), icon: Eye },
+              { href: '/dashboard/dashas' as const, label: tl({ en: 'Dasha Timeline', hi: 'दशा समयरेखा', sa: 'दशासमयरेखा', ta: 'தசா காலவரிசை', te: 'దశ కాలరేఖ', bn: 'দশা সময়রেখা', kn: 'ದಶೆ ಕಾಲರೇಖೆ', gu: 'દશા સમયરેખા', mai: 'दशा समयरेखा', mr: 'दशा कालरेखा' }, locale), icon: TrendingUp },
+              { href: '/dashboard/muhurta' as const, label: tl({ en: 'Personal Muhurta', hi: 'व्यक्तिगत मुहूर्त', sa: 'व्यक्तिगतमुहूर्तम्', ta: 'தனிப்பட்ட முகூர்த்தம்', te: 'వ్యక్తిగత ముహూర్తం', bn: 'ব্যক্তিগত মুহূর্ত', kn: 'ವೈಯಕ್ತಿಕ ಮುಹೂರ್ತ', gu: 'વ્યક્તિગત મુહૂર્ત', mai: 'व्यक्तिगत मुहूर्त', mr: 'वैयक्तिक मुहूर्त' }, locale), icon: Clock },
               { href: '/dashboard/transits' as const, label: L.transitAnalysis, icon: Globe },
               { href: '/dashboard/remedies' as const, label: L.yourRemedies, icon: Shield },
-              { href: '/dashboard/saved-charts' as const, label: !isDevanagariLocale(locale) ? 'Saved Charts' : 'सहेजे गए चार्ट', icon: Star },
+              { href: '/dashboard/saved-charts' as const, label: tl({ en: 'Saved Charts', hi: 'सहेजे गए चार्ट', sa: 'सुरक्षिताः कुण्डल्यः', ta: 'சேமிக்கப்பட்ட ஜாதகங்கள்', te: 'సేవ్ చేసిన జాతకాలు', bn: 'সংরক্ষিত জাতক', kn: 'ಉಳಿಸಿದ ಜಾತಕಗಳು', gu: 'સાચવેલા જાતક', mai: 'सहेजल चार्ट', mr: 'जतन केलेल्या कुंडल्या' }, locale), icon: Star },
               { href: '/sade-sati' as const, label: L.sadeSati, icon: TrendingUp },
               { href: '/settings' as const, label: L.settings, icon: Settings },
             ].map((link) => (

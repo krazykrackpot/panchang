@@ -7,6 +7,7 @@ import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 import GoldDivider from '@/components/ui/GoldDivider';
 import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { tl } from '@/lib/utils/trilingual';
 
 const LABELS = {
   en: {
@@ -183,10 +184,10 @@ function PujaCard({
               }`}
             >
               {category === 'festival'
-                ? !isDevanagariLocale(locale) ? 'Festival' : isDevanagari ? 'त्योहार' : 'उत्सवः'
+                ? tl({ en: 'Festival', hi: 'त्योहार', sa: 'उत्सवः', ta: 'பண்டிகை', te: 'పండుగ', bn: 'উৎসব', kn: 'ಹಬ್ಬ', gu: 'તહેવાર', mai: 'पर्व', mr: 'सण' }, locale)
                 : category === 'graha_shanti'
-                  ? !isDevanagariLocale(locale) ? 'Graha Shanti' : isDevanagari ? 'ग्रह शान्ति' : 'ग्रहशान्तिः'
-                  : !isDevanagariLocale(locale) ? 'Vrat' : isDevanagari ? 'व्रत' : 'व्रतम्'}
+                  ? tl({ en: 'Graha Shanti', hi: 'ग्रह शान्ति', sa: 'ग्रहशान्तिः', ta: 'கிரக சாந்தி', te: 'గ్రహ శాంతి', bn: 'গ্রহ শান্তি', kn: 'ಗ್ರಹ ಶಾಂತಿ', gu: 'ગ્રહ શાંતિ', mai: 'ग्रह शांति', mr: 'ग्रह शांती' }, locale)
+                  : tl({ en: 'Vrat', hi: 'व्रत', sa: 'व्रतम्', ta: 'விரதம்', te: 'వ్రతం', bn: 'ব্রত', kn: 'ವ್ರತ', gu: 'વ્રત', mai: 'व्रत', mr: 'व्रत' }, locale)}
             </span>
             <span className="text-gold-primary/60 text-xs group-hover:text-gold-primary transition-colors">
               {viewLabel} &rarr;

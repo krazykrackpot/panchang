@@ -20,6 +20,7 @@ import { useLocationStore } from '@/stores/location-store';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { tl } from '@/lib/utils/trilingual';
 
 type DisplayMode = 'devanagari' | 'iast' | 'both';
 
@@ -563,14 +564,14 @@ export default function PujaVidhiPage() {
             className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-gold-primary/80 to-gold-primary text-[#0a0e27] font-bold text-sm hover:from-gold-primary hover:to-gold-light transition-all shadow-lg shadow-gold-primary/20"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
-            {!isDevanagariLocale(locale) ? 'Start Full Puja' : isDevanagari ? 'पूर्ण पूजा आरम्भ करें' : 'पूर्णपूजाम् आरभतु'}
+            {tl({ en: 'Start Full Puja', hi: 'पूर्ण पूजा आरम्भ करें', sa: 'पूर्णपूजाम् आरभतु', ta: 'முழு பூஜை தொடங்கு', te: 'పూర్తి పూజ ప్రారంభించండి', bn: 'পূর্ণ পূজা শুরু করুন', kn: 'ಪೂರ್ಣ ಪೂಜೆ ಪ್ರಾರಂಭಿಸಿ', gu: 'પૂર્ણ પૂજા શરૂ કરો', mai: 'पूर्ण पूजा आरम्भ करू', mr: 'पूर्ण पूजा सुरू करा' }, locale)}
           </button>
           <button
             onClick={() => { setQuickMode(true); setPujaMode(true); }}
             className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-gold-primary/25 text-gold-primary font-bold text-sm hover:bg-gold-primary/10 transition-all"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
-            {!isDevanagariLocale(locale) ? 'Quick Mode (~15 min)' : isDevanagari ? 'संक्षिप्त (~15 मिनट)' : 'संक्षिप्तम् (~15 निमेषाः)'}
+            {tl({ en: 'Quick Mode (~15 min)', hi: 'संक्षिप्त (~15 मिनट)', sa: 'संक्षिप्तम् (~15 निमेषाः)', ta: 'விரைவு (~15 நிமிடம்)', te: 'త్వరిత (~15 నిమిషాలు)', bn: 'দ্রুত (~15 মিনিট)', kn: 'ತ್ವರಿತ (~15 ನಿಮಿಷ)', gu: 'ઝડપી (~15 મિનિટ)', mai: 'संक्षिप्त (~15 मिनट)', mr: 'संक्षिप्त (~15 मिनिटे)' }, locale)}
           </button>
         </motion.div>
 
@@ -581,14 +582,14 @@ export default function PujaVidhiPage() {
               href={`/${locale}/calendar/${puja.festivalSlug}`}
               className="inline-flex items-center gap-2 px-5 py-2 rounded-lg border border-gold-primary/15 text-gold-primary/80 text-sm hover:text-gold-light hover:bg-gold-primary/5 transition-colors"
             >
-              {!isDevanagariLocale(locale) ? 'View dates in Calendar' : isDevanagari ? 'कैलेंडर में तिथियाँ देखें' : 'पञ्चाङ्गे तिथीः पश्यतु'} &rarr;
+              {tl({ en: 'View dates in Calendar', hi: 'कैलेंडर में तिथियाँ देखें', sa: 'पञ्चाङ्गे तिथीः पश्यतु', ta: 'நாட்காட்டியில் தேதிகளைக் காண', te: 'క్యాలెండర్‌లో తేదీలు చూడండి', bn: 'ক্যালেন্ডারে তারিখ দেখুন', kn: 'ಕ್ಯಾಲೆಂಡರ್‌ನಲ್ಲಿ ದಿನಾಂಕಗಳನ್ನು ನೋಡಿ', gu: 'કેલેન્ડરમાં તારીખો જુઓ', mai: 'कैलेंडर मे तिथि देखू', mr: 'कॅलेंडरमध्ये तारखा पहा' }, locale)} &rarr;
             </Link>
           )}
           <Link
-            href={`/${locale}/sankalpa?puja=${encodeURIComponent(puja.deity[!isDevanagariLocale(locale) ? 'en' : 'hi'] || puja.deity.en)}`}
+            href={`/${locale}/sankalpa?puja=${encodeURIComponent(tl(puja.deity, locale))}`}
             className="inline-flex items-center gap-2 px-5 py-2 rounded-lg border border-amber-500/20 bg-amber-500/5 text-amber-400 text-sm hover:bg-amber-500/10 transition-colors"
           >
-            {!isDevanagariLocale(locale) ? 'Generate Sankalpa' : isDevanagari ? 'सङ्कल्प बनाएं' : 'सङ्कल्पं रचयतु'} &rarr;
+            {tl({ en: 'Generate Sankalpa', hi: 'सङ्कल्प बनाएं', sa: 'सङ्कल्पं रचयतु', ta: 'சங்கல்பம் உருவாக்கு', te: 'సంకల్పం రూపొందించండి', bn: 'সংকল্প তৈরি করুন', kn: 'ಸಂಕಲ್ಪ ರಚಿಸಿ', gu: 'સંકલ્પ બનાવો', mai: 'सङ्कल्प बनाउ', mr: 'संकल्प बनवा' }, locale)} &rarr;
           </Link>
         </motion.div>
 
@@ -620,7 +621,7 @@ export default function PujaVidhiPage() {
             />
           ) : (
             <p className="text-text-secondary/70 text-sm">
-              {!isDevanagariLocale(locale) ? 'Detecting your location...' : isDevanagari ? 'आपका स्थान खोज रहे हैं...' : 'भवतः स्थानं अन्विष्यते...'}
+              {tl({ en: 'Detecting your location...', hi: 'आपका स्थान खोज रहे हैं...', sa: 'भवतः स्थानं अन्विष्यते...', ta: 'உங்கள் இருப்பிடம் கண்டறியப்படுகிறது...', te: 'మీ స్థానం గుర్తించబడుతోంది...', bn: 'আপনার অবস্থান শনাক্ত হচ্ছে...', kn: 'ನಿಮ್ಮ ಸ್ಥಳ ಪತ್ತೆಯಾಗುತ್ತಿದೆ...', gu: 'તમારું સ્થાન શોધાઈ રહ્યું છે...', mai: 'अहाँक स्थान खोजल जा रहल अछि...', mr: 'तुमचे स्थान शोधले जात आहे...' }, locale)}
             </p>
           )}
         </SectionAccordion>

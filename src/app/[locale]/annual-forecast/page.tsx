@@ -19,6 +19,7 @@ import type { KundaliData, BirthData, ChartStyle } from '@/types/kundali';
 import type { VarshaphalData } from '@/types/varshaphal';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { tl } from '@/lib/utils/trilingual';
 
 // ─── Labels ────────────────────────────────────────────────────────
 const LABELS: Record<string, {
@@ -1065,7 +1066,7 @@ function KeyDatesSection({ forecast, locale, t, headingFont, bodyFont }: {
 
       {forecast.keyDates.length === 0 ? (
         <p className="text-text-secondary text-sm text-center py-4" style={bodyFont}>
-          {isDevanagari ? 'इस वर्ष कोई प्रमुख तिथि नहीं मिली।' : 'No significant key dates found for this year.'}
+          {tl({ en: 'No significant key dates found for this year.', hi: 'इस वर्ष कोई प्रमुख तिथि नहीं मिली।', sa: 'अस्मिन् वर्षे महत्त्वपूर्णा तिथिः न प्राप्ता।', ta: 'இந்த ஆண்டிற்கு குறிப்பிடத்தக்க முக்கிய தேதிகள் இல்லை.', te: 'ఈ సంవత్సరానికి ముఖ్యమైన తేదీలు కనుగొనబడలేదు.', bn: 'এই বছরের জন্য কোনো উল্লেখযোগ্য তারিখ পাওয়া যায়নি।', kn: 'ಈ ವರ್ಷಕ್ಕೆ ಮಹತ್ವದ ದಿನಾಂಕಗಳು ಕಂಡುಬಂದಿಲ್ಲ.', gu: 'આ વર્ષ માટે કોઈ મહત્ત્વપૂર્ણ તારીખો મળી નથી.', mai: 'एहि वर्ष कोनो प्रमुख तिथि नहि भेटल।', mr: 'या वर्षासाठी कोणत्याही महत्त्वाच्या तारखा आढळल्या नाहीत.' }, locale)}
         </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1122,7 +1123,7 @@ function RemediesSection({ forecast, locale, t, headingFont, bodyFont }: {
 
       {forecast.remedies.length === 0 ? (
         <p className="text-text-secondary text-sm text-center py-4" style={bodyFont}>
-          {isDevanagari ? 'कोई विशेष उपाय आवश्यक नहीं।' : 'No specific remedies indicated.'}
+          {tl({ en: 'No specific remedies indicated.', hi: 'कोई विशेष उपाय आवश्यक नहीं।', sa: 'कोऽपि विशेषोपायः न आवश्यकः।', ta: 'குறிப்பிட்ட பரிகாரங்கள் தேவையில்லை.', te: 'నిర్దిష్ట పరిహారాలు అవసరం లేదు.', bn: 'কোনো নির্দিষ্ট প্রতিকার নির্দেশিত নেই।', kn: 'ನಿರ್ದಿಷ್ಟ ಪರಿಹಾರಗಳು ಅಗತ್ಯವಿಲ್ಲ.', gu: 'કોઈ ચોક્કસ ઉપાયો જરૂરી નથી.', mai: 'कोनो विशेष उपाय आवश्यक नहि।', mr: 'कोणतेही विशिष्ट उपाय आवश्यक नाहीत.' }, locale)}
         </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">

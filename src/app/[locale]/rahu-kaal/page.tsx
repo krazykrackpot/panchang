@@ -13,6 +13,7 @@ import { getDefaultCityForLocale } from '@/lib/constants/rashi-slugs';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { tl } from '@/lib/utils/trilingual';
 
 // ─── City selector list ────────────────────────────────────────
 const CITY_SLUGS = ['delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad', 'pune', 'ahmedabad', 'jaipur', 'varanasi'] as const;
@@ -127,7 +128,8 @@ export default function RahuKaalPage() {
   // Date formatting
   const dateStr = useMemo(() => {
     const d = new Date(year, month - 1, day);
-    const loc = isDevanagariLocale(locale) ? 'hi-IN' : 'en-IN';
+    const LOCALE_MAP: Record<string, string> = { en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN', ta: 'ta-IN', te: 'te-IN', bn: 'bn-IN', kn: 'kn-IN', gu: 'gu-IN', mai: 'hi-IN', mr: 'mr-IN' };
+    const loc = LOCALE_MAP[locale] || 'en-IN';
     return d.toLocaleDateString(loc, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
   }, [year, month, day, locale]);
 
@@ -212,7 +214,7 @@ export default function RahuKaalPage() {
           <p className="text-text-secondary text-lg">{dateStr}</p>
           <p className="text-text-secondary flex items-center gap-1.5 mt-1">
             <MapPin size={14} className="text-gold-primary" />
-            {selectedCity.name[isDevanagariLocale(locale) ? 'hi' : 'en'] || selectedCity.name.en}
+            {tl(selectedCity.name, locale)}
           </p>
         </motion.div>
 
@@ -233,7 +235,7 @@ export default function RahuKaalPage() {
                   : 'bg-bg-secondary border border-white/10 text-text-secondary hover:border-gold-primary/40 hover:text-text-primary'
               }`}
             >
-              {city.name[isDevanagariLocale(locale) ? 'hi' : 'en'] || city.name.en}
+              {tl(city.name, locale)}
             </button>
           ))}
         </motion.div>

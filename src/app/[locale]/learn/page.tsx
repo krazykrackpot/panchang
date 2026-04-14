@@ -140,7 +140,7 @@ export default function LearnPage() {
           <div className="flex items-center gap-2 mb-4">
             <BookOpen className="w-5 h-5 text-gold-primary" />
             <span className="text-gold-primary text-xs uppercase tracking-widest font-bold">
-              {tl({ en: 'The Complete Jyotish Course', hi: 'सम्पूर्ण ज्योतिष पाठ्यक्रम', sa: 'सम्पूर्णज्योतिषपाठ्यक्रमम्' }, locale)}
+              {t('completeCourse')}
             </span>
           </div>
 
@@ -151,10 +151,10 @@ export default function LearnPage() {
 
           <div className="flex flex-wrap gap-6 mb-6">
             {[
-              { val: STATS.modules, label: tl({ en: 'Modules', hi: 'मॉड्यूल', sa: 'विभागाः', ta: 'பகுதிகள்', te: 'మాడ్యూళ్ళు', bn: 'মডিউল', kn: 'ಮಾಡ್ಯೂಲ್‌ಗಳು', gu: 'મોડ્યુલ', mai: 'मॉड्यूल', mr: 'विभाग' }, locale), icon: BookOpen },
-              { val: STATS.references, label: tl({ en: 'References', hi: 'संदर्भ', sa: 'सन्दर्भाः', ta: 'குறிப்புகள்', te: 'సూచనలు', bn: 'রেফারেন্স', kn: 'ಉಲ್ಲೇಖಗಳು', gu: 'સંદર્ભ', mai: 'संदर्भ', mr: 'संदर्भ' }, locale), icon: Star },
-              { val: STATS.labs, label: tl({ en: 'Labs', hi: 'प्रयोगशाला', sa: 'प्रयोगशालाः', ta: 'ஆய்வகங்கள்', te: 'ప్రయోగశాలలు', bn: 'ল্যাবস', kn: 'ಪ್ರಯೋಗಾಲಯಗಳು', gu: 'લેબ્સ', mai: 'प्रयोगशाला', mr: 'प्रयोगशाळा' }, locale), icon: CheckCircle },
-              { val: STATS.tracks, label: tl({ en: 'Tracks', hi: 'ट्रैक', sa: 'मार्गाः', ta: 'பாதைகள்', te: 'ట్రాక్‌లు', bn: 'ট্র্যাক', kn: 'ಟ್ರ್ಯಾಕ್‌ಗಳು', gu: 'ટ્રેક', mai: 'ट्रैक', mr: 'ट्रॅक' }, locale), icon: Clock },
+              { val: STATS.modules, label: t('modules'), icon: BookOpen },
+              { val: STATS.references, label: t('references'), icon: Star },
+              { val: STATS.labs, label: t('labs'), icon: CheckCircle },
+              { val: STATS.tracks, label: t('tracks'), icon: Clock },
             ].map(s => (
               <div key={s.label} className="flex items-center gap-2">
                 <s.icon className="w-4 h-4 text-gold-dark" />
@@ -213,7 +213,7 @@ export default function LearnPage() {
                   </div>
 
                   <div className="flex items-center gap-2 mt-4 text-gold-primary/70 group-hover:text-gold-primary transition-colors">
-                    <span className="text-sm font-medium">{tl({ en: 'Explore Track', hi: 'ट्रैक देखें', sa: 'मार्गं पश्यतु', ta: 'பாதையை ஆராயுங்கள்', te: 'ట్రాక్ చూడండి', bn: 'ট্র্যাক দেখুন', kn: 'ಟ್ರ್ಯಾಕ್ ನೋಡಿ', gu: 'ટ્રેક જુઓ', mai: 'ट्रैक देखू', mr: 'ट्रॅक पाहा' }, locale)}</span>
+                     <span className="text-sm font-medium">{t('exploreTrack')}</span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -262,12 +262,12 @@ export default function LearnPage() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-xs font-bold uppercase tracking-widest text-amber-500/70">
-                    {tl({ en: 'Free Resource', hi: 'निःशुल्क संसाधन', sa: 'निःशुल्कसाधनम्' }, locale)}
+                     {t('freeResource')}
                   </span>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/20 font-medium">28 texts</span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-amber-200 group-hover:text-amber-100 transition-colors mb-1" style={hf}>
-                  {tl({ en: 'Classical Jyotish Text Library', hi: 'शास्त्रीय ज्योतिष ग्रंथागार', sa: 'शास्त्रीयज्योतिषग्रंथागारम्' }, locale)}
+                   {t('classicalTextLibrary')}
                 </h3>
                 <p className="text-amber-200/55 text-sm leading-relaxed" style={bf}>
                   {locale === 'en'
@@ -279,7 +279,7 @@ export default function LearnPage() {
               </div>
               <div className="flex-shrink-0 flex items-center gap-2 text-amber-400/70 group-hover:text-amber-400 transition-colors">
                 <span className="text-sm font-semibold hidden sm:inline">
-                  {tl({ en: 'Browse Library', hi: 'ग्रंथागार देखें', sa: 'ग्रंथागारं पश्यतु' }, locale)}
+                   {t('browseLibrary')}
                 </span>
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </div>
@@ -305,14 +305,14 @@ export default function LearnPage() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-xs font-bold uppercase tracking-widest text-purple-400/70">
-                    {tl({ en: 'Web Stories', hi: 'वेब स्टोरीज़', sa: 'जालस्टोरीज़' }, locale)}
+                     {t('webStories')}
                   </span>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-300 border border-purple-500/20 font-medium">
-                    {tl({ en: '5 stories', hi: '5 स्टोरीज़', sa: '5 कथाः', ta: '5 கதைகள்', te: '5 కథలు', bn: '5 গল্প', kn: '5 ಕಥೆಗಳು', gu: '5 વાર્તાઓ', mai: '5 स्टोरीज़', mr: '5 कथा' }, locale)}
+                     {t('fiveStories')}
                   </span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-purple-200 group-hover:text-purple-100 transition-colors mb-1" style={hf}>
-                  {tl({ en: 'Indian Contributions — Swipeable Stories', hi: 'भारतीय योगदान — स्वाइप करें', sa: 'भारतीययोगदानम् — स्वाइप्' }, locale)}
+                   {t('indianContributionsStories')}
                 </h3>
                 <p className="text-purple-200/55 text-sm leading-relaxed" style={bf}>
                   {locale === 'en'
@@ -324,7 +324,7 @@ export default function LearnPage() {
               </div>
               <div className="flex-shrink-0 flex items-center gap-2 text-purple-400/70 group-hover:text-purple-400 transition-colors">
                 <span className="text-sm font-semibold hidden sm:inline">
-                  {tl({ en: 'Explore Stories', hi: 'स्टोरीज़ देखें', sa: 'स्टोरीज़ पश्यतु' }, locale)}
+                   {t('exploreStories')}
                 </span>
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </div>

@@ -370,5 +370,210 @@
     "mr": "जेव्हा तुमची आजी म्हणते \"साडेसाती ७.५ वर्षे,\" ती अप्रत्यक्षपणे सांगते की शनीला सूर्याभोवती प्रदक्षिणा करायला ३० वर्षे लागतात.",
     "gu": "જ્યારે તમારી દાદી કહે છે \"સાડા સાતી 7.5 વર્ષ,\" તે પરોક્ષ રીતે કહી રહ્યાં છે કે શનિને સૂર્યની પરિક્રમા કરવામાં 30 વર્ષ લાગે છે.",
     "mai": "जखन अहाँक दादी कहैत छथि \"साढ़े साती 7.5 वर्ष चलैत अछि,\" ओ अप्रत्यक्ष रूपसँ बतबैत छथि जे शनि कें सूर्य केर परिक्रमा मे 30 वर्ष लगैत अछि।"
+  },
+  "svgEcliptic": {
+    "en": "Ecliptic",
+    "hi": "क्रान्तिवृत्त",
+    "sa": "क्रान्तिवृत्तम्"
+  },
+  "svgMoonOrbit": {
+    "en": "Moon's orbit",
+    "hi": "चन्द्र कक्षा",
+    "sa": "चन्द्र कक्षा"
+  },
+  "svgRaAbbr": {
+    "en": "Ra",
+    "hi": "रा",
+    "sa": "रा"
+  },
+  "svgRahu": {
+    "en": "Rahu",
+    "hi": "राहु",
+    "sa": "राहुः"
+  },
+  "svgAscNode": {
+    "en": "Ascending Node",
+    "hi": "आरोही पात",
+    "sa": "आरोहीपातः"
+  },
+  "svgMoonUp": {
+    "en": "Moon ↗",
+    "hi": "चन्द्र ↗",
+    "sa": "चन्द्रः ↗"
+  },
+  "svgKeAbbr": {
+    "en": "Ke",
+    "hi": "के",
+    "sa": "के"
+  },
+  "svgKetu": {
+    "en": "Ketu",
+    "hi": "केतु",
+    "sa": "केतुः"
+  },
+  "svgDescNode": {
+    "en": "Descending Node",
+    "hi": "अवरोही पात",
+    "sa": "अवरोहीपातः"
+  },
+  "svgMoonDown": {
+    "en": "Moon ↘",
+    "hi": "चन्द्र ↘",
+    "sa": "चन्द्रः ↘"
+  },
+  "svgEarth": {
+    "en": "Earth",
+    "hi": "पृथ्वी",
+    "sa": "पृथ्वी"
+  },
+  "svgRahuKetuAxis": {
+    "en": "← Rahu-Ketu axis →",
+    "hi": "← राहु-केतु अक्ष →",
+    "sa": "← राहु-केतु-अक्षः →"
+  },
+  "svgMoon": {
+    "en": "Moon",
+    "hi": "चन्द्र",
+    "sa": "चन्द्रः"
+  },
+  "svgRahuDrift": {
+    "en": "Rahu & Ketu slowly drift backward through the zodiac",
+    "hi": "राहु-केतु धीरे-धीरे राशि चक्र में पीछे खिसकते हैं",
+    "sa": "राहुः केतुश्च राशिचक्रे मन्दगत्या वक्रं गच्छतः"
+  },
+  "svgFullLoop": {
+    "en": "One full loop = 18.6 years — this is why eclipses repeat on a similar schedule",
+    "hi": "एक पूर्ण चक्र = 18.6 वर्ष — यही सारोस ग्रहण चक्र का आधार है",
+    "sa": "एकं पूर्णचक्रम् = 18.6 वर्षाणि — एतेन कारणेन ग्रहणानि सदृशकालक्रमेण पुनरावर्तन्ते"
+  },
+  "svgSun": {
+    "en": "Sun",
+    "hi": "सूर्य",
+    "sa": "सूर्यः"
+  },
+  "svgSynodicTitle": {
+    "en": "Synodic Period: Earth Overtaking Saturn",
+    "hi": "सिनोडिक काल: पृथ्वी शनि को पछाड़ती है",
+    "sa": "सिनोडिककालः: पृथ्वी शनिं अतिक्रामति"
+  },
+  "svgOpposition1": {
+    "en": "Opposition 1",
+    "hi": "प्रतियुति 1",
+    "sa": "प्रतियुतिः 1"
+  },
+  "svgOpposition2": {
+    "en": "Opposition 2",
+    "hi": "प्रतियुति 2",
+    "sa": "प्रतियुतिः 2"
+  },
+  "svgSaturnAnnotation": {
+    "en": "378 days: Earth = 1.035 orbits | Saturn = 12.2° arc",
+    "hi": "378 दिनों में: पृथ्वी = 1.035 चक्कर | शनि = 12.2° चाप",
+    "sa": "378 दिनानि: पृथ्वी = 1.035 परिक्रमाः | शनिः = 12.2° चापम्"
+  },
+  "svgTotalSolar": {
+    "en": "Total Solar",
+    "hi": "कुल सूर्य",
+    "sa": "पूर्णसूर्यग्रहणम्"
+  },
+  "svgMoonSign": {
+    "en": "Sign",
+    "hi": "राशि",
+    "sa": "राशिः"
+  },
+  "svgSadeSati": {
+    "en": "Sade Sati = 7.5 yrs",
+    "hi": "साढ़े साती = 7.5 वर्ष",
+    "sa": "साढेसाती = 7.5 वर्षाणि"
+  },
+  "svgSaturn": {
+    "en": "Saturn",
+    "hi": "शनि",
+    "sa": "शनिः"
+  },
+  "svgFavorable42": {
+    "en": "5/12 years favorable = 42%",
+    "hi": "5/12 वर्ष अनुकूल = 42%",
+    "sa": "5/12 वर्षाणि अनुकूलानि = 42%"
+  },
+  "statSamvatsara": {
+    "en": "Samvatsara cycle",
+    "hi": "संवत्सर चक्र",
+    "sa": "संवत्सरचक्रम्"
+  },
+  "statYrs": {
+    "en": "yrs",
+    "hi": "वर्ष",
+    "sa": "वर्षाणि"
+  },
+  "statJupiterOrbits": {
+    "en": "Jupiter orbits",
+    "hi": "बृहस्पति कक्षाएँ",
+    "sa": "बृहस्पतेः परिक्रमाः"
+  },
+  "statSaturnOrbits": {
+    "en": "Saturn orbits",
+    "hi": "शनि कक्षाएँ",
+    "sa": "शनेः परिक्रमाः"
+  },
+  "statTotal": {
+    "en": "Total",
+    "hi": "कुल",
+    "sa": "योगः"
+  },
+  "statMoonDays": {
+    "en": "days (sidereal period)",
+    "hi": "दिन (नाक्षत्र काल)",
+    "sa": "दिनानि (नाक्षत्रकालः)"
+  },
+  "statMoonLabel": {
+    "en": "Moon",
+    "hi": "चन्द्रमा",
+    "sa": "चन्द्रः"
+  },
+  "statNakshatras": {
+    "en": "Nakshatras",
+    "hi": "नक्षत्र",
+    "sa": "नक्षत्राणि"
+  },
+  "statLunarStations": {
+    "en": "lunar stations",
+    "hi": "चन्द्र स्थान",
+    "sa": "चन्द्रस्थानानि"
+  },
+  "statDegreesEach": {
+    "en": "degrees each",
+    "hi": "अंश प्रत्येक",
+    "sa": "प्रत्येकम् अंशाः"
+  },
+  "statDegPerDay": {
+    "en": "deg/day",
+    "hi": "अंश/दिन",
+    "sa": "अंशः/दिनम्"
+  },
+  "statLunarMotion": {
+    "en": "lunar motion",
+    "hi": "चन्द्र गति",
+    "sa": "चन्द्रगतिः"
+  },
+  "statSarosCycle": {
+    "en": "Saros Cycle (yrs)",
+    "hi": "सारोस चक्र (वर्ष)",
+    "sa": "सारोसचक्रम् (वर्षाणि)"
+  },
+  "statRahuKetuPeriod": {
+    "en": "Rahu-Ketu Period (yrs)",
+    "hi": "राहु-केतु काल (वर्ष)",
+    "sa": "राहु-केतु-कालः (वर्षाणि)"
+  },
+  "statSynodicMonths": {
+    "en": "Synodic months",
+    "hi": "सिनोडिक मास",
+    "sa": "सिनोडिकमासाः"
+  },
+  "statDraconicMonths": {
+    "en": "Draconic months",
+    "hi": "ड्रैकोनिक मास",
+    "sa": "ड्रैकोनिकमासाः"
   }
 }

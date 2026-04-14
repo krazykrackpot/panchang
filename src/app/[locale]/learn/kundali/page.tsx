@@ -1,7 +1,6 @@
 'use client';
 
 
-import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/kundali.json';
@@ -100,16 +99,16 @@ export default function LearnKundaliPage() {
         <div className="mt-4 p-5 rounded-xl bg-gold-primary/5 border border-gold-primary/20">
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
-              <div className="text-gold-primary text-xs uppercase tracking-widest mb-1">{tl({ en: 'Date', hi: 'तिथि', sa: 'तिथिः', ta: 'தேதி', te: 'తేదీ', bn: 'তারিখ', kn: 'ದಿನಾಂಕ', gu: 'તારીખ', mai: 'तिथि', mr: 'तारीख' }, locale)}</div>
+              <div className="text-gold-primary text-xs uppercase tracking-widest mb-1">{t('dateLabel')}</div>
               <div className="text-gold-light font-bold text-lg">15 Aug 1995</div>
             </div>
             <div>
-              <div className="text-gold-primary text-xs uppercase tracking-widest mb-1">{tl({ en: 'Time', hi: 'समय', sa: 'कालः', ta: 'நேரம்', te: 'సమయం', bn: 'সময়', kn: 'ಸಮಯ', gu: 'સમય', mai: 'समय', mr: 'वेळ' }, locale)}</div>
+              <div className="text-gold-primary text-xs uppercase tracking-widest mb-1">{t('timeLabel')}</div>
               <div className="text-gold-light font-bold text-lg">10:30 AM IST</div>
             </div>
             <div>
-              <div className="text-gold-primary text-xs uppercase tracking-widest mb-1">{tl({ en: 'Place', hi: 'स्थान', sa: 'स्थानम्', ta: 'இடம்', te: 'స్థలం', bn: 'স্থান', kn: 'ಸ್ಥಳ', gu: 'સ્થળ', mai: 'स्थान', mr: 'ठिकाण' }, locale)}</div>
-              <div className="text-gold-light font-bold text-lg">{tl({ en: 'New Delhi', hi: 'नई दिल्ली', sa: 'नवदिल्ली', ta: 'புது தில்லி', te: 'న్యూ ఢిల్లీ', bn: 'নতুন দিল্লি', kn: 'ನವ ದೆಹಲಿ', gu: 'નવી દિલ્હી', mai: 'नई दिल्ली', mr: 'नवी दिल्ली' }, locale)}</div>
+              <div className="text-gold-primary text-xs uppercase tracking-widest mb-1">{t('placeLabel')}</div>
+              <div className="text-gold-light font-bold text-lg">{t('exampleCity')}</div>
             </div>
           </div>
           <div className="text-center mt-3 text-text-secondary/70 font-mono text-xs">
@@ -144,7 +143,7 @@ export default function LearnKundaliPage() {
       <LessonSection number={2} title={t('s2Title')}>
         <p>{t('s2Text')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-3">{tl({ en: 'For our example:', hi: 'हमारे उदाहरण के लिए:', sa: 'अस्माकम् उदाहरणाय:', ta: 'நமது உதாரணத்திற்கு:', te: 'మన ఉదాహరణకు:', bn: 'আমাদের উদাহরণের জন্য:', kn: 'ನಮ್ಮ ಉದಾಹರಣೆಗಾಗಿ:', gu: 'આપણા ઉદાહરણ માટે:', mai: 'हमर उदाहरणक लेल:', mr: 'आमच्या उदाहरणासाठी:' }, locale)}</p>
+          <p className="text-gold-light font-mono text-sm mb-3">{t('forOurExample')}</p>
           <div className="space-y-1">
             <p className="text-gold-light/80 font-mono text-xs">IST = UTC + 5:30</p>
             <p className="text-gold-light/80 font-mono text-xs">10:30 AM IST = 05:00 AM UT</p>
@@ -159,7 +158,7 @@ export default function LearnKundaliPage() {
       <LessonSection number={3} title={t('s3Title')}>
         <p>{t('s3Text')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-3">{tl({ en: 'For our example:', hi: 'हमारे उदाहरण के लिए:', sa: 'अस्माकम् उदाहरणाय:', ta: 'நமது உதாரணத்திற்கு:', te: 'మన ఉదాహరణకు:', bn: 'আমাদের উদাহরণের জন্য:', kn: 'ನಮ್ಮ ಉದಾಹರಣೆಗಾಗಿ:', gu: 'આપણા ઉદાહરણ માટે:', mai: 'हमर उदाहरणक लेल:', mr: 'आमच्या उदाहरणासाठी:' }, locale)}</p>
+          <p className="text-gold-light font-mono text-sm mb-3">{t('forOurExample')}</p>
           <div className="space-y-1">
             <p className="text-gold-light/80 font-mono text-xs">GST (Greenwich Sidereal Time) at 0h UT = 21h 33m</p>
             <p className="text-gold-light/80 font-mono text-xs">Correction for 05:00 UT = +5h 01m  <span className="text-gold-light/40">// sidereal day is 3m 56s shorter</span></p>
@@ -187,7 +186,7 @@ export default function LearnKundaliPage() {
       >
         <p>{t('s4Text')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-3">{tl({ en: 'For our example:', hi: 'हमारे उदाहरण के लिए:', sa: 'अस्माकम् उदाहरणाय:', ta: 'நமது உதாரணத்திற்கு:', te: 'మన ఉదాహరణకు:', bn: 'আমাদের উদাহরণের জন্য:', kn: 'ನಮ್ಮ ಉದಾಹರಣೆಗಾಗಿ:', gu: 'આપણા ઉદાહરણ માટે:', mai: 'हमर उदाहरणक लेल:', mr: 'आमच्या उदाहरणासाठी:' }, locale)}</p>
+          <p className="text-gold-light font-mono text-sm mb-3">{t('forOurExample')}</p>
           <div className="space-y-1">
             <p className="text-gold-light/80 font-mono text-xs">Lagna° = atan2(sin(LST), cos(LST)·cos(ε) - tan(φ)·sin(ε))</p>
             <p className="text-gold-light/80 font-mono text-xs">where ε = 23.44° (obliquity), φ = 28.61° (Delhi latitude)</p>
@@ -196,9 +195,7 @@ export default function LearnKundaliPage() {
             <p className="text-gold-light/80 font-mono text-xs font-bold text-gold-light">Sidereal Lagna ≈ 183.7° = <span className="text-emerald-400">Tula (Libra)</span> 3°42&apos;</p>
           </div>
           <p className="text-text-secondary/75 text-xs mt-3 italic">
-            {locale === 'en'
-              ? 'Tula (Libra) rising means Venus-ruled personality: diplomatic, artistic, relationship-oriented.'
-              : 'तुला लग्न अर्थात् शुक्र-शासित व्यक्तित्व: कूटनीतिक, कलात्मक, सम्बन्ध-उन्मुख।'}
+            {t('tulaRisingNote')}
           </p>
         </div>
       </LessonSection>
@@ -213,14 +210,12 @@ export default function LearnKundaliPage() {
             <p className="text-gold-light/80 font-mono text-xs mt-2">Sidereal position = Tropical position - 23.79°</p>
           </div>
           <p className="text-text-secondary/75 text-xs mt-3 italic">
-            {locale === 'en'
-              ? 'This is why your "Western sign" and "Vedic sign" usually differ by about one sign.'
-              : 'इसीलिए आपकी "पश्चिमी राशि" और "वैदिक राशि" प्रायः लगभग एक राशि भिन्न होती हैं।'}
+            {t('westerVsVedicNote')}
           </p>
         </div>
         <div className="mt-3 text-right">
           <Link href="/learn/calculations" className="text-gold-primary hover:text-gold-light text-xs transition-colors">
-            {tl({ en: 'See full mathematical derivation', hi: 'पूर्ण गणितीय व्युत्पत्ति देखें', sa: 'पूर्णं गाणितिकं व्युत्पादनं पश्यतु', ta: 'முழு கணித வருவாயைப் பாருங்கள்', te: 'పూర్తి గణిత ఉత్పత్తి చూడండి', bn: 'সম্পূর্ণ গাণিতিক ব্যুৎপত্তি দেখুন', kn: 'ಸಂಪೂರ್ಣ ಗಣಿತೀಯ ವ್ಯುತ್ಪತ್ತಿ ನೋಡಿ', gu: 'સંપૂર્ણ ગાણિતિક વ્યુત્પત્તિ જુઓ', mai: 'पूर्ण गणितीय व्युत्पत्ति देखू', mr: 'संपूर्ण गणितीय व्युत्पत्ती पाहा' }, locale)} →
+            {t('seeFullDerivation')} →
           </Link>
         </div>
       </LessonSection>
@@ -232,10 +227,10 @@ export default function LearnKundaliPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{tl({ en: 'Graha', hi: 'ग्रह', sa: 'ग्रहः', ta: 'கிரகம்', te: 'గ్రహము', bn: 'গ্রহ', kn: 'ಗ್ರಹ', gu: 'ગ્રહ', mai: 'ग्रह', mr: 'ग्रह' }, locale)}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{tl({ en: 'Sidereal°', hi: 'नाक्ष°', sa: 'नाक्षत्र°', ta: 'நక்ஷத்ர°', te: 'నాక్షత్ర°', bn: 'নাক্ষত্র°', kn: 'ನಾಕ್ಷತ್ರ°', gu: 'નાક્ષત્ર°', mai: 'नाक्षत्र°', mr: 'नाक्षत्र°' }, locale)}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{tl({ en: 'Rashi', hi: 'राशि', sa: 'राशिः', ta: 'ராசி', te: 'రాశి', bn: 'রাশি', kn: 'ರಾಶಿ', gu: 'રાશિ', mai: 'राशि', mr: 'राशी' }, locale)}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs hidden sm:table-cell">{tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्रम्', ta: 'நட்சத்திரம்', te: 'నక్షత్రము', bn: 'নক্ষত্র', kn: 'ನಕ್ಷತ್ರ', gu: 'નક્ષત્ર', mai: 'नक्षत्र', mr: 'नक्षत्र' }, locale)}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{t('thGraha')}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{t('thSidereal')}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{t('thRashi')}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs hidden sm:table-cell">{t('thNakshatra')}</th>
               </tr>
             </thead>
             <tbody>
@@ -252,7 +247,7 @@ export default function LearnKundaliPage() {
         </div>
         <div className="mt-3 text-right">
           <Link href="/learn/grahas" className="text-gold-primary hover:text-gold-light text-xs transition-colors">
-            {tl({ en: 'Learn about all 9 Grahas', hi: 'सभी 9 ग्रहों के बारे में जानें', sa: 'सर्वेषां नवानां ग्रहाणां विषये जानातु', ta: 'அனைத்து 9 கிரகங்களையும் பற்றி அறியுங்கள்', te: 'అన్ని 9 గ్రహముల గురించి తెలుసుకోండి', bn: 'সমস্ত 9 গ্রহ সম্পর্কে জানুন', kn: 'ಎಲ್ಲಾ 9 ಗ್ರಹಗಳ ಬಗ್ಗೆ ತಿಳಿಯಿರಿ', gu: 'બધા 9 ગ્રહો વિશે જાણો', mai: 'सभी 9 ग्रहक बारेमे जानू', mr: 'सर्व 9 ग्रहांबद्दल जाणून घ्या' }, locale)} →
+            {t('learnAllGrahas')} →
           </Link>
         </div>
       </LessonSection>
@@ -261,12 +256,10 @@ export default function LearnKundaliPage() {
       <LessonSection number={7} title={t('s7Title')}>
         <p>{t('s7Text')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-2">{tl({ en: 'Formula:', hi: 'सूत्र:', sa: 'सूत्रम्:', ta: 'சூத்திரம்:', te: 'సూత్రము:', bn: 'সূত্র:', kn: 'ಸೂತ್ರ:', gu: 'સૂત્ર:', mai: 'सूत्र:', mr: 'सूत्र:' }, locale)}</p>
+          <p className="text-gold-light font-mono text-sm mb-2">{t('houseFormula')}</p>
           <p className="text-gold-light/80 font-mono text-xs">House = (Planet_Rashi_Number - Lagna_Rashi_Number + 12) % 12 + 1</p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">
-            {locale === 'en'
-              ? 'Example: Sun in Cancer (4), Lagna in Libra (7) → (4 - 7 + 12) % 12 + 1 = 10th house'
-              : 'उदाहरण: सूर्य कर्क (4) में, लग्न तुला (7) → (4 - 7 + 12) % 12 + 1 = 10वाँ भाव'}
+            {t('houseFormulaExample')}
           </p>
         </div>
 
@@ -289,7 +282,7 @@ export default function LearnKundaliPage() {
         </div>
         <div className="mt-3 text-right">
           <Link href="/learn/bhavas" className="text-gold-primary hover:text-gold-light text-xs transition-colors">
-            {tl({ en: 'Deep dive into all 12 houses', hi: 'सभी 12 भावों का विस्तृत अध्ययन', sa: 'सर्वेषां द्वादशानां भावानां गहनम् अध्ययनम्', ta: 'அனைத்து 12 இல்லங்களிலும் ஆழமாக ஆராயுங்கள்', te: 'అన్ని 12 భావముల లోతైన అధ్యయనం', bn: 'সমস্ত 12 ভাব সম্পর্কে গভীর আলোচনা', kn: 'ಎಲ್ಲಾ 12 ಭಾವಗಳ ಆಳವಾದ ಅಧ್ಯಯನ', gu: 'બધા 12 ભાવોમાં ઊંડો અભ્યાસ', mai: 'सभी 12 भावक गहन अध्ययन करू', mr: 'सर्व 12 भावांचा सखोल अभ्यास' }, locale)} →
+            {t('deepDiveHouses')} →
           </Link>
         </div>
       </LessonSection>
@@ -303,13 +296,13 @@ export default function LearnKundaliPage() {
       >
         <p>{t('s8Text')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-2">{tl({ en: 'Reading the chart:', hi: 'कुण्डली पढ़ना:', sa: 'कुण्डलीपठनम्:', ta: 'ஜாதகம் வாசிக்கவும்:', te: 'కుండలి చదవడం:', bn: 'কুণ্ডলী পাঠ করা:', kn: 'ಕುಂಡಲಿ ಓದುವುದು:', gu: 'કુંડળી વાંચવી:', mai: 'कुण्डली पढ़ब:', mr: 'कुंडली वाचणे:' }, locale)}</p>
+          <p className="text-gold-light font-mono text-sm mb-2">{t('readingTheChart')}</p>
           <div className="space-y-1 text-gold-light/70 font-mono text-xs">
-            <p>{tl({ en: '- Top diamond (House 1) = Lagna → Tula (Libra) with Rahu', hi: '- शीर्ष हीरा (भाव 1) = लग्न → तुला, राहु सहित', sa: '- शीर्षहीरकः (भावः 1) = लग्नम् → तुला, राहुणा सह', ta: '- மேல் வைரம் (இல்லம் 1) = லக்னம் → துலாம், ராகுவுடன்', te: '- పై వజ్రం (భావం 1) = లగ్నం → తుల, రాహువుతో', bn: '- শীর্ষ হীরা (ভাব 1) = লগ্ন → তুলা, রাহুসহ', kn: '- ಮೇಲಿನ ವಜ್ರ (ಭಾವ 1) = ಲಗ್ನ → ತುಲಾ, ರಾಹುವಿನೊಂದಿಗೆ', gu: '- ઉપરનો હીરો (ભાવ 1) = લગ્ન → તુલા, રાહુ સહ', mai: '- ऊपरक हीरा (भाव 1) = लग्न → तुला, राहुक संग', mr: '- शीर्ष हिरा (भाव 1) = लग्न → तुला, राहूसह' }, locale)}</p>
-            <p>{tl({ en: '- Houses run counter-clockwise from the top', hi: '- भाव शीर्ष से वामावर्त चलते हैं', sa: '- भावाः शीर्षात् वामावर्तं चलन्ति', ta: '- இல்லங்கள் மேலிருந்து இடஞ்சுழியாக இயங்குகின்றன', te: '- భావాలు పైనుండి అపసవ్యంగా నడుస్తాయి', bn: '- ভাবগুলি উপর থেকে বামাবর্তে চলে', kn: '- ಭಾವಗಳು ಮೇಲಿನಿಂದ ಅಪ್ರದಕ್ಷಿಣಾಕಾರವಾಗಿ ಚಲಿಸುತ್ತವೆ', gu: '- ભાવ ઉપરથી ઘડિયાળ-વિરુદ્ધ દિશામાં ચાલે છે', mai: '- भाव ऊपरसँ वामावर्त चलैत अछि', mr: '- भाव वरून प्रतिघड्याळी दिशेने चालतात' }, locale)}</p>
-            <p>{tl({ en: '- Rashi names label each house; planets shown at center', hi: '- राशि नाम प्रत्येक भाव में; ग्रह केन्द्र में दिखाए गए', sa: '- प्रत्येकं भावे राशिनाम; ग्रहाः केन्द्रे दर्शिताः', ta: '- ஒவ்வொரு இல்லத்திலும் ராசி பெயர்; கிரகங்கள் மையத்தில் காட்டப்படுகின்றன', te: '- ప్రతి భావంలో రాశి పేరు; గ్రహాలు మధ్యలో చూపబడ్డాయి', bn: '- প্রতিটি ভাবে রাশির নাম; গ্রহগুলি কেন্দ্রে প্রদর্শিত', kn: '- ಪ್ರತಿ ಭಾವದಲ್ಲಿ ರಾಶಿ ಹೆಸರು; ಗ್ರಹಗಳು ಕೇಂದ್ರದಲ್ಲಿ ತೋರಿಸಲಾಗಿದೆ', gu: '- દરેક ભાવ પર રાશિ નામ; ગ્રહ મધ્યમાં દર્શાવ્યા છે', mai: '- प्रत्येक भावमे राशि नाम; ग्रह केन्द्रमे देखाओल गेल अछि', mr: '- प्रत्येक भावावर राशी नाव; ग्रह मध्यभागी दाखवले आहेत' }, locale)}</p>
-            <p>{tl({ en: '- Sun in 10th (career) = strong public presence', hi: '- सूर्य 10वें भाव (कर्म) में = शक्तिशाली सार्वजनिक उपस्थिति', sa: '- दशमभावे सूर्यः (कर्म) = सबलं सार्वजनिकं प्रभावः', ta: '- 10ஆம் இல்லத்தில் சூரியன் (தொழில்) = வலிமையான பொது இருப்பு', te: '- 10వ భావంలో సూర్యుడు (కర్మ) = బలమైన సార్వజనిక ఉనికి', bn: '- 10ম ভাবে সূর্য (কর্ম) = শক্তিশালী সার্বজনিক উপস্থিতি', kn: '- 10ನೇ ಭಾವದಲ್ಲಿ ಸೂರ್ಯ (ಕರ್ಮ) = ಪ್ರಬಲ ಸಾರ್ವಜನಿಕ ಉಪಸ್ಥಿತಿ', gu: '- 10મા ભાવમાં સૂર્ય (કર્મ) = મજબૂત જાહેર હાજરી', mai: '- 10म भावमे सूर्य (कर्म) = शक्तिशाली सार्वजनिक उपस्थिति', mr: '- 10 व्या भावात सूर्य (कर्म) = मजबूत सार्वजनिक उपस्थिती' }, locale)}</p>
-            <p>{tl({ en: '- Moon in 3rd (communication) = expressive mind', hi: '- चन्द्र 3रे भाव (संवाद) में = अभिव्यक्तिशील मन', sa: '- तृतीयभावे चन्द्रः (संवादः) = अभिव्यक्तिशीलं मनः', ta: '- 3ஆம் இல்லத்தில் சந்திரன் (தொடர்பு) = வெளிப்பாடுள்ள மனம்', te: '- 3వ భావంలో చంద్రుడు (సంభాషణ) = వ్యక్తీకరణ మనస్సు', bn: '- 3য় ভাবে চন্দ্র (যোগাযোগ) = প্রকাশমান মন', kn: '- 3ನೇ ಭಾವದಲ್ಲಿ ಚಂದ್ರ (ಸಂವಹನ) = ಅಭಿವ್ಯಕ್ತಿಶೀಲ ಮನಸ್ಸು', gu: '- 3જા ભાવમાં ચંદ્ર (સંવાદ) = અભિવ્યક્તિશીલ મન', mai: '- 3र भावमे चन्द्र (संवाद) = अभिव्यक्तिशील मन', mr: '- 3 र्‍या भावात चंद्र (संवाद) = अभिव्यक्तीशील मन' }, locale)}</p>
+            <p>{t('chartNote1')}</p>
+            <p>{t('chartNote2')}</p>
+            <p>{t('chartNote3')}</p>
+            <p>{t('chartNote4')}</p>
+            <p>{t('chartNote5')}</p>
           </div>
         </div>
       </LessonSection>
@@ -330,11 +323,9 @@ export default function LearnKundaliPage() {
           ))}
         </div>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-2">{tl({ en: 'Dignity Hierarchy:', hi: 'गरिमा क्रम:', sa: 'ग्रहमर्यादाक्रमः:', ta: 'கண்ணியத் தரவரிசை:', te: 'గౌరవ క్రమం:', bn: 'মর্যাদার ক্রম:', kn: 'ಗೌರವ ಕ್ರಮ:', gu: 'ગ્રહ-ગૌરવ ક્રમ:', mai: 'गरिमा क्रम:', mr: 'प्रतिष्ठा क्रम:' }, locale)}</p>
+          <p className="text-gold-light font-mono text-sm mb-2">{t('dignityHierarchy')}</p>
           <p className="text-gold-light/80 font-mono text-xs">
-            {locale === 'en'
-              ? 'Exalted (Uccha) > Own Sign (Swa) > Friendly (Mitra) > Neutral > Enemy (Shatru) > Debilitated (Neecha)'
-              : 'उच्च > स्वराशि > मित्र > तटस्थ > शत्रु > नीच'}
+            {t('dignityHierarchyList')}
           </p>
         </div>
       </LessonSection>
@@ -356,11 +347,11 @@ export default function LearnKundaliPage() {
           ))}
         </div>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-2">{tl({ en: 'In our example:', hi: 'हमारे उदाहरण में:', sa: 'अस्माकम् उदाहरणे:', ta: 'நமது உதாரணத்தில்:', te: 'మన ఉదాహరణలో:', bn: 'আমাদের উদাহরণে:', kn: 'ನಮ್ಮ ಉದಾಹರಣೆಯಲ್ಲಿ:', gu: 'આપણા ઉદાહરણમાં:', mai: 'हमर उदाहरणमे:', mr: 'आमच्या उदाहरणात:' }, locale)}</p>
+          <p className="text-gold-light font-mono text-sm mb-2">{t('inOurExample')}</p>
           <div className="space-y-1 text-gold-light/70 font-mono text-xs">
-            <p>{tl({ en: 'Jupiter in 2nd aspects 8th → protects longevity house', hi: 'गुरु 2रे भाव में → 8वें भाव पर दृष्टि → आयु भाव की रक्षा', sa: 'द्वितीयभावे गुरुः अष्टमं पश्यति → आयुर्भावस्य रक्षणम्', ta: '2ஆம் இல்லத்தில் குரு 8ஆம் இல்லத்தை பார்க்கிறது → ஆயுள் இல்லத்தை காக்கிறது', te: '2వ భావంలో గురువు 8వ భావాన్ని చూస్తాడు → ఆయుర్భావాన్ని రక్షిస్తాడు', bn: '2য় ভাবে বৃহস্পতি 8ম দেখে → আয়ুর্ভাব রক্ষা করে', kn: '2ನೇ ಭಾವದಲ್ಲಿ ಗುರು 8ನೇ ಭಾವವನ್ನು ನೋಡುತ್ತಾನೆ → ಆಯುರ್ಭಾವ ರಕ್ಷಿಸುತ್ತಾನೆ', gu: '2જા ભાવ ગુરુ 8મો ભાવ જુએ → આયુષ્ય ભાવ સુરક્ષિત', mai: '2र भावमे गुरु 8म देखैत अछि → आयु भावक रक्षा करैत अछि', mr: '2 र्‍या भावात गुरू 8 व्याकडे दृष्टी → आयुर्भाव संरक्षण' }, locale)}</p>
-            <p>{tl({ en: 'Saturn in 5th aspects 7th, 11th, 2nd → discipline in marriage, gains, speech', hi: 'शनि 5वें भाव में → 7, 11, 2 पर दृष्टि → विवाह, लाभ, वाणी में अनुशासन', sa: 'पञ्चमभावे शनिः सप्तमं, एकादशं, द्वितीयं च पश्यति → विवाहे, लाभे, वाण्यां च अनुशासनम्', ta: '5ஆம் இல்லத்தில் சனி 7, 11, 2ஐ பார்க்கிறது → திருமணம், லாபம், பேச்சில் ஒழுக்கம்', te: '5వ భావంలో శని 7, 11, 2 చూస్తాడు → వివాహం, లాభం, వాక్కులో క్రమశిక్షణ', bn: '5ম ভাবে শনি 7, 11, 2 দেখে → বিবাহ, লাভ, বাক্যে শৃঙ্খলা', kn: '5ನೇ ಭಾವದಲ್ಲಿ ಶನಿ 7, 11, 2 ನೋಡುತ್ತಾನೆ → ವಿವಾಹ, ಲಾಭ, ವಾಕ್ಯದಲ್ಲಿ ಶಿಸ್ತು', gu: '5મા ભાવ શનિ 7, 11, 2 જુએ → લગ્ન, લાભ, વાણીમાં શિસ્ત', mai: '5म भावमे शनि 7, 11, 2 देखैत अछि → विवाह, लाभ, वाणीमे अनुशासन', mr: '5 व्या भावात शनी 7, 11, 2 कडे दृष्टी → विवाह, लाभ, वाणीत शिस्त' }, locale)}</p>
-            <p>{tl({ en: 'Sun in 10th aspects 4th → career impacts home life', hi: 'सूर्य 10वें में → 4वें पर दृष्टि → कर्म गृह जीवन प्रभावित करता है', sa: 'दशमभावे सूर्यः चतुर्थं पश्यति → कर्म गृहजीवनं प्रभावयति', ta: '10ஆம் இல்லத்தில் சூரியன் 4ஆம் இல்லத்தை பார்க்கிறது → தொழில் வீட்டு வாழ்க்கையை பாதிக்கிறது', te: '10వ భావంలో సూర్యుడు 4వ భావాన్ని చూస్తాడు → కర్మ గృహ జీవితాన్ని ప్రభావితం చేస్తుంది', bn: '10ম ভাবে সূর্য 4র্থ দেখে → কর্ম গৃহজীবনকে প্রভাবিত করে', kn: '10ನೇ ಭಾವದಲ್ಲಿ ಸೂರ್ಯ 4ನೇ ಭಾವ ನೋಡುತ್ತಾನೆ → ಕರ್ಮ ಗೃಹಜೀವನ ಪ್ರಭಾವಿಸುತ್ತದೆ', gu: '10મા ભાવ સૂર્ય 4થો ભાવ જુએ → કર્મ ઘર-જીવન પ્રભાવિત કરે', mai: '10म भावमे सूर्य 4र्थ देखैत अछि → कर्म गृह जीवन प्रभावित करैत अछि', mr: '10 व्या भावात सूर्य 4 थ्याकडे दृष्टी → करिअर घरगुती जीवनावर परिणाम करते' }, locale)}</p>
+            <p>{t('aspectEx1')}</p>
+            <p>{t('aspectEx2')}</p>
+            <p>{t('aspectEx3')}</p>
           </div>
         </div>
       </LessonSection>
@@ -369,20 +360,20 @@ export default function LearnKundaliPage() {
       <LessonSection number={11} title={t('s11Title')}>
         <p>{t('s11Text')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-3">{tl({ en: 'In our example:', hi: 'हमारे उदाहरण में:', sa: 'अस्माकम् उदाहरणे:', ta: 'நமது உதாரணத்தில்:', te: 'మన ఉదాహరణలో:', bn: 'আমাদের উদাহরণে:', kn: 'ನಮ್ಮ ಉದಾಹರಣೆಯಲ್ಲಿ:', gu: 'આપણા ઉદાહરણમાં:', mai: 'हमर उदाहरणमे:', mr: 'आमच्या उदाहरणात:' }, locale)}</p>
+          <p className="text-gold-light font-mono text-sm mb-3">{t('inOurExample')}</p>
           <div className="space-y-1">
-            <p className="text-gold-light/80 font-mono text-xs">{tl({ en: 'Moon at 253.0° sidereal → Purva Ashadha Nakshatra', hi: 'चन्द्र 253.0° नाक्षत्रिक → पूर्वाषाढ़ा नक्षत्र', sa: '253.0° नाक्षत्रे चन्द्रः → पूर्वाषाढा नक्षत्रम्', ta: '253.0° நக்ஷத்ர சந்திரன் → பூர்வ ஆஷாடா நட்சத்திரம்', te: '253.0° నాక్షత్ర చంద్రుడు → పూర్వాషాఢ నక్షత్రం', bn: '253.0° নাক্ষত্রিক চন্দ্র → পূর্বাষাঢ়া নক্ষত্র', kn: '253.0° ನಾಕ್ಷತ್ರ ಚಂದ್ರ → ಪೂರ್ವಾಷಾಢ ನಕ್ಷತ್ರ', gu: '253.0° નાક્ષત્ર ચંદ્ર → પૂર્વ આષાઢ નક્ષત્ર', mai: '253.0° नाक्षत्रिक चन्द्र → पूर्वाषाढ़ा नक्षत्र', mr: '253.0° नाक्षत्रिक चंद्र → पूर्वाषाढा नक्षत्र' }, locale)}</p>
-            <p className="text-gold-light/80 font-mono text-xs">{tl({ en: 'P. Ashadha lord = Venus → born in Venus Maha Dasha', hi: 'पूर्वाषाढ़ा स्वामी = शुक्र → शुक्र महादशा में जन्म', sa: 'पूर्वाषाढायाः स्वामी = शुक्रः → शुक्र-महादशायां जन्म', ta: 'பூர்வாஷாடா நாதன் = சுக்கிரன் → சுக்கிர மஹாதசையில் பிறப்பு', te: 'పూర్వాషాఢ నాథుడు = శుక్రుడు → శుక్ర మహాదశలో జన్మం', bn: 'পূর্বাষাঢ়া স্বামী = শুক্র → শুক্র মহাদশায় জন্ম', kn: 'ಪೂರ್ವಾಷಾಢ ಅಧಿಪತಿ = ಶುಕ್ರ → ಶುಕ್ರ ಮಹಾದಶೆಯಲ್ಲಿ ಜನನ', gu: 'પૂ. આષાઢ સ્વામી = શુક્ર → શુક્ર મહાદશામાં જન્મ', mai: 'पूर्वाषाढ़ा स्वामी = शुक्र → शुक्र महादशामे जन्म', mr: 'पूर्वाषाढा स्वामी = शुक्र → शुक्र महादशेत जन्म' }, locale)}</p>
-            <p className="text-gold-light/80 font-mono text-xs">{tl({ en: 'Venus Maha Dasha = 20 years total', hi: 'शुक्र महादशा = कुल 20 वर्ष', sa: 'शुक्र-महादशा = विंशतिः वर्षाणि सर्वाणि', ta: 'சுக்கிர மஹாதசை = மொத்தம் 20 ஆண்டுகள்', te: 'శుక్ర మహాదశ = మొత్తం 20 సంవత్సరాలు', bn: 'শুক্র মহাদশা = মোট 20 বছর', kn: 'ಶುಕ್ರ ಮಹಾದಶೆ = ಒಟ್ಟು 20 ವರ್ಷಗಳು', gu: 'શુક્ર મહાદશા = કુલ 20 વર્ષ', mai: 'शुक्र महादशा = कुल 20 वर्ष', mr: 'शुक्र महादशा = एकूण 20 वर्षे' }, locale)}</p>
-            <p className="text-gold-light/80 font-mono text-xs mt-2">{tl({ en: 'Moon progress through P. Ashadha:', hi: 'पूर्वाषाढ़ा में चन्द्र की प्रगति:', sa: 'पूर्वाषाढायां चन्द्रस्य प्रगतिः:', ta: 'பூர்வாஷாடா வழியாக சந்திர முன்னேற்றம்:', te: 'పూర్వాషాఢ ద్వారా చంద్రుని ప్రగతి:', bn: 'পূর্বাষাঢ়ায় চন্দ্রের অগ্রগতি:', kn: 'ಪೂರ್ವಾಷಾಢದ ಮೂಲಕ ಚಂದ್ರನ ಪ್ರಗತಿ:', gu: 'પૂ. આષાઢ દ્વારા ચંદ્રની પ્રગતિ:', mai: 'पूर्वाषाढ़ामे चन्द्रक प्रगति:', mr: 'पूर्वाषाढातून चंद्राची प्रगती:' }, locale)}</p>
-            <p className="text-gold-light/80 font-mono text-xs">{tl({ en: `P. Ashadha span: 253°20' to 266°40' (13°20')`, hi: `पूर्वाषाढ़ा: 253°20' से 266°40' (13°20')`, sa: `पूर्वाषाढ़ा: 253°20' से 266°40' (13°20')`, ta: `P. Ashadha span: 253°20' to 266°40' (13°20')`, te: `P. Ashadha span: 253°20' to 266°40' (13°20')`, bn: `P. Ashadha span: 253°20' to 266°40' (13°20')`, kn: `P. Ashadha span: 253°20' to 266°40' (13°20')`, gu: `P. Ashadha span: 253°20' to 266°40' (13°20')`, mai: `पूर्वाषाढ़ा: 253°20' से 266°40' (13°20')`, mr: `पूर्वाषाढ़ा: 253°20' से 266°40' (13°20')` }, locale)}</p>
-            <p className="text-gold-light/80 font-mono text-xs">{tl({ en: 'Moon at 253.0° → near the start → ~19.6 years of Venus remain', hi: 'चन्द्र 253.0° → प्रारम्भ के निकट → शुक्र के ~19.6 वर्ष शेष', sa: '253.0° चन्द्रः → आरम्भे निकटम् → शुक्रस्य ~19.6 वर्षाणि अवशिष्यन्ते', ta: '253.0° சந்திரன் → ஆரம்பத்திற்கு அருகில் → சுக்கிரனின் ~19.6 ஆண்டுகள் மீதமுள்ளன', te: '253.0° చంద్రుడు → ప్రారంభం దగ్గర → శుక్రుని ~19.6 సంవత్సరాలు మిగిలాయి', bn: '253.0° চন্দ্র → শুরুর কাছে → শুক্রের ~19.6 বছর বাকি', kn: '253.0° ಚಂದ್ರ → ಆರಂಭದ ಬಳಿ → ಶುಕ್ರನ ~19.6 ವರ್ಷಗಳು ಉಳಿದಿವೆ', gu: '253.0° ચંદ્ર → શરૂઆત નજીક → શુક્રના ~19.6 વર્ષ બાકી', mai: '253.0° चन्द्र → प्रारम्भक निकट → शुक्रक ~19.6 वर्ष शेष अछि', mr: '253.0° चंद्र → सुरुवातीजवळ → शुक्राचे ~19.6 वर्षे शिल्लक' }, locale)}</p>
-            <p className="text-gold-light/60 font-mono text-xs mt-2">{tl({ en: 'After Venus: Sun (6y) → Moon (10y) → Mars (7y) → ...', hi: 'शुक्र के बाद: सूर्य (6 वर्ष) → चन्द्र (10 वर्ष) → मंगल (7 वर्ष) → ...', sa: 'शुक्रानन्तरम्: सूर्यः (6 वर्ष) → चन्द्रः (10 वर्ष) → मंगलः (7 वर्ष) → ...', ta: 'சுக்கிரனுக்கு பிறகு: சூரியன் (6ஆண்.) → சந்திரன் (10ஆண்.) → செவ்வாய் (7ஆண்.) → ...', te: 'శుక్రుని తర్వాత: సూర్యుడు (6సం.) → చంద్రుడు (10సం.) → మంగళుడు (7సం.) → ...', bn: 'শুক্রের পর: সূর্য (6 বছর) → চন্দ্র (10 বছর) → মঙ্গল (7 বছর) → ...', kn: 'ಶುಕ್ರನ ನಂತರ: ಸೂರ್ಯ (6ವ.) → ಚಂದ್ರ (10ವ.) → ಮಂಗಳ (7ವ.) → ...', gu: 'શુક્ર પછી: સૂર્ય (6 વ.) → ચંદ્ર (10 વ.) → મંગળ (7 વ.) → ...', mai: 'शुक्रक बाद: सूर्य (6 वर्ष) → चन्द्र (10 वर्ष) → मंगल (7 वर्ष) → ...', mr: 'शुक्रानंतर: सूर्य (6 वर्षे) → चंद्र (10 वर्षे) → मंगळ (7 वर्षे) → ...' }, locale)}</p>
+            <p className="text-gold-light/80 font-mono text-xs">{t('dashaMoonPosition')}</p>
+            <p className="text-gold-light/80 font-mono text-xs">{t('dashaLord')}</p>
+            <p className="text-gold-light/80 font-mono text-xs">{t('dashaVenusDuration')}</p>
+            <p className="text-gold-light/80 font-mono text-xs mt-2">{t('dashaProgress')}</p>
+            <p className="text-gold-light/80 font-mono text-xs">{t('dashaSpan')}</p>
+            <p className="text-gold-light/80 font-mono text-xs">{t('dashaRemaining')}</p>
+            <p className="text-gold-light/60 font-mono text-xs mt-2">{t('dashaAfterVenus')}</p>
           </div>
         </div>
         <div className="mt-3 text-right">
           <Link href="/learn/dashas" className="text-gold-primary hover:text-gold-light text-xs transition-colors">
-            {tl({ en: 'Complete Dasha system explained', hi: 'सम्पूर्ण दशा प्रणाली की व्याख्या', sa: 'सम्पूर्णस्य दशाप्रणाल्याः विवरणम्', ta: 'முழுமையான தசா முறை விளக்கம்', te: 'సంపూర్ణ దశా పద్ధతి వివరణ', bn: 'সম্পূর্ণ দশা পদ্ধতির ব্যাখ্যা', kn: 'ಸಂಪೂರ್ಣ ದಶಾ ಪದ್ಧತಿ ವಿವರಣೆ', gu: 'સંપૂર્ણ દશા પ્રણાલીની સમજૂતી', mai: 'सम्पूर्ण दशा प्रणालीक व्याख्या', mr: 'संपूर्ण दशा प्रणालीचे स्पष्टीकरण' }, locale)} →
+            {t('completeDasha')} →
           </Link>
         </div>
       </LessonSection>
@@ -392,28 +383,28 @@ export default function LearnKundaliPage() {
         <p>{t('s12Text')}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="rounded-lg p-4 border border-emerald-400/20 bg-emerald-400/5">
-            <h4 className="text-emerald-400 font-bold text-sm mb-2">{tl({ en: 'Yogas (Auspicious Combos)', hi: 'योग (शुभ संयोग)', sa: 'योगाः (शुभसंयोगाः)', ta: 'யோகங்கள் (சுபமான சேர்க்கைகள்)', te: 'యోగాలు (శుభ సంయోగాలు)', bn: 'যোগ (শুভ সংযোগ)', kn: 'ಯೋಗಗಳು (ಶುಭ ಸಂಯೋಗಗಳು)', gu: 'યોગ (શુભ સંયોગ)', mai: 'योग (शुभ संयोग)', mr: 'योग (शुभ संयोग)' }, locale)}</h4>
+            <h4 className="text-emerald-400 font-bold text-sm mb-2">{t('yogasLabel')}</h4>
             <ul className="space-y-1 text-text-secondary text-xs">
-              <li>{tl({ en: 'Budhaditya Yoga — Mercury + Sun in same house (11th)', hi: 'बुधादित्य योग — बुध + सूर्य (यहाँ 10-11 में)', sa: 'बुधादित्ययोगः — बुधसूर्यौ एकस्मिन्नेव भावे (एकादशे)', ta: 'புதாதித்ய யோகம் — புதன் + சூரியன் ஒரே இல்லத்தில் (11ஆவது)', te: 'బుధాదిత్య యోగం — బుధ + సూర్యుడు ఒకే భావంలో (11వ)', bn: 'বুধাদিত্য যোগ — বুধ + সূর্য একই ভাবে (11তম)', kn: 'ಬುಧಾದಿತ್ಯ ಯೋಗ — ಬುಧ + ಸೂರ್ಯ ಒಂದೇ ಭಾವದಲ್ಲಿ (11ನೇ)', gu: 'બુધાદિત્ય યોગ — બુધ + સૂર્ય એ જ ભાવ (11મો)', mai: 'बुधादित्य योग — बुध + सूर्य एके भावमे (10-11 मे)', mr: 'बुधादित्य योग — बुध + सूर्य एकाच भावात (11 वा)' }, locale)}</li>
-              <li>{tl({ en: 'Gajakesari Yoga — Jupiter in Kendra from Moon', hi: 'गजकेसरी योग — चन्द्र से केन्द्र में गुरु', sa: 'गजकेसरियोगः — चन्द्रात् केन्द्रे गुरुः', ta: 'கஜகேசரி யோகம் — சந்திரனிலிருந்து கேந்திரத்தில் குரு', te: 'గజకేసరి యోగం — చంద్రుని నుండి కేంద్రంలో గురువు', bn: 'গজকেশরী যোগ — চন্দ্র থেকে কেন্দ্রে বৃহস্পতি', kn: 'ಗಜಕೇಸರಿ ಯೋಗ — ಚಂದ್ರನಿಂದ ಕೇಂದ್ರದಲ್ಲಿ ಗುರು', gu: 'ગજકેસરી યોગ — ચંદ્રથી કેન્દ્રમાં ગુરુ', mai: 'गजकेसरी योग — चन्द्रसँ केन्द्रमे गुरु', mr: 'गजकेसरी योग — चंद्रापासून केंद्रात गुरू' }, locale)}</li>
-              <li>{tl({ en: 'Dhana Yoga — lord of 2nd in good placement', hi: 'धन योग — 2 भाव का स्वामी शुभ स्थान में', sa: 'धनयोगः — द्वितीयभावस्य स्वामी शुभस्थाने', ta: 'தன யோகம் — 2ஆம் இல்லத்தின் அதிபதி நல்ல இடத்தில்', te: 'ధన యోగం — 2వ భావాధిపతి మంచి స్థానంలో', bn: 'ধন যোগ — 2য় ভাবের স্বামী শুভ স্থানে', kn: 'ಧನ ಯೋಗ — 2ನೇ ಭಾವಾಧಿಪತಿ ಶುಭ ಸ್ಥಾನದಲ್ಲಿ', gu: 'ધન યોગ — 2જા ભાવના સ્વામી શુભ સ્થાને', mai: 'धन योग — 2र भावक स्वामी शुभ स्थानमे', mr: 'धन योग — 2 र्‍या भावाचा स्वामी चांगल्या स्थानी' }, locale)}</li>
+              <li>{t('yoga1')}</li>
+              <li>{t('yoga2')}</li>
+              <li>{t('yoga3')}</li>
             </ul>
           </div>
           <div className="rounded-lg p-4 border border-red-400/20 bg-red-400/5">
-            <h4 className="text-red-400 font-bold text-sm mb-2">{tl({ en: 'Doshas (Afflictions)', hi: 'दोष (कठिनाइयाँ)', sa: 'दोषाः (पीडाः)', ta: 'தோஷங்கள் (பாதிப்புகள்)', te: 'దోషాలు (పీడలు)', bn: 'দোষ (কষ্টসমূহ)', kn: 'ದೋಷಗಳು (ಪೀಡೆಗಳು)', gu: 'દોષ (પીડા)', mai: 'दोष (कठिनाइयाँ)', mr: 'दोष (पीडा)' }, locale)}</h4>
+            <h4 className="text-red-400 font-bold text-sm mb-2">{t('doshasLabel')}</h4>
             <ul className="space-y-1 text-text-secondary text-xs">
-              <li>{tl({ en: 'Mangal Dosha — Mars in 1, 2, 4, 7, 8, or 12 from Lagna', hi: 'मंगल दोष — लग्न से 1, 2, 4, 7, 8, 12 में मंगल', sa: 'मंगलदोषः — लग्नात् 1, 2, 4, 7, 8, 12 भावेषु मंगलः', ta: 'மங்கள தோஷம் — லக்னத்திலிருந்து 1, 2, 4, 7, 8, 12ல் செவ்வாய்', te: 'మంగళ దోషం — లగ్నం నుండి 1, 2, 4, 7, 8, 12లో మంగళుడు', bn: 'মঙ্গল দোষ — লগ্ন থেকে 1, 2, 4, 7, 8, 12তে মঙ্গল', kn: 'ಮಂಗಳ ದೋಷ — ಲಗ್ನದಿಂದ 1, 2, 4, 7, 8, 12ರಲ್ಲಿ ಮಂಗಳ', gu: 'મંગળ દોષ — લગ્નથી 1, 2, 4, 7, 8, 12 ભાવ મંગળ', mai: 'मंगल दोष — लग्नसँ 1, 2, 4, 7, 8, 12 मे मंगल', mr: 'मंगल दोष — लग्नापासून 1, 2, 4, 7, 8, 12 मध्ये मंगळ' }, locale)}</li>
-              <li>{tl({ en: 'Kaal Sarpa — all planets between Rahu-Ketu axis', hi: 'काल सर्प — राहु-केतु अक्ष के बीच सभी ग्रह', sa: 'कालसर्पः — राहु-केत्वोः अक्षे सर्वे ग्रहाः', ta: 'கால சர்ப்பம் — ராகு-கேது அச்சுக்கு இடையே அனைத்து கிரகங்கள்', te: 'కాల సర్పం — రాహు-కేతు అక్షం మధ్య అన్ని గ్రహాలు', bn: 'কাল সর্প — রাহু-কেতু অক্ষের মধ্যে সব গ্রহ', kn: 'ಕಾಲ ಸರ್ಪ — ರಾಹು-ಕೇತು ಅಕ್ಷದ ನಡುವೆ ಎಲ್ಲ ಗ್ರಹಗಳು', gu: 'કાળ સર્પ — રાહુ-કેતુ અક્ષ વચ્ચે સઘળા ગ્રહ', mai: 'काल सर्प — राहु-केतु अक्षक बीच सभ ग्रह', mr: 'काल सर्प — राहू-केतू अक्षाच्या मध्ये सर्व ग्रह' }, locale)}</li>
-              <li>{tl({ en: 'Pitru Dosha — Sun afflicted by malefics', hi: 'पितृ दोष — सूर्य पाप ग्रहों से पीड़ित', sa: 'पितृदोषः — पापग्रहैः पीडितः सूर्यः', ta: 'பித்ரு தோஷம் — சூரியன் பாப கிரகங்களால் பாதிக்கப்பட்டுள்ளான்', te: 'పితృ దోషం — సూర్యుడు పాప గ్రహాల వల్ల పీడితుడు', bn: 'পিতৃ দোষ — সূর্য পাপগ্রহ দ্বারা পীড়িত', kn: 'ಪಿತೃ ದೋಷ — ಸೂರ್ಯ ಪಾಪ ಗ್ರಹಗಳಿಂದ ಪೀಡಿತ', gu: 'પિતૃ દોષ — સૂર્ય પાપ ગ્રહ દ્વારા પ્રભાવિત', mai: 'पितृ दोष — पाप ग्रहसँ सूर्य पीड़ित', mr: 'पितृ दोष — सूर्य पापग्रहांनी पीडित' }, locale)}</li>
+              <li>{t('dosha1')}</li>
+              <li>{t('dosha2')}</li>
+              <li>{t('dosha3')}</li>
             </ul>
           </div>
         </div>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-2">{tl({ en: 'In our example:', hi: 'हमारे उदाहरण में:', sa: 'अस्माकम् उदाहरणे:', ta: 'நமது உதாரணத்தில்:', te: 'మన ఉదాహరణలో:', bn: 'আমাদের উদাহরণে:', kn: 'ನಮ್ಮ ಉದಾಹರಣೆಯಲ್ಲಿ:', gu: 'આપણા ઉદાહરણમાં:', mai: 'हमर उदाहरणमे:', mr: 'आमच्या उदाहरणात:' }, locale)}</p>
+          <p className="text-gold-light font-mono text-sm mb-2">{t('inOurExample')}</p>
           <div className="space-y-1 text-gold-light/70 font-mono text-xs">
-            <p>{tl({ en: 'Mars in 12th from Lagna → Mangal Dosha is present', hi: 'लग्न से 12वें भाव में मंगल → मंगल दोष उपस्थित', sa: 'लग्नात् द्वादशभावे मंगलः → मंगलदोषः विद्यते', ta: 'லக்னத்திலிருந்து 12ஆம் இல்லத்தில் செவ்வாய் → மங்கள தோஷம் உள்ளது', te: 'లగ్నం నుండి 12వ భావంలో మంగళుడు → మంగళ దోషం ఉంది', bn: 'লগ্ন থেকে 12তম ভাবে মঙ্গল → মঙ্গল দোষ বিদ্যমান', kn: 'ಲಗ್ನದಿಂದ 12ನೇ ಭಾವದಲ್ಲಿ ಮಂಗಳ → ಮಂಗಳ ದೋಷ ಇದೆ', gu: 'લગ્નથી 12મા ભાવ મંગળ → મંગળ દોષ ઉપસ્થિત', mai: 'लग्नसँ 12म भावमे मंगल → मंगल दोष उपस्थित अछि', mr: 'लग्नापासून 12 व्या भावात मंगळ → मंगल दोष आहे' }, locale)}</p>
-            <p>{tl({ en: 'Mercury + Venus in Leo (11th) → Dhana Yoga (gains house)', hi: 'बुध + शुक्र सिंह (11वाँ) में → धन योग (लाभ भाव)', sa: 'बुध-शुक्रौ सिंहे (एकादशे) → धनयोगः (लाभभावः)', ta: 'புதன் + சுக்கிரன் சிம்மத்தில் (11ஆவது) → தன யோகம் (லாப இல்லம்)', te: 'బుధ + శుక్రుడు సింహంలో (11వ) → ధన యోగం (లాభ భావం)', bn: 'বুধ + শুক্র সিংহে (11তম) → ধন যোগ (লাভ ভাব)', kn: 'ಬುಧ + ಶುಕ್ರ ಸಿಂಹದಲ್ಲಿ (11ನೇ) → ಧನ ಯೋಗ (ಲಾಭ ಭಾವ)', gu: 'બુધ + શુક્ર સિંહ (11મો) → ધન યોગ (લાભ ભાવ)', mai: 'बुध + शुक्र सिंह (11म) मे → धन योग (लाभ भाव)', mr: 'बुध + शुक्र सिंह (11 वा) मध्ये → धन योग (लाभ भाव)' }, locale)}</p>
-            <p>{tl({ en: 'Saturn in own sign Aquarius → strong 5th house (intelligence)', hi: 'शनि स्वराशि कुम्भ में → शक्तिशाली 5वाँ भाव (बुद्धि)', sa: 'स्वराशौ कुम्भे शनिः → सबलं पञ्चमभावः (बुद्धिः)', ta: 'சனி சொந்த ராசி கும்பத்தில் → வலிமையான 5ஆம் இல்லம் (அறிவு)', te: 'శని స్వరాశి కుంభంలో → బలమైన 5వ భావం (బుద్ధి)', bn: 'শনি স্বরাশি কুম্ভে → শক্তিশালী 5ম ভাব (বুদ্ধিমত্তা)', kn: 'ಶನಿ ಸ್ವರಾಶಿ ಕುಂಭದಲ್ಲಿ → ಬಲವಾದ 5ನೇ ಭಾವ (ಬುದ್ಧಿ)', gu: 'શનિ સ્વ-રાશિ કુંભ → બળવાન 5મો ભાવ (બુદ્ધિ)', mai: 'स्वराशि कुम्भमे शनि → शक्तिशाली 5म भाव (बुद्धि)', mr: 'स्वराशी कुंभात शनी → मजबूत 5 वा भाव (बुद्धी)' }, locale)}</p>
+            <p>{t('yogaEx1')}</p>
+            <p>{t('yogaEx2')}</p>
+            <p>{t('yogaEx3')}</p>
           </div>
         </div>
       </LessonSection>

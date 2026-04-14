@@ -634,5 +634,235 @@
     "mr": "Nakshatra",
     "gu": "Nakshatra",
     "mai": "Nakshatra"
+  },
+  "dateLabel": {
+    "en": "Date",
+    "hi": "तिथि",
+    "sa": "तिथिः"
+  },
+  "timeLabel": {
+    "en": "Time",
+    "hi": "समय",
+    "sa": "कालः"
+  },
+  "placeLabel": {
+    "en": "Place",
+    "hi": "स्थान",
+    "sa": "स्थानम्"
+  },
+  "exampleCity": {
+    "en": "New Delhi",
+    "hi": "नई दिल्ली",
+    "sa": "नवदिल्ली"
+  },
+  "forOurExample": {
+    "en": "For our example:",
+    "hi": "हमारे उदाहरण के लिए:",
+    "sa": "अस्माकम् उदाहरणाय:"
+  },
+  "tulaRisingNote": {
+    "en": "Tula (Libra) rising means Venus-ruled personality: diplomatic, artistic, relationship-oriented.",
+    "hi": "तुला लग्न अर्थात् शुक्र-शासित व्यक्तित्व: कूटनीतिक, कलात्मक, सम्बन्ध-उन्मुख।",
+    "sa": "तुला लग्न अर्थात् शुक्र-शासित व्यक्तित्व: कूटनीतिक, कलात्मक, सम्बन्ध-उन्मुख।"
+  },
+  "westerVsVedicNote": {
+    "en": "This is why your \"Western sign\" and \"Vedic sign\" usually differ by about one sign.",
+    "hi": "इसीलिए आपकी \"पश्चिमी राशि\" और \"वैदिक राशि\" प्रायः लगभग एक राशि भिन्न होती हैं।",
+    "sa": "इसीलिए आपकी \"पश्चिमी राशि\" और \"वैदिक राशि\" प्रायः लगभग एक राशि भिन्न होती हैं।"
+  },
+  "seeFullDerivation": {
+    "en": "See full mathematical derivation",
+    "hi": "पूर्ण गणितीय व्युत्पत्ति देखें",
+    "sa": "पूर्णं गाणितिकं व्युत्पादनं पश्यतु"
+  },
+  "thGraha": {
+    "en": "Graha",
+    "hi": "ग्रह",
+    "sa": "ग्रहः"
+  },
+  "thSidereal": {
+    "en": "Sidereal°",
+    "hi": "नाक्ष°",
+    "sa": "नाक्षत्र°"
+  },
+  "thRashi": {
+    "en": "Rashi",
+    "hi": "राशि",
+    "sa": "राशिः"
+  },
+  "thNakshatra": {
+    "en": "Nakshatra",
+    "hi": "नक्षत्र",
+    "sa": "नक्षत्रम्"
+  },
+  "learnAllGrahas": {
+    "en": "Learn about all 9 Grahas",
+    "hi": "सभी 9 ग्रहों के बारे में जानें",
+    "sa": "सर्वेषां नवानां ग्रहाणां विषये जानातु"
+  },
+  "houseFormula": {
+    "en": "Formula:",
+    "hi": "सूत्र:",
+    "sa": "सूत्रम्:"
+  },
+  "houseFormulaExample": {
+    "en": "Example: Sun in Cancer (4), Lagna in Libra (7) → (4 - 7 + 12) % 12 + 1 = 10th house",
+    "hi": "उदाहरण: सूर्य कर्क (4) में, लग्न तुला (7) → (4 - 7 + 12) % 12 + 1 = 10वाँ भाव",
+    "sa": "उदाहरण: सूर्य कर्क (4) में, लग्न तुला (7) → (4 - 7 + 12) % 12 + 1 = 10वाँ भाव"
+  },
+  "deepDiveHouses": {
+    "en": "Deep dive into all 12 houses",
+    "hi": "सभी 12 भावों का विस्तृत अध्ययन",
+    "sa": "सर्वेषां द्वादशानां भावानां गहनम् अध्ययनम्"
+  },
+  "readingTheChart": {
+    "en": "Reading the chart:",
+    "hi": "कुण्डली पढ़ना:",
+    "sa": "कुण्डलीपठनम्:"
+  },
+  "chartNote1": {
+    "en": "- Top diamond (House 1) = Lagna → Tula (Libra) with Rahu",
+    "hi": "- शीर्ष हीरा (भाव 1) = लग्न → तुला, राहु सहित",
+    "sa": "- शीर्षहीरकः (भावः 1) = लग्नम् → तुला, राहुणा सह"
+  },
+  "chartNote2": {
+    "en": "- Houses run counter-clockwise from the top",
+    "hi": "- भाव शीर्ष से वामावर्त चलते हैं",
+    "sa": "- भावाः शीर्षात् वामावर्तं चलन्ति"
+  },
+  "chartNote3": {
+    "en": "- Rashi names label each house; planets shown at center",
+    "hi": "- राशि नाम प्रत्येक भाव में; ग्रह केन्द्र में दिखाए गए",
+    "sa": "- प्रत्येकं भावे राशिनाम; ग्रहाः केन्द्रे दर्शिताः"
+  },
+  "chartNote4": {
+    "en": "- Sun in 10th (career) = strong public presence",
+    "hi": "- सूर्य 10वें भाव (कर्म) में = शक्तिशाली सार्वजनिक उपस्थिति",
+    "sa": "- दशमभावे सूर्यः (कर्म) = सबलं सार्वजनिकं प्रभावः"
+  },
+  "chartNote5": {
+    "en": "- Moon in 3rd (communication) = expressive mind",
+    "hi": "- चन्द्र 3रे भाव (संवाद) में = अभिव्यक्तिशील मन",
+    "sa": "- तृतीयभावे चन्द्रः (संवादः) = अभिव्यक्तिशीलं मनः"
+  },
+  "dignityHierarchyList": {
+    "en": "Exalted (Uccha) > Own Sign (Swa) > Friendly (Mitra) > Neutral > Enemy (Shatru) > Debilitated (Neecha)",
+    "hi": "उच्च > स्वराशि > मित्र > तटस्थ > शत्रु > नीच",
+    "sa": "उच्च > स्वराशि > मित्र > तटस्थ > शत्रु > नीच"
+  },
+  "inOurExample": {
+    "en": "In our example:",
+    "hi": "हमारे उदाहरण में:",
+    "sa": "अस्माकम् उदाहरणे:"
+  },
+  "aspectEx1": {
+    "en": "Jupiter in 2nd aspects 8th → protects longevity house",
+    "hi": "गुरु 2रे भाव में → 8वें भाव पर दृष्टि → आयु भाव की रक्षा",
+    "sa": "द्वितीयभावे गुरुः अष्टमं पश्यति → आयुर्भावस्य रक्षणम्"
+  },
+  "aspectEx2": {
+    "en": "Saturn in 5th aspects 7th, 11th, 2nd → discipline in marriage, gains, speech",
+    "hi": "शनि 5वें भाव में → 7, 11, 2 पर दृष्टि → विवाह, लाभ, वाणी में अनुशासन",
+    "sa": "पञ्चमभावे शनिः सप्तमं, एकादशं, द्वितीयं च पश्यति"
+  },
+  "aspectEx3": {
+    "en": "Sun in 10th aspects 4th → career impacts home life",
+    "hi": "सूर्य 10वें में → 4वें पर दृष्टि → कर्म गृह जीवन प्रभावित करता है",
+    "sa": "दशमभावे सूर्यः चतुर्थं पश्यति → कर्म गृहजीवनं प्रभावयति"
+  },
+  "dashaMoonPosition": {
+    "en": "Moon at 253.0° sidereal → Purva Ashadha Nakshatra",
+    "hi": "चन्द्र 253.0° नाक्षत्रिक → पूर्वाषाढ़ा नक्षत्र",
+    "sa": "253.0° नाक्षत्रे चन्द्रः → पूर्वाषाढा नक्षत्रम्"
+  },
+  "dashaLord": {
+    "en": "P. Ashadha lord = Venus → born in Venus Maha Dasha",
+    "hi": "पूर्वाषाढ़ा स्वामी = शुक्र → शुक्र महादशा में जन्म",
+    "sa": "पूर्वाषाढायाः स्वामी = शुक्रः → शुक्र-महादशायां जन्म"
+  },
+  "dashaVenusDuration": {
+    "en": "Venus Maha Dasha = 20 years total",
+    "hi": "शुक्र महादशा = कुल 20 वर्ष",
+    "sa": "शुक्र-महादशा = विंशतिः वर्षाणि सर्वाणि"
+  },
+  "dashaProgress": {
+    "en": "Moon progress through P. Ashadha:",
+    "hi": "पूर्वाषाढ़ा में चन्द्र की प्रगति:",
+    "sa": "पूर्वाषाढायां चन्द्रस्य प्रगतिः:"
+  },
+  "dashaSpan": {
+    "en": "P. Ashadha span: 253°20' to 266°40' (13°20')",
+    "hi": "पूर्वाषाढ़ा: 253°20' से 266°40' (13°20')",
+    "sa": "पूर्वाषाढ़ा: 253°20' से 266°40' (13°20')"
+  },
+  "dashaRemaining": {
+    "en": "Moon at 253.0° → near the start → ~19.6 years of Venus remain",
+    "hi": "चन्द्र 253.0° → प्रारम्भ के निकट → शुक्र के ~19.6 वर्ष शेष",
+    "sa": "253.0° चन्द्रः → आरम्भे निकटम् → शुक्रस्य ~19.6 वर्षाणि अवशिष्यन्ते"
+  },
+  "dashaAfterVenus": {
+    "en": "After Venus: Sun (6y) → Moon (10y) → Mars (7y) → ...",
+    "hi": "शुक्र के बाद: सूर्य (6 वर्ष) → चन्द्र (10 वर्ष) → मंगल (7 वर्ष) → ...",
+    "sa": "शुक्रानन्तरम्: सूर्यः (6 वर्ष) → चन्द्रः (10 वर्ष) → मंगलः (7 वर्ष) → ..."
+  },
+  "completeDasha": {
+    "en": "Complete Dasha system explained",
+    "hi": "सम्पूर्ण दशा प्रणाली की व्याख्या",
+    "sa": "सम्पूर्णस्य दशाप्रणाल्याः विवरणम्"
+  },
+  "yogasLabel": {
+    "en": "Yogas (Auspicious Combos)",
+    "hi": "योग (शुभ संयोग)",
+    "sa": "योगाः (शुभसंयोगाः)"
+  },
+  "yoga1": {
+    "en": "Budhaditya Yoga — Mercury + Sun in same house (11th)",
+    "hi": "बुधादित्य योग — बुध + सूर्य (यहाँ 10-11 में)",
+    "sa": "बुधादित्ययोगः — बुधसूर्यौ एकस्मिन्नेव भावे (एकादशे)"
+  },
+  "yoga2": {
+    "en": "Gajakesari Yoga — Jupiter in Kendra from Moon",
+    "hi": "गजकेसरी योग — चन्द्र से केन्द्र में गुरु",
+    "sa": "गजकेसरियोगः — चन्द्रात् केन्द्रे गुरुः"
+  },
+  "yoga3": {
+    "en": "Dhana Yoga — lord of 2nd in good placement",
+    "hi": "धन योग — 2 भाव का स्वामी शुभ स्थान में",
+    "sa": "धनयोगः — द्वितीयभावस्य स्वामी शुभस्थाने"
+  },
+  "doshasLabel": {
+    "en": "Doshas (Afflictions)",
+    "hi": "दोष (कठिनाइयाँ)",
+    "sa": "दोषाः (पीडाः)"
+  },
+  "dosha1": {
+    "en": "Mangal Dosha — Mars in 1, 2, 4, 7, 8, or 12 from Lagna",
+    "hi": "मंगल दोष — लग्न से 1, 2, 4, 7, 8, 12 में मंगल",
+    "sa": "मंगलदोषः — लग्नात् 1, 2, 4, 7, 8, 12 भावेषु मंगलः"
+  },
+  "dosha2": {
+    "en": "Kaal Sarpa — all planets between Rahu-Ketu axis",
+    "hi": "काल सर्प — राहु-केतु अक्ष के बीच सभी ग्रह",
+    "sa": "कालसर्पः — राहु-केत्वोः अक्षे सर्वे ग्रहाः"
+  },
+  "dosha3": {
+    "en": "Pitru Dosha — Sun afflicted by malefics",
+    "hi": "पितृ दोष — सूर्य पाप ग्रहों से पीड़ित",
+    "sa": "पितृदोषः — पापग्रहैः पीडितः सूर्यः"
+  },
+  "yogaEx1": {
+    "en": "Mars in 12th from Lagna → Mangal Dosha is present",
+    "hi": "लग्न से 12वें भाव में मंगल → मंगल दोष उपस्थित",
+    "sa": "लग्नात् द्वादशभावे मंगलः → मंगलदोषः विद्यते"
+  },
+  "yogaEx2": {
+    "en": "Mercury + Venus in Leo (11th) → Dhana Yoga (gains house)",
+    "hi": "बुध + शुक्र सिंह (11वाँ) में → धन योग (लाभ भाव)",
+    "sa": "बुध-शुक्रौ सिंहे (एकादशे) → धनयोगः (लाभभावः)"
+  },
+  "yogaEx3": {
+    "en": "Saturn in own sign Aquarius → strong 5th house (intelligence)",
+    "hi": "शनि स्वराशि कुम्भ में → शक्तिशाली 5वाँ भाव (बुद्धि)",
+    "sa": "स्वराशौ कुम्भे शनिः → सबलं पञ्चमभावः (बुद्धिः)"
   }
 }

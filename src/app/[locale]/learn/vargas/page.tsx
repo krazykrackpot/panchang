@@ -463,7 +463,7 @@ export default function LearnVargasPage() {
       <LessonSection title={t('overviewTitle')}>
         <p>{t('overviewText')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-2">{tl({ en: 'The Core Idea:', hi: 'मूल विचार:', sa: 'मूल विचार:', ta: 'The Core Idea:', te: 'The Core Idea:', bn: 'The Core Idea:', kn: 'The Core Idea:', gu: 'The Core Idea:', mai: 'मूल विचार:', mr: 'मूल विचार:' }, locale)}</p>
+          <p className="text-gold-light font-mono text-sm mb-2">{t('coreIdea')}</p>
           <p className="text-gold-light/80 font-mono text-xs">
             {locale === 'en'
               ? 'Planet at 15°40\' Aries (D1) → In D9: 15°40\' ÷ 3°20\' = 5th navamsha → from Aries (fire sign) = 5th sign = Leo'
@@ -481,7 +481,7 @@ export default function LearnVargasPage() {
       <LessonSection number={1} title={t('howTitle')}>
         <p>{t('howText')}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-3">{tl({ en: 'General Formula:', hi: 'सामान्य सूत्र:', sa: 'सामान्य सूत्र:', ta: 'General Formula:', te: 'General Formula:', bn: 'General Formula:', kn: 'General Formula:', gu: 'General Formula:', mai: 'सामान्य सूत्र:', mr: 'सामान्य सूत्र:' }, locale)}</p>
+          <p className="text-gold-light font-mono text-sm mb-3">{t('generalFormula')}</p>
           <div className="space-y-1">
             <p className="text-gold-light/80 font-mono text-xs">sub_division = floor(degree_in_sign / (30 / N))</p>
             <p className="text-gold-light/80 font-mono text-xs">varga_sign = mapping_rule(sign, sub_division)</p>
@@ -495,7 +495,7 @@ export default function LearnVargasPage() {
       </LessonSection>
 
       {/* ─── THE 16 SHODASVARGA CHARTS ─── */}
-      <LessonSection number={2} title={tl({ en: 'The 16 Shodasvarga Charts', hi: '16 षोडशवर्ग कुण्डलियाँ', sa: '16 षोडशवर्ग कुण्डलियाँ' }, locale)}>
+      <LessonSection number={2} title={t('sec2Title')}>
         <p className="mb-4">
           {locale === 'en'
             ? 'Each chart zooms into a specific area of life. Charts are grouped into three tiers based on their interpretive weight in the Vimshopak scoring system:'
@@ -555,13 +555,13 @@ export default function LearnVargasPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       <div className="p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/5">
                         <div className="text-gold-primary/60 text-xs uppercase tracking-wider mb-1">
-                          {tl({ en: 'Division Rule', hi: 'विभाजन नियम', sa: 'विभाजन नियम', ta: 'Division Rule', te: 'Division Rule', bn: 'Division Rule', kn: 'Division Rule', gu: 'Division Rule', mai: 'विभाजन नियम', mr: 'विभाजन नियम' }, locale)}
+                          {t('thDivisionRule')}
                         </div>
                         <p className="text-gold-light/70 font-mono text-xs">{tl(v.rule, locale)}</p>
                       </div>
                       <div className="p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/5">
                         <div className="text-gold-primary/60 text-xs uppercase tracking-wider mb-1">
-                          {tl({ en: 'Key Houses to Analyze', hi: 'विश्लेषण हेतु प्रमुख भाव', sa: 'विश्लेषण हेतु प्रमुख भाव', ta: 'Key Houses to Analyze', te: 'Key Houses to Analyze', bn: 'Key Houses to Analyze', kn: 'Key Houses to Analyze', gu: 'Key Houses to Analyze', mai: 'विश्लेषण हेतु प्रमुख भाव', mr: 'विश्लेषण हेतु प्रमुख भाव' }, locale)}
+                          {t('thKeyHouses')}
                         </div>
                         <p className="text-gold-light/70 text-xs">{tl(v.keyHouses, locale)}</p>
                       </div>
@@ -583,35 +583,35 @@ export default function LearnVargasPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{tl({ en: 'Element', hi: 'तत्व', sa: 'तत्त्वम्', ta: 'தத்துவம்', te: 'తత్వం', bn: 'তত্ত্ব', kn: 'ತತ್ವ', gu: 'તત્ત્વ', mai: 'तत्व', mr: 'तत्त्व' }, locale)}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{tl({ en: 'Signs', hi: 'राशियाँ', sa: 'राशियाँ', ta: 'Signs', te: 'Signs', bn: 'Signs', kn: 'Signs', gu: 'Signs', mai: 'राशियाँ', mr: 'राशियाँ' }, locale)}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{tl({ en: 'Navamsha Starts From', hi: 'नवांश प्रारम्भ', sa: 'नवांश प्रारम्भ', ta: 'Navamsha Starts From', te: 'Navamsha Starts From', bn: 'Navamsha Starts From', kn: 'Navamsha Starts From', gu: 'Navamsha Starts From', mai: 'नवांश प्रारम्भ', mr: 'नवांश प्रारम्भ' }, locale)}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs hidden sm:table-cell">{tl({ en: '9 Navamsha Signs', hi: '9 नवांश राशियाँ', sa: '9 नवांश राशियाँ', ta: '9 Navamsha Signs', te: '9 Navamsha Signs', bn: '9 Navamsha Signs', kn: '9 Navamsha Signs', gu: '9 Navamsha Signs', mai: '9 नवांश राशियाँ', mr: '9 नवांश राशियाँ' }, locale)}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{t('thElement')}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{t('thSigns')}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{t('thNavamshaStartsFrom')}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs hidden sm:table-cell">{t('th9NavamshaSignsCol')}</th>
               </tr>
             </thead>
             <tbody className="text-xs">
               <tr className="border-b border-gold-primary/5">
-                <td className="py-2 text-red-400 font-semibold">{tl({ en: 'Fire', hi: 'अग्नि', sa: 'अग्नि', ta: 'Fire', te: 'Fire', bn: 'Fire', kn: 'Fire', gu: 'Fire', mai: 'अग्नि', mr: 'अग्नि' }, locale)}</td>
-                <td className="py-2 text-text-secondary">{tl({ en: 'Aries, Leo, Sagittarius', hi: 'मेष, सिंह, धनु', sa: 'मेष, सिंह, धनु', ta: 'Aries, Leo, Sagittarius', te: 'Aries, Leo, Sagittarius', bn: 'Aries, Leo, Sagittarius', kn: 'Aries, Leo, Sagittarius', gu: 'Aries, Leo, Sagittarius', mai: 'मेष, सिंह, धनु', mr: 'मेष, सिंह, धनु' }, locale)}</td>
-                <td className="py-2 text-gold-light font-semibold">{tl({ en: 'Aries (1)', hi: 'मेष (1)', sa: 'मेष (1)', ta: 'Aries (1)', te: 'Aries (1)', bn: 'Aries (1)', kn: 'Aries (1)', gu: 'Aries (1)', mai: 'मेष (1)', mr: 'मेष (1)' }, locale)}</td>
+                <td className="py-2 text-red-400 font-semibold">{t('elemFire')}</td>
+                <td className="py-2 text-text-secondary">{t('fireSignsList')}</td>
+                <td className="py-2 text-gold-light font-semibold">{t('fireNavamshaStart')}</td>
                 <td className="py-2 text-text-secondary/75 hidden sm:table-cell font-mono">1→2→3→4→5→6→7→8→9</td>
               </tr>
               <tr className="border-b border-gold-primary/5">
-                <td className="py-2 text-emerald-400 font-semibold">{tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी', ta: 'பூமி', te: 'భూమి', bn: 'পৃথিবী', kn: 'ಭೂಮಿ', gu: 'પૃથ્વી', mai: 'पृथ्वी', mr: 'पृथ्वी' }, locale)}</td>
-                <td className="py-2 text-text-secondary">{tl({ en: 'Taurus, Virgo, Capricorn', hi: 'वृषभ, कन्या, मकर', sa: 'वृषभ, कन्या, मकर', ta: 'Taurus, Virgo, Capricorn', te: 'Taurus, Virgo, Capricorn', bn: 'Taurus, Virgo, Capricorn', kn: 'Taurus, Virgo, Capricorn', gu: 'Taurus, Virgo, Capricorn', mai: 'वृषभ, कन्या, मकर', mr: 'वृषभ, कन्या, मकर' }, locale)}</td>
-                <td className="py-2 text-gold-light font-semibold">{tl({ en: 'Capricorn (10)', hi: 'मकर (10)', sa: 'मकर (10)', ta: 'Capricorn (10)', te: 'Capricorn (10)', bn: 'Capricorn (10)', kn: 'Capricorn (10)', gu: 'Capricorn (10)', mai: 'मकर (10)', mr: 'मकर (10)' }, locale)}</td>
+                <td className="py-2 text-emerald-400 font-semibold">{t('elemEarth')}</td>
+                <td className="py-2 text-text-secondary">{t('earthSignsList')}</td>
+                <td className="py-2 text-gold-light font-semibold">{t('earthNavamshaStart')}</td>
                 <td className="py-2 text-text-secondary/75 hidden sm:table-cell font-mono">10→11→12→1→2→3→4→5→6</td>
               </tr>
               <tr className="border-b border-gold-primary/5">
-                <td className="py-2 text-sky-400 font-semibold">{tl({ en: 'Air', hi: 'वायु', sa: 'वायु', ta: 'Air', te: 'Air', bn: 'Air', kn: 'Air', gu: 'Air', mai: 'वायु', mr: 'वायु' }, locale)}</td>
-                <td className="py-2 text-text-secondary">{tl({ en: 'Gemini, Libra, Aquarius', hi: 'मिथुन, तुला, कुम्भ', sa: 'मिथुन, तुला, कुम्भ', ta: 'Gemini, Libra, Aquarius', te: 'Gemini, Libra, Aquarius', bn: 'Gemini, Libra, Aquarius', kn: 'Gemini, Libra, Aquarius', gu: 'Gemini, Libra, Aquarius', mai: 'मिथुन, तुला, कुम्भ', mr: 'मिथुन, तुला, कुम्भ' }, locale)}</td>
-                <td className="py-2 text-gold-light font-semibold">{tl({ en: 'Libra (7)', hi: 'तुला (7)', sa: 'तुला (7)', ta: 'Libra (7)', te: 'Libra (7)', bn: 'Libra (7)', kn: 'Libra (7)', gu: 'Libra (7)', mai: 'तुला (7)', mr: 'तुला (7)' }, locale)}</td>
+                <td className="py-2 text-sky-400 font-semibold">{t('elemAir')}</td>
+                <td className="py-2 text-text-secondary">{t('airSignsList')}</td>
+                <td className="py-2 text-gold-light font-semibold">{t('airNavamshaStart')}</td>
                 <td className="py-2 text-text-secondary/75 hidden sm:table-cell font-mono">7→8→9→10→11→12→1→2→3</td>
               </tr>
               <tr className="border-b border-gold-primary/5">
-                <td className="py-2 text-blue-400 font-semibold">{tl({ en: 'Water', hi: 'जल', sa: 'जल', ta: 'Water', te: 'Water', bn: 'Water', kn: 'Water', gu: 'Water', mai: 'जल', mr: 'जल' }, locale)}</td>
-                <td className="py-2 text-text-secondary">{tl({ en: 'Cancer, Scorpio, Pisces', hi: 'कर्क, वृश्चिक, मीन', sa: 'कर्क, वृश्चिक, मीन', ta: 'Cancer, Scorpio, Pisces', te: 'Cancer, Scorpio, Pisces', bn: 'Cancer, Scorpio, Pisces', kn: 'Cancer, Scorpio, Pisces', gu: 'Cancer, Scorpio, Pisces', mai: 'कर्क, वृश्चिक, मीन', mr: 'कर्क, वृश्चिक, मीन' }, locale)}</td>
-                <td className="py-2 text-gold-light font-semibold">{tl({ en: 'Cancer (4)', hi: 'कर्क (4)', sa: 'कर्क (4)', ta: 'Cancer (4)', te: 'Cancer (4)', bn: 'Cancer (4)', kn: 'Cancer (4)', gu: 'Cancer (4)', mai: 'कर्क (4)', mr: 'कर्क (4)' }, locale)}</td>
+                <td className="py-2 text-blue-400 font-semibold">{t('elemWater')}</td>
+                <td className="py-2 text-text-secondary">{t('waterSignsList')}</td>
+                <td className="py-2 text-gold-light font-semibold">{t('waterNavamshaStart')}</td>
                 <td className="py-2 text-text-secondary/75 hidden sm:table-cell font-mono">4→5→6→7→8→9→10→11→12</td>
               </tr>
             </tbody>
@@ -620,12 +620,12 @@ export default function LearnVargasPage() {
 
         {/* Worked example */}
         <div className="mt-5 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-3">{tl({ en: 'Worked Example (15 Aug 1995, 10:30 AM, Delhi):', hi: 'उदाहरण (15 अगस्त 1995, 10:30 AM, दिल्ली):', sa: 'उदाहरण (15 अगस्त 1995, 10:30 AM, दिल्ली):', ta: 'Worked Example (15 Aug 1995, 10:30 AM, Delhi):', te: 'Worked Example (15 Aug 1995, 10:30 AM, Delhi):', bn: 'Worked Example (15 Aug 1995, 10:30 AM, Delhi):', kn: 'Worked Example (15 Aug 1995, 10:30 AM, Delhi):', gu: 'Worked Example (15 Aug 1995, 10:30 AM, Delhi):', mai: 'उदाहरण (15 अगस्त 1995, 10:30 AM, दिल्ली):', mr: 'उदाहरण (15 अगस्त 1995, 10:30 AM, दिल्ली):' }, locale)}</p>
+          <p className="text-gold-light font-mono text-sm mb-3">{t('exampleLabel')}</p>
           <div className="space-y-1">
-            <p className="text-gold-light/80 font-mono text-xs">{tl({ en: 'Sun at 118.5° sidereal = Cancer (sign 4) at 28.5°', hi: 'सूर्य 118.5° नाक्षत्रिक = कर्क (राशि 4) पर 28.5°', sa: 'सूर्य 118.5° नाक्षत्रिक = कर्क (राशि 4) पर 28.5°', ta: 'Sun at 118.5° sidereal = Cancer (sign 4) at 28.5°', te: 'Sun at 118.5° sidereal = Cancer (sign 4) at 28.5°', bn: 'Sun at 118.5° sidereal = Cancer (sign 4) at 28.5°', kn: 'Sun at 118.5° sidereal = Cancer (sign 4) at 28.5°', gu: 'Sun at 118.5° sidereal = Cancer (sign 4) at 28.5°', mai: 'सूर्य 118.5° नाक्षत्रिक = कर्क (राशि 4) पर 28.5°', mr: 'सूर्य 118.5° नाक्षत्रिक = कर्क (राशि 4) पर 28.5°' }, locale)}</p>
-            <p className="text-gold-light/80 font-mono text-xs">{tl({ en: 'Cancer is a Water sign → Navamsha starts from Cancer (4)', hi: 'कर्क जल राशि है → नवांश कर्क (4) से शुरू', sa: 'कर्क जल राशि है → नवांश कर्क (4) से शुरू', ta: 'Cancer is a Water sign → Navamsha starts from Cancer (4)', te: 'Cancer is a Water sign → Navamsha starts from Cancer (4)', bn: 'Cancer is a Water sign → Navamsha starts from Cancer (4)', kn: 'Cancer is a Water sign → Navamsha starts from Cancer (4)', gu: 'Cancer is a Water sign → Navamsha starts from Cancer (4)', mai: 'कर्क जल राशि है → नवांश कर्क (4) से शुरू', mr: 'कर्क जल राशि है → नवांश कर्क (4) से शुरू' }, locale)}</p>
-            <p className="text-gold-light/80 font-mono text-xs">{tl({ en: 'Navamsha division: 28.5° ÷ 3.333° = 8.55 → 9th navamsha', hi: 'नवांश विभाजन: 28.5° ÷ 3.333° = 8.55 → 9वाँ नवांश', sa: 'नवांश विभाजन: 28.5° ÷ 3.333° = 8.55 → 9वाँ नवांश', ta: 'Navamsha division: 28.5° ÷ 3.333° = 8.55 → 9th navamsha', te: 'Navamsha division: 28.5° ÷ 3.333° = 8.55 → 9th navamsha', bn: 'Navamsha division: 28.5° ÷ 3.333° = 8.55 → 9th navamsha', kn: 'Navamsha division: 28.5° ÷ 3.333° = 8.55 → 9th navamsha', gu: 'Navamsha division: 28.5° ÷ 3.333° = 8.55 → 9th navamsha', mai: 'नवांश विभाजन: 28.5° ÷ 3.333° = 8.55 → 9वाँ नवांश', mr: 'नवांश विभाजन: 28.5° ÷ 3.333° = 8.55 → 9वाँ नवांश' }, locale)}</p>
-            <p className="text-gold-light/80 font-mono text-xs font-bold text-gold-light">{tl({ en: '9th from Cancer = Pisces → Sun is in Pisces in D9', hi: 'कर्क से 9वीं = मीन → D9 में सूर्य मीन में', sa: 'कर्क से 9वीं = मीन → D9 में सूर्य मीन में', ta: '9th from Cancer = Pisces → Sun is in Pisces in D9', te: '9th from Cancer = Pisces → Sun is in Pisces in D9', bn: '9th from Cancer = Pisces → Sun is in Pisces in D9', kn: '9th from Cancer = Pisces → Sun is in Pisces in D9', gu: '9th from Cancer = Pisces → Sun is in Pisces in D9', mai: 'कर्क से 9वीं = मीन → D9 में सूर्य मीन में', mr: 'कर्क से 9वीं = मीन → D9 में सूर्य मीन में' }, locale)}</p>
+            <p className="text-gold-light/80 font-mono text-xs">{t('exampleStep1')}</p>
+            <p className="text-gold-light/80 font-mono text-xs">{t('exampleStep2')}</p>
+            <p className="text-gold-light/80 font-mono text-xs">{t('exampleStep3')}</p>
+            <p className="text-gold-light/80 font-mono text-xs font-bold text-gold-light">{t('exampleResult')}</p>
             <p className="text-text-secondary/70 text-xs mt-2 italic">
               {locale === 'en'
                 ? 'In D1, Sun is in Cancer (friendly sign). In D9, Sun is in Pisces (friendly sign). Both dignified = Sun\'s promises are confirmed.'
@@ -643,7 +643,7 @@ export default function LearnVargasPage() {
         <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20">
             <div className="text-amber-400 font-bold text-sm mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-              {tl({ en: 'Vargottama', hi: 'वर्गोत्तम', sa: 'वर्गोत्तम', ta: 'Vargottama', te: 'Vargottama', bn: 'Vargottama', kn: 'Vargottama', gu: 'Vargottama', mai: 'वर्गोत्तम', mr: 'वर्गोत्तम' }, locale)}
+              {t('termVargottama')}
             </div>
             <p className="text-text-secondary text-xs">
               {locale === 'en'
@@ -653,7 +653,7 @@ export default function LearnVargasPage() {
           </div>
           <div className="p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/20">
             <div className="text-emerald-400 font-bold text-sm mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-              {tl({ en: 'Pushkara Navamsha', hi: 'पुष्कर नवांश', sa: 'पुष्कर नवांश', ta: 'Pushkara Navamsha', te: 'Pushkara Navamsha', bn: 'Pushkara Navamsha', kn: 'Pushkara Navamsha', gu: 'Pushkara Navamsha', mai: 'पुष्कर नवांश', mr: 'पुष्कर नवांश' }, locale)}
+              {t('termPushkaraN9')}
             </div>
             <p className="text-text-secondary text-xs">
               {locale === 'en'
@@ -663,7 +663,7 @@ export default function LearnVargasPage() {
           </div>
           <div className="p-4 rounded-lg bg-purple-500/5 border border-purple-500/20">
             <div className="text-purple-400 font-bold text-sm mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-              {tl({ en: 'Navamsha Drishti', hi: 'नवांश दृष्टि', sa: 'नवांश दृष्टि', ta: 'Navamsha Drishti', te: 'Navamsha Drishti', bn: 'Navamsha Drishti', kn: 'Navamsha Drishti', gu: 'Navamsha Drishti', mai: 'नवांश दृष्टि', mr: 'नवांश दृष्टि' }, locale)}
+              {t('termNavamshaDrishti')}
             </div>
             <p className="text-text-secondary text-xs">
               {locale === 'en'
@@ -673,7 +673,7 @@ export default function LearnVargasPage() {
           </div>
           <div className="p-4 rounded-lg bg-rose-500/5 border border-rose-500/20">
             <div className="text-rose-400 font-bold text-sm mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-              {tl({ en: '64th Navamsha', hi: '64वाँ नवांश', sa: '64वाँ नवांश', ta: '64th Navamsha', te: '64th Navamsha', bn: '64th Navamsha', kn: '64th Navamsha', gu: '64th Navamsha', mai: '64वाँ नवांश', mr: '64वाँ नवांश' }, locale)}
+              {t('term64thNavamsha')}
             </div>
             <p className="text-text-secondary text-xs">
               {locale === 'en'
@@ -693,9 +693,9 @@ export default function LearnVargasPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{tl({ en: 'Chart', hi: 'चार्ट', sa: 'चार्ट', ta: 'Chart', te: 'Chart', bn: 'Chart', kn: 'Chart', gu: 'Chart', mai: 'चार्ट', mr: 'चार्ट' }, locale)}</th>
-                <th className="text-center py-2 text-gold-primary font-semibold text-xs">{tl({ en: 'Weight', hi: 'भार', sa: 'भार', ta: 'Weight', te: 'Weight', bn: 'Weight', kn: 'Weight', gu: 'Weight', mai: 'भार', mr: 'भार' }, locale)}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{tl({ en: 'Proportion', hi: 'अनुपात', sa: 'अनुपात', ta: 'Proportion', te: 'Proportion', bn: 'Proportion', kn: 'Proportion', gu: 'Proportion', mai: 'अनुपात', mr: 'अनुपात' }, locale)}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{t('thChart')}</th>
+                <th className="text-center py-2 text-gold-primary font-semibold text-xs">{t('thWeight')}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{t('thProportion')}</th>
               </tr>
             </thead>
             <tbody>
@@ -721,23 +721,23 @@ export default function LearnVargasPage() {
         </div>
 
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-2">{tl({ en: 'Strength Levels:', hi: 'शक्ति स्तर:', sa: 'शक्ति स्तर:', ta: 'Strength Levels:', te: 'Strength Levels:', bn: 'Strength Levels:', kn: 'Strength Levels:', gu: 'Strength Levels:', mai: 'शक्ति स्तर:', mr: 'शक्ति स्तर:' }, locale)}</p>
+          <p className="text-gold-light font-mono text-sm mb-2">{t('strengthLevels')}</p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
             <div className="text-center p-2 rounded bg-emerald-500/10 border border-emerald-500/20">
               <div className="text-emerald-400 font-bold">15-20</div>
-              <div className="text-text-secondary/75">{tl({ en: 'Very Strong', hi: 'बहुत शक्तिशाली', sa: 'बहुत शक्तिशाली', ta: 'Very Strong', te: 'Very Strong', bn: 'Very Strong', kn: 'Very Strong', gu: 'Very Strong', mai: 'बहुत शक्तिशाली', mr: 'बहुत शक्तिशाली' }, locale)}</div>
+              <div className="text-text-secondary/75">{t('strengthVeryStrong')}</div>
             </div>
             <div className="text-center p-2 rounded bg-amber-500/10 border border-amber-500/20">
               <div className="text-amber-400 font-bold">10-15</div>
-              <div className="text-text-secondary/75">{tl({ en: 'Strong', hi: 'शक्तिशाली', sa: 'शक्तिशाली', ta: 'Strong', te: 'Strong', bn: 'Strong', kn: 'Strong', gu: 'Strong', mai: 'शक्तिशाली', mr: 'शक्तिशाली' }, locale)}</div>
+              <div className="text-text-secondary/75">{t('strengthStrong')}</div>
             </div>
             <div className="text-center p-2 rounded bg-orange-500/10 border border-orange-500/20">
               <div className="text-orange-400 font-bold">5-10</div>
-              <div className="text-text-secondary/75">{tl({ en: 'Moderate', hi: 'मध्यम', sa: 'मध्यम', ta: 'Moderate', te: 'Moderate', bn: 'Moderate', kn: 'Moderate', gu: 'Moderate', mai: 'मध्यम', mr: 'मध्यम' }, locale)}</div>
+              <div className="text-text-secondary/75">{t('strengthModerate')}</div>
             </div>
             <div className="text-center p-2 rounded bg-red-500/10 border border-red-500/20">
               <div className="text-red-400 font-bold">0-5</div>
-              <div className="text-text-secondary/75">{tl({ en: 'Weak', hi: 'दुर्बल', sa: 'दुर्बल', ta: 'Weak', te: 'Weak', bn: 'Weak', kn: 'Weak', gu: 'Weak', mai: 'दुर्बल', mr: 'दुर्बल' }, locale)}</div>
+              <div className="text-text-secondary/75">{t('strengthWeak')}</div>
             </div>
           </div>
         </div>
@@ -751,14 +751,14 @@ export default function LearnVargasPage() {
           {/* Essential tier */}
           <div className="p-4 rounded-lg border border-amber-500/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
             <div className="text-amber-400 font-bold text-sm mb-2">
-              {tl({ en: 'Tier 1 — Always Consult', hi: 'स्तर 1 — सदा परामर्श करें', sa: 'स्तर 1 — सदा परामर्श करें', ta: 'Tier 1 — Always Consult', te: 'Tier 1 — Always Consult', bn: 'Tier 1 — Always Consult', kn: 'Tier 1 — Always Consult', gu: 'Tier 1 — Always Consult', mai: 'स्तर 1 — सदा परामर्श करें', mr: 'स्तर 1 — सदा परामर्श करें' }, locale)}
+              {t('tier1Label')}
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
               {[
-                { key: 'D1', name: tl({ en: 'Rashi (Master)', hi: 'राशि (मास्टर)', sa: 'राशि (मास्टर)', ta: 'Rashi (Master)', te: 'Rashi (Master)', bn: 'Rashi (Master)', kn: 'Rashi (Master)', gu: 'Rashi (Master)', mai: 'राशि (मास्टर)', mr: 'राशि (मास्टर)' }, locale) },
-                { key: 'D9', name: tl({ en: 'Navamsha (Dharma)', hi: 'नवांश (धर्म)', sa: 'नवांश (धर्म)', ta: 'Navamsha (Dharma)', te: 'Navamsha (Dharma)', bn: 'Navamsha (Dharma)', kn: 'Navamsha (Dharma)', gu: 'Navamsha (Dharma)', mai: 'नवांश (धर्म)', mr: 'नवांश (धर्म)' }, locale) },
-                { key: 'D10', name: tl({ en: 'Dasamsha (Career)', hi: 'दशांश (करियर)', sa: 'दशांश (करियर)', ta: 'Dasamsha (Career)', te: 'Dasamsha (Career)', bn: 'Dasamsha (Career)', kn: 'Dasamsha (Career)', gu: 'Dasamsha (Career)', mai: 'दशांश (करियर)', mr: 'दशांश (करियर)' }, locale) },
-                { key: 'D60', name: tl({ en: 'Shashtiamsha (Karma)', hi: 'षष्ट्यंश (कर्म)', sa: 'षष्ट्यंश (कर्म)', ta: 'Shashtiamsha (Karma)', te: 'Shashtiamsha (Karma)', bn: 'Shashtiamsha (Karma)', kn: 'Shashtiamsha (Karma)', gu: 'Shashtiamsha (Karma)', mai: 'षष्ट्यंश (कर्म)', mr: 'षष्ट्यंश (कर्म)' }, locale) },
+                { key: 'D1', name: t('d1Name') },
+                { key: 'D9', name: t('d9Name') },
+                { key: 'D10', name: t('d10Name') },
+                { key: 'D60', name: t('d60Name') },
               ].map((c) => (
                 <div key={c.key} className="text-center p-2 rounded bg-amber-500/10">
                   <div className="text-amber-400 font-bold">{c.key}</div>
@@ -771,13 +771,13 @@ export default function LearnVargasPage() {
           {/* Important tier */}
           <div className="p-4 rounded-lg border border-emerald-500/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
             <div className="text-emerald-400 font-bold text-sm mb-2">
-              {tl({ en: 'Tier 2 — Consult for Specific Questions', hi: 'स्तर 2 — विशिष्ट प्रश्नों के लिए', sa: 'स्तर 2 — विशिष्ट प्रश्नों के लिए', ta: 'Tier 2 — Consult for Specific Questions', te: 'Tier 2 — Consult for Specific Questions', bn: 'Tier 2 — Consult for Specific Questions', kn: 'Tier 2 — Consult for Specific Questions', gu: 'Tier 2 — Consult for Specific Questions', mai: 'स्तर 2 — विशिष्ट प्रश्नों के लिए', mr: 'स्तर 2 — विशिष्ट प्रश्नों के लिए' }, locale)}
+              {t('tier2Label')}
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
               {[
-                { key: 'D7', name: tl({ en: 'Saptamsha (Children)', hi: 'सप्तमांश (संतान)', sa: 'सप्तमांश (संतान)', ta: 'Saptamsha (Children)', te: 'Saptamsha (Children)', bn: 'Saptamsha (Children)', kn: 'Saptamsha (Children)', gu: 'Saptamsha (Children)', mai: 'सप्तमांश (संतान)', mr: 'सप्तमांश (संतान)' }, locale) },
-                { key: 'D16', name: tl({ en: 'Shodasamsha (Comforts)', hi: 'षोडशांश (सुख)', sa: 'षोडशांश (सुख)', ta: 'Shodasamsha (Comforts)', te: 'Shodasamsha (Comforts)', bn: 'Shodasamsha (Comforts)', kn: 'Shodasamsha (Comforts)', gu: 'Shodasamsha (Comforts)', mai: 'षोडशांश (सुख)', mr: 'षोडशांश (सुख)' }, locale) },
-                { key: 'D30', name: tl({ en: 'Trimshamsha (Evils)', hi: 'त्रिंशांश (दुःख)', sa: 'त्रिंशांश (दुःख)', ta: 'Trimshamsha (Evils)', te: 'Trimshamsha (Evils)', bn: 'Trimshamsha (Evils)', kn: 'Trimshamsha (Evils)', gu: 'Trimshamsha (Evils)', mai: 'त्रिंशांश (दुःख)', mr: 'त्रिंशांश (दुःख)' }, locale) },
+                { key: 'D7', name: t('d7Name') },
+                { key: 'D16', name: t('d16Name') },
+                { key: 'D30', name: t('d30Name') },
               ].map((c) => (
                 <div key={c.key} className="text-center p-2 rounded bg-emerald-500/10">
                   <div className="text-emerald-400 font-bold">{c.key}</div>
@@ -790,19 +790,19 @@ export default function LearnVargasPage() {
           {/* Supporting tier */}
           <div className="p-4 rounded-lg border border-blue-500/20 bg-blue-500/5">
             <div className="text-blue-400 font-bold text-sm mb-2">
-              {tl({ en: 'Tier 3 — Fine-Tuning & Specialization', hi: 'स्तर 3 — सूक्ष्म समायोजन', sa: 'स्तर 3 — सूक्ष्म समायोजन', ta: 'Tier 3 — Fine-Tuning & Specialization', te: 'Tier 3 — Fine-Tuning & Specialization', bn: 'Tier 3 — Fine-Tuning & Specialization', kn: 'Tier 3 — Fine-Tuning & Specialization', gu: 'Tier 3 — Fine-Tuning & Specialization', mai: 'स्तर 3 — सूक्ष्म समायोजन', mr: 'स्तर 3 — सूक्ष्म समायोजन' }, locale)}
+              {t('tier3Label')}
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 text-xs">
               {[
-                { key: 'D2', name: tl({ en: 'Hora', hi: 'होरा', sa: 'होरा', ta: 'Hora', te: 'Hora', bn: 'Hora', kn: 'Hora', gu: 'Hora', mai: 'होरा', mr: 'होरा' }, locale) },
-                { key: 'D3', name: tl({ en: 'Drekkana', hi: 'द्रेष्काण', sa: 'द्रेष्काण', ta: 'Drekkana', te: 'Drekkana', bn: 'Drekkana', kn: 'Drekkana', gu: 'Drekkana', mai: 'द्रेष्काण', mr: 'द्रेष्काण' }, locale) },
-                { key: 'D4', name: tl({ en: 'Chaturthamsha', hi: 'चतुर्थांश', sa: 'चतुर्थांश', ta: 'Chaturthamsha', te: 'Chaturthamsha', bn: 'Chaturthamsha', kn: 'Chaturthamsha', gu: 'Chaturthamsha', mai: 'चतुर्थांश', mr: 'चतुर्थांश' }, locale) },
-                { key: 'D12', name: tl({ en: 'Dwadasamsha', hi: 'द्वादशांश', sa: 'द्वादशांश', ta: 'Dwadasamsha', te: 'Dwadasamsha', bn: 'Dwadasamsha', kn: 'Dwadasamsha', gu: 'Dwadasamsha', mai: 'द्वादशांश', mr: 'द्वादशांश' }, locale) },
-                { key: 'D20', name: tl({ en: 'Vimshamsha', hi: 'विंशांश', sa: 'विंशांश', ta: 'Vimshamsha', te: 'Vimshamsha', bn: 'Vimshamsha', kn: 'Vimshamsha', gu: 'Vimshamsha', mai: 'विंशांश', mr: 'विंशांश' }, locale) },
-                { key: 'D24', name: tl({ en: 'Siddhamsha', hi: 'सिद्धांश', sa: 'सिद्धांश', ta: 'Siddhamsha', te: 'Siddhamsha', bn: 'Siddhamsha', kn: 'Siddhamsha', gu: 'Siddhamsha', mai: 'सिद्धांश', mr: 'सिद्धांश' }, locale) },
-                { key: 'D27', name: tl({ en: 'Bhamsha', hi: 'भांश', sa: 'भांश', ta: 'Bhamsha', te: 'Bhamsha', bn: 'Bhamsha', kn: 'Bhamsha', gu: 'Bhamsha', mai: 'भांश', mr: 'भांश' }, locale) },
-                { key: 'D40', name: tl({ en: 'Khavedamsha', hi: 'खवेदांश', sa: 'खवेदांश', ta: 'Khavedamsha', te: 'Khavedamsha', bn: 'Khavedamsha', kn: 'Khavedamsha', gu: 'Khavedamsha', mai: 'खवेदांश', mr: 'खवेदांश' }, locale) },
-                { key: 'D45', name: tl({ en: 'Akshavedamsha', hi: 'अक्षवेदांश', sa: 'अक्षवेदांश', ta: 'Akshavedamsha', te: 'Akshavedamsha', bn: 'Akshavedamsha', kn: 'Akshavedamsha', gu: 'Akshavedamsha', mai: 'अक्षवेदांश', mr: 'अक्षवेदांश' }, locale) },
+                { key: 'D2', name: t('d2Name') },
+                { key: 'D3', name: t('d3Name') },
+                { key: 'D4', name: t('d4Name') },
+                { key: 'D12', name: t('d12Name') },
+                { key: 'D20', name: t('d20Name') },
+                { key: 'D24', name: t('d24Name') },
+                { key: 'D27', name: t('d27Name') },
+                { key: 'D40', name: t('d40Name') },
+                { key: 'D45', name: t('d45Name') },
               ].map((c) => (
                 <div key={c.key} className="text-center p-2 rounded bg-blue-500/10">
                   <div className="text-blue-400 font-bold">{c.key}</div>
@@ -867,7 +867,7 @@ export default function LearnVargasPage() {
         {/* D9 Interpretation Example */}
         <div className="mb-5 p-5 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 border border-amber-500/20">
           <h4 className="text-amber-400 font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-            {tl({ en: 'Example 1: Reading D9 for Marriage', hi: 'उदाहरण 1: D9 से विवाह पढ़ना', sa: 'उदाहरण 1: D9 से विवाह पढ़ना', ta: 'Example 1: Reading D9 for Marriage', te: 'Example 1: Reading D9 for Marriage', bn: 'Example 1: Reading D9 for Marriage', kn: 'Example 1: Reading D9 for Marriage', gu: 'Example 1: Reading D9 for Marriage', mai: 'उदाहरण 1: D9 से विवाह पढ़ना', mr: 'उदाहरण 1: D9 से विवाह पढ़ना' }, locale)}
+            {t('exTitle1')}
           </h4>
           <div className="space-y-2 text-sm text-text-secondary">
             <p>{locale === 'en'
@@ -890,7 +890,7 @@ export default function LearnVargasPage() {
         {/* D10 Interpretation Example */}
         <div className="mb-5 p-5 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 border border-emerald-500/20">
           <h4 className="text-emerald-400 font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-            {tl({ en: 'Example 2: Reading D10 for Career', hi: 'उदाहरण 2: D10 से करियर पढ़ना', sa: 'उदाहरण 2: D10 से करियर पढ़ना', ta: 'Example 2: Reading D10 for Career', te: 'Example 2: Reading D10 for Career', bn: 'Example 2: Reading D10 for Career', kn: 'Example 2: Reading D10 for Career', gu: 'Example 2: Reading D10 for Career', mai: 'उदाहरण 2: D10 से करियर पढ़ना', mr: 'उदाहरण 2: D10 से करियर पढ़ना' }, locale)}
+            {t('exTitle2')}
           </h4>
           <div className="space-y-2 text-sm text-text-secondary">
             <p>{locale === 'en'
@@ -908,7 +908,7 @@ export default function LearnVargasPage() {
         {/* D7 Interpretation Example */}
         <div className="p-5 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 border border-purple-500/20">
           <h4 className="text-purple-400 font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-            {tl({ en: 'Example 3: Reading D7 for Children', hi: 'उदाहरण 3: D7 से संतान पढ़ना', sa: 'उदाहरण 3: D7 से संतान पढ़ना', ta: 'Example 3: Reading D7 for Children', te: 'Example 3: Reading D7 for Children', bn: 'Example 3: Reading D7 for Children', kn: 'Example 3: Reading D7 for Children', gu: 'Example 3: Reading D7 for Children', mai: 'उदाहरण 3: D7 से संतान पढ़ना', mr: 'उदाहरण 3: D7 से संतान पढ़ना' }, locale)}
+            {t('exTitle3')}
           </h4>
           <div className="space-y-2 text-sm text-text-secondary">
             <p>{locale === 'en'

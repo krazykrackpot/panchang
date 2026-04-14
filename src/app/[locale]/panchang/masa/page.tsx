@@ -212,7 +212,7 @@ function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
         animate={{ opacity: 1, y: CY - 10 }}
         transition={{ duration: 0.8, delay: 1.4 }}
       >
-        {tl({ en: 'LUNISOLAR', hi: 'चान्द्र-सौर', sa: 'चान्द्रसौरम्', ta: 'LUNISOLAR', te: 'LUNISOLAR', bn: 'LUNISOLAR', kn: 'LUNISOLAR', gu: 'LUNISOLAR', mai: 'चान्द्र-सौर', mr: 'चान्द्र-सौर' }, locale)}
+        {tl({ en: 'LUNISOLAR', hi: 'चान्द्र-सौर', sa: 'चान्द्रसौरम्', ta: 'சந்திர-சூரிய', te: 'చాంద్ర-సౌర', bn: 'চান্দ্র-সৌর', kn: 'ಚಾಂದ್ರ-ಸೌರ', gu: 'ચાન્દ્ર-સૌર', mai: 'चान्द्र-सौर', mr: 'चांद्र-सौर' }, locale)}
       </motion.text>
       <motion.text
         x={CX} y={CY + 8}
@@ -223,7 +223,7 @@ function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.6 }}
       >
-        {tl({ en: '12 Months x 6 Seasons', hi: '12 मास x 6 ऋतु', sa: '12 मास x 6 ऋतु', ta: '12 Months x 6 Seasons', te: '12 Months x 6 Seasons', bn: '12 Months x 6 Seasons', kn: '12 Months x 6 Seasons', gu: '12 Months x 6 Seasons', mai: '12 मास x 6 ऋतु', mr: '12 मास x 6 ऋतु' }, locale)}
+        {tl({ en: '12 Months x 6 Seasons', hi: '12 मास x 6 ऋतु', sa: 'द्वादशमासाः × षड्ऋतवः', ta: '12 மாதங்கள் × 6 பருவங்கள்', te: '12 నెలలు × 6 ఋతువులు', bn: '12 মাস × 6 ঋতু', kn: '12 ತಿಂಗಳು × 6 ಋತುಗಳು', gu: '12 માસ × 6 ઋતુ', mai: '12 मास × 6 ऋतु', mr: '12 महिने × 6 ऋतू' }, locale)}
       </motion.text>
     </motion.svg>
   );
@@ -261,14 +261,14 @@ export default function MasaPage() {
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
             <span className="text-gold-gradient">
-              {tl({ en: 'Masa & Ritu', hi: 'मास एवं ऋतु', sa: 'मासः ऋतुश्च', ta: 'மாசம் & பருவம்', te: 'Masa & Ritu', bn: 'Masa & Ritu', kn: 'Masa & Ritu', gu: 'Masa & Ritu', mai: 'मास एवं ऋतु', mr: 'मास एवं ऋतु' }, locale)}
+              {tl({ en: 'Masa & Ritu', hi: 'मास एवं ऋतु', sa: 'मासः ऋतुश्च', ta: 'மாதம் மற்றும் பருவம்', te: 'మాసం మరియు ఋతువు', bn: 'মাস ও ঋতু', kn: 'ಮಾಸ ಮತ್ತು ಋತು', gu: 'માસ અને ઋતુ', mai: 'मास आ ऋतु', mr: 'मास आणि ऋतू' }, locale)}
             </span>
           </h1>
           <p
             className="text-text-secondary text-lg"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
-            {tl({ en: '12 Months and 6 Seasons — The Lunisolar Calendar', hi: '12 मास और 6 ऋतुएँ — चान्द्र-सौर पञ्चाङ्ग', sa: 'द्वादश मासाः षड् ऋतवश्च — चान्द्रसौरपञ्चाङ्गम्', ta: '12 மாதங்கள் மற்றும் 6 பருவங்கள் — சந்திர-சூரிய நாட்காட்டி', te: '12 Months and 6 Seasons — The Lunisolar Calendar', bn: '12 Months and 6 Seasons — The Lunisolar Calendar', kn: '12 Months and 6 Seasons — The Lunisolar Calendar', gu: '12 Months and 6 Seasons — The Lunisolar Calendar', mai: '12 मास और 6 ऋतुएँ — चान्द्र-सौर पञ्चाङ्ग', mr: '12 मास और 6 ऋतुएँ — चान्द्र-सौर पञ्चाङ्ग' }, locale)}
+            {tl({ en: '12 Months and 6 Seasons — The Lunisolar Calendar', hi: '12 मास और 6 ऋतुएँ — चान्द्र-सौर पञ्चाङ्ग', sa: 'द्वादशमासाः षड्ऋतवश्च — चान्द्रसौरपञ्चाङ्गम्', ta: '12 மாதங்கள் மற்றும் 6 பருவங்கள் — சந்திர-சூரிய பஞ்சாங்கம்', te: '12 నెలలు మరియు 6 ఋతువులు — చాంద్ర-సౌర పంచాంగం', bn: '12 মাস ও 6 ঋতু — চান্দ্র-সৌর পঞ্চাঙ্গ', kn: '12 ತಿಂಗಳು ಮತ್ತು 6 ಋತುಗಳು — ಚಾಂದ್ರ-ಸೌರ ಪಂಚಾಂಗ', gu: '12 માસ અને 6 ઋતુ — ચાન્દ્ર-સૌર પંચાંગ', mai: '12 मास आ 6 ऋतु — चान्द्र-सौर पंचांग', mr: '12 महिने आणि 6 ऋतू — चांद्र-सौर पंचांग' }, locale)}
           </p>
         </div>
       </motion.div>
@@ -289,8 +289,8 @@ export default function MasaPage() {
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {tl({ en: 'Lunar year:', hi: 'चान्द्र वर्ष:', sa: 'चान्द्र वर्ष:', ta: 'Lunar year:', te: 'Lunar year:', bn: 'Lunar year:', kn: 'Lunar year:', gu: 'Lunar year:', mai: 'चान्द्र वर्ष:', mr: 'चान्द्र वर्ष:' }, locale)} 12 x 29.53 = ~354.36{' '}
-                {tl({ en: 'days', hi: 'दिन', sa: 'दिन', ta: 'days', te: 'days', bn: 'days', kn: 'days', gu: 'days', mai: 'दिन', mr: 'दिन' }, locale)}
+                {tl({ en: 'Lunar year:', hi: 'चान्द्र वर्ष:', sa: 'चान्द्रवर्षम्:', ta: 'சந்திர ஆண்டு:', te: 'చాంద్ర సంవత్సరం:', bn: 'চান্দ্র বছর:', kn: 'ಚಾಂದ್ರ ವರ್ಷ:', gu: 'ચાન્દ્ર વર્ષ:', mai: 'चान्द्र वर्ष:', mr: 'चांद्र वर्ष:' }, locale)} 12 x 29.53 = ~354.36{' '}
+                {tl({ en: 'days', hi: 'दिन', sa: 'दिनानि', ta: 'நாட்கள்', te: 'రోజులు', bn: 'দিন', kn: 'ದಿನಗಳು', gu: 'દિવસ', mai: 'दिन', mr: 'दिवस' }, locale)}
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
                 {locale === 'en'
@@ -307,7 +307,7 @@ export default function MasaPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en'
             ? 'Annual Cycle — Months & Seasons'
-            : tl({ en: 'वार्षिकचक्रम् — मासाः ऋतवश्च', hi: 'वार्षिक चक्र — मास और ऋतु', sa: 'वार्षिक चक्र — मास और ऋतु', ta: 'वार्षिकचक्रम् — मासाः ऋतवश्च', te: 'वार्षिकचक्रम् — मासाः ऋतवश्च', bn: 'वार्षिकचक्रम् — मासाः ऋतवश्च', kn: 'वार्षिकचक्रम् — मासाः ऋतवश्च', gu: 'वार्षिकचक्रम् — मासाः ऋतवश्च', mai: 'वार्षिक चक्र — मास और ऋतु', mr: 'वार्षिक चक्र — मास और ऋतु' }, locale)}
+            : tl({ en: 'वार्षिकचक्रम् — मासाः ऋतवश्च', hi: 'वार्षिक चक्र — मास और ऋतु', sa: 'वार्षिकचक्रम् — मासाः ऋतवश्च', ta: 'வருடாந்திர சுழற்சி — மாதங்கள் மற்றும் பருவங்கள்', te: 'వార్షిక చక్రం — మాసాలు మరియు ఋతువులు', bn: 'বার্ষিক চক্র — মাস ও ঋতু', kn: 'ವಾರ್ಷಿಕ ಚಕ್ರ — ಮಾಸಗಳು ಮತ್ತು ಋತುಗಳು', gu: 'વાર્ષિક ચક્ર — માસ અને ઋતુ', mai: 'वार्षिक चक्र — मास आ ऋतु', mr: 'वार्षिक चक्र — मास आणि ऋतू' }, locale)}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex justify-center">
           <AnimatedAnnualWheel locale={locale} />
@@ -325,7 +325,7 @@ export default function MasaPage() {
         <h3 className="text-xl text-gold-light mb-4" style={headingFont}>
           {locale === 'en'
             ? '12 Lunar Months (Masa)'
-            : tl({ en: 'द्वादश चान्द्रमासाः', hi: '12 चान्द्र मास', sa: '12 चान्द्र मास', ta: 'द्वादश चान्द्रमासाः', te: 'द्वादश चान्द्रमासाः', bn: 'द्वादश चान्द्रमासाः', kn: 'द्वादश चान्द्रमासाः', gu: 'द्वादश चान्द्रमासाः', mai: '12 चान्द्र मास', mr: '12 चान्द्र मास' }, locale)}
+            : tl({ en: 'द्वादश चान्द्रमासाः', hi: '12 चान्द्र मास', sa: 'द्वादश चान्द्रमासाः', ta: 'பன்னிரண்டு சந்திர மாதங்கள்', te: 'పన్నెండు చాంద్ర మాసాలు', bn: 'দ্বাদশ চান্দ্র মাস', kn: 'ಹನ್ನೆರಡು ಚಾಂದ್ರ ಮಾಸಗಳು', gu: 'બારા ચાન્દ્ર માસ', mai: 'बारह चान्द्र मास', mr: 'बारा चांद्र मास' }, locale)}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-10">
           {MASA_NAMES.map((masa, i) => {
@@ -364,7 +364,7 @@ export default function MasaPage() {
 
         {/* 6 Seasons */}
         <h3 className="text-xl text-gold-light mb-4" style={headingFont}>
-          {tl({ en: '6 Seasons (Ritu)', hi: '6 ऋतुएँ', sa: 'षड् ऋतवः', ta: '6 Seasons (Ritu)', te: '6 Seasons (Ritu)', bn: '6 Seasons (Ritu)', kn: '6 Seasons (Ritu)', gu: '6 Seasons (Ritu)', mai: '6 ऋतुएँ', mr: '6 ऋतुएँ' }, locale)}
+          {tl({ en: '6 Seasons (Ritu)', hi: '6 ऋतुएँ', sa: 'षड् ऋतवः', ta: '6 பருவங்கள் (ரிது)', te: '6 ఋతువులు (ఋతు)', bn: '6 ঋতু', kn: '6 ಋತುಗಳು (ಋತು)', gu: '6 ઋતુ', mai: '6 ऋतु', mr: '6 ऋतू' }, locale)}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {RITU_NAMES.map((ritu, i) => (

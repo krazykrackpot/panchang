@@ -29,7 +29,7 @@ export default function NakshatraDetailPage() {
       <div className="max-w-4xl mx-auto px-4 py-20 text-center">
         <p className="text-text-secondary text-lg">Nakshatra not found.</p>
         <Link href="/panchang/nakshatra" className="text-gold-primary hover:text-gold-light mt-4 inline-block">
-          &larr; {tl({ en: 'Back to Nakshatras', hi: 'नक्षत्रों पर वापस', sa: 'नक्षत्रों पर वापस', ta: 'Back to Nakshatras', te: 'Back to Nakshatras', bn: 'Back to Nakshatras', kn: 'Back to Nakshatras', gu: 'Back to Nakshatras', mai: 'नक्षत्रों पर वापस', mr: 'नक्षत्रों पर वापस' }, locale)}
+          &larr; {tl({ en: 'Back to Nakshatras', hi: 'नक्षत्रों पर वापस', sa: 'नक्षत्रसूचीं प्रति प्रतिगच्छतु', ta: 'நட்சத்திரங்களுக்குத் திரும்பு', te: 'నక్షత్రాలకు తిరిగి వెళ్ళు', bn: 'নক্ষত্রে ফিরে যান', kn: 'ನಕ್ಷತ್ರಗಳಿಗೆ ಹಿಂತಿರುಗಿ', gu: 'નક્ષત્રો પર પાછા જાઓ', mai: 'नक्षत्र-सूचीमे वापस जाउ', mr: 'नक्षत्रांकडे परत जा' }, locale)}
         </Link>
       </div>
     );
@@ -41,19 +41,19 @@ export default function NakshatraDetailPage() {
   const nextNak = NAKSHATRAS[nextId - 1];
 
   const sections = [
-    { title: tl({ en: 'Meaning & Etymology', hi: 'अर्थ और व्युत्पत्ति', sa: 'अर्थ और व्युत्पत्ति', ta: 'Meaning & Etymology', te: 'Meaning & Etymology', bn: 'Meaning & Etymology', kn: 'Meaning & Etymology', gu: 'Meaning & Etymology', mai: 'अर्थ और व्युत्पत्ति', mr: 'अर्थ और व्युत्पत्ति' }, locale), content: detail.meaning[locale], color: 'gold-primary' },
-    { title: tl({ en: 'Mythology & Legend', hi: 'पौराणिक कथा', sa: 'पौराणिक कथा', ta: 'Mythology & Legend', te: 'Mythology & Legend', bn: 'Mythology & Legend', kn: 'Mythology & Legend', gu: 'Mythology & Legend', mai: 'पौराणिक कथा', mr: 'पौराणिक कथा' }, locale), content: detail.mythology[locale], color: 'gold-light' },
-    { title: tl({ en: 'Significance', hi: 'महत्व', sa: 'महत्व', ta: 'Significance', te: 'Significance', bn: 'Significance', kn: 'Significance', gu: 'Significance', mai: 'महत्व', mr: 'महत्व' }, locale), content: detail.significance[locale], color: 'emerald-400' },
-    { title: tl({ en: 'Personality & Characteristics', hi: 'व्यक्तित्व और विशेषताएं', sa: 'व्यक्तित्व और विशेषताएं', ta: 'Personality & Characteristics', te: 'Personality & Characteristics', bn: 'Personality & Characteristics', kn: 'Personality & Characteristics', gu: 'Personality & Characteristics', mai: 'व्यक्तित्व और विशेषताएं', mr: 'व्यक्तित्व और विशेषताएं' }, locale), content: detail.characteristics[locale], color: 'gold-primary' },
-    { title: tl({ en: 'Favorable Activities', hi: 'अनुकूल गतिविधियां', sa: 'अनुकूल गतिविधियां', ta: 'Favorable Activities', te: 'Favorable Activities', bn: 'Favorable Activities', kn: 'Favorable Activities', gu: 'Favorable Activities', mai: 'अनुकूल गतिविधियां', mr: 'अनुकूल गतिविधियां' }, locale), content: detail.compatibleActivities[locale], color: 'emerald-400' },
-    { title: tl({ en: 'Remedies & Worship', hi: 'उपाय और पूजा', sa: 'उपाय और पूजा', ta: 'Remedies & Worship', te: 'Remedies & Worship', bn: 'Remedies & Worship', kn: 'Remedies & Worship', gu: 'Remedies & Worship', mai: 'उपाय और पूजा', mr: 'उपाय और पूजा' }, locale), content: detail.remedies[locale], color: 'indigo-400' },
+    { title: tl({ en: 'Meaning & Etymology', hi: 'अर्थ और व्युत्पत्ति', sa: 'अर्थः व्युत्पत्तिश्च', ta: 'பொருள் மற்றும் சொற்பிறப்பியல்', te: 'అర్థం మరియు వ్యుత్పత్తి', bn: 'অর্থ ও ব্যুৎপত্তি', kn: 'ಅರ್ಥ ಮತ್ತು ವ್ಯುತ್ಪತ್ತಿ', gu: 'અર્થ અને વ્યુત્પત્તિ', mai: 'अर्थ आ व्युत्पत्ति', mr: 'अर्थ आणि व्युत्पत्ती' }, locale), content: detail.meaning[locale], color: 'gold-primary' },
+    { title: tl({ en: 'Mythology & Legend', hi: 'पौराणिक कथा', sa: 'पुराणकथा च आख्यायिका', ta: 'தொன்மம் மற்றும் புராணக் கதை', te: 'పురాణగాథ మరియు ఐతిహ్యం', bn: 'পৌরাণিক কাহিনি ও কিংবদন্তি', kn: 'ಪುರಾಣ ಮತ್ತು ದಂತಕಥೆ', gu: 'પૌરાણિક કથા અને દંતકથા', mai: 'पौराणिक कथा आ आख्यायिका', mr: 'पौराणिक कथा आणि आख्यायिका' }, locale), content: detail.mythology[locale], color: 'gold-light' },
+    { title: tl({ en: 'Significance', hi: 'महत्व', sa: 'महत्त्वम्', ta: 'முக்கியத்துவம்', te: 'ప్రాముఖ్యత', bn: 'গুরুত্ব', kn: 'ಮಹತ್ವ', gu: 'મહત્ત્વ', mai: 'महत्व', mr: 'महत्त्व' }, locale), content: detail.significance[locale], color: 'emerald-400' },
+    { title: tl({ en: 'Personality & Characteristics', hi: 'व्यक्तित्व और विशेषताएं', sa: 'व्यक्तित्वं विशेषताश्च', ta: 'ஆளுமை மற்றும் பண்புகள்', te: 'వ్యక్తిత్వం మరియు లక్షణాలు', bn: 'ব্যক্তিত্ব ও বৈশিষ্ট্য', kn: 'ವ್ಯಕ್ತಿತ್ವ ಮತ್ತು ಗುಣಲಕ್ಷಣಗಳು', gu: 'વ્યક્તિત્વ અને વૈશિષ્ટ્યો', mai: 'व्यक्तित्व आ विशेषता', mr: 'व्यक्तिमत्त्व आणि वैशिष्ट्ये' }, locale), content: detail.characteristics[locale], color: 'gold-primary' },
+    { title: tl({ en: 'Favorable Activities', hi: 'अनुकूल गतिविधियां', sa: 'शुभकार्याणि', ta: 'சாதகமான செயல்கள்', te: 'అనుకూల కార్యకలాపాలు', bn: 'অনুকূল কার্যক্রম', kn: 'ಅನುಕೂಲ ಚಟುವಟಿಕೆಗಳು', gu: 'અનુકૂળ પ્રવૃત્તિઓ', mai: 'अनुकूल गतिविधि', mr: 'अनुकूल कार्ये' }, locale), content: detail.compatibleActivities[locale], color: 'emerald-400' },
+    { title: tl({ en: 'Remedies & Worship', hi: 'उपाय और पूजा', sa: 'उपायाः पूजा च', ta: 'தீர்வுகள் மற்றும் வழிபாடு', te: 'నివారణలు మరియు పూజ', bn: 'প্রতিকার ও পূজা', kn: 'ಪರಿಹಾರಗಳು ಮತ್ತು ಪೂಜೆ', gu: 'ઉપાય અને પૂજા', mai: 'उपाय आ पूजा', mr: 'उपाय आणि पूजा' }, locale), content: detail.remedies[locale], color: 'indigo-400' },
   ];
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Navigation */}
       <Link href="/panchang/nakshatra" className="inline-flex items-center gap-2 text-gold-primary hover:text-gold-light mb-8 transition-colors">
-        <ArrowLeft className="w-4 h-4" /> {tl({ en: 'All Nakshatras', hi: 'सभी नक्षत्र', sa: 'सभी नक्षत्र', ta: 'All Nakshatras', te: 'All Nakshatras', bn: 'All Nakshatras', kn: 'All Nakshatras', gu: 'All Nakshatras', mai: 'सभी नक्षत्र', mr: 'सभी नक्षत्र' }, locale)}
+        <ArrowLeft className="w-4 h-4" /> {tl({ en: 'All Nakshatras', hi: 'सभी नक्षत्र', sa: 'सर्वाणि नक्षत्राणि', ta: 'அனைத்து நட்சத்திரங்கள்', te: 'అన్ని నక్షత్రాలు', bn: 'সকল নক্ষত্র', kn: 'ಎಲ್ಲಾ ನಕ್ಷತ್ರಗಳು', gu: 'તમામ નક્ષત્રો', mai: 'सभ नक्षत्र', mr: 'सर्व नक्षत्रे' }, locale)}
       </Link>
 
       {/* Hero Section */}
@@ -93,14 +93,14 @@ export default function NakshatraDetailPage() {
       {/* Quick Info Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
         {[
-          { label: tl({ en: 'Deity', hi: 'देवता', sa: 'देवता', ta: 'Deity', te: 'Deity', bn: 'Deity', kn: 'Deity', gu: 'Deity', mai: 'देवता', mr: 'देवता' }, locale), value: nak.deity[locale] },
-          { label: tl({ en: 'Ruler', hi: 'स्वामी', sa: 'स्वामी', ta: 'Ruler', te: 'Ruler', bn: 'Ruler', kn: 'Ruler', gu: 'Ruler', mai: 'स्वामी', mr: 'स्वामी' }, locale), value: nak.rulerName[locale] },
-          { label: tl({ en: 'Nature', hi: 'स्वभाव', sa: 'स्वभाव', ta: 'Nature', te: 'Nature', bn: 'Nature', kn: 'Nature', gu: 'Nature', mai: 'स्वभाव', mr: 'स्वभाव' }, locale), value: nak.nature[locale] },
-          { label: tl({ en: 'Gana', hi: 'गण', sa: 'गण', ta: 'Gana', te: 'Gana', bn: 'Gana', kn: 'Gana', gu: 'Gana', mai: 'गण', mr: 'गण' }, locale), value: detail.gana[locale] },
-          { label: tl({ en: 'Guna', hi: 'गुण', sa: 'गुण', ta: 'Guna', te: 'Guna', bn: 'Guna', kn: 'Guna', gu: 'Guna', mai: 'गुण', mr: 'गुण' }, locale), value: detail.guna[locale] },
-          { label: tl({ en: 'Tattva', hi: 'तत्व', sa: 'तत्व', ta: 'Tattva', te: 'Tattva', bn: 'Tattva', kn: 'Tattva', gu: 'Tattva', mai: 'तत्व', mr: 'तत्व' }, locale), value: detail.tattva[locale] },
-          { label: tl({ en: 'Animal', hi: 'पशु', sa: 'पशु', ta: 'Animal', te: 'Animal', bn: 'Animal', kn: 'Animal', gu: 'Animal', mai: 'पशु', mr: 'पशु' }, locale), value: detail.associatedAnimal[locale] },
-          { label: tl({ en: 'Degrees', hi: 'अंश', sa: 'अंश', ta: 'Degrees', te: 'Degrees', bn: 'Degrees', kn: 'Degrees', gu: 'Degrees', mai: 'अंश', mr: 'अंश' }, locale), value: `${nak.startDeg.toFixed(1)}° — ${nak.endDeg.toFixed(1)}°` },
+          { label: tl({ en: 'Deity', hi: 'देवता', sa: 'देवता', ta: 'தெய்வம்', te: 'దేవత', bn: 'দেবতা', kn: 'ದೇವತೆ', gu: 'દેવતા', mai: 'देवता', mr: 'देवता' }, locale), value: nak.deity[locale] },
+          { label: tl({ en: 'Ruler', hi: 'स्वामी', sa: 'स्वामी', ta: 'ஆட்சியாளர்', te: 'అధిపతి', bn: 'শাসক', kn: 'ಅಧಿಪತಿ', gu: 'સ્વામી', mai: 'स्वामी', mr: 'स्वामी' }, locale), value: nak.rulerName[locale] },
+          { label: tl({ en: 'Nature', hi: 'स्वभाव', sa: 'स्वभावः', ta: 'இயல்பு', te: 'స్వభావం', bn: 'স্বভাব', kn: 'ಸ್ವಭಾವ', gu: 'સ્વભાવ', mai: 'स्वभाव', mr: 'स्वभाव' }, locale), value: nak.nature[locale] },
+          { label: tl({ en: 'Gana', hi: 'गण', sa: 'गणः', ta: 'கணம்', te: 'గణం', bn: 'গণ', kn: 'ಗಣ', gu: 'ગણ', mai: 'गण', mr: 'गण' }, locale), value: detail.gana[locale] },
+          { label: tl({ en: 'Guna', hi: 'गुण', sa: 'गुणः', ta: 'குணம்', te: 'గుణం', bn: 'গুণ', kn: 'ಗುಣ', gu: 'ગુણ', mai: 'गुण', mr: 'गुण' }, locale), value: detail.guna[locale] },
+          { label: tl({ en: 'Tattva', hi: 'तत्व', sa: 'तत्त्वम्', ta: 'தத்துவம்', te: 'తత్త్వం', bn: 'তত্ত্ব', kn: 'ತತ್ತ್ವ', gu: 'તત્ત્વ', mai: 'तत्व', mr: 'तत्त्व' }, locale), value: detail.tattva[locale] },
+          { label: tl({ en: 'Animal', hi: 'पशु', sa: 'पशुः', ta: 'விலங்கு', te: 'జంతువు', bn: 'পশু', kn: 'ಪ್ರಾಣಿ', gu: 'પ્રાણી', mai: 'पशु', mr: 'प्राणी' }, locale), value: detail.associatedAnimal[locale] },
+          { label: tl({ en: 'Degrees', hi: 'अंश', sa: 'अंशाः', ta: 'டிகிரிகள்', te: 'డిగ్రీలు', bn: 'ডিগ্রি', kn: 'ಡಿಗ್ರಿಗಳು', gu: 'અંશ', mai: 'अंश', mr: 'अंश' }, locale), value: `${nak.startDeg.toFixed(1)}° — ${nak.endDeg.toFixed(1)}°` },
         ].map((item, i) => (
           <motion.div
             key={item.label}
@@ -129,7 +129,7 @@ export default function NakshatraDetailPage() {
             </div>
             <div>
               <h4 className="text-amber-300 font-semibold text-sm mb-1" style={headingFont}>
-                {tl({ en: 'Ganda Mula Nakshatra', hi: 'गण्ड मूल नक्षत्र', sa: 'गण्ड मूल नक्षत्र', ta: 'Ganda Mula Nakshatra', te: 'Ganda Mula Nakshatra', bn: 'Ganda Mula Nakshatra', kn: 'Ganda Mula Nakshatra', gu: 'Ganda Mula Nakshatra', mai: 'गण्ड मूल नक्षत्र', mr: 'गण्ड मूल नक्षत्र' }, locale)}
+                {tl({ en: 'Ganda Mula Nakshatra', hi: 'गण्ड मूल नक्षत्र', sa: 'गण्डमूलनक्षत्रम्', ta: 'கண்ட மூல நட்சத்திரம்', te: 'గండ మూల నక్షత్రం', bn: 'গণ্ড মূল নক্ষত্র', kn: 'ಗಂಡ ಮೂಲ ನಕ್ಷತ್ರ', gu: 'ગંડ મૂળ નક્ષત્ર', mai: 'गण्ड मूल नक्षत्र', mr: 'गंड मूल नक्षत्र' }, locale)}
               </h4>
               <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
                 {locale === 'en'
@@ -140,7 +140,7 @@ export default function NakshatraDetailPage() {
                 href="/learn/modules/24-1"
                 className="inline-block mt-2 text-xs text-amber-400 hover:text-amber-300 transition-colors underline underline-offset-2"
               >
-                {tl({ en: 'Learn about Ganda Mula Nakshatras & Remedies →', hi: 'गण्ड मूल नक्षत्र और उपाय जानें →', sa: 'गण्ड मूल नक्षत्र और उपाय जानें →', ta: 'Learn about Ganda Mula Nakshatras & Remedies →', te: 'Learn about Ganda Mula Nakshatras & Remedies →', bn: 'Learn about Ganda Mula Nakshatras & Remedies →', kn: 'Learn about Ganda Mula Nakshatras & Remedies →', gu: 'Learn about Ganda Mula Nakshatras & Remedies →', mai: 'गण्ड मूल नक्षत्र और उपाय जानें →', mr: 'गण्ड मूल नक्षत्र और उपाय जानें →' }, locale)}
+                {tl({ en: 'Learn about Ganda Mula Nakshatras & Remedies →', hi: 'गण्ड मूल नक्षत्र और उपाय जानें →', sa: 'गण्डमूलनक्षत्राणि उपायांश्च जानीत →', ta: 'கண்ட மூல நட்சத்திரங்கள் மற்றும் தீர்வுகள் பற்றி அறிக →', te: 'గండ మూల నక్షత్రాలు మరియు నివారణలు తెలుసుకోండి →', bn: 'গণ্ড মূল নক্ষত্র ও প্রতিকার জানুন →', kn: 'ಗಂಡ ಮೂಲ ನಕ್ಷತ್ರ ಮತ್ತು ಪರಿಹಾರಗಳ ಬಗ್ಗೆ ತಿಳಿಯಿರಿ →', gu: 'ગંડ મૂળ નક્ષત્ર અને ઉપાય જાણો →', mai: 'गण्ड मूल नक्षत्र आ उपाय जानू →', mr: 'गंड मूल नक्षत्रे व उपाय जाणून घ्या →' }, locale)}
               </Link>
             </div>
           </div>
@@ -176,7 +176,7 @@ export default function NakshatraDetailPage() {
       {/* Pada Information */}
       <section className="my-10">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {tl({ en: 'Four Padas (Quarters)', hi: 'चार पाद', sa: 'चार पाद', ta: 'Four Padas (Quarters)', te: 'Four Padas (Quarters)', bn: 'Four Padas (Quarters)', kn: 'Four Padas (Quarters)', gu: 'Four Padas (Quarters)', mai: 'चार पाद', mr: 'चार पाद' }, locale)}
+          {tl({ en: 'Four Padas (Quarters)', hi: 'चार पाद', sa: 'चत्वारः पादाः', ta: 'நான்கு பாதங்கள் (காற்பகுதிகள்)', te: 'నాలుగు పాదాలు (పాదాలు)', bn: 'চারটি পাদ (পাদ)', kn: 'ನಾಲ್ಕು ಪಾದಗಳು (ಚತುರ್ಥಾಂಶಗಳು)', gu: 'ચાર પાદ (ચરણ)', mai: 'चारि पाद (चरण)', mr: 'चार पाद (चतुर्थांश)' }, locale)}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
           {[1, 2, 3, 4].map(pada => {
@@ -221,7 +221,7 @@ export default function NakshatraDetailPage() {
         >
           <ArrowLeft className="w-5 h-5 text-gold-primary group-hover:-translate-x-1 transition-transform" />
           <div>
-            <div className="text-gold-dark text-xs">{tl({ en: 'Previous', hi: 'पिछला', sa: 'पिछला', ta: 'Previous', te: 'Previous', bn: 'Previous', kn: 'Previous', gu: 'Previous', mai: 'पिछला', mr: 'पिछला' }, locale)}</div>
+            <div className="text-gold-dark text-xs">{tl({ en: 'Previous', hi: 'पिछला', sa: 'पूर्वम्', ta: 'முந்தையது', te: 'మునుపటి', bn: 'পূর্ববর্তী', kn: 'ಹಿಂದಿನ', gu: 'પાછળ', mai: 'पहिने', mr: 'मागील' }, locale)}</div>
             <div className="text-gold-light font-semibold text-sm" style={bodyFont}>{prevNak.name[locale]}</div>
           </div>
         </Link>
@@ -230,7 +230,7 @@ export default function NakshatraDetailPage() {
           className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 flex items-center gap-3 hover:border-gold-primary/40 transition-all group"
         >
           <div className="text-right">
-            <div className="text-gold-dark text-xs">{tl({ en: 'Next', hi: 'अगला', sa: 'अगला', ta: 'Next', te: 'Next', bn: 'Next', kn: 'Next', gu: 'Next', mai: 'अगला', mr: 'अगला' }, locale)}</div>
+            <div className="text-gold-dark text-xs">{tl({ en: 'Next', hi: 'अगला', sa: 'अग्रिमम्', ta: 'அடுத்தது', te: 'తర్వాత', bn: 'পরবর্তী', kn: 'ಮುಂದಿನ', gu: 'આગળ', mai: 'अगिला', mr: 'पुढील' }, locale)}</div>
             <div className="text-gold-light font-semibold text-sm" style={bodyFont}>{nextNak.name[locale]}</div>
           </div>
           <ArrowRight className="w-5 h-5 text-gold-primary group-hover:translate-x-1 transition-transform" />

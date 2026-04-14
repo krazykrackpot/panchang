@@ -213,7 +213,7 @@ function AnimatedSamvatsaraWheel({
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.8 }}
       >
-        {tl({ en: 'Samvatsaras', hi: 'संवत्सराः', sa: 'संवत्सराः', ta: 'Samvatsaras', te: 'Samvatsaras', bn: 'Samvatsaras', kn: 'Samvatsaras', gu: 'Samvatsaras', mai: 'संवत्सराः', mr: 'संवत्सराः' }, locale)}
+        {tl({ en: 'Samvatsaras', hi: 'संवत्सराः', sa: 'संवत्सराः', ta: 'சம்வத்சரங்கள்', te: 'సంవత్సరాలు', bn: 'সংবৎসর', kn: 'ಸಂವತ್ಸರಗಳು', gu: 'સંવત્સર', mai: 'संवत्सर', mr: 'संवत्सरे' }, locale)}
       </motion.text>
       <motion.text
         x={CX} y={CY + 20}
@@ -224,7 +224,7 @@ function AnimatedSamvatsaraWheel({
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 2.0 }}
       >
-        {tl({ en: 'Jupiter-Saturn Cycle', hi: 'बृहस्पति-शनि चक्र', sa: 'बृहस्पति-शनि चक्र', ta: 'Jupiter-Saturn Cycle', te: 'Jupiter-Saturn Cycle', bn: 'Jupiter-Saturn Cycle', kn: 'Jupiter-Saturn Cycle', gu: 'Jupiter-Saturn Cycle', mai: 'बृहस्पति-शनि चक्र', mr: 'बृहस्पति-शनि चक्र' }, locale)}
+        {tl({ en: 'Jupiter-Saturn Cycle', hi: 'बृहस्पति-शनि चक्र', sa: 'बृहस्पति-शनिचक्रम्', ta: 'குரு-சனி சுழற்சி', te: 'గురు-శని చక్రం', bn: 'বৃহস্পতি-শনি চক্র', kn: 'ಗುರು-ಶನಿ ಚಕ್ರ', gu: 'ગુરુ-શની ચક્ર', mai: 'बृहस्पति-शनि चक्र', mr: 'गुरू-शनी चक्र' }, locale)}
       </motion.text>
     </motion.svg>
   );
@@ -274,7 +274,7 @@ export default function SamvatsaraPage() {
             <span className="text-gold-gradient">
               {locale === 'en'
                 ? 'Samvatsara'
-                : tl({ en: 'संवत्सरः', hi: 'संवत्सर', sa: 'संवत्सर', ta: 'संवत्सरः', te: 'संवत्सरः', bn: 'संवत्सरः', kn: 'संवत्सरः', gu: 'संवत्सरः', mai: 'संवत्सर', mr: 'संवत्सर' }, locale)}
+                : tl({ en: 'संवत्सरः', hi: 'संवत्सर', sa: 'संवत्सरः', ta: 'சம்வத்சரம்', te: 'సంవత్సరం', bn: 'সংবৎসর', kn: 'ಸಂವತ್ಸರ', gu: 'સંવત્સર', mai: 'संवत्सर', mr: 'संवत्सर' }, locale)}
             </span>
           </h1>
           <p
@@ -283,7 +283,7 @@ export default function SamvatsaraPage() {
           >
             {locale === 'en'
               ? 'The 60-Year Jovian Cycle — Brihaspati Samvatsara Chakra'
-              : tl({ en: 'षष्टिवार्षिकबृहस्पतिचक्रम् — संवत्सरचक्रम्', hi: '60-वर्षीय बृहस्पति चक्र — संवत्सर चक्र', sa: '60-वर्षीय बृहस्पति चक्र — संवत्सर चक्र', ta: 'षष्टिवार्षिकबृहस्पतिचक्रम् — संवत्सरचक्रम्', te: 'षष्टिवार्षिकबृहस्पतिचक्रम् — संवत्सरचक्रम्', bn: 'षष्टिवार्षिकबृहस्पतिचक्रम् — संवत्सरचक्रम्', kn: 'षष्टिवार्षिकबृहस्पतिचक्रम् — संवत्सरचक्रम्', gu: 'षष्टिवार्षिकबृहस्पतिचक्रम् — संवत्सरचक्रम्', mai: '60-वर्षीय बृहस्पति चक्र — संवत्सर चक्र', mr: '60-वर्षीय बृहस्पति चक्र — संवत्सर चक्र' }, locale)}
+              : tl({ en: 'षष्टिवार्षिकबृहस्पतिचक्रम् — संवत्सरचक्रम्', hi: '60-वर्षीय बृहस्पति चक्र — संवत्सर चक्र', sa: 'षष्टिवार्षिकबृहस्पतिचक्रम् — संवत्सरचक्रम्', ta: '60 ஆண்டு குரு சுழற்சி — சம்வத்சர சக்கரம்', te: '60-సంవత్సర గురు చక్రం — సంవత్సర చక్రం', bn: '60-বার্ষিক বৃহস্পতি চক্র — সংবৎসর চক্র', kn: '60-ವರ್ಷದ ಗುರು ಚಕ್ರ — ಸಂವತ್ಸರ ಚಕ್ರ', gu: '60-વર્ષીય ગુરુ ચક્ર — સંવત્સર ચક્ર', mai: '60-वर्षीय बृहस्पति चक्र — संवत्सर चक्र', mr: '60-वर्षीय गुरू चक्र — संवत्सर चक्र' }, locale)}
           </p>
         </div>
       </motion.div>
@@ -304,8 +304,8 @@ export default function SamvatsaraPage() {
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {tl({ en: 'Cycle:', hi: 'चक्र:', sa: 'चक्र:', ta: 'Cycle:', te: 'Cycle:', bn: 'Cycle:', kn: 'Cycle:', gu: 'Cycle:', mai: 'चक्र:', mr: 'चक्र:' }, locale)} Jupiter_orbit (~12 yr) x 5 = 60{' '}
-                {tl({ en: 'years', hi: 'वर्षाणि', sa: 'वर्षाणि', ta: 'years', te: 'years', bn: 'years', kn: 'years', gu: 'years', mai: 'वर्षाणि', mr: 'वर्षाणि' }, locale)}
+                {tl({ en: 'Cycle:', hi: 'चक्र:', sa: 'चक्रम्:', ta: 'சுழற்சி:', te: 'చక్రం:', bn: 'চক্র:', kn: 'ಚಕ್ರ:', gu: 'ચક્ર:', mai: 'चक्र:', mr: 'चक्र:' }, locale)} Jupiter_orbit (~12 yr) x 5 = 60{' '}
+                {tl({ en: 'years', hi: 'वर्षाणि', sa: 'वर्षाणि', ta: 'ஆண்டுகள்', te: 'సంవత్సరాలు', bn: 'বছর', kn: 'ವರ್ಷಗಳು', gu: 'વર્ષ', mai: 'वर्ष', mr: 'वर्षे' }, locale)}
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
                 {locale === 'en'
@@ -322,12 +322,12 @@ export default function SamvatsaraPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en'
             ? 'The 60-Year Wheel'
-            : tl({ en: 'षष्टिवार्षिकचक्रम्', hi: '60-वर्षीय चक्र', sa: '60-वर्षीय चक्र', ta: 'षष्टिवार्षिकचक्रम्', te: 'षष्टिवार्षिकचक्रम्', bn: 'षष्टिवार्षिकचक्रम्', kn: 'षष्टिवार्षिकचक्रम्', gu: 'षष्टिवार्षिकचक्रम्', mai: '60-वर्षीय चक्र', mr: '60-वर्षीय चक्र' }, locale)}
+            : tl({ en: 'षष्टिवार्षिकचक्रम्', hi: '60-वर्षीय चक्र', sa: 'षष्टिवार्षिकचक्रम्', ta: '60 ஆண்டு சுழற்சி', te: '60-సంవత్సర చక్రం', bn: '60-বার্ষিক চক্র', kn: '60-ವರ್ಷದ ಚಕ್ರ', gu: '60-વર્ષીય ચક્ર', mai: '60-वर्षीय चक्र', mr: '60-वर्षीय चक्र' }, locale)}
         </h2>
         <p className="text-text-secondary text-sm mb-4">
           {locale === 'en'
             ? 'Click on any year marker in the wheel to see its name.'
-            : tl({ en: 'नाम द्रष्टुं चक्रे कस्मिन् अपि वर्षे क्लिक्यताम्।', hi: 'नाम देखने के लिए चक्र में किसी भी वर्ष पर क्लिक करें।', sa: 'नाम देखने के लिए चक्र में किसी भी वर्ष पर क्लिक करें।', ta: 'नाम द्रष्टुं चक्रे कस्मिन् अपि वर्षे क्लिक्यताम्।', te: 'नाम द्रष्टुं चक्रे कस्मिन् अपि वर्षे क्लिक्यताम्।', bn: 'नाम द्रष्टुं चक्रे कस्मिन् अपि वर्षे क्लिक्यताम्।', kn: 'नाम द्रष्टुं चक्रे कस्मिन् अपि वर्षे क्लिक्यताम्।', gu: 'नाम द्रष्टुं चक्रे कस्मिन् अपि वर्षे क्लिक्यताम्।', mai: 'नाम देखने के लिए चक्र में किसी भी वर्ष पर क्लिक करें।', mr: 'नाम देखने के लिए चक्र में किसी भी वर्ष पर क्लिक करें।' }, locale)}
+            : tl({ en: 'नाम द्रष्टुं चक्रे कस्मिन् अपि वर्षे क्लिक्यताम्।', hi: 'नाम देखने के लिए चक्र में किसी भी वर्ष पर क्लिक करें।', sa: 'नाम द्रष्टुं चक्रे कस्मिन् अपि वर्षे क्लिक्यताम्।', ta: 'பெயரைக் காண சுழற்சியில் எந்த வருடத்திலும் கிளிக் செய்யவும்.', te: 'పేరు చూడడానికి చక్రంలో ఏ సంవత్సరంపైనైనా క్లిక్ చేయండి.', bn: 'নাম দেখতে চক্রে যেকোনো বছরে ক্লিক করুন।', kn: 'ಹೆಸರು ನೋಡಲು ಚಕ್ರದಲ್ಲಿ ಯಾವುದೇ ವರ್ಷದ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ.', gu: 'નામ જોવા ચક્રમાં કોઈ પણ વર્ષ પર ક્લિક કરો.', mai: 'नाम देखबाक लेल चक्रमे कोनो वर्षपर क्लिक करू।', mr: 'नाव पाहण्यासाठी चक्रातील कोणत्याही वर्षावर क्लिक करा.' }, locale)}
         </p>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex flex-col items-center gap-6">
           <AnimatedSamvatsaraWheel

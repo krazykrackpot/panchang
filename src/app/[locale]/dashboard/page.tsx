@@ -982,7 +982,7 @@ export default function DashboardPage() {
               {earnedBadges.length > 0 && (
                 <div className="mt-3 pt-3 border-t border-amber-500/10">
                   <p className="text-[10px] text-text-secondary uppercase tracking-widest font-bold mb-2">
-                    {tl({ en: 'Badges Earned', hi: 'अर्जित बैज', sa: 'अर्जिताः बैजाः', ta: 'பெற்ற பேட்ஜ்கள்', te: 'సాధించిన బ్యాడ్జ్‌లు', bn: 'অর্জিত ব্যাজ', kn: 'ಗಳಿಸಿದ ಬ್ಯಾಡ್ಜ್‌ಗಳು', gu: 'મેળવેલા બેજ', mai: 'अर्जित बैज', mr: 'मिळवलेले बॅज' }, locale)}
+                    {tl({ en: 'Badges Earned', hi: 'अर्जित बैज', sa: 'अर्जिताः चिह्नाः', ta: 'பெற்ற பதக்கங்கள்', te: 'సాధించిన బ్యాడ్జులు', bn: 'অর্জিত ব্যাজ', kn: 'ಗಳಿಸಿದ ಬ್ಯಾಡ್ಜ್‌ಗಳು', gu: 'મેળવેલ બેજ', mai: 'अर्जित बैज', mr: 'मिळवलेले बॅज' }, locale)}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {earnedBadges.map(badge => (
@@ -1312,12 +1312,12 @@ export default function DashboardPage() {
           <h3 className="text-lg font-semibold text-text-primary mb-4">{L.quickLinks}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { href: '/dashboard/chart' as const, label: tl({ en: 'Birth Chart', hi: 'जन्म कुण्डली', sa: 'जन्मकुण्डली', ta: 'ஜாதகம்', te: 'జన్మ చార్ట్', bn: 'জন্ম কুণ্ডলী', kn: 'ಜನ್ಮ ಜಾತಕ', gu: 'જન્મ કુંડળી', mai: 'जन्म कुण्डली', mr: 'जन्म कुंडली' }, locale), icon: Eye },
-              { href: '/dashboard/dashas' as const, label: tl({ en: 'Dasha Timeline', hi: 'दशा समयरेखा', sa: 'दशासमयरेखा', ta: 'தசா காலவரிசை', te: 'దశ కాలరేఖ', bn: 'দশা সময়রেখা', kn: 'ದಶೆ ಕಾಲರೇಖೆ', gu: 'દશા સમયરેખા', mai: 'दशा समयरेखा', mr: 'दशा कालरेखा' }, locale), icon: TrendingUp },
-              { href: '/dashboard/muhurta' as const, label: tl({ en: 'Personal Muhurta', hi: 'व्यक्तिगत मुहूर्त', sa: 'व्यक्तिगतमुहूर्तम्', ta: 'தனிப்பட்ட முகூர்த்தம்', te: 'వ్యక్తిగత ముహూర్తం', bn: 'ব্যক্তিগত মুহূর্ত', kn: 'ವೈಯಕ್ತಿಕ ಮುಹೂರ್ತ', gu: 'વ્યક્તિગત મુહૂર્ત', mai: 'व्यक्तिगत मुहूर्त', mr: 'वैयक्तिक मुहूर्त' }, locale), icon: Clock },
+              { href: '/dashboard/chart' as const, label: tl({ en: 'Birth Chart', hi: 'जन्म कुण्डली', sa: 'जन्म-कुण्डली', ta: 'ஜன்ம ஜாதகம்', te: 'జన్మ కుండలి', bn: 'জন্ম কুণ্ডলী', kn: 'ಜನ್ಮ ಕುಂಡಲಿ', gu: 'જન્મ કુંડળી', mai: 'जन्म-कुण्डली', mr: 'जन्मकुंडली' }, locale), icon: Eye },
+              { href: '/dashboard/dashas' as const, label: tl({ en: 'Dasha Timeline', hi: 'दशा समयरेखा', sa: 'दशा-कालरेखा', ta: 'தசா காலவரிசை', te: 'దశా కాలరేఖ', bn: 'দশা সময়রেখা', kn: 'ದಶಾ ಕಾಲಮಾಲೆ', gu: 'દશા સમયરેખા', mai: 'दशा समयरेखा', mr: 'दशा कालरेखा' }, locale), icon: TrendingUp },
+              { href: '/dashboard/muhurta' as const, label: tl({ en: 'Personal Muhurta', hi: 'व्यक्तिगत मुहूर्त', sa: 'व्यक्तिगतः मुहूर्तः', ta: 'தனிப்பட்ட முஹூர்த்தம்', te: 'వ్యక్తిగత ముహూర్తం', bn: 'ব্যক্তিগত মুহূর্ত', kn: 'ವ್ಯಕ್ತಿಗತ ಮುಹೂರ್ತ', gu: 'વ્યક્તિગત મુહૂર્ત', mai: 'व्यक्तिगत मुहूर्त', mr: 'वैयक्तिक मुहूर्त' }, locale), icon: Clock },
               { href: '/dashboard/transits' as const, label: L.transitAnalysis, icon: Globe },
               { href: '/dashboard/remedies' as const, label: L.yourRemedies, icon: Shield },
-              { href: '/dashboard/saved-charts' as const, label: tl({ en: 'Saved Charts', hi: 'सहेजे गए चार्ट', sa: 'सुरक्षिताः कुण्डल्यः', ta: 'சேமிக்கப்பட்ட ஜாதகங்கள்', te: 'సేవ్ చేసిన జాతకాలు', bn: 'সংরক্ষিত জাতক', kn: 'ಉಳಿಸಿದ ಜಾತಕಗಳು', gu: 'સાચવેલા જાતક', mai: 'सहेजल चार्ट', mr: 'जतन केलेल्या कुंडल्या' }, locale), icon: Star },
+              { href: '/dashboard/saved-charts' as const, label: tl({ en: 'Saved Charts', hi: 'सहेजे गए चार्ट', sa: 'सञ्चितानि चक्राणि', ta: 'சேமித்த விளக்கப்படங்கள்', te: 'సేవ్ చేసిన చార్ట్‌లు', bn: 'সংরক্ষিত চার্ট', kn: 'ಉಳಿಸಿದ ಚಾರ್ಟ್‌ಗಳು', gu: 'સાચવેલ ચાર્ટ', mai: 'सहेजल चार्ट', mr: 'जतन केलेले चार्ट' }, locale), icon: Star },
               { href: '/sade-sati' as const, label: L.sadeSati, icon: TrendingUp },
               { href: '/settings' as const, label: L.settings, icon: Settings },
             ].map((link) => (

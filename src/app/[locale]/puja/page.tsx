@@ -184,9 +184,9 @@ function PujaCard({
               }`}
             >
               {category === 'festival'
-                ? tl({ en: 'Festival', hi: 'त्योहार', sa: 'उत्सवः', ta: 'பண்டிகை', te: 'పండుగ', bn: 'উৎসব', kn: 'ಹಬ್ಬ', gu: 'તહેવાર', mai: 'पर्व', mr: 'सण' }, locale)
+                ? tl({ en: 'Festival', hi: 'त्योहार', sa: 'उत्सवः', ta: 'திருவிழா', te: 'పండుగ', bn: 'উৎসব', kn: 'ಹಬ್ಬ', gu: 'તહેવાર', mai: 'त्योहार', mr: 'सण' }, locale)
                 : category === 'graha_shanti'
-                  ? tl({ en: 'Graha Shanti', hi: 'ग्रह शान्ति', sa: 'ग्रहशान्तिः', ta: 'கிரக சாந்தி', te: 'గ్రహ శాంతి', bn: 'গ্রহ শান্তি', kn: 'ಗ್ರಹ ಶಾಂತಿ', gu: 'ગ્રહ શાંતિ', mai: 'ग्रह शांति', mr: 'ग्रह शांती' }, locale)
+                  ? tl({ en: 'Graha Shanti', hi: 'ग्रह शान्ति', sa: 'ग्रह-शान्तिः', ta: 'கிரக சாந்தி', te: 'గ్రహ శాంతి', bn: 'গ্রহ শান্তি', kn: 'ಗ್ರಹ ಶಾಂತಿ', gu: 'ગ્રહ શાંતિ', mai: 'ग्रह शान्ति', mr: 'ग्रह शांती' }, locale)
                   : tl({ en: 'Vrat', hi: 'व्रत', sa: 'व्रतम्', ta: 'விரதம்', te: 'వ్రతం', bn: 'ব্রত', kn: 'ವ್ರತ', gu: 'વ્રત', mai: 'व्रत', mr: 'व्रत' }, locale)}
             </span>
             <span className="text-gold-primary/60 text-xs group-hover:text-gold-primary transition-colors">

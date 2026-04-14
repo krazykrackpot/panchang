@@ -208,7 +208,7 @@ export default function TransitsPage() {
       {/* What are Transits? */}
       <InfoBlock
         id="transits-intro"
-        title={tl({ en: 'What are Transits and why do they matter?', hi: 'गोचर क्या हैं और वे क्यों मायने रखते हैं?', sa: 'गोचर क्या हैं और वे क्यों मायने रखते हैं?', ta: 'What are Transits and why do they matter?', te: 'What are Transits and why do they matter?', bn: 'What are Transits and why do they matter?', kn: 'What are Transits and why do they matter?', gu: 'What are Transits and why do they matter?', mai: 'गोचर क्या हैं और वे क्यों मायने रखते हैं?', mr: 'गोचर क्या हैं और वे क्यों मायने रखते हैं?' }, locale)}
+        title={tl({ en: 'What are Transits and why do they matter?', hi: 'गोचर क्या हैं और वे क्यों मायने रखते हैं?', sa: 'गोचरः किम् अस्ति, तस्य महत्त्वं किम्?', ta: 'கோச்சாரம் என்றால் என்ன, ஏன் முக்கியம்?', te: 'గోచారాలు అంటే ఏమిటి మరియు అవి ఎందుకు ముఖ్యమైనవి?', bn: 'গোচর কী এবং এটি কেন গুরুত্বপূর্ণ?', kn: 'ಗೋಚಾರ ಎಂದರೇನು ಮತ್ತು ಅದು ಏಕೆ ಮುಖ್ಯ?', gu: 'ગોચર શું છે અને તે શા માટે મહત્ત્વ ધરાવે છે?', mai: 'गोचर की अछि आ किए महत्त्वपूर्ण अछि?', mr: 'गोचर म्हणजे काय आणि ते का महत्त्वाचे आहेत?' }, locale)}
         defaultOpen={false}
       >
         {!isDevanagariLocale(locale) ? (
@@ -253,7 +253,7 @@ export default function TransitsPage() {
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
           className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-4 md:p-6 mb-8">
           <h2 className="text-lg text-gold-gradient font-bold mb-4 text-center" style={headingFont}>
-            {tl({ en: 'Current Planetary Positions', hi: 'वर्तमान ग्रह स्थिति', sa: 'वर्तमान ग्रह स्थिति', ta: 'Current Planetary Positions', te: 'Current Planetary Positions', bn: 'Current Planetary Positions', kn: 'Current Planetary Positions', gu: 'Current Planetary Positions', mai: 'वर्तमान ग्रह स्थिति', mr: 'वर्तमान ग्रह स्थिति' }, locale)}
+            {tl({ en: 'Current Planetary Positions', hi: 'वर्तमान ग्रह स्थिति', sa: 'वर्तमानाः ग्रह-स्थितयः', ta: 'தற்போதைய கிரக நிலைகள்', te: 'ప్రస్తుత గ్రహ స్థానాలు', bn: 'বর্তমান গ্রহ অবস্থান', kn: 'ಪ್ರಸ್ತುತ ಗ್ರಹ ಸ್ಥಾನಗಳು', gu: 'વર્તમાન ગ્રહ સ્થિતિ', mai: 'वर्तमान ग्रह स्थिति', mr: 'सध्याच्या ग्रहांच्या स्थिती' }, locale)}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
             {currentTransits.map(ct => (
@@ -273,7 +273,7 @@ export default function TransitsPage() {
               <span className="text-amber-400 text-lg mt-0.5">⚠</span>
               <div>
                 <div className="text-amber-400 font-bold text-sm mb-1" style={headingFont}>
-                  {tl({ en: 'Jupiter Vedha Active', hi: 'गुरु वेध सक्रिय', sa: 'गुरु वेध सक्रिय', ta: 'Jupiter Vedha Active', te: 'Jupiter Vedha Active', bn: 'Jupiter Vedha Active', kn: 'Jupiter Vedha Active', gu: 'Jupiter Vedha Active', mai: 'गुरु वेध सक्रिय', mr: 'गुरु वेध सक्रिय' }, locale)}
+                  {tl({ en: 'Jupiter Vedha Active', hi: 'गुरु वेध सक्रिय', sa: 'गुरु-वेधः सक्रियः', ta: 'குரு வேத செயலில்', te: 'గురు వేధ క్రియాశీలం', bn: 'গুরু বেধ সক্রিয়', kn: 'ಗುರು ವೇಧ ಸಕ್ರಿಯ', gu: 'ગુરુ વેધ સક્રિય', mai: 'गुरु वेध सक्रिय अछि', mr: 'गुरु वेध सक्रिय' }, locale)}
                 </div>
                 <p className="text-text-secondary/80 text-xs leading-relaxed" style={bodyFont}>
                   {locale === 'en'
@@ -289,7 +289,7 @@ export default function TransitsPage() {
               <span className="text-red-400 text-lg mt-0.5">⚠</span>
               <div>
                 <div className="text-red-400 font-bold text-sm mb-1" style={headingFont}>
-                  {tl({ en: 'Ashtama Shani Active (for you)', hi: 'अष्टम शनि सक्रिय (आपके लिए)', sa: 'अष्टम शनि सक्रिय (आपके लिए)', ta: 'Ashtama Shani Active (for you)', te: 'Ashtama Shani Active (for you)', bn: 'Ashtama Shani Active (for you)', kn: 'Ashtama Shani Active (for you)', gu: 'Ashtama Shani Active (for you)', mai: 'अष्टम शनि सक्रिय (आपके लिए)', mr: 'अष्टम शनि सक्रिय (आपके लिए)' }, locale)}
+                  {tl({ en: 'Ashtama Shani Active (for you)', hi: 'अष्टम शनि सक्रिय (आपके लिए)', sa: 'अष्टम-शनिः सक्रियः (तवार्थम्)', ta: 'அஷ்டம சனி செயலில் (உங்களுக்காக)', te: 'అష్టమ శని క్రియాశీలం (మీకు)', bn: 'অষ্টম শনি সক্রিয় (আপনার জন্য)', kn: 'ಅಷ್ಟಮ ಶನಿ ಸಕ್ರಿಯ (ನಿಮಗಾಗಿ)', gu: 'અષ્ટમ શની સક્રિય (તમારા માટે)', mai: 'अष्टम शनि सक्रिय (अहाँक लेल)', mr: 'अष्टम शनी सक्रिय (तुमच्यासाठी)' }, locale)}
                 </div>
                 <p className="text-text-secondary/80 text-xs leading-relaxed" style={bodyFont}>
                   {locale === 'en'
@@ -307,15 +307,15 @@ export default function TransitsPage() {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}
           className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6 mb-6 text-sm">
           <span className="text-text-secondary">
-            <span className="text-gold-light font-bold">{stats.total}</span> {tl({ en: 'transits', hi: 'गोचर', sa: 'गोचर', ta: 'transits', te: 'transits', bn: 'transits', kn: 'transits', gu: 'transits', mai: 'गोचर', mr: 'गोचर' }, locale)}
+            <span className="text-gold-light font-bold">{stats.total}</span> {tl({ en: 'transits', hi: 'गोचर', sa: 'गोचराः', ta: 'கோச்சாரங்கள்', te: 'గోచారాలు', bn: 'গোচর', kn: 'ಗೋಚಾರ', gu: 'ગોચર', mai: 'गोचर', mr: 'गोचर' }, locale)}
           </span>
           <span className="text-text-tertiary">|</span>
           <span className="text-text-secondary">
-            <span className="text-gold-light font-bold">{stats.major}</span> {tl({ en: 'major', hi: 'प्रमुख', sa: 'प्रमुख', ta: 'major', te: 'major', bn: 'major', kn: 'major', gu: 'major', mai: 'प्रमुख', mr: 'प्रमुख' }, locale)}
+            <span className="text-gold-light font-bold">{stats.major}</span> {tl({ en: 'major', hi: 'प्रमुख', sa: 'प्रमुखः', ta: 'முக்கிய', te: 'ప్రధాన', bn: 'প্রধান', kn: 'ಪ್ರಮುಖ', gu: 'મુખ્ય', mai: 'प्रमुख', mr: 'प्रमुख' }, locale)}
           </span>
           <span className="text-text-tertiary">|</span>
           <span className="text-text-secondary">
-            <span className="text-gold-light font-bold">{stats.planets}</span> {tl({ en: 'planets', hi: 'ग्रह', sa: 'ग्रह', ta: 'planets', te: 'planets', bn: 'planets', kn: 'planets', gu: 'planets', mai: 'ग्रह', mr: 'ग्रह' }, locale)}
+            <span className="text-gold-light font-bold">{stats.planets}</span> {tl({ en: 'planets', hi: 'ग्रह', sa: 'ग्रहाः', ta: 'கிரகங்கள்', te: 'గ్రహాలు', bn: 'গ্রহ', kn: 'ಗ್ರಹಗಳು', gu: 'ગ્રહો', mai: 'ग्रह', mr: 'ग्रह' }, locale)}
           </span>
         </motion.div>
       )}
@@ -329,7 +329,7 @@ export default function TransitsPage() {
               className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
                 sigFilter === f ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
               }`}>
-              {f === 'all' ? (tl({ en: 'All', hi: 'सभी', sa: 'सभी', ta: 'All', te: 'All', bn: 'All', kn: 'All', gu: 'All', mai: 'सभी', mr: 'सभी' }, locale)) : f === 'major' ? (tl({ en: 'Major', hi: 'प्रमुख', sa: 'प्रमुख', ta: 'Major', te: 'Major', bn: 'Major', kn: 'Major', gu: 'Major', mai: 'प्रमुख', mr: 'प्रमुख' }, locale)) : (tl({ en: 'Major + Moderate', hi: 'प्रमुख + मध्यम', sa: 'प्रमुख + मध्यम', ta: 'Major + Moderate', te: 'Major + Moderate', bn: 'Major + Moderate', kn: 'Major + Moderate', gu: 'Major + Moderate', mai: 'प्रमुख + मध्यम', mr: 'प्रमुख + मध्यम' }, locale))}
+              {f === 'all' ? (tl({ en: 'All', hi: 'सभी', sa: 'सर्वे', ta: 'அனைத்தும்', te: 'అన్నీ', bn: 'সব', kn: 'ಎಲ್ಲಾ', gu: 'બધા', mai: 'सभ', mr: 'सर्व' }, locale)) : f === 'major' ? (tl({ en: 'Major', hi: 'प्रमुख', sa: 'प्रमुखः', ta: 'முக்கிய', te: 'ప్రధాన', bn: 'প্রধান', kn: 'ಪ್ರಮುಖ', gu: 'મુખ્ય', mai: 'प्रमुख', mr: 'प्रमुख' }, locale)) : (tl({ en: 'Major + Moderate', hi: 'प्रमुख + मध्यम', sa: 'प्रमुखः + मध्यमः', ta: 'முக்கிய + மிதமான', te: 'ప్రధాన + మధ్యస్థ', bn: 'প্রধান + মাঝারি', kn: 'ಪ್ರಮುಖ + ಮಧ್ಯಮ', gu: 'મુખ્ય + મધ્યમ', mai: 'प्रमुख + मध्यम', mr: 'प्रमुख + मध्यम' }, locale))}
             </button>
           ))}
         </div>
@@ -338,7 +338,7 @@ export default function TransitsPage() {
         <button onClick={() => setShowFilters(!showFilters)}
           className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold transition-all border ${showFilters || planetFilter !== null ? 'bg-gold-primary/20 text-gold-light border-gold-primary/40' : 'text-text-secondary border-gold-primary/10 hover:bg-gold-primary/10'}`}>
           <Filter className="w-3.5 h-3.5" />
-          {tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रह', ta: 'Planet', te: 'Planet', bn: 'Planet', kn: 'Planet', gu: 'Planet', mai: 'ग्रह', mr: 'ग्रह' }, locale)}
+          {tl({ en: 'Planet', hi: 'ग्रह', sa: 'ग्रहः', ta: 'கிரகம்', te: 'గ్రహం', bn: 'গ্রহ', kn: 'ಗ್ರಹ', gu: 'ગ્રહ', mai: 'ग्रह', mr: 'ग्रह' }, locale)}
           {planetFilter !== null && `: ${(!isDevanagariLocale(locale) ? PLANET_NAMES_EN : PLANET_NAMES_HI)[planetFilter]}`}
         </button>
       </div>
@@ -350,7 +350,7 @@ export default function TransitsPage() {
             className="flex flex-wrap justify-center gap-2 mb-8 overflow-hidden">
             <button onClick={() => setPlanetFilter(null)}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs transition-all ${planetFilter === null ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/5'}`}>
-              {tl({ en: 'All Planets', hi: 'सभी ग्रह', sa: 'सभी ग्रह', ta: 'All Planets', te: 'All Planets', bn: 'All Planets', kn: 'All Planets', gu: 'All Planets', mai: 'सभी ग्रह', mr: 'सभी ग्रह' }, locale)}
+              {tl({ en: 'All Planets', hi: 'सभी ग्रह', sa: 'सर्वे ग्रहाः', ta: 'அனைத்து கிரகங்களும்', te: 'అన్ని గ్రహాలు', bn: 'সব গ্রহ', kn: 'ಎಲ್ಲಾ ಗ್ರಹಗಳು', gu: 'તમામ ગ્રહો', mai: 'सभटा ग्रह', mr: 'सर्व ग्रह' }, locale)}
             </button>
             {[0, 1, 2, 3, 4, 5, 6, 7, 8].map(pid => {
               const hasEvents = events.some(e => e.planetId === pid);
@@ -376,7 +376,7 @@ export default function TransitsPage() {
         </div>
       ) : filteredEvents.length === 0 ? (
         <div className="text-center py-16 text-text-secondary" style={bodyFont}>
-          {tl({ en: 'No transit events match your filters.', hi: 'आपके फ़िल्टर से कोई गोचर घटना मेल नहीं खाती।', sa: 'आपके फ़िल्टर से कोई गोचर घटना मेल नहीं खाती।', ta: 'No transit events match your filters.', te: 'No transit events match your filters.', bn: 'No transit events match your filters.', kn: 'No transit events match your filters.', gu: 'No transit events match your filters.', mai: 'आपके फ़िल्टर से कोई गोचर घटना मेल नहीं खाती।', mr: 'आपके फ़िल्टर से कोई गोचर घटना मेल नहीं खाती।' }, locale)}
+          {tl({ en: 'No transit events match your filters.', hi: 'आपके फ़िल्टर से कोई गोचर घटना मेल नहीं खाती।', sa: 'भवतः छन्दानुसारं काऽपि गोचर-घटना नास्ति।', ta: 'உங்கள் வடிகட்டிகளுக்கு பொருந்தும் கோச்சார நிகழ்வுகள் இல்லை.', te: 'మీ ఫిల్టర్‌లకు సరిపోలే గోచార సంఘటనలు లేవు.', bn: 'আপনার ফিল্টারের সাথে কোনো গোচর ঘটনা মেলে না।', kn: 'ನಿಮ್ಮ ಫಿಲ್ಟರ್‌ಗಳಿಗೆ ಹೊಂದಿಕೆಯಾಗುವ ಯಾವುದೇ ಗೋಚಾರ ಘಟನೆಗಳಿಲ್ಲ.', gu: 'તમારા ફિલ્ટર સાથે કોઈ ગોચર ઘટના મળતી નથી.', mai: 'अहाँक फ़िल्टर सँ कोनो गोचर घटना मेल नहि खाइत अछि।', mr: 'तुमच्या फिल्टरशी कोणतीही गोचर घटना जुळत नाही.' }, locale)}
         </div>
       ) : (
         <div className="mt-8 space-y-10">
@@ -397,10 +397,10 @@ export default function TransitsPage() {
                   <h3 className={`text-xl font-bold ${isCurrentMonth ? 'text-gold-gradient' : 'text-text-primary'}`} style={headingFont}>
                     {monthName}
                   </h3>
-                  <span className="text-text-tertiary text-xs">{monthEvents.length} {tl({ en: 'events', hi: 'घटनाएँ', sa: 'घटनाएँ', ta: 'events', te: 'events', bn: 'events', kn: 'events', gu: 'events', mai: 'घटनाएँ', mr: 'घटनाएँ' }, locale)}</span>
+                  <span className="text-text-tertiary text-xs">{monthEvents.length} {tl({ en: 'events', hi: 'घटनाएँ', sa: 'घटनाः', ta: 'நிகழ்வுகள்', te: 'సంఘటనలు', bn: 'ঘটনা', kn: 'ಘಟನೆಗಳು', gu: 'ઘટનાઓ', mai: 'घटना', mr: 'घटना' }, locale)}</span>
                   {isCurrentMonth && (
                     <span className="px-2 py-0.5 bg-gold-primary/20 text-gold-light text-xs rounded-full font-bold">
-                      {tl({ en: 'NOW', hi: 'अभी', sa: 'अभी', ta: 'NOW', te: 'NOW', bn: 'NOW', kn: 'NOW', gu: 'NOW', mai: 'अभी', mr: 'अभी' }, locale)}
+                      {tl({ en: 'NOW', hi: 'अभी', sa: 'अधुना', ta: 'இப்போது', te: 'ఇప్పుడు', bn: 'এখন', kn: 'ಈಗ', gu: 'હવે', mai: 'अखन', mr: 'आता' }, locale)}
                     </span>
                   )}
                   <div className="flex-1 h-px bg-gradient-to-r from-gold-primary/20 to-transparent" />
@@ -411,7 +411,7 @@ export default function TransitsPage() {
                   {monthEvents.map((e, i) => {
                     const dateObj = new Date(e.date + 'T00:00:00');
                     const dayNum = dateObj.getDate();
-                    const dayName = dateObj.toLocaleDateString(tl({ en: 'en-US', hi: 'hi-IN', sa: 'hi-IN', ta: 'en-US', te: 'en-US', bn: 'en-US', kn: 'en-US', gu: 'en-US', mai: 'hi-IN', mr: 'hi-IN' }, locale), { weekday: 'short' });
+                    const dayName = dateObj.toLocaleDateString(tl({ en: 'en-US', hi: 'hi-IN', sa: 'sa-IN', ta: 'ta-IN', te: 'te-IN', bn: 'bn-IN', kn: 'kn-IN', gu: 'gu-IN', mai: 'mai-IN', mr: 'mr-IN' }, locale), { weekday: 'short' });
                     const isPast = new Date(e.date) < new Date(new Date().toISOString().split('T')[0]);
 
                     return (
@@ -474,17 +474,17 @@ export default function TransitsPage() {
           </p>
           <div className="rounded-xl bg-gold-primary/8 border border-gold-primary/20 p-4 text-center mb-5">
             <div className="text-gold-light font-bold text-2xl font-mono" style={headingFont}>
-              {meshaSankranti.date.toLocaleDateString(tl({ en: 'en-GB', hi: 'hi-IN', sa: 'hi-IN', ta: 'en-GB', te: 'en-GB', bn: 'en-GB', kn: 'en-GB', gu: 'en-GB', mai: 'hi-IN', mr: 'hi-IN' }, locale), { day: 'numeric', month: 'long', year: 'numeric' })}
+              {meshaSankranti.date.toLocaleDateString(tl({ en: 'en-GB', hi: 'hi-IN', sa: 'sa-IN', ta: 'ta-IN', te: 'te-IN', bn: 'bn-IN', kn: 'kn-IN', gu: 'gu-IN', mai: 'mai-IN', mr: 'mr-IN' }, locale), { day: 'numeric', month: 'long', year: 'numeric' })}
             </div>
             <div className="text-gold-primary/70 text-sm mt-1">
-              {meshaSankranti.date.toLocaleTimeString(tl({ en: 'en-GB', hi: 'hi-IN', sa: 'hi-IN', ta: 'en-GB', te: 'en-GB', bn: 'en-GB', kn: 'en-GB', gu: 'en-GB', mai: 'hi-IN', mr: 'hi-IN' }, locale), { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}
+              {meshaSankranti.date.toLocaleTimeString(tl({ en: 'en-GB', hi: 'hi-IN', sa: 'sa-IN', ta: 'ta-IN', te: 'te-IN', bn: 'bn-IN', kn: 'kn-IN', gu: 'gu-IN', mai: 'mai-IN', mr: 'mr-IN' }, locale), { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}
             </div>
             <div className="text-text-secondary/70 text-xs mt-2" style={bodyFont}>
               {tl({ en: `Exact moment of Sun's ingress into sidereal Aries (Lahiri Ayanamsha)`, hi: 'सूर्य का सायन मेष में प्रवेश काल (लाहिरी अयनांश)', sa: 'सूर्य का सायन मेष में प्रवेश काल (लाहिरी अयनांश)', ta: `Exact moment of Sun's ingress into sidereal Aries (Lahiri Ayanamsha)`, te: `Exact moment of Sun's ingress into sidereal Aries (Lahiri Ayanamsha)`, bn: `Exact moment of Sun's ingress into sidereal Aries (Lahiri Ayanamsha)`, kn: `Exact moment of Sun's ingress into sidereal Aries (Lahiri Ayanamsha)`, gu: `Exact moment of Sun's ingress into sidereal Aries (Lahiri Ayanamsha)`, mai: 'सूर्य का सायन मेष में प्रवेश काल (लाहिरी अयनांश)', mr: 'सूर्य का सायन मेष में प्रवेश काल (लाहिरी अयनांश)' }, locale)}
             </div>
           </div>
           <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-3 text-center">
-            {tl({ en: 'House Themes for the Solar Year', hi: 'वार्षिक सौर-काल के भाव विषय', sa: 'वार्षिक सौर-काल के भाव विषय', ta: 'House Themes for the Solar Year', te: 'House Themes for the Solar Year', bn: 'House Themes for the Solar Year', kn: 'House Themes for the Solar Year', gu: 'House Themes for the Solar Year', mai: 'वार्षिक सौर-काल के भाव विषय', mr: 'वार्षिक सौर-काल के भाव विषय' }, locale)}
+            {tl({ en: 'House Themes for the Solar Year', hi: 'वार्षिक सौर-काल के भाव विषय', sa: 'सौर-वर्षस्य भाव-विषयाः', ta: 'சூரிய வருட பாவ கருப்பொருள்கள்', te: 'సౌర సంవత్సర భావ అంశాలు', bn: 'সৌর বছরের ভাব-থিম', kn: 'ಸೌರ ವರ್ಷದ ಭಾವ ವಿಷಯಗಳು', gu: 'સૌર વર્ષ ભાવ-વિષય', mai: 'सौर-वर्षक भाव-विषय', mr: 'सौर वर्षाचे भाव-विषय' }, locale)}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
             {meshaSankranti.houseThemes.map((theme, i) => (

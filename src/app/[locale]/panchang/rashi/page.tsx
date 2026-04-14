@@ -244,13 +244,13 @@ function AnimatedZodiacWheel({
 
       {/* Center text */}
       <text x={CX} y={CY - 14} fill="#f0d48a" fontSize="12" textAnchor="middle" fontFamily="var(--font-heading)">
-        {tl({ en: 'RASHI CHAKRA', hi: 'राशि चक्र', sa: 'राशि चक्र', ta: 'RASHI CHAKRA', te: 'RASHI CHAKRA', bn: 'RASHI CHAKRA', kn: 'RASHI CHAKRA', gu: 'RASHI CHAKRA', mai: 'राशि चक्र', mr: 'राशि चक्र' }, locale)}
+        {tl({ en: 'RASHI CHAKRA', hi: 'राशि चक्र', sa: 'राशिचक्रम्', ta: 'ராசி சக்கரம்', te: 'రాశి చక్రం', bn: 'রাশি চক্র', kn: 'ರಾಶಿ ಚಕ್ರ', gu: 'રાશિ ચક્ર', mai: 'राशि चक्र', mr: 'राशी चक्र' }, locale)}
       </text>
       <text x={CX} y={CY + 4} fill="rgba(212,168,83,0.5)" fontSize="9" textAnchor="middle">
         360° / 12 = 30°
       </text>
       <text x={CX} y={CY + 18} fill="rgba(212,168,83,0.3)" fontSize="7" textAnchor="middle">
-        {tl({ en: 'Click a sign', hi: 'राशि चुनें', sa: 'राशि चुनें', ta: 'Click a sign', te: 'Click a sign', bn: 'Click a sign', kn: 'Click a sign', gu: 'Click a sign', mai: 'राशि चुनें', mr: 'राशि चुनें' }, locale)}
+        {tl({ en: 'Click a sign', hi: 'राशि चुनें', sa: 'राशिमेकां चिनुत', ta: 'ஒரு ராசியைத் தேர்ந்தெடுக்கவும்', te: 'ఒక రాశిని ఎంచుకోండి', bn: 'একটি রাশি বেছে নিন', kn: 'ಒಂದು ರಾಶಿಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ', gu: 'એક રાશિ પસંદ કરો', mai: 'राशि चुनू', mr: 'राशी निवडा' }, locale)}
       </text>
     </motion.svg>
   );
@@ -298,7 +298,7 @@ function EclipticDiagram({ locale }: { locale: Locale }) {
       transition={{ duration: 0.7 }}
     >
       <h3 className="text-lg font-semibold text-gold-light mb-2">
-        {tl({ en: 'Sidereal vs Tropical Ecliptic', hi: 'नाक्षत्रिक बनाम उष्णकटिबन्धीय क्रान्तिवृत्त', sa: 'नाक्षत्रिकं उष्णकटिबन्धीयं च क्रान्तिवृत्तम्', ta: 'Sidereal vs Tropical Ecliptic', te: 'Sidereal vs Tropical Ecliptic', bn: 'Sidereal vs Tropical Ecliptic', kn: 'Sidereal vs Tropical Ecliptic', gu: 'Sidereal vs Tropical Ecliptic', mai: 'नाक्षत्रिक बनाम उष्णकटिबन्धीय क्रान्तिवृत्त', mr: 'नाक्षत्रिक बनाम उष्णकटिबन्धीय क्रान्तिवृत्त' }, locale)}
+        {tl({ en: 'Sidereal vs Tropical Ecliptic', hi: 'नाक्षत्रिक बनाम उष्णकटिबन्धीय क्रान्तिवृत्त', sa: 'नाक्षत्रिकं उष्णकटिबन्धीयं च क्रान्तिवृत्तम्', ta: 'சைடீரியல் மற்றும் ட்ராப்பிக்கல் கிரகண வட்டம்', te: 'నాక్షత్రిక వర్సెస్ ఉష్ణమండల క్రాంతివృత్తం', bn: 'নাক্ষত্রিক বনাম ক্রান্তীয় ক্রান্তিবৃত্ত', kn: 'ನಾಕ್ಷತ್ರಿಕ ವಿರುದ್ಧ ಉಷ್ಣವಲಯ ಕ್ರಾಂತಿವೃತ್ತ', gu: 'સાઈડ‌ريઅલ વિ. ટ્રોપિકલ ક્રાંતિવૃત્ત', mai: 'नाक्षत्रिक बनाम उष्णकटिबन्धीय क्रान्तिवृत्त', mr: 'नाक्षत्रिक विरुद्ध उष्णकटिबंधीय क्रांतिवृत्त' }, locale)}
       </h3>
       <p className="text-text-secondary text-sm mb-4">
         {locale === 'en'
@@ -356,7 +356,7 @@ function EclipticDiagram({ locale }: { locale: Locale }) {
 
         {/* "Sidereal 0°" label */}
         <text x={2} y={14} fill="#f0d48a" fontSize="8" textAnchor="start">
-          {tl({ en: 'Sidereal 0°', hi: 'नाक्षत्रिक 0°', sa: 'नाक्षत्रिक 0°', ta: 'Sidereal 0°', te: 'Sidereal 0°', bn: 'Sidereal 0°', kn: 'Sidereal 0°', gu: 'Sidereal 0°', mai: 'नाक्षत्रिक 0°', mr: 'नाक्षत्रिक 0°' }, locale)}
+          {tl({ en: 'Sidereal 0°', hi: 'नाक्षत्रिक 0°', sa: 'नाक्षत्रिक 0°', ta: 'சைடீரியல் 0°', te: 'నాక్షత్రిక 0°', bn: 'নাক্ষত্রিক 0°', kn: 'ನಾಕ್ಷತ್ರಿಕ 0°', gu: 'નાક્ષત્રિક 0°', mai: 'नाक्षत्रिक 0°', mr: 'नाक्षत्रिक 0°' }, locale)}
         </text>
         <text x={BAR_WIDTH - 2} y={14} fill="rgba(240,212,138,0.4)" fontSize="8" textAnchor="end">
           360°
@@ -472,7 +472,7 @@ export default function RashiPage() {
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
             <span className="text-gold-gradient">
-              {tl({ en: 'Rashi', hi: 'राशि', sa: 'राशिः', ta: 'ராசி', te: 'Rashi', bn: 'Rashi', kn: 'Rashi', gu: 'Rashi', mai: 'राशि', mr: 'राशि' }, locale)}
+              {tl({ en: 'Rashi', hi: 'राशि', sa: 'राशिः', ta: 'ராசி', te: 'రాశి', bn: 'রাশি', kn: 'ರಾಶಿ', gu: 'રાશિ', mai: 'राशि', mr: 'राशी' }, locale)}
             </span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -503,7 +503,7 @@ export default function RashiPage() {
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {tl({ en: 'Formula:', hi: 'सूत्र:', sa: 'सूत्र:', ta: 'Formula:', te: 'Formula:', bn: 'Formula:', kn: 'Formula:', gu: 'Formula:', mai: 'सूत्र:', mr: 'सूत्र:' }, locale)} Rashi = floor(Sidereal_longitude / 30°) + 1
+                {tl({ en: 'Formula:', hi: 'सूत्र:', sa: 'सूत्रम्:', ta: 'சூத்திரம்:', te: 'సూత్రం:', bn: 'সূত্র:', kn: 'ಸೂತ್ರ:', gu: 'સૂત્ર:', mai: 'सूत्र:', mr: 'सूत्र:' }, locale)} Rashi = floor(Sidereal_longitude / 30°) + 1
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
                 {locale === 'en'
@@ -520,7 +520,7 @@ export default function RashiPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en'
             ? 'Sidereal Zodiac Wheel'
-            : tl({ en: 'नाक्षत्रिकराशिचक्रम्', hi: 'नाक्षत्रिक राशि चक्र', sa: 'नाक्षत्रिक राशि चक्र', ta: 'नाक्षत्रिकराशिचक्रम्', te: 'नाक्षत्रिकराशिचक्रम्', bn: 'नाक्षत्रिकराशिचक्रम्', kn: 'नाक्षत्रिकराशिचक्रम्', gu: 'नाक्षत्रिकराशिचक्रम्', mai: 'नाक्षत्रिक राशि चक्र', mr: 'नाक्षत्रिक राशि चक्र' }, locale)}
+            : tl({ en: 'नाक्षत्रिकराशिचक्रम्', hi: 'नाक्षत्रिक राशि चक्र', sa: 'नाक्षत्रिकराशिचक्रम्', ta: 'சைடீரியல் ராசி சக்கரம்', te: 'నాక్షత్రిక రాశి చక్రం', bn: 'নাক্ষত্রিক রাশি চক্র', kn: 'ನಾಕ್ಷತ್ರಿಕ ರಾಶಿ ಚಕ್ರ', gu: 'નાક્ષત્રિક રાશિ ચક્ર', mai: 'नाक्षत्रिक राशि चक्र', mr: 'नाक्षत्रिक राशी चक्र' }, locale)}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex flex-col items-center">
           <AnimatedZodiacWheel
@@ -537,7 +537,7 @@ export default function RashiPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en'
             ? 'Ayanamsha & the Ecliptic'
-            : tl({ en: 'अयनांशः क्रान्तिवृत्तं च', hi: 'अयनांश एवं क्रान्तिवृत्त', sa: 'अयनांश एवं क्रान्तिवृत्त', ta: 'अयनांशः क्रान्तिवृत्तं च', te: 'अयनांशः क्रान्तिवृत्तं च', bn: 'अयनांशः क्रान्तिवृत्तं च', kn: 'अयनांशः क्रान्तिवृत्तं च', gu: 'अयनांशः क्रान्तिवृत्तं च', mai: 'अयनांश एवं क्रान्तिवृत्त', mr: 'अयनांश एवं क्रान्तिवृत्त' }, locale)}
+            : tl({ en: 'अयनांशः क्रान्तिवृत्तं च', hi: 'अयनांश एवं क्रान्तिवृत्त', sa: 'अयनांशः क्रान्तिवृत्तं च', ta: 'அயனாம்சம் மற்றும் கிரகண வட்டம்', te: 'అయనాంశం మరియు క్రాంతివృత్తం', bn: 'অয়নাংশ ও ক্রান্তিবৃত্ত', kn: 'ಅಯನಾಂಶ ಮತ್ತು ಕ್ರಾಂತಿವೃತ್ತ', gu: 'અયનાંશ અને ક્રાંتيวૃત્ત', mai: 'अयनांश आ क्रान्तिवृत्त', mr: 'अयनांश आणि क्रांतिवृत्त' }, locale)}
         </h2>
         <EclipticDiagram locale={locale} />
       </section>

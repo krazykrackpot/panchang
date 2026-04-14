@@ -97,7 +97,7 @@ export default function EclipsesPage() {
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale), { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    return d.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'sa-IN' }, locale), { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
   };
 
   const toggleExpand = (key: string) => setExpanded(prev => prev === key ? null : key);
@@ -108,22 +108,22 @@ export default function EclipsesPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">
-            {tl({ en: 'Eclipse Calendar', hi: 'ग्रहण पञ्चाङ्ग', sa: 'ग्रहण पञ्चाङ्ग' }, locale)}
+            {tl({ en: 'Eclipse Calendar', hi: 'ग्रहण पञ्चाङ्ग', sa: 'ग्रहण-पञ्चाङ्गम्' }, locale)}
           </span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto" style={bodyFont}>
-          {tl({ en: 'Solar and Lunar eclipses with local timings, Sutak periods, and visibility', hi: 'सूर्य एवं चन्द्र ग्रहण — स्थानीय समय, सूतक काल और दृश्यता सहित', sa: 'सूर्य एवं चन्द्र ग्रहण — स्थानीय समय, सूतक काल और दृश्यता सहित' }, locale)}
+          {tl({ en: 'Solar and Lunar eclipses with local timings, Sutak periods, and visibility', hi: 'सूर्य एवं चन्द्र ग्रहण — स्थानीय समय, सूतक काल और दृश्यता सहित', sa: 'सौर-चान्द्र-ग्रहणानि — स्थानीय-काल-सूतक-काल-दृश्यता-सहितम्' }, locale)}
         </p>
         {/* Location selector */}
         <div className="mt-4 flex flex-col items-center gap-2">
           <div className="flex items-center gap-2">
             <MapPin className="w-3.5 h-3.5 text-gold-primary" />
-            <span className="text-text-secondary text-sm">{effectiveName || tl({ en: 'Detecting location...', hi: 'स्थान का पता लगा रहे हैं...', sa: 'स्थान का पता लगा रहे हैं...' }, locale)}</span>
+            <span className="text-text-secondary text-sm">{effectiveName || tl({ en: 'Detecting location...', hi: 'स्थान का पता लगा रहे हैं...', sa: 'स्थानं निर्धारयति...' }, locale)}</span>
             {overrideLoc && (
               <button
                 onClick={() => { setOverrideLoc(null); setShowLocationSearch(false); }}
                 className="p-0.5 rounded-full hover:bg-gold-primary/10 text-text-secondary/50 hover:text-gold-light transition-colors"
-                title={tl({ en: 'Reset to my location', hi: 'अपना स्थान पुनः उपयोग करें', sa: 'अपना स्थान पुनः उपयोग करें' }, locale)}
+                title={tl({ en: 'Reset to my location', hi: 'अपना स्थान पुनः उपयोग करें', sa: 'मम स्थानं पुनः उपयुज्यताम्' }, locale)}
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -132,7 +132,7 @@ export default function EclipsesPage() {
               onClick={() => setShowLocationSearch(!showLocationSearch)}
               className="text-gold-primary hover:text-gold-light text-xs border border-gold-primary/15 px-2 py-0.5 rounded hover:bg-gold-primary/10 transition-all"
             >
-              {tl({ en: 'Change', hi: 'बदलें', sa: 'बदलें' }, locale)}
+              {tl({ en: 'Change', hi: 'बदलें', sa: 'परिवर्तयतु' }, locale)}
             </button>
           </div>
           {showLocationSearch && (
@@ -143,19 +143,19 @@ export default function EclipsesPage() {
                   setOverrideLoc({ name: loc.name, lat: loc.lat, lng: loc.lng, timezone: loc.timezone });
                   setShowLocationSearch(false);
                 }}
-                placeholder={tl({ en: 'Search any city...', hi: 'शहर खोजें...', sa: 'शहर खोजें...' }, locale)}
+                placeholder={tl({ en: 'Search any city...', hi: 'शहर खोजें...', sa: 'यत्किञ्चित् नगरं मृगयतु...' }, locale)}
               />
             </motion.div>
           )}
         </div>
         {/* Learn more link */}
         <a href={`/${locale}/learn/eclipses`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mt-2">
-          {tl({ en: 'Learn how eclipses work →', hi: 'ग्रहण के बारे में विस्तार से जानें →', sa: 'ग्रहण के बारे में विस्तार से जानें →' }, locale)}
+          {tl({ en: 'Learn how eclipses work →', hi: 'ग्रहण के बारे में विस्तार से जानें →', sa: 'ग्रहणं कथं भवति इति जानतु →' }, locale)}
         </a>
         <div className="flex justify-center mt-4">
           <ShareRow
-            pageTitle={tl({ en: 'Eclipse Calendar', hi: 'ग्रहण पञ्चाङ्ग', sa: 'ग्रहण पञ्चाङ्ग' }, locale)}
-            shareText={tl({ en: 'Eclipse Calendar with local timings, Sutak & visibility — Dekho Panchang', hi: 'ग्रहण पंचांग — स्थानीय समय, सूतक काल और दृश्यता सहित — Dekho Panchang', sa: 'ग्रहण पंचांग — स्थानीय समय, सूतक काल और दृश्यता सहित — Dekho Panchang' }, locale)}
+            pageTitle={tl({ en: 'Eclipse Calendar', hi: 'ग्रहण पञ्चाङ्ग', sa: 'ग्रहण-पञ्चाङ्गम्' }, locale)}
+            shareText={tl({ en: 'Eclipse Calendar with local timings, Sutak & visibility — Dekho Panchang', hi: 'ग्रहण पंचांग — स्थानीय समय, सूतक काल और दृश्यता सहित — Dekho Panchang', sa: 'ग्रहण-पञ्चाङ्गम् — स्थानीय-काल-सूतक-दृश्यता-सहितम् — Dekho Panchang' }, locale)}
             locale={locale}
           />
         </div>
@@ -175,7 +175,7 @@ export default function EclipsesPage() {
       {/* InfoBlock */}
       <InfoBlock
         id="eclipse-grahan-kaal"
-        title={tl({ en: 'What is Grahan Kaal & Sutak? What should you do during an eclipse?', hi: 'ग्रहण काल और सूतक क्या है? ग्रहण में क्या करें?', sa: 'ग्रहण काल और सूतक क्या है? ग्रहण में क्या करें?' }, locale)}
+        title={tl({ en: 'What is Grahan Kaal & Sutak? What should you do during an eclipse?', hi: 'ग्रहण काल और सूतक क्या है? ग्रहण में क्या करें?', sa: 'ग्रहण-कालः सूतकश्च किम्? ग्रहणे किं करणीयम्?' }, locale)}
         defaultOpen={false}
       >
         {!isHi ? (
@@ -224,7 +224,7 @@ export default function EclipsesPage() {
             </svg>
           </div>
           <p className="text-lg" style={bodyFont}>
-            {tl({ en: 'No eclipses this year.', hi: 'इस वर्ष कोई ग्रहण नहीं।', sa: 'इस वर्ष कोई ग्रहण नहीं।' }, locale)}
+            {tl({ en: 'No eclipses this year.', hi: 'इस वर्ष कोई ग्रहण नहीं।', sa: 'अस्मिन् वर्षे किमपि ग्रहणं नास्ति।' }, locale)}
           </p>
           <NextSignificantCard next={nextSignificant} locale={locale} headingFont={headingFont} bodyFont={bodyFont} onNavigate={(y, date, type) => { setYear(y); setExpanded(`${date}-${type}`); }} />
         </div>
@@ -303,11 +303,11 @@ export default function EclipsesPage() {
                       {local && (
                         isVisible ? (
                           <span className="text-[10px] px-2.5 py-0.5 rounded-full font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/25 flex items-center gap-1">
-                            <Eye className="w-3 h-3" /> {tl({ en: 'Visible', hi: 'दृश्य', sa: 'दृश्य' }, locale)}
+                            <Eye className="w-3 h-3" /> {tl({ en: 'Visible', hi: 'दृश्य', sa: 'दृश्यम्' }, locale)}
                           </span>
                         ) : (
                           <span className="text-[10px] px-2.5 py-0.5 rounded-full font-bold bg-red-500/10 text-red-400 border border-red-500/20 flex items-center gap-1">
-                            <EyeOff className="w-3 h-3" /> {tl({ en: 'Not Visible', hi: 'अदृश्य', sa: 'अदृश्य' }, locale)}
+                            <EyeOff className="w-3 h-3" /> {tl({ en: 'Not Visible', hi: 'अदृश्य', sa: 'अदृश्यम्' }, locale)}
                           </span>
                         )
                       )}
@@ -320,17 +320,17 @@ export default function EclipsesPage() {
                         {local.maximum && (
                           <span className="flex items-center gap-1">
                             <Clock className="w-3 h-3 text-gold-dark" />
-                            {tl({ en: 'Max', hi: 'अधिकतम', sa: 'अधिकतम' }, locale)}: <span className="text-gold-light font-mono">{local.maximum}</span>
+                            {tl({ en: 'Max', hi: 'अधिकतम', sa: 'अधिकतमम्' }, locale)}: <span className="text-gold-light font-mono">{local.maximum}</span>
                           </span>
                         )}
                         {local.maxMagnitude > 0 && (
                           <span>
-                            {tl({ en: 'Mag', hi: 'परिमाण', sa: 'परिमाण' }, locale)}: <span className="text-gold-light font-mono">{local.maxMagnitude.toFixed(2)}</span>
+                            {tl({ en: 'Mag', hi: 'परिमाण', sa: 'परिमाणम्' }, locale)}: <span className="text-gold-light font-mono">{local.maxMagnitude.toFixed(2)}</span>
                           </span>
                         )}
                         {local.durationFormatted && (
                           <span>
-                            {tl({ en: 'Duration', hi: 'अवधि', sa: 'अवधि' }, locale)}: <span className="text-gold-light font-mono">{local.durationFormatted}</span>
+                            {tl({ en: 'Duration', hi: 'अवधि', sa: 'अवधिः' }, locale)}: <span className="text-gold-light font-mono">{local.durationFormatted}</span>
                           </span>
                         )}
                       </div>
@@ -355,12 +355,12 @@ export default function EclipsesPage() {
                           <p>{tl(eclipse.description, locale)}</p>
                           {local && !isVisible && (
                             <p className="text-amber-400/80 text-xs font-medium">
-                              {tl({ en: '⚠ This eclipse is not visible from your location. Sutak does not apply. However, chanting mantras and meditation during the eclipse period is still recommended.', hi: '⚠ यह ग्रहण आपके स्थान से दृश्य नहीं है। सूतक काल लागू नहीं होता। मन्त्र जाप और ध्यान करना शुभ रहता है।', sa: '⚠ यह ग्रहण आपके स्थान से दृश्य नहीं है। सूतक काल लागू नहीं होता। मन्त्र जाप और ध्यान करना शुभ रहता है।' }, locale)}
+                              {tl({ en: '⚠ This eclipse is not visible from your location. Sutak does not apply. However, chanting mantras and meditation during the eclipse period is still recommended.', hi: '⚠ यह ग्रहण आपके स्थान से दृश्य नहीं है। सूतक काल लागू नहीं होता। मन्त्र जाप और ध्यान करना शुभ रहता है।', sa: '⚠ इदं ग्रहणं भवतः स्थानात् न दृश्यते। सूतककालः न प्रवर्तते। तथापि ग्रहण-काले मन्त्र-जपः ध्यानञ्च प्रशस्तम्।' }, locale)}
                             </p>
                           )}
                           {local && isVisible && local.sutakApplicable && (
                             <p className="text-emerald-400/70 text-xs font-medium">
-                              {tl({ en: '✓ This eclipse is visible from your location. Sutak period applies — see timings below.', hi: '✓ यह ग्रहण आपके स्थान से दृश्य है। सूतक काल लागू होता है — नीचे समय देखें।', sa: '✓ यह ग्रहण आपके स्थान से दृश्य है। सूतक काल लागू होता है — नीचे समय देखें।' }, locale)}
+                              {tl({ en: '✓ This eclipse is visible from your location. Sutak period applies — see timings below.', hi: '✓ यह ग्रहण आपके स्थान से दृश्य है। सूतक काल लागू होता है — नीचे समय देखें।', sa: '✓ इदं ग्रहणं भवतः स्थानात् दृश्यते। सूतककालः प्रवर्तते — अधः समयं पश्यतु।' }, locale)}
                             </p>
                           )}
                         </div>
@@ -392,7 +392,7 @@ export default function EclipsesPage() {
                               <div className="flex items-center gap-2 mb-4">
                                 <Clock className={`w-4 h-4 ${accentColor}`} />
                                 <h4 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={headingFont}>
-                                  {tl({ en: 'Eclipse Timings (Local)', hi: 'ग्रहण समय (स्थानीय)', sa: 'ग्रहण समय (स्थानीय)' }, locale)}
+                                  {tl({ en: 'Eclipse Timings (Local)', hi: 'ग्रहण समय (स्थानीय)', sa: 'ग्रहण-समयः (स्थानीयः)' }, locale)}
                                 </h4>
                               </div>
                               {/* Phase progress diagram */}
@@ -403,46 +403,46 @@ export default function EclipsesPage() {
                                   <>
                                     {/* Solar eclipse phases: C1 (partial start) → Max → C4 (partial end) */}
                                     {local.eclipseStart && (
-                                      <TimeCell label={tl({ en: 'Partial Begins (C1)', hi: 'आंशिक आरम्भ (C1)', sa: 'आंशिक आरम्भ (C1)' }, locale)} time={local.eclipseStart} accent={accentColor} subtitle={tl({ en: 'Moon first touches Sun', hi: 'चन्द्र सूर्य को स्पर्श करता है', sa: 'चन्द्र सूर्य को स्पर्श करता है' }, locale)} />
+                                      <TimeCell label={tl({ en: 'Partial Begins (C1)', hi: 'आंशिक आरम्भ (C1)', sa: 'आंशिकारम्भः (C1)' }, locale)} time={local.eclipseStart} accent={accentColor} subtitle={tl({ en: 'Moon first touches Sun', hi: 'चन्द्र सूर्य को स्पर्श करता है', sa: 'चन्द्रः सूर्यं प्रथमतः स्पृशति' }, locale)} />
                                     )}
                                     {local.maximum && (
-                                      <TimeCell label={tl({ en: 'Maximum Eclipse', hi: 'अधिकतम ग्रहण', sa: 'अधिकतम ग्रहण' }, locale)} time={local.maximum} accent="text-gold-light" highlight subtitle={tl({ en: 'Peak coverage', hi: 'अधिकतम आच्छादन', sa: 'अधिकतम आच्छादन' }, locale)} />
+                                      <TimeCell label={tl({ en: 'Maximum Eclipse', hi: 'अधिकतम ग्रहण', sa: 'अधिकतमं ग्रहणम्' }, locale)} time={local.maximum} accent="text-gold-light" highlight subtitle={tl({ en: 'Peak coverage', hi: 'अधिकतम आच्छादन', sa: 'अधिकतमाच्छादनम्' }, locale)} />
                                     )}
                                     <TimeCell
                                       label={
                                         local.endsAtSunset
-                                          ? tl({ en: 'Ends at Sunset', hi: 'सूर्यास्त पर समाप्त', sa: 'सूर्यास्त पर समाप्त' }, locale)
-                                          : tl({ en: 'Partial Ends (C4)', hi: 'आंशिक समाप्त (C4)', sa: 'आंशिक समाप्त (C4)' }, locale)
+                                          ? tl({ en: 'Ends at Sunset', hi: 'सूर्यास्त पर समाप्त', sa: 'सूर्यास्ते समाप्यते' }, locale)
+                                          : tl({ en: 'Partial Ends (C4)', hi: 'आंशिक समाप्त (C4)', sa: 'आंशिकसमाप्तिः (C4)' }, locale)
                                       }
                                       time={local.eclipseEnd || '--:--'}
                                       accent={accentColor}
-                                      subtitle={local.endsAtSunset ? tl({ en: 'Eclipse still in progress at sunset', hi: 'ग्रहण सूर्यास्त तक जारी', sa: 'ग्रहण सूर्यास्त तक जारी' }, locale) : tl({ en: 'Moon fully separates from Sun', hi: 'चन्द्र सूर्य से अलग', sa: 'चन्द्र सूर्य से अलग' }, locale)}
+                                      subtitle={local.endsAtSunset ? tl({ en: 'Eclipse still in progress at sunset', hi: 'ग्रहण सूर्यास्त तक जारी', sa: 'ग्रहणं सूर्यास्तपर्यन्तं प्रचलति' }, locale) : tl({ en: 'Moon fully separates from Sun', hi: 'चन्द्र सूर्य से अलग', sa: 'चन्द्रः सूर्यात् पूर्णतः पृथग् भवति' }, locale)}
                                     />
                                   </>
                                 ) : (
                                   <>
                                     {/* Lunar eclipse phases: P1 (penumbral) → U1 (umbral) → Max → U2 → P4 */}
                                     {local.eclipseStart && (
-                                      <TimeCell label={tl({ en: 'Penumbral Begins (P1)', hi: 'उपच्छाया आरम्भ (P1)', sa: 'उपच्छाया आरम्भ (P1)' }, locale)} time={local.eclipseStart} accent="text-text-secondary/60" subtitle={tl({ en: 'Subtle dimming starts', hi: 'सूक्ष्म मलिनता आरम्भ', sa: 'सूक्ष्म मलिनता आरम्भ' }, locale)} />
+                                      <TimeCell label={tl({ en: 'Penumbral Begins (P1)', hi: 'उपच्छाया आरम्भ (P1)', sa: 'उपच्छायारम्भः (P1)' }, locale)} time={local.eclipseStart} accent="text-text-secondary/60" subtitle={tl({ en: 'Subtle dimming starts', hi: 'सूक्ष्म मलिनता आरम्भ', sa: 'सूक्ष्मं मलिनत्वमारभते' }, locale)} />
                                     )}
                                     {local.partialStart && (
-                                      <TimeCell label={tl({ en: 'Umbral Begins (U1)', hi: 'प्रच्छाया आरम्भ (U1)', sa: 'प्रच्छाया आरम्भ (U1)' }, locale)} time={local.partialStart} accent={accentColor} subtitle={tl({ en: 'Dark shadow visibly enters Moon', hi: 'स्पष्ट छाया दिखती है', sa: 'स्पष्ट छाया दिखती है' }, locale)} />
+                                      <TimeCell label={tl({ en: 'Umbral Begins (U1)', hi: 'प्रच्छाया आरम्भ (U1)', sa: 'प्रच्छायारम्भः (U1)' }, locale)} time={local.partialStart} accent={accentColor} subtitle={tl({ en: 'Dark shadow visibly enters Moon', hi: 'स्पष्ट छाया दिखती है', sa: 'तमसी छाया चन्द्रं प्रविशति' }, locale)} />
                                     )}
                                     {local.maximum && (
-                                      <TimeCell label={tl({ en: 'Maximum Eclipse', hi: 'अधिकतम ग्रहण', sa: 'अधिकतम ग्रहण' }, locale)} time={local.maximum} accent="text-gold-light" highlight subtitle={tl({ en: 'Peak shadow coverage', hi: 'अधिकतम आच्छादन', sa: 'अधिकतम आच्छादन' }, locale)} />
+                                      <TimeCell label={tl({ en: 'Maximum Eclipse', hi: 'अधिकतम ग्रहण', sa: 'अधिकतमं ग्रहणम्' }, locale)} time={local.maximum} accent="text-gold-light" highlight subtitle={tl({ en: 'Peak shadow coverage', hi: 'अधिकतम आच्छादन', sa: 'छायाच्छादनस्य शिखरम्' }, locale)} />
                                     )}
                                     {local.partialEnd && (
-                                      <TimeCell label={tl({ en: 'Umbral Ends (U2)', hi: 'प्रच्छाया समाप्त (U2)', sa: 'प्रच्छाया समाप्त (U2)' }, locale)} time={local.partialEnd} accent={accentColor} subtitle={tl({ en: 'Dark shadow starts to leave', hi: 'अन्धकार हटना आरम्भ', sa: 'अन्धकार हटना आरम्भ' }, locale)} />
+                                      <TimeCell label={tl({ en: 'Umbral Ends (U2)', hi: 'प्रच्छाया समाप्त (U2)', sa: 'प्रच्छायासमाप्तिः (U2)' }, locale)} time={local.partialEnd} accent={accentColor} subtitle={tl({ en: 'Dark shadow starts to leave', hi: 'अन्धकार हटना आरम्भ', sa: 'तमसी छाया निवर्तितुमारभते' }, locale)} />
                                     )}
                                     <TimeCell
                                       label={
                                         local.endsAtMoonset
-                                          ? tl({ en: 'Ends at Moonset', hi: 'चन्द्रास्त पर समाप्त', sa: 'चन्द्रास्त पर समाप्त' }, locale)
-                                          : tl({ en: 'Penumbral Ends (P4)', hi: 'उपच्छाया समाप्त (P4)', sa: 'उपच्छाया समाप्त (P4)' }, locale)
+                                          ? tl({ en: 'Ends at Moonset', hi: 'चन्द्रास्त पर समाप्त', sa: 'चन्द्रास्ते समाप्यते' }, locale)
+                                          : tl({ en: 'Penumbral Ends (P4)', hi: 'उपच्छाया समाप्त (P4)', sa: 'उपच्छायासमाप्तिः (P4)' }, locale)
                                       }
                                       time={local.eclipseEnd || '--:--'}
                                       accent="text-text-secondary/60"
-                                      subtitle={local.endsAtMoonset ? tl({ en: 'Eclipse in progress at moonset', hi: 'ग्रहण चन्द्रास्त तक जारी', sa: 'ग्रहण चन्द्रास्त तक जारी' }, locale) : tl({ en: 'Moon fully bright again', hi: 'चन्द्रमा पूर्ण प्रकाशित', sa: 'चन्द्रमा पूर्ण प्रकाशित' }, locale)}
+                                      subtitle={local.endsAtMoonset ? tl({ en: 'Eclipse in progress at moonset', hi: 'ग्रहण चन्द्रास्त तक जारी', sa: 'चन्द्रास्तपर्यन्तं ग्रहणं प्रचलति' }, locale) : tl({ en: 'Moon fully bright again', hi: 'चन्द्रमा पूर्ण प्रकाशित', sa: 'चन्द्रमाः पुनः पूर्णप्रकाशितः' }, locale)}
                                     />
                                   </>
                                 )}
@@ -452,30 +452,30 @@ export default function EclipsesPage() {
                               <div className="flex flex-wrap gap-4 mt-4 pt-4 border-t border-gold-primary/8">
                                 {local.durationFormatted && (
                                   <div>
-                                    <div className="text-[10px] text-text-secondary/50 uppercase tracking-wider">{tl({ en: 'Total Duration', hi: 'कुल अवधि', sa: 'कुल अवधि' }, locale)}</div>
+                                    <div className="text-[10px] text-text-secondary/50 uppercase tracking-wider">{tl({ en: 'Total Duration', hi: 'कुल अवधि', sa: 'कुलावधिः' }, locale)}</div>
                                     <div className="text-sm text-gold-light font-mono font-bold">{local.durationFormatted}</div>
                                   </div>
                                 )}
                                 <div>
-                                  <div className="text-[10px] text-text-secondary/50 uppercase tracking-wider">{tl({ en: 'Max Magnitude', hi: 'अधिकतम परिमाण', sa: 'अधिकतम परिमाण' }, locale)}</div>
+                                  <div className="text-[10px] text-text-secondary/50 uppercase tracking-wider">{tl({ en: 'Max Magnitude', hi: 'अधिकतम परिमाण', sa: 'अधिकतमपरिमाणम्' }, locale)}</div>
                                   <div className="text-sm text-gold-light font-mono font-bold">{local.maxMagnitude.toFixed(2)}</div>
                                   <div className="text-[10px] text-text-secondary/40 mt-0.5">{getMagnitudeLabel(local.maxMagnitude, isSolar, locale)}</div>
                                 </div>
                                 {local.magnitudeAtSunset !== null && local.magnitudeAtSunset !== undefined && (
                                   <div>
-                                    <div className="text-[10px] text-text-secondary/50 uppercase tracking-wider">{tl({ en: 'Magnitude at Sunset', hi: 'सूर्यास्त पर परिमाण', sa: 'सूर्यास्त पर परिमाण' }, locale)}</div>
+                                    <div className="text-[10px] text-text-secondary/50 uppercase tracking-wider">{tl({ en: 'Magnitude at Sunset', hi: 'सूर्यास्त पर परिमाण', sa: 'सूर्यास्ते परिमाणम्' }, locale)}</div>
                                     <div className="text-sm text-gold-light font-mono font-bold">{local.magnitudeAtSunset.toFixed(2)}</div>
                                   </div>
                                 )}
                                 {local.sunrise && (
                                   <div>
-                                    <div className="text-[10px] text-text-secondary/50 uppercase tracking-wider">{tl({ en: 'Sunrise', hi: 'सूर्योदय', sa: 'सूर्योदय' }, locale)}</div>
+                                    <div className="text-[10px] text-text-secondary/50 uppercase tracking-wider">{tl({ en: 'Sunrise', hi: 'सूर्योदय', sa: 'सूर्योदयः' }, locale)}</div>
                                     <div className="text-sm text-text-secondary font-mono">{local.sunrise}</div>
                                   </div>
                                 )}
                                 {local.sunset && (
                                   <div>
-                                    <div className="text-[10px] text-text-secondary/50 uppercase tracking-wider">{tl({ en: 'Sunset', hi: 'सूर्यास्त', sa: 'सूर्यास्त' }, locale)}</div>
+                                    <div className="text-[10px] text-text-secondary/50 uppercase tracking-wider">{tl({ en: 'Sunset', hi: 'सूर्यास्त', sa: 'सूर्यास्तः' }, locale)}</div>
                                     <div className="text-sm text-text-secondary font-mono">{local.sunset}</div>
                                   </div>
                                 )}
@@ -488,24 +488,24 @@ export default function EclipsesPage() {
                                 <div className="flex items-center gap-2 mb-4">
                                   <Shield className="w-4 h-4 text-amber-400" />
                                   <h4 className="text-sm font-bold text-amber-300 uppercase tracking-wider" style={headingFont}>
-                                    {tl({ en: 'Sutak Period', hi: 'सूतक काल', sa: 'सूतक काल' }, locale)}
+                                    {tl({ en: 'Sutak Period', hi: 'सूतक काल', sa: 'सूतककालः' }, locale)}
                                   </h4>
                                 </div>
 
                                 {/* Recommended (most conservative) */}
                                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-5">
                                   {local.sutakStart && (
-                                    <TimeCell label={tl({ en: 'Sutak Begins (Recommended)', hi: 'सूतक आरम्भ (अनुशंसित)', sa: 'सूतक आरम्भ (अनुशंसित)' }, locale)} time={local.sutakStart} accent="text-amber-400" highlight />
+                                    <TimeCell label={tl({ en: 'Sutak Begins (Recommended)', hi: 'सूतक आरम्भ (अनुशंसित)', sa: 'सूतकारम्भः (अनुशंसितः)' }, locale)} time={local.sutakStart} accent="text-amber-400" highlight />
                                   )}
                                   {local.sutakEnd && (
-                                    <TimeCell label={tl({ en: 'Sutak Ends', hi: 'सूतक समाप्त', sa: 'सूतक समाप्त' }, locale)} time={local.sutakEnd} accent="text-amber-400" />
+                                    <TimeCell label={tl({ en: 'Sutak Ends', hi: 'सूतक समाप्त', sa: 'सूतकसमाप्तिः' }, locale)} time={local.sutakEnd} accent="text-amber-400" />
                                   )}
                                   {local.sutakVulnerableStart && (
                                     <TimeCell
-                                      label={tl({ en: 'Kids/Old/Sick', hi: 'बच्चे/वृद्ध/रोगी', sa: 'बच्चे/वृद्ध/रोगी' }, locale)}
+                                      label={tl({ en: 'Kids/Old/Sick', hi: 'बच्चे/वृद्ध/रोगी', sa: 'बालाः/वृद्धाः/रोगिणः' }, locale)}
                                       time={local.sutakVulnerableStart}
                                       accent="text-amber-400/70"
-                                      subtitle={tl({ en: 'Sutak Begins', hi: 'सूतक आरम्भ', sa: 'सूतक आरम्भ' }, locale)}
+                                      subtitle={tl({ en: 'Sutak Begins', hi: 'सूतक आरम्भ', sa: 'सूतकारम्भः' }, locale)}
                                     />
                                   )}
                                 </div>
@@ -513,13 +513,13 @@ export default function EclipsesPage() {
                                 {/* 3 Classical Traditions */}
                                 <div className="border-t border-amber-500/10 pt-4">
                                   <p className="text-[10px] text-text-secondary/40 uppercase tracking-wider font-bold mb-3">
-                                    {tl({ en: 'Sutak per Classical Texts', hi: 'शास्त्रीय ग्रन्थों के अनुसार सूतक', sa: 'शास्त्रीय ग्रन्थों के अनुसार सूतक' }, locale)}
+                                    {tl({ en: 'Sutak per Classical Texts', hi: 'शास्त्रीय ग्रन्थों के अनुसार सूतक', sa: 'शास्त्रीयग्रन्थानुसारं सूतकम्' }, locale)}
                                   </p>
                                   <div className="space-y-2">
                                     {local.sutakTraditions.muhurtaChintamani && (
                                       <div className="flex items-center justify-between gap-3 px-3 py-2 rounded-lg bg-amber-500/5">
                                         <div className="min-w-0">
-                                          <span className="text-xs text-amber-300 font-semibold">{tl({ en: 'Muhurta Chintamani', hi: 'मुहूर्त चिन्तामणि', sa: 'मुहूर्त चिन्तामणि' }, locale)}</span>
+                                          <span className="text-xs text-amber-300 font-semibold">{tl({ en: 'Muhurta Chintamani', hi: 'मुहूर्त चिन्तामणि', sa: 'मुहूर्तचिन्तामणिः' }, locale)}</span>
                                           <span className="text-[10px] text-text-secondary/40 ml-2">{local.sutakTraditions.muhurtaChintamani.label}</span>
                                         </div>
                                         <span className="text-sm font-mono font-bold text-amber-400 shrink-0">{local.sutakTraditions.muhurtaChintamani.start}</span>
@@ -528,7 +528,7 @@ export default function EclipsesPage() {
                                     {local.sutakTraditions.dharmaSindhu && (
                                       <div className="flex items-center justify-between gap-3 px-3 py-2 rounded-lg bg-amber-500/5">
                                         <div className="min-w-0">
-                                          <span className="text-xs text-amber-300 font-semibold">{tl({ en: 'Dharmasindhu', hi: 'धर्मसिन्धु', sa: 'धर्मसिन्धु' }, locale)}</span>
+                                          <span className="text-xs text-amber-300 font-semibold">{tl({ en: 'Dharmasindhu', hi: 'धर्मसिन्धु', sa: 'धर्मसिन्धुः' }, locale)}</span>
                                           <span className="text-[10px] text-text-secondary/40 ml-2">{local.sutakTraditions.dharmaSindhu.label}</span>
                                         </div>
                                         <span className="text-sm font-mono font-bold text-amber-400 shrink-0">{local.sutakTraditions.dharmaSindhu.start}</span>
@@ -537,7 +537,7 @@ export default function EclipsesPage() {
                                     {local.sutakTraditions.nirnyaSindhu && (
                                       <div className="flex items-center justify-between gap-3 px-3 py-2 rounded-lg bg-amber-500/5">
                                         <div className="min-w-0">
-                                          <span className="text-xs text-amber-300 font-semibold">{tl({ en: 'Nirnaya Sindhu', hi: 'निर्णय सिन्धु', sa: 'निर्णय सिन्धु' }, locale)}</span>
+                                          <span className="text-xs text-amber-300 font-semibold">{tl({ en: 'Nirnaya Sindhu', hi: 'निर्णय सिन्धु', sa: 'निर्णयसिन्धुः' }, locale)}</span>
                                           <span className="text-[10px] text-text-secondary/40 ml-2">{local.sutakTraditions.nirnyaSindhu.label}</span>
                                         </div>
                                         <span className="text-sm font-mono font-bold text-amber-400 shrink-0">{local.sutakTraditions.nirnyaSindhu.start}</span>
@@ -545,7 +545,7 @@ export default function EclipsesPage() {
                                     )}
                                   </div>
                                   <p className="text-[10px] text-text-secondary/30 mt-2 italic">
-                                    {tl({ en: 'Recommended time is based on the most conservative (earliest) tradition.', hi: 'अनुशंसित समय सबसे रूढ़िवादी (सबसे पहले) ग्रन्थ पर आधारित है।', sa: 'अनुशंसित समय सबसे रूढ़िवादी (सबसे पहले) ग्रन्थ पर आधारित है।' }, locale)}
+                                    {tl({ en: 'Recommended time is based on the most conservative (earliest) tradition.', hi: 'अनुशंसित समय सबसे रूढ़िवादी (सबसे पहले) ग्रन्थ पर आधारित है।', sa: 'अनुशंसितः समयः सर्वाधिकरूढिवादिनः (प्राचीनतमस्य) परम्परायाः आधारितः अस्ति।' }, locale)}
                                   </p>
                                 </div>
                               </div>
@@ -567,7 +567,7 @@ export default function EclipsesPage() {
                           <div className="text-center py-4">
                             <EyeOff className="w-8 h-8 text-text-secondary/20 mx-auto mb-2" />
                             <p className="text-text-secondary/50 text-sm" style={bodyFont}>
-                              {tl({ en: 'This eclipse is not visible from your location. Sutak does not apply.', hi: 'यह ग्रहण आपके स्थान से दृश्य नहीं है। सूतक लागू नहीं।', sa: 'यह ग्रहण आपके स्थान से दृश्य नहीं है। सूतक लागू नहीं।' }, locale)}
+                              {tl({ en: 'This eclipse is not visible from your location. Sutak does not apply.', hi: 'यह ग्रहण आपके स्थान से दृश्य नहीं है। सूतक लागू नहीं।', sa: 'एतद् ग्रहणं भवतः स्थानात् दृश्यं नास्ति। सूतकं न प्रवर्तते।' }, locale)}
                             </p>
                           </div>
                         )}
@@ -577,7 +577,7 @@ export default function EclipsesPage() {
                           <div className="text-center py-4 text-text-secondary/50 text-sm">
                             <MapPin className="w-5 h-5 mx-auto mb-2 opacity-30" />
                             <p style={bodyFont}>
-                              {tl({ en: 'Allow location access for local timings.', hi: 'स्थानीय समय के लिए स्थान की अनुमति दें।', sa: 'स्थानीय समय के लिए स्थान की अनुमति दें।' }, locale)}
+                              {tl({ en: 'Allow location access for local timings.', hi: 'स्थानीय समय के लिए स्थान की अनुमति दें।', sa: 'स्थानीयसमयार्थं स्थानानुमतिं ददातु।' }, locale)}
                             </p>
                           </div>
                         )}
@@ -625,20 +625,20 @@ function NextSignificantCard({
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN' }, locale), { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    return d.toLocaleDateString(tl({ en: 'en-IN', hi: 'hi-IN', sa: 'sa-IN' }, locale), { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
   };
 
   const subtypeLabel = {
-    total: tl({ en: 'Total', hi: 'पूर्ण', sa: 'पूर्ण' }, locale),
-    annular: tl({ en: 'Annular', hi: 'वलयाकार', sa: 'वलयाकार' }, locale),
-    partial: tl({ en: 'Partial', hi: 'आंशिक', sa: 'आंशिक' }, locale),
-    hybrid: tl({ en: 'Hybrid', hi: 'संकर', sa: 'संकर' }, locale),
-    penumbral: tl({ en: 'Penumbral', hi: 'उपच्छाया', sa: 'उपच्छाया' }, locale),
+    total: tl({ en: 'Total', hi: 'पूर्ण', sa: 'पूर्णम्' }, locale),
+    annular: tl({ en: 'Annular', hi: 'वलयाकार', sa: 'वलयाकारम्' }, locale),
+    partial: tl({ en: 'Partial', hi: 'आंशिक', sa: 'आंशिकम्' }, locale),
+    hybrid: tl({ en: 'Hybrid', hi: 'संकर', sa: 'संकरम्' }, locale),
+    penumbral: tl({ en: 'Penumbral', hi: 'उपच्छाया', sa: 'उपच्छायम्' }, locale),
   }[next.subtype] || next.subtype;
 
   const typeLabel = isSolar
-    ? tl({ en: 'Solar Eclipse', hi: 'सूर्य ग्रहण', sa: 'सूर्य ग्रहण' }, locale)
-    : tl({ en: 'Lunar Eclipse', hi: 'चन्द्र ग्रहण', sa: 'चन्द्र ग्रहण' }, locale);
+    ? tl({ en: 'Solar Eclipse', hi: 'सूर्य ग्रहण', sa: 'सूर्यग्रहणम्' }, locale)
+    : tl({ en: 'Lunar Eclipse', hi: 'चन्द्र ग्रहण', sa: 'चन्द्रग्रहणम्' }, locale);
 
   return (
     <motion.div
@@ -648,7 +648,7 @@ function NextSignificantCard({
       className="mt-8"
     >
       <p className="text-text-secondary/50 text-xs uppercase tracking-wider font-bold mb-3">
-        {tl({ en: 'Next Significant Visible Eclipse', hi: 'अगला महत्वपूर्ण दृश्य ग्रहण', sa: 'अगला महत्वपूर्ण दृश्य ग्रहण' }, locale)}
+        {tl({ en: 'Next Significant Visible Eclipse', hi: 'अगला महत्वपूर्ण दृश्य ग्रहण', sa: 'अग्रिमं महत्त्वपूर्णं दृश्यग्रहणम्' }, locale)}
       </p>
       <button
         onClick={() => onNavigate(next.year, next.date, next.type)}
@@ -680,7 +680,7 @@ function NextSignificantCard({
                 {subtypeLabel} {typeLabel}
               </span>
               <span className="text-xs font-mono text-gold-light/70">
-                {tl({ en: 'Mag', hi: 'परिमाण', sa: 'परिमाण' }, locale)} {next.magnitude.toFixed(2)}
+                {tl({ en: 'Mag', hi: 'परिमाण', sa: 'परिमाणम्' }, locale)} {next.magnitude.toFixed(2)}
               </span>
             </div>
             <div className="text-gold-light text-sm font-mono mb-1">{formatDate(next.date)}</div>
@@ -689,7 +689,7 @@ function NextSignificantCard({
 
           <div className="shrink-0 flex flex-col items-center">
             <ChevronRight className="w-5 h-5 text-gold-primary/50 group-hover:text-gold-light group-hover:translate-x-1 transition-all" />
-            <span className="text-[9px] text-gold-primary/40 mt-1">{tl({ en: 'View details', hi: 'विवरण देखें', sa: 'विवरण देखें' }, locale)}</span>
+            <span className="text-[9px] text-gold-primary/40 mt-1">{tl({ en: 'View details', hi: 'विवरण देखें', sa: 'विवरणं पश्यतु' }, locale)}</span>
           </div>
         </div>
       </button>
@@ -703,7 +703,7 @@ function EclipsePhaseDiagram({ local, isSolar, locale }: { local: LocalEclipseRe
     // Solar: C1 → Max → C4 (or sunset)
     const phases = [
       { time: local.eclipseStart, label: 'C1', color: '#f59e0b' },
-      { time: local.maximum, label: tl({ en: 'Max', hi: 'अधिकतम', sa: 'अधिकतम' }, locale), color: '#f0d48a' },
+      { time: local.maximum, label: tl({ en: 'Max', hi: 'अधिकतम', sa: 'अधिकतमम्' }, locale), color: '#f0d48a' },
       { time: local.eclipseEnd, label: local.endsAtSunset ? '☀↓' : 'C4', color: '#f59e0b' },
     ].filter(p => p.time);
 
@@ -727,7 +727,7 @@ function EclipsePhaseDiagram({ local, isSolar, locale }: { local: LocalEclipseRe
         </div>
         {/* Phase label */}
         <div className="text-center text-[9px] text-amber-400/40 mt-1">
-          {tl({ en: '← Partial Phase →', hi: '← आंशिक चरण →', sa: '← आंशिक चरण →' }, locale)}
+          {tl({ en: '← Partial Phase →', hi: '← आंशिक चरण →', sa: '← आंशिकचरणम् →' }, locale)}
         </div>
       </div>
     );
@@ -736,9 +736,9 @@ function EclipsePhaseDiagram({ local, isSolar, locale }: { local: LocalEclipseRe
   // Lunar: P1 → U1 → Max → U2 → P4
   const hasUmbral = local.partialStart && local.partialEnd;
   const phases = [
-    { time: local.eclipseStart, label: 'P1', desc: tl({ en: 'Penumbral', hi: 'उपच्छाया', sa: 'उपच्छाया' }, locale) },
-    ...(hasUmbral ? [{ time: local.partialStart!, label: 'U1', desc: tl({ en: 'Umbral', hi: 'प्रच्छाया', sa: 'प्रच्छाया' }, locale) }] : []),
-    { time: local.maximum, label: tl({ en: 'Max', hi: 'अधिकतम', sa: 'अधिकतम' }, locale), desc: '' },
+    { time: local.eclipseStart, label: 'P1', desc: tl({ en: 'Penumbral', hi: 'उपच्छाया', sa: 'उपच्छायम्' }, locale) },
+    ...(hasUmbral ? [{ time: local.partialStart!, label: 'U1', desc: tl({ en: 'Umbral', hi: 'प्रच्छाया', sa: 'प्रच्छायम्' }, locale) }] : []),
+    { time: local.maximum, label: tl({ en: 'Max', hi: 'अधिकतम', sa: 'अधिकतमम्' }, locale), desc: '' },
     ...(hasUmbral ? [{ time: local.partialEnd!, label: 'U2', desc: '' }] : []),
     { time: local.eclipseEnd, label: local.endsAtMoonset ? '☽↓' : 'P4', desc: '' },
   ].filter(p => p.time);
@@ -777,9 +777,9 @@ function EclipsePhaseDiagram({ local, isSolar, locale }: { local: LocalEclipseRe
       {/* Phase labels */}
       {hasUmbral && (
         <div className="flex justify-center gap-4 mt-1 text-[9px]">
-          <span className="text-indigo-400/30">{tl({ en: 'Penumbral', hi: 'उपच्छाया', sa: 'उपच्छाया' }, locale)}</span>
-          <span className="text-indigo-400/60">{tl({ en: 'Umbral (Shadow)', hi: 'प्रच्छाया (छाया)', sa: 'प्रच्छाया (छाया)' }, locale)}</span>
-          {local.maxMagnitude >= 1.0 && <span className="text-red-400/50">{tl({ en: 'Total (Blood Moon)', hi: 'पूर्ण (रक्त चन्द्र)', sa: 'पूर्ण (रक्त चन्द्र)' }, locale)}</span>}
+          <span className="text-indigo-400/30">{tl({ en: 'Penumbral', hi: 'उपच्छाया', sa: 'उपच्छायम्' }, locale)}</span>
+          <span className="text-indigo-400/60">{tl({ en: 'Umbral (Shadow)', hi: 'प्रच्छाया (छाया)', sa: 'प्रच्छायम् (छाया)' }, locale)}</span>
+          {local.maxMagnitude >= 1.0 && <span className="text-red-400/50">{tl({ en: 'Total (Blood Moon)', hi: 'पूर्ण (रक्त चन्द्र)', sa: 'पूर्णम् (रक्तचन्द्रः)' }, locale)}</span>}
         </div>
       )}
     </div>
@@ -883,11 +883,11 @@ function NodeImplications({ node, eclipseType, locale, bodyFont, headingFont }: 
       </h4>
       <div className="space-y-3 text-xs leading-relaxed" style={bodyFont}>
         <div>
-          <span className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{tl({ en: 'Mundane (World) Effects', hi: 'मुण्डन (विश्व) प्रभाव', sa: 'मुण्डन (विश्व) प्रभाव' }, locale)}</span>
+          <span className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{tl({ en: 'Mundane (World) Effects', hi: 'मुण्डन (विश्व) प्रभाव', sa: 'मुण्डनानि (जागतिकानि) प्रभावाः' }, locale)}</span>
           <p className="text-text-secondary/80 mt-0.5">{tl(imp.mundane, locale)}</p>
         </div>
         <div>
-          <span className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{tl({ en: 'Personal Effects', hi: 'व्यक्तिगत प्रभाव', sa: 'व्यक्तिगत प्रभाव' }, locale)}</span>
+          <span className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{tl({ en: 'Personal Effects', hi: 'व्यक्तिगत प्रभाव', sa: 'वैयक्तिकप्रभावाः' }, locale)}</span>
           <div className="text-text-secondary/80 mt-0.5 space-y-2">
             {(tl(imp.personal, locale) || '').split('\n\n').map((para, i) => (
               <p key={i} className={para.startsWith('•') ? 'pl-2' : ''}>{para}</p>
@@ -895,7 +895,7 @@ function NodeImplications({ node, eclipseType, locale, bodyFont, headingFont }: 
           </div>
         </div>
         <div>
-          <span className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{tl({ en: 'Recommended Remedies', hi: 'अनुशंसित उपाय', sa: 'अनुशंसित उपाय' }, locale)}</span>
+          <span className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{tl({ en: 'Recommended Remedies', hi: 'अनुशंसित उपाय', sa: 'अनुशंसितोपायाः' }, locale)}</span>
           <p className="text-gold-primary/60 mt-0.5">{tl(imp.remedy, locale)}</p>
         </div>
       </div>
@@ -908,7 +908,7 @@ function getMagnitudeLabel(mag: number, isSolar: boolean, locale: string): strin
   if (isSolar) {
     // Solar: magnitude = fraction of Sun's diameter covered by Moon
     // 0.0 = no eclipse, 1.0 = total, >1.0 = total with longer duration
-    if (mag >= 1.0) return tl({ en: 'Total — Sun fully covered', hi: 'पूर्ण — सूर्य पूरी तरह ढका', sa: 'पूर्ण — सूर्य पूरी तरह ढका' }, locale);
+    if (mag >= 1.0) return tl({ en: 'Total — Sun fully covered', hi: 'पूर्ण — सूर्य पूरी तरह ढका', sa: 'पूर्णम् — सूर्यः पूर्णतः आच्छादितः' }, locale);
     if (mag >= 0.9) return tl({ en: `${Math.round(mag * 100)}% of Sun covered — nearly total`, hi: `सूर्य का ${Math.round(mag * 100)}% ढका — लगभग पूर्ण`, sa: `सूर्य का ${Math.round(mag * 100)}% ढका — लगभग पूर्ण` }, locale);
     if (mag >= 0.7) return tl({ en: `${Math.round(mag * 100)}% covered — noticeable dimming`, hi: `सूर्य का ${Math.round(mag * 100)}% ढका — स्पष्ट अंधकार`, sa: `सूर्य का ${Math.round(mag * 100)}% ढका — स्पष्ट अंधकार` }, locale);
     if (mag >= 0.5) return tl({ en: `${Math.round(mag * 100)}% covered — moderate`, hi: `सूर्य का ${Math.round(mag * 100)}% ढका — मध्यम`, sa: `सूर्य का ${Math.round(mag * 100)}% ढका — मध्यम` }, locale);
@@ -917,11 +917,11 @@ function getMagnitudeLabel(mag: number, isSolar: boolean, locale: string): strin
   }
   // Lunar: magnitude = fraction of Moon's diameter inside Earth's umbral shadow
   // 0.0 = penumbral only, 1.0 = just total, >1.0 = deeply total
-  if (mag >= 1.5) return tl({ en: 'Deep total — Moon turns deep red', hi: 'गहन पूर्ण — चन्द्रमा गहरे लाल', sa: 'गहन पूर्ण — चन्द्रमा गहरे लाल' }, locale);
-  if (mag >= 1.0) return tl({ en: 'Total — Moon turns red/copper (Blood Moon)', hi: 'पूर्ण — चन्द्रमा लाल/ताम्र रंग', sa: 'पूर्ण — चन्द्रमा लाल/ताम्र रंग' }, locale);
+  if (mag >= 1.5) return tl({ en: 'Deep total — Moon turns deep red', hi: 'गहन पूर्ण — चन्द्रमा गहरे लाल', sa: 'गहनपूर्णम् — चन्द्रमाः गाढरक्तवर्णो भवति' }, locale);
+  if (mag >= 1.0) return tl({ en: 'Total — Moon turns red/copper (Blood Moon)', hi: 'पूर्ण — चन्द्रमा लाल/ताम्र रंग', sa: 'पूर्णम् — चन्द्रमाः रक्त/ताम्रवर्णो भवति (रक्तचन्द्रः)' }, locale);
   if (mag >= 0.5) return tl({ en: `${Math.round(mag * 100)}% in shadow — obvious darkening`, hi: `${Math.round(mag * 100)}% छाया में — स्पष्ट अंधकार`, sa: `${Math.round(mag * 100)}% छाया में — स्पष्ट अंधकार` }, locale);
   if (mag > 0) return tl({ en: `${Math.round(mag * 100)}% in shadow — slight`, hi: `${Math.round(mag * 100)}% छाया में — हल्का`, sa: `${Math.round(mag * 100)}% छाया में — हल्का` }, locale);
-  return tl({ en: 'Penumbral only — subtle dimming, hard to see', hi: 'उपच्छाया — सूक्ष्म मलिनता', sa: 'उपच्छाया — सूक्ष्म मलिनता' }, locale);
+  return tl({ en: 'Penumbral only — subtle dimming, hard to see', hi: 'उपच्छाया — सूक्ष्म मलिनता', sa: 'केवलमुपच्छायम् — सूक्ष्ममलिनता, दुर्दृश्यम्' }, locale);
 }
 
 function TimeCell({

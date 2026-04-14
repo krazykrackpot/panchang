@@ -1,4 +1,10 @@
 'use client';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText as LT } from '@/lib/learn/translations';
+import MSG from '@/messages/components/sphutas-tab.json';
+
+const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LT>)[key], locale);
+
 
 import React from 'react';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
@@ -95,15 +101,15 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
   return (
     <div className="space-y-6">
       <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-        {tl({ en: 'Sphutas — Sensitive Points in Your Chart', hi: 'स्फुट — संवेदनशील बिंदु', sa: 'स्फुट — संवेदनशील बिंदु' }, locale)}
+        {msg('heading', locale)}
       </h3>
 
       <InfoBlock
         id="kundali-sphutas"
-        title={tl({ en: 'What are Sphutas (Sensitive Points)?', hi: 'स्फुट क्या हैं?', sa: 'स्फुट क्या हैं?' }, locale)}
+        title={msg('infoTitle', locale)}
         defaultOpen={false}
       >
-        {tl({ en: 'Sphutas are mathematically computed degree points that reveal hidden dimensions: Yogi Point — your luckiest degree, planets near this bring fortune. Avayogi Point — your most challenging degree. Prana Sphuta — vitality and life force. Deha Sphuta — physical body and health constitution. Mrityu Sphuta — longevity indicators (analytical, not predictive!). Tri Sphuta — composite of all three.', hi: 'स्फुट गणितीय रूप से निर्धारित अंश बिंदु हैं जो छुपे आयाम प्रकट करते हैं: योगी बिंदु — आपका सबसे शुभ अंश, इसके निकट ग्रह भाग्य लाते हैं। अवयोगी बिंदु — आपका सबसे चुनौतीपूर्ण अंश। प्राण स्फुट — जीवनशक्ति और प्राण ऊर्जा। देह स्फुट — भौतिक शरीर और स्वास्थ्य संरचना। मृत्यु स्फुट — दीर्घायु सूचक (विश्लेषणात्मक, भविष्यसूचक नहीं!)। त्रि स्फुट — तीनों का समग्र।', sa: 'स्फुट गणितीय रूप से निर्धारित अंश बिंदु हैं जो छुपे आयाम प्रकट करते हैं: योगी बिंदु — आपका सबसे शुभ अंश, इसके निकट ग्रह भाग्य लाते हैं। अवयोगी बिंदु — आपका सबसे चुनौतीपूर्ण अंश। प्राण स्फुट — जीवनशक्ति और प्राण ऊर्जा। देह स्फुट — भौतिक शरीर और स्वास्थ्य संरचना। मृत्यु स्फुट — दीर्घायु सूचक (विश्लेषणात्मक, भविष्यसूचक नहीं!)। त्रि स्फुट — तीनों का समग्र।' }, locale)}
+        {msg('infoBody', locale)}
       </InfoBlock>
 
       {/* -- SYNTHESIS -- leads with so-what */}
@@ -118,10 +124,10 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
         return (
         <div className="rounded-xl bg-gradient-to-br from-[#1a1040]/70 via-[#0f0d2e]/80 to-[#0a0e27] border border-gold-primary/25 p-5">
           <h4 className="text-gold-gradient text-sm font-bold mb-1 uppercase tracking-wider" style={headingFont}>
-            {tl({ en: '✦ Sphuta Synthesis — Your Complete Picture', hi: '✦ स्फुट संश्लेषण — आपका पूर्ण चित्र', sa: '✦ स्फुट संश्लेषण — आपका पूर्ण चित्र' }, locale)}
+            {msg('synthesisHeading', locale)}
           </h4>
           <p className="text-text-secondary/75 text-xs mb-4">
-            {tl({ en: 'Integrated reading of all sphuta points — key transit windows, constitutional health picture, and actionable guidance.', hi: 'सभी स्फुट बिंदुओं का एकीकृत विश्लेषण — महत्वपूर्ण गोचर खिड़कियाँ, स्वास्थ्य संरचना, और व्यावहारिक सुझाव।', sa: 'सभी स्फुट बिंदुओं का एकीकृत विश्लेषण — महत्वपूर्ण गोचर खिड़कियाँ, स्वास्थ्य संरचना, और व्यावहारिक सुझाव।' }, locale)}
+            {msg('synthesisSubtitle', locale)}
           </p>
 
           {/* Blueprint paragraph */}
@@ -136,14 +142,14 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
             <div className="bg-emerald-500/15 border border-emerald-400/30 rounded-lg p-3 mb-4 flex items-start gap-2">
               <span className="text-emerald-400 text-sm mt-0.5">&#9733;</span>
               <p className="text-emerald-300 text-xs leading-relaxed font-medium">
-                {tl({ en: 'An important transit is ACTIVE RIGHT NOW. Pay close attention to opportunities or challenges unfolding in your life.', hi: 'एक महत्वपूर्ण गोचर अभी सक्रिय है! अपने जीवन के अवसरों/चुनौतियों पर ध्यान दें।', sa: 'एक महत्वपूर्ण गोचर अभी सक्रिय है! अपने जीवन के अवसरों/चुनौतियों पर ध्यान दें।' }, locale)}
+                {msg('activeTransitAlert', locale)}
               </p>
             </div>
           )}
 
           {/* Timeline */}
           <h5 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-            {tl({ en: 'Upcoming Key Windows', hi: 'आगामी महत्वपूर्ण खिड़कियाँ', sa: 'आगामी महत्वपूर्ण खिड़कियाँ' }, locale)}
+            {msg('upcomingKeyWindows', locale)}
           </h5>
           <div className="space-y-1.5 mb-4">
             {sphuataTransitData.timeline.map((ev, idx) => (
@@ -170,13 +176,13 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
 
           {/* Constitution summary */}
           <h5 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-            {tl({ en: 'Constitutional Health Summary', hi: 'स्वास्थ्य संरचना सारांश', sa: 'स्वास्थ्य संरचना सारांश' }, locale)}
+            {msg('constitutionalHealthSummary', locale)}
           </h5>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
             {[
-              { label: tl({ en: 'Prana', hi: 'प्राण', sa: 'प्राण' }, locale), sign: sp.pranaSphuta.sign, deg: sp.pranaSphuta.degree, color:'text-gold-primary' },
-              { label: tl({ en: 'Deha', hi: 'देह', sa: 'देह' }, locale), sign: sp.dehaSphuta.sign, deg: sp.dehaSphuta.degree, color:'text-blue-400' },
-              { label: tl({ en: 'Mrityu', hi: 'मृत्यु', sa: 'मृत्यु' }, locale), sign: sp.mrityuSphuta.sign, deg: sp.mrityuSphuta.degree, color:'text-violet-400' },
+              { label: msg('prana', locale), sign: sp.pranaSphuta.sign, deg: sp.pranaSphuta.degree, color:'text-gold-primary', icon: '♥', txKey: 'prana' as const },
+              { label: msg('deha', locale), sign: sp.dehaSphuta.sign, deg: sp.dehaSphuta.degree, color:'text-blue-400', icon: '⊕', txKey: 'deha' as const },
+              { label: msg('mrityu', locale), sign: sp.mrityuSphuta.sign, deg: sp.mrityuSphuta.degree, color:'text-violet-400', icon: '∞', txKey: 'mrityu' as const },
             ].map(({ label, sign, deg, color }) => (
               <div key={label} className="bg-[#0a0e27]/60 border border-gold-primary/8 rounded-lg p-2 text-center">
                 <div className={`text-xs font-bold ${color}`}>{label}</div>
@@ -189,7 +195,7 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
 
           {/* Key actions */}
           <h5 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-            {tl({ en: 'Key Actions', hi: 'मुख्य सुझाव', sa: 'मुख्य सुझाव' }, locale)}
+            {msg('keyActions', locale)}
           </h5>
           <div className="space-y-1.5">
             <div className="flex items-start gap-2 text-xs text-text-secondary">
@@ -211,7 +217,7 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
           </div>
 
           <p className="text-text-secondary/55 text-xs mt-3 italic">
-            {tl({ en: '* Transit dates are estimates based on average daily motion — retrograde periods may shift by ±4–8 weeks.', hi: '* गोचर तिथियाँ औसत गति पर आधारित अनुमान हैं — वक्री गति से ±4-8 सप्ताह का अन्तर हो सकता है।', sa: '* गोचर तिथियाँ औसत गति पर आधारित अनुमान हैं — वक्री गति से ±4-8 सप्ताह का अन्तर हो सकता है।' }, locale)}
+            {msg('transitDateDisclaimer', locale)}
           </p>
         </div>
         );
@@ -224,7 +230,7 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
           <div className="flex items-center gap-2 mb-3">
             <span className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-lg">&#9733;</span>
             <div>
-              <div className="text-emerald-300 text-xs uppercase tracking-widest font-bold">{tl({ en: 'Yogi Point — Your Lucky Degree', hi: 'योगी बिंदु — आपका शुभ बिंदु', sa: 'योगी बिंदु — आपका शुभ बिंदु' }, locale)}</div>
+              <div className="text-emerald-300 text-xs uppercase tracking-widest font-bold">{msg('yogiPointLabel', locale)}</div>
             </div>
           </div>
           <div className="text-gold-light font-bold text-3xl font-mono mb-1">{kundali.sphutas!.yogiPoint.degree.toFixed(2)}°</div>
@@ -256,7 +262,7 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
           <div className="flex items-center gap-2 mb-3">
             <span className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 text-lg">&#9888;</span>
             <div>
-              <div className="text-red-300 text-xs uppercase tracking-widest font-bold">{tl({ en: 'Avayogi Point — Your Challenging Degree', hi: 'अवयोगी बिंदु — आपका चुनौतीपूर्ण बिंदु', sa: 'अवयोगी बिंदु — आपका चुनौतीपूर्ण बिंदु' }, locale)}</div>
+              <div className="text-red-300 text-xs uppercase tracking-widest font-bold">{msg('avayogiPointLabel', locale)}</div>
             </div>
           </div>
           <div className="text-gold-light font-bold text-3xl font-mono mb-1">{kundali.sphutas!.avayogiPoint.degree.toFixed(2)}°</div>
@@ -287,21 +293,21 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
       {/* CONSTITUTIONAL SPHUTAS */}
       <div>
         <h4 className="text-gold-light text-sm font-bold mb-3 text-center" style={headingFont}>
-          {tl({ en: 'Constitutional Sphutas — Your Nature', hi: 'शारीरिक संरचना स्फुट — आपकी प्रकृति', sa: 'शारीरिक संरचना स्फुट — आपकी प्रकृति' }, locale)}
+          {msg('constitutionalSphutas', locale)}
         </h4>
         <p className="text-text-secondary text-xs text-center mb-4 max-w-2xl mx-auto">
-          {tl({ en: 'These points describe your physical and vital constitution. They are used in medical astrology (Ayurvedic analysis) and longevity assessment. The sign and nakshatra where each falls indicates the quality of that life dimension.', hi: 'ये बिंदु आपकी शारीरिक और प्राणिक संरचना को दर्शाते हैं। ये चिकित्सा ज्योतिष और आयुर्वेदिक विश्लेषण में प्रयुक्त होते हैं।', sa: 'ये बिंदु आपकी शारीरिक और प्राणिक संरचना को दर्शाते हैं। ये चिकित्सा ज्योतिष और आयुर्वेदिक विश्लेषण में प्रयुक्त होते हैं।' }, locale)}
+          {msg('constitutionalSphuatasDesc', locale)}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {([
-            { data: kundali.sphutas!.pranaSphuta, label: tl({ en: 'Prana Sphuta', hi: 'प्राण स्फुट', sa: 'प्राण स्फुट' }, locale), sublabel: tl({ en: 'Vitality & Life Force', hi: 'जीवन शक्ति', sa: 'जीवन शक्ति' }, locale), color: 'border-gold-primary/20', icon: '&#9829;', txKey: 'prana' as const,
-              explain: tl({ en: 'Your overall vitality and energy level. Computed from Sun + Moon + Lagna. A benefic sign/nakshatra = strong life force, good health, resilience. A malefic placement = watch your energy levels, prioritize rest.', hi: 'आपकी समग्र जीवन शक्ति और ऊर्जा स्तर। सूर्य + चन्द्र + लग्न से गणित। शुभ राशि/नक्षत्र = प्रबल जीवनशक्ति, अच्छा स्वास्थ्य।', sa: 'आपकी समग्र जीवन शक्ति और ऊर्जा स्तर। सूर्य + चन्द्र + लग्न से गणित। शुभ राशि/नक्षत्र = प्रबल जीवनशक्ति, अच्छा स्वास्थ्य।' }, locale) },
-            { data: kundali.sphutas!.dehaSphuta, label: tl({ en: 'Deha Sphuta', hi: 'देह स्फुट', sa: 'देह स्फुट' }, locale), sublabel: tl({ en: 'Physical Body', hi: 'शारीरिक संरचना', sa: 'शारीरिक संरचना' }, locale), color: 'border-blue-500/20', icon: '&#9775;', txKey: 'deha' as const,
-              explain: tl({ en: 'Your physical constitution and body type. This indicates your natural build. Fire/Earth signs = strong, muscular frame. Air/Water = lighter, more flexible. The nakshatra adds specifics about health tendencies.', hi: 'आपकी शारीरिक संरचना और काया। यह बताता है कि आपका शरीर किस प्रकार का है। अग्नि/पृथ्वी राशि = मजबूत, मांसल। वायु/जल = हल्का, लचीला।', sa: 'आपकी शारीरिक संरचना और काया। यह बताता है कि आपका शरीर किस प्रकार का है। अग्नि/पृथ्वी राशि = मजबूत, मांसल। वायु/जल = हल्का, लचीला।' }, locale) },
-            { data: kundali.sphutas!.mrityuSphuta, label: tl({ en: 'Mrityu Sphuta', hi: 'मृत्यु स्फुट', sa: 'मृत्यु स्फुट' }, locale), sublabel: tl({ en: 'Longevity Indicator', hi: 'दीर्घायु सूचक', sa: 'दीर्घायु सूचक' }, locale), color: 'border-violet-500/20', icon: '&#8734;', txKey: 'mrityu' as const,
-              explain: tl({ en: 'Indicator of longevity and health vulnerability. This does NOT predict death — it shows which body areas need attention. When transit planets (especially Saturn or Mars) cross this degree, pay extra attention to health. The sign indicates the body part: Aries=head, Taurus=throat, etc.', hi: 'दीर्घायु और स्वास्थ्य जोखिम का सूचक। यह "मृत्यु" का भविष्यवाणी नहीं करता — यह दर्शाता है कि शरीर के कौन से क्षेत्र ध्यान माँगते हैं। जब गोचर ग्रह इस अंश पर आते हैं, स्वास्थ्य पर ध्यान दें।', sa: 'दीर्घायु और स्वास्थ्य जोखिम का सूचक। यह "मृत्यु" का भविष्यवाणी नहीं करता — यह दर्शाता है कि शरीर के कौन से क्षेत्र ध्यान माँगते हैं। जब गोचर ग्रह इस अंश पर आते हैं, स्वास्थ्य पर ध्यान दें।' }, locale) },
-            { data: kundali.sphutas!.triSphuta, label: tl({ en: 'Tri Sphuta', hi: 'त्रि स्फुट', sa: 'त्रि स्फुट' }, locale), sublabel: tl({ en: 'Composite Indicator', hi: 'समग्र संकेतक', sa: 'समग्र संकेतक' }, locale), color: 'border-amber-500/20', icon: '&#9651;', txKey: 'tri' as const,
-              explain: tl({ en: 'Composite of all three sphutas (Prana + Deha + Mrityu). This gives a single-point summary of your overall physical-vital condition. Its sign/nakshatra placement summarizes your constitutional strength.', hi: 'तीनों स्फुटों (प्राण + देह + मृत्यु) का संयुक्त बिंदु। यह आपकी समग्र शारीरिक-प्राणिक स्थिति का एकल सूचक है।', sa: 'तीनों स्फुटों (प्राण + देह + मृत्यु) का संयुक्त बिंदु। यह आपकी समग्र शारीरिक-प्राणिक स्थिति का एकल सूचक है।' }, locale) },
+            { data: kundali.sphutas!.pranaSphuta, label: msg('pranaSphuta', locale), sublabel: msg('pranaSphutaSubLabel', locale), color: 'border-gold-primary/20', icon: '&#9829;', txKey: 'prana' as const,
+              explain: msg('pranaSphutaExplain', locale) },
+            { data: kundali.sphutas!.dehaSphuta, label: msg('dehaSphuta', locale), sublabel: msg('dehaSphutaSubLabel', locale), color: 'border-blue-500/20', icon: '&#9775;', txKey: 'deha' as const,
+              explain: msg('dehaSphutaExplain', locale) },
+            { data: kundali.sphutas!.mrityuSphuta, label: msg('mrityuSphuta', locale), sublabel: msg('mrityuSphutaSubLabel', locale), color: 'border-violet-500/20', icon: '&#8734;', txKey: 'mrityu' as const,
+              explain: msg('mrityuSphutaExplain', locale) },
+            { data: kundali.sphutas!.triSphuta, label: msg('triSphuta', locale), sublabel: msg('triSphutaSubLabel', locale), color: 'border-amber-500/20', icon: '&#9651;', txKey: 'tri' as const,
+              explain: msg('triSphutaExplain', locale) },
           ] as const).map(({ data, label, sublabel, color, icon, explain, txKey }) => {
             const txInfo = sphuataTransitData ? (
               txKey === 'prana' ? { primary: sphuataTransitData.pranaSun, primaryLabel: 'Next Sun transit', secondary: sphuataTransitData.pranaJupiter, secondaryLabel: 'Next Jupiter transit' } :
@@ -348,23 +354,23 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
       {(kundali.sphutas!.bijaSphuta || kundali.sphutas!.kshetraSphuta) && (
         <div>
           <h4 className="text-gold-light text-sm font-bold mb-3 text-center" style={headingFont}>
-            {tl({ en: 'Fertility Sphutas', hi: 'प्रजनन स्फुट', sa: 'प्रजनकस्फुटानि' }, locale)}
+            {msg('fertilitySphutas', locale)}
           </h4>
           <p className="text-text-secondary text-xs text-center mb-4 max-w-xl mx-auto">
-            {tl({ en: 'These points assess fertility and progeny potential. Odd signs and benefic nakshatras = favorable. Used alongside 5th house and Jupiter analysis for childbirth timing.', hi: 'ये बिंदु प्रजनन क्षमता और सन्तान योग का आकलन करते हैं। विषम राशि/नक्षत्र = अनुकूल।', sa: 'ये बिंदु प्रजनन क्षमता और सन्तान योग का आकलन करते हैं। विषम राशि/नक्षत्र = अनुकूल।' }, locale)}
+            {msg('fertilitySphuatasDesc', locale)}
           </p>
           <div className="grid grid-cols-2 gap-3">
             {kundali.sphutas!.bijaSphuta && (
               <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 border border-blue-500/15">
-                <div className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-1">{tl({ en: 'Bija Sphuta (Male Fertility)', hi: 'बीज स्फुट (पुरुष प्रजनन)', sa: 'बीज स्फुट (पुरुष प्रजनन)' }, locale)}</div>
+                <div className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-1">{msg('bijaSphuta', locale)}</div>
                 <div className="text-gold-light font-bold text-xl font-mono">{kundali.sphutas!.bijaSphuta.degree.toFixed(2)}°</div>
                 <div className="text-text-secondary text-xs mt-1">{signName(kundali.sphutas!.bijaSphuta.sign)}</div>
                 <p className="text-text-secondary/70 text-xs mt-2 leading-relaxed">
-                  {tl({ en: 'Computed from Sun + Venus + Jupiter. Odd sign + benefic nakshatra = strong male fertility factor.', hi: 'सूर्य + शुक्र + बृहस्पति से गणित। विषम राशि और शुभ नक्षत्र = बलवान।', sa: 'सूर्य + शुक्र + बृहस्पति से गणित। विषम राशि और शुभ नक्षत्र = बलवान।' }, locale)}
+                  {msg('bijaSphutaDesc', locale)}
                 </p>
                 {sphuataTransitData?.bijaJupiter && (
                   <div className={`mt-2 flex items-center justify-between rounded-md px-2 py-1 text-xs ${sphuataTransitData.bijaJupiter.isActive ? 'bg-emerald-500/15 border border-emerald-400/20' : 'bg-[#0a0e27]/60 border border-blue-500/10'}`}>
-                    <span className="text-text-secondary/70">{tl({ en: 'Next Jupiter', hi: 'अगला बृहस्पति', sa: 'अगला बृहस्पति' }, locale)}</span>
+                    <span className="text-text-secondary/70">{msg('nextJupiter', locale)}</span>
                     <span className={`font-bold ${sphuataTransitData.bijaJupiter.isActive ? 'text-emerald-300' : 'text-gold-light'}`}>{isHi ? sphuataTransitData.bijaJupiter.labelHi : sphuataTransitData.bijaJupiter.label}</span>
                   </div>
                 )}
@@ -372,15 +378,15 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
             )}
             {kundali.sphutas!.kshetraSphuta && (
               <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 border border-pink-500/15">
-                <div className="text-pink-300 text-xs uppercase tracking-widest font-bold mb-1">{tl({ en: 'Kshetra Sphuta (Female Fertility)', hi: 'क्षेत्र स्फुट (स्त्री प्रजनन)', sa: 'क्षेत्र स्फुट (स्त्री प्रजनन)' }, locale)}</div>
+                <div className="text-pink-300 text-xs uppercase tracking-widest font-bold mb-1">{msg('kshetraSphuta', locale)}</div>
                 <div className="text-gold-light font-bold text-xl font-mono">{kundali.sphutas!.kshetraSphuta.degree.toFixed(2)}°</div>
                 <div className="text-text-secondary text-xs mt-1">{signName(kundali.sphutas!.kshetraSphuta.sign)}</div>
                 <p className="text-text-secondary/70 text-xs mt-2 leading-relaxed">
-                  {tl({ en: 'Computed from Moon + Mars + Jupiter. Even sign + benefic nakshatra = strong female fertility factor.', hi: 'चन्द्र + मंगल + बृहस्पति से गणित। सम राशि और शुभ नक्षत्र = बलवान।', sa: 'चन्द्र + मंगल + बृहस्पति से गणित। सम राशि और शुभ नक्षत्र = बलवान।' }, locale)}
+                  {msg('kshetraSphutaDesc', locale)}
                 </p>
                 {sphuataTransitData?.kshetraJupiter && (
                   <div className={`mt-2 flex items-center justify-between rounded-md px-2 py-1 text-xs ${sphuataTransitData.kshetraJupiter.isActive ? 'bg-emerald-500/15 border border-emerald-400/20' : 'bg-[#0a0e27]/60 border border-pink-500/10'}`}>
-                    <span className="text-text-secondary/70">{tl({ en: 'Next Jupiter', hi: 'अगला बृहस्पति', sa: 'अगला बृहस्पति' }, locale)}</span>
+                    <span className="text-text-secondary/70">{msg('nextJupiter', locale)}</span>
                     <span className={`font-bold ${sphuataTransitData.kshetraJupiter.isActive ? 'text-emerald-300' : 'text-gold-light'}`}>{isHi ? sphuataTransitData.kshetraJupiter.labelHi : sphuataTransitData.kshetraJupiter.label}</span>
                   </div>
                 )}
@@ -451,7 +457,7 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
       {kundali.bhriguBindu && (
         <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/20 p-5">
           <div className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-2">
-            {tl({ en: 'Bhrigu Bindu (Uttara Kalamrita)', hi: 'भृगु बिंदु (Uttara Kalamrita)', sa: 'भृगु बिंदु (Uttara Kalamrita)' }, locale)}
+            {msg('bhriguBindu', locale)}
           </div>
           <div className="flex items-center gap-4 mb-3">
             <div>
@@ -461,7 +467,7 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
             <div className="text-text-secondary text-xs">{kundali.bhriguBindu.longitude.toFixed(2)}°</div>
           </div>
           <p className="text-text-secondary/80 text-xs leading-relaxed">
-            {tl({ en: 'Midpoint of natal Rahu and Moon — the most sensitive accumulation point in your chart. Jupiter transiting within 5° of Bhrigu Bindu triggers major positive events. Saturn transiting this point brings a challenge period requiring discipline and patience.', hi: 'भृगु बिंदु = राहु और चन्द्र का मध्यबिंदु। यह आपके जीवन का सर्वाधिक संवेदनशील बिंदु है। जब बृहस्पति इस बिंदु से गुजरे, बड़ी शुभ घटनाएँ होती हैं। शनि का गोचर चुनौती लाता है।', sa: 'भृगु बिंदु = राहु और चन्द्र का मध्यबिंदु। यह आपके जीवन का सर्वाधिक संवेदनशील बिंदु है। जब बृहस्पति इस बिंदु से गुजरे, बड़ी शुभ घटनाएँ होती हैं। शनि का गोचर चुनौती लाता है।' }, locale)}
+            {msg('bhriguBinduDesc', locale)}
           </p>
         </div>
       )}
@@ -506,14 +512,14 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
         return (
           <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/20 p-5">
             <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-1">
-              {tl({ en: 'Pindayu — Constitutional Longevity Indicators (BPHS Ch. 44-45)', hi: 'पिण्डायु — संवैधानिक दीर्घायु संकेतक (BPHS अ. 44-45)', sa: 'पिण्डायु — संवैधानिक दीर्घायु संकेतक (BPHS अ. 44-45)' }, locale)}
+              {msg('pindayu', locale)}
             </h4>
             <p className="text-text-secondary/70 text-xs mb-4" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-              {tl({ en: 'Each planet contributes base years × degree proportion. Reduced for retrogression, combustion, and debilitation. This is NOT death prediction — it indicates constitutional vitality and life force quality.', hi: 'प्रत्येक ग्रह आधार वर्ष × राशि में अंश देता है। वक्री, अस्त, और नीच होने पर कम होता है। यह मृत्यु की भविष्यवाणी नहीं — संवैधानिक शक्ति का संकेत है।', sa: 'प्रत्येक ग्रह आधार वर्ष × राशि में अंश देता है। वक्री, अस्त, और नीच होने पर कम होता है। यह मृत्यु की भविष्यवाणी नहीं — संवैधानिक शक्ति का संकेत है।' }, locale)}
+              {msg('pindayuDesc', locale)}
             </p>
             <div className="rounded-xl bg-purple-500/10 border border-purple-500/25 p-4 mb-4 text-center">
               <div className="text-purple-200 font-bold text-3xl font-mono">{lo}–{hi2}</div>
-              <div className="text-text-secondary/75 text-xs mt-1">{tl({ en: 'years (estimated constitutional range)', hi: 'वर्ष (अनुमानित सीमा)', sa: 'वर्ष (अनुमानित सीमा)' }, locale)}</div>
+              <div className="text-text-secondary/75 text-xs mt-1">{msg('yearsRange', locale)}</div>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-1.5">
               {contributions.map(c => (
@@ -552,15 +558,15 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
         return (
         <div className="rounded-xl bg-gradient-to-br from-[#0e1a0a]/60 via-[#0a0e27]/80 to-[#0a0e27] border border-emerald-500/20 p-5 space-y-4">
           <h4 className="text-emerald-400 text-sm uppercase tracking-widest font-bold">
-            {tl({ en: 'Pushkar Navamsha + Pushkar Bhaga', hi: 'पुष्कर नवांश + पुष्कर भाग', sa: 'पुष्कर नवांश + पुष्कर भाग' }, locale)}
+            {msg('pushkarNavamshaBhaga', locale)}
           </h4>
           {pknPlanets.length > 0 && (
             <div>
               <div className="text-sky-300 text-xs font-bold mb-1.5 uppercase tracking-wider">
-                {tl({ en: 'Pushkar Navamsha (PKN) — 24 supremely auspicious navamsha positions', hi: 'पुष्कर नवांश (PKN) — 24 अत्यंत शुभ नवांश स्थितियाँ', sa: 'पुष्कर नवांश (PKN) — 24 अत्यंत शुभ नवांश स्थितियाँ' }, locale)}
+                {msg('pushkarNavamshaTitle', locale)}
               </div>
               <p className="text-text-secondary/75 text-xs leading-relaxed mb-3" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {tl({ en: 'A planet in Pushkar Navamsha gives auspicious results even if debilitated or combust — the navamsha protects it. Below are classical per-planet interpretations (Saravali tradition).', hi: 'जब कोई ग्रह पुष्कर नवांश में हो, तो उसकी स्थिति शुभ फल देती है — यहाँ तक कि नीच या अस्त ग्रह भी सुरक्षित रहता है। नीचे प्रत्येक PKN ग्रह का विशिष्ट फल दर्शाया गया है।', sa: 'जब कोई ग्रह पुष्कर नवांश में हो, तो उसकी स्थिति शुभ फल देती है — यहाँ तक कि नीच या अस्त ग्रह भी सुरक्षित रहता है। नीचे प्रत्येक PKN ग्रह का विशिष्ट फल दर्शाया गया है।' }, locale)}
+                {msg('pushkarNavamshaDesc', locale)}
               </p>
               <div className="space-y-3">
                 {pknPlanets.map(p => {
@@ -587,10 +593,10 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
           {pkbPlanets.length > 0 && (
             <div>
               <div className="text-emerald-300 text-xs font-bold mb-1.5 uppercase tracking-wider">
-                {tl({ en: 'Pushkar Bhaga (PKB) — single most auspicious degree per sign', hi: 'पुष्कर भाग (PKB) — प्रत्येक राशि में सर्वाधिक शुभ अंश', sa: 'पुष्कर भाग (PKB) — प्रत्येक राशि में सर्वाधिक शुभ अंश' }, locale)}
+                {msg('pushkarBhagaTitle', locale)}
               </div>
               <p className="text-text-secondary/75 text-xs leading-relaxed mb-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {tl({ en: 'Pushkar Bhaga is the single most sacred degree in each sign (±0.8° orb). A planet here gains extraordinary strength. For muhurta: Moon at Pushkar Bhaga is the pinnacle of muhurta power in that sign.', hi: 'पुष्कर भाग प्रत्येक राशि में सर्वाधिक पवित्र अंश है। यहाँ स्थित ग्रह असाधारण शक्ति पाता है। विशेष रूप से मुहूर्त में: जब चन्द्रमा पुष्कर भाग पर हो, तो मुहूर्त की ताकत चरम पर होती है।', sa: 'पुष्कर भाग प्रत्येक राशि में सर्वाधिक पवित्र अंश है। यहाँ स्थित ग्रह असाधारण शक्ति पाता है। विशेष रूप से मुहूर्त में: जब चन्द्रमा पुष्कर भाग पर हो, तो मुहूर्त की ताकत चरम पर होती है।' }, locale)}
+                {msg('pushkarBhagaDesc', locale)}
               </p>
               <div className="flex flex-wrap gap-2">
                 {pkbPlanets.map(p => (
@@ -605,7 +611,7 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
             </div>
           )}
           <p className="text-text-secondary/65 text-xs">
-            {tl({ en: 'Source: Saravali tradition. PKN: 24 navamsha positions across 12 signs. PKB: one degree per sign.', hi: 'स्रोत: सरावली परम्परा। पुष्कर नवांश: 24 स्थितियाँ। पुष्कर भाग: एक अंश प्रति राशि।', sa: 'स्रोत: सरावली परम्परा। पुष्कर नवांश: 24 स्थितियाँ। पुष्कर भाग: एक अंश प्रति राशि।' }, locale)}
+            {msg('pushkarSource', locale)}
           </p>
         </div>
         );
@@ -614,7 +620,7 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
       {/* How to use this */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">
-          {tl({ en: 'How to Use This Information', hi: 'इसका उपयोग कैसे करें', sa: 'इसका उपयोग कैसे करें' }, locale)}
+          {msg('howToUse', locale)}
         </h4>
         <ul className="text-text-secondary text-xs leading-relaxed space-y-2">
           <li>
@@ -624,10 +630,10 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
             {tl({ en: `✦ Be cautious during Avayogi Planet (${avayogiPlanetName}) dasha/transit — think twice before major decisions.`, hi: `✦ अवयोगी ग्रह (${avayogiPlanetName}) की दशा/गोचर में सावधान रहें — बड़े निर्णयों से पहले सोचें।`, sa: `✦ अवयोगी ग्रह (${avayogiPlanetName}) की दशा/गोचर में सावधान रहें — बड़े निर्णयों से पहले सोचें।` }, locale)}
           </li>
           <li>
-            {tl({ en: '✦ When Jupiter transits within ±5° of your Yogi Point, start new ventures — this is your MOST auspicious transit window.', hi: '✦ जब बृहस्पति आपके योगी बिंदु के ±5° के भीतर गोचर करे, तो नए कार्य आरम्भ करें — यह आपका सबसे शुभ काल है।', sa: '✦ जब बृहस्पति आपके योगी बिंदु के ±5° के भीतर गोचर करे, तो नए कार्य आरम्भ करें — यह आपका सबसे शुभ काल है।' }, locale)}
+            {msg('jupiterYogiTransit', locale)}
           </li>
           <li>
-            {tl({ en: '✦ Mrityu Sphuta ≠ death prediction. It only indicates a health-sensitive degree. Get regular checkups and practice preventive care when planets transit this point.', hi: '✦ मृत्यु स्फुट = मृत्यु नहीं। यह केवल शारीरिक संवेदनशीलता का बिंदु है। स्वास्थ्य जांच और सावधानी बरतें।', sa: '✦ मृत्यु स्फुट = मृत्यु नहीं। यह केवल शारीरिक संवेदनशीलता का बिंदु है। स्वास्थ्य जांच और सावधानी बरतें।' }, locale)}
+            {msg('mrityuNotDeath', locale)}
           </li>
         </ul>
       </div>

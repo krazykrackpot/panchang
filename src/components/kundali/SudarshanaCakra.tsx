@@ -1,5 +1,10 @@
 'use client';
 import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import MSG from '@/messages/components/sudarshana-cakra.json';
+
+const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 /**
  * Sudarshana Chakra — Three concentric rings
  * Source: BPHS Ch. 22
@@ -127,7 +132,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
           <text x={tx} y={ty - 6} textAnchor="middle" dominantBaseline="middle"
             fontSize={ringIdx === 0 ? 8 : ringIdx === 1 ? 7 : 6}
             fill="rgba(212,168,83,0.6)"
-            style={{ fontFamily: tl({ en: 'monospace', hi: 'var(--font-devanagari-body)', sa: 'monospace', ta: 'monospace', te: 'monospace', bn: 'monospace', kn: 'monospace', gu: 'monospace', mai: 'monospace', mr: 'monospace' }, locale) }}>
+            style={{ fontFamily: msg('fontBodyDevanagari', locale) }}>
             {signAbbr(signId)}
           </text>
           {/* House number */}
@@ -151,7 +156,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
                 fontSize={ringIdx === 0 ? 7 : ringIdx === 1 ? 6 : 5.5}
                 fill={PLANET_ABBR[pid]?.color || '#e6e2d8'}
                 fontWeight="bold"
-                style={{ fontFamily: tl({ en: 'monospace', hi: 'var(--font-devanagari-body)', sa: 'monospace', ta: 'monospace', te: 'monospace', bn: 'monospace', kn: 'monospace', gu: 'monospace', mai: 'monospace', mr: 'monospace' }, locale) }}>
+                style={{ fontFamily: msg('fontBodyDevanagari', locale) }}>
                 {tl(PLANET_ABBR[pid], locale)}
               </text>
             );
@@ -164,9 +169,9 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
 
   // Reference point labels for center
   const refPoints = [
-    { label: tl({ en: 'Lagna', hi: 'लग्न', sa: 'लग्नम्', ta: 'லக்னம்', te: 'లగ్నం', bn: 'লগ্ন', kn: 'ಲಗ್ನ', gu: 'લગ્ન', mai: 'लग्न', mr: 'लग्न' }, locale), sign: lagnaSign, color: '#d4a853' },
-    { label: tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्रः', ta: 'சந்திரன்', te: 'చంద్రుడు', bn: 'চন্দ্র', kn: 'ಚಂದ್ರ', gu: 'ચંદ્ર', mai: 'चन्द्र', mr: 'चंद्र' }, locale),  sign: moonSign,  color: '#ecf0f1' },
-    { label: tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः', ta: 'சூரியன்', te: 'సూర్యుడు', bn: 'সূর্য', kn: 'ಸೂರ್ಯ', gu: 'સૂર્ય', mai: 'सूर्य', mr: 'सूर्य' }, locale),    sign: sunSign,   color: '#e67e22' },
+    { label: msg('lagna', locale), sign: lagnaSign, color: '#d4a853' },
+    { label: msg('moon', locale),  sign: moonSign,  color: '#ecf0f1' },
+    { label: msg('sun', locale),    sign: sunSign,   color: '#e67e22' },
   ];
 
   return (
@@ -174,7 +179,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
       {/* Header */}
       <div className="text-center">
         <h3 className="text-gold-gradient text-2xl font-bold mb-2" style={headingFont}>
-          {tl({ en: 'Sudarshana Chakra', hi: 'सुदर्शन चक्र', sa: 'सुदर्शनचक्रम्', ta: 'சுதர்சன சக்கரம்', te: 'సుదర్శన చక్రం', bn: 'সুদর্শন চক্র', kn: 'ಸುದರ್ಶನ ಚಕ್ರ', gu: 'સુદર્શન ચક્ર', mai: 'सुदर्शन चक्र', mr: 'सुदर्शन चक्र' }, locale)}
+          {msg('sudarshanaCakra', locale)}
         </h3>
         <p className="text-text-secondary/75 text-sm max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
           {locale === 'en'
@@ -189,7 +194,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
           <div key={i} className="flex items-center gap-2">
             <span className="w-4 h-4 rounded-full border-2" style={{ borderColor: rp.color, backgroundColor: rp.color + '22' }} />
             <span className="text-text-secondary/70">{rp.label}: {RASHIS[rp.sign - 1]?.name[locale]}</span>
-            <span className="text-text-secondary/65 text-[10px]">{i === 0 ? (tl({ en: 'outer', hi: 'बाह्य', sa: 'बाह्यः', ta: 'வெளிப்புற', te: 'బాహ్య', bn: 'বাহ্য', kn: 'ಬಾಹ್ಯ', gu: 'બાહ્ય', mai: 'बाह्य', mr: 'बाह्य' }, locale)) : i === 1 ? (tl({ en: 'middle', hi: 'मध्य', sa: 'मध्यः', ta: 'நடு', te: 'మధ్య', bn: 'মধ্য', kn: 'ಮಧ್ಯ', gu: 'મધ્ય', mai: 'मध्य', mr: 'मध्य' }, locale)) : (tl({ en: 'inner', hi: 'आन्तरिक', sa: 'आन्तरिकः', ta: 'உள்', te: 'అంతర', bn: 'আভ্যন্তরীণ', kn: 'ಆಂತರಿಕ', gu: 'આંતરિક', mai: 'आन्तरिक', mr: 'आंतरिक' }, locale))}</span>
+            <span className="text-text-secondary/65 text-[10px]">{i === 0 ? msg('outerRing', locale) : i === 1 ? msg('middleRing', locale) : msg('innerRing', locale)}</span>
           </div>
         ))}
       </div>
@@ -212,21 +217,21 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
           {/* Center label */}
           <circle cx={cx} cy={cy} r={r[2]} fill="rgba(10,14,39,0.98)" stroke="rgba(212,168,83,0.3)" strokeWidth="1" />
           <text x={cx} y={cy - 8} textAnchor="middle" dominantBaseline="middle" fontSize="10" fill="rgba(212,168,83,0.8)" style={{ fontFamily: 'var(--font-heading)' }}>
-            {tl({ en: 'Sudarshana', hi: 'सुदर्शन', sa: 'सुदर्शनः', ta: 'சுதர்சன', te: 'సుదర్శన', bn: 'সুদর্শন', kn: 'ಸುದರ್ಶನ', gu: 'સુદર્શન', mai: 'सुदर्शन', mr: 'सुदर्शन' }, locale)}
+            {msg('sudarshanaCenterLabel', locale)}
           </text>
           <text x={cx} y={cy + 8} textAnchor="middle" dominantBaseline="middle" fontSize="10" fill="rgba(212,168,83,0.5)" style={{ fontFamily: 'var(--font-heading)' }}>
-            {tl({ en: 'Chakra', hi: 'चक्र', sa: 'चक्रम्', ta: 'சக்கரம்', te: 'చక్రం', bn: 'চক্র', kn: 'ಚಕ್ರ', gu: 'ચક્ર', mai: 'चक्र', mr: 'चक्र' }, locale)}
+            {msg('chakraCenterLabel', locale)}
           </text>
 
           {/* Ring separator labels */}
           <text x={cx + R[0] - 18} y={cy - 5} fontSize="8" fill="rgba(212,168,83,0.5)" textAnchor="middle">
-            {tl({ en: 'Lg', hi: 'ल', sa: 'ल', ta: 'Lg', te: 'Lg', bn: 'Lg', kn: 'Lg', gu: 'Lg', mai: 'ल', mr: 'ल' }, locale)}
+            {msg('ringLabelLagna', locale)}
           </text>
           <text x={cx + R[1] - 15} y={cy - 5} fontSize="7" fill="rgba(236,240,241,0.4)" textAnchor="middle">
-            {tl({ en: 'Mo', hi: 'च', sa: 'च', ta: 'Mo', te: 'Mo', bn: 'Mo', kn: 'Mo', gu: 'Mo', mai: 'च', mr: 'च' }, locale)}
+            {msg('ringLabelMoon', locale)}
           </text>
           <text x={cx + R[2] - 10} y={cy - 5} fontSize="7" fill="rgba(230,126,34,0.5)" textAnchor="middle">
-            {tl({ en: 'Su', hi: 'सू', sa: 'सू', ta: 'Su', te: 'Su', bn: 'Su', kn: 'Su', gu: 'Su', mai: 'सू', mr: 'सू' }, locale)}
+            {msg('ringLabelSun', locale)}
           </text>
         </svg>
       </div>
@@ -234,7 +239,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
       {/* House concordance table */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 p-4">
         <div className="text-gold-primary/70 text-xs uppercase tracking-wider font-bold mb-3">
-          {tl({ en: 'Triple Concordance — Planets in all 3 rings (Strongest indicators)', hi: 'त्रिवलय सामञ्जस्य — तीनों वलयों में ग्रह (सबसे बलवान संकेत)', sa: 'त्रिवलयसामञ्जस्यम् — त्रिषु वलयेषु ग्रहाः (बलिष्ठतमाः संकेताः)', ta: 'மூன்று வட்ட ஒருங்கிணைவு — மூன்று வளையங்களிலும் கோள்கள் (வலிமையான காரணிகள்)', te: 'త్రివలయ సమన్వయం — మూడు వలయాలలో గ్రహాలు (బలమైన సూచికలు)', bn: 'ত্রিবলয় সামঞ্জস্য — তিনটি বলয়ে গ্রহ (সবচেয়ে শক্তিশালী সংকেত)', kn: 'ತ್ರಿವಲಯ ಸಮನ್ವಯ — ಮೂರು ವಲಯಗಳಲ್ಲಿ ಗ್ರಹಗಳು (ಬಲಿಷ್ಠ ಸೂಚಕಗಳು)', gu: 'ત્રિ-વલય સમન્વય — ત્રણેય વલયોમાં ગ્રહો (સૌથી બળવાન સૂચકો)', mai: 'त्रिवलय सामञ्जस्य — तीनू वलय मे ग्रह (सबसँ बलवान संकेत)', mr: 'त्रिवलय समन्वय — तिन्ही वलयांत ग्रह (सर्वात बलवान संकेत)' }, locale)}
+          {msg('tripleConcordance', locale)}
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
           {kundali.planets.map(p => {

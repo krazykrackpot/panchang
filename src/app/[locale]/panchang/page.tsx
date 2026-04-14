@@ -241,7 +241,7 @@ const MONTH_SHORT_HI = ['जन.','फर.','मार्च','अप्रै.'
 function formatTransitionTime(time: string, date: string | undefined, _selectedDate: string, locale: string): string {
   if (!date) return time;
   const [, m, d] = date.split('-').map(Number);
-  const monthNames = !isDevanagariLocale(locale) ? MONTH_SHORT : MONTH_SHORT_HI; // TODO: add locale-specific month names
+  const monthNames = isDevanagariLocale(locale) ? MONTH_SHORT_HI : MONTH_SHORT; // TODO: add locale-specific month names
   return `${time}, ${d} ${monthNames[m - 1]}`;
 }
 
@@ -1340,7 +1340,7 @@ export default function PanchangPage() {
                           </div>
                           {hasConflict && (
                             <span className="text-amber-400/80 text-[9px] leading-tight">
-                              {!isDevanagariLocale(locale) ? conflicts.map(c => c.label).join(', ') : conflicts.map(c => c.labelHi).join(', ')}
+                              {isDevanagariLocale(locale) ? conflicts.map(c => c.labelHi).join(', ') : conflicts.map(c => c.label).join(', ')}
                             </span>
                           )}
                         </div>
@@ -1665,7 +1665,7 @@ export default function PanchangPage() {
                     </div>
                     <div className="text-gold-light font-bold text-xl mb-2" style={headingFont}>{panchang.shivaVaas.name?.[locale] || shivaName}</div>
                     {tithiList.length > 0 && (
-                      <div className="text-text-tertiary text-xs mb-2">{isDevanagari ? 'तिथियाँ' : 'Tithis'}: {tithiList.join(', ')}</div>
+                      <div className="text-text-tertiary text-xs mb-2">{_tl({ en: 'Tithis', hi: 'तिथियाँ', sa: 'तिथियाँ', ta: 'Tithis', te: 'Tithis', bn: 'Tithis', kn: 'Tithis', gu: 'Tithis', mai: 'तिथियाँ', mr: 'तिथियाँ' }, locale)}: {tithiList.join(', ')}</div>
                     )}
                     <div className="text-text-secondary text-xs leading-relaxed mb-3">{_tl(d.desc, locale)}</div>
                     <div className={`p-2.5 rounded-lg bg-black/20 border ${d.border}`}>
@@ -1718,13 +1718,13 @@ export default function PanchangPage() {
                     <div className="text-gold-light font-bold text-xl mb-1" style={headingFont}>{panchang.agniVaas.name?.[locale] || agniName}</div>
                     {validUntil && (
                       <div className={`text-xs font-medium ${d.nColor} mb-2`}>
-                        {isDevanagari ? `${validUntil} तक` : `Until ${validUntil}`}
+                        {_tl({ en: `Until ${validUntil}`, hi: `${validUntil} तक`, sa: `${validUntil} तक`, ta: `Until ${validUntil}`, te: `Until ${validUntil}`, bn: `Until ${validUntil}`, kn: `Until ${validUntil}`, gu: `Until ${validUntil}`, mai: `${validUntil} तक`, mr: `${validUntil} तक` }, locale)}
                       </div>
                     )}
                     <div className="text-text-secondary text-xs leading-relaxed mb-3">{_tl(d.desc, locale)}</div>
                     <div className={`p-2.5 rounded-lg bg-black/20 border ${d.border}`}>
-                      <div className="text-text-tertiary text-xs uppercase tracking-wider mb-0.5">{isDevanagari ? 'अग्नि कर्म प्रभाव' : 'Fire Ritual Impact'}</div>
-                      <div className={`text-xs font-medium ${d.nColor}`}>{isDevanagari ? d.ritualNote.hi : d.ritualNote.en}</div>
+                      <div className="text-text-tertiary text-xs uppercase tracking-wider mb-0.5">{_tl({ en: 'Fire Ritual Impact', hi: 'अग्नि कर्म प्रभाव', sa: 'अग्नि कर्म प्रभाव', ta: 'Fire Ritual Impact', te: 'Fire Ritual Impact', bn: 'Fire Ritual Impact', kn: 'Fire Ritual Impact', gu: 'Fire Ritual Impact', mai: 'अग्नि कर्म प्रभाव', mr: 'अग्नि कर्म प्रभाव' }, locale)}</div>
+                      <div className={`text-xs font-medium ${d.nColor}`}>{_tl(d.ritualNote, locale)}</div>
                     </div>
                   </motion.div>
                 );
@@ -1939,14 +1939,14 @@ export default function PanchangPage() {
                             <tr key={`${m.n}-${m.startDate}`} className={`hover:bg-gold-primary/3 ${isHighlighted ? 'bg-gold-primary/8' : ''} ${m.isAdhika ? 'italic' : ''}`}>
                               <td className="py-1.5 px-2 text-text-tertiary">{m.n}</td>
                               <td className="py-1.5 px-2 font-medium" style={headingFont}>
-                                <span className={`${m.isAdhika ? 'text-violet-400' : 'text-gold-light'}`}>{!isDevanagariLocale(locale) ? m.en : m.hi}</span>
+                                <span className={`${m.isAdhika ? 'text-violet-400' : 'text-gold-light'}`}>{isDevanagariLocale(locale) ? m.hi : m.en}</span>
                                 {isHighlighted && <span className="ml-1.5 text-xs px-1 py-0.5 rounded bg-gold-primary/20 text-gold-primary not-italic">{_tl(PL.now, locale)}</span>}
                                 {m.isAdhika && <span className="ml-1.5 text-xs px-1 py-0.5 rounded bg-violet-500/20 text-violet-300 not-italic">{_tl(PL.intercalary, locale)}</span>}
                               </td>
                               <td className="py-1.5 px-2 text-text-tertiary" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{m.sa}</td>
                               <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(effectiveStart, locale)}</td>
                               <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(effectiveEnd, locale)}</td>
-                              <td className="py-1.5 px-2 text-text-secondary">{!isDevanagariLocale(locale) ? m.ritu.en : m.ritu.hi}</td>
+                              <td className="py-1.5 px-2 text-text-secondary">{isDevanagariLocale(locale) ? m.ritu.hi : m.ritu.en}</td>
                             </tr>
                           );
                         })}
@@ -2083,9 +2083,7 @@ export default function PanchangPage() {
             title={_tl(PL.choghadiyaTitle, locale)}
             defaultOpen={false}
           >
-            {isDevanagari
-              ? 'चोघड़िया दिन (सूर्योदय से सूर्यास्त) और रात (सूर्यास्त से सूर्योदय) को 8-8 भागों में बाँटता है। प्रत्येक भाग एक ग्रह द्वारा शासित होता है — शुभ (अमृत, शुभ, लाभ, चर — नए कार्य के लिए उत्तम) या अशुभ (रोग, काल, उद्वेग — नए कार्य टालें)। अभी का समय शुभ है या नहीं, यह शीघ्र जाँचने के लिए उपयोगी है।'
-              : 'Choghadiya divides the day (sunrise to sunset) and night (sunset to sunrise) into 8 slots each. Each slot is ruled by a planet and classified as Auspicious (Amrit, Shubh, Labh, Char — good for starting new work), or Inauspicious (Rog, Kaal, Udveg — avoid new ventures). Use this to quickly check if NOW is a good time to start something important.'}
+            {_tl({ en: 'Choghadiya divides the day (sunrise to sunset) and night (sunset to sunrise) into 8 slots each. Each slot is ruled by a planet and classified as Auspicious (Amrit, Shubh, Labh, Char — good for starting new work), or Inauspicious (Rog, Kaal, Udveg — avoid new ventures). Use this to quickly check if NOW is a good time to start something important.', hi: 'चोघड़िया दिन (सूर्योदय से सूर्यास्त) और रात (सूर्यास्त से सूर्योदय) को 8-8 भागों में बाँटता है। प्रत्येक भाग एक ग्रह द्वारा शासित होता है — शुभ (अमृत, शुभ, लाभ, चर — नए कार्य के लिए उत्तम) या अशुभ (रोग, काल, उद्वेग — नए कार्य टालें)। अभी का समय शुभ है या नहीं, यह शीघ्र जाँचने के लिए उपयोगी है।', sa: 'चोघड़िया दिन (सूर्योदय से सूर्यास्त) और रात (सूर्यास्त से सूर्योदय) को 8-8 भागों में बाँटता है। प्रत्येक भाग एक ग्रह द्वारा शासित होता है — शुभ (अमृत, शुभ, लाभ, चर — नए कार्य के लिए उत्तम) या अशुभ (रोग, काल, उद्वेग — नए कार्य टालें)। अभी का समय शुभ है या नहीं, यह शीघ्र जाँचने के लिए उपयोगी है।', ta: 'Choghadiya divides the day (sunrise to sunset) and night (sunset to sunrise) into 8 slots each. Each slot is ruled by a planet and classified as Auspicious (Amrit, Shubh, Labh, Char — good for starting new work), or Inauspicious (Rog, Kaal, Udveg — avoid new ventures). Use this to quickly check if NOW is a good time to start something important.', te: 'Choghadiya divides the day (sunrise to sunset) and night (sunset to sunrise) into 8 slots each. Each slot is ruled by a planet and classified as Auspicious (Amrit, Shubh, Labh, Char — good for starting new work), or Inauspicious (Rog, Kaal, Udveg — avoid new ventures). Use this to quickly check if NOW is a good time to start something important.', bn: 'Choghadiya divides the day (sunrise to sunset) and night (sunset to sunrise) into 8 slots each. Each slot is ruled by a planet and classified as Auspicious (Amrit, Shubh, Labh, Char — good for starting new work), or Inauspicious (Rog, Kaal, Udveg — avoid new ventures). Use this to quickly check if NOW is a good time to start something important.', kn: 'Choghadiya divides the day (sunrise to sunset) and night (sunset to sunrise) into 8 slots each. Each slot is ruled by a planet and classified as Auspicious (Amrit, Shubh, Labh, Char — good for starting new work), or Inauspicious (Rog, Kaal, Udveg — avoid new ventures). Use this to quickly check if NOW is a good time to start something important.', gu: 'Choghadiya divides the day (sunrise to sunset) and night (sunset to sunrise) into 8 slots each. Each slot is ruled by a planet and classified as Auspicious (Amrit, Shubh, Labh, Char — good for starting new work), or Inauspicious (Rog, Kaal, Udveg — avoid new ventures). Use this to quickly check if NOW is a good time to start something important.', mai: 'चोघड़िया दिन (सूर्योदय से सूर्यास्त) और रात (सूर्यास्त से सूर्योदय) को 8-8 भागों में बाँटता है। प्रत्येक भाग एक ग्रह द्वारा शासित होता है — शुभ (अमृत, शुभ, लाभ, चर — नए कार्य के लिए उत्तम) या अशुभ (रोग, काल, उद्वेग — नए कार्य टालें)। अभी का समय शुभ है या नहीं, यह शीघ्र जाँचने के लिए उपयोगी है।', mr: 'चोघड़िया दिन (सूर्योदय से सूर्यास्त) और रात (सूर्यास्त से सूर्योदय) को 8-8 भागों में बाँटता है। प्रत्येक भाग एक ग्रह द्वारा शासित होता है — शुभ (अमृत, शुभ, लाभ, चर — नए कार्य के लिए उत्तम) या अशुभ (रोग, काल, उद्वेग — नए कार्य टालें)। अभी का समय शुभ है या नहीं, यह शीघ्र जाँचने के लिए उपयोगी है।' }, locale)}
           </InfoBlock>
           {panchang.choghadiya && panchang.choghadiya.length > 0 && (
             <div className="my-14">
@@ -2208,9 +2206,7 @@ export default function PanchangPage() {
             title={_tl(PL.horaTitle, locale)}
             defaultOpen={false}
           >
-            {isDevanagari
-              ? 'दिन का प्रत्येक घंटा एक ग्रह द्वारा शासित होता है। अपने कार्य को शासक ग्रह से मिलाएँ: सूर्य होरा → सरकारी कार्य, अधिकार। चंद्र होरा → यात्रा, जन-व्यवहार। मंगल होरा → साहस, संपत्ति। बुध होरा → व्यापार, संचार। बृहस्पति होरा → शिक्षा, अध्यात्म। शुक्र होरा → कला, प्रेम, विलास। शनि होरा → श्रम, निर्माण, अनुशासन।'
-              : 'Each hour of the day is ruled by a planet. Match your activity to the ruling planet for best results: Sun hora → authority, government work. Moon hora → travel, public dealings. Mars hora → courage, property. Mercury hora → business, communication. Jupiter hora → education, spirituality. Venus hora → arts, romance, luxury. Saturn hora → labor, construction, discipline.'}
+            {_tl({ en: 'Each hour of the day is ruled by a planet. Match your activity to the ruling planet for best results: Sun hora → authority, government work. Moon hora → travel, public dealings. Mars hora → courage, property. Mercury hora → business, communication. Jupiter hora → education, spirituality. Venus hora → arts, romance, luxury. Saturn hora → labor, construction, discipline.', hi: 'दिन का प्रत्येक घंटा एक ग्रह द्वारा शासित होता है। अपने कार्य को शासक ग्रह से मिलाएँ: सूर्य होरा → सरकारी कार्य, अधिकार। चंद्र होरा → यात्रा, जन-व्यवहार। मंगल होरा → साहस, संपत्ति। बुध होरा → व्यापार, संचार। बृहस्पति होरा → शिक्षा, अध्यात्म। शुक्र होरा → कला, प्रेम, विलास। शनि होरा → श्रम, निर्माण, अनुशासन।', sa: 'दिन का प्रत्येक घंटा एक ग्रह द्वारा शासित होता है। अपने कार्य को शासक ग्रह से मिलाएँ: सूर्य होरा → सरकारी कार्य, अधिकार। चंद्र होरा → यात्रा, जन-व्यवहार। मंगल होरा → साहस, संपत्ति। बुध होरा → व्यापार, संचार। बृहस्पति होरा → शिक्षा, अध्यात्म। शुक्र होरा → कला, प्रेम, विलास। शनि होरा → श्रम, निर्माण, अनुशासन।', ta: 'Each hour of the day is ruled by a planet. Match your activity to the ruling planet for best results: Sun hora → authority, government work. Moon hora → travel, public dealings. Mars hora → courage, property. Mercury hora → business, communication. Jupiter hora → education, spirituality. Venus hora → arts, romance, luxury. Saturn hora → labor, construction, discipline.', te: 'Each hour of the day is ruled by a planet. Match your activity to the ruling planet for best results: Sun hora → authority, government work. Moon hora → travel, public dealings. Mars hora → courage, property. Mercury hora → business, communication. Jupiter hora → education, spirituality. Venus hora → arts, romance, luxury. Saturn hora → labor, construction, discipline.', bn: 'Each hour of the day is ruled by a planet. Match your activity to the ruling planet for best results: Sun hora → authority, government work. Moon hora → travel, public dealings. Mars hora → courage, property. Mercury hora → business, communication. Jupiter hora → education, spirituality. Venus hora → arts, romance, luxury. Saturn hora → labor, construction, discipline.', kn: 'Each hour of the day is ruled by a planet. Match your activity to the ruling planet for best results: Sun hora → authority, government work. Moon hora → travel, public dealings. Mars hora → courage, property. Mercury hora → business, communication. Jupiter hora → education, spirituality. Venus hora → arts, romance, luxury. Saturn hora → labor, construction, discipline.', gu: 'Each hour of the day is ruled by a planet. Match your activity to the ruling planet for best results: Sun hora → authority, government work. Moon hora → travel, public dealings. Mars hora → courage, property. Mercury hora → business, communication. Jupiter hora → education, spirituality. Venus hora → arts, romance, luxury. Saturn hora → labor, construction, discipline.', mai: 'दिन का प्रत्येक घंटा एक ग्रह द्वारा शासित होता है। अपने कार्य को शासक ग्रह से मिलाएँ: सूर्य होरा → सरकारी कार्य, अधिकार। चंद्र होरा → यात्रा, जन-व्यवहार। मंगल होरा → साहस, संपत्ति। बुध होरा → व्यापार, संचार। बृहस्पति होरा → शिक्षा, अध्यात्म। शुक्र होरा → कला, प्रेम, विलास। शनि होरा → श्रम, निर्माण, अनुशासन।', mr: 'दिन का प्रत्येक घंटा एक ग्रह द्वारा शासित होता है। अपने कार्य को शासक ग्रह से मिलाएँ: सूर्य होरा → सरकारी कार्य, अधिकार। चंद्र होरा → यात्रा, जन-व्यवहार। मंगल होरा → साहस, संपत्ति। बुध होरा → व्यापार, संचार। बृहस्पति होरा → शिक्षा, अध्यात्म। शुक्र होरा → कला, प्रेम, विलास। शनि होरा → श्रम, निर्माण, अनुशासन।' }, locale)}
           </InfoBlock>
           {panchang.hora && panchang.hora.length > 0 && (
             <div className="my-14">
@@ -2253,9 +2249,7 @@ export default function PanchangPage() {
             title={_tl(PL.muhurtaTitle, locale)}
             defaultOpen={false}
           >
-            {isDevanagari
-              ? 'दिन को 30 मुहूर्तों में बाँटा जाता है (प्रत्येक ~48 मिनट), जो सूर्योदय से अगले सूर्योदय तक चलते हैं। प्रत्येक मुहूर्त का एक पारंपरिक नाम है और इसे शुभ (हरा), अशुभ (लाल) या मिश्रित (पीला) वर्गीकृत किया जाता है। सर्वाधिक शुभ है अभिजित् मुहूर्त — दोपहर के आसपास का सूर्यमध्य काल। आज के महत्वपूर्ण कार्यों के लिए सर्वोत्तम समय खोजने हेतु इस समयरेखा का उपयोग करें।'
-              : 'The day is divided into 30 muhurtas (each ~48 minutes), running from sunrise to next sunrise. Each muhurta has a traditional name and is classified as good (green), bad (red), or mixed (amber). The most universally auspicious is Abhijit Muhurta — the midday period around solar noon. Use this timeline to find the best window for important activities today.'}
+            {_tl({ en: 'The day is divided into 30 muhurtas (each ~48 minutes), running from sunrise to next sunrise. Each muhurta has a traditional name and is classified as good (green), bad (red), or mixed (amber). The most universally auspicious is Abhijit Muhurta — the midday period around solar noon. Use this timeline to find the best window for important activities today.', hi: 'दिन को 30 मुहूर्तों में बाँटा जाता है (प्रत्येक ~48 मिनट), जो सूर्योदय से अगले सूर्योदय तक चलते हैं। प्रत्येक मुहूर्त का एक पारंपरिक नाम है और इसे शुभ (हरा), अशुभ (लाल) या मिश्रित (पीला) वर्गीकृत किया जाता है। सर्वाधिक शुभ है अभिजित् मुहूर्त — दोपहर के आसपास का सूर्यमध्य काल। आज के महत्वपूर्ण कार्यों के लिए सर्वोत्तम समय खोजने हेतु इस समयरेखा का उपयोग करें।', sa: 'दिन को 30 मुहूर्तों में बाँटा जाता है (प्रत्येक ~48 मिनट), जो सूर्योदय से अगले सूर्योदय तक चलते हैं। प्रत्येक मुहूर्त का एक पारंपरिक नाम है और इसे शुभ (हरा), अशुभ (लाल) या मिश्रित (पीला) वर्गीकृत किया जाता है। सर्वाधिक शुभ है अभिजित् मुहूर्त — दोपहर के आसपास का सूर्यमध्य काल। आज के महत्वपूर्ण कार्यों के लिए सर्वोत्तम समय खोजने हेतु इस समयरेखा का उपयोग करें।', ta: 'The day is divided into 30 muhurtas (each ~48 minutes), running from sunrise to next sunrise. Each muhurta has a traditional name and is classified as good (green), bad (red), or mixed (amber). The most universally auspicious is Abhijit Muhurta — the midday period around solar noon. Use this timeline to find the best window for important activities today.', te: 'The day is divided into 30 muhurtas (each ~48 minutes), running from sunrise to next sunrise. Each muhurta has a traditional name and is classified as good (green), bad (red), or mixed (amber). The most universally auspicious is Abhijit Muhurta — the midday period around solar noon. Use this timeline to find the best window for important activities today.', bn: 'The day is divided into 30 muhurtas (each ~48 minutes), running from sunrise to next sunrise. Each muhurta has a traditional name and is classified as good (green), bad (red), or mixed (amber). The most universally auspicious is Abhijit Muhurta — the midday period around solar noon. Use this timeline to find the best window for important activities today.', kn: 'The day is divided into 30 muhurtas (each ~48 minutes), running from sunrise to next sunrise. Each muhurta has a traditional name and is classified as good (green), bad (red), or mixed (amber). The most universally auspicious is Abhijit Muhurta — the midday period around solar noon. Use this timeline to find the best window for important activities today.', gu: 'The day is divided into 30 muhurtas (each ~48 minutes), running from sunrise to next sunrise. Each muhurta has a traditional name and is classified as good (green), bad (red), or mixed (amber). The most universally auspicious is Abhijit Muhurta — the midday period around solar noon. Use this timeline to find the best window for important activities today.', mai: 'दिन को 30 मुहूर्तों में बाँटा जाता है (प्रत्येक ~48 मिनट), जो सूर्योदय से अगले सूर्योदय तक चलते हैं। प्रत्येक मुहूर्त का एक पारंपरिक नाम है और इसे शुभ (हरा), अशुभ (लाल) या मिश्रित (पीला) वर्गीकृत किया जाता है। सर्वाधिक शुभ है अभिजित् मुहूर्त — दोपहर के आसपास का सूर्यमध्य काल। आज के महत्वपूर्ण कार्यों के लिए सर्वोत्तम समय खोजने हेतु इस समयरेखा का उपयोग करें।', mr: 'दिन को 30 मुहूर्तों में बाँटा जाता है (प्रत्येक ~48 मिनट), जो सूर्योदय से अगले सूर्योदय तक चलते हैं। प्रत्येक मुहूर्त का एक पारंपरिक नाम है और इसे शुभ (हरा), अशुभ (लाल) या मिश्रित (पीला) वर्गीकृत किया जाता है। सर्वाधिक शुभ है अभिजित् मुहूर्त — दोपहर के आसपास का सूर्यमध्य काल। आज के महत्वपूर्ण कार्यों के लिए सर्वोत्तम समय खोजने हेतु इस समयरेखा का उपयोग करें।' }, locale)}
           </InfoBlock>
           <div className="my-14">
             <h2 className="text-3xl font-bold text-gold-gradient mb-3 text-center" style={headingFont}>
@@ -2485,9 +2479,7 @@ export default function PanchangPage() {
             title={_tl(PL.balamTitle, locale)}
             defaultOpen={false}
           >
-            {isDevanagari
-              ? 'ये आपके जन्म डेटा के आधार पर आज के लिए व्यक्तिगत अनुकूलता अंक हैं। चन्द्रबल जाँचता है कि आज चंद्रमा आपकी जन्म राशि के सापेक्ष किस भाव में है — अनुकूल भाव (1,3,6,7,10,11) दर्शाते हैं कि दिन आपकी पहलों का समर्थन करता है। ताराबल आज की नक्षत्र की तुलना आपके जन्म नक्षत्र से करता है — कुछ संयोग भाग्यशाली होते हैं, अन्य सावधानी सुझाते हैं। दोनों अनुकूल = महत्वपूर्ण निर्णयों के लिए उत्तम दिन।'
-              : 'These are personal compatibility scores for TODAY based on YOUR birth data. Chandrabalam checks the Moon\'s current position relative to your birth Moon — favorable houses (1,3,6,7,10,11) mean the day supports your initiatives. Tarabalam checks today\'s nakshatra against your birth nakshatra — certain combinations bring luck while others suggest caution. Both favorable = excellent day for important decisions.'}
+            {_tl({ en: "These are personal compatibility scores for TODAY based on YOUR birth data. Chandrabalam checks the Moon's current position relative to your birth Moon \u2014 favorable houses (1,3,6,7,10,11) mean the day supports your initiatives. Tarabalam checks today's nakshatra against your birth nakshatra \u2014 certain combinations bring luck while others suggest caution. Both favorable = excellent day for important decisions.", hi: 'ये आपके जन्म डेटा के आधार पर आज के लिए व्यक्तिगत अनुकूलता अंक हैं। चन्द्रबल जाँचता है कि आज चंद्रमा आपकी जन्म राशि के सापेक्ष किस भाव में है — अनुकूल भाव (1,3,6,7,10,11) दर्शाते हैं कि दिन आपकी पहलों का समर्थन करता है। ताराबल आज की नक्षत्र की तुलना आपके जन्म नक्षत्र से करता है — कुछ संयोग भाग्यशाली होते हैं, अन्य सावधानी सुझाते हैं। दोनों अनुकूल = महत्वपूर्ण निर्णयों के लिए उत्तम दिन।', sa: 'ये आपके जन्म डेटा के आधार पर आज के लिए व्यक्तिगत अनुकूलता अंक हैं। चन्द्रबल जाँचता है कि आज चंद्रमा आपकी जन्म राशि के सापेक्ष किस भाव में है — अनुकूल भाव (1,3,6,7,10,11) दर्शाते हैं कि दिन आपकी पहलों का समर्थन करता है। ताराबल आज की नक्षत्र की तुलना आपके जन्म नक्षत्र से करता है — कुछ संयोग भाग्यशाली होते हैं, अन्य सावधानी सुझाते हैं। दोनों अनुकूल = महत्वपूर्ण निर्णयों के लिए उत्तम दिन।' }, locale)}
           </InfoBlock>
           <div className="my-14">
             <h2 className="text-3xl font-bold text-gold-gradient mb-2 text-center" style={headingFont}>
@@ -2573,11 +2565,11 @@ export default function PanchangPage() {
                         balamResult.chandrabalam.favorable ? 'text-emerald-300' : 'text-red-300'
                       }`}>
                         {balamResult.chandrabalam.favorable
-                          ? (!isDevanagariLocale(locale) ? 'Strong' : 'बलवान्')
-                          : (!isDevanagariLocale(locale) ? 'Weak' : 'दुर्बल')}
+                          ? (_tl({ en: 'Strong', hi: 'बलवान्', sa: 'बलवान्', ta: 'Strong', te: 'Strong', bn: 'Strong', kn: 'Strong', gu: 'Strong', mai: 'बलवान्', mr: 'बलवान्' }, locale))
+                          : (_tl({ en: 'Weak', hi: 'दुर्बल', sa: 'दुर्बल', ta: 'Weak', te: 'Weak', bn: 'Weak', kn: 'Weak', gu: 'Weak', mai: 'दुर्बल', mr: 'दुर्बल' }, locale))}
                       </div>
                       <div className="text-text-secondary text-xs mt-2">
-                        {!isDevanagariLocale(locale) ? `Moon in ${balamResult.chandrabalam.house}${['st','nd','rd'][balamResult.chandrabalam.house-1] || 'th'} house` : `चन्द्र ${balamResult.chandrabalam.house}वें भाव में`}
+                        {_tl({ en: `Moon in ${balamResult.chandrabalam.house}${['st','nd','rd'][balamResult.chandrabalam.house-1] || 'th'} house`, hi: `चन्द्र ${balamResult.chandrabalam.house}वें भाव में`, sa: `चन्द्र ${balamResult.chandrabalam.house}वें भाव में`, ta: `Moon in ${balamResult.chandrabalam.house}${['st','nd','rd'][balamResult.chandrabalam.house-1] || 'th'} house`, te: `Moon in ${balamResult.chandrabalam.house}${['st','nd','rd'][balamResult.chandrabalam.house-1] || 'th'} house`, bn: `Moon in ${balamResult.chandrabalam.house}${['st','nd','rd'][balamResult.chandrabalam.house-1] || 'th'} house`, kn: `Moon in ${balamResult.chandrabalam.house}${['st','nd','rd'][balamResult.chandrabalam.house-1] || 'th'} house`, gu: `Moon in ${balamResult.chandrabalam.house}${['st','nd','rd'][balamResult.chandrabalam.house-1] || 'th'} house`, mai: `चन्द्र ${balamResult.chandrabalam.house}वें भाव में`, mr: `चन्द्र ${balamResult.chandrabalam.house}वें भाव में` }, locale)}
                       </div>
                     </div>
                     <div className={`rounded-xl p-4 border text-center ${
@@ -2596,7 +2588,7 @@ export default function PanchangPage() {
                         {balamResult.tarabalam.taraName[locale]}
                       </div>
                       <div className="text-text-secondary text-xs mt-2">
-                        {!isDevanagariLocale(locale) ? `Tara #${balamResult.tarabalam.tara}` : `तारा #${balamResult.tarabalam.tara}`}
+                        {_tl({ en: `Tara #${balamResult.tarabalam.tara}`, hi: `तारा #${balamResult.tarabalam.tara}`, sa: `तारा #${balamResult.tarabalam.tara}`, ta: `Tara #${balamResult.tarabalam.tara}`, te: `Tara #${balamResult.tarabalam.tara}`, bn: `Tara #${balamResult.tarabalam.tara}`, kn: `Tara #${balamResult.tarabalam.tara}`, gu: `Tara #${balamResult.tarabalam.tara}`, mai: `तारा #${balamResult.tarabalam.tara}`, mr: `तारा #${balamResult.tarabalam.tara}` }, locale)}
                       </div>
                     </div>
                   </motion.div>
@@ -2758,19 +2750,19 @@ export default function PanchangPage() {
               personalDay.dayQuality === 'caution' ? 'bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30' :
               'bg-red-500/20 text-red-400 ring-1 ring-red-500/30'
             }`}>
-              {personalDay.dayQuality === 'excellent' ? (!isDevanagariLocale(locale) ? 'A+' : '++') :
-               personalDay.dayQuality === 'good' ? (!isDevanagariLocale(locale) ? 'A' : '+') :
-               personalDay.dayQuality === 'neutral' ? (!isDevanagariLocale(locale) ? 'B' : '~') :
-               personalDay.dayQuality === 'caution' ? (!isDevanagariLocale(locale) ? 'C' : '!') :
-               (!isDevanagariLocale(locale) ? 'D' : '!!')}
+              {personalDay.dayQuality === 'excellent' ? (_tl({ en: 'A+', hi: '++', sa: '++', ta: 'A+', te: 'A+', bn: 'A+', kn: 'A+', gu: 'A+', mai: '++', mr: '++' }, locale)) :
+               personalDay.dayQuality === 'good' ? (_tl({ en: 'A', hi: '+', sa: '+', ta: 'A', te: 'A', bn: 'A', kn: 'A', gu: 'A', mai: '+', mr: '+' }, locale)) :
+               personalDay.dayQuality === 'neutral' ? (_tl({ en: 'B', hi: '~', sa: '~', ta: 'B', te: 'B', bn: 'B', kn: 'B', gu: 'B', mai: '~', mr: '~' }, locale)) :
+               personalDay.dayQuality === 'caution' ? (_tl({ en: 'C', hi: '!', sa: '!', ta: 'C', te: 'C', bn: 'C', kn: 'C', gu: 'C', mai: '!', mr: '!' }, locale)) :
+               (_tl({ en: 'D', hi: '!!', sa: '!!', ta: 'D', te: 'D', bn: 'D', kn: 'D', gu: 'D', mai: '!!', mr: '!!' }, locale))}
             </span>
             <div className="flex-1 min-w-0">
               <p className="text-gold-light text-sm font-bold">
                 {_tl(PL.tara, locale)}: {personalDay.taraBala.taraName[locale] || personalDay.taraBala.taraName.en}
                 <span className={`ml-2 text-xs ${personalDay.taraBala.isFavorable ? 'text-emerald-400' : 'text-red-400'}`}>
                   {personalDay.taraBala.isFavorable
-                    ? (!isDevanagariLocale(locale) ? 'Favorable' : 'शुभ')
-                    : (!isDevanagariLocale(locale) ? 'Caution' : 'सावधान')}
+                    ? (_tl({ en: 'Favorable', hi: 'शुभ', sa: 'शुभ', ta: 'Favorable', te: 'Favorable', bn: 'Favorable', kn: 'Favorable', gu: 'Favorable', mai: 'शुभ', mr: 'शुभ' }, locale))
+                    : (_tl({ en: 'Caution', hi: 'सावधान', sa: 'सावधान', ta: 'Caution', te: 'Caution', bn: 'Caution', kn: 'Caution', gu: 'Caution', mai: 'सावधान', mr: 'सावधान' }, locale))}
                 </span>
               </p>
               <p className="text-text-secondary text-xs truncate">{personalDay.taraBala.description[locale] || personalDay.taraBala.description.en}</p>
@@ -2827,7 +2819,7 @@ export default function PanchangPage() {
               className="rounded-xl border border-gold-primary/8 bg-gradient-to-br from-[#2d1b69]/15 via-[#1a1040]/20 to-[#0a0e27] px-3 py-2.5 text-center hover:border-gold-primary/35 hover:bg-gold-primary/5 transition-all group block"
             >
               <div className="text-gold-light text-xs font-medium group-hover:text-gold-primary transition-colors" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {isDevanagari ? city.name.hi : city.name.en}
+                {_tl(city.name, locale)}
               </div>
               <div className="text-text-secondary/40 text-[10px]">{city.state}</div>
             </Link>

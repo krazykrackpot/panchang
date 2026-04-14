@@ -212,7 +212,7 @@ function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
         animate={{ opacity: 1, y: CY - 10 }}
         transition={{ duration: 0.8, delay: 1.4 }}
       >
-        {!isDevanagariLocale(locale) ? 'LUNISOLAR' : isDevanagari ? 'चान्द्र-सौर' : 'चान्द्रसौरम्'}
+        {tl({ en: 'LUNISOLAR', hi: 'चान्द्र-सौर', sa: 'चान्द्रसौरम्', ta: 'LUNISOLAR', te: 'LUNISOLAR', bn: 'LUNISOLAR', kn: 'LUNISOLAR', gu: 'LUNISOLAR', mai: 'चान्द्र-सौर', mr: 'चान्द्र-सौर' }, locale)}
       </motion.text>
       <motion.text
         x={CX} y={CY + 8}
@@ -223,7 +223,7 @@ function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.6 }}
       >
-        {!isDevanagariLocale(locale) ? '12 Months x 6 Seasons' : '12 मास x 6 ऋतु'}
+        {tl({ en: '12 Months x 6 Seasons', hi: '12 मास x 6 ऋतु', sa: '12 मास x 6 ऋतु', ta: '12 Months x 6 Seasons', te: '12 Months x 6 Seasons', bn: '12 Months x 6 Seasons', kn: '12 Months x 6 Seasons', gu: '12 Months x 6 Seasons', mai: '12 मास x 6 ऋतु', mr: '12 मास x 6 ऋतु' }, locale)}
       </motion.text>
     </motion.svg>
   );
@@ -261,26 +261,14 @@ export default function MasaPage() {
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
             <span className="text-gold-gradient">
-              {isTamil
-                ? 'மாசம் & பருவம்'
-                : locale === 'en'
-                ? 'Masa & Ritu'
-                : isDevanagari
-                ? 'मास एवं ऋतु'
-                : 'मासः ऋतुश्च'}
+              {tl({ en: 'Masa & Ritu', hi: 'मास एवं ऋतु', sa: 'मासः ऋतुश्च', ta: 'மாசம் & பருவம்', te: 'Masa & Ritu', bn: 'Masa & Ritu', kn: 'Masa & Ritu', gu: 'Masa & Ritu', mai: 'मास एवं ऋतु', mr: 'मास एवं ऋतु' }, locale)}
             </span>
           </h1>
           <p
             className="text-text-secondary text-lg"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
-            {isTamil
-              ? '12 மாதங்கள் மற்றும் 6 பருவங்கள் — சந்திர-சூரிய நாட்காட்டி'
-              : locale === 'en'
-              ? '12 Months and 6 Seasons — The Lunisolar Calendar'
-              : isDevanagari
-              ? '12 मास और 6 ऋतुएँ — चान्द्र-सौर पञ्चाङ्ग'
-              : 'द्वादश मासाः षड् ऋतवश्च — चान्द्रसौरपञ्चाङ्गम्'}
+            {tl({ en: '12 Months and 6 Seasons — The Lunisolar Calendar', hi: '12 मास और 6 ऋतुएँ — चान्द्र-सौर पञ्चाङ्ग', sa: 'द्वादश मासाः षड् ऋतवश्च — चान्द्रसौरपञ्चाङ्गम्', ta: '12 மாதங்கள் மற்றும் 6 பருவங்கள் — சந்திர-சூரிய நாட்காட்டி', te: '12 Months and 6 Seasons — The Lunisolar Calendar', bn: '12 Months and 6 Seasons — The Lunisolar Calendar', kn: '12 Months and 6 Seasons — The Lunisolar Calendar', gu: '12 Months and 6 Seasons — The Lunisolar Calendar', mai: '12 मास और 6 ऋतुएँ — चान्द्र-सौर पञ्चाङ्ग', mr: '12 मास और 6 ऋतुएँ — चान्द्र-सौर पञ्चाङ्ग' }, locale)}
           </p>
         </div>
       </motion.div>
@@ -297,14 +285,12 @@ export default function MasaPage() {
             <p className="text-lg leading-relaxed">
               {locale === 'en'
                 ? `The Hindu calendar is lunisolar. Months (Masa) are primarily lunar — each month spans one New Moon to the next (Amanta system) or one Full Moon to the next (Purnimanta system). The month name is derived from the Nakshatra in which the Full Moon falls. Seasons (Ritu) follow the solar cycle: 6 Ritus of 2 months each track the Sun's progression through the zodiac. A solar year has ~365.25 days, while 12 lunar months total only ~354 days. The ~11-day gap is resolved by intercalation — an extra "Adhika Masa" (leap month) is inserted roughly every 2.7 years when two New Moons fall within the same solar month.`
-                : isDevanagari
-                ? `हिन्दू पञ्चाङ्ग चान्द्र-सौर है। मास मुख्यतः चान्द्र हैं — प्रत्येक मास एक अमावस्या से अगली तक (अमान्त) या एक पूर्णिमा से अगली तक (पूर्णिमान्त) होता है। मास का नाम उस नक्षत्र से आता है जिसमें पूर्णिमा पड़ती है। ऋतुएँ सौर चक्र का अनुसरण करती हैं: 2-2 मास की 6 ऋतुएँ। सौर वर्ष ~365.25 दिन और 12 चान्द्र मास ~354 दिन होते हैं। ~11 दिन का अन्तर अधिक मास (लौंद मास) से पूरा किया जाता है, जो लगभग हर 2.7 वर्ष में जुड़ता है।`
-                : `हिन्दूपञ्चाङ्गं चान्द्रसौरम्। मासाः मुख्यतः चान्द्राः — प्रत्येकं मासः एकामावस्यातः अपरामावस्यापर्यन्तम् (अमान्तपद्धतिः) भवति। मासनाम तस्मात् नक्षत्रात् आगच्छति यस्मिन् पूर्णिमा पतति। ऋतवः सौरचक्रम् अनुसरन्ति — द्वौ-द्वौ मासयोः 6 ऋतवः।`}
+                : tl({ en: `हिन्दूपञ्चाङ्गं चान्द्रसौरम्। मासाः मुख्यतः चान्द्राः — प्रत्येकं मासः एकामावस्यातः अपरामावस्यापर्यन्तम् (अमान्तपद्धतिः) भवति। मासनाम तस्मात् नक्षत्रात् आगच्छति यस्मिन् पूर्णिमा पतति। ऋतवः सौरचक्रम् अनुसरन्ति — द्वौ-द्वौ मासयोः 6 ऋतवः।`, hi: `हिन्दू पञ्चाङ्ग चान्द्र-सौर है। मास मुख्यतः चान्द्र हैं — प्रत्येक मास एक अमावस्या से अगली तक (अमान्त) या एक पूर्णिमा से अगली तक (पूर्णिमान्त) होता है। मास का नाम उस नक्षत्र से आता है जिसमें पूर्णिमा पड़ती है। ऋतुएँ सौर चक्र का अनुसरण करती हैं: 2-2 मास की 6 ऋतुएँ। सौर वर्ष ~365.25 दिन और 12 चान्द्र मास ~354 दिन होते हैं। ~11 दिन का अन्तर अधिक मास (लौंद मास) से पूरा किया जाता है, जो लगभग हर 2.7 वर्ष में जुड़ता है।`, sa: `हिन्दू पञ्चाङ्ग चान्द्र-सौर है। मास मुख्यतः चान्द्र हैं — प्रत्येक मास एक अमावस्या से अगली तक (अमान्त) या एक पूर्णिमा से अगली तक (पूर्णिमान्त) होता है। मास का नाम उस नक्षत्र से आता है जिसमें पूर्णिमा पड़ती है। ऋतुएँ सौर चक्र का अनुसरण करती हैं: 2-2 मास की 6 ऋतुएँ। सौर वर्ष ~365.25 दिन और 12 चान्द्र मास ~354 दिन होते हैं। ~11 दिन का अन्तर अधिक मास (लौंद मास) से पूरा किया जाता है, जो लगभग हर 2.7 वर्ष में जुड़ता है।`, ta: `हिन्दूपञ्चाङ्गं चान्द्रसौरम्। मासाः मुख्यतः चान्द्राः — प्रत्येकं मासः एकामावस्यातः अपरामावस्यापर्यन्तम् (अमान्तपद्धतिः) भवति। मासनाम तस्मात् नक्षत्रात् आगच्छति यस्मिन् पूर्णिमा पतति। ऋतवः सौरचक्रम् अनुसरन्ति — द्वौ-द्वौ मासयोः 6 ऋतवः।`, te: `हिन्दूपञ्चाङ्गं चान्द्रसौरम्। मासाः मुख्यतः चान्द्राः — प्रत्येकं मासः एकामावस्यातः अपरामावस्यापर्यन्तम् (अमान्तपद्धतिः) भवति। मासनाम तस्मात् नक्षत्रात् आगच्छति यस्मिन् पूर्णिमा पतति। ऋतवः सौरचक्रम् अनुसरन्ति — द्वौ-द्वौ मासयोः 6 ऋतवः।`, bn: `हिन्दूपञ्चाङ्गं चान्द्रसौरम्। मासाः मुख्यतः चान्द्राः — प्रत्येकं मासः एकामावस्यातः अपरामावस्यापर्यन्तम् (अमान्तपद्धतिः) भवति। मासनाम तस्मात् नक्षत्रात् आगच्छति यस्मिन् पूर्णिमा पतति। ऋतवः सौरचक्रम् अनुसरन्ति — द्वौ-द्वौ मासयोः 6 ऋतवः।`, kn: `हिन्दूपञ्चाङ्गं चान्द्रसौरम्। मासाः मुख्यतः चान्द्राः — प्रत्येकं मासः एकामावस्यातः अपरामावस्यापर्यन्तम् (अमान्तपद्धतिः) भवति। मासनाम तस्मात् नक्षत्रात् आगच्छति यस्मिन् पूर्णिमा पतति। ऋतवः सौरचक्रम् अनुसरन्ति — द्वौ-द्वौ मासयोः 6 ऋतवः।`, gu: `हिन्दूपञ्चाङ्गं चान्द्रसौरम्। मासाः मुख्यतः चान्द्राः — प्रत्येकं मासः एकामावस्यातः अपरामावस्यापर्यन्तम् (अमान्तपद्धतिः) भवति। मासनाम तस्मात् नक्षत्रात् आगच्छति यस्मिन् पूर्णिमा पतति। ऋतवः सौरचक्रम् अनुसरन्ति — द्वौ-द्वौ मासयोः 6 ऋतवः।`, mai: `हिन्दू पञ्चाङ्ग चान्द्र-सौर है। मास मुख्यतः चान्द्र हैं — प्रत्येक मास एक अमावस्या से अगली तक (अमान्त) या एक पूर्णिमा से अगली तक (पूर्णिमान्त) होता है। मास का नाम उस नक्षत्र से आता है जिसमें पूर्णिमा पड़ती है। ऋतुएँ सौर चक्र का अनुसरण करती हैं: 2-2 मास की 6 ऋतुएँ। सौर वर्ष ~365.25 दिन और 12 चान्द्र मास ~354 दिन होते हैं। ~11 दिन का अन्तर अधिक मास (लौंद मास) से पूरा किया जाता है, जो लगभग हर 2.7 वर्ष में जुड़ता है।`, mr: `हिन्दू पञ्चाङ्ग चान्द्र-सौर है। मास मुख्यतः चान्द्र हैं — प्रत्येक मास एक अमावस्या से अगली तक (अमान्त) या एक पूर्णिमा से अगली तक (पूर्णिमान्त) होता है। मास का नाम उस नक्षत्र से आता है जिसमें पूर्णिमा पड़ती है। ऋतुएँ सौर चक्र का अनुसरण करती हैं: 2-2 मास की 6 ऋतुएँ। सौर वर्ष ~365.25 दिन और 12 चान्द्र मास ~354 दिन होते हैं। ~11 दिन का अन्तर अधिक मास (लौंद मास) से पूरा किया जाता है, जो लगभग हर 2.7 वर्ष में जुड़ता है।` }, locale)}
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {!isDevanagariLocale(locale) ? 'Lunar year:' : 'चान्द्र वर्ष:'} 12 x 29.53 = ~354.36{' '}
-                {!isDevanagariLocale(locale) ? 'days' : 'दिन'}
+                {tl({ en: 'Lunar year:', hi: 'चान्द्र वर्ष:', sa: 'चान्द्र वर्ष:', ta: 'Lunar year:', te: 'Lunar year:', bn: 'Lunar year:', kn: 'Lunar year:', gu: 'Lunar year:', mai: 'चान्द्र वर्ष:', mr: 'चान्द्र वर्ष:' }, locale)} 12 x 29.53 = ~354.36{' '}
+                {tl({ en: 'days', hi: 'दिन', sa: 'दिन', ta: 'days', te: 'days', bn: 'days', kn: 'days', gu: 'days', mai: 'दिन', mr: 'दिन' }, locale)}
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
                 {locale === 'en'
@@ -321,9 +307,7 @@ export default function MasaPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en'
             ? 'Annual Cycle — Months & Seasons'
-            : isDevanagari
-            ? 'वार्षिक चक्र — मास और ऋतु'
-            : 'वार्षिकचक्रम् — मासाः ऋतवश्च'}
+            : tl({ en: 'वार्षिकचक्रम् — मासाः ऋतवश्च', hi: 'वार्षिक चक्र — मास और ऋतु', sa: 'वार्षिक चक्र — मास और ऋतु', ta: 'वार्षिकचक्रम् — मासाः ऋतवश्च', te: 'वार्षिकचक्रम् — मासाः ऋतवश्च', bn: 'वार्षिकचक्रम् — मासाः ऋतवश्च', kn: 'वार्षिकचक्रम् — मासाः ऋतवश्च', gu: 'वार्षिकचक्रम् — मासाः ऋतवश्च', mai: 'वार्षिक चक्र — मास और ऋतु', mr: 'वार्षिक चक्र — मास और ऋतु' }, locale)}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex justify-center">
           <AnimatedAnnualWheel locale={locale} />
@@ -341,9 +325,7 @@ export default function MasaPage() {
         <h3 className="text-xl text-gold-light mb-4" style={headingFont}>
           {locale === 'en'
             ? '12 Lunar Months (Masa)'
-            : isDevanagari
-            ? '12 चान्द्र मास'
-            : 'द्वादश चान्द्रमासाः'}
+            : tl({ en: 'द्वादश चान्द्रमासाः', hi: '12 चान्द्र मास', sa: '12 चान्द्र मास', ta: 'द्वादश चान्द्रमासाः', te: 'द्वादश चान्द्रमासाः', bn: 'द्वादश चान्द्रमासाः', kn: 'द्वादश चान्द्रमासाः', gu: 'द्वादश चान्द्रमासाः', mai: '12 चान्द्र मास', mr: '12 चान्द्र मास' }, locale)}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-10">
           {MASA_NAMES.map((masa, i) => {
@@ -382,7 +364,7 @@ export default function MasaPage() {
 
         {/* 6 Seasons */}
         <h3 className="text-xl text-gold-light mb-4" style={headingFont}>
-          {!isDevanagariLocale(locale) ? '6 Seasons (Ritu)' : isDevanagari ? '6 ऋतुएँ' : 'षड् ऋतवः'}
+          {tl({ en: '6 Seasons (Ritu)', hi: '6 ऋतुएँ', sa: 'षड् ऋतवः', ta: '6 Seasons (Ritu)', te: '6 Seasons (Ritu)', bn: '6 Seasons (Ritu)', kn: '6 Seasons (Ritu)', gu: '6 Seasons (Ritu)', mai: '6 ऋतुएँ', mr: '6 ऋतुएँ' }, locale)}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {RITU_NAMES.map((ritu, i) => (

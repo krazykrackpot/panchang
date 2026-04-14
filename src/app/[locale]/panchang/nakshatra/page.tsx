@@ -11,6 +11,7 @@ import { NakshatraIcon } from '@/components/icons/PanchangIcons';
 import type { Locale } from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { tl } from '@/lib/utils/trilingual';
 
 export default function NakshatraPage() {
   const t = useTranslations('deepDive');
@@ -29,10 +30,10 @@ export default function NakshatraPage() {
         <NakshatraIcon size={72} />
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-2" style={headingFont}>
-            <span className="text-gold-gradient">{isTamil ? 'நட்சத்திரம்' : locale === 'en' ? 'Nakshatra' : isDevanagari ? 'नक्षत्र' : 'नक्षत्रम्'}</span>
+            <span className="text-gold-gradient">{tl({ en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्रम्', ta: 'நட்சத்திரம்', te: 'Nakshatra', bn: 'Nakshatra', kn: 'Nakshatra', gu: 'Nakshatra', mai: 'नक्षत्र', mr: 'नक्षत्र' }, locale)}</span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isTamil ? '27 சந்திர மாளிகைகள் — கிரகண வட்டத்தை வரையறுக்கும் நட்சத்திரங்கள்' : locale === 'en' ? 'The 27 Lunar Mansions — Stars that Map the Ecliptic' : isDevanagari ? '27 चन्द्र गृह — क्रान्तिवृत्त के तारामण्डल' : 'सप्तविंशतिः चन्द्रभवनानि — क्रान्तिवृत्तस्य ताराचित्रम्'}
+            {tl({ en: 'The 27 Lunar Mansions — Stars that Map the Ecliptic', hi: '27 चन्द्र गृह — क्रान्तिवृत्त के तारामण्डल', sa: 'सप्तविंशतिः चन्द्रभवनानि — क्रान्तिवृत्तस्य ताराचित्रम्', ta: '27 சந்திர மாளிகைகள் — கிரகண வட்டத்தை வரையறுக்கும் நட்சத்திரங்கள்', te: 'The 27 Lunar Mansions — Stars that Map the Ecliptic', bn: 'The 27 Lunar Mansions — Stars that Map the Ecliptic', kn: 'The 27 Lunar Mansions — Stars that Map the Ecliptic', gu: 'The 27 Lunar Mansions — Stars that Map the Ecliptic', mai: '27 चन्द्र गृह — क्रान्तिवृत्त के तारामण्डल', mr: '27 चन्द्र गृह — क्रान्तिवृत्त के तारामण्डल' }, locale)}
           </p>
         </div>
       </motion.div>
@@ -42,7 +43,7 @@ export default function NakshatraPage() {
       {/* What are Nakshatras */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'What are Nakshatras?' : isDevanagari ? 'नक्षत्र क्या हैं?' : 'नक्षत्राणि किम्?'}
+          {tl({ en: 'What are Nakshatras?', hi: 'नक्षत्र क्या हैं?', sa: 'नक्षत्राणि किम्?', ta: 'What are Nakshatras?', te: 'What are Nakshatras?', bn: 'What are Nakshatras?', kn: 'What are Nakshatras?', gu: 'What are Nakshatras?', mai: 'नक्षत्र क्या हैं?', mr: 'नक्षत्र क्या हैं?' }, locale)}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <div className="text-text-secondary space-y-4">
@@ -56,9 +57,7 @@ export default function NakshatraPage() {
             <p className="text-lg leading-relaxed">
               {locale === 'en'
                 ? 'This system predates the 12-sign zodiac and represents one of humanity\'s oldest star catalogues. The Rigveda (c. 1500 BCE) references many Nakshatras, and the Vedanga Jyotisha (c. 1200 BCE) provides a systematic framework. Each Nakshatra is associated with a presiding deity, a ruling planet (Graha), a symbol representing its energy, and specific qualities that influence human activities.'
-                : isDevanagari
-                ? 'यह प्रणाली 12 राशियों की राशि से पहले की है और मानवता के सबसे पुराने तारा-सूचियों में से एक है। ऋग्वेद (लगभग 1500 ई.पू.) में अनेक नक्षत्रों का उल्लेख है, और वेदांग ज्योतिष (लगभग 1200 ई.पू.) एक व्यवस्थित ढांचा प्रदान करता है।'
-                : 'एषा प्रणाली द्वादशराशिचक्रात् पूर्वतनी अस्ति मानवतायाः प्राचीनतमतारासूचीषु एका च। ऋग्वेदे (प्रा. 1500 ई.पू.) बहूनां नक्षत्राणाम् उल्लेखः अस्ति।'}
+                : tl({ en: 'एषा प्रणाली द्वादशराशिचक्रात् पूर्वतनी अस्ति मानवतायाः प्राचीनतमतारासूचीषु एका च। ऋग्वेदे (प्रा. 1500 ई.पू.) बहूनां नक्षत्राणाम् उल्लेखः अस्ति।', hi: 'यह प्रणाली 12 राशियों की राशि से पहले की है और मानवता के सबसे पुराने तारा-सूचियों में से एक है। ऋग्वेद (लगभग 1500 ई.पू.) में अनेक नक्षत्रों का उल्लेख है, और वेदांग ज्योतिष (लगभग 1200 ई.पू.) एक व्यवस्थित ढांचा प्रदान करता है।', sa: 'यह प्रणाली 12 राशियों की राशि से पहले की है और मानवता के सबसे पुराने तारा-सूचियों में से एक है। ऋग्वेद (लगभग 1500 ई.पू.) में अनेक नक्षत्रों का उल्लेख है, और वेदांग ज्योतिष (लगभग 1200 ई.पू.) एक व्यवस्थित ढांचा प्रदान करता है।', ta: 'एषा प्रणाली द्वादशराशिचक्रात् पूर्वतनी अस्ति मानवतायाः प्राचीनतमतारासूचीषु एका च। ऋग्वेदे (प्रा. 1500 ई.पू.) बहूनां नक्षत्राणाम् उल्लेखः अस्ति।', te: 'एषा प्रणाली द्वादशराशिचक्रात् पूर्वतनी अस्ति मानवतायाः प्राचीनतमतारासूचीषु एका च। ऋग्वेदे (प्रा. 1500 ई.पू.) बहूनां नक्षत्राणाम् उल्लेखः अस्ति।', bn: 'एषा प्रणाली द्वादशराशिचक्रात् पूर्वतनी अस्ति मानवतायाः प्राचीनतमतारासूचीषु एका च। ऋग्वेदे (प्रा. 1500 ई.पू.) बहूनां नक्षत्राणाम् उल्लेखः अस्ति।', kn: 'एषा प्रणाली द्वादशराशिचक्रात् पूर्वतनी अस्ति मानवतायाः प्राचीनतमतारासूचीषु एका च। ऋग्वेदे (प्रा. 1500 ई.पू.) बहूनां नक्षत्राणाम् उल्लेखः अस्ति।', gu: 'एषा प्रणाली द्वादशराशिचक्रात् पूर्वतनी अस्ति मानवतायाः प्राचीनतमतारासूचीषु एका च। ऋग्वेदे (प्रा. 1500 ई.पू.) बहूनां नक्षत्राणाम् उल्लेखः अस्ति।', mai: 'यह प्रणाली 12 राशियों की राशि से पहले की है और मानवता के सबसे पुराने तारा-सूचियों में से एक है। ऋग्वेद (लगभग 1500 ई.पू.) में अनेक नक्षत्रों का उल्लेख है, और वेदांग ज्योतिष (लगभग 1200 ई.पू.) एक व्यवस्थित ढांचा प्रदान करता है।', mr: 'यह प्रणाली 12 राशियों की राशि से पहले की है और मानवता के सबसे पुराने तारा-सूचियों में से एक है। ऋग्वेद (लगभग 1500 ई.पू.) में अनेक नक्षत्रों का उल्लेख है, और वेदांग ज्योतिष (लगभग 1200 ई.पू.) एक व्यवस्थित ढांचा प्रदान करता है।' }, locale)}
             </p>
           </div>
         </div>
@@ -67,16 +66,14 @@ export default function NakshatraPage() {
       {/* How Names Arise */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'How Nakshatras Get Their Names' : isDevanagari ? 'नक्षत्रों के नाम कैसे पड़े' : 'नक्षत्राणां नामानि कथम्'}
+          {tl({ en: 'How Nakshatras Get Their Names', hi: 'नक्षत्रों के नाम कैसे पड़े', sa: 'नक्षत्राणां नामानि कथम्', ta: 'How Nakshatras Get Their Names', te: 'How Nakshatras Get Their Names', bn: 'How Nakshatras Get Their Names', kn: 'How Nakshatras Get Their Names', gu: 'How Nakshatras Get Their Names', mai: 'नक्षत्रों के नाम कैसे पड़े', mr: 'नक्षत्रों के नाम कैसे पड़े' }, locale)}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <div className="text-text-secondary space-y-4">
             <p className="text-lg leading-relaxed">
               {locale === 'en'
                 ? 'Nakshatra names derive from multiple sources: the shape of their star patterns (Mrigashira — "deer\'s head"), their presiding deities (Brahma for Rohini), the qualities they embody (Pushya — "nourisher"), or mythological narratives (Ashwini — named after the divine twin horsemen, the Ashwini Kumaras, physicians of the gods).'
-                : isDevanagari
-                ? 'नक्षत्रों के नाम विभिन्न स्रोतों से आते हैं: उनके तारा-प्रतिरूपों का आकार (मृगशिरा — "हिरण का सिर"), उनके अधिष्ठाता देवता (रोहिणी के लिए ब्रह्मा), उनके गुण (पुष्य — "पोषक"), या पौराणिक कथाएं (अश्विनी — देव जुड़वां अश्वारोहियों, अश्विनी कुमारों के नाम पर)।'
-                : 'नक्षत्रनामानि बहुविधस्रोतेभ्यः आगच्छन्ति — तारारूपाणाम् आकारात् (मृगशिरा — "मृगस्य शिरः"), अधिष्ठातृदेवताभ्यः (रोहिण्याः ब्रह्मा), गुणेभ्यः (पुष्यः — "पोषकः")।'}
+                : tl({ en: 'नक्षत्रनामानि बहुविधस्रोतेभ्यः आगच्छन्ति — तारारूपाणाम् आकारात् (मृगशिरा — "मृगस्य शिरः"), अधिष्ठातृदेवताभ्यः (रोहिण्याः ब्रह्मा), गुणेभ्यः (पुष्यः — "पोषकः")।', hi: 'नक्षत्रों के नाम विभिन्न स्रोतों से आते हैं: उनके तारा-प्रतिरूपों का आकार (मृगशिरा — "हिरण का सिर"), उनके अधिष्ठाता देवता (रोहिणी के लिए ब्रह्मा), उनके गुण (पुष्य — "पोषक"), या पौराणिक कथाएं (अश्विनी — देव जुड़वां अश्वारोहियों, अश्विनी कुमारों के नाम पर)।', sa: 'नक्षत्रों के नाम विभिन्न स्रोतों से आते हैं: उनके तारा-प्रतिरूपों का आकार (मृगशिरा — "हिरण का सिर"), उनके अधिष्ठाता देवता (रोहिणी के लिए ब्रह्मा), उनके गुण (पुष्य — "पोषक"), या पौराणिक कथाएं (अश्विनी — देव जुड़वां अश्वारोहियों, अश्विनी कुमारों के नाम पर)।', ta: 'नक्षत्रनामानि बहुविधस्रोतेभ्यः आगच्छन्ति — तारारूपाणाम् आकारात् (मृगशिरा — "मृगस्य शिरः"), अधिष्ठातृदेवताभ्यः (रोहिण्याः ब्रह्मा), गुणेभ्यः (पुष्यः — "पोषकः")।', te: 'नक्षत्रनामानि बहुविधस्रोतेभ्यः आगच्छन्ति — तारारूपाणाम् आकारात् (मृगशिरा — "मृगस्य शिरः"), अधिष्ठातृदेवताभ्यः (रोहिण्याः ब्रह्मा), गुणेभ्यः (पुष्यः — "पोषकः")।', bn: 'नक्षत्रनामानि बहुविधस्रोतेभ्यः आगच्छन्ति — तारारूपाणाम् आकारात् (मृगशिरा — "मृगस्य शिरः"), अधिष्ठातृदेवताभ्यः (रोहिण्याः ब्रह्मा), गुणेभ्यः (पुष्यः — "पोषकः")।', kn: 'नक्षत्रनामानि बहुविधस्रोतेभ्यः आगच्छन्ति — तारारूपाणाम् आकारात् (मृगशिरा — "मृगस्य शिरः"), अधिष्ठातृदेवताभ्यः (रोहिण्याः ब्रह्मा), गुणेभ्यः (पुष्यः — "पोषकः")।', gu: 'नक्षत्रनामानि बहुविधस्रोतेभ्यः आगच्छन्ति — तारारूपाणाम् आकारात् (मृगशिरा — "मृगस्य शिरः"), अधिष्ठातृदेवताभ्यः (रोहिण्याः ब्रह्मा), गुणेभ्यः (पुष्यः — "पोषकः")।', mai: 'नक्षत्रों के नाम विभिन्न स्रोतों से आते हैं: उनके तारा-प्रतिरूपों का आकार (मृगशिरा — "हिरण का सिर"), उनके अधिष्ठाता देवता (रोहिणी के लिए ब्रह्मा), उनके गुण (पुष्य — "पोषक"), या पौराणिक कथाएं (अश्विनी — देव जुड़वां अश्वारोहियों, अश्विनी कुमारों के नाम पर)।', mr: 'नक्षत्रों के नाम विभिन्न स्रोतों से आते हैं: उनके तारा-प्रतिरूपों का आकार (मृगशिरा — "हिरण का सिर"), उनके अधिष्ठाता देवता (रोहिणी के लिए ब्रह्मा), उनके गुण (पुष्य — "पोषक"), या पौराणिक कथाएं (अश्विनी — देव जुड़वां अश्वारोहियों, अश्विनी कुमारों के नाम पर)।' }, locale)}
             </p>
           </div>
         </div>
@@ -90,13 +87,11 @@ export default function NakshatraPage() {
             <p className="text-lg leading-relaxed">
               {locale === 'en'
                 ? `The 27 Nakshatras divide the 360° ecliptic into equal segments of 13°20' (13.333°) each. They are defined by prominent stars (Yogatara) near the ecliptic plane. As the Moon completes one sidereal orbit in approximately 27.3 days, it spends roughly one day in each Nakshatra. The Nakshatra is determined by the Moon's sidereal longitude: Nakshatra number = floor(Moon_sidereal_longitude / 13.333) + 1. Each Nakshatra is further divided into 4 Padas (quarters) of 3°20' each, linking them to the Navamsha chart in Jyotish.`
-                : isDevanagari
-                ? `27 नक्षत्र 360° क्रान्तिवृत्त को 13°20' (13.333°) के बराबर खण्डों में विभाजित करते हैं। ये क्रान्तिवृत्त के निकट प्रमुख तारों (योगतारा) द्वारा परिभाषित हैं। चन्द्रमा लगभग 27.3 दिनों में एक नाक्षत्रिक परिक्रमा पूर्ण करता है, अतः प्रत्येक नक्षत्र में लगभग एक दिन व्यतीत करता है।`
-                : `सप्तविंशतिः नक्षत्राणि 360° क्रान्तिवृत्तं 13°20' (13.333°) समखण्डेषु विभजन्ति। एतानि क्रान्तिवृत्तसमीपस्थप्रमुखताराभिः (योगताराभिः) परिभाष्यन्ते।`}
+                : tl({ en: `सप्तविंशतिः नक्षत्राणि 360° क्रान्तिवृत्तं 13°20' (13.333°) समखण्डेषु विभजन्ति। एतानि क्रान्तिवृत्तसमीपस्थप्रमुखताराभिः (योगताराभिः) परिभाष्यन्ते।`, hi: `27 नक्षत्र 360° क्रान्तिवृत्त को 13°20' (13.333°) के बराबर खण्डों में विभाजित करते हैं। ये क्रान्तिवृत्त के निकट प्रमुख तारों (योगतारा) द्वारा परिभाषित हैं। चन्द्रमा लगभग 27.3 दिनों में एक नाक्षत्रिक परिक्रमा पूर्ण करता है, अतः प्रत्येक नक्षत्र में लगभग एक दिन व्यतीत करता है।`, sa: `27 नक्षत्र 360° क्रान्तिवृत्त को 13°20' (13.333°) के बराबर खण्डों में विभाजित करते हैं। ये क्रान्तिवृत्त के निकट प्रमुख तारों (योगतारा) द्वारा परिभाषित हैं। चन्द्रमा लगभग 27.3 दिनों में एक नाक्षत्रिक परिक्रमा पूर्ण करता है, अतः प्रत्येक नक्षत्र में लगभग एक दिन व्यतीत करता है।`, ta: `सप्तविंशतिः नक्षत्राणि 360° क्रान्तिवृत्तं 13°20' (13.333°) समखण्डेषु विभजन्ति। एतानि क्रान्तिवृत्तसमीपस्थप्रमुखताराभिः (योगताराभिः) परिभाष्यन्ते।`, te: `सप्तविंशतिः नक्षत्राणि 360° क्रान्तिवृत्तं 13°20' (13.333°) समखण्डेषु विभजन्ति। एतानि क्रान्तिवृत्तसमीपस्थप्रमुखताराभिः (योगताराभिः) परिभाष्यन्ते।`, bn: `सप्तविंशतिः नक्षत्राणि 360° क्रान्तिवृत्तं 13°20' (13.333°) समखण्डेषु विभजन्ति। एतानि क्रान्तिवृत्तसमीपस्थप्रमुखताराभिः (योगताराभिः) परिभाष्यन्ते।`, kn: `सप्तविंशतिः नक्षत्राणि 360° क्रान्तिवृत्तं 13°20' (13.333°) समखण्डेषु विभजन्ति। एतानि क्रान्तिवृत्तसमीपस्थप्रमुखताराभिः (योगताराभिः) परिभाष्यन्ते।`, gu: `सप्तविंशतिः नक्षत्राणि 360° क्रान्तिवृत्तं 13°20' (13.333°) समखण्डेषु विभजन्ति। एतानि क्रान्तिवृत्तसमीपस्थप्रमुखताराभिः (योगताराभिः) परिभाष्यन्ते।`, mai: `27 नक्षत्र 360° क्रान्तिवृत्त को 13°20' (13.333°) के बराबर खण्डों में विभाजित करते हैं। ये क्रान्तिवृत्त के निकट प्रमुख तारों (योगतारा) द्वारा परिभाषित हैं। चन्द्रमा लगभग 27.3 दिनों में एक नाक्षत्रिक परिक्रमा पूर्ण करता है, अतः प्रत्येक नक्षत्र में लगभग एक दिन व्यतीत करता है।`, mr: `27 नक्षत्र 360° क्रान्तिवृत्त को 13°20' (13.333°) के बराबर खण्डों में विभाजित करते हैं। ये क्रान्तिवृत्त के निकट प्रमुख तारों (योगतारा) द्वारा परिभाषित हैं। चन्द्रमा लगभग 27.3 दिनों में एक नाक्षत्रिक परिक्रमा पूर्ण करता है, अतः प्रत्येक नक्षत्र में लगभग एक दिन व्यतीत करता है।` }, locale)}
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {!isDevanagariLocale(locale) ? 'Formula:' : 'सूत्र:'} Nakshatra = floor(Moon_sidereal_longitude / 13.333) + 1
+                {tl({ en: 'Formula:', hi: 'सूत्र:', sa: 'सूत्र:', ta: 'Formula:', te: 'Formula:', bn: 'Formula:', kn: 'Formula:', gu: 'Formula:', mai: 'सूत्र:', mr: 'सूत्र:' }, locale)} Nakshatra = floor(Moon_sidereal_longitude / 13.333) + 1
               </p>
             </div>
           </div>
@@ -106,7 +101,7 @@ export default function NakshatraPage() {
       {/* Ecliptic Belt Visualization */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'Ecliptic Belt — 27 Nakshatras' : isDevanagari ? 'क्रान्तिवृत्त — 27 नक्षत्र' : 'क्रान्तिवृत्तम् — सप्तविंशतिनक्षत्राणि'}
+          {tl({ en: 'Ecliptic Belt — 27 Nakshatras', hi: 'क्रान्तिवृत्त — 27 नक्षत्र', sa: 'क्रान्तिवृत्तम् — सप्तविंशतिनक्षत्राणि', ta: 'Ecliptic Belt — 27 Nakshatras', te: 'Ecliptic Belt — 27 Nakshatras', bn: 'Ecliptic Belt — 27 Nakshatras', kn: 'Ecliptic Belt — 27 Nakshatras', gu: 'Ecliptic Belt — 27 Nakshatras', mai: 'क्रान्तिवृत्त — 27 नक्षत्र', mr: 'क्रान्तिवृत्त — 27 नक्षत्र' }, locale)}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex justify-center">
           <EclipticBelt locale={locale} isDevanagari={isDevanagari} />
@@ -119,7 +114,7 @@ export default function NakshatraPage() {
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-3" style={headingFont}>{t('completeListing')}</h2>
         <p className="text-text-secondary mb-8">
-          {!isDevanagariLocale(locale) ? 'Click any Nakshatra to explore its mythology, significance, and detailed characteristics.' : 'किसी भी नक्षत्र पर क्लिक करें उसकी पौराणिक कथा, महत्व और विस्तृत विशेषताओं का अन्वेषण करने के लिए।'}
+          {tl({ en: 'Click any Nakshatra to explore its mythology, significance, and detailed characteristics.', hi: 'किसी भी नक्षत्र पर क्लिक करें उसकी पौराणिक कथा, महत्व और विस्तृत विशेषताओं का अन्वेषण करने के लिए।', sa: 'किसी भी नक्षत्र पर क्लिक करें उसकी पौराणिक कथा, महत्व और विस्तृत विशेषताओं का अन्वेषण करने के लिए।', ta: 'Click any Nakshatra to explore its mythology, significance, and detailed characteristics.', te: 'Click any Nakshatra to explore its mythology, significance, and detailed characteristics.', bn: 'Click any Nakshatra to explore its mythology, significance, and detailed characteristics.', kn: 'Click any Nakshatra to explore its mythology, significance, and detailed characteristics.', gu: 'Click any Nakshatra to explore its mythology, significance, and detailed characteristics.', mai: 'किसी भी नक्षत्र पर क्लिक करें उसकी पौराणिक कथा, महत्व और विस्तृत विशेषताओं का अन्वेषण करने के लिए।', mr: 'किसी भी नक्षत्र पर क्लिक करें उसकी पौराणिक कथा, महत्व और विस्तृत विशेषताओं का अन्वेषण करने के लिए।' }, locale)}
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -235,7 +230,7 @@ function EclipticBelt({ locale, isDevanagari }: { locale: Locale; isDevanagari: 
 
       <circle cx="250" cy="250" r="70" fill="#0a0e27" stroke="rgba(212,168,83,0.1)" strokeWidth="0.5" />
       <text x="250" y="240" fill="#f0d48a" fontSize="14" textAnchor="middle" fontFamily="var(--font-heading)">
-        {!isDevanagariLocale(locale) ? 'ECLIPTIC' : isDevanagari ? 'क्रान्तिवृत्त' : 'क्रान्तिवृत्तम्'}
+        {tl({ en: 'ECLIPTIC', hi: 'क्रान्तिवृत्त', sa: 'क्रान्तिवृत्तम्', ta: 'ECLIPTIC', te: 'ECLIPTIC', bn: 'ECLIPTIC', kn: 'ECLIPTIC', gu: 'ECLIPTIC', mai: 'क्रान्तिवृत्त', mr: 'क्रान्तिवृत्त' }, locale)}
       </text>
       <text x="250" y="260" fill="rgba(212,168,83,0.5)" fontSize="9" textAnchor="middle">
         360° / 27 = 13°20&apos;

@@ -11,6 +11,7 @@ import { ArrowLeft } from 'lucide-react';
 import { RashiIcon } from '@/components/icons/PanchangIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { tl } from '@/lib/utils/trilingual';
 
 /* ─── Element helpers ────────────────────────────────────────────── */
 
@@ -243,13 +244,13 @@ function AnimatedZodiacWheel({
 
       {/* Center text */}
       <text x={CX} y={CY - 14} fill="#f0d48a" fontSize="12" textAnchor="middle" fontFamily="var(--font-heading)">
-        {isDevanagari ? 'राशि चक्र' : 'RASHI CHAKRA'}
+        {tl({ en: 'RASHI CHAKRA', hi: 'राशि चक्र', sa: 'राशि चक्र', ta: 'RASHI CHAKRA', te: 'RASHI CHAKRA', bn: 'RASHI CHAKRA', kn: 'RASHI CHAKRA', gu: 'RASHI CHAKRA', mai: 'राशि चक्र', mr: 'राशि चक्र' }, locale)}
       </text>
       <text x={CX} y={CY + 4} fill="rgba(212,168,83,0.5)" fontSize="9" textAnchor="middle">
         360° / 12 = 30°
       </text>
       <text x={CX} y={CY + 18} fill="rgba(212,168,83,0.3)" fontSize="7" textAnchor="middle">
-        {isDevanagari ? 'राशि चुनें' : 'Click a sign'}
+        {tl({ en: 'Click a sign', hi: 'राशि चुनें', sa: 'राशि चुनें', ta: 'Click a sign', te: 'Click a sign', bn: 'Click a sign', kn: 'Click a sign', gu: 'Click a sign', mai: 'राशि चुनें', mr: 'राशि चुनें' }, locale)}
       </text>
     </motion.svg>
   );
@@ -297,14 +298,12 @@ function EclipticDiagram({ locale }: { locale: Locale }) {
       transition={{ duration: 0.7 }}
     >
       <h3 className="text-lg font-semibold text-gold-light mb-2">
-        {!isDevanagariLocale(locale) ? 'Sidereal vs Tropical Ecliptic' : isDevanagari ? 'नाक्षत्रिक बनाम उष्णकटिबन्धीय क्रान्तिवृत्त' : 'नाक्षत्रिकं उष्णकटिबन्धीयं च क्रान्तिवृत्तम्'}
+        {tl({ en: 'Sidereal vs Tropical Ecliptic', hi: 'नाक्षत्रिक बनाम उष्णकटिबन्धीय क्रान्तिवृत्त', sa: 'नाक्षत्रिकं उष्णकटिबन्धीयं च क्रान्तिवृत्तम्', ta: 'Sidereal vs Tropical Ecliptic', te: 'Sidereal vs Tropical Ecliptic', bn: 'Sidereal vs Tropical Ecliptic', kn: 'Sidereal vs Tropical Ecliptic', gu: 'Sidereal vs Tropical Ecliptic', mai: 'नाक्षत्रिक बनाम उष्णकटिबन्धीय क्रान्तिवृत्त', mr: 'नाक्षत्रिक बनाम उष्णकटिबन्धीय क्रान्तिवृत्त' }, locale)}
       </h3>
       <p className="text-text-secondary text-sm mb-4">
         {locale === 'en'
           ? `The Ayanamsha correction (~${AYANAMSHA.toFixed(1)}°) shifts the sidereal zodiac relative to the tropical one. Below, the colored bar is the sidereal zodiac; the pointer shows where 0° Aries (tropical) falls in the sidereal frame.`
-          : isDevanagari
-          ? `अयनांश सुधार (~${AYANAMSHA.toFixed(1)}°) नाक्षत्रिक राशिचक्र को उष्णकटिबन्धीय के सापेक्ष स्थानान्तरित करता है।`
-          : `अयनांशशोधनं (~${AYANAMSHA.toFixed(1)}°) नाक्षत्रिकराशिचक्रम् उष्णकटिबन्धीयस्य सापेक्षं स्थानान्तरयति।`}
+          : tl({ en: `अयनांशशोधनं (~${AYANAMSHA.toFixed(1)}°) नाक्षत्रिकराशिचक्रम् उष्णकटिबन्धीयस्य सापेक्षं स्थानान्तरयति।`, hi: `अयनांश सुधार (~${AYANAMSHA.toFixed(1)}°) नाक्षत्रिक राशिचक्र को उष्णकटिबन्धीय के सापेक्ष स्थानान्तरित करता है।`, sa: `अयनांश सुधार (~${AYANAMSHA.toFixed(1)}°) नाक्षत्रिक राशिचक्र को उष्णकटिबन्धीय के सापेक्ष स्थानान्तरित करता है।`, ta: `अयनांशशोधनं (~${AYANAMSHA.toFixed(1)}°) नाक्षत्रिकराशिचक्रम् उष्णकटिबन्धीयस्य सापेक्षं स्थानान्तरयति।`, te: `अयनांशशोधनं (~${AYANAMSHA.toFixed(1)}°) नाक्षत्रिकराशिचक्रम् उष्णकटिबन्धीयस्य सापेक्षं स्थानान्तरयति।`, bn: `अयनांशशोधनं (~${AYANAMSHA.toFixed(1)}°) नाक्षत्रिकराशिचक्रम् उष्णकटिबन्धीयस्य सापेक्षं स्थानान्तरयति।`, kn: `अयनांशशोधनं (~${AYANAMSHA.toFixed(1)}°) नाक्षत्रिकराशिचक्रम् उष्णकटिबन्धीयस्य सापेक्षं स्थानान्तरयति।`, gu: `अयनांशशोधनं (~${AYANAMSHA.toFixed(1)}°) नाक्षत्रिकराशिचक्रम् उष्णकटिबन्धीयस्य सापेक्षं स्थानान्तरयति।`, mai: `अयनांश सुधार (~${AYANAMSHA.toFixed(1)}°) नाक्षत्रिक राशिचक्र को उष्णकटिबन्धीय के सापेक्ष स्थानान्तरित करता है।`, mr: `अयनांश सुधार (~${AYANAMSHA.toFixed(1)}°) नाक्षत्रिक राशिचक्र को उष्णकटिबन्धीय के सापेक्ष स्थानान्तरित करता है।` }, locale)}
       </p>
 
       <svg viewBox={`0 0 ${BAR_WIDTH} ${BAR_HEIGHT + 60}`} className="w-full" preserveAspectRatio="xMidYMid meet">
@@ -357,7 +356,7 @@ function EclipticDiagram({ locale }: { locale: Locale }) {
 
         {/* "Sidereal 0°" label */}
         <text x={2} y={14} fill="#f0d48a" fontSize="8" textAnchor="start">
-          {!isDevanagariLocale(locale) ? 'Sidereal 0°' : 'नाक्षत्रिक 0°'}
+          {tl({ en: 'Sidereal 0°', hi: 'नाक्षत्रिक 0°', sa: 'नाक्षत्रिक 0°', ta: 'Sidereal 0°', te: 'Sidereal 0°', bn: 'Sidereal 0°', kn: 'Sidereal 0°', gu: 'Sidereal 0°', mai: 'नाक्षत्रिक 0°', mr: 'नाक्षत्रिक 0°' }, locale)}
         </text>
         <text x={BAR_WIDTH - 2} y={14} fill="rgba(240,212,138,0.4)" fontSize="8" textAnchor="end">
           360°
@@ -405,7 +404,7 @@ function EclipticDiagram({ locale }: { locale: Locale }) {
                 textAnchor="middle"
                 fontWeight="bold"
               >
-                {!isDevanagariLocale(locale) ? `Tropical 0° (Ayanamsha ~${AYANAMSHA.toFixed(1)}°)` : `उष्णकटिबन्धीय 0° (अयनांश ~${AYANAMSHA.toFixed(1)}°)`}
+                {tl({ en: `Tropical 0° (Ayanamsha ~${AYANAMSHA.toFixed(1)}°)`, hi: `उष्णकटिबन्धीय 0° (अयनांश ~${AYANAMSHA.toFixed(1)}°)`, sa: `उष्णकटिबन्धीय 0° (अयनांश ~${AYANAMSHA.toFixed(1)}°)`, ta: `Tropical 0° (Ayanamsha ~${AYANAMSHA.toFixed(1)}°)`, te: `Tropical 0° (Ayanamsha ~${AYANAMSHA.toFixed(1)}°)`, bn: `Tropical 0° (Ayanamsha ~${AYANAMSHA.toFixed(1)}°)`, kn: `Tropical 0° (Ayanamsha ~${AYANAMSHA.toFixed(1)}°)`, gu: `Tropical 0° (Ayanamsha ~${AYANAMSHA.toFixed(1)}°)`, mai: `उष्णकटिबन्धीय 0° (अयनांश ~${AYANAMSHA.toFixed(1)}°)`, mr: `उष्णकटिबन्धीय 0° (अयनांश ~${AYANAMSHA.toFixed(1)}°)` }, locale)}
               </text>
             </motion.g>
           );
@@ -473,17 +472,11 @@ export default function RashiPage() {
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
             <span className="text-gold-gradient">
-              {isTamil ? 'ராசி' : locale === 'en' ? 'Rashi' : isDevanagari ? 'राशि' : 'राशिः'}
+              {tl({ en: 'Rashi', hi: 'राशि', sa: 'राशिः', ta: 'ராசி', te: 'Rashi', bn: 'Rashi', kn: 'Rashi', gu: 'Rashi', mai: 'राशि', mr: 'राशि' }, locale)}
             </span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isTamil
-              ? '12 ராசிகள் \u2014 கிரகண வட்டத்தின் நட்சத்திரப் பிரிவுகள்'
-              : locale === 'en'
-              ? 'The 12 Zodiac Signs \u2014 Sidereal Divisions of the Ecliptic'
-              : isDevanagari
-              ? '12 राशियाँ \u2014 क्रान्तिवृत्त के नाक्षत्रिक विभाग'
-              : 'द्वादश राशयः \u2014 क्रान्तिवृत्तस्य नाक्षत्रिकविभागाः'}
+            {tl({ en: 'The 12 Zodiac Signs \u2014 Sidereal Divisions of the Ecliptic', hi: '12 राशियाँ \u2014 क्रान्तिवृत्त के नाक्षत्रिक विभाग', sa: 'द्वादश राशयः \u2014 क्रान्तिवृत्तस्य नाक्षत्रिकविभागाः', ta: '12 ராசிகள் \u2014 கிரகண வட்டத்தின் நட்சத்திரப் பிரிவுகள்', te: 'The 12 Zodiac Signs \u2014 Sidereal Divisions of the Ecliptic', bn: 'The 12 Zodiac Signs \u2014 Sidereal Divisions of the Ecliptic', kn: 'The 12 Zodiac Signs \u2014 Sidereal Divisions of the Ecliptic', gu: 'The 12 Zodiac Signs \u2014 Sidereal Divisions of the Ecliptic', mai: '12 राशियाँ \u2014 क्रान्तिवृत्त के नाक्षत्रिक विभाग', mr: '12 राशियाँ \u2014 क्रान्तिवृत्त के नाक्षत्रिक विभाग' }, locale)}
           </p>
         </div>
       </motion.div>
@@ -506,13 +499,11 @@ export default function RashiPage() {
             <p className="text-lg leading-relaxed">
               {locale === 'en'
                 ? `The 12 Rashis divide the 360° sidereal zodiac into equal segments of 30° each. Unlike the Western tropical zodiac (anchored to the vernal equinox), the Vedic sidereal zodiac is anchored to fixed stars and accounts for the precession of equinoxes via the Ayanamsha correction (~24° currently). Each Rashi is ruled by a planet, belongs to one of four elements (Fire, Earth, Air, Water), and has a quality (Cardinal/Chara, Fixed/Sthira, Mutable/Dvisvabhava). The Sun transits each Rashi in about one month, and the Moon in about 2.25 days.`
-                : isDevanagari
-                ? `12 राशियाँ 360° नाक्षत्रिक राशिचक्र को 30° के बराबर खण्डों में विभाजित करती हैं। पश्चिमी उष्णकटिबन्धीय राशिचक्र (जो वसन्त विषुव पर आधारित है) के विपरीत, वैदिक नाक्षत्रिक राशिचक्र स्थिर तारों पर आधारित है और अयनांश सुधार (~24° वर्तमान) द्वारा विषुव अयन का हिसाब रखता है। प्रत्येक राशि एक ग्रह द्वारा शासित है, चार तत्वों (अग्नि, पृथ्वी, वायु, जल) में से एक से सम्बन्धित है, और एक गुण (चर, स्थिर, द्विस्वभाव) रखती है।`
-                : `द्वादश राशयः 360° नाक्षत्रिकराशिचक्रं 30° समखण्डेषु विभजन्ति। पाश्चात्योष्णकटिबन्धीयराशिचक्रात् भिन्नं वैदिकं नाक्षत्रिकराशिचक्रं स्थिरताराणाम् आधारेण स्थितम्, अयनांशशोधनेन च विषुवायनं गणयति।`}
+                : tl({ en: `द्वादश राशयः 360° नाक्षत्रिकराशिचक्रं 30° समखण्डेषु विभजन्ति। पाश्चात्योष्णकटिबन्धीयराशिचक्रात् भिन्नं वैदिकं नाक्षत्रिकराशिचक्रं स्थिरताराणाम् आधारेण स्थितम्, अयनांशशोधनेन च विषुवायनं गणयति।`, hi: `12 राशियाँ 360° नाक्षत्रिक राशिचक्र को 30° के बराबर खण्डों में विभाजित करती हैं। पश्चिमी उष्णकटिबन्धीय राशिचक्र (जो वसन्त विषुव पर आधारित है) के विपरीत, वैदिक नाक्षत्रिक राशिचक्र स्थिर तारों पर आधारित है और अयनांश सुधार (~24° वर्तमान) द्वारा विषुव अयन का हिसाब रखता है। प्रत्येक राशि एक ग्रह द्वारा शासित है, चार तत्वों (अग्नि, पृथ्वी, वायु, जल) में से एक से सम्बन्धित है, और एक गुण (चर, स्थिर, द्विस्वभाव) रखती है।`, sa: `12 राशियाँ 360° नाक्षत्रिक राशिचक्र को 30° के बराबर खण्डों में विभाजित करती हैं। पश्चिमी उष्णकटिबन्धीय राशिचक्र (जो वसन्त विषुव पर आधारित है) के विपरीत, वैदिक नाक्षत्रिक राशिचक्र स्थिर तारों पर आधारित है और अयनांश सुधार (~24° वर्तमान) द्वारा विषुव अयन का हिसाब रखता है। प्रत्येक राशि एक ग्रह द्वारा शासित है, चार तत्वों (अग्नि, पृथ्वी, वायु, जल) में से एक से सम्बन्धित है, और एक गुण (चर, स्थिर, द्विस्वभाव) रखती है।`, ta: `द्वादश राशयः 360° नाक्षत्रिकराशिचक्रं 30° समखण्डेषु विभजन्ति। पाश्चात्योष्णकटिबन्धीयराशिचक्रात् भिन्नं वैदिकं नाक्षत्रिकराशिचक्रं स्थिरताराणाम् आधारेण स्थितम्, अयनांशशोधनेन च विषुवायनं गणयति।`, te: `द्वादश राशयः 360° नाक्षत्रिकराशिचक्रं 30° समखण्डेषु विभजन्ति। पाश्चात्योष्णकटिबन्धीयराशिचक्रात् भिन्नं वैदिकं नाक्षत्रिकराशिचक्रं स्थिरताराणाम् आधारेण स्थितम्, अयनांशशोधनेन च विषुवायनं गणयति।`, bn: `द्वादश राशयः 360° नाक्षत्रिकराशिचक्रं 30° समखण्डेषु विभजन्ति। पाश्चात्योष्णकटिबन्धीयराशिचक्रात् भिन्नं वैदिकं नाक्षत्रिकराशिचक्रं स्थिरताराणाम् आधारेण स्थितम्, अयनांशशोधनेन च विषुवायनं गणयति।`, kn: `द्वादश राशयः 360° नाक्षत्रिकराशिचक्रं 30° समखण्डेषु विभजन्ति। पाश्चात्योष्णकटिबन्धीयराशिचक्रात् भिन्नं वैदिकं नाक्षत्रिकराशिचक्रं स्थिरताराणाम् आधारेण स्थितम्, अयनांशशोधनेन च विषुवायनं गणयति।`, gu: `द्वादश राशयः 360° नाक्षत्रिकराशिचक्रं 30° समखण्डेषु विभजन्ति। पाश्चात्योष्णकटिबन्धीयराशिचक्रात् भिन्नं वैदिकं नाक्षत्रिकराशिचक्रं स्थिरताराणाम् आधारेण स्थितम्, अयनांशशोधनेन च विषुवायनं गणयति।`, mai: `12 राशियाँ 360° नाक्षत्रिक राशिचक्र को 30° के बराबर खण्डों में विभाजित करती हैं। पश्चिमी उष्णकटिबन्धीय राशिचक्र (जो वसन्त विषुव पर आधारित है) के विपरीत, वैदिक नाक्षत्रिक राशिचक्र स्थिर तारों पर आधारित है और अयनांश सुधार (~24° वर्तमान) द्वारा विषुव अयन का हिसाब रखता है। प्रत्येक राशि एक ग्रह द्वारा शासित है, चार तत्वों (अग्नि, पृथ्वी, वायु, जल) में से एक से सम्बन्धित है, और एक गुण (चर, स्थिर, द्विस्वभाव) रखती है।`, mr: `12 राशियाँ 360° नाक्षत्रिक राशिचक्र को 30° के बराबर खण्डों में विभाजित करती हैं। पश्चिमी उष्णकटिबन्धीय राशिचक्र (जो वसन्त विषुव पर आधारित है) के विपरीत, वैदिक नाक्षत्रिक राशिचक्र स्थिर तारों पर आधारित है और अयनांश सुधार (~24° वर्तमान) द्वारा विषुव अयन का हिसाब रखता है। प्रत्येक राशि एक ग्रह द्वारा शासित है, चार तत्वों (अग्नि, पृथ्वी, वायु, जल) में से एक से सम्बन्धित है, और एक गुण (चर, स्थिर, द्विस्वभाव) रखती है।` }, locale)}
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {!isDevanagariLocale(locale) ? 'Formula:' : 'सूत्र:'} Rashi = floor(Sidereal_longitude / 30°) + 1
+                {tl({ en: 'Formula:', hi: 'सूत्र:', sa: 'सूत्र:', ta: 'Formula:', te: 'Formula:', bn: 'Formula:', kn: 'Formula:', gu: 'Formula:', mai: 'सूत्र:', mr: 'सूत्र:' }, locale)} Rashi = floor(Sidereal_longitude / 30°) + 1
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
                 {locale === 'en'
@@ -529,9 +520,7 @@ export default function RashiPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en'
             ? 'Sidereal Zodiac Wheel'
-            : isDevanagari
-            ? 'नाक्षत्रिक राशि चक्र'
-            : 'नाक्षत्रिकराशिचक्रम्'}
+            : tl({ en: 'नाक्षत्रिकराशिचक्रम्', hi: 'नाक्षत्रिक राशि चक्र', sa: 'नाक्षत्रिक राशि चक्र', ta: 'नाक्षत्रिकराशिचक्रम्', te: 'नाक्षत्रिकराशिचक्रम्', bn: 'नाक्षत्रिकराशिचक्रम्', kn: 'नाक्षत्रिकराशिचक्रम्', gu: 'नाक्षत्रिकराशिचक्रम्', mai: 'नाक्षत्रिक राशि चक्र', mr: 'नाक्षत्रिक राशि चक्र' }, locale)}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex flex-col items-center">
           <AnimatedZodiacWheel
@@ -548,9 +537,7 @@ export default function RashiPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en'
             ? 'Ayanamsha & the Ecliptic'
-            : isDevanagari
-            ? 'अयनांश एवं क्रान्तिवृत्त'
-            : 'अयनांशः क्रान्तिवृत्तं च'}
+            : tl({ en: 'अयनांशः क्रान्तिवृत्तं च', hi: 'अयनांश एवं क्रान्तिवृत्त', sa: 'अयनांश एवं क्रान्तिवृत्त', ta: 'अयनांशः क्रान्तिवृत्तं च', te: 'अयनांशः क्रान्तिवृत्तं च', bn: 'अयनांशः क्रान्तिवृत्तं च', kn: 'अयनांशः क्रान्तिवृत्तं च', gu: 'अयनांशः क्रान्तिवृत्तं च', mai: 'अयनांश एवं क्रान्तिवृत्त', mr: 'अयनांश एवं क्रान्तिवृत्त' }, locale)}
         </h2>
         <EclipticDiagram locale={locale} />
       </section>

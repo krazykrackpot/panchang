@@ -12,6 +12,7 @@ import type { Locale , LocaleText} from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { MuhurtaIcon } from '@/components/icons/PanchangIcons';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { tl } from '@/lib/utils/trilingual';
 
 const MUHURTAS: { number: number; name: LocaleText; nature: 'auspicious' | 'inauspicious' | 'neutral' }[] = [
   { number: 1, name: { en: 'Rudra', hi: 'रुद्र', sa: 'रुद्रः' }, nature: 'inauspicious' },
@@ -351,16 +352,16 @@ function AnimatedMuhurtaWheel({
 
       {/* Center labels */}
       <text x={CX} y={CY - 20} fill="#f0d48a" fontSize="13" textAnchor="middle" fontFamily="var(--font-heading)" opacity="0.9">
-        {!isDevanagariLocale(locale) ? 'DAYTIME' : isDevanagari ? 'दिवा' : 'दिवा'}
+        {tl({ en: 'DAYTIME', hi: 'दिवा', sa: 'दिवा', ta: 'DAYTIME', te: 'DAYTIME', bn: 'DAYTIME', kn: 'DAYTIME', gu: 'DAYTIME', mai: 'दिवा', mr: 'दिवा' }, locale)}
       </text>
       <text x={CX} y={CY - 5} fill="rgba(212,168,83,0.5)" fontSize="9" textAnchor="middle">
-        {!isDevanagariLocale(locale) ? '15 Muhurtas' : '15 मुहूर्त'}
+        {tl({ en: '15 Muhurtas', hi: '15 मुहूर्त', sa: '15 मुहूर्त', ta: '15 Muhurtas', te: '15 Muhurtas', bn: '15 Muhurtas', kn: '15 Muhurtas', gu: '15 Muhurtas', mai: '15 मुहूर्त', mr: '15 मुहूर्त' }, locale)}
       </text>
       <text x={CX} y={CY + 18} fill="#8a8adf" fontSize="13" textAnchor="middle" fontFamily="var(--font-heading)" opacity="0.9">
-        {!isDevanagariLocale(locale) ? 'NIGHTTIME' : isDevanagari ? 'रात्रि' : 'रात्रिः'}
+        {tl({ en: 'NIGHTTIME', hi: 'रात्रि', sa: 'रात्रिः', ta: 'NIGHTTIME', te: 'NIGHTTIME', bn: 'NIGHTTIME', kn: 'NIGHTTIME', gu: 'NIGHTTIME', mai: 'रात्रि', mr: 'रात्रि' }, locale)}
       </text>
       <text x={CX} y={CY + 33} fill="rgba(138,138,223,0.5)" fontSize="9" textAnchor="middle">
-        {!isDevanagariLocale(locale) ? '15 Muhurtas' : '15 मुहूर्त'}
+        {tl({ en: '15 Muhurtas', hi: '15 मुहूर्त', sa: '15 मुहूर्त', ta: '15 Muhurtas', te: '15 Muhurtas', bn: '15 Muhurtas', kn: '15 Muhurtas', gu: '15 Muhurtas', mai: '15 मुहूर्त', mr: '15 मुहूर्त' }, locale)}
       </text>
 
       {/* Sunrise / Sunset markers */}
@@ -369,14 +370,14 @@ function AnimatedMuhurtaWheel({
         fill="#f0d48a" fontSize="8" textAnchor="middle"
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}
       >
-        {!isDevanagariLocale(locale) ? 'Sunrise' : 'सूर्योदय'}
+        {tl({ en: 'Sunrise', hi: 'सूर्योदय', sa: 'सूर्योदय', ta: 'Sunrise', te: 'Sunrise', bn: 'Sunrise', kn: 'Sunrise', gu: 'Sunrise', mai: 'सूर्योदय', mr: 'सूर्योदय' }, locale)}
       </motion.text>
       <motion.text
         x={CX - OUTER_R - 24} y={CY + 4}
         fill="#8a6d2b" fontSize="8" textAnchor="middle"
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4 }}
       >
-        {!isDevanagariLocale(locale) ? 'Sunset' : 'सूर्यास्त'}
+        {tl({ en: 'Sunset', hi: 'सूर्यास्त', sa: 'सूर्यास्त', ta: 'Sunset', te: 'Sunset', bn: 'Sunset', kn: 'Sunset', gu: 'Sunset', mai: 'सूर्यास्त', mr: 'सूर्यास्त' }, locale)}
       </motion.text>
     </motion.svg>
   );
@@ -492,7 +493,7 @@ function AnimatedSunriseSunsetDiagram({
         <motion.g initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
           <line x1="0" y1={topY - 6} x2="0" y2={topY + barH + 6} stroke="#f0d48a" strokeWidth="2" strokeDasharray="3,3" />
           <text x="4" y={topY - 12} fill="#f0d48a" fontSize="9" fontFamily="var(--font-heading)">
-            {!isDevanagariLocale(locale) ? 'Sunrise' : 'सूर्योदय'}
+            {tl({ en: 'Sunrise', hi: 'सूर्योदय', sa: 'सूर्योदय', ta: 'Sunrise', te: 'Sunrise', bn: 'Sunrise', kn: 'Sunrise', gu: 'Sunrise', mai: 'सूर्योदय', mr: 'सूर्योदय' }, locale)}
           </text>
           {/* Sun icon */}
           <circle cx="0" cy={topY - 22} r="5" fill="#f5c842" opacity="0.7" />
@@ -502,7 +503,7 @@ function AnimatedSunriseSunsetDiagram({
         <motion.g initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
           <line x1={segW * 15} y1={topY - 6} x2={segW * 15} y2={topY + barH + 6} stroke="#8a6d2b" strokeWidth="2" strokeDasharray="3,3" />
           <text x={segW * 15 + 4} y={topY - 12} fill="#8a8adf" fontSize="9" fontFamily="var(--font-heading)">
-            {!isDevanagariLocale(locale) ? 'Sunset' : 'सूर्यास्त'}
+            {tl({ en: 'Sunset', hi: 'सूर्यास्त', sa: 'सूर्यास्त', ta: 'Sunset', te: 'Sunset', bn: 'Sunset', kn: 'Sunset', gu: 'Sunset', mai: 'सूर्यास्त', mr: 'सूर्यास्त' }, locale)}
           </text>
           {/* Moon icon */}
           <circle cx={segW * 15} cy={topY - 22} r="4" fill="#8a8adf" opacity="0.6" />
@@ -512,17 +513,17 @@ function AnimatedSunriseSunsetDiagram({
         <motion.g initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4 }}>
           <line x1={totalW} y1={topY - 6} x2={totalW} y2={topY + barH + 6} stroke="#f0d48a" strokeWidth="2" strokeDasharray="3,3" />
           <text x={totalW - 4} y={topY - 12} fill="#f0d48a" fontSize="9" textAnchor="end" fontFamily="var(--font-heading)">
-            {!isDevanagariLocale(locale) ? 'Sunrise' : 'सूर्योदय'}
+            {tl({ en: 'Sunrise', hi: 'सूर्योदय', sa: 'सूर्योदय', ta: 'Sunrise', te: 'Sunrise', bn: 'Sunrise', kn: 'Sunrise', gu: 'Sunrise', mai: 'सूर्योदय', mr: 'सूर्योदय' }, locale)}
           </text>
           <circle cx={totalW} cy={topY - 22} r="5" fill="#f5c842" opacity="0.7" />
         </motion.g>
 
         {/* Daytime / Nighttime labels below the bar */}
         <text x={segW * 7.5} y={topY + barH + 22} fill="#f0d48a" fontSize="10" textAnchor="middle" opacity="0.7" fontFamily="var(--font-heading)">
-          {!isDevanagariLocale(locale) ? '15 Daytime Muhurtas' : isDevanagari ? '15 दिवा मुहूर्त' : '15 दिवामुहूर्ताः'}
+          {tl({ en: '15 Daytime Muhurtas', hi: '15 दिवा मुहूर्त', sa: '15 दिवामुहूर्ताः', ta: '15 Daytime Muhurtas', te: '15 Daytime Muhurtas', bn: '15 Daytime Muhurtas', kn: '15 Daytime Muhurtas', gu: '15 Daytime Muhurtas', mai: '15 दिवा मुहूर्त', mr: '15 दिवा मुहूर्त' }, locale)}
         </text>
         <text x={segW * 22.5} y={topY + barH + 22} fill="#8a8adf" fontSize="10" textAnchor="middle" opacity="0.7" fontFamily="var(--font-heading)">
-          {!isDevanagariLocale(locale) ? '15 Nighttime Muhurtas' : isDevanagari ? '15 रात्रि मुहूर्त' : '15 रात्रिमुहूर्ताः'}
+          {tl({ en: '15 Nighttime Muhurtas', hi: '15 रात्रि मुहूर्त', sa: '15 रात्रिमुहूर्ताः', ta: '15 Nighttime Muhurtas', te: '15 Nighttime Muhurtas', bn: '15 Nighttime Muhurtas', kn: '15 Nighttime Muhurtas', gu: '15 Nighttime Muhurtas', mai: '15 रात्रि मुहूर्त', mr: '15 रात्रि मुहूर्त' }, locale)}
         </text>
 
         {/* Animated progress sweep */}
@@ -584,10 +585,10 @@ export default function MuhurtaPage() {
         <MuhurtaIcon size={72} />
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
-            <span className="text-gold-gradient">{isTamil ? 'முகூர்த்தம்' : locale === 'en' ? 'Muhurta' : isDevanagari ? 'मुहूर्त' : 'मुहूर्तः'}</span>
+            <span className="text-gold-gradient">{tl({ en: 'Muhurta', hi: 'मुहूर्त', sa: 'मुहूर्तः', ta: 'முகூர்த்தம்', te: 'Muhurta', bn: 'Muhurta', kn: 'Muhurta', gu: 'Muhurta', mai: 'मुहूर्त', mr: 'मुहूर्त' }, locale)}</span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isTamil ? 'நாளின் 30 நேரப் பிரிவுகள் -- பழங்கால நேர அமைப்பு' : locale === 'en' ? 'The 30 Time Divisions of the Day -- Ancient Temporal Framework' : isDevanagari ? 'दिन के 30 काल विभाग -- प्राचीन समय-चक्र' : 'दिनस्य त्रिंशत् कालविभागाः -- प्राचीनकालचक्रम्'}
+            {tl({ en: 'The 30 Time Divisions of the Day -- Ancient Temporal Framework', hi: 'दिन के 30 काल विभाग -- प्राचीन समय-चक्र', sa: 'दिनस्य त्रिंशत् कालविभागाः -- प्राचीनकालचक्रम्', ta: 'நாளின் 30 நேரப் பிரிவுகள் -- பழங்கால நேர அமைப்பு', te: 'The 30 Time Divisions of the Day -- Ancient Temporal Framework', bn: 'The 30 Time Divisions of the Day -- Ancient Temporal Framework', kn: 'The 30 Time Divisions of the Day -- Ancient Temporal Framework', gu: 'The 30 Time Divisions of the Day -- Ancient Temporal Framework', mai: 'दिन के 30 काल विभाग -- प्राचीन समय-चक्र', mr: 'दिन के 30 काल विभाग -- प्राचीन समय-चक्र' }, locale)}
           </p>
         </div>
       </motion.div>
@@ -608,16 +609,14 @@ export default function MuhurtaPage() {
             <p className="text-lg leading-relaxed">
               {locale === 'en'
                 ? `A Muhurta is one-thirtieth of a full day (sunrise to sunrise), lasting approximately 48 minutes. The day is divided into 15 daytime Muhurtas (sunrise to sunset) and 15 nighttime Muhurtas (sunset to next sunrise). Since the duration of day and night varies by season, the actual length of each Muhurta changes accordingly -- a daytime Muhurta is longer in summer and shorter in winter. Each Muhurta is presided over by a specific deity and carries an auspicious or inauspicious quality, making this system essential for electional astrology (Muhurta Shastra).`
-                : isDevanagari
-                ? `मुहूर्त एक पूर्ण दिन (सूर्योदय से सूर्योदय) का तीसवाँ भाग है, जो लगभग 48 मिनट का होता है। दिन को 15 दिवा मुहूर्तों (सूर्योदय से सूर्यास्त) और 15 रात्रि मुहूर्तों (सूर्यास्त से अगले सूर्योदय) में विभाजित किया जाता है। ऋतु के अनुसार दिन-रात की अवधि बदलती है, अतः प्रत्येक मुहूर्त की वास्तविक लम्बाई भी बदलती है। प्रत्येक मुहूर्त एक विशिष्ट देवता द्वारा अधिष्ठित है और शुभ या अशुभ गुण रखता है।`
-                : `मुहूर्तः पूर्णदिनस्य (सूर्योदयात् सूर्योदयपर्यन्तम्) त्रिंशत्तमः भागः, प्रायः 48 निमेषाणां कालः। दिनं 15 दिवामुहूर्तेषु (सूर्योदयात् सूर्यास्तपर्यन्तम्) 15 रात्रिमुहूर्तेषु च विभज्यते।`}
+                : tl({ en: `मुहूर्तः पूर्णदिनस्य (सूर्योदयात् सूर्योदयपर्यन्तम्) त्रिंशत्तमः भागः, प्रायः 48 निमेषाणां कालः। दिनं 15 दिवामुहूर्तेषु (सूर्योदयात् सूर्यास्तपर्यन्तम्) 15 रात्रिमुहूर्तेषु च विभज्यते।`, hi: `मुहूर्त एक पूर्ण दिन (सूर्योदय से सूर्योदय) का तीसवाँ भाग है, जो लगभग 48 मिनट का होता है। दिन को 15 दिवा मुहूर्तों (सूर्योदय से सूर्यास्त) और 15 रात्रि मुहूर्तों (सूर्यास्त से अगले सूर्योदय) में विभाजित किया जाता है। ऋतु के अनुसार दिन-रात की अवधि बदलती है, अतः प्रत्येक मुहूर्त की वास्तविक लम्बाई भी बदलती है। प्रत्येक मुहूर्त एक विशिष्ट देवता द्वारा अधिष्ठित है और शुभ या अशुभ गुण रखता है।`, sa: `मुहूर्त एक पूर्ण दिन (सूर्योदय से सूर्योदय) का तीसवाँ भाग है, जो लगभग 48 मिनट का होता है। दिन को 15 दिवा मुहूर्तों (सूर्योदय से सूर्यास्त) और 15 रात्रि मुहूर्तों (सूर्यास्त से अगले सूर्योदय) में विभाजित किया जाता है। ऋतु के अनुसार दिन-रात की अवधि बदलती है, अतः प्रत्येक मुहूर्त की वास्तविक लम्बाई भी बदलती है। प्रत्येक मुहूर्त एक विशिष्ट देवता द्वारा अधिष्ठित है और शुभ या अशुभ गुण रखता है।`, ta: `मुहूर्तः पूर्णदिनस्य (सूर्योदयात् सूर्योदयपर्यन्तम्) त्रिंशत्तमः भागः, प्रायः 48 निमेषाणां कालः। दिनं 15 दिवामुहूर्तेषु (सूर्योदयात् सूर्यास्तपर्यन्तम्) 15 रात्रिमुहूर्तेषु च विभज्यते।`, te: `मुहूर्तः पूर्णदिनस्य (सूर्योदयात् सूर्योदयपर्यन्तम्) त्रिंशत्तमः भागः, प्रायः 48 निमेषाणां कालः। दिनं 15 दिवामुहूर्तेषु (सूर्योदयात् सूर्यास्तपर्यन्तम्) 15 रात्रिमुहूर्तेषु च विभज्यते।`, bn: `मुहूर्तः पूर्णदिनस्य (सूर्योदयात् सूर्योदयपर्यन्तम्) त्रिंशत्तमः भागः, प्रायः 48 निमेषाणां कालः। दिनं 15 दिवामुहूर्तेषु (सूर्योदयात् सूर्यास्तपर्यन्तम्) 15 रात्रिमुहूर्तेषु च विभज्यते।`, kn: `मुहूर्तः पूर्णदिनस्य (सूर्योदयात् सूर्योदयपर्यन्तम्) त्रिंशत्तमः भागः, प्रायः 48 निमेषाणां कालः। दिनं 15 दिवामुहूर्तेषु (सूर्योदयात् सूर्यास्तपर्यन्तम्) 15 रात्रिमुहूर्तेषु च विभज्यते।`, gu: `मुहूर्तः पूर्णदिनस्य (सूर्योदयात् सूर्योदयपर्यन्तम्) त्रिंशत्तमः भागः, प्रायः 48 निमेषाणां कालः। दिनं 15 दिवामुहूर्तेषु (सूर्योदयात् सूर्यास्तपर्यन्तम्) 15 रात्रिमुहूर्तेषु च विभज्यते।`, mai: `मुहूर्त एक पूर्ण दिन (सूर्योदय से सूर्योदय) का तीसवाँ भाग है, जो लगभग 48 मिनट का होता है। दिन को 15 दिवा मुहूर्तों (सूर्योदय से सूर्यास्त) और 15 रात्रि मुहूर्तों (सूर्यास्त से अगले सूर्योदय) में विभाजित किया जाता है। ऋतु के अनुसार दिन-रात की अवधि बदलती है, अतः प्रत्येक मुहूर्त की वास्तविक लम्बाई भी बदलती है। प्रत्येक मुहूर्त एक विशिष्ट देवता द्वारा अधिष्ठित है और शुभ या अशुभ गुण रखता है।`, mr: `मुहूर्त एक पूर्ण दिन (सूर्योदय से सूर्योदय) का तीसवाँ भाग है, जो लगभग 48 मिनट का होता है। दिन को 15 दिवा मुहूर्तों (सूर्योदय से सूर्यास्त) और 15 रात्रि मुहूर्तों (सूर्यास्त से अगले सूर्योदय) में विभाजित किया जाता है। ऋतु के अनुसार दिन-रात की अवधि बदलती है, अतः प्रत्येक मुहूर्त की वास्तविक लम्बाई भी बदलती है। प्रत्येक मुहूर्त एक विशिष्ट देवता द्वारा अधिष्ठित है और शुभ या अशुभ गुण रखता है।` }, locale)}
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {!isDevanagariLocale(locale) ? 'Formula:' : 'सूत्र:'} 1 Muhurta = (Sunrise to Sunset) / 15 = ~48 min
+                {tl({ en: 'Formula:', hi: 'सूत्र:', sa: 'सूत्र:', ta: 'Formula:', te: 'Formula:', bn: 'Formula:', kn: 'Formula:', gu: 'Formula:', mai: 'सूत्र:', mr: 'सूत्र:' }, locale)} 1 Muhurta = (Sunrise to Sunset) / 15 = ~48 min
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
-                {!isDevanagariLocale(locale) ? '1 day = 30 Muhurtas = 15 daytime + 15 nighttime' : '1 दिन = 30 मुहूर्त = 15 दिवा + 15 रात्रि'}
+                {tl({ en: '1 day = 30 Muhurtas = 15 daytime + 15 nighttime', hi: '1 दिन = 30 मुहूर्त = 15 दिवा + 15 रात्रि', sa: '1 दिन = 30 मुहूर्त = 15 दिवा + 15 रात्रि', ta: '1 day = 30 Muhurtas = 15 daytime + 15 nighttime', te: '1 day = 30 Muhurtas = 15 daytime + 15 nighttime', bn: '1 day = 30 Muhurtas = 15 daytime + 15 nighttime', kn: '1 day = 30 Muhurtas = 15 daytime + 15 nighttime', gu: '1 day = 30 Muhurtas = 15 daytime + 15 nighttime', mai: '1 दिन = 30 मुहूर्त = 15 दिवा + 15 रात्रि', mr: '1 दिन = 30 मुहूर्त = 15 दिवा + 15 रात्रि' }, locale)}
               </p>
             </div>
           </div>
@@ -627,14 +626,12 @@ export default function MuhurtaPage() {
       {/* Animated Muhurta Wheel Visualization */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'Muhurta Wheel' : isDevanagari ? 'मुहूर्त चक्र' : 'मुहूर्तचक्रम्'}
+          {tl({ en: 'Muhurta Wheel', hi: 'मुहूर्त चक्र', sa: 'मुहूर्तचक्रम्', ta: 'Muhurta Wheel', te: 'Muhurta Wheel', bn: 'Muhurta Wheel', kn: 'Muhurta Wheel', gu: 'Muhurta Wheel', mai: 'मुहूर्त चक्र', mr: 'मुहूर्त चक्र' }, locale)}
         </h2>
         <p className="text-text-secondary text-sm mb-4">
           {locale === 'en'
             ? 'Click any sector to view details. Green = auspicious, Red = inauspicious.'
-            : isDevanagari
-            ? 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें। हरा = शुभ, लाल = अशुभ।'
-            : 'विवरणार्थं कमपि खण्डं क्लिक्कयतु। हरितम् = शुभम्, रक्तम् = अशुभम्।'}
+            : tl({ en: 'विवरणार्थं कमपि खण्डं क्लिक्कयतु। हरितम् = शुभम्, रक्तम् = अशुभम्।', hi: 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें। हरा = शुभ, लाल = अशुभ।', sa: 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें। हरा = शुभ, लाल = अशुभ।', ta: 'विवरणार्थं कमपि खण्डं क्लिक्कयतु। हरितम् = शुभम्, रक्तम् = अशुभम्।', te: 'विवरणार्थं कमपि खण्डं क्लिक्कयतु। हरितम् = शुभम्, रक्तम् = अशुभम्।', bn: 'विवरणार्थं कमपि खण्डं क्लिक्कयतु। हरितम् = शुभम्, रक्तम् = अशुभम्।', kn: 'विवरणार्थं कमपि खण्डं क्लिक्कयतु। हरितम् = शुभम्, रक्तम् = अशुभम्।', gu: 'विवरणार्थं कमपि खण्डं क्लिक्कयतु। हरितम् = शुभम्, रक्तम् = अशुभम्।', mai: 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें। हरा = शुभ, लाल = अशुभ।', mr: 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें। हरा = शुभ, लाल = अशुभ।' }, locale)}
         </p>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex justify-center">
           <AnimatedMuhurtaWheel locale={locale} selectedMuhurta={selectedMuhurta} onSelect={handleSelect} />
@@ -697,14 +694,14 @@ export default function MuhurtaPage() {
                   transition={{ delay: 0.15 }}
                 >
                   <p className="text-text-secondary text-xs mb-1">
-                    {!isDevanagariLocale(locale) ? 'Nature' : isDevanagari ? 'स्वभाव' : 'स्वभावः'}
+                    {tl({ en: 'Nature', hi: 'स्वभाव', sa: 'स्वभावः', ta: 'Nature', te: 'Nature', bn: 'Nature', kn: 'Nature', gu: 'Nature', mai: 'स्वभाव', mr: 'स्वभाव' }, locale)}
                   </p>
                   <p className={`text-lg font-semibold ${natureColor(selected.nature)}`}>
                     {selected.nature === 'auspicious'
-                      ? (!isDevanagariLocale(locale) ? 'Auspicious' : isDevanagari ? 'शुभ' : 'शुभम्')
+                      ? (tl({ en: 'Auspicious', hi: 'शुभ', sa: 'शुभम्', ta: 'Auspicious', te: 'Auspicious', bn: 'Auspicious', kn: 'Auspicious', gu: 'Auspicious', mai: 'शुभ', mr: 'शुभ' }, locale))
                       : selected.nature === 'inauspicious'
-                      ? (!isDevanagariLocale(locale) ? 'Inauspicious' : isDevanagari ? 'अशुभ' : 'अशुभम्')
-                      : (!isDevanagariLocale(locale) ? 'Neutral' : isDevanagari ? 'सम' : 'समम्')}
+                      ? (tl({ en: 'Inauspicious', hi: 'अशुभ', sa: 'अशुभम्', ta: 'Inauspicious', te: 'Inauspicious', bn: 'Inauspicious', kn: 'Inauspicious', gu: 'Inauspicious', mai: 'अशुभ', mr: 'अशुभ' }, locale))
+                      : (tl({ en: 'Neutral', hi: 'सम', sa: 'समम्', ta: 'Neutral', te: 'Neutral', bn: 'Neutral', kn: 'Neutral', gu: 'Neutral', mai: 'सम', mr: 'सम' }, locale))}
                   </p>
                 </motion.div>
 
@@ -716,12 +713,12 @@ export default function MuhurtaPage() {
                   transition={{ delay: 0.2 }}
                 >
                   <p className="text-text-secondary text-xs mb-1">
-                    {!isDevanagariLocale(locale) ? 'Period' : isDevanagari ? 'काल' : 'कालः'}
+                    {tl({ en: 'Period', hi: 'काल', sa: 'कालः', ta: 'Period', te: 'Period', bn: 'Period', kn: 'Period', gu: 'Period', mai: 'काल', mr: 'काल' }, locale)}
                   </p>
                   <p className={`text-lg font-semibold ${selected.number <= 15 ? 'text-gold-light' : 'text-indigo-300'}`}>
                     {selected.number <= 15
-                      ? (!isDevanagariLocale(locale) ? 'Daytime' : isDevanagari ? 'दिवा' : 'दिवा')
-                      : (!isDevanagariLocale(locale) ? 'Nighttime' : isDevanagari ? 'रात्रि' : 'रात्रिः')}
+                      ? (tl({ en: 'Daytime', hi: 'दिवा', sa: 'दिवा', ta: 'Daytime', te: 'Daytime', bn: 'Daytime', kn: 'Daytime', gu: 'Daytime', mai: 'दिवा', mr: 'दिवा' }, locale))
+                      : (tl({ en: 'Nighttime', hi: 'रात्रि', sa: 'रात्रिः', ta: 'Nighttime', te: 'Nighttime', bn: 'Nighttime', kn: 'Nighttime', gu: 'Nighttime', mai: 'रात्रि', mr: 'रात्रि' }, locale))}
                   </p>
                 </motion.div>
 
@@ -733,7 +730,7 @@ export default function MuhurtaPage() {
                   transition={{ delay: 0.25 }}
                 >
                   <p className="text-text-secondary text-xs mb-1">
-                    {!isDevanagariLocale(locale) ? 'All Names' : isDevanagari ? 'सभी नाम' : 'सर्वाणि नामानि'}
+                    {tl({ en: 'All Names', hi: 'सभी नाम', sa: 'सर्वाणि नामानि', ta: 'All Names', te: 'All Names', bn: 'All Names', kn: 'All Names', gu: 'All Names', mai: 'सभी नाम', mr: 'सभी नाम' }, locale)}
                   </p>
                   <p className="text-sm text-text-secondary leading-relaxed">
                     <span className="text-gold-light">{selected.name.en}</span>
@@ -752,7 +749,7 @@ export default function MuhurtaPage() {
       {/* Animated Sunrise-Sunset Timeline */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'Day-Night Muhurta Timeline' : isDevanagari ? 'दिवा-रात्रि मुहूर्त समयरेखा' : 'दिवारात्रिमुहूर्तकालरेखा'}
+          {tl({ en: 'Day-Night Muhurta Timeline', hi: 'दिवा-रात्रि मुहूर्त समयरेखा', sa: 'दिवारात्रिमुहूर्तकालरेखा', ta: 'Day-Night Muhurta Timeline', te: 'Day-Night Muhurta Timeline', bn: 'Day-Night Muhurta Timeline', kn: 'Day-Night Muhurta Timeline', gu: 'Day-Night Muhurta Timeline', mai: 'दिवा-रात्रि मुहूर्त समयरेखा', mr: 'दिवा-रात्रि मुहूर्त समयरेखा' }, locale)}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
           <AnimatedSunriseSunsetDiagram locale={locale} selectedMuhurta={selectedMuhurta} onSelect={handleSelect} />
@@ -767,14 +764,12 @@ export default function MuhurtaPage() {
         <p className="text-text-secondary text-sm mb-6">
           {locale === 'en'
             ? 'Click any muhurta to expand and view its deity, significance, and best activities.'
-            : isDevanagari
-            ? 'देवता, महत्त्व और सर्वोत्तम कार्य देखने के लिए किसी भी मुहूर्त पर क्लिक करें।'
-            : 'देवतां महत्त्वं सर्वोत्तमकर्माणि च द्रष्टुं कमपि मुहूर्तं क्लिक्कयतु।'}
+            : tl({ en: 'देवतां महत्त्वं सर्वोत्तमकर्माणि च द्रष्टुं कमपि मुहूर्तं क्लिक्कयतु।', hi: 'देवता, महत्त्व और सर्वोत्तम कार्य देखने के लिए किसी भी मुहूर्त पर क्लिक करें।', sa: 'देवता, महत्त्व और सर्वोत्तम कार्य देखने के लिए किसी भी मुहूर्त पर क्लिक करें।', ta: 'देवतां महत्त्वं सर्वोत्तमकर्माणि च द्रष्टुं कमपि मुहूर्तं क्लिक्कयतु।', te: 'देवतां महत्त्वं सर्वोत्तमकर्माणि च द्रष्टुं कमपि मुहूर्तं क्लिक्कयतु।', bn: 'देवतां महत्त्वं सर्वोत्तमकर्माणि च द्रष्टुं कमपि मुहूर्तं क्लिक्कयतु।', kn: 'देवतां महत्त्वं सर्वोत्तमकर्माणि च द्रष्टुं कमपि मुहूर्तं क्लिक्कयतु।', gu: 'देवतां महत्त्वं सर्वोत्तमकर्माणि च द्रष्टुं कमपि मुहूर्तं क्लिक्कयतु।', mai: 'देवता, महत्त्व और सर्वोत्तम कार्य देखने के लिए किसी भी मुहूर्त पर क्लिक करें।', mr: 'देवता, महत्त्व और सर्वोत्तम कार्य देखने के लिए किसी भी मुहूर्त पर क्लिक करें।' }, locale)}
         </p>
 
         {/* Daytime Muhurtas */}
         <h3 className="text-xl text-gold-light mb-4" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'Daytime Muhurtas (Sunrise to Sunset)' : isDevanagari ? 'दिवा मुहूर्त (सूर्योदय से सूर्यास्त)' : 'दिवामुहूर्ताः (सूर्योदयात् सूर्यास्तपर्यन्तम्)'}
+          {tl({ en: 'Daytime Muhurtas (Sunrise to Sunset)', hi: 'दिवा मुहूर्त (सूर्योदय से सूर्यास्त)', sa: 'दिवामुहूर्ताः (सूर्योदयात् सूर्यास्तपर्यन्तम्)', ta: 'Daytime Muhurtas (Sunrise to Sunset)', te: 'Daytime Muhurtas (Sunrise to Sunset)', bn: 'Daytime Muhurtas (Sunrise to Sunset)', kn: 'Daytime Muhurtas (Sunrise to Sunset)', gu: 'Daytime Muhurtas (Sunrise to Sunset)', mai: 'दिवा मुहूर्त (सूर्योदय से सूर्यास्त)', mr: 'दिवा मुहूर्त (सूर्योदय से सूर्यास्त)' }, locale)}
         </h3>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-8">
           {MUHURTA_DATA.filter(m => m.period === 'day').map((m) => (
@@ -784,7 +779,7 @@ export default function MuhurtaPage() {
 
         {/* Nighttime Muhurtas */}
         <h3 className="text-xl text-indigo-300/80 mb-4" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'Nighttime Muhurtas (Sunset to Sunrise)' : isDevanagari ? 'रात्रि मुहूर्त (सूर्यास्त से सूर्योदय)' : 'रात्रिमुहूर्ताः (सूर्यास्तात् सूर्योदयपर्यन्तम्)'}
+          {tl({ en: 'Nighttime Muhurtas (Sunset to Sunrise)', hi: 'रात्रि मुहूर्त (सूर्यास्त से सूर्योदय)', sa: 'रात्रिमुहूर्ताः (सूर्यास्तात् सूर्योदयपर्यन्तम्)', ta: 'Nighttime Muhurtas (Sunset to Sunrise)', te: 'Nighttime Muhurtas (Sunset to Sunrise)', bn: 'Nighttime Muhurtas (Sunset to Sunrise)', kn: 'Nighttime Muhurtas (Sunset to Sunrise)', gu: 'Nighttime Muhurtas (Sunset to Sunrise)', mai: 'रात्रि मुहूर्त (सूर्यास्त से सूर्योदय)', mr: 'रात्रि मुहूर्त (सूर्यास्त से सूर्योदय)' }, locale)}
         </h3>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {MUHURTA_DATA.filter(m => m.period === 'night').map((m) => (
@@ -798,14 +793,12 @@ export default function MuhurtaPage() {
       {/* Conflict Commentary Section */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-2" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'Timing Conflicts & Resolution' : isDevanagari ? 'समय विरोध एवं समाधान' : 'कालविरोधः समाधानं च'}
+          {tl({ en: 'Timing Conflicts & Resolution', hi: 'समय विरोध एवं समाधान', sa: 'कालविरोधः समाधानं च', ta: 'Timing Conflicts & Resolution', te: 'Timing Conflicts & Resolution', bn: 'Timing Conflicts & Resolution', kn: 'Timing Conflicts & Resolution', gu: 'Timing Conflicts & Resolution', mai: 'समय विरोध एवं समाधान', mr: 'समय विरोध एवं समाधान' }, locale)}
         </h2>
         <p className="text-text-secondary mb-6">
           {locale === 'en'
             ? 'When auspicious and inauspicious periods overlap, classical texts provide clear guidance on which influence prevails.'
-            : isDevanagari
-            ? 'जब शुभ और अशुभ काल ओवरलैप करते हैं, शास्त्रीय ग्रन्थ स्पष्ट मार्गदर्शन प्रदान करते हैं कि कौन सा प्रभाव प्रबल होता है।'
-            : 'यदा शुभाशुभकालौ परस्परं संलग्नौ भवतः, शास्त्रीयग्रन्थाः स्पष्टं मार्गदर्शनं प्रददति।'}
+            : tl({ en: 'यदा शुभाशुभकालौ परस्परं संलग्नौ भवतः, शास्त्रीयग्रन्थाः स्पष्टं मार्गदर्शनं प्रददति।', hi: 'जब शुभ और अशुभ काल ओवरलैप करते हैं, शास्त्रीय ग्रन्थ स्पष्ट मार्गदर्शन प्रदान करते हैं कि कौन सा प्रभाव प्रबल होता है।', sa: 'जब शुभ और अशुभ काल ओवरलैप करते हैं, शास्त्रीय ग्रन्थ स्पष्ट मार्गदर्शन प्रदान करते हैं कि कौन सा प्रभाव प्रबल होता है।', ta: 'यदा शुभाशुभकालौ परस्परं संलग्नौ भवतः, शास्त्रीयग्रन्थाः स्पष्टं मार्गदर्शनं प्रददति।', te: 'यदा शुभाशुभकालौ परस्परं संलग्नौ भवतः, शास्त्रीयग्रन्थाः स्पष्टं मार्गदर्शनं प्रददति।', bn: 'यदा शुभाशुभकालौ परस्परं संलग्नौ भवतः, शास्त्रीयग्रन्थाः स्पष्टं मार्गदर्शनं प्रददति।', kn: 'यदा शुभाशुभकालौ परस्परं संलग्नौ भवतः, शास्त्रीयग्रन्थाः स्पष्टं मार्गदर्शनं प्रददति।', gu: 'यदा शुभाशुभकालौ परस्परं संलग्नौ भवतः, शास्त्रीयग्रन्थाः स्पष्टं मार्गदर्शनं प्रददति।', mai: 'जब शुभ और अशुभ काल ओवरलैप करते हैं, शास्त्रीय ग्रन्थ स्पष्ट मार्गदर्शन प्रदान करते हैं कि कौन सा प्रभाव प्रबल होता है।', mr: 'जब शुभ और अशुभ काल ओवरलैप करते हैं, शास्त्रीय ग्रन्थ स्पष्ट मार्गदर्शन प्रदान करते हैं कि कौन सा प्रभाव प्रबल होता है।' }, locale)}
         </p>
         <ConflictSection locale={locale} />
       </section>
@@ -816,7 +809,7 @@ export default function MuhurtaPage() {
           href="/learn/muhurtas"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {!isDevanagariLocale(locale) ? 'Learn Muhurta Basics →' : isDevanagari ? 'मुहूर्त मूल बातें सीखें →' : 'मुहूर्तमूलतत्त्वानि शिक्षतु →'}
+          {tl({ en: 'Learn Muhurta Basics →', hi: 'मुहूर्त मूल बातें सीखें →', sa: 'मुहूर्तमूलतत्त्वानि शिक्षतु →', ta: 'Learn Muhurta Basics →', te: 'Learn Muhurta Basics →', bn: 'Learn Muhurta Basics →', kn: 'Learn Muhurta Basics →', gu: 'Learn Muhurta Basics →', mai: 'मुहूर्त मूल बातें सीखें →', mr: 'मुहूर्त मूल बातें सीखें →' }, locale)}
         </Link>
       </div>
     </div>

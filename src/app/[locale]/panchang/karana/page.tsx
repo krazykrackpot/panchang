@@ -10,6 +10,7 @@ import type { Locale } from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { KaranaIcon } from '@/components/icons/PanchangIcons';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { tl } from '@/lib/utils/trilingual';
 
 /* ------------------------------------------------------------------ */
 /*  60-slot Karana sequence: Shakuni at pos 1, Chara cycle 2-58,      */
@@ -238,36 +239,36 @@ function AnimatedKaranaWheel({
       {/* Center disc */}
       <circle cx={CX} cy={CY} r="75" fill="#0a0e27" stroke="rgba(212,168,83,0.15)" strokeWidth="0.5" />
       <text x={CX} y={CY - 20} fill="#f0d48a" fontSize="13" textAnchor="middle" fontWeight="bold" fontFamily="var(--font-heading)">
-        {!isDevanagariLocale(locale) ? 'KARANA' : locale === 'sa' ? 'करणम्' : 'करण'}
+        {tl({ en: 'KARANA', hi: 'करण', sa: 'करणम्', ta: 'KARANA', te: 'KARANA', bn: 'KARANA', kn: 'KARANA', gu: 'KARANA', mai: 'करण', mr: 'करण' }, locale)}
       </text>
       <text x={CX} y={CY - 3} fill="rgba(212,168,83,0.5)" fontSize="8" textAnchor="middle">
-        {!isDevanagariLocale(locale) ? '60 Half-Tithis' : '60 अर्ध-तिथि'}
+        {tl({ en: '60 Half-Tithis', hi: '60 अर्ध-तिथि', sa: '60 अर्ध-तिथि', ta: '60 Half-Tithis', te: '60 Half-Tithis', bn: '60 Half-Tithis', kn: '60 Half-Tithis', gu: '60 Half-Tithis', mai: '60 अर्ध-तिथि', mr: '60 अर्ध-तिथि' }, locale)}
       </text>
       <text x={CX} y={CY + 14} fill="#4ade80" fontSize="10" textAnchor="middle" fontFamily="var(--font-heading)">
-        {!isDevanagariLocale(locale) ? '7 CHARA' : '7 चर'}
+        {tl({ en: '7 CHARA', hi: '7 चर', sa: '7 चर', ta: '7 CHARA', te: '7 CHARA', bn: '7 CHARA', kn: '7 CHARA', gu: '7 CHARA', mai: '7 चर', mr: '7 चर' }, locale)}
       </text>
       <text x={CX} y={CY + 28} fill="rgba(74,222,128,0.45)" fontSize="7" textAnchor="middle">
-        {!isDevanagariLocale(locale) ? 'cycle 8 times' : '8 बार चक्र'}
+        {tl({ en: 'cycle 8 times', hi: '8 बार चक्र', sa: '8 बार चक्र', ta: 'cycle 8 times', te: 'cycle 8 times', bn: 'cycle 8 times', kn: 'cycle 8 times', gu: 'cycle 8 times', mai: '8 बार चक्र', mr: '8 बार चक्र' }, locale)}
       </text>
       <text x={CX} y={CY + 44} fill="#f87171" fontSize="10" textAnchor="middle" fontFamily="var(--font-heading)">
-        {!isDevanagariLocale(locale) ? '4 STHIRA' : '4 स्थिर'}
+        {tl({ en: '4 STHIRA', hi: '4 स्थिर', sa: '4 स्थिर', ta: '4 STHIRA', te: '4 STHIRA', bn: '4 STHIRA', kn: '4 STHIRA', gu: '4 STHIRA', mai: '4 स्थिर', mr: '4 स्थिर' }, locale)}
       </text>
       <text x={CX} y={CY + 57} fill="rgba(248,113,113,0.45)" fontSize="7" textAnchor="middle">
-        {!isDevanagariLocale(locale) ? 'appear once' : 'एक बार'}
+        {tl({ en: 'appear once', hi: 'एक बार', sa: 'एक बार', ta: 'appear once', te: 'appear once', bn: 'appear once', kn: 'appear once', gu: 'appear once', mai: 'एक बार', mr: 'एक बार' }, locale)}
       </text>
 
       {/* Legend at bottom */}
       <circle cx={55} cy={468} r="5" fill="#4ade80" opacity="0.6" />
       <text x={70} y={471} fill="#4ade80" fontSize="8" fontWeight="500">
-        {!isDevanagariLocale(locale) ? 'Chara (Movable)' : 'चर (गतिशील)'}
+        {tl({ en: 'Chara (Movable)', hi: 'चर (गतिशील)', sa: 'चर (गतिशील)', ta: 'Chara (Movable)', te: 'Chara (Movable)', bn: 'Chara (Movable)', kn: 'Chara (Movable)', gu: 'Chara (Movable)', mai: 'चर (गतिशील)', mr: 'चर (गतिशील)' }, locale)}
       </text>
       <circle cx={195} cy={468} r="5" fill="#ef4444" opacity="0.6" />
       <text x={210} y={471} fill="#ef4444" fontSize="8" fontWeight="500">
-        {!isDevanagariLocale(locale) ? 'Vishti / Bhadra' : 'विष्टि / भद्रा'}
+        {tl({ en: 'Vishti / Bhadra', hi: 'विष्टि / भद्रा', sa: 'विष्टि / भद्रा', ta: 'Vishti / Bhadra', te: 'Vishti / Bhadra', bn: 'Vishti / Bhadra', kn: 'Vishti / Bhadra', gu: 'Vishti / Bhadra', mai: 'विष्टि / भद्रा', mr: 'विष्टि / भद्रा' }, locale)}
       </text>
       <circle cx={345} cy={468} r="5" fill="#f87171" opacity="0.6" />
       <text x={360} y={471} fill="#f87171" fontSize="8" fontWeight="500">
-        {!isDevanagariLocale(locale) ? 'Sthira (Fixed)' : 'स्थिर (अचल)'}
+        {tl({ en: 'Sthira (Fixed)', hi: 'स्थिर (अचल)', sa: 'स्थिर (अचल)', ta: 'Sthira (Fixed)', te: 'Sthira (Fixed)', bn: 'Sthira (Fixed)', kn: 'Sthira (Fixed)', gu: 'Sthira (Fixed)', mai: 'स्थिर (अचल)', mr: 'स्थिर (अचल)' }, locale)}
       </text>
     </motion.svg>
   );
@@ -329,7 +330,7 @@ function AngularSeparationDiagram({ locale }: { locale: Locale }) {
           );
         })}
         <text x="100" y="160" fill="#f39c12" fontSize="11" textAnchor="middle" fontWeight="600">
-          {!isDevanagariLocale(locale) ? 'Sun' : 'सूर्य'}
+          {tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun', mai: 'सूर्य', mr: 'सूर्य' }, locale)}
         </text>
         <text x="100" y="175" fill="#f39c12" fontSize="8" textAnchor="middle" opacity="0.6">0°</text>
       </motion.g>
@@ -359,10 +360,10 @@ function AngularSeparationDiagram({ locale }: { locale: Locale }) {
       <motion.g initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.7, type: 'spring' }}>
         <circle cx="400" cy="110" r="18" fill="url(#moonGradK)" />
         <text x="400" y="150" fill="#d4a853" fontSize="11" textAnchor="middle" fontWeight="600">
-          {!isDevanagariLocale(locale) ? 'Moon' : 'चन्द्र'}
+          {tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon', mai: 'चन्द्र', mr: 'चन्द्र' }, locale)}
         </text>
         <text x="400" y="165" fill="#d4a853" fontSize="8" textAnchor="middle" opacity="0.6">
-          {!isDevanagariLocale(locale) ? '+6° ahead' : '+6° आगे'}
+          {tl({ en: '+6° ahead', hi: '+6° आगे', sa: '+6° आगे', ta: '+6° ahead', te: '+6° ahead', bn: '+6° ahead', kn: '+6° ahead', gu: '+6° ahead', mai: '+6° आगे', mr: '+6° आगे' }, locale)}
         </text>
       </motion.g>
 
@@ -378,7 +379,7 @@ function AngularSeparationDiagram({ locale }: { locale: Locale }) {
         initial={{ opacity: 0 }} animate={{ opacity: 1 }}
         transition={{ delay: 1.3 }}
       >
-        {!isDevanagariLocale(locale) ? '6° = 1 Karana = Half Tithi' : '6° = 1 करण = अर्ध तिथि'}
+        {tl({ en: '6° = 1 Karana = Half Tithi', hi: '6° = 1 करण = अर्ध तिथि', sa: '6° = 1 करण = अर्ध तिथि', ta: '6° = 1 Karana = Half Tithi', te: '6° = 1 Karana = Half Tithi', bn: '6° = 1 Karana = Half Tithi', kn: '6° = 1 Karana = Half Tithi', gu: '6° = 1 Karana = Half Tithi', mai: '6° = 1 करण = अर्ध तिथि', mr: '6° = 1 करण = अर्ध तिथि' }, locale)}
       </motion.text>
 
       {/* Tithi bracket */}
@@ -393,7 +394,7 @@ function AngularSeparationDiagram({ locale }: { locale: Locale }) {
         initial={{ opacity: 0 }} animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
       >
-        {!isDevanagariLocale(locale) ? '12° = 1 Tithi = 2 Karanas' : '12° = 1 तिथि = 2 करण'}
+        {tl({ en: '12° = 1 Tithi = 2 Karanas', hi: '12° = 1 तिथि = 2 करण', sa: '12° = 1 तिथि = 2 करण', ta: '12° = 1 Tithi = 2 Karanas', te: '12° = 1 Tithi = 2 Karanas', bn: '12° = 1 Tithi = 2 Karanas', kn: '12° = 1 Tithi = 2 Karanas', gu: '12° = 1 Tithi = 2 Karanas', mai: '12° = 1 तिथि = 2 करण', mr: '12° = 1 तिथि = 2 करण' }, locale)}
       </motion.text>
 
       {/* Result box */}
@@ -404,7 +405,7 @@ function AngularSeparationDiagram({ locale }: { locale: Locale }) {
       >
         <rect x="460" y="72" width="145" height="76" rx="8" fill="rgba(74,222,128,0.08)" stroke="rgba(74,222,128,0.3)" strokeWidth="1" />
         <text x="532" y="95" fill="#4ade80" fontSize="8" textAnchor="middle" opacity="0.8">
-          {!isDevanagariLocale(locale) ? 'Formula' : 'सूत्र'}
+          {tl({ en: 'Formula', hi: 'सूत्र', sa: 'सूत्र', ta: 'Formula', te: 'Formula', bn: 'Formula', kn: 'Formula', gu: 'Formula', mai: 'सूत्र', mr: 'सूत्र' }, locale)}
         </text>
         <text x="532" y="112" fill="#4ade80" fontSize="9" textAnchor="middle" fontWeight="bold" fontFamily="monospace">
           K = floor(D/6°)
@@ -413,7 +414,7 @@ function AngularSeparationDiagram({ locale }: { locale: Locale }) {
           D = Moon - Sun
         </text>
         <text x="532" y="142" fill="rgba(74,222,128,0.5)" fontSize="7" textAnchor="middle">
-          {!isDevanagariLocale(locale) ? '60 Karanas / month' : '60 करण / मास'}
+          {tl({ en: '60 Karanas / month', hi: '60 करण / मास', sa: '60 करण / मास', ta: '60 Karanas / month', te: '60 Karanas / month', bn: '60 Karanas / month', kn: '60 Karanas / month', gu: '60 Karanas / month', mai: '60 करण / मास', mr: '60 करण / मास' }, locale)}
         </text>
       </motion.g>
     </motion.svg>
@@ -449,10 +450,10 @@ export default function KaranaPage() {
         <KaranaIcon size={72} />
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
-            <span className="text-gold-gradient">{isTamil ? 'கரணம்' : locale === 'en' ? 'Karana' : isDevanagari ? 'करण' : 'करणम्'}</span>
+            <span className="text-gold-gradient">{tl({ en: 'Karana', hi: 'करण', sa: 'करणम्', ta: 'கரணம்', te: 'Karana', bn: 'Karana', kn: 'Karana', gu: 'Karana', mai: 'करण', mr: 'करण' }, locale)}</span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isTamil ? 'அரை-திதி — சந்திர நேரத்தின் 11 கட்டுமானத் தொகுதிகள்' : locale === 'en' ? 'The Half-Tithi — 11 Building Blocks of Lunar Time' : isDevanagari ? 'अर्ध-तिथि — चान्द्र काल के 11 खण्ड' : 'अर्धतिथिः — चान्द्रकालस्य एकादश खण्डाः'}
+            {tl({ en: 'The Half-Tithi — 11 Building Blocks of Lunar Time', hi: 'अर्ध-तिथि — चान्द्र काल के 11 खण्ड', sa: 'अर्धतिथिः — चान्द्रकालस्य एकादश खण्डाः', ta: 'அரை-திதி — சந்திர நேரத்தின் 11 கட்டுமானத் தொகுதிகள்', te: 'The Half-Tithi — 11 Building Blocks of Lunar Time', bn: 'The Half-Tithi — 11 Building Blocks of Lunar Time', kn: 'The Half-Tithi — 11 Building Blocks of Lunar Time', gu: 'The Half-Tithi — 11 Building Blocks of Lunar Time', mai: 'अर्ध-तिथि — चान्द्र काल के 11 खण्ड', mr: 'अर्ध-तिथि — चान्द्र काल के 11 खण्ड' }, locale)}
           </p>
         </div>
       </motion.div>
@@ -468,9 +469,7 @@ export default function KaranaPage() {
             <p className="text-lg leading-relaxed">
               {locale === 'en'
                 ? `A Karana is half a Tithi, i.e., the time for the Moon to gain 6° over the Sun. There are 60 Karanas in a full lunar month (30 Tithis x 2). However, only 11 distinct Karanas exist: 7 "Chara" (movable) Karanas that cycle repeatedly through positions 2-58, and 4 "Sthira" (fixed) Karanas that appear only once each — Shakuni at position 1 (first half of Shukla Pratipada), and Chatushpada, Nagava, and Kimstughna occupying the last three positions (58-60). The Chara Karanas (Bava through Vishti) repeat 8 times across the month.`
-                : isDevanagari
-                ? `करण तिथि का आधा भाग है, अर्थात् चन्द्रमा द्वारा सूर्य से 6° आगे बढ़ने का समय। एक पूर्ण चान्द्र मास में 60 करण होते हैं (30 तिथि x 2)। केवल 11 विशिष्ट करण हैं: 7 "चर" (गतिशील) करण जो स्थान 2-58 में चक्रित होते हैं, और 4 "स्थिर" करण जो केवल एक बार आते हैं — शकुनि स्थान 1 पर (शुक्ल प्रतिपदा का पूर्वार्ध), तथा चतुष्पद, नागव और किंस्तुघ्न अन्तिम तीन स्थानों (58-60) पर।`
-                : `करणं तिथेः अर्धभागः, अर्थात् चन्द्रमसा सूर्यात् 6° अग्रे गमनस्य कालः। एकस्मिन् पूर्णचान्द्रमासे 60 करणानि भवन्ति। केवलम् 11 विशिष्टकरणानि सन्ति — 7 चरकरणानि यानि 2-58 स्थानेषु चक्रयन्ते, 4 स्थिरकरणानि च।`}
+                : tl({ en: `करणं तिथेः अर्धभागः, अर्थात् चन्द्रमसा सूर्यात् 6° अग्रे गमनस्य कालः। एकस्मिन् पूर्णचान्द्रमासे 60 करणानि भवन्ति। केवलम् 11 विशिष्टकरणानि सन्ति — 7 चरकरणानि यानि 2-58 स्थानेषु चक्रयन्ते, 4 स्थिरकरणानि च।`, hi: `करण तिथि का आधा भाग है, अर्थात् चन्द्रमा द्वारा सूर्य से 6° आगे बढ़ने का समय। एक पूर्ण चान्द्र मास में 60 करण होते हैं (30 तिथि x 2)। केवल 11 विशिष्ट करण हैं: 7 "चर" (गतिशील) करण जो स्थान 2-58 में चक्रित होते हैं, और 4 "स्थिर" करण जो केवल एक बार आते हैं — शकुनि स्थान 1 पर (शुक्ल प्रतिपदा का पूर्वार्ध), तथा चतुष्पद, नागव और किंस्तुघ्न अन्तिम तीन स्थानों (58-60) पर।`, sa: `करण तिथि का आधा भाग है, अर्थात् चन्द्रमा द्वारा सूर्य से 6° आगे बढ़ने का समय। एक पूर्ण चान्द्र मास में 60 करण होते हैं (30 तिथि x 2)। केवल 11 विशिष्ट करण हैं: 7 "चर" (गतिशील) करण जो स्थान 2-58 में चक्रित होते हैं, और 4 "स्थिर" करण जो केवल एक बार आते हैं — शकुनि स्थान 1 पर (शुक्ल प्रतिपदा का पूर्वार्ध), तथा चतुष्पद, नागव और किंस्तुघ्न अन्तिम तीन स्थानों (58-60) पर।`, ta: `करणं तिथेः अर्धभागः, अर्थात् चन्द्रमसा सूर्यात् 6° अग्रे गमनस्य कालः। एकस्मिन् पूर्णचान्द्रमासे 60 करणानि भवन्ति। केवलम् 11 विशिष्टकरणानि सन्ति — 7 चरकरणानि यानि 2-58 स्थानेषु चक्रयन्ते, 4 स्थिरकरणानि च।`, te: `करणं तिथेः अर्धभागः, अर्थात् चन्द्रमसा सूर्यात् 6° अग्रे गमनस्य कालः। एकस्मिन् पूर्णचान्द्रमासे 60 करणानि भवन्ति। केवलम् 11 विशिष्टकरणानि सन्ति — 7 चरकरणानि यानि 2-58 स्थानेषु चक्रयन्ते, 4 स्थिरकरणानि च।`, bn: `करणं तिथेः अर्धभागः, अर्थात् चन्द्रमसा सूर्यात् 6° अग्रे गमनस्य कालः। एकस्मिन् पूर्णचान्द्रमासे 60 करणानि भवन्ति। केवलम् 11 विशिष्टकरणानि सन्ति — 7 चरकरणानि यानि 2-58 स्थानेषु चक्रयन्ते, 4 स्थिरकरणानि च।`, kn: `करणं तिथेः अर्धभागः, अर्थात् चन्द्रमसा सूर्यात् 6° अग्रे गमनस्य कालः। एकस्मिन् पूर्णचान्द्रमासे 60 करणानि भवन्ति। केवलम् 11 विशिष्टकरणानि सन्ति — 7 चरकरणानि यानि 2-58 स्थानेषु चक्रयन्ते, 4 स्थिरकरणानि च।`, gu: `करणं तिथेः अर्धभागः, अर्थात् चन्द्रमसा सूर्यात् 6° अग्रे गमनस्य कालः। एकस्मिन् पूर्णचान्द्रमासे 60 करणानि भवन्ति। केवलम् 11 विशिष्टकरणानि सन्ति — 7 चरकरणानि यानि 2-58 स्थानेषु चक्रयन्ते, 4 स्थिरकरणानि च।`, mai: `करण तिथि का आधा भाग है, अर्थात् चन्द्रमा द्वारा सूर्य से 6° आगे बढ़ने का समय। एक पूर्ण चान्द्र मास में 60 करण होते हैं (30 तिथि x 2)। केवल 11 विशिष्ट करण हैं: 7 "चर" (गतिशील) करण जो स्थान 2-58 में चक्रित होते हैं, और 4 "स्थिर" करण जो केवल एक बार आते हैं — शकुनि स्थान 1 पर (शुक्ल प्रतिपदा का पूर्वार्ध), तथा चतुष्पद, नागव और किंस्तुघ्न अन्तिम तीन स्थानों (58-60) पर।`, mr: `करण तिथि का आधा भाग है, अर्थात् चन्द्रमा द्वारा सूर्य से 6° आगे बढ़ने का समय। एक पूर्ण चान्द्र मास में 60 करण होते हैं (30 तिथि x 2)। केवल 11 विशिष्ट करण हैं: 7 "चर" (गतिशील) करण जो स्थान 2-58 में चक्रित होते हैं, और 4 "स्थिर" करण जो केवल एक बार आते हैं — शकुनि स्थान 1 पर (शुक्ल प्रतिपदा का पूर्वार्ध), तथा चतुष्पद, नागव और किंस्तुघ्न अन्तिम तीन स्थानों (58-60) पर।` }, locale)}
             </p>
             <motion.div
               className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10"
@@ -479,10 +478,10 @@ export default function KaranaPage() {
               viewport={{ once: true }}
             >
               <p className="text-gold-light font-mono text-sm">
-                {!isDevanagariLocale(locale) ? 'Formula:' : 'सूत्र:'} Karana_index = floor((Moon_long - Sun_long) / 6°)
+                {tl({ en: 'Formula:', hi: 'सूत्र:', sa: 'सूत्र:', ta: 'Formula:', te: 'Formula:', bn: 'Formula:', kn: 'Formula:', gu: 'Formula:', mai: 'सूत्र:', mr: 'सूत्र:' }, locale)} Karana_index = floor((Moon_long - Sun_long) / 6°)
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
-                {!isDevanagariLocale(locale) ? '60 Karanas = 7 Chara (cycle 8x) + 4 Sthira (once each)' : '60 करण = 7 चर (8 बार) + 4 स्थिर (एक बार)'}
+                {tl({ en: '60 Karanas = 7 Chara (cycle 8x) + 4 Sthira (once each)', hi: '60 करण = 7 चर (8 बार) + 4 स्थिर (एक बार)', sa: '60 करण = 7 चर (8 बार) + 4 स्थिर (एक बार)', ta: '60 Karanas = 7 Chara (cycle 8x) + 4 Sthira (once each)', te: '60 Karanas = 7 Chara (cycle 8x) + 4 Sthira (once each)', bn: '60 Karanas = 7 Chara (cycle 8x) + 4 Sthira (once each)', kn: '60 Karanas = 7 Chara (cycle 8x) + 4 Sthira (once each)', gu: '60 Karanas = 7 Chara (cycle 8x) + 4 Sthira (once each)', mai: '60 करण = 7 चर (8 बार) + 4 स्थिर (एक बार)', mr: '60 करण = 7 चर (8 बार) + 4 स्थिर (एक बार)' }, locale)}
               </p>
             </motion.div>
           </div>
@@ -492,7 +491,7 @@ export default function KaranaPage() {
       {/* Interactive Karana Wheel */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'Interactive Karana Wheel — 60 Half-Tithis' : isDevanagari ? 'इंटरैक्टिव करण चक्र — 60 अर्ध-तिथियाँ' : 'संवादात्मकं करणचक्रम् — षष्टिः अर्धतिथयः'}
+          {tl({ en: 'Interactive Karana Wheel — 60 Half-Tithis', hi: 'इंटरैक्टिव करण चक्र — 60 अर्ध-तिथियाँ', sa: 'संवादात्मकं करणचक्रम् — षष्टिः अर्धतिथयः', ta: 'Interactive Karana Wheel — 60 Half-Tithis', te: 'Interactive Karana Wheel — 60 Half-Tithis', bn: 'Interactive Karana Wheel — 60 Half-Tithis', kn: 'Interactive Karana Wheel — 60 Half-Tithis', gu: 'Interactive Karana Wheel — 60 Half-Tithis', mai: 'इंटरैक्टिव करण चक्र — 60 अर्ध-तिथियाँ', mr: 'इंटरैक्टिव करण चक्र — 60 अर्ध-तिथियाँ' }, locale)}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <AnimatedKaranaWheel
@@ -526,29 +525,29 @@ export default function KaranaPage() {
                     </h3>
                     <span className={`text-xs px-2 py-1 rounded-full ${badgeClasses}`}>
                       {isSthira
-                        ? (!isDevanagariLocale(locale) ? 'Sthira (Fixed)' : 'स्थिर')
+                        ? (tl({ en: 'Sthira (Fixed)', hi: 'स्थिर', sa: 'स्थिर', ta: 'Sthira (Fixed)', te: 'Sthira (Fixed)', bn: 'Sthira (Fixed)', kn: 'Sthira (Fixed)', gu: 'Sthira (Fixed)', mai: 'स्थिर', mr: 'स्थिर' }, locale))
                         : karana.name.en === 'Vishti'
-                        ? (!isDevanagariLocale(locale) ? 'Vishti / Bhadra' : 'विष्टि / भद्रा')
-                        : (!isDevanagariLocale(locale) ? 'Chara (Movable)' : 'चर')}
+                        ? (tl({ en: 'Vishti / Bhadra', hi: 'विष्टि / भद्रा', sa: 'विष्टि / भद्रा', ta: 'Vishti / Bhadra', te: 'Vishti / Bhadra', bn: 'Vishti / Bhadra', kn: 'Vishti / Bhadra', gu: 'Vishti / Bhadra', mai: 'विष्टि / भद्रा', mr: 'विष्टि / भद्रा' }, locale))
+                        : (tl({ en: 'Chara (Movable)', hi: 'चर', sa: 'चर', ta: 'Chara (Movable)', te: 'Chara (Movable)', bn: 'Chara (Movable)', kn: 'Chara (Movable)', gu: 'Chara (Movable)', mai: 'चर', mr: 'चर' }, locale))}
                     </span>
                   </div>
                   <div className="text-text-secondary text-sm space-y-1">
                     <p>
-                      <span className="text-gold-dark">{!isDevanagariLocale(locale) ? 'Position:' : 'स्थान:'}</span>{' '}
+                      <span className="text-gold-dark">{tl({ en: 'Position:', hi: 'स्थान:', sa: 'स्थान:', ta: 'Position:', te: 'Position:', bn: 'Position:', kn: 'Position:', gu: 'Position:', mai: 'स्थान:', mr: 'स्थान:' }, locale)}</span>{' '}
                       {selectedKarana + 1} / 60
                     </p>
                     <p>
-                      <span className="text-gold-dark">{!isDevanagariLocale(locale) ? 'Angular Span:' : 'कोणीय विस्तार:'}</span>{' '}
+                      <span className="text-gold-dark">{tl({ en: 'Angular Span:', hi: 'कोणीय विस्तार:', sa: 'कोणीय विस्तार:', ta: 'Angular Span:', te: 'Angular Span:', bn: 'Angular Span:', kn: 'Angular Span:', gu: 'Angular Span:', mai: 'कोणीय विस्तार:', mr: 'कोणीय विस्तार:' }, locale)}</span>{' '}
                       {(selectedKarana * 6)}° — {((selectedKarana + 1) * 6)}°
                     </p>
                     <p>
-                      <span className="text-gold-dark">{!isDevanagariLocale(locale) ? 'Within Tithi:' : 'तिथि में:'}</span>{' '}
+                      <span className="text-gold-dark">{tl({ en: 'Within Tithi:', hi: 'तिथि में:', sa: 'तिथि में:', ta: 'Within Tithi:', te: 'Within Tithi:', bn: 'Within Tithi:', kn: 'Within Tithi:', gu: 'Within Tithi:', mai: 'तिथि में:', mr: 'तिथि में:' }, locale)}</span>{' '}
                       {locale === 'en'
                         ? `Tithi ${Math.floor(selectedKarana / 2) + 1}, ${selectedKarana % 2 === 0 ? '1st' : '2nd'} half`
                         : `तिथि ${Math.floor(selectedKarana / 2) + 1}, ${selectedKarana % 2 === 0 ? 'पूर्वार्ध' : 'उत्तरार्ध'}`}
                     </p>
                     <p>
-                      <span className="text-gold-dark">{!isDevanagariLocale(locale) ? 'Karana #:' : 'करण #:'}</span>{' '}
+                      <span className="text-gold-dark">{tl({ en: 'Karana #:', hi: 'करण #:', sa: 'करण #:', ta: 'Karana #:', te: 'Karana #:', bn: 'Karana #:', kn: 'Karana #:', gu: 'Karana #:', mai: 'करण #:', mr: 'करण #:' }, locale)}</span>{' '}
                       {karana.number} ({karana.name.en})
                     </p>
                     {karana.name.en === 'Vishti' && (
@@ -572,7 +571,7 @@ export default function KaranaPage() {
           </AnimatePresence>
 
           <p className="text-text-secondary text-xs text-center mt-4">
-            {!isDevanagariLocale(locale) ? 'Click on any sector to see details' : 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें'}
+            {tl({ en: 'Click on any sector to see details', hi: 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें', sa: 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें', ta: 'Click on any sector to see details', te: 'Click on any sector to see details', bn: 'Click on any sector to see details', kn: 'Click on any sector to see details', gu: 'Click on any sector to see details', mai: 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें', mr: 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें' }, locale)}
           </p>
         </div>
       </section>
@@ -585,7 +584,7 @@ export default function KaranaPage() {
 
         {/* Chara Karanas */}
         <h3 className="text-xl text-gold-light mb-4" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'Chara Karanas (Movable — cycle 8 times)' : isDevanagari ? 'चर करण (गतिशील — 8 बार चक्र)' : 'चरकरणानि (चलानि — अष्टवारं चक्रम्)'}
+          {tl({ en: 'Chara Karanas (Movable — cycle 8 times)', hi: 'चर करण (गतिशील — 8 बार चक्र)', sa: 'चरकरणानि (चलानि — अष्टवारं चक्रम्)', ta: 'Chara Karanas (Movable — cycle 8 times)', te: 'Chara Karanas (Movable — cycle 8 times)', bn: 'Chara Karanas (Movable — cycle 8 times)', kn: 'Chara Karanas (Movable — cycle 8 times)', gu: 'Chara Karanas (Movable — cycle 8 times)', mai: 'चर करण (गतिशील — 8 बार चक्र)', mr: 'चर करण (गतिशील — 8 बार चक्र)' }, locale)}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
           {chara.map((karana, i) => (
@@ -612,8 +611,8 @@ export default function KaranaPage() {
               </div>
               <div className={`text-xs mt-1 ${karana.name.en === 'Vishti' ? 'text-red-400' : 'text-emerald-400'}`}>
                 {karana.name.en === 'Vishti'
-                  ? (!isDevanagariLocale(locale) ? 'Vishti / Bhadra' : 'विष्टि / भद्रा')
-                  : (!isDevanagariLocale(locale) ? 'Chara (Movable)' : isDevanagari ? 'चर (गतिशील)' : 'चरम्')}
+                  ? (tl({ en: 'Vishti / Bhadra', hi: 'विष्टि / भद्रा', sa: 'विष्टि / भद्रा', ta: 'Vishti / Bhadra', te: 'Vishti / Bhadra', bn: 'Vishti / Bhadra', kn: 'Vishti / Bhadra', gu: 'Vishti / Bhadra', mai: 'विष्टि / भद्रा', mr: 'विष्टि / भद्रा' }, locale))
+                  : (tl({ en: 'Chara (Movable)', hi: 'चर (गतिशील)', sa: 'चरम्', ta: 'Chara (Movable)', te: 'Chara (Movable)', bn: 'Chara (Movable)', kn: 'Chara (Movable)', gu: 'Chara (Movable)', mai: 'चर (गतिशील)', mr: 'चर (गतिशील)' }, locale))}
               </div>
             </motion.div>
           ))}
@@ -621,7 +620,7 @@ export default function KaranaPage() {
 
         {/* Sthira Karanas */}
         <h3 className="text-xl text-red-400/80 mb-4" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'Sthira Karanas (Fixed — appear once each)' : isDevanagari ? 'स्थिर करण (अचल — प्रत्येक एक बार)' : 'स्थिरकरणानि (अचलानि — एकवारम्)'}
+          {tl({ en: 'Sthira Karanas (Fixed — appear once each)', hi: 'स्थिर करण (अचल — प्रत्येक एक बार)', sa: 'स्थिरकरणानि (अचलानि — एकवारम्)', ta: 'Sthira Karanas (Fixed — appear once each)', te: 'Sthira Karanas (Fixed — appear once each)', bn: 'Sthira Karanas (Fixed — appear once each)', kn: 'Sthira Karanas (Fixed — appear once each)', gu: 'Sthira Karanas (Fixed — appear once each)', mai: 'स्थिर करण (अचल — प्रत्येक एक बार)', mr: 'स्थिर करण (अचल — प्रत्येक एक बार)' }, locale)}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {sthira.map((karana, i) => {
@@ -643,10 +642,10 @@ export default function KaranaPage() {
                   {karana.name[locale]}
                 </div>
                 <div className="text-red-400 text-xs mt-1">
-                  {!isDevanagariLocale(locale) ? 'Sthira (Fixed)' : isDevanagari ? 'स्थिर (अचल)' : 'स्थिरम्'}
+                  {tl({ en: 'Sthira (Fixed)', hi: 'स्थिर (अचल)', sa: 'स्थिरम्', ta: 'Sthira (Fixed)', te: 'Sthira (Fixed)', bn: 'Sthira (Fixed)', kn: 'Sthira (Fixed)', gu: 'Sthira (Fixed)', mai: 'स्थिर (अचल)', mr: 'स्थिर (अचल)' }, locale)}
                 </div>
                 <div className="text-red-400/50 text-xs mt-0.5">
-                  {!isDevanagariLocale(locale) ? `Position ${slotPositions[i] + 1}` : `स्थान ${slotPositions[i] + 1}`}
+                  {tl({ en: `Position ${slotPositions[i] + 1}`, hi: `स्थान ${slotPositions[i] + 1}`, sa: `स्थान ${slotPositions[i] + 1}`, ta: `Position ${slotPositions[i] + 1}`, te: `Position ${slotPositions[i] + 1}`, bn: `Position ${slotPositions[i] + 1}`, kn: `Position ${slotPositions[i] + 1}`, gu: `Position ${slotPositions[i] + 1}`, mai: `स्थान ${slotPositions[i] + 1}`, mr: `स्थान ${slotPositions[i] + 1}` }, locale)}
                 </div>
               </motion.div>
             );

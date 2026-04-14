@@ -241,7 +241,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
         variants={fadeUp}
         custom={0}
       >
-        {!isDevanagariLocale(locale) ? 'SOLAR ECLIPSE' : isDevanagari ? 'सूर्य ग्रहण' : 'सूर्यग्रहणम्'}
+        {tl({ en: 'SOLAR ECLIPSE', hi: 'सूर्य ग्रहण', sa: 'सूर्यग्रहणम्', ta: 'SOLAR ECLIPSE', te: 'SOLAR ECLIPSE', bn: 'SOLAR ECLIPSE', kn: 'SOLAR ECLIPSE', gu: 'SOLAR ECLIPSE', mai: 'सूर्य ग्रहण', mr: 'सूर्य ग्रहण' }, locale)}
       </motion.text>
 
       {/* Sun (solar side) */}
@@ -264,7 +264,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
         custom={0.2}
       />
       <motion.text x="40" y="120" fill="#fbbf24" fontSize="9" textAnchor="middle" variants={fadeUp} custom={0.25}>
-        {!isDevanagariLocale(locale) ? 'Sun' : 'सूर्य'}
+        {tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun', mai: 'सूर्य', mr: 'सूर्य' }, locale)}
       </motion.text>
 
       {/* Moon slides in between Sun and Earth */}
@@ -289,7 +289,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
         variants={fadeUp}
         custom={0.7}
       >
-        {!isDevanagariLocale(locale) ? 'Moon' : 'चन्द्र'}
+        {tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon', mai: 'चन्द्र', mr: 'चन्द्र' }, locale)}
       </motion.text>
 
       {/* Shadow cone lines (solar) */}
@@ -320,7 +320,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
       <motion.circle cx="240" cy="80" r="16" fill="#2563eb" opacity="0.3" variants={fadeUp} custom={0.3} />
       <motion.circle cx="240" cy="80" r="12" fill="#2563eb" opacity="0.5" variants={fadeUp} custom={0.35} />
       <motion.text x="240" y="110" fill="#60a5fa" fontSize="9" textAnchor="middle" variants={fadeUp} custom={0.4}>
-        {!isDevanagariLocale(locale) ? 'Earth' : 'पृथ्वी'}
+        {tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी', ta: 'Earth', te: 'Earth', bn: 'Earth', kn: 'Earth', gu: 'Earth', mai: 'पृथ्वी', mr: 'पृथ्वी' }, locale)}
       </motion.text>
 
       {/* ── Lunar Eclipse ── */}
@@ -334,21 +334,21 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
         variants={fadeUp}
         custom={0.1}
       >
-        {!isDevanagariLocale(locale) ? 'LUNAR ECLIPSE' : isDevanagari ? 'चन्द्र ग्रहण' : 'चन्द्रग्रहणम्'}
+        {tl({ en: 'LUNAR ECLIPSE', hi: 'चन्द्र ग्रहण', sa: 'चन्द्रग्रहणम्', ta: 'LUNAR ECLIPSE', te: 'LUNAR ECLIPSE', bn: 'LUNAR ECLIPSE', kn: 'LUNAR ECLIPSE', gu: 'LUNAR ECLIPSE', mai: 'चन्द्र ग्रहण', mr: 'चन्द्र ग्रहण' }, locale)}
       </motion.text>
 
       {/* Sun (lunar side) */}
       <motion.circle cx="340" cy="80" r="28" fill="#fbbf24" opacity="0.3" variants={fadeUp} custom={0.2} />
       <motion.circle cx="340" cy="80" r="22" fill="#fbbf24" opacity="0.5" variants={fadeUp} custom={0.25} />
       <motion.text x="340" y="120" fill="#fbbf24" fontSize="9" textAnchor="middle" variants={fadeUp} custom={0.3}>
-        {!isDevanagariLocale(locale) ? 'Sun' : 'सूर्य'}
+        {tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun', mai: 'सूर्य', mr: 'सूर्य' }, locale)}
       </motion.text>
 
       {/* Earth (lunar side) */}
       <motion.circle cx="440" cy="80" r="16" fill="#2563eb" opacity="0.3" variants={fadeUp} custom={0.35} />
       <motion.circle cx="440" cy="80" r="12" fill="#2563eb" opacity="0.5" variants={fadeUp} custom={0.4} />
       <motion.text x="440" y="110" fill="#60a5fa" fontSize="9" textAnchor="middle" variants={fadeUp} custom={0.45}>
-        {!isDevanagariLocale(locale) ? 'Earth' : 'पृथ्वी'}
+        {tl({ en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी', ta: 'Earth', te: 'Earth', bn: 'Earth', kn: 'Earth', gu: 'Earth', mai: 'पृथ्वी', mr: 'पृथ्वी' }, locale)}
       </motion.text>
 
       {/* Shadow cone grows (lunar) */}
@@ -394,7 +394,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
         transition={{ duration: 0.8, delay: 1.0 }}
       />
       <motion.text x="540" y="105" fill="#f87171" fontSize="8" textAnchor="middle" variants={fadeUp} custom={1.1}>
-        {!isDevanagariLocale(locale) ? 'Moon' : 'चन्द्र'}
+        {tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon', mai: 'चन्द्र', mr: 'चन्द्र' }, locale)}
       </motion.text>
 
       {/* ── Rahu-Ketu Axis (animated dashed line drawing) ── */}
@@ -420,9 +420,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
       >
         {locale === 'en'
           ? 'Rahu-Ketu Axis (Lunar Nodes)'
-          : isDevanagari
-          ? 'राहु-केतु अक्ष (चन्द्र पातबिन्दु)'
-          : 'राहु-केतु अक्षः'}
+          : tl({ en: 'राहु-केतु अक्षः', hi: 'राहु-केतु अक्ष (चन्द्र पातबिन्दु)', sa: 'राहु-केतु अक्ष (चन्द्र पातबिन्दु)', ta: 'राहु-केतु अक्षः', te: 'राहु-केतु अक्षः', bn: 'राहु-केतु अक्षः', kn: 'राहु-केतु अक्षः', gu: 'राहु-केतु अक्षः', mai: 'राहु-केतु अक्ष (चन्द्र पातबिन्दु)', mr: 'राहु-केतु अक्ष (चन्द्र पातबिन्दु)' }, locale)}
       </motion.text>
 
       {/* Rahu node */}
@@ -437,7 +435,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
         custom={1.5}
       />
       <motion.text x="100" y="220" fill="#f87171" fontSize="8" textAnchor="middle" variants={fadeUp} custom={1.55}>
-        {!isDevanagariLocale(locale) ? 'Rahu' : 'राहु'}
+        {tl({ en: 'Rahu', hi: 'राहु', sa: 'राहु', ta: 'Rahu', te: 'Rahu', bn: 'Rahu', kn: 'Rahu', gu: 'Rahu', mai: 'राहु', mr: 'राहु' }, locale)}
       </motion.text>
 
       {/* Ketu node */}
@@ -452,7 +450,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
         custom={1.5}
       />
       <motion.text x="500" y="220" fill="#60a5fa" fontSize="8" textAnchor="middle" variants={fadeUp} custom={1.55}>
-        {!isDevanagariLocale(locale) ? 'Ketu' : 'केतु'}
+        {tl({ en: 'Ketu', hi: 'केतु', sa: 'केतु', ta: 'Ketu', te: 'Ketu', bn: 'Ketu', kn: 'Ketu', gu: 'Ketu', mai: 'केतु', mr: 'केतु' }, locale)}
       </motion.text>
 
       {/* ── Ecliptic path (animated drawing) ── */}
@@ -473,7 +471,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
         variants={fadeUp}
         custom={1.9}
       >
-        {!isDevanagariLocale(locale) ? 'Ecliptic Plane' : isDevanagari ? 'क्रान्तिवृत्त तल' : 'क्रान्तिवृत्ततलम्'}
+        {tl({ en: 'Ecliptic Plane', hi: 'क्रान्तिवृत्त तल', sa: 'क्रान्तिवृत्ततलम्', ta: 'Ecliptic Plane', te: 'Ecliptic Plane', bn: 'Ecliptic Plane', kn: 'Ecliptic Plane', gu: 'Ecliptic Plane', mai: 'क्रान्तिवृत्त तल', mr: 'क्रान्तिवृत्त तल' }, locale)}
       </motion.text>
 
       {/* ── Lunar orbit path (animated drawing, dashed) ── */}
@@ -497,9 +495,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
       >
         {locale === 'en'
           ? 'Lunar Orbit (~5.14\u00B0 inclined)'
-          : isDevanagari
-          ? 'चन्द्र कक्षा (~5.14\u00B0 झुकी)'
-          : 'चन्द्रकक्षा (~5.14\u00B0)'}
+          : tl({ en: 'चन्द्रकक्षा (~5.14\u00B0)', hi: 'चन्द्र कक्षा (~5.14\u00B0 झुकी)', sa: 'चन्द्र कक्षा (~5.14\u00B0 झुकी)', ta: 'चन्द्रकक्षा (~5.14\u00B0)', te: 'चन्द्रकक्षा (~5.14\u00B0)', bn: 'चन्द्रकक्षा (~5.14\u00B0)', kn: 'चन्द्रकक्षा (~5.14\u00B0)', gu: 'चन्द्रकक्षा (~5.14\u00B0)', mai: 'चन्द्र कक्षा (~5.14\u00B0 झुकी)', mr: 'चन्द्र कक्षा (~5.14\u00B0 झुकी)' }, locale)}
       </motion.text>
     </motion.svg>
   );
@@ -623,17 +619,11 @@ export default function GrahanPage() {
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
             <span className="text-gold-gradient">
-              {isTamil ? 'கிரகணம்' : locale === 'en' ? 'Grahan' : isDevanagari ? 'ग्रहण' : 'ग्रहणम्'}
+              {tl({ en: 'Grahan', hi: 'ग्रहण', sa: 'ग्रहणम्', ta: 'கிரகணம்', te: 'Grahan', bn: 'Grahan', kn: 'Grahan', gu: 'Grahan', mai: 'ग्रहण', mr: 'ग्रहण' }, locale)}
             </span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isTamil
-              ? 'சூரிய & சந்திர கிரகணங்கள் -- அண்ட நிழல் நாடகம்'
-              : locale === 'en'
-              ? 'Solar & Lunar Eclipses -- The Cosmic Shadow Play'
-              : isDevanagari
-              ? 'सूर्य एवं चन्द्र ग्रहण -- ब्रह्माण्डीय छाया नाटक'
-              : 'सूर्यचन्द्रग्रहणे -- ब्रह्माण्डीयच्छायानाटकम्'}
+            {tl({ en: 'Solar & Lunar Eclipses -- The Cosmic Shadow Play', hi: 'सूर्य एवं चन्द्र ग्रहण -- ब्रह्माण्डीय छाया नाटक', sa: 'सूर्यचन्द्रग्रहणे -- ब्रह्माण्डीयच्छायानाटकम्', ta: 'சூரிய & சந்திர கிரகணங்கள் -- அண்ட நிழல் நாடகம்', te: 'Solar & Lunar Eclipses -- The Cosmic Shadow Play', bn: 'Solar & Lunar Eclipses -- The Cosmic Shadow Play', kn: 'Solar & Lunar Eclipses -- The Cosmic Shadow Play', gu: 'Solar & Lunar Eclipses -- The Cosmic Shadow Play', mai: 'सूर्य एवं चन्द्र ग्रहण -- ब्रह्माण्डीय छाया नाटक', mr: 'सूर्य एवं चन्द्र ग्रहण -- ब्रह्माण्डीय छाया नाटक' }, locale)}
           </p>
         </div>
       </motion.div>
@@ -656,13 +646,11 @@ export default function GrahanPage() {
             <p className="text-lg leading-relaxed">
               {locale === 'en'
                 ? 'Eclipses occur when the Sun, Moon, and Earth align near the lunar nodes (Rahu-Ketu axis). A Solar Eclipse (Surya Grahan) happens at New Moon (Amavasya) when the Moon passes between the Sun and Earth, casting its shadow on Earth. A Lunar Eclipse (Chandra Grahan) occurs at Full Moon (Purnima) when the Earth\'s shadow falls on the Moon. The Moon\'s orbital plane is inclined ~5.14\u00B0 to the ecliptic, so eclipses only occur when the New/Full Moon is near the ascending (Rahu) or descending (Ketu) node -- within about 18.5\u00B0 for solar and 12.5\u00B0 for lunar eclipses. The Saros cycle of ~18 years 11 days governs the periodicity.'
-                : isDevanagari
-                ? 'ग्रहण तब होता है जब सूर्य, चन्द्र और पृथ्वी चन्द्र पातबिन्दुओं (राहु-केतु अक्ष) के निकट एक रेखा में आते हैं। सूर्य ग्रहण अमावस्या को होता है जब चन्द्रमा सूर्य और पृथ्वी के बीच से गुज़रता है। चन्द्र ग्रहण पूर्णिमा को होता है जब पृथ्वी की छाया चन्द्रमा पर पड़ती है। चन्द्र कक्षा का तल क्रान्तिवृत्त से ~5.14\u00B0 झुका है, अतः ग्रहण केवल तभी होता है जब अमावस्या/पूर्णिमा राहु या केतु बिन्दु के निकट हो। सैरोस चक्र ~18 वर्ष 11 दिन का होता है।'
-                : 'ग्रहणं तदा भवति यदा सूर्यचन्द्रपृथिव्यः चन्द्रपातबिन्दूनां (राहु-केत्वक्षस्य) समीपे एकरेखायां भवन्ति। सूर्यग्रहणम् अमावस्यायां भवति यदा चन्द्रमाः सूर्यपृथिव्योः मध्ये गच्छति। चन्द्रग्रहणं पूर्णिमायां भवति यदा पृथिव्याः छाया चन्द्रमसि पतति।'}
+                : tl({ en: 'ग्रहणं तदा भवति यदा सूर्यचन्द्रपृथिव्यः चन्द्रपातबिन्दूनां (राहु-केत्वक्षस्य) समीपे एकरेखायां भवन्ति। सूर्यग्रहणम् अमावस्यायां भवति यदा चन्द्रमाः सूर्यपृथिव्योः मध्ये गच्छति। चन्द्रग्रहणं पूर्णिमायां भवति यदा पृथिव्याः छाया चन्द्रमसि पतति।', hi: 'ग्रहण तब होता है जब सूर्य, चन्द्र और पृथ्वी चन्द्र पातबिन्दुओं (राहु-केतु अक्ष) के निकट एक रेखा में आते हैं। सूर्य ग्रहण अमावस्या को होता है जब चन्द्रमा सूर्य और पृथ्वी के बीच से गुज़रता है। चन्द्र ग्रहण पूर्णिमा को होता है जब पृथ्वी की छाया चन्द्रमा पर पड़ती है। चन्द्र कक्षा का तल क्रान्तिवृत्त से ~5.14\u00B0 झुका है, अतः ग्रहण केवल तभी होता है जब अमावस्या/पूर्णिमा राहु या केतु बिन्दु के निकट हो। सैरोस चक्र ~18 वर्ष 11 दिन का होता है।', sa: 'ग्रहण तब होता है जब सूर्य, चन्द्र और पृथ्वी चन्द्र पातबिन्दुओं (राहु-केतु अक्ष) के निकट एक रेखा में आते हैं। सूर्य ग्रहण अमावस्या को होता है जब चन्द्रमा सूर्य और पृथ्वी के बीच से गुज़रता है। चन्द्र ग्रहण पूर्णिमा को होता है जब पृथ्वी की छाया चन्द्रमा पर पड़ती है। चन्द्र कक्षा का तल क्रान्तिवृत्त से ~5.14\u00B0 झुका है, अतः ग्रहण केवल तभी होता है जब अमावस्या/पूर्णिमा राहु या केतु बिन्दु के निकट हो। सैरोस चक्र ~18 वर्ष 11 दिन का होता है।', ta: 'ग्रहणं तदा भवति यदा सूर्यचन्द्रपृथिव्यः चन्द्रपातबिन्दूनां (राहु-केत्वक्षस्य) समीपे एकरेखायां भवन्ति। सूर्यग्रहणम् अमावस्यायां भवति यदा चन्द्रमाः सूर्यपृथिव्योः मध्ये गच्छति। चन्द्रग्रहणं पूर्णिमायां भवति यदा पृथिव्याः छाया चन्द्रमसि पतति।', te: 'ग्रहणं तदा भवति यदा सूर्यचन्द्रपृथिव्यः चन्द्रपातबिन्दूनां (राहु-केत्वक्षस्य) समीपे एकरेखायां भवन्ति। सूर्यग्रहणम् अमावस्यायां भवति यदा चन्द्रमाः सूर्यपृथिव्योः मध्ये गच्छति। चन्द्रग्रहणं पूर्णिमायां भवति यदा पृथिव्याः छाया चन्द्रमसि पतति।', bn: 'ग्रहणं तदा भवति यदा सूर्यचन्द्रपृथिव्यः चन्द्रपातबिन्दूनां (राहु-केत्वक्षस्य) समीपे एकरेखायां भवन्ति। सूर्यग्रहणम् अमावस्यायां भवति यदा चन्द्रमाः सूर्यपृथिव्योः मध्ये गच्छति। चन्द्रग्रहणं पूर्णिमायां भवति यदा पृथिव्याः छाया चन्द्रमसि पतति।', kn: 'ग्रहणं तदा भवति यदा सूर्यचन्द्रपृथिव्यः चन्द्रपातबिन्दूनां (राहु-केत्वक्षस्य) समीपे एकरेखायां भवन्ति। सूर्यग्रहणम् अमावस्यायां भवति यदा चन्द्रमाः सूर्यपृथिव्योः मध्ये गच्छति। चन्द्रग्रहणं पूर्णिमायां भवति यदा पृथिव्याः छाया चन्द्रमसि पतति।', gu: 'ग्रहणं तदा भवति यदा सूर्यचन्द्रपृथिव्यः चन्द्रपातबिन्दूनां (राहु-केत्वक्षस्य) समीपे एकरेखायां भवन्ति। सूर्यग्रहणम् अमावस्यायां भवति यदा चन्द्रमाः सूर्यपृथिव्योः मध्ये गच्छति। चन्द्रग्रहणं पूर्णिमायां भवति यदा पृथिव्याः छाया चन्द्रमसि पतति।', mai: 'ग्रहण तब होता है जब सूर्य, चन्द्र और पृथ्वी चन्द्र पातबिन्दुओं (राहु-केतु अक्ष) के निकट एक रेखा में आते हैं। सूर्य ग्रहण अमावस्या को होता है जब चन्द्रमा सूर्य और पृथ्वी के बीच से गुज़रता है। चन्द्र ग्रहण पूर्णिमा को होता है जब पृथ्वी की छाया चन्द्रमा पर पड़ती है। चन्द्र कक्षा का तल क्रान्तिवृत्त से ~5.14\u00B0 झुका है, अतः ग्रहण केवल तभी होता है जब अमावस्या/पूर्णिमा राहु या केतु बिन्दु के निकट हो। सैरोस चक्र ~18 वर्ष 11 दिन का होता है।', mr: 'ग्रहण तब होता है जब सूर्य, चन्द्र और पृथ्वी चन्द्र पातबिन्दुओं (राहु-केतु अक्ष) के निकट एक रेखा में आते हैं। सूर्य ग्रहण अमावस्या को होता है जब चन्द्रमा सूर्य और पृथ्वी के बीच से गुज़रता है। चन्द्र ग्रहण पूर्णिमा को होता है जब पृथ्वी की छाया चन्द्रमा पर पड़ती है। चन्द्र कक्षा का तल क्रान्तिवृत्त से ~5.14\u00B0 झुका है, अतः ग्रहण केवल तभी होता है जब अमावस्या/पूर्णिमा राहु या केतु बिन्दु के निकट हो। सैरोस चक्र ~18 वर्ष 11 दिन का होता है।' }, locale)}
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {!isDevanagariLocale(locale) ? 'Condition:' : 'शर्त:'} |Moon_lat_node_distance| &lt; 18.5\u00B0 (Solar) or
+                {tl({ en: 'Condition:', hi: 'शर्त:', sa: 'शर्त:', ta: 'Condition:', te: 'Condition:', bn: 'Condition:', kn: 'Condition:', gu: 'Condition:', mai: 'शर्त:', mr: 'शर्त:' }, locale)} |Moon_lat_node_distance| &lt; 18.5\u00B0 (Solar) or
                 &lt; 12.5\u00B0 (Lunar)
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
@@ -678,7 +666,7 @@ export default function GrahanPage() {
       {/* ── Eclipse Geometry Visualization (animated) ── */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'Eclipse Geometry' : isDevanagari ? 'ग्रहण ज्यामिति' : 'ग्रहणज्यामितिः'}
+          {tl({ en: 'Eclipse Geometry', hi: 'ग्रहण ज्यामिति', sa: 'ग्रहणज्यामितिः', ta: 'Eclipse Geometry', te: 'Eclipse Geometry', bn: 'Eclipse Geometry', kn: 'Eclipse Geometry', gu: 'Eclipse Geometry', mai: 'ग्रहण ज्यामिति', mr: 'ग्रहण ज्यामिति' }, locale)}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex justify-center">
           <EclipseGeometrySVG locale={locale} />
@@ -692,9 +680,7 @@ export default function GrahanPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en'
             ? 'Total Solar Eclipse Phases'
-            : isDevanagari
-            ? 'पूर्ण सूर्य ग्रहण के चरण'
-            : 'पूर्णसूर्यग्रहणस्य चरणानि'}
+            : tl({ en: 'पूर्णसूर्यग्रहणस्य चरणानि', hi: 'पूर्ण सूर्य ग्रहण के चरण', sa: 'पूर्ण सूर्य ग्रहण के चरण', ta: 'पूर्णसूर्यग्रहणस्य चरणानि', te: 'पूर्णसूर्यग्रहणस्य चरणानि', bn: 'पूर्णसूर्यग्रहणस्य चरणानि', kn: 'पूर्णसूर्यग्रहणस्य चरणानि', gu: 'पूर्णसूर्यग्रहणस्य चरणानि', mai: 'पूर्ण सूर्य ग्रहण के चरण', mr: 'पूर्ण सूर्य ग्रहण के चरण' }, locale)}
         </h2>
         <motion.div
           className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8"
@@ -717,9 +703,7 @@ export default function GrahanPage() {
         <h3 className="text-xl text-gold-light mb-4" style={headingFont}>
           {locale === 'en'
             ? 'Upcoming Eclipses (2025-2026)'
-            : isDevanagari
-            ? 'आगामी ग्रहण (2025-2026)'
-            : 'आगामिग्रहणानि (2025-2026)'}
+            : tl({ en: 'आगामिग्रहणानि (2025-2026)', hi: 'आगामी ग्रहण (2025-2026)', sa: 'आगामी ग्रहण (2025-2026)', ta: 'आगामिग्रहणानि (2025-2026)', te: 'आगामिग्रहणानि (2025-2026)', bn: 'आगामिग्रहणानि (2025-2026)', kn: 'आगामिग्रहणानि (2025-2026)', gu: 'आगामिग्रहणानि (2025-2026)', mai: 'आगामी ग्रहण (2025-2026)', mr: 'आगामी ग्रहण (2025-2026)' }, locale)}
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

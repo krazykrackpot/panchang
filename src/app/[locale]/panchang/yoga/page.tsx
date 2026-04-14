@@ -10,6 +10,7 @@ import type { Locale } from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { YogaIcon, SunriseIcon } from '@/components/icons/PanchangIcons';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { tl } from '@/lib/utils/trilingual';
 
 function AnimatedYogaWheel({ locale, onSelect }: { locale: Locale; onSelect: (idx: number) => void }) {
   const [hoveredYoga, setHoveredYoga] = useState<number | null>(null);
@@ -151,10 +152,10 @@ function AnimatedYogaWheel({ locale, onSelect }: { locale: Locale; onSelect: (id
       {/* Center */}
       <circle cx="250" cy="250" r="85" fill="#0a0e27" stroke="rgba(212,168,83,0.15)" strokeWidth="0.5" />
       <text x="250" y="232" fill="#f0d48a" fontSize="14" textAnchor="middle" fontWeight="bold" fontFamily="var(--font-heading)">
-        {!isDevanagariLocale(locale) ? 'YOGA' : 'योग'}
+        {tl({ en: 'YOGA', hi: 'योग', sa: 'योग', ta: 'YOGA', te: 'YOGA', bn: 'YOGA', kn: 'YOGA', gu: 'YOGA', mai: 'योग', mr: 'योग' }, locale)}
       </text>
       <text x="250" y="250" fill="rgba(212,168,83,0.5)" fontSize="9" textAnchor="middle">
-        {!isDevanagariLocale(locale) ? 'Sun + Moon Sum' : 'सूर्य + चन्द्र योग'}
+        {tl({ en: 'Sun + Moon Sum', hi: 'सूर्य + चन्द्र योग', sa: 'सूर्य + चन्द्र योग', ta: 'Sun + Moon Sum', te: 'Sun + Moon Sum', bn: 'Sun + Moon Sum', kn: 'Sun + Moon Sum', gu: 'Sun + Moon Sum', mai: 'सूर्य + चन्द्र योग', mr: 'सूर्य + चन्द्र योग' }, locale)}
       </text>
       <text x="250" y="268" fill="rgba(212,168,83,0.35)" fontSize="8" textAnchor="middle">
         27 x 13°20&apos;
@@ -162,11 +163,11 @@ function AnimatedYogaWheel({ locale, onSelect }: { locale: Locale; onSelect: (id
 
       {/* Legend */}
       <circle cx="60" cy="460" r="5" fill="#4ade80" opacity="0.6" />
-      <text x="75" y="463" fill="#4ade80" fontSize="8">{!isDevanagariLocale(locale) ? 'Auspicious' : 'शुभ'}</text>
+      <text x="75" y="463" fill="#4ade80" fontSize="8">{tl({ en: 'Auspicious', hi: 'शुभ', sa: 'शुभ', ta: 'Auspicious', te: 'Auspicious', bn: 'Auspicious', kn: 'Auspicious', gu: 'Auspicious', mai: 'शुभ', mr: 'शुभ' }, locale)}</text>
       <circle cx="160" cy="460" r="5" fill="#fbbf24" opacity="0.6" />
-      <text x="175" y="463" fill="#fbbf24" fontSize="8">{!isDevanagariLocale(locale) ? 'Neutral' : 'सम'}</text>
+      <text x="175" y="463" fill="#fbbf24" fontSize="8">{tl({ en: 'Neutral', hi: 'सम', sa: 'सम', ta: 'Neutral', te: 'Neutral', bn: 'Neutral', kn: 'Neutral', gu: 'Neutral', mai: 'सम', mr: 'सम' }, locale)}</text>
       <circle cx="250" cy="460" r="5" fill="#f87171" opacity="0.6" />
-      <text x="265" y="463" fill="#f87171" fontSize="8">{!isDevanagariLocale(locale) ? 'Inauspicious' : 'अशुभ'}</text>
+      <text x="265" y="463" fill="#f87171" fontSize="8">{tl({ en: 'Inauspicious', hi: 'अशुभ', sa: 'अशुभ', ta: 'Inauspicious', te: 'Inauspicious', bn: 'Inauspicious', kn: 'Inauspicious', gu: 'Inauspicious', mai: 'अशुभ', mr: 'अशुभ' }, locale)}</text>
     </motion.svg>
   );
 }
@@ -219,7 +220,7 @@ function SunMoonSumDiagram({ locale }: { locale: Locale }) {
           );
         })}
         <text x="120" y="150" fill="#f39c12" fontSize="11" textAnchor="middle" fontWeight="600">
-          {!isDevanagariLocale(locale) ? 'Sun' : 'सूर्य'}
+          {tl({ en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun', mai: 'सूर्य', mr: 'सूर्य' }, locale)}
         </text>
         <text x="120" y="165" fill="#f39c12" fontSize="8" textAnchor="middle" opacity="0.6">
           75°
@@ -230,7 +231,7 @@ function SunMoonSumDiagram({ locale }: { locale: Locale }) {
       <motion.g initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.5, type: 'spring' }}>
         <circle cx="340" cy="100" r="16" fill="url(#moonGradY)" />
         <text x="340" y="140" fill="#d4a853" fontSize="11" textAnchor="middle" fontWeight="600">
-          {!isDevanagariLocale(locale) ? 'Moon' : 'चन्द्र'}
+          {tl({ en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon', mai: 'चन्द्र', mr: 'चन्द्र' }, locale)}
         </text>
         <text x="340" y="155" fill="#d4a853" fontSize="8" textAnchor="middle" opacity="0.6">
           120°
@@ -249,7 +250,7 @@ function SunMoonSumDiagram({ locale }: { locale: Locale }) {
         initial={{ opacity: 0 }} animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
       >
-        {!isDevanagariLocale(locale) ? 'SUM = 195°' : 'योग = 195°'}
+        {tl({ en: 'SUM = 195°', hi: 'योग = 195°', sa: 'योग = 195°', ta: 'SUM = 195°', te: 'SUM = 195°', bn: 'SUM = 195°', kn: 'SUM = 195°', gu: 'SUM = 195°', mai: 'योग = 195°', mr: 'योग = 195°' }, locale)}
       </motion.text>
 
       {/* Result */}
@@ -263,7 +264,7 @@ function SunMoonSumDiagram({ locale }: { locale: Locale }) {
           195° / 13.33° = 14.6
         </text>
         <text x="500" y="110" fill="#4ade80" fontSize="12" textAnchor="middle" fontWeight="bold">
-          {!isDevanagariLocale(locale) ? 'Yoga #15' : 'योग #15'}
+          {tl({ en: 'Yoga #15', hi: 'योग #15', sa: 'योग #15', ta: 'Yoga #15', te: 'Yoga #15', bn: 'Yoga #15', kn: 'Yoga #15', gu: 'Yoga #15', mai: 'योग #15', mr: 'योग #15' }, locale)}
         </text>
         <text x="500" y="125" fill="#4ade80" fontSize="9" textAnchor="middle" opacity="0.7">
           {YOGAS[14]?.name[locale] || 'Vajra'}
@@ -304,10 +305,10 @@ export default function YogaPage() {
         <YogaIcon size={72} />
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
-            <span className="text-gold-gradient">{isTamil ? 'யோகம்' : locale === 'en' ? 'Yoga' : isDevanagari ? 'योग' : 'योगः'}</span>
+            <span className="text-gold-gradient">{tl({ en: 'Yoga', hi: 'योग', sa: 'योगः', ta: 'யோகம்', te: 'Yoga', bn: 'Yoga', kn: 'Yoga', gu: 'Yoga', mai: 'योग', mr: 'योग' }, locale)}</span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isTamil ? '27 சூரிய-சந்திர கூட்டணிகள் — சூரியனும் சந்திரனும் இணைவு' : locale === 'en' ? 'The 27 Soli-Lunar Combinations — Union of Sun and Moon' : isDevanagari ? '27 सूर्य-चन्द्र संयोग — सूर्य और चन्द्र का मिलन' : 'सप्तविंशतिः सूर्यचन्द्रयोगाः — रवीन्दुसंयोगः'}
+            {tl({ en: 'The 27 Soli-Lunar Combinations — Union of Sun and Moon', hi: '27 सूर्य-चन्द्र संयोग — सूर्य और चन्द्र का मिलन', sa: 'सप्तविंशतिः सूर्यचन्द्रयोगाः — रवीन्दुसंयोगः', ta: '27 சூரிய-சந்திர கூட்டணிகள் — சூரியனும் சந்திரனும் இணைவு', te: 'The 27 Soli-Lunar Combinations — Union of Sun and Moon', bn: 'The 27 Soli-Lunar Combinations — Union of Sun and Moon', kn: 'The 27 Soli-Lunar Combinations — Union of Sun and Moon', gu: 'The 27 Soli-Lunar Combinations — Union of Sun and Moon', mai: '27 सूर्य-चन्द्र संयोग — सूर्य और चन्द्र का मिलन', mr: '27 सूर्य-चन्द्र संयोग — सूर्य और चन्द्र का मिलन' }, locale)}
           </p>
         </div>
       </motion.div>
@@ -323,9 +324,7 @@ export default function YogaPage() {
             <p className="text-lg leading-relaxed">
               {locale === 'en'
                 ? `A Yoga is determined by the sum of the sidereal longitudes of the Sun and Moon. The 360° arc is divided into 27 equal parts of 13°20' each. When the combined longitude of Sun and Moon falls within a particular segment, that Yoga is in effect. Unlike Tithi (which depends on the difference), Yoga depends on the sum — hence it captures the combined "energy" of both luminaries. Each Yoga lasts approximately one day but varies because both the Sun and Moon are in continuous motion.`
-                : isDevanagari
-                ? `योग सूर्य और चन्द्रमा के नाक्षत्रिक अंशों के योग (जोड़) से निर्धारित होता है। 360° को 13°20' के 27 समान भागों में विभाजित किया जाता है। जब सूर्य और चन्द्र के संयुक्त अंश किसी विशेष खण्ड में आते हैं, तो वह योग प्रभावी होता है। तिथि (जो अन्तर पर निर्भर है) के विपरीत, योग योगफल पर निर्भर करता है — इसलिए यह दोनों ज्योतियों की संयुक्त "ऊर्जा" को दर्शाता है।`
-                : `योगः सूर्यचन्द्रयोः नाक्षत्रिकांशयोः योगेन (सम्मेलनेन) निर्धार्यते। 360° 13°20' इति सप्तविंशतिसमभागेषु विभज्यते। यदा सूर्यचन्द्रयोः संयुक्ताः अंशाः कस्मिंश्चित् खण्डे पतन्ति, तदा स योगः प्रभवति।`}
+                : tl({ en: `योगः सूर्यचन्द्रयोः नाक्षत्रिकांशयोः योगेन (सम्मेलनेन) निर्धार्यते। 360° 13°20' इति सप्तविंशतिसमभागेषु विभज्यते। यदा सूर्यचन्द्रयोः संयुक्ताः अंशाः कस्मिंश्चित् खण्डे पतन्ति, तदा स योगः प्रभवति।`, hi: `योग सूर्य और चन्द्रमा के नाक्षत्रिक अंशों के योग (जोड़) से निर्धारित होता है। 360° को 13°20' के 27 समान भागों में विभाजित किया जाता है। जब सूर्य और चन्द्र के संयुक्त अंश किसी विशेष खण्ड में आते हैं, तो वह योग प्रभावी होता है। तिथि (जो अन्तर पर निर्भर है) के विपरीत, योग योगफल पर निर्भर करता है — इसलिए यह दोनों ज्योतियों की संयुक्त "ऊर्जा" को दर्शाता है।`, sa: `योग सूर्य और चन्द्रमा के नाक्षत्रिक अंशों के योग (जोड़) से निर्धारित होता है। 360° को 13°20' के 27 समान भागों में विभाजित किया जाता है। जब सूर्य और चन्द्र के संयुक्त अंश किसी विशेष खण्ड में आते हैं, तो वह योग प्रभावी होता है। तिथि (जो अन्तर पर निर्भर है) के विपरीत, योग योगफल पर निर्भर करता है — इसलिए यह दोनों ज्योतियों की संयुक्त "ऊर्जा" को दर्शाता है।`, ta: `योगः सूर्यचन्द्रयोः नाक्षत्रिकांशयोः योगेन (सम्मेलनेन) निर्धार्यते। 360° 13°20' इति सप्तविंशतिसमभागेषु विभज्यते। यदा सूर्यचन्द्रयोः संयुक्ताः अंशाः कस्मिंश्चित् खण्डे पतन्ति, तदा स योगः प्रभवति।`, te: `योगः सूर्यचन्द्रयोः नाक्षत्रिकांशयोः योगेन (सम्मेलनेन) निर्धार्यते। 360° 13°20' इति सप्तविंशतिसमभागेषु विभज्यते। यदा सूर्यचन्द्रयोः संयुक्ताः अंशाः कस्मिंश्चित् खण्डे पतन्ति, तदा स योगः प्रभवति।`, bn: `योगः सूर्यचन्द्रयोः नाक्षत्रिकांशयोः योगेन (सम्मेलनेन) निर्धार्यते। 360° 13°20' इति सप्तविंशतिसमभागेषु विभज्यते। यदा सूर्यचन्द्रयोः संयुक्ताः अंशाः कस्मिंश्चित् खण्डे पतन्ति, तदा स योगः प्रभवति।`, kn: `योगः सूर्यचन्द्रयोः नाक्षत्रिकांशयोः योगेन (सम्मेलनेन) निर्धार्यते। 360° 13°20' इति सप्तविंशतिसमभागेषु विभज्यते। यदा सूर्यचन्द्रयोः संयुक्ताः अंशाः कस्मिंश्चित् खण्डे पतन्ति, तदा स योगः प्रभवति।`, gu: `योगः सूर्यचन्द्रयोः नाक्षत्रिकांशयोः योगेन (सम्मेलनेन) निर्धार्यते। 360° 13°20' इति सप्तविंशतिसमभागेषु विभज्यते। यदा सूर्यचन्द्रयोः संयुक्ताः अंशाः कस्मिंश्चित् खण्डे पतन्ति, तदा स योगः प्रभवति।`, mai: `योग सूर्य और चन्द्रमा के नाक्षत्रिक अंशों के योग (जोड़) से निर्धारित होता है। 360° को 13°20' के 27 समान भागों में विभाजित किया जाता है। जब सूर्य और चन्द्र के संयुक्त अंश किसी विशेष खण्ड में आते हैं, तो वह योग प्रभावी होता है। तिथि (जो अन्तर पर निर्भर है) के विपरीत, योग योगफल पर निर्भर करता है — इसलिए यह दोनों ज्योतियों की संयुक्त "ऊर्जा" को दर्शाता है।`, mr: `योग सूर्य और चन्द्रमा के नाक्षत्रिक अंशों के योग (जोड़) से निर्धारित होता है। 360° को 13°20' के 27 समान भागों में विभाजित किया जाता है। जब सूर्य और चन्द्र के संयुक्त अंश किसी विशेष खण्ड में आते हैं, तो वह योग प्रभावी होता है। तिथि (जो अन्तर पर निर्भर है) के विपरीत, योग योगफल पर निर्भर करता है — इसलिए यह दोनों ज्योतियों की संयुक्त "ऊर्जा" को दर्शाता है।` }, locale)}
             </p>
             <motion.div
               className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10"
@@ -334,7 +333,7 @@ export default function YogaPage() {
               viewport={{ once: true }}
             >
               <p className="text-gold-light font-mono text-sm">
-                {!isDevanagariLocale(locale) ? 'Formula:' : 'सूत्र:'} Yoga = floor((Sun_sidereal + Moon_sidereal) / 13.333) + 1
+                {tl({ en: 'Formula:', hi: 'सूत्र:', sa: 'सूत्र:', ta: 'Formula:', te: 'Formula:', bn: 'Formula:', kn: 'Formula:', gu: 'Formula:', mai: 'सूत्र:', mr: 'सूत्र:' }, locale)} Yoga = floor((Sun_sidereal + Moon_sidereal) / 13.333) + 1
               </p>
             </motion.div>
           </div>
@@ -344,7 +343,7 @@ export default function YogaPage() {
       {/* Interactive Yoga Wheel */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {!isDevanagariLocale(locale) ? 'Interactive Yoga Wheel' : isDevanagari ? 'इंटरैक्टिव योग चक्र' : 'संवादात्मकं योगचक्रम्'}
+          {tl({ en: 'Interactive Yoga Wheel', hi: 'इंटरैक्टिव योग चक्र', sa: 'संवादात्मकं योगचक्रम्', ta: 'Interactive Yoga Wheel', te: 'Interactive Yoga Wheel', bn: 'Interactive Yoga Wheel', kn: 'Interactive Yoga Wheel', gu: 'Interactive Yoga Wheel', mai: 'इंटरैक्टिव योग चक्र', mr: 'इंटरैक्टिव योग चक्र' }, locale)}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <AnimatedYogaWheel locale={locale} onSelect={setSelectedYoga} />
@@ -369,23 +368,23 @@ export default function YogaPage() {
                     : 'bg-amber-500/20 text-amber-400'
                   }`}>
                     {YOGAS[selectedYoga].nature === 'auspicious'
-                      ? (!isDevanagariLocale(locale) ? 'Auspicious' : 'शुभ')
+                      ? (tl({ en: 'Auspicious', hi: 'शुभ', sa: 'शुभ', ta: 'Auspicious', te: 'Auspicious', bn: 'Auspicious', kn: 'Auspicious', gu: 'Auspicious', mai: 'शुभ', mr: 'शुभ' }, locale))
                       : YOGAS[selectedYoga].nature === 'inauspicious'
-                      ? (!isDevanagariLocale(locale) ? 'Inauspicious' : 'अशुभ')
-                      : (!isDevanagariLocale(locale) ? 'Neutral' : 'सम')}
+                      ? (tl({ en: 'Inauspicious', hi: 'अशुभ', sa: 'अशुभ', ta: 'Inauspicious', te: 'Inauspicious', bn: 'Inauspicious', kn: 'Inauspicious', gu: 'Inauspicious', mai: 'अशुभ', mr: 'अशुभ' }, locale))
+                      : (tl({ en: 'Neutral', hi: 'सम', sa: 'सम', ta: 'Neutral', te: 'Neutral', bn: 'Neutral', kn: 'Neutral', gu: 'Neutral', mai: 'सम', mr: 'सम' }, locale))}
                   </span>
                 </div>
                 <div className="text-text-secondary text-sm">
-                  <p><span className="text-gold-dark">{!isDevanagariLocale(locale) ? 'Yoga Number:' : 'योग संख्या:'}</span> {selectedYoga + 1} / 27</p>
-                  <p className="mt-1"><span className="text-gold-dark">{!isDevanagariLocale(locale) ? 'Meaning:' : 'अर्थ:'}</span> {YOGAS[selectedYoga].meaning[locale]}</p>
-                  <p className="mt-1"><span className="text-gold-dark">{!isDevanagariLocale(locale) ? 'Angular Span:' : 'कोणीय विस्तार:'}</span> {(selectedYoga * 13.333).toFixed(1)}° — {((selectedYoga + 1) * 13.333).toFixed(1)}°</p>
+                  <p><span className="text-gold-dark">{tl({ en: 'Yoga Number:', hi: 'योग संख्या:', sa: 'योग संख्या:', ta: 'Yoga Number:', te: 'Yoga Number:', bn: 'Yoga Number:', kn: 'Yoga Number:', gu: 'Yoga Number:', mai: 'योग संख्या:', mr: 'योग संख्या:' }, locale)}</span> {selectedYoga + 1} / 27</p>
+                  <p className="mt-1"><span className="text-gold-dark">{tl({ en: 'Meaning:', hi: 'अर्थ:', sa: 'अर्थ:', ta: 'Meaning:', te: 'Meaning:', bn: 'Meaning:', kn: 'Meaning:', gu: 'Meaning:', mai: 'अर्थ:', mr: 'अर्थ:' }, locale)}</span> {YOGAS[selectedYoga].meaning[locale]}</p>
+                  <p className="mt-1"><span className="text-gold-dark">{tl({ en: 'Angular Span:', hi: 'कोणीय विस्तार:', sa: 'कोणीय विस्तार:', ta: 'Angular Span:', te: 'Angular Span:', bn: 'Angular Span:', kn: 'Angular Span:', gu: 'Angular Span:', mai: 'कोणीय विस्तार:', mr: 'कोणीय विस्तार:' }, locale)}</span> {(selectedYoga * 13.333).toFixed(1)}° — {((selectedYoga + 1) * 13.333).toFixed(1)}°</p>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
 
           <p className="text-text-secondary text-xs text-center mt-4">
-            {!isDevanagariLocale(locale) ? 'Click on any sector to see details' : 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें'}
+            {tl({ en: 'Click on any sector to see details', hi: 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें', sa: 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें', ta: 'Click on any sector to see details', te: 'Click on any sector to see details', bn: 'Click on any sector to see details', kn: 'Click on any sector to see details', gu: 'Click on any sector to see details', mai: 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें', mr: 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें' }, locale)}
           </p>
         </div>
       </section>
@@ -417,10 +416,10 @@ export default function YogaPage() {
               </div>
               <div className={`text-xs mt-1 ${natureColor(yoga.nature)}`}>
                 {yoga.nature === 'auspicious'
-                  ? (!isDevanagariLocale(locale) ? 'Auspicious' : 'शुभ')
+                  ? (tl({ en: 'Auspicious', hi: 'शुभ', sa: 'शुभ', ta: 'Auspicious', te: 'Auspicious', bn: 'Auspicious', kn: 'Auspicious', gu: 'Auspicious', mai: 'शुभ', mr: 'शुभ' }, locale))
                   : yoga.nature === 'inauspicious'
-                  ? (!isDevanagariLocale(locale) ? 'Inauspicious' : 'अशुभ')
-                  : (!isDevanagariLocale(locale) ? 'Neutral' : 'सम')}
+                  ? (tl({ en: 'Inauspicious', hi: 'अशुभ', sa: 'अशुभ', ta: 'Inauspicious', te: 'Inauspicious', bn: 'Inauspicious', kn: 'Inauspicious', gu: 'Inauspicious', mai: 'अशुभ', mr: 'अशुभ' }, locale))
+                  : (tl({ en: 'Neutral', hi: 'सम', sa: 'सम', ta: 'Neutral', te: 'Neutral', bn: 'Neutral', kn: 'Neutral', gu: 'Neutral', mai: 'सम', mr: 'सम' }, locale))}
               </div>
             </motion.div>
           ))}

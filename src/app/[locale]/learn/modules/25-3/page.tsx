@@ -1,11 +1,11 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/25-3.json';
+const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
 const META: ModuleMeta = {
   id: 'mod_25_3', phase: 5, topic: 'Indian Mathematics', moduleNumber: '25.3',
@@ -100,7 +100,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: "Aryabhata's π — Four Decimals and a Deep Hint", hi: "आर्यभट का π — चार दशमलव और एक गहरा संकेत", sa: "आर्यभट का π — चार दशमलव और एक गहरा संकेत" }, locale)}
+          {t('aryabhatasFourDecimalsAndADeep', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -111,10 +111,10 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Ganitapada Verse 10 — Text and Interpretation', hi: 'गणितपाद श्लोक 10 — पाठ और व्याख्या', sa: 'गणितपाद श्लोक 10 — पाठ और व्याख्या' }, locale)}
+          {t('ganitapadaVerse10TextAndInterpretation', locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-3 font-medium text-center italic text-gold-light/80">
-          {tl({ en: '"chaturadhikaṃ śatamaṣṭaguṇaṃ dvāṣaṣṭistathā sahasrāṇām.\nayutadvayaviṣkambhasyāsanno vṛttapariṇāhaḥ"', hi: '"चतुरधिकं शतमष्टगुणं द्वाषष्टिस्तथा सहस्राणाम्।\nअयुतद्वयविष्कम्भस्यासन्नो वृत्तपरिणाहः॥"', sa: '"चतुरधिकं शतमष्टगुणं द्वाषष्टिस्तथा सहस्राणाम्।\nअयुतद्वयविष्कम्भस्यासन्नो वृत्तपरिणाहः॥"' }, locale)}
+          {t('chaturadhikaAtamaaguaDvaistathSahasrmAyutadvayavikambhasysannoVttapariha', locale)}
         </p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -135,14 +135,14 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Aryabhata vs. the Contemporary World', hi: 'आर्यभट बनाम समकालीन विश्व', sa: 'आर्यभट बनाम समकालीन विश्व' }, locale)}
+          {t('aryabhataVsTheContemporaryWorld', locale)}
         </h4>
         <div className="space-y-1">
-          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{tl({ en: 'Archimedes (~250 BCE):', hi: 'आर्किमिडीज (~250 BCE):', sa: 'आर्किमिडीज (~250 BCE):' }, locale)}</span> {tl({ en: '223/71 to 22/7 — ~2 correct decimals', hi: '223/71 से 22/7 तक — ~2 सही दशमलव', sa: '223/71 से 22/7 तक — ~2 सही दशमलव' }, locale)}</p>
-          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{tl({ en: 'Aryabhata (499 CE):', hi: 'आर्यभट (499 ई.):', sa: 'आर्यभट (499 ई.):' }, locale)}</span> {tl({ en: '3.1416 — 4 correct decimals', hi: '3.1416 — 4 सही दशमलव', sa: '3.1416 — 4 सही दशमलव' }, locale)}</p>
-          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{tl({ en: 'China (~480 CE):', hi: 'चीन (~480 ई.):', sa: 'चीन (~480 ई.):' }, locale)}</span> {tl({ en: 'Zu Chongzhi — 355/113 ≈ 3.14159 — 6 decimals', hi: 'ज़ू चोंगज़ी — 355/113 ≈ 3.14159 — 6 दशमलव', sa: 'ज़ू चोंगज़ी — 355/113 ≈ 3.14159 — 6 दशमलव' }, locale)}</p>
-          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{tl({ en: 'Madhava (~1375 CE):', hi: 'माधव (~1375 ई.):', sa: 'माधव (~1375 ई.):' }, locale)}</span> {tl({ en: '3.14159265359 — 11 decimals', hi: '3.14159265359 — 11 दशमलव', sa: '3.14159265359 — 11 दशमलव' }, locale)}</p>
-          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{tl({ en: 'Europe (~1600 CE):', hi: 'यूरोप (~1600 ई.):', sa: 'यूरोप (~1600 ई.):' }, locale)}</span> {tl({ en: 'van Ceulen — 20+ decimals (but no infinite series yet)', hi: 'वान सेउलेन — 20+ दशमलव (पर अनन्त श्रृंखला नहीं जानते थे)', sa: 'वान सेउलेन — 20+ दशमलव (पर अनन्त श्रृंखला नहीं जानते थे)' }, locale)}</p>
+          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{t('archimedes250Bce', locale)}</span> {t('22371To2272CorrectDecimals', locale)}</p>
+          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{t('aryabhata499Ce', locale)}</span> {t('314164CorrectDecimals', locale)}</p>
+          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{t('china480Ce', locale)}</span> {t('zuChongzhi3551133141596Decimals', locale)}</p>
+          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{t('madhava1375Ce', locale)}</span> {t('31415926535911Decimals', locale)}</p>
+          <p className="text-text-secondary text-xs"><span className="text-gold-light font-medium">{t('europe1600Ce', locale)}</span> {t('vanCeulen20DecimalsButNo', locale)}</p>
         </div>
       </section>
     </div>
@@ -159,7 +159,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: "Madhava's Infinite Series — 250 Years Ahead", hi: "माधव की अनन्त श्रृंखला — 250 वर्ष पहले", sa: "माधव की अनन्त श्रृंखला — 250 वर्ष पहले" }, locale)}
+          {t('madhavasInfiniteSeries250YearsAhead', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -170,7 +170,7 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'The Madhava-Leibniz Series', hi: 'माधव-लाइबनित्ज़ श्रृंखला', sa: 'माधव-लाइब्निज़-श्रेणी' }, locale)}
+          {t('theMadhavaleibnizSeries', locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-3 text-center font-mono text-gold-light/90">
           π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − 1/11 + ...
@@ -189,7 +189,7 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15 rounded-xl p-5">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: "Madhava's Correction Terms", hi: "माधव की सुधार पद विधि", sa: "माधव की सुधार पद विधि" }, locale)}
+          {t('madhavasCorrectionTerms', locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -216,7 +216,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Practical Uses of π and Indian Astronomy', hi: 'π का व्यावहारिक उपयोग और भारतीय खगोल विज्ञान', sa: 'π का व्यावहारिक उपयोग और भारतीय खगोल विज्ञान' }, locale)}
+          {t('practicalUsesOfAndIndianAstronomy', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -227,27 +227,27 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Applications of π in Astronomy', hi: 'खगोल विज्ञान में π के अनुप्रयोग', sa: 'खगोल विज्ञान में π के अनुप्रयोग' }, locale)}
+          {t('applicationsOfInAstronomy', locale)}
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{tl({ en: "Earth's circumference:", hi: "पृथ्वी की परिधि:", sa: "पृथ्वी की परिधि:" }, locale)}</span>{' '}
-            {tl({ en: "Aryabhata used π = 3.1416 with radius 3300 yojanas to compute Earth\'s circumference — approximately 24835 miles, only 66 miles from the modern value of 24901 miles.", hi: "आर्यभट ने π = 3.1416 और त्रिज्या 3300 योजन का उपयोग करके पृथ्वी की परिधि की गणना की। उनका उत्तर ~24835 मील था — आधुनिक मान 24901 मील से केवल 66 मील दूर।", sa: "आर्यभट ने π = 3.1416 और त्रिज्या 3300 योजन का उपयोग करके पृथ्वी की परिधि की गणना की। उनका उत्तर ~24835 मील था — आधुनिक मान 24901 मील से केवल 66 मील दूर।" }, locale)}
+            <span className="text-gold-light font-semibold">{t('earthsCircumference', locale)}</span>{' '}
+            {t('aryabhataUsed31416WithRadius3300', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{tl({ en: 'Planetary orbits:', hi: 'ग्रहीय कक्षाएँ:', sa: 'ग्रहीय कक्षाएँ:' }, locale)}</span>{' '}
-            {tl({ en: 'Computing planetary orbital circumferences and periods — for eclipse and conjunction prediction — all dependent on π.', hi: 'ग्रहों की परिधि और व्यास की गणना — ग्रहण और युति (conjunction) की भविष्यवाणी के लिए — सब π पर निर्भर।', sa: 'ग्रहों की परिधि और व्यास की गणना — ग्रहण और युति (conjunction) की भविष्यवाणी के लिए — सब π पर निर्भर।' }, locale)}
+            <span className="text-gold-light font-semibold">{t('planetaryOrbits', locale)}</span>{' '}
+            {t('computingPlanetaryOrbitalCircumferencesAndPeriods', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{tl({ en: 'Observatory instruments:', hi: 'वेधशाला उपकरण:', sa: 'वेधशाला उपकरण:' }, locale)}</span>{' '}
-            {tl({ en: 'Spherical astrolabes, gnomons (shanku), and armillary spheres — all require π for construction.', hi: 'गोलाकार astrolabe, gnomon (शङ्कु), और अर्मिलरी क्षेत्र — सभी के निर्माण में π की आवश्यकता।', sa: 'गोलाकार astrolabe, gnomon (शङ्कु), और अर्मिलरी क्षेत्र — सभी के निर्माण में π की आवश्यकता।' }, locale)}
+            <span className="text-gold-light font-semibold">{t('observatoryInstruments', locale)}</span>{' '}
+            {t('sphericalAstrolabesGnomonsShankuAndArmillary', locale)}
           </p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/15 rounded-xl p-5">
         <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: "π's Irrationality — A Philosophical Question", hi: "π की अपरिमेयता — एक दार्शनिक प्रश्न", sa: "π की अपरिमेयता — एक दार्शनिक प्रश्न" }, locale)}
+          {t('sIrrationalityAPhilosophicalQuestion', locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi

@@ -1,11 +1,11 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/26-2.json';
+const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
 const META: ModuleMeta = {
   id: 'mod_26_2', phase: 6, topic: 'Indian Contributions', moduleNumber: '26.2',
@@ -100,7 +100,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Gravity: The Indian Tradition', hi: 'गुरुत्वाकर्षण: भारतीय परम्परा', sa: 'गुरुत्वाकर्षण: भारतीय परम्परा' }, locale)}
+          {t('gravityTheIndianTradition', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -111,25 +111,25 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Three Indian Precedents', hi: 'तीन भारतीय पूर्वाभास', sa: 'तीन भारतीय पूर्वाभास' }, locale)}
+          {t('threeIndianPrecedents', locale)}
         </h4>
         <div className="space-y-3">
           <div>
-            <p className="text-gold-light font-semibold text-xs mb-1">{tl({ en: 'Varahamihira (505 CE)', hi: 'वराहमिहिर (505 ईस्वी)', sa: 'वराहमिहिर (505 ईस्वी)' }, locale)}</p>
+            <p className="text-gold-light font-semibold text-xs mb-1">{t('varahamihira505Ce', locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
-              {tl({ en: "Brihat Samhita — describes Earth\'s inherent attractive force. Asks: why do objects below a spherical Earth not fall off? Answer: Earth attracts everything.", hi: "बृहत् संहिता — पृथ्वी के अंतर्निहित आकर्षण बल का वर्णन। पूछते हैं: गोलाकार पृथ्वी के नीचे की वस्तुएँ क्यों नहीं गिरती? उत्तर: पृथ्वी सब कुछ आकर्षित करती है।", sa: "बृहत् संहिता — पृथ्वी के अंतर्निहित आकर्षण बल का वर्णन। पूछते हैं: गोलाकार पृथ्वी के नीचे की वस्तुएँ क्यों नहीं गिरती? उत्तर: पृथ्वी सब कुछ आकर्षित करती है।" }, locale)}
+              {t('brihatSamhitaDescribesEarthsInherentAttractive', locale)}
             </p>
           </div>
           <div>
-            <p className="text-gold-light font-semibold text-xs mb-1">{tl({ en: 'Brahmagupta (628 CE)', hi: 'ब्रह्मगुप्त (628 ईस्वी)', sa: 'ब्रह्मगुप्त (628 ईस्वी)' }, locale)}</p>
+            <p className="text-gold-light font-semibold text-xs mb-1">{t('brahmagupta628Ce', locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
-              {tl({ en: 'Brahmasphutasiddhanta — "The Earth attracts all bodies toward itself." Clear and concise statement.', hi: 'ब्रह्मस्फुटसिद्धान्त — "पृथ्वी सभी पिण्डों को अपनी ओर आकर्षित करती है।" स्पष्ट और संक्षिप्त कथन।', sa: 'ब्रह्मस्फुटसिद्धान्त — "पृथ्वी सभी पिण्डों को अपनी ओर आकर्षित करती है।" स्पष्ट और संक्षिप्त कथन।' }, locale)}
+              {t('brahmasphutasiddhantaTheEarthAttractsAllBodies', locale)}
             </p>
           </div>
           <div>
-            <p className="text-gold-light font-semibold text-xs mb-1">{tl({ en: 'Bhaskaracharya (1150 CE)', hi: 'भास्कराचार्य (1150 ईस्वी)', sa: 'भास्कराचार्य (1150 ईस्वी)' }, locale)}</p>
+            <p className="text-gold-light font-semibold text-xs mb-1">{t('bhaskaracharya1150Ce', locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
-              {tl({ en: 'Siddhanta Shiromani — most detailed treatment. "The Earth has the quality of attraction. All heavy objects fall to the Earth." Extended discussion in Goladhyaya.', hi: 'सिद्धान्त शिरोमणि — सबसे विस्तृत उपचार। "पृथ्वी में आकर्षण का गुण है। सभी भारी वस्तुएँ पृथ्वी पर गिरती हैं।" गोलाध्याय में विस्तृत चर्चा।', sa: 'सिद्धान्त शिरोमणि — सबसे विस्तृत उपचार। "पृथ्वी में आकर्षण का गुण है। सभी भारी वस्तुएँ पृथ्वी पर गिरती हैं।" गोलाध्याय में विस्तृत चर्चा।' }, locale)}
+              {t('siddhantaShiromaniMostDetailedTreatmentThe', locale)}
             </p>
           </div>
         </div>
@@ -137,13 +137,13 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: "Bhaskaracharya\'s Original Verse", hi: "भास्कराचार्य का मूल श्लोक", sa: "भास्कराचार्य का मूल श्लोक" }, locale)}
+          {t('bhaskaracharyasOriginalVerse', locale)}
         </h4>
         <blockquote className="border-l-2 border-gold-primary/40 pl-4">
           <p className="text-gold-light text-xs italic leading-relaxed">
-            {tl({ en: '"The Earth has the power of attraction on all sides. Heavy bodies fall in the sky (toward Earth). Therefore the Earth is the support of all."', hi: '"पृथ्व्याः समन्तात् आकर्षणशक्तिः। पतन्ति गुरूणि नभसि।  अतः पृथ्वी सर्वाधारा।"', sa: '"पृथ्व्याः समन्तात् आकर्षणशक्तिः। पतन्ति गुरूणि नभसि।  अतः पृथ्वी सर्वाधारा।"' }, locale)}
+            {t('theEarthHasThePowerOf', locale)}
           </p>
-          <p className="text-text-secondary text-xs mt-1">— {tl({ en: 'Bhaskaracharya, Siddhanta Shiromani, Goladhyaya (1150 CE)', hi: 'भास्कराचार्य, सिद्धान्त शिरोमणि, गोलाध्याय (1150 ईस्वी)', sa: 'भास्कराचार्य, सिद्धान्त शिरोमणि, गोलाध्याय (1150 ईस्वी)' }, locale)}</p>
+          <p className="text-text-secondary text-xs mt-1">— {t('bhaskaracharyaSiddhantaShiromaniGoladhyaya1150Ce', locale)}</p>
         </blockquote>
       </section>
     </div>
@@ -160,7 +160,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'What Newton Added', hi: 'न्यूटन ने क्या जोड़ा', sa: 'न्यूटन ने क्या जोड़ा' }, locale)}
+          {t('whatNewtonAdded', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -171,28 +171,28 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: "Newton\'s Three Contributions", hi: "न्यूटन के तीन योगदान", sa: "न्यूटन के तीन योगदान" }, locale)}
+          {t('newtonsThreeContributions', locale)}
         </h4>
         <div className="space-y-3 text-text-secondary text-xs leading-relaxed">
           <div>
-            <p className="text-gold-light font-semibold mb-1">{tl({ en: '1. Precise Mathematical Formula', hi: '1. सटीक गणितीय सूत्र', sa: '1. सटीक गणितीय सूत्र' }, locale)}</p>
+            <p className="text-gold-light font-semibold mb-1">{t('1PreciseMathematicalFormula', locale)}</p>
             <p className="font-mono text-gold-primary text-sm text-center my-2">F = Gm₁m₂/r²</p>
-            <p>{tl({ en: 'Force = gravitational constant × (mass1 × mass2) / distance². Inverse-square law — double the distance, force reduces fourfold.', hi: 'बल = गुरुत्वाकर्षण स्थिरांक × (द्रव्यमान1 × द्रव्यमान2) / दूरी²। व्युत्क्रम-वर्ग नियम — दूरी दोगुनी होने पर बल चौगुना कम।', sa: 'बल = गुरुत्वाकर्षण स्थिरांक × (द्रव्यमान1 × द्रव्यमान2) / दूरी²। व्युत्क्रम-वर्ग नियम — दूरी दोगुनी होने पर बल चौगुना कम।' }, locale)}</p>
+            <p>{t('forceGravitationalConstantMass1Mass2Distance', locale)}</p>
           </div>
           <div>
-            <p className="text-gold-light font-semibold mb-1">{tl({ en: '2. Unification: Terrestrial + Celestial Gravity', hi: '2. एकीकरण: स्थलीय + खगोलीय गुरुत्वाकर्षण', sa: '2. एकीकरण: स्थलीय + खगोलीय गुरुत्वाकर्षण' }, locale)}</p>
-            <p>{tl({ en: 'Newton proved that the gravity pulling apples and the gravity keeping the Moon in orbit are the SAME force. This unification was revolutionary.', hi: 'न्यूटन ने साबित किया कि वह गुरुत्वाकर्षण जो सेब गिराता है और वह जो चन्द्रमा को कक्षा में रखता है — एक ही बल है। यह एकीकरण विज्ञान में क्रांतिकारी था।', sa: 'न्यूटन ने साबित किया कि वह गुरुत्वाकर्षण जो सेब गिराता है और वह जो चन्द्रमा को कक्षा में रखता है — एक ही बल है। यह एकीकरण विज्ञान में क्रांतिकारी था।' }, locale)}</p>
+            <p className="text-gold-light font-semibold mb-1">{t('2UnificationTerrestrialCelestialGravity', locale)}</p>
+            <p>{t('newtonProvedThatTheGravityPulling', locale)}</p>
           </div>
           <div>
-            <p className="text-gold-light font-semibold mb-1">{tl({ en: '3. Universality', hi: '3. सार्वत्रिकता', sa: '3. सार्वत्रिकता' }, locale)}</p>
-            <p>{tl({ en: 'The law is universal — Earth, Moon, Sun, every body attracts every other by the same formula.', hi: 'यह नियम सार्वत्रिक है — पृथ्वी, चन्द्रमा, सूर्य, हर पिण्ड हर दूसरे पिण्ड को एक ही सूत्र से आकर्षित करता है।', sa: 'यह नियम सार्वत्रिक है — पृथ्वी, चन्द्रमा, सूर्य, हर पिण्ड हर दूसरे पिण्ड को एक ही सूत्र से आकर्षित करता है।' }, locale)}</p>
+            <p className="text-gold-light font-semibold mb-1">{t('3Universality', locale)}</p>
+            <p>{t('theLawIsUniversalEarthMoon', locale)}</p>
           </div>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15 rounded-xl p-5">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Fair Assessment', hi: 'न्यायोचित मूल्यांकन', sa: 'न्यायोचित मूल्यांकन' }, locale)}
+          {t('fairAssessment', locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -214,7 +214,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Bhaskaracharya: Universal Genius', hi: 'भास्कराचार्य: बहुमुखी प्रतिभा', sa: 'भास्कराचार्य: बहुमुखी प्रतिभा' }, locale)}
+          {t('bhaskaracharyaUniversalGenius', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -225,21 +225,21 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: "Bhaskaracharya\'s Notable Achievements", hi: "भास्कराचार्य की उल्लेखनीय उपलब्धियाँ", sa: "भास्कराचार्य की उल्लेखनीय उपलब्धियाँ" }, locale)}
+          {t('bhaskaracharyasNotableAchievements', locale)}
         </h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
-          <p>→ {tl({ en: "Gravity: described Earth\'s attractive force (1150 CE)", hi: "गुरुत्वाकर्षण: पृथ्वी के आकर्षण बल का वर्णन (1150 ईस्वी)", sa: "गुरुत्वाकर्षण: पृथ्वी के आकर्षण बल का वर्णन (1150 ईस्वी)" }, locale)}</p>
-          <p>→ {tl({ en: 'Differential calculus: studied instantaneous velocity — 500 years before Newton/Leibniz', hi: 'अवकलन गणित: गतिशील वस्तुओं के वेग का अध्ययन — न्यूटन/लाइबनिज से 500 वर्ष पहले', sa: 'अवकलन गणित: गतिशील वस्तुओं के वेग का अध्ययन — न्यूटन/लाइबनिज से 500 वर्ष पहले' }, locale)}</p>
-          <p>→ {tl({ en: "Cyclic quadratic equations: solved Pell\'s equation — 600 years before Europe", hi: "चक्रीय द्विघात समीकरण: पेल समीकरण के समाधान — यूरोप से 600 वर्ष पहले", sa: "चक्रीय द्विघात समीकरण: पेल समीकरण के समाधान — यूरोप से 600 वर्ष पहले" }, locale)}</p>
-          <p>→ {tl({ en: 'Trigonometry: sine and cosine sum and difference formulas', hi: 'त्रिकोणमिति: sine और cosine योगफल और अंतर सूत्र', sa: 'त्रिकोणमिति: sine और cosine योगफल और अंतर सूत्र' }, locale)}</p>
-          <p>→ {tl({ en: 'Division by zero: discussed the concept of n/0 = ∞', hi: 'शून्य से भाग: n/0 = ∞ की अवधारणा पर चर्चा', sa: 'शून्य से भाग: n/0 = ∞ की अवधारणा पर चर्चा' }, locale)}</p>
-          <p>→ {tl({ en: "Spherical Earth: explicit description of Earth\'s spherical shape", hi: "गोलाकार पृथ्वी: पृथ्वी के गोलाकार आकार का स्पष्ट वर्णन", sa: "गोलाकार पृथ्वी: पृथ्वी के गोलाकार आकार का स्पष्ट वर्णन" }, locale)}</p>
+          <p>→ {t('gravityDescribedEarthsAttractiveForce1150', locale)}</p>
+          <p>→ {t('differentialCalculusStudiedInstantaneousVelocity500', locale)}</p>
+          <p>→ {t('cyclicQuadraticEquationsSolvedPellsEquation', locale)}</p>
+          <p>→ {t('trigonometrySineAndCosineSumAnd', locale)}</p>
+          <p>→ {t('divisionByZeroDiscussedTheConcept', locale)}</p>
+          <p>→ {t('sphericalEarthExplicitDescriptionOfEarths', locale)}</p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/15 rounded-xl p-5">
         <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Historical Context', hi: 'ऐतिहासिक प्रासंगिकता', sa: 'ऐतिहासिक प्रासंगिकता' }, locale)}
+          {t('historicalContext', locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi

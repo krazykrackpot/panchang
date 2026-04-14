@@ -1,12 +1,12 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/0-5.json';
+const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
 const META: ModuleMeta = {
   id: 'mod_0_5',
@@ -28,49 +28,49 @@ function Page1() {
     <div className="space-y-6">
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 mb-2">
         <p className="text-text-secondary text-sm leading-relaxed">
-          {tl({ en: `Your Spotify Wrapped summarizes your year based on listening data. Your Instagram profile captures your curated self. But imagine a system that captures the ENTIRE state of the cosmos at the exact second you took your first breath \u2014 every planet\'s position, every house alignment, every angular relationship \u2014 frozen in a single diagram. That\'s your Kundali. It\'s the most information-dense personal document in any astrological tradition.`, hi: `आपका Spotify Wrapped आपके सुनने के डेटा से साल का सारांश देता है। आपका Instagram प्रोफ़ाइल आपका क्यूरेटेड स्व कैप्चर करता है। लेकिन कल्पना करें ऐसी पद्धति जो आपकी पहली साँस के ठीक सेकण्ड पर ब्रह्माण्ड की सम्पूर्ण स्थिति कैप्चर करे — हर ग्रह की स्थिति, हर भाव का संरेखण, हर कोणीय सम्बन्ध — एक ही चित्र में जमा हुआ। यही आपकी कुण्डली है। यह किसी भी ज्योतिषीय परम्परा में सर्वाधिक सूचना-सघन व्यक्तिगत दस्तावेज़ है।`, sa: `आपका Spotify Wrapped आपके सुनने के डेटा से साल का सारांश देता है। आपका Instagram प्रोफ़ाइल आपका क्यूरेटेड स्व कैप्चर करता है। लेकिन कल्पना करें ऐसी पद्धति जो आपकी पहली साँस के ठीक सेकण्ड पर ब्रह्माण्ड की सम्पूर्ण स्थिति कैप्चर करे — हर ग्रह की स्थिति, हर भाव का संरेखण, हर कोणीय सम्बन्ध — एक ही चित्र में जमा हुआ। यही आपकी कुण्डली है। यह किसी भी ज्योतिषीय परम्परा में सर्वाधिक सूचना-सघन व्यक्तिगत दस्तावेज़ है।` }, locale)}
+          {t('yourSpotifyWrappedSummarizesYourYear', locale)}
         </p>
       </section>
 
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'A Snapshot of the Sky, at Your Exact Birth Moment', hi: 'आकाश का एक चित्र, आपके जन्म के ठीक क्षण का', sa: 'आकाश का एक चित्र, आपके जन्म के ठीक क्षण का' }, locale)}
+          {t('aSnapshotOfTheSkyAt', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          {tl({ en: `Imagine freezing the entire sky at the second you were born. Which sign was rising on the eastern horizon? Where were the planets? That\'s your Kundali \u2014 an astronomical map of the first moment of your life.`, hi: `कल्पना करें कि आपके जन्म के ठीक सेकण्ड पर पूरा आकाश जम जाए। कौन-सी राशि पूर्वी क्षितिज पर उदय हो रही थी? ग्रह कहाँ थे? यही आपकी कुण्डली है — आपके जीवन के प्रथम क्षण का खगोलीय मानचित्र।`, sa: `कल्पना करें कि आपके जन्म के ठीक सेकण्ड पर पूरा आकाश जम जाए। कौन-सी राशि पूर्वी क्षितिज पर उदय हो रही थी? ग्रह कहाँ थे? यही आपकी कुण्डली है — आपके जीवन के प्रथम क्षण का खगोलीय मानचित्र।` }, locale)}
+          {t('imagineFreezingTheEntireSkyAt', locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'The Lagna (Ascendant)', hi: 'लग्न (उदय राशि)', sa: 'लग्न (उदय राशि)' }, locale)}
+          {t('theLagnaAscendant', locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          {tl({ en: 'The Lagna = which sign was rising on the eastern horizon at birth. It changes every ~2 hours \u2014 this is why birth TIME matters, not just date. The Lagna is your "personality lens" \u2014 how you see the world and how the world sees you.', hi: 'लग्न = जन्म के समय पूर्वी क्षितिज पर उदय हो रही राशि। यह लगभग हर ~2 घण्टे बदलती है — इसीलिए जन्म समय महत्त्वपूर्ण है, केवल तिथि नहीं। लग्न आपका "व्यक्तित्व लेंस" है — आप संसार को कैसे देखते हैं और संसार आपको कैसे देखता है।', sa: 'लग्न = जन्म के समय पूर्वी क्षितिज पर उदय हो रही राशि। यह लगभग हर ~2 घण्टे बदलती है — इसीलिए जन्म समय महत्त्वपूर्ण है, केवल तिथि नहीं। लग्न आपका "व्यक्तित्व लेंस" है — आप संसार को कैसे देखते हैं और संसार आपको कैसे देखता है।' }, locale)}
+          {t('theLagnaWhichSignWasRising', locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: '12 Houses — 12 Slices of Sky', hi: '12 भाव — आकाश के 12 टुकड़े', sa: '12 भाव — आकाश के 12 टुकड़े' }, locale)}
+          {t('12Houses12SlicesOfSky', locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          {tl({ en: 'Each house governs an area of life: 1. Self (personality), 2. Wealth, 3. Siblings, 4. Mother/Home, 5. Children/Education, 6. Enemies/Disease, 7. Marriage/Partnership, 8. Longevity/Secrets, 9. Luck/Dharma, 10. Career, 11. Gains, 12. Loss/Spirituality. 9 planets placed in these houses = the forces shaping your life.', hi: 'प्रत्येक भाव जीवन का एक क्षेत्र शासित करता है: 1. स्व (व्यक्तित्व), 2. धन, 3. भ्रातृ, 4. मातृ/गृह, 5. सन्तान/विद्या, 6. शत्रु/रोग, 7. विवाह/साझेदारी, 8. आयु/रहस्य, 9. भाग्य/धर्म, 10. कर्म/व्यवसाय, 11. लाभ, 12. व्यय/मोक्ष। 9 ग्रह इन भावों में रखे जाते हैं = आपके जीवन को आकार देने वाली शक्तियाँ।', sa: 'प्रत्येक भाव जीवन का एक क्षेत्र शासित करता है: 1. स्व (व्यक्तित्व), 2. धन, 3. भ्रातृ, 4. मातृ/गृह, 5. सन्तान/विद्या, 6. शत्रु/रोग, 7. विवाह/साझेदारी, 8. आयु/रहस्य, 9. भाग्य/धर्म, 10. कर्म/व्यवसाय, 11. लाभ, 12. व्यय/मोक्ष। 9 ग्रह इन भावों में रखे जाते हैं = आपके जीवन को आकार देने वाली शक्तियाँ।' }, locale)}
+          {t('eachHouseGovernsAnAreaOf', locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-purple-400/20 bg-gradient-to-br from-purple-900/10 to-transparent">
         <p className="text-text-secondary text-sm leading-relaxed">
-          {tl({ en: `Here\'s why birth TIME is so critical: the Lagna (ascendant sign) changes approximately every 2 hours. That means twins born 3 hours apart can have COMPLETELY different charts \u2014 different lagna, different house rulers, different life story. Aryabhata calculated this rate (1\u00B0 every 4 minutes) in 499 CE, and modern astronomical computation confirms it to decimal precision. This is why Vedic astrologers will turn away clients who don\'t know their birth time \u2014 without it, the chart is unreliable.`, hi: `यही कारण है कि जन्म समय इतना महत्त्वपूर्ण है: लग्न (उदय राशि) लगभग हर 2 घण्टे बदलता है। इसका मतलब 3 घण्टे के अन्तर से जन्मे जुड़वाँ बच्चों की कुण्डली बिल्कुल अलग हो सकती है — भिन्न लग्न, भिन्न भाव स्वामी, भिन्न जीवन कहानी। आर्यभट ने इस दर (1° हर 4 मिनट) की गणना 499 ई. में की, और आधुनिक खगोलीय गणना दशमलव तक इसकी पुष्टि करती है। इसीलिए वैदिक ज्योतिषी उन ग्राहकों को मना कर देते हैं जिन्हें जन्म समय नहीं पता — बिना इसके कुण्डली अविश्वसनीय है।`, sa: `यही कारण है कि जन्म समय इतना महत्त्वपूर्ण है: लग्न (उदय राशि) लगभग हर 2 घण्टे बदलता है। इसका मतलब 3 घण्टे के अन्तर से जन्मे जुड़वाँ बच्चों की कुण्डली बिल्कुल अलग हो सकती है — भिन्न लग्न, भिन्न भाव स्वामी, भिन्न जीवन कहानी। आर्यभट ने इस दर (1° हर 4 मिनट) की गणना 499 ई. में की, और आधुनिक खगोलीय गणना दशमलव तक इसकी पुष्टि करती है। इसीलिए वैदिक ज्योतिषी उन ग्राहकों को मना कर देते हैं जिन्हें जन्म समय नहीं पता — बिना इसके कुण्डली अविश्वसनीय है।` }, locale)}
+          {t('heresWhyBirthTimeIsSo', locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-          {tl({ en: 'Key Historical Fact', hi: 'रोचक तथ्य', sa: 'रोचक तथ्य' }, locale)}
+          {t('keyHistoricalFact', locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {tl({ en: 'Aryabhata calculated that the Lagna moves at approximately 1\u00B0 every 4 minutes \u2014 which matches modern astronomical computation exactly. A 10-minute birth time error can shift the lagna by 2.5\u00B0 \u2014 potentially changing the entire chart. This is why Vedic astrologers insist on birth time accuracy to the minute.', hi: 'आर्यभट ने गणना की कि लग्न लगभग 1° प्रत्येक 4 मिनट में चलता है — जो आधुनिक खगोलीय गणना से बिल्कुल मेल खाता है। 10 मिनट की जन्म समय त्रुटि लग्न को 2.5° खिसका सकती है — जो सम्भवतः पूरी कुण्डली बदल दे। इसीलिए वैदिक ज्योतिषी मिनट तक जन्म समय की सटीकता पर बल देते हैं।', sa: 'आर्यभट ने गणना की कि लग्न लगभग 1° प्रत्येक 4 मिनट में चलता है — जो आधुनिक खगोलीय गणना से बिल्कुल मेल खाता है। 10 मिनट की जन्म समय त्रुटि लग्न को 2.5° खिसका सकती है — जो सम्भवतः पूरी कुण्डली बदल दे। इसीलिए वैदिक ज्योतिषी मिनट तक जन्म समय की सटीकता पर बल देते हैं।' }, locale)}
+          {t('aryabhataCalculatedThatTheLagnaMoves', locale)}
         </p>
       </section>
     </div>
@@ -84,51 +84,51 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Chart Styles & What to Look for First', hi: 'कुण्डली शैलियाँ और पहले क्या देखें', sa: 'कुण्डली शैलियाँ और पहले क्या देखें' }, locale)}
+          {t('chartStylesWhatToLookFor', locale)}
         </h3>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'North Indian vs South Indian Chart', hi: 'उत्तर भारतीय बनाम दक्षिण भारतीय कुण्डली', sa: 'उत्तर भारतीय बनाम दक्षिण भारतीय कुण्डली' }, locale)}
+          {t('northIndianVsSouthIndianChart', locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          {tl({ en: 'North Indian (diamond): houses are FIXED positions, signs rotate. Lagna is always at the top. South Indian (grid): signs are FIXED positions, houses rotate. Aries is always top-left. SAME DATA, different visual conventions \u2014 like metric vs imperial. Once you learn one, the other is just a rotation.', hi: 'उत्तर भारतीय (हीरा): भाव स्थिर हैं, राशियाँ घूमती हैं। लग्न सदैव ऊपर है। दक्षिण भारतीय (ग्रिड): राशियाँ स्थिर हैं, भाव घूमते हैं। मेष सदैव ऊपर-बाएँ है। एक ही डेटा, भिन्न दृश्य परम्पराएँ — जैसे मीट्रिक बनाम इम्पीरियल। एक सीखने पर दूसरी केवल घुमाव है।', sa: 'उत्तर भारतीय (हीरा): भाव स्थिर हैं, राशियाँ घूमती हैं। लग्न सदैव ऊपर है। दक्षिण भारतीय (ग्रिड): राशियाँ स्थिर हैं, भाव घूमते हैं। मेष सदैव ऊपर-बाएँ है। एक ही डेटा, भिन्न दृश्य परम्पराएँ — जैसे मीट्रिक बनाम इम्पीरियल। एक सीखने पर दूसरी केवल घुमाव है।' }, locale)}
+          {t('northIndianDiamondHousesAreFixed', locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'What to Look for First in YOUR Chart', hi: 'अपनी कुण्डली में पहले क्या देखें', sa: 'अपनी कुण्डली में पहले क्या देखें' }, locale)}
+          {t('whatToLookForFirstIn', locale)}
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-sm leading-relaxed">
-            {tl({ en: '1. Your Lagna sign \u2014 your personality lens. This is the "glasses" through which you see the world.', hi: '1. आपकी लग्न राशि — आपका व्यक्तित्व लेंस। यह वह "चश्मा" है जिससे आप संसार देखते हैं।', sa: '1. आपकी लग्न राशि — आपका व्यक्तित्व लेंस। यह वह "चश्मा" है जिससे आप संसार देखते हैं।' }, locale)}
+            {t('1YourLagnaSignYourPersonality', locale)}
           </p>
           <p className="text-text-secondary text-sm leading-relaxed">
-            {tl({ en: '2. Moon sign \u2014 your emotional core (this is your "rashi" that people ask about in India).', hi: '2. चन्द्र राशि — आपका भावनात्मक मूल (यही आपकी "राशि" है जो भारत में पूछी जाती है)।', sa: '2. चन्द्र राशि — आपका भावनात्मक मूल (यही आपकी "राशि" है जो भारत में पूछी जाती है)।' }, locale)}
+            {t('2MoonSignYourEmotionalCore', locale)}
           </p>
           <p className="text-text-secondary text-sm leading-relaxed">
-            {tl({ en: '3. Strongest planet (by Shadbala) \u2014 the dominant force in your life.', hi: '3. सबसे बलवान ग्रह (षड्बल द्वारा) — आपके जीवन में प्रमुख शक्ति।', sa: '3. सबसे बलवान ग्रह (षड्बल द्वारा) — आपके जीवन में प्रमुख शक्ति।' }, locale)}
+            {t('3StrongestPlanetByShadbalaThe', locale)}
           </p>
           <p className="text-text-secondary text-sm leading-relaxed">
-            {tl({ en: '4. Any planets in the 1st house \u2014 they directly stamp your personality.', hi: '4. प्रथम भाव में कोई ग्रह — वे सीधे आपके व्यक्तित्व पर छाप छोड़ते हैं।', sa: '4. प्रथम भाव में कोई ग्रह — वे सीधे आपके व्यक्तित्व पर छाप छोड़ते हैं।' }, locale)}
+            {t('4AnyPlanetsInThe1st', locale)}
           </p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <p className="text-text-secondary text-sm leading-relaxed">
-          {tl({ en: `Don\'t let the visual complexity intimidate you. A Kundali chart is just a MAP. North Indian style = like a road map where landmarks (houses) are fixed and you rotate the starting point. South Indian style = like a GPS where the grid is fixed and you place yourself on it. Same territory, different navigation style. Pick one and stick with it \u2014 you can always learn the other later.`, hi: `दृश्य जटिलता से घबराएँ नहीं। कुण्डली बस एक नक्शा है। उत्तर भारतीय शैली = सड़क के नक्शे जैसा जहाँ स्थान (भाव) स्थिर हैं और आप शुरुआती बिन्दु घुमाते हैं। दक्षिण भारतीय शैली = GPS जैसा जहाँ ग्रिड स्थिर है और आप उस पर अपना स्थान रखते हैं। एक ही क्षेत्र, भिन्न नेविगेशन शैली। एक चुनें और उसी से शुरू करें — दूसरी बाद में सीख सकते हैं।`, sa: `दृश्य जटिलता से घबराएँ नहीं। कुण्डली बस एक नक्शा है। उत्तर भारतीय शैली = सड़क के नक्शे जैसा जहाँ स्थान (भाव) स्थिर हैं और आप शुरुआती बिन्दु घुमाते हैं। दक्षिण भारतीय शैली = GPS जैसा जहाँ ग्रिड स्थिर है और आप उस पर अपना स्थान रखते हैं। एक ही क्षेत्र, भिन्न नेविगेशन शैली। एक चुनें और उसी से शुरू करें — दूसरी बाद में सीख सकते हैं।` }, locale)}
+          {t('dontLetTheVisualComplexityIntimidate', locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-          {tl({ en: 'Key Historical Fact', hi: 'रोचक तथ्य', sa: 'रोचक तथ्य' }, locale)}
+          {t('keyHistoricalFact', locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {tl({ en: 'The Indian equal-house system (each house = 30\u00B0) has been used continuously for 2000+ years. The West adopted unequal house systems (Placidus, Koch) only in the 17th century. KP astrology uses Placidus houses \u2014 combining both traditions.', hi: 'भारतीय समभाव पद्धति (प्रत्येक भाव = 30°) 2000+ वर्षों से निरन्तर प्रयोग में है। पश्चिम ने असमान भाव पद्धतियाँ (प्लासिडस, कोख) केवल 17वीं शताब्दी में अपनाईं। KP ज्योतिष प्लासिडस भावों का उपयोग करता है — दोनों परम्पराओं का संगम।', sa: 'भारतीय समभाव पद्धति (प्रत्येक भाव = 30°) 2000+ वर्षों से निरन्तर प्रयोग में है। पश्चिम ने असमान भाव पद्धतियाँ (प्लासिडस, कोख) केवल 17वीं शताब्दी में अपनाईं। KP ज्योतिष प्लासिडस भावों का उपयोग करता है — दोनों परम्पराओं का संगम।' }, locale)}
+          {t('theIndianEqualhouseSystemEachHouse', locale)}
         </p>
       </section>
     </div>
@@ -142,63 +142,63 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Generate YOUR Kundali — Practical Guide', hi: 'अपनी कुण्डली बनाएँ — व्यावहारिक मार्गदर्शिका', sa: 'अपनी कुण्डली बनाएँ — व्यावहारिक मार्गदर्शिका' }, locale)}
+          {t('generateYourKundaliPracticalGuide', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          {tl({ en: 'Head to the Kundali page on our app. Enter your birth details (date, time, place). The app computes everything: planetary positions, houses, dashas, yogas. No external APIs \u2014 pure mathematics.', hi: 'हमारे ऐप पर कुण्डली पृष्ठ पर जाएँ। अपना जन्म विवरण भरें (तिथि, समय, स्थान)। ऐप सब कुछ गणित करता है: ग्रह स्थितियाँ, भाव, दशाएँ, योग। कोई बाहरी API नहीं — शुद्ध गणित।', sa: 'हमारे ऐप पर कुण्डली पृष्ठ पर जाएँ। अपना जन्म विवरण भरें (तिथि, समय, स्थान)। ऐप सब कुछ गणित करता है: ग्रह स्थितियाँ, भाव, दशाएँ, योग। कोई बाहरी API नहीं — शुद्ध गणित।' }, locale)}
+          {t('headToTheKundaliPageOn', locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'What the Tabs Show', hi: 'टैब क्या दिखाते हैं', sa: 'टैब क्या दिखाते हैं' }, locale)}
+          {t('whatTheTabsShow', locale)}
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-sm leading-relaxed">
-            {tl({ en: '• Chart \u2014 the visual Kundali (North Indian diamond style). Signs and planets placed in houses.', hi: '• चार्ट — दृश्य कुण्डली (उत्तर भारतीय हीरा शैली)। राशियाँ और ग्रह भावों में रखे दिखते हैं।', sa: '• चार्ट — दृश्य कुण्डली (उत्तर भारतीय हीरा शैली)। राशियाँ और ग्रह भावों में रखे दिखते हैं।' }, locale)}
+            {t('chartTheVisualKundaliNorthIndian', locale)}
           </p>
           <p className="text-text-secondary text-sm leading-relaxed">
-            {tl({ en: '• Planets \u2014 exact position of each planet (sign, degree, nakshatra, house).', hi: '• ग्रह — प्रत्येक ग्रह की सटीक स्थिति (राशि, अंश, नक्षत्र, भाव)।', sa: '• ग्रह — प्रत्येक ग्रह की सटीक स्थिति (राशि, अंश, नक्षत्र, भाव)।' }, locale)}
+            {t('planetsExactPositionOfEachPlanet', locale)}
           </p>
           <p className="text-text-secondary text-sm leading-relaxed">
-            {tl({ en: '• Dashas \u2014 life timing cycles (Mahadasha \u2192 Antardasha \u2192 Pratyantardasha). Shows WHEN themes activate in life.', hi: '• दशाएँ — जीवन काल चक्र (महादशा → अन्तर्दशा → प्रत्यन्तर दशा)। दर्शाती हैं कि जीवन में कब कौन-से विषय सक्रिय होंगे।', sa: '• दशाएँ — जीवन काल चक्र (महादशा → अन्तर्दशा → प्रत्यन्तर दशा)। दर्शाती हैं कि जीवन में कब कौन-से विषय सक्रिय होंगे।' }, locale)}
+            {t('dashasLifeTimingCyclesMahadashaAntardasha', locale)}
           </p>
           <p className="text-text-secondary text-sm leading-relaxed">
-            {tl({ en: '• Yogas \u2014 planetary combinations that produce special results (Raja Yoga, Dhana Yoga, etc.).', hi: '• योग — ग्रह संयोग जो विशेष फल देते हैं (राजयोग, धनयोग, आदि)।', sa: '• योग — ग्रह संयोग जो विशेष फल देते हैं (राजयोग, धनयोग, आदि)।' }, locale)}
+            {t('yogasPlanetaryCombinationsThatProduceSpecial', locale)}
           </p>
           <p className="text-text-secondary text-sm leading-relaxed">
-            {tl({ en: '• Strength \u2014 Shadbala (six types of strength) showing which planet is most influential.', hi: '• बल — षड्बल (छह प्रकार के बल) दिखाता है कि कौन-सा ग्रह सबसे प्रभावशाली है।', sa: '• बल — षड्बल (छह प्रकार के बल) दिखाता है कि कौन-सा ग्रह सबसे प्रभावशाली है।' }, locale)}
+            {t('strengthShadbalaSixTypesOfStrength', locale)}
           </p>
         </div>
         <p className="text-text-secondary text-sm leading-relaxed mt-3">
-          {tl({ en: `Don\'t try to interpret everything at once \u2014 start with lagna + Moon + strongest planet.`, hi: `सब कुछ एक साथ समझने की कोशिश न करें — लग्न + चन्द्र + सबसे बलवान ग्रह से शुरू करें।`, sa: `सब कुछ एक साथ समझने की कोशिश न करें — लग्न + चन्द्र + सबसे बलवान ग्रह से शुरू करें।` }, locale)}
+          {t('dontTryToInterpretEverythingAt', locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: `The Beginner\'s 3-Minute Reading`, hi: `3-मिनट की शुरुआती रीडिंग`, sa: `3-मिनट की शुरुआती रीडिंग` }, locale)}
+          {t('theBeginners3minuteReading', locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {tl({ en: `When you generate your first Kundali on our app, resist the urge to read everything at once. Here\'s the beginner\'s 3-minute reading: (1) What\'s my lagna? This is your "rising sign" \u2014 how the world sees you. (2) Where\'s my Moon? This is your emotional core and your "Vedic sign." (3) Look at the Dashas tab \u2014 what Mahadasha are you currently in? That planet\'s themes are the dominant soundtrack of your life right now. These three things alone give you more self-insight than most personality tests.`, hi: `जब आप हमारे ऐप पर पहली बार अपनी कुण्डली बनाएँ, तो सब कुछ एक साथ पढ़ने की कोशिश न करें। यहाँ शुरुआती 3-मिनट रीडिंग है: (1) मेरा लग्न क्या है? यह आपकी "उदय राशि" है — संसार आपको कैसे देखता है। (2) मेरा चन्द्रमा कहाँ है? यह आपका भावनात्मक मूल है और आपकी "वैदिक राशि।" (3) दशा टैब देखें — आप वर्तमान में किस महादशा में हैं? उस ग्रह के विषय आपके जीवन का प्रमुख संगीत हैं अभी। ये तीन चीज़ें अकेले आपको अधिकांश व्यक्तित्व परीक्षणों से अधिक आत्म-ज्ञान देती हैं।`, sa: `जब आप हमारे ऐप पर पहली बार अपनी कुण्डली बनाएँ, तो सब कुछ एक साथ पढ़ने की कोशिश न करें। यहाँ शुरुआती 3-मिनट रीडिंग है: (1) मेरा लग्न क्या है? यह आपकी "उदय राशि" है — संसार आपको कैसे देखता है। (2) मेरा चन्द्रमा कहाँ है? यह आपका भावनात्मक मूल है और आपकी "वैदिक राशि।" (3) दशा टैब देखें — आप वर्तमान में किस महादशा में हैं? उस ग्रह के विषय आपके जीवन का प्रमुख संगीत हैं अभी। ये तीन चीज़ें अकेले आपको अधिकांश व्यक्तित्व परीक्षणों से अधिक आत्म-ज्ञान देती हैं।` }, locale)}
+          {t('whenYouGenerateYourFirstKundali', locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-400/20 bg-gradient-to-br from-red-900/10 to-transparent">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Common Misconception', hi: 'भ्रान्ति निवारण', sa: 'भ्रान्ति निवारण' }, locale)}
+          {t('commonMisconception', locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {tl({ en: '"Kundali is destiny" \u2014 NOT deterministic. Think of it as a weather forecast: it shows tendencies and seasons, but you still choose what to do. The dashas show WHEN themes activate \u2014 preparation, not fatalism.', hi: '"कुण्डली भाग्य है" — नहीं! यह नियतिवादी नहीं है। इसे मौसम पूर्वानुमान समझें: यह प्रवृत्तियाँ और ऋतुएँ दिखाता है, पर आप स्वयं चुनते हैं क्या करना है। दशाएँ बताती हैं कब विषय सक्रिय होते हैं — यह तैयारी है, नियतिवाद नहीं।', sa: '"कुण्डली भाग्य है" — नहीं! यह नियतिवादी नहीं है। इसे मौसम पूर्वानुमान समझें: यह प्रवृत्तियाँ और ऋतुएँ दिखाता है, पर आप स्वयं चुनते हैं क्या करना है। दशाएँ बताती हैं कब विषय सक्रिय होते हैं — यह तैयारी है, नियतिवाद नहीं।' }, locale)}
+          {t('kundaliIsDestinyNotDeterministicThink', locale)}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-          {tl({ en: 'Key Historical Fact', hi: 'रोचक तथ्य', sa: 'रोचक तथ्य' }, locale)}
+          {t('keyHistoricalFact', locale)}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {tl({ en: `Parashara\'s Brihat Hora Shastra (c. 2nd century CE) describes how to compute a birth chart, planetary dignities, 300+ yogas, and remedial measures \u2014 all in 97 chapters. It\'s the most comprehensive astrological text ever written in any civilization, and our app implements its algorithms.`, hi: `पराशर की बृहत्होरा शास्त्र (लगभग दूसरी शताब्दी ई.) जन्म कुण्डली गणना, ग्रह गरिमा, 300+ योग और उपचार — सब 97 अध्यायों में वर्णित करती है। यह किसी भी सभ्यता में लिखा गया सबसे व्यापक ज्योतिष ग्रन्थ है, और हमारा ऐप इसके अल्गोरिद्म लागू करता है।`, sa: `पराशर की बृहत्होरा शास्त्र (लगभग दूसरी शताब्दी ई.) जन्म कुण्डली गणना, ग्रह गरिमा, 300+ योग और उपचार — सब 97 अध्यायों में वर्णित करती है। यह किसी भी सभ्यता में लिखा गया सबसे व्यापक ज्योतिष ग्रन्थ है, और हमारा ऐप इसके अल्गोरिद्म लागू करता है।` }, locale)}
+          {t('parasharasBrihatHoraShastraC2nd', locale)}
         </p>
       </section>
     </div>

@@ -1,11 +1,11 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/26-1.json';
+const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
 const META: ModuleMeta = {
   id: 'mod_26_1', phase: 6, topic: 'Indian Contributions', moduleNumber: '26.1',
@@ -100,7 +100,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: "Aryabhata\'s Declaration: Earth Rotates", hi: "आर्यभट की घोषणा: पृथ्वी घूमती है", sa: "आर्यभट की घोषणा: पृथ्वी घूमती है" }, locale)}
+          {t('aryabhatasDeclarationEarthRotates', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -111,13 +111,13 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'The Boat Analogy — Golapada 9', hi: 'नाव की उपमा — गोलपाद 9', sa: 'नाव की उपमा — गोलपाद 9' }, locale)}
+          {t('theBoatAnalogyGolapada9', locale)}
         </h4>
         <blockquote className="border-l-2 border-gold-primary/40 pl-4 mb-3">
           <p className="text-gold-light text-xs italic leading-relaxed">
-            {tl({ en: '"Just as a man in a moving boat sees stationary objects going backward, so too the stationary stars are seen going west at Lanka — it is the Earth that is round and turns eastward."', hi: '"जैसे एक चलती नाव में आदमी स्थिर वस्तुओं को पीछे जाते देखता है, उसी तरह लंका में स्थिर तारे पश्चिम की ओर जाते प्रतीत होते हैं। यह पृथ्वी है जो गोलाकार है और पूर्व की ओर घूमती है।"', sa: '"जैसे एक चलती नाव में आदमी स्थिर वस्तुओं को पीछे जाते देखता है, उसी तरह लंका में स्थिर तारे पश्चिम की ओर जाते प्रतीत होते हैं। यह पृथ्वी है जो गोलाकार है और पूर्व की ओर घूमती है।"' }, locale)}
+            {t('justAsAManInA', locale)}
           </p>
-          <p className="text-text-secondary text-xs mt-1">— {tl({ en: 'Aryabhata, Aryabhatiya, Golapada 9 (499 CE)', hi: 'आर्यभट, आर्यभटीय, गोलपाद 9 (499 ईस्वी)', sa: 'आर्यभट, आर्यभटीय, गोलपाद 9 (499 ईस्वी)' }, locale)}</p>
+          <p className="text-text-secondary text-xs mt-1">— {t('aryabhataAryabhatiyaGolapada9499Ce', locale)}</p>
         </blockquote>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -128,24 +128,24 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Accuracy Comparison', hi: 'सटीकता की तुलना', sa: 'सटीकता की तुलना' }, locale)}
+          {t('accuracyComparison', locale)}
         </h4>
         <div className="space-y-2 text-xs text-text-secondary">
           <div className="flex justify-between">
-            <span>{tl({ en: 'Aryabhata — Sidereal day:', hi: 'आर्यभट — नाक्षत्र दिन:', sa: 'आर्यभट — नाक्षत्र दिन:' }, locale)}</span>
+            <span>{t('aryabhataSiderealDay', locale)}</span>
             <span className="text-gold-light font-mono">23h 56m 4.1s</span>
           </div>
           <div className="flex justify-between">
-            <span>{tl({ en: 'Modern value:', hi: 'आधुनिक मान:', sa: 'आधुनिक मान:' }, locale)}</span>
+            <span>{t('modernValue', locale)}</span>
             <span className="text-emerald-400 font-mono">23h 56m 4.09s</span>
           </div>
           <div className="flex justify-between">
-            <span>{tl({ en: 'Error:', hi: 'त्रुटि:', sa: 'त्रुटि:' }, locale)}</span>
+            <span>{t('error', locale)}</span>
             <span className="text-gold-primary font-mono">&lt;0.01s</span>
           </div>
           <div className="mt-2 pt-2 border-t border-gold-primary/10 flex justify-between">
-            <span>{tl({ en: "Earth\'s circumference:", hi: "पृथ्वी की परिधि:", sa: "पृथ्वी की परिधि:" }, locale)}</span>
-            <span className="text-gold-light font-mono">99.7% {tl({ en: 'accurate', hi: 'सटीक', sa: 'सटीक' }, locale)}</span>
+            <span>{t('earthsCircumference', locale)}</span>
+            <span className="text-gold-light font-mono">99.7% {t('accurate', locale)}</span>
           </div>
         </div>
       </section>
@@ -163,7 +163,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Scientific Debate and European Context', hi: 'वैज्ञानिक बहस और यूरोपीय संदर्भ', sa: 'वैज्ञानिक बहस और यूरोपीय संदर्भ' }, locale)}
+          {t('scientificDebateAndEuropeanContext', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -174,22 +174,22 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Parallel Histories', hi: 'समानान्तर इतिहास', sa: 'समानान्तर इतिहास' }, locale)}
+          {t('parallelHistories', locale)}
         </h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
-          <p><span className="text-gold-light font-medium">499 ईस्वी / 499 CE:</span> {tl({ en: 'Aryabhata — Earth rotates eastward', hi: 'आर्यभट — पृथ्वी पूर्व की ओर घूमती है', sa: 'आर्यभट — पृथ्वी पूर्व की ओर घूमती है' }, locale)}</p>
-          <p><span className="text-gold-light font-medium">628 ईस्वी / 628 CE:</span> {tl({ en: "Brahmagupta — disputes Earth\'s rotation", hi: "ब्रह्मगुप्त — पृथ्वी के घूर्णन का खंडन करते हैं", sa: "ब्रह्मगुप्त — पृथ्वी के घूर्णन का खंडन करते हैं" }, locale)}</p>
-          <p><span className="text-gold-light font-medium">~800 ईस्वी / ~800 CE:</span> {tl({ en: "Bhaskara I — supports Aryabhata\'s position", hi: "भास्कर प्रथम — आर्यभट के मत का समर्थन करते हैं", sa: "भास्कर प्रथम — आर्यभट के मत का समर्थन करते हैं" }, locale)}</p>
-          <p><span className="text-gold-light font-medium">1150 ईस्वी / 1150 CE:</span> {tl({ en: 'Bhaskaracharya II — continues discussion in Siddhanta Shiromani', hi: 'भास्कराचार्य द्वितीय — सिद्धान्त शिरोमणि में चर्चा जारी', sa: 'भास्कराचार्य द्वितीय — सिद्धान्त शिरोमणि में चर्चा जारी' }, locale)}</p>
-          <p><span className="text-gold-light font-medium">1543 ईस्वी / 1543 CE:</span> {tl({ en: 'Copernicus — proposes heliocentrism in Europe', hi: 'कोपर्निकस — यूरोप में हेलियोसेन्ट्रिज्म प्रस्तावित करते हैं', sa: 'कोपर्निकस — यूरोप में हेलियोसेन्ट्रिज्म प्रस्तावित करते हैं' }, locale)}</p>
-          <p><span className="text-gold-light font-medium">1610 ईस्वी / 1610 CE:</span> {tl({ en: 'Galileo — confirms with telescope', hi: 'गैलीलियो — दूरदर्शी से पुष्टि करते हैं', sa: 'गैलीलियो — दूरदर्शी से पुष्टि करते हैं' }, locale)}</p>
-          <p><span className="text-gold-light font-medium">1633 ईस्वी / 1633 CE:</span> {tl({ en: 'Galileo — house arrest by Inquisition', hi: 'गैलीलियो — जिज्ञासा द्वारा घर नज़रबंदी में', sa: 'गैलीलियो — जिज्ञासा द्वारा घर नज़रबंदी में' }, locale)}</p>
+          <p><span className="text-gold-light font-medium">499 ईस्वी / 499 CE:</span> {t('aryabhataEarthRotatesEastward', locale)}</p>
+          <p><span className="text-gold-light font-medium">628 ईस्वी / 628 CE:</span> {t('brahmaguptaDisputesEarthsRotation', locale)}</p>
+          <p><span className="text-gold-light font-medium">~800 ईस्वी / ~800 CE:</span> {t('bhaskaraISupportsAryabhatasPosition', locale)}</p>
+          <p><span className="text-gold-light font-medium">1150 ईस्वी / 1150 CE:</span> {t('bhaskaracharyaIiContinuesDiscussionInSiddhanta', locale)}</p>
+          <p><span className="text-gold-light font-medium">1543 ईस्वी / 1543 CE:</span> {t('copernicusProposesHeliocentrismInEurope', locale)}</p>
+          <p><span className="text-gold-light font-medium">1610 ईस्वी / 1610 CE:</span> {t('galileoConfirmsWithTelescope', locale)}</p>
+          <p><span className="text-gold-light font-medium">1633 ईस्वी / 1633 CE:</span> {t('galileoHouseArrestByInquisition', locale)}</p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/15 rounded-xl p-5">
         <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: "Why Brahmagupta\'s Objection Matters", hi: "ब्रह्मगुप्त की आपत्ति क्यों मायने रखती है", sa: "ब्रह्मगुप्त की आपत्ति क्यों मायने रखती है" }, locale)}
+          {t('whyBrahmaguptasObjectionMatters', locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -211,7 +211,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Legacy: From India to the World', hi: 'विरासत: भारत से विश्व तक', sa: 'विरासत: भारत से विश्व तक' }, locale)}
+          {t('legacyFromIndiaToTheWorld', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -222,22 +222,22 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: "Aryabhata\'s Achievements", hi: "आर्यभट की उपलब्धियाँ", sa: "आर्यभट की उपलब्धियाँ" }, locale)}
+          {t('aryabhatasAchievements', locale)}
         </h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
-          <p>→ {tl({ en: "Earth\'s axial rotation (499 CE)", hi: "पृथ्वी का अक्षीय घूर्णन (499 ईस्वी)", sa: "पृथ्वी का अक्षीय घूर्णन (499 ईस्वी)" }, locale)}</p>
-          <p>→ {tl({ en: 'Sidereal day: 23h 56m 4.1s (99.9998% accurate)', hi: 'नाक्षत्र दिन: 23h 56m 4.1s (99.9998% सटीक)', sa: 'नाक्षत्र दिन: 23h 56m 4.1s (99.9998% सटीक)' }, locale)}</p>
-          <p>→ {tl({ en: "Earth\'s circumference: 39,736 km (99.7% accurate)", hi: "पृथ्वी की परिधि: 39,736 किमी (99.7% सटीक)", sa: "पृथ्वी की परिधि: 39,736 किमी (99.7% सटीक)" }, locale)}</p>
-          <p>→ {tl({ en: 'π ≈ 3.1416 (accurate to 4 decimal places)', hi: 'π ≈ 3.1416 (4 दशमलव स्थानों तक सटीक)', sa: 'π ≈ 3.1416 (4 दशमलव स्थानों तक सटीक)' }, locale)}</p>
-          <p>→ {tl({ en: 'Eclipses caused by shadows (not demons)', hi: 'ग्रहण: चन्द्रमा की छाया से होते हैं (राक्षस से नहीं)', sa: 'ग्रहण: चन्द्रमा की छाया से होते हैं (राक्षस से नहीं)' }, locale)}</p>
-          <p>→ {tl({ en: 'Trigonometry: defined the sine function (jya)', hi: 'त्रिकोणमिति: ज्या (sine) फलन की परिभाषा', sa: 'त्रिकोणमिति: ज्या (sine) फलन की परिभाषा' }, locale)}</p>
-          <p>→ {tl({ en: 'Astronomy: accurate orbital periods of planets', hi: 'खगोलशास्त्र: ग्रहों की परिक्रमा अवधि का सटीक निर्धारण', sa: 'खगोलशास्त्र: ग्रहों की परिक्रमा अवधि का सटीक निर्धारण' }, locale)}</p>
+          <p>→ {t('earthsAxialRotation499Ce', locale)}</p>
+          <p>→ {t('siderealDay23h56m41s999998', locale)}</p>
+          <p>→ {t('earthsCircumference39736Km997Accurate', locale)}</p>
+          <p>→ {t('31416AccurateTo4DecimalPlaces', locale)}</p>
+          <p>→ {t('eclipsesCausedByShadowsNotDemons', locale)}</p>
+          <p>→ {t('trigonometryDefinedTheSineFunctionJya', locale)}</p>
+          <p>→ {t('astronomyAccurateOrbitalPeriodsOfPlanets', locale)}</p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15 rounded-xl p-5">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Honours', hi: 'सम्मान', sa: 'सम्मान' }, locale)}
+          {t('honours', locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi

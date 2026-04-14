@@ -1,11 +1,11 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/25-4.json';
+const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
 const META: ModuleMeta = {
   id: 'mod_25_4', phase: 5, topic: 'Indian Mathematics', moduleNumber: '25.4',
@@ -100,7 +100,7 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: "Brahmagupta's Negative Number Rules (628 CE)", hi: "ब्रह्मगुप्त के ऋण संख्या नियम (628 ई.)", sa: "ब्रह्मगुप्त के ऋण संख्या नियम (628 ई.)" }, locale)}
+          {t('brahmaguptasNegativeNumberRules628Ce', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -111,31 +111,31 @@ function Page1() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: `Dhana and Rina — Brahmagupta\'s Rules (628 CE)`, hi: `धन और ऋण — ब्रह्मगुप्त के 628 ई. के नियम`, sa: `धन और ऋण — ब्रह्मगुप्त के 628 ई. के नियम` }, locale)}
+          {t('dhanaAndRinaBrahmaguptasRules628', locale)}
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{tl({ en: 'Addition:', hi: 'जोड़:', sa: 'योजनम्:' }, locale)}</span>{' '}
-            {tl({ en: 'dhana + dhana = dhana. rina + rina = rina. dhana + rina = the sign of the larger magnitude.', hi: 'धन + धन = धन। ऋण + ऋण = ऋण। धन + ऋण = उनके अन्तर की दिशा।', sa: 'धन + धन = धन। ऋण + ऋण = ऋण। धन + ऋण = उनके अन्तर की दिशा।' }, locale)}
+            <span className="text-gold-light font-semibold">{t('addition', locale)}</span>{' '}
+            {t('dhanaDhanaDhanaRinaRinaRina', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{tl({ en: 'Subtraction:', hi: 'घटाव:', sa: 'व्यवकलनम्:' }, locale)}</span>{' '}
-            {tl({ en: 'rina − rina = dhana or rina (whichever is larger). dhana − rina = dhana.', hi: 'ऋण में से ऋण घटाना = धन या ऋण (जो बड़ा)। धन में से ऋण घटाना = धन।', sa: 'ऋण में से ऋण घटाना = धन या ऋण (जो बड़ा)। धन में से ऋण घटाना = धन।' }, locale)}
+            <span className="text-gold-light font-semibold">{t('subtraction', locale)}</span>{' '}
+            {t('rinaRinaDhanaOrRinaWhichever', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{tl({ en: 'Multiplication:', hi: 'गुणा:', sa: 'गुणनम्:' }, locale)}</span>{' '}
-            {tl({ en: 'dhana × dhana = dhana. rina × rina = dhana. dhana × rina = rina.', hi: 'धन × धन = धन। ऋण × ऋण = धन। धन × ऋण = ऋण।', sa: 'धन × धन = धन। ऋण × ऋण = धन। धन × ऋण = ऋण।' }, locale)}
+            <span className="text-gold-light font-semibold">{t('multiplication', locale)}</span>{' '}
+            {t('dhanaDhanaDhanaRinaRinaDhana', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{tl({ en: 'With zero:', hi: 'शून्य के साथ:', sa: 'शून्य के साथ:' }, locale)}</span>{' '}
-            {tl({ en: 'zero + rina = rina. zero − rina = dhana. zero × rina = zero.', hi: 'शून्य + ऋण = ऋण। शून्य − ऋण = धन। शून्य × ऋण = शून्य।', sa: 'शून्य + ऋण = ऋण। शून्य − ऋण = धन। शून्य × ऋण = शून्य।' }, locale)}
+            <span className="text-gold-light font-semibold">{t('withZero', locale)}</span>{' '}
+            {t('zeroRinaRinaZeroRinaDhana', locale)}
           </p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'From Commerce to Mathematics — Birth of Debt', hi: 'व्यापार से गणित तक — ऋण का जन्म', sa: 'व्यापार से गणित तक — ऋण का जन्म' }, locale)}
+          {t('fromCommerceToMathematicsBirthOf', locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -162,7 +162,7 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: "Europe's 1000-Year Delay", hi: "यूरोप की 1000 वर्ष की देरी", sa: "यूरोप की 1000 वर्ष की देरी" }, locale)}
+          {t('europes1000yearDelay', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -173,39 +173,39 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15 rounded-xl p-5">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Timeline of European Resistance', hi: 'यूरोपीय विरोध की समयरेखा', sa: 'यूरोपीय विरोध की समयरेखा' }, locale)}
+          {t('timelineOfEuropeanResistance', locale)}
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">
             <span className="text-gold-light font-medium">~250 BCE — Diophantus:</span>{' '}
-            {tl({ en: 'Rejected negative solutions to equations as "absurd."', hi: 'ऋण समाधानों को "बेतुका" (absurd) कहकर अस्वीकार किया।', sa: 'ऋण समाधानों को "बेतुका" (absurd) कहकर अस्वीकार किया।' }, locale)}
+            {t('rejectedNegativeSolutionsToEquationsAs', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
             <span className="text-gold-light font-medium">1202 CE — Fibonacci:</span>{' '}
-            {tl({ en: 'Limited use of negative numbers in Liber Abaci (as debts) — but no full acceptance.', hi: 'लिबर अबाची में ऋण संख्याओं का सीमित उपयोग (ऋण के रूप में) — लेकिन पूरी तरह स्वीकृति नहीं।', sa: 'लिबर अबाची में ऋण संख्याओं का सीमित उपयोग (ऋण के रूप में) — लेकिन पूरी तरह स्वीकृति नहीं।' }, locale)}
+            {t('limitedUseOfNegativeNumbersIn', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
             <span className="text-gold-light font-medium">1637 — Descartes:</span>{' '}
-            {tl({ en: '"False roots" (fausses racines) — rejected negative algebraic roots.', hi: '"असत्य मूल" (fausses racines) — ऋण बीजगणितीय मूलों को अस्वीकृत।', sa: '"असत्य मूल" (fausses racines) — ऋण बीजगणितीय मूलों को अस्वीकृत।' }, locale)}
+            {t('falseRootsFaussesRacinesRejectedNegative', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
             <span className="text-gold-light font-medium">1759 — Maseres:</span>{' '}
-            {tl({ en: '"Fictitious" — negative numbers not real.', hi: '"काल्पनिक" — ऋण संख्याएँ वास्तविक नहीं।', sa: '"काल्पनिक" — ऋण संख्याएँ वास्तविक नहीं।' }, locale)}
+            {t('fictitiousNegativeNumbersNotReal', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
             <span className="text-gold-light font-medium">1796 — Frend:</span>{' '}
-            {tl({ en: 'Wrote a treatise rejecting negative numbers entirely.', hi: 'ऋण संख्याओं को पूरी तरह अस्वीकार करने वाला ग्रन्थ लिखा।', sa: 'ऋण संख्याओं को पूरी तरह अस्वीकार करने वाला ग्रन्थ लिखा।' }, locale)}
+            {t('wroteATreatiseRejectingNegativeNumbers', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
             <span className="text-gold-light font-medium">~1850 CE:</span>{' '}
-            {tl({ en: 'Final European acceptance with rigorous number theory.', hi: 'कठोर संख्या सिद्धान्त के साथ अन्ततः यूरोपीय स्वीकृति।', sa: 'कठोर संख्या सिद्धान्त के साथ अन्ततः यूरोपीय स्वीकृति।' }, locale)}
+            {t('finalEuropeanAcceptanceWithRigorousNumber', locale)}
           </p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Why Did Europe Resist?', hi: 'यूरोप ने विरोध क्यों किया?', sa: 'यूरोपः किमर्थं विरोधं कृतवान्?' }, locale)}
+          {t('whyDidEuropeResist', locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -232,7 +232,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Legacy in Algebra and Modern Mathematics', hi: 'बीजगणित और आधुनिक गणित में विरासत', sa: 'बीजगणित और आधुनिक गणित में विरासत' }, locale)}
+          {t('legacyInAlgebraAndModernMathematics', locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -243,31 +243,31 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15 rounded-xl p-5">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Modern Applications', hi: 'आधुनिक अनुप्रयोग', sa: 'आधुनिक अनुप्रयोग' }, locale)}
+          {t('modernApplications', locale)}
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{tl({ en: 'Banking and finance:', hi: 'बैंकिंग और वित्त:', sa: 'बैंकिंग और वित्त:' }, locale)}</span>{' '}
-            {tl({ en: `Balance sheets, loans, interest — all on negative numbers. Brahmagupta\'s "dhana-rina" is in today\'s entire financial system.`, hi: `बैलेंस शीट, ऋण, ब्याज — सब ऋण संख्याओं पर। ब्रह्मगुप्त का "धन-ऋण" आज की पूरी वित्तीय प्रणाली में है।`, sa: `बैलेंस शीट, ऋण, ब्याज — सब ऋण संख्याओं पर। ब्रह्मगुप्त का "धन-ऋण" आज की पूरी वित्तीय प्रणाली में है।` }, locale)}
+            <span className="text-gold-light font-semibold">{t('bankingAndFinance', locale)}</span>{' '}
+            {t('balanceSheetsLoansInterestAllOn', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{tl({ en: 'Physics:', hi: 'भौतिकी:', sa: 'भौतिकी:' }, locale)}</span>{' '}
-            {tl({ en: 'Electric charge (+/−), energy levels, temperature (°C below zero) — all impossible without negative numbers.', hi: 'विद्युत आवेश (+/−), ऊर्जा स्तर, तापमान (°C नीचे शून्य) — सब ऋण संख्याओं के बिना असम्भव।', sa: 'विद्युत आवेश (+/−), ऊर्जा स्तर, तापमान (°C नीचे शून्य) — सब ऋण संख्याओं के बिना असम्भव।' }, locale)}
+            <span className="text-gold-light font-semibold">{t('physics', locale)}</span>{' '}
+            {t('electricChargeEnergyLevelsTemperatureC', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{tl({ en: 'Computer science:', hi: 'कम्प्यूटर विज्ञान:', sa: 'कम्प्यूटर विज्ञान:' }, locale)}</span>{' '}
-            {tl({ en: `Two\'s complement — binary representation of negative numbers in computers. In every CPU.`, hi: `Two\'s complement — कम्प्यूटर में ऋण संख्याओं का बाइनरी प्रतिनिधित्व। हर CPU में।`, sa: `Two\'s complement — कम्प्यूटर में ऋण संख्याओं का बाइनरी प्रतिनिधित्व। हर CPU में।` }, locale)}
+            <span className="text-gold-light font-semibold">{t('computerScience', locale)}</span>{' '}
+            {t('twosComplementBinaryRepresentationOfNegative', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-semibold">{tl({ en: 'Complex numbers:', hi: 'जटिल संख्याएँ:', sa: 'जटिल संख्याएँ:' }, locale)}</span>{' '}
-            {tl({ en: '√(−1) = i — the basis of complex numbers. The foundation of quantum mechanics and electrical engineering.', hi: '√(−1) = i — जटिल संख्याओं का आधार। क्वांटम यान्त्रिकी और विद्युत इंजीनियरिंग की नींव।', sa: '√(−1) = i — जटिल संख्याओं का आधार। क्वांटम यान्त्रिकी और विद्युत इंजीनियरिंग की नींव।' }, locale)}
+            <span className="text-gold-light font-semibold">{t('complexNumbers', locale)}</span>{' '}
+            {t('1ITheBasisOfComplex', locale)}
           </p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/15 rounded-xl p-5">
         <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: "Mahavira's and Bhaskara's Contributions", hi: "महावीर और भास्कर का योगदान", sa: "महावीर और भास्कर का योगदान" }, locale)}
+          {t('mahavirasAndBhaskarasContributions', locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi

@@ -810,6 +810,110 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     keywords: ['learn vedic astrology', 'jyotish course', 'astrology tutorial', 'free astrology course'],
   },
+
+  // ─── Missing Pages (SEO gap fill) ────────────────────────
+  '/annual-forecast': {
+    title: { en: 'Annual Vedic Forecast — Planetary Transits & Predictions', hi: 'वार्षिक वैदिक भविष्यवाणी — ग्रह गोचर और पूर्वानुमान', sa: 'वार्षिकवैदिकभविष्यवाणी — ग्रहगोचरः पूर्वानुमानम्' },
+    description: { en: 'Year-ahead Vedic forecast based on planetary transits of Jupiter, Saturn, Rahu-Ketu. Personalized predictions for all 12 Moon signs.', hi: 'बृहस्पति, शनि, राहु-केतु गोचर पर आधारित वार्षिक वैदिक भविष्यवाणी। सभी 12 चन्द्र राशियों के लिए व्यक्तिगत पूर्वानुमान।', sa: 'बृहस्पतिशनिराहुकेतुगोचराधारितं वार्षिकं वैदिकभविष्यवाणी। सर्वासां १२ चन्द्रराशीनां कृते पूर्वानुमानम्।' },
+    keywords: ['annual forecast', 'yearly horoscope', 'vedic predictions', 'planetary transits year'],
+  },
+  '/kundali/compare': {
+    title: { en: 'Compare Birth Charts — Side-by-Side Kundali Analysis', hi: 'जन्म कुण्डली तुलना — अगल-बगल विश्लेषण', sa: 'जन्मकुण्डलीतुलना — पार्श्वशः विश्लेषणम्' },
+    description: { en: 'Compare two Vedic birth charts side by side. Analyze planet positions, house placements, dashas, and compatibility between any two Kundalis.', hi: 'दो वैदिक जन्म कुण्डलियों की अगल-बगल तुलना। ग्रह स्थिति, भाव, दशा और अनुकूलता विश्लेषण।', sa: 'द्वयोः वैदिकजन्मकुण्डल्योः पार्श्वशः तुलना। ग्रहस्थितिभावदशानुकूलताविश्लेषणम्।' },
+    keywords: ['compare kundali', 'birth chart comparison', 'kundali side by side', 'chart synastry vedic'],
+  },
+  '/kundali/rectify': {
+    title: { en: 'Birth Time Rectification — Correct Your Birth Time', hi: 'जन्म समय शुद्धि — अपना जन्म समय सही करें', sa: 'जन्मसमयशुद्धिः — जन्मसमयं संशोधयतु' },
+    description: { en: 'Rectify your birth time using major life events. Vedic birth time rectification based on Dasha periods, transit triggers, and divisional chart verification.', hi: 'प्रमुख जीवन घटनाओं से अपना जन्म समय शुद्ध करें। दशा, गोचर और वर्ग कुण्डली सत्यापन।', sa: 'प्रमुखजीवनघटनाभिः स्वजन्मसमयं शोधयतु। दशागोचरवर्गकुण्डलीसत्यापनम्।' },
+    keywords: ['birth time rectification', 'correct birth time', 'kundali rectification', 'vedic rectification'],
+  },
+  '/learn/library': {
+    title: { en: 'Jyotish Reference Library — Classical Texts & Resources', hi: 'ज्योतिष सन्दर्भ पुस्तकालय — शास्त्रीय ग्रन्थ एवं संसाधन', sa: 'ज्योतिषसन्दर्भपुस्तकालयः — शास्त्रीयग्रन्थाः संसाधनानि च' },
+    description: { en: 'Curated library of classical Jyotish texts, astronomical treatises, and reference materials. From Surya Siddhanta to Brihat Parashari Hora Shastra.', hi: 'सूर्य सिद्धान्त से बृहत् पाराशरी होरा शास्त्र तक — शास्त्रीय ज्योतिष ग्रन्थों का संग्रह।', sa: 'सूर्यसिद्धान्तात् बृहत्पाराशरीपर्यन्तं शास्त्रीयज्योतिषग्रन्थसङ्ग्रहः।' },
+    keywords: ['jyotish library', 'vedic astrology books', 'classical texts astrology', 'surya siddhanta'],
+  },
+  '/calendar/regional/mithila': {
+    title: { en: 'Mithila Panchang — Regional Calendar for Bihar & Jharkhand', hi: 'मिथिला पंचांग — बिहार और झारखण्ड का क्षेत्रीय कैलेंडर', sa: 'मिथिलापञ्चाङ्गम् — बिहारझारखण्डयोः प्रादेशिकपञ्चाङ्गम्' },
+    description: { en: 'Mithila regional Panchang for Bihar and Jharkhand. Maithili festivals, Chhath Puja, Sama-Chakeva, Jitiya, and Madhushravani with traditional calendar.', hi: 'बिहार और झारखण्ड का मिथिला पंचांग। मैथिली त्योहार, छठ पूजा, सामा-चकेवा, जिउतिया, मधुश्रावणी।', sa: 'बिहारझारखण्डयोः मिथिलापञ्चाङ्गम्। मैथिलीपर्वाणि छठपूजा सामचकेवा जीवितपुत्रिका च।' },
+    keywords: ['mithila panchang', 'bihar calendar', 'jharkhand panchang', 'chhath puja', 'maithili festivals'],
+  },
+  '/stories': {
+    title: { en: 'Vedic Stories — Mythology Behind the Stars', hi: 'वैदिक कथाएँ — तारों के पीछे की पौराणिक कथाएँ', sa: 'वैदिककथाः — नक्षत्राणां पृष्ठतः पौराणिककथाः' },
+    description: { en: 'Stories from Hindu mythology connected to astronomy and astrology — Navagraha origins, Nakshatra legends, Rahu-Ketu and the cosmic serpent.', hi: 'खगोलशास्त्र और ज्योतिष से जुड़ी हिन्दू पौराणिक कथाएँ — नवग्रह उत्पत्ति, नक्षत्र कथाएँ, राहु-केतु।', sa: 'खगोलज्योतिषसम्बद्धाः हिन्दूपौराणिककथाः — नवग्रहोत्पत्तिः नक्षत्रकथाः राहुकेतू च।' },
+    keywords: ['vedic stories', 'hindu mythology astronomy', 'navagraha stories', 'nakshatra legends'],
+  },
+
+  // ─── Learn Contributions (India's Mathematical & Astronomical Heritage) ───
+  '/learn/contributions/zero': {
+    title: { en: 'The Invention of Zero — India\'s Greatest Gift to Mathematics', hi: 'शून्य का आविष्कार — गणित को भारत की सबसे बड़ी देन', sa: 'शून्यस्य आविष्कारः — गणिताय भारतस्य महत्तमा देनम्' },
+    description: { en: 'How India invented zero as a number and placeholder. From Brahmagupta\'s rules for zero arithmetic to the global spread of the decimal system.', hi: 'भारत ने शून्य का आविष्कार कैसे किया। ब्रह्मगुप्त से दशमलव प्रणाली के वैश्विक प्रसार तक।', sa: 'भारतः शून्यम् अङ्कत्वेन कथम् आविष्कृतवान्।' },
+    keywords: ['invention of zero', 'brahmagupta zero', 'indian mathematics', 'decimal system origin'],
+  },
+  '/learn/contributions/pi': {
+    title: { en: 'Pi in Ancient India — Madhava\'s Infinite Series', hi: 'प्राचीन भारत में पाई — माधव की अनन्त श्रृंखला', sa: 'प्राचीनभारते पाई — माधवस्य अनन्तश्रेणी' },
+    description: { en: 'India\'s contributions to Pi — from Aryabhata\'s approximation to Madhava\'s infinite series, 250 years before Leibniz.', hi: 'पाई में भारत का योगदान — आर्यभट की सन्निकटता से माधव की अनन्त श्रृंखला तक।', sa: 'पाई अङ्के भारतस्य योगदानम् — आर्यभटसन्निकटतातः माधवस्य अनन्तश्रेणीपर्यन्तम्।' },
+    keywords: ['pi india', 'madhava series', 'aryabhata pi', 'indian mathematics pi'],
+  },
+  '/learn/contributions/sine': {
+    title: { en: 'The Sine Function — Born in India', hi: 'ज्या फलन — भारत में जन्मा', sa: 'ज्याफलनम् — भारते जातम्' },
+    description: { en: 'India invented trigonometry: Aryabhata\'s jya (sine) tables, the half-chord revolution, and how Indian sine reached the Arab world and Europe.', hi: 'भारत ने त्रिकोणमिति का आविष्कार किया: आर्यभट की ज्या तालिकाएँ और अर्ध-जीवा क्रान्ति।', sa: 'भारतः त्रिकोणमितिम् आविष्कृतवान् — आर्यभटस्य ज्यासारण्यः।' },
+    keywords: ['sine function india', 'aryabhata jya', 'trigonometry origin', 'indian trigonometry'],
+  },
+  '/learn/contributions/pythagoras': {
+    title: { en: 'Pythagoras Theorem — Known in India Before Pythagoras', hi: 'पाइथागोरस प्रमेय — पाइथागोरस से पहले भारत में ज्ञात', sa: 'पाइथागोरसप्रमेयम् — पाइथागोरसात् पूर्वं भारते ज्ञातम्' },
+    description: { en: 'The Shulba Sutras (800 BCE) contain the Pythagorean theorem centuries before Pythagoras. Baudhayana, Apastamba, and Vedic geometry.', hi: 'शुल्ब सूत्र (800 BCE) में पाइथागोरस से सदियों पहले यह प्रमेय मिलता है। बौधायन और वैदिक ज्यामिति।', sa: 'शुल्बसूत्रेषु (800 BCE) पाइथागोरसात् शताब्दीभिः पूर्वम् एतत् प्रमेयं विद्यते।' },
+    keywords: ['pythagorean theorem india', 'shulba sutras', 'baudhayana', 'vedic geometry'],
+  },
+  '/learn/contributions/fibonacci': {
+    title: { en: 'Fibonacci Sequence — First Described by Indian Mathematicians', hi: 'फिबोनैचि अनुक्रम — भारतीय गणितज्ञों द्वारा पहले वर्णित', sa: 'फिबोनैचि अनुक्रमः — भारतीयगणितज्ञैः प्रथमं वर्णितम्' },
+    description: { en: 'The Fibonacci sequence was known to Pingala, Virahanka, and Hemachandra centuries before Fibonacci. Sanskrit prosody and the matra-vrtta connection.', hi: 'फिबोनैचि अनुक्रम पिंगल, विरहंक और हेमचन्द्र को फिबोनैचि से सदियों पहले ज्ञात था।', sa: 'पिङ्गलविरहङ्कहेमचन्द्रैः फिबोनैचितः शताब्दीभिः पूर्वम् एषः अनुक्रमः ज्ञातः आसीत्।' },
+    keywords: ['fibonacci india', 'pingala sequence', 'hemachandra', 'sanskrit prosody mathematics'],
+  },
+  '/learn/contributions/binary': {
+    title: { en: 'Binary System — Pingala\'s Chandahshastra (300 BCE)', hi: 'द्विआधारी प्रणाली — पिंगल का छन्दःशास्त्र', sa: 'द्व्याधारीप्रणाली — पिङ्गलस्य छन्दःशास्त्रम्' },
+    description: { en: 'Pingala\'s Chandahshastra (300 BCE) used binary-like encoding (laghu/guru) for Sanskrit meters — the conceptual ancestor of modern binary.', hi: 'पिंगल के छन्दःशास्त्र (300 BCE) में संस्कृत छन्दों के लिए द्विआधारी-जैसी संकेतन प्रणाली।', sa: 'पिङ्गलस्य छन्दःशास्त्रे संस्कृतच्छन्दानां कृते द्व्याधारीसंकेतनम्।' },
+    keywords: ['binary system india', 'pingala', 'chandahshastra', 'laghu guru binary'],
+  },
+  '/learn/contributions/calculus': {
+    title: { en: 'Calculus — Madhava & the Kerala School (1350 CE)', hi: 'कलन — माधव और केरल स्कूल (1350 CE)', sa: 'कलनम् — माधवः केरलविद्यापीठं च' },
+    description: { en: 'Madhava of Sangamagrama discovered infinite series for sine, cosine, and arctangent 250 years before Newton and Leibniz. The Kerala School\'s calculus revolution.', hi: 'सङ्गमग्राम के माधव ने न्यूटन और लाइबनिट्ज़ से 250 वर्ष पहले अनन्त श्रृंखला खोजी।', sa: 'सङ्गमग्रामस्य माधवः न्यूटनलैब्निट्सतः 250 वर्षैः पूर्वम् अनन्तश्रेणीम् आविष्कृतवान्।' },
+    keywords: ['calculus india', 'madhava kerala school', 'infinite series', 'indian calculus'],
+  },
+  '/learn/contributions/negative-numbers': {
+    title: { en: 'Negative Numbers — Brahmagupta\'s Rules (628 CE)', hi: 'ऋणात्मक संख्याएँ — ब्रह्मगुप्त के नियम (628 CE)', sa: 'ऋणसंख्याः — ब्रह्मगुप्तस्य नियमाः' },
+    description: { en: 'Brahmagupta first formalized rules for negative numbers and zero in Brahmasphutasiddhanta (628 CE) — debt as negative, fortune as positive.', hi: 'ब्रह्मगुप्त ने ब्रह्मस्फुटसिद्धान्त (628 CE) में ऋणात्मक संख्याओं और शून्य के नियम दिए।', sa: 'ब्रह्मगुप्तः ब्रह्मस्फुटसिद्धान्ते ऋणसंख्यानां शून्यस्य च नियमान् प्रथमं निर्धारितवान्।' },
+    keywords: ['negative numbers india', 'brahmagupta', 'brahmasphutasiddhanta', 'indian algebra'],
+  },
+  '/learn/contributions/kerala-school': {
+    title: { en: 'Kerala School of Mathematics — India\'s Scientific Revolution', hi: 'केरल गणित स्कूल — भारत की वैज्ञानिक क्रान्ति', sa: 'केरलगणितविद्यापीठम् — भारतस्य वैज्ञानिकक्रान्तिः' },
+    description: { en: 'The Kerala School (1300-1600 CE) pioneered infinite series, calculus concepts, and astronomical models. Madhava, Nilakantha, Jyeshtadeva and their legacy.', hi: 'केरल स्कूल (1300-1600 CE) ने अनन्त श्रृंखला, कलन और खगोलीय मॉडल में अग्रणी भूमिका निभाई।', sa: 'केरलविद्यापीठम् (1300-1600 CE) अनन्तश्रेण्यां कलने खगोलमानदण्डेषु च अग्रणीम् भूमिकां निर्वहितवत्।' },
+    keywords: ['kerala school mathematics', 'madhava', 'nilakantha', 'indian scientific revolution'],
+  },
+  '/learn/contributions/speed-of-light': {
+    title: { en: 'Speed of Light — Sayana\'s Rig Veda Commentary', hi: 'प्रकाश की गति — सायण का ऋग्वेद भाष्य', sa: 'प्रकाशगतिः — सायणस्य ऋग्वेदभाष्यम्' },
+    description: { en: 'Sayana\'s 14th-century commentary on Rig Veda 1.50.4 gives a value for the speed of sunlight remarkably close to the modern measurement.', hi: '14वीं शताब्दी में सायण के ऋग्वेद भाष्य में सूर्य प्रकाश की गति का मूल्य आधुनिक माप के निकट है।', sa: 'सायणस्य ऋग्वेदभाष्ये सूर्यप्रकाशगतेः मूल्यम् आधुनिकमापस्य समीपम् अस्ति।' },
+    keywords: ['speed of light vedas', 'sayana commentary', 'rig veda science', 'ancient indian science'],
+  },
+  '/learn/contributions/earth-rotation': {
+    title: { en: 'Earth\'s Rotation — Aryabhata\'s Revolutionary Claim (499 CE)', hi: 'पृथ्वी का घूर्णन — आर्यभट का क्रान्तिकारी दावा', sa: 'पृथिव्याः भ्रमणम् — आर्यभटस्य क्रान्तिकारी वचनम्' },
+    description: { en: 'Aryabhata proposed that Earth rotates on its axis in 499 CE — over 1000 years before Copernicus. His Aryabhatiya transformed Indian astronomy.', hi: 'आर्यभट ने 499 CE में पृथ्वी के अपनी धुरी पर घूमने का प्रस्ताव दिया — कोपरनिकस से 1000+ वर्ष पहले।', sa: 'आर्यभटः 499 CE वर्षे पृथिवी स्वधुर्यां भ्रमति इति प्रतिपादितवान्।' },
+    keywords: ['aryabhata earth rotation', 'aryabhatiya', 'indian astronomy', 'heliocentric india'],
+  },
+  '/learn/contributions/gravity': {
+    title: { en: 'Gravity — Bhaskaracharya & Varahamihira\'s Insights', hi: 'गुरुत्वाकर्षण — भास्कराचार्य और वराहमिहिर', sa: 'गुरुत्वाकर्षणम् — भास्कराचार्यवराहमिहिरौ' },
+    description: { en: 'Indian astronomers described gravitational attraction centuries before Newton. Bhaskaracharya\'s Siddhanta Shiromani and Varahamihira\'s insights on Earth\'s pulling force.', hi: 'भारतीय खगोलशास्त्रियों ने न्यूटन से सदियों पहले गुरुत्वाकर्षण का वर्णन किया। भास्कराचार्य और वराहमिहिर।', sa: 'भारतीयखगोलशास्त्रिणः न्यूटनात् शताब्दीभिः पूर्वं गुरुत्वाकर्षणम् वर्णितवन्तः।' },
+    keywords: ['gravity india', 'bhaskaracharya gravity', 'varahamihira', 'indian physics'],
+  },
+  '/learn/contributions/cosmic-time': {
+    title: { en: 'Cosmic Time Scales — Yugas, Kalpas & Brahma\'s Lifespan', hi: 'ब्रह्माण्डीय समय — युग, कल्प और ब्रह्मा का जीवनकाल', sa: 'ब्रह्माण्डीयकालः — युगाः कल्पाः ब्रह्मायुश्च' },
+    description: { en: 'Hindu cosmology operates on time scales matching modern cosmology — 4.32 billion year Kalpas, 311 trillion year Brahma cycles. The only ancient system to think in billions.', hi: 'हिन्दू ब्रह्माण्ड विज्ञान आधुनिक ब्रह्माण्ड विज्ञान से मेल खाने वाले समय पैमानों पर काम करता है।', sa: 'हिन्दूब्रह्माण्डविज्ञानम् आधुनिकब्रह्माण्डविज्ञानेन सह मेलयन्तं कालमानम् उपयुनक्ति।' },
+    keywords: ['hindu cosmic time', 'yuga kalpa', 'brahma lifespan', 'vedic cosmology time'],
+  },
+  '/learn/contributions/timeline': {
+    title: { en: 'Timeline of India\'s Mathematical & Astronomical Contributions', hi: 'भारत के गणितीय और खगोलशास्त्रीय योगदानों की समयरेखा', sa: 'भारतस्य गणितखगोलयोगदानानां कालसूची' },
+    description: { en: 'Interactive timeline from Shulba Sutras (800 BCE) to Kerala School (1600 CE) — 2400 years of Indian mathematical and astronomical breakthroughs.', hi: 'शुल्ब सूत्र (800 BCE) से केरल स्कूल (1600 CE) तक — 2400 वर्षों की भारतीय गणित और खगोलशास्त्र उपलब्धियों की समयरेखा।', sa: 'शुल्बसूत्रेभ्यः (800 BCE) केरलविद्यापीठपर्यन्तम् (1600 CE) — 2400 वर्षाणां भारतीयगणितखगोलशास्त्रसिद्धीनां कालसूची।' },
+    keywords: ['indian mathematics timeline', 'indian astronomy history', 'ancient indian science', 'mathematical contributions india'],
+  },
 };
 
 /**
@@ -846,6 +950,7 @@ export function getPageMetadata(route: string, locale: string): Metadata {
       siteName: 'Dekho Panchang',
       locale: OG_LOCALE_MAP[locale] || 'en_US',
       type: 'website',
+      images: [{ url: `${BASE_URL}/opengraph-image`, width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',

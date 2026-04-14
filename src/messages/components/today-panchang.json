@@ -1,0 +1,11 @@
+{
+  "searchCityPlaceholder": { "en": "Search city or place...", "hi": "शहर या स्थान खोजें...", "sa": "नगरं स्थानं वा अन्विष्यतु..." },
+  "detectingLocation": { "en": "Detecting your location...", "hi": "आपका स्थान खोज रहे हैं...", "sa": "आपका स्थान खोज रहे हैं..." },
+  "change": { "en": "Change", "hi": "बदलें", "sa": "बदलें" },
+  "setLocationToSeePanchang": { "en": "Set your location to see Panchang", "hi": "पंचांग देखने के लिए स्थान चुनें", "sa": "पंचांग देखने के लिए स्थान चुनें" },
+  "locationRequired": { "en": "Location required for accurate Panchang", "hi": "सटीक पंचांग के लिए स्थान आवश्यक", "sa": "सटीक पंचांग के लिए स्थान आवश्यक" },
+  "panchangDependsOnLocation": { "en": "Panchang calculations depend on sunrise/sunset at your location", "hi": "पंचांग गणना आपके स्थान के सूर्योदय/सूर्यास्त पर निर्भर है", "sa": "पंचांग गणना आपके स्थान के सूर्योदय/सूर्यास्त पर निर्भर है" },
+  "searchLocation": { "en": "Search Location", "hi": "स्थान खोजें", "sa": "स्थान खोजें" },
+  "starts": { "en": "Starts", "hi": "आरम्भ", "sa": "आरम्भ" },
+  "ends": { "en": "Ends", "hi": "समाप्ति", "sa": "समाप्ति" }
+}

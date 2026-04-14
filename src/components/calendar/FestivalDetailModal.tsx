@@ -8,6 +8,10 @@ import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-de
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 import type { PujaVidhi, MantraDetail as MantraType } from '@/lib/constants/puja-vidhi/types';
 import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText as LT } from '@/lib/learn/translations';
+import FMSG from '@/messages/components/festival-modal.json';
+const fmsg = (key: string, locale: string) => lt((FMSG as unknown as Record<string, LT>)[key], locale);
 import { isDevanagariLocale, dataLocale } from '@/lib/utils/locale-fonts';
 
 interface FestivalDetailModalProps {
@@ -295,25 +299,25 @@ export default function FestivalDetailModal({
                         {/* ─── Three Rules Summary ─── */}
                         <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-3 mb-3">
                           <div className="text-xs text-gold-primary/70 uppercase tracking-wider font-bold mb-2">
-                            {tl({ en: 'Three Rules of Parana', hi: 'पारण के तीन नियम', sa: 'पारणस्य त्रयो नियमाः' }, locale)}
+                            {fmsg('threeRulesOfParana', locale)}
                           </div>
                           <div className="space-y-1 text-xs" style={bodyFont}>
                             <div className="flex items-start gap-2">
                               <span className="text-blue-400 font-bold mt-0.5">1.</span>
                               <span className="text-text-secondary">
-                                {tl({ en: 'Do NOT break fast during Hari Vasara (first 1/4 of Dwadashi)', hi: 'हरि वासर (द्वादशी के प्रथम 1/4) में पारण न करें', sa: 'हरिवासरे (द्वादश्याः प्रथमचतुर्थांशे) पारणं न कुर्यात्' }, locale)}
+                                {fmsg('doNotBreakFastHariVasara', locale)}
                               </span>
                             </div>
                             <div className="flex items-start gap-2">
                               <span className="text-amber-400 font-bold mt-0.5">2.</span>
                               <span className="text-text-secondary">
-                                {tl({ en: 'Do NOT break fast during Madhyahna (midday period)', hi: 'मध्याह्न (दोपहर) में पारण न करें', sa: 'मध्याह्ने पारणं न कुर्यात्' }, locale)}
+                                {fmsg('doNotBreakFastMadhyahna', locale)}
                               </span>
                             </div>
                             <div className="flex items-start gap-2">
                               <span className="text-orange-400 font-bold mt-0.5">3.</span>
                               <span className="text-text-secondary">
-                                {tl({ en: 'MUST break fast before Dwadashi tithi ends', hi: 'द्वादशी तिथि समाप्ति से पहले पारण अवश्य करें', sa: 'द्वादशीतिथ्यन्तात् पूर्वं पारणम् अवश्यम्' }, locale)}
+                                {fmsg('mustBreakFastBeforeDwadashi', locale)}
                               </span>
                             </div>
                           </div>
@@ -326,7 +330,7 @@ export default function FestivalDetailModal({
                             {paranaSunrise && (
                               <div className="flex items-center justify-between text-xs rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] px-3 py-2">
                                 <span className="text-amber-300/80 font-medium" style={bodyFont}>
-                                  {tl({ en: 'Sunrise', hi: 'सूर्योदय', sa: 'सूर्योदयः' }, locale)}
+                                  {fmsg('sunrise', locale)}
                                 </span>
                                 <span className="text-amber-300 font-mono font-bold">{paranaSunrise}</span>
                               </div>
@@ -345,8 +349,8 @@ export default function FestivalDetailModal({
                                   paranaHariVasaraEnd === paranaSunrise ? 'text-emerald-300/80' : paranaEarlyEnd ? 'text-red-300/80' : 'text-blue-300/80'
                                 }`} style={bodyFont}>
                                   {paranaHariVasaraEnd === paranaSunrise
-                                    ? tl({ en: 'Hari Vasara — already over before sunrise', hi: 'हरि वासर — सूर्योदय से पहले समाप्त', sa: 'हरिवासरः — सूर्योदयात् पूर्वं समाप्तः' }, locale)
-                                    : tl({ en: 'Hari Vasara ends (no food before)', hi: 'हरि वासर समाप्ति (इससे पहले भोजन वर्जित)', sa: 'हरिवासरान्तः' }, locale)
+                                    ? fmsg('hariVasaraAlreadyOver', locale)
+                                    : fmsg('hariVasaraEnds', locale)
                                   }
                                 </span>
                                 {paranaHariVasaraEnd !== paranaSunrise && (
@@ -359,7 +363,7 @@ export default function FestivalDetailModal({
                             {paranaMadhyahnaStart && paranaMadhyahnaEnd && (
                               <div className="flex items-center justify-between text-xs rounded-lg bg-amber-500/10 border border-amber-500/15 px-3 py-2">
                                 <span className="text-amber-300/80 font-medium" style={bodyFont}>
-                                  {tl({ en: 'Madhyahna (no food during)', hi: 'मध्याह्न (इसमें भोजन वर्जित)', sa: 'मध्याह्नः (वर्जनीयः)' }, locale)}
+                                  {fmsg('madhyahnaNoFood', locale)}
                                 </span>
                                 <span className="text-amber-300 font-mono font-bold">{paranaMadhyahnaStart}–{paranaMadhyahnaEnd}</span>
                               </div>
@@ -369,7 +373,7 @@ export default function FestivalDetailModal({
                             {paranaDwadashiEnd && (
                               <div className="flex items-center justify-between text-xs rounded-lg bg-orange-500/10 border border-orange-500/15 px-3 py-2">
                                 <span className="text-orange-300/80 font-medium" style={bodyFont}>
-                                  {tl({ en: 'Dwadashi ends (must eat before)', hi: 'द्वादशी समाप्ति (इससे पहले खाएँ)', sa: 'द्वादशीतिथ्यन्तः (अस्मात् पूर्वं भोजनम्)' }, locale)}
+                                  {fmsg('dwadashiEndsMustEatBefore', locale)}
                                 </span>
                                 <span className="text-orange-300 font-mono font-bold">{paranaDwadashiEnd}</span>
                               </div>
@@ -528,24 +532,24 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
       <div className="flex items-center gap-3">
         <div className="flex-1 h-px bg-gold-primary/20" />
         <span className="text-gold-primary text-xs font-bold uppercase tracking-wider" style={headingFont}>
-          {tl({ en: 'Puja Vidhi', hi: 'पूजा विधि', sa: 'पूजा विधि', ta: 'Puja Vidhi', te: 'Puja Vidhi', bn: 'Puja Vidhi', kn: 'Puja Vidhi', gu: 'Puja Vidhi', mai: 'पूजा विधि', mr: 'पूजा विधि' }, locale)}
+          {fmsg('pujaVidhi', locale)}
         </span>
         <div className="flex-1 h-px bg-gold-primary/20" />
       </div>
 
       {/* Deity + Muhurta */}
       <div className="flex items-center gap-3 text-sm">
-        <span className="text-gold-dark text-xs">{tl({ en: 'Deity', hi: 'देवता', sa: 'देवता', ta: 'Deity', te: 'Deity', bn: 'Deity', kn: 'Deity', gu: 'Deity', mai: 'देवता', mr: 'देवता' }, locale)}:</span>
+        <span className="text-gold-dark text-xs">{fmsg('deity', locale)}:</span>
         <span className="text-gold-light font-bold" style={bodyFont}>{t(puja.deity)}</span>
         <span className="text-gold-primary/30">|</span>
-        <span className="text-gold-dark text-xs">{tl({ en: 'Muhurta', hi: 'मुहूर्त', sa: 'मुहूर्त', ta: 'Muhurta', te: 'Muhurta', bn: 'Muhurta', kn: 'Muhurta', gu: 'Muhurta', mai: 'मुहूर्त', mr: 'मुहूर्त' }, locale)}:</span>
+        <span className="text-gold-dark text-xs">{fmsg('muhurta', locale)}:</span>
         <span className="text-text-secondary text-xs" style={bodyFont}>{t(puja.muhurtaDescription)}</span>
       </div>
 
       {/* Samagri */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-3">
         <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
-          {tl({ en: 'Materials (Samagri)', hi: 'सामग्री', sa: 'सामग्री', ta: 'Materials (Samagri)', te: 'Materials (Samagri)', bn: 'Materials (Samagri)', kn: 'Materials (Samagri)', gu: 'Materials (Samagri)', mai: 'सामग्री', mr: 'सामग्री' }, locale)}
+          {fmsg('materialsSamagri', locale)}
         </p>
         <div className="flex flex-wrap gap-1.5">
           {puja.samagri.map((item, i) => (
@@ -559,7 +563,7 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
       {/* Vidhi Steps */}
       <div>
         <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
-          {tl({ en: 'Procedure', hi: 'विधि', sa: 'विधि', ta: 'Procedure', te: 'Procedure', bn: 'Procedure', kn: 'Procedure', gu: 'Procedure', mai: 'विधि', mr: 'विधि' }, locale)}
+          {fmsg('procedure', locale)}
         </p>
         <div className="space-y-2">
           {puja.vidhiSteps.map((step) => (
@@ -579,7 +583,7 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
       {/* Mantras */}
       <div>
         <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
-          {tl({ en: 'Mantras', hi: 'मन्त्र', sa: 'मन्त्र', ta: 'Mantras', te: 'Mantras', bn: 'Mantras', kn: 'Mantras', gu: 'Mantras', mai: 'मन्त्र', mr: 'मन्त्र' }, locale)}
+          {fmsg('mantras', locale)}
         </p>
         <div className="space-y-2">
           {puja.mantras.map((m) => (
@@ -591,7 +595,7 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
       {/* Aarti */}
       {puja.aarti && (
         <div className="rounded-xl bg-orange-500/5 border border-orange-500/15 p-3">
-          <p className="text-orange-400 text-xs uppercase tracking-wider font-bold mb-2">{tl({ en: 'Aarti', hi: 'आरती', sa: 'आरती', ta: 'Aarti', te: 'Aarti', bn: 'Aarti', kn: 'Aarti', gu: 'Aarti', mai: 'आरती', mr: 'आरती' }, locale)}</p>
+          <p className="text-orange-400 text-xs uppercase tracking-wider font-bold mb-2">{fmsg('aarti', locale)}</p>
           <p className="text-gold-light text-sm whitespace-pre-line leading-relaxed" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
             {puja.aarti.devanagari}
           </p>
@@ -600,13 +604,13 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
 
       {/* Naivedya */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-3">
-        <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{tl({ en: 'Offering (Naivedya)', hi: 'नैवेद्य', sa: 'नैवेद्य', ta: 'Offering (Naivedya)', te: 'Offering (Naivedya)', bn: 'Offering (Naivedya)', kn: 'Offering (Naivedya)', gu: 'Offering (Naivedya)', mai: 'नैवेद्य', mr: 'नैवेद्य' }, locale)}</p>
+        <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{fmsg('offeringNaivedya', locale)}</p>
         <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.naivedya)}</p>
       </div>
 
       {/* Precautions */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20 p-3">
-        <p className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-2">{tl({ en: 'Precautions', hi: 'सावधानियाँ', sa: 'सावधानियाँ', ta: 'Precautions', te: 'Precautions', bn: 'Precautions', kn: 'Precautions', gu: 'Precautions', mai: 'सावधानियाँ', mr: 'सावधानियाँ' }, locale)}</p>
+        <p className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-2">{fmsg('precautions', locale)}</p>
         <ul className="space-y-1">
           {puja.precautions.map((p, i) => (
             <li key={i} className="flex gap-2 text-text-secondary text-xs" style={bodyFont}>
@@ -619,14 +623,14 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
 
       {/* Phala */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/20 p-3">
-        <p className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-1">{tl({ en: 'Benefits (Phala)', hi: 'फल', sa: 'फल', ta: 'Benefits (Phala)', te: 'Benefits (Phala)', bn: 'Benefits (Phala)', kn: 'Benefits (Phala)', gu: 'Benefits (Phala)', mai: 'फल', mr: 'फल' }, locale)}</p>
+        <p className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-1">{fmsg('benefitsPhala', locale)}</p>
         <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.phala)}</p>
       </div>
 
       {/* Visarjan */}
       {puja.visarjan && (
         <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-3">
-          <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{tl({ en: 'Visarjan (Conclusion)', hi: 'विसर्जन', sa: 'विसर्जन', ta: 'Visarjan (Conclusion)', te: 'Visarjan (Conclusion)', bn: 'Visarjan (Conclusion)', kn: 'Visarjan (Conclusion)', gu: 'Visarjan (Conclusion)', mai: 'विसर्जन', mr: 'विसर्जन' }, locale)}</p>
+          <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{fmsg('visarjanConclusion', locale)}</p>
           <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.visarjan)}</p>
         </div>
       )}

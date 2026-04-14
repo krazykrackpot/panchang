@@ -1,0 +1,10 @@
+{
+  "auspicious": { "en": "Auspicious", "hi": "शुभ", "sa": "शुभ", "ta": "Auspicious", "te": "Auspicious", "bn": "Auspicious", "kn": "Auspicious", "gu": "Auspicious", "mai": "शुभ", "mr": "शुभ" },
+  "inauspicious": { "en": "Inauspicious", "hi": "अशुभ", "sa": "अशुभ", "ta": "Inauspicious", "te": "Inauspicious", "bn": "Inauspicious", "kn": "Inauspicious", "gu": "Inauspicious", "mai": "अशुभ", "mr": "अशुभ" },
+  "neutral": { "en": "Neutral", "hi": "सम", "sa": "सम", "ta": "Neutral", "te": "Neutral", "bn": "Neutral", "kn": "Neutral", "gu": "Neutral", "mai": "सम", "mr": "सम" },
+  "brahma": { "en": "BRAHMA", "hi": "ब्राह्म", "sa": "ब्राह्म", "ta": "BRAHMA", "te": "BRAHMA", "bn": "BRAHMA", "kn": "BRAHMA", "gu": "BRAHMA", "mai": "ब्राह्म", "mr": "ब्राह्म" },
+  "significance": { "en": "Significance", "hi": "महत्त्व", "sa": "महत्त्वम्", "ta": "முக்கியத்துவம்", "te": "ప్రాముఖ్యత", "bn": "তাৎপর্য", "kn": "ಮಹತ್ವ", "gu": "મહત્ત્વ", "mai": "महत्त्व", "mr": "महत्त्व" },
+  "bestActivities": { "en": "Best Activities", "hi": "सर्वोत्तम कार्य", "sa": "सर्वोत्तम कार्य", "ta": "Best Activities", "te": "Best Activities", "bn": "Best Activities", "kn": "Best Activities", "gu": "Best Activities", "mai": "सर्वोत्तम कार्य", "mr": "सर्वोत्तम कार्य" },
+  "daytime": { "en": "☀ Daytime", "hi": "☀ दिवा", "sa": "☀ दिवा", "ta": "☀ Daytime", "te": "☀ Daytime", "bn": "☀ Daytime", "kn": "☀ Daytime", "gu": "☀ Daytime", "mai": "☀ दिवा", "mr": "☀ दिवा" },
+  "nighttime": { "en": "🌙 Nighttime", "hi": "🌙 रात्रि", "sa": "🌙 रात्रि", "ta": "🌙 Nighttime", "te": "🌙 Nighttime", "bn": "🌙 Nighttime", "kn": "🌙 Nighttime", "gu": "🌙 Nighttime", "mai": "🌙 रात्रि", "mr": "🌙 रात्रि" }
+}

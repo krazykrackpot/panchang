@@ -1,0 +1,22 @@
+{
+  "threeRulesOfParana": { "en": "Three Rules of Parana", "hi": "पारण के तीन नियम", "sa": "पारणस्य त्रयो नियमाः" },
+  "doNotBreakFastHariVasara": { "en": "Do NOT break fast during Hari Vasara (first 1/4 of Dwadashi)", "hi": "हरि वासर (द्वादशी के प्रथम 1/4) में पारण न करें", "sa": "हरिवासरे (द्वादश्याः प्रथमचतुर्थांशे) पारणं न कुर्यात्" },
+  "doNotBreakFastMadhyahna": { "en": "Do NOT break fast during Madhyahna (midday period)", "hi": "मध्याह्न (दोपहर) में पारण न करें", "sa": "मध्याह्ने पारणं न कुर्यात्" },
+  "mustBreakFastBeforeDwadashi": { "en": "MUST break fast before Dwadashi tithi ends", "hi": "द्वादशी तिथि समाप्ति से पहले पारण अवश्य करें", "sa": "द्वादशीतिथ्यन्तात् पूर्वं पारणम् अवश्यम्" },
+  "sunrise": { "en": "Sunrise", "hi": "सूर्योदय", "sa": "सूर्योदयः" },
+  "hariVasaraAlreadyOver": { "en": "Hari Vasara — already over before sunrise", "hi": "हरि वासर — सूर्योदय से पहले समाप्त", "sa": "हरिवासरः — सूर्योदयात् पूर्वं समाप्तः" },
+  "hariVasaraEnds": { "en": "Hari Vasara ends (no food before)", "hi": "हरि वासर समाप्ति (इससे पहले भोजन वर्जित)", "sa": "हरिवासरान्तः" },
+  "madhyahnaNoFood": { "en": "Madhyahna (no food during)", "hi": "मध्याह्न (इसमें भोजन वर्जित)", "sa": "मध्याह्नः (वर्जनीयः)" },
+  "dwadashiEndsMustEatBefore": { "en": "Dwadashi ends (must eat before)", "hi": "द्वादशी समाप्ति (इससे पहले खाएँ)", "sa": "द्वादशीतिथ्यन्तः (अस्मात् पूर्वं भोजनम्)" },
+  "pujaVidhi": { "en": "Puja Vidhi", "hi": "पूजा विधि", "sa": "पूजा विधि", "ta": "Puja Vidhi", "te": "Puja Vidhi", "bn": "Puja Vidhi", "kn": "Puja Vidhi", "gu": "Puja Vidhi", "mai": "पूजा विधि", "mr": "पूजा विधि" },
+  "deity": { "en": "Deity", "hi": "देवता", "sa": "देवता", "ta": "Deity", "te": "Deity", "bn": "Deity", "kn": "Deity", "gu": "Deity", "mai": "देवता", "mr": "देवता" },
+  "muhurta": { "en": "Muhurta", "hi": "मुहूर्त", "sa": "मुहूर्त", "ta": "Muhurta", "te": "Muhurta", "bn": "Muhurta", "kn": "Muhurta", "gu": "Muhurta", "mai": "मुहूर्त", "mr": "मुहूर्त" },
+  "materialsSamagri": { "en": "Materials (Samagri)", "hi": "सामग्री", "sa": "सामग्री", "ta": "Materials (Samagri)", "te": "Materials (Samagri)", "bn": "Materials (Samagri)", "kn": "Materials (Samagri)", "gu": "Materials (Samagri)", "mai": "सामग्री", "mr": "सामग्री" },
+  "procedure": { "en": "Procedure", "hi": "विधि", "sa": "विधि", "ta": "Procedure", "te": "Procedure", "bn": "Procedure", "kn": "Procedure", "gu": "Procedure", "mai": "विधि", "mr": "विधि" },
+  "mantras": { "en": "Mantras", "hi": "मन्त्र", "sa": "मन्त्र", "ta": "Mantras", "te": "Mantras", "bn": "Mantras", "kn": "Mantras", "gu": "Mantras", "mai": "मन्त्र", "mr": "मन्त्र" },
+  "aarti": { "en": "Aarti", "hi": "आरती", "sa": "आरती", "ta": "Aarti", "te": "Aarti", "bn": "Aarti", "kn": "Aarti", "gu": "Aarti", "mai": "आरती", "mr": "आरती" },
+  "offeringNaivedya": { "en": "Offering (Naivedya)", "hi": "नैवेद्य", "sa": "नैवेद्य", "ta": "Offering (Naivedya)", "te": "Offering (Naivedya)", "bn": "Offering (Naivedya)", "kn": "Offering (Naivedya)", "gu": "Offering (Naivedya)", "mai": "नैवेद्य", "mr": "नैवेद्य" },
+  "precautions": { "en": "Precautions", "hi": "सावधानियाँ", "sa": "सावधानियाँ", "ta": "Precautions", "te": "Precautions", "bn": "Precautions", "kn": "Precautions", "gu": "Precautions", "mai": "सावधानियाँ", "mr": "सावधानियाँ" },
+  "benefitsPhala": { "en": "Benefits (Phala)", "hi": "फल", "sa": "फल", "ta": "Benefits (Phala)", "te": "Benefits (Phala)", "bn": "Benefits (Phala)", "kn": "Benefits (Phala)", "gu": "Benefits (Phala)", "mai": "फल", "mr": "फल" },
+  "visarjanConclusion": { "en": "Visarjan (Conclusion)", "hi": "विसर्जन", "sa": "विसर्जन", "ta": "Visarjan (Conclusion)", "te": "Visarjan (Conclusion)", "bn": "Visarjan (Conclusion)", "kn": "Visarjan (Conclusion)", "gu": "Visarjan (Conclusion)", "mai": "विसर्जन", "mr": "विसर्जन" }
+}

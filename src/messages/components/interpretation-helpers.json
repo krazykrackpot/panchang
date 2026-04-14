@@ -1,0 +1,407 @@
+{
+  "strengthStrong": {
+    "en": "Strong",
+    "hi": "बलवान",
+    "sa": "बलवान"
+  },
+  "strengthAdequate": {
+    "en": "Adequate",
+    "hi": "पर्याप्त",
+    "sa": "पर्याप्त"
+  },
+  "strengthWeak": {
+    "en": "Weak",
+    "hi": "कमज़ोर",
+    "sa": "कमज़ोर"
+  },
+  "shadowPlanet": {
+    "en": "Shadow Planet",
+    "hi": "छाया ग्रह",
+    "sa": "छाया ग्रह"
+  },
+  "shadBalaTitle": {
+    "en": "Shadbala — What It Means For You",
+    "hi": "षड्बल — आपके लिए इसका अर्थ",
+    "sa": "षड्बल — आपके लिए इसका अर्थ"
+  },
+  "yourCurrentDashaPeriod": {
+    "en": "Your Current Dasha Period",
+    "hi": "आपका अभी का दशा काल",
+    "sa": "आपका अभी का दशा काल"
+  },
+  "mahadasha": {
+    "en": "Mahadasha",
+    "hi": "महादशा",
+    "sa": "महादशा"
+  },
+  "lifeDashaTimeline": {
+    "en": "Life Dasha Timeline",
+    "hi": "जीवन दशा समयरेखा",
+    "sa": "जीवन दशा समयरेखा"
+  },
+  "now": {
+    "en": "Now",
+    "hi": "अभी",
+    "sa": "अभी"
+  },
+  "chartCaptain": {
+    "en": "Your Chart Captain",
+    "hi": "आपकी कुंडली का सेनापति",
+    "sa": "आपकी कुंडली का सेनापति"
+  },
+  "duringMahadasha": {
+    "en": "During its Mahadasha: ",
+    "hi": "इसकी महादशा में: ",
+    "sa": "इसकी महादशा में: "
+  },
+  "upcomingKeyPeriods": {
+    "en": "Upcoming Key Periods",
+    "hi": "आने वाले महत्वपूर्ण काल",
+    "sa": "आने वाले महत्वपूर्ण काल"
+  },
+  "goldenPeriod": {
+    "en": "— Golden period",
+    "hi": "— सुनहरा काल",
+    "sa": "— सुनहरा काल"
+  },
+  "proceedWithCare": {
+    "en": "— Proceed with care",
+    "hi": "— सावधान रहें",
+    "sa": "— सावधान रहें"
+  },
+  "planetsNeedingSupport": {
+    "en": "Planets Needing Support",
+    "hi": "सहायता चाहिए",
+    "sa": "सहायता चाहिए"
+  },
+  "remedy": {
+    "en": "Remedy: ",
+    "hi": "उपाय: ",
+    "sa": "उपाय: "
+  },
+  "strengthRankingRatio": {
+    "en": "Strength Ranking & Ratio",
+    "hi": "बल क्रमांकन — अनुपात सहित",
+    "sa": "बल क्रमांकन — अनुपात सहित"
+  },
+  "minStrength": {
+    "en": "Min. = 1.0",
+    "hi": "न्यूनतम = 1.0",
+    "sa": "न्यूनतम = 1.0"
+  },
+  "legendStrong": {
+    "en": "Strong ≥1.5× min",
+    "hi": "प्रबल ≥1.5×",
+    "sa": "प्रबल ≥1.5×"
+  },
+  "legendAdequate": {
+    "en": "Adequate ≥1.0× min",
+    "hi": "पर्याप्त ≥1.0×",
+    "sa": "पर्याप्त ≥1.0×"
+  },
+  "legendWeak": {
+    "en": "Weak <1.0× min",
+    "hi": "दुर्बल <1.0×",
+    "sa": "दुर्बल <1.0×"
+  },
+  "bphsCh27": {
+    "en": "(BPHS Ch.27)",
+    "hi": "(BPHS अ.27)",
+    "sa": "(BPHS अ.27)"
+  },
+  "yogasInterpretation": {
+    "en": "Yogas Interpretation",
+    "hi": "योग विश्लेषण",
+    "sa": "योग विश्लेषण"
+  },
+  "summary": {
+    "en": "Summary",
+    "hi": "सारांश",
+    "sa": "सारांश"
+  },
+  "topAuspiciousYogas": {
+    "en": "Top Auspicious Yogas",
+    "hi": "शुभ योग",
+    "sa": "शुभ योग"
+  },
+  "whatItMeansForYou": {
+    "en": "What it means for you: ",
+    "hi": "आपके लिए अर्थ: ",
+    "sa": "आपके लिए अर्थ: "
+  },
+  "formation": {
+    "en": "Formation: ",
+    "hi": "निर्माण नियम: ",
+    "sa": "निर्माण नियम: "
+  },
+  "howToMaximize": {
+    "en": "How to maximize: This yoga activates most during the Mahadasha of its forming planets. Take positive action during those periods.",
+    "hi": "अधिकतम लाभ हेतु: इसके निर्माणकारी ग्रह की दशा में सक्रिय होता है। उस अवधि में सकारात्मक कार्य करें।",
+    "sa": "अधिकतम लाभ हेतु: इसके निर्माणकारी ग्रह की दशा में सक्रिय होता है। उस अवधि में सकारात्मक कार्य करें।"
+  },
+  "inauspiciousYogasAndRemedies": {
+    "en": "Inauspicious Yogas & What To Do",
+    "hi": "अशुभ योग एवं उपाय",
+    "sa": "अशुभ योग एवं उपाय"
+  },
+  "whatThisIndicates": {
+    "en": "What this indicates: ",
+    "hi": "संकेत: ",
+    "sa": "संकेत: "
+  },
+  "notACurse": {
+    "en": "This is NOT a curse — it's a karmic pattern that can be worked with.",
+    "hi": "यह कोई श्राप नहीं है — यह एक कार्मिक प्रारूप है जिस पर कार्य किया जा सकता है।",
+    "sa": "यह कोई श्राप नहीं है — यह एक कार्मिक प्रारूप है जिस पर कार्य किया जा सकता है।"
+  },
+  "formationLabel": {
+    "en": "Formation: ",
+    "hi": "निर्माण: ",
+    "sa": "निर्माण: "
+  },
+  "commonYogaRemedies": {
+    "en": "Common Yoga Remedies",
+    "hi": "सामान्य योग उपाय",
+    "sa": "सामान्य योग उपाय"
+  },
+  "yoga": {
+    "en": "Yoga",
+    "hi": "योग",
+    "sa": "योग"
+  },
+  "issue": {
+    "en": "Issue",
+    "hi": "समस्या",
+    "sa": "समस्या"
+  },
+  "remedyHeader": {
+    "en": "Remedy",
+    "hi": "उपाय",
+    "sa": "उपायः"
+  },
+  "avasthasTitle": {
+    "en": "Avasthas — Planetary State Analysis",
+    "hi": "अवस्था विश्लेषण",
+    "sa": "अवस्था विश्लेषण"
+  },
+  "whatAreAvasthas": {
+    "en": "What are Avasthas?",
+    "hi": "अवस्था क्या हैं?",
+    "sa": "अवस्था क्या हैं?"
+  },
+  "avasthasDescription": {
+    "en": "Avasthas describe the MOOD and QUALITY with which each planet delivers its results. Five separate systems operate simultaneously — Baladi (age-strength), Jagradadi (wakefulness), Deeptadi (luminosity), Lajjitadi (emotional state), and Shayanadi (activity pattern) — together revealing exactly how each planet is actually performing in your life. Click any planet to see the full breakdown.",
+    "hi": "अवस्थाएं बताती हैं कि प्रत्येक ग्रह किस मनोदशा और गुणवत्ता के साथ अपने परिणाम देता है। पांच प्रणालियां एक साथ काम करती हैं — बलादि (आयु-शक्ति), जाग्रदादि (जागरूकता), दीप्तादि (चमक), लज्जितादि (भावनात्मक स्थिति), और शयनादि (गतिविधि) — और मिलकर बताती हैं कि ग्रह वास्तव में आपके जीवन में कैसा प्रदर्शन कर रहा है।",
+    "sa": "अवस्थाएं बताती हैं कि प्रत्येक ग्रह किस मनोदशा और गुणवत्ता के साथ अपने परिणाम देता है। पांच प्रणालियां एक साथ काम करती हैं — बलादि (आयु-शक्ति), जाग्रदादि (जागरूकता), दीप्तादि (चमक), लज्जितादि (भावनात्मक स्थिति), और शयनादि (गतिविधि) — और मिलकर बताती हैं कि ग्रह वास्तव में आपके जीवन में कैसा प्रदर्शन कर रहा है।"
+  },
+  "howDoAvasthasChange": {
+    "en": "How Do Avasthas Change?",
+    "hi": "अवस्थाएं कैसे बदलती हैं?",
+    "sa": "अवस्थाः कथं परिवर्तन्ते?"
+  },
+  "bhavabalaTitle": {
+    "en": "Bhavabala Interpretation",
+    "hi": "भावबल विश्लेषण",
+    "sa": "भावबल विश्लेषण"
+  },
+  "strongestLifeArea": {
+    "en": "Strongest Life Area",
+    "hi": "सबसे बलवान जीवन क्षेत्र",
+    "sa": "सबसे बलवान जीवन क्षेत्र"
+  },
+  "strongLabel": {
+    "en": "Strong",
+    "hi": "बलवान",
+    "sa": "बलवान"
+  },
+  "pts": {
+    "en": "pts",
+    "hi": "अंक",
+    "sa": "अङ्काः"
+  },
+  "weakestLifeArea": {
+    "en": "Weakest Life Area",
+    "hi": "सबसे कमजोर जीवन क्षेत्र",
+    "sa": "सबसे कमजोर जीवन क्षेत्र"
+  },
+  "weakLabel": {
+    "en": "Weak",
+    "hi": "कमजोर",
+    "sa": "कमजोर"
+  },
+  "remediesLabel": {
+    "en": "Remedies: ",
+    "hi": "उपाय: ",
+    "sa": "उपाय: "
+  },
+  "houseStrength": {
+    "en": "House Strength",
+    "hi": "भाव बल रैंकिंग",
+    "sa": "भाव बल रैंकिंग"
+  },
+  "houseStrengthLegend": {
+    "en": "Green = strong, Amber = moderate, Red = weak",
+    "hi": "हरा = बलवान, पीला = मध्यम, लाल = कमजोर",
+    "sa": "हरा = बलवान, पीला = मध्यम, लाल = कमजोर"
+  },
+  "planetsInterpretation": {
+    "en": "Planets Interpretation",
+    "hi": "ग्रह विश्लेषण",
+    "sa": "ग्रह विश्लेषण"
+  },
+  "birthChartAtAGlance": {
+    "en": "Your Birth Chart at a Glance",
+    "hi": "आपकी जन्म कुंडली एक नज़र में",
+    "sa": "आपकी जन्म कुंडली एक नज़र में"
+  },
+  "birthChartDescription": {
+    "en": "This shows where the planets were at the exact moment of your birth — a permanent snapshot fixed at that instant. These are your natal (birth) positions, not the current sky.",
+    "hi": "यह आपके जन्म के क्षण आकाश में ग्रहों की स्थिति है — एक स्थायी स्नैपशॉट जो आपके जन्म के समय तय हुआ था। यह वर्तमान ग्रह स्थिति नहीं है।",
+    "sa": "यह आपके जन्म के क्षण आकाश में ग्रहों की स्थिति है — एक स्थायी स्नैपशॉट जो आपके जन्म के समय तय हुआ था। यह वर्तमान ग्रह स्थिति नहीं है।"
+  },
+  "overallTakeaway": {
+    "en": "Overall Takeaway",
+    "hi": "समग्र सारांश",
+    "sa": "समग्र सारांश"
+  },
+  "lagnaAscendant": {
+    "en": "Lagna (Ascendant)",
+    "hi": "लग्न (उदय राशि)",
+    "sa": "लग्न (उदय राशि)"
+  },
+  "moonSignRashi": {
+    "en": "Moon Sign (Rashi)",
+    "hi": "चन्द्र राशि (मन)",
+    "sa": "चन्द्र राशि (मन)"
+  },
+  "keyDignities": {
+    "en": "Key Dignities",
+    "hi": "प्रमुख गरिमाएं",
+    "sa": "प्रमुख गरिमाएं"
+  },
+  "isExalted": {
+    "en": " is exalted — extremely strong. Expect excellent results from its significations.",
+    "hi": " उच्च है — अत्यंत बलवान। इसके कारकत्वों से उत्कृष्ट परिणाम अपेक्षित हैं।",
+    "sa": " उच्च है — अत्यंत बलवान। इसके कारकत्वों से उत्कृष्ट परिणाम अपेक्षित हैं।"
+  },
+  "isDebilitated": {
+    "en": " is debilitated — challenged. Its themes may face obstacles. Check for Neecha Bhanga (cancellation).",
+    "hi": " नीच है — चुनौतीपूर्ण। इसके विषयों में बाधाएं आ सकती हैं। नीच भंग (निरस्तीकरण) की जांच करें।",
+    "sa": " नीच है — चुनौतीपूर्ण। इसके विषयों में बाधाएं आ सकती हैं। नीच भंग (निरस्तीकरण) की जांच करें।"
+  },
+  "isInOwnSign": {
+    "en": " is in its own sign — comfortable and natural. Strong, reliable results.",
+    "hi": " अपनी ही राशि में है — सहज और स्वाभाविक। मजबूत, विश्वसनीय परिणाम।",
+    "sa": " अपनी ही राशि में है — सहज और स्वाभाविक। मजबूत, विश्वसनीय परिणाम।"
+  },
+  "isRetrograde": {
+    "en": " is retrograde — internalized energy. Results come through revisiting, rethinking, and deeper effort.",
+    "hi": " वक्री है — आंतरिक ऊर्जा। परिणाम पुनर्विचार, पुनरावलोकन और गहन प्रयास से आते हैं।",
+    "sa": " वक्री है — आंतरिक ऊर्जा। परिणाम पुनर्विचार, पुनरावलोकन और गहन प्रयास से आते हैं।"
+  },
+  "combustionWarning": {
+    "en": "Combustion Warning",
+    "hi": "अस्त ग्रह चेतावनी",
+    "sa": "अस्त ग्रह चेतावनी"
+  },
+  "isCombust": {
+    "en": " is too close to the Sun (combust) — its significations may be overshadowed.",
+    "hi": " सूर्य के बहुत निकट है (अस्त) — इसके कारकत्व सूर्य की छाया में आ सकते हैं।",
+    "sa": " सूर्य के बहुत निकट है (अस्त) — इसके कारकत्व सूर्य की छाया में आ सकते हैं।"
+  },
+  "dateLocaleFmt": {
+    "en": "en-GB",
+    "hi": "hi-IN",
+    "sa": "hi-IN"
+  },
+  "dashaInterpretation": {
+    "en": "Dasha Interpretation",
+    "hi": "दशा विश्लेषण",
+    "sa": "दशा विश्लेषण"
+  },
+  "yourCurrentPlanetaryPeriod": {
+    "en": "Your current planetary period",
+    "hi": "आपका वर्तमान ग्रह काल",
+    "sa": "आपका वर्तमान ग्रह काल"
+  },
+  "nextTransition": {
+    "en": "Next Transition",
+    "hi": "अगला परिवर्तन",
+    "sa": "अगला परिवर्तन"
+  },
+  "localeFmt": {
+    "en": "en",
+    "hi": "hi",
+    "sa": "hi"
+  },
+  "unknown": {
+    "en": "Unknown",
+    "hi": "अज्ञात",
+    "sa": "अज्ञात"
+  },
+  "jaiminiInterpretation": {
+    "en": "Jaimini Interpretation",
+    "hi": "जैमिनी विश्लेषण",
+    "sa": "जैमिनी विश्लेषण"
+  },
+  "atmakarakaTitle": {
+    "en": "Atmakaraka — King of the Soul",
+    "hi": "आत्मकारक — आत्मा का राजा",
+    "sa": "आत्मकारक — आत्मा का राजा"
+  },
+  "soulsDesire": {
+    "en": "Soul's Desire",
+    "hi": "आत्मा की इच्छा",
+    "sa": "आत्मा की इच्छा"
+  },
+  "lifeLessons": {
+    "en": "Life Lessons",
+    "hi": "जीवन-पाठ",
+    "sa": "जीवन-पाठ"
+  },
+  "shadowTrap": {
+    "en": "Shadow / Trap",
+    "hi": "छाया / जाल",
+    "sa": "छाया / जाल"
+  },
+  "karmicMission": {
+    "en": "Karmic Mission",
+    "hi": "कर्म-मिशन",
+    "sa": "कर्म-मिशन"
+  },
+  "amatyakarakaTitle": {
+    "en": "Amatyakaraka — Career Significator",
+    "hi": "अमात्यकारक — करियर-कारक",
+    "sa": "अमात्यकारक — करियर-कारक"
+  },
+  "fields": {
+    "en": "Fields",
+    "hi": "क्षेत्र",
+    "sa": "क्षेत्र"
+  },
+  "workingStyle": {
+    "en": "Working Style",
+    "hi": "कार्यशैली",
+    "sa": "कार्यशैली"
+  },
+  "darakarakaTitle": {
+    "en": "Darakaraka — Spouse Significator",
+    "hi": "दारकारक — जीवनसाथी-कारक",
+    "sa": "दारकारक — जीवनसाथी-कारक"
+  },
+  "partnersNature": {
+    "en": "Partner's Nature",
+    "hi": "साथी का स्वभाव",
+    "sa": "साथी का स्वभाव"
+  },
+  "partnershipDynamic": {
+    "en": "Partnership Dynamic",
+    "hi": "सम्बन्ध-गतिशीलता",
+    "sa": "सम्बन्ध-गतिशीलता"
+  },
+  "bestActionsNow": {
+    "en": "Best actions now: ",
+    "hi": "अभी करें: ",
+    "sa": "अभी करें: "
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "panchang": { "en": "Panchang", "hi": "पंचांग", "sa": "पंचांग" },
+  "kundali": { "en": "Kundali", "hi": "कुण्डली", "sa": "कुण्डली" },
+  "calendar": { "en": "Calendar", "hi": "पंचांग", "sa": "पंचांग" },
+  "learn": { "en": "Learn", "hi": "सीखें", "sa": "सीखें" },
+  "about": { "en": "About", "hi": "परिचय", "sa": "परिचय" },
+  "pricing": { "en": "Pricing", "hi": "मूल्य", "sa": "मूल्य" },
+  "privacy": { "en": "Privacy", "hi": "गोपनीयता", "sa": "गोपनीयता" },
+  "terms": { "en": "Terms", "hi": "शर्तें", "sa": "पदानि" }
+}

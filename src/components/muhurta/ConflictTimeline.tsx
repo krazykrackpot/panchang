@@ -1,6 +1,9 @@
 'use client';
-import { tl } from '@/lib/utils/trilingual';
 
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import MSG from '@/messages/components/conflict-timeline.json';
+const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
@@ -39,10 +42,10 @@ export default function ConflictTimeline({ locale }: ConflictTimelineProps) {
       <svg viewBox={`0 0 ${width} ${totalH}`} className="w-full min-w-[320px] sm:min-w-[500px]">
         {/* Header */}
         <text x={barLeft} y={18} fill="#f0d48a" fontSize="10" fontFamily="monospace">
-          {tl({ en: 'Sunrise', hi: 'सूर्योदय', sa: 'सूर्योदय', ta: 'Sunrise', te: 'Sunrise', bn: 'Sunrise', kn: 'Sunrise', gu: 'Sunrise', mai: 'सूर्योदय', mr: 'सूर्योदय' }, locale)}
+          {msg('sunrise', locale)}
         </text>
         <text x={barLeft + barWidth} y={18} fill="#8a6d2b" fontSize="10" textAnchor="end" fontFamily="monospace">
-          {tl({ en: 'Sunset', hi: 'सूर्यास्त', sa: 'सूर्यास्त', ta: 'Sunset', te: 'Sunset', bn: 'Sunset', kn: 'Sunset', gu: 'Sunset', mai: 'सूर्यास्त', mr: 'सूर्यास्त' }, locale)}
+          {msg('sunset', locale)}
         </text>
 
         {/* Time markers */}
@@ -99,16 +102,16 @@ export default function ConflictTimeline({ locale }: ConflictTimelineProps) {
 
         {/* Legend */}
         <rect x={barLeft} y={totalH - 15} width={8} height={8} rx="1" fill="rgba(74,222,128,0.3)" />
-        <text x={barLeft + 12} y={totalH - 8} fill="rgba(74,222,128,0.7)" fontSize="7">{tl({ en: 'Auspicious', hi: 'शुभ', sa: 'शुभ', ta: 'Auspicious', te: 'Auspicious', bn: 'Auspicious', kn: 'Auspicious', gu: 'Auspicious', mai: 'शुभ', mr: 'शुभ' }, locale)}</text>
+        <text x={barLeft + 12} y={totalH - 8} fill="rgba(74,222,128,0.7)" fontSize="7">{msg('auspicious', locale)}</text>
 
         <rect x={barLeft + 70} y={totalH - 15} width={8} height={8} rx="1" fill="rgba(248,113,113,0.3)" />
-        <text x={barLeft + 82} y={totalH - 8} fill="rgba(248,113,113,0.7)" fontSize="7">{tl({ en: 'Inauspicious', hi: 'अशुभ', sa: 'अशुभ', ta: 'Inauspicious', te: 'Inauspicious', bn: 'Inauspicious', kn: 'Inauspicious', gu: 'Inauspicious', mai: 'अशुभ', mr: 'अशुभ' }, locale)}</text>
+        <text x={barLeft + 82} y={totalH - 8} fill="rgba(248,113,113,0.7)" fontSize="7">{msg('inauspicious', locale)}</text>
 
         <rect x={barLeft + 150} y={totalH - 15} width={8} height={8} rx="1" fill="rgba(139,92,246,0.3)" />
-        <text x={barLeft + 162} y={totalH - 8} fill="rgba(139,92,246,0.7)" fontSize="7">{tl({ en: 'Rahu Kalam zones', hi: 'राहु काल क्षेत्र', sa: 'राहु काल क्षेत्र', ta: 'Rahu Kalam zones', te: 'Rahu Kalam zones', bn: 'Rahu Kalam zones', kn: 'Rahu Kalam zones', gu: 'Rahu Kalam zones', mai: 'राहु काल क्षेत्र', mr: 'राहु काल क्षेत्र' }, locale)}</text>
+        <text x={barLeft + 162} y={totalH - 8} fill="rgba(139,92,246,0.7)" fontSize="7">{msg('rahuKalamZones', locale)}</text>
 
         <rect x={barLeft + 270} y={totalH - 15} width={8} height={8} rx="1" fill="rgba(240,212,138,0.3)" />
-        <text x={barLeft + 282} y={totalH - 8} fill="rgba(240,212,138,0.7)" fontSize="7">{tl({ en: 'Abhijit (8th)', hi: 'अभिजित् (8वाँ)', sa: 'अभिजित् (8वाँ)', ta: 'Abhijit (8th)', te: 'Abhijit (8th)', bn: 'Abhijit (8th)', kn: 'Abhijit (8th)', gu: 'Abhijit (8th)', mai: 'अभिजित् (8वाँ)', mr: 'अभिजित् (8वाँ)' }, locale)}</text>
+        <text x={barLeft + 282} y={totalH - 8} fill="rgba(240,212,138,0.7)" fontSize="7">{msg('abhijit8th', locale)}</text>
       </svg>
     </div>
   );

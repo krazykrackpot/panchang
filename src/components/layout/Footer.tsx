@@ -1,9 +1,12 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
 import { useLocale } from 'next-intl';
 import { Link } from '@/lib/i18n/navigation';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import MSG from '@/messages/components/footer.json';
+const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 
 export default function Footer() {
   const locale = useLocale();
@@ -23,28 +26,28 @@ export default function Footer() {
           {/* Center — links */}
           <div className="flex items-center gap-4 text-xs text-text-secondary/70">
             <Link href="/panchang" className="hover:text-gold-light transition-colors">
-              {tl({ en: 'Panchang', hi: 'पंचांग', sa: 'पंचांग' }, locale)}
+              {msg('panchang', locale)}
             </Link>
             <Link href="/kundali" className="hover:text-gold-light transition-colors">
-              {tl({ en: 'Kundali', hi: 'कुण्डली', sa: 'कुण्डली' }, locale)}
+              {msg('kundali', locale)}
             </Link>
             <Link href="/calendar" className="hover:text-gold-light transition-colors">
-              {tl({ en: 'Calendar', hi: 'पंचांग', sa: 'पंचांग' }, locale)}
+              {msg('calendar', locale)}
             </Link>
             <Link href="/learn" className="hover:text-gold-light transition-colors">
-              {tl({ en: 'Learn', hi: 'सीखें', sa: 'सीखें' }, locale)}
+              {msg('learn', locale)}
             </Link>
             <Link href="/about" className="hover:text-gold-light transition-colors">
-              {tl({ en: 'About', hi: 'परिचय', sa: 'परिचय' }, locale)}
+              {msg('about', locale)}
             </Link>
             <Link href="/pricing" className="hover:text-gold-light transition-colors">
-              {tl({ en: 'Pricing', hi: 'मूल्य', sa: 'मूल्य' }, locale)}
+              {msg('pricing', locale)}
             </Link>
             <Link href="/privacy" className="hover:text-gold-light transition-colors">
-              {tl({ en: 'Privacy', hi: 'गोपनीयता', sa: 'गोपनीयता' }, locale)}
+              {msg('privacy', locale)}
             </Link>
             <Link href="/terms" className="hover:text-gold-light transition-colors">
-              {tl({ en: 'Terms', hi: 'शर्तें', sa: 'पदानि' }, locale)}
+              {msg('terms', locale)}
             </Link>
           </div>
 

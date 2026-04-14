@@ -1,0 +1,7 @@
+{
+  "dateLocaleFmt": { "en": "en-US", "hi": "hi-IN", "sa": "hi-IN", "ta": "en-US", "te": "en-US", "bn": "en-US", "kn": "en-US", "gu": "en-US", "mai": "hi-IN", "mr": "hi-IN" },
+  "ekadashiStarts": { "en": "Ekadashi Starts", "hi": "एकादशी आरम्भ", "sa": "एकादशी आरम्भ", "ta": "Ekadashi Starts", "te": "Ekadashi Starts", "bn": "Ekadashi Starts", "kn": "Ekadashi Starts", "gu": "Ekadashi Starts", "mai": "एकादशी आरम्भ", "mr": "एकादशी आरम्भ" },
+  "ekadashiEnds": { "en": "Ekadashi Ends", "hi": "एकादशी समाप्ति", "sa": "एकादशी समाप्ति", "ta": "Ekadashi Ends", "te": "Ekadashi Ends", "bn": "Ekadashi Ends", "kn": "Ekadashi Ends", "gu": "Ekadashi Ends", "mai": "एकादशी समाप्ति", "mr": "एकादशी समाप्ति" },
+  "dwadashiEnds": { "en": "Dwadashi Ends", "hi": "द्वादशी समाप्ति", "sa": "द्वादशी समाप्ति", "ta": "Dwadashi Ends", "te": "Dwadashi Ends", "bn": "Dwadashi Ends", "kn": "Dwadashi Ends", "gu": "Dwadashi Ends", "mai": "द्वादशी समाप्ति", "mr": "द्वादशी समाप्ति" },
+  "absoluteDeadline": { "en": "Absolute deadline", "hi": "अन्तिम सीमा", "sa": "अन्तिम सीमा", "ta": "Absolute deadline", "te": "Absolute deadline", "bn": "Absolute deadline", "kn": "Absolute deadline", "gu": "Absolute deadline", "mai": "अन्तिम सीमा", "mr": "अन्तिम सीमा" }
+}

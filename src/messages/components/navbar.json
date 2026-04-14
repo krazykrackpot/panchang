@@ -1,0 +1,13 @@
+{
+  "rituals": { "en": "Rituals", "hi": "अनुष्ठान", "sa": "अनुष्ठानानि", "ta": "சடங்குகள்" },
+  "chartComparison": { "en": "Chart Comparison", "hi": "कुण्डली तुलना", "sa": "कुण्डली तुलना" },
+  "annualForecast": { "en": "Annual Forecast", "hi": "वार्षिक भविष्यफल", "sa": "वार्षिक भविष्यफल" },
+  "pujaVidhi": { "en": "Puja Vidhi", "hi": "पूजा विधि", "sa": "पूजा विधि" },
+  "sankalpa": { "en": "Sankalpa", "hi": "सङ्कल्प", "sa": "सङ्कल्प" },
+  "ekadashiDates": { "en": "Ekadashi Dates", "hi": "एकादशी तिथियाँ", "sa": "एकादशी तिथियाँ" },
+  "purnimasDates": { "en": "Purnima Dates", "hi": "पूर्णिमा तिथियाँ", "sa": "पूर्णिमा तिथियाँ" },
+  "rahuKaal": { "en": "Rahu Kaal", "hi": "राहु काल", "sa": "राहु काल" },
+  "choghadiya": { "en": "Choghadiya", "hi": "चौघड़िया", "sa": "चौघड़िया" },
+  "dashboard": { "en": "Dashboard", "hi": "मेरा डैशबोर्ड", "sa": "मेरा डैशबोर्ड" },
+  "myDashboard": { "en": "My Dashboard", "hi": "मेरा डैशबोर्ड", "sa": "मेरा डैशबोर्ड" }
+}

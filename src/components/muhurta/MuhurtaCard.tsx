@@ -1,6 +1,9 @@
 'use client';
-import { tl } from '@/lib/utils/trilingual';
 
+import { lt } from '@/lib/learn/translations';
+import type { LocaleText } from '@/lib/learn/translations';
+import MSG from '@/messages/components/muhurta-card.json';
+const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { MuhurtaInfo } from '@/lib/constants/muhurtas';
@@ -18,10 +21,10 @@ export default function MuhurtaCard({ muhurta, locale }: MuhurtaCardProps) {
   const m = muhurta;
 
   const natureBadge = m.nature === 'auspicious'
-    ? { text: tl({ en: 'Auspicious', hi: 'शुभ', sa: 'शुभ', ta: 'Auspicious', te: 'Auspicious', bn: 'Auspicious', kn: 'Auspicious', gu: 'Auspicious', mai: 'शुभ', mr: 'शुभ' }, locale), color: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30' }
+    ? { text: msg('auspicious', locale), color: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30' }
     : m.nature === 'inauspicious'
-    ? { text: tl({ en: 'Inauspicious', hi: 'अशुभ', sa: 'अशुभ', ta: 'Inauspicious', te: 'Inauspicious', bn: 'Inauspicious', kn: 'Inauspicious', gu: 'Inauspicious', mai: 'अशुभ', mr: 'अशुभ' }, locale), color: 'bg-red-500/15 text-red-400 border-red-500/30' }
-    : { text: tl({ en: 'Neutral', hi: 'सम', sa: 'सम', ta: 'Neutral', te: 'Neutral', bn: 'Neutral', kn: 'Neutral', gu: 'Neutral', mai: 'सम', mr: 'सम' }, locale), color: 'bg-amber-500/15 text-amber-400 border-amber-500/30' };
+    ? { text: msg('inauspicious', locale), color: 'bg-red-500/15 text-red-400 border-red-500/30' }
+    : { text: msg('neutral', locale), color: 'bg-amber-500/15 text-amber-400 border-amber-500/30' };
 
   const isAbhijit = m.number === 8;
   const isBrahma = m.number === 26 || m.number === 27;
@@ -48,7 +51,7 @@ export default function MuhurtaCard({ muhurta, locale }: MuhurtaCardProps) {
             <span className="text-gold-light font-semibold">{m.name[locale]}</span>
             {(isDevanagariLocale(locale)) && <span className="text-text-secondary/70 text-xs">({m.name.en})</span>}
             {isAbhijit && <span className="text-xs px-1.5 py-0.5 rounded bg-gold-primary/20 text-gold-primary font-bold">ABHIJIT</span>}
-            {isBrahma && <span className="text-xs px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-bold">{tl({ en: 'BRAHMA', hi: 'ब्राह्म', sa: 'ब्राह्म', ta: 'BRAHMA', te: 'BRAHMA', bn: 'BRAHMA', kn: 'BRAHMA', gu: 'BRAHMA', mai: 'ब्राह्म', mr: 'ब्राह्म' }, locale)}</span>}
+            {isBrahma && <span className="text-xs px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-bold">{msg('brahma', locale)}</span>}
           </div>
           <div className="text-text-secondary/75 text-xs">{m.deity[locale]}</div>
         </div>
@@ -70,21 +73,21 @@ export default function MuhurtaCard({ muhurta, locale }: MuhurtaCardProps) {
             <div className="px-4 pb-4 pt-0 ml-11 space-y-3 border-t border-gold-primary/5">
               <div className="pt-3">
                 <h4 className="text-xs font-semibold text-gold-primary/70 uppercase tracking-wider mb-1">
-                  {tl({ en: 'Significance', hi: 'महत्त्व', sa: 'महत्त्वम्', ta: 'முக்கியத்துவம்', te: 'ప్రాముఖ్యత', bn: 'তাৎপর্য', kn: 'ಮಹತ್ವ', gu: 'મહત્ત્વ', mai: 'महत्त्व', mr: 'महत्त्व' }, locale)}
+                  {msg('significance', locale)}
                 </h4>
                 <p className="text-text-secondary text-sm leading-relaxed">{m.significance[locale]}</p>
               </div>
 
               <div>
                 <h4 className="text-xs font-semibold text-gold-primary/70 uppercase tracking-wider mb-1">
-                  {tl({ en: 'Best Activities', hi: 'सर्वोत्तम कार्य', sa: 'सर्वोत्तम कार्य', ta: 'Best Activities', te: 'Best Activities', bn: 'Best Activities', kn: 'Best Activities', gu: 'Best Activities', mai: 'सर्वोत्तम कार्य', mr: 'सर्वोत्तम कार्य' }, locale)}
+                  {msg('bestActivities', locale)}
                 </h4>
                 <p className="text-text-secondary text-sm">{m.bestFor[locale]}</p>
               </div>
 
               <div className="flex gap-3 text-xs">
                 <span className={`px-2 py-1 rounded border ${isDay ? 'border-gold-primary/20 text-gold-light' : 'border-indigo-400/20 text-indigo-300'}`}>
-                  {isDay ? (tl({ en: '☀ Daytime', hi: '☀ दिवा', sa: '☀ दिवा', ta: '☀ Daytime', te: '☀ Daytime', bn: '☀ Daytime', kn: '☀ Daytime', gu: '☀ Daytime', mai: '☀ दिवा', mr: '☀ दिवा' }, locale)) : (tl({ en: '🌙 Nighttime', hi: '🌙 रात्रि', sa: '🌙 रात्रि', ta: '🌙 Nighttime', te: '🌙 Nighttime', bn: '🌙 Nighttime', kn: '🌙 Nighttime', gu: '🌙 Nighttime', mai: '🌙 रात्रि', mr: '🌙 रात्रि' }, locale))}
+                  {isDay ? msg('daytime', locale) : msg('nighttime', locale)}
                 </span>
               </div>
             </div>

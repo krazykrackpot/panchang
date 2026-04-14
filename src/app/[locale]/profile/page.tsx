@@ -94,7 +94,7 @@ const L = {
     in: 'in',
     editProfile: 'Edit Profile & Settings',
     noBirthData: 'Your Vedic birth profile will appear here once you add your birth details.',
-    addBirthData: 'Add Birth Details',
+    addBirthData: 'பிறப்பு விவரங்கள் சேர்க்கவும்',
     notSignedIn: 'Sign in to view your Vedic profile.',
     signIn: 'Sign In',
   },

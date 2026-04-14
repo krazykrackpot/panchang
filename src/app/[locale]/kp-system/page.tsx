@@ -321,7 +321,7 @@ const T = {
     lifeMandate: 'Life Mandate', lifeMandateDesc: 'KP\'s verdict on the six domains of your life — what is written, what is withheld.',
     sublord: 'Sub-lord', signifiedHouses: 'Signifies houses',
     oracle: 'Ruling Planet Oracle', oracleDesc: 'The five planets governing this moment — your current cosmic operating system.',
-    referenceData: 'Reference Data',
+    referenceData: 'குறிப்பு தரவு',
   },
   hi: {
     title: 'केपी पद्धति', subtitle: 'कृष्णमूर्ति पद्धति — उप-स्वामी विश्लेषण',

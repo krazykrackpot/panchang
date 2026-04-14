@@ -482,7 +482,7 @@ export function generateFestivalCalendarV2(
           name: { en: 'Makar Sankranti', hi: 'मकर संक्रान्ति', sa: 'मकरसंक्रान्तिः' },
           date: `${year}-01-${String(d).padStart(2, '0')}`, // Day Sun crosses into Capricorn
           tithi: 'Makar Sankranti (Solar)',
-          masa: { purnimanta: 'Pausha', amanta: 'Pausha', isAdhika: false },
+          masa: { purnimanta: 'பௌஷ', amanta: 'பௌஷ', isAdhika: false },
           paksha: 'shukla', // Solar festival — paksha not applicable, using placeholder
           type: 'major',
           category: 'festival',

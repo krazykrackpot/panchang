@@ -35,18 +35,18 @@ export interface RashiPairContent {
 // ──────────────────────────────────────────────────────────────
 
 const RASHI_NAMES: Record<number, LocaleText> = {
-  1:  { en: 'Aries', hi: 'मेष', sa: 'मेषः', mai: 'मेष', mr: 'मेष', ta: 'Aries', te: 'Aries', bn: 'Aries', kn: 'Aries', gu: 'Aries' },
-  2:  { en: 'Taurus', hi: 'वृषभ', sa: 'वृषभः', mai: 'वृषभ', mr: 'वृषभ', ta: 'Taurus', te: 'Taurus', bn: 'Taurus', kn: 'Taurus', gu: 'Taurus' },
-  3:  { en: 'Gemini', hi: 'मिथुन', sa: 'मिथुनम्', mai: 'मिथुन', mr: 'मिथुन', ta: 'Gemini', te: 'Gemini', bn: 'Gemini', kn: 'Gemini', gu: 'Gemini' },
-  4:  { en: 'Cancer', hi: 'कर्क', sa: 'कर्कटः', mai: 'कर्क', mr: 'कर्क', ta: 'Cancer', te: 'Cancer', bn: 'Cancer', kn: 'Cancer', gu: 'Cancer' },
-  5:  { en: 'Leo', hi: 'सिंह', sa: 'सिंहः', mai: 'सिंह', mr: 'सिंह', ta: 'Leo', te: 'Leo', bn: 'Leo', kn: 'Leo', gu: 'Leo' },
-  6:  { en: 'Virgo', hi: 'कन्या', sa: 'कन्या', mai: 'कन्या', mr: 'कन्या', ta: 'Virgo', te: 'Virgo', bn: 'Virgo', kn: 'Virgo', gu: 'Virgo' },
-  7:  { en: 'Libra', hi: 'तुला', sa: 'तुला', mai: 'तुला', mr: 'तुला', ta: 'Libra', te: 'Libra', bn: 'Libra', kn: 'Libra', gu: 'Libra' },
-  8:  { en: 'Scorpio', hi: 'वृश्चिक', sa: 'वृश्चिकः', mai: 'वृश्चिक', mr: 'वृश्चिक', ta: 'Scorpio', te: 'Scorpio', bn: 'Scorpio', kn: 'Scorpio', gu: 'Scorpio' },
-  9:  { en: 'Sagittarius', hi: 'धनु', sa: 'धनुः', mai: 'धनु', mr: 'धनु', ta: 'Sagittarius', te: 'Sagittarius', bn: 'Sagittarius', kn: 'Sagittarius', gu: 'Sagittarius' },
-  10: { en: 'Capricorn', hi: 'मकर', sa: 'मकरः', mai: 'मकर', mr: 'मकर', ta: 'Capricorn', te: 'Capricorn', bn: 'Capricorn', kn: 'Capricorn', gu: 'Capricorn' },
-  11: { en: 'Aquarius', hi: 'कुम्भ', sa: 'कुम्भः', mai: 'कुम्भ', mr: 'कुम्भ', ta: 'Aquarius', te: 'Aquarius', bn: 'Aquarius', kn: 'Aquarius', gu: 'Aquarius' },
-  12: { en: 'Pisces', hi: 'मीन', sa: 'मीनः', mai: 'मीन', mr: 'मीन', ta: 'Pisces', te: 'Pisces', bn: 'Pisces', kn: 'Pisces', gu: 'Pisces' },
+  1:  { en: 'Aries', hi: 'मेष', sa: 'मेषः', mai: 'मेष', mr: 'मेष', ta: 'மேஷம்', te: 'మేషం', bn: 'মেষ', kn: 'ಮೇಷ', gu: 'મેષ' },
+  2:  { en: 'Taurus', hi: 'वृषभ', sa: 'वृषभः', mai: 'वृषभ', mr: 'वृषभ', ta: 'ரிஷபம்', te: 'వృషభం', bn: 'বৃষ', kn: 'ವೃಷಭ', gu: 'વૃષભ' },
+  3:  { en: 'Gemini', hi: 'मिथुन', sa: 'मिथुनम्', mai: 'मिथुन', mr: 'मिथुन', ta: 'மிதுனம்', te: 'మిథునం', bn: 'মিথুন', kn: 'ಮಿಥುನ', gu: 'મિથુન' },
+  4:  { en: 'Cancer', hi: 'कर्क', sa: 'कर्कटः', mai: 'कर्क', mr: 'कर्क', ta: 'கடகம்', te: 'కర్కాటకం', bn: 'কর্কট', kn: 'ಕರ್ಕಾಟಕ', gu: 'કર્ક' },
+  5:  { en: 'Leo', hi: 'सिंह', sa: 'सिंहः', mai: 'सिंह', mr: 'सिंह', ta: 'சிம்மம்', te: 'సింహం', bn: 'সিংহ', kn: 'ಸಿಂಹ', gu: 'સિંહ' },
+  6:  { en: 'Virgo', hi: 'कन्या', sa: 'कन्या', mai: 'कन्या', mr: 'कन्या', ta: 'கன்னி', te: 'కన్య', bn: 'কন্যা', kn: 'ಕನ್ಯಾ', gu: 'કન્યા' },
+  7:  { en: 'Libra', hi: 'तुला', sa: 'तुला', mai: 'तुला', mr: 'तुला', ta: 'துலாம்', te: 'తులా', bn: 'তুলা', kn: 'ತುಲಾ', gu: 'તુલા' },
+  8:  { en: 'Scorpio', hi: 'वृश्चिक', sa: 'वृश्चिकः', mai: 'वृश्चिक', mr: 'वृश्चिक', ta: 'விருச்சிகம்', te: 'వృశ్చికం', bn: 'বৃশ্চিক', kn: 'ವೃಶ್ಚಿಕ', gu: 'વૃશ્ચિક' },
+  9:  { en: 'Sagittarius', hi: 'धनु', sa: 'धनुः', mai: 'धनु', mr: 'धनु', ta: 'தனுசு', te: 'ధనుస్సు', bn: 'ধনু', kn: 'ಧನು', gu: 'ધનુ' },
+  10: { en: 'Capricorn', hi: 'मकर', sa: 'मकरः', mai: 'मकर', mr: 'मकर', ta: 'மகரம்', te: 'మకరం', bn: 'মকর', kn: 'ಮಕರ', gu: 'મકર' },
+  11: { en: 'Aquarius', hi: 'कुम्भ', sa: 'कुम्भः', mai: 'कुम्भ', mr: 'कुम्भ', ta: 'கும்பம்', te: 'కుంభం', bn: 'কুম্ভ', kn: 'ಕುಂಭ', gu: 'કુંભ' },
+  12: { en: 'Pisces', hi: 'मीन', sa: 'मीनः', mai: 'मीन', mr: 'मीन', ta: 'மீனம்', te: 'మీనం', bn: 'মীন', kn: 'ಮೀನ', gu: 'મીન' },
 };
 
 type Element = 'fire' | 'earth' | 'air' | 'water';

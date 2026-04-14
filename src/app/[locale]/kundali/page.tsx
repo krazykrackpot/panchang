@@ -3054,7 +3054,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
   const isHi = isDevanagariLocale(locale);
   const [selectedVarga, setSelectedVarga] = useState<string | null>(null);
   const sC: Record<string, string> = { strong: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20', moderate: 'text-amber-400 bg-amber-500/10 border-amber-500/20', weak: 'text-red-400 bg-red-500/10 border-red-500/20' };
-  const sL: Record<string, LocaleText> = { strong: { en: 'Strong', hi: 'बलवान', sa: 'बलवान', mai: 'बलवान', mr: 'बलवान', ta: 'வலிமையான', te: 'బలమైన', bn: 'শক্তিশালী', kn: 'ಬಲಿಷ್ಠ', gu: 'મજબૂત' }, moderate: { en: 'Moderate', hi: 'मध्यम', sa: 'मध्यम', mai: 'मध्यम', mr: 'मध्यम', ta: 'மிதமான', te: 'మోస్తరు', bn: 'মাঝারি', kn: 'ಮಧ್ಯಮ', gu: 'મધ્યમ' }, weak: { en: 'Weak', hi: 'दुर्बल', sa: 'दुर्बल', mai: 'दुर्बल', mr: 'दुर्बल', ta: 'Weak', te: 'Weak', bn: 'Weak', kn: 'Weak', gu: 'Weak' } };
+  const sL: Record<string, LocaleText> = { strong: { en: 'Strong', hi: 'बलवान', sa: 'बलवान', mai: 'बलवान', mr: 'बलवान', ta: 'வலிமையான', te: 'బలమైన', bn: 'শক্তিশালী', kn: 'ಬಲಿಷ್ಠ', gu: 'મજબૂત' }, moderate: { en: 'Moderate', hi: 'मध्यम', sa: 'मध्यम', mai: 'मध्यम', mr: 'मध्यम', ta: 'மிதமான', te: 'మోస్తరు', bn: 'মাঝারি', kn: 'ಮಧ್ಯಮ', gu: 'મધ્યમ' }, weak: { en: 'Weak', hi: 'दुर्बल', sa: 'दुर्बल', mai: 'दुर्बल', mr: 'दुर्बल', ta: 'பலவீனம்', te: 'బలహీన', bn: 'দুর্বল', kn: 'ದುರ್ಬಲ', gu: 'નબળું' } };
   const PLANET_NAMES_EN = ['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn','Rahu','Ketu'];
   const PLANET_NAMES_HI = ['सूर्य','चन्द्र','मंगल','बुध','गुरु','शुक्र','शनि','राहु','केतु'];
   const selectedInsight = synthesis.vargaInsights.find(v => v.chart === selectedVarga);

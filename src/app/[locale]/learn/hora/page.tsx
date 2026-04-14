@@ -14,10 +14,10 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 /* ── Planet speed data ────────────────────────────────────────────── */
 const SPEED_TABLE = [
   {
-    rank: 1, label: { en: 'Slowest', hi: 'सबसे धीमा', sa: 'सबसे धीमा', mai: 'सबसे धीमा', mr: 'सबसे धीमा', ta: 'Slowest', te: 'Slowest', bn: 'Slowest', kn: 'Slowest', gu: 'Slowest' },
+    rank: 1, label: { en: 'Slowest', hi: 'सबसे धीमा', sa: 'मन्दतमः', mai: 'सभसँ धीमा', mr: 'सर्वात मंद', ta: 'மெதுவான', te: 'నెమ్మదిగా', bn: 'সবচেয়ে ধীর', kn: 'ಅತಿ ನಿಧಾನ', gu: 'સૌથી ધીમું' },
     planet: { en: 'Saturn', hi: 'शनि', sa: 'शनि', mai: 'शनि', mr: 'शनि', ta: 'சனி', te: 'శని', bn: 'শনি', kn: 'ಶನಿ', gu: 'શનિ' },
     period: { en: '29.46 years', hi: '29.46 वर्ष', sa: '29.46 वर्ष', mai: '29.46 वर्ष', mr: '29.46 वर्ष', ta: '29.46 வருடங்கள்', te: '29.46 సంవత్సరాలు', bn: '29.46 বছর', kn: '29.46 ವರ್ಷಗಳು', gu: '29.46 વર્ષ' },
-    note: { en: 'Takes longest to traverse the entire zodiac', hi: 'राशिचक्र पूरा करने में सबसे अधिक समय', sa: 'राशिचक्र पूरा करने में सबसे अधिक समय', mai: 'राशिचक्र पूरा करने में सबसे अधिक समय', mr: 'राशिचक्र पूरा करने में सबसे अधिक समय', ta: 'Takes longest to traverse the entire zodiac', te: 'Takes longest to traverse the entire zodiac', bn: 'Takes longest to traverse the entire zodiac', kn: 'Takes longest to traverse the entire zodiac', gu: 'Takes longest to traverse the entire zodiac' },
+    note: { en: 'Takes longest to traverse the entire zodiac', hi: 'राशिचक्र पूरा करने में सबसे अधिक समय', sa: 'राशिचक्रं पूरयितुं सर्वाधिकः कालः', mai: 'राशिचक्र पूरा करबामे सभसँ बेसी समय', mr: 'राशीचक्र पूर्ण करण्यास सर्वाधिक वेळ', ta: 'முழு ராசி வட்டத்தையும் கடக்க அதிக நேரம் எடுக்கும்', te: 'మొత్తం రాశిచక్రాన్ని దాటడానికి ఎక్కువ సమయం పడుతుంది', bn: 'সম্পূর্ণ রাশিচক্র অতিক্রম করতে সবচেয়ে বেশি সময় লাগে', kn: 'ಸಂಪೂರ್ಣ ರಾಶಿಚಕ್ರವನ್ನು ಸುತ್ತಲು ಹೆಚ್ಚು ಸಮಯ ತೆಗೆದುಕೊಳ್ಳುತ್ತದೆ', gu: 'સમગ્ર રાશિચક્ર પૂરું કરવામાં સૌથી વધુ સમય લે છે' },
     color: '#60a5fa', border: 'border-blue-500/30', bg: 'bg-blue-500/8',
   },
   {
@@ -31,7 +31,7 @@ const SPEED_TABLE = [
     rank: 3, label: { en: '', hi: '', sa: '', mai: '', mr: '', ta: '', te: '', bn: '', kn: '', gu: '' },
     planet: { en: 'Mars', hi: 'मंगल', sa: 'मंगल', mai: 'मंगल', mr: 'मंगल', ta: 'செவ்வாய்', te: 'కుజుడు', bn: 'মঙ্গল', kn: 'ಮಂಗಳ', gu: 'મંગળ' },
     period: { en: '1.88 years', hi: '1.88 वर्ष', sa: '1.88 वर्ष', mai: '1.88 वर्ष', mr: '1.88 वर्ष', ta: '1.88 வருடங்கள்', te: '1.88 సంవత్సరాలు', bn: '1.88 বছর', kn: '1.88 ವರ್ಷಗಳು', gu: '1.88 વર્ષ' },
-    note: { en: 'Completes ~2 years per zodiac circuit', hi: 'राशिचक्र में ~2 वर्ष प्रति परिक्रमा', sa: 'राशिचक्र में ~2 वर्ष प्रति परिक्रमा', mai: 'राशिचक्र में ~2 वर्ष प्रति परिक्रमा', mr: 'राशिचक्र में ~2 वर्ष प्रति परिक्रमा', ta: 'Completes ~2 years per zodiac circuit', te: 'Completes ~2 years per zodiac circuit', bn: 'Completes ~2 years per zodiac circuit', kn: 'Completes ~2 years per zodiac circuit', gu: 'Completes ~2 years per zodiac circuit' },
+    note: { en: 'Completes ~2 years per zodiac circuit', hi: 'राशिचक्र में ~2 वर्ष प्रति परिक्रमा', sa: 'राशिचक्रे ~2 वर्षे प्रतिपरिक्रमणम्', mai: 'राशिचक्रमे ~2 वर्ष प्रति परिक्रमा', mr: 'राशीचक्रात ~2 वर्षे प्रति परिक्रमा', ta: 'ராசி வட்டத்திற்கு ~2 ஆண்டுகள்', te: 'రాశిచక్ర పరిక్రమణకు ~2 సంవత్సరాలు', bn: 'রাশিচক্র প্রদক্ষিণে ~2 বছর', kn: 'ರಾಶಿಚಕ್ರ ಪ್ರದಕ್ಷಿಣೆಗೆ ~2 ವರ್ಷಗಳು', gu: 'રાશિચક્ર પ્રદક્ષિણામાં ~2 વર્ષ' },
     color: '#ef4444', border: 'border-red-500/30', bg: 'bg-red-500/8',
   },
   {
@@ -45,21 +45,21 @@ const SPEED_TABLE = [
     rank: 5, label: { en: '', hi: '', sa: '', mai: '', mr: '', ta: '', te: '', bn: '', kn: '', gu: '' },
     planet: { en: 'Venus', hi: 'शुक्र', sa: 'शुक्र', mai: 'शुक्र', mr: 'शुक्र', ta: 'சுக்கிரன்', te: 'శుక్రుడు', bn: 'শুক্র', kn: 'ಶುಕ್ರ', gu: 'શુક્ર' },
     period: { en: '224.7 days', hi: '224.7 दिन', sa: '224.7 दिन', mai: '224.7 दिन', mr: '224.7 दिन', ta: '224.7 நாட்கள்', te: '224.7 రోజులు', bn: '224.7 দিন', kn: '224.7 ದಿನಗಳು', gu: '224.7 દિવસ' },
-    note: { en: 'Completes ~1.6 orbits per Earth year', hi: 'प्रति पृथ्वी वर्ष ~1.6 कक्षाएँ', sa: 'प्रति पृथ्वी वर्ष ~1.6 कक्षाएँ', mai: 'प्रति पृथ्वी वर्ष ~1.6 कक्षाएँ', mr: 'प्रति पृथ्वी वर्ष ~1.6 कक्षाएँ', ta: 'Completes ~1.6 orbits per Earth year', te: 'Completes ~1.6 orbits per Earth year', bn: 'Completes ~1.6 orbits per Earth year', kn: 'Completes ~1.6 orbits per Earth year', gu: 'Completes ~1.6 orbits per Earth year' },
+    note: { en: 'Completes ~1.6 orbits per Earth year', hi: 'प्रति पृथ्वी वर्ष ~1.6 कक्षाएँ', sa: 'प्रतिपृथिवीवर्षं ~1.6 कक्षाः', mai: 'प्रति पृथ्वी वर्ष ~1.6 कक्षा', mr: 'पृथ्वी वर्षात ~1.6 कक्षा', ta: 'பூமி ஆண்டுக்கு ~1.6 சுற்றுகள்', te: 'భూమి సంవత్సరానికి ~1.6 కక్ష్యలు', bn: 'পৃথিবী বছরে ~1.6 কক্ষপথ', kn: 'ಭೂಮಿ ವರ್ಷಕ್ಕೆ ~1.6 ಕಕ್ಷೆಗಳು', gu: 'પૃથ્વી વર્ષ દીઠ ~1.6 ભ્રમણ' },
     color: '#f472b6', border: 'border-pink-500/30', bg: 'bg-pink-500/8',
   },
   {
     rank: 6, label: { en: '', hi: '', sa: '', mai: '', mr: '', ta: '', te: '', bn: '', kn: '', gu: '' },
     planet: { en: 'Mercury', hi: 'बुध', sa: 'बुध', mai: 'बुध', mr: 'बुध', ta: 'புதன்', te: 'బుధుడు', bn: 'বুধ', kn: 'ಬುಧ', gu: 'બુધ' },
     period: { en: '87.97 days', hi: '87.97 दिन', sa: '87.97 दिन', mai: '87.97 दिन', mr: '87.97 दिन', ta: '87.97 நாட்கள்', te: '87.97 రోజులు', bn: '87.97 দিন', kn: '87.97 ದಿನಗಳು', gu: '87.97 દિવસ' },
-    note: { en: 'Fastest of the classical planets; ~4 orbits per year', hi: 'शास्त्रीय ग्रहों में सबसे तेज़; ~4 कक्षाएँ प्रति वर्ष', sa: 'शास्त्रीय ग्रहों में सबसे तेज़; ~4 कक्षाएँ प्रति वर्ष', mai: 'शास्त्रीय ग्रहों में सबसे तेज़; ~4 कक्षाएँ प्रति वर्ष', mr: 'शास्त्रीय ग्रहों में सबसे तेज़; ~4 कक्षाएँ प्रति वर्ष', ta: 'Fastest of the classical planets; ~4 orbits per year', te: 'Fastest of the classical planets; ~4 orbits per year', bn: 'Fastest of the classical planets; ~4 orbits per year', kn: 'Fastest of the classical planets; ~4 orbits per year', gu: 'Fastest of the classical planets; ~4 orbits per year' },
+    note: { en: 'Fastest of the classical planets; ~4 orbits per year', hi: 'शास्त्रीय ग्रहों में सबसे तेज़; ~4 कक्षाएँ प्रति वर्ष', sa: 'शास्त्रीयग्रहेषु द्रुततमः; प्रतिवर्षं ~4 कक्षाः', mai: 'शास्त्रीय ग्रहमे सभसँ तेज़; प्रतिवर्ष ~4 कक्षा', mr: 'शास्त्रीय ग्रहांमध्ये सर्वात जलद; दरवर्षी ~4 कक्षा', ta: 'பாரம்பரிய கிரகங்களில் வேகமானது; ஆண்டுக்கு ~4 சுற்றுகள்', te: 'శాస్త్రీయ గ్రహాలలో వేగవంతమైనది; సంవత్సరానికి ~4 కక్ష్యలు', bn: 'শাস্ত্রীয় গ্রহগুলির মধ্যে দ্রুততম; বছরে ~4 কক্ষপথ', kn: 'ಶಾಸ್ತ್ರೀಯ ಗ್ರಹಗಳಲ್ಲಿ ವೇಗವಾದದ್ದು; ವರ್ಷಕ್ಕೆ ~4 ಕಕ್ಷೆಗಳು', gu: 'શાસ્ત્રીય ગ્રહોમાં સૌથી ઝડપી; વર્ષ દીઠ ~4 ભ્રમણ' },
     color: '#4ade80', border: 'border-emerald-500/30', bg: 'bg-emerald-500/8',
   },
   {
-    rank: 7, label: { en: 'Fastest', hi: 'सबसे तेज़', sa: 'सबसे तेज़', mai: 'सबसे तेज़', mr: 'सबसे तेज़', ta: 'Fastest', te: 'Fastest', bn: 'Fastest', kn: 'Fastest', gu: 'Fastest' },
+    rank: 7, label: { en: 'Fastest', hi: 'सबसे तेज़', sa: 'द्रुततमः', mai: 'सभसँ तेज़', mr: 'सर्वात जलद', ta: 'மிகவும் வேகமான', te: 'అత్యంత వేగం', bn: 'সবচেয়ে দ্রুত', kn: 'ಅತ್ಯಂತ ವೇಗ', gu: 'સૌથી ઝડપી' },
     planet: { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', mai: 'चन्द्र', mr: 'चन्द्र', ta: 'சந்திரன்', te: 'చంద్రుడు', bn: 'চন্দ্র', kn: 'ಚಂದ್ರ', gu: 'ચંદ્ર' },
     period: { en: '27.32 days', hi: '27.32 दिन', sa: '27.32 दिन', mai: '27.32 दिन', mr: '27.32 दिन', ta: '27.32 நாட்கள்', te: '27.32 రోజులు', bn: '27.32 দিন', kn: '27.32 ದಿನಗಳು', gu: '27.32 દિવસ' },
-    note: { en: 'Completes one orbit in under a month', hi: 'एक महीने से कम में एक कक्षा पूरी करता है', sa: 'एक महीने से कम में एक कक्षा पूरी करता है', mai: 'एक महीने से कम में एक कक्षा पूरी करता है', mr: 'एक महीने से कम में एक कक्षा पूरी करता है', ta: 'Completes one orbit in under a month', te: 'Completes one orbit in under a month', bn: 'Completes one orbit in under a month', kn: 'Completes one orbit in under a month', gu: 'Completes one orbit in under a month' },
+    note: { en: 'Completes one orbit in under a month', hi: 'एक महीने से कम में एक कक्षा पूरी करता है', sa: 'एकस्मात् मासात् न्यूनकाले एकां कक्षां पूरयति', mai: 'एक मासक कम समयमे एक कक्षा पूरा करैत अछि', mr: 'एका महिन्यापेक्षा कमी वेळात एक कक्षा पूर्ण करतो', ta: 'ஒரு மாதத்திற்குள் ஒரு சுற்று முடிக்கிறது', te: 'ఒక నెలలోపు ఒక కక్ష్య పూర్తి చేస్తుంది', bn: 'এক মাসেরও কম সময়ে একটি কক্ষপথ সম্পন্ন করে', kn: 'ಒಂದು ತಿಂಗಳೊಳಗೆ ಒಂದು ಕಕ್ಷೆ ಪೂರ್ಣಗೊಳಿಸುತ್ತದೆ', gu: 'એક મહિનાથી ઓછા સમયમાં એક ભ્રમણ પૂર્ણ કરે છે' },
     color: '#94a3b8', border: 'border-slate-400/30', bg: 'bg-slate-400/8',
   },
 ];

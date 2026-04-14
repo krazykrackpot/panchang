@@ -305,7 +305,7 @@ export function generateDailyHoroscope(input: DailyEngineInput): DailyHoroscope 
   const rashi = RASHIS[moonSign - 1];
   const moonSignName = rashi
     ? { en: rashi.name.en, hi: rashi.name.hi }
-    : { en: 'Unknown', hi: 'अज्ञात', sa: 'अज्ञात', mai: 'अज्ञात', mr: 'अज्ञात', ta: 'Unknown', te: 'Unknown', bn: 'Unknown', kn: 'Unknown', gu: 'Unknown' };
+    : { en: 'Unknown', hi: 'अज्ञात', sa: 'अज्ञात', mai: 'अज्ञात', mr: 'अज्ञात', ta: 'அறியாத', te: 'తెలియని', bn: 'অজানা', kn: 'ಅಜ್ಞಾತ', gu: 'અજ્ઞાત' };
 
   return {
     date,

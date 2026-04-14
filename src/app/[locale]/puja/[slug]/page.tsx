@@ -46,7 +46,7 @@ const LABELS = {
     phalaSa: 'Phala',
     visarjan: 'Visarjan',
     visarjanSa: 'Closing Ritual',
-    muhurta: 'Timing',
+    muhurta: 'நேரம்',
     festival: 'Festival',
     vrat: 'Vrat',
     verses: 'verses',

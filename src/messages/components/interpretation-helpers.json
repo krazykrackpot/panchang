@@ -2,406 +2,973 @@
   "strengthStrong": {
     "en": "Strong",
     "hi": "बलवान",
-    "sa": "बलवान"
+    "sa": "बलवान",
+    "ta": "Strong",
+    "te": "Strong",
+    "bn": "Strong",
+    "kn": "Strong",
+    "mr": "Strong",
+    "gu": "Strong",
+    "mai": "Strong"
   },
   "strengthAdequate": {
     "en": "Adequate",
     "hi": "पर्याप्त",
-    "sa": "पर्याप्त"
+    "sa": "पर्याप्त",
+    "ta": "Adequate",
+    "te": "Adequate",
+    "bn": "Adequate",
+    "kn": "Adequate",
+    "mr": "Adequate",
+    "gu": "Adequate",
+    "mai": "Adequate"
   },
   "strengthWeak": {
     "en": "Weak",
     "hi": "कमज़ोर",
-    "sa": "कमज़ोर"
+    "sa": "कमज़ोर",
+    "ta": "Weak",
+    "te": "Weak",
+    "bn": "Weak",
+    "kn": "Weak",
+    "mr": "Weak",
+    "gu": "Weak",
+    "mai": "Weak"
   },
   "shadowPlanet": {
     "en": "Shadow Planet",
     "hi": "छाया ग्रह",
-    "sa": "छाया ग्रह"
+    "sa": "छाया ग्रह",
+    "ta": "Shadow Planet",
+    "te": "Shadow Planet",
+    "bn": "Shadow Planet",
+    "kn": "Shadow Planet",
+    "mr": "Shadow Planet",
+    "gu": "Shadow Planet",
+    "mai": "Shadow Planet"
   },
   "shadBalaTitle": {
     "en": "Shadbala — What It Means For You",
     "hi": "षड्बल — आपके लिए इसका अर्थ",
-    "sa": "षड्बल — आपके लिए इसका अर्थ"
+    "sa": "षड्बल — आपके लिए इसका अर्थ",
+    "ta": "Shadbala — What It Means For You",
+    "te": "Shadbala — What It Means For You",
+    "bn": "Shadbala — What It Means For You",
+    "kn": "Shadbala — What It Means For You",
+    "mr": "Shadbala — What It Means For You",
+    "gu": "Shadbala — What It Means For You",
+    "mai": "Shadbala — What It Means For You"
   },
   "yourCurrentDashaPeriod": {
     "en": "Your Current Dasha Period",
     "hi": "आपका अभी का दशा काल",
-    "sa": "आपका अभी का दशा काल"
+    "sa": "आपका अभी का दशा काल",
+    "ta": "Your Current Dasha Period",
+    "te": "Your Current Dasha Period",
+    "bn": "Your Current Dasha Period",
+    "kn": "Your Current Dasha Period",
+    "mr": "Your Current Dasha Period",
+    "gu": "Your Current Dasha Period",
+    "mai": "Your Current Dasha Period"
   },
   "mahadasha": {
     "en": "Mahadasha",
     "hi": "महादशा",
-    "sa": "महादशा"
+    "sa": "महादशा",
+    "ta": "Mahadasha",
+    "te": "Mahadasha",
+    "bn": "Mahadasha",
+    "kn": "Mahadasha",
+    "mr": "Mahadasha",
+    "gu": "Mahadasha",
+    "mai": "Mahadasha"
   },
   "lifeDashaTimeline": {
     "en": "Life Dasha Timeline",
     "hi": "जीवन दशा समयरेखा",
-    "sa": "जीवन दशा समयरेखा"
+    "sa": "जीवन दशा समयरेखा",
+    "ta": "Life Dasha Timeline",
+    "te": "Life Dasha Timeline",
+    "bn": "Life Dasha Timeline",
+    "kn": "Life Dasha Timeline",
+    "mr": "Life Dasha Timeline",
+    "gu": "Life Dasha Timeline",
+    "mai": "Life Dasha Timeline"
   },
   "now": {
     "en": "Now",
     "hi": "अभी",
-    "sa": "अभी"
+    "sa": "अभी",
+    "ta": "Now",
+    "te": "Now",
+    "bn": "Now",
+    "kn": "Now",
+    "mr": "Now",
+    "gu": "Now",
+    "mai": "Now"
   },
   "chartCaptain": {
     "en": "Your Chart Captain",
     "hi": "आपकी कुंडली का सेनापति",
-    "sa": "आपकी कुंडली का सेनापति"
+    "sa": "आपकी कुंडली का सेनापति",
+    "ta": "Your Chart Captain",
+    "te": "Your Chart Captain",
+    "bn": "Your Chart Captain",
+    "kn": "Your Chart Captain",
+    "mr": "Your Chart Captain",
+    "gu": "Your Chart Captain",
+    "mai": "Your Chart Captain"
   },
   "duringMahadasha": {
     "en": "During its Mahadasha: ",
     "hi": "इसकी महादशा में: ",
-    "sa": "इसकी महादशा में: "
+    "sa": "इसकी महादशा में: ",
+    "ta": "During its Mahadasha: ",
+    "te": "During its Mahadasha: ",
+    "bn": "During its Mahadasha: ",
+    "kn": "During its Mahadasha: ",
+    "mr": "During its Mahadasha: ",
+    "gu": "During its Mahadasha: ",
+    "mai": "During its Mahadasha: "
   },
   "upcomingKeyPeriods": {
     "en": "Upcoming Key Periods",
     "hi": "आने वाले महत्वपूर्ण काल",
-    "sa": "आने वाले महत्वपूर्ण काल"
+    "sa": "आने वाले महत्वपूर्ण काल",
+    "ta": "Upcoming Key Periods",
+    "te": "Upcoming Key Periods",
+    "bn": "Upcoming Key Periods",
+    "kn": "Upcoming Key Periods",
+    "mr": "Upcoming Key Periods",
+    "gu": "Upcoming Key Periods",
+    "mai": "Upcoming Key Periods"
   },
   "goldenPeriod": {
     "en": "— Golden period",
     "hi": "— सुनहरा काल",
-    "sa": "— सुनहरा काल"
+    "sa": "— सुनहरा काल",
+    "ta": "— Golden period",
+    "te": "— Golden period",
+    "bn": "— Golden period",
+    "kn": "— Golden period",
+    "mr": "— Golden period",
+    "gu": "— Golden period",
+    "mai": "— Golden period"
   },
   "proceedWithCare": {
     "en": "— Proceed with care",
     "hi": "— सावधान रहें",
-    "sa": "— सावधान रहें"
+    "sa": "— सावधान रहें",
+    "ta": "— Proceed with care",
+    "te": "— Proceed with care",
+    "bn": "— Proceed with care",
+    "kn": "— Proceed with care",
+    "mr": "— Proceed with care",
+    "gu": "— Proceed with care",
+    "mai": "— Proceed with care"
   },
   "planetsNeedingSupport": {
     "en": "Planets Needing Support",
     "hi": "सहायता चाहिए",
-    "sa": "सहायता चाहिए"
+    "sa": "सहायता चाहिए",
+    "ta": "Planets Needing Support",
+    "te": "Planets Needing Support",
+    "bn": "Planets Needing Support",
+    "kn": "Planets Needing Support",
+    "mr": "Planets Needing Support",
+    "gu": "Planets Needing Support",
+    "mai": "Planets Needing Support"
   },
   "remedy": {
     "en": "Remedy: ",
     "hi": "उपाय: ",
-    "sa": "उपाय: "
+    "sa": "उपाय: ",
+    "ta": "Remedy: ",
+    "te": "Remedy: ",
+    "bn": "Remedy: ",
+    "kn": "Remedy: ",
+    "mr": "Remedy: ",
+    "gu": "Remedy: ",
+    "mai": "Remedy: "
   },
   "strengthRankingRatio": {
     "en": "Strength Ranking & Ratio",
     "hi": "बल क्रमांकन — अनुपात सहित",
-    "sa": "बल क्रमांकन — अनुपात सहित"
+    "sa": "बल क्रमांकन — अनुपात सहित",
+    "ta": "Strength Ranking & Ratio",
+    "te": "Strength Ranking & Ratio",
+    "bn": "Strength Ranking & Ratio",
+    "kn": "Strength Ranking & Ratio",
+    "mr": "Strength Ranking & Ratio",
+    "gu": "Strength Ranking & Ratio",
+    "mai": "Strength Ranking & Ratio"
   },
   "minStrength": {
     "en": "Min. = 1.0",
     "hi": "न्यूनतम = 1.0",
-    "sa": "न्यूनतम = 1.0"
+    "sa": "न्यूनतम = 1.0",
+    "ta": "Min. = 1.0",
+    "te": "Min. = 1.0",
+    "bn": "Min. = 1.0",
+    "kn": "Min. = 1.0",
+    "mr": "Min. = 1.0",
+    "gu": "Min. = 1.0",
+    "mai": "Min. = 1.0"
   },
   "legendStrong": {
     "en": "Strong ≥1.5× min",
     "hi": "प्रबल ≥1.5×",
-    "sa": "प्रबल ≥1.5×"
+    "sa": "प्रबल ≥1.5×",
+    "ta": "Strong ≥1.5× min",
+    "te": "Strong ≥1.5× min",
+    "bn": "Strong ≥1.5× min",
+    "kn": "Strong ≥1.5× min",
+    "mr": "Strong ≥1.5× min",
+    "gu": "Strong ≥1.5× min",
+    "mai": "Strong ≥1.5× min"
   },
   "legendAdequate": {
     "en": "Adequate ≥1.0× min",
     "hi": "पर्याप्त ≥1.0×",
-    "sa": "पर्याप्त ≥1.0×"
+    "sa": "पर्याप्त ≥1.0×",
+    "ta": "Adequate ≥1.0× min",
+    "te": "Adequate ≥1.0× min",
+    "bn": "Adequate ≥1.0× min",
+    "kn": "Adequate ≥1.0× min",
+    "mr": "Adequate ≥1.0× min",
+    "gu": "Adequate ≥1.0× min",
+    "mai": "Adequate ≥1.0× min"
   },
   "legendWeak": {
     "en": "Weak <1.0× min",
     "hi": "दुर्बल <1.0×",
-    "sa": "दुर्बल <1.0×"
+    "sa": "दुर्बल <1.0×",
+    "ta": "Weak <1.0× min",
+    "te": "Weak <1.0× min",
+    "bn": "Weak <1.0× min",
+    "kn": "Weak <1.0× min",
+    "mr": "Weak <1.0× min",
+    "gu": "Weak <1.0× min",
+    "mai": "Weak <1.0× min"
   },
   "bphsCh27": {
     "en": "(BPHS Ch.27)",
     "hi": "(BPHS अ.27)",
-    "sa": "(BPHS अ.27)"
+    "sa": "(BPHS अ.27)",
+    "ta": "(BPHS Ch.27)",
+    "te": "(BPHS Ch.27)",
+    "bn": "(BPHS Ch.27)",
+    "kn": "(BPHS Ch.27)",
+    "mr": "(BPHS Ch.27)",
+    "gu": "(BPHS Ch.27)",
+    "mai": "(BPHS Ch.27)"
   },
   "yogasInterpretation": {
     "en": "Yogas Interpretation",
     "hi": "योग विश्लेषण",
-    "sa": "योग विश्लेषण"
+    "sa": "योग विश्लेषण",
+    "ta": "Yogas Interpretation",
+    "te": "Yogas Interpretation",
+    "bn": "Yogas Interpretation",
+    "kn": "Yogas Interpretation",
+    "mr": "Yogas Interpretation",
+    "gu": "Yogas Interpretation",
+    "mai": "Yogas Interpretation"
   },
   "summary": {
     "en": "Summary",
     "hi": "सारांश",
-    "sa": "सारांश"
+    "sa": "सारांश",
+    "ta": "Summary",
+    "te": "Summary",
+    "bn": "Summary",
+    "kn": "Summary",
+    "mr": "Summary",
+    "gu": "Summary",
+    "mai": "Summary"
   },
   "topAuspiciousYogas": {
     "en": "Top Auspicious Yogas",
     "hi": "शुभ योग",
-    "sa": "शुभ योग"
+    "sa": "शुभ योग",
+    "ta": "Top Auspicious Yogas",
+    "te": "Top Auspicious Yogas",
+    "bn": "Top Auspicious Yogas",
+    "kn": "Top Auspicious Yogas",
+    "mr": "Top Auspicious Yogas",
+    "gu": "Top Auspicious Yogas",
+    "mai": "Top Auspicious Yogas"
   },
   "whatItMeansForYou": {
     "en": "What it means for you: ",
     "hi": "आपके लिए अर्थ: ",
-    "sa": "आपके लिए अर्थ: "
+    "sa": "आपके लिए अर्थ: ",
+    "ta": "What it means for you: ",
+    "te": "What it means for you: ",
+    "bn": "What it means for you: ",
+    "kn": "What it means for you: ",
+    "mr": "What it means for you: ",
+    "gu": "What it means for you: ",
+    "mai": "What it means for you: "
   },
   "formation": {
     "en": "Formation: ",
     "hi": "निर्माण नियम: ",
-    "sa": "निर्माण नियम: "
+    "sa": "निर्माण नियम: ",
+    "ta": "Formation: ",
+    "te": "Formation: ",
+    "bn": "Formation: ",
+    "kn": "Formation: ",
+    "mr": "Formation: ",
+    "gu": "Formation: ",
+    "mai": "Formation: "
   },
   "howToMaximize": {
     "en": "How to maximize: This yoga activates most during the Mahadasha of its forming planets. Take positive action during those periods.",
     "hi": "अधिकतम लाभ हेतु: इसके निर्माणकारी ग्रह की दशा में सक्रिय होता है। उस अवधि में सकारात्मक कार्य करें।",
-    "sa": "अधिकतम लाभ हेतु: इसके निर्माणकारी ग्रह की दशा में सक्रिय होता है। उस अवधि में सकारात्मक कार्य करें।"
+    "sa": "अधिकतम लाभ हेतु: इसके निर्माणकारी ग्रह की दशा में सक्रिय होता है। उस अवधि में सकारात्मक कार्य करें।",
+    "ta": "How to maximize: This yoga activates most during the Mahadasha of its forming planets. Take positive action during those periods.",
+    "te": "How to maximize: This yoga activates most during the Mahadasha of its forming planets. Take positive action during those periods.",
+    "bn": "How to maximize: This yoga activates most during the Mahadasha of its forming planets. Take positive action during those periods.",
+    "kn": "How to maximize: This yoga activates most during the Mahadasha of its forming planets. Take positive action during those periods.",
+    "mr": "How to maximize: This yoga activates most during the Mahadasha of its forming planets. Take positive action during those periods.",
+    "gu": "How to maximize: This yoga activates most during the Mahadasha of its forming planets. Take positive action during those periods.",
+    "mai": "How to maximize: This yoga activates most during the Mahadasha of its forming planets. Take positive action during those periods."
   },
   "inauspiciousYogasAndRemedies": {
     "en": "Inauspicious Yogas & What To Do",
     "hi": "अशुभ योग एवं उपाय",
-    "sa": "अशुभ योग एवं उपाय"
+    "sa": "अशुभ योग एवं उपाय",
+    "ta": "Inauspicious Yogas & What To Do",
+    "te": "Inauspicious Yogas & What To Do",
+    "bn": "Inauspicious Yogas & What To Do",
+    "kn": "Inauspicious Yogas & What To Do",
+    "mr": "Inauspicious Yogas & What To Do",
+    "gu": "Inauspicious Yogas & What To Do",
+    "mai": "Inauspicious Yogas & What To Do"
   },
   "whatThisIndicates": {
     "en": "What this indicates: ",
     "hi": "संकेत: ",
-    "sa": "संकेत: "
+    "sa": "संकेत: ",
+    "ta": "What this indicates: ",
+    "te": "What this indicates: ",
+    "bn": "What this indicates: ",
+    "kn": "What this indicates: ",
+    "mr": "What this indicates: ",
+    "gu": "What this indicates: ",
+    "mai": "What this indicates: "
   },
   "notACurse": {
     "en": "This is NOT a curse — it's a karmic pattern that can be worked with.",
     "hi": "यह कोई श्राप नहीं है — यह एक कार्मिक प्रारूप है जिस पर कार्य किया जा सकता है।",
-    "sa": "यह कोई श्राप नहीं है — यह एक कार्मिक प्रारूप है जिस पर कार्य किया जा सकता है।"
+    "sa": "यह कोई श्राप नहीं है — यह एक कार्मिक प्रारूप है जिस पर कार्य किया जा सकता है।",
+    "ta": "This is NOT a curse — it's a karmic pattern that can be worked with.",
+    "te": "This is NOT a curse — it's a karmic pattern that can be worked with.",
+    "bn": "This is NOT a curse — it's a karmic pattern that can be worked with.",
+    "kn": "This is NOT a curse — it's a karmic pattern that can be worked with.",
+    "mr": "This is NOT a curse — it's a karmic pattern that can be worked with.",
+    "gu": "This is NOT a curse — it's a karmic pattern that can be worked with.",
+    "mai": "This is NOT a curse — it's a karmic pattern that can be worked with."
   },
   "formationLabel": {
     "en": "Formation: ",
     "hi": "निर्माण: ",
-    "sa": "निर्माण: "
+    "sa": "निर्माण: ",
+    "ta": "Formation: ",
+    "te": "Formation: ",
+    "bn": "Formation: ",
+    "kn": "Formation: ",
+    "mr": "Formation: ",
+    "gu": "Formation: ",
+    "mai": "Formation: "
   },
   "commonYogaRemedies": {
     "en": "Common Yoga Remedies",
     "hi": "सामान्य योग उपाय",
-    "sa": "सामान्य योग उपाय"
+    "sa": "सामान्य योग उपाय",
+    "ta": "Common Yoga Remedies",
+    "te": "Common Yoga Remedies",
+    "bn": "Common Yoga Remedies",
+    "kn": "Common Yoga Remedies",
+    "mr": "Common Yoga Remedies",
+    "gu": "Common Yoga Remedies",
+    "mai": "Common Yoga Remedies"
   },
   "yoga": {
     "en": "Yoga",
     "hi": "योग",
-    "sa": "योग"
+    "sa": "योग",
+    "ta": "Yoga",
+    "te": "Yoga",
+    "bn": "Yoga",
+    "kn": "Yoga",
+    "mr": "Yoga",
+    "gu": "Yoga",
+    "mai": "Yoga"
   },
   "issue": {
     "en": "Issue",
     "hi": "समस्या",
-    "sa": "समस्या"
+    "sa": "समस्या",
+    "ta": "Issue",
+    "te": "Issue",
+    "bn": "Issue",
+    "kn": "Issue",
+    "mr": "Issue",
+    "gu": "Issue",
+    "mai": "Issue"
   },
   "remedyHeader": {
     "en": "Remedy",
     "hi": "उपाय",
-    "sa": "उपायः"
+    "sa": "उपायः",
+    "ta": "Remedy",
+    "te": "Remedy",
+    "bn": "Remedy",
+    "kn": "Remedy",
+    "mr": "Remedy",
+    "gu": "Remedy",
+    "mai": "Remedy"
   },
   "avasthasTitle": {
     "en": "Avasthas — Planetary State Analysis",
     "hi": "अवस्था विश्लेषण",
-    "sa": "अवस्था विश्लेषण"
+    "sa": "अवस्था विश्लेषण",
+    "ta": "Avasthas — Planetary State Analysis",
+    "te": "Avasthas — Planetary State Analysis",
+    "bn": "Avasthas — Planetary State Analysis",
+    "kn": "Avasthas — Planetary State Analysis",
+    "mr": "Avasthas — Planetary State Analysis",
+    "gu": "Avasthas — Planetary State Analysis",
+    "mai": "Avasthas — Planetary State Analysis"
   },
   "whatAreAvasthas": {
     "en": "What are Avasthas?",
     "hi": "अवस्था क्या हैं?",
-    "sa": "अवस्था क्या हैं?"
+    "sa": "अवस्था क्या हैं?",
+    "ta": "What are Avasthas?",
+    "te": "What are Avasthas?",
+    "bn": "What are Avasthas?",
+    "kn": "What are Avasthas?",
+    "mr": "What are Avasthas?",
+    "gu": "What are Avasthas?",
+    "mai": "What are Avasthas?"
   },
   "avasthasDescription": {
     "en": "Avasthas describe the MOOD and QUALITY with which each planet delivers its results. Five separate systems operate simultaneously — Baladi (age-strength), Jagradadi (wakefulness), Deeptadi (luminosity), Lajjitadi (emotional state), and Shayanadi (activity pattern) — together revealing exactly how each planet is actually performing in your life. Click any planet to see the full breakdown.",
     "hi": "अवस्थाएं बताती हैं कि प्रत्येक ग्रह किस मनोदशा और गुणवत्ता के साथ अपने परिणाम देता है। पांच प्रणालियां एक साथ काम करती हैं — बलादि (आयु-शक्ति), जाग्रदादि (जागरूकता), दीप्तादि (चमक), लज्जितादि (भावनात्मक स्थिति), और शयनादि (गतिविधि) — और मिलकर बताती हैं कि ग्रह वास्तव में आपके जीवन में कैसा प्रदर्शन कर रहा है।",
-    "sa": "अवस्थाएं बताती हैं कि प्रत्येक ग्रह किस मनोदशा और गुणवत्ता के साथ अपने परिणाम देता है। पांच प्रणालियां एक साथ काम करती हैं — बलादि (आयु-शक्ति), जाग्रदादि (जागरूकता), दीप्तादि (चमक), लज्जितादि (भावनात्मक स्थिति), और शयनादि (गतिविधि) — और मिलकर बताती हैं कि ग्रह वास्तव में आपके जीवन में कैसा प्रदर्शन कर रहा है।"
+    "sa": "अवस्थाएं बताती हैं कि प्रत्येक ग्रह किस मनोदशा और गुणवत्ता के साथ अपने परिणाम देता है। पांच प्रणालियां एक साथ काम करती हैं — बलादि (आयु-शक्ति), जाग्रदादि (जागरूकता), दीप्तादि (चमक), लज्जितादि (भावनात्मक स्थिति), और शयनादि (गतिविधि) — और मिलकर बताती हैं कि ग्रह वास्तव में आपके जीवन में कैसा प्रदर्शन कर रहा है।",
+    "ta": "Avasthas describe the MOOD and QUALITY with which each planet delivers its results. Five separate systems operate simultaneously — Baladi (age-strength), Jagradadi (wakefulness), Deeptadi (luminosity), Lajjitadi (emotional state), and Shayanadi (activity pattern) — together revealing exactly how each planet is actually performing in your life. Click any planet to see the full breakdown.",
+    "te": "Avasthas describe the MOOD and QUALITY with which each planet delivers its results. Five separate systems operate simultaneously — Baladi (age-strength), Jagradadi (wakefulness), Deeptadi (luminosity), Lajjitadi (emotional state), and Shayanadi (activity pattern) — together revealing exactly how each planet is actually performing in your life. Click any planet to see the full breakdown.",
+    "bn": "Avasthas describe the MOOD and QUALITY with which each planet delivers its results. Five separate systems operate simultaneously — Baladi (age-strength), Jagradadi (wakefulness), Deeptadi (luminosity), Lajjitadi (emotional state), and Shayanadi (activity pattern) — together revealing exactly how each planet is actually performing in your life. Click any planet to see the full breakdown.",
+    "kn": "Avasthas describe the MOOD and QUALITY with which each planet delivers its results. Five separate systems operate simultaneously — Baladi (age-strength), Jagradadi (wakefulness), Deeptadi (luminosity), Lajjitadi (emotional state), and Shayanadi (activity pattern) — together revealing exactly how each planet is actually performing in your life. Click any planet to see the full breakdown.",
+    "mr": "Avasthas describe the MOOD and QUALITY with which each planet delivers its results. Five separate systems operate simultaneously — Baladi (age-strength), Jagradadi (wakefulness), Deeptadi (luminosity), Lajjitadi (emotional state), and Shayanadi (activity pattern) — together revealing exactly how each planet is actually performing in your life. Click any planet to see the full breakdown.",
+    "gu": "Avasthas describe the MOOD and QUALITY with which each planet delivers its results. Five separate systems operate simultaneously — Baladi (age-strength), Jagradadi (wakefulness), Deeptadi (luminosity), Lajjitadi (emotional state), and Shayanadi (activity pattern) — together revealing exactly how each planet is actually performing in your life. Click any planet to see the full breakdown.",
+    "mai": "Avasthas describe the MOOD and QUALITY with which each planet delivers its results. Five separate systems operate simultaneously — Baladi (age-strength), Jagradadi (wakefulness), Deeptadi (luminosity), Lajjitadi (emotional state), and Shayanadi (activity pattern) — together revealing exactly how each planet is actually performing in your life. Click any planet to see the full breakdown."
   },
   "howDoAvasthasChange": {
     "en": "How Do Avasthas Change?",
     "hi": "अवस्थाएं कैसे बदलती हैं?",
-    "sa": "अवस्थाः कथं परिवर्तन्ते?"
+    "sa": "अवस्थाः कथं परिवर्तन्ते?",
+    "ta": "How Do Avasthas Change?",
+    "te": "How Do Avasthas Change?",
+    "bn": "How Do Avasthas Change?",
+    "kn": "How Do Avasthas Change?",
+    "mr": "How Do Avasthas Change?",
+    "gu": "How Do Avasthas Change?",
+    "mai": "How Do Avasthas Change?"
   },
   "bhavabalaTitle": {
     "en": "Bhavabala Interpretation",
     "hi": "भावबल विश्लेषण",
-    "sa": "भावबल विश्लेषण"
+    "sa": "भावबल विश्लेषण",
+    "ta": "Bhavabala Interpretation",
+    "te": "Bhavabala Interpretation",
+    "bn": "Bhavabala Interpretation",
+    "kn": "Bhavabala Interpretation",
+    "mr": "Bhavabala Interpretation",
+    "gu": "Bhavabala Interpretation",
+    "mai": "Bhavabala Interpretation"
   },
   "strongestLifeArea": {
     "en": "Strongest Life Area",
     "hi": "सबसे बलवान जीवन क्षेत्र",
-    "sa": "सबसे बलवान जीवन क्षेत्र"
+    "sa": "सबसे बलवान जीवन क्षेत्र",
+    "ta": "Strongest Life Area",
+    "te": "Strongest Life Area",
+    "bn": "Strongest Life Area",
+    "kn": "Strongest Life Area",
+    "mr": "Strongest Life Area",
+    "gu": "Strongest Life Area",
+    "mai": "Strongest Life Area"
   },
   "strongLabel": {
     "en": "Strong",
     "hi": "बलवान",
-    "sa": "बलवान"
+    "sa": "बलवान",
+    "ta": "Strong",
+    "te": "Strong",
+    "bn": "Strong",
+    "kn": "Strong",
+    "mr": "Strong",
+    "gu": "Strong",
+    "mai": "Strong"
   },
   "pts": {
     "en": "pts",
     "hi": "अंक",
-    "sa": "अङ्काः"
+    "sa": "अङ्काः",
+    "ta": "pts",
+    "te": "pts",
+    "bn": "pts",
+    "kn": "pts",
+    "mr": "pts",
+    "gu": "pts",
+    "mai": "pts"
   },
   "weakestLifeArea": {
     "en": "Weakest Life Area",
     "hi": "सबसे कमजोर जीवन क्षेत्र",
-    "sa": "सबसे कमजोर जीवन क्षेत्र"
+    "sa": "सबसे कमजोर जीवन क्षेत्र",
+    "ta": "Weakest Life Area",
+    "te": "Weakest Life Area",
+    "bn": "Weakest Life Area",
+    "kn": "Weakest Life Area",
+    "mr": "Weakest Life Area",
+    "gu": "Weakest Life Area",
+    "mai": "Weakest Life Area"
   },
   "weakLabel": {
     "en": "Weak",
     "hi": "कमजोर",
-    "sa": "कमजोर"
+    "sa": "कमजोर",
+    "ta": "Weak",
+    "te": "Weak",
+    "bn": "Weak",
+    "kn": "Weak",
+    "mr": "Weak",
+    "gu": "Weak",
+    "mai": "Weak"
   },
   "remediesLabel": {
     "en": "Remedies: ",
     "hi": "उपाय: ",
-    "sa": "उपाय: "
+    "sa": "उपाय: ",
+    "ta": "Remedies: ",
+    "te": "Remedies: ",
+    "bn": "Remedies: ",
+    "kn": "Remedies: ",
+    "mr": "Remedies: ",
+    "gu": "Remedies: ",
+    "mai": "Remedies: "
   },
   "houseStrength": {
     "en": "House Strength",
     "hi": "भाव बल रैंकिंग",
-    "sa": "भाव बल रैंकिंग"
+    "sa": "भाव बल रैंकिंग",
+    "ta": "House Strength",
+    "te": "House Strength",
+    "bn": "House Strength",
+    "kn": "House Strength",
+    "mr": "House Strength",
+    "gu": "House Strength",
+    "mai": "House Strength"
   },
   "houseStrengthLegend": {
     "en": "Green = strong, Amber = moderate, Red = weak",
     "hi": "हरा = बलवान, पीला = मध्यम, लाल = कमजोर",
-    "sa": "हरा = बलवान, पीला = मध्यम, लाल = कमजोर"
+    "sa": "हरा = बलवान, पीला = मध्यम, लाल = कमजोर",
+    "ta": "Green = strong, Amber = moderate, Red = weak",
+    "te": "Green = strong, Amber = moderate, Red = weak",
+    "bn": "Green = strong, Amber = moderate, Red = weak",
+    "kn": "Green = strong, Amber = moderate, Red = weak",
+    "mr": "Green = strong, Amber = moderate, Red = weak",
+    "gu": "Green = strong, Amber = moderate, Red = weak",
+    "mai": "Green = strong, Amber = moderate, Red = weak"
   },
   "planetsInterpretation": {
     "en": "Planets Interpretation",
     "hi": "ग्रह विश्लेषण",
-    "sa": "ग्रह विश्लेषण"
+    "sa": "ग्रह विश्लेषण",
+    "ta": "Planets Interpretation",
+    "te": "Planets Interpretation",
+    "bn": "Planets Interpretation",
+    "kn": "Planets Interpretation",
+    "mr": "Planets Interpretation",
+    "gu": "Planets Interpretation",
+    "mai": "Planets Interpretation"
   },
   "birthChartAtAGlance": {
     "en": "Your Birth Chart at a Glance",
     "hi": "आपकी जन्म कुंडली एक नज़र में",
-    "sa": "आपकी जन्म कुंडली एक नज़र में"
+    "sa": "आपकी जन्म कुंडली एक नज़र में",
+    "ta": "Your Birth Chart at a Glance",
+    "te": "Your Birth Chart at a Glance",
+    "bn": "Your Birth Chart at a Glance",
+    "kn": "Your Birth Chart at a Glance",
+    "mr": "Your Birth Chart at a Glance",
+    "gu": "Your Birth Chart at a Glance",
+    "mai": "Your Birth Chart at a Glance"
   },
   "birthChartDescription": {
     "en": "This shows where the planets were at the exact moment of your birth — a permanent snapshot fixed at that instant. These are your natal (birth) positions, not the current sky.",
     "hi": "यह आपके जन्म के क्षण आकाश में ग्रहों की स्थिति है — एक स्थायी स्नैपशॉट जो आपके जन्म के समय तय हुआ था। यह वर्तमान ग्रह स्थिति नहीं है।",
-    "sa": "यह आपके जन्म के क्षण आकाश में ग्रहों की स्थिति है — एक स्थायी स्नैपशॉट जो आपके जन्म के समय तय हुआ था। यह वर्तमान ग्रह स्थिति नहीं है।"
+    "sa": "यह आपके जन्म के क्षण आकाश में ग्रहों की स्थिति है — एक स्थायी स्नैपशॉट जो आपके जन्म के समय तय हुआ था। यह वर्तमान ग्रह स्थिति नहीं है।",
+    "ta": "This shows where the planets were at the exact moment of your birth — a permanent snapshot fixed at that instant. These are your natal (birth) positions, not the current sky.",
+    "te": "This shows where the planets were at the exact moment of your birth — a permanent snapshot fixed at that instant. These are your natal (birth) positions, not the current sky.",
+    "bn": "This shows where the planets were at the exact moment of your birth — a permanent snapshot fixed at that instant. These are your natal (birth) positions, not the current sky.",
+    "kn": "This shows where the planets were at the exact moment of your birth — a permanent snapshot fixed at that instant. These are your natal (birth) positions, not the current sky.",
+    "mr": "This shows where the planets were at the exact moment of your birth — a permanent snapshot fixed at that instant. These are your natal (birth) positions, not the current sky.",
+    "gu": "This shows where the planets were at the exact moment of your birth — a permanent snapshot fixed at that instant. These are your natal (birth) positions, not the current sky.",
+    "mai": "This shows where the planets were at the exact moment of your birth — a permanent snapshot fixed at that instant. These are your natal (birth) positions, not the current sky."
   },
   "overallTakeaway": {
     "en": "Overall Takeaway",
     "hi": "समग्र सारांश",
-    "sa": "समग्र सारांश"
+    "sa": "समग्र सारांश",
+    "ta": "Overall Takeaway",
+    "te": "Overall Takeaway",
+    "bn": "Overall Takeaway",
+    "kn": "Overall Takeaway",
+    "mr": "Overall Takeaway",
+    "gu": "Overall Takeaway",
+    "mai": "Overall Takeaway"
   },
   "lagnaAscendant": {
     "en": "Lagna (Ascendant)",
     "hi": "लग्न (उदय राशि)",
-    "sa": "लग्न (उदय राशि)"
+    "sa": "लग्न (उदय राशि)",
+    "ta": "Lagna (Ascendant)",
+    "te": "Lagna (Ascendant)",
+    "bn": "Lagna (Ascendant)",
+    "kn": "Lagna (Ascendant)",
+    "mr": "Lagna (Ascendant)",
+    "gu": "Lagna (Ascendant)",
+    "mai": "Lagna (Ascendant)"
   },
   "moonSignRashi": {
     "en": "Moon Sign (Rashi)",
     "hi": "चन्द्र राशि (मन)",
-    "sa": "चन्द्र राशि (मन)"
+    "sa": "चन्द्र राशि (मन)",
+    "ta": "Moon Sign (Rashi)",
+    "te": "Moon Sign (Rashi)",
+    "bn": "Moon Sign (Rashi)",
+    "kn": "Moon Sign (Rashi)",
+    "mr": "Moon Sign (Rashi)",
+    "gu": "Moon Sign (Rashi)",
+    "mai": "Moon Sign (Rashi)"
   },
   "keyDignities": {
     "en": "Key Dignities",
     "hi": "प्रमुख गरिमाएं",
-    "sa": "प्रमुख गरिमाएं"
+    "sa": "प्रमुख गरिमाएं",
+    "ta": "Key Dignities",
+    "te": "Key Dignities",
+    "bn": "Key Dignities",
+    "kn": "Key Dignities",
+    "mr": "Key Dignities",
+    "gu": "Key Dignities",
+    "mai": "Key Dignities"
   },
   "isExalted": {
     "en": " is exalted — extremely strong. Expect excellent results from its significations.",
     "hi": " उच्च है — अत्यंत बलवान। इसके कारकत्वों से उत्कृष्ट परिणाम अपेक्षित हैं।",
-    "sa": " उच्च है — अत्यंत बलवान। इसके कारकत्वों से उत्कृष्ट परिणाम अपेक्षित हैं।"
+    "sa": " उच्च है — अत्यंत बलवान। इसके कारकत्वों से उत्कृष्ट परिणाम अपेक्षित हैं।",
+    "ta": " is exalted — extremely strong. Expect excellent results from its significations.",
+    "te": " is exalted — extremely strong. Expect excellent results from its significations.",
+    "bn": " is exalted — extremely strong. Expect excellent results from its significations.",
+    "kn": " is exalted — extremely strong. Expect excellent results from its significations.",
+    "mr": " is exalted — extremely strong. Expect excellent results from its significations.",
+    "gu": " is exalted — extremely strong. Expect excellent results from its significations.",
+    "mai": " is exalted — extremely strong. Expect excellent results from its significations."
   },
   "isDebilitated": {
     "en": " is debilitated — challenged. Its themes may face obstacles. Check for Neecha Bhanga (cancellation).",
     "hi": " नीच है — चुनौतीपूर्ण। इसके विषयों में बाधाएं आ सकती हैं। नीच भंग (निरस्तीकरण) की जांच करें।",
-    "sa": " नीच है — चुनौतीपूर्ण। इसके विषयों में बाधाएं आ सकती हैं। नीच भंग (निरस्तीकरण) की जांच करें।"
+    "sa": " नीच है — चुनौतीपूर्ण। इसके विषयों में बाधाएं आ सकती हैं। नीच भंग (निरस्तीकरण) की जांच करें।",
+    "ta": " is debilitated — challenged. Its themes may face obstacles. Check for Neecha Bhanga (cancellation).",
+    "te": " is debilitated — challenged. Its themes may face obstacles. Check for Neecha Bhanga (cancellation).",
+    "bn": " is debilitated — challenged. Its themes may face obstacles. Check for Neecha Bhanga (cancellation).",
+    "kn": " is debilitated — challenged. Its themes may face obstacles. Check for Neecha Bhanga (cancellation).",
+    "mr": " is debilitated — challenged. Its themes may face obstacles. Check for Neecha Bhanga (cancellation).",
+    "gu": " is debilitated — challenged. Its themes may face obstacles. Check for Neecha Bhanga (cancellation).",
+    "mai": " is debilitated — challenged. Its themes may face obstacles. Check for Neecha Bhanga (cancellation)."
   },
   "isInOwnSign": {
     "en": " is in its own sign — comfortable and natural. Strong, reliable results.",
     "hi": " अपनी ही राशि में है — सहज और स्वाभाविक। मजबूत, विश्वसनीय परिणाम।",
-    "sa": " अपनी ही राशि में है — सहज और स्वाभाविक। मजबूत, विश्वसनीय परिणाम।"
+    "sa": " अपनी ही राशि में है — सहज और स्वाभाविक। मजबूत, विश्वसनीय परिणाम।",
+    "ta": " is in its own sign — comfortable and natural. Strong, reliable results.",
+    "te": " is in its own sign — comfortable and natural. Strong, reliable results.",
+    "bn": " is in its own sign — comfortable and natural. Strong, reliable results.",
+    "kn": " is in its own sign — comfortable and natural. Strong, reliable results.",
+    "mr": " is in its own sign — comfortable and natural. Strong, reliable results.",
+    "gu": " is in its own sign — comfortable and natural. Strong, reliable results.",
+    "mai": " is in its own sign — comfortable and natural. Strong, reliable results."
   },
   "isRetrograde": {
     "en": " is retrograde — internalized energy. Results come through revisiting, rethinking, and deeper effort.",
     "hi": " वक्री है — आंतरिक ऊर्जा। परिणाम पुनर्विचार, पुनरावलोकन और गहन प्रयास से आते हैं।",
-    "sa": " वक्री है — आंतरिक ऊर्जा। परिणाम पुनर्विचार, पुनरावलोकन और गहन प्रयास से आते हैं।"
+    "sa": " वक्री है — आंतरिक ऊर्जा। परिणाम पुनर्विचार, पुनरावलोकन और गहन प्रयास से आते हैं।",
+    "ta": " is retrograde — internalized energy. Results come through revisiting, rethinking, and deeper effort.",
+    "te": " is retrograde — internalized energy. Results come through revisiting, rethinking, and deeper effort.",
+    "bn": " is retrograde — internalized energy. Results come through revisiting, rethinking, and deeper effort.",
+    "kn": " is retrograde — internalized energy. Results come through revisiting, rethinking, and deeper effort.",
+    "mr": " is retrograde — internalized energy. Results come through revisiting, rethinking, and deeper effort.",
+    "gu": " is retrograde — internalized energy. Results come through revisiting, rethinking, and deeper effort.",
+    "mai": " is retrograde — internalized energy. Results come through revisiting, rethinking, and deeper effort."
   },
   "combustionWarning": {
     "en": "Combustion Warning",
     "hi": "अस्त ग्रह चेतावनी",
-    "sa": "अस्त ग्रह चेतावनी"
+    "sa": "अस्त ग्रह चेतावनी",
+    "ta": "Combustion Warning",
+    "te": "Combustion Warning",
+    "bn": "Combustion Warning",
+    "kn": "Combustion Warning",
+    "mr": "Combustion Warning",
+    "gu": "Combustion Warning",
+    "mai": "Combustion Warning"
   },
   "isCombust": {
     "en": " is too close to the Sun (combust) — its significations may be overshadowed.",
     "hi": " सूर्य के बहुत निकट है (अस्त) — इसके कारकत्व सूर्य की छाया में आ सकते हैं।",
-    "sa": " सूर्य के बहुत निकट है (अस्त) — इसके कारकत्व सूर्य की छाया में आ सकते हैं।"
+    "sa": " सूर्य के बहुत निकट है (अस्त) — इसके कारकत्व सूर्य की छाया में आ सकते हैं।",
+    "ta": " is too close to the Sun (combust) — its significations may be overshadowed.",
+    "te": " is too close to the Sun (combust) — its significations may be overshadowed.",
+    "bn": " is too close to the Sun (combust) — its significations may be overshadowed.",
+    "kn": " is too close to the Sun (combust) — its significations may be overshadowed.",
+    "mr": " is too close to the Sun (combust) — its significations may be overshadowed.",
+    "gu": " is too close to the Sun (combust) — its significations may be overshadowed.",
+    "mai": " is too close to the Sun (combust) — its significations may be overshadowed."
   },
   "dateLocaleFmt": {
     "en": "en-GB",
     "hi": "hi-IN",
-    "sa": "hi-IN"
+    "sa": "hi-IN",
+    "ta": "en-GB",
+    "te": "en-GB",
+    "bn": "en-GB",
+    "kn": "en-GB",
+    "mr": "en-GB",
+    "gu": "en-GB",
+    "mai": "en-GB"
   },
   "dashaInterpretation": {
     "en": "Dasha Interpretation",
     "hi": "दशा विश्लेषण",
-    "sa": "दशा विश्लेषण"
+    "sa": "दशा विश्लेषण",
+    "ta": "Dasha Interpretation",
+    "te": "Dasha Interpretation",
+    "bn": "Dasha Interpretation",
+    "kn": "Dasha Interpretation",
+    "mr": "Dasha Interpretation",
+    "gu": "Dasha Interpretation",
+    "mai": "Dasha Interpretation"
   },
   "yourCurrentPlanetaryPeriod": {
     "en": "Your current planetary period",
     "hi": "आपका वर्तमान ग्रह काल",
-    "sa": "आपका वर्तमान ग्रह काल"
+    "sa": "आपका वर्तमान ग्रह काल",
+    "ta": "Your current planetary period",
+    "te": "Your current planetary period",
+    "bn": "Your current planetary period",
+    "kn": "Your current planetary period",
+    "mr": "Your current planetary period",
+    "gu": "Your current planetary period",
+    "mai": "Your current planetary period"
   },
   "nextTransition": {
     "en": "Next Transition",
     "hi": "अगला परिवर्तन",
-    "sa": "अगला परिवर्तन"
+    "sa": "अगला परिवर्तन",
+    "ta": "Next Transition",
+    "te": "Next Transition",
+    "bn": "Next Transition",
+    "kn": "Next Transition",
+    "mr": "Next Transition",
+    "gu": "Next Transition",
+    "mai": "Next Transition"
   },
   "localeFmt": {
     "en": "en",
     "hi": "hi",
-    "sa": "hi"
+    "sa": "hi",
+    "ta": "en",
+    "te": "en",
+    "bn": "en",
+    "kn": "en",
+    "mr": "en",
+    "gu": "en",
+    "mai": "en"
   },
   "unknown": {
     "en": "Unknown",
     "hi": "अज्ञात",
-    "sa": "अज्ञात"
+    "sa": "अज्ञात",
+    "ta": "Unknown",
+    "te": "Unknown",
+    "bn": "Unknown",
+    "kn": "Unknown",
+    "mr": "Unknown",
+    "gu": "Unknown",
+    "mai": "Unknown"
   },
   "jaiminiInterpretation": {
     "en": "Jaimini Interpretation",
     "hi": "जैमिनी विश्लेषण",
-    "sa": "जैमिनी विश्लेषण"
+    "sa": "जैमिनी विश्लेषण",
+    "ta": "Jaimini Interpretation",
+    "te": "Jaimini Interpretation",
+    "bn": "Jaimini Interpretation",
+    "kn": "Jaimini Interpretation",
+    "mr": "Jaimini Interpretation",
+    "gu": "Jaimini Interpretation",
+    "mai": "Jaimini Interpretation"
   },
   "atmakarakaTitle": {
     "en": "Atmakaraka — King of the Soul",
     "hi": "आत्मकारक — आत्मा का राजा",
-    "sa": "आत्मकारक — आत्मा का राजा"
+    "sa": "आत्मकारक — आत्मा का राजा",
+    "ta": "Atmakaraka — King of the Soul",
+    "te": "Atmakaraka — King of the Soul",
+    "bn": "Atmakaraka — King of the Soul",
+    "kn": "Atmakaraka — King of the Soul",
+    "mr": "Atmakaraka — King of the Soul",
+    "gu": "Atmakaraka — King of the Soul",
+    "mai": "Atmakaraka — King of the Soul"
   },
   "soulsDesire": {
     "en": "Soul's Desire",
     "hi": "आत्मा की इच्छा",
-    "sa": "आत्मा की इच्छा"
+    "sa": "आत्मा की इच्छा",
+    "ta": "Soul's Desire",
+    "te": "Soul's Desire",
+    "bn": "Soul's Desire",
+    "kn": "Soul's Desire",
+    "mr": "Soul's Desire",
+    "gu": "Soul's Desire",
+    "mai": "Soul's Desire"
   },
   "lifeLessons": {
     "en": "Life Lessons",
     "hi": "जीवन-पाठ",
-    "sa": "जीवन-पाठ"
+    "sa": "जीवन-पाठ",
+    "ta": "Life Lessons",
+    "te": "Life Lessons",
+    "bn": "Life Lessons",
+    "kn": "Life Lessons",
+    "mr": "Life Lessons",
+    "gu": "Life Lessons",
+    "mai": "Life Lessons"
   },
   "shadowTrap": {
     "en": "Shadow / Trap",
     "hi": "छाया / जाल",
-    "sa": "छाया / जाल"
+    "sa": "छाया / जाल",
+    "ta": "Shadow / Trap",
+    "te": "Shadow / Trap",
+    "bn": "Shadow / Trap",
+    "kn": "Shadow / Trap",
+    "mr": "Shadow / Trap",
+    "gu": "Shadow / Trap",
+    "mai": "Shadow / Trap"
   },
   "karmicMission": {
     "en": "Karmic Mission",
     "hi": "कर्म-मिशन",
-    "sa": "कर्म-मिशन"
+    "sa": "कर्म-मिशन",
+    "ta": "Karmic Mission",
+    "te": "Karmic Mission",
+    "bn": "Karmic Mission",
+    "kn": "Karmic Mission",
+    "mr": "Karmic Mission",
+    "gu": "Karmic Mission",
+    "mai": "Karmic Mission"
   },
   "amatyakarakaTitle": {
     "en": "Amatyakaraka — Career Significator",
     "hi": "अमात्यकारक — करियर-कारक",
-    "sa": "अमात्यकारक — करियर-कारक"
+    "sa": "अमात्यकारक — करियर-कारक",
+    "ta": "Amatyakaraka — Career Significator",
+    "te": "Amatyakaraka — Career Significator",
+    "bn": "Amatyakaraka — Career Significator",
+    "kn": "Amatyakaraka — Career Significator",
+    "mr": "Amatyakaraka — Career Significator",
+    "gu": "Amatyakaraka — Career Significator",
+    "mai": "Amatyakaraka — Career Significator"
   },
   "fields": {
     "en": "Fields",
     "hi": "क्षेत्र",
-    "sa": "क्षेत्र"
+    "sa": "क्षेत्र",
+    "ta": "Fields",
+    "te": "Fields",
+    "bn": "Fields",
+    "kn": "Fields",
+    "mr": "Fields",
+    "gu": "Fields",
+    "mai": "Fields"
   },
   "workingStyle": {
     "en": "Working Style",
     "hi": "कार्यशैली",
-    "sa": "कार्यशैली"
+    "sa": "कार्यशैली",
+    "ta": "Working Style",
+    "te": "Working Style",
+    "bn": "Working Style",
+    "kn": "Working Style",
+    "mr": "Working Style",
+    "gu": "Working Style",
+    "mai": "Working Style"
   },
   "darakarakaTitle": {
     "en": "Darakaraka — Spouse Significator",
     "hi": "दारकारक — जीवनसाथी-कारक",
-    "sa": "दारकारक — जीवनसाथी-कारक"
+    "sa": "दारकारक — जीवनसाथी-कारक",
+    "ta": "Darakaraka — Spouse Significator",
+    "te": "Darakaraka — Spouse Significator",
+    "bn": "Darakaraka — Spouse Significator",
+    "kn": "Darakaraka — Spouse Significator",
+    "mr": "Darakaraka — Spouse Significator",
+    "gu": "Darakaraka — Spouse Significator",
+    "mai": "Darakaraka — Spouse Significator"
   },
   "partnersNature": {
     "en": "Partner's Nature",
     "hi": "साथी का स्वभाव",
-    "sa": "साथी का स्वभाव"
+    "sa": "साथी का स्वभाव",
+    "ta": "Partner's Nature",
+    "te": "Partner's Nature",
+    "bn": "Partner's Nature",
+    "kn": "Partner's Nature",
+    "mr": "Partner's Nature",
+    "gu": "Partner's Nature",
+    "mai": "Partner's Nature"
   },
   "partnershipDynamic": {
     "en": "Partnership Dynamic",
     "hi": "सम्बन्ध-गतिशीलता",
-    "sa": "सम्बन्ध-गतिशीलता"
+    "sa": "सम्बन्ध-गतिशीलता",
+    "ta": "Partnership Dynamic",
+    "te": "Partnership Dynamic",
+    "bn": "Partnership Dynamic",
+    "kn": "Partnership Dynamic",
+    "mr": "Partnership Dynamic",
+    "gu": "Partnership Dynamic",
+    "mai": "Partnership Dynamic"
   },
   "bestActionsNow": {
     "en": "Best actions now: ",
     "hi": "अभी करें: ",
-    "sa": "अभी करें: "
+    "sa": "अभी करें: ",
+    "ta": "Best actions now: ",
+    "te": "Best actions now: ",
+    "bn": "Best actions now: ",
+    "kn": "Best actions now: ",
+    "mr": "Best actions now: ",
+    "gu": "Best actions now: ",
+    "mai": "Best actions now: "
   }
 }

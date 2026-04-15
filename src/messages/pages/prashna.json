@@ -2,46 +2,109 @@
   "localeDateLocale": {
     "en": "en-IN",
     "hi": "hi-IN",
-    "sa": "en-IN"
+    "sa": "en-IN",
+    "ta": "en-IN",
+    "te": "en-IN",
+    "bn": "en-IN",
+    "kn": "en-IN",
+    "mr": "en-IN",
+    "gu": "en-IN",
+    "mai": "en-IN"
   },
   "prashnaChartName": {
     "en": "Prashna Chart",
     "hi": "प्रश्न कुण्डली",
-    "sa": "प्रश्न कुण्डली"
+    "sa": "प्रश्न कुण्डली",
+    "ta": "Prashna Chart",
+    "te": "Prashna Chart",
+    "bn": "Prashna Chart",
+    "kn": "Prashna Chart",
+    "mr": "Prashna Chart",
+    "gu": "Prashna Chart",
+    "mai": "Prashna Chart"
   },
   "ascendantLabel": {
     "en": "Ascendant",
     "hi": "लग्न",
-    "sa": "लग्न"
+    "sa": "लग्न",
+    "ta": "Ascendant",
+    "te": "Ascendant",
+    "bn": "Ascendant",
+    "kn": "Ascendant",
+    "mr": "Ascendant",
+    "gu": "Ascendant",
+    "mai": "Ascendant"
   },
   "planetHeader": {
     "en": "Planet",
     "hi": "ग्रह",
-    "sa": "ग्रहः"
+    "sa": "ग्रहः",
+    "ta": "Planet",
+    "te": "Planet",
+    "bn": "Planet",
+    "kn": "Planet",
+    "mr": "Planet",
+    "gu": "Planet",
+    "mai": "Planet"
   },
   "signHeader": {
     "en": "Sign",
     "hi": "राशि",
-    "sa": "राशिः"
+    "sa": "राशिः",
+    "ta": "Sign",
+    "te": "Sign",
+    "bn": "Sign",
+    "kn": "Sign",
+    "mr": "Sign",
+    "gu": "Sign",
+    "mai": "Sign"
   },
   "houseHeader": {
     "en": "House",
     "hi": "भाव",
-    "sa": "भावः"
+    "sa": "भावः",
+    "ta": "House",
+    "te": "House",
+    "bn": "House",
+    "kn": "House",
+    "mr": "House",
+    "gu": "House",
+    "mai": "House"
   },
   "statusHeader": {
     "en": "Status",
     "hi": "स्थिति",
-    "sa": "स्थिति"
+    "sa": "स्थिति",
+    "ta": "Status",
+    "te": "Status",
+    "bn": "Status",
+    "kn": "Status",
+    "mr": "Status",
+    "gu": "Status",
+    "mai": "Status"
   },
   "roleHeader": {
     "en": "Role",
     "hi": "भूमिका",
-    "sa": "भूमिका"
+    "sa": "भूमिका",
+    "ta": "Role",
+    "te": "Role",
+    "bn": "Role",
+    "kn": "Role",
+    "mr": "Role",
+    "gu": "Role",
+    "mai": "Role"
   },
   "scoreLabel": {
     "en": "Score",
     "hi": "अंक",
-    "sa": "अंक"
+    "sa": "अंक",
+    "ta": "Score",
+    "te": "Score",
+    "bn": "Score",
+    "kn": "Score",
+    "mr": "Score",
+    "gu": "Score",
+    "mai": "Score"
   }
 }

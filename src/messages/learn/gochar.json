@@ -638,41 +638,97 @@
   "transitHouseExample": {
     "en": "Example: If birth Moon is Taurus (2) and Saturn is currently in Cancer (4) → Saturn transit in 3rd house from Moon",
     "hi": "उदाहरण: यदि जन्म चन्द्र वृषभ (2) में है और शनि वर्तमान में कर्क (4) में → चन्द्र से 3रे भाव में शनि गोचर",
-    "sa": "उदाहरण: यदि जन्म चन्द्र वृषभ (2) में है और शनि वर्तमान में कर्क (4) में → चन्द्र से 3रे भाव में शनि गोचर"
+    "sa": "उदाहरण: यदि जन्म चन्द्र वृषभ (2) में है और शनि वर्तमान में कर्क (4) में → चन्द्र से 3रे भाव में शनि गोचर",
+    "ta": "Example: If birth Moon is Taurus (2) and Saturn is currently in Cancer (4) → Saturn transit in 3rd house from Moon",
+    "te": "Example: If birth Moon is Taurus (2) and Saturn is currently in Cancer (4) → Saturn transit in 3rd house from Moon",
+    "bn": "Example: If birth Moon is Taurus (2) and Saturn is currently in Cancer (4) → Saturn transit in 3rd house from Moon",
+    "kn": "Example: If birth Moon is Taurus (2) and Saturn is currently in Cancer (4) → Saturn transit in 3rd house from Moon",
+    "mr": "Example: If birth Moon is Taurus (2) and Saturn is currently in Cancer (4) → Saturn transit in 3rd house from Moon",
+    "gu": "Example: If birth Moon is Taurus (2) and Saturn is currently in Cancer (4) → Saturn transit in 3rd house from Moon",
+    "mai": "Example: If birth Moon is Taurus (2) and Saturn is currently in Cancer (4) → Saturn transit in 3rd house from Moon"
   },
   "slowPlanetNote": {
     "en": "Slower planets (Jupiter, Saturn, Rahu/Ketu) have the most profound and lasting effects since they influence a house for months or years. Fast-moving planets (Moon, Sun, Mercury, Venus) are used for fine-tuning predictions within the framework set by the slow movers.",
     "hi": "धीमे ग्रह (गुरु, शनि, राहु/केतु) सबसे गहरे और स्थायी प्रभाव डालते हैं क्योंकि वे महीनों या वर्षों तक एक भाव को प्रभावित करते हैं। तीव्र ग्रह (चन्द्र, सूर्य, बुध, शुक्र) धीमे ग्रहों द्वारा निर्धारित ढाँचे के भीतर भविष्यवाणियों को सूक्ष्म-समायोजित करते हैं।",
-    "sa": "धीमे ग्रह (गुरु, शनि, राहु/केतु) सबसे गहरे और स्थायी प्रभाव डालते हैं।"
+    "sa": "धीमे ग्रह (गुरु, शनि, राहु/केतु) सबसे गहरे और स्थायी प्रभाव डालते हैं।",
+    "ta": "Slower planets (Jupiter, Saturn, Rahu/Ketu) have the most profound and lasting effects since they influence a house for months or years. Fast-moving planets (Moon, Sun, Mercury, Venus) are used for fine-tuning predictions within the framework set by the slow movers.",
+    "te": "Slower planets (Jupiter, Saturn, Rahu/Ketu) have the most profound and lasting effects since they influence a house for months or years. Fast-moving planets (Moon, Sun, Mercury, Venus) are used for fine-tuning predictions within the framework set by the slow movers.",
+    "bn": "Slower planets (Jupiter, Saturn, Rahu/Ketu) have the most profound and lasting effects since they influence a house for months or years. Fast-moving planets (Moon, Sun, Mercury, Venus) are used for fine-tuning predictions within the framework set by the slow movers.",
+    "kn": "Slower planets (Jupiter, Saturn, Rahu/Ketu) have the most profound and lasting effects since they influence a house for months or years. Fast-moving planets (Moon, Sun, Mercury, Venus) are used for fine-tuning predictions within the framework set by the slow movers.",
+    "mr": "Slower planets (Jupiter, Saturn, Rahu/Ketu) have the most profound and lasting effects since they influence a house for months or years. Fast-moving planets (Moon, Sun, Mercury, Venus) are used for fine-tuning predictions within the framework set by the slow movers.",
+    "gu": "Slower planets (Jupiter, Saturn, Rahu/Ketu) have the most profound and lasting effects since they influence a house for months or years. Fast-moving planets (Moon, Sun, Mercury, Venus) are used for fine-tuning predictions within the framework set by the slow movers.",
+    "mai": "Slower planets (Jupiter, Saturn, Rahu/Ketu) have the most profound and lasting effects since they influence a house for months or years. Fast-moving planets (Moon, Sun, Mercury, Venus) are used for fine-tuning predictions within the framework set by the slow movers."
   },
   "jupAuspHousesDetail": {
     "en": "2nd (wealth), 5th (children/education), 7th (marriage/partnership), 9th (fortune/dharma), 11th (gains/desires fulfilled)",
     "hi": "2रा (धन), 5वाँ (संतान/शिक्षा), 7वाँ (विवाह/साझेदारी), 9वाँ (भाग्य/धर्म), 11वाँ (लाभ/इच्छा पूर्ति)",
-    "sa": "2रा (धन), 5वाँ (संतान/शिक्षा), 7वाँ (विवाह/साझेदारी), 9वाँ (भाग्य/धर्म), 11वाँ (लाभ/इच्छा पूर्ति)"
+    "sa": "2रा (धन), 5वाँ (संतान/शिक्षा), 7वाँ (विवाह/साझेदारी), 9वाँ (भाग्य/धर्म), 11वाँ (लाभ/इच्छा पूर्ति)",
+    "ta": "2nd (wealth), 5th (children/education), 7th (marriage/partnership), 9th (fortune/dharma), 11th (gains/desires fulfilled)",
+    "te": "2nd (wealth), 5th (children/education), 7th (marriage/partnership), 9th (fortune/dharma), 11th (gains/desires fulfilled)",
+    "bn": "2nd (wealth), 5th (children/education), 7th (marriage/partnership), 9th (fortune/dharma), 11th (gains/desires fulfilled)",
+    "kn": "2nd (wealth), 5th (children/education), 7th (marriage/partnership), 9th (fortune/dharma), 11th (gains/desires fulfilled)",
+    "mr": "2nd (wealth), 5th (children/education), 7th (marriage/partnership), 9th (fortune/dharma), 11th (gains/desires fulfilled)",
+    "gu": "2nd (wealth), 5th (children/education), 7th (marriage/partnership), 9th (fortune/dharma), 11th (gains/desires fulfilled)",
+    "mai": "2nd (wealth), 5th (children/education), 7th (marriage/partnership), 9th (fortune/dharma), 11th (gains/desires fulfilled)"
   },
   "jupChalHousesDetail": {
     "en": "3rd (reduced initiative), 6th (debt/health), 8th (sudden events), 10th (heavy workload), 12th (expenses/loss)",
     "hi": "3रा (पहल में कमी), 6ठा (ऋण/स्वास्थ्य), 8वाँ (अचानक घटनाएँ), 10वाँ (भारी कार्यभार), 12वाँ (व्यय/हानि)",
-    "sa": "3रा (पहल में कमी), 6ठा (ऋण/स्वास्थ्य), 8वाँ (अचानक घटनाएँ), 10वाँ (भारी कार्यभार), 12वाँ (व्यय/हानि)"
+    "sa": "3रा (पहल में कमी), 6ठा (ऋण/स्वास्थ्य), 8वाँ (अचानक घटनाएँ), 10वाँ (भारी कार्यभार), 12वाँ (व्यय/हानि)",
+    "ta": "3rd (reduced initiative), 6th (debt/health), 8th (sudden events), 10th (heavy workload), 12th (expenses/loss)",
+    "te": "3rd (reduced initiative), 6th (debt/health), 8th (sudden events), 10th (heavy workload), 12th (expenses/loss)",
+    "bn": "3rd (reduced initiative), 6th (debt/health), 8th (sudden events), 10th (heavy workload), 12th (expenses/loss)",
+    "kn": "3rd (reduced initiative), 6th (debt/health), 8th (sudden events), 10th (heavy workload), 12th (expenses/loss)",
+    "mr": "3rd (reduced initiative), 6th (debt/health), 8th (sudden events), 10th (heavy workload), 12th (expenses/loss)",
+    "gu": "3rd (reduced initiative), 6th (debt/health), 8th (sudden events), 10th (heavy workload), 12th (expenses/loss)",
+    "mai": "3rd (reduced initiative), 6th (debt/health), 8th (sudden events), 10th (heavy workload), 12th (expenses/loss)"
   },
   "chandraFavHouses": {
     "en": "Favourable houses from birth Moon: 3, 6, 7, 10, 11",
     "hi": "जन्म चन्द्र से शुभ भाव: 3, 6, 7, 10, 11",
-    "sa": "जन्म चन्द्र से शुभ भाव: 3, 6, 7, 10, 11"
+    "sa": "जन्म चन्द्र से शुभ भाव: 3, 6, 7, 10, 11",
+    "ta": "Favourable houses from birth Moon: 3, 6, 7, 10, 11",
+    "te": "Favourable houses from birth Moon: 3, 6, 7, 10, 11",
+    "bn": "Favourable houses from birth Moon: 3, 6, 7, 10, 11",
+    "kn": "Favourable houses from birth Moon: 3, 6, 7, 10, 11",
+    "mr": "Favourable houses from birth Moon: 3, 6, 7, 10, 11",
+    "gu": "Favourable houses from birth Moon: 3, 6, 7, 10, 11",
+    "mai": "Favourable houses from birth Moon: 3, 6, 7, 10, 11"
   },
   "chandraUnfavHouses": {
     "en": "Unfavourable: 1, 2, 4, 5, 8, 9, 12",
     "hi": "अशुभ: 1, 2, 4, 5, 8, 9, 12",
-    "sa": "अशुभ: 1, 2, 4, 5, 8, 9, 12"
+    "sa": "अशुभ: 1, 2, 4, 5, 8, 9, 12",
+    "ta": "Unfavourable: 1, 2, 4, 5, 8, 9, 12",
+    "te": "Unfavourable: 1, 2, 4, 5, 8, 9, 12",
+    "bn": "Unfavourable: 1, 2, 4, 5, 8, 9, 12",
+    "kn": "Unfavourable: 1, 2, 4, 5, 8, 9, 12",
+    "mr": "Unfavourable: 1, 2, 4, 5, 8, 9, 12",
+    "gu": "Unfavourable: 1, 2, 4, 5, 8, 9, 12",
+    "mai": "Unfavourable: 1, 2, 4, 5, 8, 9, 12"
   },
   "taraNames": {
     "en": "9 Taras: Janma, Sampat, Vipat, Kshema, Pratyari, Sadhaka, Vadha, Mitra, Parama Mitra",
     "hi": "9 तारा: जन्म, सम्पत्, विपत्, क्षेम, प्रत्यरि, साधक, वध, मित्र, परम मित्र",
-    "sa": "9 तारा: जन्म, सम्पत्, विपत्, क्षेम, प्रत्यरि, साधक, वध, मित्र, परम मित्र"
+    "sa": "9 तारा: जन्म, सम्पत्, विपत्, क्षेम, प्रत्यरि, साधक, वध, मित्र, परम मित्र",
+    "ta": "9 Taras: Janma, Sampat, Vipat, Kshema, Pratyari, Sadhaka, Vadha, Mitra, Parama Mitra",
+    "te": "9 Taras: Janma, Sampat, Vipat, Kshema, Pratyari, Sadhaka, Vadha, Mitra, Parama Mitra",
+    "bn": "9 Taras: Janma, Sampat, Vipat, Kshema, Pratyari, Sadhaka, Vadha, Mitra, Parama Mitra",
+    "kn": "9 Taras: Janma, Sampat, Vipat, Kshema, Pratyari, Sadhaka, Vadha, Mitra, Parama Mitra",
+    "mr": "9 Taras: Janma, Sampat, Vipat, Kshema, Pratyari, Sadhaka, Vadha, Mitra, Parama Mitra",
+    "gu": "9 Taras: Janma, Sampat, Vipat, Kshema, Pratyari, Sadhaka, Vadha, Mitra, Parama Mitra",
+    "mai": "9 Taras: Janma, Sampat, Vipat, Kshema, Pratyari, Sadhaka, Vadha, Mitra, Parama Mitra"
   },
   "taraFavourable": {
     "en": "Favourable Taras: 2 (Sampat), 4 (Kshema), 6 (Sadhaka), 8 (Mitra), 9 (Parama Mitra)",
     "hi": "शुभ तारा: 2 (सम्पत्), 4 (क्षेम), 6 (साधक), 8 (मित्र), 9 (परम मित्र)",
-    "sa": "शुभ तारा: 2 (सम्पत्), 4 (क्षेम), 6 (साधक), 8 (मित्र), 9 (परम मित्र)"
+    "sa": "शुभ तारा: 2 (सम्पत्), 4 (क्षेम), 6 (साधक), 8 (मित्र), 9 (परम मित्र)",
+    "ta": "Favourable Taras: 2 (Sampat), 4 (Kshema), 6 (Sadhaka), 8 (Mitra), 9 (Parama Mitra)",
+    "te": "Favourable Taras: 2 (Sampat), 4 (Kshema), 6 (Sadhaka), 8 (Mitra), 9 (Parama Mitra)",
+    "bn": "Favourable Taras: 2 (Sampat), 4 (Kshema), 6 (Sadhaka), 8 (Mitra), 9 (Parama Mitra)",
+    "kn": "Favourable Taras: 2 (Sampat), 4 (Kshema), 6 (Sadhaka), 8 (Mitra), 9 (Parama Mitra)",
+    "mr": "Favourable Taras: 2 (Sampat), 4 (Kshema), 6 (Sadhaka), 8 (Mitra), 9 (Parama Mitra)",
+    "gu": "Favourable Taras: 2 (Sampat), 4 (Kshema), 6 (Sadhaka), 8 (Mitra), 9 (Parama Mitra)",
+    "mai": "Favourable Taras: 2 (Sampat), 4 (Kshema), 6 (Sadhaka), 8 (Mitra), 9 (Parama Mitra)"
   }
 }

@@ -638,231 +638,553 @@
   "dateLabel": {
     "en": "Date",
     "hi": "तिथि",
-    "sa": "तिथिः"
+    "sa": "तिथिः",
+    "ta": "Date",
+    "te": "Date",
+    "bn": "Date",
+    "kn": "Date",
+    "mr": "Date",
+    "gu": "Date",
+    "mai": "Date"
   },
   "timeLabel": {
     "en": "Time",
     "hi": "समय",
-    "sa": "कालः"
+    "sa": "कालः",
+    "ta": "Time",
+    "te": "Time",
+    "bn": "Time",
+    "kn": "Time",
+    "mr": "Time",
+    "gu": "Time",
+    "mai": "Time"
   },
   "placeLabel": {
     "en": "Place",
     "hi": "स्थान",
-    "sa": "स्थानम्"
+    "sa": "स्थानम्",
+    "ta": "Place",
+    "te": "Place",
+    "bn": "Place",
+    "kn": "Place",
+    "mr": "Place",
+    "gu": "Place",
+    "mai": "Place"
   },
   "exampleCity": {
     "en": "New Delhi",
     "hi": "नई दिल्ली",
-    "sa": "नवदिल्ली"
+    "sa": "नवदिल्ली",
+    "ta": "New Delhi",
+    "te": "New Delhi",
+    "bn": "New Delhi",
+    "kn": "New Delhi",
+    "mr": "New Delhi",
+    "gu": "New Delhi",
+    "mai": "New Delhi"
   },
   "forOurExample": {
     "en": "For our example:",
     "hi": "हमारे उदाहरण के लिए:",
-    "sa": "अस्माकम् उदाहरणाय:"
+    "sa": "अस्माकम् उदाहरणाय:",
+    "ta": "For our example:",
+    "te": "For our example:",
+    "bn": "For our example:",
+    "kn": "For our example:",
+    "mr": "For our example:",
+    "gu": "For our example:",
+    "mai": "For our example:"
   },
   "tulaRisingNote": {
     "en": "Tula (Libra) rising means Venus-ruled personality: diplomatic, artistic, relationship-oriented.",
     "hi": "तुला लग्न अर्थात् शुक्र-शासित व्यक्तित्व: कूटनीतिक, कलात्मक, सम्बन्ध-उन्मुख।",
-    "sa": "तुला लग्न अर्थात् शुक्र-शासित व्यक्तित्व: कूटनीतिक, कलात्मक, सम्बन्ध-उन्मुख।"
+    "sa": "तुला लग्न अर्थात् शुक्र-शासित व्यक्तित्व: कूटनीतिक, कलात्मक, सम्बन्ध-उन्मुख।",
+    "ta": "Tula (Libra) rising means Venus-ruled personality: diplomatic, artistic, relationship-oriented.",
+    "te": "Tula (Libra) rising means Venus-ruled personality: diplomatic, artistic, relationship-oriented.",
+    "bn": "Tula (Libra) rising means Venus-ruled personality: diplomatic, artistic, relationship-oriented.",
+    "kn": "Tula (Libra) rising means Venus-ruled personality: diplomatic, artistic, relationship-oriented.",
+    "mr": "Tula (Libra) rising means Venus-ruled personality: diplomatic, artistic, relationship-oriented.",
+    "gu": "Tula (Libra) rising means Venus-ruled personality: diplomatic, artistic, relationship-oriented.",
+    "mai": "Tula (Libra) rising means Venus-ruled personality: diplomatic, artistic, relationship-oriented."
   },
   "westerVsVedicNote": {
     "en": "This is why your \"Western sign\" and \"Vedic sign\" usually differ by about one sign.",
     "hi": "इसीलिए आपकी \"पश्चिमी राशि\" और \"वैदिक राशि\" प्रायः लगभग एक राशि भिन्न होती हैं।",
-    "sa": "इसीलिए आपकी \"पश्चिमी राशि\" और \"वैदिक राशि\" प्रायः लगभग एक राशि भिन्न होती हैं।"
+    "sa": "इसीलिए आपकी \"पश्चिमी राशि\" और \"वैदिक राशि\" प्रायः लगभग एक राशि भिन्न होती हैं।",
+    "ta": "This is why your \"Western sign\" and \"Vedic sign\" usually differ by about one sign.",
+    "te": "This is why your \"Western sign\" and \"Vedic sign\" usually differ by about one sign.",
+    "bn": "This is why your \"Western sign\" and \"Vedic sign\" usually differ by about one sign.",
+    "kn": "This is why your \"Western sign\" and \"Vedic sign\" usually differ by about one sign.",
+    "mr": "This is why your \"Western sign\" and \"Vedic sign\" usually differ by about one sign.",
+    "gu": "This is why your \"Western sign\" and \"Vedic sign\" usually differ by about one sign.",
+    "mai": "This is why your \"Western sign\" and \"Vedic sign\" usually differ by about one sign."
   },
   "seeFullDerivation": {
     "en": "See full mathematical derivation",
     "hi": "पूर्ण गणितीय व्युत्पत्ति देखें",
-    "sa": "पूर्णं गाणितिकं व्युत्पादनं पश्यतु"
+    "sa": "पूर्णं गाणितिकं व्युत्पादनं पश्यतु",
+    "ta": "See full mathematical derivation",
+    "te": "See full mathematical derivation",
+    "bn": "See full mathematical derivation",
+    "kn": "See full mathematical derivation",
+    "mr": "See full mathematical derivation",
+    "gu": "See full mathematical derivation",
+    "mai": "See full mathematical derivation"
   },
   "thGraha": {
     "en": "Graha",
     "hi": "ग्रह",
-    "sa": "ग्रहः"
+    "sa": "ग्रहः",
+    "ta": "Graha",
+    "te": "Graha",
+    "bn": "Graha",
+    "kn": "Graha",
+    "mr": "Graha",
+    "gu": "Graha",
+    "mai": "Graha"
   },
   "thSidereal": {
     "en": "Sidereal°",
     "hi": "नाक्ष°",
-    "sa": "नाक्षत्र°"
+    "sa": "नाक्षत्र°",
+    "ta": "Sidereal°",
+    "te": "Sidereal°",
+    "bn": "Sidereal°",
+    "kn": "Sidereal°",
+    "mr": "Sidereal°",
+    "gu": "Sidereal°",
+    "mai": "Sidereal°"
   },
   "thRashi": {
     "en": "Rashi",
     "hi": "राशि",
-    "sa": "राशिः"
+    "sa": "राशिः",
+    "ta": "Rashi",
+    "te": "Rashi",
+    "bn": "Rashi",
+    "kn": "Rashi",
+    "mr": "Rashi",
+    "gu": "Rashi",
+    "mai": "Rashi"
   },
   "thNakshatra": {
     "en": "Nakshatra",
     "hi": "नक्षत्र",
-    "sa": "नक्षत्रम्"
+    "sa": "नक्षत्रम्",
+    "ta": "Nakshatra",
+    "te": "Nakshatra",
+    "bn": "Nakshatra",
+    "kn": "Nakshatra",
+    "mr": "Nakshatra",
+    "gu": "Nakshatra",
+    "mai": "Nakshatra"
   },
   "learnAllGrahas": {
     "en": "Learn about all 9 Grahas",
     "hi": "सभी 9 ग्रहों के बारे में जानें",
-    "sa": "सर्वेषां नवानां ग्रहाणां विषये जानातु"
+    "sa": "सर्वेषां नवानां ग्रहाणां विषये जानातु",
+    "ta": "Learn about all 9 Grahas",
+    "te": "Learn about all 9 Grahas",
+    "bn": "Learn about all 9 Grahas",
+    "kn": "Learn about all 9 Grahas",
+    "mr": "Learn about all 9 Grahas",
+    "gu": "Learn about all 9 Grahas",
+    "mai": "Learn about all 9 Grahas"
   },
   "houseFormula": {
     "en": "Formula:",
     "hi": "सूत्र:",
-    "sa": "सूत्रम्:"
+    "sa": "सूत्रम्:",
+    "ta": "Formula:",
+    "te": "Formula:",
+    "bn": "Formula:",
+    "kn": "Formula:",
+    "mr": "Formula:",
+    "gu": "Formula:",
+    "mai": "Formula:"
   },
   "houseFormulaExample": {
     "en": "Example: Sun in Cancer (4), Lagna in Libra (7) → (4 - 7 + 12) % 12 + 1 = 10th house",
     "hi": "उदाहरण: सूर्य कर्क (4) में, लग्न तुला (7) → (4 - 7 + 12) % 12 + 1 = 10वाँ भाव",
-    "sa": "उदाहरण: सूर्य कर्क (4) में, लग्न तुला (7) → (4 - 7 + 12) % 12 + 1 = 10वाँ भाव"
+    "sa": "उदाहरण: सूर्य कर्क (4) में, लग्न तुला (7) → (4 - 7 + 12) % 12 + 1 = 10वाँ भाव",
+    "ta": "Example: Sun in Cancer (4), Lagna in Libra (7) → (4 - 7 + 12) % 12 + 1 = 10th house",
+    "te": "Example: Sun in Cancer (4), Lagna in Libra (7) → (4 - 7 + 12) % 12 + 1 = 10th house",
+    "bn": "Example: Sun in Cancer (4), Lagna in Libra (7) → (4 - 7 + 12) % 12 + 1 = 10th house",
+    "kn": "Example: Sun in Cancer (4), Lagna in Libra (7) → (4 - 7 + 12) % 12 + 1 = 10th house",
+    "mr": "Example: Sun in Cancer (4), Lagna in Libra (7) → (4 - 7 + 12) % 12 + 1 = 10th house",
+    "gu": "Example: Sun in Cancer (4), Lagna in Libra (7) → (4 - 7 + 12) % 12 + 1 = 10th house",
+    "mai": "Example: Sun in Cancer (4), Lagna in Libra (7) → (4 - 7 + 12) % 12 + 1 = 10th house"
   },
   "deepDiveHouses": {
     "en": "Deep dive into all 12 houses",
     "hi": "सभी 12 भावों का विस्तृत अध्ययन",
-    "sa": "सर्वेषां द्वादशानां भावानां गहनम् अध्ययनम्"
+    "sa": "सर्वेषां द्वादशानां भावानां गहनम् अध्ययनम्",
+    "ta": "Deep dive into all 12 houses",
+    "te": "Deep dive into all 12 houses",
+    "bn": "Deep dive into all 12 houses",
+    "kn": "Deep dive into all 12 houses",
+    "mr": "Deep dive into all 12 houses",
+    "gu": "Deep dive into all 12 houses",
+    "mai": "Deep dive into all 12 houses"
   },
   "readingTheChart": {
     "en": "Reading the chart:",
     "hi": "कुण्डली पढ़ना:",
-    "sa": "कुण्डलीपठनम्:"
+    "sa": "कुण्डलीपठनम्:",
+    "ta": "Reading the chart:",
+    "te": "Reading the chart:",
+    "bn": "Reading the chart:",
+    "kn": "Reading the chart:",
+    "mr": "Reading the chart:",
+    "gu": "Reading the chart:",
+    "mai": "Reading the chart:"
   },
   "chartNote1": {
     "en": "- Top diamond (House 1) = Lagna → Tula (Libra) with Rahu",
     "hi": "- शीर्ष हीरा (भाव 1) = लग्न → तुला, राहु सहित",
-    "sa": "- शीर्षहीरकः (भावः 1) = लग्नम् → तुला, राहुणा सह"
+    "sa": "- शीर्षहीरकः (भावः 1) = लग्नम् → तुला, राहुणा सह",
+    "ta": "- Top diamond (House 1) = Lagna → Tula (Libra) with Rahu",
+    "te": "- Top diamond (House 1) = Lagna → Tula (Libra) with Rahu",
+    "bn": "- Top diamond (House 1) = Lagna → Tula (Libra) with Rahu",
+    "kn": "- Top diamond (House 1) = Lagna → Tula (Libra) with Rahu",
+    "mr": "- Top diamond (House 1) = Lagna → Tula (Libra) with Rahu",
+    "gu": "- Top diamond (House 1) = Lagna → Tula (Libra) with Rahu",
+    "mai": "- Top diamond (House 1) = Lagna → Tula (Libra) with Rahu"
   },
   "chartNote2": {
     "en": "- Houses run counter-clockwise from the top",
     "hi": "- भाव शीर्ष से वामावर्त चलते हैं",
-    "sa": "- भावाः शीर्षात् वामावर्तं चलन्ति"
+    "sa": "- भावाः शीर्षात् वामावर्तं चलन्ति",
+    "ta": "- Houses run counter-clockwise from the top",
+    "te": "- Houses run counter-clockwise from the top",
+    "bn": "- Houses run counter-clockwise from the top",
+    "kn": "- Houses run counter-clockwise from the top",
+    "mr": "- Houses run counter-clockwise from the top",
+    "gu": "- Houses run counter-clockwise from the top",
+    "mai": "- Houses run counter-clockwise from the top"
   },
   "chartNote3": {
     "en": "- Rashi names label each house; planets shown at center",
     "hi": "- राशि नाम प्रत्येक भाव में; ग्रह केन्द्र में दिखाए गए",
-    "sa": "- प्रत्येकं भावे राशिनाम; ग्रहाः केन्द्रे दर्शिताः"
+    "sa": "- प्रत्येकं भावे राशिनाम; ग्रहाः केन्द्रे दर्शिताः",
+    "ta": "- Rashi names label each house; planets shown at center",
+    "te": "- Rashi names label each house; planets shown at center",
+    "bn": "- Rashi names label each house; planets shown at center",
+    "kn": "- Rashi names label each house; planets shown at center",
+    "mr": "- Rashi names label each house; planets shown at center",
+    "gu": "- Rashi names label each house; planets shown at center",
+    "mai": "- Rashi names label each house; planets shown at center"
   },
   "chartNote4": {
     "en": "- Sun in 10th (career) = strong public presence",
     "hi": "- सूर्य 10वें भाव (कर्म) में = शक्तिशाली सार्वजनिक उपस्थिति",
-    "sa": "- दशमभावे सूर्यः (कर्म) = सबलं सार्वजनिकं प्रभावः"
+    "sa": "- दशमभावे सूर्यः (कर्म) = सबलं सार्वजनिकं प्रभावः",
+    "ta": "- Sun in 10th (career) = strong public presence",
+    "te": "- Sun in 10th (career) = strong public presence",
+    "bn": "- Sun in 10th (career) = strong public presence",
+    "kn": "- Sun in 10th (career) = strong public presence",
+    "mr": "- Sun in 10th (career) = strong public presence",
+    "gu": "- Sun in 10th (career) = strong public presence",
+    "mai": "- Sun in 10th (career) = strong public presence"
   },
   "chartNote5": {
     "en": "- Moon in 3rd (communication) = expressive mind",
     "hi": "- चन्द्र 3रे भाव (संवाद) में = अभिव्यक्तिशील मन",
-    "sa": "- तृतीयभावे चन्द्रः (संवादः) = अभिव्यक्तिशीलं मनः"
+    "sa": "- तृतीयभावे चन्द्रः (संवादः) = अभिव्यक्तिशीलं मनः",
+    "ta": "- Moon in 3rd (communication) = expressive mind",
+    "te": "- Moon in 3rd (communication) = expressive mind",
+    "bn": "- Moon in 3rd (communication) = expressive mind",
+    "kn": "- Moon in 3rd (communication) = expressive mind",
+    "mr": "- Moon in 3rd (communication) = expressive mind",
+    "gu": "- Moon in 3rd (communication) = expressive mind",
+    "mai": "- Moon in 3rd (communication) = expressive mind"
   },
   "dignityHierarchyList": {
     "en": "Exalted (Uccha) > Own Sign (Swa) > Friendly (Mitra) > Neutral > Enemy (Shatru) > Debilitated (Neecha)",
     "hi": "उच्च > स्वराशि > मित्र > तटस्थ > शत्रु > नीच",
-    "sa": "उच्च > स्वराशि > मित्र > तटस्थ > शत्रु > नीच"
+    "sa": "उच्च > स्वराशि > मित्र > तटस्थ > शत्रु > नीच",
+    "ta": "Exalted (Uccha) > Own Sign (Swa) > Friendly (Mitra) > Neutral > Enemy (Shatru) > Debilitated (Neecha)",
+    "te": "Exalted (Uccha) > Own Sign (Swa) > Friendly (Mitra) > Neutral > Enemy (Shatru) > Debilitated (Neecha)",
+    "bn": "Exalted (Uccha) > Own Sign (Swa) > Friendly (Mitra) > Neutral > Enemy (Shatru) > Debilitated (Neecha)",
+    "kn": "Exalted (Uccha) > Own Sign (Swa) > Friendly (Mitra) > Neutral > Enemy (Shatru) > Debilitated (Neecha)",
+    "mr": "Exalted (Uccha) > Own Sign (Swa) > Friendly (Mitra) > Neutral > Enemy (Shatru) > Debilitated (Neecha)",
+    "gu": "Exalted (Uccha) > Own Sign (Swa) > Friendly (Mitra) > Neutral > Enemy (Shatru) > Debilitated (Neecha)",
+    "mai": "Exalted (Uccha) > Own Sign (Swa) > Friendly (Mitra) > Neutral > Enemy (Shatru) > Debilitated (Neecha)"
   },
   "inOurExample": {
     "en": "In our example:",
     "hi": "हमारे उदाहरण में:",
-    "sa": "अस्माकम् उदाहरणे:"
+    "sa": "अस्माकम् उदाहरणे:",
+    "ta": "In our example:",
+    "te": "In our example:",
+    "bn": "In our example:",
+    "kn": "In our example:",
+    "mr": "In our example:",
+    "gu": "In our example:",
+    "mai": "In our example:"
   },
   "aspectEx1": {
     "en": "Jupiter in 2nd aspects 8th → protects longevity house",
     "hi": "गुरु 2रे भाव में → 8वें भाव पर दृष्टि → आयु भाव की रक्षा",
-    "sa": "द्वितीयभावे गुरुः अष्टमं पश्यति → आयुर्भावस्य रक्षणम्"
+    "sa": "द्वितीयभावे गुरुः अष्टमं पश्यति → आयुर्भावस्य रक्षणम्",
+    "ta": "Jupiter in 2nd aspects 8th → protects longevity house",
+    "te": "Jupiter in 2nd aspects 8th → protects longevity house",
+    "bn": "Jupiter in 2nd aspects 8th → protects longevity house",
+    "kn": "Jupiter in 2nd aspects 8th → protects longevity house",
+    "mr": "Jupiter in 2nd aspects 8th → protects longevity house",
+    "gu": "Jupiter in 2nd aspects 8th → protects longevity house",
+    "mai": "Jupiter in 2nd aspects 8th → protects longevity house"
   },
   "aspectEx2": {
     "en": "Saturn in 5th aspects 7th, 11th, 2nd → discipline in marriage, gains, speech",
     "hi": "शनि 5वें भाव में → 7, 11, 2 पर दृष्टि → विवाह, लाभ, वाणी में अनुशासन",
-    "sa": "पञ्चमभावे शनिः सप्तमं, एकादशं, द्वितीयं च पश्यति"
+    "sa": "पञ्चमभावे शनिः सप्तमं, एकादशं, द्वितीयं च पश्यति",
+    "ta": "Saturn in 5th aspects 7th, 11th, 2nd → discipline in marriage, gains, speech",
+    "te": "Saturn in 5th aspects 7th, 11th, 2nd → discipline in marriage, gains, speech",
+    "bn": "Saturn in 5th aspects 7th, 11th, 2nd → discipline in marriage, gains, speech",
+    "kn": "Saturn in 5th aspects 7th, 11th, 2nd → discipline in marriage, gains, speech",
+    "mr": "Saturn in 5th aspects 7th, 11th, 2nd → discipline in marriage, gains, speech",
+    "gu": "Saturn in 5th aspects 7th, 11th, 2nd → discipline in marriage, gains, speech",
+    "mai": "Saturn in 5th aspects 7th, 11th, 2nd → discipline in marriage, gains, speech"
   },
   "aspectEx3": {
     "en": "Sun in 10th aspects 4th → career impacts home life",
     "hi": "सूर्य 10वें में → 4वें पर दृष्टि → कर्म गृह जीवन प्रभावित करता है",
-    "sa": "दशमभावे सूर्यः चतुर्थं पश्यति → कर्म गृहजीवनं प्रभावयति"
+    "sa": "दशमभावे सूर्यः चतुर्थं पश्यति → कर्म गृहजीवनं प्रभावयति",
+    "ta": "Sun in 10th aspects 4th → career impacts home life",
+    "te": "Sun in 10th aspects 4th → career impacts home life",
+    "bn": "Sun in 10th aspects 4th → career impacts home life",
+    "kn": "Sun in 10th aspects 4th → career impacts home life",
+    "mr": "Sun in 10th aspects 4th → career impacts home life",
+    "gu": "Sun in 10th aspects 4th → career impacts home life",
+    "mai": "Sun in 10th aspects 4th → career impacts home life"
   },
   "dashaMoonPosition": {
     "en": "Moon at 253.0° sidereal → Purva Ashadha Nakshatra",
     "hi": "चन्द्र 253.0° नाक्षत्रिक → पूर्वाषाढ़ा नक्षत्र",
-    "sa": "253.0° नाक्षत्रे चन्द्रः → पूर्वाषाढा नक्षत्रम्"
+    "sa": "253.0° नाक्षत्रे चन्द्रः → पूर्वाषाढा नक्षत्रम्",
+    "ta": "Moon at 253.0° sidereal → Purva Ashadha Nakshatra",
+    "te": "Moon at 253.0° sidereal → Purva Ashadha Nakshatra",
+    "bn": "Moon at 253.0° sidereal → Purva Ashadha Nakshatra",
+    "kn": "Moon at 253.0° sidereal → Purva Ashadha Nakshatra",
+    "mr": "Moon at 253.0° sidereal → Purva Ashadha Nakshatra",
+    "gu": "Moon at 253.0° sidereal → Purva Ashadha Nakshatra",
+    "mai": "Moon at 253.0° sidereal → Purva Ashadha Nakshatra"
   },
   "dashaLord": {
     "en": "P. Ashadha lord = Venus → born in Venus Maha Dasha",
     "hi": "पूर्वाषाढ़ा स्वामी = शुक्र → शुक्र महादशा में जन्म",
-    "sa": "पूर्वाषाढायाः स्वामी = शुक्रः → शुक्र-महादशायां जन्म"
+    "sa": "पूर्वाषाढायाः स्वामी = शुक्रः → शुक्र-महादशायां जन्म",
+    "ta": "P. Ashadha lord = Venus → born in Venus Maha Dasha",
+    "te": "P. Ashadha lord = Venus → born in Venus Maha Dasha",
+    "bn": "P. Ashadha lord = Venus → born in Venus Maha Dasha",
+    "kn": "P. Ashadha lord = Venus → born in Venus Maha Dasha",
+    "mr": "P. Ashadha lord = Venus → born in Venus Maha Dasha",
+    "gu": "P. Ashadha lord = Venus → born in Venus Maha Dasha",
+    "mai": "P. Ashadha lord = Venus → born in Venus Maha Dasha"
   },
   "dashaVenusDuration": {
     "en": "Venus Maha Dasha = 20 years total",
     "hi": "शुक्र महादशा = कुल 20 वर्ष",
-    "sa": "शुक्र-महादशा = विंशतिः वर्षाणि सर्वाणि"
+    "sa": "शुक्र-महादशा = विंशतिः वर्षाणि सर्वाणि",
+    "ta": "Venus Maha Dasha = 20 years total",
+    "te": "Venus Maha Dasha = 20 years total",
+    "bn": "Venus Maha Dasha = 20 years total",
+    "kn": "Venus Maha Dasha = 20 years total",
+    "mr": "Venus Maha Dasha = 20 years total",
+    "gu": "Venus Maha Dasha = 20 years total",
+    "mai": "Venus Maha Dasha = 20 years total"
   },
   "dashaProgress": {
     "en": "Moon progress through P. Ashadha:",
     "hi": "पूर्वाषाढ़ा में चन्द्र की प्रगति:",
-    "sa": "पूर्वाषाढायां चन्द्रस्य प्रगतिः:"
+    "sa": "पूर्वाषाढायां चन्द्रस्य प्रगतिः:",
+    "ta": "Moon progress through P. Ashadha:",
+    "te": "Moon progress through P. Ashadha:",
+    "bn": "Moon progress through P. Ashadha:",
+    "kn": "Moon progress through P. Ashadha:",
+    "mr": "Moon progress through P. Ashadha:",
+    "gu": "Moon progress through P. Ashadha:",
+    "mai": "Moon progress through P. Ashadha:"
   },
   "dashaSpan": {
     "en": "P. Ashadha span: 253°20' to 266°40' (13°20')",
     "hi": "पूर्वाषाढ़ा: 253°20' से 266°40' (13°20')",
-    "sa": "पूर्वाषाढ़ा: 253°20' से 266°40' (13°20')"
+    "sa": "पूर्वाषाढ़ा: 253°20' से 266°40' (13°20')",
+    "ta": "P. Ashadha span: 253°20' to 266°40' (13°20')",
+    "te": "P. Ashadha span: 253°20' to 266°40' (13°20')",
+    "bn": "P. Ashadha span: 253°20' to 266°40' (13°20')",
+    "kn": "P. Ashadha span: 253°20' to 266°40' (13°20')",
+    "mr": "P. Ashadha span: 253°20' to 266°40' (13°20')",
+    "gu": "P. Ashadha span: 253°20' to 266°40' (13°20')",
+    "mai": "P. Ashadha span: 253°20' to 266°40' (13°20')"
   },
   "dashaRemaining": {
     "en": "Moon at 253.0° → near the start → ~19.6 years of Venus remain",
     "hi": "चन्द्र 253.0° → प्रारम्भ के निकट → शुक्र के ~19.6 वर्ष शेष",
-    "sa": "253.0° चन्द्रः → आरम्भे निकटम् → शुक्रस्य ~19.6 वर्षाणि अवशिष्यन्ते"
+    "sa": "253.0° चन्द्रः → आरम्भे निकटम् → शुक्रस्य ~19.6 वर्षाणि अवशिष्यन्ते",
+    "ta": "Moon at 253.0° → near the start → ~19.6 years of Venus remain",
+    "te": "Moon at 253.0° → near the start → ~19.6 years of Venus remain",
+    "bn": "Moon at 253.0° → near the start → ~19.6 years of Venus remain",
+    "kn": "Moon at 253.0° → near the start → ~19.6 years of Venus remain",
+    "mr": "Moon at 253.0° → near the start → ~19.6 years of Venus remain",
+    "gu": "Moon at 253.0° → near the start → ~19.6 years of Venus remain",
+    "mai": "Moon at 253.0° → near the start → ~19.6 years of Venus remain"
   },
   "dashaAfterVenus": {
     "en": "After Venus: Sun (6y) → Moon (10y) → Mars (7y) → ...",
     "hi": "शुक्र के बाद: सूर्य (6 वर्ष) → चन्द्र (10 वर्ष) → मंगल (7 वर्ष) → ...",
-    "sa": "शुक्रानन्तरम्: सूर्यः (6 वर्ष) → चन्द्रः (10 वर्ष) → मंगलः (7 वर्ष) → ..."
+    "sa": "शुक्रानन्तरम्: सूर्यः (6 वर्ष) → चन्द्रः (10 वर्ष) → मंगलः (7 वर्ष) → ...",
+    "ta": "After Venus: Sun (6y) → Moon (10y) → Mars (7y) → ...",
+    "te": "After Venus: Sun (6y) → Moon (10y) → Mars (7y) → ...",
+    "bn": "After Venus: Sun (6y) → Moon (10y) → Mars (7y) → ...",
+    "kn": "After Venus: Sun (6y) → Moon (10y) → Mars (7y) → ...",
+    "mr": "After Venus: Sun (6y) → Moon (10y) → Mars (7y) → ...",
+    "gu": "After Venus: Sun (6y) → Moon (10y) → Mars (7y) → ...",
+    "mai": "After Venus: Sun (6y) → Moon (10y) → Mars (7y) → ..."
   },
   "completeDasha": {
     "en": "Complete Dasha system explained",
     "hi": "सम्पूर्ण दशा प्रणाली की व्याख्या",
-    "sa": "सम्पूर्णस्य दशाप्रणाल्याः विवरणम्"
+    "sa": "सम्पूर्णस्य दशाप्रणाल्याः विवरणम्",
+    "ta": "Complete Dasha system explained",
+    "te": "Complete Dasha system explained",
+    "bn": "Complete Dasha system explained",
+    "kn": "Complete Dasha system explained",
+    "mr": "Complete Dasha system explained",
+    "gu": "Complete Dasha system explained",
+    "mai": "Complete Dasha system explained"
   },
   "yogasLabel": {
     "en": "Yogas (Auspicious Combos)",
     "hi": "योग (शुभ संयोग)",
-    "sa": "योगाः (शुभसंयोगाः)"
+    "sa": "योगाः (शुभसंयोगाः)",
+    "ta": "Yogas (Auspicious Combos)",
+    "te": "Yogas (Auspicious Combos)",
+    "bn": "Yogas (Auspicious Combos)",
+    "kn": "Yogas (Auspicious Combos)",
+    "mr": "Yogas (Auspicious Combos)",
+    "gu": "Yogas (Auspicious Combos)",
+    "mai": "Yogas (Auspicious Combos)"
   },
   "yoga1": {
     "en": "Budhaditya Yoga — Mercury + Sun in same house (11th)",
     "hi": "बुधादित्य योग — बुध + सूर्य (यहाँ 10-11 में)",
-    "sa": "बुधादित्ययोगः — बुधसूर्यौ एकस्मिन्नेव भावे (एकादशे)"
+    "sa": "बुधादित्ययोगः — बुधसूर्यौ एकस्मिन्नेव भावे (एकादशे)",
+    "ta": "Budhaditya Yoga — Mercury + Sun in same house (11th)",
+    "te": "Budhaditya Yoga — Mercury + Sun in same house (11th)",
+    "bn": "Budhaditya Yoga — Mercury + Sun in same house (11th)",
+    "kn": "Budhaditya Yoga — Mercury + Sun in same house (11th)",
+    "mr": "Budhaditya Yoga — Mercury + Sun in same house (11th)",
+    "gu": "Budhaditya Yoga — Mercury + Sun in same house (11th)",
+    "mai": "Budhaditya Yoga — Mercury + Sun in same house (11th)"
   },
   "yoga2": {
     "en": "Gajakesari Yoga — Jupiter in Kendra from Moon",
     "hi": "गजकेसरी योग — चन्द्र से केन्द्र में गुरु",
-    "sa": "गजकेसरियोगः — चन्द्रात् केन्द्रे गुरुः"
+    "sa": "गजकेसरियोगः — चन्द्रात् केन्द्रे गुरुः",
+    "ta": "Gajakesari Yoga — Jupiter in Kendra from Moon",
+    "te": "Gajakesari Yoga — Jupiter in Kendra from Moon",
+    "bn": "Gajakesari Yoga — Jupiter in Kendra from Moon",
+    "kn": "Gajakesari Yoga — Jupiter in Kendra from Moon",
+    "mr": "Gajakesari Yoga — Jupiter in Kendra from Moon",
+    "gu": "Gajakesari Yoga — Jupiter in Kendra from Moon",
+    "mai": "Gajakesari Yoga — Jupiter in Kendra from Moon"
   },
   "yoga3": {
     "en": "Dhana Yoga — lord of 2nd in good placement",
     "hi": "धन योग — 2 भाव का स्वामी शुभ स्थान में",
-    "sa": "धनयोगः — द्वितीयभावस्य स्वामी शुभस्थाने"
+    "sa": "धनयोगः — द्वितीयभावस्य स्वामी शुभस्थाने",
+    "ta": "Dhana Yoga — lord of 2nd in good placement",
+    "te": "Dhana Yoga — lord of 2nd in good placement",
+    "bn": "Dhana Yoga — lord of 2nd in good placement",
+    "kn": "Dhana Yoga — lord of 2nd in good placement",
+    "mr": "Dhana Yoga — lord of 2nd in good placement",
+    "gu": "Dhana Yoga — lord of 2nd in good placement",
+    "mai": "Dhana Yoga — lord of 2nd in good placement"
   },
   "doshasLabel": {
     "en": "Doshas (Afflictions)",
     "hi": "दोष (कठिनाइयाँ)",
-    "sa": "दोषाः (पीडाः)"
+    "sa": "दोषाः (पीडाः)",
+    "ta": "Doshas (Afflictions)",
+    "te": "Doshas (Afflictions)",
+    "bn": "Doshas (Afflictions)",
+    "kn": "Doshas (Afflictions)",
+    "mr": "Doshas (Afflictions)",
+    "gu": "Doshas (Afflictions)",
+    "mai": "Doshas (Afflictions)"
   },
   "dosha1": {
     "en": "Mangal Dosha — Mars in 1, 2, 4, 7, 8, or 12 from Lagna",
     "hi": "मंगल दोष — लग्न से 1, 2, 4, 7, 8, 12 में मंगल",
-    "sa": "मंगलदोषः — लग्नात् 1, 2, 4, 7, 8, 12 भावेषु मंगलः"
+    "sa": "मंगलदोषः — लग्नात् 1, 2, 4, 7, 8, 12 भावेषु मंगलः",
+    "ta": "Mangal Dosha — Mars in 1, 2, 4, 7, 8, or 12 from Lagna",
+    "te": "Mangal Dosha — Mars in 1, 2, 4, 7, 8, or 12 from Lagna",
+    "bn": "Mangal Dosha — Mars in 1, 2, 4, 7, 8, or 12 from Lagna",
+    "kn": "Mangal Dosha — Mars in 1, 2, 4, 7, 8, or 12 from Lagna",
+    "mr": "Mangal Dosha — Mars in 1, 2, 4, 7, 8, or 12 from Lagna",
+    "gu": "Mangal Dosha — Mars in 1, 2, 4, 7, 8, or 12 from Lagna",
+    "mai": "Mangal Dosha — Mars in 1, 2, 4, 7, 8, or 12 from Lagna"
   },
   "dosha2": {
     "en": "Kaal Sarpa — all planets between Rahu-Ketu axis",
     "hi": "काल सर्प — राहु-केतु अक्ष के बीच सभी ग्रह",
-    "sa": "कालसर्पः — राहु-केत्वोः अक्षे सर्वे ग्रहाः"
+    "sa": "कालसर्पः — राहु-केत्वोः अक्षे सर्वे ग्रहाः",
+    "ta": "Kaal Sarpa — all planets between Rahu-Ketu axis",
+    "te": "Kaal Sarpa — all planets between Rahu-Ketu axis",
+    "bn": "Kaal Sarpa — all planets between Rahu-Ketu axis",
+    "kn": "Kaal Sarpa — all planets between Rahu-Ketu axis",
+    "mr": "Kaal Sarpa — all planets between Rahu-Ketu axis",
+    "gu": "Kaal Sarpa — all planets between Rahu-Ketu axis",
+    "mai": "Kaal Sarpa — all planets between Rahu-Ketu axis"
   },
   "dosha3": {
     "en": "Pitru Dosha — Sun afflicted by malefics",
     "hi": "पितृ दोष — सूर्य पाप ग्रहों से पीड़ित",
-    "sa": "पितृदोषः — पापग्रहैः पीडितः सूर्यः"
+    "sa": "पितृदोषः — पापग्रहैः पीडितः सूर्यः",
+    "ta": "Pitru Dosha — Sun afflicted by malefics",
+    "te": "Pitru Dosha — Sun afflicted by malefics",
+    "bn": "Pitru Dosha — Sun afflicted by malefics",
+    "kn": "Pitru Dosha — Sun afflicted by malefics",
+    "mr": "Pitru Dosha — Sun afflicted by malefics",
+    "gu": "Pitru Dosha — Sun afflicted by malefics",
+    "mai": "Pitru Dosha — Sun afflicted by malefics"
   },
   "yogaEx1": {
     "en": "Mars in 12th from Lagna → Mangal Dosha is present",
     "hi": "लग्न से 12वें भाव में मंगल → मंगल दोष उपस्थित",
-    "sa": "लग्नात् द्वादशभावे मंगलः → मंगलदोषः विद्यते"
+    "sa": "लग्नात् द्वादशभावे मंगलः → मंगलदोषः विद्यते",
+    "ta": "Mars in 12th from Lagna → Mangal Dosha is present",
+    "te": "Mars in 12th from Lagna → Mangal Dosha is present",
+    "bn": "Mars in 12th from Lagna → Mangal Dosha is present",
+    "kn": "Mars in 12th from Lagna → Mangal Dosha is present",
+    "mr": "Mars in 12th from Lagna → Mangal Dosha is present",
+    "gu": "Mars in 12th from Lagna → Mangal Dosha is present",
+    "mai": "Mars in 12th from Lagna → Mangal Dosha is present"
   },
   "yogaEx2": {
     "en": "Mercury + Venus in Leo (11th) → Dhana Yoga (gains house)",
     "hi": "बुध + शुक्र सिंह (11वाँ) में → धन योग (लाभ भाव)",
-    "sa": "बुध-शुक्रौ सिंहे (एकादशे) → धनयोगः (लाभभावः)"
+    "sa": "बुध-शुक्रौ सिंहे (एकादशे) → धनयोगः (लाभभावः)",
+    "ta": "Mercury + Venus in Leo (11th) → Dhana Yoga (gains house)",
+    "te": "Mercury + Venus in Leo (11th) → Dhana Yoga (gains house)",
+    "bn": "Mercury + Venus in Leo (11th) → Dhana Yoga (gains house)",
+    "kn": "Mercury + Venus in Leo (11th) → Dhana Yoga (gains house)",
+    "mr": "Mercury + Venus in Leo (11th) → Dhana Yoga (gains house)",
+    "gu": "Mercury + Venus in Leo (11th) → Dhana Yoga (gains house)",
+    "mai": "Mercury + Venus in Leo (11th) → Dhana Yoga (gains house)"
   },
   "yogaEx3": {
     "en": "Saturn in own sign Aquarius → strong 5th house (intelligence)",
     "hi": "शनि स्वराशि कुम्भ में → शक्तिशाली 5वाँ भाव (बुद्धि)",
-    "sa": "स्वराशौ कुम्भे शनिः → सबलं पञ्चमभावः (बुद्धिः)"
+    "sa": "स्वराशौ कुम्भे शनिः → सबलं पञ्चमभावः (बुद्धिः)",
+    "ta": "Saturn in own sign Aquarius → strong 5th house (intelligence)",
+    "te": "Saturn in own sign Aquarius → strong 5th house (intelligence)",
+    "bn": "Saturn in own sign Aquarius → strong 5th house (intelligence)",
+    "kn": "Saturn in own sign Aquarius → strong 5th house (intelligence)",
+    "mr": "Saturn in own sign Aquarius → strong 5th house (intelligence)",
+    "gu": "Saturn in own sign Aquarius → strong 5th house (intelligence)",
+    "mai": "Saturn in own sign Aquarius → strong 5th house (intelligence)"
   }
 }

@@ -374,206 +374,493 @@
   "svgEcliptic": {
     "en": "Ecliptic",
     "hi": "क्रान्तिवृत्त",
-    "sa": "क्रान्तिवृत्तम्"
+    "sa": "क्रान्तिवृत्तम्",
+    "ta": "Ecliptic",
+    "te": "Ecliptic",
+    "bn": "Ecliptic",
+    "kn": "Ecliptic",
+    "mr": "Ecliptic",
+    "gu": "Ecliptic",
+    "mai": "Ecliptic"
   },
   "svgMoonOrbit": {
     "en": "Moon's orbit",
     "hi": "चन्द्र कक्षा",
-    "sa": "चन्द्र कक्षा"
+    "sa": "चन्द्र कक्षा",
+    "ta": "Moon's orbit",
+    "te": "Moon's orbit",
+    "bn": "Moon's orbit",
+    "kn": "Moon's orbit",
+    "mr": "Moon's orbit",
+    "gu": "Moon's orbit",
+    "mai": "Moon's orbit"
   },
   "svgRaAbbr": {
     "en": "Ra",
     "hi": "रा",
-    "sa": "रा"
+    "sa": "रा",
+    "ta": "Ra",
+    "te": "Ra",
+    "bn": "Ra",
+    "kn": "Ra",
+    "mr": "Ra",
+    "gu": "Ra",
+    "mai": "Ra"
   },
   "svgRahu": {
     "en": "Rahu",
     "hi": "राहु",
-    "sa": "राहुः"
+    "sa": "राहुः",
+    "ta": "Rahu",
+    "te": "Rahu",
+    "bn": "Rahu",
+    "kn": "Rahu",
+    "mr": "Rahu",
+    "gu": "Rahu",
+    "mai": "Rahu"
   },
   "svgAscNode": {
     "en": "Ascending Node",
     "hi": "आरोही पात",
-    "sa": "आरोहीपातः"
+    "sa": "आरोहीपातः",
+    "ta": "Ascending Node",
+    "te": "Ascending Node",
+    "bn": "Ascending Node",
+    "kn": "Ascending Node",
+    "mr": "Ascending Node",
+    "gu": "Ascending Node",
+    "mai": "Ascending Node"
   },
   "svgMoonUp": {
     "en": "Moon ↗",
     "hi": "चन्द्र ↗",
-    "sa": "चन्द्रः ↗"
+    "sa": "चन्द्रः ↗",
+    "ta": "Moon ↗",
+    "te": "Moon ↗",
+    "bn": "Moon ↗",
+    "kn": "Moon ↗",
+    "mr": "Moon ↗",
+    "gu": "Moon ↗",
+    "mai": "Moon ↗"
   },
   "svgKeAbbr": {
     "en": "Ke",
     "hi": "के",
-    "sa": "के"
+    "sa": "के",
+    "ta": "Ke",
+    "te": "Ke",
+    "bn": "Ke",
+    "kn": "Ke",
+    "mr": "Ke",
+    "gu": "Ke",
+    "mai": "Ke"
   },
   "svgKetu": {
     "en": "Ketu",
     "hi": "केतु",
-    "sa": "केतुः"
+    "sa": "केतुः",
+    "ta": "Ketu",
+    "te": "Ketu",
+    "bn": "Ketu",
+    "kn": "Ketu",
+    "mr": "Ketu",
+    "gu": "Ketu",
+    "mai": "Ketu"
   },
   "svgDescNode": {
     "en": "Descending Node",
     "hi": "अवरोही पात",
-    "sa": "अवरोहीपातः"
+    "sa": "अवरोहीपातः",
+    "ta": "Descending Node",
+    "te": "Descending Node",
+    "bn": "Descending Node",
+    "kn": "Descending Node",
+    "mr": "Descending Node",
+    "gu": "Descending Node",
+    "mai": "Descending Node"
   },
   "svgMoonDown": {
     "en": "Moon ↘",
     "hi": "चन्द्र ↘",
-    "sa": "चन्द्रः ↘"
+    "sa": "चन्द्रः ↘",
+    "ta": "Moon ↘",
+    "te": "Moon ↘",
+    "bn": "Moon ↘",
+    "kn": "Moon ↘",
+    "mr": "Moon ↘",
+    "gu": "Moon ↘",
+    "mai": "Moon ↘"
   },
   "svgEarth": {
     "en": "Earth",
     "hi": "पृथ्वी",
-    "sa": "पृथ्वी"
+    "sa": "पृथ्वी",
+    "ta": "Earth",
+    "te": "Earth",
+    "bn": "Earth",
+    "kn": "Earth",
+    "mr": "Earth",
+    "gu": "Earth",
+    "mai": "Earth"
   },
   "svgRahuKetuAxis": {
     "en": "← Rahu-Ketu axis →",
     "hi": "← राहु-केतु अक्ष →",
-    "sa": "← राहु-केतु-अक्षः →"
+    "sa": "← राहु-केतु-अक्षः →",
+    "ta": "← Rahu-Ketu axis →",
+    "te": "← Rahu-Ketu axis →",
+    "bn": "← Rahu-Ketu axis →",
+    "kn": "← Rahu-Ketu axis →",
+    "mr": "← Rahu-Ketu axis →",
+    "gu": "← Rahu-Ketu axis →",
+    "mai": "← Rahu-Ketu axis →"
   },
   "svgMoon": {
     "en": "Moon",
     "hi": "चन्द्र",
-    "sa": "चन्द्रः"
+    "sa": "चन्द्रः",
+    "ta": "Moon",
+    "te": "Moon",
+    "bn": "Moon",
+    "kn": "Moon",
+    "mr": "Moon",
+    "gu": "Moon",
+    "mai": "Moon"
   },
   "svgRahuDrift": {
     "en": "Rahu & Ketu slowly drift backward through the zodiac",
     "hi": "राहु-केतु धीरे-धीरे राशि चक्र में पीछे खिसकते हैं",
-    "sa": "राहुः केतुश्च राशिचक्रे मन्दगत्या वक्रं गच्छतः"
+    "sa": "राहुः केतुश्च राशिचक्रे मन्दगत्या वक्रं गच्छतः",
+    "ta": "Rahu & Ketu slowly drift backward through the zodiac",
+    "te": "Rahu & Ketu slowly drift backward through the zodiac",
+    "bn": "Rahu & Ketu slowly drift backward through the zodiac",
+    "kn": "Rahu & Ketu slowly drift backward through the zodiac",
+    "mr": "Rahu & Ketu slowly drift backward through the zodiac",
+    "gu": "Rahu & Ketu slowly drift backward through the zodiac",
+    "mai": "Rahu & Ketu slowly drift backward through the zodiac"
   },
   "svgFullLoop": {
     "en": "One full loop = 18.6 years — this is why eclipses repeat on a similar schedule",
     "hi": "एक पूर्ण चक्र = 18.6 वर्ष — यही सारोस ग्रहण चक्र का आधार है",
-    "sa": "एकं पूर्णचक्रम् = 18.6 वर्षाणि — एतेन कारणेन ग्रहणानि सदृशकालक्रमेण पुनरावर्तन्ते"
+    "sa": "एकं पूर्णचक्रम् = 18.6 वर्षाणि — एतेन कारणेन ग्रहणानि सदृशकालक्रमेण पुनरावर्तन्ते",
+    "ta": "One full loop = 18.6 years — this is why eclipses repeat on a similar schedule",
+    "te": "One full loop = 18.6 years — this is why eclipses repeat on a similar schedule",
+    "bn": "One full loop = 18.6 years — this is why eclipses repeat on a similar schedule",
+    "kn": "One full loop = 18.6 years — this is why eclipses repeat on a similar schedule",
+    "mr": "One full loop = 18.6 years — this is why eclipses repeat on a similar schedule",
+    "gu": "One full loop = 18.6 years — this is why eclipses repeat on a similar schedule",
+    "mai": "One full loop = 18.6 years — this is why eclipses repeat on a similar schedule"
   },
   "svgSun": {
     "en": "Sun",
     "hi": "सूर्य",
-    "sa": "सूर्यः"
+    "sa": "सूर्यः",
+    "ta": "Sun",
+    "te": "Sun",
+    "bn": "Sun",
+    "kn": "Sun",
+    "mr": "Sun",
+    "gu": "Sun",
+    "mai": "Sun"
   },
   "svgSynodicTitle": {
     "en": "Synodic Period: Earth Overtaking Saturn",
     "hi": "सिनोडिक काल: पृथ्वी शनि को पछाड़ती है",
-    "sa": "सिनोडिककालः: पृथ्वी शनिं अतिक्रामति"
+    "sa": "सिनोडिककालः: पृथ्वी शनिं अतिक्रामति",
+    "ta": "Synodic Period: Earth Overtaking Saturn",
+    "te": "Synodic Period: Earth Overtaking Saturn",
+    "bn": "Synodic Period: Earth Overtaking Saturn",
+    "kn": "Synodic Period: Earth Overtaking Saturn",
+    "mr": "Synodic Period: Earth Overtaking Saturn",
+    "gu": "Synodic Period: Earth Overtaking Saturn",
+    "mai": "Synodic Period: Earth Overtaking Saturn"
   },
   "svgOpposition1": {
     "en": "Opposition 1",
     "hi": "प्रतियुति 1",
-    "sa": "प्रतियुतिः 1"
+    "sa": "प्रतियुतिः 1",
+    "ta": "Opposition 1",
+    "te": "Opposition 1",
+    "bn": "Opposition 1",
+    "kn": "Opposition 1",
+    "mr": "Opposition 1",
+    "gu": "Opposition 1",
+    "mai": "Opposition 1"
   },
   "svgOpposition2": {
     "en": "Opposition 2",
     "hi": "प्रतियुति 2",
-    "sa": "प्रतियुतिः 2"
+    "sa": "प्रतियुतिः 2",
+    "ta": "Opposition 2",
+    "te": "Opposition 2",
+    "bn": "Opposition 2",
+    "kn": "Opposition 2",
+    "mr": "Opposition 2",
+    "gu": "Opposition 2",
+    "mai": "Opposition 2"
   },
   "svgSaturnAnnotation": {
     "en": "378 days: Earth = 1.035 orbits | Saturn = 12.2° arc",
     "hi": "378 दिनों में: पृथ्वी = 1.035 चक्कर | शनि = 12.2° चाप",
-    "sa": "378 दिनानि: पृथ्वी = 1.035 परिक्रमाः | शनिः = 12.2° चापम्"
+    "sa": "378 दिनानि: पृथ्वी = 1.035 परिक्रमाः | शनिः = 12.2° चापम्",
+    "ta": "378 days: Earth = 1.035 orbits | Saturn = 12.2° arc",
+    "te": "378 days: Earth = 1.035 orbits | Saturn = 12.2° arc",
+    "bn": "378 days: Earth = 1.035 orbits | Saturn = 12.2° arc",
+    "kn": "378 days: Earth = 1.035 orbits | Saturn = 12.2° arc",
+    "mr": "378 days: Earth = 1.035 orbits | Saturn = 12.2° arc",
+    "gu": "378 days: Earth = 1.035 orbits | Saturn = 12.2° arc",
+    "mai": "378 days: Earth = 1.035 orbits | Saturn = 12.2° arc"
   },
   "svgTotalSolar": {
     "en": "Total Solar",
     "hi": "कुल सूर्य",
-    "sa": "पूर्णसूर्यग्रहणम्"
+    "sa": "पूर्णसूर्यग्रहणम्",
+    "ta": "Total Solar",
+    "te": "Total Solar",
+    "bn": "Total Solar",
+    "kn": "Total Solar",
+    "mr": "Total Solar",
+    "gu": "Total Solar",
+    "mai": "Total Solar"
   },
   "svgMoonSign": {
     "en": "Sign",
     "hi": "राशि",
-    "sa": "राशिः"
+    "sa": "राशिः",
+    "ta": "Sign",
+    "te": "Sign",
+    "bn": "Sign",
+    "kn": "Sign",
+    "mr": "Sign",
+    "gu": "Sign",
+    "mai": "Sign"
   },
   "svgSadeSati": {
     "en": "Sade Sati = 7.5 yrs",
     "hi": "साढ़े साती = 7.5 वर्ष",
-    "sa": "साढेसाती = 7.5 वर्षाणि"
+    "sa": "साढेसाती = 7.5 वर्षाणि",
+    "ta": "Sade Sati = 7.5 yrs",
+    "te": "Sade Sati = 7.5 yrs",
+    "bn": "Sade Sati = 7.5 yrs",
+    "kn": "Sade Sati = 7.5 yrs",
+    "mr": "Sade Sati = 7.5 yrs",
+    "gu": "Sade Sati = 7.5 yrs",
+    "mai": "Sade Sati = 7.5 yrs"
   },
   "svgSaturn": {
     "en": "Saturn",
     "hi": "शनि",
-    "sa": "शनिः"
+    "sa": "शनिः",
+    "ta": "Saturn",
+    "te": "Saturn",
+    "bn": "Saturn",
+    "kn": "Saturn",
+    "mr": "Saturn",
+    "gu": "Saturn",
+    "mai": "Saturn"
   },
   "svgFavorable42": {
     "en": "5/12 years favorable = 42%",
     "hi": "5/12 वर्ष अनुकूल = 42%",
-    "sa": "5/12 वर्षाणि अनुकूलानि = 42%"
+    "sa": "5/12 वर्षाणि अनुकूलानि = 42%",
+    "ta": "5/12 years favorable = 42%",
+    "te": "5/12 years favorable = 42%",
+    "bn": "5/12 years favorable = 42%",
+    "kn": "5/12 years favorable = 42%",
+    "mr": "5/12 years favorable = 42%",
+    "gu": "5/12 years favorable = 42%",
+    "mai": "5/12 years favorable = 42%"
   },
   "statSamvatsara": {
     "en": "Samvatsara cycle",
     "hi": "संवत्सर चक्र",
-    "sa": "संवत्सरचक्रम्"
+    "sa": "संवत्सरचक्रम्",
+    "ta": "Samvatsara cycle",
+    "te": "Samvatsara cycle",
+    "bn": "Samvatsara cycle",
+    "kn": "Samvatsara cycle",
+    "mr": "Samvatsara cycle",
+    "gu": "Samvatsara cycle",
+    "mai": "Samvatsara cycle"
   },
   "statYrs": {
     "en": "yrs",
     "hi": "वर्ष",
-    "sa": "वर्षाणि"
+    "sa": "वर्षाणि",
+    "ta": "yrs",
+    "te": "yrs",
+    "bn": "yrs",
+    "kn": "yrs",
+    "mr": "yrs",
+    "gu": "yrs",
+    "mai": "yrs"
   },
   "statJupiterOrbits": {
     "en": "Jupiter orbits",
     "hi": "बृहस्पति कक्षाएँ",
-    "sa": "बृहस्पतेः परिक्रमाः"
+    "sa": "बृहस्पतेः परिक्रमाः",
+    "ta": "Jupiter orbits",
+    "te": "Jupiter orbits",
+    "bn": "Jupiter orbits",
+    "kn": "Jupiter orbits",
+    "mr": "Jupiter orbits",
+    "gu": "Jupiter orbits",
+    "mai": "Jupiter orbits"
   },
   "statSaturnOrbits": {
     "en": "Saturn orbits",
     "hi": "शनि कक्षाएँ",
-    "sa": "शनेः परिक्रमाः"
+    "sa": "शनेः परिक्रमाः",
+    "ta": "Saturn orbits",
+    "te": "Saturn orbits",
+    "bn": "Saturn orbits",
+    "kn": "Saturn orbits",
+    "mr": "Saturn orbits",
+    "gu": "Saturn orbits",
+    "mai": "Saturn orbits"
   },
   "statTotal": {
     "en": "Total",
     "hi": "कुल",
-    "sa": "योगः"
+    "sa": "योगः",
+    "ta": "Total",
+    "te": "Total",
+    "bn": "Total",
+    "kn": "Total",
+    "mr": "Total",
+    "gu": "Total",
+    "mai": "Total"
   },
   "statMoonDays": {
     "en": "days (sidereal period)",
     "hi": "दिन (नाक्षत्र काल)",
-    "sa": "दिनानि (नाक्षत्रकालः)"
+    "sa": "दिनानि (नाक्षत्रकालः)",
+    "ta": "days (sidereal period)",
+    "te": "days (sidereal period)",
+    "bn": "days (sidereal period)",
+    "kn": "days (sidereal period)",
+    "mr": "days (sidereal period)",
+    "gu": "days (sidereal period)",
+    "mai": "days (sidereal period)"
   },
   "statMoonLabel": {
     "en": "Moon",
     "hi": "चन्द्रमा",
-    "sa": "चन्द्रः"
+    "sa": "चन्द्रः",
+    "ta": "Moon",
+    "te": "Moon",
+    "bn": "Moon",
+    "kn": "Moon",
+    "mr": "Moon",
+    "gu": "Moon",
+    "mai": "Moon"
   },
   "statNakshatras": {
     "en": "Nakshatras",
     "hi": "नक्षत्र",
-    "sa": "नक्षत्राणि"
+    "sa": "नक्षत्राणि",
+    "ta": "Nakshatras",
+    "te": "Nakshatras",
+    "bn": "Nakshatras",
+    "kn": "Nakshatras",
+    "mr": "Nakshatras",
+    "gu": "Nakshatras",
+    "mai": "Nakshatras"
   },
   "statLunarStations": {
     "en": "lunar stations",
     "hi": "चन्द्र स्थान",
-    "sa": "चन्द्रस्थानानि"
+    "sa": "चन्द्रस्थानानि",
+    "ta": "lunar stations",
+    "te": "lunar stations",
+    "bn": "lunar stations",
+    "kn": "lunar stations",
+    "mr": "lunar stations",
+    "gu": "lunar stations",
+    "mai": "lunar stations"
   },
   "statDegreesEach": {
     "en": "degrees each",
     "hi": "अंश प्रत्येक",
-    "sa": "प्रत्येकम् अंशाः"
+    "sa": "प्रत्येकम् अंशाः",
+    "ta": "degrees each",
+    "te": "degrees each",
+    "bn": "degrees each",
+    "kn": "degrees each",
+    "mr": "degrees each",
+    "gu": "degrees each",
+    "mai": "degrees each"
   },
   "statDegPerDay": {
     "en": "deg/day",
     "hi": "अंश/दिन",
-    "sa": "अंशः/दिनम्"
+    "sa": "अंशः/दिनम्",
+    "ta": "deg/day",
+    "te": "deg/day",
+    "bn": "deg/day",
+    "kn": "deg/day",
+    "mr": "deg/day",
+    "gu": "deg/day",
+    "mai": "deg/day"
   },
   "statLunarMotion": {
     "en": "lunar motion",
     "hi": "चन्द्र गति",
-    "sa": "चन्द्रगतिः"
+    "sa": "चन्द्रगतिः",
+    "ta": "lunar motion",
+    "te": "lunar motion",
+    "bn": "lunar motion",
+    "kn": "lunar motion",
+    "mr": "lunar motion",
+    "gu": "lunar motion",
+    "mai": "lunar motion"
   },
   "statSarosCycle": {
     "en": "Saros Cycle (yrs)",
     "hi": "सारोस चक्र (वर्ष)",
-    "sa": "सारोसचक्रम् (वर्षाणि)"
+    "sa": "सारोसचक्रम् (वर्षाणि)",
+    "ta": "Saros Cycle (yrs)",
+    "te": "Saros Cycle (yrs)",
+    "bn": "Saros Cycle (yrs)",
+    "kn": "Saros Cycle (yrs)",
+    "mr": "Saros Cycle (yrs)",
+    "gu": "Saros Cycle (yrs)",
+    "mai": "Saros Cycle (yrs)"
   },
   "statRahuKetuPeriod": {
     "en": "Rahu-Ketu Period (yrs)",
     "hi": "राहु-केतु काल (वर्ष)",
-    "sa": "राहु-केतु-कालः (वर्षाणि)"
+    "sa": "राहु-केतु-कालः (वर्षाणि)",
+    "ta": "Rahu-Ketu Period (yrs)",
+    "te": "Rahu-Ketu Period (yrs)",
+    "bn": "Rahu-Ketu Period (yrs)",
+    "kn": "Rahu-Ketu Period (yrs)",
+    "mr": "Rahu-Ketu Period (yrs)",
+    "gu": "Rahu-Ketu Period (yrs)",
+    "mai": "Rahu-Ketu Period (yrs)"
   },
   "statSynodicMonths": {
     "en": "Synodic months",
     "hi": "सिनोडिक मास",
-    "sa": "सिनोडिकमासाः"
+    "sa": "सिनोडिकमासाः",
+    "ta": "Synodic months",
+    "te": "Synodic months",
+    "bn": "Synodic months",
+    "kn": "Synodic months",
+    "mr": "Synodic months",
+    "gu": "Synodic months",
+    "mai": "Synodic months"
   },
   "statDraconicMonths": {
     "en": "Draconic months",
     "hi": "ड्रैकोनिक मास",
-    "sa": "ड्रैकोनिकमासाः"
+    "sa": "ड्रैकोनिकमासाः",
+    "ta": "Draconic months",
+    "te": "Draconic months",
+    "bn": "Draconic months",
+    "kn": "Draconic months",
+    "mr": "Draconic months",
+    "gu": "Draconic months",
+    "mai": "Draconic months"
   }
 }

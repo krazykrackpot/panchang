@@ -1,10 +1,98 @@
 {
-  "panchang": { "en": "Panchang", "hi": "पंचांग", "sa": "पंचांग" },
-  "kundali": { "en": "Kundali", "hi": "कुण्डली", "sa": "कुण्डली" },
-  "calendar": { "en": "Calendar", "hi": "पंचांग", "sa": "पंचांग" },
-  "learn": { "en": "Learn", "hi": "सीखें", "sa": "सीखें" },
-  "about": { "en": "About", "hi": "परिचय", "sa": "परिचय" },
-  "pricing": { "en": "Pricing", "hi": "मूल्य", "sa": "मूल्य" },
-  "privacy": { "en": "Privacy", "hi": "गोपनीयता", "sa": "गोपनीयता" },
-  "terms": { "en": "Terms", "hi": "शर्तें", "sa": "पदानि" }
+  "panchang": {
+    "en": "Panchang",
+    "hi": "पंचांग",
+    "sa": "पंचांग",
+    "ta": "Panchang",
+    "te": "Panchang",
+    "bn": "Panchang",
+    "kn": "Panchang",
+    "mr": "Panchang",
+    "gu": "Panchang",
+    "mai": "Panchang"
+  },
+  "kundali": {
+    "en": "Kundali",
+    "hi": "कुण्डली",
+    "sa": "कुण्डली",
+    "ta": "Kundali",
+    "te": "Kundali",
+    "bn": "Kundali",
+    "kn": "Kundali",
+    "mr": "Kundali",
+    "gu": "Kundali",
+    "mai": "Kundali"
+  },
+  "calendar": {
+    "en": "Calendar",
+    "hi": "पंचांग",
+    "sa": "पंचांग",
+    "ta": "Calendar",
+    "te": "Calendar",
+    "bn": "Calendar",
+    "kn": "Calendar",
+    "mr": "Calendar",
+    "gu": "Calendar",
+    "mai": "Calendar"
+  },
+  "learn": {
+    "en": "Learn",
+    "hi": "सीखें",
+    "sa": "सीखें",
+    "ta": "Learn",
+    "te": "Learn",
+    "bn": "Learn",
+    "kn": "Learn",
+    "mr": "Learn",
+    "gu": "Learn",
+    "mai": "Learn"
+  },
+  "about": {
+    "en": "About",
+    "hi": "परिचय",
+    "sa": "परिचय",
+    "ta": "About",
+    "te": "About",
+    "bn": "About",
+    "kn": "About",
+    "mr": "About",
+    "gu": "About",
+    "mai": "About"
+  },
+  "pricing": {
+    "en": "Pricing",
+    "hi": "मूल्य",
+    "sa": "मूल्य",
+    "ta": "Pricing",
+    "te": "Pricing",
+    "bn": "Pricing",
+    "kn": "Pricing",
+    "mr": "Pricing",
+    "gu": "Pricing",
+    "mai": "Pricing"
+  },
+  "privacy": {
+    "en": "Privacy",
+    "hi": "गोपनीयता",
+    "sa": "गोपनीयता",
+    "ta": "Privacy",
+    "te": "Privacy",
+    "bn": "Privacy",
+    "kn": "Privacy",
+    "mr": "Privacy",
+    "gu": "Privacy",
+    "mai": "Privacy"
+  },
+  "terms": {
+    "en": "Terms",
+    "hi": "शर्तें",
+    "sa": "पदानि",
+    "ta": "Terms",
+    "te": "Terms",
+    "bn": "Terms",
+    "kn": "Terms",
+    "mr": "Terms",
+    "gu": "Terms",
+    "mai": "Terms"
+  }
 }

@@ -2,66 +2,157 @@
   "infoBlockTitle": {
     "en": "What is the KP System?",
     "hi": "केपी पद्धति क्या है?",
-    "sa": "केपी पद्धतिः किम्?"
+    "sa": "केपी पद्धतिः किम्?",
+    "ta": "What is the KP System?",
+    "te": "What is the KP System?",
+    "bn": "What is the KP System?",
+    "kn": "What is the KP System?",
+    "mr": "What is the KP System?",
+    "gu": "What is the KP System?",
+    "mai": "What is the KP System?"
   },
   "searchBirthPlace": {
     "en": "Search birth place...",
     "hi": "जन्म स्थान खोजें...",
-    "sa": "जन्म स्थान खोजें..."
+    "sa": "जन्म स्थान खोजें...",
+    "ta": "Search birth place...",
+    "te": "Search birth place...",
+    "bn": "Search birth place...",
+    "kn": "Search birth place...",
+    "mr": "Search birth place...",
+    "gu": "Search birth place...",
+    "mai": "Search birth place..."
   },
   "promised": {
     "en": "PROMISED",
     "hi": "फलदायी",
-    "sa": "फलितम्"
+    "sa": "फलितम्",
+    "ta": "PROMISED",
+    "te": "PROMISED",
+    "bn": "PROMISED",
+    "kn": "PROMISED",
+    "mr": "PROMISED",
+    "gu": "PROMISED",
+    "mai": "PROMISED"
   },
   "withheld": {
     "en": "WITHHELD",
     "hi": "अभाव",
-    "sa": "अभावः"
+    "sa": "अभावः",
+    "ta": "WITHHELD",
+    "te": "WITHHELD",
+    "bn": "WITHHELD",
+    "kn": "WITHHELD",
+    "mr": "WITHHELD",
+    "gu": "WITHHELD",
+    "mai": "WITHHELD"
   },
   "ascSignLord": {
     "en": "Asc Sign Lord",
     "hi": "लग्न राशि स्वामी",
-    "sa": "लग्नराशिस्वामी"
+    "sa": "लग्नराशिस्वामी",
+    "ta": "Asc Sign Lord",
+    "te": "Asc Sign Lord",
+    "bn": "Asc Sign Lord",
+    "kn": "Asc Sign Lord",
+    "mr": "Asc Sign Lord",
+    "gu": "Asc Sign Lord",
+    "mai": "Asc Sign Lord"
   },
   "ascStarLord": {
     "en": "Asc Star Lord",
     "hi": "लग्न नक्षत्र स्वामी",
-    "sa": "लग्ननक्षत्रस्वामी"
+    "sa": "लग्ननक्षत्रस्वामी",
+    "ta": "Asc Star Lord",
+    "te": "Asc Star Lord",
+    "bn": "Asc Star Lord",
+    "kn": "Asc Star Lord",
+    "mr": "Asc Star Lord",
+    "gu": "Asc Star Lord",
+    "mai": "Asc Star Lord"
   },
   "moonSignLord": {
     "en": "Moon Sign Lord",
     "hi": "चन्द्र राशि स्वामी",
-    "sa": "चन्द्रराशिस्वामी"
+    "sa": "चन्द्रराशिस्वामी",
+    "ta": "Moon Sign Lord",
+    "te": "Moon Sign Lord",
+    "bn": "Moon Sign Lord",
+    "kn": "Moon Sign Lord",
+    "mr": "Moon Sign Lord",
+    "gu": "Moon Sign Lord",
+    "mai": "Moon Sign Lord"
   },
   "moonStarLord": {
     "en": "Moon Star Lord",
     "hi": "चन्द्र नक्षत्र स्वामी",
-    "sa": "चन्द्रनक्षत्रस्वामी"
+    "sa": "चन्द्रनक्षत्रस्वामी",
+    "ta": "Moon Star Lord",
+    "te": "Moon Star Lord",
+    "bn": "Moon Star Lord",
+    "kn": "Moon Star Lord",
+    "mr": "Moon Star Lord",
+    "gu": "Moon Star Lord",
+    "mai": "Moon Star Lord"
   },
   "dayLord": {
     "en": "Day Lord",
     "hi": "वार स्वामी",
-    "sa": "वारस्वामी"
+    "sa": "वारस्वामी",
+    "ta": "Day Lord",
+    "te": "Day Lord",
+    "bn": "Day Lord",
+    "kn": "Day Lord",
+    "mr": "Day Lord",
+    "gu": "Day Lord",
+    "mai": "Day Lord"
   },
   "combinedOracle": {
     "en": "Combined Oracle",
     "hi": "संयुक्त ओरेकल",
-    "sa": "संयुक्तओरेकल"
+    "sa": "संयुक्तओरेकल",
+    "ta": "Combined Oracle",
+    "te": "Combined Oracle",
+    "bn": "Combined Oracle",
+    "kn": "Combined Oracle",
+    "mr": "Combined Oracle",
+    "gu": "Combined Oracle",
+    "mai": "Combined Oracle"
   },
   "subLordNote": {
     "en": "The sub-lord of each cusp determines whether that house's matters will materialise in this lifetime.",
     "hi": "प्रत्येक कस्प के उप-स्वामी से उस भाव के फल का निर्धारण होता है।",
-    "sa": "प्रत्येककस्पस्योपस्वामी तद्भावफलं निर्धारयति।"
+    "sa": "प्रत्येककस्पस्योपस्वामी तद्भावफलं निर्धारयति।",
+    "ta": "The sub-lord of each cusp determines whether that house's matters will materialise in this lifetime.",
+    "te": "The sub-lord of each cusp determines whether that house's matters will materialise in this lifetime.",
+    "bn": "The sub-lord of each cusp determines whether that house's matters will materialise in this lifetime.",
+    "kn": "The sub-lord of each cusp determines whether that house's matters will materialise in this lifetime.",
+    "mr": "The sub-lord of each cusp determines whether that house's matters will materialise in this lifetime.",
+    "gu": "The sub-lord of each cusp determines whether that house's matters will materialise in this lifetime.",
+    "mai": "The sub-lord of each cusp determines whether that house's matters will materialise in this lifetime."
   },
   "hide": {
     "en": "Hide",
     "hi": "छुपाएं",
-    "sa": "छुपाएं"
+    "sa": "छुपाएं",
+    "ta": "Hide",
+    "te": "Hide",
+    "bn": "Hide",
+    "kn": "Hide",
+    "mr": "Hide",
+    "gu": "Hide",
+    "mai": "Hide"
   },
   "showTables": {
     "en": "Show tables",
     "hi": "तालिकाएं देखें",
-    "sa": "तालिकाएं देखें"
+    "sa": "तालिकाएं देखें",
+    "ta": "Show tables",
+    "te": "Show tables",
+    "bn": "Show tables",
+    "kn": "Show tables",
+    "mr": "Show tables",
+    "gu": "Show tables",
+    "mai": "Show tables"
   }
 }

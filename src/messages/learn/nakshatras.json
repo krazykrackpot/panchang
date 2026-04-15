@@ -96,8 +96,8 @@
     "mai": "२७ विभाग किएँ? 13°20' क ज्यामिति"
   },
   "spanContent": {
-    "en": "The Moon completes one full orbit (360°) around the zodiac in approximately 27.3 days -- the sidereal lunar month. The ancient Rishis divided the ecliptic into 27 equal segments of 13°20' (13.333°) each, so the Moon traverses roughly one Nakshatra per day. This creates an elegant daily marker system: each night, the Moon \"resides\" in a different stellar mansion. The 27-fold division is also mathematically harmonious: 27 = 3\u00b3, and 27 × 4 padas = 108, the sacred number connecting Nakshatras to the Navamsha (D9) chart.",
-    "hi": "चन्द्रमा राशिचक्र (360°) की एक पूर्ण परिक्रमा लगभग 27.3 दिनों में पूर्ण करता है -- नाक्षत्र चान्द्र मास। प्राचीन ऋषियों ने क्रान्तिवृत्त को 13°20' (13.333°) के 27 समान खण्डों में विभाजित किया, ताकि चन्द्रमा प्रतिदिन लगभग एक नक्षत्र पार करे। 27-गुना विभाजन गणितीय रूप से भी सुन्दर है: 27 = 3\u00b3, और 27 × 4 पाद = 108, वह पवित्र संख्या जो नक्षत्र को नवमांश (D9) कुण्डली से जोड़ती है।",
+    "en": "The Moon completes one full orbit (360°) around the zodiac in approximately 27.3 days -- the sidereal lunar month. The ancient Rishis divided the ecliptic into 27 equal segments of 13°20' (13.333°) each, so the Moon traverses roughly one Nakshatra per day. This creates an elegant daily marker system: each night, the Moon \"resides\" in a different stellar mansion. The 27-fold division is also mathematically harmonious: 27 = 3³, and 27 × 4 padas = 108, the sacred number connecting Nakshatras to the Navamsha (D9) chart.",
+    "hi": "चन्द्रमा राशिचक्र (360°) की एक पूर्ण परिक्रमा लगभग 27.3 दिनों में पूर्ण करता है -- नाक्षत्र चान्द्र मास। प्राचीन ऋषियों ने क्रान्तिवृत्त को 13°20' (13.333°) के 27 समान खण्डों में विभाजित किया, ताकि चन्द्रमा प्रतिदिन लगभग एक नक्षत्र पार करे। 27-गुना विभाजन गणितीय रूप से भी सुन्दर है: 27 = 3³, और 27 × 4 पाद = 108, वह पवित्र संख्या जो नक्षत्र को नवमांश (D9) कुण्डली से जोड़ती है।",
     "sa": "चन्द्रः राशिचक्रस्य (360°) एकां पूर्णां परिक्रमां 27.3 दिनेषु पूरयति — नाक्षत्रचान्द्रमासः। प्राचीनैः ऋषिभिः क्रान्तिवृत्तं 13°20' इत्यस्य 27 समखण्डेषु विभक्तम्।",
     "ta": "சந்திரன் ராசிச்சக்கரத்தை (360°) சுமார் 27.3 நாட்களில் ஒரு முழு சுற்று செய்கிறார் -- நாட்சத்திர சந்திர மாதம். பண்டைய ரிஷிகள் கிரகணப்பாதையை 13°20' (13.333°) கொண்ட 27 சம பகுதிகளாகப் பிரித்தனர், இதனால் சந்திரன் ஒரு நாளுக்கு ஒரு நட்சத்திரத்தைக் கடக்கிறார்.",
     "te": "చంద్రుడు రాశిచక్రం (360°) చుట్టూ సుమారు 27.3 రోజుల్లో ఒక పూర్తి భ్రమణం చేస్తాడు -- నాక్షత్ర చాంద్ర మాసం. పురాతన ఋషులు క్రాంతివృత్తాన్ని 13°20' (13.333°) ఉన్న 27 సమ భాగాలుగా విభజించారు.",
@@ -156,10 +156,28 @@
     "mai": "प्रत्येक नक्षत्र केँ 9 ग्रह मे सँ एक ग्रह स्वामी आवण्टित अछि। ई स्वामी 9 क एकटा निश्चित चक्र मे दोहराइत अछि, प्रत्येक 3 नक्षत्र पर शासन करैत अछि। ई आवण्टन विंशोत्तरी दशाक आधार छी।"
   },
   "dashaStartingPointEn": {
-    "en": "The mapping begins at Ashwini — the very first nakshatra at 0° Aries (the start of the sidereal zodiac). Ketu is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order."
+    "en": "The mapping begins at Ashwini — the very first nakshatra at 0° Aries (the start of the sidereal zodiac). Ketu is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order.",
+    "hi": "The mapping begins at Ashwini — the very first nakshatra at 0° Aries (the start of the sidereal zodiac). Ketu is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order.",
+    "sa": "The mapping begins at Ashwini — the very first nakshatra at 0° Aries (the start of the sidereal zodiac). Ketu is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order.",
+    "ta": "The mapping begins at Ashwini — the very first nakshatra at 0° Aries (the start of the sidereal zodiac). Ketu is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order.",
+    "te": "The mapping begins at Ashwini — the very first nakshatra at 0° Aries (the start of the sidereal zodiac). Ketu is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order.",
+    "bn": "The mapping begins at Ashwini — the very first nakshatra at 0° Aries (the start of the sidereal zodiac). Ketu is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order.",
+    "kn": "The mapping begins at Ashwini — the very first nakshatra at 0° Aries (the start of the sidereal zodiac). Ketu is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order.",
+    "mr": "The mapping begins at Ashwini — the very first nakshatra at 0° Aries (the start of the sidereal zodiac). Ketu is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order.",
+    "gu": "The mapping begins at Ashwini — the very first nakshatra at 0° Aries (the start of the sidereal zodiac). Ketu is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order.",
+    "mai": "The mapping begins at Ashwini — the very first nakshatra at 0° Aries (the start of the sidereal zodiac). Ketu is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order."
   },
   "dashaStartingPointHi": {
-    "en": "मैपिंग अश्विनी — प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। केतु अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं।"
+    "en": "मैपिंग अश्विनी — प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। केतु अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं।",
+    "hi": "मैपिंग अश्विनी — प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। केतु अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं।",
+    "sa": "मैपिंग अश्विनी — प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। केतु अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं।",
+    "ta": "मैपिंग अश्विनी — प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। केतु अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं।",
+    "te": "मैपिंग अश्विनी — प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। केतु अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं।",
+    "bn": "मैपिंग अश्विनी — प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। केतु अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं।",
+    "kn": "मैपिंग अश्विनी — प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। केतु अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं।",
+    "mr": "मैपिंग अश्विनी — प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। केतु अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं।",
+    "gu": "मैपिंग अश्विनी — प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। केतु अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं।",
+    "mai": "मैपिंग अश्विनी — प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। केतु अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं।"
   },
   "yrs": {
     "en": "yrs",
@@ -330,16 +348,52 @@
     "mai": "नक्षत्रक सबसँ प्रिय व्यावहारिक अनुप्रयोग नामकरण संस्कार छी। प्रत्येक नक्षत्र पादक एकटा निर्दिष्ट प्रारम्भिक अक्षर होइत अछि।"
   },
   "pada1": {
-    "en": "Pada 1", "hi": "पाद 1", "sa": "पादः 1", "ta": "பாதம் 1", "te": "పాదం 1", "bn": "পাদ ১", "kn": "ಪಾದ 1", "mr": "पाद 1", "gu": "પાદ 1", "mai": "पाद 1"
+    "en": "Pada 1",
+    "hi": "पाद 1",
+    "sa": "पादः 1",
+    "ta": "பாதம் 1",
+    "te": "పాదం 1",
+    "bn": "পাদ ১",
+    "kn": "ಪಾದ 1",
+    "mr": "पाद 1",
+    "gu": "પાદ 1",
+    "mai": "पाद 1"
   },
   "pada2": {
-    "en": "Pada 2", "hi": "पाद 2", "sa": "पादः 2", "ta": "பாதம் 2", "te": "పాదం 2", "bn": "পাদ ২", "kn": "ಪಾದ 2", "mr": "पाद 2", "gu": "પાદ 2", "mai": "पाद 2"
+    "en": "Pada 2",
+    "hi": "पाद 2",
+    "sa": "पादः 2",
+    "ta": "பாதம் 2",
+    "te": "పాదం 2",
+    "bn": "পাদ ২",
+    "kn": "ಪಾದ 2",
+    "mr": "पाद 2",
+    "gu": "પાદ 2",
+    "mai": "पाद 2"
   },
   "pada3": {
-    "en": "Pada 3", "hi": "पाद 3", "sa": "पादः 3", "ta": "பாதம் 3", "te": "పాదం 3", "bn": "পাদ ৩", "kn": "ಪಾದ 3", "mr": "पाद 3", "gu": "પાદ 3", "mai": "पाद 3"
+    "en": "Pada 3",
+    "hi": "पाद 3",
+    "sa": "पादः 3",
+    "ta": "பாதம் 3",
+    "te": "పాదం 3",
+    "bn": "পাদ ৩",
+    "kn": "ಪಾದ 3",
+    "mr": "पाद 3",
+    "gu": "પાદ 3",
+    "mai": "पाद 3"
   },
   "pada4": {
-    "en": "Pada 4", "hi": "पाद 4", "sa": "पादः 4", "ta": "பாதம் 4", "te": "పాదం 4", "bn": "পাদ ৪", "kn": "ಪಾದ 4", "mr": "पाद 4", "gu": "પાદ 4", "mai": "पाद 4"
+    "en": "Pada 4",
+    "hi": "पाद 4",
+    "sa": "पादः 4",
+    "ta": "பாதம் 4",
+    "te": "పాదం 4",
+    "bn": "পাদ ৪",
+    "kn": "ಪಾದ 4",
+    "mr": "पाद 4",
+    "gu": "પાદ 4",
+    "mai": "पाद 4"
   },
   "namingExample": {
     "en": "Example: A child born with Moon in Rohini Pada 1 (syllable \"O\") might be named Om, Omkar, or Ojas. For Pushya Pada 4 (syllable \"Da\"), names like Daksha, Darpan, or Damini are traditional.",
@@ -546,16 +600,52 @@
     "mai": "प्रत्येक नक्षत्रक पहचान एकटा योगतारा (संयोजक तारा) सँ होइत अछि — ओइ चान्द्र भवनक सबसँ चमकीला तारा।"
   },
   "yogatara": {
-    "en": "Yogatara", "hi": "योगतारा", "sa": "योगतारा", "ta": "யோகதாரா", "te": "యోగతార", "bn": "যোগতারা", "kn": "ಯೋಗತಾರಾ", "mr": "योगतारा", "gu": "યોગતારા", "mai": "योगतारा"
+    "en": "Yogatara",
+    "hi": "योगतारा",
+    "sa": "योगतारा",
+    "ta": "யோகதாரா",
+    "te": "యోగతార",
+    "bn": "যোগতারা",
+    "kn": "ಯೋಗತಾರಾ",
+    "mr": "योगतारा",
+    "gu": "યોગતારા",
+    "mai": "योगतारा"
   },
   "designation": {
-    "en": "Designation", "hi": "पदनाम", "sa": "पदनामम्", "ta": "குறியீடு", "te": "హోదా", "bn": "পদবি", "kn": "ಹುದ್ದೆ", "mr": "पदनाम", "gu": "હોદ્દો", "mai": "पदनाम"
+    "en": "Designation",
+    "hi": "पदनाम",
+    "sa": "पदनामम्",
+    "ta": "குறியீடு",
+    "te": "హోదా",
+    "bn": "পদবি",
+    "kn": "ಹುದ್ದೆ",
+    "mr": "पदनाम",
+    "gu": "હોદ્દો",
+    "mai": "पदनाम"
   },
   "constellation": {
-    "en": "Constellation", "hi": "तारामण्डल", "sa": "तारामण्डलम्", "ta": "விண்மீன் தொகுதி", "te": "నక్షత్రమండలం", "bn": "তারামণ্ডল", "kn": "ನಕ್ಷತ್ರಮಂಡಲ", "mr": "तारामंडळ", "gu": "તારામંડળ", "mai": "तारामण्डल"
+    "en": "Constellation",
+    "hi": "तारामण्डल",
+    "sa": "तारामण्डलम्",
+    "ta": "விண்மீன் தொகுதி",
+    "te": "నక్షత్రమండలం",
+    "bn": "তারামণ্ডল",
+    "kn": "ನಕ್ಷತ್ರಮಂಡಲ",
+    "mr": "तारामंडळ",
+    "gu": "તારામંડળ",
+    "mai": "तारामण्डल"
   },
   "magnitude": {
-    "en": "Mag.", "hi": "कान्ति", "sa": "कान्तिः", "ta": "ஒளி.", "te": "ప్రకాశం", "bn": "দীপ্তি", "kn": "ಕಾಂತಿ", "mr": "कांती", "gu": "કાંતિ", "mai": "कान्ति"
+    "en": "Mag.",
+    "hi": "कान्ति",
+    "sa": "कान्तिः",
+    "ta": "ஒளி.",
+    "te": "ప్రకాశం",
+    "bn": "দীপ্তি",
+    "kn": "ಕಾಂತಿ",
+    "mr": "कांती",
+    "gu": "કાંતિ",
+    "mai": "कान्ति"
   },
   "magnitudeNote": {
     "en": "Magnitude (Mag.) measures apparent brightness — lower is brighter. Stars below ~1.0 are among the brightest in the sky. Notable: Arcturus (Swati, -0.05) is the 4th brightest star; Aldebaran (Rohini, 0.85) and Spica (Chitra, 0.97) are also first-magnitude stars.",
@@ -822,13 +912,40 @@
     "mai": "अयनांश"
   },
   "rashis": {
-    "en": "Rashis (Signs)", "hi": "राशियाँ", "sa": "राशयः", "ta": "ராசிகள்", "te": "రాశులు", "bn": "রাশি", "kn": "ರಾಶಿಗಳು", "mr": "राशी", "gu": "રાશીઓ", "mai": "राशि"
+    "en": "Rashis (Signs)",
+    "hi": "राशियाँ",
+    "sa": "राशयः",
+    "ta": "ராசிகள்",
+    "te": "రాశులు",
+    "bn": "রাশি",
+    "kn": "ರಾಶಿಗಳು",
+    "mr": "राशी",
+    "gu": "રાશીઓ",
+    "mai": "राशि"
   },
   "nakshatras_label": {
-    "en": "Nakshatras (Stars)", "hi": "नक्षत्र", "sa": "नक्षत्राणि", "ta": "நட்சத்திரங்கள்", "te": "నక్షత్రాలు", "bn": "নক্ষত্র", "kn": "ನಕ್ಷತ್ರಗಳು", "mr": "नक्षत्रे", "gu": "નક્ષત્રો", "mai": "नक्षत्र"
+    "en": "Nakshatras (Stars)",
+    "hi": "नक्षत्र",
+    "sa": "नक्षत्राणि",
+    "ta": "நட்சத்திரங்கள்",
+    "te": "నక్షత్రాలు",
+    "bn": "নক্ষত্র",
+    "kn": "ನಕ್ಷತ್ರಗಳು",
+    "mr": "नक्षत्रे",
+    "gu": "નક્ષત્રો",
+    "mai": "नक्षत्र"
   },
   "padas_label": {
-    "en": "Padas (Quarters)", "hi": "पाद (चतुर्थांश)", "sa": "पादाः (चतुर्थांशाः)", "ta": "பாதங்கள் (பகுதிகள்)", "te": "పాదాలు (భాగాలు)", "bn": "পাদ (চতুর্থাংশ)", "kn": "ಪಾದಗಳು (ಭಾಗಗಳು)", "mr": "पाद (चतुर्थांश)", "gu": "પાદ (ચતુર્થાંશ)", "mai": "पाद (चतुर्थांश)"
+    "en": "Padas (Quarters)",
+    "hi": "पाद (चतुर्थांश)",
+    "sa": "पादाः (चतुर्थांशाः)",
+    "ta": "பாதங்கள் (பகுதிகள்)",
+    "te": "పాదాలు (భాగాలు)",
+    "bn": "পাদ (চতুর্থাংশ)",
+    "kn": "ಪಾದಗಳು (ಭಾಗಗಳು)",
+    "mr": "पाद (चतुर्थांश)",
+    "gu": "પાદ (ચતુર્થાંશ)",
+    "mai": "पाद (चतुर्थांश)"
   },
   "precessionMilankovitchTitle": {
     "en": "Precession & the Milankovitch Cycles",

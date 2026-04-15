@@ -1129,7 +1129,15 @@
   },
   "sthira_Kimstughna_pos": {
     "en": "1",
-    "hi": "1"
+    "hi": "1",
+    "sa": "1",
+    "ta": "1",
+    "te": "1",
+    "bn": "1",
+    "kn": "1",
+    "mr": "1",
+    "gu": "1",
+    "mai": "1"
   },
   "sthira_Kimstughna_tithi": {
     "en": "Shukla Pratipada, 1st half",
@@ -1145,7 +1153,15 @@
   },
   "sthira_Shakuni_pos": {
     "en": "58",
-    "hi": "58"
+    "hi": "58",
+    "sa": "58",
+    "ta": "58",
+    "te": "58",
+    "bn": "58",
+    "kn": "58",
+    "mr": "58",
+    "gu": "58",
+    "mai": "58"
   },
   "sthira_Shakuni_tithi": {
     "en": "Krishna Chaturdashi, 2nd half",
@@ -1161,7 +1177,15 @@
   },
   "sthira_Chatushpada_pos": {
     "en": "59",
-    "hi": "59"
+    "hi": "59",
+    "sa": "59",
+    "ta": "59",
+    "te": "59",
+    "bn": "59",
+    "kn": "59",
+    "mr": "59",
+    "gu": "59",
+    "mai": "59"
   },
   "sthira_Chatushpada_tithi": {
     "en": "Amavasya, 1st half",
@@ -1177,7 +1201,15 @@
   },
   "sthira_Nagava_pos": {
     "en": "60",
-    "hi": "60"
+    "hi": "60",
+    "sa": "60",
+    "ta": "60",
+    "te": "60",
+    "bn": "60",
+    "kn": "60",
+    "mr": "60",
+    "gu": "60",
+    "mai": "60"
   },
   "sthira_Nagava_tithi": {
     "en": "Amavasya, 2nd half",

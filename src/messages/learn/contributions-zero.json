@@ -73,7 +73,15 @@
   },
   "s2QuoteMain": {
     "en": "शून्यं शून्येन संयुक्तं शून्यम्",
-    "hi": "शून्यं शून्येन संयुक्तं शून्यम्"
+    "hi": "शून्यं शून्येन संयुक्तं शून्यम्",
+    "sa": "शून्यं शून्येन संयुक्तं शून्यम्",
+    "ta": "शून्यं शून्येन संयुक्तं शून्यम्",
+    "te": "शून्यं शून्येन संयुक्तं शून्यम्",
+    "bn": "शून्यं शून्येन संयुक्तं शून्यम्",
+    "kn": "शून्यं शून्येन संयुक्तं शून्यम्",
+    "mr": "शून्यं शून्येन संयुक्तं शून्यम्",
+    "gu": "शून्यं शून्येन संयुक्तं शून्यम्",
+    "mai": "शून्यं शून्येन संयुक्तं शून्यम्"
   },
   "s2QuoteTrans": {
     "en": "Zero plus zero equals zero.",
@@ -281,127 +289,375 @@
   },
   "rule1": {
     "en": "zero + zero = zero",
-    "hi": "शून्य + शून्य = शून्य"
+    "hi": "शून्य + शून्य = शून्य",
+    "sa": "zero + zero = zero",
+    "ta": "zero + zero = zero",
+    "te": "zero + zero = zero",
+    "bn": "zero + zero = zero",
+    "kn": "zero + zero = zero",
+    "mr": "zero + zero = zero",
+    "gu": "zero + zero = zero",
+    "mai": "zero + zero = zero"
   },
   "rule2": {
     "en": "positive + zero = positive",
-    "hi": "धन + शून्य = धन"
+    "hi": "धन + शून्य = धन",
+    "sa": "positive + zero = positive",
+    "ta": "positive + zero = positive",
+    "te": "positive + zero = positive",
+    "bn": "positive + zero = positive",
+    "kn": "positive + zero = positive",
+    "mr": "positive + zero = positive",
+    "gu": "positive + zero = positive",
+    "mai": "positive + zero = positive"
   },
   "rule3": {
     "en": "negative + zero = negative",
-    "hi": "ऋण + शून्य = ऋण"
+    "hi": "ऋण + शून्य = ऋण",
+    "sa": "negative + zero = negative",
+    "ta": "negative + zero = negative",
+    "te": "negative + zero = negative",
+    "bn": "negative + zero = negative",
+    "kn": "negative + zero = negative",
+    "mr": "negative + zero = negative",
+    "gu": "negative + zero = negative",
+    "mai": "negative + zero = negative"
   },
   "rule4": {
     "en": "zero × any number = zero",
-    "hi": "शून्य × कोई भी = शून्य"
+    "hi": "शून्य × कोई भी = शून्य",
+    "sa": "zero × any number = zero",
+    "ta": "zero × any number = zero",
+    "te": "zero × any number = zero",
+    "bn": "zero × any number = zero",
+    "kn": "zero × any number = zero",
+    "mr": "zero × any number = zero",
+    "gu": "zero × any number = zero",
+    "mai": "zero × any number = zero"
   },
   "rule5": {
     "en": "positive × negative = negative",
-    "hi": "धन × ऋण = ऋण"
+    "hi": "धन × ऋण = ऋण",
+    "sa": "positive × negative = negative",
+    "ta": "positive × negative = negative",
+    "te": "positive × negative = negative",
+    "bn": "positive × negative = negative",
+    "kn": "positive × negative = negative",
+    "mr": "positive × negative = negative",
+    "gu": "positive × negative = negative",
+    "mai": "positive × negative = negative"
   },
   "rule6": {
     "en": "0 ÷ 0 = 0 (his one error!)",
-    "hi": "0 ÷ 0 = 0 (उनकी एकमात्र त्रुटि!)"
+    "hi": "0 ÷ 0 = 0 (उनकी एकमात्र त्रुटि!)",
+    "sa": "0 ÷ 0 = 0 (his one error!)",
+    "ta": "0 ÷ 0 = 0 (his one error!)",
+    "te": "0 ÷ 0 = 0 (his one error!)",
+    "bn": "0 ÷ 0 = 0 (his one error!)",
+    "kn": "0 ÷ 0 = 0 (his one error!)",
+    "mr": "0 ÷ 0 = 0 (his one error!)",
+    "gu": "0 ÷ 0 = 0 (his one error!)",
+    "mai": "0 ÷ 0 = 0 (his one error!)"
   },
   "civRomeProblem": {
     "en": "No zero → counting boards required for every calculation",
-    "hi": "शून्य नहीं → हर गणना के लिए काउंटिंग बोर्ड चाहिए"
+    "hi": "शून्य नहीं → हर गणना के लिए काउंटिंग बोर्ड चाहिए",
+    "sa": "No zero → counting boards required for every calculation",
+    "ta": "No zero → counting boards required for every calculation",
+    "te": "No zero → counting boards required for every calculation",
+    "bn": "No zero → counting boards required for every calculation",
+    "kn": "No zero → counting boards required for every calculation",
+    "mr": "No zero → counting boards required for every calculation",
+    "gu": "No zero → counting boards required for every calculation",
+    "mai": "No zero → counting boards required for every calculation"
   },
   "civGreeceProblem": {
     "en": "Philosophical block — \"Nothing cannot be Something\"",
-    "hi": "दार्शनिक बाधा — \"शून्य कुछ नहीं हो सकता\""
+    "hi": "दार्शनिक बाधा — \"शून्य कुछ नहीं हो सकता\"",
+    "sa": "Philosophical block — \"Nothing cannot be Something\"",
+    "ta": "Philosophical block — \"Nothing cannot be Something\"",
+    "te": "Philosophical block — \"Nothing cannot be Something\"",
+    "bn": "Philosophical block — \"Nothing cannot be Something\"",
+    "kn": "Philosophical block — \"Nothing cannot be Something\"",
+    "mr": "Philosophical block — \"Nothing cannot be Something\"",
+    "gu": "Philosophical block — \"Nothing cannot be Something\"",
+    "mai": "Philosophical block — \"Nothing cannot be Something\""
   },
   "civBabylonProblem": {
     "en": "Placeholder zero only — never a number",
-    "hi": "केवल स्थान-धारक शून्य — कभी संख्या नहीं"
+    "hi": "केवल स्थान-धारक शून्य — कभी संख्या नहीं",
+    "sa": "Placeholder zero only — never a number",
+    "ta": "Placeholder zero only — never a number",
+    "te": "Placeholder zero only — never a number",
+    "bn": "Placeholder zero only — never a number",
+    "kn": "Placeholder zero only — never a number",
+    "mr": "Placeholder zero only — never a number",
+    "gu": "Placeholder zero only — never a number",
+    "mai": "Placeholder zero only — never a number"
   },
   "bakhshaliDot": {
     "en": "Bakhshali dot (~300 CE)",
-    "hi": "बख्शाली बिंदु (~300 ईस्वी)"
+    "hi": "बख्शाली बिंदु (~300 ईस्वी)",
+    "sa": "Bakhshali dot (~300 CE)",
+    "ta": "Bakhshali dot (~300 CE)",
+    "te": "Bakhshali dot (~300 CE)",
+    "bn": "Bakhshali dot (~300 CE)",
+    "kn": "Bakhshali dot (~300 CE)",
+    "mr": "Bakhshali dot (~300 CE)",
+    "gu": "Bakhshali dot (~300 CE)",
+    "mai": "Bakhshali dot (~300 CE)"
   },
   "earthsOldestZero": {
     "en": "Earth's oldest zero",
-    "hi": "पृथ्वी पर सबसे पुराना शून्य"
+    "hi": "पृथ्वी पर सबसे पुराना शून्य",
+    "sa": "Earth's oldest zero",
+    "ta": "Earth's oldest zero",
+    "te": "Earth's oldest zero",
+    "bn": "Earth's oldest zero",
+    "kn": "Earth's oldest zero",
+    "mr": "Earth's oldest zero",
+    "gu": "Earth's oldest zero",
+    "mai": "Earth's oldest zero"
   },
   "brahmaguptaNumber": {
     "en": "Brahmagupta number (628 CE)",
-    "hi": "ब्रह्मगुप्त संख्या (628 ईस्वी)"
+    "hi": "ब्रह्मगुप्त संख्या (628 ईस्वी)",
+    "sa": "Brahmagupta number (628 CE)",
+    "ta": "Brahmagupta number (628 CE)",
+    "te": "Brahmagupta number (628 CE)",
+    "bn": "Brahmagupta number (628 CE)",
+    "kn": "Brahmagupta number (628 CE)",
+    "mr": "Brahmagupta number (628 CE)",
+    "gu": "Brahmagupta number (628 CE)",
+    "mai": "Brahmagupta number (628 CE)"
   },
   "placeholderToNumber": {
     "en": "Placeholder to full number",
-    "hi": "स्थान-धारक से पूर्ण संख्या"
+    "hi": "स्थान-धारक से पूर्ण संख्या",
+    "sa": "Placeholder to full number",
+    "ta": "Placeholder to full number",
+    "te": "Placeholder to full number",
+    "bn": "Placeholder to full number",
+    "kn": "Placeholder to full number",
+    "mr": "Placeholder to full number",
+    "gu": "Placeholder to full number",
+    "mai": "Placeholder to full number"
   },
   "thCivilization": {
     "en": "Civilization",
-    "hi": "सभ्यता"
+    "hi": "सभ्यता",
+    "sa": "Civilization",
+    "ta": "Civilization",
+    "te": "Civilization",
+    "bn": "Civilization",
+    "kn": "Civilization",
+    "mr": "Civilization",
+    "gu": "Civilization",
+    "mai": "Civilization"
   },
   "thZeroType": {
     "en": "Zero Type",
-    "hi": "शून्य का प्रकार"
+    "hi": "शून्य का प्रकार",
+    "sa": "Zero Type",
+    "ta": "Zero Type",
+    "te": "Zero Type",
+    "bn": "Zero Type",
+    "kn": "Zero Type",
+    "mr": "Zero Type",
+    "gu": "Zero Type",
+    "mai": "Zero Type"
   },
   "thArithmetic": {
     "en": "Arithmetic?",
-    "hi": "अंकगणित?"
+    "hi": "अंकगणित?",
+    "sa": "Arithmetic?",
+    "ta": "Arithmetic?",
+    "te": "Arithmetic?",
+    "bn": "Arithmetic?",
+    "kn": "Arithmetic?",
+    "mr": "Arithmetic?",
+    "gu": "Arithmetic?",
+    "mai": "Arithmetic?"
   },
   "placeholderOnly": {
     "en": "Placeholder only",
-    "hi": "केवल स्थान-धारक"
+    "hi": "केवल स्थान-धारक",
+    "sa": "Placeholder only",
+    "ta": "Placeholder only",
+    "te": "Placeholder only",
+    "bn": "Placeholder only",
+    "kn": "Placeholder only",
+    "mr": "Placeholder only",
+    "gu": "Placeholder only",
+    "mai": "Placeholder only"
   },
   "placeholderDot": {
     "en": "Placeholder dot",
-    "hi": "स्थान-धारक बिंदु"
+    "hi": "स्थान-धारक बिंदु",
+    "sa": "Placeholder dot",
+    "ta": "Placeholder dot",
+    "te": "Placeholder dot",
+    "bn": "Placeholder dot",
+    "kn": "Placeholder dot",
+    "mr": "Placeholder dot",
+    "gu": "Placeholder dot",
+    "mai": "Placeholder dot"
   },
   "fullNumberWithRules": {
     "en": "FULL NUMBER with rules",
-    "hi": "नियमों के साथ पूर्ण संख्या"
+    "hi": "नियमों के साथ पूर्ण संख्या",
+    "sa": "FULL NUMBER with rules",
+    "ta": "FULL NUMBER with rules",
+    "te": "FULL NUMBER with rules",
+    "bn": "FULL NUMBER with rules",
+    "kn": "FULL NUMBER with rules",
+    "mr": "FULL NUMBER with rules",
+    "gu": "FULL NUMBER with rules",
+    "mai": "FULL NUMBER with rules"
   },
   "yes": {
     "en": "YES!",
-    "hi": "हाँ!"
+    "hi": "हाँ!",
+    "sa": "YES!",
+    "ta": "YES!",
+    "te": "YES!",
+    "bn": "YES!",
+    "kn": "YES!",
+    "mr": "YES!",
+    "gu": "YES!",
+    "mai": "YES!"
   },
   "no": {
     "en": "No",
-    "hi": "नहीं"
+    "hi": "नहीं",
+    "sa": "No",
+    "ta": "No",
+    "te": "No",
+    "bn": "No",
+    "kn": "No",
+    "mr": "No",
+    "gu": "No",
+    "mai": "No"
   },
   "binaryCode": {
     "en": "Binary Code",
-    "hi": "बाइनरी कोड"
+    "hi": "बाइनरी कोड",
+    "sa": "Binary Code",
+    "ta": "Binary Code",
+    "te": "Binary Code",
+    "bn": "Binary Code",
+    "kn": "Binary Code",
+    "mr": "Binary Code",
+    "gu": "Binary Code",
+    "mai": "Binary Code"
   },
   "requiresZeroOne": {
     "en": "Requires 0 and 1",
-    "hi": "0 और 1 आवश्यक"
+    "hi": "0 और 1 आवश्यक",
+    "sa": "Requires 0 and 1",
+    "ta": "Requires 0 and 1",
+    "te": "Requires 0 and 1",
+    "bn": "Requires 0 and 1",
+    "kn": "Requires 0 and 1",
+    "mr": "Requires 0 and 1",
+    "gu": "Requires 0 and 1",
+    "mai": "Requires 0 and 1"
   },
   "gps": {
     "en": "GPS",
-    "hi": "जीपीएस"
+    "hi": "जीपीएस",
+    "sa": "GPS",
+    "ta": "GPS",
+    "te": "GPS",
+    "bn": "GPS",
+    "kn": "GPS",
+    "mr": "GPS",
+    "gu": "GPS",
+    "mai": "GPS"
   },
   "continuousCalculus": {
     "en": "Continuous calculus",
-    "hi": "निरंतर कलन"
+    "hi": "निरंतर कलन",
+    "sa": "Continuous calculus",
+    "ta": "Continuous calculus",
+    "te": "Continuous calculus",
+    "bn": "Continuous calculus",
+    "kn": "Continuous calculus",
+    "mr": "Continuous calculus",
+    "gu": "Continuous calculus",
+    "mai": "Continuous calculus"
   },
   "calculus": {
     "en": "Calculus",
-    "hi": "कलन"
+    "hi": "कलन",
+    "sa": "Calculus",
+    "ta": "Calculus",
+    "te": "Calculus",
+    "bn": "Calculus",
+    "kn": "Calculus",
+    "mr": "Calculus",
+    "gu": "Calculus",
+    "mai": "Calculus"
   },
   "limitsToZero": {
     "en": "Limits → 0",
-    "hi": "सीमाएँ → 0"
+    "hi": "सीमाएँ → 0",
+    "sa": "Limits → 0",
+    "ta": "Limits → 0",
+    "te": "Limits → 0",
+    "bn": "Limits → 0",
+    "kn": "Limits → 0",
+    "mr": "Limits → 0",
+    "gu": "Limits → 0",
+    "mai": "Limits → 0"
   },
   "algebra": {
     "en": "Algebra",
-    "hi": "बीजगणित"
+    "hi": "बीजगणित",
+    "sa": "Algebra",
+    "ta": "Algebra",
+    "te": "Algebra",
+    "bn": "Algebra",
+    "kn": "Algebra",
+    "mr": "Algebra",
+    "gu": "Algebra",
+    "mai": "Algebra"
   },
   "equationsNeedZero": {
     "en": "Equations need 0",
-    "hi": "समीकरणों को 0 चाहिए"
+    "hi": "समीकरणों को 0 चाहिए",
+    "sa": "Equations need 0",
+    "ta": "Equations need 0",
+    "te": "Equations need 0",
+    "bn": "Equations need 0",
+    "kn": "Equations need 0",
+    "mr": "Equations need 0",
+    "gu": "Equations need 0",
+    "mai": "Equations need 0"
   },
   "brahmaguptaError": {
     "en": "Brahmagupta's one error:",
-    "hi": "ब्रह्मगुप्त की एकमात्र त्रुटि:"
+    "hi": "ब्रह्मगुप्त की एकमात्र त्रुटि:",
+    "sa": "Brahmagupta's one error:",
+    "ta": "Brahmagupta's one error:",
+    "te": "Brahmagupta's one error:",
+    "bn": "Brahmagupta's one error:",
+    "kn": "Brahmagupta's one error:",
+    "mr": "Brahmagupta's one error:",
+    "gu": "Brahmagupta's one error:",
+    "mai": "Brahmagupta's one error:"
   },
   "bhaskaraNote": {
     "en": "Bhaskara II (1150 CE): n ÷ 0 = ananta (∞) where n≠0 — still not fully correct, but closer.",
-    "hi": "भास्कर II (1150 ईस्वी): n ÷ 0 = अनन्त (∞) जहाँ n≠0 — यह भी पूरी तरह सही नहीं, लेकिन करीब था।"
+    "hi": "भास्कर II (1150 ईस्वी): n ÷ 0 = अनन्त (∞) जहाँ n≠0 — यह भी पूरी तरह सही नहीं, लेकिन करीब था।",
+    "sa": "Bhaskara II (1150 CE): n ÷ 0 = ananta (∞) where n≠0 — still not fully correct, but closer.",
+    "ta": "Bhaskara II (1150 CE): n ÷ 0 = ananta (∞) where n≠0 — still not fully correct, but closer.",
+    "te": "Bhaskara II (1150 CE): n ÷ 0 = ananta (∞) where n≠0 — still not fully correct, but closer.",
+    "bn": "Bhaskara II (1150 CE): n ÷ 0 = ananta (∞) where n≠0 — still not fully correct, but closer.",
+    "kn": "Bhaskara II (1150 CE): n ÷ 0 = ananta (∞) where n≠0 — still not fully correct, but closer.",
+    "mr": "Bhaskara II (1150 CE): n ÷ 0 = ananta (∞) where n≠0 — still not fully correct, but closer.",
+    "gu": "Bhaskara II (1150 CE): n ÷ 0 = ananta (∞) where n≠0 — still not fully correct, but closer.",
+    "mai": "Bhaskara II (1150 CE): n ÷ 0 = ananta (∞) where n≠0 — still not fully correct, but closer."
   },
   "keySanskritTerms": {
     "en": "Key Sanskrit Terms",
@@ -429,50 +685,146 @@
   },
   "journeyPlace1": {
     "en": "Bakhshali, India",
-    "hi": "बख्शाली, भारत"
+    "hi": "बख्शाली, भारत",
+    "sa": "Bakhshali, India",
+    "ta": "Bakhshali, India",
+    "te": "Bakhshali, India",
+    "bn": "Bakhshali, India",
+    "kn": "Bakhshali, India",
+    "mr": "Bakhshali, India",
+    "gu": "Bakhshali, India",
+    "mai": "Bakhshali, India"
   },
   "journeyEvent1": {
     "en": "Earliest physical zero dot on birch bark manuscript",
-    "hi": "भोजपत्र पांडुलिपि पर सबसे पुराना भौतिक शून्य बिंदु"
+    "hi": "भोजपत्र पांडुलिपि पर सबसे पुराना भौतिक शून्य बिंदु",
+    "sa": "Earliest physical zero dot on birch bark manuscript",
+    "ta": "Earliest physical zero dot on birch bark manuscript",
+    "te": "Earliest physical zero dot on birch bark manuscript",
+    "bn": "Earliest physical zero dot on birch bark manuscript",
+    "kn": "Earliest physical zero dot on birch bark manuscript",
+    "mr": "Earliest physical zero dot on birch bark manuscript",
+    "gu": "Earliest physical zero dot on birch bark manuscript",
+    "mai": "Earliest physical zero dot on birch bark manuscript"
   },
   "journeyPlace2": {
     "en": "Ujjain, India",
-    "hi": "उज्जैन, भारत"
+    "hi": "उज्जैन, भारत",
+    "sa": "Ujjain, India",
+    "ta": "Ujjain, India",
+    "te": "Ujjain, India",
+    "bn": "Ujjain, India",
+    "kn": "Ujjain, India",
+    "mr": "Ujjain, India",
+    "gu": "Ujjain, India",
+    "mai": "Ujjain, India"
   },
   "journeyEvent2": {
     "en": "Brahmagupta defines zero as a full number with arithmetic rules",
-    "hi": "ब्रह्मगुप्त शून्य को अंकगणितीय नियमों के साथ पूर्ण संख्या के रूप में परिभाषित करते हैं"
+    "hi": "ब्रह्मगुप्त शून्य को अंकगणितीय नियमों के साथ पूर्ण संख्या के रूप में परिभाषित करते हैं",
+    "sa": "Brahmagupta defines zero as a full number with arithmetic rules",
+    "ta": "Brahmagupta defines zero as a full number with arithmetic rules",
+    "te": "Brahmagupta defines zero as a full number with arithmetic rules",
+    "bn": "Brahmagupta defines zero as a full number with arithmetic rules",
+    "kn": "Brahmagupta defines zero as a full number with arithmetic rules",
+    "mr": "Brahmagupta defines zero as a full number with arithmetic rules",
+    "gu": "Brahmagupta defines zero as a full number with arithmetic rules",
+    "mai": "Brahmagupta defines zero as a full number with arithmetic rules"
   },
   "journeyPlace3": {
     "en": "Baghdad, Iraq",
-    "hi": "बगदाद, इराक"
+    "hi": "बगदाद, इराक",
+    "sa": "Baghdad, Iraq",
+    "ta": "Baghdad, Iraq",
+    "te": "Baghdad, Iraq",
+    "bn": "Baghdad, Iraq",
+    "kn": "Baghdad, Iraq",
+    "mr": "Baghdad, Iraq",
+    "gu": "Baghdad, Iraq",
+    "mai": "Baghdad, Iraq"
   },
   "journeyEvent3": {
     "en": "Al-Khwarizmi translates Indian numerals — gives us 'algorithm'",
-    "hi": "अल-ख्वारिज्मी भारतीय अंकों का अनुवाद करते हैं — हमें \"एल्गोरिदम\" देते हैं"
+    "hi": "अल-ख्वारिज्मी भारतीय अंकों का अनुवाद करते हैं — हमें \"एल्गोरिदम\" देते हैं",
+    "sa": "Al-Khwarizmi translates Indian numerals — gives us 'algorithm'",
+    "ta": "Al-Khwarizmi translates Indian numerals — gives us 'algorithm'",
+    "te": "Al-Khwarizmi translates Indian numerals — gives us 'algorithm'",
+    "bn": "Al-Khwarizmi translates Indian numerals — gives us 'algorithm'",
+    "kn": "Al-Khwarizmi translates Indian numerals — gives us 'algorithm'",
+    "mr": "Al-Khwarizmi translates Indian numerals — gives us 'algorithm'",
+    "gu": "Al-Khwarizmi translates Indian numerals — gives us 'algorithm'",
+    "mai": "Al-Khwarizmi translates Indian numerals — gives us 'algorithm'"
   },
   "journeyPlace4": {
     "en": "Pisa, Italy",
-    "hi": "पीसा, इटली"
+    "hi": "पीसा, इटली",
+    "sa": "Pisa, Italy",
+    "ta": "Pisa, Italy",
+    "te": "Pisa, Italy",
+    "bn": "Pisa, Italy",
+    "kn": "Pisa, Italy",
+    "mr": "Pisa, Italy",
+    "gu": "Pisa, Italy",
+    "mai": "Pisa, Italy"
   },
   "journeyEvent4": {
     "en": "Fibonacci publishes Liber Abaci, introducing zero to Europe",
-    "hi": "फिबोनाची लिबर अबासी प्रकाशित करते हैं, यूरोप को शून्य से परिचित कराते हैं"
+    "hi": "फिबोनाची लिबर अबासी प्रकाशित करते हैं, यूरोप को शून्य से परिचित कराते हैं",
+    "sa": "Fibonacci publishes Liber Abaci, introducing zero to Europe",
+    "ta": "Fibonacci publishes Liber Abaci, introducing zero to Europe",
+    "te": "Fibonacci publishes Liber Abaci, introducing zero to Europe",
+    "bn": "Fibonacci publishes Liber Abaci, introducing zero to Europe",
+    "kn": "Fibonacci publishes Liber Abaci, introducing zero to Europe",
+    "mr": "Fibonacci publishes Liber Abaci, introducing zero to Europe",
+    "gu": "Fibonacci publishes Liber Abaci, introducing zero to Europe",
+    "mai": "Fibonacci publishes Liber Abaci, introducing zero to Europe"
   },
   "journeyPlace5": {
     "en": "Florence, Italy",
-    "hi": "फ्लोरेंस, इटली"
+    "hi": "फ्लोरेंस, इटली",
+    "sa": "Florence, Italy",
+    "ta": "Florence, Italy",
+    "te": "Florence, Italy",
+    "bn": "Florence, Italy",
+    "kn": "Florence, Italy",
+    "mr": "Florence, Italy",
+    "gu": "Florence, Italy",
+    "mai": "Florence, Italy"
   },
   "journeyEvent5": {
     "en": "Florence BANS Indian numerals — calls them 'Saracen numerals'",
-    "hi": "फ्लोरेंस ने भारतीय अंकों पर प्रतिबंध लगाया — उन्हें \"सारासेन अंक\" कहा"
+    "hi": "फ्लोरेंस ने भारतीय अंकों पर प्रतिबंध लगाया — उन्हें \"सारासेन अंक\" कहा",
+    "sa": "Florence BANS Indian numerals — calls them 'Saracen numerals'",
+    "ta": "Florence BANS Indian numerals — calls them 'Saracen numerals'",
+    "te": "Florence BANS Indian numerals — calls them 'Saracen numerals'",
+    "bn": "Florence BANS Indian numerals — calls them 'Saracen numerals'",
+    "kn": "Florence BANS Indian numerals — calls them 'Saracen numerals'",
+    "mr": "Florence BANS Indian numerals — calls them 'Saracen numerals'",
+    "gu": "Florence BANS Indian numerals — calls them 'Saracen numerals'",
+    "mai": "Florence BANS Indian numerals — calls them 'Saracen numerals'"
   },
   "journeyPlace6": {
     "en": "All of Europe",
-    "hi": "सारा यूरोप"
+    "hi": "सारा यूरोप",
+    "sa": "All of Europe",
+    "ta": "All of Europe",
+    "te": "All of Europe",
+    "bn": "All of Europe",
+    "kn": "All of Europe",
+    "mr": "All of Europe",
+    "gu": "All of Europe",
+    "mai": "All of Europe"
   },
   "journeyEvent6": {
     "en": "Indian numerals finally win. Zero universally accepted. Modern math begins.",
-    "hi": "भारतीय अंक अंततः जीत गए। शून्य सार्वभौमिक रूप से स्वीकृत। आधुनिक गणित शुरू।"
+    "hi": "भारतीय अंक अंततः जीत गए। शून्य सार्वभौमिक रूप से स्वीकृत। आधुनिक गणित शुरू।",
+    "sa": "Indian numerals finally win. Zero universally accepted. Modern math begins.",
+    "ta": "Indian numerals finally win. Zero universally accepted. Modern math begins.",
+    "te": "Indian numerals finally win. Zero universally accepted. Modern math begins.",
+    "bn": "Indian numerals finally win. Zero universally accepted. Modern math begins.",
+    "kn": "Indian numerals finally win. Zero universally accepted. Modern math begins.",
+    "mr": "Indian numerals finally win. Zero universally accepted. Modern math begins.",
+    "gu": "Indian numerals finally win. Zero universally accepted. Modern math begins.",
+    "mai": "Indian numerals finally win. Zero universally accepted. Modern math begins."
   }
 }

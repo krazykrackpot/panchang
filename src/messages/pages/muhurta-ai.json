@@ -2,56 +2,133 @@
   "infoBlockTitle": {
     "en": "What is Muhurta?",
     "hi": "मुहूर्त क्या है?",
-    "sa": "मुहूर्तम् किम्?"
+    "sa": "मुहूर्तम् किम्?",
+    "ta": "What is Muhurta?",
+    "te": "What is Muhurta?",
+    "bn": "What is Muhurta?",
+    "kn": "What is Muhurta?",
+    "mr": "What is Muhurta?",
+    "gu": "What is Muhurta?",
+    "mai": "What is Muhurta?"
   },
   "searchCityPlaceholder": {
     "en": "Search city...",
     "hi": "शहर खोजें...",
-    "sa": "शहर खोजें..."
+    "sa": "शहर खोजें...",
+    "ta": "Search city...",
+    "te": "Search city...",
+    "bn": "Search city...",
+    "kn": "Search city...",
+    "mr": "Search city...",
+    "gu": "Search city...",
+    "mai": "Search city..."
   },
   "panchangaShuddhi": {
     "en": "Panchanga Shuddhi",
     "hi": "पञ्चाङ्ग शुद्धि",
-    "sa": "पञ्चाङ्ग शुद्धि"
+    "sa": "पञ्चाङ्ग शुद्धि",
+    "ta": "Panchanga Shuddhi",
+    "te": "Panchanga Shuddhi",
+    "bn": "Panchanga Shuddhi",
+    "kn": "Panchanga Shuddhi",
+    "mr": "Panchanga Shuddhi",
+    "gu": "Panchanga Shuddhi",
+    "mai": "Panchanga Shuddhi"
   },
   "taraBala": {
     "en": "Tara Bala",
     "hi": "तारा बल",
-    "sa": "तारा बल"
+    "sa": "तारा बल",
+    "ta": "Tara Bala",
+    "te": "Tara Bala",
+    "bn": "Tara Bala",
+    "kn": "Tara Bala",
+    "mr": "Tara Bala",
+    "gu": "Tara Bala",
+    "mai": "Tara Bala"
   },
   "chandraBala": {
     "en": "Chandra Bala",
     "hi": "चन्द्र बल",
-    "sa": "चन्द्र बल"
+    "sa": "चन्द्र बल",
+    "ta": "Chandra Bala",
+    "te": "Chandra Bala",
+    "bn": "Chandra Bala",
+    "kn": "Chandra Bala",
+    "mr": "Chandra Bala",
+    "gu": "Chandra Bala",
+    "mai": "Chandra Bala"
   },
   "chandraPresent": {
     "en": "✓ Present",
     "hi": "✓ उपस्थित",
-    "sa": "✓ उपस्थित"
+    "sa": "✓ उपस्थित",
+    "ta": "✓ Present",
+    "te": "✓ Present",
+    "bn": "✓ Present",
+    "kn": "✓ Present",
+    "mr": "✓ Present",
+    "gu": "✓ Present",
+    "mai": "✓ Present"
   },
   "chandraAbsent": {
     "en": "✗ Absent",
     "hi": "✗ अनुपस्थित",
-    "sa": "✗ अनुपस्थित"
+    "sa": "✗ अनुपस्थित",
+    "ta": "✗ Absent",
+    "te": "✗ Absent",
+    "bn": "✗ Absent",
+    "kn": "✗ Absent",
+    "mr": "✗ Absent",
+    "gu": "✗ Absent",
+    "mai": "✗ Absent"
   },
   "saveBirthChartNote": {
     "en": "Save birth chart for Tara & Chandra Bala",
     "hi": "तारा/चन्द्र बल के लिए जन्म कुण्डली सहेजें",
-    "sa": "तारा/चन्द्र बल के लिए जन्म कुण्डली सहेजें"
+    "sa": "तारा/चन्द्र बल के लिए जन्म कुण्डली सहेजें",
+    "ta": "Save birth chart for Tara & Chandra Bala",
+    "te": "Save birth chart for Tara & Chandra Bala",
+    "bn": "Save birth chart for Tara & Chandra Bala",
+    "kn": "Save birth chart for Tara & Chandra Bala",
+    "mr": "Save birth chart for Tara & Chandra Bala",
+    "gu": "Save birth chart for Tara & Chandra Bala",
+    "mai": "Save birth chart for Tara & Chandra Bala"
   },
   "shuddhi": {
     "en": "Shuddhi",
     "hi": "शुद्धि",
-    "sa": "शुद्धि"
+    "sa": "शुद्धि",
+    "ta": "Shuddhi",
+    "te": "Shuddhi",
+    "bn": "Shuddhi",
+    "kn": "Shuddhi",
+    "mr": "Shuddhi",
+    "gu": "Shuddhi",
+    "mai": "Shuddhi"
   },
   "tara": {
     "en": "Tara",
     "hi": "तारा",
-    "sa": "तारा"
+    "sa": "तारा",
+    "ta": "Tara",
+    "te": "Tara",
+    "bn": "Tara",
+    "kn": "Tara",
+    "mr": "Tara",
+    "gu": "Tara",
+    "mai": "Tara"
   },
   "chandra": {
     "en": "Chandra",
     "hi": "चन्द्र",
-    "sa": "चन्द्र"
+    "sa": "चन्द्र",
+    "ta": "Chandra",
+    "te": "Chandra",
+    "bn": "Chandra",
+    "kn": "Chandra",
+    "mr": "Chandra",
+    "gu": "Chandra",
+    "mai": "Chandra"
   }
 }

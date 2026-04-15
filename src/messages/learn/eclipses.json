@@ -758,336 +758,805 @@
   "rahuKetuDiagramTitle": {
     "en": "Rahu → Solar Eclipse · Ketu → Lunar Eclipse",
     "hi": "राहु → सूर्य ग्रहण · केतु → चन्द्र ग्रहण",
-    "sa": "राहुः → सूर्यग्रहणम् · केतुः → चन्द्रग्रहणम्"
+    "sa": "राहुः → सूर्यग्रहणम् · केतुः → चन्द्रग्रहणम्",
+    "ta": "Rahu → Solar Eclipse · Ketu → Lunar Eclipse",
+    "te": "Rahu → Solar Eclipse · Ketu → Lunar Eclipse",
+    "bn": "Rahu → Solar Eclipse · Ketu → Lunar Eclipse",
+    "kn": "Rahu → Solar Eclipse · Ketu → Lunar Eclipse",
+    "mr": "Rahu → Solar Eclipse · Ketu → Lunar Eclipse",
+    "gu": "Rahu → Solar Eclipse · Ketu → Lunar Eclipse",
+    "mai": "Rahu → Solar Eclipse · Ketu → Lunar Eclipse"
   },
   "svgRahu": {
     "en": "Rahu",
     "hi": "राहु",
-    "sa": "राहुः"
+    "sa": "राहुः",
+    "ta": "Rahu",
+    "te": "Rahu",
+    "bn": "Rahu",
+    "kn": "Rahu",
+    "mr": "Rahu",
+    "gu": "Rahu",
+    "mai": "Rahu"
   },
   "svgKetu": {
     "en": "Ketu",
     "hi": "केतु",
-    "sa": "केतुः"
+    "sa": "केतुः",
+    "ta": "Ketu",
+    "te": "Ketu",
+    "bn": "Ketu",
+    "kn": "Ketu",
+    "mr": "Ketu",
+    "gu": "Ketu",
+    "mai": "Ketu"
   },
   "svgSun": {
     "en": "Sun",
     "hi": "सूर्य",
-    "sa": "सूर्यः"
+    "sa": "सूर्यः",
+    "ta": "Sun",
+    "te": "Sun",
+    "bn": "Sun",
+    "kn": "Sun",
+    "mr": "Sun",
+    "gu": "Sun",
+    "mai": "Sun"
   },
   "svgEarth": {
     "en": "Earth",
     "hi": "पृथ्वी",
-    "sa": "पृथ्वी"
+    "sa": "पृथ्वी",
+    "ta": "Earth",
+    "te": "Earth",
+    "bn": "Earth",
+    "kn": "Earth",
+    "mr": "Earth",
+    "gu": "Earth",
+    "mai": "Earth"
   },
   "solarEclipseLabel": {
     "en": "Solar Eclipse",
     "hi": "सूर्य ग्रहण",
-    "sa": "सूर्यग्रहणम्"
+    "sa": "सूर्यग्रहणम्",
+    "ta": "Solar Eclipse",
+    "te": "Solar Eclipse",
+    "bn": "Solar Eclipse",
+    "kn": "Solar Eclipse",
+    "mr": "Solar Eclipse",
+    "gu": "Solar Eclipse",
+    "mai": "Solar Eclipse"
   },
   "solarEclipseCondition": {
     "en": "Amavasya + Moon near Rahu/Ketu",
     "hi": "अमावस्या + राहु/केतु के निकट",
-    "sa": "अमावस्या + चन्द्रः राहोः/केतोः निकटे"
+    "sa": "अमावस्या + चन्द्रः राहोः/केतोः निकटे",
+    "ta": "Amavasya + Moon near Rahu/Ketu",
+    "te": "Amavasya + Moon near Rahu/Ketu",
+    "bn": "Amavasya + Moon near Rahu/Ketu",
+    "kn": "Amavasya + Moon near Rahu/Ketu",
+    "mr": "Amavasya + Moon near Rahu/Ketu",
+    "gu": "Amavasya + Moon near Rahu/Ketu",
+    "mai": "Amavasya + Moon near Rahu/Ketu"
   },
   "lunarEclipseLabel": {
     "en": "Lunar Eclipse",
     "hi": "चन्द्र ग्रहण",
-    "sa": "चन्द्रग्रहणम्"
+    "sa": "चन्द्रग्रहणम्",
+    "ta": "Lunar Eclipse",
+    "te": "Lunar Eclipse",
+    "bn": "Lunar Eclipse",
+    "kn": "Lunar Eclipse",
+    "mr": "Lunar Eclipse",
+    "gu": "Lunar Eclipse",
+    "mai": "Lunar Eclipse"
   },
   "lunarEclipseCondition": {
     "en": "Purnima + Moon near Rahu/Ketu",
     "hi": "पूर्णिमा + राहु/केतु के निकट",
-    "sa": "पूर्णिमा + चन्द्रः राहोः/केतोः निकटे"
+    "sa": "पूर्णिमा + चन्द्रः राहोः/केतोः निकटे",
+    "ta": "Purnima + Moon near Rahu/Ketu",
+    "te": "Purnima + Moon near Rahu/Ketu",
+    "bn": "Purnima + Moon near Rahu/Ketu",
+    "kn": "Purnima + Moon near Rahu/Ketu",
+    "mr": "Purnima + Moon near Rahu/Ketu",
+    "gu": "Purnima + Moon near Rahu/Ketu",
+    "mai": "Purnima + Moon near Rahu/Ketu"
   },
   "moonOrbitTitle": {
     "en": "Moon’s Orbit — 5.15° Inclined to the Ecliptic",
     "hi": "चन्द्र कक्षा — क्रान्तिवृत्त से 5.15° झुकी हुई",
-    "sa": "चन्द्र कक्षा — क्रान्तिवृत्त से 5.15° झुकी हुई"
+    "sa": "चन्द्र कक्षा — क्रान्तिवृत्त से 5.15° झुकी हुई",
+    "ta": "Moon’s Orbit — 5.15° Inclined to the Ecliptic",
+    "te": "Moon’s Orbit — 5.15° Inclined to the Ecliptic",
+    "bn": "Moon’s Orbit — 5.15° Inclined to the Ecliptic",
+    "kn": "Moon’s Orbit — 5.15° Inclined to the Ecliptic",
+    "mr": "Moon’s Orbit — 5.15° Inclined to the Ecliptic",
+    "gu": "Moon’s Orbit — 5.15° Inclined to the Ecliptic",
+    "mai": "Moon’s Orbit — 5.15° Inclined to the Ecliptic"
   },
   "svgEcliptic": {
     "en": "Ecliptic",
     "hi": "क्रान्तिवृत्त",
-    "sa": "क्रान्तिवृत्तम्"
+    "sa": "क्रान्तिवृत्तम्",
+    "ta": "Ecliptic",
+    "te": "Ecliptic",
+    "bn": "Ecliptic",
+    "kn": "Ecliptic",
+    "mr": "Ecliptic",
+    "gu": "Ecliptic",
+    "mai": "Ecliptic"
   },
   "svgBetaNeg4": {
     "en": "β = −4°",
     "hi": "β = −4°",
-    "sa": "β = −4°"
+    "sa": "β = −4°",
+    "ta": "β = −4°",
+    "te": "β = −4°",
+    "bn": "β = −4°",
+    "kn": "β = −4°",
+    "mr": "β = −4°",
+    "gu": "β = −4°",
+    "mai": "β = −4°"
   },
   "svgBetaZero": {
     "en": "β ≈ 0°",
     "hi": "β ≈ 0°",
-    "sa": "β ≈ 0°"
+    "sa": "β ≈ 0°",
+    "ta": "β ≈ 0°",
+    "te": "β ≈ 0°",
+    "bn": "β ≈ 0°",
+    "kn": "β ≈ 0°",
+    "mr": "β ≈ 0°",
+    "gu": "β ≈ 0°",
+    "mai": "β ≈ 0°"
   },
   "svgEclipseExclaim": {
     "en": "→ Eclipse!",
     "hi": "→ ग्रहण!",
-    "sa": "→ ग्रहणम्!"
+    "sa": "→ ग्रहणम्!",
+    "ta": "→ Eclipse!",
+    "te": "→ Eclipse!",
+    "bn": "→ Eclipse!",
+    "kn": "→ Eclipse!",
+    "mr": "→ Eclipse!",
+    "gu": "→ Eclipse!",
+    "mai": "→ Eclipse!"
   },
   "svgBetaPlus3": {
     "en": "β = +3°",
     "hi": "β = +3°",
-    "sa": "β = +3°"
+    "sa": "β = +3°",
+    "ta": "β = +3°",
+    "te": "β = +3°",
+    "bn": "β = +3°",
+    "kn": "β = +3°",
+    "mr": "β = +3°",
+    "gu": "β = +3°",
+    "mai": "β = +3°"
   },
   "codeAmavasya": {
     "en": "// Tithi #30 (Amavasya) → solar eclipse candidate",
     "hi": "// तिथि #30 (अमावस्या) → सूर्य ग्रहण उम्मीदवार",
-    "sa": "// तिथिः #30 (अमावस्या) → सूर्यग्रहण-उम्मीदवारः"
+    "sa": "// तिथिः #30 (अमावस्या) → सूर्यग्रहण-उम्मीदवारः",
+    "ta": "// Tithi #30 (Amavasya) → solar eclipse candidate",
+    "te": "// Tithi #30 (Amavasya) → solar eclipse candidate",
+    "bn": "// Tithi #30 (Amavasya) → solar eclipse candidate",
+    "kn": "// Tithi #30 (Amavasya) → solar eclipse candidate",
+    "mr": "// Tithi #30 (Amavasya) → solar eclipse candidate",
+    "gu": "// Tithi #30 (Amavasya) → solar eclipse candidate",
+    "mai": "// Tithi #30 (Amavasya) → solar eclipse candidate"
   },
   "codePurnima": {
     "en": "// Tithi #15 (Purnima) → lunar eclipse candidate",
     "hi": "// तिथि #15 (पूर्णिमा) → चन्द्र ग्रहण उम्मीदवार",
-    "sa": "// तिथिः #15 (पूर्णिमा) → चन्द्रग्रहण-उम्मीदवारः"
+    "sa": "// तिथिः #15 (पूर्णिमा) → चन्द्रग्रहण-उम्मीदवारः",
+    "ta": "// Tithi #15 (Purnima) → lunar eclipse candidate",
+    "te": "// Tithi #15 (Purnima) → lunar eclipse candidate",
+    "bn": "// Tithi #15 (Purnima) → lunar eclipse candidate",
+    "kn": "// Tithi #15 (Purnima) → lunar eclipse candidate",
+    "mr": "// Tithi #15 (Purnima) → lunar eclipse candidate",
+    "gu": "// Tithi #15 (Purnima) → lunar eclipse candidate",
+    "mai": "// Tithi #15 (Purnima) → lunar eclipse candidate"
   },
   "codeQueryLatitude": {
     "en": "// Query Moon ecliptic latitude",
     "hi": "// चन्द्र अक्षांश प्राप्त करें",
-    "sa": "// चन्द्रस्य क्रान्तिवृत्त-अक्षांशं पृच्छतु"
+    "sa": "// चन्द्रस्य क्रान्तिवृत्त-अक्षांशं पृच्छतु",
+    "ta": "// Query Moon ecliptic latitude",
+    "te": "// Query Moon ecliptic latitude",
+    "bn": "// Query Moon ecliptic latitude",
+    "kn": "// Query Moon ecliptic latitude",
+    "mr": "// Query Moon ecliptic latitude",
+    "gu": "// Query Moon ecliptic latitude",
+    "mai": "// Query Moon ecliptic latitude"
   },
   "codeBetaRange": {
     "en": "// β = 0° at node, ±5.15° furthest from node",
     "hi": "// β = 0° पर नोड, ±5.15° पर नोड से दूर",
-    "sa": "// β = 0° पर्वणि, ±5.15° पर्वणः अतिदूरे"
+    "sa": "// β = 0° पर्वणि, ±5.15° पर्वणः अतिदूरे",
+    "ta": "// β = 0° at node, ±5.15° furthest from node",
+    "te": "// β = 0° at node, ±5.15° furthest from node",
+    "bn": "// β = 0° at node, ±5.15° furthest from node",
+    "kn": "// β = 0° at node, ±5.15° furthest from node",
+    "mr": "// β = 0° at node, ±5.15° furthest from node",
+    "gu": "// β = 0° at node, ±5.15° furthest from node",
+    "mai": "// β = 0° at node, ±5.15° furthest from node"
   },
   "solarEclipseAtNewMoon": {
     "en": "Solar Eclipse — At New Moon",
     "hi": "सूर्य ग्रहण — अमावस्या पर",
-    "sa": "सूर्यग्रहणम् — अमावस्यायाम्"
+    "sa": "सूर्यग्रहणम् — अमावस्यायाम्",
+    "ta": "Solar Eclipse — At New Moon",
+    "te": "Solar Eclipse — At New Moon",
+    "bn": "Solar Eclipse — At New Moon",
+    "kn": "Solar Eclipse — At New Moon",
+    "mr": "Solar Eclipse — At New Moon",
+    "gu": "Solar Eclipse — At New Moon",
+    "mai": "Solar Eclipse — At New Moon"
   },
   "totalVsAnnularNote": {
     "en": "Total vs Annular: depends on Moon distance — closer = total, farther = annular",
     "hi": "पूर्ण बनाम कण्कण: चन्द्र दूरी पर निर्भर — निकट = पूर्ण, दूर = कण्कण",
-    "sa": "पूर्णं वलयाकारं वा: चन्द्रस्य दूरत्वे निर्भरम् — निकटः = पूर्णं, दूरः = वलयाकारम्"
+    "sa": "पूर्णं वलयाकारं वा: चन्द्रस्य दूरत्वे निर्भरम् — निकटः = पूर्णं, दूरः = वलयाकारम्",
+    "ta": "Total vs Annular: depends on Moon distance — closer = total, farther = annular",
+    "te": "Total vs Annular: depends on Moon distance — closer = total, farther = annular",
+    "bn": "Total vs Annular: depends on Moon distance — closer = total, farther = annular",
+    "kn": "Total vs Annular: depends on Moon distance — closer = total, farther = annular",
+    "mr": "Total vs Annular: depends on Moon distance — closer = total, farther = annular",
+    "gu": "Total vs Annular: depends on Moon distance — closer = total, farther = annular",
+    "mai": "Total vs Annular: depends on Moon distance — closer = total, farther = annular"
   },
   "lunarEclipseAtFullMoon": {
     "en": "Lunar Eclipse — At Full Moon",
     "hi": "चन्द्र ग्रहण — पूर्णिमा पर",
-    "sa": "चन्द्रग्रहणम् — पूर्णिमायाम्"
+    "sa": "चन्द्रग्रहणम् — पूर्णिमायाम्",
+    "ta": "Lunar Eclipse — At Full Moon",
+    "te": "Lunar Eclipse — At Full Moon",
+    "bn": "Lunar Eclipse — At Full Moon",
+    "kn": "Lunar Eclipse — At Full Moon",
+    "mr": "Lunar Eclipse — At Full Moon",
+    "gu": "Lunar Eclipse — At Full Moon",
+    "mai": "Lunar Eclipse — At Full Moon"
   },
   "lunarEclipseTimeline": {
     "en": "Lunar Eclipse Timeline",
     "hi": "चन्द्र ग्रहण कालक्रम",
-    "sa": "चन्द्रग्रहणस्य कालक्रमः"
+    "sa": "चन्द्रग्रहणस्य कालक्रमः",
+    "ta": "Lunar Eclipse Timeline",
+    "te": "Lunar Eclipse Timeline",
+    "bn": "Lunar Eclipse Timeline",
+    "kn": "Lunar Eclipse Timeline",
+    "mr": "Lunar Eclipse Timeline",
+    "gu": "Lunar Eclipse Timeline",
+    "mai": "Lunar Eclipse Timeline"
   },
   "thText": {
     "en": "Text",
     "hi": "ग्रन्थ",
-    "sa": "ग्रन्थः"
+    "sa": "ग्रन्थः",
+    "ta": "Text",
+    "te": "Text",
+    "bn": "Text",
+    "kn": "Text",
+    "mr": "Text",
+    "gu": "Text",
+    "mai": "Text"
   },
   "thSolarEclipse": {
     "en": "Solar Eclipse",
     "hi": "सूर्य ग्रहण",
-    "sa": "सूर्यग्रहणम्"
+    "sa": "सूर्यग्रहणम्",
+    "ta": "Solar Eclipse",
+    "te": "Solar Eclipse",
+    "bn": "Solar Eclipse",
+    "kn": "Solar Eclipse",
+    "mr": "Solar Eclipse",
+    "gu": "Solar Eclipse",
+    "mai": "Solar Eclipse"
   },
   "thLunarEclipse": {
     "en": "Lunar Eclipse",
     "hi": "चन्द्र ग्रहण",
-    "sa": "चन्द्रग्रहणम्"
+    "sa": "चन्द्रग्रहणम्",
+    "ta": "Lunar Eclipse",
+    "te": "Lunar Eclipse",
+    "bn": "Lunar Eclipse",
+    "kn": "Lunar Eclipse",
+    "mr": "Lunar Eclipse",
+    "gu": "Lunar Eclipse",
+    "mai": "Lunar Eclipse"
   },
   "sarosLifecycle": {
     "en": "Lifecycle of a Saros Series (~1,200-1,500 years)",
     "hi": "सारोस श्ृंخला का जीवन चक्र (~1,200-1,500 वर्ष)",
-    "sa": "सारोस-श्ृंخलायाः जीवनचक्रम् (~1,200-1,500 वर्षाणि)"
+    "sa": "सारोस-श्ृंخलायाः जीवनचक्रम् (~1,200-1,500 वर्षाणि)",
+    "ta": "Lifecycle of a Saros Series (~1,200-1,500 years)",
+    "te": "Lifecycle of a Saros Series (~1,200-1,500 years)",
+    "bn": "Lifecycle of a Saros Series (~1,200-1,500 years)",
+    "kn": "Lifecycle of a Saros Series (~1,200-1,500 years)",
+    "mr": "Lifecycle of a Saros Series (~1,200-1,500 years)",
+    "gu": "Lifecycle of a Saros Series (~1,200-1,500 years)",
+    "mai": "Lifecycle of a Saros Series (~1,200-1,500 years)"
   },
   "sarosStart": {
     "en": "Start: Small partials (pole)",
     "hi": "शुरू: छोटे आंशिक (ध्रुव)",
-    "sa": "आरम्भः: लघु आंशिकग्रहणानि (ध्रुवे)"
+    "sa": "आरम्भः: लघु आंशिकग्रहणानि (ध्रुवे)",
+    "ta": "Start: Small partials (pole)",
+    "te": "Start: Small partials (pole)",
+    "bn": "Start: Small partials (pole)",
+    "kn": "Start: Small partials (pole)",
+    "mr": "Start: Small partials (pole)",
+    "gu": "Start: Small partials (pole)",
+    "mai": "Start: Small partials (pole)"
   },
   "sarosPeak": {
     "en": "Peak: Total/Annular (equator)",
     "hi": "चरम: पूर्ण/वलयाकार (भूमध्य)",
-    "sa": "चरमम्: पूर्णं/वलयाकारम् (विषुवत्-रेखायाम्)"
+    "sa": "चरमम्: पूर्णं/वलयाकारम् (विषुवत्-रेखायाम्)",
+    "ta": "Peak: Total/Annular (equator)",
+    "te": "Peak: Total/Annular (equator)",
+    "bn": "Peak: Total/Annular (equator)",
+    "kn": "Peak: Total/Annular (equator)",
+    "mr": "Peak: Total/Annular (equator)",
+    "gu": "Peak: Total/Annular (equator)",
+    "mai": "Peak: Total/Annular (equator)"
   },
   "sarosEnd": {
     "en": "End: Small partials (opp. pole)",
     "hi": "अंत: छोटे आंशिक (विपरीत ध्रुव)",
-    "sa": "अन्तः: लघु आंशिकग्रहणानि (विपरीत-ध्रुवे)"
+    "sa": "अन्तः: लघु आंशिकग्रहणानि (विपरीत-ध्रुवे)",
+    "ta": "End: Small partials (opp. pole)",
+    "te": "End: Small partials (opp. pole)",
+    "bn": "End: Small partials (opp. pole)",
+    "kn": "End: Small partials (opp. pole)",
+    "mr": "End: Small partials (opp. pole)",
+    "gu": "End: Small partials (opp. pole)",
+    "mai": "End: Small partials (opp. pole)"
   },
   "sarosEclipsesPerSeries": {
     "en": "eclipses per series",
     "hi": "ग्रहण प्रति श्ृंخला",
-    "sa": "ग्रहणानि प्रति श्ृंخलाम्"
+    "sa": "ग्रहणानि प्रति श्ृंخलाम्",
+    "ta": "eclipses per series",
+    "te": "eclipses per series",
+    "bn": "eclipses per series",
+    "kn": "eclipses per series",
+    "mr": "eclipses per series",
+    "gu": "eclipses per series",
+    "mai": "eclipses per series"
   },
   "saros126Title": {
     "en": "Saros 126 — Total Solar Eclipse Chain",
     "hi": "सारोस 126 — पूर्ण सूर्य ग्रहण श्ृंخला",
-    "sa": "सारोस 126 — पूर्ण-सूर्यग्रहण-श्ृंخला"
+    "sa": "सारोस 126 — पूर्ण-सूर्यग्रहण-श्ृंخला",
+    "ta": "Saros 126 — Total Solar Eclipse Chain",
+    "te": "Saros 126 — Total Solar Eclipse Chain",
+    "bn": "Saros 126 — Total Solar Eclipse Chain",
+    "kn": "Saros 126 — Total Solar Eclipse Chain",
+    "mr": "Saros 126 — Total Solar Eclipse Chain",
+    "gu": "Saros 126 — Total Solar Eclipse Chain",
+    "mai": "Saros 126 — Total Solar Eclipse Chain"
   },
   "eclipseTotal": {
     "en": "Total",
     "hi": "पूर्ण",
-    "sa": "योगः"
+    "sa": "योगः",
+    "ta": "Total",
+    "te": "Total",
+    "bn": "Total",
+    "kn": "Total",
+    "mr": "Total",
+    "gu": "Total",
+    "mai": "Total"
   },
   "path126a": {
     "en": "Finland → Siberia → Pacific",
     "hi": "फिनलैण्ड → साइबेरिया → प्रशान्त",
-    "sa": "फिनलैण्ड → साइबेरिया → प्रशान्त-महासागरः"
+    "sa": "फिनलैण्ड → साइबेरिया → प्रशान्त-महासागरः",
+    "ta": "Finland → Siberia → Pacific",
+    "te": "Finland → Siberia → Pacific",
+    "bn": "Finland → Siberia → Pacific",
+    "kn": "Finland → Siberia → Pacific",
+    "mr": "Finland → Siberia → Pacific",
+    "gu": "Finland → Siberia → Pacific",
+    "mai": "Finland → Siberia → Pacific"
   },
   "path126b": {
     "en": "Canada → Arctic → Siberia → China",
     "hi": "कनाडा → आर्कटिक → साइबेरिया → चीन",
-    "sa": "कनाडा → आर्कटिक → साइबेरिया → चीनः"
+    "sa": "कनाडा → आर्कटिक → साइबेरिया → चीनः",
+    "ta": "Canada → Arctic → Siberia → China",
+    "te": "Canada → Arctic → Siberia → China",
+    "bn": "Canada → Arctic → Siberia → China",
+    "kn": "Canada → Arctic → Siberia → China",
+    "mr": "Canada → Arctic → Siberia → China",
+    "gu": "Canada → Arctic → Siberia → China",
+    "mai": "Canada → Arctic → Siberia → China"
   },
   "path126c": {
     "en": "Arctic → Greenland → Iceland → Spain",
     "hi": "आर्कटिक → ग्रीनलैण्ड → आइसलैण्ड → स्पेन",
-    "sa": "आर्क्टिक → ग्रीनलैण्ड → आइसलैण्ड → स्पेन"
+    "sa": "आर्क्टिक → ग्रीनलैण्ड → आइसलैण्ड → स्पेन",
+    "ta": "Arctic → Greenland → Iceland → Spain",
+    "te": "Arctic → Greenland → Iceland → Spain",
+    "bn": "Arctic → Greenland → Iceland → Spain",
+    "kn": "Arctic → Greenland → Iceland → Spain",
+    "mr": "Arctic → Greenland → Iceland → Spain",
+    "gu": "Arctic → Greenland → Iceland → Spain",
+    "mai": "Arctic → Greenland → Iceland → Spain"
   },
   "path126d": {
     "en": "Canada → Montana → N. Dakota",
     "hi": "कनाडा → मोन्टाना → उत्तरी डकोटा",
-    "sa": "कनाडा → मोन्टाना → उत्तर-डकोटा"
+    "sa": "कनाडा → मोन्टाना → उत्तर-डकोटा",
+    "ta": "Canada → Montana → N. Dakota",
+    "te": "Canada → Montana → N. Dakota",
+    "bn": "Canada → Montana → N. Dakota",
+    "kn": "Canada → Montana → N. Dakota",
+    "mr": "Canada → Montana → N. Dakota",
+    "gu": "Canada → Montana → N. Dakota",
+    "mai": "Canada → Montana → N. Dakota"
   },
   "path126e": {
     "en": "Indonesia → Australia",
     "hi": "इण्डोनेशिया → ऑस्ट्रेलिया",
-    "sa": "इण्डोनेशिया → ऑस्ट्रेलिया"
+    "sa": "इण्डोनेशिया → ऑस्ट्रेलिया",
+    "ta": "Indonesia → Australia",
+    "te": "Indonesia → Australia",
+    "bn": "Indonesia → Australia",
+    "kn": "Indonesia → Australia",
+    "mr": "Indonesia → Australia",
+    "gu": "Indonesia → Australia",
+    "mai": "Indonesia → Australia"
   },
   "nextLabel": {
     "en": "NEXT!",
     "hi": "अगला!",
-    "sa": "अग्रिमम्!"
+    "sa": "अग्रिमम्!",
+    "ta": "NEXT!",
+    "te": "NEXT!",
+    "bn": "NEXT!",
+    "kn": "NEXT!",
+    "mr": "NEXT!",
+    "gu": "NEXT!",
+    "mai": "NEXT!"
   },
   "saros126Interval": {
     "en": "Between each: +18 years 11 days 8 hours. Path shifts ~120° westward.",
     "hi": "प्रत्येक ग्रहण के बीच: +18 वर्ष 11 दिन 8 घण्टे। पथ ~120° पश्चिम खिसकता है।",
-    "sa": "प्रत्येकयोः मध्ये: +18 वर्षाणि 11 दिनानि 8 घण्टाः। पथः ~120° पश्चिमं सरति।"
+    "sa": "प्रत्येकयोः मध्ये: +18 वर्षाणि 11 दिनानि 8 घण्टाः। पथः ~120° पश्चिमं सरति।",
+    "ta": "Between each: +18 years 11 days 8 hours. Path shifts ~120° westward.",
+    "te": "Between each: +18 years 11 days 8 hours. Path shifts ~120° westward.",
+    "bn": "Between each: +18 years 11 days 8 hours. Path shifts ~120° westward.",
+    "kn": "Between each: +18 years 11 days 8 hours. Path shifts ~120° westward.",
+    "mr": "Between each: +18 years 11 days 8 hours. Path shifts ~120° westward.",
+    "gu": "Between each: +18 years 11 days 8 hours. Path shifts ~120° westward.",
+    "mai": "Between each: +18 years 11 days 8 hours. Path shifts ~120° westward."
   },
   "saros133Title": {
     "en": "Saros 133 — Total Lunar Eclipse Chain",
     "hi": "सारोस 133 — पूर्ण चन्द्र ग्रहण श्ृंخला",
-    "sa": "सारोस 133 — पूर्ण-चन्द्रग्रहण-श्ृंخला"
+    "sa": "सारोस 133 — पूर्ण-चन्द्रग्रहण-श्ृंخला",
+    "ta": "Saros 133 — Total Lunar Eclipse Chain",
+    "te": "Saros 133 — Total Lunar Eclipse Chain",
+    "bn": "Saros 133 — Total Lunar Eclipse Chain",
+    "kn": "Saros 133 — Total Lunar Eclipse Chain",
+    "mr": "Saros 133 — Total Lunar Eclipse Chain",
+    "gu": "Saros 133 — Total Lunar Eclipse Chain",
+    "mai": "Saros 133 — Total Lunar Eclipse Chain"
   },
   "region133a": {
     "en": "Europe, Africa, Asia",
     "hi": "यूरोप, अफ्रीका, एशिया",
-    "sa": "यूरोपः, अफ्रीका, एशिया"
+    "sa": "यूरोपः, अफ्रीका, एशिया",
+    "ta": "Europe, Africa, Asia",
+    "te": "Europe, Africa, Asia",
+    "bn": "Europe, Africa, Asia",
+    "kn": "Europe, Africa, Asia",
+    "mr": "Europe, Africa, Asia",
+    "gu": "Europe, Africa, Asia",
+    "mai": "Europe, Africa, Asia"
   },
   "region133b": {
     "en": "Americas, Europe, Africa",
     "hi": "अमेरिका, यूरोप, अफ्रीका",
-    "sa": "अमेरिका, यूरोपः, अफ्रीका"
+    "sa": "अमेरिका, यूरोपः, अफ्रीका",
+    "ta": "Americas, Europe, Africa",
+    "te": "Americas, Europe, Africa",
+    "bn": "Americas, Europe, Africa",
+    "kn": "Americas, Europe, Africa",
+    "mr": "Americas, Europe, Africa",
+    "gu": "Americas, Europe, Africa",
+    "mai": "Americas, Europe, Africa"
   },
   "region133d": {
     "en": "Asia, Australia, Pacific",
     "hi": "एशिया, ऑस्ट्रेलिया, प्रशान्त",
-    "sa": "एशिया, ऑस्ट्रेलिया, प्रशान्त-महासागरः"
+    "sa": "एशिया, ऑस्ट्रेलिया, प्रशान्त-महासागरः",
+    "ta": "Asia, Australia, Pacific",
+    "te": "Asia, Australia, Pacific",
+    "bn": "Asia, Australia, Pacific",
+    "kn": "Asia, Australia, Pacific",
+    "mr": "Asia, Australia, Pacific",
+    "gu": "Asia, Australia, Pacific",
+    "mai": "Asia, Australia, Pacific"
   },
   "region133e": {
     "en": "Americas, Europe",
     "hi": "अमेरिका, यूरोप",
-    "sa": "अमेरिका, यूरोपः"
+    "sa": "अमेरिका, यूरोपः",
+    "ta": "Americas, Europe",
+    "te": "Americas, Europe",
+    "bn": "Americas, Europe",
+    "kn": "Americas, Europe",
+    "mr": "Americas, Europe",
+    "gu": "Americas, Europe",
+    "mai": "Americas, Europe"
   },
   "saros133Magnitude": {
     "en": "Magnitude is increasing (1.073 → 1.227) — this series is heading toward its peak!",
     "hi": "परिमाण बढ़ रहा है (1.073 → 1.227) — यह श्ृंخला अपने चरम की ओर है!",
-    "sa": "परिमाणं वर्धते (1.073 → 1.227) — इयं श्ृंخला स्वचरमं प्रति गच्छति!"
+    "sa": "परिमाणं वर्धते (1.073 → 1.227) — इयं श्ृंخला स्वचरमं प्रति गच्छति!",
+    "ta": "Magnitude is increasing (1.073 → 1.227) — this series is heading toward its peak!",
+    "te": "Magnitude is increasing (1.073 → 1.227) — this series is heading toward its peak!",
+    "bn": "Magnitude is increasing (1.073 → 1.227) — this series is heading toward its peak!",
+    "kn": "Magnitude is increasing (1.073 → 1.227) — this series is heading toward its peak!",
+    "mr": "Magnitude is increasing (1.073 → 1.227) — this series is heading toward its peak!",
+    "gu": "Magnitude is increasing (1.073 → 1.227) — this series is heading toward its peak!",
+    "mai": "Magnitude is increasing (1.073 → 1.227) — this series is heading toward its peak!"
   },
   "eclipseSeasonDrift": {
     "en": "Eclipse Season Drift (due to Nodal Precession)",
     "hi": "ग्रहण ृतु विचलन (पात पुरस्सरण के कारण)",
-    "sa": "ग्रहण-ृतु-विचलनम् (पात-पुरस्सरण-कारणात्)"
+    "sa": "ग्रहण-ृतु-विचलनम् (पात-पुरस्सरण-कारणात्)",
+    "ta": "Eclipse Season Drift (due to Nodal Precession)",
+    "te": "Eclipse Season Drift (due to Nodal Precession)",
+    "bn": "Eclipse Season Drift (due to Nodal Precession)",
+    "kn": "Eclipse Season Drift (due to Nodal Precession)",
+    "mr": "Eclipse Season Drift (due to Nodal Precession)",
+    "gu": "Eclipse Season Drift (due to Nodal Precession)",
+    "mai": "Eclipse Season Drift (due to Nodal Precession)"
   },
   "thYear": {
     "en": "Year",
     "hi": "वर्ष",
-    "sa": "वर्षम्"
+    "sa": "वर्षम्",
+    "ta": "Year",
+    "te": "Year",
+    "bn": "Year",
+    "kn": "Year",
+    "mr": "Year",
+    "gu": "Year",
+    "mai": "Year"
   },
   "thSeason1": {
     "en": "Season 1",
     "hi": "ृतु 1",
-    "sa": "ृतुः 1"
+    "sa": "ृतुः 1",
+    "ta": "Season 1",
+    "te": "Season 1",
+    "bn": "Season 1",
+    "kn": "Season 1",
+    "mr": "Season 1",
+    "gu": "Season 1",
+    "mai": "Season 1"
   },
   "thSeason2": {
     "en": "Season 2",
     "hi": "ृतु 2",
-    "sa": "ृतुः 2"
+    "sa": "ृतुः 2",
+    "ta": "Season 2",
+    "te": "Season 2",
+    "bn": "Season 2",
+    "kn": "Season 2",
+    "mr": "Season 2",
+    "gu": "Season 2",
+    "mai": "Season 2"
   },
   "thRahuSign": {
     "en": "Rahu Sign",
     "hi": "राहु राशि",
-    "sa": "राहोः राशिः"
+    "sa": "राहोः राशिः",
+    "ta": "Rahu Sign",
+    "te": "Rahu Sign",
+    "bn": "Rahu Sign",
+    "kn": "Rahu Sign",
+    "mr": "Rahu Sign",
+    "gu": "Rahu Sign",
+    "mai": "Rahu Sign"
   },
   "rahuPisces": {
     "en": "Pisces",
     "hi": "मीन",
-    "sa": "मीनः"
+    "sa": "मीनः",
+    "ta": "Pisces",
+    "te": "Pisces",
+    "bn": "Pisces",
+    "kn": "Pisces",
+    "mr": "Pisces",
+    "gu": "Pisces",
+    "mai": "Pisces"
   },
   "rahuPiscesToAquarius": {
     "en": "Pisces → Aquarius",
     "hi": "मीन → कुम्भ",
-    "sa": "मीनः → कुम्भः"
+    "sa": "मीनः → कुम्भः",
+    "ta": "Pisces → Aquarius",
+    "te": "Pisces → Aquarius",
+    "bn": "Pisces → Aquarius",
+    "kn": "Pisces → Aquarius",
+    "mr": "Pisces → Aquarius",
+    "gu": "Pisces → Aquarius",
+    "mai": "Pisces → Aquarius"
   },
   "rahuAquarius": {
     "en": "Aquarius",
     "hi": "कुम्भ",
-    "sa": "कुम्भः"
+    "sa": "कुम्भः",
+    "ta": "Aquarius",
+    "te": "Aquarius",
+    "bn": "Aquarius",
+    "kn": "Aquarius",
+    "mr": "Aquarius",
+    "gu": "Aquarius",
+    "mai": "Aquarius"
   },
   "rahuCapToSag": {
     "en": "Capricorn → Sagittarius",
     "hi": "मकर → धनु",
-    "sa": "मकरः → धनुः"
+    "sa": "मकरः → धनुः",
+    "ta": "Capricorn → Sagittarius",
+    "te": "Capricorn → Sagittarius",
+    "bn": "Capricorn → Sagittarius",
+    "kn": "Capricorn → Sagittarius",
+    "mr": "Capricorn → Sagittarius",
+    "gu": "Capricorn → Sagittarius",
+    "mai": "Capricorn → Sagittarius"
   },
   "rahuScorpio": {
     "en": "Scorpio",
     "hi": "वृश्चिक",
-    "sa": "वृश्चिकः"
+    "sa": "वृश्चिकः",
+    "ta": "Scorpio",
+    "te": "Scorpio",
+    "bn": "Scorpio",
+    "kn": "Scorpio",
+    "mr": "Scorpio",
+    "gu": "Scorpio",
+    "mai": "Scorpio"
   },
   "rahuLibToVirgo": {
     "en": "Libra → Virgo",
     "hi": "तुला → कन्या",
-    "sa": "तुला → कन्या"
+    "sa": "तुला → कन्या",
+    "ta": "Libra → Virgo",
+    "te": "Libra → Virgo",
+    "bn": "Libra → Virgo",
+    "kn": "Libra → Virgo",
+    "mr": "Libra → Virgo",
+    "gu": "Libra → Virgo",
+    "mai": "Libra → Virgo"
   },
   "nowLabel": {
     "en": "NOW",
     "hi": "अभी",
-    "sa": "अधुना"
+    "sa": "अधुना",
+    "ta": "NOW",
+    "te": "NOW",
+    "bn": "NOW",
+    "kn": "NOW",
+    "mr": "NOW",
+    "gu": "NOW",
+    "mai": "NOW"
   },
   "seasonDriftNote": {
     "en": "Eclipse seasons shift ~19 days earlier each year. Rahu enters a new sign every ~1.5 years.",
     "hi": "ग्रहण ृतुएँ प्रत्येक वर्ष ~19 दिन पहले खिसकती हैं। राहु हर ~1.5 वर्ष में नई राशि में प्रवेश करता है।",
-    "sa": "ग्रहण-ृतवः प्रतिवर्षं ~19 दिनानि पूर्वं सरन्ति। राहुः प्रति ~1.5 वर्षं नवराशिं प्रविशति।"
+    "sa": "ग्रहण-ृतवः प्रतिवर्षं ~19 दिनानि पूर्वं सरन्ति। राहुः प्रति ~1.5 वर्षं नवराशिं प्रविशति।",
+    "ta": "Eclipse seasons shift ~19 days earlier each year. Rahu enters a new sign every ~1.5 years.",
+    "te": "Eclipse seasons shift ~19 days earlier each year. Rahu enters a new sign every ~1.5 years.",
+    "bn": "Eclipse seasons shift ~19 days earlier each year. Rahu enters a new sign every ~1.5 years.",
+    "kn": "Eclipse seasons shift ~19 days earlier each year. Rahu enters a new sign every ~1.5 years.",
+    "mr": "Eclipse seasons shift ~19 days earlier each year. Rahu enters a new sign every ~1.5 years.",
+    "gu": "Eclipse seasons shift ~19 days earlier each year. Rahu enters a new sign every ~1.5 years.",
+    "mai": "Eclipse seasons shift ~19 days earlier each year. Rahu enters a new sign every ~1.5 years."
   },
   "rahuNatureDesc": {
     "en": "Nature: Ambition, illusion, material upheaval",
     "hi": "स्वरूप: महत्वाकांक्षा, भ्रम, भौतिक उथल-पुथल",
-    "sa": "स्वभावः: महत्त्वाकाङ्क्षा, माया, भौतिक-उथल-पुथलः"
+    "sa": "स्वभावः: महत्त्वाकाङ्क्षा, माया, भौतिक-उथल-पुथलः",
+    "ta": "Nature: Ambition, illusion, material upheaval",
+    "te": "Nature: Ambition, illusion, material upheaval",
+    "bn": "Nature: Ambition, illusion, material upheaval",
+    "kn": "Nature: Ambition, illusion, material upheaval",
+    "mr": "Nature: Ambition, illusion, material upheaval",
+    "gu": "Nature: Ambition, illusion, material upheaval",
+    "mai": "Nature: Ambition, illusion, material upheaval"
   },
   "ketuNatureDesc": {
     "en": "Nature: Detachment, karmic reckoning, spiritual awakening",
     "hi": "स्वरूप: वैराग्य, कर्म परिपाक, आध्यात्मिक जागृति",
-    "sa": "स्वभावः: वैराग्यम्, कर्म-परिपाकः, आध्यात्मिक-जागृतिः"
+    "sa": "स्वभावः: वैराग्यम्, कर्म-परिपाकः, आध्यात्मिक-जागृतिः",
+    "ta": "Nature: Detachment, karmic reckoning, spiritual awakening",
+    "te": "Nature: Detachment, karmic reckoning, spiritual awakening",
+    "bn": "Nature: Detachment, karmic reckoning, spiritual awakening",
+    "kn": "Nature: Detachment, karmic reckoning, spiritual awakening",
+    "mr": "Nature: Detachment, karmic reckoning, spiritual awakening",
+    "gu": "Nature: Detachment, karmic reckoning, spiritual awakening",
+    "mai": "Nature: Detachment, karmic reckoning, spiritual awakening"
   },
   "solarRahuNature": {
     "en": "Nature: Emotional illusion, mass anxiety, psychic awakening",
     "hi": "स्वरूप: भावनात्मक भ्रम, सामूहिक चिन्ता, मानसिक जागृति",
-    "sa": "स्वभावः: भावनात्मक-माया, सामूहिक-चिन्ता, मानसिक-जागृतिः"
+    "sa": "स्वभावः: भावनात्मक-माया, सामूहिक-चिन्ता, मानसिक-जागृतिः",
+    "ta": "Nature: Emotional illusion, mass anxiety, psychic awakening",
+    "te": "Nature: Emotional illusion, mass anxiety, psychic awakening",
+    "bn": "Nature: Emotional illusion, mass anxiety, psychic awakening",
+    "kn": "Nature: Emotional illusion, mass anxiety, psychic awakening",
+    "mr": "Nature: Emotional illusion, mass anxiety, psychic awakening",
+    "gu": "Nature: Emotional illusion, mass anxiety, psychic awakening",
+    "mai": "Nature: Emotional illusion, mass anxiety, psychic awakening"
   },
   "lunarKetuNature": {
     "en": "Nature: Ancestral karma, grief, moksha, most spiritual of all 4",
     "hi": "स्वरूप: पूर्वज कर्म, शोक, मोक्ष, सर्वाधिक आध्यात्मिक",
-    "sa": "स्वभावः: पितृ-कर्म, शोकः, मोक्षः, चतुर्षु सर्वाधिक-आध्यात्मिकम्"
+    "sa": "स्वभावः: पितृ-कर्म, शोकः, मोक्षः, चतुर्षु सर्वाधिक-आध्यात्मिकम्",
+    "ta": "Nature: Ancestral karma, grief, moksha, most spiritual of all 4",
+    "te": "Nature: Ancestral karma, grief, moksha, most spiritual of all 4",
+    "bn": "Nature: Ancestral karma, grief, moksha, most spiritual of all 4",
+    "kn": "Nature: Ancestral karma, grief, moksha, most spiritual of all 4",
+    "mr": "Nature: Ancestral karma, grief, moksha, most spiritual of all 4",
+    "gu": "Nature: Ancestral karma, grief, moksha, most spiritual of all 4",
+    "mai": "Nature: Ancestral karma, grief, moksha, most spiritual of all 4"
   },
   "thAtRahu": {
     "en": "At Rahu",
     "hi": "राहु पर",
-    "sa": "राहौ"
+    "sa": "राहौ",
+    "ta": "At Rahu",
+    "te": "At Rahu",
+    "bn": "At Rahu",
+    "kn": "At Rahu",
+    "mr": "At Rahu",
+    "gu": "At Rahu",
+    "mai": "At Rahu"
   },
   "thAtKetu": {
     "en": "At Ketu",
     "hi": "केतु पर",
-    "sa": "केतौ"
+    "sa": "केतौ",
+    "ta": "At Ketu",
+    "te": "At Ketu",
+    "bn": "At Ketu",
+    "kn": "At Ketu",
+    "mr": "At Ketu",
+    "gu": "At Ketu",
+    "mai": "At Ketu"
   },
   "eclipseSolar": {
     "en": "Solar",
     "hi": "सूर्य",
-    "sa": "सौरम्"
+    "sa": "सौरम्",
+    "ta": "Solar",
+    "te": "Solar",
+    "bn": "Solar",
+    "kn": "Solar",
+    "mr": "Solar",
+    "gu": "Solar",
+    "mai": "Solar"
   },
   "eclipseLunar": {
     "en": "Lunar",
     "hi": "चन्द्र",
-    "sa": "चान्द्रम्"
+    "sa": "चान्द्रम्",
+    "ta": "Lunar",
+    "te": "Lunar",
+    "bn": "Lunar",
+    "kn": "Lunar",
+    "mr": "Lunar",
+    "gu": "Lunar",
+    "mai": "Lunar"
   }
 }

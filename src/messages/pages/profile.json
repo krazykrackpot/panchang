@@ -1,3 +1,14 @@
 {
-  "localeId": { "en": "en-IN", "hi": "hi-IN", "sa": "en-IN" }
+  "localeId": {
+    "en": "en-IN",
+    "hi": "hi-IN",
+    "sa": "en-IN",
+    "ta": "en-IN",
+    "te": "en-IN",
+    "bn": "en-IN",
+    "kn": "en-IN",
+    "mr": "en-IN",
+    "gu": "en-IN",
+    "mai": "en-IN"
+  }
 }

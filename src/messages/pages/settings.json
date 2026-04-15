@@ -1,4 +1,26 @@
 {
-  "localeId": { "en": "en-IN", "hi": "hi-IN", "sa": "en-IN" },
-  "searchCity": { "en": "Search city or place...", "hi": "शहर खोजें...", "sa": "नगरं स्थानं वा अन्विष्यतु..." }
+  "localeId": {
+    "en": "en-IN",
+    "hi": "hi-IN",
+    "sa": "en-IN",
+    "ta": "en-IN",
+    "te": "en-IN",
+    "bn": "en-IN",
+    "kn": "en-IN",
+    "mr": "en-IN",
+    "gu": "en-IN",
+    "mai": "en-IN"
+  },
+  "searchCity": {
+    "en": "Search city or place...",
+    "hi": "शहर खोजें...",
+    "sa": "नगरं स्थानं वा अन्विष्यतु...",
+    "ta": "Search city or place...",
+    "te": "Search city or place...",
+    "bn": "Search city or place...",
+    "kn": "Search city or place...",
+    "mr": "Search city or place...",
+    "gu": "Search city or place...",
+    "mai": "Search city or place..."
+  }
 }

@@ -1,5 +1,45 @@
 # Panchang - Vedic Astrology Web Application
 
+## Definition of Done (non-negotiable)
+
+Before claiming any task complete, ALL FOUR must be true:
+
+1. `npx tsc --noEmit -p tsconfig.build-check.json` passes
+2. `npx vitest run` passes (or new tests added for the change)
+3. `npx next build` succeeds with zero errors
+4. The change was **verified in the running browser** — not just via curl of server HTML. Click the button, fill the form, watch the UI respond.
+
+If you skipped any of the four, say so explicitly — never report "done" while a gate failed. For production-visible changes (auth, checkout, DB writes), also run `vercel logs` after deploy to confirm no runtime errors.
+
+## Domain & Location Assumptions
+
+- **Inception year: 2026.** Do not default to 2024 or 2025.
+- **No hardcoded locations.** Do NOT assume Delhi/IST/India for any default — the user is in Corseaux/Vevey, Switzerland, and the app serves a global audience. Always read from the location store (`stores/location-store`) or birth form input.
+- **Timezone from coordinates only** — never use browser/OS timezone for kundali calculations. Resolve IANA timezone from birth lat/lng.
+- **No Drik Panchang references** — all comparisons use Prokerala / Shubh Panchang for the same location.
+- Derive technical parameters from inputs (e.g., ayanamsha from user prefs, not hardcoded lahiri).
+
+## Styling & Build Tooling
+
+- Tailwind v4 — arbitrary value classes like `bg-[#0a0e27]` and `from-[#2d1b69]/40` are common. **Never run sed/regex across these.** A bracket double-escape broke 128 files; a `tl(` → `t(` regex broke 3,343 non-translation call sites.
+- For any bulk transformation of TS code: use AST tools (ts-morph, jscodeshift) OR have Claude do a dry run on 2–3 files first and gate on `npx next build` before going wide.
+- `print-color-adjust: exact` preserves *every* color including translucent gradients — verify on actual paper output, not just DevTools.
+- `invert(1)` and some CSS functions behave differently under Tailwind v4; test in browser.
+- Framer Motion `ease` values need `as const` (e.g., `ease: 'easeInOut' as const`).
+
+## Feature Integration (discoverability)
+
+New features must land in **primary navigation**, not as reference links or Quick Link tiles. User expectation: if I built it, I should see it on the dashboard/main nav the moment it ships.
+
+Checklist when shipping a new page/feature:
+- [ ] Linked from the navbar if it's a top-level tool
+- [ ] Rendered inline on `/dashboard` if it's user-specific (saved charts, remedies, etc.)
+- [ ] Added to the `learn` landing REF_GROUPS if it's a curriculum module
+- [ ] Added to `/app/sitemap.ts` with multilingual alternates
+- [ ] Cross-linked from related pages (kundali ↔ matching, panchang ↔ muhurat, etc.)
+
+An unlinked page is a dead page. This rule has been broken twice (library, saved kundalis) — both times generated visible user frustration.
+
 ## Project Overview
 A web application for Indian Vedic astrology featuring daily Panchang calculations and Kundali (birth chart) generation with interpretive commentary. All astronomical calculations are done locally using Meeus algorithms — no external astrology APIs.
 
@@ -77,6 +117,8 @@ No light theme — dark mode is forced. Removed the theme toggle.
 
 ```bash
 npx next dev --turbopack     # Dev server (port 3000)
+npx next dev                 # Fallback: webpack mode if Turbopack loops/crashes
+rm -rf .next                 # Clear stale chunks if dev server renders garbage
 npx next build               # Production build (verify before push)
 npx vitest run               # Run all tests
 npx vitest run src/lib/__tests__/auth-regression.test.ts  # Specific test file
@@ -84,6 +126,8 @@ npx supabase db query --linked "SQL"   # Run SQL on live Supabase
 vercel ls                    # Check deployment status
 vercel logs                  # View production logs
 ```
+
+**Dev server notes**: Turbopack is unstable — if you see stale chunks, `MODULE_NOT_FOUND` for files that exist, or repeated OOM crashes, clear `.next` and fall back to webpack mode (`npx next dev` without `--turbopack`).
 
 ## Deployment Workflow
 
@@ -138,6 +182,65 @@ Required in `.env.local`:
 - Run before pushing: `npx vitest run`
 - Regression tests cover: auth config, checkout env trimming, panchang accuracy vs Drik, vedic time, signup trigger safety
 - Panchang accuracy target: within 2 min of Drik Panchang for all elements
+
+## Lessons from Real Incidents (Apr 2026)
+
+These were learned from bugs that shipped. Treat as hard rules:
+
+### A. Never silently swallow errors
+- `catch { /* silent */ }` in `handleSaveChart` hid RLS failures as a "Saved" indicator that never actually saved.
+- `saved-charts` fetch ignored the `error` field of Supabase responses — auth failures rendered as "No saved charts."
+- Rule: destructure `{ data, error }`, branch on `error`, log with `console.error('[module] X failed:', err)`, show user-visible feedback.
+
+### B. Single source of truth for shared data
+- `layout.tsx` imported a stale flat `messages/en.json` while `request.ts` loaded per-locale dirs. Server translations worked, client ones didn't. Dashboard showed `pages.dashboard.title` as a literal string.
+- Rule: if two paths load "the same thing," share one loader.
+
+### C. Every link-to-destination contract must be explicit
+- Dashboard saved-chart cards passed `/kundali?n=...&d=...` but the kundali page only read `sessionStorage.kundali_last_result`. Every card opened the last-generated chart.
+- Rule: mount effects that read local state must check the URL first and comment the precedence.
+
+### D. Features built but not integrated are dead
+- `/dashboard/saved-charts` worked perfectly but was buried behind a Quick Link tile. Users couldn't find it.
+- Rule (restated): "An unlinked page is a dead page." Integrate the moment it's built.
+
+### E. Document library limits at the call site
+- jsPDF built-in fonts are Latin-1 only; Devanagari strings printed as `A.M-` / `8B0M/` gibberish. No comment, no guard.
+- `setTimeout(() => printWindow.print(), 500)` was a blind bet on async Google Font loading. Use `document.fonts.ready`.
+- CSS `print-color-adjust: exact` applied globally turned translucent gradients into washed-out purple on white paper.
+- Rule: when using an API with a known quirk, either guard in code or comment the limit right above the call.
+
+### F. Loading state must always terminate
+- `fetchCharts` had `if (!user) return;` that never flipped `loading=false` — spinner spun forever during auth restore.
+- Rule: every branch of a data fetch (including early returns) must set loading to false.
+
+### G. User writes must be idempotent
+- No duplicate detection on Save Chart meant repeat clicks / refreshes / tab reopens created dupe rows.
+- Rule: dedupe by natural key (trimmed lowercase name + date + time + lat/lng rounded to 4dp) before insert.
+
+### H. Never bulk find/replace `t(...)` calls with regex/sed
+- A `tl(` → `t(` sweep broke 3,343 call sites — matched Tailwind arbitrary values (`t-*`), plain `t()` functions, and other things.
+- A sed double-escape broke Tailwind bracket syntax across 128 files.
+- Rule: for bulk transformations in TypeScript, use AST tools (ts-morph, jscodeshift) or Claude with a verified 2-3 file dry run + `npx next build` gate before proceeding.
+- Rule: if you MUST regex, print match count + 5 sample before/afters and get confirmation before applying globally.
+
+### I. When migrating translation calls, verify both sides
+- `panchang/page.tsx` was migrated from `msg('todaysMuhurtas', locale)` + JSON import to `useTranslations('pages.panchangInline')` — but the `panchangInline` namespace was never added to any locale's `pages.json`. Result: 6 runtime `MISSING_MESSAGE` errors + a TypeError cascade.
+- Rule: any PR that changes how translation keys are referenced MUST grep the new keys against every locale's message JSON and fail if any are missing.
+- Rule: `next-intl` should be configured with `onError` to log (not swallow) missing keys so they surface in dev.
+
+### J. Locale fallback is non-negotiable
+- Several locale JSONs had English-copied placeholders for regional languages; a later migration that assumed "real translations everywhere" broke at runtime.
+- Rule: every locale file must have an English fallback safety net. If a regional translation is missing, render English — never render `undefined` or the key path.
+
+## i18n Conventions (next-intl)
+
+- **Namespaces**: `pages.*`, `components.*`, `learn.*` — defined in `src/lib/i18n/request.ts`. Message files live at `src/messages/{locale}/{global,pages,components,learn}.json`.
+- **Translation calls**: always use `useTranslations('namespace')` / `getTranslations('namespace')`. No inline `lt()`, no `{ en, hi, ... }` objects, no conditional `locale === 'xx' ? ... : ...` ternaries for translatable strings.
+- **When adding a new translatable string**: add it to `en/pages.json` FIRST, then propagate to every other locale. Script: `python3 scripts/check-locale-parity.py` (create if missing).
+- **When using `useTranslations` for a new namespace**: verify every locale has that namespace before committing. `grep -l "panchangInline" src/messages/*/pages.json` — must return 10 matches.
+- **Never use regex/sed to rewrite `t(...)` calls** — see Lesson H.
+- **Supported locales**: en, hi, sa, ta, te, bn, kn, mr, gu, mai (10 total). Regional-language values may fall back to en or hi when real translations aren't available, but the key must exist.
 
 ## Mandatory Development Rules (Prevent Regressions)
 

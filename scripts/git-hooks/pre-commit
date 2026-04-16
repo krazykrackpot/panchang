@@ -1,0 +1,70 @@
+#!/bin/sh
+# Pre-commit: TypeScript type-check + locale key parity.
+# Fails fast and locally before work even leaves the box.
+
+# Skip on --no-verify or if commit is empty
+if [ -n "$GIT_NO_VERIFY" ]; then
+  exit 0
+fi
+
+# Only check staged .ts/.tsx files to keep this fast
+STAGED_TS=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(ts|tsx)$' | grep -v node_modules)
+STAGED_JSON=$(git diff --cached --name-only --diff-filter=ACM | grep -E 'src/messages/.*\.json$')
+
+if [ -z "$STAGED_TS" ] && [ -z "$STAGED_JSON" ]; then
+  exit 0
+fi
+
+echo "Pre-commit checks:"
+
+# 1. TypeScript type-check (project-wide — fast with incremental)
+if [ -n "$STAGED_TS" ]; then
+  echo "  [1/2] tsc --noEmit..."
+  npx tsc --noEmit -p tsconfig.build-check.json 2>&1
+  if [ $? -ne 0 ]; then
+    echo ""
+    echo "COMMIT BLOCKED: TypeScript errors. Fix before committing."
+    echo "  (bypass with: git commit --no-verify — use sparingly)"
+    exit 1
+  fi
+fi
+
+# 2. Locale key parity — every locale must have the same top-level keys as en
+if [ -n "$STAGED_JSON" ] || [ -n "$STAGED_TS" ]; then
+  echo "  [2/2] locale key parity..."
+  node -e "
+  const fs = require('fs');
+  const path = require('path');
+  const dir = 'src/messages';
+  const locales = fs.readdirSync(dir).filter(n => fs.statSync(path.join(dir, n)).isDirectory());
+  if (!locales.includes('en')) process.exit(0);
+  const files = ['global.json', 'pages.json', 'components.json', 'learn.json'];
+  let failed = false;
+  for (const f of files) {
+    const enPath = path.join(dir, 'en', f);
+    if (!fs.existsSync(enPath)) continue;
+    const en = JSON.parse(fs.readFileSync(enPath, 'utf8'));
+    const enKeys = new Set(Object.keys(en));
+    for (const loc of locales) {
+      if (loc === 'en') continue;
+      const p = path.join(dir, loc, f);
+      if (!fs.existsSync(p)) { console.error('    MISSING FILE:', p); failed = true; continue; }
+      const data = JSON.parse(fs.readFileSync(p, 'utf8'));
+      const missing = [...enKeys].filter(k => !(k in data));
+      if (missing.length) {
+        console.error(\`    \${loc}/\${f}: missing top-level keys: \${missing.join(', ')}\`);
+        failed = true;
+      }
+    }
+  }
+  process.exit(failed ? 1 : 0);
+  " 2>&1
+  if [ $? -ne 0 ]; then
+    echo ""
+    echo "COMMIT BLOCKED: locale key parity failure. Add missing keys to all locales."
+    echo "  (bypass with: git commit --no-verify)"
+    exit 1
+  fi
+fi
+
+echo "Pre-commit OK."

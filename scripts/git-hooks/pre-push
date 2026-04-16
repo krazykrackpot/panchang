@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo "Pre-push: TypeScript check (app code)..."
+npx tsc --noEmit -p tsconfig.build-check.json 2>&1
+
+if [ $? -ne 0 ]; then
+  echo ""
+  echo "PUSH BLOCKED: TypeScript errors in app code. Fix before pushing."
+  exit 1
+fi
+
+echo "TypeScript check passed. Pushing..."

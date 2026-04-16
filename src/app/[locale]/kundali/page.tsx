@@ -321,7 +321,38 @@ export default function KundaliPage() {
     if (!supabase) return;
     setSaving(true);
     try {
-      await supabase.from('saved_charts').insert({
+      // Dedupe: skip insert if an identical chart (same name + date + time +
+      // location within ~11m) is already saved for this user. The client-side
+      // check avoids needless rows and gives immediate "Saved" feedback.
+      const normalizedName = (kundali.birthData.name || 'Chart').trim().toLowerCase();
+      const { data: existing } = await supabase
+        .from('saved_charts')
+        .select('id, label, birth_data')
+        .eq('user_id', user.id);
+
+      type Row = { id: string; label: string; birth_data: { name?: string; date: string; time: string; lat: number; lng: number } };
+      const dup = (existing as Row[] | null)?.find((row) => {
+        const bd = row.birth_data;
+        if (!bd) return false;
+        const rowName = (row.label || bd.name || '').trim().toLowerCase();
+        return (
+          rowName === normalizedName &&
+          bd.date === kundali.birthData.date &&
+          bd.time === kundali.birthData.time &&
+          Math.abs((bd.lat ?? 0) - kundali.birthData.lat) < 0.0001 &&
+          Math.abs((bd.lng ?? 0) - kundali.birthData.lng) < 0.0001
+        );
+      });
+
+      if (dup) {
+        // Already saved — show the "Saved" state without creating a duplicate.
+        setSaved(true);
+        setTimeout(() => setSaved(false), 3000);
+        setSaving(false);
+        return;
+      }
+
+      const { error } = await supabase.from('saved_charts').insert({
         user_id: user.id,
         label: kundali.birthData.name || 'Chart',
         birth_data: {
@@ -335,9 +366,17 @@ export default function KundaliPage() {
         },
         is_primary: false,
       });
-      setSaved(true);
-      setTimeout(() => setSaved(false), 3000);
-    } catch { /* silently fail */ }
+      if (error) {
+        console.error('[kundali] save failed:', error);
+        alert(`Could not save chart: ${error.message}`);
+      } else {
+        setSaved(true);
+        setTimeout(() => setSaved(false), 3000);
+      }
+    } catch (e) {
+      console.error('[kundali] save threw:', e);
+      alert(`Could not save chart: ${e instanceof Error ? e.message : 'unknown error'}`);
+    }
     setSaving(false);
   };
   const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati' | 'patrika' | 'timeline'>('chart');
@@ -348,8 +387,58 @@ export default function KundaliPage() {
   const [showTransits, setShowTransits] = useState(false);
   const [transitData, setTransitData] = useState<{ planets: { id: number; name: LocaleText; rashi: number; longitude: number; isRetrograde: boolean }[] } | null>(null);
 
-  // Restore last kundali from sessionStorage on mount (survives locale switches)
+  // On mount: URL query params take priority over sessionStorage. This lets
+  // saved-kundali cards on the dashboard open the correct chart — previously
+  // the cached "last kundali" always won, so every card opened the same one.
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const n = params.get('n');
+    const d = params.get('d');
+    const t = params.get('t');
+    const la = params.get('la');
+    const lo = params.get('lo');
+    const p = params.get('p');
+
+    if (n && d && t && la && lo) {
+      const birthData: BirthData = {
+        name: n,
+        date: d,
+        time: t,
+        place: p || '',
+        lat: parseFloat(la),
+        lng: parseFloat(lo),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
+        ayanamsha: 'lahiri',
+      };
+      // Purge the stale cache so the signature matcher later doesn't short-circuit.
+      try { sessionStorage.removeItem('kundali_last_result'); } catch { /* ignore */ }
+      setLoading(true);
+      setChartStyle('north');
+      authedFetch('/api/kundali', { method: 'POST', body: JSON.stringify(birthData) })
+        .then(r => r.json())
+        .then(data => {
+          if (data?.planets) {
+            setKundali(data);
+            try {
+              sessionStorage.setItem('kundali_last_result', JSON.stringify({
+                kundali: data,
+                chartStyle: 'north',
+                sig: `${birthData.lat}|${birthData.lng}|${birthData.date}|${birthData.time}|${birthData.timezone}`,
+              }));
+            } catch { /* quota */ }
+          } else {
+            console.error('[kundali] query-param load failed:', data);
+          }
+          setLoading(false);
+        })
+        .catch(err => {
+          console.error('[kundali] query-param load threw:', err);
+          setLoading(false);
+        });
+      return;
+    }
+
+    // No URL params — fall back to the last generated kundali from this session.
     try {
       const cached = sessionStorage.getItem('kundali_last_result');
       if (cached) {

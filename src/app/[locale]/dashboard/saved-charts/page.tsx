@@ -62,6 +62,29 @@ export default function SavedChartsPage() {
     const supabase = getSupabase();
     if (!supabase) return;
     setSaving(true);
+
+    // Dedupe: identical name + date + time + lat/lng already present → skip.
+    const normalizedName = label.trim().toLowerCase();
+    const dup = charts.find((c) => {
+      const bd = c.birth_data;
+      const rowName = (c.label || bd.name || '').trim().toLowerCase();
+      return (
+        rowName === normalizedName &&
+        bd.date === dob &&
+        bd.time === tob &&
+        Math.abs((bd.lat ?? 0) - placeLat) < 0.0001 &&
+        Math.abs((bd.lng ?? 0) - placeLng) < 0.0001
+      );
+    });
+    if (dup) {
+      alert(tl(
+        { en: 'A kundali with the same name and birth details is already saved.', hi: 'समान नाम और जन्म विवरण वाली कुण्डली पहले से सहेजी गई है।', sa: 'समानेन नाम्ना जन्मविवरणेन च चक्रं पूर्वमेव सञ्चितम् अस्ति।', mr: 'समान नाव आणि जन्म तपशील असलेली कुंडली आधीच जतन केलेली आहे.', mai: 'समान नाम आ जन्म विवरण वाली कुण्डली पहिने सँ सहेजल अछि।', ta: 'இதே பெயரும் பிறப்பு விவரங்களும் கொண்ட ஜாதகம் ஏற்கனவே சேமிக்கப்பட்டுள்ளது.', te: 'అదే పేరు మరియు జన్మ వివరాలతో కూడిన కుండలి ఇప్పటికే సేవ్ చేయబడింది.', bn: 'একই নাম ও জন্ম বিবরণের একটি কুণ্ডলী আগে থেকেই সংরক্ষিত আছে।', kn: 'ಅದೇ ಹೆಸರು ಮತ್ತು ಜನ್ಮ ವಿವರಗಳೊಂದಿಗೆ ಕುಂಡಲಿ ಈಗಾಗಲೇ ಉಳಿಸಿದೆ.', gu: 'આ જ નામ અને જન્મ વિગતોવાળી કુંડળી પહેલેથી જ સાચવેલી છે.' },
+        locale,
+      ));
+      setSaving(false);
+      return;
+    }
+
     await supabase.from('saved_charts').insert({
       user_id: user.id,
       label,

@@ -35,6 +35,15 @@ import ChartNorth from '@/components/kundali/ChartNorth';
 import type { Locale, PanchangData , LocaleText} from '@/types/panchang';
 import type { PersonalizedDay, UserSnapshot, TransitAlert } from '@/lib/personalization/types';
 import type { ChartData, DashaEntry } from '@/types/kundali';
+import { Trash2, Plus } from 'lucide-react';
+
+interface SavedChart {
+  id: string;
+  label: string;
+  birth_data: { name?: string; date: string; time: string; place: string; lat: number; lng: number };
+  is_primary: boolean;
+  created_at: string;
+}
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
 
@@ -642,6 +651,7 @@ export default function DashboardPage() {
   const [birthLng, setBirthLng] = useState<number | null>(null);
   const [userMoonSign, setUserMoonSign] = useState<number>(0);
   const [userMoonNakshatra, setUserMoonNakshatra] = useState<number>(0);
+  const [savedCharts, setSavedCharts] = useState<SavedChart[]>([]);
 
   const loadDashboard = useCallback(async () => {
     const supabase = getSupabase();
@@ -729,6 +739,18 @@ export default function DashboardPage() {
         setEnhancedAlerts(alerts);
       } catch { /* transit alerts are non-critical */ }
 
+      // Fetch saved charts — rendered inline below so the user doesn't have to
+      // navigate to a separate page just to see their list.
+      try {
+        const { data: scData, error: scErr } = await supabase
+          .from('saved_charts')
+          .select('id, label, birth_data, is_primary, created_at')
+          .eq('user_id', user.id)
+          .order('created_at', { ascending: false });
+        if (scErr) console.error('[dashboard] saved_charts load failed:', scErr);
+        else if (scData) setSavedCharts(scData as SavedChart[]);
+      } catch (e) { console.error('[dashboard] saved_charts threw:', e); }
+
       // Score festival relevance
       try {
         const festivalSlugs = [
@@ -763,6 +785,25 @@ export default function DashboardPage() {
       setLoading(false);
     }
   }, [initialized, user, loadDashboard]);
+
+  // Delete a saved chart inline (used by the Saved Kundalis section).
+  const handleDeleteSavedChart = async (id: string) => {
+    if (!user) return;
+    const confirmMsg = tl(
+      { en: 'Delete this saved kundali?', hi: 'क्या यह कुण्डली हटाएं?', sa: 'इदं चक्रं विलोपयतु?', mr: 'ही पत्रिका हटवायची?', mai: 'इ कुण्डली हटाउ?', ta: 'இந்த ஜாதகத்தை நீக்கவா?', te: 'ఈ కుండలిని తొలగించాలా?', bn: 'এই কুণ্ডলী মুছবেন?', kn: 'ಈ ಕುಂಡಲಿ ಅಳಿಸಬೇಕೇ?', gu: 'આ કુંડળી કાઢી નાખવી?' },
+      locale,
+    );
+    if (!confirm(confirmMsg)) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
+    const { error: delErr } = await supabase.from('saved_charts').delete().eq('id', id);
+    if (delErr) {
+      console.error('[dashboard] delete saved_chart failed:', delErr);
+      alert(delErr.message);
+      return;
+    }
+    setSavedCharts(prev => prev.filter(c => c.id !== id));
+  };
 
   // Not signed in
   if (initialized && !user) {
@@ -1302,6 +1343,94 @@ export default function DashboardPage() {
             </div>
           </motion.div>
         )}
+
+        {/* Saved Kundalis — inline list so users don't have to drill into a
+             separate page to find their charts. Visible on every dashboard load. */}
+        <motion.div
+          {...fadeUp}
+          transition={{ delay: 0.42 }}
+          className="mb-8"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <Star className="w-5 h-5 text-gold-primary" />
+              <h3 className="text-lg font-semibold text-text-primary">
+                {tl({ en: 'My Saved Kundalis', hi: 'मेरी सहेजी कुण्डलियाँ', sa: 'मम सञ्चितानि चक्राणि', mr: 'माझ्या जतन केलेल्या कुण्डल्या', mai: 'हमर सहेजल कुण्डली', ta: 'எனது சேமித்த ஜாதகங்கள்', te: 'నా సేవ్ చేసిన కుండలులు', bn: 'আমার সংরক্ষিত কুণ্ডলী', kn: 'ನನ್ನ ಉಳಿಸಿದ ಕುಂಡಲಿಗಳು', gu: 'મારી સાચવેલ કુંડળીઓ' }, locale)}
+              </h3>
+              {savedCharts.length > 0 && (
+                <span className="text-xs px-2 py-0.5 rounded-full bg-gold-primary/15 text-gold-primary font-semibold">
+                  {savedCharts.length}
+                </span>
+              )}
+            </div>
+            <Link
+              href={'/kundali' as const}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gold-primary/20 border border-gold-primary/30 text-gold-light text-xs font-bold hover:bg-gold-primary/30 transition-all"
+            >
+              <Plus className="w-3.5 h-3.5" />
+              {tl({ en: 'New', hi: 'नया', sa: 'नवीन', mr: 'नवीन', mai: 'नव', ta: 'புதியது', te: 'కొత్తది', bn: 'নতুন', kn: 'ಹೊಸದು', gu: 'નવું' }, locale)}
+            </Link>
+          </div>
+
+          {savedCharts.length === 0 ? (
+            <div className="rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-8 text-center">
+              <Star className="w-10 h-10 text-gold-primary/30 mx-auto mb-3" />
+              <p className="text-text-secondary text-sm mb-3">
+                {tl({ en: 'No saved kundalis yet. Generate a kundali and press Save Chart to see it here.', hi: 'अभी तक कोई कुण्डली सहेजी नहीं है। कुण्डली बनाएँ और "Save Chart" दबाएँ।', sa: 'अद्य यावत् न किमपि चक्रं सञ्चितम्। चक्रं सृष्ट्वा "Save Chart" नोद्यताम्।', mr: 'अजून कोणतीही पत्रिका जतन केलेली नाही. पत्रिका बनवा आणि Save Chart दाबा.', mai: 'आबतक कोनो कुण्डली सहेजल नहि। कुण्डली बनाऊ आ Save Chart दबाऊ।', ta: 'இதுவரை எந்த ஜாதகமும் சேமிக்கப்படவில்லை. ஒரு ஜாதகத்தை உருவாக்கி Save Chart அழுத்தவும்.', te: 'ఇంకా ఏ కుండలి సేవ్ చేయలేదు. కుండలిని రూపొందించి Save Chart నొక్కండి.', bn: 'এখনো কোন কুণ্ডলী সংরক্ষণ করা হয়নি। একটি কুণ্ডলী তৈরি করে Save Chart চাপুন।', kn: 'ಇಲ್ಲಿಯವರೆಗೆ ಯಾವುದೇ ಕುಂಡಲಿ ಉಳಿಸಿಲ್ಲ. ಒಂದು ಕುಂಡಲಿ ರಚಿಸಿ Save Chart ಒತ್ತಿರಿ.', gu: 'હજુ સુધી કોઈ કુંડળી સાચવેલી નથી. કુંડળી બનાવો અને Save Chart દબાવો.' }, locale)}
+              </p>
+              <Link
+                href={'/kundali' as const}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gold-primary/20 border border-gold-primary/30 text-gold-light text-sm font-bold hover:bg-gold-primary/30 transition-all"
+              >
+                <Plus className="w-4 h-4" />
+                {tl({ en: 'Create Kundali', hi: 'कुण्डली बनाएँ', sa: 'चक्रं सृजतु', mr: 'पत्रिका बनवा', mai: 'कुण्डली बनाऊ', ta: 'ஜாதகம் உருவாக்கு', te: 'కుండలి సృష్టించండి', bn: 'কুণ্ডলী তৈরি করুন', kn: 'ಕುಂಡಲಿ ರಚಿಸಿ', gu: 'કુંડળી બનાવો' }, locale)}
+              </Link>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {savedCharts.map((c) => {
+                const name = c.birth_data.name || c.label;
+                const viewHref = `/kundali?n=${encodeURIComponent(name)}&d=${c.birth_data.date}&t=${c.birth_data.time}&la=${c.birth_data.lat}&lo=${c.birth_data.lng}&p=${encodeURIComponent(c.birth_data.place)}`;
+                return (
+                  <div
+                    key={c.id}
+                    className="relative rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-4 hover:border-gold-primary/40 transition-all group"
+                  >
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <div className="min-w-0 flex-1">
+                        <h4 className="text-gold-light font-bold text-sm truncate" style={isDevanagariLocale(locale) ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                          {name}
+                        </h4>
+                        {c.is_primary && (
+                          <span className="inline-block mt-1 text-[10px] px-1.5 py-0.5 rounded-full bg-gold-primary/20 text-gold-primary font-bold uppercase tracking-wide">
+                            {tl({ en: 'Primary', hi: 'मुख्य', sa: 'मुख्यम्', mr: 'मुख्य', mai: 'मुख्य', ta: 'முதன்மை', te: 'ప్రాథమిక', bn: 'প্রধান', kn: 'ಮುಖ್ಯ', gu: 'મુખ્ય' }, locale)}
+                          </span>
+                        )}
+                      </div>
+                      <button
+                        onClick={() => handleDeleteSavedChart(c.id)}
+                        className="text-text-secondary/50 hover:text-red-400 transition-colors p-1 -mr-1 -mt-1"
+                        aria-label="Delete"
+                        title={tl({ en: 'Delete', hi: 'हटाएँ', sa: 'विलोपयतु', mr: 'हटवा', mai: 'हटाऊ', ta: 'நீக்கு', te: 'తొలగించు', bn: 'মুছুন', kn: 'ಅಳಿಸಿ', gu: 'કાઢી નાખો' }, locale)}
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                    <p className="text-text-secondary text-xs font-mono mb-1">{c.birth_data.date} | {c.birth_data.time}</p>
+                    <p className="text-text-secondary/70 text-xs mb-3 truncate">{c.birth_data.place}</p>
+                    <Link
+                      href={viewHref as '/kundali'}
+                      className="inline-flex items-center gap-1.5 text-gold-primary text-xs font-bold hover:text-gold-light transition-colors"
+                    >
+                      <Eye className="w-3.5 h-3.5" />
+                      {tl({ en: 'Open Kundali', hi: 'कुण्डली खोलें', sa: 'चक्रं उद्घाटयतु', mr: 'पत्रिका उघडा', mai: 'कुण्डली खोलू', ta: 'ஜாதகத்தை திற', te: 'కుండలి తెరవండి', bn: 'কুণ্ডলী খুলুন', kn: 'ಕುಂಡಲಿ ತೆರೆಯಿರಿ', gu: 'કુંડળી ખોલો' }, locale)}
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </motion.div>
 
         {/* Quick Links */}
         <motion.div

@@ -1,12 +1,75 @@
-#!/bin/sh
+#!/usr/bin/env bash
+#
+# pre-push hook — catches regressions before they reach Vercel / production.
+#
+# Two gates, in order of cost:
+#
+#   1) Fast: tsc against the working tree. Catches typical type errors in
+#      <10s. Same check that ran before this hook was extended.
+#
+#   2) Clean-checkout: extracts HEAD into a temp tree, symlinks node_modules
+#      (skip npm install — node_modules is a deps artifact, not source), and
+#      runs tsc THERE. Catches the "file exists locally but isn't staged"
+#      class of bug — e.g. commit X adds `import { foo } from './bar'` while
+#      ./bar only exists in the developer's working tree, not in the pushed
+#      commit. tsc passes locally because the file exists on disk; Vercel
+#      fails because it clones a tree without it.
+#
+# Gate 2 costs ~15s per push. If you're mid-flurry, set PANCHANG_SKIP_CLEAN=1
+# to bypass it for one push (e.g. `PANCHANG_SKIP_CLEAN=1 git push`). Don't
+# make skipping a habit — this catches real production-breakers.
+
+set -u
 
 echo "Pre-push: TypeScript check (app code)..."
-npx tsc --noEmit -p tsconfig.build-check.json 2>&1
-
-if [ $? -ne 0 ]; then
+if ! npx tsc --noEmit -p tsconfig.build-check.json 2>&1; then
   echo ""
   echo "PUSH BLOCKED: TypeScript errors in app code. Fix before pushing."
   exit 1
 fi
+echo "Working-tree TS check passed."
 
-echo "TypeScript check passed. Pushing..."
+if [ "${PANCHANG_SKIP_CLEAN:-0}" = "1" ]; then
+  echo "Pre-push: clean-checkout gate skipped (PANCHANG_SKIP_CLEAN=1)."
+  exit 0
+fi
+
+# Gate 2: clean-checkout TS check.
+echo "Pre-push: clean-checkout TypeScript check..."
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+HEAD_SHA="$(git rev-parse HEAD)"
+TMPDIR="$(mktemp -d -t panchang-prepush-XXXXXX)"
+
+# Always clean up on exit, even on ctrl-c.
+cleanup() { rm -rf "$TMPDIR" 2>/dev/null || true; }
+trap cleanup EXIT INT TERM
+
+# Export the tree AT HEAD (what's being pushed) into the temp dir. `git
+# archive` is the right primitive — it gives us exactly the committed bytes,
+# unaffected by working-tree state.
+if ! git archive --format=tar "$HEAD_SHA" | tar -x -C "$TMPDIR"; then
+  echo "PUSH BLOCKED: failed to extract HEAD tree for verification."
+  exit 1
+fi
+
+# Symlink node_modules + .next from the main repo so we don't pay npm's
+# cost. node_modules is a product of package-lock.json, which is in the
+# archive — same lockfile means same deps. If the push bumps package-lock,
+# that's a separate concern caught by the tsc check (via missing types).
+ln -s "$REPO_ROOT/node_modules" "$TMPDIR/node_modules"
+
+# Run tsc against the extracted tree. Use the SAME tsconfig we use for
+# pre-commit so gates stay consistent.
+if ! (cd "$TMPDIR" && npx --no-install tsc --noEmit -p tsconfig.build-check.json 2>&1); then
+  echo ""
+  echo "PUSH BLOCKED: clean-checkout TypeScript check failed."
+  echo "This means a file is referenced by the committed tree but wasn't"
+  echo "staged — your local filesystem has it, but the commit doesn't."
+  echo "Check 'git status' for untracked/modified files that should have"
+  echo "been staged, or 'git diff HEAD' for staged imports referencing"
+  echo "files that aren't in the commit."
+  exit 1
+fi
+
+echo "Clean-checkout TS check passed. Pushing..."

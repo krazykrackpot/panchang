@@ -16,7 +16,9 @@
     "test:integration": "vitest run --reporter=verbose tests/integration/",
     "test:e2e": "npx playwright test",
     "test:e2e:ui": "npx playwright test --ui",
-    "test:all": "vitest run --reporter=verbose && npx playwright test"
+    "test:all": "vitest run --reporter=verbose && npx playwright test",
+    "e2e:seed": "node --env-file=.env.local --import tsx scripts/e2e-seed.ts",
+    "test:e2e:auth": "E2E_AUTH_COOKIE=\"$(npm run -s e2e:seed -- --token-only)\" npx playwright test e2e/dashboard-saved-kundalis.spec.ts e2e/error-surfacing.spec.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",

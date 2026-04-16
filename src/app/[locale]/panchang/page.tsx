@@ -2442,6 +2442,7 @@ export default function PanchangPage() {
             const sunsetMs  = parseTimeToMs(panchang.sunset);
             const now = new Date();
             const pp = calculatePanchaPakshi(now, sunriseMs, sunsetMs, birthNakshatra);
+            if (!pp?.currentPeriod) return null;
             const AUSPICIOUS_COLOR: Record<string, string> = {
               excellent: 'border-emerald-500/30 bg-emerald-500/8',
               good:      'border-gold-primary/25 bg-gold-primary/5',

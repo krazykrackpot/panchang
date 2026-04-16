@@ -176,8 +176,12 @@ export function calculatePanchaPakshi(
     ? (sunsetMs - sunriseMs) / 5
     : (nextSunriseMs - sunsetMs) / 5;
 
-  const elapsed = isDay ? (nowMs - sunriseMs) : (nowMs - sunsetMs);
-  const periodIndex = Math.min(4, Math.floor(elapsed / periodDuration));
+  // If before sunrise today, treat as previous day's night — use prev sunset (sunsetMs - 24h)
+  const effectiveSunsetMs = nowMs < sunriseMs ? sunsetMs - 24 * 60 * 60 * 1000 : sunsetMs;
+  const elapsed = isDay ? (nowMs - sunriseMs) : (nowMs - effectiveSunsetMs);
+  const rawIndex = Math.floor(elapsed / periodDuration);
+  // Clamp to [0,4] and guard against NaN (invalid sunrise/sunset inputs).
+  const periodIndex = Number.isFinite(rawIndex) ? Math.max(0, Math.min(4, rawIndex)) : 0;
 
   // Determine ruling bird for day period 1 based on weekday
   const dayRulerBird = WEEKDAY_RULER[weekday];

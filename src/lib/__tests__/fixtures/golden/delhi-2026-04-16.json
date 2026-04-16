@@ -1,0 +1,24 @@
+{
+  "source": "Drik Panchang",
+  "sourceUrl": "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1273294&date=16%2F04%2F2026",
+  "capturedAt": "2026-04-16T12:00:00Z",
+  "location": {
+    "name": "Delhi, India",
+    "lat": 28.6139,
+    "lng": 77.2090,
+    "tzOffset": 5.5
+  },
+  "date": "2026-04-16",
+  "expected": {
+    "sunrise": "05:55",
+    "sunset":  "18:47",
+    "tithi":     { "name": "Chaturdashi", "number": 29 },
+    "nakshatra": { "name": "Uttara Bhadrapada", "number": 26 },
+    "yoga":      { "name": "Indra", "number": 26 },
+    "karana":    { "name": "Vishti" },
+    "rahuKaal":    { "start": "13:58", "end": "15:34" },
+    "yamaganda":   { "start": "05:55", "end": "07:31" },
+    "gulikaKaal":  { "start": "09:08", "end": "10:45" }
+  },
+  "tolerances": { "timeMinutes": 5 }
+}

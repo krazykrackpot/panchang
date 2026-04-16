@@ -7,6 +7,21 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com'
 // Import from config so new locales are never missed
 import { locales } from '@/lib/i18n/config';
 
+/**
+ * Locales submitted to the sitemap for crawl.
+ *
+ * We intentionally submit only `en` and `hi` for now. The other 8 locales are
+ * fully functional and linked via hreflang alternates below — users and Google
+ * can still navigate to them — but we don't queue them for crawl until the
+ * domain earns the authority to justify ~9,000 URL requests. Starting with a
+ * lean, high-differentiation sitemap (~900 URLs × 2 locales) gets our primary
+ * content indexed first; we expand later.
+ *
+ * All 10 locales still appear in each entry's `alternates.languages` map so
+ * Google knows they exist and can group them as a single international site.
+ */
+const sitemapLocales: ReadonlyArray<typeof locales[number]> = ['en', 'hi'];
+
 // All routes in the app
 const routes = [
   '',
@@ -225,7 +240,10 @@ function addEntries(
   route: string,
   opts: { changeFrequency: 'daily' | 'weekly' | 'monthly'; priority: number },
 ) {
-  for (const locale of locales) {
+  // Emit one entry per SITEMAP locale (currently en + hi only).
+  // `alternates.languages` still includes ALL 10 locales so Google knows the
+  // full set of language versions for proper hreflang grouping.
+  for (const locale of sitemapLocales) {
     const url = `${BASE_URL}/${locale}${route}`;
     const alternates: Record<string, string> = {};
     for (const alt of locales) {
@@ -270,27 +288,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // Daily panchang articles (last 30 days + next 7 for Discover)
-  const today = new Date();
-  const dailyCitySlugs = ['mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad', 'pune', 'ahmedabad', 'jaipur', 'lucknow', 'varanasi'];
-  for (let i = -7; i < 30; i++) {
-    const d = new Date(today);
-    d.setDate(d.getDate() - i);
-    const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-    addEntries(entries, `/daily/${dateStr}`, {
-      changeFrequency: 'daily',
-      priority: i === 0 ? 0.9 : 0.6,
-    });
-    // City-specific daily articles
-    for (const citySlug of dailyCitySlugs) {
-      addEntries(entries, `/daily/${dateStr}/${citySlug}`, {
-        changeFrequency: 'daily',
-        priority: i === 0 ? 0.7 : 0.5,
-      });
-    }
-  }
+  // NOTE: /daily/[date] and /daily/[date]/[city] are intentionally EXCLUDED from
+  // the sitemap. They are ephemeral, algorithmically generated, and previously
+  // comprised ~43% of the sitemap — burning crawl budget on thin templated
+  // content. The pages still exist for user navigation, but carry robots:
+  // noindex in their metadata so Google doesn't waste budget on them.
+  // See `src/app/[locale]/daily/[date]/layout.tsx` for the noindex config.
 
-  // Daily index
+  // Daily index (hub page remains indexable — it's a real landing page)
   addEntries(entries, '/daily', {
     changeFrequency: 'daily',
     priority: 0.8,

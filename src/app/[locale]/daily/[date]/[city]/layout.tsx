@@ -11,6 +11,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const cityName = cityData ? (isDevanagariLocale(locale) ? cityData.name.hi : cityData.name.en) : city;
   return {
     title: tl({ en: `${cityName} Panchang ${date} — Tithi, Nakshatra, Rahu Kaal`, hi: `${cityName} पंचांग ${date} — तिथि, नक्षत्र, राहु काल`, sa: `${cityName} पंचांग ${date} — तिथि, नक्षत्र, राहु काल` }, locale),
+    // Ephemeral templated content — intentionally not indexed (see sitemap.ts note).
+    robots: { index: false, follow: true },
     alternates: {
       canonical: `${BASE_URL}/${locale}/daily/${date}/${city}`,
       languages: {

@@ -5,6 +5,7 @@ import { getStoryBySlug, getAllStorySlugs } from '@/lib/stories/story-data';
 import StoryViewer from '@/components/stories/StoryViewer';
 import { locales } from '@/lib/i18n/config';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -83,7 +84,7 @@ export default async function StoryPage({ params }: { params: Promise<{ locale: 
       <Script
         id={`story-jsonld-${slug}`}
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
       />
       <StoryViewer />
     </>

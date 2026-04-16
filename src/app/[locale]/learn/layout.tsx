@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import LearnLayoutShell from '@/components/learn/LearnLayoutShell';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -46,8 +47,8 @@ export default async function LearnLayout({ children, params }: { children: Reac
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(courseJsonLd) }} />
       <LearnLayoutShell>{children}</LearnLayoutShell>
     </>
   );

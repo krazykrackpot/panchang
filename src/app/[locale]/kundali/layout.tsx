@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { generateFAQLD } from '@/lib/seo/faq-data';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -38,7 +39,7 @@ export default async function KundaliLayout({ children, params }: { children: Re
       {faqLD && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLD) }}
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }}
         />
       )}
       {children}

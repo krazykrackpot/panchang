@@ -7,6 +7,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 const HOROSCOPE_LABELS: Record<string, Record<string, string>> = {
   en: { heading: "Today's Horoscope by Rashi", score: 'Score', lucky: 'Lucky', readMore: 'Read more' },
@@ -76,7 +77,7 @@ export default async function CityDailyPanchangArticle({ params }: { params: Pro
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleLD) }} />
 
       <article className="prose prose-invert prose-gold max-w-none">
         <div className="text-center mb-8">

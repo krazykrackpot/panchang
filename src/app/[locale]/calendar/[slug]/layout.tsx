@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { generateEventLD } from '@/lib/seo/structured-data';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 export function generateStaticParams() {
   return Object.keys(FESTIVAL_DETAILS).map(slug => ({ slug }));
@@ -103,15 +104,15 @@ export default async function CalendarSlugLayout({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(eventJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }}
       />
       {children}
     </>

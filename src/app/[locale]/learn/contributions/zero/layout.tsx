@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { generateContributionJsonLd, CONTRIBUTION_JSONLD } from '@/lib/seo/contribution-jsonld';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -16,15 +17,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }}
       />
       {children}
     </>

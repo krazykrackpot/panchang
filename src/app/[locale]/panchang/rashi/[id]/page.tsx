@@ -14,6 +14,7 @@ import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import type { Locale } from '@/types/panchang';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import {
   ArrowLeft, ArrowRight, Star, Briefcase, Heart, Activity,
   Gem, Hash, Palette, ChevronDown, ChevronUp, Sun, Sparkles,
@@ -245,11 +246,11 @@ export default function RashiDetailPage() {
       {/* JSON-LD */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLD) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLD) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }}
       />
 
       {/* ── Back navigation ──────────────────────────────────────── */}

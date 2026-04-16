@@ -13,6 +13,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 // ─── Labels ────────────────────────────────────────────────
 const LABELS: Record<string, Record<string, string>> = {
@@ -188,7 +189,7 @@ export default function CompatibilityHeatmapPage() {
     <main className="min-h-screen bg-primary">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLD) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

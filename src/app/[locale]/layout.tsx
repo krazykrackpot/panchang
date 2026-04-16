@@ -13,10 +13,13 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { generateSoftwareApplicationLD, generateOrganizationLD, generateWebSiteLD } from '@/lib/seo/structured-data';
 import { inter, cormorant, notoDevanagari, notoTamil, notoTelugu, notoBengali, notoKannada, notoGujarati } from '@/lib/fonts';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import '@/styles/globals.css';
 
 import InstallPrompt from '@/components/pwa/InstallPrompt';
 import OfflineBanner from '@/components/pwa/OfflineBanner';
+import CookieConsent from '@/components/cookie-consent/CookieConsent';
+import { CONSENT_DEFAULT_SCRIPT } from '@/components/cookie-consent/consent-mode';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -117,17 +120,20 @@ export default async function LocaleLayout({
       </head>
       <body className={`${inter.variable} ${cormorant.variable} ${notoDevanagari.variable} ${notoTamil.variable} ${notoTelugu.variable} ${notoBengali.variable} ${notoKannada.variable} ${notoGujarati.variable} min-h-screen bg-bg-primary text-text-primary antialiased`} suppressHydrationWarning>
         <Script id="theme-init" strategy="beforeInteractive">{`try{localStorage.removeItem('theme');document.documentElement.classList.remove('light');document.documentElement.classList.add('dark')}catch(e){}`}</Script>
+        {/* Google Consent Mode v2 — MUST run before adsbygoogle.js below so
+            consent defaults are set before AdSense initializes. */}
+        <Script id="consent-default" strategy="beforeInteractive">{CONSENT_DEFAULT_SCRIPT}</Script>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(generateOrganizationLD()) }}
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(generateOrganizationLD()) }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(generateWebSiteLD()) }}
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(generateWebSiteLD()) }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(generateSoftwareApplicationLD()) }}
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(generateSoftwareApplicationLD()) }}
         />
         <NextIntlClientProvider locale={locale} messages={messages}>
           {/* Skip to main content — accessibility */}
@@ -147,6 +153,7 @@ export default async function LocaleLayout({
           <ServiceWorkerRegistrar />
           <InstallPrompt />
           <OfflineBanner />
+          <CookieConsent locale={locale} />
           <Analytics />
           <SpeedInsights />
           {process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID && (

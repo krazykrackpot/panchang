@@ -18,10 +18,10 @@
     "test:e2e:ui": "npx playwright test --ui",
     "test:all": "vitest run --reporter=verbose && npx playwright test",
     "e2e:seed": "node --env-file=.env.local --import tsx scripts/e2e-seed.ts",
-    "test:e2e:auth": "E2E_AUTH_COOKIE=\"$(npm run -s e2e:seed -- --token-only)\" npx playwright test e2e/dashboard-saved-kundalis.spec.ts e2e/error-surfacing.spec.ts"
+    "test:e2e:auth": "E2E_AUTH_COOKIE=\"$(npm run -s e2e:seed -- --token-only)\" npx playwright test e2e/dashboard-saved-kundalis.spec.ts e2e/error-surfacing.spec.ts",
+    "analyze": "ANALYZE=true next build --webpack"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.80.0",
     "@react-email/components": "^1.0.11",
     "@supabase/supabase-js": "^2.100.0",
     "@vercel/analytics": "^2.0.1",
@@ -31,7 +31,6 @@
     "framer-motion": "^12.38.0",
     "jspdf": "^4.2.1",
     "lucide-react": "^1.6.0",
-    "next": "16.2.1",
     "next-intl": "^4.8.3",
     "razorpay": "^2.9.6",
     "react": "19.2.4",
@@ -45,6 +44,8 @@
     "zustand": "^5.0.12"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.90.0",
+    "@next/bundle-analyzer": "^16.2.4",
     "@playwright/test": "^1.59.1",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
@@ -59,6 +60,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.1",
     "jsdom": "^29.0.1",
+    "next": "^16.2.4",
     "pdf-parse": "^2.4.5",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",

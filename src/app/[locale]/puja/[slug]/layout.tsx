@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { generateHowToLD } from '@/lib/seo/structured-data';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 export function generateStaticParams() {
   return Object.keys(PUJA_VIDHIS).map(slug => ({ slug }));
@@ -89,11 +90,11 @@ export default async function PujaSlugLayout({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(howToJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }}
       />
       {children}
     </>

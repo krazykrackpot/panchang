@@ -14,6 +14,7 @@ import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 // ─── City selector list ────────────────────────────────────────
 const CITY_SLUGS = ['delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad', 'pune', 'ahmedabad', 'jaipur', 'varanasi'] as const;
@@ -186,7 +187,7 @@ export default function RahuKaalPage() {
         {/* JSON-LD */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(generateBreadcrumbLD('/rahu-kaal', locale)) }}
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(generateBreadcrumbLD('/rahu-kaal', locale)) }}
         />
 
         {/* Back link */}

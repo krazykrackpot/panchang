@@ -14,6 +14,7 @@ import { getDefaultCityForLocale } from '@/lib/constants/rashi-slugs';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import type { Locale, ChoghadiyaSlot } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 // ─── City selector list ────────────────────────────────────────
 const CITY_SLUGS = ['delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad', 'pune', 'ahmedabad', 'jaipur', 'varanasi'] as const;
@@ -192,7 +193,7 @@ export default function ChoghadiyaPage() {
         {/* JSON-LD */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(generateBreadcrumbLD('/choghadiya', locale)) }}
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(generateBreadcrumbLD('/choghadiya', locale)) }}
         />
 
         {/* Back link */}

@@ -4,6 +4,7 @@ import { getAllPairSlugs, getRashiBySlug, canonicalPairSlug } from '@/lib/consta
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -46,8 +47,8 @@ export default async function Layout({ children, params }: { children: React.Rea
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLD) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({
         '@context': 'https://schema.org',
         '@type': 'Article',
         name: `${name1} and ${name2} Compatibility`,

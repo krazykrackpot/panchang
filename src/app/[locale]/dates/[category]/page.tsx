@@ -12,6 +12,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 // ─── Category Configuration ──────────────────────────────────────
 const CATEGORY_CONFIG: Record<string, { tithiNumbers: number[]; pakshaFilter?: 'shukla' | 'krishna' }> = {
@@ -208,7 +209,7 @@ export default function DateCategoryPage() {
 
   return (
     <main className="min-h-screen bg-bg-primary pb-20">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-24 pb-8">
         {/* Back link */}

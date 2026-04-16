@@ -172,7 +172,80 @@ Once the treemap is available, we can pick opportunities #1 and #2 with surgical
 - [x] Baseline server timings captured
 - [x] Baseline bundle sizes captured
 - [x] Top 3 opportunities identified + ranked
+- [x] Bundle analyzer installed (`@next/bundle-analyzer`, wired via `ANALYZE=true npm run analyze`) — produces `.next/analyze/{client,nodejs,edge}.html`
+- [x] **Treemap analysis complete** — concrete findings below
 - [ ] **Real Lighthouse pass from production URL** — deferred to a browser session with DevTools access
-- [ ] **Bundle analyzer treemap** — requires installing `@next/bundle-analyzer` (not applied yet)
 
-**Do not apply fixes until the treemap is in hand.** The fix estimates above are directional, not final.
+---
+
+## 🔍 Treemap findings (concrete, actionable)
+
+Produced via `npm run analyze` on 2026-04-16 with Next.js 16.2.4 (webpack mode).
+
+### The two 1.3 MB+ chunks — what's inside
+
+#### Chunk `95821-b7bd7d28f2b0027b.js` — **1.43 MB** — puja-vidhi barrel import
+
+This chunk is almost entirely `src/lib/constants/puja-vidhi/*` — **55 festival puja-vidhi constants** (diwali 21.8 KB, navaratri 21.6 KB, satyanarayan 21.4 KB, maha-shivaratri 21.2 KB, …) eagerly re-exported via `src/lib/constants/puja-vidhi/index.ts` and pulled in by 7 pages including `/calendar`, `/puja`, `/sankalpa`.
+
+**Diagnosis: classic barrel-import bloat.** Every page importing *any* puja vidhi pulls in *all 55*. Total payload = 55 × ~18 KB ≈ **1 MB of constants** shipped to clients that need one or two at a time.
+
+**Fix (surgical, ~2 hours):**
+- Leave the barrel for type imports, but make content imports per-slug.
+- Change `/puja/[slug]/page.tsx` from `import { PUJAS } from '.../puja-vidhi'` to `import(`.../puja-vidhi/${slug}`)` (dynamic) or per-slug static imports with a `Record<string, () => Promise<...>>` map.
+- `/calendar` and `/calendar/[slug]` can similarly lazy-load only the featured pujas.
+- Pages that only need *slugs* (sitemap.ts uses a hardcoded list) should import from a new `puja-vidhi/slugs.ts` that's tiny.
+
+**Expected impact:** take this chunk from 1.43 MB → ~150 KB (95% reduction), with the rest split into per-slug chunks that load only when that detail page opens. Easily the single highest-leverage perf fix on the project.
+
+#### Chunk `kundali/page-*.js` — **1.36 MB** — kundali page + PDF stack
+
+Biggest modules inside:
+| Size | Module |
+|---|---|
+| 444 KB | `src/app/[locale]/kundali/page.tsx` + 19 concatenated modules |
+| 322 KB | `node_modules/jspdf/dist/jspdf.es.min.js` |
+| 192 KB | `node_modules/html2canvas/dist/html2canvas.js` |
+| 191 KB | `src/components/kundali/InterpretationHelpers.tsx` (separate chunk, but often co-loaded) |
+| 80 KB | `node_modules/canvg/lib/index.es.js` |
+| 77 KB | `src/lib/tippanni/varga-tippanni.ts` |
+
+**Diagnosis:** the kundali page pulls in the full PDF rendering stack (jspdf + html2canvas + canvg ≈ 600 KB) even before the user clicks the "PDF" button. Audit of `src/app/[locale]/kundali/page.tsx` + `src/components/kundali/PatrikaTab.tsx` shows `exportKundaliPDF` IS imported via `import(...)`, so it *should* be dynamic — but `html2canvas` and `canvg` are transitively pulled by jsPDF at module-evaluation time, not just at render time. That's why they end up in the main kundali chunk.
+
+**Fix (2–3 hours):**
+- Move the PDF helper into a true lazy chunk. Confirm via the treemap that jspdf/html2canvas/canvg only appear in the PDF-button chunk after the fix.
+- Audit `InterpretationHelpers.tsx` (191 KB!) — this is almost certainly a giant lookup table of tippanni strings that should either be split per-section or loaded as JSON on demand.
+
+**Expected impact:** 500–600 KB off the kundali chunk = ~1.5 s TTI saved on mobile 4G.
+
+### Other findings worth tracking
+
+**Top packages in the client bundle:**
+
+| Total | Package |
+|---|---|
+| 16.5 MB | (app code) — the whole app, across all pages |
+| 651 KB | `next` runtime |
+| 532 KB | `next-intl` |
+| 322 KB | `jspdf` |
+| 215 KB | `lucide-react` |
+| 192 KB | `html2canvas` |
+| 184 KB | `@supabase/supabase-js` |
+| 120 KB | `framer-motion` |
+| 80 KB | `canvg` |
+
+- **`lucide-react` 215 KB** — despite `optimizePackageImports` being configured. Verify the setting is actually working by picking one random icon import and checking if its chunk contains only that icon, not the whole library.
+- **`framer-motion` 120 KB** — same check. If still a full-library import somewhere, fix the import path.
+- **Individual page weights:** `/kundali` 444 KB, `/panchang/rashi/[id]` 344 KB, `/panchang` 170 KB, `/learn/eclipses` 117 KB, `/learn/birth-chart` 100 KB. The heavy `rashi/[id]` page is driven by `src/lib/constants/rashi-details.ts` (concatenated). Probably another barrel/constants issue worth re-scanning.
+
+---
+
+## Revised prioritized fix plan
+
+1. **[HIGH] Puja-vidhi barrel import split** — ~2 hours. ~1.3 MB saved on first load of `/calendar`, `/puja`, `/sankalpa`. Single biggest win.
+2. **[HIGH] Kundali PDF-stack true lazy-load** — ~2–3 hours. ~500–600 KB off the kundali chunk. Verify jspdf/html2canvas/canvg move out of the main kundali chunk after.
+3. **[MEDIUM] InterpretationHelpers split** — ~3–4 hours. Break the 191 KB file by section (planets, houses, yogas, aspects) so each loads only the tippanni data its tab needs.
+4. **[MEDIUM] Investigate why lucide-react + framer-motion are heavy** — 1 hour audit + whatever fix (usually a wrong import path).
+5. **[LOW] `rashi-details.ts` and similar constants files** — check if the per-rashi detail page could lazy-load only the current rashi's data instead of all 12.
+
+**After item 1 or 2,** re-run `npm run analyze` and diff the treemap to confirm the fix landed as expected. The treemap is now a repeatable measurement instrument — don't skip the before/after comparison.

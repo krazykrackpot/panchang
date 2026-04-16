@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { generateFAQLD } from '@/lib/seo/faq-data';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 const VALID_CATEGORIES = ['ekadashi', 'purnima', 'amavasya', 'pradosham', 'chaturthi'];
@@ -34,7 +35,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   return (
     <>
       {faqLD && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLD) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
       )}
       {children}
     </>

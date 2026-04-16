@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from 'next-intl/plugin';
+import bundleAnalyzer from '@next/bundle-analyzer';
 
 const withNextIntl = createNextIntlPlugin('./src/lib/i18n/request.ts');
+
+// Enable with `ANALYZE=true npm run build` to produce .next/analyze/*.html
+// treemaps showing where bundle weight comes from.
+const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === 'true' });
 
 const nextConfig: NextConfig = {
   turbopack: {
@@ -32,4 +37,4 @@ const nextConfig: NextConfig = {
   serverExternalPackages: ['sweph'],
 };
 
-export default withNextIntl(nextConfig);
+export default withBundleAnalyzer(withNextIntl(nextConfig));

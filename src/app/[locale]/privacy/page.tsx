@@ -54,10 +54,11 @@ const LABELS = {
         heading: '5. Cookies and Local Storage',
         content: `We use the following browser storage mechanisms:`,
         list: [
-          'Authentication Cookies: Session cookies managed by Supabase Auth to keep you signed in. These are essential for account functionality.',
-          'Local Storage: We store your authentication session token (key: "dekho-panchang-auth"), location preferences, and chart style preferences in your browser\'s local storage.',
-          'Third-Party Cookies: Google AdSense may set cookies for ad personalization and analytics. You can manage ad preferences at https://adssettings.google.com.',
-          'No Tracking Cookies: We do not use our own tracking or analytics cookies beyond what is set by the third-party services listed above.',
+          'Cookie Consent Banner: On your first visit we display a banner asking whether you accept all cookies (essential + advertising + analytics) or reject non-essential ones. Your choice is stored in your browser under the key "dekho-panchang-cookie-consent" and is respected on every subsequent visit. Until you make a choice — and if you reject — Google Consent Mode v2 instructs AdSense to serve only non-personalized ads. You can change your choice at any time by clearing this storage entry in your browser settings.',
+          'Authentication Cookies: Session cookies managed by Supabase Auth to keep you signed in. These are strictly necessary for account functionality and are not gated by your cookie consent choice.',
+          'Local Storage: We store your authentication session token (key: "dekho-panchang-auth"), location preferences, chart style preferences, and your cookie consent choice in your browser\'s local storage.',
+          'Third-Party Cookies (Advertising): Google AdSense may set cookies for ad personalization, frequency capping, and reporting — only after you click "Accept all" on the cookie banner. You can also manage ad preferences globally at https://adssettings.google.com.',
+          'No Independent Tracking Cookies: We do not set our own tracking or analytics cookies beyond what is described above. Vercel Analytics (used for aggregated traffic measurement) is privacy-friendly and does not use cookies.',
         ],
       },
       {
@@ -141,7 +142,7 @@ const LABELS = {
       },
       {
         heading: '5. कुकीज़ और स्थानीय संग्रहण',
-        content: `हम प्रमाणीकरण सत्र कुकीज़ (Supabase Auth), स्थानीय संग्रहण में सत्र टोकन और प्राथमिकताएं, और Google AdSense विज्ञापन कुकीज़ का उपयोग करते हैं। आप Google विज्ञापन सेटिंग्स में विज्ञापन वैयक्तिकरण प्रबंधित कर सकते हैं।`,
+        content: `आपकी पहली यात्रा पर हम एक बैनर दिखाते हैं जो पूछता है कि क्या आप सभी कुकीज़ (आवश्यक + विज्ञापन + विश्लेषण) स्वीकार करते हैं या गैर-आवश्यक को अस्वीकार करते हैं। आपकी पसंद आपके ब्राउज़र में "dekho-panchang-cookie-consent" कुंजी के तहत संग्रहीत की जाती है। जब तक आप पसंद नहीं चुनते — और यदि आप अस्वीकार करते हैं — Google Consent Mode v2 AdSense को केवल गैर-वैयक्तिकृत विज्ञापन दिखाने का निर्देश देता है। हम Supabase Auth सत्र कुकीज़ (आवश्यक), स्थानीय संग्रहण में सत्र टोकन और प्राथमिकताएं, और स्वीकृति के बाद Google AdSense विज्ञापन कुकीज़ का उपयोग करते हैं। आप अपनी पसंद को कभी भी ब्राउज़र सेटिंग्स में संग्रहण प्रविष्टि साफ़ करके बदल सकते हैं, और Google विज्ञापन सेटिंग्स https://adssettings.google.com पर विज्ञापन वैयक्तिकरण प्रबंधित कर सकते हैं।`,
       },
       {
         heading: '6. डेटा अवधारण',
@@ -203,7 +204,7 @@ const LABELS = {
       },
       {
         heading: '5. குக்கீகள் மற்றும் உள்ளூர் சேமிப்பு',
-        content: `அங்கீகார அமர்வு குக்கீகள் (Supabase Auth), உள்ளூர் சேமிப்பில் அமர்வு டோக்கன் மற்றும் விருப்பங்கள், மற்றும் Google AdSense விளம்பர குக்கீகளைப் பயன்படுத்துகிறோம். Google விளம்பர அமைப்புகளில் விளம்பர தனிப்பயனாக்கத்தை நிர்வகிக்கலாம்.`,
+        content: `உங்கள் முதல் வருகையில், அனைத்து குக்கீகளையும் (அத்தியாவசியம் + விளம்பரம் + பகுப்பாய்வு) ஏற்கிறீர்களா அல்லது அத்தியாவசியமற்றவற்றை நிராகரிக்கிறீர்களா என்று கேட்கும் ஒரு பதாகையை நாங்கள் காட்டுகிறோம். உங்கள் தேர்வு "dekho-panchang-cookie-consent" என்ற விசையின் கீழ் உங்கள் உலாவியில் சேமிக்கப்படுகிறது. நீங்கள் தேர்வு செய்யும் வரை — மற்றும் நீங்கள் நிராகரித்தால் — Google Consent Mode v2 ஆனது AdSense தனிப்பயனாக்கப்படாத விளம்பரங்களை மட்டுமே வழங்க அறிவுறுத்துகிறது. Supabase Auth அமர்வு குக்கீகள் (அத்தியாவசியம்), உள்ளூர் சேமிப்பில் அமர்வு டோக்கன் மற்றும் விருப்பங்கள், மற்றும் ஏற்புக்குப் பிறகு Google AdSense விளம்பர குக்கீகளைப் பயன்படுத்துகிறோம். உங்கள் உலாவி அமைப்புகளில் சேமிப்பு உள்ளீட்டை அழிப்பதன் மூலம் எந்த நேரத்திலும் உங்கள் தேர்வை மாற்றலாம், மேலும் https://adssettings.google.com இல் Google விளம்பர அமைப்புகளில் தனிப்பயனாக்கத்தை நிர்வகிக்கலாம்.`,
       },
       {
         heading: '6. தரவு தக்கவைப்பு',

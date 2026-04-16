@@ -4,6 +4,7 @@ import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { Link } from '@/lib/i18n/navigation';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 const LABELS = {
   title: {
@@ -155,7 +156,7 @@ export default function MithilaCalendarPage() {
     <main className="min-h-screen bg-bg-primary">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateBreadcrumbLD(`/${locale}/calendar/regional/mithila`, locale)) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(generateBreadcrumbLD(`/${locale}/calendar/regional/mithila`, locale)) }}
       />
       <div className="max-w-4xl mx-auto px-4 py-12 space-y-10">
 

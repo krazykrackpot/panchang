@@ -1,9 +1,6 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { getPageMetadata } from '@/lib/seo/metadata';
-import { generateFAQLD } from '@/lib/seo/faq-data';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -39,17 +36,14 @@ export default async function PanchangLayout({ children, params }: { children: R
     inLanguage: locale === 'hi' ? 'hi' : locale === 'sa' ? 'sa' : 'en',
   };
 
-  const faqLD = generateFAQLD('/panchang', locale);
+  // NOTE: FAQ LD intentionally NOT injected here. Child layouts (nakshatra,
+  // rashi, tithi, yoga) inject their own FAQPage schemas. Injecting one here
+  // too caused "Duplicate field 'FAQPage'" errors in GSC (34 invalid items).
+  // The /panchang page itself gets FAQ from the panchang/page.tsx if needed.
 
   return (
     <>
       <Script id="panchang-ld" type="application/ld+json" strategy="afterInteractive">{JSON.stringify(eventJsonLd)}</Script>
-      {faqLD && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }}
-        />
-      )}
       {children}
     </>
   );

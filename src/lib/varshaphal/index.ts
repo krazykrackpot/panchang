@@ -67,8 +67,8 @@ export function generateVarshaphal(birthData: BirthData, year: number): Varshaph
     isDayBirth,
   );
 
-  // 8. Tajika Yogas
-  const tajikaYogas = detectTajikaYogas(varshaphalChart.planets);
+  // 8. Tajika Yogas — pass ascendant sign for Kamboola/Gairi-Kamboola detection
+  const tajikaYogas = detectTajikaYogas(varshaphalChart.planets, varshaphalChart.ascendant.sign);
 
   // 9. Mudda Dasha
   const moonPlanet = varshaphalChart.planets.find(p => p.planet.id === 1)!;

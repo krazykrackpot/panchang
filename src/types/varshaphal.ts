@@ -19,12 +19,29 @@ export interface SahamData {
 
 export interface TajikaYoga {
   name: LocaleText;
-  type: 'ithasala' | 'ishrafa' | 'nakta' | 'yamaya' | 'manau' | 'conjunction' | 'khallasara' | 'dutthottha';
+  type: TajikaYogaType;
   planet1: LocaleText;
   planet2: LocaleText;
   favorable: boolean;
   description: LocaleText;
+  /** Planet IDs (0-8) for the two planets involved */
+  planet1Id?: number;
+  planet2Id?: number;
+  /** Angular orb of the aspect (degrees) */
+  orb?: number;
+  /** Strength score 0-100 computed from dignity, orb tightness, retrograde */
+  strength?: number;
+  /** Strength category derived from score */
+  strengthLabel?: 'strong' | 'moderate' | 'weak';
+  /** For Radda: which negative yoga this cancels */
+  cancels?: string;
 }
+
+export type TajikaYogaType =
+  | 'ithasala' | 'ishrafa' | 'nakta' | 'yamaya' | 'manau'
+  | 'conjunction' | 'khallasara' | 'dutthottha'
+  | 'ikkabal' | 'induvara' | 'tambira' | 'kuttha'
+  | 'durupha' | 'radda' | 'kamboola' | 'gairi-kamboola' | 'muthashila';
 
 export interface MuddaDashaPeriod {
   planet: string;

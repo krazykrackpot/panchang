@@ -26,6 +26,9 @@ import PersonalizedHoroscope from '@/components/dashboard/PersonalizedHoroscope'
 import DailyHoroscopeWidget from '@/components/dashboard/DailyHoroscopeWidget';
 import WeekAhead from '@/components/dashboard/WeekAhead';
 import DashaTransitionAlert from '@/components/dashboard/DashaTransitionAlert';
+import EclipseWatchCard from '@/components/dashboard/EclipseWatchCard';
+import RemedySpotlightCard from '@/components/dashboard/RemedySpotlightCard';
+import CalendarSyncCard from '@/components/dashboard/CalendarSyncCard';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { checkBadges } from '@/lib/learn/badges';
 import LevelBadge from '@/components/learn/LevelBadge';
@@ -652,6 +655,7 @@ export default function DashboardPage() {
   const [userMoonSign, setUserMoonSign] = useState<number>(0);
   const [userMoonNakshatra, setUserMoonNakshatra] = useState<number>(0);
   const [savedCharts, setSavedCharts] = useState<SavedChart[]>([]);
+  const [planetPositions, setPlanetPositions] = useState<unknown[]>([]);
 
   const loadDashboard = useCallback(async () => {
     const supabase = getSupabase();
@@ -716,6 +720,11 @@ export default function DashboardPage() {
       // Compute personalized day
       const result = computePersonalizedDay(userSnapshot, todayNakshatra, todayMoonSign);
       setPersonalizedDay(result);
+
+      // Set planet positions for remedy spotlight
+      if (fullSnap?.planet_positions) {
+        setPlanetPositions(fullSnap.planet_positions as unknown[]);
+      }
 
       // Set chart data
       if (fullSnap?.chart_data) {
@@ -1431,6 +1440,25 @@ export default function DashboardPage() {
             </div>
           )}
         </motion.div>
+
+        {/* Eclipse Watch — next eclipse + house impact */}
+        {hasBirthData && ascendantSign > 0 && (
+          <div className="mb-8">
+            <EclipseWatchCard ascendantSign={ascendantSign} locale={locale} />
+          </div>
+        )}
+
+        {/* Remedy Spotlight — weakest planet + gemstone */}
+        {hasBirthData && planetPositions.length > 0 && (
+          <div className="mb-8">
+            <RemedySpotlightCard planetPositions={planetPositions} locale={locale} />
+          </div>
+        )}
+
+        {/* Calendar Sync — download .ics */}
+        <div className="mb-8">
+          <CalendarSyncCard locale={locale} />
+        </div>
 
         {/* Quick Links */}
         <motion.div

@@ -11,6 +11,7 @@ import { GRAHAS } from '@/lib/constants/grahas';
 import type { KundaliData, BirthData, PlanetPosition, HouseCusp, ChartData, DashaEntry, ShadBala, DivisionalChart, AshtakavargaData, GrahaDetail, UpagrahaPosition } from '@/types/kundali';
 import { resolveTimezone } from '@/lib/utils/timezone';
 import { calculateJaimini } from '@/lib/jaimini/jaimini-calc';
+import { calculateAshtottariDashas as calculateAshtottariDashaFull } from '@/lib/kundali/ashtottari-dasha';
 import { calculateFullShadbala } from '@/lib/kundali/shadbala';
 import { calculateBhavabala } from '@/lib/kundali/bhavabala';
 import { detectAllYogas } from '@/lib/kundali/yogas-complete';
@@ -230,52 +231,14 @@ function calculateYoginiDasha(moonSidLong: number, birthDate: Date): DashaEntry[
 
 /**
  * Ashtottari Dasha calculation — 108-year cycle
+ * Delegates to the full engine in @/lib/kundali/ashtottari-dasha.ts
+ * which has correct classical nakshatra-to-lord mapping and sub-periods.
  */
-const ASHTOTTARI_DASHAS = [
-  { planet: 'Sun', years: 6 },
-  { planet: 'Moon', years: 15 },
-  { planet: 'Mars', years: 8 },
-  { planet: 'Mercury', years: 17 },
-  { planet: 'Saturn', years: 10 },
-  { planet: 'Jupiter', years: 19 },
-  { planet: 'Rahu', years: 12 },
-  { planet: 'Venus', years: 21 },
-];
-// Ashtottari uses only specific nakshatras (those NOT ruled by Ketu)
-const ASHTOTTARI_NAKSHATRA_MAP = [
-  0, 1, 2, 3, 4, 5, 6, 7, // Ashvini-Pushya → Sun-Venus cycle
-  0, 1, 2, 3, 4, 5, 6, 7,
-  0, 1, 2, 3, 4, 5, 6, 7,
-  0, 1, 2,
-];
-
 function calculateAshtottariDasha(moonSidLong: number, birthDate: Date): DashaEntry[] {
   const nakshatraIndex = Math.floor(moonSidLong / (360 / 27));
-  const startIdx = ASHTOTTARI_NAKSHATRA_MAP[nakshatraIndex] || 0;
   const nakshatraSpan = 360 / 27;
-  const posInNakshatra = (moonSidLong % nakshatraSpan) / nakshatraSpan;
-  const totalYears = ASHTOTTARI_DASHAS[startIdx].years;
-  const remainingYears = totalYears * (1 - posInNakshatra);
-
-  const dashas: DashaEntry[] = [];
-  let currentDate = new Date(birthDate);
-
-  for (let i = 0; i < 8; i++) {
-    const idx = (startIdx + i) % 8;
-    const dasha = ASHTOTTARI_DASHAS[idx];
-    const years = i === 0 ? remainingYears : dasha.years;
-    const endDate = new Date(currentDate.getTime() + years * 365.25 * 24 * 60 * 60 * 1000);
-
-    dashas.push({
-      planet: dasha.planet,
-      planetName: PLANET_NAME_MAP[dasha.planet],
-      startDate: currentDate.toISOString().split('T')[0],
-      endDate: endDate.toISOString().split('T')[0],
-      level: 'maha',
-    });
-    currentDate = new Date(endDate);
-  }
-  return dashas;
+  const degreeInNakshatra = moonSidLong % nakshatraSpan;
+  return calculateAshtottariDashaFull(nakshatraIndex, degreeInNakshatra, birthDate);
 }
 
 /**

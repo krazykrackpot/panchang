@@ -22,6 +22,7 @@ import type { VarshaphalData } from '@/types/varshaphal';
 import type { ChartStyle } from '@/types/kundali';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import TajikaYogaCard from '@/components/varshaphal/TajikaYogaCard';
 
 const LABELS = {
   en: {
@@ -357,22 +358,25 @@ export default function VarshaphalPage() {
               </table>
             </div>
 
-            {/* Tajika Yogas */}
+            {/* Tajika Yogas — Enhanced 16-yoga display */}
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6">
-              <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.tajikaYogas}</h2>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-gold-primary text-sm uppercase tracking-wider font-bold">{t.tajikaYogas}</h2>
+                {data.tajikaYogas.length > 0 && (
+                  <span className="text-xs text-text-secondary bg-gold-primary/10 px-2 py-0.5 rounded-full">
+                    {data.tajikaYogas.length} {tl({ en: 'yogas', hi: 'योग', sa: 'योगाः' }, locale)}
+                  </span>
+                )}
+              </div>
               <div className="grid gap-3">
                 {data.tajikaYogas.map((y, i) => (
-                  <div key={i} className={`p-4 rounded-lg border ${y.favorable ? 'border-green-500/20 bg-green-500/5' : 'border-red-500/20 bg-red-500/5'}`}>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-gold-light font-bold text-sm" style={bodyFont}>{tl(y.name, locale)}</span>
-                      <span className={`text-xs px-2 py-0.5 rounded-full ${y.favorable ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
-                        {y.favorable ? tl({ en: 'Favorable', hi: 'अनुकूल', sa: 'अनुकूल' }, locale) : tl({ en: 'Unfavorable', hi: 'प्रतिकूल', sa: 'प्रतिकूल' }, locale)}
-                      </span>
-                    </div>
-                    <p className="text-text-secondary text-xs" style={bodyFont}>{tl(y.description, locale)}</p>
-                  </div>
+                  <TajikaYogaCard key={`${y.type}-${i}`} yoga={y} locale={locale} index={i} />
                 ))}
-                {data.tajikaYogas.length === 0 && <p className="text-text-secondary text-sm">{tl({ en: 'No significant Tajika yogas found.', hi: 'कोई महत्वपूर्ण ताजिक योग नहीं मिला।', sa: 'कोई महत्वपूर्ण ताजिक योग नहीं मिला।' }, locale)}</p>}
+                {data.tajikaYogas.length === 0 && (
+                  <p className="text-text-secondary text-sm" style={bodyFont}>
+                    {tl({ en: 'No significant Tajika yogas found.', hi: 'कोई महत्वपूर्ण ताजिक योग नहीं मिला।', sa: 'कोई महत्वपूर्ण ताजिक योग नहीं मिला।' }, locale)}
+                  </p>
+                )}
               </div>
             </div>
 

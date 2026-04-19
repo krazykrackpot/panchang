@@ -141,7 +141,7 @@ vercel logs                  # View production logs
 - Lahiri Ayanamsa by default (most widely used in India)
 - North Indian diamond chart style (South Indian toggle available)
 - Meeus algorithms (~0.01° Sun, ~0.5° Moon accuracy)
-- All panchang values verified within 1-2 min of Drik Panchang
+- All panchang values verified within 1-2 min of reference panchang sources (Prokerala/Shubh)
 - All computation server-side via Next.js route handlers
 - No external astrology API dependencies — pure math
 - All constant data uses `Trilingual` type: `{ en: string; hi: string; sa: string }`
@@ -180,8 +180,8 @@ Required in `.env.local`:
 - Framework: Vitest
 - Test files: `src/lib/__tests__/*.test.ts` and `*.test.ts` co-located
 - Run before pushing: `npx vitest run`
-- Regression tests cover: auth config, checkout env trimming, panchang accuracy vs Drik, vedic time, signup trigger safety
-- Panchang accuracy target: within 2 min of Drik Panchang for all elements
+- Regression tests cover: auth config, checkout env trimming, panchang accuracy vs Prokerala/Shubh, vedic time, signup trigger safety
+- Panchang accuracy target: within 2 min of reference panchang sources for all elements
 
 ## Lessons from Real Incidents (Apr 2026)
 

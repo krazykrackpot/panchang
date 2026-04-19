@@ -192,9 +192,15 @@ export default function MatchingPage() {
           <span className="text-gold-gradient">{t('title')}</span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
-        <Link href="/matching/compatibility" className="inline-block mt-4 text-gold-primary hover:text-gold-light text-sm transition-colors">
-          {isTamil ? 'ராசி பொருத்த அட்டவணை பார்க்க →' : isDevanagari ? 'राशि संगतता चार्ट देखें →' : 'View Rashi Compatibility Chart →'}
-        </Link>
+        <div className="flex flex-col sm:flex-row items-center gap-3 mt-4">
+          <Link href="/matching/compatibility" className="text-gold-primary hover:text-gold-light text-sm transition-colors">
+            {isTamil ? 'ராசி பொருத்த அட்டவணை பார்க்க →' : isDevanagari ? 'राशि संगतता चार्ट देखें →' : 'View Rashi Compatibility Chart →'}
+          </Link>
+          <span className="text-text-secondary hidden sm:inline">|</span>
+          <Link href="/matching/report" className="text-gold-primary hover:text-gold-light text-sm transition-colors">
+            {isTamil ? 'விரிவான பொருத்த அறிக்கை →' : isDevanagari ? 'विस्तृत अनुकूलता रिपोर्ट →' : 'Get Detailed Compatibility Report →'}
+          </Link>
+        </div>
       </motion.div>
 
       {/* Birth details mode only — enter exact birth data for accurate matching */}

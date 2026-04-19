@@ -61,8 +61,8 @@ const QUESTIONS: ModuleQuestion[] = [
     },
     correctAnswer: false,
     explanation: {
-      en: 'False. Using noon\'s declination introduces up to ~4 minutes error near the equinoxes, when declination changes ~0.4° in 12 hours. The 2nd pass recalculates declination at the estimated sunrise time, eliminating this error and matching Drik Panchang to the minute.',
-      hi: 'असत्य। मध्याह्न की क्रान्ति उपयोग करने से विषुवों के निकट ~4 मिनट तक त्रुटि होती है, जब 12 घण्टों में क्रान्ति ~0.4° बदलती है। दूसरा पास अनुमानित सूर्योदय समय पर क्रान्ति पुनर्गणित करता है, यह त्रुटि दूर करता है और दृक् पंचांग से मिनट-मिलान करता है।',
+      en: 'False. Using noon\'s declination introduces up to ~4 minutes error near the equinoxes, when declination changes ~0.4° in 12 hours. The 2nd pass recalculates declination at the estimated sunrise time, eliminating this error and matching reference panchang sources to the minute.',
+      hi: 'असत्य। मध्याह्न की क्रान्ति उपयोग करने से विषुवों के निकट ~4 मिनट तक त्रुटि होती है, जब 12 घण्टों में क्रान्ति ~0.4° बदलती है। दूसरा पास अनुमानित सूर्योदय समय पर क्रान्ति पुनर्गणित करता है, यह त्रुटि दूर करता है और प्रमुख पंचांग स्रोतों से मिनट-मिलान करता है।',
     },
   },
   {
@@ -164,7 +164,7 @@ const QUESTIONS: ModuleQuestion[] = [
   {
     id: 'q22_4_10', type: 'mcq',
     question: {
-      en: 'Our app\'s sunrise matches Drik Panchang to the minute primarily because of:',
+      en: 'Our app\'s sunrise matches reference panchang sources to the minute primarily because of:',
       hi: 'हमारे ऐप का सूर्योदय दृक् पंचांग से मिनट-मिलान मुख्यतः किसके कारण करता है:',
     },
     options: [
@@ -220,7 +220,7 @@ function Page2() {
           <span className="text-gold-light font-medium">Pass 1:</span> Solar noon JD = 2461132.0. EoT at noon ≈ -3.8 min. Solar noon = 12:00 - (-3.8/60) + (15° - 6.8°)/15 = ~13:30 CEST (accounting for timezone). Declination at noon ≈ +5.1°. H₀ = arccos([sin(-0.833°) - sin(46.47°) x sin(5.1°)] / [cos(46.47°) x cos(5.1°)]) ≈ 86.9°. Sunrise estimate ≈ 13:30 - 86.9/15 ≈ 07:41 CEST.
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
-          <span className="text-gold-light font-medium">Pass 2:</span> Recompute declination and EoT at JD corresponding to 07:41 CEST. Declination ≈ +5.0° (slightly less than noon). Refined sunrise ≈ 07:40 CEST — within 1 minute of Drik Panchang.
+          <span className="text-gold-light font-medium">Pass 2:</span> Recompute declination and EoT at JD corresponding to 07:41 CEST. Declination ≈ +5.0° (slightly less than noon). Refined sunrise ≈ 07:40 CEST — within 1 minute of reference sources.
         </p>
       </section>
     </div>
@@ -242,7 +242,7 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Why This Matters for Panchang', hi: 'पंचांग के लिए महत्त्व', sa: 'पंचांग के लिए महत्त्व' }, locale)}</h4>
-        <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>प्रत्येक समय-आधारित पंचांग तत्व सटीक सूर्योदय पर निर्भर है: राहु काल, यमघण्ट, गुलिक, अभिजित मुहूर्त और होरा क्रम सभी सूर्योदय को अपने प्रारम्भिक सन्दर्भ के रूप में उपयोग करते हैं। 4 मिनट की सूर्योदय त्रुटि इन सभी गणनाओं में प्रसारित होती है। EoT सुधार सहित 2-पास एल्गोरिदम सुनिश्चित करता है कि हमारा सूर्योदय विश्व भर में किसी भी स्थान पर — विषुवतीय चेन्नई से ध्रुवीय ट्रोम्सो से मध्य-अक्षांश कोर्सो तक — दृक् पंचांग से 1 मिनट के भीतर मिलान करता है।</> : <>Every time-based Panchang element depends on accurate sunrise: Rahu Kaal, Yamaghanda, Gulika, Abhijit Muhurta, and the Hora sequence all use sunrise as their starting reference. A 4-minute sunrise error cascades into all these calculations. The 2-pass algorithm with EoT correction ensures our sunrise matches Drik Panchang to within 1 minute at any location worldwide — from equatorial Chennai to polar Tromso to mid-latitude Corseaux.</>}</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>प्रत्येक समय-आधारित पंचांग तत्व सटीक सूर्योदय पर निर्भर है: राहु काल, यमघण्ट, गुलिक, अभिजित मुहूर्त और होरा क्रम सभी सूर्योदय को अपने प्रारम्भिक सन्दर्भ के रूप में उपयोग करते हैं। 4 मिनट की सूर्योदय त्रुटि इन सभी गणनाओं में प्रसारित होती है। EoT सुधार सहित 2-पास एल्गोरिदम सुनिश्चित करता है कि हमारा सूर्योदय विश्व भर में किसी भी स्थान पर — विषुवतीय चेन्नई से ध्रुवीय ट्रोम्सो से मध्य-अक्षांश कोर्सो तक — प्रमुख पंचांग स्रोतों से 1 मिनट के भीतर मिलान करता है।</> : <>Every time-based Panchang element depends on accurate sunrise: Rahu Kaal, Yamaghanda, Gulika, Abhijit Muhurta, and the Hora sequence all use sunrise as their starting reference. A 4-minute sunrise error cascades into all these calculations. The 2-pass algorithm with EoT correction ensures our sunrise matches reference panchang sources to within 1 minute at any location worldwide — from equatorial Chennai to polar Tromso to mid-latitude Corseaux.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">

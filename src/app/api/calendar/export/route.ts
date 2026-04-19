@@ -1,10 +1,12 @@
 import { NextResponse } from 'next/server';
-import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
+import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
+import { getEclipsesForYear, type EclipseData } from '@/lib/calendar/eclipse-data';
+import { generateICal, type ICalEvent } from '@/lib/calendar/ical-generator';
 
 type Category = 'all' | 'major' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham' | 'vrat' | 'eclipse';
 
 const CALENDAR_NAMES: Record<Category, (year: number) => string> = {
-  all: (y) => `Hindu Festivals & Vrats ${y}`,
+  all: (y) => `Vedic Calendar ${y} — Dekho Panchang`,
   major: (y) => `Hindu Major Festivals ${y}`,
   ekadashi: (y) => `Ekadashi Vrats ${y}`,
   purnima: (y) => `Purnima (Full Moon) ${y}`,
@@ -15,60 +17,30 @@ const CALENDAR_NAMES: Record<Category, (year: number) => string> = {
   eclipse: (y) => `Solar & Lunar Eclipses ${y}`,
 };
 
-/** Escape special characters for ICS text fields */
-function icsEscape(text: string): string {
-  return text
-    .replace(/\\/g, '\\\\')
-    .replace(/;/g, '\\;')
-    .replace(/,/g, '\\,')
-    .replace(/\n/g, '\\n');
-}
+const VALID_CATEGORIES: Category[] = ['all', 'major', 'ekadashi', 'purnima', 'amavasya', 'chaturthi', 'pradosham', 'vrat', 'eclipse'];
 
-/** Fold lines longer than 75 octets per RFC 5545 */
-function icsFold(line: string): string {
-  const maxLen = 75;
-  if (line.length <= maxLen) return line;
-  const parts: string[] = [];
-  parts.push(line.slice(0, maxLen));
-  let i = maxLen;
-  while (i < line.length) {
-    parts.push(' ' + line.slice(i, i + maxLen - 1));
-    i += maxLen - 1;
-  }
-  return parts.join('\r\n');
-}
-
-/** Format date as YYYYMMDD for ICS VALUE=DATE */
-function toIcsDate(dateStr: string): string {
-  return dateStr.replace(/-/g, '');
-}
-
-/** Add one day to a YYYY-MM-DD string, return YYYYMMDD */
-function nextDay(dateStr: string): string {
-  const d = new Date(dateStr + 'T00:00:00Z');
-  d.setUTCDate(d.getUTCDate() + 1);
-  const y = d.getUTCFullYear();
-  const m = String(d.getUTCMonth() + 1).padStart(2, '0');
-  const day = String(d.getUTCDate()).padStart(2, '0');
-  return `${y}${m}${day}`;
-}
-
-/** Create a slug from a name for UID generation */
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
-}
-
+/**
+ * GET /api/calendar/export
+ *
+ * Generates a .ics (iCalendar) file for Vedic calendar events.
+ *
+ * Query params:
+ *   year      — calendar year (required)
+ *   lat       — latitude (required)
+ *   lon       — longitude (required)
+ *   timezone  — IANA timezone string (required, e.g. "Europe/Zurich")
+ *   category  — filter: "all" | "major" | "ekadashi" | ... (default: "all")
+ *   locale    — locale for event names: "en" | "hi" | "sa" etc. (default: "en")
+ */
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const yearParam = searchParams.get('year');
-  const category = (searchParams.get('category') || 'all') as Category;
-  const latParam = searchParams.get('lat');
-  const lonParam = searchParams.get('lon');
-  const timezoneParam = searchParams.get('timezone');
-  const locale = searchParams.get('locale') || 'en';
+
+  const yearParam = searchParams.get('year')?.trim();
+  const category = (searchParams.get('category')?.trim() || 'all') as Category;
+  const latParam = searchParams.get('lat')?.trim();
+  const lonParam = searchParams.get('lon')?.trim();
+  const timezoneParam = searchParams.get('timezone')?.trim();
+  const locale = searchParams.get('locale')?.trim() || 'en';
 
   if (!yearParam || !latParam || !lonParam || !timezoneParam) {
     return NextResponse.json(
@@ -77,7 +49,7 @@ export async function GET(request: Request) {
     );
   }
 
-  const year = parseInt(yearParam);
+  const year = parseInt(yearParam, 10);
   const lat = parseFloat(latParam);
   const lon = parseFloat(lonParam);
 
@@ -88,95 +60,145 @@ export async function GET(request: Request) {
     );
   }
 
-  const validCategories: Category[] = ['all', 'major', 'ekadashi', 'purnima', 'amavasya', 'chaturthi', 'pradosham', 'vrat', 'eclipse'];
-  if (!validCategories.includes(category)) {
+  if (!VALID_CATEGORIES.includes(category)) {
     return NextResponse.json(
-      { error: `Invalid category. Must be one of: ${validCategories.join(', ')}` },
+      { error: `Invalid category. Must be one of: ${VALID_CATEGORIES.join(', ')}` },
       { status: 400 }
     );
   }
 
   try {
-    const festivals = generateFestivalCalendarV2(year, lat, lon, timezoneParam);
+    const icalEvents: ICalEvent[] = [];
 
-    // Filter by category (same logic as the calendar page)
-    const filtered = festivals.filter((f) => {
-      if (category === 'all') return true;
-      if (category === 'major') return f.type === 'major';
-      if (category === 'eclipse') return f.type === 'eclipse';
-      // For vrat sub-categories, match against f.category
-      return f.category === category;
-    });
+    // ── Generate festival events (skip for eclipse-only) ──
+    if (category !== 'eclipse') {
+      const allFestivals = generateFestivalCalendarV2(year, lat, lon, timezoneParam);
+      const filtered = filterByCategory(allFestivals, category);
 
-    const useLocale = locale === 'hi' ? 'hi' : 'en';
-    const calName = CALENDAR_NAMES[category](year);
+      for (const f of filtered) {
+        const name = getLocaleName(f.name, locale);
+        const slug = f.slug || slugify(f.name.en);
 
-    // Build ICS
-    const lines: string[] = [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      'PRODID:-//Panchang//Hindu Calendar//EN',
-      'CALSCALE:GREGORIAN',
-      'METHOD:PUBLISH',
-      icsFold(`X-WR-CALNAME:${icsEscape(calName)}`),
-      icsFold(`X-WR-TIMEZONE:${icsEscape(timezoneParam)}`),
-    ];
-
-    for (const f of filtered) {
-      const name = f.name[useLocale] || f.name.en;
-      const slug = f.slug || slugify(f.name.en);
-      const uid = `${f.date}-${slug}@panchang.app`;
-
-      // Build description
-      let desc = f.description[useLocale] || f.description.en || '';
-
-      // For ekadashi events, add parana info
-      if (f.category === 'ekadashi' && f.paranaStart) {
-        const paranaLines: string[] = [];
-        if (useLocale === 'hi') {
-          paranaLines.push(`पारण (व्रत तोड़ना): ${f.paranaStart}${f.paranaEnd ? ' - ' + f.paranaEnd : ''}`);
-          if (f.paranaDate) paranaLines.push(`पारण तिथि: ${f.paranaDate}`);
-          if (f.paranaSunrise) paranaLines.push(`सूर्योदय: ${f.paranaSunrise}`);
-        } else {
-          paranaLines.push(`Parana (breaking fast): ${f.paranaStart}${f.paranaEnd ? ' - ' + f.paranaEnd : ''}`);
-          if (f.paranaDate) paranaLines.push(`Parana date: ${f.paranaDate}`);
-          if (f.paranaSunrise) paranaLines.push(`Sunrise: ${f.paranaSunrise}`);
-        }
-        desc = desc ? desc + '\n\n' + paranaLines.join('\n') : paranaLines.join('\n');
+        icalEvents.push({
+          uid: `${f.date}-${slug}@dekhopanchang.com`,
+          dtstart: f.date,
+          summary: name,
+          description: buildDescription(f, locale),
+          categories: [f.category || f.type],
+          url: `https://dekhopanchang.com/en/calendar/${slug}`,
+          alarm: { trigger: '-P1D', description: `Tomorrow: ${name}` },
+        });
       }
-
-      const categoryLabel = f.category || f.type || 'festival';
-
-      lines.push('BEGIN:VEVENT');
-      lines.push(icsFold(`DTSTART;VALUE=DATE:${toIcsDate(f.date)}`));
-      lines.push(icsFold(`DTEND;VALUE=DATE:${nextDay(f.date)}`));
-      lines.push(icsFold(`SUMMARY:${icsEscape(name)}`));
-      if (desc) {
-        lines.push(icsFold(`DESCRIPTION:${icsEscape(desc)}`));
-      }
-      lines.push(icsFold(`CATEGORIES:${icsEscape(categoryLabel)}`));
-      lines.push(icsFold(`UID:${uid}`));
-      lines.push('STATUS:CONFIRMED');
-      lines.push('TRANSP:TRANSPARENT');
-      lines.push('END:VEVENT');
     }
 
-    lines.push('END:VCALENDAR');
+    // ── Add eclipses from the static table ──
+    if (category === 'all' || category === 'eclipse') {
+      const eclipses = getEclipsesForYear(year);
+      for (const ecl of eclipses) {
+        icalEvents.push(eclipseToICalEvent(ecl));
+      }
+    }
 
-    const icsContent = lines.join('\r\n') + '\r\n';
-    const filename = `hindu-festivals-${category}-${year}.ics`;
+    // Sort by date
+    icalEvents.sort((a, b) => a.dtstart.localeCompare(b.dtstart));
+
+    // Deduplicate by UID
+    const seen = new Set<string>();
+    const deduped = icalEvents.filter(e => {
+      if (seen.has(e.uid)) return false;
+      seen.add(e.uid);
+      return true;
+    });
+
+    const calName = CALENDAR_NAMES[category](year);
+
+    const icsContent = generateICal({
+      calName,
+      timezone: timezoneParam,
+      events: deduped,
+    });
+
+    const filename = `vedic-calendar-${category}-${year}.ics`;
 
     return new Response(icsContent, {
       status: 200,
       headers: {
         'Content-Type': 'text/calendar; charset=utf-8',
         'Content-Disposition': `attachment; filename="${filename}"`,
+        'Cache-Control': 'public, s-maxage=3600',
       },
     });
   } catch (err) {
+    console.error('[calendar/export] Failed to generate iCal:', err);
     return NextResponse.json(
       { error: 'Failed to generate calendar export: ' + String(err) },
       { status: 500 }
     );
   }
+}
+
+// ─── Helpers ───
+
+function filterByCategory(festivals: FestivalEntry[], category: string): FestivalEntry[] {
+  if (category === 'all') return festivals;
+  if (category === 'major') return festivals.filter(f => f.type === 'major');
+  if (category === 'eclipse') return festivals.filter(f => f.type === 'eclipse');
+  // Sub-category filter (ekadashi, purnima, amavasya, etc.)
+  return festivals.filter(f => f.category === category);
+}
+
+/** Safely get a locale string from a LocaleText object, falling back to .en */
+function getLocaleName(obj: { en: string; [key: string]: string | undefined }, locale: string): string {
+  return obj[locale] || obj.en || '';
+}
+
+function buildDescription(f: FestivalEntry, locale: string): string {
+  const desc = getLocaleName(f.description, locale);
+  const parts: string[] = [];
+  if (desc) parts.push(desc);
+  if (f.tithi) parts.push(`Tithi: ${f.tithi}`);
+  if (f.masa) {
+    parts.push(`Masa: ${f.masa.purnimanta} (Purnimant)${f.masa.isAdhika ? ' [Adhika]' : ''}`);
+  }
+  if (f.pujaMuhurat) {
+    parts.push(`Puja: ${f.pujaMuhurat.start} - ${f.pujaMuhurat.end} (${f.pujaMuhurat.name})`);
+  }
+  if (f.paranaStart && f.paranaEnd) {
+    const paranaLabel = locale === 'hi' ? 'पारण' : locale === 'sa' ? 'पारणम्' : 'Parana';
+    parts.push(`${paranaLabel}: ${f.paranaStart} - ${f.paranaEnd}`);
+    if (f.paranaDate) parts.push(`${paranaLabel} date: ${f.paranaDate}`);
+    if (f.paranaSunrise) parts.push(`Sunrise: ${f.paranaSunrise}`);
+  }
+  return parts.join('\n');
+}
+
+function eclipseToICalEvent(ecl: EclipseData): ICalEvent {
+  const typeLabel = ecl.kind === 'solar' ? 'Solar' : 'Lunar';
+  const subtypeLabel = ecl.type.charAt(0).toUpperCase() + ecl.type.slice(1);
+  const summary = `${subtypeLabel} ${typeLabel} Eclipse`;
+
+  let description = `${subtypeLabel} ${typeLabel} Eclipse on ${ecl.date}`;
+  if (ecl.kind === 'lunar') {
+    description += `\nMax: ${ecl.max} UTC`;
+    description += `\nMagnitude: ${ecl.magnitude}`;
+    if (ecl.durationTotal > 0) description += `\nTotality: ${ecl.durationTotal} min`;
+  } else {
+    description += `\nGreatest Eclipse: ${ecl.maxUtc} UTC`;
+    description += `\nMagnitude: ${ecl.magnitude}`;
+    if (ecl.durationCenter > 0) description += `\nCentral Duration: ${Math.round(ecl.durationCenter / 60)} min`;
+  }
+
+  return {
+    uid: `eclipse-${ecl.kind}-${ecl.date}@dekhopanchang.com`,
+    dtstart: ecl.date,
+    summary,
+    description,
+    categories: ['eclipse'],
+    url: `https://dekhopanchang.com/en/eclipses`,
+    alarm: { trigger: '-P1D', description: `Tomorrow: ${summary}` },
+  };
+}
+
+function slugify(text: string): string {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }

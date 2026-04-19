@@ -87,7 +87,7 @@ function Page3() {
           The progression of astronomical accuracy tells a compelling story. The Surya Siddhanta achieves roughly 0.1-degree accuracy for the Sun and 1-degree for the Moon. Meeus algorithms (what our app uses) achieve approximately 0.01-degree Sun and 0.3-degree Moon. The Swiss Ephemeris achieves sub-arcsecond precision by fitting to JPL numerical integrations. And JPL DE440 itself is accurate to milliarcseconds, calibrated by radar ranging and spacecraft tracking.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
-          For Panchang purposes, the critical question is: does the accuracy matter? A tithi spans 12 degrees of Moon-Sun elongation. A nakshatra spans 13.33 degrees. Even the Surya Siddhanta&rsquo;s 1-degree Moon error would cause at most a 2-hour error in tithi transition time. Our Meeus-level accuracy reduces this to about 40 minutes — comparable to leading Panchang services like Drik Panchang.
+          For Panchang purposes, the critical question is: does the accuracy matter? A tithi spans 12 degrees of Moon-Sun elongation. A nakshatra spans 13.33 degrees. Even the Surya Siddhanta&rsquo;s 1-degree Moon error would cause at most a 2-hour error in tithi transition time. Our Meeus-level accuracy reduces this to about 40 minutes — comparable to leading Panchang services.
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">

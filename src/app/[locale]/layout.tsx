@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import type { Metadata } from 'next';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { locales, visibleLocales, type Locale } from '@/lib/i18n/config';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import StarField from '@/components/layout/StarField';
@@ -90,7 +90,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  // Pre-build only production locales to reduce CPU quota usage.
+  // Other locales still render on-demand via SSR.
+  return visibleLocales.map((locale: string) => ({ locale }));
 }
 
 export default async function LocaleLayout({

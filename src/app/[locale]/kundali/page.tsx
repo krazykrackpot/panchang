@@ -57,6 +57,10 @@ const TransitRadar = dynamic(() => import('@/components/kundali/TransitRadar'), 
 const ChartChatTab = dynamic(() => import('@/components/kundali/ChartChatTab'), { ssr: false });
 const LifeTimeline = dynamic(() => import('@/components/kundali/LifeTimeline'), { ssr: false });
 const PatrikaTab = dynamic(() => import('@/components/kundali/PatrikaTab'), { ssr: false });
+const RemediesTab = dynamic(() => import('@/components/kundali/RemediesTab'), { ssr: false });
+const SudarshanaTab = dynamic(() => import('@/components/kundali/SudarshanaTab'), { ssr: false });
+const NadiAmshaTab = dynamic(() => import('@/components/kundali/NadiAmshaTab'), { ssr: false });
+const VargasTab = dynamic(() => import('@/components/kundali/VargasTab'), { ssr: false });
 const ShadbalaInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.ShadbalaInterpretation })), { ssr: false });
 const YogasInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.YogasInterpretation })), { ssr: false });
 const AvasthasInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.AvasthasInterpretation })), { ssr: false });
@@ -379,7 +383,7 @@ export default function KundaliPage() {
     }
     setSaving(false);
   };
-  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati' | 'patrika' | 'timeline'>('chart');
+  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati' | 'patrika' | 'timeline' | 'remedies' | 'sudarshana' | 'nadi'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
   const [activeChart, setActiveChart] = useState<string>('D1');
@@ -855,6 +859,9 @@ export default function KundaliPage() {
                   { key: 'sadesati' as const, label: locale === 'en' || isTamil ? 'Sade Sati' : 'साढ़े साती' },
                   { key: 'jaimini' as const, label: locale === 'en' || isTamil ? 'Jaimini' : 'जैमिनी' },
                   { key: 'timeline' as const, label: locale === 'en' || isTamil ? 'Life Timeline' : 'जीवन-रेखा' },
+                  { key: 'remedies' as const, label: locale === 'en' || isTamil ? 'Remedies' : 'उपाय' },
+                  { key: 'sudarshana' as const, label: locale === 'en' || isTamil ? 'Sudarshana' : 'सुदर्शन' },
+                  { key: 'nadi' as const, label: locale === 'en' || isTamil ? 'Nadi Amsha' : 'नाडी अंश' },
                   { key: 'patrika' as const, label: locale === 'en' || isTamil ? 'Patrika' : 'पत्रिका' },
                 ]).map((tab) => (
                   <button
@@ -1942,6 +1949,31 @@ export default function KundaliPage() {
           {/* ===== ASHTAKAVARGA TAB ===== */}
           {activeTab === 'ashtakavarga' && kundali.ashtakavarga && (
             <>
+              {/* Educational intro */}
+              <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5 space-y-3 mb-4">
+                <h3 className="text-gold-light font-semibold text-sm">
+                  {locale === 'en' || isTamil ? 'What is Ashtakavarga?' : 'अष्टकवर्ग क्या है?'}
+                </h3>
+                <p className="text-sm text-text-secondary leading-relaxed">
+                  {locale === 'en' || isTamil
+                    ? 'Ashtakavarga is a unique Vedic scoring system where each planet assigns benefic points (bindus) to houses based on its position relative to other planets and the ascendant. Each house receives 0-8 points from each planet (8 contributors = "ashta"). Higher scores (5-8) indicate strength and favorable results; lower scores (0-2) suggest challenges. The Sarvashtakavarga (total across all planets) shows the overall strength of each house in your life — houses with 28+ total points are particularly strong.'
+                    : 'अष्टकवर्ग एक अद्वितीय वैदिक अंक प्रणाली है जिसमें प्रत्येक ग्रह अन्य ग्रहों और लग्न के सापेक्ष अपनी स्थिति के आधार पर भावों को शुभ अंक (बिन्दु) प्रदान करता है। प्रत्येक भाव को प्रत्येक ग्रह से 0-8 अंक मिलते हैं (8 योगदानकर्ता = "अष्ट")। उच्च अंक (5-8) बल और अनुकूल फल दर्शाते हैं; न्यून अंक (0-2) चुनौतियाँ सूचित करते हैं। सर्वाष्टकवर्ग (सभी ग्रहों का कुल) आपके जीवन में प्रत्येक भाव की समग्र शक्ति दिखाता है — 28+ कुल अंक वाले भाव विशेष रूप से बलवान हैं।'}
+                </p>
+                <div className="grid sm:grid-cols-3 gap-3 text-xs">
+                  <div className="bg-gold-primary/5 rounded-lg p-3 border border-gold-primary/10">
+                    <p className="text-gold-light font-medium mb-1">{locale === 'en' || isTamil ? 'Bindus (0-8)' : 'बिन्दु (0-8)'}</p>
+                    <p className="text-text-secondary">{locale === 'en' || isTamil ? 'Points from each planet. 8 is maximum strength; 0 means no support from that planet.' : 'प्रत्येक ग्रह से अंक। 8 अधिकतम बल है; 0 का अर्थ उस ग्रह से कोई सहयोग नहीं।'}</p>
+                  </div>
+                  <div className="bg-gold-primary/5 rounded-lg p-3 border border-gold-primary/10">
+                    <p className="text-gold-light font-medium mb-1">{locale === 'en' || isTamil ? 'Sarvashtakavarga' : 'सर्वाष्टकवर्ग'}</p>
+                    <p className="text-text-secondary">{locale === 'en' || isTamil ? 'Total points per house across all 7 planets. 28+ is strong; below 22 needs attention.' : 'सभी 7 ग्रहों के कुल अंक प्रति भाव। 28+ बलवान; 22 से कम ध्यान योग्य।'}</p>
+                  </div>
+                  <div className="bg-gold-primary/5 rounded-lg p-3 border border-gold-primary/10">
+                    <p className="text-gold-light font-medium mb-1">{locale === 'en' || isTamil ? 'Transit Use' : 'गोचर उपयोग'}</p>
+                    <p className="text-text-secondary">{locale === 'en' || isTamil ? 'When a planet transits a house with high bindus, results are favorable. Low-bindu transits bring challenges.' : 'जब कोई ग्रह उच्च बिन्दु वाले भाव में गोचर करता है तो फल अनुकूल होते हैं। न्यून बिन्दु वाले गोचर चुनौतियाँ लाते हैं।'}</p>
+                  </div>
+                </div>
+              </div>
               <a href={`/${locale}/learn/ashtakavarga`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">
                 {locale === 'en' || isTamil ? 'Learn about Ashtakavarga \u2192' : 'अष्टकवर्ग के बारे में जानें \u2192'}
               </a>
@@ -1974,6 +2006,9 @@ export default function KundaliPage() {
                   ? 'Your birth chart (D1) shows the big picture. Divisional charts zoom into specific life areas by mathematically dividing each sign: D9 (Navamsha)=marriage/dharma/soul\'s true nature (most important after D1), D10 (Dashamsha)=career/profession, D2 (Hora)=wealth, D3 (Drekkana)=siblings, D7 (Saptamsha)=children, D12 (Dwadashamsha)=parents. If a planet is strong in BOTH D1 and D9, its results are confirmed and powerful.'
                   : 'आपकी जन्म कुण्डली (D1) व्यापक चित्र दिखाती है। विभागीय चार्ट प्रत्येक राशि को गणितीय रूप से विभाजित करके विशिष्ट जीवन क्षेत्रों में ज़ूम करते हैं: D9 (नवांश)=विवाह/धर्म/आत्मा का सच्चा स्वरूप (D1 के बाद सर्वाधिक महत्वपूर्ण), D10 (दशमांश)=कैरियर/व्यवसाय, D2 (होरा)=धन, D3 (द्रेष्काण)=भाई-बहन, D7 (सप्तांश)=संतान, D12 (द्वादशांश)=माता-पिता। यदि कोई ग्रह D1 और D9 दोनों में बलवान है तो उसके फल निश्चित और शक्तिशाली होते हैं।'}
               </InfoBlock>
+              <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
+                <VargasTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
+              </Suspense>
               <VargaAnalysisTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
             </>
           )}
@@ -2161,6 +2196,32 @@ export default function KundaliPage() {
           )}
 
           {/* ===== ARGALA TAB ===== */}
+          {activeTab === 'argala' && kundali.argala && (
+            <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5 space-y-3 mb-4">
+              <h3 className="text-gold-light font-semibold text-sm">
+                {locale === 'en' || isTamil ? 'What is Argala?' : 'अर्गला क्या है?'}
+              </h3>
+              <p className="text-sm text-text-secondary leading-relaxed">
+                {locale === 'en' || isTamil
+                  ? 'Argala ("bolt" or "intervention") is a Jaimini concept describing how planets in certain houses intervene in the affairs of other houses. A planet in the 2nd, 4th, or 11th from any house creates an argala (positive intervention) on that house, strengthening its results. However, planets in the 3rd, 10th, or 12th can create virodha-argala (obstruction), blocking the intervention. Understanding argala reveals which planets actively support or block the potential of each house in your chart.'
+                  : 'अर्गला ("बोल्ट" या "हस्तक्षेप") एक जैमिनी अवधारणा है जो बताती है कि कुछ भावों में स्थित ग्रह अन्य भावों के मामलों में कैसे हस्तक्षेप करते हैं। किसी भाव से 2, 4, या 11वें स्थान में ग्रह उस भाव पर अर्गला (सकारात्मक हस्तक्षेप) बनाता है। लेकिन 3, 10, या 12वें स्थान के ग्रह विरोध-अर्गला (बाधा) बना सकते हैं। अर्गला समझने से पता चलता है कि कौन से ग्रह आपकी कुंडली के प्रत्येक भाव की क्षमता को सक्रिय रूप से सहयोग या अवरुद्ध करते हैं।'}
+              </p>
+              <div className="grid sm:grid-cols-3 gap-3 text-xs">
+                <div className="bg-gold-primary/5 rounded-lg p-3 border border-gold-primary/10">
+                  <p className="text-gold-light font-medium mb-1">{locale === 'en' || isTamil ? 'Primary Argala' : 'प्राथमिक अर्गला'}</p>
+                  <p className="text-text-secondary">{locale === 'en' || isTamil ? 'Planets in 2nd, 4th, 11th from a house boost that house\'s results.' : 'किसी भाव से 2, 4, 11वें स्थान के ग्रह उस भाव के फलों को बढ़ाते हैं।'}</p>
+                </div>
+                <div className="bg-gold-primary/5 rounded-lg p-3 border border-gold-primary/10">
+                  <p className="text-gold-light font-medium mb-1">{locale === 'en' || isTamil ? 'Virodha (Obstruction)' : 'विरोध (बाधा)'}</p>
+                  <p className="text-text-secondary">{locale === 'en' || isTamil ? 'Planets in 3rd, 10th, 12th from a house can block the argala.' : '3, 10, 12वें स्थान के ग्रह अर्गला को अवरुद्ध कर सकते हैं।'}</p>
+                </div>
+                <div className="bg-gold-primary/5 rounded-lg p-3 border border-gold-primary/10">
+                  <p className="text-gold-light font-medium mb-1">{locale === 'en' || isTamil ? 'Practical Use' : 'व्यावहारिक उपयोग'}</p>
+                  <p className="text-text-secondary">{locale === 'en' || isTamil ? 'Strong unobstructed argala = that house\'s matters flow easily. Obstructed argala = effort needed.' : 'मजबूत अबाधित अर्गला = उस भाव के कार्य सहजता से चलते हैं। बाधित अर्गला = प्रयास आवश्यक।'}</p>
+                </div>
+              </div>
+            </div>
+          )}
           {activeTab === 'argala' && kundali.argala && (<a href={`/${locale}/learn/argala`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">{locale === 'en' || isTamil ? 'Learn about Argala \u2192' : 'अर्गला के बारे में जानें \u2192'}</a>)}
           {activeTab === 'argala' && kundali.argala && (() => {
             const HOUSE_SIGNIFICATIONS: LocaleText[] = [
@@ -2479,6 +2540,26 @@ export default function KundaliPage() {
                 />
               </Suspense>
             </>
+          )}
+
+          {/* ===== REMEDIES TAB ===== */}
+          {activeTab === 'remedies' && kundali && (
+            <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
+              <RemediesTab kundali={kundali} locale={locale} />
+            </Suspense>
+          )}
+
+          {/* ===== SUDARSHANA TAB ===== */}
+          {activeTab === 'sudarshana' && kundali && (
+            <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
+              <SudarshanaTab kundali={kundali} locale={locale} />
+            </Suspense>
+          )}
+
+          {activeTab === 'nadi' && kundali && (
+            <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
+              <NadiAmshaTab kundali={kundali} locale={locale} />
+            </Suspense>
           )}
 
           {/* ===== PATRIKA TAB ===== */}

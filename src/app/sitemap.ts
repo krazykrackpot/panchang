@@ -112,6 +112,7 @@ const routes = [
   '/learn/contributions/gravity',
   '/learn/contributions/cosmic-time',
   '/learn/contributions/timeline',
+  '/learn/contributions/al-khwarizmi',
   // Calendars
   '/calendar',
   '/transits',
@@ -144,6 +145,8 @@ const routes = [
   '/nivas-shool',
   '/rahu-kaal',
   '/choghadiya',
+  '/sarvatobhadra',
+  '/matching/report',
   // Date listing pages
   '/dates/ekadashi',
   '/dates/purnima',

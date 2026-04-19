@@ -24,6 +24,26 @@ const PLANET_COLORS: Record<number, string> = {
   4: '#f39c12', 5: '#e8e6e3', 6: '#3498db', 7: '#8e44ad', 8: '#95a5a6',
 };
 
+// Dosha explanations — what each dosha means and remedies (rendered below dosha cards)
+const DOSHA_EXPLANATIONS: Record<string, { en: string; hi: string }> = {
+  'Manglik Dosha': {
+    en: 'Mars in houses 1/2/4/7/8/12 creates Manglik Dosha, primarily affecting marriage and partnerships. Severity varies by house — 7th and 8th are strongest. Remedies include Kumbh Vivah, Mangal Shanti puja, and matching with another Manglik.',
+    hi: 'मंगल भाव 1/2/4/7/8/12 में मांगलिक दोष बनाता है, जो मुख्यतः विवाह को प्रभावित करता है। उपाय: कुम्भ विवाह, मंगल शान्ति पूजा, और अन्य मांगलिक से मिलान।',
+  },
+  'Kaal Sarp Dosha': {
+    en: 'All planets between Rahu-Ketu creates a karmic pattern of intense cycles. It doesn\'t block success but makes the path non-linear. Remedies include Kaal Sarp puja at Trimbakeshwar.',
+    hi: 'सभी ग्रहों का राहु-केतु के बीच होना तीव्र कार्मिक चक्रों का प्रतिरूप बनाता है। उपाय: त्र्यम्बकेश्वर में काल सर्प पूजा।',
+  },
+  'Ganda Mula': {
+    en: 'Moon in a junction nakshatra at the fire-water sign boundary. Traditionally requires Ganda Mula Shanti within the first 27 days of life. Mula and Ashlesha are strongest.',
+    hi: 'चन्द्रमा सन्धि नक्षत्र में — अग्नि-जल राशि सीमा पर। जन्म के 27 दिनों में गण्ड मूल शान्ति पूजा आवश्यक।',
+  },
+  'Sade Sati': {
+    en: 'Saturn\'s 7.5-year transit over your Moon sign — the most transformative period. Not inherently negative — strong Saturn charts experience growth and maturity.',
+    hi: 'शनि का चन्द्र राशि पर 7.5 वर्ष का गोचर — सबसे परिवर्तनकारी अवधि। मजबूत शनि वालों को विकास मिलता है।',
+  },
+};
+
 interface PatrikaTabProps {
   kundali: KundaliData;
   locale: Locale;
@@ -326,6 +346,9 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
                 </div>
                 <p className="text-text-secondary/75 text-xs ml-4" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                   {dosha.detail[tl({ en: 'en', hi: 'hi', sa: 'hi', ta: 'en', te: 'en', bn: 'en', kn: 'en', gu: 'en', mai: 'hi', mr: 'hi' }, locale)]}
+                </p>
+                <p className="text-text-secondary/55 text-[11px] ml-4 mt-1.5 leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {DOSHA_EXPLANATIONS[dosha.name.en]?.[isDevanagari ? 'hi' : 'en'] ?? ''}
                 </p>
               </div>
             ))}

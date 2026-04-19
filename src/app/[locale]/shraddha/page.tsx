@@ -122,6 +122,49 @@ export default function ShraddhaPage() {
         )}
       </InfoBlock>
 
+      {/* Educational sub-cards */}
+      <div className="mb-8">
+        <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5 mb-4">
+          <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+            {locale === 'en'
+              ? 'Shraddha is the sacred Vedic ceremony of honoring departed ancestors (Pitru). The word comes from \u201Cshraddha\u201D (faith/devotion) \u2014 it is an act of grateful remembrance performed on specific tithis each month and during the annual Pitru Paksha period. Performing Shraddha on the correct tithi \u2014 matching the tithi on which the ancestor departed \u2014 is considered essential for the offerings to reach them.'
+              : '\u0936\u094D\u0930\u093E\u0926\u094D\u0927 \u0926\u093F\u0935\u0902\u0917\u0924 \u092A\u0942\u0930\u094D\u0935\u091C\u094B\u0902 (\u092A\u093F\u0924\u0943) \u0915\u094B \u0938\u092E\u094D\u092E\u093E\u0928\u093F\u0924 \u0915\u0930\u0928\u0947 \u0915\u093E \u092A\u0935\u093F\u0924\u094D\u0930 \u0935\u0948\u0926\u093F\u0915 \u0905\u0928\u0941\u0937\u094D\u0920\u093E\u0928 \u0939\u0948\u0964 \u092F\u0939 \u0936\u092C\u094D\u0926 \u201C\u0936\u094D\u0930\u0926\u094D\u0927\u093E\u201D (\u0936\u094D\u0930\u0926\u094D\u0927\u093E/\u092D\u0915\u094D\u0924\u093F) \u0938\u0947 \u0906\u0924\u093E \u0939\u0948 \u2014 \u092F\u0939 \u092A\u094D\u0930\u0924\u093F \u092E\u093E\u0938 \u0935\u093F\u0936\u093F\u0937\u094D\u091F \u0924\u093F\u0925\u093F\u092F\u094B\u0902 \u092A\u0930 \u0914\u0930 \u0935\u093E\u0930\u094D\u0937\u093F\u0915 \u092A\u093F\u0924\u0943 \u092A\u0915\u094D\u0937 \u0915\u0947 \u0926\u094C\u0930\u093E\u0928 \u0915\u0943\u0924\u091C\u094D\u091E \u0938\u094D\u092E\u0930\u0923 \u0915\u093E \u0915\u0930\u094D\u092E \u0939\u0948\u0964 \u0938\u0939\u0940 \u0924\u093F\u0925\u093F \u092A\u0930 \u0936\u094D\u0930\u093E\u0926\u094D\u0927 \u0915\u0930\u0928\u093E \u0906\u0935\u0936\u094D\u092F\u0915 \u092E\u093E\u0928\u093E \u091C\u093E\u0924\u093E \u0939\u0948\u0964'}
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5">
+            <h3 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
+              {locale === 'en' ? 'Why Specific Tithis?' : 'विशिष्ट तिथि क्यों?'}
+            </h3>
+            <p className="text-text-secondary text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+              {locale === 'en'
+                ? 'Each ancestor is remembered on the tithi of their passing. If the death tithi is Panchami (5th), Shraddha is performed on every Panchami of Krishna Paksha, and especially during Pitru Paksha \u2014 the annual 16-day ancestor period in Bhadrapada month.'
+                : '\u092A\u094D\u0930\u0924\u094D\u092F\u0947\u0915 \u092A\u0942\u0930\u094D\u0935\u091C \u0915\u094B \u0909\u0928\u0915\u0947 \u0928\u093F\u0927\u0928 \u0915\u0940 \u0924\u093F\u0925\u093F \u092A\u0930 \u0938\u094D\u092E\u0930\u0923 \u0915\u093F\u092F\u093E \u091C\u093E\u0924\u093E \u0939\u0948\u0964 \u092F\u0926\u093F \u092E\u0943\u0924\u094D\u092F\u0941 \u0924\u093F\u0925\u093F \u092A\u0902\u091A\u092E\u0940 \u0939\u0948, \u0924\u094B \u0915\u0943\u0937\u094D\u0923 \u092A\u0915\u094D\u0937 \u0915\u0940 \u092A\u094D\u0930\u0924\u094D\u092F\u0947\u0915 \u092A\u0902\u091A\u092E\u0940 \u092A\u0930, \u0935\u093F\u0936\u0947\u0937\u0915\u0930 \u092A\u093F\u0924\u0943 \u092A\u0915\u094D\u0937 \u2014 \u092D\u093E\u0926\u094D\u0930\u092A\u0926 \u092E\u093E\u0938 \u092E\u0947\u0902 16 \u0926\u093F\u0935\u0938\u0940\u092F \u092A\u0942\u0930\u094D\u0935\u091C \u0915\u093E\u0932 \u092E\u0947\u0902 \u0936\u094D\u0930\u093E\u0926\u094D\u0927 \u0915\u093F\u092F\u093E \u091C\u093E\u0924\u093E \u0939\u0948\u0964'}
+            </p>
+          </div>
+          <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5">
+            <h3 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
+              {locale === 'en' ? 'Pitru Paksha' : '\u092A\u093F\u0924\u0943 \u092A\u0915\u094D\u0937'}
+            </h3>
+            <p className="text-text-secondary text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+              {locale === 'en'
+                ? 'The 16-day period from Purnima to Amavasya in Bhadrapada (Sep\u2013Oct) when the boundary between ancestral and earthly realms is thinnest. This is the most powerful time for Shraddha rituals and ancestor remembrance.'
+                : '\u092D\u093E\u0926\u094D\u0930\u092A\u0926 (\u0938\u093F\u0924\u0902\u092C\u0930-\u0905\u0915\u094D\u091F\u0942\u092C\u0930) \u092E\u0947\u0902 \u092A\u0942\u0930\u094D\u0923\u093F\u092E\u093E \u0938\u0947 \u0905\u092E\u093E\u0935\u0938\u094D\u092F\u093E \u0924\u0915 16 \u0926\u093F\u0928 \u0915\u093E \u0915\u093E\u0932, \u091C\u092C \u092A\u0942\u0930\u094D\u0935\u091C \u0914\u0930 \u092D\u0942-\u0932\u094B\u0915 \u0915\u0947 \u092C\u0940\u091A \u0915\u0940 \u0938\u0940\u092E\u093E \u0938\u092C\u0938\u0947 \u092A\u0924\u0932\u0940 \u0939\u094B\u0924\u0940 \u0939\u0948\u0964 \u092F\u0939 \u0936\u094D\u0930\u093E\u0926\u094D\u0927 \u0905\u0928\u0941\u0937\u094D\u0920\u093E\u0928\u094B\u0902 \u0915\u0947 \u0932\u093F\u090F \u0938\u092C\u0938\u0947 \u0936\u0915\u094D\u0924\u093F\u0936\u093E\u0932\u0940 \u0938\u092E\u092F \u0939\u0948\u0964'}
+            </p>
+          </div>
+          <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5">
+            <h3 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
+              {locale === 'en' ? 'What to Do' : '\u0915\u094D\u092F\u093E \u0915\u0930\u0947\u0902'}
+            </h3>
+            <p className="text-text-secondary text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+              {locale === 'en'
+                ? 'Traditional Shraddha involves cooking specific foods (kheer, rice, dal), offering to ancestors, feeding Brahmins or the needy, and reciting mantras. Even a simple offering of water (tarpana) with sincere remembrance is considered meaningful.'
+                : '\u092A\u093E\u0930\u0902\u092A\u0930\u093F\u0915 \u0936\u094D\u0930\u093E\u0926\u094D\u0927 \u092E\u0947\u0902 \u0935\u093F\u0936\u0947\u0937 \u092D\u094B\u091C\u0928 (\u0916\u0940\u0930, \u091A\u093E\u0935\u0932, \u0926\u093E\u0932) \u092A\u0915\u093E\u0928\u093E, \u092A\u0942\u0930\u094D\u0935\u091C\u094B\u0902 \u0915\u094B \u0905\u0930\u094D\u092A\u093F\u0924 \u0915\u0930\u0928\u093E, \u092C\u094D\u0930\u093E\u0939\u094D\u092E\u0923\u094B\u0902 \u092F\u093E \u091C\u0930\u0942\u0930\u0924\u092E\u0902\u0926\u094B\u0902 \u0915\u094B \u092D\u094B\u091C\u0928 \u0915\u0930\u093E\u0928\u093E, \u0914\u0930 \u092E\u0902\u0924\u094D\u0930 \u092A\u0922\u093C\u0928\u093E \u0936\u093E\u092E\u093F\u0932 \u0939\u0948\u0964 \u0938\u091A\u094D\u091A\u0947 \u0938\u094D\u092E\u0930\u0923 \u0915\u0947 \u0938\u093E\u0925 \u091C\u0932 \u0915\u093E \u0938\u093E\u0927\u093E\u0930\u0923 \u0905\u0930\u094D\u092A\u0923 (\u0924\u0930\u094D\u092A\u0923) \u092D\u0940 \u0938\u093E\u0930\u094D\u0925\u0915 \u092E\u093E\u0928\u093E \u091C\u093E\u0924\u093E \u0939\u0948\u0964'}
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Input */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 mb-8">
         <div className="space-y-6">

@@ -124,6 +124,42 @@ export default function BabyNamesPage() {
         </div>
       </div>
 
+      {/* Educational sub-cards */}
+      <div className="max-w-4xl mx-auto px-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5">
+            <h3 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
+              {locale === 'en' ? 'Why Nakshatra Syllables?' : 'नक्षत्र अक्षर क्यों?'}
+            </h3>
+            <p className="text-text-secondary text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+              {locale === 'en'
+                ? 'Each nakshatra spans 13\u00B020\u2032 of the zodiac and has 4 padas (quarters). Each pada has a designated starting syllable rooted in Sanskrit phonetics. The sound vibration of the first syllable sets the energetic tone for the name.'
+                : 'प्रत्येक नक्षत्र राशिचक्र के 13\u00B020\u2032 में फैला है और इसके 4 पाद हैं। प्रत्येक पाद का संस्कृत ध्वनि विज्ञान में निहित एक निर्धारित प्रारम्भिक अक्षर है। पहले अक्षर का ध्वनि कम्पन नाम की ऊर्जा का स्वर निर्धारित करता है।'}
+            </p>
+          </div>
+          <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5">
+            <h3 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
+              {locale === 'en' ? 'How It Works' : 'यह कैसे काम करता है'}
+            </h3>
+            <p className="text-text-secondary text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+              {locale === 'en'
+                ? 'Find the Moon\u2019s nakshatra at birth \u2192 identify the pada (1\u20134) \u2192 use the corresponding syllable as the starting sound for the child\u2019s name. The Moon\u2019s exact degree determines which of the 108 padas applies.'
+                : 'जन्म के समय चन्द्रमा का नक्षत्र ज्ञात करें \u2192 पाद (1\u20134) पहचानें \u2192 बच्चे के नाम के लिए संबंधित अक्षर का उपयोग करें। चन्द्रमा का सटीक अंश निर्धारित करता है कि 108 पादों में से कौन सा लागू होता है।'}
+            </p>
+          </div>
+          <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5">
+            <h3 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
+              {locale === 'en' ? 'Modern Practice' : 'आधुनिक अभ्यास'}
+            </h3>
+            <p className="text-text-secondary text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+              {locale === 'en'
+                ? 'While traditional, many families today use nakshatra syllables as a guide rather than strict rule \u2014 choosing a name that starts with the right sound but fits their language and culture.'
+                : 'परम्परागत होते हुए भी, आज कई परिवार नक्षत्र अक्षरों को कठोर नियम के बजाय मार्गदर्शक के रूप में उपयोग करते हैं \u2014 ऐसा नाम चुनते हैं जो सही ध्वनि से शुरू हो पर उनकी भाषा और संस्कृति के अनुरूप हो।'}
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Birth details — compact row */}
       <div className="mb-8 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
         <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-3 text-center">

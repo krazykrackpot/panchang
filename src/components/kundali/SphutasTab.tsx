@@ -104,6 +104,32 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
         {msg('heading', locale)}
       </h3>
 
+      {/* Educational intro */}
+      <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5 space-y-3">
+        <h3 className="text-gold-light font-semibold text-sm">
+          {isHi ? 'स्फुट क्या हैं?' : 'What are Sphutas?'}
+        </h3>
+        <p className="text-sm text-text-secondary leading-relaxed">
+          {isHi
+            ? 'स्फुट कुंडली में गणितीय रूप से प्राप्त संवेदनशील बिन्दु हैं, जो विशिष्ट ग्रह संयोजनों से निकाले जाते हैं। भौतिक रूप से विद्यमान ग्रहों के विपरीत, स्फुट अमूर्त बिन्दु हैं जो छिपे प्रभावों को प्रकट करते हैं। योगी बिन्दु आपकी सबसे सहायक ग्रह ऊर्जा दिखाता है; अवयोगी आपकी सबसे बड़ी बाधा दर्शाता है। प्राण (जीवन शक्ति), देह (शरीर), और मृत्यु (परिवर्तन) स्फुट विभिन्न जीवन चरणों में जीवन शक्ति के प्रतिरूप बताते हैं।'
+            : 'Sphutas are mathematically derived sensitive points in the chart, each calculated from specific planetary combinations. Unlike planets which are physically present, sphutas are abstract points that reveal hidden influences. The Yogi Point shows your most supportive planetary energy; the Avayogi shows your greatest obstacle. Prana (life force), Deha (body), and Mrityu (death/transformation) sphutas indicate vitality patterns across different life phases.'}
+        </p>
+        <div className="grid sm:grid-cols-3 gap-3 text-xs">
+          <div className="bg-gold-primary/5 rounded-lg p-3 border border-gold-primary/10">
+            <p className="text-gold-light font-medium mb-1">{isHi ? 'योगी और अवयोगी' : 'Yogi & Avayogi'}</p>
+            <p className="text-text-secondary">{isHi ? 'आपका योगी ग्रह आपका सबसे बड़ा सहयोगी है; इसकी दशा अवधि में अधिकतम सहयोग मिलता है। अवयोगी इसके विपरीत है — इसके प्रभाव की जागरूकता चुनौतियों से निपटने में सहायक होती है।' : 'Your Yogi Planet is your greatest ally; its dasha periods bring peak support. Avayogi is the opposite — awareness of its influence helps navigate challenges.'}</p>
+          </div>
+          <div className="bg-gold-primary/5 rounded-lg p-3 border border-gold-primary/10">
+            <p className="text-gold-light font-medium mb-1">{isHi ? 'प्राण / देह / मृत्यु' : 'Prana / Deha / Mrityu'}</p>
+            <p className="text-text-secondary">{isHi ? 'जीवन शक्ति, शरीर, और परिवर्तन बिन्दु। जब गोचर इन्हें सक्रिय करते हैं तो स्वास्थ्य और जीवन शक्ति में परिवर्तन होते हैं।' : 'Life force, body, and transformation points. When transits activate these, health and vitality shifts occur.'}</p>
+          </div>
+          <div className="bg-gold-primary/5 rounded-lg p-3 border border-gold-primary/10">
+            <p className="text-gold-light font-medium mb-1">{isHi ? 'गोचर सक्रियता' : 'Transit Activation'}</p>
+            <p className="text-text-secondary">{isHi ? 'जब कोई गोचरी ग्रह किसी स्फुट बिन्दु को पार करता है, तो उस स्फुट के विषय अस्थायी रूप से सक्रिय हो जाते हैं।' : 'When a transiting planet crosses a sphuta point, that sphuta\'s themes activate temporarily.'}</p>
+          </div>
+        </div>
+      </div>
+
       <InfoBlock
         id="kundali-sphutas"
         title={msg('infoTitle', locale)}

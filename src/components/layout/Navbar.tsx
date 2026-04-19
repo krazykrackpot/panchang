@@ -143,6 +143,7 @@ export default function Navbar() {
         { href: '/nivas-shool', label: t('nivasShool') },
         { href: '/rahu-kaal', label: locale === 'sa' ? 'राहुकालः' : msg('rahuKaal', locale) },
         { href: '/choghadiya', label: msg('choghadiya', locale) },
+        { href: '/sarvatobhadra', label: locale === 'sa' ? 'सर्वतोभद्रचक्रम्' : locale === 'hi' ? 'सर्वतोभद्र चक्र' : 'Sarvatobhadra' },
       ],
     },
     {

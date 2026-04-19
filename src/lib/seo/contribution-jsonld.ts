@@ -417,6 +417,31 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
     ],
   },
 
+  'al-khwarizmi': {
+    slug: 'al-khwarizmi',
+    headline: "Al-Khwarizmi & Hindu Mathematics — How the 'Father of Algebra' Built on Indian Foundations",
+    description:
+      "Al-Khwarizmi's foundational work explicitly transmitted Indian mathematics — the Hindu decimal system, zero, and arithmetic methods — to the Arabic-speaking world. The word 'algorithm' derives from his name, but the procedures were Indian in origin.",
+    datePublished: '2026-04-16',
+    faqs: [
+      {
+        question: "Did Al-Khwarizmi invent the numeral system we use today?",
+        answer:
+          "No. Al-Khwarizmi explicitly credited Hindu mathematicians as the source. His book title literally translates to 'The Book of Addition and Subtraction According to Hindu Calculation.' The decimal place-value system came from Brahmagupta's Brahmasphutasiddhanta (628 CE).",
+      },
+      {
+        question: 'Why are they called "Arabic numerals" if they are Indian?',
+        answer:
+          'Europeans received the numeral system from Arabic texts, so they called them "Arabic numerals." But Arabic scholars themselves called them "Hindu numerals" (al-arqam al-hindiyyah). The Arabic word for numerals, "hindsa," comes from "Hind" (India).',
+      },
+      {
+        question: 'What does "algorithm" have to do with India?',
+        answer:
+          'The word "algorithm" comes from the Latinized form of Al-Khwarizmi\'s name ("Algoritmi"). However, the computational procedures he described — Hindu arithmetic methods — were Indian in origin, transmitted from Brahmagupta and other Indian mathematicians.',
+      },
+    ],
+  },
+
   timeline: {
     slug: 'timeline',
     headline: '2,000 Years of Indian Science — A Visual Timeline',

@@ -587,17 +587,28 @@ export default function PanchangLabPage() {
 
               <JulianDayDiagram jd={calc.jd} />
 
-              <FormulaBox heading={t('theFormulaExplained')}>
-                <div className="font-mono text-amber-200/90 text-center py-2 mb-4 text-base">
-                  JD = 365.25 × (Y + 4716) + 30.6001 × (M + 1) + D + h/24 + B − 1524.5
+              <FormulaBox heading="The Method — How It Works">
+                <div className="space-y-3 text-text-primary mb-6">
+                  <p>The goal is simple: convert any calendar date into a single continuous day count. The approach has 5 steps:</p>
+                  <ol className="list-decimal list-inside space-y-2 text-text-primary/90">
+                    <li><strong className="text-amber-300">Pick an ancient zero-point</strong> — astronomers chose noon on January 1st, 4713 BC as "Day 0." This date (the start of the Julian Period) was chosen because it predates all recorded history, so every historical date has a positive JD.</li>
+                    <li><strong className="text-amber-300">Count full years</strong> — multiply the number of years since the zero-point by 365.25 (the average year length, accounting for leap years). This gives an approximate day count.</li>
+                    <li><strong className="text-amber-300">Count the months within the current year</strong> — months have uneven lengths (28–31 days), so the formula uses 30.6001 days/month as an average, then adds the exact day of the month. A trick: January and February are treated as months 13–14 of the <em>previous</em> year, so the short month (February) falls at the end of the "year" and doesn't complicate leap-year logic.</li>
+                    <li><strong className="text-amber-300">Fix the calendar reform</strong> — in 1582, Pope Gregory XIII dropped 10 days to correct accumulated drift. The "B correction" accounts for this: it removes the extra leap days that the Julian calendar counted but the Gregorian calendar doesn't (century years like 1700, 1800, 1900 are NOT leap years, but 2000 is).</li>
+                    <li><strong className="text-amber-300">Apply a final offset</strong> — the intermediate sum overshoots the actual epoch by a fixed amount. Subtracting 1524.5 aligns everything so that JD 0.0 = noon, January 1st, 4713 BC. The .5 matters because JD counts from noon, not midnight.</li>
+                  </ol>
                 </div>
-                <div className="space-y-3 text-text-primary">
-                  <p><strong className="text-amber-300">365.25</strong> — The average length of a year (365 days + 1 leap day every 4 years = 365.25). Multiplying by year gives total days elapsed.</p>
-                  <p><strong className="text-amber-300">Y + 4716</strong> — We add 4716 to shift our zero-point back to 4713 BC, the start of the Julian Period (chosen because it's before all known historical records).</p>
-                  <p><strong className="text-amber-300">30.6001</strong> — An approximation of days-per-month. The trick here: January and February are treated as months 13 and 14 of the <em>previous</em> year (to avoid negative numbers near year boundaries). <span className="text-text-secondary/60">Why 30.6001 and not 30.6? Floating-point precision — the tiny .0001 prevents rounding errors when you take floor(30.6001 × 13) = 397 vs floor(30.6 × 13) = 397.8 which would round wrong.</span></p>
-                  <p><strong className="text-amber-300">B correction</strong> — Gregorian calendar reform (1582) dropped 10 days. B = 2 − A + floor(A/4) accounts for century years that are NOT leap years (1700, 1800, 1900 — but 2000 is).</p>
-                  <p><strong className="text-amber-300">h/24</strong> — The fractional part of the day. JD counts from noon, not midnight, so noon = 0.0, 6pm = 0.25, midnight = 0.5, 6am = 0.75.</p>
-                  <p><strong className="text-amber-300">−1524.5</strong> — Final offset to align the formula with the actual Julian Day epoch (January 1st, 4713 BC at noon).</p>
+
+                <h4 className="text-gold-light font-semibold text-sm mb-3">The Formula</h4>
+                <div className="font-mono text-amber-200/90 text-center py-2 mb-4 text-base">
+                  JD = floor(365.25 × (Y + 4716)) + floor(30.6001 × (M + 1)) + D + h/24 + B − 1524.5
+                </div>
+                <div className="space-y-3 text-text-primary text-sm">
+                  <p><strong className="text-amber-300">365.25 × (Y + 4716)</strong> — Total days from years. Y + 4716 shifts the year to count from the Julian epoch. 365.25 accounts for leap years (one extra day every 4 years). The floor() rounds down to whole days.</p>
+                  <p><strong className="text-amber-300">30.6001 × (M + 1)</strong> — Total days from months. The "M + 1" offset and floor() together approximate the irregular month lengths. <span className="text-text-secondary/60">Why 30.6001 and not 30.6? Floating-point safety — 30.6 × 13 = 397.8 which floor() gives 397, but the correct value should be 397. The .0001 ensures we never round one short.</span></p>
+                  <p><strong className="text-amber-300">D + h/24</strong> — The day of the month plus the fractional day. JD starts at noon, so noon = 0.0, 6pm = 0.25, midnight = 0.5, 6am = 0.75.</p>
+                  <p><strong className="text-amber-300">B</strong> — Gregorian correction: B = 2 − floor(Y/100) + floor(Y/400). This removes the 10 days dropped in 1582 and adjusts for century years. For dates before October 15, 1582 (Julian calendar), B = 0.</p>
+                  <p><strong className="text-amber-300">−1524.5</strong> — Why this number? It's the accumulated offset from the formula's internal arithmetic. The year/month terms overcount by exactly 1524.5 days relative to the true epoch. This constant was empirically derived so that the formula produces JD = 0.0 when you input noon on January 1st, 4713 BC. The .5 accounts for JD's noon-based counting.</p>
                 </div>
               </FormulaBox>
 

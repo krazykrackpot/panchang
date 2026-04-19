@@ -909,6 +909,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Hindu cosmology operates on time scales matching modern cosmology — 4.32 billion year Kalpas, 311 trillion year Brahma cycles. The only ancient system to think in billions.', hi: 'हिन्दू ब्रह्माण्ड विज्ञान आधुनिक ब्रह्माण्ड विज्ञान से मेल खाने वाले समय पैमानों पर काम करता है।', sa: 'हिन्दूब्रह्माण्डविज्ञानम् आधुनिकब्रह्माण्डविज्ञानेन सह मेलयन्तं कालमानम् उपयुनक्ति।' },
     keywords: ['hindu cosmic time', 'yuga kalpa', 'brahma lifespan', 'vedic cosmology time'],
   },
+  '/learn/contributions/al-khwarizmi': {
+    title: { en: "Al-Khwarizmi & Hindu Mathematics — The True Origin of 'Arabic' Numerals", hi: "अल-ख्वारिज्मी और हिन्दू गणित — 'अरबी' अंकों का वास्तविक मूल", sa: "अल्-ख्वारिज्मी हिन्दूगणितं च — 'अरबी' अङ्कानां वास्तविकमूलम्" },
+    description: { en: "How Al-Khwarizmi transmitted Indian mathematics to the Arabic world. The 'Father of Algebra' explicitly credited Hindu mathematicians for the decimal system, zero, and arithmetic methods.", hi: "अल-ख्वारिज्मी ने भारतीय गणित को अरबी दुनिया तक कैसे पहुँचाया। 'बीजगणित के पिता' ने दशमलव प्रणाली, शून्य और अंकगणित विधियों का श्रेय हिन्दू गणितज्ञों को दिया।", sa: "अल्-ख्वारिज्मी भारतीयगणितं अरबीजगति कथं संचरितवान्। दशमलवप्रणाल्याः शून्यस्य अङ्कगणितविधीनां च श्रेयः हिन्दूगणितज्ञेभ्यः दत्तवान्।" },
+    keywords: ['al-khwarizmi hindu mathematics', 'arabic numerals indian origin', 'algorithm etymology', 'brahmagupta al-khwarizmi', 'hindu numeral system'],
+  },
   '/learn/contributions/timeline': {
     title: { en: 'Timeline of India\'s Mathematical & Astronomical Contributions', hi: 'भारत के गणितीय और खगोलशास्त्रीय योगदानों की समयरेखा', sa: 'भारतस्य गणितखगोलयोगदानानां कालसूची' },
     description: { en: 'Interactive timeline from Shulba Sutras (800 BCE) to Kerala School (1600 CE) — 2400 years of Indian mathematical and astronomical breakthroughs.', hi: 'शुल्ब सूत्र (800 BCE) से केरल स्कूल (1600 CE) तक — 2400 वर्षों की भारतीय गणित और खगोलशास्त्र उपलब्धियों की समयरेखा।', sa: 'शुल्बसूत्रेभ्यः (800 BCE) केरलविद्यापीठपर्यन्तम् (1600 CE) — 2400 वर्षाणां भारतीयगणितखगोलशास्त्रसिद्धीनां कालसूची।' },

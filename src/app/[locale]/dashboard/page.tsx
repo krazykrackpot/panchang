@@ -38,6 +38,8 @@ import ChartNorth from '@/components/kundali/ChartNorth';
 import type { Locale, PanchangData , LocaleText} from '@/types/panchang';
 import type { PersonalizedDay, UserSnapshot, TransitAlert } from '@/lib/personalization/types';
 import type { ChartData, DashaEntry } from '@/types/kundali';
+import { computeKeyDates, type KeyDate } from '@/lib/kundali/domain-synthesis/key-dates';
+import KeyDatesTimeline from '@/components/kundali/KeyDatesTimeline';
 import { Trash2, Plus } from 'lucide-react';
 
 interface SavedChart {
@@ -642,6 +644,7 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
   const [personalizedDay, setPersonalizedDay] = useState<PersonalizedDay | null>(null);
   const [chartData, setChartData] = useState<ChartData | null>(null);
+  const [keyDates, setKeyDates] = useState<KeyDate[]>([]);
   const [gocharResults, setGocharResults] = useState<GocharResult[]>([]);
   const [enhancedAlerts, setEnhancedAlerts] = useState<TransitAlert[]>([]);
   const [recommendedFestivals, setRecommendedFestivals] = useState<PersonalFestival[]>([]);
@@ -726,9 +729,24 @@ export default function DashboardPage() {
         setPlanetPositions(fullSnap.planet_positions as unknown[]);
       }
 
-      // Set chart data
+      // Set chart data + compute key dates
       if (fullSnap?.chart_data) {
         setChartData(fullSnap.chart_data as ChartData);
+        // Build minimal KundaliData for key dates from snapshot
+        try {
+          const kd = computeKeyDates({
+            kundali: {
+              planets: fullSnap.planet_positions || [],
+              dashas: fullSnap.dasha_timeline || [],
+              ascendant: { sign: snapshot.ascendant_sign },
+              houses: Array.from({ length: 12 }, (_, i) => ({
+                house: i + 1,
+                sign: ((snapshot.ascendant_sign - 1 + i) % 12) + 1,
+              })),
+            } as any,
+          });
+          setKeyDates(kd);
+        } catch { /* key dates are non-critical */ }
       }
 
       // Set dasha timeline for transition alerts
@@ -967,6 +985,13 @@ export default function DashboardPage() {
               locale={locale}
             />
           </motion.div>
+        )}
+
+        {/* Key Dates — upcoming significant astrological events */}
+        {keyDates.length > 0 && (
+          <div className="p-4 rounded-2xl bg-gradient-to-br from-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/10">
+            <KeyDatesTimeline dates={keyDates} locale={locale} compact />
+          </div>
         )}
 
         {/* Your Week Ahead — 7-day Moon transit forecast */}

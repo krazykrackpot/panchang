@@ -126,7 +126,7 @@ export default function LifeReadingDashboard({
             {crossLinks.map(({ fromDomain, link }, i) => (
               <div
                 key={`${fromDomain}-${link.linkedDomain}-${i}`}
-                className="bg-bg-secondary/50 border border-gold-primary/8 rounded-xl p-4 max-w-xs flex-1 min-w-[200px]"
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 max-w-xs flex-1 min-w-[200px]"
               >
                 <p className="text-gold-light text-sm font-semibold mb-1">
                   {domainDisplayName(fromDomain, locale)}

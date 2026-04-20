@@ -17,6 +17,21 @@ const RATING_COLORS: Record<Rating, string> = {
   atyadhama: '#ef4444',
 };
 
+/** Single-letter colorblind indicator per rating tier */
+const RATING_LETTER: Record<Rating, string> = {
+  uttama: 'U',
+  madhyama: 'M',
+  adhama: 'A',
+  atyadhama: 'X',
+};
+
+const RATING_LABEL: Record<Rating, string> = {
+  uttama: 'Strong (Uttama)',
+  madhyama: 'Moderate (Madhyama)',
+  adhama: 'Weak (Adhama)',
+  atyadhama: 'Very Weak (Atyadhama)',
+};
+
 const RATING_BG: Record<Rating, string> = {
   uttama: 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400',
   madhyama: 'bg-gold-primary/10 border-gold-primary/30 text-gold-primary',
@@ -81,25 +96,44 @@ export default function DomainCard({ reading, locale, onClick }: DomainCardProps
   const activationColor = RATING_COLORS[activationRating];
   const activationLabel = getActivationLabel(reading, locale);
 
+  const domainName = config ? tl(config.name, locale) : reading.domain;
+  const ratingLabel = RATING_LABEL[reading.overallRating.rating];
+
   return (
     <div
       role="button"
       tabIndex={0}
       onClick={onClick}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onClick(); }}
-      className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 h-full cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-gold-primary/30 overflow-hidden group"
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick();
+        }
+      }}
+      aria-label={`${domainName}: ${ratingLabel} — click to view details`}
+      className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 h-full cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-gold-primary/30 overflow-hidden group focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
     >
-      {/* Left edge rating bar */}
+      {/* Left edge rating bar (decorative — rating communicated via aria-label) */}
       <div
-        className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl"
+        className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl flex items-center justify-center"
         style={{ backgroundColor: ratingColor }}
-      />
+        aria-hidden="true"
+      >
+        <span className="text-[6px] font-bold text-white/80 leading-none">
+          {RATING_LETTER[reading.overallRating.rating]}
+        </span>
+      </div>
 
-      {/* Current activation dot — top-right */}
+      {/* Current activation dot — top-right (colorblind: letter overlay) */}
       <div
-        className="absolute top-3 right-3 w-2 h-2 rounded-full"
+        className="absolute top-3 right-3 w-3.5 h-3.5 rounded-full flex items-center justify-center"
         style={{ backgroundColor: activationColor, boxShadow: `0 0 6px ${activationColor}40` }}
-      />
+        aria-hidden="true"
+      >
+        <span className="text-[8px] font-bold text-white/80 leading-none">
+          {RATING_LETTER[activationRating]}
+        </span>
+      </div>
 
       {/* Domain icon */}
       <div className="mb-3">
@@ -113,7 +147,7 @@ export default function DomainCard({ reading, locale, onClick }: DomainCardProps
 
       {/* Domain name + vedic name */}
       <h3 className="font-heading text-gold-light text-base font-semibold leading-tight">
-        {config ? tl(config.name, locale) : reading.domain}
+        {domainName}
       </h3>
       {config && (
         <p className="font-devanagari text-gold-primary/60 text-xs mt-0.5 leading-tight">

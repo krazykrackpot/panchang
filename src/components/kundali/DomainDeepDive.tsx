@@ -184,10 +184,23 @@ function StrengthBar({ label, score, max = 10 }: { label: string; score: number;
 }
 
 // ---------------------------------------------------------------------------
+// Spinner for loading state
+// ---------------------------------------------------------------------------
+
+function Spinner() {
+  return (
+    <svg className="animate-spin h-4 w-4 inline-block mr-2" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+    </svg>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Main component
 // ---------------------------------------------------------------------------
 
-export default function DomainDeepDive({ reading, locale, onBack }: DomainDeepDiveProps) {
+export default function DomainDeepDive({ reading, locale, nativeAge, onBack }: DomainDeepDiveProps) {
   const meta = DOMAIN_META[reading.domain];
   const domainName = meta ? tl(meta.name, locale) : reading.domain;
   const vedicName = meta ? tl(meta.vedicName, locale) : '';
@@ -211,6 +224,63 @@ export default function DomainDeepDive({ reading, locale, onBack }: DomainDeepDi
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [onBack]);
+
+  // ─── LLM "Ask Your Pandit" state ──────────────────────────────────────────
+  const session = useAuthStore((s) => s.session);
+  const [llmResponse, setLlmResponse] = useState<string | null>(null);
+  const [llmLoading, setLlmLoading] = useState(false);
+  const [llmError, setLlmError] = useState<string | null>(null);
+  // Cache per domain so re-opening the same domain shows the cached response
+  const cacheRef = useRef<Record<string, string>>({});
+
+  const handleConsultPandit = useCallback(async () => {
+    // Serve from cache if available for this domain and no response displayed yet
+    const cached = cacheRef.current[reading.domain];
+    if (cached && !llmResponse) {
+      setLlmResponse(cached);
+      return;
+    }
+
+    setLlmLoading(true);
+    setLlmError(null);
+
+    try {
+      const { systemPrompt, userPayload } = buildDomainPrompt(reading, nativeAge);
+
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+      };
+      if (session?.access_token) {
+        headers['Authorization'] = `Bearer ${session.access_token}`;
+      }
+
+      const res = await fetch('/api/domain-pandit', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ systemPrompt, userPayload }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        if (res.status === 429 || data.rateLimited) {
+          setLlmError(
+            "You've used your AI consultation quota for today. Upgrade for unlimited readings.",
+          );
+        } else {
+          setLlmError(data.error || 'Unable to generate reading. Please try again.');
+        }
+        return;
+      }
+
+      setLlmResponse(data.content);
+      cacheRef.current[reading.domain] = data.content;
+    } catch {
+      setLlmError('Unable to generate reading. Please try again.');
+    } finally {
+      setLlmLoading(false);
+    }
+  }, [reading, nativeAge, session, llmResponse]);
 
   return (
     <div className="w-full px-4 py-6" role="region" aria-label={`${domainName} detailed reading`}>
@@ -251,7 +321,8 @@ export default function DomainDeepDive({ reading, locale, onBack }: DomainDeepDi
       {/* ----------------------------------------------------------------- */}
       {/* Section A: Natal Promise                                          */}
       {/* ----------------------------------------------------------------- */}
-      <SectionHeading>Birth Chart Foundation</SectionHeading>
+      <section aria-labelledby="section-natal-promise">
+      <SectionHeading id="section-natal-promise">Birth Chart Foundation</SectionHeading>
       <div className="space-y-4">
         {/* Narrative */}
         <div className="space-y-3">
@@ -298,7 +369,7 @@ export default function DomainDeepDive({ reading, locale, onBack }: DomainDeepDi
           </div>
         )}
 
-        {/* Strength bars — lord qualities */}
+        {/* Strength bars -- lord qualities */}
         {np.lordQualities.length > 0 && (
           <div>
             <h3 className="text-sm font-semibold text-text-secondary mb-2">Planetary Strengths</h3>
@@ -314,11 +385,13 @@ export default function DomainDeepDive({ reading, locale, onBack }: DomainDeepDi
           </div>
         )}
       </div>
+      </section>
 
       {/* ----------------------------------------------------------------- */}
       {/* Section B: Current Activation                                     */}
       {/* ----------------------------------------------------------------- */}
-      <SectionHeading>What&apos;s Active Now</SectionHeading>
+      <section aria-labelledby="section-current-activation">
+      <SectionHeading id="section-current-activation">What&apos;s Active Now</SectionHeading>
       <div className="space-y-4">
         {/* Dasha + transit narrative */}
         <div className="space-y-3">
@@ -330,7 +403,7 @@ export default function DomainDeepDive({ reading, locale, onBack }: DomainDeepDi
             ))}
         </div>
 
-        {/* Current activation — human-readable instead of raw score */}
+        {/* Current activation -- human-readable instead of raw score */}
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
           <div className="flex items-center gap-3 mb-2">
             <div className={`w-3 h-3 rounded-full ${
@@ -358,7 +431,7 @@ export default function DomainDeepDive({ reading, locale, onBack }: DomainDeepDi
           </div>
         </div>
 
-        {/* Transit influences — human-readable descriptions */}
+        {/* Transit influences -- human-readable descriptions */}
         {ca.transitInfluences.length > 0 && (
           <div>
             <h3 className="text-sm font-semibold text-gold-light mb-2">
@@ -399,6 +472,7 @@ export default function DomainDeepDive({ reading, locale, onBack }: DomainDeepDi
           </div>
         )}
       </div>
+      </section>
 
       {/* ----------------------------------------------------------------- */}
       {/* Section C: Forward Timeline                                       */}
@@ -445,17 +519,75 @@ export default function DomainDeepDive({ reading, locale, onBack }: DomainDeepDi
       )}
 
       {/* ----------------------------------------------------------------- */}
-      {/* Section E: Consult CTA                                            */}
+      {/* Section E: AI Pandit Response                                     */}
+      {/* ----------------------------------------------------------------- */}
+      {llmResponse && (
+        <div className="mt-10">
+          <div className="border-t border-gold-primary/10 my-8" />
+          <div className="rounded-xl border border-gold-primary/30 bg-gradient-to-br from-gold-primary/5 via-bg-secondary to-bg-secondary p-6 space-y-4">
+            <h2 className="text-lg font-bold text-gold-light">Your Personal Pandit Says</h2>
+            <div className="space-y-3">
+              {llmResponse.split('\n\n').filter(Boolean).map((para, i) => (
+                <p key={i} className="text-text-primary text-sm leading-relaxed">{para}</p>
+              ))}
+            </div>
+            <div className="flex items-center justify-between pt-2 border-t border-gold-primary/10">
+              <p className="text-text-secondary/50 text-xs italic">
+                AI-generated reading based on your birth chart data. For guidance only.
+              </p>
+              <button
+                type="button"
+                disabled={llmLoading}
+                onClick={() => {
+                  delete cacheRef.current[reading.domain];
+                  setLlmResponse(null);
+                  handleConsultPandit();
+                }}
+                className="text-gold-primary text-xs hover:text-gold-light transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {llmLoading ? <><Spinner />Regenerating...</> : 'Regenerate'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ----------------------------------------------------------------- */}
+      {/* Section F: Consult CTA / Error                                    */}
       {/* ----------------------------------------------------------------- */}
       <div className="mt-12 mb-4">
         <button
           type="button"
-          onClick={() => { console.log('LLM call would go here'); }}
-          className="w-full bg-gradient-to-r from-gold-primary/20 to-gold-dark/20 border border-gold-primary/30 rounded-xl p-4 text-center hover:from-gold-primary/30 hover:to-gold-dark/30 transition-colors cursor-pointer"
+          disabled={llmLoading}
+          onClick={handleConsultPandit}
+          className="w-full bg-gradient-to-r from-gold-primary/20 to-gold-dark/20 border border-gold-primary/30 rounded-xl p-4 text-center hover:from-gold-primary/30 hover:to-gold-dark/30 transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          <p className="text-gold-light font-bold text-base">Consult Your Personal Pandit</p>
-          <p className="text-text-secondary text-xs mt-1">AI-powered personalized reading</p>
+          <p className="text-gold-light font-bold text-base">
+            {llmLoading
+              ? <><Spinner />Consulting...</>
+              : llmResponse
+                ? 'Consult Again'
+                : 'Consult Your Personal Pandit'}
+          </p>
+          {!llmLoading && !llmResponse && (
+            <p className="text-text-secondary text-xs mt-1">AI-powered personalized reading</p>
+          )}
         </button>
+
+        {/* Error display */}
+        {llmError && (
+          <div className="mt-3 rounded-lg border border-red-500/30 bg-red-500/10 p-3 flex items-start gap-2">
+            <p className="text-red-400 text-sm flex-1">{llmError}</p>
+            <button
+              type="button"
+              onClick={() => setLlmError(null)}
+              className="text-red-400/60 hover:text-red-400 text-xs cursor-pointer shrink-0"
+              aria-label="Dismiss error"
+            >
+              Dismiss
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -108,7 +108,7 @@ export default function ForwardTimeline({ triggers, locale, className }: Forward
   return (
     <div className={`relative ${className ?? ''}`}>
       {/* Scrollable container */}
-      <div className="scrollbar-hide overflow-x-auto">
+      <div className="scrollbar-hide overflow-x-auto touch-pan-x">
         <div
           className="relative flex items-start"
           style={{ minWidth: trackWidth + NODE_GAP + 40, paddingLeft: 20, paddingRight: 20 }}
@@ -145,8 +145,10 @@ export default function ForwardTimeline({ triggers, locale, className }: Forward
           <div
             className="absolute flex flex-col items-center"
             style={{ left: nowLeft + 20, top: 28, zIndex: 10 }}
+            aria-label="Current date marker"
+            role="img"
           >
-            <span className="text-[10px] font-semibold text-gold-light mb-0.5 whitespace-nowrap">Now</span>
+            <span className="text-[10px] font-semibold text-gold-light mb-0.5 whitespace-nowrap" aria-hidden="true">Now</span>
             <span
               className="block rounded-full"
               style={{
@@ -163,11 +165,14 @@ export default function ForwardTimeline({ triggers, locale, className }: Forward
           {sorted.map((trigger, i) => {
             const color = dotColor(trigger.nature);
             const left = i * NODE_GAP;
+            const nodeLabel = `${fmtDate(trigger.startDate)}: ${tl(trigger.description, locale)} (${TYPE_LABELS[trigger.triggerType]})`;
             return (
               <div
                 key={`${trigger.startDate}-${i}`}
                 className="absolute flex flex-col items-center"
                 style={{ left: left + 20, width: NODE_GAP }}
+                aria-label={nodeLabel}
+                role="group"
               >
                 {/* Date */}
                 <span className="text-[11px] text-text-tertiary whitespace-nowrap mb-1">

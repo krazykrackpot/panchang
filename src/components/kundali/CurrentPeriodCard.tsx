@@ -88,8 +88,8 @@ export default function CurrentPeriodCard({ period, locale }: CurrentPeriodCardP
         {/* Left section */}
         <div className="flex-1 min-w-0">
           <div className="flex items-start gap-3">
-            {/* Pulsing dot */}
-            <div className="relative flex-shrink-0 mt-1">
+            {/* Pulsing dot (decorative) */}
+            <div className="relative flex-shrink-0 mt-1" aria-hidden="true">
               <div
                 className={`w-5 h-5 rounded-full ${RATING_DOT_CLASSES[rating]} shadow-lg`}
               />
@@ -127,7 +127,14 @@ export default function CurrentPeriodCard({ period, locale }: CurrentPeriodCardP
 
           {/* Mini progress bar */}
           <div className="w-full">
-            <div className="w-full h-1.5 rounded-full bg-white/5 overflow-hidden">
+            <div
+              className="w-full h-1.5 rounded-full bg-white/5 overflow-hidden"
+              role="progressbar"
+              aria-valuenow={Math.round(period.periodScore * 10)}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-label={`Period score: ${period.periodScore.toFixed(1)} out of 10`}
+            >
               <div
                 className="h-full rounded-full transition-all duration-500"
                 style={{

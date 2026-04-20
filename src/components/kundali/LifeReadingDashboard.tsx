@@ -1,5 +1,6 @@
 'use client';
 
+import { useRef, useCallback } from 'react';
 import { tl } from '@/lib/utils/trilingual';
 import { getDomainConfig } from '@/lib/kundali/domain-synthesis/config';
 import DomainCard from '@/components/kundali/DomainCard';
@@ -35,6 +36,8 @@ interface LifeReadingDashboardProps {
   locale: string;
   onDomainClick: (domain: DomainType) => void;
   onToggleTechnical: () => void;
+  /** Ref map so parent can return focus to a specific card after deep dive closes */
+  cardRefs?: React.MutableRefObject<Map<DomainType, HTMLDivElement | null>>;
 }
 
 // ---------------------------------------------------------------------------
@@ -76,11 +79,21 @@ export default function LifeReadingDashboard({
   locale,
   onDomainClick,
   onToggleTechnical,
+  cardRefs,
 }: LifeReadingDashboardProps) {
   const crossLinks = collectCrossDomainLinks(reading);
+  const internalCardRefs = useRef<Map<DomainType, HTMLDivElement | null>>(new Map());
+  const refs = cardRefs ?? internalCardRefs;
+
+  const setCardRef = useCallback(
+    (domain: DomainType) => (el: HTMLDivElement | null) => {
+      refs.current.set(domain, el);
+    },
+    [refs],
+  );
 
   return (
-    <div className="w-full space-y-0">
+    <div className="w-full space-y-0" aria-label="Life Reading Dashboard" role="region">
       {/* ----------------------------------------------------------------- */}
       {/* 1. Life Overview */}
       {/* ----------------------------------------------------------------- */}
@@ -103,14 +116,15 @@ export default function LifeReadingDashboard({
       {/* ----------------------------------------------------------------- */}
       {/* 3. Domain Cards Grid */}
       {/* ----------------------------------------------------------------- */}
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 stagger-children">
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 stagger-children" role="grid" aria-label="Life domains overview">
         {reading.domains.map((domainReading) => (
-          <DomainCard
-            key={domainReading.domain}
-            reading={domainReading}
-            locale={locale}
-            onClick={() => onDomainClick(domainReading.domain)}
-          />
+          <div key={domainReading.domain} role="gridcell" ref={setCardRef(domainReading.domain)}>
+            <DomainCard
+              reading={domainReading}
+              locale={locale}
+              onClick={() => onDomainClick(domainReading.domain)}
+            />
+          </div>
         ))}
       </div>
 

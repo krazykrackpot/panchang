@@ -1,19 +1,26 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useLocale } from 'next-intl';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+
+const MESSAGES: Record<string, string> = {
+  en: "You're offline — some features may be unavailable",
+  hi: 'आप ऑफ़लाइन हैं — कुछ सुविधाएँ उपलब्ध नहीं हो सकतीं',
+  ta: 'நீங்கள் ஆஃப்லைனில் உள்ளீர்கள் — சில அம்சங்கள் கிடைக்காமல் போகலாம்',
+  bn: 'আপনি অফলাইনে আছেন — কিছু বৈশিষ্ট্য অনুপলব্ধ থাকতে পারে',
+};
 
 export default function OfflineBanner() {
   const [isOffline, setIsOffline] = useState(false);
+  const locale = useLocale();
 
   useEffect(() => {
     setIsOffline(!navigator.onLine);
-
     const goOffline = () => setIsOffline(true);
     const goOnline = () => setIsOffline(false);
-
     window.addEventListener('offline', goOffline);
     window.addEventListener('online', goOnline);
-
     return () => {
       window.removeEventListener('offline', goOffline);
       window.removeEventListener('online', goOnline);
@@ -21,6 +28,8 @@ export default function OfflineBanner() {
   }, []);
 
   if (!isOffline) return null;
+
+  const msg = MESSAGES[locale] || (isDevanagariLocale(locale) ? MESSAGES.hi : MESSAGES.en);
 
   return (
     <div
@@ -33,7 +42,7 @@ export default function OfflineBanner() {
         <line x1="12" y1="9" x2="12" y2="13" />
         <line x1="12" y1="17" x2="12.01" y2="17" />
       </svg>
-      <span>You&apos;re offline -- some features may be unavailable</span>
+      <span>{msg}</span>
     </div>
   );
 }

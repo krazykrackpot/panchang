@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Offline — Dekho Panchang</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0a0e27;
+      color: #e8e6e3;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .container {
+      text-align: center;
+      max-width: 420px;
+    }
+    .icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      opacity: 0.6;
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #d4a853, #f0d48a, #d4a853);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.75rem;
+    }
+    p {
+      color: #b8b3ab;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid rgba(212, 168, 83, 0.3);
+      border-radius: 0.5rem;
+      color: #f0d48a;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .btn:hover { border-color: rgba(212, 168, 83, 0.6); background: rgba(212, 168, 83, 0.05); }
+    .hint {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #5c5870;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <svg class="icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="30" stroke="#d4a853" stroke-width="1.5" opacity="0.3"/>
+      <path d="M25 55 L40 25 L55 55" stroke="#d4a853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+      <line x1="40" y1="35" x2="40" y2="45" stroke="#f0d48a" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="40" cy="50" r="1.5" fill="#f0d48a"/>
+    </svg>
+    <h1>You're Offline</h1>
+    <p>It looks like you've lost your internet connection. Previously visited pages may still be available from cache.</p>
+    <a href="/" class="btn" onclick="window.location.reload(); return false;">Try Again</a>
+    <p class="hint">Tip: Visit pages while online to cache them for offline access.</p>
+  </div>
+</body>
+</html>

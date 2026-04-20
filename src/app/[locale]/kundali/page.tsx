@@ -39,6 +39,8 @@ import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
 import type { YogaComplete } from '@/lib/kundali/yogas-complete';
 import type { Locale , LocaleText} from '@/types/panchang';
 import type { SadeSatiAnalysis, NakshatraTransitEntry } from '@/lib/kundali/sade-sati-analysis';
+import type { PersonalReading, DomainType } from '@/lib/kundali/domain-synthesis/types';
+import { synthesizeReading } from '@/lib/kundali/domain-synthesis/synthesizer';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
@@ -67,6 +69,8 @@ const AvasthasInterpretation = dynamic(() => import('@/components/kundali/Interp
 const BhavabalaInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.BhavabalaInterpretation })), { ssr: false });
 const PlanetsInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.PlanetsInterpretation })), { ssr: false });
 const DashaInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.DashaInterpretation })), { ssr: false });
+const LifeReadingDashboard = dynamic(() => import('@/components/kundali/LifeReadingDashboard'), { ssr: false });
+const DomainDeepDive = dynamic(() => import('@/components/kundali/DomainDeepDive'), { ssr: false });
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
@@ -391,6 +395,11 @@ export default function KundaliPage() {
   const [showTransits, setShowTransits] = useState(false);
   const [transitData, setTransitData] = useState<{ planets: { id: number; name: LocaleText; rashi: number; longitude: number; isRetrograde: boolean }[] } | null>(null);
 
+  // Personal Pandit dashboard state
+  const [view, setView] = useState<'dashboard' | 'deepDive' | 'technical'>('dashboard');
+  const [activeDomain, setActiveDomain] = useState<DomainType | null>(null);
+  const [personalReading, setPersonalReading] = useState<PersonalReading | null>(null);
+
   // On mount: URL query params take priority over sessionStorage. This lets
   // saved-kundali cards on the dashboard open the correct chart — previously
   // the cached "last kundali" always won, so every card opened the same one.
@@ -424,6 +433,11 @@ export default function KundaliPage() {
           if (data?.planets) {
             setKundali(data);
             try {
+              const reading = synthesizeReading(data, locale);
+              setPersonalReading(reading);
+              setView('dashboard');
+            } catch { setPersonalReading(null); setView('technical'); }
+            try {
               sessionStorage.setItem('kundali_last_result', JSON.stringify({
                 kundali: data,
                 chartStyle: 'north',
@@ -450,6 +464,11 @@ export default function KundaliPage() {
         if (k?.planets) {
           setKundali(k);
           setChartStyle(cs || 'north');
+          try {
+            const reading = synthesizeReading(k, locale);
+            setPersonalReading(reading);
+            setView('dashboard');
+          } catch { setPersonalReading(null); setView('technical'); }
         }
       }
     } catch { /* ignore */ }
@@ -608,6 +627,16 @@ export default function KundaliPage() {
         return;
       }
       setKundali(data);
+      // Compute Personal Pandit reading (synchronous, <500ms)
+      try {
+        const reading = synthesizeReading(data, locale);
+        setPersonalReading(reading);
+        setView('dashboard');
+      } catch (synthErr) {
+        console.error('Personal reading synthesis failed — falling back to technical view:', synthErr);
+        setPersonalReading(null);
+        setView('technical');
+      }
       try {
         sessionStorage.setItem('kundali_last_result', JSON.stringify({ kundali: data, chartStyle: style, sig: `${birthData.lat}|${birthData.lng}|${birthData.date}|${birthData.time}|${birthData.timezone}` }));
       } catch { /* quota exceeded or private browsing */ }
@@ -743,7 +772,7 @@ export default function KundaliPage() {
                 </button>
               )}
               <button
-                onClick={() => { setKundali(null); setEditing(false); }}
+                onClick={() => { setKundali(null); setEditing(false); setPersonalReading(null); setView('dashboard'); }}
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
               >
                 {locale === 'en' || isTamil ? 'New Chart' : 'नया चार्ट'}
@@ -836,6 +865,45 @@ export default function KundaliPage() {
               </div>
             );
           })()}
+
+          {/* ===== LAYER 1: PERSONAL PANDIT DASHBOARD ===== */}
+          {personalReading && view === 'dashboard' && (
+            <LifeReadingDashboard
+              reading={personalReading}
+              locale={locale}
+              onDomainClick={(domain: DomainType) => {
+                setActiveDomain(domain);
+                setView('deepDive');
+              }}
+              onToggleTechnical={() => setView('technical')}
+            />
+          )}
+
+          {/* ===== LAYER 2: DOMAIN DEEP DIVE ===== */}
+          {personalReading && view === 'deepDive' && activeDomain && (
+            <DomainDeepDive
+              reading={personalReading.domains.find(d => d.domain === activeDomain)!}
+              locale={locale}
+              onBack={() => {
+                setActiveDomain(null);
+                setView('dashboard');
+              }}
+            />
+          )}
+
+          {/* ===== LAYER 3: TECHNICAL TABS (existing) ===== */}
+          {(view === 'technical' || !personalReading) && (
+          <>
+            {/* Back to dashboard button */}
+            {personalReading && (
+              <button
+                onClick={() => setView('dashboard')}
+                className="inline-flex items-center gap-1.5 text-gold-primary text-sm hover:text-gold-light mb-4 transition-colors"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                {locale === 'en' || String(locale) === 'ta' ? 'Back to Life Reading' : 'जीवन पठन पर वापस'}
+              </button>
+            )}
 
           {/* Tab navigation — horizontal scroll strip */}
           <div className="relative mb-8">
@@ -2568,6 +2636,9 @@ export default function KundaliPage() {
             <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
               <PatrikaTab kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tip={tip} chartStyle={chartStyle} retrogradeIds={retrogradeIds} combustIds={combustIds} />
             </Suspense>
+          )}
+
+          </>
           )}
 
         </motion.div>

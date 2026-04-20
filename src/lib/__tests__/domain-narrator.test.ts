@@ -167,7 +167,7 @@ describe('narrateYogas', () => {
     });
     assertBilingual(result);
     expect(result.en).toContain('Gajakesari Yoga');
-    expect(result.en).toContain('strengthens');
+    expect(result.en).toContain('boost');
   });
 
   it('handles empty yogas', () => {

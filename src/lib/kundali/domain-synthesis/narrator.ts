@@ -502,31 +502,42 @@ export interface YogasParams {
 export function narrateYogas(p: YogasParams): LocaleText {
   if (p.yogas.length === 0) {
     return {
-      en: 'No significant yogas directly influence this domain — the reading relies on house lords, occupants, and aspects for its assessment.',
+      en: 'No significant yogas directly influence this domain — the reading relies on house lords, occupants, and aspects.',
       hi: 'कोई महत्वपूर्ण योग इस क्षेत्र को सीधे प्रभावित नहीं करता — मूल्यांकन भावेश, निवासी ग्रह और दृष्टियों पर आधारित है।',
     };
   }
 
   const domain = p.domainName ?? 'this domain';
+  const auspicious = p.yogas.filter(y => y.isAuspicious);
+  const challenging = p.yogas.filter(y => !y.isAuspicious);
+
   const parts_en: string[] = [];
   const parts_hi: string[] = [];
 
-  for (const y of p.yogas) {
-    if (y.isAuspicious) {
-      parts_en.push(
-        `${y.name} (${y.strength}) strengthens ${domain} — ${y.impact.en}. This yoga acts as a multiplier, amplifying the positive potential in your chart for this life area.`
-      );
-      parts_hi.push(
-        `${y.name} (${y.strength}) ${domain} को मजबूत करता है — ${y.impact.hi ?? y.impact.en}। यह योग आपकी कुंडली की सकारात्मक क्षमता को बढ़ाता है।`
-      );
-    } else {
-      parts_en.push(
-        `${y.name} (${y.strength}) challenges ${domain} — ${y.impact.en}. Awareness of this pattern is the first step to working with it. Targeted remedies and conscious effort can soften its impact significantly.`
-      );
-      parts_hi.push(
-        `${y.name} (${y.strength}) ${domain} को चुनौती देता है — ${y.impact.hi ?? y.impact.en}। इस पैटर्न की जागरूकता इसके साथ काम करने का पहला कदम है। लक्षित उपाय इसके प्रभाव को काफी कम कर सकते हैं।`
-      );
-    }
+  // Summary intro
+  if (auspicious.length > 0 && challenging.length === 0) {
+    parts_en.push(`${auspicious.length} auspicious yoga${auspicious.length > 1 ? 's' : ''} directly boost your ${domain}:`);
+    parts_hi.push(`${auspicious.length} शुभ योग आपके ${domain} को सीधे बल देते हैं:`);
+  } else if (auspicious.length === 0 && challenging.length > 0) {
+    parts_en.push(`${challenging.length} challenging yoga${challenging.length > 1 ? 's' : ''} affect your ${domain} — awareness and remedies are key:`);
+    parts_hi.push(`${challenging.length} चुनौतीपूर्ण योग आपके ${domain} को प्रभावित करते हैं — जागरूकता और उपाय महत्वपूर्ण:`);
+  } else {
+    parts_en.push(`A mix of ${auspicious.length} supportive and ${challenging.length} challenging yogas shape your ${domain}:`);
+    parts_hi.push(`${auspicious.length} सहायक और ${challenging.length} चुनौतीपूर्ण योगों का मिश्रण आपके ${domain} को आकार देता है:`);
+  }
+
+  // Individual yogas as concise bullet-style entries (no repeated boilerplate)
+  for (const y of auspicious) {
+    const impactEn = y.impact?.en || '';
+    const impactHi = y.impact?.hi || y.impact?.en || '';
+    parts_en.push(`• ${y.name} (${y.strength}): ${impactEn}`);
+    parts_hi.push(`• ${y.name} (${y.strength}): ${impactHi}`);
+  }
+  for (const y of challenging) {
+    const impactEn = y.impact?.en || '';
+    const impactHi = y.impact?.hi || y.impact?.en || '';
+    parts_en.push(`• ${y.name} (${y.strength}): ${impactEn}. Remedies and conscious effort can soften this.`);
+    parts_hi.push(`• ${y.name} (${y.strength}): ${impactHi}। उपाय और सचेत प्रयास इसे कम कर सकते हैं।`);
   }
 
   return { en: parts_en.join(' '), hi: parts_hi.join(' ') };

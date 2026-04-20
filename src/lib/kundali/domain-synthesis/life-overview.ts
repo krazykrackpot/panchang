@@ -57,6 +57,31 @@ const AK_ARCHETYPE_HI: Record<number, string> = {
   8: 'एक साधक',
 };
 
+/** Dasha lord energy — how the planet colors a Mahadasha PERIOD (distinct from AK soul-purpose) */
+const DASHA_LORD_EN: Record<number, string> = {
+  0: 'authority, visibility, and self-realization',
+  1: 'emotional depth, public connection, and nurturing',
+  2: 'courage, action, and conquering obstacles',
+  3: 'intellect, trade, and communication',
+  4: 'expansion, wisdom, and spiritual growth',
+  5: 'relationships, luxury, and creative expression',
+  6: 'discipline, karmic reckoning, and endurance',
+  7: 'obsessive ambition, foreign connections, and worldly pursuit',
+  8: 'detachment, spiritual liberation, and past-life resolution',
+};
+
+const DASHA_LORD_HI: Record<number, string> = {
+  0: 'अधिकार, प्रसिद्धि और आत्म-साक्षात्कार',
+  1: 'भावनात्मक गहराई, जनसंपर्क और पालन-पोषण',
+  2: 'साहस, कर्म और बाधाओं पर विजय',
+  3: 'बुद्धि, व्यापार और संवाद',
+  4: 'विस्तार, ज्ञान और आध्यात्मिक विकास',
+  5: 'संबंध, विलासिता और सृजनात्मक अभिव्यक्ति',
+  6: 'अनुशासन, कार्मिक निपटान और धैर्य',
+  7: 'तीव्र महत्वाकांक्षा, विदेशी संबंध और सांसारिक पीछा',
+  8: 'वैराग्य, आध्यात्मिक मुक्ति और पूर्वजन्म समाधान',
+};
+
 /** Core essence of each ascendant sign */
 const SIGN_ESSENCE_EN: Record<number, string> = {
   1:  'pioneering fire',
@@ -168,18 +193,18 @@ export function generateLifeOverview(input: OverviewInput): LocaleText {
   const houseHi = HOUSE_THEME_HI[strongestHouseNumber]    ?? 'जीवन अनुभव';
   const phaseEn = getPhaseEn(nativeAge);
   const phaseHi = getPhaseHi(nativeAge);
-  const dashaEn = AK_ARCHETYPE_EN[currentMahadashaLordId] ?? 'a seeker';
-  const dashaHi = AK_ARCHETYPE_HI[currentMahadashaLordId] ?? 'एक साधक';
+  const dashaEn = DASHA_LORD_EN[currentMahadashaLordId] ?? 'transformative energy';
+  const dashaHi = DASHA_LORD_HI[currentMahadashaLordId] ?? 'परिवर्तनकारी ऊर्जा';
 
   const en =
     `You are fundamentally ${akEn}, with ${signEn} as your core nature. ` +
     `Your greatest strength lies in ${houseEn}. ` +
-    `This is your ${phaseEn} phase — your current Mahadasha channels the energy of ${dashaEn}.`;
+    `This is your ${phaseEn} phase — your current Mahadasha themes are ${dashaEn}.`;
 
   const hi =
     `आप मूलतः ${akHi} हैं, और ${signHi} आपकी मूल प्रकृति है। ` +
     `आपकी सबसे बड़ी शक्ति ${houseHi} में निहित है। ` +
-    `यह आपका ${phaseHi} चरण है — आपका वर्तमान महादशा ${dashaHi} की ऊर्जा को प्रवाहित करता है।`;
+    `यह आपका ${phaseHi} चरण है — आपकी वर्तमान महादशा के विषय हैं ${dashaHi}।`;
 
   return { en, hi };
 }

@@ -245,6 +245,6 @@ export const DOMAIN_CONFIGS: DomainConfig[] = [
  * const cfg = getDomainConfig('health');
  * if (cfg) console.log(cfg.primaryHouses); // [1, 6, 8]
  */
-export function getDomainConfig(id: string): DomainConfig | undefined {
-  return DOMAIN_CONFIGS.find((cfg) => cfg.id === (id as DomainType));
+export function getDomainConfig(id: DomainType): DomainConfig | undefined {
+  return DOMAIN_CONFIGS.find((cfg) => cfg.id === id);
 }

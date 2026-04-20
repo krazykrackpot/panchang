@@ -24,7 +24,7 @@ describe('generateLifeOverview', () => {
     ascendantSign: 1,            // Aries
     atmakarakaPlanetId: 4,       // Jupiter — "a teacher"
     strongestHouseNumber: 10,    // career and public impact
-    currentMahadashaLordId: 6,   // Saturn — "a builder"
+    currentMahadashaLordId: 6,   // Saturn — "discipline, karmic reckoning, and endurance"
     nativeAge: 38,               // consolidation phase
   };
 
@@ -49,9 +49,9 @@ describe('generateLifeOverview', () => {
     expect(result.en).toContain('career and public impact');
   });
 
-  it('en text contains the dasha archetype for Saturn', () => {
+  it('en text contains the dasha lord theme for Saturn', () => {
     const result = generateLifeOverview(baseInput);
-    expect(result.en).toContain('a builder');
+    expect(result.en).toContain('discipline');
   });
 
   it('uses "building" phase for age < 35', () => {

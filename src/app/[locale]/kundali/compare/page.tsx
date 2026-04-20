@@ -19,6 +19,8 @@ import {
   getSignRelation,
 } from '@/lib/comparison/synastry-engine';
 import type { SynastryAspect } from '@/lib/comparison/synastry-engine';
+import { compareDashas } from '@/lib/matching/dasha-comparison';
+import DashaComparisonTimeline from '@/components/kundali/DashaComparisonTimeline';
 import type { KundaliData, BirthData, ChartStyle, ChartData } from '@/types/kundali';
 import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -215,6 +217,22 @@ export default function ComparePage() {
   const dashaAlignment = useMemo(() => bothReady ? computeDashaAlignment(chartA, chartB) : [], [chartA, chartB, bothReady]);
   const houseLords = useMemo(() => bothReady ? compareHouseLords(chartA, chartB) : [], [chartA, chartB, bothReady]);
   const karakas = useMemo(() => bothReady ? analyzeRelationshipKarakas(chartA, chartB) : null, [chartA, chartB, bothReady]);
+
+  // Dasha comparison timeline — 15-year window from current year
+  const dashaComparison = useMemo(() => {
+    if (!bothReady) return null;
+    const now = new Date();
+    const startYear = now.getFullYear();
+    const endYear = startYear + 15;
+    return compareDashas(
+      chartA.dashas,
+      chartB.dashas,
+      chartA.ascendant.sign,
+      chartB.ascendant.sign,
+      startYear,
+      endYear,
+    );
+  }, [chartA, chartB, bothReady]);
 
   // Auto-collapse forms when both charts are ready
   if (bothReady && !formsCollapsed) {
@@ -521,6 +539,16 @@ export default function ComparePage() {
                         </table>
                       </div>
                     </div>
+
+                    {/* Dasha Comparison Timeline */}
+                    {dashaComparison && dashaComparison.entries.length > 0 && (
+                      <div>
+                        <h4 className="text-gold-light text-sm font-bold mb-3" style={headingFont}>
+                          {locale === 'en' ? 'Dasha Timeline Overlay' : 'दशा समयरेखा ओवरले'}
+                        </h4>
+                        <DashaComparisonTimeline result={dashaComparison} locale={locale} />
+                      </div>
+                    )}
 
                     {dashaAlignment.length === 0 && (
                       <p className="text-center text-text-tertiary text-sm py-8">

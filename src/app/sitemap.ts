@@ -145,6 +145,7 @@ const routes = [
   '/nivas-shool',
   '/rahu-kaal',
   '/choghadiya',
+  '/hora',
   '/sarvatobhadra',
   '/matching/report',
   // Date listing pages

@@ -25,19 +25,19 @@ export type VargaDomain =
   | 'family'
   | 'education';
 
-/** Maps divisional chart IDs to the domain(s) they govern. */
-export const CHART_DOMAIN_MAP: Record<string, VargaDomain | VargaDomain[]> = {
-  D9: 'marriage',
-  D10: 'career',
-  D7: 'children',
-  D2: 'wealth',
+/** Maps divisional chart IDs to the domain(s) they govern. Always an array. */
+export const CHART_DOMAIN_MAP: Record<string, VargaDomain[]> = {
+  D9: ['marriage'],
+  D10: ['career'],
+  D7: ['children'],
+  D2: ['wealth'],
   D4: ['wealth', 'family'],
-  D12: 'family',
-  D20: 'spiritual',
-  D24: 'education',
-  D30: 'health',
-  D60: 'spiritual',
-} as const;
+  D12: ['family'],
+  D20: ['spiritual'],
+  D24: ['education'],
+  D30: ['health'],
+  D60: ['spiritual'],
+};
 
 // ---------------------------------------------------------------------------
 // Dignity

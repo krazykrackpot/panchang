@@ -12,6 +12,7 @@ import type { KundaliData, BirthData, PlanetPosition, HouseCusp, ChartData, Dash
 import { resolveTimezone } from '@/lib/utils/timezone';
 import { calculateJaimini } from '@/lib/jaimini/jaimini-calc';
 import { calculateAshtottariDashas as calculateAshtottariDashaFull } from '@/lib/kundali/ashtottari-dasha';
+import { calculateYoginiDashas as calculateYoginiDashaFull } from '@/lib/kundali/yogini-dasha';
 import { calculateFullShadbala } from '@/lib/kundali/shadbala';
 import { calculateBhavabala } from '@/lib/kundali/bhavabala';
 import { detectAllYogas } from '@/lib/kundali/yogas-complete';
@@ -177,56 +178,14 @@ function calculateVimshottariDasha(moonSidLong: number, birthDate: Date): DashaE
 
 /**
  * Yogini Dasha calculation — 36-year cycle based on nakshatra
+ * Delegates to the full engine in @/lib/kundali/yogini-dasha.ts
+ * which has correct classical nakshatra-to-lord mapping and sub-periods.
  */
-const YOGINI_DASHAS = [
-  { name: 'Mangala', planet: 'Moon', years: 1 },
-  { name: 'Pingala', planet: 'Sun', years: 2 },
-  { name: 'Dhanya', planet: 'Jupiter', years: 3 },
-  { name: 'Bhramari', planet: 'Mars', years: 4 },
-  { name: 'Bhadrika', planet: 'Mercury', years: 5 },
-  { name: 'Ulka', planet: 'Saturn', years: 6 },
-  { name: 'Siddha', planet: 'Venus', years: 7 },
-  { name: 'Sankata', planet: 'Rahu', years: 8 },
-];
-const YOGINI_NAMES: Record<string, LocaleText> = {
-  'Mangala': { en: 'Mangala', hi: 'मंगला', sa: 'मङ्गला' },
-  'Pingala': { en: 'Pingala', hi: 'पिंगला', sa: 'पिङ्गला' },
-  'Dhanya': { en: 'Dhanya', hi: 'धान्या', sa: 'धान्या' },
-  'Bhramari': { en: 'Bhramari', hi: 'भ्रामरी', sa: 'भ्रामरी' },
-  'Bhadrika': { en: 'Bhadrika', hi: 'भद्रिका', sa: 'भद्रिका' },
-  'Ulka': { en: 'Ulka', hi: 'उल्का', sa: 'उल्का' },
-  'Siddha': { en: 'Siddha', hi: 'सिद्धा', sa: 'सिद्धा' },
-  'Sankata': { en: 'Sankata', hi: 'संकटा', sa: 'सङ्कटा' },
-};
-
 function calculateYoginiDasha(moonSidLong: number, birthDate: Date): DashaEntry[] {
   const nakshatraIndex = Math.floor(moonSidLong / (360 / 27));
-  // Yogini lord from nakshatra: (nakshatra + 3) mod 8
-  const startIdx = (nakshatraIndex + 3) % 8;
   const nakshatraSpan = 360 / 27;
-  const posInNakshatra = (moonSidLong % nakshatraSpan) / nakshatraSpan;
-  const totalYears = YOGINI_DASHAS[startIdx].years;
-  const remainingYears = totalYears * (1 - posInNakshatra);
-
-  const dashas: DashaEntry[] = [];
-  let currentDate = new Date(birthDate);
-
-  for (let i = 0; i < 8; i++) {
-    const idx = (startIdx + i) % 8;
-    const yogini = YOGINI_DASHAS[idx];
-    const years = i === 0 ? remainingYears : yogini.years;
-    const endDate = new Date(currentDate.getTime() + years * 365.25 * 24 * 60 * 60 * 1000);
-
-    dashas.push({
-      planet: yogini.planet,
-      planetName: YOGINI_NAMES[yogini.name],
-      startDate: currentDate.toISOString().split('T')[0],
-      endDate: endDate.toISOString().split('T')[0],
-      level: 'maha',
-    });
-    currentDate = new Date(endDate);
-  }
-  return dashas;
+  const degreeInNakshatra = moonSidLong % nakshatraSpan;
+  return calculateYoginiDashaFull(nakshatraIndex, degreeInNakshatra, birthDate);
 }
 
 /**

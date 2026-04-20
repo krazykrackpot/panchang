@@ -32,8 +32,8 @@ export type DomainType =
 export type Rating =
   | 'uttama'    // excellent  (≥ 7.5/10)
   | 'madhyama'  // moderate   (≥ 5.0/10)
-  | 'adhama'    // weak       (≥ 2.5/10)
-  | 'atyadhama'; // very weak (<  2.5/10)
+  | 'adhama'    // weak       (≥ 3.0/10)
+  | 'atyadhama'; // very weak (<  3.0/10)
 
 // ---------------------------------------------------------------------------
 // Rating info

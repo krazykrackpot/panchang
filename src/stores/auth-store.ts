@@ -123,6 +123,9 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       localStorage.removeItem('panchang_birth_data');
       localStorage.removeItem('dekho-panchang-learn-progress');
       localStorage.removeItem('dekho-panchang-learn-streak');
-    } catch { /* SSR or private browsing */ }
+    } catch (err) {
+      // SSR or private browsing — storage APIs may not be available
+      console.warn('[Auth] Failed to clear cached data on sign-out:', err);
+    }
   },
 }));

@@ -179,6 +179,42 @@ export function detectCrossDomainLinks(input: CrossDomainInput): CrossDomainLink
             hi: `${pNameH}, जो ${domainA.name.hi} का प्रमुख कारक है, भाव ${overlapHouse} में स्थित है — जो ${domainB.name.hi} का प्राथमिक भाव है। यह स्थिति दोनों जीवन क्षेत्रों को जोड़ती है और उन्हें परस्पर सुदृढ़ बनाती है।`,
           },
         });
+        continue;
+      }
+
+      // ---- Rule 3: Conflict -----------------------------------------------
+      // A natural malefic (Sun=0, Mars=2, Saturn=6, Rahu=7, Ketu=8) that is a
+      // primary planet of domain A occupies a dusthana (6/8/12) from a primary
+      // house of domain B — creating tension between the domains.
+      const MALEFIC_IDS = new Set([0, 2, 6, 7, 8]);
+      let conflictPlanetId: number | null = null;
+
+      outerConflict:
+      for (const pid of domainA.primaryPlanets) {
+        if (!MALEFIC_IDS.has(pid)) continue;
+        const houseOfPlanet = planetHouseMap.get(pid);
+        if (houseOfPlanet === undefined) continue;
+        for (const hB of domainB.primaryHouses) {
+          const offset = ((houseOfPlanet - hB + 12) % 12) + 1;
+          if (offset === 6 || offset === 8 || offset === 12) {
+            conflictPlanetId = pid;
+            break outerConflict;
+          }
+        }
+      }
+
+      if (conflictPlanetId !== null) {
+        seenPairs.add(pairKey);
+        const pName  = PLANET_NAME_EN[conflictPlanetId] ?? `Planet-${conflictPlanetId}`;
+        const pNameH = PLANET_NAME_HI[conflictPlanetId] ?? `ग्रह-${conflictPlanetId}`;
+        links.push({
+          linkedDomain: domainB.id as DomainType,
+          linkType: 'conflicts',
+          explanation: {
+            en: `${pName}, important for ${domainA.name.en}, creates tension in ${domainB.name.en} — occupying a challenging position from key ${domainB.name.en} houses. Progress in one area may require sacrifice in the other.`,
+            hi: `${pNameH}, जो ${domainA.name.hi} के लिए महत्वपूर्ण है, ${domainB.name.hi} में तनाव पैदा करता है — प्रमुख ${domainB.name.hi} भावों से चुनौतीपूर्ण स्थिति में स्थित है। एक क्षेत्र में प्रगति के लिए दूसरे में त्याग आवश्यक हो सकता है।`,
+          },
+        });
       }
     }
   }

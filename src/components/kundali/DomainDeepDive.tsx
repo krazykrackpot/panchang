@@ -1,7 +1,10 @@
 'use client';
 
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { tl } from '@/lib/utils/trilingual';
 import ForwardTimeline from '@/components/kundali/ForwardTimeline';
+import { buildDomainPrompt } from '@/lib/kundali/domain-synthesis/llm-prompt';
+import { useAuthStore } from '@/stores/auth-store';
 import type {
   DomainReading,
   DomainRemedy,
@@ -129,14 +132,33 @@ const PLANET_NAMES: Record<number, string> = {
 };
 
 // ---------------------------------------------------------------------------
+// House brief descriptions (1-based)
+// ---------------------------------------------------------------------------
+
+const HOUSE_BRIEF: Record<number, string> = {
+  1: 'the 1st house (self & identity)',
+  2: 'the 2nd house (wealth & speech)',
+  3: 'the 3rd house (courage & siblings)',
+  4: 'the 4th house (home & mother)',
+  5: 'the 5th house (children & intellect)',
+  6: 'the 6th house (health & enemies)',
+  7: 'the 7th house (marriage & partnerships)',
+  8: 'the 8th house (transformation & longevity)',
+  9: 'the 9th house (fortune & dharma)',
+  10: 'the 10th house (career & status)',
+  11: 'the 11th house (gains & aspirations)',
+  12: 'the 12th house (loss & liberation)',
+};
+
+// ---------------------------------------------------------------------------
 // Section heading
 // ---------------------------------------------------------------------------
 
-function SectionHeading({ children }: { children: React.ReactNode }) {
+function SectionHeading({ children, id }: { children: React.ReactNode; id?: string }) {
   return (
     <>
       <div className="border-t border-gold-primary/10 my-8" />
-      <h2 className="text-xl font-bold text-gold-light mb-4">{children}</h2>
+      <h2 id={id} className="text-xl font-bold text-gold-light mb-4">{children}</h2>
     </>
   );
 }
@@ -173,14 +195,33 @@ export default function DomainDeepDive({ reading, locale, onBack }: DomainDeepDi
   const np = reading.natalPromise;
   const ca = reading.currentActivation;
 
+  // Focus management: move focus to back button when deep dive opens
+  const backRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    backRef.current?.focus();
+  }, []);
+
+  // Escape key handler to close deep dive
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        onBack();
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [onBack]);
+
   return (
-    <div className="max-w-3xl mx-auto px-4 py-6">
+    <div className="w-full px-4 py-6" role="region" aria-label={`${domainName} detailed reading`}>
       {/* ----------------------------------------------------------------- */}
       {/* Back button                                                       */}
       {/* ----------------------------------------------------------------- */}
       <button
+        ref={backRef}
         onClick={onBack}
-        className="text-gold-primary text-sm hover:text-gold-light cursor-pointer mb-6 flex items-center gap-1"
+        aria-label="Back to life reading dashboard"
+        className="text-gold-primary text-sm hover:text-gold-light cursor-pointer mb-6 flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-primary/60"
         type="button"
       >
         <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4" aria-hidden="true">
@@ -289,29 +330,69 @@ export default function DomainDeepDive({ reading, locale, onBack }: DomainDeepDi
             ))}
         </div>
 
-        {/* Current activation score */}
-        <div className="flex items-center gap-3">
-          <span className="text-text-secondary text-sm">Activation level:</span>
-          <StrengthBar label="" score={ca.overallActivationScore} />
+        {/* Current activation — human-readable instead of raw score */}
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+          <div className="flex items-center gap-3 mb-2">
+            <div className={`w-3 h-3 rounded-full ${
+              ca.overallActivationScore >= 7 ? 'bg-emerald-400' :
+              ca.overallActivationScore >= 4 ? 'bg-gold-primary' :
+              ca.overallActivationScore >= 2 ? 'bg-amber-400' : 'bg-text-secondary/30'
+            }`} />
+            <span className="text-gold-light text-sm font-semibold">
+              {ca.overallActivationScore >= 7 ? (locale === 'hi' ? 'इस समय अत्यधिक सक्रिय' : 'Highly active right now')
+                : ca.overallActivationScore >= 4 ? (locale === 'hi' ? 'इस समय सक्रिय' : 'Moderately active right now')
+                : ca.overallActivationScore >= 2 ? (locale === 'hi' ? 'हल्की सक्रियता' : 'Mildly active')
+                : (locale === 'hi' ? 'पृष्ठभूमि में — वर्तमान में प्रमुख फोकस नहीं' : 'Background level — not a primary focus currently')}
+            </span>
+          </div>
+          <div className="flex-1 h-1.5 rounded-full bg-white/5 overflow-hidden">
+            <div
+              className={`h-full rounded-full ${
+                ca.overallActivationScore >= 7 ? 'bg-gradient-to-r from-emerald-600 to-emerald-400' :
+                ca.overallActivationScore >= 4 ? 'bg-gradient-to-r from-gold-dark to-gold-primary' :
+                ca.overallActivationScore >= 2 ? 'bg-gradient-to-r from-amber-600 to-amber-400' :
+                'bg-text-secondary/20'
+              }`}
+              style={{ width: `${Math.min(100, Math.max(5, (ca.overallActivationScore / 10) * 100))}%` }}
+            />
+          </div>
         </div>
 
-        {/* Transit influence pills */}
+        {/* Transit influences — human-readable descriptions */}
         {ca.transitInfluences.length > 0 && (
           <div>
-            <h3 className="text-sm font-semibold text-text-secondary mb-2">Active Transits</h3>
-            <div className="flex gap-2 overflow-x-auto pb-1">
+            <h3 className="text-sm font-semibold text-gold-light mb-2">
+              {locale === 'hi' ? 'वर्तमान गोचर प्रभाव' : 'Current Transit Influences'}
+            </h3>
+            <div className="space-y-2">
               {ca.transitInfluences.map((t, i) => {
+                const planetName = PLANET_NAMES[t.planetId] || `Planet ${t.planetId}`;
+                const houseDesc = HOUSE_BRIEF[t.transitHouse] ?? `house ${t.transitHouse}`;
                 const borderColor =
-                  t.nature === 'benefic' ? 'border-emerald-500/40 text-emerald-400 bg-emerald-500/10'
-                  : t.nature === 'malefic' ? 'border-red-500/40 text-red-400 bg-red-500/10'
-                  : 'border-gold-primary/40 text-gold-light bg-gold-primary/10';
+                  t.nature === 'benefic' ? 'border-emerald-500/20 bg-emerald-500/5'
+                  : t.nature === 'malefic' ? 'border-red-500/20 bg-red-500/5'
+                  : 'border-gold-primary/15 bg-gold-primary/5';
+                const dotColor =
+                  t.nature === 'benefic' ? 'bg-emerald-400'
+                  : t.nature === 'malefic' ? 'bg-red-400'
+                  : 'bg-gold-primary';
                 return (
-                  <span
-                    key={i}
-                    className={`shrink-0 px-3 py-1 rounded-full text-xs font-medium border ${borderColor}`}
-                  >
-                    {PLANET_NAMES[t.planetId] || `P${t.planetId}`} in H{t.transitHouse}
-                  </span>
+                  <div key={i} className={`rounded-lg border p-3 ${borderColor}`}>
+                    <div className="flex items-center gap-2">
+                      <div className={`w-2 h-2 rounded-full ${dotColor}`} />
+                      <span className="text-text-primary text-sm font-medium">{planetName}</span>
+                      <span className="text-text-secondary text-xs">
+                        {locale === 'hi' ? 'गोचर' : 'transiting'} {locale === 'hi' ? `भाव ${t.transitHouse}` : houseDesc}
+                      </span>
+                    </div>
+                    <p className="text-text-secondary/70 text-xs mt-1 ml-4">
+                      {t.nature === 'benefic'
+                        ? (locale === 'hi' ? 'शुभ प्रभाव — इस क्षेत्र को सहायता और विकास मिल रहा है।' : 'Benefic influence — this area of life is receiving support and growth energy.')
+                        : t.nature === 'malefic'
+                        ? (locale === 'hi' ? 'चुनौतीपूर्ण प्रभाव — धैर्य और अनुशासन आवश्यक।' : 'Challenging influence — patience and discipline are needed in this area.')
+                        : (locale === 'hi' ? 'मिश्रित प्रभाव — परिणाम प्रयास पर निर्भर।' : 'Mixed influence — outcomes depend on effort and awareness.')}
+                    </p>
+                  </div>
                 );
               })}
             </div>

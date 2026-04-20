@@ -761,8 +761,9 @@ function buildDomainReading(
   });
 
   // 7. Cross-domain links for this domain
+  // Include links relevant to this domain — exclude self-references (Wealth ↔ Wealth)
   const domainCrossLinks = crossLinks.filter(
-    l => l.linkedDomain === config.id,
+    l => l.linkedDomain !== config.id,
   );
 
   // 8. Headline: first sentence of natal summary

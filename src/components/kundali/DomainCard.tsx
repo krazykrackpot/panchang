@@ -3,6 +3,7 @@
 import { tl } from '@/lib/utils/trilingual';
 import { getDomainConfig } from '@/lib/kundali/domain-synthesis/config';
 import { GRAHAS } from '@/lib/constants/grahas';
+import { DOMAIN_ICON_MAP } from '@/components/icons/DomainIcons';
 import type { DomainReading, Rating } from '@/lib/kundali/domain-synthesis/types';
 
 // ---------------------------------------------------------------------------
@@ -100,11 +101,14 @@ export default function DomainCard({ reading, locale, onClick }: DomainCardProps
         style={{ backgroundColor: activationColor, boxShadow: `0 0 6px ${activationColor}40` }}
       />
 
-      {/* Domain icon placeholder */}
-      <div className="w-12 h-12 rounded-xl bg-gold-primary/8 border border-gold-primary/15 flex items-center justify-center mb-3">
-        <span className="text-gold-primary/60 text-xs font-medium uppercase tracking-wider">
-          {config ? tl(config.name, 'en').slice(0, 3) : reading.domain.slice(0, 3)}
-        </span>
+      {/* Domain icon */}
+      <div className="mb-3">
+        {(() => {
+          const IconComponent = DOMAIN_ICON_MAP[reading.domain];
+          return IconComponent
+            ? <IconComponent className="w-[60px] h-[40px] opacity-70" />
+            : <div className="w-12 h-8 rounded bg-gold-primary/8" />;
+        })()}
       </div>
 
       {/* Domain name + vedic name */}

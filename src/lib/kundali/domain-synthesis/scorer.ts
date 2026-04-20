@@ -110,11 +110,14 @@ function scoreYogas(input: ScorerInput): number {
 
 function scoreDoshas(input: ScorerInput): number {
   const activeDoshas = input.relevantDoshaCount - input.cancelledDoshas;
-  return Math.max(0, 10 - activeDoshas * 3);
+  // No doshas = neutral (5), not perfect (10). Each active dosha penalizes from neutral.
+  if (activeDoshas <= 0) return 5;
+  return Math.max(0, 5 - activeDoshas * 2.5);
 }
 
 function scoreDashaActivation(input: ScorerInput): number {
-  return input.dashaActivatesHouse ? 8 : 4;
+  // Activated = strong boost; not activated = neutral baseline
+  return input.dashaActivatesHouse ? 8 : 5;
 }
 
 function scoreVargaConfirmation(input: ScorerInput): number {

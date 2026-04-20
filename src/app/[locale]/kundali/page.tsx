@@ -41,6 +41,7 @@ import type { Locale , LocaleText} from '@/types/panchang';
 import type { SadeSatiAnalysis, NakshatraTransitEntry } from '@/lib/kundali/sade-sati-analysis';
 import type { PersonalReading, DomainType } from '@/lib/kundali/domain-synthesis/types';
 import { synthesizeReading } from '@/lib/kundali/domain-synthesis/synthesizer';
+import { computeKeyDates, type KeyDate } from '@/lib/kundali/domain-synthesis/key-dates';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
@@ -71,6 +72,7 @@ const PlanetsInterpretation = dynamic(() => import('@/components/kundali/Interpr
 const DashaInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.DashaInterpretation })), { ssr: false });
 const LifeReadingDashboard = dynamic(() => import('@/components/kundali/LifeReadingDashboard'), { ssr: false });
 const DomainDeepDive = dynamic(() => import('@/components/kundali/DomainDeepDive'), { ssr: false });
+const KeyDatesTimeline = dynamic(() => import('@/components/kundali/KeyDatesTimeline'), { ssr: false });
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
@@ -399,6 +401,7 @@ export default function KundaliPage() {
   const [view, setView] = useState<'dashboard' | 'deepDive' | 'technical'>('dashboard');
   const [activeDomain, setActiveDomain] = useState<DomainType | null>(null);
   const [personalReading, setPersonalReading] = useState<PersonalReading | null>(null);
+  const [keyDates, setKeyDates] = useState<KeyDate[]>([]);
 
   // On mount: URL query params take priority over sessionStorage. This lets
   // saved-kundali cards on the dashboard open the correct chart — previously
@@ -435,6 +438,7 @@ export default function KundaliPage() {
             try {
               const reading = synthesizeReading(data, locale);
               setPersonalReading(reading);
+              setKeyDates(computeKeyDates({ kundali: data }));
               setView('dashboard');
             } catch { setPersonalReading(null); setView('technical'); }
             try {
@@ -467,6 +471,7 @@ export default function KundaliPage() {
           try {
             const reading = synthesizeReading(k, locale);
             setPersonalReading(reading);
+            setKeyDates(computeKeyDates({ kundali: k }));
             setView('dashboard');
           } catch { setPersonalReading(null); setView('technical'); }
         }
@@ -627,10 +632,11 @@ export default function KundaliPage() {
         return;
       }
       setKundali(data);
-      // Compute Personal Pandit reading (synchronous, <500ms)
+      // Compute Personal Pandit reading + Key Dates (synchronous, <500ms)
       try {
         const reading = synthesizeReading(data, locale);
         setPersonalReading(reading);
+        setKeyDates(computeKeyDates({ kundali: data }));
         setView('dashboard');
       } catch (synthErr) {
         console.error('Personal reading synthesis failed — falling back to technical view:', synthErr);
@@ -868,15 +874,23 @@ export default function KundaliPage() {
 
           {/* ===== LAYER 1: PERSONAL PANDIT DASHBOARD ===== */}
           {personalReading && view === 'dashboard' && (
-            <LifeReadingDashboard
-              reading={personalReading}
-              locale={locale}
-              onDomainClick={(domain: DomainType) => {
-                setActiveDomain(domain);
-                setView('deepDive');
-              }}
-              onToggleTechnical={() => setView('technical')}
-            />
+            <>
+              {/* Key Dates — prominent above domain cards */}
+              {keyDates.length > 0 && (
+                <div className="mb-8 p-5 rounded-2xl bg-gradient-to-br from-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10">
+                  <KeyDatesTimeline dates={keyDates} locale={locale} />
+                </div>
+              )}
+              <LifeReadingDashboard
+                reading={personalReading}
+                locale={locale}
+                onDomainClick={(domain: DomainType) => {
+                  setActiveDomain(domain);
+                  setView('deepDive');
+                }}
+                onToggleTechnical={() => setView('technical')}
+              />
+            </>
           )}
 
           {/* ===== LAYER 2: DOMAIN DEEP DIVE ===== */}

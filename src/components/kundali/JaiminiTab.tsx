@@ -176,6 +176,9 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
 
   return (
     <div className="space-y-8">
+      {/* Jaimini Interpretation — placed at top for immediate value */}
+      <JaiminiInterpretation jaimini={jaimini} locale={locale} />
+
       {/* System intro */}
       <div className="text-center">
         <h3 className="text-gold-gradient text-2xl font-bold mb-3" style={headingFont}>
@@ -416,8 +419,6 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
           </div>
         </div>
       )}
-
-      <JaiminiInterpretation jaimini={jaimini} locale={locale} />
 
       {/* Brahma / Rudra / Maheshwara */}
       <BrahmaRudraMaheshwara kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />

@@ -48,6 +48,58 @@ const VARGA_INFO: Record<string, VargaMeta> = {
 
 const VARGA_ORDER = ['D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9', 'D10', 'D12', 'D16', 'D20', 'D24', 'D27', 'D30', 'D40', 'D45', 'D60'];
 
+// Interpretive commentary per division — what this chart reveals and how to read it
+const VARGA_COMMENTARY: Record<string, { en: string; hi: string }> = {
+  D1: {
+    en: 'The Rashi chart is your birth chart — the foundation of all analysis. Every planet\'s house, sign, and dignity here determines your life\'s basic blueprint. All other divisional charts are derived from this.',
+    hi: 'राशि चार्ट आपकी जन्म कुण्डली है — सम्पूर्ण विश्लेषण का आधार। यहाँ प्रत्येक ग्रह का भाव, राशि और बल आपके जीवन का मूल खाका निर्धारित करता है।',
+  },
+  D2: {
+    en: 'The Hora chart divides each sign into two halves ruled by Sun and Moon. Planets in Sun\'s hora accumulate wealth through effort; in Moon\'s hora, through inheritance or luck. The balance of planets between the two horas reveals your wealth-building pattern.',
+    hi: 'होरा चार्ट प्रत्येक राशि को सूर्य और चन्द्र द्वारा शासित दो भागों में विभाजित करता है। सूर्य होरा में ग्रह प्रयास से धन संचय करते हैं; चन्द्र होरा में, विरासत या भाग्य से।',
+  },
+  D3: {
+    en: 'The Drekkana reveals your courage, willpower, and relationship with siblings. Each planet falls into one of 36 "faces" (decanates) with distinct archetypes. This chart also indicates the nature of your co-born and your own initiative patterns.',
+    hi: 'द्रेक्काण आपके साहस, इच्छाशक्ति और भाई-बहनों से संबंध दर्शाता है। प्रत्येक ग्रह 36 "मुखों" (दशकों) में से एक में आता है जिनके अलग-अलग प्रारूप होते हैं।',
+  },
+  D4: {
+    en: 'The Chaturthamsha governs fixed assets — property, vehicles, land, and overall fortune. Benefic planets here indicate smooth property acquisition; malefics suggest disputes or delays. The 4th house lord\'s placement is especially significant.',
+    hi: 'चतुर्थांश स्थायी संपत्ति — घर, वाहन, भूमि और समग्र भाग्य को नियंत्रित करता है। यहाँ शुभ ग्रह सुगम सम्पत्ति प्राप्ति दर्शाते हैं; अशुभ ग्रह विवाद या विलम्ब सूचित करते हैं।',
+  },
+  D7: {
+    en: 'The Saptamsha is the primary chart for children and progeny. The 5th house here reveals the nature and number of children, while the 1st house shows your relationship with them. Jupiter\'s placement is the single strongest indicator of blessed progeny.',
+    hi: 'सप्तांश संतान का प्राथमिक चार्ट है। यहाँ 5वाँ भाव संतान की प्रकृति और संख्या दर्शाता है। बृहस्पति की स्थिति सुसंतान का सबसे प्रबल संकेतक है।',
+  },
+  D9: {
+    en: 'The Navamsha is the most important chart after D1. It reveals the soul\'s true nature (dharma), the quality of marriage, and whether D1 promises will actually deliver. A strong Navamsha can rescue a weak birth chart; a weak one can undermine a strong one. The 7th house and Venus placement here directly describe your spouse.',
+    hi: 'नवांश D1 के बाद सबसे महत्वपूर्ण चार्ट है। यह आत्मा की वास्तविक प्रकृति (धर्म), विवाह की गुणवत्ता, और D1 के वादे वास्तव में पूरे होंगे या नहीं — यह दर्शाता है। 7वाँ भाव और शुक्र की स्थिति सीधे आपके जीवनसाथी का वर्णन करती है।',
+  },
+  D10: {
+    en: 'The Dashamsha is the career and professional chart. The 10th house lord\'s placement here determines career trajectory; planets in the 1st indicate personal branding; the 7th house reveals business partnerships. Sun and Saturn\'s dignity here directly reflect authority and organizational ability.',
+    hi: 'दशांश कैरियर और पेशेवर चार्ट है। 10वें भाव के स्वामी की स्थिति यहाँ कैरियर की दिशा निर्धारित करती है। सूर्य और शनि का बल सीधे अधिकार और संगठनात्मक क्षमता दर्शाता है।',
+  },
+  D12: {
+    en: 'The Dwadashamsha reveals your relationship with parents and ancestry. The 4th house here indicates your mother\'s nature and your bond with her; the 9th house does the same for your father. Malefics in these houses suggest strained parental relationships.',
+    hi: 'द्वादशांश माता-पिता और वंश से आपके संबंध को दर्शाता है। 4वाँ भाव माता की प्रकृति और 9वाँ भाव पिता के बारे में बताता है।',
+  },
+  D20: {
+    en: 'The Vimshamsha governs spiritual progress and religious inclination. Benefic planets in kendras here indicate natural spiritual growth; Jupiter in the 9th is one of the strongest placements for dharmic wisdom. Ketu in the 12th suggests deep moksha potential.',
+    hi: 'विंशांश आध्यात्मिक प्रगति और धार्मिक प्रवृत्ति को नियंत्रित करता है। केन्द्र में शुभ ग्रह स्वाभाविक आध्यात्मिक विकास दर्शाते हैं।',
+  },
+  D24: {
+    en: 'The Chaturvimshamsha is the education and learning chart. Mercury and Jupiter\'s placement here determines intellectual gifts and academic success. The 4th house reveals the depth of education; the 5th shows creative intelligence.',
+    hi: 'चतुर्विंशांश शिक्षा और ज्ञान का चार्ट है। बुध और बृहस्पति की स्थिति यहाँ बौद्धिक प्रतिभा और शैक्षिक सफलता निर्धारित करती है।',
+  },
+  D30: {
+    en: 'The Trimshamsha indicates misfortunes, health challenges, and hidden difficulties. Malefic planets in dusthanas (6/8/12) here suggest specific health vulnerabilities. This chart helps identify which life areas are most prone to obstacles.',
+    hi: 'त्रिंशांश दुर्भाग्य, स्वास्थ्य चुनौतियाँ और छिपी कठिनाइयाँ दर्शाता है। यह चार्ट पहचानने में मदद करता है कि जीवन के कौन से क्षेत्र बाधाओं के लिए सबसे अधिक संवेदनशील हैं।',
+  },
+  D60: {
+    en: 'The Shashtiamsha is the finest division — each of 60 parts carries a specific past-life signature. This chart reveals the deepest karmic patterns: why certain life themes repeat, what soul-level lessons are being worked through, and which planets carry the heaviest karmic load.',
+    hi: 'षष्ट्यंश सबसे सूक्ष्म विभाजन है — 60 भागों में से प्रत्येक एक विशिष्ट पूर्वजन्म हस्ताक्षर वहन करता है। यह चार्ट गहनतम कार्मिक प्रतिरूप दर्शाता है।',
+  },
+};
+
 // Exaltation / debilitation / own sign lookups for dignity checks
 const EXALTATION_SIGNS: Record<number, number> = { 0: 1, 1: 2, 2: 10, 3: 6, 4: 4, 5: 12, 6: 7 };
 const DEBILITATION_SIGNS: Record<number, number> = { 0: 7, 1: 8, 2: 4, 3: 12, 4: 10, 5: 6, 6: 1 };
@@ -198,6 +250,11 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
             <p className="text-gold-primary/70 text-xs mt-2">
               {isHi ? 'लग्न: ' : 'Ascendant: '}
               {tl(ascSignName, locale)}
+            </p>
+          )}
+          {VARGA_COMMENTARY[selectedDiv] && (
+            <p className="text-text-secondary/80 text-sm mt-3 max-w-2xl mx-auto leading-relaxed">
+              {isHi ? VARGA_COMMENTARY[selectedDiv].hi : VARGA_COMMENTARY[selectedDiv].en}
             </p>
           )}
         </div>

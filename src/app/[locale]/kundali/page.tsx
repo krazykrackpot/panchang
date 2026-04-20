@@ -2463,8 +2463,12 @@ export default function KundaliPage() {
                           </span>
                           <div>
                             <div className="text-gold-light text-sm font-semibold">{locale === 'en' || isTamil ? `House ${ar.house}` : `भाव ${ar.house}`}</div>
-                            <div className="text-text-secondary/60 text-[10px] leading-tight" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                              {sig[locale === 'en' || isTamil ? 'en' : 'hi']}
+                            <div className="flex flex-wrap gap-1 mt-0.5">
+                              {(sig[locale === 'en' || isTamil ? 'en' : 'hi'] ?? '').split(',').map((item, idx) => (
+                                <span key={idx} className="text-[9px] px-1.5 py-0.5 rounded-full bg-gold-primary/8 text-text-secondary/70 border border-gold-primary/10" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                                  {item.trim()}
+                                </span>
+                              ))}
                             </div>
                           </div>
                         </div>

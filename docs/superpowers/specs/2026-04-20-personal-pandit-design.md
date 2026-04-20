@@ -1,7 +1,7 @@
 # Personal Pandit — Life Reading Dashboard
 
 **Date:** 2026-04-20
-**Status:** Draft → Review
+**Status:** Reviewed — 14 addenda incorporated
 **Scope:** Complete overhaul of the kundali results experience — from 21-tab data explorer to a 9-card Life Reading dashboard with domain deep dives. Subsumes and harmonizes with `docs/specs/varga-tippanni-deep-interpretation.md`.
 
 ---
@@ -546,6 +546,166 @@ Tests: golden charts with verified domain ratings, narrative coherence checks, t
 
 ---
 
+## Critical Review Addenda (2026-04-20)
+
+These findings from critical self-review EXPAND scope (not reduce it). All should be incorporated into implementation.
+
+### A1. Life Overview Synthesis (add to Layer 1, above the 8 cards)
+
+Before the domain grid, a 2-3 sentence "elevator pitch" of the native's chart:
+
+> "You are fundamentally a builder (Saturn Atmakaraka) with deep creative gifts (5th house stellium in Leo). Your life theme is transforming challenges into wisdom — the Scorpio ascendant with Jupiter in the 9th is your compass. This decade is your harvest period (5th cycle, Jupiter Mahadasha)."
+
+**Source data:** Atmakaraka nature + strongest house/stellium + ascendant+9th lord synthesis + life stage (Sudarshana cycle context) + current mahadasha character.
+
+This is what a pandit says FIRST. The dashboard without it is a menu without a greeting.
+
+### A2. Dual Rating on Dashboard Cards (natal + current)
+
+Each domain card shows TWO indicators:
+- **Natal bar** (left edge, permanent): the structural strength of this domain
+- **Current activation dot** (top-right corner): how the domain is performing RIGHT NOW given dasha + transits
+
+Visual: "Marriage: Uttama (natal) · Currently stressed (Sade Sati peak)" — the dot is amber even though the bar is green. User instantly sees: "my marriage foundation is strong but I'm in a rough patch."
+
+This turns the dashboard from a static blueprint into a living status board.
+
+### A3. Cross-Domain Connections (add section to Layer 1, below the 8 cards)
+
+3-5 key inter-domain linkages unique to this chart:
+
+> "Career ↔ Marriage: Your 10th lord also rules the 7th — career and partnership are inseparable. Professional decisions directly affect marital harmony."
+> "Wealth ↔ Children: 5th lord in the 2nd house — children or creative output become a significant income source."
+> "Health ↔ Spiritual: 6th lord in the 12th — health challenges are best addressed through spiritual practice, not just medicine."
+
+**Engine:** For each pair of domains, check if any planet lords BOTH a primary house from domain A and domain B. Also check if primary planets of one domain occupy primary houses of another.
+
+### A4. Age-Contextualized Narrative
+
+The narrator module must accept `currentAge: number` and adjust:
+- **Vocabulary:** "building" at 25, "consolidating" at 40, "harvesting" at 55, "legacy" at 65
+- **Emphasis:** Children domain gets paragraphs at 25-35, a sentence at 65. Career domain shifts from "advancement" to "mentoring" after 55.
+- **Life stage integration:** Sudarshana cycle context (already built) feeds into every narrative block
+
+### A5. Current Period Card — Enhanced
+
+Add to the existing Current Period spec:
+- **Pratyantardasha** (finest active sub-period) with its theme
+- **Retrograde planets** currently affecting the chart (any retrograde planet transiting a natal sensitive point)
+- **Eclipse proximity** — if upcoming eclipse is within 5° of natal Rahu/Ketu or natal Sun/Moon, flag it
+- **Today's panchang overlay** — current tithi/nakshatra interaction with birth tithi/nakshatra (tara bala, chandrabala)
+- **Samvatsara character** — the current year's nature (from the 60-year cycle)
+
+### A6. Remedy Strength Indicators
+
+Each remedy gets a 1-5 strength rating based on HOW relevant it is to THIS chart:
+
+| Strength | Meaning | When |
+|----------|---------|------|
+| ★★★★★ | Critical — planet is debilitated AND rules key domain house | Debilitated 7th lord for marriage |
+| ★★★★ | High — planet is weak AND currently in unfavorable dasha | Weak Sun in Saturn dasha |
+| ★★★ | Moderate — planet is neutral but domain needs support | Average Mars, career needs boost |
+| ★★ | Mild — preventive, planet is OK but could be stronger | Good Jupiter, maintaining strength |
+| ★ | Optional — planet is already strong, remedy is insurance | Exalted Venus, wearing diamond anyway |
+
+### A7. Smart Layer 3 Links
+
+Deep dive sections include "See technical details →" links that open Layer 3 pre-filtered:
+- Marriage deep dive → opens VargasTab scrolled to D9
+- Career deep dive → opens VargasTab scrolled to D10
+- Yogas section → opens Yogas tab filtered to domain-relevant yogas
+- Dasha section → opens Dasha tab with current period highlighted
+
+Implementation: URL hash params or React state to pre-select tab + chart.
+
+### A8. Performance: Lazy Computation
+
+`synthesizeReading()` should NOT compute everything at once:
+
+**Phase 1 (< 200ms, blocking):** Compute 9 card headlines + ratings only. Uses pre-computed data (shadbala, ashtakavarga, dasha dates — already on KundaliData).
+
+**Phase 2 (on card click, progressive):** Compute the full deep dive for ONE domain. Varga analysis, narrative, timeline, remedies. Cached after first computation.
+
+**Phase 3 (background, non-blocking):** Pre-compute remaining 7 domains in a web worker after dashboard renders. By the time user clicks the second card, it's ready.
+
+This means dashboard appears in < 200ms. First deep dive may take 500-800ms (with loading state). Subsequent deep dives are instant.
+
+### A9. LLM Prompt — Domain-Specific Tone
+
+Add to `llm-prompt.ts`:
+
+```typescript
+const DOMAIN_TONE: Record<DomainType, string> = {
+  health: 'Be measured and cautious. Never diagnose. Frame as tendencies. Emphasize prevention and lifestyle.',
+  wealth: 'Be pragmatic and specific about timing. Mention concrete actions. Avoid guaranteed-wealth language.',
+  career: 'Be direct and strategic. Frame in terms of leverage and timing. Career-specific vocabulary.',
+  marriage: 'Be warm but honest. Acknowledge emotional weight. Frame challenges as growth opportunities.',
+  children: 'Be gentle and hopeful. This is deeply personal. Frame difficulties as "requires patience" not "unlikely."',
+  family: 'Be respectful of family dynamics. Acknowledge cultural weight of parental relationships.',
+  spiritual: 'Be expansive and encouraging. Use poetic language. Reference classical texts more heavily.',
+  education: 'Be analytical and encouraging. Frame in terms of intellectual gifts and optimal learning paths.',
+};
+```
+
+Also add: "Identify THE single most important insight. Begin your response with: 'If you remember nothing else from this reading...'"
+
+### A10. Persistence & Sharing
+
+`PersonalReading` should be persistable:
+- **Supabase table:** `personal_readings` with `kundali_id` FK, `generated_at`, `reading_json` (JSONB), `llm_response` (TEXT, nullable)
+- **Share:** Generate a shareable image of a single domain card (canvas-to-PNG or html-to-image)
+- **Print:** Domain deep dive should have a print-optimized layout (extend existing PatrikaTab print infrastructure)
+- **Re-generate:** Button to force fresh computation (in case user updated birth time)
+
+### A11. Notification Hooks
+
+`DomainReading` should expose `upcomingTriggers: DomainTrigger[]` that the notification system can consume:
+
+```typescript
+interface DomainTrigger {
+  domain: DomainType;
+  date: string;          // ISO date
+  type: 'transit' | 'dasha_change' | 'eclipse';
+  significance: 'high' | 'medium';
+  headline: string;      // "Jupiter enters your 7th — marriage window opens"
+}
+```
+
+The existing `/api/cron/transit-alerts` route can consume these to send domain-specific email/push alerts.
+
+### A12. Accessibility Requirements
+
+- ARIA `role="grid"` on dashboard with `role="gridcell"` per card
+- Rating bars: `aria-label="Marriage: Uttama (strong)"` + `aria-valuenow` for screen readers
+- Colorblind mode: rating bars get TEXT labels (U/M/A/X) alongside color, not just color
+- Keyboard: Tab navigates cards, Enter opens deep dive, Escape returns to dashboard
+- Focus management: opening deep dive traps focus, closing returns focus to originating card
+- Timeline: aria-label on each node with date + description
+
+### A13. SVG Illustration Design Direction
+
+All 8 illustrations follow the existing icon system:
+- **Style:** Abstract/geometric (like NakshatraIcons), not photorealistic
+- **Palette:** Gold gradient system (f0d48a → d4a853 → 8a6d2b) with glow filters matching GrahaIcons
+- **Size:** 120×80px viewBox, scalable
+- **Animation:** Subtle CSS shimmer on hover (not JS animation — performance)
+- **Consistency:** All use the same stroke width (1.5px), corner radius (2px), and gradient IDs
+
+### A14. Partner Chart Hook (design now, build later)
+
+Extend `DomainConfig` with optional partner data:
+
+```typescript
+interface DomainConfig {
+  // ...existing fields...
+  supportsPartnerOverlay?: boolean;  // true for 'marriage' domain
+}
+```
+
+Marriage deep dive shows: "Add partner's birth details for compatibility analysis →" — links to matching page pre-filled with native's data. When matching data exists, the Marriage domain deep dive adds a "Compatibility" subsection consuming existing Ashta Kuta + the D9 cross-reference.
+
+---
+
 ## Deferred (Future Phases)
 
 | Feature | Why Deferred | Impact |
@@ -558,3 +718,4 @@ Tests: golden charts with verified domain ratings, narrative coherence checks, t
 | D1↔Dxx side-by-side UI | Visual chart comparison | HIGH — immediate understanding |
 | Bhavat Bhavam (house-from-house) | Additional interpretation layer | MEDIUM |
 | Divisional Shadbala | Computationally heavy | MEDIUM |
+| Comparative benchmark | "Your career rating is top 15%" — requires aggregate statistics | MEDIUM — social proof |

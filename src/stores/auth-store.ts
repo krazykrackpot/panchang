@@ -117,5 +117,12 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     const supabase = getSupabase();
     if (supabase) await supabase.auth.signOut();
     set({ user: null, session: null });
+    // Clear all user-specific cached data
+    try {
+      sessionStorage.removeItem('kundali_last_result');
+      localStorage.removeItem('panchang_birth_data');
+      localStorage.removeItem('dekho-panchang-learn-progress');
+      localStorage.removeItem('dekho-panchang-learn-streak');
+    } catch { /* SSR or private browsing */ }
   },
 }));

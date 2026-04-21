@@ -192,13 +192,13 @@ export default function Navbar() {
                 </Link>
               );
               // Insert Dashboard link after Home (index 0)
-              if (i === 0 && hydrated && user) {
+              if (i === 0) {
                 return (
                   <span key="__home_dash" className="contents">
                     {rendered}
                     <Link
                       href="/dashboard"
-                      className="text-gold-light hover:text-gold-primary transition-colors duration-200 text-sm font-semibold whitespace-nowrap"
+                      className={`text-gold-light hover:text-gold-primary transition-all duration-200 text-sm font-semibold whitespace-nowrap ${hydrated && user ? 'opacity-100' : 'opacity-0 pointer-events-none w-0 overflow-hidden'}`}
                     >
                       {locale === 'sa' ? 'मम पटलम्' : msg('dashboard', locale)}
                     </Link>

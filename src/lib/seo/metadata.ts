@@ -416,6 +416,58 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Monthly muhurat calendar for marriage, griha pravesh, vehicle purchase, and more. Find the best dates for any activity.', hi: 'विवाह, गृह प्रवेश, वाहन खरीद आदि के लिए मासिक मुहूर्त कैलेंडर।', sa: 'विवाहगृहप्रवेशवाहनक्रयादीनां कृते मासिकमुहूर्तपञ्चाङ्गम्।' },
     keywords: ['muhurat calendar', 'shubh muhurat', 'auspicious dates', 'marriage dates'],
   },
+
+  // ─── Muhurta Type Landing Pages ──────────────────────────────
+  '/muhurta/wedding': {
+    title: { en: 'Shubh Muhurat for Wedding 2026 | Vivah Muhurat Dates', hi: 'शुभ विवाह मुहूर्त 2026 | विवाह की शुभ तिथियां', sa: 'शुभविवाहमुहूर्तम् २०२६ | विवाहशुभतिथयः' },
+    description: { en: 'Find the most auspicious dates for your wedding in 2026. Vivah Muhurat dates based on Panchang, nakshatras, and Vedic astrology rules.', hi: '2026 में अपने विवाह के लिए सबसे शुभ तिथियां खोजें। पंचांग, नक्षत्र और वैदिक ज्योतिष नियमों पर आधारित विवाह मुहूर्त।', sa: '२०२६ वर्षे स्वविवाहस्य कृते शुभतमां तिथिं अन्विष्यतु। पञ्चाङ्गनक्षत्रवैदिकज्योतिषनियमाधारितं विवाहमुहूर्तम्।' },
+    keywords: ['wedding muhurat 2026', 'vivah muhurat', 'shadi ka muhurat', 'marriage muhurat dates', 'shubh vivah muhurat 2026'],
+  },
+  '/muhurta/griha-pravesh': {
+    title: { en: 'Griha Pravesh Muhurat 2026 | Housewarming Auspicious Dates', hi: 'गृह प्रवेश मुहूर्त 2026 | गृह प्रवेश शुभ तिथियां', sa: 'गृहप्रवेशमुहूर्तम् २०२६ | गृहप्रवेशशुभतिथयः' },
+    description: { en: 'Find auspicious Griha Pravesh dates for 2026. Housewarming muhurat based on Vedic Panchang, fixed nakshatras, and Vastu principles.', hi: '2026 के लिए शुभ गृह प्रवेश तिथियां खोजें। वैदिक पंचांग, स्थिर नक्षत्र और वास्तु सिद्धान्तों पर आधारित।', sa: '२०२६ वर्षस्य कृते शुभगृहप्रवेशतिथीः अन्विष्यतु। वैदिकपञ्चाङ्गस्थिरनक्षत्रवास्तुसिद्धान्ताधारिताः।' },
+    keywords: ['griha pravesh muhurat 2026', 'housewarming muhurat', 'griha pravesh dates', 'new house muhurat'],
+  },
+  '/muhurta/vehicle-purchase': {
+    title: { en: 'Vehicle Purchase Muhurat 2026 | Car Buying Auspicious Dates', hi: 'वाहन खरीद मुहूर्त 2026 | गाड़ी खरीदने की शुभ तिथि', sa: 'वाहनक्रयमुहूर्तम् २०२६ | वाहनक्रयशुभतिथयः' },
+    description: { en: 'Find the best dates for buying a new car or vehicle in 2026. Vehicle purchase muhurat based on nakshatras, weekdays, and planetary alignments.', hi: '2026 में नई कार या वाहन खरीदने के लिए शुभ तिथियां। नक्षत्र, वार और ग्रह स्थिति पर आधारित।', sa: '२०२६ वर्षे नववाहनक्रयस्य कृते शुभतिथीः। नक्षत्रवारग्रहस्थित्याधारिताः।' },
+    keywords: ['vehicle purchase muhurat 2026', 'car buying muhurat', 'vahan kharid muhurat', 'new car muhurat'],
+  },
+  '/muhurta/business-start': {
+    title: { en: 'Business Start Muhurat 2026 | Shop Opening Auspicious Dates', hi: 'व्यापार आरम्भ मुहूर्त 2026 | दुकान खोलने का शुभ मुहूर्त', sa: 'व्यापारारम्भमुहूर्तम् २०२६ | आपणोद्घाटनशुभतिथयः' },
+    description: { en: 'Find auspicious dates to start a business or open a shop in 2026. Pushya Nakshatra and other favorable combinations for commercial success.', hi: '2026 में व्यापार शुरू करने या दुकान खोलने की शुभ तिथियां। पुष्य नक्षत्र और अन्य अनुकूल योग।', sa: '२०२६ वर्षे व्यापारारम्भाय आपणोद्घाटनाय वा शुभतिथीः। पुष्यनक्षत्रम् अन्यानि अनुकूलयोगानि च।' },
+    keywords: ['business start muhurat 2026', 'shop opening muhurat', 'vyapar muhurat', 'dukan kholne ka muhurat'],
+  },
+  '/muhurta/naming-ceremony': {
+    title: { en: 'Naming Ceremony Muhurat 2026 | Namkaran Sanskar Dates', hi: 'नामकरण मुहूर्त 2026 | नामकरण संस्कार तिथियां', sa: 'नामकरणमुहूर्तम् २०२६ | नामकरणसंस्कारतिथयः' },
+    description: { en: 'Find auspicious dates for your baby\'s naming ceremony in 2026. Namkaran Sanskar muhurat based on birth nakshatra and Vedic traditions.', hi: '2026 में शिशु के नामकरण संस्कार के लिए शुभ तिथियां। जन्म नक्षत्र और वैदिक परम्पराओं पर आधारित।', sa: '२०२६ वर्षे शिशोः नामकरणसंस्कारस्य कृते शुभतिथीः। जन्मनक्षत्रवैदिकपरम्पराधारिताः।' },
+    keywords: ['naming ceremony muhurat 2026', 'namkaran muhurat', 'baby naming muhurat', 'namkaran sanskar date'],
+  },
+  '/muhurta/property-purchase': {
+    title: { en: 'Property Purchase Muhurat 2026 | Land Buying Auspicious Dates', hi: 'सम्पत्ति क्रय मुहूर्त 2026 | जमीन खरीदने की शुभ तिथि', sa: 'सम्पत्तिक्रयमुहूर्तम् २०२६ | भूमिक्रयशुभतिथयः' },
+    description: { en: 'Find auspicious dates for property registration and land purchase in 2026. Best nakshatras and weekdays for real estate transactions.', hi: '2026 में सम्पत्ति पंजीकरण और जमीन खरीद के लिए शुभ तिथियां। अचल सम्पत्ति लेनदेन के लिए सर्वोत्तम नक्षत्र और वार।', sa: '२०२६ वर्षे सम्पत्तिपञ्जीकरणभूमिक्रयस्य कृते शुभतिथीः।' },
+    keywords: ['property purchase muhurat 2026', 'land purchase muhurat', 'bhumi kray muhurat', 'plot registration muhurat'],
+  },
+  '/muhurta/mundan': {
+    title: { en: 'Mundan Muhurat 2026 | First Haircut Ceremony Dates', hi: 'मुंडन मुहूर्त 2026 | मुंडन संस्कार तिथियां', sa: 'मुण्डनमुहूर्तम् २०२६ | मुण्डनसंस्कारतिथयः' },
+    description: { en: 'Find auspicious dates for Mundan (Chudakarana) ceremony in 2026. First haircut muhurat based on child\'s age, nakshatras, and Vedic rules.', hi: '2026 में मुंडन (चूड़ाकरण) संस्कार के लिए शुभ तिथियां। बच्चे की आयु, नक्षत्र और वैदिक नियमों पर आधारित।', sa: '२०२६ वर्षे मुण्डनसंस्कारस्य कृते शुभतिथीः। शिशोः वयसः नक्षत्राणां वैदिकनियमानां च आधारेण।' },
+    keywords: ['mundan muhurat 2026', 'mundan sanskar date', 'chudakarana muhurat', 'first haircut muhurat'],
+  },
+  '/muhurta/annaprashan': {
+    title: { en: 'Annaprashan Muhurat 2026 | First Feeding Ceremony Dates', hi: 'अन्नप्राशन मुहूर्त 2026 | अन्नप्राशन संस्कार तिथियां', sa: 'अन्नप्राशनमुहूर्तम् २०२६ | अन्नप्राशनसंस्कारतिथयः' },
+    description: { en: 'Find auspicious dates for Annaprashan (first rice feeding) in 2026. Rice ceremony muhurat based on baby\'s age, nakshatras, and traditions.', hi: '2026 में अन्नप्राशन (पहला अन्न) संस्कार के लिए शुभ तिथियां। शिशु की आयु, नक्षत्र और परम्पराओं पर आधारित।', sa: '२०२६ वर्षे अन्नप्राशनसंस्कारस्य कृते शुभतिथीः।' },
+    keywords: ['annaprashan muhurat 2026', 'first feeding ceremony date', 'rice ceremony muhurat', 'anna prashan date'],
+  },
+  '/muhurta/upanayana': {
+    title: { en: 'Upanayana Muhurat 2026 | Thread Ceremony Auspicious Dates', hi: 'उपनयन मुहूर्त 2026 | जनेऊ संस्कार शुभ तिथियां', sa: 'उपनयनमुहूर्तम् २०२६ | उपनयनसंस्कारशुभतिथयः' },
+    description: { en: 'Find auspicious dates for Upanayana (sacred thread ceremony) in 2026. Janeu Sanskar muhurat based on age, nakshatras, and classical rules.', hi: '2026 में उपनयन (जनेऊ संस्कार) के लिए शुभ तिथियां। आयु, नक्षत्र और शास्त्रीय नियमों पर आधारित।', sa: '२०२६ वर्षे उपनयनस्य (यज्ञोपवीतसंस्कारस्य) कृते शुभतिथीः।' },
+    keywords: ['upanayana muhurat 2026', 'thread ceremony muhurat', 'janeu sanskar date', 'sacred thread ceremony date'],
+  },
+  '/muhurta/travel': {
+    title: { en: 'Travel Muhurat 2026 | Auspicious Times to Start a Journey', hi: 'यात्रा मुहूर्त 2026 | यात्रा का शुभ मुहूर्त', sa: 'यात्रामुहूर्तम् २०२६ | यात्रारम्भशुभसमयः' },
+    description: { en: 'Find the best auspicious times for starting a journey in 2026. Travel muhurat based on nakshatras, Rahu Kaal, and directional analysis.', hi: '2026 में यात्रा शुरू करने के लिए शुभ समय। नक्षत्र, राहु काल और दिशा विश्लेषण पर आधारित यात्रा मुहूर्त।', sa: '२०२६ वर्षे यात्रारम्भस्य कृते शुभसमयः। नक्षत्रराहुकालदिक्विश्लेषणाधारितं यात्रामुहूर्तम्।' },
+    keywords: ['travel muhurat 2026', 'yatra muhurat', 'journey muhurat', 'safe travel time astrology'],
+  },
   '/regional': {
     title: { en: 'Regional Hindu Calendars — Tamil, Telugu, Bengali, Gujarati', hi: 'क्षेत्रीय हिन्दू कैलेंडर', sa: 'प्रादेशिकहिन्दूपञ्चाङ्गानि' },
     description: { en: 'Regional Hindu calendar variants — Tamil, Telugu, Bengali, Marathi, Gujarati, Malayalam, and Kannada Panchang.', hi: 'तमिल, तेलुगु, बंगाली, मराठी, गुजराती, मलयालम और कन्नड़ पंचांग।', sa: 'तमिलतेलुगुबङ्गालमराठीगुजरातीमलयालकन्नडपञ्चाङ्गानि।' },

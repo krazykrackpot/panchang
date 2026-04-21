@@ -5,6 +5,8 @@ import type { MuhurtaTypeInfo } from '@/lib/constants/muhurta-types';
 import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { Link } from '@/lib/i18n/navigation';
 import GoldDivider from '@/components/ui/GoldDivider';
+import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import {
   Calendar, ArrowRight, BookOpen, HelpCircle, Sparkles, CheckCircle, ExternalLink,
 } from 'lucide-react';
@@ -81,7 +83,31 @@ export default async function MuhurtaTypePage({ params }: { params: Promise<{ lo
     .map(slug => getMuhurtaType(slug))
     .filter((r): r is MuhurtaTypeInfo => !!r);
 
+  // JSON-LD structured data
+  const toolLD = generateToolLD(
+    `${info.name.en} — Auspicious Dates 2026`,
+    info.description.en,
+    `https://dekhopanchang.com/${locale}/muhurta/${type}`,
+  );
+  const breadcrumbLD = generateBreadcrumbLD(`/${locale}/muhurta/${type}`, locale);
+  const faqLD = info.faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: info.faqs.map(faq => ({
+      '@type': 'Question',
+      name: (faq.question as Record<string, string>)[locale] || faq.question.en,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: (faq.answer as Record<string, string>)[locale] || faq.answer.en,
+      },
+    })),
+  } : null;
+
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(toolLD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
+      {faqLD && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />}
     <main className="min-h-screen bg-bg-primary" style={bodyFont}>
       {/* ─── Hero Section ────────────────────────────────────── */}
       <section className="relative overflow-hidden">
@@ -277,5 +303,6 @@ export default async function MuhurtaTypePage({ params }: { params: Promise<{ lo
       {/* Bottom spacing */}
       <div className="h-16" />
     </main>
+    </>
   );
 }

@@ -48,13 +48,11 @@ function buildWesternRedirects() {
 }
 
 const nextConfig: NextConfig = {
-  turbopack: {
-    root: __dirname,
-  },
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
   images: {
+    formats: ['image/avif', 'image/webp'],
     domains: [],
   },
   trailingSlash: false,

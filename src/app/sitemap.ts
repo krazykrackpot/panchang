@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { getAllCitySlugs } from '@/lib/constants/cities';
 import { getAllPairSlugs, getWesternPairSlugs, WESTERN_SLUGS } from '@/lib/constants/rashi-slugs';
+import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -368,6 +369,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     addEntries(entries, `/matching/${westernPair}`, {
       changeFrequency: 'monthly',
       priority: 0.3,
+    });
+  }
+
+  // Muhurta type landing pages (/muhurta/{type})
+  for (const slug of getMuhurtaTypeSlugs()) {
+    addEntries(entries, `/muhurta/${slug}`, {
+      changeFrequency: 'monthly',
+      priority: 0.7,
     });
   }
 

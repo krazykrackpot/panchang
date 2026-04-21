@@ -804,8 +804,16 @@ export function buildDeepVargaAnalysis(
   kundali: KundaliData,
   chartId: string,
 ): DeepVargaResult | null {
-  // Get the divisional chart
-  const dxxChart = kundali.divisionalCharts?.[chartId];
+  // Get the divisional chart — D9 may live on navamshaChart rather than divisionalCharts
+  let dxxChart = kundali.divisionalCharts?.[chartId] ?? null;
+  if (!dxxChart && chartId === 'D9' && kundali.navamshaChart) {
+    // navamshaChart is ChartData; synthesise a DivisionalChart-compatible object
+    dxxChart = {
+      ...kundali.navamshaChart,
+      division: 'D9',
+      label: { en: 'D9 Navamsha', hi: 'D9 नवांश' },
+    } as DivisionalChart;
+  }
   if (!dxxChart) return null;
 
   const domains = DOMAIN_MAP[chartId] || ['spiritual'];

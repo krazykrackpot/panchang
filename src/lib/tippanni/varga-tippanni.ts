@@ -8,6 +8,9 @@ import type { Locale , LocaleText} from '@/types/panchang';
 import type { KundaliData, DivisionalChart, PlanetPosition, DashaEntry } from '@/types/kundali';
 import { RASHIS } from '@/lib/constants/rashis';
 import { generateDashaPrognosis } from './dasha-prognosis';
+import type { DeepVargaResult } from './varga-tippanni-types-v2';
+import { buildDeepVargaAnalysis } from './varga-deep-analysis';
+import { buildVargaNarrative } from './varga-narrative';
 
 type Bi = LocaleText;
 
@@ -19,6 +22,7 @@ export interface VargaChartTippanni {
   overallCommentary: Bi;     // Detailed interpretation of this chart
   prognosis: Bi;             // Next 1-2 year forecast
   keyFindings: Bi[];         // Bullet points
+  deepAnalysis?: DeepVargaResult; // 15-factor cross-correlation, promise/delivery, narrative
 }
 
 export interface VargaSynthesis {
@@ -341,14 +345,38 @@ function analyzeChart(
   const dcMeaning = (VARGA_DOMAINS[chartKey]?.domain) || { en: chartKey, hi: chartKey };
   const dcLabel = VARGA_DOMAINS[chartKey]?.domain || { en: chartKey, hi: chartKey };
 
+  // ─── Deep Analysis (15-factor cross-correlation + narrative) ────
+  // buildDeepVargaAnalysis returns null when the divisional chart data
+  // is unavailable (e.g. D1, BC, or charts not computed).
+  let deepAnalysis: DeepVargaResult | undefined;
+  try {
+    const deepResult = buildDeepVargaAnalysis(kundali, chartKey);
+    if (deepResult) {
+      // Generate 7-paragraph narrative from the structured analysis
+      const narrative = buildVargaNarrative(deepResult, locale);
+      deepResult.narrative = { en: narrative.en, hi: narrative.hi };
+      deepAnalysis = deepResult;
+    }
+  } catch (err) {
+    // Deep analysis is an enhancement — log but don't break the base tippanni
+    console.error(`[varga-tippanni] deep analysis failed for ${chartKey}:`, err);
+  }
+
+  // When deep analysis is available, replace the thin overallCommentary
+  // with the rich narrative so users see the enhanced text immediately.
+  const finalCommentary: Bi = deepAnalysis?.narrative?.en
+    ? { en: deepAnalysis.narrative.en, hi: deepAnalysis.narrative.hi || overallCommentary.hi }
+    : overallCommentary;
+
   return {
     chart: chartKey,
     label: dcLabel,
     meaning: dcMeaning,
     strength,
-    overallCommentary,
+    overallCommentary: finalCommentary,
     prognosis,
     keyFindings: findings,
+    deepAnalysis,
   };
 }
 

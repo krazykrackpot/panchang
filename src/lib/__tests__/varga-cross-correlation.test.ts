@@ -112,16 +112,25 @@ function makeMinimalKundali(
 // ---------------------------------------------------------------------------
 
 describe('buildDeepVargaAnalysis', () => {
-  it('returns null for missing chart', () => {
+  it('returns null for missing chart (non-D9)', () => {
     const kundali = makeMinimalKundali(1, []);
-    const result = buildDeepVargaAnalysis(kundali, 'D9');
+    const result = buildDeepVargaAnalysis(kundali, 'D10');
     expect(result).toBeNull();
   });
 
-  it('returns null when divisionalCharts is undefined', () => {
+  it('returns null when divisionalCharts is undefined (non-D9)', () => {
     const kundali = makeMinimalKundali(1, [], undefined);
-    const result = buildDeepVargaAnalysis(kundali, 'D9');
+    const result = buildDeepVargaAnalysis(kundali, 'D10');
     expect(result).toBeNull();
+  });
+
+  it('returns a result for D9 via navamshaChart fallback', () => {
+    // D9 is not in divisionalCharts, but navamshaChart exists
+    const kundali = makeMinimalKundali(1, []);
+    const result = buildDeepVargaAnalysis(kundali, 'D9');
+    expect(result).not.toBeNull();
+    expect(result?.chartId).toBe('D9');
+    expect(result?.domain).toBe('marriage');
   });
 
   it('returns a valid DeepVargaResult for an existing chart', () => {

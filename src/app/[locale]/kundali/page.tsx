@@ -3516,8 +3516,115 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                     {tl(selectedInsight.prognosis, locale)}
                   </div>
                 </div>
+
+                {/* Deep Analysis — dignity shifts, yogas, promise/delivery */}
+                {selectedInsight.deepAnalysis && (() => {
+                  const da = selectedInsight.deepAnalysis!;
+                  const cc = da.crossCorrelation;
+                  const pd = da.promiseDelivery;
+                  return (
+                    <div className="space-y-4 pt-2">
+                      {/* Promise / Delivery Gauge */}
+                      {pd && (
+                        <div className="rounded-xl bg-white/[0.02] border border-gold-primary/10 p-4">
+                          <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
+                            {isHi ? 'वादा बनाम वितरण' : 'Promise vs Delivery'}
+                          </div>
+                          <div className="grid grid-cols-2 gap-4 mb-3">
+                            <div>
+                              <div className="text-text-secondary text-[10px] mb-1">{isHi ? 'D1 वादा' : 'D1 Promise'}</div>
+                              <div className="flex items-center gap-2">
+                                <div className="flex-1 h-2 rounded-full bg-white/5 overflow-hidden">
+                                  <div className="h-full rounded-full bg-gradient-to-r from-blue-600 to-blue-400" style={{ width: `${pd.d1Promise}%` }} />
+                                </div>
+                                <span className="text-blue-400 text-xs font-bold w-8">{pd.d1Promise}</span>
+                              </div>
+                            </div>
+                            <div>
+                              <div className="text-text-secondary text-[10px] mb-1">{isHi ? selectedInsight.chart + ' वितरण' : selectedInsight.chart + ' Delivery'}</div>
+                              <div className="flex items-center gap-2">
+                                <div className="flex-1 h-2 rounded-full bg-white/5 overflow-hidden">
+                                  <div className="h-full rounded-full bg-gradient-to-r from-emerald-600 to-emerald-400" style={{ width: `${pd.dxxDelivery}%` }} />
+                                </div>
+                                <span className="text-emerald-400 text-xs font-bold w-8">{pd.dxxDelivery}</span>
+                              </div>
+                            </div>
+                          </div>
+                          <p className="text-text-secondary/80 text-xs leading-relaxed">
+                            {tl(pd.verdict, locale)}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Dignity Shifts — D1 vs Dxx */}
+                      {cc.dignityShifts.length > 0 && (
+                        <div className="rounded-xl bg-white/[0.02] border border-gold-primary/10 p-4">
+                          <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
+                            {isHi ? 'D1 → ' + selectedInsight.chart + ' बल परिवर्तन' : 'D1 → ' + selectedInsight.chart + ' Dignity Shifts'}
+                          </div>
+                          <div className="space-y-2">
+                            {cc.dignityShifts.slice(0, 5).map((ds, idx) => {
+                              const pName = isHi ? (PLANET_NAMES_HI[ds.planetId] ?? '') : (PLANET_NAMES_EN[ds.planetId] ?? '');
+                              const arrow = ds.dxxDignity === 'exalted' || ds.dxxDignity === 'own' ? '↑' : ds.dxxDignity === 'debilitated' ? '↓' : '→';
+                              const color = ds.dxxDignity === 'exalted' || ds.dxxDignity === 'own' ? 'text-emerald-400' : ds.dxxDignity === 'debilitated' ? 'text-red-400' : 'text-text-secondary';
+                              return (
+                                <div key={idx} className="flex items-center gap-2 text-xs">
+                                  <span className="text-gold-light font-medium w-14 shrink-0">{pName}</span>
+                                  <span className="text-text-secondary/50">{ds.d1Dignity}</span>
+                                  <span className={`font-bold ${color}`}>{arrow}</span>
+                                  <span className={color}>{ds.dxxDignity}</span>
+                                  {ds.isVargottama && <span className="px-1.5 py-0.5 rounded-full bg-gold-primary/20 text-gold-light text-[9px] font-bold">Vgm</span>}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Yogas in this chart */}
+                      {cc.yogasInChart.length > 0 && (
+                        <div className="rounded-xl bg-white/[0.02] border border-gold-primary/10 p-4">
+                          <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
+                            {isHi ? 'इस चार्ट में योग' : 'Yogas in ' + selectedInsight.chart}
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {cc.yogasInChart.map((y, idx) => (
+                              <div key={idx} className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 px-3 py-2">
+                                <div className="text-emerald-400 text-xs font-semibold">{y.name}</div>
+                                <div className="text-text-secondary/70 text-[10px] mt-0.5">{tl(y.significance, locale)}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Dispositor Chain */}
+                      {cc.dispositorChain.chain.length > 1 && (
+                        <div className="rounded-xl bg-white/[0.02] border border-gold-primary/10 p-4">
+                          <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
+                            {isHi ? 'अधिपति शृंखला' : 'Dispositor Chain'}
+                          </div>
+                          <div className="flex items-center gap-1.5 text-xs text-text-secondary flex-wrap">
+                            {cc.dispositorChain.chain.map((node, idx) => (
+                              <span key={idx} className="flex items-center gap-1.5">
+                                <span className={`font-medium ${node.planetId === cc.dispositorChain.finalDispositor ? 'text-gold-light' : 'text-text-primary'}`}>
+                                  {isHi ? (PLANET_NAMES_HI[node.planetId] ?? '') : (PLANET_NAMES_EN[node.planetId] ?? '')}
+                                </span>
+                                {idx < cc.dispositorChain.chain.length - 1 && <span className="text-gold-primary/40">→</span>}
+                              </span>
+                            ))}
+                          </div>
+                          <p className="text-text-secondary/60 text-[10px] mt-1.5">{tl(cc.dispositorChain.narrative, locale)}</p>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })()}
               </div>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
             {/* Deep-dive sections — only shown for the selected chart */}
 
@@ -3937,9 +4044,6 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
         );
       })()}
 
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

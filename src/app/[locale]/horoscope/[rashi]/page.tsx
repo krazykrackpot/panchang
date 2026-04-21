@@ -164,6 +164,23 @@ export default function RashiHoroscopePage() {
             <span style={bodyFont}>{L.backToAll}</span>
           </Link>
 
+          {/* Navigation tabs: Daily | Weekly | Monthly */}
+          <div className="flex items-center gap-1 mb-8 bg-white/5 rounded-xl p-1 w-fit">
+            <div className="px-4 py-2 rounded-lg text-sm font-medium bg-gold-primary/15 text-gold-light border border-gold-primary/20" style={bodyFont}>
+              {isHi ? 'दैनिक' : 'Daily'}
+            </div>
+            <Link
+              href={`/horoscope/${rashiSlug}/weekly` as '/horoscope'}
+              className="px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all"
+              style={bodyFont}
+            >
+              {isHi ? 'साप्ताहिक' : 'Weekly'}
+            </Link>
+            <span className="px-4 py-2 rounded-lg text-sm font-medium text-text-secondary/40 cursor-not-allowed" style={bodyFont}>
+              {isHi ? 'मासिक' : 'Monthly'}
+            </span>
+          </div>
+
           {/* Hero header */}
           <div className="bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] border border-gold-primary/20 rounded-3xl p-8 md:p-10 mb-8">
             <div className="flex flex-col sm:flex-row items-center gap-6">

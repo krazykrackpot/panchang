@@ -282,7 +282,8 @@ Response format:
   // -----------------------------------------------------------------------
   const sections = [
     '=== BIRTH DATA ===',
-    `Name: ${kundali.birthData.name}`,
+    // Name excluded intentionally — reading is chart-based, not name-based.
+    // Including name would cause cache misses for the same birth data with different names.
     `Date: ${kundali.birthData.date}`,
     `Time: ${kundali.birthData.time}`,
     `Place: ${kundali.birthData.place}`,

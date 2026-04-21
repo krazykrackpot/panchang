@@ -611,7 +611,7 @@ export default function DomainDeepDive({
         <button
           type="button"
           disabled={aiLoading}
-          onClick={handleConsultPandit}
+          onClick={aiReading ? (onRegenerateAIReading ?? handleConsultPandit) : handleConsultPandit}
           className="w-full bg-gradient-to-r from-gold-primary/20 to-gold-dark/20 border border-gold-primary/30 rounded-xl p-4 text-center hover:from-gold-primary/30 hover:to-gold-dark/30 transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
         >
           <p className="text-gold-light font-bold text-base">

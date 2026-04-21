@@ -44,17 +44,17 @@ function getToday(): string {
   return new Date().toISOString().slice(0, 10);
 }
 
-function getDailyUsage(userKey: string): number {
-  const usage = dailyUsageMap.get(userKey);
+function getDailyUsage(userId: string): number {
+  const usage = dailyUsageMap.get(userId);
   if (!usage || usage.date !== getToday()) return 0;
   return usage.count;
 }
 
-function incrementDailyUsage(userKey: string) {
+function incrementDailyUsage(userId: string) {
   const today = getToday();
-  const usage = dailyUsageMap.get(userKey);
+  const usage = dailyUsageMap.get(userId);
   if (!usage || usage.date !== today) {
-    dailyUsageMap.set(userKey, { count: 1, date: today });
+    dailyUsageMap.set(userId, { count: 1, date: today });
   } else {
     usage.count++;
   }
@@ -90,7 +90,8 @@ async function extractUserId(
             const { data } = await supabase.auth.getUser(accessToken);
             userId = data.user?.id ?? null;
           }
-        } catch {
+        } catch (cookieErr) {
+          console.error('[ai-reading] Cookie auth parse failed:', cookieErr);
           /* invalid cookie — fall through to anon */
         }
       }
@@ -130,9 +131,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Auth + rate limiting
+    // Auth — require sign-in for AI readings (prevents anonymous abuse)
     const { userId, tier } = await extractUserId(request);
-    const userKey = userId ?? 'anon';
+    if (!userId) {
+      return NextResponse.json(
+        { error: 'Sign in to use AI readings.' },
+        { status: 401 },
+      );
+    }
 
     // ─── Step 1: Check Supabase cache ─────────────────────────────────────
 
@@ -165,7 +171,7 @@ export async function POST(request: NextRequest) {
     // ─── Step 2: Rate limit check (only for LLM calls, not cache hits) ───
 
     const dailyLimit = DAILY_LIMITS[tier] ?? 2;
-    const used = getDailyUsage(userKey);
+    const used = getDailyUsage(userId);
 
     if (dailyLimit !== -1 && used >= dailyLimit) {
       return NextResponse.json(
@@ -189,7 +195,7 @@ export async function POST(request: NextRequest) {
 
     const response = await claude.messages.create({
       model: DEFAULT_MODEL,
-      max_tokens: 5000,
+      max_tokens: 8000,
       system: systemPrompt,
       messages: [{ role: 'user', content: userPayload }],
     });
@@ -213,7 +219,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    incrementDailyUsage(userKey);
+    incrementDailyUsage(userId);
 
     // ─── Step 5: Store in Supabase cache ──────────────────────────────────
 
@@ -223,20 +229,7 @@ export async function POST(request: NextRequest) {
     };
 
     if (supabase && userId) {
-      // Delete existing reading for this fingerprint+version if regenerating
-      if (regenerate) {
-        const { error: delErr } = await supabase
-          .from('ai_readings')
-          .delete()
-          .eq('user_id', userId)
-          .eq('birth_fingerprint', fingerprint)
-          .eq('prompt_version', promptVersion);
-
-        if (delErr) {
-          console.error('[ai-reading] Failed to delete old reading for regenerate:', delErr.message);
-        }
-      }
-
+      // Upsert handles both insert and update (on conflict) — no need to delete first
       const { error: insertErr } = await supabase.from('ai_readings').upsert(
         {
           user_id: userId,

@@ -421,7 +421,8 @@ describe('buildComprehensivePrompt', () => {
     const k = makeKundali();
     const reading = makePersonalReading();
     const { userPayload } = buildComprehensivePrompt(k, reading);
-    expect(userPayload).toContain('Test Native');
+    // Name is intentionally excluded from the prompt (chart-based, not name-based)
+    expect(userPayload).not.toContain('Test Native');
     expect(userPayload).toContain('1990-06-15');
     expect(userPayload).toContain('14:30');
     expect(userPayload).toContain('Delhi, India');

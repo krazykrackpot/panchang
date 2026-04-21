@@ -963,10 +963,12 @@ export default function KundaliPage() {
               aiLoading={aiReadingHook.loading}
               aiError={aiReadingHook.error}
               onRequestAIReading={() => {
-                aiReadingHook.fetchReadings(kundali, personalReading);
+                const age = Math.floor((Date.now() - new Date(kundali.birthData.date).getTime()) / (365.25 * 24 * 60 * 60 * 1000));
+                aiReadingHook.fetchReadings(kundali, personalReading, age);
               }}
               onRegenerateAIReading={() => {
-                aiReadingHook.regenerate(kundali, personalReading);
+                const age = Math.floor((Date.now() - new Date(kundali.birthData.date).getTime()) / (365.25 * 24 * 60 * 60 * 1000));
+                aiReadingHook.regenerate(kundali, personalReading, age);
               }}
             />
           )}

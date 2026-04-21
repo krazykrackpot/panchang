@@ -121,6 +121,7 @@ export default function Navbar() {
       label: t('calendars'),
       children: [
         { href: '/calendar', label: t('festivals') },
+        { href: '/horoscope', label: msg('horoscope', locale) },
         { href: '/transits', label: t('transits') },
         { href: '/retrograde', label: t('retrograde') },
         { href: '/eclipses', label: t('eclipses') },
@@ -128,6 +129,9 @@ export default function Navbar() {
         { href: '/regional', label: t('regional') },
         { href: '/dates/ekadashi', label: locale === 'sa' ? 'एकादशीतिथयः' : msg('ekadashiDates', locale) },
         { href: '/dates/purnima', label: locale === 'sa' ? 'पूर्णिमातिथयः' : msg('purnimasDates', locale) },
+        { href: '/dates/amavasya', label: msg('amavasyaDates', locale) },
+        { href: '/dates/pradosham', label: msg('pradoshamDates', locale) },
+        { href: '/dates/chaturthi', label: msg('chaturthiDates', locale) },
       ],
     },
     {

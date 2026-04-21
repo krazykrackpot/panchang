@@ -202,8 +202,6 @@ const routes = [
   // Legal
   '/privacy',
   '/terms',
-  // Dashboard (public pages)
-  '/dashboard',
 ];
 
 // Puja Vidhi slugs (from PUJA_VIDHIS)

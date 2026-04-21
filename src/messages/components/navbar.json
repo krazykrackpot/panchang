@@ -130,5 +130,53 @@
     "mr": "My Dashboard",
     "gu": "My Dashboard",
     "mai": "My Dashboard"
+  },
+  "horoscope": {
+    "en": "Daily Horoscope",
+    "hi": "दैनिक राशिफल",
+    "sa": "दैनिकराशिफलम्",
+    "ta": "Daily Horoscope",
+    "te": "Daily Horoscope",
+    "bn": "Daily Horoscope",
+    "kn": "Daily Horoscope",
+    "mr": "Daily Horoscope",
+    "gu": "Daily Horoscope",
+    "mai": "Daily Horoscope"
+  },
+  "amavasyaDates": {
+    "en": "Amavasya Dates",
+    "hi": "अमावस्या तिथियाँ",
+    "sa": "अमावस्यातिथयः",
+    "ta": "Amavasya Dates",
+    "te": "Amavasya Dates",
+    "bn": "Amavasya Dates",
+    "kn": "Amavasya Dates",
+    "mr": "Amavasya Dates",
+    "gu": "Amavasya Dates",
+    "mai": "Amavasya Dates"
+  },
+  "pradoshamDates": {
+    "en": "Pradosham Dates",
+    "hi": "प्रदोष तिथियाँ",
+    "sa": "प्रदोषतिथयः",
+    "ta": "Pradosham Dates",
+    "te": "Pradosham Dates",
+    "bn": "Pradosham Dates",
+    "kn": "Pradosham Dates",
+    "mr": "Pradosham Dates",
+    "gu": "Pradosham Dates",
+    "mai": "Pradosham Dates"
+  },
+  "chaturthiDates": {
+    "en": "Chaturthi Dates",
+    "hi": "चतुर्थी तिथियाँ",
+    "sa": "चतुर्थीतिथयः",
+    "ta": "Chaturthi Dates",
+    "te": "Chaturthi Dates",
+    "bn": "Chaturthi Dates",
+    "kn": "Chaturthi Dates",
+    "mr": "Chaturthi Dates",
+    "gu": "Chaturthi Dates",
+    "mai": "Chaturthi Dates"
   }
 }

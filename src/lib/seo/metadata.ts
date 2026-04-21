@@ -355,6 +355,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Check today\'s Choghadiya timings — Amrit, Shubh, Labh, Char, Rog, Kaal, Udveg periods. Find the best time for travel, business, and auspicious activities.', hi: 'आज का चौघड़िया समय — अमृत, शुभ, लाभ, चर, रोग, काल, उद्वेग। यात्रा, व्यापार और शुभ कार्यों के लिए सर्वोत्तम समय।', sa: 'अद्यतनचौघड़ियासमयः — अमृत, शुभ, लाभ, चर, रोग, काल, उद्वेग। यात्रायै शुभकार्याय च उत्तमसमयः।' },
     keywords: ['choghadiya today', 'choghadiya timings', 'auspicious time today', 'shubh muhurat'],
   },
+  '/hora': {
+    title: { en: 'Hora — Planetary Hours Calculator', hi: 'होरा — ग्रह घंटे गणक', sa: 'होरा — ग्रहघण्टागणकम्' },
+    description: { en: 'Calculate planetary hours (Hora) for any day and location. Know which planet rules each hour for muhurta selection and daily planning.', hi: 'किसी भी दिन और स्थान के लिए ग्रह होरा गणना करें। मुहूर्त चयन और दैनिक योजना के लिए प्रत्येक घंटे का ग्रह स्वामी जानें।', sa: 'कस्यापि दिनस्य स्थानस्य च कृते ग्रहहोरां गणयतु। मुहूर्तचयनाय दैनिकयोजनायै च प्रत्येकघण्टायाः ग्रहस्वामिनं जानीयात्।' },
+    keywords: ['hora', 'planetary hours', 'hora calculator', 'graha hora', 'planetary hour ruler', 'best time for activity'],
+  },
   '/kaal-nirnaya': {
     title: { en: 'Kaal Nirnaya — Hindu Time Reckoning', hi: 'काल निर्णय — हिन्दू कालगणना', sa: 'कालनिर्णयः — हिन्दूकालगणना' },
     description: { en: 'Hindu time reckoning system — Kali Ahargana, Vikram Samvat, Shaka Samvat, Julian Day, and astronomical time calculations.', hi: 'कलि अहर्गण, विक्रम संवत्, शक संवत्, जूलियन दिन सहित हिन्दू कालगणना।', sa: 'कल्यहर्गणं विक्रमसंवत् शकसंवत् जूलियनदिनं सहितं हिन्दूकालगणना।' },
@@ -955,7 +960,7 @@ export function getPageMetadata(route: string, locale: string): Metadata {
       siteName: 'Dekho Panchang',
       locale: OG_LOCALE_MAP[locale] || 'en_US',
       type: 'website',
-      images: [{ url: `${BASE_URL}/opengraph-image`, width: 1200, height: 630 }],
+      images: [{ url: `${BASE_URL}/${locale}/opengraph-image`, width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',

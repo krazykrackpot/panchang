@@ -111,15 +111,15 @@ export default function DomainCard({ reading, locale, onClick }: DomainCardProps
         }
       }}
       aria-label={`${domainName}: ${ratingLabel} — click to view details`}
-      className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 h-full cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-gold-primary/30 overflow-hidden group focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
+      className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 pl-7 pr-5 py-5 h-full cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-gold-primary/30 overflow-hidden group focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
     >
-      {/* Left edge rating bar (decorative — rating communicated via aria-label) */}
+      {/* Left edge rating bar — natal/overall indicator */}
       <div
-        className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl flex items-center justify-center"
+        className="absolute left-0 top-0 bottom-0 w-2 flex items-center justify-center"
         style={{ backgroundColor: ratingColor }}
         aria-hidden="true"
       >
-        <span className="text-[6px] font-bold text-white/80 leading-none">
+        <span className="text-[7px] font-black text-white/90 leading-none [writing-mode:vertical-rl] rotate-180 tracking-widest">
           {RATING_LETTER[reading.overallRating.rating]}
         </span>
       </div>

@@ -1,0 +1,130 @@
+/**
+ * /api/muhurat/scan — Advanced muhurta scanner
+ *
+ * Uses the multi-factor scoring engine (panchang + transit + timing + personal)
+ * to find and score auspicious windows within a month.
+ * Returns day-level summaries for a calendar grid view.
+ */
+
+import { NextRequest, NextResponse } from 'next/server';
+import { scanDateRange } from '@/lib/muhurta/time-window-scanner';
+import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
+import type { ExtendedActivityId } from '@/types/muhurta-ai';
+
+// All supported activities
+const ACTIVITIES: ExtendedActivityId[] = [
+  'marriage', 'griha_pravesh', 'mundan', 'vehicle', 'travel',
+  'property', 'business', 'education', 'namakarana', 'upanayana',
+  'engagement', 'gold_purchase', 'medical_treatment', 'court_case',
+  'exam', 'spiritual_practice', 'agriculture', 'financial_signing',
+  'surgery', 'relocation',
+];
+
+interface DaySummary {
+  date: string;
+  bestScore: number;
+  quality: 'excellent' | 'good' | 'fair' | 'poor';
+  windowCount: number;
+  bestWindow?: {
+    startTime: string;
+    endTime: string;
+    score: number;
+    shuddhi: number;
+  };
+  taraBala?: { tara: number; name: string; auspicious: boolean };
+  chandraBala?: boolean;
+}
+
+function qualityFromScore(score: number): DaySummary['quality'] {
+  if (score >= 70) return 'excellent';
+  if (score >= 55) return 'good';
+  if (score >= 40) return 'fair';
+  return 'poor';
+}
+
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const year = parseInt(searchParams.get('year') || String(new Date().getFullYear()));
+  const month = parseInt(searchParams.get('month') || String(new Date().getMonth() + 1));
+  const activity = (searchParams.get('activity') || 'marriage') as ExtendedActivityId;
+  const lat = parseFloat(searchParams.get('lat') || '28.6139');
+  const lng = parseFloat(searchParams.get('lng') || '77.209');
+  const tz = parseFloat(searchParams.get('tz') || '5.5');
+  const birthNak = parseInt(searchParams.get('birthNak') || '0') || undefined;
+  const birthRashi = parseInt(searchParams.get('birthRashi') || '0') || undefined;
+
+  // Validate activity
+  if (!ACTIVITIES.includes(activity)) {
+    return NextResponse.json({ error: `Unknown activity: ${activity}` }, { status: 400 });
+  }
+
+  try {
+  // Scan the full month
+  const daysInMonth = new Date(year, month, 0).getDate();
+  const startDate = `${year}-${String(month).padStart(2, '0')}-01`;
+  const endDate = `${year}-${String(month).padStart(2, '0')}-${String(daysInMonth).padStart(2, '0')}`;
+
+  // scanDateRange returns top windows — but we need ALL days for the calendar grid
+  // We'll scan with a lower threshold to get more coverage
+  const windows = scanDateRange({
+    startDate,
+    endDate,
+    activity,
+    lat,
+    lng,
+    tz,
+    birthNakshatra: birthNak,
+    birthRashi: birthRashi,
+  });
+
+  // Group windows by date → day summaries
+  const dayMap = new Map<string, DaySummary>();
+
+  for (const w of windows) {
+    const existing = dayMap.get(w.date);
+    if (!existing || w.totalScore > existing.bestScore) {
+      dayMap.set(w.date, {
+        date: w.date,
+        bestScore: w.totalScore,
+        quality: qualityFromScore(w.totalScore),
+        windowCount: (existing?.windowCount ?? 0) + 1,
+        bestWindow: {
+          startTime: w.startTime,
+          endTime: w.endTime,
+          score: w.totalScore,
+          shuddhi: typeof w.panchangaShuddhi === 'number' ? w.panchangaShuddhi : 0,
+        },
+        taraBala: w.taraBala,
+        chandraBala: w.chandraBala,
+      });
+    } else {
+      existing.windowCount++;
+    }
+  }
+
+  const days = Array.from(dayMap.values()).sort((a, b) => a.date.localeCompare(b.date));
+
+  // Get activity labels
+  const activityData = getExtendedActivity(activity);
+  const activityLabels = ACTIVITIES.map(id => {
+    const data = getExtendedActivity(id);
+    return { id, label: data?.label ?? { en: id } };
+  });
+
+  return NextResponse.json({
+    year,
+    month,
+    activity,
+    days,
+    windows: windows.slice(0, 10), // Top 10 detailed windows
+    activities: activityLabels,
+    activityLabel: activityData?.label,
+  }, {
+    headers: { 'Cache-Control': 'public, s-maxage=1800' },
+  });
+  } catch (err: unknown) {
+    console.error('[muhurat/scan] Scan failed:', err);
+    const message = err instanceof Error ? err.message : 'Muhurta scan failed';
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
+}

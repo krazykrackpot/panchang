@@ -136,6 +136,7 @@ const routes = [
   '/upagraha',
   '/devotional',
   '/varshaphal',
+  '/tithi-pravesha',
   '/annual-forecast',
   '/kundali/compare',
   '/kundali/rectify',

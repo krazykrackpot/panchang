@@ -1131,6 +1131,45 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       },
     },
   ],
+
+  '/tithi-pravesha': [
+    {
+      question: {
+        en: 'What is Tithi Pravesha?',
+        hi: 'तिथि प्रवेश क्या है?',
+        sa: 'तिथिप्रवेशः किम् अस्ति?',
+      },
+      answer: {
+        en: 'Tithi Pravesha is the Vedic birthday — the exact moment each year when the same lunar tithi (day) as your birth recurs. It is used in Vedic astrology for annual predictions, similar to the Solar Return in Western astrology but based on the lunar calendar.',
+        hi: 'तिथि प्रवेश वैदिक जन्मदिन है — हर वर्ष वह सटीक क्षण जब आपकी जन्म तिथि पुनः आती है। इसका उपयोग वैदिक ज्योतिष में वार्षिक भविष्यवाणी के लिए किया जाता है।',
+        sa: 'तिथिप्रवेशः वैदिकजन्मदिवसः — प्रतिवर्षं यत् सटीकक्षणं यदा जन्मतिथिः पुनरागच्छति। वैदिकज्योतिषे वार्षिकभविष्यवाण्यर्थम् उपयुज्यते।',
+      },
+    },
+    {
+      question: {
+        en: 'How is Tithi Pravesha different from a regular birthday?',
+        hi: 'तिथि प्रवेश सामान्य जन्मदिन से कैसे अलग है?',
+        sa: 'तिथिप्रवेशः सामान्यजन्मदिवसात् कथं भिन्नः?',
+      },
+      answer: {
+        en: 'Your regular birthday follows the solar (Gregorian) calendar and falls on the same date each year. Tithi Pravesha follows the lunar calendar — the exact tithi of your birth — so the date shifts each year, typically by 10-12 days.',
+        hi: 'आपका नियमित जन्मदिन सौर (ग्रेगोरियन) कैलेंडर का अनुसरण करता है। तिथि प्रवेश चंद्र कैलेंडर पर आधारित है — आपकी जन्म तिथि — इसलिए तारीख हर वर्ष 10-12 दिन बदलती है।',
+        sa: 'भवतः नियमितजन्मदिवसः सौरपञ्चाङ्गम् अनुसरति। तिथिप्रवेशः चान्द्रपञ्चाङ्गम् अनुसरति — भवतः जन्मतिथिम् — अतः दिनाङ्कः प्रतिवर्षं १०-१२ दिनानि परिवर्तते।',
+      },
+    },
+    {
+      question: {
+        en: 'What does the Tithi Lord indicate?',
+        hi: 'तिथि स्वामी क्या दर्शाता है?',
+        sa: 'तिथिस्वामी किं दर्शयति?',
+      },
+      answer: {
+        en: 'Each tithi is ruled by a planet (the Tithi Lord). The lord of your birth tithi influences the theme of your Vedic year — for example, a Jupiter-ruled tithi suggests expansion and wisdom, while a Saturn-ruled one indicates discipline and karmic lessons.',
+        hi: 'प्रत्येक तिथि का एक ग्रह स्वामी होता है। आपकी जन्म तिथि का स्वामी आपके वैदिक वर्ष की थीम को प्रभावित करता है।',
+        sa: 'प्रत्येकतिथेः एकः ग्रहस्वामी भवति। भवतः जन्मतिथेः स्वामी भवतः वैदिकवर्षस्य विषयं प्रभावयति।',
+      },
+    },
+  ],
 };
 
 /**

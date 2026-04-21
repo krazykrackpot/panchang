@@ -105,6 +105,7 @@ export default function Navbar() {
         { href: '/kundali/compare', label: msg('chartComparison', locale) },
         { href: '/annual-forecast', label: msg('annualForecast', locale) },
         { href: '/varshaphal', label: t('varshaphal') },
+        { href: '/tithi-pravesha', label: msg('tithiPravesha', locale) },
         { href: '/kp-system', label: t('kpSystem') },
         { href: '/sade-sati', label: t('sadeSati') },
       ],

@@ -33,6 +33,7 @@ import { computePersonalizedDay } from '@/lib/personalization/personal-panchang'
 import { getRashiNumber } from '@/lib/ephem/astronomical';
 import type { PersonalizedDay, UserSnapshot } from '@/lib/personalization/types';
 import AdUnit from '@/components/ads/AdUnit';
+import NakshatraActivityGuide from '@/components/panchang/NakshatraActivityGuide';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl as _tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
@@ -851,6 +852,17 @@ export default function PanchangClient() {
               </motion.div>
             );
           })()}
+
+          {/* ═══ NAKSHATRA ACTIVITY GUIDE ═══ */}
+          {panchang.nakshatra?.id && (
+            <div className="my-10">
+              <NakshatraActivityGuide
+                nakshatraId={panchang.nakshatra.id}
+                moonSignId={panchang.moonSign?.rashi || 1}
+                locale={locale}
+              />
+            </div>
+          )}
 
           <GoldDivider />
 

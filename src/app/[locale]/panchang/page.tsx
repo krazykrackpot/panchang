@@ -18,6 +18,7 @@ import { TITHIS } from '@/lib/constants/tithis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { YOGAS } from '@/lib/constants/yogas';
 import { KARANAS } from '@/lib/constants/karanas';
+import { getNakshatraActivity } from '@/lib/constants/nakshatra-activities';
 import type { PanchangData } from '@/types/panchang';
 import PanchangClient from './PanchangClient';
 
@@ -159,6 +160,34 @@ function PanchangSEOBlock({
           {locale === 'hi' ? 'राहु काल' : 'Rahu Kaal'}
         </Link>
       </nav>
+
+      {/* Nakshatra Activity Guide — condensed for SEO */}
+      {panchang.nakshatra?.id && (() => {
+        const nkActivity = getNakshatraActivity(panchang.nakshatra.id);
+        if (!nkActivity) return null;
+        return (
+          <div className="mt-4 mb-4">
+            <p className="text-text-secondary text-xs mb-2">
+              {locale === 'hi' ? 'आज का मार्गदर्शन' : "Today's Guidance"}
+            </p>
+            <p className="text-gold-light text-sm">
+              {locale === 'hi' ? nkActivity.theme.hi : nkActivity.theme.en}
+            </p>
+            {nkActivity.goodFor.length > 0 && (
+              <div className="flex gap-2 mt-1 flex-wrap">
+                {nkActivity.goodFor.map((item, i) => (
+                  <span
+                    key={i}
+                    className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium text-emerald-400 bg-emerald-500/10"
+                  >
+                    {locale === 'hi' ? item.hi : item.en}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })()}
 
       <div className="border-t border-gold-primary/8" />
     </section>

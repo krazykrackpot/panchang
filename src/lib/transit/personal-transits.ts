@@ -20,7 +20,10 @@ export interface UpcomingTransition {
   planetName: LocaleText;
   fromSign: LocaleText;
   toSign: LocaleText;
+  fromSignId: number;       // 1-based rashi id
+  toSignId: number;         // 1-based rashi id
   approximateDate: string;  // "Mon YYYY" format
+  daysUntil: number;        // approximate days from now
 }
 
 // Slow planets for transit analysis
@@ -111,7 +114,8 @@ export function computeUpcomingTransitions(): UpcomingTransition[] {
       if (m === 0) { lastSign = sign; continue; }
 
       if (sign !== lastSign) {
-        const d = new Date(now.getTime() + m * 30.44 * 24 * 3600000);
+        const daysUntil = Math.round(m * 30.44);
+        const d = new Date(now.getTime() + daysUntil * 24 * 3600000);
         const fromRashi = RASHIS[lastSign - 1];
         const toRashi = RASHIS[sign - 1];
         results.push({
@@ -119,7 +123,10 @@ export function computeUpcomingTransitions(): UpcomingTransition[] {
           planetName: sp.name,
           fromSign: fromRashi?.name || { en: '?', hi: '?', sa: '?' },
           toSign: toRashi?.name || { en: '?', hi: '?', sa: '?' },
+          fromSignId: lastSign,
+          toSignId: sign,
           approximateDate: d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
+          daysUntil,
         });
         lastSign = sign;
       } else {

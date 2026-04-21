@@ -29,6 +29,7 @@ import DashaTransitionAlert from '@/components/dashboard/DashaTransitionAlert';
 import EclipseWatchCard from '@/components/dashboard/EclipseWatchCard';
 import RemedySpotlightCard from '@/components/dashboard/RemedySpotlightCard';
 import CalendarSyncCard from '@/components/dashboard/CalendarSyncCard';
+import TransitCountdown from '@/components/dashboard/TransitCountdown';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { checkBadges } from '@/lib/learn/badges';
 import LevelBadge from '@/components/learn/LevelBadge';
@@ -770,6 +771,7 @@ export default function DashboardPage() {
   const [userMoonNakshatra, setUserMoonNakshatra] = useState<number>(0);
   const [savedCharts, setSavedCharts] = useState<SavedChart[]>([]);
   const [planetPositions, setPlanetPositions] = useState<unknown[]>([]);
+  const [savTable, setSavTable] = useState<number[]>([]);
 
   const loadDashboard = useCallback(async () => {
     const supabase = getSupabase();
@@ -804,7 +806,7 @@ export default function DashboardPage() {
       // Fetch full snapshot (with JSONB fields) for dasha + chart
       const { data: fullSnap } = await supabase
         .from('kundali_snapshots')
-        .select('planet_positions, dasha_timeline, sade_sati, chart_data')
+        .select('planet_positions, dasha_timeline, sade_sati, chart_data, full_kundali')
         .eq('user_id', user.id)
         .single();
 
@@ -858,6 +860,15 @@ export default function DashboardPage() {
           });
           setKeyDates(kd);
         } catch { /* key dates are non-critical */ }
+      }
+
+      // Extract SAV table from full kundali snapshot for transit countdown
+      if (fullSnap?.full_kundali) {
+        const fk = fullSnap.full_kundali as Record<string, unknown>;
+        const ashtakavarga = fk.ashtakavarga as { savTable?: number[] } | undefined;
+        if (ashtakavarga?.savTable && Array.isArray(ashtakavarga.savTable)) {
+          setSavTable(ashtakavarga.savTable);
+        }
       }
 
       // Set dasha timeline for transition alerts
@@ -1106,6 +1117,15 @@ export default function DashboardPage() {
           <div className="p-4 rounded-2xl bg-gradient-to-br from-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/10">
             <KeyDatesTimeline dates={keyDates} locale={locale} compact />
           </div>
+        )}
+
+        {/* Transit Countdown — upcoming major sign changes personalized to birth chart */}
+        {hasBirthData && ascendantSign > 0 && savTable.length === 12 && (
+          <TransitCountdown
+            ascendantSign={ascendantSign}
+            savTable={savTable}
+            locale={locale}
+          />
         )}
 
         {/* Your Week Ahead — 7-day Moon transit forecast */}

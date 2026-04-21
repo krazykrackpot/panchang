@@ -88,6 +88,19 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     keywords: ['varshaphal', 'annual horoscope', 'tajika', 'solar return', 'yearly prediction'],
   },
+  '/tithi-pravesha': {
+    title: {
+      en: 'Tithi Pravesha — Vedic Birthday Calculator',
+      hi: 'तिथि प्रवेश — वैदिक जन्मदिन',
+      sa: 'तिथिप्रवेशः — वैदिकजन्मदिवसगणकम्',
+    },
+    description: {
+      en: 'Find your Vedic birthday (Tithi Pravesha) — the exact date when your birth tithi recurs each year. Discover your year lord and annual theme based on classical Jyotish.',
+      hi: 'अपना वैदिक जन्मदिन (तिथि प्रवेश) खोजें — वह सटीक तिथि जब आपकी जन्म तिथि हर वर्ष पुनः आती है।',
+      sa: 'भवतः वैदिकजन्मदिवसं (तिथिप्रवेशम्) अन्विष्यतु — यत्र भवतः जन्मतिथिः प्रतिवर्षं पुनरागच्छति।',
+    },
+    keywords: ['tithi pravesha', 'vedic birthday', 'vedic birthday calculator', 'annual tithi', 'tithi lord', 'vedic astrology'],
+  },
   '/kp-system': {
     title: {
       en: 'KP System — Krishnamurti Paddhati Chart',

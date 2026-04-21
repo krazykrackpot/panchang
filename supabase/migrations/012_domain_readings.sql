@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS public.domain_readings (
   id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
   user_id uuid NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
   computed_at timestamptz NOT NULL DEFAULT now(),
+  reading_month date NOT NULL DEFAULT date_trunc('month', CURRENT_DATE)::date,
   health numeric(3,1) NOT NULL,
   wealth numeric(3,1) NOT NULL,
   career numeric(3,1) NOT NULL,
@@ -15,9 +16,11 @@ CREATE TABLE IF NOT EXISTS public.domain_readings (
   antar_dasha text,
   sade_sati_active boolean DEFAULT false,
   overall_activation numeric(3,1),
-  trigger_event text,
-  CONSTRAINT one_per_month UNIQUE (user_id, date_trunc('month', computed_at))
+  trigger_event text
 );
+
+-- One reading per user per month (simple column-based unique, no expression needed)
+CREATE UNIQUE INDEX idx_domain_readings_one_per_month ON public.domain_readings (user_id, reading_month);
 
 ALTER TABLE public.domain_readings ENABLE ROW LEVEL SECURITY;
 

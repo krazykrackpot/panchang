@@ -112,10 +112,12 @@ export async function GET(req: NextRequest) {
       const sadeSatiObj = kundali.sadeSati as { isActive?: boolean } | undefined;
       const sadeSatiActive = sadeSatiObj?.isActive ?? false;
 
-      // 8. Store the reading
+      // 8. Store the reading (reading_month for unique constraint)
+      const readingMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`;
       await supabase.from('domain_readings').insert({
         user_id: snap.user_id,
         computed_at: now.toISOString(),
+        reading_month: readingMonth,
         health: scores.health ?? 5,
         wealth: scores.wealth ?? 5,
         career: scores.career ?? 5,

@@ -5,12 +5,12 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  return getPageMetadata('/muhurat', locale);
+  return getPageMetadata('/annual-forecast', locale);
 }
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const faqLD = generateFAQLD('/muhurat', locale);
+  const faqLD = generateFAQLD('/annual-forecast', locale);
   return (
     <>
       {faqLD && (

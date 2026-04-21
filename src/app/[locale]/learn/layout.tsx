@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import LearnLayoutShell from '@/components/learn/LearnLayoutShell';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { generateFAQLD } from '@/lib/seo/faq-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
@@ -45,10 +46,15 @@ export default async function LearnLayout({ children, params }: { children: Reac
     isAccessibleForFree: true,
   };
 
+  const faqLD = generateFAQLD('/learn', locale);
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(courseJsonLd) }} />
+      {faqLD && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
+      )}
       <LearnLayoutShell>{children}</LearnLayoutShell>
     </>
   );

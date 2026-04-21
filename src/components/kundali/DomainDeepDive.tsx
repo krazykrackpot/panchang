@@ -10,6 +10,8 @@ import type {
   DomainRemedy,
   Rating,
 } from '@/lib/kundali/domain-synthesis/types';
+import { narrateWithEmpathy, narrateStrength, generateActionPlan } from '@/lib/kundali/domain-synthesis/narrator-v2';
+import type { ActionPlan } from '@/lib/kundali/domain-synthesis/narrator-v2';
 import type { LocaleText } from '@/types/panchang';
 
 // ---------------------------------------------------------------------------
@@ -208,6 +210,14 @@ export default function DomainDeepDive({ reading, locale, nativeAge, onBack }: D
   const np = reading.natalPromise;
   const ca = reading.currentActivation;
 
+  // Narrator-v2: enhanced narrative based on domain strength
+  const enhancedNarrative = reading.overallRating.rating === 'uttama'
+    ? narrateStrength(reading, locale)
+    : narrateWithEmpathy(reading, locale);
+
+  // Narrator-v2: structured action plan for all domains
+  const actionPlan: ActionPlan = generateActionPlan(reading, locale);
+
   // Focus management: move focus to back button when deep dive opens
   const backRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -324,9 +334,9 @@ export default function DomainDeepDive({ reading, locale, nativeAge, onBack }: D
       <section aria-labelledby="section-natal-promise">
       <SectionHeading id="section-natal-promise">Birth Chart Foundation</SectionHeading>
       <div className="space-y-4">
-        {/* Narrative */}
+        {/* Enhanced Narrative (narrator-v2) */}
         <div className="space-y-3">
-          {tl(np.summary, locale)
+          {tl(enhancedNarrative, locale)
             .split('\n')
             .filter(Boolean)
             .map((para, i) => (
@@ -519,7 +529,87 @@ export default function DomainDeepDive({ reading, locale, nativeAge, onBack }: D
       )}
 
       {/* ----------------------------------------------------------------- */}
-      {/* Section E: AI Pandit Response                                     */}
+      {/* Section E: Your Action Plan (narrator-v2)                        */}
+      {/* ----------------------------------------------------------------- */}
+      <section aria-labelledby="section-action-plan">
+      <SectionHeading id="section-action-plan">
+        {locale === 'hi' ? 'आपकी कार्य योजना' : 'Your Action Plan'}
+      </SectionHeading>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Lifestyle Tip */}
+        <div className="rounded-xl border border-gold-primary/15 bg-bg-secondary p-4 space-y-2">
+          <div className="flex items-center gap-2 mb-1">
+            <div className="w-6 h-6 flex items-center justify-center rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-bold">
+              <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V5h2v4z" /></svg>
+            </div>
+            <h3 className="text-gold-light text-sm font-semibold">
+              {locale === 'hi' ? 'जीवनशैली मार्गदर्शन' : 'Lifestyle Guidance'}
+            </h3>
+          </div>
+          <p className="text-text-primary text-sm leading-relaxed">{tl(actionPlan.lifestyle, locale)}</p>
+        </div>
+
+        {/* Best Days */}
+        {actionPlan.bestDays.length > 0 && (
+          <div className="rounded-xl border border-gold-primary/15 bg-bg-secondary p-4 space-y-2">
+            <div className="flex items-center gap-2 mb-1">
+              <div className="w-6 h-6 flex items-center justify-center rounded-full bg-gold-primary/15 text-gold-light text-xs font-bold">
+                <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5"><path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" /></svg>
+              </div>
+              <h3 className="text-gold-light text-sm font-semibold">
+                {locale === 'hi' ? 'शुभ दिन' : 'Best Days'}
+              </h3>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {actionPlan.bestDays.map((day, i) => (
+                <span key={i} className="px-3 py-1 rounded-full text-xs font-medium border border-gold-primary/30 text-gold-light bg-gold-primary/8">
+                  {new Date(day + 'T00:00:00').toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Avoid Guidance */}
+        <div className="rounded-xl border border-red-500/15 bg-red-500/5 p-4 space-y-2">
+          <div className="flex items-center gap-2 mb-1">
+            <div className="w-6 h-6 flex items-center justify-center rounded-full bg-red-500/15 text-red-400 text-xs font-bold">
+              <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5"><path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" /></svg>
+            </div>
+            <h3 className="text-red-400 text-sm font-semibold">
+              {locale === 'hi' ? 'सावधानी' : 'Avoid'}
+            </h3>
+          </div>
+          <p className="text-text-primary text-sm leading-relaxed">{tl(actionPlan.avoid, locale)}</p>
+        </div>
+
+        {/* Weekly Practice */}
+        <div className="rounded-xl border border-gold-primary/15 bg-bg-secondary p-4 space-y-2">
+          <div className="flex items-center gap-2 mb-1">
+            <div className="w-6 h-6 flex items-center justify-center rounded-full bg-purple-500/15 text-purple-400 text-xs font-bold">
+              <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5"><path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" /></svg>
+            </div>
+            <h3 className="text-gold-light text-sm font-semibold">
+              {locale === 'hi' ? 'साप्ताहिक अभ्यास' : 'Weekly Practice'}
+            </h3>
+          </div>
+          <p className="text-text-primary text-sm leading-relaxed">{tl(actionPlan.weeklyPractice, locale)}</p>
+        </div>
+      </div>
+
+      {/* Affirmation — full width */}
+      <div className="mt-4 rounded-xl border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 via-bg-secondary to-bg-secondary p-5 text-center">
+        <p className="text-text-secondary text-xs uppercase tracking-widest mb-2">
+          {locale === 'hi' ? 'आपका प्रतिज्ञान' : 'Your Affirmation'}
+        </p>
+        <p className="text-gold-light text-base font-medium italic leading-relaxed">
+          &ldquo;{tl(actionPlan.affirmation, locale)}&rdquo;
+        </p>
+      </div>
+      </section>
+
+      {/* ----------------------------------------------------------------- */}
+      {/* Section F: AI Pandit Response                                     */}
       {/* ----------------------------------------------------------------- */}
       {llmResponse && (
         <div className="mt-10">

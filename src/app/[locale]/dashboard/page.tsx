@@ -628,6 +628,117 @@ const QUALITY_LABEL: Record<PersonalizedDay['dayQuality'], LocaleText> = {
 };
 
 // ---------------------------------------------------------------------------
+// Daily Panchang Insight Card (lightweight — no PersonalReading needed)
+// ---------------------------------------------------------------------------
+
+/** Classify yoga quality from yoga number (1-27) */
+function classifyYogaQuality(yogaNum: number): 'very_auspicious' | 'auspicious' | 'neutral' | 'inauspicious' {
+  const veryAuspicious = [21, 25, 27]; // Siddhi, Shiva, Siddha
+  const auspicious = [2, 3, 4, 7];     // Priti, Ayushman, Shobhana, Sukarma
+  const inauspicious = [1, 6, 13, 15, 19]; // Vishkambha, Atiganda, Vyaghata, Vajra, Parigha
+  if (veryAuspicious.includes(yogaNum)) return 'very_auspicious';
+  if (auspicious.includes(yogaNum)) return 'auspicious';
+  if (inauspicious.includes(yogaNum)) return 'inauspicious';
+  return 'neutral';
+}
+
+/** Classify tithi quality */
+function classifyTithiQuality(tithiNum: number, paksha: string): 'good' | 'neutral' | 'challenging' {
+  // Rikta tithis (4, 9, 14) are generally challenging
+  if ([4, 9, 14].includes(tithiNum)) return 'challenging';
+  // Nanda (1,6,11), Bhadra (2,7,12), Jaya (3,8,13) in Shukla are good
+  if (paksha === 'shukla' && [1, 2, 3, 6, 7, 8, 11, 12, 13].includes(tithiNum)) return 'good';
+  // Purnima and auspicious tithis
+  if (tithiNum === 15 && paksha === 'shukla') return 'good';
+  return 'neutral';
+}
+
+/** Nakshatra quality label from id */
+function getNakshatraQualityTip(nakshatraId: number, loc: string): string {
+  // Swift nakshatras (1, 8, 13) — quick actions favored
+  const swift = [1, 8, 13];
+  // Fierce (2, 10, 11, 20, 25) — bold actions
+  const fierce = [2, 10, 11, 20, 25];
+  // Fixed (4, 12, 21, 26) — long-term plans
+  const fixed = [4, 12, 21, 26];
+  // Soft (5, 14, 17, 27) — relationships and creativity
+  const soft = [5, 14, 17, 27];
+
+  const isHi = loc === 'hi' || loc === 'sa' || loc === 'mr' || loc === 'mai';
+  if (swift.includes(nakshatraId)) return isHi ? 'त्वरित कार्य और निर्णयों के लिए अनुकूल' : 'Favourable for quick actions and decisions';
+  if (fierce.includes(nakshatraId)) return isHi ? 'साहसिक कार्यों और प्रतिस्पर्धा के लिए अनुकूल' : 'Favourable for bold actions and competition';
+  if (fixed.includes(nakshatraId)) return isHi ? 'दीर्घकालिक योजनाओं और स्थिरता के लिए अनुकूल' : 'Favourable for long-term plans and stability';
+  if (soft.includes(nakshatraId)) return isHi ? 'संबंधों और रचनात्मकता के लिए अनुकूल' : 'Favourable for relationships and creativity';
+  return isHi ? 'संतुलित ऊर्जा — सामान्य गतिविधियों के लिए उपयुक्त' : 'Balanced energy — suitable for general activities';
+}
+
+function DailyPanchangInsightCard({ panchang, locale }: { panchang: PanchangData; locale: string }) {
+  const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
+
+  const yogaNum = panchang.yoga?.number ?? 14;
+  const yogaQuality = classifyYogaQuality(yogaNum);
+
+  const tithiNum = panchang.tithi?.number ?? 1;
+  const tithiPaksha = panchang.tithi?.paksha ?? 'shukla';
+  const tithiQuality = classifyTithiQuality(tithiNum, tithiPaksha);
+
+  const nakshatraId = panchang.nakshatra?.id ?? 1;
+  const nakshatraTip = getNakshatraQualityTip(nakshatraId, locale);
+
+  // Overall day quality from yoga + tithi
+  let overallDay: 'excellent' | 'good' | 'mixed' | 'challenging';
+  if (yogaQuality === 'very_auspicious' && tithiQuality === 'good') overallDay = 'excellent';
+  else if (yogaQuality === 'inauspicious' || tithiQuality === 'challenging') overallDay = 'challenging';
+  else if (yogaQuality === 'auspicious' || tithiQuality === 'good') overallDay = 'good';
+  else overallDay = 'mixed';
+
+  const DAY_RATING_STYLES: Record<string, { bg: string; border: string; text: string; label: string; labelHi: string }> = {
+    excellent:   { bg: 'bg-emerald-500/15', border: 'border-emerald-500/40', text: 'text-emerald-400', label: 'Excellent Day', labelHi: 'उत्तम दिन' },
+    good:        { bg: 'bg-gold-primary/15', border: 'border-gold-primary/40', text: 'text-gold-light', label: 'Good Day', labelHi: 'शुभ दिन' },
+    mixed:       { bg: 'bg-amber-500/15', border: 'border-amber-500/40', text: 'text-amber-400', label: 'Mixed Day', labelHi: 'मिश्रित दिन' },
+    challenging: { bg: 'bg-red-500/15', border: 'border-red-500/40', text: 'text-red-400', label: 'Challenging Day', labelHi: 'चुनौतीपूर्ण दिन' },
+  };
+
+  const dayStyle = DAY_RATING_STYLES[overallDay];
+
+  // Rahu Kaal caution
+  const rahuKaal = panchang.rahuKaal;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.08 }}
+      className="mb-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#1a1040]/40 to-[#0a0e27] p-5"
+    >
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="text-gold-light text-sm font-bold uppercase tracking-widest">
+          {isHi ? 'आज का मार्गदर्शन' : "Today's Guidance"}
+        </h3>
+        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ${dayStyle.bg} ${dayStyle.border} ${dayStyle.text}`}>
+          {isHi ? dayStyle.labelHi : dayStyle.label}
+        </span>
+      </div>
+
+      {/* Nakshatra quality tip */}
+      <p className="text-text-primary text-sm leading-relaxed mb-3">{nakshatraTip}</p>
+
+      {/* Rahu Kaal caution */}
+      {rahuKaal && (
+        <div className="flex items-center gap-2 text-xs text-red-400/80 bg-red-500/5 border border-red-500/15 rounded-lg px-3 py-2">
+          <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
+          <span>
+            {isHi ? 'राहु काल' : 'Rahu Kaal'}: {rahuKaal.start} &ndash; {rahuKaal.end}
+            {' '}&mdash;{' '}
+            {isHi ? 'नए कार्य शुरू करने से बचें' : 'Avoid starting new ventures'}
+          </span>
+        </div>
+      )}
+    </motion.div>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
 export default function DashboardPage() {
@@ -959,6 +1070,9 @@ export default function DashboardPage() {
 
         {/* Push Notification Permission */}
         <PushPermission locale={locale} />
+
+        {/* Today's Guidance — lightweight panchang insight card */}
+        {panchangData && <DailyPanchangInsightCard panchang={panchangData} locale={locale} />}
 
         {/* Morning Briefing — today's cosmic weather at a glance */}
         {panchangData && (

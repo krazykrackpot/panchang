@@ -735,6 +735,195 @@ export const FESTIVAL_DETAILS: Record<string, FestivalDetail> = {
     },
     deity: { en: 'Lord Shiva (Tripurari), Lord Vishnu, Kartikeya', hi: 'भगवान शिव (त्रिपुरारि), भगवान विष्णु, कार्तिकेय', sa: 'शिवः (त्रिपुरारिः), विष्णुः, कार्तिकेयः', ta: 'சிவன் (திரிபுராரி), விஷ்ணு, கார்த்திகேயன்', te: 'శివుడు (త్రిపురారి), విష్ణువు, కార్తికేయుడు', bn: 'শিব (ত্রিপুরারি), বিষ্ণু, কার্তিকেয়', kn: 'ಶಿವ (ತ್ರಿಪುರಾರಿ), ವಿಷ್ಣು, ಕಾರ್ತಿಕೇಯ', gu: 'શિવ (ત્રિપુરારિ), વિષ્ણુ, કાર્તિકેય', mr: 'भगवान शिव (त्रिपुरारि), भगवान विष्णु, कार्तिकेय', mai: 'भगवान शिव (त्रिपुरारि), भगवान विष्णु, कार्तिकेय' },
   },
+
+  // ── Additional Festivals & Observances ──
+
+  'narasimha-jayanti': {
+    name: { en: 'Narasimha Jayanti', hi: 'नरसिंह जयन्ती', sa: 'नरसिंहजयन्ती', mr: 'नरसिंह जयन्ती', mai: 'नरसिंह जयन्ती' },
+    mythology: { en: 'Lord Vishnu appeared as Narasimha — half-man, half-lion — to slay the demon Hiranyakashipu, who had received a boon making him nearly invincible. Vishnu emerged from a pillar at twilight to protect his devotee Prahlada.', hi: 'भगवान विष्णु ने नरसिंह रूप — अर्ध-मानव, अर्ध-सिंह — धारण कर दैत्य हिरण्यकशिपु का वध किया, जिसने अजेय वरदान प्राप्त किया था। भक्त प्रह्लाद की रक्षा हेतु विष्णु सन्ध्या काल में स्तम्भ से प्रकट हुए।', sa: 'विष्णुः नरसिंहरूपेण हिरण्यकशिपुं जघान। भक्तप्रह्लादरक्षार्थं सन्ध्याकाले स्तम्भात् प्राकट्यत।' },
+    observance: { en: 'Observe a day-long fast. Perform evening puja at twilight (sandhya kaal) — the time Narasimha appeared. Recite the Narasimha Kavacham and offer prayers to Lord Narasimha for protection.', hi: 'दिनभर उपवास रखें। सन्ध्या काल में पूजा करें — जिस समय नरसिंह प्रकट हुए। नरसिंह कवचम् का पाठ करें और रक्षा हेतु प्रार्थना करें।' },
+    significance: { en: 'Celebrates Vishnu\'s fierce avatar who proved that divine protection reaches devotees everywhere. Symbolizes the triumph of faith over tyranny and the assurance that no boon can override dharma.', hi: 'विष्णु के उग्र अवतार का उत्सव जो सिद्ध करता है कि भक्तों की रक्षा सर्वत्र होती है। अधर्म पर धर्म की विजय का प्रतीक।' },
+    deity: { en: 'Lord Narasimha (Vishnu)', hi: 'भगवान नरसिंह (विष्णु)', sa: 'नरसिंहः' },
+    isFast: true,
+  },
+
+  'parashurama-jayanti': {
+    name: { en: 'Parashurama Jayanti', hi: 'परशुराम जयन्ती', sa: 'परशुरामजयन्ती', mr: 'परशुराम जयन्ती', mai: 'परशुराम जयन्ती' },
+    mythology: { en: 'Parashurama, the sixth avatar of Vishnu, was born to sage Jamadagni and Renuka. He is the warrior-sage who wielded an axe (parashu) given by Lord Shiva. He rid the earth of oppressive Kshatriya kings twenty-one times.', hi: 'परशुराम, विष्णु के छठे अवतार, ऋषि जमदग्नि और रेणुका के पुत्र थे। शिव द्वारा प्रदत्त परशु (कुल्हाड़ी) धारण करने वाले योद्धा-ऋषि ने इक्कीस बार पृथ्वी को अत्याचारी क्षत्रिय राजाओं से मुक्त किया।', sa: 'परशुरामः विष्णोः षष्ठः अवतारः। जमदग्नेः रेणुकायाः च पुत्रः। शिवप्रदत्तपरशुधारी।' },
+    observance: { en: 'Observe a fast and worship Lord Vishnu. Visit temples dedicated to Parashurama, especially along the Konkan coast. Offer prayers for courage and righteousness. Brahmins particularly venerate this day.', hi: 'उपवास रखें और भगवान विष्णु की पूजा करें। परशुराम मन्दिरों में दर्शन करें। साहस और धर्म की प्रार्थना करें।' },
+    significance: { en: 'Honors the immortal (Chiranjeevi) warrior-sage avatar of Vishnu who championed justice. He is believed to still live on Mahendragiri mountain and will serve as the martial guru of Kalki, Vishnu\'s final avatar.', hi: 'विष्णु के चिरंजीवी योद्धा-ऋषि अवतार का सम्मान जिन्होंने न्याय की रक्षा की। माना जाता है कि वे महेन्द्रगिरि पर्वत पर आज भी विद्यमान हैं।' },
+    deity: { en: 'Lord Parashurama (Vishnu)', hi: 'भगवान परशुराम (विष्णु)', sa: 'परशुरामः' },
+    isFast: true,
+  },
+
+  'jagannath-rath-yatra': {
+    name: { en: 'Jagannath Rath Yatra', hi: 'जगन्नाथ रथ यात्रा', sa: 'जगन्नाथरथयात्रा', mr: 'जगन्नाथ रथ यात्रा', mai: 'जगन्नाथ रथ यात्रा' },
+    mythology: { en: 'Lord Jagannath (Krishna), along with siblings Balabhadra and Subhadra, travels from the main temple to Gundicha temple in Puri. The yatra symbolizes Krishna\'s journey from Gokul to Mathura, giving all devotees — regardless of caste — a chance for darshan.', hi: 'भगवान जगन्नाथ (कृष्ण) भाई बलभद्र और बहन सुभद्रा के साथ पुरी के मुख्य मन्दिर से गुण्डिचा मन्दिर जाते हैं। यह कृष्ण की गोकुल से मथुरा यात्रा का प्रतीक है।', sa: 'जगन्नाथः बलभद्रः सुभद्रा च पुर्याः मुख्यमन्दिरात् गुण्डिचामन्दिरं गच्छन्ति।' },
+    observance: { en: 'Massive chariot processions through the streets of Puri. Devotees pull three enormous wooden chariots (rathas). The English word "juggernaut" derives from this festival. Similar yatras held in cities worldwide.', hi: 'पुरी की सड़कों पर विशाल रथ शोभायात्रा। भक्त तीन विशाल लकड़ी के रथ खींचते हैं। विश्वभर के शहरों में भी इसी प्रकार की यात्राएँ निकाली जाती हैं।' },
+    significance: { en: 'One of India\'s grandest festivals, symbolizing equality before God — Lord Jagannath leaves the sanctum so everyone can have darshan. Even pulling the chariot rope for a moment is considered highly meritorious.', hi: 'भारत के सबसे भव्य उत्सवों में से एक, ईश्वर के समक्ष समानता का प्रतीक — जगन्नाथ गर्भगृह से बाहर आते हैं ताकि सभी को दर्शन मिले।' },
+    deity: { en: 'Lord Jagannath (Krishna)', hi: 'भगवान जगन्नाथ (कृष्ण)', sa: 'जगन्नाथः' },
+  },
+
+  'onam': {
+    name: { en: 'Onam', hi: 'ओणम', sa: 'ओणम्', mr: 'ओणम', mai: 'ओणम' },
+    mythology: { en: 'King Mahabali, a generous Asura king, ruled Kerala so wisely that even the Devas grew jealous. Vishnu, as the dwarf Vamana, asked for three paces of land. Vamana grew cosmic-sized and covered the three worlds, pushing Mahabali to the netherworld but granting him an annual return.', hi: 'राजा महाबलि, एक उदार असुर राजा, ने केरल पर इतना अच्छा शासन किया कि देवता भी ईर्ष्यालु हो गए। विष्णु ने वामन रूप में तीन पग भूमि माँगी और ब्रह्माण्डीय आकार लेकर तीनों लोकों को नाप लिया।', sa: 'महाबलिः उदारः असुरराजा। विष्णुः वामनरूपेण त्रीणि पदानि अयाचत।' },
+    observance: { en: 'A ten-day harvest festival in Kerala. Elaborate floral rangoli (Pookalam) at doorsteps, grand Onam Sadya (feast on banana leaf with 26+ dishes), Vallam Kali (snake boat races), Pulikali (tiger dance), and traditional games.', hi: 'केरल में दस दिवसीय फसल उत्सव। द्वार पर पुष्प रंगोली (पूकलम), भव्य ओणम सद्या (केले के पत्ते पर 26+ व्यंजन), वल्लम काली (नौका दौड़), और पुलिकली (बाघ नृत्य)।' },
+    significance: { en: 'Celebrates the annual homecoming of King Mahabali. It is Kerala\'s most important festival, symbolizing prosperity, equality, and the golden age of Mahabali\'s rule when there was no poverty or discrimination.', hi: 'राजा महाबलि की वार्षिक वापसी का उत्सव। केरल का सबसे महत्वपूर्ण त्योहार, समृद्धि और समानता का प्रतीक।' },
+    deity: { en: 'Lord Vamana (Vishnu) / King Mahabali', hi: 'भगवान वामन (विष्णु) / राजा महाबलि', sa: 'वामनः / महाबलिः' },
+  },
+
+  'varalakshmi-vratam': {
+    name: { en: 'Varalakshmi Vratam', hi: 'वरलक्ष्मी व्रत', sa: 'वरलक्ष्मीव्रतम्', mr: 'वरलक्ष्मी व्रत', mai: 'वरलक्ष्मी व्रत' },
+    mythology: { en: 'Goddess Parvati asked Lord Shiva which vrat brings the greatest fortune for married women. Shiva revealed the Varalakshmi Vratam, saying that worshipping Lakshmi on this Friday is equivalent to worshipping Ashta Lakshmi — all eight forms of the Goddess.', hi: 'पार्वती ने शिव से पूछा कि सौभाग्यवती स्त्रियों के लिए सबसे शुभ व्रत कौन सा है। शिव ने वरलक्ष्मी व्रत बताया — इस शुक्रवार को लक्ष्मी पूजा अष्ट लक्ष्मी पूजा के समान है।', sa: 'पार्वती शिवम् अपृच्छत्। शिवः वरलक्ष्मीव्रतम् अवदत्।' },
+    observance: { en: 'Observed on the Friday before Purnima in Shravana month. Tie a sacred thread (dora) on the right wrist. Set up a Kalasha and worship Goddess Lakshmi with turmeric, kumkum, flowers, and sweets. Married women pray for family prosperity.', hi: 'श्रावण पूर्णिमा से पहले शुक्रवार को मनाया जाता है। दाहिने कलाई पर पवित्र धागा बाँधें। कलश स्थापित कर हल्दी, कुमकुम, फूल और मिठाइयों से लक्ष्मी पूजा करें।' },
+    significance: { en: 'One of the most important vrats for married women in South India. Worshipping Varalakshmi grants the combined blessings of all eight forms of Lakshmi — wealth, courage, knowledge, progeny, victory, valour, food, and bliss.', hi: 'दक्षिण भारत में विवाहित महिलाओं के लिए सबसे महत्वपूर्ण व्रतों में से एक। अष्ट लक्ष्मी के संयुक्त आशीर्वाद प्रदान करता है।' },
+    deity: { en: 'Goddess Lakshmi', hi: 'देवी लक्ष्मी', sa: 'लक्ष्मीदेवी' },
+    isFast: true,
+  },
+
+  'sharad-purnima': {
+    name: { en: 'Sharad Purnima', hi: 'शरद पूर्णिमा', sa: 'शरद्पूर्णिमा', mr: 'शरद पूर्णिमा', mai: 'शरद पूर्णिमा' },
+    mythology: { en: 'On this full moon night, Lord Krishna performed the Maha Raas Leela with the Gopis of Vrindavan. The Moon is believed to shower amrit (nectar) on this night, and its rays have healing properties. It is also known as Kojagiri Purnima.', hi: 'इस पूर्णिमा की रात्रि को भगवान कृष्ण ने वृन्दावन की गोपियों के साथ महारास लीला की। इस रात्रि चन्द्रमा अमृत की वर्षा करता है। इसे कोजागिरी पूर्णिमा भी कहते हैं।', sa: 'अस्मिन् पूर्णिमारात्रौ कृष्णः गोपीभिः सह महारासलीलाम् अकरोत्। चन्द्रमा अमृतवर्षणं करोति।' },
+    observance: { en: 'Stay awake through the night under the full moon. Place kheer (rice pudding) under moonlight — it absorbs the Moon\'s nectar and becomes medicinal. Worship Goddess Lakshmi. In Gujarat, people play garba through the night.', hi: 'पूर्णिमा की चाँदनी में रात भर जागें। खीर को चाँदनी में रखें — वह चन्द्रमा का अमृत अवशोषित करती है। लक्ष्मी पूजा करें। गुजरात में रात भर गरबा खेला जाता है।' },
+    significance: { en: 'The brightest and most complete full moon of the year. The Moon is at its closest to Earth and its rays are considered healing. Marks the end of the monsoon and the beginning of the cool, clear autumn season.', hi: 'वर्ष की सबसे उज्ज्वल और पूर्ण चन्द्र रात्रि। चन्द्रमा पृथ्वी के सबसे निकट होता है और उसकी किरणें औषधीय मानी जाती हैं।' },
+    deity: { en: 'Lord Krishna / Goddess Lakshmi', hi: 'भगवान कृष्ण / देवी लक्ष्मी', sa: 'कृष्णः / लक्ष्मीदेवी' },
+  },
+
+  'skanda-shashthi': {
+    name: { en: 'Skanda Shashthi', hi: 'स्कन्द षष्ठी', sa: 'स्कन्दषष्ठी', mr: 'स्कन्द षष्ठी', mai: 'स्कन्द षष्ठी' },
+    mythology: { en: 'Lord Murugan (Kartikeya/Skanda), the son of Shiva, defeated the demon Surapadman on this day after a six-day battle. Surapadman was split in two — one half became a peacock (Murugan\'s mount) and the other a rooster on his battle flag.', hi: 'शिवपुत्र भगवान मुरुगन (कार्तिकेय/स्कन्द) ने छह दिन के युद्ध के बाद इस दिन दैत्य सूरपद्मन का वध किया। सूरपद्मन के दो भाग हुए — एक मयूर (मुरुगन का वाहन) और दूसरा ध्वज पर मुर्गा बना।', sa: 'स्कन्दः शिवपुत्रः षड्दिनयुद्धानन्तरं सूरपद्मनं जघान।' },
+    observance: { en: 'A six-day festival (Shashthi begins on Pratipada and culminates on Shashthi). Devotees fast, recite Skanda Sashti Kavacham, and worship Murugan. Grand celebrations at Murugan temples, especially in Tamil Nadu.', hi: 'छह दिवसीय उत्सव। भक्त उपवास रखते हैं, स्कन्द षष्ठी कवचम् का पाठ करते हैं और मुरुगन की पूजा करते हैं। तमिलनाडु के मुरुगन मन्दिरों में भव्य उत्सव।' },
+    significance: { en: 'Celebrates the victory of good over evil — Murugan\'s defeat of the Asura army. Devotees pray for courage, protection from negativity, and the strength to overcome personal obstacles.', hi: 'अधर्म पर धर्म की विजय का उत्सव। भक्त साहस, नकारात्मकता से रक्षा और बाधाओं पर विजय के लिए प्रार्थना करते हैं।' },
+    deity: { en: 'Lord Murugan (Kartikeya)', hi: 'भगवान मुरुगन (कार्तिकेय)', sa: 'स्कन्दः' },
+    isFast: true,
+  },
+
+  'vinayaka-chaturthi': {
+    name: { en: 'Vinayaka Chaturthi', hi: 'विनायक चतुर्थी', sa: 'विनायकचतुर्थी', mr: 'विनायक चतुर्थी', mai: 'विनायक चतुर्थी' },
+    mythology: { en: 'Monthly Chaturthi dedicated to Lord Ganesha, the remover of obstacles. Ganesha is worshipped at the beginning of all auspicious undertakings. The Shukla Chaturthi is known as Vinayaka Chaturthi and the Krishna Chaturthi as Sankashti Chaturthi.', hi: 'विघ्नहर्ता भगवान गणेश को समर्पित मासिक चतुर्थी। सभी शुभ कार्यों के आरम्भ में गणेश पूजा की जाती है। शुक्ल चतुर्थी विनायक चतुर्थी और कृष्ण चतुर्थी संकष्टी चतुर्थी कहलाती है।', sa: 'विघ्ननाशकाय गणेशाय समर्पिता मासिकचतुर्थी।' },
+    observance: { en: 'Worship Lord Ganesha with modak, durva grass, and red flowers. Observe a fast until moonrise. Recite Ganapati Atharvashirsha or Ganesha Stotram. Avoid looking at the Moon on this day (especially on Bhadrapada Chaturthi).', hi: 'मोदक, दूर्वा और लाल फूलों से गणेश पूजा करें। चन्द्रोदय तक उपवास रखें। गणपति अथर्वशीर्ष या गणेश स्तोत्रम् का पाठ करें।' },
+    significance: { en: 'Ganesha is the first deity invoked in any Hindu ritual. Monthly Chaturthi worship ensures continuous removal of obstacles and blessings for wisdom, success, and new beginnings.', hi: 'गणेश किसी भी हिन्दू अनुष्ठान में सर्वप्रथम पूजित देवता हैं। मासिक चतुर्थी पूजा निरन्तर विघ्न निवारण और ज्ञान, सफलता के आशीर्वाद सुनिश्चित करती है।' },
+    deity: { en: 'Lord Ganesha', hi: 'भगवान गणेश', sa: 'गणेशः' },
+    isFast: true,
+  },
+
+  'bhishma-dwadashi': {
+    name: { en: 'Bhishma Dwadashi', hi: 'भीष्म द्वादशी', sa: 'भीष्मद्वादशी', mr: 'भीष्म द्वादशी', mai: 'भीष्म द्वादशी' },
+    mythology: { en: 'Bhishma Pitamah, the grand patriarch of the Mahabharata, lay on a bed of arrows after the Kurukshetra war. He waited until Uttarayana (Sun\'s northward journey) to voluntarily give up his life, demonstrating mastery over death itself.', hi: 'महाभारत के महान पितामह भीष्म कुरुक्षेत्र युद्ध के बाद शर-शय्या पर लेटे रहे। उन्होंने स्वेच्छा से प्राण त्यागने के लिए उत्तरायण की प्रतीक्षा की, मृत्यु पर स्वामित्व प्रदर्शित किया।', sa: 'भीष्मपितामहः कुरुक्षेत्रयुद्धानन्तरं शरशय्यायां शयितः। उत्तरायणं प्रतीक्ष्य स्वेच्छया प्राणान् अत्यजत्।' },
+    observance: { en: 'Offer tarpan (water oblations) to Bhishma. Devotees observe a fast and recite the Vishnu Sahasranama, which Bhishma himself taught to Yudhishthira from his bed of arrows.', hi: 'भीष्म को तर्पण (जल अर्पण) करें। भक्त उपवास रखते हैं और विष्णु सहस्रनाम का पाठ करते हैं, जो भीष्म ने शर-शय्या से युधिष्ठिर को सिखाया था।' },
+    significance: { en: 'Honours one of the noblest characters in Hindu scripture — a man who sacrificed personal happiness for his father\'s wish, maintained his vow of celibacy lifelong, and chose the moment of his own death.', hi: 'हिन्दू शास्त्रों के सबसे महान चरित्रों में से एक का सम्मान — जिन्होंने पिता की इच्छा के लिए व्यक्तिगत सुख त्यागा और आजीवन ब्रह्मचर्य व्रत निभाया।' },
+    deity: { en: 'Bhishma Pitamah / Lord Vishnu', hi: 'भीष्म पितामह / भगवान विष्णु', sa: 'भीष्मपितामहः / विष्णुः' },
+    isFast: true,
+  },
+
+  'devshayani-ekadashi': {
+    name: { en: 'Devshayani Ekadashi', hi: 'देवशयनी एकादशी', sa: 'देवशयनीएकादशी', mr: 'देवशयनी एकादशी', mai: 'देवशयनी एकादशी' },
+    mythology: { en: 'On this day, Lord Vishnu enters Yoga Nidra (cosmic sleep) on the serpent Shesha in the Kshir Sagar (ocean of milk). He sleeps for four months (Chaturmas) until Devutthana Ekadashi. During this period, all auspicious ceremonies are paused.', hi: 'इस दिन भगवान विष्णु क्षीरसागर में शेषनाग पर योगनिद्रा में जाते हैं। वे चार माह (चातुर्मास) तक देवउत्थानी एकादशी तक सोते हैं। इस अवधि में सभी शुभ कार्य रोक दिए जाते हैं।', sa: 'विष्णुः क्षीरसागरे शेषनागे योगनिद्रां प्रविशति। चतुर्मासपर्यन्तं शयनं करोति।' },
+    observance: { en: 'Observe an Ekadashi fast. Begin Chaturmas — four months of austerity, extra prayers, and religious study. No new marriages, thread ceremonies, or housewarming ceremonies are performed during Chaturmas.', hi: 'एकादशी व्रत रखें। चातुर्मास आरम्भ करें — चार माह तपस्या, अतिरिक्त प्रार्थना और धार्मिक अध्ययन। चातुर्मास में विवाह, यज्ञोपवीत आदि शुभ कार्य नहीं होते।' },
+    significance: { en: 'Marks the beginning of Chaturmas, the most spiritually intense period of the Hindu year. Sadhus settle in one place for these four months. It teaches that even God rests — devotees should intensify their own spiritual practice during this time.', hi: 'चातुर्मास का आरम्भ — हिन्दू वर्ष की सबसे गहन आध्यात्मिक अवधि। साधु इन चार माह एक स्थान पर रहते हैं।' },
+    deity: { en: 'Lord Vishnu', hi: 'भगवान विष्णु', sa: 'विष्णुः' },
+    isFast: true,
+    fastNote: { en: 'Ekadashi fast — no grains or beans. Break fast on Dwadashi morning.', hi: 'एकादशी व्रत — अन्न/दाल वर्जित। द्वादशी प्रातः पारण करें।', sa: 'एकादशीव्रतम्। द्वादश्यां पारणम्।' },
+  },
+
+  'devutthana-ekadashi': {
+    name: { en: 'Devutthana Ekadashi', hi: 'देवउत्थानी एकादशी', sa: 'देवोत्थानीएकादशी', mr: 'देवउत्थानी एकादशी', mai: 'देवउत्थानी एकादशी' },
+    mythology: { en: 'Lord Vishnu awakens from his four-month Yoga Nidra on this day. Also called Dev Prabodhini (God\'s awakening) Ekadashi. The gates of Vishnu\'s abode open again, and all auspicious activities resume after Chaturmas.', hi: 'भगवान विष्णु इस दिन चार माह की योगनिद्रा से जागते हैं। इसे देव प्रबोधिनी एकादशी भी कहते हैं। चातुर्मास के बाद विष्णुलोक के द्वार खुलते हैं और सभी शुभ कार्य पुनः आरम्भ होते हैं।', sa: 'विष्णुः चतुर्मासयोगनिद्रातः जागर्ति। देवप्रबोधिनीएकादशी इति अपि कथ्यते।' },
+    observance: { en: 'Observe Ekadashi fast. Perform Tulsi Vivah — the ceremonial marriage of the Tulsi plant to Lord Vishnu (Shaligram). Light lamps around the Tulsi plant. The wedding season officially begins after this day.', hi: 'एकादशी व्रत रखें। तुलसी विवाह करें — तुलसी और भगवान विष्णु (शालिग्राम) का विवाह संस्कार। तुलसी के चारों ओर दीप जलाएँ। इस दिन के बाद विवाह का मौसम आरम्भ होता है।' },
+    significance: { en: 'Marks the end of Chaturmas and the resumption of all auspicious activities. The marriage season, housewarming ceremonies, and other shubh karyas begin again. Tulsi Vivah makes this one of the most festive Ekadashis.', hi: 'चातुर्मास की समाप्ति और सभी शुभ कार्यों की पुनः शुरुआत। विवाह का मौसम, गृहप्रवेश आदि शुभ कार्य फिर आरम्भ होते हैं।' },
+    deity: { en: 'Lord Vishnu', hi: 'भगवान विष्णु', sa: 'विष्णुः' },
+    isFast: true,
+    fastNote: { en: 'Ekadashi fast — no grains or beans. Break fast on Dwadashi morning.', hi: 'एकादशी व्रत — अन्न/दाल वर्जित। द्वादशी प्रातः पारण करें।', sa: 'एकादशीव्रतम्। द्वादश्यां पारणम्।' },
+  },
+
+  'mokshada-ekadashi': {
+    name: { en: 'Mokshada Ekadashi', hi: 'मोक्षदा एकादशी', sa: 'मोक्षदैकादशी', mr: 'मोक्षदा एकादशी', mai: 'मोक्षदा एकादशी' },
+    mythology: { en: 'On this day, Lord Krishna spoke the Bhagavad Gita to Arjuna on the battlefield of Kurukshetra. It is also called Gita Jayanti. King Vaikhanasa observed this Ekadashi and liberated his father from a ghostly existence, hence the name Mokshada (granting liberation).', hi: 'इस दिन भगवान कृष्ण ने कुरुक्षेत्र के रणक्षेत्र में अर्जुन को भगवद्गीता सुनाई। इसे गीता जयन्ती भी कहते हैं। राजा वैखानस ने इस एकादशी का व्रत कर अपने पिता को प्रेतयोनि से मुक्त किया, इसलिए मोक्षदा नाम पड़ा।', sa: 'अस्मिन् दिने कृष्णः कुरुक्षेत्रे अर्जुनाय भगवद्गीताम् अवदत्। गीताजयन्ती इति अपि कथ्यते।' },
+    observance: { en: 'Observe Ekadashi fast. Read or recite the Bhagavad Gita in full. Special pujas and discourses at Krishna and Vishnu temples. Donate Gita copies. Meditate on the teachings of Karma Yoga and Moksha.', hi: 'एकादशी व्रत रखें। सम्पूर्ण भगवद्गीता का पाठ करें। कृष्ण और विष्णु मन्दिरों में विशेष पूजा और प्रवचन। गीता दान करें।' },
+    significance: { en: 'The only Ekadashi that grants Moksha (liberation) directly. Also the birthday of the Bhagavad Gita — humanity\'s most profound spiritual dialogue. Observing this Ekadashi is said to free the devotee and their ancestors from the cycle of rebirth.', hi: 'एकमात्र एकादशी जो सीधे मोक्ष प्रदान करती है। भगवद्गीता का जन्मदिवस — मानवता का सबसे गहन आध्यात्मिक संवाद।' },
+    deity: { en: 'Lord Krishna (Vishnu)', hi: 'भगवान कृष्ण (विष्णु)', sa: 'कृष्णः' },
+    isFast: true,
+    fastNote: { en: 'Ekadashi fast — no grains or beans. Break fast on Dwadashi morning. Reading full Gita on this day is especially meritorious.', hi: 'एकादशी व्रत — अन्न/दाल वर्जित। द्वादशी प्रातः पारण। इस दिन सम्पूर्ण गीता पाठ अत्यन्त पुण्यदायी है।', sa: 'एकादशीव्रतम्। द्वादश्यां पारणम्।' },
+  },
+
+  'magha-gupta-navratri': {
+    name: { en: 'Magha Gupta Navratri', hi: 'माघ गुप्त नवरात्रि', sa: 'माघगुप्तनवरात्रिः', mr: 'माघ गुप्त नवरात्रि', mai: 'माघ गुप्त नवरात्रि' },
+    mythology: { en: 'The Gupta (secret) Navratri in the month of Magha is dedicated to the worship of the ten Mahavidyas — the tantric forms of the Divine Mother. Unlike the popular Chaitra and Sharad Navratris, this is observed primarily by tantric practitioners.', hi: 'माघ माह की गुप्त (रहस्यमय) नवरात्रि दस महाविद्याओं — दिव्य माँ के तान्त्रिक रूपों — की पूजा को समर्पित है। चैत्र और शरद नवरात्रि के विपरीत, यह मुख्यतः तान्त्रिक साधकों द्वारा मनाई जाती है।', sa: 'माघमासस्य गुप्तनवरात्रिः दशमहाविद्यापूजार्थं समर्पिता।' },
+    observance: { en: 'Nine days of worship of the Mahavidyas (Kali, Tara, Shodashi, Bhuvaneshwari, Bhairavi, Chhinnamasta, Dhumavati, Bagalamukhi, Matangi, Kamala). Tantric rituals, mantra sadhana, and havan. Kept private ("gupta") by practitioners.', hi: 'नौ दिन महाविद्याओं की पूजा (काली, तारा, षोडशी, भुवनेश्वरी, भैरवी, छिन्नमस्ता, धूमावती, बगलामुखी, मातंगी, कमला)। तान्त्रिक अनुष्ठान, मन्त्र साधना और हवन।' },
+    significance: { en: 'The Gupta Navratris are considered even more powerful than the main Navratris for tantric sadhana. Magha Gupta Navratri falls in winter and is especially potent for mantra siddhi and spiritual awakening.', hi: 'तान्त्रिक साधना के लिए गुप्त नवरात्रि मुख्य नवरात्रि से भी अधिक शक्तिशाली मानी जाती है। मन्त्र सिद्धि और आध्यात्मिक जागृति के लिए विशेष प्रभावशाली।' },
+    deity: { en: 'Dasa Mahavidya (Ten Tantric Goddesses)', hi: 'दस महाविद्या', sa: 'दशमहाविद्याः' },
+    isFast: true,
+  },
+
+  'masik-durgashtami': {
+    name: { en: 'Masik Durgashtami', hi: 'मासिक दुर्गाष्टमी', sa: 'मासिकदुर्गाष्टमी', mr: 'मासिक दुर्गाष्टमी', mai: 'मासिक दुर्गाष्टमी' },
+    mythology: { en: 'Monthly observance on Krishna Ashtami dedicated to Goddess Durga. Durga slayed the demon Mahishasura after a nine-night battle, and the Ashtami (eighth day) is considered when her power reached its peak.', hi: 'कृष्ण अष्टमी पर देवी दुर्गा को समर्पित मासिक अनुष्ठान। दुर्गा ने नौ रात्रि के युद्ध के बाद महिषासुर का वध किया, और अष्टमी (आठवें दिन) उनकी शक्ति चरम पर मानी जाती है।', sa: 'कृष्णाष्टम्यां दुर्गादेव्यै समर्पितम् मासिकम् अनुष्ठानम्।' },
+    observance: { en: 'Fast and worship Goddess Durga. Recite Durga Chalisa, Durga Saptashati, or Devi Kavach. Offer red flowers and kumkum. Light a ghee lamp and meditate on the divine feminine energy.', hi: 'उपवास करें और देवी दुर्गा की पूजा करें। दुर्गा चालीसा, दुर्गा सप्तशती या देवी कवच का पाठ करें। लाल फूल और कुमकुम अर्पित करें।' },
+    significance: { en: 'Monthly renewal of devotion to the Divine Mother. Durga represents the protective, fierce aspect of Shakti. Regular Ashtami worship is believed to remove fear, grant courage, and protect from enemies.', hi: 'दिव्य माँ के प्रति भक्ति का मासिक नवीनीकरण। दुर्गा शक्ति के रक्षात्मक, उग्र रूप का प्रतिनिधित्व करती हैं। नियमित अष्टमी पूजा भय दूर कर साहस प्रदान करती है।' },
+    deity: { en: 'Goddess Durga', hi: 'देवी दुर्गा', sa: 'दुर्गादेवी' },
+    isFast: true,
+  },
+
+  'masik-janmashtami': {
+    name: { en: 'Masik Janmashtami', hi: 'मासिक जन्माष्टमी', sa: 'मासिकजन्माष्टमी', mr: 'मासिक जन्माष्टमी', mai: 'मासिक जन्माष्टमी' },
+    mythology: { en: 'Monthly observance on Krishna Ashtami celebrating Lord Krishna\'s birth. Krishna appeared at midnight in a prison cell in Mathura to Devaki and Vasudeva, freeing the world from the tyranny of King Kamsa.', hi: 'कृष्ण अष्टमी पर भगवान कृष्ण के जन्म का मासिक उत्सव। कृष्ण मथुरा में कारागार में देवकी और वसुदेव के समक्ष अर्धरात्रि में प्रकट हुए, संसार को कंस के अत्याचार से मुक्त किया।', sa: 'कृष्णाष्टम्यां कृष्णजन्मोत्सवस्य मासिकं पालनम्।' },
+    observance: { en: 'Observe a fast until midnight. Worship baby Krishna (Bal Gopal) with butter, milk sweets, and tulsi leaves. Recite Krishna mantras and sing bhajans. Break fast after midnight puja.', hi: 'अर्धरात्रि तक उपवास रखें। बाल गोपाल की मक्खन, दूध मिठाई और तुलसी पत्तों से पूजा करें। कृष्ण मन्त्रों का पाठ करें और भजन गाएँ।' },
+    significance: { en: 'Monthly devotion to Krishna keeps the devotee connected to his teachings of love, duty, and surrender. Krishna Ashtami is especially powerful for those seeking divine grace and joy in daily life.', hi: 'कृष्ण के प्रति मासिक भक्ति भक्त को उनके प्रेम, कर्तव्य और समर्पण के उपदेशों से जोड़े रखती है।' },
+    deity: { en: 'Lord Krishna', hi: 'भगवान कृष्ण', sa: 'कृष्णः' },
+    isFast: true,
+  },
+
+  'vat-savitri-vrat': {
+    name: { en: 'Vat Savitri Vrat', hi: 'वट सावित्री व्रत', sa: 'वटसावित्रीव्रतम्', mr: 'वट सावित्री व्रत', mai: 'वट सावित्री व्रत' },
+    mythology: { en: 'Princess Savitri followed Yama (the god of death) when he took her husband Satyavan\'s soul. Through her devotion and wit, she won back his life by extracting boons from Yama without him realizing. She is the ideal of wifely devotion.', hi: 'राजकुमारी सावित्री ने यमराज (मृत्यु के देवता) का पीछा किया जब वे उनके पति सत्यवान की आत्मा ले गए। अपनी भक्ति और बुद्धिमत्ता से उन्होंने यमराज से वरदान प्राप्त कर पति को जीवित किया।', sa: 'सावित्री यमम् अनुसृत्य पतिसत्यवानस्य प्राणान् पुनः प्राप्तवती।' },
+    observance: { en: 'Married women tie sacred threads around a Vat (banyan) tree and circumambulate it seven times. Observe a strict fast from sunrise. Offer prayers for the longevity and well-being of their husbands. Listen to the Savitri-Satyavan story.', hi: 'विवाहित महिलाएँ वट (बरगद) वृक्ष के चारों ओर पवित्र धागा बाँधकर सात परिक्रमा करती हैं। सूर्योदय से कठोर उपवास। पति की दीर्घायु और कुशलता की प्रार्थना। सावित्री-सत्यवान की कथा सुनें।' },
+    significance: { en: 'Celebrates the power of a devoted wife\'s love. The banyan tree symbolizes immortality (it never truly dies). Savitri\'s story teaches that true devotion and wisdom can conquer even death.', hi: 'समर्पित पत्नी के प्रेम की शक्ति का उत्सव। बरगद का वृक्ष अमरत्व का प्रतीक है। सावित्री की कथा सिखाती है कि सच्ची भक्ति और बुद्धि मृत्यु को भी जीत सकती है।' },
+    deity: { en: 'Savitri / Lord Yama / Brahma', hi: 'सावित्री / यमराज / ब्रह्मा', sa: 'सावित्री / यमः / ब्रह्मा' },
+    isFast: true,
+    fastNote: { en: 'Strict fast from sunrise to next sunrise. Married women only.', hi: 'सूर्योदय से अगले सूर्योदय तक कठोर उपवास। केवल विवाहित महिलाओं के लिए।', sa: 'सूर्योदयात् सूर्योदयपर्यन्तं कठोरं व्रतम्।' },
+  },
+
+  'pradosham-shukla': {
+    name: { en: 'Pradosham (Shukla)', hi: 'प्रदोष (शुक्ल)', sa: 'प्रदोषः (शुक्लः)', mr: 'प्रदोष (शुक्ल)', mai: 'प्रदोष (शुक्ल)' },
+    mythology: { en: 'Pradosham is the twilight period sacred to Lord Shiva. When the gods and demons churned the ocean, the deadly Halahala poison emerged during the Pradosha Kalam. Shiva consumed it to save creation, and worshipping him at this time is considered highly meritorious.', hi: 'प्रदोष काल शिव को समर्पित सन्ध्या काल है। समुद्र मन्थन में प्रदोष काल में हलाहल विष निकला। शिव ने सृष्टि की रक्षा हेतु इसे पी लिया, इस समय उनकी पूजा अत्यन्त पुण्यदायी मानी जाती है।', sa: 'प्रदोषकालः शिवाय समर्पितः। समुद्रमन्थने प्रदोषकाले हालाहलविषम् उदभवत्।' },
+    observance: { en: 'Fast until sunset. Worship Lord Shiva during Pradosha Kalam (1.5 hours before and after sunset). Offer Bilva leaves, milk, and water to Shiva Lingam. Chant Om Namah Shivaya 108 times.', hi: 'सूर्यास्त तक उपवास। प्रदोष काल (सूर्यास्त से 1.5 घण्टे पहले और बाद) में शिव पूजा। शिवलिंग पर बिल्वपत्र, दूध और जल चढ़ाएँ। 108 बार ओम नमः शिवाय का जाप।' },
+    significance: { en: 'Shukla Paksha Pradosham falls on the 13th day of the waxing fortnight. The growing Moon combined with the Pradosha time creates a powerful window for Shiva worship, boon-granting, and removal of sins.', hi: 'शुक्ल पक्ष प्रदोष बढ़ते चन्द्रमा की त्रयोदशी को पड़ता है। बढ़ता चन्द्रमा और प्रदोष काल मिलकर शिव पूजा, वरदान और पाप निवारण का शक्तिशाली समय बनाते हैं।' },
+    deity: { en: 'Lord Shiva', hi: 'भगवान शिव', sa: 'शिवः' },
+    isFast: true,
+  },
+
+  'pradosham-krishna': {
+    name: { en: 'Pradosham (Krishna)', hi: 'प्रदोष (कृष्ण)', sa: 'प्रदोषः (कृष्णः)', mr: 'प्रदोष (कृष्ण)', mai: 'प्रदोष (कृष्ण)' },
+    mythology: { en: 'Krishna Paksha Pradosham carries the same sacred significance as Shukla Pradosham — the twilight hour when Shiva\'s grace is most accessible. The waning Moon adds an element of dissolution and letting go, making it ideal for releasing negativity.', hi: 'कृष्ण पक्ष प्रदोष का वही पवित्र महत्व है जो शुक्ल प्रदोष का — सन्ध्या काल जब शिव की कृपा सर्वाधिक सुलभ होती है। ढलता चन्द्रमा नकारात्मकता त्यागने के लिए आदर्श बनाता है।', sa: 'कृष्णपक्षप्रदोषस्य शुक्लप्रदोषसमानं पावित्र्यम्।' },
+    observance: { en: 'Fast until sunset. Worship Lord Shiva during Pradosha Kalam. Offer Bilva leaves, milk, and water to Shiva Lingam. Krishna Paksha Pradosham is especially recommended for removing obstacles and past karmic debts.', hi: 'सूर्यास्त तक उपवास। प्रदोष काल में शिव पूजा। शिवलिंग पर बिल्वपत्र, दूध और जल चढ़ाएँ। कृष्ण पक्ष प्रदोष विशेषतः बाधाओं और पूर्व कर्मों के निवारण के लिए अनुशंसित है।' },
+    significance: { en: 'Falls on the 13th day of the waning fortnight. The energy of dissolution combined with Shiva\'s grace makes this an especially powerful time for letting go of attachments, fears, and accumulated negative karma.', hi: 'ढलते पक्ष की त्रयोदशी को पड़ता है। विलय की ऊर्जा और शिव की कृपा मिलकर आसक्ति, भय और संचित नकारात्मक कर्मों को त्यागने का शक्तिशाली समय बनाते हैं।' },
+    deity: { en: 'Lord Shiva', hi: 'भगवान शिव', sa: 'शिवः' },
+    isFast: true,
+  },
+
+  'amavasya': {
+    name: { en: 'Amavasya', hi: 'अमावस्या', sa: 'अमावास्या', mr: 'अमावस्या', mai: 'अमावस्या' },
+    mythology: { en: 'Amavasya (New Moon) is the day when the Moon is invisible — symbolizing the dark night of the soul before renewal. In Hindu tradition, it is sacred to the Pitrs (ancestors). The term comes from "ama" (together) and "vasya" (to dwell) — Sun and Moon dwell together.', hi: 'अमावस्या (नवचन्द्र) वह दिन है जब चन्द्रमा अदृश्य होता है — नवीनीकरण से पहले आत्मा की अन्धकारमय रात्रि का प्रतीक। हिन्दू परम्परा में यह पितरों को समर्पित है।', sa: 'अमावास्या चन्द्रमसः अदृश्यतायाः दिनम्। पितृभ्यः समर्पिता।' },
+    observance: { en: 'Offer tarpan (water oblations) and pind daan to departed ancestors. Take a holy bath at a sacred river. Light sesame oil lamps. Avoid starting new ventures. Some observe a full-day fast. Donate to the needy.', hi: 'दिवंगत पूर्वजों को तर्पण और पिण्ड दान करें। पवित्र नदी में स्नान करें। तिल के तेल का दीपक जलाएँ। नए कार्य आरम्भ न करें। कुछ लोग पूर्ण उपवास रखते हैं।' },
+    significance: { en: 'A day for introspection, ancestor worship, and spiritual cleansing. The absence of moonlight represents the void from which new creation emerges. Amavasya is considered the most potent day for pitru karya (ancestral rites).', hi: 'आत्मनिरीक्षण, पितृ पूजा और आध्यात्मिक शुद्धि का दिन। चन्द्रमा की अनुपस्थिति उस शून्य का प्रतीक है जिससे नई सृष्टि उत्पन्न होती है। पितृ कार्य के लिए सबसे शक्तिशाली दिन।' },
+  },
+
+  'purnima': {
+    name: { en: 'Purnima', hi: 'पूर्णिमा', sa: 'पूर्णिमा', mr: 'पूर्णिमा', mai: 'पूर्णिमा' },
+    mythology: { en: 'Purnima (Full Moon) represents completeness and the fullness of divine energy. Lord Vishnu is called Purna (complete), and the full Moon reflects his completeness. Many key events in Hindu history — Buddha\'s birth and enlightenment, Guru Purnima, Holi — occur on Purnima.', hi: 'पूर्णिमा (पूर्ण चन्द्र) पूर्णता और दिव्य ऊर्जा की परिपूर्णता का प्रतीक है। भगवान विष्णु को पूर्ण कहा जाता है। बुद्ध का जन्म, गुरु पूर्णिमा, होली — अनेक महत्वपूर्ण घटनाएँ पूर्णिमा पर होती हैं।', sa: 'पूर्णिमा पूर्णतायाः दिव्यशक्तेः च प्रतीकम्।' },
+    observance: { en: 'Take a holy bath, especially at a sacred river. Offer prayers to Lord Vishnu and Chandra (Moon god). Observe a fast (Purnima Vrat). Perform Satyanarayan Puja. Donate food and clothes. Meditate under the full moonlight.', hi: 'पवित्र स्नान करें, विशेषतः पवित्र नदी में। भगवान विष्णु और चन्द्र देव की पूजा करें। पूर्णिमा व्रत रखें। सत्यनारायण पूजा करें। भोजन और वस्त्र दान करें।' },
+    significance: { en: 'The most auspicious day of the lunar month. The full Moon amplifies spiritual energy, making meditation, charity, and rituals more potent. Sattvic qualities are at their peak. Fasting on Purnima is said to grant the merit of all tirthas.', hi: 'चन्द्र माह का सबसे शुभ दिन। पूर्ण चन्द्रमा आध्यात्मिक ऊर्जा को बढ़ाता है। सात्विक गुण चरम पर होते हैं। पूर्णिमा व्रत सभी तीर्थों का पुण्य देता है।' },
+    isFast: true,
+  },
+
+  'chaturthi': {
+    name: { en: 'Chaturthi', hi: 'चतुर्थी', sa: 'चतुर्थी', mr: 'चतुर्थी', mai: 'चतुर्थी' },
+    mythology: { en: 'Chaturthi (the fourth day of the lunar fortnight) is sacred to Lord Ganesha. When the Moon laughed at Ganesha for falling off his mouse, Ganesha cursed the Moon to disappear. The curse was modified so that looking at the Moon on Chaturthi brings false accusations.', hi: 'चतुर्थी (चन्द्र पक्ष का चौथा दिन) भगवान गणेश को समर्पित है। जब चन्द्रमा ने गणेश पर हँसा, गणेश ने चन्द्रमा को अदृश्य होने का शाप दिया। शाप संशोधित किया गया कि चतुर्थी पर चन्द्र दर्शन से मिथ्या आरोप लगते हैं।', sa: 'चतुर्थी गणेशाय समर्पिता। चन्द्रमा गणेशम् उपहसत् तेन गणेशः चन्द्रम् अशपत्।' },
+    observance: { en: 'Worship Lord Ganesha with modak, durva grass, and red flowers. Observe Sankashti Chaturthi fast (Krishna Paksha) until moonrise. Recite Ganapati Atharvashirsha. Avoid looking at the Moon on Bhadrapada Shukla Chaturthi.', hi: 'मोदक, दूर्वा और लाल फूलों से गणेश पूजा करें। संकष्टी चतुर्थी (कृष्ण पक्ष) पर चन्द्रोदय तक उपवास रखें। गणपति अथर्वशीर्ष का पाठ करें।' },
+    significance: { en: 'Ganesha is Vighnaharta (remover of obstacles) and Pratham Pujya (first-worshipped). Monthly Chaturthi observance ensures continuous divine protection and blessings for wisdom, intellect, and success in all undertakings.', hi: 'गणेश विघ्नहर्ता और प्रथम पूज्य हैं। मासिक चतुर्थी का पालन निरन्तर दिव्य रक्षा और ज्ञान, बुद्धि, सफलता के आशीर्वाद सुनिश्चित करता है।' },
+    deity: { en: 'Lord Ganesha', hi: 'भगवान गणेश', sa: 'गणेशः' },
+    isFast: true,
+  },
 };
 
 /* ═══════════════════════════════════════════

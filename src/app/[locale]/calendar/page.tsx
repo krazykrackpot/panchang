@@ -691,7 +691,7 @@ export default function CalendarPage() {
                 {showFestivals && festivalItems.length > 0 && (
                   <div>
                     <h3 className="text-xl font-bold text-gold-gradient mb-4" style={headingFont}>
-                      {tl({ en: 'Festivals (${festivalItems.length})', hi: 'त्योहार (${festivalItems.length})', sa: 'त्योहार (${festivalItems.length})', ta: 'Festivals (${festivalItems.length})', te: 'Festivals (${festivalItems.length})', bn: 'Festivals (${festivalItems.length})', kn: 'Festivals (${festivalItems.length})', gu: 'Festivals (${festivalItems.length})', mai: 'त्योहार (${festivalItems.length})', mr: 'त्योहार (${festivalItems.length})' }, locale)}
+                      {`${tl({ en: 'Festivals', hi: 'त्योहार', sa: 'त्योहार', ta: 'Festivals', te: 'Festivals', bn: 'Festivals', kn: 'Festivals', gu: 'Festivals', mai: 'त्योहार', mr: 'त्योहार' }, locale)} (${festivalItems.length})`}
                     </h3>
                     <div className="space-y-3">
                       {festivalItems.map((f, i) => renderCard(f, i))}
@@ -703,7 +703,7 @@ export default function CalendarPage() {
                 {showVrats && vratItems.length > 0 && (
                   <div>
                     <h3 className="text-xl font-bold text-gold-gradient mb-4" style={headingFont}>
-                      {tl({ en: 'Vrats & Observances (${vratItems.length})', hi: 'व्रत एवं अनुष्ठान (${vratItems.length})', sa: 'व्रत एवं अनुष्ठान (${vratItems.length})', ta: 'Vrats & Observances (${vratItems.length})', te: 'Vrats & Observances (${vratItems.length})', bn: 'Vrats & Observances (${vratItems.length})', kn: 'Vrats & Observances (${vratItems.length})', gu: 'Vrats & Observances (${vratItems.length})', mai: 'व्रत एवं अनुष्ठान (${vratItems.length})', mr: 'व्रत एवं अनुष्ठान (${vratItems.length})' }, locale)}
+                      {`${tl({ en: 'Vrats & Observances', hi: 'व्रत एवं अनुष्ठान', sa: 'व्रत एवं अनुष्ठान', ta: 'Vrats & Observances', te: 'Vrats & Observances', bn: 'Vrats & Observances', kn: 'Vrats & Observances', gu: 'Vrats & Observances', mai: 'व्रत एवं अनुष्ठान', mr: 'व्रत एवं अनुष्ठान' }, locale)} (${vratItems.length})`}
                     </h3>
                     <div className="space-y-3">
                       {vratItems.map((f, i) => renderCard(f, i))}

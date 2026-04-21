@@ -552,6 +552,585 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       },
     },
   ],
+  // ─── /mangal-dosha ──────────────────────────────────────────
+  '/mangal-dosha': [
+    {
+      question: {
+        en: 'What is Mangal Dosha and who is a Manglik?',
+        hi: 'मंगल दोष क्या है और मांगलिक कौन है?',
+        sa: 'मङ्गलदोषः कः अस्ति माङ्गलिकः च कः?',
+      },
+      answer: {
+        en: 'Mangal Dosha (also called Kuja Dosha or Chevvai Dosham) occurs when Mars is placed in the 1st, 2nd, 4th, 7th, 8th, or 12th house from the Lagna, Moon, or Venus in a birth chart. A person with this placement is called a "Manglik." It is traditionally believed to affect married life by causing conflicts, delays in marriage, or incompatibility with a non-Manglik partner.',
+        hi: 'मंगल दोष (कुज दोष) तब होता है जब मंगल ग्रह जन्म कुण्डली में लग्न, चन्द्र या शुक्र से 1, 2, 4, 7, 8 या 12वें भाव में हो। ऐसे व्यक्ति को "मांगलिक" कहते हैं। परम्परा के अनुसार यह वैवाहिक जीवन में कठिनाइयाँ ला सकता है।',
+        sa: 'मङ्गलदोषः (कुजदोषः) तदा भवति यदा कुजः लग्नात् चन्द्रात् शुक्रात् वा प्रथमे, द्वितीये, चतुर्थे, सप्तमे, अष्टमे, द्वादशे वा भावे स्थितः। एतादृशः जनः "माङ्गलिकः" इत्युच्यते।',
+      },
+    },
+    {
+      question: {
+        en: 'When is Mangal Dosha cancelled?',
+        hi: 'मंगल दोष कब निरस्त होता है?',
+        sa: 'मङ्गलदोषः कदा निरस्तः भवति?',
+      },
+      answer: {
+        en: 'Mangal Dosha is considered cancelled (or significantly reduced) in several conditions: Mars in its own sign (Aries/Scorpio) or exalted (Capricorn), Mars aspected by or conjunct benefic Jupiter, both partners being Manglik, Mars in certain Nakshatras (like Mrigashira, Chitra, Dhanishta), and after age 28 when Mars\'s intensity naturally diminishes in some traditions.',
+        hi: 'मंगल दोष कई स्थितियों में निरस्त माना जाता है: मंगल अपनी राशि (मेष/वृश्चिक) या उच्च (मकर) में, गुरु की दृष्टि या युति, दोनों वर-वधू मांगलिक, विशेष नक्षत्रों में मंगल, और कुछ परम्पराओं में 28 वर्ष के बाद।',
+        sa: 'मङ्गलदोषः अनेकासु स्थितिषु निरस्तः मन्यते — कुजः स्वराशौ (मेषे/वृश्चिके) वा उच्चराशौ (मकरे), गुरोः दृष्ट्या युत्या वा, उभौ वरवधू माङ्गलिकौ, विशेषनक्षत्रेषु कुजः।',
+      },
+    },
+    {
+      question: {
+        en: 'Can a Manglik marry a non-Manglik?',
+        hi: 'क्या मांगलिक गैर-मांगलिक से विवाह कर सकता है?',
+        sa: 'किं माङ्गलिकः अमाङ्गलिकेन सह विवाहं कर्तुं शक्नोति?',
+      },
+      answer: {
+        en: 'While tradition recommends matching two Mangliks, a Manglik can marry a non-Manglik if cancellation conditions exist in the chart. Many modern Jyotishis consider the overall chart strength, Saturn\'s position, and the 7th house condition rather than Mars alone. Remedial measures like Kumbh Vivah (symbolic marriage to a pot or tree) are also performed before such marriages.',
+        hi: 'यद्यपि परम्परा दो मांगलिकों के विवाह की सलाह देती है, निवारण शर्तें होने पर मांगलिक गैर-मांगलिक से विवाह कर सकता है। कई आधुनिक ज्योतिषी समग्र कुण्डली बल देखते हैं। कुम्भ विवाह जैसे उपचार भी किये जाते हैं।',
+        sa: 'निवारणस्थितयः सन्ति चेत् माङ्गलिकः अमाङ्गलिकेन सह विवाहं कर्तुं शक्नोति। कुम्भविवाहादयः उपचाराः अपि क्रियन्ते।',
+      },
+    },
+  ],
+
+  // ─── /kaal-sarp ────────────────────────────────────────────
+  '/kaal-sarp': [
+    {
+      question: {
+        en: 'What is Kaal Sarp Dosha?',
+        hi: 'काल सर्प दोष क्या है?',
+        sa: 'कालसर्पदोषः कः अस्ति?',
+      },
+      answer: {
+        en: 'Kaal Sarp Dosha occurs when all seven planets (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) are hemmed between Rahu and Ketu — that is, all planets fall on one side of the Rahu-Ketu axis. This is considered a significant karmic combination that can cause delays, obstacles, and sudden upheavals in life. However, its effects vary greatly depending on which houses Rahu and Ketu occupy.',
+        hi: 'काल सर्प दोष तब होता है जब सभी सात ग्रह (सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि) राहु और केतु के बीच एक ओर हों। यह एक महत्वपूर्ण कर्म संयोजन है जो विलम्ब, बाधाएं और अचानक उथल-पुथल ला सकता है।',
+        sa: 'कालसर्पदोषः तदा भवति यदा सर्वे सप्तग्रहाः राहुकेत्वोः एकत्र स्थिताः भवन्ति। एषः महत्त्वपूर्णः कार्मिकसंयोगः अस्ति।',
+      },
+    },
+    {
+      question: {
+        en: 'How many types of Kaal Sarp Dosha are there?',
+        hi: 'काल सर्प दोष के कितने प्रकार हैं?',
+        sa: 'कालसर्पदोषस्य कति प्रकाराः सन्ति?',
+      },
+      answer: {
+        en: 'There are 12 types of Kaal Sarp Dosha, named based on which houses Rahu and Ketu occupy: Anant (1-7), Kulik (2-8), Vasuki (3-9), Shankhpal (4-10), Padma (5-11), Mahapadma (6-12), Takshak (7-1), Karkotak (8-2), Shankhachud (9-3), Ghatak (10-4), Vishdhar (11-5), and Sheshnaag (12-6). Each type affects different life areas based on the houses involved.',
+        hi: '12 प्रकार हैं: अनन्त (1-7), कुलिक (2-8), वासुकि (3-9), शंखपाल (4-10), पद्म (5-11), महापद्म (6-12), तक्षक (7-1), कर्कोटक (8-2), शंखचूड (9-3), घातक (10-4), विषधर (11-5), शेषनाग (12-6)।',
+        sa: 'द्वादशप्रकाराः सन्ति — अनन्तः, कुलिकः, वासुकिः, शंखपालः, पद्मः, महापद्मः, तक्षकः, कर्कोटकः, शंखचूडः, घातकः, विषधरः, शेषनागश्च।',
+      },
+    },
+    {
+      question: {
+        en: 'What are the remedies for Kaal Sarp Dosha?',
+        hi: 'काल सर्प दोष के उपाय क्या हैं?',
+        sa: 'कालसर्पदोषस्य उपायाः के सन्ति?',
+      },
+      answer: {
+        en: 'Traditional remedies include: performing Kaal Sarp Dosha Nivaran Puja at Trimbakeshwar (Nashik) or Mahakaleshwar (Ujjain), chanting Rahu-Ketu mantras, wearing Gomed (Hessonite) for Rahu or Cat\'s Eye for Ketu after consulting a Jyotishi, offering milk and rice to snakes or ant hills on Nag Panchami, and performing Sarpa Suktam recitation. Regular worship of Lord Shiva and Nag Devta is also recommended.',
+        hi: 'पारम्परिक उपाय: त्र्यम्बकेश्वर या महाकालेश्वर में काल सर्प दोष निवारण पूजा, राहु-केतु मन्त्र जप, गोमेद या लहसुनिया धारण (ज्योतिषी परामर्श से), नाग पंचमी पर दूध-चावल अर्पण, सर्प सूक्तम् पाठ, और शिव तथा नाग देवता की नियमित पूजा।',
+        sa: 'पारम्परिकोपायाः — त्र्यम्बकेश्वरे महाकालेश्वरे वा कालसर्पदोषनिवारणपूजा, राहुकेतुमन्त्रजपः, गोमेदवैदूर्यधारणम्, नागपञ्चम्यां दुग्धतण्डुलार्पणम्, सर्पसूक्तपठनम्, शिवनागदेवतापूजा च।',
+      },
+    },
+  ],
+
+  // ─── /pitra-dosha ──────────────────────────────────────────
+  '/pitra-dosha': [
+    {
+      question: {
+        en: 'What is Pitra Dosha in Vedic astrology?',
+        hi: 'वैदिक ज्योतिष में पितृ दोष क्या है?',
+        sa: 'वैदिकज्योतिषे पितृदोषः कः अस्ति?',
+      },
+      answer: {
+        en: 'Pitra Dosha indicates unresolved ancestral karma in the birth chart. The primary indicator is Sun conjunct or aspected by Rahu, especially in the 9th house (house of father and dharma). Other indicators include: afflicted 9th house lord, malefics in the 9th house, and Sun-Saturn conjunction. It is believed to cause obstacles in career, progeny issues, and recurring family problems across generations.',
+        hi: 'पितृ दोष जन्म कुण्डली में अनसुलझे पैतृक कर्म को दर्शाता है। प्रमुख संकेतक सूर्य पर राहु की युति या दृष्टि है, विशेषकर 9वें भाव (पिता और धर्म का भाव) में। अन्य संकेतक: पीड़ित 9वें भावेश, 9वें भाव में पापग्रह, और सूर्य-शनि युति।',
+        sa: 'पितृदोषः जन्मकुण्डल्यां अनिराकृतं पैतृककर्म सूचयति। प्रमुखसङ्केतकः सूर्यस्य राहुणा युतिः दृष्टिः वा, विशेषतः नवमभावे (पितृधर्मभावे)।',
+      },
+    },
+    {
+      question: {
+        en: 'How is Pitra Dosha different from Mangal Dosha?',
+        hi: 'पितृ दोष और मंगल दोष में क्या अन्तर है?',
+        sa: 'पितृदोषमङ्गलदोषयोः कः भेदः?',
+      },
+      answer: {
+        en: 'Mangal Dosha is caused by Mars\'s placement and primarily affects marriage and relationships. Pitra Dosha is caused by Sun-Rahu affliction and relates to ancestral karma — it affects broader life patterns including career blocks, progeny issues, and generational family problems. Mangal Dosha is a single-planet placement check; Pitra Dosha involves multiple factors including the 9th house, Sun, Rahu, and sometimes Saturn.',
+        hi: 'मंगल दोष मंगल की स्थिति से होता है और मुख्यतः विवाह प्रभावित करता है। पितृ दोष सूर्य-राहु पीड़ा से होता है और पैतृक कर्म से सम्बन्धित है — कैरियर अवरोध, सन्तान समस्या और पारिवारिक कठिनाइयाँ प्रभावित करता है।',
+        sa: 'मङ्गलदोषः कुजस्थित्या भवति विवाहं च प्रभावयति। पितृदोषः सूर्यराहुपीडया भवति पैतृककर्मणा सम्बद्धश्च — वृत्तिम् अपत्यं पारिवारिकजीवनं च प्रभावयति।',
+      },
+    },
+    {
+      question: {
+        en: 'What are the remedies for Pitra Dosha?',
+        hi: 'पितृ दोष के उपाय क्या हैं?',
+        sa: 'पितृदोषस्य उपायाः के सन्ति?',
+      },
+      answer: {
+        en: 'Key remedies include: performing Shraddha (ancestral offerings) during Pitru Paksha (16-day period in Ashwin/Bhadrapada month), Pind Daan at sacred sites like Gaya or Varanasi, Tripindi Shraddha for forgotten ancestors, Narayan Nagbali Puja at Trimbakeshwar, regular Tarpan on Amavasya, and feeding Brahmins and crows (considered messengers of ancestors). Chanting Surya and Rahu mantras also helps.',
+        hi: 'प्रमुख उपाय: पितृ पक्ष में श्राद्ध, गया या काशी में पिण्ड दान, त्रिपिण्डी श्राद्ध, त्र्यम्बकेश्वर में नारायण नागबलि पूजा, अमावस्या पर तर्पण, ब्राह्मणों और कौओं को भोजन। सूर्य और राहु मन्त्र जप भी लाभदायक है।',
+        sa: 'प्रमुखोपायाः — पितृपक्षे श्राद्धम्, गयायां काश्यां वा पिण्डदानम्, त्रिपिण्डीश्राद्धम्, त्र्यम्बकेश्वरे नारायणनागबलिपूजा, अमावास्यायां तर्पणम्, ब्राह्मणकाकभोजनं च। सूर्यराहुमन्त्रजपः अपि लाभकरः।',
+      },
+    },
+  ],
+
+  // ─── /sade-sati ──────────────────────────────────────────────
+  '/sade-sati': [
+    {
+      question: {
+        en: 'How long does Sade Sati last?',
+        hi: 'साढ़े साती कितने समय तक रहती है?',
+        sa: 'साढेसातिः कियत्कालं तिष्ठति?',
+      },
+      answer: {
+        en: 'Sade Sati lasts approximately 7.5 years. It occurs when Saturn transits through three consecutive signs — the sign before your Moon sign (~2.5 years), your Moon sign itself (~2.5 years), and the sign after (~2.5 years). The exact duration varies slightly because Saturn\'s orbital speed is not constant and it retrogrades periodically.',
+        hi: 'साढ़े साती लगभग 7.5 वर्ष तक रहती है। यह तब होती है जब शनि तीन क्रमिक राशियों से गुजरता है — आपकी चन्द्र राशि से पहली (~2.5 वर्ष), स्वयं चन्द्र राशि (~2.5 वर्ष) और उसके बाद की (~2.5 वर्ष)। सटीक अवधि शनि की गति और वक्री होने के कारण थोड़ी भिन्न हो सकती है।',
+        sa: 'साढेसातिः प्रायः सार्धसप्तवर्षाणि तिष्ठति। शनिः त्रिषु क्रमिकराशिषु गच्छति चेत् भवति — चन्द्रराशेः पूर्वराशौ (~२.५ वर्षाणि), स्वयं चन्द्रराशौ (~२.५ वर्षाणि), तदनन्तरराशौ च (~२.५ वर्षाणि)।',
+      },
+    },
+    {
+      question: {
+        en: 'What are the three phases of Sade Sati?',
+        hi: 'साढ़े साती के तीन चरण कौन से हैं?',
+        sa: 'साढेसात्याः त्रयः चरणाः के सन्ति?',
+      },
+      answer: {
+        en: 'The three phases are: Rising Phase (Saturn in 12th from Moon) — financial pressures, hidden anxieties, and sleep disturbances. Peak Phase (Saturn over Moon sign) — the most intense period with mental pressure, relationship tests, and career challenges, but also deep personal growth. Setting Phase (Saturn in 2nd from Moon) — financial strain eases but family and speech-related matters may surface.',
+        hi: 'तीन चरण हैं: आरम्भ चरण (चन्द्र से 12वाँ) — आर्थिक दबाव, छिपी चिन्ताएँ। चरम चरण (चन्द्र राशि पर) — सबसे तीव्र काल, मानसिक दबाव और कैरियर चुनौतियाँ, किन्तु गहन विकास भी। अवसान चरण (चन्द्र से 2रा) — आर्थिक दबाव कम, पारिवारिक विषय।',
+        sa: 'त्रयः चरणाः सन्ति — उत्थानचरणः (चन्द्रात् द्वादशे शनिः), चरमचरणः (चन्द्रराशौ शनिः), अवसानचरणः (चन्द्रात् द्वितीये शनिः) च।',
+      },
+    },
+    {
+      question: {
+        en: 'Is Sade Sati always bad?',
+        hi: 'क्या साढ़े साती हमेशा बुरी होती है?',
+        sa: 'किं साढेसातिः सदा अशुभा भवति?',
+      },
+      answer: {
+        en: 'No, Sade Sati is not always negative. Its effects depend on Saturn\'s natal position, the Moon\'s strength in your chart, and your current Vimshottari Dasha. For some people, Sade Sati brings career breakthroughs, spiritual awakening, or necessary life corrections. Many highly successful people achieved their greatest milestones during this period.',
+        hi: 'नहीं, साढ़े साती सदैव बुरी नहीं होती। प्रभाव शनि की जन्म स्थिति, चन्द्रमा की शक्ति और वर्तमान दशा पर निर्भर करते हैं। कई सफल लोगों ने साढ़े साती में अपनी सबसे बड़ी उपलब्धियाँ प्राप्त कीं।',
+        sa: 'न, साढेसातिः सदा अशुभा न भवति। प्रभावाः शनेः जन्मस्थित्या चन्द्रमसः बलेन वर्तमानदशया च निर्धार्यन्ते।',
+      },
+    },
+    {
+      question: {
+        en: 'What are the best remedies during Sade Sati?',
+        hi: 'साढ़े साती में सबसे अच्छे उपाय कौन से हैं?',
+        sa: 'साढेसातौ श्रेष्ठाः उपायाः के सन्ति?',
+      },
+      answer: {
+        en: 'Traditional remedies include: reciting Hanuman Chalisa daily (especially on Saturdays), donating black items like sesame seeds, iron, and mustard oil on Saturdays, lighting a mustard oil lamp under a Peepal tree every Saturday evening, and chanting the Shani mantra "Om Sham Shanaishcharaya Namah" 108 times daily. Serving the elderly and disabled is also highly recommended.',
+        hi: 'पारम्परिक उपाय: प्रतिदिन हनुमान चालीसा (विशेषकर शनिवार), शनिवार को काली वस्तुएं (तिल, लोहा, सरसों का तेल) दान, शनिवार संध्या पीपल वृक्ष नीचे सरसों का दीपक, और "ॐ शं शनैश्चराय नमः" 108 बार जप। बुजुर्गों और विकलांगों की सेवा भी अत्यन्त लाभदायक है।',
+        sa: 'पारम्परिकोपायाः — प्रतिदिनं हनुमत्चालीसापठनम्, शनिवासरे कृष्णवस्तूनां दानम्, पीपलवृक्षे सार्षपतैलदीपकम्, "ॐ शं शनैश्चराय नमः" इति अष्टोत्तरशतवारं जपश्च।',
+      },
+    },
+    {
+      question: {
+        en: 'When does Sade Sati start for my Moon sign?',
+        hi: 'मेरी चन्द्र राशि के लिए साढ़े साती कब शुरू होगी?',
+        sa: 'मम चन्द्रराशये साढेसातिः कदा आरभते?',
+      },
+      answer: {
+        en: 'Sade Sati begins when Saturn enters the sign just before (12th from) your Moon sign. Since Saturn takes about 2.5 years per sign and completes its orbit in ~29.5 years, Sade Sati occurs roughly every 30 years — meaning it happens 2-3 times in an average lifetime. Use our Sade Sati calculator to check exact dates based on your Moon sign or full birth chart.',
+        hi: 'साढ़े साती तब शुरू होती है जब शनि आपकी चन्द्र राशि से ठीक पहले (12वीं) राशि में प्रवेश करता है। शनि ~29.5 वर्ष में एक चक्र पूरा करता है, अतः साढ़े साती लगभग 30 वर्ष में एक बार आती है — जीवनकाल में 2-3 बार। सटीक तिथियों के लिए हमारा गणक उपयोग करें।',
+        sa: 'साढेसातिः तदा आरभते यदा शनिः चन्द्रराशेः पूर्वराशौ (द्वादशे) प्रविशति। शनिः ~२९.५ वर्षेषु एकं चक्रं पूरयति, अतः साढेसातिः प्रायः त्रिंशद्वर्षेषु एकवारम् आगच्छति।',
+      },
+    },
+  ],
+
+  // ─── /muhurat ──────────────────────────────────────────────
+  '/muhurat': [
+    {
+      question: {
+        en: 'What is a Muhurat and why is it important?',
+        hi: 'मुहूर्त क्या है और यह क्यों महत्वपूर्ण है?',
+        sa: 'मुहूर्तः कः अस्ति कथं च महत्त्वपूर्णः?',
+      },
+      answer: {
+        en: 'Muhurat (auspicious timing) is the Vedic science of selecting the most favourable date and time for important activities. It considers multiple factors — Tithi, Nakshatra, Yoga, planetary positions, Rahu Kaal, and Choghadiya — to maximize the chances of a positive outcome. Starting important activities at the right Muhurat is believed to align your actions with cosmic energies.',
+        hi: 'मुहूर्त महत्वपूर्ण कार्यों के लिए सबसे अनुकूल तिथि और समय चुनने का वैदिक विज्ञान है। यह तिथि, नक्षत्र, योग, ग्रह स्थिति, राहु काल और चौघड़िया जैसे अनेक कारकों पर विचार करता है।',
+        sa: 'मुहूर्तः महत्कार्येषु सर्वाधिकानुकूलतिथिकालचयनस्य वैदिकं शास्त्रम् अस्ति।',
+      },
+    },
+    {
+      question: {
+        en: 'How do I find a good Muhurat for marriage?',
+        hi: 'विवाह के लिए अच्छा मुहूर्त कैसे खोजें?',
+        sa: 'विवाहाय शुभमुहूर्तं कथम् अन्वेषणीयम्?',
+      },
+      answer: {
+        en: 'For marriage Muhurat, Vedic astrology requires: an auspicious Tithi (Dwitiya, Tritiya, Panchami, Saptami, Ekadashi, Trayodashi are preferred), a favourable Nakshatra (Rohini, Mrigashira, Magha, Uttara Phalguni, Hasta, Swati, Anuradha, Uttarashadha, Uttara Bhadrapada, Revati), avoidance of Rahu Kaal and Varjyam, and compatibility between the Muhurat chart and both partners\' birth charts.',
+        hi: 'विवाह मुहूर्त में शुभ तिथि (द्वितीया, तृतीया, पंचमी, सप्तमी आदि), अनुकूल नक्षत्र (रोहिणी, मघा, हस्त, स्वाति, अनुराधा आदि), राहु काल और वर्ज्यम् से बचाव, तथा वर-वधू की कुण्डली से अनुकूलता आवश्यक है।',
+        sa: 'विवाहमुहूर्ते शुभतिथिः, अनुकूलनक्षत्रम्, राहुकालवर्ज्यमपरिहारः, वरवध्वोः कुण्डल्या अनुकूलता च आवश्यकम्।',
+      },
+    },
+    {
+      question: {
+        en: 'What are the most common activities that need a Muhurat?',
+        hi: 'किन कार्यों के लिए मुहूर्त सबसे अधिक आवश्यक होता है?',
+        sa: 'केषां कार्याणां कृते मुहूर्तः सर्वाधिकम् आवश्यकः?',
+      },
+      answer: {
+        en: 'The most common activities requiring Muhurat selection include: marriage (Vivah), housewarming (Griha Pravesh), starting a new business (Vyapar Arambh), vehicle purchase, property purchase, naming ceremony (Namkaran), starting education (Vidya Arambh), medical procedures, gold purchase, and travel. Each activity has specific Vedic rules for what constitutes an auspicious time.',
+        hi: 'मुहूर्त की सबसे अधिक आवश्यकता वाले कार्य: विवाह, गृह प्रवेश, व्यापार आरम्भ, वाहन खरीद, भूमि खरीद, नामकरण, विद्यारम्भ, चिकित्सा, स्वर्ण खरीद और यात्रा। प्रत्येक कार्य के लिए विशिष्ट वैदिक नियम हैं।',
+        sa: 'मुहूर्तस्य सर्वाधिकावश्यकतायुक्तानि कार्याणि — विवाहः, गृहप्रवेशः, व्यापारारम्भः, वाहनक्रयः, भूमिक्रयः, नामकरणम्, विद्यारम्भः, चिकित्सा, स्वर्णक्रयः, यात्रा च।',
+      },
+    },
+    {
+      question: {
+        en: 'Can Muhurat override a bad horoscope?',
+        hi: 'क्या मुहूर्त खराब कुण्डली को दूर कर सकता है?',
+        sa: 'किं मुहूर्तः अशुभकुण्डलीं निवारयितुं शक्नोति?',
+      },
+      answer: {
+        en: 'Muhurat cannot completely override the indications in a birth chart, but it can significantly improve the chances of success for a specific undertaking. Think of it as choosing the best possible starting conditions — like a seed planted in fertile soil at the right season. Classical texts say that a good Muhurat can enhance favourable Dasha results and mitigate challenging planetary periods.',
+        hi: 'मुहूर्त जन्म कुण्डली के संकेतों को पूरी तरह नहीं बदल सकता, किन्तु किसी विशेष कार्य की सफलता की सम्भावना काफी बढ़ा सकता है। शास्त्रीय ग्रन्थ कहते हैं कि शुभ मुहूर्त अनुकूल दशा फल को बढ़ाता है और चुनौतीपूर्ण ग्रह अवधि को कम करता है।',
+        sa: 'मुहूर्तः जन्मकुण्डल्याः सङ्केतान् सम्पूर्णतया निवारयितुं न शक्नोति, किन्तु विशिष्टकार्यस्य सफलतासम्भावनां महत्त्वपूर्णतया वर्धयितुं शक्नोति।',
+      },
+    },
+  ],
+
+  // ─── /calendar ─────────────────────────────────────────────
+  '/calendar': [
+    {
+      question: {
+        en: 'What is the Hindu calendar system?',
+        hi: 'हिन्दू कैलेंडर प्रणाली क्या है?',
+        sa: 'हिन्दूपञ्चाङ्गपद्धतिः का अस्ति?',
+      },
+      answer: {
+        en: 'The Hindu calendar is a lunisolar system that tracks both the Moon\'s phases and the Sun\'s position. A lunar month runs from new moon to new moon (Amanta) or full moon to full moon (Purnimant). Each month is divided into Shukla Paksha (bright half) and Krishna Paksha (dark half) with 15 Tithis each. An intercalary month (Adhika Masa) is added approximately every 3 years to synchronize with the solar year.',
+        hi: 'हिन्दू कैलेंडर एक चान्द्र-सौर प्रणाली है जो चन्द्रमा के चरणों और सूर्य की स्थिति दोनों को ट्रैक करती है। चान्द्र मास अमावस्या से अमावस्या (अमान्त) या पूर्णिमा से पूर्णिमा (पूर्णिमान्त) तक चलता है।',
+        sa: 'हिन्दूपञ्चाङ्गं चान्द्रसौरपद्धतिः अस्ति या चन्द्रमसः कलाः सूर्यस्य स्थितिं च अनुसरति।',
+      },
+    },
+    {
+      question: {
+        en: 'What is the difference between Amanta and Purnimant calendars?',
+        hi: 'अमान्त और पूर्णिमान्त कैलेंडर में क्या अन्तर है?',
+        sa: 'अमान्तपूर्णिमान्तपञ्चाङ्गयोः कः भेदः?',
+      },
+      answer: {
+        en: 'Amanta (Amant) calendar, used primarily in South and West India (Maharashtra, Gujarat, Karnataka), begins the lunar month from the day after Amavasya (new moon). Purnimant calendar, used in North India (UP, Bihar, MP, Rajasthan), begins from the day after Purnima (full moon). Both systems track the same festivals but the month names may differ for a given date. Dekho Panchang supports both systems with a toggle.',
+        hi: 'अमान्त कैलेंडर (दक्षिण और पश्चिम भारत) में चान्द्र मास अमावस्या के बाद से शुरू होता है। पूर्णिमान्त (उत्तर भारत) में मास पूर्णिमा के बाद से शुरू होता है। दोनों प्रणालियों में त्योहार एक ही हैं किन्तु मास के नाम भिन्न हो सकते हैं।',
+        sa: 'अमान्तपद्धत्यां चान्द्रमासः अमावास्यानन्तरम् आरभते। पूर्णिमान्तपद्धत्यां पूर्णिमानन्तरम्। उभयोः पद्धत्योः पर्वाणि समानानि किन्तु मासनामानि भिद्यन्ते।',
+      },
+    },
+    {
+      question: {
+        en: 'How many festivals are there in the Hindu calendar?',
+        hi: 'हिन्दू कैलेंडर में कितने त्योहार हैं?',
+        sa: 'हिन्दूपञ्चाङ्गे कति पर्वाणि सन्ति?',
+      },
+      answer: {
+        en: 'The Hindu calendar contains over 180 major festivals, vrats (fasting days), and observances annually. These include 24 Ekadashis, 12 Purnimas, 12 Amavasyas, Navaratri (twice), Diwali, Holi, and dozens of regional festivals. Dekho Panchang tracks all major festivals with location-aware Tithi timing, so dates are accurate for your specific city.',
+        hi: 'हिन्दू कैलेंडर में प्रतिवर्ष 180+ प्रमुख त्योहार, व्रत और अनुष्ठान हैं — 24 एकादशी, 12 पूर्णिमा, 12 अमावस्या, नवरात्रि, दीवाली, होली और दर्जनों क्षेत्रीय त्योहार। देखो पंचांग सभी प्रमुख त्योहारों को स्थान-आधारित तिथि समय के साथ दर्शाता है।',
+        sa: 'हिन्दूपञ्चाङ्गे प्रतिवर्षम् अशीत्यधिकशतं प्रमुखपर्वाणि व्रतानि अनुष्ठानानि च सन्ति। देखो-पञ्चाङ्गं सर्वाणि प्रमुखपर्वाणि स्थानाधारिततिथिकालेन सह दर्शयति।',
+      },
+    },
+    {
+      question: {
+        en: 'Why do Hindu festival dates change every year?',
+        hi: 'हिन्दू त्योहारों की तिथि प्रतिवर्ष क्यों बदलती है?',
+        sa: 'हिन्दूपर्वतिथयः प्रतिवर्षं कथं परिवर्तन्ते?',
+      },
+      answer: {
+        en: 'Hindu festival dates change because they are based on the lunar calendar, which is about 11 days shorter than the solar (Gregorian) year. Since festivals are tied to specific Tithis (lunar days), Nakshatras, and lunar months, their Gregorian dates shift annually. The intercalary month (Adhika Masa) partially corrects this drift, keeping festivals roughly within the same season each year.',
+        hi: 'हिन्दू त्योहारों की तिथियाँ बदलती हैं क्योंकि ये चान्द्र कैलेंडर पर आधारित हैं, जो सौर वर्ष से ~11 दिन छोटा होता है। चूँकि त्योहार विशिष्ट तिथियों, नक्षत्रों और चान्द्र मासों से जुड़े हैं, उनकी अंग्रेजी तिथियाँ प्रतिवर्ष बदलती हैं। अधिक मास इस अन्तर को आंशिक रूप से सुधारता है।',
+        sa: 'हिन्दूपर्वतिथयः परिवर्तन्ते यतः चान्द्रपञ्चाङ्गम् आश्रिताः, यत् सौरवर्षात् ~११ दिनैः लघुतरम्। अधिकमासः एतम् अन्तरं आंशिकतया सुधारयति।',
+      },
+    },
+  ],
+
+  // ─── /sign-calculator ──────────────────────────────────────
+  '/sign-calculator': [
+    {
+      question: {
+        en: 'How is my Vedic Moon sign (Rashi) calculated?',
+        hi: 'मेरी वैदिक चन्द्र राशि की गणना कैसे होती है?',
+        sa: 'मम वैदिकचन्द्रराशिः कथं गण्यते?',
+      },
+      answer: {
+        en: 'Your Vedic Moon sign is determined by the sidereal (Nirayana) position of the Moon at the exact moment of your birth. The Moon\'s tropical longitude is adjusted by subtracting the Ayanamsha value (~24 degrees for Lahiri) to get the sidereal longitude. The resulting degree falls in one of the 12 Rashis (30 degrees each), which is your Moon sign. This requires precise birth time, date, and location.',
+        hi: 'आपकी वैदिक चन्द्र राशि जन्म के सटीक क्षण में चन्द्रमा की निरयण स्थिति से निर्धारित होती है। चन्द्रमा के सायन रेखांश से अयनांश (~24°) घटाकर निरयण रेखांश प्राप्त होता है, जो 12 राशियों में से एक में पड़ता है।',
+        sa: 'भवतः वैदिकचन्द्रराशिः जन्मस्य सम्यक्क्षणे चन्द्रमसः निरयणस्थित्या निर्धार्यते।',
+      },
+    },
+    {
+      question: {
+        en: 'Why is my Vedic sign different from my Western zodiac sign?',
+        hi: 'मेरी वैदिक राशि और पाश्चात्य राशि भिन्न क्यों है?',
+        sa: 'मम वैदिकराशिः पाश्चात्यराशेश्च कथं भिद्यते?',
+      },
+      answer: {
+        en: 'Vedic astrology uses the sidereal zodiac (fixed stars) while Western astrology uses the tropical zodiac (seasons). Due to the precession of equinoxes, the two systems have diverged by approximately 24 degrees (the Ayanamsha). This means most people\'s Vedic sign is one sign behind their Western sign. Additionally, Vedic astrology emphasizes the Moon sign while Western focuses on the Sun sign.',
+        hi: 'वैदिक ज्योतिष निरयण (स्थिर तारे) और पाश्चात्य ज्योतिष सायन (ऋतुएँ) राशिचक्र का उपयोग करता है। अयनांश (~24°) के कारण अधिकांश लोगों की वैदिक राशि पाश्चात्य राशि से एक राशि पीछे होती है। इसके अतिरिक्त, वैदिक ज्योतिष चन्द्र राशि और पाश्चात्य सूर्य राशि पर बल देता है।',
+        sa: 'वैदिकज्योतिषं निरयणराशिचक्रम् (स्थिरताराः) पाश्चात्यज्योतिषं तु सायनराशिचक्रम् (ऋतवः) उपयुङ्क्ते। अयनांशभेदात् (~२४°) अधिकजनानां वैदिकराशिः पाश्चात्यराशेः एकराश्या पृष्ठतः भवति।',
+      },
+    },
+    {
+      question: {
+        en: 'Do I need my exact birth time to find my Moon sign?',
+        hi: 'क्या चन्द्र राशि जानने के लिए सटीक जन्म समय आवश्यक है?',
+        sa: 'चन्द्रराशिज्ञानाय सूक्ष्मजन्मकालः आवश्यकः किम्?',
+      },
+      answer: {
+        en: 'For the Moon sign alone, an approximate birth time (within 2-3 hours) is usually sufficient since the Moon stays in one sign for about 2.25 days. However, if the Moon was changing signs near your birth time, even a small error can give the wrong sign. For the Ascendant (Lagna), exact birth time is critical as it changes roughly every 2 hours. We recommend using the most precise birth time available.',
+        hi: 'केवल चन्द्र राशि के लिए अनुमानित जन्म समय (2-3 घण्टे के भीतर) सामान्यतः पर्याप्त है क्योंकि चन्द्रमा एक राशि में लगभग 2.25 दिन रहता है। किन्तु यदि जन्म समय के आसपास चन्द्रमा राशि बदल रहा हो तो छोटी त्रुटि भी गलत राशि दे सकती है।',
+        sa: 'चन्द्रराशिमात्रार्थम् अनुमानितजन्मकालः (२-३ घण्टाभ्यन्तरे) सामान्यतः पर्याप्तः, यतः चन्द्रमाः एकस्यां राश्यां प्रायः सार्धद्वयदिनानि तिष्ठति।',
+      },
+    },
+    {
+      question: {
+        en: 'What is the difference between Sun sign and Moon sign in Vedic astrology?',
+        hi: 'वैदिक ज्योतिष में सूर्य राशि और चन्द्र राशि में क्या अन्तर है?',
+        sa: 'वैदिकज्योतिषे सूर्यराशिचन्द्रराश्योः कः भेदः?',
+      },
+      answer: {
+        en: 'The Sun sign (Surya Rashi) represents your soul, ego, vitality, and outward identity — it changes roughly once a month. The Moon sign (Chandra Rashi) represents your mind, emotions, instincts, and inner nature — it changes approximately every 2.25 days. In Vedic astrology, the Moon sign is considered more important for daily predictions and compatibility matching, while the Sun sign is used for assessing authority, career, and health.',
+        hi: 'सूर्य राशि आत्मा, अहंकार और बाह्य पहचान का प्रतिनिधित्व करती है — प्रति मास बदलती है। चन्द्र राशि मन, भावनाओं और आन्तरिक स्वभाव का — ~2.25 दिन में बदलती है। वैदिक ज्योतिष में दैनिक फल और मिलान के लिए चन्द्र राशि अधिक महत्वपूर्ण मानी जाती है।',
+        sa: 'सूर्यराशिः आत्मानम् अहङ्कारं बाह्यस्वरूपं च दर्शयति। चन्द्रराशिः मनसः भावानां आन्तरिकस्वभावस्य च प्रतिनिधित्वं करोति। वैदिकज्योतिषे दैनिकफलाय मेलनाय च चन्द्रराशिः अधिकमहत्त्वपूर्णा मन्यते।',
+      },
+    },
+  ],
+
+  // ─── /hora ─────────────────────────────────────────────────
+  '/hora': [
+    {
+      question: {
+        en: 'What is Hora in Vedic astrology?',
+        hi: 'वैदिक ज्योतिष में होरा क्या है?',
+        sa: 'वैदिकज्योतिषे होरा का अस्ति?',
+      },
+      answer: {
+        en: 'Hora is a Vedic time-division system where each hour of the day is ruled by one of the 7 classical planets (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) in a fixed sequence. The first Hora of each day is ruled by the planet that governs that weekday — Sunday starts with Sun Hora, Monday with Moon Hora, etc. Different Horas are suited for different activities, making it a practical timing tool.',
+        hi: 'होरा वैदिक समय-विभाजन है जिसमें दिन का प्रत्येक घण्टा 7 शास्त्रीय ग्रहों (सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि) में से एक द्वारा शासित होता है। प्रत्येक दिन की प्रथम होरा उस वार के स्वामी ग्रह की होती है।',
+        sa: 'होरा वैदिककालविभाजनपद्धतिः अस्ति यत्र दिनस्य प्रत्येकं घण्टं सप्तसु शास्त्रीयग्रहेषु एकेन शासितं भवति।',
+      },
+    },
+    {
+      question: {
+        en: 'Which planetary Hora is best for financial activities?',
+        hi: 'आर्थिक कार्यों के लिए कौन सी ग्रह होरा सबसे अच्छी है?',
+        sa: 'आर्थिककार्येभ्यः का ग्रहहोरा श्रेष्ठा?',
+      },
+      answer: {
+        en: 'Jupiter Hora is considered best for financial growth, investments, and auspicious money-related activities. Venus Hora is excellent for purchasing luxury items, jewellery, and vehicles. Mercury Hora is ideal for business deals, contracts, and banking transactions. Avoid Saturn Hora and Mars Hora for financial activities as they are associated with losses and impulsive spending respectively.',
+        hi: 'गुरु होरा आर्थिक वृद्धि, निवेश और शुभ धन-सम्बन्धी कार्यों के लिए सर्वोत्तम है। शुक्र होरा विलासिता वस्तुएं, आभूषण और वाहन खरीदने के लिए उत्तम है। बुध होरा व्यापार, अनुबन्ध और बैंकिंग के लिए आदर्श है। शनि और मंगल होरा में आर्थिक कार्य टालें।',
+        sa: 'गुरुहोरा आर्थिकवृद्ध्यै निवेशाय शुभधनकार्येभ्यश्च श्रेष्ठा। शुक्रहोरा विलासवस्तुक्रयाय, बुधहोरा व्यापारानुबन्धाय च आदर्शा। शनिकुजहोरासु आर्थिककार्याणि वर्जनीयानि।',
+      },
+    },
+    {
+      question: {
+        en: 'How is Hora timing different from Choghadiya?',
+        hi: 'होरा और चौघड़िया के समय में क्या अन्तर है?',
+        sa: 'होरायाः चौघड़ियायाश्च काले कः भेदः?',
+      },
+      answer: {
+        en: 'Hora divides the day into 24 one-hour periods (each ruled by a planet in the Chaldean order), while Choghadiya divides only the daytime and nighttime into 8 periods each (~1.5 hours, variable by season). Hora is consistent in duration but varies in planetary ruler; Choghadiya periods vary in duration but follow a fixed naming pattern. Both are valid timing systems — Hora is widely used across India while Choghadiya is especially popular in Gujarat and Western India.',
+        hi: 'होरा दिन को 24 एक-एक घण्टे की अवधि में बाँटती है (प्रत्येक एक ग्रह द्वारा शासित), जबकि चौघड़िया दिन और रात को 8-8 अवधियों (~1.5 घण्टे) में। होरा की अवधि स्थिर है; चौघड़िया की ऋतु के अनुसार बदलती है। होरा सम्पूर्ण भारत में और चौघड़िया गुजरात-पश्चिम भारत में अधिक प्रचलित है।',
+        sa: 'होरा दिनं चतुर्विंशतिघण्टात्मकेषु विभागेषु विभजति, चौघड़िया तु दिवारात्रम् अष्ट-अष्टविभागेषु। होरा समग्रभारते, चौघड़िया गुजरातपश्चिमभारते च अधिकप्रचलिता।',
+      },
+    },
+  ],
+
+  // ─── /annual-forecast ──────────────────────────────────────
+  '/annual-forecast': [
+    {
+      question: {
+        en: 'What is Varshaphal (annual horoscope)?',
+        hi: 'वर्षफल (वार्षिक कुण्डली) क्या है?',
+        sa: 'वर्षफलम् (वार्षिककुण्डली) किम् अस्ति?',
+      },
+      answer: {
+        en: 'Varshaphal is the Vedic annual horoscope based on the Tajika system, cast for the exact moment the Sun returns to its natal position each year (Solar Return). It includes a unique chart, Muntha (progressed ascendant), Sahams (Arabic parts), the Varsheshvara (year lord), and Mudda Dasha (annual planetary periods). It provides predictions specific to that solar year — from one birthday to the next.',
+        hi: 'वर्षफल ताजिक प्रणाली पर आधारित वैदिक वार्षिक कुण्डली है, जो प्रतिवर्ष सूर्य के जन्मस्थिति पर लौटने के सटीक क्षण (सौर प्रत्यावर्तन) के लिए बनाई जाती है। इसमें मुन्था, साहम, वर्षेश्वर और मुद्दा दशा शामिल हैं।',
+        sa: 'वर्षफलं ताजिकपद्धत्याधारितं वैदिकवार्षिकफलम् अस्ति, सूर्यस्य जन्मस्थितौ प्रत्यावर्तनस्य सम्यक्क्षणे रच्यते।',
+      },
+    },
+    {
+      question: {
+        en: 'How is the annual forecast different from the birth chart?',
+        hi: 'वार्षिक भविष्यफल जन्म कुण्डली से कैसे भिन्न है?',
+        sa: 'वार्षिकभविष्यफलं जन्मकुण्डल्याः कथं भिद्यते?',
+      },
+      answer: {
+        en: 'The birth chart (Janma Kundali) is fixed for life and shows your overall karmic blueprint — personality, career tendencies, and life themes. The annual forecast (Varshaphal) is a temporary chart that changes every solar year, showing the specific themes, opportunities, and challenges active during that particular year. It uses the Tajika system with different aspects (Ithasala, Ishraf, etc.) rather than the standard Parashari aspects used in birth chart analysis.',
+        hi: 'जन्म कुण्डली जीवन भर स्थिर रहती है और समग्र कर्म खाका दर्शाती है। वर्षफल एक अस्थायी कुण्डली है जो प्रतिवर्ष बदलती है, उस वर्ष की विशिष्ट थीम, अवसर और चुनौतियाँ दर्शाती है। यह ताजिक प्रणाली (इत्थशाल, ईशराफ आदि) का उपयोग करता है।',
+        sa: 'जन्मकुण्डली जीवनपर्यन्तं स्थिरा भवति। वर्षफलं प्रतिसौरवर्षं परिवर्तमाना अस्थायिकुण्डली अस्ति, तद्वर्षस्य विशिष्टविषयान् दर्शयति।',
+      },
+    },
+    {
+      question: {
+        en: 'When should I check my Varshaphal?',
+        hi: 'वर्षफल कब देखना चाहिए?',
+        sa: 'वर्षफलं कदा द्रष्टव्यम्?',
+      },
+      answer: {
+        en: 'The ideal time to check your Varshaphal is around your birthday each year, as the solar year runs from one birthday to the next. You can generate it for any year — past, present, or future — to understand the planetary themes active during that period. Many Jyotishis recommend reviewing it alongside your Vimshottari Dasha for a comprehensive picture of the year ahead.',
+        hi: 'वर्षफल देखने का आदर्श समय प्रतिवर्ष जन्मदिन के आसपास है, क्योंकि सौर वर्ष एक जन्मदिन से अगले तक चलता है। आप किसी भी वर्ष (भूत, वर्तमान, भविष्य) के लिए बना सकते हैं। कई ज्योतिषी विंशोत्तरी दशा के साथ मिलाकर देखने की सलाह देते हैं।',
+        sa: 'वर्षफलं द्रष्टुं आदर्शकालः प्रतिवर्षं जन्मदिनस्य समीपे अस्ति। भूतवर्तमानभविष्यत्कस्यापि वर्षस्य कृते रचयितुं शक्यते।',
+      },
+    },
+  ],
+
+  // ─── /learn ────────────────────────────────────────────────
+  '/learn': [
+    {
+      question: {
+        en: 'How do I start learning Vedic astrology (Jyotish)?',
+        hi: 'वैदिक ज्योतिष सीखना कैसे शुरू करें?',
+        sa: 'वैदिकज्योतिषशास्त्रं शिक्षितुं कथम् आरभेत?',
+      },
+      answer: {
+        en: 'Start with the five Panchang elements (Tithi, Nakshatra, Yoga, Karana, Vara) to understand the daily Vedic calendar. Then learn the 12 Rashis (signs) and 9 Grahas (planets) and their basic natures. Next, study house significations (1st through 12th) and how planets behave in different signs and houses. Our structured learning path on Dekho Panchang covers all these topics with interactive examples.',
+        hi: 'पंचांग के पाँच अंगों (तिथि, नक्षत्र, योग, करण, वार) से शुरू करें। फिर 12 राशियाँ और 9 ग्रहों के मूल स्वभाव सीखें। फिर भावों (1-12) का अध्ययन करें। देखो पंचांग पर संरचित शिक्षण पथ इन सभी विषयों को सहज उदाहरणों से समझाता है।',
+        sa: 'पञ्चाङ्गस्य पञ्चभिः अङ्गैः (तिथिः, नक्षत्रम्, योगः, करणम्, वारः) आरभेत। ततः द्वादशराशीन् नवग्रहांश्च शिक्षेत। ततः भावानां (१-१२) अध्ययनं कुर्यात्।',
+      },
+    },
+    {
+      question: {
+        en: 'Can I learn Jyotish without knowing Sanskrit?',
+        hi: 'क्या संस्कृत के बिना ज्योतिष सीख सकते हैं?',
+        sa: 'संस्कृतं विना ज्योतिषं शिक्षितुं शक्यते किम्?',
+      },
+      answer: {
+        en: 'Yes, you can learn Jyotish without Sanskrit fluency. While classical texts (Brihat Parashara Hora Shastra, Brihat Jataka, Phaladeepika) are in Sanskrit, excellent translations exist in English and Hindi. Most technical terms (Rashi, Graha, Bhava, Dasha, Yoga) are Sanskrit words used as-is in all languages. Familiarity with key terms is sufficient — you do not need to read Sanskrit grammar. Our learn section presents all concepts in English, Hindi, and Sanskrit.',
+        hi: 'हाँ, संस्कृत में प्रवीणता के बिना ज्योतिष सीखा जा सकता है। यद्यपि शास्त्रीय ग्रन्थ संस्कृत में हैं, उनके उत्कृष्ट अनुवाद उपलब्ध हैं। अधिकांश तकनीकी शब्द (राशि, ग्रह, भाव, दशा, योग) सभी भाषाओं में वैसे ही प्रयुक्त होते हैं। मूल शब्दों की जानकारी पर्याप्त है।',
+        sa: 'आम्, संस्कृतप्रावीण्यं विना ज्योतिषं शिक्षितुं शक्यते। शास्त्रीयग्रन्थानां (बृहत्पराशरहोराशास्त्रम् इत्यादीनां) उत्कृष्टानुवादाः उपलभ्यन्ते। प्रमुखशब्दानां ज्ञानं पर्याप्तम्।',
+      },
+    },
+    {
+      question: {
+        en: 'What is the best order to study Jyotish topics?',
+        hi: 'ज्योतिष विषयों को किस क्रम में पढ़ना चाहिए?',
+        sa: 'ज्योतिषविषयान् केन क्रमेण पठेत्?',
+      },
+      answer: {
+        en: 'A recommended learning path: (1) Panchang basics — Tithi, Nakshatra, Yoga, Karana, Vara; (2) Rashis and their qualities; (3) Grahas — natural significations and friendships; (4) Bhavas (houses) — what each house represents; (5) Planet-in-sign and planet-in-house effects; (6) Aspects (Drishti); (7) Vimshottari Dasha system; (8) Yogas and Doshas; (9) Divisional charts (D-9 Navamsha first); (10) Transits and predictive techniques.',
+        hi: 'अनुशंसित क्रम: (1) पंचांग मूल — तिथि, नक्षत्र, योग, करण, वार; (2) राशियाँ; (3) ग्रह — स्वाभाविक कारकत्व और मैत्री; (4) भाव; (5) ग्रह-राशि और ग्रह-भाव प्रभाव; (6) दृष्टि; (7) विंशोत्तरी दशा; (8) योग और दोष; (9) वर्ग चार्ट; (10) गोचर।',
+        sa: 'अनुशंसितक्रमः — (१) पञ्चाङ्गमूलानि, (२) राशयः, (३) ग्रहाः, (४) भावाः, (५) ग्रहराशिग्रहभावप्रभावाः, (६) दृष्टयः, (७) विंशोत्तरीदशा, (८) योगदोषाः, (९) वर्गचक्राणि, (१०) गोचरः।',
+      },
+    },
+  ],
+
+  // ─── /prashna ──────────────────────────────────────────────
+  '/prashna': [
+    {
+      question: {
+        en: 'What is Prashna Kundali (horary astrology)?',
+        hi: 'प्रश्न कुण्डली (होरेरी ज्योतिष) क्या है?',
+        sa: 'प्रश्नकुण्डली (होरेरीज्योतिषम्) किम् अस्ति?',
+      },
+      answer: {
+        en: 'Prashna Kundali is the Vedic system of horary astrology where a chart is cast for the exact moment a question is asked (or arrives in the astrologer\'s mind). Unlike birth chart analysis, it does not require birth details. The chart of the question itself reveals the answer through planetary positions, house lords, and aspects at that precise moment. It is especially useful when birth data is unavailable or for time-sensitive questions.',
+        hi: 'प्रश्न कुण्डली वैदिक होरेरी ज्योतिष है जिसमें प्रश्न पूछने के सटीक क्षण की कुण्डली बनाई जाती है। जन्म विवरण की आवश्यकता नहीं होती। प्रश्न की कुण्डली स्वयं ग्रह स्थिति, भावेश और दृष्टि के माध्यम से उत्तर देती है।',
+        sa: 'प्रश्नकुण्डली वैदिकहोरेरीज्योतिषम् अस्ति यत्र प्रश्नस्य सम्यक्क्षणे कुण्डली रच्यते। जन्मविवरणम् नापेक्ष्यते। प्रश्नस्य कुण्डली स्वयं ग्रहस्थित्या भावेशैः दृष्टिभिश्च उत्तरं ददाति।',
+      },
+    },
+    {
+      question: {
+        en: 'When should I use Prashna instead of my birth chart?',
+        hi: 'जन्म कुण्डली के बदले प्रश्न कुण्डली कब उपयोग करें?',
+        sa: 'जन्मकुण्डल्याः स्थाने प्रश्नकुण्डली कदा उपयोक्तव्या?',
+      },
+      answer: {
+        en: 'Use Prashna when: (1) you don\'t know your exact birth time, (2) you have a specific, urgent question that needs an immediate answer, (3) you want to know the outcome of a particular event or decision, or (4) you\'re asking about something not clearly shown in the birth chart (like a lost object or a specific transaction). Prashna is ideal for "will this happen?" type questions with a definite yes/no answer.',
+        hi: 'प्रश्न कुण्डली तब उपयोग करें जब: (1) सटीक जन्म समय न पता हो, (2) कोई विशिष्ट, तत्काल प्रश्न हो, (3) किसी विशेष घटना का परिणाम जानना हो, या (4) जन्म कुण्डली में स्पष्ट न दिखे (जैसे खोई वस्तु)। "क्या यह होगा?" प्रकार के हाँ/ना प्रश्नों के लिए आदर्श है।',
+        sa: 'प्रश्नकुण्डल्या उपयोगः कार्यः यदा — (१) सूक्ष्मजन्मकालः न ज्ञातः, (२) विशिष्टः तात्कालिकः प्रश्नः अस्ति, (३) विशिष्टघटनायाः परिणामं ज्ञातुम् इच्छति, (४) जन्मकुण्डल्यां स्पष्टं न दृश्यते। "किम् एतत् भविष्यति?" इति प्रश्नेभ्यः आदर्शा।',
+      },
+    },
+    {
+      question: {
+        en: 'Does the accuracy of Prashna depend on the sincerity of the question?',
+        hi: 'क्या प्रश्न कुण्डली की सटीकता प्रश्न की गम्भीरता पर निर्भर करती है?',
+        sa: 'किं प्रश्नकुण्डल्याः सूक्ष्मता प्रश्नस्य गाम्भीर्ये निर्भरा भवति?',
+      },
+      answer: {
+        en: 'Classical texts emphasize that Prashna works best when the questioner has genuine concern about the matter. A question asked out of idle curiosity or to "test" astrology is unlikely to yield meaningful results. The underlying principle is that the moment of sincere inquiry is cosmically connected to the answer — the chart at that moment reflects the querent\'s karmic situation regarding that specific question.',
+        hi: 'शास्त्रीय ग्रन्थ कहते हैं कि प्रश्न कुण्डली तब सबसे अच्छी काम करती है जब प्रश्नकर्ता को विषय की वास्तविक चिन्ता हो। उत्सुकता या "परीक्षा" हेतु पूछा गया प्रश्न सार्थक परिणाम नहीं देता। सच्ची जिज्ञासा का क्षण ब्रह्माण्डीय रूप से उत्तर से जुड़ा होता है।',
+        sa: 'शास्त्रीयग्रन्थाः वदन्ति यत् प्रश्नकुण्डली तदा श्रेष्ठतया कार्यं करोति यदा प्रष्टुः विषये वास्तविकी चिन्ता भवति। सत्याः जिज्ञासायाः क्षणः ब्रह्माण्डीयतया उत्तरेण सम्बद्धः भवति।',
+      },
+    },
+  ],
+
+  // ─── /matching/compatibility ───────────────────────────────
+  '/matching/compatibility': [
+    {
+      question: {
+        en: 'What does the Rashi compatibility heatmap show?',
+        hi: 'राशि अनुकूलता हीटमैप क्या दर्शाता है?',
+        sa: 'राशिसाम्यतातापपत्रं किं दर्शयति?',
+      },
+      answer: {
+        en: 'The compatibility heatmap shows the Ashta Kuta Guna Milan score (out of 36) for every possible Moon sign pair — all 144 combinations of the 12 Rashis. Higher scores (shown in green/gold) indicate better compatibility, while lower scores (red) suggest potential challenges. This gives you a quick visual overview of which Moon sign combinations are naturally harmonious according to Vedic matching rules.',
+        hi: 'अनुकूलता हीटमैप प्रत्येक सम्भव चन्द्र राशि जोड़ी के लिए अष्ट कूट गुण मिलान अंक (36 में से) दर्शाता है — 12 राशियों के सभी 144 संयोजन। उच्च अंक (हरा/स्वर्ण) बेहतर अनुकूलता और निम्न (लाल) सम्भावित चुनौतियाँ दर्शाते हैं।',
+        sa: 'साम्यतातापपत्रं प्रत्येकस्य सम्भाव्यचन्द्रराशियुग्मस्य अष्टकूटगुणमेलनाङ्कम् (षट्त्रिंशतः) दर्शयति — द्वादशराशीनां सर्वाणि चतुश्चत्वारिंशदधिकशतसंयोजनानि।',
+      },
+    },
+    {
+      question: {
+        en: 'Is Ashta Kuta score the only factor for marriage compatibility?',
+        hi: 'क्या विवाह अनुकूलता के लिए अष्ट कूट अंक ही एकमात्र कारक है?',
+        sa: 'किम् अष्टकूटाङ्कः विवाहसाम्यतायै एकमात्रः कारकः अस्ति?',
+      },
+      answer: {
+        en: 'No, the Ashta Kuta score is an important starting point but not the only factor. A thorough compatibility analysis also examines: Mangal Dosha in both charts, the 7th house lord and Venus placement, Dasha compatibility (whether both partners are in favourable Dashas), and overall chart strength. A high Guna score with a serious Dosha (like Nadi Dosha) may still be problematic. Consulting the full birth charts provides a more complete picture.',
+        hi: 'नहीं, अष्ट कूट अंक एक महत्वपूर्ण प्रारम्भिक बिन्दु है किन्तु एकमात्र कारक नहीं। सम्पूर्ण अनुकूलता विश्लेषण में मंगल दोष, 7वें भावेश और शुक्र स्थिति, दशा अनुकूलता और समग्र कुण्डली बल भी देखा जाता है।',
+        sa: 'न, अष्टकूटाङ्कः महत्त्वपूर्णः आरम्भबिन्दुः किन्तु एकमात्रः कारकः नास्ति। सम्पूर्णसाम्यताविश्लेषणे मङ्गलदोषः, सप्तमभावेशः, दशासाम्यता, समग्रकुण्डलीबलं च परीक्ष्यन्ते।',
+      },
+    },
+    {
+      question: {
+        en: 'What happens if the Guna score is low but we still want to marry?',
+        hi: 'यदि गुण अंक कम हो लेकिन फिर भी विवाह करना चाहें तो?',
+        sa: 'यदि गुणाङ्काः न्यूनाः किन्तु विवाहम् इच्छामः तर्हि किम्?',
+      },
+      answer: {
+        en: 'A low Guna score (below 18) does not automatically mean the marriage will fail — it indicates areas that may need extra attention. Remedies include: performing specific Pujas recommended by a Jyotishi, wearing gemstones prescribed for Dosha mitigation, observing Shanti rituals before the wedding, and — most importantly — understanding which specific Kutas scored low so you can consciously work on those relationship areas (communication, temperament, etc.).',
+        hi: 'कम गुण अंक (18 से नीचे) का अर्थ स्वचालित विवाह विफलता नहीं है — यह उन क्षेत्रों को इंगित करता है जिन पर अतिरिक्त ध्यान चाहिए। उपायों में विशिष्ट पूजा, रत्न धारण, शान्ति अनुष्ठान और — सबसे महत्वपूर्ण — कौन से कूट कम हैं यह जानकर उन सम्बन्ध क्षेत्रों पर सचेत रूप से कार्य करना शामिल है।',
+        sa: 'न्यूनगुणाङ्कः (अष्टादशात् न्यूनः) स्वचालितविवाहविफलतां न सूचयति — तेषु क्षेत्रेषु अतिरिक्तध्यानम् आवश्यकम् इति दर्शयति।',
+      },
+    },
+  ],
+
+  // ─── /kp-system ────────────────────────────────────────────
+  '/kp-system': [
+    {
+      question: {
+        en: 'What is KP (Krishnamurti Paddhati) astrology?',
+        hi: 'केपी (कृष्णमूर्ति पद्धति) ज्योतिष क्या है?',
+        sa: 'केपी (कृष्णमूर्ति पद्धतिः) ज्योतिषं किम् अस्ति?',
+      },
+      answer: {
+        en: 'KP System (Krishnamurti Paddhati) is a refined predictive system developed by Prof. K.S. Krishnamurti. It uses the Placidus house system (instead of equal houses), divides each Nakshatra into 9 sub-divisions based on Vimshottari Dasha lords, and creates a unique 249-entry sub-lord table. KP is known for its precision in timing events and answering specific yes/no questions — it is often used alongside traditional Parashari Jyotish.',
+        hi: 'केपी प्रणाली (कृष्णमूर्ति पद्धति) प्रो. के.एस. कृष्णमूर्ति द्वारा विकसित एक परिष्कृत भविष्यवाणी प्रणाली है। यह प्लेसिडस भाव प्रणाली, 249 उप-स्वामी तालिका और नक्षत्रों के 9 उप-विभाजन का उपयोग करती है। केपी घटनाओं के समय और हाँ/ना प्रश्नों में अत्यन्त सटीक है।',
+        sa: 'केपीपद्धतिः (कृष्णमूर्तिपद्धतिः) प्रो. कृष्णमूर्तिना विकसिता परिष्कृता भविष्यवाणीपद्धतिः अस्ति। प्लेसिडसभावपद्धतिम्, २४९ उपस्वामिसारणीं, नक्षत्राणां नवोपविभागांश्च उपयुङ्क्ते।',
+      },
+    },
+    {
+      question: {
+        en: 'How is KP different from traditional Vedic astrology?',
+        hi: 'केपी पारम्परिक वैदिक ज्योतिष से कैसे भिन्न है?',
+        sa: 'केपी पारम्परिकवैदिकज्योतिषात् कथं भिद्यते?',
+      },
+      answer: {
+        en: 'Key differences: (1) KP uses Placidus houses while Vedic uses equal/whole-sign houses; (2) KP introduces "sub-lord" — a finer division beyond Nakshatra lord, giving 249 subdivisions vs 27 Nakshatras; (3) KP uses "ruling planets" at the moment of judgment for confirmation; (4) KP focuses on cuspal sub-lords rather than house lords for prediction; (5) KP is particularly strong for timing events and Prashna (horary) questions.',
+        hi: 'प्रमुख अन्तर: (1) केपी प्लेसिडस भाव, वैदिक समान/पूर्ण राशि भाव; (2) केपी "उप-स्वामी" — नक्षत्र स्वामी से भी सूक्ष्म विभाजन, 249 उपविभाग; (3) केपी निर्णय क्षण के "शासक ग्रह" से पुष्टि; (4) केपी भावेश के बजाय भाव मध्य उप-स्वामी पर ध्यान; (5) घटना समय और प्रश्न में विशेष रूप से प्रबल।',
+        sa: 'प्रमुखभेदाः — (१) केपी प्लेसिडसभावान् उपयुङ्क्ते, (२) "उपस्वामी" — नक्षत्रस्वामिनः अतिसूक्ष्मः विभागः, २४९ उपविभागाः, (३) निर्णयक्षणे "शासकग्रहाः" पुष्ट्यर्थम्, (४) भावमध्योपस्वामिषु ध्यानम्।',
+      },
+    },
+    {
+      question: {
+        en: 'What are ruling planets in KP system?',
+        hi: 'केपी प्रणाली में शासक ग्रह क्या हैं?',
+        sa: 'केपीपद्धतौ शासकग्रहाः के सन्ति?',
+      },
+      answer: {
+        en: 'Ruling planets are the lords active at the moment of chart judgment — they include the Lagna sign lord, Lagna Nakshatra lord, Moon sign lord, Moon Nakshatra lord, and the day lord. In KP, ruling planets serve as a confirmation tool: if a significator planet for a particular event is also a ruling planet at the time of analysis, it strongly confirms that the event will manifest. This is a unique KP technique not found in traditional Vedic astrology.',
+        hi: 'शासक ग्रह चार्ट विश्लेषण के क्षण में सक्रिय स्वामी हैं — लग्न राशि स्वामी, लग्न नक्षत्र स्वामी, चन्द्र राशि स्वामी, चन्द्र नक्षत्र स्वामी और वार स्वामी। केपी में यदि किसी घटना का कारक ग्रह विश्लेषण समय का शासक ग्रह भी हो, तो यह घटना की पुष्टि करता है।',
+        sa: 'शासकग्रहाः चक्रविश्लेषणक्षणे सक्रियाः स्वामिनः सन्ति — लग्नराशिस्वामी, लग्ननक्षत्रस्वामी, चन्द्रराशिस्वामी, चन्द्रनक्षत्रस्वामी, वारस्वामी च। केपीपद्धतौ एषः अद्वितीयः पुष्टिसाधनम् अस्ति।',
+      },
+    },
+  ],
 };
 
 /**

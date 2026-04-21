@@ -527,4 +527,496 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
       },
     },
   },
+
+  // ---------------------------------------------------------------------------
+  // D10 Career / Profession (Dashamsha) interpretations — 108 entries
+  // ---------------------------------------------------------------------------
+
+  career: {
+    // -----------------------------------------------------------------------
+    // Sun (0) — authority, leadership, government, personal branding
+    // -----------------------------------------------------------------------
+    0: {
+      1: {
+        en: 'Sun in the D10 1st house creates a powerful professional identity. Colleagues see you as a natural authority figure, and personal branding comes effortlessly — your career is an extension of who you are.',
+        hi: 'दशमांश लग्न में सूर्य शक्तिशाली व्यावसायिक पहचान बनाता है। सहकर्मी आपको स्वाभाविक अधिकारी मानते हैं और करियर आपकी पहचान का विस्तार होता है।',
+      },
+      2: {
+        en: 'Sun in the D10 2nd house indicates strong income from authoritative positions. Your professional communication carries weight, and you earn through government, administration, or leadership roles.',
+        hi: 'दशमांश द्वितीय में सूर्य अधिकारपूर्ण पदों से अच्छी आय दर्शाता है। आपकी व्यावसायिक वाणी में प्रभाव होता है।',
+      },
+      3: {
+        en: 'Sun in the D10 3rd house gives courage and initiative in career pursuits. You excel in marketing, sales, or any field requiring bold communication and short business travels.',
+        hi: 'दशमांश तृतीय में सूर्य करियर में साहस और पहल देता है। विपणन, बिक्री या साहसिक संवाद वाले क्षेत्रों में उत्कृष्टता मिलती है।',
+      },
+      4: {
+        en: 'Sun in the D10 4th house indicates a prestigious workplace and emotional pride in your profession. You may work from an impressive office or hold authority over workplace property and assets.',
+        hi: 'दशमांश चतुर्थ में सूर्य प्रतिष्ठित कार्यस्थल और पेशे में भावनात्मक गर्व दर्शाता है। प्रभावशाली कार्यालय या संपत्ति पर अधिकार संभव है।',
+      },
+      5: {
+        en: 'Sun in the D10 5th house brings creative authority at work. You shine in mentoring roles, speculative ventures, or creative industries where your personal vision drives professional output.',
+        hi: 'दशमांश पंचम में सूर्य कार्य में रचनात्मक अधिकार लाता है। मार्गदर्शन, सट्टा उद्यम या रचनात्मक उद्योगों में चमक मिलती है।',
+      },
+      6: {
+        en: 'Sun in the D10 6th house makes you a formidable competitor in the workplace. You overcome professional rivals through sheer force of will and excel in service-oriented roles with clear hierarchy.',
+        hi: 'दशमांश षष्ठ में सूर्य कार्यस्थल पर दुर्जेय प्रतिस्पर्धी बनाता है। इच्छाशक्ति से प्रतिद्वंद्वियों पर विजय और सेवा भूमिकाओं में श्रेष्ठता मिलती है।',
+      },
+      7: {
+        en: 'Sun in the D10 7th house indicates career advancement through powerful partnerships and clients. Negotiations carry your personal stamp, and you attract high-status business associates.',
+        hi: 'दशमांश सप्तम में सूर्य शक्तिशाली साझेदारियों और ग्राहकों से करियर उन्नति दर्शाता है। उच्च दर्जे के व्यापारिक सहयोगी आकर्षित होते हैं।',
+      },
+      8: {
+        en: 'Sun in the D10 8th house brings career transformation through crisis leadership. You thrive in research, investigation, insurance, or roles that manage hidden resources and institutional power.',
+        hi: 'दशमांश अष्टम में सूर्य संकट नेतृत्व से करियर परिवर्तन लाता है। शोध, जांच, बीमा या छिपे संसाधनों के प्रबंधन में सफलता मिलती है।',
+      },
+      9: {
+        en: 'Sun in the D10 9th house elevates the career through higher education, publishing, or international platforms. Your boss or mentor recognizes your potential and becomes a career catalyst.',
+        hi: 'दशमांश नवम में सूर्य उच्च शिक्षा, प्रकाशन या अंतरराष्ट्रीय मंचों से करियर ऊंचा करता है। बॉस या गुरु आपकी क्षमता पहचानते हैं।',
+      },
+      10: {
+        en: 'Sun in the D10 10th house is a premier placement for leadership and public achievement. You are born for executive, government, or top-management roles — authority and recognition define your career.',
+        hi: 'दशमांश दशम में सूर्य नेतृत्व और सार्वजनिक उपलब्धि का सर्वोत्तम स्थान है। कार्यकारी, सरकारी या शीर्ष प्रबंधन भूमिकाओं के लिए जन्मे हैं।',
+      },
+      11: {
+        en: 'Sun in the D10 11th house brings professional gains through influential networks. Your career ambitions are fulfilled through connections with people in positions of power and government circles.',
+        hi: 'दशमांश एकादश में सूर्य प्रभावशाली नेटवर्क से व्यावसायिक लाभ लाता है। सत्ता और सरकारी हलकों के संपर्क से करियर महत्वाकांक्षाएं पूरी होती हैं।',
+      },
+      12: {
+        en: 'Sun in the D10 12th house may indicate a career abroad or in behind-the-scenes roles. Authority is exercised quietly — hospitals, research labs, foreign governments, or spiritual institutions.',
+        hi: 'दशमांश द्वादश में सूर्य विदेशी करियर या पर्दे के पीछे की भूमिकाओं का संकेत देता है। अस्पताल, शोध प्रयोगशालाओं या आध्यात्मिक संस्थानों में अधिकार।',
+      },
+    },
+
+    // -----------------------------------------------------------------------
+    // Moon (1) — public image, emotional satisfaction, popularity at work
+    // -----------------------------------------------------------------------
+    1: {
+      1: {
+        en: 'Moon in the D10 1st house gives a career shaped by emotional intelligence and public appeal. You adapt to professional environments instinctively and your work persona resonates with others.',
+        hi: 'दशमांश लग्न में चंद्र भावनात्मक बुद्धि और जनता से जुड़ाव वाला करियर देता है। कार्य व्यक्तित्व सहज रूप से लोगों से जुड़ता है।',
+      },
+      2: {
+        en: 'Moon in the D10 2nd house indicates fluctuating but potentially lucrative professional income. Your earnings depend on public favour, and your communication at work is nurturing and persuasive.',
+        hi: 'दशमांश द्वितीय में चंद्र उतार-चढ़ाव वाली किंतु लाभदायक व्यावसायिक आय दर्शाता है। कार्यस्थल पर संवाद पोषणकारी और प्रेरक होता है।',
+      },
+      3: {
+        en: 'Moon in the D10 3rd house brings initiative fuelled by emotional conviction. You excel in media, writing, customer relations, or any career requiring frequent travel and public interaction.',
+        hi: 'दशमांश तृतीय में चंद्र भावनात्मक विश्वास से प्रेरित पहल लाता है। मीडिया, लेखन, ग्राहक संबंध या जनसंपर्क वाले करियर में उत्कृष्टता।',
+      },
+      4: {
+        en: 'Moon in the D10 4th house gives deep emotional satisfaction from work. You thrive in careers related to real estate, hospitality, interior design, or creating comfortable workplace environments.',
+        hi: 'दशमांश चतुर्थ में चंद्र कार्य से गहरी भावनात्मक संतुष्टि देता है। रियल एस्टेट, आतिथ्य, इंटीरियर डिज़ाइन में सफलता मिलती है।',
+      },
+      5: {
+        en: 'Moon in the D10 5th house blesses creative professions with emotional depth. Teaching, childcare, entertainment, or artistic careers flourish, and your mentoring style is empathetic and intuitive.',
+        hi: 'दशमांश पंचम में चंद्र रचनात्मक पेशों को भावनात्मक गहराई देता है। शिक्षण, मनोरंजन या कलात्मक करियर फलते-फूलते हैं।',
+      },
+      6: {
+        en: 'Moon in the D10 6th house can bring emotional stress from workplace competition and daily routines. You excel in healthcare, nursing, social services, or roles that require serving the public\'s emotional needs.',
+        hi: 'दशमांश षष्ठ में चंद्र कार्यस्थल प्रतिस्पर्धा से भावनात्मक तनाव ला सकता है। स्वास्थ्य सेवा, नर्सिंग या सामाजिक सेवाओं में श्रेष्ठता।',
+      },
+      7: {
+        en: 'Moon in the D10 7th house attracts career success through client relationships and business partnerships. You have an instinct for understanding what clients need and build loyalty through emotional rapport.',
+        hi: 'दशमांश सप्तम में चंद्र ग्राहक संबंधों और व्यापारिक साझेदारियों से करियर सफलता आकर्षित करता है। ग्राहकों की आवश्यकता समझने की सहज प्रतिभा।',
+      },
+      8: {
+        en: 'Moon in the D10 8th house indicates a career involving emotional healing, psychology, counselling, or managing shared resources. Professional life goes through periodic emotional upheavals that lead to reinvention.',
+        hi: 'दशमांश अष्टम में चंद्र भावनात्मक उपचार, मनोविज्ञान या साझा संसाधनों के प्रबंधन से जुड़ा करियर दर्शाता है। समय-समय पर व्यावसायिक पुनर्निर्माण होता है।',
+      },
+      9: {
+        en: 'Moon in the D10 9th house favours careers in education, travel, or cross-cultural work. Your professional growth accelerates abroad or through higher learning, and your mentor-boss relationship is emotionally supportive.',
+        hi: 'दशमांश नवम में चंद्र शिक्षा, यात्रा या अंतर-सांस्कृतिक कार्य में करियर का पक्ष लेता है। विदेश या उच्च शिक्षा से व्यावसायिक वृद्धि।',
+      },
+      10: {
+        en: 'Moon in the D10 10th house makes your career public-facing and popularity-driven. You gain recognition through emotional connection with audiences — ideal for politics, hospitality, media, and public service.',
+        hi: 'दशमांश दशम में चंद्र जनता से जुड़ा और लोकप्रियता-आधारित करियर बनाता है। राजनीति, आतिथ्य, मीडिया और जनसेवा के लिए आदर्श।',
+      },
+      11: {
+        en: 'Moon in the D10 11th house brings professional gains through networking and community building. Your career ambitions are nurtured by a supportive circle of industry friends and well-wishers.',
+        hi: 'दशमांश एकादश में चंद्र नेटवर्किंग और समुदाय निर्माण से व्यावसायिक लाभ लाता है। उद्योग मित्रों के सहयोग से करियर महत्वाकांक्षाएं पूरी होती हैं।',
+      },
+      12: {
+        en: 'Moon in the D10 12th house may indicate a career in foreign lands, charitable institutions, or behind-the-scenes creative work. Professional expenses may be high, but emotional fulfilment comes from selfless service.',
+        hi: 'दशमांश द्वादश में चंद्र विदेशी करियर, धर्मार्थ संस्थानों या पर्दे के पीछे रचनात्मक कार्य का संकेत देता है। निस्वार्थ सेवा से भावनात्मक तृप्ति।',
+      },
+    },
+
+    // -----------------------------------------------------------------------
+    // Mars (2) — drive, engineering, competition, action-oriented career
+    // -----------------------------------------------------------------------
+    2: {
+      1: {
+        en: 'Mars in the D10 1st house creates a fiercely ambitious professional identity. You are action-oriented, competitive, and colleagues perceive you as someone who gets things done through sheer force.',
+        hi: 'दशमांश लग्न में मंगल अत्यंत महत्वाकांक्षी व्यावसायिक पहचान बनाता है। आप कर्मठ, प्रतिस्पर्धी हैं और सहकर्मी आपको कर्मशील मानते हैं।',
+      },
+      2: {
+        en: 'Mars in the D10 2nd house indicates aggressive earning capacity and direct, forceful professional communication. Income may come from engineering, manufacturing, real estate, or defence-related work.',
+        hi: 'दशमांश द्वितीय में मंगल आक्रामक कमाई क्षमता और सीधा व्यावसायिक संवाद दर्शाता है। इंजीनियरिंग, विनिर्माण या रक्षा से आय।',
+      },
+      3: {
+        en: 'Mars in the D10 3rd house gives extraordinary courage and initiative in business. You thrive in sales, marketing, sports journalism, or entrepreneurial ventures requiring bold, quick decisions.',
+        hi: 'दशमांश तृतीय में मंगल व्यापार में असाधारण साहस और पहल देता है। बिक्री, विपणन, खेल या साहसी उद्यमों में सफलता मिलती है।',
+      },
+      4: {
+        en: 'Mars in the D10 4th house gives energy to workplace improvement but may cause friction in the office environment. Careers in construction, real estate development, or property management suit this placement.',
+        hi: 'दशमांश चतुर्थ में मंगल कार्यस्थल सुधार में ऊर्जा देता है किंतु कार्यालय में घर्षण संभव है। निर्माण, रियल एस्टेट विकास में उपयुक्त।',
+      },
+      5: {
+        en: 'Mars in the D10 5th house brings competitive creativity and speculative boldness to the career. You excel in sports, trading, creative direction, or mentoring through tough-love approaches.',
+        hi: 'दशमांश पंचम में मंगल प्रतिस्पर्धी रचनात्मकता और सट्टा साहस लाता है। खेल, ट्रेडिंग या रचनात्मक निर्देशन में उत्कृष्टता।',
+      },
+      6: {
+        en: 'Mars in the D10 6th house is excellent for competitive careers — you crush workplace rivals. Ideal for military, surgery, law enforcement, litigation, or any profession where combating opposition is the daily routine.',
+        hi: 'दशमांश षष्ठ में मंगल प्रतिस्पर्धी करियर के लिए उत्कृष्ट है — कार्यस्थल प्रतिद्वंद्वियों पर विजय। सैन्य, शल्य चिकित्सा, कानून प्रवर्तन के लिए आदर्श।',
+      },
+      7: {
+        en: 'Mars in the D10 7th house brings aggressive negotiation skills and combative business partnerships. You attract dynamic, action-oriented clients, though contractual disputes are possible.',
+        hi: 'दशमांश सप्तम में मंगल आक्रामक वार्ता कौशल और गतिशील व्यापारिक साझेदारी लाता है। अनुबंध विवाद संभव किंतु ऊर्जावान ग्राहक आकर्षित होते हैं।',
+      },
+      8: {
+        en: 'Mars in the D10 8th house thrives in crisis management, surgery, mining, or investigative fields. Career undergoes dramatic transformations, and hidden income sources may involve risk and danger.',
+        hi: 'दशमांश अष्टम में मंगल संकट प्रबंधन, शल्य चिकित्सा, खनन या जांच क्षेत्रों में सफल होता है। करियर में नाटकीय परिवर्तन और जोखिम भरी आय।',
+      },
+      9: {
+        en: 'Mars in the D10 9th house propels the career through adventurous international assignments, defence academia, or publishing on technical subjects. Your professional philosophy is action-first.',
+        hi: 'दशमांश नवम में मंगल साहसिक अंतरराष्ट्रीय कार्य, रक्षा शिक्षा या तकनीकी प्रकाशन से करियर को आगे बढ़ाता है। कर्म-प्रधान दर्शन।',
+      },
+      10: {
+        en: 'Mars in the D10 10th house is a powerhouse placement for engineering, military command, surgery, and competitive leadership. You achieve through relentless effort and are unafraid of professional battles.',
+        hi: 'दशमांश दशम में मंगल इंजीनियरिंग, सैन्य कमान, शल्य चिकित्सा और प्रतिस्पर्धी नेतृत्व के लिए शक्तिशाली स्थान है। अथक प्रयास से उपलब्धि।',
+      },
+      11: {
+        en: 'Mars in the D10 11th house brings professional gains through competitive victories and bold networking. Career ambitions are fulfilled by seizing opportunities aggressively and building alliances with powerful peers.',
+        hi: 'दशमांश एकादश में मंगल प्रतिस्पर्धी विजय और साहसी नेटवर्किंग से व्यावसायिक लाभ लाता है। अवसरों को आक्रामक रूप से पकड़ कर महत्वाकांक्षाएं पूरी होती हैं।',
+      },
+      12: {
+        en: 'Mars in the D10 12th house channels professional energy into foreign assignments, defence research, or physically demanding behind-the-scenes work. Career expenses may be high due to travel or equipment.',
+        hi: 'दशमांश द्वादश में मंगल विदेशी कार्य, रक्षा शोध या शारीरिक रूप से कठिन पर्दे के पीछे के कार्य में ऊर्जा लगाता है। यात्रा से करियर खर्च अधिक।',
+      },
+    },
+
+    // -----------------------------------------------------------------------
+    // Mercury (3) — intellect, communication, analytical profession
+    // -----------------------------------------------------------------------
+    3: {
+      1: {
+        en: 'Mercury in the D10 1st house creates an intellectually sharp professional identity. You are known for analytical thinking, verbal dexterity, and adaptability — the quintessential knowledge worker.',
+        hi: 'दशमांश लग्न में बुध बौद्धिक रूप से तीक्ष्ण व्यावसायिक पहचान बनाता है। विश्लेषणात्मक सोच, वाक्चातुर्य और अनुकूलन क्षमता के लिए जाने जाते हैं।',
+      },
+      2: {
+        en: 'Mercury in the D10 2nd house indicates income through communication-based careers — writing, accounting, data analysis, or financial advisory. Professional speech is articulate and detail-oriented.',
+        hi: 'दशमांश द्वितीय में बुध संवाद-आधारित करियर से आय दर्शाता है — लेखन, लेखांकन, डेटा विश्लेषण। व्यावसायिक वाणी स्पष्ट और विस्तृत होती है।',
+      },
+      3: {
+        en: 'Mercury in the D10 3rd house is exceptional for marketing, journalism, copywriting, and business communication. Short work trips are frequent and fruitful, and multitasking is your professional superpower.',
+        hi: 'दशमांश तृतीय में बुध विपणन, पत्रकारिता, कॉपीराइटिंग और व्यापारिक संवाद के लिए असाधारण है। बहुकार्य आपकी व्यावसायिक महाशक्ति है।',
+      },
+      4: {
+        en: 'Mercury in the D10 4th house favours careers in education technology, smart workspace design, or home-based intellectual work. Emotional satisfaction comes from mentally stimulating work environments.',
+        hi: 'दशमांश चतुर्थ में बुध शिक्षा प्रौद्योगिकी, स्मार्ट कार्यक्षेत्र डिज़ाइन या घर-आधारित बौद्धिक कार्य का पक्ष लेता है।',
+      },
+      5: {
+        en: 'Mercury in the D10 5th house excels in creative writing, game design, educational content, or speculative analysis. You mentor through wit and logic, and your creative output is intellectually rich.',
+        hi: 'दशमांश पंचम में बुध रचनात्मक लेखन, गेम डिज़ाइन, शैक्षिक सामग्री या विश्लेषण में उत्कृष्ट है। बुद्धि और तर्क से मार्गदर्शन।',
+      },
+      6: {
+        en: 'Mercury in the D10 6th house brings analytical prowess to problem-solving roles. You excel in auditing, quality control, debugging, legal analysis, or healthcare administration — detail work under pressure.',
+        hi: 'दशमांश षष्ठ में बुध समस्या-समाधान भूमिकाओं में विश्लेषणात्मक कौशल लाता है। ऑडिटिंग, गुणवत्ता नियंत्रण, कानूनी विश्लेषण में श्रेष्ठता।',
+      },
+      7: {
+        en: 'Mercury in the D10 7th house makes you a skilled negotiator and contract specialist. Business partnerships thrive on intellectual compatibility, and you attract clients through sharp communication.',
+        hi: 'दशमांश सप्तम में बुध कुशल वार्ताकार और अनुबंध विशेषज्ञ बनाता है। बौद्धिक अनुकूलता से व्यापारिक साझेदारी फलती है।',
+      },
+      8: {
+        en: 'Mercury in the D10 8th house suits careers in forensic accounting, cybersecurity, data mining, or research requiring deep investigative analysis. You uncover what others miss in professional settings.',
+        hi: 'दशमांश अष्टम में बुध फोरेंसिक लेखांकन, साइबर सुरक्षा, डेटा माइनिंग या गहन शोध वाले करियर के लिए उपयुक्त है।',
+      },
+      9: {
+        en: 'Mercury in the D10 9th house propels careers in academia, publishing, translation, international trade, or law. Higher education is directly career-enhancing, and you learn throughout your professional life.',
+        hi: 'दशमांश नवम में बुध शिक्षा, प्रकाशन, अनुवाद, अंतरराष्ट्रीय व्यापार या कानून में करियर को आगे बढ़ाता है। उच्च शिक्षा करियर-वर्धक है।',
+      },
+      10: {
+        en: 'Mercury in the D10 10th house is ideal for intellectual professions — technology, consulting, analytics, communications, or administration. Your career is defined by mental agility and communication mastery.',
+        hi: 'दशमांश दशम में बुध बौद्धिक पेशों के लिए आदर्श है — प्रौद्योगिकी, परामर्श, विश्लेषण या संचार। मानसिक चपलता और संवाद कौशल से करियर परिभाषित होता है।',
+      },
+      11: {
+        en: 'Mercury in the D10 11th house brings professional gains through intellectual networks, tech communities, and information-sharing circles. Career ambitions are fulfilled by staying connected and informed.',
+        hi: 'दशमांश एकादश में बुध बौद्धिक नेटवर्क, तकनीकी समुदायों और सूचना साझाकरण से व्यावसायिक लाभ लाता है। जुड़ाव से महत्वाकांक्षाएं पूरी होती हैं।',
+      },
+      12: {
+        en: 'Mercury in the D10 12th house favours careers in foreign language services, remote data work, coding for international clients, or writing in solitude. Behind-the-scenes intellectual labour is your forte.',
+        hi: 'दशमांश द्वादश में बुध विदेशी भाषा सेवाओं, दूरस्थ डेटा कार्य या एकांत लेखन वाले करियर का पक्ष लेता है। पर्दे के पीछे बौद्धिक श्रम।',
+      },
+    },
+
+    // -----------------------------------------------------------------------
+    // Jupiter (4) — wisdom, teaching, law, ethics, expansion
+    // -----------------------------------------------------------------------
+    4: {
+      1: {
+        en: 'Jupiter in the D10 1st house bestows a wise and respected professional identity. Colleagues view you as ethical and trustworthy, and your career naturally gravitates toward advisory or teaching roles.',
+        hi: 'दशमांश लग्न में गुरु बुद्धिमान और सम्मानित व्यावसायिक पहचान प्रदान करता है। सहकर्मी आपको नैतिक और विश्वसनीय मानते हैं।',
+      },
+      2: {
+        en: 'Jupiter in the D10 2nd house brings generous professional income and valued speech at work. You earn through education, finance, consulting, or roles where your wisdom directly generates revenue.',
+        hi: 'दशमांश द्वितीय में गुरु उदार व्यावसायिक आय और कार्यस्थल पर मूल्यवान वाणी लाता है। शिक्षा, वित्त या परामर्श से कमाई।',
+      },
+      3: {
+        en: 'Jupiter in the D10 3rd house gives expansive professional communication and successful business initiatives. Publishing, educational outreach, and motivational speaking are natural career channels.',
+        hi: 'दशमांश तृतीय में गुरु विस्तृत व्यावसायिक संवाद और सफल व्यापारिक पहल देता है। प्रकाशन, शैक्षिक प्रसार और प्रेरक वक्तृत्व स्वाभाविक मार्ग।',
+      },
+      4: {
+        en: 'Jupiter in the D10 4th house provides a nurturing, expansive workplace and deep contentment from professional life. Education institutions, real estate, or homeland-connected careers prosper.',
+        hi: 'दशमांश चतुर्थ में गुरु पोषक, विस्तृत कार्यस्थल और व्यावसायिक जीवन से गहरी संतुष्टि प्रदान करता है। शिक्षा संस्थान या रियल एस्टेट में समृद्धि।',
+      },
+      5: {
+        en: 'Jupiter in the D10 5th house excels in education, spiritual teaching, creative management, or speculative finance. Mentoring is a core part of your professional identity and brings you fulfilment.',
+        hi: 'दशमांश पंचम में गुरु शिक्षा, आध्यात्मिक शिक्षण, रचनात्मक प्रबंधन में उत्कृष्ट है। मार्गदर्शन आपकी व्यावसायिक पहचान का मूल है।',
+      },
+      6: {
+        en: 'Jupiter in the D10 6th house helps overcome professional obstacles through righteous conduct. You excel in legal practice, NGO work, healthcare, or dispute resolution where ethics matter most.',
+        hi: 'दशमांश षष्ठ में गुरु धार्मिक आचरण से व्यावसायिक बाधाओं पर विजय में सहायता करता है। कानूनी प्रैक्टिस, एनजीओ या स्वास्थ्य सेवा में श्रेष्ठता।',
+      },
+      7: {
+        en: 'Jupiter in the D10 7th house blesses business partnerships with trust and mutual growth. Clients respect your fairness, and your career thrives through collaborative, ethical business relationships.',
+        hi: 'दशमांश सप्तम में गुरु व्यापारिक साझेदारियों को विश्वास और पारस्परिक वृद्धि से आशीर्वाद देता है। ग्राहक आपकी निष्पक्षता का सम्मान करते हैं।',
+      },
+      8: {
+        en: 'Jupiter in the D10 8th house protects during career crises and can bring hidden windfalls. Research, philanthropy, insurance, or managing institutional endowments are natural professional domains.',
+        hi: 'दशमांश अष्टम में गुरु करियर संकटों में सुरक्षा और छिपे लाभ ला सकता है। शोध, परोपकार, बीमा या संस्थागत कोषों का प्रबंधन स्वाभाविक क्षेत्र।',
+      },
+      9: {
+        en: 'Jupiter in the D10 9th house is a stellar placement for careers in education, law, philosophy, spiritual teaching, or international development. Your professional life is a vehicle for dharmic purpose.',
+        hi: 'दशमांश नवम में गुरु शिक्षा, कानून, दर्शन, आध्यात्मिक शिक्षण या अंतरराष्ट्रीय विकास में करियर के लिए उत्कृष्ट स्थान है। करियर धर्म का वाहन।',
+      },
+      10: {
+        en: 'Jupiter in the D10 10th house grants expansive career success, high social standing, and recognition as an authority in your field. Government advisory, judiciary, university leadership, or religious institutions thrive.',
+        hi: 'दशमांश दशम में गुरु व्यापक करियर सफलता, उच्च सामाजिक प्रतिष्ठा और क्षेत्र में अधिकारी के रूप में मान्यता देता है।',
+      },
+      11: {
+        en: 'Jupiter in the D10 11th house brings abundant professional gains through ethical networking and wise alliances. Career ambitions are fulfilled generously, and industry peers become lifelong supporters.',
+        hi: 'दशमांश एकादश में गुरु नैतिक नेटवर्किंग और बुद्धिमान गठबंधनों से प्रचुर व्यावसायिक लाभ लाता है। करियर महत्वाकांक्षाएं उदारता से पूरी होती हैं।',
+      },
+      12: {
+        en: 'Jupiter in the D10 12th house favours international careers, spiritual organizations, charitable foundations, or academic sabbaticals abroad. Career expenses serve a higher purpose and yield intangible returns.',
+        hi: 'दशमांश द्वादश में गुरु अंतरराष्ट्रीय करियर, आध्यात्मिक संगठनों या विदेश में शैक्षणिक कार्य का पक्ष लेता है। करियर खर्च उच्च उद्देश्य की सेवा करते हैं।',
+      },
+    },
+
+    // -----------------------------------------------------------------------
+    // Venus (5) — arts, diplomacy, luxury, partnerships, hospitality
+    // -----------------------------------------------------------------------
+    5: {
+      1: {
+        en: 'Venus in the D10 1st house creates a charming, attractive professional persona. Your career benefits from aesthetic sense, diplomacy, and an ability to make every workplace interaction pleasant.',
+        hi: 'दशमांश लग्न में शुक्र आकर्षक व्यावसायिक व्यक्तित्व बनाता है। सौंदर्य बोध, कूटनीति और सुखद कार्यस्थल बातचीत से करियर लाभान्वित होता है।',
+      },
+      2: {
+        en: 'Venus in the D10 2nd house brings wealth through beauty, arts, fashion, or luxury industries. Professional speech is refined and persuasive, and your career values align with comfort and quality.',
+        hi: 'दशमांश द्वितीय में शुक्र सौंदर्य, कला, फैशन या विलासिता उद्योगों से धन लाता है। व्यावसायिक वाणी परिष्कृत और प्रेरक होती है।',
+      },
+      3: {
+        en: 'Venus in the D10 3rd house excels in creative marketing, graphic design, social media management, or arts journalism. Business communication has an artistic, appealing quality that wins clients.',
+        hi: 'दशमांश तृतीय में शुक्र रचनात्मक विपणन, ग्राफ़िक डिज़ाइन, सोशल मीडिया या कला पत्रकारिता में उत्कृष्ट है।',
+      },
+      4: {
+        en: 'Venus in the D10 4th house gives a beautiful, harmonious workplace and satisfaction through interior design, hospitality, or real estate luxury segments. Work-life balance is prioritized.',
+        hi: 'दशमांश चतुर्थ में शुक्र सुंदर, सामंजस्यपूर्ण कार्यस्थल और इंटीरियर डिज़ाइन, आतिथ्य या रियल एस्टेट लक्ज़री में संतुष्टि देता है।',
+      },
+      5: {
+        en: 'Venus in the D10 5th house is outstanding for entertainment, performing arts, fashion design, or luxury brand management. Creative speculation brings gains, and your mentoring style is graceful.',
+        hi: 'दशमांश पंचम में शुक्र मनोरंजन, प्रदर्शन कला, फैशन डिज़ाइन या विलासिता ब्रांड प्रबंधन के लिए उत्कृष्ट है।',
+      },
+      6: {
+        en: 'Venus in the D10 6th house can create workplace conflicts through jealousy or aesthetic disagreements. You excel in beauty services, wellness, dietetics, or resolving disputes through diplomacy.',
+        hi: 'दशमांश षष्ठ में शुक्र ईर्ष्या या सौंदर्य मतभेदों से कार्यस्थल विवाद बना सकता है। सौंदर्य सेवाओं, कूटनीतिक विवाद समाधान में श्रेष्ठता।',
+      },
+      7: {
+        en: 'Venus in the D10 7th house is ideal for careers built on partnerships, diplomacy, art dealing, hospitality, or client-facing luxury services. Business relationships are harmonious and mutually profitable.',
+        hi: 'दशमांश सप्तम में शुक्र साझेदारी, कूटनीति, कला व्यापार या आतिथ्य पर आधारित करियर के लिए आदर्श है। व्यापारिक संबंध सामंजस्यपूर्ण और लाभदायक।',
+      },
+      8: {
+        en: 'Venus in the D10 8th house can bring hidden wealth through creative or luxury industries. Careers in cosmetic surgery, inheritance management, or transformative beauty services thrive under this placement.',
+        hi: 'दशमांश अष्टम में शुक्र रचनात्मक या विलासिता उद्योगों से छिपा धन ला सकता है। कॉस्मेटिक सर्जरी, विरासत प्रबंधन में सफलता।',
+      },
+      9: {
+        en: 'Venus in the D10 9th house blesses international careers in arts, culture, fashion, or hospitality. Higher education in design or aesthetics accelerates professional growth, and foreign travel is frequent.',
+        hi: 'दशमांश नवम में शुक्र कला, संस्कृति, फैशन या आतिथ्य में अंतरराष्ट्रीय करियर को आशीर्वाद देता है। डिज़ाइन में उच्च शिक्षा से वृद्धि।',
+      },
+      10: {
+        en: 'Venus in the D10 10th house grants a glamorous, well-liked public career. You achieve recognition in arts, entertainment, fashion, diplomacy, or luxury commerce — beauty and grace define your professional legacy.',
+        hi: 'दशमांश दशम में शुक्र आकर्षक, लोकप्रिय सार्वजनिक करियर देता है। कला, मनोरंजन, फैशन या कूटनीति में मान्यता — सौंदर्य आपकी विरासत।',
+      },
+      11: {
+        en: 'Venus in the D10 11th house brings professional gains through artistic communities, creative collaborations, and luxury industry networks. Career dreams are fulfilled with grace and abundant support.',
+        hi: 'दशमांश एकादश में शुक्र कलात्मक समुदायों, रचनात्मक सहयोग और विलासिता नेटवर्क से व्यावसायिक लाभ लाता है।',
+      },
+      12: {
+        en: 'Venus in the D10 12th house suits careers in foreign luxury markets, behind-the-scenes film/music production, spa and retreat management, or charitable arts foundations. Expenses may go toward workplace aesthetics.',
+        hi: 'दशमांश द्वादश में शुक्र विदेशी विलासिता बाज़ारों, पर्दे के पीछे फिल्म/संगीत निर्माण या स्पा प्रबंधन वाले करियर के लिए उपयुक्त है।',
+      },
+    },
+
+    // -----------------------------------------------------------------------
+    // Saturn (6) — discipline, slow rise, institutional authority, endurance
+    // -----------------------------------------------------------------------
+    6: {
+      1: {
+        en: 'Saturn in the D10 1st house creates a serious, disciplined professional identity. Career success comes slowly but is built on bedrock — colleagues respect your perseverance and work ethic.',
+        hi: 'दशमांश लग्न में शनि गंभीर, अनुशासित व्यावसायिक पहचान बनाता है। करियर सफलता धीमी किंतु ठोस होती है — सहकर्मी आपकी कर्मनिष्ठा का सम्मान करते हैं।',
+      },
+      2: {
+        en: 'Saturn in the D10 2nd house indicates steady but modest professional income that grows over time. You are frugal with professional resources, and career communication is measured and authoritative.',
+        hi: 'दशमांश द्वितीय में शनि स्थिर किंतु मामूली व्यावसायिक आय दर्शाता है जो समय के साथ बढ़ती है। व्यावसायिक संवाद संयमित और अधिकारपूर्ण होता है।',
+      },
+      3: {
+        en: 'Saturn in the D10 3rd house requires persistent effort in business communication and marketing. Success in writing, publishing, or sales comes late but endures, and business travels involve hardship.',
+        hi: 'दशमांश तृतीय में शनि व्यापारिक संवाद और विपणन में निरंतर प्रयास की आवश्यकता रखता है। लेखन या बिक्री में सफलता देर से किंतु स्थायी।',
+      },
+      4: {
+        en: 'Saturn in the D10 4th house may create a demanding workplace environment but grants stability through real estate, government property management, or institutional infrastructure careers.',
+        hi: 'दशमांश चतुर्थ में शनि कठिन कार्यस्थल वातावरण बना सकता है किंतु रियल एस्टेट, सरकारी संपत्ति प्रबंधन में स्थिरता देता है।',
+      },
+      5: {
+        en: 'Saturn in the D10 5th house brings a structured, methodical approach to creative work. Speculative ventures are cautious, and mentoring is serious and traditional — you teach through discipline, not charm.',
+        hi: 'दशमांश पंचम में शनि रचनात्मक कार्य में संरचित, व्यवस्थित दृष्टिकोण लाता है। सट्टा उद्यम सतर्क और मार्गदर्शन अनुशासन-आधारित होता है।',
+      },
+      6: {
+        en: 'Saturn in the D10 6th house gives extraordinary endurance in competitive work environments. You outlast rivals through sheer persistence and excel in labour relations, mining, manufacturing, or government service.',
+        hi: 'दशमांश षष्ठ में शनि प्रतिस्पर्धी कार्य वातावरण में असाधारण सहनशक्ति देता है। श्रम संबंध, खनन, विनिर्माण या सरकारी सेवा में श्रेष्ठता।',
+      },
+      7: {
+        en: 'Saturn in the D10 7th house indicates long-term, structured business partnerships that require patience. Contracts and client relationships are built on trust that takes years to develop but lasts decades.',
+        hi: 'दशमांश सप्तम में शनि दीर्घकालिक, संरचित व्यापारिक साझेदारी दर्शाता है। अनुबंध और ग्राहक संबंध वर्षों में बनते हैं किंतु दशकों तक टिकते हैं।',
+      },
+      8: {
+        en: 'Saturn in the D10 8th house brings career longevity through crisis management, insurance, pension administration, or dealing with organizational restructuring. Transformations are slow but permanent.',
+        hi: 'दशमांश अष्टम में शनि संकट प्रबंधन, बीमा, पेंशन प्रशासन या संगठनात्मक पुनर्गठन से करियर दीर्घायु लाता है। परिवर्तन धीमे किंतु स्थायी।',
+      },
+      9: {
+        en: 'Saturn in the D10 9th house gives a career grounded in tradition, law, or institutional governance. International career growth comes with delays, and higher education is a lifelong, disciplined pursuit.',
+        hi: 'दशमांश नवम में शनि परंपरा, कानून या संस्थागत शासन पर आधारित करियर देता है। अंतरराष्ट्रीय वृद्धि में विलंब किंतु उच्च शिक्षा आजीवन।',
+      },
+      10: {
+        en: 'Saturn in the D10 10th house is the classic indicator of a slow but unstoppable career rise to institutional authority. Government, judiciary, corporate governance, or infrastructure — your achievement is carved in stone.',
+        hi: 'दशमांश दशम में शनि संस्थागत अधिकार तक धीमी किंतु अजेय करियर वृद्धि का शास्त्रीय सूचक है। सरकार, न्यायपालिका या कॉर्पोरेट गवर्नेंस — उपलब्धि पत्थर पर खुदी।',
+      },
+      11: {
+        en: 'Saturn in the D10 11th house brings delayed but substantial professional gains. Career ambitions are fulfilled in the second half of life through patient, disciplined networking and long-term industry relationships.',
+        hi: 'दशमांश एकादश में शनि विलंबित किंतु पर्याप्त व्यावसायिक लाभ लाता है। जीवन के दूसरे भाग में धैर्यपूर्ण नेटवर्किंग से महत्वाकांक्षाएं पूरी।',
+      },
+      12: {
+        en: 'Saturn in the D10 12th house may bring career isolation, foreign assignments in harsh conditions, or institutional roles in prisons, monasteries, or remote facilities. Retirement is well-planned and structured.',
+        hi: 'दशमांश द्वादश में शनि करियर में एकांत, कठिन परिस्थितियों में विदेशी कार्य या जेल, मठ जैसे संस्थागत भूमिकाएं ला सकता है। सेवानिवृत्ति सुनियोजित।',
+      },
+    },
+
+    // -----------------------------------------------------------------------
+    // Rahu (7) — unconventional career, technology, foreign, innovation
+    // -----------------------------------------------------------------------
+    7: {
+      1: {
+        en: 'Rahu in the D10 1st house creates an unconventional, boundary-breaking professional identity. You reinvent yourself at work, thrive in emerging industries, and your career persona defies traditional categories.',
+        hi: 'दशमांश लग्न में राहु अपरंपरागत, सीमा-तोड़ व्यावसायिक पहचान बनाता है। उभरते उद्योगों में सफलता और करियर पारंपरिक श्रेणियों से परे।',
+      },
+      2: {
+        en: 'Rahu in the D10 2nd house indicates income from unconventional sources — cryptocurrency, foreign trade, tech startups, or disruptive business models. Professional speech can be persuasive but occasionally misleading.',
+        hi: 'दशमांश द्वितीय में राहु अपरंपरागत स्रोतों से आय दर्शाता है — क्रिप्टो, विदेशी व्यापार, टेक स्टार्टअप। वाणी प्रेरक किंतु कभी भ्रामक।',
+      },
+      3: {
+        en: 'Rahu in the D10 3rd house gives exceptional boldness in business ventures and digital marketing. You excel in social media, viral content creation, or tech sales — unconventional communication channels are your strength.',
+        hi: 'दशमांश तृतीय में राहु व्यापारिक उद्यमों और डिजिटल विपणन में असाधारण साहस देता है। सोशल मीडिया, वायरल कंटेंट या टेक बिक्री में श्रेष्ठता।',
+      },
+      4: {
+        en: 'Rahu in the D10 4th house brings an unusual or high-tech workplace environment. You may work for foreign companies from home, or your office uses cutting-edge technology. Workplace culture is unconventional.',
+        hi: 'दशमांश चतुर्थ में राहु असामान्य या उच्च-तकनीक कार्यस्थल वातावरण लाता है। विदेशी कंपनियों से घर से कार्य या अत्याधुनिक प्रौद्योगिकी कार्यालय।',
+      },
+      5: {
+        en: 'Rahu in the D10 5th house brings innovation to creative fields — AI art, tech entertainment, gaming, or speculative trading with algorithms. Mentoring style is unorthodox and breaks traditional moulds.',
+        hi: 'दशमांश पंचम में राहु रचनात्मक क्षेत्रों में नवाचार लाता है — AI कला, तकनीकी मनोरंजन, गेमिंग या एल्गोरिदमिक ट्रेडिंग।',
+      },
+      6: {
+        en: 'Rahu in the D10 6th house gives cunning ability to overcome workplace enemies and competition. You excel in cybersecurity, foreign healthcare, alternative medicine, or roles that disrupt established service models.',
+        hi: 'दशमांश षष्ठ में राहु कार्यस्थल शत्रुओं और प्रतिस्पर्धा पर विजय में चतुराई देता है। साइबर सुरक्षा, वैकल्पिक चिकित्सा या विघटनकारी सेवा भूमिकाओं में श्रेष्ठता।',
+      },
+      7: {
+        en: 'Rahu in the D10 7th house attracts foreign or unconventional business partners and clients. Career grows through cross-cultural negotiations, tech partnerships, or alliances with disruptive companies.',
+        hi: 'दशमांश सप्तम में राहु विदेशी या अपरंपरागत व्यापारिक साझेदार और ग्राहक आकर्षित करता है। अंतर-सांस्कृतिक वार्ता या टेक साझेदारी से वृद्धि।',
+      },
+      8: {
+        en: 'Rahu in the D10 8th house thrives in cutting-edge research, biotechnology, occult sciences, or financial instruments dealing with hidden wealth. Career transformations are sudden, dramatic, and technology-driven.',
+        hi: 'दशमांश अष्टम में राहु अत्याधुनिक शोध, जैव प्रौद्योगिकी, गूढ़ विज्ञान या छिपे धन के वित्तीय साधनों में सफल होता है। करियर परिवर्तन अचानक और प्रौद्योगिकी-चालित।',
+      },
+      9: {
+        en: 'Rahu in the D10 9th house propels career growth through foreign universities, international organizations, or unconventional spiritual/philosophical platforms. Your professional guru may be from a different culture.',
+        hi: 'दशमांश नवम में राहु विदेशी विश्वविद्यालयों, अंतरराष्ट्रीय संगठनों या अपरंपरागत दार्शनिक मंचों से करियर वृद्धि करता है।',
+      },
+      10: {
+        en: 'Rahu in the D10 10th house is a powerful indicator of an unconventional career in technology, foreign companies, or disruptive industries. You achieve public recognition through innovation and breaking professional norms.',
+        hi: 'दशमांश दशम में राहु प्रौद्योगिकी, विदेशी कंपनियों या विघटनकारी उद्योगों में अपरंपरागत करियर का शक्तिशाली सूचक है। नवाचार से सार्वजनिक मान्यता।',
+      },
+      11: {
+        en: 'Rahu in the D10 11th house brings massive professional gains through tech networks, foreign industry contacts, and trend-riding. Career ambitions are fulfilled through disruption and being ahead of the curve.',
+        hi: 'दशमांश एकादश में राहु तकनीकी नेटवर्क, विदेशी उद्योग संपर्कों और ट्रेंड-राइडिंग से भारी व्यावसायिक लाभ लाता है।',
+      },
+      12: {
+        en: 'Rahu in the D10 12th house strongly indicates a career in foreign lands, multinational corporations, or virtual/remote work for international clients. Career expenses may involve foreign travel, immigration, or technology infrastructure.',
+        hi: 'दशमांश द्वादश में राहु विदेश में करियर, बहुराष्ट्रीय कंपनियों या अंतरराष्ट्रीय ग्राहकों के लिए दूरस्थ कार्य का प्रबल सूचक है।',
+      },
+    },
+
+    // -----------------------------------------------------------------------
+    // Ketu (8) — detachment, spirituality, past-life skill, niche expertise
+    // -----------------------------------------------------------------------
+    8: {
+      1: {
+        en: 'Ketu in the D10 1st house creates a detached, selfless professional identity. You are unconcerned with personal branding and work best in roles where ego takes a backseat to expertise and mission.',
+        hi: 'दशमांश लग्न में केतु विरक्त, निस्वार्थ व्यावसायिक पहचान बनाता है। व्यक्तिगत ब्रांडिंग से उदासीन और विशेषज्ञता-प्रधान भूमिकाओं में सर्वश्रेष्ठ।',
+      },
+      2: {
+        en: 'Ketu in the D10 2nd house shows disinterest in material income accumulation. You may earn through spiritual services, alternative healing, or niche consulting where money is secondary to purpose.',
+        hi: 'दशमांश द्वितीय में केतु भौतिक आय संचय में अरुचि दर्शाता है। आध्यात्मिक सेवाओं, वैकल्पिक उपचार या विशिष्ट परामर्श से कमाई।',
+      },
+      3: {
+        en: 'Ketu in the D10 3rd house gives intuitive business instincts from past-life experience. You make professional decisions effortlessly without extensive analysis — marketing and sales feel like second nature.',
+        hi: 'दशमांश तृतीय में केतु पूर्वजन्म अनुभव से सहज व्यापारिक प्रवृत्ति देता है। विपणन और बिक्री सहज स्वभाव जैसे महसूस होते हैं।',
+      },
+      4: {
+        en: 'Ketu in the D10 4th house makes the native indifferent to workplace comforts and office politics. You prefer working from unconventional spaces, and emotional attachment to any single workplace is minimal.',
+        hi: 'दशमांश चतुर्थ में केतु कार्यस्थल सुखों और कार्यालय राजनीति के प्रति उदासीन बनाता है। अपरंपरागत स्थानों से काम करना पसंद।',
+      },
+      5: {
+        en: 'Ketu in the D10 5th house brings mastery in niche creative or technical fields from past-life talent. Speculation is not your style, but when you create, the output is deeply original and unconventionally brilliant.',
+        hi: 'दशमांश पंचम में केतु पूर्वजन्म प्रतिभा से विशिष्ट रचनात्मक या तकनीकी क्षेत्रों में महारत लाता है। रचनात्मक उत्पादन गहन मौलिक होता है।',
+      },
+      6: {
+        en: 'Ketu in the D10 6th house dissolves professional competition effortlessly — rivals find you hard to target because you operate outside normal competitive frameworks. Alternative medicine and spiritual healing are suited careers.',
+        hi: 'दशमांश षष्ठ में केतु सहज रूप से व्यावसायिक प्रतिस्पर्धा को भंग करता है — प्रतिद्वंद्वी आपको लक्ष्य बनाना कठिन पाते हैं। वैकल्पिक चिकित्सा उपयुक्त।',
+      },
+      7: {
+        en: 'Ketu in the D10 7th house may bring unusual or short-lived business partnerships. You work best independently, and clients are attracted to your niche expertise rather than conventional relationship-building.',
+        hi: 'दशमांश सप्तम में केतु असामान्य या अल्पकालिक व्यापारिक साझेदारी ला सकता है। स्वतंत्र रूप से सर्वश्रेष्ठ कार्य और विशिष्ट विशेषज्ञता से ग्राहक आकर्षित।',
+      },
+      8: {
+        en: 'Ketu in the D10 8th house gives natural aptitude for research, occult, or spiritual healing professions. Career crises don\'t faze you — you view professional upheavals as opportunities for deeper purpose.',
+        hi: 'दशमांश अष्टम में केतु शोध, गूढ़ या आध्यात्मिक उपचार पेशों के लिए स्वाभाविक योग्यता देता है। करियर संकट आपको विचलित नहीं करते।',
+      },
+      9: {
+        en: 'Ketu in the D10 9th house indicates past-life wisdom applied to career — you may instinctively know your dharmic professional path without formal guidance. Careers in spirituality, astrology, or ancient knowledge systems suit well.',
+        hi: 'दशमांश नवम में केतु करियर में पूर्वजन्म ज्ञान का संकेत देता है — बिना औपचारिक मार्गदर्शन के धार्मिक पेशे सहज ज्ञात। ज्योतिष या प्राचीन ज्ञान में उपयुक्त।',
+      },
+      10: {
+        en: 'Ketu in the D10 10th house makes the native indifferent to worldly career achievement and public status. You may achieve recognition paradoxically by not seeking it, or find purpose in work that transcends material success.',
+        hi: 'दशमांश दशम में केतु सांसारिक करियर उपलब्धि और सार्वजनिक प्रतिष्ठा के प्रति उदासीन बनाता है। भौतिक सफलता से परे कार्य में उद्देश्य मिलता है।',
+      },
+      11: {
+        en: 'Ketu in the D10 11th house detaches the native from professional networking and material career ambitions. Gains come unexpectedly, and fulfilment is found in purposeful work rather than industry recognition.',
+        hi: 'दशमांश एकादश में केतु व्यावसायिक नेटवर्किंग और भौतिक करियर महत्वाकांक्षाओं से विरक्त करता है। लाभ अप्रत्याशित और उद्देश्यपूर्ण कार्य से तृप्ति।',
+      },
+      12: {
+        en: 'Ketu in the D10 12th house is a powerful indicator of career in spiritual organizations, ashrams, charitable work, or behind-the-scenes research. Professional life serves moksha, and retirement comes early or willingly.',
+        hi: 'दशमांश द्वादश में केतु आध्यात्मिक संगठनों, आश्रमों, धर्मार्थ कार्य या पर्दे के पीछे शोध में करियर का शक्तिशाली सूचक है। पेशेवर जीवन मोक्ष की सेवा करता है।',
+      },
+    },
+  },
 };

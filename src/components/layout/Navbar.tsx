@@ -13,10 +13,12 @@ import UserMenu from '@/components/auth/UserMenu';
 import { useAuthStore } from '@/stores/auth-store';
 import { useSubscription } from '@/hooks/useSubscription';
 import { useLocationStore } from '@/stores/location-store';
-import NotificationBell from '@/components/notifications/NotificationBell';
+import dynamic from 'next/dynamic';
 import { Menu, X, Sun, Moon, ChevronDown, MapPin } from 'lucide-react';
-import SearchModal from '@/components/search/SearchModal';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+
+const NotificationBell = dynamic(() => import('@/components/notifications/NotificationBell'), { ssr: false });
+const SearchModal = dynamic(() => import('@/components/search/SearchModal'), { ssr: false });
 
 interface DropdownItem {
   href: string;
@@ -212,21 +214,21 @@ export default function Navbar() {
 
           {/* Right — Controls */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
-            {hydrated && locationStore.confirmed && locationStore.name && (
-              <div className="flex items-center gap-1.5 text-text-secondary text-xs">
-                <MapPin className="w-3.5 h-3.5 text-gold-primary" />
-                <span className="max-w-[150px] truncate">{locationStore.name}</span>
-              </div>
-            )}
-            {hydrated && user && <NotificationBell />}
+            <div className={`flex items-center gap-1.5 text-text-secondary text-xs transition-opacity duration-150 ${hydrated && locationStore.confirmed && locationStore.name ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+              <MapPin className="w-3.5 h-3.5 text-gold-primary" />
+              <span className="max-w-[150px] truncate">{locationStore.name || '\u00A0'}</span>
+            </div>
+            <div className={`transition-opacity duration-150 ${hydrated && user ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+              <NotificationBell />
+            </div>
             <SearchModal />
             <div className="w-px h-5 bg-gold-primary/15" />
             <LocaleSwitcher />
-            {hydrated && isTrialing && trialDaysLeft > 0 && (
+            <div className={`transition-opacity duration-150 ${hydrated && isTrialing && trialDaysLeft > 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
               <span className="text-gold-dark text-xs whitespace-nowrap">
                 {tl({ en: `Trial: ${trialDaysLeft}d`, hi: `परीक्षण: ${trialDaysLeft}दि`, sa: `परीक्षण: ${trialDaysLeft}दि` }, locale)}
               </span>
-            )}
+            </div>
             <UserMenu />
           </div>
 

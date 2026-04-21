@@ -28,9 +28,33 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   const name1 = tl(r1.name, locale);
   const name2 = tl(r2.name, locale);
+  const western1 = r1.name.en;
+  const western2 = r2.name.en;
+
+  const title = tl({
+    en: `${name1} & ${name2} (${western1} & ${western2}) Compatibility — Vedic Astrology`,
+    hi: `${name1} और ${name2} (${western1} & ${western2}) संगतता — वैदिक ज्योतिष`,
+    sa: `${name1} और ${name2} (${western1} & ${western2}) संगतता — वैदिक ज्योतिष`,
+  }, locale);
+
+  const description = tl({
+    en: `${name1} and ${name2} (${western1} and ${western2}) Vedic compatibility analysis with Ashta Kuta score, temperament, romance, career partnership.`,
+    hi: `${name1} और ${name2} (${western1} और ${western2}) राशि वैदिक संगतता विश्लेषण। अष्ट कूट स्कोर, स्वभाव, प्रेम, करियर साझेदारी।`,
+    sa: `${name1} और ${name2} (${western1} और ${western2}) राशि वैदिक संगतता विश्लेषण। अष्ट कूट स्कोर, स्वभाव, प्रेम, करियर साझेदारी।`,
+  }, locale);
+
   return {
-    title: tl({ en: `${name1} and ${name2} Compatibility — Vedic Astrology`, hi: `${name1} और ${name2} संगतता — वैदिक ज्योतिष`, sa: `${name1} और ${name2} संगतता — वैदिक ज्योतिष` }, locale),
-    description: tl({ en: `${name1} and ${name2} Vedic compatibility analysis with Ashta Kuta score, temperament, romance, career partnership.`, hi: `${name1} और ${name2} राशि वैदिक संगतता विश्लेषण। अष्ट कूट स्कोर, स्वभाव, प्रेम, करियर साझेदारी।`, sa: `${name1} और ${name2} राशि वैदिक संगतता विश्लेषण। अष्ट कूट स्कोर, स्वभाव, प्रेम, करियर साझेदारी।` }, locale),
+    title,
+    description,
+    keywords: [
+      `${western1.toLowerCase()} ${western2.toLowerCase()} compatibility`,
+      `${western1.toLowerCase()} and ${western2.toLowerCase()} match`,
+      `${r1.slug} ${r2.slug} compatibility`,
+      `${name1} ${name2} vedic matching`,
+      'ashta kuta score',
+      'vedic compatibility',
+      'rashi matching',
+    ],
     alternates: { canonical: `${BASE_URL}/${locale}/matching/${canonical}` },
   };
 }

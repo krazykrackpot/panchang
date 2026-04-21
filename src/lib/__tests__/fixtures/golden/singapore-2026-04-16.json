@@ -1,0 +1,23 @@
+{
+  "source": "Self-computed (regression baseline)",
+  "sourceUrl": "",
+  "capturedAt": "2026-04-12T16:00:00Z",
+  "location": {
+    "name": "Singapore",
+    "lat": 1.3521,
+    "lng": 103.8198,
+    "tzOffset": 8.0
+  },
+  "date": "2026-04-16",
+  "expected": {
+    "sunrise": "07:00",
+    "sunset":  "19:08",
+    "tithi":     { "name": "Chaturdashi", "number": 29 },
+    "nakshatra": { "name": "Uttara Bhadrapada", "number": 26 },
+    "yoga":      { "name": "Indra", "number": 26 },
+    "karana":    { "name": "Vishti" },
+    "rahuKaal":    { "start": "14:35", "end": "16:06" }
+  },
+  "tolerances": { "timeMinutes": 5 },
+  "notes": "Near-equatorial test (1.35N) — minimal sunrise/sunset variation year-round. SGT is UTC+8 (no DST). ~12h day length expected."
+}

@@ -3,8 +3,10 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/lib/i18n/navigation';
 import GoldDivider from '@/components/ui/GoldDivider';
 import AdUnit from '@/components/ads/AdUnit';
-import ProfileBanner from '@/components/home/ProfileBanner';
+import dynamic from 'next/dynamic';
 import HomeClientWidgets from '@/components/home/HomeClientWidgets';
+
+const ProfileBanner = dynamic(() => import('@/components/home/ProfileBanner'), { ssr: false });
 import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { getAllCitySlugs } from '@/lib/constants/cities';
-import { getAllPairSlugs } from '@/lib/constants/rashi-slugs';
+import { getAllPairSlugs, getWesternPairSlugs, WESTERN_SLUGS } from '@/lib/constants/rashi-slugs';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -146,6 +146,9 @@ const routes = [
   '/rahu-kaal',
   '/choghadiya',
   '/hora',
+  '/mangal-dosha',
+  '/kaal-sarp',
+  '/pitra-dosha',
   '/sarvatobhadra',
   '/matching/report',
   // Date listing pages
@@ -328,6 +331,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
+  // Western-name horoscope aliases (/horoscope/aries etc.) — 301 redirects
+  // Listed in sitemap to accelerate search engine discovery of the redirect chain.
+  for (const western of WESTERN_SLUGS) {
+    addEntries(entries, `/horoscope/${western}`, {
+      changeFrequency: 'daily',
+      priority: 0.5,
+    });
+  }
+
   // City panchang pages (/panchang/{city-slug})
   for (const slug of getAllCitySlugs()) {
     addEntries(entries, `/panchang/${slug}`, {
@@ -347,6 +359,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     addEntries(entries, `/matching/${pairSlug}`, {
       changeFrequency: 'monthly',
       priority: 0.5,
+    });
+  }
+
+  // Western-name matching pair aliases (/matching/aries-and-leo etc.) — 301 redirects
+  // Listed in sitemap to accelerate search engine discovery of the redirect chain.
+  for (const westernPair of getWesternPairSlugs()) {
+    addEntries(entries, `/matching/${westernPair}`, {
+      changeFrequency: 'monthly',
+      priority: 0.3,
     });
   }
 

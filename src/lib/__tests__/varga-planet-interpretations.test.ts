@@ -43,6 +43,36 @@ describe('varga-planet-interpretations', () => {
     expect(getVargaPlanetText('marriage', -1, 1)).toBeNull();
   });
 
+  it('D10 career has all 108 entries', () => {
+    let count = 0;
+    const career = VARGA_PLANET_TEXT.career;
+    for (let pid = 0; pid <= 8; pid++) {
+      for (let h = 1; h <= 12; h++) {
+        if (career?.[pid]?.[h]) count++;
+      }
+    }
+    expect(count).toBe(108);
+  });
+
+  it('D10 career entries are career-contextualized', () => {
+    const sun10 = getVargaPlanetText('career', 0, 10);
+    expect(sun10).not.toBeNull();
+    expect(sun10!.en.toLowerCase()).toMatch(/leader|authority|govern|career|executive/);
+  });
+
+  it('D10 career entries have non-empty en and hi', () => {
+    const career = VARGA_PLANET_TEXT.career;
+    for (let pid = 0; pid <= 8; pid++) {
+      for (let h = 1; h <= 12; h++) {
+        const entry = career?.[pid]?.[h];
+        if (entry) {
+          expect(entry.en.length, `career planet ${pid} house ${h} en`).toBeGreaterThan(10);
+          expect(entry.hi.length, `career planet ${pid} house ${h} hi`).toBeGreaterThan(5);
+        }
+      }
+    }
+  });
+
   it('key placements contain domain-specific keywords', () => {
     // Venus in 7th should mention spouse/partner/harmony
     const venus7 = getVargaPlanetText('marriage', 5, 7)!;

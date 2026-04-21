@@ -309,6 +309,47 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['pisces vedic astrology', 'meen rashi', 'pisces personality', 'pisces horoscope today'],
   },
 
+  // ─── Dosha Checkers ────────────────────────────────────────
+  '/mangal-dosha': {
+    title: {
+      en: 'Mangal Dosha Calculator — Check Mars Dosha in Your Chart',
+      hi: 'मंगल दोष गणक — अपनी कुण्डली में मंगल दोष जाँचें',
+      sa: 'मङ्गलदोषगणकम् — स्वकुण्डल्यां मङ्गलदोषं परीक्षतु',
+    },
+    description: {
+      en: 'Free Mangal Dosha (Kuja Dosha) calculator. Check if Mars Dosha is present in your birth chart, its severity, affected life areas, cancellation conditions, and remedies.',
+      hi: 'निःशुल्क मंगल दोष (कुज दोष) गणक। जानें कि क्या आपकी कुण्डली में मंगल दोष है, गम्भीरता, प्रभावित जीवन क्षेत्र, निवारण शर्तें और उपाय।',
+      sa: 'निःशुल्कमङ्गलदोषगणकम्। स्वजन्मकुण्डल्यां मङ्गलदोषः विद्यते किं वेति परीक्षतु।',
+    },
+    keywords: ['mangal dosha', 'kuja dosha', 'mars dosha', 'manglik', 'mangal dosha calculator', 'manglik check'],
+  },
+  '/kaal-sarp': {
+    title: {
+      en: 'Kaal Sarp Dosha Calculator — Check if Present in Your Kundali',
+      hi: 'काल सर्प दोष गणक — क्या आपकी कुण्डली में है?',
+      sa: 'कालसर्पदोषगणकम् — स्वकुण्डल्यां विद्यते किम्?',
+    },
+    description: {
+      en: 'Free Kaal Sarp Dosha checker. Check all 12 types of Kaal Sarp Yoga based on Rahu-Ketu axis in your birth chart. Severity analysis and remedies.',
+      hi: 'निःशुल्क काल सर्प दोष जाँच। राहु-केतु अक्ष के आधार पर सभी 12 प्रकार जाँचें। गम्भीरता विश्लेषण और उपाय।',
+      sa: 'निःशुल्ककालसर्पदोषपरीक्षा। राहुकेत्वक्षाधारेण सर्वान् द्वादशप्रकारान् परीक्षतु।',
+    },
+    keywords: ['kaal sarp dosha', 'kaal sarp yoga', 'rahu ketu dosha', 'kalsarpa dosha check', 'kaal sarp types'],
+  },
+  '/pitra-dosha': {
+    title: {
+      en: 'Pitra Dosha Check — Ancestral Karma in Your Birth Chart',
+      hi: 'पितृ दोष जाँच — जन्म कुण्डली में पैतृक कर्म',
+      sa: 'पितृदोषपरीक्षा — जन्मकुण्डल्यां पैतृककर्म',
+    },
+    description: {
+      en: 'Free Pitra Dosha checker. Analyze Sun-Rahu conjunction, 9th house affliction, and ancestral karma indicators in your Vedic birth chart. Severity and Shraddha remedies.',
+      hi: 'निःशुल्क पितृ दोष जाँच। सूर्य-राहु युति, 9वें भाव पीड़ा और पैतृक कर्म संकेतों का विश्लेषण। गम्भीरता और श्राद्ध उपाय।',
+      sa: 'निःशुल्कपितृदोषपरीक्षा। सूर्यराहुयुतिः नवमभावपीडा पैतृककर्मसङ्केताश्च विश्लेष्यन्ते।',
+    },
+    keywords: ['pitra dosha', 'pitru dosha', 'ancestral karma', 'pitra dosha remedies', 'sun rahu conjunction'],
+  },
+
   // ─── More Tools ───────────────────────────────────────────
   '/shraddha': {
     title: { en: 'Shraddha Tithi Calculator', hi: 'श्राद्ध तिथि गणक', sa: 'श्राद्धतिथिगणकम्' },

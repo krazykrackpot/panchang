@@ -7,7 +7,7 @@ import { locales, visibleLocales, type Locale } from '@/lib/i18n/config';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import StarField from '@/components/layout/StarField';
-import ServiceWorkerRegistrar from '@/components/layout/ServiceWorkerRegistrar';
+import dynamic from 'next/dynamic';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
@@ -16,10 +16,12 @@ import { inter, cormorant, notoDevanagari, notoTamil, notoTelugu, notoBengali, n
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import '@/styles/globals.css';
 
-import InstallPrompt from '@/components/pwa/InstallPrompt';
-import OfflineBanner from '@/components/pwa/OfflineBanner';
-import CookieConsent from '@/components/cookie-consent/CookieConsent';
 import { CONSENT_DEFAULT_SCRIPT } from '@/components/cookie-consent/consent-mode';
+
+const ServiceWorkerRegistrar = dynamic(() => import('@/components/layout/ServiceWorkerRegistrar'), { ssr: false });
+const InstallPrompt = dynamic(() => import('@/components/pwa/InstallPrompt'), { ssr: false });
+const OfflineBanner = dynamic(() => import('@/components/pwa/OfflineBanner'), { ssr: false });
+const CookieConsent = dynamic(() => import('@/components/cookie-consent/CookieConsent'), { ssr: false });
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 

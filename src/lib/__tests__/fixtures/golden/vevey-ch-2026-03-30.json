@@ -1,0 +1,23 @@
+{
+  "source": "Self-computed (regression baseline)",
+  "sourceUrl": "https://www.drikpanchang.com/panchang/day-panchang.html?date=30%2F03%2F2026",
+  "capturedAt": "2026-04-12T16:00:00Z",
+  "location": {
+    "name": "Vevey, CH",
+    "lat": 46.464,
+    "lng": 6.843,
+    "tzOffset": 2.0
+  },
+  "date": "2026-03-30",
+  "expected": {
+    "sunrise": "07:16",
+    "sunset":  "19:58",
+    "tithi":     { "name": "Trayodashi", "number": 13 },
+    "nakshatra": { "name": "Magha", "number": 10 },
+    "yoga":      { "name": "Shula", "number": 9 },
+    "karana":    { "name": "Kaulava" },
+    "rahuKaal":    { "start": "08:51", "end": "10:26" }
+  },
+  "tolerances": { "timeMinutes": 5 },
+  "notes": "DST boundary test: CET->CEST transition was March 29. tzOffset=2.0 (CEST). Drik Panchang does not support Vevey directly. Values from project calculator as regression baseline."
+}

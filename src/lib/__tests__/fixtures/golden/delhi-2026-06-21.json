@@ -1,0 +1,23 @@
+{
+  "source": "Drik Panchang",
+  "sourceUrl": "https://www.drikpanchang.com/panchang/day-panchang.html?date=21%2F06%2F2026",
+  "capturedAt": "2026-04-12T16:00:00Z",
+  "location": {
+    "name": "Delhi, India",
+    "lat": 28.6139,
+    "lng": 77.2090,
+    "tzOffset": 5.5
+  },
+  "date": "2026-06-21",
+  "expected": {
+    "sunrise": "05:24",
+    "sunset":  "19:22",
+    "tithi":     { "name": "Saptami", "number": 7 },
+    "nakshatra": { "name": "Purva Phalguni", "number": 11 },
+    "yoga":      { "name": "Siddhi", "number": 16 },
+    "karana":    { "name": "Vanija" },
+    "rahuKaal":    { "start": "17:37", "end": "19:22" }
+  },
+  "tolerances": { "timeMinutes": 5 },
+  "notes": "Summer solstice — longest day of the year in Delhi. Sunrise/sunset verified against Drik Panchang."
+}

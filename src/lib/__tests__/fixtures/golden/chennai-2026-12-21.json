@@ -1,0 +1,23 @@
+{
+  "source": "Drik Panchang (Delhi reference, adjusted)",
+  "sourceUrl": "https://www.drikpanchang.com/panchang/day-panchang.html?date=21%2F12%2F2026",
+  "capturedAt": "2026-04-12T16:00:00Z",
+  "location": {
+    "name": "Chennai, India",
+    "lat": 13.0827,
+    "lng": 80.2707,
+    "tzOffset": 5.5
+  },
+  "date": "2026-12-21",
+  "expected": {
+    "sunrise": "06:26",
+    "sunset":  "17:47",
+    "tithi":     { "name": "Dwadashi", "number": 12 },
+    "nakshatra": { "name": "Bharani", "number": 2 },
+    "yoga":      { "name": "Siddha", "number": 21 },
+    "karana":    { "name": "Bava" },
+    "rahuKaal":    { "start": "07:51", "end": "09:16" }
+  },
+  "tolerances": { "timeMinutes": 5 },
+  "notes": "Winter solstice — shortest day. Chennai is near-equatorial so day length varies less than Delhi. Tithi/nakshatra/yoga match Delhi Dec 21 Drik data (same IST date). Sunrise/sunset are computed for Chennai coordinates."
+}

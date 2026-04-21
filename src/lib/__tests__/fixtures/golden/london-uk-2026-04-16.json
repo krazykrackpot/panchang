@@ -1,0 +1,23 @@
+{
+  "source": "Self-computed (regression baseline)",
+  "sourceUrl": "",
+  "capturedAt": "2026-04-12T16:00:00Z",
+  "location": {
+    "name": "London, UK",
+    "lat": 51.5074,
+    "lng": -0.1278,
+    "tzOffset": 1.0
+  },
+  "date": "2026-04-16",
+  "expected": {
+    "sunrise": "06:02",
+    "sunset":  "19:58",
+    "tithi":     { "name": "Chaturdashi", "number": 29 },
+    "nakshatra": { "name": "Uttara Bhadrapada", "number": 26 },
+    "yoga":      { "name": "Indra", "number": 26 },
+    "karana":    { "name": "Shakuni" },
+    "rahuKaal":    { "start": "14:45", "end": "16:29" }
+  },
+  "tolerances": { "timeMinutes": 5 },
+  "notes": "High latitude test (51.5N). BST (UTC+1) in April. Same date as existing Delhi/Ujjain/Bengaluru fixtures for cross-location comparison. Tithi/nakshatra/yoga should match Indian fixtures (universal astronomical values)."
+}

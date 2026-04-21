@@ -332,6 +332,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
+  // Horoscope weekly per-rashi pages (/horoscope/{rashi}/weekly)
+  for (const slug of rashiSlugs) {
+    addEntries(entries, `/horoscope/${slug}/weekly`, {
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    });
+  }
+
+  // Horoscope monthly per-rashi pages (/horoscope/{rashi}/monthly)
+  for (const slug of rashiSlugs) {
+    addEntries(entries, `/horoscope/${slug}/monthly`, {
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    });
+  }
+
   // Western-name horoscope aliases (/horoscope/aries etc.) — 301 redirects
   // Listed in sitemap to accelerate search engine discovery of the redirect chain.
   for (const western of WESTERN_SLUGS) {

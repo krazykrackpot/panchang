@@ -412,6 +412,9 @@ export default function KundaliPage() {
   // AI Reading hook — manages comprehensive single-call AI readings with Supabase caching
   const aiReadingHook = useAIReading();
 
+  // Trajectory hook — syncs domain scores to the server and computes trends
+  const trajectoryHook = useTrajectory();
+
   /** After synthesizing a reading, check if user previously chose a focus domain. */
   const resolveInitialView = useCallback(() => {
     const saved = getSavedQuestionChoice();
@@ -466,6 +469,7 @@ export default function KundaliPage() {
               setPersonalReading(reading);
               setKeyDates(computeKeyDates({ kundali: data }));
               resolveInitialView();
+              if (user) trajectoryHook.syncTrajectory(reading, locale);
             } catch { setPersonalReading(null); setView('technical'); }
             try {
               sessionStorage.setItem('kundali_last_result', JSON.stringify({
@@ -499,6 +503,7 @@ export default function KundaliPage() {
             setPersonalReading(reading);
             setKeyDates(computeKeyDates({ kundali: k }));
             resolveInitialView();
+            if (user) trajectoryHook.syncTrajectory(reading, locale);
           } catch { setPersonalReading(null); setView('technical'); }
         }
       }
@@ -664,6 +669,7 @@ export default function KundaliPage() {
         setPersonalReading(reading);
         setKeyDates(computeKeyDates({ kundali: data }));
         resolveInitialView();
+        if (user) trajectoryHook.syncTrajectory(reading, locale);
       } catch (synthErr) {
         console.error('Personal reading synthesis failed — falling back to technical view:', synthErr);
         setPersonalReading(null);
@@ -921,6 +927,15 @@ export default function KundaliPage() {
               {keyDates.length > 0 && (
                 <div className="mb-8 p-5 rounded-2xl bg-gradient-to-br from-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10">
                   <KeyDatesTimeline dates={keyDates} locale={locale} />
+                </div>
+              )}
+              {/* Reading Trajectory — trends below Key Dates */}
+              {trajectoryHook.trajectory && user && (
+                <div className="mb-8">
+                  <TrajectoryCard
+                    trajectory={trajectoryHook.trajectory}
+                    locale={locale}
+                  />
                 </div>
               )}
               {/* Change focus button */}

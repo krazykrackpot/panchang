@@ -532,8 +532,10 @@ export function synthesizeCurrentPeriod(params: CurrentPeriodInput): CurrentPeri
     activeDomainsNow.push('family');
   }
 
-  // Sade Sati adds health/career challenge
+  // Sade Sati adds challenges to Moon-linked / emotional domains
   if (sadeSatiStatus?.active) {
+    if (!challengedDomainsNow.includes('family')) challengedDomainsNow.push('family');
+    if (!challengedDomainsNow.includes('marriage')) challengedDomainsNow.push('marriage');
     if (!challengedDomainsNow.includes('health')) challengedDomainsNow.push('health');
   }
 

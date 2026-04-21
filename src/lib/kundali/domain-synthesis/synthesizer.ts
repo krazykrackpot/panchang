@@ -246,6 +246,77 @@ function extractData(kundali: KundaliData): ExtractedData {
 }
 
 // ---------------------------------------------------------------------------
+// Helper: compute varga delivery score from divisional charts
+// ---------------------------------------------------------------------------
+
+/**
+ * Dignity score mapping for varga analysis.
+ * Exalted = 90, own = 75, friend = 60, neutral = 50, enemy = 30, debilitated = 15.
+ */
+const VARGA_DIGNITY_SCORES: Record<DignityLevel, number> = {
+  exalted: 90,
+  own: 75,
+  friend: 60,
+  neutral: 50,
+  enemy: 30,
+  debilitated: 15,
+};
+
+/**
+ * Computes a varga delivery score (0–100) for a domain by checking
+ * how well the primary house lord is placed in each relevant divisional chart.
+ *
+ * For each relevant varga (from config.divisionalCharts), finds the primary
+ * lord's sign in that chart and assesses its dignity. Averages across all
+ * relevant vargas. Falls back to 50 when divisional chart data is unavailable.
+ */
+function computeVargaDeliveryScore(
+  config: DomainConfig,
+  kundali: KundaliData,
+  data: ExtractedData,
+): number {
+  // If no divisional chart data exists, return neutral default
+  if (!kundali.divisionalCharts || config.divisionalCharts.length === 0) {
+    return 50;
+  }
+
+  // Find the primary house lord (lord of the first primary house)
+  const primaryHouse = config.primaryHouses[0];
+  const primaryHouseSign = kundali.houses.find(h => h.house === primaryHouse)?.sign ?? 1;
+  const primaryLordId = SIGN_LORD[primaryHouseSign] ?? 0;
+
+  const scores: number[] = [];
+
+  for (const chartId of config.divisionalCharts) {
+    const chart = kundali.divisionalCharts[chartId];
+    if (!chart || !chart.houses) continue;
+
+    // Find which house the primary lord occupies in this varga chart
+    let lordSign: number | null = null;
+    for (let houseIdx = 0; houseIdx < chart.houses.length; houseIdx++) {
+      const planetsInHouse = chart.houses[houseIdx];
+      if (planetsInHouse && planetsInHouse.includes(primaryLordId)) {
+        // House index is 0-based; sign = ascendant sign + house offset
+        const signOffset = (chart.ascendantSign + houseIdx - 1) % 12;
+        lordSign = signOffset === 0 ? 12 : (signOffset % 12 || 12);
+        // Simpler: use whole-sign from ascendant
+        lordSign = ((chart.ascendantSign - 1 + houseIdx) % 12) + 1;
+        break;
+      }
+    }
+
+    if (lordSign !== null) {
+      const dignity = getDignity(primaryLordId, lordSign);
+      scores.push(VARGA_DIGNITY_SCORES[dignity]);
+    }
+  }
+
+  // Average the scores; fall back to 50 if no charts were usable
+  if (scores.length === 0) return 50;
+  return Math.round(scores.reduce((sum, s) => sum + s, 0) / scores.length);
+}
+
+// ---------------------------------------------------------------------------
 // Helper: build ScorerInput for a domain
 // ---------------------------------------------------------------------------
 
@@ -370,8 +441,8 @@ function buildScorerInput(
     return false;
   })();
 
-  // 9. Varga delivery score — default 50
-  const vargaDeliveryScore = 50;
+  // 9. Varga delivery score — computed from divisional charts
+  const vargaDeliveryScore = computeVargaDeliveryScore(config, kundali, data);
 
   return {
     houseBhavabala,
@@ -387,6 +458,72 @@ function buildScorerInput(
     dashaActivatesHouse,
     vargaDeliveryScore,
   };
+}
+
+// ---------------------------------------------------------------------------
+// Helper: retrograde-aware transit description
+// ---------------------------------------------------------------------------
+
+/**
+ * Generates domain-specific transit description text that accounts for
+ * retrograde motion. When a planet is retrograde, language shifts from
+ * "new opportunity" to "revisit/review" framing with domain-specific nuance.
+ */
+function retroAwareTransitDescription(
+  planetId: number,
+  transitHouse: number,
+  isRetro: boolean,
+  planetName: LocaleText,
+  domainId: DomainType,
+): LocaleText {
+  const nameEn = planetName.en;
+  const nameHi = planetName.hi ?? nameEn;
+
+  if (!isRetro) {
+    return {
+      en: `${nameEn} transiting ${transitHouse}th house — fresh energy and forward momentum.`,
+      hi: `${nameHi} ${transitHouse}वें भाव में गोचर — नई ऊर्जा और आगे की गति।`,
+    };
+  }
+
+  // Retrograde: domain-specific framing
+  switch (domainId) {
+    case 'career':
+      return {
+        en: `${nameEn} (R) transiting ${transitHouse}th house — delays possible but deepens mastery; revisit past professional matters.`,
+        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर — विलम्ब संभव परन्तु दक्षता गहरी होती है; पुराने व्यावसायिक मामलों की पुनर्समीक्षा करें।`,
+      };
+    case 'marriage':
+      return {
+        en: `${nameEn} (R) transiting ${transitHouse}th house — past connections may resurface; reflect before committing to new bonds.`,
+        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर — पुराने सम्बन्ध पुनः उभर सकते हैं; नये बन्धनों से पहले चिन्तन करें।`,
+      };
+    case 'wealth':
+      return {
+        en: `${nameEn} (R) transiting ${transitHouse}th house — review financial commitments; avoid impulsive investments.`,
+        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर — वित्तीय प्रतिबद्धताओं की समीक्षा करें; आवेगी निवेश से बचें।`,
+      };
+    case 'health':
+      return {
+        en: `${nameEn} (R) transiting ${transitHouse}th house — revisit old health concerns; focus on recovery over new regimens.`,
+        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर — पुरानी स्वास्थ्य चिन्ताओं पर पुनर्विचार करें; नई दिनचर्या से अधिक स्वस्थता पर ध्यान दें।`,
+      };
+    case 'education':
+      return {
+        en: `${nameEn} (R) transiting ${transitHouse}th house — excellent for revising and consolidating knowledge; new courses may face delays.`,
+        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर — ज्ञान की पुनरावृत्ति और संगठन के लिए उत्तम; नये पाठ्यक्रमों में विलम्ब संभव।`,
+      };
+    case 'spiritual':
+      return {
+        en: `${nameEn} (R) transiting ${transitHouse}th house — introspection intensifies; revisit spiritual practices for deeper insight.`,
+        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर — आत्मनिरीक्षण तीव्र होता है; गहन अन्तर्दृष्टि हेतु साधना पुनः आरम्भ करें।`,
+      };
+    default:
+      return {
+        en: `${nameEn} (R) transiting ${transitHouse}th house — a period of review and reassessment rather than new initiatives.`,
+        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर — नई पहल के बजाय पुनर्मूल्यांकन का समय।`,
+      };
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -431,22 +568,20 @@ function buildCurrentActivation(
   // Transit influences — slow planets in domain houses (using real current positions)
   const transitInfluences: CurrentActivationBlock['transitInfluences'] = [];
   if (transitData && transitData.length > 0) {
-    // Use real current transit positions
+    // Use real current transit positions with retrograde-aware descriptions
     for (const t of transitData) {
       if (primaryHouses.has(t.transitHouse)) {
         const nature = isBenefic(t.planetId) ? 'benefic' as const : 'malefic' as const;
         const planetName = GRAHAS[t.planetId]?.name ?? { en: 'Planet' };
-        const retroLabel = t.isRetrograde ? ' (R)' : '';
-        const retroLabelHi = t.isRetrograde ? ' (वक्री)' : '';
+        const desc = retroAwareTransitDescription(
+          t.planetId, t.transitHouse, t.isRetrograde, planetName, config.id,
+        );
         transitInfluences.push({
           planetId: t.planetId,
           transitHouse: t.transitHouse,
           nature,
           intensity: t.isRetrograde ? 'high' : 'medium',
-          description: {
-            en: `${planetName.en}${retroLabel} transiting ${t.transitHouse}th house`,
-            hi: `${planetName.hi ?? planetName.en}${retroLabelHi} ${t.transitHouse}वें भाव में गोचर`,
-          },
+          description: desc,
         });
       }
     }
@@ -579,13 +714,66 @@ function buildNatalPromise(
     }
   }
 
-  // Varga confirmations — placeholder
+  // Varga confirmations — computed from divisional charts when available
+  const primaryH_ = config.primaryHouses[0];
+  const primarySign_ = kundali.houses.find(c => c.house === primaryH_)?.sign ?? 1;
+  const primaryLordId_ = SIGN_LORD[primarySign_] ?? 0;
+
   const vargaConfirmations: NatalPromiseBlock['vargaConfirmations'] = config.divisionalCharts.map(
-    chartId => ({
-      chartId,
-      score: 50,
-      keyInsight: { en: `${chartId} analysis pending deeper integration.`, hi: `${chartId} विश्लेषण गहन एकीकरण प्रतीक्षित।` },
-    }),
+    chartId => {
+      if (!kundali.divisionalCharts) {
+        return {
+          chartId,
+          score: 50,
+          keyInsight: { en: `${chartId} data unavailable.`, hi: `${chartId} डेटा अनुपलब्ध।` },
+        };
+      }
+      const chart = kundali.divisionalCharts[chartId];
+      if (!chart || !chart.houses) {
+        return {
+          chartId,
+          score: 50,
+          keyInsight: { en: `${chartId} data unavailable.`, hi: `${chartId} डेटा अनुपलब्ध।` },
+        };
+      }
+
+      // Find lord's sign in this varga
+      let lordSign: number | null = null;
+      for (let i = 0; i < chart.houses.length; i++) {
+        if (chart.houses[i] && chart.houses[i].includes(primaryLordId_)) {
+          lordSign = ((chart.ascendantSign - 1 + i) % 12) + 1;
+          break;
+        }
+      }
+
+      if (lordSign === null) {
+        return {
+          chartId,
+          score: 50,
+          keyInsight: { en: `Lord not found in ${chartId}.`, hi: `${chartId} में स्वामी नहीं मिला।` },
+        };
+      }
+
+      const dignity = getDignity(primaryLordId_, lordSign);
+      const score = VARGA_DIGNITY_SCORES[dignity];
+      const dignityLabels: Record<string, { en: string; hi: string }> = {
+        exalted:      { en: 'exalted — strong confirmation',       hi: 'उच्च — दृढ़ पुष्टि' },
+        own:          { en: 'in own sign — good confirmation',      hi: 'स्वराशि — अच्छी पुष्टि' },
+        friend:       { en: 'in friendly sign — supportive',        hi: 'मित्र राशि — सहायक' },
+        neutral:      { en: 'in neutral sign — mixed signals',      hi: 'सम राशि — मिश्रित संकेत' },
+        enemy:        { en: 'in enemy sign — weak confirmation',    hi: 'शत्रु राशि — कमज़ोर पुष्टि' },
+        debilitated:  { en: 'debilitated — contradicts promise',    hi: 'नीच — प्रतिज्ञा के विपरीत' },
+      };
+      const label = dignityLabels[dignity] ?? dignityLabels.neutral;
+      return {
+        chartId,
+        score,
+        keyInsight: {
+          en: `Lord ${dignity} in ${chartId} — ${label.en}.`,
+          hi: `${chartId} में स्वामी ${label.hi}।`,
+        },
+      };
+    },
   );
 
   // Build narrative from narrator functions
@@ -760,8 +948,22 @@ function buildDomainReading(
   // 3. Current activation (using real transit data when available)
   const currentActivation = buildCurrentActivation(config, kundali, data, transitData);
 
-  // 4. Overall rating: blend natal + activation
-  const blendedScore = natalRating.score * 0.7 + currentActivation.overallActivationScore * 0.3;
+  // 4. Overall rating: blend natal + activation, with Sade Sati penalty
+  let blendedScore = natalRating.score * 0.7 + currentActivation.overallActivationScore * 0.3;
+
+  // Apply Sade Sati penalty to Moon-linked / emotional domains
+  if (kundali.sadeSati?.isActive) {
+    const sadeSatiPenalties: Partial<Record<DomainType, number>> = {
+      family: 1.5,   // 4th house = Moon's natural house
+      marriage: 1.0,  // emotional aspect
+      health: 0.5,    // mental health under pressure
+    };
+    const penalty = sadeSatiPenalties[config.id] ?? 0;
+    if (penalty > 0) {
+      blendedScore -= penalty;
+    }
+  }
+
   const clampedBlend = Math.round(Math.min(10, Math.max(0, blendedScore)) * 10) / 10;
   const overallRating: RatingInfo = {
     ...natalRating,
@@ -941,7 +1143,10 @@ export function synthesizeReading(
     moonSign: data.moonSign,
     currentDate: data.currentDate,
     sadeSatiStatus: kundali.sadeSati
-      ? { active: (kundali.sadeSati as { isActive?: boolean }).isActive ?? false }
+      ? {
+          active: (kundali.sadeSati as { isActive?: boolean }).isActive ?? false,
+          phase: (kundali.sadeSati as { currentPhase?: string }).currentPhase ?? undefined,
+        }
       : undefined,
   };
   const currentPeriod = synthesizeCurrentPeriod(currentPeriodInput);

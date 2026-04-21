@@ -1019,4 +1019,896 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
       },
     },
   },
+
+  // ---------------------------------------------------------------------------
+  // D7 Saptamsha — Children / Progeny domain — 63 entries
+  // 9 planets × houses 1, 2, 4, 5, 7, 9, 11
+  // ---------------------------------------------------------------------------
+  children: {
+    // Sun (0)
+    0: {
+      1: {
+        en: 'Sun in the D7 1st house shows a parenting style marked by authority and pride. The native leads the family unit with confidence and instils strong values of self-respect in children.',
+        hi: 'सप्तमांश लग्न में सूर्य अधिकारपूर्ण और गर्वपूर्ण पालन-पोषण शैली दर्शाता है। जातक परिवार में आत्मविश्वास से नेतृत्व करता और बच्चों में आत्मसम्मान भरता है।',
+      },
+      2: {
+        en: 'Sun in the D7 2nd house expands the family through children who bring honour and status. The native values lineage highly and may have children who uphold family pride.',
+        hi: 'सप्तमांश द्वितीय में सूर्य उन बच्चों से कुल-विस्तार का संकेत देता है जो सम्मान लाते हैं। जातक वंश को उच्च महत्व देता है।',
+      },
+      4: {
+        en: 'Sun in the D7 4th house creates a strong emotional bond between parent and child rooted in mutual respect. The home environment is structured and dignified, giving children a secure foundation.',
+        hi: 'सप्तमांश चतुर्थ में सूर्य माता-पिता और बच्चे के बीच परस्पर सम्मान पर आधारित दृढ़ भावनात्मक बंधन बनाता है।',
+      },
+      5: {
+        en: 'Sun in the D7 5th house is a powerful blessing for progeny. Children are talented, bright, and may hold positions of authority. The native takes great pride and joy in raising them.',
+        hi: 'सप्तमांश पंचम में सूर्य संतान के लिए शक्तिशाली आशीर्वाद है। बच्चे प्रतिभाशाली, तेजस्वी और नेतृत्व-योग्य होते हैं।',
+      },
+      7: {
+        en: 'Sun in the D7 7th house indicates that the spouse takes an authoritative role in parenting. Shared parenting decisions may involve ego negotiations, but the result is a disciplined household.',
+        hi: 'सप्तमांश सप्तम में सूर्य जीवनसाथी की पालन-पोषण में अधिकारपूर्ण भूमिका दर्शाता है। संयुक्त निर्णयों में अहंकार समन्वय आवश्यक।',
+      },
+      9: {
+        en: 'Sun in the D7 9th house blesses the native with children who carry forward the family\'s dharmic or academic legacy. Grandchildren are distinguished, and the lineage commands respect.',
+        hi: 'सप्तमांश नवम में सूर्य उन बच्चों का आशीर्वाद देता है जो कुल की धार्मिक या शैक्षणिक विरासत आगे ले जाते हैं।',
+      },
+      11: {
+        en: 'Sun in the D7 11th house fulfils the native\'s deepest desire for children and progeny. Children bring social recognition and pride, and their achievements elevate the entire family.',
+        hi: 'सप्तमांश एकादश में सूर्य संतान की गहरी इच्छा पूर्ण करता है। बच्चे सामाजिक सम्मान लाते हैं और उनकी उपलब्धियां पूरे परिवार को उठाती हैं।',
+      },
+    },
+    // Moon (1)
+    1: {
+      1: {
+        en: 'Moon in the D7 1st house gives a deeply nurturing and emotionally attentive parenting style. The native is instinctively protective and forms strong emotional bonds with each child.',
+        hi: 'सप्तमांश लग्न में चंद्रमा गहन पोषणकारी और भावनात्मक रूप से चौकस पालन-पोषण शैली देता है। जातक सहज रक्षात्मक होता है।',
+      },
+      2: {
+        en: 'Moon in the D7 2nd house expands the family through loving, emotionally close relationships with children. The home is warm and nourishing, and maternal bonds run deep across generations.',
+        hi: 'सप्तमांश द्वितीय में चंद्रमा प्रेमपूर्ण और भावनात्मक रूप से घनिष्ठ संबंधों से परिवार विस्तार का संकेत देता है।',
+      },
+      4: {
+        en: 'Moon in the D7 4th house is one of the finest placements for parent-child emotional bonding. The domestic atmosphere is tender and secure, and children thrive under the native\'s nurturing care.',
+        hi: 'सप्तमांश चतुर्थ में चंद्रमा माता-पिता-बच्चे के भावनात्मक बंधन के लिए श्रेष्ठ स्थान है। घरेलू वातावरण कोमल और सुरक्षित रहता है।',
+      },
+      5: {
+        en: 'Moon in the D7 5th house creates a deeply intuitive and loving relationship with children. The native\'s emotional intelligence shines in parenting, and children feel unconditionally loved.',
+        hi: 'सप्तमांश पंचम में चंद्रमा बच्चों के साथ गहन सहज और प्रेमपूर्ण संबंध बनाता है। जातक की भावनात्मक बुद्धिमत्ता पालन-पोषण में प्रकाशित होती है।',
+      },
+      7: {
+        en: 'Moon in the D7 7th house shows a spouse who is emotionally engaged and nurturing toward children. The couple naturally co-parent with sensitivity and shared emotional language.',
+        hi: 'सप्तमांश सप्तम में चंद्रमा बच्चों के प्रति भावनात्मक रूप से संलग्न और पोषणकारी जीवनसाथी दर्शाता है।',
+      },
+      9: {
+        en: 'Moon in the D7 9th house bestows a caring, emotionally sensitive relationship with grandchildren. The native becomes a beloved elder figure whose emotional wisdom is cherished by future generations.',
+        hi: 'सप्तमांश नवम में चंद्रमा पोती-पोतों के साथ देखभालपूर्ण संबंध प्रदान करता है। जातक भविष्य की पीढ़ियों के लिए प्रिय बुजुर्ग बनता है।',
+      },
+      11: {
+        en: 'Moon in the D7 11th house fulfils emotional desires for a loving family circle. Children bring deep personal satisfaction and become the native\'s closest friends in later life.',
+        hi: 'सप्तमांश एकादश में चंद्रमा प्रेमपूर्ण परिवार की भावनात्मक इच्छा पूर्ण करता है। बच्चे गहरी व्यक्तिगत तृप्ति लाते हैं।',
+      },
+    },
+    // Mars (2)
+    2: {
+      1: {
+        en: 'Mars in the D7 1st house gives an energetic, action-oriented parenting style. The native is a protective and driven parent who encourages courage and physical vitality in children.',
+        hi: 'सप्तमांश लग्न में मंगल ऊर्जावान, क्रिया-उन्मुख पालन-पोषण शैली देता है। जातक रक्षात्मक और प्रेरक माता-पिता होता है।',
+      },
+      2: {
+        en: 'Mars in the D7 2nd house drives the native to work hard to expand the family and provide financially for children. Arguments about family matters may occur, but the intent is protective.',
+        hi: 'सप्तमांश द्वितीय में मंगल जातक को परिवार विस्तार और बच्चों के लिए कड़ी मेहनत करने को प्रेरित करता है।',
+      },
+      4: {
+        en: 'Mars in the D7 4th house can create a dynamic, sometimes tense home environment. The native is fiercely protective of children but must guard against being overly controlling or aggressive.',
+        hi: 'सप्तमांश चतुर्थ में मंगल गतिशील, कभी-कभी तनावपूर्ण घरेलू वातावरण बना सकता है। जातक बच्चों का उग्र रक्षक होता है।',
+      },
+      5: {
+        en: 'Mars in the D7 5th house, if afflicted, can indicate risks or delays in childbirth. However, children who do arrive are bold, energetic, and competitive — natural leaders who blaze their own trails.',
+        hi: 'सप्तमांश पंचम में मंगल, यदि पीड़ित हो, संतान में विलंब या जोखिम का संकेत दे सकता है। आने वाले बच्चे साहसी और प्रतिस्पर्धी नेता होते हैं।',
+      },
+      7: {
+        en: 'Mars in the D7 7th house indicates a spouse who is energetic and protective of children. Parenting disagreements may be heated but are resolved through direct communication and shared goals.',
+        hi: 'सप्तमांश सप्तम में मंगल बच्चों के प्रति ऊर्जावान और रक्षात्मक जीवनसाथी दर्शाता है। पालन-पोषण मतभेद उग्र लेकिन प्रत्यक्ष संवाद से सुलझते हैं।',
+      },
+      9: {
+        en: 'Mars in the D7 9th house gives grandchildren who are courageous pioneers. The native inspires the next generation through action-oriented values and a tradition of bold enterprise.',
+        hi: 'सप्तमांश नवम में मंगल साहसी अग्रदूत पोती-पोते देता है। जातक अगली पीढ़ी को साहसी उद्यम की परंपरा से प्रेरित करता है।',
+      },
+      11: {
+        en: 'Mars in the D7 11th house brings fulfilment of desires for progeny through determined effort. Children become allies and achieve material success that benefits the entire family network.',
+        hi: 'सप्तमांश एकादश में मंगल दृढ़ प्रयास से संतान की इच्छा पूर्ण करता है। बच्चे सहयोगी बनते हैं और पूरे परिवार को लाभ पहुंचाने वाली सफलता प्राप्त करते हैं।',
+      },
+    },
+    // Mercury (3)
+    3: {
+      1: {
+        en: 'Mercury in the D7 1st house gives an intellectually engaged and communicative parenting style. The native educates children through conversation, story, and curiosity-driven exploration.',
+        hi: 'सप्तमांश लग्न में बुध बौद्धिक रूप से संलग्न और संचारशील पालन-पोषण शैली देता है। जातक संवाद और जिज्ञासा से बच्चों को शिक्षित करता है।',
+      },
+      2: {
+        en: 'Mercury in the D7 2nd house expands the family through children who are articulate and academically gifted. The native invests in their education and models a love of learning and language.',
+        hi: 'सप्तमांश द्वितीय में बुध वाक्पटु और शैक्षणिक रूप से प्रतिभाशाली बच्चों से परिवार विस्तार दर्शाता है।',
+      },
+      4: {
+        en: 'Mercury in the D7 4th house creates a stimulating home environment rich in books, discussions, and creative play. Children develop sharp minds and strong communication skills in this setting.',
+        hi: 'सप्तमांश चतुर्थ में बुध पुस्तकों, चर्चाओं और रचनात्मक खेल से समृद्ध उत्तेजक घरेलू वातावरण बनाता है।',
+      },
+      5: {
+        en: 'Mercury in the D7 5th house blesses the native with clever, witty, and intellectually curious children. Parenting is playful and mentally engaging, with an emphasis on creativity and critical thinking.',
+        hi: 'सप्तमांश पंचम में बुध चतुर, विनोदी और बौद्धिक रूप से जिज्ञासु बच्चों का आशीर्वाद देता है।',
+      },
+      7: {
+        en: 'Mercury in the D7 7th house shows a spouse who engages children through intellectual stimulation and communication. Co-parenting discussions are rational and solution-focused.',
+        hi: 'सप्तमांश सप्तम में बुध बौद्धिक उत्तेजना और संवाद से बच्चों को संलग्न करने वाला जीवनसाथी दर्शाता है।',
+      },
+      9: {
+        en: 'Mercury in the D7 9th house indicates grandchildren who carry forward intellectual and scholarly traditions. The native\'s wisdom is communicated clearly and leaves a lasting educational legacy.',
+        hi: 'सप्तमांश नवम में बुध बौद्धिक और विद्वतापूर्ण परंपरा आगे ले जाने वाले पोती-पोते दर्शाता है।',
+      },
+      11: {
+        en: 'Mercury in the D7 11th house fulfils the native\'s desire for children through networking and intellectual connections. Children excel in communication fields and bring social gains to the family.',
+        hi: 'सप्तमांश एकादश में बुध नेटवर्किंग और बौद्धिक संपर्कों से संतान इच्छा पूर्ण करता है। बच्चे संवाद क्षेत्रों में उत्कृष्ट होते हैं।',
+      },
+    },
+    // Jupiter (4)
+    4: {
+      1: {
+        en: 'Jupiter in the D7 1st house gives a wise, generous, and principled parenting style. The native is a natural guide and teacher to children, instilling ethical values and expansive thinking.',
+        hi: 'सप्तमांश लग्न में गुरु बुद्धिमान, उदार और नैतिक पालन-पोषण शैली देता है। जातक बच्चों का स्वाभाविक मार्गदर्शक और शिक्षक होता है।',
+      },
+      2: {
+        en: 'Jupiter in the D7 2nd house expands the family bountifully. Children are numerous or deeply valued, and the family lineage grows in wisdom and prosperity across generations.',
+        hi: 'सप्तमांश द्वितीय में गुरु परिवार को प्रचुर रूप से विस्तृत करता है। बच्चे अनेक या अत्यंत मूल्यवान होते हैं और वंश ज्ञान में बढ़ता है।',
+      },
+      4: {
+        en: 'Jupiter in the D7 4th house creates a joyful, wisdom-filled home environment. Children flourish spiritually and academically, and the parent-child bond is built on trust, learning, and generosity.',
+        hi: 'सप्तमांश चतुर्थ में गुरु आनंदमय, ज्ञान से भरे घरेलू वातावरण का निर्माण करता है। बच्चे आध्यात्मिक और शैक्षणिक रूप से फलते-फूलते हैं।',
+      },
+      5: {
+        en: 'Jupiter in the D7 5th house is the finest placement for blessed progeny. Children are gifted, fortunate, and may become scholars, teachers, or spiritual figures. The parenting bond is deeply dharmic.',
+        hi: 'सप्तमांश पंचम में गुरु आशीर्वादित संतान के लिए सर्वोत्तम स्थान है। बच्चे प्रतिभाशाली, भाग्यशाली और विद्वान हो सकते हैं।',
+      },
+      7: {
+        en: 'Jupiter in the D7 7th house blesses the native with a wise and supportive spouse in parenting. Co-parenting is harmonious, dharmic, and grounded in shared spiritual or philosophical values.',
+        hi: 'सप्तमांश सप्तम में गुरु पालन-पोषण में बुद्धिमान और सहायक जीवनसाथी का आशीर्वाद देता है।',
+      },
+      9: {
+        en: 'Jupiter in the D7 9th house bestows grandchildren who are spiritually inclined, wise, and respected. The native becomes a revered patriarch or matriarch whose blessings carry across generations.',
+        hi: 'सप्तमांश नवम में गुरु आध्यात्मिक रूप से इच्छुक, बुद्धिमान और सम्मानित पोती-पोते प्रदान करता है।',
+      },
+      11: {
+        en: 'Jupiter in the D7 11th house grants abundant fulfilment through children and progeny. The native\'s desires for family expansion are richly met, and children become pillars of social and material success.',
+        hi: 'सप्तमांश एकादश में गुरु बच्चों और संतान के माध्यम से प्रचुर तृप्ति प्रदान करता है।',
+      },
+    },
+    // Venus (5)
+    5: {
+      1: {
+        en: 'Venus in the D7 1st house gives a warm, affectionate, and artistically inclined parenting style. The native creates a beautiful and harmonious environment in which children feel loved and inspired.',
+        hi: 'सप्तमांश लग्न में शुक्र उष्ण, स्नेही और कलात्मक पालन-पोषण शैली देता है। जातक सुंदर और सौहार्दपूर्ण वातावरण बनाता है।',
+      },
+      2: {
+        en: 'Venus in the D7 2nd house brings beauty, art, and abundance to the family through children. The native invests in creative education for children and cherishes aesthetic family traditions.',
+        hi: 'सप्तमांश द्वितीय में शुक्र बच्चों के माध्यम से परिवार में सौंदर्य, कला और प्रचुरता लाता है।',
+      },
+      4: {
+        en: 'Venus in the D7 4th house makes the home a sanctuary of beauty and affection. Children grow up in a loving, aesthetically rich environment and develop refined sensibilities and emotional warmth.',
+        hi: 'सप्तमांश चतुर्थ में शुक्र घर को सौंदर्य और स्नेह का अभयारण्य बनाता है। बच्चे प्रेमपूर्ण और कलात्मक रूप से समृद्ध वातावरण में बढ़ते हैं।',
+      },
+      5: {
+        en: 'Venus in the D7 5th house brings charming, artistically talented children. The native\'s relationship with progeny is filled with joy, playfulness, and creative expression shared together.',
+        hi: 'सप्तमांश पंचम में शुक्र आकर्षक, कलात्मक रूप से प्रतिभाशाली बच्चे लाता है। जातक और संतान के बीच आनंद और रचनात्मकता का संबंध रहता है।',
+      },
+      7: {
+        en: 'Venus in the D7 7th house indicates a loving, aesthetically attuned spouse who co-parents with grace. Parenting decisions are made collaboratively with warmth and mutual appreciation.',
+        hi: 'सप्तमांश सप्तम में शुक्र प्रेमपूर्ण, कलात्मक जीवनसाथी दर्शाता है जो सुंदरता से सह-पालन करता है।',
+      },
+      9: {
+        en: 'Venus in the D7 9th house gives grandchildren who are charming, artistic, and socially graceful. The native\'s influence across generations is one of beauty, culture, and harmonious living.',
+        hi: 'सप्तमांश नवम में शुक्र आकर्षक, कलात्मक और सामाजिक रूप से कुशल पोती-पोते देता है।',
+      },
+      11: {
+        en: 'Venus in the D7 11th house fulfils desires for a beautiful family life. Children bring social pleasures and artistic achievements that enrich the native\'s personal and social world.',
+        hi: 'सप्तमांश एकादश में शुक्र सुंदर पारिवारिक जीवन की इच्छा पूर्ण करता है। बच्चे सामाजिक आनंद और कलात्मक उपलब्धियां लाते हैं।',
+      },
+    },
+    // Saturn (6)
+    6: {
+      1: {
+        en: 'Saturn in the D7 1st house gives a serious, disciplined, and sometimes austere parenting approach. The native takes parenting responsibilities gravely and teaches children endurance and accountability.',
+        hi: 'सप्तमांश लग्न में शनि गंभीर, अनुशासित और कभी-कभी कठोर पालन-पोषण दृष्टिकोण देता है। जातक बच्चों को धैर्य और जवाबदेही सिखाता है।',
+      },
+      2: {
+        en: 'Saturn in the D7 2nd house may delay or limit family expansion, but children who arrive are resilient and industrious. The native works steadily to provide material security for the family.',
+        hi: 'सप्तमांश द्वितीय में शनि परिवार विस्तार में विलंब कर सकता है, लेकिन आने वाले बच्चे दृढ़ और परिश्रमी होते हैं।',
+      },
+      4: {
+        en: 'Saturn in the D7 4th house creates a structured, sometimes emotionally restrained home environment. Children learn self-reliance and discipline, though the native must consciously nurture warmth.',
+        hi: 'सप्तमांश चतुर्थ में शनि संरचित, कभी-कभी भावनात्मक रूप से संयमित घरेलू वातावरण बनाता है। बच्चे आत्मनिर्भरता सीखते हैं।',
+      },
+      5: {
+        en: 'Saturn in the D7 5th house classically indicates delayed progeny or limited number of children. Those born are serious, hardworking, and achieve success through sustained effort rather than luck.',
+        hi: 'सप्तमांश पंचम में शनि क्लासिकली संतान में विलंब या सीमित संख्या दर्शाता है। जन्मे बच्चे गंभीर और परिश्रमी होते हैं।',
+      },
+      7: {
+        en: 'Saturn in the D7 7th house shows a spouse who is responsible and methodical in parenting. Co-parenting may feel duty-driven rather than emotionally warm, but the household is stable and reliable.',
+        hi: 'सप्तमांश सप्तम में शनि पालन-पोषण में जिम्मेदार और व्यवस्थित जीवनसाथी दर्शाता है। गृहस्थ स्थिर और विश्वसनीय रहता है।',
+      },
+      9: {
+        en: 'Saturn in the D7 9th house gives grandchildren who are disciplined, patient achievers. The native\'s legacy is built through enduring effort, and the family tree gains respect through perseverance.',
+        hi: 'सप्तमांश नवम में शनि अनुशासित, धैर्यवान पोती-पोते देता है। जातक की विरासत स्थायी प्रयास से बनती है।',
+      },
+      11: {
+        en: 'Saturn in the D7 11th house brings delayed but ultimately fulfilled desires for progeny. Children, once arrived, work diligently and become sources of practical support and long-term familial strength.',
+        hi: 'सप्तमांश एकादश में शनि विलंबित लेकिन अंततः पूर्ण संतान इच्छा लाता है। बच्चे परिश्रमी बनते हैं और व्यावहारिक सहारा देते हैं।',
+      },
+    },
+    // Rahu (7)
+    7: {
+      1: {
+        en: 'Rahu in the D7 1st house gives an unconventional parenting style driven by ambition and experimentation. The native may push children toward innovative paths, sometimes overriding traditional upbringing norms.',
+        hi: 'सप्तमांश लग्न में राहु महत्वाकांक्षा और प्रयोग से प्रेरित अपरंपरागत पालन-पोषण शैली देता है।',
+      },
+      2: {
+        en: 'Rahu in the D7 2nd house may create complex family dynamics around children. There can be unconventional additions to the family, and the native\'s approach to lineage may deviate from tradition.',
+        hi: 'सप्तमांश द्वितीय में राहु बच्चों के इर्द-गिर्द जटिल पारिवारिक गतिशीलता बना सकता है। परिवार में अपरंपरागत जोड़ संभव।',
+      },
+      4: {
+        en: 'Rahu in the D7 4th house creates an unusual or disrupted home environment for children. The native may parent in unconventional settings — cross-cultural households, blended families, or foreign lands.',
+        hi: 'सप्तमांश चतुर्थ में राहु बच्चों के लिए असामान्य या अस्त-व्यस्त घरेलू वातावरण बनाता है।',
+      },
+      5: {
+        en: 'Rahu in the D7 5th house may bring irregular or unexpected experiences around childbirth. Children can be unusually gifted or come through unconventional means such as adoption or assisted reproduction.',
+        hi: 'सप्तमांश पंचम में राहु संतान के इर्द-गिर्द अनियमित या अप्रत्याशित अनुभव ला सकता है। बच्चे असाधारण रूप से प्रतिभाशाली या अपरंपरागत माध्यम से आ सकते हैं।',
+      },
+      7: {
+        en: 'Rahu in the D7 7th house indicates a spouse whose parenting style is unconventional or cross-cultural. Parenting discussions may be complex, but the outcome is a uniquely stimulating environment for children.',
+        hi: 'सप्तमांश सप्तम में राहु अपरंपरागत या बहुसांस्कृतिक पालन-पोषण शैली वाला जीवनसाथी दर्शाता है।',
+      },
+      9: {
+        en: 'Rahu in the D7 9th house suggests grandchildren from unusual or cross-cultural backgrounds. The family legacy takes unexpected turns, and the next generation may live far from ancestral roots.',
+        hi: 'सप्तमांश नवम में राहु असामान्य या बहुसांस्कृतिक पृष्ठभूमि से पोती-पोते का सुझाव देता है।',
+      },
+      11: {
+        en: 'Rahu in the D7 11th house can bring sudden or unexpected fulfilment of the desire for children. Gains through children may come from unconventional sources, and the native\'s social network expands dramatically through them.',
+        hi: 'सप्तमांश एकादश में राहु संतान की इच्छा की अचानक या अप्रत्याशित पूर्ति ला सकता है।',
+      },
+    },
+    // Ketu (8)
+    8: {
+      1: {
+        en: 'Ketu in the D7 1st house gives a spiritually detached yet intuitively wise parenting style. The native raises children with emphasis on inner values over worldly achievement, sometimes appearing emotionally distant.',
+        hi: 'सप्तमांश लग्न में केतु आध्यात्मिक रूप से विरक्त लेकिन सहज रूप से बुद्धिमान पालन-पोषण शैली देता है।',
+      },
+      2: {
+        en: 'Ketu in the D7 2nd house indicates a past-life karmic connection to family lineage. The native may feel ambivalent about family expansion but carries deep ancestral wisdom that is transmitted to children.',
+        hi: 'सप्तमांश द्वितीय में केतु परिवार वंश से पूर्वजन्म कार्मिक संबंध दर्शाता है। जातक गहन पूर्वजन्म ज्ञान संतान को देता है।',
+      },
+      4: {
+        en: 'Ketu in the D7 4th house may create emotional distance in the parent-child home bond. The native\'s spiritual detachment can make the home feel unworldly, yet children gain a rare connection to inner peace.',
+        hi: 'सप्तमांश चतुर्थ में केतु माता-पिता-बच्चे के घरेलू बंधन में भावनात्मक दूरी बना सकता है। बच्चे आंतरिक शांति से दुर्लभ संबंध पाते हैं।',
+      },
+      5: {
+        en: 'Ketu in the D7 5th house often indicates past-life karma around progeny — the native may experience delays, detachment from children, or children who pursue highly spiritual or renunciate paths.',
+        hi: 'सप्तमांश पंचम में केतु अक्सर संतान के इर्द-गिर्द पूर्वजन्म कर्म दर्शाता है। बच्चे आध्यात्मिक या वैराग्य मार्ग अपना सकते हैं।',
+      },
+      7: {
+        en: 'Ketu in the D7 7th house shows a spouse who is spiritually oriented and somewhat detached in parenting. The co-parenting dynamic has a quiet, introspective quality, and children are raised with meditative values.',
+        hi: 'सप्तमांश सप्तम में केतु आध्यात्मिक रूप से उन्मुख और पालन-पोषण में कुछ हद तक विरक्त जीवनसाथी दर्शाता है।',
+      },
+      9: {
+        en: 'Ketu in the D7 9th house suggests grandchildren with deep spiritual inclinations or past-life connections to the native. The family lineage carries a thread of mystical wisdom across generations.',
+        hi: 'सप्तमांश नवम में केतु गहरी आध्यात्मिक प्रवृत्ति वाले या जातक से पूर्वजन्म संबंध वाले पोती-पोते का सुझाव देता है।',
+      },
+      11: {
+        en: 'Ketu in the D7 11th house detaches the native from conventional desires for progeny. Fulfilment comes through spiritual surrender, and children, if present, find their highest purpose in service or renunciation.',
+        hi: 'सप्तमांश एकादश में केतु संतान की पारंपरिक इच्छाओं से विरक्त करता है। बच्चे सेवा या वैराग्य में सर्वोच्च उद्देश्य पाते हैं।',
+      },
+    },
+  },
+
+  // ---------------------------------------------------------------------------
+  // D2/D4 — Wealth / Dhan domain — 54 entries
+  // 9 planets × houses 1, 2, 4, 5, 9, 11
+  // ---------------------------------------------------------------------------
+  wealth: {
+    // Sun (0)
+    0: {
+      1: {
+        en: 'Sun in the D2 1st house gives strong self-earned financial capacity. The native accumulates wealth through authority, government connections, or personal enterprise driven by a powerful sense of identity.',
+        hi: 'धनांश लग्न में सूर्य प्रबल स्व-अर्जित वित्तीय क्षमता देता है। जातक अधिकार, सरकारी संपर्कों या व्यक्तिगत उद्यम से संपत्ति अर्जित करता है।',
+      },
+      2: {
+        en: 'Sun in the D2 2nd house illuminates savings and family wealth. The native builds financial reserves with pride and may inherit or manage wealth connected to the father or government institutions.',
+        hi: 'धनांश द्वितीय में सूर्य बचत और पारिवारिक धन को प्रकाशित करता है। जातक गर्व से वित्तीय भंडार बनाता है।',
+      },
+      4: {
+        en: 'Sun in the D2 4th house indicates wealth through property, real estate, or vehicles. The native derives prestige from home ownership and may accumulate ancestral assets that carry social status.',
+        hi: 'धनांश चतुर्थ में सूर्य संपत्ति, अचल संपत्ति या वाहनों से धन का संकेत देता है। जातक गृह-स्वामित्व से प्रतिष्ठा प्राप्त करता है।',
+      },
+      5: {
+        en: 'Sun in the D2 5th house brings speculative financial gains with confidence. The native may profit from bold investments, creative ventures, or fields related to entertainment and children.',
+        hi: 'धनांश पंचम में सूर्य आत्मविश्वास के साथ सट्टा वित्तीय लाभ लाता है। जातक साहसी निवेश या मनोरंजन से लाभ पा सकता है।',
+      },
+      9: {
+        en: 'Sun in the D2 9th house connects fortune to dharmic living. Windfalls may come through father, guru, or long-distance connections, and the native\'s wealth grows when aligned with righteous action.',
+        hi: 'धनांश नवम में सूर्य भाग्य को धार्मिक जीवन से जोड़ता है। पिता, गुरु या दूरस्थ संपर्कों से सौभाग्य आ सकता है।',
+      },
+      11: {
+        en: 'Sun in the D2 11th house generates income through leadership, networks of influence, and government channels. The native\'s income streams grow as their social status and authority expand.',
+        hi: 'धनांश एकादश में सूर्य नेतृत्व, प्रभाव-नेटवर्क और सरकारी माध्यमों से आय उत्पन्न करता है।',
+      },
+    },
+    // Moon (1)
+    1: {
+      1: {
+        en: 'Moon in the D2 1st house gives an intuitive, fluctuating capacity to earn wealth. The native accumulates through nurturing professions, real estate, or businesses that serve public emotional needs.',
+        hi: 'धनांश लग्न में चंद्रमा धन अर्जन की सहज, उतार-चढ़ाव भरी क्षमता देता है। जातक पोषण व्यवसायों या अचल संपत्ति से संचय करता है।',
+      },
+      2: {
+        en: 'Moon in the D2 2nd house indicates savings that wax and wane like the Moon. The native builds family wealth through cycles of accumulation and spending, with emotional satisfaction driving financial decisions.',
+        hi: 'धनांश द्वितीय में चंद्रमा चंद्रमा की तरह घटती-बढ़ती बचत दर्शाता है। जातक संचय और व्यय के चक्रों से पारिवारिक धन बनाता है।',
+      },
+      4: {
+        en: 'Moon in the D2 4th house strongly favours property and real estate wealth. The native accumulates through ancestral land, domestic businesses, or nurturing environments that generate passive income.',
+        hi: 'धनांश चतुर्थ में चंद्रमा संपत्ति और अचल संपत्ति धन का प्रबल समर्थन करता है। जातक पैतृक भूमि या घरेलू व्यवसायों से संचय करता है।',
+      },
+      5: {
+        en: 'Moon in the D2 5th house brings emotional and intuitive investment decisions. The native may gain through speculative ventures driven by instinct, though emotional swings can affect financial judgement.',
+        hi: 'धनांश पंचम में चंद्रमा भावनात्मक और सहज निवेश निर्णय लाता है। जातक सहज ज्ञान से सट्टे में लाभ पा सकता है।',
+      },
+      9: {
+        en: 'Moon in the D2 9th house bestows fluctuating but recurring fortune. The native is blessed with intermittent windfalls connected to travel, mother\'s lineage, or devotional and spiritual activities.',
+        hi: 'धनांश नवम में चंद्रमा उतार-चढ़ाव भरा लेकिन आवर्ती भाग्य प्रदान करता है। यात्रा, मातृ वंश या आध्यात्मिक गतिविधियों से सौभाग्य।',
+      },
+      11: {
+        en: 'Moon in the D2 11th house generates multiple emotional and fluctuating income streams. The native earns through public-facing work, nurturing businesses, and a wide network of emotionally connected associates.',
+        hi: 'धनांश एकादश में चंद्रमा अनेक भावनात्मक और उतार-चढ़ाव भरी आय धाराएं उत्पन्न करता है।',
+      },
+    },
+    // Mars (2)
+    2: {
+      1: {
+        en: 'Mars in the D2 1st house gives aggressive, self-driven wealth accumulation. The native earns through physical effort, competitive enterprise, real estate development, or technical fields.',
+        hi: 'धनांश लग्न में मंगल आक्रामक, स्व-प्रेरित धन संचय देता है। जातक शारीरिक प्रयास, प्रतिस्पर्धी उद्यम या तकनीकी क्षेत्रों से कमाता है।',
+      },
+      2: {
+        en: 'Mars in the D2 2nd house may cause impulsive spending that erodes savings. However, the native\'s drive to earn is powerful, and accumulated wealth is rebuilt repeatedly through sheer determination.',
+        hi: 'धनांश द्वितीय में मंगल आवेगपूर्ण व्यय से बचत घटा सकता है। लेकिन जातक की कमाई की प्रेरणा शक्तिशाली है।',
+      },
+      4: {
+        en: 'Mars in the D2 4th house drives wealth through land, construction, and real estate ventures. The native may profit from property development or technical work on immovable assets.',
+        hi: 'धनांश चतुर्थ में मंगल भूमि, निर्माण और अचल संपत्ति उद्यमों से धन प्रेरित करता है।',
+      },
+      5: {
+        en: 'Mars in the D2 5th house brings bold, high-risk speculative gains. The native may excel in trading, sports betting, or competitive investments — though losses are equally dramatic when Mars afflicts.',
+        hi: 'धनांश पंचम में मंगल साहसी, उच्च-जोखिम सट्टा लाभ लाता है। जातक व्यापार या प्रतिस्पर्धी निवेश में उत्कृष्ट हो सकता है।',
+      },
+      9: {
+        en: 'Mars in the D2 9th house connects fortune to adventurous action and overseas enterprise. The native may profit through bold dharmic ventures, sports, military, or foreign trade that requires physical courage.',
+        hi: 'धनांश नवम में मंगल भाग्य को साहसिक कार्य और विदेशी उद्यम से जोड़ता है।',
+      },
+      11: {
+        en: 'Mars in the D2 11th house generates income through competitive endeavours, technical skills, and an enterprising social network. The native turns friendships and alliances into active financial opportunities.',
+        hi: 'धनांश एकादश में मंगल प्रतिस्पर्धी प्रयासों, तकनीकी कौशल और उद्यमशील नेटवर्क से आय उत्पन्न करता है।',
+      },
+    },
+    // Mercury (3)
+    3: {
+      1: {
+        en: 'Mercury in the D2 1st house gives intellectual and communicative financial capacity. The native earns through trade, writing, media, and mental agility — accumulating wealth by leveraging information and wit.',
+        hi: 'धनांश लग्न में बुध बौद्धिक और संचारशील वित्तीय क्षमता देता है। जातक व्यापार, लेखन, मीडिया से धन अर्जित करता है।',
+      },
+      2: {
+        en: 'Mercury in the D2 2nd house is excellent for accumulating wealth through business and commerce. The native saves intelligently, diversifies income, and understands financial instruments with natural ease.',
+        hi: 'धनांश द्वितीय में बुध व्यापार और वाणिज्य से धन संचय के लिए उत्तम है। जातक बुद्धिमानी से बचत करता और आय विविधीकृत करता है।',
+      },
+      4: {
+        en: 'Mercury in the D2 4th house creates wealth through real estate, data-driven businesses, or services connected to home and family. The native may profit from renting, property management, or domestic consulting.',
+        hi: 'धनांश चतुर्थ में बुध अचल संपत्ति, डेटा-चालित व्यवसायों या घर और परिवार से संबंधित सेवाओं से धन बनाता है।',
+      },
+      5: {
+        en: 'Mercury in the D2 5th house favours speculative gains through analytical intelligence. The native may profit through stock analysis, algorithmic trading, or intellectual creative ventures.',
+        hi: 'धनांश पंचम में बुध विश्लेषणात्मक बुद्धिमत्ता से सट्टे में लाभ का समर्थन करता है। जातक शेयर विश्लेषण या एल्गोरिदमिक व्यापार से लाभ पा सकता है।',
+      },
+      9: {
+        en: 'Mercury in the D2 9th house generates fortune through publishing, teaching, law, and long-distance trade. The native\'s intellectual breadth opens diverse income channels across geographies.',
+        hi: 'धनांश नवम में बुध प्रकाशन, शिक्षण, कानून और दूरस्थ व्यापार से भाग्य उत्पन्न करता है।',
+      },
+      11: {
+        en: 'Mercury in the D2 11th house creates income through diverse, intellectually driven networks. The native earns through consulting, media, and information businesses that reach wide audiences.',
+        hi: 'धनांश एकादश में बुध विविध, बौद्धिक रूप से संचालित नेटवर्क से आय बनाता है।',
+      },
+    },
+    // Jupiter (4)
+    4: {
+      1: {
+        en: 'Jupiter in the D2 1st house is a powerful blessing for natural wealth accumulation. The native has an expansive financial capacity and attracts abundance through wisdom, generosity, and dharmic living.',
+        hi: 'धनांश लग्न में गुरु प्राकृतिक धन संचय के लिए शक्तिशाली आशीर्वाद है। जातक ज्ञान, उदारता और धार्मिक जीवन से प्रचुरता आकर्षित करता है।',
+      },
+      2: {
+        en: 'Jupiter in the D2 2nd house is the finest placement for savings and family wealth. The native is a natural accumulator who builds lasting financial reserves, and wealth grows across generations of the family.',
+        hi: 'धनांश द्वितीय में गुरु बचत और पारिवारिक धन के लिए सर्वोत्तम स्थान है। जातक स्वाभाविक संचयकर्ता है और धन पीढ़ियों में बढ़ता है।',
+      },
+      4: {
+        en: 'Jupiter in the D2 4th house multiplies wealth through property and ancestral assets. The native benefits from wise real estate decisions and may inherit or steward significant immovable wealth.',
+        hi: 'धनांश चतुर्थ में गुरु संपत्ति और पैतृक संपदा से धन बढ़ाता है। जातक बुद्धिमान अचल संपत्ति निर्णयों से लाभान्वित होता है।',
+      },
+      5: {
+        en: 'Jupiter in the D2 5th house gives fortunate speculative gains through wisdom and luck. The native may profit from education-related investments, children\'s enterprise, or well-timed market entries.',
+        hi: 'धनांश पंचम में गुरु ज्ञान और भाग्य से अनुकूल सट्टा लाभ देता है। जातक शिक्षा-संबंधी निवेश या बच्चों के उद्यम से लाभ पा सकता है।',
+      },
+      9: {
+        en: 'Jupiter in the D2 9th house is a supreme indicator of fortune, windfalls, and dharmic wealth. The native is financially blessed through their guru, father, or wise spiritual alignment with abundance.',
+        hi: 'धनांश नवम में गुरु भाग्य, अनायास धन और धार्मिक संपत्ति का सर्वोच्च सूचक है।',
+      },
+      11: {
+        en: 'Jupiter in the D2 11th house multiplies income streams through wisdom and expansive networks. The native\'s gains are abundant and grow through education, publishing, and philosophically aligned enterprises.',
+        hi: 'धनांश एकादश में गुरु ज्ञान और विस्तृत नेटवर्क से आय धाराएं बढ़ाता है।',
+      },
+    },
+    // Venus (5)
+    5: {
+      1: {
+        en: 'Venus in the D2 1st house gives natural financial magnetism. The native attracts wealth through beauty, art, luxury goods, and relationships — money flows toward them as naturally as charm.',
+        hi: 'धनांश लग्न में शुक्र प्राकृतिक वित्तीय आकर्षण देता है। जातक सौंदर्य, कला, विलासिता और संबंधों से धन आकर्षित करता है।',
+      },
+      2: {
+        en: 'Venus in the D2 2nd house creates a love of luxury and beautiful possessions. The native accumulates wealth through aesthetic businesses, jewellery, perfumery, or the entertainment industry.',
+        hi: 'धनांश द्वितीय में शुक्र विलासिता और सुंदर संपत्तियों के प्रति प्रेम बनाता है। जातक सौंदर्य व्यवसायों, जेवेलरी या मनोरंजन से संचय करता है।',
+      },
+      4: {
+        en: 'Venus in the D2 4th house generates wealth through beautiful properties, luxury real estate, and interior aesthetics. The native may profit from hospitality, home décor, or leisure-oriented businesses.',
+        hi: 'धनांश चतुर्थ में शुक्र सुंदर संपत्तियों, विलासिता अचल संपत्ति और आंतरिक सौंदर्यशास्त्र से धन उत्पन्न करता है।',
+      },
+      5: {
+        en: 'Venus in the D2 5th house brings pleasant speculative gains, especially from creative industries. The native may profit from art investments, entertainment stocks, or beauty-related startups.',
+        hi: 'धनांश पंचम में शुक्र सुखद सट्टा लाभ, विशेषकर रचनात्मक उद्योगों से लाता है।',
+      },
+      9: {
+        en: 'Venus in the D2 9th house connects fortune to beauty, diplomacy, and harmonious international connections. The native may profit from luxury exports, fashion, and cross-cultural creative partnerships.',
+        hi: 'धनांश नवम में शुक्र भाग्य को सौंदर्य, कूटनीति और सौहार्दपूर्ण अंतर्राष्ट्रीय संबंधों से जोड़ता है।',
+      },
+      11: {
+        en: 'Venus in the D2 11th house generates income through pleasure, beauty, and a magnetic social circle. The native earns from creative collaborations, luxury networks, and artistic income streams.',
+        hi: 'धनांश एकादश में शुक्र आनंद, सौंदर्य और आकर्षक सामाजिक वृत्त से आय उत्पन्न करता है।',
+      },
+    },
+    // Saturn (6)
+    6: {
+      1: {
+        en: 'Saturn in the D2 1st house gives slow but steadily accumulating wealth through disciplined effort and patience. The native builds financial capacity methodically, favouring conservative savings over risk.',
+        hi: 'धनांश लग्न में शनि अनुशासित प्रयास और धैर्य से धीमी लेकिन स्थिरतापूर्वक बढ़ने वाली संपत्ति देता है।',
+      },
+      2: {
+        en: 'Saturn in the D2 2nd house restricts spending and drives the native toward frugal, long-term wealth building. Financial growth is slow initially but compounds with age into substantial reserves.',
+        hi: 'धनांश द्वितीय में शनि व्यय सीमित करता और मितव्ययी, दीर्घकालिक धन निर्माण की ओर प्रेरित करता है।',
+      },
+      4: {
+        en: 'Saturn in the D2 4th house connects wealth to old, enduring property and ancestral land. The native may work in infrastructure, agriculture, or real estate that appreciates only over long periods.',
+        hi: 'धनांश चतुर्थ में शनि धन को पुरानी, टिकाऊ संपत्ति और पैतृक भूमि से जोड़ता है।',
+      },
+      5: {
+        en: 'Saturn in the D2 5th house restricts speculative gains and cautions the native against risky investments. Wealth, when it comes, is earned through disciplined, long-term financial strategies rather than short-term bets.',
+        hi: 'धनांश पंचम में शनि सट्टा लाभ सीमित करता और जोखिम भरे निवेश से सावधान करता है।',
+      },
+      9: {
+        en: 'Saturn in the D2 9th house delays fortune but ultimately delivers through sustained dharmic effort. The native may accumulate wealth in the second half of life through persistent, principled action.',
+        hi: 'धनांश नवम में शनि भाग्य में विलंब करता है लेकिन निरंतर धार्मिक प्रयास से अंततः देता है।',
+      },
+      11: {
+        en: 'Saturn in the D2 11th house creates income through sustained professional effort and long-term institutional relationships. Gains come steadily from disciplined networks and enduring business partnerships.',
+        hi: 'धनांश एकादश में शनि निरंतर व्यावसायिक प्रयास और दीर्घकालिक संस्थागत संबंधों से आय बनाता है।',
+      },
+    },
+    // Rahu (7)
+    7: {
+      1: {
+        en: 'Rahu in the D2 1st house gives an insatiable drive for wealth accumulation, often through unconventional or foreign-linked financial channels. Sudden gains are possible, as are sudden reversals.',
+        hi: 'धनांश लग्न में राहु धन संचय की अतृप्त प्रेरणा देता है, अक्सर अपरंपरागत या विदेश-संबंधित वित्तीय माध्यमों से।',
+      },
+      2: {
+        en: 'Rahu in the D2 2nd house drives materialistic accumulation through ambitious, sometimes ethically ambiguous means. The native may accumulate rapidly but must guard against financial deception or dishonest speech.',
+        hi: 'धनांश द्वितीय में राहु महत्वाकांक्षी, कभी-कभी नैतिक रूप से अस्पष्ट माध्यमों से भौतिक संचय प्रेरित करता है।',
+      },
+      4: {
+        en: 'Rahu in the D2 4th house brings unusual or foreign-linked property gains. The native may accumulate real estate through unconventional transactions or benefit from land in foreign or non-ancestral locations.',
+        hi: 'धनांश चतुर्थ में राहु असामान्य या विदेश-संबंधित संपत्ति लाभ लाता है।',
+      },
+      5: {
+        en: 'Rahu in the D2 5th house brings sudden, dramatic speculative gains — and equally sudden losses. The native is attracted to high-risk investment strategies and must temper speculative instincts with discipline.',
+        hi: 'धनांश पंचम में राहु अचानक, नाटकीय सट्टा लाभ — और समान रूप से अचानक हानि लाता है।',
+      },
+      9: {
+        en: 'Rahu in the D2 9th house generates fortune through foreign lands, unconventional guru connections, or ethically ambiguous long-distance trade. Windfalls can come from unexpected overseas quarters.',
+        hi: 'धनांश नवम में राहु विदेशी भूमि, अपरंपरागत गुरु संबंधों या नैतिक रूप से अस्पष्ट दूरस्थ व्यापार से भाग्य उत्पन्न करता है।',
+      },
+      11: {
+        en: 'Rahu in the D2 11th house is a classic indicator of sudden gains through unconventional income streams — cryptocurrency, speculation, or technology-driven financial innovation. Gains can be spectacular.',
+        hi: 'धनांश एकादश में राहु अपरंपरागत आय धाराओं — क्रिप्टोकरेंसी, सट्टे या प्रौद्योगिकी — से अचानक लाभ का क्लासिक सूचक है।',
+      },
+    },
+    // Ketu (8)
+    8: {
+      1: {
+        en: 'Ketu in the D2 1st house creates detachment from material wealth accumulation. The native may be financially capable yet indifferent to money, finding that wealth comes and goes according to karmic patterns.',
+        hi: 'धनांश लग्न में केतु भौतिक धन संचय से विरक्ति बनाता है। जातक वित्तीय रूप से सक्षम हो सकता है फिर भी धन के प्रति उदासीन रहता है।',
+      },
+      2: {
+        en: 'Ketu in the D2 2nd house indicates past-life karma around family wealth. The native may struggle to retain savings or experience unexpected dissolution of accumulated assets, learning to value non-material riches.',
+        hi: 'धनांश द्वितीय में केतु पारिवारिक धन के इर्द-गिर्द पूर्वजन्म कर्म दर्शाता है। जातक बचत बनाए रखने में संघर्ष कर सकता है।',
+      },
+      4: {
+        en: 'Ketu in the D2 4th house detaches the native from conventional property accumulation. Real estate matters may dissolve or become irrelevant, and the native finds their true home in spiritual rather than material anchors.',
+        hi: 'धनांश चतुर्थ में केतु पारंपरिक संपत्ति संचय से विरक्त करता है। जातक भौतिक के बजाय आध्यात्मिक लंगर में सच्चा घर पाता है।',
+      },
+      5: {
+        en: 'Ketu in the D2 5th house brings disinterest in speculation and an intuitive avoidance of risky investment. Past-life financial wisdom makes the native cautious, and financial losses through speculation are minimised.',
+        hi: 'धनांश पंचम में केतु सट्टे में अरुचि और जोखिम भरे निवेश से सहज परिहार लाता है।',
+      },
+      9: {
+        en: 'Ketu in the D2 9th house creates spiritual detachment from fortune and windfall expectations. The native\'s greatest wealth is inner wisdom, and material fortune serves the spiritual path rather than ego desires.',
+        hi: 'धनांश नवम में केतु भाग्य और अनायास धन की अपेक्षाओं से आध्यात्मिक विरक्ति बनाता है।',
+      },
+      11: {
+        en: 'Ketu in the D2 11th house detaches the native from conventional income ambitions. Gains may come unexpectedly from spiritual or charitable work, and the native finds fulfilment beyond material income measures.',
+        hi: 'धनांश एकादश में केतु पारंपरिक आय महत्वाकांक्षाओं से विरक्त करता है। लाभ आध्यात्मिक या धर्मार्थ कार्य से अप्रत्याशित रूप से आ सकता है।',
+      },
+    },
+  },
+
+  // ---------------------------------------------------------------------------
+  // D20/D60 — Spiritual / Moksha domain — 36 entries
+  // 9 planets × houses 1, 5, 9, 12
+  // ---------------------------------------------------------------------------
+  spiritual: {
+    // Sun (0)
+    0: {
+      1: {
+        en: 'Sun in the D20 1st house reveals a soul whose spiritual identity is strong and luminous. The native is drawn to solar, radiant spiritual paths — devotion to a divine father figure, Shaivism, or royal Vedic traditions.',
+        hi: 'विंशांश लग्न में सूर्य एक आत्मा दर्शाता है जिसकी आध्यात्मिक पहचान प्रबल और तेजस्वी है। जातक शैवागम या वैदिक परंपराओं की ओर आकर्षित होता है।',
+      },
+      5: {
+        en: 'Sun in the D20 5th house indicates past-life spiritual merit accumulated through devotional practice, royal patronage of temples, or teaching sacred arts. Creative expression becomes a vehicle for divine connection.',
+        hi: 'विंशांश पंचम में सूर्य भक्ति, मंदिर संरक्षण या पवित्र कलाओं की शिक्षा से संचित पूर्वजन्म आध्यात्मिक योग्यता दर्शाता है।',
+      },
+      9: {
+        en: 'Sun in the D20 9th house grants a luminous guru relationship and a clear dharmic path. The native is blessed with direct access to authoritative spiritual teachers and a tradition of respected solar lineage.',
+        hi: 'विंशांश नवम में सूर्य तेजस्वी गुरु संबंध और स्पष्ट धार्मिक मार्ग प्रदान करता है। जातक अधिकृत आध्यात्मिक शिक्षकों तक सीधी पहुंच से धन्य है।',
+      },
+      12: {
+        en: 'Sun in the D20 12th house dissolves the ego in spiritual service and liberation. The native is drawn toward renunciation, monastic life, or moksha through surrender of individual will to the divine.',
+        hi: 'विंशांश द्वादश में सूर्य आध्यात्मिक सेवा और मुक्ति में अहंकार का विसर्जन करता है। जातक संन्यास या ईश्वरीय इच्छा के समर्पण से मोक्ष की ओर आकर्षित होता है।',
+      },
+    },
+    // Moon (1)
+    1: {
+      1: {
+        en: 'Moon in the D20 1st house shows a naturally devotional, emotionally receptive spiritual nature. The native is drawn to bhakti traditions, lunar deity worship, and paths that honour the divine feminine.',
+        hi: 'विंशांश लग्न में चंद्रमा स्वाभाविक रूप से भक्तिमय, भावनात्मक रूप से ग्रहणशील आध्यात्मिक प्रकृति दर्शाता है।',
+      },
+      5: {
+        en: 'Moon in the D20 5th house reveals past-life spiritual merit through emotional devotion, mantra practice, and service at sacred sites. The heart is an open channel for divine grace.',
+        hi: 'विंशांश पंचम में चंद्रमा भावनात्मक भक्ति, मंत्र साधना और पवित्र स्थलों पर सेवा से पूर्वजन्म आध्यात्मिक योग्यता प्रकट करता है।',
+      },
+      9: {
+        en: 'Moon in the D20 9th house blesses the native with a compassionate guru and a devotional dharmic path. Pilgrimage and sacred water rituals carry special significance for this soul\'s spiritual evolution.',
+        hi: 'विंशांश नवम में चंद्रमा करुणामय गुरु और भक्तिमय धार्मिक मार्ग का आशीर्वाद देता है।',
+      },
+      12: {
+        en: 'Moon in the D20 12th house draws the native toward mystical, oceanic spiritual experiences. Liberation comes through emotional dissolution, dream work, and surrender to the divine mother.',
+        hi: 'विंशांश द्वादश में चंद्रमा जातक को रहस्यमय, महासागरीय आध्यात्मिक अनुभवों की ओर खींचता है।',
+      },
+    },
+    // Mars (2)
+    2: {
+      1: {
+        en: 'Mars in the D20 1st house gives a warrior-like spiritual constitution. The native pursues the spiritual path with intense discipline and energy — suited for tantric practice, martial spiritual arts, or fierce renunciation.',
+        hi: 'विंशांश लग्न में मंगल योद्धा-सी आध्यात्मिक संरचना देता है। जातक तांत्रिक साधना, मार्शल आध्यात्मिक कला या कठोर संन्यास के लिए उपयुक्त।',
+      },
+      5: {
+        en: 'Mars in the D20 5th house indicates past-life merit built through tapas, physical austerities, and protection of the dharmic order. Spiritual energy is strong and activating.',
+        hi: 'विंशांश पंचम में मंगल तपस, शारीरिक तपस्या और धार्मिक व्यवस्था की रक्षा से निर्मित पूर्वजन्म योग्यता दर्शाता है।',
+      },
+      9: {
+        en: 'Mars in the D20 9th house connects dharma to action and protection. The native\'s guru is a fiery, action-oriented teacher, and the spiritual path involves active service, pilgrimage on foot, or temple defence.',
+        hi: 'विंशांश नवम में मंगल धर्म को कार्य और रक्षा से जोड़ता है। जातक का गुरु उग्र, क्रिया-उन्मुख शिक्षक है।',
+      },
+      12: {
+        en: 'Mars in the D20 12th house channels spiritual energy toward intense yogic practice and dissolution of ego through willpower. Moksha is approached through disciplined tapas rather than passive surrender.',
+        hi: 'विंशांश द्वादश में मंगल आध्यात्मिक ऊर्जा को गहन योगिक अभ्यास की ओर मोड़ता है। मोक्ष निष्क्रिय समर्पण के बजाय अनुशासित तपस से प्राप्त होता है।',
+      },
+    },
+    // Mercury (3)
+    3: {
+      1: {
+        en: 'Mercury in the D20 1st house gives a spiritually intellectual nature. The native pursues liberation through scriptural study, debate, and analytical understanding of sacred texts rather than emotional devotion alone.',
+        hi: 'विंशांश लग्न में बुध आध्यात्मिक रूप से बौद्धिक प्रकृति देता है। जातक शास्त्र अध्ययन, बहस और पवित्र ग्रंथों के विश्लेषण से मुक्ति की ओर अग्रसर होता है।',
+      },
+      5: {
+        en: 'Mercury in the D20 5th house indicates past-life merit through teaching, translating scriptures, and intellectual propagation of dharma. The mind carries ancient Vedic knowledge from prior births.',
+        hi: 'विंशांश पंचम में बुध शिक्षण, शास्त्र अनुवाद और धर्म के बौद्धिक प्रसार से पूर्वजन्म योग्यता दर्शाता है।',
+      },
+      9: {
+        en: 'Mercury in the D20 9th house blesses the native with a learned, articulate guru who transmits dharma through precise language and systematic teaching. The Jnana yoga path suits this native deeply.',
+        hi: 'विंशांश नवम में बुध विद्वान, वाक्पटु गुरु का आशीर्वाद देता है जो सटीक भाषा से धर्म प्रसारित करता है।',
+      },
+      12: {
+        en: 'Mercury in the D20 12th house brings liberation through intellectual silence — the native must ultimately surrender analytical mind to experience moksha beyond concepts and words.',
+        hi: 'विंशांश द्वादश में बुध बौद्धिक मौन से मुक्ति लाता है। जातक को मोक्ष का अनुभव करने के लिए अंततः विश्लेषणात्मक मन को समर्पित करना होगा।',
+      },
+    },
+    // Jupiter (4)
+    4: {
+      1: {
+        en: 'Jupiter in the D20 1st house gives an innately wise, benevolent, and naturally dharmic spiritual constitution. The native is a born spiritual aspirant whose very presence radiates Vedic grace.',
+        hi: 'विंशांश लग्न में गुरु सहज रूप से बुद्धिमान, परोपकारी और स्वाभाविक रूप से धार्मिक आध्यात्मिक संरचना देता है।',
+      },
+      5: {
+        en: 'Jupiter in the D20 5th house reveals deep past-life merit accumulated through teaching, philanthropy, and embodying dharma across multiple lifetimes. Spiritual grace flows effortlessly to this soul.',
+        hi: 'विंशांश पंचम में गुरु शिक्षण, परोपकार और अनेक जन्मों में धर्म के मूर्त रूप से संचित गहन पूर्वजन्म योग्यता प्रकट करता है।',
+      },
+      9: {
+        en: 'Jupiter in the D20 9th house is the finest placement for guru blessing. The native receives direct transmission from a genuine spiritual lineage and their dharmic path is clear, expansive, and deeply fulfilling.',
+        hi: 'विंशांश नवम में गुरु गुरु आशीर्वाद के लिए सर्वोत्तम स्थान है। जातक प्रामाणिक आध्यात्मिक वंश से सीधा संचरण प्राप्त करता है।',
+      },
+      12: {
+        en: 'Jupiter in the D20 12th house guides the native toward liberation through expansive wisdom and compassionate service. Moksha is achieved not through withdrawal but through universal love and selfless teaching.',
+        hi: 'विंशांश द्वादश में गुरु विशाल ज्ञान और करुणामय सेवा से मुक्ति की ओर मार्गदर्शन करता है।',
+      },
+    },
+    // Venus (5)
+    5: {
+      1: {
+        en: 'Venus in the D20 1st house gives a spirituality rooted in beauty, art, and devotional aesthetics. The native is drawn to Vaishnava traditions, sacred music, mandalas, and worship through sensory refinement.',
+        hi: 'विंशांश लग्न में शुक्र सौंदर्य, कला और भक्तिमय सौंदर्यशास्त्र में निहित आध्यात्मिकता देता है। जातक वैष्णव परंपराओं की ओर आकर्षित होता है।',
+      },
+      5: {
+        en: 'Venus in the D20 5th house reveals past-life spiritual merit earned through sacred art, temple dance, devotional music, and service through beauty. The soul carries deep aesthetic dharmic wisdom.',
+        hi: 'विंशांश पंचम में शुक्र पवित्र कला, मंदिर नृत्य, भक्ति संगीत और सौंदर्य के माध्यम से सेवा से अर्जित पूर्वजन्म आध्यात्मिक योग्यता प्रकट करता है।',
+      },
+      9: {
+        en: 'Venus in the D20 9th house gives a guru who transmits dharma through love, art, and devotional grace. The native\'s spiritual path is filled with aesthetic beauty, sacred relationships, and bhakti.',
+        hi: 'विंशांश नवम में शुक्र प्रेम, कला और भक्ति अनुग्रह से धर्म प्रसारित करने वाला गुरु देता है।',
+      },
+      12: {
+        en: 'Venus in the D20 12th house channels spiritual energy through surrender in love and dissolution of the individual self in divine union. Liberation through bhakti and sacred intimacy is the native\'s path.',
+        hi: 'विंशांश द्वादश में शुक्र प्रेम में समर्पण और दिव्य मिलन में व्यक्तिगत आत्मा के विसर्जन से आध्यात्मिक ऊर्जा को प्रवाहित करता है।',
+      },
+    },
+    // Saturn (6)
+    6: {
+      1: {
+        en: 'Saturn in the D20 1st house gives a spirituality of patient endurance, karma yoga, and service. The native earns liberation slowly through disciplined action, self-denial, and unwavering commitment to duty.',
+        hi: 'विंशांश लग्न में शनि धैर्यपूर्ण सहनशीलता, कर्म योग और सेवा की आध्यात्मिकता देता है।',
+      },
+      5: {
+        en: 'Saturn in the D20 5th house indicates past-life merit through austere practice, karma yoga, and service to the marginalized. The soul carries the weight of many lifetimes of disciplined spiritual effort.',
+        hi: 'विंशांश पंचम में शनि कठोर साधना, कर्म योग और हाशिये पर रहने वाले लोगों की सेवा से पूर्वजन्म योग्यता दर्शाता है।',
+      },
+      9: {
+        en: 'Saturn in the D20 9th house gives a stern, disciplined guru whose teachings involve endurance and stripping away illusion. The dharmic path is rigorous but leads to solid, unshakeable liberation.',
+        hi: 'विंशांश नवम में शनि कठोर, अनुशासित गुरु देता है जिसकी शिक्षाओं में सहनशीलता और भ्रम को दूर करना शामिल है।',
+      },
+      12: {
+        en: 'Saturn in the D20 12th house leads the native toward liberation through extended isolation, monastic life, or solitary contemplative practice. Moksha comes slowly but with the permanence of stone.',
+        hi: 'विंशांश द्वादश में शनि विस्तारित एकांत, मठवासी जीवन या एकल चिंतनशील अभ्यास से मुक्ति की ओर ले जाता है।',
+      },
+    },
+    // Rahu (7)
+    7: {
+      1: {
+        en: 'Rahu in the D20 1st house gives an unusual, eclectic, and intensely curious spiritual nature. The native may explore foreign or heterodox spiritual systems before arriving at a deeply personal synthesis.',
+        hi: 'विंशांश लग्न में राहु असामान्य, उदार और तीव्र रूप से जिज्ञासु आध्यात्मिक प्रकृति देता है।',
+      },
+      5: {
+        en: 'Rahu in the D20 5th house suggests complex past-life karmic patterns around spiritual practice — the native may have used spiritual power ambitiously in prior lives and now seeks genuine purification.',
+        hi: 'विंशांश पंचम में राहु आध्यात्मिक साधना के इर्द-गिर्द जटिल पूर्वजन्म कार्मिक पैटर्न का सुझाव देता है।',
+      },
+      9: {
+        en: 'Rahu in the D20 9th house may bring an unconventional, foreign, or non-traditional guru. The native\'s dharma is discovered through experimentation and may involve western, tantric, or cross-cultural paths.',
+        hi: 'विंशांश नवम में राहु अपरंपरागत, विदेशी या गैर-पारंपरिक गुरु ला सकता है।',
+      },
+      12: {
+        en: 'Rahu in the D20 12th house creates a complex relationship with liberation — the native\'s desire for moksha can itself become an obsession. True surrender requires releasing even the ambition to be free.',
+        hi: 'विंशांश द्वादश में राहु मुक्ति के साथ जटिल संबंध बनाता है। सच्चे समर्पण के लिए मुक्त होने की महत्वाकांक्षा भी छोड़नी होती है।',
+      },
+    },
+    // Ketu (8)
+    8: {
+      1: {
+        en: 'Ketu in the D20 1st house is one of the deepest moksha indicators in the varga chart. The native arrives in this life already spiritually advanced, drawn instinctively toward renunciation, mysticism, and the formless.',
+        hi: 'विंशांश लग्न में केतु वर्ग कुंडली में गहनतम मोक्ष सूचकों में से एक है। जातक इस जीवन में पहले से आध्यात्मिक रूप से उन्नत आता है।',
+      },
+      5: {
+        en: 'Ketu in the D20 5th house reveals vast past-life spiritual merit through deep meditation, mystical attainment, and service in ashrams or renunciate communities. Liberation is very close for this soul.',
+        hi: 'विंशांश पंचम में केतु गहरे ध्यान, रहस्यमय उपलब्धि और आश्रमों में सेवा से विशाल पूर्वजन्म आध्यात्मिक योग्यता प्रकट करता है।',
+      },
+      9: {
+        en: 'Ketu in the D20 9th house indicates a guru or tradition that is formless, mystical, and beyond conventional religion. The native\'s dharma is to dissolve all conceptual frameworks and rest in pure awareness.',
+        hi: 'विंशांश नवम में केतु निराकार, रहस्यमय और पारंपरिक धर्म से परे गुरु या परंपरा का संकेत देता है।',
+      },
+      12: {
+        en: 'Ketu in the D20 12th house is the supreme moksha placement. The native has nearly completed the spiritual journey across lifetimes and this incarnation serves as the final doorway into liberation.',
+        hi: 'विंशांश द्वादश में केतु सर्वोच्च मोक्ष स्थान है। जातक ने जन्मों में आध्यात्मिक यात्रा लगभग पूर्ण कर ली है और यह जन्म मुक्ति का अंतिम द्वार है।',
+      },
+    },
+  },
+
+  // ---------------------------------------------------------------------------
+  // D30 Trimsamsha — Health / Vitality domain — 36 entries
+  // 9 planets × houses 1, 6, 8, 12
+  // ---------------------------------------------------------------------------
+  health: {
+    // Sun (0)
+    0: {
+      1: {
+        en: 'Sun in the D30 1st house gives a robust vital constitution with strong recuperative power. The native has a fundamentally resilient body that resists chronic illness and recovers quickly from acute conditions.',
+        hi: 'त्रिंशांश लग्न में सूर्य मजबूत पुनर्प्राप्ति शक्ति के साथ दृढ़ जीवन संरचना देता है। जातक का शरीर पुरानी बीमारी से प्रतिरोधी और तेजी से ठीक होता है।',
+      },
+      6: {
+        en: 'Sun in the D30 6th house gives strong immunity and the capacity to overcome enemies of health through willpower. The native fights disease with authority but must watch for heart or spine-related conditions.',
+        hi: 'त्रिंशांश षष्ठ में सूर्य प्रबल रोग-प्रतिरोधक क्षमता और इच्छाशक्ति से स्वास्थ्य शत्रुओं पर विजय की क्षमता देता है।',
+      },
+      8: {
+        en: 'Sun in the D30 8th house indicates hidden vitality challenges — conditions that are not immediately apparent but may surface under stress. Surgery or invasive procedures may be needed; recovery is ultimately possible.',
+        hi: 'त्रिंशांश अष्टम में सूर्य छिपी हुई जीवन शक्ति चुनौतियों का संकेत देता है। शल्य चिकित्सा की आवश्यकता हो सकती है लेकिन स्वास्थ्य-लाभ संभव है।',
+      },
+      12: {
+        en: 'Sun in the D30 12th house may indicate hospitalisation or periods of isolation for health reasons. The native must consciously attend to sleep quality and right-eye health; retreats aid recovery.',
+        hi: 'त्रिंशांश द्वादश में सूर्य अस्पताल में भर्ती या स्वास्थ्य कारणों से एकांत का संकेत दे सकता है।',
+      },
+    },
+    // Moon (1)
+    1: {
+      1: {
+        en: 'Moon in the D30 1st house gives an emotionally sensitive constitution. Physical health is closely tied to mental and emotional states — when the mind is at peace, the body thrives.',
+        hi: 'त्रिंशांश लग्न में चंद्रमा भावनात्मक रूप से संवेदनशील संरचना देता है। जब मन शांत होता है, शरीर फलता-फूलता है।',
+      },
+      6: {
+        en: 'Moon in the D30 6th house creates susceptibility to emotionally triggered illnesses — digestive disorders, hormonal imbalances, and conditions worsened by anxiety. Emotional regulation is primary preventive care.',
+        hi: 'त्रिंशांश षष्ठ में चंद्रमा भावनात्मक रूप से उत्पन्न बीमारियों की संवेदनशीलता बनाता है। भावनात्मक नियमन प्राथमिक निवारक देखभाल है।',
+      },
+      8: {
+        en: 'Moon in the D30 8th house indicates vulnerability to hidden or fluctuating chronic conditions, especially those related to fluids, blood, or the lymphatic system. Intuition is a guide to early symptom detection.',
+        hi: 'त्रिंशांश अष्टम में चंद्रमा छिपी या उतार-चढ़ाव वाली पुरानी स्थितियों, विशेषकर तरल पदार्थ या लसीका प्रणाली से संबंधित, के प्रति संवेदनशीलता दर्शाता है।',
+      },
+      12: {
+        en: 'Moon in the D30 12th house connects health to mental rest and subconscious healing. Hospitalisations may occur during emotionally turbulent periods; dream states carry important health information.',
+        hi: 'त्रिंशांश द्वादश में चंद्रमा स्वास्थ्य को मानसिक विश्राम और अवचेतन उपचार से जोड़ता है।',
+      },
+    },
+    // Mars (2)
+    2: {
+      1: {
+        en: 'Mars in the D30 1st house gives a strong, energetic, and muscular constitution with high physical resilience. The native recovers fast from injuries and has abundant vitality, though inflammatory conditions are a risk.',
+        hi: 'त्रिंशांश लग्न में मंगल उच्च शारीरिक लचीलापन के साथ मजबूत, ऊर्जावान और मांसपेशीय संरचना देता है।',
+      },
+      6: {
+        en: 'Mars in the D30 6th house is a classic indicator of strong immunity and the ability to fight off disease decisively. The native\'s body mounts aggressive immune responses; accidents and febrile illnesses are the main risks.',
+        hi: 'त्रिंशांश षष्ठ में मंगल प्रबल प्रतिरक्षा और रोग को निर्णायक रूप से दूर करने की क्षमता का क्लासिक सूचक है।',
+      },
+      8: {
+        en: 'Mars in the D30 8th house indicates risk of surgery, accident-related injuries, or acute crises requiring medical intervention. The native must take precautions with sharp instruments and high-risk activities.',
+        hi: 'त्रिंशांश अष्टम में मंगल शल्य चिकित्सा, दुर्घटना-संबंधी चोटों या चिकित्सा हस्तक्षेप की आवश्यकता वाले तीव्र संकट का जोखिम दर्शाता है।',
+      },
+      12: {
+        en: 'Mars in the D30 12th house may indicate hospitalisation following injury, surgery, or inflammatory conditions requiring extended recovery. Physical isolation allows the body\'s natural healing processes to work.',
+        hi: 'त्रिंशांश द्वादश में मंगल चोट, शल्य चिकित्सा या विस्तारित पुनर्प्राप्ति की आवश्यकता वाली सूजन स्थितियों के बाद अस्पताल में भर्ती का संकेत दे सकता है।',
+      },
+    },
+    // Mercury (3)
+    3: {
+      1: {
+        en: 'Mercury in the D30 1st house gives a nervous, adaptable constitution with quick reflexes. The native is mentally agile and recovers well from illness, though the nervous system is the primary vulnerability.',
+        hi: 'त्रिंशांश लग्न में बुध तीव्र सजगता के साथ तंत्रिका, अनुकूलनीय संरचना देता है। तंत्रिका तंत्र प्राथमिक संवेदनशीलता है।',
+      },
+      6: {
+        en: 'Mercury in the D30 6th house creates susceptibility to nervous-system disorders, respiratory conditions, and conditions worsened by mental stress. Intellectual activity must be balanced with physical grounding.',
+        hi: 'त्रिंशांश षष्ठ में बुध तंत्रिका तंत्र विकारों, श्वसन स्थितियों और मानसिक तनाव से बिगड़ने वाली स्थितियों की संवेदनशीलता बनाता है।',
+      },
+      8: {
+        en: 'Mercury in the D30 8th house may indicate hidden neurological conditions or diagnostic complexity — illnesses that require extensive testing to identify. The native often researches their own health deeply.',
+        hi: 'त्रिंशांश अष्टम में बुध छिपी न्यूरोलॉजिकल स्थितियों या नैदानिक जटिलता का संकेत दे सकता है।',
+      },
+      12: {
+        en: 'Mercury in the D30 12th house connects health to mental rest and the quieting of analytical mind. Sleep disorders and anxiety-driven illness are risks; meditation and digital detox are powerful remedies.',
+        hi: 'त्रिंशांश द्वादश में बुध स्वास्थ्य को मानसिक विश्राम और विश्लेषणात्मक मन की शांति से जोड़ता है।',
+      },
+    },
+    // Jupiter (4)
+    4: {
+      1: {
+        en: 'Jupiter in the D30 1st house gives an expansive, healthy, and naturally fortified constitution. The native tends toward good health throughout life, with a strong liver and broad physical resilience.',
+        hi: 'त्रिंशांश लग्न में गुरु विस्तृत, स्वस्थ और स्वाभाविक रूप से सुदृढ़ संरचना देता है। जातक जीवन भर अच्छे स्वास्थ्य की ओर झुकता है।',
+      },
+      6: {
+        en: 'Jupiter in the D30 6th house gives the native natural healing capacity and optimistic recovery. Health challenges are overcome through wisdom, appropriate treatment, and the body\'s innate expansive vitality.',
+        hi: 'त्रिंशांश षष्ठ में गुरु जातक को प्राकृतिक उपचार क्षमता और आशावादी स्वास्थ्य-लाभ देता है।',
+      },
+      8: {
+        en: 'Jupiter in the D30 8th house mitigates the severity of hidden health challenges through protective grace. Even serious chronic conditions tend to be manageable, and medical interventions generally succeed.',
+        hi: 'त्रिंशांश अष्टम में गुरु सुरक्षात्मक अनुग्रह से छिपी स्वास्थ्य चुनौतियों की गंभीरता को कम करता है।',
+      },
+      12: {
+        en: 'Jupiter in the D30 12th house turns hospitalisation or health isolation into a period of healing and philosophical reflection. The native finds meaning in illness and recovers with expanded wisdom.',
+        hi: 'त्रिंशांश द्वादश में गुरु अस्पताल में भर्ती या स्वास्थ्य एकांत को उपचार और दार्शनिक चिंतन के काल में बदलता है।',
+      },
+    },
+    // Venus (5)
+    5: {
+      1: {
+        en: 'Venus in the D30 1st house gives a pleasurable, sensory-rich constitution with good reproductive vitality. The native maintains health through beauty routines, balanced pleasures, and a harmonious lifestyle.',
+        hi: 'त्रिंशांश लग्न में शुक्र अच्छी प्रजनन जीवन शक्ति के साथ सुखद, इंद्रिय-समृद्ध संरचना देता है।',
+      },
+      6: {
+        en: 'Venus in the D30 6th house may create susceptibility to kidney, urinary, or reproductive health conditions. A lifestyle of excessive pleasure can compound these risks; balance and moderation are protective.',
+        hi: 'त्रिंशांश षष्ठ में शुक्र गुर्दे, मूत्र या प्रजनन स्वास्थ्य स्थितियों की संवेदनशीलता बना सकता है।',
+      },
+      8: {
+        en: 'Venus in the D30 8th house indicates vulnerability to hidden reproductive or hormonal conditions. The native may require gynaecological or urological investigation; early screening is advisable.',
+        hi: 'त्रिंशांश अष्टम में शुक्र छिपी प्रजनन या हार्मोनल स्थितियों के प्रति संवेदनशीलता दर्शाता है।',
+      },
+      12: {
+        en: 'Venus in the D30 12th house connects health to rest, sensory withdrawal, and rejuvenating retreats. The native heals best in luxurious, peaceful environments where aesthetic pleasures are consciously enjoyed.',
+        hi: 'त्रिंशांश द्वादश में शुक्र स्वास्थ्य को विश्राम, इंद्रिय वापसी और कायाकल्प विश्रामागार से जोड़ता है।',
+      },
+    },
+    // Saturn (6)
+    6: {
+      1: {
+        en: 'Saturn in the D30 1st house gives a lean, enduring constitution that is slow to both sicken and recover. Chronic conditions may develop early but are typically manageable through disciplined health regimens.',
+        hi: 'त्रिंशांश लग्न में शनि दुबली, स्थायी संरचना देता है जो बीमार पड़ने और ठीक होने दोनों में धीमी है।',
+      },
+      6: {
+        en: 'Saturn in the D30 6th house creates susceptibility to chronic, slow-developing conditions — arthritis, skeletal issues, and conditions of gradual degeneration. Preventive discipline and regular health monitoring are key.',
+        hi: 'त्रिंशांश षष्ठ में शनि पुरानी, धीरे-धीरे विकसित होने वाली स्थितियों की संवेदनशीलता बनाता है। निवारक अनुशासन और नियमित स्वास्थ्य निगरानी आवश्यक।',
+      },
+      8: {
+        en: 'Saturn in the D30 8th house indicates chronic but manageable hidden health conditions. Longevity is generally strong despite recurrent ailments, and the native survives health crises through endurance and medical persistence.',
+        hi: 'त्रिंशांश अष्टम में शनि पुरानी लेकिन प्रबंधनीय छिपी स्वास्थ्य स्थितियों का संकेत देता है। बार-बार आने वाली बीमारियों के बावजूद दीर्घायु आम तौर पर प्रबल रहती है।',
+      },
+      12: {
+        en: 'Saturn in the D30 12th house may indicate prolonged hospitalisation or extended periods of physical isolation for health reasons. The native is built for endurance — long recoveries ultimately succeed.',
+        hi: 'त्रिंशांश द्वादश में शनि स्वास्थ्य कारणों से लंबे समय तक अस्पताल में भर्ती या शारीरिक एकांत का संकेत दे सकता है।',
+      },
+    },
+    // Rahu (7)
+    7: {
+      1: {
+        en: 'Rahu in the D30 1st house gives an unusual, hard-to-diagnose constitutional health profile. The native may experience atypical or exotic conditions that confuse conventional medicine; integrative and alternative approaches help.',
+        hi: 'त्रिंशांश लग्न में राहु असामान्य, निदान करने में कठिन संवैधानिक स्वास्थ्य प्रोफ़ाइल देता है।',
+      },
+      6: {
+        en: 'Rahu in the D30 6th house may create mysterious or misdiagnosed chronic conditions. The native is drawn to alternative, foreign, or experimental medical treatments — some of which prove unexpectedly effective.',
+        hi: 'त्रिंशांश षष्ठ में राहु रहस्यमय या गलत निदान वाली पुरानी स्थितियां बना सकता है।',
+      },
+      8: {
+        en: 'Rahu in the D30 8th house indicates sudden, unexpected health crises that erupt without obvious warning. Foreign or viral illnesses and unusual surgical findings are possible; second opinions are strongly advisable.',
+        hi: 'त्रिंशांश अष्टम में राहु अचानक, अप्रत्याशित स्वास्थ्य संकट का संकेत देता है। दूसरी राय दृढ़ता से उचित है।',
+      },
+      12: {
+        en: 'Rahu in the D30 12th house may lead to hospitalisation in foreign countries or treatment through unconventional medical institutions. The native\'s path to healing may involve radical departures from mainstream care.',
+        hi: 'त्रिंशांश द्वादश में राहु विदेशी देशों में या अपरंपरागत चिकित्सा संस्थानों के माध्यम से उपचार की ओर ले जा सकता है।',
+      },
+    },
+    // Ketu (8)
+    8: {
+      1: {
+        en: 'Ketu in the D30 1st house gives an otherworldly, sometimes fragile constitution that is spiritually sensitive. The native may experience psychosomatic conditions or illnesses that defy physical explanation.',
+        hi: 'त्रिंशांश लग्न में केतु आध्यात्मिक रूप से संवेदनशील, कभी-कभी नाजुक संरचना देता है। जातक मनोदैहिक स्थितियां अनुभव कर सकता है।',
+      },
+      6: {
+        en: 'Ketu in the D30 6th house gives an unusual relationship with disease — conditions may dissolve inexplicably, or the native may develop immunity through past-life health karma. Spiritual healing is especially effective.',
+        hi: 'त्रिंशांश षष्ठ में केतु रोग के साथ असामान्य संबंध देता है। स्थितियां अकथनीय रूप से ठीक हो सकती हैं। आध्यात्मिक उपचार विशेष रूप से प्रभावी है।',
+      },
+      8: {
+        en: 'Ketu in the D30 8th house indicates past-life health karma playing out through mysterious or rare conditions. The native may be drawn to spiritual healing over conventional medicine, sometimes with remarkable results.',
+        hi: 'त्रिंशांश अष्टम में केतु रहस्यमय या दुर्लभ स्थितियों से पूर्वजन्म स्वास्थ्य कर्म दर्शाता है। आध्यात्मिक उपचार उल्लेखनीय परिणाम दे सकता है।',
+      },
+      12: {
+        en: 'Ketu in the D30 12th house points to liberation through illness — the native may experience transformative health crises that strip away ego and accelerate spiritual growth. Healing becomes a deeply mystical process.',
+        hi: 'त्रिंशांश द्वादश में केतु रोग से मुक्ति की ओर संकेत करता है। उपचार एक गहरी रहस्यमय प्रक्रिया बन जाती है।',
+      },
+    },
+  },
 };

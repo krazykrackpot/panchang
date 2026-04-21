@@ -73,6 +73,23 @@ describe('varga-planet-interpretations', () => {
     }
   });
 
+  it.each([
+    ['children', 63],
+    ['wealth', 54],
+    ['spiritual', 36],
+    ['health', 36],
+  ])('%s domain has %d entries', (domain, expected) => {
+    let count = 0;
+    const data = VARGA_PLANET_TEXT[domain];
+    expect(data).toBeDefined();
+    for (let pid = 0; pid <= 8; pid++) {
+      for (let h = 1; h <= 12; h++) {
+        if (data?.[pid]?.[h]) count++;
+      }
+    }
+    expect(count).toBe(expected);
+  });
+
   it('key placements contain domain-specific keywords', () => {
     // Venus in 7th should mention spouse/partner/harmony
     const venus7 = getVargaPlanetText('marriage', 5, 7)!;

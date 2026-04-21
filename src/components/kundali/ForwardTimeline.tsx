@@ -18,7 +18,6 @@ interface ForwardTimelineProps {
 // Helpers
 // ---------------------------------------------------------------------------
 
-/** Map trigger nature to dot color. */
 function dotColor(nature: TimelineTrigger['nature']): string {
   switch (nature) {
     case 'opportunity': return '#34d399';
@@ -27,28 +26,32 @@ function dotColor(nature: TimelineTrigger['nature']): string {
   }
 }
 
-/** Format ISO date as "MMM YYYY". */
-function fmtDate(iso: string): string {
-  const d = new Date(iso);
-  return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+function dotBg(nature: TimelineTrigger['nature']): string {
+  switch (nature) {
+    case 'opportunity': return 'bg-emerald-500/15 border-emerald-500/30';
+    case 'challenge':   return 'bg-red-500/15 border-red-500/30';
+    case 'mixed':       return 'bg-gold-primary/15 border-gold-primary/30';
+  }
 }
 
-/** Trigger type to display label. */
-const TYPE_LABELS: Record<TimelineTrigger['triggerType'], string> = {
-  transit: 'Transit',
-  dasha_change: 'Dasha',
-  dasha_transit_confluence: 'Confluence',
+function fmtDate(iso: string, locale: string): string {
+  const d = new Date(iso);
+  return d.toLocaleDateString(locale === 'hi' ? 'hi-IN' : locale === 'ta' ? 'ta-IN' : locale === 'bn' ? 'bn-IN' : 'en-GB', { month: 'short', year: 'numeric' });
+}
+
+const TYPE_LABELS: Record<TimelineTrigger['triggerType'], { en: string; hi: string }> = {
+  transit: { en: 'Transit', hi: 'गोचर' },
+  dasha_change: { en: 'Dasha', hi: 'दशा' },
+  dasha_transit_confluence: { en: 'Confluence', hi: 'संगम' },
 };
 
-/** Horizontal gap between nodes in px. */
-const NODE_GAP = 140;
-
 // ---------------------------------------------------------------------------
-// Component
+// Component — vertical full-width timeline
 // ---------------------------------------------------------------------------
 
 export default function ForwardTimeline({ triggers, locale, className }: ForwardTimelineProps) {
-  // All hooks MUST run unconditionally (Rules of Hooks).
+  const isHi = locale !== 'en' && locale !== 'ta';
+
   const sorted = useMemo(
     () =>
       triggers && triggers.length > 0
@@ -57,168 +60,88 @@ export default function ForwardTimeline({ triggers, locale, className }: Forward
     [triggers],
   );
 
-  const nowIndex = useMemo(() => {
-    if (sorted.length === 0) return 0;
-    const now = Date.now();
-    const firstMs = new Date(sorted[0].startDate).getTime();
-    const lastMs = new Date(sorted[sorted.length - 1].startDate).getTime();
-    if (now <= firstMs) return 0;
-    if (now >= lastMs) return sorted.length - 1;
-    for (let i = 0; i < sorted.length - 1; i++) {
-      const curMs = new Date(sorted[i].startDate).getTime();
-      const nxtMs = new Date(sorted[i + 1].startDate).getTime();
-      if (now >= curMs && now <= nxtMs) {
-        return i + (now - curMs) / (nxtMs - curMs);
-      }
-    }
-    return 0;
-  }, [sorted]);
-
-  const favorableRanges = useMemo(() => {
-    const ranges: { startIdx: number; endIdx: number }[] = [];
-    let runStart: number | null = null;
-    for (let i = 0; i < sorted.length; i++) {
-      if (sorted[i].nature === 'opportunity') {
-        if (runStart === null) runStart = i;
-      } else {
-        if (runStart !== null && i - 1 > runStart) {
-          ranges.push({ startIdx: runStart, endIdx: i - 1 });
-        }
-        runStart = null;
-      }
-    }
-    if (runStart !== null && sorted.length - 1 > runStart) {
-      ranges.push({ startIdx: runStart, endIdx: sorted.length - 1 });
-    }
-    return ranges;
-  }, [sorted]);
-
-  // --- Empty state ---
   if (sorted.length === 0) {
     return (
       <div className={`flex items-center justify-center py-10 ${className ?? ''}`}>
-        <p className="text-sm text-text-tertiary">No major triggers in the forecast window</p>
+        <p className="text-sm text-text-secondary italic">
+          {isHi ? 'पूर्वानुमान विंडो में कोई प्रमुख ट्रिगर नहीं' : 'No major triggers in the forecast window'}
+        </p>
       </div>
     );
   }
 
-  const trackWidth = (sorted.length - 1) * NODE_GAP;
-  const nowLeft = nowIndex * NODE_GAP;
+  const now = Date.now();
 
   return (
-    <div className={`relative ${className ?? ''}`}>
-      {/* Scrollable container */}
-      <div className="scrollbar-hide overflow-x-auto touch-pan-x">
-        <div
-          className="relative flex items-start"
-          style={{ minWidth: trackWidth + NODE_GAP + 40, paddingLeft: 20, paddingRight: 20 }}
-        >
-          {/* Favorable window bars */}
-          {favorableRanges.map((r) => (
-            <div
-              key={`fav-${r.startIdx}`}
-              className="absolute rounded-md"
-              style={{
-                left: r.startIdx * NODE_GAP + 20 - 8,
-                width: (r.endIdx - r.startIdx) * NODE_GAP + 16,
-                top: 48,
-                height: 24,
-                background: 'rgba(52,211,153,0.08)',
-              }}
-            />
-          ))}
-
-          {/* Connecting line */}
-          <div
-            className="absolute"
-            style={{
-              left: 20,
-              width: trackWidth,
-              top: 58,
-              height: 2,
-              background: 'var(--gold-primary, #d4a853)',
-              opacity: 0.2,
-            }}
+    <div className={`w-full ${className ?? ''}`}>
+      {/* "Now" marker */}
+      <div className="flex items-center gap-3 mb-2">
+        <div className="relative">
+          <span
+            className="block w-4 h-4 rounded-full bg-gold-primary"
+            style={{ boxShadow: '0 0 8px rgba(212,168,83,0.6)', animation: 'pulse-now 2s ease-in-out infinite' }}
           />
+        </div>
+        <span className="text-gold-light text-sm font-semibold">
+          {isHi ? 'अभी' : 'Now'}
+        </span>
+      </div>
 
-          {/* "You are here" marker */}
-          <div
-            className="absolute flex flex-col items-center"
-            style={{ left: nowLeft + 20, top: 28, zIndex: 10 }}
-            aria-label="Current date marker"
-            role="img"
-          >
-            <span className="text-[10px] font-semibold text-gold-light mb-0.5 whitespace-nowrap" aria-hidden="true">Now</span>
-            <span
-              className="block rounded-full"
-              style={{
-                width: 16,
-                height: 16,
-                background: 'var(--gold-primary, #d4a853)',
-                boxShadow: '0 0 8px rgba(212,168,83,0.6)',
-                animation: 'pulse-now 2s ease-in-out infinite',
-              }}
-            />
-          </div>
+      {/* Vertical timeline track */}
+      <div className="relative ml-2 border-l-2 border-gold-primary/20 pl-6 space-y-0">
+        {sorted.map((trigger, i) => {
+          const color = dotColor(trigger.nature);
+          const bgClass = dotBg(trigger.nature);
+          const isPast = new Date(trigger.startDate).getTime() < now;
+          const typeLabel = TYPE_LABELS[trigger.triggerType];
 
-          {/* Nodes */}
-          {sorted.map((trigger, i) => {
-            const color = dotColor(trigger.nature);
-            const left = i * NODE_GAP;
-            const nodeLabel = `${fmtDate(trigger.startDate)}: ${tl(trigger.description, locale)} (${TYPE_LABELS[trigger.triggerType]})`;
-            return (
+          return (
+            <div key={`${trigger.startDate}-${i}`} className="relative pb-6 last:pb-0">
+              {/* Dot on the timeline track */}
               <div
-                key={`${trigger.startDate}-${i}`}
-                className="absolute flex flex-col items-center"
-                style={{ left: left + 20, width: NODE_GAP }}
-                aria-label={nodeLabel}
-                role="group"
-              >
-                {/* Date */}
-                <span className="text-[11px] text-text-tertiary whitespace-nowrap mb-1">
-                  {fmtDate(trigger.startDate)}
-                </span>
+                className="absolute -left-[31px] top-1 w-3 h-3 rounded-full border-2"
+                style={{
+                  backgroundColor: isPast ? `${color}40` : color,
+                  borderColor: color,
+                }}
+              />
 
-                {/* Dot */}
-                <span
-                  className="block rounded-full transition-shadow duration-200"
-                  style={{
-                    width: 12,
-                    height: 12,
-                    background: color,
-                    boxShadow: `0 0 0 0 ${color}`,
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.boxShadow = `0 0 10px 3px ${color}40`;
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.boxShadow = `0 0 0 0 ${color}`;
-                  }}
-                />
+              {/* Content card — full width */}
+              <div className={`rounded-xl border p-4 ${bgClass} ${isPast ? 'opacity-60' : ''}`}>
+                <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                  {/* Date */}
+                  <span className="text-sm font-semibold text-text-primary">
+                    {fmtDate(trigger.startDate, locale)}
+                  </span>
+
+                  {/* Type pill */}
+                  <span
+                    className="text-[10px] px-2 py-0.5 rounded-full font-medium"
+                    style={{
+                      background: `${color}15`,
+                      color,
+                      border: `1px solid ${color}30`,
+                    }}
+                  >
+                    {isHi ? typeLabel.hi : typeLabel.en}
+                  </span>
+
+                  {/* Nature label */}
+                  <span className="text-[10px] text-text-secondary/60">
+                    {trigger.nature === 'opportunity' ? (isHi ? '● अनुकूल' : '● Favorable')
+                      : trigger.nature === 'challenge' ? (isHi ? '● चुनौती' : '● Challenge')
+                      : (isHi ? '● मिश्रित' : '● Mixed')}
+                  </span>
+                </div>
 
                 {/* Description */}
-                <span className="mt-1.5 text-[11px] text-text-secondary text-center leading-tight max-w-[120px] line-clamp-3">
+                <p className="text-sm text-text-primary/85 leading-relaxed">
                   {tl(trigger.description, locale)}
-                </span>
-
-                {/* Type pill */}
-                <span
-                  className="mt-1 text-[9px] px-1.5 py-px rounded-full whitespace-nowrap"
-                  style={{
-                    background: `${color}15`,
-                    color,
-                    border: `1px solid ${color}30`,
-                  }}
-                >
-                  {TYPE_LABELS[trigger.triggerType]}
-                </span>
+                </p>
               </div>
-            );
-          })}
-        </div>
-
-        {/* Spacer for node content overflow */}
-        <div style={{ height: 100 }} />
+            </div>
+          );
+        })}
       </div>
 
       {/* Pulse keyframes */}

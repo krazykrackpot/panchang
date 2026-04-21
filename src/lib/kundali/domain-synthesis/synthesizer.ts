@@ -40,6 +40,7 @@ import { selectDomainRemedies, type RemedyInput } from './remedies';
 import { synthesizeCurrentPeriod, type CurrentPeriodInput } from './current-period';
 import { generateLifeOverview, type OverviewInput } from './life-overview';
 import { detectCrossDomainLinks, type CrossDomainInput } from './cross-domain';
+import { computeCurrentTransits, type TransitEntry } from './transit-activation';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
 import type { DignityLevel } from '@/lib/tippanni/varga-tippanni-types-v2';
@@ -396,6 +397,7 @@ function buildCurrentActivation(
   config: DomainConfig,
   kundali: KundaliData,
   data: ExtractedData,
+  transitData?: TransitEntry[],
 ): CurrentActivationBlock {
   const primaryHouses = new Set(config.primaryHouses);
 
@@ -426,24 +428,47 @@ function buildCurrentActivation(
   const isDashaActive = mahaActivates || antarActivates;
   const dashaActivationScore = (mahaActivates ? 5 : 0) + (antarActivates ? 3 : 0);
 
-  // Simplified transit influences — slow planets in domain houses
+  // Transit influences — slow planets in domain houses (using real current positions)
   const transitInfluences: CurrentActivationBlock['transitInfluences'] = [];
-  const slowPlanets = [4, 6, 7, 8]; // Jupiter, Saturn, Rahu, Ketu
-  for (const pid of slowPlanets) {
-    const p = data.planetMap.get(pid);
-    if (!p) continue;
-    if (primaryHouses.has(p.house)) {
-      const nature = isBenefic(pid) ? 'benefic' as const : 'malefic' as const;
-      transitInfluences.push({
-        planetId: pid,
-        transitHouse: p.house,
-        nature,
-        intensity: 'medium',
-        description: {
-          en: `${p.planet.name.en} in ${p.house}th house`,
-          hi: `${p.planet.name.hi ?? p.planet.name.en} ${p.house}वें भाव में`,
-        },
-      });
+  if (transitData && transitData.length > 0) {
+    // Use real current transit positions
+    for (const t of transitData) {
+      if (primaryHouses.has(t.transitHouse)) {
+        const nature = isBenefic(t.planetId) ? 'benefic' as const : 'malefic' as const;
+        const planetName = GRAHAS[t.planetId]?.name ?? { en: 'Planet' };
+        const retroLabel = t.isRetrograde ? ' (R)' : '';
+        const retroLabelHi = t.isRetrograde ? ' (वक्री)' : '';
+        transitInfluences.push({
+          planetId: t.planetId,
+          transitHouse: t.transitHouse,
+          nature,
+          intensity: t.isRetrograde ? 'high' : 'medium',
+          description: {
+            en: `${planetName.en}${retroLabel} transiting ${t.transitHouse}th house`,
+            hi: `${planetName.hi ?? planetName.en}${retroLabelHi} ${t.transitHouse}वें भाव में गोचर`,
+          },
+        });
+      }
+    }
+  } else {
+    // Fallback: use natal positions if transit computation failed
+    const slowPlanets = [4, 6, 7, 8]; // Jupiter, Saturn, Rahu, Ketu
+    for (const pid of slowPlanets) {
+      const p = data.planetMap.get(pid);
+      if (!p) continue;
+      if (primaryHouses.has(p.house)) {
+        const nature = isBenefic(pid) ? 'benefic' as const : 'malefic' as const;
+        transitInfluences.push({
+          planetId: pid,
+          transitHouse: p.house,
+          nature,
+          intensity: 'medium',
+          description: {
+            en: `${p.planet.name.en} in ${p.house}th house`,
+            hi: `${p.planet.name.hi ?? p.planet.name.en} ${p.house}वें भाव में`,
+          },
+        });
+      }
     }
   }
 
@@ -723,6 +748,7 @@ function buildDomainReading(
   data: ExtractedData,
   crossLinks: CrossDomainLink[],
   nativeAge?: number,
+  transitData?: TransitEntry[],
 ): DomainReading {
   // 1. Score
   const scorerInput = buildScorerInput(config, kundali, data);
@@ -731,8 +757,8 @@ function buildDomainReading(
   // 2. Natal promise block
   const natalPromise = buildNatalPromise(config, kundali, data, natalRating, nativeAge);
 
-  // 3. Current activation
-  const currentActivation = buildCurrentActivation(config, kundali, data);
+  // 3. Current activation (using real transit data when available)
+  const currentActivation = buildCurrentActivation(config, kundali, data, transitData);
 
   // 4. Overall rating: blend natal + activation
   const blendedScore = natalRating.score * 0.7 + currentActivation.overallActivationScore * 0.3;
@@ -894,9 +920,18 @@ export function synthesizeReading(
   };
   const crossDomainLinks = detectCrossDomainLinks(crossDomainInput);
 
+  // 1b. Compute current transits (lightweight, no lat/lng needed)
+  let transitData: TransitEntry[] | undefined;
+  try {
+    transitData = computeCurrentTransits(data.ascendantSign);
+  } catch {
+    // Fall back to natal positions if transit computation fails
+    transitData = undefined;
+  }
+
   // 2. Build all 8 domain readings
   const domains: DomainReading[] = DOMAIN_CONFIGS.map(config =>
-    buildDomainReading(config, kundali, data, crossDomainLinks, nativeAge),
+    buildDomainReading(config, kundali, data, crossDomainLinks, nativeAge, transitData),
   );
 
   // 3. Current period
@@ -966,5 +1001,13 @@ export function synthesizeDomainDeepDive(
   };
   const crossDomainLinks = detectCrossDomainLinks(crossDomainInput);
 
-  return buildDomainReading(config, kundali, data, crossDomainLinks, nativeAge);
+  // Compute current transits for the deep dive
+  let transitData: TransitEntry[] | undefined;
+  try {
+    transitData = computeCurrentTransits(data.ascendantSign);
+  } catch {
+    transitData = undefined;
+  }
+
+  return buildDomainReading(config, kundali, data, crossDomainLinks, nativeAge, transitData);
 }

@@ -44,6 +44,7 @@ import { synthesizeReading } from '@/lib/kundali/domain-synthesis/synthesizer';
 import { getSavedQuestionChoice, clearQuestionChoice } from '@/components/kundali/QuestionEntry';
 import { computeKeyDates, type KeyDate } from '@/lib/kundali/domain-synthesis/key-dates';
 import { useAIReading } from '@/lib/kundali/domain-synthesis/use-ai-reading';
+import { useTrajectory } from '@/lib/kundali/domain-synthesis/use-trajectory';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
@@ -76,6 +77,7 @@ const LifeReadingDashboard = dynamic(() => import('@/components/kundali/LifeRead
 const DomainDeepDive = dynamic(() => import('@/components/kundali/DomainDeepDive'), { ssr: false });
 const KeyDatesTimeline = dynamic(() => import('@/components/kundali/KeyDatesTimeline'), { ssr: false });
 const QuestionEntry = dynamic(() => import('@/components/kundali/QuestionEntry'), { ssr: false });
+const TrajectoryCard = dynamic(() => import('@/components/kundali/TrajectoryCard'), { ssr: false });
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {

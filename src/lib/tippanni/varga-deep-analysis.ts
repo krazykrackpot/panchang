@@ -895,3 +895,170 @@ export function buildDeepVargaAnalysis(
     },
   };
 }
+
+// ---------------------------------------------------------------------------
+// Factor 16: Combustion in Divisional Charts
+// ---------------------------------------------------------------------------
+
+/** Combustion orbs in degrees from Sun (classical values) */
+const COMBUSTION_ORBS: Record<number, number> = {
+  1: 12, // Moon
+  2: 17, // Mars
+  3: 14, // Mercury (12° when retrograde — handled in function)
+  4: 11, // Jupiter
+  5: 10, // Venus (8° when retrograde — handled in function)
+  6: 15, // Saturn
+};
+
+/** Planets excluded from combustion check: Sun (0), Rahu (7), Ketu (8) */
+const COMBUSTION_EXCLUDED = new Set([0, 7, 8]);
+
+const COMBUSTION_NARRATIVES: Record<number, { en: string; hi: string }> = {
+  1: {
+    en: 'Moon is combust — emotional significations are overshadowed by ego. Mental peace requires conscious detachment from self-image.',
+    hi: 'चन्द्र अस्त — भावनात्मक अर्थ अहंकार से ढके हैं। मानसिक शांति के लिए आत्म-छवि से सचेत विरक्ति आवश्यक है।',
+  },
+  2: {
+    en: 'Mars is combust — courage and initiative are filtered through ego. Assertiveness may manifest as aggression or be suppressed entirely.',
+    hi: 'मंगल अस्त — साहस और पहल अहंकार से छनकर आते हैं। दृढ़ता आक्रामकता बन सकती है या पूर्णतः दब सकती है।',
+  },
+  3: {
+    en: 'Mercury is combust — intellect and communication are coloured by self-interest. Objective analysis requires deliberate effort.',
+    hi: 'बुध अस्त — बुद्धि और संवाद स्वार्थ से रंगे हैं। वस्तुनिष्ठ विश्लेषण के लिए सचेत प्रयास आवश्यक है।',
+  },
+  4: {
+    en: 'Jupiter is combust — wisdom and expansion are filtered through ego. Dharmic growth requires conscious humility.',
+    hi: 'गुरु अस्त — ज्ञान और विस्तार अहंकार से छनते हैं। धार्मिक विकास के लिए सचेत विनम्रता आवश्यक है।',
+  },
+  5: {
+    en: 'Venus is combust — spouse-related significations are overshadowed by ego. The partner may feel eclipsed by your personality.',
+    hi: 'शुक्र अस्त — जीवनसाथी से जुड़े अर्थ अहंकार से ढके हैं। साथी आपके व्यक्तित्व से ग्रसित महसूस कर सकता है।',
+  },
+  6: {
+    en: 'Saturn is combust — discipline and karmic lessons are tangled with self-image. Authority issues surface in this domain.',
+    hi: 'शनि अस्त — अनुशासन और कर्म-पाठ आत्म-छवि से उलझे हैं। इस क्षेत्र में अधिकार के मुद्दे उभरते हैं।',
+  },
+};
+
+/**
+ * Detect combustion status for each planet.
+ * Combustion is a natal condition (planet too close to Sun) that persists
+ * across all divisional charts and weakens the planet's significations.
+ *
+ * Uses PlanetPosition.isCombust flag if available; otherwise computes
+ * from longitude difference with Sun.
+ */
+export function computeCombustionInDxx(
+  planets: PlanetPosition[],
+): { planetId: number; isCombust: boolean; orb: number; narrative: { en: string; hi: string } }[] {
+  const results: { planetId: number; isCombust: boolean; orb: number; narrative: { en: string; hi: string } }[] = [];
+
+  // Find Sun's longitude for fallback computation
+  const sunPlanet = planets.find(p => p.planet.id === 0);
+  const sunLng = sunPlanet?.longitude ?? 0;
+
+  for (const pp of planets) {
+    const pid = pp.planet.id;
+    if (COMBUSTION_EXCLUDED.has(pid)) continue;
+
+    const maxOrb = COMBUSTION_ORBS[pid];
+    if (maxOrb === undefined) continue;
+
+    // Adjust orb for retrograde Mercury/Venus
+    let effectiveOrb = maxOrb;
+    if (pid === 3 && pp.isRetrograde) effectiveOrb = 12;
+    if (pid === 5 && pp.isRetrograde) effectiveOrb = 8;
+
+    // Use the flag if available; otherwise compute from longitude
+    let combust = pp.isCombust;
+    let orbDistance = 0;
+
+    if (pp.longitude !== undefined && sunPlanet) {
+      // Compute angular separation (shortest arc)
+      let diff = Math.abs(pp.longitude - sunLng);
+      if (diff > 180) diff = 360 - diff;
+      orbDistance = diff;
+
+      // If flag not set, compute from orb
+      if (combust === undefined || combust === null) {
+        combust = orbDistance <= effectiveOrb;
+      }
+    }
+
+    const narrative = combust && COMBUSTION_NARRATIVES[pid]
+      ? COMBUSTION_NARRATIVES[pid]
+      : { en: '', hi: '' };
+
+    results.push({
+      planetId: pid,
+      isCombust: !!combust,
+      orb: Math.round(orbDistance * 100) / 100,
+      narrative,
+    });
+  }
+
+  return results;
+}
+
+// ---------------------------------------------------------------------------
+// Factor 17: Retrogression in Divisional Charts
+// ---------------------------------------------------------------------------
+
+/** Only classical planets can be meaningfully retrograde (Sun/Moon never, Rahu/Ketu always — ignored) */
+const RETRO_ELIGIBLE = new Set([2, 3, 4, 5, 6]);
+
+const RETRO_NARRATIVES: Record<number, { en: string; hi: string }> = {
+  2: {
+    en: 'Mars retrograde — assertiveness is internalized. In this domain, anger simmers beneath the surface rather than erupting. Actions are deliberate but delayed.',
+    hi: 'मंगल वक्री — दृढ़ता अंतर्मुखी हो जाती है। इस क्षेत्र में क्रोध सतह के नीचे सुलगता है, विस्फोट नहीं होता। कार्य सोच-समझकर पर विलंबित होते हैं।',
+  },
+  3: {
+    en: 'Mercury retrograde — communication follows non-linear paths. Revisiting past decisions and re-evaluating commitments is natural.',
+    hi: 'बुध वक्री — संवाद अरेखीय मार्गों से होता है। पिछले निर्णयों पर पुनर्विचार और प्रतिबद्धताओं का पुनर्मूल्यांकन स्वाभाविक है।',
+  },
+  4: {
+    en: 'Jupiter retrograde — wisdom is introspective. Growth comes through inner reflection rather than outward expansion. Unconventional dharmic path.',
+    hi: 'गुरु वक्री — ज्ञान अंतर्मुखी है। विकास बाहरी विस्तार के बजाय आंतरिक चिंतन से आता है। अपरंपरागत धार्मिक मार्ग।',
+  },
+  5: {
+    en: 'Venus retrograde — relationships and aesthetics are experienced internally. Past-life romantic patterns resurface. Artistic expression is deeply personal.',
+    hi: 'शुक्र वक्री — रिश्ते और सौंदर्य आंतरिक रूप से अनुभव होते हैं। पूर्वजन्म के प्रेम प्रतिरूप पुनः उभरते हैं। कलात्मक अभिव्यक्ति गहन व्यक्तिगत है।',
+  },
+  6: {
+    en: 'Saturn retrograde — karmic lessons are self-imposed rather than externally enforced. Discipline comes from within but career path is non-linear.',
+    hi: 'शनि वक्री — कर्म-पाठ बाहरी बाध्यता के बजाय स्वयं-आरोपित हैं। अनुशासन भीतर से आता है पर कैरियर पथ अरेखीय है।',
+  },
+};
+
+/**
+ * Detect retrogression status for eligible planets.
+ * Retrograde planets express their energy INWARD and UNCONVENTIONALLY
+ * in the divisional domain. This is a natal condition that persists across
+ * all divisional charts.
+ *
+ * Only Mars(2), Mercury(3), Jupiter(4), Venus(5), Saturn(6) are checked.
+ * Sun/Moon never retrograde; Rahu/Ketu always retrograde (conventionally ignored).
+ */
+export function computeRetroInDxx(
+  planets: PlanetPosition[],
+): { planetId: number; isRetrograde: boolean; narrative: { en: string; hi: string } }[] {
+  const results: { planetId: number; isRetrograde: boolean; narrative: { en: string; hi: string } }[] = [];
+
+  for (const pp of planets) {
+    const pid = pp.planet.id;
+    if (!RETRO_ELIGIBLE.has(pid)) continue;
+
+    const retro = !!pp.isRetrograde;
+    const narrative = retro && RETRO_NARRATIVES[pid]
+      ? RETRO_NARRATIVES[pid]
+      : { en: '', hi: '' };
+
+    results.push({
+      planetId: pid,
+      isRetrograde: retro,
+      narrative,
+    });
+  }
+
+  return results;
+}

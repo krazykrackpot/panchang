@@ -9,6 +9,10 @@ import {
   type PromiseInput,
   type DeliveryInput,
 } from '../tippanni/varga-promise-delivery';
+import {
+  computeCombustionInDxx,
+  computeRetroInDxx,
+} from '../tippanni/varga-deep-analysis';
 
 describe('scorePromise', () => {
   it('returns score ≥80 for strong signals', () => {
@@ -185,5 +189,86 @@ describe('getVerdict', () => {
       }
     }
     expect(keys.size).toBe(16);
+  });
+});
+
+describe('combustion in Dxx', () => {
+  it('detects combust planets', () => {
+    const mockPlanets = [
+      { planet: { id: 5, name: { en: 'Venus', hi: 'शुक्र' } }, isCombust: true, isRetrograde: false, longitude: 45 },
+      { planet: { id: 4, name: { en: 'Jupiter', hi: 'बृहस्पति' } }, isCombust: false, isRetrograde: false, longitude: 120 },
+    ] as any;
+    const result = computeCombustionInDxx(mockPlanets);
+    expect(result.some(c => c.planetId === 5 && c.isCombust)).toBe(true);
+    expect(result.some(c => c.planetId === 4 && c.isCombust)).toBe(false);
+  });
+
+  it('excludes Sun from combustion check', () => {
+    const mockPlanets = [
+      { planet: { id: 0, name: { en: 'Sun', hi: 'सूर्य' } }, isCombust: false, isRetrograde: false, longitude: 45 },
+    ] as any;
+    const result = computeCombustionInDxx(mockPlanets);
+    expect(result.length).toBe(0);
+  });
+
+  it('generates narrative for combust planet', () => {
+    const mockPlanets = [
+      { planet: { id: 0, name: { en: 'Sun', hi: 'सूर्य' } }, isCombust: false, isRetrograde: false, longitude: 45 },
+      { planet: { id: 5, name: { en: 'Venus', hi: 'शुक्र' } }, isCombust: true, isRetrograde: false, longitude: 48 },
+    ] as any;
+    const result = computeCombustionInDxx(mockPlanets);
+    const venus = result.find(c => c.planetId === 5);
+    expect(venus?.narrative.en).toContain('Venus is combust');
+    expect(venus?.narrative.hi).toBeTruthy();
+  });
+
+  it('excludes Rahu and Ketu from combustion check', () => {
+    const mockPlanets = [
+      { planet: { id: 7, name: { en: 'Rahu', hi: 'राहु' } }, isCombust: false, isRetrograde: true, longitude: 100 },
+      { planet: { id: 8, name: { en: 'Ketu', hi: 'केतु' } }, isCombust: false, isRetrograde: true, longitude: 280 },
+    ] as any;
+    const result = computeCombustionInDxx(mockPlanets);
+    expect(result.length).toBe(0);
+  });
+});
+
+describe('retrogression in Dxx', () => {
+  it('detects retrograde Mars', () => {
+    const mockPlanets = [
+      { planet: { id: 2, name: { en: 'Mars', hi: 'मंगल' } }, isRetrograde: true, isCombust: false },
+    ] as any;
+    const result = computeRetroInDxx(mockPlanets);
+    expect(result.some(r => r.planetId === 2 && r.isRetrograde)).toBe(true);
+  });
+
+  it('ignores Sun/Moon/Rahu/Ketu for retro', () => {
+    const mockPlanets = [
+      { planet: { id: 0 }, isRetrograde: false, isCombust: false },
+      { planet: { id: 1 }, isRetrograde: false, isCombust: false },
+      { planet: { id: 7 }, isRetrograde: true, isCombust: false },
+      { planet: { id: 8 }, isRetrograde: true, isCombust: false },
+    ] as any;
+    const result = computeRetroInDxx(mockPlanets);
+    expect(result.length).toBe(0);
+  });
+
+  it('generates narrative for retrograde Jupiter', () => {
+    const mockPlanets = [
+      { planet: { id: 4, name: { en: 'Jupiter', hi: 'गुरु' } }, isRetrograde: true, isCombust: false },
+    ] as any;
+    const result = computeRetroInDxx(mockPlanets);
+    const jupiter = result.find(r => r.planetId === 4);
+    expect(jupiter?.narrative.en).toContain('Jupiter retrograde');
+    expect(jupiter?.narrative.hi).toBeTruthy();
+  });
+
+  it('returns empty narrative for non-retrograde planet', () => {
+    const mockPlanets = [
+      { planet: { id: 6, name: { en: 'Saturn', hi: 'शनि' } }, isRetrograde: false, isCombust: false },
+    ] as any;
+    const result = computeRetroInDxx(mockPlanets);
+    const saturn = result.find(r => r.planetId === 6);
+    expect(saturn?.isRetrograde).toBe(false);
+    expect(saturn?.narrative.en).toBe('');
   });
 });

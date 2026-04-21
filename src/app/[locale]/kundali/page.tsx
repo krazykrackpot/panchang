@@ -41,6 +41,7 @@ import type { Locale , LocaleText} from '@/types/panchang';
 import type { SadeSatiAnalysis, NakshatraTransitEntry } from '@/lib/kundali/sade-sati-analysis';
 import type { PersonalReading, DomainType } from '@/lib/kundali/domain-synthesis/types';
 import { synthesizeReading } from '@/lib/kundali/domain-synthesis/synthesizer';
+import { getSavedQuestionChoice, clearQuestionChoice } from '@/components/kundali/QuestionEntry';
 import { computeKeyDates, type KeyDate } from '@/lib/kundali/domain-synthesis/key-dates';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { useBirthDataStore } from '@/stores/birth-data-store';
@@ -73,6 +74,7 @@ const DashaInterpretation = dynamic(() => import('@/components/kundali/Interpret
 const LifeReadingDashboard = dynamic(() => import('@/components/kundali/LifeReadingDashboard'), { ssr: false });
 const DomainDeepDive = dynamic(() => import('@/components/kundali/DomainDeepDive'), { ssr: false });
 const KeyDatesTimeline = dynamic(() => import('@/components/kundali/KeyDatesTimeline'), { ssr: false });
+const QuestionEntry = dynamic(() => import('@/components/kundali/QuestionEntry'), { ssr: false });
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
@@ -398,10 +400,28 @@ export default function KundaliPage() {
   const [transitData, setTransitData] = useState<{ planets: { id: number; name: LocaleText; rashi: number; longitude: number; isRetrograde: boolean }[] } | null>(null);
 
   // Personal Pandit dashboard state
-  const [view, setView] = useState<'dashboard' | 'deepDive' | 'technical'>('dashboard');
+  const [view, setView] = useState<'dashboard' | 'deepDive' | 'technical' | 'questionEntry'>('dashboard');
   const [activeDomain, setActiveDomain] = useState<DomainType | null>(null);
   const [personalReading, setPersonalReading] = useState<PersonalReading | null>(null);
   const [keyDates, setKeyDates] = useState<KeyDate[]>([]);
+  const [questionAnswered, setQuestionAnswered] = useState<boolean>(false);
+
+  /** After synthesizing a reading, check if user previously chose a focus domain. */
+  const resolveInitialView = useCallback(() => {
+    const saved = getSavedQuestionChoice();
+    if (saved) {
+      setQuestionAnswered(true);
+      if (saved === 'all') {
+        setView('dashboard');
+      } else {
+        setActiveDomain(saved as DomainType);
+        setView('deepDive');
+      }
+    } else {
+      // No choice yet — show question entry overlay
+      setView('questionEntry');
+    }
+  }, []);
 
   // On mount: URL query params take priority over sessionStorage. This lets
   // saved-kundali cards on the dashboard open the correct chart — previously
@@ -439,7 +459,7 @@ export default function KundaliPage() {
               const reading = synthesizeReading(data, locale);
               setPersonalReading(reading);
               setKeyDates(computeKeyDates({ kundali: data }));
-              setView('dashboard');
+              resolveInitialView();
             } catch { setPersonalReading(null); setView('technical'); }
             try {
               sessionStorage.setItem('kundali_last_result', JSON.stringify({
@@ -472,7 +492,7 @@ export default function KundaliPage() {
             const reading = synthesizeReading(k, locale);
             setPersonalReading(reading);
             setKeyDates(computeKeyDates({ kundali: k }));
-            setView('dashboard');
+            resolveInitialView();
           } catch { setPersonalReading(null); setView('technical'); }
         }
       }
@@ -637,7 +657,7 @@ export default function KundaliPage() {
         const reading = synthesizeReading(data, locale);
         setPersonalReading(reading);
         setKeyDates(computeKeyDates({ kundali: data }));
-        setView('dashboard');
+        resolveInitialView();
       } catch (synthErr) {
         console.error('Personal reading synthesis failed — falling back to technical view:', synthErr);
         setPersonalReading(null);
@@ -786,7 +806,7 @@ export default function KundaliPage() {
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3 mt-2">
               <button
-                onClick={() => setActiveTab('patrika')}
+                onClick={() => { setActiveTab('patrika'); setView('technical'); }}
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/40 text-gold-light bg-gold-primary/8 hover:bg-gold-primary/15 hover:border-gold-primary/70 transition-all duration-300"
               >
                 <ScrollText className="w-4 h-4" />
@@ -872,6 +892,22 @@ export default function KundaliPage() {
             );
           })()}
 
+          {/* ===== LAYER 0: QUESTION ENTRY OVERLAY ===== */}
+          {personalReading && view === 'questionEntry' && (
+            <QuestionEntry
+              locale={locale}
+              onSelect={(choice) => {
+                setQuestionAnswered(true);
+                if (choice === 'all') {
+                  setView('dashboard');
+                } else {
+                  setActiveDomain(choice as DomainType);
+                  setView('deepDive');
+                }
+              }}
+            />
+          )}
+
           {/* ===== LAYER 1: PERSONAL PANDIT DASHBOARD ===== */}
           {personalReading && view === 'dashboard' && (
             <>
@@ -881,6 +917,23 @@ export default function KundaliPage() {
                   <KeyDatesTimeline dates={keyDates} locale={locale} />
                 </div>
               )}
+              {/* Change focus button */}
+              <div className="flex justify-end mb-4">
+                <button
+                  type="button"
+                  onClick={() => {
+                    clearQuestionChoice();
+                    setQuestionAnswered(false);
+                    setView('questionEntry');
+                  }}
+                  className="inline-flex items-center gap-1.5 text-text-secondary text-xs hover:text-gold-light transition-colors cursor-pointer"
+                >
+                  <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5" aria-hidden="true">
+                    <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
+                  </svg>
+                  {locale === 'en' || String(locale) === 'ta' ? 'Change focus' : 'फोकस बदलें'}
+                </button>
+              </div>
               <LifeReadingDashboard
                 reading={personalReading}
                 locale={locale}

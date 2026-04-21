@@ -43,6 +43,7 @@ import type { PersonalReading, DomainType } from '@/lib/kundali/domain-synthesis
 import { synthesizeReading } from '@/lib/kundali/domain-synthesis/synthesizer';
 import { getSavedQuestionChoice, clearQuestionChoice } from '@/components/kundali/QuestionEntry';
 import { computeKeyDates, type KeyDate } from '@/lib/kundali/domain-synthesis/key-dates';
+import { useAIReading } from '@/lib/kundali/domain-synthesis/use-ai-reading';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
@@ -405,6 +406,9 @@ export default function KundaliPage() {
   const [personalReading, setPersonalReading] = useState<PersonalReading | null>(null);
   const [keyDates, setKeyDates] = useState<KeyDate[]>([]);
   const [questionAnswered, setQuestionAnswered] = useState<boolean>(false);
+
+  // AI Reading hook — manages comprehensive single-call AI readings with Supabase caching
+  const aiReadingHook = useAIReading();
 
   /** After synthesizing a reading, check if user previously chose a focus domain. */
   const resolveInitialView = useCallback(() => {
@@ -947,13 +951,22 @@ export default function KundaliPage() {
           )}
 
           {/* ===== LAYER 2: DOMAIN DEEP DIVE ===== */}
-          {personalReading && view === 'deepDive' && activeDomain && (
+          {personalReading && view === 'deepDive' && activeDomain && kundali && (
             <DomainDeepDive
               reading={personalReading.domains.find(d => d.domain === activeDomain)!}
               locale={locale}
               onBack={() => {
                 setActiveDomain(null);
                 setView('dashboard');
+              }}
+              aiReading={aiReadingHook.getReading(activeDomain)}
+              aiLoading={aiReadingHook.loading}
+              aiError={aiReadingHook.error}
+              onRequestAIReading={() => {
+                aiReadingHook.fetchReadings(kundali, personalReading);
+              }}
+              onRegenerateAIReading={() => {
+                aiReadingHook.regenerate(kundali, personalReading);
               }}
             />
           )}

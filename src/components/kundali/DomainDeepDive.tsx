@@ -1,10 +1,8 @@
 'use client';
 
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useCallback, useRef, useEffect } from 'react';
 import { tl } from '@/lib/utils/trilingual';
 import ForwardTimeline from '@/components/kundali/ForwardTimeline';
-import { buildDomainPrompt } from '@/lib/kundali/domain-synthesis/llm-prompt';
-import { useAuthStore } from '@/stores/auth-store';
 import type {
   DomainReading,
   DomainRemedy,
@@ -23,6 +21,16 @@ interface DomainDeepDiveProps {
   locale: string;
   nativeAge?: number;
   onBack: () => void;
+  /** Pre-fetched AI reading text for this domain (from comprehensive call) */
+  aiReading?: string | null;
+  /** Whether the AI reading is currently being fetched */
+  aiLoading?: boolean;
+  /** Error from the AI reading fetch */
+  aiError?: string | null;
+  /** Trigger a fetch of all AI readings (if not yet loaded) */
+  onRequestAIReading?: () => void;
+  /** Force regenerate the AI reading */
+  onRegenerateAIReading?: () => void;
 }
 
 // ---------------------------------------------------------------------------
@@ -202,7 +210,10 @@ function Spinner() {
 // Main component
 // ---------------------------------------------------------------------------
 
-export default function DomainDeepDive({ reading, locale, nativeAge, onBack }: DomainDeepDiveProps) {
+export default function DomainDeepDive({
+  reading, locale, nativeAge, onBack,
+  aiReading, aiLoading = false, aiError, onRequestAIReading, onRegenerateAIReading,
+}: DomainDeepDiveProps) {
   const meta = DOMAIN_META[reading.domain];
   const domainName = meta ? tl(meta.name, locale) : reading.domain;
   const vedicName = meta ? tl(meta.vedicName, locale) : '';
@@ -235,62 +246,15 @@ export default function DomainDeepDive({ reading, locale, nativeAge, onBack }: D
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [onBack]);
 
-  // ─── LLM "Ask Your Pandit" state ──────────────────────────────────────────
-  const session = useAuthStore((s) => s.session);
-  const [llmResponse, setLlmResponse] = useState<string | null>(null);
-  const [llmLoading, setLlmLoading] = useState(false);
-  const [llmError, setLlmError] = useState<string | null>(null);
-  // Cache per domain so re-opening the same domain shows the cached response
-  const cacheRef = useRef<Record<string, string>>({});
+  // ─── AI Reading state (driven by parent via props) ─────────────────────────
+  // aiReading, aiLoading, aiError, onRequestAIReading, onRegenerateAIReading
+  // are all passed from the parent which manages the comprehensive reading hook.
 
-  const handleConsultPandit = useCallback(async () => {
-    // Serve from cache if available for this domain and no response displayed yet
-    const cached = cacheRef.current[reading.domain];
-    if (cached && !llmResponse) {
-      setLlmResponse(cached);
-      return;
+  const handleConsultPandit = useCallback(() => {
+    if (onRequestAIReading) {
+      onRequestAIReading();
     }
-
-    setLlmLoading(true);
-    setLlmError(null);
-
-    try {
-      const { systemPrompt, userPayload } = buildDomainPrompt(reading, nativeAge);
-
-      const headers: Record<string, string> = {
-        'Content-Type': 'application/json',
-      };
-      if (session?.access_token) {
-        headers['Authorization'] = `Bearer ${session.access_token}`;
-      }
-
-      const res = await fetch('/api/domain-pandit', {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({ systemPrompt, userPayload }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        if (res.status === 429 || data.rateLimited) {
-          setLlmError(
-            "You've used your AI consultation quota for today. Upgrade for unlimited readings.",
-          );
-        } else {
-          setLlmError(data.error || 'Unable to generate reading. Please try again.');
-        }
-        return;
-      }
-
-      setLlmResponse(data.content);
-      cacheRef.current[reading.domain] = data.content;
-    } catch {
-      setLlmError('Unable to generate reading. Please try again.');
-    } finally {
-      setLlmLoading(false);
-    }
-  }, [reading, nativeAge, session, llmResponse]);
+  }, [onRequestAIReading]);
 
   return (
     <div className="w-full px-4 py-6" role="region" aria-label={`${domainName} detailed reading`}>
@@ -611,13 +575,13 @@ export default function DomainDeepDive({ reading, locale, nativeAge, onBack }: D
       {/* ----------------------------------------------------------------- */}
       {/* Section F: AI Pandit Response                                     */}
       {/* ----------------------------------------------------------------- */}
-      {llmResponse && (
+      {aiReading && (
         <div className="mt-10">
           <div className="border-t border-gold-primary/10 my-8" />
           <div className="rounded-xl border border-gold-primary/30 bg-gradient-to-br from-gold-primary/5 via-bg-secondary to-bg-secondary p-6 space-y-4">
             <h2 className="text-lg font-bold text-gold-light">Your Personal Pandit Says</h2>
             <div className="space-y-3">
-              {llmResponse.split('\n\n').filter(Boolean).map((para, i) => (
+              {aiReading.split('\n\n').filter(Boolean).map((para: string, i: number) => (
                 <p key={i} className="text-text-primary text-sm leading-relaxed">{para}</p>
               ))}
             </div>
@@ -625,18 +589,16 @@ export default function DomainDeepDive({ reading, locale, nativeAge, onBack }: D
               <p className="text-text-secondary/50 text-xs italic">
                 AI-generated reading based on your birth chart data. For guidance only.
               </p>
-              <button
-                type="button"
-                disabled={llmLoading}
-                onClick={() => {
-                  delete cacheRef.current[reading.domain];
-                  setLlmResponse(null);
-                  handleConsultPandit();
-                }}
-                className="text-gold-primary text-xs hover:text-gold-light transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {llmLoading ? <><Spinner />Regenerating...</> : 'Regenerate'}
-              </button>
+              {onRegenerateAIReading && (
+                <button
+                  type="button"
+                  disabled={aiLoading}
+                  onClick={onRegenerateAIReading}
+                  className="text-gold-primary text-xs hover:text-gold-light transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {aiLoading ? <><Spinner />Regenerating...</> : 'Regenerate'}
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -648,34 +610,26 @@ export default function DomainDeepDive({ reading, locale, nativeAge, onBack }: D
       <div className="mt-12 mb-4">
         <button
           type="button"
-          disabled={llmLoading}
+          disabled={aiLoading}
           onClick={handleConsultPandit}
           className="w-full bg-gradient-to-r from-gold-primary/20 to-gold-dark/20 border border-gold-primary/30 rounded-xl p-4 text-center hover:from-gold-primary/30 hover:to-gold-dark/30 transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
         >
           <p className="text-gold-light font-bold text-base">
-            {llmLoading
+            {aiLoading
               ? <><Spinner />Consulting...</>
-              : llmResponse
+              : aiReading
                 ? 'Consult Again'
                 : 'Consult Your Personal Pandit'}
           </p>
-          {!llmLoading && !llmResponse && (
-            <p className="text-text-secondary text-xs mt-1">AI-powered personalized reading</p>
+          {!aiLoading && !aiReading && (
+            <p className="text-text-secondary text-xs mt-1">AI-powered personalized reading — covers all life areas in one call</p>
           )}
         </button>
 
         {/* Error display */}
-        {llmError && (
+        {aiError && (
           <div className="mt-3 rounded-lg border border-red-500/30 bg-red-500/10 p-3 flex items-start gap-2">
-            <p className="text-red-400 text-sm flex-1">{llmError}</p>
-            <button
-              type="button"
-              onClick={() => setLlmError(null)}
-              className="text-red-400/60 hover:text-red-400 text-xs cursor-pointer shrink-0"
-              aria-label="Dismiss error"
-            >
-              Dismiss
-            </button>
+            <p className="text-red-400 text-sm flex-1">{aiError}</p>
           </div>
         )}
       </div>

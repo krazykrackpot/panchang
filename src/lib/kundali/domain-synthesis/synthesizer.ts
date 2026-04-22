@@ -611,8 +611,8 @@ function buildCurrentActivation(
     dashaActivationScore + transitInfluences.length * 1.5,
   );
 
-  const mahaName = GRAHAS[data.mahaLordId]?.name ?? { en: 'Unknown' };
-  const antarName = GRAHAS[data.antarLordId]?.name ?? { en: 'Unknown' };
+  const mahaName = GRAHAS[data.mahaLordId]?.name ?? { en: '(unresolved graha)' };
+  const antarName = GRAHAS[data.antarLordId]?.name ?? { en: '(unresolved graha)' };
 
   const summary: LocaleText = isDashaActive
     ? {
@@ -790,10 +790,10 @@ function buildNatalPromise(
     narrativeBlocks.push(
       narrateHouseLord({
         lordPlanetId: primaryLordId,
-        lordPlanetName: graha?.name ?? { en: 'Unknown' },
+        lordPlanetName: graha?.name ?? { en: '(unresolved graha)' },
         lordHouse: primaryLordPos.house,
         lordSign: primaryLordPos.sign,
-        lordSignName: rashi?.name ?? { en: 'Unknown' },
+        lordSignName: rashi?.name ?? { en: '(unresolved sign)' },
         dignity: getDignity(primaryLordId, primaryLordPos.sign),
         isRetrograde: primaryLordPos.isRetrograde,
         primaryHouse: primaryH,
@@ -1005,8 +1005,8 @@ function buildDomainReading(
   };
 
   // 9. Dasha activation narrative
-  const mahaName = GRAHAS[data.mahaLordId]?.name ?? { en: 'Unknown' };
-  const antarName = GRAHAS[data.antarLordId]?.name ?? { en: 'Unknown' };
+  const mahaName = GRAHAS[data.mahaLordId]?.name ?? { en: '(unresolved graha)' };
+  const antarName = GRAHAS[data.antarLordId]?.name ?? { en: '(unresolved graha)' };
   const dashaBlock = narrateDashaActivation({
     mahaLordId: data.mahaLordId,
     mahaLordName: mahaName,

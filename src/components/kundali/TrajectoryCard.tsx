@@ -143,7 +143,10 @@ export default function TrajectoryCard({ trajectory, locale, compact = false }: 
   const headingStyle = getHeadingFont(locale);
   const bodyStyle = getBodyFont(locale);
 
-  const isSnapshot = !trajectory.hasHistory;
+  // If history exists but every domain delta is 0, showing em dashes for all
+  // trends is confusing — fall back to the snapshot (score-bar) view instead.
+  const allStable = trajectory.domains.every((d) => d.delta === 0);
+  const isSnapshot = !trajectory.hasHistory || allStable;
 
   // In compact mode, show only the top 3 most-changed domains (by absolute delta)
   // In snapshot mode (no history), sort by score descending for visual interest

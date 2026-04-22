@@ -1498,7 +1498,7 @@ export function DashaInterpretation({ dashas, planets, locale }: DashaInterpreta
 
   if (!currentMaha) return null;
 
-  const mahaPlanet = currentMaha.planet || (isHi ? currentMaha.planetName?.hi : currentMaha.planetName?.en) || 'Unknown';
+  const mahaPlanet = currentMaha.planet || (isHi ? currentMaha.planetName?.hi : currentMaha.planetName?.en) || '(data unavailable)';
   const mahaTheme = MAHADASHA_THEMES[mahaPlanet];
   const mahaDuration = DASHA_DURATIONS[mahaPlanet] ?? '?';
 
@@ -1512,7 +1512,7 @@ export function DashaInterpretation({ dashas, planets, locale }: DashaInterpreta
   const NAME_TO_ID: Record<string, number> = { Sun: 0, Moon: 1, Mars: 2, Mercury: 3, Jupiter: 4, Venus: 5, Saturn: 6, Rahu: 7, Ketu: 8 };
   const mahaPlanetId = NAME_TO_ID[mahaPlanet] ?? 0;
   const mahaGraha = GRAHAS[mahaPlanetId];
-  const antarPlanet = currentAntar ? (currentAntar.planet || currentAntar.planetName?.en || 'Unknown') : '';
+  const antarPlanet = currentAntar ? (currentAntar.planet || currentAntar.planetName?.en || '(data unavailable)') : '';
   const antarPlanetId = NAME_TO_ID[antarPlanet] ?? 0;
   const antarGraha = GRAHAS[antarPlanetId];
   const antarTheme = currentAntar ? MAHADASHA_THEMES[antarPlanet] : null;
@@ -1571,7 +1571,7 @@ export function DashaInterpretation({ dashas, planets, locale }: DashaInterpreta
 
       {/* Next Transition */}
       {nextMaha && (() => {
-        const nextPlanet = nextMaha.planet || nextMaha.planetName?.en || 'Unknown';
+        const nextPlanet = nextMaha.planet || nextMaha.planetName?.en || '(data unavailable)';
         const nextId = NAME_TO_ID[nextPlanet] ?? 0;
         return (
           <div className="rounded-xl p-4 border border-indigo-500/15 bg-indigo-500/5 ml-2 sm:ml-4">

@@ -153,7 +153,7 @@ function findDashaTransitions(kundali: KundaliData, start: Date, end: Date): Key
 
     // Mahadasha change within window
     if (mahaStart > start && mahaStart < end) {
-      const pName = GRAHAS[mahaId]?.name ?? { en: 'Unknown', hi: 'अज्ञात' };
+      const pName = GRAHAS[mahaId]?.name ?? { en: '(unresolved)', hi: '(अनिर्धारित)' };
       results.push({
         date: mahaStart.toISOString().slice(0, 10),
         type: 'dasha',
@@ -198,8 +198,8 @@ function findDashaTransitions(kundali: KundaliData, start: Date, end: Date): Key
         const antarStart = new Date(antar.startDate);
         if (antarStart > start && antarStart < end) {
           const antarId = dashaToId(antar);
-          const antarName = GRAHAS[antarId]?.name ?? { en: 'Unknown', hi: 'अज्ञात' };
-          const mahaName = GRAHAS[mahaId]?.name ?? { en: 'Unknown', hi: 'अज्ञात' };
+          const antarName = GRAHAS[antarId]?.name ?? { en: '(unresolved)', hi: '(अनिर्धारित)' };
+          const mahaName = GRAHAS[mahaId]?.name ?? { en: '(unresolved)', hi: '(अनिर्धारित)' };
 
           // Determine which domain is most affected
           const affectedDomain = findMostAffectedDomain(antarId, kundali);
@@ -258,8 +258,8 @@ function findTransitIngresses(kundali: KundaliData, start: Date, end: Date): Key
       // What natal house does this transit fall in?
       const transitHouse = ((nextSign - ascSign + 12) % 12) + 1;
       const affectedDomain = houseToDomain(transitHouse);
-      const pName = GRAHAS[pid]?.name ?? { en: 'Unknown', hi: 'अज्ञात' };
-      const signName = RASHIS.find(r => r.id === nextSign)?.name ?? { en: 'Unknown', hi: 'अज्ञात' };
+      const pName = GRAHAS[pid]?.name ?? { en: '(unresolved)', hi: '(अनिर्धारित)' };
+      const signName = RASHIS.find(r => r.id === nextSign)?.name ?? { en: '(unresolved)', hi: '(अनिर्धारित)' };
 
       const isBenefic = pid === 4; // Jupiter is benefic
       const impact: KeyDateImpact = isBenefic ? 'positive' : (pid === 6 ? 'challenging' : 'transformative');

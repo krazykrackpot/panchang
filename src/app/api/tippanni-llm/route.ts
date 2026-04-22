@@ -76,11 +76,11 @@ function cleanCaches() {
 }
 
 function buildChartSummary(kundali: KundaliData): ChartSummary {
-  const ascSign = RASHIS[kundali.ascendant.sign - 1]?.name.en || 'Unknown';
+  const ascSign = RASHIS[kundali.ascendant.sign - 1]?.name.en || '(unresolved sign)';
   const moonPlanet = kundali.planets.find(p => p.planet.id === 1);
-  const moonSign = moonPlanet ? (RASHIS[moonPlanet.sign - 1]?.name.en || 'Unknown') : 'Unknown';
+  const moonSign = moonPlanet ? (RASHIS[moonPlanet.sign - 1]?.name.en || '(unresolved sign)') : '(no Moon data)';
   const sunPlanet = kundali.planets.find(p => p.planet.id === 0);
-  const sunSign = sunPlanet ? (RASHIS[sunPlanet.sign - 1]?.name.en || 'Unknown') : 'Unknown';
+  const sunSign = sunPlanet ? (RASHIS[sunPlanet.sign - 1]?.name.en || '(unresolved sign)') : '(no Sun data)';
 
   const now = new Date();
   const currentMaha = kundali.dashas?.find(d =>
@@ -94,8 +94,8 @@ function buildChartSummary(kundali: KundaliData): ChartSummary {
     ascendant: ascSign,
     moonSign,
     sunSign,
-    currentDasha: currentMaha?.planet || 'Unknown',
-    currentAntardasha: currentAntar?.planet || 'Unknown',
+    currentDasha: currentMaha?.planet || '(no active dasha)',
+    currentAntardasha: currentAntar?.planet || '(no active antardasha)',
   };
 }
 

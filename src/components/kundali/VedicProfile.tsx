@@ -25,10 +25,12 @@ export default function VedicProfile({ profile, locale }: VedicProfileProps) {
 
       {/* Always visible: Hook + Core Identity + Standout */}
       <div className="px-6 pb-4 space-y-4">
-        {/* Hook */}
-        <p className="text-text-primary leading-relaxed text-[15px] italic border-l-2 border-gold-primary/30 pl-4">
-          {profile.hook}
-        </p>
+        {/* Hook — only render if non-empty to avoid a styled empty container */}
+        {profile.hook && (
+          <p className="text-text-primary leading-relaxed text-[15px] italic border-l-2 border-gold-primary/30 pl-4">
+            {profile.hook}
+          </p>
+        )}
 
         {/* Core Identity */}
         <div>

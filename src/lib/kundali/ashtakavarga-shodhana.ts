@@ -168,6 +168,26 @@ export function computePindaAshtakavarga(reducedBpiTable: number[][]): number[] 
 }
 
 // ---------------------------------------------------------------------------
+// Sarvashtakavarga Trikona Shodhana
+// ---------------------------------------------------------------------------
+
+/**
+ * Apply Trikona Shodhana to the Sarvashtakavarga (SAV) row.
+ * This is an OPTIONAL additional step — JHora does not do this by default,
+ * but some texts prescribe it for transit timing.
+ *
+ * Same trikona logic as per-planet, but applied to the single 12-element SAV row.
+ */
+export function shodhitaSarvashtakavarga(savTable: number[]): number[] {
+  const reduced = [...savTable];
+  for (const group of TRIKONA_GROUPS) {
+    const min = Math.min(...group.map(i => reduced[i]));
+    for (const i of group) reduced[i] -= min;
+  }
+  return reduced;
+}
+
+// ---------------------------------------------------------------------------
 // Full Shodhana pipeline
 // ---------------------------------------------------------------------------
 
@@ -175,6 +195,7 @@ export interface ShodhanaResult {
   reducedBpiTable: number[][];
   reducedSavTable: number[];
   pindaAshtakavarga: number[];
+  shodhitaSav: number[];
 }
 
 /**
@@ -203,6 +224,7 @@ export function applyFullShodhana(
   }
 
   const pindaAshtakavarga = computePindaAshtakavarga(reducedBpiTable);
+  const shodhitaSav = shodhitaSarvashtakavarga(reducedSavTable);
 
-  return { reducedBpiTable, reducedSavTable, pindaAshtakavarga };
+  return { reducedBpiTable, reducedSavTable, pindaAshtakavarga, shodhitaSav };
 }

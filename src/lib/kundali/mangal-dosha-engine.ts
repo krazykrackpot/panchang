@@ -83,6 +83,7 @@ function dropSeverity(
 export function analyzeMangalDosha(
   planets: PlanetPosition[],
   ascSign: number,
+  birthDate?: string,
 ): MangalDoshaResult {
   // Extract Mars, Moon, Venus, Jupiter positions
   const mars = planets.find((p) => p.planet.id === 2);
@@ -221,6 +222,19 @@ export function analyzeMangalDosha(
     });
   }
 
+  // C8: Age-based reduction — Mars matures after age 28
+  if (birthDate) {
+    const birthYear = parseInt(birthDate.split('-')[0], 10);
+    const currentYear = new Date().getFullYear();
+    const age = currentYear - birthYear;
+    if (age >= 28) {
+      cancellations.push({
+        rule: 'C8',
+        description: 'Age 28+ — Mars has matured, Mangal Dosha effect is significantly reduced',
+      });
+    }
+  }
+
   // Effective severity = base dropped by number of cancellations
   const effectiveSeverity: 'none' | 'mild' | 'moderate' | 'severe' | 'cancelled' =
     cancellations.length > 0 ? dropSeverity(baseSeverity, cancellations.length) : baseSeverity;
@@ -245,9 +259,11 @@ export function analyzeMangalDoshaForMatching(
   chart1AscSign: number,
   chart2Planets: PlanetPosition[],
   chart2AscSign: number,
+  birthDate1?: string,
+  birthDate2?: string,
 ): { chart1: MangalDoshaResult; chart2: MangalDoshaResult; mutualCancellation: boolean } {
-  const chart1 = analyzeMangalDosha(chart1Planets, chart1AscSign);
-  const chart2 = analyzeMangalDosha(chart2Planets, chart2AscSign);
+  const chart1 = analyzeMangalDosha(chart1Planets, chart1AscSign, birthDate1);
+  const chart2 = analyzeMangalDosha(chart2Planets, chart2AscSign, birthDate2);
 
   const mutualCancellation = chart1.present && chart2.present;
 

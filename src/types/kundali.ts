@@ -155,6 +155,7 @@ export interface AshtakavargaData {
   reducedSavTable: number[];      // 12-element — sum of reducedBpiTable columns
   pindaAshtakavarga: number[];    // 7-element — one Pinda value per planet
   planetNames: string[];
+  shodhitaSav?: number[];         // Trikona-reduced SAV (optional additional step for transit timing)
 }
 
 export type ChartStyle = 'north' | 'south';

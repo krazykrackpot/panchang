@@ -389,3 +389,52 @@ describe('Matching Context — Mutual Manglik', () => {
     expect(mutualCancellation).toBe(false);
   });
 });
+
+// ---------------------------------------------------------------------------
+// Age-based Mangal Dosha reduction (C8)
+// ---------------------------------------------------------------------------
+
+describe('Age-based Mangal Dosha reduction (C8)', () => {
+  it('Person age 30 with Mangal Dosha → C8 cancellation present', () => {
+    const currentYear = new Date().getFullYear();
+    const birthDate = `${currentYear - 30}-06-15`;
+    const planets = makePlanets([
+      { id: 2, sign: 7, house: 7 },  // Mars in house 7 from lagna=1 → Mangal
+      { id: 1, sign: 3, house: 3 },
+      { id: 5, sign: 3, house: 3 },
+      { id: 4, sign: 5, house: 5 },  // Jupiter not aspecting Mars
+    ]);
+    const result = analyzeMangalDosha(planets, 1, birthDate);
+
+    expect(result.present).toBe(true);
+    expect(result.cancellations.some((c) => c.rule === 'C8')).toBe(true);
+  });
+
+  it('Person age 20 → C8 NOT present', () => {
+    const currentYear = new Date().getFullYear();
+    const birthDate = `${currentYear - 20}-06-15`;
+    const planets = makePlanets([
+      { id: 2, sign: 7, house: 7 },
+      { id: 1, sign: 3, house: 3 },
+      { id: 5, sign: 3, house: 3 },
+      { id: 4, sign: 5, house: 5 },
+    ]);
+    const result = analyzeMangalDosha(planets, 1, birthDate);
+
+    expect(result.present).toBe(true);
+    expect(result.cancellations.some((c) => c.rule === 'C8')).toBe(false);
+  });
+
+  it('No birthDate provided → C8 NOT present (backward compat)', () => {
+    const planets = makePlanets([
+      { id: 2, sign: 7, house: 7 },
+      { id: 1, sign: 3, house: 3 },
+      { id: 5, sign: 3, house: 3 },
+      { id: 4, sign: 5, house: 5 },
+    ]);
+    const result = analyzeMangalDosha(planets, 1);
+
+    expect(result.present).toBe(true);
+    expect(result.cancellations.some((c) => c.rule === 'C8')).toBe(false);
+  });
+});

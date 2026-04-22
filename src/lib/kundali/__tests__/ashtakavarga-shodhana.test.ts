@@ -4,6 +4,7 @@ import {
   ekadhipatyaShodhana,
   computePindaAshtakavarga,
   applyFullShodhana,
+  shodhitaSarvashtakavarga,
 } from '@/lib/kundali/ashtakavarga-shodhana';
 
 // ---------------------------------------------------------------------------
@@ -225,5 +226,48 @@ describe('applyFullShodhana', () => {
     const planetSigns: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     applyFullShodhana(bpiTable, planetSigns);
     expect(bpiTable).toEqual(snapshot);
+  });
+
+  it('shodhitaSav is included in full shodhana result', () => {
+    const bpiTable = Array.from({ length: 7 }, () => new Array(12).fill(3));
+    const planetSigns: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const result = applyFullShodhana(bpiTable, planetSigns);
+    expect(result.shodhitaSav).toBeDefined();
+    expect(result.shodhitaSav).toHaveLength(12);
+    for (const v of result.shodhitaSav) expect(v).toBeGreaterThanOrEqual(0);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Sarvashtakavarga Trikona Shodhana
+// ---------------------------------------------------------------------------
+describe('shodhitaSarvashtakavarga', () => {
+  it('reduces trikona groups by their minimum', () => {
+    // Fire [0,4,8]: [10, 8, 12] → min=8 → [2, 0, 4]
+    // Earth [1,5,9]: [5, 5, 5] → min=5 → [0, 0, 0]
+    // Air [2,6,10]: [3, 7, 1] → min=1 → [2, 6, 0]
+    // Water [3,7,11]: [6, 4, 9] → min=4 → [2, 0, 5]
+    const sav = [10, 5, 3, 6, 8, 5, 7, 4, 12, 5, 1, 9];
+    const result = shodhitaSarvashtakavarga(sav);
+    expect(result).toEqual([2, 0, 2, 2, 0, 0, 6, 0, 4, 0, 0, 5]);
+  });
+
+  it('does not mutate the input', () => {
+    const sav = [10, 5, 3, 6, 8, 5, 7, 4, 12, 5, 1, 9];
+    const snapshot = [...sav];
+    shodhitaSarvashtakavarga(sav);
+    expect(sav).toEqual(snapshot);
+  });
+
+  it('all-zero SAV stays zero', () => {
+    const sav = new Array(12).fill(0);
+    const result = shodhitaSarvashtakavarga(sav);
+    expect(result).toEqual(new Array(12).fill(0));
+  });
+
+  it('uniform values reduce to all zeros', () => {
+    const sav = new Array(12).fill(7);
+    const result = shodhitaSarvashtakavarga(sav);
+    expect(result).toEqual(new Array(12).fill(0));
   });
 });

@@ -335,6 +335,95 @@ export default function LearnAshtakavargaPage() {
         </div>
       </LessonSection>
 
+      {/* Section 9: Shodhana (Reductions) */}
+      <LessonSection number={9} title={tl({ en: 'Ashtakavarga Shodhana (Reductions)', hi: 'अष्टकवर्ग शोधन (कटौती)', sa: 'अष्टकवर्गशोधनम्' }, locale)}>
+        {/* What is Shodhana */}
+        <p style={bodyFont}>
+          {tl({
+            en: 'Raw Ashtakavarga scores overcount because they include redundant contributions. Two classical reduction methods remove this redundancy: Trikona Shodhana (element-group leveling) and Ekadhipatya Shodhana (dual-lordship reduction). The reduced scores are more accurate for transit prediction.',
+            hi: 'कच्चे अष्टकवर्ग अंक अतिरिक्त गणना के कारण अधिक होते हैं। दो शास्त्रीय शोधन विधियाँ इस अनावश्यकता को दूर करती हैं: त्रिकोण शोधन (तत्त्व-समूह समतलन) और एकाधिपत्य शोधन (द्वि-स्वामित्व कटौती)। शोधित अंक गोचर भविष्यवाणी के लिए अधिक सटीक हैं।',
+            sa: 'अष्टकवर्गस्य मूलाङ्काः अतिरिक्तगणनया अधिकाः भवन्ति। द्वे शास्त्रीये शोधनविधी अनावश्यकतां दूरयतः: त्रिकोणशोधनम् च एकाधिपत्यशोधनम् च।',
+          }, locale)}
+        </p>
+
+        {/* Trikona Shodhana */}
+        <div className="mt-5 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4">
+          <h4 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
+            {tl({ en: 'Trikona Shodhana', hi: 'त्रिकोण शोधन', sa: 'त्रिकोणशोधनम्' }, locale)}
+          </h4>
+          <p className="text-text-secondary text-xs leading-relaxed mb-3" style={bodyFont}>
+            {tl({
+              en: 'Signs of the same element are grouped. The minimum value in each group is subtracted from all three signs, revealing relative strength within the element.',
+              hi: 'एक ही तत्त्व की राशियों को समूहित किया जाता है। प्रत्येक समूह में न्यूनतम मान तीनों राशियों से घटाया जाता है, जिससे तत्त्व के भीतर सापेक्ष बल प्रकट होता है।',
+              sa: 'एकस्यैव तत्त्वस्य राशयः समूह्यन्ते। प्रत्येकसमूहे न्यूनतममानं त्रिभ्यः राशिभ्यः व्यवकल्यते।',
+            }, locale)}
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+            {[
+              { element: { en: 'Fire', hi: 'अग्नि', sa: 'अग्नि' }, signs: { en: 'Aries · Leo · Sag', hi: 'मेष · सिंह · धनु', sa: 'मेषः · सिंहः · धनुः' }, color: '#f59e0b' },
+              { element: { en: 'Earth', hi: 'पृथ्वी', sa: 'पृथ्वी' }, signs: { en: 'Taurus · Virgo · Cap', hi: 'वृषभ · कन्या · मकर', sa: 'वृषभः · कन्या · मकरः' }, color: '#22c55e' },
+              { element: { en: 'Air', hi: 'वायु', sa: 'वायु' }, signs: { en: 'Gemini · Libra · Aqua', hi: 'मिथुन · तुला · कुम्भ', sa: 'मिथुनः · तुला · कुम्भः' }, color: '#3b82f6' },
+              { element: { en: 'Water', hi: 'जल', sa: 'जल' }, signs: { en: 'Cancer · Scorpio · Pisces', hi: 'कर्क · वृश्चिक · मीन', sa: 'कर्कः · वृश्चिकः · मीनः' }, color: '#a78bfa' },
+            ].map(item => (
+              <div key={item.element.en} className="rounded-lg p-2.5 border border-gold-primary/10 bg-bg-primary/50">
+                <div className="text-xs font-bold mb-1" style={{ color: item.color }}>
+                  {tl(item.element, locale)}
+                </div>
+                <div className="text-text-secondary text-[10px] leading-relaxed">{tl(item.signs, locale)}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Ekadhipatya Shodhana */}
+        <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4">
+          <h4 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
+            {tl({ en: 'Ekadhipatya Shodhana', hi: 'एकाधिपत्य शोधन', sa: 'एकाधिपत्यशोधनम्' }, locale)}
+          </h4>
+          <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
+            {tl({
+              en: 'Signs sharing the same lord (e.g., Aries-Scorpio both ruled by Mars) are compared. The weaker sign\'s score is zeroed, keeping only the stronger. Special rules apply when the lord occupies one of the signs, or when Rahu/Ketu is present.',
+              hi: 'एक ही स्वामी वाली राशियों (जैसे मेष-वृश्चिक दोनों मंगल की) की तुलना की जाती है। कमज़ोर राशि का अंक शून्य कर दिया जाता है, केवल बलवान राशि का अंक रखा जाता है। विशेष नियम तब लागू होते हैं जब स्वामी उनमें से किसी राशि में हो, या राहु/केतु उपस्थित हो।',
+              sa: 'एकस्यैव स्वामिनः राशयः (यथा मेष-वृश्चिकौ मङ्गलस्य) तुल्यन्ते। दुर्बलराशेः अङ्कः शून्यः क्रियते, बलवतः एव अङ्कः स्थाप्यते।',
+            }, locale)}
+          </p>
+        </div>
+
+        {/* Pinda Ashtakavarga */}
+        <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4">
+          <h4 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
+            {tl({ en: 'Pinda Ashtakavarga', hi: 'पिण्ड अष्टकवर्ग', sa: 'पिण्डाष्टकवर्गः' }, locale)}
+          </h4>
+          <p className="text-text-secondary text-xs leading-relaxed mb-3" style={bodyFont}>
+            {tl({
+              en: 'After both reductions, each planet\'s scores are weighted by sign element and planet strength to produce a single Pinda number. Higher Pinda = stronger results during that planet\'s dasha and transit periods.',
+              hi: 'दोनों शोधनों के बाद, प्रत्येक ग्रह के अंकों को राशि तत्त्व और ग्रह बल के आधार पर भारित करके एक पिण्ड अंक प्राप्त किया जाता है। उच्च पिण्ड = उस ग्रह की दशा और गोचर काल में प्रबल फल।',
+              sa: 'उभयशोधनानन्तरं प्रत्येकग्रहस्य अङ्काः राश्यग्नितत्त्वेन ग्रहबलेन च भारिताः एकं पिण्डाङ्कं ददति। उच्चपिण्डः = तत्ग्रहदशागोचरयोः प्रबलफलम्।',
+            }, locale)}
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+            {[
+              { label: { en: 'Fire signs', hi: 'अग्नि राशि', sa: 'अग्निराशयः' }, weight: '7' },
+              { label: { en: 'Earth signs', hi: 'पृथ्वी राशि', sa: 'पृथ्वीराशयः' }, weight: '5' },
+              { label: { en: 'Air signs', hi: 'वायु राशि', sa: 'वायुराशयः' }, weight: '6' },
+              { label: { en: 'Water signs', hi: 'जल राशि', sa: 'जलराशयः' }, weight: '8' },
+            ].map(item => (
+              <div key={item.weight} className="rounded-lg p-2 border border-gold-primary/10 bg-bg-primary/50 flex items-center justify-between">
+                <span className="text-text-secondary text-[10px]">{tl(item.label, locale)}</span>
+                <span className="text-gold-light font-mono font-bold text-sm ml-2">×{item.weight}</span>
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 text-text-secondary/70 text-[10px]" style={bodyFont}>
+            {tl({
+              en: 'Planet weights: Jupiter = 10 (highest) → Saturn = 5 (lowest). Pinda above 200 = high strength; 100–200 = medium; below 100 = low.',
+              hi: 'ग्रह भार: गुरु = 10 (सर्वाधिक) → शनि = 5 (न्यूनतम)। पिण्ड 200 से ऊपर = उच्च बल; 100-200 = मध्यम; 100 से नीचे = न्यून।',
+              sa: 'ग्रहभारः: गुरुः = 10 → शनिः = 5। पिण्डः 200+ = उच्चबलम्; 100-200 = मध्यमम्; 100 अधः = न्यूनम्।',
+            }, locale)}
+          </p>
+        </div>
+      </LessonSection>
+
       <div className="mt-6 text-center">
         <Link
           href="/kundali"

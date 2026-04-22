@@ -3,9 +3,12 @@
 import { create } from 'zustand';
 
 /**
- * Persists user's birth nakshatra and rashi to localStorage
+ * Persists user's OWN birth nakshatra and rashi to localStorage
  * so the panchang page can auto-populate Chandrabalam/Tarabalam
- * without asking every time.
+ * and the horoscope page can default to the user's sign.
+ *
+ * Only stores data for the "self" chart — generating charts for
+ * family members does NOT overwrite this.
  */
 
 interface BirthDataState {
@@ -13,6 +16,7 @@ interface BirthDataState {
   birthRashi: number;      // 1-12, 0 = not set
   birthName: string;
   isSet: boolean;
+  /** Only updates when relationship is 'self'. */
   setBirthData: (nakshatra: number, rashi: number, name?: string) => void;
   clearBirthData: () => void;
   loadFromStorage: () => void;

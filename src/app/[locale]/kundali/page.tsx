@@ -367,6 +367,21 @@ export default function KundaliPage() {
         return;
       }
 
+      // Extract moon sign for horoscope use
+      const moonPlanet = kundali.planets?.find((p: { planet: { id: number }; sign: number }) => p.planet.id === 1);
+      const moonSign = moonPlanet?.sign || undefined;
+      const relationship = kundali.birthData.relationship || 'self';
+      const isSelf = relationship === 'self';
+
+      // If saving self chart, unset existing primary first
+      if (isSelf) {
+        await supabase
+          .from('saved_charts')
+          .update({ is_primary: false })
+          .eq('user_id', user.id)
+          .eq('is_primary', true);
+      }
+
       const { error } = await supabase.from('saved_charts').insert({
         user_id: user.id,
         label: kundali.birthData.name || 'Chart',
@@ -378,8 +393,10 @@ export default function KundaliPage() {
           lat: kundali.birthData.lat,
           lng: kundali.birthData.lng,
           timezone: kundali.birthData.timezone,
+          relationship,
+          moonSign,
         },
-        is_primary: false,
+        is_primary: isSelf,
       });
       if (error) {
         console.error('[kundali] save failed:', error);
@@ -679,11 +696,11 @@ export default function KundaliPage() {
         sessionStorage.setItem('kundali_last_result', JSON.stringify({ kundali: data, chartStyle: style, sig: `${birthData.lat}|${birthData.lng}|${birthData.date}|${birthData.time}|${birthData.timezone}` }));
       } catch { /* quota exceeded or private browsing */ }
       trackKundaliGenerated({ location: birthData.place || 'unknown', hasBirthTime: !!birthData.time });
-      // Persist Moon nakshatra & rashi for Chandrabalam/Tarabalam on panchang page
-      if (data.planets) {
+      // Persist Moon nakshatra & rashi ONLY for self charts — not for family members.
+      // This data drives horoscope auto-select and Chandrabalam/Tarabalam on panchang page.
+      if (data.planets && (!birthData.relationship || birthData.relationship === 'self')) {
         const moon = data.planets.find((p: { planet: { id: number }; sign: number; nakshatra: { id: number } }) => p.planet.id === 1);
         if (moon) {
-          // nakshatra is an object { id, name, ... } — extract the numeric id
           const nakId = typeof moon.nakshatra === 'number' ? moon.nakshatra : moon.nakshatra?.id || 0;
           useBirthDataStore.getState().setBirthData(nakId, moon.sign, birthData.name || '');
         }
@@ -2755,7 +2772,7 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
   headingFont: React.CSSProperties; t: (key: string) => string;
 }) {
   const isTamil = String(locale) === 'ta';
-  const [viewMode, setViewMode] = useState<'sav' | 'bpi'>('sav');
+  const [viewMode, setViewMode] = useState<'sav' | 'bpi' | 'reduced'>('sav');
 
   // Compute insights from SAV
   const strongSigns = RASHIS.filter((_, i) => ashtakavarga.savTable[i] >= 28).map(r => tl(r.name, locale));
@@ -3009,9 +3026,13 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
           className={`px-5 py-2 rounded-lg text-sm font-bold transition-all ${viewMode === 'bpi' ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'}`}>
           {t('bhinnashtakavarga')}
         </button>
+        <button onClick={() => setViewMode('reduced')}
+          className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${viewMode === 'reduced' ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary hover:text-white border border-white/5'}`}>
+          {locale === 'en' || isTamil ? 'Reduced (Shodhana)' : 'शोधित'}
+        </button>
       </div>
 
-      {viewMode === 'sav' ? (
+      {viewMode === 'sav' && (
         <div className="space-y-6">
           {/* SAV — combined visual grid with integrated bars */}
           <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-6">
@@ -3057,52 +3078,33 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
             </div>
           </div>
 
-          {/* Trikona Shodhana */}
-          {(() => {
-            // Trikona Shodhana: subtract minimum of each trikona group (signs 1-5-9, 2-6-10, 3-7-11, 4-8-12)
-            const sav = ashtakavarga.savTable;
-            const trikonas = [[0,4,8],[1,5,9],[2,6,10],[3,7,11]];
-            const afterTrikona = [...sav];
-            trikonas.forEach(trio => {
-              const mn = Math.min(sav[trio[0]], sav[trio[1]], sav[trio[2]]);
-              trio.forEach(i => { afterTrikona[i] = sav[i] - mn; });
-            });
-            // Ekadhipatya Shodhana: signs with same lord
-            // Mars: 1,8 | Venus: 2,7 | Mercury: 3,6 | Moon: 4 | Sun: 5 | Jupiter: 9,12 | Saturn: 10,11
-            const SHARED_LORDS = [[0,7],[1,6],[2,5],[9,11]]; // 0-based sign pairs sharing a lord
-            const shodhana = [...afterTrikona];
-            SHARED_LORDS.forEach(([a, b]) => {
-              const mn = Math.min(afterTrikona[a], afterTrikona[b]);
-              shodhana[a] = afterTrikona[a] - mn;
-              shodhana[b] = afterTrikona[b] - mn;
-            });
-            return (
-              <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
-                <h4 className="text-gold-light font-semibold text-sm mb-1" style={headingFont}>
-                  {locale === 'en' || isTamil ? 'Trikona + Ekadhipatya Shodhana (Refined SAV)' : 'त्रिकोण + एकाधिपत्य शोधन (परिष्कृत SAV)'}
-                </h4>
-                <p className="text-text-secondary/70 text-xs mb-4">
-                  {locale === 'en' || isTamil
-                    ? 'After subtracting trikona minimums and ekadhipatya excess — the essential signal. Higher = genuinely strong for transits.'
-                    : 'त्रिकोण न्यूनतम और एकाधिपत्य अधिक्य घटाने के बाद — मूल संकेत। अधिक = गोचर के लिए वास्तविक बलवान।'}
-                </p>
-                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-1.5">
-                  {RASHIS.map((r, i) => {
-                    const val = shodhana[i];
-                    const color = val >= 5 ? 'text-emerald-400' : val <= 1 ? 'text-red-400' : 'text-gold-primary/80';
-                    return (
-                      <div key={r.id} className="text-center p-2 rounded-lg bg-bg-secondary/30 border border-gold-primary/8">
-                        <div className="text-[9px] text-text-secondary/65 mb-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(r.name, locale).slice(0, 3)}</div>
-                        <div className={`text-lg font-bold font-mono ${color}`}>{val}</div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })()}
+          {/* Reduced SAV (from engine's Trikona + Ekadhipatya Shodhana) */}
+          <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
+            <h4 className="text-gold-light font-semibold text-sm mb-1" style={headingFont}>
+              {locale === 'en' || isTamil ? 'Trikona + Ekadhipatya Shodhana (Refined SAV)' : 'त्रिकोण + एकाधिपत्य शोधन (परिष्कृत SAV)'}
+            </h4>
+            <p className="text-text-secondary/70 text-xs mb-4">
+              {locale === 'en' || isTamil
+                ? 'After Trikona & Ekadhipatya reductions per BPHS Ch.66-67 — the essential signal. Higher = genuinely strong for transits.'
+                : 'BPHS अ.66-67 अनुसार त्रिकोण और एकाधिपत्य शोधन के बाद — मूल संकेत। अधिक = गोचर के लिए वास्तविक बलवान।'}
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-1.5">
+              {RASHIS.map((r, i) => {
+                const val = ashtakavarga.reducedSavTable[i];
+                const color = val >= 5 ? 'text-emerald-400' : val <= 1 ? 'text-red-400' : 'text-gold-primary/80';
+                return (
+                  <div key={r.id} className="text-center p-2 rounded-lg bg-bg-secondary/30 border border-gold-primary/8">
+                    <div className="text-[9px] text-text-secondary/65 mb-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(r.name, locale).slice(0, 3)}</div>
+                    <div className={`text-lg font-bold font-mono ${color}`}>{val}</div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
-      ) : (
+      )}
+
+      {viewMode === 'bpi' && (
         <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 overflow-x-auto">
           <h4 className="text-gold-light text-lg font-semibold mb-4" style={headingFont}>{t('bhinnashtakavarga')}</h4>
           <p className="text-text-secondary text-xs mb-4">
@@ -3156,6 +3158,81 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+      )}
+
+      {viewMode === 'reduced' && ashtakavarga.reducedBpiTable && (
+        <div className="space-y-4">
+          <p className="text-text-secondary text-xs">
+            {locale === 'en' || isTamil
+              ? 'After Trikona & Ekadhipatya Shodhana (BPHS Ch.66-67). Reduced values show relative planetary strength per sign.'
+              : 'त्रिकोण और एकाधिपत्य शोधन (BPHS अ.66-67) के बाद। शोधित मान प्रति राशि ग्रह का सापेक्ष बल दर्शाते हैं।'}
+          </p>
+          {ashtakavarga.reducedBpiTable.map((row, pIdx) => (
+            <div key={pIdx} className="rounded-lg border border-gold-primary/10 p-3">
+              <div className="text-gold-light text-sm font-semibold mb-2">{ashtakavarga.planetNames[pIdx]}</div>
+              <div className="grid grid-cols-12 gap-1">
+                {row.map((val, sIdx) => (
+                  <div key={sIdx} className={`text-center text-xs font-mono rounded py-1 ${val === 0 ? 'bg-white/[0.02] text-white/20' : val <= 2 ? 'bg-gold-primary/10 text-gold-dark' : val <= 4 ? 'bg-gold-primary/20 text-gold-light' : 'bg-emerald-500/20 text-emerald-300'}`}>
+                    {val}
+                  </div>
+                ))}
+              </div>
+              <div className="text-right text-xs text-text-secondary mt-1">
+                {locale === 'en' || isTamil ? 'Total' : 'कुल'}: {row.reduce((a, b) => a + b, 0)}
+              </div>
+            </div>
+          ))}
+          {/* Reduced SAV comparison bar chart */}
+          <div className="rounded-lg border border-gold-primary/15 p-4 mt-4">
+            <div className="text-gold-light text-sm font-semibold mb-3">
+              {locale === 'en' || isTamil ? 'SAV Comparison: Raw vs Reduced' : 'SAV तुलना: मूल बनाम शोधित'}
+            </div>
+            <div className="grid grid-cols-12 gap-1">
+              {ashtakavarga.reducedSavTable.map((val, sIdx) => (
+                <div key={sIdx} className="text-center">
+                  <div className="text-[9px] text-text-secondary mb-0.5">{RASHIS[sIdx]?.name?.en?.slice(0, 3)}</div>
+                  <div className="h-16 relative bg-white/[0.03] rounded overflow-hidden">
+                    <div className="absolute bottom-0 w-full border border-gold-primary/20 rounded-sm" style={{ height: `${Math.min(100, (ashtakavarga.savTable[sIdx] / 40) * 100)}%` }} />
+                    <div className={`absolute bottom-0 w-full rounded-sm ${val >= 20 ? 'bg-emerald-500/40' : val >= 14 ? 'bg-gold-primary/30' : 'bg-red-500/30'}`} style={{ height: `${Math.min(100, (val / 40) * 100)}%` }} />
+                  </div>
+                  <div className="text-[10px] font-mono text-gold-light mt-0.5">{val}</div>
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-center gap-4 mt-2 text-[9px] text-text-secondary">
+              <span className="flex items-center gap-1"><span className="w-3 h-2 border border-gold-primary/20 rounded-sm inline-block" /> {locale === 'en' || isTamil ? 'Raw SAV' : 'मूल SAV'}</span>
+              <span className="flex items-center gap-1"><span className="w-3 h-2 bg-gold-primary/30 rounded-sm inline-block" /> {locale === 'en' || isTamil ? 'Reduced SAV' : 'शोधित SAV'}</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Pinda Ashtakavarga (BPHS Ch.69) */}
+      {ashtakavarga.pindaAshtakavarga && ashtakavarga.pindaAshtakavarga.some(v => v > 0) && (
+        <div className="mt-6">
+          <h4 className="text-gold-light text-sm font-bold mb-3">
+            {locale === 'en' || isTamil ? 'Pinda Ashtakavarga (BPHS Ch.69)' : 'पिण्ड अष्टकवर्ग (BPHS अ.69)'}
+          </h4>
+          <p className="text-text-secondary text-xs mb-3">
+            {locale === 'en' || isTamil
+              ? 'Weighted composite strength per planet. Higher Pinda = stronger capacity to deliver results during dasha and transit periods.'
+              : 'प्रति ग्रह भारित समग्र बल। उच्च पिण्ड = दशा और गोचर काल में फल देने की अधिक क्षमता।'}
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+            {ashtakavarga.pindaAshtakavarga.map((pinda, pIdx) => {
+              const label = pinda > 200 ? 'High' : pinda > 100 ? 'Medium' : 'Low';
+              const labelHi = pinda > 200 ? 'उच्च' : pinda > 100 ? 'मध्यम' : 'न्यून';
+              const color = pinda > 200 ? 'text-emerald-400 border-emerald-500/20' : pinda > 100 ? 'text-gold-light border-gold-primary/20' : 'text-red-400 border-red-500/20';
+              return (
+                <div key={pIdx} className={`rounded-xl border p-3 text-center ${color}`}>
+                  <div className="text-text-secondary text-xs mb-1">{ashtakavarga.planetNames[pIdx]}</div>
+                  <div className="text-2xl font-bold font-mono">{pinda}</div>
+                  <div className="text-xs mt-1 opacity-70">{locale === 'en' || isTamil ? label : labelHi}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}

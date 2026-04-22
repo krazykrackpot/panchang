@@ -3,15 +3,26 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Loader2, Briefcase, Heart, Activity, IndianRupee, Sparkles } from 'lucide-react';
+import { Loader2, Briefcase, Heart, Activity, IndianRupee, Sparkles, Users } from 'lucide-react';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { Link } from '@/lib/i18n/navigation';
 import ShareButton from '@/components/ui/ShareButton';
 import { useBirthDataStore } from '@/stores/birth-data-store';
+import { useAuthStore } from '@/stores/auth-store';
+import { getSupabase } from '@/lib/supabase/client';
 import type { Locale } from '@/types/panchang';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+
+/** Saved chart with optional moonSign in birth_data. */
+interface SavedPerson {
+  id: string;
+  label: string;
+  moonSign: number | null;
+  relationship: string;
+  isPrimary: boolean;
+}
 
 // ---------------------------------------------------------------------------
 // Labels
@@ -238,12 +249,42 @@ export default function HoroscopePage() {
   const [horoscope, setHoroscope] = useState<DailyHoroscope | null>(null);
   const [loading, setLoading] = useState(false);
   const [selectedSign, setSelectedSign] = useState<number | null>(null);
+  const [activePerson, setActivePerson] = useState<string | null>(null); // 'self' or chart id
+  const [savedPeople, setSavedPeople] = useState<SavedPerson[]>([]);
   const [date, setDate] = useState('');
   const autoFetched = useRef(false);
 
   // Load birth data from localStorage on mount
-  const { birthRashi, loadFromStorage } = useBirthDataStore();
+  const { birthRashi, birthName, loadFromStorage } = useBirthDataStore();
   useEffect(() => { loadFromStorage(); }, [loadFromStorage]);
+
+  const user = useAuthStore(s => s.user);
+
+  // Fetch saved charts for logged-in users (extract moonSign from birth_data)
+  useEffect(() => {
+    if (!user) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
+    supabase
+      .from('saved_charts')
+      .select('id, label, birth_data, is_primary')
+      .eq('user_id', user.id)
+      .order('is_primary', { ascending: false })
+      .order('created_at', { ascending: true })
+      .then(({ data }) => {
+        if (!data) return;
+        const people: SavedPerson[] = data
+          .map((c: { id: string; label: string; birth_data: Record<string, unknown>; is_primary: boolean }) => ({
+            id: c.id,
+            label: c.label,
+            moonSign: typeof c.birth_data?.moonSign === 'number' ? c.birth_data.moonSign : null,
+            relationship: (c.birth_data?.relationship as string) || 'other',
+            isPrimary: c.is_primary,
+          }))
+          .filter((p: SavedPerson) => p.moonSign !== null && p.moonSign >= 1 && p.moonSign <= 12);
+        setSavedPeople(people);
+      });
+  }, [user]);
 
   // Compute today's date string
   useEffect(() => {
@@ -256,7 +297,7 @@ export default function HoroscopePage() {
     if (autoFetched.current || !date || !birthRashi || birthRashi < 1 || birthRashi > 12) return;
     autoFetched.current = true;
     setSelectedSign(birthRashi);
-    // fetchHoroscope is defined below — call inline to avoid stale closure
+    setActivePerson('self');
     (async () => {
       setLoading(true);
       try {
@@ -293,10 +334,27 @@ export default function HoroscopePage() {
     if (selectedSign === signId) {
       setSelectedSign(null);
       setHoroscope(null);
+      setActivePerson(null);
       return;
     }
     setSelectedSign(signId);
+    setActivePerson(null); // manual selection clears person context
     if (date) fetchHoroscope(signId);
+  };
+
+  /** Switch to a saved person's moon sign. */
+  const handlePersonSwitch = (person: SavedPerson | 'self') => {
+    if (person === 'self') {
+      if (!birthRashi || birthRashi < 1) return;
+      setSelectedSign(birthRashi);
+      setActivePerson('self');
+      if (date) fetchHoroscope(birthRashi);
+    } else {
+      if (!person.moonSign) return;
+      setSelectedSign(person.moonSign);
+      setActivePerson(person.id);
+      if (date) fetchHoroscope(person.moonSign);
+    }
   };
 
   return (
@@ -311,6 +369,52 @@ export default function HoroscopePage() {
             <p className="text-text-secondary text-sm" style={bodyFont}>{L.subtitle}</p>
             {date && <p className="text-gold-dark text-xs mt-2">{date}</p>}
           </div>
+
+          {/* Person switcher — visible when user has saved charts with moonSign */}
+          {(birthRashi > 0 || savedPeople.length > 0) && (
+            <div className="flex items-center gap-2 mb-6 overflow-x-auto pb-1">
+              <Users className="w-4 h-4 text-text-secondary shrink-0" />
+              {/* Self pill */}
+              {birthRashi > 0 && (
+                <button
+                  onClick={() => handlePersonSwitch('self')}
+                  className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-medium border transition-all ${
+                    activePerson === 'self'
+                      ? 'bg-gold-primary/20 border-gold-primary/50 text-gold-light'
+                      : 'border-gold-primary/15 text-text-secondary hover:border-gold-primary/30 hover:text-text-primary'
+                  }`}
+                  style={bodyFont}
+                >
+                  {birthName || (isHi ? 'स्वयं' : 'Me')}
+                  <span className="ml-1 text-[10px] opacity-60">
+                    {RASHIS[birthRashi - 1]?.name[lk]}
+                  </span>
+                </button>
+              )}
+              {/* Saved people pills */}
+              {savedPeople
+                .filter(p => !(p.isPrimary && p.moonSign === birthRashi)) // don't duplicate self
+                .map((p) => (
+                <button
+                  key={p.id}
+                  onClick={() => handlePersonSwitch(p)}
+                  className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-medium border transition-all ${
+                    activePerson === p.id
+                      ? 'bg-gold-primary/20 border-gold-primary/50 text-gold-light'
+                      : 'border-gold-primary/15 text-text-secondary hover:border-gold-primary/30 hover:text-text-primary'
+                  }`}
+                  style={bodyFont}
+                >
+                  {p.label}
+                  {p.moonSign && (
+                    <span className="ml-1 text-[10px] opacity-60">
+                      {RASHIS[p.moonSign - 1]?.name[lk]}
+                    </span>
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* Sign grid */}
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mb-8">

@@ -1,6 +1,8 @@
 import type { LocaleText } from '@/types/panchang';
 import { Graha, Nakshatra, Rashi } from './panchang';
 
+export type ChartRelationship = 'self' | 'spouse' | 'child' | 'parent' | 'sibling' | 'friend' | 'other';
+
 export interface BirthData {
   name: string;
   date: string; // ISO date
@@ -10,6 +12,8 @@ export interface BirthData {
   lng: number;
   timezone: string;
   ayanamsha: string; // AyanamshaType from astronomical.ts
+  /** Who this chart is for — defaults to 'self'. */
+  relationship?: ChartRelationship;
 }
 
 export interface HouseCusp {

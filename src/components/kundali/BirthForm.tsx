@@ -13,9 +13,19 @@ import LocationSearch from '@/components/ui/LocationSearch';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
-import type { BirthData, ChartStyle } from '@/types/kundali';
+import type { BirthData, ChartStyle, ChartRelationship } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale, getHeadingFont } from '@/lib/utils/locale-fonts';
+
+const RELATIONSHIP_OPTIONS: { value: ChartRelationship; en: string; hi: string }[] = [
+  { value: 'self',    en: 'Self',    hi: 'स्वयं' },
+  { value: 'spouse',  en: 'Spouse',  hi: 'पति/पत्नी' },
+  { value: 'child',   en: 'Child',   hi: 'संतान' },
+  { value: 'parent',  en: 'Parent',  hi: 'माता/पिता' },
+  { value: 'sibling', en: 'Sibling', hi: 'भाई/बहन' },
+  { value: 'friend',  en: 'Friend',  hi: 'मित्र' },
+  { value: 'other',   en: 'Other',   hi: 'अन्य' },
+];
 
 interface BirthFormProps {
   onSubmit: (data: BirthData, style: ChartStyle) => void;
@@ -39,6 +49,7 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
     timezone: initialData?.timezone || '', // Must come from LocationSearch — never use browser timezone
     ayanamsha: initialData?.ayanamsha || 'lahiri',
     chartStyle: (initialData?.chartStyle || 'north') as ChartStyle,
+    relationship: (initialData?.relationship || 'self') as ChartRelationship,
   });
 
   const [placeTimezone, setPlaceTimezone] = useState<string | null>(null);
@@ -114,6 +125,7 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
         lng: formData.lng,
         timezone: tz,
         ayanamsha: formData.ayanamsha,
+        relationship: formData.relationship,
       },
       formData.chartStyle
     );
@@ -137,6 +149,29 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
             className="w-full bg-bg-tertiary/50 border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 transition-colors"
             placeholder={msg('namePlaceholder', locale)}
           />
+        </div>
+
+        {/* Chart for (relationship) */}
+        <div className="md:col-span-2">
+          <label className="block text-gold-dark text-sm mb-2">
+            {isDevanagari ? 'किसके लिए' : 'Chart for'}
+          </label>
+          <div className="flex flex-wrap gap-2">
+            {RELATIONSHIP_OPTIONS.map((opt) => (
+              <button
+                key={opt.value}
+                type="button"
+                onClick={() => setFormData({ ...formData, relationship: opt.value })}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
+                  formData.relationship === opt.value
+                    ? 'bg-gold-primary/20 border-gold-primary/50 text-gold-light'
+                    : 'border-gold-primary/15 text-text-secondary hover:border-gold-primary/30 hover:text-text-primary'
+                }`}
+              >
+                {isDevanagari ? opt.hi : opt.en}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Date of Birth */}

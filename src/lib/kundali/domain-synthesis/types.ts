@@ -11,6 +11,7 @@
  */
 
 import type { LocaleText } from '@/types/panchang';
+import type { RelationshipDynamics } from '@/lib/kundali/family-synthesis/types';
 
 // ---------------------------------------------------------------------------
 // Core enumerations
@@ -313,6 +314,9 @@ export interface DomainReading {
 
   /** Full multi-paragraph narrative. */
   detailedNarrative: LocaleText;
+
+  /** Cross-chart relationship overlay. Only populated when family context exists. */
+  relationshipDynamics?: RelationshipDynamics;
 }
 
 // ---------------------------------------------------------------------------

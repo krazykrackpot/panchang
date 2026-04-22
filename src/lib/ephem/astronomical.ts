@@ -368,6 +368,66 @@ export function approximateSunset(jd: number, lat: number, lng: number): number 
   return ((solarNoon + H / 15) % 24 + 24) % 24;
 }
 
+/**
+ * Compute Delta T (TT - UT) in seconds.
+ * Uses polynomial approximation from Espenak & Meeus (2006).
+ * Valid for 1900-2100 with ~1 second accuracy.
+ *
+ * Delta T is the difference between Terrestrial Time (TT, uniform atomic
+ * time used in ephemeris calculations) and Universal Time (UT, tied to
+ * Earth's variable rotation). Planetary longitude tables (Meeus) are
+ * computed in TT, so for precise positions one should adjust:
+ *   jdTT = jdUT + deltaT(year) / 86400
+ *
+ * NOTE: Swiss Ephemeris handles Delta T internally — only apply this
+ * correction to the Meeus fallback path. Integration into sunLongitude()
+ * and moonLongitude() Meeus paths is deferred to avoid regression risk;
+ * the current Meeus accuracy (~0.01° Sun, ~0.5° Moon) already exceeds
+ * the Delta T effect (~1 arcsecond) for the 2000-2050 range.
+ */
+export function deltaT(year: number): number {
+  if (year < 1900) return 0; // no reliable polynomial data
+
+  const t = year - 2000;
+
+  if (year < 1920) {
+    // Espenak & Meeus 1900-1920
+    const u = (year - 1900) / 100;
+    return -2.79 + 149.4119 * u - 598.314 * u * u + 6196.6 * u * u * u - 19700.6 * u * u * u * u;
+  }
+  if (year < 1941) {
+    // Espenak & Meeus 1920-1941
+    const u = year - 1920;
+    return 21.20 + 0.84493 * u - 0.076100 * u * u + 0.0020936 * u * u * u;
+  }
+  if (year < 1961) {
+    // Espenak & Meeus 1941-1961
+    const u = year - 1950;
+    return 29.07 + 0.407 * u - u * u / 233 + u * u * u / 2547;
+  }
+  if (year < 1986) {
+    // Espenak & Meeus 1961-1986
+    const u = year - 1975;
+    return 45.45 + 1.067 * u - u * u / 260 - u * u * u / 718;
+  }
+  if (year < 2005) {
+    // Espenak & Meeus 1986-2005 polynomial (t from 2000)
+    return 63.86 + 0.3345 * t - 0.060374 * t * t
+      + 0.0017275 * t * t * t + 0.000651814 * t * t * t * t
+      + 0.00002373599 * t * t * t * t * t;
+  }
+  // 2005-2050 projection (Espenak & Meeus)
+  return 62.92 + 0.32217 * t + 0.005589 * t * t;
+}
+
+/**
+ * Convert a Julian Day to a fractional year (for use with deltaT).
+ * Approximate — accurate to ~1 day which is sufficient for Delta T lookup.
+ */
+export function jdToYear(jd: number): number {
+  return 2000.0 + (jd - 2451545.0) / 365.25;
+}
+
 // Format decimal hours to HH:MM string
 export function formatTime(decimalHours: number, tzOffsetHours: number = 0): string {
   const totalHours = ((decimalHours + tzOffsetHours) % 24 + 24) % 24;

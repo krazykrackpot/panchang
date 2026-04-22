@@ -806,22 +806,24 @@ export function generateKundali(birthData: BirthData): KundaliData {
     };
   });
 
-  // Gulika and Mandi — computed from Saturn's day-segment (BPHS Ch.25)
+  // Gulika and Mandi — computed from Saturn's segment (BPHS Ch.25)
   //
   // ALGORITHM:
   //   1. Find the weekday of birth (0=Sun, 1=Mon, ..., 6=Sat using JS Date.getDay()).
-  //   2. Saturn's segment number in the day varies by weekday:
-  //      Sun→7, Mon→6, Tue→5, Wed→4, Thu→3, Fri→2, Sat→1
-  //   3. Divide the day (sunrise to sunset) into 8 equal parts.
-  //      Gulika = ascendant at START of Saturn's segment.
+  //   2. Determine if birth is during DAY (sunrise→sunset) or NIGHT (sunset→next sunrise).
+  //   3. For DAY births: Saturn's segment number varies by weekday:
+  //      Sun=7, Mon=6, Tue=5, Wed=4, Thu=3, Fri=2, Sat=1
+  //      Divide day (sunrise→sunset) into 8 equal parts.
+  //   4. For NIGHT births: Saturn's segment number varies by weekday:
+  //      Sun=3, Mon=2, Tue=1, Wed=7, Thu=6, Fri=5, Sat=4
+  //      Divide night (sunset→next sunrise) into 8 equal parts.
+  //   5. Gulika = ascendant at START of Saturn's segment.
   //      Mandi  = ascendant at MIDPOINT of Saturn's segment.
-  //   4. Convert tropical ascendant → sidereal via the same ayanamsha already computed.
+  //   6. Convert tropical ascendant → sidereal via the same ayanamsha already computed.
   //
   // NOTE: approximateSunrise / approximateSunset return UT decimal hours.
-  //       JD at a given UT hour on the same calendar day = jd_noon + (utHours - 12) / 24,
-  //       but it is simpler to use the birth date JD at 0h UT then add fractions.
   {
-    // JD at 0h UT on the birth date (use noon JD minus 0.5 day — dateToJD stores UT)
+    // JD at 0h UT on the birth date
     const jd0h = dateToJD(year, month, day, 0);
 
     // Sunrise and sunset in UT hours on the birth date
@@ -833,14 +835,28 @@ export function generateKundali(birthData: BirthData): KundaliData {
     const birthDateObj = new Date(Date.UTC(year, month - 1, day));
     const weekday = birthDateObj.getUTCDay(); // 0=Sun … 6=Sat
 
-    // Saturn's segment number (1-based) for each weekday
-    // Sun=7, Mon=6, Tue=5, Wed=4, Thu=3, Fri=2, Sat=1
-    const SATURN_SEGMENT: Record<number, number> = { 0: 7, 1: 6, 2: 5, 3: 4, 4: 3, 5: 2, 6: 1 };
-    const seg = SATURN_SEGMENT[weekday];
+    // Check if birth is during day or night
+    const isDayBirth = utHour >= sunriseUT && utHour < sunsetUT;
 
-    // UT hours for Gulika start and Mandi midpoint
-    const gulikaStartUT = sunriseUT + (seg - 1) * dayDuration / 8;
-    const mandiMidUT    = sunriseUT + (seg - 0.5) * dayDuration / 8;
+    let gulikaStartUT: number;
+    let mandiMidUT: number;
+
+    if (isDayBirth) {
+      // Day segments: Saturn's segment number (1-based) for each weekday
+      // Sun=7, Mon=6, Tue=5, Wed=4, Thu=3, Fri=2, Sat=1
+      const SATURN_DAY_SEGMENT: Record<number, number> = { 0: 7, 1: 6, 2: 5, 3: 4, 4: 3, 5: 2, 6: 1 };
+      const seg = SATURN_DAY_SEGMENT[weekday];
+      gulikaStartUT = sunriseUT + (seg - 1) * dayDuration / 8;
+      mandiMidUT    = sunriseUT + (seg - 0.5) * dayDuration / 8;
+    } else {
+      // Night segments: Saturn's segment number (1-based) for each weekday
+      // Sun=3, Mon=2, Tue=1, Wed=7, Thu=6, Fri=5, Sat=4
+      const SATURN_NIGHT_SEGMENT: Record<number, number> = { 0: 3, 1: 2, 2: 1, 3: 7, 4: 6, 5: 5, 6: 4 };
+      const seg = SATURN_NIGHT_SEGMENT[weekday];
+      const nightDuration = 24 - dayDuration; // hours
+      gulikaStartUT = sunsetUT + (seg - 1) * nightDuration / 8;
+      mandiMidUT    = sunsetUT + (seg - 0.5) * nightDuration / 8;
+    }
 
     // Convert UT hours to JD
     const jdGulika = jd0h + gulikaStartUT / 24;

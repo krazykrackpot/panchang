@@ -632,7 +632,36 @@ function computeCheshtaBala(p: PlanetInput, ay: number): number {
 // ---------------------------------------------------------------------------
 
 /**
+ * Fractional aspect strength per BPHS Ch.26.
+ * All planets have full (1.0) 7th-house aspect. The 3rd/10th, 4th/8th, and
+ * 5th/9th aspects are partial for most planets, with exceptions:
+ *   - Mars gets full strength from 4th and 8th
+ *   - Jupiter gets full strength from 5th and 9th
+ *   - Saturn gets full strength from 3rd and 10th
+ *
+ * @param aspectingPlanetId  The planet casting the aspect (0-8)
+ * @param houseDistance       Houses from aspecting planet to target (1-12)
+ * @returns Fractional strength 0.0-1.0
+ */
+function getAspectStrength(aspectingPlanetId: number, houseDistance: number): number {
+  // 7th house: always full for all planets
+  if (houseDistance === 7) return 1.0;
+  // Special full aspects per planet
+  if (aspectingPlanetId === 2 && (houseDistance === 4 || houseDistance === 8)) return 1.0; // Mars
+  if (aspectingPlanetId === 4 && (houseDistance === 5 || houseDistance === 9)) return 1.0; // Jupiter
+  if (aspectingPlanetId === 6 && (houseDistance === 3 || houseDistance === 10)) return 1.0; // Saturn
+  // Partial aspects
+  if (houseDistance === 3 || houseDistance === 10) return 0.25;
+  if (houseDistance === 4 || houseDistance === 8) return 0.75;
+  if (houseDistance === 5 || houseDistance === 9) return 0.5;
+  return 0; // no aspect from other distances
+}
+
+/**
  * Computes Drik Bala (aspect strength) for planet p.
+ * Uses fractional aspect strengths per BPHS Ch.26 instead of treating all
+ * aspects as full strength.
+ *
  * @param p          The planet being assessed
  * @param allPlanets All 9 planets (0-8) including Rahu/Ketu — they contribute
  *                   aspects as malefics per BPHS: Rahu/Ketu aspect 5th, 7th, 9th
@@ -641,38 +670,23 @@ function computeCheshtaBala(p: PlanetInput, ay: number): number {
 function computeDrikBala(p: PlanetInput, allPlanets: PlanetInput[]): number {
   const beneficIds = new Set([1, 3, 4, 5]); // Moon, Mercury, Jupiter, Venus (natural)
   // Rahu (7) and Ketu (8) are shadow-planet malefics — not in beneficIds
+  const BASE_SCORE = 7.5;
   let drikBala = 0;
 
   for (const other of allPlanets) {
     if (other.id === p.id) continue;
 
-    // Determine which houses this planet aspects
-    const aspectedHouses: number[] = [];
+    // House distance from other planet to target planet p (1-based, 1-12)
+    const houseDistance = ((p.house - other.house + 12) % 12) || 12;
 
-    // All planets aspect the 7th from their position
-    aspectedHouses.push(((other.house - 1 + 6) % 12) + 1);
+    // Get the fractional aspect strength for this planet at this distance
+    // Rahu/Ketu use Jupiter-style aspects (5th, 7th, 9th) but as malefics
+    const effectiveId = (other.id === 7 || other.id === 8) ? 4 : other.id;
+    const strength = getAspectStrength(effectiveId, houseDistance);
 
-    // Special aspects
-    if (other.id === 4) {
-      // Jupiter → 5th and 9th additional
-      aspectedHouses.push(((other.house - 1 + 4) % 12) + 1);
-      aspectedHouses.push(((other.house - 1 + 8) % 12) + 1);
-    } else if (other.id === 2) {
-      // Mars → 4th and 8th additional
-      aspectedHouses.push(((other.house - 1 + 3) % 12) + 1);
-      aspectedHouses.push(((other.house - 1 + 7) % 12) + 1);
-    } else if (other.id === 6) {
-      // Saturn → 3rd and 10th additional
-      aspectedHouses.push(((other.house - 1 + 2) % 12) + 1);
-      aspectedHouses.push(((other.house - 1 + 9) % 12) + 1);
-    } else if (other.id === 7 || other.id === 8) {
-      // Rahu/Ketu: aspect 5th and 9th in addition to 7th (BPHS shadow-planet aspects)
-      aspectedHouses.push(((other.house - 1 + 4) % 12) + 1);
-      aspectedHouses.push(((other.house - 1 + 8) % 12) + 1);
-    }
-
-    if (aspectedHouses.includes(p.house)) {
-      drikBala += beneficIds.has(other.id) ? 7.5 : -7.5;
+    if (strength > 0) {
+      const contribution = BASE_SCORE * strength;
+      drikBala += beneficIds.has(other.id) ? contribution : -contribution;
     }
   }
 

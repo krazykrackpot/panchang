@@ -43,6 +43,8 @@ import type { PersonalReading, DomainType } from '@/lib/kundali/domain-synthesis
 import { synthesizeReading } from '@/lib/kundali/domain-synthesis/synthesizer';
 import { getSavedQuestionChoice, clearQuestionChoice } from '@/components/kundali/QuestionEntry';
 import { computeKeyDates, type KeyDate } from '@/lib/kundali/domain-synthesis/key-dates';
+import { generateVedicProfile } from '@/lib/kundali/vedic-profile';
+import type { VedicProfile as VedicProfileType } from '@/lib/kundali/vedic-profile';
 import { useAIReading } from '@/lib/kundali/domain-synthesis/use-ai-reading';
 import { useTrajectory } from '@/lib/kundali/domain-synthesis/use-trajectory';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -78,6 +80,7 @@ const DomainDeepDive = dynamic(() => import('@/components/kundali/DomainDeepDive
 const KeyDatesTimeline = dynamic(() => import('@/components/kundali/KeyDatesTimeline'), { ssr: false });
 const QuestionEntry = dynamic(() => import('@/components/kundali/QuestionEntry'), { ssr: false });
 const TrajectoryCard = dynamic(() => import('@/components/kundali/TrajectoryCard'), { ssr: false });
+const VedicProfileComponent = dynamic(() => import('@/components/kundali/VedicProfile'), { ssr: false });
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
@@ -323,6 +326,7 @@ export default function KundaliPage() {
   const L3 = (en: string, hi: string, ta?: string) => isTamil ? (ta || en) : locale === 'en' ? en : hi;
 
   const [kundali, setKundali] = useState<KundaliData | null>(null);
+  const [vedicProfile, setVedicProfile] = useState<VedicProfileType | null>(null);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [loading, setLoading] = useState(false);
   const [editing, setEditing] = useState(false);
@@ -485,6 +489,7 @@ export default function KundaliPage() {
               const reading = synthesizeReading(data, locale);
               setPersonalReading(reading);
               setKeyDates(computeKeyDates({ kundali: data }));
+              setVedicProfile(generateVedicProfile(data, locale));
               resolveInitialView();
               // Trajectory sync handled by the dedicated useEffect that watches user + personalReading
             } catch { setPersonalReading(null); setView('technical'); }
@@ -519,6 +524,7 @@ export default function KundaliPage() {
             const reading = synthesizeReading(k, locale);
             setPersonalReading(reading);
             setKeyDates(computeKeyDates({ kundali: k }));
+            setVedicProfile(generateVedicProfile(k, locale));
             resolveInitialView();
             // Trajectory sync handled by the dedicated useEffect that watches user + personalReading
           } catch { setPersonalReading(null); setView('technical'); }
@@ -693,6 +699,7 @@ export default function KundaliPage() {
         const reading = synthesizeReading(data, locale);
         setPersonalReading(reading);
         setKeyDates(computeKeyDates({ kundali: data }));
+        setVedicProfile(generateVedicProfile(data, locale));
         resolveInitialView();
         if (user) trajectoryHook.syncTrajectory(reading, locale);
       } catch (synthErr) {
@@ -948,6 +955,10 @@ export default function KundaliPage() {
           {/* ===== LAYER 1: PERSONAL PANDIT DASHBOARD ===== */}
           {personalReading && view === 'dashboard' && (
             <>
+              {/* Vedic Profile — narrative synthesis above Key Dates */}
+              {vedicProfile && (
+                <VedicProfileComponent profile={vedicProfile} locale={locale} />
+              )}
               {/* Key Dates — prominent above domain cards */}
               {keyDates.length > 0 && (
                 <div className="mb-8 p-5 rounded-2xl bg-gradient-to-br from-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10">

@@ -76,10 +76,11 @@ function makeMinimalReading(domainScores: Partial<Record<DomainType, number>>): 
 // ---------------------------------------------------------------------------
 
 describe('computeTrajectory', () => {
-  it('returns stable trends with empty history', () => {
+  it('returns stable trends with empty history and hasHistory=false', () => {
     const reading = makeMinimalReading({ health: 6, wealth: 6, career: 6, marriage: 6, children: 6, family: 6, spiritual: 6, education: 6 });
     const result = computeTrajectory([], reading, 'en');
 
+    expect(result.hasHistory).toBe(false);
     expect(result.domains).toHaveLength(8);
     for (const dt of result.domains) {
       expect(dt.trend).toBe('stable');
@@ -89,6 +90,8 @@ describe('computeTrajectory', () => {
     expect(result.overallTrend).toBe('stable');
     expect(result.biggestGain).toBeNull();
     expect(result.biggestDrop).toBeNull();
+    // Snapshot summary should mention first reading
+    expect(result.summary.en).toContain('first reading');
   });
 
   it('detects rising trends when scores increase significantly', () => {
@@ -101,6 +104,7 @@ describe('computeTrajectory', () => {
     const reading = makeMinimalReading({ health: 7, wealth: 7, career: 7, marriage: 7, children: 7, family: 7, spiritual: 7, education: 7 });
     const result = computeTrajectory(history, reading, 'en');
 
+    expect(result.hasHistory).toBe(true);
     for (const dt of result.domains) {
       expect(dt.trend).toBe('rising');
       expect(dt.delta).toBe(3);

@@ -57,6 +57,8 @@ export interface FullTrajectory {
   biggestDrop: { domain: DomainType; delta: number } | null;
   /** Bilingual summary of the overall trajectory. */
   summary: LocaleText;
+  /** True when at least 2 monthly data points exist (real trend data). */
+  hasHistory: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -273,7 +275,10 @@ export function computeTrajectory(
   }
 
   // Summary text
-  const summary = generateOverallSummary(overallTrend, biggestGain, biggestDrop, currentPoint);
+  const hasHistory = history.length > 0;
+  const summary = hasHistory
+    ? generateOverallSummary(overallTrend, biggestGain, biggestDrop, currentPoint)
+    : generateSnapshotSummary(currentPoint, domainTrajectories);
 
   return {
     domains: domainTrajectories,
@@ -281,6 +286,7 @@ export function computeTrajectory(
     biggestGain,
     biggestDrop,
     summary,
+    hasHistory,
   };
 }
 
@@ -337,6 +343,38 @@ function generateOverallSummary(
       hi = 'आपकी जीवन दिशा सभी क्षेत्रों में स्थिर है।' +
         (dasha ? ` ${dasha} दशा संतुलन बनाए रख रही है।` : '');
   }
+
+  return { en, hi, sa: en } as LocaleText;
+}
+
+/**
+ * Summary for the first reading when no history exists.
+ * Highlights strongest and weakest domains from current scores.
+ */
+function generateSnapshotSummary(
+  currentPoint: TrajectoryPoint,
+  domains: DomainTrajectory[],
+): LocaleText {
+  const sorted = [...domains].sort((a, b) => b.current - a.current);
+  const strongest = sorted[0];
+  const weakest = sorted[sorted.length - 1];
+
+  const strongEn = DOMAIN_NAMES[strongest.domain]?.en ?? strongest.domain;
+  const strongHi = DOMAIN_NAMES[strongest.domain]?.hi ?? strongest.domain;
+  const weakEn = DOMAIN_NAMES[weakest.domain]?.en ?? weakest.domain;
+  const weakHi = DOMAIN_NAMES[weakest.domain]?.hi ?? weakest.domain;
+
+  const dasha = currentPoint.mahaDasha || '';
+
+  const en = `This is your first reading. ${strongEn} (${round1(strongest.current)}/10) is your strongest domain` +
+    (strongest.current !== weakest.current ? `, while ${weakEn} (${round1(weakest.current)}/10) needs the most attention` : '') +
+    '.' + (dasha ? ` Current dasha: ${dasha}.` : '') +
+    ' Generate your chart again next month to see trends over time.';
+
+  const hi = `यह आपका प्रथम पठन है। ${strongHi} (${round1(strongest.current)}/10) आपका सबसे मज़बूत क्षेत्र है` +
+    (strongest.current !== weakest.current ? `, जबकि ${weakHi} (${round1(weakest.current)}/10) पर सबसे अधिक ध्यान आवश्यक है` : '') +
+    '।' + (dasha ? ` वर्तमान दशा: ${dasha}।` : '') +
+    ' प्रवृत्तियाँ देखने के लिए अगले महीने फिर से चार्ट बनाएँ।';
 
   return { en, hi, sa: en } as LocaleText;
 }

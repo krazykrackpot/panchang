@@ -151,7 +151,7 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
         score: 75,
         planets: [],
         yogaName: mp.name.en,
-        templateData: { yoga: mp.name.en, planet: '', sign: '' },
+        templateData: { yoga: mp.name.en },
       });
     }
   }
@@ -165,8 +165,8 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
       score: 70,
       planets: [lagnaLordId],
       templateData: {
-        planet: lagnaLord.planet.name.en,
-        sign: lagnaLord.signName.en,
+        planetId: String(lagnaLordId),
+        signId: String(lagnaLord.sign),
       },
     });
   }
@@ -179,7 +179,7 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
         type: 'debilitatedKey',
         score: 65,
         planets: [kp.planet.id],
-        templateData: { planet: kp.planet.name.en, sign: kp.signName.en },
+        templateData: { planetId: String(kp.planet.id), signId: String(kp.sign) },
       });
       break; // Only one
     }
@@ -195,7 +195,7 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
         planets: [p.planet.id],
         houses: [p.house],
         templateData: {
-          planet: p.planet.name.en,
+          planetId: String(p.planet.id),
           house: String(p.house),
           houseTheme: '',
         },
@@ -248,8 +248,8 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
       score: 45,
       planets: [1],
       templateData: {
-        sign1: rashi?.name.en || '',
-        element1: rashi?.element.en?.toLowerCase() || '',
+        signId: String(ascSign),
+        elementKey: rashi?.element.en || '',
       },
     });
   }
@@ -264,10 +264,10 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
         score: 40,
         planets: [1],
         templateData: {
-          element1: ELEMENT_NAMES[lagnaRashi.element.en]?.en || lagnaRashi.element.en.toLowerCase(),
-          element2: ELEMENT_NAMES[moonRashi.element.en]?.en || moonRashi.element.en.toLowerCase(),
-          sign1: lagnaRashi.name.en,
-          sign2: moonRashi.name.en,
+          signId1: String(ascSign),
+          signId2: String(moonSign),
+          elementKey1: lagnaRashi.element.en,
+          elementKey2: moonRashi.element.en,
         },
       });
     }
@@ -300,11 +300,21 @@ function buildHook(patterns: ChartPattern[], kundali: KundaliData, locale: strin
   const variant = templates[seed % templates.length];
   const template = locale === 'hi' ? variant.hi : variant.en;
 
-  // Resolve houseTheme if needed
+  // Resolve locale-specific names from IDs stored at detection time
   const data = { ...topPattern.templateData };
-  if (data && data.house && !data.houseTheme) {
-    const houseNum = Number(data.house);
-    data.houseTheme = bt(HOUSE_THEME_LABELS[houseNum], locale);
+  if (data) {
+    if (data.signId) data.sign = tl(RASHIS.find(r => r.id === Number(data.signId))?.name, locale);
+    if (data.signId1) data.sign1 = tl(RASHIS.find(r => r.id === Number(data.signId1))?.name, locale);
+    if (data.signId2) data.sign2 = tl(RASHIS.find(r => r.id === Number(data.signId2))?.name, locale);
+    if (data.planetId) data.planet = tl(GRAHAS.find(g => g.id === Number(data.planetId))?.name, locale);
+    if (data.elementKey1) data.element1 = bt(ELEMENT_NAMES[data.elementKey1], locale);
+    if (data.elementKey2) data.element2 = bt(ELEMENT_NAMES[data.elementKey2], locale);
+    if (data.elementKey) data.element1 = bt(ELEMENT_NAMES[data.elementKey], locale);
+    // Resolve houseTheme if needed
+    if (data.house && !data.houseTheme) {
+      const houseNum = Number(data.house);
+      data.houseTheme = bt(HOUSE_THEME_LABELS[houseNum], locale);
+    }
   }
 
   return interpolate(template, data || {});
@@ -402,10 +412,35 @@ function buildStandout(patterns: ChartPattern[], kundali: KundaliData, locale: s
         : `The convergence of ${count} raja yogas provides opportunities for authority, recognition, and leadership. These yogas activate when the relevant planetary dashas run — the right effort at the right time is essential.`;
     }
     case 'sameLagnaMoon': {
-      const sign = topPattern.templateData?.sign1 || '';
+      const signId = topPattern.templateData?.signId;
+      const sign = signId ? tl(RASHIS.find(r => r.id === Number(signId))?.name, locale) : '';
       return locale === 'hi'
         ? `लग्न और चन्द्र दोनों ${sign} में — आपका बाह्य व्यवहार और आन्तरिक भावनाएँ एक ही ऊर्जा से संचालित हैं। लोग जो देखते हैं वही आप भीतर अनुभव करते हैं। यह एकता आपको प्रामाणिक बनाती है, परन्तु इसका अर्थ यह भी है कि आपके पास छिपने का कोई स्थान नहीं।`
         : `Both your ascendant and Moon fall in ${sign} — your outward behavior and inner emotions run on the same energy. What people see is what you feel inside. This unity makes you authentic, but it also means you have no place to hide.`;
+    }
+    case 'mahapurusha': {
+      const yogaName = topPattern.yogaName || 'Mahapurusha Yoga';
+      const yogaInfo = kundali.yogasComplete?.find(y => y.name.en === yogaName && y.present);
+      const desc = yogaInfo ? tl(yogaInfo.description, locale) : '';
+      return locale === 'hi'
+        ? `${yogaName} — पंच महापुरुष योगों में से एक — आपकी कुण्डली में बनता है। यह योग विशिष्ट व्यक्तित्व गुण और जीवन में उत्कृष्टता प्रदान करता है। ${desc}`
+        : `${yogaName} — one of the five Pancha Mahapurusha Yogas — forms in your chart. This yoga confers distinctive personality traits and excellence in life. ${desc}`;
+    }
+    case 'contrastingElements': {
+      const lagnaR = RASHIS.find(r => r.id === kundali.ascendant.sign);
+      const moonP = planets.find(p => p.planet.id === 1);
+      const moonR = moonP ? RASHIS.find(r => r.id === moonP.sign) : null;
+      const lagnaEl = lagnaR ? bt(ELEMENT_NAMES[lagnaR.element.en], locale) : '';
+      const moonEl = moonR ? bt(ELEMENT_NAMES[moonR.element.en], locale) : '';
+      return locale === 'hi'
+        ? `${tl(lagnaR?.name, 'hi')} लग्न ${lagnaEl} तत्व लाता है — बौद्धिक, विश्लेषणात्मक, बाह्य-उन्मुख। परन्तु ${tl(moonR?.name, 'hi')} में चन्द्र ${moonEl} स्वभाव से चलता है। यह विपरीत तत्वों का संयोग आपको बहुआयामी बनाता है — दोनों ऊर्जाओं का उपयोग करना सीखना आपकी यात्रा का अंग है।`
+        : `Your ${tl(lagnaR?.name, 'en')} ascendant brings ${lagnaEl} energy — analytical, outward-facing. But your Moon in ${tl(moonR?.name, 'en')} runs on ${moonEl} instinct. This combination of contrasting elements makes you multidimensional — learning to harness both energies is part of your journey.`;
+    }
+    case 'sadeSati': {
+      const phase = kundali.sadeSati?.currentPhase || '';
+      return locale === 'hi'
+        ? `साढ़े साती${phase ? ` (${phase} चरण)` : ''} — शनि आपके चन्द्र पर गोचर कर रहा है। यह 7.5 वर्ष की अवधि भावनात्मक परिपक्वता, धैर्य और कठिन परिश्रम की माँग करती है। जो इसे सचेत रूप से स्वीकार करते हैं, उन्हें स्थायी उपलब्धियाँ प्राप्त होती हैं।`
+        : `Sade Sati${phase ? ` (${phase} phase)` : ''} — Saturn is transiting over your Moon. This 7.5-year period demands emotional maturity, patience, and sustained hard work. Those who embrace it consciously earn lasting achievements.`;
     }
     default: {
       // Generic expansion using planet-in-house data for the first planet in the pattern

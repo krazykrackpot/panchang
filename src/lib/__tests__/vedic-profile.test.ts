@@ -207,24 +207,21 @@ describe('generateVedicProfile', () => {
   });
 
   it('omits doshaSection when no doshas present', () => {
-    // All planets in non-manglik, non-kaal-sarp positions
+    // Mars in 10H (not a manglik house: 1,2,4,7,8,12)
+    // Rahu in 3H, Ketu in 9H — planets spread on both sides (no Kaal Sarpa)
     const planets = [
       makePlanet(0, 5, 5, 5, false, false, false, false, true),
       makePlanet(1, 2, 2, 11, false, false, false, false, false),
       makePlanet(2, 1, 1, 10, false, false, false, false, true),
       makePlanet(3, 6, 6, 3, false, false, false, false, false),
       makePlanet(4, 9, 9, 6, false, false, false, false, false),
-      makePlanet(5, 3, 3, 12, false, false, false, false, false),
-      makePlanet(6, 11, 11, 8, false, false, false, false, false),
-      makePlanet(7, 3, 3, 12, false, false, false, false, false),
-      makePlanet(8, 9, 9, 6, false, false, false, false, false),
+      makePlanet(5, 3, 3, 9, false, false, false, false, false),
+      makePlanet(6, 11, 11, 5, false, false, false, false, false),
+      makePlanet(7, 3, 3, 3, false, false, false, false, false),
+      makePlanet(8, 9, 9, 9, false, false, false, false, false),
     ];
     const k = makeKundali({ planets });
     const profile = generateVedicProfile(k, 'en');
-    // doshaSection may be null when no doshas
-    // (it's valid for it to be null or an empty string)
-    if (profile.doshaSection) {
-      expect(profile.doshaSection.length).toBeGreaterThan(0);
-    }
+    expect(profile.doshaSection).toBeNull();
   });
 });

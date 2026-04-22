@@ -2,6 +2,7 @@ import type { LocaleText } from '@/types/panchang';
 import { getPlanetaryPositions, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
+import { analyzeGochara } from './gochara-engine';
 
 export interface PersonalTransit {
   planetId: number;
@@ -13,6 +14,13 @@ export interface PersonalTransit {
   savBindu: number;       // SAV score for this sign
   quality: 'strong' | 'neutral' | 'weak';
   interpretation: LocaleText;
+  // Gochara fields (populated when natalMoonSign is provided)
+  houseFromMoon?: number;
+  isGoodHouse?: boolean;
+  vedhaActive?: boolean;
+  vedhaPlanetName?: string;
+  bavScore?: number;
+  gocharaQuality?: 'strong' | 'moderate' | 'weak' | 'adverse';
 }
 
 export interface UpcomingTransition {
@@ -56,12 +64,23 @@ const QUALITY_LABELS = {
   weak:    { en: 'challenging', hi: 'चुनौतीपूर्ण', sa: 'कठिनम्' },
 } as const;
 
-export function computePersonalTransits(ascendantSign: number, savTable: number[]): PersonalTransit[] {
+/** Planet ID to English name for vedha display */
+const PLANET_NAMES: Record<number, string> = {
+  0: 'Sun', 1: 'Moon', 2: 'Mars', 3: 'Mercury',
+  4: 'Jupiter', 5: 'Venus', 6: 'Saturn', 7: 'Rahu', 8: 'Ketu',
+};
+
+export function computePersonalTransits(
+  ascendantSign: number,
+  savTable: number[],
+  natalMoonSign?: number,
+  reducedBav?: number[][]
+): PersonalTransit[] {
   const now = new Date();
   const jd = dateToJD(now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate(), 12);
   const positions = getPlanetaryPositions(jd);
 
-  return SLOW_PLANETS.map(sp => {
+  const transits: PersonalTransit[] = SLOW_PLANETS.map(sp => {
     const pos = positions.find(p => p.id === sp.id);
     if (!pos) return null;
 
@@ -93,6 +112,40 @@ export function computePersonalTransits(ascendantSign: number, savTable: number[
       },
     };
   }).filter(Boolean) as PersonalTransit[];
+
+  // Merge Gochara analysis when natal Moon sign is available
+  if (natalMoonSign !== undefined && natalMoonSign >= 1 && natalMoonSign <= 12) {
+    // Build transit inputs for slow planets already computed
+    const transitInputs = transits.map(t => ({
+      id: t.planetId,
+      sign: t.currentSign,
+    }));
+    // Add fast planets (Sun, Mars, Mercury, Venus) for vedha checking
+    // Gochara engine uses planet IDs 0-6 only
+    for (const pid of [0, 2, 3, 5]) {
+      const pos = positions.find(p => p.id === pid);
+      if (pos) {
+        const sidLon = toSidereal(pos.longitude, jd);
+        transitInputs.push({ id: pid, sign: Math.floor(sidLon / 30) + 1 });
+      }
+    }
+    const gocharaResults = analyzeGochara(transitInputs, natalMoonSign, reducedBav);
+    for (const t of transits) {
+      const g = gocharaResults.find(gr => gr.planet === t.planetId);
+      if (g) {
+        t.houseFromMoon = g.houseFromMoon;
+        t.isGoodHouse = g.isGoodHouse;
+        t.vedhaActive = g.vedhaActive;
+        if (g.vedhaActive && g.vedhaPlanet !== undefined) {
+          t.vedhaPlanetName = PLANET_NAMES[g.vedhaPlanet] || '';
+        }
+        t.bavScore = g.bavScore;
+        t.gocharaQuality = g.quality;
+      }
+    }
+  }
+
+  return transits;
 }
 
 export function computeUpcomingTransitions(): UpcomingTransition[] {

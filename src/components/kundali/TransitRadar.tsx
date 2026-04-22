@@ -4,12 +4,15 @@ import { tl } from '@/lib/utils/trilingual';
 import { useMemo } from 'react';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { computePersonalTransits, computeUpcomingTransitions } from '@/lib/transit/personal-transits';
+import { analyzeDoubleTransit } from '@/lib/transit/gochara-engine';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface TransitRadarProps {
   ascendantSign: number;
   savTable: number[];
   locale: string;
+  natalMoonSign?: number;
+  reducedBav?: number[][];
 }
 
 
@@ -19,17 +22,22 @@ const LABELS = {
   upcoming: { en: 'Upcoming Sign Changes (Next 6 Months)', hi: 'आगामी परिवर्तन (अगले 6 माह)', sa: 'आगामी परिवर्तन (अगले 6 माह)' },
 };
 
-export default function TransitRadar({ ascendantSign, savTable, locale }: TransitRadarProps) {
+export default function TransitRadar({ ascendantSign, savTable, locale, natalMoonSign, reducedBav }: TransitRadarProps) {
   const isHi = isDevanagariLocale(locale);
-  const transits = useMemo(() => computePersonalTransits(ascendantSign, savTable), [ascendantSign, savTable]);
+  const transits = useMemo(
+    () => computePersonalTransits(ascendantSign, savTable, natalMoonSign, reducedBav),
+    [ascendantSign, savTable, natalMoonSign, reducedBav]
+  );
   const upcoming = useMemo(() => computeUpcomingTransitions(), []);
 
   if (transits.length === 0) return null;
 
-  const QUALITY_STYLES = {
+  const QUALITY_STYLES: Record<string, { bg: string; border: string; text: string }> = {
     strong: { bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', text: 'text-emerald-400' },
+    moderate: { bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-400' },
     neutral: { bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-400' },
     weak: { bg: 'bg-red-500/10', border: 'border-red-500/20', text: 'text-red-400' },
+    adverse: { bg: 'bg-red-500/10', border: 'border-red-500/20', text: 'text-red-400' },
   };
 
   return (
@@ -47,7 +55,8 @@ export default function TransitRadar({ ascendantSign, savTable, locale }: Transi
       {/* Transit rows */}
       <div className="px-6 sm:px-8 pb-4 space-y-3">
         {transits.map(t => {
-          const style = QUALITY_STYLES[t.quality];
+          const effectiveQuality = t.gocharaQuality || t.quality;
+          const style = QUALITY_STYLES[effectiveQuality] || QUALITY_STYLES.neutral;
           return (
             <div key={t.planetId} className={`flex items-center gap-3 p-3 rounded-xl ${style.bg} border ${style.border}`}>
               <div className="w-10 h-10 rounded-lg bg-bg-primary/50 border border-white/10 flex items-center justify-center shrink-0">
@@ -64,6 +73,28 @@ export default function TransitRadar({ ascendantSign, savTable, locale }: Transi
                   <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${style.text} ${style.bg} border ${style.border}`}>
                     {t.savBindu} bindu
                   </span>
+                  {/* Gochara annotations */}
+                  {t.houseFromMoon !== undefined && (
+                    <span className="text-[10px] text-text-secondary ml-1">
+                      H{t.houseFromMoon}<span className="text-text-secondary/40"> from Moon</span>
+                    </span>
+                  )}
+                  {t.vedhaActive && (
+                    <span className="ml-1.5 px-1.5 py-0.5 rounded text-[9px] font-medium bg-red-500/15 text-red-400 border border-red-500/20">
+                      {isHi ? 'वेध' : 'Vedha'}
+                      {t.vedhaPlanetName ? ` (${t.vedhaPlanetName})` : ''}
+                    </span>
+                  )}
+                  {t.isGoodHouse === true && !t.vedhaActive && (
+                    <span className="ml-1.5 px-1.5 py-0.5 rounded text-[9px] font-medium bg-emerald-500/15 text-emerald-400 border border-emerald-500/20">
+                      {isHi ? 'शुभ' : 'Favorable'}
+                    </span>
+                  )}
+                  {t.bavScore !== undefined && (
+                    <span className="ml-1 text-[9px] text-text-secondary/60">
+                      BAV:{t.bavScore}
+                    </span>
+                  )}
                 </div>
                 <p className="text-text-secondary/75 text-xs mt-0.5 truncate">
                   {isHi ? t.interpretation.hi : t.interpretation.en}
@@ -73,6 +104,37 @@ export default function TransitRadar({ ascendantSign, savTable, locale }: Transi
           );
         })}
       </div>
+
+      {/* Double Transit section */}
+      {natalMoonSign !== undefined && (() => {
+        const jupiterSign = transits.find(t => t.planetId === 4)?.currentSign;
+        const saturnSign = transits.find(t => t.planetId === 6)?.currentSign;
+        if (!jupiterSign || !saturnSign) return null;
+
+        const doubleTransits = analyzeDoubleTransit(jupiterSign, saturnSign, natalMoonSign);
+        const active = doubleTransits.filter(d => d.doubleTransitActive);
+        if (active.length === 0) return null;
+
+        return (
+          <div className="mx-6 sm:mx-8 mb-4 pt-4 border-t border-gold-primary/10">
+            <h4 className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-2">
+              {isHi ? 'द्वि-गोचर सक्रिय' : 'Double Transit Active'}
+            </h4>
+            <div className="flex flex-wrap gap-1.5">
+              {active.map(d => (
+                <span key={d.house} className="px-2 py-1 rounded-lg text-[10px] font-medium bg-purple-500/15 text-purple-300 border border-purple-500/20">
+                  H{d.house}
+                </span>
+              ))}
+            </div>
+            <p className="text-text-secondary/60 text-[9px] mt-1.5">
+              {isHi
+                ? 'गुरु और शनि दोनों इन भावों को सक्रिय कर रहे हैं — घटनाएँ प्रकट हो सकती हैं।'
+                : 'Jupiter and Saturn both activate these houses — events may manifest.'}
+            </p>
+          </div>
+        );
+      })()}
 
       {/* Upcoming transitions */}
       {upcoming.length > 0 && (

@@ -486,7 +486,7 @@ export default function KundaliPage() {
               setPersonalReading(reading);
               setKeyDates(computeKeyDates({ kundali: data }));
               resolveInitialView();
-              if (user) trajectoryHook.syncTrajectory(reading, locale);
+              // Trajectory sync handled by the dedicated useEffect that watches user + personalReading
             } catch { setPersonalReading(null); setView('technical'); }
             try {
               sessionStorage.setItem('kundali_last_result', JSON.stringify({
@@ -520,12 +520,20 @@ export default function KundaliPage() {
             setPersonalReading(reading);
             setKeyDates(computeKeyDates({ kundali: k }));
             resolveInitialView();
-            if (user) trajectoryHook.syncTrajectory(reading, locale);
+            // Trajectory sync handled by the dedicated useEffect that watches user + personalReading
           } catch { setPersonalReading(null); setView('technical'); }
         }
       }
     } catch { /* ignore */ }
   }, []);
+
+  // When auth restores after the session-restore effect already ran,
+  // user was null so syncTrajectory was skipped. Retry once user arrives.
+  useEffect(() => {
+    if (user && personalReading && !trajectoryHook.trajectory && !trajectoryHook.loading) {
+      trajectoryHook.syncTrajectory(personalReading, locale);
+    }
+  }, [user, personalReading, trajectoryHook.trajectory, trajectoryHook.loading, locale]);
 
   // Fetch current transits when toggled on
   useEffect(() => {
@@ -4975,6 +4983,8 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
             ascendantSign={kundali.ascendant.sign}
             savTable={kundali.ashtakavarga.savTable}
             locale={locale}
+            natalMoonSign={kundali.planets.find(p => p.planet.id === 1)?.sign}
+            reducedBav={kundali.ashtakavarga.reducedBpiTable}
           />
         </Suspense>
         </>

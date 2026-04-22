@@ -9,7 +9,6 @@
  */
 
 import { headers } from 'next/headers';
-import { getTranslations } from 'next-intl/server';
 import { Link } from '@/lib/i18n/navigation';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -55,31 +54,13 @@ async function getServerPanchang(): Promise<{ panchang: PanchangData | null; loc
 
 function PanchangSEOBlock({
   panchang,
-  locationName,
   locale,
-  t,
 }: {
   panchang: PanchangData;
-  locationName: string;
   locale: string;
-  t: (key: string) => string;
 }) {
-  const dateFormatted = new Date(panchang.date + 'T00:00:00').toLocaleDateString(
-    locale === 'hi' ? 'hi-IN' : locale === 'ta' ? 'ta-IN' : locale === 'bn' ? 'bn-IN' : 'en-US',
-    { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
-  );
-
   return (
-    <section className="max-w-4xl mx-auto px-4 pt-6 pb-2" aria-label="Today's Panchang Summary">
-      {/* H1 with date for SEO */}
-      <h1 className="text-2xl sm:text-3xl font-bold text-gold-light mb-1" style={{ fontFamily: 'var(--font-heading)' }}>
-        {locale === 'hi' ? 'आज का पंचांग' : locale === 'ta' ? 'இன்றைய பஞ்சாங்கம்' : locale === 'bn' ? 'আজকের পঞ্জিকা' : "Today's Panchang"}
-      </h1>
-      <p className="text-text-secondary text-sm mb-4">
-        {dateFormatted}
-        {locationName && <span className="ml-2 text-text-secondary/60">— {locationName}</span>}
-      </p>
-
+    <section className="max-w-4xl mx-auto px-4 pt-6 pb-2">
       {/* Contextual internal links for SEO (Step 4 from spec) */}
       <nav className="flex flex-wrap gap-2 mb-4 text-xs" aria-label="Related pages">
         <Link href="/kundali" className="text-gold-primary/70 hover:text-gold-light transition-colors">
@@ -147,9 +128,7 @@ function PanchangSEOBlock({
 
 export default async function PanchangPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'panchang' });
-
-  const { panchang, locationName } = await getServerPanchang();
+  const { panchang } = await getServerPanchang();
 
   return (
     <>
@@ -157,9 +136,7 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
       {panchang && (
         <PanchangSEOBlock
           panchang={panchang}
-          locationName={locationName}
           locale={locale}
-          t={(key: string) => { try { return t(key); } catch { return key; } }}
         />
       )}
 

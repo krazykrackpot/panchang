@@ -4,13 +4,14 @@
  * Classical reference: BPHS (Brihat Parashara Hora Shastra) Ch. 20
  *
  * Key differences from Vimshottari (120yr):
- * - Uses 8 planets (excludes Rahu)
+ * - Uses 8 planets (excludes Ketu)
  * - Total cycle = 108 years
  * - Different nakshatra-to-lord mapping (groups of 3 nakshatras)
  * - Classically prescribed for Krishna Paksha (waning Moon) births
  *
  * Sequence: Sun(6) → Moon(15) → Mars(8) → Mercury(17) → Saturn(10)
- *           → Jupiter(19) → Venus(21) → Ketu(12) = 108 years
+ *           → Jupiter(19) → Venus(21) → Rahu(12) = 108 years
+ * Reference: BPHS Ch.20 — mainstream reading excludes Ketu, not Rahu
  */
 
 import type { DashaEntry } from '@/types/kundali';
@@ -24,7 +25,7 @@ export const ASHTOTTARI_SEQUENCE: { planet: string; years: number }[] = [
   { planet: 'Saturn', years: 10 },
   { planet: 'Jupiter', years: 19 },
   { planet: 'Venus', years: 21 },
-  { planet: 'Ketu', years: 12 },
+  { planet: 'Rahu', years: 12 },
 ];
 
 export const TOTAL_ASHTOTTARI_YEARS = 108;
@@ -43,11 +44,11 @@ export const TOTAL_ASHTOTTARI_YEARS = 108;
  *   Jyeshtha(17), Mula(18), P.Ashadha(19)            → Saturn(4)
  *   U.Ashadha(20), Shravana(21), Dhanishta(22)       → Jupiter(5)
  *   Shatabhisha(23), P.Bhadrapada(24), U.Bhadra(25)  → Venus(6)
- *   Revati(26), Ashwini(0), Bharani(1)               → Ketu(7)
+ *   Revati(26), Ashwini(0), Bharani(1)               → Rahu(7)
  *   Krittika(2), Rohini(3), Mrigashira(4)            → Sun(0) [wrap]
  *
  * Array index = nakshatra index (0-based: 0=Ashwini … 26=Revati)
- * Value = index into ASHTOTTARI_SEQUENCE (0=Sun … 7=Ketu)
+ * Value = index into ASHTOTTARI_SEQUENCE (0=Sun … 7=Rahu)
  */
 function buildNakshatraToLordIndex(): number[] {
   const map = new Array<number>(27).fill(0);
@@ -76,7 +77,7 @@ const PLANET_NAME_MAP: Record<string, LocaleText> = {
   Jupiter: { en: 'Jupiter', hi: 'बृहस्पति', sa: 'बृहस्पतिः' },
   Venus: { en: 'Venus', hi: 'शुक्र', sa: 'शुक्रः' },
   Saturn: { en: 'Saturn', hi: 'शनि', sa: 'शनिः' },
-  Ketu: { en: 'Ketu', hi: 'केतु', sa: 'केतुः' },
+  Rahu: { en: 'Rahu', hi: 'राहु', sa: 'राहुः' },
 };
 
 function addYearsToDate(date: Date, years: number): Date {

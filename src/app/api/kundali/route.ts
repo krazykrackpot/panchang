@@ -25,7 +25,8 @@ export async function POST(request: Request) {
     return NextResponse.json(kundali, {
       headers: { 'Cache-Control': 'no-store' }, // Never cache — birth data varies per request
     });
-  } catch {
+  } catch (err) {
+    console.error('[API/kundali] Generation failed:', err);
     return NextResponse.json(
       { error: 'Failed to generate kundali' },
       { status: 500 }

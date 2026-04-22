@@ -1,12 +1,10 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Gauge, ArrowRight, ArrowLeft, ChevronRight, CheckCircle2, Crown, Trophy } from 'lucide-react';
 import LocationSearch from '@/components/ui/LocationSearch';
-import { generateKundali } from '@/lib/ephem/kundali-calc';
-import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { GRAHAS } from '@/lib/constants/grahas';
 import type { Locale } from '@/types/panchang';
 import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
@@ -188,20 +186,41 @@ export default function ShadbalaLabPage() {
 
   const TOTAL_STEPS = 4;
 
-  const result = useMemo(() => {
-    if (!computed || !location) return null;
-    const [year, month, day] = birthDate.split('-').map(Number);
-    const tzOffset = getUTCOffsetForDate(year, month, day, location.timezone);
-    const kundali = generateKundali({
-      name: 'Lab User', date: birthDate, time: birthTime, place: location.name,
-      lat: location.lat, lng: location.lng, timezone: location.timezone,
-      ayanamsha: 'lahiri',
-    });
-    const shadbala = kundali.fullShadbala;
-    if (!shadbala || shadbala.length === 0) return null;
-    const ranked = [...shadbala].sort((a, b) => b.rupas - a.rupas);
-    const maxBala = Math.max(...shadbala.flatMap(s => [s.sthanaBala, s.digBala, s.kalaBala, s.cheshtaBala, s.naisargikaBala, Math.abs(s.drikBala)]));
-    return { shadbala, ranked, captain: ranked[0], maxBala };
+  const [result, setResult] = useState<{
+    shadbala: ShadBalaComplete[];
+    ranked: ShadBalaComplete[];
+    captain: ShadBalaComplete;
+    maxBala: number;
+  } | null>(null);
+
+  // Fetch kundali via API to ensure Swiss Ephemeris accuracy (never client-side Meeus fallback)
+  useEffect(() => {
+    if (!computed || !location) { setResult(null); return; }
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch('/api/kundali', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: 'Lab User', date: birthDate, time: birthTime, place: location.name,
+            lat: location.lat, lng: location.lng, timezone: location.timezone,
+            ayanamsha: 'lahiri',
+          }),
+        });
+        if (cancelled) return;
+        const kundali = await res.json();
+        const shadbala: ShadBalaComplete[] | undefined = kundali.fullShadbala;
+        if (!shadbala || shadbala.length === 0) { setResult(null); return; }
+        const ranked = [...shadbala].sort((a, b) => b.rupas - a.rupas);
+        const maxBala = Math.max(...shadbala.flatMap((s: ShadBalaComplete) => [s.sthanaBala, s.digBala, s.kalaBala, s.cheshtaBala, s.naisargikaBala, Math.abs(s.drikBala)]));
+        setResult({ shadbala, ranked, captain: ranked[0], maxBala });
+      } catch (err) {
+        console.error('[shadbala-lab] Kundali fetch failed:', err);
+        setResult(null);
+      }
+    })();
+    return () => { cancelled = true; };
   }, [computed, birthDate, birthTime, location]);
 
   const t = (key: string) => lt((LJ as unknown as Record<string, LocaleText>)[key], locale);

@@ -18,16 +18,16 @@ const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string
 
 /* ------------------------------------------------------------------ */
 /*  60-slot Karana sequence: Shakuni at pos 1, Chara cycle 2-58,      */
-/*  Chatushpada 58, Nagava 59, Kimstughna 60                         */
+/*  Chatushpada 58, Naga 59, Kimstughna 60                           */
 /* ------------------------------------------------------------------ */
 const CHARA_KARANAS = KARANAS.filter((k) => k.type === 'chara'); // 7
-const STHIRA_KARANAS = KARANAS.filter((k) => k.type === 'sthira'); // 4
+const STHIRA_KARANAS = KARANAS.filter((k) => k.type !== 'chara'); // 3 sthira + 1 special = 4 fixed
 
 function getKaranaAt(pos: number): { karana: typeof KARANAS[number]; isSthira: boolean } {
   // pos is 0-indexed (0..59)
   if (pos === 0) return { karana: KARANAS[7], isSthira: true };  // Shakuni
   if (pos === 57) return { karana: KARANAS[8], isSthira: true }; // Chatushpada
-  if (pos === 58) return { karana: KARANAS[9], isSthira: true }; // Nagava
+  if (pos === 58) return { karana: KARANAS[9], isSthira: true }; // Naga
   if (pos === 59) return { karana: KARANAS[10], isSthira: true }; // Kimstughna
   // Positions 1..56 => 7 chara cycle
   const charaIdx = (pos - 1) % 7;
@@ -438,7 +438,7 @@ export default function KaranaPage() {
   const [selectedKarana, setSelectedKarana] = useState<number | null>(null);
 
   const chara = KARANAS.filter((k) => k.type === 'chara');
-  const sthira = KARANAS.filter((k) => k.type === 'sthira');
+  const sthira = KARANAS.filter((k) => k.type !== 'chara');
 
   const handleSelectSlot = (pos: number) => {
     setSelectedKarana(pos === selectedKarana ? null : pos);
@@ -472,7 +472,7 @@ export default function KaranaPage() {
           <div className="mt-8 prose prose-invert max-w-none text-text-secondary">
             <p className="text-lg leading-relaxed">
               {locale === 'en'
-                ? `A Karana is half a Tithi, i.e., the time for the Moon to gain 6° over the Sun. There are 60 Karanas in a full lunar month (30 Tithis x 2). However, only 11 distinct Karanas exist: 7 "Chara" (movable) Karanas that cycle repeatedly through positions 2-58, and 4 "Sthira" (fixed) Karanas that appear only once each — Shakuni at position 1 (first half of Shukla Pratipada), and Chatushpada, Nagava, and Kimstughna occupying the last three positions (58-60). The Chara Karanas (Bava through Vishti) repeat 8 times across the month.`
+                ? `A Karana is half a Tithi, i.e., the time for the Moon to gain 6° over the Sun. There are 60 Karanas in a full lunar month (30 Tithis x 2). However, only 11 distinct Karanas exist: 7 "Chara" (movable) Karanas that cycle repeatedly through positions 2-58, and 4 "Sthira" (fixed) Karanas that appear only once each — Kimstughna at position 1 (first half of Shukla Pratipada), and Shakuni, Chatushpada, and Naga occupying the last three positions (58-60). The Chara Karanas (Bava through Vishti) repeat 8 times across the month.`
                 : msg('karanaDescription', locale)}
             </p>
             <motion.div

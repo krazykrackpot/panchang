@@ -10,10 +10,13 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'marriage',
     label: { en: 'Marriage (Vivah)', hi: 'विवाह', sa: 'विवाहः' },
     goodTithis: [2, 3, 5, 7, 10, 11, 13],
-    goodNakshatras: [3, 4, 6, 7, 8, 11, 12, 13, 14, 20, 21, 22, 25, 27],
+    // Per Muhurta Chintamani: Rohini, Mrigashira, Punarvasu, Pushya, U.Phalguni, Hasta,
+    // Chitra, Swati, Anuradha, U.Ashadha, Shravana, Dhanishtha, U.Bhadrapada, Revati
+    goodNakshatras: [4, 5, 7, 8, 12, 13, 14, 15, 17, 21, 22, 23, 26, 27],
     goodWeekdays: [1, 3, 4, 5],
     avoidTithis: [4, 8, 9, 14, 15, 30],
-    avoidNakshatras: [1, 5, 9, 15, 16, 17, 18, 19, 23, 24, 26],
+    // Avoid: Ashwini, Ardra, Ashlesha, Vishakha, Jyeshtha, Mula, P.Ashadha, Shatabhisha, P.Bhadrapada
+    avoidNakshatras: [1, 6, 9, 16, 18, 19, 20, 24, 25],
     goodHoras: [5, 4, 1], // Venus, Jupiter, Moon
     relevantHouses: [2, 7, 11],
   },

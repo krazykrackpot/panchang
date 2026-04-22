@@ -338,14 +338,14 @@ describe('getAyanamsa', () => {
     const lahiri = getAyanamsa(J2000_JD, 'lahiri');
     const kp = getAyanamsa(J2000_JD, 'krishnamurti');
     expect(kp).toBeLessThan(lahiri);
-    expect(kp).toBeCloseTo(23.743, 1);
+    expect(kp).toBeCloseTo(23.76, 1);
   });
 
   it('should return Raman ayanamsa less than Lahiri', () => {
     const lahiri = getAyanamsa(J2000_JD, 'lahiri');
     const raman = getAyanamsa(J2000_JD, 'raman');
     expect(raman).toBeLessThan(lahiri);
-    expect(raman).toBeCloseTo(22.46, 1);
+    expect(raman).toBeCloseTo(22.38, 1);
   });
 
   it('should increase over time (precession advances)', () => {

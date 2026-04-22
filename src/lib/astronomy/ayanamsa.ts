@@ -16,22 +16,20 @@ export function getAyanamsa(jd: number, type: AyanamsaType = 'lahiri'): number {
 
   switch (type) {
     case 'lahiri': {
-      // Lahiri (Chitrapaksha) Ayanamsa
-      // Based on the position of Spica (Chitra) at 180° sidereal
-      // Reference: Indian Astronomical Ephemeris standard
+      // Lahiri (Chitrapaksha) Ayanamsa — IAE standard
+      // Constants aligned with ephem/astronomical.ts (±1 arcsecond for 1900-2100)
       const t = (jd - 2451545.0) / 36525.0;
-      return 23.853765 + 1.3970294 * t + 0.0001722 * t * t;
+      return 23.85306 + 1.39722 * t + 0.00018 * t * t - 0.000005 * t * t * t;
     }
     case 'krishnamurti': {
-      // KP (Krishnamurti Paddhati) Ayanamsa
-      // Slightly different from Lahiri
+      // KP (Krishnamurti Paddhati) Ayanamsa — ~6 arcmin offset from Lahiri
       const t = (jd - 2451545.0) / 36525.0;
-      return 23.743056 + 1.3970294 * t + 0.0001722 * t * t;
+      return 23.76056 + 1.39722 * t + 0.00018 * t * t;
     }
     case 'raman': {
       // BV Raman Ayanamsa
       const t = (jd - 2451545.0) / 36525.0;
-      return 22.460148 + 1.3870286 * t;
+      return 22.37778 + 1.38250 * t + 0.00015 * t * t;
     }
     default:
       return getAyanamsa(jd, 'lahiri');

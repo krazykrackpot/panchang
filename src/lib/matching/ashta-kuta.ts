@@ -21,6 +21,7 @@ import type { LocaleText,} from '@/types/panchang';
 export interface MatchInput {
   moonNakshatra: number; // 1-27
   moonRashi: number;     // 1-12
+  moonPada?: number;     // 1-4 (optional, for N4 same-pada override)
 }
 
 export interface KutaResult {
@@ -37,8 +38,9 @@ export interface MatchResult {
   verdict: 'excellent' | 'good' | 'average' | 'below_average' | 'not_recommended';
   verdictText: LocaleText;
   kutas: KutaResult[];
-  manglikWarning?: LocaleText;
   nadiDoshaPresent: boolean;
+  /** N4 override: same nadi but same nakshatra+pada = genetically favorable, dosha cancelled */
+  nadiDoshaCancelled?: boolean;
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -61,10 +63,10 @@ function computeVarna(boy: MatchInput, girl: MatchInput): number {
 // Each rashi has a vashya group. Compatible pairs get points.
 // Groups: Chatushpada(0), Manava(1), Jalachara(2), Vanachara(3), Keeta(4)
 
-// Chatushpada(0)=Aries,Taurus,Leo,Sagittarius  Manava(1)=Gemini,Virgo,Libra
-// Jalachara(2)=Cancer,Pisces  Vanachara(3)=Capricorn,Aquarius  Keeta(4)=Scorpio
-// Source: BPHS, Muhurta Chintamani
-const RASHI_VASHYA = [0, 0, 1, 2, 0, 1, 1, 4, 0, 3, 3, 2]; // Aries..Pisces
+// Chatushpada(0)=Aries,Taurus,Sagittarius  Manava(1)=Gemini,Virgo,Libra,Aquarius
+// Jalachara(2)=Cancer,Pisces  Vanachara(3)=Leo,Capricorn  Keeta(4)=Scorpio
+// Source: Muhurta Chintamani — Leo is Vanachara (wild/forest), Aquarius is Manava (human)
+const RASHI_VASHYA = [0, 0, 1, 2, 3, 1, 1, 4, 0, 3, 1, 2]; // Aries..Pisces
 
 // Compatibility matrix: [boy][girl] => points
 function computeVashya(boy: MatchInput, girl: MatchInput): number {
@@ -143,10 +145,10 @@ function computeTara(boy: MatchInput, girl: MatchInput): number {
 const NAKSHATRA_YONI = [0, 1, 2, 3, 3, 4, 5, 2, 5, 6, 6, 7, 8, 9, 8, 9, 10, 10, 4, 11, 12, 11, 13, 0, 13, 7, 1];
 
 // Enemy pairs (bitter enemies get 0)
+// 7 classical enemy pairs — each animal has exactly one sworn enemy
 const YONI_ENEMIES: [number, number][] = [
   [0, 8],  // Horse-Buffalo
   [1, 13], // Elephant-Lion
-  [2, 12], // Sheep-Mongoose
   [3, 12], // Snake-Mongoose
   [4, 10], // Dog-Deer
   [5, 6],  // Cat-Rat
@@ -158,14 +160,15 @@ function computeYoni(boy: MatchInput, girl: MatchInput): number {
   const by = NAKSHATRA_YONI[boy.moonNakshatra - 1];
   const gy = NAKSHATRA_YONI[girl.moonNakshatra - 1];
 
-  if (by === gy) return 4;
+  if (by === gy) return 4; // Same animal
 
-  // Check enemy pairs
+  // Check enemy pairs (0 points)
   for (const [a, b] of YONI_ENEMIES) {
     if ((by === a && gy === b) || (by === b && gy === a)) return 0;
   }
 
-  // Neutral/friendly
+  // Classical Yoni Kuta: all non-same, non-enemy pairs score 2 (neutral)
+  // Per Muhurta Chintamani — no intermediate "friendly" tier in the classical system
   return 2;
 }
 
@@ -179,13 +182,15 @@ const RASHI_LORD = [2, 5, 3, 1, 0, 3, 5, 2, 4, 6, 6, 4]; // planet IDs: 0=Sun,1=
 
 // Planetary friendship: 0=enemy, 1=neutral, 2=friend
 const GRAHA_MAITRI: Record<number, Record<number, number>> = {
-  0: { 0: 2, 1: 2, 2: 2, 3: 1, 4: 2, 5: 0, 6: 0 }, // Sun
-  1: { 0: 2, 1: 2, 2: 1, 3: 2, 4: 1, 5: 1, 6: 1 }, // Moon
-  2: { 0: 2, 1: 2, 2: 2, 3: 0, 4: 2, 5: 1, 6: 1 }, // Mars
-  3: { 0: 2, 1: 1, 2: 1, 3: 2, 4: 1, 5: 2, 6: 1 }, // Mercury
-  4: { 0: 2, 1: 2, 2: 2, 3: 0, 4: 2, 5: 0, 6: 1 }, // Jupiter
-  5: { 0: 0, 1: 1, 2: 1, 3: 2, 4: 1, 5: 2, 6: 2 }, // Venus
-  6: { 0: 0, 1: 1, 2: 1, 3: 2, 4: 1, 5: 2, 6: 2 }, // Saturn
+  // Natural Friendship table per BPHS Ch.3 (Naisargika Maitri)
+  // 0=enemy, 1=neutral, 2=friend. Verified against shadbala.ts NAT_FRIENDS/NAT_ENEMIES.
+  0: { 0: 2, 1: 2, 2: 2, 3: 1, 4: 2, 5: 0, 6: 0 }, // Sun: friends=Moon,Mars,Jup; neutral=Merc; enemies=Ven,Sat
+  1: { 0: 2, 1: 2, 2: 1, 3: 2, 4: 1, 5: 1, 6: 1 }, // Moon: friends=Sun,Merc; neutral=Mars,Jup,Ven,Sat; enemies=none
+  2: { 0: 2, 1: 2, 2: 2, 3: 0, 4: 2, 5: 1, 6: 1 }, // Mars: friends=Sun,Moon,Jup; neutral=Ven,Sat; enemies=Merc
+  3: { 0: 2, 1: 0, 2: 1, 3: 2, 4: 1, 5: 2, 6: 1 }, // Mercury: friends=Sun,Ven; neutral=Mars,Jup,Sat; enemies=Moon
+  4: { 0: 2, 1: 2, 2: 2, 3: 0, 4: 2, 5: 0, 6: 1 }, // Jupiter: friends=Sun,Moon,Mars; neutral=Sat; enemies=Merc,Ven
+  5: { 0: 0, 1: 0, 2: 1, 3: 2, 4: 1, 5: 2, 6: 2 }, // Venus: friends=Merc,Sat; neutral=Mars,Jup; enemies=Sun,Moon
+  6: { 0: 0, 1: 0, 2: 0, 3: 2, 4: 1, 5: 2, 6: 2 }, // Saturn: friends=Merc,Ven; neutral=Jup; enemies=Sun,Moon,Mars
 };
 
 function computeGrahaMaitri(boy: MatchInput, girl: MatchInput): number {
@@ -270,10 +275,22 @@ const NAKSHATRA_NADI = [
   0, 1, 2, // P.Bhadrapada=Aadi, U.Bhadrapada=Madhya, Revati=Antya
 ];
 
-function computeNadi(boy: MatchInput, girl: MatchInput): number {
+export function computeNadi(boy: MatchInput, girl: MatchInput): number {
   const bn = NAKSHATRA_NADI[boy.moonNakshatra - 1];
   const gn = NAKSHATRA_NADI[girl.moonNakshatra - 1];
-  return bn === gn ? 0 : 8;
+
+  if (bn !== gn) return 8; // Different nadi — no dosha
+
+  // N4: same nakshatra + same pada = complete override (genetically favorable)
+  if (
+    boy.moonNakshatra === girl.moonNakshatra &&
+    boy.moonPada !== undefined && girl.moonPada !== undefined &&
+    boy.moonPada === girl.moonPada
+  ) {
+    return 8; // Dosha fully cancelled
+  }
+
+  return 0; // Nadi Dosha present
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -336,6 +353,10 @@ export function computeAshtaKuta(boy: MatchInput, girl: MatchInput): MatchResult
   const percentage = Math.round((totalScore / 36) * 100);
   const nadiDoshaPresent = kutas[7].scored === 0;
 
+  // N4 override detection: same nadi (same zigzag group) but scored 8 = same nak + same pada
+  const sameNadi = NAKSHATRA_NADI[boy.moonNakshatra - 1] === NAKSHATRA_NADI[girl.moonNakshatra - 1];
+  const nadiDoshaCancelled = sameNadi && kutas[7].scored === 8;
+
   let verdict: MatchResult['verdict'];
   let verdictText: LocaleText;
 
@@ -364,5 +385,6 @@ export function computeAshtaKuta(boy: MatchInput, girl: MatchInput): MatchResult
     verdictText,
     kutas,
     nadiDoshaPresent,
+    nadiDoshaCancelled: nadiDoshaCancelled || undefined,
   };
 }

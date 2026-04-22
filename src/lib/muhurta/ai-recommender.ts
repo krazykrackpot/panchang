@@ -32,13 +32,20 @@ export function scorePanchangFactors(
   let score = 0;
   const factors: LocaleText[] = [];
 
-  // Tithi match: +8
-  if (rules.goodTithis.includes(snap.tithi)) {
+  // Normalize tithi to paksha-relative (1-15) for rule matching
+  // Tithi 1-15 = Shukla, 16-30 = Krishna. Rules use 1-15 names.
+  const pakshaRelTithi = snap.tithi > 15 ? snap.tithi - 15 : snap.tithi;
+  const isKrishnaPaksha = snap.tithi > 15;
+
+  // Tithi match: +8 (Shukla tithis favored; Krishna generally less auspicious)
+  if (rules.goodTithis.includes(pakshaRelTithi) && !isKrishnaPaksha) {
     score += 8;
     factors.push({ en: 'Auspicious Tithi', hi: 'शुभ तिथि', sa: 'शुभतिथिः' });
+  } else if (rules.goodTithis.includes(pakshaRelTithi) && isKrishnaPaksha) {
+    score += 3; // Krishna variant of a good tithi — reduced benefit
   }
-  // Avoid tithi: -5
-  if (rules.avoidTithis.includes(snap.tithi)) {
+  // Avoid tithi: -5 (applies to both pakshas)
+  if (rules.avoidTithis.includes(pakshaRelTithi)) {
     score -= 5;
     factors.push({ en: 'Inauspicious Tithi', hi: 'अशुभ तिथि', sa: 'अशुभतिथिः' });
   }
@@ -53,9 +60,15 @@ export function scorePanchangFactors(
     factors.push({ en: 'Inauspicious Nakshatra', hi: 'अशुभ नक्षत्र', sa: 'अशुभनक्षत्रम्' });
   }
 
-  // Yoga auspicious (1-15 are generally auspicious): +4
-  if (snap.yoga >= 1 && snap.yoga <= 15) {
+  // Yoga: check against specific inauspicious yogas per Brihat Samhita
+  // Inauspicious: Vishkambha(1), Atiganda(6), Shula(9), Ganda(10), Vyaghata(13), Vajra(15),
+  //               Vyatipata(17), Parigha(19), Vaidhriti(27)
+  const INAUSPICIOUS_YOGAS = new Set([1, 6, 9, 10, 13, 15, 17, 19, 27]);
+  if (!INAUSPICIOUS_YOGAS.has(snap.yoga)) {
     score += 4;
+  } else {
+    score -= 3;
+    factors.push({ en: 'Inauspicious Yoga', hi: 'अशुभ योग', sa: 'अशुभयोगः' });
   }
 
   // Good weekday: +3
@@ -64,9 +77,12 @@ export function scorePanchangFactors(
     factors.push({ en: 'Favorable weekday', hi: 'अनुकूल वार', sa: 'अनुकूलवारः' });
   }
 
-  // Karana favorable (chara karanas 1-7): +2
-  if (snap.karana >= 1 && snap.karana <= 7) {
+  // Karana favorable (chara karanas 1-6): +2. Vishti/Bhadra (7) is most inauspicious.
+  if (snap.karana >= 1 && snap.karana <= 6) {
     score += 2;
+  } else if (snap.karana === 7) {
+    score -= 5;
+    factors.push({ en: 'Vishti (Bhadra) Karana — inauspicious', hi: 'विष्टि (भद्रा) करण — अशुभ', sa: 'विष्टिकरणम् — अशुभम्' });
   }
 
   return { score: Math.max(0, Math.min(25, score)), factors };
@@ -135,8 +151,8 @@ export function scoreTransitFactors(
       score += 8;
       factors.push({ en: 'Moon in Pushkar Navamsha — supremely auspicious', hi: 'चन्द्र पुष्कर नवांश में — अत्यंत शुभ', sa: 'चन्द्रः पुष्करनवांशे — अत्यन्तशुभम्' });
     }
-    // Pushkar Bhaga — one sacred degree per sign
-    const PUSHKAR_BHAGA: Record<number, number> = { 1:14, 2:28, 3:7, 4:12, 5:13, 6:23, 7:8, 8:18, 9:9, 10:22, 11:17, 12:17 };
+    // Pushkar Bhaga — one sacred degree per sign (Kalaprakashika)
+    const PUSHKAR_BHAGA: Record<number, number> = { 1:21, 2:14, 3:18, 4:8, 5:19, 6:9, 7:24, 8:11, 9:23, 10:14, 11:19, 12:9 };
     const pb = PUSHKAR_BHAGA[moonSign];
     if (pb !== undefined && Math.abs(degInSign - pb) <= 0.8) {
       score += 10;
@@ -186,7 +202,8 @@ export function scoreTimingFactors(
 
   // Choghadiya check (simplified — amrit/shubh/labh are good)
   const CHOG_TYPES = ['udveg', 'char', 'labh', 'amrit', 'kaal', 'shubh', 'rog'];
-  const CHOG_DAY_START = [0, 4, 1, 5, 2, 6, 3];
+  // Must match panchang-calc.ts: Sun=Udveg(0), Mon=Amrit(3), Tue=Rog(6), Wed=Labh(2), Thu=Shubh(5), Fri=Char(1), Sat=Kaal(4)
+  const CHOG_DAY_START = [0, 3, 6, 2, 5, 1, 4];
   const daySlotDuration = dayDuration / 8;
   if (isDay) {
     const slotIdx = Math.floor((localHour - sunriseUT) / daySlotDuration);

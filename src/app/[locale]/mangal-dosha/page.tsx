@@ -7,7 +7,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import type { Locale, LocaleText } from '@/types/panchang';
-import type { KundaliData, PlanetPosition } from '@/types/kundali';
+import type { KundaliData } from '@/types/kundali';
+import { analyzeMangalDosha as engineAnalyze, type MangalDoshaResult } from '@/lib/kundali/mangal-dosha-engine';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import LocationSearch from '@/components/ui/LocationSearch';
@@ -56,8 +57,6 @@ const t = (label: LocaleText, locale: Locale): string => tl(label, locale);
 // Mangal Dosha analysis logic (client-side)
 // ---------------------------------------------------------------------------
 
-const MANGAL_HOUSES = [1, 2, 4, 7, 8, 12];
-
 const HOUSE_EFFECTS: Record<number, LocaleText> = {
   1: L('Self, personality, health — aggressive temperament, frequent conflicts', 'आत्मा, व्यक्तित्व, स्वास्थ्य — आक्रामक स्वभाव, बार-बार संघर्ष', 'आत्मा, व्यक्तित्वम्, स्वास्थ्यम् — आक्रामकस्वभावः'),
   2: L('Family, wealth, speech — harsh speech, family disputes, financial instability', 'परिवार, धन, वाणी — कठोर वाणी, पारिवारिक विवाद, आर्थिक अस्थिरता', 'कुटुम्बम्, धनम्, वाक् — कठोरवाणी, कुटुम्बकलहः'),
@@ -67,94 +66,9 @@ const HOUSE_EFFECTS: Record<number, LocaleText> = {
   12: L('Expenditure, bed pleasures, foreign lands — excessive spending, marital dissatisfaction', 'व्यय, शयन सुख, विदेश — अत्यधिक खर्च, वैवाहिक असन्तोष', 'व्ययः, शयनसुखम् — अत्यधिकव्ययः, वैवाहिकासन्तोषः'),
 };
 
-const CANCELLATION_CONDITIONS: { check: (mars: PlanetPosition, planets: PlanetPosition[], ascSign: number) => boolean; label: LocaleText }[] = [
-  {
-    check: (mars) => mars.isOwnSign,
-    label: L('Mars in own sign (Aries or Scorpio) — energy is well-directed', 'मंगल अपनी राशि (मेष या वृश्चिक) में — ऊर्जा सही दिशा में', 'कुजः स्वराशौ (मेषे वृश्चिके वा) — ऊर्जा सम्यक्निर्दिष्टा'),
-  },
-  {
-    check: (mars) => mars.isExalted,
-    label: L('Mars exalted in Capricorn — dosha is greatly reduced', 'मंगल मकर में उच्च — दोष काफी कम', 'कुजः मकरे उच्चस्थः — दोषः महत्त्वपूर्णतया न्यूनः'),
-  },
-  {
-    check: (mars, planets) => {
-      const jupiter = planets.find(p => p.planet.id === 5);
-      if (!jupiter) return false;
-      // Jupiter aspects mars (7th, 5th, 9th from jupiter)
-      const diff = ((mars.house - jupiter.house + 12) % 12);
-      return diff === 6 || diff === 4 || diff === 8 || mars.house === jupiter.house;
-    },
-    label: L('Mars aspected by or conjunct Jupiter — benefic influence neutralizes aggression', 'मंगल पर गुरु की दृष्टि या युति — शुभ प्रभाव आक्रामकता को शान्त करता है', 'गुरोः दृष्ट्या युत्या वा कुजः — शुभप्रभावः आक्रामकतां शमयति'),
-  },
-  {
-    check: (mars) => mars.sign === 4 || mars.sign === 1, // Cancer (debilitated actually is wrong sign here) or Aries
-    label: L('Mars in a friendly or own sign reduces severity', 'मंगल मित्र या स्वराशि में — गम्भीरता कम', 'कुजः मित्रस्वराशौ — गम्भीरता न्यूना'),
-  },
-];
-
-interface MangalDoshaResult {
-  present: boolean;
-  fromLagna: number | null;
-  fromMoon: number | null;
-  fromVenus: number | null;
-  severity: 'mild' | 'moderate' | 'severe';
-  affectedHouses: number[];
-  cancellations: string[];
-  marsHouse: number;
-  marsSign: number;
-}
-
-function analyzeMangalDosha(kundali: KundaliData, locale: Locale): MangalDoshaResult {
-  const mars = kundali.planets.find(p => p.planet.id === 3);
-  const moon = kundali.planets.find(p => p.planet.id === 1);
-  const venus = kundali.planets.find(p => p.planet.id === 5);
-  const ascSign = kundali.ascendant.sign;
-
-  if (!mars || !moon || !venus) {
-    return { present: false, fromLagna: null, fromMoon: null, fromVenus: null, severity: 'mild', affectedHouses: [], cancellations: [], marsHouse: 0, marsSign: 0 };
-  }
-
-  // Calculate house from reference point
-  const houseFrom = (refSign: number, planetSign: number) => ((planetSign - refSign + 12) % 12) + 1;
-
-  const fromLagna = houseFrom(ascSign, mars.sign);
-  const fromMoon = houseFrom(moon.sign, mars.sign);
-  const fromVenus = houseFrom(venus.sign, mars.sign);
-
-  const lagnaDosha = MANGAL_HOUSES.includes(fromLagna);
-  const moonDosha = MANGAL_HOUSES.includes(fromMoon);
-  const venusDosha = MANGAL_HOUSES.includes(fromVenus);
-
-  const present = lagnaDosha || moonDosha || venusDosha;
-
-  const affectedHouses: number[] = [];
-  if (lagnaDosha) affectedHouses.push(fromLagna);
-  if (moonDosha && !affectedHouses.includes(fromMoon)) affectedHouses.push(fromMoon);
-  if (venusDosha && !affectedHouses.includes(fromVenus)) affectedHouses.push(fromVenus);
-
-  // Count how many references trigger dosha
-  const count = [lagnaDosha, moonDosha, venusDosha].filter(Boolean).length;
-  const severity: 'mild' | 'moderate' | 'severe' = count >= 3 ? 'severe' : count === 2 ? 'moderate' : 'mild';
-
-  // Check cancellations
-  const cancellations: string[] = [];
-  for (const cond of CANCELLATION_CONDITIONS) {
-    if (cond.check(mars, kundali.planets, ascSign)) {
-      cancellations.push(t(cond.label, locale));
-    }
-  }
-
-  return {
-    present,
-    fromLagna: lagnaDosha ? fromLagna : null,
-    fromMoon: moonDosha ? fromMoon : null,
-    fromVenus: venusDosha ? fromVenus : null,
-    severity,
-    affectedHouses,
-    cancellations,
-    marsHouse: mars.house,
-    marsSign: mars.sign,
-  };
+/** Delegate to shared engine — fixes the critical planet.id===3 (Mercury) bug */
+function analyzeChart(kundali: KundaliData): MangalDoshaResult {
+  return engineAnalyze(kundali.planets, kundali.ascendant.sign);
 }
 
 // ---------------------------------------------------------------------------
@@ -212,7 +126,7 @@ export default function MangalDoshaPage() {
       });
       if (!res.ok) throw new Error('API error');
       const kundali: KundaliData = await res.json();
-      const analysis = analyzeMangalDosha(kundali, locale);
+      const analysis = analyzeChart(kundali);
       setResult(analysis);
     } catch {
       setError(t(LABELS.error, locale));
@@ -306,8 +220,8 @@ export default function MangalDoshaPage() {
               {result.present && (
                 <div className="flex items-center justify-center gap-3 mt-3">
                   <span className="text-text-secondary text-sm" style={bodyFont}>{t(LABELS.severity, locale)}:</span>
-                  <span className={`px-3 py-1 rounded-full text-sm font-bold border ${severityBg(result.severity)} ${severityColor(result.severity)} ${severityBorder(result.severity)}`} style={bodyFont}>
-                    {result.severity === 'severe' ? t(LABELS.severe, locale) : result.severity === 'moderate' ? t(LABELS.moderate, locale) : t(LABELS.mild, locale)}
+                  <span className={`px-3 py-1 rounded-full text-sm font-bold border ${severityBg(result.effectiveSeverity)} ${severityColor(result.effectiveSeverity)} ${severityBorder(result.effectiveSeverity)}`} style={bodyFont}>
+                    {result.effectiveSeverity === 'severe' ? t(LABELS.severe, locale) : result.effectiveSeverity === 'moderate' ? t(LABELS.moderate, locale) : t(LABELS.mild, locale)}
                   </span>
                 </div>
               )}
@@ -319,22 +233,22 @@ export default function MangalDoshaPage() {
                 <div className="bg-bg-secondary/60 rounded-2xl border border-gold-dark/20 p-6 mb-6">
                   <h2 className="text-xl font-bold text-gold-light mb-4" style={headingFont}>{t(L('Mars Placement', 'मंगल स्थिति', 'कुजस्थितिः'), locale)}</h2>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    {result.fromLagna !== null && (
+                    {result.fromLagna && (
                       <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4 text-center">
-                        <div className="text-2xl font-bold text-red-400">{result.fromLagna}</div>
-                        <div className="text-text-secondary text-sm" style={bodyFont}>{t(LABELS.marsIn, locale)} {result.fromLagna} {t(LABELS.fromLagna, locale)}</div>
+                        <div className="text-2xl font-bold text-red-400">{result.marsHouse}</div>
+                        <div className="text-text-secondary text-sm" style={bodyFont}>{t(LABELS.marsIn, locale)} {result.marsHouse} {t(LABELS.fromLagna, locale)}</div>
                       </div>
                     )}
-                    {result.fromMoon !== null && (
+                    {result.fromMoon && (
                       <div className="bg-orange-500/10 border border-orange-500/20 rounded-xl p-4 text-center">
-                        <div className="text-2xl font-bold text-orange-400">{result.fromMoon}</div>
-                        <div className="text-text-secondary text-sm" style={bodyFont}>{t(LABELS.marsIn, locale)} {result.fromMoon} {t(LABELS.fromMoon, locale)}</div>
+                        <div className="text-2xl font-bold text-orange-400">{result.marsHouse}</div>
+                        <div className="text-text-secondary text-sm" style={bodyFont}>{t(LABELS.marsIn, locale)} {result.marsHouse} {t(LABELS.fromMoon, locale)}</div>
                       </div>
                     )}
-                    {result.fromVenus !== null && (
+                    {result.fromVenus && (
                       <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 text-center">
-                        <div className="text-2xl font-bold text-amber-400">{result.fromVenus}</div>
-                        <div className="text-text-secondary text-sm" style={bodyFont}>{t(LABELS.marsIn, locale)} {result.fromVenus} {t(LABELS.fromVenus, locale)}</div>
+                        <div className="text-2xl font-bold text-amber-400">{result.marsHouse}</div>
+                        <div className="text-text-secondary text-sm" style={bodyFont}>{t(LABELS.marsIn, locale)} {result.marsHouse} {t(LABELS.fromVenus, locale)}</div>
                       </div>
                     )}
                   </div>
@@ -361,7 +275,7 @@ export default function MangalDoshaPage() {
                       {result.cancellations.map((c, i) => (
                         <li key={i} className="flex items-start gap-2">
                           <span className="text-emerald-400 mt-0.5">&#10003;</span>
-                          <span className="text-text-primary text-sm" style={bodyFont}>{c}</span>
+                          <span className="text-text-primary text-sm" style={bodyFont}>{c.description}</span>
                         </li>
                       ))}
                     </ul>

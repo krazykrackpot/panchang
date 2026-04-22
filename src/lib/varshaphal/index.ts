@@ -52,13 +52,12 @@ export function generateVarshaphal(birthData: BirthData, year: number): Varshaph
   const varsheshvara = determineVarsheshvara(srWeekday, varshaphalChart.planets);
 
   // 7. Sahams — use actual sunrise/sunset for day/night determination
-  const srYear = srDate.getFullYear();
-  const srMonth = srDate.getMonth() + 1;
-  const srDay = srDate.getDate();
-  const jdSrNoon = dateToJD(srYear, srMonth, srDay, 12 - tzOffset);
-  const srSunriseUT = approximateSunrise(jdSrNoon, birthData.lat, birthData.lng);
-  const srSunsetUT = approximateSunset(jdSrNoon, birthData.lat, birthData.lng);
-  const srHourUT = srDate.getHours() - tzOffset + srDate.getMinutes() / 60;
+  // Compute UT hour directly from JD to avoid JS Date timezone dependency
+  const srJd = solarReturn.jd;
+  const srDayFrac = srJd + 0.5 - Math.floor(srJd + 0.5); // fractional day in UT
+  const srHourUT = srDayFrac * 24; // hours UT (0-24), timezone-independent
+  const srSunriseUT = approximateSunrise(srJd, birthData.lat, birthData.lng);
+  const srSunsetUT = approximateSunset(srJd, birthData.lat, birthData.lng);
   const isDayBirth = srHourUT >= srSunriseUT && srHourUT < srSunsetUT;
   const sahams = calculateSahams(
     varshaphalChart.ascendant.degree,

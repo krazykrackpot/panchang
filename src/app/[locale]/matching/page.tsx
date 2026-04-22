@@ -406,6 +406,26 @@ export default function MatchingPage() {
               </motion.div>
             )}
 
+            {/* Nadi Dosha Cancelled (N4: same nakshatra + same pada) */}
+            {result.nadiDoshaCancelled && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border-2 border-emerald-500/30 rounded-xl p-5 mb-8 text-center"
+              >
+                <div className="text-emerald-400 font-bold text-lg mb-1" style={headingFont}>
+                  {locale === 'hi' ? 'नाड़ी दोष निरस्त' : locale === 'ta' ? 'நாடி தோஷம் நீக்கப்பட்டது' : 'Nadi Dosha Cancelled'}
+                </div>
+                <div className="text-text-secondary text-sm">
+                  {locale === 'hi'
+                    ? 'समान नक्षत्र और पाद — आनुवंशिक अनुकूलता। नाड़ी दोष पूर्णतया निरस्त। यह शुभ संकेत है।'
+                    : locale === 'ta'
+                      ? 'ஒரே நட்சத்திரம் மற்றும் பாதம் — மரபணு இணக்கம். நாடி தோஷம் முற்றிலும் நீக்கப்பட்டது.'
+                      : 'Same nakshatra and pada indicates genetic compatibility. Nadi Dosha is fully cancelled — this is a positive indicator.'}
+                </div>
+              </motion.div>
+            )}
+
             {/* Ashta Kuta Intro */}
             <InfoBlock
               id="matching-ashta-kuta"

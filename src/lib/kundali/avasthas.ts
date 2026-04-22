@@ -125,11 +125,11 @@ function getDeeptadi(p: PlanetPosition, allPlanets: PlanetPosition[]): { state: 
       Math.abs(p.longitude - other.longitude) < 1
     );
     if (warRival) {
-      // The loser in war = the planet with less latitude (lower ecliptic latitude loses)
-      // If latitudes are equal, the planet with less longitude loses (comes first)
+      // The loser in war = the planet farther from the ecliptic (higher absolute latitude)
+      // per BPHS Ch.28. If equal, the planet with less longitude loses.
       const isLoser =
-        p.latitude < warRival.latitude ||
-        (p.latitude === warRival.latitude && p.longitude < warRival.longitude);
+        Math.abs(p.latitude) > Math.abs(warRival.latitude) ||
+        (Math.abs(p.latitude) === Math.abs(warRival.latitude) && p.longitude < warRival.longitude);
       if (isLoser) return { state: 'khala', ...DEEPTADI_NAMES.khala };
       // The winner stays at its dignity-based state — fall through to sign check
     }

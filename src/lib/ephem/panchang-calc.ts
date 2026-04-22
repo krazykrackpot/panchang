@@ -225,8 +225,11 @@ const CHOGHADIYA_NATURE: Record<string, 'auspicious' | 'inauspicious' | 'neutral
 };
 
 // Day choghadiya starting index per weekday (Sun=0 through Sat=6)
-const DAY_CHOGHADIYA_START = [0, 4, 1, 5, 2, 6, 3]; // Sun=Udveg, Mon=Amrit, Tue=Rog, ...
-const NIGHT_CHOGHADIYA_START = [4, 1, 5, 2, 6, 3, 0]; // Night starts from 5th element after day start
+// CHOGHADIYA_TYPES = ['udveg'(0), 'char'(1), 'labh'(2), 'amrit'(3), 'kaal'(4), 'shubh'(5), 'rog'(6)]
+// Classical: Sun=Udveg, Mon=Amrit, Tue=Rog, Wed=Labh, Thu=Shubh, Fri=Char, Sat=Kaal
+const DAY_CHOGHADIYA_START = [0, 3, 6, 2, 5, 1, 4];
+// Night: Sun=Shubh, Mon=Kaal, Tue=Udveg, Wed=Amrit, Thu=Rog, Fri=Labh, Sat=Char
+const NIGHT_CHOGHADIYA_START = [5, 4, 0, 3, 6, 2, 1];
 
 function computeChoghadiya(sunriseUT: number, sunsetUT: number, weekday: number, tzOffset: number): ChoghadiyaSlot[] {
   const dayDuration = sunsetUT - sunriseUT;
@@ -905,13 +908,11 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // Yamaganda (inauspicious period, similar 1/8-day segment structure to Rahu Kaal)
   //
   // Traditional order from Dharma Sindhu / Muhurta Chintamani:
-  //   Sun=5, Mon=4, Tue=3, Wed=7, Thu=2, Fri=1, Sat=6
+  //   Sun=5, Mon=4, Tue=3, Wed=2, Thu=1, Fri=7, Sat=6
   //
   // The segment number is 1-based: segment N occupies
   //   [sunrise + (N-1) * 1/8 day, sunrise + N * 1/8 day].
-  // Descending pattern Sun=5→Thu=1, then Fri=7, Sat=6 (Muhurta Chintamani).
-  // The descending 5→4→3→2→1 pattern from Sunday to Thursday is standard.
-  // Friday/Saturday get segments 7 and 6 respectively.
+  // Descending pattern Sun=5→Thu=1, then Fri=7, Sat=6.
   const yamaOrder = [5, 4, 3, 2, 1, 7, 6]; // Sun Mon Tue Wed Thu Fri Sat
   const yamaDuration = (sunsetUT - sunriseUT) / 8;
   const yamaSegment = yamaOrder[weekday] - 1;
@@ -999,6 +1000,52 @@ export function computePanchang(input: PanchangInput): PanchangData {
     findTithiTransition,
     jdSunrise, tzOffset, TITHIS, 30, timezone,
   );
+
+  // ── Kshaya / Vriddhi tithi detection ──
+  // Kshaya: a tithi that starts and ends entirely within this panchang day (sunrise to next sunrise)
+  // without being active at either sunrise. It appears as an intermediate tithi between the
+  // current tithi and the one that's active at next sunrise.
+  // Vriddhi (Adhika): the current tithi is still active at next sunrise (spans two days).
+  // Compute actual next-day sunrise (not +1.0 approximation) for high-latitude accuracy.
+  // At 60°N near solstice, sunrise-to-sunrise can be 22.5-25.5 hours.
+  const nextDayJdNoon = jdSunrise + 1.0; // scan next day
+  const nextSunriseUT = approximateSunrise(nextDayJdNoon, lat, lng);
+  const nextDayMidnightJd = Math.floor(nextDayJdNoon - 0.5) + 0.5;
+  const jdNextSunrise = nextDayMidnightJd + nextSunriseUT / 24;
+  const tithiAtNextSunrise = calculateTithi(jdNextSunrise).number;
+
+  let kshayaTithi: { tithi: typeof TITHIS[number]; start: string; end: string } | undefined;
+  let vriddhiTithi = false;
+
+  if (tithiAtNextSunrise === tithiResult.number) {
+    // Same tithi at both sunrises = vriddhi (doubled/adhika) tithi
+    vriddhiTithi = true;
+  } else if (tithiTransition?.endJD && tithiTransition.nextNumber !== undefined) {
+    // Check if a SECOND transition occurs before next sunrise (meaning an intermediate tithi was skipped)
+    const intermediateTithi = tithiTransition.nextNumber;
+    // Scan forward from the first transition end to find if the intermediate tithi ends before next sunrise
+    const step = 1 / 48; // ~30 min
+    for (let scanJd = tithiTransition.endJD + step; scanJd < jdNextSunrise; scanJd += step) {
+      const t = calculateTithi(scanJd).number;
+      if (t !== intermediateTithi) {
+        // The intermediate tithi ended before next sunrise — it's a kshaya tithi
+        // Binary search for its exact end time
+        let lo = scanJd - step, hi = scanJd;
+        for (let i = 0; i < 20; i++) {
+          const mid = (lo + hi) / 2;
+          if (calculateTithi(mid).number === intermediateTithi) lo = mid; else hi = mid;
+        }
+        const kshayaEndJd = (lo + hi) / 2;
+        const kshayaData = TITHIS[intermediateTithi - 1] || TITHIS[0];
+        kshayaTithi = {
+          tithi: kshayaData,
+          start: formatTime(jdToDecimalHoursUT(tithiTransition.endJD, jdSunrise), tzOffset),
+          end: formatTime(jdToDecimalHoursUT(kshayaEndJd, jdSunrise), tzOffset),
+        };
+        break;
+      }
+    }
+  }
 
   const nakshatraTransition = computeTransition(
     nakshatraNum,
@@ -1586,6 +1633,8 @@ export function computePanchang(input: PanchangInput): PanchangData {
     date: `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`,
     location: { lat, lng, name: locationName || `${lat.toFixed(2)}°N, ${lng.toFixed(2)}°E` },
     tithi: tithiData,
+    kshayaTithi,
+    vriddhiTithi: vriddhiTithi || undefined,
     nakshatra: nakshatraData,
     yoga: yogaData,
     karana: karanaData,

@@ -72,7 +72,7 @@ export interface VimshopakaBala {
   planetName: string;
   total: number;      // 0-20 scale
   perVarga: { varga: string; sign: number; dignity: number; weight: number; contribution: number }[];
-  category: 'Poorna' | 'Ati-Poorna' | 'Madhya' | 'Alpa' | 'Ati-Alpa';
+  category: 'Poorna' | 'Madhya' | 'Alpa' | 'Ati-Alpa';
 }
 
 export function calculateVimshopakaBala(
@@ -114,7 +114,8 @@ export function calculateVimshopakaBala(
     }
 
     const total = totalWeight > 0 ? Math.round((totalWeightedDignity / totalWeight) * 100) / 100 : 0;
-    const category: VimshopakaBala['category'] = total >= 18 ? 'Poorna' : total >= 15 ? 'Ati-Poorna' : total >= 10 ? 'Madhya' : total >= 5 ? 'Alpa' : 'Ati-Alpa';
+    // BPHS Ch.16 tiers: Poorna (full, >=15), Madhya (medium, 10-15), Alpa (low, 5-10), Ati-Alpa (<5)
+    const category: VimshopakaBala['category'] = total >= 15 ? 'Poorna' : total >= 10 ? 'Madhya' : total >= 5 ? 'Alpa' : 'Ati-Alpa';
 
     results.push({
       planetId: pid,

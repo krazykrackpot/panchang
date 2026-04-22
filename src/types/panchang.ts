@@ -89,6 +89,11 @@ export interface PanchangData {
   date: string;
   location: { lat: number; lng: number; name: string };
   tithi: Tithi;
+  /** Kshaya (skipped) tithi: a tithi that starts and ends entirely within this panchang day
+   *  without being active at either sunrise. It appears between the current and next tithi. */
+  kshayaTithi?: { tithi: Tithi; start: string; end: string };
+  /** Vriddhi (adhika/doubled) tithi: the current tithi is active at both today's and tomorrow's sunrise. */
+  vriddhiTithi?: boolean;
   nakshatra: Nakshatra;
   yoga: Yoga;
   karana: Karana;

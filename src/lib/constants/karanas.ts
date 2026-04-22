@@ -10,6 +10,6 @@ export const KARANAS: Karana[] = [
   { number: 7, name: { en: 'Vishti', hi: 'विष्टि', sa: 'विष्टिः', ta: 'விஷ்டி', te: 'విష్టి', bn: 'বিষ্টি', kn: 'ವಿಷ್ಟಿ', mr: 'विष्टि', gu: 'વિષ્ટિ', mai: 'विष्टि' }, type: 'chara' },
   { number: 8, name: { en: 'Shakuni', hi: 'शकुनि', sa: 'शकुनिः', ta: 'சகுனி', te: 'శకుని', bn: 'শকুনি', kn: 'ಶಕುನಿ', mr: 'शकुनि', gu: 'શકુનિ', mai: 'शकुनि' }, type: 'sthira' },
   { number: 9, name: { en: 'Chatushpada', hi: 'चतुष्पद', sa: 'चतुष्पदः', ta: 'சதுஷ்பதம்', te: 'చతుష్పద', bn: 'চতুষ্পদ', kn: 'ಚತುಷ್ಪದ', mr: 'चतुष्पद', gu: 'ચતુષ્પદ', mai: 'चतुष्पद' }, type: 'sthira' },
-  { number: 10, name: { en: 'Nagava', hi: 'नागव', sa: 'नागवः', ta: 'நாகவம்', te: 'నాగవ', bn: 'নাগব', kn: 'ನಾಗವ', mr: 'नागव', gu: 'નાગવ', mai: 'नागव' }, type: 'sthira' },
-  { number: 11, name: { en: 'Kimstughna', hi: 'किंस्तुघ्न', sa: 'किंस्तुघ्नः', ta: 'கிம்ஸ்துக்னம்', te: 'కింస్తుఘ్న', bn: 'কিংস্তুঘ্ন', kn: 'ಕಿಂಸ್ತುಘ್ನ', mr: 'किंस्तुघ्न', gu: 'કિંસ્તુઘ્ન', mai: 'किंस्तुघ्न' }, type: 'sthira' },
+  { number: 10, name: { en: 'Naga', hi: 'नाग', sa: 'नागः', ta: 'நாகம்', te: 'నాగ', bn: 'নাগ', kn: 'ನಾಗ', mr: 'नाग', gu: 'નાગ', mai: 'नाग' }, type: 'sthira' },
+  { number: 11, name: { en: 'Kimstughna', hi: 'किंस्तुघ्न', sa: 'किंस्तुघ्नः', ta: 'கிம்ஸ்துக்னம்', te: 'కింస్తుఘ్న', bn: 'কিংস্তুঘ্ন', kn: 'ಕಿಂಸ್ತುಘ್ನ', mr: 'किंस्तुघ्न', gu: 'કિંસ્તુઘ્ન', mai: 'किंस्तुघ्न' }, type: 'special' },
 ];

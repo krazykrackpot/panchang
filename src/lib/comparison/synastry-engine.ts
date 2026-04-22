@@ -8,16 +8,16 @@ import type { LocaleText} from '@/types/panchang';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 
-// ─── Planet Natural Friendship ──────────────────────────────────────────────
-// 0=enemy, 1=neutral, 2=friend (from BPHS)
+// ─── Planet Natural Friendship per BPHS Ch.3 (Naisargika Maitri) ────────────
+// 0=enemy, 1=neutral, 2=friend
 const GRAHA_MAITRI: Record<number, Record<number, number>> = {
-  0: { 0: 2, 1: 2, 2: 2, 3: 1, 4: 2, 5: 0, 6: 0 }, // Sun
-  1: { 0: 2, 1: 2, 2: 1, 3: 2, 4: 1, 5: 1, 6: 1 }, // Moon
-  2: { 0: 2, 1: 2, 2: 2, 3: 0, 4: 2, 5: 1, 6: 1 }, // Mars
-  3: { 0: 2, 1: 1, 2: 1, 3: 2, 4: 1, 5: 2, 6: 1 }, // Mercury
-  4: { 0: 2, 1: 2, 2: 2, 3: 0, 4: 2, 5: 0, 6: 1 }, // Jupiter
-  5: { 0: 0, 1: 1, 2: 1, 3: 2, 4: 1, 5: 2, 6: 2 }, // Venus
-  6: { 0: 0, 1: 1, 2: 1, 3: 2, 4: 1, 5: 2, 6: 2 }, // Saturn
+  0: { 0: 2, 1: 2, 2: 2, 3: 1, 4: 2, 5: 0, 6: 0 }, // Sun: friends=Moon,Mars,Jup; neutral=Merc; enemies=Ven,Sat
+  1: { 0: 2, 1: 2, 2: 1, 3: 2, 4: 1, 5: 1, 6: 1 }, // Moon: friends=Sun,Merc; neutral=Mars,Jup,Ven,Sat; enemies=none
+  2: { 0: 2, 1: 2, 2: 2, 3: 0, 4: 2, 5: 1, 6: 1 }, // Mars: friends=Sun,Moon,Jup; neutral=Ven,Sat; enemies=Merc
+  3: { 0: 2, 1: 0, 2: 1, 3: 2, 4: 1, 5: 2, 6: 1 }, // Mercury: friends=Sun,Ven; neutral=Mars,Jup,Sat; enemies=Moon
+  4: { 0: 2, 1: 2, 2: 2, 3: 0, 4: 2, 5: 0, 6: 1 }, // Jupiter: friends=Sun,Moon,Mars; neutral=Sat; enemies=Merc,Ven
+  5: { 0: 0, 1: 0, 2: 1, 3: 2, 4: 1, 5: 2, 6: 2 }, // Venus: friends=Merc,Sat; neutral=Mars,Jup; enemies=Sun,Moon
+  6: { 0: 0, 1: 0, 2: 0, 3: 2, 4: 1, 5: 2, 6: 2 }, // Saturn: friends=Merc,Ven; neutral=Jup; enemies=Sun,Moon,Mars
 };
 
 // Rashi lords: 1=Ari(Mars), 2=Tau(Venus), ... 12=Pis(Jupiter)
@@ -28,9 +28,12 @@ export function getFriendshipLabel(planetA: number, planetB: number): { level: n
   // Rahu(7)/Ketu(8) — use Saturn for friendship
   const a = planetA >= 7 ? 6 : planetA;
   const b = planetB >= 7 ? 6 : planetB;
-  const score = (GRAHA_MAITRI[a]?.[b] ?? 1);
-  if (score === 2) return { level: 2, label: { en: 'Friend', hi: 'मित्र', sa: 'मित्रम्' } };
-  if (score === 1) return { level: 1, label: { en: 'Neutral', hi: 'सम', sa: 'समम्' } };
+  // Average BOTH directions per BPHS Panchadha Maitri (same logic as Ashta Kuta)
+  const scoreAB = GRAHA_MAITRI[a]?.[b] ?? 1;
+  const scoreBA = GRAHA_MAITRI[b]?.[a] ?? 1;
+  const combined = scoreAB + scoreBA; // 4=both friends, 3=friend+neutral, 2=both neutral, 1=neutral+enemy, 0=both enemy
+  if (combined >= 3) return { level: 2, label: { en: 'Friend', hi: 'मित्र', sa: 'मित्रम्' } };
+  if (combined === 2) return { level: 1, label: { en: 'Neutral', hi: 'सम', sa: 'समम्' } };
   return { level: 0, label: { en: 'Enemy', hi: 'शत्रु', sa: 'शत्रुः' } };
 }
 

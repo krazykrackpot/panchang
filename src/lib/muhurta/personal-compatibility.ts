@@ -13,7 +13,7 @@ import type { LocaleText,} from '@/types/panchang';
 
 // Tarabalam — Moon's transit nakshatra counted from birth nakshatra
 const TARA_RESULTS: Record<number, { favorable: boolean; name: LocaleText }> = {
-  1: { favorable: true, name: { en: 'Janma', hi: 'जन्म', sa: 'जन्म' } },
+  1: { favorable: false, name: { en: 'Janma', hi: 'जन्म', sa: 'जन्म' } },
   2: { favorable: true, name: { en: 'Sampat', hi: 'सम्पत्', sa: 'सम्पत्' } },
   3: { favorable: false, name: { en: 'Vipat', hi: 'विपत्', sa: 'विपत्' } },
   4: { favorable: true, name: { en: 'Kshema', hi: 'क्षेम', sa: 'क्षेमः' } },

@@ -12,6 +12,7 @@
 
 import type { KundaliData, PlanetPosition } from '@/types/kundali';
 import type { MatchResult } from './ashta-kuta';
+import { analyzeMangalDoshaForMatching, type MangalDoshaResult } from '@/lib/kundali/mangal-dosha-engine';
 
 // ── Types ────────────────────────────────────────────────────
 
@@ -85,14 +86,6 @@ const PLANET_NAMES: Record<number, string> = {
 // 0=Sun,1=Moon,2=Mars,3=Mercury,4=Jupiter,5=Venus,6=Saturn
 const RASHI_LORD: number[] = [2, 5, 3, 1, 0, 3, 5, 2, 4, 6, 6, 4];
 
-// Manglik houses (from Lagna): 1, 2, 4, 7, 8, 12
-const MANGLIK_HOUSES = [1, 2, 4, 7, 8, 12];
-
-// Mars sign data for own/exalted checks
-// Mars owns Aries (1) and Scorpio (8); exalted in Capricorn (10)
-const MARS_OWN_SIGNS = [1, 8];
-const MARS_EXALTED_SIGN = 10;
-
 // Nadi pattern: traditional zigzag assignment
 // The ashta-kuta.ts already has NAKSHATRA_NADI with the zigzag pattern.
 // We re-derive using the cyclic pattern from the spec, but actually the
@@ -154,79 +147,63 @@ function get7thSign(ascSign: number): number {
   return ((ascSign - 1 + 6) % 12) + 1;
 }
 
-// ── Manglik Analysis ─────────────────────────────────────────
+/**
+ * Navamsha (D-9) sign from ecliptic longitude.
+ * Each sign (30°) is divided into 9 parts of 3°20' each.
+ * Starting navamsha depends on the element of the rashi (fire/earth/air/water).
+ */
+function getNavamshaSign(longitude: number): number {
+  const signIdx = Math.floor(longitude / 30);
+  const degInSign = longitude % 30;
+  const navPart = Math.floor(degInSign / (30 / 9));
+  const navStart = [0, 9, 6, 3][signIdx % 4];
+  return ((navStart + navPart) % 12) + 1;
+}
+
+// ── Manglik Analysis (delegates to shared mangal-dosha-engine) ──
 
 export type ManglikSeverity = 'none' | 'mild' | 'moderate' | 'severe';
 
-function getManglikSeverity(marsHouse: number): ManglikSeverity {
-  if (marsHouse === 7 || marsHouse === 8) return 'severe';
-  if (marsHouse === 4 || marsHouse === 12) return 'moderate';
-  if (marsHouse === 1 || marsHouse === 2) return 'mild';
-  return 'none';
-}
+function analyzeManglikFromEngine(
+  chart1: KundaliData, chart2: KundaliData,
+): DetailedMatchReport['manglikAnalysis'] {
+  const result = analyzeMangalDoshaForMatching(
+    chart1.planets, chart1.ascendant.sign,
+    chart2.planets, chart2.ascendant.sign,
+  );
 
-function analyzeManglik(chart: KundaliData): {
-  hasManglik: boolean;
-  severity: ManglikSeverity;
-  marsHouse: number;
-  marsSign: number;
-} {
-  const marsHouse = getHouseOfPlanet(chart, 2); // Mars = planet id 2
-  const marsSign = getSignOfPlanet(chart, 2);
-  const isManglik = MANGLIK_HOUSES.includes(marsHouse);
-  const severity = isManglik ? getManglikSeverity(marsHouse) : 'none';
-  return { hasManglik: isManglik, severity, marsHouse, marsSign };
-}
+  const mapSeverity = (r: MangalDoshaResult): ManglikSeverity => {
+    if (!r.present) return 'none';
+    const eff = r.effectiveSeverity;
+    if (eff === 'cancelled' || eff === 'none') return 'none';
+    return eff;
+  };
 
-function getManglikCancellations(
-  chart1: KundaliData,
-  chart2: KundaliData,
-  m1: ReturnType<typeof analyzeManglik>,
-  m2: ReturnType<typeof analyzeManglik>,
-): string[] {
-  const cancellations: string[] = [];
+  const cancellations = [
+    ...result.chart1.cancellations.map(c => `Partner 1: ${c.description}`),
+    ...result.chart2.cancellations.map(c => `Partner 2: ${c.description}`),
+  ];
+  const seen = new Set<string>();
+  const uniqueCancellations = cancellations.filter(c => {
+    if (seen.has(c)) return false;
+    seen.add(c);
+    return true;
+  });
 
-  // Mutual cancellation: both charts have Manglik
-  if (m1.hasManglik && m2.hasManglik) {
-    cancellations.push('Both partners have Manglik dosha — mutual cancellation applies.');
-  }
+  const summary = result.mutualCancellation
+    ? 'Both partners have Mangal Dosha — mutual cancellation significantly reduces its impact.'
+    : result.chart1.present || result.chart2.present
+      ? `Mangal Dosha detected. ${uniqueCancellations.length > 0 ? 'Mitigating factors are present.' : 'Consult a Jyotish expert for remedial measures.'}`
+      : 'No Mangal Dosha — marriage compatibility is favorable from this perspective.';
 
-  // Jupiter aspect on Mars (Jupiter aspects houses 5, 7, 9 from its position)
-  // Check if Jupiter aspects Mars in either chart
-  for (const [chart, m, label] of [
-    [chart1, m1, 'Partner 1'] as const,
-    [chart2, m2, 'Partner 2'] as const,
-  ]) {
-    if (!m.hasManglik) continue;
-    const jupHouse = getHouseOfPlanet(chart, 4); // Jupiter = 4
-    const marsHouse = m.marsHouse;
-    // Jupiter's special aspects: 5th, 7th, 9th from its position
-    const jupAspects = [
-      jupHouse,
-      ((jupHouse - 1 + 4) % 12) + 1, // 5th
-      ((jupHouse - 1 + 6) % 12) + 1, // 7th
-      ((jupHouse - 1 + 8) % 12) + 1, // 9th
-    ];
-    if (jupAspects.includes(marsHouse)) {
-      cancellations.push(`${label}: Jupiter aspects Mars — reduces Manglik severity.`);
-    }
-
-    // Mars in own sign or exalted
-    if (MARS_OWN_SIGNS.includes(m.marsSign)) {
-      cancellations.push(`${label}: Mars is in its own sign — Manglik effect reduced.`);
-    }
-    if (m.marsSign === MARS_EXALTED_SIGN) {
-      cancellations.push(`${label}: Mars is exalted in Capricorn — Manglik effect reduced.`);
-    }
-
-    // Venus in 7th house
-    const venusHouse = getHouseOfPlanet(chart, 5);
-    if (venusHouse === 7) {
-      cancellations.push(`${label}: Venus in 7th house — mitigates Manglik dosha.`);
-    }
-  }
-
-  return cancellations;
+  return {
+    chart1HasManglik: result.chart1.present,
+    chart2HasManglik: result.chart2.present,
+    chart1Severity: mapSeverity(result.chart1),
+    chart2Severity: mapSeverity(result.chart2),
+    cancellations: uniqueCancellations,
+    summary,
+  };
 }
 
 // ── Nadi Analysis ────────────────────────────────────────────
@@ -263,15 +240,39 @@ function analyzeNadi(chart1: KundaliData, chart2: KundaliData): DetailedMatchRep
       const pada2 = moon2?.pada ?? 1;
       if (pada1 !== pada2) {
         cancellations.push('Same nakshatra but different padas — Nadi Dosha mitigated.');
+      } else {
+        // N4: Same nakshatra, same pada → complete override (genetically favorable)
+        return {
+          chart1Nadi: nadi1, chart2Nadi: nadi2,
+          doshaPresent: false,
+          cancellations: ['Same nakshatra and pada — genetically favorable, Nadi Dosha fully cancelled.'],
+          healthImplications: 'Same nakshatra and pada indicates genetic compatibility — no Nadi Dosha concern.',
+        };
       }
+    }
+
+    // N3: Different Moon signs
+    if (rashi1 !== rashi2) {
+      cancellations.push('Different Moon signs — Nadi Dosha severity reduced.');
+    }
+
+    // N5: Navamsha Moon sign differs
+    const moonLon1 = moon1?.longitude ?? 0;
+    const moonLon2 = moon2?.longitude ?? 0;
+    const navSign1 = getNavamshaSign(moonLon1);
+    const navSign2 = getNavamshaSign(moonLon2);
+    if (navSign1 !== navSign2) {
+      cancellations.push('Navamsha Moon signs differ — Nadi Dosha mitigated.');
     }
   }
 
   const healthImplications = doshaPresent && cancellations.length === 0
     ? 'Nadi Dosha present without cancellations — traditional texts caution about health compatibility and progeny. Consult an experienced jyotishi for remedial measures.'
-    : doshaPresent
-      ? 'Nadi Dosha present but with mitigating factors. The severity is reduced by the cancellations noted.'
-      : 'No Nadi Dosha — health and progeny compatibility is favorable.';
+    : doshaPresent && cancellations.length >= 2
+      ? 'Nadi Dosha present but significantly mitigated by multiple factors. Consult for confirmation but concern is reduced.'
+      : doshaPresent
+        ? 'Nadi Dosha present but with a mitigating factor. The severity is reduced by the cancellation noted.'
+        : 'No Nadi Dosha — health and progeny compatibility is favorable.';
 
   return { chart1Nadi: nadi1, chart2Nadi: nadi2, doshaPresent, cancellations, healthImplications };
 }
@@ -458,8 +459,10 @@ function get7thHouseCompatibility(h1: SeventhHouseInfo, h2: SeventhHouseInfo): s
   const l2 = h2.lord;
   if (l1 === l2) {
     parts.push('Both 7th houses share the same lord — a unifying factor for marriage compatibility.');
-  } else if (GRAHA_MAITRI[l1]?.has(l2)) {
+  } else if (GRAHA_MAITRI[l1]?.has(l2) && GRAHA_MAITRI[l2]?.has(l1)) {
     parts.push('The 7th house lords are mutual friends — supportive for partnership harmony.');
+  } else if (GRAHA_MAITRI[l1]?.has(l2) || GRAHA_MAITRI[l2]?.has(l1)) {
+    parts.push('The 7th house lords share a partial friendship — generally supportive with some differences.');
   } else {
     parts.push('The 7th house lords are neutral or unfriendly — extra effort needed to align partnership expectations.');
   }
@@ -640,27 +643,8 @@ export function generateDetailedReport(
   chart2: KundaliData,
   matchResult: MatchResult,
 ): DetailedMatchReport {
-  // Manglik
-  const m1 = analyzeManglik(chart1);
-  const m2 = analyzeManglik(chart2);
-  const manglikCancellations = getManglikCancellations(chart1, chart2, m1, m2);
-
-  const manglikSummary = !m1.hasManglik && !m2.hasManglik
-    ? 'Neither partner has Manglik dosha. No Mars-related obstacles to marriage.'
-    : m1.hasManglik && m2.hasManglik
-      ? `Both partners have Manglik dosha (Partner 1: ${m1.severity}, Partner 2: ${m2.severity}). Mutual cancellation applies — this is considered favorable.`
-      : m1.hasManglik
-        ? `Partner 1 has Manglik dosha (${m1.severity} severity). Partner 2 does not.${manglikCancellations.length > 0 ? ' Cancellation factors identified.' : ' No cancellation factors found — remedies recommended.'}`
-        : `Partner 2 has Manglik dosha (${m2.severity} severity). Partner 1 does not.${manglikCancellations.length > 0 ? ' Cancellation factors identified.' : ' No cancellation factors found — remedies recommended.'}`;
-
-  const manglikAnalysis: DetailedMatchReport['manglikAnalysis'] = {
-    chart1HasManglik: m1.hasManglik,
-    chart2HasManglik: m2.hasManglik,
-    chart1Severity: m1.severity,
-    chart2Severity: m2.severity,
-    cancellations: manglikCancellations,
-    summary: manglikSummary,
-  };
+  // Manglik — delegates to shared mangal-dosha-engine
+  const manglikAnalysis = analyzeManglikFromEngine(chart1, chart2);
 
   // Nadi
   const nadiAnalysis = analyzeNadi(chart1, chart2);
@@ -698,4 +682,4 @@ export function generateDetailedReport(
 }
 
 // Re-export for tests
-export { getNadiFromNakshatra, getManglikSeverity, detectAspect, analyzeManglik };
+export { getNadiFromNakshatra, detectAspect };

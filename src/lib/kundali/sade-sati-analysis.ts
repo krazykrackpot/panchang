@@ -107,15 +107,19 @@ function nakshatrasInSign(sign: number): number[] {
   return result;
 }
 
-// Moon friendship with signs (simplified)
+// Moon's sign strength per BPHS Ch.3 natural friendships:
+//   Friends: Sun(Leo=5), Mercury(Gemini=3, Virgo=6)
+//   Neutral: Mars(Aries=1), Jupiter(Sag=9, Pisces=12), Venus(Taurus=2 is exalt, Libra=7)
+//   Enemy: Saturn(Cap=10, Aquarius=11). Moon has no classical enemies but Saturn is most adverse.
 function moonSignStrength(sign: number): 'exalted' | 'own' | 'friendly' | 'neutral' | 'enemy' | 'debilitated' {
-  if (sign === 2) return 'exalted';
-  if (sign === 4) return 'own';
-  if (sign === 8) return 'debilitated';
-  // Friendly: ruled by Sun(Leo=5), Mars(Aries=1,Scorpio=8 already covered), Jupiter(Sag=9,Pisces=12)
-  if ([1, 5, 9, 12].includes(sign)) return 'friendly';
-  // Enemy: Saturn(Capricorn=10,Aquarius=11), Rahu-influenced
+  if (sign === 2) return 'exalted';   // Taurus
+  if (sign === 4) return 'own';        // Cancer
+  if (sign === 8) return 'debilitated'; // Scorpio
+  // Friendly: Sun-ruled (Leo) and Mercury-ruled (Gemini, Virgo)
+  if ([3, 5, 6].includes(sign)) return 'friendly';
+  // Enemy: Saturn-ruled (Capricorn, Aquarius) — most adverse for Moon
   if ([10, 11].includes(sign)) return 'enemy';
+  // Neutral: Mars-ruled (Aries=1), Jupiter-ruled (Sag=9, Pisces=12), Venus-ruled (Libra=7)
   return 'neutral';
 }
 

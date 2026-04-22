@@ -19,26 +19,26 @@ describe('Ashtottari Dasha System', () => {
       expect(TOTAL_ASHTOTTARI_YEARS).toBe(108);
     });
 
-    it('should exclude Rahu from the sequence', () => {
+    it('should exclude Ketu from the sequence (BPHS mainstream)', () => {
       const planets = ASHTOTTARI_SEQUENCE.map(d => d.planet);
-      expect(planets).not.toContain('Rahu');
+      expect(planets).not.toContain('Ketu');
     });
 
-    it('should include Ketu in the sequence', () => {
+    it('should include Rahu in the sequence', () => {
       const planets = ASHTOTTARI_SEQUENCE.map(d => d.planet);
-      expect(planets).toContain('Ketu');
+      expect(planets).toContain('Rahu');
     });
 
     it('should have the correct planet order', () => {
       const planets = ASHTOTTARI_SEQUENCE.map(d => d.planet);
-      expect(planets).toEqual(['Sun', 'Moon', 'Mars', 'Mercury', 'Saturn', 'Jupiter', 'Venus', 'Ketu']);
+      expect(planets).toEqual(['Sun', 'Moon', 'Mars', 'Mercury', 'Saturn', 'Jupiter', 'Venus', 'Rahu']);
     });
 
     it('should have the correct year assignments', () => {
       const yearMap = Object.fromEntries(ASHTOTTARI_SEQUENCE.map(d => [d.planet, d.years]));
       expect(yearMap).toEqual({
         Sun: 6, Moon: 15, Mars: 8, Mercury: 17,
-        Saturn: 10, Jupiter: 19, Venus: 21, Ketu: 12,
+        Saturn: 10, Jupiter: 19, Venus: 21, Rahu: 12,
       });
     });
   });
@@ -128,9 +128,9 @@ describe('Ashtottari Dasha System', () => {
     });
 
     it('should start with the correct lord for Ashwini nakshatra', () => {
-      // Ashwini (index 0) → Ketu
+      // Ashwini (index 0) → Rahu (per BPHS: Revati/Ashwini/Bharani → Rahu)
       const dashas = calculateAshtottariDashas(0, 0, birthDate);
-      expect(dashas[0].planet).toBe('Ketu');
+      expect(dashas[0].planet).toBe('Rahu');
     });
 
     it('should start with the correct lord for Ashlesha nakshatra', () => {

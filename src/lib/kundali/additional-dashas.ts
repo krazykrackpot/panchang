@@ -185,10 +185,9 @@ export function calculateKalachakraDasha(moonSidLong: number, birthDate: Date): 
   const dashas: RasiDashaEntry[] = [];
   let cur = new Date(birthDate);
 
-  // Remaining dasha of first sign
+  // Remaining dasha of first sign — balance from nakshatra position, not pada
   const posInNakshatra = (moonSidLong % (360 / 27)) / (360 / 27);
-  const posInPada = (posInNakshatra * 4) % 1;
-  let firstYears = years[startIdx % 9] * (1 - posInPada);
+  let firstYears = years[startIdx % 9] * (1 - posInNakshatra);
 
   for (let i = 0; i < 9; i++) {
     const idx = (startIdx + i) % 9;
@@ -485,12 +484,27 @@ export function calculateShashtihayaniDasha(moonSidLong: number, birthDate: Date
 export function calculateMandookaDasha(ascSign: number, birthDate: Date): RasiDashaEntry[] {
   const dashas: RasiDashaEntry[] = [];
   let cur = new Date(birthDate);
-  const odd = isOddSign(ascSign);
+  const dir = isOddSign(ascSign) ? 1 : -1;
 
-  // Mandooka: start from ascendant, jump every alternate sign
-  // Odd sign: +3 (skip 2), Even sign: -3 (skip 2 backward)
-  for (let i = 0; i < 12; i++) {
-    const sign = ((ascSign - 1 + i * (odd ? 3 : -3) + 144) % 12) + 1;
+  // Mandooka ("Frog") Dasha — visits all 12 signs by alternating jumps.
+  // Pattern: start, +3, +3, +3 (4 signs by triads), then step back to start+1
+  // and repeat. This ensures all 12 signs are visited.
+  // Odd lagna: zodiacal (forward); Even lagna: reverse.
+  // Reference: BPHS Ch.20, K.N. Rao
+  const visited: number[] = [];
+  let current = ascSign;
+  // Phase 1: jump by 3 from ascSign (visits 4 signs: 1st, 4th, 7th, 10th)
+  // Phase 2: jump by 3 from ascSign+1 (visits 4 signs: 2nd, 5th, 8th, 11th)
+  // Phase 3: jump by 3 from ascSign+2 (visits 4 signs: 3rd, 6th, 9th, 12th)
+  for (let phase = 0; phase < 3; phase++) {
+    const start = ((ascSign - 1 + phase * dir + 144) % 12) + 1;
+    for (let j = 0; j < 4; j++) {
+      const sign = ((start - 1 + j * 3 * dir + 144) % 12) + 1;
+      visited.push(sign);
+    }
+  }
+
+  for (const sign of visited) {
     const years = sign; // Duration = sign number (1-12)
     const end = addYears(cur, years);
     dashas.push({ sign, signName: RASHI_NAMES[sign - 1], years, startDate: fmt(cur), endDate: fmt(end) });
@@ -538,13 +552,14 @@ export function calculateDrigDasha(ascSign: number, planets: PlanetPosition[], b
 // Reference: BPHS Ch.20
 
 export function calculateMoolaDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
+  // Same sequence/periods as Vimshottari (BPHS Ch.20) — total 120 years
   return calcGrahaDasha(moonSidLong, birthDate, [
-    { planet: 'Ketu', years: 7 }, { planet: 'Venus', years: 21 },
+    { planet: 'Ketu', years: 7 }, { planet: 'Venus', years: 20 },
     { planet: 'Sun', years: 6 }, { planet: 'Moon', years: 10 },
     { planet: 'Mars', years: 7 }, { planet: 'Rahu', years: 18 },
     { planet: 'Jupiter', years: 16 }, { planet: 'Saturn', years: 19 },
     { planet: 'Mercury', years: 17 },
-  ], 121);
+  ], 120);
 }
 
 // ─── NAVAMSHA DASHA (D9 Sign-based) ──────────────────────────────────────

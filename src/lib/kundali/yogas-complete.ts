@@ -108,7 +108,9 @@ function detectDoshaYogas(planets: PlanetData[], _ascSign: number): YogaComplete
   const rahu = getP(planets, 7);
   const ketu = getP(planets, 8);
 
-  // 1. Mangala Dosha
+  // 1. Mangala Dosha (basic detection for yoga listing)
+  // Full analysis with cancellations, 3-ref-point detection:
+  //   import { analyzeMangalDosha } from './mangal-dosha-engine';
   const mangalHouses = [1, 2, 4, 7, 8, 12];
   const mangalPresent = mangalHouses.includes(mars.house);
   let mangalStrength: 'Strong' | 'Moderate' | 'Weak' = 'Weak';
@@ -1221,9 +1223,12 @@ function detectAdditionalAuspiciousYogas(planets: PlanetData[], ascSign: number)
     for (let s = 1; s <= 12; s++) { if (signLord(s) === dp.id) dpOwnSigns.push(s); }
     if (dpOwnSigns.includes(debLordP.sign)) { neechPresent = true; break; }
     // Rule 5: Planet is Vargottama (same sign in D1 and D9 = strong dignity)
-    const navamshaSign = Math.floor((dp.longitude % 30) / (30 / 9)) % 12 + 1;
-    const d1Sign = dp.sign;
-    if (navamshaSign === d1Sign) { neechPresent = true; break; }
+    // D9 uses element-based starting sign: Fire→Aries(0), Earth→Cap(9), Air→Libra(6), Water→Cancer(3)
+    const d1SignIdx = dp.sign - 1; // 0-based
+    const navPart = Math.floor((dp.longitude % 30) / (30 / 9)); // 0-8
+    const navStart = [0, 9, 6, 3][d1SignIdx % 4]; // element-based start
+    const navamshaSign = ((navStart + navPart) % 12) + 1;
+    if (navamshaSign === dp.sign) { neechPresent = true; break; }
   }
   results.push({
     id: 'neechabhanga_raja',

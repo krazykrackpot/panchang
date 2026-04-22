@@ -302,7 +302,7 @@ export function calculateKarana(jd: number): number {
   const karanaIndex = Math.floor(degree / 6);
   // Map to the 11 karanas (7 chara + 4 sthira, cycling pattern)
   if (karanaIndex === 0) return 11; // Kimstughna (first half of S1)
-  if (karanaIndex >= 57) return [8, 9, 10][karanaIndex - 57]; // Last 3: Shakuni, Chatushpada, Nagava
+  if (karanaIndex >= 57) return [8, 9, 10][karanaIndex - 57]; // Last 3 fixed: Shakuni(8), Chatushpada(9), Naga(10) — 1-based IDs
   return ((karanaIndex - 1) % 7) + 1; // Chara karanas cycle
 }
 

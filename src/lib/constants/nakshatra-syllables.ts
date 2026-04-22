@@ -195,7 +195,7 @@ export const NAKSHATRA_SYLLABLES: Record<number, { en: string; hi: string; sa: s
     { en: 'Du', hi: 'दू', sa: 'दू', ta: 'து', te: 'దు', bn: 'দু', kn: 'ದು', mr: 'दू', gu: 'દુ', mai: 'दू' },
     { en: 'Tha', hi: 'थ', sa: 'थ', ta: 'த', te: 'థ', bn: 'থ', kn: 'ಥ', mr: 'थ', gu: 'થ', mai: 'थ' },
     { en: 'Jha', hi: 'झ', sa: 'झ', ta: 'ஜ', te: 'ఝ', bn: 'ঝ', kn: 'ಝ', mr: 'झ', gu: 'ઝ', mai: 'झ' },
-    { en: 'Da', hi: 'ञ', sa: 'ञ', ta: 'ஞ', te: 'ఞ', bn: 'ঞ', kn: 'ಞ', mr: 'ञ', gu: 'ઞ', mai: 'ञ' },
+    { en: 'Jna', hi: 'ञ', sa: 'ञ', ta: 'ஞ', te: 'ఞ', bn: 'ঞ', kn: 'ಞ', mr: 'ञ', gu: 'ઞ', mai: 'ञ' },
   ],
   // 27. Revati
   27: [

@@ -79,26 +79,30 @@ export function calculateSpecialLagnas(
   const induLagnaSign = ((moonSign - 1 + induOffset) % 12) + 1;
 
   // ── Pranapada Lagna (PP) ──
-  // Based on birth time in vighatis from sunrise
-  // Vighatis = hours * 150 (60 ghatis * 2.5 vighatis per ghati)
+  // BPHS Ch.4, v.28-29: convert birth time to vighatis, multiply by 0.1°/vighati,
+  // then add offset based on Sun's sign type: movable=0°, fixed=240°, dual=120°.
   const vighatis = hoursFromSunrise * 150;
-  const ppDeg = normalizeDeg(sunDeg + vighatis * (360 / 3600));
+  const sunSignIdx = Math.floor(sunDeg / 30); // 0-based
+  const sunSignQuality = sunSignIdx % 3; // 0=movable, 1=fixed, 2=dual
+  const ppOffset = [0, 240, 120][sunSignQuality];
+  const ppDeg = normalizeDeg(sunDeg + ppOffset + vighatis * (360 / 3600));
   const pranapada = Math.floor(ppDeg / 30) + 1;
 
   // ── Varnada Lagna (VL) ──
-  // If lagna is odd sign: VL = Aries + (Lagna count - Hora Lagna count)
-  // If lagna is even sign: VL = Pisces - (Lagna count - Hora Lagna count)
-  const lagnaCount = ascSign;
-  const horaCount = horaLagna;
+  // Per Jaimini Sutras / Sanjay Rath:
+  // Lagna count: odd sign = sign number from Aries; even sign = (13 - sign number) from Pisces
+  // Hora Lagna count: same rule based on HL's OWN sign parity
+  // VL = |lagna_count - hora_count|, counted from Aries (odd lagna) or Pisces (even lagna)
+  const lagnaCount = ascSign % 2 === 1 ? ascSign : (13 - ascSign);
+  const horaCount = horaLagna % 2 === 1 ? horaLagna : (13 - horaLagna);
+  const diff = Math.abs(lagnaCount - horaCount);
   let varnadaSign: number;
   if (ascSign % 2 === 1) {
-    // Odd lagna: count from Aries
-    const diff = ((lagnaCount - horaCount + 12) % 12);
-    varnadaSign = ((diff) % 12) + 1;
+    // Odd lagna: count forward from Aries
+    varnadaSign = (diff % 12) + 1;
   } else {
-    // Even lagna: count from Pisces in reverse
-    const diff = ((lagnaCount - horaCount + 12) % 12);
-    varnadaSign = ((12 - diff) % 12) + 1;
+    // Even lagna: count backward from Pisces
+    varnadaSign = ((12 - (diff % 12)) % 12) + 1;
   }
   if (varnadaSign === 0) varnadaSign = 12;
 

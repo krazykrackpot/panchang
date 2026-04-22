@@ -5,10 +5,9 @@ import { describe, it, expect } from 'vitest';
 import {
   generateDetailedReport,
   getNadiFromNakshatra,
-  getManglikSeverity,
   detectAspect,
-  analyzeManglik,
 } from '@/lib/matching/detailed-report';
+import { analyzeMangalDosha } from '@/lib/kundali/mangal-dosha-engine';
 import type { KundaliData, PlanetPosition, HouseCusp, ChartData } from '@/types/kundali';
 import type { MatchResult } from '@/lib/matching/ashta-kuta';
 
@@ -123,53 +122,71 @@ function mockMatchResult(score: number = 25): MatchResult {
 
 // ── Tests ────────────────────────────────────────────────────
 
-describe('Manglik Severity', () => {
+describe('Mangal Dosha Engine — house severity', () => {
+  // Engine house severity: 7,8=severe; 1,4=moderate; 2,12=mild; others=none
+  function severityForHouse(house: number, sign: number): string {
+    const planets = [
+      mockPlanet(0, { house: 1, sign: 1 }),
+      mockPlanet(1, { house: 4, sign: 4 }),
+      mockPlanet(2, { house, sign }),
+      mockPlanet(3, { house: 2, sign: 2 }),
+      mockPlanet(4, { house: 5, sign: 5 }),
+      mockPlanet(5, { house: 6, sign: 6 }),
+      mockPlanet(6, { house: 10, sign: 10 }),
+      mockPlanet(7, { house: 11, sign: 11 }),
+      mockPlanet(8, { house: 5, sign: 5 }),
+    ];
+    return analyzeMangalDosha(planets, 1).houseSeverity;
+  }
+
   it('returns severe for Mars in house 7', () => {
-    expect(getManglikSeverity(7)).toBe('severe');
+    expect(severityForHouse(7, 7)).toBe('severe');
   });
 
   it('returns severe for Mars in house 8', () => {
-    expect(getManglikSeverity(8)).toBe('severe');
+    expect(severityForHouse(8, 8)).toBe('severe');
   });
 
   it('returns moderate for Mars in house 4', () => {
-    expect(getManglikSeverity(4)).toBe('moderate');
+    expect(severityForHouse(4, 4)).toBe('moderate');
   });
 
-  it('returns moderate for Mars in house 12', () => {
-    expect(getManglikSeverity(12)).toBe('moderate');
+  it('returns mild for Mars in house 12', () => {
+    expect(severityForHouse(12, 12)).toBe('mild');
   });
 
-  it('returns mild for Mars in house 1', () => {
-    expect(getManglikSeverity(1)).toBe('mild');
+  it('returns moderate for Mars in house 1', () => {
+    expect(severityForHouse(1, 1)).toBe('moderate');
   });
 
   it('returns mild for Mars in house 2', () => {
-    expect(getManglikSeverity(2)).toBe('mild');
+    expect(severityForHouse(2, 2)).toBe('mild');
   });
 
   it('returns none for Mars in house 3', () => {
-    expect(getManglikSeverity(3)).toBe('none');
+    expect(severityForHouse(3, 3)).toBe('none');
   });
 
   it('returns none for Mars in house 5', () => {
-    expect(getManglikSeverity(5)).toBe('none');
+    expect(severityForHouse(5, 5)).toBe('none');
   });
 });
 
-describe('Manglik Detection', () => {
+describe('Manglik Detection (via engine)', () => {
   it('detects Manglik when Mars is in house 7', () => {
     const chart = mockChart({ marsHouse: 7, marsSign: 7 });
-    const result = analyzeManglik(chart);
-    expect(result.hasManglik).toBe(true);
-    expect(result.severity).toBe('severe');
+    const result = analyzeMangalDosha(chart.planets, chart.ascendant.sign);
+    expect(result.present).toBe(true);
+    expect(result.houseSeverity).toBe('severe');
   });
 
-  it('does not detect Manglik when Mars is in house 3', () => {
-    const chart = mockChart({ marsHouse: 3, marsSign: 3 });
-    const result = analyzeManglik(chart);
-    expect(result.hasManglik).toBe(false);
-    expect(result.severity).toBe('none');
+  it('does not detect Manglik when Mars is safe from all 3 reference points', () => {
+    // Mars in house 3, sign 3; asc sign 1; moon sign 1 (house from moon: ((3-1+12)%12)+1=3);
+    // venus sign 1 (house from venus: 3) — all non-mangal houses
+    const chart = mockChart({ marsHouse: 3, marsSign: 3, moonSign: 1, venusSign: 1, venusHouse: 1 });
+    const result = analyzeMangalDosha(chart.planets, chart.ascendant.sign);
+    expect(result.present).toBe(false);
+    expect(result.effectiveSeverity).toBe('none');
   });
 });
 
@@ -180,7 +197,7 @@ describe('Manglik Cancellation', () => {
     const match = mockMatchResult();
     const report = generateDetailedReport(chart1, chart2, match);
     expect(report.manglikAnalysis.cancellations).toContainEqual(
-      expect.stringContaining('Both partners have Manglik dosha')
+      expect.stringContaining('Both partners have Mangal Dosha')
     );
   });
 
@@ -194,6 +211,7 @@ describe('Manglik Cancellation', () => {
     expect(report.manglikAnalysis.cancellations).toContainEqual(
       expect.stringContaining('Jupiter aspects Mars')
     );
+    // Engine produces: "Partner 1: Jupiter aspects Mars (conjunction or 5th/7th/9th aspect), providing protection"
   });
 });
 
@@ -278,9 +296,11 @@ describe('Narrative Generation', () => {
     expect(report.narrativeSummary.advice.length).toBeGreaterThan(0);
   });
 
-  it('reports no Manglik when Mars is in safe house', () => {
-    const chart1 = mockChart({ marsHouse: 3 });
-    const chart2 = mockChart({ marsHouse: 5 });
+  it('reports no Manglik when Mars is safe from all reference points', () => {
+    // Ensure Mars is not in mangal house from lagna, moon, or venus
+    // Mars sign 3, asc 1 -> house 3 from lagna; moon sign 1 -> house 3 from moon; venus sign 1 -> house 3 from venus
+    const chart1 = mockChart({ marsHouse: 3, marsSign: 3, moonSign: 1, venusSign: 1, venusHouse: 1 });
+    const chart2 = mockChart({ marsHouse: 5, marsSign: 5, moonSign: 3, venusSign: 3, venusHouse: 3 });
     const match = mockMatchResult(30);
     const report = generateDetailedReport(chart1, chart2, match);
     expect(report.manglikAnalysis.chart1HasManglik).toBe(false);

@@ -148,8 +148,9 @@ export function calculateInauspiciousPeriods(
 
   // Rahu Kalam periods (8th of day) for each weekday (Sun=0 to Sat=6)
   const rahuPeriods = [8, 2, 7, 5, 6, 4, 3]; // Which 8th of the day
-  // Yamagandam periods
-  const yamaPeriods = [5, 4, 3, 7, 2, 1, 6];
+  // Yamagandam periods — descending 5→1 for Sun→Thu, then Fri=7, Sat=6
+  // Source: Dharma Sindhu / Muhurta Chintamani
+  const yamaPeriods = [5, 4, 3, 2, 1, 7, 6];
   // Gulika Kalam periods
   const gulikaPeriods = [7, 6, 5, 4, 3, 2, 1];
 

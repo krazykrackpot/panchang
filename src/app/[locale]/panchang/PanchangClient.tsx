@@ -661,6 +661,28 @@ export default function PanchangClient() {
                       </div>
                     </div>
                   )}
+                  {/* Kshaya tithi badge */}
+                  {panchang.kshayaTithi && (
+                    <div className="mt-2 px-2.5 py-1.5 rounded-lg border border-amber-500/20 bg-amber-500/5 text-xs">
+                      <span className="text-amber-400 font-semibold">
+                        {locale === 'hi' ? 'क्षय तिथि' : locale === 'ta' ? 'க்ஷய திதி' : 'Kshaya Tithi'}
+                      </span>
+                      <span className="text-text-secondary ml-1">
+                        — {tl(panchang.kshayaTithi.tithi.name)} ({panchang.kshayaTithi.start}–{panchang.kshayaTithi.end})
+                      </span>
+                    </div>
+                  )}
+                  {/* Vriddhi tithi badge */}
+                  {panchang.vriddhiTithi && (
+                    <div className="mt-2 px-2.5 py-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/5 text-xs">
+                      <span className="text-emerald-400 font-semibold">
+                        {locale === 'hi' ? 'वृद्धि तिथि' : locale === 'ta' ? 'விருத்தி திதி' : 'Vriddhi Tithi'}
+                      </span>
+                      <span className="text-text-secondary ml-1">
+                        — {tl(panchang.tithi.name)} {locale === 'hi' ? 'दो सूर्योदय तक' : locale === 'ta' ? 'இரண்டு சூரிய உதயம் வரை' : 'spans two sunrises'}
+                      </span>
+                    </div>
+                  )}
                   {/* Tithi contextual tip */}
                   <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
                     {panchang.tithi.paksha === 'shukla'

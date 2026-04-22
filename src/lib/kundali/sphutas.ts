@@ -63,8 +63,8 @@ export function calculateSphutas(
   const mrityuNak = getNakshatraNumber(mrityuDeg);
 
   // ── Tri Sphuta (Composite) ──
-  // = (Prana + Deha + Mrityu) / 3
-  const triDeg = normalizeDeg((pranaDeg + dehaDeg + mrityuDeg) / 3);
+  // Per BPHS Ch.10: Tri-Sphuta = Sun + Moon + Ascendant (simple sum, same as Prana Sphuta)
+  const triDeg = normalizeDeg(sunLong + moonLong + lagnaLong);
   const triSign = Math.floor(triDeg / 30) + 1;
   const triNak = getNakshatraNumber(triDeg);
 
@@ -111,7 +111,7 @@ export function calculateSphutas(
     triSphuta: {
       degree: Math.round(triDeg * 100) / 100,
       sign: triSign, nakshatra: triNak,
-      description: { en: 'Composite sensitive point (average of Prana, Deha, Mrityu). Overall vulnerability indicator.', hi: 'समग्र संवेदनशील बिंदु (प्राण, देह, मृत्यु का औसत)।', sa: 'त्रिस्फुटम्' },
+      description: { en: 'Composite sensitive point (Sun + Moon + Ascendant per BPHS Ch.10). Used for Yogi/Avayogi derivation.', hi: 'समग्र संवेदनशील बिंदु (सूर्य + चन्द्र + लग्न, BPHS अ.10)। योगी/अवयोगी निर्धारण हेतु।', sa: 'त्रिस्फुटम्' },
     },
     yogiPoint: {
       degree: Math.round(yogiDeg * 100) / 100,

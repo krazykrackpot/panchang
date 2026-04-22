@@ -445,10 +445,16 @@ export function generateFestivalCalendarV2(
         // Otherwise, the tithi started after sunset → festival stays on sunriseDate
       }
 
+      // Kshaya tithi: the tithi has no sunrise within it. Per Dharmasindhu,
+      // the festival is observed on the preceding day. sunriseDate for kshaya
+      // entries already points to the start date (previous day), so the date
+      // mapping is correct. We note the kshaya condition for UI display.
+      const isKshayaFestival = match.isKshaya;
+
       const entry: FestivalEntry = {
         name: detail?.name || def.name || { en: def.slug, hi: def.slug, sa: def.slug },
         date: festivalDate,
-        tithi: `${match.masa.purnimanta} ${match.paksha} ${match.number <= 15 ? match.number : match.number - 15}`,
+        tithi: `${match.masa.purnimanta} ${match.paksha} ${match.number <= 15 ? match.number : match.number - 15}${isKshayaFestival ? ' (Kshaya)' : ''}`,
         masa: match.masa,
         paksha: match.paksha,
         type: 'major',

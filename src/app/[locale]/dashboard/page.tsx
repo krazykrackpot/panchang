@@ -42,6 +42,7 @@ import type { ChartData, DashaEntry } from '@/types/kundali';
 import { computeKeyDates, type KeyDate } from '@/lib/kundali/domain-synthesis/key-dates';
 import KeyDatesTimeline from '@/components/kundali/KeyDatesTimeline';
 import { Trash2, Plus } from 'lucide-react';
+import FamilyCard from '@/components/dashboard/FamilyCard';
 
 interface SavedChart {
   id: string;
@@ -1510,6 +1511,13 @@ export default function DashboardPage() {
               </div>
             </div>
           </motion.div>
+        )}
+
+        {/* Family Insights — shows only when spouse/child charts exist */}
+        {user && hasBirthData && (
+          <div className="mb-8">
+            <FamilyCard locale={locale} />
+          </div>
         )}
 
         {/* Saved Kundalis — inline list so users don't have to drill into a

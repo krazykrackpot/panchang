@@ -402,6 +402,7 @@ export default function KundaliPage() {
           moonSign,
         },
         is_primary: isSelf,
+        relationship: relationship || 'self',
       });
       if (error) {
         console.error('[kundali] save failed:', error);

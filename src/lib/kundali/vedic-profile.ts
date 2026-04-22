@@ -346,17 +346,27 @@ function buildCoreIdentity(kundali: KundaliData, locale: string): { lagna: strin
   const moonNarrative = MOON_SIGN_NARRATIVES[moonSign];
   const moonBase = moonNarrative ? bt(moonNarrative, locale) : '';
 
-  // Append nakshatra flavor (1 sentence from characteristics)
+  // Append nakshatra flavor — deity, symbol meaning, and behavioral insight
   let nakFlavor = '';
   if (moonNak) {
     const nakDetail = NAKSHATRA_DETAILS.find(n => n.id === moonNak.id);
     if (nakDetail) {
-      const chars = tl(nakDetail.characteristics, locale);
-      const firstSentence = chars.split(/(?<=[।\.\?!])\s+/)[0] || '';
       const nakName = tl(moonNak.name, locale);
-      nakFlavor = locale === 'hi'
-        ? ` ${nakName} नक्षत्र में — ${firstSentence}`
-        : ` In ${nakName} nakshatra — ${firstSentence.toLowerCase()}`;
+      const meaning = tl(nakDetail.meaning, locale);
+      const chars = tl(nakDetail.characteristics, locale);
+      const significance = tl(nakDetail.significance, locale);
+      // First sentence of characteristics for behavioral flavor
+      const charSentence = chars.split(/(?<=[।\.\?!])\s+/)[0] || '';
+      // First sentence of significance for deeper meaning
+      const sigSentence = significance.split(/(?<=[।\.\?!])\s+/)[0] || '';
+      const symbol = moonNak.symbol || '';
+      const deity = tl(moonNak.deity, locale);
+
+      if (locale === 'hi') {
+        nakFlavor = ` ${nakName} नक्षत्र में — "${meaning}"${symbol ? ` ${symbol}` : ''}। ${deity} के अधिपत्य में, ${charSentence} ${sigSentence}`;
+      } else {
+        nakFlavor = ` Dwelling in ${nakName} — "${meaning}"${symbol ? ` ${symbol}` : ''} — presided by ${deity}. ${charSentence} ${sigSentence}`;
+      }
     }
   }
 
@@ -442,6 +452,51 @@ function buildStandout(patterns: ChartPattern[], kundali: KundaliData, locale: s
         ? `साढ़े साती${phase ? ` (${phase} चरण)` : ''} — शनि आपके चन्द्र पर गोचर कर रहा है। यह 7.5 वर्ष की अवधि भावनात्मक परिपक्वता, धैर्य और कठिन परिश्रम की माँग करती है। जो इसे सचेत रूप से स्वीकार करते हैं, उन्हें स्थायी उपलब्धियाँ प्राप्त होती हैं।`
         : `Sade Sati${phase ? ` (${phase} phase)` : ''} — Saturn is transiting over your Moon. This 7.5-year period demands emotional maturity, patience, and sustained hard work. Those who embrace it consciously earn lasting achievements.`;
     }
+    case 'lunarYoga': {
+      const yogaName = topPattern.yogaName || '';
+      const quality = topPattern.templateData?.quality || '';
+      const moonP = planets.find(p => p.planet.id === 1);
+      const otherPId = topPattern.planets.find(id => id !== 1) || 0;
+      const otherP = planets.find(p => p.planet.id === otherPId);
+      const moonSignName = moonP ? tl(moonP.signName, locale) : '';
+      const otherName = otherP ? tl(otherP.planet.name, locale) : '';
+      const houseTheme = moonP ? bt(HOUSE_THEME_LABELS[moonP.house], locale) : '';
+      const impl = otherP ? (PLANET_HOUSE_DEPTH[otherP.planet.id]?.[otherP.house]?.implications || '') : '';
+      if (locale === 'hi') {
+        return `${yogaName} आपकी कुण्डली में बनता है — चन्द्र और ${otherName} का यह संयोग ${quality} उत्पन्न करता है। ${moonSignName} में स्थित, यह योग ${houseTheme} के क्षेत्र को विशेष रूप से प्रभावित करता है। ${impl}`;
+      }
+      return `${yogaName} forms in your chart — this combination of Moon and ${otherName} creates ${quality}. Placed in ${moonSignName}, this yoga particularly influences the domain of ${houseTheme}. ${impl}`;
+    }
+    case 'debilitatedKey': {
+      const dp = planets.find(p => p.planet.id === topPattern.planets[0]);
+      if (!dp) return '';
+      const dpName = tl(dp.planet.name, locale);
+      const dpSign = tl(dp.signName, locale);
+      const dpHouse = dp.house;
+      const houseTheme = bt(HOUSE_THEME_LABELS[dpHouse], locale);
+      const impl = PLANET_HOUSE_DEPTH[dp.planet.id]?.[dpHouse]?.implications || '';
+      // Check for neecha bhanga (cancellation of debilitation)
+      const signLordId = LAGNA_LORDS[dp.sign];
+      const signLord = planets.find(p => p.planet.id === signLordId);
+      const neechaBhanga = signLord && (signLord.isExalted || signLord.isOwnSign || [1, 4, 7, 10].includes(signLord.house));
+      if (locale === 'hi') {
+        return `${dpName} ${dpSign} में नीच — अपने सबसे कमजोर गरिमा में — ${dpHouse}वें भाव (${houseTheme}) में। यह ग्रह जीवन के इस क्षेत्र में अतिरिक्त प्रयास और सचेत विकास माँगता है। ${impl}${neechaBhanga ? ` परन्तु, नीच भङ्ग राजयोग के संकेत भी हैं — इस कमजोरी से असाधारण शक्ति उत्पन्न हो सकती है।` : ''}`;
+      }
+      return `${dpName} is debilitated in ${dpSign} — its weakest dignity — placed in the ${dpHouse}th house (${houseTheme}). This planet demands extra effort and conscious development in this area of life. ${impl}${neechaBhanga ? ` However, signs of Neecha Bhanga Raja Yoga are present — extraordinary strength can emerge from this very weakness.` : ''}`;
+    }
+    case 'retrogradeKendra': {
+      const rp = planets.find(p => p.planet.id === topPattern.planets[0]);
+      if (!rp) return '';
+      const rpName = tl(rp.planet.name, locale);
+      const rpSign = tl(rp.signName, locale);
+      const rpHouse = rp.house;
+      const houseTheme = bt(HOUSE_THEME_LABELS[rpHouse], locale);
+      const impl = PLANET_HOUSE_DEPTH[rp.planet.id]?.[rpHouse]?.implications || '';
+      if (locale === 'hi') {
+        return `${rpName} वक्री ${rpSign} में, ${rpHouse}वें भाव (${houseTheme}) में — एक केन्द्र स्थान। वक्री ग्रह अपनी ऊर्जा को अन्तर्मुखी करता है: ${houseTheme} के विषयों में बाह्य सफलता से पहले गहन आत्मनिरीक्षण आवश्यक है। यह विलम्ब कमजोरी नहीं — परिपक्वता की प्रक्रिया है। ${impl}`;
+      }
+      return `${rpName} retrograde in ${rpSign}, placed in the ${rpHouse}th house (${houseTheme}) — a kendra position. A retrograde planet turns its energy inward: deep introspection precedes outward success in matters of ${houseTheme}. This delay is not weakness — it is a maturation process. ${impl}`;
+    }
     default: {
       // Generic expansion using planet-in-house data for the first planet in the pattern
       const pid = topPattern.planets[0];
@@ -495,14 +550,50 @@ function buildPlanetaryObservations(patterns: ChartPattern[], kundali: KundaliDa
           : `${connector} Sade Sati is active — Saturn is transiting over your Moon. This period demands emotional maturity and hard work, but delivers lasting achievements.`;
         break;
       }
+      case 'mahapurusha': {
+        const yogaName = pat.yogaName || 'Mahapurusha Yoga';
+        const yogaInfo = kundali.yogasComplete?.find(y => y.name.en === yogaName && y.present);
+        const desc = yogaInfo ? tl(yogaInfo.description, locale) : '';
+        text = locale === 'hi'
+          ? `${connector} ${yogaName} — पंच महापुरुष योगों में से एक — सक्रिय। ${desc}`
+          : `${connector} ${yogaName} — one of the Pancha Mahapurusha Yogas — is active. ${desc}`;
+        break;
+      }
+      case 'rajaYoga': {
+        const count = pat.templateData?.count || '2';
+        text = locale === 'hi'
+          ? `${connector} ${count} राजयोग सक्रिय — अधिकार और मान्यता के संकेत। सम्बन्धित ग्रहों की दशा में ये विशेष रूप से फलित होते हैं।`
+          : `${connector} ${count} raja yogas are active — indicators of authority and recognition. These activate especially during the dashas of the involved planets.`;
+        break;
+      }
+      case 'contrastingElements': {
+        const lagnaR = RASHIS.find(r => r.id === kundali.ascendant.sign);
+        const moonP = kundali.planets.find(p => p.planet.id === 1);
+        const moonR = moonP ? RASHIS.find(r => r.id === moonP.sign) : null;
+        text = locale === 'hi'
+          ? `${connector} ${tl(lagnaR?.name, 'hi')} लग्न और ${tl(moonR?.name, 'hi')} चन्द्र का विपरीत तत्व संयोग बहुआयामी व्यक्तित्व बनाता है।`
+          : `${connector} the contrasting elements of your ${tl(lagnaR?.name, 'en')} ascendant and ${tl(moonR?.name, 'en')} Moon create a multidimensional personality.`;
+        break;
+      }
+      case 'sameLagnaMoon': {
+        const signId = pat.templateData?.signId;
+        const signName = signId ? tl(RASHIS.find(r => r.id === Number(signId))?.name, locale) : '';
+        text = locale === 'hi'
+          ? `${connector} लग्न और चन्द्र दोनों ${signName} में — एकीकृत पहचान जो प्रामाणिकता प्रदान करती है।`
+          : `${connector} both ascendant and Moon in ${signName} — a unified identity that confers authenticity.`;
+        break;
+      }
       default: {
-        // Use stellium, rajaYoga, etc. with generic text
         if (pat.type === 'stellium') {
           const house = pat.houses?.[0] || 1;
           const theme = bt(HOUSE_THEME_LABELS[house], locale);
           text = locale === 'hi'
             ? `${connector} ${pat.planets.length} ग्रह ${house}वें भाव में — ${theme} के विषय प्रबल।`
             : `${connector} ${pat.planets.length} planets in the ${house}th house intensify themes of ${theme}.`;
+        } else if (pat.type === 'kaalSarpa') {
+          text = locale === 'hi'
+            ? `${connector} काल सर्प योग — सभी ग्रह राहु-केतु अक्ष के एक ओर। कार्मिक अनुभव तीव्र।`
+            : `${connector} Kaal Sarpa Yoga — all planets hemmed on one side of the Rahu-Ketu axis. Karmic experiences run intense.`;
         }
         break;
       }

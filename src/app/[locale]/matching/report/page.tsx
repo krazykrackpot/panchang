@@ -33,12 +33,17 @@ const L = {
     tabOverview: 'Overview',
     tabManglik: 'Manglik',
     tabNadi: 'Nadi',
+    tabRajju: 'Rajju',
     tabAspects: 'Cross-Chart',
     tab7th: '7th House',
     tabVenus: 'Venus',
     tabSummary: 'Summary',
     manglikTitle: 'Manglik (Kuja Dosha) Analysis',
     nadiTitle: 'Nadi Dosha Analysis',
+    rajjuTitle: 'Rajju Dosha Analysis (South Indian)',
+    rajjuGroup: 'Rajju Group',
+    rajjuDosha: 'Rajju Dosha',
+    rajjuDescription: 'Interpretation',
     aspectsTitle: 'Cross-Chart Planetary Aspects',
     seventhTitle: '7th House (Marriage) Analysis',
     venusTitle: 'Venus (Love & Romance) Analysis',
@@ -83,12 +88,17 @@ const L = {
     tabOverview: 'सारांश',
     tabManglik: 'मांगलिक',
     tabNadi: 'नाड़ी',
+    tabRajju: 'राजु',
     tabAspects: 'ग्रह दृष्टि',
     tab7th: 'सप्तम भाव',
     tabVenus: 'शुक्र',
     tabSummary: 'विवरण',
     manglikTitle: 'मांगलिक (कुज दोष) विश्लेषण',
     nadiTitle: 'नाड़ी दोष विश्लेषण',
+    rajjuTitle: 'राजु दोष विश्लेषण (दक्षिण भारतीय)',
+    rajjuGroup: 'राजु समूह',
+    rajjuDosha: 'राजु दोष',
+    rajjuDescription: 'व्याख्या',
     aspectsTitle: 'क्रॉस-चार्ट ग्रह दृष्टि',
     seventhTitle: 'सप्तम भाव (विवाह) विश्लेषण',
     venusTitle: 'शुक्र (प्रेम एवं रोमांस) विश्लेषण',
@@ -138,12 +148,13 @@ interface PersonBirth {
   placeTimezone: string | null;
 }
 
-type TabKey = 'overview' | 'manglik' | 'nadi' | 'aspects' | '7th' | 'venus' | 'summary';
+type TabKey = 'overview' | 'manglik' | 'nadi' | 'rajju' | 'aspects' | '7th' | 'venus' | 'summary';
 
 const TABS: { key: TabKey; icon: typeof Heart }[] = [
   { key: 'overview', icon: Star },
   { key: 'manglik', icon: Shield },
   { key: 'nadi', icon: Activity },
+  { key: 'rajju', icon: Activity },
   { key: 'aspects', icon: Heart },
   { key: '7th', icon: Home },
   { key: 'venus', icon: Heart },
@@ -238,6 +249,7 @@ export default function DetailedReportPage() {
       overview: lbl.tabOverview,
       manglik: lbl.tabManglik,
       nadi: lbl.tabNadi,
+      rajju: lbl.tabRajju,
       aspects: lbl.tabAspects,
       '7th': lbl.tab7th,
       venus: lbl.tabVenus,
@@ -371,6 +383,11 @@ export default function DetailedReportPage() {
                   <span className={`text-xs px-2.5 py-1 rounded-full border ${report.nadiAnalysis.doshaPresent ? 'text-red-300 border-red-500/30 bg-red-500/10' : 'text-emerald-300 border-emerald-500/30 bg-emerald-500/10'}`}>
                     {isHindi ? 'नाड़ी' : 'Nadi'}: {report.nadiAnalysis.doshaPresent ? (report.nadiAnalysis.cancellations.length > 0 ? (isHindi ? 'निवारित' : 'Mitigated') : lbl.present) : lbl.absent}
                   </span>
+                  {report.rajjuDosha && (
+                    <span className={`text-xs px-2.5 py-1 rounded-full border ${report.rajjuDosha.doshaPresent ? (report.rajjuDosha.severity === 'severe' ? 'text-red-300 border-red-500/30 bg-red-500/10' : report.rajjuDosha.severity === 'moderate' ? 'text-orange-300 border-orange-500/30 bg-orange-500/10' : 'text-yellow-300 border-yellow-500/30 bg-yellow-500/10') : 'text-emerald-300 border-emerald-500/30 bg-emerald-500/10'}`}>
+                      {isHindi ? 'राजु' : 'Rajju'}: {report.rajjuDosha.doshaPresent ? lbl.present : lbl.absent}
+                    </span>
+                  )}
                   <span className="text-xs px-2.5 py-1 rounded-full border text-purple-300 border-purple-500/30 bg-purple-500/10">
                     {isHindi ? 'दृष्टि' : 'Aspects'}: {report.crossChartAspects.length}
                   </span>
@@ -522,6 +539,53 @@ export default function DetailedReportPage() {
                   <div className="rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-4">
                     <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">{lbl.healthImplications}</div>
                     <p className="text-text-primary text-sm leading-relaxed">{report.nadiAnalysis.healthImplications}</p>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Rajju Dosha */}
+              {activeTab === 'rajju' && report.rajjuDosha && (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
+                  <h3 className="text-xl font-bold text-gold-light mb-4" style={headingFont}>{lbl.rajjuTitle}</h3>
+
+                  {/* Both partners' Rajju groups */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {[
+                      { label: p1.name || lbl.partner1, group: report.rajjuDosha.boyRajju },
+                      { label: p2.name || lbl.partner2, group: report.rajjuDosha.girlRajju },
+                    ].map((item) => (
+                      <div key={item.label} className="rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-4">
+                        <div className="text-gold-light font-bold mb-2" style={headingFont}>{item.label}</div>
+                        <div className="text-text-primary text-sm">
+                          {lbl.rajjuGroup}: <span className="text-gold-primary font-bold capitalize">{item.group}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Dosha status */}
+                  <div className={`rounded-xl border p-4 ${report.rajjuDosha.doshaPresent ? (report.rajjuDosha.severity === 'severe' ? 'border-red-500/20 bg-red-500/5' : report.rajjuDosha.severity === 'moderate' ? 'border-orange-500/20 bg-orange-500/5' : 'border-yellow-500/20 bg-yellow-500/5') : 'border-emerald-500/20 bg-emerald-500/5'}`}>
+                    <div className="flex items-center gap-3 mb-1">
+                      <span className="text-sm font-bold" style={headingFont}>
+                        <span className={report.rajjuDosha.doshaPresent ? (report.rajjuDosha.severity === 'severe' ? 'text-red-400' : report.rajjuDosha.severity === 'moderate' ? 'text-orange-400' : 'text-yellow-400') : 'text-emerald-400'}>
+                          {lbl.rajjuDosha}: {report.rajjuDosha.doshaPresent ? lbl.present : lbl.absent}
+                        </span>
+                      </span>
+                      {report.rajjuDosha.doshaPresent && (
+                        <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${report.rajjuDosha.severity === 'severe' ? 'bg-red-500/20 text-red-300' : report.rajjuDosha.severity === 'moderate' ? 'bg-orange-500/20 text-orange-300' : 'bg-yellow-500/20 text-yellow-300'}`}>
+                          {lbl.severity}: {report.rajjuDosha.severity}
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-text-secondary text-xs capitalize">{report.rajjuDosha.groupName.en}</div>
+                  </div>
+
+                  {/* Description */}
+                  <div className="rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-4">
+                    <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">{lbl.rajjuDescription}</div>
+                    <p className="text-text-primary text-sm leading-relaxed">
+                      {isHindi ? (report.rajjuDosha.description.hi ?? report.rajjuDosha.description.en) : report.rajjuDosha.description.en}
+                    </p>
                   </div>
                 </motion.div>
               )}

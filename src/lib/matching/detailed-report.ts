@@ -13,8 +13,11 @@
 import type { KundaliData, PlanetPosition } from '@/types/kundali';
 import type { MatchResult } from './ashta-kuta';
 import { analyzeMangalDoshaForMatching, type MangalDoshaResult } from '@/lib/kundali/mangal-dosha-engine';
+import { analyzeRajjuDosha, type RajjuDoshaResult } from './rajju-dosha';
 
 // ── Types ────────────────────────────────────────────────────
+
+export { type RajjuDoshaResult } from './rajju-dosha';
 
 export interface DetailedMatchReport {
   ashtaKuta: MatchResult;
@@ -35,6 +38,9 @@ export interface DetailedMatchReport {
     cancellations: string[];
     healthImplications: string;
   };
+
+  /** Rajju Dosha — South Indian (Tamil) nakshatra cord matching */
+  rajjuDosha?: RajjuDoshaResult;
 
   crossChartAspects: CrossChartAspect[];
 
@@ -649,6 +655,13 @@ export function generateDetailedReport(
   // Nadi
   const nadiAnalysis = analyzeNadi(chart1, chart2);
 
+  // Rajju Dosha (South Indian — Moon nakshatra cord matching)
+  const moon1 = getPlanet(chart1, 1);
+  const moon2 = getPlanet(chart2, 1);
+  const nak1 = moon1?.nakshatra?.id ?? 1;
+  const nak2 = moon2?.nakshatra?.id ?? 1;
+  const rajjuDosha = analyzeRajjuDosha(nak1, nak2);
+
   // Cross-chart aspects
   const crossChartAspects = analyzeCrossChartAspects(chart1, chart2);
 
@@ -674,6 +687,7 @@ export function generateDetailedReport(
     ashtaKuta: matchResult,
     manglikAnalysis,
     nadiAnalysis,
+    rajjuDosha,
     crossChartAspects,
     seventhHouseAnalysis,
     venusAnalysis: venusAn,

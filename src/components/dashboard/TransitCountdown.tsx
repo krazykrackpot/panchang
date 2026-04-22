@@ -52,8 +52,9 @@ const LABELS = {
 // ---------------------------------------------------------------------------
 
 interface TransitCountdownProps {
-  ascendantSign: number;   // 1-12
-  savTable: number[];      // 12 entries, Sarvashtakavarga per sign
+  ascendantSign: number;       // 1-12
+  savTable: number[];          // 12 entries, raw Sarvashtakavarga per sign
+  reducedSavTable?: number[];  // 12 entries, post-Shodhana (preferred for quality scoring)
   locale: string;
 }
 
@@ -76,7 +77,15 @@ interface ScoredTransit {
   approximateDate: string;
 }
 
-function getQuality(sav: number): ScoredTransit['quality'] {
+// Thresholds: reduced SAV (post-Shodhana) averages ~8 per sign vs raw ~28.
+// Use lower thresholds when scoring against the reduced table.
+function getQuality(sav: number, isReduced: boolean): ScoredTransit['quality'] {
+  if (isReduced) {
+    if (sav >= 16) return 'highly_favorable';
+    if (sav >= 14) return 'supportive';
+    if (sav >= 8)  return 'moderate';
+    return 'challenging';
+  }
   if (sav >= 32) return 'highly_favorable';
   if (sav >= 28) return 'supportive';
   if (sav >= 22) return 'moderate';
@@ -127,9 +136,13 @@ const SAV_BAR_MAX = 40;
 // Component
 // ---------------------------------------------------------------------------
 
-export default function TransitCountdown({ ascendantSign, savTable, locale }: TransitCountdownProps) {
+export default function TransitCountdown({ ascendantSign, savTable, reducedSavTable, locale }: TransitCountdownProps) {
   const L = LABELS[locale as keyof typeof LABELS] || LABELS.en;
   const isDeva = isDevanagariLocale(locale as Locale);
+
+  // Prefer reducedSavTable (post-Shodhana) for quality scoring — more accurate for transit prediction.
+  const scoringTable = reducedSavTable ?? savTable;
+  const isReduced = !!reducedSavTable;
 
   const scoredTransits = useMemo<ScoredTransit[]>(() => {
     const raw = computeUpcomingTransitions();
@@ -137,8 +150,8 @@ export default function TransitCountdown({ ascendantSign, savTable, locale }: Tr
 
     const scored: ScoredTransit[] = raw.map((t) => {
       const house = ((t.toSignId - ascendantSign + 12) % 12) + 1;
-      const sav = savTable[t.toSignId - 1] || 0;
-      const quality = getQuality(sav);
+      const sav = scoringTable[t.toSignId - 1] || 0;
+      const quality = getQuality(sav, isReduced);
       const graha = GRAHAS[t.planetId];
       const toRashi = RASHIS[t.toSignId - 1];
       const fromRashi = RASHIS[t.fromSignId - 1];

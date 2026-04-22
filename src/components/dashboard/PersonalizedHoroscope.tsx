@@ -125,7 +125,7 @@ function extractSnapshot(kundali: KundaliData): ChartSnapshot {
     moonSign: moonPlanet?.sign || 1,
     mahaDasha,
     antarDasha,
-    savTable: kundali.ashtakavarga?.savTable || new Array(12).fill(25),
+    savTable: kundali.ashtakavarga?.reducedSavTable || kundali.ashtakavarga?.savTable || new Array(12).fill(25),
     keyYogas,
     keyDoshas,
   };

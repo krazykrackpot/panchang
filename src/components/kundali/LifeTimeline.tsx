@@ -965,12 +965,14 @@ function computeTimeline(kundali: KundaliData): TimelineData {
   // ── Ashtakavarga heat ──────────────────────────────────────────────────────
   const ashtakaHeat: AshtakaSegment[] = [];
   if (kundali.ashtakavarga?.savTable) {
+    // Prefer reduced SAV (after Shodhana) for more accurate transit heat
+    const heatSav = kundali.ashtakavarga.reducedSavTable || kundali.ashtakavarga.savTable;
     for (let i = 0; i < YEARS; i++) {
       const yr = birthYear + i;
       const days = i * 365.25;
       const jupLong = norm360(jupBirthLong + JUP_SPEED * days);
       const jupSign = Math.floor(jupLong / 30) % 12;
-      const score = kundali.ashtakavarga.savTable[jupSign] ?? 28;
+      const score = heatSav[jupSign] ?? 28;
       ashtakaHeat.push({ year: yr, score });
     }
   }

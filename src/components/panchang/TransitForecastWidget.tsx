@@ -29,7 +29,10 @@ export default function TransitForecastWidget({ locale }: Props) {
         const chartData = data.chartData || data.chart_data;
         if (chartData?.ashtakavarga?.savTable && chartData?.ascendant?.sign) {
           setHasChart(true);
-          const t = computePersonalTransits(chartData.ascendant.sign, chartData.ashtakavarga.savTable);
+          // Prefer reduced SAV (after Shodhana) for transit quality scoring
+          const transitSav = chartData.ashtakavarga.reducedSavTable || chartData.ashtakavarga.savTable;
+          const moonSign = chartData.planets?.find((p: { planet: { id: number } }) => p.planet.id === 1)?.sign;
+          const t = computePersonalTransits(chartData.ascendant.sign, transitSav, moonSign, chartData.ashtakavarga.reducedBpiTable);
           // Pick top 2 by absolute deviation from mean SAV (~25)
           const sorted = [...t].sort((a, b) => Math.abs(b.savBindu - 25) - Math.abs(a.savBindu - 25));
           setTransits(sorted.slice(0, 2));

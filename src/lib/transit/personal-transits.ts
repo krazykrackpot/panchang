@@ -74,11 +74,17 @@ export function computePersonalTransits(
   ascendantSign: number,
   savTable: number[],
   natalMoonSign?: number,
-  reducedBav?: number[][]
+  reducedBav?: number[][],
+  reducedSavTable?: number[]
 ): PersonalTransit[] {
   const now = new Date();
   const jd = dateToJD(now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate(), 12);
   const positions = getPlanetaryPositions(jd);
+
+  // Prefer reducedSavTable (post-Shodhana) for quality scoring — more accurate for transit prediction.
+  // Reduced SAV averages ~8 per sign vs raw ~28, so thresholds are adjusted accordingly.
+  const scoringTable = reducedSavTable ?? savTable;
+  const isReduced = !!reducedSavTable;
 
   const transits: PersonalTransit[] = SLOW_PLANETS.map(sp => {
     const pos = positions.find(p => p.id === sp.id);
@@ -87,9 +93,12 @@ export function computePersonalTransits(
     const sidLon = toSidereal(pos.longitude, jd);
     const sign = Math.floor(sidLon / 30) + 1;
     const house = ((sign - ascendantSign + 12) % 12) + 1;
-    const savBindu = savTable[sign - 1] || 0;
-    const quality: PersonalTransit['quality'] =
-      savBindu >= 28 ? 'strong' : savBindu < 22 ? 'weak' : 'neutral';
+    const savBindu = scoringTable[sign - 1] || 0;
+    // Thresholds: reduced SAV (post-Shodhana) uses >=14 strong / <8 weak.
+    // Raw SAV uses >=28 strong / <22 weak (classical values).
+    const quality: PersonalTransit['quality'] = isReduced
+      ? (savBindu >= 14 ? 'strong' : savBindu < 8 ? 'weak' : 'neutral')
+      : (savBindu >= 28 ? 'strong' : savBindu < 22 ? 'weak' : 'neutral');
 
     const graha = GRAHAS[sp.id];
     const rashi = RASHIS[sign - 1];

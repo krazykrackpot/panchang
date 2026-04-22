@@ -967,8 +967,8 @@ export default function KundaliPage() {
                   <KeyDatesTimeline dates={keyDates} locale={locale} />
                 </div>
               )}
-              {/* Reading Trajectory — trends below Key Dates */}
-              {trajectoryHook.trajectory && user && (
+              {/* Reading Trajectory — only show when there's meaningful data (2+ months of history) */}
+              {trajectoryHook.trajectory && user && trajectoryHook.trajectory.domains.some(d => d.sparkline.length >= 2) && (
                 <div className="mb-8">
                   <TrajectoryCard
                     trajectory={trajectoryHook.trajectory}
@@ -1462,6 +1462,24 @@ export default function KundaliPage() {
                   </div>
                 );
               })()}
+
+              {/* Transit Radar — Gochara with Vedha + Double Transit (inside chart tab for visibility) */}
+              {kundali.ashtakavarga && (
+                <div className="mt-8">
+                  <a href={`/${locale}/learn/transits`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-2">
+                    {locale === 'en' || isTamil ? 'Current Transits (Gochara) \u2192' : 'वर्तमान गोचर \u2192'}
+                  </a>
+                  <Suspense fallback={<div className="text-center py-8 text-text-secondary">Loading...</div>}>
+                    <TransitRadar
+                      ascendantSign={kundali.ascendant.sign}
+                      savTable={kundali.ashtakavarga.savTable}
+                      locale={locale}
+                      natalMoonSign={kundali.planets.find(p => p.planet.id === 1)?.sign}
+                      reducedBav={kundali.ashtakavarga.reducedBpiTable}
+                    />
+                  </Suspense>
+                </div>
+              )}
             </div>
           )}
 
@@ -5099,23 +5117,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
         );
       })()}
 
-      {/* ===== TRANSIT RADAR ===== */}
-      {kundali.ashtakavarga && (
-        <>
-        <a href={`/${locale}/learn/transits`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-2">
-          {locale === 'en' || isTamil ? 'Learn about Transits \u2192' : 'गोचर के बारे में जानें \u2192'}
-        </a>
-        <Suspense fallback={<div className="text-center py-8 text-text-secondary">Loading...</div>}>
-          <TransitRadar
-            ascendantSign={kundali.ascendant.sign}
-            savTable={kundali.ashtakavarga.savTable}
-            locale={locale}
-            natalMoonSign={kundali.planets.find(p => p.planet.id === 1)?.sign}
-            reducedBav={kundali.ashtakavarga.reducedBpiTable}
-          />
-        </Suspense>
-        </>
-      )}
+      {/* Transit Radar moved into Chart tab for visibility */}
 
       {/* ===== PLANETARY STRENGTH ===== */}
       {tip.strengthOverview.length > 0 && (

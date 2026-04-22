@@ -53,6 +53,7 @@ import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } f
 import PaywallGate from '@/components/ui/PaywallGate';
 import InfoBlock from '@/components/ui/InfoBlock';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { findDashaSandhiPeriods } from '@/lib/kundali/dasha-sandhi';
 
 // Dynamic imports — only loaded after chart generation or on specific tab activation
 const ChartNorth = dynamic(() => import('@/components/kundali/ChartNorth'), { ssr: false });
@@ -2143,6 +2144,49 @@ export default function KundaliPage() {
                       );
                     })}
                   </>
+                );
+              })()}
+              {/* Dasha Sandhi (Junction Periods) */}
+              {(() => {
+                const sandhiPeriods = findDashaSandhiPeriods(kundali.dashas);
+                if (sandhiPeriods.length === 0) return null;
+                // Find current or upcoming sandhi
+                const now = new Date().toISOString().split('T')[0];
+                const upcoming = sandhiPeriods.filter(s => s.sandhiEnd >= now).slice(0, 3);
+                if (upcoming.length === 0) return null;
+                return (
+                  <div className="mt-6 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 p-5">
+                    <h4 className="text-amber-300 font-bold text-sm mb-3">
+                      {locale === 'en' || isTamil ? 'Dasha Sandhi (Transition Periods)' : 'दशा सन्धि (संक्रमण काल)'}
+                    </h4>
+                    <p className="text-text-secondary text-xs mb-3">
+                      {locale === 'en' || isTamil
+                        ? 'Junction periods between Maha Dashas — times of transition and adjustment.'
+                        : 'महादशाओं के बीच संक्रमण काल — परिवर्तन और समायोजन का समय।'}
+                    </p>
+                    <div className="space-y-3">
+                      {upcoming.map((s, i) => {
+                        const intensityColor = s.intensity === 'intense' ? 'border-red-500/20 bg-red-500/5' : s.intensity === 'moderate' ? 'border-amber-500/20 bg-amber-500/5' : 'border-emerald-500/20 bg-emerald-500/5';
+                        const intensityLabel = s.intensity === 'intense' ? (locale === 'hi' ? 'तीव्र' : 'Intense') : s.intensity === 'moderate' ? (locale === 'hi' ? 'मध्यम' : 'Moderate') : (locale === 'hi' ? 'सौम्य' : 'Mild');
+                        return (
+                          <div key={i} className={`rounded-lg border p-3 ${intensityColor}`}>
+                            <div className="flex items-center justify-between mb-1">
+                              <span className="text-gold-light text-sm font-medium">
+                                {s.outgoingPlanet} → {s.incomingPlanet}
+                              </span>
+                              <span className="text-xs px-2 py-0.5 rounded-full border border-current opacity-70">
+                                {intensityLabel}
+                              </span>
+                            </div>
+                            <div className="text-text-secondary text-xs">
+                              {s.sandhiStart} to {s.sandhiEnd} ({s.durationMonths} months)
+                            </div>
+                            <div className="text-text-secondary/60 text-[10px] mt-1">{s.description}</div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
                 );
               })()}
               <DashaInterpretation dashas={kundali.dashas} planets={kundali.planets} locale={locale} />

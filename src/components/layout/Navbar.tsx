@@ -217,7 +217,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-3 shrink-0">
             <div className={`flex items-center gap-1.5 text-text-secondary text-xs transition-opacity duration-150 ${hydrated && locationStore.confirmed && locationStore.name ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
               <MapPin className="w-3.5 h-3.5 text-gold-primary" />
-              <span className="max-w-[150px] truncate">{locationStore.name || '\u00A0'}</span>
+              <span className="max-w-[150px] truncate" suppressHydrationWarning>{hydrated ? (locationStore.name || '\u00A0') : '\u00A0'}</span>
             </div>
             <div className={`transition-opacity duration-150 ${hydrated && user ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
               <NotificationBell />

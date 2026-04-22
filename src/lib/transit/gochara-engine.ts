@@ -133,7 +133,8 @@ export function analyzeGochara(
       }
     }
 
-    const bavScore = reducedBav ? reducedBav[t.id][t.sign - 1] : undefined;
+    // BAV only covers planets 0-6 (Sun through Saturn). Rahu(7)/Ketu(8) have no BAV row.
+    const bavScore = reducedBav && t.id >= 0 && t.id <= 6 ? reducedBav[t.id]?.[t.sign - 1] : undefined;
     const quality = computeQuality(isGood, vedhaActive, bavScore);
 
     const result: GocharaResult = {

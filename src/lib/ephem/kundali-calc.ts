@@ -274,7 +274,7 @@ function calculateBhavChalit(planets: PlanetPosition[], ascDeg: number): ChartDa
  * Generic Divisional Chart calculator — Parashara Varga system
  * Supports D2-D60 using classical Parashara rules
  */
-function getDivisionalSign(sidLong: number, division: number): number {
+export function getDivisionalSign(sidLong: number, division: number): number {
   const signIndex = Math.floor(sidLong / 30); // 0-based sign (0=Aries)
   const degInSign = sidLong % 30;
   const partSize = 30 / division;
@@ -342,8 +342,10 @@ function getDivisionalSign(sidLong: number, division: number): number {
       const start45 = [0, 4, 8][signIndex % 3];
       return ((start45 + part) % 12) + 1;
     }
-    case 60: // Shashtiamsha: from same sign (cyclic)
-      return ((signIndex + part) % 12) + 1;
+    case 60: { // Shashtiamsha (BPHS Ch.6): odd sign from same sign, even sign from 7th (opposite)
+      const d60Offset = signIndex % 2 === 0 ? 0 : 6;
+      return ((signIndex + d60Offset + part) % 12) + 1;
+    }
     default: // Generic cyclic from same sign
       return ((signIndex + part) % 12) + 1;
   }

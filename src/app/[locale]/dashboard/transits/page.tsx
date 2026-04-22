@@ -9,6 +9,8 @@ import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { computeGochar } from '@/lib/personalization/gochar';
+import { analyzeGochara, analyzeDoubleTransit } from '@/lib/transit/gochara-engine';
+import type { GocharaResult, DoubleTransitResult, TransitInput } from '@/lib/transit/gochara-engine';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import type { Locale } from '@/types/panchang';
 import type { UserSnapshot } from '@/lib/personalization/types';
@@ -271,6 +273,13 @@ const LABELS = {
 };
 
 // ---------------------------------------------------------------------------
+// Planet name lookup for Gochara engine results (IDs 0-6)
+// ---------------------------------------------------------------------------
+const GOCHARA_PLANET_NAMES: Record<number, string> = {
+  0: 'Sun', 1: 'Moon', 2: 'Mars', 3: 'Mercury', 4: 'Jupiter', 5: 'Venus', 6: 'Saturn',
+};
+
+// ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
 export default function TransitsPage() {
@@ -281,6 +290,8 @@ export default function TransitsPage() {
 
   const [loading, setLoading] = useState(true);
   const [gocharResults, setGocharResults] = useState<GocharResult[]>([]);
+  const [classicalGochara, setClassicalGochara] = useState<GocharaResult[]>([]);
+  const [doubleTransit, setDoubleTransit] = useState<DoubleTransitResult[]>([]);
   const [sadeSati, setSadeSati] = useState<{ isActive?: boolean; phase?: string } | null>(null);
   const [hasBirthData, setHasBirthData] = useState(false);
 
@@ -316,6 +327,25 @@ export default function TransitsPage() {
       // Compute gochar using existing engine
       const results = computeGochar(snapshot.ascendant_sign, snapshot.moon_sign);
       setGocharResults(results);
+
+      // Classical Gochara engine — Vedha + BAV + Double Transit
+      // Build TransitInput[] from the old gochar results (planets 0-6 only)
+      const transitInputs: TransitInput[] = results
+        .filter((r) => r.planetId >= 0 && r.planetId <= 6)
+        .map((r) => ({ id: r.planetId, sign: r.transitSign }));
+
+      if (transitInputs.length > 0 && snapshot.moon_sign) {
+        const gResults = analyzeGochara(transitInputs, snapshot.moon_sign);
+        setClassicalGochara(gResults);
+
+        // Double transit needs Jupiter (4) and Saturn (6) signs
+        const jupEntry = transitInputs.find((t) => t.id === 4);
+        const satEntry = transitInputs.find((t) => t.id === 6);
+        if (jupEntry && satEntry) {
+          const dtResults = analyzeDoubleTransit(jupEntry.sign, satEntry.sign, snapshot.moon_sign);
+          setDoubleTransit(dtResults);
+        }
+      }
 
       // Sade Sati
       if (fullSnap?.sade_sati && typeof fullSnap.sade_sati === 'object') {
@@ -553,6 +583,99 @@ export default function TransitsPage() {
             </div>
           )}
         </motion.div>
+
+        {/* Classical Gochara (Vedha Analysis) */}
+        {classicalGochara.length > 0 && (
+          <motion.div
+            {...fadeUp}
+            transition={{ delay: 0.3 }}
+            className="mb-8"
+          >
+            <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
+              <h3 className="text-gold-light font-bold text-lg mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
+                Classical Gochara (Vedha Analysis)
+              </h3>
+              <p className="text-text-secondary text-xs mb-4">
+                Transit quality per BPHS — houses from Moon with classical Vedha obstruction rules.
+              </p>
+              <div className="space-y-2">
+                {classicalGochara.map((g) => {
+                  const qualColor =
+                    g.quality === 'strong'
+                      ? 'text-emerald-400'
+                      : g.quality === 'moderate'
+                        ? 'text-amber-300'
+                        : g.quality === 'adverse'
+                          ? 'text-red-400'
+                          : 'text-text-secondary';
+                  return (
+                    <div
+                      key={g.planet}
+                      className="flex items-center gap-3 py-2 px-3 rounded-lg bg-white/[0.02] border border-white/5"
+                    >
+                      <GrahaIconById id={g.planet} size={22} />
+                      <span className={`font-medium text-sm w-20 ${qualColor}`}>
+                        {GOCHARA_PLANET_NAMES[g.planet] ?? `P${g.planet}`}
+                      </span>
+                      <span className="text-text-secondary text-xs w-24">
+                        H{g.houseFromMoon} from Moon
+                      </span>
+                      <span
+                        className={`text-xs px-2 py-0.5 rounded ${
+                          g.isGoodHouse
+                            ? 'bg-emerald-500/10 text-emerald-400'
+                            : 'bg-red-500/10 text-red-400'
+                        }`}
+                      >
+                        {g.isGoodHouse ? 'Favorable' : 'Challenging'}
+                      </span>
+                      {g.vedhaActive && (
+                        <span className="text-xs px-2 py-0.5 rounded bg-red-500/15 text-red-400 border border-red-500/20">
+                          Vedha by {GOCHARA_PLANET_NAMES[g.vedhaPlanet!] ?? `P${g.vedhaPlanet}`}
+                        </span>
+                      )}
+                      {g.bavScore !== undefined && (
+                        <span className="text-xs text-text-secondary/60 ml-auto">
+                          BAV: {g.bavScore}
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Double Transit (Jupiter + Saturn) */}
+        {doubleTransit.some((d) => d.doubleTransitActive) && (
+          <motion.div
+            {...fadeUp}
+            transition={{ delay: 0.35 }}
+            className="mb-8"
+          >
+            <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/15 p-5">
+              <h3 className="text-purple-300 font-bold text-lg mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
+                Double Transit (Jupiter + Saturn)
+              </h3>
+              <p className="text-text-secondary text-xs mb-3">
+                Houses activated by BOTH Jupiter and Saturn — events in these life areas may manifest.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {doubleTransit
+                  .filter((d) => d.doubleTransitActive)
+                  .map((d) => (
+                    <span
+                      key={d.house}
+                      className="px-3 py-1.5 rounded-lg bg-purple-500/15 text-purple-300 border border-purple-500/20 text-sm font-medium"
+                    >
+                      House {d.house}
+                    </span>
+                  ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
       </div>
     </main>
   );

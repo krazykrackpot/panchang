@@ -813,61 +813,101 @@ function buildNarrative(
   const parts: string[] = [];
   const partsHi: string[] = [];
 
-  // 1. Promise/Delivery headline
+  // Human-friendly domain labels
+  const DOMAIN_LABEL: Record<string, { en: string; hi: string }> = {
+    marriage: { en: 'your marriage and partnerships', hi: 'आपके विवाह और साझेदारी' },
+    career: { en: 'your career and professional life', hi: 'आपके करियर और व्यावसायिक जीवन' },
+    children: { en: 'children and creative fulfillment', hi: 'संतान और रचनात्मक पूर्ति' },
+    wealth: { en: 'your financial prospects', hi: 'आपकी आर्थिक संभावनाएं' },
+    spiritual: { en: 'your spiritual growth', hi: 'आपकी आध्यात्मिक प्रगति' },
+    health: { en: 'your health and vitality', hi: 'आपका स्वास्थ्य और जीवन शक्ति' },
+    family: { en: 'family life and home environment', hi: 'पारिवारिक जीवन और गृह वातावरण' },
+    education: { en: 'education and learning', hi: 'शिक्षा और विद्या' },
+  };
+  const dl = DOMAIN_LABEL[domain] || { en: domain, hi: domain };
+
+  // Planet names for plain-language references
+  const PNAME: Record<number, { en: string; hi: string; role: string }> = {
+    0: { en: 'Sun', hi: 'सूर्य', role: 'authority and confidence' },
+    1: { en: 'Moon', hi: 'चन्द्र', role: 'emotions and intuition' },
+    2: { en: 'Mars', hi: 'मंगल', role: 'drive and courage' },
+    3: { en: 'Mercury', hi: 'बुध', role: 'communication and intellect' },
+    4: { en: 'Jupiter', hi: 'गुरु', role: 'wisdom and good fortune' },
+    5: { en: 'Venus', hi: 'शुक्र', role: 'love, comfort and beauty' },
+    6: { en: 'Saturn', hi: 'शनि', role: 'discipline and endurance' },
+    7: { en: 'Rahu', hi: 'राहु', role: 'ambition and unconventional growth' },
+    8: { en: 'Ketu', hi: 'केतु', role: 'detachment and spiritual insight' },
+  };
+
+  // 1. Big picture — what does this mean for the user?
   if (pd.d1Promise >= 70 && pd.dxxDelivery >= 70) {
-    parts.push(`Strong promise and strong delivery for ${domain}. The natal chart's potential is well-supported by the ${chartId} divisional chart.`);
-    partsHi.push(`${domain} के लिए बलवान वादा और बलवान प्रदान। जन्म कुण्डली की क्षमता ${chartId} विभागीय चार्ट द्वारा सुदृढ़ है।`);
+    parts.push(`Your chart shows strong natural talent for ${dl.en}, and the deeper analysis confirms this will translate into real results. This is one of your life's genuine strengths — lean into it.`);
+    partsHi.push(`आपकी कुण्डली ${dl.hi} के लिए प्रबल प्राकृतिक प्रतिभा दर्शाती है, और गहन विश्लेषण पुष्टि करता है कि यह वास्तविक परिणामों में बदलेगा। यह आपके जीवन की एक वास्तविक शक्ति है।`);
   } else if (pd.d1Promise >= 70) {
-    parts.push(`Strong natal promise for ${domain}, but the ${chartId} chart shows moderate delivery — results may come with delays or conditions.`);
-    partsHi.push(`${domain} के लिए जन्म कुण्डली में बलवान वादा, किन्तु ${chartId} चार्ट मध्यम प्रदान दर्शाता है — परिणाम विलम्ब से आ सकते हैं।`);
+    parts.push(`You have strong potential for ${dl.en}, but turning that potential into results will require patience and the right timing. Don't be discouraged by slow progress — the foundation is solid, and the right planetary period will accelerate things.`);
+    partsHi.push(`${dl.hi} के लिए आपमें प्रबल क्षमता है, किन्तु इसे फल में बदलने के लिए धैर्य और सही समय चाहिए। धीमी प्रगति से निराश न हों — नींव मज़बूत है।`);
   } else if (pd.dxxDelivery >= 70) {
-    parts.push(`The ${chartId} chart strongly supports ${domain} outcomes, compensating for a moderate natal promise. Dasha activation will be key.`);
-    partsHi.push(`${chartId} चार्ट ${domain} परिणामों को दृढ़ता से सहयोग करता है। दशा सक्रियण महत्वपूर्ण होगा।`);
+    parts.push(`While ${dl.en} may not be the first thing people notice about your chart, the deeper analysis reveals hidden support. When the right planetary period activates, you may surprise yourself with what you achieve here.`);
+    partsHi.push(`हालाँकि ${dl.hi} आपकी कुण्डली की पहली दृष्टि में स्पष्ट नहीं, गहन विश्लेषण छिपा सहयोग दर्शाता है। सही ग्रह काल में आप स्वयं चकित हो सकते हैं।`);
   } else {
-    parts.push(`Both natal promise and ${chartId} delivery for ${domain} are moderate — steady rather than spectacular results.`);
-    partsHi.push(`${domain} के लिए जन्म वादा और ${chartId} प्रदान दोनों मध्यम हैं — स्थिर परिणाम।`);
+    parts.push(`For ${dl.en}, your chart indicates a steady but measured path. Don't expect fireworks — instead, consistent effort over time will yield meaningful results. Focus on building skills and relationships in this area.`);
+    partsHi.push(`${dl.hi} के लिए आपकी कुण्डली स्थिर किन्तु मापित मार्ग दर्शाती है। धमाकेदार परिणाम की अपेक्षा न करें — निरंतर प्रयास से सार्थक फल मिलेंगे।`);
   }
 
-  // 2. Vargottama planets (dignity confirmed across charts)
+  // 2. Planets that are your allies in this domain
   if (vargottamaPlanets.length > 0) {
-    const PNAMES: Record<number, string> = { 0: 'Sun', 1: 'Moon', 2: 'Mars', 3: 'Mercury', 4: 'Jupiter', 5: 'Venus', 6: 'Saturn', 7: 'Rahu', 8: 'Ketu' };
-    const names = vargottamaPlanets.map(pid => PNAMES[pid] || `P${pid}`).join(', ');
-    parts.push(`${names} ${vargottamaPlanets.length === 1 ? 'is' : 'are'} Vargottama (same sign in D1 and ${chartId}) — confirmed strength that delivers reliably.`);
-    partsHi.push(`${names} वर्गोत्तम ${vargottamaPlanets.length === 1 ? 'है' : 'हैं'} — D1 और ${chartId} दोनों में समान राशि, विश्वसनीय बल।`);
+    const allies = vargottamaPlanets.map(pid => {
+      const p = PNAME[pid] || { en: 'a planet', hi: 'एक ग्रह', role: 'influence' };
+      return { en: `${p.en} (${p.role})`, hi: `${p.hi} (${p.role})` };
+    });
+    if (allies.length === 1) {
+      parts.push(`${allies[0].en} is especially powerful for ${dl.en} — this planet occupies the same strong position in both your birth chart and this specialized chart, meaning its influence is dependable and consistent.`);
+      partsHi.push(`${allies[0].hi} ${dl.hi} के लिए विशेष रूप से शक्तिशाली है — यह ग्रह दोनों चार्ट में समान बलवान स्थिति में है।`);
+    } else {
+      const enList = allies.map(a => a.en).join(' and ');
+      parts.push(`${enList} are especially powerful for ${dl.en} — these planets hold consistent strength across multiple chart layers, making their influence reliable.`);
+      partsHi.push(`${allies.map(a => a.hi).join(' और ')} ${dl.hi} के लिए विशेष रूप से शक्तिशाली हैं।`);
+    }
   }
 
-  // 3. Pushkara / Gandanta
-  if (pushkaraCount > 0) {
-    parts.push(`${pushkaraCount} planet${pushkaraCount > 1 ? 's' : ''} in Pushkara position — auspicious support for this domain.`);
-    partsHi.push(`${pushkaraCount} ग्रह पुष्कर स्थिति में — इस क्षेत्र के लिए शुभ सहयोग।`);
-  }
-  if (gandantaCount > 0) {
-    parts.push(`${gandantaCount} planet${gandantaCount > 1 ? 's' : ''} in Gandanta (junction) — karmic challenge that requires conscious effort to overcome.`);
-    partsHi.push(`${gandantaCount} ग्रह गण्डान्त में — कार्मिक चुनौती जिसे सचेत प्रयास से पार करना होगा।`);
+  // 3. Tailwinds and headwinds — what's working for/against you
+  if (pushkaraCount > 0 && gandantaCount === 0) {
+    parts.push(`You have natural good fortune backing ${dl.en} — like a tailwind that makes effort go further. Take advantage of this during favorable planetary periods.`);
+    partsHi.push(`${dl.hi} में आपके पास प्राकृतिक सौभाग्य का सहारा है — अनुकूल ग्रह काल में इसका लाभ उठाएं।`);
+  } else if (gandantaCount > 0 && pushkaraCount === 0) {
+    parts.push(`There's a karmic knot around ${dl.en} that may create periods of confusion or setbacks. These are growth moments, not permanent blocks — working through them builds lasting strength.`);
+    partsHi.push(`${dl.hi} के आसपास एक कार्मिक गांठ है जो भ्रम या बाधा उत्पन्न कर सकती है। ये विकास के क्षण हैं, स्थायी अवरोध नहीं।`);
+  } else if (pushkaraCount > 0 && gandantaCount > 0) {
+    parts.push(`Interestingly, ${dl.en} shows both natural blessings and karmic challenges. You'll experience phases of ease alternating with periods that test your resolve. The blessings ultimately outweigh the challenges.`);
+    partsHi.push(`रोचक बात यह है कि ${dl.hi} में प्राकृतिक आशीर्वाद और कार्मिक चुनौतियां दोनों हैं। सहजता और परीक्षा के दौर बारी-बारी आएंगे।`);
   }
 
-  // 4. Yogas
+  // 4. Special combinations — in plain language
   if (yogas.length > 0) {
-    const yogaNames = yogas.slice(0, 3).map(y => y.name).join(', ');
-    parts.push(`Notable yogas: ${yogaNames}${yogas.length > 3 ? ` (+${yogas.length - 3} more)` : ''}.`);
-    partsHi.push(`उल्लेखनीय योग: ${yogaNames}${yogas.length > 3 ? ` (+${yogas.length - 3} और)` : ''}।`);
+    const count = yogas.length;
+    if (count >= 3) {
+      parts.push(`Multiple special planetary combinations (${count} found) strengthen this area of your life — this is above average and suggests natural talent or fortunate circumstances.`);
+      partsHi.push(`अनेक विशेष ग्रह संयोजन (${count}) इस जीवन क्षेत्र को सुदृढ़ करते हैं — यह औसत से ऊपर है और प्राकृतिक प्रतिभा का संकेत है।`);
+    } else {
+      parts.push(`A special planetary combination supports ${dl.en}, adding an extra boost during its activation period.`);
+      partsHi.push(`एक विशेष ग्रह संयोजन ${dl.hi} को सहयोग करता है, सक्रियण काल में अतिरिक्त बल देता है।`);
+    }
   }
 
-  // 5. Dignity shifts
+  // 5. Hidden strengths or gaps
   const improvements = cross.dignityShifts.filter(d => d.shift === 'improved');
   const declines = cross.dignityShifts.filter(d => d.shift === 'declined');
-  if (improvements.length > 0) {
-    parts.push(`${improvements.length} planet${improvements.length > 1 ? 's improve' : ' improves'} dignity from D1 to ${chartId} — hidden strengths activated in this domain.`);
-    partsHi.push(`${improvements.length} ग्रह D1 से ${chartId} में गरिमा सुधारते हैं — इस क्षेत्र में छिपी शक्ति।`);
-  }
-  if (declines.length > 0) {
-    parts.push(`${declines.length} planet${declines.length > 1 ? 's lose' : ' loses'} dignity — areas where natal strength doesn't fully translate into results.`);
-    partsHi.push(`${declines.length} ग्रह गरिमा खोते हैं — जहाँ जन्म बल पूर्णतया फलित नहीं होता।`);
+  if (improvements.length > declines.length) {
+    parts.push(`The deeper chart reveals hidden strengths that aren't obvious from a surface reading — you may find that ${dl.en} improves in ways you didn't initially expect.`);
+    partsHi.push(`गहन चार्ट ऐसी छिपी शक्तियां दर्शाता है जो सतही पढ़ने से स्पष्ट नहीं — ${dl.hi} अप्रत्याशित रूप से सुधर सकता है।`);
+  } else if (declines.length > improvements.length) {
+    parts.push(`Some of the promise visible in your birth chart faces friction when examined more deeply. This doesn't negate the potential, but suggests that ${dl.en} will require more deliberate effort than it might initially appear.`);
+    partsHi.push(`जन्म कुण्डली में दिखने वाली कुछ संभावनाएं गहन परीक्षा में बाधा दर्शाती हैं। ${dl.hi} के लिए प्रत्याशा से अधिक सचेत प्रयास की आवश्यकता होगी।`);
   }
 
   return {
-    en: parts.join(' '),
-    hi: partsHi.join(' '),
+    en: parts.join('\n\n'),
+    hi: partsHi.join('\n\n'),
   };
 }
 

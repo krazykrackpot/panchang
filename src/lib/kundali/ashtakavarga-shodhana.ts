@@ -4,7 +4,7 @@
  * This module implements the two classical reduction passes applied to raw
  * Bhinnashtakavarga (BAV) tables and computes Pinda Ashtakavarga per planet.
  *
- * References: Brihat Parashara Hora Shastra (BPHS), Ch. 66-68
+ * References: Brihat Parashara Hora Shastra (BPHS), Ch. 66-69
  */
 
 // ---------------------------------------------------------------------------
@@ -117,32 +117,26 @@ export function ekadhipatyaShodhana(
     const ketuInA = ketuSign === signA;
     const ketuInB = ketuSign === signB;
 
-    if (rahuInA || ketuInA) {
-      // Rahu/Ketu in signA → retain signA, zero signB across all planet rows
-      for (const row of result) {
-        row[signB] = 0;
-      }
-      continue;
-    }
-    if (rahuInB || ketuInB) {
-      // Rahu/Ketu in signB → retain signB, zero signA across all planet rows
-      for (const row of result) {
-        row[signA] = 0;
-      }
-      continue;
-    }
-
-    // Rule 3: neither lord nor Rahu/Ketu in either sign → per-planet-row reduction
+    // Rules 2 & 3 are applied PER PLANET ROW (each planet's BAV is independent)
     for (const row of result) {
-      const valA = row[signA];
-      const valB = row[signB];
-      if (valA > valB) {
+      if (rahuInA || ketuInA) {
+        // Rule 2: Rahu/Ketu in signA → retain signA, zero signB
         row[signB] = 0;
-      } else if (valB > valA) {
+      } else if (rahuInB || ketuInB) {
+        // Rule 2: Rahu/Ketu in signB → retain signB, zero signA
         row[signA] = 0;
       } else {
-        // Equal: zero the later (higher-index) sign
-        row[signB] = 0;
+        // Rule 3: neither lord nor Rahu/Ketu → retain higher, zero lower
+        const valA = row[signA];
+        const valB = row[signB];
+        if (valA > valB) {
+          row[signB] = 0;
+        } else if (valB > valA) {
+          row[signA] = 0;
+        } else {
+          // Equal: zero the later (higher-index) sign
+          row[signB] = 0;
+        }
       }
     }
   }

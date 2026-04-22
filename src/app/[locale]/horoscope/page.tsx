@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, Briefcase, Heart, Activity, IndianRupee, Sparkles } from 'lucide-react';
@@ -8,6 +8,7 @@ import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { Link } from '@/lib/i18n/navigation';
 import ShareButton from '@/components/ui/ShareButton';
+import { useBirthDataStore } from '@/stores/birth-data-store';
 import type { Locale } from '@/types/panchang';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -238,12 +239,39 @@ export default function HoroscopePage() {
   const [loading, setLoading] = useState(false);
   const [selectedSign, setSelectedSign] = useState<number | null>(null);
   const [date, setDate] = useState('');
+  const autoFetched = useRef(false);
+
+  // Load birth data from localStorage on mount
+  const { birthRashi, loadFromStorage } = useBirthDataStore();
+  useEffect(() => { loadFromStorage(); }, [loadFromStorage]);
 
   // Compute today's date string
   useEffect(() => {
     const now = new Date();
     setDate(`${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`);
   }, []);
+
+  // Auto-select user's birth rashi and fetch horoscope on first load
+  useEffect(() => {
+    if (autoFetched.current || !date || !birthRashi || birthRashi < 1 || birthRashi > 12) return;
+    autoFetched.current = true;
+    setSelectedSign(birthRashi);
+    // fetchHoroscope is defined below — call inline to avoid stale closure
+    (async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(`/api/horoscope/daily?moonSign=${birthRashi}&date=${date}`);
+        if (res.ok) {
+          const data: DailyHoroscope = await res.json();
+          setHoroscope(data);
+        }
+      } catch (err) {
+        console.error('[horoscope] auto-fetch failed:', err);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [date, birthRashi]);
 
   const fetchHoroscope = useCallback(async (signId: number) => {
     setLoading(true);

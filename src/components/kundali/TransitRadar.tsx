@@ -55,7 +55,20 @@ export default function TransitRadar({ ascendantSign, savTable, locale, natalMoo
       {/* Transit rows */}
       <div className="px-6 sm:px-8 pb-4 space-y-3">
         {transits.map(t => {
-          const effectiveQuality = t.gocharaQuality || t.quality;
+          // Blend SAV quality with Gochara quality — use the more favorable of the two.
+          // Gochara alone is too harsh (most houses are "bad"), SAV alone ignores classical rules.
+          // Ranking: strong > moderate/neutral > weak > adverse
+          const QUALITY_RANK: Record<string, number> = { strong: 4, moderate: 3, neutral: 3, weak: 2, adverse: 1 };
+          const savRank = QUALITY_RANK[t.quality] ?? 3;
+          const gocharaRank = t.gocharaQuality ? (QUALITY_RANK[t.gocharaQuality] ?? 3) : savRank;
+          const blendedRank = Math.max(savRank, gocharaRank);
+          // If Gochara says favorable (good house + no vedha), boost to strong
+          const effectiveQuality = t.isGoodHouse && !t.vedhaActive ? 'strong'
+            : t.vedhaActive ? 'adverse'
+            : blendedRank >= 4 ? 'strong'
+            : blendedRank >= 3 ? 'neutral'
+            : blendedRank >= 2 ? 'weak'
+            : 'adverse';
           const style = QUALITY_STYLES[effectiveQuality] || QUALITY_STYLES.neutral;
           return (
             <div key={t.planetId} className={`flex items-center gap-3 p-3 rounded-xl ${style.bg} border ${style.border}`}>
@@ -98,6 +111,8 @@ export default function TransitRadar({ ascendantSign, savTable, locale, natalMoo
                 </div>
                 <p className="text-text-secondary/75 text-xs mt-0.5 truncate">
                   {isHi ? t.interpretation.hi : t.interpretation.en}
+                  {t.isGoodHouse === true && !t.vedhaActive && (isHi ? ' — गोचर अनुकूल' : ' — Gochara favorable')}
+                  {t.vedhaActive && (isHi ? ' — वेध से बाधित' : ' — obstructed by Vedha')}
                 </p>
               </div>
             </div>
@@ -115,23 +130,42 @@ export default function TransitRadar({ ascendantSign, savTable, locale, natalMoo
         const active = doubleTransits.filter(d => d.doubleTransitActive);
         if (active.length === 0) return null;
 
+        const HOUSE_DOMAINS: Record<number, { en: string; hi: string }> = {
+          1: { en: 'Self, health, new beginnings', hi: 'आत्मा, स्वास्थ्य, नई शुरुआत' },
+          2: { en: 'Wealth, family, speech', hi: 'धन, परिवार, वाणी' },
+          3: { en: 'Courage, siblings, short travels', hi: 'साहस, भाई-बहन, लघु यात्रा' },
+          4: { en: 'Home, mother, property, comfort', hi: 'घर, माता, सम्पत्ति, सुख' },
+          5: { en: 'Children, education, creativity', hi: 'संतान, शिक्षा, रचनात्मकता' },
+          6: { en: 'Health challenges, enemies, service', hi: 'स्वास्थ्य चुनौती, शत्रु, सेवा' },
+          7: { en: 'Marriage, partnerships, business', hi: 'विवाह, साझेदारी, व्यापार' },
+          8: { en: 'Transformation, longevity, sudden events', hi: 'परिवर्तन, आयु, अचानक घटनाएं' },
+          9: { en: 'Fortune, dharma, higher learning', hi: 'भाग्य, धर्म, उच्च शिक्षा' },
+          10: { en: 'Career, reputation, authority', hi: 'करियर, प्रतिष्ठा, अधिकार' },
+          11: { en: 'Gains, income, aspirations', hi: 'लाभ, आय, आकांक्षाएं' },
+          12: { en: 'Expenses, moksha, foreign lands', hi: 'व्यय, मोक्ष, विदेश' },
+        };
+
         return (
           <div className="mx-6 sm:mx-8 mb-4 pt-4 border-t border-gold-primary/10">
             <h4 className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-2">
-              {isHi ? 'द्वि-गोचर सक्रिय' : 'Double Transit Active'}
+              {isHi ? 'द्वि-गोचर सक्रिय — गुरु + शनि' : 'Double Transit — Jupiter + Saturn'}
             </h4>
-            <div className="flex flex-wrap gap-1.5">
-              {active.map(d => (
-                <span key={d.house} className="px-2 py-1 rounded-lg text-[10px] font-medium bg-purple-500/15 text-purple-300 border border-purple-500/20">
-                  H{d.house}
-                </span>
-              ))}
-            </div>
-            <p className="text-text-secondary/60 text-[9px] mt-1.5">
+            <p className="text-text-secondary/60 text-[9px] mb-2">
               {isHi
-                ? 'गुरु और शनि दोनों इन भावों को सक्रिय कर रहे हैं — घटनाएँ प्रकट हो सकती हैं।'
-                : 'Jupiter and Saturn both activate these houses — events may manifest.'}
+                ? 'गुरु और शनि दोनों इन भावों को दृष्टि/स्थिति से सक्रिय कर रहे हैं — इन क्षेत्रों में घटनाएं प्रकट हो सकती हैं।'
+                : 'Both Jupiter and Saturn activate these houses by aspect or placement — events in these life areas may manifest.'}
             </p>
+            <div className="space-y-1.5">
+              {active.map(d => {
+                const domain = HOUSE_DOMAINS[d.house] || HOUSE_DOMAINS[1];
+                return (
+                  <div key={d.house} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-purple-500/8 border border-purple-500/15">
+                    <span className="text-purple-300 font-bold text-sm w-8">H{d.house}</span>
+                    <span className="text-text-secondary text-xs">{isHi ? domain.hi : domain.en}</span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         );
       })()}

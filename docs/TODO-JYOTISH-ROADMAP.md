@@ -22,27 +22,27 @@
 **Effort:** Small (change `savTable` → `reducedSavTable` references in 5 components)
 **Impact:** All transit quality ratings become more accurate after Shodhana
 **Files:** `TransitCountdown.tsx`, `PersonalizedHoroscope.tsx`, `TransitForecastWidget.tsx`, `LifeTimeline.tsx`, `personal-transits.ts`
-**Status:** TODO
+**Status:** DONE
 
 ### H2: Integrate Gochara engine into dashboard transits page
 **Effort:** Medium
 **Impact:** Users see Vedha status, Double Transit markers on their main transit dashboard
 **Files:** `src/app/[locale]/dashboard/transits/page.tsx` — replace old `computeGochar` with new `analyzeGochara` + `analyzeDoubleTransit`
-**Status:** TODO
+**Status:** DONE
 
 ### H3: Dasha Sandhi (junction period warnings)
 **Effort:** Small
 **Impact:** Highlight turbulent transition periods between Maha Dasha lords (6-12 months around changeover)
 **Source:** BPHS, Phaladeepika
 **Files:** New module `src/lib/kundali/dasha-sandhi.ts` + display on kundali page Dasha tab
-**Status:** TODO
+**Status:** DONE
 
 ### H4: Rajju Dosha (South Indian matching)
 **Effort:** Medium
 **Impact:** Tamil/South Indian users expect Rajju compatibility in addition to Ashta Kuta
 **Source:** Tamil Jyotish tradition — 5 Rajju categories (Pada/Kati/Nabhi/Kantha/Shiro)
 **Files:** New module + matching page extension
-**Status:** TODO
+**Status:** DONE
 
 ---
 
@@ -53,27 +53,27 @@
 **Impact:** More precise Shadbala scores — currently all aspects treated as full strength
 **Source:** BPHS Ch.26 — 3rd/10th=1/4, 4th/8th=3/4, 5th/9th=1/2, 7th=full (with planet-specific overrides)
 **Files:** `src/lib/kundali/shadbala.ts` (Drik Bala section)
-**Status:** TODO
+**Status:** DONE
 
 ### M2: D60 Shashtiamsha proper lookup table
 **Effort:** Medium (720-entry table from BPHS Ch.6)
 **Impact:** D60 carries highest Vimshopaka weight (4.0 of 20) — currently uses simple cyclic formula
 **Files:** `src/lib/ephem/kundali-calc.ts` (divisional chart computation)
-**Status:** TODO
+**Status:** DONE
 
 ### M3: Night-time Gulika for births after sunset
 **Effort:** Small
 **Impact:** Correct Gulika/Mandi for ~30% of births (current impl uses day segments only)
 **Source:** BPHS Ch.25 — night segments have different Saturn ordering
 **Files:** `src/lib/ephem/kundali-calc.ts` (Gulika block)
-**Status:** TODO
+**Status:** DONE
 
 ### M4: Delta T (TT-UT) correction
 **Effort:** Small
 **Impact:** ~69 seconds error at current epoch, growing. Affects Moon position by ~0.5 arcmin. Critical for historical charts.
 **Source:** Meeus Ch.10
 **Files:** `src/lib/ephem/astronomical.ts`
-**Status:** TODO
+**Status:** DONE
 
 ---
 
@@ -82,44 +82,44 @@
 ### L1: Rashi Drishti (Jaimini sign aspects) as standalone display
 **Effort:** Small
 **Source:** Jaimini Sutras — movable↔fixed, dual↔dual aspect rules
-**Status:** TODO
+**Status:** DONE
 
 ### L2: Kakshya sub-transit timing
 **Effort:** Medium
 **Dependency:** Ashtakavarga Shodhana (done)
 **Source:** BPHS Ch.70 — 8 sub-divisions within each sign
-**Status:** TODO
+**Status:** DONE
 
 ### L3: Transit-to-natal aspect analysis
 **Effort:** Medium
 **Impact:** Transiting Saturn conjunct natal Moon, etc. — beyond house placement
-**Status:** TODO
+**Status:** DONE
 
 ### L4: Ashtakavarga learn page with Shodhana examples
 **Effort:** Small
 **Impact:** Educational enhancement
-**Status:** TODO
+**Status:** DONE
 
 ### L5: Age-based Mangal Dosha reduction (>28 years)
 **Effort:** Small
 **Source:** Various commentaries — Mars matures after 28
 **Dependency:** Requires birth date context in the engine
-**Status:** TODO
+**Status:** DONE
 
 ### L6: Ashtakavarga-based Dasha predictions (BPHS Ch.70)
 **Effort:** Medium
 **Dependency:** Shodhana (done) + Dasha display
-**Status:** TODO
+**Status:** DONE
 
 ### L7: Sarvashtakavarga Shodhana (apply reductions to SAV row itself)
 **Effort:** Small
 **Source:** Some texts prescribe this as additional step; JHora does not by default
-**Status:** TODO
+**Status:** DONE
 
 ### L8: Export/print BAV grid as PDF
 **Effort:** Small
 **Dependency:** UI grid (done)
-**Status:** TODO
+**Status:** DONE
 
 ---
 

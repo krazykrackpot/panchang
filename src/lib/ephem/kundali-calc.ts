@@ -2,7 +2,7 @@ import type { LocaleText } from '@/types/panchang';
 import {
   dateToJD, sunLongitude, moonLongitude, toSidereal,
   getRashiNumber, getNakshatraNumber, getNakshatraPada,
-  getPlanetaryPositions, lahiriAyanamsha, getAyanamsha, normalizeDeg, formatDegrees, approximateSunrise,
+  getPlanetaryPositions, lahiriAyanamsha, getAyanamsha, normalizeDeg, formatDegrees, approximateSunrise, approximateSunset,
 } from './astronomical';
 import { computeFullCoordinates, computeCombust } from './coordinates';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -25,6 +25,7 @@ import { calculateArgala } from '@/lib/kundali/argala';
 import { calculateSphutas } from '@/lib/kundali/sphutas';
 import { detectGrahaYuddha } from '@/lib/kundali/graha-yuddha';
 import { calculateFunctionalNature } from '@/lib/kundali/functional-nature';
+import { applyFullShodhana } from '@/lib/kundali/ashtakavarga-shodhana';
 
 /**
  * Calculate the Ascendant (Lagna) degree
@@ -490,16 +491,7 @@ function calculateAshtakavarga(planets: PlanetPosition[], ascSign: number): Asht
 
   const planetNames = planetIds.map(id => GRAHAS[id].name.en);
 
-  // Shodhana (Trikona + Ekadhipatya reduction) and Pinda are computed by
-  // applyFullShodhana in src/lib/kundali/ashtakavarga-shodhana.ts.
-  // Import lazily to avoid circular dependency between ephem ↔ kundali layers.
-  // Populated here with identity values; the kundali page re-runs shodhana
-  // after chart assembly when planetSigns are available.
-  const reducedBpiTable: number[][] = bpiTable.map(row => [...row]);
-  const reducedSavTable: number[] = [...savTable];
-  const pindaAshtakavarga: number[] = new Array(7).fill(0);
-
-  return { bpiTable, savTable, reducedBpiTable, reducedSavTable, pindaAshtakavarga, planetNames };
+  return { bpiTable, savTable, reducedBpiTable: [], reducedSavTable: [], pindaAshtakavarga: [], planetNames };
 }
 
 /**
@@ -739,7 +731,16 @@ export function generateKundali(birthData: BirthData): KundaliData {
   }
 
   // Ashtakavarga
-  const ashtakavarga = calculateAshtakavarga(planets, ascSign);
+  const rawAshtakavarga = calculateAshtakavarga(planets, ascSign);
+  const allPlanetSigns = planets.map(p => p.sign);
+  const shodhanaResult = applyFullShodhana(
+    rawAshtakavarga.bpiTable,
+    allPlanetSigns,
+  );
+  const ashtakavarga: AshtakavargaData = {
+    ...rawAshtakavarga,
+    ...shodhanaResult,
+  };
 
   // Dasha
   const moonPlanet = planets.find((p) => p.planet.id === 1);
@@ -804,6 +805,67 @@ export function generateKundali(birthData: BirthData): KundaliData {
       nakshatra: NAKSHATRAS[nakNum - 1].name,
     };
   });
+
+  // Gulika and Mandi — computed from Saturn's day-segment (BPHS Ch.25)
+  //
+  // ALGORITHM:
+  //   1. Find the weekday of birth (0=Sun, 1=Mon, ..., 6=Sat using JS Date.getDay()).
+  //   2. Saturn's segment number in the day varies by weekday:
+  //      Sun→7, Mon→6, Tue→5, Wed→4, Thu→3, Fri→2, Sat→1
+  //   3. Divide the day (sunrise to sunset) into 8 equal parts.
+  //      Gulika = ascendant at START of Saturn's segment.
+  //      Mandi  = ascendant at MIDPOINT of Saturn's segment.
+  //   4. Convert tropical ascendant → sidereal via the same ayanamsha already computed.
+  //
+  // NOTE: approximateSunrise / approximateSunset return UT decimal hours.
+  //       JD at a given UT hour on the same calendar day = jd_noon + (utHours - 12) / 24,
+  //       but it is simpler to use the birth date JD at 0h UT then add fractions.
+  {
+    // JD at 0h UT on the birth date (use noon JD minus 0.5 day — dateToJD stores UT)
+    const jd0h = dateToJD(year, month, day, 0);
+
+    // Sunrise and sunset in UT hours on the birth date
+    const sunriseUT = approximateSunrise(jd0h, birthData.lat, birthData.lng);
+    const sunsetUT  = approximateSunset(jd0h, birthData.lat, birthData.lng);
+    const dayDuration = sunsetUT - sunriseUT; // hours
+
+    // Weekday of birth date (JS: 0=Sun, 1=Mon, ... 6=Sat)
+    const birthDateObj = new Date(Date.UTC(year, month - 1, day));
+    const weekday = birthDateObj.getUTCDay(); // 0=Sun … 6=Sat
+
+    // Saturn's segment number (1-based) for each weekday
+    // Sun=7, Mon=6, Tue=5, Wed=4, Thu=3, Fri=2, Sat=1
+    const SATURN_SEGMENT: Record<number, number> = { 0: 7, 1: 6, 2: 5, 3: 4, 4: 3, 5: 2, 6: 1 };
+    const seg = SATURN_SEGMENT[weekday];
+
+    // UT hours for Gulika start and Mandi midpoint
+    const gulikaStartUT = sunriseUT + (seg - 1) * dayDuration / 8;
+    const mandiMidUT    = sunriseUT + (seg - 0.5) * dayDuration / 8;
+
+    // Convert UT hours to JD
+    const jdGulika = jd0h + gulikaStartUT / 24;
+    const jdMandi  = jd0h + mandiMidUT  / 24;
+
+    // Tropical ascendant at those moments, then convert to sidereal
+    const gulikaLong = normalizeDeg(calculateAscendant(jdGulika, birthData.lat, birthData.lng) - ayanamshaValue);
+    const mandiLong  = normalizeDeg(calculateAscendant(jdMandi,  birthData.lat, birthData.lng) - ayanamshaValue);
+
+    const addUpagraha = (nameEn: string, nameHi: string, nameSa: string, long: number) => {
+      const sign = getRashiNumber(long);
+      const nakNum = getNakshatraNumber(long);
+      upagrahas.push({
+        name: { en: nameEn, hi: nameHi, sa: nameSa },
+        longitude: long,
+        sign,
+        signName: RASHIS[sign - 1].name,
+        degree: formatDegrees(long % 30),
+        nakshatra: NAKSHATRAS[nakNum - 1].name,
+      });
+    };
+
+    addUpagraha('Gulika', 'गुलिक', 'गुलिकः', gulikaLong);
+    addUpagraha('Mandi',  'मान्दि', 'मान्दिः', mandiLong);
+  }
 
   // Full Shadbala — pass ALL 9 planets so Rahu/Ketu contribute DrikBala aspects;
   // calculateFullShadbala internally filters to 0-6 for the main bala calculation

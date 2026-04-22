@@ -145,8 +145,11 @@ export interface DivisionalChart extends ChartData {
 }
 
 export interface AshtakavargaData {
-  bpiTable: number[][]; // 7 planets x 12 signs — Bhinnashtakavarga (0-8 per cell)
-  savTable: number[];   // 12 signs — Sarvashtakavarga (sum of all planets per sign)
+  bpiTable: number[][];           // raw 7×12 — Bhinnashtakavarga (0-8 per cell)
+  savTable: number[];             // raw 12-element — Sarvashtakavarga
+  reducedBpiTable: number[][];    // 7×12 after Trikona + Ekadhipatya Shodhana
+  reducedSavTable: number[];      // 12-element — sum of reducedBpiTable columns
+  pindaAshtakavarga: number[];    // 7-element — one Pinda value per planet
   planetNames: string[];
 }
 

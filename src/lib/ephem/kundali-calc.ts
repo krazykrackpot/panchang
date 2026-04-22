@@ -489,7 +489,17 @@ function calculateAshtakavarga(planets: PlanetPosition[], ascSign: number): Asht
   }
 
   const planetNames = planetIds.map(id => GRAHAS[id].name.en);
-  return { bpiTable, savTable, planetNames };
+
+  // Shodhana (Trikona + Ekadhipatya reduction) and Pinda are computed by
+  // applyFullShodhana in src/lib/kundali/ashtakavarga-shodhana.ts.
+  // Import lazily to avoid circular dependency between ephem ↔ kundali layers.
+  // Populated here with identity values; the kundali page re-runs shodhana
+  // after chart assembly when planetSigns are available.
+  const reducedBpiTable: number[][] = bpiTable.map(row => [...row]);
+  const reducedSavTable: number[] = [...savTable];
+  const pindaAshtakavarga: number[] = new Array(7).fill(0);
+
+  return { bpiTable, savTable, reducedBpiTable, reducedSavTable, pindaAshtakavarga, planetNames };
 }
 
 /**

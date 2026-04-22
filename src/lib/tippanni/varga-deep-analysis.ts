@@ -797,6 +797,81 @@ function computePromiseDeliveryForChart(
 }
 
 // ---------------------------------------------------------------------------
+// Narrative builder — synthesize human-readable insight from analysis factors
+// ---------------------------------------------------------------------------
+
+function buildNarrative(
+  chartId: string,
+  domain: VargaDomain,
+  cross: CrossCorrelation,
+  pd: PromiseDeliveryScore,
+  vargottamaPlanets: number[],
+  pushkaraCount: number,
+  gandantaCount: number,
+  yogas: { name: string }[],
+): LocaleText {
+  const parts: string[] = [];
+  const partsHi: string[] = [];
+
+  // 1. Promise/Delivery headline
+  if (pd.d1Promise >= 70 && pd.dxxDelivery >= 70) {
+    parts.push(`Strong promise and strong delivery for ${domain}. The natal chart's potential is well-supported by the ${chartId} divisional chart.`);
+    partsHi.push(`${domain} के लिए बलवान वादा और बलवान प्रदान। जन्म कुण्डली की क्षमता ${chartId} विभागीय चार्ट द्वारा सुदृढ़ है।`);
+  } else if (pd.d1Promise >= 70) {
+    parts.push(`Strong natal promise for ${domain}, but the ${chartId} chart shows moderate delivery — results may come with delays or conditions.`);
+    partsHi.push(`${domain} के लिए जन्म कुण्डली में बलवान वादा, किन्तु ${chartId} चार्ट मध्यम प्रदान दर्शाता है — परिणाम विलम्ब से आ सकते हैं।`);
+  } else if (pd.dxxDelivery >= 70) {
+    parts.push(`The ${chartId} chart strongly supports ${domain} outcomes, compensating for a moderate natal promise. Dasha activation will be key.`);
+    partsHi.push(`${chartId} चार्ट ${domain} परिणामों को दृढ़ता से सहयोग करता है। दशा सक्रियण महत्वपूर्ण होगा।`);
+  } else {
+    parts.push(`Both natal promise and ${chartId} delivery for ${domain} are moderate — steady rather than spectacular results.`);
+    partsHi.push(`${domain} के लिए जन्म वादा और ${chartId} प्रदान दोनों मध्यम हैं — स्थिर परिणाम।`);
+  }
+
+  // 2. Vargottama planets (dignity confirmed across charts)
+  if (vargottamaPlanets.length > 0) {
+    const PNAMES: Record<number, string> = { 0: 'Sun', 1: 'Moon', 2: 'Mars', 3: 'Mercury', 4: 'Jupiter', 5: 'Venus', 6: 'Saturn', 7: 'Rahu', 8: 'Ketu' };
+    const names = vargottamaPlanets.map(pid => PNAMES[pid] || `P${pid}`).join(', ');
+    parts.push(`${names} ${vargottamaPlanets.length === 1 ? 'is' : 'are'} Vargottama (same sign in D1 and ${chartId}) — confirmed strength that delivers reliably.`);
+    partsHi.push(`${names} वर्गोत्तम ${vargottamaPlanets.length === 1 ? 'है' : 'हैं'} — D1 और ${chartId} दोनों में समान राशि, विश्वसनीय बल।`);
+  }
+
+  // 3. Pushkara / Gandanta
+  if (pushkaraCount > 0) {
+    parts.push(`${pushkaraCount} planet${pushkaraCount > 1 ? 's' : ''} in Pushkara position — auspicious support for this domain.`);
+    partsHi.push(`${pushkaraCount} ग्रह पुष्कर स्थिति में — इस क्षेत्र के लिए शुभ सहयोग।`);
+  }
+  if (gandantaCount > 0) {
+    parts.push(`${gandantaCount} planet${gandantaCount > 1 ? 's' : ''} in Gandanta (junction) — karmic challenge that requires conscious effort to overcome.`);
+    partsHi.push(`${gandantaCount} ग्रह गण्डान्त में — कार्मिक चुनौती जिसे सचेत प्रयास से पार करना होगा।`);
+  }
+
+  // 4. Yogas
+  if (yogas.length > 0) {
+    const yogaNames = yogas.slice(0, 3).map(y => y.name).join(', ');
+    parts.push(`Notable yogas: ${yogaNames}${yogas.length > 3 ? ` (+${yogas.length - 3} more)` : ''}.`);
+    partsHi.push(`उल्लेखनीय योग: ${yogaNames}${yogas.length > 3 ? ` (+${yogas.length - 3} और)` : ''}।`);
+  }
+
+  // 5. Dignity shifts
+  const improvements = cross.dignityShifts.filter(d => d.shift === 'improved');
+  const declines = cross.dignityShifts.filter(d => d.shift === 'declined');
+  if (improvements.length > 0) {
+    parts.push(`${improvements.length} planet${improvements.length > 1 ? 's improve' : ' improves'} dignity from D1 to ${chartId} — hidden strengths activated in this domain.`);
+    partsHi.push(`${improvements.length} ग्रह D1 से ${chartId} में गरिमा सुधारते हैं — इस क्षेत्र में छिपी शक्ति।`);
+  }
+  if (declines.length > 0) {
+    parts.push(`${declines.length} planet${declines.length > 1 ? 's lose' : ' loses'} dignity — areas where natal strength doesn't fully translate into results.`);
+    partsHi.push(`${declines.length} ग्रह गरिमा खोते हैं — जहाँ जन्म बल पूर्णतया फलित नहीं होता।`);
+  }
+
+  return {
+    en: parts.join(' '),
+    hi: partsHi.join(' '),
+  };
+}
+
+// ---------------------------------------------------------------------------
 // Main entry point
 // ---------------------------------------------------------------------------
 
@@ -892,15 +967,18 @@ export function buildDeepVargaAnalysis(
     yogasInChart.length,
   );
 
+  // Build a meaningful narrative from the analysis data
+  const narrative = buildNarrative(
+    chartId, domain, crossCorrelation, promiseDelivery,
+    vargottamaPlanets, pushkaraCount, gandantaCount, yogasInChart,
+  );
+
   return {
     chartId,
     domain,
     crossCorrelation,
     promiseDelivery,
-    narrative: {
-      en: 'Deep varga analysis computed.',
-      hi: 'गहन वर्ग विश्लेषण गणित।',
-    },
+    narrative,
   };
 }
 

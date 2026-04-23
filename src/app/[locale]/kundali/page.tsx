@@ -334,6 +334,7 @@ export default function KundaliPage() {
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [savedCharts, setSavedCharts] = useState<Array<{ id: string; label: string; birth_data: { name?: string; date: string; time: string; place: string; lat: number; lng: number; relationship?: string } }>>([]);
   const user = useAuthStore(s => s.user);
 
   const handleSaveChart = async () => {
@@ -517,26 +518,26 @@ export default function KundaliPage() {
       return;
     }
 
-    // No URL params — fall back to the last generated kundali from this session.
-    try {
-      const cached = sessionStorage.getItem('kundali_last_result');
-      if (cached) {
-        const { kundali: k, chartStyle: cs } = JSON.parse(cached);
-        if (k?.planets) {
-          setKundali(k);
-          setChartStyle(cs || 'north');
-          try {
-            const reading = synthesizeReading(k, locale);
-            setPersonalReading(reading);
-            setKeyDates(computeKeyDates({ kundali: k }));
-            setVedicProfile(generateVedicProfile(k, locale));
-            resolveInitialView();
-            // Trajectory sync handled by the dedicated useEffect that watches user + personalReading
-          } catch { setPersonalReading(null); setView('technical'); }
-        }
-      }
-    } catch { /* ignore */ }
+    // No URL params — show saved chart picker (if logged in) or the birth form.
+    // Don't auto-restore from sessionStorage on bare /kundali navigation so
+    // users with multiple saved charts can pick which one to open.
   }, []);
+
+  // Fetch saved charts for the picker when user is logged in and no chart is loaded
+  useEffect(() => {
+    if (!user || kundali) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
+    supabase
+      .from('saved_charts')
+      .select('id, label, birth_data')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+      .then(({ data, error }) => {
+        if (error) { console.error('[kundali] saved charts fetch failed:', error); return; }
+        if (data && data.length > 0) setSavedCharts(data);
+      });
+  }, [user, kundali]);
 
   // When auth restores after the session-restore effect already ran,
   // user was null so syncTrajectory was skipped. Retry once user arrives.
@@ -752,6 +753,47 @@ export default function KundaliPage() {
         </h1>
         <p className="text-text-secondary text-lg">{t('subtitle')}</p>
       </motion.div>
+
+      {/* Saved Charts Picker — shows when user has saved charts and no chart is loaded */}
+      {!kundali && !editing && savedCharts.length > 0 && (
+        <div className="mb-10">
+          <h2 className="text-lg font-semibold text-text-primary mb-4" style={headingFont}>
+            {L3('Your Saved Charts', 'आपकी सहेजी कुण्डलियाँ', 'உங்கள் சேமித்த ஜாதகங்கள்')}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {savedCharts.map((c) => {
+              const cName = c.birth_data.name || c.label;
+              const rel = c.birth_data.relationship;
+              const href = `/kundali?n=${encodeURIComponent(cName)}&d=${c.birth_data.date}&t=${c.birth_data.time}&la=${c.birth_data.lat}&lo=${c.birth_data.lng}&p=${encodeURIComponent(c.birth_data.place)}`;
+              return (
+                <a
+                  key={c.id}
+                  href={`/${locale}${href}`}
+                  className="rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-4 hover:border-gold-primary/40 transition-all block"
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-gold-light font-bold text-sm truncate" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                      {cName}
+                    </span>
+                    {rel && rel !== 'self' && (
+                      <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-400 font-medium capitalize shrink-0">
+                        {rel}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-text-secondary text-xs font-mono">{c.birth_data.date} | {c.birth_data.time}</p>
+                  <p className="text-text-secondary/60 text-xs truncate">{c.birth_data.place}</p>
+                </a>
+              );
+            })}
+          </div>
+          <div className="mt-4 border-t border-gold-primary/10 pt-4">
+            <p className="text-text-secondary text-sm text-center">
+              {L3('Or generate a new chart below', 'या नीचे नई कुण्डली बनाएँ', 'அல்லது கீழே புதிய ஜாதகம் உருவாக்கவும்')}
+            </p>
+          </div>
+        </div>
+      )}
 
       {(!kundali || editing) && (
         <BirthForm

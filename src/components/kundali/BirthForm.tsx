@@ -55,9 +55,10 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
   const [placeTimezone, setPlaceTimezone] = useState<string | null>(null);
   const user = useAuthStore(s => s.user);
 
-  // Pre-fill from user profile if logged in
+  // Pre-fill from user profile if logged in — but NOT when editing an existing chart
   useEffect(() => {
     if (!user) return;
+    if (initialData?.name) return; // Editing an existing chart — don't overwrite with profile data
     const supabase = getSupabase();
     if (!supabase) return;
 

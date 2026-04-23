@@ -467,6 +467,7 @@ export default function KundaliPage() {
     const la = params.get('la');
     const lo = params.get('lo');
     const p = params.get('p');
+    const editMode = params.get('edit') === '1';
 
     if (n && d && t && la && lo) {
       const birthData: BirthData = {
@@ -503,6 +504,7 @@ export default function KundaliPage() {
                 sig: `${birthData.lat}|${birthData.lng}|${birthData.date}|${birthData.time}|${birthData.timezone}`,
               }));
             } catch { /* quota */ }
+            if (editMode) setEditing(true);
           } else {
             console.error('[kundali] query-param load failed:', data);
           }

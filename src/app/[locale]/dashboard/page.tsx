@@ -41,7 +41,7 @@ import type { PersonalizedDay, UserSnapshot, TransitAlert } from '@/lib/personal
 import type { ChartData, DashaEntry } from '@/types/kundali';
 import { computeKeyDates, type KeyDate } from '@/lib/kundali/domain-synthesis/key-dates';
 import KeyDatesTimeline from '@/components/kundali/KeyDatesTimeline';
-import { Trash2, Plus } from 'lucide-react';
+import { Trash2, Plus, Pencil } from 'lucide-react';
 import FamilyCard from '@/components/dashboard/FamilyCard';
 
 interface SavedChart {
@@ -955,6 +955,27 @@ export default function DashboardPage() {
     setSavedCharts(prev => prev.filter(c => c.id !== id));
   };
 
+  // Update relationship on a saved chart (both indexed column + JSONB for consistency)
+  const handleUpdateRelationship = async (id: string, newRelationship: string) => {
+    if (!user) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
+    const chart = savedCharts.find(c => c.id === id);
+    if (!chart) return;
+    const updatedBirthData = { ...chart.birth_data, relationship: newRelationship };
+    const { error } = await supabase
+      .from('saved_charts')
+      .update({ relationship: newRelationship, birth_data: updatedBirthData })
+      .eq('id', id);
+    if (error) {
+      console.error('[dashboard] update relationship failed:', error);
+      return;
+    }
+    setSavedCharts(prev => prev.map(c =>
+      c.id === id ? { ...c, birth_data: { ...c.birth_data, relationship: newRelationship } } : c,
+    ));
+  };
+
   // Not signed in
   if (initialized && !user) {
     return (
@@ -1566,7 +1587,9 @@ export default function DashboardPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {savedCharts.map((c) => {
                 const name = c.birth_data.name || c.label;
+                const rel = c.birth_data.relationship || 'self';
                 const viewHref = `/kundali?n=${encodeURIComponent(name)}&d=${c.birth_data.date}&t=${c.birth_data.time}&la=${c.birth_data.lat}&lo=${c.birth_data.lng}&p=${encodeURIComponent(c.birth_data.place)}`;
+                const editHref = `/kundali?n=${encodeURIComponent(name)}&d=${c.birth_data.date}&t=${c.birth_data.time}&la=${c.birth_data.lat}&lo=${c.birth_data.lng}&p=${encodeURIComponent(c.birth_data.place)}&edit=1`;
                 return (
                   <div
                     key={c.id}
@@ -1583,14 +1606,20 @@ export default function DashboardPage() {
                               {tl({ en: 'Primary', hi: 'मुख्य', sa: 'मुख्यम्', mr: 'मुख्य', mai: 'मुख्य', ta: 'முதன்மை', te: 'ప్రాథమిక', bn: 'প্রধান', kn: 'ಮುಖ್ಯ', gu: 'મુખ્ય' }, locale)}
                             </span>
                           )}
-                          {c.birth_data.relationship && c.birth_data.relationship !== 'self' && (
-                            <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-400 font-medium capitalize">
-                              {tl({
-                                en: c.birth_data.relationship,
-                                hi: c.birth_data.relationship === 'spouse' ? 'जीवनसाथी' : c.birth_data.relationship === 'child' ? 'संतान' : c.birth_data.relationship === 'parent' ? 'माता-पिता' : c.birth_data.relationship === 'sibling' ? 'भाई-बहन' : c.birth_data.relationship === 'friend' ? 'मित्र' : c.birth_data.relationship,
-                              }, locale)}
-                            </span>
-                          )}
+                          <select
+                            value={rel}
+                            onChange={(e) => handleUpdateRelationship(c.id, e.target.value)}
+                            className="text-[10px] px-1.5 py-0.5 rounded-full border border-gold-primary/20 bg-bg-secondary/80 text-text-secondary hover:text-text-primary hover:border-gold-primary/40 transition-colors cursor-pointer appearance-none pr-4 focus:outline-none focus:border-gold-primary/50"
+                            style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 24 24' fill='none' stroke='%238a8478' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 4px center' }}
+                          >
+                            <option value="self">{tl({ en: 'Self', hi: 'स्वयं', ta: 'சுய', bn: 'নিজ' }, locale)}</option>
+                            <option value="spouse">{tl({ en: 'Spouse', hi: 'जीवनसाथी', ta: 'வாழ்க்கைத்துணை', bn: 'স্বামী/স্ত্রী' }, locale)}</option>
+                            <option value="child">{tl({ en: 'Child', hi: 'संतान', ta: 'குழந்தை', bn: 'সন্তান' }, locale)}</option>
+                            <option value="parent">{tl({ en: 'Parent', hi: 'माता-पिता', ta: 'பெற்றோர்', bn: 'পিতা-মাতা' }, locale)}</option>
+                            <option value="sibling">{tl({ en: 'Sibling', hi: 'भाई-बहन', ta: 'உடன்பிறப்பு', bn: 'ভাইবোন' }, locale)}</option>
+                            <option value="friend">{tl({ en: 'Friend', hi: 'मित्र', ta: 'நண்பர்', bn: 'বন্ধু' }, locale)}</option>
+                            <option value="other">{tl({ en: 'Other', hi: 'अन्य', ta: 'மற்றவை', bn: 'অন্যান্য' }, locale)}</option>
+                          </select>
                         </div>
                       </div>
                       <button
@@ -1604,13 +1633,22 @@ export default function DashboardPage() {
                     </div>
                     <p className="text-text-secondary text-xs font-mono mb-1">{c.birth_data.date} | {c.birth_data.time}</p>
                     <p className="text-text-secondary/70 text-xs mb-3 truncate">{c.birth_data.place}</p>
-                    <Link
-                      href={viewHref as '/kundali'}
-                      className="inline-flex items-center gap-1.5 text-gold-primary text-xs font-bold hover:text-gold-light transition-colors"
-                    >
-                      <Eye className="w-3.5 h-3.5" />
-                      {tl({ en: 'Open Kundali', hi: 'कुण्डली खोलें', sa: 'चक्रं उद्घाटयतु', mr: 'पत्रिका उघडा', mai: 'कुण्डली खोलू', ta: 'ஜாதகத்தை திற', te: 'కుండలి తెరవండి', bn: 'কুণ্ডলী খুলুন', kn: 'ಕುಂಡಲಿ ತೆರೆಯಿರಿ', gu: 'કુંડળી ખોલો' }, locale)}
-                    </Link>
+                    <div className="flex items-center gap-3">
+                      <Link
+                        href={viewHref as '/kundali'}
+                        className="inline-flex items-center gap-1.5 text-gold-primary text-xs font-bold hover:text-gold-light transition-colors"
+                      >
+                        <Eye className="w-3.5 h-3.5" />
+                        {tl({ en: 'Open', hi: 'खोलें', ta: 'திற', bn: 'খুলুন' }, locale)}
+                      </Link>
+                      <Link
+                        href={editHref as '/kundali'}
+                        className="inline-flex items-center gap-1.5 text-text-secondary text-xs font-medium hover:text-gold-light transition-colors"
+                      >
+                        <Pencil className="w-3 h-3" />
+                        {tl({ en: 'Edit', hi: 'संपादन', ta: 'திருத்து', bn: 'সম্পাদনা' }, locale)}
+                      </Link>
+                    </div>
                   </div>
                 );
               })}

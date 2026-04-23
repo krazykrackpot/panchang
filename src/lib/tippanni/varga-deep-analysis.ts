@@ -812,61 +812,75 @@ function buildNarrative(
 ): LocaleText {
   const parts: string[] = [];
   const partsHi: string[] = [];
+  const partsTa: string[] = [];
+  const partsBn: string[] = [];
 
   // Human-friendly domain labels
-  const DOMAIN_LABEL: Record<string, { en: string; hi: string }> = {
-    marriage: { en: 'your marriage and partnerships', hi: 'आपके विवाह और साझेदारी' },
-    career: { en: 'your career and professional life', hi: 'आपके करियर और व्यावसायिक जीवन' },
-    children: { en: 'children and creative fulfillment', hi: 'संतान और रचनात्मक पूर्ति' },
-    wealth: { en: 'your financial prospects', hi: 'आपकी आर्थिक संभावनाएं' },
-    spiritual: { en: 'your spiritual growth', hi: 'आपकी आध्यात्मिक प्रगति' },
-    health: { en: 'your health and vitality', hi: 'आपका स्वास्थ्य और जीवन शक्ति' },
-    family: { en: 'family life and home environment', hi: 'पारिवारिक जीवन और गृह वातावरण' },
-    education: { en: 'education and learning', hi: 'शिक्षा और विद्या' },
+  const DOMAIN_LABEL: Record<string, { en: string; hi: string; ta: string; bn: string }> = {
+    marriage: { en: 'your marriage and partnerships', hi: 'आपके विवाह और साझेदारी', ta: 'உங்கள் திருமணம் மற்றும் கூட்டாண்மை', bn: 'আপনার বিবাহ এবং অংশীদারিত্ব' },
+    career: { en: 'your career and professional life', hi: 'आपके करियर और व्यावसायिक जीवन', ta: 'உங்கள் தொழில் மற்றும் தொழில்முறை வாழ்க்கை', bn: 'আপনার কর্মজীবন এবং পেশাদার জীবন' },
+    children: { en: 'children and creative fulfillment', hi: 'संतान और रचनात्मक पूर्ति', ta: 'குழந்தைகள் மற்றும் படைப்பாற்றல் நிறைவு', bn: 'সন্তান এবং সৃজনশীল পরিপূর্ণতা' },
+    wealth: { en: 'your financial prospects', hi: 'आपकी आर्थिक संभावनाएं', ta: 'உங்கள் நிதி வாய்ப்புகள்', bn: 'আপনার আর্থিক সম্ভাবনা' },
+    spiritual: { en: 'your spiritual growth', hi: 'आपकी आध्यात्मिक प्रगति', ta: 'உங்கள் ஆன்மீக வளர்ச்சி', bn: 'আপনার আধ্যাত্মিক বিকাশ' },
+    health: { en: 'your health and vitality', hi: 'आपका स्वास्थ्य और जीवन शक्ति', ta: 'உங்கள் ஆரோக்கியம் மற்றும் உயிர்ச்சக்தி', bn: 'আপনার স্বাস্থ্য এবং জীবনীশক্তি' },
+    family: { en: 'family life and home environment', hi: 'पारिवारिक जीवन और गृह वातावरण', ta: 'குடும்ப வாழ்க்கை மற்றும் இல்ல சூழல்', bn: 'পারিবারিক জীবন এবং গৃহ পরিবেশ' },
+    education: { en: 'education and learning', hi: 'शिक्षा और विद्या', ta: 'கல்வி மற்றும் கற்றல்', bn: 'শিক্ষা এবং বিদ্যা' },
   };
-  const dl = DOMAIN_LABEL[domain] || { en: domain, hi: domain };
+  const dl = DOMAIN_LABEL[domain] || { en: domain, hi: domain, ta: domain, bn: domain };
 
   // Planet names for plain-language references
-  const PNAME: Record<number, { en: string; hi: string; role: string }> = {
-    0: { en: 'Sun', hi: 'सूर्य', role: 'authority and confidence' },
-    1: { en: 'Moon', hi: 'चन्द्र', role: 'emotions and intuition' },
-    2: { en: 'Mars', hi: 'मंगल', role: 'drive and courage' },
-    3: { en: 'Mercury', hi: 'बुध', role: 'communication and intellect' },
-    4: { en: 'Jupiter', hi: 'गुरु', role: 'wisdom and good fortune' },
-    5: { en: 'Venus', hi: 'शुक्र', role: 'love, comfort and beauty' },
-    6: { en: 'Saturn', hi: 'शनि', role: 'discipline and endurance' },
-    7: { en: 'Rahu', hi: 'राहु', role: 'ambition and unconventional growth' },
-    8: { en: 'Ketu', hi: 'केतु', role: 'detachment and spiritual insight' },
+  const PNAME: Record<number, { en: string; hi: string; ta: string; bn: string; role: string; roleTa: string; roleBn: string }> = {
+    0: { en: 'Sun', hi: 'सूर्य', ta: 'சூரியன்', bn: 'সূর্য', role: 'authority and confidence', roleTa: 'அதிகாரம் மற்றும் தன்னம்பிக்கை', roleBn: 'কর্তৃত্ব এবং আত্মবিশ্বাস' },
+    1: { en: 'Moon', hi: 'चन्द्र', ta: 'சந்திரன்', bn: 'চন্দ্র', role: 'emotions and intuition', roleTa: 'உணர்ச்சிகள் மற்றும் உள்ளுணர்வு', roleBn: 'আবেগ এবং অন্তর্জ্ঞান' },
+    2: { en: 'Mars', hi: 'मंगल', ta: 'செவ்வாய்', bn: 'মঙ্গল', role: 'drive and courage', roleTa: 'உந்துதல் மற்றும் தைரியம்', roleBn: 'উদ্যম এবং সাহস' },
+    3: { en: 'Mercury', hi: 'बुध', ta: 'புதன்', bn: 'বুধ', role: 'communication and intellect', roleTa: 'தொடர்பு மற்றும் அறிவு', roleBn: 'যোগাযোগ এবং বুদ্ধিমত্তা' },
+    4: { en: 'Jupiter', hi: 'गुरु', ta: 'குரு', bn: 'গুরু', role: 'wisdom and good fortune', roleTa: 'ஞானம் மற்றும் நல்ல அதிர்ஷ்டம்', roleBn: 'জ্ঞান এবং সৌভাগ্য' },
+    5: { en: 'Venus', hi: 'शुक्र', ta: 'சுக்கிரன்', bn: 'শুক্র', role: 'love, comfort and beauty', roleTa: 'அன்பு, ஆறுதல் மற்றும் அழகு', roleBn: 'প্রেম, আরাম এবং সৌন্দর্য' },
+    6: { en: 'Saturn', hi: 'शनि', ta: 'சனி', bn: 'শনি', role: 'discipline and endurance', roleTa: 'ஒழுக்கம் மற்றும் சகிப்புத்தன்மை', roleBn: 'শৃঙ্খলা এবং সহনশীলতা' },
+    7: { en: 'Rahu', hi: 'राहु', ta: 'ராகு', bn: 'রাহু', role: 'ambition and unconventional growth', roleTa: 'லட்சியம் மற்றும் மரபுக்கு மாறான வளர்ச்சி', roleBn: 'উচ্চাকাঙ্ক্ষা এবং অপ্রচলিত বৃদ্ধি' },
+    8: { en: 'Ketu', hi: 'केतु', ta: 'கேது', bn: 'কেতু', role: 'detachment and spiritual insight', roleTa: 'பற்றின்மை மற்றும் ஆன்மீக அறிவு', roleBn: 'বিচ্ছিন্নতা এবং আধ্যাত্মিক অন্তর্দৃষ্টি' },
   };
 
   // 1. Big picture — what does this mean for the user?
   if (pd.d1Promise >= 70 && pd.dxxDelivery >= 70) {
     parts.push(`Your chart shows strong natural talent for ${dl.en}, and the deeper analysis confirms this will translate into real results. This is one of your life's genuine strengths — lean into it.`);
     partsHi.push(`आपकी कुण्डली ${dl.hi} के लिए प्रबल प्राकृतिक प्रतिभा दर्शाती है, और गहन विश्लेषण पुष्टि करता है कि यह वास्तविक परिणामों में बदलेगा। यह आपके जीवन की एक वास्तविक शक्ति है।`);
+    partsTa.push(`உங்கள் ஜாதகம் ${dl.ta} க்கு வலுவான இயற்கை திறமையைக் காட்டுகிறது, மேலும் ஆழமான பகுப்பாய்வு இது உண்மையான முடிவுகளில் மாறும் என்பதை உறுதிப்படுத்துகிறது. இது உங்கள் வாழ்க்கையின் உண்மையான பலம்.`);
+    partsBn.push(`আপনার জাতক ${dl.bn} জন্য শক্তিশালী প্রাকৃতিক প্রতিভা দেখায়, এবং গভীর বিশ্লেষণ নিশ্চিত করে যে এটি বাস্তব ফলাফলে রূপান্তরিত হবে। এটি আপনার জীবনের প্রকৃত শক্তি।`);
   } else if (pd.d1Promise >= 70) {
     parts.push(`You have strong potential for ${dl.en}, but turning that potential into results will require patience and the right timing. Don't be discouraged by slow progress — the foundation is solid, and the right planetary period will accelerate things.`);
     partsHi.push(`${dl.hi} के लिए आपमें प्रबल क्षमता है, किन्तु इसे फल में बदलने के लिए धैर्य और सही समय चाहिए। धीमी प्रगति से निराश न हों — नींव मज़बूत है।`);
+    partsTa.push(`${dl.ta} க்கு உங்களிடம் வலுவான திறன் உள்ளது, ஆனால் அந்த திறனை முடிவுகளாக மாற்ற பொறுமையும் சரியான நேரமும் தேவை. மெதுவான முன்னேற்றத்தால் சோர்வடையாதீர்கள் — அடித்தளம் உறுதியானது.`);
+    partsBn.push(`${dl.bn} জন্য আপনার মধ্যে শক্তিশালী সম্ভাবনা রয়েছে, তবে সেই সম্ভাবনাকে ফলাফলে রূপান্তরিত করতে ধৈর্য এবং সঠিক সময় প্রয়োজন। ধীর অগ্রগতিতে নিরুৎসাহিত হবেন না — ভিত্তি মজবুত।`);
   } else if (pd.dxxDelivery >= 70) {
     parts.push(`While ${dl.en} may not be the first thing people notice about your chart, the deeper analysis reveals hidden support. When the right planetary period activates, you may surprise yourself with what you achieve here.`);
     partsHi.push(`हालाँकि ${dl.hi} आपकी कुण्डली की पहली दृष्टि में स्पष्ट नहीं, गहन विश्लेषण छिपा सहयोग दर्शाता है। सही ग्रह काल में आप स्वयं चकित हो सकते हैं।`);
+    partsTa.push(`${dl.ta} உங்கள் ஜாதகத்தில் முதலில் தெளிவாக தெரியாவிட்டாலும், ஆழமான பகுப்பாய்வு மறைந்த ஆதரவை வெளிப்படுத்துகிறது. சரியான கிரக காலம் செயல்படும்போது, நீங்கள் இங்கு அடைவதை பார்த்து ஆச்சரியப்படலாம்.`);
+    partsBn.push(`যদিও ${dl.bn} আপনার জাতকে প্রথমে স্পষ্ট নয়, গভীর বিশ্লেষণ লুকানো সহায়তা প্রকাশ করে। সঠিক গ্রহ কাল সক্রিয় হলে, আপনি এখানে যা অর্জন করেন তা দেখে নিজেই অবাক হতে পারেন।`);
   } else {
     parts.push(`For ${dl.en}, your chart indicates a steady but measured path. Don't expect fireworks — instead, consistent effort over time will yield meaningful results. Focus on building skills and relationships in this area.`);
     partsHi.push(`${dl.hi} के लिए आपकी कुण्डली स्थिर किन्तु मापित मार्ग दर्शाती है। धमाकेदार परिणाम की अपेक्षा न करें — निरंतर प्रयास से सार्थक फल मिलेंगे।`);
+    partsTa.push(`${dl.ta} க்கு, உங்கள் ஜாதகம் நிலையான ஆனால் அளவிடப்பட்ட பாதையை சுட்டிக்காட்டுகிறது. வெடிப்பான முடிவுகளை எதிர்பார்க்காதீர்கள் — பதிலாக, காலப்போக்கில் தொடர்ந்த முயற்சி அர்த்தமுள்ள முடிவுகளை தரும்.`);
+    partsBn.push(`${dl.bn} এর জন্য, আপনার জাতক একটি স্থির কিন্তু পরিমিত পথ নির্দেশ করে। বিস্ফোরক ফলাফল আশা করবেন না — পরিবর্তে, সময়ের সাথে ধারাবাহিক প্রচেষ্টা অর্থপূর্ণ ফলাফল দেবে।`);
   }
 
   // 2. Planets that are your allies in this domain
   if (vargottamaPlanets.length > 0) {
     const allies = vargottamaPlanets.map(pid => {
-      const p = PNAME[pid] || { en: 'a planet', hi: 'एक ग्रह', role: 'influence' };
-      return { en: `${p.en} (${p.role})`, hi: `${p.hi} (${p.role})` };
+      const p = PNAME[pid] || { en: 'a planet', hi: 'एक ग्रह', ta: 'ஒரு கிரகம்', bn: 'একটি গ্রহ', role: 'influence', roleTa: 'செல்வாக்கு', roleBn: 'প্রভাব' };
+      return { en: `${p.en} (${p.role})`, hi: `${p.hi} (${p.role})`, ta: `${p.ta} (${p.roleTa})`, bn: `${p.bn} (${p.roleBn})` };
     });
     if (allies.length === 1) {
       parts.push(`${allies[0].en} is especially powerful for ${dl.en} — this planet occupies the same strong position in both your birth chart and this specialized chart, meaning its influence is dependable and consistent.`);
       partsHi.push(`${allies[0].hi} ${dl.hi} के लिए विशेष रूप से शक्तिशाली है — यह ग्रह दोनों चार्ट में समान बलवान स्थिति में है।`);
+      partsTa.push(`${allies[0].ta} ${dl.ta} க்கு விசேஷமாக வலுவானது — இந்த கிரகம் உங்கள் ஜன்ம ஜாதகம் மற்றும் இந்த சிறப்பு ஜாதகம் இரண்டிலும் ஒரே வலுவான நிலையில் உள்ளது.`);
+      partsBn.push(`${allies[0].bn} ${dl.bn} এর জন্য বিশেষভাবে শক্তিশালী — এই গ্রহটি আপনার জন্ম জাতক এবং এই বিশেষ জাতক উভয়তেই একই শক্তিশালী অবস্থানে রয়েছে।`);
     } else {
       const enList = allies.map(a => a.en).join(' and ');
       parts.push(`${enList} are especially powerful for ${dl.en} — these planets hold consistent strength across multiple chart layers, making their influence reliable.`);
       partsHi.push(`${allies.map(a => a.hi).join(' और ')} ${dl.hi} के लिए विशेष रूप से शक्तिशाली हैं।`);
+      partsTa.push(`${allies.map(a => a.ta).join(' மற்றும் ')} ${dl.ta} க்கு விசேஷமாக வலுவானவை — இந்த கிரகங்கள் பல ஜாதக அடுக்குகளில் தொடர்ந்து வலிமையை கொண்டுள்ளன.`);
+      partsBn.push(`${allies.map(a => a.bn).join(' এবং ')} ${dl.bn} এর জন্য বিশেষভাবে শক্তিশালী — এই গ্রহগুলি একাধিক জাতক স্তরে ধারাবাহিক শক্তি ধারণ করে।`);
     }
   }
 
@@ -874,12 +888,18 @@ function buildNarrative(
   if (pushkaraCount > 0 && gandantaCount === 0) {
     parts.push(`You have natural good fortune backing ${dl.en} — like a tailwind that makes effort go further. Take advantage of this during favorable planetary periods.`);
     partsHi.push(`${dl.hi} में आपके पास प्राकृतिक सौभाग्य का सहारा है — अनुकूल ग्रह काल में इसका लाभ उठाएं।`);
+    partsTa.push(`${dl.ta} க்கு இயற்கையான நல்ல அதிர்ஷ்டம் ஆதரவாக உள்ளது — சாதகமான கிரக காலங்களில் இதை பயன்படுத்திக் கொள்ளுங்கள்.`);
+    partsBn.push(`${dl.bn} এর পেছনে প্রাকৃতিক সৌভাগ্য সহায়তা করছে — অনুকূল গ্রহ কালে এর সুবিধা নিন।`);
   } else if (gandantaCount > 0 && pushkaraCount === 0) {
     parts.push(`There's a karmic knot around ${dl.en} that may create periods of confusion or setbacks. These are growth moments, not permanent blocks — working through them builds lasting strength.`);
     partsHi.push(`${dl.hi} के आसपास एक कार्मिक गांठ है जो भ्रम या बाधा उत्पन्न कर सकती है। ये विकास के क्षण हैं, स्थायी अवरोध नहीं।`);
+    partsTa.push(`${dl.ta} மேல் ஒரு கார்மிக் முடிச்சு உள்ளது, இது குழப்பம் அல்லது தடைகளை உருவாக்கலாம். இவை வளர்ச்சி நேரங்கள், நிரந்தர தடைகள் அல்ல.`);
+    partsBn.push(`${dl.bn} এর চারপাশে একটি কার্মিক গ্রন্থি রয়েছে যা বিভ্রান্তি বা বাধার সময়কাল তৈরি করতে পারে। এগুলি বৃদ্ধির মুহূর্ত, স্থায়ী বাধা নয়।`);
   } else if (pushkaraCount > 0 && gandantaCount > 0) {
     parts.push(`Interestingly, ${dl.en} shows both natural blessings and karmic challenges. You'll experience phases of ease alternating with periods that test your resolve. The blessings ultimately outweigh the challenges.`);
     partsHi.push(`रोचक बात यह है कि ${dl.hi} में प्राकृतिक आशीर्वाद और कार्मिक चुनौतियां दोनों हैं। सहजता और परीक्षा के दौर बारी-बारी आएंगे।`);
+    partsTa.push(`சுவாரஸ்யமான விஷயம் என்னவென்றால், ${dl.ta} இயற்கையான ஆசீர்வாதங்களையும் கார்மிக் சவால்களையும் இரண்டையும் காட்டுகிறது. எளிமையின் கட்டங்கள் உங்கள் உறுதியை சோதிக்கும் காலங்களுடன் மாறி மாறி வரும்.`);
+    partsBn.push(`আকর্ষণীয়ভাবে, ${dl.bn} প্রাকৃতিক আশীর্বাদ এবং কার্মিক চ্যালেঞ্জ উভয়ই দেখায়। সহজতার পর্যায়গুলি আপনার সংকল্প পরীক্ষা করার সময়কালের সাথে পর্যায়ক্রমে আসবে।`);
   }
 
   // 4. Special combinations — in plain language
@@ -888,9 +908,13 @@ function buildNarrative(
     if (count >= 3) {
       parts.push(`Multiple special planetary combinations (${count} found) strengthen this area of your life — this is above average and suggests natural talent or fortunate circumstances.`);
       partsHi.push(`अनेक विशेष ग्रह संयोजन (${count}) इस जीवन क्षेत्र को सुदृढ़ करते हैं — यह औसत से ऊपर है और प्राकृतिक प्रतिभा का संकेत है।`);
+      partsTa.push(`பல சிறப்பு கிரக சேர்க்கைகள் (${count} கண்டறியப்பட்டன) உங்கள் வாழ்க்கையின் இந்த பகுதியை வலுப்படுத்துகின்றன — இது சராசரிக்கு மேலே மற்றும் இயற்கையான திறமையை சுட்டிக்காட்டுகிறது.`);
+      partsBn.push(`একাধিক বিশেষ গ্রহ সংমিশ্রণ (${count}টি পাওয়া গেছে) আপনার জীবনের এই ক্ষেত্রটিকে শক্তিশালী করে — এটি গড়ের উপরে এবং প্রাকৃতিক প্রতিভার ইঙ্গিত দেয়।`);
     } else {
       parts.push(`A special planetary combination supports ${dl.en}, adding an extra boost during its activation period.`);
       partsHi.push(`एक विशेष ग्रह संयोजन ${dl.hi} को सहयोग करता है, सक्रियण काल में अतिरिक्त बल देता है।`);
+      partsTa.push(`ஒரு சிறப்பு கிரக சேர்க்கை ${dl.ta} க்கு ஆதரவளிக்கிறது, அதன் செயல்படுத்தல் காலத்தில் கூடுதல் உந்துதல் சேர்க்கிறது.`);
+      partsBn.push(`একটি বিশেষ গ্রহ সংমিশ্রণ ${dl.bn} কে সমর্থন করে, এর সক্রিয়করণ সময়কালে একটি অতিরিক্ত শক্তি যোগ করে।`);
     }
   }
 
@@ -900,14 +924,20 @@ function buildNarrative(
   if (improvements.length > declines.length) {
     parts.push(`The deeper chart reveals hidden strengths that aren't obvious from a surface reading — you may find that ${dl.en} improves in ways you didn't initially expect.`);
     partsHi.push(`गहन चार्ट ऐसी छिपी शक्तियां दर्शाता है जो सतही पढ़ने से स्पष्ट नहीं — ${dl.hi} अप्रत्याशित रूप से सुधर सकता है।`);
+    partsTa.push(`ஆழமான ஜாதகம் மேற்பரப்பு வாசிப்பில் தெளிவாக தெரியாத மறைந்த பலங்களை வெளிப்படுத்துகிறது — ${dl.ta} நீங்கள் ஆரம்பத்தில் எதிர்பார்க்காத வழிகளில் மேம்படலாம்.`);
+    partsBn.push(`গভীর জাতক এমন লুকানো শক্তি প্রকাশ করে যা পৃষ্ঠীয় পাঠে স্পষ্ট নয় — ${dl.bn} এমনভাবে উন্নত হতে পারে যা আপনি প্রাথমিকভাবে প্রত্যাশা করেননি।`);
   } else if (declines.length > improvements.length) {
     parts.push(`Some of the promise visible in your birth chart faces friction when examined more deeply. This doesn't negate the potential, but suggests that ${dl.en} will require more deliberate effort than it might initially appear.`);
     partsHi.push(`जन्म कुण्डली में दिखने वाली कुछ संभावनाएं गहन परीक्षा में बाधा दर्शाती हैं। ${dl.hi} के लिए प्रत्याशा से अधिक सचेत प्रयास की आवश्यकता होगी।`);
+    partsTa.push(`உங்கள் ஜன்ம ஜாதகத்தில் தெரியும் சில வாக்குறுதிகள் ஆழமாக ஆராயும்போது தடையை எதிர்கொள்கின்றன. ${dl.ta} க்கு ஆரம்பத்தில் தோன்றுவதை விட அதிக வேண்டுமென்றே முயற்சி தேவைப்படும்.`);
+    partsBn.push(`আপনার জন্ম জাতকে দৃশ্যমান কিছু প্রতিশ্রুতি আরও গভীরভাবে পরীক্ষা করলে ঘর্ষণের সম্মুখীন হয়। ${dl.bn} এর জন্য প্রাথমিকভাবে মনে হওয়ার চেয়ে বেশি ইচ্ছাকৃত প্রচেষ্টার প্রয়োজন হবে।`);
   }
 
   return {
     en: parts.join('\n\n'),
     hi: partsHi.join('\n\n'),
+    ta: partsTa.join('\n\n'),
+    bn: partsBn.join('\n\n'),
   };
 }
 

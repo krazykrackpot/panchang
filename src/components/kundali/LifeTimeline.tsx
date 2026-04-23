@@ -4,36 +4,36 @@ import { tl } from '@/lib/utils/trilingual';
 
 // ── Trilingual labels (extracted from inline tl() calls) ─────────────────────
 const LABELS = {
-  title: { en: 'Life Timeline — Complete Synthesis', hi: 'जीवन-रेखा — सम्पूर्ण काल-संश्लेषण', sa: 'जीवन-रेखा — सम्पूर्ण काल-संश्लेषण' },
-  subtitle: { en: 'All astrological systems synthesized on a single timeline', hi: 'सभी ज्योतिषीय तत्त्वों का कालानुक्रमिक समन्वय', sa: 'सभी ज्योतिषीय तत्त्वों का कालानुक्रमिक समन्वय' },
-  vimshottari: { en: 'Vimshottari Dasha', hi: 'विंशोत्तरी दशा', sa: 'विंशोत्तरी दशा' },
-  sadeSati: { en: 'Sade Sati (♄ transit)', hi: 'साढ़े साती (♄ गोचर)', sa: 'साढ़े साती (♄ गोचर)' },
-  majorYoga: { en: 'Major Yoga Active', hi: 'योग सक्रिय', sa: 'योग सक्रिय' },
-  jupiterYogi: { en: '⭐ Jupiter→Yogi Pt', hi: '⭐ बृहस्पति→योगी', sa: '⭐ बृहस्पति→योगी' },
-  saturnAvayogi: { en: '⚠ Saturn→Avayogi', hi: '⚠ शनि→अवयोगी', sa: '⚠ शनि→अवयोगी' },
-  rahuAxis: { en: '◉ Rahu Axis Shift', hi: '◉ राहु-अक्ष', sa: '◉ राहु-अक्ष' },
-  today: { en: 'Today', hi: 'आज', sa: 'आज' },
-  yoga: { en: 'Yoga', hi: 'योग', sa: 'योग' },
-  sadeSatiLabel: { en: 'Sade Sati', hi: 'साढ़े साती', sa: 'साढ़े साती' },
-  peak: { en: 'Peak', hi: 'उत्तम', sa: 'उत्तम' },
-  hard: { en: 'Hard', hi: 'कठिन', sa: 'कठिन' },
-  avg: { en: 'Avg', hi: 'मध्यम', sa: 'मध्यम' },
-  now: { en: '● Now', hi: '● आज', sa: '● आज' },
-  upcoming: { en: 'Upcoming Key Periods', hi: 'आगामी महत्त्वपूर्ण काल', sa: 'आगामी महत्त्वपूर्ण काल' },
-  recent: { en: 'Recent Key Periods', hi: 'हाल की महत्त्वपूर्ण अवधियाँ', sa: 'हाल की महत्त्वपूर्ण अवधियाँ' },
-  synthesis: { en: 'Period-by-Period Synthesis', hi: 'दशा-वार संश्लेषण', sa: 'दशा-वार संश्लेषण' },
-  noteLabel: { en: 'Note:', hi: 'ध्यान दें:', sa: 'ध्यान दें:' },
-  noteText: { en: " Sade Sati is based on Saturn's current sky transit — independent of Vimshottari dasha. It repeats every ~30 years regardless of which planet's dasha is running. 'Yes' in different non-consecutive dashas means different Sade Sati cycles, not one long one.", hi: ' साढ़े साती शनि के वर्तमान गोचर (आकाश में स्थिति) पर आधारित है — विंशोत्तरी दशा पर नहीं। यह हर ~30 वर्षों में होती है, चाहे कोई भी दशा चल रही हो। अलग-अलग दशाओं में "हाँ" का अर्थ है भिन्न साढ़े साती चक्र।', sa: ' साढ़े साती शनि के वर्तमान गोचर (आकाश में स्थिति) पर आधारित है — विंशोत्तरी दशा पर नहीं। यह हर ~30 वर्षों में होती है, चाहे कोई भी दशा चल रही हो। अलग-अलग दशाओं में "हाँ" का अर्थ है भिन्न साढ़े साती चक्र।' },
-  mahadasha: { en: 'Mahadasha', hi: 'महादशा', sa: 'महादशा' },
-  period: { en: 'Period', hi: 'काल', sa: 'काल' },
-  shadbala: { en: 'Shadbala', hi: 'षड्बल', sa: 'षड्बल' },
-  yogas: { en: 'Yogas', hi: 'योग', sa: 'योग' },
-  saturnTransit: { en: '♄ Transit (Sade Sati)', hi: '♄ गोचर (साढ़े साती)', sa: '♄ गोचर (साढ़े साती)' },
-  quality: { en: 'Quality', hi: 'गुण-स्कोर', sa: 'गुणः' },
-  strong: { en: '★ Strong', hi: '★ बलवान', sa: '★ बलवान' },
-  weak: { en: '▽ Weak', hi: '▽ दुर्बल', sa: '▽ दुर्बल' },
-  average: { en: '◇ Average', hi: '◇ मध्यम', sa: '◇ मध्यम' },
-  active: { en: '❆ Active', hi: '❆ सक्रिय', sa: '❆ सक्रिय' },
+  title: { en: 'Life Timeline — Complete Synthesis', hi: 'जीवन-रेखा — सम्पूर्ण काल-संश्लेषण', sa: 'जीवन-रेखा — सम्पूर्ण काल-संश्लेषण', ta: 'வாழ்க்கை காலக்கோடு — முழுமையான தொகுப்பு', bn: 'জীবন-রেখা — সম্পূর্ণ কাল-সংশ্লেষণ' },
+  subtitle: { en: 'All astrological systems synthesized on a single timeline', hi: 'सभी ज्योतिषीय तत्त्वों का कालानुक्रमिक समन्वय', sa: 'सभी ज्योतिषीय तत्त्वों का कालानुक्रमिक समन्वय', ta: 'அனைத்து ஜோதிட அமைப்புகளும் ஒரே காலக்கோட்டில் தொகுக்கப்பட்டது', bn: 'সকল জ্যোতিষ তত্ত্বের কালানুক্রমিক সমন্বয়' },
+  vimshottari: { en: 'Vimshottari Dasha', hi: 'विंशोत्तरी दशा', sa: 'विंशोत्तरी दशा', ta: 'விம்சோத்தரி தசா', bn: 'বিংশোত্তরী দশা' },
+  sadeSati: { en: 'Sade Sati (♄ transit)', hi: 'साढ़े साती (♄ गोचर)', sa: 'साढ़े साती (♄ गोचर)', ta: 'சாடே சாதி (♄ கோசாரம்)', bn: 'সাড়ে সাতি (♄ গোচর)' },
+  majorYoga: { en: 'Major Yoga Active', hi: 'योग सक्रिय', sa: 'योग सक्रिय', ta: 'முக்கிய யோகம் செயலில்', bn: 'প্রধান যোগ সক্রিয়' },
+  jupiterYogi: { en: '⭐ Jupiter→Yogi Pt', hi: '⭐ बृहस्पति→योगी', sa: '⭐ बृहस्पति→योगी', ta: '⭐ குரு→யோகி புள்ளி', bn: '⭐ বৃহস্পতি→যোগী' },
+  saturnAvayogi: { en: '⚠ Saturn→Avayogi', hi: '⚠ शनि→अवयोगी', sa: '⚠ शनि→अवयोगी', ta: '⚠ சனி→அவயோகி', bn: '⚠ শনি→অবযোগী' },
+  rahuAxis: { en: '◉ Rahu Axis Shift', hi: '◉ राहु-अक्ष', sa: '◉ राहु-अक्ष', ta: '◉ ராகு அச்சு மாற்றம்', bn: '◉ রাহু-অক্ষ' },
+  today: { en: 'Today', hi: 'आज', sa: 'आज', ta: 'இன்று', bn: 'আজ' },
+  yoga: { en: 'Yoga', hi: 'योग', sa: 'योग', ta: 'யோகம்', bn: 'যোগ' },
+  sadeSatiLabel: { en: 'Sade Sati', hi: 'साढ़े साती', sa: 'साढ़े साती', ta: 'சாடே சாதி', bn: 'সাড়ে সাতি' },
+  peak: { en: 'Peak', hi: 'उत्तम', sa: 'उत्तम', ta: 'உச்சம்', bn: 'শীর্ষ' },
+  hard: { en: 'Hard', hi: 'कठिन', sa: 'कठिन', ta: 'கடினம்', bn: 'কঠিন' },
+  avg: { en: 'Avg', hi: 'मध्यम', sa: 'मध्यम', ta: 'சராசரி', bn: 'মধ্যম' },
+  now: { en: '● Now', hi: '● आज', sa: '● आज', ta: '● இப்போது', bn: '● এখন' },
+  upcoming: { en: 'Upcoming Key Periods', hi: 'आगामी महत्त्वपूर्ण काल', sa: 'आगामी महत्त्वपूर्ण काल', ta: 'வரவிருக்கும் முக்கிய காலங்கள்', bn: 'আসন্ন গুরুত্বপূর্ণ কাল' },
+  recent: { en: 'Recent Key Periods', hi: 'हाल की महत्त्वपूर्ण अवधियाँ', sa: 'हाल की महत्त्वपूर्ण अवधियाँ', ta: 'சமீபத்திய முக்கிய காலங்கள்', bn: 'সাম্প্রতিক গুরুত্বপূর্ণ কাল' },
+  synthesis: { en: 'Period-by-Period Synthesis', hi: 'दशा-वार संश्लेषण', sa: 'दशा-वार संश्लेषण', ta: 'காலவாரியான தொகுப்பு', bn: 'দশা-ভিত্তিক সংশ্লেষণ' },
+  noteLabel: { en: 'Note:', hi: 'ध्यान दें:', sa: 'ध्यान दें:', ta: 'குறிப்பு:', bn: 'দ্রষ্টব্য:' },
+  noteText: { en: " Sade Sati is based on Saturn's current sky transit — independent of Vimshottari dasha. It repeats every ~30 years regardless of which planet's dasha is running. 'Yes' in different non-consecutive dashas means different Sade Sati cycles, not one long one.", hi: ' साढ़े साती शनि के वर्तमान गोचर (आकाश में स्थिति) पर आधारित है — विंशोत्तरी दशा पर नहीं। यह हर ~30 वर्षों में होती है, चाहे कोई भी दशा चल रही हो। अलग-अलग दशाओं में "हाँ" का अर्थ है भिन्न साढ़े साती चक्र।', sa: ' साढ़े साती शनि के वर्तमान गोचर (आकाश में स्थिति) पर आधारित है — विंशोत्तरी दशा पर नहीं। यह हर ~30 वर्षों में होती है, चाहे कोई भी दशा चल रही हो। अलग-अलग दशाओं में "हाँ" का अर्थ है भिन्न साढ़े साती चक्र।', ta: ' சாடே சாதி சனியின் தற்போதைய வானிலை கோசாரத்தின் அடிப்படையில் — விம்சோத்தரி தசாவிலிருந்து சுதந்திரமானது. இது ஒவ்வொரு ~30 ஆண்டுகளிலும் மீண்டும் வரும், எந்த கிரகத்தின் தசா நடந்தாலும்.', bn: ' সাড়ে সাতি শনির বর্তমান আকাশ গোচরের উপর ভিত্তি করে — বিংশোত্তরী দশা থেকে স্বাধীন। এটি প্রতি ~৩০ বছরে পুনরাবৃত্তি হয়, যেকোনো গ্রহের দশা চলুক না কেন।' },
+  mahadasha: { en: 'Mahadasha', hi: 'महादशा', sa: 'महादशा', ta: 'மஹாதசா', bn: 'মহাদশা' },
+  period: { en: 'Period', hi: 'काल', sa: 'काल', ta: 'காலம்', bn: 'কাল' },
+  shadbala: { en: 'Shadbala', hi: 'षड्बल', sa: 'षड्बल', ta: 'ஷட்பலம்', bn: 'ষড়বল' },
+  yogas: { en: 'Yogas', hi: 'योग', sa: 'योग', ta: 'யோகங்கள்', bn: 'যোগসমূহ' },
+  saturnTransit: { en: '♄ Transit (Sade Sati)', hi: '♄ गोचर (साढ़े साती)', sa: '♄ गोचर (साढ़े साती)', ta: '♄ கோசாரம் (சாடே சாதி)', bn: '♄ গোচর (সাড়ে সাতি)' },
+  quality: { en: 'Quality', hi: 'गुण-स्कोर', sa: 'गुणः', ta: 'தரம்', bn: 'গুণমান' },
+  strong: { en: '★ Strong', hi: '★ बलवान', sa: '★ बलवान', ta: '★ வலுவான', bn: '★ শক্তিশালী' },
+  weak: { en: '▽ Weak', hi: '▽ दुर्बल', sa: '▽ दुर्बल', ta: '▽ பலவீனம்', bn: '▽ দুর্বল' },
+  average: { en: '◇ Average', hi: '◇ मध्यम', sa: '◇ मध्यम', ta: '◇ சராசரி', bn: '◇ মধ্যম' },
+  active: { en: '❆ Active', hi: '❆ सक्रिय', sa: '❆ सक्रिय', ta: '❆ செயலில்', bn: '❆ সক্রিয়' },
 };
 import { useMemo, useRef, useEffect, useState } from 'react';
 import type { KundaliData } from '@/types/kundali';
@@ -78,6 +78,14 @@ const PLANET_HI: Record<string, string> = {
   Sun: 'सूर्य', Moon: 'चन्द्र', Mars: 'मंगल', Mercury: 'बुध',
   Jupiter: 'बृहस्पति', Venus: 'शुक्र', Saturn: 'शनि', Rahu: 'राहु', Ketu: 'केतु',
 };
+const PLANET_TA: Record<string, string> = {
+  Sun: 'சூரியன்', Moon: 'சந்திரன்', Mars: 'செவ்வாய்', Mercury: 'புதன்',
+  Jupiter: 'குரு', Venus: 'சுக்கிரன்', Saturn: 'சனி', Rahu: 'ராகு', Ketu: 'கேது',
+};
+const PLANET_BN: Record<string, string> = {
+  Sun: 'সূর্য', Moon: 'চন্দ্র', Mars: 'মঙ্গল', Mercury: 'বুধ',
+  Jupiter: 'বৃহস্পতি', Venus: 'শুক্র', Saturn: 'শনি', Rahu: 'রাহু', Ketu: 'কেতু',
+};
 
 const norm360 = (d: number) => ((d % 360) + 360) % 360;
 
@@ -94,6 +102,14 @@ interface Props {
   locale: string;
   isDevanagari: boolean;
   headingFont?: React.CSSProperties;
+}
+
+// Locale-aware accessor for timeline event fields (title/titleHi/titleTa/titleBn pattern)
+function evtText(ev: TimelineEvent, base: 'title' | 'desc' | 'label', locale: string): typeof base extends 'label' ? string[] : string {
+  if (locale === 'ta') return (base === 'label' ? ev.label : base === 'title' ? ev.titleTa : ev.descTa) as never;
+  if (locale === 'bn') return (base === 'label' ? ev.label : base === 'title' ? ev.titleBn : ev.descBn) as never;
+  if (isDevanagariLocale(locale)) return (base === 'label' ? ev.labelHi : base === 'title' ? ev.titleHi : ev.descHi) as never;
+  return (base === 'label' ? ev.label : base === 'title' ? ev.title : ev.desc) as never;
 }
 
 export default function LifeTimeline({ kundali, locale, isDevanagari, headingFont }: Props) {
@@ -712,8 +728,12 @@ interface TimelineEvent {
   icon: string;
   title: string;
   titleHi: string;
+  titleTa: string;
+  titleBn: string;
   desc: string;
   descHi: string;
+  descTa: string;
+  descBn: string;
   yearLabel: string;
   label: string[];
   labelHi: string[];
@@ -898,8 +918,12 @@ function computeTimeline(kundali: KundaliData): TimelineData {
         icon: '⭐',
         title: `Jupiter → Yogi Point (${fmtYear(yr)})`,
         titleHi: `बृहस्पति → योगी बिंदु (${fmtYear(yr)})`,
+        titleTa: `குரு → யோகி புள்ளி (${fmtYear(yr)})`,
+        titleBn: `বৃহস্পতি → যোগী বিন্দু (${fmtYear(yr)})`,
         desc: 'Jupiter crosses your most auspicious degree. Major positive window for career, fortune, and spiritual growth.',
         descHi: 'बृहस्पति आपके सबसे शुभ बिंदु को पार करता है। करियर, भाग्य और आध्यात्मिक विकास की प्रमुख सकारात्मक खिड़की।',
+        descTa: 'குரு உங்கள் மிகவும் சுபமான பாகையைக் கடக்கிறார். தொழில், அதிர்ஷ்டம் மற்றும் ஆன்மீக வளர்ச்சிக்கான முக்கிய நேர்மறை சாளரம்.',
+        descBn: 'বৃহস্পতি আপনার সবচেয়ে শুভ বিন্দু অতিক্রম করে। কর্মজীবন, ভাগ্য এবং আধ্যাত্মিক বিকাশের প্রধান ইতিবাচক সময়কাল।',
         yearLabel: fmtYear(yr - windowYears / 2) + ' – ' + fmtYear(yr + windowYears / 2),
         label: [`⭐ Jupiter → Yogi Point`, fmtYear(yr)],
         labelHi: [`⭐ बृहस्पति → योगी बिंदु`, fmtYear(yr)],
@@ -933,8 +957,12 @@ function computeTimeline(kundali: KundaliData): TimelineData {
         icon: '⚠',
         title: `Saturn → Avayogi Point (${fmtYear(yr)})`,
         titleHi: `शनि → अवयोगी बिंदु (${fmtYear(yr)})`,
+        titleTa: `சனி → அவயோகி புள்ளி (${fmtYear(yr)})`,
+        titleBn: `শনি → অবযোগী বিন্দু (${fmtYear(yr)})`,
         desc: 'Saturn crosses your most challenging degree. Increased pressure, but also potential for breakthrough discipline.',
         descHi: 'शनि आपके सबसे चुनौतीपूर्ण बिंदु को पार करता है। बाधाएं, किन्तु अनुशासन से सफलता।',
+        descTa: 'சனி உங்கள் மிகவும் சவாலான பாகையைக் கடக்கிறார். அழுத்தம் அதிகரிக்கும், ஆனால் ஒழுக்கத்தின் மூலம் முன்னேற்றம்.',
+        descBn: 'শনি আপনার সবচেয়ে চ্যালেঞ্জিং বিন্দু অতিক্রম করে। চাপ বাড়বে, তবে শৃঙ্খলার মাধ্যমে সাফল্যের সম্ভাবনা।',
         yearLabel: fmtYear(yr - windowYears / 2) + ' – ' + fmtYear(yr + windowYears / 2),
         label: [`⚠ Saturn → Avayogi`, fmtYear(yr)],
         labelHi: [`⚠ शनि → अवयोगी`, fmtYear(yr)],
@@ -1027,14 +1055,20 @@ function computeTimeline(kundali: KundaliData): TimelineData {
         const yogaNamesHi = yogaNamesByPlanetHi[d.planet]?.slice(0, 2).join(', ') ?? '';
         const suffix = isStrong && d.hasYoga ? ` — ★ + ${yogaNames || 'Yoga'}` : isStrong ? ' — ★ Strong' : ` — ${yogaNames || 'Yoga'}`;
         const suffixHi = isStrong && d.hasYoga ? ` — ★ + ${yogaNamesHi || 'योग'}` : isStrong ? ' — ★ बलवान' : ` — ${yogaNamesHi || 'योग'}`;
+        const suffixTa = isStrong && d.hasYoga ? ' — ★ + யோகம்' : isStrong ? ' — ★ வலுவான' : ' — யோகம்';
+        const suffixBn = isStrong && d.hasYoga ? ' — ★ + যোগ' : isStrong ? ' — ★ শক্তিশালী' : ' — যোগ';
         return {
           year: d.startYear,
           type: 'positive' as const,
           icon: isStrong && d.hasYoga ? '🌟' : d.hasYoga ? '◆' : '✦',
           title: `${d.planet} Mahadasha${suffix}`,
           titleHi: `${PLANET_HI[d.planet] ?? d.planet} महादशा${suffixHi}`,
+          titleTa: `${PLANET_TA[d.planet] ?? d.planet} மஹாதசா${suffixTa}`,
+          titleBn: `${PLANET_BN[d.planet] ?? d.planet} মহাদশা${suffixBn}`,
           desc: `${isStrong ? `Strong ${d.planet} (above-average Shadbala). ` : ''}${d.hasYoga ? `Major yoga involving ${d.planet} activates.` : ''}`,
           descHi: `${isStrong ? `बलवान ${PLANET_HI[d.planet] ?? d.planet} (षड्बल औसत से अधिक)। ` : ''}${d.hasYoga ? `${PLANET_HI[d.planet] ?? d.planet} से सम्बद्ध प्रमुख योग सक्रिय।` : ''}`,
+          descTa: `${isStrong ? `வலுவான ${PLANET_TA[d.planet] ?? d.planet} (சராசரிக்கு மேல் ஷட்பலம்). ` : ''}${d.hasYoga ? `${PLANET_TA[d.planet] ?? d.planet} சம்பந்தமான முக்கிய யோகம் செயல்படுகிறது.` : ''}`,
+          descBn: `${isStrong ? `শক্তিশালী ${PLANET_BN[d.planet] ?? d.planet} (গড়ের উপরে ষড়বল)। ` : ''}${d.hasYoga ? `${PLANET_BN[d.planet] ?? d.planet} সম্পর্কিত প্রধান যোগ সক্রিয়।` : ''}`,
           yearLabel: fmtYear(d.startYear),
           label: [`${d.planet} Dasha begins`, fmtYear(d.startYear)],
           labelHi: [`${PLANET_HI[d.planet] ?? d.planet} दशा`, fmtYear(d.startYear)],
@@ -1049,8 +1083,12 @@ function computeTimeline(kundali: KundaliData): TimelineData {
       icon: '🪐',
       title: `Sade Sati begins (${ss.startYear}–${ss.endYear})`,
       titleHi: `साढ़े साती आरम्भ (${ss.startYear}–${ss.endYear})`,
+      titleTa: `சாடே சாதி தொடக்கம் (${ss.startYear}–${ss.endYear})`,
+      titleBn: `সাড়ে সাতি শুরু (${ss.startYear}–${ss.endYear})`,
       desc: 'Saturn begins its 7.5-year transit over your Moon sign. Pressure on mind and emotions, but also deep maturation.',
       descHi: 'शनि चन्द्र राशि पर 7.5 वर्षीय गोचर आरम्भ करता है। मानसिक दबाव, किन्तु गहन परिपक्वता।',
+      descTa: 'சனி உங்கள் சந்திர ராசியின் மீது 7.5 ஆண்டு கோசாரத்தைத் தொடங்குகிறார். மன அழுத்தம், ஆனால் ஆழமான முதிர்ச்சி.',
+      descBn: 'শনি আপনার চন্দ্র রাশির উপর ৭.৫ বছরের গোচর শুরু করে। মানসিক চাপ, তবে গভীর পরিপক্বতা।',
       yearLabel: String(ss.startYear),
       label: ['Sade Sati begins', String(ss.startYear)],
       labelHi: ['साढ़े साती आरम्भ', String(ss.startYear)],
@@ -1064,8 +1102,12 @@ function computeTimeline(kundali: KundaliData): TimelineData {
       icon: '♄',
       title: `Saturn Return (${fmtYear(yr)})`,
       titleHi: `शनि वापसी (${fmtYear(yr)})`,
+      titleTa: `சனி மீட்சி (${fmtYear(yr)})`,
+      titleBn: `শনি প্রত্যাবর্তন (${fmtYear(yr)})`,
       desc: 'Saturn returns to its birth position — a major life checkpoint. Reality restructuring, accountability, maturity milestone.',
       descHi: 'शनि जन्म स्थिति पर लौटता है — जीवन का बड़ा पड़ाव। वास्तविकता पुनर्गठन, जवाबदेही।',
+      descTa: 'சனி பிறப்பு நிலைக்குத் திரும்புகிறார் — வாழ்க்கையின் முக்கிய சோதனைப் புள்ளி. யதார்த்த மறுசீரமைப்பு, பொறுப்புணர்வு.',
+      descBn: 'শনি জন্ম অবস্থানে ফিরে আসে — জীবনের বড় পরীক্ষা। বাস্তবতা পুনর্গঠন, দায়বদ্ধতা।',
       yearLabel: fmtYear(yr),
       label: ['Saturn Return', fmtYear(yr)],
       labelHi: ['शनि वापसी', fmtYear(yr)],

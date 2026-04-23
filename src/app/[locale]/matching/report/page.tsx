@@ -71,6 +71,18 @@ const L = {
     none: 'None',
     errorOccurred: 'An error occurred. Please try again.',
     connectionError: 'Connection error. Please check your internet.',
+    manglikLabel: 'Manglik',
+    manglikCancelled: 'Cancelled',
+    notManglik: 'Not Manglik',
+    nadiLabel: 'Nadi',
+    nadiDoshaLabel: 'Nadi Dosha',
+    rajjuLabel: 'Rajju',
+    aspectsLabel: 'Aspects',
+    ashtaKutaBreakdown: 'Ashta Kuta Breakdown',
+    housePrefix: 'House',
+    printTitle: 'Detailed Compatibility Report',
+    printLabel: 'Print / PDF',
+    newAnalysis: 'New Analysis',
   },
   hi: {
     title: 'विस्तृत अनुकूलता रिपोर्ट',
@@ -126,15 +138,169 @@ const L = {
     none: 'कोई नहीं',
     errorOccurred: 'त्रुटि हुई। कृपया पुनः प्रयास करें।',
     connectionError: 'कनेक्शन त्रुटि। कृपया इंटरनेट जाँचें।',
+    manglikLabel: 'मांगलिक',
+    manglikCancelled: 'निवारित',
+    notManglik: 'मांगलिक नहीं',
+    nadiLabel: 'नाड़ी',
+    nadiDoshaLabel: 'नाड़ी दोष',
+    rajjuLabel: 'राजु',
+    aspectsLabel: 'दृष्टि',
+    ashtaKutaBreakdown: 'अष्ट कूट विवरण',
+    housePrefix: 'भाव',
+    printTitle: 'विस्तृत अनुकूलता रिपोर्ट',
+    printLabel: 'प्रिंट / PDF',
+    newAnalysis: 'नया विश्लेषण',
+  },
+  ta: {
+    title: 'விரிவான பொருத்த அறிக்கை',
+    subtitle: 'அஷ்ட கூடத்திற்கு அப்பால் ஆழமான பகுப்பாய்வு — மாங்கலிக, நாடி, கிரக பார்வை, 7ஆம் வீடு, சுக்கிரன், மற்றும் சுருக்கம்',
+    partner1: 'துணை 1',
+    partner2: 'துணை 2',
+    name: 'பெயர்',
+    dateOfBirth: 'பிறந்த தேதி',
+    timeOfBirth: 'பிறந்த நேரம்',
+    placeOfBirth: 'பிறந்த இடம்',
+    generate: 'விரிவான அறிக்கை உருவாக்கு',
+    generating: 'ஜாதகம் பகுப்பாய்வு செய்யப்படுகிறது...',
+    fillBoth: 'இரு துணைகளின் முழுமையான பிறப்பு விவரங்களை நிரப்புங்கள்',
+    backToMatching: 'பொருத்தத்திற்குத் திரும்பு',
+    tabOverview: 'சுருக்கம்',
+    tabManglik: 'மாங்கலிக',
+    tabNadi: 'நாடி',
+    tabRajju: 'ராஜ்ஜு',
+    tabAspects: 'கிரக பார்வை',
+    tab7th: '7ஆம் வீடு',
+    tabVenus: 'சுக்கிரன்',
+    tabSummary: 'விவரம்',
+    manglikTitle: 'மாங்கலிக (குஜ தோஷம்) பகுப்பாய்வு',
+    nadiTitle: 'நாடி தோஷம் பகுப்பாய்வு',
+    rajjuTitle: 'ராஜ்ஜு தோஷம் பகுப்பாய்வு (தென் இந்திய)',
+    rajjuGroup: 'ராஜ்ஜு குழு',
+    rajjuDosha: 'ராஜ்ஜு தோஷம்',
+    rajjuDescription: 'விளக்கம்',
+    aspectsTitle: 'குறுக்கு-ஜாதக கிரக பார்வை',
+    seventhTitle: '7ஆம் வீடு (திருமணம்) பகுப்பாய்வு',
+    venusTitle: 'சுக்கிரன் (காதல் & காமம்) பகுப்பாய்வு',
+    summaryTitle: 'விவரணச் சுருக்கம்',
+    strengths: 'பலங்கள்',
+    challenges: 'சவால்கள்',
+    advice: 'ஆலோசனை & பரிகாரங்கள்',
+    overallNarrative: 'ஒட்டுமொத்த மதிப்பீடு',
+    cancellations: 'நிவாரண காரணிகள்',
+    noCancellations: 'நிவாரண காரணிகள் எதுவும் கிடைக்கவில்லை',
+    noAspects: 'இரு ஜாதகங்களிலும் முக்கிய பார்வைகள் எதுவும் காணப்படவில்லை.',
+    severity: 'தீவிரம்',
+    status: 'நிலை',
+    present: 'உள்ளது',
+    absent: 'இல்லை',
+    healthImplications: 'சுகாதாரத் தாக்கங்கள்',
+    compatibility: 'பொருத்தம்',
+    sign: 'ராசி',
+    house: 'வீடு',
+    lord: 'அதிபதி',
+    lordPlacement: 'அதிபதி இடம்',
+    planetsIn7th: '7ஆம் வீட்டின் கிரகங்கள்',
+    venusSign: 'சுக்கிர ராசி',
+    venusHouse: 'சுக்கிர வீடு',
+    none: 'எதுவுமில்லை',
+    errorOccurred: 'பிழை ஏற்பட்டது. மீண்டும் முயற்சிக்கவும்.',
+    connectionError: 'இணைப்பு பிழை. உங்கள் இணையத்தைச் சரிபாருங்கள்.',
+    manglikLabel: 'மாங்கலிக',
+    manglikCancelled: 'நிவாரணம்',
+    notManglik: 'மாங்கலிக இல்லை',
+    nadiLabel: 'நாடி',
+    nadiDoshaLabel: 'நாடி தோஷம்',
+    rajjuLabel: 'ராஜ்ஜு',
+    aspectsLabel: 'பார்வை',
+    ashtaKutaBreakdown: 'அஷ்ட கூட விவரம்',
+    housePrefix: 'வீடு',
+    printTitle: 'விரிவான பொருத்த அறிக்கை',
+    printLabel: 'அச்சு / PDF',
+    newAnalysis: 'புதிய பகுப்பாய்வு',
+  },
+  bn: {
+    title: 'বিস্তারিত সামঞ্জস্য প্রতিবেদন',
+    subtitle: 'অষ্ট কূটের বাইরে গভীর বিশ্লেষণ — মাঙ্গলিক, নাড়ী, গ্রহ দৃষ্টি, সপ্তম ভাব, শুক্র, এবং সারাংশ',
+    partner1: 'সঙ্গী ১',
+    partner2: 'সঙ্গী ২',
+    name: 'নাম',
+    dateOfBirth: 'জন্ম তারিখ',
+    timeOfBirth: 'জন্ম সময়',
+    placeOfBirth: 'জন্মস্থান',
+    generate: 'বিস্তারিত প্রতিবেদন তৈরি করুন',
+    generating: 'চার্ট বিশ্লেষণ হচ্ছে...',
+    fillBoth: 'উভয় সঙ্গীর সম্পূর্ণ জন্ম বিবরণ পূরণ করুন',
+    backToMatching: 'মিলনে ফিরে যান',
+    tabOverview: 'সারসংক্ষেপ',
+    tabManglik: 'মাঙ্গলিক',
+    tabNadi: 'নাড়ী',
+    tabRajju: 'রাজ্জু',
+    tabAspects: 'গ্রহ দৃষ্টি',
+    tab7th: 'সপ্তম ভাব',
+    tabVenus: 'শুক্র',
+    tabSummary: 'বিবরণ',
+    manglikTitle: 'মাঙ্গলিক (কুজ দোষ) বিশ্লেষণ',
+    nadiTitle: 'নাড়ী দোষ বিশ্লেষণ',
+    rajjuTitle: 'রাজ্জু দোষ বিশ্লেষণ (দক্ষিণ ভারতীয়)',
+    rajjuGroup: 'রাজ্জু গোষ্ঠী',
+    rajjuDosha: 'রাজ্জু দোষ',
+    rajjuDescription: 'ব্যাখ্যা',
+    aspectsTitle: 'ক্রস-চার্ট গ্রহ দৃষ্টি',
+    seventhTitle: 'সপ্তম ভাব (বিবাহ) বিশ্লেষণ',
+    venusTitle: 'শুক্র (প্রেম ও রোমান্স) বিশ্লেষণ',
+    summaryTitle: 'বর্ণনামূলক সারাংশ',
+    strengths: 'শক্তিসমূহ',
+    challenges: 'চ্যালেঞ্জসমূহ',
+    advice: 'পরামর্শ ও প্রতিকার',
+    overallNarrative: 'সামগ্রিক মূল্যায়ন',
+    cancellations: 'নিবারণ কারক',
+    noCancellations: 'কোনো নিবারণ কারক পাওয়া যায়নি',
+    noAspects: 'দুটি কুণ্ডলীতে কোনো প্রধান দৃষ্টি পাওয়া যায়নি।',
+    severity: 'তীব্রতা',
+    status: 'অবস্থা',
+    present: 'উপস্থিত',
+    absent: 'অনুপস্থিত',
+    healthImplications: 'স্বাস্থ্য প্রভাব',
+    compatibility: 'সামঞ্জস্য',
+    sign: 'রাশি',
+    house: 'ভাব',
+    lord: 'অধিপতি',
+    lordPlacement: 'অধিপতি স্থান',
+    planetsIn7th: 'সপ্তম ভাবের গ্রহ',
+    venusSign: 'শুক্র রাশি',
+    venusHouse: 'শুক্র ভাব',
+    none: 'কোনটি নয়',
+    errorOccurred: 'একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আবার চেষ্টা করুন।',
+    connectionError: 'সংযোগ ত্রুটি। অনুগ্রহ করে ইন্টারনেট পরীক্ষা করুন।',
+    manglikLabel: 'মাঙ্গলিক',
+    manglikCancelled: 'নিবারিত',
+    notManglik: 'মাঙ্গলিক নয়',
+    nadiLabel: 'নাড়ী',
+    nadiDoshaLabel: 'নাড়ী দোষ',
+    rajjuLabel: 'রাজ্জু',
+    aspectsLabel: 'দৃষ্টি',
+    ashtaKutaBreakdown: 'অষ্ট কূট বিবরণ',
+    housePrefix: 'ভাব',
+    printTitle: 'বিস্তারিত সামঞ্জস্য প্রতিবেদন',
+    printLabel: 'প্রিন্ট / PDF',
+    newAnalysis: 'নতুন বিশ্লেষণ',
   },
 };
 
 // ── Sign names for display ───────────────────────────────────
 
-const SIGN_NAMES_EN = ['', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
-const SIGN_NAMES_HI = ['', 'मेष', 'वृषभ', 'मिथुन', 'कर्क', 'सिंह', 'कन्या', 'तुला', 'वृश्चिक', 'धनु', 'मकर', 'कुम्भ', 'मीन'];
-const PLANET_NAMES_EN: Record<number, string> = { 0: 'Sun', 1: 'Moon', 2: 'Mars', 3: 'Mercury', 4: 'Jupiter', 5: 'Venus', 6: 'Saturn', 7: 'Rahu', 8: 'Ketu' };
-const PLANET_NAMES_HI: Record<number, string> = { 0: 'सूर्य', 1: 'चन्द्र', 2: 'मंगल', 3: 'बुध', 4: 'बृहस्पति', 5: 'शुक्र', 6: 'शनि', 7: 'राहु', 8: 'केतु' };
+const SIGN_NAMES: Record<string, string[]> = {
+  en: ['', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'],
+  hi: ['', 'मेष', 'वृषभ', 'मिथुन', 'कर्क', 'सिंह', 'कन्या', 'तुला', 'वृश्चिक', 'धनु', 'मकर', 'कुम्भ', 'मीन'],
+  ta: ['', 'மேஷம்', 'ரிஷபம்', 'மிதுனம்', 'கடகம்', 'சிம்மம்', 'கன்னி', 'துலாம்', 'விருச்சிகம்', 'தனுசு', 'மகரம்', 'கும்பம்', 'மீனம்'],
+  bn: ['', 'মেষ', 'বৃষ', 'মিথুন', 'কর্কট', 'সিংহ', 'কন্যা', 'তুলা', 'বৃশ্চিক', 'ধনু', 'মকর', 'কুম্ভ', 'মীন'],
+};
+const PLANET_NAMES: Record<string, Record<number, string>> = {
+  en: { 0: 'Sun', 1: 'Moon', 2: 'Mars', 3: 'Mercury', 4: 'Jupiter', 5: 'Venus', 6: 'Saturn', 7: 'Rahu', 8: 'Ketu' },
+  hi: { 0: 'सूर्य', 1: 'चन्द्र', 2: 'मंगल', 3: 'बुध', 4: 'बृहस्पति', 5: 'शुक्र', 6: 'शनि', 7: 'राहु', 8: 'केतु' },
+  ta: { 0: 'சூரியன்', 1: 'சந்திரன்', 2: 'செவ்வாய்', 3: 'புதன்', 4: 'குரு', 5: 'சுக்கிரன்', 6: 'சனி', 7: 'ராகு', 8: 'கேது' },
+  bn: { 0: 'সূর্য', 1: 'চন্দ্র', 2: 'মঙ্গল', 3: 'বুধ', 4: 'বৃহস্পতি', 5: 'শুক্র', 6: 'শনি', 7: 'রাহু', 8: 'কেতু' },
+};
 
 // ── Types ────────────────────────────────────────────────────
 
@@ -168,8 +334,8 @@ export default function DetailedReportPage() {
   const isHindi = isDevanagariLocale(locale);
   const lbl = (L as Record<string, typeof L.en>)[String(locale)] || L.en;
   const headingFont = isHindi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const signName = (s: number) => isHindi ? (SIGN_NAMES_HI[s] || '') : (SIGN_NAMES_EN[s] || '');
-  const planetName = (id: number) => isHindi ? (PLANET_NAMES_HI[id] || '') : (PLANET_NAMES_EN[id] || '');
+  const signName = (s: number) => (SIGN_NAMES[String(locale)] ?? SIGN_NAMES.en)[s] || '';
+  const planetName = (id: number) => (PLANET_NAMES[String(locale)] ?? PLANET_NAMES.en)[id] || '';
 
   const emptyBirth: PersonBirth = { name: '', date: '', time: '06:00', placeName: '', placeLat: null, placeLng: null, placeTimezone: null };
   const [p1, setP1] = useState<PersonBirth>(emptyBirth);
@@ -378,18 +544,18 @@ export default function DetailedReportPage() {
                 {/* Quick status badges */}
                 <div className="flex flex-wrap gap-2 mt-3 justify-center sm:justify-start">
                   <span className={`text-xs px-2.5 py-1 rounded-full border ${report.manglikAnalysis.chart1HasManglik || report.manglikAnalysis.chart2HasManglik ? 'text-orange-300 border-orange-500/30 bg-orange-500/10' : 'text-emerald-300 border-emerald-500/30 bg-emerald-500/10'}`}>
-                    {isHindi ? 'मांगलिक' : 'Manglik'}: {report.manglikAnalysis.chart1HasManglik || report.manglikAnalysis.chart2HasManglik ? (report.manglikAnalysis.cancellations.length > 0 ? (isHindi ? 'निवारित' : 'Cancelled') : lbl.present) : lbl.absent}
+                    {lbl.manglikLabel}: {report.manglikAnalysis.chart1HasManglik || report.manglikAnalysis.chart2HasManglik ? (report.manglikAnalysis.cancellations.length > 0 ? lbl.manglikCancelled : lbl.present) : lbl.absent}
                   </span>
                   <span className={`text-xs px-2.5 py-1 rounded-full border ${report.nadiAnalysis.doshaPresent ? 'text-red-300 border-red-500/30 bg-red-500/10' : 'text-emerald-300 border-emerald-500/30 bg-emerald-500/10'}`}>
-                    {isHindi ? 'नाड़ी' : 'Nadi'}: {report.nadiAnalysis.doshaPresent ? (report.nadiAnalysis.cancellations.length > 0 ? (isHindi ? 'निवारित' : 'Mitigated') : lbl.present) : lbl.absent}
+                    {lbl.nadiLabel}: {report.nadiAnalysis.doshaPresent ? (report.nadiAnalysis.cancellations.length > 0 ? lbl.manglikCancelled : lbl.present) : lbl.absent}
                   </span>
                   {report.rajjuDosha && (
                     <span className={`text-xs px-2.5 py-1 rounded-full border ${report.rajjuDosha.doshaPresent ? (report.rajjuDosha.severity === 'severe' ? 'text-red-300 border-red-500/30 bg-red-500/10' : report.rajjuDosha.severity === 'moderate' ? 'text-orange-300 border-orange-500/30 bg-orange-500/10' : 'text-yellow-300 border-yellow-500/30 bg-yellow-500/10') : 'text-emerald-300 border-emerald-500/30 bg-emerald-500/10'}`}>
-                      {isHindi ? 'राजु' : 'Rajju'}: {report.rajjuDosha.doshaPresent ? lbl.present : lbl.absent}
+                      {lbl.rajjuLabel}: {report.rajjuDosha.doshaPresent ? lbl.present : lbl.absent}
                     </span>
                   )}
                   <span className="text-xs px-2.5 py-1 rounded-full border text-purple-300 border-purple-500/30 bg-purple-500/10">
-                    {isHindi ? 'दृष्टि' : 'Aspects'}: {report.crossChartAspects.length}
+                    {lbl.aspectsLabel}: {report.crossChartAspects.length}
                   </span>
                 </div>
               </div>
@@ -420,13 +586,13 @@ export default function DetailedReportPage() {
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
                   {/* Kuta breakdown */}
                   <h3 className="text-xl font-bold text-gold-light mb-4" style={headingFont}>
-                    {isHindi ? 'अष्ट कूट विवरण' : 'Ashta Kuta Breakdown'}
+                    {lbl.ashtaKutaBreakdown}
                   </h3>
                   {report.ashtaKuta.kutas.map((kuta, i) => (
                     <div key={kuta.name.en} className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl p-4">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-gold-light font-bold" style={isHindi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                          {isHindi ? (kuta.name.hi || kuta.name.en) : kuta.name.en}
+                        <span className="text-gold-light font-bold" style={isDevanagariLocale(locale) ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                          {(kuta.name as Record<string, string>)[String(locale)] || kuta.name.en}
                         </span>
                         <span className="font-mono text-sm font-bold text-gold-primary">{kuta.scored}/{kuta.maxPoints}</span>
                       </div>
@@ -462,7 +628,7 @@ export default function DetailedReportPage() {
                         <div className="flex items-center gap-2 mb-2">
                           <span className="text-text-secondary text-sm">{lbl.status}:</span>
                           <span className={`text-sm px-2.5 py-0.5 rounded-full border ${item.has ? 'text-red-300 border-red-500/30 bg-red-500/10' : 'text-emerald-300 border-emerald-500/30 bg-emerald-500/10'}`}>
-                            {item.has ? (isHindi ? 'मांगलिक' : 'Manglik') : (isHindi ? 'मांगलिक नहीं' : 'Not Manglik')}
+                            {item.has ? lbl.manglikLabel : lbl.notManglik}
                           </span>
                         </div>
                         {item.has && (
@@ -509,7 +675,7 @@ export default function DetailedReportPage() {
                       <div key={item.label} className="rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-4">
                         <div className="text-gold-light font-bold mb-2" style={headingFont}>{item.label}</div>
                         <div className="text-text-primary text-sm">
-                          {isHindi ? 'नाड़ी' : 'Nadi'}: <span className="text-gold-primary font-bold capitalize">{item.nadi}</span>
+                          {lbl.nadiLabel}: <span className="text-gold-primary font-bold capitalize">{item.nadi}</span>
                         </div>
                       </div>
                     ))}
@@ -518,7 +684,7 @@ export default function DetailedReportPage() {
                   <div className={`rounded-xl border p-4 ${report.nadiAnalysis.doshaPresent ? 'border-red-500/20 bg-red-500/5' : 'border-emerald-500/20 bg-emerald-500/5'}`}>
                     <div className="text-sm font-bold mb-1" style={headingFont}>
                       <span className={report.nadiAnalysis.doshaPresent ? 'text-red-400' : 'text-emerald-400'}>
-                        {isHindi ? 'नाड़ी दोष' : 'Nadi Dosha'}: {report.nadiAnalysis.doshaPresent ? lbl.present : lbl.absent}
+                        {lbl.nadiDoshaLabel}: {report.nadiAnalysis.doshaPresent ? lbl.present : lbl.absent}
                       </span>
                     </div>
                   </div>
@@ -584,7 +750,7 @@ export default function DetailedReportPage() {
                   <div className="rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-4">
                     <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">{lbl.rajjuDescription}</div>
                     <p className="text-text-primary text-sm leading-relaxed">
-                      {isHindi ? (report.rajjuDosha.description.hi ?? report.rajjuDosha.description.en) : report.rajjuDosha.description.en}
+                      {(report.rajjuDosha.description as Record<string, string>)[String(locale)] ?? report.rajjuDosha.description.en}
                     </p>
                   </div>
                 </motion.div>
@@ -648,7 +814,7 @@ export default function DetailedReportPage() {
                         </div>
                         <div>
                           <span className="text-gold-dark text-xs uppercase block">{lbl.lordPlacement}</span>
-                          <span className="text-text-primary text-sm font-bold">{isHindi ? `भाव ${info.lordHouse}` : `House ${info.lordHouse}`}</span>
+                          <span className="text-text-primary text-sm font-bold">{`${lbl.housePrefix} ${info.lordHouse}`}</span>
                         </div>
                         <div>
                           <span className="text-gold-dark text-xs uppercase block">{lbl.planetsIn7th}</span>
@@ -687,7 +853,7 @@ export default function DetailedReportPage() {
                           </div>
                           <div>
                             <span className="text-gold-dark text-xs uppercase block">{lbl.venusHouse}</span>
-                            <span className="text-text-primary text-sm font-bold">{isHindi ? `भाव ${item.house}` : `House ${item.house}`}</span>
+                            <span className="text-text-primary text-sm font-bold">{`${lbl.housePrefix} ${item.house}`}</span>
                           </div>
                         </div>
                       </div>
@@ -759,14 +925,14 @@ export default function DetailedReportPage() {
             <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
               <PrintButton
                 contentRef={reportRef}
-                title={isHindi ? 'विस्तृत अनुकूलता रिपोर्ट' : 'Detailed Compatibility Report'}
-                label={isHindi ? 'प्रिंट / PDF' : 'Print / PDF'}
+                title={lbl.printTitle}
+                label={lbl.printLabel}
               />
               <button
                 onClick={() => { setReport(null); setError(null); }}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gold-primary/20 bg-gold-primary/10 text-gold-light text-sm font-medium hover:bg-gold-primary/20 transition-colors"
               >
-                {isHindi ? 'नया विश्लेषण' : 'New Analysis'}
+                {lbl.newAnalysis}
               </button>
             </div>
           </motion.div>

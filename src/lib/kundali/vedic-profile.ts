@@ -510,9 +510,9 @@ function buildStandout(patterns: ChartPattern[], kundali: KundaliData, locale: s
 }
 
 function buildPlanetaryObservations(patterns: ChartPattern[], kundali: KundaliData, locale: string): string[] {
-  // Take patterns 1-3 (after the standout), generate a paragraph each
   const obs: string[] = [];
   const usedPatterns = patterns.slice(1, 4);
+  const planets = kundali.planets;
 
   for (let i = 0; i < usedPatterns.length; i++) {
     const pat = usedPatterns[i];
@@ -520,80 +520,151 @@ function buildPlanetaryObservations(patterns: ChartPattern[], kundali: KundaliDa
     let text = '';
 
     switch (pat.type) {
-      case 'dignifiedLagnaLord':
-      case 'debilitatedKey':
-      case 'retrogradeKendra': {
-        const p = kundali.planets.find(pp => pp.planet.id === pat.planets[0]);
+      case 'dignifiedLagnaLord': {
+        const p = planets.find(pp => pp.planet.id === pat.planets[0]);
         if (!p) continue;
+        const pName = tl(p.planet.name, locale);
+        const pSign = tl(p.signName, locale);
+        const houseTheme = bt(HOUSE_THEME_LABELS[p.house], locale);
+        const dignity = p.isExalted ? bt(DIGNITY_LABELS.exalted, locale) : bt(DIGNITY_LABELS.ownSign, locale);
         const impl = PLANET_HOUSE_DEPTH[p.planet.id]?.[p.house]?.implications || '';
-        const dignity = p.isExalted ? bt(DIGNITY_LABELS.exalted, locale)
-          : p.isDebilitated ? bt(DIGNITY_LABELS.debilitated, locale)
-          : p.isOwnSign ? bt(DIGNITY_LABELS.ownSign, locale)
-          : p.isRetrograde ? bt(DIGNITY_LABELS.retrograde, locale)
-          : '';
+        const prog = PLANET_HOUSE_DEPTH[p.planet.id]?.[p.house]?.prognosis || '';
         text = locale === 'hi'
-          ? `${connector} ${tl(p.planet.name, 'hi')} ${tl(p.signName, 'hi')} में (${dignity}) ${p.house}वें भाव में। ${impl}`
-          : `${connector} ${tl(p.planet.name, 'en')} in ${tl(p.signName, 'en')} (${dignity}) in the ${p.house}th house. ${impl}`;
+          ? `${connector} आपके लग्नेश ${pName} ${pSign} में ${dignity} हैं — ${p.house}वें भाव (${houseTheme}) में विराजमान। जब कुण्डली का कर्णधार इतनी दृढ़ स्थिति में हो, तो पूरे जीवन को एक स्थिर आधार मिलता है। ${impl} ${prog}`
+          : `${connector} your lagna lord ${pName} holds ${dignity} status in ${pSign}, placed in the ${p.house}th house of ${houseTheme}. When the captain of the chart commands from this strong a position, it lends stability to your entire life direction. ${impl} ${prog}`;
+        break;
+      }
+      case 'debilitatedKey': {
+        const p = planets.find(pp => pp.planet.id === pat.planets[0]);
+        if (!p) continue;
+        const pName = tl(p.planet.name, locale);
+        const pSign = tl(p.signName, locale);
+        const houseTheme = bt(HOUSE_THEME_LABELS[p.house], locale);
+        const impl = PLANET_HOUSE_DEPTH[p.planet.id]?.[p.house]?.implications || '';
+        const signLordId = LAGNA_LORDS[p.sign];
+        const signLord = planets.find(pl => pl.planet.id === signLordId);
+        const neechaBhanga = signLord && (signLord.isExalted || signLord.isOwnSign || [1, 4, 7, 10].includes(signLord.house));
+        text = locale === 'hi'
+          ? `${connector} ${pName} ${pSign} में नीच — ${p.house}वें भाव (${houseTheme}) में। यह ${houseTheme} के क्षेत्र में स्वाभाविक सहजता के बजाय सचेत प्रयास की माँग करता है। ${impl}${neechaBhanga ? ` हालाँकि, नीच भङ्ग के संकेत मौजूद हैं — यह कमजोरी समय के साथ असाधारण दृढ़ता में बदल सकती है।` : ''}`
+          : `${connector} ${pName} sits debilitated in ${pSign}, placed in the ${p.house}th house of ${houseTheme}. Rather than natural ease, this area of life demands conscious cultivation and patience. ${impl}${neechaBhanga ? ` Notably, signs of Neecha Bhanga are present — this weakness has the potential to transform into uncommon resilience over time.` : ''}`;
+        break;
+      }
+      case 'retrogradeKendra': {
+        const p = planets.find(pp => pp.planet.id === pat.planets[0]);
+        if (!p) continue;
+        const pName = tl(p.planet.name, locale);
+        const pSign = tl(p.signName, locale);
+        const houseTheme = bt(HOUSE_THEME_LABELS[p.house], locale);
+        const impl = PLANET_HOUSE_DEPTH[p.planet.id]?.[p.house]?.implications || '';
+        text = locale === 'hi'
+          ? `${connector} ${pName} ${pSign} में वक्री, ${p.house}वें भाव (${houseTheme}) में — एक केन्द्र स्थान। वक्री ग्रह अपनी ऊर्जा को अन्दर की ओर मोड़ता है: ${houseTheme} में सफलता आती है, परन्तु पहले गहन आत्ममन्थन से गुजरना पड़ता है। परिणाम देर से आते हैं मगर टिकाऊ होते हैं। ${impl}`
+          : `${connector} ${pName} is retrograde in ${pSign}, stationed in the ${p.house}th house of ${houseTheme} — a kendra. Retrograde planets internalize their energy: success in ${houseTheme} comes, but only after deep self-examination. Results arrive late but prove enduring. ${impl}`;
         break;
       }
       case 'lunarYoga': {
         const yogaName = pat.yogaName || '';
         const quality = pat.templateData?.quality || '';
+        const moonP = planets.find(p => p.planet.id === 1);
+        const otherPId = pat.planets.find(id => id !== 1) || 0;
+        const otherP = planets.find(p => p.planet.id === otherPId);
+        const moonHouseTheme = moonP ? bt(HOUSE_THEME_LABELS[moonP.house], locale) : '';
+        const otherName = otherP ? tl(otherP.planet.name, locale) : '';
+        const otherSign = otherP ? tl(otherP.signName, locale) : '';
+        const otherHouse = otherP?.house || 0;
+        const impl = otherP ? (PLANET_HOUSE_DEPTH[otherP.planet.id]?.[otherHouse]?.implications || '') : '';
         text = locale === 'hi'
-          ? `${connector} ${yogaName} — ${quality}। यह योग ज्योतिष में सर्वाधिक मान्यता प्राप्त संयोगों में से एक है।`
-          : `${connector} ${yogaName} forms in your chart, bringing ${quality}. This is one of the more widely recognized combinations in Jyotish.`;
+          ? `${connector} ${yogaName} सक्रिय — चन्द्र और ${otherName} (${otherSign} में, ${otherHouse}वें भाव) के बीच बनता है, जो ${quality} उत्पन्न करता है। यह संयोग विशेषतः ${moonHouseTheme} के क्षेत्र को प्रभावित करता है। ${impl}`
+          : `${connector} ${yogaName} is active — formed between Moon and ${otherName} (in ${otherSign}, ${otherHouse}th house), generating ${quality}. This combination particularly influences your ${moonHouseTheme}. ${impl}`;
         break;
       }
       case 'sadeSati': {
+        const moonP = planets.find(p => p.planet.id === 1);
+        const saturnP = planets.find(p => p.planet.id === 6);
+        const moonSignName = moonP ? tl(moonP.signName, locale) : '';
+        const moonHouseTheme = moonP ? bt(HOUSE_THEME_LABELS[moonP.house], locale) : '';
+        const phase = kundali.sadeSati?.currentPhase || '';
+        const saturnHouse = saturnP?.house || 0;
+        const saturnHouseTheme = bt(HOUSE_THEME_LABELS[saturnHouse], locale);
         text = locale === 'hi'
-          ? `${connector} साढ़े साती सक्रिय — शनि आपके चन्द्र पर गोचर कर रहा है। यह अवधि भावनात्मक परिपक्वता और कठिन परिश्रम की माँग करती है, परन्तु स्थायी उपलब्धियाँ भी प्रदान करती है।`
-          : `${connector} Sade Sati is active — Saturn is transiting over your Moon. This period demands emotional maturity and hard work, but delivers lasting achievements.`;
+          ? `${connector} साढ़े साती${phase ? ` (${phase} चरण)` : ''} सक्रिय — शनि आपके ${moonSignName} चन्द्र पर गोचर कर रहा है, ${moonHouseTheme} के भावनात्मक क्षेत्र को परीक्षा में डाल रहा है। शनि स्वयं ${saturnHouse}वें भाव (${saturnHouseTheme}) में है, जो इस दबाव को ${saturnHouseTheme} की दिशा में मोड़ता है। यह अवधि कठोर शिक्षक की तरह काम करती है — पाठ कठिन हैं, परन्तु जो सीखा जाता है वह स्थायी होता है।`
+          : `${connector} Sade Sati${phase ? ` (${phase} phase)` : ''} is active — Saturn transits over your ${moonSignName} Moon, pressure-testing the emotional domain of ${moonHouseTheme}. Saturn itself occupies the ${saturnHouse}th house (${saturnHouseTheme}), channeling this pressure toward ${saturnHouseTheme}. This period operates like a demanding teacher — the lessons are hard, but what you learn becomes permanent.`;
         break;
       }
       case 'mahapurusha': {
         const yogaName = pat.yogaName || 'Mahapurusha Yoga';
         const yogaInfo = kundali.yogasComplete?.find(y => y.name.en === yogaName && y.present);
         const desc = yogaInfo ? tl(yogaInfo.description, locale) : '';
+        const rule = yogaInfo ? tl(yogaInfo.formationRule, locale) : '';
+        // Try to find which planet forms this yoga
+        const mahaPlanetMap: Record<string, number> = { 'Ruchaka': 2, 'Bhadra': 3, 'Hamsa': 4, 'Malavya': 5, 'Shasha': 6 };
+        const mahaPlanetId = Object.entries(mahaPlanetMap).find(([name]) => yogaName.includes(name))?.[1];
+        const mahaP = mahaPlanetId !== undefined ? planets.find(p => p.planet.id === mahaPlanetId) : null;
+        const extraContext = mahaP
+          ? (locale === 'hi'
+            ? ` ${tl(mahaP.planet.name, 'hi')} ${tl(mahaP.signName, 'hi')} में ${mahaP.house}वें भाव में — ${bt(HOUSE_THEME_LABELS[mahaP.house], locale)} के क्षेत्र में इस योग का प्रभाव सर्वाधिक प्रबल है।`
+            : ` ${tl(mahaP.planet.name, 'en')} in ${tl(mahaP.signName, 'en')} in the ${mahaP.house}th house — this yoga's influence is strongest in matters of ${bt(HOUSE_THEME_LABELS[mahaP.house], locale)}.`)
+          : '';
         text = locale === 'hi'
-          ? `${connector} ${yogaName} — पंच महापुरुष योगों में से एक — सक्रिय। ${desc}`
-          : `${connector} ${yogaName} — one of the Pancha Mahapurusha Yogas — is active. ${desc}`;
+          ? `${connector} ${yogaName} — पंच महापुरुष योगों में से एक — आपकी कुण्डली में सक्रिय है।${extraContext} ${desc}${rule ? ` निर्माण: ${rule}` : ''}`
+          : `${connector} ${yogaName} — one of the five Pancha Mahapurusha Yogas — is active in your chart.${extraContext} ${desc}${rule ? ` Formation: ${rule}` : ''}`;
         break;
       }
       case 'rajaYoga': {
         const count = pat.templateData?.count || '2';
+        // List the actual raja yoga names from yogasComplete
+        const rajaYogas = kundali.yogasComplete?.filter(y => y.category === 'raja' && y.present) || [];
+        const yogaNames = rajaYogas.slice(0, 4).map(y => tl(y.name, locale)).join(', ');
+        const firstYoga = rajaYogas[0];
+        const firstDesc = firstYoga ? tl(firstYoga.description, locale) : '';
         text = locale === 'hi'
-          ? `${connector} ${count} राजयोग सक्रिय — अधिकार और मान्यता के संकेत। सम्बन्धित ग्रहों की दशा में ये विशेष रूप से फलित होते हैं।`
-          : `${connector} ${count} raja yogas are active — indicators of authority and recognition. These activate especially during the dashas of the involved planets.`;
+          ? `${connector} ${count} राजयोग आपकी कुण्डली में सक्रिय हैं${yogaNames ? ` — ${yogaNames}` : ''}। ये अधिकार, सार्वजनिक मान्यता और नेतृत्व के अवसरों के सूचक हैं। ${firstDesc} ये योग तब सर्वाधिक फलित होते हैं जब सम्बन्धित ग्रहों की महादशा या अन्तर्दशा सक्रिय होती है — समय के साथ इनका प्रभाव परिपक्व होता जाता है।`
+          : `${connector} ${count} raja yogas are active in your chart${yogaNames ? ` — ${yogaNames}` : ''}. These are indicators of authority, public recognition, and leadership opportunities. ${firstDesc} These yogas bear their strongest fruit when the dashas of the involved planets run — their influence matures with time.`;
         break;
       }
       case 'contrastingElements': {
         const lagnaR = RASHIS.find(r => r.id === kundali.ascendant.sign);
-        const moonP = kundali.planets.find(p => p.planet.id === 1);
+        const moonP = planets.find(p => p.planet.id === 1);
         const moonR = moonP ? RASHIS.find(r => r.id === moonP.sign) : null;
+        const lagnaEl = lagnaR ? bt(ELEMENT_NAMES[lagnaR.element.en], locale) : '';
+        const moonEl = moonR ? bt(ELEMENT_NAMES[moonR.element.en], locale) : '';
+        const lagnaQ = lagnaR ? tl(lagnaR.quality, locale) : '';
+        const moonQ = moonR ? tl(moonR.quality, locale) : '';
         text = locale === 'hi'
-          ? `${connector} ${tl(lagnaR?.name, 'hi')} लग्न और ${tl(moonR?.name, 'hi')} चन्द्र का विपरीत तत्व संयोग बहुआयामी व्यक्तित्व बनाता है।`
-          : `${connector} the contrasting elements of your ${tl(lagnaR?.name, 'en')} ascendant and ${tl(moonR?.name, 'en')} Moon create a multidimensional personality.`;
+          ? `${connector} ${tl(lagnaR?.name, 'hi')} लग्न (${lagnaEl}, ${lagnaQ}) और ${tl(moonR?.name, 'hi')} चन्द्र (${moonEl}, ${moonQ}) — विपरीत तत्वों का यह संयोग आपको दो अलग-अलग ऊर्जाओं तक पहुँच देता है। बाह्य व्यवहार में आप एक तरह से दिखते हैं, भीतर से बिल्कुल भिन्न अनुभव करते हैं। यह विरोधाभास कमजोरी नहीं — बहुआयामी होने का लाभ है।`
+          : `${connector} your ${tl(lagnaR?.name, 'en')} ascendant (${lagnaEl}, ${lagnaQ}) and ${tl(moonR?.name, 'en')} Moon (${moonEl}, ${moonQ}) draw from contrasting elements. Outwardly you present one way; inwardly you experience something quite different. This is not contradiction — it is the advantage of being multidimensional, able to draw on both registers as the situation demands.`;
         break;
       }
       case 'sameLagnaMoon': {
         const signId = pat.templateData?.signId;
-        const signName = signId ? tl(RASHIS.find(r => r.id === Number(signId))?.name, locale) : '';
+        const rashi = signId ? RASHIS.find(r => r.id === Number(signId)) : null;
+        const signName = rashi ? tl(rashi.name, locale) : '';
+        const element = rashi ? bt(ELEMENT_NAMES[rashi.element.en], locale) : '';
+        const moonP = planets.find(p => p.planet.id === 1);
+        const moonHouse = moonP?.house || 1;
         text = locale === 'hi'
-          ? `${connector} लग्न और चन्द्र दोनों ${signName} में — एकीकृत पहचान जो प्रामाणिकता प्रदान करती है।`
-          : `${connector} both ascendant and Moon in ${signName} — a unified identity that confers authenticity.`;
+          ? `${connector} लग्न और चन्द्र दोनों ${signName} में — ${element} ऊर्जा दोगुनी हो जाती है। चन्द्र ${moonHouse}वें भाव में होने से आपकी भावनात्मक प्रतिक्रियाएँ सीधे आपके व्यक्तित्व में झलकती हैं। लोग जो देखते हैं वही आप भीतर महसूस करते हैं — यह प्रामाणिकता आपकी शक्ति है, परन्तु भावनाओं को छिपाना कठिन बनाती है।`
+          : `${connector} both your ascendant and Moon fall in ${signName}, doubling the ${element} energy. With Moon in the ${moonHouse}th house, your emotional reactions show directly in your personality. What people see is what you genuinely feel — this authenticity is your strength, though it makes concealing your emotions difficult.`;
         break;
       }
       default: {
         if (pat.type === 'stellium') {
           const house = pat.houses?.[0] || 1;
           const theme = bt(HOUSE_THEME_LABELS[house], locale);
+          const pNames = pat.planets.map(id => {
+            const p = planets.find(pp => pp.planet.id === id);
+            return p ? tl(p.planet.name, locale) : '';
+          }).filter(Boolean).join(', ');
           text = locale === 'hi'
-            ? `${connector} ${pat.planets.length} ग्रह ${house}वें भाव में — ${theme} के विषय प्रबल।`
-            : `${connector} ${pat.planets.length} planets in the ${house}th house intensify themes of ${theme}.`;
+            ? `${connector} ${pNames} — ${pat.planets.length} ग्रह ${house}वें भाव (${theme}) में एकत्रित। इतना संकेन्द्रण जीवन के इस क्षेत्र को अपरिहार्य बनाता है — आप चाहें या न चाहें, ${theme} के विषय बार-बार सामने आते रहेंगे।`
+            : `${connector} ${pNames} — ${pat.planets.length} planets concentrated in the ${house}th house of ${theme}. This much energy in one house makes this life area inescapable — whether you seek it or not, themes of ${theme} will keep presenting themselves.`;
         } else if (pat.type === 'kaalSarpa') {
+          const rahuH = pat.houses?.[0] || 1;
+          const ketuH = pat.houses?.[1] || 7;
+          const rahuTheme = bt(HOUSE_THEME_LABELS[rahuH], locale);
+          const ketuTheme = bt(HOUSE_THEME_LABELS[ketuH], locale);
           text = locale === 'hi'
-            ? `${connector} काल सर्प योग — सभी ग्रह राहु-केतु अक्ष के एक ओर। कार्मिक अनुभव तीव्र।`
-            : `${connector} Kaal Sarpa Yoga — all planets hemmed on one side of the Rahu-Ketu axis. Karmic experiences run intense.`;
+            ? `${connector} काल सर्प योग — सभी ग्रह राहु (${rahuH}वाँ भाव: ${rahuTheme}) और केतु (${ketuH}वाँ भाव: ${ketuTheme}) के बीच सीमित। यह अक्ष जीवन की प्रमुख तनाव रेखा बन जाता है — ${rahuTheme} की ओर आकर्षण और ${ketuTheme} से मुक्ति का द्वन्द्व निरन्तर चलता रहता है।`
+            : `${connector} Kaal Sarpa Yoga — all planets hemmed between Rahu (${rahuH}th house: ${rahuTheme}) and Ketu (${ketuH}th house: ${ketuTheme}). This axis becomes the central tension line of your life — a constant pull toward ${rahuTheme} and a karmic release from ${ketuTheme}.`;
         }
         break;
       }

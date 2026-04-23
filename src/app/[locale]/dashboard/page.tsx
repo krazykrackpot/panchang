@@ -47,7 +47,7 @@ import FamilyCard from '@/components/dashboard/FamilyCard';
 interface SavedChart {
   id: string;
   label: string;
-  birth_data: { name?: string; date: string; time: string; place: string; lat: number; lng: number };
+  birth_data: { name?: string; date: string; time: string; place: string; lat: number; lng: number; relationship?: string };
   is_primary: boolean;
   created_at: string;
 }
@@ -1577,11 +1577,21 @@ export default function DashboardPage() {
                         <h4 className="text-gold-light font-bold text-sm truncate" style={isDevanagariLocale(locale) ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                           {name}
                         </h4>
-                        {c.is_primary && (
-                          <span className="inline-block mt-1 text-[10px] px-1.5 py-0.5 rounded-full bg-gold-primary/20 text-gold-primary font-bold uppercase tracking-wide">
-                            {tl({ en: 'Primary', hi: 'मुख्य', sa: 'मुख्यम्', mr: 'मुख्य', mai: 'मुख्य', ta: 'முதன்மை', te: 'ప్రాథమిక', bn: 'প্রধান', kn: 'ಮುಖ್ಯ', gu: 'મુખ્ય' }, locale)}
-                          </span>
-                        )}
+                        <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+                          {c.is_primary && (
+                            <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-gold-primary/20 text-gold-primary font-bold uppercase tracking-wide">
+                              {tl({ en: 'Primary', hi: 'मुख्य', sa: 'मुख्यम्', mr: 'मुख्य', mai: 'मुख्य', ta: 'முதன்மை', te: 'ప్రాథమిక', bn: 'প্রধান', kn: 'ಮುಖ್ಯ', gu: 'મુખ્ય' }, locale)}
+                            </span>
+                          )}
+                          {c.birth_data.relationship && c.birth_data.relationship !== 'self' && (
+                            <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-400 font-medium capitalize">
+                              {tl({
+                                en: c.birth_data.relationship,
+                                hi: c.birth_data.relationship === 'spouse' ? 'जीवनसाथी' : c.birth_data.relationship === 'child' ? 'संतान' : c.birth_data.relationship === 'parent' ? 'माता-पिता' : c.birth_data.relationship === 'sibling' ? 'भाई-बहन' : c.birth_data.relationship === 'friend' ? 'मित्र' : c.birth_data.relationship,
+                              }, locale)}
+                            </span>
+                          )}
+                        </div>
                       </div>
                       <button
                         onClick={() => handleDeleteSavedChart(c.id)}

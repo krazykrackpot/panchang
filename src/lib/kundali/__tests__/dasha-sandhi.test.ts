@@ -155,8 +155,11 @@ describe('findDashaSandhiPeriods', () => {
         makeDasha(incoming, '2010-01-01', '2020-01-01'),
       ];
       const [period] = findDashaSandhiPeriods(dashas);
-      expect(typeof period.description).toBe('string');
-      expect(period.description.length).toBeGreaterThan(0);
+      expect(typeof period.description).toBe('object');
+      expect(period.description.en.length).toBeGreaterThan(0);
+      expect(period.description.hi.length).toBeGreaterThan(0);
+      expect(period.description.ta.length).toBeGreaterThan(0);
+      expect(period.description.bn.length).toBeGreaterThan(0);
     }
   });
 

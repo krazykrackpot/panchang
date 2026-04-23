@@ -665,7 +665,7 @@ export default function PanchangClient() {
                   {panchang.kshayaTithi && (
                     <div className="mt-2 px-2.5 py-1.5 rounded-lg border border-amber-500/20 bg-amber-500/5 text-xs">
                       <span className="text-amber-400 font-semibold">
-                        {locale === 'hi' ? 'क्षय तिथि' : locale === 'ta' ? 'க்ஷய திதி' : 'Kshaya Tithi'}
+                        {locale === 'hi' ? 'क्षय तिथि' : locale === 'ta' ? 'க்ஷய திதி' : locale === 'bn' ? 'ক্ষয় তিথি' : 'Kshaya Tithi'}
                       </span>
                       <span className="text-text-secondary ml-1">
                         — {tl(panchang.kshayaTithi.tithi.name)} ({panchang.kshayaTithi.start}–{panchang.kshayaTithi.end})
@@ -676,10 +676,10 @@ export default function PanchangClient() {
                   {panchang.vriddhiTithi && (
                     <div className="mt-2 px-2.5 py-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/5 text-xs">
                       <span className="text-emerald-400 font-semibold">
-                        {locale === 'hi' ? 'वृद्धि तिथि' : locale === 'ta' ? 'விருத்தி திதி' : 'Vriddhi Tithi'}
+                        {locale === 'hi' ? 'वृद्धि तिथि' : locale === 'ta' ? 'விருத்தி திதி' : locale === 'bn' ? 'বৃদ্ধি তিথি' : 'Vriddhi Tithi'}
                       </span>
                       <span className="text-text-secondary ml-1">
-                        — {tl(panchang.tithi.name)} {locale === 'hi' ? 'दो सूर्योदय तक' : locale === 'ta' ? 'இரண்டு சூரிய உதயம் வரை' : 'spans two sunrises'}
+                        — {tl(panchang.tithi.name)} {locale === 'hi' ? 'दो सूर्योदय तक' : locale === 'ta' ? 'இரண்டு சூரிய உதயம் வரை' : locale === 'bn' ? 'দুই সূর্যোদয় জুড়ে' : 'spans two sunrises'}
                       </span>
                     </div>
                   )}

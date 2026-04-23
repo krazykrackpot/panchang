@@ -11,7 +11,7 @@ export interface DashaSandhiPeriod {
   transitionDate: string; // ISO date — exact dasha changeover
   durationMonths: number; // approximate duration in months
   intensity: 'mild' | 'moderate' | 'intense';
-  description: string;   // English description of what to expect
+  description: LocaleText;   // Multilingual description of what to expect
 }
 
 /**
@@ -54,15 +54,29 @@ function getIntensity(outgoing: string, incoming: string): 'mild' | 'moderate' |
   return 'moderate';
 }
 
-function getDescription(intensity: 'mild' | 'moderate' | 'intense'): string {
-  switch (intensity) {
-    case 'mild':
-      return 'Smooth transition — both planets are friendly. Minor adjustments expected.';
-    case 'moderate':
-      return 'Moderate transition — neutral planets. Some confusion and mixed signals likely.';
-    case 'intense':
-      return 'Intense transition — planetary enmity creates turbulence. Major life shifts possible. Avoid big decisions during this period.';
-  }
+const SANDHI_DESCRIPTIONS: Record<string, LocaleText> = {
+  mild: {
+    en: 'Smooth transition — both planets are friendly. Minor adjustments expected.',
+    hi: 'सहज संक्रमण — दोनों ग्रह मित्र हैं। मामूली समायोजन अपेक्षित।',
+    ta: 'சுமூகமான மாற்றம் — இரு கிரகங்களும் நட்பானவை. சிறிய மாற்றங்கள் எதிர்பார்க்கப்படுகின்றன.',
+    bn: 'সহজ সংক্রমণ — উভয় গ্রহ বন্ধুত্বপূর্ণ। সামান্য সমন্বয় প্রত্যাশিত।',
+  },
+  moderate: {
+    en: 'Moderate transition — neutral planets. Some confusion and mixed signals likely.',
+    hi: 'मध्यम संक्रमण — तटस्थ ग्रह। कुछ भ्रम और मिश्रित संकेत संभव।',
+    ta: 'மிதமான மாற்றம் — நடுநிலை கிரகங்கள். சில குழப்பங்கள் மற்றும் கலவையான சமிக்ஞைகள் சாத்தியம்.',
+    bn: 'মধ্যম সংক্রমণ — নিরপেক্ষ গ্রহ। কিছু বিভ্রান্তি এবং মিশ্র সংকেত সম্ভব।',
+  },
+  intense: {
+    en: 'Intense transition — planetary enmity creates turbulence. Major life shifts possible. Avoid big decisions during this period.',
+    hi: 'तीव्र संक्रमण — ग्रह शत्रुता अशांति उत्पन्न करती है। बड़े जीवन परिवर्तन संभव। इस काल में बड़े निर्णय टालें।',
+    ta: 'தீவிரமான மாற்றம் — கிரக பகை கொந்தளிப்பை உருவாக்குகிறது. பெரிய வாழ்க்கை மாற்றங்கள் சாத்தியம். இந்த காலத்தில் பெரிய முடிவுகளை தவிர்க்கவும்.',
+    bn: 'তীব্র সংক্রমণ — গ্রহ শত্রুতা অশান্তি সৃষ্টি করে। বড় জীবন পরিবর্তন সম্ভব। এই সময়ে বড় সিদ্ধান্ত এড়িয়ে চলুন।',
+  },
+};
+
+function getDescription(intensity: 'mild' | 'moderate' | 'intense'): LocaleText {
+  return SANDHI_DESCRIPTIONS[intensity];
 }
 
 /**

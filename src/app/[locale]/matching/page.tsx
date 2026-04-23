@@ -414,14 +414,16 @@ export default function MatchingPage() {
                 className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border-2 border-emerald-500/30 rounded-xl p-5 mb-8 text-center"
               >
                 <div className="text-emerald-400 font-bold text-lg mb-1" style={headingFont}>
-                  {locale === 'hi' ? 'नाड़ी दोष निरस्त' : locale === 'ta' ? 'நாடி தோஷம் நீக்கப்பட்டது' : 'Nadi Dosha Cancelled'}
+                  {locale === 'hi' ? 'नाड़ी दोष निरस्त' : locale === 'ta' ? 'நாடி தோஷம் நீக்கப்பட்டது' : locale === 'bn' ? 'নাড়ী দোষ নিরস্ত' : 'Nadi Dosha Cancelled'}
                 </div>
                 <div className="text-text-secondary text-sm">
                   {locale === 'hi'
                     ? 'समान नक्षत्र और पाद — आनुवंशिक अनुकूलता। नाड़ी दोष पूर्णतया निरस्त। यह शुभ संकेत है।'
                     : locale === 'ta'
                       ? 'ஒரே நட்சத்திரம் மற்றும் பாதம் — மரபணு இணக்கம். நாடி தோஷம் முற்றிலும் நீக்கப்பட்டது.'
-                      : 'Same nakshatra and pada indicates genetic compatibility. Nadi Dosha is fully cancelled — this is a positive indicator.'}
+                      : locale === 'bn'
+                        ? 'একই নক্ষত্র এবং পাদ জিনগত সামঞ্জস্য নির্দেশ করে। নাড়ী দোষ সম্পূর্ণরূপে নিরস্ত — এটি একটি শুভ সংকেত।'
+                        : 'Same nakshatra and pada indicates genetic compatibility. Nadi Dosha is fully cancelled — this is a positive indicator.'}
                 </div>
               </motion.div>
             )}

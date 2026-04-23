@@ -275,8 +275,56 @@ const LABELS = {
 // ---------------------------------------------------------------------------
 // Planet name lookup for Gochara engine results (IDs 0-6)
 // ---------------------------------------------------------------------------
-const GOCHARA_PLANET_NAMES: Record<number, string> = {
-  0: 'Sun', 1: 'Moon', 2: 'Mars', 3: 'Mercury', 4: 'Jupiter', 5: 'Venus', 6: 'Saturn',
+const GOCHARA_PLANET_NAMES: Record<number, Record<string, string>> = {
+  0: { en: 'Sun', hi: 'सूर्य', ta: 'சூரியன்', bn: 'সূর্য' },
+  1: { en: 'Moon', hi: 'चन्द्र', ta: 'சந்திரன்', bn: 'চন্দ্র' },
+  2: { en: 'Mars', hi: 'मंगल', ta: 'செவ்வாய்', bn: 'মঙ্গল' },
+  3: { en: 'Mercury', hi: 'बुध', ta: 'புதன்', bn: 'বুধ' },
+  4: { en: 'Jupiter', hi: 'गुरु', ta: 'குரு', bn: 'গুরু' },
+  5: { en: 'Venus', hi: 'शुक्र', ta: 'சுக்கிரன்', bn: 'শুক্র' },
+  6: { en: 'Saturn', hi: 'शनि', ta: 'சனி', bn: 'শনি' },
+};
+
+const GOCHARA_I18N: Record<string, Record<string, string>> = {
+  classicalTitle: {
+    en: 'Classical Gochara (Vedha Analysis)',
+    hi: 'शास्त्रीय गोचर (वेध विश्लेषण)',
+    ta: 'பாரம்பரிய கோசாரம் (வேத பகுப்பாய்வு)',
+    bn: 'শাস্ত্রীয় গোচর (বেধ বিশ্লেষণ)',
+  },
+  classicalDesc: {
+    en: 'Transit quality per BPHS — houses from Moon with classical Vedha obstruction rules.',
+    hi: 'BPHS अनुसार गोचर गुणवत्ता — चन्द्र से भावों पर शास्त्रीय वेध नियम।',
+    ta: 'BPHS-ன் படி பெயர்ச்சி தரம் — சந்திரனிலிருந்து பாவங்கள் மற்றும் வேத தடை விதிகள்.',
+    bn: 'BPHS অনুসারে গোচর মান — চন্দ্র থেকে ভাব এবং শাস্ত্রীয় বেধ নিয়ম।',
+  },
+  favorable: {
+    en: 'Favorable', hi: 'शुभ', ta: 'சாதகமான', bn: 'শুভ',
+  },
+  challenging: {
+    en: 'Challenging', hi: 'चुनौतीपूर्ण', ta: 'சவாலான', bn: 'চ্যালেঞ্জিং',
+  },
+  vedhaBy: {
+    en: 'Vedha by', hi: 'वेध:', ta: 'வேதம்:', bn: 'বেধ:',
+  },
+  fromMoon: {
+    en: 'from Moon', hi: 'चन्द्र से', ta: 'சந்திரனிலிருந்து', bn: 'চন্দ্র থেকে',
+  },
+  doubleTransitTitle: {
+    en: 'Double Transit (Jupiter + Saturn)',
+    hi: 'द्वि-गोचर (गुरु + शनि)',
+    ta: 'இரட்டை பெயர்ச்சி (குரு + சனி)',
+    bn: 'দ্বি-গোচর (গুরু + শনি)',
+  },
+  doubleTransitDesc: {
+    en: 'Houses activated by BOTH Jupiter and Saturn — events in these life areas may manifest.',
+    hi: 'गुरु और शनि दोनों द्वारा सक्रिय भाव — इन जीवन क्षेत्रों में घटनाएं प्रकट हो सकती हैं।',
+    ta: 'குரு மற்றும் சனி இரண்டாலும் செயல்படுத்தப்பட்ட பாவங்கள் — இந்த வாழ்க்கை பகுதிகளில் நிகழ்வுகள் நடக்கலாம்.',
+    bn: 'গুরু ও শনি উভয়ের দ্বারা সক্রিয় ভাব — এই জীবন ক্ষেত্রগুলিতে ঘটনা প্রকাশিত হতে পারে।',
+  },
+  house: {
+    en: 'House', hi: 'भाव', ta: 'பாவம்', bn: 'ভাব',
+  },
 };
 
 // ---------------------------------------------------------------------------
@@ -593,10 +641,10 @@ export default function TransitsPage() {
           >
             <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
               <h3 className="text-gold-light font-bold text-lg mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-                Classical Gochara (Vedha Analysis)
+                {GOCHARA_I18N.classicalTitle[locale] || GOCHARA_I18N.classicalTitle.en}
               </h3>
               <p className="text-text-secondary text-xs mb-4">
-                Transit quality per BPHS — houses from Moon with classical Vedha obstruction rules.
+                {GOCHARA_I18N.classicalDesc[locale] || GOCHARA_I18N.classicalDesc.en}
               </p>
               <div className="space-y-2">
                 {classicalGochara.map((g) => {
@@ -615,10 +663,10 @@ export default function TransitsPage() {
                     >
                       <GrahaIconById id={g.planet} size={22} />
                       <span className={`font-medium text-sm w-20 ${qualColor}`}>
-                        {GOCHARA_PLANET_NAMES[g.planet] ?? `P${g.planet}`}
+                        {GOCHARA_PLANET_NAMES[g.planet]?.[locale] || GOCHARA_PLANET_NAMES[g.planet]?.en || `P${g.planet}`}
                       </span>
                       <span className="text-text-secondary text-xs w-24">
-                        H{g.houseFromMoon} from Moon
+                        H{g.houseFromMoon} {GOCHARA_I18N.fromMoon[locale] || GOCHARA_I18N.fromMoon.en}
                       </span>
                       <span
                         className={`text-xs px-2 py-0.5 rounded ${
@@ -627,11 +675,11 @@ export default function TransitsPage() {
                             : 'bg-red-500/10 text-red-400'
                         }`}
                       >
-                        {g.isGoodHouse ? 'Favorable' : 'Challenging'}
+                        {g.isGoodHouse ? (GOCHARA_I18N.favorable[locale] || GOCHARA_I18N.favorable.en) : (GOCHARA_I18N.challenging[locale] || GOCHARA_I18N.challenging.en)}
                       </span>
                       {g.vedhaActive && (
                         <span className="text-xs px-2 py-0.5 rounded bg-red-500/15 text-red-400 border border-red-500/20">
-                          Vedha by {GOCHARA_PLANET_NAMES[g.vedhaPlanet!] ?? `P${g.vedhaPlanet}`}
+                          {GOCHARA_I18N.vedhaBy[locale] || GOCHARA_I18N.vedhaBy.en} {GOCHARA_PLANET_NAMES[g.vedhaPlanet!]?.[locale] || GOCHARA_PLANET_NAMES[g.vedhaPlanet!]?.en || `P${g.vedhaPlanet}`}
                         </span>
                       )}
                       {g.bavScore !== undefined && (

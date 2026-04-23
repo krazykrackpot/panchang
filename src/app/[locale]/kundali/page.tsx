@@ -322,6 +322,7 @@ export default function KundaliPage() {
   const tTip = useTranslations('tippanni');
   const locale = useLocale() as Locale;
   const isTamil = (locale as string) === 'ta';
+  const isBengali = (locale as string) === 'bn';
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const L3 = (en: string, hi: string, ta?: string) => isTamil ? (ta || en) : locale === 'en' ? en : hi;
@@ -765,6 +766,8 @@ export default function KundaliPage() {
             lat: kundali.birthData.lat,
             lng: kundali.birthData.lng,
             timezone: kundali.birthData.timezone,
+            relationship: kundali.birthData.relationship,
+            ayanamsha: kundali.birthData.ayanamsha,
           } : undefined}
         />
       )}
@@ -2176,17 +2179,18 @@ export default function KundaliPage() {
                 return (
                   <div className="mt-6 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 p-5">
                     <h4 className="text-amber-300 font-bold text-sm mb-3">
-                      {locale === 'en' || isTamil ? 'Dasha Sandhi (Transition Periods)' : 'दशा सन्धि (संक्रमण काल)'}
+                      {locale === 'bn' ? 'দশা সন্ধি (সংক্রমণ কাল)' : locale === 'en' || isTamil ? 'Dasha Sandhi (Transition Periods)' : 'दशा सन्धि (संक्रमण काल)'}
                     </h4>
                     <p className="text-text-secondary text-xs mb-3">
-                      {locale === 'en' || isTamil
+                      {locale === 'bn' ? 'মহাদশার মধ্যবর্তী সংক্রমণ কাল — পরিবর্তন ও সমন্বয়ের সময়।'
+                        : locale === 'en' || isTamil
                         ? 'Junction periods between Maha Dashas — times of transition and adjustment.'
                         : 'महादशाओं के बीच संक्रमण काल — परिवर्तन और समायोजन का समय।'}
                     </p>
                     <div className="space-y-3">
                       {upcoming.map((s, i) => {
                         const intensityColor = s.intensity === 'intense' ? 'border-red-500/20 bg-red-500/5' : s.intensity === 'moderate' ? 'border-amber-500/20 bg-amber-500/5' : 'border-emerald-500/20 bg-emerald-500/5';
-                        const intensityLabel = s.intensity === 'intense' ? (locale === 'hi' ? 'तीव्र' : 'Intense') : s.intensity === 'moderate' ? (locale === 'hi' ? 'मध्यम' : 'Moderate') : (locale === 'hi' ? 'सौम्य' : 'Mild');
+                        const intensityLabel = s.intensity === 'intense' ? (locale === 'hi' ? 'तीव्र' : locale === 'bn' ? 'তীব্র' : 'Intense') : s.intensity === 'moderate' ? (locale === 'hi' ? 'मध्यम' : locale === 'bn' ? 'মধ্যম' : 'Moderate') : (locale === 'hi' ? 'सौम्य' : locale === 'bn' ? 'সৌম্য' : 'Mild');
                         return (
                           <div key={i} className={`rounded-lg border p-3 ${intensityColor}`}>
                             <div className="flex items-center justify-between mb-1">
@@ -2200,7 +2204,7 @@ export default function KundaliPage() {
                             <div className="text-text-secondary text-xs">
                               {s.sandhiStart} to {s.sandhiEnd} ({s.durationMonths} months)
                             </div>
-                            <div className="text-text-secondary/60 text-[10px] mt-1">{s.description}</div>
+                            <div className="text-text-secondary/60 text-[10px] mt-1">{tl(s.description, locale)}</div>
                           </div>
                         );
                       })}
@@ -2854,6 +2858,7 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
   headingFont: React.CSSProperties; t: (key: string) => string;
 }) {
   const isTamil = String(locale) === 'ta';
+  const isBengali = String(locale) === 'bn';
   const [viewMode, setViewMode] = useState<'sav' | 'bpi' | 'reduced'>('sav');
 
   // Compute insights from SAV
@@ -3110,7 +3115,7 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
         </button>
         <button onClick={() => setViewMode('reduced')}
           className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${viewMode === 'reduced' ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary hover:text-white border border-white/5'}`}>
-          {locale === 'en' || isTamil ? 'Reduced (Shodhana)' : 'शोधित'}
+          {isBengali ? 'শোধিত' : locale === 'en' || isTamil ? 'Reduced (Shodhana)' : 'शोधित'}
         </button>
         <button
           onClick={() => {
@@ -3181,7 +3186,7 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
           }}
           className="px-3 py-1.5 rounded-lg text-xs font-medium text-text-secondary hover:text-white border border-white/5 hover:border-white/15 transition-all"
         >
-          {locale === 'en' || isTamil ? 'Print BAV' : 'प्रिंट'}
+          {isBengali ? 'প্রিন্ট' : locale === 'en' || isTamil ? 'Print BAV' : 'प्रिंट'}
         </button>
       </div>
 
@@ -3234,7 +3239,7 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
           {/* Reduced SAV (from engine's Trikona + Ekadhipatya Shodhana) */}
           <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
             <h4 className="text-gold-light font-semibold text-sm mb-1" style={headingFont}>
-              {locale === 'en' || isTamil ? 'Trikona + Ekadhipatya Shodhana (Refined SAV)' : 'त्रिकोण + एकाधिपत्य शोधन (परिष्कृत SAV)'}
+              {isBengali ? 'ত্রিকোণ + একাধিপত্য শোধন (পরিমার্জিত SAV)' : locale === 'en' || isTamil ? 'Trikona + Ekadhipatya Shodhana (Refined SAV)' : 'त्रिकोण + एकाधिपत्य शोधन (परिष्कृत SAV)'}
             </h4>
             <p className="text-text-secondary/70 text-xs mb-4">
               {locale === 'en' || isTamil
@@ -3318,7 +3323,9 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
       {viewMode === 'reduced' && ashtakavarga.reducedBpiTable && (
         <div className="space-y-4">
           <p className="text-text-secondary text-xs">
-            {locale === 'en' || isTamil
+            {isBengali
+              ? 'ত্রিকোণ ও একাধিপত্য শোধনের পর (BPHS অ.৬৬-৬৭)। শোধিত মান প্রতি রাশিতে গ্রহের আপেক্ষিক বল দেখায়।'
+              : locale === 'en' || isTamil
               ? 'After Trikona & Ekadhipatya Shodhana (BPHS Ch.66-67). Reduced values show relative planetary strength per sign.'
               : 'त्रिकोण और एकाधिपत्य शोधन (BPHS अ.66-67) के बाद। शोधित मान प्रति राशि ग्रह का सापेक्ष बल दर्शाते हैं।'}
           </p>
@@ -3333,14 +3340,14 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
                 ))}
               </div>
               <div className="text-right text-xs text-text-secondary mt-1">
-                {locale === 'en' || isTamil ? 'Total' : 'कुल'}: {row.reduce((a, b) => a + b, 0)}
+                {isBengali ? 'মোট' : locale === 'en' || isTamil ? 'Total' : 'कुल'}: {row.reduce((a, b) => a + b, 0)}
               </div>
             </div>
           ))}
           {/* Reduced SAV comparison bar chart */}
           <div className="rounded-lg border border-gold-primary/15 p-4 mt-4">
             <div className="text-gold-light text-sm font-semibold mb-3">
-              {locale === 'en' || isTamil ? 'SAV Comparison: Raw vs Reduced' : 'SAV तुलना: मूल बनाम शोधित'}
+              {isBengali ? 'SAV তুলনা: মূল বনাম শোধিত' : locale === 'en' || isTamil ? 'SAV Comparison: Raw vs Reduced' : 'SAV तुलना: मूल बनाम शोधित'}
             </div>
             <div className="grid grid-cols-12 gap-1">
               {ashtakavarga.reducedSavTable.map((val, sIdx) => (
@@ -3355,8 +3362,8 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
               ))}
             </div>
             <div className="flex justify-center gap-4 mt-2 text-[9px] text-text-secondary">
-              <span className="flex items-center gap-1"><span className="w-3 h-2 border border-gold-primary/20 rounded-sm inline-block" /> {locale === 'en' || isTamil ? 'Raw SAV' : 'मूल SAV'}</span>
-              <span className="flex items-center gap-1"><span className="w-3 h-2 bg-gold-primary/30 rounded-sm inline-block" /> {locale === 'en' || isTamil ? 'Reduced SAV' : 'शोधित SAV'}</span>
+              <span className="flex items-center gap-1"><span className="w-3 h-2 border border-gold-primary/20 rounded-sm inline-block" /> {isBengali ? 'মূল SAV' : locale === 'en' || isTamil ? 'Raw SAV' : 'मूल SAV'}</span>
+              <span className="flex items-center gap-1"><span className="w-3 h-2 bg-gold-primary/30 rounded-sm inline-block" /> {isBengali ? 'শোধিত SAV' : locale === 'en' || isTamil ? 'Reduced SAV' : 'शोधित SAV'}</span>
             </div>
           </div>
         </div>
@@ -3366,10 +3373,12 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
       {ashtakavarga.pindaAshtakavarga && ashtakavarga.pindaAshtakavarga.some(v => v > 0) && (
         <div className="mt-6">
           <h4 className="text-gold-light text-sm font-bold mb-3">
-            {locale === 'en' || isTamil ? 'Pinda Ashtakavarga (BPHS Ch.69)' : 'पिण्ड अष्टकवर्ग (BPHS अ.69)'}
+            {isBengali ? 'পিণ্ড অষ্টকবর্গ (BPHS অ.৬৯)' : locale === 'en' || isTamil ? 'Pinda Ashtakavarga (BPHS Ch.69)' : 'पिण्ड अष्टकवर्ग (BPHS अ.69)'}
           </h4>
           <p className="text-text-secondary text-xs mb-3">
-            {locale === 'en' || isTamil
+            {isBengali
+              ? 'প্রতি গ্রহের ভারিত সামগ্রিক বল। উচ্চ পিণ্ড = দশা ও গোচর কালে ফল দেওয়ার অধিক ক্ষমতা।'
+              : locale === 'en' || isTamil
               ? 'Weighted composite strength per planet. Higher Pinda = stronger capacity to deliver results during dasha and transit periods.'
               : 'प्रति ग्रह भारित समग्र बल। उच्च पिण्ड = दशा और गोचर काल में फल देने की अधिक क्षमता।'}
           </p>
@@ -3377,12 +3386,13 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
             {ashtakavarga.pindaAshtakavarga.map((pinda, pIdx) => {
               const label = pinda > 200 ? 'High' : pinda > 100 ? 'Medium' : 'Low';
               const labelHi = pinda > 200 ? 'उच्च' : pinda > 100 ? 'मध्यम' : 'न्यून';
+              const labelBn = pinda > 200 ? 'উচ্চ' : pinda > 100 ? 'মধ্যম' : 'নিম্ন';
               const color = pinda > 200 ? 'text-emerald-400 border-emerald-500/20' : pinda > 100 ? 'text-gold-light border-gold-primary/20' : 'text-red-400 border-red-500/20';
               return (
                 <div key={pIdx} className={`rounded-xl border p-3 text-center ${color}`}>
                   <div className="text-text-secondary text-xs mb-1">{ashtakavarga.planetNames[pIdx]}</div>
                   <div className="text-2xl font-bold font-mono">{pinda}</div>
-                  <div className="text-xs mt-1 opacity-70">{locale === 'en' || isTamil ? label : labelHi}</div>
+                  <div className="text-xs mt-1 opacity-70">{isBengali ? labelBn : locale === 'en' || isTamil ? label : labelHi}</div>
                 </div>
               );
             })}

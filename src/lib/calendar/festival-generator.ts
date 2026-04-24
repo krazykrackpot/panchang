@@ -406,11 +406,12 @@ export function generateFestivalCalendarV2(
   // ── 1. Major Festivals from declarative definitions ───
   for (const def of MAJOR_FESTIVALS) {
     const tithiNum = defToTithiNumber(def);
-    // Festival defs use Purnimant month names (standard Purnimant system).
-    // Match against entry.masa.purnimanta — computed from Purnima boundaries.
+    // Festival defs use Amanta month names (the standard used by all reference sources).
+    // Match against entry.masa.amanta — during Krishna Paksha, Purnimant is one month
+    // ahead of Amanta, which would place festivals ~1 month early if compared incorrectly.
     const matches = table.entries.filter(e =>
       e.number === tithiNum &&
-      e.masa.purnimanta === def.masa &&
+      e.masa.amanta === def.masa &&
       !e.masa.isAdhika
     );
 
@@ -454,7 +455,7 @@ export function generateFestivalCalendarV2(
       const entry: FestivalEntry = {
         name: detail?.name || def.name || { en: def.slug, hi: def.slug, sa: def.slug },
         date: festivalDate,
-        tithi: `${match.masa.purnimanta} ${match.paksha} ${match.number <= 15 ? match.number : match.number - 15}${isKshayaFestival ? ' (Kshaya)' : ''}`,
+        tithi: `${match.masa.amanta} ${match.paksha} ${match.number <= 15 ? match.number : match.number - 15}${isKshayaFestival ? ' (Kshaya)' : ''}`,
         masa: match.masa,
         paksha: match.paksha,
         type: 'major',

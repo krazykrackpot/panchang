@@ -22,6 +22,7 @@ export async function GET(request: Request) {
       headers: { 'Cache-Control': 'public, s-maxage=3600' },
     });
   } catch (err) {
+    console.error('[calendar] computation error:', err);
     return NextResponse.json({ error: 'Failed to generate calendar: ' + String(err) }, { status: 500 });
   }
 }

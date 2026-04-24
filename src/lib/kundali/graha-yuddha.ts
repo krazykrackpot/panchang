@@ -2,7 +2,7 @@ import type { LocaleText } from '@/types/panchang';
 // graha-yuddha.ts — Planetary War (Graha Yuddha) Analysis
 // Source: BPHS Ch. 3, Brihat Jataka
 // Two planets within 1° of each other engage in war.
-// Winner: lower ecliptic latitude. Loser loses ~25% Shadbala.
+// Winner: higher ecliptic latitude (closer to ecliptic). Loser loses ~25% Shadbala.
 // Only applies to Mars, Mercury, Jupiter, Venus, Saturn (not Sun/Moon/nodes).
 
 export interface GrahaYuddhaResult {
@@ -82,7 +82,7 @@ export function detectGrahaYuddha(planets: PlanetInput[]): GrahaYuddhaResult[] {
         loserId:     loser.id,
         loserName,
         interpretation: {
-          en: `${winnerName.en} and ${loserName.en} are in Planetary War (${sep.toFixed(2)}° apart). ${winnerName.en} wins (lower ecliptic latitude) — its themes of ${winnerDomain?.en} are amplified. ${loserName.en} loses — its themes of ${loserDomain?.en} are compromised. The loser's Shadbala is reduced by ~25%, weakening its significations during its dasha periods.`,
+          en: `${winnerName.en} and ${loserName.en} are in Planetary War (${sep.toFixed(2)}° apart). ${winnerName.en} wins (higher ecliptic latitude) — its themes of ${winnerDomain?.en} are amplified. ${loserName.en} loses — its themes of ${loserDomain?.en} are compromised. The loser's Shadbala is reduced by ~25%, weakening its significations during its dasha periods.`,
           hi: `${winnerName.hi} और ${loserName.hi} ग्रह युद्ध में हैं (${sep.toFixed(2)}° अंतर)। ${winnerName.hi} विजयी — इसके ${winnerDomain?.hi} के विषय प्रबल होते हैं। ${loserName.hi} पराजित — इसके ${loserDomain?.hi} के विषय कमजोर पड़ते हैं।`,
           sa: `${winnerName.sa} ${loserName.sa}च ग्रहयुद्धे स्तः। ${winnerName.sa} विजयी, ${loserName.sa} पराजितः।`,
         },

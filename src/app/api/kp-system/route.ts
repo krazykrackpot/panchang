@@ -17,7 +17,8 @@ export async function POST(request: Request) {
     return NextResponse.json(result, {
       headers: { 'Cache-Control': 'private, max-age=3600' },
     });
-  } catch {
+  } catch (err) {
+    console.error('[kp-system] computation error:', err);
     return NextResponse.json(
       { error: 'Failed to generate KP chart' },
       { status: 500 },

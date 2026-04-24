@@ -255,7 +255,7 @@ export const ECLIPSE_TABLE: EclipseData[] = [
   },
   {
     kind: 'lunar', date: '2029-12-20', type: 'total',
-    p1: '21:43', u1: '22:44', max: '22:41', u2: '00:37', p4: '01:39',
+    p1: '21:43', u1: '22:44', max: '23:41', u2: '00:37', p4: '01:39',
     magnitude: 1.117, penMagnitude: 2.192,
     durationTotal: 53, durationPartial: 233, durationPen: 356,
     saros: 135, gamma: 0.3933,

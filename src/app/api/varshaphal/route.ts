@@ -7,9 +7,9 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { birthData, year } = body as { birthData: BirthData; year: number };
 
-    if (!birthData?.date || !birthData?.time || !birthData?.lat || !birthData?.lng) {
+    if (!birthData?.date || !birthData?.time || !birthData?.lat || !birthData?.lng || !birthData?.timezone) {
       return NextResponse.json(
-        { error: 'Missing required birth data fields: date, time, lat, lng' },
+        { error: 'Missing required birth data fields: date, time, lat, lng, timezone' },
         { status: 400 },
       );
     }
@@ -25,7 +25,8 @@ export async function POST(request: Request) {
     return NextResponse.json(result, {
       headers: { 'Cache-Control': 'private, max-age=3600' },
     });
-  } catch {
+  } catch (err) {
+    console.error('[varshaphal] computation error:', err);
     return NextResponse.json(
       { error: 'Failed to generate Varshaphal chart' },
       { status: 500 },

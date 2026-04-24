@@ -74,7 +74,7 @@ const INTERPRETATIONS: Record<Activity, LocaleText> = {
 
 /**
  * Birth nakshatra → ruling bird
- * Nakshatras 1-27 mapped to birds in groups of 5 (with one group of 2 at end)
+ * Nakshatras 1-27 mapped to birds in groups of 5 (with last group (Peacock) having 7 nakshatras)
  * Traditional assignment from Kalaprakasika:
  * Ashwini(1)-Mrigashira(5) = Vulture
  * Ardra(6)-Hasta(10) = Owl

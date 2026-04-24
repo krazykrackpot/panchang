@@ -24,7 +24,8 @@ export async function POST(request: Request) {
     return NextResponse.json(result, {
       headers: { 'Cache-Control': 'private, max-age=3600' },
     });
-  } catch {
+  } catch (err) {
+    console.error('[matching] computation error:', err);
     return NextResponse.json(
       { error: 'Failed to compute matching' },
       { status: 500 }

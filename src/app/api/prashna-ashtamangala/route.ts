@@ -39,7 +39,8 @@ export async function POST(request: Request) {
     return NextResponse.json(result, {
       headers: { 'Cache-Control': 'private, max-age=1800' },
     });
-  } catch {
+  } catch (err) {
+    console.error('[prashna-ashtamangala] computation error:', err);
     return NextResponse.json(
       { error: 'Failed to generate Ashtamangala Prashna' },
       { status: 500 },

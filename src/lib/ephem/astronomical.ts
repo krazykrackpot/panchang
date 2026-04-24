@@ -507,6 +507,10 @@ export function calculateRahuKaal(sunrise: number, sunset: number, weekday: numb
 /**
  * All planetary positions (tropical longitudes) for the 9 Grahas.
  * Swiss Ephemeris when available (sub-arcsecond), Meeus fallback (approximate).
+ *
+ * NOTE: Meeus simplified series produce retrograde station dates ~13-40 days late
+ * for Jupiter and Saturn. Swiss Ephemeris path is accurate. This is a known limitation
+ * of the truncated orbital elements — VSOP87 theory would fix but adds significant complexity.
  */
 export function getPlanetaryPositions(jd: number): {
   id: number; longitude: number; latitude: number; distance: number; speed: number; isRetrograde: boolean

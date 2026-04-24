@@ -27,6 +27,12 @@ export function dateToJD(year: number, month: number, day: number, hour: number 
 }
 
 // JD to calendar date
+// NOTE: Uses Date.UTC to avoid local timezone bias. JD is UT-based, so the
+// resulting Date should represent UT, not the server's local time.
+// HISTORICAL BUG (now fixed): used `new Date(year, month-1, day)` which
+// created a local-timezone Date. On a server in UTC+2, JD noon UT on Apr 24
+// would produce a Date showing Apr 23 22:00 UTC — correct getDate() by
+// accident of the local timezone but wrong .toISOString() output.
 export function jdToDate(jd: number): Date {
   const z = Math.floor(jd + 0.5);
   const f = jd + 0.5 - z;
@@ -44,7 +50,12 @@ export function jdToDate(jd: number): Date {
   const month = e < 14 ? e - 1 : e - 13;
   const year = month > 2 ? c - 4716 : c - 4715;
 
-  return new Date(year, month - 1, day);
+  const intDay = Math.floor(day);
+  const fracHours = (day - intDay) * 24;
+  const hours = Math.floor(fracHours);
+  const minutes = Math.floor((fracHours - hours) * 60);
+  const seconds = Math.floor(((fracHours - hours) * 60 - minutes) * 60);
+  return new Date(Date.UTC(year, month - 1, intDay, hours, minutes, seconds));
 }
 
 // Normalize angle to 0-360

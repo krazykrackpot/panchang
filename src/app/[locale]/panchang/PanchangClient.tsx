@@ -255,7 +255,11 @@ export default function PanchangClient() {
         setShowLocationSearch(false);
         setLocationInput('');
       }
-    } catch {}
+    } catch (err) {
+      console.error('[PanchangClient] location search failed:', err);
+      // Show inline feedback so the user knows the search didn't silently fail
+      alert('Location search failed. Please check your connection and try again.');
+    }
     setSearchingLocation(false);
   };
 

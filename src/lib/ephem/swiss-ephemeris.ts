@@ -150,10 +150,17 @@ export function swissPlanetLongitude(jd: number, planetId: number): {
   const distance = result.data[2];
   let speed = result.data[3];
 
-  // Ketu = Rahu + 180
+  // Ketu = Rahu + 180 (same orbital speed — both nodes move retrograde)
+  // NOTE: Do NOT negate the speed. Swiss Eph returns mean node speed as negative
+  // (~-0.053°/day, retrograde). Ketu shares the same retrograde motion as Rahu,
+  // so the speed sign should be preserved, not inverted.
+  // HISTORICAL BUG (now fixed): speed was negated, giving Ketu a positive speed
+  // (+0.053°/day) despite being retrograde. This caused the GrahaTab UI to show
+  // Ketu in normal text color instead of retrograde-red, and any downstream code
+  // using speed sign (rather than isRetrograde flag) to get the wrong answer.
   if (planetId === 8) {
     longitude = (longitude + 180) % 360;
-    speed = -speed;
+    // speed remains unchanged — Ketu moves at the same rate and direction as Rahu
   }
 
   const value = { longitude, latitude, distance, speed };

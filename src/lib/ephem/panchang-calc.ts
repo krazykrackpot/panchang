@@ -886,7 +886,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const moonSid = toSidereal(moonLongitude(jdSunrise), jdSunrise, userAyanamsha);
   const nakshatraNum = getNakshatraNumber(moonSid);
   const nakshatraPada = getNakshatraPada(moonSid);
-  const nakshatraData = { ...NAKSHATRAS[nakshatraNum - 1], pada: nakshatraPada };
+  const nakshatraData = { ...(NAKSHATRAS[nakshatraNum - 1] || NAKSHATRAS[0]), pada: nakshatraPada };
 
   // 3. Yoga
   const yogaNum = calculateYoga(jdSunrise);

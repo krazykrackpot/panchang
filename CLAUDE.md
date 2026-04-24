@@ -325,9 +325,9 @@ After every `git push`:
 - For multi-step work: save task list, don't rely on conversation history.
 - After any refactoring: search for ALL references to changed variables/functions.
 
-## Lessons from Audit (Apr 24, 2026) — 52 bugs found across 3 rounds
+## Lessons from Full Audit (Apr 24, 2026) — 63+ bugs found across 6 rounds
 
-These shipped to production and affected real users. Treat as absolute rules.
+These shipped to production and affected real users. 6 rounds of auditing were needed to reach zero new issues. Treat every rule below as non-negotiable.
 
 ### K. Every astronomical value must be verified against a reference source
 - Purnimant months were computed by subtracting a fixed 15 days from New Moon dates. This is astronomically wrong (Full Moon to New Moon varies 13.9–15.6 days). Months started on Ashtami instead of Purnima. **Would have been caught instantly by comparing one date with Prokerala.**
@@ -404,6 +404,53 @@ These shipped to production and affected real users. Treat as absolute rules.
 ### Y. Graha Yuddha winner: higher NORTHERN latitude, not lower absolute latitude
 - The code used `Math.abs(p1.latitude) <= Math.abs(p2.latitude)` which could declare a planet at -2° latitude (southern) the winner over one at +1° (northern). Per BPHS Ch.3 and Surya Siddhanta, the planet with greater positive (northward) latitude wins.
 - Rule: Winner = `p1.latitude >= p2.latitude ? p1 : p2` (simple comparison, not absolute value).
+
+### Z. Festival definitions use Amant month names — match against `.amanta`
+- Festival generator matched against `.purnimanta` but definitions used Amant convention (which Prokerala, Drik Panchang, and all references use). During Krishna Paksha, Purnimant is one month ahead → Diwali was 30 days early, Dussehra 11 days early.
+- Rule: All festival/vrat definitions use Amant month names. Always compare against `e.masa.amanta`, never `.purnimanta`.
+- **Proactive check:** When adding a new festival, verify the month name matches Amant convention by checking Prokerala for the expected date.
+
+### AA. API routes must log errors AND validate all inputs
+- Six API routes had `catch {}` blocks that returned error JSON but never logged with `console.error` — making production debugging impossible.
+- `/api/kundali` lacked date/time format validation. `/api/transits` didn't validate year. `/api/varshaphal` didn't check timezone.
+- Rule: Every API catch block must `console.error('[route-name] error:', err)` BEFORE returning the error response.
+- Rule: Every API route must validate input format (regex for dates/times) and range (month 1-12, hour 0-23) before calling computation functions.
+- **Proactive check:** When creating or modifying an API route: (1) inputs validated, (2) catch blocks log, (3) error responses don't leak internal details.
+
+### BB. Muhurta scoring must check ALL classical inauspicious periods
+- Panchaka (Moon in nakshatras 23-27) was not checked. Sthira karanas (Shakuni, Chatushpada, Naga) were not penalized. Abhijit Muhurta was shown as auspicious on Wednesdays.
+- Rule: Muhurta scoring must check: Vishti/Bhadra karana, Panchaka, sthira karanas, Rahu Kaal, Yamaganda, Gulika, inauspicious yogas, Abhijit availability (not Wednesdays).
+- **Proactive check:** When adding a new muhurta activity, verify all inauspicious period checks are inherited from the base scorer.
+
+### CC. useEffect auto-fill must be guarded against edit mode
+- BirthForm had a useEffect that fetched the user's profile and overwrote form data — stomping on initialData when editing a spouse/child chart.
+- Rule: Any useEffect that auto-fills form data from a profile/store/API MUST check if `initialData` was provided. If editing existing data, skip the auto-fill.
+
+### DD. Meeus planetary positions have known accuracy limits
+- Jupiter retrograde stations ~40 days late, Saturn ~13 days late with Meeus simplified series. Not a code bug, but users see wrong retrograde dates.
+- Rule: When Meeus fallback is active (no Swiss Ephemeris), add a warning to `KundaliData.warnings[]`. Surface this to users. Never claim accuracy without testing against Swiss Ephemeris.
+
+## Proactive Bug Prevention Checklist
+
+Run this checklist BEFORE shipping any change to computation code:
+
+```
+□ Grep for `new Date(` in changed files — all must use Date.UTC or have justification
+□ Grep for `[locale]` in changed TSX files — all must use tl() or || .en fallback
+□ Grep for the same constant/table in other files — no duplicates with different values
+□ If touching time ranges: does the comparison handle midnight wrapping?
+□ If touching weekday logic: does 0 mean Sunday? Add a comment.
+□ If touching dasha periods: does addYears use millisecond arithmetic?
+□ If touching festivals: does the month match use .amanta (not .purnimanta)?
+□ If touching muhurta: are ALL inauspicious periods checked (Vishti, Panchaka, sthira karana, Rahu Kaal, Abhijit Wednesday)?
+□ If touching API routes: do catch blocks log with console.error? Are inputs validated?
+□ If touching forms with auto-fill: is the auto-fill guarded against edit mode (initialData)?
+□ If touching yoga detection: what is the expected frequency? >20% for a "rare" yoga = bug.
+□ Spot-check 3 computed values against Prokerala for the same date + location
+□ Run npx vitest run — zero failures
+□ Run npx tsc --noEmit — zero errors
+□ Test in browser — click the feature, check console for errors
+```
 
 ## Patterns & Best Practices (Learned from Bug Fixes)
 

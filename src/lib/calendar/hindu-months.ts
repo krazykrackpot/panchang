@@ -246,6 +246,53 @@ export function computeHinduMonths(year: number): HinduMonth[] {
 }
 
 /**
+ * Look up the true lunar month (Amant) for a specific date.
+ * Uses computeHinduMonths() and caches per-year results.
+ * Returns { masaIdx, name, isAdhika, ritu, ayana } or the solar fallback.
+ */
+const _monthCache = new Map<number, HinduMonth[]>();
+
+export interface LunarMasaResult {
+  masaIdx: number;        // 0=Chaitra .. 11=Phalguna
+  name: { en: string; hi: string; sa: string };
+  isAdhika: boolean;
+  ritu: LocaleText;
+  ayana: LocaleText;
+}
+
+export function getLunarMasaForDate(year: number, month: number, day: number): LunarMasaResult | null {
+  // Build/cache the Hindu months for this year (and adjacent year for boundary months)
+  for (const y of [year - 1, year, year + 1]) {
+    if (!_monthCache.has(y)) {
+      _monthCache.set(y, computeHinduMonths(y));
+    }
+  }
+
+  const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+  // Search across current and adjacent years' months
+  for (const y of [year - 1, year, year + 1]) {
+    const months = _monthCache.get(y) || [];
+    for (const m of months) {
+      if (dateStr >= m.startDate && dateStr < m.endDate) {
+        // Derive masaIdx from the month name (strip "Adhika " prefix)
+        const baseName = m.en.replace(/^Adhika /, '');
+        const idx = MASA_DATA.findIndex(d => d.en === baseName);
+        return {
+          masaIdx: idx >= 0 ? idx : 0,
+          name: { en: m.en, hi: m.hi, sa: m.sa },
+          isAdhika: m.isAdhika,
+          ritu: m.ritu,
+          ayana: m.ayana,
+        };
+      }
+    }
+  }
+
+  return null; // Fallback: caller should use solar approximation
+}
+
+/**
  * Format a date string as "DD Mon" (e.g., "14 Mar" or "14 मार्च")
  */
 export function formatMonthDate(dateStr: string, locale: string): string {

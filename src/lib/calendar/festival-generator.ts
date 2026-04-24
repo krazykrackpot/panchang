@@ -478,9 +478,11 @@ export function generateFestivalCalendarV2(
   {
     // Scan January for the date when Sun's sidereal longitude crosses 270° (Capricorn)
     for (let d = 10; d <= 18; d++) {
-      const jd = dateToJD(year, 1, d, 12 - (timezone === 'Asia/Kolkata' ? 5.5 : 0));
+      // Use actual timezone offset for the location, not hardcoded IST
+      const tzOff = getUTCOffsetForDate(year, 1, d, timezone);
+      const jd = dateToJD(year, 1, d, 12 - tzOff);
       const sunSid = toSidereal(sunLongitude(jd), jd);
-      const jdNext = dateToJD(year, 1, d + 1, 12 - (timezone === 'Asia/Kolkata' ? 5.5 : 0));
+      const jdNext = dateToJD(year, 1, d + 1, 12 - tzOff);
       const sunSidNext = toSidereal(sunLongitude(jdNext), jdNext);
       // Check if Sun crosses 270° between day d and d+1
       if (sunSid < 270 && sunSidNext >= 270) {

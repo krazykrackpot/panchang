@@ -24,7 +24,7 @@ export const NAKSHATRA_SYLLABLES: Record<number, { en: string; hi: string; sa: s
   ],
   // 2. Bharani
   2: [
-    { en: 'Li', hi: 'ली', sa: 'ली', ta: 'லி', te: 'లి', bn: 'লি', kn: 'ಲಿ', mr: 'ली', gu: 'લિ', mai: 'ली' },
+    { en: 'Lee', hi: 'ली', sa: 'ली', ta: 'லீ', te: 'లీ', bn: 'লী', kn: 'ಲೀ', mr: 'ली', gu: 'લી', mai: 'ली' },
     { en: 'Lu', hi: 'लू', sa: 'लू', ta: 'லு', te: 'లు', bn: 'লু', kn: 'ಲು', mr: 'लू', gu: 'લુ', mai: 'लू' },
     { en: 'Le', hi: 'ले', sa: 'ले', ta: 'லே', te: 'లే', bn: 'লে', kn: 'ಲೇ', mr: 'ले', gu: 'લે', mai: 'ले' },
     { en: 'Lo', hi: 'लो', sa: 'लो', ta: 'லோ', te: 'లో', bn: 'লো', kn: 'ಲೋ', mr: 'लो', gu: 'લો', mai: 'लो' },

@@ -68,15 +68,15 @@ export const OWN_SIGNS: Record<number, number[]> = {
   6: [10, 11],   // Saturn: Capricorn, Aquarius
 };
 
-/** Moolatrikona signs and degree ranges (BPHS Ch.4) */
+/** Moolatrikona signs and degree ranges (BPHS Ch.4 — canonical values) */
 export const MOOLATRIKONA: Record<number, MoolatrikonaInfo> = {
-  0: { sign: 5, startDeg: 0, endDeg: 20 },    // Sun: Leo 0-20
-  1: { sign: 2, startDeg: 3, endDeg: 30 },     // Moon: Taurus 3-30
-  2: { sign: 1, startDeg: 0, endDeg: 12 },     // Mars: Aries 0-12
-  3: { sign: 6, startDeg: 16, endDeg: 20 },    // Mercury: Virgo 16-20
-  4: { sign: 9, startDeg: 0, endDeg: 10 },     // Jupiter: Sagittarius 0-10
-  5: { sign: 7, startDeg: 0, endDeg: 15 },     // Venus: Libra 0-15
-  6: { sign: 11, startDeg: 0, endDeg: 20 },    // Saturn: Aquarius 0-20
+  0: { sign: 5, startDeg: 0, endDeg: 20 },    // Sun: Leo 0-20°
+  1: { sign: 2, startDeg: 4, endDeg: 20 },     // Moon: Taurus 4-20° (NOT 3-30)
+  2: { sign: 1, startDeg: 0, endDeg: 12 },     // Mars: Aries 0-12°
+  3: { sign: 6, startDeg: 16, endDeg: 20 },    // Mercury: Virgo 16-20°
+  4: { sign: 9, startDeg: 0, endDeg: 10 },     // Jupiter: Sagittarius 0-10°
+  5: { sign: 7, startDeg: 0, endDeg: 5 },      // Venus: Libra 0-5° (NOT 0-15)
+  6: { sign: 11, startDeg: 0, endDeg: 20 },    // Saturn: Aquarius 0-20°
 };
 
 /** Natural friendship table (BPHS Ch.3, Brihat Jataka)

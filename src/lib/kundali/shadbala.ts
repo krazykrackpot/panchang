@@ -191,14 +191,15 @@ const MOOLATRIKONA_SIGN_SB: Record<number, number> = {
  *   Venus  : Libra 0°-10°
  *   Saturn : Aquarius 0°-20°
  */
+// Canonical BPHS Ch.4 Moolatrikona ranges — aligned with dignity.ts
 const MOOLATRIKONA_RANGES: Record<number, { sign: number; minDeg: number; maxDeg: number }> = {
-  0: { sign: 5,  minDeg: 0,   maxDeg: 20   }, // Sun: Leo 0°-20°
-  1: { sign: 2,  minDeg: 0,   maxDeg: 3.33 }, // Moon: Taurus 0°-3°20'
-  2: { sign: 1,  minDeg: 0,   maxDeg: 12   }, // Mars: Aries 0°-12°
-  3: { sign: 6,  minDeg: 15,  maxDeg: 20   }, // Mercury: Virgo 15°-20°
-  4: { sign: 9,  minDeg: 0,   maxDeg: 10   }, // Jupiter: Sagittarius 0°-10°
-  5: { sign: 7,  minDeg: 0,   maxDeg: 10   }, // Venus: Libra 0°-10°
-  6: { sign: 11, minDeg: 0,   maxDeg: 20   }, // Saturn: Aquarius 0°-20°
+  0: { sign: 5,  minDeg: 0,  maxDeg: 20 }, // Sun: Leo 0°-20°
+  1: { sign: 2,  minDeg: 4,  maxDeg: 20 }, // Moon: Taurus 4°-20° (NOT 0-3.33)
+  2: { sign: 1,  minDeg: 0,  maxDeg: 12 }, // Mars: Aries 0°-12°
+  3: { sign: 6,  minDeg: 16, maxDeg: 20 }, // Mercury: Virgo 16°-20° (NOT 15-20)
+  4: { sign: 9,  minDeg: 0,  maxDeg: 10 }, // Jupiter: Sagittarius 0°-10°
+  5: { sign: 7,  minDeg: 0,  maxDeg: 5  }, // Venus: Libra 0°-5° (NOT 0-10)
+  6: { sign: 11, minDeg: 0,  maxDeg: 20 }, // Saturn: Aquarius 0°-20°
 };
 
 const OWN_SIGNS_SB: Record<number, number[]> = {

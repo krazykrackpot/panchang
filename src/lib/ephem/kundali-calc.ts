@@ -757,7 +757,13 @@ export function generateKundali(birthData: BirthData): KundaliData {
   // Dasha
   const moonPlanet = planets.find((p) => p.planet.id === 1);
   const moonSidLong = moonPlanet?.longitude || 0;
-  const birthDate = new Date(year, month - 1, day, hour, minute);
+  // Use Date.UTC with UT-converted time so the Date is timezone-independent.
+  // hour/minute are local birth time; utHour (computed at line 513) is UT.
+  // new Date(y,m,d,h,m) would interpret in server TZ (UTC on Vercel), shifting
+  // all dasha dates by the birth timezone offset.
+  const utHourInt = Math.floor(utHour);
+  const utMinuteFromFrac = Math.round((utHour - utHourInt) * 60);
+  const birthDate = new Date(Date.UTC(year, month - 1, day, utHourInt, utMinuteFromFrac));
   const dashas = calculateVimshottariDasha(moonSidLong, birthDate);
   const yoginiDashas = calculateYoginiDasha(moonSidLong, birthDate);
   const ashtottariDashas = calculateAshtottariDasha(moonSidLong, birthDate);

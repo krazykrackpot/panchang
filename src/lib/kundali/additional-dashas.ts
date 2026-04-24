@@ -35,10 +35,9 @@ function lordSign(pid: number, planets: PlanetPosition[]): number {
 }
 
 function addYears(date: Date, years: number): Date {
-  const d = new Date(date);
-  d.setFullYear(d.getFullYear() + Math.floor(years));
-  d.setMonth(d.getMonth() + Math.floor((years % 1) * 12));
-  return d;
+  // Use millisecond arithmetic to avoid fractional-month truncation drift
+  // (matches Vimshottari dasha in kundali-calc.ts)
+  return new Date(date.getTime() + years * 365.25 * 24 * 60 * 60 * 1000);
 }
 
 function fmt(d: Date): string { return d.toISOString().split('T')[0]; }

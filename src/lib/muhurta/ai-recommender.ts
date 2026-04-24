@@ -184,11 +184,14 @@ export function scoreTimingFactors(
   const HORA_SEQUENCE = [0, 5, 3, 1, 6, 4, 2]; // Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars
   const HORA_DAY_START = [0, 3, 6, 2, 5, 1, 4];
 
-  const localHour = hourOfDay - tzOffset;
-  const isDay = localHour >= sunriseUT && localHour < sunsetUT;
+  // hourOfDay is already local time (from time-window-scanner midH).
+  // sunriseUT/sunsetUT are in UT hours. Convert to local for comparison.
+  const sunriseLocal = sunriseUT + tzOffset;
+  const sunsetLocal = sunsetUT + tzOffset;
+  const isDay = hourOfDay >= sunriseLocal && hourOfDay < sunsetLocal;
   const horaDuration = isDay ? dayDuration / 12 : nightDuration / 12;
-  const base = isDay ? sunriseUT : sunsetUT;
-  const horaIndex = Math.floor((localHour - base) / horaDuration);
+  const base = isDay ? sunriseLocal : sunsetLocal;
+  const horaIndex = Math.floor((hourOfDay - base) / horaDuration);
   const startIdx = HORA_DAY_START[weekday];
   const totalIdx = isDay ? horaIndex : horaIndex + 12;
   const seqIdx = (startIdx + Math.max(0, totalIdx)) % 7;
@@ -206,7 +209,7 @@ export function scoreTimingFactors(
   const CHOG_DAY_START = [0, 3, 6, 2, 5, 1, 4];
   const daySlotDuration = dayDuration / 8;
   if (isDay) {
-    const slotIdx = Math.floor((localHour - sunriseUT) / daySlotDuration);
+    const slotIdx = Math.floor((hourOfDay - sunriseLocal) / daySlotDuration);
     const typeIdx = (CHOG_DAY_START[weekday] + Math.max(0, slotIdx)) % 7;
     const chogType = CHOG_TYPES[typeIdx];
     if (['amrit', 'shubh', 'labh'].includes(chogType)) {
@@ -218,9 +221,9 @@ export function scoreTimingFactors(
   // Outside Rahu Kaal: +3
   const rahuOrder = [8, 2, 7, 5, 6, 4, 3];
   const rahuDuration = dayDuration / 8;
-  const rahuStart = sunriseUT + (rahuOrder[weekday] - 1) * rahuDuration;
-  const rahuEnd = rahuStart + rahuDuration;
-  if (localHour < rahuStart || localHour > rahuEnd) {
+  const rahuStartLocal = sunriseLocal + (rahuOrder[weekday] - 1) * rahuDuration;
+  const rahuEndLocal = rahuStartLocal + rahuDuration;
+  if (hourOfDay < rahuStartLocal || hourOfDay > rahuEndLocal) {
     score += 3;
   } else {
     score -= 5;

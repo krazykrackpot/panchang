@@ -90,7 +90,6 @@ function computeTransition(
   jdSunrise: number,
   tzOffset: number,
   dataArray: { name: LocaleText }[],
-  wrapMax: number, // e.g. 30 for tithi, 27 for nakshatra/yoga, 11 for karana
   timezone?: string, // IANA timezone for per-JD DST resolution
 ): TransitionInfo | undefined {
   const step = 1 / 48; // ~30 min in JD
@@ -111,30 +110,21 @@ function computeTransition(
 
   if (!foundEnd) return undefined;
 
-  // ── Find START time: scan backward looking for the PREVIOUS value ──
-  // PyJHora approach: find when the previous tithi/nakshatra ended (= when ours started).
-  // The previous value is currentValue - 1 (with wrapping).
-  const prevValue = currentValue === 1 ? wrapMax : currentValue - 1;
+  // ── Find START time: scan backward until value differs from current ──
+  // We don't assume what the previous value is — just find when the current
+  // element started by scanning backward until getter returns ANY different value,
+  // then binary-search the exact transition point.
+  // This is critical for karana where the predecessor in the cycle is non-trivial
+  // (e.g., Bava(1) can be preceded by Vishti(7), Kimstughna(11), or Naga(10)
+  // depending on position in the lunar month).
   const minJd = jdSunrise - 1.5;
   let startJdResult = jdSunrise; // fallback
 
-  // Scan backward for the previous value, then binary search the transition
   for (let jd = jdSunrise - step; jd >= minJd; jd -= step) {
     const val = getter(jd);
-    if (val === prevValue) {
-      // Found the previous value — transition is between here and the next step
+    if (val !== currentValue) {
+      // Found a different value — transition is between here and the next step
       let lo = jd, hi = jd + step;
-      for (let i = 0; i < 30; i++) {
-        const mid = (lo + hi) / 2;
-        if (getter(mid) !== currentValue) lo = mid; else hi = mid;
-      }
-      startJdResult = (lo + hi) / 2;
-      break;
-    }
-    if (val !== currentValue && val !== prevValue) {
-      // Hit a value that's neither current nor previous — very short intermediate tithi.
-      // Binary search between here and sunrise for where current value starts.
-      let lo = jd, hi = jdSunrise;
       for (let i = 0; i < 30; i++) {
         const mid = (lo + hi) / 2;
         if (getter(mid) !== currentValue) lo = mid; else hi = mid;
@@ -998,7 +988,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     tithiResult.number,
     (jd) => calculateTithi(jd).number,
     findTithiTransition,
-    jdSunrise, tzOffset, TITHIS, 30, timezone,
+    jdSunrise, tzOffset, TITHIS, timezone,
   );
 
   // ── Kshaya / Vriddhi tithi detection ──
@@ -1051,21 +1041,21 @@ export function computePanchang(input: PanchangInput): PanchangData {
     nakshatraNum,
     (jd) => getNakshatraNumber(toSidereal(moonLongitude(jd), jd)),
     findNakshatraTransition,
-    jdSunrise, tzOffset, NAKSHATRAS, 27, timezone,
+    jdSunrise, tzOffset, NAKSHATRAS, timezone,
   );
 
   const yogaTransition = computeTransition(
     yogaNum,
     (jd) => calculateYoga(jd),
     findYogaTransition,
-    jdSunrise, tzOffset, YOGAS, 27, timezone,
+    jdSunrise, tzOffset, YOGAS, timezone,
   );
 
   const karanaTransition = computeTransition(
     karanaNum,
     (jd) => calculateKarana(jd),
     findKaranaTransition,
-    jdSunrise, tzOffset, KARANAS, 11, timezone,
+    jdSunrise, tzOffset, KARANAS, timezone,
   );
 
   // ── Choghadiya ──

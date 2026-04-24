@@ -106,7 +106,7 @@ export interface PanchangData {
   yamaganda: { start: string; end: string };
   gulikaKaal: { start: string; end: string };
   muhurtas: Muhurta[];
-  abhijitMuhurta: { start: string; end: string };
+  abhijitMuhurta: { start: string; end: string; available?: boolean };
   planets: Graha[];
   masa: LocaleText;
   samvatsara: LocaleText;

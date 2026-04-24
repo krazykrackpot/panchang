@@ -11,6 +11,7 @@ import type { PanchangData, Locale } from '@/types/panchang';
 import { TithiIcon, NakshatraIcon, YogaIcon, KaranaIcon, VaraIcon } from '@/components/icons/PanchangIcons';
 import { useLocationStore } from '@/stores/location-store';
 import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
+import { tl as _tl } from '@/lib/utils/trilingual';
 
 interface Props {
   serverPanchang?: PanchangData;
@@ -209,11 +210,11 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
   if (!panchang) return <LocationBar />;
 
   const elements = [
-    { label: t('tithi'), value: panchang.tithi.name[locale], sub: panchang.tithi.paksha === 'shukla' ? t('shukla') : t('krishna'), timing: timingStr(panchang.tithiTransition), Icon: TithiIcon },
-    { label: t('nakshatra'), value: panchang.nakshatra.name[locale], sub: panchang.nakshatra.deity[locale], timing: timingStr(panchang.nakshatraTransition), Icon: NakshatraIcon },
-    { label: t('yoga'), value: panchang.yoga.name[locale], sub: panchang.yoga.meaning[locale], timing: timingStr(panchang.yogaTransition), Icon: YogaIcon },
-    { label: t('karana'), value: panchang.karana.name[locale], sub: '', timing: timingStr(panchang.karanaTransition), Icon: KaranaIcon },
-    { label: t('vara'), value: panchang.vara.name[locale], sub: panchang.vara.ruler[locale], timing: null, Icon: VaraIcon },
+    { label: t('tithi'), value: _tl(panchang.tithi.name, locale), sub: panchang.tithi.paksha === 'shukla' ? t('shukla') : t('krishna'), timing: timingStr(panchang.tithiTransition), Icon: TithiIcon },
+    { label: t('nakshatra'), value: _tl(panchang.nakshatra.name, locale), sub: _tl(panchang.nakshatra.deity, locale), timing: timingStr(panchang.nakshatraTransition), Icon: NakshatraIcon },
+    { label: t('yoga'), value: _tl(panchang.yoga.name, locale), sub: _tl(panchang.yoga.meaning, locale), timing: timingStr(panchang.yogaTransition), Icon: YogaIcon },
+    { label: t('karana'), value: _tl(panchang.karana.name, locale), sub: '', timing: timingStr(panchang.karanaTransition), Icon: KaranaIcon },
+    { label: t('vara'), value: _tl(panchang.vara.name, locale), sub: _tl(panchang.vara.ruler, locale), timing: null, Icon: VaraIcon },
   ];
 
   return (

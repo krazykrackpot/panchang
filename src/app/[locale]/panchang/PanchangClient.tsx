@@ -689,7 +689,7 @@ export default function PanchangClient() {
                     {panchang.tithi.paksha === 'shukla'
                       ? msg('shukla', locale)
                       : msg('krishna', locale)
-                    }{' — '}{msg('deity', locale)}{' '}{panchang.tithi.deity[locale]}
+                    }{' — '}{msg('deity', locale)}{' '}{tl(panchang.tithi.deity)}
                   </div>
                 </motion.div>
 
@@ -737,7 +737,7 @@ export default function PanchangClient() {
                   )}
                   {/* Nakshatra contextual tip */}
                   <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
-                    {msg('nature', locale)}{' '}{panchang.nakshatra.nature[locale]}{' — '}{msg('ruler', locale)}{' '}{panchang.nakshatra.rulerName[locale]}
+                    {msg('nature', locale)}{' '}{tl(panchang.nakshatra.nature)}{' — '}{msg('ruler', locale)}{' '}{tl(panchang.nakshatra.rulerName)}
                   </div>
                 </motion.div>
 
@@ -759,7 +759,7 @@ export default function PanchangClient() {
                       <div className="text-xs text-text-secondary/55">24h</div>
                       {!yogaPassed && (
                         <div className="text-xs text-text-secondary mt-1">
-                          {t('then')} <span className="text-gold-light font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{panchang.yogaTransition.nextName[locale]}</span>
+                          {t('then')} <span className="text-gold-light font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(panchang.yogaTransition.nextName)}</span>
                         </div>
                       )}
                     </div>
@@ -795,7 +795,7 @@ export default function PanchangClient() {
                       <div className="text-xs text-text-secondary/55">24h</div>
                       {!karanaPassed && (
                         <div className="text-xs text-text-secondary mt-1">
-                          {t('then')} <span className="text-gold-light font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{panchang.karanaTransition.nextName[locale]}</span>
+                          {t('then')} <span className="text-gold-light font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(panchang.karanaTransition.nextName)}</span>
                         </div>
                       )}
                     </div>
@@ -1005,17 +1005,30 @@ export default function PanchangClient() {
                 </motion.div>
               )}
 
-              {/* Abhijit Muhurta */}
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}
-                className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border-2 border-gold-primary/40 bg-gradient-to-br from-gold-primary/10 to-transparent">
-                <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-2">
-                  {msg('abhijitMuhurta', locale)}
-                </div>
-                <div className="font-mono text-xl font-bold text-amber-300">{panchang.abhijitMuhurta.start} — {panchang.abhijitMuhurta.end}</div>
-                <div className="text-text-secondary text-xs mt-2 leading-relaxed">
-                  {msg('mostAuspiciousVictory', locale)}
-                </div>
-              </motion.div>
+              {/* Abhijit Muhurta — not auspicious on Wednesdays (available=false) */}
+              {panchang.abhijitMuhurta.available !== false ? (
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}
+                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border-2 border-gold-primary/40 bg-gradient-to-br from-gold-primary/10 to-transparent">
+                  <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-2">
+                    {msg('abhijitMuhurta', locale)}
+                  </div>
+                  <div className="font-mono text-xl font-bold text-amber-300">{panchang.abhijitMuhurta.start} — {panchang.abhijitMuhurta.end}</div>
+                  <div className="text-text-secondary text-xs mt-2 leading-relaxed">
+                    {msg('mostAuspiciousVictory', locale)}
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}
+                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border border-amber-500/30 bg-gradient-to-br from-amber-500/5 to-transparent">
+                  <div className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-2">
+                    {msg('abhijitMuhurta', locale)}
+                  </div>
+                  <div className="font-mono text-xl font-bold text-amber-400/60">{panchang.abhijitMuhurta.start} — {panchang.abhijitMuhurta.end}</div>
+                  <div className="text-amber-400/70 text-xs mt-2 leading-relaxed">
+                    {tl({ en: 'Not auspicious today (Wednesday)', hi: 'आज शुभ नहीं (बुधवार)', ta: 'இன்று சுபமில்லை (புதன்கிழமை)', bn: 'আজ শুভ নয় (বুধবার)' })}
+                  </div>
+                </motion.div>
+              )}
 
               {/* Vijaya Muhurta */}
               {panchang.vijayaMuhurta && (
@@ -1708,11 +1721,11 @@ export default function PanchangClient() {
                   {([
                     { label: msg('vikramSamvat', locale), value: panchang.vikramSamvat?.toString() || '—', iconKey: null },
                     { label: msg('shakaSamvat', locale), value: panchang.shakaSamvat?.toString() || '—', iconKey: null },
-                    { label: t('samvatsara'), value: panchang.samvatsara[locale], iconKey: 'samvatsara' as const },
-                    { label: `${msg('masa', locale)} (${masaSystem === 'purnimant' ? msg('purnimant', locale) : msg('amant', locale)})`, value: masaSystem === 'purnimant' ? (panchang.purnimantMasa || panchang.masa)[locale] : (panchang.amantMasa || panchang.masa)[locale], iconKey: 'masa' as const },
+                    { label: t('samvatsara'), value: tl(panchang.samvatsara), iconKey: 'samvatsara' as const },
+                    { label: `${msg('masa', locale)} (${masaSystem === 'purnimant' ? msg('purnimant', locale) : msg('amant', locale)})`, value: tl(masaSystem === 'purnimant' ? (panchang.purnimantMasa || panchang.masa) : (panchang.amantMasa || panchang.masa)), iconKey: 'masa' as const },
                     { label: msg('paksha', locale), value: panchang.tithi.paksha === 'shukla' ? msg('shuklaPaksha', locale) : msg('krishnaPaksha', locale), iconKey: null },
-                    { label: t('ritu'), value: panchang.ritu[locale], iconKey: 'ritu' as const },
-                    { label: t('ayana'), value: panchang.ayana[locale], iconKey: 'ayana' as const },
+                    { label: t('ritu'), value: tl(panchang.ritu), iconKey: 'ritu' as const },
+                    { label: t('ayana'), value: tl(panchang.ayana), iconKey: 'ayana' as const },
                     { label: msg('ayanamsha', locale), value: panchang.ayanamsha ? `${panchang.ayanamsha.toFixed(4)}°` : '—', iconKey: null },
                     { label: msg('dayDuration', locale), value: panchang.dinamana || '—', iconKey: null },
                     { label: msg('nightDuration', locale), value: panchang.ratrimana || '—', iconKey: null },
@@ -1765,12 +1778,8 @@ export default function PanchangClient() {
                   </div>
                   <p className="text-text-secondary text-xs mb-3">
                     {masaSystem === 'amant'
-                      ? (locale === 'en'
-                        ? `Amant system: Each month begins on Amavasya (New Moon) and ends on the next Amavasya. Used in South & West India.`
-                        : `अमान्त पद्धति: प्रत्येक मास अमावस्या पर आरम्भ, अगली अमावस्या पर समाप्त। दक्षिण व पश्चिम भारत में प्रचलित।`)
-                      : (locale === 'en'
-                        ? `Purnimant system: Each month begins on Purnima (Full Moon) and ends on the next Purnima. Used in North & East India.`
-                        : `पूर्णिमान्त पद्धति: प्रत्येक मास पूर्णिमा पर आरम्भ, अगली पूर्णिमा पर समाप्त। उत्तर व पूर्व भारत में प्रचलित।`)}
+                      ? tl({ en: 'Amant system: Each month begins on Amavasya (New Moon) and ends on the next Amavasya. Used in South & West India.', hi: 'अमान्त पद्धति: प्रत्येक मास अमावस्या पर आरम्भ, अगली अमावस्या पर समाप्त। दक्षिण व पश्चिम भारत में प्रचलित।', ta: 'அமாந்த முறை: ஒவ்வொரு மாதமும் அமாவாசையில் தொடங்கி அடுத்த அமாவாசையில் முடிகிறது. தெற்கு & மேற்கு இந்தியாவில் பயன்படுத்தப்படுகிறது.', bn: 'অমান্ত পদ্ধতি: প্রতিটি মাস অমাবস্যায় শুরু হয় এবং পরবর্তী অমাবস্যায় শেষ হয়। দক্ষিণ ও পশ্চিম ভারতে প্রচলিত।' })
+                      : tl({ en: 'Purnimant system: Each month begins on Purnima (Full Moon) and ends on the next Purnima. Used in North & East India.', hi: 'पूर्णिमान्त पद्धति: प्रत्येक मास पूर्णिमा पर आरम्भ, अगली पूर्णिमा पर समाप्त। उत्तर व पूर्व भारत में प्रचलित।', ta: 'பூர்ணிமாந்த முறை: ஒவ்வொரு மாதமும் பூர்ணிமையில் தொடங்கி அடுத்த பூர்ணிமையில் முடிகிறது. வடக்கு & கிழக்கு இந்தியாவில் பயன்படுத்தப்படுகிறது.', bn: 'পূর্ণিমান্ত পদ্ধতি: প্রতিটি মাস পূর্ণিমায় শুরু হয় এবং পরবর্তী পূর্ণিমায় শেষ হয়। উত্তর ও পূর্ব ভারতে প্রচলিত।' })}
                   </p>
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
@@ -1809,12 +1818,8 @@ export default function PanchangClient() {
                   </div>
                   <p className="text-text-tertiary text-xs mt-2">
                     {masaSystem === 'amant'
-                      ? (locale === 'en'
-                        ? `Amant dates computed from actual New Moon positions for ${displayYear}. Each month starts on Amavasya. Adhika Masa (intercalary, purple) occurs when two New Moons fall in the same solar month.`
-                        : `${displayYear} के अमावस्या स्थितियों से अमान्त तिथियाँ। प्रत्येक मास अमावस्या पर आरम्भ। अधिक मास (बैंगनी) एक ही सौर मास में दो अमावस्याओं पर।`)
-                      : (locale === 'en'
-                        ? `Purnimant dates computed from Full Moon positions for ${displayYear}. Each month starts on Purnima. This system is predominant in North India (UP, Bihar, MP, Rajasthan).`
-                        : `${displayYear} के पूर्णिमा स्थितियों ��े पूर्णिमान्त तिथियाँ। प्रत्येक मास पूर्णिमा पर आरम्भ। उत्तर भारत (उ.प्र., बिहार, म.प्र., राजस्थान) में प्रचलित।`)}
+                      ? tl({ en: `Amant dates computed from actual New Moon positions for ${displayYear}. Each month starts on Amavasya. Adhika Masa (intercalary, purple) occurs when two New Moons fall in the same solar month.`, hi: `${displayYear} के अमावस्या स्थितियों से अमान्त तिथियाँ। प्रत्येक मास अमावस्या पर आरम्भ। अधिक मास (बैंगनी) एक ही सौर मास में दो अमावस्याओं पर।`, ta: `${displayYear} இன் அமாவாசை நிலைகளிலிருந்து கணக்கிடப்பட்ட அமாந்த தேதிகள்.`, bn: `${displayYear}-এর অমাবস্যা অবস্থান থেকে গণনা করা অমান্ত তারিখ।` })
+                      : tl({ en: `Purnimant dates computed from Full Moon positions for ${displayYear}. Each month starts on Purnima. This system is predominant in North India (UP, Bihar, MP, Rajasthan).`, hi: `${displayYear} के पूर्णिमा स्थितियों से पूर्णिमान्त तिथियाँ। प्रत्येक मास पूर्णिमा पर आरम्भ। उत्तर भारत में प्रचलित।`, ta: `${displayYear} இன் பூர்ணிமை நிலைகளிலிருந்து கணக்கிடப்பட்ட பூர்ணிமாந்த தேதிகள்.`, bn: `${displayYear}-এর পূর্ণিমা অবস্থান থেকে গণনা করা পূর্ণিমান্ত তারিখ।` })}
                   </p>
                 </div>
               );
@@ -1880,9 +1885,7 @@ export default function PanchangClient() {
                       {msg('currentYugaKali', locale)}
                     </div>
                     <div className="text-text-secondary text-sm leading-relaxed">
-                      {locale === 'en'
-                        ? 'We are in the 4th and final Yuga of the current Mahayuga cycle. Kali Yuga began 3102 BCE (Feb 18) and spans 432,000 years. We are approximately 5,126 years in — only 1.2% complete.'
-                        : 'हम वर्तमान महायुग चक्र के चौथे और अंतिम युग में हैं। कलियुग 3102 ईसापूर्व (18 फरवरी) से प्रारम्भ हुआ और 4,32,000 वर्ष तक चलेगा। लगभग 5,126 वर्ष बीत चुके हैं — केवल 1.2% पूर्ण।'}
+                      {tl({ en: 'We are in the 4th and final Yuga of the current Mahayuga cycle. Kali Yuga began 3102 BCE (Feb 18) and spans 432,000 years. We are approximately 5,126 years in — only 1.2% complete.', hi: 'हम वर्तमान महायुग चक्र के चौथे और अंतिम युग में हैं। कलियुग 3102 ईसापूर्व (18 फरवरी) से प्रारम्भ हुआ और 4,32,000 वर्ष तक चलेगा। लगभग 5,126 वर्ष बीत चुके हैं — केवल 1.2% पूर्ण।', ta: 'தற்போதைய மகாயுக சுழற்சியின் 4வது மற்றும் இறுதி யுகத்தில் உள்ளோம். கலியுகம் கி.மு. 3102-ல் தொடங்கியது, 4,32,000 ஆண்டுகள் நீடிக்கும்.', bn: 'আমরা বর্তমান মহাযুগ চক্রের চতুর্থ ও শেষ যুগে আছি। কলিযুগ ৩১০২ খ্রীষ্টপূর্বে শুরু হয়েছে এবং ৪,৩২,০০০ বছর চলবে।' })}
                     </div>
                   </div>
                   <div className="flex-1">
@@ -2013,9 +2016,7 @@ export default function PanchangClient() {
                         {hasConflict && (
                           <div className="mt-1.5 flex items-center gap-1.5 text-amber-400 text-[10px]">
                             <span>⚠</span>
-                            <span>{locale === 'en'
-                              ? `Overlaps with ${conflicts.map(c => c.label).join(' & ')} — avoid new ventures`
-                              : `${conflicts.map(c => c.labelHi).join(' और ')} से ओवरलैप — नए कार्य टालें`}</span>
+                            <span>{tl({ en: `Overlaps with ${conflicts.map(c => c.label).join(' & ')} — avoid new ventures`, hi: `${conflicts.map(c => c.labelHi).join(' और ')} से ओवरलैप — नए कार्य टालें`, ta: `${conflicts.map(c => c.label).join(' & ')} உடன் மேலோங்குகிறது — புதிய முயற்சிகளைத் தவிர்க்கவும்`, bn: `${conflicts.map(c => c.label).join(' & ')} এর সাথে ওভারল্যাপ — নতুন কাজ এড়িয়ে চলুন` })}</span>
                           </div>
                         )}
                       </motion.div>
@@ -2110,9 +2111,7 @@ export default function PanchangClient() {
               {msg('todaysMuhurtas', locale)}
             </h2>
             <p className="text-text-secondary text-sm text-center mb-8 max-w-2xl mx-auto">
-              {locale === 'en'
-                ? 'The day is divided into 30 Muhurtas (~48 min each). Each is presided by a deity and carries specific energy. Click any muhurta to see its significance and best uses.'
-                : 'दिन को 30 मुहूर्तों (~48 मिनट प्रत्येक) में विभाजित किया गया है। प्रत्येक एक देवता द्वारा अधिष्ठित है। महत्व और सर्वोत्तम उपयोग देखने के लिए किसी भी मुहूर्त पर क्लिक करें।'}
+              {tl({ en: 'The day is divided into 30 Muhurtas (~48 min each). Each is presided by a deity and carries specific energy. Click any muhurta to see its significance and best uses.', hi: 'दिन को 30 मुहूर्तों (~48 मिनट प्रत्येक) में विभाजित किया गया है। प्रत्येक एक देवता द्वारा अधिष्ठित है। महत्व और सर्वोत्तम उपयोग देखने के लिए किसी भी मुहूर्त पर क्लिक करें।', ta: 'நாள் 30 முஹூர்த்தங்களாக (~48 நிமிடம் ஒவ்வொன்றும்) பிரிக்கப்பட்டுள்ளது. ஒவ்வொன்றும் ஒரு தெய்வத்தால் ஆளப்படுகிறது.', bn: 'দিনটি ৩০টি মুহূর্তে (~৪৮ মিনিট প্রতিটি) বিভক্ত। প্রতিটি একটি দেবতা দ্বারা অধিষ্ঠিত।' })}
             </p>
 
             {/* Daytime muhurtas */}
@@ -2129,6 +2128,7 @@ export default function PanchangClient() {
                   const info = MUHURTA_DATA[i];
                   const isCurrent = currentMuhurtaIdx === i;
                   const isAbhijit = m.number === 8;
+                  const abhijitAvailable = panchang.abhijitMuhurta.available !== false;
                   return (
                     <motion.div
                       key={m.number}
@@ -2136,7 +2136,7 @@ export default function PanchangClient() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.03 }}
                       className={`rounded-xl p-4 border transition-all ${
-                        isAbhijit ? 'bg-gold-primary/10 border-gold-primary/40' :
+                        isAbhijit ? (abhijitAvailable ? 'bg-gold-primary/10 border-gold-primary/40' : 'bg-amber-500/5 border-amber-500/25') :
                         isCurrent ? 'bg-gold-primary/5 border-gold-primary/30' :
                         getNatureBg(m.nature)
                       }`}
@@ -2148,7 +2148,10 @@ export default function PanchangClient() {
                             <span className="text-gold-light font-bold text-lg" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                               {(m.name[locale] || m.name.en || '')}
                             </span>
-                            {isAbhijit && <span className="ml-2 px-2 py-0.5 bg-gold-primary/30 text-gold-light text-xs rounded-full font-bold uppercase">Abhijit</span>}
+                            {isAbhijit && (abhijitAvailable
+                              ? <span className="ml-2 px-2 py-0.5 bg-gold-primary/30 text-gold-light text-xs rounded-full font-bold uppercase">Abhijit</span>
+                              : <span className="ml-2 px-2 py-0.5 bg-amber-500/20 text-amber-400 text-xs rounded-full font-bold uppercase">{tl({ en: 'Abhijit — not auspicious (Wed)', hi: 'अभिजित — अशुभ (बुधवार)', ta: 'அபிஜித் — சுபமில்லை (புதன்)', bn: 'অভিজিৎ — অশুভ (বুধবার)' })}</span>
+                            )}
                             {isCurrent && <span className="ml-2 px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-xs rounded-full font-bold animate-pulse">{msg('now', locale)}</span>}
                             {info && <span className="ml-2 text-text-secondary/70 text-xs">{(info.deity[locale] || info.deity.en || '')}</span>}
                           </div>
@@ -2164,7 +2167,7 @@ export default function PanchangClient() {
                         <div className="ml-11">
                           <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{(info.significance[locale] || info.significance.en || '')}</p>
                           <p className="text-gold-primary/60 text-xs mt-1.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                            <span className="font-semibold">{msg('bestFor', locale)}</span> {info.bestFor[locale]}
+                            <span className="font-semibold">{msg('bestFor', locale)}</span> {(info.bestFor[locale] || info.bestFor.en || '')}
                           </p>
                         </div>
                       )}
@@ -2228,7 +2231,7 @@ export default function PanchangClient() {
                             <div className="ml-11">
                               <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{(info.significance[locale] || info.significance.en || '')}</p>
                               <p className="text-gold-primary/60 text-xs mt-1.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                                <span className="font-semibold">{msg('bestFor', locale)}</span> {info.bestFor[locale]}
+                                <span className="font-semibold">{msg('bestFor', locale)}</span> {(info.bestFor[locale] || info.bestFor.en || '')}
                               </p>
                             </div>
                           )}
@@ -2304,9 +2307,7 @@ export default function PanchangClient() {
                 <span>{msg('udayaLagna', locale)}</span>
               </h3>
               <p className="text-text-secondary text-xs mb-4 max-w-2xl">
-                {locale === 'en'
-                  ? 'The zodiac sign rising on the eastern horizon changes approximately every 2 hours. Each rising window carries the energy of that sign for muhurta selection.'
-                  : 'पूर्वी क्षितिज पर उदित राशि लगभग हर 2 घंटे में बदलती है। प्रत्येक उदय खिड़की मुहूर्त चयन के लिए उस राशि की ऊर्जा वहन करती है।'}
+                {tl({ en: 'The zodiac sign rising on the eastern horizon changes approximately every 2 hours. Each rising window carries the energy of that sign for muhurta selection.', hi: 'पूर्वी क्षितिज पर उदित राशि लगभग हर 2 घंटे में बदलती है। प्रत्येक उदय खिड़की मुहूर्त चयन के लिए उस राशि की ऊर्जा वहन करती है।', ta: 'கிழக்கு அடிவானத்தில் உதிக்கும் ராசி ஒவ்வொரு 2 மணி நேரத்திற்கும் மாறுகிறது.', bn: 'পূর্ব দিগন্তে উদিত রাশি প্রায় প্রতি ২ ঘণ্টায় পরিবর্তিত হয়।' })}
               </p>
               <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 overflow-hidden">
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 divide-x divide-y divide-gold-primary/10">
@@ -2341,12 +2342,8 @@ export default function PanchangClient() {
             </h2>
             <p className="text-text-secondary text-sm text-center mb-8">
               {birthAutoDetected
-                ? (locale === 'en'
-                  ? `Auto-detected from your birth chart${useBirthDataStore.getState().birthName ? ` (${useBirthDataStore.getState().birthName})` : ''}. You can change below if needed.`
-                  : `आपकी जन्म कुण्डली${useBirthDataStore.getState().birthName ? ` (${useBirthDataStore.getState().birthName})` : ''} से स्वतः प्राप्त। आवश्यकतानुसार नीचे बदलें।`)
-                : (locale === 'en'
-                  ? 'Select your birth Nakshatra and Rashi, or generate a Kundali first to auto-detect.'
-                  : 'अपना जन्म नक्षत्र और राशि चुनें, या स्वतः पता लगाने के लिए पहले कुण्डली बनाएं।')}
+                ? tl({ en: `Auto-detected from your birth chart${useBirthDataStore.getState().birthName ? ` (${useBirthDataStore.getState().birthName})` : ''}. You can change below if needed.`, hi: `आपकी जन्म कुण्डली${useBirthDataStore.getState().birthName ? ` (${useBirthDataStore.getState().birthName})` : ''} से स्वतः प्राप्त। आवश्यकतानुसार नीचे बदलें।`, ta: `உங்கள் பிறப்பு ஜாதகத்திலிருந்து தானாக கண்டறியப்பட்டது${useBirthDataStore.getState().birthName ? ` (${useBirthDataStore.getState().birthName})` : ''}. தேவைப்பட்டால் கீழே மாற்றலாம்.`, bn: `আপনার জন্ম কুণ্ডলী${useBirthDataStore.getState().birthName ? ` (${useBirthDataStore.getState().birthName})` : ''} থেকে স্বয়ংক্রিয়ভাবে সনাক্ত। প্রয়োজনে নীচে পরিবর্তন করুন।` })
+                : tl({ en: 'Select your birth Nakshatra and Rashi, or generate a Kundali first to auto-detect.', hi: 'अपना जन्म नक्षत्र और राशि चुनें, या स्वतः पता लगाने के लिए पहले कुण्डली बनाएं।', ta: 'உங்கள் பிறப்பு நட்சத்திரம் மற்றும் ராசியை தேர்ந்தெடுக்கவும், அல்லது தானாக கண்டறிய முதலில் குண்டலி உருவாக்கவும்.', bn: 'আপনার জন্ম নক্ষত্র ও রাশি নির্বাচন করুন, অথবা স্বয়ংক্রিয়ভাবে সনাক্ত করতে প্রথমে কুণ্ডলী তৈরি করুন।' })}
             </p>
             <div className="max-w-2xl mx-auto rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6">
               {birthAutoDetected && (
@@ -2392,7 +2389,7 @@ export default function PanchangClient() {
                   >
                     <option value={0}>{msg('select', locale)}</option>
                     {RASHIS.map((r) => (
-                      <option key={r.id} value={r.id}>{r.name[locale]}</option>
+                      <option key={r.id} value={r.id}>{(r.name[locale] || r.name.en || '')}</option>
                     ))}
                   </select>
                 </div>
@@ -2439,7 +2436,7 @@ export default function PanchangClient() {
                       <div className={`text-2xl font-bold ${
                         balamResult.tarabalam.favorable ? 'text-emerald-300' : 'text-red-300'
                       }`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                        {balamResult.tarabalam.taraName[locale]}
+                        {(balamResult.tarabalam.taraName[locale] || balamResult.tarabalam.taraName.en || '')}
                       </div>
                       <div className="text-text-secondary text-xs mt-2">
                         {_tl({ en: `Tara #${balamResult.tarabalam.tara}`, hi: `तारा #${balamResult.tarabalam.tara}`, sa: `तारा #${balamResult.tarabalam.tara}`, ta: `Tara #${balamResult.tarabalam.tara}`, te: `Tara #${balamResult.tarabalam.tara}`, bn: `Tara #${balamResult.tarabalam.tara}`, kn: `Tara #${balamResult.tarabalam.tara}`, gu: `Tara #${balamResult.tarabalam.tara}`, mai: `तारा #${balamResult.tarabalam.tara}`, mr: `तारा #${balamResult.tarabalam.tara}` }, locale)}
@@ -2485,9 +2482,7 @@ export default function PanchangClient() {
                   {msg('panchaPakshiShastra', locale)}
                 </h2>
                 <p className="text-text-secondary/75 text-sm text-center mb-6 max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {locale === 'en'
-                    ? `Kerala tradition — your ruling bird is ${pp.birthBirdName.en}. Five periods divide the ${pp.isDay ? 'day' : 'night'}; your bird's current activity determines auspiciousness.`
-                    : `केरल परम्परा — आपका राशि पक्षी ${pp.birthBirdName.hi} है। ${pp.isDay ? 'दिन' : 'रात्रि'} के पाँच काल; पक्षी की वर्तमान क्रिया शुभाशुभ निर्धारित करती है।`}
+                  {tl({ en: `Kerala tradition — your ruling bird is ${pp.birthBirdName.en}. Five periods divide the ${pp.isDay ? 'day' : 'night'}; your bird's current activity determines auspiciousness.`, hi: `केरल परम्परा — आपका राशि पक्षी ${pp.birthBirdName.hi || pp.birthBirdName.en} है। ${pp.isDay ? 'दिन' : 'रात्रि'} के पाँच काल; पक्षी की वर्तमान क्रिया शुभाशुभ निर्धारित करती है।`, ta: `கேரள பாரம்பரியம் — உங்கள் ஆட்சி பறவை ${pp.birthBirdName.en}. ஐந்து காலங்கள் ${pp.isDay ? 'பகலை' : 'இரவை'} பிரிக்கின்றன.`, bn: `কেরল ঐতিহ্য — আপনার শাসক পাখি ${pp.birthBirdName.en}। পাঁচটি পর্ব ${pp.isDay ? 'দিনকে' : 'রাতকে'} বিভক্ত করে।` })}
                 </p>
 
                 {/* Current period — hero */}
@@ -2555,7 +2550,7 @@ export default function PanchangClient() {
                             <div className="flex items-center gap-3">
                               <GrahaIconById id={planet.id} size={32} />
                               <span className="text-text-primary font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                                {planet.name[locale]}
+                                {(planet.name[locale] || planet.name.en || '')}
                               </span>
                             </div>
                           </td>
@@ -2563,13 +2558,13 @@ export default function PanchangClient() {
                             <div className="flex items-center gap-2">
                               <RashiIconById id={planet.rashi || 1} size={24} />
                               <span className="text-text-primary" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                                {rashi?.name[locale]}
+                                {(rashi?.name[locale] || rashi?.name?.en || '')}
                               </span>
                             </div>
                           </td>
                           <td className="px-5 py-4 font-mono text-text-secondary">{planet.longitude !== undefined ? `${planet.longitude.toFixed(2)}°` : '—'}</td>
                           <td className="px-5 py-4">
-                            <span className="text-text-secondary" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{nak?.name[locale]}</span>
+                            <span className="text-text-secondary" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{(nak?.name[locale] || nak?.name?.en || '')}</span>
                           </td>
                           <td className="px-5 py-4 text-center">
                             {planet.isRetrograde ? <span className="text-red-400 font-bold text-lg">R</span> : <span className="text-text-secondary/55">—</span>}

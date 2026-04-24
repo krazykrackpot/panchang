@@ -285,10 +285,16 @@ export function calculateTithi(jd: number): { number: number; degree: number } {
 /**
  * Calculate Yoga (1-27)
  * Yoga = (Sun_sidereal + Moon_sidereal) / (360/27)
+ *
+ * @param jd Julian Day
+ * @param ayanamshaValue Optional pre-computed ayanamsha in degrees. When provided,
+ *   used instead of the hardcoded Lahiri value, so callers with a user-selected
+ *   ayanamsha (KP, Raman, etc.) get consistent results.  Defaults to Lahiri.
  */
-export function calculateYoga(jd: number): number {
-  const sunSid = toSidereal(sunLongitude(jd), jd);
-  const moonSid = toSidereal(moonLongitude(jd), jd);
+export function calculateYoga(jd: number, ayanamshaValue?: number): number {
+  const aya = ayanamshaValue ?? lahiriAyanamsha(jd);
+  const sunSid = normalizeDeg(sunLongitude(jd) - aya);
+  const moonSid = normalizeDeg(moonLongitude(jd) - aya);
   const sum = normalizeDeg(sunSid + moonSid);
   return Math.floor(sum / (360 / 27)) + 1;
 }
@@ -562,7 +568,33 @@ function _meeusPlanetaryPositions(jd: number): {
   const venusSpeed   = speed(5);   // avg +1.2°/day; retrograde ~42 days/year
   const saturnSpeed  = speed(6);   // avg +0.034°/day; retrograde ~138 days/year
 
-  const rahu = normalizeDeg(125.044 - 1934.1362 * t);
+  // ── True lunar node (Rahu) ──
+  // Mean ascending node (Meeus Ch.22 / Ch.47)
+  const meanNode = normalizeDeg(
+    125.0445479 - 1934.1362891 * t + 0.0020754 * t * t
+    + t * t * t / 467441 - t * t * t * t / 60616000
+  );
+  // Fundamental arguments for the perturbation terms (degrees → radians)
+  // D, M, Mp, F are Moon's mean elongation, Sun's mean anomaly, Moon's mean
+  // anomaly, and Moon's argument of latitude — same definitions as in
+  // _meeusMoonLongitude but recomputed here to keep the function self-contained.
+  const nD  = normalizeDeg(297.8501921 + 445267.1114034 * t
+    - 0.0018819 * t * t + t * t * t / 545868 - t * t * t * t / 113065000);
+  const nM  = normalizeDeg(357.5291092 + 35999.0502909 * t
+    - 0.0001536 * t * t + t * t * t / 24490000);
+  const nMp = normalizeDeg(134.9633964 + 477198.8675055 * t
+    + 0.0087414 * t * t + t * t * t / 69699 - t * t * t * t / 14712000);
+  const nF  = normalizeDeg(93.2720950 + 483202.0175233 * t
+    - 0.0036539 * t * t - t * t * t / 3526000 + t * t * t * t / 863310000);
+  // Five principal perturbation terms for the true node (Meeus Table 47.C /
+  // Explanatory Supplement).  Amplitude is in degrees.
+  const trueNodeCorr =
+    - 1.4979 * Math.sin(toRad(2 * (nD - nF)))
+    - 0.1500 * Math.sin(toRad(nM))
+    - 0.1226 * Math.sin(toRad(2 * nD))
+    + 0.1176 * Math.sin(toRad(2 * nF))
+    - 0.0801 * Math.sin(toRad(2 * (nMp - nF)));
+  const rahu = normalizeDeg(meanNode + trueNodeCorr);
   const ketu = normalizeDeg(rahu + 180);
 
   return [

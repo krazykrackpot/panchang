@@ -1099,10 +1099,28 @@ export function computePanchang(input: PanchangInput): PanchangData {
 
   // ── Enhanced fields ──
 
-  // Vikram Samvat: offset ~57 years from CE (Chaitra-based, roughly year+57)
-  const vikramSamvat = (month >= 4) ? year + 57 : year + 56;
-  // Shaka Samvat: offset ~78 years from CE
-  const shakaSamvat = (month >= 4) ? year - 78 : year - 79;
+  // Vikram / Shaka Samvat — new year begins at Chaitra Shukla Pratipada.
+  //
+  // masaIndex 0 = Chaitra (derived from Sun's sidereal longitude in getMasa()).
+  // Within Chaitra, tithis 1-15 are Shukla Paksha (new year already started),
+  // tithis 16-30 are Krishna Paksha (still the previous year in Amanta reckoning).
+  //
+  // For months Chaitra through Phalguna (masaIndex 0-11), we check whether we
+  // are on or past Chaitra Shukla 1.  In practice the new year falls mid-March
+  // to mid-April; using masaIndex is more accurate than the old fixed April
+  // cutoff, though it is still an approximation because getMasa() uses solar
+  // ingress rather than the exact tithi boundary.
+  //
+  // Heuristic: the new Samvat year has started when:
+  //   • masaIndex > 0 (we are past Chaitra entirely), OR
+  //   • masaIndex === 0 AND we are in Shukla Paksha (tithi 1-15)
+  // In all other cases (masaIndex === 0 but Krishna Paksha, or Jan-Feb when
+  // masaIndex is 10-11 i.e. Pausha/Magha/Phalguna) the previous Samvat applies.
+  const pastChaitraShukla1 =
+    masaIndex > 0 && masaIndex <= 9  // Vaishakha(1) through Margashirsha(9) — definitely past new year
+    || (masaIndex === 0 && tithiResult.number <= 15); // Chaitra Shukla Paksha
+  const vikramSamvat = pastChaitraShukla1 ? year + 57 : year + 56;
+  const shakaSamvat  = pastChaitraShukla1 ? year - 78 : year - 79;
 
   // Purnimant vs Amant masa — two competing calendar systems used across India
   //

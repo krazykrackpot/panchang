@@ -306,7 +306,9 @@ function detectYamaya(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
 // P2-04: Manaú Yoga — Ithasala exists but slower planet is combust or debilitated → denied
 function detectManau(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
   const COMBUST_ORB: Record<number, number> = { 1: 12, 2: 17, 3: 14, 4: 11, 5: 10, 6: 15 };
-  const DEBIL_SIGN: Record<number, number> = { 0: 7, 1: 8, 2: 4, 3: 6, 4: 10, 5: 6, 6: 1 };
+  // Mercury(3) debilitated in Pisces(12), NOT Virgo(6) — Mercury is EXALTED in Virgo.
+  // Venus(5) debilitated in Virgo(6) is correct.
+  const DEBIL_SIGN: Record<number, number> = { 0: 7, 1: 8, 2: 4, 3: 12, 4: 10, 5: 6, 6: 1 };
 
   const ithasalas = yogas.filter(y => y.type === 'ithasala');
   for (const ith of ithasalas) {

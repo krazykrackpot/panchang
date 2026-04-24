@@ -194,6 +194,8 @@ export interface ChoghadiyaSlot {
   startTime: string;
   endTime: string;
   period: 'day' | 'night';
+  /** True when the slot spans midnight (startUT < 24 && endUT > 24 unwrapped) */
+  crossesMidnight?: boolean;
 }
 
 export interface HoraSlot {

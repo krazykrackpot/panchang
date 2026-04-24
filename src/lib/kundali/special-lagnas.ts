@@ -45,6 +45,10 @@ export function calculateSpecialLagnas(
   // signs rise at different speeds depending on latitude. Error can be 10-20° at
   // extreme latitudes. The birth latitude is available via the caller but implementing
   // oblique ascension is deferred.
+  //
+  // UI NOTE: If Hora Lagna is ever displayed in the kundali page, show
+  // "(approximate for lat > 30°)" when |birthLat| > 30. Currently HL is only
+  // used internally for Varnada Lagna computation and in learn/reference pages.
   // HL = Sun's degree at sunrise + (hours from sunrise × 360/24)
   const horaLagnaDeg = normalizeDeg(sunDeg + hoursFromSunrise * (360 / 24));
   const horaLagna = Math.floor(horaLagnaDeg / 30) + 1;

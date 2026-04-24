@@ -52,14 +52,31 @@ export function calculateTithiPravesha(
     const scanTithi = calculateTithi(scanJD);
 
     if (scanTithi.number === birthTithiNum) {
-      // Binary search for exact tithi start
+      // Binary search for exact tithi start (first moment tithi number matches)
       let lo = scanJD - 0.5;
       let hi = scanJD + 0.5;
       for (let iter = 0; iter < 20; iter++) {
         const mid = (lo + hi) / 2;
         if (calculateTithi(mid).number === birthTithiNum) hi = mid; else lo = mid;
       }
-      const praveshaJD = hi;
+
+      // Refine: binary search for exact elongation degree (start of this tithi)
+      // The tithi start boundary is at (tithiNum - 1) * 12 degrees of Moon-Sun elongation.
+      // Without this refinement the result can be off by ~12 hours.
+      const targetDeg = (birthTithiNum - 1) * 12;
+      let loRefine = hi - 0.5;
+      let hiRefine = hi + 0.5;
+      for (let iter = 0; iter < 25; iter++) {
+        const mid = (loRefine + hiRefine) / 2;
+        const { degree } = calculateTithi(mid);
+        // Normalize degree distance handling 360→0 wraparound
+        let delta = degree - targetDeg;
+        if (delta > 180) delta -= 360;
+        if (delta < -180) delta += 360;
+        if (Math.abs(delta) < 0.001) break;
+        if (delta < 0) loRefine = mid; else hiRefine = mid;
+      }
+      const praveshaJD = (loRefine + hiRefine) / 2;
 
       // Sidereal Sun distance from natal position — closer = correct month
       const scanSunSid = toSidereal(sunLongitude(praveshaJD), praveshaJD);

@@ -49,21 +49,22 @@ describe('Ashta Kuta Matching', () => {
     expect(result.percentage).toBe(Math.round((result.totalScore / 36) * 100));
   });
 
-  it('same nakshatra and rashi should yield high score (same Nadi = 0 though)', () => {
+  it('same nakshatra and rashi should yield high score (ekadhipati cancels nadi dosha)', () => {
     const boy: MatchInput = { moonNakshatra: 1, moonRashi: 1 };
     const girl: MatchInput = { moonNakshatra: 1, moonRashi: 1 };
     const result = computeAshtaKuta(boy, girl);
-    // Same nakshatra: Yoni=4, Gana=6, Nadi=0 (dosha)
+    // Same nakshatra: Yoni=4, Gana=6
     // Same rashi: Varna=1, Vashya=2, GrahaMaitri=5, Bhakoot=7
     // Tara: (1-1+27)%9 = 0 -> 9 which is in AUSPICIOUS -> 3
+    // Nadi: same nadi (Aadi) but same rashi lord (Mars) → ekadhipati cancellation → 8
     expect(result.kutas[0].scored).toBe(1);  // Varna
     expect(result.kutas[1].scored).toBe(2);  // Vashya
     expect(result.kutas[3].scored).toBe(4);  // Yoni (same animal)
     expect(result.kutas[4].scored).toBe(5);  // Graha Maitri (same lord)
     expect(result.kutas[5].scored).toBe(6);  // Gana (same gana)
     expect(result.kutas[6].scored).toBe(7);  // Bhakoot (diff=0)
-    expect(result.kutas[7].scored).toBe(0);  // Nadi (same nadi = dosha)
-    expect(result.nadiDoshaPresent).toBe(true);
+    expect(result.kutas[7].scored).toBe(8);  // Nadi (ekadhipati cancellation)
+    expect(result.nadiDoshaPresent).toBe(false);
   });
 
   it('should detect Nadi Dosha when same nadi', () => {

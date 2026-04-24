@@ -20,6 +20,35 @@ export async function POST(request: Request) {
       );
     }
 
+    // Validate date format (YYYY-MM-DD)
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(body.date)) {
+      return NextResponse.json(
+        { error: 'Invalid date format. Use YYYY-MM-DD.' },
+        { status: 400 }
+      );
+    }
+    // Validate time format (HH:MM)
+    if (!/^\d{2}:\d{2}$/.test(body.time)) {
+      return NextResponse.json(
+        { error: 'Invalid time format. Use HH:MM.' },
+        { status: 400 }
+      );
+    }
+    const [year, month, day] = body.date.split('-').map(Number);
+    if (month < 1 || month > 12 || day < 1 || day > 31) {
+      return NextResponse.json(
+        { error: 'Date values out of range.' },
+        { status: 400 }
+      );
+    }
+    const [hour, minute] = body.time.split(':').map(Number);
+    if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
+      return NextResponse.json(
+        { error: 'Time values out of range.' },
+        { status: 400 }
+      );
+    }
+
     const kundali = generateKundali(body);
 
     return NextResponse.json(kundali, {

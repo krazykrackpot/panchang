@@ -164,6 +164,11 @@ function calculateVimshottariDasha(moonSidLong: number, birthDate: Date): DashaE
       subDate = new Date(subEnd);
     }
 
+    // Fix floating-point drift: force last sub-period endDate to match parent mahadasha endDate
+    if (subPeriods.length > 0) {
+      subPeriods[subPeriods.length - 1].endDate = endDate.toISOString().split('T')[0];
+    }
+
     dashas.push({
       planet,
       planetName: PLANET_NAME_MAP[planet],

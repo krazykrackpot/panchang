@@ -255,7 +255,14 @@ export const AYANAMSHA_OPTIONS: { value: AyanamshaType; label: LocaleText }[] = 
   { value: 'jn_bhasin', label: { en: 'JN Bhasin', hi: 'जे.एन. भसीन', sa: 'जे.एन. भसीनः' } },
 ];
 
-// Convert tropical longitude to sidereal
+/**
+ * Convert tropical longitude to sidereal using Lahiri ayanamsha.
+ *
+ * NOTE: This function always uses Lahiri regardless of user's ayanamsha selection.
+ * For user-ayanamsha-aware conversion, use getAyanamsha(jd, type) from ayanamsa.ts.
+ * This is acceptable for panchang elements (tithi, nakshatra, yoga) which are
+ * traditionally computed with Lahiri (Indian government standard).
+ */
 export function toSidereal(tropicalLong: number, jd: number): number {
   return normalizeDeg(tropicalLong - lahiriAyanamsha(jd));
 }

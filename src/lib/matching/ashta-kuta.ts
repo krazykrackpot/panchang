@@ -277,6 +277,10 @@ const NAKSHATRA_NADI = [
   0, 1, 2, // P.Bhadrapada=Aadi, U.Bhadrapada=Madhya, Revati=Antya
 ];
 
+// Sign lords (1-indexed by rashi): Aries=Mars(2), Taurus=Venus(5), ...
+// Planet IDs: 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter, 5=Venus, 6=Saturn, 7=Rahu, 8=Ketu
+const SIGN_LORD = [/* 0-placeholder */ -1, 2, 5, 3, 1, 0, 3, 5, 2, 4, 6, 6, 4];
+
 export function computeNadi(boy: MatchInput, girl: MatchInput): number {
   const bn = NAKSHATRA_NADI[boy.moonNakshatra - 1];
   const gn = NAKSHATRA_NADI[girl.moonNakshatra - 1];
@@ -290,6 +294,18 @@ export function computeNadi(boy: MatchInput, girl: MatchInput): number {
     boy.moonPada === girl.moonPada
   ) {
     return 8; // Dosha fully cancelled
+  }
+
+  // Additional Nadi Dosha cancellation (Muhurta Chintamani):
+  // 1. Ekadhipati: both Moon signs have the same lord
+  if (boy.moonRashi && girl.moonRashi) {
+    const lordBoy = SIGN_LORD[boy.moonRashi];
+    const lordGirl = SIGN_LORD[girl.moonRashi];
+    if (lordBoy === lordGirl) return 8; // ekadhipati cancellation
+
+    // 2. Mutual trine: Moon signs are in 1-5-9 relationship
+    const signDiff = Math.abs(boy.moonRashi - girl.moonRashi) % 12;
+    if (signDiff === 4 || signDiff === 8) return 8; // trine cancellation
   }
 
   return 0; // Nadi Dosha present

@@ -246,19 +246,22 @@ function computeChoghadiya(sunriseUT: number, sunsetUT: number, weekday: number,
   }
 
   // Night choghadiya (8 slots from sunset to next sunrise)
+  // Store unwrapped UT values (allow >24) so downstream overlap detection works
+  // correctly when slots cross midnight. formatTime handles >24 internally.
   const nightStart = NIGHT_CHOGHADIYA_START[weekday];
   for (let i = 0; i < 8; i++) {
     const typeIdx = (nightStart + i) % 7;
     const type = CHOGHADIYA_TYPES[typeIdx];
-    const startUT = (sunsetUT + i * nightSlotDuration) % 24;
-    const endUT = (sunsetUT + (i + 1) * nightSlotDuration) % 24;
+    const startUT = sunsetUT + i * nightSlotDuration;       // unwrapped, may exceed 24
+    const endUT = sunsetUT + (i + 1) * nightSlotDuration;   // unwrapped, may exceed 24
     slots.push({
       name: CHOGHADIYA_NAMES[type],
       type,
       nature: CHOGHADIYA_NATURE[type],
-      startTime: formatTime(startUT, tzOffset),
-      endTime: formatTime(endUT, tzOffset),
+      startTime: formatTime(startUT % 24, tzOffset),
+      endTime: formatTime(endUT % 24, tzOffset),
       period: 'night',
+      crossesMidnight: startUT < 24 && endUT > 24,
     });
   }
 

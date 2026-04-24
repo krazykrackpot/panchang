@@ -259,10 +259,9 @@ export function getPanchangSnapshot(jd: number, lat: number, lng: number): Panch
   const karana = calculateKarana(sunriseJD);
   const moonSign = getRashiNumber(moonSid);
 
-  // Weekday from JD — Math.floor(jd + 1.5) % 7 gives 0=Monday.
-  // All hora/choghadiya/Rahu Kaal tables use 0=Sunday (matching Date.getDay()),
-  // so shift by +1 mod 7 to align conventions.
-  const weekday = (Math.floor(jd + 1.5) + 1) % 7; // 0=Sunday
+  // Weekday from JD — Math.floor(jd + 1.5) % 7 gives 0=Sunday,
+  // matching Date.getUTCDay() and all hora/choghadiya/Rahu Kaal lookup tables.
+  const weekday = Math.floor(jd + 1.5) % 7; // 0=Sunday
 
   return {
     tithi: tithiResult.number,

@@ -91,7 +91,100 @@ function getMasaFromSunSign(sunSiderealSign: number): number {
 }
 
 /**
- * Compute Hindu months with exact Gregorian dates for a given year.
+ * Find all Full Moon (Purnima) dates in a year range.
+ * Similar to findNewMoons but detects elongation crossing 180°.
+ */
+function findFullMoons(year: number): Date[] {
+  const fullMoons: Date[] = [];
+  const startJD = dateToJD(year - 1, 12, 1, 0);
+  const endJD = dateToJD(year + 1, 2, 1, 0);
+
+  let prevElong = -1;
+  for (let jd = startJD; jd < endJD; jd += 1) {
+    const sunL = sunLongitude(jd);
+    const moonL = moonLongitude(jd);
+    const elong = (moonL - sunL + 360) % 360;
+
+    // Full Moon = elongation crosses 180° (goes from <180 to >180)
+    if (prevElong >= 0 && prevElong < 180 && elong >= 180) {
+      // Refine with binary search
+      let lo = jd - 1, hi = jd;
+      for (let i = 0; i < 15; i++) {
+        const mid = (lo + hi) / 2;
+        const mSun = sunLongitude(mid);
+        const mMoon = moonLongitude(mid);
+        const mElong = ((mMoon - mSun + 360) % 360);
+        if (mElong < 180) { lo = mid; } else { hi = mid; }
+      }
+      const fmJD = (lo + hi) / 2;
+      const d = new Date((fmJD - 2440587.5) * 86400000);
+      fullMoons.push(d);
+    }
+    prevElong = elong;
+  }
+  return fullMoons;
+}
+
+/**
+ * Compute Purnimant Hindu months — each runs from Purnima to Purnima.
+ * The Purnimant month name is one month AHEAD of the Amant month:
+ * e.g., Amant Chaitra's Krishna Paksha = Purnimant Vaishakha.
+ */
+export function computePurnimantMonths(year: number): HinduMonth[] {
+  const fullMoons = findFullMoons(year);
+  if (fullMoons.length < 2) return [];
+
+  const months: HinduMonth[] = [];
+  let monthCounter = 0;
+  let prevMasaIdx = -1;
+
+  for (let i = 0; i < fullMoons.length - 1; i++) {
+    const fmDate = fullMoons[i];
+    const nextFmDate = fullMoons[i + 1];
+
+    // Sun's sidereal sign at this Full Moon — Purnimant naming:
+    // The month is named after the next Amant month (Sun sign + 1)
+    // because Purnimant Chaitra starts at the Phalguni Purnima and
+    // contains Chaitra Shukla + Chaitra Krishna (= Amant Chaitra's beginning).
+    const jd = dateToJD(fmDate.getUTCFullYear(), fmDate.getUTCMonth() + 1, fmDate.getUTCDate(), 12);
+    const tropSun = sunLongitude(jd);
+    const ayanamsha = lahiriAyanamsha(jd);
+    const sidSun = ((tropSun - ayanamsha) + 360) % 360;
+    const sunSign = Math.floor(sidSun / 30) + 1; // 1-12
+    // Purnimant month = Amant month that follows this Purnima
+    // Sun in sign X at Full Moon → the next New Moon starts Amant month (X % 12)
+    // Purnimant month name = same as that Amant month
+    const masaIdx = sunSign % 12; // 0-indexed into MASA_DATA
+
+    const isAdhika = masaIdx === prevMasaIdx;
+
+    const startStr = `${fmDate.getUTCFullYear()}-${(fmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${fmDate.getUTCDate().toString().padStart(2, '0')}`;
+    const endStr = `${nextFmDate.getUTCFullYear()}-${(nextFmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${nextFmDate.getUTCDate().toString().padStart(2, '0')}`;
+
+    if (fmDate.getUTCFullYear() === year || nextFmDate.getUTCFullYear() === year) {
+      monthCounter++;
+      const masaData = MASA_DATA[masaIdx] || MASA_DATA[0];
+      months.push({
+        n: monthCounter,
+        en: isAdhika ? `Adhika ${masaData.en}` : masaData.en,
+        hi: isAdhika ? `अधिक ${masaData.hi}` : masaData.hi,
+        sa: isAdhika ? `अधिक${masaData.sa}` : masaData.sa,
+        startDate: startStr,
+        endDate: endStr,
+        ritu: masaData.ritu,
+        ayana: masaData.ayana,
+        isAdhika,
+      });
+    }
+
+    prevMasaIdx = masaIdx;
+  }
+
+  return months;
+}
+
+/**
+ * Compute Amant Hindu months with exact Gregorian dates for a given year.
  * Returns 12-13 months (13 if there's an Adhika Masa).
  */
 export function computeHinduMonths(year: number): HinduMonth[] {

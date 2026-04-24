@@ -61,6 +61,7 @@ export interface YearlyTithiTable {
   timezone: string;
   entries: TithiEntry[];
   lunarMonths: LunarMonthInfo[];
+  purnimantMonths: LunarMonthInfo[];
 }
 
 // ─── Cache ───
@@ -444,7 +445,7 @@ export function buildYearlyTithiTable(
     });
   }
 
-  const table: YearlyTithiTable = { year, lat, lon, timezone, entries, lunarMonths };
+  const table: YearlyTithiTable = { year, lat, lon, timezone, entries, lunarMonths, purnimantMonths };
 
   // Cache
   if (tableCache.size >= MAX_CACHE) {

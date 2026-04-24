@@ -23,7 +23,7 @@ import { KARANAS } from '@/lib/constants/karanas';
 import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
 import { computeBalam } from '@/lib/panchang/balam';
 import { calculatePanchaPakshi } from '@/lib/prashna/pancha-pakshi';
-import { computeHinduMonths, formatMonthDate } from '@/lib/calendar/hindu-months';
+import { computeHinduMonths, computePurnimantMonths, formatMonthDate } from '@/lib/calendar/hindu-months';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { useAuthStore } from '@/stores/auth-store';
@@ -147,6 +147,7 @@ export default function PanchangClient() {
 
   // Compute Hindu months for current year (expensive, memoized)
   const computeHinduMonthsMemo = useMemo(() => computeHinduMonths(new Date().getFullYear()), []);
+  const computePurnimantMonthsMemo = useMemo(() => computePurnimantMonths(new Date().getFullYear()), []);
   const [now, setNow] = useState<Date>(new Date());
 
   // Auto-load birth nakshatra/rashi from store (persisted from kundali page)
@@ -1735,7 +1736,7 @@ export default function PanchangClient() {
             {/* Hindu Months Reference — computed for current year */}
             {(() => {
               const displayYear = new Date().getFullYear();
-              const hinduMonths = computeHinduMonthsMemo;
+              const hinduMonths = masaSystem === 'purnimant' ? computePurnimantMonthsMemo : computeHinduMonthsMemo;
               const currentMasa = _tl(panchang.purnimantMasa || panchang.masa, locale);
               const todayStr = panchang.date;
 
@@ -1785,20 +1786,9 @@ export default function PanchangClient() {
                       </thead>
                       <tbody className="divide-y divide-gold-primary/5">
                         {hinduMonths.map((m) => {
-                          // Compute effective dates based on selected masa system
-                          let effectiveStart = m.startDate;
-                          let effectiveEnd = m.endDate;
-                          if (masaSystem === 'purnimant') {
-                            const shiftDate = (ds: string, days: number) => {
-                              const [y2, mo2, d2] = ds.split('-').map(Number);
-                              const dt = new Date(y2, mo2 - 1, d2);
-                              dt.setDate(dt.getDate() + days);
-                              return `${dt.getFullYear()}-${(dt.getMonth()+1).toString().padStart(2,'0')}-${dt.getDate().toString().padStart(2,'0')}`;
-                            };
-                            effectiveStart = shiftDate(m.startDate, -15);
-                            effectiveEnd = shiftDate(m.endDate, -15);
-                          }
-                          const isHighlighted = todayStr >= effectiveStart && todayStr < effectiveEnd;
+                          // Dates come directly from the selected month system
+                          // (Amant from New Moon dates, Purnimant from actual Full Moon dates)
+                          const isHighlighted = todayStr >= m.startDate && todayStr < m.endDate;
                           return (
                             <tr key={`${m.n}-${m.startDate}`} className={`hover:bg-gold-primary/3 ${isHighlighted ? 'bg-gold-primary/8' : ''} ${m.isAdhika ? 'italic' : ''}`}>
                               <td className="py-1.5 px-2 text-text-tertiary">{m.n}</td>
@@ -1808,8 +1798,8 @@ export default function PanchangClient() {
                                 {m.isAdhika && <span className="ml-1.5 text-xs px-1 py-0.5 rounded bg-violet-500/20 text-violet-300 not-italic">{msg('intercalary', locale)}</span>}
                               </td>
                               <td className="py-1.5 px-2 text-text-tertiary" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{m.sa}</td>
-                              <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(effectiveStart, locale)}</td>
-                              <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(effectiveEnd, locale)}</td>
+                              <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(m.startDate, locale)}</td>
+                              <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(m.endDate, locale)}</td>
                               <td className="py-1.5 px-2 text-text-secondary">{isDevanagariLocale(locale) ? m.ritu.hi : m.ritu.en}</td>
                             </tr>
                           );

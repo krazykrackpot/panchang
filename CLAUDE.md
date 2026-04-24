@@ -364,6 +364,47 @@ These shipped to production and affected real users. Treat as absolute rules.
 - Rule: Any time-range comparison `now >= start && now < end` MUST handle midnight wrapping: `if (end < start) return now >= start || now < end;`
 - Rule: When fixing a pattern bug, grep the entire codebase for the same pattern. If it appears in 3 places, fix all 3 in one commit.
 
+### S. Canonical BPHS tables must be defined ONCE and cross-checked against ALL consumers
+- The Naisargika Maitri (planetary friendship) table existed in **16 separate files**. Five had errors — Moon-Jupiter was "friend" in ashta-kuta but "neutral" in the other 11. Mercury's friends were `[Sun,Moon,Jup,Ven,Sat]` in one file but `[Sun,Venus]` everywhere else. A "fix" that trusted one file without cross-checking the others made it worse.
+- Rule: Before changing ANY Jyotish constant (friendships, exaltation, debilitation, moolatrikona, lordship), `grep` for that constant across the ENTIRE codebase. Count how many files define it. Align ALL of them in one commit. The majority reading is almost always correct — a single outlier is the bug.
+- Canonical tables (verified Apr 2026, 16-file audit):
+  - **Moon friends**: Sun, Mercury. **Not Jupiter.** (BPHS Ch.3)
+  - **Moon enemies**: NONE. Moon has no natural enemies.
+  - **Jupiter enemies**: Mercury, Venus. **Not Saturn.** Saturn is neutral.
+  - **Mercury friends**: Sun, Venus. Not Moon/Jupiter/Saturn.
+
+### T. Yoga detection conditions are the #1 source of false positives
+- Four yoga bugs shipped simultaneously, each from a different category of mistake:
+  - **Vasumati**: `.some()` instead of `.every()` → triggered in ~79% of charts (should be <5%)
+  - **Mahabhagya**: checked lagna LORD's sign instead of lagna SIGN → wrong condition entirely
+  - **Gauri**: aspect direction reversed + KENDRA union → 50% false positive rate
+  - **Kemadruma**: missing conjunction cancellation → false positives when Moon was conjunct planets
+- Rule: After writing any yoga detection, compute the **expected frequency** mentally. If a "rare" yoga triggers in >20% of random charts, the condition is too loose. Gajakesari (~25%) and Chandra-Mangala (~8%) are naturally common; Raja Yogas should be 5-15%; Mahapurusha <10%.
+- Rule: Aspect checks must specify direction: `houseOffset(FROM, TO)`, not `houseOffset(TO, FROM)`. Jupiter aspects houses 5/7/9 FROM Jupiter, not from the target.
+
+### U. Moolatrikona ranges must match BPHS Ch.4 exactly — not "close enough"
+- Moon's moolatrikona was Taurus 3-30° in one file and 0-3.33° in another. The correct range is 4-20°. Venus was 0-15° and 0-10° — correct is 0-5°. These inflated/deflated dignity scores in tippanni interpretations vs Shadbala.
+- Canonical BPHS Ch.4 Moolatrikona ranges (verified Apr 2026):
+  - Sun: Leo 0-20° | Moon: Taurus 4-20° | Mars: Aries 0-12°
+  - Mercury: Virgo 16-20° | Jupiter: Sagittarius 0-10°
+  - Venus: Libra 0-5° | Saturn: Aquarius 0-20°
+
+### V. Julian Day ↔ Date conversion must use Date.UTC, never local timezone
+- `jdToDate()` used `new Date(year, month-1, day)` which interprets arguments in the server's local timezone. On a UTC+2 machine, JD noon UT on Apr 24 would produce a Date showing Apr 23 22:00 UTC.
+- Rule: All JD↔Date conversions must use `Date.UTC()`. This is a special case of Lesson L but specific to the `jdToDate()` utility that is called from dozens of places.
+
+### W. Swiss Ephemeris node speed: do NOT negate Ketu's speed
+- Ketu's longitude is Rahu + 180°, but its speed is the SAME as Rahu (both nodes move retrograde at ~0.053°/day). The code negated Ketu's speed, giving it a positive speed (+0.053°/day = direct motion), which caused the UI to show Ketu as non-retrograde and broke any downstream code using speed sign.
+- Rule: When deriving one celestial body from another (Ketu from Rahu), only transform the position, not the velocity, unless there's a physical reason.
+
+### X. Combustion orbs differ for retrograde Mercury and Venus
+- BPHS specifies reduced combustion orbs when Mercury or Venus is retrograde: Mercury 14°→12°, Venus 10°→8°. The code used fixed orbs regardless of retrograde status.
+- Rule: `computeCombust()` must accept an `isRetrograde` parameter. All call sites must pass it.
+
+### Y. Graha Yuddha winner: higher NORTHERN latitude, not lower absolute latitude
+- The code used `Math.abs(p1.latitude) <= Math.abs(p2.latitude)` which could declare a planet at -2° latitude (southern) the winner over one at +1° (northern). Per BPHS Ch.3 and Surya Siddhanta, the planet with greater positive (northward) latitude wins.
+- Rule: Winner = `p1.latitude >= p2.latitude ? p1 : p2` (simple comparison, not absolute value).
+
 ## Patterns & Best Practices (Learned from Bug Fixes)
 
 ### Trilingual/Locale Safety

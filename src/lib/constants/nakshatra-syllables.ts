@@ -162,12 +162,12 @@ export const NAKSHATRA_SYLLABLES: Record<number, { en: string; hi: string; sa: s
     { en: 'Ja', hi: 'जा', sa: 'जा', ta: 'ஜா', te: 'జా', bn: 'জা', kn: 'ಜಾ', mr: 'जा', gu: 'જા', mai: 'जा' },
     { en: 'Ji', hi: 'जी', sa: 'जी', ta: 'ஜி', te: 'జి', bn: 'জি', kn: 'ಜಿ', mr: 'जी', gu: 'જિ', mai: 'जी' },
   ],
-  // 22. Shravana
+  // 22. Shravana — Ju, Je, Jo, Gha (not Kh-series)
   22: [
-    { en: 'Ju/Khi', hi: 'खी', sa: 'खी', ta: 'கி', te: 'ఖి', bn: 'খি', kn: 'ಖಿ', mr: 'खी', gu: 'ખિ', mai: 'खी' },
-    { en: 'Je/Khu', hi: 'खू', sa: 'खू', ta: 'கு', te: 'ఖు', bn: 'খু', kn: 'ಖು', mr: 'खू', gu: 'ખુ', mai: 'खू' },
-    { en: 'Jo/Khe', hi: 'खे', sa: 'खे', ta: 'கே', te: 'ఖే', bn: 'খে', kn: 'ಖೇ', mr: 'खे', gu: 'ખે', mai: 'खे' },
-    { en: 'Gha', hi: 'खो', sa: 'खो', ta: 'கோ', te: 'ఖో', bn: 'খো', kn: 'ಖೋ', mr: 'खो', gu: 'ખો', mai: 'खो' },
+    { en: 'Ju', hi: 'जू', sa: 'जू', ta: 'ஜு', te: 'జు', bn: 'জু', kn: 'ಜು', mr: 'जू', gu: 'જુ', mai: 'जू' },
+    { en: 'Je', hi: 'जे', sa: 'जे', ta: 'ஜே', te: 'జే', bn: 'জে', kn: 'ಜೇ', mr: 'जे', gu: 'જે', mai: 'जे' },
+    { en: 'Jo', hi: 'जो', sa: 'जो', ta: 'ஜோ', te: 'జో', bn: 'জো', kn: 'ಜೋ', mr: 'जो', gu: 'જો', mai: 'जो' },
+    { en: 'Gha', hi: 'घा', sa: 'घा', ta: 'கா', te: 'ఘా', bn: 'ঘা', kn: 'ಘಾ', mr: 'घा', gu: 'ઘા', mai: 'घा' },
   ],
   // 23. Dhanishtha
   23: [

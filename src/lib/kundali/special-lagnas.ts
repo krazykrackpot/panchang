@@ -154,13 +154,14 @@ export function calculateSpecialLagnas(
   const induLagnaSign = ((moonSign - 1 + induOffset) % 12) + 1;
 
   // ── Pranapada Lagna (PP) ──
-  // BPHS Ch.4, v.28-29: convert birth time to vighatis, multiply by 0.1°/vighati,
-  // then add offset based on Sun's sign type: movable=0°, fixed=240°, dual=120°.
-  const vighatis = hoursFromSunrise * 150;
+  // BPHS Ch.4, v.28-29: convert birth time to vighatis, multiply by 4/9 degrees
+  // per vighati, then add offset based on Sun's sign quality:
+  // movable=0°, fixed=240°, dual=120°.
+  const vighatis = hoursFromSunrise * 150; // 1 ghati=60 vighatis, 1 hour=2.5 ghatis=150 vighatis
   const sunSignIdx = Math.floor(sunDeg / 30); // 0-based
   const sunSignQuality = sunSignIdx % 3; // 0=movable, 1=fixed, 2=dual
   const ppOffset = [0, 240, 120][sunSignQuality];
-  const ppDeg = normalizeDeg(sunDeg + ppOffset + vighatis * (360 / 3600));
+  const ppDeg = normalizeDeg(sunDeg + ppOffset + vighatis * (4 / 9));
   const pranapada = Math.floor(ppDeg / 30) + 1;
 
   // ── Varnada Lagna (VL) ──

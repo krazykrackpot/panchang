@@ -64,6 +64,7 @@ export function calculateMuddaDasha(
   const periods: MuddaDashaPeriod[] = [];
   let currentDate = new Date(solarReturnDate);
 
+  // 9 full periods (first is truncated to remaining portion)
   for (let i = 0; i < 9; i++) {
     const idx = (lordIndex + i) % 9;
     const planet = DASHA_ORDER[idx];
@@ -86,6 +87,22 @@ export function calculateMuddaDasha(
     });
 
     currentDate = new Date(endDate);
+  }
+
+  // 10th period: the starting lord's truncated portion completes the solar year
+  if (fractionCompleted > 0) {
+    const planet = DASHA_ORDER[lordIndex];
+    const days = MUDDA_DAYS[planet] * fractionCompleted;
+    const endDate = new Date(currentDate);
+    endDate.setTime(endDate.getTime() + days * 24 * 60 * 60 * 1000);
+
+    periods.push({
+      planet,
+      planetName: PLANET_NAMES[planet],
+      startDate: formatDate(currentDate),
+      endDate: formatDate(endDate),
+      durationDays: Math.round(days),
+    });
   }
 
   return periods;

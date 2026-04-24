@@ -22,8 +22,7 @@ const LABELS = {
 };
 
 function label(key: keyof typeof LABELS, locale: string): string {
-  const obj = LABELS[key];
-  return locale === 'hi' || locale === 'sa' ? obj.hi : obj.en;
+  return tl(LABELS[key], locale);
 }
 
 export default function FamilyCard({ locale }: FamilyCardProps) {

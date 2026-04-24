@@ -28,6 +28,7 @@ import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS, GRAHA_ABBREVIATIONS } from '@/lib/constants/grahas';
 import { getPlanetaryPositions, toSidereal, dateToJD, normalizeDeg } from '@/lib/ephem/astronomical';
+import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
 import { trackKundaliGenerated, trackTabViewed } from '@/lib/analytics';
 import type { TippanniContent, PlanetInsight } from '@/lib/kundali/tippanni-types';
@@ -479,21 +480,28 @@ export default function KundaliPage() {
     const editMode = params.get('edit') === '1';
 
     if (n && d && t && la && lo) {
-      const birthData: BirthData = {
-        name: n,
-        date: d,
-        time: t,
-        place: p || '',
-        lat: parseFloat(la),
-        lng: parseFloat(lo),
-        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
-        ayanamsha: 'lahiri',
-      };
+      // Resolve timezone from birth coordinates — never use browser timezone.
+      // See: feedback_timezone_rule.md
+      const latNum = parseFloat(la);
+      const lngNum = parseFloat(lo);
       // Purge the stale cache so the signature matcher later doesn't short-circuit.
       try { sessionStorage.removeItem('kundali_last_result'); } catch { /* ignore */ }
       setLoading(true);
       setChartStyle('north');
-      authedFetch('/api/kundali', { method: 'POST', body: JSON.stringify(birthData) })
+      resolveTimezoneFromCoords(latNum, lngNum)
+        .then(resolvedTz => {
+          const birthData: BirthData = {
+            name: n,
+            date: d,
+            time: t,
+            place: p || '',
+            lat: latNum,
+            lng: lngNum,
+            timezone: resolvedTz || 'UTC',
+            ayanamsha: 'lahiri',
+          };
+          return authedFetch('/api/kundali', { method: 'POST', body: JSON.stringify(birthData) });
+        })
         .then(r => r.json())
         .then(data => {
           if (data?.planets) {
@@ -510,7 +518,7 @@ export default function KundaliPage() {
               sessionStorage.setItem('kundali_last_result', JSON.stringify({
                 kundali: data,
                 chartStyle: 'north',
-                sig: `${birthData.lat}|${birthData.lng}|${birthData.date}|${birthData.time}|${birthData.timezone}`,
+                sig: `${latNum}|${lngNum}|${d}|${t}|${data.birthData?.timezone || 'UTC'}`,
               }));
             } catch { /* quota */ }
             if (editMode) setEditing(true);
@@ -551,7 +559,9 @@ export default function KundaliPage() {
   // user was null so syncTrajectory was skipped. Retry once user arrives.
   useEffect(() => {
     if (user && personalReading && !trajectoryHook.trajectory && !trajectoryHook.loading) {
-      trajectoryHook.syncTrajectory(personalReading, locale);
+      trajectoryHook.syncTrajectory(personalReading, locale).catch((err: unknown) => {
+        console.error('[trajectory] catch-up sync failed:', err);
+      });
     }
   }, [user, personalReading, trajectoryHook.trajectory, trajectoryHook.loading, locale]);
 
@@ -766,7 +776,7 @@ export default function KundaliPage() {
       {!kundali && !editing && savedCharts.length > 0 && (
         <div className="mb-10">
           <h2 className="text-lg font-semibold text-text-primary mb-4" style={headingFont}>
-            {L3('Your Saved Charts', 'आपकी सहेजी कुण्डलियाँ', 'உங்கள் சேமித்த ஜாதகங்கள்')}
+            {tl({ en: 'Your Saved Charts', hi: 'आपकी सहेजी कुण्डलियाँ', ta: 'உங்கள் சேமித்த ஜாதகங்கள்', bn: 'আপনার সংরক্ষিত কুণ্ডলী' }, locale)}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {savedCharts.map((c) => {
@@ -774,9 +784,9 @@ export default function KundaliPage() {
               const rel = c.birth_data.relationship;
               const href = `/kundali?n=${encodeURIComponent(cName)}&d=${c.birth_data.date}&t=${c.birth_data.time}&la=${c.birth_data.lat}&lo=${c.birth_data.lng}&p=${encodeURIComponent(c.birth_data.place)}`;
               return (
-                <a
+                <Link
                   key={c.id}
-                  href={`/${locale}${href}`}
+                  href={href}
                   className="rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-4 hover:border-gold-primary/40 transition-all block"
                 >
                   <div className="flex items-center gap-2 mb-1">
@@ -791,13 +801,13 @@ export default function KundaliPage() {
                   </div>
                   <p className="text-text-secondary text-xs font-mono">{c.birth_data.date} | {c.birth_data.time}</p>
                   <p className="text-text-secondary/60 text-xs truncate">{c.birth_data.place}</p>
-                </a>
+                </Link>
               );
             })}
           </div>
           <div className="mt-4 border-t border-gold-primary/10 pt-4">
             <p className="text-text-secondary text-sm text-center">
-              {L3('Or generate a new chart below', 'या नीचे नई कुण्डली बनाएँ', 'அல்லது கீழே புதிய ஜாதகம் உருவாக்கவும்')}
+              {tl({ en: 'Or generate a new chart below', hi: 'या नीचे नई कुण्डली बनाएँ', ta: 'அல்லது கீழே புதிய ஜாதகம் உருவாக்கவும்', bn: 'অথবা নীচে নতুন কুণ্ডলী তৈরি করুন' }, locale)}
             </p>
           </div>
         </div>

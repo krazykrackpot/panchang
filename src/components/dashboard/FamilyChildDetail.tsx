@@ -24,8 +24,7 @@ const LABELS = {
 };
 
 function label(key: keyof typeof LABELS, locale: string): string {
-  const obj = LABELS[key];
-  return locale === 'hi' || locale === 'sa' ? obj.hi : obj.en;
+  return tl(LABELS[key], locale);
 }
 
 export default function FamilyChildDetail({ childName, dynamics, locale, onClose }: FamilyChildDetailProps) {
@@ -41,6 +40,7 @@ export default function FamilyChildDetail({ childName, dynamics, locale, onClose
         </h3>
         <button
           onClick={onClose}
+          aria-label="Close"
           className="text-text-secondary hover:text-text-primary text-sm px-3 py-1 rounded-lg hover:bg-white/[0.05] transition-colors"
         >
           {label('close', locale)}

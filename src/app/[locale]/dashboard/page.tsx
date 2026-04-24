@@ -969,6 +969,7 @@ export default function DashboardPage() {
       .eq('id', id);
     if (error) {
       console.error('[dashboard] update relationship failed:', error);
+      alert(error.message || 'Failed to update relationship');
       return;
     }
     setSavedCharts(prev => prev.map(c =>

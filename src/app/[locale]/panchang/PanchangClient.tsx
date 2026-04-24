@@ -652,7 +652,6 @@ export default function PanchangClient() {
                           <div className="font-mono text-sm text-amber-300 font-bold">
                             {fmt(tithiTr.startTime, tithiTr.startDate)} — {fmt(tithiTr.endTime, tithiTr.endDate)}
                           </div>
-                          <div className="text-xs text-text-secondary/55 mt-0.5">24h</div>
                         </div>
                       </>
                     )}
@@ -726,7 +725,6 @@ export default function PanchangClient() {
                         <div className="font-mono text-sm text-amber-300 font-bold">
                           {fmt(nakTr.startTime, nakTr.startDate)} — {fmt(nakTr.endTime, nakTr.endDate)}
                         </div>
-                        <div className="text-xs text-text-secondary/55 mt-0.5">24h</div>
                       </div>
                     )}
                   </div>

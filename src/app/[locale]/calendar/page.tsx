@@ -636,7 +636,6 @@ export default function CalendarPage() {
                           return `${d} ${months[m - 1]}`;
                         })()}
                       </span>
-                      <span className="text-xs text-text-secondary/55">24h</span>
                     </div>
                   )}
                 </div>

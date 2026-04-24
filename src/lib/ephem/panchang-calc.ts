@@ -809,7 +809,7 @@ function getMoonriseForDisplay(jd: number, lat: number, lng: number, tzOffset: n
       if (localHoursRaw >= 24) {
         const dateStr = jdToLocalDate(riseJd, tzOffset);
         const [, mo, dy] = dateStr.split('-');
-        return `${timeStr}, ${MONTH_ABBR[parseInt(mo) - 1]} ${parseInt(dy)}`;
+        return `${timeStr}, ${MONTH_ABBR[parseInt(mo, 10) - 1]} ${parseInt(dy, 10)}`;
       }
       return timeStr;
     }
@@ -851,7 +851,7 @@ function getMoonsetForDisplay(jd: number, lat: number, lng: number, tzOffset: nu
       if (localHoursRaw >= 24) {
         const dateStr = jdToLocalDate(setJd, tzOffset);
         const [, mo, dy] = dateStr.split('-');
-        return `${timeStr}, ${MONTH_ABBR[parseInt(mo) - 1]} ${parseInt(dy)}`;
+        return `${timeStr}, ${MONTH_ABBR[parseInt(mo, 10) - 1]} ${parseInt(dy, 10)}`;
       }
       return timeStr;
     }

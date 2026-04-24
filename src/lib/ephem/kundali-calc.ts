@@ -9,6 +9,7 @@ import { isSwissEphAvailable } from './swiss-ephemeris';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { GRAHAS } from '@/lib/constants/grahas';
+import { PUSHKAR_BHAGA, PUSHKAR_NAVAMSHA_SET } from '@/lib/constants/pushkar-bhaga';
 import type { KundaliData, BirthData, PlanetPosition, HouseCusp, ChartData, DashaEntry, ShadBala, DivisionalChart, AshtakavargaData, GrahaDetail, UpagrahaPosition } from '@/types/kundali';
 import { resolveTimezone } from '@/lib/utils/timezone';
 import { calculateJaimini } from '@/lib/jaimini/jaimini-calc';
@@ -663,50 +664,15 @@ export function generateKundali(birthData: BirthData): KundaliData {
     p.isMrityuBhaga = mrityu !== undefined && Math.abs(degreeInSign - mrityu) <= 1;
   });
 
-  // Pushkar Navamsha — 24 auspicious navamsha positions (Saravali tradition)
-  // Each navamsha is encoded as: signIdx(0-11) * 9 + navamshaIdx(0-8)
-  // Aries d9-1, Aries d9-5, Taurus d9-5, Taurus d9-9, Gemini d9-3, Gemini d9-7,
-  // Cancer d9-1, Cancer d9-7, Leo d9-1, Leo d9-5, Virgo d9-3, Virgo d9-7,
-  // Libra d9-1, Libra d9-7, Scorpio d9-3, Scorpio d9-5, Sag d9-5, Sag d9-9,
-  // Cap d9-3, Cap d9-7, Aqu d9-1, Aqu d9-7, Pis d9-3, Pis d9-5
-  const PUSHKAR_NAV = new Set([
-    0,   // Aries(0) navamsha 1(0)
-    4,   // Aries(0) navamsha 5(4)
-    13,  // Taurus(1) navamsha 5(4)
-    17,  // Taurus(1) navamsha 9(8)
-    20,  // Gemini(2) navamsha 3(2)
-    24,  // Gemini(2) navamsha 7(6)
-    27,  // Cancer(3) navamsha 1(0)
-    33,  // Cancer(3) navamsha 7(6)
-    36,  // Leo(4) navamsha 1(0)
-    40,  // Leo(4) navamsha 5(4)
-    47,  // Virgo(5) navamsha 3(2)
-    51,  // Virgo(5) navamsha 7(6)
-    54,  // Libra(6) navamsha 1(0)
-    60,  // Libra(6) navamsha 7(6)
-    65,  // Scorpio(7) navamsha 3(2)
-    67,  // Scorpio(7) navamsha 5(4)
-    76,  // Sagittarius(8) navamsha 5(4)
-    80,  // Sagittarius(8) navamsha 9(8)
-    83,  // Capricorn(9) navamsha 3(2)
-    87,  // Capricorn(9) navamsha 7(6)
-    90,  // Aquarius(10) navamsha 1(0)
-    96,  // Aquarius(10) navamsha 7(6)
-    101, // Pisces(11) navamsha 3(2)
-    103, // Pisces(11) navamsha 5(4)
-  ]);
+  // Pushkar Navamsha — 24 auspicious navamsha positions (shared constant from constants/pushkar-bhaga.ts)
   planets.forEach((p) => {
     const signIdx = p.sign - 1; // 0-based
     const navamshaIdx = Math.floor((p.longitude % 30) / (30 / 9)); // 0-8
-    p.isPushkarNavamsha = PUSHKAR_NAV.has(signIdx * 9 + navamshaIdx);
+    p.isPushkarNavamsha = PUSHKAR_NAVAMSHA_SET.has(signIdx * 9 + navamshaIdx);
   });
 
-  // Pushkar Bhaga — most auspicious single degree per sign (Saravali tradition)
+  // Pushkar Bhaga — shared constant from constants/pushkar-bhaga.ts (Saravali / Kalaprakashika)
   // Orb: ±0.8 degrees
-  const PUSHKAR_BHAGA: Record<number, number> = {
-    1: 14, 2: 28, 3: 7, 4: 12, 5: 13, 6: 23,
-    7: 8,  8: 18, 9: 9, 10: 22, 11: 17, 12: 17,
-  };
   planets.forEach((p) => {
     const degInSign = p.longitude % 30;
     const pb = PUSHKAR_BHAGA[p.sign];

@@ -138,9 +138,10 @@ describe('getPanchangSnapshot', () => {
     expect(differs).toBe(true);
   });
 
-  it('weekday is consistent with JD formula', () => {
+  it('weekday is consistent with JD formula (0=Sunday)', () => {
     const snap = getPanchangSnapshot(TEST_JD, DELHI_LAT, DELHI_LNG);
-    const expectedWeekday = Math.floor(TEST_JD + 1.5) % 7;
+    // JD weekday shifted to 0=Sunday to match Date.getDay() / panchang-calc convention
+    const expectedWeekday = (Math.floor(TEST_JD + 1.5) + 1) % 7;
     expect(snap.weekday).toBe(expectedWeekday);
   });
 });

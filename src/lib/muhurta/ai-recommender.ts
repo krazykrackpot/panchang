@@ -12,6 +12,7 @@ import {
 } from '@/lib/ephem/astronomical';
 import type { ExtendedActivity } from '@/types/muhurta-ai';
 import type { LocaleText,} from '@/types/panchang';
+import { PUSHKAR_BHAGA, PUSHKAR_NAVAMSHA_SET } from '@/lib/constants/pushkar-bhaga';
 
 export interface PanchangSnapshot {
   tithi: number;
@@ -83,6 +84,21 @@ export function scorePanchangFactors(
   } else if (snap.karana === 7) {
     score -= 5;
     factors.push({ en: 'Vishti (Bhadra) Karana — inauspicious', hi: 'विष्टि (भद्रा) करण — अशुभ', sa: 'विष्टिकरणम् — अशुभम्' });
+  } else if ([8, 9, 10].includes(snap.karana)) {
+    // Sthira karanas: Shakuni(8), Chatushpada(9), Naga(10) — inauspicious
+    score -= 3;
+    factors.push({ en: 'Sthira Karana — inauspicious', hi: 'स्थिर करण — अशुभ', sa: 'स्थिरकरणम् — अशुभम्' });
+  } else if (snap.karana === 11) {
+    // Kimstughna — auspicious sthira karana
+    score += 2;
+    factors.push({ en: 'Kimstughna Karana — auspicious', hi: 'किंस्तुघ्न करण — शुभ', sa: 'किंस्तुघ्नकरणम् — शुभम्' });
+  }
+
+  // Panchaka — inauspicious when Moon is in nakshatras 23-27
+  // (Dhanishtha, Shatabhisha, Purva Bhadrapada, Uttara Bhadrapada, Revati)
+  if (snap.nakshatra >= 23 && snap.nakshatra <= 27) {
+    score -= 5;
+    factors.push({ en: 'Panchaka active — Moon in inauspicious nakshatra zone', hi: 'पंचक सक्रिय — चन्द्र अशुभ नक्षत्र क्षेत्र में', sa: 'पञ्चकं प्रवर्तते — चन्द्रः अशुभनक्षत्रक्षेत्रे' });
   }
 
   return { score: Math.max(0, Math.min(25, score)), factors };
@@ -145,14 +161,12 @@ export function scoreTransitFactors(
     const degInSign = moonSid % 30;
     const navamshaIdx = Math.floor(degInSign / (30 / 9)); // 0-8
     const signIdx = moonSign - 1; // 0-based
-    // 24 Pushkar Navamsha positions
-    const PUSHKAR_NAV = new Set([0,4,13,17,20,24,27,33,36,40,47,51,54,60,65,67,76,80,83,87,90,96,101,103]);
-    if (PUSHKAR_NAV.has(signIdx * 9 + navamshaIdx)) {
+    // 24 Pushkar Navamsha positions (shared constant from constants/pushkar-bhaga.ts)
+    if (PUSHKAR_NAVAMSHA_SET.has(signIdx * 9 + navamshaIdx)) {
       score += 8;
       factors.push({ en: 'Moon in Pushkar Navamsha — supremely auspicious', hi: 'चन्द्र पुष्कर नवांश में — अत्यंत शुभ', sa: 'चन्द्रः पुष्करनवांशे — अत्यन्तशुभम्' });
     }
-    // Pushkar Bhaga — one sacred degree per sign (Kalaprakashika)
-    const PUSHKAR_BHAGA: Record<number, number> = { 1:21, 2:14, 3:18, 4:8, 5:19, 6:9, 7:24, 8:11, 9:23, 10:14, 11:19, 12:9 };
+    // Pushkar Bhaga (shared constant from constants/pushkar-bhaga.ts — Saravali / Kalaprakashika)
     const pb = PUSHKAR_BHAGA[moonSign];
     if (pb !== undefined && Math.abs(degInSign - pb) <= 0.8) {
       score += 10;
@@ -245,8 +259,10 @@ export function getPanchangSnapshot(jd: number, lat: number, lng: number): Panch
   const karana = calculateKarana(sunriseJD);
   const moonSign = getRashiNumber(moonSid);
 
-  // Weekday from JD
-  const weekday = Math.floor(jd + 1.5) % 7;
+  // Weekday from JD — Math.floor(jd + 1.5) % 7 gives 0=Monday.
+  // All hora/choghadiya/Rahu Kaal tables use 0=Sunday (matching Date.getDay()),
+  // so shift by +1 mod 7 to align conventions.
+  const weekday = (Math.floor(jd + 1.5) + 1) % 7; // 0=Sunday
 
   return {
     tithi: tithiResult.number,

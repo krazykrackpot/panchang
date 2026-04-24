@@ -1016,8 +1016,9 @@ export function computePanchang(input: PanchangInput): PanchangData {
   } else if (tithiTransition?.endJD && tithiTransition.nextNumber !== undefined) {
     // Check if a SECOND transition occurs before next sunrise (meaning an intermediate tithi was skipped)
     const intermediateTithi = tithiTransition.nextNumber;
-    // Scan forward from the first transition end to find if the intermediate tithi ends before next sunrise
-    const step = 1 / 48; // ~30 min
+    // Scan forward from the first transition end to find if the intermediate tithi ends before next sunrise.
+    // Use 15-minute steps (1/96 JD) — 30-minute steps (1/48) can miss very short kshaya tithis (< 2 hours).
+    const step = 1 / 96; // ~15 min
     for (let scanJd = tithiTransition.endJD + step; scanJd < jdNextSunrise; scanJd += step) {
       const t = calculateTithi(scanJd).number;
       if (t !== intermediateTithi) {
@@ -1029,6 +1030,13 @@ export function computePanchang(input: PanchangInput): PanchangData {
           if (calculateTithi(mid).number === intermediateTithi) lo = mid; else hi = mid;
         }
         const kshayaEndJd = (lo + hi) / 2;
+        // Validate: confirm the boundary is a real transition (tithi changes across it)
+        const beforeBoundary = calculateTithi(kshayaEndJd - 1e-6).number;
+        const afterBoundary = calculateTithi(kshayaEndJd + 1e-6).number;
+        if (beforeBoundary === afterBoundary) {
+          // False positive — binary search converged on a non-transition; skip
+          continue;
+        }
         const kshayaData = TITHIS[intermediateTithi - 1] || TITHIS[0];
         kshayaTithi = {
           tithi: kshayaData,

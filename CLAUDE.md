@@ -2,14 +2,15 @@
 
 ## Definition of Done (non-negotiable)
 
-Before claiming any task complete, ALL FOUR must be true:
+Before claiming any task complete, ALL FIVE must be true:
 
 1. `npx tsc --noEmit -p tsconfig.build-check.json` passes
 2. `npx vitest run` passes (or new tests added for the change)
 3. `npx next build` succeeds with zero errors
 4. The change was **verified in the running browser** — not just via curl of server HTML. Click the button, fill the form, watch the UI respond.
+5. **If touching astronomical/panchang/kundali computation**: spot-check at least 3 computed values against Prokerala or Shubh Panchang for the same date + location. Compare tithi, nakshatra, masa, sunrise, planet positions — whatever the change affects. "It type-checks" is not verification. (See Lesson K.)
 
-If you skipped any of the four, say so explicitly — never report "done" while a gate failed. For production-visible changes (auth, checkout, DB writes), also run `vercel logs` after deploy to confirm no runtime errors.
+If you skipped any of the five, say so explicitly — never report "done" while a gate failed. For production-visible changes (auth, checkout, DB writes), also run `vercel logs` after deploy to confirm no runtime errors.
 
 ## Domain & Location Assumptions
 
@@ -323,6 +324,45 @@ After every `git push`:
 - When asked for analysis or assessment: explore code first, don't ask clarifying questions.
 - For multi-step work: save task list, don't rely on conversation history.
 - After any refactoring: search for ALL references to changed variables/functions.
+
+## Lessons from Audit (Apr 24, 2026) — 52 bugs found across 3 rounds
+
+These shipped to production and affected real users. Treat as absolute rules.
+
+### K. Every astronomical value must be verified against a reference source
+- Purnimant months were computed by subtracting a fixed 15 days from New Moon dates. This is astronomically wrong (Full Moon to New Moon varies 13.9–15.6 days). Months started on Ashtami instead of Purnima. **Would have been caught instantly by comparing one date with Prokerala.**
+- Rule: Before shipping ANY astronomical computation (moon phases, tithis, nakshatras, planetary positions, month boundaries, dasha dates), spot-check at least 3 dates against Prokerala or Shubh Panchang. "It type-checks" is not verification.
+- Rule: Never use fixed-interval approximations for lunar phenomena. The Moon's orbit is elliptical — all intervals vary.
+
+### L. Never use `new Date()` without explicit UTC
+- `new Date(year, month-1, day, hour, minute)` interprets arguments in the **server's local timezone** (UTC on Vercel, but variable in dev). Birth time 10:30 IST became 10:30 UTC. All dasha start/end dates were shifted by the birth timezone offset.
+- Rule: Always use `new Date(Date.UTC(y, m-1, d, h, m))` or `date.getTime() + ms` for astronomical date construction. Never use the local-time `new Date(y,m,d,h,m)` constructor in computation code.
+- Rule: Grep for `new Date(` in any computation file before shipping. Every instance must either use `Date.UTC` or have a comment explaining why local time is correct.
+
+### M. Same data must come from the same source — or it will drift
+- The daily panchang page showed masa from a solar approximation (`getMasa()` — Sun's current sign), while the festival engine used actual lunar month boundaries (New Moon to New Moon). Users saw different months on different pages for the same date. Adhika Masa was completely missing from the daily view.
+- Rule: When two features display "the same thing" (month name, tithi, nakshatra), they MUST call the same function. If a solar approximation exists alongside a lunar computation, the solar one must be removed or clearly labeled as a fallback.
+
+### N. Trace the FULL data flow before fixing a bug
+- BirthForm "Edit" bug took 2 attempts: first fix added a missing `relationship` field (surface guess), second fix discovered a `useEffect` that unconditionally overwrote form data with the logged-in user's profile. The real bug was one scroll away from the first guess.
+- Rule: Before editing any file to fix a bug, trace the complete path: what triggers the action → what state changes → what effects run → what re-renders occur. Check for useEffects that stomp on the state you're looking at.
+
+### O. Weekday conventions: `Math.floor(jd + 1.5) % 7` gives 0=Sunday
+- KP ruling planets had weekday lord shifted by one day because the code assumed 0=Monday. The muhurta engine had a similar issue.
+- Rule: The JD weekday formula `Math.floor(jd + 1.5) % 7` gives **0=Sunday**, matching `Date.getUTCDay()`. Any code using JD weekdays must use this convention. Add a comment at every weekday computation: `// 0=Sun, 1=Mon, ..., 6=Sat`
+
+### P. Fractional years must use millisecond arithmetic, not month truncation
+- `addYears()` used `Math.floor((years % 1) * 12)` months — truncating sub-month fractions. Over 12+ dasha periods, dates drifted by months. A separate `calcGrahaDasha` function used `setFullYear/setMonth` with the same problem.
+- Rule: `new Date(date.getTime() + years * 365.25 * 24 * 60 * 60 * 1000)` — this is the ONLY correct pattern for adding fractional years. Never use `setMonth` or `setFullYear` for fractional periods.
+
+### Q. Constants that appear in multiple files must live in one shared file
+- Pushkar Bhaga degree tables existed in two files with completely different values. Only one was correct.
+- Rule: Any Jyotish constant (lordships, exaltation degrees, friendship tables, karana cycles, nakshatra data) must be defined ONCE in `src/lib/constants/` and imported everywhere. Grep for the constant name before creating a new one.
+
+### R. Midnight-crossing time ranges need wrap-aware comparison
+- "NOW" badges never appeared for night choghadiya/hora/muhurta slots that crossed midnight (23:30→01:15). Three separate instances of the same bug.
+- Rule: Any time-range comparison `now >= start && now < end` MUST handle midnight wrapping: `if (end < start) return now >= start || now < end;`
+- Rule: When fixing a pattern bug, grep the entire codebase for the same pattern. If it appears in 3 places, fix all 3 in one commit.
 
 ## Patterns & Best Practices (Learned from Bug Fixes)
 

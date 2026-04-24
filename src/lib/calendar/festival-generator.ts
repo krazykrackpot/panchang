@@ -5,7 +5,7 @@
  * to generate the complete festival calendar. Replaces the scanning-based approach.
  */
 
-import { dateToJD, approximateSunrise, approximateSunset, formatTime, normalizeDeg, toSidereal, sunLongitude } from '@/lib/ephem/astronomical';
+import { dateToJD, approximateSunriseSafe, approximateSunsetSafe, formatTime, normalizeDeg, toSidereal, sunLongitude } from '@/lib/ephem/astronomical';
 import { calculateMoonriseUT } from '@/lib/ephem/panchang-calc';
 
 /**
@@ -180,8 +180,8 @@ function computeEkadashiParanaFromTable(
   const [py, pm, pday] = paranaDayStr.split('-').map(Number);
   const tz = getUTCOffsetForDate(py, pm, pday, timezone);
   const jdApprox = dateToJD(py, pm, pday, 0);
-  const sunriseUT = approximateSunrise(jdApprox, lat, lon);
-  const sunsetUT = approximateSunset(jdApprox, lat, lon);
+  const sunriseUT = approximateSunriseSafe(jdApprox, lat, lon);
+  const sunsetUT = approximateSunsetSafe(jdApprox, lat, lon);
 
   // Hari Vasara = first 1/4 of Dwadashi duration
   const dwDuration = dwadashiEntry.endJd - dwadashiEntry.startJd;
@@ -287,8 +287,8 @@ function computeSimpleParana(date: string, lat: number, lon: number, timezone: s
   const y = pd.getFullYear(), m = pd.getMonth() + 1, d = pd.getDate();
   const tz = getUTCOffsetForDate(y, m, d, timezone);
   const jd = dateToJD(y, m, d, 0);
-  const srUT = approximateSunrise(jd, lat, lon);
-  const ssUT = approximateSunset(jd, lat, lon);
+  const srUT = approximateSunriseSafe(jd, lat, lon);
+  const ssUT = approximateSunsetSafe(jd, lat, lon);
   const ft = (ut: number) => formatTime(((ut % 24) + 24) % 24, tz);
 
   const paranaDate = `${y}-${m.toString().padStart(2,'0')}-${d.toString().padStart(2,'0')}`;
@@ -320,14 +320,14 @@ function computePujaMuhurat(
   const [y, m, d] = date.split('-').map(Number);
   const tz = getUTCOffsetForDate(y, m, d, timezone);
   const jd = dateToJD(y, m, d, 0);
-  const srUT = approximateSunrise(jd, lat, lon);
-  const ssUT = approximateSunset(jd, lat, lon);
+  const srUT = approximateSunriseSafe(jd, lat, lon);
+  const ssUT = approximateSunsetSafe(jd, lat, lon);
   const dayLen = ssUT - srUT;
   const ft = (ut: number) => formatTime(((ut % 24) + 24) % 24, tz);
 
   // Next day sunrise for night-length calculations
   const jdNext = dateToJD(y, m, d + 1, 0);
-  const srNextUT = approximateSunrise(jdNext, lat, lon);
+  const srNextUT = approximateSunriseSafe(jdNext, lat, lon);
   const nightLen = (srNextUT + 24) - ssUT; // hours from sunset to next sunrise
 
   // Madhyahna = middle 1/5 of daytime (2/5 to 3/5) — matches The classical definition
@@ -434,7 +434,7 @@ export function generateFestivalCalendarV2(
         const [fy, fm, fd] = match.sunriseDate.split('-').map(Number);
         // Compute sunset of the PREVIOUS day
         const prevDayJd = dateToJD(fy, fm, fd - 1, 12 - (getUTCOffsetForDate(fy, fm, fd - 1, timezone)));
-        const prevSunsetUT = approximateSunset(prevDayJd, lat, lon);
+        const prevSunsetUT = approximateSunsetSafe(prevDayJd, lat, lon);
         const prevSunsetJd = dateToJD(fy, fm, fd - 1, prevSunsetUT);
         // If the tithi started before sunset of the previous day,
         // the festival is on the previous day (evening observation)

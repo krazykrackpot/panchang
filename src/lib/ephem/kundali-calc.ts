@@ -2,7 +2,7 @@ import type { LocaleText } from '@/types/panchang';
 import {
   dateToJD, sunLongitude, moonLongitude, toSidereal,
   getRashiNumber, getNakshatraNumber, getNakshatraPada,
-  getPlanetaryPositions, lahiriAyanamsha, getAyanamsha, normalizeDeg, formatDegrees, approximateSunrise, approximateSunset,
+  getPlanetaryPositions, lahiriAyanamsha, getAyanamsha, normalizeDeg, formatDegrees, approximateSunriseSafe, approximateSunsetSafe,
 } from './astronomical';
 import { computeFullCoordinates, computeCombust } from './coordinates';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -829,8 +829,8 @@ export function generateKundali(birthData: BirthData): KundaliData {
     const jd0h = dateToJD(year, month, day, 0);
 
     // Sunrise and sunset in UT hours on the birth date
-    const sunriseUT = approximateSunrise(jd0h, birthData.lat, birthData.lng);
-    const sunsetUT  = approximateSunset(jd0h, birthData.lat, birthData.lng);
+    const sunriseUT = approximateSunriseSafe(jd0h, birthData.lat, birthData.lng);
+    const sunsetUT  = approximateSunsetSafe(jd0h, birthData.lat, birthData.lng);
     const dayDuration = sunsetUT - sunriseUT; // hours
 
     // Weekday of birth date (JS: 0=Sun, 1=Mon, ... 6=Sat)
@@ -1040,7 +1040,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
     specialLagnas: (() => {
       const sunP = planets.find(p => p.planet.id === 0);
       const sunDeg = sunP?.longitude || 0;
-      const sunriseUTApprox = approximateSunrise(jd, birthData.lat, birthData.lng);
+      const sunriseUTApprox = approximateSunriseSafe(jd, birthData.lat, birthData.lng);
       return calculateSpecialLagnas(siderealAsc, sunDeg, moonSidLong, sunriseUTApprox, utHour, ascSign);
     })(),
     avasthas: calculateAvasthas(planets),

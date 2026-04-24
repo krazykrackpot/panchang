@@ -2,7 +2,7 @@ import {
   dateToJD, calculateTithi, calculateYoga, calculateKarana,
   sunLongitude, moonLongitude, toSidereal,
   getNakshatraNumber, getNakshatraPada, getRashiNumber,
-  approximateSunrise, approximateSunset, formatTime,
+  approximateSunrise, approximateSunriseSafe, formatTime,
   calculateRahuKaal, getPlanetaryPositions,
   getMasa, MASA_NAMES, RITU_NAMES, SAMVATSARA_NAMES,
   getSamvatsara, getRitu, getAyana, lahiriAyanamsha, normalizeDeg,
@@ -999,7 +999,8 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // Compute actual next-day sunrise (not +1.0 approximation) for high-latitude accuracy.
   // At 60°N near solstice, sunrise-to-sunrise can be 22.5-25.5 hours.
   const nextDayJdNoon = jdSunrise + 1.0; // scan next day
-  const nextSunriseUT = approximateSunrise(nextDayJdNoon, lat, lng);
+  // Polar fallback: if next sunrise is null, approximate as 24h later
+  const nextSunriseUT = approximateSunriseSafe(nextDayJdNoon, lat, lng);
   const nextDayMidnightJd = Math.floor(nextDayJdNoon - 0.5) + 0.5;
   const jdNextSunrise = nextDayMidnightJd + nextSunriseUT / 24;
   const tithiAtNextSunrise = calculateTithi(jdNextSunrise).number;
@@ -1411,7 +1412,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   };
   const agniData = AGNI_VAAS_DATA[weekday] || AGNI_VAAS_DATA[0];
   // Next day sunrise as validity end
-  const nextDaySunriseUT = approximateSunrise(jdSunrise + 1, lat, lng);
+  const nextDaySunriseUT = approximateSunriseSafe(jdSunrise + 1, lat, lng);
   const agniValidUntil = formatTime(nextDaySunriseUT, tzOffset);
   const agniVaas = { name: agniData.name, nature: agniData.nature, validUntil: agniValidUntil };
 

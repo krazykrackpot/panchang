@@ -3,7 +3,7 @@
  */
 
 import {
-  dateToJD, approximateSunrise, approximateSunset,
+  dateToJD, approximateSunriseSafe, approximateSunsetSafe,
 } from '@/lib/ephem/astronomical';
 import {
   scorePanchangFactors, scoreTransitFactors,
@@ -64,8 +64,8 @@ export function scanDateRange(options: ScanOptions): ScoredTimeWindow[] {
     const day = current.getDate();
 
     const jdNoon = dateToJD(year, month, day, 12 - tz);
-    const sunriseUT = approximateSunrise(jdNoon, lat, lng);
-    const sunsetUT = approximateSunset(jdNoon, lat, lng);
+    const sunriseUT = approximateSunriseSafe(jdNoon, lat, lng);
+    const sunsetUT = approximateSunsetSafe(jdNoon, lat, lng);
 
     // Get panchang snapshot at sunrise
     const jdSunrise = dateToJD(year, month, day, sunriseUT);

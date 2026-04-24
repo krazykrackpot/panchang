@@ -11,7 +11,7 @@
  */
 
 import {
-  dateToJD, calculateTithi, approximateSunrise, approximateSunset,
+  dateToJD, calculateTithi, approximateSunriseSafe, approximateSunsetSafe,
   formatTime, normalizeDeg, toSidereal, sunLongitude, moonLongitude,
 } from '@/lib/ephem/astronomical';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -152,7 +152,7 @@ function findTithiEndJd(startJd: number, currentTithi: number): number {
 function sunriseJdForDate(dateStr: string, lat: number, lon: number): number {
   const [y, m, d] = dateStr.split('-').map(Number);
   const jdApprox = dateToJD(y, m, d, 0);
-  const srUT = approximateSunrise(jdApprox, lat, lon);
+  const srUT = approximateSunriseSafe(jdApprox, lat, lon);
   return dateToJD(y, m, d, srUT);
 }
 
@@ -176,7 +176,7 @@ function buildLunarMonths(year: number, lat: number, lon: number, timezone: stri
       const dm = dd.getMonth() + 1;
       const ddy = dd.getDate();
       const jdApprox = dateToJD(dy, dm, ddy, 0);
-      const srUT = approximateSunrise(jdApprox, lat, lon);
+      const srUT = approximateSunriseSafe(jdApprox, lat, lon);
       const jdSr = dateToJD(dy, dm, ddy, srUT);
       const t = calculateTithi(jdSr).number;
       if (t === 30 && prevTithi !== 30) {
@@ -247,7 +247,7 @@ export function buildYearlyTithiTable(
 
   // ─── Phase 1: Build raw tithi entries (without lunar month assignment) ───
   const startJd = dateToJD(year - 1, 12, 1, 0);
-  const startSrUT = approximateSunrise(startJd, lat, lon);
+  const startSrUT = approximateSunriseSafe(startJd, lat, lon);
   let currentJd = dateToJD(year - 1, 12, 1, startSrUT);
   const scanEndJd = dateToJD(year + 1, 2, 1, 12);
 

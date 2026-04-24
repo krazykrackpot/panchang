@@ -3,7 +3,7 @@
  * with computed astronomical fields (tithi, nakshatra, yoga, karana, vara, masa, etc.)
  */
 
-import { dateToJD, approximateSunrise, sunLongitude, moonLongitude, toSidereal, calculateTithi, calculateKarana, getNakshatraNumber, getRashiNumber, calculateYoga, getMasa, getSamvatsara, getRitu, getAyana, MASA_NAMES, SAMVATSARA_NAMES, RITU_NAMES } from '@/lib/ephem/astronomical';
+import { dateToJD, approximateSunriseSafe, sunLongitude, moonLongitude, toSidereal, calculateTithi, calculateKarana, getNakshatraNumber, getRashiNumber, calculateYoga, getMasa, getSamvatsara, getRitu, getAyana, MASA_NAMES, SAMVATSARA_NAMES, RITU_NAMES } from '@/lib/ephem/astronomical';
 import { TITHIS } from '@/lib/constants/tithis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { YOGAS } from '@/lib/constants/yogas';
@@ -63,7 +63,7 @@ export function generateSankalpa(input: SankalpaInput): GeneratedSankalpa {
   const month = date.getMonth() + 1;
   const day = date.getDate();
   const jdNoon = dateToJD(year, month, day, 12 - timezoneOffset);
-  const sunriseUT = approximateSunrise(jdNoon, input.lat, input.lng);
+  const sunriseUT = approximateSunriseSafe(jdNoon, input.lat, input.lng);
   const jd = dateToJD(year, month, day, sunriseUT);
 
   // 2. Sun & Moon sidereal longitudes

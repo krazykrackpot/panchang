@@ -7,7 +7,7 @@
  * Festivals are tied to Tithi, Nakshatra, or solar events.
  */
 
-import { dateToJD, sunLongitude, moonLongitude, toSidereal, calculateTithi, normalizeDeg, approximateSunrise, approximateSunset, formatTime } from '@/lib/ephem/astronomical';
+import { dateToJD, sunLongitude, moonLongitude, toSidereal, calculateTithi, normalizeDeg, approximateSunriseSafe, approximateSunsetSafe, formatTime } from '@/lib/ephem/astronomical';
 import { generateEclipseCalendar } from '@/lib/calendar/eclipses';
 import { getHinduMonth, getNextHinduMonth, getEkadashiName, ADHIKA_MASA_EKADASHI } from '@/lib/constants/festival-details';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -62,7 +62,7 @@ function findTithiDate(year: number, month: number, targetTithi: number, lat: nu
     const gm = d.getMonth() + 1;
     const gd = d.getDate();
     const jdApprox = dateToJD(gy, gm, gd, 0);
-    const srUT = approximateSunrise(jdApprox, lat, lon);
+    const srUT = approximateSunriseSafe(jdApprox, lat, lon);
     const jd = dateToJD(gy, gm, gd, srUT); // use actual sunrise UT
     const { number } = calculateTithi(jd);
 
@@ -92,7 +92,7 @@ function findTithiDateFromDay(year: number, month: number, startDay: number, tar
     const gm = d.getMonth() + 1;
     const gd = d.getDate();
     const jdApprox = dateToJD(gy, gm, gd, 0);
-    const srUT = approximateSunrise(jdApprox, lat, lon);
+    const srUT = approximateSunriseSafe(jdApprox, lat, lon);
     const jd = dateToJD(gy, gm, gd, srUT);
     const { number } = calculateTithi(jd);
 
@@ -147,7 +147,7 @@ function findEkadashiDate(year: number, month: number, targetTithi: number, lat:
     const dateStr = `${gy}-${gm.toString().padStart(2, '0')}-${gd.toString().padStart(2, '0')}`;
 
     const jdApprox = dateToJD(gy, gm, gd, 0);
-    const srUT = approximateSunrise(jdApprox, lat, lon);
+    const srUT = approximateSunriseSafe(jdApprox, lat, lon);
     const tithiAtSunrise = calculateTithi(dateToJD(gy, gm, gd, srUT)).number;
 
     if (tithiAtSunrise === targetTithi) {
@@ -156,7 +156,7 @@ function findEkadashiDate(year: number, month: number, targetTithi: number, lat:
     }
 
     // Check for kshaya tithi: present at sunset but not at next sunrise
-    const ssUT = approximateSunset(jdApprox, lat, lon);
+    const ssUT = approximateSunsetSafe(jdApprox, lat, lon);
     const tithiAtSunset = calculateTithi(dateToJD(gy, gm, gd, ssUT)).number;
 
     if (tithiAtSunset === targetTithi) {
@@ -166,7 +166,7 @@ function findEkadashiDate(year: number, month: number, targetTithi: number, lat:
       const ny = nextDay.getFullYear();
       const nm = nextDay.getMonth() + 1;
       const nd = nextDay.getDate();
-      const nextSrUT = approximateSunrise(dateToJD(ny, nm, nd, 0), lat, lon);
+      const nextSrUT = approximateSunriseSafe(dateToJD(ny, nm, nd, 0), lat, lon);
       const tithiAtNextSunrise = calculateTithi(dateToJD(ny, nm, nd, nextSrUT)).number;
 
       if (tithiAtNextSunrise !== targetTithi) {
@@ -321,12 +321,12 @@ function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DE
   const paranaDate = nextDay(ekadashiDate);
   const [y, m, d] = paranaDate.split('-').map(Number);
   const jdRef = dateToJD(y, m, d, 6);
-  const sunriseUT = approximateSunrise(jdRef, lat, lon);
-  const sunsetUT = approximateSunset(jdRef, lat, lon);
+  const sunriseUT = approximateSunriseSafe(jdRef, lat, lon);
+  const sunsetUT = approximateSunsetSafe(jdRef, lat, lon);
 
   // Determine which Dwadashi tithi to track (12 for Shukla, 27 for Krishna)
   const [ey, em, ed] = ekadashiDate.split('-').map(Number);
-  const ekJd = dateToJD(ey, em, ed, approximateSunrise(dateToJD(ey, em, ed, 6), lat, lon));
+  const ekJd = dateToJD(ey, em, ed, approximateSunriseSafe(dateToJD(ey, em, ed, 6), lat, lon));
   const ekTithi = calculateTithi(ekJd).number;
   const dwadashiNum = ekTithi <= 15 ? 12 : 27;
 
@@ -534,8 +534,8 @@ function computePurnimaParana(purnimaDate: string, lat = DEFAULT_LAT, lon = DEFA
 } {
   const [y, m, d] = purnimaDate.split('-').map(Number);
   const jd = dateToJD(y, m, d, 6);
-  const sunriseUT = approximateSunrise(jd, lat, lon);
-  const sunsetUT = approximateSunset(jd, lat, lon);
+  const sunriseUT = approximateSunriseSafe(jd, lat, lon);
+  const sunsetUT = approximateSunsetSafe(jd, lat, lon);
   const moonriseUT = approxMoonrise(15, sunriseUT, sunsetUT);
 
   return {
@@ -559,8 +559,8 @@ function computeChaturthiParana(chaturthiDate: string, lat = DEFAULT_LAT, lon = 
 } {
   const [y, m, d] = chaturthiDate.split('-').map(Number);
   const jd = dateToJD(y, m, d, 6);
-  const sunriseUT = approximateSunrise(jd, lat, lon);
-  const sunsetUT = approximateSunset(jd, lat, lon);
+  const sunriseUT = approximateSunriseSafe(jd, lat, lon);
+  const sunsetUT = approximateSunsetSafe(jd, lat, lon);
   const moonriseUT = approxMoonrise(19, sunriseUT, sunsetUT);
 
   return {
@@ -584,7 +584,7 @@ function computeAmavasyaParana(amavasyaDate: string, lat = DEFAULT_LAT, lon = DE
   const paranaDate = nextDay(amavasyaDate);
   const [y, m, d] = paranaDate.split('-').map(Number);
   const jd = dateToJD(y, m, d, 6);
-  const sunriseUT = approximateSunrise(jd, lat, lon);
+  const sunriseUT = approximateSunriseSafe(jd, lat, lon);
 
   return {
     paranaDate,
@@ -606,7 +606,7 @@ function computePradoshamParana(pradoshamDate: string, lat = DEFAULT_LAT, lon = 
 } {
   const [y, m, d] = pradoshamDate.split('-').map(Number);
   const jd = dateToJD(y, m, d, 6);
-  const sunsetUT = approximateSunset(jd, lat, lon);
+  const sunsetUT = approximateSunsetSafe(jd, lat, lon);
   const pujaEndUT = sunsetUT + 2.5;
 
   return {
@@ -982,8 +982,8 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
   for (const eclipse of eclipseEvents) {
     const [ey, em, ed] = eclipse.date.split('-').map(Number);
     const eclipseJd = dateToJD(ey, em, ed, 6);
-    const sunriseUT = approximateSunrise(eclipseJd, lat, lon);
-    const sunsetUT = approximateSunset(eclipseJd, lat, lon);
+    const sunriseUT = approximateSunriseSafe(eclipseJd, lat, lon);
+    const sunsetUT = approximateSunsetSafe(eclipseJd, lat, lon);
 
     // Approximate eclipse max time
     let maxTimeUT: number;

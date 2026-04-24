@@ -7,7 +7,7 @@ import { Clock, ArrowLeft, Sparkles, Timer, CalendarDays } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { Link } from '@/lib/i18n/navigation';
 import { useLocationStore } from '@/stores/location-store';
-import { dateToJD, approximateSunrise, approximateSunset, formatTime } from '@/lib/ephem/astronomical';
+import { dateToJD, approximateSunriseSafe, approximateSunsetSafe, formatTime } from '@/lib/ephem/astronomical';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { tl } from '@/lib/utils/trilingual';
@@ -163,11 +163,11 @@ export default function HoraPage() {
     const jd = dateToJD(y, m, d, 12 - tzOffset); // noon local → UT
 
     // Sunrise/sunset in UT decimal hours
-    const sunriseUT = approximateSunrise(jd, lat, lng);
-    const sunsetUT = approximateSunset(jd, lat, lng);
+    const sunriseUT = approximateSunriseSafe(jd, lat, lng);
+    const sunsetUT = approximateSunsetSafe(jd, lat, lng);
 
     // Next day sunrise
-    const nextDaySunriseUT = approximateSunrise(jd + 1, lat, lng);
+    const nextDaySunriseUT = approximateSunriseSafe(jd + 1, lat, lng);
 
     // Convert to local HH:MM
     const sunriseLocal = formatTime(sunriseUT, tzOffset);

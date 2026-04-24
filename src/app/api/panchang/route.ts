@@ -6,7 +6,7 @@ import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { buildYearlyTithiTable, lookupTithiAtSunrise } from '@/lib/calendar/tithi-table';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
-import { dateToJD, approximateSunrise } from '@/lib/ephem/astronomical';
+import { dateToJD, approximateSunriseSafe } from '@/lib/ephem/astronomical';
 
 const panchangSchema = z.object({
   year: z.coerce.number().int().min(1900).max(2200),
@@ -70,7 +70,7 @@ export async function GET(request: Request) {
       if (timezone) {
         const table = buildYearlyTithiTable(year, lat, lng, timezone);
         const jdApprox = dateToJD(year, month, day, 0);
-        const srUT = approximateSunrise(jdApprox, lat, lng);
+        const srUT = approximateSunriseSafe(jdApprox, lat, lng);
         const sunriseJd = dateToJD(year, month, day, srUT);
         const entry = lookupTithiAtSunrise(table, sunriseJd);
         if (entry) {

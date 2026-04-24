@@ -5,7 +5,7 @@
  * Reference: Vedic Astrology: An Integrated Approach (PVR)
  */
 
-import { dateToJD, calculateTithi, sunLongitude, moonLongitude, toSidereal, approximateSunrise } from '@/lib/ephem/astronomical';
+import { dateToJD, calculateTithi, sunLongitude, moonLongitude, toSidereal, approximateSunriseSafe } from '@/lib/ephem/astronomical';
 
 export interface TithiPraveshaResult {
   year: number;
@@ -34,7 +34,7 @@ export function calculateTithiPravesha(
 ): TithiPraveshaResult | null {
   // Get birth tithi
   const birthJD = dateToJD(birthYear, birthMonth, birthDay, 12 - tzOffset);
-  const birthSunrise = approximateSunrise(birthJD, lat, lng);
+  const birthSunrise = approximateSunriseSafe(birthJD, lat, lng);
   const birthJDSunrise = dateToJD(birthYear, birthMonth, birthDay, birthSunrise);
   const birthTithi = calculateTithi(birthJDSunrise);
   const birthTithiNum = birthTithi.number;

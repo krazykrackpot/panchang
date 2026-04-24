@@ -310,7 +310,7 @@ export function calculateKarana(jd: number): number {
  * Approximate sunrise time for a location
  * Returns hours from midnight (UT)
  */
-export function approximateSunrise(jd: number, lat: number, lng: number): number {
+export function approximateSunrise(jd: number, lat: number, lng: number): number | null {
   if (isSwissEphAvailable()) {
     return swissSunrise(jd, lat, lng);
   }
@@ -322,7 +322,8 @@ export function approximateSunrise(jd: number, lat: number, lng: number): number
 
   const cosH = (Math.sin(toRad(-0.8333)) - Math.sin(toRad(lat)) * Math.sin(toRad(decl)))
     / (Math.cos(toRad(lat)) * Math.cos(toRad(decl)));
-  if (cosH > 1 || cosH < -1) return 6;
+  // Polar latitude: Sun never rises (cosH > 1) or never sets (cosH < -1)
+  if (cosH > 1 || cosH < -1) return null;
   const H = toDeg(Math.acos(cosH));
 
   // Equation of Time (simplified Meeus)
@@ -339,7 +340,7 @@ export function approximateSunrise(jd: number, lat: number, lng: number): number
   return ((solarNoon - H / 15) % 24 + 24) % 24;
 }
 
-export function approximateSunset(jd: number, lat: number, lng: number): number {
+export function approximateSunset(jd: number, lat: number, lng: number): number | null {
   if (isSwissEphAvailable()) {
     return swissSunset(jd, lat, lng);
   }
@@ -351,7 +352,8 @@ export function approximateSunset(jd: number, lat: number, lng: number): number 
 
   const cosH = (Math.sin(toRad(-0.8333)) - Math.sin(toRad(lat)) * Math.sin(toRad(decl)))
     / (Math.cos(toRad(lat)) * Math.cos(toRad(decl)));
-  if (cosH > 1 || cosH < -1) return 18;
+  // Polar latitude: Sun never rises (cosH > 1) or never sets (cosH < -1)
+  if (cosH > 1 || cosH < -1) return null;
   const H = toDeg(Math.acos(cosH));
 
   // Equation of Time (simplified Meeus)
@@ -366,6 +368,20 @@ export function approximateSunset(jd: number, lat: number, lng: number): number 
 
   const solarNoon = (720 - 4 * lng - eot) / 60; // in hours UT
   return ((solarNoon + H / 15) % 24 + 24) % 24;
+}
+
+/**
+ * Safe wrappers that fall back to 6:00/18:00 when sunrise/sunset is null (polar latitudes).
+ * Use these in callers where null handling is impractical (festivals, calendars, etc.).
+ * The raw approximateSunrise/approximateSunset should be used in panchang-calc where
+ * polar warnings are surfaced to the user.
+ */
+export function approximateSunriseSafe(jd: number, lat: number, lng: number): number {
+  return approximateSunrise(jd, lat, lng) ?? 6;
+}
+
+export function approximateSunsetSafe(jd: number, lat: number, lng: number): number {
+  return approximateSunset(jd, lat, lng) ?? 18;
 }
 
 /**

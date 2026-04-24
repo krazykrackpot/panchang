@@ -220,7 +220,7 @@ export function swissAllPlanets(jd: number): {
  * Falls back to corrected Meeus formula if rise_trans fails.
  * Returns UT decimal hours (same format as approximateSunrise in astronomical.ts).
  */
-export function swissSunrise(jd: number, lat: number, lng: number): number {
+export function swissSunrise(jd: number, lat: number, lng: number): number | null {
   const se = getSweph();
   if (!se) return 6.0;
 
@@ -240,7 +240,8 @@ export function swissSunrise(jd: number, lat: number, lng: number): number {
     15,      // standard temperature °C
   );
 
-  if (result.flag === -1 || result.error || !result.data) return 6.0; // polar / error
+  // Polar latitude or error: Sun never rises/sets
+  if (result.flag === -1 || result.error || !result.data) return null;
 
   // Convert result JD to UT decimal hours from midnight
   const utHours = (result.data - jdMidnight) * 24;
@@ -251,7 +252,7 @@ export function swissSunrise(jd: number, lat: number, lng: number): number {
  * Compute sunset UT hours using Swiss Ephemeris rise_trans (sub-minute accuracy).
  * Falls back gracefully if rise_trans fails.
  */
-export function swissSunset(jd: number, lat: number, lng: number): number {
+export function swissSunset(jd: number, lat: number, lng: number): number | null {
   const se = getSweph();
   if (!se) return 18.0;
 
@@ -269,7 +270,8 @@ export function swissSunset(jd: number, lat: number, lng: number): number {
     15,
   );
 
-  if (result.flag === -1 || result.error || !result.data) return 18.0;
+  // Polar latitude or error: Sun never rises/sets
+  if (result.flag === -1 || result.error || !result.data) return null;
 
   const utHours = (result.data - jdMidnight) * 24;
   return ((utHours % 24) + 24) % 24;

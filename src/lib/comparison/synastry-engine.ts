@@ -64,6 +64,9 @@ export interface SynastryAspect {
   interpretation: LocaleText;
 }
 
+// Western-style degree-based aspects with wide orbs.
+// Vedic (Jyotish) uses sign-based aspects — full aspect on 7th sign,
+// special aspects per planet (Mars: 4/8, Jupiter: 5/9, Saturn: 3/10).
 const ASPECT_TYPES = [
   { name: 'Conjunction' as const, symbol: '☌', angle: 0, orb: 10, harmonious: true },
   { name: 'Opposition' as const, symbol: '☍', angle: 180, orb: 10, harmonious: false },

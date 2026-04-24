@@ -66,6 +66,8 @@ function computeVarna(boy: MatchInput, girl: MatchInput): number {
 // Chatushpada(0)=Aries,Taurus,Sagittarius  Manava(1)=Gemini,Virgo,Libra,Aquarius
 // Jalachara(2)=Cancer,Pisces  Vanachara(3)=Leo,Capricorn  Keeta(4)=Scorpio
 // Source: Muhurta Chintamani — Leo is Vanachara (wild/forest), Aquarius is Manava (human)
+// Note: Sagittarius classified as Chatushpada per Muhurta Chintamani.
+// Some authorities classify the upper half (Dhanu) as Manava (human archer).
 const RASHI_VASHYA = [0, 0, 1, 2, 3, 1, 1, 4, 0, 3, 1, 2]; // Aries..Pisces
 
 // Compatibility matrix: [boy][girl] => points

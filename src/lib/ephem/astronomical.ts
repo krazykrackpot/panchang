@@ -103,6 +103,13 @@ export function moonLongitude(jd: number): number {
   return _meeusMoonLongitude(jd);
 }
 
+/**
+ * Meeus simplified planetary formulas — accuracy limits:
+ *   Sun: ±0.01°  |  Moon: ±0.5°  |  Inner planets (Venus, Mars): ±1°
+ *   Outer planets (Jupiter, Saturn): ±1-3°  |  Mercury: ±5° near greatest elongation
+ * For production accuracy, Swiss Ephemeris is recommended.
+ * When Swiss Ephemeris is available (isSwissEphAvailable()), these fallbacks are not used.
+ */
 function _meeusMoonLongitude(jd: number): number {
   const t = T(jd);
 
@@ -308,7 +315,9 @@ export function calculateKarana(jd: number): number {
   const karanaIndex = Math.floor(degree / 6);
   // Map to the 11 karanas (7 chara + 4 sthira, cycling pattern)
   if (karanaIndex === 0) return 11; // Kimstughna (first half of S1)
-  if (karanaIndex >= 57) return [8, 9, 10][karanaIndex - 57]; // Last 3 fixed: Shakuni(8), Chatushpada(9), Naga(10) — 1-based IDs
+  // Last 3 fixed karanas: Shakuni(8), Chatushpada(9), Naga(10) — 1-based IDs
+  // Bounds check: karanaIndex can be at most 59 (degree < 360), but clamp defensively
+  if (karanaIndex >= 57) return [8, 9, 10][Math.min(karanaIndex - 57, 2)];
   return ((karanaIndex - 1) % 7) + 1; // Chara karanas cycle
 }
 
@@ -729,6 +738,13 @@ export const SAMVATSARA_NAMES = [
 
 // Get current Vikram Samvatsara (60-year Jupiter cycle)
 // Used in Sankalpa. Vikram Samvat 2083 (2026 CE) = Siddharthi
+//
+// NOTE: This uses a Gregorian year approximation. Strictly, the samvatsara
+// changes at Chaitra Shukla Pratipada (Hindu New Year, typically March/April).
+// For dates in January–March, the samvatsara should technically be based on
+// (year - 1) if the date falls before Chaitra Shukla Pratipada of that year.
+// This simplified formula treats the Gregorian year boundary as the rollover,
+// which may be off by one samvatsara for ~3 months (Jan–Mar).
 export function getSamvatsara(year: number): number {
   // Vikram Samvatsara: (gregorian_year + 6) % 60
   // Verified: 2026 → (2026+6)%60 = 52 → Siddharthi

@@ -160,6 +160,8 @@ const LAJJITADI_NAMES: Record<string, { name: Tri; effect: 'benefic' | 'malefic'
   kshobhita: { name: { en: 'Kshobhita (Agitated)', hi: 'क्षोभित (अशान्त)',      sa: 'क्षोभितः'  }, effect: 'malefic' },
 };
 
+// Simplified: Mercury (3) is classified as always benefic here.
+// Strictly, Mercury is malefic when conjunct Sun/Mars/Saturn/Rahu/Ketu (BPHS Ch.3).
 const BENEFIC_IDS = new Set([1, 3, 4, 5]); // Moon, Mercury, Jupiter, Venus
 const MALEFIC_IDS = new Set([0, 2, 6, 7, 8]); // Sun, Mars, Saturn, Rahu, Ketu
 

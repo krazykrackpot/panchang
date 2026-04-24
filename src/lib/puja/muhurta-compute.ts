@@ -57,6 +57,9 @@ export function computePujaMuhurta(
 
     case 'abhijit': {
       // Midday +/- 24 min (midday = sunrise + dayDuration/2)
+      // NOTE: Abhijit Muhurta is inauspicious on Wednesdays (Muhurta Chintamani).
+      // The `available` flag is checked by callers / the panchang engine; this
+      // function only computes the time window, not its applicability.
       const midday = addMinutes(sunrise, dayDurationMinutes / 2);
       return {
         start: addMinutes(midday, -24),

@@ -203,7 +203,10 @@ function calculateAshtottariDasha(moonSidLong: number, birthDate: Date): DashaEn
 }
 
 /**
- * Calculate simplified Shadbala
+ * Legacy simplified Shadbala — overridden by fullShadbala at line ~924.
+ * Do not call directly; kept for backward compatibility only.
+ *
+ * @deprecated Use the full Shadbala implementation (calculateFullShadbala) instead.
  */
 function calculateShadbala(planets: PlanetPosition[], ascDeg: number): ShadBala[] {
   return planets.filter(p => p.planet.id <= 6).map((p) => {

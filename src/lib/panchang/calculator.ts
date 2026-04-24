@@ -1,6 +1,11 @@
 /**
- * Main Panchang calculator
- * Computes all five elements (Panchangam): Tithi, Nakshatra, Yoga, Karana, Vara (weekday)
+ * Legacy Panchang calculator — prefer src/lib/ephem/panchang-calc.ts for new code.
+ *
+ * This module uses the older astronomy/ layer. The canonical panchang computation
+ * lives in ephem/panchang-calc.ts (which uses the Meeus/Swiss Ephemeris engine).
+ * Retained for the golden-panchang test suite; do not add new callers.
+ *
+ * @deprecated Use {@link import('@/lib/ephem/panchang-calc')} instead.
  */
 
 import { dateToJD, normalizeAngle } from '../astronomy/julian';

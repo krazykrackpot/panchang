@@ -477,11 +477,13 @@ function computeNamedMuhurtas(
   const brahmaStart = sunriseUT - 2 * nightMuhurtaDur;
   const brahmaEnd = sunriseUT - nightMuhurtaDur;
 
-  // Godhuli (cow-dust time): ~24 min around sunset
+  // Fixed durations per Dharmasindhu:
+  //   Godhuli  = ±12 min around sunset
+  //   Sandhya  = ±24 min around sunrise (morning) and sunset (evening)
+  //   Nishita  = ±24 min around midnight
   const godhuliStart = sunsetUT - 12 / 60;
   const godhuliEnd = sunsetUT + 12 / 60;
 
-  // Sandhya Kaal: ~24 min before/after sunrise (morning) and sunset (evening)
   const mSandhyaStart = sunriseUT - 24 / 60;
   const mSandhyaEnd = sunriseUT + 24 / 60;
   const eSandhyaStart = sunsetUT - 24 / 60;

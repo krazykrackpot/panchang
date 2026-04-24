@@ -100,8 +100,8 @@ function getMasaFromSunSign(sunSiderealSign: number): number {
  * Find all Full Moon (Purnima) dates in a year range.
  * Similar to findNewMoons but detects elongation crossing 180°.
  */
-function findFullMoons(year: number): Date[] {
-  const fullMoons: Date[] = [];
+function findFullMoons(year: number): { date: Date; jd: number }[] {
+  const fullMoons: { date: Date; jd: number }[] = [];
   const startJD = dateToJD(year - 1, 12, 1, 0);
   const endJD = dateToJD(year + 1, 2, 1, 0);
 
@@ -124,7 +124,7 @@ function findFullMoons(year: number): Date[] {
       }
       const fmJD = (lo + hi) / 2;
       const d = new Date((fmJD - 2440587.5) * 86400000);
-      fullMoons.push(d);
+      fullMoons.push({ date: d, jd: fmJD });
     }
     prevElong = elong;
   }
@@ -145,16 +145,18 @@ export function computePurnimantMonths(year: number): HinduMonth[] {
   let prevMasaIdx = -1;
 
   for (let i = 0; i < fullMoons.length - 1; i++) {
-    const fmDate = fullMoons[i];
-    const nextFmDate = fullMoons[i + 1];
+    const { date: fmDate, jd: fmJD } = fullMoons[i];
+    const { date: nextFmDate } = fullMoons[i + 1];
 
     // Sun's sidereal sign at this Full Moon — Purnimant naming:
     // The month is named after the next Amant month (Sun sign + 1)
     // because Purnimant Chaitra starts at the Phalguni Purnima and
     // contains Chaitra Shukla + Chaitra Krishna (= Amant Chaitra's beginning).
-    const jd = dateToJD(fmDate.getUTCFullYear(), fmDate.getUTCMonth() + 1, fmDate.getUTCDate(), 12);
-    const tropSun = sunLongitude(jd);
-    const ayanamsha = lahiriAyanamsha(jd);
+    //
+    // Use the refined Full Moon JD from binary search (not noon on the FM date)
+    // so that the Sun's position is evaluated at the actual moment of Purnima.
+    const tropSun = sunLongitude(fmJD);
+    const ayanamsha = lahiriAyanamsha(fmJD);
     const sidSun = ((tropSun - ayanamsha) + 360) % 360;
     const sunSign = Math.floor(sidSun / 30) + 1; // 1-12
     // Purnimant month = Amant month that follows this Purnima

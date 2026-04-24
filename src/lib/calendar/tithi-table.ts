@@ -374,20 +374,34 @@ export function buildYearlyTithiTable(
     const p1 = purnimaEntries[i];
     const p2 = purnimaEntries[i + 1];
 
-    // Find Sun's rashi at the midpoint (approximate Sankranti location)
-    const midJd = (p1.endJd + p2.startJd) / 2;
-    const sunSidMid = normalizeDeg(toSidereal(sunLongitude(midJd), midJd));
-    const signMid = Math.floor(sunSidMid / 30) + 1;
+    // Classical rule: a Purnimant month is named by the Sankranti (Sun entering
+    // a new sidereal sign) that occurs within it. If NO Sankranti falls in this
+    // Purnima-to-Purnima period, the month is Adhika (intercalary).
+    //
+    // Scan the period in 1-day steps to detect sign changes.
+    const jdStart = p1.endJd;
+    const jdEnd = p2.startJd;
+    const signAtStart = Math.floor(normalizeDeg(toSidereal(sunLongitude(jdStart), jdStart)) / 30) + 1;
+    let sankrantiSign = -1; // sign the Sun ENTERS during this month
+    let sankrantiCount = 0;
 
-    // Check for Adhika (same sign at both Purnimas)
-    const sunSid1 = normalizeDeg(toSidereal(sunLongitude(p1.endJd), p1.endJd));
-    const sunSid2 = normalizeDeg(toSidereal(sunLongitude(p2.startJd), p2.startJd));
-    const sign1 = Math.floor(sunSid1 / 30) + 1;
-    const sign2 = Math.floor(sunSid2 / 30) + 1;
-    const isAdhika = sign1 === sign2;
+    for (let jd = jdStart + 0.5; jd <= jdEnd; jd += 1.0) {
+      const sunSidNow = normalizeDeg(toSidereal(sunLongitude(jd), jd));
+      const signNow = Math.floor(sunSidNow / 30) + 1;
+      const sunSidPrev = normalizeDeg(toSidereal(sunLongitude(jd - 1.0), jd - 1.0));
+      const signPrev = Math.floor(sunSidPrev / 30) + 1;
+      if (signNow !== signPrev) {
+        sankrantiSign = signNow; // Sun entered this sign
+        sankrantiCount++;
+      }
+    }
+
+    // Adhika = no Sankranti occurred; name comes from the sign at start
+    const isAdhika = sankrantiCount === 0;
+    const monthSign = sankrantiSign > 0 ? sankrantiSign : signAtStart;
 
     purnimantMonths.push({
-      name: getHinduMonth(signMid),
+      name: getHinduMonth(monthSign),
       isAdhika,
       startDate: p1.sunriseDate,
       endDate: p2.sunriseDate,

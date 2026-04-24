@@ -40,8 +40,12 @@ export function calculateSpecialLagnas(
   const hoursFromSunrise = ((birthTimeUT - sunriseUT) + 24) % 24;
 
   // ── Hora Lagna (HL) ──
-  // Each sign rises for ~2.5 hours (based on equatorial calculation)
-  // HL = Sun's degree at sunrise + (hours from sunrise * 360/24)
+  // Equatorial approximation (15°/hour). For precise Hora Lagna at non-equatorial
+  // latitudes (e.g. birth lat ~46°N), oblique ascension tables are needed — different
+  // signs rise at different speeds depending on latitude. Error can be 10-20° at
+  // extreme latitudes. The birth latitude is available via the caller but implementing
+  // oblique ascension is deferred.
+  // HL = Sun's degree at sunrise + (hours from sunrise × 360/24)
   const horaLagnaDeg = normalizeDeg(sunDeg + hoursFromSunrise * (360 / 24));
   const horaLagna = Math.floor(horaLagnaDeg / 30) + 1;
 

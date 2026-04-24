@@ -43,13 +43,28 @@ const ENEMIES: Record<number, Set<number>> = {
   6: new Set([0,1,2]),       // Saturn: Sun, Moon, Mars
 };
 
-// Varga weights for Shodashavarga (16 charts) — BPHS Ch.16
-// D1=3.5, D2=1, D3=1, D4=0.5, D5=0.5, D6=0.5, D7=0.5, D8=0.5,
-// D9=3, D10=0.5, D12=0.5, D16=2, D20=0.5, D24=0.5, D27=0.5, D30=1, D40=0.5, D45=0.5, D60=4
+// Shodashavarga (16 charts) weights — BPHS Ch.16, Shloka 1-6.
+// Exactly 16 vargas with weights summing to 20.
+//
+// HISTORICAL BUG (now fixed): the weights included D5, D6, D8 which are NOT part
+// of the standard Shodashavarga, bringing the total to 19 entries summing to ~21.
+// This inflated vimshopaka scores for planets with favourable placements in those
+// extra charts and deflated scores for others, since the final score is a weighted
+// average (totalWeightedDignity / totalWeight) that is compared against the
+// classical 0-20 tier thresholds.
+//
+// The standard BPHS Shodashavarga and its weights:
+//   D1(Rashi)=3.5, D2(Hora)=1.5, D3(Drekkana)=1.5, D4(Chaturthamsha)=1.5,
+//   D7(Saptamsha)=1.5, D9(Navamsha)=3, D10(Dashamsha)=1.5, D12(Dwadashamsha)=1.5,
+//   D16(Shodashamsha)=1, D20(Vimshamsha)=1, D24(Chaturvimshamsha)=0.5,
+//   D27(Saptavimshamsha)=0.5, D30(Trimshamsha)=0.5, D40(Khavedamsha)=0.5,
+//   D45(Akshavedamsha)=0.5, D60(Shashtiamsha)=0.5
+//   Total = 20
 const VARGA_WEIGHTS: Record<string, number> = {
-  D1: 3.5, D2: 1, D3: 1, D4: 0.5, D5: 0.5, D6: 0.5, D7: 0.5, D8: 0.5,
-  D9: 3, D10: 0.5, D12: 0.5, D16: 2, D20: 0.5, D24: 0.5, D27: 0.5,
-  D30: 1, D40: 0.5, D45: 0.5, D60: 4,
+  D1: 3.5, D2: 1.5, D3: 1.5, D4: 1.5,
+  D7: 1.5, D9: 3, D10: 1.5, D12: 1.5,
+  D16: 1, D20: 1, D24: 0.5, D27: 0.5,
+  D30: 0.5, D40: 0.5, D45: 0.5, D60: 0.5,
 };
 
 // Dignity points: Exalted=20, Moolatrikona=18, Own=16, Friend=12, Neutral=8, Enemy=4, Debilitated=2

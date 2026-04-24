@@ -118,6 +118,10 @@ function getDeeptadi(p: PlanetPosition, allPlanets: PlanetPosition[]): { state: 
   // Graha yuddha (planetary war, within 1°) → Khala for the loser
   // ONLY tara planets (Mars=2, Mercury=3, Jupiter=4, Venus=5, Saturn=6) participate.
   // Sun (0) and Moon (1) do NOT participate in graha yuddha per BPHS.
+  //
+  // NOTE: Winner is determined by absolute ecliptic latitude (lower wins).
+  // When Swiss Ephemeris is unavailable, latitudes come from Meeus simplified
+  // perturbation (~0.5° error possible). A warning is surfaced via KundaliData.warnings.
   if (pid >= 2 && pid <= 6) {
     const warRival = allPlanets.find(other =>
       other.planet.id !== pid &&

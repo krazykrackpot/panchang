@@ -495,7 +495,12 @@ export function getPlanetaryPositions(jd: number): {
     }
   }
 
-  // Meeus fallback (no latitude/distance available)
+  // Meeus fallback — latitude and distance are not computed here (set to 0).
+  // NOTE: kundali-calc.ts overrides latitude via computeFullCoordinates() which
+  // provides approximate ecliptic latitudes from simplified perturbation theory.
+  // Those Meeus-derived latitudes are less precise than Swiss Ephemeris (~0.5°
+  // error possible), which can affect Graha Yuddha (planetary war) winner
+  // detection since it depends on absolute ecliptic latitude.
   return _meeusPlanetaryPositions(jd).map(p => ({ ...p, latitude: 0, distance: 0 }));
 }
 

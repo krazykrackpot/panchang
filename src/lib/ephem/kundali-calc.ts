@@ -5,6 +5,7 @@ import {
   getPlanetaryPositions, lahiriAyanamsha, getAyanamsha, normalizeDeg, formatDegrees, approximateSunriseSafe, approximateSunsetSafe,
 } from './astronomical';
 import { computeFullCoordinates, computeCombust } from './coordinates';
+import { isSwissEphAvailable } from './swiss-ephemeris';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { GRAHAS } from '@/lib/constants/grahas';
@@ -514,6 +515,12 @@ export function generateKundali(birthData: BirthData): KundaliData {
   const warnings: string[] = [];
   if (year < 1900 || year > 2100) {
     warnings.push(`Ayanamsha accuracy degrades for dates outside 1900-2100 (birth year: ${year}). Rashi/nakshatra boundaries may shift by ±1°.`);
+  }
+  // Warn if Swiss Ephemeris is unavailable — Meeus fallback has approximate
+  // ecliptic latitudes (~0.5° error) which can affect Graha Yuddha (planetary
+  // war) winner detection in avasthas.
+  if (!isSwissEphAvailable()) {
+    warnings.push('Graha Yuddha (planetary war) results are approximate — Swiss Ephemeris is unavailable. Ecliptic latitudes use Meeus simplified perturbation.');
   }
   // Use selected ayanamsha system (default: lahiri)
   const ayanamshaType = (birthData.ayanamsha === 'raman' || birthData.ayanamsha === 'kp')

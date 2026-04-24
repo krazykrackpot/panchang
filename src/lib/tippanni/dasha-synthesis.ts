@@ -309,26 +309,29 @@ function isDoshaActivatedByPlanet(dosha: DoshaInsight, planetId: number): boolea
 // ─── Interaction Type ─────────────────────────────────────────────────────────
 
 function getInteractionType(mahaLord: string, antarLord: string): 'friendly' | 'neutral' | 'enemy' {
-  const friendlyPairs: [string, string][] = [
-    ['Sun', 'Moon'], ['Sun', 'Mars'], ['Sun', 'Jupiter'],
-    ['Moon', 'Mercury'], ['Mars', 'Jupiter'], ['Mercury', 'Venus'],
-    ['Venus', 'Saturn'], ['Mercury', 'Saturn'],
-  ];
-  const enemyPairs: [string, string][] = [
-    ['Sun', 'Saturn'], ['Sun', 'Venus'], ['Moon', 'Rahu'],
-    ['Mars', 'Mercury'], ['Jupiter', 'Venus'], ['Jupiter', 'Mercury'],
-  ];
+  // BPHS Ch.3 Naisargika Maitri — directional lookup (not bidirectional pairs)
+  // 2=friend, 1=neutral, 0=enemy. Assess from MAHA lord's perspective.
+  const MAITRI: Record<string, Record<string, number>> = {
+    Sun:     { Sun:2, Moon:2, Mars:2, Mercury:1, Jupiter:2, Venus:0, Saturn:0, Rahu:0, Ketu:1 },
+    Moon:    { Sun:2, Moon:2, Mars:1, Mercury:2, Jupiter:1, Venus:1, Saturn:1, Rahu:1, Ketu:1 },
+    Mars:    { Sun:2, Moon:2, Mars:2, Mercury:0, Jupiter:2, Venus:1, Saturn:1, Rahu:1, Ketu:1 },
+    Mercury: { Sun:2, Moon:0, Mars:1, Mercury:2, Jupiter:1, Venus:2, Saturn:1, Rahu:1, Ketu:1 },
+    Jupiter: { Sun:2, Moon:2, Mars:2, Mercury:0, Jupiter:2, Venus:0, Saturn:1, Rahu:0, Ketu:1 },
+    Venus:   { Sun:0, Moon:0, Mars:1, Mercury:2, Jupiter:1, Venus:2, Saturn:2, Rahu:1, Ketu:1 },
+    Saturn:  { Sun:0, Moon:0, Mars:0, Mercury:2, Jupiter:1, Venus:2, Saturn:2, Rahu:2, Ketu:1 },
+    Rahu:    { Sun:0, Moon:0, Mars:0, Mercury:1, Jupiter:0, Venus:1, Saturn:2, Rahu:2, Ketu:0 },
+    Ketu:    { Sun:1, Moon:1, Mars:2, Mercury:1, Jupiter:2, Venus:0, Saturn:0, Rahu:0, Ketu:2 },
+  };
 
-  const isFriend = friendlyPairs.some(([a, b]) =>
-    (a === mahaLord && b === antarLord) || (b === mahaLord && a === antarLord)
-  );
-  if (isFriend) return 'friendly';
+  const mahaView = MAITRI[mahaLord]?.[antarLord] ?? 1;
+  const antarView = MAITRI[antarLord]?.[mahaLord] ?? 1;
+  // Combined: both friendly → friendly; both enemy → enemy; mixed → neutral
+  const combined = mahaView + antarView;
+  if (combined >= 3) return 'friendly';  // 2+2 or 2+1
+  if (combined <= 1) return 'enemy';     // 0+0 or 0+1
 
-  const isEnemy = enemyPairs.some(([a, b]) =>
-    (a === mahaLord && b === antarLord) || (b === mahaLord && a === antarLord)
-  );
-  if (isEnemy) return 'enemy';
-
+  // For combined=2: could be 1+1 (neutral+neutral) or 2+0 (friend+enemy)
+  // 2+0 means one sees friend, other sees enemy → treat as neutral
   return 'neutral';
 }
 

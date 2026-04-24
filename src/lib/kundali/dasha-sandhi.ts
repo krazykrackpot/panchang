@@ -34,12 +34,15 @@ const FRIENDS: Record<string, string[]> = {
  * Natural enemy table — inverse of friendship (where explicitly enmity exists).
  * Planets not in friends list and not in enemies are neutral.
  */
+// BPHS Ch.3 Naisargika Maitri — canonical enemies table
+// Moon has NO natural enemies. Rahu/Ketu use functional enmity.
+// Saturn is NEUTRAL to Jupiter, not an enemy.
 const ENEMIES: Record<string, string[]> = {
   Sun: ['Venus', 'Saturn'],
-  Moon: ['Rahu', 'Ketu'],
+  Moon: [],
   Mars: ['Mercury'],
   Mercury: ['Moon'],
-  Jupiter: ['Mercury', 'Venus', 'Saturn'],
+  Jupiter: ['Mercury', 'Venus'],
   Venus: ['Sun', 'Moon'],
   Saturn: ['Sun', 'Moon', 'Mars'],
   Rahu: ['Sun', 'Moon', 'Mars'],

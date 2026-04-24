@@ -109,17 +109,16 @@ function nakshatrasInSign(sign: number): number[] {
 
 // Moon's sign strength per BPHS Ch.3 natural friendships:
 //   Friends: Sun(Leo=5), Mercury(Gemini=3, Virgo=6)
-//   Neutral: Mars(Aries=1), Jupiter(Sag=9, Pisces=12), Venus(Taurus=2 is exalt, Libra=7)
-//   Enemy: Saturn(Cap=10, Aquarius=11). Moon has no classical enemies but Saturn is most adverse.
-function moonSignStrength(sign: number): 'exalted' | 'own' | 'friendly' | 'neutral' | 'enemy' | 'debilitated' {
+//   Neutral: Mars(Aries=1,Scorpio=8 is debil), Jupiter(Sag=9, Pisces=12),
+//            Venus(Taurus=2 is exalt, Libra=7), Saturn(Cap=10, Aquarius=11)
+//   Moon has NO natural enemies per BPHS Ch.3. Saturn-ruled signs are neutral.
+function moonSignStrength(sign: number): 'exalted' | 'own' | 'friendly' | 'neutral' | 'debilitated' {
   if (sign === 2) return 'exalted';   // Taurus
   if (sign === 4) return 'own';        // Cancer
   if (sign === 8) return 'debilitated'; // Scorpio
   // Friendly: Sun-ruled (Leo) and Mercury-ruled (Gemini, Virgo)
   if ([3, 5, 6].includes(sign)) return 'friendly';
-  // Enemy: Saturn-ruled (Capricorn, Aquarius) — most adverse for Moon
-  if ([10, 11].includes(sign)) return 'enemy';
-  // Neutral: Mars-ruled (Aries=1), Jupiter-ruled (Sag=9, Pisces=12), Venus-ruled (Libra=7)
+  // Neutral: all others including Saturn-ruled signs (Moon has no enemies)
   return 'neutral';
 }
 
@@ -274,11 +273,8 @@ function scoreMoonStrength(moonSign: number, moonNakshatra?: number): IntensityF
       en = `Your Moon in ${RASHI_EN[moonSign]} is in a friendly sign, providing moderate emotional support through the Sade Sati period.`;
       hi = `${RASHI_HI[moonSign]} में आपका चन्द्रमा मित्र राशि में है, साढ़ेसाती काल में मध्यम भावनात्मक सहारा प्रदान करता है।`;
       break;
-    case 'enemy':
-      score = 1.5;
-      en = `Your Moon in ${RASHI_EN[moonSign]} is in an inimical sign (Saturn-ruled). The Moon feels uncomfortable here, amplifying the emotional weight of Sade Sati.`;
-      hi = `${RASHI_HI[moonSign]} में आपका चन्द्रमा शत्रु राशि (शनि-शासित) में है। चन्द्रमा यहाँ असहज अनुभव करता है, साढ़ेसाती का भावनात्मक भार बढ़ाता है।`;
-      break;
+    // Moon has no natural enemies per BPHS Ch.3 — 'enemy' case removed.
+    // Saturn-ruled signs (Cap/Aqu) are neutral for Moon.
     case 'debilitated':
       score = 2;
       en = `Your Moon is debilitated in ${RASHI_EN[moonSign]}. This is the most vulnerable Moon placement during Sade Sati — emotional turbulence, anxiety, and mental unrest are heightened. Strengthening the Moon through remedies is essential.`;
@@ -713,7 +709,7 @@ function generateRemedies(input: SadeSatiInput, intensity: number, phase: 'risin
   }
 
   const moonStr = moonSignStrength(input.moonSign);
-  if (moonStr === 'debilitated' || moonStr === 'enemy') {
+  if (moonStr === 'debilitated') {
     remedies.push({
       title: { en: 'Strengthen the Moon', hi: 'चन्द्रमा को मजबूत करें', sa: 'चन्द्रमा को मजबूत करें', mai: 'चन्द्रमा को मजबूत करें', mr: 'चन्द्रमा को मजबूत करें', ta: 'சந்திரனை வலுப்படுத்துங்கள்', te: 'చంద్రుడిని బలపరచండి', bn: 'চন্দ্রকে শক্তিশালী করুন', kn: 'ಚಂದ್ರನನ್ನು ಬಲಪಡಿಸಿ', gu: 'ચંદ્રને મજબૂત કરો' },
       description: { en: 'Your Moon needs strengthening during Sade Sati. Wear a natural pearl set in silver on the little finger (Monday morning). Worship Lord Shiva on Mondays with milk abhisheka. Fast on Mondays (or eat only once). Drink water from a silver glass.', hi: 'साढ़ेसाती में आपके चन्द्रमा को मजबूत करने की आवश्यकता है। सोमवार सुबह चाँदी में जड़ा प्राकृतिक मोती कनिष्ठा उँगली में पहनें। सोमवार को दुग्ध अभिषेक के साथ भगवान शिव की पूजा करें। सोमवार को व्रत रखें (या एक बार भोजन करें)। चाँदी के गिलास से जल पिएँ।', sa: 'साढ़ेसाती में आपके चन्द्रमा को मजबूत करने की आवश्यकता है। सोमवार सुबह चाँदी में जड़ा प्राकृतिक मोती कनिष्ठा उँगली में पहनें। सोमवार को दुग्ध अभिषेक के साथ भगवान शिव की पूजा करें। सोमवार को व्रत रखें (या एक बार भोजन करें)। चाँदी के गिलास से जल पिएँ।', mai: 'साढ़ेसाती में आपके चन्द्रमा को मजबूत करने की आवश्यकता है। सोमवार सुबह चाँदी में जड़ा प्राकृतिक मोती कनिष्ठा उँगली में पहनें। सोमवार को दुग्ध अभिषेक के साथ भगवान शिव की पूजा करें। सोमवार को व्रत रखें (या एक बार भोजन करें)। चाँदी के गिलास से जल पिएँ।', mr: 'साढ़ेसाती में आपके चन्द्रमा को मजबूत करने की आवश्यकता है। सोमवार सुबह चाँदी में जड़ा प्राकृतिक मोती कनिष्ठा उँगली में पहनें। सोमवार को दुग्ध अभिषेक के साथ भगवान शिव की पूजा करें। सोमवार को व्रत रखें (या एक बार भोजन करें)। चाँदी के गिलास से जल पिएँ।', ta: 'சாடே சாதி காலத்தில் உங்கள் சந்திரனை வலுப்படுத்த வேண்டும். சிறு விரலில் வெள்ளியில் இயற்கை முத்து அணியுங்கள் (திங்கள் காலை). திங்கட்கிழமைகளில் பால் அபிஷேகத்துடன் சிவபெருமானை வழிபடுங்கள்.', te: 'సాడే సాతి సమయంలో మీ చంద్రుడిని బలపరచాలి. చిటికెన వేలికి వెండిలో సహజ ముత్యం ధరించండి (సోమవారం ఉదయం). సోమవారాలు పాల అభిషేకంతో శివుడిని పూజించండి.', bn: 'সাড়ে সাতির সময় আপনার চন্দ্রকে শক্তিশালী করতে হবে। কনিষ্ঠ আঙুলে রুপোয় প্রাকৃতিক মুক্তো পরুন (সোমবার সকালে)। সোমবারে দুধ অভিষেক দিয়ে শিবের পূজা করুন।', kn: 'ಸಾಡೆ ಸಾತಿ ಸಮಯದಲ್ಲಿ ನಿಮ್ಮ ಚಂದ್ರನನ್ನು ಬಲಪಡಿಸಬೇಕು. ಕಿರುಬೆರಳಿನಲ್ಲಿ ಬೆಳ್ಳಿಯಲ್ಲಿ ನೈಸರ್ಗಿಕ ಮುತ್ತು ಧರಿಸಿ (ಸೋಮವಾರ ಬೆಳಿಗ್ಗೆ). ಸೋಮವಾರ ಹಾಲಿನ ಅಭಿಷೇಕದೊಂದಿಗೆ ಶಿವನನ್ನು ಪೂಜಿಸಿ.', gu: 'સાડા સાતી દરમિયાન તમારા ચંદ્રને મજબૂત કરવો જરૂરી છે. ટચલી આંગળીએ ચાંદીમાં કુદરતી મોતી પહેરો (સોમવાર સવારે). સોમવારે દૂધ અભિષેક સાથે ભગવાન શિવની પૂજા કરો.' },

@@ -187,7 +187,7 @@ const GRAHA_MAITRI: Record<number, Record<number, number>> = {
   // Natural Friendship table per BPHS Ch.3 (Naisargika Maitri)
   // 0=enemy, 1=neutral, 2=friend. Verified against shadbala.ts NAT_FRIENDS/NAT_ENEMIES.
   0: { 0: 2, 1: 2, 2: 2, 3: 1, 4: 2, 5: 0, 6: 0 }, // Sun: friends=Moon,Mars,Jup; neutral=Merc; enemies=Ven,Sat
-  1: { 0: 2, 1: 2, 2: 1, 3: 2, 4: 2, 5: 1, 6: 1 }, // Moon: friends=Sun,Merc,Jup; neutral=Mars,Ven,Sat; enemies=none (BPHS Ch.3)
+  1: { 0: 2, 1: 2, 2: 1, 3: 2, 4: 1, 5: 1, 6: 1 }, // Moon: friends=Sun,Merc; neutral=Mars,Jup,Ven,Sat; enemies=none (BPHS Ch.3 — consistent with shadbala/vimshopaka/avasthas)
   2: { 0: 2, 1: 2, 2: 2, 3: 0, 4: 2, 5: 1, 6: 1 }, // Mars: friends=Sun,Moon,Jup; neutral=Ven,Sat; enemies=Merc
   3: { 0: 2, 1: 0, 2: 1, 3: 2, 4: 1, 5: 2, 6: 1 }, // Mercury: friends=Sun,Ven; neutral=Mars,Jup,Sat; enemies=Moon
   4: { 0: 2, 1: 2, 2: 2, 3: 0, 4: 2, 5: 0, 6: 1 }, // Jupiter: friends=Sun,Moon,Mars; neutral=Sat; enemies=Merc,Ven

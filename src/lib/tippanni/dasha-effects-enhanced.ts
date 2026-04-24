@@ -146,25 +146,24 @@ export function getAntardashaInteraction(
   antarLord: string,
   locale: Locale
 ): string {
-  // Friendly pairs yield positive interactions
-  const friendlyPairs: [string, string][] = [
-    ['Sun', 'Moon'], ['Sun', 'Mars'], ['Sun', 'Jupiter'],
-    ['Moon', 'Mercury'], ['Mars', 'Jupiter'], ['Mercury', 'Venus'],
-    ['Venus', 'Saturn'], ['Mercury', 'Saturn'],
-  ];
-
-  const areFriends = friendlyPairs.some(([a, b]) =>
-    (a === mahaLord && b === antarLord) || (b === mahaLord && a === antarLord)
-  );
-
-  const enemyPairs: [string, string][] = [
-    ['Sun', 'Saturn'], ['Sun', 'Venus'], ['Moon', 'Rahu'],
-    ['Mars', 'Mercury'], ['Jupiter', 'Venus'], ['Jupiter', 'Mercury'],
-  ];
-
-  const areEnemies = enemyPairs.some(([a, b]) =>
-    (a === mahaLord && b === antarLord) || (b === mahaLord && a === antarLord)
-  );
+  // BPHS Ch.3 Naisargika Maitri — directional lookup, combined assessment
+  // 2=friend, 1=neutral, 0=enemy
+  const MAITRI: Record<string, Record<string, number>> = {
+    Sun:     { Sun:2, Moon:2, Mars:2, Mercury:1, Jupiter:2, Venus:0, Saturn:0, Rahu:0, Ketu:1 },
+    Moon:    { Sun:2, Moon:2, Mars:1, Mercury:2, Jupiter:1, Venus:1, Saturn:1, Rahu:1, Ketu:1 },
+    Mars:    { Sun:2, Moon:2, Mars:2, Mercury:0, Jupiter:2, Venus:1, Saturn:1, Rahu:1, Ketu:1 },
+    Mercury: { Sun:2, Moon:0, Mars:1, Mercury:2, Jupiter:1, Venus:2, Saturn:1, Rahu:1, Ketu:1 },
+    Jupiter: { Sun:2, Moon:2, Mars:2, Mercury:0, Jupiter:2, Venus:0, Saturn:1, Rahu:0, Ketu:1 },
+    Venus:   { Sun:0, Moon:0, Mars:1, Mercury:2, Jupiter:1, Venus:2, Saturn:2, Rahu:1, Ketu:1 },
+    Saturn:  { Sun:0, Moon:0, Mars:0, Mercury:2, Jupiter:1, Venus:2, Saturn:2, Rahu:2, Ketu:1 },
+    Rahu:    { Sun:0, Moon:0, Mars:0, Mercury:1, Jupiter:0, Venus:1, Saturn:2, Rahu:2, Ketu:0 },
+    Ketu:    { Sun:1, Moon:1, Mars:2, Mercury:1, Jupiter:2, Venus:0, Saturn:0, Rahu:0, Ketu:2 },
+  };
+  const mahaView = MAITRI[mahaLord]?.[antarLord] ?? 1;
+  const antarView = MAITRI[antarLord]?.[mahaLord] ?? 1;
+  const combined = mahaView + antarView;
+  const areFriends = combined >= 3; // 2+2 or 2+1
+  const areEnemies = combined <= 1; // 0+0 or 0+1
 
   if (areFriends) {
     return t(locale,

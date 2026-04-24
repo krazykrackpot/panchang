@@ -360,8 +360,11 @@ function detectMoonBasedYogas(planets: PlanetData[]): YogaComplete[] {
     },
   });
 
-  // 12. Kemadruma
-  const kemPresent = secondFromMoon.length === 0 && twelfthFromMoon.length === 0 && !KENDRA.includes(moon.house);
+  // 12. Kemadruma — no planets in 2nd/12th from Moon, Moon not in Kendra,
+  // AND Moon not conjunct any planet (conjunction = same house, cancels Kemadruma)
+  const moonConjunct = planets.some(p => p.id !== 1 && p.house === moon.house);
+  const kemPresent = secondFromMoon.length === 0 && twelfthFromMoon.length === 0
+    && !KENDRA.includes(moon.house) && !moonConjunct;
   results.push({
     id: 'kemadruma',
     name: { en: 'Kemadruma Yoga', hi: 'केमद्रुम योग', sa: 'केमद्रुमयोगः' },
@@ -580,9 +583,10 @@ function detectRajaYogas(planets: PlanetData[], ascSign: number): YogaComplete[]
     },
   });
 
-  // 21. Vasumati
-  const vasPresent = BENEFICS.some(id => {
-    const off = houseOffset(moon.house, getP(planets, id).house);
+  // 21. Vasumati — ALL benefics must occupy Upachaya houses (3,6,10,11) from Lagna
+  // Classical: requires all natural benefics in Upachaya from Ascendant (house 1)
+  const vasPresent = BENEFICS.every(id => {
+    const off = houseOffset(1, getP(planets, id).house);
     return UPACHAYA.includes(off);
   });
   results.push({
@@ -736,8 +740,8 @@ function detectRajaYogas(planets: PlanetData[], ascSign: number): YogaComplete[]
   // 27. Gauri
   const moonInOwnExalted = moon.isOwnSign || moon.isExalted;
   const moonInKendra = KENDRA.includes(moon.house);
-  const jupAspectsMoon = [1, 5, 7, 9].includes(houseOffset(moon.house, jupiter.house)) ||
-                         KENDRA.includes(houseOffset(moon.house, jupiter.house));
+  // Jupiter aspects: conjunction (1) + Jupiter's special aspects (5th, 7th, 9th FROM Jupiter)
+  const jupAspectsMoon = [1, 5, 7, 9].includes(houseOffset(jupiter.house, moon.house));
   const gauriPresent = moonInOwnExalted && moonInKendra && jupAspectsMoon;
   results.push({
     id: 'gauri',
@@ -853,10 +857,12 @@ function detectRajaYogas(planets: PlanetData[], ascSign: number): YogaComplete[]
     },
   });
 
-  // 32. Mahabhagya (male chart assumed)
+  // 32. Mahabhagya — checks the male version (odd signs for Lagna, Sun, Moon)
+  // Note: classical rule also requires daytime birth for male, nighttime for female.
+  // Gender and day/night data not available here, so we check the sign condition only.
   const sun = getP(planets, 0);
   const oddSigns = [1, 3, 5, 7, 9, 11];
-  const mbPresent = oddSigns.includes(getP(planets, signLord(ascSign)).sign) &&
+  const mbPresent = oddSigns.includes(ascSign) &&
                     oddSigns.includes(sun.sign) &&
                     oddSigns.includes(moon.sign);
   results.push({

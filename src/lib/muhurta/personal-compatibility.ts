@@ -73,8 +73,9 @@ export function computePersonalScore(
   // Dasha compatibility (simplified — check if transit Moon is in a friendly sign)
   // Friendly pairs: Sun-Moon, Mars-Jupiter, Venus-Saturn, Mercury-all
   const friendlyPairs: Record<number, number[]> = {
-    0: [1, 2, 4], 1: [0, 3, 4], 2: [0, 1, 4],
-    3: [0, 1, 4, 5, 6], 4: [0, 1, 2],
+    // BPHS Ch.3 Naisargika Maitri — canonical, verified against 12 files
+    0: [1, 2, 4], 1: [0, 3], 2: [0, 1, 4],
+    3: [0, 5], 4: [0, 1, 2],
     5: [3, 6], 6: [3, 5],
   };
   // Simplified: if transit moon sign lord is friendly to birth moon sign lord

@@ -13,6 +13,9 @@ import { useLocationStore } from '@/stores/location-store';
 import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
 import { tl as _tl } from '@/lib/utils/trilingual';
 import { YOGAS } from '@/lib/constants/yogas';
+import { KARANAS } from '@/lib/constants/karanas';
+import { TITHIS } from '@/lib/constants/tithis';
+import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 
 /** Check if a panchang transition time has already passed (local time comparison) */
 function isTimePassed(timeStr: string, dateStr?: string): boolean {
@@ -223,78 +226,130 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
 
   if (!panchang) return <LocationBar />;
 
-  // Resolve active yoga/karana (switches when transition time passes)
+  // Transition detection
+  const tithiTr = panchang.tithiTransition;
+  const nakTr = panchang.nakshatraTransition;
+  const tithiPassed = tithiTr ? isTimePassed(tithiTr.endTime, tithiTr.endDate) : false;
+  const nakPassed = nakTr ? isTimePassed(nakTr.endTime, nakTr.endDate) : false;
   const yogaPassed = panchang.yogaTransition ? isTimePassed(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate) : false;
   const karanaPassed = panchang.karanaTransition ? isTimePassed(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate) : false;
-  const activeYogaName = yogaPassed && panchang.yogaTransition ? _tl(panchang.yogaTransition.nextName, locale) : _tl(panchang.yoga.name, locale);
-  const activeYogaMeaning = yogaPassed && panchang.yogaTransition ? _tl(YOGAS[panchang.yogaTransition.nextNumber - 1]?.meaning, locale) : _tl(panchang.yoga.meaning, locale);
-  const activeKaranaName = karanaPassed && panchang.karanaTransition ? _tl(panchang.karanaTransition.nextName, locale) : _tl(panchang.karana.name, locale);
 
-  const elements = [
-    { label: t('tithi'), value: _tl(panchang.tithi.name, locale), sub: panchang.tithi.paksha === 'shukla' ? t('shukla') : t('krishna'), timing: timingStr(panchang.tithiTransition), Icon: TithiIcon, dual: null },
-    { label: t('nakshatra'), value: _tl(panchang.nakshatra.name, locale), sub: _tl(panchang.nakshatra.deity, locale), timing: timingStr(panchang.nakshatraTransition), Icon: NakshatraIcon, dual: null },
-    { label: t('yoga'), value: activeYogaName, sub: activeYogaMeaning, timing: null, Icon: YogaIcon,
-      dual: panchang.yogaTransition ? {
-        first: { name: _tl(panchang.yoga.name, locale), start: fmtDateTime(panchang.yogaTransition.startTime, panchang.yogaTransition.startDate), end: fmtDateTime(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate), active: !yogaPassed },
-        second: { name: _tl(panchang.yogaTransition.nextName, locale), start: fmtDateTime(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate), end: null, active: yogaPassed },
-      } : null },
-    { label: t('karana'), value: activeKaranaName, sub: '', timing: null, Icon: KaranaIcon,
-      dual: panchang.karanaTransition ? {
-        first: { name: _tl(panchang.karana.name, locale), start: fmtDateTime(panchang.karanaTransition.startTime, panchang.karanaTransition.startDate), end: fmtDateTime(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate), active: !karanaPassed },
-        second: { name: _tl(panchang.karanaTransition.nextName, locale), start: fmtDateTime(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate), end: null, active: karanaPassed },
-      } : null },
-    { label: t('vara'), value: _tl(panchang.vara.name, locale), sub: _tl(panchang.vara.ruler, locale), timing: null, Icon: VaraIcon, dual: null },
-  ];
+  const activeYoga = yogaPassed && panchang.yogaTransition ? YOGAS[panchang.yogaTransition.nextNumber - 1] : panchang.yoga;
+  const activeKarana = karanaPassed && panchang.karanaTransition ? KARANAS[panchang.karanaTransition.nextNumber - 1] : panchang.karana;
+
+  const nextTithiData = tithiTr ? TITHIS[tithiTr.nextNumber - 1] : null;
+  const nextNakData = nakTr ? NAKSHATRAS[nakTr.nextNumber - 1] : null;
+
+  const fmt = fmtDateTime;
+  const onwards = locale === 'hi' ? 'से आगे' : 'onwards';
+  const hf = getHeadingFont(locale);
+
+  const cardClass = 'animate-fade-in-up rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center';
 
   return (
     <div>
       <LocationBar />
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5 stagger-children">
-        {elements.map((el) => (
-          <div
-            key={el.label}
-            className="animate-fade-in-up rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-6 md:p-8 text-center min-h-[220px] sm:min-h-[260px] flex flex-col items-center justify-center"
-          >
-            <div className="flex justify-center mb-4"><el.Icon size={64} /></div>
-            <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{el.label}</div>
-            <div className="text-gold-light text-xl sm:text-2xl font-bold" style={getHeadingFont(locale)}>
-              {el.value}
-            </div>
-            {el.sub && (
-              <div className="text-text-secondary text-sm mt-2" style={getBodyFont(locale)}>{el.sub}</div>
-            )}
-            {/* Dual display: both elements with times (yoga, karana) */}
-            {el.dual && (
-              <div className="mt-3 pt-2 border-t border-gold-primary/10 w-full space-y-1.5">
-                <div className={`flex items-baseline justify-between gap-2 ${el.dual.first.active ? '' : 'opacity-50'}`}>
-                  <span className="text-xs text-text-primary font-medium" style={getBodyFont(locale)}>{el.dual.first.name}</span>
-                  <span className="font-mono text-xs text-amber-300 whitespace-nowrap">{el.dual.first.start} — {el.dual.first.end}</span>
-                </div>
-                <div className={`flex items-baseline justify-between gap-2 ${el.dual.second.active ? '' : 'opacity-50'}`}>
-                  <span className="text-xs text-text-primary font-medium" style={getBodyFont(locale)}>{el.dual.second.name}</span>
-                  <span className="font-mono text-xs text-amber-300 whitespace-nowrap">{el.dual.second.start} →</span>
-                </div>
-              </div>
-            )}
-            {/* Single timing display (tithi, nakshatra) */}
-            {el.timing && !el.dual && (
-              <div className="mt-3 pt-3 border-t border-gold-primary/10 w-full">
-                <div className="flex items-center justify-center gap-3">
-                  <div className="text-center">
-                    <div className="text-xs uppercase tracking-wider text-text-secondary/65 mb-0.5">{msg('starts', locale)}</div>
-                    <div className="font-mono text-sm font-bold text-amber-300">{el.timing.start}</div>
-                  </div>
-                  <span className="text-text-secondary/50 text-lg">&rarr;</span>
-                  <div className="text-center">
-                    <div className="text-xs uppercase tracking-wider text-text-secondary/65 mb-0.5">{msg('ends', locale)}</div>
-                    <div className="font-mono text-sm font-bold text-rose-300">{el.timing.end}</div>
-                  </div>
-                </div>
+        {/* ── TITHI ── */}
+        <div className={cardClass}>
+          <div className="flex justify-center mb-3"><TithiIcon size={56} /></div>
+          <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('tithi')}</div>
+          <div className={`rounded-lg p-2.5 mb-2 border ${tithiPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
+            <div className="text-gold-light text-lg font-bold leading-tight" style={hf}>{_tl(panchang.tithi.name, locale)}</div>
+            <div className="text-text-secondary text-xs mt-0.5">{panchang.tithi.paksha === 'shukla' ? t('shukla') : t('krishna')}</div>
+            {tithiTr && (
+              <div className="mt-2 pt-2 border-t border-gold-primary/10">
+                <div className="font-mono text-sm text-amber-300 font-bold">{fmt(tithiTr.startTime, tithiTr.startDate)} — {fmt(tithiTr.endTime, tithiTr.endDate)}</div>
               </div>
             )}
           </div>
-        ))}
+          {nextTithiData && tithiTr && (
+            <div className={`rounded-lg p-2.5 border ${tithiPassed ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10 opacity-60'}`}>
+              <div className="text-gold-light text-lg font-bold leading-tight" style={hf}>{_tl(nextTithiData.name, locale)}</div>
+              <div className="text-text-secondary text-xs mt-0.5">{nextTithiData.paksha === 'shukla' ? t('shukla') : t('krishna')}</div>
+              <div className="font-mono text-sm text-amber-300 font-bold mt-1.5">{fmt(tithiTr.endTime, tithiTr.endDate)} {onwards}</div>
+            </div>
+          )}
+        </div>
+
+        {/* ── NAKSHATRA ── */}
+        <div className={cardClass}>
+          <div className="flex justify-center mb-3"><NakshatraIcon size={56} /></div>
+          <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('nakshatra')}</div>
+          <div className={`rounded-lg p-2.5 mb-2 border ${nakPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
+            <div className="text-gold-light text-lg font-bold leading-tight" style={hf}>{_tl(panchang.nakshatra.name, locale)}</div>
+            <div className="text-text-secondary text-xs mt-0.5">{_tl(panchang.nakshatra.deity, locale)}</div>
+            {nakTr && (
+              <div className="mt-2 pt-2 border-t border-gold-primary/10">
+                <div className="font-mono text-sm text-amber-300 font-bold">{fmt(nakTr.startTime, nakTr.startDate)} — {fmt(nakTr.endTime, nakTr.endDate)}</div>
+              </div>
+            )}
+          </div>
+          {nextNakData && nakTr && (
+            <div className={`rounded-lg p-2.5 border ${nakPassed ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10 opacity-60'}`}>
+              <div className="text-gold-light text-lg font-bold leading-tight" style={hf}>{_tl(nextNakData.name, locale)}</div>
+              <div className="text-text-secondary text-xs mt-0.5">{_tl(nextNakData.deity, locale)}</div>
+              <div className="font-mono text-sm text-amber-300 font-bold mt-1.5">{fmt(nakTr.endTime, nakTr.endDate)} {onwards}</div>
+            </div>
+          )}
+        </div>
+
+        {/* ── YOGA ── */}
+        <div className={cardClass}>
+          <div className="flex justify-center mb-3"><YogaIcon size={56} /></div>
+          <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('yoga')}</div>
+          <div className={`rounded-lg p-2.5 mb-2 border ${yogaPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
+            <div className="text-gold-light text-lg font-bold leading-tight" style={hf}>{_tl(panchang.yoga.name, locale)}</div>
+            <div className="text-text-secondary text-xs mt-0.5">{_tl(panchang.yoga.meaning, locale)}</div>
+            {panchang.yogaTransition && (
+              <div className="mt-2 pt-2 border-t border-gold-primary/10">
+                <div className="font-mono text-sm text-amber-300 font-bold">{fmt(panchang.yogaTransition.startTime, panchang.yogaTransition.startDate)} — {fmt(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate)}</div>
+              </div>
+            )}
+          </div>
+          {panchang.yogaTransition && (
+            <div className={`rounded-lg p-2.5 border ${yogaPassed ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10 opacity-60'}`}>
+              <div className="text-gold-light text-lg font-bold leading-tight" style={hf}>{_tl(panchang.yogaTransition.nextName, locale)}</div>
+              <div className="text-text-secondary text-xs mt-0.5">{_tl(YOGAS[panchang.yogaTransition.nextNumber - 1]?.meaning, locale)}</div>
+              <div className="font-mono text-sm text-amber-300 font-bold mt-1.5">{fmt(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate)} {onwards}</div>
+            </div>
+          )}
+        </div>
+
+        {/* ── KARANA ── */}
+        <div className={cardClass}>
+          <div className="flex justify-center mb-3"><KaranaIcon size={56} /></div>
+          <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('karana')}</div>
+          <div className={`rounded-lg p-2.5 mb-2 border ${karanaPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
+            <div className="text-gold-light text-lg font-bold leading-tight" style={hf}>{_tl(panchang.karana.name, locale)}</div>
+            <div className="text-text-secondary text-xs mt-0.5">
+              {panchang.karana.type === 'chara' ? msg('movable', locale) : panchang.karana.type === 'sthira' ? msg('fixed', locale) : msg('special', locale)}
+            </div>
+            {panchang.karanaTransition && (
+              <div className="mt-2 pt-2 border-t border-gold-primary/10">
+                <div className="font-mono text-sm text-amber-300 font-bold">{fmt(panchang.karanaTransition.startTime, panchang.karanaTransition.startDate)} — {fmt(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate)}</div>
+              </div>
+            )}
+          </div>
+          {panchang.karanaTransition && (
+            <div className={`rounded-lg p-2.5 border ${karanaPassed ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10 opacity-60'}`}>
+              <div className="text-gold-light text-lg font-bold leading-tight" style={hf}>{_tl(panchang.karanaTransition.nextName, locale)}</div>
+              <div className="text-text-secondary text-xs mt-0.5">
+                {(() => { const nk = KARANAS[panchang.karanaTransition!.nextNumber - 1]; return nk?.type === 'chara' ? msg('movable', locale) : nk?.type === 'sthira' ? msg('fixed', locale) : msg('special', locale); })()}
+              </div>
+              <div className="font-mono text-sm text-amber-300 font-bold mt-1.5">{fmt(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate)} {onwards}</div>
+            </div>
+          )}
+        </div>
+
+        {/* ── VARA ── */}
+        <div className={cardClass}>
+          <div className="flex justify-center mb-3"><VaraIcon size={56} /></div>
+          <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('vara')}</div>
+          <div className="text-gold-light text-2xl font-bold leading-tight" style={hf}>{_tl(panchang.vara.name, locale)}</div>
+          <div className="text-text-secondary text-xs mt-2">{_tl(panchang.vara.ruler, locale)}</div>
+        </div>
       </div>
     </div>
   );

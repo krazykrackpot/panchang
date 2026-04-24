@@ -42,7 +42,7 @@ export interface JaiminiData {
   rajayogas?: JaiminiRajayoga[];
 }
 
-const KARAKA_ORDER = [
+const KARAKA_ORDER_7 = [
   { key: 'AK', name: { en: 'Atmakaraka (Self)', hi: 'आत्मकारक', sa: 'आत्मकारकः' } },
   { key: 'AmK', name: { en: 'Amatyakaraka (Minister)', hi: 'अमात्यकारक', sa: 'अमात्यकारकः' } },
   { key: 'BK', name: { en: 'Bhratrikaraka (Siblings)', hi: 'भ्रातृकारक', sa: 'भ्रातृकारकः' } },
@@ -51,6 +51,16 @@ const KARAKA_ORDER = [
   { key: 'GK', name: { en: 'Gnatikaraka (Relatives)', hi: 'ज्ञातिकारक', sa: 'ज्ञातिकारकः' } },
   { key: 'DK', name: { en: 'Darakaraka (Spouse)', hi: 'दारकारक', sa: 'दारकारकः' } },
 ];
+
+const KARAKA_ORDER_8 = [
+  ...KARAKA_ORDER_7.slice(0, 5), // AK, AmK, BK, MK, PK
+  { key: 'GK', name: { en: 'Gnatikaraka (Relatives)', hi: 'ज्ञातिकारक', sa: 'ज्ञातिकारकः' } },
+  { key: 'DK', name: { en: 'Darakaraka (Spouse)', hi: 'दारकारक', sa: 'दारकारकः' } },
+  { key: 'PiK', name: { en: 'Pitrakaraka (Father)', hi: 'पितृकारक', sa: 'पितृकारकः' } },
+];
+
+// Keep backward-compatible alias
+const KARAKA_ORDER = KARAKA_ORDER_7;
 
 const RASHI_NAMES: LocaleText[] = [
   { en: 'Aries', hi: 'मेष', sa: 'मेषः' },
@@ -87,27 +97,50 @@ const SIGN_LORD: Record<number, number> = {
 
 /**
  * Calculate Chara Karakas — planets sorted by degree within sign (highest = AK)
- * Only 7 planets: Sun through Saturn (exclude Rahu/Ketu)
  *
- * Uses 7-karaka scheme (Sun-Saturn). The 8-karaka scheme adds Rahu with
- * reversed degree (30 - longitude%30). Both are valid classical approaches.
- * 7-karaka follows Parashara's primary exposition; 8-karaka follows Jaimini Sutra commentaries.
+ * @param planets - Array of planet positions
+ * @param karakaScheme - '7' for 7-karaka (Sun-Saturn, Parashara primary) or
+ *                       '8' for 8-karaka (adds Rahu with reversed degree, Jaimini Sutra commentaries).
+ *                       Default '8' since 8-karaka is more widely practiced.
+ *
+ * In the 8-karaka scheme, Rahu's degree is reversed: 30 - (longitude % 30).
+ * This is because Rahu moves in retrograde (reverse) direction, so its "progress"
+ * within a sign is measured backwards.
  */
-export function calculateCharaKarakas(planets: PlanetPosition[]): CharaKaraka[] {
-  const sevenPlanets = planets.filter(p => p.planet.id >= 0 && p.planet.id <= 6);
-  // Sort by degree within sign (descending — highest degree = Atmakaraka)
-  const sorted = sevenPlanets
+export function calculateCharaKarakas(
+  planets: PlanetPosition[],
+  karakaScheme: '7' | '8' = '8',
+): CharaKaraka[] {
+  // Sun(0) through Saturn(6) — always included
+  const entries: { planet: number; degree: number }[] = planets
+    .filter(p => p.planet.id >= 0 && p.planet.id <= 6)
     .map(p => ({
       planet: p.planet.id,
       degree: p.longitude % 30,
-    }))
-    .sort((a, b) => b.degree - a.degree);
+    }));
+
+  // 8-karaka scheme: add Rahu with reversed degree
+  if (karakaScheme === '8') {
+    const rahu = planets.find(p => p.planet.id === 7);
+    if (rahu) {
+      entries.push({
+        planet: 7,
+        degree: 30 - (rahu.longitude % 30),
+      });
+    }
+  }
+
+  // Sort by degree within sign (descending — highest degree = Atmakaraka)
+  const sorted = entries.sort((a, b) => b.degree - a.degree);
+
+  const order = karakaScheme === '8' ? KARAKA_ORDER_8 : KARAKA_ORDER_7;
+  const fallback = order[order.length - 1];
 
   return sorted.map((p, i) => ({
     planet: p.planet,
-    planetName: PLANET_NAMES[p.planet],
-    karaka: KARAKA_ORDER[i]?.key || 'DK',
-    karakaName: KARAKA_ORDER[i]?.name || KARAKA_ORDER[6].name,
+    planetName: PLANET_NAMES[p.planet] || { en: `Planet ${p.planet}`, hi: `ग्रह ${p.planet}`, sa: `ग्रहः ${p.planet}` },
+    karaka: order[i]?.key || fallback.key,
+    karakaName: order[i]?.name || fallback.name,
     degree: Math.round(p.degree * 100) / 100,
   }));
 }

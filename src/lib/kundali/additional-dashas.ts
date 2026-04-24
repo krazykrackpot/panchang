@@ -26,6 +26,9 @@ const RASHI_NAMES: Tri[] = [
 ];
 
 const SIGN_LORD: Record<number, number> = { 1:2,2:5,3:3,4:1,5:0,6:3,7:5,8:2,9:4,10:6,11:6,12:4 };
+const EXALTATION: Record<number, number> = { 0: 1, 1: 2, 2: 10, 3: 6, 4: 4, 5: 12, 6: 7 };
+const DEBILITATION: Record<number, number> = { 0: 7, 1: 8, 2: 4, 3: 12, 4: 10, 5: 6, 6: 1 };
+const OWN_SIGNS: Record<number, number[]> = { 0: [5], 1: [4], 2: [1, 8], 3: [3, 6], 4: [9, 12], 5: [2, 7], 6: [10, 11] };
 
 function isOddSign(s: number): boolean { return s % 2 === 1; }
 
@@ -47,13 +50,50 @@ function fmt(d: Date): string { return d.toISOString().split('T')[0]; }
 // Odd signs: zodiacal order. Even signs: reverse order.
 // Reference: BPHS Ch.19, PVR Narasimha Rao
 
+/**
+ * Determine sign strength for Narayana Dasha starting sign selection.
+ * Per BPHS Ch.19, the dasha starts from the stronger of the 1st and 7th signs.
+ *
+ * Strength rules (applied in order until tie-broken):
+ *   1. Sign with more planets is stronger.
+ *   2. If tied, sign whose lord is in a stronger dignity (exaltation > own sign > neutral > debilitation).
+ *   3. If still tied, odd sign (masculine) wins over even sign.
+ */
+function strongerSign(sign1: number, sign2: number, planets: PlanetPosition[]): number {
+  // Count planets in each sign
+  const count1 = planets.filter(p => Math.floor(p.longitude / 30) + 1 === sign1).length;
+  const count2 = planets.filter(p => Math.floor(p.longitude / 30) + 1 === sign2).length;
+  if (count1 !== count2) return count1 > count2 ? sign1 : sign2;
+
+  // Compare lord dignity
+  const lord1 = SIGN_LORD[sign1];
+  const lord2 = SIGN_LORD[sign2];
+
+  function lordDignityScore(lordId: number): number {
+    const lordP = planets.find(p => p.planet.id === lordId);
+    if (!lordP) return 0;
+    const lSign = Math.floor(lordP.longitude / 30) + 1;
+    if (EXALTATION[lordId] === lSign) return 4;
+    if ((OWN_SIGNS[lordId] || []).includes(lSign)) return 3;
+    if (DEBILITATION[lordId] === lSign) return 1;
+    return 2;
+  }
+
+  const dignity1 = lordDignityScore(lord1);
+  const dignity2 = lordDignityScore(lord2);
+  if (dignity1 !== dignity2) return dignity1 > dignity2 ? sign1 : sign2;
+
+  // Odd sign wins
+  return isOddSign(sign1) ? sign1 : sign2;
+}
+
 export function calculateNarayanaDasha(ascSign: number, planets: PlanetPosition[], birthDate: Date): RasiDashaEntry[] {
   const dashas: RasiDashaEntry[] = [];
   let cur = new Date(birthDate);
 
-  // Simplified: always starts from Lagna sign. Full implementation would start
-  // from the stronger of 1st and 7th signs (per BPHS Ch.19).
-  const startSign = ascSign;
+  // Start from the stronger of 1st (Lagna) and 7th signs (per BPHS Ch.19).
+  const seventhSign = ((ascSign - 1 + 6) % 12) + 1;
+  const startSign = strongerSign(ascSign, seventhSign, planets);
   const direction = isOddSign(startSign) ? 1 : -1;
 
   for (let i = 0; i < 12; i++) {
@@ -262,10 +302,6 @@ const SHOOLA_PLANET_NAMES: Tri[] = [
   { en: 'Rahu', hi: 'राहु', sa: 'राहुः' },
   { en: 'Ketu', hi: 'केतु', sa: 'केतुः' },
 ];
-
-const EXALTATION: Record<number, number> = { 0: 1, 1: 2, 2: 10, 3: 6, 4: 4, 5: 12, 6: 7 };
-const DEBILITATION: Record<number, number> = { 0: 7, 1: 8, 2: 4, 3: 12, 4: 10, 5: 6, 6: 1 };
-const OWN_SIGNS: Record<number, number[]> = { 0: [5], 1: [4], 2: [1, 8], 3: [3, 6], 4: [9, 12], 5: [2, 7], 6: [10, 11] };
 
 function planetSign(pid: number, planets: PlanetPosition[]): number {
   const p = planets.find(x => x.planet.id === pid);

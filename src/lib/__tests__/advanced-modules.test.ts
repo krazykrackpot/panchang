@@ -448,21 +448,36 @@ describe('Jaimini System', () => {
     { planet: { id: 8, name: { en: 'Ketu', hi: 'केतु', sa: 'केतुः' } }, longitude: 10.0, speed: -0.05, isRetrograde: true, isExalted: false, isDebilitated: false, isOwnSign: false, isCombust: false, sign: 1, house: 1, nakshatra: { id: 1, name: { en: 'Ashwini', hi: 'अश्विनी', sa: 'अश्विनी' }, lord: { en: 'Ketu', hi: 'केतु', sa: 'केतुः' }, pada: 1 }, degree: '10°00\'', signName: { en: 'Aries', hi: 'मेष', sa: 'मेषः' } },
   ] as any[];
 
-  it('should calculate 7 Chara Karakas', () => {
-    const karakas = calculateCharaKarakas(mockPlanets);
+  it('should calculate 7 Chara Karakas in 7-karaka scheme', () => {
+    const karakas = calculateCharaKarakas(mockPlanets, '7');
     expect(karakas).toHaveLength(7);
   });
 
-  it('Atmakaraka should be the planet with highest degree within sign', () => {
+  it('should calculate 8 Chara Karakas in default (8-karaka) scheme', () => {
     const karakas = calculateCharaKarakas(mockPlanets);
+    expect(karakas).toHaveLength(8);
+    // 8th karaka is PiK (Pitrakaraka)
+    expect(karakas[7].karaka).toBe('PiK');
+  });
+
+  it('Rahu degree should be reversed (30 - deg) in 8-karaka scheme', () => {
+    const karakas = calculateCharaKarakas(mockPlanets);
+    // Rahu at longitude 190.0 -> 190 % 30 = 10 -> reversed = 30 - 10 = 20
+    const rahuEntry = karakas.find(k => k.planet === 7);
+    expect(rahuEntry).toBeDefined();
+    expect(rahuEntry!.degree).toBe(20);
+  });
+
+  it('Atmakaraka should be the planet with highest degree within sign', () => {
+    const karakas = calculateCharaKarakas(mockPlanets, '7');
     expect(karakas[0].karaka).toBe('AK');
     // Sun at 25.5 -> 25.5 deg in sign; Saturn at 265.4 -> 25.4; Venus at 48.6 -> 18.6
     // Sun (25.5) is highest within sign
     expect(karakas[0].planetName.en).toBe('Sun');
   });
 
-  it('Darakaraka should be the planet with lowest degree within sign', () => {
-    const karakas = calculateCharaKarakas(mockPlanets);
+  it('Darakaraka should be the planet with lowest degree within sign (7-karaka)', () => {
+    const karakas = calculateCharaKarakas(mockPlanets, '7');
     expect(karakas[6].karaka).toBe('DK');
   });
 
@@ -487,7 +502,7 @@ describe('Jaimini System', () => {
 
   it('calculateJaimini should return complete Jaimini data', () => {
     const result = calculateJaimini(mockPlanets, 1, new Date(1990, 3, 15));
-    expect(result.charaKarakas).toHaveLength(7);
+    expect(result.charaKarakas).toHaveLength(8); // 8-karaka scheme (default)
     expect(result.arudhaPadas).toHaveLength(12);
     expect(result.karakamsha).toBeDefined();
     expect(result.karakamsha.sign).toBeGreaterThanOrEqual(1);

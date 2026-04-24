@@ -17,6 +17,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS, VARA_DATA } from '@/lib/constants/grahas';
 import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
 import { PanchangData, Muhurta, TransitionInfo, ChoghadiyaSlot, HoraSlot, DishaShoolInfo , LocaleText} from '@/types/panchang';
+import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
 
 export interface PanchangInput {
   year: number;
@@ -27,6 +28,9 @@ export interface PanchangInput {
   tzOffset: number; // hours from UTC (e.g., 5.5 for IST) — resolved for this date
   timezone?: string; // IANA timezone (e.g., 'Europe/Zurich') for per-JD DST resolution
   locationName?: string;
+  ayanamshaValue?: number; // Optional pre-computed ayanamsha — when provided, toSidereal()
+                           // uses this instead of hardcoded Lahiri, so panchang respects
+                           // the user's ayanamsha choice (KP, Raman, etc.). Defaults to Lahiri.
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -858,7 +862,7 @@ function getMoonsetForDisplay(jd: number, lat: number, lng: number, tzOffset: nu
 }
 
 export function computePanchang(input: PanchangInput): PanchangData {
-  const { year, month, day, lat, lng, tzOffset, timezone, locationName } = input;
+  const { year, month, day, lat, lng, tzOffset, timezone, locationName, ayanamshaValue: userAyanamsha } = input;
 
   // Compute Julian Day at midnight UT for this date
   const jd = dateToJD(year, month, day, 12 - tzOffset); // Convert local noon to UT
@@ -879,7 +883,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const tithiData = TITHIS[tithiResult.number - 1] || TITHIS[0];
 
   // 2. Nakshatra (of Moon)
-  const moonSid = toSidereal(moonLongitude(jdSunrise), jdSunrise);
+  const moonSid = toSidereal(moonLongitude(jdSunrise), jdSunrise, userAyanamsha);
   const nakshatraNum = getNakshatraNumber(moonSid);
   const nakshatraPada = getNakshatraPada(moonSid);
   const nakshatraData = { ...NAKSHATRAS[nakshatraNum - 1], pada: nakshatraPada };
@@ -928,7 +932,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const planetPositions = getPlanetaryPositions(jdSunrise);
   const planets = planetPositions.map((p) => {
     const graha = GRAHAS[p.id];
-    const sidLong = toSidereal(p.longitude, jdSunrise);
+    const sidLong = toSidereal(p.longitude, jdSunrise, userAyanamsha);
     const rashi = getRashiNumber(sidLong);
     const nakshatra = getNakshatraNumber(sidLong);
     return {
@@ -982,8 +986,12 @@ export function computePanchang(input: PanchangInput): PanchangData {
   };
 
   // Masa, Ritu, Samvatsara
-  const sunSid = toSidereal(sunLongitude(jdSunrise), jdSunrise);
-  const masaIndex = getMasa(sunSid);
+  // Use true lunar month lookup (New Moon boundaries + Adhika Masa detection).
+  // Falls back to solar approximation if lunar lookup fails.
+  const sunSid = toSidereal(sunLongitude(jdSunrise), jdSunrise, userAyanamsha);
+  const lunarMasa = getLunarMasaForDate(year, month, day);
+  const masaIndex = lunarMasa ? lunarMasa.masaIdx : getMasa(sunSid);
+  const isAdhikaMasa = lunarMasa?.isAdhika ?? false;
   const rituIndex = getRitu(masaIndex);
   const samvatsaraIndex = getSamvatsara(year);
   const ayana = getAyana(sunSid);
@@ -1053,7 +1061,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
 
   const nakshatraTransition = computeTransition(
     nakshatraNum,
-    (jd) => getNakshatraNumber(toSidereal(moonLongitude(jd), jd)),
+    (jd) => getNakshatraNumber(toSidereal(moonLongitude(jd), jd, userAyanamsha)),
     findNakshatraTransition,
     jdSunrise, tzOffset, NAKSHATRAS, timezone,
   );
@@ -1153,15 +1161,23 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // HISTORICAL BUG (now fixed): the code previously advanced Amant (not Purnimant)
   // during Krishna Paksha — exactly backwards.  Both systems are derived from the
   // same masaIndex (Sun's sidereal position); only the advancement rule differs.
-  const amantMasa      = MASA_NAMES[masaIndex] || MASA_NAMES[0]; // never changes within the month
+  // Amant masa: use lunar-derived name with Adhika prefix when applicable
+  const baseMasa = MASA_NAMES[masaIndex] || MASA_NAMES[0];
+  const amantMasa = isAdhikaMasa
+    ? { en: `Adhika ${baseMasa.en}`, hi: `अधिक ${baseMasa.hi}`, sa: `अधिक${baseMasa.sa}` }
+    : baseMasa;
   const purnimantMasaIdx = tithiResult.number > 15 ? (masaIndex + 1) % 12 : masaIndex;
-  const purnimantMasa  = MASA_NAMES[purnimantMasaIdx] || MASA_NAMES[0];
+  const purnimantBase = MASA_NAMES[purnimantMasaIdx] || MASA_NAMES[0];
+  // During Adhika masa, Purnimant also gets the Adhika prefix (unless we've advanced past Purnima)
+  const purnimantMasa = isAdhikaMasa && tithiResult.number <= 15
+    ? { en: `Adhika ${purnimantBase.en}`, hi: `अधिक ${purnimantBase.hi}`, sa: `अधिक${purnimantBase.sa}` }
+    : purnimantBase;
 
   // Ayanamsha value
   const ayanamsha = lahiriAyanamsha(jdSunrise);
 
   // Sun sign and nakshatra
-  const sunSidLong = toSidereal(sunLongitude(jdSunrise), jdSunrise);
+  const sunSidLong = toSidereal(sunLongitude(jdSunrise), jdSunrise, userAyanamsha);
   const sunRashi = getRashiNumber(sunSidLong);
   const sunNakshatra = getNakshatraNumber(sunSidLong);
   const sunSign = { rashi: sunRashi, nakshatra: sunNakshatra };

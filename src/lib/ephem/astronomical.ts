@@ -256,15 +256,19 @@ export const AYANAMSHA_OPTIONS: { value: AyanamshaType; label: LocaleText }[] = 
 ];
 
 /**
- * Convert tropical longitude to sidereal using Lahiri ayanamsha.
+ * Convert tropical longitude to sidereal.
  *
- * NOTE: This function always uses Lahiri regardless of user's ayanamsha selection.
- * For user-ayanamsha-aware conversion, use getAyanamsha(jd, type) from ayanamsa.ts.
- * This is acceptable for panchang elements (tithi, nakshatra, yoga) which are
- * traditionally computed with Lahiri (Indian government standard).
+ * @param tropicalLong - Tropical ecliptic longitude in degrees
+ * @param jd - Julian Day number
+ * @param ayanamshaValue - Optional pre-computed ayanamsha in degrees. When provided,
+ *   used instead of the default Lahiri value, so callers with a user-selected
+ *   ayanamsha (KP, Raman, etc.) get consistent results. Defaults to Lahiri
+ *   (Indian government standard), which is the traditional choice for panchang
+ *   elements (tithi, nakshatra, yoga).
  */
-export function toSidereal(tropicalLong: number, jd: number): number {
-  return normalizeDeg(tropicalLong - lahiriAyanamsha(jd));
+export function toSidereal(tropicalLong: number, jd: number, ayanamshaValue?: number): number {
+  const aya = ayanamshaValue ?? lahiriAyanamsha(jd);
+  return normalizeDeg(tropicalLong - aya);
 }
 
 // Get rashi (sign) number from sidereal longitude (1-12)

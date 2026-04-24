@@ -1028,7 +1028,10 @@ export function generateKundali(birthData: BirthData): KundaliData {
       const sunP = planets.find(p => p.planet.id === 0);
       const sunDeg = sunP?.longitude || 0;
       const sunriseUTApprox = approximateSunriseSafe(jd, birthData.lat, birthData.lng);
-      return calculateSpecialLagnas(siderealAsc, sunDeg, moonSidLong, sunriseUTApprox, utHour, ascSign);
+      return calculateSpecialLagnas(
+        siderealAsc, sunDeg, moonSidLong, sunriseUTApprox, utHour, ascSign,
+        jd, birthData.lat, birthData.lng, ayanamshaValue,
+      );
     })(),
     avasthas: calculateAvasthas(planets),
     argala: calculateArgala(planets, ascSign),

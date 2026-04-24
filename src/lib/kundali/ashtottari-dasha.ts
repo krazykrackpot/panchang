@@ -210,8 +210,9 @@ function calculatePratyantarDasha(
 /**
  * Check if Ashtottari Dasha is classically applicable.
  *
- * Classical rule from Parashara: Ashtottari is prescribed when the Moon
- * is in Krishna Paksha (waning phase) at birth.
+ * Applicability check: Moon in Krishna Paksha (waning phase).
+ * Alternative classical rule (BPHS): Rahu in kendra/trikona from Lagna lord.
+ * This implementation uses the Krishna Paksha criterion.
  *
  * Krishna Paksha = Sun-Moon angular distance > 180° (i.e., Moon has traveled
  * past Full Moon and is heading toward New Moon).

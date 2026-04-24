@@ -38,12 +38,12 @@ const NAKSHATRA_LORDS_BY_ID: number[] = [
 // ---------------------------------------------------------------------------
 // Weekday lord: JD weekday -> planet id
 //   JD weekday: (floor(jd + 1.5) % 7)
-//   0=Mon, 1=Tue, 2=Wed, 3=Thu, 4=Fri, 5=Sat, 6=Sun
-//   Planet mapping: Mon->Moon(1), Tue->Mars(2), Wed->Mercury(3),
-//                   Thu->Jupiter(4), Fri->Venus(5), Sat->Saturn(6), Sun->Sun(0)
+//   0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
+//   Planet mapping: Sun->Sun(0), Mon->Moon(1), Tue->Mars(2), Wed->Mercury(3),
+//                   Thu->Jupiter(4), Fri->Venus(5), Sat->Saturn(6)
 // ---------------------------------------------------------------------------
 
-const WEEKDAY_LORD_IDS: number[] = [1, 2, 3, 4, 5, 6, 0];
+const WEEKDAY_LORD_IDS: number[] = [0, 1, 2, 3, 4, 5, 6];
 
 // ---------------------------------------------------------------------------
 // Helpers

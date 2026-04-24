@@ -45,6 +45,13 @@ self.addEventListener('message', function(event) {
 self.addEventListener('fetch', function(e) {
   var r = e.request, u = new URL(r.url);
   if (r.method !== 'GET' || !u.protocol.startsWith('http')) return;
+  // Don't cache panchang/kundali API responses — they're date/person-specific and should never be stale
+  if (u.pathname.startsWith('/api/panchang') || u.pathname.startsWith('/api/kundali')) {
+    e.respondWith(fetch(r).catch(function() {
+      return new Response('{"error":"offline"}', {status:503, headers:{'Content-Type':'application/json'}});
+    }));
+    return;
+  }
   if (u.pathname.startsWith('/api/')) { e.respondWith(netFirst(r, CA)); return; }
   if (u.pathname.includes('/learn/')) { e.respondWith(swr(r, CP)); return; }
   if (u.pathname.startsWith('/_next/static/') || u.pathname.match(/\.(svg|png|woff2|ico|webp)$/)) {

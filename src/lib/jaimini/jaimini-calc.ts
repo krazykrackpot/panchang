@@ -88,6 +88,10 @@ const SIGN_LORD: Record<number, number> = {
 /**
  * Calculate Chara Karakas — planets sorted by degree within sign (highest = AK)
  * Only 7 planets: Sun through Saturn (exclude Rahu/Ketu)
+ *
+ * Uses 7-karaka scheme (Sun-Saturn). The 8-karaka scheme adds Rahu with
+ * reversed degree (30 - longitude%30). Both are valid classical approaches.
+ * 7-karaka follows Parashara's primary exposition; 8-karaka follows Jaimini Sutra commentaries.
  */
 export function calculateCharaKarakas(planets: PlanetPosition[]): CharaKaraka[] {
   const sevenPlanets = planets.filter(p => p.planet.id >= 0 && p.planet.id <= 6);

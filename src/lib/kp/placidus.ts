@@ -95,6 +95,7 @@ function placidusIntermediate(
   // For houses below (4-6 & 7): use nocturnal semi-arc
 
   let cusp = normalizeDeg(ramc + houseOffset * 90);
+  let converged = false;
 
   for (let i = 0; i < 50; i++) {
     const decl = asinD(sinD(eps) * sinD(cusp));
@@ -111,9 +112,24 @@ function placidusIntermediate(
     const newCusp = mcLongitude(ra, eps);
 
     if (Math.abs(newCusp - cusp) < 0.001) {
+      converged = true;
       return normalizeDeg(newCusp);
     }
     cusp = newCusp;
+  }
+
+  if (!converged) {
+    // Polar latitudes (|lat| > ~66°) can prevent Placidus convergence.
+    // Fall back to equal house: divide the semicircle into equal 30° segments from the ascendant.
+    console.warn(`[placidus] Cusp did not converge at lat ${lat}. Falling back to equal house.`);
+    const ascDeg = ascendant(ramc, eps, lat);
+    // houseOffset 1/3 above → cusp 11 (Asc + 300°), 2/3 above → cusp 12 (Asc + 330°)
+    // houseOffset 1/3 below → cusp 2 (Asc + 30°),  2/3 below → cusp 3 (Asc + 60°)
+    if (isAboveHorizon) {
+      cusp = normalizeDeg(ascDeg + (houseOffset < 0.5 ? 300 : 330));
+    } else {
+      cusp = normalizeDeg(ascDeg + (houseOffset < 0.5 ? 30 : 60));
+    }
   }
 
   return normalizeDeg(cusp);

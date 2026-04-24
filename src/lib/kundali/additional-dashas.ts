@@ -51,8 +51,8 @@ export function calculateNarayanaDasha(ascSign: number, planets: PlanetPosition[
   const dashas: RasiDashaEntry[] = [];
   let cur = new Date(birthDate);
 
-  // Starting sign is the stronger between Lagna and 7th
-  // Simplified: start from Lagna sign
+  // Simplified: always starts from Lagna sign. Full implementation would start
+  // from the stronger of 1st and 7th signs (per BPHS Ch.19).
   const startSign = ascSign;
   const direction = isOddSign(startSign) ? 1 : -1;
 
@@ -382,9 +382,7 @@ function calcGrahaDasha(
     const idx = (startIdx + i) % dashaOrder.length;
     const d = dashaOrder[idx];
     const years = i === 0 ? remainingYears : d.years;
-    const end = new Date(cur);
-    end.setFullYear(end.getFullYear() + Math.floor(years));
-    end.setMonth(end.getMonth() + Math.floor((years % 1) * 12));
+    const end = addYears(cur, years);
 
     dashas.push({
       planet: d.planet,

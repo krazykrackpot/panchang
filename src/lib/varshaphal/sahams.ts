@@ -81,7 +81,7 @@ export function calculateSahams(
     const b = getLong(formula.b);
 
     let degree: number;
-    if (isDayBirth && !formula.reverse || !isDayBirth && formula.reverse) {
+    if ((isDayBirth && !formula.reverse) || (!isDayBirth && formula.reverse)) {
       degree = normalizeDeg(a - b + ascendant);
     } else {
       degree = normalizeDeg(b - a + ascendant);

@@ -52,12 +52,6 @@ function getP(planets: PlanetData[], id: number): PlanetData {
   return planets.find(p => p.id === id)!;
 }
 
-/** 1-based house offset from `fromHouse` to `toHouse` */
-function houseFrom(fromHouse: number, toHouse: number): number {
-  const diff = ((toHouse - fromHouse) % 12 + 12) % 12;
-  return diff === 0 ? 12 : diff; // map 0 -> 12 so range is 1-12
-}
-
 // Actually we want 1-based: same house = 1
 function houseOffset(fromHouse: number, toHouse: number): number {
   return ((toHouse - fromHouse + 12) % 12) + 1;

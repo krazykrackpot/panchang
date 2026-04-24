@@ -611,7 +611,21 @@ function _meeusPlanetaryPositions(jd: number): {
 }
 
 /**
- * Get Hindu lunar month (Masa) name based on Sun's sidereal longitude
+ * Get Hindu lunar month (Masa) name based on Sun's sidereal longitude.
+ *
+ * IMPORTANT — SOLAR APPROXIMATION: This maps Sun's sidereal sign to a month
+ * name, which is a solar-month approximation. True lunar months run from
+ * New Moon to New Moon and are named by the Sun's sign at the starting
+ * New Moon (see computeHinduMonths() in calendar/hindu-months.ts for the
+ * accurate lunar computation). Near Sankranti (solar ingress), this function
+ * may disagree with the true lunar month by a day or two.
+ *
+ * This approximation is adequate for:
+ *   - Daily Panchang display (masa label)
+ *   - Sankalpa text generation
+ *   - Samvat year boundary heuristic
+ * For accurate month boundaries (Adhika Masa detection, calendar generation),
+ * use computeHinduMonths() instead.
  */
 export function getMasa(sunSidLong: number): number {
   // Masa is determined by the solar ingress into a rashi

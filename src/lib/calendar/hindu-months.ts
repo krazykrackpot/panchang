@@ -39,7 +39,12 @@ const MASA_DATA: { en: string; hi: string; sa: string; ritu: LocaleText; ayana: 
 
 /**
  * Find all New Moon (Amavasya) dates in a year range.
- * Scans daily, detects when Moon-Sun elongation crosses 0°.
+ * Scans daily, detects when Moon-Sun elongation (0-360°) wraps through 0°.
+ *
+ * Raw elongation (Moon - Sun, mod 360) runs 0→360 over a synodic month:
+ *   0° = New Moon (conjunction)
+ *   180° = Full Moon (opposition)
+ * At New Moon the elongation wraps from ~350° back to ~10° — we detect that crossing.
  */
 function findNewMoons(year: number): Date[] {
   const newMoons: Date[] = [];
@@ -51,18 +56,19 @@ function findNewMoons(year: number): Date[] {
   for (let jd = startJD; jd < endJD; jd += 1) {
     const sunL = sunLongitude(jd);
     const moonL = moonLongitude(jd);
-    let elong = (moonL - sunL + 360) % 360;
-    if (elong > 180) elong = 360 - elong; // normalize to 0-180
+    const elong = (moonL - sunL + 360) % 360; // 0-360, NOT folded
 
-    // New Moon = elongation near 0, crossing from large to small
-    if (prevElong > 90 && elong < 90 && prevElong > elong) {
-      // Refine with binary search
+    // New Moon = elongation wraps through 0° (from >300° to <60°)
+    if (prevElong >= 0 && prevElong > 300 && elong < 60) {
+      // Binary search: find where elongation is closest to 0 (or 360)
       let lo = jd - 1, hi = jd;
       for (let i = 0; i < 15; i++) {
         const mid = (lo + hi) / 2;
         const mSun = sunLongitude(mid);
         const mMoon = moonLongitude(mid);
         const mElong = ((mMoon - mSun + 360) % 360);
+        // We want the point where elong crosses 0°
+        // If mElong > 180, we're before the crossing (approaching 360→0)
         if (mElong > 180) { lo = mid; } else { hi = mid; }
       }
 

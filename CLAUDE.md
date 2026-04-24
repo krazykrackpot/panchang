@@ -405,7 +405,21 @@ These shipped to production and affected real users. 6 rounds of auditing were n
 - The code used `Math.abs(p1.latitude) <= Math.abs(p2.latitude)` which could declare a planet at -2° latitude (southern) the winner over one at +1° (northern). Per BPHS Ch.3 and Surya Siddhanta, the planet with greater positive (northward) latitude wins.
 - Rule: Winner = `p1.latitude >= p2.latitude ? p1 : p2` (simple comparison, not absolute value).
 
-### Z. Festival definitions use Amant month names — match against `.amanta`
+### Z. Never change a Jyotish constant without grepping the ENTIRE codebase first
+- The Moon-Jupiter friendship was correct (neutral) in 11 files. A single audit claim said it should be "friend." I changed it without checking the other 11 files. Then I had to revert — after the wrong value was live. Any user who ran Ashta Kuta matching in that window got a wrong score.
+- Rule: Before editing ANY constant (friendship, exaltation, lordship, moolatrikona, yoga condition), run `grep` for that constant name across ALL files. Count how many agree. The majority is almost always right. Change ALL files in one commit or change NONE.
+- Rule: If an audit says "X is wrong" but 11 files say otherwise, the audit is wrong.
+
+### ZA. Same data must render from ONE component — never two
+- The 5 panchang cards (tithi, nakshatra, yoga, karana, vara) existed as inline JSX in `PanchangClient.tsx` AND as a generic loop in `TodayPanchangWidget.tsx`. When the panchang page cards were fixed, the landing page cards stayed broken. It took 3 rounds of user frustration to align them.
+- Rule: When two pages show the same data visualization, extract a shared component. Duplicated rendering code WILL drift — it is not a question of if, but when.
+- Rule: After fixing a display bug, grep for the component/pattern across the entire app. If it appears in 2+ places, fix ALL of them in the same commit.
+
+### ZB. "It type-checks" and "tests pass" is NOT "it works"
+- The yoga card showed "Ganda" with Shula's time range. TypeScript was happy. Tests passed. The bug was visible the instant you opened the page.
+- Rule: Every UI change must be verified in the browser before claiming done. This is Definition of Done item #4 and it is non-negotiable. If you cannot test in browser (Playwright down, no access), say so explicitly — never claim the work is complete.
+
+### ZC. Festival definitions use Amant month names — match against `.amanta`
 - Festival generator matched against `.purnimanta` but definitions used Amant convention (which Prokerala, Drik Panchang, and all references use). During Krishna Paksha, Purnimant is one month ahead → Diwali was 30 days early, Dussehra 11 days early.
 - Rule: All festival/vrat definitions use Amant month names. Always compare against `e.masa.amanta`, never `.purnimanta`.
 - **Proactive check:** When adding a new festival, verify the month name matches Amant convention by checking Prokerala for the expected date.

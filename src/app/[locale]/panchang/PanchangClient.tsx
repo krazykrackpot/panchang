@@ -296,9 +296,14 @@ export default function PanchangClient() {
     if (!panchang?.muhurtas) return;
     const update = () => {
       const now = new Date();
-      const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+      const nowMin = now.getHours() * 60 + now.getMinutes();
+      const toMin = (t: string) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
       for (let i = 0; i < panchang.muhurtas.length; i++) {
-        if (currentTime >= panchang.muhurtas[i].startTime && currentTime < panchang.muhurtas[i].endTime) {
+        const s = toMin(panchang.muhurtas[i].startTime);
+        const e = toMin(panchang.muhurtas[i].endTime);
+        // Handle midnight-crossing slots (e.g., 23:30 to 01:15)
+        const inRange = e < s ? (nowMin >= s || nowMin < e) : (nowMin >= s && nowMin < e);
+        if (inRange) {
           setCurrentMuhurtaIdx(i);
           return;
         }
@@ -847,7 +852,9 @@ export default function PanchangClient() {
             const currentHora = panchang.hora.find((h: { startTime: string; endTime: string; planetId: number }) => {
               const [sh, sm] = h.startTime.split(':').map(Number);
               const [eh, em] = h.endTime.split(':').map(Number);
-              return nowMinutes >= sh * 60 + sm && nowMinutes < eh * 60 + em;
+              const start = sh * 60 + sm, end = eh * 60 + em;
+              // Handle midnight-crossing slots (e.g., 23:30 to 01:15)
+              return end < start ? (nowMinutes >= start || nowMinutes < end) : (nowMinutes >= start && nowMinutes < end);
             });
             const HORA_ACTIVITIES: Record<number, LocaleText> = {
               0: { en: 'Government work, authority matters, health', hi: 'सरकारी कार्य, अधिकार, स्वास्थ्य', sa: 'राजकार्यम्, अधिकारः, आरोग्यम्', ta: 'அரசு பணி, அதிகாரம், ஆரோக்கியம்', te: 'ప్రభుత్వ పని, అధికారం, ఆరోగ్యం', bn: 'সরকারি কাজ, কর্তৃত্ব, স্বাস্থ্য', kn: 'ಸರ್ಕಾರಿ ಕೆಲಸ, ಅಧಿಕಾರ, ಆರೋಗ್ಯ', mr: 'सरकारी काम, अधिकार, आरोग्य', gu: 'સરકારી કામ, સત્તા, આરોગ્ય', mai: 'सरकारी काज, अधिकार, स्वास्थ्य' },
@@ -1954,10 +1961,15 @@ export default function PanchangClient() {
                 {(() => {
                   const toMin = (t: string) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
                   const nowMin = now.getHours() * 60 + now.getMinutes();
-                  const isNow = (s: string, e: string) => { const s0 = toMin(s), e0 = toMin(e); return nowMin >= s0 && nowMin < e0; };
+                  // Handle midnight-crossing slots (e.g., 23:30 to 01:15)
+                  const isNow = (s: string, e: string) => { const s0 = toMin(s), e0 = toMin(e); return e0 < s0 ? (nowMin >= s0 || nowMin < e0) : (nowMin >= s0 && nowMin < e0); };
                   const overlaps = (aS: string, aE: string, bS: string, bE: string) => {
-                    const a0 = toMin(aS), a1 = toMin(aE), b0 = toMin(bS), b1 = toMin(bE);
-                    return a0 < b1 && b0 < a1;
+                    const a0 = toMin(aS), a1raw = toMin(aE), b0 = toMin(bS), b1raw = toMin(bE);
+                    // Unwrap midnight-crossing ranges: if end < start, add 1440 to end
+                    const a1 = a1raw <= a0 ? a1raw + 1440 : a1raw;
+                    const b1 = b1raw <= b0 ? b1raw + 1440 : b1raw;
+                    // Standard overlap check, also shifted by 1440 for cross-day alignment
+                    return (a0 < b1 && b0 < a1) || (a0 < b1 + 1440 && b0 + 1440 < a1) || (a0 + 1440 < b1 && b0 < a1 + 1440);
                   };
                   // Collect all inauspicious windows
                   const badWindows: { start: string; end: string; label: string; labelHi: string }[] = [];

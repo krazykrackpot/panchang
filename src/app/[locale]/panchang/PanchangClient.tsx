@@ -760,17 +760,22 @@ export default function PanchangClient() {
                 >
                   <div className="flex justify-center mb-3"><YogaIcon size={56} /></div>
                   <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('yoga')}</div>
+                  {/* Active yoga — highlighted */}
                   <div className="text-gold-light text-2xl font-bold leading-tight" style={headingFont}>{tl(activeYoga.name)}</div>
                   <div className="text-text-secondary text-xs mt-2">{tl(activeYoga.meaning)}</div>
+                  {/* Both yogas with their time windows */}
                   {panchang.yogaTransition && (
-                    <div className="mt-3 pt-2 border-t border-gold-primary/10">
-                      <div className="font-mono text-sm text-amber-300 font-bold">{fmt(panchang.yogaTransition.startTime, panchang.yogaTransition.startDate)} — {fmt(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate)}</div>
-                      <div className="text-xs text-text-secondary/55">24h</div>
-                      {!yogaPassed && (
-                        <div className="text-xs text-text-secondary mt-1">
-                          {t('then')} <span className="text-gold-light font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(panchang.yogaTransition.nextName)}</span>
-                        </div>
-                      )}
+                    <div className="mt-3 pt-2 border-t border-gold-primary/10 space-y-1.5">
+                      {/* First yoga (at sunrise) */}
+                      <div className={`flex items-baseline justify-between gap-2 ${yogaPassed ? 'opacity-50' : ''}`}>
+                        <span className="text-xs text-text-primary font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(panchang.yoga.name)}</span>
+                        <span className="font-mono text-xs text-amber-300">{fmt(panchang.yogaTransition.startTime, panchang.yogaTransition.startDate)} — {fmt(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate)}</span>
+                      </div>
+                      {/* Second yoga (after transition) */}
+                      <div className={`flex items-baseline justify-between gap-2 ${yogaPassed ? '' : 'opacity-50'}`}>
+                        <span className="text-xs text-text-primary font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(panchang.yogaTransition.nextName)}</span>
+                        <span className="font-mono text-xs text-amber-300">{fmt(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate)} {onwards}</span>
+                      </div>
                     </div>
                   )}
                   {/* Yoga contextual tip */}
@@ -794,19 +799,24 @@ export default function PanchangClient() {
                 >
                   <div className="flex justify-center mb-3"><KaranaIcon size={56} /></div>
                   <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('karana')}</div>
+                  {/* Active karana — highlighted */}
                   <div className="text-gold-light text-2xl font-bold leading-tight" style={headingFont}>{tl(activeKarana.name)}</div>
                   <div className="text-text-secondary text-xs mt-2">
                     {activeKarana.type === 'chara' ? msg('movable', locale) : activeKarana.type === 'sthira' ? msg('fixed', locale) : msg('special', locale)}
                   </div>
+                  {/* Both karanas with their time windows */}
                   {panchang.karanaTransition && (
-                    <div className="mt-3 pt-2 border-t border-gold-primary/10">
-                      <div className="font-mono text-sm text-amber-300 font-bold">{fmt(panchang.karanaTransition.startTime, panchang.karanaTransition.startDate)} — {fmt(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate)}</div>
-                      <div className="text-xs text-text-secondary/55">24h</div>
-                      {!karanaPassed && (
-                        <div className="text-xs text-text-secondary mt-1">
-                          {t('then')} <span className="text-gold-light font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(panchang.karanaTransition.nextName)}</span>
-                        </div>
-                      )}
+                    <div className="mt-3 pt-2 border-t border-gold-primary/10 space-y-1.5">
+                      {/* First karana (at sunrise) */}
+                      <div className={`flex items-baseline justify-between gap-2 ${karanaPassed ? 'opacity-50' : ''}`}>
+                        <span className="text-xs text-text-primary font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(panchang.karana.name)}</span>
+                        <span className="font-mono text-xs text-amber-300">{fmt(panchang.karanaTransition.startTime, panchang.karanaTransition.startDate)} — {fmt(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate)}</span>
+                      </div>
+                      {/* Second karana (after transition) */}
+                      <div className={`flex items-baseline justify-between gap-2 ${karanaPassed ? '' : 'opacity-50'}`}>
+                        <span className="text-xs text-text-primary font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(panchang.karanaTransition.nextName)}</span>
+                        <span className="font-mono text-xs text-amber-300">{fmt(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate)} {onwards}</span>
+                      </div>
                     </div>
                   )}
                   {/* Karana contextual tip */}

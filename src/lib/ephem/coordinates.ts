@@ -211,21 +211,32 @@ export function computeFullCoordinates(
 /**
  * Check whether a planet is combust (too close to the Sun).
  *
- * @param planetId  - Graha id (0-8)
- * @param planetLong - Planet ecliptic longitude in degrees
- * @param sunLong    - Sun ecliptic longitude in degrees
+ * Per BPHS, Mercury and Venus have reduced combustion orbs when retrograde:
+ * Mercury: 14° direct, 12° retrograde. Venus: 10° direct, 8° retrograde.
+ *
+ * @param planetId    - Graha id (0-8)
+ * @param planetLong  - Planet ecliptic longitude in degrees
+ * @param sunLong     - Sun ecliptic longitude in degrees
+ * @param isRetrograde - Whether the planet is retrograde (optional, defaults false)
  * @returns `true` if the planet is combust
  */
 export function computeCombust(
   planetId: number,
   planetLong: number,
   sunLong: number,
+  isRetrograde = false,
 ): boolean {
   // Sun, Rahu, and Ketu are never combust
   if (planetId === 0 || planetId === 7 || planetId === 8) return false;
 
-  const orb = COMBUST_ORBS[planetId];
+  let orb = COMBUST_ORBS[planetId];
   if (orb === undefined) return false;
+
+  // Reduced orbs for retrograde Mercury and Venus (BPHS)
+  if (isRetrograde) {
+    if (planetId === 3) orb = 12;  // Mercury: 14 → 12
+    if (planetId === 5) orb = 8;   // Venus: 10 → 8
+  }
 
   const diff = Math.abs(planetLong - sunLong);
   const angularDistance = Math.min(diff, 360 - diff);

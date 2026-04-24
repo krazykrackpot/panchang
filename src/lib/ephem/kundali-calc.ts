@@ -587,7 +587,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
       pada,
       degree: formatDegrees(sidLong % 30),
       isRetrograde: p.isRetrograde,
-      isCombust: computeCombust(p.id, sidLong, sunRawLong),
+      isCombust: computeCombust(p.id, sidLong, sunRawLong, p.isRetrograde),
       isExalted: EXALTATION[p.id] === sign,
       isDebilitated: DEBILITATION[p.id] === sign,
       isOwnSign: (OWN_SIGNS[p.id] || []).includes(sign),

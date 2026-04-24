@@ -61,8 +61,9 @@ export function detectGrahaYuddha(planets: PlanetInput[]): GrahaYuddhaResult[] {
 
       if (sep > 1) continue; // Only war if within 1°
 
-      // Winner: lower ecliptic latitude wins (traditional rule from BPHS)
-      const winner = Math.abs(p1.latitude) <= Math.abs(p2.latitude) ? p1 : p2;
+      // Winner: planet with greater northern latitude wins (BPHS Ch.3, Sl.18-19;
+      // Surya Siddhanta). Higher positive latitude = more northward = victor.
+      const winner = p1.latitude >= p2.latitude ? p1 : p2;
       const loser  = winner === p1 ? p2 : p1;
 
       const winnerName = PLANET_NAMES[winner.id];

@@ -184,7 +184,7 @@ export function generateKPChart(birthData: BirthData): KPChartData {
     //   • Correct combust status for Jupiter/Venus was a coin flip
     // Now delegates to computeCombust() which implements the full classical table.
     const sunSid = normalizeDeg(rawPlanets[0].longitude - ayanamshaVal);
-    const isCombust = computeCombust(rp.id, sidLong, sunSid);
+    const isCombust = computeCombust(rp.id, sidLong, sunSid, rp.isRetrograde);
 
     const kpPlanet: KPPlanet = {
       planet: graha,

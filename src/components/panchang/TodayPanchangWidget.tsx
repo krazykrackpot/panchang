@@ -12,6 +12,20 @@ import { TithiIcon, NakshatraIcon, YogaIcon, KaranaIcon, VaraIcon } from '@/comp
 import { useLocationStore } from '@/stores/location-store';
 import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
 import { tl as _tl } from '@/lib/utils/trilingual';
+import { YOGAS } from '@/lib/constants/yogas';
+
+/** Check if a panchang transition time has already passed (local time comparison) */
+function isTimePassed(timeStr: string, dateStr?: string): boolean {
+  const now = new Date();
+  const [h, m] = timeStr.split(':').map(Number);
+  if (dateStr) {
+    const [y, mo, d] = dateStr.split('-').map(Number);
+    const target = new Date(y, mo - 1, d, h, m);
+    return now >= target;
+  }
+  const todayTarget = new Date(now.getFullYear(), now.getMonth(), now.getDate(), h, m);
+  return now >= todayTarget;
+}
 
 interface Props {
   serverPanchang?: PanchangData;
@@ -209,12 +223,27 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
 
   if (!panchang) return <LocationBar />;
 
+  // Resolve active yoga/karana (switches when transition time passes)
+  const yogaPassed = panchang.yogaTransition ? isTimePassed(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate) : false;
+  const karanaPassed = panchang.karanaTransition ? isTimePassed(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate) : false;
+  const activeYogaName = yogaPassed && panchang.yogaTransition ? _tl(panchang.yogaTransition.nextName, locale) : _tl(panchang.yoga.name, locale);
+  const activeYogaMeaning = yogaPassed && panchang.yogaTransition ? _tl(YOGAS[panchang.yogaTransition.nextNumber - 1]?.meaning, locale) : _tl(panchang.yoga.meaning, locale);
+  const activeKaranaName = karanaPassed && panchang.karanaTransition ? _tl(panchang.karanaTransition.nextName, locale) : _tl(panchang.karana.name, locale);
+
   const elements = [
-    { label: t('tithi'), value: _tl(panchang.tithi.name, locale), sub: panchang.tithi.paksha === 'shukla' ? t('shukla') : t('krishna'), timing: timingStr(panchang.tithiTransition), Icon: TithiIcon },
-    { label: t('nakshatra'), value: _tl(panchang.nakshatra.name, locale), sub: _tl(panchang.nakshatra.deity, locale), timing: timingStr(panchang.nakshatraTransition), Icon: NakshatraIcon },
-    { label: t('yoga'), value: _tl(panchang.yoga.name, locale), sub: _tl(panchang.yoga.meaning, locale), timing: timingStr(panchang.yogaTransition), Icon: YogaIcon },
-    { label: t('karana'), value: _tl(panchang.karana.name, locale), sub: '', timing: timingStr(panchang.karanaTransition), Icon: KaranaIcon },
-    { label: t('vara'), value: _tl(panchang.vara.name, locale), sub: _tl(panchang.vara.ruler, locale), timing: null, Icon: VaraIcon },
+    { label: t('tithi'), value: _tl(panchang.tithi.name, locale), sub: panchang.tithi.paksha === 'shukla' ? t('shukla') : t('krishna'), timing: timingStr(panchang.tithiTransition), Icon: TithiIcon, dual: null },
+    { label: t('nakshatra'), value: _tl(panchang.nakshatra.name, locale), sub: _tl(panchang.nakshatra.deity, locale), timing: timingStr(panchang.nakshatraTransition), Icon: NakshatraIcon, dual: null },
+    { label: t('yoga'), value: activeYogaName, sub: activeYogaMeaning, timing: null, Icon: YogaIcon,
+      dual: panchang.yogaTransition ? {
+        first: { name: _tl(panchang.yoga.name, locale), start: fmtDateTime(panchang.yogaTransition.startTime, panchang.yogaTransition.startDate), end: fmtDateTime(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate), active: !yogaPassed },
+        second: { name: _tl(panchang.yogaTransition.nextName, locale), start: fmtDateTime(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate), end: null, active: yogaPassed },
+      } : null },
+    { label: t('karana'), value: activeKaranaName, sub: '', timing: null, Icon: KaranaIcon,
+      dual: panchang.karanaTransition ? {
+        first: { name: _tl(panchang.karana.name, locale), start: fmtDateTime(panchang.karanaTransition.startTime, panchang.karanaTransition.startDate), end: fmtDateTime(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate), active: !karanaPassed },
+        second: { name: _tl(panchang.karanaTransition.nextName, locale), start: fmtDateTime(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate), end: null, active: karanaPassed },
+      } : null },
+    { label: t('vara'), value: _tl(panchang.vara.name, locale), sub: _tl(panchang.vara.ruler, locale), timing: null, Icon: VaraIcon, dual: null },
   ];
 
   return (
@@ -235,7 +264,21 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
             {el.sub && (
               <div className="text-text-secondary text-sm mt-2" style={getBodyFont(locale)}>{el.sub}</div>
             )}
-            {el.timing && (
+            {/* Dual display: both elements with times (yoga, karana) */}
+            {el.dual && (
+              <div className="mt-3 pt-2 border-t border-gold-primary/10 w-full space-y-1.5">
+                <div className={`flex items-baseline justify-between gap-2 ${el.dual.first.active ? '' : 'opacity-50'}`}>
+                  <span className="text-xs text-text-primary font-medium" style={getBodyFont(locale)}>{el.dual.first.name}</span>
+                  <span className="font-mono text-xs text-amber-300 whitespace-nowrap">{el.dual.first.start} — {el.dual.first.end}</span>
+                </div>
+                <div className={`flex items-baseline justify-between gap-2 ${el.dual.second.active ? '' : 'opacity-50'}`}>
+                  <span className="text-xs text-text-primary font-medium" style={getBodyFont(locale)}>{el.dual.second.name}</span>
+                  <span className="font-mono text-xs text-amber-300 whitespace-nowrap">{el.dual.second.start} →</span>
+                </div>
+              </div>
+            )}
+            {/* Single timing display (tithi, nakshatra) */}
+            {el.timing && !el.dual && (
               <div className="mt-3 pt-3 border-t border-gold-primary/10 w-full">
                 <div className="flex items-center justify-center gap-3">
                   <div className="text-center">
@@ -248,7 +291,6 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
                     <div className="font-mono text-sm font-bold text-rose-300">{el.timing.end}</div>
                   </div>
                 </div>
-                <div className="text-xs text-text-secondary/55 text-center mt-1">24h</div>
               </div>
             )}
           </div>

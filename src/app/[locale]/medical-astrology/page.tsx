@@ -1,10 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { authedFetch } from '@/lib/api/authed-fetch';
 import BirthForm from '@/components/kundali/BirthForm';
+import { useAuthStore } from '@/stores/auth-store';
+import { getSupabase } from '@/lib/supabase/client';
 import type { BirthData } from '@/types/kundali';
 import type { PrakritiResult } from '@/lib/medical/prakriti';
 import type { BodyRegionResult } from '@/lib/medical/body-map';
@@ -213,11 +215,37 @@ function DonutSegment({
 }
 
 // ─── Main page component ─────────────────────────────────────────────────────
+interface SavedChart {
+  id: string;
+  label: string;
+  birth_data: { name?: string; date: string; time: string; place: string; lat: number; lng: number; timezone?: string; ayanamsha?: string; relationship?: string };
+}
+
 export default function MedicalAstrologyPage() {
   const locale = useLocale() as Locale;
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<MedicalResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [savedCharts, setSavedCharts] = useState<SavedChart[]>([]);
+  const [selectedName, setSelectedName] = useState<string>('');
+  const user = useAuthStore(s => s.user);
+  const isDevanagari = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
+
+  // Fetch saved charts when logged in
+  useEffect(() => {
+    if (!user) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
+    supabase
+      .from('saved_charts')
+      .select('id, label, birth_data')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+      .then(({ data, error: err }) => {
+        if (err) { console.error('[medical] saved charts fetch failed:', err); return; }
+        if (data && data.length > 0) setSavedCharts(data as SavedChart[]);
+      });
+  }, [user]);
 
   async function handleSubmit(birthData: BirthData) {
     setLoading(true);
@@ -278,13 +306,80 @@ export default function MedicalAstrologyPage() {
         {/* ── Disclaimer (always visible) ─────────────────────────────── */}
         <DisclaimerBanner text={L(locale, 'disclaimer')} />
 
-        {/* ── Birth Form ──────────────────────────────────────────────── */}
-        <section className="bg-bg-secondary border border-gold-primary/15 rounded-2xl p-6">
-          <BirthForm
-            onSubmit={(data) => handleSubmit(data)}
-            loading={loading}
-          />
-        </section>
+        {/* ── Saved Charts Picker ─────────────────────────────────────── */}
+        {savedCharts.length > 0 && !result && (
+          <section>
+            <h2 className="text-lg font-semibold text-text-primary mb-3" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+              {locale === 'hi' ? 'परिवार का सदस्य चुनें' : locale === 'ta' ? 'குடும்ப உறுப்பினரைத் தேர்ந்தெடுக்கவும்' : locale === 'bn' ? 'পরিবারের সদস্য নির্বাচন করুন' : 'Select a Family Member'}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {savedCharts.map((c) => {
+                const name = c.birth_data.name || c.label;
+                const rel = c.birth_data.relationship;
+                return (
+                  <button
+                    key={c.id}
+                    type="button"
+                    disabled={loading}
+                    onClick={() => {
+                      setSelectedName(name);
+                      handleSubmit({
+                        name,
+                        date: c.birth_data.date,
+                        time: c.birth_data.time,
+                        place: c.birth_data.place,
+                        lat: c.birth_data.lat,
+                        lng: c.birth_data.lng,
+                        timezone: c.birth_data.timezone || 'Asia/Kolkata',
+                        ayanamsha: c.birth_data.ayanamsha || 'lahiri',
+                      });
+                    }}
+                    className={`text-left rounded-xl border p-4 transition-all ${
+                      loading && selectedName === name
+                        ? 'border-gold-primary/40 bg-gold-primary/10'
+                        : 'border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] hover:border-gold-primary/40'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-gold-light font-bold text-sm truncate" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                        {name}
+                      </span>
+                      {rel && rel !== 'self' && (
+                        <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-400 font-medium capitalize shrink-0">
+                          {rel}
+                        </span>
+                      )}
+                      {loading && selectedName === name && (
+                        <span className="ml-auto text-xs text-gold-primary animate-pulse">
+                          {L(locale, 'generating')}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-text-secondary text-xs font-mono">{c.birth_data.date} | {c.birth_data.time}</p>
+                    <p className="text-text-secondary/60 text-xs truncate">{c.birth_data.place}</p>
+                  </button>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        {/* ── Or enter new details ─────────────────────────────────────── */}
+        {!result && (
+          <section>
+            {savedCharts.length > 0 && (
+              <div className="text-center text-text-secondary text-sm mb-4 mt-2">
+                {locale === 'hi' ? 'या नए विवरण दर्ज करें' : locale === 'ta' ? 'அல்லது புதிய விவரங்களை உள்ளிடவும்' : locale === 'bn' ? 'অথবা নতুন বিবরণ লিখুন' : 'Or enter new details'}
+              </div>
+            )}
+            <div className="bg-bg-secondary border border-gold-primary/15 rounded-2xl p-6">
+              <BirthForm
+                onSubmit={(data) => handleSubmit(data)}
+                loading={loading}
+              />
+            </div>
+          </section>
+        )}
 
         {/* ── Error ───────────────────────────────────────────────────── */}
         <AnimatePresence>

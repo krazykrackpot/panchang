@@ -37,6 +37,12 @@ const LABELS = {
     yearSummary: 'Year Summary', chart: 'Annual Chart', sign: 'Sign', house: 'House', degree: 'Degree',
     planet: 'Planet', start: 'Start', end: 'End', days: 'Days', type: 'Type', favorable: 'Favorable',
     north: 'North Indian', south: 'South Indian', age: 'Age',
+    monthlyCharts: 'Monthly Charts (Maasaphal)', varsheshaDasha: 'Varshesha Dasha', patyayiniDasha: 'Patyayini Dasha',
+    dashaToggle: 'Dasha View', dashaMudda: 'Mudda', dashaVarshesha: 'Varshesha', dashaPatyayini: 'Patyayini',
+    relationship: 'Relationship', degreesTraversed: 'Degrees', lagna: 'Lagna',
+    loadMonthly: 'Load Monthly Charts', loadingMonthly: 'Computing Monthly Charts...',
+    yogas: 'Yogas', monthLabel: 'Month', returnMoment: 'Return Moment',
+    noYogas: 'No Tajika yogas',
   },
   hi: {
     title: 'वर्षफल',
@@ -50,6 +56,12 @@ const LABELS = {
     yearSummary: 'वर्ष सारांश', chart: 'वार्षिक कुण्डली', sign: 'राशि', house: 'भाव', degree: 'अंश',
     planet: 'ग्रह', start: 'आरम्भ', end: 'अन्त', days: 'दिन', type: 'प्रकार', favorable: 'अनुकूल',
     north: 'उत्तर भारतीय', south: 'दक्षिण भारतीय', age: 'आयु',
+    monthlyCharts: 'मासिक चार्ट (मासफल)', varsheshaDasha: 'वर्षेशा दशा', patyayiniDasha: 'पत्यायिनी दशा',
+    dashaToggle: 'दशा दृश्य', dashaMudda: 'मुद्दा', dashaVarshesha: 'वर्षेशा', dashaPatyayini: 'पत्यायिनी',
+    relationship: 'संबंध', degreesTraversed: 'अंश', lagna: 'लग्न',
+    loadMonthly: 'मासिक चार्ट लोड करें', loadingMonthly: 'मासिक चार्ट की गणना...',
+    yogas: 'योग', monthLabel: 'माह', returnMoment: 'प्रत्यावर्तन क्षण',
+    noYogas: 'कोई ताजिक योग नहीं',
   },
   sa: {
     title: 'वर्षफलम्',
@@ -63,6 +75,12 @@ const LABELS = {
     yearSummary: 'वर्षसारांशः', chart: 'वार्षिककुण्डली', sign: 'राशिः', house: 'भावः', degree: 'अंशः',
     planet: 'ग्रहः', start: 'आरम्भः', end: 'अन्तः', days: 'दिनानि', type: 'प्रकारः', favorable: 'अनुकूलः',
     north: 'उत्तरभारतीयम्', south: 'दक्षिणभारतीयम्', age: 'आयुः',
+    monthlyCharts: 'मासिकचार्टाः (मासफलम्)', varsheshaDasha: 'वर्षेशादशा', patyayiniDasha: 'पत्यायिनीदशा',
+    dashaToggle: 'दशादृश्यम्', dashaMudda: 'मुद्दा', dashaVarshesha: 'वर्षेशा', dashaPatyayini: 'पत्यायिनी',
+    relationship: 'सम्बन्धः', degreesTraversed: 'अंशाः', lagna: 'लग्नम्',
+    loadMonthly: 'मासिकचार्टान् लोडयतु', loadingMonthly: 'मासिकचार्टगणना...',
+    yogas: 'योगाः', monthLabel: 'मासः', returnMoment: 'प्रत्यावर्तनक्षणम्',
+    noYogas: 'कोऽपि ताजिकयोगः नास्ति',
   },
   ta: {
     title: 'வர்ஷபலன்',
@@ -76,6 +94,12 @@ const LABELS = {
     yearSummary: 'வருட சுருக்கம்', chart: 'வருடாந்திர குண்டலி', sign: 'ராசி', house: 'பாவம்', degree: 'பாகை',
     planet: 'கிரகம்', start: 'தொடக்கம்', end: 'முடிவு', days: 'நாட்கள்', type: 'வகை', favorable: 'சாதகமான',
     north: 'வட இந்திய', south: 'தென் இந்திய', age: 'வயது',
+    monthlyCharts: 'மாதாந்திர படங்கள் (மாசபலன்)', varsheshaDasha: 'வர்ஷேஷ தசா', patyayiniDasha: 'பட்யாயினி தசா',
+    dashaToggle: 'தசா காட்சி', dashaMudda: 'முத்தா', dashaVarshesha: 'வர்ஷேஷ', dashaPatyayini: 'பட்யாயினி',
+    relationship: 'உறவு', degreesTraversed: 'பாகைகள்', lagna: 'லக்னம்',
+    loadMonthly: 'மாதாந்திர படங்களை ஏற்று', loadingMonthly: 'மாதாந்திர படங்கள் கணக்கிடுகிறது...',
+    yogas: 'யோகங்கள்', monthLabel: 'மாதம்', returnMoment: 'மீள்வரவு தருணம்',
+    noYogas: 'தாஜிக யோகங்கள் இல்லை',
   },
   te: {
     title: 'వర్షఫలం',
@@ -88,6 +112,12 @@ const LABELS = {
     yearSummary: 'సంవత్సర సారాంశం', chart: 'వార్షిక చార్ట్', sign: 'రాశి', house: 'భావం', degree: 'డిగ్రీ',
     planet: 'గ్రహం', start: 'ప్రారంభం', end: 'ముగింపు', days: 'రోజులు', type: 'రకం', favorable: 'అనుకూలం',
     north: 'ఉత్తర భారతీయ', south: 'దక్షిణ భారతీయ', age: 'వయసు',
+    monthlyCharts: 'నెలవారీ చార్టులు (మాసఫలం)', varsheshaDasha: 'వర్షేశా దశ', patyayiniDasha: 'పత్యాయిని దశ',
+    dashaToggle: 'దశ వీక్షణ', dashaMudda: 'ముద్ద', dashaVarshesha: 'వర్షేశా', dashaPatyayini: 'పత్యాయిని',
+    relationship: 'సంబంధం', degreesTraversed: 'డిగ్రీలు', lagna: 'లగ్నం',
+    loadMonthly: 'నెలవారీ చార్టులు లోడ్ చేయి', loadingMonthly: 'నెలవారీ చార్టులు గణించబడుతున్నాయి...',
+    yogas: 'యోగాలు', monthLabel: 'నెల', returnMoment: 'వాపసు క్షణం',
+    noYogas: 'తాజిక యోగాలు లేవు',
   },
   bn: {
     title: 'বর্ষফল',
@@ -100,6 +130,12 @@ const LABELS = {
     yearSummary: 'বছরের সারসংক্ষেপ', chart: 'বার্ষিক কুণ্ডলী', sign: 'রাশি', house: 'ভাব', degree: 'ডিগ্রি',
     planet: 'গ্রহ', start: 'শুরু', end: 'শেষ', days: 'দিন', type: 'ধরন', favorable: 'অনুকূল',
     north: 'উত্তর ভারতীয়', south: 'দক্ষিণ ভারতীয়', age: 'বয়স',
+    monthlyCharts: 'মাসিক চার্ট (মাসফল)', varsheshaDasha: 'বর্ষেশা দশা', patyayiniDasha: 'পত্যায়িনী দশা',
+    dashaToggle: 'দশা দৃশ্য', dashaMudda: 'মুদ্দা', dashaVarshesha: 'বর্ষেশা', dashaPatyayini: 'পত্যায়িনী',
+    relationship: 'সম্পর্ক', degreesTraversed: 'ডিগ্রি', lagna: 'লগ্ন',
+    loadMonthly: 'মাসিক চার্ট লোড করুন', loadingMonthly: 'মাসিক চার্ট গণনা হচ্ছে...',
+    yogas: 'যোগ', monthLabel: 'মাস', returnMoment: 'প্রত্যাবর্তন মুহূর্ত',
+    noYogas: 'কোনো তাজিক যোগ নেই',
   },
   kn: {
     title: 'ವರ್ಷಫಲ',
@@ -112,6 +148,12 @@ const LABELS = {
     yearSummary: 'ವರ್ಷ ಸಾರಾಂಶ', chart: 'ವಾರ್ಷಿಕ ಜಾತಕ', sign: 'ರಾಶಿ', house: 'ಭಾವ', degree: 'ಡಿಗ್ರಿ',
     planet: 'ಗ್ರಹ', start: 'ಪ್ರಾರಂಭ', end: 'ಅಂತ್ಯ', days: 'ದಿನಗಳು', type: 'ವಿಧ', favorable: 'ಅನುಕೂಲ',
     north: 'ಉತ್ತರ ಭಾರತೀಯ', south: 'ದಕ್ಷಿಣ ಭಾರತೀಯ', age: 'ವಯಸ್ಸು',
+    monthlyCharts: 'ಮಾಸಿಕ ಚಾರ್ಟ್‌ಗಳು (ಮಾಸಫಲ)', varsheshaDasha: 'ವರ್ಷೇಶ ದಶೆ', patyayiniDasha: 'ಪತ್ಯಾಯಿನಿ ದಶೆ',
+    dashaToggle: 'ದಶೆ ನೋಟ', dashaMudda: 'ಮುದ್ದಾ', dashaVarshesha: 'ವರ್ಷೇಶ', dashaPatyayini: 'ಪತ್ಯಾಯಿನಿ',
+    relationship: 'ಸಂಬಂಧ', degreesTraversed: 'ಡಿಗ್ರಿಗಳು', lagna: 'ಲಗ್ನ',
+    loadMonthly: 'ಮಾಸಿಕ ಚಾರ್ಟ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಿ', loadingMonthly: 'ಮಾಸಿಕ ಚಾರ್ಟ್‌ಗಳ ಲೆಕ್ಕಾಚಾರ...',
+    yogas: 'ಯೋಗಗಳು', monthLabel: 'ತಿಂಗಳು', returnMoment: 'ಪ್ರತ್ಯಾವರ್ತನ ಕ್ಷಣ',
+    noYogas: 'ತಾಜಿಕ ಯೋಗಗಳಿಲ್ಲ',
   },
   mr: {
     title: 'वर्षफल', subtitle: 'ताजिक सूर्य प्रत्यावर्तन — वार्षिक ज्योतिष',
@@ -123,6 +165,12 @@ const LABELS = {
     yearSummary: 'वर्ष सारांश', chart: 'वार्षिक कुंडली', sign: 'राशी', house: 'भाव', degree: 'अंश',
     planet: 'ग्रह', start: 'आरंभ', end: 'अंत', days: 'दिवस', type: 'प्रकार', favorable: 'अनुकूल',
     north: 'उत्तर भारतीय', south: 'दक्षिण भारतीय', age: 'वय',
+    monthlyCharts: 'मासिक चार्ट (मासफल)', varsheshaDasha: 'वर्षेशा दशा', patyayiniDasha: 'पत्यायिनी दशा',
+    dashaToggle: 'दशा दृश्य', dashaMudda: 'मुद्दा', dashaVarshesha: 'वर्षेशा', dashaPatyayini: 'पत्यायिनी',
+    relationship: 'संबंध', degreesTraversed: 'अंश', lagna: 'लग्न',
+    loadMonthly: 'मासिक चार्ट लोड करा', loadingMonthly: 'मासिक चार्ट गणना...',
+    yogas: 'योग', monthLabel: 'महिना', returnMoment: 'प्रत्यावर्तन क्षण',
+    noYogas: 'कोणताही ताजिक योग नाही',
   },
   gu: {
     title: 'વર્ષફળ', subtitle: 'તાજિક સૂર્ય પ્રત્યાવર્તન — વાર્ષિક જ્યોતિષ',
@@ -134,6 +182,12 @@ const LABELS = {
     yearSummary: 'વર્ષ સારાંશ', chart: 'વાર્ષિક કુંડળી', sign: 'રાશિ', house: 'ભાવ', degree: 'અંશ',
     planet: 'ગ્રહ', start: 'શરૂઆત', end: 'અંત', days: 'દિવસ', type: 'પ્રકાર', favorable: 'અનુકૂળ',
     north: 'ઉત્તર ભારતીય', south: 'દક્ષિણ ભારતીય', age: 'ઉંમર',
+    monthlyCharts: 'માસિક ચાર્ટ (માસફળ)', varsheshaDasha: 'વર્ષેશા દશા', patyayiniDasha: 'પત્યાયિની દશા',
+    dashaToggle: 'દશા દૃશ્ય', dashaMudda: 'મુદ્દા', dashaVarshesha: 'વર્ષેશા', dashaPatyayini: 'પત્યાયિની',
+    relationship: 'સંબંધ', degreesTraversed: 'અંશ', lagna: 'લગ્ન',
+    loadMonthly: 'માસિક ચાર્ટ લોડ કરો', loadingMonthly: 'માસિક ચાર્ટ ગણતરી...',
+    yogas: 'યોગ', monthLabel: 'મહિનો', returnMoment: 'પ્રત્યાવર્તન ક્ષણ',
+    noYogas: 'કોઈ તાજિક યોગ નથી',
   },
   mai: {
     title: 'वर्षफल', subtitle: 'ताजिक सूर्य प्रत्यावर्तन — वार्षिक ज्योतिष',
@@ -145,6 +199,12 @@ const LABELS = {
     yearSummary: 'वर्ष सारांश', chart: 'वार्षिक कुंडली', sign: 'राशि', house: 'भाव', degree: 'अंश',
     planet: 'ग्रह', start: 'आरंभ', end: 'अंत', days: 'दिन', type: 'प्रकार', favorable: 'अनुकूल',
     north: 'उत्तर भारतीय', south: 'दक्षिण भारतीय', age: 'आयु',
+    monthlyCharts: 'मासिक चार्ट (मासफल)', varsheshaDasha: 'वर्षेशा दशा', patyayiniDasha: 'पत्यायिनी दशा',
+    dashaToggle: 'दशा दृश्य', dashaMudda: 'मुद्दा', dashaVarshesha: 'वर्षेशा', dashaPatyayini: 'पत्यायिनी',
+    relationship: 'संबंध', degreesTraversed: 'अंश', lagna: 'लग्न',
+    loadMonthly: 'मासिक चार्ट लोड करू', loadingMonthly: 'मासिक चार्ट गणना...',
+    yogas: 'योग', monthLabel: 'मास', returnMoment: 'प्रत्यावर्तन क्षण',
+    noYogas: 'कोनो ताजिक योग नहि',
   },
 };
 
@@ -166,7 +226,9 @@ export default function VarshaphalPage() {
   const [year, setYear] = useState(new Date().getFullYear());
   const [data, setData] = useState<VarshaphalData | null>(null);
   const [loading, setLoading] = useState(false);
+  const [loadingMonthly, setLoadingMonthly] = useState(false);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
+  const [dashaTab, setDashaTab] = useState<'mudda' | 'varshesha' | 'patyayini'>('mudda');
   const [gateError, setGateError] = useState<GateError | null>(null);
 
   // Pre-populate form from user profile
@@ -210,20 +272,22 @@ export default function VarshaphalPage() {
     if (!placeTimezone) return;
     const tz = getUTCOffsetForDate(y, m, d, placeTimezone);
     try {
+      setLoadingMonthly(true);
       const res = await authedFetch('/api/varshaphal', {
         method: 'POST',
         body: JSON.stringify({
           birthData: { ...form, place: placeName, lat: placeLat, lng: placeLng, timezone: String(tz), ayanamsha: form.ayanamsha },
           year,
+          detail: 'monthly',
         }),
       });
       const gate = await parseGateError(res);
-      if (gate) { setGateError(gate); setLoading(false); return; }
+      if (gate) { setGateError(gate); setLoading(false); setLoadingMonthly(false); return; }
       const result = await res.json();
       if (result.error) throw new Error(result.error);
       setData(result);
-    } catch (e) { console.error(e); }
-    finally { setLoading(false); }
+    } catch (e) { console.error('[varshaphal] fetch error:', e); }
+    finally { setLoading(false); setLoadingMonthly(false); }
   };
 
   return (
@@ -380,35 +444,139 @@ export default function VarshaphalPage() {
               </div>
             </div>
 
-            {/* Mudda Dasha Timeline */}
+            {/* Dasha Section — toggling between Mudda, Varshesha, Patyayini */}
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6 overflow-x-auto">
-              <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.muddaDasha}</h2>
-              <div className="flex gap-1 mb-4">
-                {data.muddaDasha.map((d, i) => (
-                  <div key={i} className="flex-1 rounded-lg p-2 bg-gold-primary/10 border border-gold-primary/15 text-center min-w-[80px]">
-                    <GrahaIconById id={['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'].indexOf(d.planet) === -1 ? 0 : [8,5,0,1,2,7,4,6,3][['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'].indexOf(d.planet)]} size={24} />
-                    <p className="text-gold-light text-xs font-bold mt-1" style={bodyFont}>{tl(d.planetName, locale)}</p>
-                    <p className="text-text-secondary text-xs">{d.durationDays}d</p>
-                  </div>
-                ))}
+              {/* Tab switcher */}
+              <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+                <h2 className="text-gold-primary text-sm uppercase tracking-wider font-bold">{t.dashaToggle}</h2>
+                <div className="flex gap-1 text-xs">
+                  {(['mudda', 'varshesha', 'patyayini'] as const).map(tab => (
+                    <button key={tab} onClick={() => setDashaTab(tab)}
+                      className={`px-3 py-1.5 rounded-lg border transition-colors ${dashaTab === tab ? 'bg-gold-primary/20 border-gold-primary/40 text-gold-light font-bold' : 'border-gold-primary/10 text-text-secondary hover:border-gold-primary/25'}`}>
+                      {tab === 'mudda' ? t.dashaMudda : tab === 'varshesha' ? t.dashaVarshesha : t.dashaPatyayini}
+                    </button>
+                  ))}
+                </div>
               </div>
-              <table className="w-full text-sm">
-                <thead><tr className="text-text-secondary border-b border-gold-primary/10">
-                  <th className="text-left py-2 px-2" style={bodyFont}>{t.planet}</th>
-                  <th className="text-left py-2 px-2">{t.start}</th>
-                  <th className="text-left py-2 px-2">{t.end}</th>
-                  <th className="text-left py-2 px-2">{t.days}</th>
-                </tr></thead>
-                <tbody>{data.muddaDasha.map((d, i) => (
-                  <tr key={i} className="border-b border-gold-primary/5">
-                    <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{tl(d.planetName, locale)}</td>
-                    <td className="py-2 px-2 text-text-secondary font-mono text-xs">{d.startDate}</td>
-                    <td className="py-2 px-2 text-text-secondary font-mono text-xs">{d.endDate}</td>
-                    <td className="py-2 px-2 text-text-secondary">{d.durationDays}</td>
-                  </tr>
-                ))}</tbody>
-              </table>
+
+              {/* Mudda Dasha */}
+              {dashaTab === 'mudda' && (
+                <>
+                  <div className="flex gap-1 mb-4 overflow-x-auto pb-1">
+                    {data.muddaDasha.map((d, i) => (
+                      <div key={i} className="flex-shrink-0 rounded-lg p-2 bg-gold-primary/10 border border-gold-primary/15 text-center min-w-[70px]">
+                        <GrahaIconById id={['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'].indexOf(d.planet) === -1 ? 0 : [8,5,0,1,2,7,4,6,3][['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'].indexOf(d.planet)]} size={22} />
+                        <p className="text-gold-light text-xs font-bold mt-1" style={bodyFont}>{tl(d.planetName, locale)}</p>
+                        <p className="text-text-secondary text-xs">{d.durationDays}d</p>
+                      </div>
+                    ))}
+                  </div>
+                  <table className="w-full text-sm">
+                    <thead><tr className="text-text-secondary border-b border-gold-primary/10">
+                      <th className="text-left py-2 px-2" style={bodyFont}>{t.planet}</th>
+                      <th className="text-left py-2 px-2">{t.start}</th>
+                      <th className="text-left py-2 px-2">{t.end}</th>
+                      <th className="text-left py-2 px-2">{t.days}</th>
+                    </tr></thead>
+                    <tbody>{data.muddaDasha.map((d, i) => (
+                      <tr key={i} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
+                        <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{tl(d.planetName, locale)}</td>
+                        <td className="py-2 px-2 text-text-secondary font-mono text-xs">{d.startDate}</td>
+                        <td className="py-2 px-2 text-text-secondary font-mono text-xs">{d.endDate}</td>
+                        <td className="py-2 px-2 text-text-secondary">{d.durationDays}</td>
+                      </tr>
+                    ))}</tbody>
+                  </table>
+                </>
+              )}
+
+              {/* Varshesha Dasha */}
+              {dashaTab === 'varshesha' && data.varsheshaDasha && (
+                <table className="w-full text-sm">
+                  <thead><tr className="text-text-secondary border-b border-gold-primary/10">
+                    <th className="text-left py-2 px-2" style={bodyFont}>{t.planet}</th>
+                    <th className="text-left py-2 px-2">{t.relationship}</th>
+                    <th className="text-left py-2 px-2">{t.start}</th>
+                    <th className="text-left py-2 px-2">{t.end}</th>
+                    <th className="text-left py-2 px-2">{t.days}</th>
+                  </tr></thead>
+                  <tbody>{data.varsheshaDasha.map((d, i) => (
+                    <tr key={i} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
+                      <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{tl(d.planetName, locale)}</td>
+                      <td className="py-2 px-2">
+                        <span className={`text-xs px-2 py-0.5 rounded-full border ${
+                          d.relationship === 'self' ? 'bg-gold-primary/20 border-gold-primary/30 text-gold-light' :
+                          d.relationship === 'friend' ? 'bg-green-500/10 border-green-500/30 text-green-400' :
+                          d.relationship === 'enemy' ? 'bg-red-500/10 border-red-500/30 text-red-400' :
+                          'bg-white/5 border-white/10 text-text-secondary'
+                        }`}>{d.relationship}</span>
+                      </td>
+                      <td className="py-2 px-2 text-text-secondary font-mono text-xs">{d.startDate}</td>
+                      <td className="py-2 px-2 text-text-secondary font-mono text-xs">{d.endDate}</td>
+                      <td className="py-2 px-2 text-text-secondary">{d.days}</td>
+                    </tr>
+                  ))}</tbody>
+                </table>
+              )}
+
+              {/* Patyayini Dasha */}
+              {dashaTab === 'patyayini' && data.patyayiniDasha && (
+                <table className="w-full text-sm">
+                  <thead><tr className="text-text-secondary border-b border-gold-primary/10">
+                    <th className="text-left py-2 px-2" style={bodyFont}>{t.planet}</th>
+                    <th className="text-left py-2 px-2">{t.degreesTraversed}</th>
+                    <th className="text-left py-2 px-2">{t.start}</th>
+                    <th className="text-left py-2 px-2">{t.end}</th>
+                    <th className="text-left py-2 px-2">{t.days}</th>
+                  </tr></thead>
+                  <tbody>{data.patyayiniDasha.map((d, i) => (
+                    <tr key={i} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
+                      <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{tl(d.planetName, locale)}</td>
+                      <td className="py-2 px-2 text-text-secondary font-mono text-xs">{d.degreesTraversed}°</td>
+                      <td className="py-2 px-2 text-text-secondary font-mono text-xs">{d.startDate}</td>
+                      <td className="py-2 px-2 text-text-secondary font-mono text-xs">{d.endDate}</td>
+                      <td className="py-2 px-2 text-text-secondary">{d.days}</td>
+                    </tr>
+                  ))}</tbody>
+                </table>
+              )}
             </div>
+
+            {/* Monthly Charts (Maasaphal) */}
+            {(data.maasaphal || loadingMonthly) && (
+              <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6">
+                <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.monthlyCharts}</h2>
+                {loadingMonthly && (
+                  <p className="text-text-secondary text-sm animate-pulse">{t.loadingMonthly}</p>
+                )}
+                {data.maasaphal && (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                    {data.maasaphal.map((mc) => (
+                      <div key={mc.month} className="rounded-xl bg-bg-secondary/60 border border-gold-primary/15 p-3 hover:border-gold-primary/30 transition-colors">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-gold-primary text-xs font-bold uppercase">{t.monthLabel} {mc.month}</span>
+                          <RashiIconById id={mc.lagnaSign} size={20} />
+                        </div>
+                        <p className="text-gold-light text-xs font-medium mb-1">{mc.returnDate}</p>
+                        <p className="text-text-secondary text-xs mb-2">{mc.returnTime} UTC</p>
+                        {mc.tajikYogas.length > 0 ? (
+                          <div className="flex flex-wrap gap-1">
+                            {mc.tajikYogas.slice(0, 3).map((yg, yi) => (
+                              <span key={yi} className="text-xs bg-gold-primary/10 border border-gold-primary/20 text-gold-light px-1.5 py-0.5 rounded-full">{yg}</span>
+                            ))}
+                            {mc.tajikYogas.length > 3 && (
+                              <span className="text-xs text-text-secondary">+{mc.tajikYogas.length - 3}</span>
+                            )}
+                          </div>
+                        ) : (
+                          <p className="text-text-secondary text-xs">{t.noYogas}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Year Summary */}
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">

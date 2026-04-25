@@ -72,4 +72,10 @@ export interface VarshaphalData {
   tajikaYogas: TajikaYoga[];
   muddaDasha: MuddaDashaPeriod[];
   yearSummary: LocaleText;
+  /** Monthly solar return charts (Maasaphal) — present when generated */
+  maasaphal?: import('@/lib/varshaphal/maasaphal').MaasaphalChart[];
+  /** Varshesha Dasha periods — present when generated */
+  varsheshaDasha?: import('@/lib/varshaphal/varshesha-dasha').VarsheshaDashaPeriod[];
+  /** Patyayini Dasha periods — present when generated */
+  patyayiniDasha?: import('@/lib/varshaphal/patyayini-dasha').PatyayiniDashaPeriod[];
 }

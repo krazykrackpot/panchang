@@ -1823,17 +1823,32 @@ export default function PanchangClient() {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gold-primary/5">
-                        {hinduMonths.map((m) => {
-                          // Dates come directly from the selected month system
-                          // (Amant from New Moon dates, Purnimant from actual Full Moon dates)
+                        {hinduMonths.map((m, idx) => {
                           const isHighlighted = todayStr >= m.startDate && todayStr < m.endDate;
+                          // Detect sandwich context for Purnimant: is the next month nija (same base name)?
+                          const nextMonth = hinduMonths[idx + 1];
+                          const isNijaAfterAdhika = !m.isAdhika && idx > 0 && hinduMonths[idx - 1]?.isAdhika;
+                          const showSandwichNote = masaSystem === 'purnimant' && m.isAdhika;
                           return (
-                            <tr key={`${m.n}-${m.startDate}`} className={`hover:bg-gold-primary/3 ${isHighlighted ? 'bg-gold-primary/8' : ''} ${m.isAdhika ? 'italic' : ''}`}>
+                            <tr key={`${m.n}-${m.startDate}`} className={`hover:bg-gold-primary/3 ${isHighlighted ? 'bg-gold-primary/8' : ''} ${m.isAdhika || isNijaAfterAdhika ? 'border-l-2 border-l-violet-500/40' : ''}`}>
                               <td className="py-1.5 px-2 text-text-tertiary">{m.n}</td>
                               <td className="py-1.5 px-2 font-medium" style={headingFont}>
-                                <span className={`${m.isAdhika ? 'text-violet-400' : 'text-gold-light'}`}>{isDevanagariLocale(locale) ? m.hi : m.en}</span>
-                                {isHighlighted && <span className="ml-1.5 text-xs px-1 py-0.5 rounded bg-gold-primary/20 text-gold-primary not-italic">{msg('now', locale)}</span>}
-                                {m.isAdhika && <span className="ml-1.5 text-xs px-1 py-0.5 rounded bg-violet-500/20 text-violet-300 not-italic">{msg('intercalary', locale)}</span>}
+                                <span className={`${m.isAdhika ? 'text-violet-400 italic' : 'text-gold-light'}`}>{isDevanagariLocale(locale) ? m.hi : m.en}</span>
+                                {isHighlighted && <span className="ml-1.5 text-xs px-1 py-0.5 rounded bg-gold-primary/20 text-gold-primary">{msg('now', locale)}</span>}
+                                {m.isAdhika && <span className="ml-1.5 text-xs px-1 py-0.5 rounded bg-violet-500/20 text-violet-300">{msg('intercalary', locale)}</span>}
+                                {showSandwichNote && (
+                                  <div className="mt-1 text-[10px] text-violet-300/70 not-italic leading-tight">
+                                    {tl({
+                                      en: `Sandwich: ${m.en.replace('Adhika ', '')} Krishna → ${m.en} → ${m.en.replace('Adhika ', '')} Shukla`,
+                                      hi: `सैंडविच: ${m.hi.replace('अधिक ', '')} कृष्ण → ${m.hi} → ${m.hi.replace('अधिक ', '')} शुक्ल`,
+                                    })}
+                                  </div>
+                                )}
+                                {isNijaAfterAdhika && (
+                                  <span className="ml-1.5 text-[10px] px-1 py-0.5 rounded bg-emerald-500/15 text-emerald-400">
+                                    {tl({ en: 'Nija (True)', hi: 'निज (शुद्ध)' })}
+                                  </span>
+                                )}
                               </td>
                               <td className="py-1.5 px-2 text-text-tertiary" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{m.sa}</td>
                               <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(m.startDate, locale)}</td>
@@ -1848,7 +1863,7 @@ export default function PanchangClient() {
                   <p className="text-text-tertiary text-xs mt-2">
                     {masaSystem === 'amant'
                       ? tl({ en: `Amant dates computed from actual New Moon positions for ${displayYear}. Each month starts on Amavasya. Adhika Masa (intercalary, purple) occurs when two New Moons fall in the same solar month.`, hi: `${displayYear} के अमावस्या स्थितियों से अमान्त तिथियाँ। प्रत्येक मास अमावस्या पर आरम्भ। अधिक मास (बैंगनी) एक ही सौर मास में दो अमावस्याओं पर।`, ta: `${displayYear} இன் அமாவாசை நிலைகளிலிருந்து கணக்கிடப்பட்ட அமாந்த தேதிகள்.`, bn: `${displayYear}-এর অমাবস্যা অবস্থান থেকে গণনা করা অমান্ত তারিখ।` })
-                      : tl({ en: `Purnimant dates computed from Full Moon positions for ${displayYear}. Each month starts on Purnima. This system is predominant in North India (UP, Bihar, MP, Rajasthan).`, hi: `${displayYear} के पूर्णिमा स्थितियों से पूर्णिमान्त तिथियाँ। प्रत्येक मास पूर्णिमा पर आरम्भ। उत्तर भारत में प्रचलित।`, ta: `${displayYear} இன் பூர்ணிமை நிலைகளிலிருந்து கணக்கிடப்பட்ட பூர்ணிமாந்த தேதிகள்.`, bn: `${displayYear}-এর পূর্ণিমা অবস্থান থেকে গণনা করা পূর্ণিমান্ত তারিখ।` })}
+                      : tl({ en: `Purnimant dates computed from Full Moon positions for ${displayYear}. Each month starts on Purnima. Used in North India (UP, Bihar, MP, Rajasthan). When an Adhika (intercalary) month occurs, it is "sandwiched" inside the natural month: the preceding Krishna Paksha, then the full Adhika month, then the Nija (true) month's Shukla Paksha complete the cycle.`, hi: `${displayYear} के पूर्णिमा स्थितियों से पूर्णिमान्त तिथियाँ। प्रत्येक मास पूर्णिमा पर आरम्भ। उत्तर भारत में प्रचलित। अधिक मास होने पर यह प्राकृतिक मास में "सैंडविच" होता है: पूर्व कृष्ण पक्ष, फिर पूर्ण अधिक मास, फिर निज मास का शुक्ल पक्ष।`, ta: `${displayYear} இன் பூர்ணிமை நிலைகளிலிருந்து கணக்கிடப்பட்ட பூர்ணிமாந்த தேதிகள். வடக்கு இந்தியாவில் பயன்படுத்தப்படுகிறது.`, bn: `${displayYear}-এর পূর্ণিমা অবস্থান থেকে গণনা করা পূর্ণিমান্ত তারিখ। উত্তর ভারতে প্রচলিত।` })}
                   </p>
                 </div>
               );

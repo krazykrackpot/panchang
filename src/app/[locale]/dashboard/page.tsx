@@ -43,6 +43,7 @@ import { computeKeyDates, type KeyDate } from '@/lib/kundali/domain-synthesis/ke
 import KeyDatesTimeline from '@/components/kundali/KeyDatesTimeline';
 import { Trash2, Plus, Pencil } from 'lucide-react';
 import FamilyCard from '@/components/dashboard/FamilyCard';
+import JournalCheckinCard from '@/components/journal/JournalCheckinCard';
 
 interface SavedChart {
   id: string;
@@ -1116,6 +1117,9 @@ export default function DashboardPage() {
             locale={locale}
           />
         )}
+
+        {/* Daily Check-in — journal mood/energy widget */}
+        <JournalCheckinCard locale={locale} />
 
         {/* Personalized Daily Horoscope */}
         <PersonalizedHoroscope

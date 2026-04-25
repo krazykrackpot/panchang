@@ -150,38 +150,39 @@ export function computePurnimantMonths(year: number): HinduMonth[] {
   const newMoons = findNewMoons(year);
   if (fullMoons.length < 2 || newMoons.length < 2) return [];
 
-  const months: HinduMonth[] = [];
-  let monthCounter = 0;
+  // Step 1: For each Purnimant period, detect Adhika using the New Moon criterion.
+  // Also find the Sankranti sign for naming.
+  interface RawMonth {
+    fmDate: Date; nextFmDate: Date; fmJD: number; nextFmJD: number;
+    isAdhika: boolean; adhikaMasaIdx: number; sankrantiSign: number;
+  }
+  const raw: RawMonth[] = [];
 
   for (let i = 0; i < fullMoons.length - 1; i++) {
     const { date: fmDate, jd: fmJD } = fullMoons[i];
     const { date: nextFmDate, jd: nextFmJD } = fullMoons[i + 1];
 
-    // Month naming: find the Sankranti (Sun entering a new sign) within this period.
+    // Sankranti detection
     const startSunSid = ((sunLongitude(fmJD) - lahiriAyanamsha(fmJD)) % 360 + 360) % 360;
-    const startSign = Math.floor(startSunSid / 30) + 1;
+    let prevSign = Math.floor(startSunSid / 30) + 1;
     let sankrantiSign = -1;
-    let prevSign = startSign;
     for (let jd = fmJD + 0.5; jd <= nextFmJD; jd += 1.0) {
       const sunSid = ((sunLongitude(jd) - lahiriAyanamsha(jd)) % 360 + 360) % 360;
       const sign = Math.floor(sunSid / 30) + 1;
       if (sign !== prevSign) { sankrantiSign = sign; break; }
       prevSign = sign;
     }
-    const endSunSid = ((sunLongitude(nextFmJD) - lahiriAyanamsha(nextFmJD)) % 360 + 360) % 360;
-    const endSign = Math.floor(endSunSid / 30) + 1;
-    const namingSign = sankrantiSign > 0 ? sankrantiSign : endSign;
-    const masaIdx = getMasaFromSunSign(namingSign);
+    if (sankrantiSign === -1) {
+      const endSunSid = ((sunLongitude(nextFmJD) - lahiriAyanamsha(nextFmJD)) % 360 + 360) % 360;
+      sankrantiSign = Math.floor(endSunSid / 30) + 1;
+    }
 
-    // Adhika detection (independent, same criterion as Amant):
-    // Find the New Moon that falls within this Purnima-to-Purnima period.
-    // If the Sun's sign at that New Moon equals the Sun's sign at the NEXT
-    // New Moon, no Sankranti occurred in the lunar month → this is Adhika.
+    // Adhika detection: NM within this period, same Sun sign at both NMs
     let isAdhika = false;
+    let adhikaMasaIdx = -1;
     for (let n = 0; n < newMoons.length - 1; n++) {
       const { jd: nmJD } = newMoons[n];
       const { jd: nextNmJD } = newMoons[n + 1];
-      // Does this New Moon fall within the current Purnimant period?
       if (nmJD > fmJD && nmJD < nextFmJD) {
         const nmSunSid = ((sunLongitude(nmJD) - lahiriAyanamsha(nmJD)) % 360 + 360) % 360;
         const nmSign = Math.floor(nmSunSid / 30) + 1;
@@ -189,15 +190,50 @@ export function computePurnimantMonths(year: number): HinduMonth[] {
         const nextNmSign = Math.floor(nextNmSunSid / 30) + 1;
         if (nmSign === nextNmSign) {
           isAdhika = true;
+          adhikaMasaIdx = getMasaFromSunSign(nmSign);
         }
-        break; // only one NM per Purnimant period
+        break;
       }
     }
 
-    const startStr = `${fmDate.getUTCFullYear()}-${(fmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${fmDate.getUTCDate().toString().padStart(2, '0')}`;
-    const endStr = `${nextFmDate.getUTCFullYear()}-${(nextFmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${nextFmDate.getUTCDate().toString().padStart(2, '0')}`;
+    raw.push({ fmDate, nextFmDate, fmJD, nextFmJD, isAdhika, adhikaMasaIdx, sankrantiSign });
+  }
 
-    if (fmDate.getUTCFullYear() === year || nextFmDate.getUTCFullYear() === year) {
+  // Step 2: Assign month names. When Adhika occurs, the Adhika and the next month
+  // (nija) share the same name. The Sankranti naming resumes after the nija month.
+  const months: HinduMonth[] = [];
+  let monthCounter = 0;
+  let nijaNeeded = -1; // if >= 0, the next month must be this masaIdx (nija after Adhika)
+  let sequentialIdx = -1; // if >= 0, post-Adhika sequential naming (Adhika absorbed one Sankranti)
+
+  for (const r of raw) {
+    let masaIdx: number;
+    let isAdhika = false;
+
+    if (nijaNeeded >= 0) {
+      // This month is the nija (regular) after the Adhika — same name
+      masaIdx = nijaNeeded;
+      // After nija, resume sequential naming from (nijaIdx + 1)
+      sequentialIdx = (nijaNeeded + 1) % 12;
+      nijaNeeded = -1;
+    } else if (r.isAdhika) {
+      // This month is Adhika — name from the NM Sun sign
+      masaIdx = r.adhikaMasaIdx >= 0 ? r.adhikaMasaIdx : getMasaFromSunSign(r.sankrantiSign);
+      isAdhika = true;
+      nijaNeeded = masaIdx; // next month must be nija with same name
+    } else if (sequentialIdx >= 0) {
+      // Post-Adhika: use sequential naming (Adhika absorbed one Sankranti)
+      masaIdx = sequentialIdx;
+      sequentialIdx = (sequentialIdx + 1) % 12;
+    } else {
+      // Pre-Adhika: normal Sankranti-based naming
+      masaIdx = getMasaFromSunSign(r.sankrantiSign);
+    }
+
+    const startStr = `${r.fmDate.getUTCFullYear()}-${(r.fmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${r.fmDate.getUTCDate().toString().padStart(2, '0')}`;
+    const endStr = `${r.nextFmDate.getUTCFullYear()}-${(r.nextFmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${r.nextFmDate.getUTCDate().toString().padStart(2, '0')}`;
+
+    if (r.fmDate.getUTCFullYear() === year || r.nextFmDate.getUTCFullYear() === year) {
       monthCounter++;
       const masaData = MASA_DATA[masaIdx] || MASA_DATA[0];
       months.push({

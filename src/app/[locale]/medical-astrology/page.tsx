@@ -1,0 +1,575 @@
+'use client';
+
+import { useState } from 'react';
+import { useLocale } from 'next-intl';
+import { motion, AnimatePresence } from 'framer-motion';
+import { authedFetch } from '@/lib/api/authed-fetch';
+import BirthForm from '@/components/kundali/BirthForm';
+import type { BirthData } from '@/types/kundali';
+import type { PrakritiResult } from '@/lib/medical/prakriti';
+import type { BodyRegionResult } from '@/lib/medical/body-map';
+import type { HealthWindow } from '@/lib/medical/health-timeline';
+import type { DiseaseProfileResult } from '@/lib/medical/disease-profile';
+import type { BodyRegion } from '@/lib/medical/constants';
+import type { Locale } from '@/types/panchang';
+
+// ─── Inline labels (4 active locales: en, hi, ta, bn) ────────────────────────
+const LABELS = {
+  en: {
+    title: 'Medical Astrology',
+    subtitle: 'Prakriti · Body Map · Health Timeline · Disease Patterns',
+    desc: 'Discover your Ayurvedic constitution, body vulnerability map, and health vulnerability windows from your Vedic birth chart.',
+    disclaimer: 'This is traditional Vedic knowledge for self-awareness only. It is NOT medical advice. Always consult qualified healthcare professionals for any health concern.',
+    generate: 'Analyse Medical Chart',
+    generating: 'Analysing...',
+    prakritiTitle: 'Prakriti — Ayurvedic Constitution',
+    prakritiDesc: 'Your dominant doshas derived from planetary positions at birth.',
+    primary: 'Primary Dosha',
+    secondary: 'Secondary Dosha',
+    vata: 'Vata', pitta: 'Pitta', kapha: 'Kapha',
+    bodyMapTitle: 'Body Vulnerability Map',
+    bodyMapDesc: 'Vulnerability score per body region based on house affliction analysis.',
+    vulnerability: 'Vulnerability',
+    low: 'Low', moderate: 'Moderate', high: 'High',
+    factors: 'Factors',
+    noFactors: 'No afflictions found',
+    timelineTitle: 'Health Timeline',
+    timelineDesc: 'Dasha-based health vulnerability windows for the next 10 years.',
+    noWindows: 'No notable health vulnerability windows in the next 10 years.',
+    diseaseTitle: 'Disease Susceptibility Profile',
+    topVuln: 'Top Vulnerable Body Systems',
+    sigPatterns: 'Classical Signature Patterns',
+    present: 'Present in chart',
+    absent: 'Not present',
+    error: 'Analysis failed. Please try again.',
+  },
+  hi: {
+    title: 'चिकित्सा ज्योतिष',
+    subtitle: 'प्रकृति · देह मानचित्र · स्वास्थ्य समयरेखा · रोग प्रारूप',
+    desc: 'अपनी जन्म कुण्डली से अपनी आयुर्वेदिक प्रकृति, देह असुरक्षा मानचित्र और स्वास्थ्य असुरक्षा काल जानें।',
+    disclaimer: 'यह पारम्परिक वैदिक ज्ञान केवल आत्म-जागरूकता के लिए है। यह चिकित्सा परामर्श नहीं है। किसी भी स्वास्थ्य समस्या के लिए योग्य चिकित्सक से परामर्श लें।',
+    generate: 'चिकित्सा कुण्डली विश्लेषण',
+    generating: 'विश्लेषण हो रहा है...',
+    prakritiTitle: 'प्रकृति — आयुर्वेदिक संरचना',
+    prakritiDesc: 'जन्म के समय ग्रह स्थितियों से निर्धारित प्रमुख दोष।',
+    primary: 'प्रधान दोष',
+    secondary: 'गौण दोष',
+    vata: 'वात', pitta: 'पित्त', kapha: 'कफ',
+    bodyMapTitle: 'देह असुरक्षा मानचित्र',
+    bodyMapDesc: 'भाव दोष विश्लेषण पर आधारित प्रत्येक देह क्षेत्र का असुरक्षा अंक।',
+    vulnerability: 'असुरक्षा',
+    low: 'कम', moderate: 'मध्यम', high: 'अधिक',
+    factors: 'कारक',
+    noFactors: 'कोई दोष नहीं मिला',
+    timelineTitle: 'स्वास्थ्य समयरेखा',
+    timelineDesc: 'अगले 10 वर्षों के दशा-आधारित स्वास्थ्य असुरक्षा काल।',
+    noWindows: 'अगले 10 वर्षों में कोई उल्लेखनीय स्वास्थ्य असुरक्षा काल नहीं।',
+    diseaseTitle: 'रोग संवेदनशीलता प्रोफ़ाइल',
+    topVuln: 'सर्वाधिक असुरक्षित देह तंत्र',
+    sigPatterns: 'शास्त्रीय रोग प्रारूप',
+    present: 'कुण्डली में उपस्थित',
+    absent: 'अनुपस्थित',
+    error: 'विश्लेषण विफल। कृपया पुनः प्रयास करें।',
+  },
+  ta: {
+    title: 'மருத்துவ ஜோதிடம்',
+    subtitle: 'பிரகிருதி · உடல் வரைபடம் · சுகாதார காலவரிசை · நோய் வடிவங்கள்',
+    desc: 'உங்கள் வேத ஜாதகத்திலிருந்து உங்கள் ஆயுர்வேத பிரகிருதி, உடல் பாதிப்பு வரைபடம் மற்றும் சுகாதார பாதிப்பு சாளரங்களை அறிந்துகொள்ளுங்கள்.',
+    disclaimer: 'இது பாரம்பரிய வேத அறிவு - சுய விழிப்புணர்வுக்காக மட்டுமே. இது மருத்துவ ஆலோசனை அல்ல. எந்தவொரு உடல்நலப் பிரச்சினைக்கும் தகுதிவாய்ந்த மருத்துவரை அணுகவும்.',
+    generate: 'மருத்துவ ஜாதகம் பகுப்பாய்வு',
+    generating: 'பகுப்பாய்வு செய்கிறது...',
+    prakritiTitle: 'பிரகிருதி — ஆயுர்வேத அமைப்பு',
+    prakritiDesc: 'பிறப்பின் போது கிரக நிலைகளிலிருந்து வரும் முக்கிய தோஷங்கள்.',
+    primary: 'முதல் தோஷம்',
+    secondary: 'இரண்டாம் தோஷம்',
+    vata: 'வாத', pitta: 'பித்த', kapha: 'கப',
+    bodyMapTitle: 'உடல் பாதிப்பு வரைபடம்',
+    bodyMapDesc: 'பாவ பாதிப்பு பகுப்பாய்வின் அடிப்படையில் ஒவ்வொரு உடல் பகுதியின் பாதிப்பு மதிப்பெண்.',
+    vulnerability: 'பாதிப்பு',
+    low: 'குறைவு', moderate: 'மிதமான', high: 'அதிகம்',
+    factors: 'காரணிகள்',
+    noFactors: 'எந்த பாதிப்பும் இல்லை',
+    timelineTitle: 'சுகாதார காலவரிசை',
+    timelineDesc: 'அடுத்த 10 ஆண்டுகளுக்கான தசா சார்ந்த சுகாதார பாதிப்பு சாளரங்கள்.',
+    noWindows: 'அடுத்த 10 ஆண்டுகளில் குறிப்பிடத்தக்க சுகாதார பாதிப்பு சாளரங்கள் இல்லை.',
+    diseaseTitle: 'நோய் உணர்திறன் சுயவிவரம்',
+    topVuln: 'மிகவும் பாதிக்கப்படக்கூடிய உடல் அமைப்புகள்',
+    sigPatterns: 'செம்மையான நோய் வடிவங்கள்',
+    present: 'ஜாதகத்தில் உள்ளது',
+    absent: 'இல்லை',
+    error: 'பகுப்பாய்வு தோல்வியடைந்தது. மீண்டும் முயற்சிக்கவும்.',
+  },
+  bn: {
+    title: 'চিকিৎসা জ্যোতিষ',
+    subtitle: 'প্রকৃতি · দেহ মানচিত্র · স্বাস্থ্য সময়রেখা · রোগ নমুনা',
+    desc: 'আপনার বৈদিক জাতক থেকে আয়ুর্বেদিক প্রকৃতি, দেহ দুর্বলতার মানচিত্র এবং স্বাস্থ্য দুর্বলতার সময়কাল জানুন।',
+    disclaimer: 'এটি ঐতিহ্যবাহী বৈদিক জ্ঞান — শুধুমাত্র আত্ম-সচেতনতার জন্য। এটি চিকিৎসা পরামর্শ নয়। যেকোনো স্বাস্থ্য সমস্যার জন্য যোগ্য চিকিৎসকের পরামর্শ নিন।',
+    generate: 'চিকিৎসা জাতক বিশ্লেষণ',
+    generating: 'বিশ্লেষণ করা হচ্ছে...',
+    prakritiTitle: 'প্রকৃতি — আয়ুর্বেদিক সংবিধান',
+    prakritiDesc: 'জন্মকালীন গ্রহের অবস্থান থেকে নির্ধারিত প্রধান দোষ।',
+    primary: 'প্রধান দোষ',
+    secondary: 'গৌণ দোষ',
+    vata: 'বাত', pitta: 'পিত্ত', kapha: 'কফ',
+    bodyMapTitle: 'দেহ দুর্বলতার মানচিত্র',
+    bodyMapDesc: 'ভাব দোষ বিশ্লেষণের ভিত্তিতে প্রতিটি দেহ অঞ্চলের দুর্বলতার স্কোর।',
+    vulnerability: 'দুর্বলতা',
+    low: 'কম', moderate: 'মাঝারি', high: 'বেশি',
+    factors: 'কারণ',
+    noFactors: 'কোনো দোষ পাওয়া যায়নি',
+    timelineTitle: 'স্বাস্থ্য সময়রেখা',
+    timelineDesc: 'পরবর্তী ১০ বছরের দশা-ভিত্তিক স্বাস্থ্য দুর্বলতার সময়কাল।',
+    noWindows: 'পরবর্তী ১০ বছরে উল্লেখযোগ্য স্বাস্থ্য দুর্বলতার সময়কাল নেই।',
+    diseaseTitle: 'রোগ সংবেদনশীলতা প্রোফাইল',
+    topVuln: 'সবচেয়ে দুর্বল দেহ সিস্টেম',
+    sigPatterns: 'শাস্ত্রীয় রোগের নমুনা',
+    present: 'জাতকে বিদ্যমান',
+    absent: 'অনুপস্থিত',
+    error: 'বিশ্লেষণ ব্যর্থ হয়েছে। আবার চেষ্টা করুন।',
+  },
+} as const;
+
+type LabelLocale = keyof typeof LABELS;
+
+function L(locale: string, key: keyof typeof LABELS.en): string {
+  const loc = (LABELS[locale as LabelLocale] ? locale : 'en') as LabelLocale;
+  return LABELS[loc][key] ?? LABELS.en[key];
+}
+
+// ─── API response types ───────────────────────────────────────────────────────
+interface MedicalResponse {
+  prakriti: PrakritiResult;
+  bodyMap: (BodyRegionResult & { bodyRegion: BodyRegion })[];
+  healthTimeline: HealthWindow[];
+  diseaseProfile: DiseaseProfileResult;
+  disclaimer: string;
+}
+
+// ─── Sub-components ──────────────────────────────────────────────────────────
+
+function DisclaimerBanner({ text }: { text: string }) {
+  return (
+    <div className="flex gap-3 p-4 bg-amber-500/10 border border-amber-500/30 rounded-xl">
+      <span className="text-amber-400 text-lg leading-none mt-0.5">⚕</span>
+      <p className="text-amber-300/90 text-sm leading-relaxed">{text}</p>
+    </div>
+  );
+}
+
+function VulnerabilityBar({ score, locale }: { score: number; locale: string }) {
+  const color =
+    score < 30 ? 'bg-emerald-500' : score < 60 ? 'bg-amber-400' : 'bg-red-500';
+  const label =
+    score < 30 ? L(locale, 'low') : score < 60 ? L(locale, 'moderate') : L(locale, 'high');
+  const textColor =
+    score < 30 ? 'text-emerald-400' : score < 60 ? 'text-amber-400' : 'text-red-400';
+
+  return (
+    <div className="flex items-center gap-3">
+      <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
+        <div
+          className={`h-full rounded-full transition-all duration-700 ${color}`}
+          style={{ width: `${score}%` }}
+        />
+      </div>
+      <span className={`text-xs font-medium w-16 text-right ${textColor}`}>
+        {score}/100 · {label}
+      </span>
+    </div>
+  );
+}
+
+function SeverityBadge({ severity }: { severity: HealthWindow['severity'] }) {
+  const cfg = {
+    low: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+    medium: 'bg-amber-500/20 text-amber-400 border-amber-500/30',
+    high: 'bg-red-500/20 text-red-400 border-red-500/30',
+  };
+  return (
+    <span
+      className={`inline-block text-[11px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full border ${cfg[severity]}`}
+    >
+      {severity}
+    </span>
+  );
+}
+
+function DonutSegment({
+  value,
+  color,
+  label,
+}: {
+  value: number;
+  color: string;
+  label: string;
+}) {
+  return (
+    <div className="flex items-center gap-2">
+      <div className={`w-3 h-3 rounded-full ${color}`} />
+      <span className="text-text-secondary text-sm">{label}</span>
+      <span className="ml-auto text-gold-light font-bold text-sm">{value}%</span>
+    </div>
+  );
+}
+
+// ─── Main page component ─────────────────────────────────────────────────────
+export default function MedicalAstrologyPage() {
+  const locale = useLocale() as Locale;
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState<MedicalResponse | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleSubmit(birthData: BirthData) {
+    setLoading(true);
+    setError(null);
+    setResult(null);
+
+    try {
+      const res = await authedFetch('/api/medical', {
+        method: 'POST',
+        body: JSON.stringify(birthData),
+      });
+
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}));
+        const msg = (json as { error?: string }).error ?? L(locale, 'error');
+        console.error('[medical-astrology] API error:', msg);
+        setError(msg);
+        return;
+      }
+
+      const data = (await res.json()) as MedicalResponse;
+      setResult(data);
+    } catch (err) {
+      console.error('[medical-astrology] Fetch failed:', err);
+      setError(L(locale, 'error'));
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const prakriti = result?.prakriti;
+  const bodyMap = result?.bodyMap ?? [];
+  const healthTimeline = result?.healthTimeline ?? [];
+  const diseaseProfile = result?.diseaseProfile;
+
+  return (
+    <main className="min-h-screen bg-bg-primary text-text-primary">
+      {/* ── Header ──────────────────────────────────────────────────── */}
+      <section className="py-12 px-4 text-center border-b border-gold-primary/10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="text-3xl md:text-4xl font-bold text-gold-light mb-3">
+            {L(locale, 'title')}
+          </h1>
+          <p className="text-text-secondary text-sm md:text-base mb-2">
+            {L(locale, 'subtitle')}
+          </p>
+          <p className="text-text-secondary/70 text-sm max-w-2xl mx-auto">
+            {L(locale, 'desc')}
+          </p>
+        </motion.div>
+      </section>
+
+      <div className="max-w-4xl mx-auto px-4 py-10 space-y-10">
+        {/* ── Disclaimer (always visible) ─────────────────────────────── */}
+        <DisclaimerBanner text={L(locale, 'disclaimer')} />
+
+        {/* ── Birth Form ──────────────────────────────────────────────── */}
+        <section className="bg-bg-secondary border border-gold-primary/15 rounded-2xl p-6">
+          <BirthForm
+            onSubmit={(data) => handleSubmit(data)}
+            loading={loading}
+          />
+        </section>
+
+        {/* ── Error ───────────────────────────────────────────────────── */}
+        <AnimatePresence>
+          {error && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm"
+            >
+              {error}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ── Results ─────────────────────────────────────────────────── */}
+        <AnimatePresence>
+          {result && (
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="space-y-8"
+            >
+
+              {/* ── 1. Prakriti Card ──────────────────────────────────── */}
+              {prakriti && (
+                <section className="bg-bg-secondary border border-gold-primary/15 rounded-2xl p-6">
+                  <h2 className="text-xl font-bold text-gold-light mb-1">
+                    {L(locale, 'prakritiTitle')}
+                  </h2>
+                  <p className="text-text-secondary text-sm mb-6">
+                    {L(locale, 'prakritiDesc')}
+                  </p>
+
+                  <div className="grid md:grid-cols-2 gap-8">
+                    {/* Dosha bars */}
+                    <div className="space-y-4">
+                      <div className="space-y-1">
+                        <div className="flex justify-between text-sm mb-1">
+                          <span className="text-sky-300 font-medium">{L(locale, 'vata')}</span>
+                          <span className="text-sky-300/70">{prakriti.percentages.vata}%</span>
+                        </div>
+                        <div className="h-3 bg-white/10 rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-sky-400 rounded-full transition-all duration-700"
+                            style={{ width: `${prakriti.percentages.vata}%` }}
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex justify-between text-sm mb-1">
+                          <span className="text-orange-300 font-medium">{L(locale, 'pitta')}</span>
+                          <span className="text-orange-300/70">{prakriti.percentages.pitta}%</span>
+                        </div>
+                        <div className="h-3 bg-white/10 rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-orange-400 rounded-full transition-all duration-700"
+                            style={{ width: `${prakriti.percentages.pitta}%` }}
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex justify-between text-sm mb-1">
+                          <span className="text-emerald-300 font-medium">{L(locale, 'kapha')}</span>
+                          <span className="text-emerald-300/70">{prakriti.percentages.kapha}%</span>
+                        </div>
+                        <div className="h-3 bg-white/10 rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-emerald-400 rounded-full transition-all duration-700"
+                            style={{ width: `${prakriti.percentages.kapha}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Primary / Secondary dosha */}
+                    <div className="flex flex-col justify-center gap-4">
+                      <div className="p-4 bg-gold-primary/10 border border-gold-primary/20 rounded-xl">
+                        <p className="text-text-secondary text-xs uppercase tracking-widest mb-1">
+                          {L(locale, 'primary')}
+                        </p>
+                        <p className="text-gold-light text-2xl font-bold">
+                          {prakriti.primaryDosha}
+                        </p>
+                      </div>
+                      <div className="p-4 bg-white/5 border border-white/10 rounded-xl">
+                        <p className="text-text-secondary text-xs uppercase tracking-widest mb-1">
+                          {L(locale, 'secondary')}
+                        </p>
+                        <p className="text-text-primary text-xl font-semibold">
+                          {prakriti.secondaryDosha}
+                        </p>
+                      </div>
+                      <p className="text-text-secondary/60 text-xs text-center">
+                        {prakriti.prakritiType} Prakriti
+                      </p>
+                    </div>
+                  </div>
+                </section>
+              )}
+
+              {/* ── 2. Body Vulnerability Map ────────────────────────── */}
+              {bodyMap.length > 0 && (
+                <section className="bg-bg-secondary border border-gold-primary/15 rounded-2xl p-6">
+                  <h2 className="text-xl font-bold text-gold-light mb-1">
+                    {L(locale, 'bodyMapTitle')}
+                  </h2>
+                  <p className="text-text-secondary text-sm mb-6">
+                    {L(locale, 'bodyMapDesc')}
+                  </p>
+
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {bodyMap.map((region) => {
+                      const regionName =
+                        locale === 'hi'
+                          ? region.bodyRegion.hi
+                          : locale === 'ta'
+                          ? region.bodyRegion.ta
+                          : locale === 'bn'
+                          ? region.bodyRegion.bn
+                          : region.bodyRegion.en;
+
+                      return (
+                        <div
+                          key={region.house}
+                          className="p-4 bg-bg-primary/60 border border-white/5 rounded-xl space-y-2"
+                        >
+                          <div className="flex justify-between items-start">
+                            <div>
+                              <span className="text-text-secondary text-xs">
+                                House {region.house}
+                              </span>
+                              <p className="text-text-primary text-sm font-medium">
+                                {regionName}
+                              </p>
+                            </div>
+                            <span className="text-text-secondary text-xs">
+                              {region.vulnerability}/100
+                            </span>
+                          </div>
+                          <VulnerabilityBar
+                            score={region.vulnerability}
+                            locale={locale}
+                          />
+                          {region.factors.length > 0 && (
+                            <details className="text-xs text-text-secondary/70 mt-1">
+                              <summary className="cursor-pointer hover:text-text-secondary">
+                                {L(locale, 'factors')} ({region.factors.length})
+                              </summary>
+                              <ul className="mt-1 space-y-0.5 list-disc list-inside pl-1">
+                                {region.factors.map((f, i) => (
+                                  <li key={i}>{f}</li>
+                                ))}
+                              </ul>
+                            </details>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </section>
+              )}
+
+              {/* ── 3. Health Timeline ───────────────────────────────── */}
+              <section className="bg-bg-secondary border border-gold-primary/15 rounded-2xl p-6">
+                <h2 className="text-xl font-bold text-gold-light mb-1">
+                  {L(locale, 'timelineTitle')}
+                </h2>
+                <p className="text-text-secondary text-sm mb-6">
+                  {L(locale, 'timelineDesc')}
+                </p>
+
+                {healthTimeline.length === 0 ? (
+                  <p className="text-text-secondary/60 text-sm">
+                    {L(locale, 'noWindows')}
+                  </p>
+                ) : (
+                  <div className="space-y-3">
+                    {healthTimeline.map((w, i) => (
+                      <div
+                        key={i}
+                        className="flex flex-col sm:flex-row sm:items-start gap-3 p-4 bg-bg-primary/60 border border-white/5 rounded-xl"
+                      >
+                        <div className="flex-shrink-0">
+                          <SeverityBadge severity={w.severity} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap gap-x-3 gap-y-1 items-baseline mb-1">
+                            <span className="text-text-primary text-sm font-medium">
+                              {w.type}
+                            </span>
+                            <span className="text-text-secondary/60 text-xs">
+                              {w.startDate} → {w.endDate}
+                            </span>
+                          </div>
+                          <p className="text-text-secondary text-sm">
+                            {w.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </section>
+
+              {/* ── 4. Disease Profile ───────────────────────────────── */}
+              {diseaseProfile && (
+                <section className="bg-bg-secondary border border-gold-primary/15 rounded-2xl p-6">
+                  <h2 className="text-xl font-bold text-gold-light mb-6">
+                    {L(locale, 'diseaseTitle')}
+                  </h2>
+
+                  <div className="grid md:grid-cols-2 gap-8">
+                    {/* Top vulnerabilities */}
+                    <div>
+                      <h3 className="text-base font-semibold text-text-primary mb-4">
+                        {L(locale, 'topVuln')}
+                      </h3>
+                      {diseaseProfile.topVulnerabilities.length === 0 ? (
+                        <p className="text-text-secondary/60 text-sm">{L(locale, 'noFactors')}</p>
+                      ) : (
+                        <div className="space-y-4">
+                          {diseaseProfile.topVulnerabilities.map((v, i) => (
+                            <div key={i}>
+                              <div className="flex justify-between text-sm mb-1">
+                                <span className="text-text-primary font-medium">
+                                  {v.system}
+                                </span>
+                                <span className="text-text-secondary">{v.score}/100</span>
+                              </div>
+                              <VulnerabilityBar score={v.score} locale={locale} />
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Signature patterns */}
+                    <div>
+                      <h3 className="text-base font-semibold text-text-primary mb-4">
+                        {L(locale, 'sigPatterns')}
+                      </h3>
+                      <div className="space-y-3">
+                        {diseaseProfile.signaturePatterns.map((p) => (
+                          <div
+                            key={p.id}
+                            className={`p-3 rounded-xl border text-sm ${
+                              p.present
+                                ? 'bg-red-500/10 border-red-500/25'
+                                : 'bg-white/3 border-white/8'
+                            }`}
+                          >
+                            <div className="flex justify-between items-center gap-2 mb-1">
+                              <span
+                                className={`font-medium ${p.present ? 'text-red-300' : 'text-text-secondary'}`}
+                              >
+                                {p.name}
+                              </span>
+                              <span
+                                className={`text-xs font-semibold ${p.present ? 'text-red-400' : 'text-text-secondary/50'}`}
+                              >
+                                {p.present ? L(locale, 'present') : L(locale, 'absent')}
+                              </span>
+                            </div>
+                            {p.present && (
+                              <p className="text-text-secondary/80 text-xs leading-relaxed">
+                                {p.description}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              )}
+
+              {/* ── Closing Disclaimer ───────────────────────────────── */}
+              <DisclaimerBanner text={L(locale, 'disclaimer')} />
+
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </main>
+  );
+}

@@ -126,6 +126,7 @@ const routes = [
   '/calendar/regional/bengali',
   '/calendar/regional/mithila',
   // Tools
+  '/medical-astrology',
   '/sign-calculator',
   '/sade-sati',
   '/prashna',

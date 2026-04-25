@@ -75,6 +75,19 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
 
   // ─── Tools ────────────────────────────────────────────────
+  '/medical-astrology': {
+    title: {
+      en: 'Medical Astrology — Prakriti, Body Map & Health Timeline',
+      hi: 'चिकित्सा ज्योतिष — प्रकृति, देह मानचित्र एवं स्वास्थ्य समयरेखा',
+      sa: 'चिकित्साज्योतिषम् — प्रकृतिः देहमानचित्रं स्वास्थ्यसमयरेखा',
+    },
+    description: {
+      en: 'Discover your Ayurvedic constitution (Prakriti), body vulnerability map, health timeline, and disease susceptibility patterns from your Vedic birth chart. For self-awareness only.',
+      hi: 'अपनी वैदिक कुण्डली से आयुर्वेदिक प्रकृति, देह असुरक्षा मानचित्र, स्वास्थ्य समयरेखा और रोग संवेदनशीलता प्रारूप जानें।',
+      sa: 'वैदिककुण्डल्याः आयुर्वेदिकप्रकृतिः देहमानचित्रं स्वास्थ्यसमयरेखा रोगसंवेदनशीलता च ज्ञायताम्।',
+    },
+    keywords: ['medical astrology', 'prakriti calculator', 'ayurvedic constitution', 'vedic health', 'body map astrology'],
+  },
   '/varshaphal': {
     title: {
       en: 'Varshaphal — Annual Horoscope (Tajika System)',

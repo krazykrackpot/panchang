@@ -141,6 +141,7 @@ export default function Navbar() {
       label: t('tools'),
       children: [
         { href: '/sign-calculator', label: t('signCalculator') },
+        { href: '/medical-astrology', label: t('medicalAstrology') },
         { href: '/baby-names', label: t('babyNames') },
         { href: '/vedic-time', label: t('vedicTime') },
         { href: '/prashna', label: t('prashna') },

@@ -944,9 +944,10 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
   // Convert D3 zoom transform into a viewBox that zooms/pans correctly.
   // D3 gives us pixel-space (k, x, y). We map to viewBox coords:
   //   viewBox origin = (-x/k, -y/k), size = SVG_SIZE/k × SVG_SIZE/k
+  // Zoom into center: as zoomLevel increases, viewBox shrinks around CX,CY
   const vbSize = SVG_SIZE / zoomLevel;
-  const vbX = (SVG_SIZE - vbSize) / 2 + panOffset.x;
-  const vbY = (SVG_SIZE - vbSize) / 2 + panOffset.y;
+  const vbX = CX - vbSize / 2 + panOffset.x;
+  const vbY = CY - vbSize / 2 + panOffset.y;
   const dynamicViewBox = `${vbX} ${vbY} ${vbSize} ${vbSize}`;
 
   return (

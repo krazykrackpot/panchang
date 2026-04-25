@@ -789,7 +789,12 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
     zoomRef.current = zoom;
 
     // Attach zoom to the SVG element
-    d3.select(svgEl).call(zoom);
+    const sel = d3.select(svgEl);
+    sel.call(zoom);
+
+    // D3 attaches wheel listeners as passive by default in some browsers.
+    // Override to non-passive so preventDefault works (enables scroll-to-zoom).
+    svgEl.addEventListener('wheel', (e) => e.preventDefault(), { passive: false });
 
     // Clean up on unmount
     return () => {
@@ -1008,7 +1013,38 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
         {tooltip && <Tooltip data={tooltip} />}
 
         {/* Time animation controls */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 bg-[#111633]/90 backdrop-blur-sm border border-[#8a6d2b]/30 rounded-xl px-4 py-2">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 bg-[#111633]/90 backdrop-blur-sm border border-[#8a6d2b]/30 rounded-xl px-4 py-3 min-w-[360px] sm:min-w-[480px]">
+          {/* Timeline slider — scrub ±1 year from current real time */}
+          <div className="w-full flex items-center gap-2">
+            <span className="text-[#6a5a28] text-[9px] whitespace-nowrap">-1yr</span>
+            <input
+              type="range"
+              min={-365}
+              max={365}
+              step={1}
+              value={timeSpeed === 0 ? 0 : Math.round((simDate.getTime() - new Date().getTime()) / 86_400_000)}
+              onChange={(e) => {
+                const dayOffset = parseInt(e.target.value, 10);
+                const newDate = new Date(Date.now() + dayOffset * 86_400_000);
+                setSimDate(newDate);
+                if (timeSpeed === 0) setTimeSpeed(1);
+                setPlaying(false);
+                // Fetch positions for this date
+                fetch(`/api/sky/positions?date=${newDate.toISOString()}`)
+                  .then(r => r.json())
+                  .then((data: { positions: SkyPlanetPosition[] }) => {
+                    setPositions(data.positions);
+                    setLastUpdated(newDate);
+                  })
+                  .catch(err => console.error('[LiveSkyMap] slider fetch:', err));
+              }}
+              className="flex-1 h-1.5 appearance-none bg-[#8a6d2b]/30 rounded-full cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-gold-primary [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-grab [&::-webkit-slider-thumb]:shadow-[0_0_8px_rgba(212,168,83,0.5)]"
+            />
+            <span className="text-[#6a5a28] text-[9px] whitespace-nowrap">+1yr</span>
+          </div>
+
+          {/* Controls row */}
+          <div className="flex items-center gap-2">
           {/* Play/Pause */}
           <button
             onClick={() => {
@@ -1062,8 +1098,9 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
               LIVE
             </button>
           )}
-        </div>
-      </div>
+          </div>{/* end controls row */}
+        </div>{/* end time animation controls */}
+      </div>{/* end chart container */}
 
       {/* Planet info panel — overlaid on bottom-left of the chart */}
       {selectedPlanet && (

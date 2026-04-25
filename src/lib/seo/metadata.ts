@@ -75,6 +75,19 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
 
   // ─── Tools ────────────────────────────────────────────────
+  '/financial-astrology': {
+    title: {
+      en: 'Financial Astrology — Dhana Yogas, Wealth Timing & Sector Guide',
+      hi: 'वित्तीय ज्योतिष — धन योग, धन समय एवं क्षेत्र मार्गदर्शन',
+      sa: 'वित्तज्योतिषम् — धनयोगाः धनसमयः क्षेत्रमार्गदर्शनम्',
+    },
+    description: {
+      en: 'Discover your Dhana yoga activations, personal financial windows, hora-based timing guide, and top sectors from your Vedic birth chart. Traditional Vedic knowledge for self-awareness only.',
+      hi: 'अपनी वैदिक कुण्डली से धन योग सक्रियण, व्यक्तिगत वित्तीय काल, होरा-आधारित समय मार्गदर्शन और शीर्ष क्षेत्र जानें।',
+      sa: 'वैदिककुण्डल्याः धनयोगसक्रियणं व्यक्तिगतवित्तकालः होराधारितमार्गदर्शनं च ज्ञायताम्।',
+    },
+    keywords: ['financial astrology', 'dhana yoga', 'wealth timing', 'vedic finance', 'hora guide', 'investment astrology'],
+  },
   '/medical-astrology': {
     title: {
       en: 'Medical Astrology — Prakriti, Body Map & Health Timeline',

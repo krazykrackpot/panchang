@@ -153,6 +153,7 @@ export default function Navbar() {
         { href: '/choghadiya', label: msg('choghadiya', locale) },
         { href: '/hora', label: locale === 'sa' ? 'होराः' : locale === 'hi' ? 'होरा' : 'Hora' },
         { href: '/sarvatobhadra', label: locale === 'sa' ? 'सर्वतोभद्रचक्रम्' : locale === 'hi' ? 'सर्वतोभद्र चक्र' : 'Sarvatobhadra' },
+        { href: '/sky', label: t('liveSky') },
       ],
     },
     {

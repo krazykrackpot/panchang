@@ -437,6 +437,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Check Nivas Shool (directional defect) for construction, travel, and relocation based on the current weekday and Panchang.', hi: 'वर्तमान वार और पंचांग के आधार पर निर्माण, यात्रा और स्थानांतरण के लिए निवास शूल जांचें।', sa: 'वर्तमानवारपञ्चाङ्गाधारेण निर्माणयात्रास्थानान्तराय निवासशूलं परीक्षतु।' },
     keywords: ['nivas shool', 'disha shool', 'directional defect', 'vastu direction'],
   },
+  '/sky': {
+    title: { en: 'Live Sky Map — Sidereal Planetary Positions Today', hi: 'लाइव आकाश मानचित्र — आज की ग्रह स्थितियाँ', sa: 'नभोमानचित्रम् — अद्य ग्रहस्थितयः' },
+    description: { en: 'Real-time polar sky map showing all 9 Vedic grahas at their current sidereal positions (Lahiri ayanamsha). Rashi, nakshatra, retrograde status, and daily speed.', hi: 'वर्तमान साइडेरियल स्थितियों पर सभी 9 वैदिक ग्रहों को दिखाने वाला रियल-टाइम आकाश मानचित्र — राशि, नक्षत्र, वक्री स्थिति।', sa: 'लाहिर्यायनांशेन सह नवग्रहाणां वर्तमानस्थितिं दर्शयत् नभोमानचित्रम्।' },
+    keywords: ['live sky map', 'planet positions today', 'vedic astrology sky', 'sidereal planets', 'graha positions'],
+  },
   '/muhurat': {
     title: { en: 'Muhurat Calendar — Monthly Auspicious Dates', hi: 'मुहूर्त कैलेंडर — मासिक शुभ तिथियां', sa: 'मुहूर्तपञ्चाङ्गम् — मासिकशुभतिथयः' },
     description: { en: 'Monthly muhurat calendar for marriage, griha pravesh, vehicle purchase, and more. Find the best dates for any activity.', hi: 'विवाह, गृह प्रवेश, वाहन खरीद आदि के लिए मासिक मुहूर्त कैलेंडर।', sa: 'विवाहगृहप्रवेशवाहनक्रयादीनां कृते मासिकमुहूर्तपञ्चाङ्गम्।' },

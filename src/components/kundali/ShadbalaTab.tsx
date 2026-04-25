@@ -4,6 +4,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
 import type { Locale, LocaleText } from '@/types/panchang';
+import ShadbalaRadar from './ShadbalaRadar';
 
 export default function ShadbalaTab({ shadbala, locale, isDevanagari, headingFont }: {
   shadbala: ShadBalaComplete[];
@@ -77,6 +78,11 @@ export default function ShadbalaTab({ shadbala, locale, isDevanagari, headingFon
           ? 'Classical six-component planetary strength calculation. Values in Shashtiamshas (60ths of a Rupa). Strength Ratio above 1.0 indicates adequate strength.'
           : 'शास्त्रीय षड्बल गणना। मान षष्ट्यंशों में। बल अनुपात 1.0 से अधिक पर्याप्त बल दर्शाता है।'}
       </p>
+
+      {/* Strength Radar — interactive spider chart with drill-down */}
+      <div className="rounded-xl bg-gradient-to-b from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-6">
+        <ShadbalaRadar shadbala={shadbala} locale={locale} />
+      </div>
 
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-6 overflow-x-auto">
         <table className="w-full text-sm">

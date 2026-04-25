@@ -139,24 +139,25 @@ function findFullMoons(year: number): { date: Date; jd: number }[] {
  * nakshatra-to-month mapping problem (27 nakshatras / 12 months = 2.25,
  * which causes boundary issues with a discrete lookup table).
  *
- * Adhika: when no Sankranti (Sun sign change) occurs during a
- * Purnima-to-Purnima period, that month is intercalary (Adhika).
+ * Adhika detection: a New Moon falls within each Purnimant period. If the
+ * Sun's sidereal sign at that New Moon is the same as at the following New
+ * Moon, no Sankranti occurred during the lunar month → Adhika. This is the
+ * SAME astronomical criterion as Amant, applied independently to each
+ * Purnimant period.
  */
 export function computePurnimantMonths(year: number): HinduMonth[] {
   const fullMoons = findFullMoons(year);
-  if (fullMoons.length < 2) return [];
+  const newMoons = findNewMoons(year);
+  if (fullMoons.length < 2 || newMoons.length < 2) return [];
 
   const months: HinduMonth[] = [];
   let monthCounter = 0;
-  let prevMasaIdx = -1;
 
   for (let i = 0; i < fullMoons.length - 1; i++) {
     const { date: fmDate, jd: fmJD } = fullMoons[i];
     const { date: nextFmDate, jd: nextFmJD } = fullMoons[i + 1];
 
-    // Detect Sankranti: scan the period for Sun entering a new sidereal sign.
-    // The month is named by the Sankranti sign (the sign Sun enters).
-    // If no Sankranti occurs → Adhika (intercalary), named same as the next nija month.
+    // Month naming: find the Sankranti (Sun entering a new sign) within this period.
     const startSunSid = ((sunLongitude(fmJD) - lahiriAyanamsha(fmJD)) % 360 + 360) % 360;
     const startSign = Math.floor(startSunSid / 30) + 1;
     let sankrantiSign = -1;
@@ -164,23 +165,34 @@ export function computePurnimantMonths(year: number): HinduMonth[] {
     for (let jd = fmJD + 0.5; jd <= nextFmJD; jd += 1.0) {
       const sunSid = ((sunLongitude(jd) - lahiriAyanamsha(jd)) % 360 + 360) % 360;
       const sign = Math.floor(sunSid / 30) + 1;
-      if (sign !== prevSign) {
-        sankrantiSign = sign;
-        break;
-      }
+      if (sign !== prevSign) { sankrantiSign = sign; break; }
       prevSign = sign;
     }
-
-    // Month name from Sankranti sign; if no Sankranti, use the Sun's sign at end
     const endSunSid = ((sunLongitude(nextFmJD) - lahiriAyanamsha(nextFmJD)) % 360 + 360) % 360;
     const endSign = Math.floor(endSunSid / 30) + 1;
     const namingSign = sankrantiSign > 0 ? sankrantiSign : endSign;
     const masaIdx = getMasaFromSunSign(namingSign);
 
-    // Adhika: no Sankranti in this period, OR same masaIdx as previous month
-    // (the latter catches edge cases where the Sankranti scan passes but the
-    // derived month name duplicates due to the 15-day offset from Amant)
-    const isAdhika = sankrantiSign === -1 || masaIdx === prevMasaIdx;
+    // Adhika detection (independent, same criterion as Amant):
+    // Find the New Moon that falls within this Purnima-to-Purnima period.
+    // If the Sun's sign at that New Moon equals the Sun's sign at the NEXT
+    // New Moon, no Sankranti occurred in the lunar month → this is Adhika.
+    let isAdhika = false;
+    for (let n = 0; n < newMoons.length - 1; n++) {
+      const { jd: nmJD } = newMoons[n];
+      const { jd: nextNmJD } = newMoons[n + 1];
+      // Does this New Moon fall within the current Purnimant period?
+      if (nmJD > fmJD && nmJD < nextFmJD) {
+        const nmSunSid = ((sunLongitude(nmJD) - lahiriAyanamsha(nmJD)) % 360 + 360) % 360;
+        const nmSign = Math.floor(nmSunSid / 30) + 1;
+        const nextNmSunSid = ((sunLongitude(nextNmJD) - lahiriAyanamsha(nextNmJD)) % 360 + 360) % 360;
+        const nextNmSign = Math.floor(nextNmSunSid / 30) + 1;
+        if (nmSign === nextNmSign) {
+          isAdhika = true;
+        }
+        break; // only one NM per Purnimant period
+      }
+    }
 
     const startStr = `${fmDate.getUTCFullYear()}-${(fmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${fmDate.getUTCDate().toString().padStart(2, '0')}`;
     const endStr = `${nextFmDate.getUTCFullYear()}-${(nextFmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${nextFmDate.getUTCDate().toString().padStart(2, '0')}`;
@@ -200,11 +212,35 @@ export function computePurnimantMonths(year: number): HinduMonth[] {
         isAdhika,
       });
     }
-
-    prevMasaIdx = masaIdx;
   }
 
   return months;
+}
+
+/**
+ * Enforcement: verify Amant and Purnimant agree on the number of Adhika months.
+ * Both systems view the same astronomical reality — if they disagree, there's a bug.
+ */
+export function verifyMasaConsistency(year: number): { ok: boolean; message: string } {
+  const amant = computeHinduMonths(year);
+  const purnimant = computePurnimantMonths(year);
+  const amAdhika = amant.filter(m => m.isAdhika);
+  const puAdhika = purnimant.filter(m => m.isAdhika);
+
+  if (amAdhika.length !== puAdhika.length) {
+    return { ok: false, message: `Adhika count mismatch for ${year}: Amant=${amAdhika.length} (${amAdhika.map(m => m.en).join(',')}), Purnimant=${puAdhika.length} (${puAdhika.map(m => m.en).join(',')})` };
+  }
+
+  // Both should name the Adhika month the same (the underlying lunar month is the same)
+  if (amAdhika.length > 0 && puAdhika.length > 0) {
+    const amName = amAdhika[0].en.replace('Adhika ', '');
+    const puName = puAdhika[0].en.replace('Adhika ', '');
+    if (amName !== puName) {
+      return { ok: false, message: `Adhika name mismatch for ${year}: Amant="${amAdhika[0].en}", Purnimant="${puAdhika[0].en}"` };
+    }
+  }
+
+  return { ok: true, message: `${year}: ${amAdhika.length} Adhika month(s), Amant and Purnimant agree.` };
 }
 
 /**

@@ -127,6 +127,7 @@ export default function PanchangClient() {
   const [showAllMuhurtas, setShowAllMuhurtas] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
   const [masaSystem, setMasaSystem] = useState<'amant' | 'purnimant'>('amant');
+  const [masaYear, setMasaYear] = useState(new Date().getFullYear());
 
   // Load saved masa preference from localStorage
   useEffect(() => {
@@ -145,9 +146,9 @@ export default function PanchangClient() {
   const authUser = useAuthStore(s => s.user);
   const [personalDay, setPersonalDay] = useState<PersonalizedDay | null>(null);
 
-  // Compute Hindu months for current year (expensive, memoized)
-  const computeHinduMonthsMemo = useMemo(() => computeHinduMonths(new Date().getFullYear()), []);
-  const computePurnimantMonthsMemo = useMemo(() => computePurnimantMonths(new Date().getFullYear()), []);
+  // Compute Hindu months for selected year (expensive, memoized)
+  const computeHinduMonthsMemo = useMemo(() => computeHinduMonths(masaYear), [masaYear]);
+  const computePurnimantMonthsMemo = useMemo(() => computePurnimantMonths(masaYear), [masaYear]);
   const [now, setNow] = useState<Date>(new Date());
 
   // Auto-load birth nakshatra/rashi from store (persisted from kundali page)
@@ -1775,35 +1776,47 @@ export default function PanchangClient() {
               </div>
             </div>
 
-            {/* Hindu Months Reference — computed for current year */}
+            {/* Hindu Months Reference — computed for selected year */}
             {(() => {
-              const displayYear = new Date().getFullYear();
               const hinduMonths = masaSystem === 'purnimant' ? computePurnimantMonthsMemo : computeHinduMonthsMemo;
               const amantMonths = computeHinduMonthsMemo; // needed for sandwich Amavasya dates
               const currentMasa = _tl(panchang.purnimantMasa || panchang.masa, locale);
               const todayStr = panchang.date;
+              const currentYear = new Date().getFullYear();
 
               return (
                 <div className="mt-6 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
                     <h4 className="text-gold-light font-bold text-sm flex items-center gap-2" style={headingFont}>
                       <MasaIcon size={22} />
-                      {`${msg('hinduMonth', locale)} ${displayYear}`}
+                      {`${msg('hinduMonth', locale)} ${masaYear}`}
                     </h4>
-                    {/* Amant / Purnimant toggle */}
-                    <div className="inline-flex rounded-lg border border-gold-primary/15 overflow-hidden text-xs">
-                      <button
-                        onClick={() => { setMasaSystem('amant'); try { localStorage.setItem('panchang_masa_system', 'amant'); } catch {} }}
-                        className={`px-3 py-2 sm:py-1.5 font-medium transition-all ${masaSystem === 'amant' ? 'bg-gold-primary/20 text-gold-light' : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5'}`}
+                    <div className="flex items-center gap-2">
+                      {/* Year selector */}
+                      <select
+                        value={masaYear}
+                        onChange={(e) => setMasaYear(Number(e.target.value))}
+                        className="bg-bg-secondary border border-gold-primary/15 rounded-lg px-2 py-1.5 text-xs text-gold-light focus:outline-none focus:border-gold-primary/40 cursor-pointer"
                       >
-                        {msg('amant', locale)}
-                      </button>
-                      <button
-                        onClick={() => { setMasaSystem('purnimant'); try { localStorage.setItem('panchang_masa_system', 'purnimant'); } catch {} }}
-                        className={`px-3 py-2 sm:py-1.5 font-medium transition-all border-l border-gold-primary/15 ${masaSystem === 'purnimant' ? 'bg-gold-primary/20 text-gold-light' : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5'}`}
-                      >
-                        {msg('purnimant', locale)}
-                      </button>
+                        {Array.from({ length: 11 }, (_, i) => currentYear - 3 + i).map(y => (
+                          <option key={y} value={y}>{y}</option>
+                        ))}
+                      </select>
+                      {/* Amant / Purnimant toggle */}
+                      <div className="inline-flex rounded-lg border border-gold-primary/15 overflow-hidden text-xs">
+                        <button
+                          onClick={() => { setMasaSystem('amant'); try { localStorage.setItem('panchang_masa_system', 'amant'); } catch {} }}
+                          className={`px-3 py-2 sm:py-1.5 font-medium transition-all ${masaSystem === 'amant' ? 'bg-gold-primary/20 text-gold-light' : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5'}`}
+                        >
+                          {msg('amant', locale)}
+                        </button>
+                        <button
+                          onClick={() => { setMasaSystem('purnimant'); try { localStorage.setItem('panchang_masa_system', 'purnimant'); } catch {} }}
+                          className={`px-3 py-2 sm:py-1.5 font-medium transition-all border-l border-gold-primary/15 ${masaSystem === 'purnimant' ? 'bg-gold-primary/20 text-gold-light' : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5'}`}
+                        >
+                          {msg('purnimant', locale)}
+                        </button>
+                      </div>
                     </div>
                   </div>
                   <p className="text-text-secondary text-xs mb-3">
@@ -1890,7 +1903,7 @@ export default function PanchangClient() {
                           }
 
                           return rows.map((r) => {
-                            const isHighlighted = todayStr >= r.startDate && todayStr < r.endDate;
+                            const isHighlighted = masaYear === currentYear && todayStr >= r.startDate && todayStr < r.endDate;
                             const isSandwich = !!r.sandwichLayer;
                             const layerStyle = r.sandwichLayer === 'top' ? 'border-l-2 border-l-amber-500/40'
                               : r.sandwichLayer === 'filling' ? 'border-l-2 border-l-violet-500/60 bg-violet-500/[0.03]'
@@ -1921,8 +1934,8 @@ export default function PanchangClient() {
                   </div>
                   <p className="text-text-tertiary text-xs mt-2">
                     {masaSystem === 'amant'
-                      ? tl({ en: `Amant dates computed from actual New Moon positions for ${displayYear}. Each month starts on Amavasya. Adhika Masa (intercalary, purple) occurs when two New Moons fall in the same solar month.`, hi: `${displayYear} के अमावस्या स्थितियों से अमान्त तिथियाँ। प्रत्येक मास अमावस्या पर आरम्भ। अधिक मास (बैंगनी) एक ही सौर मास में दो अमावस्याओं पर।`, ta: `${displayYear} இன் அமாவாசை நிலைகளிலிருந்து கணக்கிடப்பட்ட அமாந்த தேதிகள்.`, bn: `${displayYear}-এর অমাবস্যা অবস্থান থেকে গণনা করা অমান্ত তারিখ।` })
-                      : tl({ en: `Purnimant dates computed from Full Moon positions for ${displayYear}. Each month starts on Purnima. Used in North India (UP, Bihar, MP, Rajasthan). When an Adhika (intercalary) month occurs, it is "sandwiched" inside the natural month: the preceding Krishna Paksha, then the full Adhika month, then the Nija (true) month's Shukla Paksha complete the cycle.`, hi: `${displayYear} के पूर्णिमा स्थितियों से पूर्णिमान्त तिथियाँ। प्रत्येक मास पूर्णिमा पर आरम्भ। उत्तर भारत में प्रचलित। अधिक मास होने पर यह प्राकृतिक मास में "सैंडविच" होता है: पूर्व कृष्ण पक्ष, फिर पूर्ण अधिक मास, फिर निज मास का शुक्ल पक्ष।`, ta: `${displayYear} இன் பூர்ணிமை நிலைகளிலிருந்து கணக்கிடப்பட்ட பூர்ணிமாந்த தேதிகள். வடக்கு இந்தியாவில் பயன்படுத்தப்படுகிறது.`, bn: `${displayYear}-এর পূর্ণিমা অবস্থান থেকে গণনা করা পূর্ণিমান্ত তারিখ। উত্তর ভারতে প্রচলিত।` })}
+                      ? tl({ en: `Amant dates computed from actual New Moon positions for ${masaYear}. Each month starts on Amavasya. Adhika Masa (intercalary, purple) occurs when two New Moons fall in the same solar month.`, hi: `${masaYear} के अमावस्या स्थितियों से अमान्त तिथियाँ। प्रत्येक मास अमावस्या पर आरम्भ। अधिक मास (बैंगनी) एक ही सौर मास में दो अमावस्याओं पर।`, ta: `${masaYear} இன் அமாவாசை நிலைகளிலிருந்து கணக்கிடப்பட்ட அமாந்த தேதிகள்.`, bn: `${masaYear}-এর অমাবস্যা অবস্থান থেকে গণনা করা অমান্ত তারিখ।` })
+                      : tl({ en: `Purnimant dates computed from Full Moon positions for ${masaYear}. Each month starts on Purnima. Used in North India (UP, Bihar, MP, Rajasthan). When an Adhika (intercalary) month occurs, it is "sandwiched" inside the natural month: the preceding Krishna Paksha, then the full Adhika month, then the Nija (true) month's Shukla Paksha complete the cycle.`, hi: `${masaYear} के पूर्णिमा स्थितियों से पूर्णिमान्त तिथियाँ। प्रत्येक मास पूर्णिमा पर आरम्भ। उत्तर भारत में प्रचलित। अधिक मास होने पर यह प्राकृतिक मास में "सैंडविच" होता है: पूर्व कृष्ण पक्ष, फिर पूर्ण अधिक मास, फिर निज मास का शुक्ल पक्ष।`, ta: `${masaYear} இன் பூர்ணிமை நிலைகளிலிருந்து கணக்கிடப்பட்ட பூர்ணிமாந்த தேதிகள். வடக்கு இந்தியாவில் பயன்படுத்தப்படுகிறது.`, bn: `${masaYear}-এর পূর্ণিমা অবস্থান থেকে গণনা করা পূর্ণিমান্ত তারিখ। উত্তর ভারতে প্রচলিত।` })}
                   </p>
                 </div>
               );

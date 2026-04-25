@@ -142,9 +142,11 @@ function resolveEkadashiName(entry: TithiEntry): { name: LocaleText; detail?: Ek
     return { name: detail.name, detail };
   }
 
-  // EKADASHI_NAMES is keyed by Purnimant month names (standard Purnimant system).
-  // entry.masa.purnimanta gives the correct Purnimant month — direct lookup.
-  const monthForLookup = masa.purnimanta;
+  // Use Amant month for Ekadashi name lookup — Ekadashi names (Nirjala, Devshayani,
+  // Kamika, etc.) follow the Amant convention used by all reference sources (Prokerala,
+  // Drik Panchang). Using Purnimant here causes wrong names during Adhika months
+  // because Purnimant advances by 1 during Krishna Paksha.
+  const monthForLookup = masa.amanta;
 
   const detail = getEkadashiName(monthForLookup, paksha);
   if (detail) return { name: detail.name, detail };
@@ -509,7 +511,16 @@ export function generateFestivalCalendarV2(
     ...lookupAllTithiByNumber(table, 26),  // Krishna Ekadashi
   ].sort((a, b) => a.startJd - b.startJd);
 
+  // Collect dates that already have a named Ekadashi from the major festival defs
+  const namedEkadashiDates = new Set(
+    festivals.filter(f => f.slug && f.slug.includes('ekadashi') && f.slug !== 'ekadashi').map(f => f.date),
+  );
+
   for (const ek of allEkadashis) {
+    // Skip if a named Ekadashi festival already exists on this date
+    // (e.g., Nirjala Ekadashi, Devshayani Ekadashi from the major defs)
+    if (namedEkadashiDates.has(ek.sunriseDate)) continue;
+
     const { name, detail } = resolveEkadashiName(ek);
     const parana = computeEkadashiParanaFromTable(ek, table, lat, lon, timezone);
 

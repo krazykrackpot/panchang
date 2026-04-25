@@ -58,13 +58,15 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
   // Jyeshtha
   { masa: 'jyeshtha', paksha: 'shukla', tithi: 10, slug: 'ganga-dussehra',  type: 'major', category: 'festival',
     name: { en: 'Ganga Dussehra', hi: 'गंगा दशहरा', sa: 'गङ्गादशहरा' } },
-  { masa: 'jyeshtha', paksha: 'krishna', tithi: 15, slug: 'vat-savitri-vrat', type: 'major', category: 'vrat',
+  // Nirjala Ekadashi (Jyeshtha Shukla 11) — handled by the generic Ekadashi loop
+  // with name resolved from EKADASHI_NAMES. Do NOT duplicate here.
+  { masa: 'jyeshtha', paksha: 'shukla', tithi: 15, slug: 'vat-savitri-vrat', type: 'major', category: 'vrat',
     name: { en: 'Vat Savitri Vrat', hi: 'वट सावित्री व्रत', sa: 'वटसावित्रीव्रतम्' } },
   // Ashadha
   { masa: 'ashadha', paksha: 'shukla', tithi: 2,  slug: 'jagannath-rath-yatra', type: 'major', category: 'festival',
     name: { en: 'Jagannath Rath Yatra', hi: 'जगन्नाथ रथ यात्रा', sa: 'जगन्नाथरथयात्रा' } },
-  { masa: 'ashadha', paksha: 'shukla', tithi: 11, slug: 'devshayani-ekadashi', type: 'major', category: 'festival',
-    name: { en: 'Devshayani Ekadashi', hi: 'देवशयनी एकादशी', sa: 'देवशयनीएकादशी' } },
+  // Devshayani Ekadashi (Ashadha Shukla 11) — handled by the generic Ekadashi loop
+  // with name resolved from EKADASHI_NAMES. Do NOT duplicate here.
   { masa: 'ashadha', paksha: 'shukla', tithi: 15, slug: 'guru-purnima',     type: 'major', category: 'festival' },
   // Shravana
   { masa: 'shravana', paksha: 'shukla', tithi: 15, slug: 'varalakshmi-vratam', type: 'major', category: 'vrat',
@@ -108,11 +110,8 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
     name: { en: 'Tulsi Vivah', hi: 'तुलसी विवाह', sa: 'तुलसीविवाहः' } },
   { masa: 'kartika', paksha: 'shukla',  tithi: 15, slug: 'kartik-purnima',  type: 'major', category: 'festival',
     name: { en: 'Kartik Purnima', hi: 'कार्तिक पूर्णिमा', sa: 'कार्तिकपूर्णिमा' } },
-  { masa: 'kartika', paksha: 'shukla',  tithi: 11, slug: 'devutthana-ekadashi', type: 'major', category: 'festival',
-    name: { en: 'Devutthana Ekadashi', hi: 'देवुत्थान एकादशी', sa: 'देवोत्थानैकादशी' } },
-  // Margashirsha
-  { masa: 'margashirsha', paksha: 'shukla', tithi: 11, slug: 'mokshada-ekadashi', type: 'major', category: 'festival',
-    name: { en: 'Mokshada Ekadashi (Gita Jayanti)', hi: 'मोक्षदा एकादशी (गीता जयन्ती)', sa: 'मोक्षदैकादशी (गीताजयन्ती)' } },
+  // Devutthana (Kartika Shukla 11) and Mokshada (Margashirsha Shukla 11) Ekadashis
+  // are handled by the generic Ekadashi loop with names from EKADASHI_NAMES.
 ];
 
 // ─── Ekadashi Definitions (all 24 standard) ───
@@ -122,7 +121,7 @@ export const EKADASHI_DEFS: FestivalDef[] = [
   { masa: 'chaitra',      paksha: 'krishna', tithi: 11, slug: 'ekadashi', type: 'vrat', category: 'ekadashi' },
   { masa: 'vaishakha',    paksha: 'shukla',  tithi: 11, slug: 'ekadashi', type: 'vrat', category: 'ekadashi' },
   { masa: 'vaishakha',    paksha: 'krishna', tithi: 11, slug: 'ekadashi', type: 'vrat', category: 'ekadashi' },
-  { masa: 'jyeshtha',     paksha: 'shukla',  tithi: 11, slug: 'ekadashi', type: 'vrat', category: 'ekadashi' },
+  // Jyeshtha Shukla 11 = Nirjala Ekadashi — defined above as a named major festival, not here as generic
   { masa: 'jyeshtha',     paksha: 'krishna', tithi: 11, slug: 'ekadashi', type: 'vrat', category: 'ekadashi' },
   { masa: 'ashadha',      paksha: 'shukla',  tithi: 11, slug: 'ekadashi', type: 'vrat', category: 'ekadashi' },
   { masa: 'ashadha',      paksha: 'krishna', tithi: 11, slug: 'ekadashi', type: 'vrat', category: 'ekadashi' },

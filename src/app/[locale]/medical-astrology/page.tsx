@@ -13,7 +13,9 @@ import type { BodyRegionResult } from '@/lib/medical/body-map';
 import type { HealthWindow } from '@/lib/medical/health-timeline';
 import type { DiseaseProfileResult } from '@/lib/medical/disease-profile';
 import type { BodyRegion } from '@/lib/medical/constants';
-import type { Locale } from '@/types/panchang';
+import type { HealthPrognosis } from '@/lib/medical/health-prognosis';
+import type { Locale, LocaleText } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
 
 // ─── Inline labels (4 active locales: en, hi, ta, bn) ────────────────────────
 const LABELS = {
@@ -44,6 +46,19 @@ const LABELS = {
     present: 'Present in chart',
     absent: 'Not present',
     error: 'Analysis failed. Please try again.',
+    prognosisTitle: 'Current Health Prognosis',
+    prognosisDesc: 'Real-time health outlook based on running dasha, transits, and active doshas.',
+    currentDasha: 'Running Period',
+    transitAlerts: 'Transit Alerts',
+    activeDosha: 'Active Doshas',
+    guidance: 'Health Guidance',
+    overallOutlook: 'Overall Outlook',
+    toneGood: 'Favourable', toneModerate: 'Stable', toneCaution: 'Needs Attention', toneChallenging: 'Extra Care Needed',
+    doLabel: 'Do', avoidLabel: 'Avoid', watchLabel: 'Watch',
+    sadeSatiNote: 'Sade Sati Active',
+    noAlerts: 'No major transit alerts on health houses.',
+    noDoshas: 'No notable doshas affecting health.',
+    summaryLabel: 'Summary',
   },
   hi: {
     title: 'चिकित्सा ज्योतिष',
@@ -72,6 +87,19 @@ const LABELS = {
     present: 'कुण्डली में उपस्थित',
     absent: 'अनुपस्थित',
     error: 'विश्लेषण विफल। कृपया पुनः प्रयास करें।',
+    prognosisTitle: 'वर्तमान स्वास्थ्य पूर्वानुमान',
+    prognosisDesc: 'चल रही दशा, गोचर और सक्रिय दोषों पर आधारित स्वास्थ्य दृष्टिकोण।',
+    currentDasha: 'चल रही दशा',
+    transitAlerts: 'गोचर चेतावनी',
+    activeDosha: 'सक्रिय दोष',
+    guidance: 'स्वास्थ्य मार्गदर्शन',
+    overallOutlook: 'समग्र दृष्टिकोण',
+    toneGood: 'अनुकूल', toneModerate: 'स्थिर', toneCaution: 'ध्यान आवश्यक', toneChallenging: 'विशेष देखभाल आवश्यक',
+    doLabel: 'करें', avoidLabel: 'बचें', watchLabel: 'ध्यान दें',
+    sadeSatiNote: 'साढ़े साती सक्रिय',
+    noAlerts: 'स्वास्थ्य भावों पर कोई प्रमुख गोचर चेतावनी नहीं।',
+    noDoshas: 'स्वास्थ्य को प्रभावित करने वाले कोई उल्लेखनीय दोष नहीं।',
+    summaryLabel: 'सारांश',
   },
   ta: {
     title: 'மருத்துவ ஜோதிடம்',
@@ -100,6 +128,19 @@ const LABELS = {
     present: 'ஜாதகத்தில் உள்ளது',
     absent: 'இல்லை',
     error: 'பகுப்பாய்வு தோல்வியடைந்தது. மீண்டும் முயற்சிக்கவும்.',
+    prognosisTitle: 'தற்போதைய உடல்நல முன்கணிப்பு',
+    prognosisDesc: 'தசா, கோசாரம் மற்றும் தோஷங்களின் அடிப்படையிலான உடல்நல பார்வை.',
+    currentDasha: 'நடப்பு தசா',
+    transitAlerts: 'கோசார எச்சரிக்கைகள்',
+    activeDosha: 'செயலில் உள்ள தோஷங்கள்',
+    guidance: 'உடல்நல வழிகாட்டல்',
+    overallOutlook: 'ஒட்டுமொத்த பார்வை',
+    toneGood: 'சாதகமான', toneModerate: 'நிலையான', toneCaution: 'கவனம் தேவை', toneChallenging: 'கூடுதல் கவனிப்பு',
+    doLabel: 'செய்யுங்கள்', avoidLabel: 'தவிர்க்கவும்', watchLabel: 'கவனிக்கவும்',
+    sadeSatiNote: 'சாடே சாதி செயலில்',
+    noAlerts: 'சுகாதார பாவங்களில் முக்கிய கோசார எச்சரிக்கைகள் இல்லை.',
+    noDoshas: 'சுகாதாரத்தை பாதிக்கும் குறிப்பிடத்தக்க தோஷங்கள் இல்லை.',
+    summaryLabel: 'சுருக்கம்',
   },
   bn: {
     title: 'চিকিৎসা জ্যোতিষ',
@@ -128,6 +169,19 @@ const LABELS = {
     present: 'জাতকে বিদ্যমান',
     absent: 'অনুপস্থিত',
     error: 'বিশ্লেষণ ব্যর্থ হয়েছে। আবার চেষ্টা করুন।',
+    prognosisTitle: 'বর্তমান স্বাস্থ্য পূর্বাভাস',
+    prognosisDesc: 'চলমান দশা, গোচর এবং সক্রিয় দোষের উপর ভিত্তি করে স্বাস্থ্য দৃষ্টিভঙ্গি।',
+    currentDasha: 'চলমান দশা',
+    transitAlerts: 'গোচর সতর্কতা',
+    activeDosha: 'সক্রিয় দোষ',
+    guidance: 'স্বাস্থ্য নির্দেশনা',
+    overallOutlook: 'সামগ্রিক দৃষ্টিভঙ্গি',
+    toneGood: 'অনুকূল', toneModerate: 'স্থিতিশীল', toneCaution: 'মনোযোগ প্রয়োজন', toneChallenging: 'বিশেষ যত্ন প্রয়োজন',
+    doLabel: 'করুন', avoidLabel: 'এড়িয়ে চলুন', watchLabel: 'লক্ষ্য রাখুন',
+    sadeSatiNote: 'সাড়ে সাতি সক্রিয়',
+    noAlerts: 'স্বাস্থ্য ভাবে কোনো বড় গোচর সতর্কতা নেই।',
+    noDoshas: 'স্বাস্থ্যকে প্রভাবিত করার মতো কোনো উল্লেখযোগ্য দোষ নেই।',
+    summaryLabel: 'সারসংক্ষেপ',
   },
 } as const;
 
@@ -144,6 +198,7 @@ interface MedicalResponse {
   bodyMap: (BodyRegionResult & { bodyRegion: BodyRegion })[];
   healthTimeline: HealthWindow[];
   diseaseProfile: DiseaseProfileResult;
+  healthPrognosis?: HealthPrognosis;
   disclaimer: string;
 }
 
@@ -657,6 +712,155 @@ export default function MedicalAstrologyPage() {
                   </div>
                 </section>
               )}
+
+              {/* ── 5. Health Prognosis ─────────────────────────────── */}
+              {result?.healthPrognosis && (() => {
+                const prog = result.healthPrognosis!;
+                const toneCfg: Record<HealthPrognosis['overallTone'], { bg: string; text: string; border: string; label: keyof typeof LABELS.en }> = {
+                  good:        { bg: 'bg-emerald-500/15', text: 'text-emerald-400', border: 'border-emerald-500/30', label: 'toneGood' },
+                  moderate:    { bg: 'bg-sky-500/15',     text: 'text-sky-400',     border: 'border-sky-500/30',     label: 'toneModerate' },
+                  caution:     { bg: 'bg-amber-500/15',   text: 'text-amber-400',   border: 'border-amber-500/30',   label: 'toneCaution' },
+                  challenging: { bg: 'bg-red-500/15',     text: 'text-red-400',     border: 'border-red-500/30',     label: 'toneChallenging' },
+                };
+                const tone = toneCfg[prog.overallTone];
+                const recIcon: Record<string, string> = { do: '+', avoid: '!', watch: '~' };
+                const recColor: Record<string, string> = { do: 'text-emerald-400', avoid: 'text-red-400', watch: 'text-amber-400' };
+                const recLabelKey: Record<string, keyof typeof LABELS.en> = { do: 'doLabel', avoid: 'avoidLabel', watch: 'watchLabel' };
+
+                return (
+                  <section className="bg-bg-secondary border border-gold-primary/15 rounded-2xl p-6">
+                    {/* Header + tone badge */}
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+                      <div>
+                        <h2 className="text-xl font-bold text-gold-light mb-1">
+                          {L(locale, 'prognosisTitle')}
+                        </h2>
+                        <p className="text-text-secondary text-sm">
+                          {L(locale, 'prognosisDesc')}
+                        </p>
+                      </div>
+                      <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide border ${tone.bg} ${tone.text} ${tone.border}`}>
+                        <span className="w-2 h-2 rounded-full bg-current" />
+                        {L(locale, tone.label)}
+                      </span>
+                    </div>
+
+                    <div className="space-y-6">
+                      {/* Current Dasha */}
+                      <div>
+                        <h3 className="text-sm font-semibold text-text-primary mb-2 uppercase tracking-wider">
+                          {L(locale, 'currentDasha')}
+                        </h3>
+                        <div className="flex flex-wrap gap-2 mb-2">
+                          <span className="px-2.5 py-1 rounded-lg bg-purple-500/15 text-purple-300 text-xs font-semibold border border-purple-500/20">
+                            {prog.currentDasha.mahadasha} Mahadasha
+                          </span>
+                          {prog.currentDasha.antardasha && (
+                            <span className="px-2.5 py-1 rounded-lg bg-indigo-500/15 text-indigo-300 text-xs font-semibold border border-indigo-500/20">
+                              {prog.currentDasha.antardasha} Antardasha
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-text-secondary text-sm leading-relaxed">
+                          {tl(prog.currentDasha.healthImplication, locale)}
+                        </p>
+                      </div>
+
+                      {/* Transit Alerts */}
+                      <div>
+                        <h3 className="text-sm font-semibold text-text-primary mb-2 uppercase tracking-wider">
+                          {L(locale, 'transitAlerts')}
+                        </h3>
+                        {prog.transitAlerts.length === 0 ? (
+                          <p className="text-text-secondary/60 text-sm">{L(locale, 'noAlerts')}</p>
+                        ) : (
+                          <div className="space-y-2">
+                            {prog.transitAlerts.map((a, i) => {
+                              const sevCfg: Record<string, string> = {
+                                mild: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+                                moderate: 'bg-amber-500/20 text-amber-400 border-amber-500/30',
+                                high: 'bg-red-500/20 text-red-400 border-red-500/30',
+                              };
+                              return (
+                                <div key={i} className="flex items-start gap-3 p-3 bg-bg-primary/60 border border-white/5 rounded-xl">
+                                  <span className={`inline-block text-[10px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded-full border shrink-0 mt-0.5 ${sevCfg[a.severity] ?? sevCfg.mild}`}>
+                                    {a.severity}
+                                  </span>
+                                  <div className="flex-1 min-w-0">
+                                    <span className="text-text-primary text-sm font-medium">{a.planet} &middot; H{a.house}</span>
+                                    <p className="text-text-secondary text-xs mt-0.5">{tl(a.effect, locale)}</p>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Active Doshas */}
+                      <div>
+                        <h3 className="text-sm font-semibold text-text-primary mb-2 uppercase tracking-wider">
+                          {L(locale, 'activeDosha')}
+                        </h3>
+                        {prog.activeDoshas.length === 0 ? (
+                          <p className="text-text-secondary/60 text-sm">{L(locale, 'noDoshas')}</p>
+                        ) : (
+                          <div className="flex flex-wrap gap-2">
+                            {prog.activeDoshas.map((d, i) => (
+                              <div key={i} className="px-3 py-2 rounded-xl bg-orange-500/10 border border-orange-500/20">
+                                <span className="text-orange-300 text-sm font-semibold">{d.name}</span>
+                                <p className="text-text-secondary text-xs mt-0.5">{tl(d.note, locale)}</p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Sade Sati note */}
+                      {prog.sadeSatiActive && prog.sadeSatiNote && (
+                        <div className="p-4 bg-indigo-500/10 border border-indigo-500/20 rounded-xl">
+                          <span className="text-indigo-300 text-sm font-bold">{L(locale, 'sadeSatiNote')}</span>
+                          <p className="text-text-secondary text-sm mt-1">{tl(prog.sadeSatiNote, locale)}</p>
+                        </div>
+                      )}
+
+                      {/* Recommendations */}
+                      {prog.recommendations.length > 0 && (
+                        <div>
+                          <h3 className="text-sm font-semibold text-text-primary mb-3 uppercase tracking-wider">
+                            {L(locale, 'guidance')}
+                          </h3>
+                          <div className="space-y-2">
+                            {prog.recommendations.map((r, i) => (
+                              <div key={i} className="flex items-start gap-3 p-3 bg-bg-primary/60 border border-white/5 rounded-xl">
+                                <span className={`text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full ${recColor[r.type] ?? 'text-text-secondary'} bg-white/5 shrink-0 mt-0.5`}>
+                                  {recIcon[r.type] ?? '?'}
+                                </span>
+                                <div className="flex-1 min-w-0">
+                                  <span className={`text-xs font-bold uppercase tracking-wide ${recColor[r.type] ?? 'text-text-secondary'}`}>
+                                    {L(locale, recLabelKey[r.type] ?? 'watchLabel')}
+                                  </span>
+                                  <p className="text-text-secondary text-sm mt-0.5">{tl(r.text, locale)}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Summary */}
+                      <div className="pt-4 border-t border-white/5">
+                        <h3 className="text-sm font-semibold text-text-primary mb-2 uppercase tracking-wider">
+                          {L(locale, 'summaryLabel')}
+                        </h3>
+                        <p className="text-text-secondary text-sm leading-relaxed">
+                          {tl(prog.summary, locale)}
+                        </p>
+                      </div>
+                    </div>
+                  </section>
+                );
+              })()}
 
               {/* ── Closing Disclaimer ───────────────────────────────── */}
               <DisclaimerBanner text={L(locale, 'disclaimer')} />

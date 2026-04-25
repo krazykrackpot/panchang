@@ -297,7 +297,7 @@ export async function DELETE(req: NextRequest) {
 
   // Delete all user data from related tables
   // Tables with 'user_id' column
-  for (const table of ['kundali_snapshots', 'saved_charts', 'daily_usage', 'subscriptions']) {
+  for (const table of ['astro_journal', 'prediction_tracking', 'life_events', 'kundali_snapshots', 'saved_charts', 'daily_usage', 'subscriptions']) {
     const { error } = await supabase.from(table).delete().eq('user_id', userId);
     if (error && !error.message.includes('does not exist')) {
       console.warn(`Failed to delete from ${table}:`, error.message);

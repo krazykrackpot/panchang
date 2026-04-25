@@ -1,19 +1,23 @@
 /**
  * GET /api/sky/positions
- * Returns current sidereal planetary positions (Lahiri ayanamsha).
- * No inputs — always returns "now" positions.
- * Cached for 60s (max useful resolution for Moon movement).
+ * Returns sidereal planetary positions (Lahiri ayanamsha).
+ * Optional ?date=ISO param for historical/future positions (time animation).
+ * Cached for 60s when no date param (live mode).
  */
 
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { getCurrentSkyPositions } from '@/lib/sky/positions';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    const now = new Date();
+    const dateParam = request.nextUrl.searchParams.get('date');
+    const now = dateParam ? new Date(dateParam) : new Date();
+    if (isNaN(now.getTime())) {
+      return NextResponse.json({ error: 'Invalid date format' }, { status: 400 });
+    }
     const positions = getCurrentSkyPositions(now);
 
     return NextResponse.json(

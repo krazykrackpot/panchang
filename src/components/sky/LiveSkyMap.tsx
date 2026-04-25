@@ -214,12 +214,12 @@ function RashiRing() {
             {/* Rashi symbol */}
             <text
               x={midPt.x}
-              y={midPt.y - 6}
+              y={midPt.y - 8}
               textAnchor="middle"
               dominantBaseline="middle"
-              fontSize={10}
+              fontSize={14}
               fill="#f0d48a"
-              fontWeight="600"
+              fontWeight="700"
               style={{ userSelect: 'none', pointerEvents: 'none' }}
             >
               {rashi.symbol}
@@ -227,10 +227,11 @@ function RashiRing() {
             {/* Rashi short name */}
             <text
               x={midPt.x}
-              y={midPt.y + 7}
+              y={midPt.y + 9}
               textAnchor="middle"
               dominantBaseline="middle"
-              fontSize={7.5}
+              fontSize={9.5}
+              fontWeight={500}
               fill="#d4a853"
               style={{ userSelect: 'none', pointerEvents: 'none' }}
             >
@@ -270,11 +271,12 @@ function NakshatraRing() {
               y={midPt.y}
               textAnchor="middle"
               dominantBaseline="middle"
-              fontSize={i % 3 === 0 ? 6.5 : 5.5}
-              fill={i % 3 === 0 ? '#a08030' : '#6a5a28'}
+              fontSize={9}
+              fontWeight={600}
+              fill="#c8a040"
               style={{ userSelect: 'none', pointerEvents: 'none' }}
             >
-              {nak.name.en.substring(0, 4)}
+              {nak.name.en.substring(0, 5)}
             </text>
           </g>
         );
@@ -288,7 +290,7 @@ function DegreeMarkers() {
 
   for (let deg = 0; deg < 360; deg += 10) {
     const isMajor = deg % 30 === 0;
-    const outerPt = polarToXY(deg, R_TICK_OUTER + (isMajor ? 6 : 3));
+    const outerPt = polarToXY(deg, R_TICK_OUTER + (isMajor ? 10 : 4));
     const innerPt = polarToXY(deg, R_TICK_OUTER);
 
     markers.push(
@@ -298,15 +300,15 @@ function DegreeMarkers() {
         y1={innerPt.y}
         x2={outerPt.x}
         y2={outerPt.y}
-        stroke={isMajor ? '#8a6d2b' : '#4a3d1a'}
-        strokeOpacity={isMajor ? 0.7 : 0.4}
-        strokeWidth={isMajor ? 1.2 : 0.7}
+        stroke={isMajor ? '#a08030' : '#4a3d1a'}
+        strokeOpacity={isMajor ? 0.8 : 0.4}
+        strokeWidth={isMajor ? 1.5 : 0.7}
       />
     );
 
     // Degree label for major ticks (every 30°)
     if (isMajor) {
-      const labelPt = polarToXY(deg, R_TICK_OUTER + 13);
+      const labelPt = polarToXY(deg, R_TICK_OUTER + 20);
       markers.push(
         <text
           key={`label-${deg}`}
@@ -314,8 +316,9 @@ function DegreeMarkers() {
           y={labelPt.y}
           textAnchor="middle"
           dominantBaseline="middle"
-          fontSize={6}
-          fill="#6a5a28"
+          fontSize={10}
+          fontWeight={600}
+          fill="#c8a040"
           style={{ userSelect: 'none', pointerEvents: 'none' }}
         >
           {deg}°
@@ -727,6 +730,16 @@ interface LiveSkyMapProps {
   initialPositions?: SkyPlanetPosition[];
 }
 
+/** Time animation speeds */
+const TIME_SPEEDS = [
+  { label: 'Live', hours: 0 },
+  { label: '1h/s', hours: 1 },
+  { label: '6h/s', hours: 6 },
+  { label: '1d/s', hours: 24 },
+  { label: '7d/s', hours: 168 },
+  { label: '30d/s', hours: 720 },
+] as const;
+
 export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
   const [positions, setPositions] = useState<SkyPlanetPosition[]>(initialPositions ?? []);
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
@@ -738,6 +751,12 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
   const [mounted, setMounted] = useState(false);
   /** Current D3 zoom transform (k = scale, x/y = translation) */
   const [zoomTransform, setZoomTransform] = useState<d3.ZoomTransform>(d3.zoomIdentity);
+  /** Time animation state */
+  const [simDate, setSimDate] = useState<Date>(new Date());
+  const [timeSpeed, setTimeSpeed] = useState(0); // index into TIME_SPEEDS (0 = live)
+  const [playing, setPlaying] = useState(false);
+  const animFrameRef = useRef<number>(0);
+  const lastTickRef = useRef<number>(0);
 
   const svgRef = useRef<SVGSVGElement>(null);
   // Store the d3 zoom object so we can call zoomIn/Out/Reset imperatively
@@ -751,11 +770,18 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
     const zoom = d3
       .zoom<SVGSVGElement, unknown>()
       .scaleExtent([ZOOM_MIN, ZOOM_MAX])
+      // Set extent to viewBox coordinates so zoom math works regardless of CSS size
+      .extent([[0, 0], [SVG_SIZE, SVG_SIZE]])
       // Constrain panning so the chart never flies completely off-screen
       .translateExtent([
-        [-SVG_SIZE, -SVG_SIZE],
-        [SVG_SIZE * 2, SVG_SIZE * 2],
+        [-SVG_SIZE * 0.5, -SVG_SIZE * 0.5],
+        [SVG_SIZE * 1.5, SVG_SIZE * 1.5],
       ])
+      // Allow all events except double-click
+      .filter((event: Event) => {
+        if (event.type === 'dblclick') return false;
+        return true;
+      })
       .on('zoom', (event: d3.D3ZoomEvent<SVGSVGElement, unknown>) => {
         setZoomTransform(event.transform);
       });
@@ -831,10 +857,61 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
 
   // Auto-refresh every 60s (Moon moves ~0.55° per hour, noticeable over a minute)
   useEffect(() => {
+    // Only auto-refresh when in live mode (timeSpeed === 0)
+    if (timeSpeed !== 0) return;
     const timer = setInterval(() => {
       void fetchPositions();
     }, 60_000);
     return () => clearInterval(timer);
+  }, [fetchPositions, timeSpeed]);
+
+  // ---- Time animation loop ---------------------------------------------------
+  useEffect(() => {
+    if (!playing || timeSpeed === 0) return;
+    const hoursPerSecond = TIME_SPEEDS[timeSpeed].hours;
+
+    const tick = (timestamp: number) => {
+      if (lastTickRef.current === 0) {
+        lastTickRef.current = timestamp;
+      }
+      const dtSec = (timestamp - lastTickRef.current) / 1000;
+      lastTickRef.current = timestamp;
+
+      setSimDate((prev) => {
+        const next = new Date(prev.getTime() + dtSec * hoursPerSecond * 3600_000);
+        return next;
+      });
+
+      animFrameRef.current = requestAnimationFrame(tick);
+    };
+
+    lastTickRef.current = 0;
+    animFrameRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(animFrameRef.current);
+  }, [playing, timeSpeed]);
+
+  // Fetch positions when simDate changes (throttled to ~10fps via rAF batching)
+  const lastFetchRef = useRef(0);
+  useEffect(() => {
+    if (timeSpeed === 0) return; // Live mode uses its own fetch
+    const now = Date.now();
+    if (now - lastFetchRef.current < 100) return; // throttle to 10fps
+    lastFetchRef.current = now;
+
+    fetch(`/api/sky/positions?date=${simDate.toISOString()}`)
+      .then((r) => r.json())
+      .then((data: { positions: SkyPlanetPosition[] }) => {
+        setPositions(data.positions);
+        setLastUpdated(simDate);
+      })
+      .catch((err) => console.error('[LiveSkyMap] time-anim fetch:', err));
+  }, [simDate, timeSpeed]);
+
+  const handleResetToLive = useCallback(() => {
+    setTimeSpeed(0);
+    setPlaying(false);
+    setSimDate(new Date());
+    void fetchPositions();
   }, [fetchPositions]);
 
   if (loading) {
@@ -930,12 +1007,62 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
         {/* Tooltip overlay */}
         {tooltip && <Tooltip data={tooltip} />}
 
-        {/* Timestamp */}
-        {lastUpdated && (
-          <p className="text-center text-[#6a5a28] text-xs mt-2">
-            Updated: {lastUpdated.toLocaleTimeString()} UTC {lastUpdated.toLocaleDateString()}
-          </p>
-        )}
+        {/* Time animation controls */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 bg-[#111633]/90 backdrop-blur-sm border border-[#8a6d2b]/30 rounded-xl px-4 py-2">
+          {/* Play/Pause */}
+          <button
+            onClick={() => {
+              if (timeSpeed === 0) setTimeSpeed(1);
+              setPlaying(!playing);
+            }}
+            className="w-8 h-8 flex items-center justify-center rounded-lg bg-gold-primary/15 text-gold-light hover:bg-gold-primary/25 transition-colors text-sm font-bold"
+            aria-label={playing ? 'Pause' : 'Play'}
+          >
+            {playing ? '⏸' : '▶'}
+          </button>
+
+          {/* Speed selector */}
+          <div className="flex gap-0.5">
+            {TIME_SPEEDS.map((speed, i) => (
+              <button
+                key={speed.label}
+                onClick={() => {
+                  setTimeSpeed(i);
+                  if (i === 0) { setPlaying(false); handleResetToLive(); }
+                  else if (!playing) setPlaying(true);
+                }}
+                className={`px-2 py-1 rounded text-[10px] font-semibold transition-colors ${
+                  timeSpeed === i
+                    ? 'bg-gold-primary/25 text-gold-light border border-gold-primary/40'
+                    : 'text-[#8a8478] hover:text-gold-light'
+                }`}
+              >
+                {speed.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Current date display */}
+          <span className="text-[#c8a040] text-xs font-mono ml-2 min-w-[130px] text-center">
+            {(timeSpeed === 0 ? (lastUpdated ?? new Date()) : simDate).toLocaleDateString('en-GB', {
+              day: '2-digit', month: 'short', year: 'numeric',
+            })}
+            {' '}
+            {(timeSpeed === 0 ? (lastUpdated ?? new Date()) : simDate).toLocaleTimeString('en-GB', {
+              hour: '2-digit', minute: '2-digit',
+            })}
+          </span>
+
+          {/* Reset to Live */}
+          {timeSpeed !== 0 && (
+            <button
+              onClick={handleResetToLive}
+              className="px-2 py-1 rounded text-[10px] font-semibold bg-red-500/15 text-red-400 hover:bg-red-500/25 transition-colors"
+            >
+              LIVE
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Planet info panel — overlaid on bottom-left of the chart */}

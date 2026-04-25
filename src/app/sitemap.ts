@@ -129,6 +129,7 @@ const routes = [
   // Tools
   '/medical-astrology',
   '/financial-astrology',
+  '/mundane',
   '/sign-calculator',
   '/sade-sati',
   '/prashna',

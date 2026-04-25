@@ -88,6 +88,19 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     keywords: ['financial astrology', 'dhana yoga', 'wealth timing', 'vedic finance', 'hora guide', 'investment astrology'],
   },
+  '/mundane': {
+    title: {
+      en: 'Mundane Astrology — National Charts, World Forecast & Great Conjunctions',
+      hi: 'मुण्डेन ज्योतिष — राष्ट्रीय कुण्डलियाँ, विश्व पूर्वानुमान एवं महायोग',
+      sa: 'मुण्डेनज्योतिषम् — राष्ट्रकुण्डलयः विश्वपूर्वानुमानं महायोगश्च',
+    },
+    description: {
+      en: 'Explore foundation charts for 22 nations, Jupiter-Saturn Great Conjunction cycles, and domain-by-domain world forecasts using Vedic mundane astrology. For educational purposes only.',
+      hi: '22 राष्ट्रों की जन्मकुण्डलियाँ, बृहस्पति-शनि महायोग चक्र और डोमेन-वार विश्व पूर्वानुमान वैदिक मुण्डेन ज्योतिष द्वारा देखें।',
+      sa: 'द्वाविंशतिराष्ट्राणां कुण्डलयः बृहस्पतिशनिमहायोगचक्रं च वैदिकमुण्डेनज्योतिषेण विश्वपूर्वानुमानं च ज्ञायताम्।',
+    },
+    keywords: ['mundane astrology', 'national chart', 'great conjunction', 'world forecast', 'vedic mundane', 'jupiter saturn cycle'],
+  },
   '/medical-astrology': {
     title: {
       en: 'Medical Astrology — Prakriti, Body Map & Health Timeline',

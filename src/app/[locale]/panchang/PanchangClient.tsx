@@ -956,10 +956,34 @@ export default function PanchangClient() {
 
           <GoldDivider />
 
+          {/* ═══ SECTION NAV — sticky horizontal pills ═══ */}
+          <nav className="sticky top-0 z-30 bg-[#0a0e27]/95 backdrop-blur-md border-b border-gold-primary/10 -mx-4 px-4 py-2 mb-8 overflow-x-auto scrollbar-hide">
+            <div className="flex gap-1.5 min-w-max">
+              {[
+                { id: 'sec-auspicious', label: locale === 'hi' ? 'शुभ' : 'Auspicious' },
+                { id: 'sec-inauspicious', label: locale === 'hi' ? 'अशुभ' : 'Inauspicious' },
+                { id: 'sec-hindu-months', label: locale === 'hi' ? 'मास' : 'Months' },
+                { id: 'sec-nivas', label: locale === 'hi' ? 'निवास/शूल' : 'Nivas & Shool' },
+                { id: 'sec-calendar', label: locale === 'hi' ? 'कैलेंडर' : 'Calendar' },
+                { id: 'sec-choghadiya', label: locale === 'hi' ? 'चौघड़िया' : 'Choghadiya' },
+                { id: 'sec-planets', label: locale === 'hi' ? 'ग्रह' : 'Planets' },
+              ].map(s => (
+                <button
+                  key={s.id}
+                  type="button"
+                  onClick={() => document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                  className="px-3 py-1.5 rounded-full text-xs font-medium text-text-secondary hover:text-gold-light hover:bg-gold-primary/10 border border-gold-primary/10 hover:border-gold-primary/25 transition-all whitespace-nowrap cursor-pointer"
+                >
+                  {s.label}
+                </button>
+              ))}
+            </div>
+          </nav>
+
           {/* ═══════════════════════════════════════════════════
               SECTION 2: AUSPICIOUS TIMINGS
           ═══════════════════════════════════════════════════ */}
-          <div className="my-14">
+          <div id="sec-auspicious" className="my-14 scroll-mt-16">
             <SectionHeading
               icon={<MuhurtaIcon size={56} />}
               title={msg('auspiciousTimings', locale)}
@@ -1294,7 +1318,7 @@ export default function PanchangClient() {
           {/* ═══════════════════════════════════════════════════
               SECTION 3: INAUSPICIOUS TIMINGS
           ═══════════════════════════════════════════════════ */}
-          <div className="my-14">
+          <div id="sec-inauspicious" className="my-14 scroll-mt-16">
             <SectionHeading
               icon={
                 <svg width={56} height={56} viewBox="0 0 64 64" fill="none" aria-hidden="true">
@@ -1498,6 +1522,7 @@ export default function PanchangClient() {
           <GoldDivider />
 
           {/* Hindu Months Reference — computed for selected year */}
+          <div id="sec-hindu-months" className="scroll-mt-16" />
           {(() => {
             const hinduMonths = masaSystem === 'purnimant' ? computePurnimantMonthsMemo : computeHinduMonthsMemo;
             const amantMonths = computeHinduMonthsMemo; // needed for sandwich Amavasya dates
@@ -1667,7 +1692,7 @@ export default function PanchangClient() {
           {/* ═══════════════════════════════════════════════════
               SECTION 4: NIVAS & SHOOL
           ═══════════════════════════════════════════════════ */}
-          <div className="my-14">
+          <div id="sec-nivas" className="my-14 scroll-mt-16">
             <SectionHeading
               icon={<Compass className="w-14 h-14 text-indigo-400" />}
               title={msg('nivasShool', locale)}
@@ -1911,7 +1936,7 @@ export default function PanchangClient() {
           {/* ═══════════════════════════════════════════════════
               SECTION 5: CALENDARS & EPOCH
           ═══════════════════════════════════════════════════ */}
-          <div className="my-14">
+          <div id="sec-calendar" className="my-14 scroll-mt-16">
             <SectionHeading
               icon={<Calendar className="w-14 h-14 text-gold-primary" />}
               title={msg('calendarsEpoch', locale)}
@@ -2064,6 +2089,7 @@ export default function PanchangClient() {
           <GoldDivider />
 
           {/* ═══ CHOGHADIYA ═══ */}
+          <div id="sec-choghadiya" className="scroll-mt-16" />
           <InfoBlock
             id="panchang-choghadiya"
             title={msg('choghadiyaTitle', locale)}
@@ -2658,7 +2684,7 @@ export default function PanchangClient() {
           <GoldDivider />
 
           {/* ═══ PLANETARY POSITIONS ═══ */}
-          <div className="my-14">
+          <div id="sec-planets" className="my-14 scroll-mt-16">
             <h2 className="text-3xl font-bold text-gold-gradient mb-8 text-center" style={headingFont}>
               {t('planetaryPositions')}
             </h2>

@@ -101,6 +101,19 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     keywords: ['mundane astrology', 'national chart', 'great conjunction', 'world forecast', 'vedic mundane', 'jupiter saturn cycle'],
   },
+  '/nadi-jyotish': {
+    title: {
+      en: 'Nadi Jyotish — Bhrigu Nandi Nadi Planet Reading',
+      hi: 'नाड़ी ज्योतिष — भृगु नंदी नाड़ी ग्रह पठन',
+      sa: 'नाड़ीज्योतिषम् — भृगुनन्दिनाड़ीग्रहपठनम्',
+    },
+    description: {
+      en: 'Bhrigu Nandi Nadi reading: planet-in-sign base predictions, aspect and conjunction modifiers, karmic profile, and life themes from your Vedic birth chart.',
+      hi: 'भृगु नंदी नाड़ी पठन: ग्रह-राशि आधार भविष्यवाणी, दृष्टि और युति संशोधक, कार्मिक प्रोफ़ाइल और जीवन विषय।',
+      sa: 'भृगुनन्दिनाड़ीपठनम्: ग्रहराश्याधारभविष्यवाणी दृष्ट्यादिसंशोधकाः कार्मिकप्रोफाइलः जीवनविषयाश्च।',
+    },
+    keywords: ['nadi jyotish', 'bhrigu nandi nadi', 'bnn reading', 'planet in sign', 'karmic astrology', 'vedic nadi'],
+  },
   '/medical-astrology': {
     title: {
       en: 'Medical Astrology — Prakriti, Body Map & Health Timeline',

@@ -143,6 +143,7 @@ export default function Navbar() {
         { href: '/sign-calculator', label: t('signCalculator') },
         { href: '/medical-astrology', label: t('medicalAstrology') },
         { href: '/financial-astrology', label: t('financialAstrology') },
+        { href: '/nadi-jyotish', label: t('nadiJyotish') },
         { href: '/mundane', label: t('mundaneAstrology') },
         { href: '/baby-names', label: t('babyNames') },
         { href: '/vedic-time', label: t('vedicTime') },

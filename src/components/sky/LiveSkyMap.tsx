@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import * as d3 from 'd3';
+
 import { type SkyPlanetPosition } from '@/lib/sky/positions';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -749,79 +749,85 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
   const [error, setError] = useState<string | null>(null);
   /** Whether the component has fully mounted — drives planet entry animation */
   const [mounted, setMounted] = useState(false);
-  /** Current D3 zoom transform (k = scale, x/y = translation) */
-  const [zoomTransform, setZoomTransform] = useState<d3.ZoomTransform>(d3.zoomIdentity);
+  /** Simple React-driven zoom — scale and pan in viewBox coordinates */
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
   /** Time animation state */
   const [simDate, setSimDate] = useState<Date>(new Date());
-  const [timeSpeed, setTimeSpeed] = useState(0); // index into TIME_SPEEDS (0 = live)
+  const [timeSpeed, setTimeSpeed] = useState(0);
   const [playing, setPlaying] = useState(false);
   const animFrameRef = useRef<number>(0);
   const lastTickRef = useRef<number>(0);
 
   const svgRef = useRef<SVGSVGElement>(null);
-  // Store the d3 zoom object so we can call zoomIn/Out/Reset imperatively
-  const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null);
+  const isPanningRef = useRef(false);
+  const panStartRef = useRef({ x: 0, y: 0, ox: 0, oy: 0 });
 
-  // ---- D3 zoom setup --------------------------------------------------------
+  // ---- Zoom via wheel -------------------------------------------------------
   useEffect(() => {
     const svgEl = svgRef.current;
     if (!svgEl) return;
 
-    const zoom = d3
-      .zoom<SVGSVGElement, unknown>()
-      .scaleExtent([ZOOM_MIN, ZOOM_MAX])
-      // Set extent to viewBox coordinates so zoom math works regardless of CSS size
-      .extent([[0, 0], [SVG_SIZE, SVG_SIZE]])
-      // Constrain panning so the chart never flies completely off-screen
-      .translateExtent([
-        [-SVG_SIZE * 0.5, -SVG_SIZE * 0.5],
-        [SVG_SIZE * 1.5, SVG_SIZE * 1.5],
-      ])
-      // Allow all events except double-click
-      .filter((event: Event) => {
-        if (event.type === 'dblclick') return false;
-        return true;
-      })
-      .on('zoom', (event: d3.D3ZoomEvent<SVGSVGElement, unknown>) => {
-        setZoomTransform(event.transform);
-      });
-
-    zoomRef.current = zoom;
-
-    // Attach zoom to the SVG element
-    const sel = d3.select(svgEl);
-    sel.call(zoom);
-
-    // D3 attaches wheel listeners as passive by default in some browsers.
-    // Override to non-passive so preventDefault works (enables scroll-to-zoom).
-    svgEl.addEventListener('wheel', (e) => e.preventDefault(), { passive: false });
-
-    // Clean up on unmount
-    return () => {
-      d3.select(svgEl).on('.zoom', null);
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const delta = e.deltaY > 0 ? 0.85 : 1.18; // scroll down = zoom out
+      setZoomLevel((prev) => Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, prev * delta)));
     };
+
+    svgEl.addEventListener('wheel', handleWheel, { passive: false });
+    return () => svgEl.removeEventListener('wheel', handleWheel);
   }, []);
+
+  // ---- Pan via mouse drag ---------------------------------------------------
+  useEffect(() => {
+    const svgEl = svgRef.current;
+    if (!svgEl) return;
+
+    const onDown = (e: PointerEvent) => {
+      isPanningRef.current = true;
+      // Convert screen pixels to viewBox units using current zoom
+      panStartRef.current = { x: e.clientX, y: e.clientY, ox: panOffset.x, oy: panOffset.y };
+      svgEl.setPointerCapture(e.pointerId);
+      svgEl.style.cursor = 'grabbing';
+    };
+    const onMove = (e: PointerEvent) => {
+      if (!isPanningRef.current) return;
+      const rect = svgEl.getBoundingClientRect();
+      const scalePixelToVB = SVG_SIZE / rect.width / zoomLevel;
+      const dx = (e.clientX - panStartRef.current.x) * scalePixelToVB;
+      const dy = (e.clientY - panStartRef.current.y) * scalePixelToVB;
+      setPanOffset({ x: panStartRef.current.ox - dx, y: panStartRef.current.oy - dy });
+    };
+    const onUp = () => {
+      isPanningRef.current = false;
+      svgEl.style.cursor = 'grab';
+    };
+
+    svgEl.addEventListener('pointerdown', onDown);
+    svgEl.addEventListener('pointermove', onMove);
+    svgEl.addEventListener('pointerup', onUp);
+    svgEl.addEventListener('pointerleave', onUp);
+    return () => {
+      svgEl.removeEventListener('pointerdown', onDown);
+      svgEl.removeEventListener('pointermove', onMove);
+      svgEl.removeEventListener('pointerup', onUp);
+      svgEl.removeEventListener('pointerleave', onUp);
+    };
+  }, [zoomLevel, panOffset]);
 
   // ---- Zoom control handlers ------------------------------------------------
   const handleZoomIn = useCallback(() => {
-    const svgEl = svgRef.current;
-    const zoom = zoomRef.current;
-    if (!svgEl || !zoom) return;
-    d3.select(svgEl).transition().duration(300).call(zoom.scaleBy, 1.4);
+    setZoomLevel((prev) => Math.min(ZOOM_MAX, prev * 1.4));
   }, []);
 
   const handleZoomOut = useCallback(() => {
-    const svgEl = svgRef.current;
-    const zoom = zoomRef.current;
-    if (!svgEl || !zoom) return;
-    d3.select(svgEl).transition().duration(300).call(zoom.scaleBy, 1 / 1.4);
+    setZoomLevel((prev) => Math.max(ZOOM_MIN, prev / 1.4));
   }, []);
 
   const handleZoomReset = useCallback(() => {
-    const svgEl = svgRef.current;
-    const zoom = zoomRef.current;
-    if (!svgEl || !zoom) return;
-    d3.select(svgEl).transition().duration(400).call(zoom.transform, d3.zoomIdentity);
+    setZoomLevel(1);
+    setPanOffset({ x: 0, y: 0 });
   }, []);
 
   // ---- Data fetching --------------------------------------------------------
@@ -935,9 +941,13 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
     );
   }
 
-  // Build the CSS transform string for the zoomable <g>
-  const { k, x, y } = zoomTransform;
-  const transformStr = `translate(${x},${y}) scale(${k})`;
+  // Convert D3 zoom transform into a viewBox that zooms/pans correctly.
+  // D3 gives us pixel-space (k, x, y). We map to viewBox coords:
+  //   viewBox origin = (-x/k, -y/k), size = SVG_SIZE/k × SVG_SIZE/k
+  const vbSize = SVG_SIZE / zoomLevel;
+  const vbX = (SVG_SIZE - vbSize) / 2 + panOffset.x;
+  const vbY = (SVG_SIZE - vbSize) / 2 + panOffset.y;
+  const dynamicViewBox = `${vbX} ${vbY} ${vbSize} ${vbSize}`;
 
   return (
     <div className="relative w-full">
@@ -948,7 +958,7 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
       <div className="relative w-full" style={{ aspectRatio: '1 / 1', maxHeight: '85vh' }}>
         <svg
           ref={svgRef}
-          viewBox={`0 0 ${SVG_SIZE} ${SVG_SIZE}`}
+          viewBox={dynamicViewBox}
           className="w-full h-full"
           style={{ background: 'transparent', cursor: 'grab' }}
           aria-label="Live Sky Map — sidereal ecliptic polar projection (scroll to zoom, drag to pan)"
@@ -960,7 +970,7 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
           <circle cx={CX} cy={CY} r={SVG_SIZE / 2} fill="url(#bgGlow)" />
 
           {/* All chart content inside a zoomable group */}
-          <g transform={transformStr}>
+          <g>
             {/* Outermost orbit reference ring */}
             <circle cx={CX} cy={CY} r={R_TICK_OUTER} fill="none" stroke="#8a6d2b" strokeOpacity={0.15} strokeWidth={0.5} />
 
@@ -1006,14 +1016,15 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
           onZoomIn={handleZoomIn}
           onZoomOut={handleZoomOut}
           onReset={handleZoomReset}
-          zoomLevel={zoomTransform.k}
+          zoomLevel={zoomLevel}
         />
 
         {/* Tooltip overlay */}
         {tooltip && <Tooltip data={tooltip} />}
 
-        {/* Time animation controls */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 bg-[#111633]/90 backdrop-blur-sm border border-[#8a6d2b]/30 rounded-xl px-4 py-3 min-w-[360px] sm:min-w-[480px]">
+        {/* Time animation controls — BELOW the chart, not overlaid */}
+      </div>{/* end chart container */}
+      <div className="flex flex-col items-center gap-2 bg-[#111633]/90 border border-[#8a6d2b]/30 rounded-xl px-4 py-3 mx-auto max-w-[560px] mt-3">
           {/* Timeline slider — scrub ±1 year from current real time */}
           <div className="w-full flex items-center gap-2">
             <span className="text-[#6a5a28] text-[9px] whitespace-nowrap">-1yr</span>
@@ -1099,12 +1110,11 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
             </button>
           )}
           </div>{/* end controls row */}
-        </div>{/* end time animation controls */}
-      </div>{/* end chart container */}
+        </div>{/* end time controls */}
 
-      {/* Planet info panel — overlaid on bottom-left of the chart */}
+      {/* Planet info panel */}
       {selectedPlanet && (
-        <div className="absolute bottom-4 left-4 z-20 w-[280px] sm:w-[320px]">
+        <div className="max-w-[320px] mx-auto mt-3">
           <SidePanel
             planet={selectedPlanet}
             onClose={() => setSelectedPlanet(null)}
@@ -1112,13 +1122,11 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
         </div>
       )}
 
-      {/* Instructions hint — overlaid on bottom-right */}
+      {/* Instructions hint */}
       {!selectedPlanet && (
-        <div className="absolute bottom-4 right-4 z-10 bg-[#111633]/80 backdrop-blur-sm border border-[#8a6d2b]/20 rounded-xl px-4 py-3 text-[#8a8478] text-xs max-w-[220px]">
-          <p className="font-medium text-[#d4a853] mb-1 text-sm">Live Sky Map</p>
-          <p>Click any planet for details.</p>
-          <p className="mt-1">Scroll to zoom. Drag to pan.</p>
-        </div>
+        <p className="text-center text-[#8a8478] text-xs mt-2">
+          Click any planet for details. Scroll over the chart to zoom. Drag to pan.
+        </p>
       )}
     </div>
   );

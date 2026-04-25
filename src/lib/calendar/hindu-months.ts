@@ -133,8 +133,19 @@ function findFullMoons(year: number): { date: Date; jd: number }[] {
 
 /**
  * Compute Purnimant Hindu months — each runs from Purnima to Purnima.
- * The Purnimant month name is one month AHEAD of the Amant month:
- * e.g., Amant Chaitra's Krishna Paksha = Purnimant Vaishakha.
+ *
+ * Naming: derived from the Sun's sidereal sign at the ENDING Full Moon.
+ * The Full Moon is always opposite the Sun, so the Moon's nakshatra at
+ * Full Moon corresponds to a specific Sun sign. This is the classical
+ * derivation: Chaitra = Sun in Pisces at Full Moon (Moon near Chitra),
+ * Vaishakha = Sun in Aries (Moon near Vishakha), etc.
+ *
+ * Using Sun's sign rather than Moon's nakshatra avoids the unbalanced
+ * nakshatra-to-month mapping problem (27 nakshatras / 12 months = 2.25,
+ * which causes boundary issues with a discrete lookup table).
+ *
+ * Adhika: when no Sankranti (Sun sign change) occurs during a
+ * Purnima-to-Purnima period, that month is intercalary (Adhika).
  */
 export function computePurnimantMonths(year: number): HinduMonth[] {
   const fullMoons = findFullMoons(year);
@@ -146,27 +157,35 @@ export function computePurnimantMonths(year: number): HinduMonth[] {
 
   for (let i = 0; i < fullMoons.length - 1; i++) {
     const { date: fmDate, jd: fmJD } = fullMoons[i];
-    const { date: nextFmDate } = fullMoons[i + 1];
+    const { date: nextFmDate, jd: nextFmJD } = fullMoons[i + 1];
 
-    // Sun's sidereal sign at this Full Moon — Purnimant naming:
-    // The month is named after the next Amant month (Sun sign + 1)
-    // because Purnimant Chaitra starts at the Phalguni Purnima and
-    // contains Chaitra Shukla + Chaitra Krishna (= Amant Chaitra's beginning).
-    //
-    // Use the refined Full Moon JD from binary search (not noon on the FM date)
-    // so that the Sun's position is evaluated at the actual moment of Purnima.
-    const tropSun = sunLongitude(fmJD);
-    const ayanamsha = lahiriAyanamsha(fmJD);
-    const sidSun = ((tropSun - ayanamsha) + 360) % 360;
-    const sunSign = Math.floor(sidSun / 30) + 1; // 1-12
-    // Purnimant naming: the month is named after the NEXT Amant month.
-    // A Purnimant month starts at one Purnima and ends at the next.
-    // The month contains: current Amant month's Krishna Paksha + next Amant month's Shukla Paksha.
-    // It is named after the ENDING Purnima (= next Amant month), not the starting one.
-    // So: Sun in sign X at this Purnima → Amant month = X % 12 → Purnimant month = (X % 12 + 1) % 12
-    const masaIdx = (sunSign % 12 + 1) % 12; // 0-indexed, shifted +1 for Purnimant convention
+    // Detect Sankranti: scan the period for Sun entering a new sidereal sign.
+    // The month is named by the Sankranti sign (the sign Sun enters).
+    // If no Sankranti occurs → Adhika (intercalary), named same as the next nija month.
+    const startSunSid = ((sunLongitude(fmJD) - lahiriAyanamsha(fmJD)) % 360 + 360) % 360;
+    const startSign = Math.floor(startSunSid / 30) + 1;
+    let sankrantiSign = -1;
+    let prevSign = startSign;
+    for (let jd = fmJD + 0.5; jd <= nextFmJD; jd += 1.0) {
+      const sunSid = ((sunLongitude(jd) - lahiriAyanamsha(jd)) % 360 + 360) % 360;
+      const sign = Math.floor(sunSid / 30) + 1;
+      if (sign !== prevSign) {
+        sankrantiSign = sign;
+        break;
+      }
+      prevSign = sign;
+    }
 
-    const isAdhika = masaIdx === prevMasaIdx;
+    // Month name from Sankranti sign; if no Sankranti, use the Sun's sign at end
+    const endSunSid = ((sunLongitude(nextFmJD) - lahiriAyanamsha(nextFmJD)) % 360 + 360) % 360;
+    const endSign = Math.floor(endSunSid / 30) + 1;
+    const namingSign = sankrantiSign > 0 ? sankrantiSign : endSign;
+    const masaIdx = getMasaFromSunSign(namingSign);
+
+    // Adhika: no Sankranti in this period, OR same masaIdx as previous month
+    // (the latter catches edge cases where the Sankranti scan passes but the
+    // derived month name duplicates due to the 15-day offset from Amant)
+    const isAdhika = sankrantiSign === -1 || masaIdx === prevMasaIdx;
 
     const startStr = `${fmDate.getUTCFullYear()}-${(fmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${fmDate.getUTCDate().toString().padStart(2, '0')}`;
     const endStr = `${nextFmDate.getUTCFullYear()}-${(nextFmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${nextFmDate.getUTCDate().toString().padStart(2, '0')}`;

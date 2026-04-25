@@ -410,6 +410,68 @@ export default function MedicalAstrologyPage() {
       </section>
 
       <div className="max-w-4xl mx-auto px-4 py-10 space-y-10">
+        {/* ── Editorial Introduction (SEO / AdSense content) ──────────── */}
+        <section className="space-y-6">
+          <h2 className="text-2xl font-bold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+            {L(locale, 'editorialTitle')}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+            {L(locale, 'editorialIntro')}
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            {/* Doshas card */}
+            <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+              <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                {L(locale, 'editorialDoshaTitle')}
+              </h3>
+              <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {L(locale, 'editorialDosha')}
+              </p>
+            </div>
+
+            {/* Houses card */}
+            <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+              <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                {L(locale, 'editorialHousesTitle')}
+              </h3>
+              <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {L(locale, 'editorialHouses')}
+              </p>
+            </div>
+
+            {/* Prakriti card */}
+            <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+              <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                {L(locale, 'editorialPrakritiTitle')}
+              </h3>
+              <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {L(locale, 'editorialPrakriti')}
+              </p>
+            </div>
+
+            {/* Dasha card */}
+            <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+              <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                {L(locale, 'editorialDashaTitle')}
+              </h3>
+              <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {L(locale, 'editorialDasha')}
+              </p>
+            </div>
+          </div>
+
+          {/* Method — full-width */}
+          <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+            <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+              {L(locale, 'editorialMethodTitle')}
+            </h3>
+            <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+              {L(locale, 'editorialMethod')}
+            </p>
+          </div>
+        </section>
+
         {/* ── Disclaimer (always visible) ─────────────────────────────── */}
         <DisclaimerBanner text={L(locale, 'disclaimer')} />
 

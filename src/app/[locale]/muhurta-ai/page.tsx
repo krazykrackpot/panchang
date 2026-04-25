@@ -56,6 +56,17 @@ const L = {
     panchang: 'Panchang', transit: 'Transit', timing: 'Timing', personal: 'Personal',
     keyFactors: 'Key Factors', results: 'All Recommendations', date: 'Date', time: 'Time',
     noResults: 'No auspicious windows found in this range. Try extending the date range.',
+    // ── Editorial content for AdSense ──
+    edTitle: 'What is Muhurta — The Vedic Science of Auspicious Timing',
+    edIntro: 'Muhurta (electional astrology) is the branch of Jyotish Shastra dedicated to selecting the most favourable moment for initiating important actions. The foundational principle is simple yet profound: time is not neutral. The Vedic tradition holds that Kaal (Time) is the supreme force — every moment carries a unique energetic signature shaped by the positions of the Sun, Moon, and planets. A marriage begun under an auspicious muhurta inherits the cosmic support of that moment; a business launched during Vishti Karana or Rahu Kaal inherits their obstruction.',
+    edElementsTitle: 'The Five Elements of Muhurta (Panchanga Shuddhi)',
+    edElements: 'A muhurta is evaluated through five simultaneous lenses, collectively called Panchanga Shuddhi. Tithi (lunar day) — each of the 30 tithis per month has a ruling deity and intrinsic quality. Nanda tithis (1, 6, 11) favour joyful occasions; Bhadra tithis (2, 7, 12) suit prosperity-oriented acts. Nakshatra (lunar mansion) — the 27 nakshatras are classified as Fixed, Movable, Sharp, Soft, or Mixed, each suited to different activities. Deva nakshatras like Pushya and Revati are universally auspicious. Yoga — the 27 nitya yogas arise from the combined longitude of Sun and Moon. Siddhi, Amrita, and Shubha yogas amplify success; Vyatipata and Vaidhriti are avoided. Karana (half-tithi) — 11 karanas rotate through each lunar month. Vishti (Bhadra) karana is universally inauspicious. Vara (weekday) — each day is ruled by a graha. Thursday (Guru) and Friday (Shukra) are broadly favourable; Saturday and Tuesday require careful evaluation.',
+    edClassicalTitle: 'Classical Scriptural Basis',
+    edClassical: 'The primary texts for muhurta selection are the Muhurta Chintamani by Rama Daivagya and the Muhurta Martanda by Narayana Daivagya. These 16th-17th century treatises codify rules from earlier sources including the Brihat Samhita of Varahamihira and the Kalaprakashika. They define specific conditions for each type of activity — marriage requires a fixed nakshatra on a Monday, Wednesday, Thursday, or Friday with Shukla Paksha tithi, for instance — and enumerate hundreds of special yogas (Sarvartha Siddhi, Amrita Siddhi, Ravi Yoga) that enhance or diminish a window.',
+    edScoringTitle: 'How Our AI Scoring Engine Works',
+    edScoring: 'Our engine evaluates every 90-minute window within your selected date range across 20+ activities. Each window receives a composite score (0-100) computed from four weighted dimensions: Panchang quality (tithi + nakshatra + yoga + karana + vara alignment for the specific activity), Transit strength (current positions of Jupiter, Saturn, Rahu, Ketu relative to your birth chart), Timing factors (hora lord, choghadiya quality, absence of Rahu Kaal, Yamaghanda, and Gulika Kaal), and Personal compatibility (Tara Bala and Chandra Bala from your birth nakshatra, if provided). The weights shift by activity type: marriage prioritises nakshatra and tithi; travel prioritises vara and hora.',
+    edAvoidTitle: 'What Makes a Good Muhurta',
+    edAvoid: 'A well-chosen muhurta combines the presence of positive factors with the absence of negative ones. The engine checks for Rahu Kaal (the 90-minute daily window ruled by Rahu — universally avoided for new beginnings), Vishti Karana (Bhadra — the inauspicious half-tithi that recurs 8 times per lunar month), Panchaka dosha (five-fold affliction when Moon transits Dhanishtha through Revati), Gandanta zones (junctional degrees between water and fire signs where Moon is vulnerable), and combustion or retrogression of key planets. When all five panchanga elements are clean and no negative windows overlap, the result is a Sarva Shuddhi muhurta — the highest quality.',
   },
   hi: {
     title: 'मुहूर्त AI', subtitle: 'स्मार्ट मुहूर्त खोजक',
@@ -68,6 +79,17 @@ const L = {
     panchang: 'पंचांग', transit: 'गोचर', timing: 'समय', personal: 'व्यक्तिगत',
     keyFactors: 'मुख्य कारण', results: 'सभी सिफारिशें', date: 'तिथि', time: 'समय',
     noResults: 'इस अवधि में कोई शुभ समय नहीं मिला। तिथि सीमा बढ़ाएं।',
+    // ── Editorial content for AdSense ──
+    edTitle: 'मुहूर्त क्या है — शुभ समय का वैदिक विज्ञान',
+    edIntro: 'मुहूर्त (निर्वाचन ज्योतिष) ज्योतिष शास्त्र की वह शाखा है जो महत्वपूर्ण कार्यों के आरम्भ के लिए सर्वाधिक अनुकूल क्षण का चयन करती है। मूल सिद्धान्त सरल किन्तु गहन है: समय तटस्थ नहीं है। वैदिक परम्परा मानती है कि काल (समय) सर्वोच्च शक्ति है — प्रत्येक क्षण सूर्य, चन्द्र और ग्रहों की स्थिति से निर्मित एक अद्वितीय ऊर्जा हस्ताक्षर वहन करता है। शुभ मुहूर्त में आरम्भ किया गया विवाह उस क्षण का ब्रह्माण्डीय समर्थन प्राप्त करता है; विष्टि करण या राहुकाल में आरम्भ किया गया व्यवसाय उनकी बाधा।',
+    edElementsTitle: 'मुहूर्त के पाँच तत्व (पंचांग शुद्धि)',
+    edElements: 'मुहूर्त का मूल्यांकन पाँच एक साथ दृष्टिकोणों से होता है, जिसे सामूहिक रूप से पंचांग शुद्धि कहते हैं। तिथि — प्रत्येक मास की 30 तिथियों का एक अधिष्ठाता देवता और आन्तरिक गुण होता है। नन्दा तिथियाँ (1, 6, 11) आनन्दपूर्ण अवसरों के अनुकूल हैं। नक्षत्र — 27 नक्षत्र स्थिर, चर, तीक्ष्ण, मृदु या मिश्र के रूप में वर्गीकृत हैं। पुष्य और रेवती जैसे देव नक्षत्र सार्वभौमिक रूप से शुभ हैं। योग — 27 नित्य योग सूर्य और चन्द्र के संयुक्त देशान्तर से उत्पन्न होते हैं। करण — 11 करण प्रत्येक चान्द्र मास में घूमते हैं; विष्टि (भद्रा) सार्वभौमिक रूप से अशुभ है। वार — प्रत्येक दिन एक ग्रह द्वारा शासित है।',
+    edClassicalTitle: 'शास्त्रीय आधार',
+    edClassical: 'मुहूर्त चयन के प्रमुख ग्रन्थ राम दैवज्ञ की मुहूर्त चिन्तामणि और नारायण दैवज्ञ की मुहूर्त मार्तण्ड हैं। ये 16वीं-17वीं शताब्दी के ग्रन्थ वराहमिहिर की बृहत् संहिता और कालप्रकाशिका सहित पूर्ववर्ती स्रोतों के नियमों को संहिताबद्ध करते हैं। ये प्रत्येक कार्य प्रकार के लिए विशिष्ट शर्तें निर्धारित करते हैं और सैकड़ों विशेष योगों (सर्वार्थ सिद्धि, अमृत सिद्धि, रवि योग) की गणना करते हैं।',
+    edScoringTitle: 'हमारा AI स्कोरिंग इंजन कैसे काम करता है',
+    edScoring: 'हमारा इंजन आपकी चयनित तिथि सीमा के भीतर प्रत्येक 90-मिनट की खिड़की का 20+ गतिविधियों के लिए मूल्यांकन करता है। प्रत्येक खिड़की को चार भारित आयामों से गणना किया गया समग्र अंक (0-100) प्राप्त होता है: पंचांग गुणवत्ता (विशिष्ट गतिविधि के लिए तिथि + नक्षत्र + योग + करण + वार), गोचर शक्ति (गुरु, शनि, राहु, केतु की वर्तमान स्थिति), समय कारक (होरा स्वामी, चौघड़िया, राहुकाल अनुपस्थिति), और व्यक्तिगत अनुकूलता (तारा बल और चन्द्र बल)।',
+    edAvoidTitle: 'अच्छा मुहूर्त क्या बनाता है',
+    edAvoid: 'सुचयनित मुहूर्त सकारात्मक कारकों की उपस्थिति और नकारात्मक कारकों की अनुपस्थिति का संयोजन है। इंजन जाँचता है: राहुकाल (राहु द्वारा शासित 90-मिनट की दैनिक खिड़की — नए कार्यों के लिए सार्वभौमिक रूप से वर्जित), विष्टि करण (भद्रा — प्रति चान्द्र मास 8 बार आने वाला अशुभ अर्ध-तिथि), पंचक दोष (धनिष्ठा से रेवती तक चन्द्र गोचर में पंचगुणा पीड़ा), गण्डान्त क्षेत्र, और प्रमुख ग्रहों का अस्त या वक्री होना। जब सभी पाँच पंचांग तत्व शुद्ध हों — यह सर्वशुद्धि मुहूर्त है।',
   },
   sa: {
     title: 'मुहूर्तम् AI', subtitle: 'स्मार्टमुहूर्तखोजकम्',
@@ -80,6 +102,7 @@ const L = {
     panchang: 'पञ्चाङ्गम्', transit: 'गोचरः', timing: 'समयः', personal: 'व्यक्तिगतम्',
     keyFactors: 'मुख्यकारणानि', results: 'सर्वसिफारिशाः', date: 'तिथिः', time: 'समयः',
     noResults: 'अस्मिन् अवधौ शुभसमयः न प्राप्तः।',
+    edTitle: '', edIntro: '', edElementsTitle: '', edElements: '', edClassicalTitle: '', edClassical: '', edScoringTitle: '', edScoring: '', edAvoidTitle: '', edAvoid: '',
   },
   ta: {
     title: 'முகூர்த்த AI', subtitle: 'சிறந்த முகூர்த்தம் கண்டறி',
@@ -92,6 +115,7 @@ const L = {
     panchang: 'பஞ்சாங்கம்', transit: 'கோசாரம்', timing: 'நேரம்', personal: 'தனிப்பட்ட',
     keyFactors: 'முக்கிய காரணிகள்', results: 'அனைத்து பரிந்துரைகள்', date: 'தேதி', time: 'நேரம்',
     noResults: 'இந்த வரம்பில் சுப நேரம் கிடைக்கவில்லை. தேதி வரம்பை நீட்டிக்கவும்.',
+    edTitle: '', edIntro: '', edElementsTitle: '', edElements: '', edClassicalTitle: '', edClassical: '', edScoringTitle: '', edScoring: '', edAvoidTitle: '', edAvoid: '',
   },
   te: {
     title: 'ముహూర్తం AI', subtitle: 'స్మార్ట్ ముహూర్తం అన్వేషకం',
@@ -104,6 +128,7 @@ const L = {
     panchang: 'పంచాంగం', transit: 'గోచారం', timing: 'సమయం', personal: 'వ్యక్తిగత',
     keyFactors: 'ముఖ్య కారకాలు', results: 'అన్ని సిఫార్సులు', date: 'తేదీ', time: 'సమయం',
     noResults: 'ఈ పరిధిలో శుభ సమయం కనుగొనబడలేదు. తేదీ పరిధిని పెంచండి.',
+    edTitle: '', edIntro: '', edElementsTitle: '', edElements: '', edClassicalTitle: '', edClassical: '', edScoringTitle: '', edScoring: '', edAvoidTitle: '', edAvoid: '',
   },
   bn: {
     title: 'মুহূর্ত AI', subtitle: 'স্মার্ট মুহূর্ত অনুসন্ধান',
@@ -116,6 +141,7 @@ const L = {
     panchang: 'পঞ্চাঙ্গ', transit: 'গোচর', timing: 'সময়', personal: 'ব্যক্তিগত',
     keyFactors: 'মূল কারণ', results: 'সকল সুপারিশ', date: 'তারিখ', time: 'সময়',
     noResults: 'এই পরিসরে কোনো শুভ সময় পাওয়া যায়নি। তারিখ পরিসর বাড়ান।',
+    edTitle: '', edIntro: '', edElementsTitle: '', edElements: '', edClassicalTitle: '', edClassical: '', edScoringTitle: '', edScoring: '', edAvoidTitle: '', edAvoid: '',
   },
   kn: {
     title: 'ಮುಹೂರ್ತ AI', subtitle: 'ಸ್ಮಾರ್ಟ್ ಮುಹೂರ್ತ ಹುಡುಕಾಟ',
@@ -128,6 +154,7 @@ const L = {
     panchang: 'ಪಂಚಾಂಗ', transit: 'ಗೋಚಾರ', timing: 'ಸಮಯ', personal: 'ವೈಯಕ್ತಿಕ',
     keyFactors: 'ಮುಖ್ಯ ಕಾರಣಗಳು', results: 'ಎಲ್ಲ ಶಿಫಾರಸುಗಳು', date: 'ದಿನಾಂಕ', time: 'ಸಮಯ',
     noResults: 'ಈ ಶ್ರೇಣಿಯಲ್ಲಿ ಶುಭ ಸಮಯ ಕಂಡುಬಂದಿಲ್ಲ. ದಿನಾಂಕ ಶ್ರೇಣಿಯನ್ನು ವಿಸ್ತರಿಸಿ.',
+    edTitle: '', edIntro: '', edElementsTitle: '', edElements: '', edClassicalTitle: '', edClassical: '', edScoringTitle: '', edScoring: '', edAvoidTitle: '', edAvoid: '',
   },
   gu: {
     title: 'મુહૂર્ત AI', subtitle: 'સ્માર્ટ મુહૂર્ત શોધક',
@@ -140,6 +167,7 @@ const L = {
     panchang: 'પંચાંગ', transit: 'ગોચર', timing: 'સમય', personal: 'વ્યક્તિગત',
     keyFactors: 'મુખ્ય કારણો', results: 'બધી ભલામણો', date: 'તારીખ', time: 'સમય',
     noResults: 'આ શ્રેણીમાં શુભ સમય મળ્યો નથી. તારીખ શ્રેણી વધારો.',
+    edTitle: '', edIntro: '', edElementsTitle: '', edElements: '', edClassicalTitle: '', edClassical: '', edScoringTitle: '', edScoring: '', edAvoidTitle: '', edAvoid: '',
   },
   mr: {
     title: 'मुहूर्त AI', subtitle: 'स्मार्ट मुहूर्त शोधक',
@@ -152,6 +180,7 @@ const L = {
     panchang: 'पंचांग', transit: 'गोचर', timing: 'वेळ', personal: 'वैयक्तिक',
     keyFactors: 'मुख्य कारणे', results: 'सर्व शिफारसी', date: 'तारीख', time: 'वेळ',
     noResults: 'या मर्यादेत शुभ वेळ सापडला नाही. तारीख मर्यादा वाढवा.',
+    edTitle: '', edIntro: '', edElementsTitle: '', edElements: '', edClassicalTitle: '', edClassical: '', edScoringTitle: '', edScoring: '', edAvoidTitle: '', edAvoid: '',
   },
   mai: {
     title: 'मुहूर्त AI', subtitle: 'स्मार्ट मुहूर्त खोजक',
@@ -164,6 +193,7 @@ const L = {
     panchang: 'पंचांग', transit: 'गोचर', timing: 'समय', personal: 'व्यक्तिगत',
     keyFactors: 'मुख्य कारण', results: 'सभ सिफारिश', date: 'तिथि', time: 'समय',
     noResults: 'एहि अवधिमे कोनो शुभ समय नहि भेटल। तिथि सीमा बढ़ाउ।',
+    edTitle: '', edIntro: '', edElementsTitle: '', edElements: '', edClassicalTitle: '', edClassical: '', edScoringTitle: '', edScoring: '', edAvoidTitle: '', edAvoid: '',
   },
 };
 
@@ -187,7 +217,8 @@ function ScoreGauge({ score, label, max = 25 }: { score: number; label: string; 
 export default function MuhurtaAIPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const t = (L as Record<string, typeof L.en>)[locale] || L.en;
+  const localeL = (L as Record<string, Partial<typeof L.en>>)[locale] || {};
+  const t = { ...L.en, ...localeL };
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};

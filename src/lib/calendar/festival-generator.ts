@@ -543,7 +543,9 @@ export function generateFestivalCalendarV2(
     const matches = lookupAllTithiByNumber(table, tithiNum);
 
     for (const match of matches) {
-      if (match.lunarMonth.isAdhika) continue; // skip Adhika months for recurring
+      // Skip Adhika months for recurring vrats EXCEPT purnima/amavasya date listings
+      // which should show ALL occurrences including during Adhika months
+      if (match.lunarMonth.isAdhika && def.category !== 'purnima' && def.category !== 'amavasya') continue;
 
       const catDetail = CATEGORY_DETAILS[def.slug.replace('-shukla', '').replace('-krishna', '')];
       const parana = computeSimpleParana(match.sunriseDate, lat, lon, timezone, def.category as 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham');
@@ -552,8 +554,44 @@ export function generateFestivalCalendarV2(
         ? { en: `${match.paksha === 'shukla' ? 'Shukla' : 'Krishna'} Pradosham`, hi: `${match.paksha === 'shukla' ? 'शुक्ल' : 'कृष्ण'} प्रदोष`, sa: `${match.paksha === 'shukla' ? 'शुक्ल' : 'कृष्ण'}प्रदोषः` }
         : catDetail?.name || { en: def.slug, hi: def.slug, sa: def.slug };
 
+      // Check if a named major festival already exists on this date — use its name.
+      // E.g., "Guru Purnima" instead of generic "Purnima Vrat" for Jul 29.
+      const existingMajor = festivals.find(f =>
+        f.date === match.sunriseDate && f.type === 'major' &&
+        (f.category === def.category || f.slug?.includes(def.category)),
+      );
+
+      // For purnima/amavasya: always derive the month-based name (e.g., "Pausha Purnima").
+      // If a major festival also falls on this date (e.g., Holi), show BOTH:
+      // "Phalguna Purnima (Holi)"
+      let resolvedName = def.name || catName;
+      if (def.category === 'purnima' || def.category === 'amavasya') {
+        const masaName = match.masa?.amanta || '';
+        const masaCapitalized = masaName.charAt(0).toUpperCase() + masaName.slice(1);
+        const isAdhika = match.lunarMonth?.isAdhika || match.masa?.isAdhika;
+        const prefix = isAdhika ? 'Adhika ' : '';
+        const prefixHi = isAdhika ? 'अधिक ' : '';
+        const tithiLabel = def.category === 'purnima' ? 'Purnima' : 'Amavasya';
+        const tithiLabelHi = def.category === 'purnima' ? 'पूर्णिमा' : 'अमावस्या';
+
+        const baseName = `${prefix}${masaCapitalized} ${tithiLabel}`;
+        const baseNameHi = `${prefixHi}${masaCapitalized} ${tithiLabelHi}`;
+
+        // Append major festival name if one exists on this date
+        const majorOnDate = existingMajor?.name?.en;
+        if (majorOnDate) {
+          resolvedName = {
+            en: `${baseName} (${majorOnDate})`,
+            hi: `${baseNameHi} (${existingMajor?.name?.hi || majorOnDate})`,
+            sa: `${baseName}`,
+          };
+        } else {
+          resolvedName = { en: baseName, hi: baseNameHi, sa: baseName };
+        }
+      }
+
       festivals.push({
-        name: def.name || catName,
+        name: resolvedName,
         date: match.sunriseDate,
         masa: match.masa,
         paksha: match.paksha,

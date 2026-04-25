@@ -797,7 +797,7 @@ export default function KundaliPage() {
                         lat: c.birth_data.lat,
                         lng: c.birth_data.lng,
                         timezone: tz || 'UTC',
-                        relationship: c.birth_data.relationship as import('@/types/kundali').ChartRelationship | undefined,
+                        relationship: (c.birth_data.relationship || undefined) as 'self' | 'spouse' | 'child' | 'parent' | 'sibling' | 'friend' | 'other' | undefined,
                         ayanamsha: 'lahiri',
                       }, 'north');
                     });

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { authedFetch } from '@/lib/api/authed-fetch';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,6 +10,9 @@ import ChartNorth from '@/components/kundali/ChartNorth';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
+import { useAuthStore } from '@/stores/auth-store';
+import { getSupabase } from '@/lib/supabase/client';
+import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
 import {
   computeEnhancedSynastry,
   computeSynastrySummary,
@@ -188,6 +191,35 @@ export default function ComparePage() {
   const [activeTab, setActiveTab] = useState<Tab>('overlay');
   const [overlaySwapped, setOverlaySwapped] = useState(false);
 
+  const user = useAuthStore(s => s.user);
+  const [savedCharts, setSavedCharts] = useState<Array<{ id: string; label: string; birth_data: { name?: string; date: string; time: string; place: string; lat: number; lng: number; relationship?: string } }>>([]);
+
+  // Fetch saved charts when logged in
+  useEffect(() => {
+    if (!user) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
+    supabase.from('saved_charts').select('id, label, birth_data').eq('user_id', user.id).order('created_at', { ascending: false })
+      .then(({ data, error }) => {
+        if (error) { console.error('[compare] saved charts fetch failed:', error); return; }
+        setSavedCharts(data || []);
+      });
+  }, [user]);
+
+  const loadSavedChart = async (chart: (typeof savedCharts)[number], target: 'A' | 'B') => {
+    const tz = await resolveTimezoneFromCoords(chart.birth_data.lat, chart.birth_data.lng);
+    generateChart({
+      name: chart.birth_data.name || chart.label,
+      date: chart.birth_data.date,
+      time: chart.birth_data.time,
+      place: chart.birth_data.place,
+      lat: chart.birth_data.lat,
+      lng: chart.birth_data.lng,
+      timezone: tz || 'UTC',
+      ayanamsha: 'lahiri',
+    }, 'north', target);
+  };
+
   const bothReady = chartA !== null && chartB !== null;
 
   /* ── Generate chart ───────────────────────────────────────────────────── */
@@ -275,6 +307,21 @@ export default function ComparePage() {
                   {t(L.chartA, locale)}
                   {chartA && <span className="ml-2 text-emerald-400 text-sm">✓</span>}
                 </h2>
+                {savedCharts.length > 0 && (
+                  <div className="mb-4">
+                    <select
+                      onChange={(e) => { const c = savedCharts.find(s => s.id === e.target.value); if (c) loadSavedChart(c, 'A'); }}
+                      defaultValue=""
+                      className="w-full bg-bg-secondary border border-gold-primary/15 rounded-lg px-3 py-2 text-sm text-gold-light focus:outline-none focus:border-gold-primary/40 cursor-pointer"
+                    >
+                      <option value="" disabled>{locale === 'hi' ? 'सहेजी कुण्डली चुनें...' : 'Pick a saved chart...'}</option>
+                      {savedCharts.map(c => (
+                        <option key={c.id} value={c.id}>{c.birth_data.name || c.label} — {c.birth_data.date}</option>
+                      ))}
+                    </select>
+                    <p className="text-text-secondary/50 text-xs text-center mt-1.5">{locale === 'hi' ? 'या नीचे नए विवरण भरें' : 'or enter new details below'}</p>
+                  </div>
+                )}
                 {errorA && <p className="text-red-400 text-xs text-center mb-3">{errorA}</p>}
                 <BirthForm onSubmit={(bd, style) => generateChart(bd, style, 'A')} loading={loadingA} />
               </div>
@@ -284,6 +331,21 @@ export default function ComparePage() {
                   {t(L.chartB, locale)}
                   {chartB && <span className="ml-2 text-emerald-400 text-sm">✓</span>}
                 </h2>
+                {savedCharts.length > 0 && (
+                  <div className="mb-4">
+                    <select
+                      onChange={(e) => { const c = savedCharts.find(s => s.id === e.target.value); if (c) loadSavedChart(c, 'B'); }}
+                      defaultValue=""
+                      className="w-full bg-bg-secondary border border-gold-primary/15 rounded-lg px-3 py-2 text-sm text-gold-light focus:outline-none focus:border-gold-primary/40 cursor-pointer"
+                    >
+                      <option value="" disabled>{locale === 'hi' ? 'सहेजी कुण्डली चुनें...' : 'Pick a saved chart...'}</option>
+                      {savedCharts.map(c => (
+                        <option key={c.id} value={c.id}>{c.birth_data.name || c.label} — {c.birth_data.date}</option>
+                      ))}
+                    </select>
+                    <p className="text-text-secondary/50 text-xs text-center mt-1.5">{locale === 'hi' ? 'या नीचे नए विवरण भरें' : 'or enter new details below'}</p>
+                  </div>
+                )}
                 {errorB && <p className="text-red-400 text-xs text-center mb-3">{errorB}</p>}
                 <BirthForm onSubmit={(bd, style) => generateChart(bd, style, 'B')} loading={loadingB} />
               </div>

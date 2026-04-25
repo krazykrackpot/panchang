@@ -14,7 +14,7 @@ import type { LocaleText } from '@/lib/learn/translations';
 import type { Locale } from '@/types/panchang';
 import L from '@/messages/learn/learn-index.json';
 
-const STATS = { modules: 104, references: 45, labs: 5, tracks: 11 };
+const STATS = { modules: 104, references: 45, labs: 6, tracks: 11 };
 
 export default function LearnPage() {
   const locale = useLocale();
@@ -60,7 +60,7 @@ export default function LearnPage() {
       iconColor: 'text-[#f0d48a]',
       title: { en: 'Kundali — Your Personal Cosmic Map', hi: 'कुण्डली — आपका व्यक्तिगत ब्रह्माण्डीय मानचित्र', sa: 'कुण्डली — भवतः व्यक्तिगतब्रह्माण्डमानचित्रम्' },
       subtitle: { en: 'From birth chart basics to advanced predictive techniques', hi: 'जन्म कुण्डली की मूल बातों से उन्नत भविष्यवाणी तकनीकों तक', sa: 'जन्मकुण्डलीमूलतत्त्वेभ्यः उन्नतभविष्यवाणीपर्यन्तम्' },
-      stats: { en: '51 modules · 25 references · 5 labs', hi: '51 मॉड्यूल · 25 संदर्भ · 5 लैब', sa: '51 मॉड्यूलाः · 25 सन्दर्भाः · 5 प्रयोगशालाः' },
+      stats: { en: '51 modules · 25 references · 6 labs', hi: '51 मॉड्यूल · 25 संदर्भ · 6 लैब', sa: '51 मॉड्यूलाः · 25 सन्दर्भाः · 6 प्रयोगशालाः' },
       topics: { en: 'Houses · Dashas · Yogas · Shadbala · Predictions · Matching · Remedies · Jaimini · KP System', hi: 'भाव · दशा · योग · षड्बल · भविष्यवाणी · मिलान · उपाय · जैमिनी · केपी', sa: 'भावाः · दशाः · योगाः · षड्बलं · भविष्यवाणी · मेलनम् · उपायाः' },
     },
   ];
@@ -72,6 +72,7 @@ export default function LearnPage() {
     { href: '/learn/labs/dasha', title: { en: 'Dasha Timeline', hi: 'दशा समयरेखा', sa: 'दशासमयरेखा' }, color: 'violet' },
     { href: '/learn/labs/shadbala', title: { en: 'Shadbala Breakdown', hi: 'षड्बल विश्लेषण', sa: 'षड्बलविश्लेषणम्' }, color: 'emerald' },
     { href: '/learn/labs/kp', title: { en: 'KP Sub-Lord Lookup', hi: 'केपी उप-स्वामी', sa: 'केपी उपस्वामी' }, color: 'cyan' },
+    { href: '/learn/yoga-animator', title: { en: 'Yoga Formation Animator', hi: 'योग निर्माण एनीमेटर', sa: 'योगनिर्माणचित्रणम्' }, color: 'amber' },
   ];
 
   // Reference library grouped by track
@@ -106,6 +107,7 @@ export default function LearnPage() {
     { label: { en: 'Kundali & Prediction', hi: 'कुण्डली एवं भविष्यवाणी', sa: 'कुण्डली भविष्यवाणी च' }, refs: [
       { name: { en: 'Planets', hi: 'ग्रह स्थिति', sa: 'ग्रहस्थितयः' }, href: '/learn/planets' },
       { name: { en: 'Planet-in-House', hi: 'ग्रह भाव में', sa: 'ग्रहभावे' }, href: '/learn/planet-in-house' },
+      { name: { en: 'Yoga Animator', hi: 'योग एनीमेटर', sa: 'योगचित्रणम्' }, href: '/learn/yoga-animator' },
       { name: { en: 'Dashas', hi: 'दशाएँ', sa: 'दशाः' }, href: '/learn/dashas' },
       { name: { en: 'Shadbala', hi: 'षड्बल', sa: 'षड्बलम्' }, href: '/learn/shadbala' },
       { name: { en: 'Bhavabala', hi: 'भावबल', sa: 'भावबलम्' }, href: '/learn/bhavabala' },

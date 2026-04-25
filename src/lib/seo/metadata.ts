@@ -700,6 +700,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['retrograde motion', 'retrograde visualizer', 'vakri graha animation', 'planetary retrograde explained'],
   },
 
+  '/learn/yoga-animator': {
+    title: { en: 'Yoga Formation Animator — Watch Jyotish Yogas Form', hi: 'योग निर्माण एनीमेटर — ज्योतिष योग बनते देखें', sa: 'योगनिर्माणचित्रणम्' },
+    description: { en: 'Interactive step-by-step animation showing how planets form classical Vedic astrology yogas. Mahapurusha, Raja, Dhana, Lunar, and Dosha yogas with condition checklists.', hi: 'अन्तरक्रियात्मक एनीमेशन जो दिखाता है कि ग्रह कैसे वैदिक ज्योतिष योग बनाते हैं। महापुरुष, राज, धन, चन्द्र और दोष योग।', sa: 'ग्रहाः कथं ज्योतिषयोगान् निर्मान्ति तद्दर्शकं चित्रणम्।' },
+    keywords: ['yoga formation', 'jyotish yoga animation', 'mahapurusha yoga', 'raja yoga', 'gajakesari yoga', 'vedic astrology yogas interactive'],
+  },
+
   '/learn/advanced-houses': {
     title: { en: 'MKS, Badhaka, Maraka — Advanced House Concepts', hi: 'मारक कारक स्थान, बाधक, मारक', sa: 'मारककारकस्थानम् बाधकः मारकश्च' },
     description: { en: 'Marana Karaka Sthana (death places), Badhakesh (obstruction lord), Maraka (death-inflicting lords), and functional benefic/malefic per lagna.', hi: 'मारक कारक स्थान, बाधकेश, मारक ग्रह, और प्रत्येक लग्न के लिए कार्यात्मक शुभ/अशुभ।', sa: 'मारककारकस्थानम् बाधकेशः मारकग्रहाः प्रतिलग्नं कार्यात्मकशुभाशुभाश्च।' },

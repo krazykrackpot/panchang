@@ -88,6 +88,7 @@ const routes = [
   '/learn/children',
   '/learn/retrograde-effects',
   '/learn/retrograde-visualizer',
+  '/learn/yoga-animator',
   '/learn/combustion',
   '/learn/transit-guide',
   '/learn/hora',

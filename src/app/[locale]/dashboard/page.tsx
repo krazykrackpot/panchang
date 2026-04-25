@@ -1735,6 +1735,7 @@ export default function DashboardPage() {
               { href: '/dashboard/transits' as const, label: L.transitAnalysis, icon: Globe },
               { href: '/dashboard/transit-replay' as const, label: tl({ en: 'Transit Replay', hi: 'गोचर रिप्ले', sa: 'गोचर-पुनरावृत्तिः', ta: 'கோசார ரீப்ளே', te: 'గోచర రీప్లే', bn: 'গোচর রিপ্লে', kn: 'ಗೋಚರ ರೀಪ್ಲೇ', gu: 'ગોચર રીપ્લે', mai: 'गोचर रिप्ले', mr: 'गोचर रिप्ले' }, locale), icon: RotateCcw },
               { href: '/dashboard/dasha-diary' as const, label: tl({ en: 'Dasha Diary', hi: 'दशा डायरी', sa: 'दशा-दैनिकी', ta: 'தசா டைரி', te: 'దశా డైరీ', bn: 'দশা ডায়েরি', kn: 'ದಶಾ ಡೈರಿ', gu: 'દशा ડायरी', mai: 'दशा डायरी', mr: 'दशा डायरी' }, locale), icon: BookOpen },
+              { href: '/dashboard/almanac' as const, label: tl({ en: 'Year in the Stars', hi: 'सितारों में वर्ष', sa: 'सितारों में वर्ष', ta: 'நட்சத்திரங்களில் ஆண்டு', te: 'నక్షత్రాలలో సంవత్సరం', bn: 'তারাদের মধ্যে বছর', kn: 'ತಾರೆಗಳಲ್ಲಿ ವರ್ಷ', gu: 'સિતારાઓ માં વર્ષ', mai: 'सितारों में वर्ष', mr: 'ताऱ्यांमध्ये वर्ष' }, locale), icon: Star },
               { href: '/dashboard/remedies' as const, label: L.yourRemedies, icon: Shield },
               { href: '/dashboard/saved-charts' as const, label: tl({ en: 'Saved Charts', hi: 'सहेजे गए चार्ट', sa: 'सञ्चितानि चक्राणि', ta: 'சேமித்த விளக்கப்படங்கள்', te: 'సేవ్ చేసిన చార్ట్‌లు', bn: 'সংরক্ষিত চার্ট', kn: 'ಉಳಿಸಿದ ಚಾರ್ಟ್‌ಗಳು', gu: 'સાચવેલ ચાર્ટ', mai: 'सहेजल चार्ट', mr: 'जतन केलेले चार्ट' }, locale), icon: Star },
               { href: '/sade-sati' as const, label: L.sadeSati, icon: TrendingUp },

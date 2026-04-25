@@ -19,7 +19,7 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
-import { BookOpen, Loader2, ChevronDown } from 'lucide-react';
+import { BookOpen, Loader2, ChevronDown, Star } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowLeft } from 'lucide-react';
 
@@ -46,6 +46,7 @@ const LABELS = {
     notLoggedIn: 'Sign in to view your journal.',
     signIn: 'Sign In',
     total: (n: number) => `${n} entries`,
+    almanacLink: 'Year in the Stars',
   },
   hi: {
     heading: 'आपकी ज्योतिष डायरी',
@@ -56,6 +57,7 @@ const LABELS = {
     notLoggedIn: 'अपनी जर्नल देखने के लिए साइन इन करें।',
     signIn: 'साइन इन',
     total: (n: number) => `${n} प्रविष्टियाँ`,
+    almanacLink: 'सितारों में वर्ष',
   },
   sa: {
     heading: 'भवतः ज्योतिष-दैनिकी',
@@ -66,6 +68,7 @@ const LABELS = {
     notLoggedIn: 'दैनिकी द्रष्टुं साइन इन कुर्वन्तु।',
     signIn: 'साइन इन',
     total: (n: number) => `${n} प्रविष्टयः`,
+    almanacLink: 'सितारों में वर्ष',
   },
   ta: {
     heading: 'உங்கள் ஜோதிட ஜர்னல்',
@@ -76,6 +79,7 @@ const LABELS = {
     notLoggedIn: 'ஜர்னல் பார்க்க உள்நுழையவும்.',
     signIn: 'உள்நுழை',
     total: (n: number) => `${n} பதிவுகள்`,
+    almanacLink: 'நட்சத்திரங்களில் ஆண்டு',
   },
   bn: {
     heading: 'আপনার জ্যোতিষ জার্নাল',
@@ -86,6 +90,7 @@ const LABELS = {
     notLoggedIn: 'জার্নাল দেখতে সাইন ইন করুন।',
     signIn: 'সাইন ইন',
     total: (n: number) => `${n}টি এন্ট্রি`,
+    almanacLink: 'তারাদের মধ্যে বছর',
   },
 } as const;
 
@@ -245,6 +250,15 @@ export default function JournalPage() {
       >
         <ArrowLeft className="w-3.5 h-3.5" />
         {L.back}
+      </Link>
+
+      {/* Almanac cross-link */}
+      <Link
+        href="/dashboard/almanac"
+        className="inline-flex items-center gap-1.5 text-xs text-gold-primary/70 hover:text-gold-light transition-colors mb-6 ml-4 border border-gold-primary/15 rounded-lg px-3 py-1.5 bg-gold-primary/5 hover:bg-gold-primary/10"
+      >
+        <Star className="w-3.5 h-3.5" />
+        {L.almanacLink}
       </Link>
 
       {/* Page heading */}

@@ -783,12 +783,26 @@ export default function KundaliPage() {
             {savedCharts.map((c) => {
               const cName = c.birth_data.name || c.label;
               const rel = c.birth_data.relationship;
-              const href = `/kundali?n=${encodeURIComponent(cName)}&d=${c.birth_data.date}&t=${c.birth_data.time}&la=${c.birth_data.lat}&lo=${c.birth_data.lng}&p=${encodeURIComponent(c.birth_data.place)}`;
               return (
-                <Link
+                <button
                   key={c.id}
-                  href={href}
-                  className="rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-4 hover:border-gold-primary/40 transition-all block"
+                  type="button"
+                  onClick={() => {
+                    resolveTimezoneFromCoords(c.birth_data.lat, c.birth_data.lng).then(tz => {
+                      handleGenerate({
+                        name: cName,
+                        date: c.birth_data.date,
+                        time: c.birth_data.time,
+                        place: c.birth_data.place,
+                        lat: c.birth_data.lat,
+                        lng: c.birth_data.lng,
+                        timezone: tz || 'UTC',
+                        relationship: c.birth_data.relationship as import('@/types/kundali').ChartRelationship | undefined,
+                        ayanamsha: 'lahiri',
+                      }, 'north');
+                    });
+                  }}
+                  className="rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-4 hover:border-gold-primary/40 transition-all text-left cursor-pointer"
                 >
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-gold-light font-bold text-sm truncate" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
@@ -802,7 +816,7 @@ export default function KundaliPage() {
                   </div>
                   <p className="text-text-secondary text-xs font-mono">{c.birth_data.date} | {c.birth_data.time}</p>
                   <p className="text-text-secondary/60 text-xs truncate">{c.birth_data.place}</p>
-                </Link>
+                </button>
               );
             })}
           </div>

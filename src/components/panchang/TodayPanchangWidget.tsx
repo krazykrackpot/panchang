@@ -241,7 +241,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
   const nextNakData = nakTr ? NAKSHATRAS[nakTr.nextNumber - 1] : null;
 
   const fmt = fmtDateTime;
-  const onwards = locale === 'hi' ? 'से आगे' : 'onwards';
+  const onwards = msg('onwards', locale);
   const hf = getHeadingFont(locale);
 
   const cardClass = 'animate-fade-in-up rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center';

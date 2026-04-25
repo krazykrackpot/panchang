@@ -700,6 +700,17 @@ export default function PanchangClient() {
                       : msg('krishna', locale)
                     }{' — '}{msg('deity', locale)}{' '}{tl(panchang.tithi.deity)}
                   </div>
+                  {/* Masa / Paksha — both systems */}
+                  <div className="mt-3 pt-3 border-t border-gold-primary/10 grid grid-cols-2 gap-2 text-xs">
+                    <div>
+                      <div className="text-text-secondary/60 uppercase tracking-wider text-[10px]">{msg('amant', locale)}</div>
+                      <div className="text-gold-light font-semibold mt-0.5" style={headingFont}>{tl(panchang.amantMasa || panchang.masa)}</div>
+                    </div>
+                    <div>
+                      <div className="text-text-secondary/60 uppercase tracking-wider text-[10px]">{msg('purnimant', locale)}</div>
+                      <div className="text-gold-light font-semibold mt-0.5" style={headingFont}>{tl(panchang.purnimantMasa || panchang.masa)}</div>
+                    </div>
+                  </div>
                 </motion.div>
 
                 {/* ── NAKSHATRA CARD ── */}
@@ -868,6 +879,32 @@ export default function PanchangClient() {
             );
           })()}
 
+          {/* ═══ TIMES — BOLD ═══ */}
+          <GoldDivider />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 my-8">
+            {[
+              { label: t('sunrise'), value: panchang.sunrise, Icon: SunriseIcon },
+              { label: t('sunset'), value: panchang.sunset, Icon: SunsetIcon },
+              { label: t('moonrise'), value: panchang.moonrise, Icon: MoonriseIcon },
+              { label: t('moonset'), value: panchang.moonset, Icon: SunsetIcon },
+            ].map((item, i) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, x: i < 2 ? -20 : 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 + i * 0.08 }}
+                className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 flex items-center gap-4"
+              >
+                <item.Icon size={48} />
+                <div>
+                  <div className="text-gold-dark text-xs uppercase tracking-wider font-semibold">{item.label}</div>
+                  <div className="text-amber-300 font-mono text-2xl font-bold">{item.value}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          <GoldDivider />
+
           {/* Current Hora — Best Activity Now */}
           {panchang.hora && panchang.hora.length > 0 && (() => {
             const now = new Date();
@@ -916,32 +953,6 @@ export default function PanchangClient() {
               />
             </div>
           )}
-
-          <GoldDivider />
-
-          {/* ═══ TIMES — BOLD ═══ */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 my-14">
-            {[
-              { label: t('sunrise'), value: panchang.sunrise, Icon: SunriseIcon },
-              { label: t('sunset'), value: panchang.sunset, Icon: SunsetIcon },
-              { label: t('moonrise'), value: panchang.moonrise, Icon: MoonriseIcon },
-              { label: t('moonset'), value: panchang.moonset, Icon: SunsetIcon },
-            ].map((item, i) => (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, x: i < 2 ? -20 : 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5 + i * 0.08 }}
-                className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 flex items-center gap-4"
-              >
-                <item.Icon size={48} />
-                <div>
-                  <div className="text-gold-dark text-xs uppercase tracking-wider font-semibold">{item.label}</div>
-                  <div className="text-amber-300 font-mono text-2xl font-bold">{item.value}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
 
           <GoldDivider />
 
@@ -1486,6 +1497,173 @@ export default function PanchangClient() {
 
           <GoldDivider />
 
+          {/* Hindu Months Reference — computed for selected year */}
+          {(() => {
+            const hinduMonths = masaSystem === 'purnimant' ? computePurnimantMonthsMemo : computeHinduMonthsMemo;
+            const amantMonths = computeHinduMonthsMemo; // needed for sandwich Amavasya dates
+            const currentMasa = _tl(panchang.purnimantMasa || panchang.masa, locale);
+            const todayStr = panchang.date;
+            const currentYear = new Date().getFullYear();
+
+            return (
+              <div className="my-14 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+                  <h4 className="text-gold-light font-bold text-sm flex items-center gap-2" style={headingFont}>
+                    <MasaIcon size={22} />
+                    {`${msg('hinduMonth', locale)} ${masaYear}`}
+                  </h4>
+                  <div className="flex items-center gap-2">
+                    {/* Year selector */}
+                    <select
+                      value={masaYear}
+                      onChange={(e) => setMasaYear(Number(e.target.value))}
+                      className="bg-bg-secondary border border-gold-primary/15 rounded-lg px-2 py-1.5 text-xs text-gold-light focus:outline-none focus:border-gold-primary/40 cursor-pointer"
+                    >
+                      {Array.from({ length: 11 }, (_, i) => currentYear - 3 + i).map(y => (
+                        <option key={y} value={y}>{y}</option>
+                      ))}
+                    </select>
+                    {/* Amant / Purnimant toggle */}
+                    <div className="inline-flex rounded-lg border border-gold-primary/15 overflow-hidden text-xs">
+                      <button
+                        onClick={() => { setMasaSystem('amant'); try { localStorage.setItem('panchang_masa_system', 'amant'); } catch {} }}
+                        className={`px-3 py-2 sm:py-1.5 font-medium transition-all ${masaSystem === 'amant' ? 'bg-gold-primary/20 text-gold-light' : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5'}`}
+                      >
+                        {msg('amant', locale)}
+                      </button>
+                      <button
+                        onClick={() => { setMasaSystem('purnimant'); try { localStorage.setItem('panchang_masa_system', 'purnimant'); } catch {} }}
+                        className={`px-3 py-2 sm:py-1.5 font-medium transition-all border-l border-gold-primary/15 ${masaSystem === 'purnimant' ? 'bg-gold-primary/20 text-gold-light' : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5'}`}
+                      >
+                        {msg('purnimant', locale)}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-text-secondary text-xs mb-3">
+                  {masaSystem === 'amant'
+                    ? tl({ en: 'Amant system: Each month begins on Amavasya (New Moon) and ends on the next Amavasya. Used in South & West India.', hi: 'अमान्त पद्धति: प्रत्येक मास अमावस्या पर आरम्भ, अगली अमावस्या पर समाप्त। दक्षिण व पश्चिम भारत में प्रचलित।', ta: 'அமாந்த முறை: ஒவ்வொரு மாதமும் அமாவாசையில் தொடங்கி அடுத்த அமாவாசையில் முடிகிறது. தெற்கு & மேற்கு இந்தியாவில் பயன்படுத்தப்படுகிறது.', bn: 'অমান্ত পদ্ধতি: প্রতিটি মাস অমাবস্যায় শুরু হয় এবং পরবর্তী অমাবস্যায় শেষ হয়। দক্ষিণ ও পশ্চিম ভারতে প্রচলিত।' })
+                    : tl({ en: 'Purnimant system: Each month begins on Purnima (Full Moon) and ends on the next Purnima. Used in North & East India.', hi: 'पूर्णिमान्त पद्धति: प्रत्येक मास पूर्णिमा पर आरम्भ, अगली पूर्णिमा पर समाप्त। उत्तर व पूर्व भारत में प्रचलित।', ta: 'பூர்ணிமாந்த முறை: ஒவ்வொரு மாதமும் பூர்ணிமையில் தொடங்கி அடுத்த பூர்ணிமையில் முடிகிறது. வடக்கு & கிழக்கு இந்தியாவில் பயன்படுத்தப்படுகிறது.', bn: 'পূর্ণিমান্ত পদ্ধতি: প্রতিটি মাস পূর্ণিমায় শুরু হয় এবং পরবর্তী পূর্ণিমায় শেষ হয়। উত্তর ও পূর্ব ভারতে প্রচলিত।' })}
+                </p>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-xs">
+                    <thead>
+                      <tr className="border-b border-gold-primary/15">
+                        <th className="text-left py-2 px-2 text-gold-dark">#</th>
+                        <th className="text-left py-2 px-2 text-gold-dark">{msg('hinduMonth', locale)}</th>
+                        <th className="text-left py-2 px-2 text-gold-dark">{msg('sanskrit', locale)}</th>
+                        <th className="text-left py-2 px-2 text-gold-dark">{msg('start', locale)}</th>
+                        <th className="text-left py-2 px-2 text-gold-dark">{msg('end', locale)}</th>
+                        <th className="text-left py-2 px-2 text-gold-dark">{msg('ritu', locale)}</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gold-primary/5">
+                      {(() => {
+                        // Build display rows. For Purnimant, expand Adhika+Nija into 3 sandwich rows.
+                        interface DisplayRow {
+                          n: number | string; en: string; hi: string; sa: string;
+                          startDate: string; endDate: string; ritu: { en: string; hi: string };
+                          isAdhika: boolean; sandwichLayer?: 'top' | 'filling' | 'bottom';
+                        }
+                        const rows: DisplayRow[] = [];
+                        const skipNext = new Set<number>();
+
+                        for (let idx = 0; idx < hinduMonths.length; idx++) {
+                          if (skipNext.has(idx)) continue;
+                          const m = hinduMonths[idx];
+                          const nextM = hinduMonths[idx + 1];
+
+                          // For Purnimant: expand Adhika + Nija into sandwich
+                          if (masaSystem === 'purnimant' && m.isAdhika && nextM && !nextM.isAdhika) {
+                            const baseName = m.en.replace('Adhika ', '');
+                            const baseHi = m.hi.replace('अधिक ', '');
+                            const baseSa = m.sa.replace('अधिक', '');
+                            // Find the Amant Adhika month to get Amavasya boundaries
+                            const amAdhika = amantMonths.find(a => a.isAdhika);
+                            const adhikaStart = amAdhika?.startDate || m.startDate;
+                            const adhikaEnd = amAdhika?.endDate || m.endDate;
+                            // Top bread: day after preceding Purnima → day before Amavasya
+                            const topStart = m.startDate; // Purnima date (inclusive, Krishna starts next day but we use the period start)
+                            // Shift by 1 day for display: Krishna starts day after Purnima
+                            const topStartDate = new Date(new Date(topStart + 'T12:00:00Z').getTime() + 86400000);
+                            const topStartStr = `${topStartDate.getUTCFullYear()}-${(topStartDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${topStartDate.getUTCDate().toString().padStart(2, '0')}`;
+
+                            // Layer 1: Nija Krishna Paksha
+                            rows.push({
+                              n: m.n, en: `${baseName} Krishna`, hi: `${baseHi} कृष्ण`, sa: `${baseSa} कृष्ण`,
+                              startDate: topStartStr, endDate: adhikaStart,
+                              ritu: m.ritu as { en: string; hi: string }, isAdhika: false, sandwichLayer: 'top',
+                            });
+                            // Layer 2: Adhika full month
+                            rows.push({
+                              n: '', en: m.en, hi: m.hi, sa: m.sa,
+                              startDate: adhikaStart, endDate: adhikaEnd,
+                              ritu: m.ritu as { en: string; hi: string }, isAdhika: true, sandwichLayer: 'filling',
+                            });
+                            // Layer 3: Nija Shukla Paksha
+                            rows.push({
+                              n: m.n + 1, en: `${baseName} Shukla`, hi: `${baseHi} शुक्ल`, sa: `${baseSa} शुक्ल`,
+                              startDate: adhikaEnd, endDate: nextM.endDate,
+                              ritu: nextM.ritu as { en: string; hi: string }, isAdhika: false, sandwichLayer: 'bottom',
+                            });
+                            skipNext.add(idx + 1); // skip the nija row — absorbed into sandwich
+                          } else {
+                            rows.push({
+                              n: m.n, en: m.en, hi: m.hi, sa: m.sa,
+                              startDate: m.startDate, endDate: m.endDate,
+                              ritu: m.ritu as { en: string; hi: string }, isAdhika: m.isAdhika,
+                            });
+                          }
+                        }
+
+                        // Renumber after sandwich expansion
+                        let counter = 1;
+                        for (const r of rows) {
+                          if (r.sandwichLayer === 'filling') { r.n = ''; } // no number for the filling
+                          else { r.n = counter++; }
+                        }
+
+                        return rows.map((r) => {
+                          const isHighlighted = masaYear === currentYear && todayStr >= r.startDate && todayStr < r.endDate;
+                          const isSandwich = !!r.sandwichLayer;
+                          const layerStyle = r.sandwichLayer === 'top' ? 'border-l-2 border-l-amber-500/40'
+                            : r.sandwichLayer === 'filling' ? 'border-l-2 border-l-violet-500/60 bg-violet-500/[0.03]'
+                            : r.sandwichLayer === 'bottom' ? 'border-l-2 border-l-amber-500/40'
+                            : '';
+                          return (
+                            <tr key={`${r.n}-${r.startDate}`} className={`hover:bg-gold-primary/3 ${isHighlighted ? 'bg-gold-primary/8' : ''} ${layerStyle}`}>
+                              <td className="py-1.5 px-2 text-text-tertiary">{r.n}</td>
+                              <td className="py-1.5 px-2 font-medium" style={headingFont}>
+                                <span className={`${r.isAdhika ? 'text-violet-400 italic' : r.sandwichLayer ? 'text-amber-300' : 'text-gold-light'}`}>
+                                  {isDevanagariLocale(locale) ? r.hi : r.en}
+                                </span>
+                                {isHighlighted && <span className="ml-1.5 text-xs px-1 py-0.5 rounded bg-gold-primary/20 text-gold-primary">{msg('now', locale)}</span>}
+                                {r.isAdhika && <span className="ml-1.5 text-xs px-1 py-0.5 rounded bg-violet-500/20 text-violet-300">{msg('intercalary', locale)}</span>}
+                                {r.sandwichLayer === 'top' && <span className="ml-1.5 text-[10px] px-1 py-0.5 rounded bg-amber-500/15 text-amber-400">{tl({ en: 'Nija (waning)', hi: 'निज (कृष्ण)' })}</span>}
+                                {r.sandwichLayer === 'bottom' && <span className="ml-1.5 text-[10px] px-1 py-0.5 rounded bg-amber-500/15 text-amber-400">{tl({ en: 'Nija (waxing)', hi: 'निज (शुक्ल)' })}</span>}
+                              </td>
+                              <td className="py-1.5 px-2 text-text-tertiary" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{r.sa}</td>
+                              <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(r.startDate, locale)}</td>
+                              <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(r.endDate, locale)}</td>
+                              <td className="py-1.5 px-2 text-text-secondary">{isDevanagariLocale(locale) ? r.ritu.hi : r.ritu.en}</td>
+                            </tr>
+                          );
+                        });
+                      })()}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="text-text-tertiary text-xs mt-2">
+                  {masaSystem === 'amant'
+                    ? tl({ en: `Amant dates computed from actual New Moon positions for ${masaYear}. Each month starts on Amavasya. Adhika Masa (intercalary, purple) occurs when two New Moons fall in the same solar month.`, hi: `${masaYear} के अमावस्या स्थितियों से अमान्त तिथियाँ। प्रत्येक मास अमावस्या पर आरम्भ। अधिक मास (बैंगनी) एक ही सौर मास में दो अमावस्याओं पर।`, ta: `${masaYear} இன் அமாவாசை நிலைகளிலிருந்து கணக்கிடப்பட்ட அமாந்த தேதிகள்.`, bn: `${masaYear}-এর অমাবস্যা অবস্থান থেকে গণনা করা অমান্ত তারিখ।` })
+                    : tl({ en: `Purnimant dates computed from Full Moon positions for ${masaYear}. Each month starts on Purnima. Used in North India (UP, Bihar, MP, Rajasthan). When an Adhika (intercalary) month occurs, it is "sandwiched" inside the natural month: the preceding Krishna Paksha, then the full Adhika month, then the Nija (true) month's Shukla Paksha complete the cycle.`, hi: `${masaYear} के पूर्णिमा स्थितियों से पूर्णिमान्त तिथियाँ। प्रत्येक मास पूर्णिमा पर आरम्भ। उत्तर भारत में प्रचलित। अधिक मास होने पर यह प्राकृतिक मास में "सैंडविच" होता है: पूर्व कृष्ण पक्ष, फिर पूर्ण अधिक मास, फिर निज मास का शुक्ल पक्ष।`, ta: `${masaYear} இன் பூர்ணிமை நிலைகளிலிருந்து கணக்கிடப்பட்ட பூர்ணிமாந்த தேதிகள். வடக்கு இந்தியாவில் பயன்படுத்தப்படுகிறது.`, bn: `${masaYear}-এর পূর্ণিমা অবস্থান থেকে গণনা করা পূর্ণিমান্ত তারিখ। উত্তর ভারতে প্রচলিত।` })}
+                </p>
+              </div>
+            );
+          })()}
+
+          <GoldDivider />
+
           {/* ═══════════════════════════════════════════════════
               SECTION 4: NIVAS & SHOOL
           ═══════════════════════════════════════════════════ */}
@@ -1775,171 +1953,6 @@ export default function PanchangClient() {
                 </div>
               </div>
             </div>
-
-            {/* Hindu Months Reference — computed for selected year */}
-            {(() => {
-              const hinduMonths = masaSystem === 'purnimant' ? computePurnimantMonthsMemo : computeHinduMonthsMemo;
-              const amantMonths = computeHinduMonthsMemo; // needed for sandwich Amavasya dates
-              const currentMasa = _tl(panchang.purnimantMasa || panchang.masa, locale);
-              const todayStr = panchang.date;
-              const currentYear = new Date().getFullYear();
-
-              return (
-                <div className="mt-6 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
-                    <h4 className="text-gold-light font-bold text-sm flex items-center gap-2" style={headingFont}>
-                      <MasaIcon size={22} />
-                      {`${msg('hinduMonth', locale)} ${masaYear}`}
-                    </h4>
-                    <div className="flex items-center gap-2">
-                      {/* Year selector */}
-                      <select
-                        value={masaYear}
-                        onChange={(e) => setMasaYear(Number(e.target.value))}
-                        className="bg-bg-secondary border border-gold-primary/15 rounded-lg px-2 py-1.5 text-xs text-gold-light focus:outline-none focus:border-gold-primary/40 cursor-pointer"
-                      >
-                        {Array.from({ length: 11 }, (_, i) => currentYear - 3 + i).map(y => (
-                          <option key={y} value={y}>{y}</option>
-                        ))}
-                      </select>
-                      {/* Amant / Purnimant toggle */}
-                      <div className="inline-flex rounded-lg border border-gold-primary/15 overflow-hidden text-xs">
-                        <button
-                          onClick={() => { setMasaSystem('amant'); try { localStorage.setItem('panchang_masa_system', 'amant'); } catch {} }}
-                          className={`px-3 py-2 sm:py-1.5 font-medium transition-all ${masaSystem === 'amant' ? 'bg-gold-primary/20 text-gold-light' : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5'}`}
-                        >
-                          {msg('amant', locale)}
-                        </button>
-                        <button
-                          onClick={() => { setMasaSystem('purnimant'); try { localStorage.setItem('panchang_masa_system', 'purnimant'); } catch {} }}
-                          className={`px-3 py-2 sm:py-1.5 font-medium transition-all border-l border-gold-primary/15 ${masaSystem === 'purnimant' ? 'bg-gold-primary/20 text-gold-light' : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5'}`}
-                        >
-                          {msg('purnimant', locale)}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <p className="text-text-secondary text-xs mb-3">
-                    {masaSystem === 'amant'
-                      ? tl({ en: 'Amant system: Each month begins on Amavasya (New Moon) and ends on the next Amavasya. Used in South & West India.', hi: 'अमान्त पद्धति: प्रत्येक मास अमावस्या पर आरम्भ, अगली अमावस्या पर समाप्त। दक्षिण व पश्चिम भारत में प्रचलित।', ta: 'அமாந்த முறை: ஒவ்வொரு மாதமும் அமாவாசையில் தொடங்கி அடுத்த அமாவாசையில் முடிகிறது. தெற்கு & மேற்கு இந்தியாவில் பயன்படுத்தப்படுகிறது.', bn: 'অমান্ত পদ্ধতি: প্রতিটি মাস অমাবস্যায় শুরু হয় এবং পরবর্তী অমাবস্যায় শেষ হয়। দক্ষিণ ও পশ্চিম ভারতে প্রচলিত।' })
-                      : tl({ en: 'Purnimant system: Each month begins on Purnima (Full Moon) and ends on the next Purnima. Used in North & East India.', hi: 'पूर्णिमान्त पद्धति: प्रत्येक मास पूर्णिमा पर आरम्भ, अगली पूर्णिमा पर समाप्त। उत्तर व पूर्व भारत में प्रचलित।', ta: 'பூர்ணிமாந்த முறை: ஒவ்வொரு மாதமும் பூர்ணிமையில் தொடங்கி அடுத்த பூர்ணிமையில் முடிகிறது. வடக்கு & கிழக்கு இந்தியாவில் பயன்படுத்தப்படுகிறது.', bn: 'পূর্ণিমান্ত পদ্ধতি: প্রতিটি মাস পূর্ণিমায় শুরু হয় এবং পরবর্তী পূর্ণিমায় শেষ হয়। উত্তর ও পূর্ব ভারতে প্রচলিত।' })}
-                  </p>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
-                      <thead>
-                        <tr className="border-b border-gold-primary/15">
-                          <th className="text-left py-2 px-2 text-gold-dark">#</th>
-                          <th className="text-left py-2 px-2 text-gold-dark">{msg('hinduMonth', locale)}</th>
-                          <th className="text-left py-2 px-2 text-gold-dark">{msg('sanskrit', locale)}</th>
-                          <th className="text-left py-2 px-2 text-gold-dark">{msg('start', locale)}</th>
-                          <th className="text-left py-2 px-2 text-gold-dark">{msg('end', locale)}</th>
-                          <th className="text-left py-2 px-2 text-gold-dark">{msg('ritu', locale)}</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gold-primary/5">
-                        {(() => {
-                          // Build display rows. For Purnimant, expand Adhika+Nija into 3 sandwich rows.
-                          interface DisplayRow {
-                            n: number | string; en: string; hi: string; sa: string;
-                            startDate: string; endDate: string; ritu: { en: string; hi: string };
-                            isAdhika: boolean; sandwichLayer?: 'top' | 'filling' | 'bottom';
-                          }
-                          const rows: DisplayRow[] = [];
-                          const skipNext = new Set<number>();
-
-                          for (let idx = 0; idx < hinduMonths.length; idx++) {
-                            if (skipNext.has(idx)) continue;
-                            const m = hinduMonths[idx];
-                            const nextM = hinduMonths[idx + 1];
-
-                            // For Purnimant: expand Adhika + Nija into sandwich
-                            if (masaSystem === 'purnimant' && m.isAdhika && nextM && !nextM.isAdhika) {
-                              const baseName = m.en.replace('Adhika ', '');
-                              const baseHi = m.hi.replace('अधिक ', '');
-                              const baseSa = m.sa.replace('अधिक', '');
-                              // Find the Amant Adhika month to get Amavasya boundaries
-                              const amAdhika = amantMonths.find(a => a.isAdhika);
-                              const adhikaStart = amAdhika?.startDate || m.startDate;
-                              const adhikaEnd = amAdhika?.endDate || m.endDate;
-                              // Top bread: day after preceding Purnima → day before Amavasya
-                              const topStart = m.startDate; // Purnima date (inclusive, Krishna starts next day but we use the period start)
-                              // Shift by 1 day for display: Krishna starts day after Purnima
-                              const topStartDate = new Date(new Date(topStart + 'T12:00:00Z').getTime() + 86400000);
-                              const topStartStr = `${topStartDate.getUTCFullYear()}-${(topStartDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${topStartDate.getUTCDate().toString().padStart(2, '0')}`;
-
-                              // Layer 1: Nija Krishna Paksha
-                              rows.push({
-                                n: m.n, en: `${baseName} Krishna`, hi: `${baseHi} कृष्ण`, sa: `${baseSa} कृष्ण`,
-                                startDate: topStartStr, endDate: adhikaStart,
-                                ritu: m.ritu as { en: string; hi: string }, isAdhika: false, sandwichLayer: 'top',
-                              });
-                              // Layer 2: Adhika full month
-                              rows.push({
-                                n: '', en: m.en, hi: m.hi, sa: m.sa,
-                                startDate: adhikaStart, endDate: adhikaEnd,
-                                ritu: m.ritu as { en: string; hi: string }, isAdhika: true, sandwichLayer: 'filling',
-                              });
-                              // Layer 3: Nija Shukla Paksha
-                              rows.push({
-                                n: m.n + 1, en: `${baseName} Shukla`, hi: `${baseHi} शुक्ल`, sa: `${baseSa} शुक्ल`,
-                                startDate: adhikaEnd, endDate: nextM.endDate,
-                                ritu: nextM.ritu as { en: string; hi: string }, isAdhika: false, sandwichLayer: 'bottom',
-                              });
-                              skipNext.add(idx + 1); // skip the nija row — absorbed into sandwich
-                            } else {
-                              rows.push({
-                                n: m.n, en: m.en, hi: m.hi, sa: m.sa,
-                                startDate: m.startDate, endDate: m.endDate,
-                                ritu: m.ritu as { en: string; hi: string }, isAdhika: m.isAdhika,
-                              });
-                            }
-                          }
-
-                          // Renumber after sandwich expansion
-                          let counter = 1;
-                          for (const r of rows) {
-                            if (r.sandwichLayer === 'filling') { r.n = ''; } // no number for the filling
-                            else { r.n = counter++; }
-                          }
-
-                          return rows.map((r) => {
-                            const isHighlighted = masaYear === currentYear && todayStr >= r.startDate && todayStr < r.endDate;
-                            const isSandwich = !!r.sandwichLayer;
-                            const layerStyle = r.sandwichLayer === 'top' ? 'border-l-2 border-l-amber-500/40'
-                              : r.sandwichLayer === 'filling' ? 'border-l-2 border-l-violet-500/60 bg-violet-500/[0.03]'
-                              : r.sandwichLayer === 'bottom' ? 'border-l-2 border-l-amber-500/40'
-                              : '';
-                            return (
-                              <tr key={`${r.n}-${r.startDate}`} className={`hover:bg-gold-primary/3 ${isHighlighted ? 'bg-gold-primary/8' : ''} ${layerStyle}`}>
-                                <td className="py-1.5 px-2 text-text-tertiary">{r.n}</td>
-                                <td className="py-1.5 px-2 font-medium" style={headingFont}>
-                                  <span className={`${r.isAdhika ? 'text-violet-400 italic' : r.sandwichLayer ? 'text-amber-300' : 'text-gold-light'}`}>
-                                    {isDevanagariLocale(locale) ? r.hi : r.en}
-                                  </span>
-                                  {isHighlighted && <span className="ml-1.5 text-xs px-1 py-0.5 rounded bg-gold-primary/20 text-gold-primary">{msg('now', locale)}</span>}
-                                  {r.isAdhika && <span className="ml-1.5 text-xs px-1 py-0.5 rounded bg-violet-500/20 text-violet-300">{msg('intercalary', locale)}</span>}
-                                  {r.sandwichLayer === 'top' && <span className="ml-1.5 text-[10px] px-1 py-0.5 rounded bg-amber-500/15 text-amber-400">{tl({ en: 'Nija (waning)', hi: 'निज (कृष्ण)' })}</span>}
-                                  {r.sandwichLayer === 'bottom' && <span className="ml-1.5 text-[10px] px-1 py-0.5 rounded bg-amber-500/15 text-amber-400">{tl({ en: 'Nija (waxing)', hi: 'निज (शुक्ल)' })}</span>}
-                                </td>
-                                <td className="py-1.5 px-2 text-text-tertiary" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{r.sa}</td>
-                                <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(r.startDate, locale)}</td>
-                                <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(r.endDate, locale)}</td>
-                                <td className="py-1.5 px-2 text-text-secondary">{isDevanagariLocale(locale) ? r.ritu.hi : r.ritu.en}</td>
-                              </tr>
-                            );
-                          });
-                        })()}
-                      </tbody>
-                    </table>
-                  </div>
-                  <p className="text-text-tertiary text-xs mt-2">
-                    {masaSystem === 'amant'
-                      ? tl({ en: `Amant dates computed from actual New Moon positions for ${masaYear}. Each month starts on Amavasya. Adhika Masa (intercalary, purple) occurs when two New Moons fall in the same solar month.`, hi: `${masaYear} के अमावस्या स्थितियों से अमान्त तिथियाँ। प्रत्येक मास अमावस्या पर आरम्भ। अधिक मास (बैंगनी) एक ही सौर मास में दो अमावस्याओं पर।`, ta: `${masaYear} இன் அமாவாசை நிலைகளிலிருந்து கணக்கிடப்பட்ட அமாந்த தேதிகள்.`, bn: `${masaYear}-এর অমাবস্যা অবস্থান থেকে গণনা করা অমান্ত তারিখ।` })
-                      : tl({ en: `Purnimant dates computed from Full Moon positions for ${masaYear}. Each month starts on Purnima. Used in North India (UP, Bihar, MP, Rajasthan). When an Adhika (intercalary) month occurs, it is "sandwiched" inside the natural month: the preceding Krishna Paksha, then the full Adhika month, then the Nija (true) month's Shukla Paksha complete the cycle.`, hi: `${masaYear} के पूर्णिमा स्थितियों से पूर्णिमान्त तिथियाँ। प्रत्येक मास पूर्णिमा पर आरम्भ। उत्तर भारत में प्रचलित। अधिक मास होने पर यह प्राकृतिक मास में "सैंडविच" होता है: पूर्व कृष्ण पक्ष, फिर पूर्ण अधिक मास, फिर निज मास का शुक्ल पक्ष।`, ta: `${masaYear} இன் பூர்ணிமை நிலைகளிலிருந்து கணக்கிடப்பட்ட பூர்ணிமாந்த தேதிகள். வடக்கு இந்தியாவில் பயன்படுத்தப்படுகிறது.`, bn: `${masaYear}-এর পূর্ণিমা অবস্থান থেকে গণনা করা পূর্ণিমান্ত তারিখ। উত্তর ভারতে প্রচলিত।` })}
-                  </p>
-                </div>
-              );
-            })()}
 
             {/* Epoch & Cosmic Time subsection */}
             <div className="mt-8">

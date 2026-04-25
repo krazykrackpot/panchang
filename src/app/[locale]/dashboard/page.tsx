@@ -11,6 +11,7 @@ import {
 import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/stores/auth-store';
 import { useLocationStore } from '@/stores/location-store';
+import LocationSearch from '@/components/ui/LocationSearch';
 import { getSupabase } from '@/lib/supabase/client';
 import { computePersonalizedDay } from '@/lib/personalization/personal-panchang';
 import { computeGochar } from '@/lib/personalization/gochar';
@@ -1113,6 +1114,36 @@ export default function DashboardPage() {
 
         {/* Push Notification Permission */}
         <PushPermission locale={locale} />
+
+        {/* Location prompt — shown when location store is empty (no panchang data) */}
+        {!panchangData && !loading && (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-8 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20 p-6"
+          >
+            <div className="flex items-start gap-3 mb-4">
+              <Globe className="w-6 h-6 text-amber-400 shrink-0 mt-0.5" />
+              <div>
+                <h3 className="text-gold-light font-bold text-sm mb-1">
+                  {tl({ en: 'Set Your Location', hi: 'अपना स्थान चुनें', ta: 'உங்கள் இருப்பிடத்தை அமைக்கவும்', bn: 'আপনার অবস্থান সেট করুন' }, locale)}
+                </h3>
+                <p className="text-text-secondary text-xs leading-relaxed">
+                  {tl({ en: 'Your location is needed for accurate panchang — sunrise, Rahu Kaal, choghadiya, and daily guidance depend on where you are.', hi: 'सटीक पंचांग के लिए आपका स्थान आवश्यक है — सूर्योदय, राहु काल, चौघड़िया और दैनिक मार्गदर्शन आपके स्थान पर निर्भर करते हैं।' }, locale)}
+                </p>
+              </div>
+            </div>
+            <LocationSearch
+              value=""
+              onSelect={(loc: { lat: number; lng: number; name: string; timezone: string }) => {
+                useLocationStore.getState().setLocation(loc.lat, loc.lng, loc.name, loc.timezone);
+                // Reload to fetch panchang with new location
+                window.location.reload();
+              }}
+              placeholder={tl({ en: 'Search your city...', hi: 'अपना शहर खोजें...', ta: 'உங்கள் நகரத்தைத் தேடுங்கள்...', bn: 'আপনার শহর খুঁজুন...' }, locale)}
+            />
+          </motion.div>
+        )}
 
         {/* Today's Guidance — lightweight panchang insight card */}
         {panchangData && <DailyPanchangInsightCard panchang={panchangData} locale={locale} />}

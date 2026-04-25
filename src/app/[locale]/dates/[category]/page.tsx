@@ -1,27 +1,39 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Calendar, ChevronLeft, ChevronRight, ArrowLeft, Clock, Moon, Sun } from 'lucide-react';
+import { Calendar, ChevronLeft, ChevronRight, ArrowLeft, Clock, Moon, Sun, Loader2 } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { Link } from '@/lib/i18n/navigation';
-import { buildYearlyTithiTable, type TithiEntry } from '@/lib/calendar/tithi-table';
 import { tl } from '@/lib/utils/trilingual';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
-import type { Locale } from '@/types/panchang';
+import type { Locale, LocaleText } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { useLocationStore } from '@/stores/location-store';
+
+// ─── Types ──────────────────────────────────────────────────────
+// Festival entry from /api/calendar — single source of truth
+interface FestivalEntry {
+  name: LocaleText;
+  date: string;
+  paksha?: string;
+  category: string;
+  type?: string;
+  slug?: string;
+  description?: LocaleText;
+  ekadashiStart?: string;
+  ekadashiStartDate?: string;
+  ekadashiEnd?: string;
+  ekadashiEndDate?: string;
+  paranaStart?: string;
+  paranaEnd?: string;
+}
 
 // ─── Category Configuration ──────────────────────────────────────
-const CATEGORY_CONFIG: Record<string, { tithiNumbers: number[]; pakshaFilter?: 'shukla' | 'krishna' }> = {
-  ekadashi: { tithiNumbers: [11] },
-  purnima: { tithiNumbers: [15], pakshaFilter: 'shukla' },
-  amavasya: { tithiNumbers: [30] },
-  pradosham: { tithiNumbers: [13] },
-  chaturthi: { tithiNumbers: [4] },
-};
+const VALID_CATEGORIES = new Set(['ekadashi', 'purnima', 'amavasya', 'pradosham', 'chaturthi']);
 
 const CATEGORY_LABELS: Record<string, Record<string, string>> = {
   ekadashi: { en: 'Ekadashi', hi: 'एकादशी', sa: 'एकादशी' },
@@ -41,8 +53,6 @@ const MONTH_NAMES_HI = [
   'जुलाई', 'अगस्त', 'सितम्बर', 'अक्टूबर', 'नवम्बर', 'दिसम्बर',
 ];
 
-const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const DAY_NAMES_HI = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
 const DAY_NAMES_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const DAY_NAMES_SHORT_HI = ['रवि', 'सोम', 'मंगल', 'बुध', 'गुरु', 'शुक्र', 'शनि'];
 
@@ -61,6 +71,7 @@ const LABELS: Record<string, Record<string, string>> = {
     krishna: 'Krishna',
     noEntries: 'No dates found for this month',
     jumpTo: 'Jump to month',
+    loading: 'Loading...',
     aboutEkadashi: 'About Ekadashi',
     aboutEkadashiText: 'Ekadashi is the eleventh day (Tithi) of each lunar fortnight in the Hindu calendar. There are two Ekadashis every month -- one in Shukla Paksha (waxing moon) and one in Krishna Paksha (waning moon), giving approximately 24 Ekadashis per year. Fasting on Ekadashi (Ekadashi Vrat) is one of the most important observances in Hinduism, believed to purify the body and mind. Each Ekadashi has a unique name and spiritual significance tied to stories from the Puranas.',
     aboutPurnima: 'About Purnima',
@@ -87,6 +98,7 @@ const LABELS: Record<string, Record<string, string>> = {
     krishna: 'कृष्ण',
     noEntries: 'इस माह कोई तिथि नहीं मिली',
     jumpTo: 'माह पर जाएँ',
+    loading: 'लोड हो रहा है...',
     aboutEkadashi: 'एकादशी के बारे में',
     aboutEkadashiText: 'एकादशी हिन्दू पंचांग में प्रत्येक चान्द्र पक्ष की ग्यारहवीं तिथि है। प्रत्येक माह में दो एकादशियाँ होती हैं — एक शुक्ल पक्ष में और एक कृष्ण पक्ष में, जिससे वर्ष में लगभग 24 एकादशियाँ आती हैं। एकादशी व्रत हिन्दू धर्म के सबसे महत्वपूर्ण व्रतों में से एक है जो शरीर और मन को शुद्ध करता है।',
     aboutPurnima: 'पूर्णिमा के बारे में',
@@ -113,6 +125,7 @@ const LABELS: Record<string, Record<string, string>> = {
     krishna: 'कृष्णः',
     noEntries: 'अस्मिन् मासे तिथिः न प्राप्ता',
     jumpTo: 'मासं गच्छतु',
+    loading: 'लोड हो रहा है...',
     aboutEkadashi: 'एकादश्याः विषये',
     aboutEkadashiText: 'एकादशी हिन्दूपञ्चाङ्गे प्रत्येकपक्षस्य एकादशतिथिः। प्रत्येकमासे द्वे एकादश्यौ भवतः — एका शुक्लपक्षे एका कृष्णपक्षे। एकादशीव्रतं हिन्दूधर्मस्य महत्वपूर्णव्रतेषु अन्यतमम्।',
     aboutPurnima: 'पूर्णिमायाः विषये',
@@ -126,11 +139,6 @@ const LABELS: Record<string, Record<string, string>> = {
     viewCalendar: 'पर्वपञ्चाङ्गं पश्यतु',
   },
 };
-
-// Default location: Delhi (for server computation — location-independent tithi table)
-const DEFAULT_LAT = 28.6139;
-const DEFAULT_LON = 77.209;
-const DEFAULT_TZ = 'Asia/Kolkata';
 
 // ─── Animation Variants ──────────────────────────────────────────
 const fadeUp = {
@@ -149,7 +157,7 @@ function getDayOfWeek(dateStr: string): number {
 }
 
 function formatDateDisplay(dateStr: string, locale: string): string {
-  const [y, m, d] = dateStr.split('-').map(Number);
+  const [, m, d] = dateStr.split('-').map(Number);
   const months = isDevanagariLocale(locale) ? MONTH_NAMES_HI : MONTH_NAMES;
   return `${d} ${months[m - 1]}`;
 }
@@ -159,7 +167,6 @@ export default function DateCategoryPage() {
   const locale = useLocale() as Locale;
   const params = useParams();
   const category = (params?.category as string) || 'ekadashi';
-  const config = CATEGORY_CONFIG[category];
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
@@ -168,26 +175,40 @@ export default function DateCategoryPage() {
   const catLabel = CATEGORY_LABELS[category]?.[locale] || CATEGORY_LABELS[category]?.en || category;
 
   const [year, setYear] = useState(new Date().getFullYear());
+  const [entries, setEntries] = useState<FestivalEntry[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Generate tithi table and filter entries
-  const entries = useMemo(() => {
-    if (!config) return [];
-    const table = buildYearlyTithiTable(year, DEFAULT_LAT, DEFAULT_LON, DEFAULT_TZ);
-    return table.entries
-      .filter(e => {
-        if (!config.tithiNumbers.includes(e.number)) return false;
-        if (config.pakshaFilter && e.paksha !== config.pakshaFilter) return false;
-        return e.sunriseDate.startsWith(`${year}`);
+  const storeLat = useLocationStore(s => s.lat);
+  const storeLng = useLocationStore(s => s.lng);
+  const storeTz = useLocationStore(s => s.timezone);
+
+  // Fetch from the SAME /api/calendar endpoint used by the festival calendar page.
+  // Single source of truth — no separate tithi table computation.
+  useEffect(() => {
+    setLoading(true);
+    const lat = storeLat ?? 28.6139;
+    const lng = storeLng ?? 77.209;
+    const tz = storeTz ?? 'Asia/Kolkata';
+    fetch(`/api/calendar?year=${year}&lat=${lat}&lon=${lng}&timezone=${encodeURIComponent(tz)}`)
+      .then(r => r.json())
+      .then(data => {
+        const all: FestivalEntry[] = data.festivals || [];
+        // Filter by category — same data as the calendar page
+        const filtered = all
+          .filter(f => f.category === category)
+          .sort((a, b) => a.date.localeCompare(b.date));
+        setEntries(filtered);
+        setLoading(false);
       })
-      .sort((a, b) => a.sunriseDate.localeCompare(b.sunriseDate));
-  }, [year, config]);
+      .catch(() => setLoading(false));
+  }, [year, category, storeLat, storeLng, storeTz]);
 
-  // Group by month
+  // Group by Gregorian month
   const monthlyGroups = useMemo(() => {
-    const groups: Record<number, TithiEntry[]> = {};
+    const groups: Record<number, FestivalEntry[]> = {};
     for (let m = 1; m <= 12; m++) groups[m] = [];
     for (const e of entries) {
-      const month = parseInt(e.sunriseDate.split('-')[1], 10);
+      const month = parseInt(e.date.split('-')[1], 10);
       if (groups[month]) groups[month].push(e);
     }
     return groups;
@@ -195,9 +216,9 @@ export default function DateCategoryPage() {
 
   // Find next upcoming date
   const today = new Date().toISOString().slice(0, 10);
-  const nextEntry = entries.find(e => e.sunriseDate >= today);
+  const nextEntry = entries.find(e => e.date >= today);
 
-  if (!config) {
+  if (!VALID_CATEGORIES.has(category)) {
     return (
       <div className="min-h-screen bg-bg-primary flex items-center justify-center">
         <p className="text-text-secondary text-lg">Category not found.</p>
@@ -269,185 +290,206 @@ export default function DateCategoryPage() {
           </button>
         </motion.div>
 
-        {/* Summary Stats */}
-        <motion.div
-          className="flex flex-wrap items-center gap-4 mb-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-        >
-          <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-bg-secondary border border-gold-primary/15">
-            <Calendar className="w-5 h-5 text-gold-primary" />
-            <span className="text-text-primary font-semibold">{entries.length}</span>
-            <span className="text-text-secondary">{catLabel} {L.total} {year}</span>
+        {/* Loading state */}
+        {loading && (
+          <div className="flex items-center justify-center py-20">
+            <Loader2 className="w-6 h-6 text-gold-primary animate-spin" />
+            <span className="ml-3 text-text-secondary">{L.loading}</span>
           </div>
-          {nextEntry && year === new Date().getFullYear() && (
-            <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
-              <Clock className="w-4 h-4 text-emerald-400" />
-              <span className="text-emerald-300 text-sm font-medium">
-                {L.next}: {formatDateDisplay(nextEntry.sunriseDate, locale)}
-              </span>
-            </div>
-          )}
-        </motion.div>
+        )}
 
-        {/* Month Quick Nav */}
-        <motion.div
-          className="flex flex-wrap gap-2 mb-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.35 }}
-        >
-          <span className="text-text-secondary text-sm self-center mr-1">{L.jumpTo}:</span>
-          {MONTH_NAMES.map((m, idx) => {
-            const count = monthlyGroups[idx + 1]?.length || 0;
-            return (
-              <a
-                key={m}
-                href={`#month-${idx + 1}`}
-                className={`px-3 py-1 rounded-lg text-sm transition-all ${
-                  count > 0
-                    ? 'bg-gold-primary/10 text-gold-light hover:bg-gold-primary/20 border border-gold-primary/15'
-                    : 'bg-bg-secondary/50 text-text-secondary/50 cursor-default border border-transparent'
-                }`}
-              >
-                {(isDevanagariLocale(locale) ? MONTH_NAMES_HI : MONTH_NAMES)[idx].slice(0, 3)}
-                {count > 0 && <span className="ml-1 text-gold-primary/70">({count})</span>}
-              </a>
-            );
-          })}
-        </motion.div>
+        {!loading && (
+          <>
+            {/* Summary Stats */}
+            <motion.div
+              className="flex flex-wrap items-center gap-4 mb-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-bg-secondary border border-gold-primary/15">
+                <Calendar className="w-5 h-5 text-gold-primary" />
+                <span className="text-text-primary font-semibold">{entries.length}</span>
+                <span className="text-text-secondary">{catLabel} {L.total} {year}</span>
+              </div>
+              {nextEntry && year === new Date().getFullYear() && (
+                <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+                  <Clock className="w-4 h-4 text-emerald-400" />
+                  <span className="text-emerald-300 text-sm font-medium">
+                    {L.next}: {formatDateDisplay(nextEntry.date, locale)}
+                  </span>
+                </div>
+              )}
+            </motion.div>
 
-        <GoldDivider className="mb-10" />
+            {/* Month Quick Nav */}
+            <motion.div
+              className="flex flex-wrap gap-2 mb-10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.35 }}
+            >
+              <span className="text-text-secondary text-sm self-center mr-1">{L.jumpTo}:</span>
+              {MONTH_NAMES.map((m, idx) => {
+                const count = monthlyGroups[idx + 1]?.length || 0;
+                return (
+                  <a
+                    key={m}
+                    href={`#month-${idx + 1}`}
+                    className={`px-3 py-1 rounded-lg text-sm transition-all ${
+                      count > 0
+                        ? 'bg-gold-primary/10 text-gold-light hover:bg-gold-primary/20 border border-gold-primary/15'
+                        : 'bg-bg-secondary/50 text-text-secondary/50 cursor-default border border-transparent'
+                    }`}
+                  >
+                    {(isDevanagariLocale(locale) ? MONTH_NAMES_HI : MONTH_NAMES)[idx].slice(0, 3)}
+                    {count > 0 && <span className="ml-1 text-gold-primary/70">({count})</span>}
+                  </a>
+                );
+              })}
+            </motion.div>
 
-        {/* Monthly Sections */}
-        {Array.from({ length: 12 }, (_, i) => i + 1).map(month => {
-          const monthEntries = monthlyGroups[month] || [];
-          const monthName = (isDevanagariLocale(locale) ? MONTH_NAMES_HI : MONTH_NAMES)[month - 1];
+            <GoldDivider className="mb-10" />
 
-          return (
+            {/* Monthly Sections */}
+            {Array.from({ length: 12 }, (_, i) => i + 1).map(month => {
+              const monthEntries = monthlyGroups[month] || [];
+              const monthName = (isDevanagariLocale(locale) ? MONTH_NAMES_HI : MONTH_NAMES)[month - 1];
+
+              return (
+                <motion.section
+                  key={month}
+                  id={`month-${month}`}
+                  className="mb-10"
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: '-50px' }}
+                  custom={0}
+                >
+                  <h2
+                    className="text-xl font-bold text-gold-light mb-4 flex items-center gap-2"
+                    style={headingFont}
+                  >
+                    {month % 2 === 0 ? <Moon className="w-5 h-5 text-gold-primary/60" /> : <Sun className="w-5 h-5 text-gold-primary/60" />}
+                    {monthName} {year}
+                    <span className="text-sm font-normal text-text-secondary ml-2">
+                      ({monthEntries.length} {catLabel})
+                    </span>
+                  </h2>
+
+                  {monthEntries.length === 0 ? (
+                    <p className="text-text-secondary text-sm italic pl-7">{L.noEntries}</p>
+                  ) : (
+                    <div className="overflow-x-auto rounded-xl border border-gold-primary/10 bg-bg-secondary/50">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="border-b border-gold-primary/10 text-text-secondary">
+                            <th className="text-left px-4 py-3 font-medium">{L.date}</th>
+                            <th className="text-left px-4 py-3 font-medium">{L.day}</th>
+                            <th className="text-left px-4 py-3 font-medium">{L.name}</th>
+                            <th className="text-left px-4 py-3 font-medium">{L.timings}</th>
+                            <th className="text-left px-4 py-3 font-medium">{L.paksha}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {monthEntries.map((entry, idx) => {
+                            const dow = getDayOfWeek(entry.date);
+                            const dayName = isDevanagariLocale(locale) ? DAY_NAMES_SHORT_HI[dow] : DAY_NAMES_SHORT[dow];
+                            const isUpcoming = entry.date >= today && entry.date === nextEntry?.date;
+                            // Timings: use ekadashi-specific fields if available, otherwise show date
+                            const timingStart = entry.ekadashiStart || '';
+                            const timingEnd = entry.ekadashiEnd || '';
+                            const timingDisplay = timingStart && timingEnd ? `${timingStart} — ${timingEnd}` : '—';
+                            const paksha = entry.paksha || '';
+                            return (
+                              <motion.tr
+                                key={`${entry.date}-${paksha}-${idx}`}
+                                className={`border-b border-gold-primary/5 transition-colors hover:bg-gold-primary/5 ${
+                                  isUpcoming ? 'bg-emerald-500/5' : ''
+                                }`}
+                                variants={fadeUp}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true }}
+                                custom={idx}
+                              >
+                                <td className="px-4 py-3 text-text-primary font-medium whitespace-nowrap">
+                                  {formatDateDisplay(entry.date, locale)}
+                                  {isUpcoming && (
+                                    <span className="ml-2 text-xs px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-medium">
+                                      {L.next}
+                                    </span>
+                                  )}
+                                </td>
+                                <td className="px-4 py-3 text-text-secondary whitespace-nowrap">{dayName}</td>
+                                <td className="px-4 py-3 text-text-primary font-medium">
+                                  {tl(entry.name, locale)}
+                                </td>
+                                <td className="px-4 py-3 text-text-secondary whitespace-nowrap font-mono text-xs">
+                                  {timingDisplay}
+                                </td>
+                                <td className="px-4 py-3">
+                                  {paksha && (
+                                    <span className={`inline-block px-2.5 py-1 rounded-full text-xs font-medium ${
+                                      paksha === 'shukla'
+                                        ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/20'
+                                        : 'bg-violet-500/15 text-violet-300 border border-violet-500/20'
+                                    }`}>
+                                      {paksha === 'shukla' ? L.shukla : L.krishna}
+                                    </span>
+                                  )}
+                                </td>
+                              </motion.tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </motion.section>
+              );
+            })}
+
+            <GoldDivider className="my-10" />
+
+            {/* Educational Section */}
             <motion.section
-              key={month}
-              id={`month-${month}`}
               className="mb-10"
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
+              viewport={{ once: true }}
               custom={0}
             >
               <h2
-                className="text-xl font-bold text-gold-light mb-4 flex items-center gap-2"
+                className="text-2xl font-bold text-gold-light mb-4"
                 style={headingFont}
               >
-                {month % 2 === 0 ? <Moon className="w-5 h-5 text-gold-primary/60" /> : <Sun className="w-5 h-5 text-gold-primary/60" />}
-                {monthName} {year}
-                <span className="text-sm font-normal text-text-secondary ml-2">
-                  ({monthEntries.length} {catLabel})
-                </span>
+                {L[`about${category.charAt(0).toUpperCase() + category.slice(1)}` as keyof typeof L] || `About ${catLabel}`}
               </h2>
-
-              {monthEntries.length === 0 ? (
-                <p className="text-text-secondary text-sm italic pl-7">{L.noEntries}</p>
-              ) : (
-                <div className="overflow-x-auto rounded-xl border border-gold-primary/10 bg-bg-secondary/50">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="border-b border-gold-primary/10 text-text-secondary">
-                        <th className="text-left px-4 py-3 font-medium">{L.date}</th>
-                        <th className="text-left px-4 py-3 font-medium">{L.day}</th>
-                        <th className="text-left px-4 py-3 font-medium">{L.name}</th>
-                        <th className="text-left px-4 py-3 font-medium">{L.timings}</th>
-                        <th className="text-left px-4 py-3 font-medium">{L.paksha}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {monthEntries.map((entry, idx) => {
-                        const dow = getDayOfWeek(entry.sunriseDate);
-                        const dayName = isDevanagariLocale(locale) ? DAY_NAMES_SHORT_HI[dow] : DAY_NAMES_SHORT[dow];
-                        const isUpcoming = entry.sunriseDate >= today && entry.sunriseDate === nextEntry?.sunriseDate;
-                        return (
-                          <motion.tr
-                            key={`${entry.sunriseDate}-${entry.paksha}-${idx}`}
-                            className={`border-b border-gold-primary/5 transition-colors hover:bg-gold-primary/5 ${
-                              isUpcoming ? 'bg-emerald-500/5' : ''
-                            }`}
-                            variants={fadeUp}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            custom={idx}
-                          >
-                            <td className="px-4 py-3 text-text-primary font-medium whitespace-nowrap">
-                              {formatDateDisplay(entry.sunriseDate, locale)}
-                              {isUpcoming && (
-                                <span className="ml-2 text-xs px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-medium">
-                                  {L.next}
-                                </span>
-                              )}
-                            </td>
-                            <td className="px-4 py-3 text-text-secondary whitespace-nowrap">{dayName}</td>
-                            <td className="px-4 py-3 text-text-primary">{tl(entry.name, locale)}</td>
-                            <td className="px-4 py-3 text-text-secondary whitespace-nowrap font-mono text-xs">
-                              {entry.startLocal} — {entry.endLocal}
-                            </td>
-                            <td className="px-4 py-3">
-                              <span className={`inline-block px-2.5 py-1 rounded-full text-xs font-medium ${
-                                entry.paksha === 'shukla'
-                                  ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/20'
-                                  : 'bg-violet-500/15 text-violet-300 border border-violet-500/20'
-                              }`}>
-                                {entry.paksha === 'shukla' ? L.shukla : L.krishna}
-                              </span>
-                            </td>
-                          </motion.tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              )}
+              <p className="text-text-secondary leading-relaxed max-w-3xl">
+                {L[`about${category.charAt(0).toUpperCase() + category.slice(1)}Text` as keyof typeof L] || ''}
+              </p>
             </motion.section>
-          );
-        })}
 
-        <GoldDivider className="my-10" />
-
-        {/* Educational Section */}
-        <motion.section
-          className="mb-10"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={0}
-        >
-          <h2
-            className="text-2xl font-bold text-gold-light mb-4"
-            style={headingFont}
-          >
-            {L[`about${category.charAt(0).toUpperCase() + category.slice(1)}` as keyof typeof L] || `About ${catLabel}`}
-          </h2>
-          <p className="text-text-secondary leading-relaxed max-w-3xl">
-            {L[`about${category.charAt(0).toUpperCase() + category.slice(1)}Text` as keyof typeof L] || ''}
-          </p>
-        </motion.section>
-
-        {/* Link to Calendar */}
-        <motion.div
-          className="flex justify-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <Link
-            href="/calendar"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-primary/10 text-gold-light hover:bg-gold-primary/20 border border-gold-primary/20 hover:border-gold-primary/40 transition-all font-medium"
-          >
-            <Calendar className="w-5 h-5" />
-            {L.viewCalendar}
-          </Link>
-        </motion.div>
+            {/* Link to Calendar */}
+            <motion.div
+              className="flex justify-center"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+            >
+              <Link
+                href="/calendar"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-primary/10 text-gold-light hover:bg-gold-primary/20 border border-gold-primary/20 hover:border-gold-primary/40 transition-all font-medium"
+              >
+                <Calendar className="w-5 h-5" />
+                {L.viewCalendar}
+              </Link>
+            </motion.div>
+          </>
+        )}
       </div>
     </main>
   );

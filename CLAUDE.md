@@ -12,6 +12,13 @@ Before claiming any task complete, ALL FIVE must be true:
 
 If you skipped any of the five, say so explicitly — never report "done" while a gate failed. For production-visible changes (auth, checkout, DB writes), also run `vercel logs` after deploy to confirm no runtime errors.
 
+**NEVER say "verified" or "correct" about astronomical values without showing proof.** When claiming a computation is correct, you MUST show in your response:
+- The actual computed output (run `npx tsx -e "..."` and paste the result)
+- The expected reference value (from Prokerala, Drik Panchang, or NASA)
+- Side-by-side comparison showing they match
+
+"I checked and it's correct" is NOT acceptable. Show the numbers. If you cannot produce both the computed and reference values, say "NOT VERIFIED" instead of "correct." This rule exists because you have repeatedly claimed values were correct without actually checking — Adhika Ashadha (was Jyeshtha), Purnimant Chaitra (was Vaishakha), month dates on Ashtami (should be Purnima). Every one of these would have been caught by running one computation and comparing.
+
 ## Domain & Location Assumptions
 
 - **Inception year: 2026.** Do not default to 2024 or 2025.

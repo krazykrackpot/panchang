@@ -1166,12 +1166,43 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const amantMasa = isAdhikaMasa
     ? { en: `Adhika ${baseMasa.en}`, hi: `अधिक ${baseMasa.hi}`, sa: `अधिक${baseMasa.sa}` }
     : baseMasa;
-  const purnimantMasaIdx = tithiResult.number > 15 ? (masaIndex + 1) % 12 : masaIndex;
-  const purnimantBase = MASA_NAMES[purnimantMasaIdx] || MASA_NAMES[0];
-  // During Adhika masa, Purnimant also gets the Adhika prefix (unless we've advanced past Purnima)
-  const purnimantMasa = isAdhikaMasa && tithiResult.number <= 15
-    ? { en: `Adhika ${purnimantBase.en}`, hi: `अधिक ${purnimantBase.hi}`, sa: `अधिक${purnimantBase.sa}` }
-    : purnimantBase;
+
+  // Purnimant masa — the "sandwich" logic:
+  //
+  // Normal month (no Adhika):
+  //   Shukla Paksha (tithi 1-15): same as Amant
+  //   Krishna Paksha (tithi 16-30): advance by 1
+  //
+  // Adhika month sandwich:
+  //   Adhika Shukla (tithi 1-15, isAdhika=true): "Adhika X"
+  //   Adhika Krishna (tithi 16-30, isAdhika=true): "X" (nija, NOT advance to next)
+  //     → because after Adhika Purnima, Purnimant enters the nija month
+  //
+  // Nija month (month right after Adhika, same masaIndex, isAdhika=false):
+  //   Check if the PREVIOUS Amant month was Adhika with the same name.
+  //   If so, we're in the nija month:
+  //   Nija Shukla (tithi 1-15): "X" (same name, no prefix)
+  //   Nija Krishna (tithi 16-30): advance by 1 (normal)
+  //
+  // Detection: check if the next Amant month has the same masaIndex (= nija follows Adhika)
+  const isKrishnaPaksha = tithiResult.number > 15;
+  let purnimantMasa: typeof baseMasa;
+
+  if (isAdhikaMasa && !isKrishnaPaksha) {
+    // Adhika Shukla Paksha → "Adhika X"
+    purnimantMasa = { en: `Adhika ${baseMasa.en}`, hi: `अधिक ${baseMasa.hi}`, sa: `अधिक${baseMasa.sa}` };
+  } else if (isAdhikaMasa && isKrishnaPaksha) {
+    // Adhika Krishna Paksha → nija month (same name, no prefix)
+    // In Purnimant, after Adhika's Purnima we enter the nija month
+    purnimantMasa = baseMasa;
+  } else if (isKrishnaPaksha) {
+    // Normal Krishna Paksha → advance by 1
+    const nextIdx = (masaIndex + 1) % 12;
+    purnimantMasa = MASA_NAMES[nextIdx] || MASA_NAMES[0];
+  } else {
+    // Normal Shukla Paksha → same as Amant
+    purnimantMasa = baseMasa;
+  }
 
   // Ayanamsha value
   const ayanamsha = lahiriAyanamsha(jdSunrise);

@@ -330,6 +330,58 @@ export default function MuhurtaAIPage() {
         )}
       </InfoBlock>
 
+      {/* ── Editorial Introduction (SEO / AdSense content) ──────────── */}
+      <section className="mb-10 space-y-6">
+        <h2 className="text-2xl font-bold text-gold-light" style={headingFont}>
+          {t.edTitle || L.en.edTitle}
+        </h2>
+        <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
+          {t.edIntro || L.en.edIntro}
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* Five Elements card */}
+          <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+            <h3 className="text-base font-semibold text-gold-light" style={headingFont}>
+              {t.edElementsTitle || L.en.edElementsTitle}
+            </h3>
+            <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
+              {t.edElements || L.en.edElements}
+            </p>
+          </div>
+
+          {/* Classical Basis card */}
+          <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+            <h3 className="text-base font-semibold text-gold-light" style={headingFont}>
+              {t.edClassicalTitle || L.en.edClassicalTitle}
+            </h3>
+            <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
+              {t.edClassical || L.en.edClassical}
+            </p>
+          </div>
+
+          {/* AI Scoring card */}
+          <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+            <h3 className="text-base font-semibold text-gold-light" style={headingFont}>
+              {t.edScoringTitle || L.en.edScoringTitle}
+            </h3>
+            <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
+              {t.edScoring || L.en.edScoring}
+            </p>
+          </div>
+
+          {/* Good Muhurta card */}
+          <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+            <h3 className="text-base font-semibold text-gold-light" style={headingFont}>
+              {t.edAvoidTitle || L.en.edAvoidTitle}
+            </h3>
+            <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
+              {t.edAvoid || L.en.edAvoid}
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Activity Grid */}
       <div className="mb-8">
         <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold text-center">{t.step1}</h2>

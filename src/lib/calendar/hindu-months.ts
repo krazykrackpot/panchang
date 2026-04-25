@@ -159,10 +159,12 @@ export function computePurnimantMonths(year: number): HinduMonth[] {
     const ayanamsha = lahiriAyanamsha(fmJD);
     const sidSun = ((tropSun - ayanamsha) + 360) % 360;
     const sunSign = Math.floor(sidSun / 30) + 1; // 1-12
-    // Purnimant month = Amant month that follows this Purnima
-    // Sun in sign X at Full Moon → the next New Moon starts Amant month (X % 12)
-    // Purnimant month name = same as that Amant month
-    const masaIdx = sunSign % 12; // 0-indexed into MASA_DATA
+    // Purnimant naming: the month is named after the NEXT Amant month.
+    // A Purnimant month starts at one Purnima and ends at the next.
+    // The month contains: current Amant month's Krishna Paksha + next Amant month's Shukla Paksha.
+    // It is named after the ENDING Purnima (= next Amant month), not the starting one.
+    // So: Sun in sign X at this Purnima → Amant month = X % 12 → Purnimant month = (X % 12 + 1) % 12
+    const masaIdx = (sunSign % 12 + 1) % 12; // 0-indexed, shifted +1 for Purnimant convention
 
     const isAdhika = masaIdx === prevMasaIdx;
 

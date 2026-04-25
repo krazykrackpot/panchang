@@ -13,6 +13,7 @@ import type { Locale , LocaleText} from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { GrahanIcon } from '@/components/icons/PanchangIcons';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import AuthorByline from '@/components/ui/AuthorByline';
 
 /* ------------------------------------------------------------------ */
 /*  Mini SVG icons for eclipse type (replacing unicode chars)          */
@@ -749,6 +750,8 @@ export default function GrahanPage() {
           ))}
         </div>
       </section>
+
+      <AuthorByline />
     </div>
   );
 }

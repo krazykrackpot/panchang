@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { generatePersonLD } from '@/lib/seo/structured-data';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 export default function AboutPage() {
   const t = useTranslations('about');
@@ -55,14 +57,63 @@ export default function AboutPage() {
     },
   ];
 
+  const authorSection = {
+    en: {
+      heading: 'About the Author',
+      intro: 'Dekho Panchang is built and maintained by',
+      name: 'Aditya Kumar',
+      heritage: 'a Maithil Brahmin with deep roots in the Vedic tradition.',
+      mission: 'This project was born from a simple conviction: that the astronomical and astrological wisdom preserved in texts like the Surya Siddhanta and Brihat Parashara Hora Shastra deserves to be accessible to everyone — not locked behind paywalls or simplified beyond recognition.',
+      approach: 'Every calculation on this site is done from first principles. Planetary positions use Jean Meeus\'s astronomical algorithms. Panchang elements are computed using classical Jyotish rules. There are no external astrology APIs — just mathematics, the same mathematics our ancestors encoded thousands of years ago, now running in your browser.',
+      closing: 'This is a passion project, not a corporation. If you find value in it, that is the best reward.',
+    },
+    hi: {
+      heading: 'लेखक के बारे में',
+      intro: 'देखो पञ्चाङ्ग का निर्माण और रखरखाव',
+      name: 'आदित्य कुमार',
+      heritage: 'द्वारा किया जाता है — एक मैथिल ब्राह्मण जिनकी जड़ें वैदिक परम्परा में गहरी हैं।',
+      mission: 'यह परियोजना एक सरल विश्वास से जन्मी है: सूर्य सिद्धान्त और बृहत् पराशर होरा शास्त्र जैसे ग्रन्थों में संरक्षित खगोलीय और ज्योतिषीय ज्ञान सभी के लिए सुलभ होना चाहिए — पेवॉल के पीछे बन्द नहीं, और न ही पहचान से परे सरलीकृत।',
+      approach: 'इस साइट पर प्रत्येक गणना मूल सिद्धान्तों से की जाती है। ग्रहों की स्थिति जीन मीउस के खगोलीय एल्गोरिदम पर आधारित है। पञ्चाङ्ग तत्व शास्त्रीय ज्योतिष नियमों से गणित हैं। कोई बाहरी ज्योतिष API नहीं — केवल गणित, वही गणित जो हमारे पूर्वजों ने सहस्रों वर्ष पूर्व संहिताबद्ध किया था।',
+      closing: 'यह एक जुनून की परियोजना है, कोई निगम नहीं। यदि आपको इसमें मूल्य मिलता है, तो वही सबसे बड़ा पुरस्कार है।',
+    },
+  };
+
+  const a = (authorSection as Record<string, typeof authorSection.en>)[locale] || authorSection.en;
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* Person JSON-LD — E-E-A-T signal */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(generatePersonLD()) }}
+      />
+
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">{t('title')}</span>
         </h1>
         <p className="text-text-secondary text-lg">{t('subtitle')}</p>
       </motion.div>
+
+      {/* Author Section — E-E-A-T */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.15 }}
+        className="mb-12"
+      >
+        <h2 className="text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>{a.heading}</h2>
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 space-y-4">
+          <p className="text-text-secondary leading-relaxed text-lg">
+            {a.intro} <span className="text-gold-light font-semibold">{a.name}</span> — {a.heritage}
+          </p>
+          <p className="text-text-secondary leading-relaxed text-lg">{a.mission}</p>
+          <p className="text-text-secondary leading-relaxed text-lg">{a.approach}</p>
+          <p className="text-text-secondary leading-relaxed text-lg italic">{a.closing}</p>
+        </div>
+      </motion.section>
+
+      <GoldDivider className="mb-12" />
 
       <div className="space-y-12">
         {sections.map((section, i) => (

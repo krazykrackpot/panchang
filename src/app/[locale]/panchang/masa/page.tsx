@@ -10,6 +10,7 @@ import type { Locale } from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { MasaIcon } from '@/components/icons/PanchangIcons';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import AuthorByline from '@/components/ui/AuthorByline';
 
 const MASA_DETAILS: { gregApprox: string; nakshatraLink: string }[] = [
   { gregApprox: 'Mar-Apr', nakshatraLink: 'Chitra' },
@@ -404,6 +405,8 @@ export default function MasaPage() {
           ))}
         </div>
       </section>
+
+      <AuthorByline />
     </div>
   );
 }

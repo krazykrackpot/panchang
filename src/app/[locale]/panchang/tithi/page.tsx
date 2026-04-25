@@ -15,6 +15,7 @@ import type { Locale } from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { TithiIcon } from '@/components/icons/PanchangIcons';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import AuthorByline from '@/components/ui/AuthorByline';
 
 function MoonPhase({ phase }: { phase: number }) {
   // phase: 0 = new moon, 0.5 = full moon, 1 = new moon again
@@ -549,6 +550,8 @@ export default function TithiPage() {
           ))}
         </div>
       </section>
+
+      <AuthorByline />
     </div>
   );
 }

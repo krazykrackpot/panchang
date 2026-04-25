@@ -133,6 +133,7 @@ export function generateOrganizationLD(): object {
     logo: `${BASE_URL}/apple-touch-icon.png`,
     description:
       'Dekho Panchang is a free Vedic astrology platform offering daily Panchang, Kundali generation, Muhurta finding, and Kundali matching — powered by precise astronomical calculations.',
+    founder: generatePersonLD(),
     foundingDate: '2024',
     sameAs: [
       'https://www.wikidata.org/wiki/Q139054863',
@@ -142,6 +143,30 @@ export function generateOrganizationLD(): object {
       // 'https://www.instagram.com/dekhopanchang/',
       // 'https://github.com/dekhopanchang',
     ].filter(Boolean),
+  };
+}
+
+/**
+ * Generate Person JSON-LD for the site author — E-E-A-T signal for Google.
+ * Used on the About page and referenced from Organization schema.
+ */
+export function generatePersonLD(): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Aditya Kumar',
+    description:
+      'Maithil Brahmin, Indophile, Seeker of Vedic Wisdom, Vedic Astrology and Astronomy Enthusiast',
+    url: `${BASE_URL}/about`,
+    knowsAbout: [
+      'Vedic Astrology',
+      'Jyotish',
+      'Panchang',
+      'Hindu Calendar',
+      'Astronomical Calculations',
+      'Surya Siddhanta',
+      'Brihat Parashara Hora Shastra',
+    ],
   };
 }
 

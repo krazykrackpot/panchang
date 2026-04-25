@@ -13,6 +13,7 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import type { Locale } from '@/types/panchang';
 import L from '@/messages/learn/learn-index.json';
+import AuthorByline from '@/components/ui/AuthorByline';
 
 const STATS = { modules: 104, references: 45, labs: 6, tracks: 11 };
 
@@ -355,6 +356,8 @@ export default function LearnPage() {
             </div>
           ))}
         </div>
+
+        <AuthorByline />
       </div>
     </div>
   );

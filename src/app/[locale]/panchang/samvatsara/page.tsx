@@ -11,6 +11,7 @@ import type { Locale } from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { SamvatsaraIcon } from '@/components/icons/PanchangIcons';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import AuthorByline from '@/components/ui/AuthorByline';
 
 const yugaColors = ['#4ade80', '#fbbf24', '#f97316', '#60a5fa', '#a78bfa'];
 
@@ -425,6 +426,8 @@ export default function SamvatsaraPage() {
           </div>
         ))}
       </section>
+
+      <AuthorByline />
     </div>
   );
 }

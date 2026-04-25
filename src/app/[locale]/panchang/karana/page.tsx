@@ -13,6 +13,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
+import AuthorByline from '@/components/ui/AuthorByline';
 import MSG from '@/messages/pages/panchang-karana.json';
 const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -656,6 +657,8 @@ export default function KaranaPage() {
           })}
         </div>
       </section>
+
+      <AuthorByline />
     </div>
   );
 }

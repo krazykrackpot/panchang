@@ -12,6 +12,7 @@ import type { Locale } from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
+import AuthorByline from '@/components/ui/AuthorByline';
 
 export default function NakshatraPage() {
   const t = useTranslations('deepDive');
@@ -155,6 +156,8 @@ export default function NakshatraPage() {
           ))}
         </div>
       </section>
+
+      <AuthorByline />
     </div>
   );
 }

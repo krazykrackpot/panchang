@@ -13,6 +13,7 @@ import { ArrowLeft } from 'lucide-react';
 import { MuhurtaIcon } from '@/components/icons/PanchangIcons';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
+import AuthorByline from '@/components/ui/AuthorByline';
 import { lt } from '@/lib/learn/translations';
 import MSG from '@/messages/pages/panchang-muhurta.json';
 const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
@@ -815,6 +816,8 @@ export default function MuhurtaPage() {
           {msg('learnMuhurtaLink', locale)}
         </Link>
       </div>
+
+      <AuthorByline />
     </div>
   );
 }

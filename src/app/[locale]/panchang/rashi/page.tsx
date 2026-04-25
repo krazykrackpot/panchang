@@ -12,6 +12,7 @@ import { RashiIcon } from '@/components/icons/PanchangIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
+import AuthorByline from '@/components/ui/AuthorByline';
 
 /* ─── Element helpers ────────────────────────────────────────────── */
 
@@ -599,6 +600,8 @@ export default function RashiPage() {
           ))}
         </div>
       </section>
+
+      <AuthorByline />
     </div>
   );
 }

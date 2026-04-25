@@ -13,6 +13,7 @@ import type { Locale, LocaleText } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { useLocationStore } from '@/stores/location-store';
+import AuthorByline from '@/components/ui/AuthorByline';
 
 // ─── Types ──────────────────────────────────────────────────────
 // Festival entry from /api/calendar — single source of truth
@@ -473,9 +474,11 @@ export default function DateCategoryPage() {
               </p>
             </motion.section>
 
+            <AuthorByline className="max-w-3xl" />
+
             {/* Link to Calendar */}
             <motion.div
-              className="flex justify-center"
+              className="flex justify-center mt-8"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}

@@ -87,6 +87,7 @@ const routes = [
   '/learn/health',
   '/learn/children',
   '/learn/retrograde-effects',
+  '/learn/retrograde-visualizer',
   '/learn/combustion',
   '/learn/transit-guide',
   '/learn/hora',
@@ -127,6 +128,7 @@ const routes = [
   '/calendar/regional/mithila',
   // Tools
   '/medical-astrology',
+  '/financial-astrology',
   '/sign-calculator',
   '/sade-sati',
   '/prashna',

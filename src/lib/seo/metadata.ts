@@ -681,6 +681,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['retrograde planets', 'mercury retrograde', 'vakri graha', 'retrograde effects'],
   },
 
+  '/learn/retrograde-visualizer': {
+    title: { en: 'Retrograde Motion Visualizer — Interactive Animation', hi: 'वक्री गति दृश्यावलोकन — अन्तरक्रियात्मक चित्रण', sa: 'वक्रीगतिदृश्यावलोकनम्' },
+    description: { en: 'Interactive Canvas animation showing why planets appear to reverse direction. Heliocentric and geocentric views, planet selector, speed controls.', hi: 'अन्तरक्रियात्मक चित्रण जो दिखाता है कि ग्रह उल्टी दिशा में क्यों जाते प्रतीत होते हैं। सौर-केन्द्रीय और भू-केन्द्रीय दृश्य।', sa: 'वक्रीगतिकारणं दर्शयत् अन्तरक्रियात्मकं चित्रणम्।' },
+    keywords: ['retrograde motion', 'retrograde visualizer', 'vakri graha animation', 'planetary retrograde explained'],
+  },
+
   '/learn/advanced-houses': {
     title: { en: 'MKS, Badhaka, Maraka — Advanced House Concepts', hi: 'मारक कारक स्थान, बाधक, मारक', sa: 'मारककारकस्थानम् बाधकः मारकश्च' },
     description: { en: 'Marana Karaka Sthana (death places), Badhakesh (obstruction lord), Maraka (death-inflicting lords), and functional benefic/malefic per lagna.', hi: 'मारक कारक स्थान, बाधकेश, मारक ग्रह, और प्रत्येक लग्न के लिए कार्यात्मक शुभ/अशुभ।', sa: 'मारककारकस्थानम् बाधकेशः मारकग्रहाः प्रतिलग्नं कार्यात्मकशुभाशुभाश्च।' },

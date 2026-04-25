@@ -346,6 +346,7 @@ export default function RetrogradeEffectsPage() {
       <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
         className="mt-10 flex flex-wrap justify-center gap-3">
         {[
+          { href: '/learn/retrograde-visualizer' as const, label: tl({ en: 'Interactive Visualizer', hi: 'अन्तरक्रियात्मक दृश्यावलोकन', sa: 'अन्तरक्रियात्मकं दृश्यावलोकनम्' }, locale) },
           { href: '/kundali' as const, label: tl({ en: 'Generate Kundali', hi: 'कुण्डली बनाएं', sa: 'कुण्डलीं निर्मातु' }, locale) },
           { href: '/learn/planets' as const, label: tl({ en: 'Learn Planets', hi: 'ग्रह विस्तार', sa: 'ग्रहान् जानातु' }, locale) },
           { href: '/learn/shadbala' as const, label: tl({ en: 'Shadbala Strength', hi: 'षड्बल', sa: 'षड्बलम्' }, locale) },

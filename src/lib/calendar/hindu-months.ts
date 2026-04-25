@@ -46,9 +46,8 @@ const MASA_DATA: { en: string; hi: string; sa: string; ritu: LocaleText; ayana: 
  *   180° = Full Moon (opposition)
  * At New Moon the elongation wraps from ~350° back to ~10° — we detect that crossing.
  */
-function findNewMoons(year: number): Date[] {
-  const newMoons: Date[] = [];
-  // Scan from Dec of previous year through Jan of next year
+function findNewMoons(year: number): { date: Date; jd: number }[] {
+  const newMoons: { date: Date; jd: number }[] = [];
   const startJD = dateToJD(year - 1, 12, 1, 0);
   const endJD = dateToJD(year + 1, 2, 1, 0);
 
@@ -56,25 +55,21 @@ function findNewMoons(year: number): Date[] {
   for (let jd = startJD; jd < endJD; jd += 1) {
     const sunL = sunLongitude(jd);
     const moonL = moonLongitude(jd);
-    const elong = (moonL - sunL + 360) % 360; // 0-360, NOT folded
+    const elong = (moonL - sunL + 360) % 360;
 
-    // New Moon = elongation wraps through 0° (from >300° to <60°)
     if (prevElong >= 0 && prevElong > 300 && elong < 60) {
-      // Binary search: find where elongation is closest to 0 (or 360)
       let lo = jd - 1, hi = jd;
       for (let i = 0; i < 15; i++) {
         const mid = (lo + hi) / 2;
         const mSun = sunLongitude(mid);
         const mMoon = moonLongitude(mid);
         const mElong = ((mMoon - mSun + 360) % 360);
-        // We want the point where elong crosses 0°
-        // If mElong > 180, we're before the crossing (approaching 360→0)
         if (mElong > 180) { lo = mid; } else { hi = mid; }
       }
 
       const nmJD = (lo + hi) / 2;
       const d = new Date((nmJD - 2440587.5) * 86400000);
-      newMoons.push(d);
+      newMoons.push({ date: d, jd: nmJD });
     }
     prevElong = elong;
   }
@@ -225,20 +220,26 @@ export function computeHinduMonths(year: number): HinduMonth[] {
   let prevMasaIdx = -1;
 
   for (let i = 0; i < newMoons.length - 1; i++) {
-    const nmDate = newMoons[i];
-    const nextNmDate = newMoons[i + 1];
+    const { date: nmDate, jd: nmJD } = newMoons[i];
+    const { date: nextNmDate, jd: nextNmJD } = newMoons[i + 1];
 
-    // Sun's sidereal sign at this New Moon
-    const jd = dateToJD(nmDate.getUTCFullYear(), nmDate.getUTCMonth() + 1, nmDate.getUTCDate(), 12);
-    const tropSun = sunLongitude(jd);
-    const ayanamsha = lahiriAyanamsha(jd);
+    // Sun's sidereal sign at the EXACT New Moon moment (not noon on the date).
+    // Using the refined JD from binary search is critical — at boundary cases
+    // (e.g., Jun 15 2026), noon gives Gemini but the actual New Moon at 03:00 UT
+    // has Sun still in Taurus. This difference determines Adhika month detection.
+    const tropSun = sunLongitude(nmJD);
+    const ayanamsha = lahiriAyanamsha(nmJD);
     const sidSun = ((tropSun - ayanamsha) + 360) % 360;
     const sunSign = Math.floor(sidSun / 30) + 1; // 1-12
     const masaIdx = getMasaFromSunSign(sunSign); // 0-11
 
-    // Check if this is an Adhika (intercalary) month
-    // Adhika = same Sun sign as the previous month (no Sankranti during the month)
-    const isAdhika = masaIdx === prevMasaIdx;
+    // Adhika = Sun is in the same sidereal sign at both this and the next New Moon
+    // (no Sankranti occurred during this lunar month)
+    const nextTropSun = sunLongitude(nextNmJD);
+    const nextAya = lahiriAyanamsha(nextNmJD);
+    const nextSidSun = ((nextTropSun - nextAya) + 360) % 360;
+    const nextSunSign = Math.floor(nextSidSun / 30) + 1;
+    const isAdhika = sunSign === nextSunSign;
 
     const startStr = `${nmDate.getUTCFullYear()}-${(nmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${nmDate.getUTCDate().toString().padStart(2, '0')}`;
     const endStr = `${nextNmDate.getUTCFullYear()}-${(nextNmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${nextNmDate.getUTCDate().toString().padStart(2, '0')}`;

@@ -18,6 +18,7 @@ import { computePrakriti } from '@/lib/medical/prakriti';
 import { computeBodyMap } from '@/lib/medical/body-map';
 import { computeHealthTimeline } from '@/lib/medical/health-timeline';
 import { computeDiseaseProfile } from '@/lib/medical/disease-profile';
+import { computeHealthPrognosis } from '@/lib/medical/health-prognosis';
 import type { BirthData } from '@/types/kundali';
 
 export async function POST(request: Request) {
@@ -73,6 +74,7 @@ export async function POST(request: Request) {
     const bodyMap = computeBodyMap(kundali);
     const healthTimeline = computeHealthTimeline(kundali, todayISO);
     const diseaseProfile = computeDiseaseProfile(kundali, bodyMap);
+    const healthPrognosis = computeHealthPrognosis(kundali);
 
     return NextResponse.json(
       {
@@ -85,6 +87,7 @@ export async function POST(request: Request) {
         })),
         healthTimeline,
         diseaseProfile,
+        healthPrognosis,
         disclaimer:
           'This analysis is based on traditional Vedic Jyotish and Ayurveda. ' +
           'It is for self-awareness only and does NOT constitute medical advice. ' +

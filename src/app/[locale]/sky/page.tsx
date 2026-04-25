@@ -168,9 +168,11 @@ export default function SkyPage() {
           <p className="text-[#8a8478] text-base">{t('subtitle')}</p>
         </div>
 
-        {/* Chart */}
-        <section className="mb-10 flex justify-start" aria-label="Sky map visualization">
-          <LiveSkyMap />
+        {/* Chart — full width, immersive */}
+        <section className="mb-10 -mx-4 sm:-mx-6 lg:-mx-8" aria-label="Sky map visualization">
+          <div className="w-full max-w-[900px] mx-auto" style={{ aspectRatio: '1 / 1', maxHeight: '80vh' }}>
+            <LiveSkyMap />
+          </div>
         </section>
 
         {/* Planet positions table */}

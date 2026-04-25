@@ -10,18 +10,18 @@ import { RASHIS } from '@/lib/constants/rashis';
 // Constants — hoisted from render path (performance rule)
 // ----------------------------------------------------------------------------
 
-const SVG_SIZE = 600;
-const CX = SVG_SIZE / 2; // 300
-const CY = SVG_SIZE / 2; // 300
+const SVG_SIZE = 800;
+const CX = SVG_SIZE / 2; // 400
+const CY = SVG_SIZE / 2; // 400
 
-/** Radii for concentric rings */
-const R_CENTER = 28;
-const R_RASHI_INNER = 165;
-const R_RASHI_OUTER = 222;
-const R_PLANET_TRACK = 193; // between inner and outer rashi ring
-const R_NAKSHATRA_INNER = 222;
-const R_NAKSHATRA_OUTER = 262;
-const R_TICK_OUTER = 262;
+/** Radii for concentric rings — scaled up for 800px viewBox */
+const R_CENTER = 36;
+const R_RASHI_INNER = 220;
+const R_RASHI_OUTER = 296;
+const R_PLANET_TRACK = 258; // between inner and outer rashi ring
+const R_NAKSHATRA_INNER = 296;
+const R_NAKSHATRA_OUTER = 350;
+const R_TICK_OUTER = 350;
 
 /** Zoom constraints */
 const ZOOM_MIN = 0.5;
@@ -839,7 +839,7 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-[600px] w-full">
+      <div className="flex items-center justify-center min-h-[400px] w-full">
         <div className="text-[#8a8478] text-sm animate-pulse">Loading sky positions…</div>
       </div>
     );
@@ -847,7 +847,7 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center h-[600px] w-full">
+      <div className="flex items-center justify-center min-h-[400px] w-full">
         <div className="text-red-400 text-sm">{error}</div>
       </div>
     );
@@ -858,18 +858,16 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
   const transformStr = `translate(${x},${y}) scale(${k})`;
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 items-start w-full">
+    <div className="relative w-full">
       {/* Inject retrograde animation keyframes */}
       <style>{RETROGRADE_CSS}</style>
 
-      {/* SVG Chart */}
-      <div className="relative flex-shrink-0">
+      {/* SVG Chart — full width, aspect-ratio square */}
+      <div className="relative w-full" style={{ aspectRatio: '1 / 1', maxHeight: '85vh' }}>
         <svg
           ref={svgRef}
           viewBox={`0 0 ${SVG_SIZE} ${SVG_SIZE}`}
-          width={SVG_SIZE}
-          height={SVG_SIZE}
-          className="max-w-full"
+          className="w-full h-full"
           style={{ background: 'transparent', cursor: 'grab' }}
           aria-label="Live Sky Map — sidereal ecliptic polar projection (scroll to zoom, drag to pan)"
           role="img"
@@ -940,22 +938,24 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
         )}
       </div>
 
-      {/* Side panel */}
-      <div className="flex-1 min-w-[240px] max-w-[320px]">
-        {selectedPlanet ? (
+      {/* Planet info panel — overlaid on bottom-left of the chart */}
+      {selectedPlanet && (
+        <div className="absolute bottom-4 left-4 z-20 w-[280px] sm:w-[320px]">
           <SidePanel
             planet={selectedPlanet}
             onClose={() => setSelectedPlanet(null)}
           />
-        ) : (
-          <div className="bg-[#111633]/60 border border-[#8a6d2b]/20 rounded-xl p-4 text-[#8a8478] text-sm">
-            <p className="font-medium text-[#d4a853] mb-1">Live Sky Map</p>
-            <p>Click any planet to see detailed position data.</p>
-            <p className="mt-2 text-xs">Scroll to zoom · Drag to pan · Hover to preview.</p>
-            <p className="mt-1 text-xs">Positions update every 60 seconds.</p>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
+
+      {/* Instructions hint — overlaid on bottom-right */}
+      {!selectedPlanet && (
+        <div className="absolute bottom-4 right-4 z-10 bg-[#111633]/80 backdrop-blur-sm border border-[#8a6d2b]/20 rounded-xl px-4 py-3 text-[#8a8478] text-xs max-w-[220px]">
+          <p className="font-medium text-[#d4a853] mb-1 text-sm">Live Sky Map</p>
+          <p>Click any planet for details.</p>
+          <p className="mt-1">Scroll to zoom. Drag to pan.</p>
+        </div>
+      )}
     </div>
   );
 }

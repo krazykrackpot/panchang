@@ -75,6 +75,7 @@ const AshtakavargaTab = dynamic(() => import('@/components/kundali/AshtakavargaT
 const TippanniTab = dynamic(() => import('@/components/kundali/TippanniTab'), { ssr: false });
 const VargaAnalysisTab = dynamic(() => import('@/components/kundali/VargaAnalysisTab'), { ssr: false });
 const GrahaTab = dynamic(() => import('@/components/kundali/GrahaTab'), { ssr: false });
+const DashaTimeline = dynamic(() => import('@/components/kundali/DashaTimeline'), { ssr: false });
 const YogasTab = dynamic(() => import('@/components/kundali/YogasTab'), { ssr: false });
 const ShadbalaTab = dynamic(() => import('@/components/kundali/ShadbalaTab'), { ssr: false });
 const BhavabalaTab = dynamic(() => import('@/components/kundali/BhavabalaTab'), { ssr: false });
@@ -1838,6 +1839,14 @@ export default function KundaliPage() {
           {/* ===== DASHA TAB ===== */}
           {activeTab === 'dasha' && (
             <div className="space-y-3">
+              {/* Animated D3 interactive dasha timeline — rendered above the textual content */}
+              {kundali.dashas && kundali.dashas.length > 0 && (
+                <DashaTimeline
+                  dashas={kundali.dashas}
+                  birthDate={kundali.birthData.date}
+                  locale={locale}
+                />
+              )}
               <a href={`/${locale}/learn/dashas`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1">
                 {locale === 'en' || isTamil ? 'Learn about Dashas \u2192' : 'दशा के बारे में जानें \u2192'}
               </a>

@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import {
   LayoutDashboard, Star, Moon, TrendingUp, AlertTriangle,
   ArrowRight, Loader2, Calendar, Settings, Eye, Compass, Globe, Shield, Clock, Flame,
+  RotateCcw, BookOpen,
 } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/stores/auth-store';
@@ -1732,6 +1733,8 @@ export default function DashboardPage() {
               { href: '/dashboard/dashas' as const, label: tl({ en: 'Dasha Timeline', hi: 'दशा समयरेखा', sa: 'दशा-कालरेखा', ta: 'தசா காலவரிசை', te: 'దశా కాలరేఖ', bn: 'দশা সময়রেখা', kn: 'ದಶಾ ಕಾಲಮಾಲೆ', gu: 'દશા સમયરેખા', mai: 'दशा समयरेखा', mr: 'दशा कालरेखा' }, locale), icon: TrendingUp },
               { href: '/dashboard/muhurta' as const, label: tl({ en: 'Personal Muhurta', hi: 'व्यक्तिगत मुहूर्त', sa: 'व्यक्तिगतः मुहूर्तः', ta: 'தனிப்பட்ட முஹூர்த்தம்', te: 'వ్యక్తిగత ముహూర్తం', bn: 'ব্যক্তিগত মুহূর্ত', kn: 'ವ್ಯಕ್ತಿಗತ ಮುಹೂರ್ತ', gu: 'વ્યક્તિગત મુહૂર્ત', mai: 'व्यक्तिगत मुहूर्त', mr: 'वैयक्तिक मुहूर्त' }, locale), icon: Clock },
               { href: '/dashboard/transits' as const, label: L.transitAnalysis, icon: Globe },
+              { href: '/dashboard/transit-replay' as const, label: tl({ en: 'Transit Replay', hi: 'गोचर रिप्ले', sa: 'गोचर-पुनरावृत्तिः', ta: 'கோசார ரீப்ளே', te: 'గోచర రీప్లే', bn: 'গোচর রিপ্লে', kn: 'ಗೋಚರ ರೀಪ್ಲೇ', gu: 'ગોચર રીપ્લે', mai: 'गोचर रिप्ले', mr: 'गोचर रिप्ले' }, locale), icon: RotateCcw },
+              { href: '/dashboard/dasha-diary' as const, label: tl({ en: 'Dasha Diary', hi: 'दशा डायरी', sa: 'दशा-दैनिकी', ta: 'தசா டைரி', te: 'దశా డైరీ', bn: 'দশা ডায়েরি', kn: 'ದಶಾ ಡೈರಿ', gu: 'દशा ડायरी', mai: 'दशा डायरी', mr: 'दशा डायरी' }, locale), icon: BookOpen },
               { href: '/dashboard/remedies' as const, label: L.yourRemedies, icon: Shield },
               { href: '/dashboard/saved-charts' as const, label: tl({ en: 'Saved Charts', hi: 'सहेजे गए चार्ट', sa: 'सञ्चितानि चक्राणि', ta: 'சேமித்த விளக்கப்படங்கள்', te: 'సేవ్ చేసిన చార్ట్‌లు', bn: 'সংরক্ষিত চার্ট', kn: 'ಉಳಿಸಿದ ಚಾರ್ಟ್‌ಗಳು', gu: 'સાચવેલ ચાર્ટ', mai: 'सहेजल चार्ट', mr: 'जतन केलेले चार्ट' }, locale), icon: Star },
               { href: '/sade-sati' as const, label: L.sadeSati, icon: TrendingUp },

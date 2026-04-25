@@ -815,17 +815,21 @@ export default function DashboardPage() {
 
       // Fetch today's panchang — uses CURRENT location (where the user is now),
       // NOT birth location. Panchang elements (sunrise, Rahu Kaal, etc.) are location-dependent.
+      // If location store is empty, skip panchang fetch — don't hardcode any fallback.
       const locStore = useLocationStore.getState();
-      const panchangLat = locStore.lat ?? 46.47;
-      const panchangLng = locStore.lng ?? 6.86;
-      const panchangTz = locStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'Europe/Zurich';
-      const panchangRes = await fetch(`/api/panchang?lat=${panchangLat}&lng=${panchangLng}&timezone=${encodeURIComponent(panchangTz)}`);
-      const fetchedPanchang = panchangRes.ok ? await panchangRes.json() : null;
-      if (fetchedPanchang) setPanchangData(fetchedPanchang as PanchangData);
+      const panchangLat = locStore.lat;
+      const panchangLng = locStore.lng;
+      let fetchedPanchang: PanchangData | null = null;
+      if (panchangLat !== null && panchangLng !== null) {
+        const panchangTz = locStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+        const panchangRes = await fetch(`/api/panchang?lat=${panchangLat}&lng=${panchangLng}&timezone=${encodeURIComponent(panchangTz)}`);
+        fetchedPanchang = panchangRes.ok ? await panchangRes.json() : null;
+        if (fetchedPanchang) setPanchangData(fetchedPanchang);
+      }
 
       // Extract today's nakshatra and moon sign from panchang
       const todayNakshatra = fetchedPanchang?.nakshatra?.id || 1;
-      const todayMoonSign = fetchedPanchang?.moonSign?.rashi || fetchedPanchang?.moonSign || 1;
+      const todayMoonSign = fetchedPanchang?.moonSign?.rashi || 1;
 
       // Build UserSnapshot
       const userSnapshot: UserSnapshot = {

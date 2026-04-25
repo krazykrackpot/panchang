@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
   // --- Fetch user's location from user_profiles ---
   const { data: profile, error: profileError } = await supabase
     .from('user_profiles')
-    .select('panchang_location, default_location, birth_lat, birth_lng, birth_timezone')
+    .select('panchang_location, default_location')
     .eq('id', user.id)
     .single();
 
@@ -97,11 +97,9 @@ export async function POST(req: NextRequest) {
     lat = Number(defaultLoc.lat);
     lng = Number(defaultLoc.lng);
     timezone = String(defaultLoc.timezone);
-  } else if (profile?.birth_lat != null && profile?.birth_lng != null && profile?.birth_timezone) {
-    lat = Number(profile.birth_lat);
-    lng = Number(profile.birth_lng);
-    timezone = String(profile.birth_timezone);
   } else {
+    // Don't fall back to birth location for panchang — birth location is for kundali,
+    // panchang depends on where the user IS now. Ask them to set a panchang location.
     return NextResponse.json(
       { error: 'No location configured. Please set your panchang location in profile settings.' },
       { status: 422 },

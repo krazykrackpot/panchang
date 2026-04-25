@@ -8,6 +8,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { RASHIS } from '@/lib/constants/rashis';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { useLocationStore } from '@/stores/location-store';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -34,14 +35,16 @@ export default function GraphicTransitPage() {
   useEffect(() => {
     const lat = locationStore.lat ?? 0;
     const lng = locationStore.lng ?? 0;
-    const tzOffset = -(new Date().getTimezoneOffset() / 60);
+    // Use IANA timezone from location store, resolve proper UTC offset per day (handles DST)
+    const tz = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
     setLoading(true);
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const results: typeof data = [];
 
     for (let d = 1; d <= daysInMonth; d++) {
       try {
-        const p = computePanchang({ year, month: month + 1, day: d, lat, lng, tzOffset, locationName: locationStore.name || '' });
+        const tzOffset = getUTCOffsetForDate(year, month + 1, d, tz);
+        const p = computePanchang({ year, month: month + 1, day: d, lat, lng, tzOffset, timezone: tz, locationName: locationStore.name || '' });
         results.push({
           day: d,
           planets: p.planets.map(pl => ({ id: pl.id, rashi: pl.rashi || 1, isRetrograde: pl.isRetrograde || false })),

@@ -10,6 +10,7 @@ import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { CITIES, type CityData } from '@/lib/constants/cities';
 import { getDefaultCityForLocale } from '@/lib/constants/rashi-slugs';
+import { useLocationStore } from '@/stores/location-store';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -105,8 +106,21 @@ export default function RahuKaalPage() {
     : { fontFamily: 'var(--font-heading)' };
   const L = LABELS[locale] || LABELS.en;
 
-  const defaultCity = getDefaultCityForLocale(locale);
-  const [selectedCity, setSelectedCity] = useState<CityData>(defaultCity || SELECTOR_CITIES[0]);
+  // Default to user's current location if available, otherwise fall back to locale-based city
+  const locationStore = useLocationStore();
+  const initialCity = (): CityData => {
+    if (locationStore.lat !== null && locationStore.lng !== null) {
+      return {
+        slug: 'current',
+        name: { en: locationStore.name || 'Current Location', hi: locationStore.name || 'वर्तमान स्थान', sa: locationStore.name || 'वर्तमानस्थानम्' },
+        lat: locationStore.lat,
+        lng: locationStore.lng,
+        timezone: locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
+      };
+    }
+    return getDefaultCityForLocale(locale) || SELECTOR_CITIES[0];
+  };
+  const [selectedCity, setSelectedCity] = useState<CityData>(initialCity);
 
   const now = new Date();
   const year = now.getFullYear();

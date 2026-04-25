@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Heart, Briefcase, Plane, GraduationCap, Home, Stethoscope, Car, Sun, DollarSign, Scale, Check, X, ArrowLeft } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
+import { useLocationStore } from '@/stores/location-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { computePersonalMuhurta, type PersonalMuhurta } from '@/lib/personalization/personal-muhurta';
 import type { Locale , LocaleText} from '@/types/panchang';
@@ -36,19 +37,34 @@ export default function MuhurtaPage() {
   const hf = (isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = (isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const user = useAuthStore(s => s.user);
+  // Panchang data depends on WHERE the user is NOW — use current location, not birth location
+  const locationStore = useLocationStore();
   const [muhurtas, setMuhurtas] = useState<PersonalMuhurta[]>([]);
   const [loading, setLoading] = useState(true);
   const [birthNak, setBirthNak] = useState(0);
   const [todayNak, setTodayNak] = useState(0);
+
+  useEffect(() => { locationStore.detect(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!user) { setLoading(false); return; }
     const supabase = getSupabase();
     if (!supabase) { setLoading(false); return; }
 
+    // Wait for location detection before fetching panchang
+    const lat = locationStore.lat;
+    const lng = locationStore.lng;
+    if (lat === null || lng === null) {
+      // Location not yet detected — don't fetch with bogus coords
+      if (!locationStore.detecting) setLoading(false);
+      return;
+    }
+
+    const tz = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+
     Promise.all([
       supabase.from('kundali_snapshots').select('moon_sign, moon_nakshatra').eq('user_id', user.id).maybeSingle(),
-      fetch(`/api/panchang?year=${new Date().getFullYear()}&month=${new Date().getMonth() + 1}&day=${new Date().getDate()}&lat=0&lng=0`).then(r => r.json()),
+      fetch(`/api/panchang?year=${new Date().getFullYear()}&month=${new Date().getMonth() + 1}&day=${new Date().getDate()}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(tz)}`).then(r => r.json()),
     ]).then(([{ data: snap }, panchang]) => {
       if (!snap) { setLoading(false); return; }
       const tNak = panchang?.nakshatra?.id || 1;
@@ -58,7 +74,7 @@ export default function MuhurtaPage() {
       setMuhurtas(computePersonalMuhurta(snap.moon_nakshatra, snap.moon_sign, tNak, tMoon));
       setLoading(false);
     }).catch(() => setLoading(false));
-  }, [user]);
+  }, [user, locationStore.lat, locationStore.lng, locationStore.timezone, locationStore.detecting]);
 
   if (!user) {
     return (

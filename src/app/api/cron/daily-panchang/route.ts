@@ -28,7 +28,7 @@ export async function GET(request: Request) {
     // Join user_profiles (prefs + location) with auth.users (email)
     const { data: subscribers, error: fetchError } = await supabase
       .from('user_profiles')
-      .select('id, preferred_locale, panchang_location_lat, panchang_location_lng, panchang_location_timezone, panchang_location_name, birth_lat, birth_lng, birth_timezone, birth_place')
+      .select('id, preferred_locale, panchang_location_lat, panchang_location_lng, panchang_location_timezone, panchang_location_name')
       .eq('daily_panchang_email', true);
 
     if (fetchError || !subscribers?.length) {
@@ -54,17 +54,20 @@ export async function GET(request: Request) {
     for (const sub of subscribers) {
       try {
         const email = emailMap.get(sub.id);
-        // Use panchang location if set, otherwise fall back to birth location
-        const lat = sub.panchang_location_lat || sub.birth_lat;
-        const lng = sub.panchang_location_lng || sub.birth_lng;
-        const tz = sub.panchang_location_timezone || sub.birth_timezone;
-        const locName = sub.panchang_location_name || sub.birth_place;
-        if (!email || !lat || !lng) continue;
+        // Use panchang location ONLY — panchang data depends on where the user IS,
+        // not where they were born. If no panchang location is set, skip this user
+        // rather than sending email with wrong-location data.
+        const lat = sub.panchang_location_lat;
+        const lng = sub.panchang_location_lng;
+        const tz = sub.panchang_location_timezone;
+        const locName = sub.panchang_location_name;
+        if (!email || !lat || !lng || !tz) {
+          // No panchang location configured — skip user, don't send wrong data
+          continue;
+        }
 
         const now = new Date();
-        const tzOffset = tz
-          ? getTimezoneOffset(tz, now)
-          : 5.5; // fallback IST
+        const tzOffset = getTimezoneOffset(tz, now);
 
         const panchang = computePanchang({
           year: now.getFullYear(),

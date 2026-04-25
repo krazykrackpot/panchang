@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/stores/auth-store';
+import { useLocationStore } from '@/stores/location-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { computePersonalizedDay } from '@/lib/personalization/personal-panchang';
 import { computeGochar } from '@/lib/personalization/gochar';
@@ -812,10 +813,13 @@ export default function DashboardPage() {
         .eq('user_id', user.id)
         .single();
 
-      // Fetch today's panchang
-      const lat = profile?.birth_lat || 28.6139;
-      const lng = profile?.birth_lng || 77.209;
-      const panchangRes = await fetch(`/api/panchang?lat=${lat}&lng=${lng}`);
+      // Fetch today's panchang — uses CURRENT location (where the user is now),
+      // NOT birth location. Panchang elements (sunrise, Rahu Kaal, etc.) are location-dependent.
+      const locStore = useLocationStore.getState();
+      const panchangLat = locStore.lat ?? 46.47;
+      const panchangLng = locStore.lng ?? 6.86;
+      const panchangTz = locStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'Europe/Zurich';
+      const panchangRes = await fetch(`/api/panchang?lat=${panchangLat}&lng=${panchangLng}&timezone=${encodeURIComponent(panchangTz)}`);
       const fetchedPanchang = panchangRes.ok ? await panchangRes.json() : null;
       if (fetchedPanchang) setPanchangData(fetchedPanchang as PanchangData);
 

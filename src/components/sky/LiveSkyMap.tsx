@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import * as d3 from 'd3';
 import { type SkyPlanetPosition } from '@/lib/sky/positions';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -22,6 +23,10 @@ const R_NAKSHATRA_INNER = 222;
 const R_NAKSHATRA_OUTER = 262;
 const R_TICK_OUTER = 262;
 
+/** Zoom constraints */
+const ZOOM_MIN = 0.5;
+const ZOOM_MAX = 4;
+
 /** Planet colors by id (0=Sun … 8=Ketu) */
 const PLANET_COLORS: Record<number, string> = {
   0: '#FF9500', // Sun — amber-orange
@@ -38,6 +43,19 @@ const PLANET_COLORS: Record<number, string> = {
 /** Planet short labels for chart */
 const PLANET_SHORT: Record<number, string> = {
   0: 'Su', 1: 'Mo', 2: 'Ma', 3: 'Me', 4: 'Ju', 5: 'Ve', 6: 'Sa', 7: 'Ra', 8: 'Ke',
+};
+
+/** Glow filter IDs per planet */
+const PLANET_GLOW_IDS: Record<number, string> = {
+  0: 'glow-sun',
+  1: 'glow-moon',
+  2: 'glow-mars',
+  3: 'glow-mercury',
+  4: 'glow-jupiter',
+  5: 'glow-venus',
+  6: 'glow-saturn',
+  7: 'glow-rahu',
+  8: 'glow-ketu',
 };
 
 /** Element colors for rashi segments (15% opacity fill) */
@@ -101,6 +119,20 @@ function annularSectorPath(
 }
 
 /**
+ * SVG arc path for a partial arc (trail).
+ * startDeg / endDeg: sidereal degrees, radius: circle radius
+ */
+function arcPath(startDeg: number, endDeg: number, radius: number): string {
+  const start = polarToXY(startDeg, radius);
+  const end = polarToXY(endDeg, radius);
+  const span = endDeg - startDeg;
+  // Normalize span to always be positive (going clockwise)
+  const normalizedSpan = ((span % 360) + 360) % 360;
+  const largeArc = normalizedSpan > 180 ? 1 : 0;
+  return `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArc} 1 ${end.x} ${end.y}`;
+}
+
+/**
  * Format degrees as "DD°MM'" string.
  */
 function formatDMS(deg: number): string {
@@ -108,6 +140,49 @@ function formatDMS(deg: number): string {
   const mFrac = (deg - d) * 60;
   const m = Math.floor(mFrac);
   return `${d}°${String(m).padStart(2, '0')}'`;
+}
+
+// ----------------------------------------------------------------------------
+// SVG Defs: glow filters + retrograde animation
+// ----------------------------------------------------------------------------
+
+function SvgDefs() {
+  return (
+    <defs>
+      {/* Background radial gradient */}
+      <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stopColor="#1a1f45" stopOpacity={0.6} />
+        <stop offset="100%" stopColor="#0a0e27" stopOpacity={0} />
+      </radialGradient>
+
+      {/* Planet track gradient ring */}
+      <radialGradient id="trackGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="88%" stopColor="#8a6d2b" stopOpacity={0} />
+        <stop offset="95%" stopColor="#d4a853" stopOpacity={0.18} />
+        <stop offset="100%" stopColor="#8a6d2b" stopOpacity={0} />
+      </radialGradient>
+
+      {/* Per-planet glow filters */}
+      {Object.entries(PLANET_COLORS).map(([idStr, color]) => {
+        const id = Number(idStr);
+        const filterId = PLANET_GLOW_IDS[id];
+        return (
+          <filter key={filterId} id={filterId} x="-80%" y="-80%" width="260%" height="260%">
+            {/* Blur the source graphic */}
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="blur" />
+            {/* Colorise the blur with the planet color */}
+            <feFlood floodColor={color} floodOpacity={0.65} result="flood" />
+            <feComposite in="flood" in2="blur" operator="in" result="coloredBlur" />
+            {/* Merge halo + original */}
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        );
+      })}
+    </defs>
+  );
 }
 
 // ----------------------------------------------------------------------------
@@ -178,8 +253,6 @@ function NakshatraRing() {
         const endDeg = startDeg + nakshatraSpan;
         const midDeg = startDeg + nakshatraSpan / 2;
 
-        // Show label for every nakshatra but alternate size for clarity
-        const showLabel = true;
         const midPt = polarToXY(midDeg, (R_NAKSHATRA_INNER + R_NAKSHATRA_OUTER) / 2);
 
         return (
@@ -192,19 +265,17 @@ function NakshatraRing() {
               strokeOpacity={0.25}
               strokeWidth={0.5}
             />
-            {showLabel && (
-              <text
-                x={midPt.x}
-                y={midPt.y}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                fontSize={i % 3 === 0 ? 6.5 : 5.5}
-                fill={i % 3 === 0 ? '#a08030' : '#6a5a28'}
-                style={{ userSelect: 'none', pointerEvents: 'none' }}
-              >
-                {nak.name.en.substring(0, 4)}
-              </text>
-            )}
+            <text
+              x={midPt.x}
+              y={midPt.y}
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fontSize={i % 3 === 0 ? 6.5 : 5.5}
+              fill={i % 3 === 0 ? '#a08030' : '#6a5a28'}
+              style={{ userSelect: 'none', pointerEvents: 'none' }}
+            >
+              {nak.name.en.substring(0, 4)}
+            </text>
           </g>
         );
       })}
@@ -275,6 +346,57 @@ function CenterSymbol() {
 }
 
 // ----------------------------------------------------------------------------
+// Planet trail arcs (last ~30° of motion as a thin colored arc)
+// ----------------------------------------------------------------------------
+
+function PlanetTrails({ positions }: { positions: SkyPlanetPosition[] }) {
+  return (
+    <g aria-label="Planet trail arcs">
+      {positions.map((planet) => {
+        const color = PLANET_COLORS[planet.id] ?? '#ffffff';
+        // Trail extends 30° behind the current longitude in the direction of recent motion.
+        // Direct planets: trail is behind (lon - 30° to lon)
+        // Retrograde planets: trail is behind in reverse direction (lon to lon + 30°)
+        const trailSpan = 28; // degrees
+        const trailStart = planet.isRetrograde
+          ? planet.siderealLongitude
+          : (planet.siderealLongitude - trailSpan + 360) % 360;
+        const trailEnd = planet.isRetrograde
+          ? (planet.siderealLongitude + trailSpan) % 360
+          : planet.siderealLongitude;
+
+        // Build a gradient along the trail: fade from 0 opacity to ~0.45
+        const gradId = `trail-grad-${planet.id}`;
+
+        return (
+          <g key={`trail-${planet.id}`}>
+            <defs>
+              {/* Gradient along the arc direction */}
+              <linearGradient id={gradId} gradientUnits="userSpaceOnUse"
+                x1={polarToXY(trailStart, R_PLANET_TRACK).x}
+                y1={polarToXY(trailStart, R_PLANET_TRACK).y}
+                x2={polarToXY(trailEnd, R_PLANET_TRACK).x}
+                y2={polarToXY(trailEnd, R_PLANET_TRACK).y}
+              >
+                <stop offset="0%" stopColor={color} stopOpacity={0} />
+                <stop offset="100%" stopColor={color} stopOpacity={0.45} />
+              </linearGradient>
+            </defs>
+            <path
+              d={arcPath(trailStart, trailEnd, R_PLANET_TRACK)}
+              fill="none"
+              stroke={`url(#${gradId})`}
+              strokeWidth={2.2}
+              strokeLinecap="round"
+            />
+          </g>
+        );
+      })}
+    </g>
+  );
+}
+
+// ----------------------------------------------------------------------------
 // Tooltip
 // ----------------------------------------------------------------------------
 
@@ -289,22 +411,30 @@ interface PlanetMarkersProps {
   onHover: (data: TooltipData | null) => void;
   onSelect: (planet: SkyPlanetPosition | null) => void;
   selectedId: number | null;
+  /** Whether the component has mounted (drives entry animation) */
+  mounted: boolean;
 }
 
-function PlanetMarkers({ positions, onHover, onSelect, selectedId }: PlanetMarkersProps) {
+function PlanetMarkers({ positions, onHover, onSelect, selectedId, mounted }: PlanetMarkersProps) {
   return (
     <g aria-label="Planet markers">
       {positions.map((planet) => {
         const pt = polarToXY(planet.siderealLongitude, R_PLANET_TRACK);
         const color = PLANET_COLORS[planet.id] ?? '#ffffff';
         const isSelected = selectedId === planet.id;
+        const filterId = PLANET_GLOW_IDS[planet.id];
+
+        // Entry animation: planets animate from center to their position when mounted
+        // We use a CSS transition on transform. The <g> starts at center, then moves to pt.
+        const translateX = mounted ? pt.x - CX : 0;
+        const translateY = mounted ? pt.y - CY : 0;
 
         return (
           <g
             key={planet.id}
+            transform={`translate(${CX}, ${CY})`}
             style={{ cursor: 'pointer' }}
             onMouseEnter={(e) => {
-              // Map SVG coords to screen for tooltip positioning
               onHover({ planet, x: e.clientX, y: e.clientY });
             }}
             onMouseLeave={() => onHover(null)}
@@ -318,61 +448,61 @@ function PlanetMarkers({ positions, onHover, onSelect, selectedId }: PlanetMarke
               }
             }}
           >
-            {/* Retrograde pulsing ring (CSS animation applied via className) */}
-            {planet.isRetrograde && (
-              <circle
-                cx={pt.x}
-                cy={pt.y}
-                r={11}
-                fill="none"
-                stroke="#DC143C"
-                strokeWidth={1.2}
-                strokeOpacity={0.7}
-                className="animate-ping"
-                style={{ transformOrigin: `${pt.x}px ${pt.y}px` }}
-              />
-            )}
-
-            {/* Selection ring */}
-            {isSelected && (
-              <circle
-                cx={pt.x}
-                cy={pt.y}
-                r={13}
-                fill="none"
-                stroke={color}
-                strokeWidth={1.5}
-                strokeOpacity={0.9}
-              />
-            )}
-
-            {/* Planet dot */}
-            <circle
-              cx={pt.x}
-              cy={pt.y}
-              r={7}
-              fill={color}
-              fillOpacity={0.9}
-              stroke="#0a0e27"
-              strokeWidth={1.2}
-            />
-
-            {/* Planet letter */}
-            <text
-              x={pt.x}
-              y={pt.y}
-              textAnchor="middle"
-              dominantBaseline="central"
-              fontSize={6}
-              fontWeight="700"
-              fill="#0a0e27"
-              style={{ userSelect: 'none', pointerEvents: 'none' }}
+            {/* Inner group that moves from center on mount */}
+            <g
+              transform={`translate(${translateX}, ${translateY})`}
+              style={{ transition: 'transform 1s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
             >
-              {PLANET_SHORT[planet.id]}
-            </text>
+              {/* Retrograde pulsing ring — gentle CSS pulse, replaces aggressive animate-ping */}
+              {planet.isRetrograde && (
+                <circle
+                  r={13}
+                  fill="none"
+                  stroke="#DC143C"
+                  strokeWidth={1.5}
+                  strokeOpacity={0.75}
+                  style={{
+                    animation: 'retrograde-pulse 2s ease-in-out infinite',
+                  }}
+                />
+              )}
 
-            {/* Planet name label — offset outward from center */}
-            <PlanetLabel planet={planet} pt={pt} color={color} />
+              {/* Selection ring */}
+              {isSelected && (
+                <circle
+                  r={15}
+                  fill="none"
+                  stroke={color}
+                  strokeWidth={1.8}
+                  strokeOpacity={0.9}
+                />
+              )}
+
+              {/* Planet glow + dot */}
+              <circle
+                r={9}
+                fill={color}
+                fillOpacity={0.92}
+                stroke="#0a0e27"
+                strokeWidth={1.4}
+                filter={`url(#${filterId})`}
+              />
+
+              {/* Planet letter */}
+              <text
+                textAnchor="middle"
+                dominantBaseline="central"
+                fontSize={7}
+                fontWeight="800"
+                fill="#0a0e27"
+                style={{ userSelect: 'none', pointerEvents: 'none' }}
+              >
+                {PLANET_SHORT[planet.id]}
+              </text>
+
+              {/* Planet name label — offset outward from planet center */}
+              <PlanetLabelOffset planet={planet} color={color} pt={pt} />
+            </g>
           </g>
         );
       })}
@@ -380,8 +510,8 @@ function PlanetMarkers({ positions, onHover, onSelect, selectedId }: PlanetMarke
   );
 }
 
-/** Label placed radially outside the planet dot */
-function PlanetLabel({
+/** Label placed radially outside the planet dot, offset from the translated origin */
+function PlanetLabelOffset({
   planet,
   pt,
   color,
@@ -395,16 +525,20 @@ function PlanetLabel({
   const dy = pt.y - CY;
   const dist = Math.sqrt(dx * dx + dy * dy) || 1;
   const labelR = R_PLANET_TRACK + 22;
-  const lx = CX + (dx / dist) * labelR;
-  const ly = CY + (dy / dist) * labelR;
+  // Position relative to the planet dot's translate(CX+dx, CY+dy) origin
+  // The inner g is at (0,0) relative to the planet center (pt.x, pt.y)
+  // So the label offset is: from pt → outward
+  const lxRel = (dx / dist) * (labelR - R_PLANET_TRACK);
+  const lyRel = (dy / dist) * (labelR - R_PLANET_TRACK);
 
   return (
     <text
-      x={lx}
-      y={ly}
+      x={lxRel}
+      y={lyRel}
       textAnchor="middle"
       dominantBaseline="middle"
-      fontSize={8}
+      fontSize={8.5}
+      fontWeight="600"
       fill={color}
       style={{ userSelect: 'none', pointerEvents: 'none' }}
     >
@@ -536,6 +670,55 @@ function Row({
 }
 
 // ----------------------------------------------------------------------------
+// Zoom control buttons (HTML overlay on the SVG)
+// ----------------------------------------------------------------------------
+
+interface ZoomControlsProps {
+  onZoomIn: () => void;
+  onZoomOut: () => void;
+  onReset: () => void;
+  zoomLevel: number;
+}
+
+function ZoomControls({ onZoomIn, onZoomOut, onReset, zoomLevel }: ZoomControlsProps) {
+  const btnClass =
+    'w-8 h-8 flex items-center justify-center rounded-lg bg-[#111633]/90 border border-[#8a6d2b]/40 text-[#d4a853] hover:bg-[#1a2050] hover:border-[#d4a853]/60 hover:text-[#f0d48a] transition-all text-sm font-semibold select-none';
+
+  return (
+    <div className="absolute top-3 right-3 flex flex-col gap-1.5 z-10">
+      <button className={btnClass} onClick={onZoomIn} aria-label="Zoom in" title="Zoom in">
+        +
+      </button>
+      <button className={btnClass} onClick={onZoomOut} aria-label="Zoom out" title="Zoom out">
+        −
+      </button>
+      <button
+        className={`${btnClass} text-[10px]`}
+        onClick={onReset}
+        aria-label="Reset zoom"
+        title="Reset zoom"
+        style={{ opacity: Math.abs(zoomLevel - 1) > 0.05 ? 1 : 0.4 }}
+      >
+        ⊙
+      </button>
+    </div>
+  );
+}
+
+// ----------------------------------------------------------------------------
+// Inline CSS for retrograde pulse animation
+// (Avoids creating a separate CSS file; scoped to this component)
+// ----------------------------------------------------------------------------
+
+const RETROGRADE_CSS = `
+@keyframes retrograde-pulse {
+  0%   { r: 13; opacity: 0.75; }
+  50%  { r: 16; opacity: 0.35; }
+  100% { r: 13; opacity: 0.75; }
+}
+`;
+
+// ----------------------------------------------------------------------------
 // Main exported component
 // ----------------------------------------------------------------------------
 
@@ -551,10 +734,68 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [loading, setLoading] = useState(initialPositions === undefined);
   const [error, setError] = useState<string | null>(null);
+  /** Whether the component has fully mounted — drives planet entry animation */
+  const [mounted, setMounted] = useState(false);
+  /** Current D3 zoom transform (k = scale, x/y = translation) */
+  const [zoomTransform, setZoomTransform] = useState<d3.ZoomTransform>(d3.zoomIdentity);
 
+  const svgRef = useRef<SVGSVGElement>(null);
+  // Store the d3 zoom object so we can call zoomIn/Out/Reset imperatively
+  const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null);
+
+  // ---- D3 zoom setup --------------------------------------------------------
+  useEffect(() => {
+    const svgEl = svgRef.current;
+    if (!svgEl) return;
+
+    const zoom = d3
+      .zoom<SVGSVGElement, unknown>()
+      .scaleExtent([ZOOM_MIN, ZOOM_MAX])
+      // Constrain panning so the chart never flies completely off-screen
+      .translateExtent([
+        [-SVG_SIZE, -SVG_SIZE],
+        [SVG_SIZE * 2, SVG_SIZE * 2],
+      ])
+      .on('zoom', (event: d3.D3ZoomEvent<SVGSVGElement, unknown>) => {
+        setZoomTransform(event.transform);
+      });
+
+    zoomRef.current = zoom;
+
+    // Attach zoom to the SVG element
+    d3.select(svgEl).call(zoom);
+
+    // Clean up on unmount
+    return () => {
+      d3.select(svgEl).on('.zoom', null);
+    };
+  }, []);
+
+  // ---- Zoom control handlers ------------------------------------------------
+  const handleZoomIn = useCallback(() => {
+    const svgEl = svgRef.current;
+    const zoom = zoomRef.current;
+    if (!svgEl || !zoom) return;
+    d3.select(svgEl).transition().duration(300).call(zoom.scaleBy, 1.4);
+  }, []);
+
+  const handleZoomOut = useCallback(() => {
+    const svgEl = svgRef.current;
+    const zoom = zoomRef.current;
+    if (!svgEl || !zoom) return;
+    d3.select(svgEl).transition().duration(300).call(zoom.scaleBy, 1 / 1.4);
+  }, []);
+
+  const handleZoomReset = useCallback(() => {
+    const svgEl = svgRef.current;
+    const zoom = zoomRef.current;
+    if (!svgEl || !zoom) return;
+    d3.select(svgEl).transition().duration(400).call(zoom.transform, d3.zoomIdentity);
+  }, []);
+
+  // ---- Data fetching --------------------------------------------------------
   const fetchPositions = useCallback(async () => {
     try {
-      // We use the API endpoint so positions are computed server-side
       const res = await fetch('/api/sky/positions');
       if (!res.ok) {
         const body = await res.json().catch(() => ({})) as { error?: string };
@@ -582,6 +823,12 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
     }
   }, [fetchPositions, initialPositions]);
 
+  // Trigger entry animation after mount (small delay so CSS transition fires)
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
   // Auto-refresh every 60s (Moon moves ~0.55° per hour, noticeable over a minute)
   useEffect(() => {
     const timer = setInterval(() => {
@@ -606,54 +853,81 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
     );
   }
 
+  // Build the CSS transform string for the zoomable <g>
+  const { k, x, y } = zoomTransform;
+  const transformStr = `translate(${x},${y}) scale(${k})`;
+
   return (
     <div className="flex flex-col lg:flex-row gap-6 items-start w-full">
+      {/* Inject retrograde animation keyframes */}
+      <style>{RETROGRADE_CSS}</style>
+
       {/* SVG Chart */}
       <div className="relative flex-shrink-0">
         <svg
+          ref={svgRef}
           viewBox={`0 0 ${SVG_SIZE} ${SVG_SIZE}`}
           width={SVG_SIZE}
           height={SVG_SIZE}
           className="max-w-full"
-          style={{ background: 'transparent' }}
-          aria-label="Live Sky Map — sidereal ecliptic polar projection"
+          style={{ background: 'transparent', cursor: 'grab' }}
+          aria-label="Live Sky Map — sidereal ecliptic polar projection (scroll to zoom, drag to pan)"
           role="img"
         >
-          {/* Starfield background glow */}
-          <defs>
-            <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#1a1f45" stopOpacity={0.6} />
-              <stop offset="100%" stopColor="#0a0e27" stopOpacity={0} />
-            </radialGradient>
-          </defs>
+          <SvgDefs />
+
+          {/* Background glow (fixed — not zoomed) */}
           <circle cx={CX} cy={CY} r={SVG_SIZE / 2} fill="url(#bgGlow)" />
 
-          {/* Outermost orbit reference ring */}
-          <circle cx={CX} cy={CY} r={R_TICK_OUTER} fill="none" stroke="#8a6d2b" strokeOpacity={0.15} strokeWidth={0.5} />
+          {/* All chart content inside a zoomable group */}
+          <g transform={transformStr}>
+            {/* Outermost orbit reference ring */}
+            <circle cx={CX} cy={CY} r={R_TICK_OUTER} fill="none" stroke="#8a6d2b" strokeOpacity={0.15} strokeWidth={0.5} />
 
-          {/* Nakshatra ring (outermost labeled ring) */}
-          <NakshatraRing />
+            {/* Nakshatra ring (outermost labeled ring) */}
+            <NakshatraRing />
 
-          {/* Rashi ring */}
-          <RashiRing />
+            {/* Rashi ring */}
+            <RashiRing />
 
-          {/* Degree markers */}
-          <DegreeMarkers />
+            {/* Degree markers */}
+            <DegreeMarkers />
 
-          {/* Planet track ring (reference circle) */}
-          <circle cx={CX} cy={CY} r={R_PLANET_TRACK} fill="none" stroke="#8a6d2b" strokeOpacity={0.12} strokeWidth={0.8} strokeDasharray="2 4" />
+            {/* Planet track ring — gradient ring instead of dashed */}
+            <circle
+              cx={CX}
+              cy={CY}
+              r={R_PLANET_TRACK}
+              fill="url(#trackGlow)"
+              stroke="#d4a853"
+              strokeOpacity={0.2}
+              strokeWidth={1.2}
+            />
 
-          {/* Planet markers */}
-          <PlanetMarkers
-            positions={positions}
-            onHover={setTooltip}
-            onSelect={setSelectedPlanet}
-            selectedId={selectedPlanet?.id ?? null}
-          />
+            {/* Planet trail arcs */}
+            <PlanetTrails positions={positions} />
 
-          {/* Center */}
-          <CenterSymbol />
+            {/* Planet markers */}
+            <PlanetMarkers
+              positions={positions}
+              onHover={setTooltip}
+              onSelect={setSelectedPlanet}
+              selectedId={selectedPlanet?.id ?? null}
+              mounted={mounted}
+            />
+
+            {/* Center */}
+            <CenterSymbol />
+          </g>
         </svg>
+
+        {/* Zoom controls overlay */}
+        <ZoomControls
+          onZoomIn={handleZoomIn}
+          onZoomOut={handleZoomOut}
+          onReset={handleZoomReset}
+          zoomLevel={zoomTransform.k}
+        />
 
         {/* Tooltip overlay */}
         {tooltip && <Tooltip data={tooltip} />}
@@ -677,7 +951,8 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
           <div className="bg-[#111633]/60 border border-[#8a6d2b]/20 rounded-xl p-4 text-[#8a8478] text-sm">
             <p className="font-medium text-[#d4a853] mb-1">Live Sky Map</p>
             <p>Click any planet to see detailed position data.</p>
-            <p className="mt-2 text-xs">Hover to preview. Positions update every 60 seconds.</p>
+            <p className="mt-2 text-xs">Scroll to zoom · Drag to pan · Hover to preview.</p>
+            <p className="mt-1 text-xs">Positions update every 60 seconds.</p>
           </div>
         )}
       </div>

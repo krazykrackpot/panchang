@@ -943,6 +943,59 @@ export default function PanchangClient() {
             );
           })()}
 
+          {/* ═══ SUN & MOON SIGN + DAY INFO ═══ */}
+          {(() => {
+            const sunPlanet = panchang.planets.find(p => p.id === 0);
+            const moonPlanet = panchang.planets.find(p => p.id === 1);
+            const sunRashiData = RASHIS[(panchang.sunSign?.rashi || sunPlanet?.rashi || 1) - 1];
+            const moonRashiData = RASHIS[(panchang.moonSign?.rashi || moonPlanet?.rashi || 1) - 1];
+            const sunNakData = NAKSHATRAS[(panchang.sunSign?.nakshatra || sunPlanet?.nakshatra || 1) - 1];
+            const moonNakData = NAKSHATRAS[(panchang.moonSign?.nakshatra || 1) - 1];
+
+            return (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-5 my-8">
+                {/* Sun Sign */}
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border border-amber-500/15">
+                  <div className="flex justify-center mb-2"><RashiIconById id={panchang.sunSign?.rashi || sunPlanet?.rashi || 1} size={48} /></div>
+                  <div className="text-amber-400 text-xs uppercase tracking-wider font-bold">{msg('sunSign', locale)}</div>
+                  <div className="text-gold-light font-bold text-lg mt-1" style={headingFont}>{(sunRashiData?.name[locale] || sunRashiData?.name?.en || '')}</div>
+                  <div className="text-text-secondary text-xs mt-1">{(sunNakData?.name[locale] || sunNakData?.name?.en || '')}</div>
+                </motion.div>
+
+                {/* Moon Sign */}
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}
+                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border border-indigo-500/15">
+                  <div className="flex justify-center mb-2"><RashiIconById id={panchang.moonSign?.rashi || moonPlanet?.rashi || 1} size={48} /></div>
+                  <div className="text-indigo-400 text-xs uppercase tracking-wider font-bold">{msg('moonSign', locale)}</div>
+                  <div className="text-gold-light font-bold text-lg mt-1" style={headingFont}>{(moonRashiData?.name[locale] || moonRashiData?.name?.en || '')}</div>
+                  <div className="text-text-secondary text-xs mt-1">
+                    {(moonNakData?.name[locale] || moonNakData?.name?.en || '')}
+                    {panchang.moonSign?.pada ? ` · ${msg('pada', locale)} ${panchang.moonSign.pada}` : ''}
+                  </div>
+                </motion.div>
+
+                {/* Dinamana / Ratrimana */}
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.16 }}
+                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center">
+                  <div className="flex justify-center mb-2"><Sun className="w-10 h-10 text-gold-primary" /></div>
+                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{msg('dayDuration', locale)}</div>
+                  <div className="text-gold-light font-bold text-lg font-mono mt-1">{panchang.dinamana || '—'}</div>
+                  <div className="text-text-secondary text-xs mt-1.5 uppercase tracking-wider">{msg('nightLabel', locale)}: <span className="font-mono text-text-primary">{panchang.ratrimana || '—'}</span></div>
+                </motion.div>
+
+                {/* Madhyahna */}
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.24 }}
+                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center">
+                  <div className="flex justify-center mb-2"><Clock className="w-10 h-10 text-gold-primary" /></div>
+                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{msg('madhyahna', locale)}</div>
+                  <div className="text-gold-light font-bold text-2xl font-mono mt-1">{panchang.madhyahna || '—'}</div>
+                  <div className="text-text-secondary text-xs mt-1">{msg('localMidday', locale)}</div>
+                </motion.div>
+              </div>
+            );
+          })()}
+
           {/* ═══ NAKSHATRA ACTIVITY GUIDE ═══ */}
           {panchang.nakshatra?.id && (
             <div className="my-10">
@@ -2405,59 +2458,6 @@ export default function PanchangClient() {
           </div>
 
           <GoldDivider />
-
-          {/* ═══ SUN & MOON SIGN + DAY INFO ═══ */}
-          {(() => {
-            const sunPlanet = panchang.planets.find(p => p.id === 0);
-            const moonPlanet = panchang.planets.find(p => p.id === 1);
-            const sunRashiData = RASHIS[(panchang.sunSign?.rashi || sunPlanet?.rashi || 1) - 1];
-            const moonRashiData = RASHIS[(panchang.moonSign?.rashi || moonPlanet?.rashi || 1) - 1];
-            const sunNakData = NAKSHATRAS[(panchang.sunSign?.nakshatra || sunPlanet?.nakshatra || 1) - 1];
-            const moonNakData = NAKSHATRAS[(panchang.moonSign?.nakshatra || 1) - 1];
-
-            return (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-5 my-14">
-                {/* Sun Sign */}
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border border-amber-500/15">
-                  <div className="flex justify-center mb-2"><RashiIconById id={panchang.sunSign?.rashi || sunPlanet?.rashi || 1} size={48} /></div>
-                  <div className="text-amber-400 text-xs uppercase tracking-wider font-bold">{msg('sunSign', locale)}</div>
-                  <div className="text-gold-light font-bold text-lg mt-1" style={headingFont}>{(sunRashiData?.name[locale] || sunRashiData?.name?.en || '')}</div>
-                  <div className="text-text-secondary text-xs mt-1">{(sunNakData?.name[locale] || sunNakData?.name?.en || '')}</div>
-                </motion.div>
-
-                {/* Moon Sign */}
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}
-                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border border-indigo-500/15">
-                  <div className="flex justify-center mb-2"><RashiIconById id={panchang.moonSign?.rashi || moonPlanet?.rashi || 1} size={48} /></div>
-                  <div className="text-indigo-400 text-xs uppercase tracking-wider font-bold">{msg('moonSign', locale)}</div>
-                  <div className="text-gold-light font-bold text-lg mt-1" style={headingFont}>{(moonRashiData?.name[locale] || moonRashiData?.name?.en || '')}</div>
-                  <div className="text-text-secondary text-xs mt-1">
-                    {(moonNakData?.name[locale] || moonNakData?.name?.en || '')}
-                    {panchang.moonSign?.pada ? ` · ${msg('pada', locale)} ${panchang.moonSign.pada}` : ''}
-                  </div>
-                </motion.div>
-
-                {/* Dinamana / Ratrimana */}
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.16 }}
-                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center">
-                  <div className="flex justify-center mb-2"><Sun className="w-10 h-10 text-gold-primary" /></div>
-                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{msg('dayDuration', locale)}</div>
-                  <div className="text-gold-light font-bold text-lg font-mono mt-1">{panchang.dinamana || '—'}</div>
-                  <div className="text-text-secondary text-xs mt-1.5 uppercase tracking-wider">{msg('nightLabel', locale)}: <span className="font-mono text-text-primary">{panchang.ratrimana || '—'}</span></div>
-                </motion.div>
-
-                {/* Madhyahna */}
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.24 }}
-                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center">
-                  <div className="flex justify-center mb-2"><Clock className="w-10 h-10 text-gold-primary" /></div>
-                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{msg('madhyahna', locale)}</div>
-                  <div className="text-gold-light font-bold text-2xl font-mono mt-1">{panchang.madhyahna || '—'}</div>
-                  <div className="text-text-secondary text-xs mt-1">{msg('localMidday', locale)}</div>
-                </motion.div>
-              </div>
-            );
-          })()}
 
           {/* ═══ UDAYA LAGNA ═══ */}
           {panchang.udayaLagna && panchang.udayaLagna.length > 0 && (

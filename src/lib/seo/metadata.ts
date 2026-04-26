@@ -205,6 +205,19 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     keywords: ['kp system', 'krishnamurti paddhati', 'sub lord', 'placidus houses', 'kp astrology'],
   },
+  '/tropical-compare': {
+    title: {
+      en: 'Sidereal vs Tropical — Your Real Star Signs',
+      hi: 'सायन बनाम निरयन — आपकी असली राशि',
+      sa: 'सायनं निरयनं च',
+    },
+    description: {
+      en: 'Discover why your Vedic signs differ from Western astrology. See all 9 planets compared side by side.',
+      hi: 'जानें क्यों वैदिक राशि पश्चिमी ज्योतिष से भिन्न है',
+      sa: 'वैदिकराशिपाश्चात्यज्योतिषयोर्भेदः',
+    },
+    keywords: ['sidereal vs tropical', 'vedic vs western astrology', 'precession of equinoxes', 'real zodiac sign'],
+  },
   '/sign-calculator': {
     title: {
       en: 'Sun & Moon Sign Calculator — Find Your Rashi',

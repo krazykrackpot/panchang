@@ -137,6 +137,7 @@ const routes = [
   '/nadi-jyotish',
   '/mundane',
   '/glossary',
+  '/tropical-compare',
   '/sign-calculator',
   '/sade-sati',
   '/prashna',

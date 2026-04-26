@@ -156,6 +156,9 @@ export interface PanchangData {
   kaliAhargana?: number;
   kaliyugaYear?: number;
   julianDay?: number;
+  // Audit trail / calculation transparency fields
+  moonLongitude?: number;      // Sidereal Moon longitude (degrees)
+  moonElongation?: number;     // Moon - Sun elongation (degrees), defines tithi
   panchaka?: { active: boolean; type?: LocaleText };
   shivaVaas?: { name: LocaleText; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed'; tithis: number[] };
   agniVaas?: { name: LocaleText; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed'; validUntil?: string };

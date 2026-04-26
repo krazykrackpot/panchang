@@ -1709,6 +1709,8 @@ export function computePanchang(input: PanchangInput): PanchangData {
     karana: karanaData,
     vara: { day: weekday, name: varaData.name, ruler: varaData.ruler },
     sunLongitude: sunSidLong,
+    moonLongitude: moonSid,
+    moonElongation: ((moonSid - sunSidLong + 360) % 360),
     sunrise: formatTime(sunriseUT, tzOffset),
     sunset: formatTime(sunsetUT, tzOffset),
     moonrise: getMoonriseForDisplay(jd, lat, lng, tzOffset, jdSunrise),

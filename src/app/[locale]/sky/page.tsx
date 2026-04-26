@@ -228,7 +228,7 @@ export default function SkyPage() {
             <LiveSkyMap locale={locale} />
           ) : (
             <div className="rounded-2xl border border-[#8a6d2b]/20 overflow-hidden" style={{ height: '70vh', minHeight: 500 }}>
-              <CelestialSphere3D autoRotate={autoRotate} />
+              <CelestialSphere3D autoRotate={autoRotate} locale={locale} />
             </div>
           )}
         </section>

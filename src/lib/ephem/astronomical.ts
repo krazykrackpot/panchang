@@ -850,3 +850,22 @@ export function formatDegrees(deg: number): string {
   const s = Math.floor((mFloat - m) * 60);
   return `${d}°${m.toString().padStart(2, '0')}'${s.toString().padStart(2, '0')}"`;
 }
+
+/**
+ * Compute the ascendant (lagna) degree for a given JD and geographic coordinates.
+ * Returns tropical longitude of the ascending point (0-360).
+ * To get sidereal: subtract lahiriAyanamsha(jd).
+ */
+export function calcAscendant(jd: number, lat: number, lng: number): number {
+  const T2 = (jd - 2451545.0) / 36525.0;
+  const gmst = 280.46061837 + 360.98564736629 * (jd - 2451545.0)
+    + 0.000387933 * T2 * T2 - T2 * T2 * T2 / 38710000;
+  const lst = normalizeDeg(gmst + lng);
+  const eps = 23.4393 - 0.013 * T2;
+  const epsRad = eps * Math.PI / 180;
+  const latRad = lat * Math.PI / 180;
+  const lstRad = lst * Math.PI / 180;
+  const y = -Math.cos(lstRad);
+  const x = Math.sin(epsRad) * Math.tan(latRad) + Math.cos(epsRad) * Math.sin(lstRad);
+  return normalizeDeg(Math.atan2(y, x) * 180 / Math.PI);
+}

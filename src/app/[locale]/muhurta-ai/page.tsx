@@ -1,13 +1,18 @@
 'use client';
 
+import { useState } from 'react';
 import { useLocale } from 'next-intl';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import LearnLink from '@/components/ui/LearnLink';
 import InfoBlock from '@/components/ui/InfoBlock';
 import { lt } from '@/lib/learn/translations';
+import { useLocationStore } from '@/stores/location-store';
+import type { MuhurtaWindow } from '@/lib/muhurta/smart-search';
 import MSG from '@/messages/pages/muhurta-ai.json';
 import type { LocaleText } from '@/types/panchang';
 import MuhurtaScannerClient from './MuhurtaScannerClient';
+import NLSearchBar from './components/NLSearchBar';
+import NLResultCards from './components/NLResultCards';
 
 const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 

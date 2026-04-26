@@ -40,6 +40,9 @@ import { tl as _tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import PMSG from '@/messages/pages/panchang-inline.json';
 import { usePreferenceStore, type TraditionPreference } from '@/stores/preference-store';
+import { HORA_PLANET_ACTIVITIES, computeHoraTable } from '@/lib/panchang/hora-engine';
+import { getVaraRemedies } from '@/lib/remedies/prescription-engine';
+import type { VaraRemedy } from '@/lib/remedies/prescription-engine';
 
 // Module-level msg helper — resolves inline locale labels from JSON
 const msg = (key: string, locale: string): string =>
@@ -1158,6 +1161,7 @@ export default function PanchangClient() {
                   { id: 'sec-calendar', label: isDevanagari ? 'कैलेंडर' : 'Calendar', affinity: 'all' },
                   { id: 'sec-choghadiya', label: isDevanagari ? 'चौघड़िया' : 'Choghadiya', affinity: 'north' },
                   { id: 'sec-planets', label: isDevanagari ? 'ग्रह' : 'Planets', affinity: 'south' },
+                  { id: 'sec-remedies', label: isDevanagari ? 'उपाय' : 'Remedies', affinity: 'all' },
                 ];
                 const sorted = tradition === 'all'
                   ? baseSections
@@ -2461,6 +2465,9 @@ export default function PanchangClient() {
                       {(slot.planet[locale] || slot.planet.en || '')}
                     </div>
                     <div className="font-mono text-xs text-text-secondary mt-1">{slot.startTime}—{slot.endTime}</div>
+                    <div className="text-text-secondary/70 text-[10px] mt-1 leading-tight">
+                      {isDevanagari ? HORA_PLANET_ACTIVITIES[slot.planetId]?.hi : HORA_PLANET_ACTIVITIES[slot.planetId]?.en}
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -2834,6 +2841,128 @@ export default function PanchangClient() {
                       {i === pp.periodIndex && <div className="text-[9px] text-gold-primary font-bold mt-0.5">▶ Now</div>}
                     </div>
                   ))}
+                </div>
+              </div>
+            );
+          })()}
+
+          <GoldDivider />
+
+          {/* ═══ TODAY'S REMEDIES ═══ */}
+          {panchang && (() => {
+            // Compute hora table for remedy timing
+            const horaTable = computeHoraTable(panchang.sunrise, panchang.sunset, panchang.sunrise, panchang.vara.day);
+            const varaRemedy: VaraRemedy = getVaraRemedies(panchang.vara.day, horaTable, locale);
+            const dayHoraWindows = varaRemedy.horaWindows.filter((_, i) => i < 4); // Show max 4 windows
+
+            return (
+              <div id="sec-remedies" className="my-14 scroll-mt-16">
+                <h2 className="text-3xl font-bold text-gold-gradient mb-2 text-center" style={headingFont}>
+                  {isDevanagari ? 'आज के उपाय' : "Today's Remedies"}
+                </h2>
+                <p className="text-text-secondary text-sm text-center mb-8 max-w-2xl mx-auto">
+                  {isDevanagari
+                    ? `${varaRemedy.message.hi}`
+                    : `${varaRemedy.message.en}`}
+                </p>
+
+                <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6">
+                  {/* Planet header */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-14 h-14 rounded-full bg-gold-primary/10 border border-gold-primary/20 flex items-center justify-center">
+                      <GrahaIconById id={varaRemedy.planet.id} size={32} />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gold-light" style={headingFont}>
+                        {isDevanagari ? varaRemedy.planet.name.hi : varaRemedy.planet.name.en}
+                      </h3>
+                      <span className="inline-block mt-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/20">
+                        {isDevanagari ? 'अनुशंसित' : 'Recommended'}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Hora windows */}
+                  <div className="mb-5">
+                    <h4 className="text-xs uppercase tracking-wider text-gold-dark font-bold mb-2">
+                      {isDevanagari ? 'श्रेष्ठ होरा समय' : 'Optimal Hora Windows'}
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {dayHoraWindows.map((hw, i) => (
+                        <div key={i} className="px-3 py-1.5 rounded-lg bg-gold-primary/8 border border-gold-primary/15">
+                          <span className="font-mono text-xs text-gold-light">{hw.start}</span>
+                          <span className="text-text-secondary/50 mx-1">—</span>
+                          <span className="font-mono text-xs text-gold-light">{hw.end}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Prescription grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {/* Mantra */}
+                    <div className="rounded-xl bg-bg-secondary/60 border border-gold-primary/8 p-4">
+                      <h5 className="text-[10px] uppercase tracking-wider text-gold-dark font-bold mb-2">
+                        {isDevanagari ? 'बीज मंत्र' : 'Beej Mantra'}
+                      </h5>
+                      <p className="text-gold-light text-lg font-bold" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
+                        {varaRemedy.mantra.beej}
+                      </p>
+                      <p className="text-text-secondary/60 text-[10px] mt-1">
+                        {varaRemedy.mantra.count}x {isDevanagari ? 'जप' : 'recitations'}
+                      </p>
+                    </div>
+
+                    {/* Charity */}
+                    <div className="rounded-xl bg-bg-secondary/60 border border-gold-primary/8 p-4">
+                      <h5 className="text-[10px] uppercase tracking-wider text-gold-dark font-bold mb-2">
+                        {isDevanagari ? 'दान' : 'Charity'}
+                      </h5>
+                      <p className="text-text-primary text-sm">
+                        {isDevanagari ? varaRemedy.charity.item.hi : varaRemedy.charity.item.en}
+                      </p>
+                      <p className="text-text-secondary/60 text-[10px] mt-1">
+                        {isDevanagari ? varaRemedy.charity.direction.hi : varaRemedy.charity.direction.en}
+                      </p>
+                    </div>
+
+                    {/* Color */}
+                    <div className="rounded-xl bg-bg-secondary/60 border border-gold-primary/8 p-4">
+                      <h5 className="text-[10px] uppercase tracking-wider text-gold-dark font-bold mb-2">
+                        {isDevanagari ? 'आज का रंग' : 'Color of the Day'}
+                      </h5>
+                      <p className="text-text-primary text-sm">
+                        {isDevanagari ? varaRemedy.color.hi : varaRemedy.color.en}
+                      </p>
+                    </div>
+
+                    {/* Gemstone */}
+                    <div className="rounded-xl bg-bg-secondary/60 border border-gold-primary/8 p-4">
+                      <h5 className="text-[10px] uppercase tracking-wider text-gold-dark font-bold mb-2">
+                        {isDevanagari ? 'रत्न' : 'Gemstone'}
+                      </h5>
+                      <p className="text-text-primary text-sm">
+                        {isDevanagari ? varaRemedy.gemstone.hi : varaRemedy.gemstone.en}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Login prompt for personalized remedies */}
+                  {!authUser && (
+                    <div className="mt-5 pt-4 border-t border-gold-primary/8 text-center">
+                      <p className="text-text-secondary/60 text-xs">
+                        {isDevanagari
+                          ? 'व्यक्तिगत उपाय के लिए जन्मकुंडली बनाएं →'
+                          : 'Generate your Kundali for personalized remedy prescriptions →'}
+                      </p>
+                      <Link
+                        href="/kundali"
+                        className="inline-block mt-2 px-4 py-1.5 rounded-full text-xs font-medium bg-gold-primary/10 text-gold-light border border-gold-primary/20 hover:bg-gold-primary/20 transition-colors"
+                      >
+                        {isDevanagari ? 'कुंडली बनाएं' : 'Create Kundali'}
+                      </Link>
+                    </div>
+                  )}
                 </div>
               </div>
             );

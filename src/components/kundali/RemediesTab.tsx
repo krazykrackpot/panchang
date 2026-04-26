@@ -9,6 +9,8 @@ import {
   type GemstoneRecommendation,
   type NeedLevel,
 } from '@/lib/remedies/gemstone-engine';
+import { computeHoraTable, getHoraWindowsForPlanet, type HoraSlot } from '@/lib/panchang/hora-engine';
+import { PLANET_REMEDIES_FULL } from '@/lib/tippanni/remedies-enhanced';
 import type { KundaliData } from '@/types/kundali';
 import type { LocaleText } from '@/types/panchang';
 
@@ -56,6 +58,102 @@ const NEED_LEVEL_CONFIG: Record<NeedLevel, { label: string; labelHi: string; bar
 
 const NEED_ORDER: NeedLevel[] = ['critical', 'recommended', 'optional', 'not_needed'];
 
+/** Map: planet id → best weekday name (en/hi) */
+const PLANET_BEST_DAY: Record<number, { en: string; hi: string }> = {
+  0: { en: 'Sunday', hi: 'रविवार' },
+  1: { en: 'Monday', hi: 'सोमवार' },
+  2: { en: 'Tuesday', hi: 'मंगलवार' },
+  3: { en: 'Wednesday', hi: 'बुधवार' },
+  4: { en: 'Thursday', hi: 'गुरुवार' },
+  5: { en: 'Friday', hi: 'शुक्रवार' },
+  6: { en: 'Saturday', hi: 'शनिवार' },
+  7: { en: 'Saturday', hi: 'शनिवार' },   // Rahu → Saturday
+  8: { en: 'Tuesday', hi: 'मंगलवार' },   // Ketu → Tuesday
+};
+
+/** Map: planet id → weekday number (0=Sunday) for "is today" check */
+const PLANET_BEST_WEEKDAY: Record<number, number> = {
+  0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 6, 8: 2,
+};
+
+/** Map: ordinal suffix helper */
+function ordinalHouse(n: number): string {
+  const s = ['th', 'st', 'nd', 'rd'];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
+/** Build a short "why" explanation for the planet's weakness */
+function buildWhyExplanation(
+  kundali: KundaliData,
+  planetId: number,
+  isEn: boolean,
+): string {
+  const planet = kundali.planets.find(p => p.planet.id === planetId);
+  if (!planet) return '';
+
+  const parts: string[] = [];
+  const pName = isEn ? (planet.planet.name.en ?? '') : (planet.planet.name.hi ?? planet.planet.name.en ?? '');
+  const signName = isEn ? (planet.signName.en ?? '') : (planet.signName.hi ?? planet.signName.en ?? '');
+
+  if (planet.isDebilitated) {
+    parts.push(isEn
+      ? `${pName} is debilitated in ${signName}, its weakest placement.`
+      : `${pName} ${signName} में नीच है, यह इसकी सबसे कमज़ोर स्थिति है।`);
+  } else if (planet.isCombust) {
+    parts.push(isEn
+      ? `${pName} is combust (too close to Sun), reducing its significations.`
+      : `${pName} अस्त है (सूर्य के अत्यन्त समीप), इसके कारकत्व कमज़ोर हैं।`);
+  }
+
+  const dusthanas = new Set([6, 8, 12]);
+  if (dusthanas.has(planet.house)) {
+    parts.push(isEn
+      ? `Placed in the ${ordinalHouse(planet.house)} house (dusthana — house of challenge).`
+      : `${ordinalHouse(planet.house)} भाव (दुष्टस्थान) में स्थित।`);
+  }
+
+  // Shadbala check
+  const sb = kundali.shadbala.find(s => s.planet === planet.planet.name.en);
+  if (sb && sb.totalStrength < 40) {
+    parts.push(isEn
+      ? `Low Shadbala strength (${sb.totalStrength.toFixed(0)}%) — needs energizing.`
+      : `कम षड्बल (${sb.totalStrength.toFixed(0)}%) — बल वृद्धि आवश्यक।`);
+  }
+
+  // Dasha relevance
+  const now = new Date().toISOString().split('T')[0];
+  const planetName = planet.planet.name.en;
+  if (kundali.dashas?.length) {
+    for (const maha of kundali.dashas) {
+      if (maha.startDate <= now && maha.endDate >= now) {
+        if (maha.planet === planetName) {
+          parts.push(isEn
+            ? `Currently running ${pName} Mahadasha — remedies are especially potent now.`
+            : `वर्तमान में ${pName} महादशा चल रही है — उपाय अत्यन्त प्रभावी।`);
+        } else if (maha.subPeriods) {
+          for (const antar of maha.subPeriods) {
+            if (antar.startDate <= now && antar.endDate >= now && antar.planet === planetName) {
+              parts.push(isEn
+                ? `Currently in ${pName} Antardasha — a timely window for remedies.`
+                : `वर्तमान ${pName} अन्तर्दशा — उपायों का उचित समय।`);
+              break;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  if (parts.length === 0) {
+    parts.push(isEn
+      ? `${pName} could benefit from strengthening through remedial measures.`
+      : `${pName} को उपचारात्मक उपायों से बल मिल सकता है।`);
+  }
+
+  return parts.join(' ');
+}
+
 // ─── Component ──────────────────────────────────────────────────────────────
 
 export default function RemediesTab({ kundali, locale }: RemediesTabProps) {
@@ -66,6 +164,16 @@ export default function RemediesTab({ kundali, locale }: RemediesTabProps) {
     () => generateGemstoneRecommendations(kundali),
     [kundali],
   );
+
+  // Compute today's hora table using approximate sunrise/sunset
+  // (exact panchang data isn't available as a prop — use 06:00/18:00 default)
+  const horaTable = useMemo(() => {
+    const today = new Date();
+    const varaDay = today.getDay(); // 0=Sunday
+    return computeHoraTable('06:00', '18:00', '06:00', varaDay);
+  }, []);
+
+  const todayWeekday = useMemo(() => new Date().getDay(), []);
 
   // Group by need level
   const grouped = useMemo(() => {
@@ -137,6 +245,9 @@ export default function RemediesTab({ kundali, locale }: RemediesTabProps) {
                     rec={rec}
                     locale={locale}
                     isEn={isEn}
+                    horaTable={horaTable}
+                    todayWeekday={todayWeekday}
+                    kundali={kundali}
                   />
                 ))}
               </div>
@@ -154,16 +265,42 @@ function GemstoneCard({
   rec,
   locale,
   isEn,
+  horaTable,
+  todayWeekday,
+  kundali,
 }: {
   rec: GemstoneRecommendation;
   locale: string;
   isEn: boolean;
+  horaTable: HoraSlot[];
+  todayWeekday: number;
+  kundali: KundaliData;
 }) {
   const [expanded, setExpanded] = useState(rec.needLevel === 'critical' || rec.needLevel === 'recommended');
   const config = NEED_LEVEL_CONFIG[rec.needLevel];
   const gemColor = GEMSTONE_COLORS[rec.planetId] ?? '#d4a853';
   const remedy = rec.remedy;
   const planetName = tl(rec.planetName, locale);
+
+  // Get hora windows for this planet (Rahu uses Saturn hora, Ketu uses Mars hora)
+  const horaId = rec.planetId <= 6 ? rec.planetId : (rec.planetId === 7 ? 6 : 2);
+  const planetHoraWindows = useMemo(
+    () => getHoraWindowsForPlanet(horaTable, horaId),
+    [horaTable, horaId],
+  );
+
+  // Best day check
+  const bestDay = PLANET_BEST_DAY[rec.planetId] ?? { en: 'Saturday', hi: 'शनिवार' };
+  const isBestDayToday = PLANET_BEST_WEEKDAY[rec.planetId] === todayWeekday;
+
+  // Full remedy data from PLANET_REMEDIES_FULL
+  const fullRemedy = PLANET_REMEDIES_FULL[rec.planetId];
+
+  // "Why" explanation
+  const whyText = useMemo(
+    () => buildWhyExplanation(kundali, rec.planetId, isEn),
+    [kundali, rec.planetId, isEn],
+  );
 
   return (
     <div
@@ -308,6 +445,98 @@ function GemstoneCard({
             <p className="text-sm text-text-secondary">{tl(remedy.charity.items, locale)}</p>
             <p className="text-xs text-text-secondary/60 mt-1">{tl(remedy.fasting, locale)}</p>
           </div>
+
+          {/* ── Today's Hora Windows ── */}
+          {planetHoraWindows.length > 0 && (
+            <div>
+              <h4 className="text-gold-light font-semibold text-xs uppercase tracking-wider mb-2">
+                {isEn ? "Today's Hora Windows" : 'आज के होरा समय'}
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {planetHoraWindows.map((hw, i) => (
+                  <div
+                    key={i}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-mono ${
+                      hw.isDay
+                        ? 'bg-amber-500/10 border border-amber-500/20 text-amber-300'
+                        : 'bg-indigo-500/10 border border-indigo-500/20 text-indigo-300'
+                    }`}
+                  >
+                    {hw.startTime} - {hw.endTime}
+                    <span className="ml-1.5 opacity-60">{hw.isDay ? (isEn ? 'day' : 'दिन') : (isEn ? 'night' : 'रात')}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="text-text-secondary/40 text-[10px] mt-1.5">
+                {isEn
+                  ? 'Perform mantra japa or wear gemstone during these planetary hours for maximum effect.'
+                  : 'अधिकतम प्रभाव के लिए इन ग्रह-होराओं में मन्त्र जप या रत्न धारण करें।'}
+              </p>
+            </div>
+          )}
+
+          {/* ── Best Day Indicator ── */}
+          <div className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs ${
+            isBestDayToday
+              ? 'bg-green-500/10 border border-green-500/20'
+              : 'bg-white/[0.02] border border-white/5'
+          }`}>
+            {isBestDayToday && (
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shrink-0" />
+            )}
+            <span className={isBestDayToday ? 'text-green-300 font-medium' : 'text-text-secondary'}>
+              {isEn ? 'Best Day: ' : 'सर्वोत्तम दिन: '}
+              <span className="text-text-primary">{isEn ? bestDay.en : bestDay.hi}</span>
+              {isBestDayToday && (
+                <span className="ml-1.5 text-green-400">
+                  {isEn ? '— Today!' : '— आज!'}
+                </span>
+              )}
+            </span>
+          </div>
+
+          {/* ── Charity Details (expanded) ── */}
+          {fullRemedy && (
+            <div>
+              <h4 className="text-gold-light font-semibold text-xs uppercase tracking-wider mb-2">
+                {isEn ? 'Charity & Worship' : 'दान एवं पूजा'}
+              </h4>
+              <div className="bg-white/[0.02] rounded-xl border border-white/5 px-4 py-3 space-y-2">
+                <div className="flex items-start gap-2 text-sm">
+                  <span className="text-text-secondary/50 shrink-0 w-16">{isEn ? 'Donate' : 'दान'}</span>
+                  <span className="text-text-secondary">{tl(fullRemedy.charity.items, locale)}</span>
+                </div>
+                <div className="flex items-start gap-2 text-sm">
+                  <span className="text-text-secondary/50 shrink-0 w-16">{isEn ? 'Deity' : 'देवता'}</span>
+                  <span className="text-text-secondary">{tl(fullRemedy.charity.deity, locale)}</span>
+                </div>
+                <div className="flex items-start gap-2 text-sm">
+                  <span className="text-text-secondary/50 shrink-0 w-16">{isEn ? 'Direction' : 'दिशा'}</span>
+                  <span className="text-text-secondary">{tl(fullRemedy.direction, locale)}</span>
+                </div>
+                <div className="flex items-start gap-2 text-sm">
+                  <span className="text-text-secondary/50 shrink-0 w-16">{isEn ? 'Color' : 'रंग'}</span>
+                  <span className="text-text-secondary">{tl(fullRemedy.color, locale)}</span>
+                </div>
+                <div className="flex items-start gap-2 text-sm">
+                  <span className="text-text-secondary/50 shrink-0 w-16">{isEn ? 'Fasting' : 'व्रत'}</span>
+                  <span className="text-text-secondary">{tl(fullRemedy.fasting, locale)}</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ── Why This Remedy (chart context) ── */}
+          {whyText && (
+            <div>
+              <h4 className="text-gold-light font-semibold text-xs uppercase tracking-wider mb-2">
+                {isEn ? 'Why This Remedy' : 'यह उपाय क्यों'}
+              </h4>
+              <p className="text-sm text-text-secondary/80 leading-relaxed bg-gradient-to-r from-[#2d1b69]/20 to-transparent rounded-xl px-4 py-3 border-l-2 border-gold-primary/30">
+                {whyText}
+              </p>
+            </div>
+          )}
 
           {/* Cautions */}
           {rec.cautions.length > 0 && (

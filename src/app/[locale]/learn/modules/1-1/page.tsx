@@ -10,6 +10,7 @@ import L from '@/messages/learn/modules/1-1.json';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import BeginnerNote from '@/components/learn/BeginnerNote';
 import WhyItMatters from '@/components/learn/WhyItMatters';
+import QuickCheck from '@/components/learn/QuickCheck';
 
 const META: ModuleMeta = {
   id: 'mod_1_1',
@@ -73,6 +74,13 @@ function Page1() {
           The celestial sphere itself is called <span className="text-gold-light">Khagola</span> (खगोल) — Kha = sky/space, Gola = sphere. The word "Khagol-shastra" (खगोलशास्त्र) — the science of the celestial sphere — is the Sanskrit term for astronomy.
         </p>
       </section>
+
+      <QuickCheck
+        question="What is the ecliptic?"
+        options={["The Moon's orbit around Earth", "The Sun's apparent annual path through the sky", 'The boundary between constellations', "Earth's equator projected onto the sky"]}
+        correctIndex={1}
+        explanation="The ecliptic is the Sun's apparent path — really Earth's orbital plane projected onto the celestial sphere. All planets stay within about 8 degrees of this line."
+      />
     </div>
   );
 }

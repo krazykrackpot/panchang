@@ -9,6 +9,7 @@ import L from '@/messages/learn/modules/0-6.json';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import BeginnerNote from '@/components/learn/BeginnerNote';
 import WhyItMatters from '@/components/learn/WhyItMatters';
+import QuickCheck from '@/components/learn/QuickCheck';
 
 const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -99,6 +100,13 @@ function Page1() {
           {t('aryabhataCorrectlyExplainedThatThe', locale)}
         </p>
       </section>
+
+      <QuickCheck
+        question="Why is Ekadashi (the 11th tithi) significant for fasting?"
+        options={["It's a lucky number", "Moon's gravitational pull on body fluids is shifting", 'Ancient superstition', "It's the longest day"]}
+        correctIndex={1}
+        explanation="Modern chronobiology confirms that the Moon's elongation at Ekadashi (~132 degrees) coincides with changes in body fluid dynamics."
+      />
     </div>
   );
 }

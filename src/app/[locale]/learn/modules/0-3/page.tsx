@@ -10,6 +10,7 @@ import L from '@/messages/learn/modules/0-3.json';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import BeginnerNote from '@/components/learn/BeginnerNote';
 import WhyItMatters from '@/components/learn/WhyItMatters';
+import QuickCheck from '@/components/learn/QuickCheck';
 
 const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -92,6 +93,13 @@ function Page1() {
           {t('eachNakshatraSpans13Degrees', locale)}
         </p>
       </section>
+
+      <QuickCheck
+        question="Your Vedic Moon sign is likely different from your Western Sun sign because..."
+        options={['Different zodiac system (sidereal vs tropical)', 'Different planet (Moon vs Sun)', 'Different calendar', 'All of the above']}
+        correctIndex={0}
+        explanation="Both reasons contribute: Vedic uses Moon sign + sidereal zodiac, Western uses Sun sign + tropical zodiac. But the zodiac difference is the primary cause of sign-letter shifts."
+      />
     </div>
   );
 }

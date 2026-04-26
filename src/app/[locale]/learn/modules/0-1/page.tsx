@@ -4,6 +4,7 @@ import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale 
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import BeginnerNote from '@/components/learn/BeginnerNote';
 import WhyItMatters from '@/components/learn/WhyItMatters';
+import QuickCheck from '@/components/learn/QuickCheck';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 import { lt } from '@/lib/learn/translations';
@@ -114,6 +115,13 @@ function Page1() {
           {t('aryabhataDidnTJustCalculate', locale)}
         </p>
       </section>
+
+      <QuickCheck
+        question="Which zodiac system does Vedic astrology use?"
+        options={['Tropical (seasons)', 'Sidereal (stars)', 'Both equally', 'Neither']}
+        correctIndex={1}
+        explanation="Sidereal means star-based — Vedic astrology tracks actual star positions, unlike Western astrology which tracks seasons."
+      />
     </div>
   );
 }
@@ -205,6 +213,13 @@ function Page2() {
           </p>
         </div>
       </section>
+
+      <QuickCheck
+        question="How many 'wandering stars' (grahas) did ancient Indian astronomers identify?"
+        options={['5', '7', '9', '12']}
+        correctIndex={2}
+        explanation="9 grahas: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, plus Rahu and Ketu (the lunar nodes)."
+      />
     </div>
   );
 }

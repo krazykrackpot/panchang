@@ -10,6 +10,7 @@ import L from '@/messages/learn/modules/1-2.json';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import BeginnerNote from '@/components/learn/BeginnerNote';
 import WhyItMatters from '@/components/learn/WhyItMatters';
+import QuickCheck from '@/components/learn/QuickCheck';
 
 const META: ModuleMeta = {
   id: 'mod_1_2',
@@ -84,6 +85,13 @@ function Page1() {
         </p>
         <WhyItMatters locale={locale}>This dual coordinate system — signs AND nakshatras measured simultaneously — is unique to Vedic astrology and is what gives it finer resolution than any other astrological tradition.</WhyItMatters>
       </section>
+
+      <QuickCheck
+        question="How many degrees does each nakshatra span?"
+        options={['30 degrees', '13 degrees 20 minutes', '12 degrees', '15 degrees']}
+        correctIndex={1}
+        explanation="360 degrees divided by 27 nakshatras = 13 degrees 20 minutes each. This lunar grid is based on the Moon traversing about one nakshatra per day."
+      />
     </div>
   );
 }

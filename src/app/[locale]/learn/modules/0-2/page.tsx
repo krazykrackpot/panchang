@@ -9,6 +9,7 @@ import L from '@/messages/learn/modules/0-2.json';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import BeginnerNote from '@/components/learn/BeginnerNote';
 import WhyItMatters from '@/components/learn/WhyItMatters';
+import QuickCheck from '@/components/learn/QuickCheck';
 
 const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -99,6 +100,13 @@ function Page1() {
           {t('theIndianCalendarReformCommittee', locale)}
         </p>
       </section>
+
+      <QuickCheck
+        question="Why does Diwali fall on different Gregorian dates each year?"
+        options={['Leap years', 'Lunar calendar', 'Time zones', 'Random']}
+        correctIndex={1}
+        explanation="The Hindu calendar is lunisolar — months follow the Moon, so dates shift relative to the solar Gregorian calendar."
+      />
     </div>
   );
 }
@@ -166,6 +174,13 @@ function Page2() {
           </p>
         </div>
       </section>
+
+      <QuickCheck
+        question="What marks the beginning of a month in the Amanta system?"
+        options={['Full Moon', 'New Moon (Amavasya)', 'Solstice', 'Sunrise']}
+        correctIndex={1}
+        explanation="Amanta (South/West India) starts each month at Amavasya. Purnimanta (North) starts at Purnima."
+      />
     </div>
   );
 }

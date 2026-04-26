@@ -10,6 +10,7 @@ import L from '@/messages/learn/modules/1-3.json';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import BeginnerNote from '@/components/learn/BeginnerNote';
 import WhyItMatters from '@/components/learn/WhyItMatters';
+import QuickCheck from '@/components/learn/QuickCheck';
 
 const META: ModuleMeta = {
   id: 'mod_1_3',
@@ -103,6 +104,13 @@ function Page1() {
           </table>
         </div>
       </section>
+
+      <QuickCheck
+        question="Why does the sidereal zodiac use fixed stars as reference points?"
+        options={['Stars are brighter than planets', 'Stars maintain their relative positions over human timescales', 'Stars are closer to Earth', 'Stars were easier to name']}
+        correctIndex={1}
+        explanation="Fixed stars barely move over thousands of years, making them reliable anchors for the sidereal coordinate system. Planets move constantly, so they cannot serve as reference points."
+      />
     </div>
   );
 }

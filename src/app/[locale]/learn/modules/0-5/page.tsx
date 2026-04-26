@@ -11,6 +11,7 @@ import L from '@/messages/learn/modules/0-5.json';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import BeginnerNote from '@/components/learn/BeginnerNote';
 import WhyItMatters from '@/components/learn/WhyItMatters';
+import QuickCheck from '@/components/learn/QuickCheck';
 const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
 const META: ModuleMeta = {
@@ -92,6 +93,13 @@ function Page1() {
           {t('aryabhataCalculatedThatTheLagnaMoves', locale)}
         </p>
       </section>
+
+      <QuickCheck
+        question="What determines your Lagna (Ascendant)?"
+        options={['Your Sun sign', 'Your Moon sign', 'The rising sign at your exact birth time and place', "Your parents' charts"]}
+        correctIndex={2}
+        explanation="The Lagna changes every ~2 hours, which is why exact birth time is crucial for an accurate Kundali."
+      />
     </div>
   );
 }

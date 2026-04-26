@@ -12,6 +12,7 @@ import L from '@/messages/learn/modules/0-4.json';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import BeginnerNote from '@/components/learn/BeginnerNote';
 import WhyItMatters from '@/components/learn/WhyItMatters';
+import QuickCheck from '@/components/learn/QuickCheck';
 const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
 const META: ModuleMeta = {
@@ -96,6 +97,13 @@ function Page1() {
           {t('the7dayWeekWasInventedIndependently', locale)}
         </p>
       </section>
+
+      <QuickCheck
+        question="How many elements make up a Panchang?"
+        options={['3', '5', '7', '12']}
+        correctIndex={1}
+        explanation="Panch-ang = five limbs: Tithi, Vara, Nakshatra, Yoga, Karana."
+      />
     </div>
   );
 }

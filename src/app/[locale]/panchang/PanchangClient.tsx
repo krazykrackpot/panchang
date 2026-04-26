@@ -629,11 +629,22 @@ export default function PanchangClient() {
           </InfoBlock>
 
           {/* Learn links for the five panchang elements */}
-          <div className="flex flex-wrap gap-x-4 gap-y-1.5 justify-center mb-6">
+          <div className="flex flex-wrap gap-x-4 gap-y-1.5 justify-center mb-4">
             <LearnLink href="/learn/tithis" label={isDevanagari ? 'तिथि के बारे में जानें' : 'Learn about Tithis'} />
             <LearnLink href="/learn/nakshatras" label={isDevanagari ? 'नक्षत्र के बारे में जानें' : 'Learn about Nakshatras'} />
             <LearnLink href="/learn/yogas" label={isDevanagari ? 'योग के बारे में जानें' : 'Learn about Yogas'} />
             <LearnLink href="/learn/karanas" label={isDevanagari ? 'करण के बारे में जानें' : 'Learn about Karanas'} />
+          </div>
+
+          {/* Cross-link to Lunar Calendar view */}
+          <div className="flex justify-center mb-6">
+            <Link
+              href="/lunar-calendar"
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-gold-primary/25 text-gold-primary hover:bg-gold-primary/10 hover:text-gold-light transition-all text-xs font-medium"
+            >
+              <Moon className="w-3.5 h-3.5" />
+              {isDevanagari ? 'चंद्र कैलेंडर देखें' : 'See Lunar View'}
+            </Link>
           </div>
 
           {/* Today's Energy Weather — always visible */}

@@ -20,6 +20,8 @@ const SECTIONS = [
       { href: '/prashna', label: { en: 'Prashna', hi: 'प्रश्न', ta: 'பிரச்சினை', bn: 'প্রশ্ন' } },
       { href: '/baby-names', label: { en: 'Baby Names', hi: 'बच्चों के नाम', ta: 'குழந்தை பெயர்கள்', bn: 'শিশুর নাম' } },
       { href: '/sade-sati', label: { en: 'Sade Sati', hi: 'साढ़े साती', ta: 'சனிப்பெயர்ச்சி', bn: 'সাড়ে সাতি' } },
+      { href: '/cosmic-blueprint', label: { en: 'Cosmic Blueprint', hi: 'ब्रह्मांडीय नक्शा', ta: 'கோள வரைபடம்', bn: 'মহাজাগতিক ব্লুপ্রিন্ট' } },
+      { href: '/tropical-compare', label: { en: 'Vedic vs Tropical', hi: 'वैदिक vs उष्णकटिबंधीय', ta: 'வேதம் vs வெப்பமண்டலம்', bn: 'বৈদিক vs ট্রপিক্যাল' } },
     ],
   },
   {
@@ -33,6 +35,7 @@ const SECTIONS = [
       { href: '/muhurat', label: { en: 'Muhurat Calendar', hi: 'मुहूर्त कैलेंडर', ta: 'முகூர்த்த நாள்காட்டி', bn: 'মুহূর্ত ক্যালেন্ডার' } },
       { href: '/choghadiya', label: { en: 'Choghadiya', hi: 'चौघड़िया', ta: 'சோகடியா', bn: 'চৌঘড়িয়া' } },
       { href: '/rahu-kaal', label: { en: 'Rahu Kaal', hi: 'राहु काल', ta: 'ராகு காலம்', bn: 'রাহু কাল' } },
+      { href: '/lunar-calendar', label: { en: 'Lunar Calendar', hi: 'चंद्र कैलेंडर', ta: 'சந்திர நாட்காட்டி', bn: 'চন্দ্র ক্যালেন্ডার' } },
     ],
   },
   {
@@ -46,6 +49,7 @@ const SECTIONS = [
       { href: '/learn/yogas', label: { en: 'Yogas', hi: 'योग', ta: 'யோகங்கள்', bn: 'যোগ' } },
       { href: '/learn/karanas', label: { en: 'Karanas', hi: 'करण', ta: 'கரணங்கள்', bn: 'করণ' } },
       { href: '/learn/kundali', label: { en: 'Kundali Reading', hi: 'कुण्डली पठन', ta: 'குண்டலி படிப்பு', bn: 'কুণ্ডলি পাঠ' } },
+      { href: '/glossary', label: { en: 'Glossary', hi: 'शब्दकोश', ta: 'சொற்பொருள்', bn: 'শব্দকোষ' } },
     ],
   },
   {

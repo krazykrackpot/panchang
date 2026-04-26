@@ -4,6 +4,7 @@ import { useLocale } from 'next-intl';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
 import { tl } from '@/lib/utils/trilingual';
+import { sl } from '../scanner-labels';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
 
 interface DashaBannerProps {
@@ -40,7 +41,7 @@ export default function DashaBanner({
       <span className="text-[#a78bfa] text-base leading-none select-none">{sunSymbol}</span>
 
       {/* Running Dasha label */}
-      <span className="text-[#8a8478]">Running Dasha:</span>
+      <span className="text-[#8a8478]">{sl('runningDasha', locale)}</span>
       <span className="text-[#a78bfa] font-semibold">
         {mahaName} / {antarName} / {pratyantarName}
       </span>
@@ -48,7 +49,7 @@ export default function DashaBanner({
       {/* Until */}
       {antarEndDate && (
         <>
-          <span className="text-[#8a8478]">Until:</span>
+          <span className="text-[#8a8478]">{sl('until', locale)}</span>
           <span className="text-[#a78bfa] font-semibold">{antarEndDate}</span>
         </>
       )}
@@ -56,11 +57,11 @@ export default function DashaBanner({
       {/* Relevance note */}
       {antarFavourable ? (
         <span className="text-emerald-400 text-xs font-medium">
-          Favourable for this activity ✔
+          {sl('favorable', locale)}
         </span>
       ) : (
         <span className="text-amber-400 text-xs font-medium">
-          Caution — may suppress this activity
+          {sl('caution', locale)}
         </span>
       )}
 

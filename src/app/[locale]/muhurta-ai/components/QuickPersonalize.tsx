@@ -6,6 +6,7 @@ import { useLocale } from 'next-intl';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
+import { sl } from '../scanner-labels';
 
 interface QuickPersonalizeProps {
   birthNakshatra: number | null;
@@ -63,7 +64,7 @@ export default function QuickPersonalize({
     <div className="bg-[#111633]/60 border border-[#8a6d2b]/20 rounded-xl p-4 flex flex-wrap gap-4 items-end">
       {/* Birth Nakshatra */}
       <div className="flex flex-col gap-1">
-        <label className="text-[10px] uppercase tracking-wider text-[#8a8478]">Birth Nakshatra</label>
+        <label className="text-[10px] uppercase tracking-wider text-[#8a8478]">{sl('birthNakshatra', locale)}</label>
         <select
           value={birthNakshatra ?? ''}
           onChange={handleNakshatraChange}
@@ -80,7 +81,7 @@ export default function QuickPersonalize({
 
       {/* Birth Rashi */}
       <div className="flex flex-col gap-1">
-        <label className="text-[10px] uppercase tracking-wider text-[#8a8478]">Birth Rashi</label>
+        <label className="text-[10px] uppercase tracking-wider text-[#8a8478]">{sl('birthRashi', locale)}</label>
         <select
           value={birthRashi ?? ''}
           onChange={handleRashiChange}
@@ -97,12 +98,12 @@ export default function QuickPersonalize({
 
       {/* Info + link */}
       <div className="flex flex-col gap-1 ml-auto text-right">
-        <p className="text-[11px] text-[#8a8478]">Add birth details for personalized results</p>
+        <p className="text-[11px] text-[#8a8478]">{sl('quickPersonalizeInfo', locale)}</p>
         <Link
           href={`/${locale}/kundali`}
           className="text-[11px] text-[#d4a853] hover:text-[#f0d48a] transition-colors"
         >
-          Generate a full chart for dasha-personalized results →
+          {sl('fullChartCta', locale)}
         </Link>
       </div>
     </div>

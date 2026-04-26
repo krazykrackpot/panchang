@@ -4,6 +4,7 @@ import { useLocale } from 'next-intl';
 import { getAllExtendedActivities } from '@/lib/muhurta/activity-rules-extended';
 import { tl } from '@/lib/utils/trilingual';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
+import { sl } from '../scanner-labels';
 
 interface ScanControlsProps {
   activity: ExtendedActivityId;
@@ -36,7 +37,7 @@ export default function ScanControls({
     <div className="bg-[#111633] border border-[#8a6d2b]/30 rounded-xl p-4 flex flex-wrap gap-3 items-end">
       {/* Activity */}
       <div className="flex flex-col gap-1">
-        <label className="text-[10px] uppercase tracking-wider text-[#8a8478]">Activity</label>
+        <label className="text-[10px] uppercase tracking-wider text-[#8a8478]">{sl('activity', locale)}</label>
         <select
           value={activity}
           onChange={(e) => onActivityChange(e.target.value as ExtendedActivityId)}
@@ -53,7 +54,7 @@ export default function ScanControls({
 
       {/* Start Date */}
       <div className="flex flex-col gap-1">
-        <label className="text-[10px] uppercase tracking-wider text-[#8a8478]">From</label>
+        <label className="text-[10px] uppercase tracking-wider text-[#8a8478]">{sl('from', locale)}</label>
         <input
           type="date"
           value={startDate}
@@ -65,7 +66,7 @@ export default function ScanControls({
 
       {/* End Date */}
       <div className="flex flex-col gap-1">
-        <label className="text-[10px] uppercase tracking-wider text-[#8a8478]">To</label>
+        <label className="text-[10px] uppercase tracking-wider text-[#8a8478]">{sl('to', locale)}</label>
         <input
           type="date"
           value={endDate}
@@ -77,9 +78,9 @@ export default function ScanControls({
 
       {/* Location (read-only) */}
       <div className="flex flex-col gap-1">
-        <label className="text-[10px] uppercase tracking-wider text-[#8a8478]">Location</label>
+        <label className="text-[10px] uppercase tracking-wider text-[#8a8478]">{sl('location', locale)}</label>
         <div className="bg-[#161b42] border border-[#d4a853]/20 text-[#8a8478] rounded-lg px-3 py-2 text-sm min-w-[140px] truncate">
-          {locationName || 'No location set'}
+          {locationName || sl('noLocationSet', locale)}
         </div>
       </div>
 
@@ -89,7 +90,7 @@ export default function ScanControls({
         disabled={loading}
         className="ml-auto px-6 py-2.5 bg-gradient-to-br from-[#d4a853] to-[#8a6d2b] text-[#0a0e27] font-semibold rounded-lg text-sm hover:from-[#f0d48a] hover:to-[#d4a853] transition-all disabled:opacity-50"
       >
-        {loading ? 'Scanning…' : 'Scan Month'}
+        {loading ? sl('scanning', locale) : sl('scanMonth', locale)}
       </button>
     </div>
   );

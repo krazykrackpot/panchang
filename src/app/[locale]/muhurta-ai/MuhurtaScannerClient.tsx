@@ -7,6 +7,7 @@ import { useBirthDataStore } from '@/stores/birth-data-store';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
 import { tl } from '@/lib/utils/trilingual';
 import type { ExtendedActivityId, HeatmapCell, DetailWindow } from '@/types/muhurta-ai';
+import { sl } from './scanner-labels';
 import ScanControls from './components/ScanControls';
 import QuickPersonalize from './components/QuickPersonalize';
 import DashaBanner from './components/DashaBanner';
@@ -122,7 +123,7 @@ export default function MuhurtaScannerClient() {
       setDetailWindows(data.windows || []);
     } catch (err) {
       console.error('[muhurta-scanner] Detail scan failed:', err);
-      setError(err instanceof Error ? err.message : 'Detail scan failed. Please try again.');
+      setError(err instanceof Error ? err.message : sl('scanFailed', locale));
     } finally {
       setDetailLoading(false);
     }
@@ -223,7 +224,7 @@ export default function MuhurtaScannerClient() {
       setPeaks(peakResults);
     } catch (err) {
       console.error('[muhurta-scanner] Overview scan failed:', err);
-      setError(err instanceof Error ? err.message : 'Scan failed. Please try again.');
+      setError(err instanceof Error ? err.message : sl('scanFailed', locale));
     } finally {
       setOverviewLoading(false);
     }
@@ -244,10 +245,10 @@ export default function MuhurtaScannerClient() {
       {/* Page header */}
       <div className="text-center mb-8">
         <h1 className="font-[Cinzel] text-3xl font-semibold text-[#f0d48a] mb-1.5">
-          Muhurta Scanner
+          {sl('scannerTitle', locale)}
         </h1>
         <p className="text-[#8a8478] text-sm">
-          Find the most auspicious time for your activity — personalized to your birth chart
+          {sl('scannerSubtitle', locale)}
         </p>
       </div>
 
@@ -292,9 +293,9 @@ export default function MuhurtaScannerClient() {
         <>
           <div className="mt-6 mb-3">
             <h2 className="font-[Cinzel] text-base text-[#f0d48a] flex items-center gap-2">
-              Monthly Overview
+              {sl('monthlyOverview', locale)}
               <span className="font-sans text-[10px] bg-[#d4a853]/15 text-[#d4a853] px-2 py-0.5 rounded uppercase tracking-wider">
-                2-hour windows
+                {sl('pass1Label', locale)}
               </span>
             </h2>
           </div>
@@ -329,7 +330,7 @@ export default function MuhurtaScannerClient() {
         <>
           <div className="mt-6 mb-3">
             <h2 className="font-[Cinzel] text-base text-[#f0d48a]">
-              Best Windows for &ldquo;{activityLabel}&rdquo;
+              {sl('bestWindowsFor', locale)} &ldquo;{activityLabel}&rdquo;
             </h2>
           </div>
           <PeakCards peaks={peaks} onCardClick={(w) => handleDaySelect(w.date)} />
@@ -341,9 +342,9 @@ export default function MuhurtaScannerClient() {
         <>
           <div className="mt-6 mb-3">
             <h2 className="font-[Cinzel] text-base text-[#f0d48a] flex items-center gap-2">
-              Day Detail — {formatDisplayDate(selectedDate)}
+              {sl('dayDetail', locale)} — {formatDisplayDate(selectedDate)}
               <span className="font-sans text-[10px] bg-[#d4a853]/15 text-[#d4a853] px-2 py-0.5 rounded uppercase tracking-wider">
-                15-min resolution
+                {sl('pass2Label', locale)}
               </span>
             </h2>
           </div>
@@ -362,7 +363,7 @@ export default function MuhurtaScannerClient() {
         <>
           <div className="mt-6 mb-3">
             <h2 className="font-[Cinzel] text-base text-[#f0d48a]">
-              Score Breakdown — {selectedWindow.date}, {selectedWindow.startTime}
+              {sl('scoreBreakdown', locale)} — {selectedWindow.date}, {selectedWindow.startTime}
             </h2>
           </div>
           <ScoreBreakdown

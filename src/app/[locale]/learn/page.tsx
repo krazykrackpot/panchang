@@ -17,6 +17,7 @@ import L from '@/messages/learn/learn-index.json';
 import AuthorByline from '@/components/ui/AuthorByline';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import LearningPath from '@/components/learn/LearningPath';
+import ReviewSession from '@/components/learn/ReviewSession';
 
 const STATS = { modules: 104, references: 45, labs: 6, phases: 12 };
 
@@ -185,6 +186,13 @@ export default function LearnPage() {
           </div>
           <ArrowRight className="w-5 h-5 text-violet-400 group-hover:translate-x-1 transition-transform" />
         </Link>
+      )}
+
+      {/* ── Spaced Repetition Review ── */}
+      {hydrated && useLearningProgressStore.getState().getReviewDue().length > 0 && (
+        <div className="mb-8">
+          <ReviewSession locale={locale} />
+        </div>
       )}
 
       <AdUnit placement="leaderboard" className="max-w-4xl mx-auto" />

@@ -12,6 +12,7 @@ import { getNextModuleId, getModuleRef, isLastInPhase } from '@/lib/learn/module
 import { checkBadges } from '@/lib/learn/badges';
 import ShareButton from '@/components/ui/ShareButton';
 import BadgeUnlockToast from '@/components/learn/BadgeUnlockToast';
+import ReviewSession from '@/components/learn/ReviewSession';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Bilingual text helper for module content ──────────────────────────────
@@ -70,6 +71,8 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
   const [answered, setAnswered] = useState(false);
   const [score, setScore] = useState(0);
   const [quizComplete, setQuizComplete] = useState(false);
+  // Track which question indices the learner got wrong (for spaced repetition)
+  const [wrongIndices, setWrongIndices] = useState<Set<number>>(new Set());
 
   // Shuffle and pick 5 questions
   useEffect(() => {
@@ -103,6 +106,9 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
     const q = quizQuestions[currentQ];
     if (selectedAnswer === q.correctAnswer) {
       setScore(s => s + 1);
+    } else {
+      // Track wrong answer index for spaced repetition
+      setWrongIndices(prev => new Set(prev).add(currentQ));
     }
   };
 
@@ -124,6 +130,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
     setAnswered(false);
     setScore(0);
     setQuizComplete(false);
+    setWrongIndices(new Set());
   };
 
   const [showChallenge, setShowChallenge] = useState(false);
@@ -132,7 +139,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
   const passThreshold = Math.ceil(quizQuestions.length * 0.7);
   const passed = score >= passThreshold;
 
-  const { markPageRead, markQuizPassed, getPhaseProgress, hydrateFromStorage, hydrated, progress, streak } = useLearningProgressStore();
+  const { markPageRead, markQuizPassed, addToReview, getReviewDue, getPhaseProgress, hydrateFromStorage, hydrated, progress, streak } = useLearningProgressStore();
 
   // Hydrate store on mount
   useEffect(() => { hydrateFromStorage(); }, [hydrateFromStorage]);
@@ -144,21 +151,40 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
     }
   }, [currentPage, meta.id, hydrated, markPageRead]);
 
-  // Track quiz pass + check for new badges
+  // Track quiz pass + check for new badges + feed wrong answers to spaced repetition
   useEffect(() => {
-    if (quizComplete && passed && hydrated) {
-      markQuizPassed(meta.id, score);
-      // Check badges after a short delay to let the store update
-      setTimeout(() => {
-        const { newlyEarned } = checkBadges(
-          useLearningProgressStore.getState().progress,
-          useLearningProgressStore.getState().streak,
-        );
-        if (newlyEarned.length > 0) {
-          setNewBadges(newlyEarned);
-        }
-      }, 100);
+    if (quizComplete && hydrated) {
+      // Feed wrong answers into the spaced repetition review queue
+      for (const idx of wrongIndices) {
+        const q = quizQuestions[idx];
+        if (!q || q.type !== 'mcq' || !q.options) continue;
+        addToReview({
+          moduleId: meta.id,
+          question: q.question.en || '',
+          questionHi: q.question.hi || q.question.en || '',
+          options: q.options.map((o) => o.en || ''),
+          optionsHi: q.options.map((o) => o.hi || o.en || ''),
+          correctIndex: q.correctAnswer as number,
+          explanation: q.explanation.en || '',
+          explanationHi: q.explanation.hi || q.explanation.en || '',
+        });
+      }
+
+      if (passed) {
+        markQuizPassed(meta.id, score);
+        // Check badges after a short delay to let the store update
+        setTimeout(() => {
+          const { newlyEarned } = checkBadges(
+            useLearningProgressStore.getState().progress,
+            useLearningProgressStore.getState().streak,
+          );
+          if (newlyEarned.length > 0) {
+            setNewBadges(newlyEarned);
+          }
+        }, 100);
+      }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quizComplete, passed, score, meta.id, hydrated, markQuizPassed]);
 
   // Next module info for post-quiz flow
@@ -196,6 +222,13 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
           </span>
         </div>
       </div>
+
+      {/* Spaced Repetition Review — show before content if due items exist */}
+      {hydrated && getReviewDue().length > 0 && !showQuiz && (
+        <div className="mb-2">
+          <ReviewSession locale={locale} />
+        </div>
+      )}
 
       {/* Item 5: Prerequisite badge for advanced modules (Phase 3+) */}
       {meta.phase >= 3 && (

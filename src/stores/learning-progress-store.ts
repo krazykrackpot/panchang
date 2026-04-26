@@ -7,6 +7,20 @@ import { MODULE_SEQUENCE, getPhaseModules } from '@/lib/learn/module-sequence';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
+export interface ReviewItem {
+  moduleId: string;
+  question: string;       // en text of the question
+  questionHi: string;     // hi text of the question
+  options: string[];      // en option texts (for mcq)
+  optionsHi: string[];    // hi option texts (for mcq)
+  correctIndex: number;   // correct answer index
+  explanation: string;    // en explanation
+  explanationHi: string;  // hi explanation
+  nextReviewDate: string; // ISO date (YYYY-MM-DD) — when to show again
+  interval: number;       // days until next review (starts at 1, doubles on correct)
+  easeFactor: number;     // SM-2 ease factor (starts at 2.5)
+}
+
 export interface ModuleProgress {
   moduleId: string;
   status: 'in_progress' | 'mastered';
@@ -27,6 +41,7 @@ export interface StreakData {
 interface LearningProgressStore {
   progress: Record<string, ModuleProgress>;
   streak: StreakData;
+  reviewQueue: ReviewItem[];
   sidebarExpanded: boolean;
   hydrated: boolean;
 
@@ -36,6 +51,11 @@ interface LearningProgressStore {
   markQuizPassed: (moduleId: string, score: number) => void;
   checkAndUpdateStreak: () => void;
   toggleSidebar: () => void;
+
+  // Spaced repetition review
+  addToReview: (item: Omit<ReviewItem, 'nextReviewDate' | 'interval' | 'easeFactor'>) => void;
+  updateReview: (moduleId: string, question: string, correct: boolean) => void;
+  getReviewDue: () => ReviewItem[];
 
   getModuleStatus: (moduleId: string) => 'not_started' | 'in_progress' | 'mastered';
   getNextModule: () => string | null;
@@ -49,6 +69,7 @@ interface LearningProgressStore {
 const PROGRESS_KEY = 'dekho-panchang-learn-progress';
 const SIDEBAR_KEY = 'dekho-panchang-sidebar-state';
 const STREAK_KEY = 'dekho-panchang-learn-streak';
+const REVIEW_KEY = 'dekho-panchang-learn-review';
 
 // ── Default streak ────────────────────────────────────────────────────────────
 
@@ -159,6 +180,32 @@ function writeStreakToStorage(streak: StreakData): void {
   }
 }
 
+function readReviewFromStorage(): ReviewItem[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const raw = window.localStorage.getItem(REVIEW_KEY);
+    return raw ? (JSON.parse(raw) as ReviewItem[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeReviewToStorage(queue: ReviewItem[]): void {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(REVIEW_KEY, JSON.stringify(queue));
+  } catch {
+    // Storage quota exceeded — silently ignore
+  }
+}
+
+/** Get a date string N days from now in YYYY-MM-DD (local time) */
+function getFutureDateStr(days: number): string {
+  const d = new Date();
+  d.setDate(d.getDate() + days);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
 /** Get today's date string in YYYY-MM-DD (local time) */
 function getTodayStr(): string {
   const d = new Date();
@@ -206,6 +253,7 @@ function upsertToSupabase(entry: ModuleProgress): void {
 export const useLearningProgressStore = create<LearningProgressStore>((set, get) => ({
   progress: {},
   streak: { ...DEFAULT_STREAK },
+  reviewQueue: [],
   sidebarExpanded: true,
   hydrated: false,
 
@@ -215,6 +263,7 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
     const progress = readProgressFromStorage();
     const sidebarExpanded = readSidebarFromStorage();
     let streak = readStreakFromStorage();
+    const reviewQueue = readReviewFromStorage();
 
     // Reset freeze availability every Monday
     if (isTodayMonday() && !streak.streakFreezeAvailable) {
@@ -225,7 +274,7 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
       }
     }
 
-    set({ progress, streak, sidebarExpanded, hydrated: true });
+    set({ progress, streak, reviewQueue, sidebarExpanded, hydrated: true });
   },
 
   // ── Supabase sync ────────────────────────────────────────────────────────────
@@ -404,6 +453,63 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
     const next = !get().sidebarExpanded;
     set({ sidebarExpanded: next });
     writeSidebarToStorage(next);
+  },
+
+  // ── Spaced Repetition Review ─────────────────────────────────────────────────
+
+  addToReview: (item: Omit<ReviewItem, 'nextReviewDate' | 'interval' | 'easeFactor'>) => {
+    const queue = get().reviewQueue;
+    // Deduplicate by moduleId + question text (trimmed, lowercased)
+    const key = `${item.moduleId}::${item.question.trim().toLowerCase()}`;
+    const exists = queue.some(
+      (r) => `${r.moduleId}::${r.question.trim().toLowerCase()}` === key,
+    );
+    if (exists) return;
+
+    const newItem: ReviewItem = {
+      ...item,
+      nextReviewDate: getFutureDateStr(1), // review tomorrow
+      interval: 1,
+      easeFactor: 2.5,
+    };
+    const next = [...queue, newItem];
+    set({ reviewQueue: next });
+    writeReviewToStorage(next);
+  },
+
+  updateReview: (moduleId: string, question: string, correct: boolean) => {
+    const queue = get().reviewQueue;
+    const key = `${moduleId}::${question.trim().toLowerCase()}`;
+    const next = queue.map((r) => {
+      if (`${r.moduleId}::${r.question.trim().toLowerCase()}` !== key) return r;
+
+      if (correct) {
+        // SM-2: increase interval by ease factor
+        const newInterval = Math.round(r.interval * r.easeFactor);
+        return {
+          ...r,
+          interval: newInterval,
+          nextReviewDate: getFutureDateStr(newInterval),
+          // Ease factor stays the same or slightly increases on correct
+          easeFactor: Math.min(3.0, r.easeFactor + 0.1),
+        };
+      } else {
+        // Wrong: reset interval to 1 day, decrease ease factor
+        return {
+          ...r,
+          interval: 1,
+          nextReviewDate: getFutureDateStr(1),
+          easeFactor: Math.max(1.3, r.easeFactor - 0.2),
+        };
+      }
+    });
+    set({ reviewQueue: next });
+    writeReviewToStorage(next);
+  },
+
+  getReviewDue: () => {
+    const today = getTodayStr();
+    return get().reviewQueue.filter((r) => r.nextReviewDate <= today);
   },
 
   // ── Computed ─────────────────────────────────────────────────────────────────

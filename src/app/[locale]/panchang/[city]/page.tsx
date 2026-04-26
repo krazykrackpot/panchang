@@ -322,6 +322,44 @@ export default async function CityPanchangPage({
         </div>
       </div>
 
+      {/* ═══ CALCULATION PROOF — TRANSPARENT AUDIT TRAIL ═══ */}
+      <div className="mb-10">
+        <details className="group rounded-2xl border border-gold-primary/10 bg-bg-secondary/30">
+          <summary className="flex items-center gap-3 cursor-pointer px-6 py-4 text-gold-primary text-sm font-medium hover:text-gold-light transition-colors">
+            <ChevronRight size={16} className="group-open:rotate-90 transition-transform flex-shrink-0" />
+            {isHi ? 'गणना प्रमाण — पारदर्शी लेखा परीक्षा' : 'Calculation Proof — How These Values Were Computed'}
+          </summary>
+          <div className="px-6 pb-5 space-y-4 text-sm text-text-secondary">
+            <p className="text-text-secondary/70">
+              {isHi
+                ? `सभी मान ${cityName} के सटीक निर्देशांकों से गणना किए गए हैं। कोई सन्निकटन या डिफ़ॉल्ट नहीं।`
+                : `All values computed from ${city.name.en}'s exact coordinates using Swiss Ephemeris precision. No approximations or defaults.`}
+            </p>
+            <div className="grid grid-cols-2 gap-x-6 gap-y-2 bg-bg-primary/50 rounded-xl p-4 border border-white/5 font-mono text-xs">
+              <div className="text-text-secondary/50">{isHi ? 'अक्षांश' : 'Latitude'}</div>
+              <div className="text-text-primary">{city.lat.toFixed(4)}°{latDir}</div>
+              <div className="text-text-secondary/50">{isHi ? 'देशांतर' : 'Longitude'}</div>
+              <div className="text-text-primary">{city.lng.toFixed(4)}°{lngDir}</div>
+              <div className="text-text-secondary/50">{isHi ? 'समय क्षेत्र' : 'Timezone'}</div>
+              <div className="text-text-primary">{city.timezone} (UTC{tzOffset >= 0 ? '+' : ''}{tzOffset})</div>
+              <div className="text-text-secondary/50">{isHi ? 'अयनांश' : 'Ayanamsha'}</div>
+              <div className="text-text-primary">Lahiri (Chitrapaksha)</div>
+              <div className="text-text-secondary/50">{isHi ? 'सूर्य अवनति' : 'Sun Depression'}</div>
+              <div className="text-text-primary">-0.8333° (USNO standard refraction)</div>
+              <div className="text-text-secondary/50">{isHi ? 'तिथि सूत्र' : 'Tithi Formula'}</div>
+              <div className="text-text-primary">⌊(Moon° − Sun°) / 12⌋ + 1</div>
+              <div className="text-text-secondary/50">{isHi ? 'राहुकाल सूत्र' : 'Rahu Kaal'}</div>
+              <div className="text-text-primary">{isHi ? 'दिन का 1/8 भाग, वार-अनुसार' : '1/8th of daytime, weekday-indexed segment'}</div>
+            </div>
+            <p className="text-text-secondary/50 text-xs">
+              {isHi
+                ? 'तिथि संक्रमण समय 30-पुनरावृत्ति द्विभाजन खोज से निर्धारित, ~1 सेकंड सटीकता। सूर्योदय/सूर्यास्त मीउस एल्गोरिदम (2-पास) + वायुमण्डलीय अपवर्तन।'
+                : 'Tithi transitions determined by 30-iteration binary search on Moon-Sun elongation (~1-second precision). Sunrise/sunset via 2-pass Meeus algorithm with atmospheric refraction.'}
+            </p>
+          </div>
+        </details>
+      </div>
+
       {/* ═══ MUHURTA TABLE ═══ */}
       {panchang.muhurtas && panchang.muhurtas.length > 0 && (
         <div className="mb-10">

@@ -257,6 +257,19 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     keywords: ['muhurta', 'auspicious time', 'shubh muhurat', 'marriage muhurat', 'muhurta finder'],
   },
+  '/cosmic-blueprint': {
+    title: {
+      en: 'Cosmic Blueprint — Your Vedic Personality Profile',
+      hi: 'कॉस्मिक ब्लूप्रिंट — आपका वैदिक व्यक्तित्व',
+      sa: 'दैवनिर्माणम्',
+    },
+    description: {
+      en: 'Discover your cosmic archetype, life chapters, and psychological profile based on Vedic astrology.',
+      hi: 'वैदिक ज्योतिष पर आधारित आपका व्यक्तित्व प्रोफ़ाइल',
+      sa: 'वैदिकज्योतिषाधारितव्यक्तित्वम्',
+    },
+    keywords: ['cosmic blueprint', 'vedic personality', 'birth chart archetype', 'dasha life chapters'],
+  },
   '/baby-names': {
     title: {
       en: 'Baby Names by Nakshatra — Vedic Name Finder',

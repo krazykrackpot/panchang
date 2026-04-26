@@ -360,6 +360,331 @@ export async function GET(
     );
   }
 
+  // ── Blueprint Card ────────────────────────────────────────────────────────────
+  // Story-format card: Cosmic Blueprint archetype + dasha chapter
+  if (type === 'blueprint') {
+    const name = searchParams.get('name') ?? '';
+    const archetype = searchParams.get('archetype') ?? 'Unknown';
+    const planet = searchParams.get('planet') ?? '';
+    const currentChapter = searchParams.get('currentChapter') ?? '';
+    const currentDashaYears = searchParams.get('currentDashaYears') ?? '';
+    const nextChapter = searchParams.get('nextChapter') ?? '';
+    const nextDashaStart = searchParams.get('nextDashaStart') ?? '';
+    const headline = searchParams.get('headline') ?? '';
+
+    const isStory = format === 'story';
+    const isOg = format === 'og';
+
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: CARD_COLORS.navy,
+            backgroundImage: `radial-gradient(ellipse at 50% 20%, #1a1f4d 0%, ${CARD_COLORS.navy} 65%)`,
+            padding: isOg ? '48px 64px' : '80px 72px',
+            fontFamily: 'sans-serif',
+          }}
+        >
+          {/* Gold border frame */}
+          <div
+            style={{
+              position: 'absolute',
+              top: '20px',
+              left: '20px',
+              right: '20px',
+              bottom: '20px',
+              border: `1px solid ${CARD_COLORS.goldDark}44`,
+              borderRadius: '28px',
+              display: 'flex',
+            }}
+          />
+
+          {/* Corner ornaments — top left */}
+          <div
+            style={{
+              position: 'absolute',
+              top: '36px',
+              left: '36px',
+              width: isOg ? '32px' : '48px',
+              height: isOg ? '32px' : '48px',
+              borderTop: `2px solid ${CARD_COLORS.gold}88`,
+              borderLeft: `2px solid ${CARD_COLORS.gold}88`,
+              display: 'flex',
+            }}
+          />
+          {/* Corner ornaments — bottom right */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '36px',
+              right: '36px',
+              width: isOg ? '32px' : '48px',
+              height: isOg ? '32px' : '48px',
+              borderBottom: `2px solid ${CARD_COLORS.gold}88`,
+              borderRight: `2px solid ${CARD_COLORS.gold}88`,
+              display: 'flex',
+            }}
+          />
+
+          {/* ── Top tag ── */}
+          <div
+            style={{
+              position: 'absolute',
+              top: isOg ? '44px' : '72px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+            }}
+          >
+            <div style={{ width: isOg ? '20px' : '32px', height: '1px', backgroundColor: CARD_COLORS.gold, opacity: 0.5, display: 'flex' }} />
+            <div
+              style={{
+                fontSize: isOg ? '11px' : '14px',
+                letterSpacing: '5px',
+                textTransform: 'uppercase' as const,
+                color: CARD_COLORS.gold,
+                display: 'flex',
+              }}
+            >
+              COSMIC BLUEPRINT
+            </div>
+            <div style={{ width: isOg ? '20px' : '32px', height: '1px', backgroundColor: CARD_COLORS.gold, opacity: 0.5, display: 'flex' }} />
+          </div>
+
+          {/* ── Main content ── */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: isOg ? '14px' : '24px',
+              maxWidth: '88%',
+            }}
+          >
+            {/* Name */}
+            {name && (
+              <div
+                style={{
+                  fontSize: isOg ? '18px' : isStory ? '26px' : '22px',
+                  color: CARD_COLORS.text,
+                  opacity: 0.7,
+                  display: 'flex',
+                }}
+              >
+                {name}
+              </div>
+            )}
+
+            {/* Archetype + planet symbol */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: isOg ? '12px' : '16px',
+              }}
+            >
+              {planet && (
+                <div
+                  style={{
+                    fontSize: isOg ? '44px' : isStory ? '72px' : '56px',
+                    color: CARD_COLORS.gold,
+                    display: 'flex',
+                  }}
+                >
+                  {planet}
+                </div>
+              )}
+              <div
+                style={{
+                  fontSize: isOg ? '48px' : isStory ? '80px' : '64px',
+                  fontWeight: 900,
+                  color: CARD_COLORS.goldLight,
+                  display: 'flex',
+                  letterSpacing: '-1px',
+                  lineHeight: 1,
+                }}
+              >
+                {archetype}
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div
+              style={{
+                width: isOg ? '40px' : '64px',
+                height: '1px',
+                backgroundColor: CARD_COLORS.goldDark,
+                opacity: 0.6,
+                display: 'flex',
+              }}
+            />
+
+            {/* Current chapter */}
+            {currentChapter && (
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '4px',
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: isOg ? '13px' : '17px',
+                    color: CARD_COLORS.text,
+                    opacity: 0.5,
+                    display: 'flex',
+                    letterSpacing: '2px',
+                    textTransform: 'uppercase' as const,
+                  }}
+                >
+                  Currently in
+                </div>
+                <div
+                  style={{
+                    fontSize: isOg ? '24px' : isStory ? '36px' : '30px',
+                    fontWeight: 700,
+                    color: CARD_COLORS.gold,
+                    display: 'flex',
+                  }}
+                >
+                  {currentChapter}
+                </div>
+                {currentDashaYears && (
+                  <div
+                    style={{
+                      fontSize: isOg ? '14px' : '18px',
+                      color: CARD_COLORS.text,
+                      opacity: 0.6,
+                      display: 'flex',
+                    }}
+                  >
+                    {currentDashaYears}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Next chapter */}
+            {nextChapter && (
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '4px',
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: isOg ? '13px' : '17px',
+                    color: CARD_COLORS.text,
+                    opacity: 0.5,
+                    display: 'flex',
+                    letterSpacing: '2px',
+                    textTransform: 'uppercase' as const,
+                  }}
+                >
+                  Shifting to
+                </div>
+                <div
+                  style={{
+                    fontSize: isOg ? '22px' : isStory ? '32px' : '26px',
+                    fontWeight: 600,
+                    color: CARD_COLORS.text,
+                    display: 'flex',
+                  }}
+                >
+                  {nextChapter}
+                </div>
+                {nextDashaStart && (
+                  <div
+                    style={{
+                      fontSize: isOg ? '14px' : '18px',
+                      color: CARD_COLORS.text,
+                      opacity: 0.6,
+                      display: 'flex',
+                    }}
+                  >
+                    {nextDashaStart}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Headline quote */}
+            {headline && (
+              <div
+                style={{
+                  fontSize: isOg ? '14px' : '19px',
+                  color: CARD_COLORS.text,
+                  opacity: 0.65,
+                  textAlign: 'center',
+                  fontStyle: 'italic',
+                  maxWidth: isOg ? '480px' : '800px',
+                  lineHeight: 1.5,
+                  display: 'flex',
+                  marginTop: isOg ? '4px' : '8px',
+                }}
+              >
+                &ldquo;{headline}&rdquo;
+              </div>
+            )}
+          </div>
+
+          {/* ── Bottom CTA ── */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: isOg ? '40px' : '72px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: isOg ? '6px' : '10px',
+            }}
+          >
+            <div
+              style={{
+                fontSize: isOg ? '16px' : '22px',
+                fontWeight: 600,
+                color: CARD_COLORS.goldLight,
+                display: 'flex',
+              }}
+            >
+              {"What's YOUR archetype?"}
+            </div>
+            <div
+              style={{
+                fontSize: isOg ? '12px' : '16px',
+                color: CARD_COLORS.gold,
+                opacity: 0.6,
+                letterSpacing: '1px',
+                display: 'flex',
+              }}
+            >
+              {WATERMARK_URL}
+            </div>
+          </div>
+        </div>
+      ),
+      {
+        width,
+        height,
+        headers: {
+          // Blueprint cards are keyed by personal data — cache for 30 days
+          'Cache-Control': 'public, max-age=2592000, s-maxage=2592000',
+        },
+      }
+    );
+  }
+
   // ── Placeholder for other card types ────────────────────────────────────────
 
   // Human-readable type label for the placeholder

@@ -165,6 +165,7 @@ const routes = [
   '/pitra-dosha',
   '/sarvatobhadra',
   '/dinacharya',
+  '/cosmic-blueprint',
   '/sky',
   '/matching/report',
   '/family',

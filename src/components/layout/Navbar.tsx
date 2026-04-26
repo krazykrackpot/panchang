@@ -158,6 +158,7 @@ export default function Navbar() {
         { href: '/hora', label: locale === 'sa' ? 'होराः' : locale === 'hi' ? 'होरा' : 'Hora' },
         { href: '/dinacharya', label: locale === 'hi' ? 'दिनचर्या' : 'Dinacharya' },
         { href: '/sarvatobhadra', label: locale === 'sa' ? 'सर्वतोभद्रचक्रम्' : locale === 'hi' ? 'सर्वतोभद्र चक्र' : 'Sarvatobhadra' },
+        { href: '/cosmic-blueprint', label: t('cosmicBlueprint') },
         { href: '/sky', label: t('liveSky') },
       ],
     },

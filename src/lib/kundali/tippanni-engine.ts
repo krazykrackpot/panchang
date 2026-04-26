@@ -10,6 +10,7 @@ import { GRAHAS } from '@/lib/constants/grahas';
 import { LAGNA_DEEP } from './tippanni-lagna';
 import { generateDashaSynthesis } from '@/lib/tippanni/dasha-synthesis';
 import { PLANET_HOUSE_DEPTH, DIGNITY_EFFECTS, DASHA_EFFECTS } from './tippanni-planets';
+import { BPHS_PLANET_IN_HOUSE } from '@/lib/constants/bphs-planet-in-house';
 import type {
   TippanniContent, PersonalitySection, PlanetInsight, YogaInsight,
   DoshaInsight, LifeAreaSection, LifeArea, DashaInsightSection,
@@ -366,6 +367,14 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
       }
     }
 
+    // Static BPHS classical citations as fallback (always available without RAG/LLM)
+    const staticCitations = BPHS_PLANET_IN_HOUSE[p.planet.id]?.[p.house];
+    const classicalReferences = staticCitations ? {
+      summary: `Classical interpretation from BPHS ${staticCitations[0].chapter === 47 ? 'Chapter 47' : 'Chapter 24'} for ${graha.name.en} in the ${p.house}${p.house === 1 ? 'st' : p.house === 2 ? 'nd' : p.house === 3 ? 'rd' : 'th'} house.`,
+      citations: staticCitations,
+      confidence: 'high' as const,
+    } : undefined;
+
     return {
       planetId: p.planet.id,
       planetName: graha.name[locale] || "",
@@ -377,6 +386,7 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
       prognosis: enhanced?.prognosis || depth?.prognosis || '',
       dignity,
       retrogradeEffect,
+      classicalReferences,
     };
   });
 }

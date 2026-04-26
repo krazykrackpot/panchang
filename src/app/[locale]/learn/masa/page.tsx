@@ -184,12 +184,15 @@ export default function MasaPage() {
                   const days = Math.round((end.getTime() - start.getTime()) / 86400000);
                   const todayStr = `${new Date().getFullYear()}-${(new Date().getMonth()+1).toString().padStart(2,'0')}-${new Date().getDate().toString().padStart(2,'0')}`;
                   const isCurrent = todayStr >= m.startDate && todayStr < m.endDate;
+                  // Use actual computed month name — NOT the hardcoded positional name
+                  const monthName = locale === 'hi' ? m.hi : m.en;
                   return (
                     <tr key={`${m.n}-${m.startDate}`} className={`hover:bg-gold-primary/3 ${isCurrent ? 'bg-gold-primary/8' : ''} ${m.isAdhika ? 'italic' : ''}`}>
                       <td className="py-1.5 px-2 text-text-tertiary">{m.n}</td>
                       <td className="py-1.5 px-2 font-medium" style={hf}>
-                        <span className={m.isAdhika ? 'text-violet-400' : 'text-gold-light'}>{t(`month_${m.n}_name`, locale)}</span>
+                        <span className={m.isAdhika ? 'text-violet-400' : 'text-gold-light'}>{monthName}</span>
                         {isCurrent && <span className="ml-1 text-xs px-1 py-0.5 rounded bg-gold-primary/20 text-gold-primary not-italic">{t('nowLabel', locale)}</span>}
+                        {m.isAdhika && <span className="ml-1 text-xs px-1 py-0.5 rounded bg-violet-500/20 text-violet-300 not-italic">{locale === 'hi' ? 'अधिक' : 'Adhika'}</span>}
                       </td>
                       <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(m.startDate, locale)}</td>
                       <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(m.endDate, locale)}</td>

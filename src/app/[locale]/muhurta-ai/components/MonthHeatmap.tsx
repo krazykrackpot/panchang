@@ -227,20 +227,31 @@ export default function MonthHeatmap({
                 }
 
                 return (
-                  <button
-                    key={`${ds}-${startTime}`}
-                    role="gridcell"
-                    aria-label={label}
-                    title={`${scoreToLabel(score)} (${score})`}
-                    onClick={() => onCellClick(ds)}
-                    className={[
-                      'aspect-square rounded-[3px] min-w-[18px] cursor-pointer transition-all duration-150',
-                      'hover:scale-[1.3] hover:z-10 hover:shadow-lg hover:shadow-[#d4a853]/40',
-                      scoreToBgClass(score),
-                      outlineClass,
-                    ].filter(Boolean).join(' ')}
-                    style={{ height: 22 }}
-                  />
+                  <div key={`${ds}-${startTime}`} className="group relative" style={{ height: 22 }}>
+                    {/* Tooltip */}
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-[#0a0e27] border border-[#d4a853]/30 rounded text-[10px] text-[#e6e2d8] whitespace-nowrap opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity pointer-events-none z-20">
+                      {scoreToLabel(score)} · {score}/100
+                    </div>
+                    <button
+                      role="gridcell"
+                      aria-label={label}
+                      title={`${scoreToLabel(score)} (${score})`}
+                      onClick={() => onCellClick(ds)}
+                      onKeyDown={(e) => {
+                        if (e.key === ' ') {
+                          e.preventDefault(); // prevent page scroll on Space
+                          onCellClick(ds);
+                        }
+                      }}
+                      className={[
+                        'aspect-square rounded-[3px] min-w-[18px] w-full h-full cursor-pointer transition-all duration-150',
+                        'hover:scale-[1.3] hover:z-10 hover:shadow-lg hover:shadow-[#d4a853]/40',
+                        'focus:outline-2 focus:outline-[#d4a853] focus:outline-offset-1',
+                        scoreToBgClass(score),
+                        outlineClass,
+                      ].filter(Boolean).join(' ')}
+                    />
+                  </div>
                 );
               })}
             </Fragment>

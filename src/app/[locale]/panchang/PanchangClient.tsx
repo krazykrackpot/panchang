@@ -43,6 +43,10 @@ import { usePreferenceStore, type TraditionPreference } from '@/stores/preferenc
 import { HORA_PLANET_ACTIVITIES, computeHoraTable } from '@/lib/panchang/hora-engine';
 import { getVaraRemedies } from '@/lib/remedies/prescription-engine';
 import type { VaraRemedy } from '@/lib/remedies/prescription-engine';
+import { generateDailyVibe } from '@/lib/shareable/daily-vibe';
+import dynamic from 'next/dynamic';
+
+const DailyVibeCard = dynamic(() => import('@/components/shareable/DailyVibeCard'), { ssr: false });
 
 // Module-level msg helper — resolves inline locale labels from JSON
 const msg = (key: string, locale: string): string =>
@@ -158,6 +162,7 @@ export default function PanchangClient() {
   const computePurnimantMonthsMemo = useMemo(() => computePurnimantMonths(masaYear), [masaYear]);
   const [now, setNow] = useState<Date>(new Date());
   const [showCalcDetails, setShowCalcDetails] = useState(false);
+  const [showVibeCard, setShowVibeCard] = useState(false);
 
   // Auto-load birth nakshatra/rashi from store (persisted from kundali page)
   useEffect(() => {
@@ -621,6 +626,72 @@ export default function PanchangClient() {
             <LearnLink href="/learn/yogas" label={isDevanagari ? 'योग के बारे में जानें' : 'Learn about Yogas'} />
             <LearnLink href="/learn/karanas" label={isDevanagari ? 'करण के बारे में जानें' : 'Learn about Karanas'} />
           </div>
+
+          {/* Share Today's Vibe button */}
+          <div className="flex justify-center mb-6">
+            <button
+              onClick={() => setShowVibeCard(true)}
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-full border border-gold-primary/30 bg-gold-primary/10 text-gold-light hover:bg-gold-primary/20 hover:border-gold-primary/50 transition-all"
+            >
+              <Star className="w-4 h-4 text-gold-primary" />
+              {isDevanagari ? 'आज की ऊर्जा शेयर करें' : 'Share Today\'s Vibe'}
+            </button>
+          </div>
+
+          {/* Daily Vibe Card Modal */}
+          <AnimatePresence>
+            {showVibeCard && panchang && (() => {
+              const vibeData = generateDailyVibe(panchang, locale);
+              return (
+                <motion.div
+                  key="vibe-modal"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+                  onClick={() => setShowVibeCard(false)}
+                >
+                  <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.9, opacity: 0 }}
+                    transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                    className="relative max-w-lg w-full"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <DailyVibeCard data={vibeData} format="square" locale={locale} />
+                    <div className="flex items-center justify-center gap-3 mt-4">
+                      <button
+                        onClick={() => {
+                          const text = `${vibeData.vibeTitle.en} — Today's Energy Weather\n${vibeData.keyTransit}\nBest for: ${vibeData.bestFor.join(', ')}\nEnergy: ${vibeData.energyScore}%\n\nhttps://dekhopanchang.com/${locale}/panchang`;
+                          if (navigator.share) {
+                            navigator.share({ title: 'Today\'s Energy Weather', text }).catch(() => {
+                              // User cancelled share — safe to ignore
+                            });
+                          } else {
+                            navigator.clipboard.writeText(text).then(() => {
+                              alert(isDevanagari ? 'कॉपी हो गया!' : 'Copied to clipboard!');
+                            }).catch((err) => {
+                              console.error('[DailyVibe] clipboard write failed:', err);
+                            });
+                          }
+                        }}
+                        className="px-5 py-2.5 text-sm font-semibold rounded-full bg-gold-primary/20 text-gold-light border border-gold-primary/30 hover:bg-gold-primary/30 transition-all"
+                      >
+                        {isDevanagari ? 'शेयर करें' : 'Share'}
+                      </button>
+                      <button
+                        onClick={() => setShowVibeCard(false)}
+                        className="px-5 py-2.5 text-sm font-medium rounded-full bg-white/5 text-text-secondary border border-white/10 hover:bg-white/10 transition-all"
+                      >
+                        {isDevanagari ? 'बन्द करें' : 'Close'}
+                      </button>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              );
+            })()}
+          </AnimatePresence>
 
           {(() => {
             const tp = (tr?: TransitionInfo) => tr ? hasTransitionPassed(tr.endTime, tr.endDate, now, selectedDate, location.tz) : false;

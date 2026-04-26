@@ -19,7 +19,7 @@ import ConvergenceSummary from '@/components/kundali/ConvergenceSummary';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ShareButton from '@/components/ui/ShareButton';
 import PrintButton from '@/components/ui/PrintButton';
-import { Download, Save, Check, ScrollText } from 'lucide-react';
+import { Download, Save, Check, ScrollText, Sparkles, X } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { generateKundaliPrintHtml } from '@/lib/pdf/kundali-pdf';
@@ -55,6 +55,7 @@ import PaywallGate from '@/components/ui/PaywallGate';
 import InfoBlock from '@/components/ui/InfoBlock';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { findDashaSandhiPeriods } from '@/lib/kundali/dasha-sandhi';
+import { assembleBirthPosterData } from '@/lib/shareable/birth-poster';
 
 // Dynamic imports — only loaded after chart generation or on specific tab activation
 const ChartNorth = dynamic(() => import('@/components/kundali/ChartNorth'), { ssr: false });
@@ -92,6 +93,7 @@ const KeyDatesTimeline = dynamic(() => import('@/components/kundali/KeyDatesTime
 const QuestionEntry = dynamic(() => import('@/components/kundali/QuestionEntry'), { ssr: false });
 const TrajectoryCard = dynamic(() => import('@/components/kundali/TrajectoryCard'), { ssr: false });
 const VedicProfileComponent = dynamic(() => import('@/components/kundali/VedicProfile'), { ssr: false });
+const BirthPosterCard = dynamic(() => import('@/components/shareable/BirthPosterCard'), { ssr: false });
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
@@ -344,6 +346,7 @@ export default function KundaliPage() {
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [showPoster, setShowPoster] = useState(false);
   const [savedCharts, setSavedCharts] = useState<Array<{ id: string; label: string; birth_data: { name?: string; date: string; time: string; place: string; lat: number; lng: number; relationship?: string } }>>([]);
   const user = useAuthStore(s => s.user);
 
@@ -963,8 +966,54 @@ export default function KundaliPage() {
                 url={`https://dekhopanchang.com/${locale}/kundali`}
                 locale={locale as Locale}
               />
+              <button
+                onClick={() => setShowPoster(true)}
+                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-gradient-to-r from-gold-primary/20 to-amber-500/10 border border-gold-primary/40 text-gold-light hover:from-gold-primary/30 hover:to-amber-500/20 hover:border-gold-primary/60 transition-all duration-300"
+              >
+                <Sparkles className="w-4 h-4" />
+                {locale === 'en' || isTamil ? 'Birth Poster' : 'जन्म पोस्टर'}
+              </button>
             </div>
           </div>
+
+          {/* ── Birth Poster Modal ── */}
+          <AnimatePresence>
+            {showPoster && (() => {
+              const posterData = assembleBirthPosterData(kundali, locale);
+              return (
+                <motion.div
+                  key="birth-poster-modal"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+                  onClick={() => setShowPoster(false)}
+                >
+                  <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.9, opacity: 0 }}
+                    transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                    className="relative max-h-[90vh] overflow-auto rounded-2xl"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {/* Close button */}
+                    <button
+                      onClick={() => setShowPoster(false)}
+                      className="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/50 text-white/70 hover:text-white hover:bg-black/70 transition-colors"
+                      aria-label="Close poster preview"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                    {/* Poster preview — scaled down to fit viewport */}
+                    <div className="origin-top-left" style={{ transform: 'scale(0.45)', width: 1080, height: 1920 }}>
+                      <BirthPosterCard data={posterData} format="story" locale={locale} />
+                    </div>
+                  </motion.div>
+                </motion.div>
+              );
+            })()}
+          </AnimatePresence>
 
           {/* Ganda Mula Alert — visible on ALL tabs */}
           {(() => {

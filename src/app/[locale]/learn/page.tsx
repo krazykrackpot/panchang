@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
-import { BookOpen, ChevronRight, ChevronDown, Clock, Star, CheckCircle, Sparkles, Calendar, Diamond, Library, ArrowRight, Flame } from 'lucide-react';
+import { BookOpen, ChevronRight, ChevronDown, Clock, Star, CheckCircle, Sparkles, Library, ArrowRight, Flame } from 'lucide-react';
 import { ShareRow } from '@/components/ui/ShareButton';
 import AdUnit from '@/components/ads/AdUnit';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -16,8 +16,9 @@ import type { Locale } from '@/types/panchang';
 import L from '@/messages/learn/learn-index.json';
 import AuthorByline from '@/components/ui/AuthorByline';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
+import LearningPath from '@/components/learn/LearningPath';
 
-const STATS = { modules: 104, references: 45, labs: 6, tracks: 11 };
+const STATS = { modules: 104, references: 45, labs: 6, phases: 12 };
 
 export default function LearnPage() {
   const locale = useLocale();
@@ -34,46 +35,6 @@ export default function LearnPage() {
   // Item 4: Streak counter from learning progress store
   const { streak, hydrated, hydrateFromStorage } = useLearningProgressStore();
   useEffect(() => { hydrateFromStorage(); }, [hydrateFromStorage]);
-
-  // 3 Mega Tracks
-  const TRACKS = [
-    {
-      href: '/learn/track/cosmology',
-      icon: Sparkles,
-      gradient: 'from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27]',
-      border: 'border-gold-primary/12 hover:border-gold-primary/35',
-      glow: 'hover:shadow-gold-primary/10',
-      iconColor: 'text-[#f0d48a]',
-      title: { en: 'Hindu Cosmology & Mathematics', hi: 'हिन्दू ब्रह्माण्ड विज्ञान एवं गणित', sa: 'हिन्दूब्रह्माण्डविज्ञानं गणितं च' },
-      subtitle: { en: 'The universe, time, planets, stars, and the mathematical framework', hi: 'ब्रह्माण्ड, समय, ग्रह, तारे और गणितीय ढाँचा', sa: 'ब्रह्माण्डं कालः ग्रहाः ताराः गणितीयढाञ्चश्च' },
-      stats: { en: '26 modules · 13 references', hi: '26 मॉड्यूल · 13 संदर्भ', sa: '26 मॉड्यूलाः · 13 सन्दर्भाः' },
-      topics: { en: 'Cosmic time scales · Navagraha · 12 Rashis · 27 Nakshatras · Ayanamsha · Precession · Eclipses · Classical texts', hi: 'ब्रह्माण्डीय समय · नवग्रह · 12 राशि · 27 नक्षत्र · अयनांश · पुरस्सरण · ग्रहण · शास्त्रीय ग्रन्थ', sa: 'ब्रह्माण्डीयकालः · नवग्रहाः · 12 राशयः · 27 नक्षत्राणि · अयनांशः · ग्रहणम्' },
-    },
-    {
-      href: '/learn/track/panchang',
-      icon: Calendar,
-      gradient: 'from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27]',
-      border: 'border-gold-primary/12 hover:border-gold-primary/35',
-      glow: 'hover:shadow-gold-primary/10',
-      iconColor: 'text-[#f0d48a]',
-      title: { en: 'Panchang — The Daily Practice', hi: 'पञ्चाङ्ग — दैनिक अभ्यास', sa: 'पञ्चाङ्गम् — दैनिकाभ्यासः' },
-      subtitle: { en: 'Reading the cosmic weather that governs every day', hi: 'प्रत्येक दिन को नियन्त्रित करने वाला ब्रह्माण्डीय मौसम पढ़ना', sa: 'प्रत्येकदिनं नियन्त्रयति इति ब्रह्माण्डमौसमं पठतु' },
-      stats: { en: '11 modules · 9 references', hi: '11 मॉड्यूल · 9 संदर्भ', sa: '11 मॉड्यूलाः · 9 सन्दर्भाः' },
-      topics: { en: 'Tithi · Nakshatra · Yoga · Karana · Vara · Muhurta · Hora · Festivals · Calendar systems', hi: 'तिथि · नक्षत्र · योग · करण · वार · मुहूर्त · होरा · त्योहार · पंचांग', sa: 'तिथिः · नक्षत्रं · योगः · करणं · वारः · मुहूर्तः · होरा' },
-    },
-    {
-      href: '/learn/track/kundali',
-      icon: Diamond,
-      gradient: 'from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27]',
-      border: 'border-gold-primary/12 hover:border-gold-primary/35',
-      glow: 'hover:shadow-gold-primary/10',
-      iconColor: 'text-[#f0d48a]',
-      title: { en: 'Kundali — Your Personal Cosmic Map', hi: 'कुण्डली — आपका व्यक्तिगत ब्रह्माण्डीय मानचित्र', sa: 'कुण्डली — भवतः व्यक्तिगतब्रह्माण्डमानचित्रम्' },
-      subtitle: { en: 'From birth chart basics to advanced predictive techniques', hi: 'जन्म कुण्डली की मूल बातों से उन्नत भविष्यवाणी तकनीकों तक', sa: 'जन्मकुण्डलीमूलतत्त्वेभ्यः उन्नतभविष्यवाणीपर्यन्तम्' },
-      stats: { en: '51 modules · 25 references · 6 labs', hi: '51 मॉड्यूल · 25 संदर्भ · 6 लैब', sa: '51 मॉड्यूलाः · 25 सन्दर्भाः · 6 प्रयोगशालाः' },
-      topics: { en: 'Houses · Dashas · Yogas · Shadbala · Predictions · Matching · Remedies · Jaimini · KP System', hi: 'भाव · दशा · योग · षड्बल · भविष्यवाणी · मिलान · उपाय · जैमिनी · केपी', sa: 'भावाः · दशाः · योगाः · षड्बलं · भविष्यवाणी · मेलनम् · उपायाः' },
-    },
-  ];
 
   // Labs
   const LABS = [
@@ -183,7 +144,7 @@ export default function LearnPage() {
               { val: STATS.modules, label: t('modules'), icon: BookOpen },
               { val: STATS.references, label: t('references'), icon: Star },
               { val: STATS.labs, label: t('labs'), icon: CheckCircle },
-              { val: STATS.tracks, label: t('tracks'), icon: Clock },
+              { val: STATS.phases, label: t('tracks'), icon: Clock },
             ].map(s => (
               <div key={s.label} className="flex items-center gap-2">
                 <s.icon className="w-4 h-4 text-gold-dark" />
@@ -209,47 +170,21 @@ export default function LearnPage() {
 
       <AdUnit placement="leaderboard" className="max-w-4xl mx-auto" />
 
-      {/* ── 3 Mega Track Cards ── */}
-      <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={hf}>{t('chooseTrack')}</h2>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
-        {TRACKS.map((track, i) => {
-          const Icon = track.icon;
-          return (
-            <motion.div
-              key={track.href}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.15 }}
-            >
-              <Link href={track.href} className="block group">
-                <div className={`relative overflow-hidden rounded-2xl border ${track.border} bg-gradient-to-br ${track.gradient} p-6 sm:p-8 transition-all duration-300 hover:scale-[1.02] ${track.glow} hover:shadow-2xl min-h-[280px] flex flex-col`}>
-                  <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-white/3 blur-2xl" />
-
-                  <div className="relative z-10 flex-1">
-                    <Icon className={`w-10 h-10 ${track.iconColor} mb-4`} />
-                    <h3 className="text-xl sm:text-2xl font-bold text-gold-light mb-2 group-hover:text-gold-primary transition-colors" style={hf}>
-                      {tri(track.title)}
-                    </h3>
-                    <p className="text-text-secondary text-sm mb-4 leading-relaxed" style={bf}>
-                      {tri(track.subtitle)}
-                    </p>
-                    <div className={`inline-block text-xs px-3 py-1 rounded-full ${track.iconColor} bg-white/5 border border-white/10 font-medium mb-3`}>
-                      {tri(track.stats)}
-                    </div>
-                    <p className="text-text-tertiary text-xs leading-relaxed" style={bf}>
-                      {tri(track.topics)}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center gap-2 mt-4 text-gold-primary/70 group-hover:text-gold-primary transition-colors">
-                     <span className="text-sm font-medium">{t('exploreTrack')}</span>
-                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          );
-        })}
+      {/* ── Learning Path (sequential phases) ── */}
+      <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={hf}>
+        {locale === 'hi' ? 'आपकी सीखने की यात्रा' :
+         locale === 'ta' ? 'உங்கள் கற்றல் பயணம்' :
+         locale === 'bn' ? 'আপনার শেখার যাত্রা' :
+         'Your Learning Journey'}
+      </h2>
+      <p className="text-text-secondary text-sm mb-8 max-w-2xl" style={bf}>
+        {locale === 'hi' ? '12 चरण, मूल बातों से लेकर उन्नत भविष्यवाणी तक — क्रमानुसार ऊपर बढ़ें।' :
+         locale === 'ta' ? '12 நிலைகள், அடிப்படையிலிருந்து மேம்பட்ட கணிப்பு வரை — வரிசையாக மேலே செல்லுங்கள்.' :
+         locale === 'bn' ? '12টি পর্যায়, মূল বিষয় থেকে উন্নত ভবিষ্যদ্বাণী পর্যন্ত — ক্রমানুসারে উপরে উঠুন।' :
+         '12 phases, from foundations to advanced prediction — work your way up.'}
+      </p>
+      <div className="mb-16">
+        <LearningPath />
       </div>
 
       {/* ── Interactive Labs ── */}

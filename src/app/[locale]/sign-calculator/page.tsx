@@ -12,8 +12,10 @@ import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
-import { formatDegrees } from '@/lib/ephem/astronomical';
+import { formatDegrees, dateToJD } from '@/lib/ephem/astronomical';
 import { computeBirthSignsAction } from '@/app/actions/birth-signs';
+import { computeComparison, type PlanetComparison } from '@/lib/ephem/comparison-engine';
+import JyotishTerm from '@/components/ui/JyotishTerm';
 import type { Locale , LocaleText} from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -85,8 +87,15 @@ export default function SignCalculatorPage() {
     location: string; tzOffset: number;
   } | null>(null);
 
+  const [comparison, setComparison] = useState<{
+    planets: PlanetComparison[];
+    shiftedCount: number;
+    hookLine: string;
+    ayanamshaFormatted: string;
+  } | null>(null);
+
   useEffect(() => {
-    if (!dateStr || !placeLat || !placeLng || !placeTimezone) { setResult(null); return; }
+    if (!dateStr || !placeLat || !placeLng || !placeTimezone) { setResult(null); setComparison(null); return; }
     let cancelled = false;
     computeBirthSignsAction(dateStr, timeStr, Number(placeLat), Number(placeLng), placeTimezone)
       .then(b => {
@@ -106,8 +115,28 @@ export default function SignCalculatorPage() {
           location: placeName,
           tzOffset: b.tzOffset,
         });
+
+        // Compute tropical vs sidereal comparison
+        try {
+          const [year, month, day] = dateStr.split('-').map(Number);
+          const [hour, minute] = timeStr.split(':').map(Number);
+          const hourDecimal = hour + minute / 60;
+          const jd = dateToJD(year, month, day, hourDecimal);
+          const comp = computeComparison(jd);
+          if (!cancelled) {
+            setComparison({
+              planets: comp.planets.filter(p => p.id === 0 || p.id === 1), // Sun and Moon only
+              shiftedCount: comp.planets.filter(p => p.id <= 1 && p.isShifted).length,
+              hookLine: comp.hookLine,
+              ayanamshaFormatted: comp.precessionData.currentAyanamsha.toFixed(1) + '°',
+            });
+          }
+        } catch (err) {
+          console.error('[sign-calculator] comparison failed:', err);
+          if (!cancelled) setComparison(null);
+        }
       })
-      .catch(() => { if (!cancelled) setResult(null); });
+      .catch(() => { if (!cancelled) { setResult(null); setComparison(null); } });
     return () => { cancelled = true; };
   }, [dateStr, timeStr, placeLat, placeLng, placeName, placeTimezone]);
 
@@ -297,6 +326,92 @@ export default function SignCalculatorPage() {
                 ? 'Note: These are Vedic (Sidereal) signs using Lahiri Ayanamsha, not Western (Tropical) signs.'
                 : 'नोट: ये लाहिरी अयनांश के साथ वैदिक (सायन) राशियाँ हैं, पश्चिमी (सायन) राशियाँ नहीं।'}
             </div>
+
+            {/* Tropical vs Sidereal Comparison Panel */}
+            {comparison && (
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="mt-10 p-6 rounded-xl bg-bg-secondary border border-gold-primary/20"
+              >
+                <h3 className="text-gold-light text-lg font-bold mb-2" style={headingFont}>
+                  {locale === 'en'
+                    ? 'The 24° Shift — Why Your Western Sign Is Different'
+                    : isTamil
+                      ? '24° மாற்றம் — உங்கள் மேற்கத்திய ராசி ஏன் வேறுபட்டது'
+                      : '24° का अंतर — आपकी पश्चिमी राशि अलग क्यों है'}
+                </h3>
+                <p className="text-text-secondary text-sm mb-5 leading-relaxed" style={bodyFont}>
+                  {locale === 'en' ? (
+                    <>
+                      Western astrology uses the tropical zodiac, while Vedic astrology uses the sidereal zodiac corrected by{' '}
+                      <JyotishTerm term="ayanamsha">Ayanamsha</JyotishTerm> (currently {comparison.ayanamshaFormatted}).
+                      This ~24° difference means your Western and Vedic signs often land in different constellations.
+                    </>
+                  ) : (
+                    <>
+                      पश्चिमी ज्योतिष उष्णकटिबंधीय राशि चक्र का उपयोग करता है, जबकि वैदिक ज्योतिष अयनांश
+                      ({comparison.ayanamshaFormatted}) द्वारा सही किया गया नक्षत्र राशि चक्र उपयोग करता है।
+                      यह ~24° का अंतर अक्सर आपकी पश्चिमी और वैदिक राशि को अलग-अलग नक्षत्रों में रखता है।
+                    </>
+                  )}
+                </p>
+
+                {/* Comparison Table */}
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="text-text-secondary border-b border-gold-primary/10">
+                        <th className="text-left py-2 px-3 font-medium">{locale === 'en' ? 'Planet' : 'ग्रह'}</th>
+                        <th className="text-left py-2 px-3 font-medium">{locale === 'en' ? 'Western (Tropical)' : 'पश्चिमी (उष्णकटिबंधीय)'}</th>
+                        <th className="text-left py-2 px-3 font-medium">{locale === 'en' ? 'Vedic (Sidereal)' : 'वैदिक (नक्षत्र)'}</th>
+                        <th className="text-center py-2 px-3 font-medium">{locale === 'en' ? 'Shifted' : 'परिवर्तन'}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {comparison.planets.map((p) => (
+                        <tr key={p.id} className={p.isShifted ? 'text-gold-light' : 'text-text-secondary'}>
+                          <td className="py-2.5 px-3 font-medium" style={bodyFont}>{tl(p.name, locale)}</td>
+                          <td className="py-2.5 px-3" style={bodyFont}>{tl(p.tropicalSignName, locale)}</td>
+                          <td className="py-2.5 px-3" style={bodyFont}>{tl(p.siderealSignName, locale)}</td>
+                          <td className="py-2.5 px-3 text-center">
+                            {p.isShifted
+                              ? <span className="text-gold-primary font-semibold">&#10022; YES</span>
+                              : <span className="text-text-secondary/50">—</span>
+                            }
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Shifted count summary */}
+                <p className="text-text-secondary text-xs mt-4" style={bodyFont}>
+                  {locale === 'en'
+                    ? `${comparison.shiftedCount} of 2 luminaries changed sign between tropical and sidereal zodiacs.`
+                    : `2 में से ${comparison.shiftedCount} ज्योतिपिंड उष्णकटिबंधीय और नक्षत्र राशि चक्र के बीच राशि बदलते हैं।`}
+                </p>
+
+                {/* Hook line */}
+                <div className="mt-4 p-4 rounded-lg bg-gold-primary/5 border border-gold-primary/10">
+                  <p className="text-gold-light/90 text-sm italic" style={bodyFont}>
+                    &ldquo;{comparison.hookLine}&rdquo;
+                  </p>
+                </div>
+
+                {/* CTA link */}
+                <div className="mt-5 text-center">
+                  <a
+                    href={`/${locale}/tropical-compare`}
+                    className="inline-block px-4 py-2 rounded-lg bg-gold-primary/15 text-gold-light text-sm font-medium hover:bg-gold-primary/25 transition-colors"
+                  >
+                    {locale === 'en' ? 'See Full Comparison →' : 'पूर्ण तुलना देखें →'}
+                  </a>
+                </div>
+              </motion.div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

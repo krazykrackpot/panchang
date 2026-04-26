@@ -39,6 +39,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl as _tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import PMSG from '@/messages/pages/panchang-inline.json';
+import { usePreferenceStore, type TraditionPreference } from '@/stores/preference-store';
 
 // Module-level msg helper — resolves inline locale labels from JSON
 const msg = (key: string, locale: string): string =>
@@ -116,6 +117,8 @@ export default function PanchangClient() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const tl = (obj: any): string => _tl(obj, locale);
 
+  const { tradition, setTradition } = usePreferenceStore();
+
   const [panchang, setPanchang] = useState<PanchangData | null>(null);
   const [loading, setLoading] = useState(true);
   const [location, setLocation] = useState<LocationData>({ lat: 0, lng: 0, name: '', tz: 0 });
@@ -151,6 +154,7 @@ export default function PanchangClient() {
   const computeHinduMonthsMemo = useMemo(() => computeHinduMonths(masaYear), [masaYear]);
   const computePurnimantMonthsMemo = useMemo(() => computePurnimantMonths(masaYear), [masaYear]);
   const [now, setNow] = useState<Date>(new Date());
+  const [showCalcDetails, setShowCalcDetails] = useState(false);
 
   // Auto-load birth nakshatra/rashi from store (persisted from kundali page)
   useEffect(() => {
@@ -890,6 +894,107 @@ export default function PanchangClient() {
             );
           })()}
 
+          {/* ── Calculation Transparency Toggle ── */}
+          <div className="-mt-10 mb-6">
+            <button
+              onClick={() => setShowCalcDetails(!showCalcDetails)}
+              className="flex items-center gap-2 text-xs text-text-secondary hover:text-gold-primary transition-colors"
+            >
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${showCalcDetails ? 'rotate-180' : ''}`} />
+              {showCalcDetails ? 'Hide calculation details' : 'Show calculation details'}
+            </button>
+
+            <AnimatePresence>
+              {showCalcDetails && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.25, ease: 'easeInOut' as const }}
+                  className="overflow-hidden"
+                >
+                  <div className="mt-3 bg-bg-secondary border border-gold-primary/10 rounded-xl p-4 space-y-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+                      {/* Tithi Calculation */}
+                      <div className="space-y-1.5">
+                        <div className="text-gold-primary font-medium">Tithi Derivation</div>
+                        <div className="text-text-secondary">
+                          {'Moon Elongation: '}<span className="text-text-primary font-mono">{panchang.moonElongation?.toFixed(2) ?? '\u2014'}{'\u00B0'}</span>
+                        </div>
+                        <div className="text-text-secondary">
+                          {'Tithi = floor(elongation / 12) + 1 = '}<span className="text-text-primary font-mono">{panchang.tithi?.number}</span>
+                        </div>
+                        <div className="text-text-secondary">
+                          {'Window: '}<span className="text-text-primary font-mono">{panchang.tithiTransition?.startTime ?? '\u2014'}{' \u2013 '}{panchang.tithiTransition?.endTime ?? '\u2014'}</span>
+                        </div>
+                      </div>
+
+                      {/* Nakshatra Calculation */}
+                      <div className="space-y-1.5">
+                        <div className="text-gold-primary font-medium">Nakshatra Derivation</div>
+                        <div className="text-text-secondary">
+                          {'Moon Longitude: '}<span className="text-text-primary font-mono">{panchang.moonLongitude?.toFixed(4) ?? '\u2014'}{'\u00B0'}</span>
+                        </div>
+                        <div className="text-text-secondary">
+                          {'Nakshatra = floor(lon / 13.333) + 1 = '}<span className="text-text-primary font-mono">{panchang.nakshatra?.id}</span>
+                        </div>
+                        <div className="text-text-secondary">
+                          {'Window: '}<span className="text-text-primary font-mono">{panchang.nakshatraTransition?.startTime ?? '\u2014'}{' \u2013 '}{panchang.nakshatraTransition?.endTime ?? '\u2014'}</span>
+                        </div>
+                      </div>
+
+                      {/* Yoga Calculation */}
+                      <div className="space-y-1.5">
+                        <div className="text-gold-primary font-medium">Yoga Derivation</div>
+                        <div className="text-text-secondary">
+                          {'Sun + Moon: '}<span className="text-text-primary font-mono">{panchang.sunLongitude != null && panchang.moonLongitude != null ? ((panchang.sunLongitude + panchang.moonLongitude) % 360).toFixed(2) : '\u2014'}{'\u00B0'}</span>
+                        </div>
+                        <div className="text-text-secondary">
+                          {'Yoga = floor(sum / 13.333) + 1 = '}<span className="text-text-primary font-mono">{panchang.yoga?.number}</span>
+                        </div>
+                        <div className="text-text-secondary">
+                          {'Window: '}<span className="text-text-primary font-mono">{panchang.yogaTransition?.startTime ?? '\u2014'}{' \u2013 '}{panchang.yogaTransition?.endTime ?? '\u2014'}</span>
+                        </div>
+                      </div>
+
+                      {/* Karana Calculation */}
+                      <div className="space-y-1.5">
+                        <div className="text-gold-primary font-medium">Karana Derivation</div>
+                        <div className="text-text-secondary">
+                          {'Half-tithi = floor(elongation / 6) = '}<span className="text-text-primary font-mono">{panchang.moonElongation != null ? Math.floor(panchang.moonElongation / 6) : '\u2014'}</span>
+                        </div>
+                        <div className="text-text-secondary">
+                          {'Window: '}<span className="text-text-primary font-mono">{panchang.karanaTransition?.startTime ?? '\u2014'}{' \u2013 '}{panchang.karanaTransition?.endTime ?? '\u2014'}</span>
+                        </div>
+                      </div>
+
+                      {/* Astronomical Constants */}
+                      <div className="space-y-1.5">
+                        <div className="text-gold-primary font-medium">Reference Data</div>
+                        <div className="text-text-secondary">
+                          {'Julian Day: '}<span className="text-text-primary font-mono">{panchang.julianDay?.toFixed(4) ?? '\u2014'}</span>
+                        </div>
+                        <div className="text-text-secondary">
+                          {'Ayanamsha: '}<span className="text-text-primary font-mono">{typeof panchang.ayanamsha === 'number' ? panchang.ayanamsha.toFixed(4) : '\u2014'}{'\u00B0'}</span>
+                        </div>
+                        <div className="text-text-secondary">
+                          {'Sun (sid.): '}<span className="text-text-primary font-mono">{typeof panchang.sunLongitude === 'number' ? panchang.sunLongitude.toFixed(4) : '\u2014'}{'\u00B0'}</span>
+                        </div>
+                        <div className="text-text-secondary">
+                          {'Moon (sid.): '}<span className="text-text-primary font-mono">{typeof panchang.moonLongitude === 'number' ? panchang.moonLongitude.toFixed(4) : '\u2014'}{'\u00B0'}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="text-[10px] text-text-secondary/50 pt-2 border-t border-white/[0.04]">
+                      All longitudes are sidereal (Lahiri ayanamsha). Transition times computed via binary search on the ephemeris.
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
           {/* ═══ TIMES — BOLD ═══ */}
           <GoldDivider />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5 my-8">
@@ -1020,27 +1125,65 @@ export default function PanchangClient() {
 
           <GoldDivider />
 
-          {/* ═══ SECTION NAV — sticky horizontal pills ═══ */}
+          {/* ═══ SECTION NAV — sticky horizontal pills + tradition selector ═══ */}
           <nav className="sticky top-0 z-30 bg-[#0a0e27]/95 backdrop-blur-md border-b border-gold-primary/10 -mx-4 px-4 py-2 mb-8 overflow-x-auto scrollbar-hide">
-            <div className="flex gap-1.5 min-w-max">
-              {[
-                { id: 'sec-auspicious', label: locale === 'hi' ? 'शुभ' : 'Auspicious' },
-                { id: 'sec-inauspicious', label: locale === 'hi' ? 'अशुभ' : 'Inauspicious' },
-                { id: 'sec-hindu-months', label: locale === 'hi' ? 'मास' : 'Months' },
-                { id: 'sec-nivas', label: locale === 'hi' ? 'निवास/शूल' : 'Nivas & Shool' },
-                { id: 'sec-calendar', label: locale === 'hi' ? 'कैलेंडर' : 'Calendar' },
-                { id: 'sec-choghadiya', label: locale === 'hi' ? 'चौघड़िया' : 'Choghadiya' },
-                { id: 'sec-planets', label: locale === 'hi' ? 'ग्रह' : 'Planets' },
-              ].map(s => (
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-[10px] uppercase tracking-wider text-text-secondary">{isDevanagari ? 'परंपरा' : 'Tradition'}:</span>
+              {(['all', 'north', 'south'] as TraditionPreference[]).map((opt) => (
                 <button
-                  key={s.id}
+                  key={opt}
                   type="button"
-                  onClick={() => document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-                  className="px-3 py-1.5 rounded-full text-xs font-medium text-text-secondary hover:text-gold-light hover:bg-gold-primary/10 border border-gold-primary/10 hover:border-gold-primary/25 transition-all whitespace-nowrap cursor-pointer"
+                  onClick={() => setTradition(opt)}
+                  className={`px-3 py-1 rounded-full text-[11px] transition-all cursor-pointer ${
+                    tradition === opt
+                      ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40'
+                      : 'text-text-secondary border border-white/[0.06] hover:border-gold-primary/20 hover:text-gold-light'
+                  }`}
                 >
-                  {s.label}
+                  {opt === 'all'
+                    ? (isDevanagari ? 'सभी' : 'All Systems')
+                    : opt === 'north'
+                      ? (isDevanagari ? 'उत्तर' : 'North Indian')
+                      : (isDevanagari ? 'दक्षिण' : 'South Indian')}
                 </button>
               ))}
+            </div>
+            <div className="flex gap-1.5 min-w-max">
+              {(() => {
+                const baseSections: { id: string; label: string; affinity: 'all' | 'north' | 'south' }[] = [
+                  { id: 'sec-auspicious', label: isDevanagari ? 'शुभ' : 'Auspicious', affinity: 'all' },
+                  { id: 'sec-inauspicious', label: isDevanagari ? 'अशुभ' : 'Inauspicious', affinity: 'all' },
+                  { id: 'sec-hindu-months', label: isDevanagari ? 'मास' : 'Months', affinity: 'all' },
+                  { id: 'sec-nivas', label: isDevanagari ? 'निवास/शूल' : 'Nivas & Shool', affinity: 'north' },
+                  { id: 'sec-calendar', label: isDevanagari ? 'कैलेंडर' : 'Calendar', affinity: 'all' },
+                  { id: 'sec-choghadiya', label: isDevanagari ? 'चौघड़िया' : 'Choghadiya', affinity: 'north' },
+                  { id: 'sec-planets', label: isDevanagari ? 'ग्रह' : 'Planets', affinity: 'south' },
+                ];
+                const sorted = tradition === 'all'
+                  ? baseSections
+                  : [...baseSections].sort((a, b) => {
+                      const aScore = a.affinity === tradition ? 0 : a.affinity === 'all' ? 1 : 2;
+                      const bScore = b.affinity === tradition ? 0 : b.affinity === 'all' ? 1 : 2;
+                      return aScore - bScore;
+                    });
+                return sorted.map((s) => {
+                  const highlighted = tradition !== 'all' && s.affinity === tradition;
+                  return (
+                    <button
+                      key={s.id}
+                      type="button"
+                      onClick={() => document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                      className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-all whitespace-nowrap cursor-pointer ${
+                        highlighted
+                          ? 'text-gold-light bg-gold-primary/10 border-gold-primary/30'
+                          : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/10 border-gold-primary/10 hover:border-gold-primary/25'
+                      }`}
+                    >
+                      {highlighted ? '\u2605 ' : ''}{s.label}
+                    </button>
+                  );
+                });
+              })()}
             </div>
           </nav>
 

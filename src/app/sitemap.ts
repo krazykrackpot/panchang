@@ -136,6 +136,7 @@ const routes = [
   '/financial-astrology',
   '/nadi-jyotish',
   '/mundane',
+  '/glossary',
   '/sign-calculator',
   '/sade-sati',
   '/prashna',

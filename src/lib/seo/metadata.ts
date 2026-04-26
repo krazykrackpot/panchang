@@ -114,6 +114,19 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     keywords: ['financial astrology', 'dhana yoga', 'wealth timing', 'vedic finance', 'hora guide', 'investment astrology'],
   },
+  '/glossary': {
+    title: {
+      en: 'Vedic Astrology Glossary — 50+ Terms Explained',
+      hi: 'वैदिक ज्योतिष शब्दावली',
+      sa: 'वैदिकज्योतिषशब्दकोशः',
+    },
+    description: {
+      en: 'Comprehensive glossary of Vedic astrology terms with pronunciations, definitions, and Western equivalents.',
+      hi: 'वैदिक ज्योतिष शब्दों की व्यापक शब्दावली',
+      sa: 'वैदिकज्योतिषशब्दानां व्याख्या',
+    },
+    keywords: ['vedic astrology glossary', 'jyotish terms', 'what is nakshatra', 'what is dasha'],
+  },
   '/mundane': {
     title: {
       en: 'Mundane Astrology — National Charts, World Forecast & Great Conjunctions',

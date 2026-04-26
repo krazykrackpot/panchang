@@ -6,6 +6,10 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/5-1.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import dynamic from 'next/dynamic';
+
+const TryTithiCalc = dynamic(() => import('@/components/learn/TryTithiCalc'), { ssr: false });
 
 const META: ModuleMeta = {
   id: 'mod_5_1', phase: 2, topic: 'Tithi', moduleNumber: '5.1',
@@ -22,6 +26,13 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'A tithi is one "lunar day" — defined by every 12 degrees of angular separation between the Moon and Sun, yielding 30 tithis per lunar month.',
+          'Tithis are the foundation of the Hindu calendar and determine when festivals, vratas (fasts), and rituals are observed.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {tl({ en: 'What is a Tithi?', hi: 'तिथि क्या है?', sa: 'तिथि क्या है?' }, locale)}
@@ -143,6 +154,8 @@ function Page3() {
           {tl({ en: 'Accurate tithi computation is essential for any digital Panchang. Our application uses the Meeus algorithm to compute precise Sun and Moon longitudes, then derives tithis using the elongation formula described above. The dwi-tithi rule is programmatically implemented to correctly assign festivals to the right Gregorian date, matching leading panchang sources to within one minute.', hi: 'किसी भी डिजिटल पंचांग के लिए सटीक तिथि गणना अनिवार्य है। हमारा अनुप्रयोग मीयस एल्गोरिदम द्वारा सूर्य और चन्द्रमा के सटीक भोगांश की गणना करता है, फिर ऊपर वर्णित कोणीय दूरी सूत्र से तिथि निकालता है। द्वि-तिथि नियम प्रोग्रामेटिक रूप से लागू किया गया है ताकि त्योहार सही ग्रेगोरियन तारीख पर निर्धारित हों, जो प्रमुख पंचांग स्रोतों से एक मिनट के भीतर मेल खाता है।', sa: 'किसी भी डिजिटल पंचांग के लिए सटीक तिथि गणना अनिवार्य है। हमारा अनुप्रयोग मीयस एल्गोरिदम द्वारा सूर्य और चन्द्रमा के सटीक भोगांश की गणना करता है, फिर ऊपर वर्णित कोणीय दूरी सूत्र से तिथि निकालता है। द्वि-तिथि नियम प्रोग्रामेटिक रूप से लागू किया गया है ताकि त्योहार सही ग्रेगोरियन तारीख पर निर्धारित हों, जो प्रमुख पंचांग स्रोतों से एक मिनट के भीतर मेल खाता है।' }, locale)}
         </p>
       </section>
+
+      <TryTithiCalc />
     </div>
   );
 }

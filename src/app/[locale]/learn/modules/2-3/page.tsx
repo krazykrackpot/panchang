@@ -10,6 +10,9 @@ import L from '@/messages/learn/modules/2-3.json';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import BeginnerNote from '@/components/learn/BeginnerNote';
 import WhyItMatters from '@/components/learn/WhyItMatters';
+import dynamic from 'next/dynamic';
+
+const TryDignityChecker = dynamic(() => import('@/components/learn/TryDignityChecker'), { ssr: false });
 
 const META: ModuleMeta = {
   id: 'mod_2_3',
@@ -195,6 +198,8 @@ function Page2() {
           <span className="text-blue-300 font-bold">Fully used in all Jyotish software.</span> Our app computes dignity for every planet in every chart — it's the foundation of Shadbala (Sthana Bala component), Vimshopaka Bala, and chart strength assessment. The Neecha Bhanga detection is part of our 55+ yoga engine. The exaltation/debilitation degrees are from BPHS — unchanged in 1,000+ years.
         </p>
       </section>
+
+      <TryDignityChecker />
     </div>
   );
 }

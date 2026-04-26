@@ -6,6 +6,10 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/6-1.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import dynamic from 'next/dynamic';
+
+const TryNakshatraFinder = dynamic(() => import('@/components/learn/TryNakshatraFinder'), { ssr: false });
 
 const META: ModuleMeta = {
   id: 'mod_6_1', phase: 2, topic: 'Nakshatra', moduleNumber: '6.1',
@@ -22,6 +26,13 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'The 27 nakshatras divide the ecliptic into segments of 13°20\' each — the Moon spends roughly one day in each nakshatra.',
+          'Each nakshatra has a deity, a ruling planet, and a distinct personality — your birth nakshatra is considered more revealing than your sign.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'नक्षत्र क्या हैं?' : 'What Are Nakshatras?'}</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
@@ -153,6 +164,8 @@ function Page3() {
           {tl({ en: 'Baby naming based on nakshatra pada syllables remains one of the most widely followed astrological traditions even among urbanized, educated families. Hospital astrologers or family jyotishis are consulted within hours of birth to determine the exact birth nakshatra and pada, from which the naming syllable is derived. Our Baby Names tool uses the same pada-to-syllable mapping to suggest culturally appropriate names based on the child&apos;s computed birth nakshatra.', hi: 'नक्षत्र पाद अक्षरों पर आधारित शिशु नामकरण शहरी, शिक्षित परिवारों में भी सर्वाधिक पालन की जाने वाली ज्योतिषीय परम्पराओं में से एक है। जन्म के कुछ ही घण्टों में अस्पताल के ज्योतिषी या पारिवारिक ज्योतिषी से सम्पर्क किया जाता है ताकि सटीक जन्म नक्षत्र और पाद निर्धारित हो, जिससे नामकरण अक्षर प्राप्त होता है। हमारा शिशु नाम उपकरण उसी पाद-से-अक्षर मानचित्रण का उपयोग करके बालक के गणित जन्म नक्षत्र के आधार पर सांस्कृतिक रूप से उपयुक्त नाम सुझाता है।', sa: 'नक्षत्र पाद अक्षरों पर आधारित शिशु नामकरण शहरी, शिक्षित परिवारों में भी सर्वाधिक पालन की जाने वाली ज्योतिषीय परम्पराओं में से एक है। जन्म के कुछ ही घण्टों में अस्पताल के ज्योतिषी या पारिवारिक ज्योतिषी से सम्पर्क किया जाता है ताकि सटीक जन्म नक्षत्र और पाद निर्धारित हो, जिससे नामकरण अक्षर प्राप्त होता है। हमारा शिशु नाम उपकरण उसी पाद-से-अक्षर मानचित्रण का उपयोग करके बालक के गणित जन्म नक्षत्र के आधार पर सांस्कृतिक रूप से उपयुक्त नाम सुझाता है।' }, locale)}
         </p>
       </section>
+
+      <TryNakshatraFinder />
     </div>
   );
 }

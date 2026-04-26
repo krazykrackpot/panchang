@@ -6,6 +6,10 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/14-1.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import dynamic from 'next/dynamic';
+
+const TryCompatibility = dynamic(() => import('@/components/learn/TryCompatibility'), { ssr: false });
 
 const META: ModuleMeta = {
   id: 'mod_14_1', phase: 4, topic: 'Compatibility', moduleNumber: '14.1',
@@ -22,6 +26,13 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'Ashta Kuta compares 8 factors between two nakshatras, scoring up to 36 points — it\'s the standard compatibility system used across India.',
+          'The system is based on Moon nakshatras, not Sun signs — both individuals need accurate birth times for valid results.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           Kundali Milan: Matching Two Birth Charts
@@ -155,6 +166,8 @@ function Page3() {
           The biggest modern pitfall is treating the Kuta score like a credit score — reducing a complex multi-dimensional assessment to a single number. Families sometimes reject excellent matches because the score is 22 instead of 28, while accepting problematic ones that happen to score 30. Remember: the 8 kutas use only the Moon nakshatra. They say nothing about the ascendant, planetary yogas, dasha periods, or the hundreds of other factors that shape a life. Use the Kuta score as a screening tool, not a verdict.
         </p>
       </section>
+
+      <TryCompatibility />
     </div>
   );
 }

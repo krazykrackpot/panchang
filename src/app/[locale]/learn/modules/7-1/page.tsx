@@ -6,6 +6,10 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/7-1.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import dynamic from 'next/dynamic';
+
+const TryYogaCalc = dynamic(() => import('@/components/learn/TryYogaCalc'), { ssr: false });
 
 const META: ModuleMeta = {
   id: 'mod_7_1', phase: 2, topic: 'Yoga Karana', moduleNumber: '7.1',
@@ -22,6 +26,13 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'A yoga is calculated by adding the Sun and Moon\'s sidereal longitudes — the sum divided into 27 segments gives the day\'s yoga.',
+          'Each of the 27 yogas has a distinct quality (auspicious, neutral, or inauspicious) that colors the energy of the day.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Yoga — The 27 Sun-Moon Combinations</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">In Panchang, the word &quot;yoga&quot; does not refer to asanas or meditation. It is a purely astronomical measure: take the sidereal longitude of the Sun, add the sidereal longitude of the Moon, reduce the sum modulo 360°, and then divide the result into 27 equal segments of 13°20&prime; each. The segment the sum falls into determines the prevailing yoga.</p>
@@ -82,6 +93,8 @@ function Page3() {
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">Yoga remains a standard element in every printed and digital Panchang across India, Nepal, and Sri Lanka. Modern muhurta-selection software — including our own Muhurta AI engine — factors the yoga into its multi-criteria scoring. Vyatipata and Vaidhriti are automatically flagged as unfavourable windows. For users who consult the daily Panchang, the yoga provides a quick read on the day&apos;s general cosmic flavour alongside the four other limbs.</p>
       </section>
+
+      <TryYogaCalc />
     </div>
   );
 }

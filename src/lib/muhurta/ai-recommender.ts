@@ -23,14 +23,28 @@ export interface PanchangSnapshot {
   moonSign: number;
 }
 
+export interface PanchangSubScores {
+  tithi: number;
+  nakshatra: number;
+  yoga: number;
+  karana: number;
+  weekday: number;
+  panchaka: number;
+}
+
 /**
  * Score panchang factors (0-25)
  */
 export function scorePanchangFactors(
   snap: PanchangSnapshot,
   rules: ExtendedActivity,
-): { score: number; factors: LocaleText[] } {
-  let score = 0;
+): { score: number; factors: LocaleText[]; subScores: PanchangSubScores } {
+  let tithiScore = 0;
+  let nakshatraScore = 0;
+  let yogaScore = 0;
+  let karanaScore = 0;
+  let weekdayScore = 0;
+  let panchakaScore = 0;
   const factors: LocaleText[] = [];
 
   // Normalize tithi to paksha-relative (1-15) for rule matching
@@ -40,24 +54,24 @@ export function scorePanchangFactors(
 
   // Tithi match: +8 (Shukla tithis favored; Krishna generally less auspicious)
   if (rules.goodTithis.includes(pakshaRelTithi) && !isKrishnaPaksha) {
-    score += 8;
+    tithiScore += 8;
     factors.push({ en: 'Auspicious Tithi', hi: 'शुभ तिथि', sa: 'शुभतिथिः' });
   } else if (rules.goodTithis.includes(pakshaRelTithi) && isKrishnaPaksha) {
-    score += 3; // Krishna variant of a good tithi — reduced benefit
+    tithiScore += 3; // Krishna variant of a good tithi — reduced benefit
   }
   // Avoid tithi: -5 (applies to both pakshas)
   if (rules.avoidTithis.includes(pakshaRelTithi)) {
-    score -= 5;
+    tithiScore -= 5;
     factors.push({ en: 'Inauspicious Tithi', hi: 'अशुभ तिथि', sa: 'अशुभतिथिः' });
   }
 
   // Nakshatra match: +8
   if (rules.goodNakshatras.includes(snap.nakshatra)) {
-    score += 8;
+    nakshatraScore += 8;
     factors.push({ en: 'Auspicious Nakshatra', hi: 'शुभ नक्षत्र', sa: 'शुभनक्षत्रम्' });
   }
   if (rules.avoidNakshatras.includes(snap.nakshatra)) {
-    score -= 5;
+    nakshatraScore -= 5;
     factors.push({ en: 'Inauspicious Nakshatra', hi: 'अशुभ नक्षत्र', sa: 'अशुभनक्षत्रम्' });
   }
 
@@ -66,42 +80,52 @@ export function scorePanchangFactors(
   //               Vyatipata(17), Parigha(19), Vaidhriti(27)
   const INAUSPICIOUS_YOGAS = new Set([1, 6, 9, 10, 13, 15, 17, 19, 27]);
   if (!INAUSPICIOUS_YOGAS.has(snap.yoga)) {
-    score += 4;
+    yogaScore += 4;
   } else {
-    score -= 3;
+    yogaScore -= 3;
     factors.push({ en: 'Inauspicious Yoga', hi: 'अशुभ योग', sa: 'अशुभयोगः' });
   }
 
   // Good weekday: +3
   if (rules.goodWeekdays.includes(snap.weekday)) {
-    score += 3;
+    weekdayScore += 3;
     factors.push({ en: 'Favorable weekday', hi: 'अनुकूल वार', sa: 'अनुकूलवारः' });
   }
 
   // Karana favorable (chara karanas 1-6): +2. Vishti/Bhadra (7) is most inauspicious.
   if (snap.karana >= 1 && snap.karana <= 6) {
-    score += 2;
+    karanaScore += 2;
   } else if (snap.karana === 7) {
-    score -= 5;
+    karanaScore -= 5;
     factors.push({ en: 'Vishti (Bhadra) Karana — inauspicious', hi: 'विष्टि (भद्रा) करण — अशुभ', sa: 'विष्टिकरणम् — अशुभम्' });
   } else if ([8, 9, 10].includes(snap.karana)) {
     // Sthira karanas: Shakuni(8), Chatushpada(9), Naga(10) — inauspicious
-    score -= 3;
+    karanaScore -= 3;
     factors.push({ en: 'Sthira Karana — inauspicious', hi: 'स्थिर करण — अशुभ', sa: 'स्थिरकरणम् — अशुभम्' });
   } else if (snap.karana === 11) {
     // Kimstughna — auspicious sthira karana
-    score += 2;
+    karanaScore += 2;
     factors.push({ en: 'Kimstughna Karana — auspicious', hi: 'किंस्तुघ्न करण — शुभ', sa: 'किंस्तुघ्नकरणम् — शुभम्' });
   }
 
   // Panchaka — inauspicious when Moon is in nakshatras 23-27
   // (Dhanishtha, Shatabhisha, Purva Bhadrapada, Uttara Bhadrapada, Revati)
   if (snap.nakshatra >= 23 && snap.nakshatra <= 27) {
-    score -= 5;
+    panchakaScore -= 5;
     factors.push({ en: 'Panchaka active — Moon in inauspicious nakshatra zone', hi: 'पंचक सक्रिय — चन्द्र अशुभ नक्षत्र क्षेत्र में', sa: 'पञ्चकं प्रवर्तते — चन्द्रः अशुभनक्षत्रक्षेत्रे' });
   }
 
-  return { score: Math.max(0, Math.min(25, score)), factors };
+  const subScores: PanchangSubScores = {
+    tithi: tithiScore,
+    nakshatra: nakshatraScore,
+    yoga: yogaScore,
+    karana: karanaScore,
+    weekday: weekdayScore,
+    panchaka: panchakaScore,
+  };
+
+  const rawScore = tithiScore + nakshatraScore + yogaScore + karanaScore + weekdayScore + panchakaScore;
+  return { score: Math.max(0, Math.min(25, rawScore)), factors, subScores };
 }
 
 /**

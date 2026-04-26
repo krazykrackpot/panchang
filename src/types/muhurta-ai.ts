@@ -47,3 +47,76 @@ export interface MuhurtaAIResult {
   topRecommendations: ScoredTimeWindow[];
   summary: LocaleText;
 }
+
+// --- Muhurta Scanner V2 types ---
+
+export interface ScanOptionsV2 {
+  startDate: string;       // YYYY-MM-DD
+  endDate: string;         // YYYY-MM-DD
+  activity: ExtendedActivityId;
+  lat: number;
+  lng: number;
+  tz: number;
+  windowMinutes: number;   // 120 for overview, 15 for detail
+  preSunriseHours: number; // hours before sunrise to include (e.g. 2)
+  postSunsetHours: number; // hours after sunset to include (e.g. 3)
+  birthNakshatra?: number;
+  birthRashi?: number;
+  dashaLords?: { maha: number; antar: number; pratyantar: number };
+}
+
+export interface DetailBreakdown {
+  tithi: number;           // 0-20
+  nakshatra: number;       // 0-20
+  yoga: number;            // 0-20
+  karana: number;          // 0-10
+  taraBala: number;        // 0-10
+  chandraBala: number;     // 0-10
+  dashaHarmony: number;    // 0-10
+  inauspicious: number;    // 0-10 (subtractive — higher = less penalty)
+}
+
+export interface InauspiciousPeriod {
+  name: string;
+  startTime: string;       // HH:MM
+  endTime: string;         // HH:MM
+  active: boolean;
+}
+
+export interface HeatmapCell {
+  date: string;
+  timeSlot: number;
+  startTime: string;
+  endTime: string;
+  score: number;           // 0-100 normalized
+  rawScore: number;
+}
+
+export interface DetailWindow {
+  date: string;
+  startTime: string;
+  endTime: string;
+  score: number;
+  breakdown: DetailBreakdown;
+  inauspiciousPeriods: InauspiciousPeriod[];
+  panchangContext: {
+    tithiName: string;
+    nakshatraName: string;
+    yogaName: string;
+    karanaName: string;
+    paksha: 'shukla' | 'krishna';
+  };
+  taraBala?: { tara: number; name: string; auspicious: boolean };
+  chandraBala?: boolean;
+}
+
+export interface MuhurtaScanResponse {
+  windows: HeatmapCell[] | DetailWindow[];
+  meta: {
+    activity: ExtendedActivityId;
+    dateRange: [string, string];
+    resolution: 'overview' | 'detail';
+    personalFactorsUsed: ('taraBala' | 'chandraBala' | 'dashaHarmony')[];
+    computeTimeMs: number;
+  };
+}

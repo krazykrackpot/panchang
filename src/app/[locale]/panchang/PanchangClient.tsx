@@ -44,6 +44,14 @@ import { HORA_PLANET_ACTIVITIES, computeHoraTable } from '@/lib/panchang/hora-en
 import { getVaraRemedies } from '@/lib/remedies/prescription-engine';
 import type { VaraRemedy } from '@/lib/remedies/prescription-engine';
 import { generateDailyVibe } from '@/lib/shareable/daily-vibe';
+import {
+  getTithiInsight,
+  getNakshatraInsight,
+  getYogaInsight,
+  getKaranaInsight,
+  getVaraInsight,
+  type PanchangInsight,
+} from '@/lib/constants/panchang-insights';
 import dynamic from 'next/dynamic';
 
 const DailyVibeCard = dynamic(() => import('@/components/shareable/DailyVibeCard'), { ssr: false });
@@ -111,6 +119,43 @@ function SectionHeading({
       <div className="flex justify-center mb-3">{icon}</div>
       <h2 className={`text-3xl font-bold mb-2 ${accentClass}`}>{title}</h2>
       {subtitle && <p className="text-text-secondary text-sm max-w-xl mx-auto">{subtitle}</p>}
+    </div>
+  );
+}
+
+// ──────────────────────────────────────────────────────────────
+// Collapsible "What does this mean?" insight block
+// ──────────────────────────────────────────────────────────────
+function InsightBlock({ insight }: { insight: PanchangInsight | undefined }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  if (!insight) return null;
+
+  return (
+    <div className="mt-2">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="text-text-secondary text-xs hover:text-gold-light transition-colors flex items-center gap-1 mx-auto"
+      >
+        <ChevronDown className={`w-3 h-3 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        What does this mean?
+      </button>
+      {isOpen && (
+        <div className="mt-2 p-3 rounded-lg bg-gold-primary/5 border border-gold-primary/10 text-sm text-left">
+          <p className="font-medium text-gold-light mb-1 text-xs">{insight.headline}</p>
+          <p className="text-text-primary text-xs leading-relaxed mb-2">{insight.explanation}</p>
+          {insight.bestFor.length > 0 && (
+            <p className="text-text-secondary text-xs">
+              <span className="text-gold-primary/70">Best for:</span> {insight.bestFor.join(', ')}
+            </p>
+          )}
+          {insight.avoid.length > 0 && (
+            <p className="text-text-secondary text-xs mt-1">
+              <span className="text-gold-primary/70">Avoid:</span> {insight.avoid.join(', ')}
+            </p>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -794,6 +839,8 @@ export default function PanchangClient() {
                       : msg('krishna', locale)
                     }{' — '}{msg('deity', locale)}{' '}{tl(panchang.tithi.deity)}
                   </div>
+                  {/* Tithi insight */}
+                  <InsightBlock insight={getTithiInsight(panchang.tithi.number, panchang.tithi.paksha as 'shukla' | 'krishna')} />
                   {/* Masa / Paksha — both systems */}
                   <div className="mt-3 pt-3 border-t border-gold-primary/10 grid grid-cols-2 gap-2 text-xs">
                     <div>
@@ -852,6 +899,8 @@ export default function PanchangClient() {
                   <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
                     {msg('nature', locale)}{' '}{tl(panchang.nakshatra.nature)}{' — '}{msg('ruler', locale)}{' '}{tl(panchang.nakshatra.rulerName)}
                   </div>
+                  {/* Nakshatra insight */}
+                  <InsightBlock insight={getNakshatraInsight(panchang.nakshatra.id)} />
                 </motion.div>
 
                 {/* ── YOGA CARD ── */}
@@ -895,6 +944,8 @@ export default function PanchangClient() {
                         : msg('yogaNeutral', locale)
                     }
                   </div>
+                  {/* Yoga insight */}
+                  <InsightBlock insight={getYogaInsight(panchang.yoga.number)} />
                 </motion.div>
 
                 {/* ── KARANA CARD ── */}
@@ -942,6 +993,8 @@ export default function PanchangClient() {
                         : msg('karanaSpecial', locale)
                     }
                   </div>
+                  {/* Karana insight */}
+                  <InsightBlock insight={getKaranaInsight(activeKarana.name?.en || '')} />
                 </motion.div>
 
                 {/* ── VARA CARD ── */}
@@ -968,6 +1021,8 @@ export default function PanchangClient() {
                       : msg('varaSat', locale)
                     }
                   </div>
+                  {/* Vara insight */}
+                  <InsightBlock insight={getVaraInsight(panchang.vara.day)} />
                 </motion.div>
               </div>
             );

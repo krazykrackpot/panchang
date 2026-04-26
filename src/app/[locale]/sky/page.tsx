@@ -1,12 +1,25 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { useLocale } from 'next-intl';
 import { LiveSkyMap } from '@/components/sky/LiveSkyMap';
 import type { SkyPlanetPosition } from '@/lib/sky/positions';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
+
+const CelestialSphere3D = dynamic(
+  () => import('@/components/3d/CelestialSphere').then(m => m.CelestialSphere),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex items-center justify-center rounded-2xl border border-[#8a6d2b]/20 bg-[#0d1230]" style={{ height: 600 }}>
+        <p className="text-[#8a8478] text-sm animate-pulse">Loading 3D scene...</p>
+      </div>
+    ),
+  },
+);
 
 // --------------------------------------------------------------------------
 // Inline labels (page-specific i18n — not in global locale files)
@@ -136,11 +149,12 @@ export default function SkyPage() {
   const locale = useLocale();
   const [positions, setPositions] = useState<SkyPlanetPosition[]>([]);
   const [loadingTable, setLoadingTable] = useState(true);
+  const [viewMode, setViewMode] = useState<'2d' | '3d'>('2d');
+  const [autoRotate, setAutoRotate] = useState(true);
 
   const t = (key: keyof typeof LABELS) => tl(LABELS[key], locale);
 
   useEffect(() => {
-    // Fetch initial positions for the table — LiveSkyMap manages its own fetch internally
     fetch('/api/sky/positions')
       .then((r) => r.json())
       .then((data: { positions: SkyPlanetPosition[] }) => {
@@ -158,19 +172,65 @@ export default function SkyPage() {
     <main className="min-h-screen bg-[#0a0e27] text-[#e6e2d8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* Header */}
-        <div className="mb-8">
-          <h1
-            className="text-3xl sm:text-4xl font-bold text-[#f0d48a] mb-2"
-            style={{ fontFamily: 'var(--font-heading)' }}
-          >
-            {t('title')}
-          </h1>
-          <p className="text-[#8a8478] text-base">{t('subtitle')}</p>
+        <div className="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div>
+            <h1
+              className="text-3xl sm:text-4xl font-bold text-[#f0d48a] mb-2"
+              style={{ fontFamily: 'var(--font-heading)' }}
+            >
+              {t('title')}
+            </h1>
+            <p className="text-[#8a8478] text-base">{t('subtitle')}</p>
+          </div>
+
+          {/* 2D / 3D toggle */}
+          <div className="flex items-center gap-2">
+            <div className="flex rounded-xl overflow-hidden border border-[#8a6d2b]/30">
+              <button
+                onClick={() => setViewMode('2d')}
+                className={`px-4 py-2 text-sm font-semibold transition-colors ${
+                  viewMode === '2d'
+                    ? 'bg-gold-primary/20 text-[#f0d48a] border-r border-[#8a6d2b]/30'
+                    : 'text-[#8a8478] hover:text-[#f0d48a] border-r border-[#8a6d2b]/30'
+                }`}
+              >
+                2D
+              </button>
+              <button
+                onClick={() => setViewMode('3d')}
+                className={`px-4 py-2 text-sm font-semibold transition-colors ${
+                  viewMode === '3d'
+                    ? 'bg-gold-primary/20 text-[#f0d48a]'
+                    : 'text-[#8a8478] hover:text-[#f0d48a]'
+                }`}
+              >
+                3D
+              </button>
+            </div>
+            {viewMode === '3d' && (
+              <button
+                onClick={() => setAutoRotate(!autoRotate)}
+                className={`px-3 py-2 rounded-xl text-xs font-medium transition-colors border ${
+                  autoRotate
+                    ? 'border-[#8a6d2b]/40 bg-gold-primary/15 text-[#f0d48a]'
+                    : 'border-[#8a6d2b]/20 text-[#8a8478]'
+                }`}
+              >
+                {autoRotate ? 'Rotate: ON' : 'Rotate: OFF'}
+              </button>
+            )}
+          </div>
         </div>
 
-        {/* Chart — full available width */}
+        {/* Chart */}
         <section className="mb-10" aria-label="Sky map visualization">
-          <LiveSkyMap />
+          {viewMode === '2d' ? (
+            <LiveSkyMap locale={locale} />
+          ) : (
+            <div className="rounded-2xl border border-[#8a6d2b]/20 overflow-hidden" style={{ height: '70vh', minHeight: 500 }}>
+              <CelestialSphere3D autoRotate={autoRotate} />
+            </div>
+          )}
         </section>
 
         {/* Planet positions table */}

@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { type SkyPlanetPosition } from '@/lib/sky/positions';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
+import { tl } from '@/lib/utils/trilingual';
 
 // ----------------------------------------------------------------------------
 // Constants — hoisted from render path (performance rule)
@@ -189,7 +190,7 @@ function SvgDefs() {
 // Sub-components
 // ----------------------------------------------------------------------------
 
-function RashiRing() {
+function RashiRing({ locale = 'en' }: { locale?: string }) {
   return (
     <g aria-label="Rashi ring">
       {RASHIS.map((rashi) => {
@@ -235,7 +236,7 @@ function RashiRing() {
               fill="#d4a853"
               style={{ userSelect: 'none', pointerEvents: 'none' }}
             >
-              {rashi.name.en.substring(0, 3).toUpperCase()}
+              {tl(rashi.name, locale).substring(0, 4)}
             </text>
           </g>
         );
@@ -244,7 +245,7 @@ function RashiRing() {
   );
 }
 
-function NakshatraRing() {
+function NakshatraRing({ locale = 'en' }: { locale?: string }) {
   const nakshatraSpan = 360 / 27; // ≈13.333°
 
   return (
@@ -271,12 +272,12 @@ function NakshatraRing() {
               y={midPt.y}
               textAnchor="middle"
               dominantBaseline="middle"
-              fontSize={9}
+              fontSize={8}
               fontWeight={600}
               fill="#c8a040"
               style={{ userSelect: 'none', pointerEvents: 'none' }}
             >
-              {nak.name.en.substring(0, 5)}
+              {tl(nak.name, locale)}
             </text>
           </g>
         );
@@ -728,6 +729,8 @@ const RETROGRADE_CSS = `
 interface LiveSkyMapProps {
   /** Initial positions — can be passed from server or computed client-side */
   initialPositions?: SkyPlanetPosition[];
+  /** Locale for nakshatra/rashi labels — defaults to 'en' */
+  locale?: string;
 }
 
 /** Time animation speeds */
@@ -740,7 +743,7 @@ const TIME_SPEEDS = [
   { label: '30d/s', hours: 720 },
 ] as const;
 
-export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
+export function LiveSkyMap({ initialPositions, locale = 'en' }: LiveSkyMapProps) {
   const [positions, setPositions] = useState<SkyPlanetPosition[]>(initialPositions ?? []);
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<SkyPlanetPosition | null>(null);
@@ -976,10 +979,10 @@ export function LiveSkyMap({ initialPositions }: LiveSkyMapProps) {
             <circle cx={CX} cy={CY} r={R_TICK_OUTER} fill="none" stroke="#8a6d2b" strokeOpacity={0.15} strokeWidth={0.5} />
 
             {/* Nakshatra ring (outermost labeled ring) */}
-            <NakshatraRing />
+            <NakshatraRing locale={locale} />
 
             {/* Rashi ring */}
-            <RashiRing />
+            <RashiRing locale={locale} />
 
             {/* Degree markers */}
             <DegreeMarkers />

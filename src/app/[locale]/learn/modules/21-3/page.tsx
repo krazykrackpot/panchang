@@ -7,6 +7,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/21-3.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
 
 const META: ModuleMeta = {
   id: 'mod_21_3', phase: 8, topic: 'Varshaphal', moduleNumber: '21.3',
@@ -16,176 +17,20 @@ const META: ModuleMeta = {
   crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q21_3_01', type: 'mcq',
-    question: {
-      en: 'What is Mudda Dasha?',
-      hi: 'मुद्दा दशा क्या है?',
-    },
-    options: [
-      { en: 'A new dasha system unrelated to Vimshottari', hi: 'विंशोत्तरी से असम्बन्धित एक नई दशा पद्धति', sa: 'विंशोत्तरी से असम्बन्धित एक नई दशा पद्धति', mai: 'विंशोत्तरी से असम्बन्धित एक नई दशा पद्धति', mr: 'विंशोत्तरी से असम्बन्धित एक नई दशा पद्धति', ta: 'விம்ஶோத்தரீ ஸே அஸம்பந்धித எக நஈ தஶா பத்धதி', te: 'వింశోత్తరీ సే అసమ్బన్ధిత ఏక నఈ దశా పద్ధతి', bn: 'বিংশোত্তরী সে অসম্বন্ধিত এক নঈ দশা পদ্ধতি', kn: 'ವಿಂಶೋತ್ತರೀ ಸೇ ಅಸಮ್ಬನ್ಧಿತ ಏಕ ನಈ ದಶಾ ಪದ್ಧತಿ', gu: 'વિંશોત્તરી સે અસમ્બન્ધિત એક નઈ દશા પદ્ધતિ' },
-      { en: 'Vimshottari dasha compressed into one year (365.25 days)', hi: 'विंशोत्तरी दशा को एक वर्ष (365.25 दिन) में संकुचित किया गया', sa: 'विंशोत्तरी दशा को एक वर्ष (365.25 दिन) में संकुचित किया गया', mai: 'विंशोत्तरी दशा को एक वर्ष (365.25 दिन) में संकुचित किया गया', mr: 'विंशोत्तरी दशा को एक वर्ष (365.25 दिन) में संकुचित किया गया', ta: 'விம்ஶோத்தரீ தஶா கோ எக வர்ஷ (365.25 திந) மேம் ஸம்குசித கியா கயா', te: 'వింశోత్తరీ దశా కో ఏక వర్ష (365.25 దిన) మేం సంకుచిత కియా గయా', bn: 'বিংশোত্তরী দশা কো এক বর্ষ (365.25 দিন) মেং সংকুচিত কিযা গযা', kn: 'ವಿಂಶೋತ್ತರೀ ದಶಾ ಕೋ ಏಕ ವರ್ಷ (365.25 ದಿನ) ಮೇಂ ಸಂಕುಚಿತ ಕಿಯಾ ಗಯಾ', gu: 'વિંશોત્તરી દશા કો એક વર્ષ (365.25 દિન) મેં સંકુચિત કિયા ગયા' },
-      { en: 'A dasha based on the Sun\'s position only', hi: 'केवल सूर्य की स्थिति पर आधारित दशा' },
-      { en: 'A transit-based timing system', hi: 'गोचर-आधारित समय पद्धति', sa: 'गोचर-आधारित समय पद्धति', mai: 'गोचर-आधारित समय पद्धति', mr: 'गोचर-आधारित समय पद्धति', ta: 'கோசர-ஆधாரித ஸமய பத்धதி', te: 'గోచర-ఆధారిత సమయ పద్ధతి', bn: 'গোচর-আধারিত সময পদ্ধতি', kn: 'ಗೋಚರ-ಆಧಾರಿತ ಸಮಯ ಪದ್ಧತಿ', gu: 'ગોચર-આધારિત સમય પદ્ધતિ' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Mudda Dasha compresses the 120-year Vimshottari cycle into 365.25 days (one solar year). The same planetary proportions apply: Sun gets 6/120 of the year, Moon 10/120, Mars 7/120, etc.',
-      hi: 'मुद्दा दशा 120 वर्ष के विंशोत्तरी चक्र को 365.25 दिनों (एक सौर वर्ष) में संकुचित करती है। वही ग्रह अनुपात लागू होते हैं: सूर्य को वर्ष का 6/120, चन्द्र को 10/120, मंगल को 7/120, आदि।',
-    },
-  },
-  {
-    id: 'q21_3_02', type: 'mcq',
-    question: {
-      en: 'How many days does the Sun Mudda Dasha last?',
-      hi: 'सूर्य मुद्दा दशा कितने दिन चलती है?',
-    },
-    options: [
-      { en: 'About 6 days', hi: 'लगभग 6 दिन', sa: 'लगभग 6 दिन', mai: 'लगभग 6 दिन', mr: 'लगभग 6 दिन', ta: 'லகभக 6 திந', te: 'లగభగ 6 దిన', bn: 'লগভগ 6 দিন', kn: 'ಲಗಭಗ 6 ದಿನ', gu: 'લગભગ 6 દિન' },
-      { en: 'About 18.25 days', hi: 'लगभग 18.25 दिन', sa: 'लगभग 18.25 दिन', mai: 'लगभग 18.25 दिन', mr: 'लगभग 18.25 दिन', ta: 'லகभக 18.25 திந', te: 'లగభగ 18.25 దిన', bn: 'লগভগ 18.25 দিন', kn: 'ಲಗಭಗ 18.25 ದಿನ', gu: 'લગભગ 18.25 દિન' },
-      { en: 'About 30 days', hi: 'लगभग 30 दिन', sa: 'लगभग 30 दिन', mai: 'लगभग 30 दिन', mr: 'लगभग 30 दिन', ta: 'லகभக 30 திந', te: 'లగభగ 30 దిన', bn: 'লগভগ 30 দিন', kn: 'ಲಗಭಗ 30 ದಿನ', gu: 'લગભગ 30 દિન' },
-      { en: 'About 60 days', hi: 'लगभग 60 दिन', sa: 'लगभग 60 दिन', mai: 'लगभग 60 दिन', mr: 'लगभग 60 दिन', ta: 'லகभக 60 திந', te: 'లగభగ 60 దిన', bn: 'লগভগ 60 দিন', kn: 'ಲಗಭಗ 60 ದಿನ', gu: 'લગભગ 60 દિન' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Sun Mudda Dasha = 6/120 of 365.25 days = 18.26 days. The Sun\'s Vimshottari period is 6 years out of 120, so it gets 6/120th of the annual cycle.',
-      hi: 'सूर्य मुद्दा दशा = 365.25 दिन का 6/120 = 18.26 दिन। सूर्य की विंशोत्तरी अवधि 120 में से 6 वर्ष है, अतः इसे वार्षिक चक्र का 6/120वाँ भाग मिलता है।',
-    },
-  },
-  {
-    id: 'q21_3_03', type: 'mcq',
-    question: {
-      en: 'Which planet has the longest Mudda Dasha period?',
-      hi: 'किस ग्रह की मुद्दा दशा अवधि सबसे लम्बी है?',
-    },
-    options: [
-      { en: 'Saturn (about 57.8 days)', hi: 'शनि (लगभग 57.8 दिन)', sa: 'शनि (लगभग 57.8 दिन)', mai: 'शनि (लगभग 57.8 दिन)', mr: 'शनि (लगभग 57.8 दिन)', ta: 'ஶநி (லகभக 57.8 திந)', te: 'శని (లగభగ 57.8 దిన)', bn: 'শনি (লগভগ 57.8 দিন)', kn: 'ಶನಿ (ಲಗಭಗ 57.8 ದಿನ)', gu: 'શનિ (લગભગ 57.8 દિન)' },
-      { en: 'Venus (about 60.9 days)', hi: 'शुक्र (लगभग 60.9 दिन)', sa: 'शुक्र (लगभग 60.9 दिन)', mai: 'शुक्र (लगभग 60.9 दिन)', mr: 'शुक्र (लगभग 60.9 दिन)', ta: 'ஶுக்ர (லகभக 60.9 திந)', te: 'శుక్ర (లగభగ 60.9 దిన)', bn: 'শুক্র (লগভগ 60.9 দিন)', kn: 'ಶುಕ್ರ (ಲಗಭಗ 60.9 ದಿನ)', gu: 'શુક્ર (લગભગ 60.9 દિન)' },
-      { en: 'Rahu (about 54.8 days)', hi: 'राहु (लगभग 54.8 दिन)', sa: 'राहु (लगभग 54.8 दिन)', mai: 'राहु (लगभग 54.8 दिन)', mr: 'राहु (लगभग 54.8 दिन)', ta: 'ராஹு (லகभக 54.8 திந)', te: 'రాహు (లగభగ 54.8 దిన)', bn: 'রাহু (লগভগ 54.8 দিন)', kn: 'ರಾಹು (ಲಗಭಗ 54.8 ದಿನ)', gu: 'રાહુ (લગભગ 54.8 દિન)' },
-      { en: 'Jupiter (about 48.7 days)', hi: 'गुरु (लगभग 48.7 दिन)', sa: 'गुरु (लगभग 48.7 दिन)', mai: 'गुरु (लगभग 48.7 दिन)', mr: 'गुरु (लगभग 48.7 दिन)', ta: 'குரு (லகभக 48.7 திந)', te: 'గురు (లగభగ 48.7 దిన)', bn: 'গুরু (লগভগ 48.7 দিন)', kn: 'ಗುರು (ಲಗಭಗ 48.7 ದಿನ)', gu: 'ગુરુ (લગભગ 48.7 દિન)' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Venus has the longest Vimshottari period (20 years), so it has the longest Mudda Dasha: 20/120 of 365.25 = approximately 60.9 days, nearly 2 months.',
-      hi: 'शुक्र की विंशोत्तरी अवधि सबसे लम्बी (20 वर्ष) है, अतः इसकी मुद्दा दशा भी सबसे लम्बी: 365.25 का 20/120 = लगभग 60.9 दिन, करीब 2 माह।',
-    },
-  },
-  {
-    id: 'q21_3_04', type: 'true_false',
-    question: {
-      en: 'The starting planet of Mudda Dasha is determined by the birth Moon\'s nakshatra, just like natal Vimshottari.',
-      hi: 'मुद्दा दशा का आरम्भिक ग्रह जन्म चन्द्रमा के नक्षत्र से निर्धारित होता है, ठीक जन्म विंशोत्तरी की तरह।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. The starting planet of Mudda Dasha is determined by the lord of the nakshatra in which the ANNUAL LAGNA (Varshaphal Ascendant) falls, NOT the birth Moon\'s nakshatra. This is a key difference from natal Vimshottari.',
-      hi: 'असत्य। मुद्दा दशा का आरम्भिक ग्रह उस नक्षत्र के स्वामी से निर्धारित होता है जिसमें वार्षिक लग्न (वर्षफल लग्न) पड़ता है, जन्म चन्द्रमा के नक्षत्र से नहीं। यह जन्म विंशोत्तरी से एक प्रमुख अन्तर है।',
-    },
-  },
-  {
-    id: 'q21_3_05', type: 'mcq',
-    question: {
-      en: 'If the Varshaphal lagna is at 25 degrees Cancer (Ashlesha nakshatra), which planet\'s Mudda Dasha starts first?',
-      hi: 'यदि वर्षफल लग्न 25 अंश कर्क (आश्लेषा नक्षत्र) पर है, तो किस ग्रह की मुद्दा दशा पहले आरम्भ होती है?',
-    },
-    options: [
-      { en: 'Moon (Cancer lord)', hi: 'चन्द्र (कर्क स्वामी)', sa: 'चन्द्र (कर्क स्वामी)', mai: 'चन्द्र (कर्क स्वामी)', mr: 'चन्द्र (कर्क स्वामी)', ta: 'சந்த்ர (கர்க ஸ்வாமீ)', te: 'చన్ద్ర (కర్క స్వామీ)', bn: 'চন্দ্র (কর্ক স্বামী)', kn: 'ಚನ್ದ್ರ (ಕರ್ಕ ಸ್ವಾಮೀ)', gu: 'ચન્દ્ર (કર્ક સ્વામી)' },
-      { en: 'Mercury (Ashlesha lord)', hi: 'बुध (आश्लेषा स्वामी)', sa: 'बुध (आश्लेषा स्वामी)', mai: 'बुध (आश्लेषा स्वामी)', mr: 'बुध (आश्लेषा स्वामी)', ta: 'புध (ஆஶ்லேஷா ஸ்வாமீ)', te: 'బుధ (ఆశ్లేషా స్వామీ)', bn: 'বুধ (আশ্লেষা স্বামী)', kn: 'ಬುಧ (ಆಶ್ಲೇಷಾ ಸ್ವಾಮೀ)', gu: 'બુધ (આશ્લેષા સ્વામી)' },
-      { en: 'Ketu (Ashlesha\'s Vimshottari ruler)', hi: 'केतु (आश्लेषा का विंशोत्तरी शासक)' },
-      { en: 'Jupiter (natural benefic)', hi: 'गुरु (प्राकृतिक शुभ)', sa: 'गुरु (प्राकृतिक शुभ)', mai: 'गुरु (प्राकृतिक शुभ)', mr: 'गुरु (प्राकृतिक शुभ)', ta: 'குரு (ப்ராகிருதிக ஶுभ)', te: 'గురు (ప్రాకృతిక శుభ)', bn: 'গুরু (প্রাকৃতিক শুভ)', kn: 'ಗುರು (ಪ್ರಾಕೃತಿಕ ಶುಭ)', gu: 'ગુરુ (પ્રાકૃતિક શુભ)' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Ashlesha nakshatra is ruled by Mercury in the Vimshottari scheme. Since the Varshaphal lagna falls in Ashlesha, Mercury Mudda Dasha starts first. The remaining balance is computed from the lagna\'s exact position within Ashlesha.',
-      hi: 'विंशोत्तरी योजना में आश्लेषा नक्षत्र का स्वामी बुध है। चूँकि वर्षफल लग्न आश्लेषा में पड़ता है, बुध मुद्दा दशा पहले आरम्भ होती है। शेष अवधि आश्लेषा में लग्न की यथार्थ स्थिति से गणित होती है।',
-    },
-  },
-  {
-    id: 'q21_3_06', type: 'mcq',
-    question: {
-      en: 'How is the dasha balance at the start of the year computed?',
-      hi: 'वर्ष के आरम्भ में दशा शेष कैसे गणित किया जाता है?',
-    },
-    options: [
-      { en: 'From the Moon\'s position in the nakshatra', hi: 'नक्षत्र में चन्द्रमा की स्थिति से' },
-      { en: 'From the Varshaphal lagna\'s position within its nakshatra', hi: 'वर्षफल लग्न की उसके नक्षत्र के भीतर स्थिति से' },
-      { en: 'Always starts at zero balance', hi: 'सदैव शून्य शेष से आरम्भ', sa: 'सदैव शून्य शेष से आरम्भ', mai: 'सदैव शून्य शेष से आरम्भ', mr: 'सदैव शून्य शेष से आरम्भ', ta: 'ஸதைவ ஶூந்ய ஶேஷ ஸே ஆரம்भ', te: 'సదైవ శూన్య శేష సే ఆరమ్భ', bn: 'সদৈব শূন্য শেষ সে আরম্ভ', kn: 'ಸದೈವ ಶೂನ್ಯ ಶೇಷ ಸೇ ಆರಮ್ಭ', gu: 'સદૈવ શૂન્ય શેષ સે આરમ્ભ' },
-      { en: 'From the Sun\'s position at solar return', hi: 'सौर प्रत्यावर्तन पर सूर्य की स्थिति से' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The dasha balance is computed from how far the Varshaphal lagna has progressed through its nakshatra, exactly like natal Vimshottari uses the Moon\'s progress. The remaining portion of the nakshatra determines the unexpired dasha period.',
-      hi: 'दशा शेष इससे गणित होता है कि वर्षफल लग्न अपने नक्षत्र में कितना आगे बढ़ चुका है, ठीक जैसे जन्म विंशोत्तरी चन्द्रमा की प्रगति का उपयोग करता है। नक्षत्र का शेष भाग अव्यतीत दशा अवधि निर्धारित करता है।',
-    },
-  },
-  {
-    id: 'q21_3_07', type: 'true_false',
-    question: {
-      en: 'Mudda Dasha can be used independently without combining it with Tajika yogas.',
-      hi: 'मुद्दा दशा को ताजिक योगों के साथ संयोजित किए बिना स्वतन्त्र रूप से उपयोग किया जा सकता है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True, though it is most powerful when combined. Mudda Dasha alone indicates which months will be dominated by which planet\'s energy. However, combining with Tajika yogas gives the complete picture: Tajika says IF an event will happen, Mudda Dasha says WHEN (which month).',
-      hi: 'सत्य, यद्यपि संयोजित होने पर सबसे शक्तिशाली है। मुद्दा दशा अकेले बताती है कि कौन-से माह किस ग्रह की ऊर्जा से प्रभावित होंगे। तथापि, ताजिक योगों के साथ संयोजन पूर्ण चित्र देता है: ताजिक बताता है कि घटना होगी या नहीं, मुद्दा दशा बताती है कब (कौन-सा माह)।',
-    },
-  },
-  {
-    id: 'q21_3_08', type: 'mcq',
-    question: {
-      en: 'How many days does Mars Mudda Dasha last?',
-      hi: 'मंगल मुद्दा दशा कितने दिन चलती है?',
-    },
-    options: [
-      { en: 'About 7 days', hi: 'लगभग 7 दिन', sa: 'लगभग 7 दिन', mai: 'लगभग 7 दिन', mr: 'लगभग 7 दिन', ta: 'லகभக 7 திந', te: 'లగభగ 7 దిన', bn: 'লগভগ 7 দিন', kn: 'ಲಗಭಗ 7 ದಿನ', gu: 'લગભગ 7 દિન' },
-      { en: 'About 14 days', hi: 'लगभग 14 दिन', sa: 'लगभग 14 दिन', mai: 'लगभग 14 दिन', mr: 'लगभग 14 दिन', ta: 'லகभக 14 திந', te: 'లగభగ 14 దిన', bn: 'লগভগ 14 দিন', kn: 'ಲಗಭಗ 14 ದಿನ', gu: 'લગભગ 14 દિન' },
-      { en: 'About 21.3 days', hi: 'लगभग 21.3 दिन', sa: 'लगभग 21.3 दिन', mai: 'लगभग 21.3 दिन', mr: 'लगभग 21.3 दिन', ta: 'லகभக 21.3 திந', te: 'లగభగ 21.3 దిన', bn: 'লগভগ 21.3 দিন', kn: 'ಲಗಭಗ 21.3 ದಿನ', gu: 'લગભગ 21.3 દિન' },
-      { en: 'About 30 days', hi: 'लगभग 30 दिन', sa: 'लगभग 30 दिन', mai: 'लगभग 30 दिन', mr: 'लगभग 30 दिन', ta: 'லகभக 30 திந', te: 'లగభగ 30 దిన', bn: 'লগভগ 30 দিন', kn: 'ಲಗಭಗ 30 ದಿನ', gu: 'લગભગ 30 દિન' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'Mars Mudda Dasha = 7/120 of 365.25 = 21.3 days (about 3 weeks). Mars\'s Vimshottari period is 7 years, giving it 7/120th of the annual cycle.',
-      hi: 'मंगल मुद्दा दशा = 365.25 का 7/120 = 21.3 दिन (लगभग 3 सप्ताह)। मंगल की विंशोत्तरी अवधि 7 वर्ष है, जिससे इसे वार्षिक चक्र का 7/120वाँ भाग मिलता है।',
-    },
-  },
-  {
-    id: 'q21_3_09', type: 'mcq',
-    question: {
-      en: 'For convergent validation of a marriage prediction, what should you cross-check Mudda Dasha with?',
-      hi: 'विवाह भविष्यवाणी के अभिसारी प्रमाणीकरण के लिए, मुद्दा दशा को किससे क्रॉस-चेक करना चाहिए?',
-    },
-    options: [
-      { en: 'Only the transit chart', hi: 'केवल गोचर कुण्डली', sa: 'केवल गोचर कुण्डली', mai: 'केवल गोचर कुण्डली', mr: 'केवल गोचर कुण्डली', ta: 'கேவல கோசர குண்டலீ', te: 'కేవల గోచర కుణ్డలీ', bn: 'কেবল গোচর কুণ্ডলী', kn: 'ಕೇವಲ ಗೋಚರ ಕುಣ್ಡಲೀ', gu: 'કેવલ ગોચર કુણ્ડલી' },
-      { en: 'The natal Vimshottari dasha', hi: 'जन्म विंशोत्तरी दशा', sa: 'जन्म विंशोत्तरी दशा', mai: 'जन्म विंशोत्तरी दशा', mr: 'जन्म विंशोत्तरी दशा', ta: 'ஜந்ம விம்ஶோத்தரீ தஶா', te: 'జన్మ వింశోత్తరీ దశా', bn: 'জন্ম বিংশোত্তরী দশা', kn: 'ಜನ್ಮ ವಿಂಶೋತ್ತರೀ ದಶಾ', gu: 'જન્મ વિંશોત્તરી દશા' },
-      { en: 'The lunar calendar', hi: 'चान्द्र पंचांग', sa: 'चान्द्र पंचांग', mai: 'चान्द्र पंचांग', mr: 'चान्द्र पंचांग', ta: 'சாந்த்ர பம்சாம்க', te: 'చాన్ద్ర పంచాంగ', bn: 'চান্দ্র পংচাংগ', kn: 'ಚಾನ್ದ್ರ ಪಂಚಾಂಗ', gu: 'ચાન્દ્ર પંચાંગ' },
-      { en: 'The D-9 Navamsha only', hi: 'केवल D-9 नवांश', sa: 'केवल D-9 नवांश', mai: 'केवल D-9 नवांश', mr: 'केवल D-9 नवांश', ta: 'கேவல D-9 நவாம்ஶ', te: 'కేవల D-9 నవాంశ', bn: 'কেবল D-9 নবাংশ', kn: 'ಕೇವಲ D-9 ನವಾಂಶ', gu: 'કેવલ D-9 નવાંશ' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'For convergent validation, cross-check the Mudda Dasha prediction with the natal Vimshottari dasha. If both the annual Mudda Dasha and the natal Vimshottari point to the same event → very high confidence prediction.',
-      hi: 'अभिसारी प्रमाणीकरण के लिए, मुद्दा दशा फलादेश को जन्म विंशोत्तरी दशा से क्रॉस-चेक करें। यदि वार्षिक मुद्दा दशा और जन्म विंशोत्तरी दोनों एक ही घटना की ओर संकेत करें → अत्यन्त उच्च विश्वास का फलादेश।',
-    },
-  },
-  {
-    id: 'q21_3_10', type: 'true_false',
-    question: {
-      en: 'Rahu Mudda Dasha lasts approximately 54.8 days — the second longest after Venus.',
-      hi: 'राहु मुद्दा दशा लगभग 54.8 दिन चलती है — शुक्र के बाद दूसरी सबसे लम्बी।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Rahu\'s Vimshottari period is 18 years. Rahu Mudda Dasha = 18/120 of 365.25 = 54.8 days. This is the second longest after Venus (60.9 days) and just before Saturn (57.8 days). Actually Saturn at 19 years gives 57.8 days, making Rahu third.',
-      hi: 'सत्य। राहु की विंशोत्तरी अवधि 18 वर्ष है। राहु मुद्दा दशा = 365.25 का 18/120 = 54.8 दिन। वास्तव में शनि (19 वर्ष) 57.8 दिन देता है, अतः राहु शुक्र और शनि के बाद तीसरा सबसे लम्बा है।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = L.questions as unknown as ModuleQuestion[];
 
 function Page1() {
   const locale = useModuleLocale();
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'Mudda Dasha compresses the 120-year Vimshottari cycle into one solar year — each planet\'s period lasts days to weeks instead of years.',
+          'This micro-dasha system allows month-by-month and week-by-week timing within the annual Varshaphal chart.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {tl({ en: 'Vimshottari Compressed: 120 Years in 365 Days', hi: 'विंशोत्तरी संकुचित: 120 वर्ष 365 दिनों में', sa: 'विंशोत्तरी संकुचित: 120 वर्ष 365 दिनों में' }, locale)}

@@ -6,6 +6,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/22-2.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
 
 const META: ModuleMeta = {
   id: 'mod_22_2', phase: 9, topic: 'Astronomy', moduleNumber: '22.2',
@@ -15,182 +16,20 @@ const META: ModuleMeta = {
   crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q22_2_01', type: 'mcq',
-    question: {
-      en: 'Why does the Sun appear to move non-uniformly along the ecliptic?',
-      hi: 'सूर्य क्रान्तिवृत्त पर असमान रूप से क्यों गतिमान दिखता है?',
-    },
-    options: [
-      { en: 'Because the Sun orbits the Earth in a circle', hi: 'क्योंकि सूर्य पृथ्वी की वृत्ताकार कक्षा में है', sa: 'क्योंकि सूर्य पृथ्वी की वृत्ताकार कक्षा में है', mai: 'क्योंकि सूर्य पृथ्वी की वृत्ताकार कक्षा में है', mr: 'क्योंकि सूर्य पृथ्वी की वृत्ताकार कक्षा में है', ta: 'சூரியன் பூமியை வட்டப்பாதையில் சுற்றுவதால்', te: 'సూర్యుడు భూమిని వృత్తాకార కక్ష్యలో తిరుగుతాడు కాబట్టి', bn: 'সূর্য পৃথিবীকে বৃত্তাকার কক্ষপথে প্রদক্ষিণ করে বলে', kn: 'ಸೂರ್ಯ ಭೂಮಿಯನ್ನು ವೃತ್ತಾಕಾರ ಕಕ್ಷೆಯಲ್ಲಿ ಸುತ್ತುವುದರಿಂದ', gu: 'સૂર્ય પૃથ્વીની વર્તુળાકાર ભ્રમણકક્ષામાં ફરે છે તેથી' },
-      { en: 'Because Earth\'s orbit is elliptical — faster at perihelion, slower at aphelion', hi: 'क्योंकि पृथ्वी की कक्षा दीर्घवृत्तीय है — उपसौर पर तेज़, अपसौर पर धीमी' },
-      { en: 'Because of the Moon\'s gravitational pull on the Sun', hi: 'चन्द्रमा के सूर्य पर गुरुत्वाकर्षण खिंचाव के कारण' },
-      { en: 'Because of atmospheric refraction', hi: 'वायुमण्डलीय अपवर्तन के कारण', sa: 'वायुमण्डलीय अपवर्तन के कारण', mai: 'वायुमण्डलीय अपवर्तन के कारण', mr: 'वायुमण्डलीय अपवर्तन के कारण', ta: 'வளிமண்டல ஒளிவிலகல் காரணமாக', te: 'వాతావరణ వక్రీభవనం కారణంగా', bn: 'বায়ুমণ্ডলীয় প্রতিসরণের কারণে', kn: 'ವಾತಾವರಣ ವಕ್ರೀಭವನದಿಂದ', gu: 'વાયુમંડળીય વક્રીભવનને કારણે' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Earth orbits the Sun in an ellipse with eccentricity e ≈ 0.017. At perihelion (January), Earth moves faster and the Sun appears to move ~1.02°/day. At aphelion (July), Earth moves slower and the Sun appears to move ~0.95°/day.',
-      hi: 'पृथ्वी सूर्य की उत्केन्द्रता e ≈ 0.017 वाली दीर्घवृत्तीय कक्षा में चक्कर लगाती है। उपसौर (जनवरी) में पृथ्वी तेज़ चलती है और सूर्य ~1.02°/दिन गतिमान दिखता है। अपसौर (जुलाई) में पृथ्वी धीमी चलती है और सूर्य ~0.95°/दिन दिखता है।',
-    },
-  },
-  {
-    id: 'q22_2_02', type: 'mcq',
-    question: {
-      en: 'What does the geometric mean longitude L₀ represent?',
-      hi: 'ज्यामितीय माध्य भोगांश L₀ क्या दर्शाता है?',
-    },
-    options: [
-      { en: 'The Sun\'s true position at any instant', hi: 'किसी क्षण सूर्य की सत्य स्थिति' },
-      { en: 'The Sun\'s average position if the orbit were circular', hi: 'सूर्य की औसत स्थिति यदि कक्षा वृत्ताकार होती' },
-      { en: 'The Moon\'s mean longitude', hi: 'चन्द्रमा का माध्य भोगांश' },
-      { en: 'The ecliptic longitude of the ascending node', hi: 'आरोही पात का क्रान्तिवृत्तीय भोगांश', sa: 'आरोही पात का क्रान्तिवृत्तीय भोगांश', mai: 'आरोही पात का क्रान्तिवृत्तीय भोगांश', mr: 'आरोही पात का क्रान्तिवृत्तीय भोगांश', ta: 'ஏறு முனையின் கிரகண தீர்க்கரேகை', te: 'ఆరోహణ బిందువు యొక్క క్రాంతివృత్త రేఖాంశం', bn: 'আরোহী বিন্দুর ক্রান্তিবৃত্তীয় দ্রাঘিমাংশ', kn: 'ಆರೋಹಿ ಬಿಂದುವಿನ ಕ್ರಾಂತಿವೃತ್ತ ರೇಖಾಂಶ', gu: 'ઊર્ધ્વ બિંદુનો ક્રાંતિવૃત્ત રેખાંશ' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'L₀ = 280.466° + 36000.770° x T is the Sun\'s mean longitude — where it would be if Earth\'s orbit were a perfect circle with uniform motion. The actual position differs due to the elliptical orbit (corrected by the Equation of Center).',
-      hi: 'L₀ = 280.466° + 36000.770° × T सूर्य का माध्य भोगांश है — यदि पृथ्वी की कक्षा समान गति वाला पूर्ण वृत्त होता तो सूर्य यहाँ होता। वास्तविक स्थिति दीर्घवृत्तीय कक्षा के कारण भिन्न होती है (केन्द्र समीकरण द्वारा सुधारित)।',
-    },
-  },
-  {
-    id: 'q22_2_03', type: 'mcq',
-    question: {
-      en: 'The mean anomaly M represents:',
-      hi: 'माध्य विलम्बिका M दर्शाती है:',
-    },
-    options: [
-      { en: 'The angle between the Sun and Moon', hi: 'सूर्य और चन्द्रमा के बीच का कोण', sa: 'सूर्य और चन्द्रमा के बीच का कोण', mai: 'सूर्य और चन्द्रमा के बीच का कोण', mr: 'सूर्य और चन्द्रमा के बीच का कोण', ta: 'சூரியன் மற்றும் நிலவுக்கு இடையிலான கோணம்', te: 'సూర్య చంద్రుల మధ్య కోణం', bn: 'সূর্য ও চন্দ্রের মধ্যে কোণ', kn: 'ಸೂರ್ಯ ಮತ್ತು ಚಂದ್ರನ ನಡುವಿನ ಕೋನ', gu: 'સૂર્ય અને ચંદ્ર વચ્ચેનો ખૂણો' },
-      { en: 'The angle from perihelion along the orbit, as if motion were uniform', hi: 'कक्षा में उपसौर से कोण, मानो गति समान हो', sa: 'कक्षा में उपसौर से कोण, मानो गति समान हो', mai: 'कक्षा में उपसौर से कोण, मानो गति समान हो', mr: 'कक्षा में उपसौर से कोण, मानो गति समान हो', ta: 'சூரிய அண்மையிலிருந்து சுற்றுப்பாதையில் கோணம், சீரான இயக்கம் போல', te: 'సూర్య సమీపం నుండి కక్ష్య వెంట కోణం, చలనం ఏకరీతిగా ఉన్నట్లు', bn: 'অনুসূর্য থেকে কক্ষপথ বরাবর কোণ, যেন গতি সমান হতো', kn: 'ಸೂರ್ಯ ಸಮೀಪದಿಂದ ಕಕ್ಷೆಯುದ್ದಕ್ಕೂ ಕೋನ, ಚಲನೆ ಏಕರೂಪ ಎಂಬಂತೆ', gu: 'સૂર્ય નિકટથી ભ્રમણકક્ષા સાથે ખૂણો, જાણે ગતિ સમાન હોય' },
-      { en: 'The declination of the Sun', hi: 'सूर्य का क्रान्ति', sa: 'सूर्य का क्रान्ति', mai: 'सूर्य का क्रान्ति', mr: 'सूर्य का क्रान्ति', ta: 'சூரியனின் விலக்கம்', te: 'సూర్యుని క్రాంతి', bn: 'সূর্যের বিষুবলম্ব', kn: 'ಸೂರ್ಯನ ಕ್ರಾಂತಿ', gu: 'સૂર્યનો ક્રાંતિ' },
-      { en: 'The hour angle of the Sun', hi: 'सूर्य का घण्टा कोण', sa: 'सूर्य का घण्टा कोण', mai: 'सूर्य का घण्टा कोण', mr: 'सूर्य का घण्टा कोण', ta: 'சூரியனின் மணி கோணம்', te: 'సూర్యుని గంట కోణం', bn: 'সূর্যের ঘণ্টা কোণ', kn: 'ಸೂರ್ಯನ ಗಂಟೆ ಕೋನ', gu: 'સૂર્યનો કલાક ખૂણો' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Mean anomaly M = 357.529° + 35999.050° x T measures the angle from perihelion as if Earth moved at constant speed. The difference between mean anomaly and true anomaly is the Equation of Center.',
-      hi: 'माध्य विलम्बिका M = 357.529° + 35999.050° × T उपसौर से कोण को मापती है मानो पृथ्वी स्थिर गति से चलती हो। माध्य विलम्बिका और सत्य विलम्बिका के बीच अन्तर केन्द्र समीकरण है।',
-    },
-  },
-  {
-    id: 'q22_2_04', type: 'mcq',
-    question: {
-      en: 'The largest term in the Equation of Center for the Sun is approximately:',
-      hi: 'सूर्य के केन्द्र समीकरण में सबसे बड़ा पद लगभग कितना है?',
-    },
-    options: [
-      { en: '0.020° x sin(2M)', hi: '0.020° × sin(2M)', sa: '0.020° × sin(2M)', mai: '0.020° × sin(2M)', mr: '0.020° × sin(2M)', ta: '0.020° × sin(2M)', te: '0.020° × sin(2M)', bn: '0.020° × sin(2M)', kn: '0.020° × sin(2M)', gu: '0.020° × sin(2M)' },
-      { en: '1.915° x sin(M)', hi: '1.915° × sin(M)', sa: '1.915° × sin(M)', mai: '1.915° × sin(M)', mr: '1.915° × sin(M)', ta: '1.915° × sin(M)', te: '1.915° × sin(M)', bn: '1.915° × sin(M)', kn: '1.915° × sin(M)', gu: '1.915° × sin(M)' },
-      { en: '6.289° x sin(M\')', hi: '6.289° × sin(M\')' },
-      { en: '0.00478° x sin(Ω)', hi: '0.00478° × sin(Ω)', sa: '0.00478° × sin(Ω)', mai: '0.00478° × sin(Ω)', mr: '0.00478° × sin(Ω)', ta: '0.00478° × sin(Ω)', te: '0.00478° × sin(Ω)', bn: '0.00478° × sin(Ω)', kn: '0.00478° × sin(Ω)', gu: '0.00478° × sin(Ω)' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The dominant term is 1.915° x sin(M). This single sine term accounts for most of the difference between the Sun\'s mean and true position. The second term (0.020° x sin(2M)) is nearly 100 times smaller.',
-      hi: 'प्रमुख पद 1.915° × sin(M) है। यह एकल ज्या पद सूर्य की माध्य और सत्य स्थिति के बीच अधिकांश अन्तर का कारण है। दूसरा पद (0.020° × sin(2M)) लगभग 100 गुना छोटा है।',
-    },
-  },
-  {
-    id: 'q22_2_05', type: 'true_false',
-    question: {
-      en: 'Nutation is a slow, steady shift in the Sun\'s longitude caused by precession of the equinoxes.',
-      hi: 'अयन-चलन सूर्य के भोगांश में विषुव पुरस्सरण के कारण एक धीमा, स्थिर खिसकाव है।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. Nutation is a short-period oscillation (18.6-year cycle) of Earth\'s rotation axis, not the slow 26,000-year precession. The nutation correction to the Sun\'s longitude is approximately -0.00478° x sin(Ω), where Ω is the longitude of the Moon\'s ascending node.',
-      hi: 'असत्य। अयन-चलन पृथ्वी के घूर्णन अक्ष का लघु-अवधि दोलन (18.6 वर्ष चक्र) है, 26,000 वर्ष का धीमा पुरस्सरण नहीं। सूर्य भोगांश में अयन-चलन सुधार लगभग -0.00478° × sin(Ω) है, जहाँ Ω चन्द्र आरोही पात का भोगांश है।',
-    },
-  },
-  {
-    id: 'q22_2_06', type: 'mcq',
-    question: {
-      en: 'What is the aberration correction applied to the Sun\'s true longitude?',
-      hi: 'सूर्य के सत्य भोगांश पर लागू विपथन सुधार क्या है?',
-    },
-    options: [
-      { en: '-0.00569°', hi: '-0.00569°', sa: '-0.00569°', mai: '-0.00569°', mr: '-0.00569°', ta: '-0.00569°', te: '-0.00569°', bn: '-0.00569°', kn: '-0.00569°', gu: '-0.00569°' },
-      { en: '+1.915°', hi: '+1.915°', sa: '+1.915°', mai: '+1.915°', mr: '+1.915°', ta: '+1.915°', te: '+1.915°', bn: '+1.915°', kn: '+1.915°', gu: '+1.915°' },
-      { en: '-24.22°', hi: '-24.22°', sa: '-24.22°', mai: '-24.22°', mr: '-24.22°', ta: '-24.22°', te: '-24.22°', bn: '-24.22°', kn: '-24.22°', gu: '-24.22°' },
-      { en: '+0.5°', hi: '+0.5°', sa: '+0.5°', mai: '+0.5°', mr: '+0.5°', ta: '+0.5°', te: '+0.5°', bn: '+0.5°', kn: '+0.5°', gu: '+0.5°' },
-    ],
-    correctAnswer: 0,
-    explanation: {
-      en: 'Aberration is -0.00569° (about 20.5 arcseconds). It occurs because light from the Sun takes ~8.3 minutes to reach Earth, during which Earth moves, causing an apparent displacement in the direction of Earth\'s motion.',
-      hi: 'विपथन -0.00569° (लगभग 20.5 कला-सेकण्ड) है। यह इसलिए होता है क्योंकि सूर्य से प्रकाश पृथ्वी तक ~8.3 मिनट लेता है, इस दौरान पृथ्वी गतिमान रहती है, जिससे पृथ्वी की गति की दिशा में दृश्य विस्थापन होता है।',
-    },
-  },
-  {
-    id: 'q22_2_07', type: 'mcq',
-    question: {
-      en: 'What accuracy does the Meeus algorithm achieve for the Sun\'s longitude?',
-      hi: 'मीयस एल्गोरिदम सूर्य भोगांश के लिए कितनी सटीकता प्राप्त करता है?',
-    },
-    options: [
-      { en: '~1° (3600 arcseconds)', hi: '~1° (3600 कला-सेकण्ड)', sa: '~1° (3600 कलासेकण्डानि)', mai: '~1° (3600 कला-सेकण्ड)', mr: '~1° (3600 कलासेकंद)', ta: '~1° (3600 கோண வினாடிகள்)', te: '~1° (3600 ఆర్క్‌సెకన్లు)', bn: '~1° (3600 আর্কসেকেন্ড)', kn: '~1° (3600 ಆರ್ಕ್‌ಸೆಕೆಂಡ್)', gu: '~1° (3600 આર્કસેકન્ડ)' },
-      { en: '~0.01° (36 arcseconds)', hi: '~0.01° (36 कला-सेकण्ड)', sa: '~0.01° (36 कलासेकण्डानि)', mai: '~0.01° (36 कला-सेकण्ड)', mr: '~0.01° (36 कलासेकंद)', ta: '~0.01° (36 கோண வினாடிகள்)', te: '~0.01° (36 ఆర్క్‌సెకన్లు)', bn: '~0.01° (36 আর্কসেকেন্ড)', kn: '~0.01° (36 ಆರ್ಕ್‌ಸೆಕೆಂಡ್)', gu: '~0.01° (36 આર્કસેકન્ડ)' },
-      { en: '~0.001° (3.6 arcseconds)', hi: '~0.001° (3.6 कला-सेकण्ड)', sa: '~0.001° (3.6 कलासेकण्डानि)', mai: '~0.001° (3.6 कला-सेकण्ड)', mr: '~0.001° (3.6 कलासेकंद)', ta: '~0.001° (3.6 கோண வினாடிகள்)', te: '~0.001° (3.6 ఆర్క్‌సెకన్లు)', bn: '~0.001° (3.6 আর্কসেকেন্ড)', kn: '~0.001° (3.6 ಆರ್ಕ್‌ಸೆಕೆಂಡ್)', gu: '~0.001° (3.6 આર્કસેકન્ડ)' },
-      { en: '~0.0001° (0.36 arcseconds)', hi: '~0.0001° (0.36 कला-सेकण्ड)', sa: '~0.0001° (0.36 कलासेकण्डानि)', mai: '~0.0001° (0.36 कला-सेकण्ड)', mr: '~0.0001° (0.36 कलासेकंद)', ta: '~0.0001° (0.36 கோண வினாடிகள்)', te: '~0.0001° (0.36 ఆర్క్‌సెకన్లు)', bn: '~0.0001° (0.36 আর্কসেকেন্ড)', kn: '~0.0001° (0.36 ಆರ್ಕ್‌ಸೆಕೆಂಡ್)', gu: '~0.0001° (0.36 આર્કસેકન્ડ)' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The Meeus low-precision solar algorithm achieves ~0.01° (36 arcseconds, or about 1 minute of time). This is more than sufficient for Panchang calculations where the tithi boundary resolution is ~0.5° (Moon-Sun difference).',
-      hi: 'मीयस निम्न-सटीकता सौर एल्गोरिदम ~0.01° (36 कला-सेकण्ड, या लगभग 1 मिनट समय) प्राप्त करता है। यह पंचांग गणनाओं के लिए पर्याप्त से अधिक है जहाँ तिथि सीमा विभेदन ~0.5° (चन्द्र-सूर्य अन्तर) है।',
-    },
-  },
-  {
-    id: 'q22_2_08', type: 'true_false',
-    question: {
-      en: 'Swiss Ephemeris is about 10 times more accurate than Meeus for the Sun\'s position.',
-      hi: 'स्विस एफेमेरिस सूर्य की स्थिति के लिए मीयस से लगभग 10 गुना अधिक सटीक है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Swiss Ephemeris achieves ~0.001° accuracy (vs Meeus ~0.01°), making it about 10x more precise. JPL DE440 reaches ~0.0001°, another 10x better. For Panchang use, Meeus accuracy is entirely sufficient.',
-      hi: 'सत्य। स्विस एफेमेरिस ~0.001° सटीकता प्राप्त करता है (मीयस ~0.01° की तुलना में), इसे लगभग 10 गुना अधिक सटीक बनाता है। JPL DE440 ~0.0001° तक पहुँचता है, और 10 गुना बेहतर। पंचांग उपयोग के लिए मीयस सटीकता पूर्णतया पर्याप्त है।',
-    },
-  },
-  {
-    id: 'q22_2_09', type: 'mcq',
-    question: {
-      en: 'To convert the Sun\'s tropical longitude to sidereal (Vedic), you:',
-      hi: 'सूर्य के सायन भोगांश को निरयन (वैदिक) में बदलने के लिए आप:',
-    },
-    options: [
-      { en: 'Add the Lahiri ayanamsha (~24.22° in 2026)', hi: 'लाहिरी अयनांश (~24.22° 2026 में) जोड़ते हैं', sa: 'लाहिरी अयनांश (~24.22° 2026 में) जोड़ते हैं', mai: 'लाहिरी अयनांश (~24.22° 2026 में) जोड़ते हैं', mr: 'लाहिरी अयनांश (~24.22° 2026 में) जोड़ते हैं', ta: 'லாஹிரி அயனாம்சம் (~24.22° 2026-ல்) கூட்டுக', te: 'లాహిరి అయనాంశ (~24.22° 2026లో) కలపండి', bn: 'লাহিরি অয়নাংশ (~24.22° ২০২৬-এ) যোগ করুন', kn: 'ಲಾಹಿರಿ ಅಯನಾಂಶ (~24.22° 2026ರಲ್ಲಿ) ಸೇರಿಸಿ', gu: 'લાહિરી અયનાંશ (~24.22° 2026માં) ઉમેરો' },
-      { en: 'Subtract the Lahiri ayanamsha (~24.22° in 2026)', hi: 'लाहिरी अयनांश (~24.22° 2026 में) घटाते हैं', sa: 'लाहिरी अयनांश (~24.22° 2026 में) घटाते हैं', mai: 'लाहिरी अयनांश (~24.22° 2026 में) घटाते हैं', mr: 'लाहिरी अयनांश (~24.22° 2026 में) घटाते हैं', ta: 'லாஹிரி அயனாம்சம் (~24.22° 2026-ல்) கழிக்க', te: 'లాహిరి అయనాంశ (~24.22° 2026లో) తీయండి', bn: 'লাহিরি অয়নাংশ (~24.22° ২০২৬-এ) বিয়োগ করুন', kn: 'ಲಾಹಿರಿ ಅಯನಾಂಶ (~24.22° 2026ರಲ್ಲಿ) ಕಳೆಯಿರಿ', gu: 'લાહિરી અયનાંશ (~24.22° 2026માં) બાદ કરો' },
-      { en: 'Multiply by 12/13.333', hi: '12/13.333 से गुणा करते हैं', sa: '12/13.333 से गुणा करते हैं', mai: '12/13.333 से गुणा करते हैं', mr: '12/13.333 से गुणा करते हैं', ta: '12/13.333 ஆல் பெருக்குக', te: '12/13.333 తో గుణించండి', bn: '12/13.333 দ্বারা গুণ করুন', kn: '12/13.333 ರಿಂದ ಗುಣಿಸಿ', gu: '12/13.333 વડે ગુણો' },
-      { en: 'Add 180°', hi: '180° जोड़ते हैं', sa: '180° योजयन्तु', mai: '180° जोड़ू', mr: '180° जोडा', ta: '180° கூட்டுக', te: '180° కలపండి', bn: '180° যোগ করুন', kn: '180° ಸೇರಿಸಿ', gu: '180° ઉમેરો' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Sidereal longitude = Tropical longitude - Ayanamsha. The Lahiri ayanamsha is approximately 24.22° in 2026, representing the accumulated precession of the equinoxes since the reference epoch when tropical and sidereal zodiacs were aligned.',
-      hi: 'निरयन भोगांश = सायन भोगांश - अयनांश। लाहिरी अयनांश 2026 में लगभग 24.22° है, जो उस सन्दर्भ युगारम्भ से संचित विषुव पुरस्सरण को दर्शाता है जब सायन और निरयन राशिचक्र संरेखित थे।',
-    },
-  },
-  {
-    id: 'q22_2_10', type: 'mcq',
-    question: {
-      en: 'At which point in its orbit does Earth move fastest (and the Sun appears to move fastest along the ecliptic)?',
-      hi: 'अपनी कक्षा में किस बिन्दु पर पृथ्वी सबसे तेज़ चलती है (और सूर्य क्रान्तिवृत्त पर सबसे तेज़ गतिमान दिखता है)?',
-    },
-    options: [
-      { en: 'Aphelion (July)', hi: 'अपसौर (जुलाई)', sa: 'अपसौरम् (जुलाई)', mai: 'अपसौर (जुलाई)', mr: 'अपसूर्य (जुलै)', ta: 'சூரிய தொலைவு (ஜூலை)', te: 'సూర్య దూరం (జూలై)', bn: 'অপসূর্য (জুলাই)', kn: 'ಸೂರ್ಯ ದೂರ (ಜುಲೈ)', gu: 'સૂર્ય દૂર (જુલાઈ)' },
-      { en: 'Perihelion (January)', hi: 'उपसौर (जनवरी)', sa: 'उपसौरम् (जनवरी)', mai: 'उपसौर (जनवरी)', mr: 'उपसूर्य (जानेवारी)', ta: 'சூரிய அண்மை (ஜனவரி)', te: 'సూర్య సమీపం (జనవరి)', bn: 'অনুসূর্য (জানুয়ারি)', kn: 'ಸೂರ್ಯ ಸಮೀಪ (ಜನವರಿ)', gu: 'સૂર્ય નિકટ (જાન્યુઆરી)' },
-      { en: 'Vernal equinox (March)', hi: 'वसन्त विषुव (मार्च)', sa: 'वसन्त विषुव (मार्च)', mai: 'वसन्त विषुव (मार्च)', mr: 'वसन्त विषुव (मार्च)', ta: 'வசந்த விஷுவம் (மார்ச்)', te: 'వసంత విషువం (మార్చి)', bn: 'বসন্ত বিষুব (মার্চ)', kn: 'ವಸಂತ ವಿಷುವ (ಮಾರ್ಚ್)', gu: 'વસંત વિષુવ (માર્ચ)' },
-      { en: 'Summer solstice (June)', hi: 'ग्रीष्म अयनान्त (जून)', sa: 'ग्रीष्म अयनान्त (जून)', mai: 'ग्रीष्म अयनान्त (जून)', mr: 'ग्रीष्म अयनान्त (जून)', ta: 'கோடை அயன திருப்பம் (ஜூன்)', te: 'గ్రీష్మ అయనాంతం (జూన్)', bn: 'গ্রীষ্ম অয়নান্ত (জুন)', kn: 'ಗ್ರೀಷ್ಮ ಅಯನಾಂತ (ಜೂನ್)', gu: 'ગ્રીષ્મ અયનાંત (જૂન)' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'By Kepler\'s second law, Earth moves fastest at perihelion (closest to the Sun, around January 3). This is why winter in the Northern Hemisphere is slightly shorter than summer — Earth traverses that part of its orbit more quickly.',
-      hi: 'केप्लर के द्वितीय नियम से पृथ्वी उपसौर (सूर्य के निकटतम, लगभग 3 जनवरी) पर सबसे तेज़ चलती है। इसीलिए उत्तरी गोलार्ध में शीत ऋतु ग्रीष्म से थोड़ी छोटी होती है — पृथ्वी कक्षा के उस भाग को अधिक तेज़ी से पार करती है।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = L.questions as unknown as ModuleQuestion[];
 
 function Page1() {
   const locale = useModuleLocale();
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'The Sun\'s position is computed using Meeus\'s algorithm with just 3 main sine corrections — achieving 0.01-degree accuracy.',
+          'The algorithm accounts for Earth\'s elliptical orbit, axial tilt, and the slow precession of the equinoxes.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {tl({ en: 'The Sun&apos;s Apparent Motion', hi: 'सूर्य की दृश्य गति', sa: 'सूर्य की दृश्य गति' }, locale)}

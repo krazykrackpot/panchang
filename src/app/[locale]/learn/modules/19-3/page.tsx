@@ -7,6 +7,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/19-3.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
 
 const META: ModuleMeta = {
   id: 'mod_19_3', phase: 6, topic: 'Jaimini', moduleNumber: '19.3',
@@ -16,176 +17,20 @@ const META: ModuleMeta = {
   crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q19_3_01', type: 'mcq',
-    question: {
-      en: 'Argala on a house is created by planets in the:',
-      hi: 'किसी भाव पर अर्गला किन भावों के ग्रहों द्वारा बनती है?',
-    },
-    options: [
-      { en: '1st, 5th, and 9th from that house', hi: 'उस भाव से पहले, पाँचवें और नौवें', sa: 'तस्मात् भावात् प्रथमः पञ्चमः नवमश्च', mai: 'ओहि भावसँ पहिल, पाँचम आ नवम', mr: 'त्या भावापासून पहिला, पाचवा आणि नववा', ta: 'அந்த பாவத்திலிருந்து 1, 5, 9வது', te: 'ఆ భావం నుండి 1, 5, 9వ', bn: 'সেই ভাব থেকে ১, ৫, ৯তম', kn: 'ಆ ಭಾವದಿಂದ 1, 5, 9ನೇ', gu: 'તે ભાવથી 1, 5, 9મો' },
-      { en: '2nd, 4th, and 11th from that house', hi: 'उस भाव से दूसरे, चौथे और ग्यारहवें', sa: 'तस्मात् भावात् द्वितीयः चतुर्थः एकादशश्च', mai: 'ओहि भावसँ दोसर, चौथ आ एगारहम', mr: 'त्या भावापासून दुसरा, चौथा आणि अकरावा', ta: 'அந்த பாவத்திலிருந்து 2, 4, 11வது', te: 'ఆ భావం నుండి 2, 4, 11వ', bn: 'সেই ভাব থেকে ২, ৪, ১১তম', kn: 'ಆ ಭಾವದಿಂದ 2, 4, 11ನೇ', gu: 'તે ભાવથી 2, 4, 11મો' },
-      { en: '3rd, 7th, and 10th from that house', hi: 'उस भाव से तीसरे, सातवें और दसवें', sa: 'तस्मात् भावात् तृतीयः सप्तमः दशमश्च', mai: 'ओहि भावसँ तेसर, सातम आ दसम', mr: 'त्या भावापासून तिसरा, सातवा आणि दहावा', ta: 'அந்த பாவத்திலிருந்து 3, 7, 10வது', te: 'ఆ భావం నుండి 3, 7, 10వ', bn: 'সেই ভাব থেকে ৩, ৭, ১০তম', kn: 'ಆ ಭಾವದಿಂದ 3, 7, 10ನೇ', gu: 'તે ભાવથી 3, 7, 10મો' },
-      { en: '6th, 8th, and 12th from that house', hi: 'उस भाव से छठे, आठवें और बारहवें', sa: 'तस्मात् भावात् षष्ठः अष्टमः द्वादशश्च', mai: 'ओहि भावसँ छठ, आठम आ बारहम', mr: 'त्या भावापासून सहावा, आठवा आणि बारावा', ta: 'அந்த பாவத்திலிருந்து 6, 8, 12வது', te: 'ఆ భావం నుండి 6, 8, 12వ', bn: 'সেই ভাব থেকে ৬, ৮, ১২তম', kn: 'ಆ ಭಾವದಿಂದ 6, 8, 12ನೇ', gu: 'તે ભાવથી 6, 8, 12મો' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Argala (positive intervention or "bolt") is created by planets in the 2nd, 4th, and 11th houses from any reference house. These positions provide support, resources, and fulfillment to the house in question.',
-      hi: 'अर्गला (सकारात्मक हस्तक्षेप या "चिटकनी") उस भाव से दूसरे, चौथे और ग्यारहवें भाव के ग्रहों द्वारा बनती है। ये स्थितियाँ विचाराधीन भाव को सहायता, संसाधन और पूर्णता प्रदान करती हैं।',
-    },
-  },
-  {
-    id: 'q19_3_02', type: 'mcq',
-    question: {
-      en: 'Virodha Argala (obstruction) on a house is caused by planets in the:',
-      hi: 'विरोध अर्गला (बाधा) किसी भाव पर किन भावों के ग्रहों से होती है?',
-    },
-    options: [
-      { en: '2nd, 4th, and 11th', hi: 'दूसरे, चौथे और ग्यारहवें', sa: 'द्वितीयः चतुर्थः एकादशश्च', mai: 'दोसर, चौथ आ एगारहम', mr: 'दुसरा, चौथा आणि अकरावा', ta: '2, 4, 11வது', te: '2, 4, 11వ', bn: '২, ৪, ১১তম', kn: '2, 4, 11ನೇ', gu: '2, 4, 11મો' },
-      { en: '3rd, 10th, and 12th', hi: 'तीसरे, दसवें और बारहवें', sa: 'तृतीयः दशमः द्वादशश्च', mai: 'तेसर, दसम आ बारहम', mr: 'तिसरा, दहावा आणि बारावा', ta: '3, 10, 12வது', te: '3, 10, 12వ', bn: '৩, ১০, ১২তম', kn: '3, 10, 12ನೇ', gu: '3, 10, 12મો' },
-      { en: '6th, 8th, and 12th', hi: 'छठे, आठवें और बारहवें', sa: 'षष्ठः अष्टमः द्वादशश्च', mai: 'छठ, आठम आ बारहम', mr: 'सहावा, आठवा आणि बारावा', ta: '6, 8, 12வது', te: '6, 8, 12వ', bn: '৬, ৮, ১২তম', kn: '6, 8, 12ನೇ', gu: '6, 8, 12મો' },
-      { en: '1st, 7th, and 10th', hi: 'पहले, सातवें और दसवें', sa: 'प्रथमः सप्तमः दशमश्च', mai: 'पहिल, सातम आ दसम', mr: 'पहिला, सातवा आणि दहावा', ta: '1, 7, 10வது', te: '1, 7, 10వ', bn: '১, ৭, ১০তম', kn: '1, 7, 10ನೇ', gu: '1, 7, 10મો' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Virodha Argala (counter-intervention/obstruction) comes from planets in the 3rd (counters 2nd Argala), 10th (counters 4th Argala), and 12th (counters 11th Argala). These positions can neutralize the support provided by Argala planets.',
-      hi: 'विरोध अर्गला (प्रति-हस्तक्षेप/बाधा) तीसरे (दूसरे की अर्गला का विरोध), दसवें (चौथे की अर्गला का विरोध), और बारहवें (ग्यारहवें की अर्गला का विरोध) भाव के ग्रहों से आती है। ये स्थितियाँ अर्गला ग्रहों द्वारा प्रदत्त सहायता को निष्प्रभावित कर सकती हैं।',
-    },
-  },
-  {
-    id: 'q19_3_03', type: 'true_false',
-    question: {
-      en: 'If the Virodha Argala planets are equal in number or stronger than the Argala planets, the Argala is cancelled.',
-      hi: 'यदि विरोध अर्गला ग्रह संख्या या शक्ति में अर्गला ग्रहों के बराबर या अधिक हों, तो अर्गला निरस्त हो जाती है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Argala holds only when the Argala-causing planets are stronger (by number of planets, or by benefic/malefic nature) than the Virodha Argala planets. If the obstruction is equal or greater, the Argala is effectively cancelled.',
-      hi: 'सत्य। अर्गला तभी बनी रहती है जब अर्गला बनाने वाले ग्रह विरोध अर्गला ग्रहों से शक्तिशाली हों (ग्रहों की संख्या, या शुभ/अशुभ स्वभाव से)। यदि बाधा बराबर या अधिक हो, तो अर्गला प्रभावतः निरस्त हो जाती है।',
-    },
-  },
-  {
-    id: 'q19_3_04', type: 'mcq',
-    question: {
-      en: 'The 2nd house Argala is associated with:',
-      hi: 'दूसरे भाव की अर्गला किससे सम्बन्धित है?',
-    },
-    options: [
-      { en: 'Emotional and property intervention', hi: 'भावनात्मक और सम्पत्ति हस्तक्षेप', sa: 'भावनात्मकं सम्पत्तिहस्तक्षेपश्च', mai: 'भावनात्मक आ सम्पत्ति हस्तक्षेप', mr: 'भावनात्मक आणि मालमत्ता हस्तक्षेप', ta: 'உணர்ச்சி மற்றும் சொத்து தலையீடு', te: 'భావోద్వేగ మరియు ఆస్తి జోక్యం', bn: 'আবেগ ও সম্পত্তি হস্তক্ষেপ', kn: 'ಭಾವನಾತ್ಮಕ ಮತ್ತು ಆಸ್ತಿ ಹಸ್ತಕ್ಷೇಪ', gu: 'ભાવનાત્મક અને સંપત્તિ હસ્તક્ષેપ' },
-      { en: 'Wealth and resource intervention', hi: 'धन और संसाधन हस्तक्षेप', sa: 'धनं संसाधनहस्तक्षेपश्च', mai: 'धन आ संसाधन हस्तक्षेप', mr: 'धन आणि संसाधन हस्तक्षेप', ta: 'செல்வம் மற்றும் வள தலையீடு', te: 'సంపద మరియు వనరుల జోక్యం', bn: 'ধন ও সম্পদ হস্তক্ষেপ', kn: 'ಸಂಪತ್ತು ಮತ್ತು ಸಂಪನ್ಮೂಲ ಹಸ್ತಕ್ಷೇಪ', gu: 'ધન અને સંસાધન હસ્તક્ષેપ' },
-      { en: 'Gains and fulfillment intervention', hi: 'लाभ और पूर्णता हस्तक्षेप', sa: 'लाभः पूर्णताहस्तक्षेपश्च', mai: 'लाभ आ पूर्णता हस्तक्षेप', mr: 'लाभ आणि पूर्णता हस्तक्षेप', ta: 'லாபம் மற்றும் நிறைவு தலையீடு', te: 'లాభం మరియు సాఫల్య జోక్యం', bn: 'লাভ ও পূর্ণতা হস্তক্ষেপ', kn: 'ಲಾಭ ಮತ್ತು ಪೂರ್ಣತೆ ಹಸ್ತಕ್ಷೇಪ', gu: 'લાભ અને પૂર્ણતા હસ્તક્ષેપ' },
-      { en: 'Children and creativity intervention', hi: 'सन्तान और सृजनशीलता हस्तक्षेप', sa: 'सन्तानं सृजनशीलताहस्तक्षेपश्च', mai: 'सन्तान आ सृजनशीलता हस्तक्षेप', mr: 'संतान आणि सृजनशीलता हस्तक्षेप', ta: 'குழந்தை மற்றும் படைப்பாற்றல் தலையீடு', te: 'సంతానం మరియు సృజనాత్మకత జోక్యం', bn: 'সন্তান ও সৃজনশীলতা হস্তক্ষেপ', kn: 'ಮಕ್ಕಳು ಮತ್ತು ಸೃಜನಶೀಲತೆ ಹಸ್ತಕ್ಷೇಪ', gu: 'સંતાન અને સર્જનાત્મકતા હસ્તક્ષેપ' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The 2nd house represents wealth, family resources, and speech. When planets in the 2nd from a house create Argala, they provide financial/resource support to that house\'s significations. This is called Dhana (wealth) Argala.',
-      hi: 'दूसरा भाव धन, पारिवारिक संसाधन और वाणी का प्रतिनिधित्व करता है। जब किसी भाव से दूसरे के ग्रह अर्गला बनाते हैं, वे उस भाव के फलादेशों को आर्थिक/संसाधन सहायता प्रदान करते हैं। इसे धन अर्गला कहते हैं।',
-    },
-  },
-  {
-    id: 'q19_3_05', type: 'mcq',
-    question: {
-      en: 'Which house creates the special "Putra Argala"?',
-      hi: 'कौन-सा भाव विशेष "पुत्र अर्गला" बनाता है?',
-    },
-    options: [
-      { en: '2nd house', hi: 'दूसरा भाव', sa: 'द्वितीयभावः', mai: 'दोसर भाव', mr: 'दुसरा भाव', ta: '2வது பாவம்', te: '2వ భావం', bn: '২য় ভাব', kn: '2ನೇ ಭಾವ', gu: '2જો ભાવ' },
-      { en: '4th house', hi: 'चौथा भाव', sa: 'चतुर्थभावः', mai: 'चौथ भाव', mr: 'चौथा भाव', ta: '4வது பாவம்', te: '4వ భావం', bn: '৪র্থ ভাব', kn: '4ನೇ ಭಾವ', gu: '4થો ભાવ' },
-      { en: '5th house', hi: 'पाँचवाँ भाव', sa: 'पञ्चमभावः', mai: 'पाँचम भाव', mr: 'पाचवा भाव', ta: '5வது பாவம்', te: '5వ భావం', bn: '৫ম ভাব', kn: '5ನೇ ಭಾವ', gu: '5મો ભાવ' },
-      { en: '9th house', hi: 'नौवाँ भाव', sa: 'नवमभावः', mai: 'नवम भाव', mr: 'नववा भाव', ta: '9வது பாவம்', te: '9వ భావం', bn: '৯ম ভাব', kn: '9ನೇ ಭಾವ', gu: '9મો ભાવ' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'The 5th house from any reference creates Putra Argala — a special intervention related to children, creativity, and past-life merit (Poorva Punya). This is an additional Argala beyond the standard 2nd, 4th, and 11th.',
-      hi: 'किसी भी सन्दर्भ से पाँचवाँ भाव पुत्र अर्गला बनाता है — सन्तान, सृजनशीलता और पूर्वजन्म के पुण्य (पूर्व पुण्य) से सम्बन्धित विशेष हस्तक्षेप। यह मानक दूसरे, चौथे और ग्यारहवें की अर्गला के अतिरिक्त है।',
-    },
-  },
-  {
-    id: 'q19_3_06', type: 'true_false',
-    question: {
-      en: 'The word "Argala" literally means "bolt" or "lock," referring to how planets lock in support for a house.',
-      hi: '"अर्गला" शब्द का शाब्दिक अर्थ "चिटकनी" या "ताला" है, जो दर्शाता है कि ग्रह किसी भाव के लिए सहायता को कैसे बन्द कर देते हैं।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. "Argala" literally means a bolt or bar (like a door bolt). Just as a bolt secures a door, Argala planets "bolt" or "lock in" certain influences on a house, ensuring that those significations manifest — unless the bolt is removed by Virodha Argala.',
-      hi: 'सत्य। "अर्गला" का शाब्दिक अर्थ चिटकनी या सिटकनी (जैसे दरवाज़े की चिटकनी) है। जैसे चिटकनी दरवाज़े को सुरक्षित करती है, वैसे ही अर्गला ग्रह किसी भाव पर निश्चित प्रभावों को "बन्द" कर देते हैं, यह सुनिश्चित करते हुए कि वे फलादेश प्रकट हों — जब तक विरोध अर्गला द्वारा चिटकनी न खोली जाए।',
-    },
-  },
-  {
-    id: 'q19_3_07', type: 'mcq',
-    question: {
-      en: 'The 4th house Argala provides what kind of intervention?',
-      hi: 'चौथे भाव की अर्गला किस प्रकार का हस्तक्षेप प्रदान करती है?',
-    },
-    options: [
-      { en: 'Wealth and speech support', hi: 'धन और वाणी सहायता', sa: 'धनवाक्सहायता', mai: 'धन आ वाणी सहायता', mr: 'धन आणि वाणी सहाय्य', ta: 'செல்வம் மற்றும் வாக்கு ஆதரவு', te: 'సంపద మరియు వాక్కు ఆధారం', bn: 'ধন ও বাক্ সহায়তা', kn: 'ಸಂಪತ್ತು ಮತ್ತು ವಾಕ್ ಬೆಂಬಲ', gu: 'ધન અને વાણી ટેકો' },
-      { en: 'Emotional comfort, property, and happiness support', hi: 'भावनात्मक सुख, सम्पत्ति और आनन्द सहायता', sa: 'भावनात्मकसुखं सम्पत्तिः आनन्दसहायता च', mai: 'भावनात्मक सुख, सम्पत्ति आ आनन्द सहायता', mr: 'भावनिक सुख, मालमत्ता आणि आनंद सहाय्य', ta: 'உணர்ச்சி ஆறுதல், சொத்து, மற்றும் மகிழ்ச்சி ஆதரவு', te: 'భావోద్వేగ సౌకర్యం, ఆస్తి, సుఖ ఆధారం', bn: 'আবেগীয় স্বাচ্ছন্দ্য, সম্পত্তি ও সুখ সহায়তা', kn: 'ಭಾವನಾತ್ಮಕ ಸೌಕರ್ಯ, ಆಸ್ತಿ, ಸಂತೋಷ ಬೆಂಬಲ', gu: 'ભાવનાત્મક આરામ, સંપત્તિ, અને સુખ ટેકો' },
-      { en: 'Gains and network support', hi: 'लाभ और जाल सहायता', sa: 'लाभः सञ्जालसहायता च', mai: 'लाभ आ जाल सहायता', mr: 'लाभ आणि जाळे सहाय्य', ta: 'லாபம் மற்றும் வலையமைப்பு ஆதரவு', te: 'లాభం మరియు జాలం ఆధారం', bn: 'লাভ ও যোগাযোগ সহায়তা', kn: 'ಲಾಭ ಮತ್ತು ಸಂಪರ್ಕ ಬೆಂಬಲ', gu: 'લાભ અને સંપર્ક ટેકો' },
-      { en: 'Spiritual and father support', hi: 'आध्यात्मिक और पितृ सहायता', sa: 'आध्यात्मिकं पितृसहायता च', mai: 'आध्यात्मिक आ पितृ सहायता', mr: 'आध्यात्मिक आणि पितृ सहाय्य', ta: 'ஆன்மீகம் மற்றும் தந்தை ஆதரவு', te: 'ఆధ్యాత్మిక మరియు తండ్రి ఆధారం', bn: 'আধ্যাত্মিক ও পিতৃ সহায়তা', kn: 'ಆಧ್ಯಾತ್ಮಿಕ ಮತ್ತು ಪಿತೃ ಬೆಂಬಲ', gu: 'આધ્યાત્મિક અને પિતૃ ટેકો' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The 4th house represents emotional happiness (sukha), property, vehicles, and mother. When planets in the 4th from a house create Argala, they provide emotional comfort and material stability to that house\'s affairs. This is Sukha Argala.',
-      hi: 'चौथा भाव भावनात्मक सुख (सुख), सम्पत्ति, वाहन और माता का प्रतिनिधित्व करता है। जब किसी भाव से चौथे के ग्रह अर्गला बनाते हैं, वे उस भाव के मामलों को भावनात्मक सुख और भौतिक स्थिरता प्रदान करते हैं। यह सुख अर्गला है।',
-    },
-  },
-  {
-    id: 'q19_3_08', type: 'mcq',
-    question: {
-      en: 'Which position creates Virodha (obstruction) for the 4th house Argala?',
-      hi: 'चौथे भाव की अर्गला के लिए विरोध (बाधा) कौन-सी स्थिति बनाती है?',
-    },
-    options: [
-      { en: '3rd from the reference house', hi: 'सन्दर्भ भाव से तीसरा', sa: 'सन्दर्भभावात् तृतीयः', mai: 'सन्दर्भ भाव सँ तेसर', mr: 'संदर्भ भावापासून तिसरा', ta: 'குறிப்பு பாவத்திலிருந்து 3வது', te: 'సంబంధిత భావం నుండి 3వ', bn: 'সংশ্লিষ্ট ভাব থেকে ৩য়', kn: 'ಸಂದರ್ಭ ಭಾವದಿಂದ 3ನೇ', gu: 'સંદર્ભ ભાવથી 3જો' },
-      { en: '10th from the reference house', hi: 'सन्दर्भ भाव से दसवाँ', sa: 'सन्दर्भभावात् दशमः', mai: 'सन्दर्भ भाव सँ दसम', mr: 'संदर्भ भावापासून दहावा', ta: 'குறிப்பு பாவத்திலிருந்து 10வது', te: 'సంబంధిత భావం నుండి 10వ', bn: 'সংশ্লিষ্ট ভাব থেকে ১০ম', kn: 'ಸಂದರ್ಭ ಭಾವದಿಂದ 10ನೇ', gu: 'સંદર્ભ ભાવથી 10મો' },
-      { en: '12th from the reference house', hi: 'सन्दर्भ भाव से बारहवाँ', sa: 'सन्दर्भभावात् द्वादशः', mai: 'सन्दर्भ भाव सँ बारहम', mr: 'संदर्भ भावापासून बारावा', ta: 'குறிப்பு பாவத்திலிருந்து 12வது', te: 'సంబంధిత భావం నుండి 12వ', bn: 'সংশ্লিষ্ট ভাব থেকে ১২তম', kn: 'ಸಂದರ್ಭ ಭಾವದಿಂದ 12ನೇ', gu: 'સંદર્ભ ભાવથી 12મો' },
-      { en: '8th from the reference house', hi: 'सन्दर्भ भाव से आठवाँ', sa: 'सन्दर्भभावात् अष्टमः', mai: 'सन्दर्भ भाव सँ आठम', mr: 'संदर्भ भावापासून आठवा', ta: 'குறிப்பு பாவத்திலிருந்து 8வது', te: 'సంబంధిత భావం నుండి 8వ', bn: 'সংশ্লিষ্ট ভাব থেকে ৮ম', kn: 'ಸಂದರ್ಭ ಭಾವದಿಂದ 8ನೇ', gu: 'સંદર્ભ ભાવથી 8મો' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'The 10th house from the reference creates Virodha Argala for the 4th house Argala. The pairing is: 2nd Argala vs 3rd Virodha, 4th Argala vs 10th Virodha, 11th Argala vs 12th Virodha.',
-      hi: 'सन्दर्भ से दसवाँ भाव चौथे की अर्गला के लिए विरोध अर्गला बनाता है। जोड़ी है: दूसरी अर्गला बनाम तीसरी विरोध, चौथी अर्गला बनाम दसवीं विरोध, ग्यारहवीं अर्गला बनाम बारहवीं विरोध।',
-    },
-  },
-  {
-    id: 'q19_3_09', type: 'true_false',
-    question: {
-      en: 'Malefic planets can create beneficial Argala just as effectively as benefic planets.',
-      hi: 'अशुभ ग्रह भी शुभ ग्रहों के समान प्रभावी ढंग से लाभकारी अर्गला बना सकते हैं।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Both benefics and malefics create Argala. However, the nature of the intervention differs: benefic planets in the 2nd create supportive wealth Argala, while malefic planets in the 2nd create Argala through struggle, effort, or forced accumulation. The Argala still "bolts" the influence, but its quality depends on the planet\'s nature.',
-      hi: 'सत्य। शुभ और अशुभ दोनों ग्रह अर्गला बनाते हैं। किन्तु हस्तक्षेप का स्वभाव भिन्न होता है: दूसरे में शुभ ग्रह सहायक धन अर्गला बनाते हैं, जबकि दूसरे में अशुभ ग्रह संघर्ष, प्रयास या बलपूर्वक संचय द्वारा अर्गला बनाते हैं। अर्गला प्रभाव को "बन्द" तो करती है, किन्तु उसकी गुणवत्ता ग्रह के स्वभाव पर निर्भर है।',
-    },
-  },
-  {
-    id: 'q19_3_10', type: 'mcq',
-    question: {
-      en: 'Jupiter is in the 8th house (2nd from the 7th). No planet is in the 9th house (3rd from the 7th). What does this indicate for the 7th house?',
-      hi: 'बृहस्पति आठवें भाव (सातवें से दूसरा) में है। नौवें भाव (सातवें से तीसरा) में कोई ग्रह नहीं। यह सातवें भाव के लिए क्या दर्शाता है?',
-    },
-    options: [
-      { en: 'No effect on the 7th house', hi: 'सातवें भाव पर कोई प्रभाव नहीं', sa: 'सप्तमभावे न कोऽपि प्रभावः', mai: 'सातम भाव पर कोनो प्रभाव नहि', mr: 'सातव्या भावावर कोणताही परिणाम नाही', ta: '7வது பாவத்தில் எந்த விளைவும் இல்லை', te: '7వ భావంపై ప్రభావం లేదు', bn: '৭ম ভাবে কোনো প্রভাব নেই', kn: '7ನೇ ಭಾವದ ಮೇಲೆ ಪ್ರಭಾವ ಇಲ್ಲ', gu: '7મા ભાવ પર કોઈ અસર નથી' },
-      { en: 'Unobstructed wealth Argala on marriage — marriage brings prosperity', hi: 'विवाह पर अबाधित धन अर्गला — विवाह समृद्धि लाता है', sa: 'विवाहे अबाधितधनार्गला — विवाहः समृद्धिं आनयति', mai: 'विवाह पर अबाधित धन अर्गला — विवाह समृद्धि आनैत अछि', mr: 'विवाहावर अबाधित धन अर्गला — विवाह समृद्धी आणतो', ta: 'திருமணத்தில் தடையற்ற தன அர்கலா — திருமணம் செழிப்பு தருகிறது', te: 'వివాహంపై అడ్డులేని ధన అర్గళ — వివాహం సమృద్ధి తెస్తుంది', bn: 'বিবাহে অবাধ ধন অর্গলা — বিবাহ সমৃদ্ধি আনে', kn: 'ವಿವಾಹದಲ್ಲಿ ಅಡ್ಡಿಯಿಲ್ಲದ ಧನ ಅರ್ಗಳ — ವಿವಾಹ ಸಮೃದ್ಧಿ ತರುತ್ತದೆ', gu: 'લગ્નમાં અવરોધ વિનાનો ધન અર્ગલા — લગ્ન સમૃદ્ધિ લાવે છે' },
-      { en: 'Virodha Argala blocks marriage', hi: 'विरोध अर्गला विवाह को अवरुद्ध करती है', sa: 'विरोधार्गला विवाहं अवरुणद्धि', mai: 'विरोध अर्गला विवाह केँ अवरुद्ध करैत अछि', mr: 'विरोध अर्गला विवाह अडवतो', ta: 'விரோத அர்கலா திருமணத்தைத் தடுக்கிறது', te: 'విరోధ అర్గళ వివాహాన్ని అడ్డుకుంటుంది', bn: 'বিরোধ অর্গলা বিবাহ আটকায়', kn: 'ವಿರೋಧ ಅರ್ಗಳ ವಿವಾಹವನ್ನು ತಡೆಯುತ್ತದೆ', gu: 'વિરોધ અર્ગલા લગ્ન રોકે છે' },
-      { en: 'Jupiter causes delay in marriage', hi: 'बृहस्पति विवाह में विलम्ब करता है', sa: 'गुरुः विवाहे विलम्बं करोति', mai: 'बृहस्पति विवाह मे विलम्ब करैत अछि', mr: 'गुरू विवाहात विलंब करतो', ta: 'குரு திருமணத்தில் தாமதம் ஏற்படுத்துகிறது', te: 'గురువు వివాహంలో ఆలస్యం కలిగిస్తాడు', bn: 'বৃহস্পতি বিবাহে বিলম্ব ঘটায়', kn: 'ಗುರು ವಿವಾಹದಲ್ಲಿ ವಿಳಂಬ ಉಂಟುಮಾಡುತ್ತಾನೆ', gu: 'ગુરુ લગ્નમાં વિલંબ કરે છે' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Jupiter in the 2nd from the 7th creates Dhana (wealth) Argala on the 7th house (marriage/partnerships). The 3rd from the 7th (9th house) has no planet, so there is no Virodha Argala to counter it. The Argala holds unobstructed — meaning marriage brings wealth and prosperity.',
-      hi: 'सातवें से दूसरे में बृहस्पति सातवें भाव (विवाह/साझेदारी) पर धन अर्गला बनाता है। सातवें से तीसरे (नौवें भाव) में कोई ग्रह नहीं, अतः कोई विरोध अर्गला नहीं। अर्गला अबाधित बनी रहती है — अर्थात् विवाह धन और समृद्धि लाता है।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = L.questions as unknown as ModuleQuestion[];
 
 function Page1() {
   const locale = useModuleLocale();
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'Argala means "bolt" — planets in the 2nd, 4th, and 11th from a house "bolt" it with support, influencing its results.',
+          'Counter-argala from the 3rd, 10th, and 12th can obstruct the support — but only if the obstructing planets are strong enough.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {tl({ en: 'What Is Argala?', hi: 'अर्गला क्या है?', sa: 'अर्गला क्या है?' }, locale)}

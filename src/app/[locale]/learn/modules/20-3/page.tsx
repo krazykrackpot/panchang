@@ -7,6 +7,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/20-3.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
 
 const META: ModuleMeta = {
   id: 'mod_20_3', phase: 7, topic: 'KP System', moduleNumber: '20.3',
@@ -16,176 +17,20 @@ const META: ModuleMeta = {
   crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q20_3_01', type: 'mcq',
-    question: {
-      en: 'How many levels of significatorship does KP recognize for connecting a planet to a house?',
-      hi: 'केपी एक ग्रह को भाव से जोड़ने के लिए कारकत्व के कितने स्तर मान्य करता है?',
-    },
-    options: [
-      { en: '2 levels', hi: '2 स्तर', sa: '2 स्तराः', mai: '2 स्तर', mr: '2 स्तर', ta: '2 நிலைகள்', te: '2 స్థాయిలు', bn: '২টি স্তর', kn: '2 ಹಂತಗಳು', gu: '2 સ્તર' },
-      { en: '3 levels', hi: '3 स्तर', sa: '3 स्तराः', mai: '3 स्तर', mr: '3 स्तर', ta: '3 நிலைகள்', te: '3 స్థాయిలు', bn: '৩টি স্তর', kn: '3 ಹಂತಗಳು', gu: '3 સ્તર' },
-      { en: '4 levels', hi: '4 स्तर', sa: '4 स्तराः', mai: '4 स्तर', mr: '4 स्तर', ta: '4 நிலைகள்', te: '4 స్థాయిలు', bn: '৪টি স্তর', kn: '4 ಹಂತಗಳು', gu: '4 સ્તર' },
-      { en: '5 levels', hi: '5 स्तर', sa: '5 स्तराः', mai: '5 स्तर', mr: '5 स्तर', ta: '5 நிலைகள்', te: '5 స్థాయిలు', bn: '৫টি স্তর', kn: '5 ಹಂತಗಳು', gu: '5 સ્તર' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'KP uses 4 levels: Level 1 (planet occupying the house), Level 2 (planet in the star of an occupant), Level 3 (planet owning the house sign), Level 4 (planet in the star of the owner). Level 1 is strongest.',
-      hi: 'केपी 4 स्तरों का उपयोग करता है: स्तर 1 (भाव में निवासी ग्रह), स्तर 2 (निवासी के नक्षत्र में ग्रह), स्तर 3 (भाव राशि का स्वामी ग्रह), स्तर 4 (स्वामी के नक्षत्र में ग्रह)। स्तर 1 सबसे प्रबल है।',
-    },
-  },
-  {
-    id: 'q20_3_02', type: 'mcq',
-    question: {
-      en: 'Which level of significatorship is the STRONGEST in KP?',
-      hi: 'केपी में कारकत्व का कौन-सा स्तर सबसे प्रबल है?',
-    },
-    options: [
-      { en: 'Level 4 — planet in the star of the house owner', hi: 'स्तर 4 — भाव स्वामी के नक्षत्र में ग्रह', sa: 'स्तरः 4 — भावस्वामिनः नक्षत्रे ग्रहः', mai: 'स्तर 4 — भाव स्वामीक नक्षत्रमे ग्रह', mr: 'स्तर 4 — भाव स्वामीच्या नक्षत्रात ग्रह', ta: 'நிலை 4 — பாவ அதிபதியின் நட்சத்திரத்தில் கிரகம்', te: 'స్థాయి 4 — భావాధిపతి నక్షత్రంలో గ్రహం', bn: 'স্তর ৪ — ভাবাধিপতির নক্ষত্রে গ্রহ', kn: 'ಹಂತ 4 — ಭಾವಾಧಿಪತಿಯ ನಕ್ಷತ್ರದಲ್ಲಿ ಗ್ರಹ', gu: 'સ્તર 4 — ભાવ સ્વામીના નક્ષત્રમાં ગ્રહ' },
-      { en: 'Level 3 — planet owning the house sign', hi: 'स्तर 3 — भाव राशि का स्वामी ग्रह', sa: 'स्तरः 3 — भावराशेः स्वामी ग्रहः', mai: 'स्तर 3 — भाव राशिक स्वामी ग्रह', mr: 'स्तर 3 — भाव राशीचा स्वामी ग्रह', ta: 'நிலை 3 — பாவ ராசியை ஆளும் கிரகம்', te: 'స్థాయి 3 — భావ రాశిని స్వంతం చేసుకున్న గ్రహం', bn: 'স্তর ৩ — ভাব রাশির মালিক গ্রহ', kn: 'ಹಂತ 3 — ಭಾವ ರಾಶಿಯ ಒಡೆಯ ಗ್ರಹ', gu: 'સ્તર 3 — ભાવ રાશિનો માલિક ગ્રહ' },
-      { en: 'Level 2 — planet in the star of an occupant', hi: 'स्तर 2 — निवासी के नक्षत्र में ग्रह', sa: 'स्तरः 2 — निवासिनः नक्षत्रे ग्रहः', mai: 'स्तर 2 — निवासीक नक्षत्रमे ग्रह', mr: 'स्तर 2 — निवासीच्या नक्षत्रात ग्रह', ta: 'நிலை 2 — குடியிருப்பாளரின் நட்சத்திரத்தில் கிரகம்', te: 'స్థాయి 2 — నివాసి నక్షత్రంలో గ్రహం', bn: 'স্তর ২ — অধিবাসীর নক্ষত্রে গ্রহ', kn: 'ಹಂತ 2 — ನಿವಾಸಿಯ ನಕ್ಷತ್ರದಲ್ಲಿ ಗ್ರಹ', gu: 'સ્તર 2 — નિવાસીના નક્ષત્રમાં ગ્રહ' },
-      { en: 'Level 1 — planet occupying the house', hi: 'स्तर 1 — भाव में निवासी ग्रह', sa: 'स्तरः 1 — भावे निवसन् ग्रहः', mai: 'स्तर 1 — भावमे निवासी ग्रह', mr: 'स्तर 1 — भावातील निवासी ग्रह', ta: 'நிலை 1 — பாவத்தில் அமர்ந்த கிரகம்', te: 'స్థాయి 1 — భావంలో ఉన్న గ్రహం', bn: 'স্তর ১ — ভাবে অবস্থিত গ্রহ', kn: 'ಹಂತ 1 — ಭಾವದಲ್ಲಿ ಇರುವ ಗ್ರಹ', gu: 'સ્તર 1 — ભાવમાં બેઠેલો ગ્રહ' },
-    ],
-    correctAnswer: 3,
-    explanation: {
-      en: 'Level 1 (occupancy) is the strongest because a planet physically present in a house directly activates that house\'s significations. The strength decreases from Level 1 to Level 4.',
-      hi: 'स्तर 1 (निवास) सबसे प्रबल है क्योंकि भाव में भौतिक रूप से उपस्थित ग्रह सीधे उस भाव के कारकत्व सक्रिय करता है। प्रबलता स्तर 1 से स्तर 4 तक घटती जाती है।',
-    },
-  },
-  {
-    id: 'q20_3_03', type: 'true_false',
-    question: {
-      en: 'In KP, a planet in the star (nakshatra) of a house occupant signifies that house more strongly than the house owner itself.',
-      hi: 'केपी में, भाव निवासी के नक्षत्र में स्थित ग्रह उस भाव का कारक भाव स्वामी से अधिक प्रबल रूप से होता है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. Level 2 (star of occupant) is stronger than Level 3 (ownership). In KP, the star connection to an occupant planet carries more weight than mere sign ownership, because occupancy represents direct activation.',
-      hi: 'सत्य। स्तर 2 (निवासी का नक्षत्र) स्तर 3 (स्वामित्व) से प्रबल है। केपी में निवासी ग्रह से नक्षत्र सम्बन्ध केवल राशि स्वामित्व से अधिक महत्त्वपूर्ण है, क्योंकि निवास प्रत्यक्ष सक्रियता का प्रतिनिधित्व करता है।',
-    },
-  },
-  {
-    id: 'q20_3_04', type: 'mcq',
-    question: {
-      en: 'For judging marriage in KP, which house combination is examined?',
-      hi: 'केपी में विवाह का आकलन करने के लिए कौन-सा भाव संयोजन जाँचा जाता है?',
-    },
-    options: [
-      { en: 'Houses 1, 5, 9', hi: 'भाव 1, 5, 9', sa: 'भावाः 1, 5, 9', mai: 'भाव 1, 5, 9', mr: 'भाव 1, 5, 9', ta: 'பாவங்கள் 1, 5, 9', te: 'భావాలు 1, 5, 9', bn: 'ভাব ১, ৫, ৯', kn: 'ಭಾವಗಳು 1, 5, 9', gu: 'ભાવ 1, 5, 9' },
-      { en: 'Houses 2, 7, 11', hi: 'भाव 2, 7, 11', sa: 'भावाः 2, 7, 11', mai: 'भाव 2, 7, 11', mr: 'भाव 2, 7, 11', ta: 'பாவங்கள் 2, 7, 11', te: 'భావాలు 2, 7, 11', bn: 'ভাব ২, ৭, ১১', kn: 'ಭಾವಗಳು 2, 7, 11', gu: 'ભાવ 2, 7, 11' },
-      { en: 'Houses 4, 7, 10', hi: 'भाव 4, 7, 10', sa: 'भावाः 4, 7, 10', mai: 'भाव 4, 7, 10', mr: 'भाव 4, 7, 10', ta: 'பாவங்கள் 4, 7, 10', te: 'భావాలు 4, 7, 10', bn: 'ভাব ৪, ৭, ১০', kn: 'ಭಾವಗಳು 4, 7, 10', gu: 'ભાવ 4, 7, 10' },
-      { en: 'Houses 3, 6, 12', hi: 'भाव 3, 6, 12', sa: 'भावाः 3, 6, 12', mai: 'भाव 3, 6, 12', mr: 'भाव 3, 6, 12', ta: 'பாவங்கள் 3, 6, 12', te: 'భావాలు 3, 6, 12', bn: 'ভাব ৩, ৬, ১২', kn: 'ಭಾವಗಳು 3, 6, 12', gu: 'ભાવ 3, 6, 12' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Marriage in KP is judged through houses 2 (family addition), 7 (spouse/partnership), and 11 (fulfillment of desire). Planets signifying all three houses at strong levels indicate marriage during their dasha/bhukti periods.',
-      hi: 'केपी में विवाह का आकलन भाव 2 (परिवार वृद्धि), 7 (जीवनसाथी/साझेदारी), और 11 (इच्छा पूर्ति) से होता है। प्रबल स्तरों पर तीनों भावों का कारक ग्रह अपनी दशा/भुक्ति में विवाह का संकेत देता है।',
-    },
-  },
-  {
-    id: 'q20_3_05', type: 'mcq',
-    question: {
-      en: 'If Jupiter occupies the 7th house, which planets become Level 2 significators of the 7th house?',
-      hi: 'यदि गुरु सप्तम भाव में स्थित है, तो कौन-से ग्रह सप्तम भाव के स्तर 2 कारक बनते हैं?',
-    },
-    options: [
-      { en: 'Planets in the sign of Jupiter', hi: 'गुरु की राशि में स्थित ग्रह', sa: 'गुरोः राशौ स्थिताः ग्रहाः', mai: 'गुरुक राशिमे स्थित ग्रह', mr: 'गुरूच्या राशीतील ग्रह', ta: 'குருவின் ராசியில் உள்ள கிரகங்கள்', te: 'గురు రాశిలో ఉన్న గ్రహాలు', bn: 'বৃহস্পতির রাশিতে গ্রহ', kn: 'ಗುರುವಿನ ರಾಶಿಯಲ್ಲಿ ಗ್ರಹಗಳು', gu: 'ગુરુની રાશિમાં ગ્રહો' },
-      { en: 'Planets in the nakshatra of Jupiter', hi: 'गुरु के नक्षत्र में स्थित ग्रह', sa: 'गुरोः नक्षत्रे स्थिताः ग्रहाः', mai: 'गुरुक नक्षत्रमे स्थित ग्रह', mr: 'गुरूच्या नक्षत्रातील ग्रह', ta: 'குருவின் நட்சத்திரத்தில் உள்ள கிரகங்கள்', te: 'గురు నక్షత్రంలో ఉన్న గ్రహాలు', bn: 'বৃহস্পতির নক্ষত্রে গ্রহ', kn: 'ಗುರುವಿನ ನಕ್ಷತ್ರದಲ್ಲಿ ಗ್ರಹಗಳು', gu: 'ગુરુના નક્ષત્રમાં ગ્રહો' },
-      { en: 'Planets aspecting Jupiter', hi: 'गुरु पर दृष्टि डालने वाले ग्रह', sa: 'गुरुं पश्यन्तः ग्रहाः', mai: 'गुरु पर दृष्टि दयवला ग्रह', mr: 'गुरूकडे पाहणारे ग्रह', ta: 'குருவைப் பார்க்கும் கிரகங்கள்', te: 'గురుని చూస్తున్న గ్రహాలు', bn: 'বৃহস্পতিকে দৃষ্টিকারী গ্রহ', kn: 'ಗುರುವನ್ನು ನೋಡುವ ಗ್ರಹಗಳು', gu: 'ગુરુને જોનારા ગ્રહો' },
-      { en: 'Planets conjunct Jupiter', hi: 'गुरु के साथ युति वाले ग्रह', sa: 'गुरुणा सह युक्ताः ग्रहाः', mai: 'गुरुक संग युति वला ग्रह', mr: 'गुरूसोबत युती असलेले ग्रह', ta: 'குருவுடன் சேர்ந்த கிரகங்கள்', te: 'గురుతో కలిసిన గ్రహాలు', bn: 'বৃহস্পতির সাথে যুত গ্রহ', kn: 'ಗುರುವಿನೊಂದಿಗೆ ಸೇರಿದ ಗ್ರಹಗಳು', gu: 'ગુરુ સાથે યુતિ ગ્રહો' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Level 2 significators are planets placed in the nakshatra (star) of a house occupant. Since Jupiter occupies the 7th, any planet in Punarvasu, Vishakha, or Purva Bhadrapada (Jupiter\'s nakshatras) becomes a Level 2 significator of the 7th house.',
-      hi: 'स्तर 2 कारक वे ग्रह हैं जो भाव निवासी के नक्षत्र (तारा) में स्थित हैं। चूँकि गुरु सप्तम में है, पुनर्वसु, विशाखा या पूर्वा भाद्रपद (गुरु के नक्षत्र) में स्थित कोई भी ग्रह सप्तम भाव का स्तर 2 कारक बनता है।',
-    },
-  },
-  {
-    id: 'q20_3_06', type: 'true_false',
-    question: {
-      en: 'A planet can signify multiple houses simultaneously through different levels.',
-      hi: 'एक ग्रह विभिन्न स्तरों के माध्यम से एक साथ अनेक भावों का कारक हो सकता है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. A planet might occupy the 5th house (Level 1 significator of 5th), be in the star of a 7th house occupant (Level 2 significator of 7th), and own the 3rd house sign (Level 3 significator of 3rd) — all simultaneously.',
-      hi: 'सत्य। एक ग्रह पंचम भाव में बैठा हो (पंचम का स्तर 1 कारक), सप्तम भाव निवासी के नक्षत्र में हो (सप्तम का स्तर 2 कारक), और तृतीय भाव राशि का स्वामी हो (तृतीय का स्तर 3 कारक) — सब एक साथ।',
-    },
-  },
-  {
-    id: 'q20_3_07', type: 'mcq',
-    question: {
-      en: 'In the significator table, what resolves a conflict when a planet signifies both supportive and adverse houses?',
-      hi: 'कारक सारणी में, जब कोई ग्रह सहायक और प्रतिकूल दोनों भावों का कारक हो तो विरोधाभास का समाधान क्या करता है?',
-    },
-    options: [
-      { en: 'The planet\'s natural benefic/malefic status', hi: 'ग्रह की प्राकृतिक शुभ/अशुभ स्थिति' },
-      { en: 'The planet\'s sub-lord connection', hi: 'ग्रह का उप-स्वामी सम्बन्ध' },
-      { en: 'The planet\'s retrograde status', hi: 'ग्रह की वक्री स्थिति' },
-      { en: 'The planet\'s combustion status', hi: 'ग्रह की अस्त स्थिति' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'When a planet signifies both favorable and unfavorable houses for an event, KP uses the planet\'s sub-lord to break the tie. If the sub-lord favors the positive houses, the event happens with some challenges.',
-      hi: 'जब कोई ग्रह किसी घटना के लिए अनुकूल और प्रतिकूल दोनों भावों का कारक हो, तो केपी ग्रह के उप-स्वामी का उपयोग करके विरोधाभास सुलझाता है। यदि उप-स्वामी सकारात्मक भावों का पक्ष लेता है, तो घटना कुछ चुनौतियों सहित घटित होती है।',
-    },
-  },
-  {
-    id: 'q20_3_08', type: 'mcq',
-    question: {
-      en: 'Which event is predicted when a planet strongly signifies houses 6, 8, and 12?',
-      hi: 'जब कोई ग्रह भाव 6, 8 और 12 का प्रबल कारक हो तो कौन-सी घटना की भविष्यवाणी होती है?',
-    },
-    options: [
-      { en: 'Marriage', hi: 'विवाह', sa: 'विवाह', mai: 'विवाह', mr: 'विवाह', ta: 'திருமணம்', te: 'వివాహం', bn: 'বিবাহ', kn: 'ವಿವಾಹ', gu: 'લગ્ન' },
-      { en: 'Promotion at work', hi: 'कार्य में पदोन्नति', sa: 'कार्य में पदोन्नति', mai: 'कार्य में पदोन्नति', mr: 'कार्य में पदोन्नति', ta: 'பணியில் பதவி உயர்வு', te: 'ఉద్యోగంలో పదోన్నతి', bn: 'কর্মে পদোন্নতি', kn: 'ಕೆಲಸದಲ್ಲಿ ಬಡ್ತಿ', gu: 'કામમાં બઢતી' },
-      { en: 'Denial or obstruction of the queried event', hi: 'पूछी गई घटना का निषेध या अवरोध', sa: 'पूछी गई घटना का निषेध या अवरोध', mai: 'पूछी गई घटना का निषेध या अवरोध', mr: 'पूछी गई घटना का निषेध या अवरोध', ta: 'கேட்கப்பட்ட நிகழ்வின் மறுப்பு அல்லது தடை', te: 'అడిగిన సంఘటన యొక్క తిరస్కారం లేదా అడ్డంకి', bn: 'জিজ্ঞাসিত ঘটনার প্রত্যাখ্যান বা বাধা', kn: 'ಕೇಳಲಾದ ಘಟನೆಯ ನಿರಾಕರಣೆ ಅಥವಾ ಅಡ್ಡಿ', gu: 'પૂછેલી ઘટનાનો ઇનકાર અથવા અવરોધ' },
-      { en: 'Foreign travel for education', hi: 'शिक्षा हेतु विदेश यात्रा', sa: 'शिक्षा हेतु विदेश यात्रा', mai: 'शिक्षा हेतु विदेश यात्रा', mr: 'शिक्षा हेतु विदेश यात्रा', ta: 'கல்விக்காக வெளிநாட்டு பயணம்', te: 'విద్య కోసం విదేశ యాత్ర', bn: 'শিক্ষার জন্য বিদেশ যাত্রা', kn: 'ಶಿಕ್ಷಣಕ್ಕಾಗಿ ವಿದೇಶ ಪ್ರಯಾಣ', gu: 'શિક્ષા માટે વિદેશ યાત્રા' },
-    ],
-    correctAnswer: 2,
-    explanation: {
-      en: 'Houses 6, 8, 12 are generally considered adverse (enemies, obstacles, losses). If a planet strongly signifies these houses, it tends to deny or block the event being queried, or bring difficulties.',
-      hi: 'भाव 6, 8, 12 सामान्यतः प्रतिकूल माने जाते हैं (शत्रु, बाधाएँ, हानि)। यदि कोई ग्रह इन भावों का प्रबल कारक है, तो यह पूछी जा रही घटना को रोकता या अवरुद्ध करता है, या कठिनाइयाँ लाता है।',
-    },
-  },
-  {
-    id: 'q20_3_09', type: 'true_false',
-    question: {
-      en: 'In KP, house ownership (Level 3) is considered more important than star-lord connection to an occupant (Level 2).',
-      hi: 'केपी में भाव स्वामित्व (स्तर 3) को निवासी से नक्षत्र-स्वामी सम्बन्ध (स्तर 2) से अधिक महत्त्वपूर्ण माना जाता है।',
-    },
-    correctAnswer: false,
-    explanation: {
-      en: 'False. KP reverses the traditional priority: Level 2 (star of occupant) outranks Level 3 (ownership). This is because occupancy represents direct house activation, and being in the star of an occupant channels that energy.',
-      hi: 'असत्य। केपी पारम्परिक प्राथमिकता को उलट देता है: स्तर 2 (निवासी का नक्षत्र) स्तर 3 (स्वामित्व) से ऊपर है। ऐसा इसलिए क्योंकि निवास प्रत्यक्ष भाव सक्रियता का प्रतिनिधित्व करता है, और निवासी के नक्षत्र में होना उस ऊर्जा को प्रवाहित करता है।',
-    },
-  },
-  {
-    id: 'q20_3_10', type: 'mcq',
-    question: {
-      en: 'When does an event predicted by the significator table actually occur?',
-      hi: 'कारक सारणी द्वारा भविष्यवाणित घटना वास्तव में कब घटित होती है?',
-    },
-    options: [
-      { en: 'During transit of the slowest planet', hi: 'सबसे धीमे ग्रह के गोचर के दौरान', sa: 'सबसे धीमे ग्रह के गोचर के दौरान', mai: 'सबसे धीमे ग्रह के गोचर के दौरान', mr: 'सबसे धीमे ग्रह के गोचर के दौरान', ta: 'மெதுவான கிரகத்தின் கோசார காலத்தில்', te: 'నెమ్మదిగా ఉన్న గ్రహం గోచరంలో', bn: 'সবচেয়ে ধীর গ্রহের গোচরে', kn: 'ನಿಧಾನ ಗ್ರಹದ ಗೋಚರದಲ್ಲಿ', gu: 'સૌથી ધીમા ગ્રહના ગોચરમાં' },
-      { en: 'During the dasha/bhukti of the strongest significator', hi: 'सबसे प्रबल कारक की दशा/भुक्ति के दौरान', sa: 'सबसे प्रबल कारक की दशा/भुक्ति के दौरान', mai: 'सबसे प्रबल कारक की दशा/भुक्ति के दौरान', mr: 'सबसे प्रबल कारक की दशा/भुक्ति के दौरान', ta: 'வலிமையான காரகரின் தசா/புக்தியில்', te: 'బలమైన కారక దశా/భుక్తిలో', bn: 'শক্তিশালী কারকের দশা/ভুক্তিতে', kn: 'ಬಲಿಷ್ಠ ಕಾರಕನ ದಶಾ/ಭುಕ್ತಿಯಲ್ಲಿ', gu: 'સૌથી બળવાન કારકની દશા/ભુક્તિમાં' },
-      { en: 'On the native\'s birthday each year', hi: 'प्रत्येक वर्ष जातक के जन्मदिन पर' },
-      { en: 'When Jupiter transits the relevant house', hi: 'जब गुरु सम्बन्धित भाव में गोचर करता है', sa: 'जब गुरु सम्बन्धित भाव में गोचर करता है', mai: 'जब गुरु सम्बन्धित भाव में गोचर करता है', mr: 'जब गुरु सम्बन्धित भाव में गोचर करता है', ta: 'குரு சம்பந்தப்பட்ட பாவத்தில் கோசரிக்கும்போது', te: 'గురువు సంబంధిత భావంలో గోచరించినప్పుడు', bn: 'বৃহস্পতি সংশ্লিষ্ট ভাবে গোচর করলে', kn: 'ಗುರು ಸಂಬಂಧಿತ ಭಾವದಲ್ಲಿ ಗೋಚರಿಸಿದಾಗ', gu: 'ગુરુ સંબંધિત ભાવમાં ગોચર કરે ત્યારે' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'In KP, events manifest during the Vimshottari dasha/bhukti/antara period of the planet that most strongly signifies the relevant houses. The ruling planets method (Module 20-4) further refines the timing.',
-      hi: 'केपी में घटनाएँ उस ग्रह की विंशोत्तरी दशा/भुक्ति/अन्तरा अवधि में प्रकट होती हैं जो सम्बन्धित भावों का सबसे प्रबल कारक है। शासक ग्रह विधि (मॉड्यूल 20-4) समय को और परिशोधित करती है।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = L.questions as unknown as ModuleQuestion[];
 
 function Page1() {
   const locale = useModuleLocale();
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'KP significators work through a 4-level chain: a planet signifies houses through what it owns, occupies, and whose star/sub it is placed in.',
+          'The strongest significator is the one connected to a house at all 4 levels — that planet\'s dasha periods will trigger the house\'s events.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {tl({ en: 'The 4-Level Significator System', hi: '4-स्तरीय कारक पद्धति', sa: '4-स्तरीय कारक पद्धति' }, locale)}

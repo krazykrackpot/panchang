@@ -7,6 +7,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/19-4.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
 
 const META: ModuleMeta = {
   id: 'mod_19_4', phase: 6, topic: 'Jaimini', moduleNumber: '19.4',
@@ -16,176 +17,20 @@ const META: ModuleMeta = {
   crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
-const QUESTIONS: ModuleQuestion[] = [
-  {
-    id: 'q19_4_01', type: 'mcq',
-    question: {
-      en: 'Hora Lagna (HL) is primarily an indicator of:',
-      hi: 'होरा लग्न (HL) मुख्यतः किसका सूचक है?',
-    },
-    options: [
-      { en: 'Health and longevity', hi: 'स्वास्थ्य और दीर्घायु', sa: 'स्वास्थ्यं दीर्घायुश्च', mai: 'स्वास्थ्य आ दीर्घायु', mr: 'आरोग्य आणि दीर्घायुष्य', ta: 'ஆரோக்கியம் மற்றும் ஆயுள்', te: 'ఆరోగ్యం మరియు దీర్ఘాయువు', bn: 'স্বাস্থ্য ও দীর্ঘায়ু', kn: 'ಆರೋಗ್ಯ ಮತ್ತು ದೀರ್ಘಾಯುಷ್ಯ', gu: 'આરોગ્ય અને દીર્ઘાયુ' },
-      { en: 'Wealth and financial prosperity', hi: 'धन और आर्थिक समृद्धि', sa: 'धनं आर्थिकसमृद्धिश्च', mai: 'धन आ आर्थिक समृद्धि', mr: 'धन आणि आर्थिक समृद्धी', ta: 'செல்வம் மற்றும் நிதி செழிப்பு', te: 'సంపద మరియు ఆర్థిక సమృద్ధి', bn: 'ধন ও আর্থিক সমৃদ্ধি', kn: 'ಸಂಪತ್ತು ಮತ್ತು ಆರ್ಥಿಕ ಸಮೃದ್ಧಿ', gu: 'ધન અને આર્થિક સમૃદ્ધિ' },
-      { en: 'Marriage and relationships', hi: 'विवाह और सम्बन्ध', sa: 'विवाहः सम्बन्धाश्च', mai: 'विवाह आ सम्बन्ध', mr: 'विवाह आणि संबंध', ta: 'திருமணம் மற்றும் உறவுகள்', te: 'వివాహం మరియు సంబంధాలు', bn: 'বিবাহ ও সম্পর্ক', kn: 'ವಿವಾಹ ಮತ್ತು ಸಂಬಂಧಗಳು', gu: 'લગ્ન અને સંબંધો' },
-      { en: 'Spiritual attainment', hi: 'आध्यात्मिक उपलब्धि', sa: 'आध्यात्मिका उपलब्धिः', mai: 'आध्यात्मिक उपलब्धि', mr: 'आध्यात्मिक प्राप्ती', ta: 'ஆன்மீக சாதனை', te: 'ఆధ్యాత్మిక సాధన', bn: 'আধ্যাত্মিক সাধনা', kn: 'ಆಧ್ಯಾತ್ಮಿಕ ಸಾಧನೆ', gu: 'આધ્યાત્મિક સિદ્ધિ' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Hora Lagna is the primary wealth indicator in Jaimini astrology. It advances one sign per hora (2.5 hours) from sunrise. Its position, the planets aspecting it, and the Argala on it reveal the native\'s financial destiny.',
-      hi: 'होरा लग्न जैमिनी ज्योतिष में प्राथमिक धन सूचक है। यह सूर्योदय से प्रत्येक होरा (2.5 घण्टे) में एक राशि आगे बढ़ता है। इसकी स्थिति, इसे दृष्ट करने वाले ग्रह और इस पर अर्गला जातक की आर्थिक नियति प्रकट करते हैं।',
-    },
-  },
-  {
-    id: 'q19_4_02', type: 'mcq',
-    question: {
-      en: 'Ghati Lagna (GL) advances one sign per:',
-      hi: 'घटी लग्न (GL) प्रत्येक कितने समय में एक राशि आगे बढ़ता है?',
-    },
-    options: [
-      { en: '2.5 hours (1 hora)', hi: '2.5 घण्टे (1 होरा)', sa: '2.5 होराः (1 होरा)', mai: '2.5 घण्टा (1 होरा)', mr: '2.5 तास (1 होरा)', ta: '2.5 மணி (1 ஹோரா)', te: '2.5 గంటలు (1 హోర)', bn: '২.৫ ঘণ্টা (১ হোরা)', kn: '2.5 ಗಂಟೆ (1 ಹೋರಾ)', gu: '2.5 કલાક (1 હોરા)' },
-      { en: '24 minutes (1 ghati/nadika)', hi: '24 मिनट (1 घटी/नाडिका)', sa: '24 निमेषाः (1 घटी/नाडिका)', mai: '24 मिनट (1 घटी/नाडिका)', mr: '24 मिनिटे (1 घटी/नाडिका)', ta: '24 நிமிடம் (1 கடி/நாடிகா)', te: '24 నిమిషాలు (1 ఘటి/నాడిక)', bn: '২৪ মিনিট (১ ঘটি/নাডিকা)', kn: '24 ನಿಮಿಷ (1 ಘಟಿ/ನಾಡಿಕಾ)', gu: '24 મિનિટ (1 ઘટી/નાડિકા)' },
-      { en: '1 hour', hi: '1 घण्टा', sa: '1 होरा', mai: '1 घण्टा', mr: '1 तास', ta: '1 மணி', te: '1 గంట', bn: '১ ঘণ্টা', kn: '1 ಗಂಟೆ', gu: '1 કલાક' },
-      { en: '12 minutes', hi: '12 मिनट', sa: '12 निमेषाः', mai: '12 मिनट', mr: '12 मिनिटे', ta: '12 நிமிடம்', te: '12 నిమిషాలు', bn: '১২ মিনিট', kn: '12 ನಿಮಿಷ', gu: '12 મિનિટ' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Ghati Lagna advances one sign per ghati (also called nadika), which equals 24 minutes. Since there are 60 ghatis in a day (24 hours / 24 minutes = 60), the GL cycles through all 12 signs five times per day, making it very sensitive to exact birth time.',
-      hi: 'घटी लग्न प्रत्येक घटी (नाडिका भी कहलाती है) में एक राशि आगे बढ़ता है, जो 24 मिनट के बराबर है। चूँकि एक दिन में 60 घटियाँ होती हैं (24 घण्टे / 24 मिनट = 60), GL प्रतिदिन सभी 12 राशियों में पाँच बार चक्र पूरा करता है, जिससे यह सटीक जन्म समय के प्रति अत्यन्त संवेदनशील है।',
-    },
-  },
-  {
-    id: 'q19_4_03', type: 'true_false',
-    question: {
-      en: 'Ghati Lagna is primarily used to assess authority, power, and social standing.',
-      hi: 'घटी लग्न मुख्यतः अधिकार, शक्ति और सामाजिक प्रतिष्ठा का मूल्यांकन करने के लिए प्रयुक्त होता है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. While Hora Lagna deals with wealth, Ghati Lagna is the indicator of authority, power, fame, and social status. Planets conjunct or aspecting the GL reveal the nature of the native\'s authority and public standing.',
-      hi: 'सत्य। जहाँ होरा लग्न धन से सम्बन्धित है, वहीं घटी लग्न अधिकार, शक्ति, यश और सामाजिक प्रतिष्ठा का सूचक है। GL से युक्त या दृष्ट ग्रह जातक के अधिकार और सार्वजनिक प्रतिष्ठा की प्रकृति प्रकट करते हैं।',
-    },
-  },
-  {
-    id: 'q19_4_04', type: 'mcq',
-    question: {
-      en: 'To compute Hora Lagna, you need to know:',
-      hi: 'होरा लग्न गणित करने के लिए जानना आवश्यक है:',
-    },
-    options: [
-      { en: 'Only the birth date', hi: 'केवल जन्म तिथि', sa: 'जन्मतिथिः एव', mai: 'खाली जन्म तिथि', mr: 'फक्त जन्मतिथी', ta: 'பிறந்த தேதி மட்டும்', te: 'జన్మ తేదీ మాత్రమే', bn: 'শুধুমাত্র জন্ম তারিখ', kn: 'ಜನ್ಮ ದಿನಾಂಕ ಮಾತ್ರ', gu: 'ફક્ત જન્મ તારીખ' },
-      { en: 'The sunrise time and birth time', hi: 'सूर्योदय का समय और जन्म का समय', sa: 'सूर्योदयकालः जन्मकालश्च', mai: 'सूर्योदयक समय आ जन्मक समय', mr: 'सूर्योदयाचा वेळ आणि जन्माचा वेळ', ta: 'சூரிய உதய நேரம் மற்றும் பிறந்த நேரம்', te: 'సూర్యోదయ సమయం మరియు జన్మ సమయం', bn: 'সূর্যোদয়ের সময় ও জন্ম সময়', kn: 'ಸೂರ್ಯೋದಯ ಸಮಯ ಮತ್ತು ಜನ್ಮ ಸಮಯ', gu: 'સૂર્યોદય સમય અને જન્મ સમય' },
-      { en: 'Only the Moon\'s position', hi: 'केवल चन्द्रमा की स्थिति' },
-      { en: 'The Ayanamsha value', hi: 'अयनांश मान', sa: 'अयनांशमानम्', mai: 'अयनांश मान', mr: 'अयनांश मूल्य', ta: 'அயனாம்ச மதிப்பு', te: 'అయనాంశ విలువ', bn: 'অয়নাংশ মান', kn: 'ಅಯನಾಂಶ ಮೌಲ್ಯ', gu: 'અયનાંશ મૂલ્ય' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Hora Lagna is computed by counting hours from sunrise to birth, dividing by 2.5 to get the number of horas elapsed, and advancing that many signs from the Sun\'s sign. Both sunrise time and birth time are essential.',
-      hi: 'होरा लग्न की गणना सूर्योदय से जन्म तक के घण्टे गिनकर, 2.5 से भाग देकर बीती होराओं की संख्या प्राप्त करके, और सूर्य की राशि से उतनी राशियाँ आगे बढ़ाकर की जाती है। सूर्योदय का समय और जन्म का समय दोनों आवश्यक हैं।',
-    },
-  },
-  {
-    id: 'q19_4_05', type: 'mcq',
-    question: {
-      en: 'If a person is born 7.5 hours after sunrise and the Sun is in Aries, the Hora Lagna is in:',
-      hi: 'यदि कोई व्यक्ति सूर्योदय के 7.5 घण्टे बाद जन्मा और सूर्य मेष में है, तो होरा लग्न किस राशि में है?',
-    },
-    options: [
-      { en: 'Aries (no change)', hi: 'मेष (कोई परिवर्तन नहीं)', sa: 'मेषः (परिवर्तनं नास्ति)', mai: 'मेष (कोनो परिवर्तन नहि)', mr: 'मेष (बदल नाही)', ta: 'மேஷம் (மாற்றமில்லை)', te: 'మేషం (మార్పు లేదు)', bn: 'মেষ (কোনো পরিবর্তন নেই)', kn: 'ಮೇಷ (ಬದಲಾವಣೆ ಇಲ್ಲ)', gu: 'મેષ (કોઈ ફેરફાર નથી)' },
-      { en: 'Cancer (3 signs ahead)', hi: 'कर्क (3 राशियाँ आगे)', sa: 'कर्कटः (3 राशयः अग्रे)', mai: 'कर्क (3 राशि आगाँ)', mr: 'कर्क (3 राशी पुढे)', ta: 'கடகம் (3 ராசிகள் முன்னால்)', te: 'కర్కటకం (3 రాశులు ముందు)', bn: 'কর্কট (৩ রাশি এগিয়ে)', kn: 'ಕರ್ಕಾಟಕ (3 ರಾಶಿ ಮುಂದೆ)', gu: 'કર્ક (3 રાશિ આગળ)' },
-      { en: 'Taurus (1 sign ahead)', hi: 'वृषभ (1 राशि आगे)', sa: 'वृषभः (1 राशिः अग्रे)', mai: 'वृषभ (1 राशि आगाँ)', mr: 'वृषभ (1 राशी पुढे)', ta: 'ரிஷபம் (1 ராசி முன்னால்)', te: 'వృషభం (1 రాశి ముందు)', bn: 'বৃষ (১ রাশি এগিয়ে)', kn: 'ವೃಷಭ (1 ರಾಶಿ ಮುಂದೆ)', gu: 'વૃષભ (1 રાશિ આગળ)' },
-      { en: 'Leo (4 signs ahead)', hi: 'सिंह (4 राशियाँ आगे)', sa: 'सिंहः (4 राशयः अग्रे)', mai: 'सिंह (4 राशि आगाँ)', mr: 'सिंह (4 राशी पुढे)', ta: 'சிம்மம் (4 ராசிகள் முன்னால்)', te: 'సింహం (4 రాశులు ముందు)', bn: 'সিংহ (৪ রাশি এগিয়ে)', kn: 'ಸಿಂಹ (4 ರಾಶಿ ಮುಂದೆ)', gu: 'સિંહ (4 રાશિ આગળ)' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: '7.5 hours / 2.5 hours per hora = 3 horas elapsed. Starting from the Sun\'s sign (Aries = sign 1), advance 3 signs: Aries → Taurus → Gemini → Cancer. The Hora Lagna is in Cancer.',
-      hi: '7.5 घण्टे / 2.5 घण्टे प्रति होरा = 3 होरा बीतीं। सूर्य की राशि (मेष = राशि 1) से 3 राशियाँ आगे: मेष → वृषभ → मिथुन → कर्क। होरा लग्न कर्क में है।',
-    },
-  },
-  {
-    id: 'q19_4_06', type: 'true_false',
-    question: {
-      en: 'Bhava Lagna is another wealth-related reference point, distinct from Hora Lagna.',
-      hi: 'भाव लग्न धन से सम्बन्धित एक अन्य सन्दर्भ बिन्दु है, जो होरा लग्न से भिन्न है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. While both Hora Lagna and Bhava Lagna relate to wealth and sustenance, they are computed differently and provide complementary perspectives. Bhava Lagna is sometimes used to cross-check the financial indications of Hora Lagna.',
-      hi: 'सत्य। यद्यपि होरा लग्न और भाव लग्न दोनों धन और जीविका से सम्बन्धित हैं, उनकी गणना भिन्न है और वे पूरक दृष्टिकोण प्रदान करते हैं। भाव लग्न का प्रयोग कभी-कभी होरा लग्न के आर्थिक संकेतों की पारस्परिक जाँच के लिए किया जाता है।',
-    },
-  },
-  {
-    id: 'q19_4_07', type: 'mcq',
-    question: {
-      en: 'Varnada Lagna is used to determine:',
-      hi: 'वर्णद लग्न किसे निर्धारित करने के लिए प्रयुक्त होता है?',
-    },
-    options: [
-      { en: 'The native\'s wealth potential', hi: 'जातक की धन सम्भावना' },
-      { en: 'The native\'s true social role or calling (varna)', hi: 'जातक की सच्ची सामाजिक भूमिका या पुकार (वर्ण)' },
-      { en: 'The native\'s health and longevity', hi: 'जातक का स्वास्थ्य और दीर्घायु' },
-      { en: 'The native\'s marriage timing', hi: 'जातक के विवाह का समय' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Varnada Lagna reveals the native\'s true varna (calling/purpose) — their fundamental role in society. Its lord and the planets aspecting it determine the nature of one\'s contribution to the world, beyond just career or profession.',
-      hi: 'वर्णद लग्न जातक का सच्चा वर्ण (पुकार/उद्देश्य) प्रकट करता है — समाज में उनकी मूलभूत भूमिका। इसका स्वामी और दृष्ट करने वाले ग्रह संसार में व्यक्ति के योगदान की प्रकृति निर्धारित करते हैं, केवल जीविका या व्यवसाय से परे।',
-    },
-  },
-  {
-    id: 'q19_4_08', type: 'mcq',
-    question: {
-      en: 'The computation of Varnada Lagna depends on the relationship between:',
-      hi: 'वर्णद लग्न की गणना किनके सम्बन्ध पर निर्भर करती है?',
-    },
-    options: [
-      { en: 'The Moon and the Sun', hi: 'चन्द्रमा और सूर्य', sa: 'चन्द्रमा और सूर्य', mai: 'चन्द्रमा और सूर्य', mr: 'चन्द्रमा और सूर्य', ta: 'சந்திரனும் சூரியனும்', te: 'చంద్రుడు మరియు సూర్యుడు', bn: 'চন্দ্র ও সূর্য', kn: 'ಚಂದ್ರ ಮತ್ತು ಸೂರ್ಯ', gu: 'ચંદ્ર અને સૂર્ય' },
-      { en: 'The Lagna and the Hora Lagna', hi: 'लग्न और होरा लग्न', sa: 'लग्न और होरा लग्न', mai: 'लग्न और होरा लग्न', mr: 'लग्न और होरा लग्न', ta: 'லக்னமும் ஹோரா லக்னமும்', te: 'లగ్నం మరియు హోరా లగ్నం', bn: 'লগ্ন ও হোরা লগ্ন', kn: 'ಲಗ್ನ ಮತ್ತು ಹೋರಾ ಲಗ್ನ', gu: 'લગ્ન અને હોરા લગ્ન' },
-      { en: 'The Atmakaraka and Amatyakaraka', hi: 'आत्मकारक और अमात्यकारक', sa: 'आत्मकारक और अमात्यकारक', mai: 'आत्मकारक और अमात्यकारक', mr: 'आत्मकारक और अमात्यकारक', ta: 'ஆத்மகாரகனும் அமாத்யகாரகனும்', te: 'ఆత్మకారకుడు మరియు అమాత్యకారకుడు', bn: 'আত্মকারক ও অমাত্যকারক', kn: 'ಆತ್ಮಕಾರಕ ಮತ್ತು ಅಮಾತ್ಯಕಾರಕ', gu: 'આત્મકારક અને અમાત્યકારક' },
-      { en: 'Jupiter and Saturn', hi: 'बृहस्पति और शनि', sa: 'बृहस्पति और शनि', mai: 'बृहस्पति और शनि', mr: 'बृहस्पति और शनि', ta: 'குருவும் சனியும்', te: 'గురువు మరియు శని', bn: 'বৃহস্পতি ও শনি', kn: 'ಗುರು ಮತ್ತು ಶನಿ', gu: 'ગુરુ અને શનિ' },
-    ],
-    correctAnswer: 1,
-    explanation: {
-      en: 'Varnada Lagna is computed based on the relationship between the birth Lagna and the Hora Lagna. Whether both are in odd signs, both in even signs, or mixed determines the counting direction (from Aries forward or from Pisces backward).',
-      hi: 'वर्णद लग्न की गणना जन्म लग्न और होरा लग्न के सम्बन्ध पर आधारित है। दोनों विषम राशियों में हैं, दोनों सम में, या मिश्रित — यह गणना की दिशा (मेष से आगे या मीन से पीछे) निर्धारित करता है।',
-    },
-  },
-  {
-    id: 'q19_4_09', type: 'true_false',
-    question: {
-      en: 'Since Ghati Lagna changes sign every 24 minutes, even a small error in birth time can significantly alter the GL.',
-      hi: 'चूँकि घटी लग्न प्रत्येक 24 मिनट में राशि बदलता है, जन्म समय में छोटी-सी त्रुटि भी GL को महत्त्वपूर्ण रूप से बदल सकती है।',
-    },
-    correctAnswer: true,
-    explanation: {
-      en: 'True. With a new sign every 24 minutes, even a 10-15 minute error in recorded birth time could place the Ghati Lagna in a completely different sign. This makes GL one of the most time-sensitive points in Jaimini astrology, and accurate birth time rectification is essential.',
-      hi: 'सत्य। प्रत्येक 24 मिनट में नई राशि के साथ, अंकित जन्म समय में 10-15 मिनट की त्रुटि भी घटी लग्न को पूर्णतया भिन्न राशि में रख सकती है। यह GL को जैमिनी ज्योतिष के सर्वाधिक समय-संवेदनशील बिन्दुओं में से एक बनाता है, और सटीक जन्म समय शोधन आवश्यक है।',
-    },
-  },
-  {
-    id: 'q19_4_10', type: 'mcq',
-    question: {
-      en: 'If the Lagna is in an odd sign (Aries) and the Hora Lagna is also in an odd sign (Leo), Varnada Lagna is computed by counting:',
-      hi: 'यदि लग्न विषम राशि (मेष) में है और होरा लग्न भी विषम राशि (सिंह) में है, तो वर्णद लग्न की गणना किस प्रकार होती है?',
-    },
-    options: [
-      { en: 'Forward from Aries', hi: 'मेष से आगे गिनकर', sa: 'मेष से आगे गिनकर', mai: 'मेष से आगे गिनकर', mr: 'मेष से आगे गिनकर', ta: 'மேஷத்திலிருந்து முன்னோக்கி', te: 'మేషం నుండి ముందుకు', bn: 'মেষ থেকে সামনের দিকে', kn: 'ಮೇಷದಿಂದ ಮುಂದಕ್ಕೆ', gu: 'મેષથી આગળ' },
-      { en: 'Backward from Pisces', hi: 'मीन से पीछे गिनकर', sa: 'मीन से पीछे गिनकर', mai: 'मीन से पीछे गिनकर', mr: 'मीन से पीछे गिनकर', ta: 'மீனத்திலிருந்து பின்னோக்கி', te: 'మీనం నుండి వెనుకకు', bn: 'মীন থেকে পেছনের দিকে', kn: 'ಮೀನದಿಂದ ಹಿಂದಕ್ಕೆ', gu: 'મીનથી પાછળ' },
-      { en: 'Forward from the Moon\'s sign', hi: 'चन्द्रमा की राशि से आगे गिनकर' },
-      { en: 'No counting needed — it equals the Lagna', hi: 'कोई गणना नहीं — यह लग्न के बराबर है', sa: 'कोई गणना नहीं — यह लग्न के बराबर है', mai: 'कोई गणना नहीं — यह लग्न के बराबर है', mr: 'कोई गणना नहीं — यह लग्न के बराबर है', ta: 'எண்ணிக்கை தேவையில்லை — அது லக்னத்திற்கு சமம்', te: 'లెక్కింపు అవసరం లేదు — అది లగ్నానికి సమానం', bn: 'গণনা প্রয়োজন নেই — এটি লগ্নের সমান', kn: 'ಎಣಿಕೆ ಅಗತ್ಯವಿಲ್ಲ — ಅದು ಲಗ್ನಕ್ಕೆ ಸಮ', gu: 'ગણતરી જરૂરી નથી — તે લગ્ન સમાન છે' },
-    ],
-    correctAnswer: 0,
-    explanation: {
-      en: 'When both Lagna and Hora Lagna are in odd signs, the count for Varnada Lagna proceeds forward from Aries. The number of signs counted equals the sum of the distances of Lagna and HL from Aries. When both are in even signs, you count backward from Pisces.',
-      hi: 'जब लग्न और होरा लग्न दोनों विषम राशियों में हों, वर्णद लग्न की गणना मेष से आगे गिनकर होती है। गिनी गई राशियों की संख्या लग्न और HL की मेष से दूरी के योग के बराबर है। जब दोनों सम राशियों में हों, मीन से पीछे गिना जाता है।',
-    },
-  },
-];
+const QUESTIONS: ModuleQuestion[] = L.questions as unknown as ModuleQuestion[];
 
 function Page1() {
   const locale = useModuleLocale();
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'Hora Lagna (wealth reference), Ghati Lagna (power reference), and Varnada Lagna (life purpose) provide alternative starting points for chart analysis.',
+          'These special lagnas give Jaimini astrology its multi-dimensional character — each lagna reveals a different facet of life.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {tl({ en: 'Beyond the Birth Lagna', hi: 'जन्म लग्न से परे', sa: 'जन्म लग्न से परे' }, locale)}

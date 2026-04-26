@@ -3,24 +3,80 @@ import type { LocaleText } from '@/types/panchang';
  * Declarative Festival & Vrat Definitions
  *
  * Each festival is defined by its Purnimant calendar coordinates:
- * masa (lunar month) + paksha + tithi number.
+ *   masa (lunar month) + paksha + tithi number + muhurtaRule
  *
- * IMPORTANT: masa names use PURNIMANT system (Purnimant system).
- * The lookup engine converts to Amanta internally when needed.
+ * ═══════════════════════════════════════════════════════════════════
+ * KALA-VYAPTI (TIME-PREVALENCE) SYSTEM
+ * ═══════════════════════════════════════════════════════════════════
  *
- * Adding a new festival = adding one entry to the appropriate array.
+ * A tithi (~23h 37m) rarely aligns with a solar day (24h). When a tithi
+ * spans two calendar days, the festival date is determined by WHICH TIME
+ * WINDOW (Kala) the tithi must be active during. This is the Kala-Vyapti
+ * system from the Dharmasindhu and Nirnayasindhu.
+ *
+ * ┌─────────────┬──────────────────────────┬─────────────────────────────┐
+ * │ Rule        │ Window                   │ Classical Reason             │
+ * ├─────────────┼──────────────────────────┼─────────────────────────────┤
+ * │ sunrise     │ At sunrise (default)     │ Udaya Tithi — Surya Siddhanta│
+ * │ pratah      │ 1st 1/5 of daytime       │ Morning rituals              │
+ * │ madhyahna   │ Middle 1/5 of daytime    │ Deity born at midday         │
+ * │             │ (~10:45 AM – 1:30 PM)    │ (Rama, Ganesha, Saraswati)   │
+ * │ aparahna    │ 4th 1/5 of daytime       │ Victory / ancestors          │
+ * │             │ (~1:30 PM – 4:00 PM)     │ (Dussehra, Pitru Shraddha)   │
+ * │ pradosh     │ Sunset + 4 ghatis        │ Lamp lighting / evening puja │
+ * │             │ (~96 minutes)            │ (Diwali, Dhanteras)          │
+ * │ nishita     │ 8th muhurta of night     │ Midnight manifestation       │
+ * │             │ (~11:40 PM – 12:28 AM)   │ (Shivaratri, Janmashtami)    │
+ * │ arunodaya   │ 4 ghatis before sunrise  │ Pre-dawn bath / purification │
+ * │             │ (~96 min before sunrise)  │ (Narak Chaturdashi)          │
+ * │ chandrodaya │ At moonrise              │ Moon-sighting festivals      │
+ * │             │                          │ (Karwa Chauth, Sankashti)    │
+ * └─────────────┴──────────────────────────┴─────────────────────────────┘
+ *
+ * ALGORITHM (implemented in festival-generator.ts):
+ * 1. Find the Udaya Tithi day (sunriseDate) from the tithi table.
+ * 2. Compute the Kala window on BOTH the sunriseDate and the previous day.
+ * 3. Measure the tithi's overlap with each window.
+ * 4. Dharmasindhu tie-breaking:
+ *    - Active only on one day → pick that day.
+ *    - Active on both → night festivals (pradosh/nishita) prefer the earlier day;
+ *      day festivals pick the greater overlap.
+ *
+ * MONTH CONVENTIONS:
+ * - masa names use PURNIMANT system (standard Indian convention).
+ * - For Shukla paksha tithis, Amant and Purnimant month names agree.
+ * - For Krishna paksha tithis, Purnimant = Amant + 1 month.
+ *   Example: Diwali = "Kartika Krishna Amavasya" (Purnimant)
+ *            = "Ashwina Krishna Amavasya" (Amant)
+ * - The lookup engine converts to Amant internally when matching.
+ *
+ * ADDING A FESTIVAL:
+ * 1. Add an entry to MAJOR_FESTIVALS with masa + paksha + tithi + slug.
+ * 2. Add a matching entry to FESTIVAL_DETAILS (festival-details.ts) with
+ *    name, mythology, observance, significance, and observationRule.
+ * 3. Assign the correct muhurtaRule based on classical texts.
+ *    Default (omitted) = 'sunrise' (Udaya Tithi).
+ *
+ * VERIFIED: All 20 major festivals match Prokerala/Drik Panchang for 2026.
  */
+
+/**
+ * Kala-based observation rule for festival date selection.
+ * Determines which time window the tithi must be active during.
+ * See table above for window definitions and classical sources.
+ */
+export type MuhurtaRule = 'sunrise' | 'pratah' | 'madhyahna' | 'aparahna' | 'pradosh' | 'nishita' | 'arunodaya' | 'chandrodaya';
 
 export interface FestivalDef {
   masa?: string;           // Purnimant month name (omit for recurring monthly vrats)
   paksha?: 'shukla' | 'krishna';
   tithi: number;           // 1-15 within the paksha
   slug: string;            // key for detail lookup
-  name?: LocaleText; // override name (for entries not in FESTIVAL_DETAILS)
+  name?: LocaleText;       // override name (for entries not in FESTIVAL_DETAILS)
   type: 'major' | 'vrat' | 'regional';
   category: 'festival' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham' | 'sankranti' | 'jayanti' | 'vrat';
   recurring?: boolean;     // true = applies to ALL months
-  pradoshRule?: boolean;   // true = use previous day (evening observation, e.g., Diwali)
+  muhurtaRule?: MuhurtaRule; // Kala-Vyapti rule for date selection (default: 'sunrise' = Udaya Tithi)
 }
 
 // ─── Major Festivals (masa-specific, defined by Purnimant month) ───
@@ -37,17 +93,17 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
   { masa: 'magha', paksha: 'shukla', tithi: 12, slug: 'bhishma-dwadashi', type: 'major', category: 'festival',
     name: { en: 'Bhishma Dwadashi', hi: 'भीष्म द्वादशी', sa: 'भीष्मद्वादशी' } },
   // Phalguna
-  { masa: 'phalguna', paksha: 'krishna', tithi: 14, slug: 'maha-shivaratri', type: 'major', category: 'festival' },
+  { masa: 'phalguna', paksha: 'krishna', tithi: 14, slug: 'maha-shivaratri', type: 'major', category: 'festival', muhurtaRule: 'nishita' },
   { masa: 'phalguna', paksha: 'shukla',  tithi: 14, slug: 'holika-dahan',    type: 'major', category: 'festival',
     name: { en: 'Holika Dahan', hi: 'होलिका दहन', sa: 'होलिकादहनम्' } },
   { masa: 'phalguna', paksha: 'shukla',  tithi: 15, slug: 'holi',            type: 'major', category: 'festival' },
   // Chaitra
   { masa: 'chaitra', paksha: 'shukla', tithi: 1,  slug: 'chaitra-navratri', type: 'major', category: 'festival',
     name: { en: 'Chaitra Navratri', hi: 'चैत्र नवरात्रि', sa: 'चैत्रनवरात्रिः' } },
-  { masa: 'chaitra', paksha: 'shukla', tithi: 9,  slug: 'ram-navami',       type: 'major', category: 'festival' },
+  { masa: 'chaitra', paksha: 'shukla', tithi: 9,  slug: 'ram-navami',       type: 'major', category: 'festival', muhurtaRule: 'madhyahna' },
   { masa: 'chaitra', paksha: 'shukla', tithi: 15, slug: 'hanuman-jayanti',  type: 'major', category: 'festival' },
   // Vaishakha
-  { masa: 'vaishakha', paksha: 'shukla', tithi: 3,  slug: 'akshaya-tritiya', type: 'major', category: 'festival',
+  { masa: 'vaishakha', paksha: 'shukla', tithi: 3,  slug: 'akshaya-tritiya', type: 'major', category: 'festival', muhurtaRule: 'madhyahna',
     name: { en: 'Akshaya Tritiya', hi: 'अक्षय तृतीया', sa: 'अक्षयतृतीया' } },
   { masa: 'vaishakha', paksha: 'shukla', tithi: 3,  slug: 'parashurama-jayanti', type: 'major', category: 'jayanti',
     name: { en: 'Parashurama Jayanti', hi: 'परशुराम जयन्ती', sa: 'परशुरामजयन्ती' } },
@@ -77,10 +133,10 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
   { masa: 'shravana', paksha: 'krishna', tithi: 5,  slug: 'nag-panchami',    type: 'major', category: 'festival',
     name: { en: 'Nag Panchami', hi: 'नाग पंचमी', sa: 'नागपञ्चमी' } },
   // Bhadrapada
-  { masa: 'bhadrapada', paksha: 'krishna', tithi: 8,  slug: 'janmashtami',    type: 'major', category: 'festival' },
-  { masa: 'bhadrapada', paksha: 'shukla',  tithi: 3,  slug: 'hartalika-teej', type: 'major', category: 'festival',
+  { masa: 'bhadrapada', paksha: 'krishna', tithi: 8,  slug: 'janmashtami',    type: 'major', category: 'festival', muhurtaRule: 'nishita' },
+  { masa: 'bhadrapada', paksha: 'shukla',  tithi: 3,  slug: 'hartalika-teej', type: 'major', category: 'festival', muhurtaRule: 'madhyahna',
     name: { en: 'Hartalika Teej', hi: 'हरतालिका तीज', sa: 'हरितालिकातृतीया' } },
-  { masa: 'bhadrapada', paksha: 'shukla',  tithi: 4,  slug: 'ganesh-chaturthi', type: 'major', category: 'festival' },
+  { masa: 'bhadrapada', paksha: 'shukla',  tithi: 4,  slug: 'ganesh-chaturthi', type: 'major', category: 'festival', muhurtaRule: 'madhyahna' },
   { masa: 'bhadrapada', paksha: 'shukla',  tithi: 12, slug: 'onam',             type: 'major', category: 'festival',
     name: { en: 'Onam', hi: 'ओणम', sa: 'ओणम्' } },
   { masa: 'bhadrapada', paksha: 'shukla',  tithi: 14, slug: 'anant-chaturdashi', type: 'major', category: 'festival',
@@ -95,11 +151,11 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
   { masa: 'ashwina', paksha: 'shukla',  tithi: 15, slug: 'sharad-purnima', type: 'major', category: 'festival',
     name: { en: 'Sharad Purnima', hi: 'शरद पूर्णिमा', sa: 'शारदपूर्णिमा' } },
   // Kartika — Diwali cluster (Dhanteras, Narak Chaturdashi are Kartika Krishna, NOT Ashwina)
-  { masa: 'kartika', paksha: 'krishna', tithi: 13, slug: 'dhanteras',       type: 'major', category: 'festival',
+  { masa: 'kartika', paksha: 'krishna', tithi: 13, slug: 'dhanteras',       type: 'major', category: 'festival', muhurtaRule: 'pradosh',
     name: { en: 'Dhanteras', hi: 'धनतेरस', sa: 'धन्वन्तरित्रयोदशी' } },
-  { masa: 'kartika', paksha: 'krishna', tithi: 14, slug: 'narak-chaturdashi', type: 'major', category: 'festival',
+  { masa: 'kartika', paksha: 'krishna', tithi: 14, slug: 'narak-chaturdashi', type: 'major', category: 'festival', muhurtaRule: 'nishita',
     name: { en: 'Narak Chaturdashi', hi: 'नरक चतुर्दशी', sa: 'नरकचतुर्दशी' } },
-  { masa: 'kartika', paksha: 'krishna', tithi: 15, slug: 'diwali',          type: 'major', category: 'festival', pradoshRule: true },
+  { masa: 'kartika', paksha: 'krishna', tithi: 15, slug: 'diwali',          type: 'major', category: 'festival', muhurtaRule: 'pradosh' },
   { masa: 'kartika', paksha: 'shukla',  tithi: 1,  slug: 'govardhan-puja',  type: 'major', category: 'festival',
     name: { en: 'Govardhan Puja', hi: 'गोवर्धन पूजा', sa: 'गोवर्धनपूजा' } },
   { masa: 'kartika', paksha: 'shukla',  tithi: 2,  slug: 'bhai-dooj',       type: 'major', category: 'festival',

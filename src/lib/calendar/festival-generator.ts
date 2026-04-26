@@ -394,6 +394,37 @@ function computePujaMuhurat(
   }
 }
 
+// ─── Kala-Vyapti (Time-Prevalence) Helpers ───
+
+/**
+ * Calculates the exact Julian Day boundaries for a specific Kala (Muhurta)
+ * on a given calendar day. Used for festival date resolution.
+ */
+function getKalaWindow(y: number, m: number, d: number, lat: number, lon: number, timezone: string, rule: string) {
+  const tzOff = getUTCOffsetForDate(y, m, d, timezone);
+  const jdNoon = dateToJD(y, m, d, 12 - tzOff);
+  const srUT = approximateSunriseSafe(jdNoon, lat, lon);
+  const ssUT = approximateSunsetSafe(jdNoon, lat, lon);
+  const dayLen = ssUT - srUT;
+  const nightLen = 24 - dayLen;
+  const srJd = dateToJD(y, m, d, srUT);
+  const ssJd = dateToJD(y, m, d, ssUT);
+
+  switch (rule) {
+    case 'madhyahna':  return { startJd: srJd + (dayLen * 2 / 5) / 24, endJd: srJd + (dayLen * 3 / 5) / 24 };
+    case 'aparahna':   return { startJd: srJd + (dayLen * 3 / 5) / 24, endJd: srJd + (dayLen * 4 / 5) / 24 };
+    case 'pradosh':    return { startJd: ssJd, endJd: ssJd + 2.4 / 24 }; // 4 ghatis (96m) after sunset
+    case 'nishita':    return { startJd: ssJd + (nightLen * 7.5 / 15) / 24 - 0.4 / 24, endJd: ssJd + (nightLen * 7.5 / 15) / 24 + 0.4 / 24 };
+    case 'arunodaya':  return { startJd: srJd - 1.6 / 24, endJd: srJd }; // 4 ghatis before sunrise
+    default:           return { startJd: srJd - 0.01, endJd: srJd + 0.01 }; // tight sunrise window
+  }
+}
+
+/** Measure how much a tithi overlaps with a time window (in JD days). */
+function getOverlap(tithiStart: number, tithiEnd: number, windowStart: number, windowEnd: number): number {
+  return Math.max(0, Math.min(tithiEnd, windowEnd) - Math.max(tithiStart, windowStart));
+}
+
 // ─── Main Generator ───
 
 export function generateFestivalCalendarV2(
@@ -408,44 +439,56 @@ export function generateFestivalCalendarV2(
   // ── 1. Major Festivals from declarative definitions ───
   for (const def of MAJOR_FESTIVALS) {
     const tithiNum = defToTithiNumber(def);
-    // Festival defs use Amanta month names (the standard used by all reference sources).
-    // Match against entry.masa.amanta — during Krishna Paksha, Purnimant is one month
-    // ahead of Amanta, which would place festivals ~1 month early if compared incorrectly.
-    const matches = table.entries.filter(e =>
-      e.number === tithiNum &&
-      e.masa.amanta === def.masa &&
-      !e.masa.isAdhika
-    );
+    // Festival defs use the standard Indian convention (Prokerala, Drik Panchang):
+    // All festivals use Purnimant month naming. For Shukla paksha tithis, Amant and
+    // Purnimant agree. For Krishna paksha, Purnimant = Amant's NEXT month
+    // (e.g., Diwali is "Kartika Kr Amavasya" in Purnimant = "Ashwina Kr Amavasya" in Amant).
+    // Our tithi table's purnimanta field lags by 1, so for Krishna we match against
+    // the Amant month that's one BEFORE the def's Purnimant name.
+    const matches = table.entries.filter(e => {
+      if (e.number !== tithiNum || e.masa.isAdhika) return false;
+      if (tithiNum <= 15) {
+        // Shukla: Amant and Purnimant agree
+        return e.masa.amanta === def.masa;
+      }
+      // Krishna: def.masa is Purnimant = Amant + 1, so match Amant = previous(def.masa)
+      return getNextHinduMonth(e.masa.amanta) === def.masa;
+    });
 
     for (const match of matches) {
       const detail = FESTIVAL_DETAILS[def.slug];
 
-      // Pradosh rule: festivals observed in the EVENING when the tithi begins.
-      // Classical rule for Diwali and similar festivals: observed on the evening
-      // when the tithi is active, not the morning when it prevails at sunrise.
-      //
-      // Logic: the tithi table gives us `sunriseDate` (the day when the tithi
-      // prevails at sunrise). But the tithi may have STARTED the previous evening.
-      // If the tithi's startJd falls BEFORE sunset of the previous day, then the
-      // festival is observed on that previous evening.
-      //
-      // Example: Amavasya starts Nov 8 at 16:30 IST. Sunset Nov 8 is 17:28.
-      // Since 16:30 < 17:28, Amavasya is active at Pradosh Kaal (sunset) on Nov 8.
-      // Diwali = Nov 8 (not Nov 9 when Amavasya prevails at sunrise).
+      // ── Kala-Vyapti Resolution ──
+      // Each festival has a muhurtaRule specifying which time window (Kala) the
+      // tithi must be active during. We compute the overlap of the tithi with
+      // that window on both the sunriseDate (Day 2) and the previous day (Day 1),
+      // then apply Dharmasindhu/Nirnayasindhu tie-breaking rules.
       let festivalDate = match.sunriseDate;
-      if (def.pradoshRule && match.startJd) {
-        const [fy, fm, fd] = match.sunriseDate.split('-').map(Number);
-        // Compute sunset of the PREVIOUS day
-        const prevDayJd = dateToJD(fy, fm, fd - 1, 12 - (getUTCOffsetForDate(fy, fm, fd - 1, timezone)));
-        const prevSunsetUT = approximateSunsetSafe(prevDayJd, lat, lon);
-        const prevSunsetJd = dateToJD(fy, fm, fd - 1, prevSunsetUT);
-        // If the tithi started before sunset of the previous day,
-        // the festival is on the previous day (evening observation)
-        if (match.startJd <= prevSunsetJd) {
-          const prevDate = new Date(fy, fm - 1, fd - 1);
-          festivalDate = `${prevDate.getFullYear()}-${String(prevDate.getMonth()+1).padStart(2,'0')}-${String(prevDate.getDate()).padStart(2,'0')}`;
+      const rule = def.muhurtaRule || 'sunrise';
+
+      if (match.startJd && match.endJd && rule !== 'sunrise') {
+        const [y2, m2, d2] = match.sunriseDate.split('-').map(Number);
+        const date1 = new Date(y2, m2 - 1, d2 - 1);
+        const [y1, m1, d1] = [date1.getFullYear(), date1.getMonth() + 1, date1.getDate()];
+
+        const win1 = getKalaWindow(y1, m1, d1, lat, lon, timezone, rule);
+        const win2 = getKalaWindow(y2, m2, d2, lat, lon, timezone, rule);
+
+        const overlap1 = getOverlap(match.startJd, match.endJd, win1.startJd, win1.endJd);
+        const overlap2 = getOverlap(match.startJd, match.endJd, win2.startJd, win2.endJd);
+
+        // Dharmasindhu resolution:
+        // 1. Active only on Day 1 → pick Day 1
+        // 2. Active only on Day 2 → keep Day 2 (sunriseDate)
+        // 3. Active on both → night festivals (pradosh/nishita) prefer Day 1;
+        //    day festivals pick the greater overlap
+        if (overlap1 > 0 && overlap2 === 0) {
+          festivalDate = `${y1}-${String(m1).padStart(2, '0')}-${String(d1).padStart(2, '0')}`;
+        } else if (overlap1 > 0 && overlap2 > 0) {
+          if (['pradosh', 'nishita'].includes(rule) || overlap1 >= overlap2) {
+            festivalDate = `${y1}-${String(m1).padStart(2, '0')}-${String(d1).padStart(2, '0')}`;
+          }
         }
-        // Otherwise, the tithi started after sunset → festival stays on sunriseDate
       }
 
       // Kshaya tithi: the tithi has no sunrise within it. Per Dharmasindhu,
@@ -479,29 +522,41 @@ export function generateFestivalCalendarV2(
   // ── 1b. Solar festivals (Sankranti — Sun entering a sign) ───
   // Makar Sankranti: Sun enters Capricorn (sidereal longitude crosses 270°)
   {
-    // Scan January for the date when Sun's sidereal longitude crosses 270° (Capricorn)
-    for (let d = 10; d <= 18; d++) {
-      // Use actual timezone offset for the location, not hardcoded IST
-      const tzOff = getUTCOffsetForDate(year, 1, d, timezone);
-      const jd = dateToJD(year, 1, d, 12 - tzOff);
-      const sunSid = toSidereal(sunLongitude(jd), jd);
-      const jdNext = dateToJD(year, 1, d + 1, 12 - tzOff);
-      const sunSidNext = toSidereal(sunLongitude(jdNext), jdNext);
-      // Check if Sun crosses 270° between day d and d+1
-      if (sunSid < 270 && sunSidNext >= 270) {
-        festivals.push({
-          name: { en: 'Makar Sankranti', hi: 'मकर संक्रान्ति', sa: 'मकरसंक्रान्तिः' },
-          date: `${year}-01-${String(d).padStart(2, '0')}`, // Day Sun crosses into Capricorn
-          tithi: 'Makar Sankranti (Solar)',
-          masa: { purnimanta: 'பௌஷ', amanta: 'பௌஷ', isAdhika: false },
-          paksha: 'shukla', // Solar festival — paksha not applicable, using placeholder
-          type: 'major',
-          category: 'festival',
-          description: { en: 'Sun enters Capricorn — marks the northward journey (Uttarayana). Sacred bathing, charity, and sesame offerings.', hi: 'सूर्य मकर राशि में प्रवेश — उत्तरायण का आरम्भ। पवित्र स्नान, दान और तिल।', sa: 'सूर्यः मकरराशिं प्रविशति — उत्तरायणारम्भः।' },
-          slug: 'makar-sankranti',
-        });
-        break;
-      }
+    // Binary search for the exact UT moment the Sun's sidereal longitude crosses 270°
+    let jdLow = dateToJD(year, 1, 10, 0);
+    let jdHigh = dateToJD(year, 1, 18, 0);
+    for (let iter = 0; iter < 50; iter++) {
+      const jdMid = (jdLow + jdHigh) / 2;
+      const sunSid = normalizeDeg(toSidereal(sunLongitude(jdMid), jdMid));
+      // Handle the 270° crossing — Sun moves from ~269° to ~271°
+      if (sunSid < 270 && sunSid > 260) jdLow = jdMid;
+      else jdHigh = jdMid;
+    }
+    const crossingJd = (jdLow + jdHigh) / 2;
+    // Convert crossing moment to LOCAL calendar date
+    const tzOff = getUTCOffsetForDate(year, 1, 14, timezone);
+    const crossingLocalMs = (crossingJd - 2440587.5) * 86400000 + tzOff * 3600000;
+    const crossingDate = new Date(crossingLocalMs);
+    let sankrantiDay = crossingDate.getUTCDate();
+    const sankrantiMonth = crossingDate.getUTCMonth() + 1;
+    // Punya Kala rule: if Sankranti occurs after sunset, the observance
+    // (holy bath, charity) shifts to the next morning (Drik Panchang convention).
+    const crossingDayJd = dateToJD(year, 1, sankrantiDay, 12 - tzOff);
+    const sunsetUT = approximateSunsetSafe(crossingDayJd, lat, lon);
+    const sunsetJd = dateToJD(year, 1, sankrantiDay, sunsetUT);
+    if (crossingJd > sunsetJd) sankrantiDay++;
+    if (sankrantiMonth === 1 && sankrantiDay >= 10 && sankrantiDay <= 18) {
+      festivals.push({
+        name: { en: 'Makar Sankranti', hi: 'मकर संक्रान्ति', sa: 'मकरसंक्रान्तिः' },
+        date: `${year}-01-${String(sankrantiDay).padStart(2, '0')}`,
+        tithi: 'Makar Sankranti (Solar)',
+        masa: { purnimanta: 'pausha', amanta: 'pausha', isAdhika: false },
+        paksha: 'shukla',
+        type: 'major',
+        category: 'festival',
+        description: { en: 'Sun enters Capricorn — marks the northward journey (Uttarayana). Sacred bathing, charity, and sesame offerings.', hi: 'सूर्य मकर राशि में प्रवेश — उत्तरायण का आरम्भ। पवित्र स्नान, दान और तिल।', sa: 'सूर्यः मकरराशिं प्रविशति — उत्तरायणारम्भः।' },
+        slug: 'makar-sankranti',
+      });
     }
   }
 

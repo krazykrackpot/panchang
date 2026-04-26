@@ -83,7 +83,8 @@ export async function GET(request: Request) {
           .map(c => (c as { type: 'text'; text: string }).text)
           .join('');
         horoscopes[promptData.sign] = text;
-      } catch {
+      } catch (err) {
+        console.error(`[horoscope] AI generation failed for ${promptData.sign}, using fallback:`, err);
         horoscopes[promptData.sign] = buildFallbackHoroscope(promptData, locale);
       }
     });

@@ -9,6 +9,9 @@ export interface FestivalDetail {
   mythology: LocaleText;
   observance: LocaleText;
   significance: LocaleText;
+  /** Explains the Kala-Vyapti (time-prevalence) rule for this festival's date selection.
+   * Present only for festivals with a non-default muhurtaRule in MAJOR_FESTIVALS. */
+  observationRule?: LocaleText;
   deity?: LocaleText;
   isFast?: boolean;
   fastNote?: LocaleText;
@@ -96,6 +99,7 @@ export const FESTIVAL_DETAILS: Record<string, FestivalDetail> = {
       mai: 'वर्ष की सबसे अन्धकारमय रात्रि — अन्धकार और अज्ञान पर विजय का प्रतीक। इस रात्रि शिव की ऊर्जा सर्वाधिक सुलभ मानी जाती है।',
     },
     deity: { en: 'Lord Shiva', hi: 'भगवान शिव', sa: 'शिवः', ta: 'சிவபெருமான்', te: 'శివుడు', bn: 'শিব', kn: 'ಶಿವ', gu: 'શિવ', mr: 'भगवान शिव', mai: 'भगवान शिव' },
+    observationRule: { en: 'Nishita Kaal (Midnight) Rule: Observed on the day when the Chaturdashi tithi prevails during Nishita Kaal (the 8th muhurta of the night, ~11:40 PM – 12:28 AM). Shiva manifested at midnight, making this the sacred observation window.', hi: 'निशीथ काल (मध्यरात्रि) नियम: जिस दिन चतुर्दशी तिथि निशीथ काल में व्याप्त हो, उस दिन मनाया जाता है। शिव मध्यरात्रि में प्रकट हुए।' },
     isFast: true,
     fastNote: { en: 'Strict fast (nirjala or fruits only). Break fast next morning after puja.', hi: 'कठोर व्रत (निर्जला या केवल फलाहार)। अगली सुबह पूजा के बाद पारण करें।', sa: 'कठोरं व्रतम्। प्रातः पूजानन्तरं पारणम्।', mr: 'कठोर व्रत (निर्जला या केवल फलाहार)। अगली सुबह पूजा के बाद पारण करें।', mai: 'कठोर व्रत (निर्जला या केवल फलाहार)। अगली सुबह पूजा के बाद पारण करें।' },
   },
@@ -149,7 +153,8 @@ export const FESTIVAL_DETAILS: Record<string, FestivalDetail> = {
       mr: 'मर्यादा पुरुषोत्तम के जन्म का उत्सव — जिन्होंने प्रत्येक कदम पर धर्म का पालन किया।',
       mai: 'मर्यादा पुरुषोत्तम के जन्म का उत्सव — जिन्होंने प्रत्येक कदम पर धर्म का पालन किया।',
     },
-    deity: { en: 'Lord Rama', hi: 'भगवान राम', sa: 'श्रीरामः', ta: 'ஸ்ரீ ராமர்', te: 'శ్రీరాముడు', bn: 'শ্রীরাম', kn: 'ಶ್ರೀರಾಮ', gu: 'શ્રી રામ', mr: 'भगवान राम', mai: 'भगवान राम' },
+    deity: { en: 'Lord Rama', hi: 'भगवान राम', sa: 'श्रीरामः', ta: 'ஸ்ரீ ராமர்', te: 'శ్రీరాముడు', bn: 'শ্রীরাম', kn: 'ಶ್ರೀರಾಮ', gu: 'શ્રી રామ', mr: 'भगवान राम', mai: 'भगवान राम' },
+    observationRule: { en: 'Madhyahna (Midday) Rule: Observed when the Navami tithi prevails during Madhyahna (middle 1/5th of daytime, ~10:45 AM – 1:30 PM). Lord Rama was born at midday (Abhijit Muhurta).', hi: 'मध्याह्न नियम: जिस दिन नवमी तिथि मध्याह्न काल में व्याप्त हो, उस दिन मनाया जाता है। भगवान राम का जन्म मध्याह्न (अभिजित मुहूर्त) में हुआ।' },
     isFast: true,
     fastNote: { en: 'Fast until noon (Madhyahna). Break fast with fruits and sattvic food.', hi: 'मध्याह्न तक उपवास। फलाहार और सात्विक भोजन से पारण करें।', sa: 'मध्याह्नपर्यन्तं व्रतम्। फलैः सात्त्विकाहारेण च पारणम्।', mr: 'मध्याह्न तक उपवास। फलाहार और सात्विक भोजन से पारण करें।', mai: 'मध्याह्न तक उपवास। फलाहार और सात्विक भोजन से पारण करें।' },
   },
@@ -256,6 +261,7 @@ export const FESTIVAL_DETAILS: Record<string, FestivalDetail> = {
       mai: 'भगवद्गीता के वक्ता परमात्मा का जन्म। कृष्ण दिव्य प्रेम, ब्रह्माण्डीय ज्ञान और कर्मयोग के प्रतीक हैं।',
     },
     deity: { en: 'Lord Krishna', hi: 'भगवान कृष्ण', sa: 'श्रीकृष्णः', ta: 'ஸ்ரீ கிருஷ்ணர்', te: 'శ్రీకృష్ణుడు', bn: 'শ্রীকৃষ্ণ', kn: 'ಶ್ರೀಕೃಷ್ಣ', gu: 'શ્રી કૃષ્ણ', mr: 'भगवान कृष्ण', mai: 'भगवान कृष्ण' },
+    observationRule: { en: 'Nishita Kaal (Midnight) Rule: Observed when the Ashtami tithi prevails during Nishita Kaal (~11:40 PM – 12:28 AM). Lord Krishna was born at the stroke of midnight in the prison of Mathura.', hi: 'निशीथ काल (मध्यरात्रि) नियम: जिस दिन अष्टमी तिथि निशीथ काल में व्याप्त हो, उस दिन मनाया जाता है। भगवान कृष्ण का जन्म मध्यरात्रि में हुआ।' },
     isFast: true,
     fastNote: { en: 'Strict fast until midnight. Break with prasad after midnight puja and Abhishek.', hi: 'मध्यरात्रि तक कठोर व्रत। मध्यरात्रि पूजा के बाद प्रसाद से पारण।', sa: 'मध्यरात्रिपर्यन्तं कठोरव्रतम्। अभिषेकानन्तरं प्रसादेन पारणम्।', mr: 'मध्यरात्रि तक कठोर व्रत। मध्यरात्रि पूजा के बाद प्रसाद से पारण।', mai: 'मध्यरात्रि तक कठोर व्रत। मध्यरात्रि पूजा के बाद प्रसाद से पारण।' },
   },
@@ -284,6 +290,7 @@ export const FESTIVAL_DETAILS: Record<string, FestivalDetail> = {
       mai: 'नई शुरुआत के देवता, विघ्नहर्ता। सभी कार्यों से पहले पूजित। ज्ञान, समृद्धि और भक्ति की शक्ति का उत्सव।',
     },
     deity: { en: 'Lord Ganesha', hi: 'भगवान गणेश', sa: 'गणेशः', ta: 'விநாயகர்', te: 'గణేశుడు', bn: 'গণেশ', kn: 'ಗಣೇಶ', gu: 'ગણેશ', mr: 'भगवान गणेश', mai: 'भगवान गणेश' },
+    observationRule: { en: 'Madhyahna (Midday) Rule: Observed when the Chaturthi tithi prevails during Madhyahna (middle 1/5th of daytime). Lord Ganesha was born at midday. The Sthapana (installation) and main puja are performed during this window.', hi: 'मध्याह्न नियम: जिस दिन चतुर्थी तिथि मध्याह्न में व्याप्त हो, उस दिन मनाया जाता है। भगवान गणेश का जन्म मध्याह्न में हुआ।' },
   },
 
   'navaratri': {
@@ -364,6 +371,7 @@ export const FESTIVAL_DETAILS: Record<string, FestivalDetail> = {
       mai: 'प्रकाश का त्योहार — अन्धकार पर प्रकाश, अज्ञान पर ज्ञान, बुराई पर अच्छाई की विजय। सबसे अन्धेरी रात (अमावस्या) को प्रकाशित किया जाता है।',
     },
     deity: { en: 'Goddess Lakshmi, Lord Rama, Lord Ganesha', hi: 'देवी लक्ष्मी, भगवान राम, भगवान गणेश', sa: 'लक्ष्मीः, श्रीरामः, गणेशः', ta: 'லக்ஷ்மி, ராமர், விநாயகர்', te: 'లక్ష్మీ, శ్రీరాముడు, గణేశుడు', bn: 'লক্ষ্মী, রাম, গণেশ', kn: 'ಲಕ್ಷ್ಮಿ, ರಾಮ, ಗಣೇಶ', gu: 'લક્ષ્મી, રામ, ગણેશ', mr: 'देवी लक्ष्मी, भगवान राम, भगवान गणेश', mai: 'देवी लक्ष्मी, भगवान राम, भगवान गणेश' },
+    observationRule: { en: 'Pradosh (Evening) Rule: Observed when the Amavasya tithi prevails during Pradosh Kaal (sunset to ~96 minutes after). Lakshmi Puja is performed during Sthira (Taurus) Lagna for stability of wealth. The darkest night is illuminated with diyas.', hi: 'प्रदोष (सन्ध्या) नियम: जिस दिन अमावस्या तिथि प्रदोष काल में व्याप्त हो, उस दिन मनाया जाता है। लक्ष्मी पूजा स्थिर लग्न (वृषभ) में की जाती है।' },
   },
 
   // ── Additional Festivals ──
@@ -472,6 +480,7 @@ export const FESTIVAL_DETAILS: Record<string, FestivalDetail> = {
       mai: 'अक्षय तृतीया हिन्दू कैलेंडर के सबसे शुभ दिनों में से एक है — प्रत्येक क्षण मुहूर्त है, अलग शुभ मुहूर्त की आवश्यकता नहीं। यह स्वयंसिद्ध मुहूर्त दिवस है।',
     },
     deity: { en: 'Lord Vishnu, Goddess Lakshmi, Lord Parashurama', hi: 'भगवान विष्णु, देवी लक्ष्मी, परशुराम', sa: 'विष्णुः, लक्ष्मीः, परशुरामः', ta: 'விஷ்ணு, லக்ஷ்மி, பரசுராமர்', te: 'విష్ణువు, లక్ష్మీ, పరశురాముడు', bn: 'বিষ্ণু, লক্ষ্মী, পরশুরাম', kn: 'ವಿಷ್ಣು, ಲಕ್ಷ್ಮಿ, ಪರಶುರಾಮ', gu: 'વિષ્ણુ, લક્ષ્મી, પરશુરામ', mr: 'भगवान विष्णु, देवी लक्ष्मी, परशुराम', mai: 'भगवान विष्णु, देवी लक्ष्मी, परशुराम' },
+    observationRule: { en: 'Madhyahna (Midday) Rule: Observed when the Tritiya tithi prevails during the Madhyahna window. Every moment on Akshaya Tritiya is considered auspicious (Svayamsiddha Muhurta), but the formal puja and gold purchases are ideally timed during midday.', hi: 'मध्याह्न नियम: जिस दिन तृतीया तिथि मध्याह्न में व्याप्त हो। अक्षय तृतीया स्वयंसिद्ध मुहूर्त दिवस है — हर क्षण शुभ है — परन्तु पूजा और स्वर्ण क्रय मध्याह्न में उत्तम।' },
   },
 
   'buddha-purnima': {
@@ -630,6 +639,7 @@ export const FESTIVAL_DETAILS: Record<string, FestivalDetail> = {
       mai: 'धनतेरस दीपावली के पाँच दिवसीय उत्सव का पहला दिन है। "धन" का अर्थ सम्पत्ति और "तेरस" त्रयोदशी। यह स्वास्थ्य, धन और समृद्धि का उत्सव है।',
     },
     deity: { en: 'Lord Dhanvantari, Goddess Lakshmi, Lord Kubera', hi: 'भगवान धन्वन्तरि, देवी लक्ष्मी, कुबेर', sa: 'धन्वन्तरिः, लक्ष्मीः, कुबेरः', ta: 'தன்வந்தரி, லக்ஷ்மி, குபேரன்', te: 'ధన్వంతరి, లక్ష్మీ, కుబేరుడు', bn: 'ধন্বন্তরি, লক্ষ্মী, কুবের', kn: 'ಧನ್ವಂತರಿ, ಲಕ್ಷ್ಮಿ, ಕುಬೇರ', gu: 'ધન્વંતરિ, લક્ષ્મી, કુબેર', mr: 'भगवान धन्वन्तरि, देवी लक्ष्मी, कुबेर', mai: 'भगवान धन्वन्तरि, देवी लक्ष्मी, कुबेर' },
+    observationRule: { en: 'Pradosh (Evening) Rule: Observed when the Trayodashi tithi prevails during Pradosh Kaal (sunset to ~96 minutes after). Dhanvantari and Kubera are worshipped at dusk, and new purchases (gold, utensils) are consecrated.', hi: 'प्रदोष (सन्ध्या) नियम: जिस दिन त्रयोदशी तिथि प्रदोष काल में व्याप्त हो, उस दिन मनाया जाता है। सन्ध्या को धन्वन्तरि और कुबेर की पूजा।' },
   },
 
   'narak-chaturdashi': {
@@ -656,6 +666,7 @@ export const FESTIVAL_DETAILS: Record<string, FestivalDetail> = {
       mai: 'नरक चतुर्दशी बुराई के नाश और पीड़ितों की मुक्ति का प्रतीक है। भोर का स्नान पापों को धोता है और चौदह दीप चौदह लोकों को प्रकाशित करते हैं। यह दीपावली से पूर्व शुद्धिकरण का दिन है।',
     },
     deity: { en: 'Lord Krishna, Goddess Kali', hi: 'भगवान कृष्ण, देवी काली', sa: 'श्रीकृष्णः, कालीदेवी', ta: 'கிருஷ்ணர், காளி தேவி', te: 'శ్రీకృష్ణుడు, కాళీ దేవి', bn: 'কৃষ্ণ, কালী দেবী', kn: 'ಕೃಷ್ಣ, ಕಾಳಿ ದೇವಿ', gu: 'કૃષ્ણ, કાલી દેવી', mr: 'भगवान कृष्ण, देवी काली', mai: 'भगवान कृष्ण, देवी काली' },
+    observationRule: { en: 'Nishita Kaal (Midnight) Rule: Observed when the Chaturdashi tithi prevails at midnight — the night before Diwali. The pre-dawn Abhyang Snan (oil bath) purifies for the new year. Also called Chhoti Diwali.', hi: 'निशीथ काल नियम: जिस दिन चतुर्दशी तिथि मध्यरात्रि में व्याप्त हो। दीपावली से पूर्व की रात। भोर का अभ्यङ्ग स्नान नवीन वर्ष की शुद्धि करता है।' },
   },
 
   'govardhan-puja': {
@@ -1089,7 +1100,13 @@ export const ADHIKA_MASA_EKADASHI: { shukla: EkadashiDetail; krishna: EkadashiDe
    HELPERS
    ═══════════════════════════════════════════ */
 
-/** Map from sidereal Sun sign (1-12) to Hindu solar month name */
+/** Map from sidereal Sun sign (1-12) at the STARTING New Moon to Amant month name.
+ * Classical Vedic convention (Surya Siddhanta / Dharmasindhu):
+ *   Mesha Sankranti (sign 1) governs Vaishakha
+ *   Meena Sankranti (sign 12) governs Chaitra
+ * Used with sign1 (Sun at starting NM). For Adhika months, sign1===sign2
+ * and getHinduMonth(sign1) returns the correct name directly (e.g., Meena→Chaitra).
+ * Verified: 2026 20/20 festivals, 2027 no false Adhika, 2029 Adhika Chaitra. */
 const SOLAR_MONTH_MAP: Record<number, string> = {
   1: 'vaishakha', 2: 'jyeshtha', 3: 'ashadha', 4: 'shravana',
   5: 'bhadrapada', 6: 'ashwina', 7: 'kartika', 8: 'margashirsha',

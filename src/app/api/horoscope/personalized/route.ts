@@ -50,7 +50,8 @@ export async function POST(request: Request) {
           .filter(c => c.type === 'text')
           .map(c => (c as { type: 'text'; text: string }).text)
           .join('');
-      } catch {
+      } catch (err) {
+        console.error('[horoscope/personalized] AI generation failed, using fallback:', err);
         forecast = buildPersonalizedFallback(personalData, locale);
       }
     } else {

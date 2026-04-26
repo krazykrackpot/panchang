@@ -19,7 +19,7 @@ import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import LearningPath from '@/components/learn/LearningPath';
 import ReviewSession from '@/components/learn/ReviewSession';
 
-const STATS = { modules: 104, references: 45, labs: 6, phases: 12 };
+const STATS = { modules: 106, references: 47, labs: 6, phases: 12 };
 
 export default function LearnPage() {
   const locale = useLocale();
@@ -73,6 +73,8 @@ export default function LearnPage() {
       { name: { en: 'Muhurtas', hi: 'मुहूर्त', sa: 'मुहूर्ताः' }, href: '/learn/muhurtas' },
       { name: { en: 'Hora', hi: 'होरा', sa: 'होरा' }, href: '/learn/hora' },
       { name: { en: 'Masa', hi: 'मास', sa: 'मासः' }, href: '/learn/masa' },
+      { name: { en: 'Adhika Masa', hi: 'अधिक मास', sa: 'अधिकमासः' }, href: '/learn/adhika-masa' },
+      { name: { en: 'Festival Rules', hi: 'त्योहार नियम', sa: 'उत्सवनियमाः' }, href: '/learn/festival-rules' },
       { name: { en: 'Transit Guide', hi: 'गोचर', sa: 'गोचरः' }, href: '/learn/transit-guide' },
       { name: { en: 'Eclipses (Grahan)', hi: 'ग्रहण', sa: 'ग्रहणम्' }, href: '/learn/eclipses' },
     ]},

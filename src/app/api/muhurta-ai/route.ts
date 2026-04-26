@@ -74,7 +74,8 @@ export async function POST(request: Request) {
     return NextResponse.json(result, {
       headers: { 'Cache-Control': 'private, max-age=1800' },
     });
-  } catch {
+  } catch (err) {
+    console.error('[muhurta-ai] Failed to compute recommendations:', err);
     return NextResponse.json(
       { error: 'Failed to compute Muhurta AI recommendations' },
       { status: 500 },

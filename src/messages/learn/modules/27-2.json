@@ -1,0 +1,369 @@
+{
+  "title": {
+    "en": "Adhika Masa: The Intercalary Month",
+    "hi": "अधिक मास: अधिकमास",
+    "sa": "Adhika Masa: The Intercalary Month",
+    "mai": "अधिक मास: अधिकमास",
+    "mr": "अधिक मास: अधिकमास",
+    "ta": "Adhika Masa: The Intercalary Month",
+    "te": "Adhika Masa: The Intercalary Month",
+    "bn": "Adhika Masa: The Intercalary Month",
+    "kn": "Adhika Masa: The Intercalary Month",
+    "gu": "Adhika Masa: The Intercalary Month"
+  },
+  "subtitle": {
+    "en": "How the Hindu calendar reconciles lunar months with the solar year through the Adhika (extra) month",
+    "hi": "हिन्दू पंचांग अधिक (अतिरिक्त) मास द्वारा चान्द्र मासों को सौर वर्ष से कैसे संतुलित करता है"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "Module 27-1: Festival Timing Rules",
+        "hi": "मॉड्यूल 27-1: त्योहार समय नियम",
+        "sa": "मॉड्यूल 27-1: त्योहार समय नियम",
+        "mai": "मॉड्यूल 27-1: त्योहार समय नियम",
+        "mr": "मॉड्यूल 27-1: त्योहार समय नियम",
+        "ta": "Module 27-1: Festival Timing Rules",
+        "te": "Module 27-1: Festival Timing Rules",
+        "bn": "Module 27-1: Festival Timing Rules",
+        "kn": "Module 27-1: Festival Timing Rules",
+        "gu": "Module 27-1: Festival Timing Rules"
+      },
+      "href": "/learn/modules/27-1"
+    },
+    {
+      "label": {
+        "en": "Module 5-3: Tithis — Lunar Days",
+        "hi": "मॉड्यूल 5-3: तिथियाँ — चान्द्र दिन",
+        "sa": "मॉड्यूल 5-3: तिथियाँ — चान्द्र दिन",
+        "mai": "मॉड्यूल 5-3: तिथियाँ — चान्द्र दिन",
+        "mr": "मॉड्यूल 5-3: तिथियाँ — चान्द्र दिन",
+        "ta": "Module 5-3: Tithis — Lunar Days",
+        "te": "Module 5-3: Tithis — Lunar Days",
+        "bn": "Module 5-3: Tithis — Lunar Days",
+        "kn": "Module 5-3: Tithis — Lunar Days",
+        "gu": "Module 5-3: Tithis — Lunar Days"
+      },
+      "href": "/learn/modules/5-3"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q27_2_01",
+      "type": "mcq",
+      "question": {
+        "en": "What astronomical condition defines an Adhika month?",
+        "hi": "कौन सी खगोलीय स्थिति अधिक मास को परिभाषित करती है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Per the Surya Siddhanta, if no solar Sankranti (the Sun entering a new sidereal sign) occurs between two consecutive New Moons, that lunar month is declared Adhika (intercalary). This means the Sun stays in the same zodiac sign for the entire month.",
+        "hi": "सूर्य सिद्धान्त के अनुसार, यदि दो लगातार अमावस्याओं के बीच कोई सौर संक्रान्ति (सूर्य का नई राशि में प्रवेश) नहीं होती, तो उस चान्द्र मास को अधिक (अधिकमास) घोषित किया जाता है। इसका अर्थ है कि सूर्य पूरे मास एक ही राशि में रहता है।"
+      },
+      "options": [
+        {
+          "en": "Two Full Moons in one solar month",
+          "hi": "एक सौर मास में दो पूर्णिमाएँ",
+          "sa": "एक सौर मास में दो पूर्णिमाएँ",
+          "mai": "एक सौर मास में दो पूर्णिमाएँ",
+          "mr": "एक सौर मास में दो पूर्णिमाएँ",
+          "ta": "Two Full Moons in one solar month",
+          "te": "Two Full Moons in one solar month",
+          "bn": "Two Full Moons in one solar month",
+          "kn": "Two Full Moons in one solar month",
+          "gu": "Two Full Moons in one solar month"
+        },
+        {
+          "en": "No solar Sankranti between two New Moons",
+          "hi": "दो अमावस्याओं के बीच कोई सौर संक्रान्ति नहीं",
+          "sa": "दो अमावस्याओं के बीच कोई सौर संक्रान्ति नहीं",
+          "mai": "दो अमावस्याओं के बीच कोई सौर संक्रान्ति नहीं",
+          "mr": "दो अमावस्याओं के बीच कोई सौर संक्रान्ति नहीं",
+          "ta": "No solar Sankranti between two New Moons",
+          "te": "No solar Sankranti between two New Moons",
+          "bn": "No solar Sankranti between two New Moons",
+          "kn": "No solar Sankranti between two New Moons",
+          "gu": "No solar Sankranti between two New Moons"
+        },
+        {
+          "en": "Moon in same nakshatra at both New Moons",
+          "hi": "दोनों अमावस्याओं पर चन्द्रमा एक ही नक्षत्र में",
+          "sa": "दोनों अमावस्याओं पर चन्द्रमा एक ही नक्षत्र में",
+          "mai": "दोनों अमावस्याओं पर चन्द्रमा एक ही नक्षत्र में",
+          "mr": "दोनों अमावस्याओं पर चन्द्रमा एक ही नक्षत्र में",
+          "ta": "Moon in same nakshatra at both New Moons",
+          "te": "Moon in same nakshatra at both New Moons",
+          "bn": "Moon in same nakshatra at both New Moons",
+          "kn": "Moon in same nakshatra at both New Moons",
+          "gu": "Moon in same nakshatra at both New Moons"
+        },
+        {
+          "en": "Eclipse occurring during the month",
+          "hi": "मास के दौरान ग्रहण होना",
+          "sa": "मास के दौरान ग्रहण होना",
+          "mai": "मास के दौरान ग्रहण होना",
+          "mr": "मास के दौरान ग्रहण होना",
+          "ta": "Eclipse occurring during the month",
+          "te": "Eclipse occurring during the month",
+          "bn": "Eclipse occurring during the month",
+          "kn": "Eclipse occurring during the month",
+          "gu": "Eclipse occurring during the month"
+        }
+      ]
+    },
+    {
+      "id": "q27_2_02",
+      "type": "mcq",
+      "question": {
+        "en": "In 2029, why is it 'Adhika Chaitra' and not 'Adhika Phalguna'?",
+        "hi": "2029 में यह 'अधिक चैत्र' क्यों है, 'अधिक फाल्गुन' क्यों नहीं?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "The Adhika month gets its name from the solar sign the Sun occupies. In 2029, the Sun is in Meena (Pisces) at both New Moons. The SOLAR_MONTH_MAP maps Meena to Chaitra, so the month is named Adhika Chaitra. The name comes from the Sun's sign, not from the preceding month.",
+        "hi": "अधिक मास को अपना नाम उस सौर राशि से मिलता है जिसमें सूर्य स्थित होता है। 2029 में, दोनों अमावस्याओं पर सूर्य मीन राशि में है। SOLAR_MONTH_MAP मीन को चैत्र से जोड़ता है, इसलिए मास का नाम अधिक चैत्र पड़ता है। नाम सूर्य की राशि से आता है, पिछले मास से नहीं।"
+      },
+      "options": [
+        {
+          "en": "Because Chaitra is the first month of the year",
+          "hi": "क्योंकि चैत्र वर्ष का पहला मास है",
+          "sa": "क्योंकि चैत्र वर्ष का पहला मास है",
+          "mai": "क्योंकि चैत्र वर्ष का पहला मास है",
+          "mr": "क्योंकि चैत्र वर्ष का पहला मास है",
+          "ta": "Because Chaitra is the first month of the year",
+          "te": "Because Chaitra is the first month of the year",
+          "bn": "Because Chaitra is the first month of the year",
+          "kn": "Because Chaitra is the first month of the year",
+          "gu": "Because Chaitra is the first month of the year"
+        },
+        {
+          "en": "Because the Sun is in Pisces which maps to Chaitra",
+          "hi": "क्योंकि सूर्य मीन राशि में है जो चैत्र से जुड़ती है",
+          "sa": "क्योंकि सूर्य मीन राशि में है जो चैत्र से जुड़ती है",
+          "mai": "क्योंकि सूर्य मीन राशि में है जो चैत्र से जुड़ती है",
+          "mr": "क्योंकि सूर्य मीन राशि में है जो चैत्र से जुड़ती है",
+          "ta": "Because the Sun is in Pisces which maps to Chaitra",
+          "te": "Because the Sun is in Pisces which maps to Chaitra",
+          "bn": "Because the Sun is in Pisces which maps to Chaitra",
+          "kn": "Because the Sun is in Pisces which maps to Chaitra",
+          "gu": "Because the Sun is in Pisces which maps to Chaitra"
+        },
+        {
+          "en": "Because it follows Phalguna",
+          "hi": "क्योंकि यह फाल्गुन के बाद आता है",
+          "sa": "क्योंकि यह फाल्गुन के बाद आता है",
+          "mai": "क्योंकि यह फाल्गुन के बाद आता है",
+          "mr": "क्योंकि यह फाल्गुन के बाद आता है",
+          "ta": "Because it follows Phalguna",
+          "te": "Because it follows Phalguna",
+          "bn": "Because it follows Phalguna",
+          "kn": "Because it follows Phalguna",
+          "gu": "Because it follows Phalguna"
+        },
+        {
+          "en": "Because of the Purnimanta convention",
+          "hi": "पूर्णिमान्त पद्धति के कारण",
+          "sa": "पूर्णिमान्त पद्धति के कारण",
+          "mai": "पूर्णिमान्त पद्धति के कारण",
+          "mr": "पूर्णिमान्त पद्धति के कारण",
+          "ta": "Because of the Purnimanta convention",
+          "te": "Because of the Purnimanta convention",
+          "bn": "Because of the Purnimanta convention",
+          "kn": "Because of the Purnimanta convention",
+          "gu": "Because of the Purnimanta convention"
+        }
+      ]
+    },
+    {
+      "id": "q27_2_03",
+      "type": "mcq",
+      "question": {
+        "en": "Are festivals observed during Adhika months?",
+        "hi": "क्या अधिक मास में त्योहार मनाए जाते हैं?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Festivals are NOT observed during Adhika (intercalary) months — only during Nija (regular/natural) months. The festival engine filters out entries with isAdhika: true. However, Adhika Masa itself is considered sacred for extra spiritual practices like japa, daan, and vrat.",
+        "hi": "अधिक (अधिकमास) मास में त्योहार नहीं मनाए जाते — केवल निज (नियमित/प्राकृतिक) मास में मनाए जाते हैं। त्योहार इंजन isAdhika: true वाली प्रविष्टियों को छान देता है। हालाँकि, अधिक मास स्वयं अतिरिक्त आध्यात्मिक साधनाओं जैसे जप, दान और व्रत के लिए पवित्र माना जाता है।"
+      },
+      "options": [
+        {
+          "en": "Yes, all festivals are observed",
+          "hi": "हाँ, सभी त्योहार मनाए जाते हैं",
+          "sa": "हाँ, सभी त्योहार मनाए जाते हैं",
+          "mai": "हाँ, सभी त्योहार मनाए जाते हैं",
+          "mr": "हाँ, सभी त्योहार मनाए जाते हैं",
+          "ta": "Yes, all festivals are observed",
+          "te": "Yes, all festivals are observed",
+          "bn": "Yes, all festivals are observed",
+          "kn": "Yes, all festivals are observed",
+          "gu": "Yes, all festivals are observed"
+        },
+        {
+          "en": "Only major festivals",
+          "hi": "केवल प्रमुख त्योहार",
+          "sa": "केवल प्रमुख त्योहार",
+          "mai": "केवल प्रमुख त्योहार",
+          "mr": "केवल प्रमुख त्योहार",
+          "ta": "Only major festivals",
+          "te": "Only major festivals",
+          "bn": "Only major festivals",
+          "kn": "Only major festivals",
+          "gu": "Only major festivals"
+        },
+        {
+          "en": "No, festivals are observed only in Nija (regular) months",
+          "hi": "नहीं, त्योहार केवल निज (नियमित) मास में मनाए जाते हैं",
+          "sa": "नहीं, त्योहार केवल निज (नियमित) मास में मनाए जाते हैं",
+          "mai": "नहीं, त्योहार केवल निज (नियमित) मास में मनाए जाते हैं",
+          "mr": "नहीं, त्योहार केवल निज (नियमित) मास में मनाए जाते हैं",
+          "ta": "No, festivals are observed only in Nija (regular) months",
+          "te": "No, festivals are observed only in Nija (regular) months",
+          "bn": "No, festivals are observed only in Nija (regular) months",
+          "kn": "No, festivals are observed only in Nija (regular) months",
+          "gu": "No, festivals are observed only in Nija (regular) months"
+        },
+        {
+          "en": "Only Ekadashis are observed",
+          "hi": "केवल एकादशी मनाई जाती है",
+          "sa": "केवल एकादशी मनाई जाती है",
+          "mai": "केवल एकादशी मनाई जाती है",
+          "mr": "केवल एकादशी मनाई जाती है",
+          "ta": "Only Ekadashis are observed",
+          "te": "Only Ekadashis are observed",
+          "bn": "Only Ekadashis are observed",
+          "kn": "Only Ekadashis are observed",
+          "gu": "Only Ekadashis are observed"
+        }
+      ]
+    }
+  ],
+  "theProblemTitle": {
+    "en": "The Problem: Lunar vs Solar Year",
+    "hi": "समस्या: चान्द्र वर्ष बनाम सौर वर्ष"
+  },
+  "theProblemDesc": {
+    "en": "A lunar year of 12 months totals approximately 354 days — 11 days shorter than the 365-day solar year. Without correction, this gap accumulates: after just 3 years, festivals would shift by over a month. After 17 years, a monsoon festival would fall in winter. The Adhika Masa system prevents this seasonal drift by inserting an extra month every ~2.7 years, keeping the lunar calendar aligned with the solar seasons.",
+    "hi": "12 मासों का एक चान्द्र वर्ष लगभग 354 दिनों का होता है — 365-दिवसीय सौर वर्ष से 11 दिन छोटा। बिना सुधार के, यह अन्तर बढ़ता जाता है: केवल 3 वर्षों में, त्योहार एक मास से अधिक खिसक जाएँगे। 17 वर्षों बाद, वर्षा ऋतु का त्योहार शीत ऋतु में आ जाएगा। अधिक मास पद्धति हर ~2.7 वर्षों में एक अतिरिक्त मास जोड़कर इस ऋतु-विचलन को रोकती है, और चान्द्र पंचांग को सौर ऋतुओं से संरेखित रखती है।"
+  },
+  "theSolutionTitle": {
+    "en": "The Solution: Adhika Masa",
+    "hi": "समाधान: अधिक मास"
+  },
+  "theSolutionDesc": {
+    "en": "The classical criterion from the Surya Siddhanta: if no solar Sankranti (the Sun entering a new sidereal sign) occurs within a lunar month (New Moon to New Moon), that month is declared Adhika (intercalary). The Sun transits one zodiac sign in ~30.4 days, while a lunar month averages ~29.5 days. When these nearly overlap, the shorter lunar month can fit entirely within one solar sign — no Sankranti occurs, and the month becomes Adhika.",
+    "hi": "सूर्य सिद्धान्त का शास्त्रीय मानदण्ड: यदि एक चान्द्र मास (अमावस्या से अमावस्या) के भीतर कोई सौर संक्रान्ति (सूर्य का नई निरयण राशि में प्रवेश) नहीं होती, तो वह मास अधिक (अधिकमास) घोषित होता है। सूर्य एक राशि को ~30.4 दिनों में पार करता है, जबकि चान्द्र मास औसतन ~29.5 दिनों का होता है। जब ये लगभग मेल खाते हैं, तो छोटा चान्द्र मास पूरी तरह एक सौर राशि में समा सकता है — कोई संक्रान्ति नहीं होती, और मास अधिक बन जाता है।"
+  },
+  "detectionAlgorithmTitle": {
+    "en": "Detection Algorithm",
+    "hi": "पहचान विधि"
+  },
+  "detectionStep1": {
+    "en": "Find exact New Moon (Sun-Moon conjunction at 0 deg elongation)",
+    "hi": "सटीक अमावस्या खोजें (0 अंश दूरी पर सूर्य-चन्द्र युति)"
+  },
+  "detectionStep2": {
+    "en": "Compute Sun's sidereal sign at both the starting and ending New Moon",
+    "hi": "आरम्भिक और अन्तिम दोनों अमावस्याओं पर सूर्य की निरयण राशि गणित करें"
+  },
+  "detectionStep3": {
+    "en": "If sign1 === sign2, no Sankranti occurred — this is an Adhika month",
+    "hi": "यदि राशि1 === राशि2, तो कोई संक्रान्ति नहीं हुई — यह अधिक मास है"
+  },
+  "detectionStep4": {
+    "en": "The binary search must target the exact conjunction, not the tithi-30 start (which is ~24h before the actual conjunction)",
+    "hi": "द्विभाजी खोज सटीक युति को लक्ष्य करे, तिथि-30 के आरम्भ को नहीं (जो वास्तविक युति से ~24 घंटे पहले होता है)"
+  },
+  "namingConventionTitle": {
+    "en": "Naming Convention",
+    "hi": "नामकरण पद्धति"
+  },
+  "namingConventionDesc": {
+    "en": "The Adhika month takes the name of the Nija (natural/regular) month it precedes. With the SOLAR_MONTH_MAP (Mesha maps to Vaishakha, Vrishabha to Jyeshtha, ..., Meena to Chaitra), the Sun's sign at the New Moon gives the correct name directly. Example: In 2029, the Sun is in Meena (Pisces, sign 12) at both New Moons. getHinduMonth(12) returns Chaitra, so the month is called Adhika Chaitra.",
+    "hi": "अधिक मास उस निज (प्राकृतिक/नियमित) मास का नाम लेता है जिसके पहले वह आता है। SOLAR_MONTH_MAP (मेष → वैशाख, वृषभ → ज्येष्ठ, ..., मीन → चैत्र) से, अमावस्या पर सूर्य की राशि सीधे सही नाम देती है। उदाहरण: 2029 में, दोनों अमावस्याओं पर सूर्य मीन (राशि 12) में है। getHinduMonth(12) चैत्र देता है, अतः मास को अधिक चैत्र कहते हैं।"
+  },
+  "amantaPurnimantaTitle": {
+    "en": "Amanta vs Purnimanta Systems",
+    "hi": "अमान्त बनाम पूर्णिमान्त पद्धतियाँ"
+  },
+  "amantaDesc": {
+    "en": "Amanta (South India): month runs New Moon to New Moon. Adhika detection uses consecutive New Moon pairs directly.",
+    "hi": "अमान्त (दक्षिण भारत): मास अमावस्या से अमावस्या तक चलता है। अधिक मास पहचान सीधे लगातार अमावस्या जोड़ों का उपयोग करती है।"
+  },
+  "purnimantaDesc": {
+    "en": "Purnimanta (North India): month runs Full Moon to Full Moon. The same Sankranti-based criterion applies, but to the Purnima-to-Purnima window.",
+    "hi": "पूर्णिमान्त (उत्तर भारत): मास पूर्णिमा से पूर्णिमा तक चलता है। वही संक्रान्ति-आधारित मानदण्ड लागू होता है, पर पूर्णिमा-से-पूर्णिमा विन्डो पर।"
+  },
+  "bothSystemsNote": {
+    "en": "Both systems identify the SAME intercalary period — they just label the fortnights differently. During an Adhika month, Amanta and Purnimanta month names differ only for the Krishna Paksha (waning phase).",
+    "hi": "दोनों पद्धतियाँ एक ही अधिकमास अवधि की पहचान करती हैं — केवल पक्षों के नाम अलग होते हैं। अधिक मास के दौरान, अमान्त और पूर्णिमान्त मास नाम केवल कृष्ण पक्ष (अवनत चन्द्र) के लिए भिन्न होते हैं।"
+  },
+  "festivalRulesTitle": {
+    "en": "Festival Rules During Adhika Masa",
+    "hi": "अधिक मास में त्योहार नियम"
+  },
+  "festivalRulesDesc": {
+    "en": "Festivals are NOT observed during Adhika months — only during Nija (regular) months. The festival engine filters out isAdhika: true entries when matching tithi-based festival definitions.",
+    "hi": "अधिक मास में त्योहार नहीं मनाए जाते — केवल निज (नियमित) मास में मनाए जाते हैं। त्योहार इंजन तिथि-आधारित त्योहार परिभाषाओं से मिलान करते समय isAdhika: true प्रविष्टियों को छान देता है।"
+  },
+  "festivalRulesException": {
+    "en": "Exception: Adhika Masa itself is considered sacred for extra spiritual practices — japa (chanting), daan (charity), and vrat (fasting). Vishnu worship is especially prescribed during this month.",
+    "hi": "अपवाद: अधिक मास स्वयं अतिरिक्त आध्यात्मिक साधनाओं के लिए पवित्र माना जाता है — जप, दान, और व्रत। इस मास में विशेष रूप से विष्णु पूजा का विधान है।"
+  },
+  "kshayaMasaTitle": {
+    "en": "Kshaya Masa — The Rare Opposite",
+    "hi": "क्षय मास — दुर्लभ विपरीत"
+  },
+  "kshayaMasaDesc": {
+    "en": "The opposite of Adhika: when TWO Sankrantis occur within one lunar month, the month is Kshaya (diminished/skipped). This is extremely rare — the next occurrence is around 2123 CE. When Kshaya occurs, the previous month becomes Adhika to compensate, maintaining the 12-month cycle integrity.",
+    "hi": "अधिक का विपरीत: जब एक चान्द्र मास में दो संक्रान्तियाँ होती हैं, तो वह मास क्षय (लुप्त) होता है। यह अत्यन्त दुर्लभ है — अगली बार लगभग 2123 ईस्वी में होगा। जब क्षय होता है, तो 12-मास चक्र की अखण्डता बनाए रखने के लिए पिछला मास अधिक बन जाता है।"
+  },
+  "realExamplesTitle": {
+    "en": "Real Examples",
+    "hi": "वास्तविक उदाहरण"
+  },
+  "example2026": {
+    "en": "2026: Adhika Jyeshtha (May-Jun) — Sun stays in Vrishabha (Taurus) for the entire lunar month",
+    "hi": "2026: अधिक ज्येष्ठ (मई-जून) — सूर्य पूरे चान्द्र मास वृषभ (वृषभ राशि) में रहता है"
+  },
+  "example2029": {
+    "en": "2029: Adhika Chaitra (Mar-Apr) — Sun stays in Meena (Pisces), pushing Hindu New Year to mid-April",
+    "hi": "2029: अधिक चैत्र (मार्च-अप्रैल) — सूर्य मीन राशि में रहता है, हिन्दू नववर्ष मध्य अप्रैल तक खिसक जाता है"
+  },
+  "example2027": {
+    "en": "2027: No Adhika — Sun enters a new sign between every consecutive New Moon pair",
+    "hi": "2027: कोई अधिक नहीं — सूर्य हर लगातार अमावस्या जोड़ी के बीच नई राशि में प्रवेश करता है"
+  },
+  "yearComparisonTitle": {
+    "en": "Year Comparison: Normal vs Adhika Year",
+    "hi": "वर्ष तुलना: सामान्य बनाम अधिक वर्ष"
+  },
+  "normalYearLabel": {
+    "en": "Normal Year (12 months, ~354 days)",
+    "hi": "सामान्य वर्ष (12 मास, ~354 दिन)"
+  },
+  "adhikaYearLabel": {
+    "en": "Adhika Year (13 months, ~384 days)",
+    "hi": "अधिक वर्ष (13 मास, ~384 दिन)"
+  },
+  "solarYearLabel": {
+    "en": "Solar Year (~365 days)",
+    "hi": "सौर वर्ष (~365 दिन)"
+  },
+  "adhikaMonthLabel": {
+    "en": "Adhika",
+    "hi": "अधिक"
+  },
+  "keyTakeawayPoints": {
+    "en": [
+      "The lunar year is ~11 days shorter than the solar year. Without correction, festivals would drift through all seasons in ~33 years.",
+      "An Adhika month is inserted when no solar Sankranti occurs within a lunar month — meaning the Sun stays in the same zodiac sign between two consecutive New Moons.",
+      "Festivals are NOT observed during Adhika months. The month is considered sacred for spiritual practices (japa, daan, vrat) but regular festivals wait for the Nija (natural) month."
+    ],
+    "hi": [
+      "चान्द्र वर्ष सौर वर्ष से ~11 दिन छोटा है। बिना सुधार के, त्योहार ~33 वर्षों में सभी ऋतुओं से गुजर जाएँगे।",
+      "अधिक मास तब जोड़ा जाता है जब एक चान्द्र मास में कोई सौर संक्रान्ति नहीं होती — अर्थात् दो लगातार अमावस्याओं के बीच सूर्य एक ही राशि में रहता है।",
+      "अधिक मास में त्योहार नहीं मनाए जाते। यह मास आध्यात्मिक साधनाओं (जप, दान, व्रत) के लिए पवित्र माना जाता है, पर नियमित त्योहार निज मास की प्रतीक्षा करते हैं।"
+    ]
+  }
+}

@@ -87,7 +87,8 @@ function findNewMoons(year: number): { date: Date; jd: number }[] {
  * ...general formula: masaIndex = (sunSign % 12)
  */
 function getMasaFromSunSign(sunSiderealSign: number): number {
-  // Sun in Pisces(12) = Chaitra(0), Aries(1) = Vaishakha(1), etc.
+  // Classical: Mesha(1)→Vaishakha(1), Meena(12)→Chaitra(0).
+  // Used with sign at STARTING NM (sunSign, not nextSunSign).
   return sunSiderealSign % 12; // 0-indexed
 }
 
@@ -303,7 +304,6 @@ export function computeHinduMonths(year: number): HinduMonth[] {
     const ayanamsha = lahiriAyanamsha(nmJD);
     const sidSun = ((tropSun - ayanamsha) + 360) % 360;
     const sunSign = Math.floor(sidSun / 30) + 1; // 1-12
-    const masaIdx = getMasaFromSunSign(sunSign); // 0-11
 
     // Adhika = Sun is in the same sidereal sign at both this and the next New Moon
     // (no Sankranti occurred during this lunar month)
@@ -312,6 +312,9 @@ export function computeHinduMonths(year: number): HinduMonth[] {
     const nextSidSun = ((nextTropSun - nextAya) + 360) % 360;
     const nextSunSign = Math.floor(nextSidSun / 30) + 1;
     const isAdhika = sunSign === nextSunSign;
+
+    // Named by Sun sign at STARTING NM with classical map (Mesha→Vaishakha).
+    const masaIdx = getMasaFromSunSign(sunSign); // 0-11
 
     const startStr = `${nmDate.getUTCFullYear()}-${(nmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${nmDate.getUTCDate().toString().padStart(2, '0')}`;
     const endStr = `${nextNmDate.getUTCFullYear()}-${(nextNmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${nextNmDate.getUTCDate().toString().padStart(2, '0')}`;

@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { Link } from '@/lib/i18n/navigation';
 import { tl } from '@/lib/utils/trilingual';
-import { CheckCircle, ArrowRight, Lock } from 'lucide-react';
+import { CheckCircle, ArrowRight } from 'lucide-react';
 import { PHASE_INFO, getPhaseModules } from '@/lib/learn/module-sequence';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -61,16 +61,10 @@ export default function LearningPath() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [progress, hydrated]);
 
-  // Determine which phases are "locked" — a phase is locked if it's not-started
-  // AND the previous phase is also not completed. Phase 0 is never locked.
-  const phasesWithLock = phases.map((p, i) => {
-    if (i === 0) return { ...p, locked: false };
-    if (p.status !== 'not-started') return { ...p, locked: false };
-    // Locked if previous phase isn't completed
-    const prev = phases[i - 1];
-    const locked = prev.status !== 'completed';
-    return { ...p, locked };
-  });
+  // All phases are always unlocked — users can explore any topic freely.
+  // Progress tracking still works (completion badges, progress bars) but
+  // nothing is gated behind sequential completion.
+  const phasesWithLock = phases.map((p) => ({ ...p, locked: false }));
 
   // Find the "current" phase — the first one that's in-progress, or the first not-started unlocked
   const currentPhaseIdx = phasesWithLock.findIndex(
@@ -114,7 +108,6 @@ export default function LearningPath() {
         {phasesWithLock.map((phase, i) => {
           const isCurrent = i === activeIdx && phase.status !== 'completed';
           const isCompleted = phase.status === 'completed';
-          const isLocked = phase.locked;
           const isInProgress = phase.status === 'in-progress';
 
           return (
@@ -128,10 +121,6 @@ export default function LearningPath() {
                 ) : isCurrent ? (
                   <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-gold-primary/20 border-2 border-gold-primary/70 flex items-center justify-center animate-pulse">
                     <span className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gold-primary" />
-                  </div>
-                ) : isLocked ? (
-                  <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white/3 border-2 border-white/10 flex items-center justify-center">
-                    <Lock className="w-4 h-4 sm:w-5 sm:h-5 text-text-secondary/40" />
                   </div>
                 ) : (
                   <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white/5 border-2 border-white/15 flex items-center justify-center">
@@ -147,9 +136,7 @@ export default function LearningPath() {
                     ? 'bg-gradient-to-r from-gold-primary/8 via-gold-primary/4 to-transparent border-gold-primary/30 shadow-lg shadow-gold-primary/5'
                     : isCompleted
                     ? 'bg-emerald-500/5 border-emerald-500/15'
-                    : isLocked
-                    ? 'bg-white/2 border-white/5 opacity-50'
-                    : 'bg-white/3 border-white/8 hover:border-white/15'
+                    : 'bg-white/3 border-white/8 hover:border-white/15 hover:border-gold-primary/20'
                 }`}
               >
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
@@ -177,8 +164,6 @@ export default function LearningPath() {
                           ? 'text-emerald-300'
                           : isCurrent
                           ? 'text-gold-light'
-                          : isLocked
-                          ? 'text-text-secondary/50'
                           : 'text-text-primary/70'
                       }`}
                       style={hf}
@@ -220,29 +205,25 @@ export default function LearningPath() {
                     </div>
                   </div>
 
-                  {/* Action button */}
+                  {/* Action button — always visible, every phase is accessible */}
                   <div className="flex-shrink-0">
-                    {(isCurrent || isInProgress) && (
-                      <Link
-                        href={`/learn/modules/${phase.continueModuleId}`}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gold-primary/15 border border-gold-primary/30 text-gold-light text-sm font-bold hover:bg-gold-primary/25 hover:border-gold-primary/50 transition-all"
-                      >
-                        {continueLabel}
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
-                    )}
-                    {isCompleted && (
-                      <Link
-                        href={`/learn/modules/${phase.continueModuleId}`}
-                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-emerald-400/60 text-xs hover:text-emerald-400 hover:bg-emerald-500/10 transition-all"
-                      >
-                        {locale === 'hi' ? 'पुनः देखें' :
-                         locale === 'ta' ? 'மீண்டும் பார்' :
-                         locale === 'bn' ? 'আবার দেখুন' :
-                         'Review'}
-                        <ArrowRight className="w-3 h-3" />
-                      </Link>
-                    )}
+                    <Link
+                      href={`/learn/modules/${phase.continueModuleId}`}
+                      className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${
+                        isCompleted
+                          ? 'text-emerald-400/70 hover:text-emerald-400 hover:bg-emerald-500/10'
+                          : isCurrent || isInProgress
+                          ? 'bg-gold-primary/15 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/25 hover:border-gold-primary/50'
+                          : 'bg-white/5 border border-white/10 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 hover:bg-gold-primary/10'
+                      }`}
+                    >
+                      {isCompleted
+                        ? (locale === 'hi' ? 'पुनः देखें' : locale === 'ta' ? 'மீண்டும் பார்' : locale === 'bn' ? 'আবার দেখুন' : 'Review')
+                        : isInProgress
+                        ? continueLabel
+                        : (locale === 'hi' ? 'शुरू करें' : locale === 'ta' ? 'தொடங்கு' : locale === 'bn' ? 'শুরু করুন' : 'Start')}
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
                   </div>
                 </div>
               </div>

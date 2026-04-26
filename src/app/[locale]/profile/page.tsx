@@ -468,7 +468,9 @@ export default function ProfilePage() {
           chart_style: data.profile.chart_style || 'north',
         });
       }
-    } catch { /* silent */ }
+    } catch (err) {
+      console.error('[profile] Failed to load profile data:', err);
+    }
     setLoading(false);
   }, []);
 

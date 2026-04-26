@@ -353,8 +353,8 @@ function computeHora(sunriseUT: number, sunsetUT: number, weekday: number, tzOff
 // Only the window falling within the panchang day (sunrise→sunrise) is displayed.
 const VARJYAM_GHATI: number[] = [
   50, 24, 30, 40, 15,  // Ashwini(1)-Mrigashira(5)
-  26, 17, 31, 32, 30,  // Ardra(6)-Magha(10)
-  20, 24, 22, 20, 14,  // P.Phalguni(11)-Swati(15)
+  21, 30, 20, 32, 30,  // Ardra(6)-Magha(10)  — Ardra=21, Punarvasu=30, Pushya=20 (verified vs Prokerala Apr 2026)
+  20, 18, 22, 20, 14,  // P.Phalguni(11)-Swati(15) — U.Phalguni=18 (verified vs Prokerala Aug 2026)
   14, 10, 14, 20, 24,  // Vishakha(16)-P.Ashadha(20)
   20, 10, 10, 18, 16,  // U.Ashadha(21)-P.Bhadra(25)
   26, 30,              // U.Bhadra(26)-Revati(27)
@@ -1138,7 +1138,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // In all other cases (masaIndex === 0 but Krishna Paksha, or Jan-Feb when
   // masaIndex is 10-11 i.e. Pausha/Magha/Phalguna) the previous Samvat applies.
   const pastChaitraShukla1 =
-    masaIndex > 0 && masaIndex <= 9  // Vaishakha(1) through Margashirsha(9) — definitely past new year
+    masaIndex > 0 && masaIndex <= 8  // Vaishakha(1) through Margashirsha(8) — definitely past new year
     || (masaIndex === 0 && tithiResult.number <= 15); // Chaitra Shukla Paksha
   const vikramSamvat = pastChaitraShukla1 ? year + 57 : year + 56;
   const shakaSamvat  = pastChaitraShukla1 ? year - 78 : year - 79;

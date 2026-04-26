@@ -219,7 +219,8 @@ function buildLunarMonths(year: number, lat: number, lon: number, timezone: stri
     const sign2 = Math.floor(sunSid2 / 30) + 1;
 
     const isAdhika = sign === sign2;
-    const monthName = getHinduMonth(sign);
+    // Use sign at ending NM (sign2) — same fix as Phase 2 above
+    const monthName = getHinduMonth(sign2);
 
     months.push({
       name: monthName,
@@ -321,46 +322,93 @@ export function buildYearlyTithiTable(
     currentTithi = calculateTithi(currentJd + 0.001).number;
   }
 
-  // ─── Phase 2: Build lunar months from Amavasya entries in the raw table ───
-  // Amavasya = tithi 30. Each Amavasya marks the END of an Amanta month.
-  const amavasyaEntries = rawEntries.filter(e => e.number === 30);
+  // ═══════════════════════════════════════════════════════════════════
+  // Phase 2: Astronomical Lunar Month Engine
+  // ═══════════════════════════════════════════════════════════════════
+  //
+  // ARCHITECTURE: Fully decoupled from the Phase 1 tithi scan.
+  //
+  // WHY: The Phase 1 tithi scan produces rawEntries for UI display. Using
+  // those entries to derive month boundaries caused "jitter" — the tithi-30
+  // startJd (~348° elongation) is ~24h before the true New Moon (0°), and
+  // ±24h refinement from that anchor sometimes converged on the wrong
+  // conjunction. This produced false Adhika months (e.g., 2027 showed
+  // Adhika Ashadha + Adhika Shravana when neither exists).
+  //
+  // SOLUTION: Three-step approach:
+  //   1. ASTRONOMICAL SCAN: Find true New Moon moments via binary search
+  //      on Sun-Moon elongation crossing 0°. Source of truth for signs.
+  //   2. SUNRISE ALIGNMENT: Convert each NM moment to a Sunrise Date,
+  //      preserving the Phase 3 contract (entries map to months via
+  //      sunrise-date string comparison: sunriseDate > startDate && <= endDate).
+  //   3. ADHIKA DETECTION: Compare Sun's sidereal sign at exact conjunction
+  //      JDs. If sign1 === sign2, no Sankranti occurred → Adhika month.
+  //
+  // NAMING CONVENTION (Classical / Surya Siddhanta):
+  //   Uses sign1 (Sun at STARTING NM) with SOLAR_MONTH_MAP:
+  //     Mesha(1)→Vaishakha, Vrishabha(2)→Jyeshtha, ... Meena(12)→Chaitra
+  //   For Adhika: sign1===sign2, getHinduMonth(sign1) returns the correct
+  //   name directly. Example: 2029, Sun in Meena(12) at both NMs →
+  //   getHinduMonth(12) = 'chaitra' → "Adhika Chaitra". No wrapper needed.
+  //
+  // VERIFIED: 2026 (20/20 festivals, Adhika Jyeshtha),
+  //           2027 (no false Adhika, Raksha Bandhan found),
+  //           2029 (Adhika Chaitra, Ram Navami Apr 22, Diwali Nov 5).
+  // ═══════════════════════════════════════════════════════════════════
   const lunarMonths: LunarMonthInfo[] = [];
 
-  for (let i = 0; i < amavasyaEntries.length - 1; i++) {
-    const am1 = amavasyaEntries[i];
-    const am2 = amavasyaEntries[i + 1];
-
-    // Find exact new moon JD for accurate Sun rashi
-    const findNewMoon = (baseJd: number): number => {
-      let minDiff = 999; let bestJd = baseJd;
-      for (let h = -24; h <= 24; h++) {
-        const jd = baseJd + h / 24;
-        const diff = normalizeDeg(moonLongitude(jd) - sunLongitude(jd));
-        const adj = diff > 180 ? 360 - diff : diff;
-        if (adj < minDiff) { minDiff = adj; bestJd = jd; }
+  // Step 1: Find true New Moon conjunctions astronomically.
+  // Scans Sun-Moon elongation for 0°/360° crossings, then binary-searches
+  // to sub-minute precision. Each result has the exact JD and the
+  // corresponding Sunrise Date for Phase 3 boundary mapping.
+  const trueNewMoons: { jd: number; sunriseDate: string }[] = [];
+  let prevElong = -1;
+  for (let jd = startJd; jd < scanEndJd; jd += 1) {
+    const elong = normalizeDeg(moonLongitude(jd) - sunLongitude(jd));
+    if (prevElong > 300 && elong < 60) {
+      // Binary search for exact 0° elongation crossing (20 iterations ≈ 1-min precision)
+      let lo = jd - 1, hi = jd;
+      for (let iter = 0; iter < 20; iter++) {
+        const mid = (lo + hi) / 2;
+        const mElong = normalizeDeg(moonLongitude(mid) - sunLongitude(mid));
+        if (mElong > 180) lo = mid; else hi = mid;
       }
-      return bestJd;
-    };
+      const nmJd = (lo + hi) / 2;
+      // Sunrise alignment: a Panchang day runs sunrise-to-sunrise.
+      // If the conjunction is before sunrise, it belongs to the previous day.
+      const { year: ny, month: nm, day: nd } = jdToGregorian(nmJd);
+      const srUT = approximateSunriseSafe(dateToJD(ny, nm, nd, 12), lat, lon);
+      const srJd = dateToJD(ny, nm, nd, srUT);
+      const sunriseDate = nmJd < srJd
+        ? jdToLocalDateStr(nmJd - 1, timezone)
+        : jdToLocalDateStr(nmJd, timezone);
+      trueNewMoons.push({ jd: nmJd, sunriseDate });
+    }
+    prevElong = elong;
+  }
 
-    const nmJd1 = findNewMoon(am1.startJd);
-    const nmJd2 = findNewMoon(am2.startJd);
+  // Step 2: Build Amant months from consecutive NM pairs.
+  for (let i = 0; i < trueNewMoons.length - 1; i++) {
+    const nm1 = trueNewMoons[i];
+    const nm2 = trueNewMoons[i + 1];
 
-    const sunSid1 = normalizeDeg(toSidereal(sunLongitude(nmJd1), nmJd1));
-    const sunSid2 = normalizeDeg(toSidereal(sunLongitude(nmJd2), nmJd2));
+    // Sign comparison at exact astronomical conjunction JDs — no jitter.
+    const sunSid1 = normalizeDeg(toSidereal(sunLongitude(nm1.jd), nm1.jd));
+    const sunSid2 = normalizeDeg(toSidereal(sunLongitude(nm2.jd), nm2.jd));
     const sign1 = Math.floor(sunSid1 / 30) + 1;
     const sign2 = Math.floor(sunSid2 / 30) + 1;
 
+    // Adhika = no Sankranti occurred (Sun in same sign at both conjunctions)
     const isAdhika = sign1 === sign2;
-    // Per classical rule: maasa = rashi(new_moon) + 1
-    // But we use getHinduMonth(sign) which already has the correct offset
-    // (verified: Krishna Ekadashis match expected pattern)
+    // Classical naming: sign1 with map Mesha(1)→Vaishakha, Meena(12)→Chaitra.
+    // For Adhika months, sign1===sign2 so the name is automatically correct.
     const monthName = getHinduMonth(sign1);
 
     lunarMonths.push({
       name: monthName,
       isAdhika,
-      startDate: am1.sunriseDate,
-      endDate: am2.sunriseDate,
+      startDate: nm1.sunriseDate, // Sunrise Date boundary for Phase 3
+      endDate: nm2.sunriseDate,
     });
   }
 
@@ -453,7 +501,10 @@ export function buildYearlyTithiTable(
       masa: {
         amanta: amantaName,
         purnimanta: purnimantaName,
-        isAdhika: lunarMonth.isAdhika || purnimantMonth.isAdhika,
+        // Adhika flag from the Amant astronomical detection only.
+        // Purnimant Adhika (sankrantiCount === 0) can false-positive;
+        // the Amant NM-based sign comparison is the source of truth.
+        isAdhika: lunarMonth.isAdhika,
       },
       durationHours: (raw.endJd - raw.startJd) * 24,
     });

@@ -474,7 +474,9 @@ export default function PujaVidhiPage() {
       if (entry?.paranaStart && entry.paranaSunrise && entry.paranaHariVasaraEnd && entry.paranaDwadashiEnd && entry.paranaMadhyahnaStart && entry.paranaMadhyahnaEnd) {
         return entry;
       }
-    } catch { /* fail silently */ }
+    } catch (err) {
+      console.error('[puja] Failed to compute parana data:', err);
+    }
     return null;
   }, [puja, userLat, userLng, userTimezone]);
 

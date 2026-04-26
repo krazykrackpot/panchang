@@ -34,6 +34,7 @@ import { getRashiNumber } from '@/lib/ephem/astronomical';
 import type { PersonalizedDay, UserSnapshot } from '@/lib/personalization/types';
 import AdUnit from '@/components/ads/AdUnit';
 import NakshatraActivityGuide from '@/components/panchang/NakshatraActivityGuide';
+import LearnLink from '@/components/ui/LearnLink';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl as _tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
@@ -218,7 +219,9 @@ export default function PanchangClient() {
               }
               setLocation({ lat: data.latitude, lng: data.longitude, name, tz });
             }
-          } catch { /* silently fail */ }
+          } catch (err) {
+            console.error('[panchang] IP geolocation fallback failed:', err);
+          }
           setDetectingLocation(false);
         },
         { timeout: 5000 }
@@ -603,6 +606,14 @@ export default function PanchangClient() {
               </div>
             )}
           </InfoBlock>
+
+          {/* Learn links for the five panchang elements */}
+          <div className="flex flex-wrap gap-x-4 gap-y-1.5 justify-center mb-6">
+            <LearnLink href="/learn/tithis" label={isDevanagari ? 'तिथि के बारे में जानें' : 'Learn about Tithis'} />
+            <LearnLink href="/learn/nakshatras" label={isDevanagari ? 'नक्षत्र के बारे में जानें' : 'Learn about Nakshatras'} />
+            <LearnLink href="/learn/yogas" label={isDevanagari ? 'योग के बारे में जानें' : 'Learn about Yogas'} />
+            <LearnLink href="/learn/karanas" label={isDevanagari ? 'करण के बारे में जानें' : 'Learn about Karanas'} />
+          </div>
 
           {(() => {
             const tp = (tr?: TransitionInfo) => tr ? hasTransitionPassed(tr.endTime, tr.endDate, now, selectedDate, location.tz) : false;
@@ -1043,6 +1054,9 @@ export default function PanchangClient() {
               subtitle={msg('auspiciousTimingsDesc', locale)}
               accentClass="text-emerald-400"
             />
+            <div className="text-center -mt-4 mb-6">
+              <LearnLink href="/learn/muhurtas" label={isDevanagari ? 'मुहूर्त के बारे में जानें' : 'Learn about Muhurtas'} />
+            </div>
 
             {/* Sarvartha Siddhi full-width banner */}
             {panchang.sarvarthaSiddhi && (
@@ -2001,6 +2015,7 @@ export default function PanchangClient() {
               <h3 className="text-lg font-bold text-gold-light mb-4 flex items-center gap-2" style={headingFont}>
                 <MasaIcon size={28} />
                 <span>{msg('hinduCalendar', locale)}</span>
+                <LearnLink href="/learn/masa" label={isDevanagari ? 'मास जानें' : 'Learn about Masa'} className="ml-auto" />
               </h3>
               <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 overflow-hidden">
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 divide-x divide-y divide-gold-primary/10">

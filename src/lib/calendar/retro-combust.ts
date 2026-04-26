@@ -171,7 +171,10 @@ export function generateCombustionCalendar(year: number): CombustEvent[] {
       const planetLong = positions[pid].longitude;
       let sep = Math.abs(planetLong - sunLong);
       if (sep > 180) sep = 360 - sep;
-      const isCombust = sep < orb;
+      // Lesson X: retrograde Mercury/Venus have reduced combustion orbs (BPHS)
+      const isRetro = positions[pid].speed < 0;
+      const effectiveOrb = (isRetro && pid === 3) ? 12 : (isRetro && pid === 5) ? 8 : orb;
+      const isCombust = sep < effectiveOrb;
 
       if (isCombust && !wasCombust) {
         combustStartJD = jd;

@@ -184,11 +184,11 @@ const MOOLATRIKONA_SIGN_SB: Record<number, number> = {
  * Classical Moolatrikona degree ranges per BPHS / Laghu Parashari.
  * Outside these ranges within the sign the planet is treated as own-sign only.
  *   Sun   : Leo  0°-20°
- *   Moon  : Taurus 0°-3°20' (3.33°)
+ *   Moon  : Taurus 4°-20° (BPHS Ch.4)
  *   Mars  : Aries 0°-12°
- *   Mercury: Virgo 15°-20°
+ *   Mercury: Virgo 16°-20° (BPHS Ch.4)
  *   Jupiter: Sagittarius 0°-10°
- *   Venus  : Libra 0°-10°
+ *   Venus  : Libra 0°-5° (BPHS Ch.4)
  *   Saturn : Aquarius 0°-20°
  */
 // Canonical BPHS Ch.4 Moolatrikona ranges — aligned with dignity.ts
@@ -574,8 +574,8 @@ function computeKalaBala(
     input.timezone,
   );
   // Convert sunrise/sunset Date to local decimal hours
-  const sunriseHour = sunTimes.sunrise.getUTCHours() + sunTimes.sunrise.getUTCMinutes() / 60 + input.timezone;
-  const sunsetHour = sunTimes.sunset.getUTCHours() + sunTimes.sunset.getUTCMinutes() / 60 + input.timezone;
+  const sunriseHour = sunTimes.sunrise.getHours() + sunTimes.sunrise.getMinutes() / 60;
+  const sunsetHour = sunTimes.sunset.getHours() + sunTimes.sunset.getMinutes() / 60;
   const isDayBirth = birthHour >= sunriseHour && birthHour < sunsetHour;
 
   const sunPlanet = planets.find((pl) => pl.id === 0);

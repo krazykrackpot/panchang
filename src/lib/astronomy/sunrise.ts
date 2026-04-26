@@ -79,6 +79,11 @@ export function getSunTimes(
     const h = Math.floor(minutes / 60);
     const m = Math.floor(minutes % 60);
     const s = Math.round((minutes % 1) * 60);
+    // `minutes` are local-time minutes. The Date stores local h:m:s in the
+    // machine's timezone. Consumers must use getHours()/getMinutes() (which
+    // return machine-local time = the stored h:m:s) or .getTime() arithmetic.
+    // The canonical panchang engine (panchang-calc.ts) does NOT use these Dates
+    // for JD computation — it computes sunrise UT hours independently.
     return new Date(year, month - 1, day, h, m, s);
   };
 

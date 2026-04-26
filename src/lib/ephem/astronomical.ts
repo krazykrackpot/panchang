@@ -668,10 +668,10 @@ function _meeusPlanetaryPositions(jd: number): {
  * use computeHinduMonths() instead.
  */
 export function getMasa(sunSidLong: number): number {
-  // Masa is determined by the solar ingress into a rashi
-  // Chaitra starts when Sun enters Meena (Pisces) - month index 0
+  // Solar approximation for lunar month (fallback when tithi table unavailable).
+  // Classical: Mesha(0)=Vaishakha(1), Meena(11)=Chaitra(0).
+  // Chaitra starts when Sun enters Meena (Pisces).
   const rashiIndex = Math.floor(sunSidLong / 30);
-  // Mapping: Mesha(0)=Vaishakha, Vrishabha(1)=Jyeshtha, etc.
   return (rashiIndex + 1) % 12; // 0=Chaitra to 11=Phalguna
 }
 

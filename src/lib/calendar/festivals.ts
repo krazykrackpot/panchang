@@ -685,8 +685,7 @@ function buildLunarCalendar(year: number, lat: number, lon: number): LunarMonth[
     const sign1 = Math.floor(sunSid1 / 30) + 1;
     const sign2 = Math.floor(sunSid2 / 30) + 1;
 
-    // Per classical rule: maasa = rashi(new_moon) + 1
-    // Our getHinduMonth(sign) gives the correct Amanta month name
+    // Named by Sun sign at STARTING NM with classical map (Mesha→Vaishakha)
     const monthName = getHinduMonth(sign1);
 
     const isAdhika = (sign1 === sign2);

@@ -33,6 +33,8 @@ export async function lookupEkadashiAction(params: {
         return JSON.parse(JSON.stringify(entry));
       }
     }
-  } catch { /* fail silently */ }
+  } catch (err) {
+    console.error('[festival-lookup] Failed to find next ekadashi:', err);
+  }
   return null;
 }

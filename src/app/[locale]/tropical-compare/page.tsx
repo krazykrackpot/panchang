@@ -15,6 +15,7 @@ import JyotishTerm from '@/components/ui/JyotishTerm';
 import LocationSearch from '@/components/ui/LocationSearch';
 import GoldDivider from '@/components/ui/GoldDivider';
 import PrecessionSlider from '@/components/comparison/PrecessionSlider';
+import { ShareCardButton } from '@/components/shareable/ShareCardButton';
 import type { Locale, LocaleText } from '@/types/panchang';
 
 // ── Planet symbols ──────────────────────────────────────────
@@ -190,6 +191,22 @@ export default function TropicalComparePage() {
 
   // ── Top 3 shifted planets for interpretive cards ──────────
   const shiftedPlanets = result?.planets.filter(p => p.isShifted).slice(0, 3) ?? [];
+
+  // ── Discovery share card URL ───────────────────────────────
+  // Uses Sun (id=0) for the "I thought I was X / stars say Y" narrative.
+  // Falls back to first shifted planet if Sun didn't shift.
+  const cardFocalPlanet =
+    result?.planets.find(p => p.id === 0) ??       // Sun always exists
+    result?.planets[0] ?? null;
+  const discoveryCardUrl = result && cardFocalPlanet
+    ? `/api/card/discovery?format=story` +
+      `&tropicalSign=${encodeURIComponent(WESTERN_NAMES[cardFocalPlanet.tropicalSign] ?? '')}` +
+      `&siderealSign=${encodeURIComponent(WESTERN_NAMES[cardFocalPlanet.siderealSign] ?? '')}` +
+      `&shiftedCount=${result.shiftedCount}` +
+      `&totalPlanets=${result.planets.length}` +
+      `&hookLine=${encodeURIComponent(result.hookLine ?? '')}` +
+      `&ayanamsha=${encodeURIComponent(result.precessionData.currentAyanamsha.toFixed(1) + '\u00b0')}`
+    : null;
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -501,14 +518,23 @@ export default function TropicalComparePage() {
                   ))}
                 </div>
 
-                {/* CTA */}
-                <div className="mt-8 text-center">
+                {/* CTAs */}
+                <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
                   <Link
                     href={kundaliHref}
                     className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-gold-dark via-gold-primary to-gold-light text-bg-primary font-semibold rounded-lg hover:brightness-110 transition-all"
                   >
                     {tl(LABELS.generateChart, locale)} &rarr;
                   </Link>
+
+                  {/* Share Discovery Card — uses Sun sign shift for the narrative */}
+                  {discoveryCardUrl && (
+                    <ShareCardButton
+                      cardUrl={discoveryCardUrl}
+                      title="My Real Star Signs — Sidereal vs Tropical"
+                      text={result?.hookLine ?? 'Discover your real star signs with Vedic astrology'}
+                    />
+                  )}
                 </div>
               </section>
             )}

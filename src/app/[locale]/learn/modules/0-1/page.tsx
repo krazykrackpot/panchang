@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 import { lt } from '@/lib/learn/translations';
@@ -29,6 +30,20 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={
+          isHi
+            ? [
+                'ज्योतिष का अर्थ है "प्रकाश का विज्ञान" — यह अवलोकन खगोल विज्ञान है जो जीवन मार्गदर्शन से जुड़ा है, भाग्य-कथन नहीं',
+                'वैदिक ज्योतिष नक्षत्र-आधारित राशिचक्र (सायन) का उपयोग करता है, जबकि पश्चिमी ज्योतिष ऋतु-आधारित (निरयन) — दोनों में ~24° का अन्तर है',
+              ]
+            : [
+                'Jyotish means "science of light" — it is observational astronomy intertwined with life guidance, not fortune-telling',
+                'Vedic astrology uses the sidereal zodiac (actual star positions), while Western uses the tropical zodiac (seasons) — they differ by ~24\u00B0',
+              ]
+        }
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {t('theScienceOfLight', locale)}

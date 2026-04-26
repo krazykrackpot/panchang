@@ -197,6 +197,20 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
         </div>
       </div>
 
+      {/* Item 5: Prerequisite badge for advanced modules (Phase 3+) */}
+      {meta.phase >= 3 && (
+        <div className="text-xs text-text-secondary bg-bg-secondary/50 border border-gold-primary/10 rounded-lg px-3 py-2">
+          <span className="text-gold-primary font-medium">
+            {tl({ en: 'Recommended:', hi: 'अनुशंसित:', sa: 'अनुशंसित:' }, locale)}
+          </span>{' '}
+          {tl({
+            en: 'Complete Phases 0\u20132 first for best understanding.',
+            hi: '\u0938\u0930\u094D\u0935\u094B\u0924\u094D\u0924\u092E \u0938\u092E\u091D \u0915\u0947 \u0932\u093F\u090F \u092A\u0939\u0932\u0947 \u091A\u0930\u0923 0\u20132 \u092A\u0942\u0930\u094D\u0923 \u0915\u0930\u0947\u0902\u0964',
+            sa: '\u0938\u0930\u094D\u0935\u094B\u0924\u094D\u0924\u092E \u0938\u092E\u091D \u0915\u0947 \u0932\u093F\u090F \u092A\u0939\u0932\u0947 \u091A\u0930\u0923 0\u20132 \u092A\u0942\u0930\u094D\u0923 \u0915\u0930\u0947\u0902\u0964',
+          }, locale)}
+        </div>
+      )}
+
       {/* Content or Quiz */}
       <AnimatePresence mode="wait">
         {!showQuiz ? (

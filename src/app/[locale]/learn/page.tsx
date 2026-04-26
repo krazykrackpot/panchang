@@ -2,10 +2,11 @@
 
 import { tl } from '@/lib/utils/trilingual';
 
+import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
-import { BookOpen, ChevronRight, Clock, Star, CheckCircle, Sparkles, Calendar, Diamond, Library } from 'lucide-react';
+import { BookOpen, ChevronRight, ChevronDown, Clock, Star, CheckCircle, Sparkles, Calendar, Diamond, Library, ArrowRight, Flame } from 'lucide-react';
 import { ShareRow } from '@/components/ui/ShareButton';
 import AdUnit from '@/components/ads/AdUnit';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -14,6 +15,7 @@ import type { LocaleText } from '@/lib/learn/translations';
 import type { Locale } from '@/types/panchang';
 import L from '@/messages/learn/learn-index.json';
 import AuthorByline from '@/components/ui/AuthorByline';
+import { useLearningProgressStore } from '@/stores/learning-progress-store';
 
 const STATS = { modules: 104, references: 45, labs: 6, tracks: 11 };
 
@@ -25,6 +27,13 @@ export default function LearnPage() {
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   /** Safe trilingual access — falls back to en for unknown locales */
   const tri = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
+
+  // Item 3: Reference library toggle
+  const [showRefs, setShowRefs] = useState(false);
+
+  // Item 4: Streak counter from learning progress store
+  const { streak, hydrated, hydrateFromStorage } = useLearningProgressStore();
+  useEffect(() => { hydrateFromStorage(); }, [hydrateFromStorage]);
 
   // 3 Mega Tracks
   const TRACKS = [
@@ -152,7 +161,22 @@ export default function LearnPage() {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4" style={hf}>
             <span className="text-gold-gradient">{t('heroTitle')}</span>
           </h1>
-          <p className="text-text-secondary text-lg max-w-2xl mb-8" style={bf}>{t('heroSub')}</p>
+          <p className="text-text-secondary text-lg max-w-2xl mb-6" style={bf}>{t('heroSub')}</p>
+
+          {/* Item 1: Start Learning CTA + Item 4: Streak badge */}
+          <div className="flex flex-wrap items-center gap-4 mb-8">
+            <Link href="/learn/modules/0-1" className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gold-primary/20 border-2 border-gold-primary/40 text-gold-light text-lg font-bold hover:bg-gold-primary/30 hover:border-gold-primary/60 transition-all">
+              <Sparkles className="w-6 h-6" />
+              {locale === 'hi' ? 'सीखना शुरू करें — मॉड्यूल 0.1' : locale === 'ta' ? 'கற்றலைத் தொடங்குங்கள்' : locale === 'bn' ? 'শেখা শুরু করুন' : 'Start Learning — Module 0.1'}
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+            {hydrated && streak.streakDays > 0 && (
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 font-bold">
+                <Flame className="w-5 h-5" />
+                {locale === 'hi' ? `${streak.streakDays} दिन स्ट्रीक` : locale === 'ta' ? `${streak.streakDays} நாள் தொடர்` : locale === 'bn' ? `${streak.streakDays} দিন ধারাবাহিক` : `Day ${streak.streakDays} streak`}
+              </div>
+            )}
+          </div>
 
           <div className="flex flex-wrap gap-6 mb-6">
             {[
@@ -338,26 +362,39 @@ export default function LearnPage() {
         </Link>
       </motion.div>
 
-      {/* ── Reference Library (grouped by track) ── */}
+      {/* ── Reference Library (grouped by track, collapsible) ── */}
       <div>
         <h2 className="text-2xl font-bold text-gold-gradient mb-2" style={hf}>{t('refTitle')}</h2>
-        <p className="text-text-secondary text-sm mb-6" style={bf}>{t('refSub')}</p>
-        <div className="space-y-6">
-          {REF_GROUPS.map(group => (
-            <div key={group.label.en}>
-              <h3 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3" style={bf}>{tri(group.label)}</h3>
-              <div className="flex flex-wrap gap-2">
-                {group.refs.map(ref => (
-                  <Link key={ref.href} href={ref.href}
-                    className="px-3 py-1.5 rounded-lg text-sm text-text-secondary hover:text-gold-light border border-gold-primary/10 hover:border-gold-primary/25 hover:bg-gold-primary/5 transition-colors"
-                    style={bf}>
-                    {tri(ref.name)}
-                  </Link>
-                ))}
+        <p className="text-text-secondary text-sm mb-4" style={bf}>{t('refSub')}</p>
+
+        <button
+          onClick={() => setShowRefs(!showRefs)}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gold-primary/20 hover:border-gold-primary/40 bg-gold-primary/5 hover:bg-gold-primary/10 text-gold-light text-sm font-medium transition-all mb-6"
+        >
+          {showRefs
+            ? (locale === 'hi' ? 'संदर्भ पुस्तकालय छुपाएँ' : locale === 'ta' ? 'குறிப்பு நூலகத்தை மறை' : locale === 'bn' ? 'রেফারেন্স লাইব্রেরি লুকান' : 'Hide Reference Library')
+            : (locale === 'hi' ? `संदर्भ पुस्तकालय देखें (${REF_GROUPS.reduce((s, g) => s + g.refs.length, 0)} विषय)` : locale === 'ta' ? `குறிப்பு நூலகம் (${REF_GROUPS.reduce((s, g) => s + g.refs.length, 0)} தலைப்புகள்)` : locale === 'bn' ? `রেফারেন্স লাইব্রেরি (${REF_GROUPS.reduce((s, g) => s + g.refs.length, 0)} বিষয়)` : `Browse Reference Library (${REF_GROUPS.reduce((s, g) => s + g.refs.length, 0)} topics)`)}
+          <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${showRefs ? 'rotate-180' : ''}`} />
+        </button>
+
+        {showRefs && (
+          <div className="space-y-6">
+            {REF_GROUPS.map(group => (
+              <div key={group.label.en}>
+                <h3 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3" style={bf}>{tri(group.label)}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {group.refs.map(ref => (
+                    <Link key={ref.href} href={ref.href}
+                      className="px-3 py-1.5 rounded-lg text-sm text-text-secondary hover:text-gold-light border border-gold-primary/10 hover:border-gold-primary/25 hover:bg-gold-primary/5 transition-colors"
+                      style={bf}>
+                      {tri(ref.name)}
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         <AuthorByline />
       </div>

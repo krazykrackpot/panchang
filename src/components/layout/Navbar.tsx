@@ -141,6 +141,7 @@ export default function Navbar() {
       label: t('tools'),
       children: [
         { href: '/sign-calculator', label: t('signCalculator') },
+        { href: '/tropical-compare', label: t('tropicalCompare') },
         { href: '/medical-astrology', label: t('medicalAstrology') },
         { href: '/financial-astrology', label: t('financialAstrology') },
         { href: '/nadi-jyotish', label: t('nadiJyotish') },

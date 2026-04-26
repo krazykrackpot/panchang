@@ -408,5 +408,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
+  // Festival × City × Year programmatic SEO pages (/festivals/[slug]/[year]/[city])
+  const festivalSeoSlugs = [
+    'diwali', 'janmashtami', 'maha-shivaratri', 'ram-navami', 'ganesh-chaturthi',
+    'dussehra', 'holi', 'raksha-bandhan', 'dhanteras', 'narak-chaturdashi',
+    'govardhan-puja', 'bhai-dooj', 'hanuman-jayanti', 'akshaya-tritiya',
+    'guru-purnima', 'vasant-panchami', 'holika-dahan', 'hartalika-teej',
+    'chhath-puja', 'makar-sankranti',
+  ];
+  const festivalSeoCities = [
+    'delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad',
+    'pune', 'ahmedabad', 'jaipur', 'lucknow', 'varanasi', 'patna',
+    'bhopal', 'chandigarh', 'new-york',
+  ];
+  const festivalSeoYears = [2025, 2026, 2027, 2028, 2029];
+  for (const fSlug of festivalSeoSlugs) {
+    for (const fYear of festivalSeoYears) {
+      for (const fCity of festivalSeoCities) {
+        addEntries(entries, `/festivals/${fSlug}/${fYear}/${fCity}`, {
+          changeFrequency: 'monthly',
+          priority: 0.7,
+        });
+      }
+    }
+  }
+
   return entries;
 }

@@ -1,11 +1,15 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+
+const TodayPanchangWidget = dynamic(() => import('@/components/panchang/TodayPanchangWidget'), { ssr: false });
 
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/0-4.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
 const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
 const META: ModuleMeta = {
@@ -26,6 +30,13 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'The Panchang has five elements (tithi, nakshatra, yoga, karana, vara) — each describes a different quality of the day.',
+          'Learning to read today\'s Panchang helps you understand why certain days feel auspicious or challenging.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {t('openThePanchangTheFirstTwo', locale)}
@@ -132,6 +143,15 @@ function Page2() {
           {t('varahamihirasBrihatSamhita6thCenturyCe', locale)}
         </p>
       </section>
+
+      {/* Live Panchang widget — learner identifies the 5 elements in real data */}
+      <div className="mt-6 rounded-2xl border border-gold-primary/20 bg-bg-secondary/30 p-4">
+        <h4 className="text-gold-light font-bold text-sm mb-2">See It Live — Today&apos;s Panchang</h4>
+        <p className="text-text-secondary text-xs mb-3">
+          This is the real panchang for your location right now. Can you identify all 5 elements — Tithi, Vara, Nakshatra, Yoga, and Karana?
+        </p>
+        <TodayPanchangWidget />
+      </div>
     </div>
   );
 }

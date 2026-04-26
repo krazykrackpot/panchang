@@ -56,6 +56,7 @@ import InfoBlock from '@/components/ui/InfoBlock';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { findDashaSandhiPeriods } from '@/lib/kundali/dasha-sandhi';
 import { assembleBirthPosterData } from '@/lib/shareable/birth-poster';
+import { generateCosmicBlueprint, type CosmicBlueprint } from '@/lib/kundali/archetype-engine';
 
 // Dynamic imports — only loaded after chart generation or on specific tab activation
 const ChartNorth = dynamic(() => import('@/components/kundali/ChartNorth'), { ssr: false });
@@ -94,6 +95,7 @@ const QuestionEntry = dynamic(() => import('@/components/kundali/QuestionEntry')
 const TrajectoryCard = dynamic(() => import('@/components/kundali/TrajectoryCard'), { ssr: false });
 const VedicProfileComponent = dynamic(() => import('@/components/kundali/VedicProfile'), { ssr: false });
 const BirthPosterCard = dynamic(() => import('@/components/shareable/BirthPosterCard'), { ssr: false });
+const BlueprintTab = dynamic(() => import('@/components/kundali/BlueprintTab'), { ssr: false });
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
@@ -432,7 +434,7 @@ export default function KundaliPage() {
     }
     setSaving(false);
   };
-  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati' | 'patrika' | 'timeline' | 'remedies' | 'sudarshana' | 'nadi'>('chart');
+  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati' | 'patrika' | 'timeline' | 'remedies' | 'sudarshana' | 'nadi' | 'blueprint'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
   const [activeChart, setActiveChart] = useState<string>('D1');
@@ -580,6 +582,49 @@ export default function KundaliPage() {
 
   // Tippanni insights for planet commentary in Planets & Graha tabs
   const tip = useMemo(() => kundali ? generateTippanni(kundali, locale) : null, [kundali, locale]);
+
+  // Cosmic Blueprint — synthesized from Shadbala, Dasha, Yogas, Ascendant
+  const cosmicBlueprint = useMemo<CosmicBlueprint | null>(() => {
+    if (!kundali?.fullShadbala || !kundali.dashas || !kundali.yogasComplete || !kundali.ascendant) return null;
+    try {
+      const dashasWithDates = kundali.dashas
+        .filter(d => d.level === 'maha')
+        .map(d => ({
+          planet: d.planet,
+          startDate: new Date(d.startDate),
+          endDate: new Date(d.endDate),
+          years: (new Date(d.endDate).getTime() - new Date(d.startDate).getTime()) / (365.25 * 24 * 3600 * 1000),
+        }));
+      const yogasForBlueprint = kundali.yogasComplete.map(y => ({
+        id: y.id,
+        name: y.name,
+        present: y.present,
+        strength: y.strength,
+        isAuspicious: y.isAuspicious,
+      }));
+      const planetsForBlueprint = kundali.planets.map(p => ({ id: p.planet.id, longitude: p.longitude }));
+      const rahuP = kundali.planets.find(p => p.planet.id === 7);
+      const ketuP = kundali.planets.find(p => p.planet.id === 8);
+      const moonP = kundali.planets.find(p => p.planet.id === 1);
+      // Lagna lord: lord of the ascendant sign
+      const SIGN_LORDS: Record<number, number> = { 1:2, 2:5, 3:3, 4:1, 5:0, 6:3, 7:5, 8:2, 9:4, 10:6, 11:6, 12:4 };
+      const lagnaLordId = SIGN_LORDS[kundali.ascendant.sign];
+      return generateCosmicBlueprint({
+        shadbala: kundali.fullShadbala,
+        dashas: dashasWithDates,
+        yogas: yogasForBlueprint,
+        ascendantSign: kundali.ascendant.sign,
+        planets: planetsForBlueprint,
+        rahuLongitude: rahuP?.longitude,
+        ketuLongitude: ketuP?.longitude,
+        lagnaLordId,
+        moonLongitude: moonP?.longitude,
+      });
+    } catch (err) {
+      console.error('[kundali] blueprint generation failed:', err);
+      return null;
+    }
+  }, [kundali]);
 
   // Retrograde and combust planet sets for chart rendering
   const retrogradeIds = useMemo(() => kundali ? new Set(kundali.planets.filter(p => p.isRetrograde).map(p => p.planet.id)) : new Set<number>(), [kundali]);
@@ -1177,6 +1222,7 @@ export default function KundaliPage() {
               <div className="flex gap-1.5 sm:gap-2 min-w-max sm:flex-wrap sm:justify-center sm:min-w-0">
                 {([
                   { key: 'chart' as const, label: t('birthChart') },
+                  { key: 'blueprint' as const, label: locale === 'en' || isTamil ? 'Blueprint' : 'ब्लूप्रिंट' },
                   { key: 'planets' as const, label: t('planetPositions') },
                   { key: 'dasha' as const, label: t('dashaTimeline') },
                   { key: 'ashtakavarga' as const, label: t('ashtakavarga') },
@@ -1213,6 +1259,17 @@ export default function KundaliPage() {
               </div>
             </div>
           </div>
+
+          {/* ===== BLUEPRINT TAB ===== */}
+          {activeTab === 'blueprint' && cosmicBlueprint && (
+            <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
+              <BlueprintTab
+                blueprint={cosmicBlueprint}
+                locale={locale}
+                onNavigateToDasha={() => { setActiveTab('dasha'); trackTabViewed({ tab: 'dasha' }); }}
+              />
+            </Suspense>
+          )}
 
           {/* ===== CHART TAB ===== */}
           {activeTab === 'chart' && (

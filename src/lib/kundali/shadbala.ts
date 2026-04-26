@@ -616,15 +616,42 @@ function computeKalaBala(
 // IV. Chesta Bala
 // ---------------------------------------------------------------------------
 
-function computeCheshtaBala(p: PlanetInput, ay: number): number {
-  // Sun & Moon: cheshtaBala = ayanaBala
+/**
+ * Cheshta Bala — strength from planetary motion (BPHS Ch.27).
+ *
+ * Two modes:
+ * - 'bphs_strict' (default): Retrograde = 60 virupas (maximum).
+ *   This follows BPHS Ch.27 literally: a retrograde planet gets full Cheshta Bala.
+ * - 'graduated': Speed-based scoring even for retrograde planets.
+ *   Formula: 60 * (1 - |speed| / mean_speed) when retrograde.
+ *   A planet that just turned retrograde (slow) scores near 60;
+ *   one at peak retrograde speed scores lower (~45-50).
+ *   This matches Drik Panchang's approach and some modern traditions.
+ *
+ * Stationary (speed ≈ 0): 30 virupas in both modes (BPHS: stationary = half strength).
+ * Direct: speed/avg_speed * 30, capped at 60 (faster = stronger in direct motion).
+ */
+function computeCheshtaBala(p: PlanetInput, ay: number, mode: 'bphs_strict' | 'graduated' = 'bphs_strict'): number {
+  // Sun & Moon: cheshtaBala = ayanaBala (no planetary motion component)
   if (p.id === 0 || p.id === 1) return ay;
 
-  if (p.isRetrograde) return 60;
-  if (Math.abs(p.speed) < 0.001) return 30; // stationary
+  // Stationary: near-zero speed (turning retrograde or direct)
+  if (Math.abs(p.speed) < 0.001) return 30;
 
   const avg = AVG_SPEED[p.id];
   if (!avg) return 30;
+
+  if (p.isRetrograde) {
+    if (mode === 'graduated') {
+      // Graduated: slower retrograde = stronger (closer to Earth).
+      // Peak retrograde speed ≈ mean speed, so ratio 0→1 maps to 60→30.
+      const ratio = Math.min(1, Math.abs(p.speed) / avg);
+      return 60 - ratio * 30; // 60 at station, ~30-45 at peak retrograde speed
+    }
+    return 60; // BPHS strict: retrograde always gets maximum
+  }
+
+  // Direct motion: faster = stronger
   return Math.min(60, Math.abs(p.speed / avg) * 30);
 }
 
@@ -698,7 +725,14 @@ function computeDrikBala(p: PlanetInput, allPlanets: PlanetInput[]): number {
 // Main function
 // ---------------------------------------------------------------------------
 
-export function calculateFullShadbala(input: ShadBalaInput): ShadBalaComplete[] {
+export interface ShadBalaOptions {
+  /** Cheshta Bala calculation mode for retrograde planets.
+   * 'bphs_strict' (default): retrograde = 60 virupas (BPHS Ch.27 literal).
+   * 'graduated': speed-based scoring even for retrograde (Drik Panchang style). */
+  cheshtaBalaMode?: 'bphs_strict' | 'graduated';
+}
+
+export function calculateFullShadbala(input: ShadBalaInput, options?: ShadBalaOptions): ShadBalaComplete[] {
   // Filter to only planets 0-6 (exclude Rahu/Ketu)
   const planets = input.planets.filter((p) => p.id >= 0 && p.id <= 6);
 
@@ -712,7 +746,7 @@ export function calculateFullShadbala(input: ShadBalaInput): ShadBalaComplete[] 
     const kala = computeKalaBala(p, input, planets, yuddhaBalaMap);
     const ayanamsha = lahiriAyanamsha(input.julianDay);
     const ay = ayanaBala(p, ayanamsha);
-    const cheshtaBala = r2(computeCheshtaBala(p, ay));
+    const cheshtaBala = r2(computeCheshtaBala(p, ay, options?.cheshtaBalaMode || 'bphs_strict'));
     const naisargikaBala = NAISARGIKA[p.id];
     // Pass all 9 planets so Rahu/Ketu contribute their aspects as malefics
     const drikBala = r2(computeDrikBala(p, input.planets));

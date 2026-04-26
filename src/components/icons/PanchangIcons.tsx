@@ -2,6 +2,9 @@
 
 import React from 'react';
 
+// Round SVG coordinates to 2dp to prevent server/client hydration mismatch
+const r2 = (n: number) => Math.round(n * 100) / 100;
+
 interface IconProps {
   size?: number;
   className?: string;
@@ -61,8 +64,8 @@ export function NakshatraIcon({ size = defaults.size, className }: IconProps) {
   const starPath = Array.from({ length: points * 2 }, (_, i) => {
     const r = i % 2 === 0 ? outerR : innerR;
     const angle = (Math.PI * i) / points - Math.PI / 2;
-    const x = cx + r * Math.cos(angle);
-    const y = cy + r * Math.sin(angle);
+    const x = r2(cx + r * Math.cos(angle));
+    const y = r2(cy + r * Math.sin(angle));
     return `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`;
   }).join(' ') + 'Z';
 
@@ -133,10 +136,10 @@ export function VaraIcon({ size = defaults.size, className }: IconProps) {
       {/* Rays */}
       {Array.from({ length: rays }, (_, i) => {
         const angle = (Math.PI * 2 * i) / rays;
-        const x1 = 32 + 16 * Math.cos(angle);
-        const y1 = 32 + 16 * Math.sin(angle);
-        const x2 = 32 + 26 * Math.cos(angle);
-        const y2 = 32 + 26 * Math.sin(angle);
+        const x1 = r2(32 + 16 * Math.cos(angle));
+        const y1 = r2(32 + 16 * Math.sin(angle));
+        const x2 = r2(32 + 26 * Math.cos(angle));
+        const y2 = r2(32 + 26 * Math.sin(angle));
         return (
           <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
             stroke="url(#gold-vara)" strokeWidth={i % 2 === 0 ? 2.5 : 1.5}
@@ -180,10 +183,10 @@ export function GrahanIcon({ size = defaults.size, className }: IconProps) {
       {/* Corona rays */}
       {Array.from({ length: 16 }, (_, i) => {
         const angle = (Math.PI * 2 * i) / 16;
-        const x1 = 32 + 20 * Math.cos(angle);
-        const y1 = 32 + 20 * Math.sin(angle);
-        const x2 = 32 + 28 * Math.cos(angle);
-        const y2 = 32 + 28 * Math.sin(angle);
+        const x1 = r2(32 + 20 * Math.cos(angle));
+        const y1 = r2(32 + 20 * Math.sin(angle));
+        const x2 = r2(32 + 28 * Math.cos(angle));
+        const y2 = r2(32 + 28 * Math.sin(angle));
         const opacity = 0.2 + (i % 5) * 0.06;
         return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
           stroke="#f0d48a" strokeWidth="1" opacity={opacity} />;
@@ -209,8 +212,8 @@ export function RashiIcon({ size = defaults.size, className }: IconProps) {
       {/* 12 segments */}
       {Array.from({ length: 12 }, (_, i) => {
         const angle = (Math.PI * 2 * i) / 12 - Math.PI / 2;
-        const x = 32 + 26 * Math.cos(angle);
-        const y = 32 + 26 * Math.sin(angle);
+        const x = r2(32 + 26 * Math.cos(angle));
+        const y = r2(32 + 26 * Math.sin(angle));
         return <line key={i} x1="32" y1="32" x2={x} y2={y}
           stroke="url(#gold-rashi)" strokeWidth="1" opacity="0.4" />;
       })}
@@ -255,10 +258,10 @@ export function SamvatsaraIcon({ size = defaults.size, className }: IconProps) {
       {/* 12 major ticks (for 5 cycles of 12) */}
       {Array.from({ length: 12 }, (_, i) => {
         const angle = (Math.PI * 2 * i) / 12 - Math.PI / 2;
-        const x1 = 32 + 23 * Math.cos(angle);
-        const y1 = 32 + 23 * Math.sin(angle);
-        const x2 = 32 + 26 * Math.cos(angle);
-        const y2 = 32 + 26 * Math.sin(angle);
+        const x1 = r2(32 + 23 * Math.cos(angle));
+        const y1 = r2(32 + 23 * Math.sin(angle));
+        const x2 = r2(32 + 26 * Math.cos(angle));
+        const y2 = r2(32 + 26 * Math.sin(angle));
         return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
           stroke="#f0d48a" strokeWidth="1.5" />;
       })}

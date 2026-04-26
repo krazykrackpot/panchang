@@ -1358,6 +1358,65 @@ export default function KundaliPage() {
                 );
               })()}
 
+              {/* ── Inline Birth Poster (always visible) ── */}
+              {kundali && (() => {
+                const posterData = assembleBirthPosterData(kundali, locale);
+                return (
+                  <div className="my-8 flex flex-col lg:flex-row gap-6 items-start">
+                    {/* Poster card — compact square format */}
+                    <div className="w-full lg:w-80 shrink-0 rounded-2xl overflow-hidden border border-gold-primary/15">
+                      <BirthPosterCard data={posterData} format="square" locale={locale} />
+                    </div>
+                    {/* Summary + share */}
+                    <div className="flex-1 space-y-4">
+                      <div>
+                        <h3 className="text-gold-light text-lg font-bold" style={headingFont}>{posterData.name}</h3>
+                        <p className="text-text-secondary text-sm">{posterData.date} · {posterData.time} · {posterData.place}</p>
+                      </div>
+                      <div className="grid grid-cols-3 gap-3">
+                        <div className="rounded-lg bg-bg-secondary/50 border border-gold-primary/10 p-3 text-center">
+                          <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">Rising</div>
+                          <div className="text-gold-light font-bold text-sm mt-0.5">{posterData.risingSign}</div>
+                        </div>
+                        <div className="rounded-lg bg-bg-secondary/50 border border-gold-primary/10 p-3 text-center">
+                          <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">Moon</div>
+                          <div className="text-gold-light font-bold text-sm mt-0.5">{posterData.moonSign}</div>
+                        </div>
+                        <div className="rounded-lg bg-bg-secondary/50 border border-gold-primary/10 p-3 text-center">
+                          <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">Sun</div>
+                          <div className="text-gold-light font-bold text-sm mt-0.5">{posterData.sunSign}</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className={`text-sm font-bold ${posterData.elementDist.dominant === 'Fire' ? 'text-amber-400' : posterData.elementDist.dominant === 'Earth' ? 'text-emerald-400' : posterData.elementDist.dominant === 'Air' ? 'text-sky-400' : 'text-indigo-400'}`}>
+                          {posterData.elementDist.percentage}% {posterData.elementDist.dominant}
+                        </div>
+                        <div className="text-text-secondary text-sm italic">{locale === 'hi' ? posterData.elementDist.archetype.hi : posterData.elementDist.archetype.en}</div>
+                      </div>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => setShowPoster(true)}
+                          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-gold-primary/15 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/25 transition-all"
+                        >
+                          <Sparkles className="w-4 h-4" />
+                          {locale === 'hi' ? 'पूरा पोस्टर देखें' : 'View Full Poster'}
+                        </button>
+                        <button
+                          onClick={() => {
+                            const text = `${posterData.name} — ${posterData.risingSign} Rising, ${posterData.moonSign} Moon, ${posterData.sunSign} Sun\n${posterData.elementDist.percentage}% ${posterData.elementDist.dominant} — "${locale === 'hi' ? posterData.elementDist.archetype.hi : posterData.elementDist.archetype.en}"\n\nCreate yours at dekhopanchang.com`;
+                            if (navigator.share) { navigator.share({ title: `${posterData.name}'s Vedic Birth Chart`, text }).catch(() => {}); }
+                            else { navigator.clipboard.writeText(text).catch(() => {}); }
+                          }}
+                          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/15 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all"
+                        >
+                          {locale === 'hi' ? 'शेयर करें' : 'Share'}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
+
               {/* ── Inline Chart Commentary ── */}
               {(() => {
                 const vargaData = generateVargaTippanni(kundali, locale as Locale);

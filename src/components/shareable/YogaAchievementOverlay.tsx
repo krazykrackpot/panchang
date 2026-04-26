@@ -42,18 +42,8 @@ export default function YogaAchievementOverlay({
   useEffect(() => {
     // Trigger enter animation on next frame
     requestAnimationFrame(() => setVisible(true));
-
-    // Auto-dismiss after 5 seconds if user hasn't interacted
-    timerRef.current = setTimeout(() => {
-      if (!interactedRef.current) {
-        handleDismiss();
-      }
-    }, 5000);
-
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, [handleDismiss]);
+    // No auto-dismiss — user must explicitly click Continue or Share
+  }, []);
 
   const handleInteraction = useCallback(() => {
     interactedRef.current = true;
@@ -139,8 +129,23 @@ export default function YogaAchievementOverlay({
           <div className="flex items-center justify-center gap-4 mt-6">
             <button
               type="button"
+              onClick={() => {
+                handleInteraction();
+                const text = `${primaryBadge.yogaName.en} — ${primaryBadge.quality.en}\n${primaryBadge.description.en}\nFound in ${primaryBadge.percentage} of charts.\n\nDiscover your rare yogas at dekhopanchang.com`;
+                if (navigator.share) {
+                  navigator.share({ title: `${primaryBadge.yogaName.en} Achievement`, text }).catch(() => {});
+                } else {
+                  navigator.clipboard.writeText(text).catch(() => {});
+                }
+              }}
+              className="px-6 py-2.5 rounded-full text-sm font-bold bg-gold-primary/20 border border-gold-primary/50 text-gold-light hover:bg-gold-primary/30 transition-all"
+            >
+              {isHi ? '✦ शेयर करें' : '✦ Share Achievement'}
+            </button>
+            <button
+              type="button"
               onClick={handleDismiss}
-              className="px-6 py-2.5 rounded-full text-sm font-medium text-text-primary border border-gold-primary/20 hover:border-gold-primary/40 transition-colors"
+              className="px-6 py-2.5 rounded-full text-sm font-medium text-text-secondary border border-gold-primary/15 hover:border-gold-primary/30 transition-colors"
             >
               {isHi ? 'चार्ट पर जाएँ →' : 'Continue to Chart →'}
             </button>

@@ -34,6 +34,32 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     keywords: ['panchang today', 'daily panchang', 'tithi today', 'nakshatra today', 'rahu kalam', 'hindu calendar'],
   },
+  '/panchang/auspicious': {
+    title: {
+      en: 'Auspicious Timings Today — Muhurta, Abhijit, Amrit Kalam',
+      hi: 'आज के शुभ मुहूर्त — अभिजित, अमृत काल, ब्रह्म मुहूर्त',
+      sa: 'अद्य शुभमुहूर्ताः — अभिजित्, अमृतकालः, ब्रह्ममुहूर्तः',
+    },
+    description: {
+      en: 'Today\'s auspicious timings: Brahma Muhurta, Abhijit Muhurta, Vijaya Muhurta, Amrit Kalam, Godhuli, Sandhya Kaal, and special yoga windows for any location.',
+      hi: 'आज के शुभ समय: ब्रह्म मुहूर्त, अभिजित मुहूर्त, विजय मुहूर्त, अमृत काल, गोधूलि, संध्या काल और विशेष योग।',
+      sa: 'अद्य शुभसमयाः: ब्रह्ममुहूर्तः, अभिजित्मुहूर्तः, विजयमुहूर्तः, अमृतकालः, गोधूलिः, सन्ध्याकालः।',
+    },
+    keywords: ['auspicious timings today', 'abhijit muhurta', 'brahma muhurta', 'amrit kalam', 'godhuli muhurta'],
+  },
+  '/panchang/inauspicious': {
+    title: {
+      en: 'Inauspicious Timings Today — Rahu Kaal, Yamaganda, Varjyam',
+      hi: 'आज के अशुभ समय — राहु काल, यमगण्ड, वर्ज्यम',
+      sa: 'अद्य अशुभसमयाः — राहुकालः, यमगण्डः, वर्ज्यम्',
+    },
+    description: {
+      en: 'Today\'s inauspicious timings: Rahu Kaal, Yamaganda, Gulika Kaal, Dur Muhurtam, Varjyam, Bhadra, Ganda Moola, and Panchaka for any location worldwide.',
+      hi: 'आज के अशुभ समय: राहु काल, यमगण्ड, गुलिक काल, दुर्मुहूर्त, वर्ज्यम, भद्रा, गण्ड मूल, पंचक।',
+      sa: 'अद्य अशुभसमयाः: राहुकालः, यमगण्डः, गुलिककालः, दुर्मुहूर्तम्, वर्ज्यम्, भद्रा, गण्डमूलम्, पञ्चकम्।',
+    },
+    keywords: ['rahu kaal today', 'yamaganda', 'gulika kaal', 'varjyam', 'dur muhurtam', 'inauspicious timings'],
+  },
   '/kundali': {
     title: {
       en: 'Free Kundali — Vedic Birth Chart Generator',
@@ -599,6 +625,21 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: { en: '30 Muhurtas — Time Divisions in Hindu Day', hi: '30 मुहूर्त — हिन्दू दिन के समय विभाग', sa: '३० मुहूर्ताः — हिन्दूदिनस्य कालविभागाः' },
     description: { en: 'The 30 Muhurtas (48-minute time divisions) of the Hindu day. Abhijit and Brahma Muhurta, auspicious and inauspicious periods.', hi: 'हिन्दू दिन के 30 मुहूर्त (48 मिनट)। अभिजित और ब्रह्म मुहूर्त।', sa: 'हिन्दूदिनस्य ३० मुहूर्ताः। अभिजित् ब्रह्ममुहूर्तश्च।' },
     keywords: ['muhurta', 'abhijit muhurta', 'brahma muhurta', '30 muhurtas'],
+  },
+  '/panchang/nivas': {
+    title: { en: 'Nivas & Shool — Directional & Elemental Energies Today', hi: 'निवास और शूल — आज की दिशात्मक और तात्विक ऊर्जाएं', sa: 'निवासः शूलश्च — अद्यतनदिशात्मकतात्विकशक्तयः' },
+    description: { en: 'Disha Shool, Shiva Vaas, Agni Vaas, Chandra Vaas, and Rahu Vaas for today. Directional and elemental energies that influence rituals and activities.', hi: 'आज के लिए दिशा शूल, शिव वास, अग्नि वास, चंद्र वास और राहु वास। अनुष्ठानों और गतिविधियों को प्रभावित करने वाली दिशात्मक और तात्विक ऊर्जाएं।', sa: 'अद्य दिशाशूलः शिववासः अग्निवासः चन्द्रवासः राहुवासश्च। अनुष्ठानानि कार्याणि च प्रभावयन्त्यः दिशात्मकतात्विकशक्तयः।' },
+    keywords: ['disha shool', 'shiva vaas', 'agni vaas', 'chandra vaas', 'rahu vaas', 'nivas shool panchang'],
+  },
+  '/panchang/planets': {
+    title: { en: 'Planetary Positions Today — Navagraha in Signs & Nakshatras', hi: 'आज की ग्रह स्थिति — राशि और नक्षत्र में नवग्रह', sa: 'अद्यतनग्रहस्थितिः — राशिनक्षत्रेषु नवग्रहाः' },
+    description: { en: "Today's Navagraha positions — Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu with sign, longitude, nakshatra, and retrograde status.", hi: 'आज की नवग्रह स्थिति — सूर्य, चंद्र, मंगल, बुध, गुरु, शुक्र, शनि, राहु, केतु की राशि, अंश, नक्षत्र और वक्री स्थिति।', sa: 'अद्यतननवग्रहस्थितिः — सूर्यचन्द्रमङ्गलबुधगुरुशुक्रशनिराहुकेतुनां राशिः अंशः नक्षत्रं वक्रत्वं च।' },
+    keywords: ['planetary positions today', 'navagraha', 'graha sthiti', 'planet signs', 'retrograde planets'],
+  },
+  '/panchang/remedies': {
+    title: { en: "Today's Vedic Remedies — Mantras, Charity, Gemstones", hi: 'आज के वैदिक उपाय — मंत्र, दान, रत्न', sa: 'अद्यतनवैदिकोपचाराः — मन्त्राः दानं रत्नानि च' },
+    description: { en: "Vara-based remedy prescriptions for today — Beej Mantra, recommended charity, lucky color, gemstone, and optimal Hora windows for maximum effect.", hi: 'आज के वार-आधारित उपाय — बीज मंत्र, अनुशंसित दान, शुभ रंग, रत्न और अधिकतम प्रभाव के लिए इष्ट होरा समय।', sa: 'अद्यतनवाराधारितोपचाराः — बीजमन्त्रः अनुशंसितदानं शुभवर्णः रत्नं च।' },
+    keywords: ['vedic remedies today', 'beej mantra', 'vara remedies', 'daily remedies', 'gemstone recommendation'],
   },
   '/panchang/yearly': {
     title: { en: 'Yearly Panchang Calendar — Month by Month View', hi: 'वार्षिक पंचांग — मासिक दृश्य', sa: 'वार्षिकपञ्चाङ्गम् — मासिकदृश्यम्' },

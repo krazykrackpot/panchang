@@ -316,6 +316,7 @@ export default function LearnAshtakavargaPage() {
       <LessonSection number={8} title={t('modulesTitle')}>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
+            { href: '/learn/ashtakavarga-dasha', label: { en: 'Ashtakavarga Dasha Predictions', hi: 'अष्टकवर्ग दशा भविष्यवाणी', sa: 'अष्टकवर्गदशाभविष्यवाणी' } },
             { href: '/learn/modules/18-3', label: { en: 'Lesson 18-3: Ashtakavarga Applications', hi: 'पाठ 18-3: अष्टकवर्ग अनुप्रयोग', sa: 'पाठः 18-3: अष्टकवर्गानुप्रयोगाः' } },
             { href: '/learn/modules/12-1', label: { en: 'Lesson 12-1: Transit Analysis', hi: 'पाठ 12-1: गोचर विश्लेषण', sa: 'पाठः 12-1: गोचरविश्लेषणम्' } },
             { href: '/learn/gochar', label: { en: 'Reference: Gochar (Transits)', hi: 'सन्दर्भ: गोचर', sa: 'सन्दर्भः: गोचरः' } },

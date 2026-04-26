@@ -274,6 +274,7 @@ export default function CompatibilityPage() {
             { href: '/kundali', label: { en: 'Generate Kundali', hi: 'कुण्डली बनाएँ', sa: 'कुण्डलीं रचयतु' } },
             { href: '/learn/matching', label: { en: 'Learn: Matching', hi: 'सीखें: मिलान', sa: 'शिक्षा: मिलानम्' } },
             { href: '/learn/marriage', label: { en: 'Learn: Marriage', hi: 'सीखें: विवाह', sa: 'शिक्षा: विवाहः' } },
+            { href: '/learn/compatibility-advanced', label: { en: 'Dasha & Rajju Dosha', hi: 'दशा एवं राज्जु दोष', sa: 'दशा राज्जुदोषश्च' } },
           ].map((link) => (
             <Link key={link.href} href={link.href} className="px-4 py-2 rounded-lg bg-gold-primary/8 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/15 transition-colors">
               {lt(link.label as LocaleText, locale)}

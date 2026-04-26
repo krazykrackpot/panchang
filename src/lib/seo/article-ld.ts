@@ -42,6 +42,7 @@ const ARTICLE_META: Record<string, { datePublished: string; dateModified: string
   '/learn/hora': { datePublished: '2026-04-05', dateModified: '2026-04-15' },
   '/learn/eclipses': { datePublished: '2026-04-05', dateModified: '2026-04-15' },
   '/learn/health': { datePublished: '2026-04-10', dateModified: '2026-04-20' },
+  '/learn/ayurveda-jyotish': { datePublished: '2026-04-22', dateModified: '2026-04-22' },
   '/learn/wealth': { datePublished: '2026-04-10', dateModified: '2026-04-20' },
   '/learn/career': { datePublished: '2026-04-10', dateModified: '2026-04-20' },
   '/learn/marriage': { datePublished: '2026-04-10', dateModified: '2026-04-20' },

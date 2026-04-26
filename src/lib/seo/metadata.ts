@@ -696,6 +696,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Zodiac body map, planet-disease correlations, health per lagna sign, Ayurvedic constitution from chart, timing of health events.', hi: 'राशि शरीर मानचित्र, ग्रह-रोग सम्बन्ध, लग्न अनुसार स्वास्थ्य, आयुर्वेदिक प्रकृति।', sa: 'राशिशरीरमानचित्रं ग्रहरोगसम्बन्धाः।' },
     keywords: ['medical astrology', 'health prediction', 'zodiac body parts', 'ayurvedic astrology'],
   },
+  '/learn/ayurveda-jyotish': {
+    title: { en: 'Ayurveda & Jyotish — The Twin Vedic Sciences', hi: 'आयुर्वेद एवं ज्योतिष — जुड़वाँ वैदिक विद्याएँ', sa: 'आयुर्वेदज्योतिषम् — युग्मवैदिकविद्ये' },
+    description: { en: 'Deep connection between Ayurveda and Vedic Astrology: Prakriti from birth chart, Kala Purusha body mapping, dasha health windows, Ritu-dosha cycles, planetary herbs and remedies.', hi: 'आयुर्वेद और वैदिक ज्योतिष का गहन सम्बन्ध: जन्म कुण्डली से प्रकृति, काल पुरुष, दशा स्वास्थ्य, ऋतु-दोष चक्र, ग्रह जड़ी-बूटियाँ।', sa: 'आयुर्वेदवैदिकज्योतिषयोः गहनसम्बन्धः।' },
+    keywords: ['ayurveda astrology', 'prakriti birth chart', 'kala purusha', 'dosha planets', 'vedic health', 'planetary herbs'],
+  },
   '/learn/children': {
     title: { en: 'Children Prediction — 5th House, D7 & Fertility Analysis', hi: 'सन्तान भविष्यवाणी — 5वां भाव, D7', sa: 'सन्तानभविष्यवाणी' },
     description: { en: 'Predict children from your chart: 5th house, Jupiter, D7 Saptamsha, Putrakaraka, fertility sphutas, timing of childbirth.', hi: 'कुण्डली से सन्तान भविष्यवाणी: 5वां भाव, बृहस्पति, D7, पुत्रकारक, प्रजनन।', sa: 'कुण्डल्या सन्तानभविष्यवाणी।' },
@@ -728,6 +733,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: { en: 'Advanced Compatibility — Beyond Ashta Kuta', hi: 'उन्नत अनुकूलता — अष्ट कूट से परे', sa: 'उन्नतमेलनम् — अष्टकूटात् परम्' },
     description: { en: 'Chart-level marriage compatibility: 7th house comparison, Venus assessment, Navamsha matching, dasha compatibility, Mangal Dosha full analysis.', hi: 'चार्ट-स्तरीय विवाह अनुकूलता: 7वां भाव, शुक्र, नवांश, दशा अनुकूलता, मंगल दोष।', sa: 'चक्रस्तरीयविवाहमेलनम् — सप्तमभावः शुक्रः नवांशः दशामेलनम् मङ्गलदोषश्च।' },
     keywords: ['advanced compatibility', 'chart matching', 'navamsha compatibility', 'mangal dosha full'],
+  },
+  '/learn/compatibility-advanced': {
+    title: { en: 'Advanced Compatibility — Dasha Alignment & Rajju Dosha', hi: 'उन्नत अनुकूलता — दशा संरेखण एवं राज्जु दोष', sa: 'उन्नतमेलनम् — दशासंरेखणं राज्जुदोषश्च' },
+    description: { en: 'Dasha comparison in synastry and Rajju Dosha (South Indian nakshatra cord matching). Worked examples, 27-nakshatra Rajju mapping table, cancellation conditions, compatibility flowchart.', hi: 'सिनैस्ट्री में दशा तुलना और राज्जु दोष (दक्षिण भारतीय नक्षत्र रज्जु मिलान)। कार्यरत उदाहरण, 27-नक्षत्र राज्जु तालिका, निरसन शर्तें।', sa: 'सिनैस्ट्रीदशातुलना राज्जुदोषश्च — उदाहरणानि, नक्षत्रराज्जुतालिका, निरसनशर्ताः।' },
+    keywords: ['dasha comparison', 'rajju dosha', 'nakshatra cord', 'south indian matching', 'dasha sandhi'],
   },
   '/learn/combustion': {
     title: { en: 'Combustion (Asta) — When Planets Get Too Close to the Sun', hi: 'अस्त ग्रह — जब ग्रह सूर्य के बहुत निकट', sa: 'अस्तग्रहाः' },
@@ -773,6 +783,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Complete guide to Ashtakavarga: BAV, SAV, bindu scoring, transit prediction, Trikona Shodhana, and Kakshya divisions.', hi: 'अष्टकवर्ग: BAV, SAV, बिन्दु अंक, गोचर भविष्यवाणी, त्रिकोण शोधन।', sa: 'अष्टकवर्गः — BAV, SAV, बिन्दुअङ्कः, गोचरभविष्यवाणी।' },
     keywords: ['ashtakavarga', 'bindu', 'transit prediction', 'sarvashtakavarga'],
   },
+  '/learn/ashtakavarga-dasha': {
+    title: { en: 'Ashtakavarga Dasha — Timing Predictions from Bindu Scores', hi: 'अष्टकवर्ग दशा — बिन्दु अंकों से समय भविष्यवाणी', sa: 'अष्टकवर्गदशा — बिन्दुअङ्कैः कालभविष्यवाणी' },
+    description: { en: 'Predict Maha Dasha quality using Ashtakavarga bindu totals. Step-by-step method from BPHS Ch.66-72 with transit scoring, Kakshya timing, and practical prediction rules.', hi: 'अष्टकवर्ग बिन्दु योग से महा दशा गुणवत्ता की भविष्यवाणी। BPHS अ.66-72 से चरणबद्ध विधि।', sa: 'अष्टकवर्गबिन्दुयोगैः महादशागुणवत्तायाः भविष्यवाणी।' },
+    keywords: ['ashtakavarga dasha', 'dasha prediction', 'bindu scoring', 'transit timing', 'BPHS ashtakavarga'],
+  },
   '/learn/shadbala': {
     title: { en: 'Shadbala — Six-Fold Planetary Strength', hi: 'षड्बल — छह प्रकार का ग्रह बल', sa: 'षड्बलम् — षड्विधग्रहबलम्' },
     description: { en: 'Complete Shadbala guide: Sthana, Dig, Kala, Cheshta, Naisargika, Drig Bala with minimum thresholds and chart captain identification.', hi: 'षड्बल: स्थान, दिग्, काल, चेष्टा, नैसर्गिक, दृग् बल। न्यूनतम सीमा और चार्ट कप्तान।', sa: 'षड्बलम् — स्थानदिग्कालचेष्टानैसर्गिकदृग्बलानि।' },
@@ -787,6 +802,21 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: { en: 'Avasthas — Planetary States & Moods', hi: 'अवस्थाएँ — ग्रह दशाएँ', sa: 'अवस्थाः — ग्रहदशाः' },
     description: { en: 'All 5 avastha systems from BPHS: Baladi, Jagradadi, Deeptadi, Lajjitadi, Shayanadi. How planets deliver results.', hi: 'BPHS से 5 अवस्था प्रणालियाँ: बालादि, जागृतादि, दीप्तादि, लज्जितादि, शयनादि।', sa: 'BPHS तः 5 अवस्थाप्रणाल्यः — बालादिजागृतादिदीप्तादिलज्जितादिशयनादयः।' },
     keywords: ['avasthas', 'planetary states', 'baladi', 'deeptadi', 'lajjitadi'],
+  },
+  '/learn/nadi-amsha': {
+    title: { en: 'Nadi Amsha (D-150) — The Finest Divisional Chart', hi: 'नाडी अंश (D-150) — सूक्ष्मतम विभागीय चार्ट', sa: 'नाडीअंशः (D-150) — सूक्ष्मतमविभागीयचक्रम्' },
+    description: { en: 'Understanding Nadi Amsha (D-150): the 150th divisional chart for subtle karmic analysis, twin differentiation, and birth time rectification. Calculation method, classical sources, and interpretation.', hi: 'नाडी अंश (D-150): सूक्ष्म कार्मिक विश्लेषण, जुड़वाँ विभेदन और जन्म समय शोधन के लिए 150वाँ विभागीय चार्ट।', sa: 'नाडीअंशः (D-150): सूक्ष्मकर्मविश्लेषणाय यमकविभेदनाय जन्मकालशोधनाय च 150तमविभागीयचक्रम्।' },
+    keywords: ['nadi amsha', 'd-150', 'divisional chart', 'varga', 'nadi astrology', 'twin differentiation', 'birth time rectification'],
+  },
+  '/learn/pancha-pakshi': {
+    title: { en: 'Pancha Pakshi -- The Five Bird System', hi: 'पंच पक्षी -- पांच पक्षी प्रणाली', sa: 'पञ्चपक्षी -- पञ्चपक्षिप्रणाली' },
+    description: { en: 'Pancha Pakshi Shastra: ancient Tamil timing system using five birds (Vulture, Owl, Crow, Cock, Peacock). Birth nakshatra determines your ruling bird and optimal activity windows throughout the day.', hi: 'पंच पक्षी शास्त्र: पांच पक्षियों पर आधारित प्राचीन तमिल समय प्रणाली। जन्म नक्षत्र से शासक पक्षी और दिन भर की गतिविधियों का निर्धारण।', sa: 'पञ्चपक्षीशास्त्रम्: पञ्चपक्षिभिः आधारिता प्राचीना तमिलसमयप्रणाली। जन्मनक्षत्रात् शासकपक्षी दिवसगतिविधीनां च निर्धारणम्।' },
+    keywords: ['pancha pakshi', 'five birds', 'tamil astrology', 'kerala astrology', 'timing system', 'nakshatra bird'],
+  },
+  '/learn/dasha-sandhi': {
+    title: { en: 'Dasha Sandhi — Junction Periods Between Planetary Dashas', hi: 'दशा सन्धि — ग्रह दशाओं के संक्रमण काल', sa: 'दशासन्धिः — ग्रहदशासंक्रमणकालाः' },
+    description: { en: 'Understanding Dasha Sandhi — the critical transition windows between Maha, Antar, and Pratyantar Dashas. Calculation method, effects, and remedies from BPHS and Phaladeepika.', hi: 'दशा सन्धि — महादशा, अन्तर्दशा और प्रत्यन्तर दशा के बीच के संवेदनशील संक्रमण काल। गणना, प्रभाव और उपाय।', sa: 'दशासन्धिः — महादशान्तर्दशाप्रत्यन्तरदशानां मध्ये संवेदनशीलसंक्रमणकालाः। गणना प्रभावः उपायाश्च।' },
+    keywords: ['dasha sandhi', 'dasha transition', 'maha dasha sandhi', 'planetary period junction', 'dasha change effects'],
   },
   '/learn/sphutas': {
     title: { en: 'Sphutas — Sensitive Points (Yogi, Prana, Mrityu)', hi: 'स्फुट — संवेदनशील बिन्दु', sa: 'स्फुटाः — संवेदनशीलबिन्दवः' },
@@ -884,6 +914,16 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: { en: 'Doshas in Vedic Astrology — Manglik, Kaal Sarp, Sade Sati', hi: 'वैदिक ज्योतिष में दोष — मांगलिक, काल सर्प, साढ़े साती', sa: 'वैदिकज्योतिषे दोषाः' },
     description: { en: 'Understand the major Doshas in Jyotish — Manglik Dosha, Kaal Sarp Dosha, Sade Sati, Ganda Mula, and Pitra Dosha. Their formation, effects, and remedies.', hi: 'ज्योतिष के प्रमुख दोष — मांगलिक, काल सर्प, साढ़े साती, गण्ड मूल, पितृ दोष — निर्माण, प्रभाव और उपाय।', sa: 'ज्योतिषस्य प्रमुखदोषाः।' },
     keywords: ['manglik dosha', 'kaal sarp dosha', 'astrological doshas', 'pitra dosha'],
+  },
+  '/learn/grahan-yoga': {
+    title: { en: 'Grahan Yoga — Eclipse Yoga in the Birth Chart', hi: 'ग्रहण योग — जन्म कुण्डली में ग्रहण', sa: 'ग्रहणयोगः — जन्मकुण्डल्यां ग्रहणम्' },
+    description: { en: 'Complete guide to Grahan Yoga: Sun/Moon conjunct Rahu/Ketu. Four types, house-wise effects, cancellation rules, classical references, severity assessment, and remedies.', hi: 'ग्रहण योग: सूर्य/चन्द्र की राहु/केतु से युति। चार प्रकार, भाव अनुसार प्रभाव, भंग नियम, शास्त्रीय सन्दर्भ और उपाय।', sa: 'ग्रहणयोगः — सूर्यचन्द्रयोः राहुकेतुभ्यां युतिः। चत्वारः प्रकाराः भावफलानि भङ्गनियमाः च।' },
+    keywords: ['grahan yoga', 'eclipse yoga', 'sun rahu conjunction', 'moon rahu conjunction', 'chandra grahan yoga', 'surya grahan yoga'],
+  },
+  '/learn/doshas-detailed': {
+    title: { en: 'Doshas Comprehensive Guide — Mangal, Kaal Sarpa, Pitra, Kemdrum, Guru Chandal, Grahan', hi: 'दोष विस्तृत मार्गदर्शिका — मंगल, काल सर्प, पित्र, केमद्रुम, गुरु चाण्डाल, ग्रहण', sa: 'दोषविस्तृतमार्गदर्शिका' },
+    description: { en: 'In-depth guide to all major Jyotish doshas: detection methods, severity levels, cancellation conditions, effects, remedies, and classical references with worked examples.', hi: 'ज्योतिष के सभी प्रमुख दोषों का गहन अध्ययन — पहचान विधि, गंभीरता स्तर, रद्दीकरण शर्तें, प्रभाव और उपचार।', sa: 'ज्योतिषस्य सर्वेषां प्रमुखदोषाणां विस्तृतमार्गदर्शिका।' },
+    keywords: ['mangal dosha detailed', 'kaal sarpa dosha types', 'pitra dosha', 'kemadruma dosha', 'guru chandal dosha', 'grahan dosha', 'dosha cancellation'],
   },
   '/learn/gochar': {
     title: { en: 'Gochar — Planetary Transits in Vedic Astrology', hi: 'गोचर — वैदिक ज्योतिष में ग्रह गोचर', sa: 'गोचरः — वैदिकज्योतिषे ग्रहगोचरः' },

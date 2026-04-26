@@ -6,6 +6,9 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/0-2.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import WhyItMatters from '@/components/learn/WhyItMatters';
 
 const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -29,6 +32,13 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'The Hindu calendar is lunisolar — it tracks both the Moon and the Sun, unlike purely solar (Gregorian) or purely lunar (Islamic) calendars.',
+          'This system explains why festivals like Diwali shift dates every year but always fall in the same season.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {t('whyHinduFestivalsMoveEvery', locale)}
@@ -67,9 +77,14 @@ function Page1() {
           </div>
         </div>
 
+        <div className="flex flex-wrap gap-3 my-3">
+          <BeginnerNote term="Tithi" explanation="A lunar day — one of 30 divisions of the lunar month, determined by the angular distance between Sun and Moon." />
+          <BeginnerNote term="Panchang" explanation="The five-element Vedic almanac: tithi, nakshatra, yoga, karana, and vara (weekday)." />
+        </div>
         <p className="text-text-secondary text-sm leading-relaxed">
           {t('diwaliIsAlwaysOnKartik', locale)}
         </p>
+        <WhyItMatters locale={locale}>Understanding the lunar calendar lets you know why Hindu festivals shift dates every year — and predict them yourself.</WhyItMatters>
       </section>
 
       {/* Classical Origin — Gold card */}
@@ -100,6 +115,7 @@ function Page2() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {t('ifYouAskANorth', locale)}
         </p>
+        <BeginnerNote term="Amanta / Purnimanta" explanation="Two systems for when a lunar month ends — Amanta ends at new moon (used in South India), Purnimanta ends at full moon (used in North India)." />
 
         <div className="grid gap-3 mb-4">
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4">

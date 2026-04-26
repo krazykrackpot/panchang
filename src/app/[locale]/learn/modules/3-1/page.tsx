@@ -6,6 +6,9 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/3-1.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import WhyItMatters from '@/components/learn/WhyItMatters';
 
 const META: ModuleMeta = {
   id: 'mod_3_1',
@@ -25,6 +28,13 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'Parashara described each of the 12 rashis with a specific form, direction, element, and body part — these descriptions drive chart interpretation.',
+          'The Kalapurusha (Cosmic Person) maps Aries to the head and Pisces to the feet — each sign governs a body region.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The Kalapurusha — The Cosmic Body</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
@@ -33,6 +43,10 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           This is not just a poetic metaphor — it has practical consequences. When a sign is afflicted in your chart (malefic planets, lord in dusthana), the corresponding body part may be vulnerable to disease or injury. This is the foundation of <span className="text-gold-light">Medical Astrology</span> (Vaidya Jyotish) and its connection to Ayurveda.
         </p>
+        <div className="flex flex-wrap gap-3 my-2">
+          <BeginnerNote term="Kalapurusha" explanation="The 'Cosmic Person' — a concept where the 12 zodiac signs map to the human body from head (Aries) to feet (Pisces)." />
+          <BeginnerNote term="Dusthana" explanation="The 'difficult' houses in a chart — houses 6, 8, and 12 — associated with enemies, transformation, and loss respectively." />
+        </div>
 
         {/* Kalapurusha body mapping */}
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
@@ -60,6 +74,8 @@ function Page1() {
           </div>
           <p className="text-text-tertiary text-xs mt-2">The body flows from head (Aries) to feet (Pisces) — initiative to dissolution, action to surrender.</p>
         </div>
+
+        <WhyItMatters locale={locale}>The 12 rashis are the 'neighbourhoods' planets live in. A planet's rashi determines its character in your chart — and the Kalapurusha body map connects your chart directly to your physical health.</WhyItMatters>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">

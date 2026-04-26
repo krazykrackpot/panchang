@@ -7,6 +7,9 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/1-2.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import WhyItMatters from '@/components/learn/WhyItMatters';
 
 const META: ModuleMeta = {
   id: 'mod_1_2',
@@ -26,6 +29,13 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'The zodiac is divided two ways: 12 signs of 30 degrees each AND 27 nakshatras of 13°20\' each — both systems are used simultaneously.',
+          'This dual coordinate system is unique to Vedic astrology and enables more precise analysis than signs alone.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The 360° Circle — Why 360?</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
@@ -51,6 +61,10 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           Here is the key insight that distinguishes Indian astronomy: the same 360° ecliptic circle is measured by <span className="text-gold-light font-bold">two overlapping grids simultaneously</span>:
         </p>
+        <div className="flex flex-wrap gap-3 my-2">
+          <BeginnerNote term="Sidereal vs Tropical" explanation="Sidereal = anchored to fixed stars (used in Jyotish). Tropical = anchored to the spring equinox (used in Western astrology). They drift apart by ~1 degree every 72 years." />
+          <BeginnerNote term="Precession" explanation="Earth's axis slowly wobbles like a spinning top, completing one full cycle every ~25,772 years. This causes the sidereal and tropical zodiacs to diverge over time." />
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
@@ -68,6 +82,7 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           This is NOT arbitrary. The Sun moves ~1°/day, so it crosses 30° in ~30 days (one month). The Moon moves ~13°/day, so it crosses 13°20' in ~1 day. The solar grid (Rashis) divides the year into 12 months. The lunar grid (Nakshatras) divides the month into 27 days. Together, they form the <span className="text-gold-light font-bold">Panchanga</span> — the complete measurement of celestial time.
         </p>
+        <WhyItMatters locale={locale}>This dual coordinate system — signs AND nakshatras measured simultaneously — is unique to Vedic astrology and is what gives it finer resolution than any other astrological tradition.</WhyItMatters>
       </section>
     </div>
   );

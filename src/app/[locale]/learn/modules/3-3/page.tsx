@@ -7,6 +7,9 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/3-3.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import WhyItMatters from '@/components/learn/WhyItMatters';
 
 const META: ModuleMeta = {
   id: 'mod_3_3',
@@ -26,9 +29,20 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'Every sign is "owned" by a planet — the lord\'s strength and placement in your chart directly determines how well that house functions.',
+          'Sign lordship is the engine of Vedic prediction: a weak lord means a weak house, regardless of what occupies it.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Planetary Ownership of Signs</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">Each of the 12 signs is &quot;owned&quot; by one of the 7 true planets (Sun through Saturn). This ownership is called Swamitva (lordship). The lord of a sign is responsible for the affairs of that sign — wherever it sits in the chart, it carries the responsibilities of its owned houses with it.</p>
+        <div className="flex flex-wrap gap-3 my-2">
+          <BeginnerNote term="Sign Lordship (Swamitva)" explanation="Each sign is 'owned' by a planet — the lord's condition in your chart determines how well that house's affairs unfold." />
+          <BeginnerNote term="Dig Bala" explanation="Directional strength — each planet gains maximum power in a specific house. E.g., Jupiter and Mercury are strongest in the 1st house; Sun and Mars in the 10th." />
+        </div>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">Sun and Moon each rule ONE sign (Leo and Cancer respectively). The remaining 5 planets — Mercury, Venus, Mars, Jupiter, Saturn — each rule TWO signs, one odd-numbered and one even-numbered. Rahu and Ketu, being shadow planets (mathematical points where the Moon&apos;s orbit crosses the ecliptic), do NOT own any sign in the classical Parashari system.</p>
       </section>
 
@@ -62,6 +76,8 @@ function Page1() {
         </div>
         <p className="text-text-secondary text-xs mt-3 leading-relaxed">This mirrors the solar system: Mercury (closest planet) rules signs adjacent to the luminaries. Saturn (farthest visible planet) rules the outermost signs. The ancients encoded the structure of the solar system into the zodiac.</p>
       </section>
+
+      <WhyItMatters locale={locale}>Sign lordship is THE foundation of Vedic prediction. To read any chart, you first find the lord of each house and analyze its condition. A strong lord means a strong house. A weak lord means that area of life struggles — regardless of what sits in the house.</WhyItMatters>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-purple-500/15">
         <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">Rahu &amp; Ketu — No Ownership, But Affinity</h4>

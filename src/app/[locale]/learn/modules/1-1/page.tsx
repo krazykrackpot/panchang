@@ -7,6 +7,9 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/1-1.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import WhyItMatters from '@/components/learn/WhyItMatters';
 
 const META: ModuleMeta = {
   id: 'mod_1_1',
@@ -28,6 +31,13 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'The ecliptic is the Sun\'s apparent path through the sky — it\'s the "stage" on which all Jyotish calculations happen.',
+          'All planets, signs, and nakshatras are measured along this single 360-degree circle.',
+        ]}
+        locale={locale}
+      />
       {/* 1. Conceptual Introduction */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>What Did Ancient Indians See?</h3>
@@ -43,6 +53,11 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed">
           But here's the critical observation that underpins ALL of Jyotish: these Grahas don't wander randomly across the entire sky. They are confined to a <span className="text-gold-light font-medium">narrow belt</span> — a highway approximately 16° wide. This belt is defined by the <span className="text-gold-light font-bold">ecliptic</span>, and understanding it is the absolute first step in learning Jyotish.
         </p>
+        <div className="flex flex-wrap gap-3 my-2">
+          <BeginnerNote term="Ecliptic" explanation="The Sun's apparent path across the sky over one year — a great circle tilted 23.5 degrees from the celestial equator. All planets stay within about 8 degrees of this line." />
+          <BeginnerNote term="Celestial sphere" explanation="An imaginary sphere surrounding Earth onto which all stars and planets appear projected — the 'dome' of the sky that ancient observers used as their coordinate system." />
+        </div>
+        <WhyItMatters locale={locale}>The ecliptic is the stage on which all planetary drama plays out. Every calculation in Jyotish — every sign, every nakshatra, every dasha — starts here.</WhyItMatters>
       </section>
 
       {/* 2. Classical Origin */}

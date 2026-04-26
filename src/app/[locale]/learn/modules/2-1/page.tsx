@@ -7,6 +7,9 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/2-1.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import WhyItMatters from '@/components/learn/WhyItMatters';
 
 const META: ModuleMeta = {
   id: 'mod_2_1',
@@ -26,6 +29,13 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'Each of the 9 grahas (planets) has a distinct nature — benefic or malefic — and governs specific life areas called karakatvas.',
+          'A planet\'s inherent nature never changes, but its effects vary based on where it sits in your chart.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>What Is a Graha? More Than Just a Planet</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
@@ -37,6 +47,12 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           There are <span className="text-gold-light font-bold">9 Grahas</span> in Jyotish — not 7, not 8, not 10. This number is not arbitrary: 27 nakshatras ÷ 9 grahas = 3 nakshatras per graha, forming the Vimshottari Dasha system. 9 × 9 = 81, the number of possible Mahadasha-Antardasha combinations. The entire predictive timing framework of Jyotish is built on this 9-fold structure.
         </p>
+        <div className="flex flex-wrap gap-3 my-2">
+          <BeginnerNote term="Navagraha" explanation="The nine cosmic influencers of Jyotish: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu (north lunar node), and Ketu (south lunar node)." />
+          <BeginnerNote term="Benefic / Malefic" explanation="Natural classification of planets. Benefics (Jupiter, Venus, waxing Moon) tend to support; malefics (Saturn, Mars, Sun, Rahu, Ketu) tend to challenge. Neither is 'good' or 'bad' — they describe the quality of energy." />
+          <BeginnerNote term="Karaka" explanation="A planet's natural signification — the life areas it inherently represents. E.g., Venus is the karaka of marriage; Jupiter is the karaka of wisdom and children." />
+        </div>
+        <WhyItMatters locale={locale}>The nine grahas are not just planets — they are the cosmic forces that the entire dasha and transit system is built on. Every prediction in Jyotish traces back to these nine.</WhyItMatters>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">

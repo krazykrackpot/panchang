@@ -7,6 +7,9 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/2-4.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import WhyItMatters from '@/components/learn/WhyItMatters';
 
 const META: ModuleMeta = {
   id: 'mod_2_4',
@@ -26,6 +29,13 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'Retrograde planets appear to move backward — they\'re not actually reversing, but the optical effect has real astrological significance.',
+          'Combustion happens when a planet gets too close to the Sun and loses its visibility (and strength), while planetary war occurs when two planets are within 1 degree.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Retrograde Motion (Vakri Gati) — The Great Illusion</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
@@ -34,6 +44,11 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           <span className="text-gold-light font-medium">The highway analogy:</span> Imagine you're driving on a highway and passing a slower car. As you pull alongside and overtake it, the slower car seems to move <em>backward</em> relative to the distant hills — even though it's still moving forward. This is exactly what happens when Earth overtakes Mars, Jupiter, or Saturn in their orbits.
         </p>
+        <div className="flex flex-wrap gap-3 my-2">
+          <BeginnerNote term="Retrograde (Vakri)" explanation="When a planet appears to move backward through the zodiac. It is an optical illusion caused by relative orbital speeds, but Jyotish gives it real interpretive weight." />
+          <BeginnerNote term="Combustion (Asta)" explanation="When a planet gets too close to the Sun and becomes invisible, losing strength. Each planet has a specific angular distance (orb) within which combustion applies." />
+          <BeginnerNote term="Graha Yuddha" explanation="Planetary war — when two true planets (Mars through Saturn) are within 1 degree of each other. The planet with higher celestial latitude wins." />
+        </div>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           For <span className="text-gold-light">inner planets</span> (Mercury, Venus), retrograde happens when THEY overtake Earth from our perspective — they swing between us and the Sun, appearing to reverse direction.
         </p>
@@ -76,6 +91,7 @@ function Page1() {
 
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The Retrograde Paradox in Jyotish</h3>
+        <WhyItMatters locale={locale}>Retrograde, combustion, and planetary war are real astronomical phenomena that modify a planet's ability to deliver results. Checking these conditions is essential before interpreting any chart placement.</WhyItMatters>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           Here's the beautiful paradox: a retrograde planet is <span className="text-gold-light font-bold">closer to Earth</span> (and therefore brighter) than when it's in direct motion. Jyotish recognizes this by giving retrograde planets extra <span className="text-gold-light">Cheshta Bala</span> (motional strength in Shadbala).
         </p>

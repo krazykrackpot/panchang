@@ -2,6 +2,8 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import WhyItMatters from '@/components/learn/WhyItMatters';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 import { lt } from '@/lib/learn/translations';
@@ -54,6 +56,7 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {t('jyotishHasThreeBranchesAnd', locale)}
         </p>
+        <BeginnerNote term="Jyotish" explanation="Literally 'science of light' — the Vedic system of astronomy and astrology, one of the six Vedangas (limbs of the Vedas)." />
         <ul className="text-text-secondary text-sm space-y-2 ml-4">
           <li>
             <span className="text-gold-light font-bold">{t('siddhanta', locale)}</span>{' '}
@@ -74,6 +77,11 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {t('hereSAMindBlowing', locale)}
         </p>
+        <div className="flex flex-wrap gap-3 mt-2">
+          <BeginnerNote term="Sidereal zodiac" explanation="A zodiac anchored to actual star positions, as opposed to the tropical zodiac which is tied to the seasons." />
+          <BeginnerNote term="Vedanga" explanation="One of six auxiliary disciplines attached to the Vedas — Jyotish is the 'eye' of the Vedas." />
+        </div>
+        <WhyItMatters locale={locale}>Jyotish is not fortune-telling — it is a mathematical framework built on real astronomy. Understanding this distinction is the foundation for everything that follows.</WhyItMatters>
       </section>
 
       {/* Classical Origin — Gold card */}

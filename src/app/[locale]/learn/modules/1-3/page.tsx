@@ -7,6 +7,9 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/1-3.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import WhyItMatters from '@/components/learn/WhyItMatters';
 
 const META: ModuleMeta = {
   id: 'mod_1_3',
@@ -26,6 +29,13 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'Stars are fixed reference points while planets move — the 27 nakshatras are named after fixed star groups that mark the Moon\'s nightly journey.',
+          'The sidereal zodiac used in Jyotish is anchored to these fixed stars, unlike the tropical zodiac used in Western astrology.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The Sky as a Stage — Two Types of Actors</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
@@ -37,6 +47,11 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           Jyotish is fundamentally about the <span className="text-gold-light font-bold">relationship between the moving actors and the fixed stage</span>. The Nakshatra system is how ancient Indians <em>labeled</em> the stage — dividing it into 27 marked sections so they could precisely describe where each actor was at any given moment.
         </p>
+        <div className="flex flex-wrap gap-3 my-2">
+          <BeginnerNote term="Nakshatra" explanation="A lunar mansion — one of 27 equal divisions of the ecliptic, each spanning 13 degrees 20 minutes. Named after prominent fixed star groups." />
+          <BeginnerNote term="Yogtara" explanation="The 'junction star' — the brightest or most prominent star that identifies each nakshatra. Example: Aldebaran is the yogtara of Rohini." />
+        </div>
+        <WhyItMatters locale={locale}>The fixed stars are the reference frame that makes the sidereal zodiac possible. Without them, there would be no way to anchor the zodiac to actual positions in the sky.</WhyItMatters>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">

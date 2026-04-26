@@ -7,6 +7,9 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/2-2.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import WhyItMatters from '@/components/learn/WhyItMatters';
 
 const META: ModuleMeta = {
   id: 'mod_2_2',
@@ -26,6 +29,13 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'Planets have natural friendships and enmities — Jupiter and Sun are friends, Saturn and Sun are enemies.',
+          'Temporary friendship (based on chart positions) can override natural relationships, turning an enemy into a friend for your specific chart.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Why Planets Have Relationships</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
@@ -34,6 +44,10 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           Jyotish defines <span className="text-gold-light font-bold">two types</span> of planetary relationships:
         </p>
+        <div className="flex flex-wrap gap-3 my-2">
+          <BeginnerNote term="Naisargika (Natural)" explanation="Permanent friendships and enmities between planets, derived from the moolatrikona sign. These never change regardless of the chart." />
+          <BeginnerNote term="Tatkalika (Temporary)" explanation="Chart-specific friendships based on where planets are placed relative to each other. Planets in houses 2-4 or 10-12 from each other become temporary friends." />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
             <div className="text-amber-400 font-bold text-sm mb-1">Naisargika (Natural/Permanent)</div>
@@ -95,6 +109,8 @@ function Page1() {
           <p className="text-text-tertiary text-xs mt-2">Note: Relationships are NOT always reciprocal. Sun considers Mercury neutral, but Mercury considers Sun a friend.</p>
         </div>
       </section>
+
+      <WhyItMatters locale={locale}>A planet's strength depends on whose sign it sits in. Knowing the friendship matrix tells you immediately whether a planet in your chart is comfortable or struggling — and why.</WhyItMatters>
     </div>
   );
 }

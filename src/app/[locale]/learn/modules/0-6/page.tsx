@@ -6,6 +6,9 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/0-6.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import WhyItMatters from '@/components/learn/WhyItMatters';
 
 const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -27,6 +30,13 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'Hindu festivals are not arbitrary dates — each one is timed to a specific astronomical event (full moon, solstice, planetary alignment).',
+          'Understanding the astronomy behind rituals connects ancient tradition with observable sky phenomena.',
+        ]}
+        locale={locale}
+      />
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <p className="text-text-secondary text-sm leading-relaxed">
           {t('hereSSomethingThatMight', locale)}
@@ -40,6 +50,10 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {t('everWonderedWhyFastSpecifically', locale)}
         </p>
+        <div className="flex flex-wrap gap-3 my-2">
+          <BeginnerNote term="Sankalpa" explanation="A spoken cosmic timestamp recited before every puja — it names the current year, month, tithi, nakshatra, and yoga to anchor the ritual in astronomical time." />
+          <BeginnerNote term="Muhurta" explanation="An auspicious time window selected using multiple Panchang factors — used for weddings, housewarming, business launches, and other important events." />
+        </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
@@ -50,6 +64,8 @@ function Page1() {
           {t('whenMoonSunElongationReaches', locale)}
         </p>
       </section>
+
+      <WhyItMatters locale={locale}>Every Hindu ritual — from daily puja to once-in-a-lifetime ceremonies — is timed to astronomical events. Understanding the link between ritual and sky lets you see that tradition is encoded astronomy.</WhyItMatters>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-purple-400/20 bg-gradient-to-br from-purple-900/10 to-transparent">
         <p className="text-text-secondary text-sm leading-relaxed">

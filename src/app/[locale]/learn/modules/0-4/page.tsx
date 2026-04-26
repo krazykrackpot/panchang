@@ -10,6 +10,8 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/0-4.json';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import WhyItMatters from '@/components/learn/WhyItMatters';
 const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
 const META: ModuleMeta = {
@@ -44,6 +46,11 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {t('openThePanchangPageOnOur', locale)}
         </p>
+        <div className="flex flex-wrap gap-3 my-2">
+          <BeginnerNote term="Vara" explanation="The weekday — each of the 7 days is ruled by a planet (e.g., Sunday = Sun, Monday = Moon)." />
+          <BeginnerNote term="Yoga (Panchang)" explanation="One of 27 luni-solar combinations formed by adding the Sun's and Moon's longitudes. Not the same as yogas in a birth chart." />
+          <BeginnerNote term="Karana" explanation="Half a tithi — there are 11 types that cycle through the lunar month, used for muhurta timing." />
+        </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
@@ -78,6 +85,8 @@ function Page1() {
           {t('heresAMindblowingConnectionTheEnglish', locale)}
         </p>
       </section>
+
+      <WhyItMatters locale={locale}>The Panchang is not a relic — it is a daily cosmic weather report. Learning to read its five elements lets you understand why certain days feel auspicious or challenging.</WhyItMatters>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">

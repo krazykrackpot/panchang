@@ -7,6 +7,9 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/2-3.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import WhyItMatters from '@/components/learn/WhyItMatters';
 
 const META: ModuleMeta = {
   id: 'mod_2_3',
@@ -26,11 +29,23 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'A planet in exaltation is at peak strength; in debilitation it struggles — but Neecha Bhanga (cancellation of debilitation) can reverse weakness into hidden strength.',
+          'The 7-level dignity hierarchy determines how effectively a planet can deliver its results.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The 7-Level Dignity Hierarchy</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           A planet's <span className="text-gold-light font-bold">dignity</span> (गरिमा) describes how strong or weak it is based on the sign it occupies. Parashara uses a powerful metaphor in BPHS: <em>"A king in his own kingdom commands respect; a king in exile is powerless."</em> A planet in its exaltation sign is like a king on his throne. The same planet in its debilitation sign is like a king imprisoned in enemy territory.
         </p>
+        <div className="flex flex-wrap gap-3 my-2">
+          <BeginnerNote term="Exaltation (Uchcha)" explanation="The sign where a planet is at peak strength. Each planet has one exaltation sign and one specific degree of maximum power within it." />
+          <BeginnerNote term="Debilitation (Neecha)" explanation="The sign where a planet is at its weakest — always exactly 180 degrees opposite its exaltation sign." />
+          <BeginnerNote term="Moolatrikona" explanation="A specific degree range within one of a planet's own signs where it functions at near-peak efficiency — stronger than own sign but just below exaltation." />
+        </div>
 
         {/* Dignity Tower */}
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 mb-4">
@@ -99,6 +114,8 @@ function Page1() {
           <p className="text-text-tertiary text-xs mt-2">Note: Mercury is unique — exalted in its OWN sign (Virgo). Moolatrikona range is the narrow 16°-20° zone within Virgo.</p>
         </div>
       </section>
+
+      <WhyItMatters locale={locale}>The dignity hierarchy is the single most important factor in determining how well a planet delivers its promises. An exalted planet gives abundant results; a debilitated one struggles — unless cancellation (Neecha Bhanga) transforms weakness into strength.</WhyItMatters>
     </div>
   );
 }

@@ -9,6 +9,8 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/0-5.json';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import WhyItMatters from '@/components/learn/WhyItMatters';
 const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
 const META: ModuleMeta = {
@@ -58,7 +60,14 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {t('theLagnaWhichSignWasRising', locale)}
         </p>
+        <div className="flex flex-wrap gap-3 my-2">
+          <BeginnerNote term="Kundali" explanation="A Vedic birth chart — a map of the sky at the exact moment and place of birth, showing all 9 planets across 12 houses." />
+          <BeginnerNote term="Bhava" explanation="A house in the chart — one of 12 sectors, each governing a specific area of life (e.g., 7th house = marriage)." />
+          <BeginnerNote term="Graha" explanation="Literally 'that which seizes' — the 9 Vedic planets including Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, and Ketu." />
+        </div>
       </section>
+
+      <WhyItMatters locale={locale}>A Kundali is your cosmic fingerprint. Every prediction in Vedic astrology — from career timing to relationship compatibility — starts from this one chart.</WhyItMatters>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">

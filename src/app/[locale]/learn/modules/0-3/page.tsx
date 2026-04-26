@@ -7,6 +7,9 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/0-3.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import WhyItMatters from '@/components/learn/WhyItMatters';
 
 const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -30,6 +33,13 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'Your Vedic "sign" is based on the Moon, not the Sun — so your Vedic sign is almost certainly different from your Western one.',
+          'Your nakshatra (birth star) is even more specific than your sign, and drives compatibility matching and dasha timing.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {t('whatSYourSignThe', locale)}
@@ -43,6 +53,11 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {t('twoBigDifferencesAreAt', locale)}
         </p>
+        <div className="flex flex-wrap gap-3 my-2">
+          <BeginnerNote term="Rashi" explanation="A zodiac sign — one of 12 equal 30-degree divisions of the ecliptic, each ruled by a specific planet." />
+          <BeginnerNote term="Lagna" explanation="The Ascendant — the zodiac sign rising on the eastern horizon at the moment of birth. It defines the 1st house." />
+          <BeginnerNote term="Ayanamsha" explanation="The angular difference (~24 degrees) between the sidereal and tropical zodiacs, caused by the precession of the equinoxes." />
+        </div>
 
         <div className="grid gap-3 mb-4">
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4">
@@ -62,6 +77,7 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {t('whyDoesVedicUseThe', locale)}
         </p>
+        <WhyItMatters locale={locale}>Your Moon sign in Vedic astrology is often different from your Western Sun sign. This one shift changes most of your Jyotish reading.</WhyItMatters>
       </section>
 
       {/* Classical Origin — Gold card */}

@@ -6,6 +6,9 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/3-2.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import WhyItMatters from '@/components/learn/WhyItMatters';
 
 const META: ModuleMeta = {
   id: 'mod_3_2',
@@ -25,9 +28,21 @@ function Page1() {
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
+      <KeyTakeaway
+        points={[
+          'Signs are classified as Movable (Chara), Fixed (Sthira), or Dual (Dwiswabhava) — this quality shapes how the sign expresses energy.',
+          'Combining modality (movable/fixed/dual) with element (fire/earth/air/water) creates 12 unique personality-energy patterns.',
+        ]}
+        locale={locale}
+      />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Three Qualities (Gunas): How Signs Act</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">Every sign has a fundamental quality that determines HOW it operates. Quality is the engine of behavior — it tells you whether a sign initiates, sustains, or adapts. Understanding quality is essential for both personality reading and muhurta (timing) work.</p>
+        <div className="flex flex-wrap gap-3 my-2">
+          <BeginnerNote term="Tattva (Element)" explanation="One of four fundamental energies — Fire (Agni), Earth (Prithvi), Air (Vayu), or Water (Jala) — that defines what kind of energy a sign carries." />
+          <BeginnerNote term="Guna (Quality)" explanation="A sign's mode of action — Chara (movable/cardinal) initiates, Sthira (fixed) sustains, Dwiswabhava (dual/mutable) adapts." />
+          <BeginnerNote term="Chara / Sthira / Dwiswabhava" explanation="The three modalities: Chara signs (Aries, Cancer, Libra, Capricorn) start things; Sthira signs (Taurus, Leo, Scorpio, Aquarius) hold things; Dwiswabhava signs (Gemini, Virgo, Sagittarius, Pisces) change things." />
+        </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
@@ -68,6 +83,8 @@ function Page1() {
           <span className="text-amber-400 text-xs font-bold">PERSONALITY:</span> People with many Dual sign planets are adaptable, versatile, and multitalented. Their weakness: indecisiveness, scattered energy, lack of focus.
         </p>
       </section>
+
+      <WhyItMatters locale={locale}>The modality-element combination is not just theory — it directly affects muhurta selection. Starting a business under a movable sign, laying a foundation under a fixed sign, or beginning studies under a dual sign can make a real difference in outcome.</WhyItMatters>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15 mt-4">
         <h4 className="text-amber-300 text-xs uppercase tracking-widest font-bold mb-3">Quality and Activity Timing</h4>

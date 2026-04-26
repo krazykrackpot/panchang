@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
-import { BookOpen, ChevronRight, ChevronDown, Clock, Star, CheckCircle, Sparkles, Library, ArrowRight, Flame } from 'lucide-react';
+import { BookOpen, ChevronRight, ChevronDown, Clock, Star, CheckCircle, Sparkles, Library, ArrowRight, Flame, GraduationCap } from 'lucide-react';
 import { ShareRow } from '@/components/ui/ShareButton';
 import AdUnit from '@/components/ads/AdUnit';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -167,6 +167,25 @@ export default function LearnPage() {
           </div>
         </div>
       </motion.div>
+
+      {/* ── My Dashboard CTA ── */}
+      {hydrated && Object.keys(useLearningProgressStore.getState().progress).length > 0 && (
+        <Link
+          href="/learn/dashboard"
+          className="flex items-center justify-between gap-4 mb-8 px-6 py-4 rounded-2xl bg-gradient-to-r from-violet-500/10 via-transparent to-transparent border border-violet-500/20 hover:border-violet-500/40 transition-all group"
+        >
+          <div className="flex items-center gap-3">
+            <GraduationCap className="w-5 h-5 text-violet-400" />
+            <span className="text-text-primary font-medium" style={bf}>
+              {locale === 'hi' ? 'मेरा सीखने का डैशबोर्ड — प्रगति, स्ट्रीक, बैज' :
+               locale === 'ta' ? 'என் கற்றல் டாஷ்போர்ட் — முன்னேற்றம், தொடர், பதக்கங்கள்' :
+               locale === 'bn' ? 'আমার শেখার ড্যাশবোর্ড — অগ্রগতি, ধারাবাহিকতা, ব্যাজ' :
+               'My Learning Dashboard — progress, streak, badges'}
+            </span>
+          </div>
+          <ArrowRight className="w-5 h-5 text-violet-400 group-hover:translate-x-1 transition-transform" />
+        </Link>
+      )}
 
       <AdUnit placement="leaderboard" className="max-w-4xl mx-auto" />
 

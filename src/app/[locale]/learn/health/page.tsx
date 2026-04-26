@@ -6,6 +6,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Activity, ChevronDown, Heart, Hospital, ShieldAlert, Stethoscope, Thermometer, Leaf } from 'lucide-react';
 import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import WhyItMatters from '@/components/learn/WhyItMatters';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import ClassicalReference from '@/components/learn/ClassicalReference';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/health.json';
@@ -182,6 +186,18 @@ export default function HealthAstrologyPage() {
         <p className="text-text-secondary text-sm leading-relaxed max-w-2xl mx-auto">{t('subtitle', locale)}</p>
       </motion.div>
 
+      <KeyTakeaway locale={locale} points={[
+        'Each zodiac sign governs a specific body region (Aries = head, Pisces = feet), forming the Kala Purusha (Cosmic Person) map.',
+        'The 6th house (disease), 8th house (chronic illness/surgery), and 1st house (vitality) are the primary health indicators in a chart.',
+        'Planetary transits over natal health indicators, combined with Dasha periods, help identify vulnerable health windows.',
+      ]} />
+
+      <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
+        <BeginnerNote term="Kala Purusha" explanation="The Cosmic Person -- the Vedic mapping of the 12 zodiac signs to body parts, from Aries (head) to Pisces (feet)" />
+        <BeginnerNote term="Maraka" explanation="A death-inflicting planet -- lords of the 2nd and 7th houses that can trigger health crises during their Dasha periods" />
+        <BeginnerNote term="Vata/Pitta/Kapha" explanation="The three Ayurvedic doshas (body constitutions) that correspond to Air, Fire, and Water signs in the chart" />
+      </div>
+
       {/* SVG Body Map */}
       <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }}
         className="mb-12">
@@ -192,6 +208,12 @@ export default function HealthAstrologyPage() {
           </p>
         </div>
       </motion.div>
+
+      <WhyItMatters locale={locale}>
+        Medical astrology identifies constitutional vulnerabilities and timing windows -- not diagnoses. A chart showing Mars afflicting the 6th house does not mean the person will get a specific disease; it indicates a predisposition toward inflammatory conditions that can be managed with awareness. Always consult qualified medical professionals for health decisions.
+      </WhyItMatters>
+
+      <ClassicalReference shortName="CS" chapter="Sutra Sthana" topic="Ayurvedic constitution types (Vata, Pitta, Kapha) that map to astrological elements" />
 
       {/* Section 1: Medical Astrology Basics */}
       <LessonSection number={1} title={t('sec1Title', locale)} variant="highlight">

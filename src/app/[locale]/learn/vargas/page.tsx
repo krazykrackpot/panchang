@@ -8,6 +8,10 @@ import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import WhyItMatters from '@/components/learn/WhyItMatters';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import ClassicalReference from '@/components/learn/ClassicalReference';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LT from '@/messages/learn/vargas.json';
@@ -459,6 +463,19 @@ export default function LearnVargasPage() {
         <SanskritTermCard term="Vargottama" devanagari="वर्गोत्तम" transliteration="Vargottama" meaning="Same sign in D1 & D9" />
       </div>
 
+      <KeyTakeaway locale={locale} points={[
+        'Divisional charts (Vargas) subdivide each 30-degree sign into smaller arcs, revealing karmic detail invisible in the birth chart (D1) alone.',
+        'The Navamsha (D9) is the most important varga -- no prediction should be made from D1 without checking D9 for true planet strength and marriage indications.',
+        'Vimshopak Bala scores a planet across all 16 vargas to give a single composite strength number (max 20 points).',
+      ]} />
+
+      <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
+        <BeginnerNote term="Varga" explanation="A divisional chart created by subdividing each zodiac sign into smaller equal parts and mapping them to signs using classical rules" />
+        <BeginnerNote term="Navamsha (D9)" explanation="The 9-fold division of each sign (3 degrees 20 minutes each), revealing marriage, dharma, and true planetary strength" />
+        <BeginnerNote term="Vargottama" explanation="When a planet occupies the same sign in both the Rashi (D1) and Navamsha (D9) charts, gaining exceptional strength" />
+        <BeginnerNote term="Vimshopak Bala" explanation="A 20-point scoring system that weights a planet's dignity across all 16 Shodasvarga charts" />
+      </div>
+
       {/* ─── OVERVIEW ─── */}
       <LessonSection title={t('overviewTitle')}>
         <p>{t('overviewText')}</p>
@@ -683,6 +700,12 @@ export default function LearnVargasPage() {
           </div>
         </div>
       </LessonSection>
+
+      <WhyItMatters locale={locale}>
+        A planet exalted in D1 but debilitated in D9 will disappoint -- its promise is hollow. Conversely, a planet weak in D1 but strong across multiple vargas can deliver surprisingly good results. This is why experienced astrologers never predict from D1 alone; the vargas reveal the hidden truth beneath surface-level placements.
+      </WhyItMatters>
+
+      <ClassicalReference shortName="BPHS" chapter="Ch. 6-7" topic="Complete rules for computing all 16 Shodasvarga charts and the Vimshopak Bala scoring system" />
 
       {/* ─── VIMSHOPAK BALA ─── */}
       <LessonSection number={5} title={t('vimshopakTitle')}>

@@ -9,6 +9,10 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LJ from '@/messages/learn/lagna.json';
 import { getHeadingFont, getBodyFont, isIndicLocale } from '@/lib/utils/locale-fonts';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import WhyItMatters from '@/components/learn/WhyItMatters';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import ClassicalReference from '@/components/learn/ClassicalReference';
 
 const t_ = LJ as unknown as Record<string, LocaleText>;
 
@@ -91,6 +95,18 @@ export default function LagnaPage() {
         <SanskritTermCard term="लग्नम्" transliteration="Lagnam" meaning={t('sanskritMeaning')} />
       </motion.div>
 
+      <KeyTakeaway locale={locale} points={[
+        'Lagna (Ascendant) is the zodiac sign rising on the eastern horizon at the exact moment of birth -- it sets the entire house structure of your chart.',
+        'Even a 4-minute difference in birth time can shift the Lagna, which changes house lordships and all predictions.',
+        'Beyond the main Lagna, special lagnas (Chandra Lagna, Hora Lagna, Arudha Lagna) reveal emotional, financial, and public-image dimensions.',
+      ]} />
+
+      <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
+        <BeginnerNote term="Lagna" explanation="The Ascendant -- the zodiac sign and degree rising on the eastern horizon at the moment of birth" />
+        <BeginnerNote term="Sidereal Time" explanation="Time measured by Earth's rotation relative to the stars (not the Sun), used to calculate which sign is rising" />
+        <BeginnerNote term="Ayanamsha" explanation="The angular difference between the tropical (Western) and sidereal (Vedic) zodiacs, subtracted to get the Vedic Lagna" />
+      </div>
+
       {/* What is Lagna */}
       <LessonSection title={t('whatTitle')}>
         <p className="text-text-secondary leading-relaxed" style={bodyFont}>{t('whatContent')}</p>
@@ -100,6 +116,12 @@ export default function LagnaPage() {
       <LessonSection title={t('whyTitle')}>
         <p className="text-text-secondary leading-relaxed" style={bodyFont}>{t('whyContent')}</p>
       </LessonSection>
+
+      <WhyItMatters locale={locale}>
+        The Lagna is not just one of twelve data points in a chart -- it IS the chart. It determines which planets are benefic or malefic for you personally (functional nature), which houses they rule, and therefore what results they will deliver. Two people born minutes apart with different Lagnas will have fundamentally different life trajectories.
+      </WhyItMatters>
+
+      <ClassicalReference shortName="BPHS" chapter="Ch. 3-5" topic="Lagna calculation method, rising times of signs, and the supreme importance of the Ascendant" />
 
       {/* How Lagna is Calculated */}
       <LessonSection title={t('calcTitle')}>

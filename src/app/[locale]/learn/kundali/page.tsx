@@ -14,6 +14,10 @@ import ExampleKundaliChart from '@/components/learn/ExampleKundaliChart';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import WhyItMatters from '@/components/learn/WhyItMatters';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import ClassicalReference from '@/components/learn/ClassicalReference';
 
 /* ─── Data for Steps ─── */
 
@@ -88,10 +92,28 @@ export default function LearnKundaliPage() {
         <SanskritTermCard term="Bhava" devanagari="भाव" transliteration="Bhāva" meaning="House (life area)" />
       </div>
 
+      <KeyTakeaway locale={locale} points={[
+        'A Kundali is a snapshot of the sky at your exact birth moment -- it requires precise date, time, and place to compute.',
+        'The 10-step construction process converts clock time to planetary positions, then maps those planets into 12 houses starting from your Lagna.',
+        'Planet dignity (own sign, exaltation, debilitation, friend/enemy sign) determines how well each planet can deliver its promises.',
+      ]} />
+
+      <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
+        <BeginnerNote term="Kundali" explanation="A Vedic birth chart that maps the positions of 9 planets across 12 houses at the exact moment and place of birth" />
+        <BeginnerNote term="Bhava (House)" explanation="One of 12 sectors of the chart, each governing a specific life area -- from self (1st) to liberation (12th)" />
+        <BeginnerNote term="Planetary Dignity" explanation="A planet's strength based on its sign placement -- exalted (strongest), own sign, friendly, neutral, enemy, or debilitated (weakest)" />
+      </div>
+
       {/* ─── Overview ─── */}
       <LessonSection title={t('overviewTitle')}>
         <p>{t('overviewText')}</p>
       </LessonSection>
+
+      <WhyItMatters locale={locale}>
+        Accuracy of the birth time is paramount -- even a 2-minute error can shift the Lagna by half a degree, and a 4-minute error can change the rising sign entirely. This is why birth time rectification is a critical skill, and why hospital-recorded times are preferred over estimated ones.
+      </WhyItMatters>
+
+      <ClassicalReference shortName="BPHS" chapter="Ch. 1-5" topic="The foundational methodology for constructing a birth chart from astronomical data" />
 
       {/* ─── Example Introduction ─── */}
       <LessonSection title={t('exampleTitle')} variant="highlight">

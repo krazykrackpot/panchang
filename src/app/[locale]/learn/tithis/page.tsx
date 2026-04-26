@@ -7,6 +7,10 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import WhyItMatters from '@/components/learn/WhyItMatters';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import ClassicalReference from '@/components/learn/ClassicalReference';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/tithis.json';
 
@@ -142,6 +146,19 @@ export default function LearnTithisPage() {
         </p>
       </div>
 
+      {/* Key Takeaway */}
+      <KeyTakeaway locale={locale} points={[
+        'A Tithi is one of 30 lunar days defined by each 12-degree increment of the Moon-Sun angular distance.',
+        'Tithis fall into 5 categories (Nanda, Bhadra, Jaya, Rikta, Purna) that determine their inherent auspiciousness.',
+        'The same tithi in Shukla Paksha (waxing) and Krishna Paksha (waning) carries different energy and ritual significance.',
+      ]} />
+
+      <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
+        <BeginnerNote term="Tithi" explanation="A lunar day -- the time it takes for the Moon to gain 12 degrees over the Sun, forming the basis of the Hindu calendar" />
+        <BeginnerNote term="Paksha" explanation="A lunar fortnight -- Shukla Paksha (waxing, bright half) runs from Amavasya to Purnima; Krishna Paksha (waning, dark half) from Purnima to Amavasya" />
+        <BeginnerNote term="Kshaya Tithi" explanation="A 'lost' tithi that begins and ends within the same sunrise-to-sunrise day, considered inauspicious for most activities" />
+      </div>
+
       {/* 1. What Is a Tithi? */}
       <motion.section
         initial={{ opacity: 0, y: 20 }}
@@ -214,6 +231,12 @@ export default function LearnTithisPage() {
           </div>
         </div>
       </motion.section>
+
+      <WhyItMatters locale={locale}>
+        Tithis are the foundation of the Hindu calendar and determine the timing of every festival, vrat (fast), and sacred ritual. Choosing the right tithi for an activity (muhurta) is considered more important than choosing the right weekday. A ceremony performed on an inauspicious Rikta tithi can be undermined regardless of other favourable factors.
+      </WhyItMatters>
+
+      <ClassicalReference shortName="SS" chapter="Ch. 12" topic="Astronomical basis for tithi calculation from Sun-Moon elongation" />
 
       {/* 3. The 30 Tithis: Shukla & Krishna */}
       <motion.section

@@ -7,6 +7,10 @@ import LessonSection from '@/components/learn/LessonSection';
 import { YOGAS } from '@/lib/constants/yogas';
 import { Link } from '@/lib/i18n/navigation';
 import { ChevronDown, ChevronRight, Crown, Coins, Star, AlertTriangle, Sparkles } from 'lucide-react';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import WhyItMatters from '@/components/learn/WhyItMatters';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import ClassicalReference from '@/components/learn/ClassicalReference';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
@@ -197,6 +201,18 @@ export default function LearnYogasPage() {
         <p className="text-text-secondary">{t('yogasSubtitle')}</p>
       </div>
 
+      <KeyTakeaway locale={locale} points={[
+        'Yogas are special planetary combinations that amplify or redirect the results of a chart beyond what individual planets indicate.',
+        'Panchang yogas (27 daily yogas from Sun+Moon) differ from Kundali yogas (chart-specific combinations like Raja Yoga, Gajakesari).',
+        'A yoga\'s strength depends on the dignity and house placement of the participating planets -- not just whether the combination exists.',
+      ]} />
+
+      <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
+        <BeginnerNote term="Yoga" explanation="A specific planetary combination or configuration that produces distinctive results -- literally means 'union' or 'combination'" />
+        <BeginnerNote term="Raja Yoga" explanation="A kingly combination formed when lords of Kendra (1,4,7,10) and Trikona (1,5,9) houses connect, promising power and status" />
+        <BeginnerNote term="Kendra" explanation="The four angular houses (1st, 4th, 7th, 10th) -- the pillars of a chart, representing self, home, partnership, and career" />
+      </div>
+
       <LessonSection title={t('whatIsIt')}>
         <p>{t('yogasWhat')}</p>
       </LessonSection>
@@ -209,6 +225,12 @@ export default function LearnYogasPage() {
           <p className="text-gold-light/60 font-mono text-xs mt-1">27 Yogas × 13°20&apos; = 360°</p>
         </div>
       </LessonSection>
+
+      <WhyItMatters locale={locale}>
+        The 27 Panchang yogas affect everyone on a given day (they come from the Sun-Moon sum), while Kundali yogas are unique to your birth chart. Checking both layers gives a complete picture -- a powerful Raja Yoga in your chart may still underperform during an inauspicious daily yoga period.
+      </WhyItMatters>
+
+      <ClassicalReference shortName="BPHS" chapter="Ch. 34" topic="Comprehensive definitions of Mahapurusha, Raja, Dhana, and Chandra yogas" />
 
       <LessonSection title={t('completeList')}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">

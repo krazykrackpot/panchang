@@ -6,6 +6,10 @@ import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, ChevronDown, Gem, Music, Heart, Flame, AlertTriangle, CheckCircle } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import WhyItMatters from '@/components/learn/WhyItMatters';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import ClassicalReference from '@/components/learn/ClassicalReference';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LJ from '@/messages/learn/doshas.json';
@@ -93,6 +97,13 @@ export default function DoshasPage() {
         </p>
       </div>
 
+      {/* Key Takeaway */}
+      <KeyTakeaway locale={locale} points={[
+        'Doshas are not curses — they are karmic indicators showing areas of life that need awareness and remedial action.',
+        'Every dosha has cancellation conditions (Dosha Bhanga) that can neutralise or reduce its effects.',
+        'Remedies range from mantras and charity (safest) to gemstones (amplify energy — use with caution).',
+      ]} />
+
       {/* What is a Dosha */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-gold-gradient text-xl font-bold mb-3" style={headingFont}>
@@ -121,6 +132,21 @@ export default function DoshasPage() {
           {t('principleContent2')}
         </p>
       </div>
+
+      {/* Why It Matters */}
+      <WhyItMatters locale={locale}>
+        Understanding doshas prevents both overreaction (panic upon hearing &quot;Manglik&quot;) and dismissal. A dosha is a signal to pay attention to a specific life area, not a life sentence. Cancellation conditions exist for every dosha, and remedies can significantly reduce their impact.
+      </WhyItMatters>
+
+      {/* Beginner Terms */}
+      <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
+        <BeginnerNote term="Dosha" explanation="A planetary affliction or challenging combination in a birth chart that indicates karmic obstacles in specific life areas" />
+        <BeginnerNote term="Dosha Bhanga" explanation="Cancellation of a dosha through specific planetary conditions like benefic aspects, own-sign placement, or exaltation" />
+        <BeginnerNote term="Manglik" explanation="A person with Mars (Mangal) placed in houses 1, 2, 4, 7, 8, or 12 from Lagna, Moon, or Venus" />
+        <BeginnerNote term="Shanti Puja" explanation="A pacification ritual performed to reduce the negative effects of a specific planet or dosha" />
+      </div>
+
+      <ClassicalReference shortName="BPHS" chapter="Ch. 35" topic="Primary source for dosha definitions, formation rules, and cancellation conditions" />
 
       {/* Severity legend */}
       <div className="flex gap-4 text-xs">

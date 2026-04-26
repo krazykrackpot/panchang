@@ -8,6 +8,10 @@ import { KARANAS } from '@/lib/constants/karanas';
 import { Link } from '@/lib/i18n/navigation';
 import { ChevronDown } from 'lucide-react';
 import { lt } from '@/lib/learn/translations';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import WhyItMatters from '@/components/learn/WhyItMatters';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import ClassicalReference from '@/components/learn/ClassicalReference';
 import type { LocaleText } from '@/lib/learn/translations';
 import LJ from '@/messages/learn/karanas.json';
 import { getHeadingFont, getBodyFont, isIndicLocale } from '@/lib/utils/locale-fonts';
@@ -147,6 +151,20 @@ export default function LearnKaranasPage() {
         <p className="text-text-secondary">{t('subtitle')}</p>
       </div>
 
+      {/* Key Takeaway */}
+      <KeyTakeaway locale={locale} points={[
+        'A Karana is half a Tithi (6 degrees of Moon-Sun elongation), giving 60 Karanas per lunar month.',
+        '7 Chara (movable) Karanas cycle 8 times through the month, plus 4 Sthira (fixed) Karanas appear once each.',
+        'Vishti (Bhadra) Karana is the only universally inauspicious Karana -- avoid starting important work during it.',
+      ]} />
+
+      <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
+        <BeginnerNote term="Karana" explanation="Half of a Tithi -- each tithi has two karanas, making 60 karanas in a complete lunar month" />
+        <BeginnerNote term="Chara Karana" explanation="The 7 movable karanas (Bava through Vishti) that repeat cyclically through the month" />
+        <BeginnerNote term="Sthira Karana" explanation="The 4 fixed karanas (Shakuni, Chatushpada, Naga, Kimstughna) that appear only once per month at fixed positions" />
+        <BeginnerNote term="Vishti (Bhadra)" explanation="The inauspicious 7th chara karana, ruled by Yama -- avoid all auspicious activities during this period" />
+      </div>
+
       {/* ─── Section 1: What is a Karana? ─── */}
       <LessonSection number={1} title={t('whatIs')}>
         <p>{t('whatIsBody')}</p>
@@ -219,6 +237,12 @@ export default function LearnKaranasPage() {
           </div>
         </div>
       </LessonSection>
+
+      <WhyItMatters locale={locale}>
+        Karanas are the finest time-division in the Panchang and are especially important for muhurta (electional astrology). While a tithi may be auspicious, if the current karana is Vishti (Bhadra), the activity should still be postponed. Experienced astrologers always check the karana before finalising any muhurta.
+      </WhyItMatters>
+
+      <ClassicalReference shortName="BPHS" chapter="Ch. 3" topic="Classification of 11 karanas and their assignment across the lunar month" />
 
       {/* ─── Section 4: Deity & Nature (expandable cards) ─── */}
       <LessonSection number={4} title={t('deityTitle')}>

@@ -8,6 +8,10 @@ import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
 import { Link } from '@/lib/i18n/navigation';
 import { ChevronDown } from 'lucide-react';
 import { lt } from '@/lib/learn/translations';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import WhyItMatters from '@/components/learn/WhyItMatters';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import ClassicalReference from '@/components/learn/ClassicalReference';
 import type { LocaleText } from '@/lib/learn/translations';
 import LJ from '@/messages/learn/muhurtas.json';
 import { getHeadingFont, getBodyFont, isIndicLocale } from '@/lib/utils/locale-fonts';
@@ -42,6 +46,19 @@ export default function LearnMuhurtasPage() {
           {t('title')}
         </h2>
         <p className="text-text-secondary">{t('subtitle')}</p>
+      </div>
+
+      <KeyTakeaway locale={locale} points={[
+        'A Muhurta is 1/30th of a day -- 15 daytime muhurtas (sunrise to sunset) and 15 nighttime muhurtas (sunset to next sunrise).',
+        'Abhijit Muhurta (around local noon) is universally auspicious and overrides most negative factors.',
+        'Rahu Kaal, Yamaganda, and Gulika are inauspicious sub-periods that shift daily based on the weekday.',
+      ]} />
+
+      <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
+        <BeginnerNote term="Muhurta" explanation="A Vedic time unit equal to 1/30th of a day (roughly 48 minutes at equinox), used to identify auspicious and inauspicious windows" />
+        <BeginnerNote term="Abhijit Muhurta" explanation="The supremely auspicious muhurta centered around local solar noon -- Vishnu's own muhurta, good for any activity" />
+        <BeginnerNote term="Rahu Kaal" explanation="An inauspicious 90-minute window each day ruled by Rahu -- avoid starting new ventures during this period" />
+        <BeginnerNote term="Choghadiya" explanation="A popular Gujarati system dividing the day into 8 periods (each ~1.5 hours) named for their ruling planet and quality" />
       </div>
 
       <LessonSection title={t('whatIsIt')}>
@@ -103,6 +120,12 @@ export default function LearnMuhurtasPage() {
       </LessonSection>
 
       {/* Rahu Kaal, Yamaganda, Gulika */}
+      <WhyItMatters locale={locale}>
+        Muhurta selection (electional astrology) is the practical, everyday application of Jyotish. While you cannot change your birth chart, you can choose when to start important activities. Even a simple awareness of Rahu Kaal and Abhijit Muhurta helps avoid inauspicious starts and leverage auspicious windows.
+      </WhyItMatters>
+
+      <ClassicalReference shortName="MC" chapter="Ch. 1-3" topic="Classical rules for muhurta selection, Abhijit Muhurta computation, and Rahu Kaal avoidance" />
+
       <LessonSection title={t('rahuKaalTitle')}>
         <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
           {t('rahuKaalContent')}

@@ -9,6 +9,10 @@ import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import WhyItMatters from '@/components/learn/WhyItMatters';
+import BeginnerNote from '@/components/learn/BeginnerNote';
+import ClassicalReference from '@/components/learn/ClassicalReference';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 const KUTAS = [
@@ -137,6 +141,18 @@ export default function LearnMatchingPage() {
         <SanskritTermCard term="Mangalik" devanagari="मांगलिक" transliteration="Māṅgalika" meaning="Mars affliction" />
       </div>
 
+      <KeyTakeaway locale={locale} points={[
+        'Ashta Kuta matching scores compatibility across 8 factors (max 36 points) using only the Moon Nakshatra of both partners.',
+        'Nadi Kuta (8 points) and Bhakoot Kuta (7 points) together account for nearly half the total score -- their doshas are the most critical.',
+        'A high Guna score is necessary but not sufficient -- Dasha compatibility, 7th house analysis, and Navamsha (D9) must also be checked.',
+      ]} />
+
+      <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
+        <BeginnerNote term="Ashta Kuta" explanation="The system of 8 compatibility factors (Kutas) scored from Moon Nakshatras, totalling a maximum of 36 Gunas (points)" />
+        <BeginnerNote term="Nadi Dosha" explanation="When both partners share the same Nadi (Ayurvedic constitution type), scoring 0/8 -- the most severe compatibility defect" />
+        <BeginnerNote term="Bhakoot Dosha" explanation="When Moon signs fall in 2/12, 5/9, or 6/8 positions, indicating financial strain, progeny issues, or health/separation risks" />
+      </div>
+
       {/* Section 1: Overview */}
       <LessonSection number={1} title={t('whatTitle')}>
         <p>{t('whatContent')}</p>
@@ -191,6 +207,12 @@ export default function LearnMatchingPage() {
           ))}
         </div>
       </LessonSection>
+
+      <WhyItMatters locale={locale}>
+        Ashta Kuta uses only the Moon Nakshatra and does not consider Lagna, planet placements, Dashas, or Navamsha. Many successful marriages have low Guna scores, and some high-scoring matches face challenges. Use the score as one input, not a verdict -- a comprehensive assessment should always include the full chart of both partners.
+      </WhyItMatters>
+
+      <ClassicalReference shortName="BPHS" chapter="Ch. 78-80" topic="Ashta Kuta system, Nadi/Bhakoot dosha definitions, and cancellation conditions for matching" />
 
       {/* Section 3: Calculation */}
       <LessonSection number={3} title={t('calcTitle')}>

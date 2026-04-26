@@ -162,6 +162,7 @@ const routes = [
   '/kaal-sarp',
   '/pitra-dosha',
   '/sarvatobhadra',
+  '/dinacharya',
   '/sky',
   '/matching/report',
   // Date listing pages

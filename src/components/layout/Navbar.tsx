@@ -155,6 +155,7 @@ export default function Navbar() {
         { href: '/rahu-kaal', label: locale === 'sa' ? 'राहुकालः' : msg('rahuKaal', locale) },
         { href: '/choghadiya', label: msg('choghadiya', locale) },
         { href: '/hora', label: locale === 'sa' ? 'होराः' : locale === 'hi' ? 'होरा' : 'Hora' },
+        { href: '/dinacharya', label: locale === 'hi' ? 'दिनचर्या' : 'Dinacharya' },
         { href: '/sarvatobhadra', label: locale === 'sa' ? 'सर्वतोभद्रचक्रम्' : locale === 'hi' ? 'सर्वतोभद्र चक्र' : 'Sarvatobhadra' },
         { href: '/sky', label: t('liveSky') },
       ],

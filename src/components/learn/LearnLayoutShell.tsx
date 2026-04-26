@@ -8,7 +8,7 @@ export default function LearnLayoutShell({ children }: { children: React.ReactNo
   return (
     <div className="flex min-h-[calc(100vh-80px)]">
       {/* Desktop sidebar — hidden on mobile */}
-      <div className="hidden lg:block sticky top-20 h-[calc(100vh-80px)] overflow-hidden">
+      <div className="hidden lg:block sticky top-20 h-[calc(100vh-80px)] overflow-y-auto scrollbar-hide">
         <LearnSidebar />
       </div>
 

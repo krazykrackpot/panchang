@@ -84,7 +84,7 @@ function Page3() {
           Accuracy Comparison — Ancient to Modern
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          The progression of astronomical accuracy tells a compelling story. The Surya Siddhanta achieves roughly 0.1-degree accuracy for the Sun and 1-degree for the Moon. Meeus algorithms (what our app uses) achieve approximately 0.01-degree Sun and 0.3-degree Moon. The Swiss Ephemeris achieves sub-arcsecond precision by fitting to JPL numerical integrations. And JPL DE440 itself is accurate to milliarcseconds, calibrated by radar ranging and spacecraft tracking.
+          The progression of astronomical accuracy tells a compelling story. The Surya Siddhanta achieves roughly 0.1-degree accuracy for the Sun and 1-degree for the Moon. Meeus algorithms achieve approximately 0.01-degree Sun and 0.3-degree Moon. The Swiss Ephemeris (what our app uses by default) achieves sub-arcsecond precision by fitting to JPL numerical integrations, with Meeus as a fallback. And JPL DE440 itself is accurate to milliarcseconds, calibrated by radar ranging and spacecraft tracking.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
           For Panchang purposes, the critical question is: does the accuracy matter? A tithi spans 12 degrees of Moon-Sun elongation. A nakshatra spans 13.33 degrees. Even the Surya Siddhanta&rsquo;s 1-degree Moon error would cause at most a 2-hour error in tithi transition time. Our Meeus-level accuracy reduces this to about 40 minutes — comparable to leading Panchang services.
@@ -93,14 +93,14 @@ function Page3() {
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Accuracy Table</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Surya Siddhanta:</span> Sun ~0.1 degree | Moon ~1 degree | Mars ~2-3 degrees</p>
-        <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Meeus (our app):</span> Sun ~0.01 degree | Moon ~0.3 degree | Mars ~0.5 degree</p>
-        <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Swiss Ephemeris:</span> All planets &lt; 0.001 degree (sub-arcsecond)</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Meeus (fallback):</span> Sun ~0.01 degree | Moon ~0.3 degree | Mars ~0.5 degree</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Swiss Ephemeris (our app default):</span> All planets &lt; 0.001 degree (sub-arcsecond)</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">JPL DE440:</span> All planets ~0.000001 degree (milliarcsecond)</p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">When Higher Accuracy Matters</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
-          For basic Panchang (tithi, nakshatra, yoga, karana), Meeus is more than sufficient. But for precise Kundali lagna calculation (which changes sign every ~2 hours), higher accuracy helps — a 0.3-degree Moon error could shift a close lagna by a few minutes. For divisional charts (D-9, D-12) where 1 degree can change the sign, Swiss Ephemeris precision becomes desirable. Our app balances practicality (no server-side ephemeris files needed) with sufficient accuracy for its use cases.
+          For basic Panchang (tithi, nakshatra, yoga, karana), Meeus is more than sufficient. But for precise Kundali lagna calculation (which changes sign every ~2 hours), higher accuracy matters — which is why our app uses Swiss Ephemeris by default. For divisional charts (D-9, D-12) where 1 degree can change the sign, Swiss Ephemeris sub-arcsecond precision is essential. Meeus serves as the fallback when Swiss Ephemeris is unavailable (e.g., client-side computation).
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">

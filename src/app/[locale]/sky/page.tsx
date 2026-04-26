@@ -34,8 +34,8 @@ const LABELS = {
     bn: 'বর্তমান গ্রহ অবস্থান — লাহিরি অয়নাংশ',
   },
   disclaimer: {
-    en: 'Positions calculated using Lahiri ayanamsha (Indian government standard). Tropical longitudes computed via Meeus algorithms; Swiss Ephemeris used when available for higher accuracy.',
-    hi: 'स्थितियां लाहिरी अयनांश (भारतीय सरकारी मानक) का उपयोग करके गणना की गई हैं। Meeus एल्गोरिदम के माध्यम से क्रांतिवृत्त देशांतर गणना की जाती है; उच्च सटीकता के लिए उपलब्ध होने पर स्विस एफेमेरिस का उपयोग किया जाता है।',
+    en: 'Positions calculated using Lahiri ayanamsha (Indian government standard). Planetary longitudes computed via Swiss Ephemeris (sub-arcsecond accuracy); Meeus algorithms used as fallback when Swiss Ephemeris is unavailable.',
+    hi: 'स्थितियां लाहिरी अयनांश (भारतीय सरकारी मानक) का उपयोग करके गणना की गई हैं। ग्रहीय देशांतर Swiss Ephemeris (उप-कोणीय-सेकंड सटीकता) द्वारा गणना; Swiss Ephemeris अनुपलब्ध होने पर Meeus एल्गोरिदम फॉलबैक के रूप में।',
     ta: 'லாஹிரி அயனாம்சம் (இந்திய அரசு தரநிலை) பயன்படுத்தி நிலைகள் கணக்கிடப்படுகின்றன.',
     bn: 'লাহিরি অয়নাংশ (ভারতীয় সরকারি মান) ব্যবহার করে অবস্থান গণনা করা হয়।',
   },

@@ -165,6 +165,7 @@ const routes = [
   '/dinacharya',
   '/sky',
   '/matching/report',
+  '/family',
   // Date listing pages
   '/dates/ekadashi',
   '/dates/purnima',

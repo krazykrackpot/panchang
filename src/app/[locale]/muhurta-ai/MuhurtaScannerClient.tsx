@@ -300,7 +300,7 @@ export default function MuhurtaScannerClient() {
             </h2>
           </div>
           {/* Desktop heatmap (hidden on mobile) */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <MonthHeatmap
               cells={overviewCells}
               selectedDate={selectedDate}
@@ -313,7 +313,7 @@ export default function MuhurtaScannerClient() {
             />
           </div>
           {/* Mobile month view (hidden on desktop) */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <MobileMonthView
               cells={overviewCells}
               selectedDate={selectedDate}

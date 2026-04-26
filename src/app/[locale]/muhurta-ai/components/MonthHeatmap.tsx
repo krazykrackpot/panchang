@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, Fragment } from 'react';
 import type { HeatmapCell } from '@/types/muhurta-ai';
 
 interface MonthHeatmapProps {
@@ -192,7 +192,7 @@ export default function MonthHeatmap({
 
           {/* Rows: one per time slot */}
           {timeSlots.map(({ startTime, endTime }) => (
-            <>
+            <Fragment key={`row-${startTime}`}>
               {/* Time label */}
               <div
                 key={`label-${startTime}`}
@@ -243,7 +243,7 @@ export default function MonthHeatmap({
                   />
                 );
               })}
-            </>
+            </Fragment>
           ))}
         </div>
       </div>

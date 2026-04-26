@@ -14,6 +14,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import JyotishTerm from '@/components/ui/JyotishTerm';
 import LocationSearch from '@/components/ui/LocationSearch';
 import GoldDivider from '@/components/ui/GoldDivider';
+import PrecessionSlider from '@/components/comparison/PrecessionSlider';
 import type { Locale, LocaleText } from '@/types/panchang';
 
 // ── Planet symbols ──────────────────────────────────────────
@@ -478,12 +479,11 @@ export default function TropicalComparePage() {
                 )}
               </div>
 
-              {/* Placeholder for Task 7 slider */}
-              <div className="mt-6 rounded-xl border border-dashed border-gold-primary/20 bg-gold-primary/5 p-6 text-center">
-                <p className="text-text-secondary text-sm italic" style={bodyFont}>
-                  {tl(LABELS.comingSoon, locale)}
-                </p>
-              </div>
+              {/* Interactive precession slider */}
+              <PrecessionSlider
+                precessionData={result.precessionData}
+                planets={result.planets}
+              />
             </section>
 
             <GoldDivider />

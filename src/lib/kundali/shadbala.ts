@@ -626,7 +626,7 @@ function computeKalaBala(
  *   Formula: 60 * (1 - |speed| / mean_speed) when retrograde.
  *   A planet that just turned retrograde (slow) scores near 60;
  *   one at peak retrograde speed scores lower (~45-50).
- *   This matches Drik Panchang's approach and some modern traditions.
+ *   This follows the graduated approach used by some modern professional panchangs.
  *
  * Stationary (speed ≈ 0): 30 virupas in both modes (BPHS: stationary = half strength).
  * Direct: speed/avg_speed * 30, capped at 60 (faster = stronger in direct motion).
@@ -728,7 +728,7 @@ function computeDrikBala(p: PlanetInput, allPlanets: PlanetInput[]): number {
 export interface ShadBalaOptions {
   /** Cheshta Bala calculation mode for retrograde planets.
    * 'bphs_strict' (default): retrograde = 60 virupas (BPHS Ch.27 literal).
-   * 'graduated': speed-based scoring even for retrograde (Drik Panchang style). */
+   * 'graduated': speed-based scoring even for retrograde (modern graduated approach). */
   cheshtaBalaMode?: 'bphs_strict' | 'graduated';
 }
 

@@ -222,7 +222,7 @@ export default function LearnCalculationsPage() {
         <WhyItMatters locale={locale}>
           The Moon moves about 13° per day — roughly one Nakshatra. A 0.5° error in Moon position translates
           to a 1-2 minute error in Tithi transition time. Using all 60 terms (instead of a simplified formula)
-          is what makes our Panchang match professional references like Prokerala to within 1-2 minutes.
+          is what makes our Panchang match professional Hindu almanacs to within 1-2 minutes.
         </WhyItMatters>
       </LessonSection>
 
@@ -432,7 +432,7 @@ export default function LearnCalculationsPage() {
       <LessonSection title={t('accuracyTitle')} variant="highlight">
         <p className="text-sm text-text-primary/85 leading-relaxed mb-4">
           How do we know these formulas are accurate? We compare our results against established reference
-          sources (Prokerala, Shubh Panchang) for the same location and date. Here is how our engine performs:
+          sources (professional Hindu almanacs) for the same location and date. Here is how our engine performs:
         </p>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">

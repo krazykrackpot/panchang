@@ -634,16 +634,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "A tithi spans 12 degrees of Moon-Sun elongation. Our Moon error of ~0.3 degrees means worst-case timing error of about 40 minutes for tithi transitions — comparable to Drik Panchang and acceptable for all practical purposes.",
-        "hi": "एक तिथि चन्द्र-सूर्य दूरी के 12 अंश में फैली है। हमारी ~0.3 अंश की चन्द्र त्रुटि का अर्थ है तिथि संक्रमण में अधिकतम लगभग 40 मिनट की समय त्रुटि — दृक् पंचांग के तुलनीय और सभी व्यावहारिक उद्देश्यों के लिए स्वीकार्य।",
-        "sa": "एक तिथि चन्द्र-सूर्य दूरी के 12 अंश में फैली है। हमारी ~0.3 अंश की चन्द्र त्रुटि का अर्थ है तिथि संक्रमण में अधिकतम लगभग 40 मिनट की समय त्रुटि — दृक् पंचांग के तुलनीय और सभी व्यावहारिक उद्देश्यों के लिए स्वीकार्य।",
-        "ta": "A tithi spans 12 degrees of Moon-Sun elongation. Our Moon error of ~0.3 degrees means worst-case timing error of about 40 minutes for tithi transitions — comparable to Drik Panchang and acceptable for all practical purposes.",
-        "te": "A tithi spans 12 degrees of Moon-Sun elongation. Our Moon error of ~0.3 degrees means worst-case timing error of about 40 minutes for tithi transitions — comparable to Drik Panchang and acceptable for all practical purposes.",
-        "bn": "A tithi spans 12 degrees of Moon-Sun elongation. Our Moon error of ~0.3 degrees means worst-case timing error of about 40 minutes for tithi transitions — comparable to Drik Panchang and acceptable for all practical purposes.",
-        "kn": "A tithi spans 12 degrees of Moon-Sun elongation. Our Moon error of ~0.3 degrees means worst-case timing error of about 40 minutes for tithi transitions — comparable to Drik Panchang and acceptable for all practical purposes.",
-        "mr": "एक तिथि चन्द्र-सूर्य दूरी के 12 अंश में फैली है। हमारी ~0.3 अंश की चन्द्र त्रुटि का अर्थ है तिथि संक्रमण में अधिकतम लगभग 40 मिनट की समय त्रुटि — दृक् पंचांग के तुलनीय और सभी व्यावहारिक उद्देश्यों के लिए स्वीकार्य।",
-        "gu": "A tithi spans 12 degrees of Moon-Sun elongation. Our Moon error of ~0.3 degrees means worst-case timing error of about 40 minutes for tithi transitions — comparable to Drik Panchang and acceptable for all practical purposes.",
-        "mai": "एक तिथि चन्द्र-सूर्य दूरी के 12 अंश में फैली है। हमारी ~0.3 अंश की चन्द्र त्रुटि का अर्थ है तिथि संक्रमण में अधिकतम लगभग 40 मिनट की समय त्रुटि — दृक् पंचांग के तुलनीय और सभी व्यावहारिक उद्देश्यों के लिए स्वीकार्य।"
+        "en": "A tithi spans 12 degrees of Moon-Sun elongation. Our Moon error of ~0.3 degrees means worst-case timing error of about 40 minutes for tithi transitions — comparable to professional Hindu almanacs and acceptable for all practical purposes.",
+        "hi": "एक तिथि चन्द्र-सूर्य दूरी के 12 अंश में फैली है। हमारी ~0.3 अंश की चन्द्र त्रुटि का अर्थ है तिथि संक्रमण में अधिकतम लगभग 40 मिनट की समय त्रुटि — व्यावसायिक हिन्दू पंचांगों के तुलनीय और सभी व्यावहारिक उद्देश्यों के लिए स्वीकार्य।",
+        "sa": "एक तिथि चन्द्र-सूर्य दूरी के 12 अंश में फैली है। हमारी ~0.3 अंश की चन्द्र त्रुटि का अर्थ है तिथि संक्रमण में अधिकतम लगभग 40 मिनट की समय त्रुटि — व्यावसायिक हिन्दू पंचांगों के तुलनीय और सभी व्यावहारिक उद्देश्यों के लिए स्वीकार्य।",
+        "ta": "A tithi spans 12 degrees of Moon-Sun elongation. Our Moon error of ~0.3 degrees means worst-case timing error of about 40 minutes for tithi transitions — comparable to professional Hindu almanacs and acceptable for all practical purposes.",
+        "te": "A tithi spans 12 degrees of Moon-Sun elongation. Our Moon error of ~0.3 degrees means worst-case timing error of about 40 minutes for tithi transitions — comparable to professional Hindu almanacs and acceptable for all practical purposes.",
+        "bn": "A tithi spans 12 degrees of Moon-Sun elongation. Our Moon error of ~0.3 degrees means worst-case timing error of about 40 minutes for tithi transitions — comparable to professional Hindu almanacs and acceptable for all practical purposes.",
+        "kn": "A tithi spans 12 degrees of Moon-Sun elongation. Our Moon error of ~0.3 degrees means worst-case timing error of about 40 minutes for tithi transitions — comparable to professional Hindu almanacs and acceptable for all practical purposes.",
+        "mr": "एक तिथि चन्द्र-सूर्य दूरी के 12 अंश में फैली है। हमारी ~0.3 अंश की चन्द्र त्रुटि का अर्थ है तिथि संक्रमण में अधिकतम लगभग 40 मिनट की समय त्रुटि — व्यावसायिक हिन्दू पंचांगों के तुलनीय और सभी व्यावहारिक उद्देश्यों के लिए स्वीकार्य।",
+        "gu": "A tithi spans 12 degrees of Moon-Sun elongation. Our Moon error of ~0.3 degrees means worst-case timing error of about 40 minutes for tithi transitions — comparable to professional Hindu almanacs and acceptable for all practical purposes.",
+        "mai": "एक तिथि चन्द्र-सूर्य दूरी के 12 अंश में फैली है। हमारी ~0.3 अंश की चन्द्र त्रुटि का अर्थ है तिथि संक्रमण में अधिकतम लगभग 40 मिनट की समय त्रुटि — व्यावसायिक हिन्दू पंचांगों के तुलनीय और सभी व्यावहारिक उद्देश्यों के लिए स्वीकार्य।"
       },
       "options": [
         {

@@ -12,6 +12,10 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt as ltFn } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LT from '@/messages/learn/shadbala.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import WhyItMatters from '@/components/learn/WhyItMatters';
+import ClassicalReference from '@/components/learn/ClassicalReference';
+import BeginnerNote from '@/components/learn/BeginnerNote';
 
 /* Simple labels migrated to src/messages/learn/shadbala.json — accessed via LT + tj() */
 /* Array data kept inline since it contains mixed data + translations */
@@ -97,6 +101,18 @@ export default function LearnShadbalaPage() {
         <p className="text-text-secondary leading-relaxed max-w-3xl">{tj('subtitle')}</p>
       </motion.div>
 
+      {/* ═══ Key Takeaway ═══ */}
+      <KeyTakeaway
+        points={[
+          'Six sources of planetary strength determine how powerfully each planet can deliver its results in your chart.',
+          'Think of Shadbala like a job interview score — you are rated on location (Sthana), timing (Kala), direction (Dig), aspects (Drik), effort (Cheshta), and natural talent (Naisargika).',
+          'A planet above its minimum threshold is "strong enough" to deliver good results; below it needs remedial support.',
+        ]}
+        locale={locale}
+      />
+
+      <ClassicalReference shortName="BPHS" chapter="Ch. 27-35" topic="Shadbala — the six-fold strength system for evaluating planetary potency" />
+
       {/* ═══ What is Shadbala ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 space-y-4">
@@ -105,7 +121,7 @@ export default function LearnShadbalaPage() {
         <p className="text-text-secondary leading-relaxed">{tj('whatP2')}</p>
         <div className="p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">Total Shadbala = Sthana + Dig + Kala + Cheshta + Naisargika + Drig</p>
-          <p className="text-gold-light/60 font-mono text-xs mt-1">Unit: Shashtiamshas (1/60 Rupa) | 1 Rupa = 60 Shashtiamshas</p>
+          <p className="text-gold-light/60 font-mono text-xs mt-1">Unit: <BeginnerNote term="Shashtiamshas" explanation="A unit of planetary strength. 1 Rupa = 60 Shashtiamshas. Think of it like cents to a dollar." /> (1/60 <BeginnerNote term="Rupa" explanation="The larger unit of Shadbala strength. Each Rupa equals 60 Shashtiamshas." />) | 1 Rupa = 60 Shashtiamshas</p>
         </div>
       </motion.section>
 
@@ -132,6 +148,38 @@ export default function LearnShadbalaPage() {
                     <div className="px-6 pb-6 space-y-4 border-t border-gold-primary/10 pt-4">
                       <p className="text-text-secondary leading-relaxed">{tj(bala.descKey)}</p>
 
+                      {/* WhyItMatters for each Bala */}
+                      {i === 0 && (
+                        <WhyItMatters locale={locale}>
+                          Positional strength matters because a planet in its own sign or exaltation is like an expert working in their own lab — they have all the tools and authority to deliver results. A planet in an enemy sign is like working in hostile territory.
+                        </WhyItMatters>
+                      )}
+                      {i === 1 && (
+                        <WhyItMatters locale={locale}>
+                          Why does directional strength matter? Jupiter is strongest in the East (1st house) because it is a natural teacher — it does best when it is front and center. Mars and Sun peak in the South (10th house) because warrior energy blazes brightest at the zenith.
+                        </WhyItMatters>
+                      )}
+                      {i === 2 && (
+                        <WhyItMatters locale={locale}>
+                          Temporal strength captures whether the planet has the right timing. Just as a nocturnal animal thrives at night, Moon and Venus are strongest during nighttime births. Day-born charts favor the Sun and Jupiter.
+                        </WhyItMatters>
+                      )}
+                      {i === 3 && (
+                        <WhyItMatters locale={locale}>
+                          Motional strength measures effort. A retrograde planet is closest to Earth and appears to &quot;fight harder&quot; — gaining Cheshta Bala. A combust planet near the Sun loses its independent motion and weakens.
+                        </WhyItMatters>
+                      )}
+                      {i === 4 && (
+                        <WhyItMatters locale={locale}>
+                          Natural strength is the inherent luminosity hierarchy: Sun is the king (60 points), Saturn the servant (8.6 points). This never changes regardless of chart placement — it is the planet&apos;s intrinsic wattage.
+                        </WhyItMatters>
+                      )}
+                      {i === 5 && (
+                        <WhyItMatters locale={locale}>
+                          Aspectual strength reflects social support. A planet aspected by benefics (Jupiter, Venus) gains confidence and power. One bombarded by malefic aspects (Saturn, Mars) is weakened by opposition — like a leader facing constant criticism.
+                        </WhyItMatters>
+                      )}
+
                       {/* Sthana sub-parts */}
                       {i === 0 && (
                         <div className="space-y-3">
@@ -142,6 +190,13 @@ export default function LearnShadbalaPage() {
                               <div className="text-text-secondary text-xs leading-relaxed">{t(sub.desc)}</div>
                             </div>
                           ))}
+                        </div>
+                      )}
+
+                      {/* BeginnerNotes for Sthana sub-parts */}
+                      {i === 0 && (
+                        <div className="text-text-secondary text-sm leading-relaxed space-y-1">
+                          <p>Key terms: <BeginnerNote term="Sthana Bala" explanation="Positional strength. How well-placed a planet is by sign, house, and divisional chart." />, <BeginnerNote term="Kendradi" explanation="Classification by house type: Kendra (angular: 1,4,7,10), Panapara (succedent: 2,5,8,11), Apoklima (cadent: 3,6,9,12)." />, <BeginnerNote term="Ojha-Yugma" explanation="Odd-even sign strength. Moon/Venus gain in even signs; others gain in odd signs." />, <BeginnerNote term="Drekkana" explanation="Decanate — each sign is divided into three 10-degree portions, each with different gender affinity." /></p>
                         </div>
                       )}
 
@@ -166,6 +221,41 @@ export default function LearnShadbalaPage() {
                               ))}
                             </tbody>
                           </table>
+                        </div>
+                      )}
+
+                      {/* BeginnerNote for Dig Bala */}
+                      {i === 1 && (
+                        <div className="text-text-secondary text-sm leading-relaxed">
+                          <p>Learn more: <BeginnerNote term="Dig Bala" explanation="Directional strength. Each planet has a cardinal direction where it is most powerful. Maximum 60 Shashtiamshas at peak direction, zero at the opposite." /></p>
+                        </div>
+                      )}
+
+                      {/* BeginnerNote for Kala Bala */}
+                      {i === 2 && (
+                        <div className="text-text-secondary text-sm leading-relaxed">
+                          <p>Learn more: <BeginnerNote term="Kala Bala" explanation="Temporal strength. Includes day/night strength, monthly strength, yearly strength, and hora (hour) strength. The most complex of the six components." /></p>
+                        </div>
+                      )}
+
+                      {/* BeginnerNote for Cheshta Bala */}
+                      {i === 3 && (
+                        <div className="text-text-secondary text-sm leading-relaxed">
+                          <p>Learn more: <BeginnerNote term="Cheshta Bala" explanation="Motional strength. Based on a planet's speed relative to its mean motion. Retrograde planets gain maximum Cheshta Bala because they appear to 'resist' normal motion." /></p>
+                        </div>
+                      )}
+
+                      {/* BeginnerNote for Naisargika Bala */}
+                      {i === 4 && (
+                        <div className="text-text-secondary text-sm leading-relaxed">
+                          <p>Learn more: <BeginnerNote term="Naisargika Bala" explanation="Natural or inherent strength. Fixed for each planet regardless of chart placement. Based on luminosity — the brighter the planet, the higher its natural strength." /></p>
+                        </div>
+                      )}
+
+                      {/* BeginnerNote for Drik Bala */}
+                      {i === 5 && (
+                        <div className="text-text-secondary text-sm leading-relaxed">
+                          <p>Learn more: <BeginnerNote term="Drik Bala" explanation="Aspectual strength. Gained from benefic aspects (Jupiter, Venus, Mercury) and lost from malefic aspects (Saturn, Mars, Rahu). Measures the 'social support' a planet receives." /></p>
                         </div>
                       )}
 
@@ -232,6 +322,10 @@ export default function LearnShadbalaPage() {
           <p className="text-gold-light/60 font-mono text-xs mt-1">&gt; 1.0 = Adequate | &gt; 1.5 = Strong | &gt; 2.0 = Exceptional | &lt; 1.0 = Weak</p>
         </div>
       </motion.section>
+
+      <WhyItMatters locale={locale}>
+        The Shadbala Ratio is the single most useful number in strength analysis. A ratio of 1.5 means the planet is 50% stronger than its minimum — it will deliver results with ease. A ratio of 0.7 means the planet is 30% below threshold — expect delays and weakness in its significations. Focus remedies on your lowest-ratio planet for maximum impact.
+      </WhyItMatters>
 
       {/* ═══ Reading Your Shadbala ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}

@@ -9,6 +9,10 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LJ from '@/messages/learn/dashas.json';
 import { getHeadingFont, getBodyFont, isIndicLocale } from '@/lib/utils/locale-fonts';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import WhyItMatters from '@/components/learn/WhyItMatters';
+import ClassicalReference from '@/components/learn/ClassicalReference';
+import BeginnerNote from '@/components/learn/BeginnerNote';
 
 const t_ = LJ as unknown as Record<string, LocaleText>;
 
@@ -116,16 +120,36 @@ export default function LearnDashasPage() {
         <SanskritTermCard term="Vimshottari" devanagari="विंशोत्तरी" transliteration="Vimsottari" meaning="Of 120 (years)" />
       </div>
 
+      <KeyTakeaway
+        points={[
+          'Dashas are the timing system of Vedic astrology — they tell you WHEN planetary effects will manifest in your life.',
+          'Without dashas, a birth chart is a map with no timeline. Dashas add the "when" — making predictions possible.',
+          'Think of Mahadasha as a season (multi-year), Antardasha as a month within that season, and Pratyantardasha as a week.',
+        ]}
+        locale={locale}
+      />
+
+      <ClassicalReference shortName="BPHS" chapter="Ch. 46-51" topic="Vimshottari Dasha — the 120-year planetary period system and its sub-divisions" />
+
       {/* Section 1: What is a Dasha */}
       <LessonSection number={1} title={t('whatTitle')}>
         <p style={bodyFont}>{t('whatContent')}</p>
         <p className="mt-3" style={bodyFont}>{t('whatContent2')}</p>
+        <div className="mt-3 text-text-secondary text-sm leading-relaxed">
+          <p>Key terms: <BeginnerNote term="Mahadasha" explanation="The major planetary period, lasting years (6 to 20 depending on the planet). This is the primary season of life you are in." />, <BeginnerNote term="Antardasha" explanation="The sub-period within a Mahadasha, lasting months. Determines the month-to-month flavor within the larger season." />, <BeginnerNote term="Pratyantardasha" explanation="The sub-sub-period, lasting weeks. The finest commonly-used timing level for pinpointing events." /></p>
+        </div>
+        <WhyItMatters locale={locale}>
+          A birth chart without dashas is like a weather map without dates. You can see the terrain — which planets are strong, which houses are activated — but you cannot say WHEN those effects will manifest. Dashas are the clock that turns a static chart into a dynamic life timeline.
+        </WhyItMatters>
       </LessonSection>
 
       {/* Section 2: Vimshottari System */}
       <LessonSection number={2} title={t('vimshottariTitle')}>
         <p style={bodyFont}>{t('vimshottariContent')}</p>
         <p className="mt-3" style={bodyFont}>{t('vimshottariContent2')}</p>
+        <div className="mt-3 text-text-secondary text-sm leading-relaxed">
+          <p>The <BeginnerNote term="Vimshottari" explanation="Literally 'of 120' — the 120-year dasha cycle. It is the default and most widely used timing system in Vedic astrology. Each of the 9 planets rules a specific number of years totaling 120." /> system assigns each of the 27 nakshatras to a <BeginnerNote term="Nakshatra Lord" explanation="Each nakshatra is ruled by one of the 9 planets (Ketu through Mercury). The Moon's nakshatra at birth determines which planet's dasha you are born into." />. Your birth Moon&apos;s nakshatra determines your starting dasha.</p>
+        </div>
 
         {/* Dasha periods visual bar chart */}
         <div className="mt-6 space-y-2">
@@ -201,6 +225,9 @@ export default function LearnDashasPage() {
       {/* Section 4: Calculating Dasha Balance */}
       <LessonSection number={4} title={t('calcTitle')}>
         <p style={bodyFont}>{t('calcContent')}</p>
+        <div className="mt-2 text-text-secondary text-sm leading-relaxed">
+          <p>The <BeginnerNote term="Dasha Balance" explanation="The remaining portion of the birth dasha. Since you are born partway through a nakshatra, the first dasha is partially elapsed. The Moon's progress through the nakshatra determines how much remains." /> at birth is the single most important calculation — it sets the starting point for your entire life timeline.</p>
+        </div>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {!isIndicLocale(locale) ? 'Step-by-Step Calculation:' : 'चरणबद्ध गणना:'}
@@ -266,6 +293,10 @@ export default function LearnDashasPage() {
               : 'उदाहरण: शनि महादशा में बुध अन्तर्दशा = (19 x 17) / 120 = 2.69 वर्ष ~ 2 वर्ष 8 माह 9 दिन'}
           </p>
         </div>
+
+        <WhyItMatters locale={locale}>
+          The 5-level hierarchy (Maha, Antar, Pratyantar, Sookshma, Prana) is how Vedic astrology achieves day-level and even hour-level timing precision from a birth chart. Most practitioners use the first 3 levels; the finer levels are used for rectification and precise event timing.
+        </WhyItMatters>
 
         {/* Sub-period hierarchy visual */}
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-5 gap-2">

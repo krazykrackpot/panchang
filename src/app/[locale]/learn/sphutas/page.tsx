@@ -11,6 +11,10 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/sphutas.json';
+import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import WhyItMatters from '@/components/learn/WhyItMatters';
+import ClassicalReference from '@/components/learn/ClassicalReference';
+import BeginnerNote from '@/components/learn/BeginnerNote';
 
 /* ── Inline data arrays (not in JSON) ───────────────────────────── */
 const YOGI_DETAILS = [
@@ -64,6 +68,25 @@ export default function LearnSphutasPage() {
         <p className="text-text-secondary leading-relaxed max-w-3xl">{t('subtitle')}</p>
       </motion.div>
 
+      {/* ═══ Key Takeaway ═══ */}
+      <KeyTakeaway
+        points={[
+          'Sensitive degree points in your chart that reveal hidden influences — from your spiritual guide (Yogi) to your life force (Prana).',
+          'Sphutas are not physical planets — they are mathematically derived degrees that activate when transited or aspected.',
+          'Your Yogi Point is like a lucky star — when a planet transits this degree, opportunities flow naturally. Your Avayogi is the opposite.',
+        ]}
+        locale={locale}
+      />
+
+      <ClassicalReference shortName="BPHS" chapter="Ch. 43-46" topic="Sphutas — sensitive points including Yogi, Avayogi, Prana, Deha, and Mrityu" />
+
+      {/* ═══ What is a Sphuta? ═══ */}
+      <div className="rounded-xl bg-violet-500/5 border border-violet-500/20 p-5 mb-2">
+        <p className="text-sm text-text-primary leading-relaxed">
+          <strong className="text-violet-400">What is a Sphuta?</strong> It is a computed sensitive point — not a physical planet, but a mathematically derived degree that activates when transited or aspected. Think of Sphutas as invisible antennae in your chart: they do not emit energy on their own, but when a transiting planet crosses one, it triggers events related to that Sphuta&apos;s domain (health, fortune, fertility, etc.).
+        </p>
+      </div>
+
       {/* ═══ What are Sphutas ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 space-y-4">
@@ -93,6 +116,12 @@ export default function LearnSphutasPage() {
               <div className="text-text-secondary text-xs leading-relaxed">{tl(d.desc)}</div>
             </div>
           ))}
+          <WhyItMatters locale={locale}>
+            Your Yogi Point is like a lucky star — when a planet transits this degree, opportunities flow naturally. The Yogi Planet&apos;s dasha is the most prosperous period of your entire 120-year Vimshottari cycle. Identifying it early lets you plan major life decisions around these windows.
+          </WhyItMatters>
+          <div className="text-text-secondary text-sm leading-relaxed">
+            <p>Key terms: <BeginnerNote term="Yogi Point" explanation="A lucky degree computed from Sun + Moon + a constant. The nakshatra lord of this degree becomes your Yogi Planet — your strongest benefic." />, <BeginnerNote term="Duplicate Yogi" explanation="The sign lord where the Yogi Point falls. A secondary benefic that supports the Yogi Planet." /></p>
+          </div>
         </div>
 
         {/* Avayogi Point */}
@@ -111,6 +140,12 @@ export default function LearnSphutasPage() {
               <div className="text-text-secondary text-xs leading-relaxed">{tl(d.desc)}</div>
             </div>
           ))}
+          <WhyItMatters locale={locale}>
+            The Avayogi is your chart&apos;s weak link. During its dasha or when slow transiting planets cross its degree, expect obstacles. Knowing your Avayogi lets you prepare — apply remedies proactively rather than reacting to problems.
+          </WhyItMatters>
+          <div className="text-text-secondary text-sm leading-relaxed">
+            <p>Key term: <BeginnerNote term="Avayogi" explanation="The 'anti-Yogi' point — a sensitive degree whose nakshatra lord becomes a functional malefic. Its dasha brings obstacles and its transit triggers challenges." /></p>
+          </div>
         </div>
       </motion.section>
 
@@ -132,6 +167,12 @@ export default function LearnSphutasPage() {
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-4">
         <h2 className="text-2xl font-bold text-gold-gradient" style={headingFont}>{t('constitutionalTitle')}</h2>
         <p className="text-text-secondary leading-relaxed">{t('constitutionalDesc')}</p>
+        <div className="text-text-secondary text-sm leading-relaxed mb-2">
+          <p>Key terms: <BeginnerNote term="Prana Sphuta" explanation="Your core life force point. Computed from Lagna + Sun + Moon. The nakshatra it falls in reveals which planet's energy sustains your physical body." />, <BeginnerNote term="Deha Sphuta" explanation="Your body constitution point. Shows which body systems are inherently strong or weak. Used in medical astrology." />, <BeginnerNote term="Mrityu Sphuta" explanation="Mortality sensitive point. NOT a death prediction — a vulnerability marker. When malefics transit this degree, watch health carefully." />, <BeginnerNote term="Tri Sphuta" explanation="The grand synthesis of Prana + Deha + Mrityu. A master indicator of overall physical resilience." /></p>
+        </div>
+        <WhyItMatters locale={locale}>
+          Constitutional Sphutas reveal your body&apos;s hidden blueprint. Medical astrologers use Deha Sphuta to predict which organ systems are vulnerable, and Mrityu Sphuta to time health crises. Knowing these points lets you take preventive action during risky transits.
+        </WhyItMatters>
         {CONSTITUTIONAL_SPHUTAS.map((sp, i) => {
           const isExp = expandedConst === i;
           return (
@@ -171,6 +212,9 @@ export default function LearnSphutasPage() {
           <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t('fertilityTitle')}</h2>
         </div>
         <p className="text-text-secondary text-sm leading-relaxed">{t('fertilityDesc')}</p>
+        <div className="text-text-secondary text-sm leading-relaxed mb-2">
+          <p>Key terms: <BeginnerNote term="Bija Sphuta" explanation="The male fertility indicator. Computed from Sun + Venus + Jupiter. Odd sign + benefic nakshatra = strong male fertility." />, <BeginnerNote term="Kshetra Sphuta" explanation="The female fertility indicator. Computed from Moon + Mars + Jupiter. Even sign + benefic nakshatra = strong female fertility." />, <BeginnerNote term="Gulika" explanation="A mathematical point computed from Saturn's influence. Appears in the Deha Sphuta formula. Associated with poison, chronic illness, and hidden dangers." />, <BeginnerNote term="Mandi" explanation="Saturn's shadow sub-planet. Similar to Gulika but computed differently. Used in the Mrityu Sphuta formula." /></p>
+        </div>
         {FERTILITY_SPHUTAS.map((sp, i) => (
           <div key={i} className={`p-4 rounded-xl border ${sp.color === 'text-blue-400' ? 'border-blue-500/15 bg-blue-500/5' : 'border-pink-500/15 bg-pink-500/5'}`}>
             <div className={`font-bold text-sm mb-1 ${sp.color}`}>{tl(sp.name)}</div>

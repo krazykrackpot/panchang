@@ -198,9 +198,12 @@
 - Month-view grid color-coded by auspiciousness per activity (20 types)
 - Drik has shubh dates for marriage only; we do 20 activities
 
-### NEXT-5: Composite/Synastry Charts
+### NEXT-5: Composite/Synastry Charts ✅
 - Overlay two charts. Conjunctions, aspects, house overlaps.
 - Beyond 36-point Ashta Kuta score.
+
+### NEXT-6: Email Notifications ✅ (Already built)
+- 8 cron routes, 4 email templates, Vercel crons configured
 
 ### NEXT-6: Email Notifications (Resend)
 - Welcome email, weekly digest, dasha transition alerts, festival reminders
@@ -227,9 +230,10 @@
 - 17 files with exaltation tables, all currently consistent
 - Canonical source at `tippanni/dignity.ts`. AST-based migration needed.
 
-### CM-5: Dashakoota (10-Point Matching)
+### CM-5: Dashakoota (10-Point Matching) — IN PROGRESS
 - South Indian matching system. Tamil users expect this.
 - Bhakut Dosha exceptions also missing.
+- dasha-koota.ts engine + matching page tab toggle
 
 ---
 

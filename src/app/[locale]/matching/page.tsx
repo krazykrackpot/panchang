@@ -14,6 +14,7 @@ import InfoBlock from '@/components/ui/InfoBlock';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import type { MatchResult } from '@/lib/matching/ashta-kuta';
+import type { DashaKootaMatchResult } from '@/lib/matching/dasha-koota';
 import type { KundaliData } from '@/types/kundali';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -113,8 +114,10 @@ export default function MatchingPage() {
     return () => { cancelled = true; };
   }, [girlBirth.date, girlBirth.time, girlBirth.placeLat, girlBirth.placeLng, girlBirth.placeTimezone]);
 
+  const [matchSystem, setMatchSystem] = useState<'ashta-kuta' | 'dasha-koota'>('ashta-kuta');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<MatchResult | null>(null);
+  const [dashaResult, setDashaResult] = useState<DashaKootaMatchResult | null>(null);
   const [matchError, setMatchError] = useState<string | null>(null);
   const matchResultRef = useRef<HTMLDivElement>(null);
   const [boyKundali, setBoyKundali] = useState<KundaliData | null>(null);
@@ -141,13 +144,20 @@ export default function MatchingPage() {
         body: JSON.stringify({
           boy: { moonNakshatra: bNak, moonRashi: bRashi },
           girl: { moonNakshatra: gNak, moonRashi: gRashi },
+          system: matchSystem,
         }),
       });
-      if (!res.ok) { setMatchError(isTamil ? 'பொருத்தம் தோல்வி. மீண்டும் முயற்சிக்கவும்.' : locale === 'en' ? 'Matching failed. Please try again.' : 'मिलान विफल। कृपया पुनः प्रयास करें।'); setResult(null); setLoading(false); return; }
+      if (!res.ok) { setMatchError(isTamil ? 'பொருத்தம் தோல்வி. மீண்டும் முயற்சிக்கவும்.' : locale === 'en' ? 'Matching failed. Please try again.' : 'मिलान विफल। कृपया पुनः प्रयास करें।'); setResult(null); setDashaResult(null); setLoading(false); return; }
       const data = await res.json();
-      if (data.error) { setMatchError(data.error); setResult(null); setLoading(false); return; }
+      if (data.error) { setMatchError(data.error); setResult(null); setDashaResult(null); setLoading(false); return; }
       setMatchError(null);
-      setResult(data);
+      if (matchSystem === 'dasha-koota') {
+        setDashaResult(data as DashaKootaMatchResult);
+        setResult(null);
+      } else {
+        setResult(data as MatchResult);
+        setDashaResult(null);
+      }
 
       // Generate kundalis for both partners in parallel (non-blocking)
       const genKundali = async (birth: PersonBirth) => {
@@ -165,9 +175,9 @@ export default function MatchingPage() {
         setBoyKundali(bk);
         setGirlKundali(gk);
       });
-    } catch { setMatchError(isTamil ? 'இணைப்பு பிழை. இணைய இணைப்பை சரிபார்க்கவும்.' : locale === 'en' ? 'Connection error. Please check your internet.' : 'कनेक्शन त्रुटि। कृपया इंटरनेट जाँचें।'); setResult(null); }
+    } catch { setMatchError(isTamil ? 'இணைப்பு பிழை. இணைய இணைப்பை சரிபார்க்கவும்.' : locale === 'en' ? 'Connection error. Please check your internet.' : 'कनेक्शन त्रुटि। कृपया इंटरनेट जाँचें।'); setResult(null); setDashaResult(null); }
     setLoading(false);
-  }, [boyComputed, girlComputed, boyBirth, girlBirth]);
+  }, [boyComputed, girlComputed, boyBirth, girlBirth, matchSystem]);
 
   const verdictColors: Record<string, string> = {
     excellent: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10',
@@ -324,6 +334,32 @@ export default function MatchingPage() {
         </motion.div>
       </div>
 
+      {/* System Toggle: North Indian (36pt) vs South Indian (10pt) */}
+      <div className="flex justify-center mb-8">
+        <div className="inline-flex rounded-xl border border-gold-primary/20 overflow-hidden">
+          <button
+            onClick={() => setMatchSystem('ashta-kuta')}
+            className={`px-5 py-3 text-sm font-bold transition-all ${
+              matchSystem === 'ashta-kuta'
+                ? 'bg-gold-primary/20 text-gold-light border-r border-gold-primary/20'
+                : 'bg-transparent text-text-secondary hover:text-gold-light border-r border-gold-primary/20'
+            }`}
+          >
+            {isTamil ? 'வட இந்திய (36 புள்ளி)' : isDevanagari ? 'उत्तर भारतीय (36 अंक)' : 'North Indian (36 pt)'}
+          </button>
+          <button
+            onClick={() => setMatchSystem('dasha-koota')}
+            className={`px-5 py-3 text-sm font-bold transition-all ${
+              matchSystem === 'dasha-koota'
+                ? 'bg-gold-primary/20 text-gold-light'
+                : 'bg-transparent text-text-secondary hover:text-gold-light'
+            }`}
+          >
+            {isTamil ? 'தென் இந்திய (10 புள்ளி)' : isDevanagari ? 'दक्षिण भारतीय (10 अंक)' : 'South Indian (10 pt)'}
+          </button>
+        </div>
+      </div>
+
       {/* Match Button */}
       <div className="text-center mb-12">
         <button
@@ -352,7 +388,154 @@ export default function MatchingPage() {
         </div>
       )}
 
-      {/* Results */}
+      {/* Results — Dasha Koota (South Indian 10pt) */}
+      <AnimatePresence>
+        {dashaResult && (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            <GoldDivider />
+            <div ref={matchResultRef}>
+
+            {/* Score Circle */}
+            <div className="my-12 text-center">
+              <div className="inline-block relative">
+                <svg className="w-36 h-36 sm:w-48 sm:h-48" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" strokeWidth="6" className="text-bg-tertiary" />
+                  <circle
+                    cx="60" cy="60" r="52"
+                    fill="none"
+                    strokeWidth="6"
+                    strokeLinecap="round"
+                    strokeDasharray={`${2 * Math.PI * 52}`}
+                    strokeDashoffset={`${2 * Math.PI * 52 * (1 - dashaResult.percentage / 100)}`}
+                    className={
+                      dashaResult.verdict === 'excellent' || dashaResult.verdict === 'good' ? 'stroke-emerald-500' :
+                      dashaResult.verdict === 'average' ? 'stroke-amber-500' :
+                      'stroke-red-500'
+                    }
+                    style={{ transform: 'rotate(-90deg)', transformOrigin: '60px 60px', transition: 'stroke-dashoffset 1s ease-out' }}
+                  />
+                  <text x="60" y="52" textAnchor="middle" className="fill-gold-light text-3xl font-bold" style={{ fontSize: '28px' }}>
+                    {dashaResult.totalScored}
+                  </text>
+                  <text x="60" y="72" textAnchor="middle" className="fill-text-secondary" style={{ fontSize: '11px' }}>
+                    / {dashaResult.totalMax}
+                  </text>
+                </svg>
+              </div>
+              <div className={`inline-block mt-4 px-6 py-2 rounded-xl border text-lg font-bold ${verdictColors[dashaResult.verdict]}`} style={headingFont}>
+                {tl(dashaResult.verdictText, locale)}
+              </div>
+              <div className="text-text-secondary text-sm mt-3">{dashaResult.percentage}% {t('compatibility')}</div>
+            </div>
+
+            {/* Rajju Dosha Warning */}
+            {dashaResult.kutas[8]?.scored === 0 && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border-2 border-red-500/30 rounded-xl p-5 mb-8 text-center"
+              >
+                <div className="text-red-400 font-bold text-lg mb-1" style={headingFont}>
+                  {isDevanagari ? 'रज्जु दोष' : isTamil ? 'ரஜ்ஜு தோஷம்' : 'Rajju Dosha'}
+                </div>
+                <div className="text-text-secondary text-sm">
+                  {isDevanagari
+                    ? 'दोनों नक्षत्र एक ही रज्जु (शरीर अंग) समूह में हैं — यह विवाह की स्थिरता के लिए चिन्ता का विषय है।'
+                    : isTamil
+                      ? 'இரு நட்சத்திரங்களும் ஒரே ரஜ்ஜு குழுவில் உள்ளன — இது திருமண நிலைத்தன்மைக்கு கவலையளிக்கிறது.'
+                      : 'Both nakshatras fall in the same Rajju (body part) group — this is a concern for marital stability.'}
+                </div>
+              </motion.div>
+            )}
+
+            {/* Vedha Dosha Warning */}
+            {dashaResult.kutas[9]?.scored === 0 && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border-2 border-amber-500/30 rounded-xl p-5 mb-8 text-center"
+              >
+                <div className="text-amber-400 font-bold text-lg mb-1" style={headingFont}>
+                  {isDevanagari ? 'वेध दोष' : isTamil ? 'வேதை தோஷம்' : 'Vedha Dosha'}
+                </div>
+                <div className="text-text-secondary text-sm">
+                  {isDevanagari
+                    ? 'नक्षत्र जोड़ी में वेध (पीड़ा) है — शास्त्रीय ग्रन्थों के अनुसार यह अशुभ संयोग है।'
+                    : isTamil
+                      ? 'நட்சத்திர ஜோடியில் வேதை (பீடை) உள்ளது — சாஸ்திர நூல்களின்படி இது அசுப கூட்டணி.'
+                      : 'The nakshatra pair has Vedha (affliction) — considered inauspicious per classical texts.'}
+                </div>
+              </motion.div>
+            )}
+
+            {/* Dasha Koota Intro */}
+            <InfoBlock
+              id="matching-dasha-koota"
+              title={isTamil ? 'தசகூடம் (10-மடங்கு பொருத்தம்) என்றால் என்ன?' : isDevanagari ? 'दशकूट (10-गुण मिलान) क्या है?' : 'What is Dasha Koota (10-Fold Compatibility)?'}
+              defaultOpen={true}
+            >
+              {isDevanagari ? (
+                <p>दशकूट पद्धति दक्षिण भारतीय विवाह मिलान प्रणाली है जो 10 कूटों पर संगतता को अंकित करती है (अधिकतम 10 अंक): दिन (1.5 अंक) — नक्षत्र दिवस अनुकूलता, गण (1.5 अंक) — स्वभाव मिलान, महेन्द्र (1 अंक) — समृद्धि, स्त्री दीर्घ (1 अंक) — वधू की दीर्घायु, योनि (1 अंक) — शारीरिक अनुकूलता, राशि (1 अंक) — चन्द्र राशि मिलान, राश्यधिपति (1 अंक) — ग्रह मैत्री, वश्य (1 अंक) — परस्पर आकर्षण, रज्जु (1 अंक) — विवाह स्थिरता, वेध (1 अंक) — नक्षत्र पीड़ा अभाव। 8+ = उत्तम, 5-7 = अच्छा, 5 से कम = चुनौतीपूर्ण।</p>
+              ) : (
+                <p>The Dasha Koota system is the South Indian marriage matching method that scores compatibility on 10 dimensions (max 10 points): Dina (1.5pts) — nakshatra day compatibility, Gana (1.5pts) — temperament, Mahendra (1pt) — prosperity, Stree Deergha (1pt) — bride&apos;s longevity, Yoni (1pt) — physical compatibility, Rashi (1pt) — Moon sign match, Rashiadhipati (1pt) — sign lord friendship, Vasya (1pt) — mutual attraction, Rajju (1pt) — marriage durability, Vedha (1pt) — absence of nakshatra affliction. 8+ = Excellent, 5-7 = Good, below 5 = Challenging.</p>
+              )}
+            </InfoBlock>
+
+            {/* Kuta Breakdown */}
+            <h2 className="text-3xl font-bold text-gold-gradient mb-8 text-center" style={headingFont}>
+              {isTamil ? 'தசகூட விவரம்' : isDevanagari ? 'दशकूट विवरण' : 'Dasha Koota Breakdown'}
+            </h2>
+
+            <div className="space-y-4 mb-12">
+              {dashaResult.kutas.map((kuta, i) => (
+                <motion.div
+                  key={kuta.name.en}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.08 }}
+                  className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5"
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                      <span className="text-gold-light font-bold text-lg" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                        {tl(kuta.name, locale)}
+                      </span>
+                      <span className="text-text-secondary text-xs ml-3">{tl(kuta.description, locale)}</span>
+                    </div>
+                    <span className="font-mono text-lg font-bold text-gold-primary">
+                      {kuta.scored} <span className="text-text-secondary text-sm">/ {kuta.maxPoints}</span>
+                    </span>
+                  </div>
+                  <div className="w-full bg-bg-tertiary rounded-full h-2.5 overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${(kuta.scored / kuta.maxPoints) * 100}%` }}
+                      transition={{ delay: 0.3 + i * 0.08, duration: 0.6 }}
+                      className={`h-full rounded-full ${scoreBarColor(kuta.scored, kuta.maxPoints)}`}
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            </div>
+
+            {/* Share + Print for Dasha Koota */}
+            <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
+              <PrintButton
+                contentRef={matchResultRef}
+                title={isTamil ? 'தசகூட பொருத்த முடிவுகள்' : isDevanagari ? 'दशकूट मिलान परिणाम' : 'Dasha Koota Matching Results'}
+                label={isTamil ? 'அச்சிடு / PDF' : locale === 'en' ? 'Print / PDF' : 'प्रिंट / PDF'}
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Results — Ashta Kuta (North Indian 36pt) */}
       <AnimatePresence>
         {result && (
           <motion.div

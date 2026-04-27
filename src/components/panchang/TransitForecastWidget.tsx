@@ -38,7 +38,7 @@ export default function TransitForecastWidget({ locale }: Props) {
           setTransits(sorted.slice(0, 2));
         }
       })
-      .catch(() => {})
+      .catch(err => console.error('[TransitForecastWidget] fetch failed:', err))
       .finally(() => setLoading(false));
   }, [user]);
 

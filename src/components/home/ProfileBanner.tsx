@@ -48,7 +48,7 @@ export default function ProfileBanner({ locale, bf }: { locale: string; bf: Reac
         currentDasha: json.snapshot.currentDasha,
         spiActive: json.snapshot.sade_sati?.isActive || false,
       });
-    } catch { /* silent */ }
+    } catch (err) { console.error('[ProfileBanner] fetch failed:', err); }
   }, []);
 
   useEffect(() => {

@@ -300,7 +300,7 @@ export default function PersonalEclipseInsight({
           try { sessionStorage.setItem('kundali_last_result', JSON.stringify({ kundali: data })); } catch {}
         }
       })
-      .catch(() => {})
+      .catch(err => console.error('[PersonalEclipseInsight] fetch failed:', err))
       .finally(() => setLoading(false));
   }, [charts, kundali, loading]);
 

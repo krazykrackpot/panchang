@@ -238,7 +238,7 @@ export default function DinacharyaPage() {
   if (error || !protocol) {
     return (
       <div className="min-h-screen bg-[#0a0e27] flex items-center justify-center px-4">
-        <div className="bg-[#111633] border border-red-500/20 rounded-xl p-6 max-w-md text-center">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/20 rounded-2xl p-6 max-w-md text-center">
           <AlertTriangle className="w-8 h-8 text-red-400 mx-auto mb-3" />
           <p className="text-[#e6e2d8] mb-2">{error || 'Unable to generate protocol'}</p>
           <button
@@ -266,7 +266,7 @@ export default function DinacharyaPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0e27] pb-20">
-      <div className="max-w-2xl mx-auto px-4 pt-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         {/* ── Page Header ── */}
         <header className="mb-8">
           <div className="flex items-center justify-between mb-3">
@@ -404,7 +404,7 @@ function SectionCard({
   return (
     <section className="mb-5">
       <h2 className="font-[Cinzel] text-base text-[#f0d48a] mb-3">{title}</h2>
-      <div className="bg-[#111633] border border-[#d4a853]/10 rounded-xl p-5">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 hover:border-gold-primary/40 transition-all">
         {children}
       </div>
     </section>
@@ -427,7 +427,7 @@ function MoonPhaseBanner({
     : `${protocol.moonPhasePercent}% waning`;
 
   return (
-    <div className="bg-[#111633] border border-[#d4a853]/10 rounded-xl p-5 mb-5 flex items-center gap-4">
+    <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 mb-5 flex items-center gap-4 hover:border-gold-primary/40 transition-all">
       <span className="text-4xl flex-shrink-0">{icon}</span>
       <div className="flex-1 min-w-0">
         <p className="text-[#e6e2d8] text-sm">

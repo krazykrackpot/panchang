@@ -331,7 +331,7 @@ function SignShiftPageInner() {
               )}
 
               {/* Comparison Table */}
-              <div className="overflow-hidden rounded-2xl border border-gold-primary/20 bg-bg-secondary">
+              <div className="overflow-hidden rounded-2xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27]">
                 {/* Table header */}
                 <div className="flex items-center border-b border-gold-primary/20 bg-gold-primary/5 px-4 py-3 text-sm font-semibold text-gold-dark sm:px-6">
                   <div className="w-1/4">{tl(LABELS.planet, locale)}</div>
@@ -594,7 +594,7 @@ function ExplainerSection({
       </div>
 
       {/* Visual: Precession illustration */}
-      <div className="mt-8 rounded-2xl border border-gold-primary/20 bg-gold-primary/5 p-6">
+      <div className="mt-8 rounded-2xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-6">
         <div className="flex flex-col items-center gap-4 sm:flex-row">
           <div className="flex flex-col items-center gap-1">
             <span className="text-3xl font-bold text-gold-light">~285 AD</span>
@@ -602,7 +602,7 @@ function ExplainerSection({
           </div>
           <div className="flex-1 border-t border-dashed border-gold-primary/30 sm:border-l sm:border-t-0" />
           <div className="flex flex-col items-center gap-1">
-            <span className="text-3xl font-bold text-amber-400">~24.2\u00B0</span>
+            <span className="text-3xl font-bold text-amber-400">{'~24.2°'}</span>
             <span className="text-xs text-text-secondary">{locale === 'hi' ? 'वर्तमान अयनांश (2026)' : 'Current ayanamsha (2026)'}</span>
           </div>
           <div className="flex-1 border-t border-dashed border-gold-primary/30 sm:border-l sm:border-t-0" />

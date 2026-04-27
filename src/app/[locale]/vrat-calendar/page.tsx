@@ -285,7 +285,7 @@ export default function VratCalendarPage() {
                         className={`p-4 rounded-xl border transition-all duration-200 ${
                           isFollowing
                             ? 'bg-gold-primary/5 border-gold-primary/30'
-                            : 'bg-bg-secondary/40 border-gold-primary/10 hover:border-gold-primary/20'
+                            : 'bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border-gold-primary/10 hover:border-gold-primary/25'
                         }`}
                       >
                         <div className="flex items-start justify-between gap-2 mb-2">
@@ -305,7 +305,7 @@ export default function VratCalendarPage() {
                             className={`shrink-0 p-2 rounded-lg transition-all duration-200 ${
                               isFollowing
                                 ? 'bg-gold-primary/20 text-gold-primary hover:bg-gold-primary/10'
-                                : 'bg-bg-secondary/60 text-text-secondary hover:text-gold-light hover:bg-gold-primary/5'
+                                : 'bg-[#1a1040]/40 text-text-secondary hover:text-gold-light hover:bg-gold-primary/10'
                             }`}
                           >
                             {isFollowing ? <BellRing className="w-4 h-4" /> : <Bell className="w-4 h-4" />}
@@ -363,7 +363,7 @@ export default function VratCalendarPage() {
                     className={`flex items-center gap-4 p-3 rounded-xl transition-colors ${
                       isToday
                         ? 'bg-gold-primary/10 border border-gold-primary/30'
-                        : 'bg-bg-secondary/30 border border-gold-primary/5 hover:border-gold-primary/15'
+                        : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/8 hover:border-gold-primary/20'
                     }`}
                   >
                     {/* Date badge */}

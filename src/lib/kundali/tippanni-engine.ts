@@ -11,6 +11,7 @@ import { LAGNA_DEEP } from './tippanni-lagna';
 import { generateDashaSynthesis } from '@/lib/tippanni/dasha-synthesis';
 import { PLANET_HOUSE_DEPTH, DIGNITY_EFFECTS, DASHA_EFFECTS } from './tippanni-planets';
 import { BPHS_PLANET_IN_HOUSE } from '@/lib/constants/bphs-planet-in-house';
+import { YOGA_CITATIONS } from '@/lib/constants/bphs-yogas';
 import type {
   TippanniContent, PersonalitySection, PlanetInsight, YogaInsight,
   DoshaInsight, LifeAreaSection, LifeArea, DashaInsightSection,
@@ -23,6 +24,7 @@ import { getPlanetInHouseEnhanced } from '@/lib/tippanni/planet-in-house-enhance
 import { calculateAllAspects } from '@/lib/tippanni/aspects';
 import { detectExtendedYogas } from '@/lib/tippanni/yogas-extended';
 import { detectExtendedDoshas } from '@/lib/tippanni/doshas-extended';
+import { findDoshaCitations } from '@/lib/constants/bphs-doshas';
 import { getDashaLordAnalysis, getAntardashaInteraction } from '@/lib/tippanni/dasha-effects-enhanced';
 import { getRemediesForWeakPlanets } from '@/lib/tippanni/remedies-enhanced';
 import {
@@ -392,9 +394,11 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
 }
 
 function generateYogas(kundali: KundaliData, locale: Locale): YogaInsight[] {
+  let yogaInsights: YogaInsight[];
+
   // Use yogasComplete (150+ properly computed yogas) when available
   if (kundali.yogasComplete && kundali.yogasComplete.length > 0) {
-    return kundali.yogasComplete
+    yogaInsights = kundali.yogasComplete
       .filter(y => y.present)
       .map(y => ({
         name: y.name[locale === 'sa' ? 'sa' : locale] || y.name.en,
@@ -405,14 +409,57 @@ function generateYogas(kundali: KundaliData, locale: Locale): YogaInsight[] {
         implications: y.formationRule[locale === 'sa' ? 'sa' : locale] || y.formationRule.en,
         strength: y.strength,
       }));
+  } else {
+    // Fallback: manual detection (only if yogasComplete is unavailable)
+    yogaInsights = [];
+    const planets = kundali.planets;
+    const extendedYogas = detectExtendedYogas(planets, kundali.houses, kundali.ascendant.sign, locale);
+    for (const ey of extendedYogas) yogaInsights.push(ey);
   }
 
-  // Fallback: manual detection (only if yogasComplete is unavailable)
-  const yogas: YogaInsight[] = [];
-  const planets = kundali.planets;
-  const extendedYogas = detectExtendedYogas(planets, kundali.houses, kundali.ascendant.sign, locale);
-  for (const ey of extendedYogas) yogas.push(ey);
-  return yogas;
+  // Attach classical BPHS/Phaladeepika citations where available
+  // Lookup uses the English yoga name (lowercase) since YOGA_CITATIONS is keyed that way.
+  // For non-English locales, we also try the English name from yogasComplete.
+  for (const yoga of yogaInsights) {
+    if (!yoga.classicalReferences) {
+      // Try the resolved (possibly localized) name first, then fall back to English
+      const key = yoga.name.toLowerCase().trim();
+      const citations = YOGA_CITATIONS[key];
+      if (citations) {
+        yoga.classicalReferences = {
+          summary: `Classical references for ${yoga.name}`,
+          citations,
+          confidence: 'high',
+        };
+      }
+    }
+  }
+
+  // For non-English locales, the name won't match — try matching via yogasComplete English names
+  if (locale !== 'en' && kundali.yogasComplete) {
+    const enNameMap = new Map<string, string>();
+    for (const y of kundali.yogasComplete) {
+      const localeName = y.name[locale === 'sa' ? 'sa' : locale] || y.name.en;
+      enNameMap.set(localeName, y.name.en);
+    }
+    for (const yoga of yogaInsights) {
+      if (!yoga.classicalReferences) {
+        const enName = enNameMap.get(yoga.name);
+        if (enName) {
+          const citations = YOGA_CITATIONS[enName.toLowerCase().trim()];
+          if (citations) {
+            yoga.classicalReferences = {
+              summary: `Classical references for ${enName}`,
+              citations,
+              confidence: 'high',
+            };
+          }
+        }
+      }
+    }
+  }
+
+  return yogaInsights;
 }
 
 function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
@@ -560,6 +607,40 @@ function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
   for (const ed of extendedDoshas) {
     if (!existingDoshaNames.has(ed.name)) {
       doshas.push(ed);
+    }
+  }
+
+  // Also get English names from extended doshas for citation lookup
+  const extendedDoshasEn = detectExtendedDoshas(kundali.planets, kundali.houses, kundali.ascendant.sign, 'en');
+
+  // Attach classical citations to all doshas
+  // Manual doshas (first 3) have known English names regardless of locale
+  const manualEnglishNames = [
+    'Manglik Dosha (Kuja Dosha)',
+    'Kaal Sarp Dosha',
+    'Pitra Dosha',
+  ];
+
+  for (let i = 0; i < doshas.length; i++) {
+    if (doshas[i].classicalReferences) continue; // Already has citations (e.g. from yogasComplete path)
+
+    // Determine the English name for citation lookup
+    let englishName: string;
+    if (i < manualEnglishNames.length) {
+      englishName = manualEnglishNames[i];
+    } else {
+      // Extended doshas: find matching English name by index offset
+      const extIdx = i - manualEnglishNames.length;
+      englishName = extIdx < extendedDoshasEn.length ? extendedDoshasEn[extIdx].name : doshas[i].name;
+    }
+
+    const citations = findDoshaCitations(englishName);
+    if (citations && citations.length > 0) {
+      doshas[i].classicalReferences = {
+        summary: `Classical references for ${englishName}`,
+        citations,
+        confidence: 'high',
+      };
     }
   }
 

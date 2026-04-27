@@ -14,35 +14,35 @@ function YogaSymbol({ size = 128 }: { number: number; size?: number }) {
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
         <linearGradient id="yg-main" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#e85d4a" />
-          <stop offset="100%" stopColor="#c23a2a" />
+          <stop offset="0%" stopColor="#e8a44a" />
+          <stop offset="100%" stopColor="#c27a2a" />
         </linearGradient>
         <radialGradient id="yg-glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#e85d4a" stopOpacity="0.35" />
-          <stop offset="60%" stopColor="#c23a2a" stopOpacity="0.1" />
-          <stop offset="100%" stopColor="#7a1a10" stopOpacity="0" />
+          <stop offset="0%" stopColor="#e8a44a" stopOpacity="0.35" />
+          <stop offset="60%" stopColor="#c27a2a" stopOpacity="0.1" />
+          <stop offset="100%" stopColor="#7a4a10" stopOpacity="0" />
         </radialGradient>
       </defs>
       {/* Background glow */}
       <circle cx="32" cy="32" r="31" fill="url(#yg-glow)" />
-      {/* Outer circle — bold, reddish gold */}
-      <circle cx="32" cy="32" r="30" stroke="#e85d4a" strokeWidth="2.5" opacity="0.7" />
+      {/* Outer circle — warm golden */}
+      <circle cx="32" cy="32" r="30" stroke="#e8a44a" strokeWidth="2.5" opacity="0.7" />
       {/* Inner circle */}
-      <circle cx="32" cy="32" r="22" stroke="#c23a2a" strokeWidth="1.5" opacity="0.4" />
+      <circle cx="32" cy="32" r="22" stroke="#c27a2a" strokeWidth="1.5" opacity="0.4" />
       {/* Sri Yantra — 4 upward triangles (Shiva) */}
-      <polygon points="32,4 56,50 8,50" stroke="#e85d4a" strokeWidth="2.5" fill="#e85d4a" fillOpacity="0.08" strokeLinejoin="round" />
-      <polygon points="32,12 48,44 16,44" stroke="#e85d4a" strokeWidth="2" fill="#e85d4a" fillOpacity="0.1" strokeLinejoin="round" />
-      <polygon points="32,18 44,40 20,40" stroke="#e85d4a" strokeWidth="1.8" fill="#e85d4a" fillOpacity="0.12" strokeLinejoin="round" />
-      <polygon points="32,22 40,38 24,38" stroke="#e85d4a" strokeWidth="1.5" fill="#e85d4a" fillOpacity="0.15" strokeLinejoin="round" />
+      <polygon points="32,4 56,50 8,50" stroke="#e8a44a" strokeWidth="2.5" fill="#e8a44a" fillOpacity="0.08" strokeLinejoin="round" />
+      <polygon points="32,12 48,44 16,44" stroke="#e8a44a" strokeWidth="2" fill="#e8a44a" fillOpacity="0.1" strokeLinejoin="round" />
+      <polygon points="32,18 44,40 20,40" stroke="#e8a44a" strokeWidth="1.8" fill="#e8a44a" fillOpacity="0.12" strokeLinejoin="round" />
+      <polygon points="32,22 40,38 24,38" stroke="#e8a44a" strokeWidth="1.5" fill="#e8a44a" fillOpacity="0.15" strokeLinejoin="round" />
       {/* Sri Yantra — 5 downward triangles (Shakti) */}
-      <polygon points="32,60 8,14 56,14" stroke="#c23a2a" strokeWidth="2.5" fill="#c23a2a" fillOpacity="0.08" strokeLinejoin="round" />
-      <polygon points="32,54 14,18 50,18" stroke="#c23a2a" strokeWidth="2" fill="#c23a2a" fillOpacity="0.1" strokeLinejoin="round" />
-      <polygon points="32,48 18,22 46,22" stroke="#c23a2a" strokeWidth="1.8" fill="#c23a2a" fillOpacity="0.12" strokeLinejoin="round" />
-      <polygon points="32,44 22,24 42,24" stroke="#c23a2a" strokeWidth="1.5" fill="#c23a2a" fillOpacity="0.15" strokeLinejoin="round" />
-      <polygon points="32,40 26,26 38,26" stroke="#c23a2a" strokeWidth="1.2" fill="#c23a2a" fillOpacity="0.18" strokeLinejoin="round" />
-      {/* Central bindu — vermillion red */}
+      <polygon points="32,60 8,14 56,14" stroke="#c27a2a" strokeWidth="2.5" fill="#c27a2a" fillOpacity="0.08" strokeLinejoin="round" />
+      <polygon points="32,54 14,18 50,18" stroke="#c27a2a" strokeWidth="2" fill="#c27a2a" fillOpacity="0.1" strokeLinejoin="round" />
+      <polygon points="32,48 18,22 46,22" stroke="#c27a2a" strokeWidth="1.8" fill="#c27a2a" fillOpacity="0.12" strokeLinejoin="round" />
+      <polygon points="32,44 22,24 42,24" stroke="#c27a2a" strokeWidth="1.5" fill="#c27a2a" fillOpacity="0.15" strokeLinejoin="round" />
+      <polygon points="32,40 26,26 38,26" stroke="#c27a2a" strokeWidth="1.2" fill="#c27a2a" fillOpacity="0.18" strokeLinejoin="round" />
+      {/* Central bindu — warm amber */}
       <circle cx="32" cy="32" r="4" fill="url(#yg-main)" opacity="0.95" />
-      <circle cx="32" cy="32" r="2.5" fill="#e85d4a" opacity="1" />
+      <circle cx="32" cy="32" r="2.5" fill="#e8a44a" opacity="1" />
     </svg>
   );
 }

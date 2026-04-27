@@ -161,7 +161,8 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
 
   // ── Phase 12: Festival Calendar Science ────────────────────────────────────
   { id: '27-1', phase: 12, topic: 'Festival Calendar Science', title: { en: 'Festival Timing Rules (Kala-Vyapti)', hi: 'त्योहार समय नियम (काल-व्याप्ति)', sa: 'उत्सवकालव्याप्तिनियमाः', mai: 'त्योहार समय नियम', mr: 'सण समय नियम', ta: 'திருவிழா நேர விதிகள்', te: 'పండుగ సమయ నియమాలు', bn: 'উৎসব সময় নিয়ম', kn: 'ಹಬ್ಬದ ಸಮಯ ನಿಯಮಗಳು', gu: 'તહેવાર સમય નિયમો' } },
-  { id: '27-2', phase: 12, topic: 'Festival Calendar Science', title: { en: 'Adhika Masa — The Intercalary Month', hi: 'अधिक मास — अन्तर्वेशी मास', sa: 'अधिकमासः', mai: 'अधिक मास', mr: 'अधिक मास', ta: 'அதிக மாசம்', te: 'అధిక మాసం', bn: 'অধিক মাস', kn: 'ಅಧಿಕ ಮಾಸ', gu: 'અધિક માસ' } },
+  { id: '27-2', phase: 12, topic: 'Festival Calendar Science', title: { en: 'Adhika Masa — The Intercalary Month', hi: 'अधिक मास — अन्तर्वेशी मास', sa: 'अधिकमासः', mai: 'अधिक मास', mr: 'अधिक मास', ta: 'அதிக மாசம்', te: 'అధిక మాసం', bn: 'অধিক মাস', kn: 'ಅಧಿಕ ಮಾಸ', gu: 'અધிક માસ' } },
+  { id: '27-3', phase: 12, topic: 'Festival Calendar Science', title: { en: 'Smarta & Vaishnava Calendar Systems', hi: 'स्मार्त और वैष्णव पंचांग पद्धतियाँ', sa: 'स्मार्तवैष्णवपञ्चाङ्गपद्धतयः', mai: 'स्मार्त और वैष्णव पंचांग', mr: 'स्मार्त आणि वैष्णव पंचांग', ta: 'ஸ்மார்த & வைஷ்ணவ நாள்காட்டி', te: 'స్మార్త & వైష్ణవ క్యాలెండర్', bn: 'স্মার্ত ও বৈষ্ণব পঞ্জিকা', kn: 'ಸ್ಮಾರ್ತ ಮತ್ತು ವೈಷ್ಣವ ಪಂಚಾಂಗ', gu: 'સ્માર્ત અને વૈષ્ણવ પંચાંગ' } },
 ];
 
 export const TOTAL_MODULES = MODULE_SEQUENCE.length;

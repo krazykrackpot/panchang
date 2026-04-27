@@ -75,6 +75,7 @@ export default function LearnPage() {
       { name: { en: 'Masa', hi: 'मास', sa: 'मासः' }, href: '/learn/masa' },
       { name: { en: 'Adhika Masa', hi: 'अधिक मास', sa: 'अधिकमासः' }, href: '/learn/adhika-masa' },
       { name: { en: 'Festival Rules', hi: 'त्योहार नियम', sa: 'उत्सवनियमाः' }, href: '/learn/festival-rules' },
+      { name: { en: 'Smarta & Vaishnava', hi: 'स्मार्त और वैष्णव', sa: 'स्मार्तवैष्णवौ' }, href: '/learn/smarta-vaishnava' },
       { name: { en: 'Transit Guide', hi: 'गोचर', sa: 'गोचरः' }, href: '/learn/transit-guide' },
       { name: { en: 'Eclipses (Grahan)', hi: 'ग्रहण', sa: 'ग्रहणम्' }, href: '/learn/eclipses' },
     ]},

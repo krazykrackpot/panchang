@@ -1,0 +1,348 @@
+{
+  "title": {
+    "en": "Smarta & Vaishnava: Two Traditions, One Sky",
+    "hi": "स्मार्त और वैष्णव: दो परम्पराएँ, एक आकाश",
+    "sa": "Smarta & Vaishnava: Two Traditions, One Sky",
+    "mai": "स्मार्त और वैष्णव: दो परम्पराएँ, एक आकाश",
+    "mr": "स्मार्त और वैष्णव: दो परम्पराएँ, एक आकाश",
+    "ta": "Smarta & Vaishnava: Two Traditions, One Sky",
+    "te": "Smarta & Vaishnava: Two Traditions, One Sky",
+    "bn": "Smarta & Vaishnava: Two Traditions, One Sky",
+    "kn": "Smarta & Vaishnava: Two Traditions, One Sky",
+    "gu": "Smarta & Vaishnava: Two Traditions, One Sky"
+  },
+  "subtitle": {
+    "en": "Why professional panchangs sometimes disagree by ±1 day — and which system to follow",
+    "hi": "व्यावसायिक पंचांग कभी-कभी ±1 दिन के अन्तर से क्यों भिन्न होते हैं — और कौन सी पद्धति अपनाएँ"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "Module 27-1: Festival Timing Rules",
+        "hi": "मॉड्यूल 27-1: त्योहार समय नियम",
+        "sa": "मॉड्यूल 27-1: त्योहार समय नियम",
+        "mai": "मॉड्यूल 27-1: त्योहार समय नियम",
+        "mr": "मॉड्यूल 27-1: त्योहार समय नियम",
+        "ta": "Module 27-1: Festival Timing Rules",
+        "te": "Module 27-1: Festival Timing Rules",
+        "bn": "Module 27-1: Festival Timing Rules",
+        "kn": "Module 27-1: Festival Timing Rules",
+        "gu": "Module 27-1: Festival Timing Rules"
+      },
+      "href": "/learn/modules/27-1"
+    },
+    {
+      "label": {
+        "en": "Module 27-2: Adhika Masa",
+        "hi": "मॉड्यूल 27-2: अधिक मास",
+        "sa": "मॉड्यूल 27-2: अधिक मास",
+        "mai": "मॉड्यूल 27-2: अधिक मास",
+        "mr": "मॉड्यूल 27-2: अधिक मास",
+        "ta": "Module 27-2: Adhika Masa",
+        "te": "Module 27-2: Adhika Masa",
+        "bn": "Module 27-2: Adhika Masa",
+        "kn": "Module 27-2: Adhika Masa",
+        "gu": "Module 27-2: Adhika Masa"
+      },
+      "href": "/learn/modules/27-2"
+    },
+    {
+      "label": {
+        "en": "Module 5-3: Tithis — Lunar Days",
+        "hi": "मॉड्यूल 5-3: तिथियाँ — चान्द्र दिन",
+        "sa": "मॉड्यूल 5-3: तिथियाँ — चान्द्र दिन",
+        "mai": "मॉड्यूल 5-3: तिथियाँ — चान्द्र दिन",
+        "mr": "मॉड्यूल 5-3: तिथियाँ — चान्द्र दिन",
+        "ta": "Module 5-3: Tithis — Lunar Days",
+        "te": "Module 5-3: Tithis — Lunar Days",
+        "bn": "Module 5-3: Tithis — Lunar Days",
+        "kn": "Module 5-3: Tithis — Lunar Days",
+        "gu": "Module 5-3: Tithis — Lunar Days"
+      },
+      "href": "/learn/modules/5-3"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q27_3_01",
+      "type": "mcq",
+      "question": {
+        "en": "What makes a tithi 'Viddha' (contaminated)?",
+        "hi": "तिथि को 'विद्ध' (दूषित) क्या बनाता है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "A tithi is Viddha (contaminated) when the previous tithi is still present at sunrise. For example, if sunrise falls during Saptami but Ashtami begins after sunrise, Ashtami is considered Viddha for that day. The Smarta tradition ignores this and uses the Kala window, while the Vaishnava tradition rejects the Viddha day entirely.",
+        "hi": "तिथि तब विद्ध (दूषित) होती है जब सूर्योदय पर पिछली तिथि अभी भी चल रही हो। उदाहरण: यदि सूर्योदय सप्तमी में हो लेकिन अष्टमी सूर्योदय के बाद शुरू हो, तो उस दिन अष्टमी विद्ध मानी जाती है। स्मार्त परम्परा इसे अनदेखा कर काल-विन्डो का उपयोग करती है, जबकि वैष्णव परम्परा विद्ध दिन को पूर्णतः अस्वीकार करती है।"
+      },
+      "options": [
+        {
+          "en": "The tithi ends before sunset",
+          "hi": "तिथि सूर्यास्त से पहले समाप्त हो जाती है",
+          "sa": "तिथि सूर्यास्त से पहले समाप्त हो जाती है",
+          "mai": "तिथि सूर्यास्त से पहले समाप्त हो जाती है",
+          "mr": "तिथि सूर्यास्त से पहले समाप्त हो जाती है",
+          "ta": "The tithi ends before sunset",
+          "te": "The tithi ends before sunset",
+          "bn": "The tithi ends before sunset",
+          "kn": "The tithi ends before sunset",
+          "gu": "The tithi ends before sunset"
+        },
+        {
+          "en": "The previous tithi is present at sunrise",
+          "hi": "सूर्योदय पर पिछली तिथि विद्यमान हो",
+          "sa": "सूर्योदय पर पिछली तिथि विद्यमान हो",
+          "mai": "सूर्योदय पर पिछली तिथि विद्यमान हो",
+          "mr": "सूर्योदय पर पिछली तिथि विद्यमान हो",
+          "ta": "The previous tithi is present at sunrise",
+          "te": "The previous tithi is present at sunrise",
+          "bn": "The previous tithi is present at sunrise",
+          "kn": "The previous tithi is present at sunrise",
+          "gu": "The previous tithi is present at sunrise"
+        },
+        {
+          "en": "An eclipse occurs during the tithi",
+          "hi": "तिथि के दौरान ग्रहण हो",
+          "sa": "तिथि के दौरान ग्रहण हो",
+          "mai": "तिथि के दौरान ग्रहण हो",
+          "mr": "तिथि के दौरान ग्रहण हो",
+          "ta": "An eclipse occurs during the tithi",
+          "te": "An eclipse occurs during the tithi",
+          "bn": "An eclipse occurs during the tithi",
+          "kn": "An eclipse occurs during the tithi",
+          "gu": "An eclipse occurs during the tithi"
+        },
+        {
+          "en": "The tithi is during Adhika Masa",
+          "hi": "तिथि अधिक मास में हो",
+          "sa": "तिथि अधिक मास में हो",
+          "mai": "तिथि अधिक मास में हो",
+          "mr": "तिथि अधिक मास में हो",
+          "ta": "The tithi is during Adhika Masa",
+          "te": "The tithi is during Adhika Masa",
+          "bn": "The tithi is during Adhika Masa",
+          "kn": "The tithi is during Adhika Masa",
+          "gu": "The tithi is during Adhika Masa"
+        }
+      ]
+    },
+    {
+      "id": "q27_3_02",
+      "type": "mcq",
+      "question": {
+        "en": "In which tradition does Ekadashi sometimes shift by one day?",
+        "hi": "किस परम्परा में एकादशी कभी-कभी एक दिन आगे खिसक जाती है?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "In the Vaishnava tradition, if Dashami (the 10th tithi) is present at sunrise on the day Ekadashi prevails, that Ekadashi is considered Viddha (contaminated). Vaishnavas reject it and fast the next day when Ekadashi is 'Shuddha' (pure). This creates a 1-day difference with the Smarta Ekadashi about 4–6 times per year.",
+        "hi": "वैष्णव परम्परा में, यदि एकादशी वाले दिन सूर्योदय पर दशमी (10वीं तिथि) विद्यमान हो, तो वह एकादशी विद्ध (दूषित) मानी जाती है। वैष्णव उसे अस्वीकार कर अगले दिन व्रत रखते हैं जब एकादशी 'शुद्ध' हो। इससे वर्ष में लगभग 4-6 बार स्मार्त एकादशी से 1 दिन का अन्तर होता है।"
+      },
+      "options": [
+        {
+          "en": "Both traditions always agree",
+          "hi": "दोनों परम्पराएँ सदैव सहमत होती हैं",
+          "sa": "दोनों परम्पराएँ सदैव सहमत होती हैं",
+          "mai": "दोनों परम्पराएँ सदैव सहमत होती हैं",
+          "mr": "दोनों परम्पराएँ सदैव सहमत होती हैं",
+          "ta": "Both traditions always agree",
+          "te": "Both traditions always agree",
+          "bn": "Both traditions always agree",
+          "kn": "Both traditions always agree",
+          "gu": "Both traditions always agree"
+        },
+        {
+          "en": "Only Smarta shifts",
+          "hi": "केवल स्मार्त खिसकती है",
+          "sa": "केवल स्मार्त खिसकती है",
+          "mai": "केवल स्मार्त खिसकती है",
+          "mr": "केवल स्मार्त खिसकती है",
+          "ta": "Only Smarta shifts",
+          "te": "Only Smarta shifts",
+          "bn": "Only Smarta shifts",
+          "kn": "Only Smarta shifts",
+          "gu": "Only Smarta shifts"
+        },
+        {
+          "en": "Only Vaishnava shifts (rejects Viddha)",
+          "hi": "केवल वैष्णव खिसकती है (विद्ध अस्वीकार करती है)",
+          "sa": "केवल वैष्णव खिसकती है (विद्ध अस्वीकार करती है)",
+          "mai": "केवल वैष्णव खिसकती है (विद्ध अस्वीकार करती है)",
+          "mr": "केवल वैष्णव खिसकती है (विद्ध अस्वीकार करती है)",
+          "ta": "Only Vaishnava shifts (rejects Viddha)",
+          "te": "Only Vaishnava shifts (rejects Viddha)",
+          "bn": "Only Vaishnava shifts (rejects Viddha)",
+          "kn": "Only Vaishnava shifts (rejects Viddha)",
+          "gu": "Only Vaishnava shifts (rejects Viddha)"
+        },
+        {
+          "en": "Neither — Ekadashi is always the same day",
+          "hi": "कोई नहीं — एकादशी सदैव एक ही दिन होती है",
+          "sa": "कोई नहीं — एकादशी सदैव एक ही दिन होती है",
+          "mai": "कोई नहीं — एकादशी सदैव एक ही दिन होती है",
+          "mr": "कोई नहीं — एकादशी सदैव एक ही दिन होती है",
+          "ta": "Neither — Ekadashi is always the same day",
+          "te": "Neither — Ekadashi is always the same day",
+          "bn": "Neither — Ekadashi is always the same day",
+          "kn": "Neither — Ekadashi is always the same day",
+          "gu": "Neither — Ekadashi is always the same day"
+        }
+      ]
+    },
+    {
+      "id": "q27_3_03",
+      "type": "mcq",
+      "question": {
+        "en": "What authority text does the Vaishnava system follow for festival timing?",
+        "hi": "वैष्णव पद्धति त्योहार समय निर्धारण के लिए किस प्रामाणिक ग्रन्थ का पालन करती है?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "The Vaishnava system follows the Hari Bhakti Vilasa, compiled by Gopal Bhatta Goswami in the 16th century under the guidance of Chaitanya Mahaprabhu. This text codifies the Shuddha tithi rules and Viddha rejection for Vaishnava observances. The Smarta system follows the Dharmasindhu and Nirnayasindhu.",
+        "hi": "वैष्णव पद्धति हरि भक्ति विलास का पालन करती है, जो 16वीं शताब्दी में गोपाल भट्ट गोस्वामी द्वारा चैतन्य महाप्रभु के मार्गदर्शन में संकलित किया गया था। इस ग्रन्थ में वैष्णव पालन के लिए शुद्ध तिथि नियम और विद्ध अस्वीकार नियम संहिताबद्ध हैं। स्मार्त पद्धति धर्मसिन्धु और निर्णयसिन्धु का पालन करती है।"
+      },
+      "options": [
+        {
+          "en": "Surya Siddhanta",
+          "hi": "सूर्य सिद्धान्त",
+          "sa": "सूर्य सिद्धान्त",
+          "mai": "सूर्य सिद्धान्त",
+          "mr": "सूर्य सिद्धान्त",
+          "ta": "Surya Siddhanta",
+          "te": "Surya Siddhanta",
+          "bn": "Surya Siddhanta",
+          "kn": "Surya Siddhanta",
+          "gu": "Surya Siddhanta"
+        },
+        {
+          "en": "Dharmasindhu",
+          "hi": "धर्मसिन्धु",
+          "sa": "धर्मसिन्धु",
+          "mai": "धर्मसिन्धु",
+          "mr": "धर्मसिन्धु",
+          "ta": "Dharmasindhu",
+          "te": "Dharmasindhu",
+          "bn": "Dharmasindhu",
+          "kn": "Dharmasindhu",
+          "gu": "Dharmasindhu"
+        },
+        {
+          "en": "Hari Bhakti Vilasa",
+          "hi": "हरि भक्ति विलास",
+          "sa": "हरि भक्ति विलास",
+          "mai": "हरि भक्ति विलास",
+          "mr": "हरि भक्ति विलास",
+          "ta": "Hari Bhakti Vilasa",
+          "te": "Hari Bhakti Vilasa",
+          "bn": "Hari Bhakti Vilasa",
+          "kn": "Hari Bhakti Vilasa",
+          "gu": "Hari Bhakti Vilasa"
+        },
+        {
+          "en": "Arthashastra",
+          "hi": "अर्थशास्त्र",
+          "sa": "अर्थशास्त्र",
+          "mai": "अर्थशास्त्र",
+          "mr": "अर्थशास्त्र",
+          "ta": "Arthashastra",
+          "te": "Arthashastra",
+          "bn": "Arthashastra",
+          "kn": "Arthashastra",
+          "gu": "Arthashastra"
+        }
+      ]
+    }
+  ],
+  "coreDifference": {
+    "en": "The Core Difference",
+    "hi": "मूल अन्तर"
+  },
+  "coreDifferenceDesc": {
+    "en": "Both systems use the same astronomy — the same Moon, the same tithis, the same sunrise times. The disagreement is purely about WHICH rule to apply when a tithi spans two days. The Smarta tradition uses the tithi at the required Kala window (Madhyahna for Ram Navami, Nishita for Janmashtami). The Vaishnava tradition additionally rejects any 'Viddha' (contaminated) tithi and shifts to the next day when the tithi is 'Shuddha' (pure).",
+    "hi": "दोनों पद्धतियाँ एक ही खगोल विज्ञान का उपयोग करती हैं — वही चन्द्रमा, वही तिथियाँ, वही सूर्योदय समय। मतभेद केवल इस बात पर है कि जब तिथि दो दिनों में फैली हो तो कौन सा नियम लागू करें। स्मार्त परम्परा आवश्यक काल विन्डो पर तिथि का उपयोग करती है (राम नवमी के लिए मध्याह्न, जन्माष्टमी के लिए निशीथ)। वैष्णव परम्परा अतिरिक्त रूप से किसी भी 'विद्ध' (दूषित) तिथि को अस्वीकार करती है और अगले दिन व्रत रखती है जब तिथि 'शुद्ध' हो।"
+  },
+  "smartaTitle": {
+    "en": "Smarta Tradition (Mainstream Hindu)",
+    "hi": "स्मार्त परम्परा (मुख्यधारा हिन्दू)"
+  },
+  "smartaDesc": {
+    "en": "Uses Udaya Tithi (tithi at sunrise) as the default rule. If the tithi prevails at the required Kala window (Madhyahna, Nishita, Pradosh, etc.), that day is chosen. Does not reject Viddha tithis. Follows the authority of Dharmasindhu (1790 CE) and Nirnayasindhu (1612 CE). This is the system used by most Hindu families, and by professional panchangs like Prokerala.",
+    "hi": "उदय तिथि (सूर्योदय पर तिथि) को मूल नियम के रूप में उपयोग करती है। यदि तिथि आवश्यक काल विन्डो (मध्याह्न, निशीथ, प्रदोष आदि) पर व्याप्त हो, तो वह दिन चुना जाता है। विद्ध तिथि को अस्वीकार नहीं करती। धर्मसिन्धु (1790 ई.) और निर्णयसिन्धु (1612 ई.) के प्राधिकार का पालन करती है। अधिकांश हिन्दू परिवार और Prokerala जैसे व्यावसायिक पंचांग इसी पद्धति का उपयोग करते हैं।"
+  },
+  "vaishnavTitle": {
+    "en": "Vaishnava Tradition (ISKCON, Gaudiya)",
+    "hi": "वैष्णव परम्परा (इस्कॉन, गौड़ीय)"
+  },
+  "vaishnavDesc": {
+    "en": "Rejects 'Viddha' (contaminated) tithis. If the previous tithi is present at sunrise — even briefly 'touching' the required tithi — the festival shifts to the next day when the tithi is 'Shuddha' (pure). Follows the Hari Bhakti Vilasa (16th century, by Gopal Bhatta Goswami) and Navadvipa Panjika. Used by ISKCON centers worldwide, Gaudiya Vaishnavas, and Sri Vaishnavism.",
+    "hi": "'विद्ध' (दूषित) तिथि को अस्वीकार करती है। यदि सूर्योदय पर पिछली तिथि विद्यमान हो — आवश्यक तिथि को थोड़ा भी 'स्पर्श' करती हो — तो त्योहार अगले दिन खिसक जाता है जब तिथि 'शुद्ध' हो। हरि भक्ति विलास (16वीं शताब्दी, गोपाल भट्ट गोस्वामी) और नवद्वीप पंजिका का पालन करती है। ISKCON केन्द्र, गौड़ीय वैष्णव, और श्री वैष्णव इसका अनुसरण करते हैं।"
+  },
+  "viddhaRule": {
+    "en": "The Viddha Rule — The Key Disagreement",
+    "hi": "विद्ध नियम — मुख्य मतभेद"
+  },
+  "viddhaRuleDesc": {
+    "en": "A tithi is 'Viddha' (contaminated) if the PREVIOUS tithi is present at sunrise. Example: If Ashtami starts at 4 AM and sunrise is 6 AM, Saptami is at sunrise. Smarta says: 'Ashtami prevails at midnight (Nishita), so Janmashtami is today.' Vaishnava says: 'Saptami is at sunrise, so Ashtami is Viddha today — wait until tomorrow when Ashtami is pure at sunrise.'",
+    "hi": "तिथि तब 'विद्ध' (दूषित) होती है जब सूर्योदय पर पिछली तिथि विद्यमान हो। उदाहरण: यदि अष्टमी प्रातः 4 बजे शुरू हो और सूर्योदय 6 बजे हो, तो सूर्योदय पर सप्तमी चल रही है। स्मार्त कहते हैं: 'मध्यरात्रि (निशीथ) पर अष्टमी व्याप्त है, तो जन्माष्टमी आज है।' वैष्णव कहते हैं: 'सूर्योदय पर सप्तमी है, तो आज अष्टमी विद्ध है — कल तक प्रतीक्षा करें जब अष्टमी सूर्योदय पर शुद्ध हो।'"
+  },
+  "affectedFestivals": {
+    "en": "Which Festivals Are Affected?",
+    "hi": "कौन से त्योहार प्रभावित होते हैं?"
+  },
+  "affectedFestivalsDesc": {
+    "en": "Most festivals: both systems agree. The disagreement surfaces mainly on Ekadashi (the biggest battleground — can differ 4–6 times per year), Janmashtami (can differ by 1 day), and Ram Navami (can differ by 1 day). For festivals like Holi, Diwali, and Ganesh Chaturthi, the dates almost always match.",
+    "hi": "अधिकांश त्योहारों पर दोनों पद्धतियाँ सहमत होती हैं। मतभेद मुख्यतः एकादशी (सबसे बड़ा विवाद — वर्ष में 4-6 बार भिन्न हो सकती है), जन्माष्टमी (1 दिन का अन्तर हो सकता है), और राम नवमी (1 दिन का अन्तर हो सकता है) पर दिखता है। होली, दीपावली, गणेश चतुर्थी जैसे त्योहारों की तिथियाँ लगभग सदैव मेल खाती हैं।"
+  },
+  "ekadashiDeepDive": {
+    "en": "Ekadashi Deep Dive",
+    "hi": "एकादशी विस्तृत विवेचन"
+  },
+  "ekadashiDeepDiveDesc": {
+    "en": "Ekadashi is the most frequent point of divergence. Smarta Ekadashi: fast on the day Ekadashi prevails at sunrise. Vaishnava Ekadashi: Ekadashi must be 'Shuddha' (pure) — if Dashami touches sunrise, skip to the next day. Additionally, the Dwadashi Parana (fast-breaking) must be done strictly after sunrise but before 1/4 of Dwadashi has elapsed. 'Vaishnava Ekadashi' and 'Smarta Ekadashi' can be 1 day apart approximately 4–6 times per year.",
+    "hi": "एकादशी सबसे अधिक बार विभेद का बिन्दु है। स्मार्त एकादशी: जिस दिन सूर्योदय पर एकादशी व्याप्त हो, उस दिन उपवास। वैष्णव एकादशी: एकादशी 'शुद्ध' होनी चाहिए — यदि दशमी सूर्योदय को स्पर्श करे, तो अगले दिन उपवास। इसके अतिरिक्त, द्वादशी पारण (उपवास तोड़ना) सूर्योदय के बाद परन्तु द्वादशी की 1/4 अवधि से पहले करना अनिवार्य है। वर्ष में लगभग 4-6 बार 'वैष्णव एकादशी' और 'स्मार्त एकादशी' में 1 दिन का अन्तर होता है।"
+  },
+  "geographicVariation": {
+    "en": "Geographic Variation",
+    "hi": "भौगोलिक विविधता"
+  },
+  "geographicVariationDesc": {
+    "en": "South India (Tamil, Kannada, Telugu): Predominantly Smarta tradition. North India (Hindi belt): Mix of both; most traditional families follow Smarta. ISKCON centers worldwide: Strictly Vaishnava. Professional panchangs like Prokerala and Drik Panchang: Default to Smarta. Our app: Currently Smarta (Kala-Vyapti based, matching professional panchangs). A Vaishnava mode toggle is planned.",
+    "hi": "दक्षिण भारत (तमिल, कन्नड़, तेलुगू): मुख्यतः स्मार्त परम्परा। उत्तर भारत (हिन्दी पट्टी): दोनों का मिश्रण; अधिकांश पारम्परिक परिवार स्मार्त पालन करते हैं। विश्व भर में ISKCON केन्द्र: कड़ाई से वैष्णव। Prokerala और Drik Panchang जैसे व्यावसायिक पंचांग: स्मार्त पूर्वनिर्धारित। हमारा ऐप: वर्तमान में स्मार्त (काल-व्याप्ति आधारित)। वैष्णव मोड टॉगल की योजना है।"
+  },
+  "ourImplementation": {
+    "en": "Our Implementation",
+    "hi": "हमारा कार्यान्वयन"
+  },
+  "ourImplementationDesc": {
+    "en": "Default: Smarta (Kala-Vyapti based, matching professional panchangs like Prokerala). Coming soon: Vaishnava mode toggle in settings. When enabled, it will apply Viddha rejection and Shuddha Ekadashi rules. Both modes use the exact same astronomical engine — only the date-selection rules differ.",
+    "hi": "पूर्वनिर्धारित: स्मार्त (काल-व्याप्ति आधारित, Prokerala जैसे व्यावसायिक पंचांगों से मेल खाता)। जल्द आ रहा है: सेटिंग्स में वैष्णव मोड टॉगल। सक्रिय होने पर, विद्ध अस्वीकार और शुद्ध एकादशी नियम लागू होंगे। दोनों मोड बिल्कुल एक ही खगोलीय इंजन का उपयोग करते हैं — केवल तिथि-चयन नियम भिन्न हैं।"
+  },
+  "quickReferenceTable": {
+    "en": "Quick Reference Table",
+    "hi": "त्वरित सन्दर्भ सारणी"
+  },
+  "tableHeaderAspect": {
+    "en": "Aspect",
+    "hi": "पहलू"
+  },
+  "tableHeaderSmarta": {
+    "en": "Smarta",
+    "hi": "स्मार्त"
+  },
+  "tableHeaderVaishnava": {
+    "en": "Vaishnava",
+    "hi": "वैष्णव"
+  },
+  "keyTakeawayPoints": {
+    "en": [
+      "Both Smarta and Vaishnava systems use the same astronomical calculations — the disagreement is purely about which DATE-SELECTION rule applies when a tithi spans two days.",
+      "The key concept is 'Viddha' (contamination): when the previous tithi is present at sunrise. Smartas ignore it; Vaishnavas reject the day entirely.",
+      "Ekadashi is the biggest battleground — Smarta and Vaishnava Ekadashi dates differ about 4–6 times per year. For most other festivals, both systems agree."
+    ],
+    "hi": [
+      "स्मार्त और वैष्णव दोनों पद्धतियाँ एक ही खगोलीय गणना का उपयोग करती हैं — मतभेद केवल इस बात पर है कि जब तिथि दो दिनों में फैली हो तो कौन सा तिथि-चयन नियम लागू हो।",
+      "मूल अवधारणा है 'विद्ध' (दूषण): जब सूर्योदय पर पिछली तिथि विद्यमान हो। स्मार्त इसे अनदेखा करते हैं; वैष्णव उस दिन को पूर्णतः अस्वीकार करते हैं।",
+      "एकादशी सबसे बड़ा विवाद बिन्दु है — स्मार्त और वैष्णव एकादशी तिथियाँ वर्ष में लगभग 4-6 बार भिन्न होती हैं। अधिकांश अन्य त्योहारों पर दोनों पद्धतियाँ सहमत होती हैं।"
+    ]
+  }
+}

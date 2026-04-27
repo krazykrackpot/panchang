@@ -8,7 +8,6 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import StarField from '@/components/layout/StarField';
 import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import ClientShell from '@/components/layout/ClientShell';
 import { generateSoftwareApplicationLD, generateOrganizationLD, generateWebSiteLD } from '@/lib/seo/structured-data';
@@ -152,7 +151,6 @@ export default async function LocaleLayout({
           <Footer />
           <ClientShell locale={locale} />
           <Analytics />
-          <SpeedInsights />
           {process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID && (
             <Script
               async

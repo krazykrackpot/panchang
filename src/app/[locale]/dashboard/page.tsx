@@ -46,6 +46,7 @@ import { computeKeyDates, type KeyDate } from '@/lib/kundali/domain-synthesis/ke
 import KeyDatesTimeline from '@/components/kundali/KeyDatesTimeline';
 import { Trash2, Plus, Pencil } from 'lucide-react';
 import FamilyCard from '@/components/dashboard/FamilyCard';
+import FamilyDoshaStrip from '@/components/dashboard/FamilyDoshaStrip';
 import JournalCheckinCard from '@/components/journal/JournalCheckinCard';
 import TodaysReading from '@/components/dashboard/TodaysReading';
 import { computeDailyEnergy } from '@/lib/panchang/energy-score';
@@ -1694,6 +1695,13 @@ export default function DashboardPage() {
           </div>
         )}
       </motion.div>
+
+      {/* Family Dosha Strip */}
+      {user && (
+        <div className="mb-6">
+          <FamilyDoshaStrip locale={locale} />
+        </div>
+      )}
 
       {/* Family Card */}
       {user && hasBirthData && (

@@ -26,7 +26,7 @@ const ICON_SIZE_MAP = {
   sm: 64,
   md: 80,
   lg: 96,
-  full: 96,
+  full: 128,
 } as const;
 
 export default function TarotCard({

@@ -1,0 +1,636 @@
+[     265ms] [LOG] %c[Vercel Speed Insights]%c [vitals] color: rgb(120, 120, 120) color: inherit {speed: 4g, metrics: Array(5), scriptVersion: 0.1.3, sdkName: @vercel/speed-insights/next, sdkVersion: 2.0.0} /_vercel/speed-insights/vitals @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[     265ms] [LOG] %c[Vercel Speed Insights]%c [vitals] color: rgb(120, 120, 120) color: inherit {speed: 4g, metrics: Array(1), scriptVersion: 0.1.3, sdkName: @vercel/speed-insights/next, sdkVersion: 2.0.0} /_vercel/speed-insights/vitals @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[     311ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[     323ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[     388ms] [LOG] %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[     389ms] [LOG] %c[Vercel Web Analytics]%c [view] http://localhost:3000/en/muhurta-ai color: rgb(120, 120, 120) color: inherit {o: http://localhost:3000/en/muhurta-ai, sv: 0.1.3, sdkn: @vercel/analytics/react, sdkv: 2.0.1, ts: 1777220958037} /_vercel/insights/view @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[     736ms] Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/en/muhurt..." tree={[...]} params={{locale:"en"}} cacheNode={{rsc:{...}, ...}} ...>
+            <SegmentViewNode type="page" pagePath="[locale]/m...">
+              <SegmentTrieNode>
+              <ClientPageRoot Component={function MuhurtaAIPage} serverProvidedParams={{...}}>
+                <MuhurtaAIPage params={Promise} searchParams={Promise}>
+                  <main className="min-h-scre...">
+                    <MuhurtaScannerClient>
+                      <div className="mx-auto ma...">
+                        <div>
+                        <ScanControls activity="property" startDate="2026-04-01" endDate="2026-04-30" ...>
+                          <div className="bg-[#11163...">
+                            <div>
+                            <div>
+                            <div>
+                            <div className="flex flex-...">
+                              <label>
+                              <div
+                                className="bg-[#161b42] border border-[#d4a853]/20 text-[#8a8478] rounded-lg px-3 py-2..."
+                              >
++                               Corseaux, Switzerland
+-                               Detecting...
+                            ...
+                        ...
+                    ...
+            ...
+          ...
+
+    at throwOnHydrationMismatch (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:3318:56)
+    at prepareToHydrateHostInstance (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:3372:23)
+    at completeWork (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6922:60)
+    at runWithFiberInDEV (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at completeUnitOfWork (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9622:23)
+    at performUnitOfWork (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9557:28)
+    at workLoopConcurrentByScheduler (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:58)
+    at renderRootConcurrent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64)
+[     759ms] [LOG] %c[Vercel Speed Insights]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[    4563ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[    4639ms] [LOG] [Fast Refresh] done in 177ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   23336ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   23412ms] [LOG] [Fast Refresh] done in 178ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   39213ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   39248ms] [LOG] [Fast Refresh] done in 136ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   42290ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   42322ms] [LOG] [Fast Refresh] done in 134ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   69786ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   69838ms] [LOG] [Fast Refresh] done in 153ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  104834ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  105049ms] [LOG] [Fast Refresh] done in 316ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  142322ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  142364ms] [LOG] [Fast Refresh] done in 144ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  164476ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  164530ms] [LOG] [Fast Refresh] done in 155ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  224359ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  225069ms] [LOG] [Fast Refresh] done in 540ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1108088ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1108696ms] [LOG] [Fast Refresh] done in 440ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1399568ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1399642ms] [LOG] [Fast Refresh] done in 175ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1420290ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1420453ms] [LOG] [Fast Refresh] done in 266ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1439882ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1440157ms] [LOG] [Fast Refresh] done in 225ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1440494ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1440646ms] [LOG] [Fast Refresh] done in 254ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1453338ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1453592ms] [LOG] [Fast Refresh] done in 328ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1464058ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1464151ms] [LOG] [Fast Refresh] done in 193ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1472988ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1473080ms] [LOG] [Fast Refresh] done in 182ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1476066ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1476137ms] [LOG] [Fast Refresh] done in 172ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1492387ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1493078ms] [LOG] [Fast Refresh] done in 764ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1495688ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1495712ms] [LOG] [Fast Refresh] done in 153ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1526422ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1526634ms] [LOG] [Fast Refresh] done in 312ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1527598ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1529053ms] [LOG] [Fast Refresh] done in 1557ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1531015ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1531106ms] [LOG] [Fast Refresh] done in 202ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1548593ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1548741ms] [LOG] [Fast Refresh] done in 251ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1548849ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1548991ms] [LOG] [Fast Refresh] done in 243ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1549130ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1549261ms] [LOG] [Fast Refresh] done in 232ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1551937ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1552078ms] [LOG] [Fast Refresh] done in 242ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1553228ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1553327ms] [LOG] [Fast Refresh] done in 200ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1553654ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1553709ms] [LOG] [Fast Refresh] done in 155ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1556524ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1558053ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/en/muhurta-ai?_rsc=1ktkr:0
+[ 1558218ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/en/muhurta-ai?_rsc=1ktkr:0
+[ 1558271ms] [LOG] %c[Vercel Speed Insights]%c [vitals] color: rgb(120, 120, 120) color: inherit {speed: 4g, metrics: Array(2), scriptVersion: 0.1.3, sdkName: @vercel/speed-insights/next, sdkVersion: 2.0.0} /_vercel/speed-insights/vitals @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1558321ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/en/muhurta-ai:0
+[ 1559137ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_react-dom_0bruynb._.js:15305
+[ 1559216ms] Error: ./src/app/[locale]/panchang/PanchangClient.tsx:895:15
+Expected '</', got '{'
+  893 |               </div>
+  894 |
+> 895 |               {/* ── Calculation Transparency Toggle ── */}
+      |               ^
+  896 |               <div className="mt-4 mb-2">
+  897 |                 <button
+  898 |                   onClick={() => setShowCalcDetails(!showCalcDetails)}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx
+
+
+    at <unknown> (Error: ./src/app/[locale]/panchang/PanchangClient.tsx:895:15)
+    at Object.getCompilationErrors (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/dev/hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/lib/dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/dev/next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/dev/next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/base-server.js:1745:26)
+[ 1559441ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1559494ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:895:15
+Expected '</', got '{'
+  893 |               </div>
+  894 |
+> 895 |               {/* ── Calculation Transparency Toggle ── */}
+      |               ^
+  896 |               <div className="mt-4 mb-2">
+  897 |                 <button
+  898 |                   onClick={() => setShowCalcDetails(!showCalcDetails)}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1563274ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:895:15
+Expected '</', got '{'
+  893 |               </div>
+  894 |
+> 895 |               {/* ── Calculation Transparency Toggle ── */}
+      |               ^
+  896 |               <div className="mt-4 mb-2">
+  897 |                 <button
+  898 |                   onClick={() => setShowCalcDetails(!showCalcDetails)}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1563378ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1563550ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:895:15
+Expected '</', got '{'
+  893 |               </div>
+  894 |
+> 895 |               {/* ── Calculation Transparency Toggle ── */}
+      |               ^
+  896 |               <div className="mt-4 mb-2">
+  897 |                 <button
+  898 |                   onClick={() => setShowCalcDetails(!showCalcDetails)}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1563652ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1563705ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:895:15
+Expected '</', got '{'
+  893 |               </div>
+  894 |
+> 895 |               {/* ── Calculation Transparency Toggle ── */}
+      |               ^
+  896 |               <div className="mt-4 mb-2">
+  897 |                 <button
+  898 |                   onClick={() => setShowCalcDetails(!showCalcDetails)}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1563714ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:895:15
+Expected '</', got '{'
+  893 |               </div>
+  894 |
+> 895 |               {/* ── Calculation Transparency Toggle ── */}
+      |               ^
+  896 |               <div className="mt-4 mb-2">
+  897 |                 <button
+  898 |                   onClick={() => setShowCalcDetails(!showCalcDetails)}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1563751ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:895:15
+Expected '</', got '{'
+  893 |               </div>
+  894 |
+> 895 |               {/* ── Calculation Transparency Toggle ── */}
+      |               ^
+  896 |               <div className="mt-4 mb-2">
+  897 |                 <button
+  898 |                   onClick={() => setShowCalcDetails(!showCalcDetails)}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1563807ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:895:15
+Expected '</', got '{'
+  893 |               </div>
+  894 |
+> 895 |               {/* ── Calculation Transparency Toggle ── */}
+      |               ^
+  896 |               <div className="mt-4 mb-2">
+  897 |                 <button
+  898 |                   onClick={() => setShowCalcDetails(!showCalcDetails)}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1563895ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:895:15
+Expected '</', got '{'
+  893 |               </div>
+  894 |
+> 895 |               {/* ── Calculation Transparency Toggle ── */}
+      |               ^
+  896 |               <div className="mt-4 mb-2">
+  897 |                 <button
+  898 |                   onClick={() => setShowCalcDetails(!showCalcDetails)}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1563935ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1564048ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:895:15
+Expected '</', got '{'
+  893 |               </div>
+  894 |
+> 895 |               {/* ── Calculation Transparency Toggle ── */}
+      |               ^
+  896 |               <div className="mt-4 mb-2">
+  897 |                 <button
+  898 |                   onClick={() => setShowCalcDetails(!showCalcDetails)}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1564080ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1564185ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:895:15
+Expected '</', got '{'
+  893 |               </div>
+  894 |
+> 895 |               {/* ── Calculation Transparency Toggle ── */}
+      |               ^
+  896 |               <div className="mt-4 mb-2">
+  897 |                 <button
+  898 |                   onClick={() => setShowCalcDetails(!showCalcDetails)}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1564243ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1604748ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1604975ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:996:15
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  994 |               </div>
+  995 |             );
+> 996 |           })()}
+      |               ^
+  997 |
+  998 |           {/* ═══ TIMES — BOLD ═══ */}
+  999 |           <GoldDivider />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1605166ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/en/muhurta-ai:0
+[ 1605254ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_react-dom_0bruynb._.js:15305
+[ 1605265ms] Error: ./src/app/[locale]/panchang/PanchangClient.tsx:996:15
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  994 |               </div>
+  995 |             );
+> 996 |           })()}
+      |               ^
+  997 |
+  998 |           {/* ═══ TIMES — BOLD ═══ */}
+  999 |           <GoldDivider />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx
+
+
+    at <unknown> (Error: ./src/app/[locale]/panchang/PanchangClient.tsx:996:15)
+    at Object.getCompilationErrors (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/dev/hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/lib/dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/dev/next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/dev/next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/base-server.js:1745:26)
+[ 1605290ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1605310ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:996:15
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  994 |               </div>
+  995 |             );
+> 996 |           })()}
+      |               ^
+  997 |
+  998 |           {/* ═══ TIMES — BOLD ═══ */}
+  999 |           <GoldDivider />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1605369ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:996:15
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  994 |               </div>
+  995 |             );
+> 996 |           })()}
+      |               ^
+  997 |
+  998 |           {/* ═══ TIMES — BOLD ═══ */}
+  999 |           <GoldDivider />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1605438ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:996:15
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  994 |               </div>
+  995 |             );
+> 996 |           })()}
+      |               ^
+  997 |
+  998 |           {/* ═══ TIMES — BOLD ═══ */}
+  999 |           <GoldDivider />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1605489ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:996:15
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  994 |               </div>
+  995 |             );
+> 996 |           })()}
+      |               ^
+  997 |
+  998 |           {/* ═══ TIMES — BOLD ═══ */}
+  999 |           <GoldDivider />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1605552ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1613950ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1614681ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/en/muhurta-ai:0
+[ 1614729ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_react-dom_0bruynb._.js:15305
+[ 1614767ms] Error: ./src/app/[locale]/panchang/PanchangClient.tsx:996:15
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  994 |               </div>
+  995 |             );
+> 996 |           })()}
+      |               ^
+  997 |
+  998 |           {/* ═══ TIMES — BOLD ═══ */}
+  999 |           <GoldDivider />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx
+
+
+    at <unknown> (Error: ./src/app/[locale]/panchang/PanchangClient.tsx:996:15)
+    at Object.getCompilationErrors (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/dev/hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/lib/dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/dev/next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/dev/next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/base-server.js:1745:26)
+[ 1614765ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1614779ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:996:15
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  994 |               </div>
+  995 |             );
+> 996 |           })()}
+      |               ^
+  997 |
+  998 |           {/* ═══ TIMES — BOLD ═══ */}
+  999 |           <GoldDivider />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1615027ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1615230ms] [LOG] [Fast Refresh] done in 189ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1615396ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1615413ms] [LOG] [Fast Refresh] done in 118ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1615720ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1615732ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1615812ms] [LOG] %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1615812ms] [LOG] %c[Vercel Web Analytics]%c [view] http://localhost:3000/en/muhurta-ai color: rgb(120, 120, 120) color: inherit {o: http://localhost:3000/en/muhurta-ai, sv: 0.1.3, sdkn: @vercel/analytics/react, sdkv: 2.0.1, ts: 1777222573460} /_vercel/insights/view @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1615816ms] [LOG] %c[Vercel Speed Insights]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1616720ms] Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/en/muhurt..." tree={[...]} params={{locale:"en"}} cacheNode={{rsc:{...}, ...}} ...>
+            <SegmentViewNode type="page" pagePath="[locale]/m...">
+              <SegmentTrieNode>
+              <ClientPageRoot Component={function MuhurtaAIPage} serverProvidedParams={{...}}>
+                <MuhurtaAIPage params={Promise} searchParams={Promise}>
+                  <main className="min-h-scre...">
+                    <MuhurtaScannerClient>
+                      <div className="mx-auto ma...">
+                        <div>
+                        <ScanControls activity="property" startDate="2026-04-01" endDate="2026-04-30" ...>
+                          <div className="bg-[#11163...">
+                            <div>
+                            <div>
+                            <div>
+                            <div className="flex flex-...">
+                              <label>
+                              <div
+                                className="bg-[#161b42] border border-[#d4a853]/20 text-[#8a8478] rounded-lg px-3 py-2..."
+                              >
++                               Corseaux, Switzerland
+-                               Detecting...
+                            ...
+                        ...
+                    ...
+            ...
+          ...
+
+    at throwOnHydrationMismatch (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:3318:56)
+    at prepareToHydrateHostInstance (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:3372:23)
+    at completeWork (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6922:60)
+    at runWithFiberInDEV (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at completeUnitOfWork (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9622:23)
+    at performUnitOfWork (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9557:28)
+    at workLoopConcurrentByScheduler (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:58)
+    at renderRootConcurrent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64)
+[ 1616877ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1616922ms] [LOG] [Fast Refresh] done in 146ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1631931ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1632000ms] [LOG] [Fast Refresh] done in 172ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1639320ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1639534ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:891:15
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  889 |               </div>
+  890 |             );
+> 891 |           })()}
+      |               ^
+  892 |
+  893 |           {/* ═══ TIMES — BOLD ═══ */}
+  894 |           <GoldDivider />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[ 1639747ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/en/muhurta-ai?_rsc=1ktkr:0
+[ 1639805ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1639823ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:891:15
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  889 |               </div>
+  890 |             );
+> 891 |           })()}
+      |               ^
+  892 |
+  893 |           {/* ═══ TIMES — BOLD ═══ */}
+  894 |           <GoldDivider />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[ 1639850ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/en/muhurta-ai?_rsc=1ktkr:0
+[ 1639902ms] [LOG] %c[Vercel Speed Insights]%c [vitals] color: rgb(120, 120, 120) color: inherit {speed: 4g, metrics: Array(1), scriptVersion: 0.1.3, sdkName: @vercel/speed-insights/next, sdkVersion: 2.0.0} /_vercel/speed-insights/vitals @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 1639905ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/en/muhurta-ai:0
+[ 1640049ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_react-dom_0bruynb._.js:15305
+[ 1640058ms] Error: ./src/app/[locale]/panchang/PanchangClient.tsx:891:15
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  889 |               </div>
+  890 |             );
+> 891 |           })()}
+      |               ^
+  892 |
+  893 |           {/* ═══ TIMES — BOLD ═══ */}
+  894 |           <GoldDivider />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx
+
+
+    at <unknown> (Error: ./src/app/[locale]/panchang/PanchangClient.tsx:891:15)
+    at Object.getCompilationErrors (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/dev/hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/lib/dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/dev/next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/dev/next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file:///Users/adityakumar/Desktop/venture/panchang/node_modules/next/dist/server/base-server.js:1745:26)
+[ 1640066ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1640094ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:891:15
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  889 |               </div>
+  890 |             );
+> 891 |           })()}
+      |               ^
+  892 |
+  893 |           {/* ═══ TIMES — BOLD ═══ */}
+  894 |           <GoldDivider />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1640138ms] [ERROR] ./src/app/[locale]/panchang/PanchangClient.tsx:891:15
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  889 |               </div>
+  890 |             );
+> 891 |           })()}
+      |               ^
+  892 |
+  893 |           {/* ═══ TIMES — BOLD ═══ */}
+  894 |           <GoldDivider />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/app/[locale]/panchang/PanchangClient.tsx
+    ./src/app/[locale]/panchang/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 1640190ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1654341ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1654474ms] [LOG] [Fast Refresh] done in 217ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1654627ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[ 1654703ms] [LOG] [Fast Refresh] done in 176ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226

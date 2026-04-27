@@ -1,0 +1,347 @@
+- generic [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Main navigation" [ref=e3]:
+    - generic [ref=e5]:
+      - link "Dekho Panchang" [ref=e6] [cursor=pointer]:
+        - /url: /en
+        - generic [ref=e7]:
+          - img [ref=e8]
+          - img [ref=e14]
+        - generic [ref=e16]: Dekho Panchang
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - link "Home" [ref=e19] [cursor=pointer]:
+            - /url: /en
+          - link "Dashboard":
+            - /url: /en/dashboard
+        - link "Panchang" [ref=e20] [cursor=pointer]:
+          - /url: /en/panchang
+        - button "Kundali" [ref=e22]:
+          - text: Kundali
+          - img [ref=e23]
+        - button "Rituals" [ref=e26]:
+          - text: Rituals
+          - img [ref=e27]
+        - button "Calendars" [ref=e30]:
+          - text: Calendars
+          - img [ref=e31]
+        - generic [ref=e33]:
+          - button "Tools" [expanded] [active] [ref=e34]:
+            - text: Tools
+            - img [ref=e35]
+          - generic [ref=e305]:
+            - link "Sign Calculator" [ref=e306] [cursor=pointer]:
+              - /url: /en/sign-calculator
+            - link "Medical Astrology" [ref=e307] [cursor=pointer]:
+              - /url: /en/medical-astrology
+            - link "Financial Astrology" [ref=e308] [cursor=pointer]:
+              - /url: /en/financial-astrology
+            - link "Nadi Jyotish" [ref=e309] [cursor=pointer]:
+              - /url: /en/nadi-jyotish
+            - link "Mundane Astrology" [ref=e310] [cursor=pointer]:
+              - /url: /en/mundane
+            - link "Baby Names" [ref=e311] [cursor=pointer]:
+              - /url: /en/baby-names
+            - link "Vedic Time" [ref=e312] [cursor=pointer]:
+              - /url: /en/vedic-time
+            - link "Prashna Kundali" [ref=e313] [cursor=pointer]:
+              - /url: /en/prashna
+            - link "Ashtamangala Prashna" [ref=e314] [cursor=pointer]:
+              - /url: /en/prashna-ashtamangala
+            - link "Upagraha" [ref=e315] [cursor=pointer]:
+              - /url: /en/upagraha
+            - link "Kaal Nirnaya" [ref=e316] [cursor=pointer]:
+              - /url: /en/kaal-nirnaya
+            - link "Nivas & Shool" [ref=e317] [cursor=pointer]:
+              - /url: /en/nivas-shool
+            - link "Rahu Kaal" [ref=e318] [cursor=pointer]:
+              - /url: /en/rahu-kaal
+            - link "Choghadiya" [ref=e319] [cursor=pointer]:
+              - /url: /en/choghadiya
+            - link "Hora" [ref=e320] [cursor=pointer]:
+              - /url: /en/hora
+            - link "Dinacharya" [ref=e321] [cursor=pointer]:
+              - /url: /en/dinacharya
+            - link "Sarvatobhadra" [ref=e322] [cursor=pointer]:
+              - /url: /en/sarvatobhadra
+            - link "Live Sky Map" [ref=e323] [cursor=pointer]:
+              - /url: /en/sky
+        - button "Learn Jyotish" [ref=e38]:
+          - text: Learn Jyotish
+          - img [ref=e39]
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - img [ref=e43]
+          - generic [ref=e46]: Corseaux, Switzerland
+        - generic:
+          - generic:
+            - button "Notifications":
+              - img
+        - button "Search" [ref=e47]:
+          - img [ref=e48]
+          - generic [ref=e51]: Search
+          - generic [ref=e52]: ⌘K
+        - generic [ref=e54]:
+          - button "EN" [ref=e55]
+          - button "हिं" [ref=e56]
+          - button "सं" [ref=e57]
+          - button "த" [ref=e58]
+          - button "తె" [ref=e59]
+          - button "বা" [ref=e60]
+          - button "ಕ" [ref=e61]
+          - button "म" [ref=e62]
+          - button "ગુ" [ref=e63]
+          - button "मै" [ref=e64]
+        - generic: "Trial: 0d"
+        - button "Sign in" [ref=e164]:
+          - img [ref=e165]
+          - text: Sign In
+  - main [ref=e65]:
+    - generic [ref=e67]:
+      - generic [ref=e168]:
+        - generic [ref=e169]:
+          - heading "Daily Protocol" [level=1] [ref=e170]
+          - generic [ref=e171]:
+            - button "Om Traditional" [ref=e172]
+            - button "Modern" [ref=e173]
+        - paragraph [ref=e174]: Sunday, April 26, 2026 · Dashami · Magha
+        - paragraph [ref=e175]: Corseaux, Switzerland
+      - generic [ref=e176]:
+        - generic [ref=e177]: 🌔
+        - generic [ref=e178]:
+          - paragraph [ref=e179]: Day 10 of lunar cycle (67% waxing)
+          - paragraph [ref=e180]: Anabolic phase — optimal for starting new projects and building
+      - generic [ref=e183]:
+        - heading "Energy Timeline" [level=2] [ref=e184]
+        - generic [ref=e186]:
+          - generic [ref=e187]:
+            - generic [ref=e189]: 06:26
+            - generic [ref=e191]: 10:26
+            - generic [ref=e193]: 14:26
+            - generic [ref=e195]: 20:35
+          - generic [ref=e197]:
+            - generic [ref=e198]:
+              - generic [ref=e199]: Grounding Phase
+              - generic [ref=e200]: 06:26 - 10:26
+            - paragraph [ref=e201]: Slow start window — best for exercise, meditation, and establishing momentum
+          - generic [ref=e202]:
+            - generic [ref=e203]:
+              - generic [ref=e204]: Peak Performance
+              - generic [ref=e205]: 10:26 - 14:26
+            - paragraph [ref=e206]: Your highest-output window — tackle the hardest work here
+          - generic [ref=e207]:
+            - generic [ref=e208]:
+              - generic [ref=e209]: Creative Phase
+              - generic [ref=e210]: 14:26 - 20:35
+            - paragraph [ref=e211]: Creative but variable — good for brainstorming, risky for detail work
+          - generic [ref=e212]:
+            - generic [ref=e213]:
+              - generic [ref=e214]: Wind-Down PhaseNOW
+              - generic [ref=e215]: 20:35 - 00:35
+            - paragraph [ref=e216]: Recovery zone — light dinner, reading, screen-free time
+      - generic [ref=e217]:
+        - heading "Hora Schedule" [level=2] [ref=e218]
+        - generic [ref=e220]:
+          - generic [ref=e221]:
+            - generic [ref=e222]: ♂
+            - generic [ref=e223]:
+              - generic [ref=e224]:
+                - generic [ref=e225]: MarsNOW
+                - generic [ref=e226]: 21:24 - 22:13
+              - paragraph [ref=e227]: Intense workouts, competitive tasks, deadlines
+          - generic [ref=e228]:
+            - generic [ref=e229]: ☉
+            - generic [ref=e230]:
+              - generic [ref=e231]:
+                - generic [ref=e232]: Sun
+                - generic [ref=e233]: 22:13 - 23:02
+              - paragraph [ref=e234]: High-stakes decisions, presentations, pitches
+          - generic [ref=e235]:
+            - generic [ref=e236]: ♀
+            - generic [ref=e237]:
+              - generic [ref=e238]:
+                - generic [ref=e239]: Venus
+                - generic [ref=e240]: 23:02 - 23:52
+              - paragraph [ref=e241]: Creative work, design, social media, dating
+      - generic [ref=e242]:
+        - heading "Nutrition Window" [level=2] [ref=e243]
+        - generic [ref=e245]:
+          - generic [ref=e246]:
+            - generic [ref=e247]:
+              - paragraph [ref=e248]: Eating Window
+              - paragraph [ref=e249]: 07:26 - 19:35
+            - generic [ref=e250]:
+              - paragraph [ref=e251]: Metabolism
+              - generic [ref=e252]:
+                - generic [ref=e253]: \uD83D\uDD25
+                - generic [ref=e254]: \uD83D\uDD25
+                - generic [ref=e255]: \uD83D\uDD25
+          - generic [ref=e256]:
+            - paragraph [ref=e257]: "Best meal time: 11:26"
+            - paragraph [ref=e258]: Balanced day — moderate portions, no extremes
+      - generic [ref=e259]:
+        - heading "Practice Focus" [level=2] [ref=e260]
+        - generic [ref=e262]:
+          - generic [ref=e264]: Mridu (Soft)
+          - generic [ref=e265]:
+            - paragraph [ref=e266]: Best for
+            - paragraph [ref=e267]: Creative sessions, relationship building, team celebrations
+          - generic [ref=e268]:
+            - paragraph [ref=e269]: Avoid
+            - paragraph [ref=e270]: Postpone difficult conversations and layoffs
+      - generic [ref=e271]:
+        - heading "Dead Zones" [level=2] [ref=e272]
+        - generic [ref=e274]:
+          - generic [ref=e275]:
+            - generic [ref=e276]: Rahu Kaal
+            - generic [ref=e277]:
+              - paragraph [ref=e278]: 18:49 - 20:35
+              - paragraph [ref=e279]: Dead zone — schedule low-stakes admin tasks here
+          - generic [ref=e280]:
+            - generic [ref=e281]: Yamaganda
+            - generic [ref=e282]:
+              - paragraph [ref=e283]: 13:30 - 15:16
+              - paragraph [ref=e284]: Avoid commitments and sign-offs during this window
+          - generic [ref=e285]:
+            - generic [ref=e286]: Varjyam
+            - generic [ref=e287]:
+              - paragraph [ref=e288]: 01:04 - 02:42
+              - paragraph [ref=e289]: Pause important decisions — use for routine or rest
+      - generic [ref=e290]:
+        - heading "Your Constitution" [level=2] [ref=e291]
+        - button "Take the 1-minute body-type quiz for personalized recommendations 5 questions · determines your Vata/Pitta/Kapha balance" [ref=e293]:
+          - paragraph [ref=e294]: Take the 1-minute body-type quiz for personalized recommendations
+          - paragraph [ref=e295]: 5 questions · determines your Vata/Pitta/Kapha balance
+  - contentinfo [ref=e71]:
+    - generic [ref=e72]:
+      - generic [ref=e73]:
+        - generic [ref=e74]:
+          - heading "Tools" [level=3] [ref=e75]
+          - list [ref=e76]:
+            - listitem [ref=e77]:
+              - link "Kundali" [ref=e78] [cursor=pointer]:
+                - /url: /en/kundali
+            - listitem [ref=e79]:
+              - link "Matching" [ref=e80] [cursor=pointer]:
+                - /url: /en/matching
+            - listitem [ref=e81]:
+              - link "Sign Calculator" [ref=e82] [cursor=pointer]:
+                - /url: /en/sign-calculator
+            - listitem [ref=e83]:
+              - link "Muhurta AI" [ref=e84] [cursor=pointer]:
+                - /url: /en/muhurta-ai
+            - listitem [ref=e85]:
+              - link "Varshaphal" [ref=e86] [cursor=pointer]:
+                - /url: /en/varshaphal
+            - listitem [ref=e87]:
+              - link "KP System" [ref=e88] [cursor=pointer]:
+                - /url: /en/kp-system
+            - listitem [ref=e89]:
+              - link "Prashna" [ref=e90] [cursor=pointer]:
+                - /url: /en/prashna
+            - listitem [ref=e91]:
+              - link "Baby Names" [ref=e92] [cursor=pointer]:
+                - /url: /en/baby-names
+            - listitem [ref=e93]:
+              - link "Sade Sati" [ref=e94] [cursor=pointer]:
+                - /url: /en/sade-sati
+        - generic [ref=e95]:
+          - heading "Calendars" [level=3] [ref=e96]
+          - list [ref=e97]:
+            - listitem [ref=e98]:
+              - link "Daily Panchang" [ref=e99] [cursor=pointer]:
+                - /url: /en/panchang
+            - listitem [ref=e100]:
+              - link "Festival Calendar" [ref=e101] [cursor=pointer]:
+                - /url: /en/calendar
+            - listitem [ref=e102]:
+              - link "Transit Calendar" [ref=e103] [cursor=pointer]:
+                - /url: /en/transits
+            - listitem [ref=e104]:
+              - link "Retrograde Calendar" [ref=e105] [cursor=pointer]:
+                - /url: /en/retrograde
+            - listitem [ref=e106]:
+              - link "Eclipse Calendar" [ref=e107] [cursor=pointer]:
+                - /url: /en/eclipses
+            - listitem [ref=e108]:
+              - link "Muhurat Calendar" [ref=e109] [cursor=pointer]:
+                - /url: /en/muhurat
+            - listitem [ref=e110]:
+              - link "Choghadiya" [ref=e111] [cursor=pointer]:
+                - /url: /en/choghadiya
+            - listitem [ref=e112]:
+              - link "Rahu Kaal" [ref=e113] [cursor=pointer]:
+                - /url: /en/rahu-kaal
+        - generic [ref=e114]:
+          - heading "Learn" [level=3] [ref=e115]
+          - list [ref=e116]:
+            - listitem [ref=e117]:
+              - link "All Topics" [ref=e118] [cursor=pointer]:
+                - /url: /en/learn
+            - listitem [ref=e119]:
+              - link "Grahas" [ref=e120] [cursor=pointer]:
+                - /url: /en/learn/grahas
+            - listitem [ref=e121]:
+              - link "Rashis" [ref=e122] [cursor=pointer]:
+                - /url: /en/learn/rashis
+            - listitem [ref=e123]:
+              - link "Nakshatras" [ref=e124] [cursor=pointer]:
+                - /url: /en/learn/nakshatras
+            - listitem [ref=e125]:
+              - link "Tithis" [ref=e126] [cursor=pointer]:
+                - /url: /en/learn/tithis
+            - listitem [ref=e127]:
+              - link "Yogas" [ref=e128] [cursor=pointer]:
+                - /url: /en/learn/yogas
+            - listitem [ref=e129]:
+              - link "Karanas" [ref=e130] [cursor=pointer]:
+                - /url: /en/learn/karanas
+            - listitem [ref=e131]:
+              - link "Kundali Reading" [ref=e132] [cursor=pointer]:
+                - /url: /en/learn/kundali
+        - generic [ref=e133]:
+          - heading "Deep Dives" [level=3] [ref=e134]
+          - list [ref=e135]:
+            - listitem [ref=e136]:
+              - link "Tithi" [ref=e137] [cursor=pointer]:
+                - /url: /en/panchang/tithi
+            - listitem [ref=e138]:
+              - link "Nakshatra" [ref=e139] [cursor=pointer]:
+                - /url: /en/panchang/nakshatra
+            - listitem [ref=e140]:
+              - link "Yoga" [ref=e141] [cursor=pointer]:
+                - /url: /en/panchang/yoga
+            - listitem [ref=e142]:
+              - link "Karana" [ref=e143] [cursor=pointer]:
+                - /url: /en/panchang/karana
+            - listitem [ref=e144]:
+              - link "Muhurta" [ref=e145] [cursor=pointer]:
+                - /url: /en/panchang/muhurta
+            - listitem [ref=e146]:
+              - link "Rashi" [ref=e147] [cursor=pointer]:
+                - /url: /en/panchang/rashi
+            - listitem [ref=e148]:
+              - link "Masa" [ref=e149] [cursor=pointer]:
+                - /url: /en/panchang/masa
+            - listitem [ref=e150]:
+              - link "Grahan" [ref=e151] [cursor=pointer]:
+                - /url: /en/panchang/grahan
+            - listitem [ref=e152]:
+              - link "Samvatsara" [ref=e153] [cursor=pointer]:
+                - /url: /en/panchang/samvatsara
+      - generic [ref=e154]:
+        - generic [ref=e155]:
+          - generic [ref=e156]: Dekho Panchang
+          - generic [ref=e157]: © 2026
+        - generic [ref=e158]:
+          - link "About" [ref=e159] [cursor=pointer]:
+            - /url: /en/about
+          - link "Privacy" [ref=e160] [cursor=pointer]:
+            - /url: /en/privacy
+          - link "Terms" [ref=e161] [cursor=pointer]:
+            - /url: /en/terms
+        - paragraph [ref=e162]: ॐ ज्योतिषां ज्योतिः
+  - button "Open Next.js Dev Tools" [ref=e301] [cursor=pointer]:
+    - img [ref=e302]
+  - alert [ref=e163]

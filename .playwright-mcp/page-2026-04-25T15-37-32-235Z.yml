@@ -1,0 +1,184 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Main navigation" [ref=e3]:
+    - generic [ref=e5]:
+      - link "Dekho Panchang" [ref=e6] [cursor=pointer]:
+        - /url: /en
+        - generic [ref=e7]:
+          - img [ref=e8]
+          - img [ref=e14]
+        - generic [ref=e16]: Dekho Panchang
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - link "Home" [ref=e19] [cursor=pointer]:
+            - /url: /en
+          - link "Dashboard":
+            - /url: /en/dashboard
+        - link "Panchang" [ref=e20] [cursor=pointer]:
+          - /url: /en/panchang
+        - button "Kundali" [ref=e22]:
+          - text: Kundali
+          - img [ref=e23]
+        - button "Rituals" [ref=e26]:
+          - text: Rituals
+          - img [ref=e27]
+        - button "Calendars" [ref=e30]:
+          - text: Calendars
+          - img [ref=e31]
+        - button "Tools" [ref=e34]:
+          - text: Tools
+          - img [ref=e35]
+        - link "Learn Jyotish" [ref=e37] [cursor=pointer]:
+          - /url: /en/learn
+      - generic [ref=e38]:
+        - generic:
+          - img
+        - generic [ref=e40]:
+          - button "EN" [ref=e41]
+          - button "हिं" [ref=e42]
+          - button "सं" [ref=e43]
+          - button "த" [ref=e44]
+          - button "తె" [ref=e45]
+          - button "বা" [ref=e46]
+          - button "ಕ" [ref=e47]
+          - button "म" [ref=e48]
+          - button "ગુ" [ref=e49]
+          - button "मै" [ref=e50]
+        - generic: "Trial: 0d"
+  - main [ref=e51]:
+    - main [ref=e52]:
+      - generic [ref=e53]:
+        - img [ref=e54]
+        - paragraph [ref=e56]: Loading your cosmic profile...
+  - contentinfo [ref=e57]:
+    - generic [ref=e58]:
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - heading "Tools" [level=3] [ref=e61]
+          - list [ref=e62]:
+            - listitem [ref=e63]:
+              - link "Kundali" [ref=e64] [cursor=pointer]:
+                - /url: /en/kundali
+            - listitem [ref=e65]:
+              - link "Matching" [ref=e66] [cursor=pointer]:
+                - /url: /en/matching
+            - listitem [ref=e67]:
+              - link "Sign Calculator" [ref=e68] [cursor=pointer]:
+                - /url: /en/sign-calculator
+            - listitem [ref=e69]:
+              - link "Muhurta AI" [ref=e70] [cursor=pointer]:
+                - /url: /en/muhurta-ai
+            - listitem [ref=e71]:
+              - link "Varshaphal" [ref=e72] [cursor=pointer]:
+                - /url: /en/varshaphal
+            - listitem [ref=e73]:
+              - link "KP System" [ref=e74] [cursor=pointer]:
+                - /url: /en/kp-system
+            - listitem [ref=e75]:
+              - link "Prashna" [ref=e76] [cursor=pointer]:
+                - /url: /en/prashna
+            - listitem [ref=e77]:
+              - link "Baby Names" [ref=e78] [cursor=pointer]:
+                - /url: /en/baby-names
+            - listitem [ref=e79]:
+              - link "Sade Sati" [ref=e80] [cursor=pointer]:
+                - /url: /en/sade-sati
+        - generic [ref=e81]:
+          - heading "Calendars" [level=3] [ref=e82]
+          - list [ref=e83]:
+            - listitem [ref=e84]:
+              - link "Daily Panchang" [ref=e85] [cursor=pointer]:
+                - /url: /en/panchang
+            - listitem [ref=e86]:
+              - link "Festival Calendar" [ref=e87] [cursor=pointer]:
+                - /url: /en/calendar
+            - listitem [ref=e88]:
+              - link "Transit Calendar" [ref=e89] [cursor=pointer]:
+                - /url: /en/transits
+            - listitem [ref=e90]:
+              - link "Retrograde Calendar" [ref=e91] [cursor=pointer]:
+                - /url: /en/retrograde
+            - listitem [ref=e92]:
+              - link "Eclipse Calendar" [ref=e93] [cursor=pointer]:
+                - /url: /en/eclipses
+            - listitem [ref=e94]:
+              - link "Muhurat Calendar" [ref=e95] [cursor=pointer]:
+                - /url: /en/muhurat
+            - listitem [ref=e96]:
+              - link "Choghadiya" [ref=e97] [cursor=pointer]:
+                - /url: /en/choghadiya
+            - listitem [ref=e98]:
+              - link "Rahu Kaal" [ref=e99] [cursor=pointer]:
+                - /url: /en/rahu-kaal
+        - generic [ref=e100]:
+          - heading "Learn" [level=3] [ref=e101]
+          - list [ref=e102]:
+            - listitem [ref=e103]:
+              - link "All Topics" [ref=e104] [cursor=pointer]:
+                - /url: /en/learn
+            - listitem [ref=e105]:
+              - link "Grahas" [ref=e106] [cursor=pointer]:
+                - /url: /en/learn/grahas
+            - listitem [ref=e107]:
+              - link "Rashis" [ref=e108] [cursor=pointer]:
+                - /url: /en/learn/rashis
+            - listitem [ref=e109]:
+              - link "Nakshatras" [ref=e110] [cursor=pointer]:
+                - /url: /en/learn/nakshatras
+            - listitem [ref=e111]:
+              - link "Tithis" [ref=e112] [cursor=pointer]:
+                - /url: /en/learn/tithis
+            - listitem [ref=e113]:
+              - link "Yogas" [ref=e114] [cursor=pointer]:
+                - /url: /en/learn/yogas
+            - listitem [ref=e115]:
+              - link "Karanas" [ref=e116] [cursor=pointer]:
+                - /url: /en/learn/karanas
+            - listitem [ref=e117]:
+              - link "Kundali Reading" [ref=e118] [cursor=pointer]:
+                - /url: /en/learn/kundali
+        - generic [ref=e119]:
+          - heading "Deep Dives" [level=3] [ref=e120]
+          - list [ref=e121]:
+            - listitem [ref=e122]:
+              - link "Tithi" [ref=e123] [cursor=pointer]:
+                - /url: /en/panchang/tithi
+            - listitem [ref=e124]:
+              - link "Nakshatra" [ref=e125] [cursor=pointer]:
+                - /url: /en/panchang/nakshatra
+            - listitem [ref=e126]:
+              - link "Yoga" [ref=e127] [cursor=pointer]:
+                - /url: /en/panchang/yoga
+            - listitem [ref=e128]:
+              - link "Karana" [ref=e129] [cursor=pointer]:
+                - /url: /en/panchang/karana
+            - listitem [ref=e130]:
+              - link "Muhurta" [ref=e131] [cursor=pointer]:
+                - /url: /en/panchang/muhurta
+            - listitem [ref=e132]:
+              - link "Rashi" [ref=e133] [cursor=pointer]:
+                - /url: /en/panchang/rashi
+            - listitem [ref=e134]:
+              - link "Masa" [ref=e135] [cursor=pointer]:
+                - /url: /en/panchang/masa
+            - listitem [ref=e136]:
+              - link "Grahan" [ref=e137] [cursor=pointer]:
+                - /url: /en/panchang/grahan
+            - listitem [ref=e138]:
+              - link "Samvatsara" [ref=e139] [cursor=pointer]:
+                - /url: /en/panchang/samvatsara
+      - generic [ref=e140]:
+        - generic [ref=e141]:
+          - generic [ref=e142]: Dekho Panchang
+          - generic [ref=e143]: © 2026
+        - generic [ref=e144]:
+          - link "About" [ref=e145] [cursor=pointer]:
+            - /url: /en/about
+          - link "Privacy" [ref=e146] [cursor=pointer]:
+            - /url: /en/privacy
+          - link "Terms" [ref=e147] [cursor=pointer]:
+            - /url: /en/terms
+        - paragraph [ref=e148]: ॐ ज्योतिषां ज्योतिः
+  - button "Open Next.js Dev Tools" [ref=e154] [cursor=pointer]:
+    - img [ref=e155]

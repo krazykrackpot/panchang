@@ -1,0 +1,293 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Main navigation" [ref=e3]:
+    - generic [ref=e5]:
+      - link "Dekho Panchang" [ref=e6] [cursor=pointer]:
+        - /url: /en
+        - generic [ref=e7]:
+          - img [ref=e8]
+          - img [ref=e14]
+        - generic [ref=e16]: Dekho Panchang
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - link "Home" [ref=e19] [cursor=pointer]:
+            - /url: /en
+          - link "Dashboard":
+            - /url: /en/dashboard
+        - link "Panchang" [ref=e20] [cursor=pointer]:
+          - /url: /en/panchang
+        - button "Kundali" [ref=e22]:
+          - text: Kundali
+          - img [ref=e23]
+        - button "Rituals" [ref=e26]:
+          - text: Rituals
+          - img [ref=e27]
+        - button "Calendars" [ref=e30]:
+          - text: Calendars
+          - img [ref=e31]
+        - button "Tools" [ref=e34]:
+          - text: Tools
+          - img [ref=e35]
+        - button "Learn Jyotish" [ref=e38]:
+          - text: Learn Jyotish
+          - img [ref=e39]
+      - generic [ref=e41]:
+        - generic:
+          - img
+        - generic [ref=e43]:
+          - button "EN" [ref=e44]
+          - button "हिं" [ref=e45]
+          - button "सं" [ref=e46]
+          - button "த" [ref=e47]
+          - button "తె" [ref=e48]
+          - button "বা" [ref=e49]
+          - button "ಕ" [ref=e50]
+          - button "म" [ref=e51]
+          - button "ગુ" [ref=e52]
+          - button "मै" [ref=e53]
+        - generic: "Trial: 0d"
+  - main [ref=e54]:
+    - main [ref=e55]:
+      - generic [ref=e56]:
+        - generic [ref=e57]:
+          - heading "Muhurta Scanner" [level=1] [ref=e58]
+          - paragraph [ref=e59]: Find the most auspicious time for your activity — personalized to your birth chart
+        - generic [ref=e60]:
+          - generic [ref=e61]:
+            - generic [ref=e62]: Activity
+            - combobox [ref=e63]:
+              - option "Marriage (Vivah)"
+              - option "Griha Pravesh"
+              - option "Mundan (First Haircut)"
+              - option "Vehicle Purchase"
+              - option "Travel"
+              - option "Property Purchase" [selected]
+              - option "New Business"
+              - option "Education Start"
+              - option "Namakarana (Naming)"
+              - option "Upanayana (Thread)"
+              - option "Engagement"
+              - option "Gold Purchase"
+              - option "Medical Treatment"
+              - option "Court Case"
+              - option "Examination"
+              - option "Spiritual Practice"
+              - option "Agriculture"
+              - option "Financial Signing"
+              - option "Surgery"
+              - option "Relocation"
+          - generic [ref=e64]:
+            - generic [ref=e65]: From
+            - textbox [ref=e66]: 2026-04-01
+          - generic [ref=e67]:
+            - generic [ref=e68]: To
+            - textbox [ref=e69]: 2026-04-30
+          - generic [ref=e70]:
+            - generic [ref=e71]: Location
+            - generic [ref=e72]: Detecting...
+          - button "Scan Month" [ref=e73]
+        - generic [ref=e74]:
+          - generic [ref=e75]:
+            - generic [ref=e76]: Birth Nakshatra
+            - combobox [ref=e77]:
+              - option "— Any —" [selected]
+              - option "Ashwini"
+              - option "Bharani"
+              - option "Krittika"
+              - option "Rohini"
+              - option "Mrigashira"
+              - option "Ardra"
+              - option "Punarvasu"
+              - option "Pushya"
+              - option "Ashlesha"
+              - option "Magha"
+              - option "Purva Phalguni"
+              - option "Uttara Phalguni"
+              - option "Hasta"
+              - option "Chitra"
+              - option "Swati"
+              - option "Vishakha"
+              - option "Anuradha"
+              - option "Jyeshtha"
+              - option "Mula"
+              - option "Purva Ashadha"
+              - option "Uttara Ashadha"
+              - option "Shravana"
+              - option "Dhanishtha"
+              - option "Shatabhisha"
+              - option "Purva Bhadrapada"
+              - option "Uttara Bhadrapada"
+              - option "Revati"
+          - generic [ref=e78]:
+            - generic [ref=e79]: Birth Rashi
+            - combobox [ref=e80]:
+              - option "— Any —" [selected]
+              - option "Aries"
+              - option "Taurus"
+              - option "Gemini"
+              - option "Cancer"
+              - option "Leo"
+              - option "Virgo"
+              - option "Libra"
+              - option "Scorpio"
+              - option "Sagittarius"
+              - option "Capricorn"
+              - option "Aquarius"
+              - option "Pisces"
+          - generic [ref=e81]:
+            - paragraph [ref=e82]: Add birth details for personalized results
+            - link "Generate a full chart for dasha-personalized results →" [ref=e83] [cursor=pointer]:
+              - /url: /en/kundali
+      - generic [ref=e84]:
+        - heading "What is Muhurta — The Vedic Science of Auspicious Timing" [level=2] [ref=e85]
+        - paragraph [ref=e86]: "Muhurta (electional astrology) is the branch of Jyotish Shastra dedicated to selecting the most favourable moment for initiating important actions. The foundational principle is simple yet profound: time is not neutral. The Vedic tradition holds that Kaal (Time) is the supreme force — every moment carries a unique energetic signature shaped by the positions of the Sun, Moon, and planets. A marriage begun under an auspicious muhurta inherits the cosmic support of that moment; a business launched during Vishti Karana or Rahu Kaal inherits their obstruction."
+        - generic [ref=e87]:
+          - generic [ref=e88]:
+            - heading "The Five Elements of Muhurta (Panchanga Shuddhi)" [level=3] [ref=e89]
+            - paragraph [ref=e90]: A muhurta is evaluated through five simultaneous lenses, collectively called Panchanga Shuddhi. Tithi (lunar day) — each of the 30 tithis per month has a ruling deity and intrinsic quality. Nanda tithis (1, 6, 11) favour joyful occasions; Bhadra tithis (2, 7, 12) suit prosperity-oriented acts. Nakshatra (lunar mansion) — the 27 nakshatras are classified as Fixed, Movable, Sharp, Soft, or Mixed, each suited to different activities. Deva nakshatras like Pushya and Revati are universally auspicious. Yoga — the 27 nitya yogas arise from the combined longitude of Sun and Moon. Siddhi, Amrita, and Shubha yogas amplify success; Vyatipata and Vaidhriti are avoided. Karana (half-tithi) — 11 karanas rotate through each lunar month. Vishti (Bhadra) karana is universally inauspicious. Vara (weekday) — each day is ruled by a graha. Thursday (Guru) and Friday (Shukra) are broadly favourable; Saturday and Tuesday require careful evaluation.
+          - generic [ref=e91]:
+            - heading "Classical Scriptural Basis" [level=3] [ref=e92]
+            - paragraph [ref=e93]: The primary texts for muhurta selection are the Muhurta Chintamani by Rama Daivagya and the Muhurta Martanda by Narayana Daivagya. These 16th-17th century treatises codify rules from earlier sources including the Brihat Samhita of Varahamihira and the Kalaprakashika. They define specific conditions for each type of activity — marriage requires a fixed nakshatra on a Monday, Wednesday, Thursday, or Friday with Shukla Paksha tithi, for instance — and enumerate hundreds of special yogas (Sarvartha Siddhi, Amrita Siddhi, Ravi Yoga) that enhance or diminish a window.
+          - generic [ref=e94]:
+            - heading "How Our AI Scoring Engine Works" [level=3] [ref=e95]
+            - paragraph [ref=e96]: "Our engine evaluates every 90-minute window within your selected date range across 20+ activities. Each window receives a composite score (0-100) computed from four weighted dimensions: Panchang quality (tithi + nakshatra + yoga + karana + vara alignment for the specific activity), Transit strength (current positions of Jupiter, Saturn, Rahu, Ketu relative to your birth chart), Timing factors (hora lord, choghadiya quality, absence of Rahu Kaal, Yamaghanda, and Gulika Kaal), and Personal compatibility (Tara Bala and Chandra Bala from your birth nakshatra, if provided). The weights shift by activity type: marriage prioritises nakshatra and tithi; travel prioritises vara and hora."
+          - generic [ref=e97]:
+            - heading "What Makes a Good Muhurta" [level=3] [ref=e98]
+            - paragraph [ref=e99]: A well-chosen muhurta combines the presence of positive factors with the absence of negative ones. The engine checks for Rahu Kaal (the 90-minute daily window ruled by Rahu — universally avoided for new beginnings), Vishti Karana (Bhadra — the inauspicious half-tithi that recurs 8 times per lunar month), Panchaka dosha (five-fold affliction when Moon transits Dhanishtha through Revati), Gandanta zones (junctional degrees between water and fire signs where Moon is vulnerable), and combustion or retrogression of key planets. When all five panchanga elements are clean and no negative windows overlap, the result is a Sarva Shuddhi muhurta — the highest quality.
+        - link "Learn more about Muhurta" [ref=e101] [cursor=pointer]:
+          - /url: /en/learn/muhurtas
+          - img [ref=e102]
+          - generic [ref=e104]: Learn more about Muhurta
+          - generic [ref=e105]: →
+  - contentinfo [ref=e106]:
+    - generic [ref=e107]:
+      - generic [ref=e108]:
+        - generic [ref=e109]:
+          - heading "Tools" [level=3] [ref=e110]
+          - list [ref=e111]:
+            - listitem [ref=e112]:
+              - link "Kundali" [ref=e113] [cursor=pointer]:
+                - /url: /en/kundali
+            - listitem [ref=e114]:
+              - link "Matching" [ref=e115] [cursor=pointer]:
+                - /url: /en/matching
+            - listitem [ref=e116]:
+              - link "Sign Calculator" [ref=e117] [cursor=pointer]:
+                - /url: /en/sign-calculator
+            - listitem [ref=e118]:
+              - link "Muhurta AI" [ref=e119] [cursor=pointer]:
+                - /url: /en/muhurta-ai
+            - listitem [ref=e120]:
+              - link "Varshaphal" [ref=e121] [cursor=pointer]:
+                - /url: /en/varshaphal
+            - listitem [ref=e122]:
+              - link "KP System" [ref=e123] [cursor=pointer]:
+                - /url: /en/kp-system
+            - listitem [ref=e124]:
+              - link "Prashna" [ref=e125] [cursor=pointer]:
+                - /url: /en/prashna
+            - listitem [ref=e126]:
+              - link "Baby Names" [ref=e127] [cursor=pointer]:
+                - /url: /en/baby-names
+            - listitem [ref=e128]:
+              - link "Sade Sati" [ref=e129] [cursor=pointer]:
+                - /url: /en/sade-sati
+        - generic [ref=e130]:
+          - heading "Calendars" [level=3] [ref=e131]
+          - list [ref=e132]:
+            - listitem [ref=e133]:
+              - link "Daily Panchang" [ref=e134] [cursor=pointer]:
+                - /url: /en/panchang
+            - listitem [ref=e135]:
+              - link "Festival Calendar" [ref=e136] [cursor=pointer]:
+                - /url: /en/calendar
+            - listitem [ref=e137]:
+              - link "Transit Calendar" [ref=e138] [cursor=pointer]:
+                - /url: /en/transits
+            - listitem [ref=e139]:
+              - link "Retrograde Calendar" [ref=e140] [cursor=pointer]:
+                - /url: /en/retrograde
+            - listitem [ref=e141]:
+              - link "Eclipse Calendar" [ref=e142] [cursor=pointer]:
+                - /url: /en/eclipses
+            - listitem [ref=e143]:
+              - link "Muhurat Calendar" [ref=e144] [cursor=pointer]:
+                - /url: /en/muhurat
+            - listitem [ref=e145]:
+              - link "Choghadiya" [ref=e146] [cursor=pointer]:
+                - /url: /en/choghadiya
+            - listitem [ref=e147]:
+              - link "Rahu Kaal" [ref=e148] [cursor=pointer]:
+                - /url: /en/rahu-kaal
+        - generic [ref=e149]:
+          - heading "Learn" [level=3] [ref=e150]
+          - list [ref=e151]:
+            - listitem [ref=e152]:
+              - link "All Topics" [ref=e153] [cursor=pointer]:
+                - /url: /en/learn
+            - listitem [ref=e154]:
+              - link "Grahas" [ref=e155] [cursor=pointer]:
+                - /url: /en/learn/grahas
+            - listitem [ref=e156]:
+              - link "Rashis" [ref=e157] [cursor=pointer]:
+                - /url: /en/learn/rashis
+            - listitem [ref=e158]:
+              - link "Nakshatras" [ref=e159] [cursor=pointer]:
+                - /url: /en/learn/nakshatras
+            - listitem [ref=e160]:
+              - link "Tithis" [ref=e161] [cursor=pointer]:
+                - /url: /en/learn/tithis
+            - listitem [ref=e162]:
+              - link "Yogas" [ref=e163] [cursor=pointer]:
+                - /url: /en/learn/yogas
+            - listitem [ref=e164]:
+              - link "Karanas" [ref=e165] [cursor=pointer]:
+                - /url: /en/learn/karanas
+            - listitem [ref=e166]:
+              - link "Kundali Reading" [ref=e167] [cursor=pointer]:
+                - /url: /en/learn/kundali
+        - generic [ref=e168]:
+          - heading "Deep Dives" [level=3] [ref=e169]
+          - list [ref=e170]:
+            - listitem [ref=e171]:
+              - link "Tithi" [ref=e172] [cursor=pointer]:
+                - /url: /en/panchang/tithi
+            - listitem [ref=e173]:
+              - link "Nakshatra" [ref=e174] [cursor=pointer]:
+                - /url: /en/panchang/nakshatra
+            - listitem [ref=e175]:
+              - link "Yoga" [ref=e176] [cursor=pointer]:
+                - /url: /en/panchang/yoga
+            - listitem [ref=e177]:
+              - link "Karana" [ref=e178] [cursor=pointer]:
+                - /url: /en/panchang/karana
+            - listitem [ref=e179]:
+              - link "Muhurta" [ref=e180] [cursor=pointer]:
+                - /url: /en/panchang/muhurta
+            - listitem [ref=e181]:
+              - link "Rashi" [ref=e182] [cursor=pointer]:
+                - /url: /en/panchang/rashi
+            - listitem [ref=e183]:
+              - link "Masa" [ref=e184] [cursor=pointer]:
+                - /url: /en/panchang/masa
+            - listitem [ref=e185]:
+              - link "Grahan" [ref=e186] [cursor=pointer]:
+                - /url: /en/panchang/grahan
+            - listitem [ref=e187]:
+              - link "Samvatsara" [ref=e188] [cursor=pointer]:
+                - /url: /en/panchang/samvatsara
+      - generic [ref=e189]:
+        - generic [ref=e190]:
+          - generic [ref=e191]: Dekho Panchang
+          - generic [ref=e192]: © 2026
+        - generic [ref=e193]:
+          - link "About" [ref=e194] [cursor=pointer]:
+            - /url: /en/about
+          - link "Privacy" [ref=e195] [cursor=pointer]:
+            - /url: /en/privacy
+          - link "Terms" [ref=e196] [cursor=pointer]:
+            - /url: /en/terms
+        - paragraph [ref=e197]: ॐ ज्योतिषां ज्योतिः
+  - button "Open Next.js Dev Tools" [ref=e203] [cursor=pointer]:
+    - img [ref=e204]

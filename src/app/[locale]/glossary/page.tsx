@@ -162,7 +162,7 @@ export default function GlossaryPage() {
                         <div
                           key={entry.id}
                           id={entry.id}
-                          className="scroll-mt-24 bg-[#111633] rounded-xl border border-[#d4a853]/10 p-5 hover:border-[#d4a853]/25 transition-colors"
+                          className="scroll-mt-24 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] rounded-xl border border-[#d4a853]/12 p-5 hover:border-[#d4a853]/40 transition-all"
                         >
                           {/* Term header row */}
                           <div className="flex flex-wrap items-start gap-3 mb-3">

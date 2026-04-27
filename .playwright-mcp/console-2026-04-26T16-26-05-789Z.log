@@ -1,0 +1,229 @@
+[    3057ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[    3074ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[    3202ms] Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/en/muhurt..." tree={[...]} params={{locale:"en"}} cacheNode={{rsc:{...}, ...}} ...>
+            <SegmentViewNode type="page" pagePath="[locale]/m...">
+              <SegmentTrieNode>
+              <ClientPageRoot Component={function MuhurtaAIPage} serverProvidedParams={{...}}>
+                <MuhurtaAIPage params={Promise} searchParams={Promise}>
+                  <main className="min-h-scre...">
+                    <MuhurtaScannerClient>
+                      <div className="mx-auto ma...">
+                        <div>
+                        <ScanControls activity="property" startDate="2026-04-01" endDate="2026-04-30" ...>
+                          <div className="bg-[#11163...">
+                            <div>
+                            <div>
+                            <div>
+                            <div className="flex flex-...">
+                              <label>
+                              <div
+                                className="bg-[#161b42] border border-[#d4a853]/20 text-[#8a8478] rounded-lg px-3 py-2..."
+                              >
++                               Corseaux, Switzerland
+-                               Detecting...
+                            ...
+                        ...
+                    ...
+            ...
+          ...
+
+    at throwOnHydrationMismatch (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:3318:56)
+    at prepareToHydrateHostInstance (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:3372:23)
+    at completeWork (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6922:60)
+    at runWithFiberInDEV (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at completeUnitOfWork (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9622:23)
+    at performUnitOfWork (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9557:28)
+    at workLoopConcurrentByScheduler (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:58)
+    at renderRootConcurrent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64)
+[    3200ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[    3227ms] [LOG] %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[    3228ms] [LOG] %c[Vercel Web Analytics]%c [view] http://localhost:3000/en/muhurta-ai color: rgb(120, 120, 120) color: inherit {o: http://localhost:3000/en/muhurta-ai, sv: 0.1.3, sdkn: @vercel/analytics/react, sdkv: 2.0.1, ts: 1777220769016} /_vercel/insights/view @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[    3284ms] [LOG] [Fast Refresh] done in 193ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[    3470ms] [LOG] %c[Vercel Speed Insights]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[    6856ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[    6887ms] [LOG] [Fast Refresh] done in 133ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   28660ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   28850ms] [LOG] [Fast Refresh] done in 291ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   28971ms] [ERROR] Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
+
+Check the render method of `div`.  It was passed a child from MonthHeatmap. @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[   36247ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   36294ms] [LOG] [Fast Refresh] done in 148ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   76055ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   76106ms] [LOG] [Fast Refresh] done in 153ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   77256ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   77310ms] [LOG] [Fast Refresh] done in 155ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   98787ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   98969ms] [ERROR] ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx:246:15
+Expression expected
+  244 |                 );
+  245 |               })}
+> 246 |             </>
+      |               ^
+  247 |           ))}
+  248 |         </div>
+  249 |       </div>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[   99026ms] [ERROR] ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx:246:15
+Expression expected
+  244 |                 );
+  245 |               })}
+> 246 |             </>
+      |               ^
+  247 |           ))}
+  248 |         </div>
+  249 |       </div>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[   99090ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  105437ms] [ERROR] ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx:246:15
+Expression expected
+  244 |                 );
+  245 |               })}
+> 246 |             </>
+      |               ^
+  247 |           ))}
+  248 |         </div>
+  249 |       </div>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[  105539ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  105970ms] [ERROR] ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx:246:15
+Expression expected
+  244 |                 );
+  245 |               })}
+> 246 |             </>
+      |               ^
+  247 |           ))}
+  248 |         </div>
+  249 |       </div>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[  106072ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  106403ms] [ERROR] ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx:246:15
+Expression expected
+  244 |                 );
+  245 |               })}
+> 246 |             </>
+      |               ^
+  247 |           ))}
+  248 |         </div>
+  249 |       </div>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[  118193ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  118253ms] [ERROR] ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx:246:15
+Expression expected
+  244 |                 );
+  245 |               })}
+> 246 |             </>
+      |               ^
+  247 |           ))}
+  248 |         </div>
+  249 |       </div>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Client Component Browser]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/[locale]/muhurta-ai/components/MonthHeatmap.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Client Component SSR]
+    ./src/app/[locale]/muhurta-ai/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[  127815ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  128073ms] [LOG] [Fast Refresh] done in 126ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  174275ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  174491ms] [LOG] [Fast Refresh] done in 135ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  182652ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  182842ms] [LOG] [Fast Refresh] done in 107ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431

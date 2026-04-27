@@ -1,0 +1,153 @@
+- generic [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Main navigation" [ref=e3]:
+    - generic [ref=e5]:
+      - link "Dekho Panchang" [ref=e6] [cursor=pointer]:
+        - /url: /en
+        - generic [ref=e7]:
+          - img [ref=e8]
+          - img [ref=e14]
+        - generic [ref=e16]: Dekho Panchang
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - link "Home" [ref=e19] [cursor=pointer]:
+            - /url: /en
+          - link "Dashboard":
+            - /url: /en/dashboard
+        - link "Panchang" [ref=e20] [cursor=pointer]:
+          - /url: /en/panchang
+        - button "Kundali" [ref=e22]:
+          - text: Kundali
+          - img [ref=e23]
+        - button "Rituals" [ref=e26]:
+          - text: Rituals
+          - img [ref=e27]
+        - button "Calendars" [ref=e30]:
+          - text: Calendars
+          - img [ref=e31]
+        - button "Tools" [ref=e34]:
+          - text: Tools
+          - img [ref=e35]
+        - link "Learn Jyotish" [ref=e37] [cursor=pointer]:
+          - /url: /en/learn
+      - generic [ref=e38]:
+        - generic [ref=e39]:
+          - img [ref=e40]
+          - generic [ref=e43]: Corseaux, Switzerland
+        - generic:
+          - generic:
+            - button "Notifications"
+        - button "Search" [ref=e44]:
+          - img [ref=e45]
+          - generic [ref=e48]: Search
+          - generic [ref=e49]: ⌘K
+        - generic [ref=e51]:
+          - button "EN" [ref=e52]
+          - button "हिं" [ref=e53]
+          - button "सं" [ref=e54]
+          - button "த" [ref=e55]
+          - button "తె" [ref=e56]
+          - button "বা" [ref=e57]
+          - button "ಕ" [ref=e58]
+          - button "म" [ref=e59]
+          - button "ગુ" [ref=e60]
+          - button "मै" [ref=e61]
+        - generic: "Trial: 0d"
+        - button "Sign in" [ref=e62]:
+          - img [ref=e63]
+          - text: Sign In
+  - main [ref=e66]:
+    - generic [ref=e67]:
+      - generic [ref=e68]:
+        - heading "Kundali Generator" [level=1] [ref=e69]
+        - paragraph [ref=e70]: Generate your Vedic birth chart (Janma Patrika)
+      - generic [ref=e71]:
+        - generic [ref=e72]:
+          - generic [ref=e73]:
+            - generic [ref=e74]: Your Name
+            - textbox "Enter your name" [ref=e75]: Test User
+          - generic [ref=e76]:
+            - generic [ref=e77]: Chart for
+            - generic [ref=e78]
+          - generic [ref=e86]:
+            - generic [ref=e87]: Date of Birth
+            - textbox [ref=e88]: 1990-01-15
+          - generic [ref=e89]:
+            - generic [ref=e90]: Time of Birth
+            - textbox [ref=e91]: 10:30
+          - generic [ref=e92]:
+            - generic [ref=e93]: Place of Birth
+            - generic [ref=e95]
+            - paragraph [ref=e224]: Please select a birth location
+          - generic [ref=e100]:
+            - generic [ref=e101]: Ayanamsha
+            - combobox [ref=e102]
+          - generic [ref=e103]:
+            - generic [ref=e104]: Chart Style
+            - generic [ref=e105]
+        - button "Generate Kundali" [ref=e108]
+  - contentinfo [ref=e109]:
+    - generic [ref=e110]:
+      - generic [ref=e111]:
+        - generic [ref=e112]:
+          - heading "Tools" [level=3] [ref=e113]
+          - list [ref=e114]:
+            - listitem [ref=e115]
+            - listitem [ref=e117]
+            - listitem [ref=e119]
+            - listitem [ref=e121]
+            - listitem [ref=e123]
+            - listitem [ref=e125]
+            - listitem [ref=e127]
+            - listitem [ref=e129]
+            - listitem [ref=e131]
+        - generic [ref=e133]:
+          - heading "Calendars" [level=3] [ref=e134]
+          - list [ref=e135]:
+            - listitem [ref=e136]
+            - listitem [ref=e138]
+            - listitem [ref=e140]
+            - listitem [ref=e142]
+            - listitem [ref=e144]
+            - listitem [ref=e146]
+            - listitem [ref=e148]
+            - listitem [ref=e150]
+        - generic [ref=e152]:
+          - heading "Learn" [level=3] [ref=e153]
+          - list [ref=e154]:
+            - listitem [ref=e155]
+            - listitem [ref=e157]
+            - listitem [ref=e159]
+            - listitem [ref=e161]
+            - listitem [ref=e163]
+            - listitem [ref=e165]
+            - listitem [ref=e167]
+            - listitem [ref=e169]
+        - generic [ref=e171]:
+          - heading "Deep Dives" [level=3] [ref=e172]
+          - list [ref=e173]:
+            - listitem [ref=e174]
+            - listitem [ref=e176]
+            - listitem [ref=e178]
+            - listitem [ref=e180]
+            - listitem [ref=e182]
+            - listitem [ref=e184]
+            - listitem [ref=e186]
+            - listitem [ref=e188]
+            - listitem [ref=e190]
+      - generic [ref=e192]:
+        - generic [ref=e193]:
+          - generic [ref=e194]: Dekho Panchang
+          - generic [ref=e195]: © 2026
+        - generic [ref=e196]:
+          - link "About" [ref=e197] [cursor=pointer]:
+            - /url: /en/about
+          - link "Privacy" [ref=e198] [cursor=pointer]:
+            - /url: /en/privacy
+          - link "Terms" [ref=e199] [cursor=pointer]:
+            - /url: /en/terms
+        - paragraph [ref=e200]: ॐ ज्योतिषां ज्योतिः
+  - button "Open Next.js Dev Tools" [ref=e206] [cursor=pointer]:
+    - img [ref=e207]
+  - alert [ref=e210]

@@ -54,7 +54,7 @@ export default function PrecessionSlider({ precessionData, planets }: Precession
   const planetR = 125; // planet dot radius from center
 
   return (
-    <div className="mt-6 rounded-xl bg-bg-secondary border border-gold-primary/20 p-6">
+    <div className="mt-6 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 hover:border-gold-primary/40 transition-all p-6">
       {/* SVG Zodiac Rings */}
       <div className="flex justify-center mb-6">
         <svg

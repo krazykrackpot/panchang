@@ -121,6 +121,20 @@ src/
 
 No light theme — dark mode is forced. Removed the theme toggle.
 
+### Card Gradient (Purple Mega Card Style)
+
+All cards and elevated surfaces MUST use the purple mega card gradient, NOT plain `bg-bg-secondary`:
+
+```
+bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12
+```
+
+- **Never use `bg-bg-secondary` for cards on new pages.** That's the old flat style.
+- Hover state: `hover:border-gold-primary/40`
+- Rounded corners: `rounded-2xl` for large cards, `rounded-xl` for smaller elements
+- This gradient is used across 30+ components (mega cards, modals, dashboards, learn sections)
+- Stronger variant for emphasis: `from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27]`
+
 ## Development Commands
 
 ```bash

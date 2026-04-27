@@ -62,7 +62,7 @@ export default function BlueprintTab({ blueprint, locale, onNavigateToDasha }: B
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
         {/* Primary Card */}
-        <div className="bg-bg-secondary rounded-xl border-l-4 border-gold-primary border-r border-t border-b border-r-gold-primary/20 border-t-gold-primary/20 border-b-gold-primary/20 p-6">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] rounded-2xl border-l-4 border-gold-primary border-r border-t border-b border-r-gold-primary/12 border-t-gold-primary/12 border-b-gold-primary/12 hover:border-r-gold-primary/40 hover:border-t-gold-primary/40 hover:border-b-gold-primary/40 transition-all p-6">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-3xl" aria-hidden="true">{PLANET_SYMBOLS[primary.planet] ?? '★'}</span>
             <div>
@@ -100,7 +100,7 @@ export default function BlueprintTab({ blueprint, locale, onNavigateToDasha }: B
         </div>
 
         {/* Shadow Card */}
-        <div className="bg-bg-secondary rounded-xl border border-text-secondary/20 p-6">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] rounded-2xl border border-gold-primary/12 hover:border-gold-primary/40 transition-all p-6">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-3xl opacity-60" aria-hidden="true">{PLANET_SYMBOLS[shadow.planet] ?? '★'}</span>
             <div>
@@ -131,7 +131,7 @@ export default function BlueprintTab({ blueprint, locale, onNavigateToDasha }: B
       </div>
 
       {/* ===== TIMELINE BAR ===== */}
-      <div className="bg-bg-secondary rounded-xl border border-gold-primary/20 p-6">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] rounded-2xl border border-gold-primary/12 hover:border-gold-primary/40 transition-all p-6">
         <h3 className="text-gold-light text-lg font-bold mb-4">
           <JyotishTerm term="dasha">Dasha</JyotishTerm> Timeline
         </h3>
@@ -176,7 +176,7 @@ export default function BlueprintTab({ blueprint, locale, onNavigateToDasha }: B
       </div>
 
       {/* ===== CURRENT CHAPTER DETAIL ===== */}
-      <div className="bg-bg-secondary rounded-xl border border-gold-primary/20 p-6">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] rounded-2xl border border-gold-primary/12 hover:border-gold-primary/40 transition-all p-6">
         <div className="flex items-center gap-3 mb-4">
           {chapterGraha && <GrahaIconById id={currentChapter.dashaLord} size={28} />}
           <div>
@@ -207,7 +207,7 @@ export default function BlueprintTab({ blueprint, locale, onNavigateToDasha }: B
       </div>
 
       {/* ===== NEXT CHAPTER PREVIEW ===== */}
-      <div className="bg-bg-secondary/50 rounded-xl border border-text-secondary/15 p-6">
+      <div className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/30 to-[#0a0e27] rounded-2xl border border-gold-primary/12 hover:border-gold-primary/40 transition-all p-6">
         <div className="flex items-center gap-3 mb-3">
           <GrahaIconById id={nextChapter.dashaLord} size={24} />
           <div>

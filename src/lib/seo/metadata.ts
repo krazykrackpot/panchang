@@ -270,6 +270,19 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     keywords: ['cosmic blueprint', 'vedic personality', 'birth chart archetype', 'dasha life chapters'],
   },
+  '/lunar-calendar': {
+    title: {
+      en: 'Lunar Lifestyle Calendar — Moon Phase Energy Guide',
+      hi: 'चंद्र जीवनशैली कैलेंडर — चंद्र ऊर्जा मार्गदर्शिका',
+      sa: 'चन्द्रकलापत्रम् — चन्द्रशक्तिमार्गदर्शिका',
+    },
+    description: {
+      en: 'Track the Moon\'s daily energy with our precision lunar calendar. See best/avoid activities for each day based on Vedic Panchang.',
+      hi: 'वैदिक पंचांग के आधार पर चंद्रमा की दैनिक ऊर्जा को ट्रैक करें। प्रतिदिन के लिए सर्वोत्तम और निषिद्ध गतिविधियां देखें।',
+      sa: 'वैदिकपञ्चाङ्गाधारेण चन्द्रस्य दैनिकशक्तिं अनुसरतु। प्रतिदिनं श्रेष्ठनिषिद्धकर्माणि पश्यतु।',
+    },
+    keywords: ['moon phase calendar', 'lunar cycle planner', 'moon energy today', 'lunar lifestyle', 'vedic lunar calendar'],
+  },
   '/baby-names': {
     title: {
       en: 'Baby Names by Nakshatra — Vedic Name Finder',

@@ -12,6 +12,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { hasRashiDrishti, getMutualRashiDrishti } from '@/lib/jaimini/rashi-drishti';
 import { calculateShoolaLords } from '@/lib/kundali/additional-dashas';
 import { JaiminiInterpretation } from '@/components/kundali/InterpretationHelpers';
+import { getSwamshaProfile } from '@/lib/jaimini/swamsha-profiles';
 import InfoBlock from '@/components/ui/InfoBlock';
 import type { KundaliData } from '@/types/kundali';
 import type { Locale , LocaleText} from '@/types/panchang';
@@ -277,8 +278,11 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
         </div>
       </div>
 
-      {/* Swamsha Profile */}
+      {/* Swamsha Profile — planet combos */}
       <SwamshaProfile kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+
+      {/* Swamsha Sign Profile — sign-level soul reading from Jaimini Sutras */}
+      <SwamshaSignProfile kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
 
       {/* Arudha Padas */}
       <div>
@@ -476,6 +480,78 @@ function SwamshaProfile({ kundali, locale, isDevanagari, headingFont }: JaiminiT
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+function SwamshaSignProfile({ kundali, locale, isDevanagari, headingFont }: JaiminiTabProps) {
+  const kmSign = kundali.jaimini?.karakamsha?.sign;
+  if (!kmSign || kmSign < 1 || kmSign > 12) return null;
+
+  const profile = getSwamshaProfile(kmSign);
+  if (!profile) return null;
+
+  const isHi = locale !== 'en' && locale !== 'ta';
+  const lk = isHi ? 'hi' : 'en';
+
+  return (
+    <div>
+      <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
+        {isHi ? 'स्वांश राशि प्रोफाइल' : 'Swamsha Sign Profile'}
+      </h3>
+      <p className="text-text-secondary/85 text-xs text-center mb-4">
+        {isHi
+          ? 'आत्मकारक की नवांश राशि (स्वांश) आत्मा का गहनतम उद्देश्य प्रकट करती है — जैमिनी सूत्र 1.2'
+          : 'The Atmakaraka\'s Navamsha sign (Swamsha) reveals the soul\'s deepest purpose — Jaimini Sutras 1.2'}
+      </p>
+      <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/18 p-5 max-w-2xl mx-auto space-y-4">
+        {/* Header with sign */}
+        <div className="text-center">
+          <RashiIconById id={kmSign} size={40} />
+          <div className="text-gold-light font-bold text-lg mt-1" style={headingFont}>
+            {profile.signName[lk]}
+          </div>
+        </div>
+
+        {/* Personality */}
+        <div>
+          <h4 className="text-gold-primary/80 text-xs font-bold uppercase tracking-wider mb-1">
+            {isHi ? 'व्यक्तित्व' : 'Personality'}
+          </h4>
+          <p className="text-text-secondary/85 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+            {profile.personality[lk]}
+          </p>
+        </div>
+
+        {/* Spiritual Path */}
+        <div>
+          <h4 className="text-gold-primary/80 text-xs font-bold uppercase tracking-wider mb-1">
+            {isHi ? 'आध्यात्मिक मार्ग' : 'Spiritual Path'}
+          </h4>
+          <p className="text-text-secondary/85 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+            {profile.spiritualPath[lk]}
+          </p>
+        </div>
+
+        {/* Career */}
+        <div>
+          <h4 className="text-gold-primary/80 text-xs font-bold uppercase tracking-wider mb-1">
+            {isHi ? 'कैरियर' : 'Career'}
+          </h4>
+          <p className="text-text-secondary/85 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+            {profile.career[lk]}
+          </p>
+        </div>
+
+        {/* Keywords */}
+        <div className="flex flex-wrap gap-1.5 justify-center pt-1">
+          {profile.keywords.map(kw => (
+            <span key={kw} className="text-[10px] px-2 py-0.5 rounded-full bg-gold-primary/10 text-gold-dark border border-gold-primary/12">
+              {kw}
+            </span>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

@@ -6,6 +6,8 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS, GRAHA_ABBREVIATIONS } from '@/lib/constants/grahas';
 import { tl } from '@/lib/utils/trilingual';
 import { buildDeepVargaAnalysis } from '@/lib/tippanni/varga-deep-analysis';
+import { getDrekkanaFace, getDecanateFromDegree } from '@/lib/constants/drekkana-faces';
+import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import type { KundaliData, ChartData, DivisionalChart } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import type { DeepVargaResult, VargaVisesha } from '@/lib/tippanni/varga-tippanni-types-v2';
@@ -757,6 +759,71 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
               </div>
             </div>
           )}
+
+          {/* ── Drekkana Faces (D3 only) ── */}
+          {selectedDiv === 'D3' && chartData && (() => {
+            // Build face interpretations for each planet's D3 position
+            const faceRows = kundali.planets
+              .filter(p => p.planet.id <= 8) // Asc + 7 planets + Ketu
+              .map(p => {
+                const degInSign = p.longitude % 30;
+                const decanate = getDecanateFromDegree(degInSign);
+                const face = getDrekkanaFace(p.sign, decanate);
+                return face ? { planet: p, decanate, face } : null;
+              })
+              .filter(Boolean) as { planet: typeof kundali.planets[0]; decanate: number; face: NonNullable<ReturnType<typeof getDrekkanaFace>> }[];
+
+            if (faceRows.length === 0) return null;
+
+            return (
+              <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 to-[#0a0e27] border border-gold-primary/12 p-5">
+                <h4 className="text-gold-light text-sm font-bold uppercase tracking-wider mb-1" style={headingFont}>
+                  {isHi ? 'द्रेक्काण मुख — शास्त्रीय प्रतिमा व्याख्या' : 'Drekkana Faces — Classical Image Interpretations'}
+                </h4>
+                <p className="text-text-secondary/60 text-xs mb-4">
+                  {isHi
+                    ? 'वराहमिहिर (बृहत्जातक अ.27) — प्रत्येक 10° दशमांश का एक शास्त्रीय चित्र और अर्थ है।'
+                    : 'Varahamihira (Brihat Jataka Ch.27) — each 10\u00b0 decanate has a classical image describing the nature of planets placed there.'}
+                </p>
+                <div className="space-y-3">
+                  {faceRows.map(({ planet: p, decanate, face }) => {
+                    const pName = tl(p.planet.name, locale);
+                    const signName = signNameStr(p.sign);
+                    return (
+                      <div key={p.planet.id} className="rounded-lg border border-gold-primary/10 bg-gold-primary/3 p-3">
+                        <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                          <GrahaIconById id={p.planet.id} size={20} />
+                          <span className="text-gold-light font-semibold text-sm">{pName}</span>
+                          <span className="text-text-secondary/60 text-[10px]">
+                            {signName} {decanate === 1 ? '0-10\u00b0' : decanate === 2 ? '10-20\u00b0' : '20-30\u00b0'}
+                          </span>
+                          <span className="text-text-secondary/40 text-[10px]">
+                            ({isHi ? `दशमांश ${decanate}` : `Decanate ${decanate}`})
+                          </span>
+                        </div>
+                        {/* Classical image */}
+                        <p className="text-amber-300/70 text-xs italic leading-relaxed mb-1.5">
+                          &ldquo;{isHi ? face.image.hi : face.image.en}&rdquo;
+                        </p>
+                        {/* Interpretation */}
+                        <p className="text-text-secondary/80 text-xs leading-relaxed">
+                          {isHi ? face.interpretation.hi : face.interpretation.en}
+                        </p>
+                        {/* Keywords */}
+                        <div className="flex flex-wrap gap-1 mt-2">
+                          {face.keywords.map(kw => (
+                            <span key={kw} className="text-[10px] px-1.5 py-0.5 rounded bg-gold-primary/8 text-gold-dark border border-gold-primary/10">
+                              {kw}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })()}
 
           {/* ── D. Deep Analysis (Expandable Sections) ── */}
           {deepAnalysis && (

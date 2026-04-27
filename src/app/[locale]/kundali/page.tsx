@@ -58,6 +58,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { findDashaSandhiPeriods } from '@/lib/kundali/dasha-sandhi';
 import { assembleBirthPosterData } from '@/lib/shareable/birth-poster';
 import { generateCosmicBlueprint, type CosmicBlueprint } from '@/lib/kundali/archetype-engine';
+import { getNarayanaInterpretation } from '@/lib/constants/narayana-interpretations';
 
 // Dynamic imports — only loaded after chart generation or on specific tab activation
 const ChartNorth = dynamic(() => import('@/components/kundali/ChartNorth'), { ssr: false });
@@ -2393,6 +2394,27 @@ export default function KundaliPage() {
                             </p>
                           </div>
                         )}
+                        {/* Narayana Dasha sign interpretation — themes, focus, caution */}
+                        {dashaSystem === 'narayana' && (isCurrent || !isPast) && (() => {
+                          const interp = getNarayanaInterpretation(d.sign);
+                          if (!interp) return null;
+                          const lk = (locale === 'en' || isTamil) ? 'en' : 'hi';
+                          return (
+                            <div className={`mt-2 pt-2 border-t border-gold-primary/8 space-y-1.5 ${isCurrent ? '' : 'opacity-70'}`}>
+                              <p className="text-text-secondary/80 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                                {interp.themes[lk]}
+                              </p>
+                              <p className="text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                                <span className="text-emerald-400/70 font-medium">{lk === 'en' ? 'Focus: ' : 'ध्यान: '}</span>
+                                <span className="text-text-secondary/70">{interp.focus[lk]}</span>
+                              </p>
+                              <p className="text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                                <span className="text-amber-400/70 font-medium">{lk === 'en' ? 'Caution: ' : 'सावधानी: '}</span>
+                                <span className="text-text-secondary/70">{interp.caution[lk]}</span>
+                              </p>
+                            </div>
+                          );
+                        })()}
                       </motion.div>
                     );
                   });

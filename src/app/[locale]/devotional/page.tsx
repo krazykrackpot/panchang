@@ -13,6 +13,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import MSG from '@/messages/pages/devotional.json';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import TarotCard from '@/components/ui/TarotCard';
 
 const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -32,6 +33,17 @@ const VARA_DEITIES: Record<number, { deity: LocaleText; mantra: string; color: s
   4: { deity: { en: 'Guru (Jupiter)/Brihaspati', hi: 'बृहस्पति/गुरु', sa: 'बृहस्पतिः/गुरुः' }, mantra: 'ॐ बृहस्पतये नमः', color: '#f39c12' },
   5: { deity: { en: 'Shukra (Venus)/Lakshmi', hi: 'शुक्र/लक्ष्मी', sa: 'शुक्रः/लक्ष्मीः' }, mantra: 'ॐ शुक्राय नमः', color: '#e8e6e3' },
   6: { deity: { en: 'Shani (Saturn)', hi: 'शनि', sa: 'शनिः' }, mantra: 'ॐ शनैश्चराय नमः', color: '#3498db' },
+};
+
+// Planet glow colours keyed by weekday (0=Sun … 6=Sat)
+const VARA_GLOW: Record<number, string> = {
+  0: '#e67e22',
+  1: '#c0c0c0',
+  2: '#e74c3c',
+  3: '#2ecc71',
+  4: '#f1c40f',
+  5: '#e91e9f',
+  6: '#7f8c8d',
 };
 
 // Tithi-based suggestions
@@ -159,7 +171,7 @@ export default function DevotionalPage() {
         <h3 className="text-gold-gradient text-2xl font-bold mb-6 text-center" style={headingFont}>
           {msg('weeklyWorshipGuide', locale)}
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center">
           {Object.entries(VARA_DEITIES).map(([day, info]) => {
             const dayNum = parseInt(day);
             const dayNames: Record<number, LocaleText> = {
@@ -170,17 +182,18 @@ export default function DevotionalPage() {
             };
             const isToday = dayNum === today.weekday;
 
+            const todayBadge = isToday ? msg('today', locale) : undefined;
+
             return (
-              <div key={day} className={`rounded-xl p-4 text-center border ${isToday ? 'border-gold-primary/40 bg-gold-primary/10' : 'border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/25 via-[#1a1040]/30 to-[#0a0e27]'}`}>
-                <GrahaIconById id={dayNum} size={28} />
-                <div className="text-gold-light text-sm font-bold mt-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {!isDevanagariLocale(locale) ? dayNames[dayNum].en : dayNames[dayNum].hi}
-                </div>
-                <div className="text-text-secondary text-xs mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {tl(info.deity, locale)}
-                </div>
-                {isToday && <div className="text-gold-primary text-xs font-bold mt-1 animate-pulse">{msg('today', locale)}</div>}
-              </div>
+              <TarotCard
+                key={day}
+                size="full"
+                icon={<GrahaIconById id={dayNum} size={96} />}
+                subtitle={tl(info.deity, locale)}
+                title={tl(dayNames[dayNum], locale)}
+                description={todayBadge}
+                glowColor={isToday ? '#f0d48a' : (VARA_GLOW[dayNum] ?? '#d4a853')}
+              />
             );
           })}
         </div>

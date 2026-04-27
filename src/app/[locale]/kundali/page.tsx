@@ -98,6 +98,7 @@ const VedicProfileComponent = dynamic(() => import('@/components/kundali/VedicPr
 const BirthPosterCard = dynamic(() => import('@/components/shareable/BirthPosterCard'), { ssr: false });
 const BlueprintTab = dynamic(() => import('@/components/kundali/BlueprintTab'), { ssr: false });
 const UnifiedTimeline = dynamic(() => import('@/components/kundali/UnifiedTimeline'), { ssr: false });
+const ELI5Panel = dynamic(() => import('@/components/kundali/ELI5Panel'), { ssr: false });
 const AyanamshaComparison = dynamic(() => import('@/components/kundali/AyanamshaComparison'), { ssr: false });
 
 // Planet colors for table highlights
@@ -453,6 +454,7 @@ export default function KundaliPage() {
   const [keyDates, setKeyDates] = useState<KeyDate[]>([]);
   const [dashaViewMode, setDashaViewMode] = useState<'dashas' | 'unified'>('unified');
   const [questionAnswered, setQuestionAnswered] = useState<boolean>(false);
+  const [eli5Mode, setEli5Mode] = useState(false);
 
   // AI Reading hook — manages comprehensive single-call AI readings with Supabase caching
   const aiReadingHook = useAIReading();
@@ -1232,6 +1234,39 @@ export default function KundaliPage() {
               </button>
             )}
 
+          {/* Beginner / Expert mode toggle */}
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <button
+              onClick={() => setEli5Mode(true)}
+              className={`px-4 py-2 rounded-l-xl text-xs sm:text-sm font-semibold transition-all border ${
+                eli5Mode
+                  ? 'bg-gradient-to-br from-[#2d1b69]/60 to-[#0a0e27] text-gold-light border-gold-primary/40 shadow-lg shadow-gold-primary/5'
+                  : 'text-text-secondary/70 bg-bg-secondary/30 border-gold-primary/8 hover:border-gold-primary/25 hover:text-gold-light'
+              }`}
+            >
+              {locale === 'en' || isTamil ? 'Beginner' : 'सरल'}
+            </button>
+            <button
+              onClick={() => setEli5Mode(false)}
+              className={`px-4 py-2 rounded-r-xl text-xs sm:text-sm font-semibold transition-all border ${
+                !eli5Mode
+                  ? 'bg-gradient-to-br from-[#2d1b69]/60 to-[#0a0e27] text-gold-light border-gold-primary/40 shadow-lg shadow-gold-primary/5'
+                  : 'text-text-secondary/70 bg-bg-secondary/30 border-gold-primary/8 hover:border-gold-primary/25 hover:text-gold-light'
+              }`}
+            >
+              {locale === 'en' || isTamil ? 'Expert' : 'विशेषज्ञ'}
+            </button>
+          </div>
+
+          {/* ELI5 Beginner Panel */}
+          {eli5Mode && kundali && (
+            <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
+              <ELI5Panel kundali={kundali} locale={locale} />
+            </Suspense>
+          )}
+
+          {/* Tab navigation + tab content — hidden in beginner mode */}
+          <div className={eli5Mode ? 'hidden' : ''}>
           {/* Tab navigation — horizontal scroll strip */}
           <div className="relative mb-8">
             <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
@@ -3152,6 +3187,8 @@ export default function KundaliPage() {
               <PatrikaTab kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tip={tip} chartStyle={chartStyle} retrogradeIds={retrogradeIds} combustIds={combustIds} />
             </Suspense>
           )}
+
+          </div>{/* end eli5Mode hide wrapper */}
 
           </>
           )}

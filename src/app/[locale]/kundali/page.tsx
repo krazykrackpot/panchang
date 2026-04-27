@@ -98,6 +98,7 @@ const VedicProfileComponent = dynamic(() => import('@/components/kundali/VedicPr
 const BirthPosterCard = dynamic(() => import('@/components/shareable/BirthPosterCard'), { ssr: false });
 const BlueprintTab = dynamic(() => import('@/components/kundali/BlueprintTab'), { ssr: false });
 const UnifiedTimeline = dynamic(() => import('@/components/kundali/UnifiedTimeline'), { ssr: false });
+const BhavaChalitTab = dynamic(() => import('@/components/kundali/BhavaChalitTab'), { ssr: false });
 const ELI5Panel = dynamic(() => import('@/components/kundali/ELI5Panel'), { ssr: false });
 const AyanamshaComparison = dynamic(() => import('@/components/kundali/AyanamshaComparison'), { ssr: false });
 
@@ -438,7 +439,7 @@ export default function KundaliPage() {
     }
     setSaving(false);
   };
-  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati' | 'patrika' | 'timeline' | 'remedies' | 'sudarshana' | 'nadi' | 'blueprint'>('chart');
+  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati' | 'patrika' | 'timeline' | 'remedies' | 'sudarshana' | 'nadi' | 'blueprint' | 'bhavachalit'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
   const [activeChart, setActiveChart] = useState<string>('D1');
@@ -1241,7 +1242,7 @@ export default function KundaliPage() {
               className={`px-4 py-2 rounded-l-xl text-xs sm:text-sm font-semibold transition-all border ${
                 eli5Mode
                   ? 'bg-gradient-to-br from-[#2d1b69]/60 to-[#0a0e27] text-gold-light border-gold-primary/40 shadow-lg shadow-gold-primary/5'
-                  : 'text-text-secondary/70 bg-bg-secondary/30 border-gold-primary/8 hover:border-gold-primary/25 hover:text-gold-light'
+                  : 'text-text-secondary/70 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] border-gold-primary/8 hover:border-gold-primary/25 hover:text-gold-light'
               }`}
             >
               {locale === 'en' || isTamil ? 'Beginner' : 'सरल'}
@@ -1251,7 +1252,7 @@ export default function KundaliPage() {
               className={`px-4 py-2 rounded-r-xl text-xs sm:text-sm font-semibold transition-all border ${
                 !eli5Mode
                   ? 'bg-gradient-to-br from-[#2d1b69]/60 to-[#0a0e27] text-gold-light border-gold-primary/40 shadow-lg shadow-gold-primary/5'
-                  : 'text-text-secondary/70 bg-bg-secondary/30 border-gold-primary/8 hover:border-gold-primary/25 hover:text-gold-light'
+                  : 'text-text-secondary/70 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] border-gold-primary/8 hover:border-gold-primary/25 hover:text-gold-light'
               }`}
             >
               {locale === 'en' || isTamil ? 'Expert' : 'विशेषज्ञ'}
@@ -1287,6 +1288,7 @@ export default function KundaliPage() {
                   { key: 'sphutas' as const, label: locale === 'en' || isTamil ? 'Sphutas' : 'स्फुट' },
                   { key: 'shadbala' as const, label: locale === 'en' || isTamil ? 'Shadbala' : 'षड्बल' },
                   { key: 'bhavabala' as const, label: locale === 'en' || isTamil ? 'Bhavabala' : 'भावबल' },
+                  { key: 'bhavachalit' as const, label: locale === 'en' || isTamil ? 'Bhava Chalit' : 'भाव चलित' },
                   { key: 'sadesati' as const, label: locale === 'en' || isTamil ? 'Sade Sati' : 'साढ़े साती' },
                   { key: 'jaimini' as const, label: locale === 'en' || isTamil ? 'Jaimini' : 'जैमिनी' },
                   { key: 'timeline' as const, label: locale === 'en' || isTamil ? 'Life Timeline' : 'जीवन-रेखा' },
@@ -1301,7 +1303,7 @@ export default function KundaliPage() {
                     className={`px-3 py-2 sm:px-5 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${
                       activeTab === tab.key
                         ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border border-gold-primary/40 shadow-lg shadow-gold-primary/5'
-                        : 'text-text-secondary/70 hover:text-gold-light bg-bg-secondary/30 border border-gold-primary/8 hover:border-gold-primary/25 hover:bg-[#1a1040]/40'
+                        : 'text-text-secondary/70 hover:text-gold-light bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/8 hover:border-gold-primary/25 hover:bg-[#1a1040]/40'
                     }`}
                   >
                     {tab.label}
@@ -1419,7 +1421,7 @@ export default function KundaliPage() {
                           const natalPlanet = kundali.planets.find(np => np.planet.id === p.id);
                           const isSameSign = natalPlanet && natalPlanet.sign === p.rashi;
                           return (
-                            <div key={i} className={`text-center p-2 rounded-lg ${isSameSign ? 'bg-emerald-500/10 border border-emerald-500/20' : 'bg-bg-secondary/50'}`}>
+                            <div key={i} className={`text-center p-2 rounded-lg ${isSameSign ? 'bg-emerald-500/10 border border-emerald-500/20' : 'bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27]'}`}>
                               <div className="text-gold-light text-xs font-bold">{p.name[locale as Locale]}</div>
                               <div className="text-emerald-400 text-xs font-medium mt-0.5">{rashiName}</div>
                               {p.isRetrograde && <div className="text-red-400 text-xs">℞</div>}
@@ -1492,15 +1494,15 @@ export default function KundaliPage() {
                         <p className="text-text-secondary text-sm">{posterData.date} · {posterData.time} · {posterData.place}</p>
                       </div>
                       <div className="grid grid-cols-3 gap-3">
-                        <div className="rounded-lg bg-bg-secondary/50 border border-gold-primary/10 p-3 text-center">
+                        <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-3 text-center">
                           <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">Rising</div>
                           <div className="text-gold-light font-bold text-sm mt-0.5">{posterData.risingSign}</div>
                         </div>
-                        <div className="rounded-lg bg-bg-secondary/50 border border-gold-primary/10 p-3 text-center">
+                        <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-3 text-center">
                           <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">Moon</div>
                           <div className="text-gold-light font-bold text-sm mt-0.5">{posterData.moonSign}</div>
                         </div>
-                        <div className="rounded-lg bg-bg-secondary/50 border border-gold-primary/10 p-3 text-center">
+                        <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-3 text-center">
                           <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">Sun</div>
                           <div className="text-gold-light font-bold text-sm mt-0.5">{posterData.sunSign}</div>
                         </div>
@@ -1973,7 +1975,7 @@ export default function KundaliPage() {
                 const COLOR: Record<string, string> = {
                   yogaKaraka:  'bg-gold-primary/25 text-gold-light border-gold-primary/30',
                   funcBenefic: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/20',
-                  neutral:     'bg-bg-secondary/60 text-text-secondary/70 border-gold-primary/8',
+                  neutral:     'bg-gradient-to-br from-[#2d1b69]/35 via-[#1a1040]/45 to-[#0a0e27] text-text-secondary/70 border-gold-primary/8',
                   funcMalefic: 'bg-red-500/12 text-red-400 border-red-500/20',
                   maraka:      'bg-orange-500/15 text-orange-300 border-orange-500/20',
                   badhak:      'bg-purple-500/15 text-purple-300 border-purple-500/20',
@@ -2082,7 +2084,7 @@ export default function KundaliPage() {
               {/* Timeline mode toggle: Dashas Only vs Unified (Dashas + Transits) */}
               {kundali.dashas && kundali.dashas.length > 0 && (
                 <>
-                  <div className="flex items-center gap-1 p-0.5 rounded-lg bg-white/5 w-fit">
+                  <div className="flex items-center gap-1 p-0.5 rounded-lg bg-white/[0.06] w-fit">
                     <button
                       onClick={() => setDashaViewMode('dashas')}
                       className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
@@ -2264,7 +2266,7 @@ export default function KundaliPage() {
                           <div className="flex items-center gap-3">
                             <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${isCurrent ? 'bg-gold-primary animate-pulse' : isPast ? 'bg-text-secondary/30' : 'bg-gold-dark/50'}`} />
                             <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{d.signName[locale as 'en' | 'hi' | 'sa']}</span>
-                            <span className={`text-[10px] px-1.5 py-0.5 rounded ${isCurrent ? 'bg-gold-primary/15 text-gold-light' : 'bg-bg-secondary/30 text-text-tertiary'}`}>
+                            <span className={`text-[10px] px-1.5 py-0.5 rounded ${isCurrent ? 'bg-gold-primary/15 text-gold-light' : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] text-text-tertiary'}`}>
                               H{houseFromLagna} — {houseTheme?.[locale === 'en' || isTamil ? 'en' : 'hi'] || ''}
                             </span>
                             <span className="text-text-tertiary text-xs">{d.years} {locale === 'en' || isTamil ? 'yrs' : 'वर्ष'}</span>
@@ -2564,7 +2566,7 @@ export default function KundaliPage() {
           {activeTab === 'ashtakavarga' && kundali.ashtakavarga && (
             <>
               {/* Educational intro */}
-              <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5 space-y-3 mb-4">
+              <div className="bg-white/[0.04] border border-gold-primary/10 rounded-xl p-5 space-y-3 mb-4">
                 <h3 className="text-gold-light font-semibold text-sm">
                   {locale === 'en' || isTamil ? 'What is Ashtakavarga?' : 'अष्टकवर्ग क्या है?'}
                 </h3>
@@ -2811,7 +2813,7 @@ export default function KundaliPage() {
 
           {/* ===== ARGALA TAB ===== */}
           {activeTab === 'argala' && kundali.argala && (
-            <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5 space-y-3 mb-4">
+            <div className="bg-white/[0.04] border border-gold-primary/10 rounded-xl p-5 space-y-3 mb-4">
               <h3 className="text-gold-light font-semibold text-sm">
                 {locale === 'en' || isTamil ? 'What is Argala?' : 'अर्गला क्या है?'}
               </h3>
@@ -3177,6 +3179,17 @@ export default function KundaliPage() {
           {activeTab === 'nadi' && kundali && (
             <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
               <NadiAmshaTab kundali={kundali} locale={locale} />
+            </Suspense>
+          )}
+
+          {/* ===== BHAVA CHALIT TAB ===== */}
+          {activeTab === 'bhavachalit' && kundali && (
+            <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
+              <BhavaChalitTab
+                ascendant={kundali.ascendant.degree}
+                planets={kundali.planets.map(p => ({ id: p.planet.id, longitude: p.longitude, name: p.planet.name }))}
+                locale={locale}
+              />
             </Suspense>
           )}
 

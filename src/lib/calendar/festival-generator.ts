@@ -416,6 +416,19 @@ function getKalaWindow(y: number, m: number, d: number, lat: number, lon: number
     case 'pradosh':    return { startJd: ssJd, endJd: ssJd + 2.4 / 24 }; // 4 ghatis (96m) after sunset
     case 'nishita':    return { startJd: ssJd + (nightLen * 7.5 / 15) / 24 - 0.4 / 24, endJd: ssJd + (nightLen * 7.5 / 15) / 24 + 0.4 / 24 };
     case 'arunodaya':  return { startJd: srJd - 1.6 / 24, endJd: srJd }; // 4 ghatis before sunrise
+    case 'chandrodaya': {
+      // Moonrise window: ~1 hour around moonrise. Used for Karwa Chauth, Sankashti Chaturthi.
+      const baseJd = Math.floor(jdNoon - 0.5) + 0.5; // midnight UT
+      const mrUT = calculateMoonriseUT(baseJd + 0.5, lat, lon);
+      if (mrUT !== null) {
+        let mrJd = baseJd + mrUT / 24;
+        // If moonrise UT is before sunrise UT, it's an early morning moonrise (next day UT)
+        if (mrUT < srUT) mrJd += 1;
+        return { startJd: mrJd - 0.5 / 24, endJd: mrJd + 0.5 / 24 }; // ±30 min around moonrise
+      }
+      // Moon doesn't rise — fall back to pradosh window
+      return { startJd: ssJd, endJd: ssJd + 2.4 / 24 };
+    }
     default:           return { startJd: srJd - 0.01, endJd: srJd + 0.01 }; // tight sunrise window
   }
 }

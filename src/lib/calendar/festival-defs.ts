@@ -150,6 +150,13 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
   { masa: 'ashwina', paksha: 'shukla',  tithi: 10, slug: 'dussehra',        type: 'major', category: 'festival' },
   { masa: 'ashwina', paksha: 'shukla',  tithi: 15, slug: 'sharad-purnima', type: 'major', category: 'festival',
     name: { en: 'Sharad Purnima', hi: 'शरद पूर्णिमा', sa: 'शारदपूर्णिमा' } },
+  // Karwa Chauth — fast broken at moonrise (chandrodaya rule)
+  // In Purnimant: "Kartika Krishna 4". Our matching uses getNextHinduMonth(amanta)
+  // for Krishna, so def.masa must be getNextHinduMonth(bhadrapada) = ashwina...
+  // but that gives wrong month. Use 'kartika' and it matches amanta=ashwina via
+  // getNextHinduMonth. The entry in Ashwina Krishna (Amant) = Kartika Krishna (Purnimant).
+  { masa: 'kartika', paksha: 'krishna', tithi: 4,  slug: 'karwa-chauth',     type: 'major', category: 'vrat', muhurtaRule: 'chandrodaya',
+    name: { en: 'Karwa Chauth', hi: 'करवा चौथ', sa: 'करकचतुर्थी' } },
   // Kartika — Diwali cluster (Dhanteras, Narak Chaturdashi are Kartika Krishna, NOT Ashwina)
   { masa: 'kartika', paksha: 'krishna', tithi: 13, slug: 'dhanteras',       type: 'major', category: 'festival', muhurtaRule: 'pradosh',
     name: { en: 'Dhanteras', hi: 'धनतेरस', sa: 'धन्वन्तरित्रयोदशी' } },
@@ -206,8 +213,8 @@ export const MONTHLY_VRATS: FestivalDef[] = [
   { tithi: 15, slug: 'purnima',            type: 'vrat', category: 'purnima',    recurring: true, paksha: 'shukla' },
   // Amavasya
   { tithi: 15, slug: 'amavasya',           type: 'vrat', category: 'amavasya',   recurring: true, paksha: 'krishna' },
-  // Sankashti Chaturthi
-  { tithi: 4,  slug: 'chaturthi',          type: 'vrat', category: 'chaturthi',  recurring: true, paksha: 'krishna' },
+  // Sankashti Chaturthi — fast broken at moonrise (chandrodaya rule)
+  { tithi: 4,  slug: 'chaturthi',          type: 'vrat', category: 'chaturthi',  recurring: true, paksha: 'krishna', muhurtaRule: 'chandrodaya' },
   // Vinayaka Chaturthi (Shukla)
   { tithi: 4,  slug: 'vinayaka-chaturthi', type: 'vrat', category: 'chaturthi',  recurring: true, paksha: 'shukla',
     name: { en: 'Vinayaka Chaturthi', hi: 'विनायक चतुर्थी', sa: 'विनायकचतुर्थी' } },

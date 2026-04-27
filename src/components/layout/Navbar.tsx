@@ -228,6 +228,12 @@ export default function Navbar() {
                     >
                       {locale === 'sa' ? 'मम पटलम्' : msg('dashboard', locale)}
                     </Link>
+                    <Link
+                      href="/dashboard/family"
+                      className={`text-gold-light/70 hover:text-gold-primary transition-all duration-200 text-sm whitespace-nowrap ${hydrated && user ? 'opacity-100' : 'opacity-0 pointer-events-none w-0 overflow-hidden'}`}
+                    >
+                      {locale === 'hi' ? 'परिवार' : locale === 'ta' ? 'குடும்பம்' : locale === 'bn' ? 'পরিবার' : 'Family'}
+                    </Link>
                   </span>
                 );
               }
@@ -274,13 +280,22 @@ export default function Navbar() {
           <div className="lg:hidden py-4 border-t border-gold-primary/10 max-h-[80vh] overflow-y-auto">
             <div className="flex flex-col gap-1">
               {hydrated && user && (
-                <Link
-                  href="/dashboard"
-                  className="text-gold-light hover:text-gold-primary transition-colors px-3 py-2 text-sm font-semibold"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {locale === 'sa' ? 'मम पटलम्' : msg('myDashboard', locale)}
-                </Link>
+                <>
+                  <Link
+                    href="/dashboard"
+                    className="text-gold-light hover:text-gold-primary transition-colors px-3 py-2 text-sm font-semibold"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {locale === 'sa' ? 'मम पटलम्' : msg('myDashboard', locale)}
+                  </Link>
+                  <Link
+                    href="/dashboard/family"
+                    className="text-gold-light/70 hover:text-gold-primary transition-colors px-3 py-2 text-sm pl-6"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {locale === 'hi' ? 'परिवार' : locale === 'ta' ? 'குடும்பம்' : locale === 'bn' ? 'পরিবার' : 'Family'}
+                  </Link>
+                </>
               )}
               {navItems.map((item, i) => {
                 if (item.children) {

@@ -208,35 +208,53 @@ function CalendarSVG() {
 }
 
 function TransitSVG() {
-  // Gochar — a blazing comet/meteor streaking across space, trailing fire
+  // Gochar — dramatic Scorpio-like constellation with a planet transiting through it
+  // Bold stars connected by thick lines, a glowing planet moving along the path
   return (
     <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
-        <linearGradient id="ht1" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stopColor="#93c5fd" /><stop offset="100%" stopColor="#3b82f6" /></linearGradient>
-        <radialGradient id="ht1g" cx="70%" cy="30%" r="60%"><stop offset="0%" stopColor="#93c5fd" stopOpacity="0.4" /><stop offset="100%" stopColor="#1e3a5f" stopOpacity="0" /></radialGradient>
-        <linearGradient id="ht1t" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stopColor="#93c5fd" stopOpacity="0.8" /><stop offset="40%" stopColor="#60a5fa" stopOpacity="0.3" /><stop offset="100%" stopColor="#3b82f6" stopOpacity="0" /></linearGradient>
+        <linearGradient id="ht1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#93c5fd" /><stop offset="100%" stopColor="#3b82f6" /></linearGradient>
+        <radialGradient id="ht1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#60a5fa" stopOpacity="0.25" /><stop offset="100%" stopColor="#1e3a5f" stopOpacity="0" /></radialGradient>
+        <radialGradient id="ht1p" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#fbbf24" stopOpacity="0.6" /><stop offset="100%" stopColor="#f59e0b" stopOpacity="0" /></radialGradient>
       </defs>
-      {/* Deep space glow behind the comet */}
-      <circle cx="42" cy="22" r="28" fill="url(#ht1g)" />
-      {/* Wide comet tail — dramatic sweep filling the card diagonally */}
-      <path d="M50 12 C42 16, 30 22, 4 58" stroke="url(#ht1t)" strokeWidth="8" strokeLinecap="round" fill="none" />
-      <path d="M50 12 C44 14, 34 18, 8 52" stroke="url(#ht1t)" strokeWidth="5" strokeLinecap="round" fill="none" opacity="0.7" />
-      <path d="M50 12 C46 12, 38 14, 12 46" stroke="#93c5fd" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.5" />
-      {/* Secondary tail wisps */}
-      <path d="M48 14 C40 20, 28 30, 10 56" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.3" />
-      <path d="M50 14 C44 18, 36 26, 18 48" stroke="#818cf8" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.25" />
-      {/* Comet head — blazing bright orb at top-right */}
-      <circle cx="50" cy="12" r="10" fill="url(#ht1)" opacity="0.5" />
-      <circle cx="50" cy="12" r="7" fill="#93c5fd" opacity="0.7" />
-      <circle cx="50" cy="12" r="4.5" fill="#bfdbfe" opacity="0.9" />
-      <circle cx="50" cy="12" r="2.5" fill="#fff" opacity="1" />
-      {/* Scattered star-field — background context */}
-      <circle cx="8" cy="8" r="1.5" fill="#60a5fa" opacity="0.6" />
-      <circle cx="20" cy="6" r="1" fill="#93c5fd" opacity="0.5" />
-      <circle cx="60" cy="36" r="1.5" fill="#60a5fa" opacity="0.4" />
-      <circle cx="56" cy="54" r="1" fill="#818cf8" opacity="0.35" />
-      <circle cx="4" cy="30" r="1.2" fill="#93c5fd" opacity="0.4" />
-      <circle cx="36" cy="58" r="1" fill="#60a5fa" opacity="0.3" />
+      {/* Deep space background glow */}
+      <circle cx="32" cy="32" r="31" fill="url(#ht1g)" />
+      {/* Constellation lines — thick, bold, connecting the stars */}
+      <line x1="10" y1="14" x2="22" y2="22" stroke="#60a5fa" strokeWidth="3" opacity="0.8" strokeLinecap="round" />
+      <line x1="22" y1="22" x2="18" y2="36" stroke="#60a5fa" strokeWidth="3" opacity="0.8" strokeLinecap="round" />
+      <line x1="18" y1="36" x2="30" y2="40" stroke="#60a5fa" strokeWidth="3" opacity="0.8" strokeLinecap="round" />
+      <line x1="30" y1="40" x2="42" y2="32" stroke="#60a5fa" strokeWidth="3" opacity="0.8" strokeLinecap="round" />
+      <line x1="42" y1="32" x2="54" y2="38" stroke="#60a5fa" strokeWidth="3" opacity="0.8" strokeLinecap="round" />
+      <line x1="54" y1="38" x2="56" y2="50" stroke="#60a5fa" strokeWidth="3" opacity="0.7" strokeLinecap="round" />
+      {/* Scorpion tail curl */}
+      <path d="M56 50 C54 56, 48 58, 44 54" stroke="#60a5fa" strokeWidth="3" opacity="0.7" strokeLinecap="round" fill="none" />
+      {/* Stinger */}
+      <line x1="44" y1="54" x2="40" y2="50" stroke="#93c5fd" strokeWidth="2.5" strokeLinecap="round" opacity="0.9" />
+      <line x1="44" y1="54" x2="42" y2="58" stroke="#93c5fd" strokeWidth="2.5" strokeLinecap="round" opacity="0.9" />
+      {/* Constellation stars — bold filled circles with glow */}
+      <circle cx="10" cy="14" r="4" fill="url(#ht1)" opacity="0.9" />
+      <circle cx="10" cy="14" r="2" fill="#bfdbfe" opacity="1" />
+      <circle cx="22" cy="22" r="5" fill="url(#ht1)" opacity="0.9" />
+      <circle cx="22" cy="22" r="2.5" fill="#bfdbfe" opacity="1" />
+      <circle cx="18" cy="36" r="4" fill="url(#ht1)" opacity="0.85" />
+      <circle cx="18" cy="36" r="2" fill="#bfdbfe" opacity="1" />
+      <circle cx="30" cy="40" r="3.5" fill="url(#ht1)" opacity="0.8" />
+      <circle cx="30" cy="40" r="1.8" fill="#bfdbfe" opacity="1" />
+      <circle cx="54" cy="38" r="4.5" fill="url(#ht1)" opacity="0.9" />
+      <circle cx="54" cy="38" r="2.2" fill="#bfdbfe" opacity="1" />
+      <circle cx="56" cy="50" r="3" fill="url(#ht1)" opacity="0.75" />
+      {/* The TRANSITING PLANET — golden, glowing, moving along the constellation */}
+      <circle cx="42" cy="32" r="8" fill="url(#ht1p)" />
+      <circle cx="42" cy="32" r="5.5" fill="#fbbf24" opacity="0.8" />
+      <circle cx="42" cy="32" r="3" fill="#fef3c7" opacity="1" />
+      {/* Motion trail behind the planet */}
+      <path d="M30 40 Q34 38 42 32" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.4" strokeDasharray="3 2" />
+      {/* Background star dust */}
+      <circle cx="48" cy="10" r="1.2" fill="#93c5fd" opacity="0.5" />
+      <circle cx="6" cy="48" r="1" fill="#60a5fa" opacity="0.4" />
+      <circle cx="36" cy="8" r="1.5" fill="#818cf8" opacity="0.45" />
+      <circle cx="58" cy="20" r="1" fill="#93c5fd" opacity="0.35" />
+      <circle cx="14" cy="56" r="1.3" fill="#60a5fa" opacity="0.3" />
     </svg>
   );
 }

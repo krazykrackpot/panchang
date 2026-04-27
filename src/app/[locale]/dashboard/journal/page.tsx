@@ -23,12 +23,20 @@ import { BookOpen, Loader2, ChevronDown, Star } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowLeft } from 'lucide-react';
 
+import dynamic from 'next/dynamic';
+
 import { useAuthStore } from '@/stores/auth-store';
 import { useJournalStore } from '@/stores/journal-store';
 
 import JournalCalendarHeatmap from '@/components/journal/JournalCalendarHeatmap';
 import JournalEntryList from '@/components/journal/JournalEntryList';
 import JournalFiltersBar from '@/components/journal/JournalFilters';
+
+// Lazy-loaded — not critical path; only useful after 15+ entries
+const JournalInsights = dynamic(
+  () => import('@/components/journal/JournalInsights'),
+  { ssr: false },
+);
 
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -297,6 +305,18 @@ export default function JournalPage() {
           onDateClick={handleDateClick}
         />
       </motion.div>
+
+      {/* Pattern insights (lazy-loaded, needs 15+ entries) */}
+      {entries.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.08 }}
+          className="mb-6"
+        >
+          <JournalInsights entries={entries} locale={locale} />
+        </motion.div>
+      )}
 
       {/* Filters */}
       <motion.div

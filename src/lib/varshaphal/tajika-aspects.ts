@@ -198,8 +198,14 @@ export function detectTajikaYogas(planets: PlanetPosition[], lagnaSign?: number)
 
   // P2-04: Yamaya Yoga — two planets in exact opposition (Tajika) = contention, conflict
   detectYamaya(mainPlanets, yogas);
+  // Classical Yamaya (Prohibition) — third planet blocks an applying aspect
+  detectYamayaProhibition(mainPlanets, yogas);
   // P2-04: Manau Yoga — faster planet aspects slower, but slower is combust/debilitated = denied
   detectManau(mainPlanets, yogas);
+  // Easarapha — faster planet already passed the exact aspect point (post-separation)
+  detectEasarapha(mainPlanets, yogas);
+  // Manahoo — retrograde planet cancels an Ithasala by reversing direction
+  detectManahoo(mainPlanets, yogas);
   // P2-04: Khallasara — chain transfer through 3 planets
   detectKhallasara(mainPlanets, yogas);
   // P2-04: Dutthottha — recently separated but within 1° residual orb
@@ -707,6 +713,177 @@ function detectKamboola(planets: PlanetPosition[], yogas: TajikaYoga[], lagnaSig
           en: `Moon applies to ${partnerPlanet.planet.name.en} (not the lagna lord) — results come through others' help, not self-effort.`,
           hi: `चन्द्रमा ${partnerPlanet.planet.name.hi} (लग्नेश नहीं) से इत्थशाल — दूसरों की सहायता से परिणाम मिलेगा, स्वप्रयास से नहीं।`,
           sa: `चन्द्रः ${partnerPlanet.planet.name.sa} (लग्नेशो न) इत्थशालं करोति — परसाहाय्येन फलसिद्धिः।`,
+        },
+      });
+    }
+  }
+}
+
+// ─── Easarapha (Separation) ─────────────────────────────────────────────────
+// Classical: the faster planet has ALREADY passed the exact aspect degree of
+// the slower planet. Unlike Ishrafa (which is any separating aspect within orb),
+// Easarapha specifically means the faster planet overshot — the matter was
+// almost achieved but slipped away at the last moment.
+function detectEasarapha(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
+  const mainPlanets = planets.filter(p => p.planet.id <= 6);
+  for (let i = 0; i < mainPlanets.length; i++) {
+    for (let j = i + 1; j < mainPlanets.length; j++) {
+      const p1 = mainPlanets[i];
+      const p2 = mainPlanets[j];
+      const diff = Math.abs(angleDiff(p1.longitude, p2.longitude));
+      const speed1 = Math.abs(p1.speed || PLANET_SPEEDS[p1.planet.id] || 0);
+      const speed2 = Math.abs(p2.speed || PLANET_SPEEDS[p2.planet.id] || 0);
+      const faster = speed1 > speed2 ? p1 : p2;
+      const slower = speed1 > speed2 ? p2 : p1;
+
+      for (const aspect of TAJIKA_ASPECTS) {
+        const aspectDiff = Math.abs(diff - aspect.angle);
+        // Tight separating orb (within 2°) — the faster planet just passed
+        if (aspectDiff > 0 && aspectDiff <= 2) {
+          const isApplying = isAspectApplying(faster, slower, aspect.angle);
+          if (isApplying) continue; // applying = not Easarapha
+
+          // Skip if already covered by Ishrafa for this pair
+          const alreadyCovered = yogas.some(
+            y => (y.type === 'ishrafa' || y.type === 'easarapha') &&
+              ((y.planet1.en === p1.planet.name.en && y.planet2.en === p2.planet.name.en) ||
+               (y.planet1.en === p2.planet.name.en && y.planet2.en === p1.planet.name.en))
+          );
+          if (alreadyCovered) break;
+
+          yogas.push({
+            name: { en: `Easarapha (${aspect.label.en})`, hi: `ईसरफा (${aspect.label.hi})`, sa: `ईसरफा (${aspect.label.sa})` },
+            type: 'easarapha',
+            planet1: faster.planet.name,
+            planet2: slower.planet.name,
+            planet1Id: faster.planet.id,
+            planet2Id: slower.planet.id,
+            orb: aspectDiff,
+            favorable: false,
+            description: {
+              en: `${faster.planet.name.en} has just passed the exact ${aspect.label.en} with ${slower.planet.name.en} — the matter was nearly achieved but slipped away. Only residual effects remain.`,
+              hi: `${faster.planet.name.hi} ${slower.planet.name.hi} के साथ ${aspect.label.hi} से आगे निकल गया — कार्य लगभग सिद्ध होने वाला था किन्तु हाथ से निकल गया। केवल अवशेष प्रभाव बचे हैं।`,
+              sa: `${faster.planet.name.sa} ${slower.planet.name.sa} ${aspect.label.sa} अतिक्रान्तः — कार्यं प्रायः सिद्धम् आसीत् किन्तु गतम्। अवशेषफलमात्रम्।`,
+            },
+          });
+          break;
+        }
+      }
+    }
+  }
+}
+
+// ─── Yamaya (Prohibition) — classical: a third planet blocks an applying aspect
+// Planet C completes an aspect with A or B before A and B can complete theirs,
+// thereby "prohibiting" the original Ithasala from manifesting.
+function detectYamayaProhibition(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
+  const ithasalas = yogas.filter(y => y.type === 'ithasala' || y.type === 'muthashila');
+  const mainPlanets = planets.filter(p => p.planet.id <= 6);
+
+  for (const ith of ithasalas) {
+    const p1 = mainPlanets.find(p => p.planet.name.en === ith.planet1.en);
+    const p2 = mainPlanets.find(p => p.planet.name.en === ith.planet2.en);
+    if (!p1 || !p2) continue;
+
+    // Check if any third planet C is also applying to either p1 or p2
+    // with a TIGHTER orb (i.e., C will complete its aspect first)
+    for (const c of mainPlanets) {
+      if (c.planet.id === p1.planet.id || c.planet.id === p2.planet.id) continue;
+
+      for (const target of [p1, p2]) {
+        const diff = Math.abs(angleDiff(c.longitude, target.longitude));
+        for (const aspect of TAJIKA_ASPECTS) {
+          const aspectDiff = Math.abs(diff - aspect.angle);
+          const orb = getOrb(c.planet.id, target.planet.id);
+          if (aspectDiff > orb) continue;
+
+          // C must be applying to target
+          const cSpeed = Math.abs(c.speed || PLANET_SPEEDS[c.planet.id] || 0);
+          const tSpeed = Math.abs(target.speed || PLANET_SPEEDS[target.planet.id] || 0);
+          const cFaster = cSpeed > tSpeed;
+          const applying = cFaster
+            ? isAspectApplying(c, target, aspect.angle)
+            : isAspectApplying(target, c, aspect.angle);
+          if (!applying) continue;
+
+          // C's orb must be tighter than the original Ithasala orb (it "gets there first")
+          if (ith.orb !== undefined && aspectDiff < ith.orb) {
+            const already = yogas.some(
+              y => y.type === 'yamaya' && y.planet1.en === c.planet.name.en &&
+                y.description.en.includes('prohibits')
+            );
+            if (already) continue;
+
+            yogas.push({
+              name: { en: 'Yamaya (Prohibition)', hi: 'यमाय (निषेध)', sa: 'यमाय (निषेधः)' },
+              type: 'yamaya',
+              planet1: c.planet.name,
+              planet2: target.planet.name,
+              planet1Id: c.planet.id,
+              planet2Id: target.planet.id,
+              orb: aspectDiff,
+              favorable: false,
+              description: {
+                en: `${c.planet.name.en} prohibits the ${ith.planet1.en}–${ith.planet2.en} Ithasala by completing its own aspect with ${target.planet.name.en} first. The original promise is blocked by a third party or competing matter.`,
+                hi: `${c.planet.name.hi} ${ith.planet1.hi}–${ith.planet2.hi} इत्थशाल को रोकता है — ${target.planet.name.hi} से पहले अपना दृष्टि योग पूरा करता है। मूल वादा तीसरे पक्ष द्वारा अवरुद्ध।`,
+                sa: `${c.planet.name.sa} ${ith.planet1.sa}–${ith.planet2.sa} इत्थशालं निषेधयति — ${target.planet.name.sa} सह स्वदृष्टियोगं प्रथमं पूरयति। मूलप्रतिज्ञा तृतीयपक्षेण अवरुद्धा।`,
+              },
+            });
+            return; // One prohibition per Ithasala is sufficient
+          }
+        }
+      }
+    }
+  }
+}
+
+// ─── Manahoo (Cancellation) — retrograde planet reverses an Ithasala into separation
+// When one of the Ithasala planets is retrograde and its retrograde motion will cause
+// it to separate from the aspect instead of completing it, the promise is cancelled.
+function detectManahoo(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
+  const ithasalas = yogas.filter(y => y.type === 'ithasala' || y.type === 'muthashila');
+
+  for (const ith of ithasalas) {
+    const p1 = planets.find(p => p.planet.name.en === ith.planet1.en);
+    const p2 = planets.find(p => p.planet.name.en === ith.planet2.en);
+    if (!p1 || !p2) continue;
+
+    // Check if either planet is retrograde
+    const retroPlanet = p1.isRetrograde ? p1 : p2.isRetrograde ? p2 : null;
+    if (!retroPlanet) continue;
+    const otherPlanet = retroPlanet === p1 ? p2 : p1;
+
+    // A retrograde planet in Ithasala means it was once applying but its retrograde
+    // motion is now carrying it away. The retrograde speed (negative) is key:
+    // if the retrograde planet's actual speed (signed) moves it AWAY from the aspect,
+    // the Ithasala is cancelled — this is Manahoo.
+    //
+    // Check: retrograde planet's signed speed should be taking it away from the other.
+    // We detect this by seeing if the pair would be separating based on actual (signed) speeds.
+    const retroSpeed = retroPlanet.speed || 0; // negative when retrograde
+    if (retroSpeed >= 0) continue; // Not actually retrograde in motion
+
+    // Simulate one day forward with actual speeds
+    const futureRetro = retroPlanet.longitude + retroSpeed;
+    const futureOther = otherPlanet.longitude + (otherPlanet.speed || PLANET_SPEEDS[otherPlanet.planet.id] || 0);
+    const currentDiff = Math.abs(angleDiff(retroPlanet.longitude, otherPlanet.longitude));
+    const futureDiff = Math.abs(angleDiff(futureRetro, futureOther));
+
+    // If the distance is increasing, the retrograde is pulling them apart
+    if (futureDiff > currentDiff) {
+      yogas.push({
+        name: { en: 'Manahoo (Cancellation)', hi: 'मनहू (रद्दीकरण)', sa: 'मनहू (निरसनम्)' },
+        type: 'manahoo',
+        planet1: retroPlanet.planet.name,
+        planet2: otherPlanet.planet.name,
+        planet1Id: retroPlanet.planet.id,
+        planet2Id: otherPlanet.planet.id,
+        orb: ith.orb,
+        favorable: false,
+        description: {
+          en: `${retroPlanet.planet.name.en} (retrograde) was in Ithasala with ${otherPlanet.planet.name.en} but retrograde motion now separates them — the promise is cancelled. What seemed certain will reverse or fall through.`,
+          hi: `${retroPlanet.planet.name.hi} (वक्री) ${otherPlanet.planet.name.hi} के साथ इत्थशाल में था किन्तु वक्री गति अब उन्हें अलग कर रही है — वादा रद्द। जो निश्चित लग रहा था वह उलट जाएगा।`,
+          sa: `${retroPlanet.planet.name.sa} (वक्री) ${otherPlanet.planet.name.sa} सह इत्थशाले आसीत् किन्तु वक्रगतिः अधुना तौ विभजति — प्रतिज्ञा निरस्ता। यत् निश्चितमासीत् तत् विपरीतं भविष्यति।`,
         },
       });
     }

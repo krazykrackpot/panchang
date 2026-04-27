@@ -28,6 +28,8 @@ const YOGA_CATEGORY: Record<TajikaYogaType, YogaCategory> = {
   kuttha: 'negative',
   khallasara: 'neutral',
   radda: 'rescue',
+  easarapha: 'negative',
+  manahoo: 'negative',
 };
 
 const CATEGORY_STYLES: Record<YogaCategory, { border: string; bg: string; badge: string; badgeText: string }> = {
@@ -69,6 +71,8 @@ const YOGA_ADVICE: Record<TajikaYogaType, { en: string; hi: string; sa: string }
   kamboola:         { en: 'Take personal initiative — success comes through self-effort.', hi: 'व्यक्तिगत पहल करें — स्वप्रयास से सफलता मिलेगी।', sa: 'स्वयं प्रयत्नं कुरु — स्वप्रयत्नेन सिद्धिः।' },
   'gairi-kamboola': { en: 'Collaborate with others — help comes from external sources.', hi: 'दूसरों के साथ सहयोग करें — बाहरी स्रोतों से सहायता मिलेगी।', sa: 'अन्यैः सह सहयोगं कुरु — बाह्यस्रोतेभ्यः साहाय्यम्।' },
   conjunction:      { en: 'Powerful planetary union — channel this energy wisely.', hi: 'शक्तिशाली ग्रह मिलन — इस ऊर्जा को बुद्धिमानी से निर्देशित करें।', sa: 'शक्तिशालग्रहसंयोगः — ऊर्जां बुद्ध्या निर्दिश।' },
+  easarapha:        { en: 'The faster planet has passed — the opportunity window is closing rapidly.', hi: 'तीव्र ग्रह आगे निकल गया — अवसर तेजी से बीत रहा है।', sa: 'शीघ्रग्रहः अतीतः — अवसरः शीघ्रं गच्छति।' },
+  manahoo:          { en: 'Retrograde motion cancels the promise — reconsider commitments.', hi: 'वक्री गति ने वादा रद्द किया — प्रतिबद्धताओं पर पुनर्विचार करें।', sa: 'वक्रगतिः प्रतिज्ञां निरस्यति — प्रतिबद्धतासु पुनर्विचारं कुरु।' },
 };
 
 interface TajikaYogaCardProps {

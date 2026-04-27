@@ -38,7 +38,7 @@ export interface TajikaYoga {
 }
 
 export type TajikaYogaType =
-  | 'ithasala' | 'ishrafa' | 'nakta' | 'yamaya' | 'manau'
+  | 'ithasala' | 'ishrafa' | 'easarapha' | 'nakta' | 'yamaya' | 'manau' | 'manahoo'
   | 'conjunction' | 'khallasara' | 'dutthottha'
   | 'ikkabal' | 'induvara' | 'tambira' | 'kuttha'
   | 'durupha' | 'radda' | 'kamboola' | 'gairi-kamboola' | 'muthashila';

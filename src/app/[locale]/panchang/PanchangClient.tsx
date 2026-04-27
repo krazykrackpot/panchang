@@ -1169,44 +1169,6 @@ export default function PanchangClient() {
           </div>
           <GoldDivider />
 
-          {/* Current Hora — Best Activity Now */}
-          {panchang.hora && panchang.hora.length > 0 && (() => {
-            const now = new Date();
-            const nowMinutes = now.getHours() * 60 + now.getMinutes();
-            const currentHora = panchang.hora.find((h: { startTime: string; endTime: string; planetId: number }) => {
-              const [sh, sm] = h.startTime.split(':').map(Number);
-              const [eh, em] = h.endTime.split(':').map(Number);
-              const start = sh * 60 + sm, end = eh * 60 + em;
-              // Handle midnight-crossing slots (e.g., 23:30 to 01:15)
-              return end < start ? (nowMinutes >= start || nowMinutes < end) : (nowMinutes >= start && nowMinutes < end);
-            });
-            const HORA_ACTIVITIES: Record<number, LocaleText> = {
-              0: { en: 'Government work, authority matters, health', hi: 'सरकारी कार्य, अधिकार, स्वास्थ्य', sa: 'राजकार्यम्, अधिकारः, आरोग्यम्', ta: 'அரசு பணி, அதிகாரம், ஆரோக்கியம்', te: 'ప్రభుత్వ పని, అధికారం, ఆరోగ్యం', bn: 'সরকারি কাজ, কর্তৃত্ব, স্বাস্থ্য', kn: 'ಸರ್ಕಾರಿ ಕೆಲಸ, ಅಧಿಕಾರ, ಆರೋಗ್ಯ', mr: 'सरकारी काम, अधिकार, आरोग्य', gu: 'સરકારી કામ, સત્તા, આરોગ્ય', mai: 'सरकारी काज, अधिकार, स्वास्थ्य' },
-              1: { en: 'Travel, liquids, public relations', hi: 'यात्रा, तरल पदार्थ, जनसंपर्क', sa: 'यात्रा, द्रवपदार्थाः, जनसम्पर्कः', ta: 'பயணம், திரவங்கள், மக்கள் தொடர்பு', te: 'ప్రయాణం, ద్రవ పదార్థాలు, ప్రజా సంబంధాలు', bn: 'ভ্রমণ, তরল পদার্থ, জনসংযোগ', kn: 'ಪ್ರಯಾಣ, ದ್ರವ ಪದಾರ್ಥಗಳು, ಜನಸಂಪರ್ಕ', mr: 'प्रवास, द्रव पदार्थ, जनसंपर्क', gu: 'મુસાફરી, પ્રવાહી પદાર્થો, જનસંપર્ક', mai: 'यात्रा, तरल पदार्थ, जनसंपर्क' },
-              2: { en: 'Property, machinery, legal battles', hi: 'संपत्ति, मशीनरी, कानूनी कार्य', sa: 'सम्पत्तिः, यन्त्राणि, विधिवादः', ta: 'சொத்து, இயந்திரம், சட்டப் போராட்டம்', te: 'ఆస్తి, యంత్రాలు, న్యాయ పోరాటాలు', bn: 'সম্পত্তি, যন্ত্রপাতি, আইনি লড়াই', kn: 'ಆಸ್ತಿ, ಯಂತ್ರೋಪಕರಣ, ಕಾನೂನು ಹೋರಾಟ', mr: 'मालमत्ता, यंत्रसामग्री, कायदेशीर लढाई', gu: 'મિલકત, યંત્રો, કાનૂની લડાઈ', mai: 'संपत्ति, मशीन, कानूनी काज' },
-              3: { en: 'Communication, trade, learning', hi: 'संचार, व्यापार, शिक्षा', sa: 'सञ्चारः, वाणिज्यम्, शिक्षा', ta: 'தொடர்பு, வணிகம், கல்வி', te: 'సంభాషణ, వ్యాపారం, విద్య', bn: 'যোগাযোগ, ব্যবসা, শিক্ষা', kn: 'ಸಂವಹನ, ವ್ಯಾಪಾರ, ಕಲಿಕೆ', mr: 'संवाद, व्यापार, शिक्षण', gu: 'સંદેશાવ્યવહાર, વેપાર, શિક્ષણ', mai: 'संचार, व्यापार, शिक्षा' },
-              4: { en: 'Education, finance, spiritual practice', hi: 'शिक्षा, वित्त, आध्यात्मिक साधना', sa: 'शिक्षा, वित्तम्, आध्यात्मिकसाधना', ta: 'கல்வி, நிதி, ஆன்மீக பயிற்சி', te: 'విద్య, ఆర్థికం, ఆధ్యాత్మిక సాధన', bn: 'শিক্ষা, অর্থ, আধ্যাত্মিক সাধনা', kn: 'ಶಿಕ್ಷಣ, ಹಣಕಾಸು, ಆಧ್ಯಾತ್ಮಿಕ ಸಾಧನೆ', mr: 'शिक्षण, वित्त, आध्यात्मिक साधना', gu: 'શિક્ષણ, નાણાં, આધ્યાત્મિક સાધના', mai: 'शिक्षा, वित्त, आध्यात्मिक साधना' },
-              5: { en: 'Romance, arts, luxury purchases', hi: 'प्रेम, कला, विलासिता', sa: 'प्रेमः, कलाः, विलासवस्तूनि', ta: 'காதல், கலை, ஆடம்பரம்', te: 'ప్రేమ, కళలు, విలాసాలు', bn: 'প্রেম, শিল্প, বিলাসিতা', kn: 'ಪ್ರೇಮ, ಕಲೆ, ವಿಲಾಸ', mr: 'प्रेम, कला, विलासिता', gu: 'પ્રેમ, કલા, વૈભવી ખરીદી', mai: 'प्रेम, कला, विलासिता' },
-              6: { en: 'Labor, iron work, mining, discipline', hi: 'श्रम, लोहा, खनन, अनुशासन', sa: 'श्रमः, लोहकार्यम्, खननम्, अनुशासनम्', ta: 'உழைப்பு, இரும்புப் பணி, சுரங்கம், ஒழுக்கம்', te: 'శ్రమ, ఇనుప పని, గనులు, క్రమశిక్షణ', bn: 'শ্রম, লোহার কাজ, খনন, শৃঙ্খলা', kn: 'ಶ್ರಮ, ಕಬ್ಬಿಣ ಕೆಲಸ, ಗಣಿಗಾರಿಕೆ, ಶಿಸ್ತು', mr: 'श्रम, लोखंडी काम, खाणकाम, शिस्त', gu: 'શ્રમ, લોખંડ કામ, ખાણકામ, શિસ્ત', mai: 'श्रम, लोहा काज, खनन, अनुशासन' },
-            };
-            if (!currentHora) return null;
-            const activity = HORA_ACTIVITIES[currentHora.planetId] || HORA_ACTIVITIES[0];
-            return (
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
-                className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 p-5 text-center mb-10">
-                <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-                  {msg('currentHoraBest', locale)}
-                </div>
-                <div className="text-amber-300 font-bold text-xl font-mono">
-                  {currentHora.startTime} – {currentHora.endTime}
-                </div>
-                <div className="text-text-secondary text-sm mt-1.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {_tl(activity, locale)}
-                </div>
-              </motion.div>
-            );
-          })()}
-
           {/* ═══ SUN & MOON SIGN + DAY INFO ═══ */}
           {(() => {
             const sunPlanet = panchang.planets.find(p => p.id === 0);

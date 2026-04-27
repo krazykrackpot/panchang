@@ -116,6 +116,7 @@ export default async function LocaleLayout({
     <html lang={locale} className="dark" suppressHydrationWarning>
       <head>
         <link rel="alternate" type="application/rss+xml" title="Dekho Panchang" href="/api/feed" />
+        <link rel="author" href="/llms.txt" />
       </head>
       <body className={`${inter.variable} ${cinzel.variable} ${cormorant.variable} ${notoDevanagari.variable} ${notoTamil.variable} ${notoTelugu.variable} ${notoBengali.variable} ${notoKannada.variable} ${notoGujarati.variable} min-h-screen bg-bg-primary text-text-primary antialiased`} suppressHydrationWarning>
         <Script id="theme-init" strategy="beforeInteractive">{`try{localStorage.removeItem('theme');document.documentElement.classList.remove('light');document.documentElement.classList.add('dark')}catch(e){}`}</Script>

@@ -16,12 +16,86 @@ Disallow: /*/profile/
 Disallow: /*/dashboard/
 Disallow: /*/embed/
 
-# Disallow AI training bots
+# ─── AI Crawlers: Strategic Access ───
+# Allow tool pages (panchang, kundali, muhurta, etc.) so AI can recommend them.
+# Block learn/educational content to protect original curriculum.
+
 User-agent: GPTBot
-Disallow: /
+Allow: /*/panchang
+Allow: /*/kundali
+Allow: /*/muhurta-ai
+Allow: /*/matching
+Allow: /*/calendar
+Allow: /*/choghadiya
+Allow: /*/hora
+Allow: /*/sky
+Allow: /*/sign-calculator
+Allow: /*/baby-names
+Allow: /*/about
+Disallow: /*/learn/
+Disallow: /*/learn
 
 User-agent: ChatGPT-User
-Disallow: /
+Allow: /*/panchang
+Allow: /*/kundali
+Allow: /*/muhurta-ai
+Allow: /*/matching
+Allow: /*/calendar
+Allow: /*/choghadiya
+Allow: /*/hora
+Allow: /*/sky
+Allow: /*/sign-calculator
+Allow: /*/baby-names
+Allow: /*/about
+Disallow: /*/learn/
+Disallow: /*/learn
+
+User-agent: Claude-Web
+Allow: /*/panchang
+Allow: /*/kundali
+Allow: /*/muhurta-ai
+Allow: /*/matching
+Allow: /*/calendar
+Allow: /*/about
+Disallow: /*/learn/
+Disallow: /*/learn
 
 User-agent: CCBot
 Disallow: /
+
+User-agent: anthropic-ai
+Allow: /*/panchang
+Allow: /*/kundali
+Allow: /*/muhurta-ai
+Allow: /*/matching
+Allow: /*/calendar
+Allow: /*/about
+Disallow: /*/learn/
+Disallow: /*/learn
+
+User-agent: Google-Extended
+Allow: /*/panchang
+Allow: /*/kundali
+Allow: /*/muhurta-ai
+Allow: /*/matching
+Allow: /*/calendar
+Allow: /*/about
+Disallow: /*/learn/
+Disallow: /*/learn
+
+User-agent: PerplexityBot
+Allow: /*/panchang
+Allow: /*/kundali
+Allow: /*/muhurta-ai
+Allow: /*/matching
+Allow: /*/calendar
+Allow: /*/about
+Disallow: /*/learn/
+Disallow: /*/learn
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /*/learn/
+Disallow: /*/learn

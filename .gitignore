@@ -49,3 +49,4 @@ ephe/
 # Playwright test artifacts
 test-results/
 .playwright-mcp/
+final_stress_test.ts

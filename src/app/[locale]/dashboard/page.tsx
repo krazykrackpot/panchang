@@ -929,7 +929,7 @@ export default function DashboardPage() {
             } as any,
           });
           setKeyDates(kd);
-        } catch { /* key dates are non-critical */ }
+        } catch (err) { console.error('[dashboard] key dates computation failed:', err); }
       }
 
       // Extract SAV table from full kundali snapshot for transit countdown
@@ -950,13 +950,13 @@ export default function DashboardPage() {
       try {
         const gochar = computeGochar(userSnapshot.ascendantSign, userSnapshot.moonSign);
         setGocharResults(gochar);
-      } catch { /* gochar computation is non-critical */ }
+      } catch (err) { console.error('[dashboard] gochar computation failed:', err); }
 
       // Compute enhanced transit alerts
       try {
         const alerts = computeTransitAlerts(userSnapshot);
         setEnhancedAlerts(alerts);
-      } catch { /* transit alerts are non-critical */ }
+      } catch (err) { console.error('[dashboard] transit alerts computation failed:', err); }
 
       // Fetch saved charts — rendered inline below so the user doesn't have to
       // navigate to a separate page just to see their list.
@@ -989,7 +989,7 @@ export default function DashboardPage() {
           .sort((a, b) => b.relevanceScore - a.relevanceScore)
           .slice(0, 5);
         setRecommendedFestivals(scored);
-      } catch { /* festival scoring is non-critical */ }
+      } catch (err) { console.error('[dashboard] festival scoring failed:', err); }
     } catch (err) {
       console.error('Dashboard load error:', err);
     } finally {
@@ -1141,10 +1141,10 @@ export default function DashboardPage() {
     ? (GRAHAS.findIndex(g => g.name.en.toLowerCase() === pd.currentDasha!.maha.planet.toLowerCase()))
     : 0;
   const mahaDashaPlanetName = pd.currentDasha
-    ? (pd.currentDasha.maha.planetName[locale] || pd.currentDasha.maha.planetName.en)
+    ? tl(pd.currentDasha.maha.planetName, locale)
     : 'Sun';
   const antarDashaName = pd.currentDasha?.antar
-    ? (pd.currentDasha.antar.planetName[locale] || pd.currentDasha.antar.planetName.en)
+    ? tl(pd.currentDasha.antar.planetName, locale)
     : undefined;
 
   // Helper to find planet name by key
@@ -1422,7 +1422,7 @@ export default function DashboardPage() {
                 {gocharResults.map((g) => (
                   <tr key={g.planetId} className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors">
                     <td className="py-2.5 pr-3">
-                      <span className="text-text-primary font-medium">{g.planetName[locale] || g.planetName.en}</span>
+                      <span className="text-text-primary font-medium">{tl(g.planetName, locale)}</span>
                       {g.isRetrograde && <span className="ml-1 text-red-400 text-xs font-bold">({L.retrograde})</span>}
                     </td>
                     <td className="py-2.5 pr-3 text-gold-light">{g.transitSignName[locale] || g.transitSignName.en}</td>
@@ -1829,7 +1829,7 @@ export default function DashboardPage() {
             <p className="text-text-secondary/70 text-sm mt-1">
               {L.mahadasha}{' '}
               <span className="text-gold-primary font-semibold">
-                {pd.currentDasha.maha.planetName[locale] || pd.currentDasha.maha.planetName.en}
+                {tl(pd.currentDasha.maha.planetName, locale)}
               </span>{' '}
               {L.mahadashaOf}
             </p>

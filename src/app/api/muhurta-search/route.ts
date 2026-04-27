@@ -12,7 +12,7 @@ import { NextResponse } from 'next/server';
 import { getClaudeClient, DEFAULT_MODEL } from '@/lib/llm/llm-client';
 import { smartMuhurtaSearch, type SearchParams, type UserSnapshot } from '@/lib/muhurta/smart-search';
 import { EXTENDED_ACTIVITIES } from '@/lib/muhurta/activity-rules-extended';
-import { resolveTimezone } from '@/lib/utils/timezone';
+import { resolveTimezone, resolveTimezoneFromCoords, getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
 
 // ─── Valid activity keys for LLM prompt ─────────────────────────
@@ -189,15 +189,17 @@ export async function POST(request: Request) {
 
     // ── Resolve timezone offset from coordinates ──────────────
     const [startYear, startMonth, startDay] = startDate.split('-').map(Number);
-    // Estimate tz offset from longitude (simple heuristic for the search)
-    // resolveTimezone needs an IANA string or numeric; use longitude-based estimate
-    const estimatedTzOffset = Math.round(lng / 15);
+    // Try to resolve IANA timezone from coordinates for accurate DST handling.
+    // Falls back to longitude-based heuristic (Math.round(lng / 15)) which does
+    // NOT account for DST or political timezone boundaries — known limitation.
     let tzOffset: number;
     try {
-      tzOffset = resolveTimezone(String(estimatedTzOffset), startYear, startMonth, startDay);
+      const ianaTimezone = await resolveTimezoneFromCoords(lat, lng);
+      tzOffset = getUTCOffsetForDate(startYear, startMonth, startDay, ianaTimezone);
     } catch {
-      // Fallback to longitude-based estimate
-      tzOffset = estimatedTzOffset;
+      // Fallback: longitude-based estimate — does not handle DST or political boundaries
+      tzOffset = Math.round(lng / 15);
+      console.error('[muhurta-search] timezone resolution failed, using longitude heuristic:', tzOffset);
     }
 
     // ── Build search params ───────────────────────────────────

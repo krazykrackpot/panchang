@@ -102,6 +102,14 @@ export default function MuhurtaScannerClient() {
     }
   }, [activity, locale]);
 
+  // AbortController for in-flight scan requests — aborted on unmount or new scan
+  const scanAbortRef = useRef<AbortController | null>(null);
+
+  // Abort any in-flight scan on unmount
+  useEffect(() => {
+    return () => { scanAbortRef.current?.abort(); };
+  }, []);
+
   // Results
   const [overviewCells, setOverviewCells] = useState<HeatmapCell[]>([]);
   const [detailWindows, setDetailWindows] = useState<DetailWindow[]>([]);
@@ -167,6 +175,11 @@ export default function MuhurtaScannerClient() {
       return;
     }
 
+    // Abort any previous in-flight scan
+    scanAbortRef.current?.abort();
+    const controller = new AbortController();
+    scanAbortRef.current = controller;
+
     setOverviewLoading(true);
     setError(null);
     setOverviewCells([]);
@@ -180,6 +193,7 @@ export default function MuhurtaScannerClient() {
       const res = await fetch('/api/muhurta-scan', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
         body: JSON.stringify({
           activity,
           startDate,
@@ -222,6 +236,7 @@ export default function MuhurtaScannerClient() {
             const detailRes = await fetch('/api/muhurta-scan', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
+              signal: controller.signal,
               body: JSON.stringify({
                 activity,
                 startDate: date,
@@ -255,6 +270,8 @@ export default function MuhurtaScannerClient() {
       peakResults.sort((a, b) => b.score - a.score);
       setPeaks(peakResults);
     } catch (err) {
+      // Don't report aborted requests as errors
+      if (err instanceof DOMException && err.name === 'AbortError') return;
       console.error('[muhurta-scanner] Overview scan failed:', err);
       setError(err instanceof Error ? err.message : sl('scanFailed', locale));
     } finally {

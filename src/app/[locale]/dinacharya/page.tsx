@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useLocale } from 'next-intl';
-import { Loader2, AlertTriangle, ChevronDown, ChevronUp } from 'lucide-react';
+import { Loader2, AlertTriangle, ChevronDown, ChevronUp, Compass } from 'lucide-react';
 import { useLocationStore } from '@/stores/location-store';
 import { usePrakritiStore } from '@/stores/prakriti-store';
 import { generateDailyProtocol } from '@/lib/dinacharya/protocol-engine';
@@ -87,6 +87,9 @@ function isInTimeRange(startTime: string, endTime: string): boolean {
 function isPastTimeRange(endTime: string): boolean {
   const now = currentMinutes();
   const end = parseTimeToMinutes(endTime);
+  // Midnight-crossing: if end is early morning (before 6 AM) and now is evening (after 6 PM),
+  // the slot crosses midnight and is NOT past yet (lesson R)
+  if (end < 360 && now > 1080) return false;
   return now >= end;
 }
 
@@ -198,6 +201,14 @@ export default function DinacharyaPage() {
     if (!locationStore.confirmed && !locationStore.detecting) {
       locationStore.detect();
     }
+    // Timeout: if location not confirmed after 10s, stop loading to avoid infinite spinner
+    // (e.g. user denies geolocation permission)
+    const timer = setTimeout(() => {
+      if (!locationStore.confirmed) {
+        setLoading(false);
+      }
+    }, 10000);
+    return () => clearTimeout(timer);
   }, [locationStore.confirmed, locationStore.detecting]);
 
   useEffect(() => {
@@ -232,6 +243,34 @@ export default function DinacharyaPage() {
           <p className="text-[#8a8478] text-sm">
             Calculating your daily protocol...
           </p>
+        </div>
+      </div>
+    );
+  }
+
+  // ── Location not available (e.g. geolocation denied) ──
+  if (!loading && !protocol && !error && locationStore.lat === null) {
+    return (
+      <div className="min-h-screen bg-[#0a0e27] flex items-center justify-center px-4">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6 max-w-md text-center">
+          <Compass className="w-8 h-8 text-gold-primary mx-auto mb-3" />
+          <p className="text-[#e6e2d8] mb-2">Location Required</p>
+          <p className="text-[#8a8478] text-sm mb-4">
+            Please enable location access or set your location to use Dinacharya.
+          </p>
+          <button
+            onClick={() => {
+              setLoading(true);
+              locationStore.detect();
+              // Reset timeout
+              setTimeout(() => {
+                if (!locationStore.confirmed) setLoading(false);
+              }, 10000);
+            }}
+            className="px-4 py-2 rounded-lg bg-[#d4a853]/20 text-[#f0d48a] text-sm hover:bg-[#d4a853]/30 transition-colors"
+          >
+            Retry Location Detection
+          </button>
         </div>
       </div>
     );
@@ -831,7 +870,8 @@ function PrakritiSection({
   }
 
   // Inline quiz
-  const langKey = locale === 'hi' ? 'hi' : 'en';
+  // Map all Devanagari-script locales to Hindi quiz text, others to English
+  const langKey = ['hi', 'sa', 'mr', 'gu', 'mai'].includes(locale) ? 'hi' : 'en';
   const allAnswered = Object.keys(quizAnswers).length >= PRAKRITI_QUESTIONS.length;
 
   return (

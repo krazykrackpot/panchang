@@ -66,7 +66,11 @@ function azimuthToCardinal(az: number): string {
  * Compute planet RA/Dec from tropical longitudes.
  * Uses eclipticToEquatorial with proper ecliptic latitude per planet.
  */
-function computePlanetRADec(jd: number, locale: string): { planets: PlanispherePlanet[]; ayanamsa: number } {
+/**
+ * Compute planet RA/Dec — pure astronomical math, locale-independent.
+ * Names are resolved separately to avoid recomputing positions on locale change.
+ */
+function computePlanetRADec(jd: number): { planets: PlanispherePlanet[]; ayanamsa: number } {
   const positions = getPlanetaryPositions(jd);
   const ayanamsa = getAyanamsa(jd);
 
@@ -74,11 +78,10 @@ function computePlanetRADec(jd: number, locale: string): { planets: PlanisphereP
     const eclipticLat = computePlanetLatitude(p.id, jd);
     const { ra, dec } = eclipticToEquatorial(p.longitude, eclipticLat, jd);
     const siderealLong = tropicalToSidereal(p.longitude, ayanamsa);
-    const graha = GRAHAS[p.id];
 
     return {
       id: p.id,
-      name: graha ? tl(graha.name, locale) : `Planet ${p.id}`,
+      name: '', // resolved below via locale-dependent memo
       ra,
       dec,
       tropicalLongitude: p.longitude,
@@ -150,7 +153,7 @@ function PlanetInfoPanel({ planet, sidereal, locale }: PlanetInfoProps) {
 
       <div className="mt-3 pt-3 border-t border-[#8a6d2b]/20">
         <a
-          href={`/en/kundali`}
+          href={`/${locale}/kundali`}
           className="text-gold-primary text-xs hover:text-gold-light transition-colors"
         >
           View in Kundali →
@@ -187,10 +190,18 @@ export default function SkyMapPage() {
     return currentJD() + timeOffset / 1440; // 1440 minutes per day
   }, [timeOffset]);
 
-  // Compute planet RA/Dec positions
-  const { planets, ayanamsa } = useMemo(() => {
-    return computePlanetRADec(jd, locale);
-  }, [jd, locale]);
+  // Compute planet RA/Dec positions (expensive math — no locale dependency)
+  const { planets: rawPlanets, ayanamsa } = useMemo(() => {
+    return computePlanetRADec(jd);
+  }, [jd]);
+
+  // Resolve locale-dependent names separately (cheap string lookup)
+  const planets = useMemo(() => {
+    return rawPlanets.map((p) => {
+      const graha = GRAHAS[p.id];
+      return { ...p, name: graha ? tl(graha.name, locale) : `Planet ${p.id}` };
+    });
+  }, [rawPlanets, locale]);
 
   // Selected planet info: find the ProjectedPlanet from Planisphere's onPlanetClick
   // We store the basic data here, the Planisphere component handles projection

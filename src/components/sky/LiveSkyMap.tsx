@@ -557,9 +557,10 @@ function PlanetLabelOffset({
 
 interface TooltipProps {
   data: TooltipData;
+  locale: string;
 }
 
-function Tooltip({ data }: TooltipProps) {
+function Tooltip({ data, locale }: TooltipProps) {
   const { planet } = data;
   const rashiObj = RASHIS[planet.rashi - 1];
   const nakshatraObj = NAKSHATRAS[planet.nakshatra - 1];
@@ -589,9 +590,9 @@ function Tooltip({ data }: TooltipProps) {
         </p>
         <p>
           <span className="text-[#e6e2d8]">{formatDMS(degInRashi)}</span>
-          {' '}{rashiObj?.name.en ?? ''}
+          {' '}{rashiObj ? tl(rashiObj.name, locale) : ''}
         </p>
-        <p>Nakshatra: <span className="text-[#e6e2d8]">{nakshatraObj?.name.en ?? ''}</span> pada {planet.nakshatraPada}</p>
+        <p>Nakshatra: <span className="text-[#e6e2d8]">{nakshatraObj ? tl(nakshatraObj.name, locale) : ''}</span> pada {planet.nakshatraPada}</p>
         <p>Speed: <span className="text-[#e6e2d8]">{planet.speed.toFixed(3)}°/day</span></p>
       </div>
     </div>
@@ -605,9 +606,10 @@ function Tooltip({ data }: TooltipProps) {
 interface SidePanelProps {
   planet: SkyPlanetPosition;
   onClose: () => void;
+  locale: string;
 }
 
-function SidePanel({ planet, onClose }: SidePanelProps) {
+function SidePanel({ planet, onClose, locale }: SidePanelProps) {
   const rashiObj = RASHIS[planet.rashi - 1];
   const nakshatraObj = NAKSHATRAS[planet.nakshatra - 1];
   const color = PLANET_COLORS[planet.id] ?? '#ffffff';
@@ -640,10 +642,10 @@ function SidePanel({ planet, onClose }: SidePanelProps) {
 
       <div className="space-y-2.5 text-sm">
         <Row label="Sidereal Longitude" value={formatDMS(planet.siderealLongitude)} />
-        <Row label="In Sign" value={`${formatDMS(degInRashi)} ${rashiObj?.name.en ?? ''}`} />
-        <Row label="Rashi" value={`${rashiObj?.name.en ?? ''} (${rashiObj?.symbol ?? ''})`} />
+        <Row label="In Sign" value={`${formatDMS(degInRashi)} ${rashiObj ? tl(rashiObj.name, locale) : ''}`} />
+        <Row label="Rashi" value={`${rashiObj ? tl(rashiObj.name, locale) : ''} (${rashiObj?.symbol ?? ''})`} />
         <Row label="Element" value={RASHI_ELEMENTS[planet.rashi] ?? ''} />
-        <Row label="Nakshatra" value={nakshatraObj?.name.en ?? ''} />
+        <Row label="Nakshatra" value={nakshatraObj ? tl(nakshatraObj.name, locale) : ''} />
         <Row label="Pada" value={String(planet.nakshatraPada)} />
         <Row label="Daily Speed" value={`${planet.speed >= 0 ? '+' : ''}${planet.speed.toFixed(4)}°/day`} />
         <Row
@@ -1024,7 +1026,7 @@ export function LiveSkyMap({ initialPositions, locale = 'en' }: LiveSkyMapProps)
         />
 
         {/* Tooltip overlay */}
-        {tooltip && <Tooltip data={tooltip} />}
+        {tooltip && <Tooltip data={tooltip} locale={locale} />}
 
         {/* Time animation controls — BELOW the chart, not overlaid */}
       </div>{/* end chart container */}
@@ -1122,6 +1124,7 @@ export function LiveSkyMap({ initialPositions, locale = 'en' }: LiveSkyMapProps)
           <SidePanel
             planet={selectedPlanet}
             onClose={() => setSelectedPlanet(null)}
+            locale={locale}
           />
         </div>
       )}

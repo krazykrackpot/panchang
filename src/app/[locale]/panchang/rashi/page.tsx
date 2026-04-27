@@ -13,6 +13,7 @@ import { RashiIconById } from '@/components/icons/RashiIcons';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
 import AuthorByline from '@/components/ui/AuthorByline';
+import TarotCard from '@/components/ui/TarotCard';
 
 /* ─── Element helpers ────────────────────────────────────────────── */
 
@@ -40,6 +41,13 @@ const elementBorders: Record<string, string> = {
   Air: 'border-cyan-500/20',
   Water: 'border-blue-500/20',
 };
+const ELEMENT_GLOW: Record<string, string> = {
+  Fire: '#ef4444',
+  Earth: '#22c55e',
+  Air: '#60a5fa',
+  Water: '#8b5cf6',
+};
+
 const ELEMENT_LABELS: { key: string; label: LocaleText }[] = [
   { key: 'Fire', label: { en: 'Fire', hi: 'अग्नि', sa: 'अग्निः' } },
   { key: 'Earth', label: { en: 'Earth', hi: 'पृथ्वी', sa: 'पृथिवी' } },
@@ -551,52 +559,18 @@ export default function RashiPage() {
           {t('completeListing')}
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {RASHIS.map((rashi, i) => (
-            <Link key={rashi.id} href={`/panchang/rashi/${rashi.slug}`}>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.05 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.03, duration: 0.3 }}
-                className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-5 text-center cursor-pointer ${
-                  elementBorders[rashi.element.en] || ''
-                }`}
-              >
-                <div className="flex justify-center mb-2">
-                  <RashiIconById id={rashi.id} size={40} />
-                </div>
-                <div className="text-gold-primary text-xs mb-1">{rashi.id}</div>
-                <div
-                  className="text-gold-light font-semibold text-base"
-                  style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}
-                >
-                  {rashi.name[locale]}
-                </div>
-                <div className="text-gold-dark text-xs mt-1">
-                  {rashi.startDeg}&deg; &ndash; {rashi.endDeg}&deg;
-                </div>
-                <div
-                  className={`text-xs mt-2 ${elementTextColor[rashi.element.en] || 'text-text-secondary'}`}
-                  style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
-                >
-                  {rashi.element[locale]}
-                </div>
-                <div
-                  className="text-text-secondary text-xs mt-1"
-                  style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
-                >
-                  {rashi.rulerName[locale]}
-                </div>
-                <div
-                  className="text-gold-dark/60 text-xs mt-0.5"
-                  style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
-                >
-                  {rashi.quality[locale]}
-                </div>
-              </motion.div>
-            </Link>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center">
+          {RASHIS.map((rashi) => (
+            <TarotCard
+              key={rashi.id}
+              href={`/panchang/rashi/${rashi.slug}`}
+              size="full"
+              icon={<RashiIconById id={rashi.id} size={96} />}
+              subtitle={tl(rashi.element, locale)}
+              title={tl(rashi.name, locale)}
+              description={`${tl(rashi.rulerName, locale)} · ${tl(rashi.quality, locale)}`}
+              glowColor={ELEMENT_GLOW[rashi.element.en] ?? '#d4a853'}
+            />
           ))}
         </div>
       </section>

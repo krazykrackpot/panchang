@@ -8,9 +8,10 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Calendar, Clock, MapPin, Sun, Moon, ChevronDown, ChevronRight, Info } from 'lucide-react';
+import { Calendar, Clock, MapPin, Sun, Moon, ChevronDown, ChevronRight, Info, BookOpen, Sparkles, Leaf, CheckCircle } from 'lucide-react';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -42,6 +43,42 @@ const RULE_LABELS: Record<MuhurtaRule, { en: string; hi: string }> = {
   nishita:     { en: 'Nishita Kaal (Midnight)', hi: 'निशीथ काल' },
   arunodaya:   { en: 'Arunodaya (Pre-dawn)', hi: 'अरुणोदय' },
   chandrodaya: { en: 'Chandrodaya (Moonrise)', hi: 'चन्द्रोदय' },
+};
+
+/** Detailed descriptions of each Kala-Vyapti rule for the Tithi Rule card */
+const RULE_DESCRIPTIONS: Record<MuhurtaRule, { en: string; hi: string }> = {
+  sunrise: {
+    en: 'The tithi must prevail at sunrise. If the tithi spans two days, the day where it covers sunrise is chosen.',
+    hi: 'सूर्योदय के समय तिथि व्याप्त होनी चाहिए। यदि तिथि दो दिनों में फैलती है, तो जिस दिन सूर्योदय पर व्याप्त हो वह दिन चुना जाता है।',
+  },
+  pradosh: {
+    en: 'The tithi must prevail during Pradosh Kaal (evening twilight). This is the primary rule for festivals like Diwali and Dhanteras.',
+    hi: 'प्रदोष काल (सन्ध्या समय) में तिथि व्याप्त होनी चाहिए। यह दीपावली और धनतेरस जैसे त्योहारों का प्रमुख नियम है।',
+  },
+  nishita: {
+    en: 'The tithi must prevail during Nishita Kaal (midnight). Used for festivals like Maha Shivaratri and Janmashtami.',
+    hi: 'निशीथ काल (मध्यरात्रि) में तिथि व्याप्त होनी चाहिए। महाशिवरात्रि और जन्माष्टमी जैसे त्योहारों के लिए प्रयुक्त।',
+  },
+  madhyahna: {
+    en: 'The tithi must prevail at Madhyahna (midday). Used for festivals like Rama Navami and Ganesh Chaturthi.',
+    hi: 'मध्याह्न (दोपहर) में तिथि व्याप्त होनी चाहिए। राम नवमी और गणेश चतुर्थी जैसे त्योहारों के लिए प्रयुक्त।',
+  },
+  aparahna: {
+    en: 'The tithi must prevail during Aparahna (afternoon). Used for festivals like Dussehra.',
+    hi: 'अपराह्न (दोपहर बाद) में तिथि व्याप्त होनी चाहिए। दशहरा जैसे त्योहारों के लिए प्रयुक्त।',
+  },
+  arunodaya: {
+    en: 'The tithi must prevail at Arunodaya (96 minutes before sunrise). Used for Narak Chaturdashi and Ekadashi observance.',
+    hi: 'अरुणोदय (सूर्योदय से 96 मिनट पहले) में तिथि व्याप्त होनी चाहिए। नरक चतुर्दशी और एकादशी व्रत के लिए प्रयुक्त।',
+  },
+  chandrodaya: {
+    en: 'The tithi must prevail at Chandrodaya (moonrise). Used for Karva Chauth and Sankashti Chaturthi.',
+    hi: 'चन्द्रोदय (चन्द्रमा उदय) के समय तिथि व्याप्त होनी चाहिए। करवा चौथ और संकष्टी चतुर्थी के लिए प्रयुक्त।',
+  },
+  pratah: {
+    en: 'The tithi must prevail during Pratah Kaal (morning period after sunrise).',
+    hi: 'प्रातः काल (सूर्योदय के बाद का प्रभात) में तिथि व्याप्त होनी चाहिए।',
+  },
 };
 
 /** Explain why the festival falls on this date based on its Kala-Vyapti rule */
@@ -148,6 +185,9 @@ export default async function FestivalCityPage({
 
   const muhurtaRule = festivalDef.muhurtaRule || 'sunrise';
   const ruleLabel = tl(RULE_LABELS[muhurtaRule], locale);
+
+  // Puja Vidhi data (if available for this festival)
+  const pujaVidhi = getPujaVidhiBySlug(slug);
 
   // Puja muhurat from the festival entry
   const pujaMuhurat = festivalEntry.pujaMuhurat;
@@ -346,6 +386,135 @@ export default async function FestivalCityPage({
           </div>
         </div>
 
+        {/* ── Tithi Determination Rule ── */}
+        {festivalDef.muhurtaRule && (
+          <div className="bg-bg-secondary rounded-2xl border-2 border-gold-primary/30 p-5 sm:p-6 space-y-3">
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-gold-primary" />
+              <h2 className="text-gold-light font-bold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
+                {tl({ en: 'Tithi Determination Rule', hi: 'तिथि निर्धारण नियम' }, locale)}
+              </h2>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="px-3 py-1 rounded-full bg-gold-primary/15 border border-gold-primary/25 text-gold-light text-xs font-bold uppercase tracking-wider">
+                {ruleLabel}
+              </span>
+            </div>
+            <p className="text-text-secondary text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+              {tl(RULE_DESCRIPTIONS[muhurtaRule], locale)}
+            </p>
+            <p className="text-text-secondary/60 text-xs italic" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+              {tl({
+                en: 'Source: Dharmasindhu & Nirnayasindhu — classical Kala-Vyapti system',
+                hi: 'स्रोत: धर्मसिन्धु एवं निर्णयसिन्धु — शास्त्रीय काल-व्याप्ति पद्धति',
+              }, locale)}
+            </p>
+          </div>
+        )}
+
+        {/* ── Puja Vidhi Preview ── */}
+        {pujaVidhi && (
+          <div className="bg-gradient-to-br from-purple-500/10 to-indigo-500/10 rounded-2xl border border-purple-500/20 p-5 sm:p-6 space-y-4">
+            <div className="flex items-center gap-2">
+              <BookOpen className="w-5 h-5 text-purple-400" />
+              <h2 className="text-gold-light font-bold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
+                {tl({ en: 'Puja Vidhi', hi: 'पूजा विधि' }, locale)}
+              </h2>
+            </div>
+
+            {/* Samagri preview */}
+            {pujaVidhi.samagri.length > 0 && (
+              <div className="space-y-2">
+                <h3 className="text-purple-300 text-xs uppercase tracking-widest font-bold">
+                  {tl({ en: 'Materials Required', hi: 'आवश्यक सामग्री' }, locale)}
+                </h3>
+                <ul className="space-y-1.5">
+                  {pujaVidhi.samagri.slice(0, 5).map((item, i) => (
+                    <li key={i} className="flex items-center gap-2 text-text-secondary text-sm" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      <CheckCircle className="w-3.5 h-3.5 text-purple-400/70 flex-shrink-0" />
+                      <span>{tl(item.name, locale)}</span>
+                      {item.quantity && <span className="text-text-secondary/50 text-xs">({item.quantity})</span>}
+                    </li>
+                  ))}
+                </ul>
+                {pujaVidhi.samagri.length > 5 && (
+                  <Link
+                    href={`/${locale}/puja/${slug}`}
+                    className="inline-flex items-center gap-1 text-purple-400 text-xs font-medium hover:text-purple-300 transition-colors"
+                  >
+                    {tl({
+                      en: `See all ${pujaVidhi.samagri.length} items`,
+                      hi: `सभी ${pujaVidhi.samagri.length} सामग्री देखें`,
+                    }, locale)} <ChevronRight className="w-3 h-3" />
+                  </Link>
+                )}
+              </div>
+            )}
+
+            {/* Vidhi steps preview */}
+            {pujaVidhi.vidhiSteps.length > 0 && (
+              <div className="space-y-2">
+                <h3 className="text-purple-300 text-xs uppercase tracking-widest font-bold">
+                  {tl({ en: 'Puja Steps', hi: 'पूजा के चरण' }, locale)}
+                </h3>
+                <ol className="space-y-2">
+                  {pujaVidhi.vidhiSteps.slice(0, 3).map((step) => (
+                    <li key={step.step} className="flex gap-3">
+                      <span className="w-6 h-6 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
+                        {step.step}
+                      </span>
+                      <div>
+                        <p className="text-gold-light text-sm font-medium" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                          {tl(step.title, locale)}
+                        </p>
+                        <p className="text-text-secondary text-xs leading-relaxed mt-0.5" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                          {tl(step.description, locale).slice(0, 120)}{tl(step.description, locale).length > 120 ? '...' : ''}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
+
+            {/* CTA to full puja page */}
+            <Link
+              href={`/${locale}/puja/${slug}`}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-500/15 border border-purple-500/25 text-purple-300 font-medium text-sm hover:bg-purple-500/25 hover:text-purple-200 transition-colors"
+            >
+              {tl({
+                en: 'View Complete Puja Guide',
+                hi: 'पूर्ण पूजा विधि देखें',
+              }, locale)} <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
+        )}
+
+        {/* ── Vrat Phala (Benefits) ── */}
+        {(() => {
+          const phalaText = pujaVidhi?.phala
+            ? tl(pujaVidhi.phala, locale)
+            : null;
+          const isVrat = detail.isFast === true;
+          if (!phalaText) return null;
+          return (
+            <div className="bg-emerald-500/5 rounded-2xl border-2 border-emerald-500/20 p-5 sm:p-6 space-y-3">
+              <div className="flex items-center gap-2">
+                <Leaf className="w-5 h-5 text-emerald-400" />
+                <h2 className="text-gold-light font-bold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
+                  {isVrat
+                    ? tl({ en: 'Vrat Phala (Fasting Benefits)', hi: 'व्रत फल (उपवास के लाभ)' }, locale)
+                    : tl({ en: 'Phala (Benefits)', hi: 'फल (लाभ)' }, locale)
+                  }
+                </h2>
+              </div>
+              <p className="text-text-secondary text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {phalaText}
+              </p>
+            </div>
+          );
+        })()}
+
         {/* ── Calculation Proof (expandable) ── */}
         <details className="group">
           <summary className="flex items-center gap-2 cursor-pointer text-gold-primary text-sm font-medium hover:text-gold-light transition-colors">
@@ -402,14 +571,28 @@ export default async function FestivalCityPage({
             </div>
           )}
 
-          {/* Mythology */}
+          {/* Legend & History */}
           <div>
             <h2 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-              {tl({ en: 'Mythology & Legend', hi: 'पौराणिक कथा' }, locale)}
+              {tl({ en: 'Legend & History', hi: 'कथा एवं इतिहास' }, locale)}
             </h2>
-            <p className="text-text-secondary text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-              {tl(detail.mythology, locale)}
-            </p>
+            {tl(detail.mythology, locale).length > 200 ? (
+              <details className="group">
+                <summary className="text-text-secondary text-sm leading-relaxed cursor-pointer" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {tl(detail.mythology, locale).slice(0, 200)}...
+                  <span className="text-gold-primary text-xs font-medium ml-1 group-open:hidden">
+                    {tl({ en: 'Read full legend →', hi: 'पूरी कथा पढ़ें →' }, locale)}
+                  </span>
+                </summary>
+                <p className="text-text-secondary text-sm leading-relaxed mt-1" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {tl(detail.mythology, locale)}
+                </p>
+              </details>
+            ) : (
+              <p className="text-text-secondary text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {tl(detail.mythology, locale)}
+              </p>
+            )}
           </div>
 
           {/* Observance */}

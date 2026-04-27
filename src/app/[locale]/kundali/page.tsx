@@ -96,6 +96,7 @@ const TrajectoryCard = dynamic(() => import('@/components/kundali/TrajectoryCard
 const VedicProfileComponent = dynamic(() => import('@/components/kundali/VedicProfile'), { ssr: false });
 const BirthPosterCard = dynamic(() => import('@/components/shareable/BirthPosterCard'), { ssr: false });
 const BlueprintTab = dynamic(() => import('@/components/kundali/BlueprintTab'), { ssr: false });
+const AyanamshaComparison = dynamic(() => import('@/components/kundali/AyanamshaComparison'), { ssr: false });
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
@@ -440,6 +441,7 @@ export default function KundaliPage() {
   const [activeChart, setActiveChart] = useState<string>('D1');
   const [dashaSystem, setDashaSystem] = useState('vimshottari');
   const [showTransits, setShowTransits] = useState(false);
+  const [showAyanamshaCompare, setShowAyanamshaCompare] = useState(false);
   const [transitData, setTransitData] = useState<{ planets: { id: number; name: LocaleText; rashi: number; longitude: number; isRetrograde: boolean }[] } | null>(null);
 
   // Personal Pandit dashboard state
@@ -1348,6 +1350,11 @@ export default function KundaliPage() {
                   <span className={`w-2 h-2 rounded-full ${showTransits ? 'bg-emerald-400' : 'bg-text-secondary/30'}`} />
                   {locale === 'en' || isTamil ? 'Show Current Transits' : 'वर्तमान गोचर दिखाएं'}
                 </button>
+                <button onClick={() => setShowAyanamshaCompare(!showAyanamshaCompare)}
+                  className={`px-4 py-1.5 rounded-lg text-xs transition-all flex items-center gap-1.5 ${showAyanamshaCompare ? 'bg-violet-500/20 text-violet-300 border border-violet-500/30' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'}`}>
+                  <span className={`w-2 h-2 rounded-full ${showAyanamshaCompare ? 'bg-violet-400' : 'bg-text-secondary/30'}`} />
+                  {locale === 'en' || isTamil ? 'Compare Ayanamshas' : 'अयनांश तुलना'}
+                </button>
               </div>
               {showTransits && (
                 <div className="mb-4">
@@ -1373,6 +1380,11 @@ export default function KundaliPage() {
                       </div>
                     </div>
                   )}
+                </div>
+              )}
+              {showAyanamshaCompare && (
+                <div className="mb-4">
+                  <AyanamshaComparison kundali={kundali} locale={locale} />
                 </div>
               )}
               <p className="text-text-secondary/70 text-xs text-center mb-6">

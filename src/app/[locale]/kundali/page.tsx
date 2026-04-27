@@ -1131,6 +1131,112 @@ export default function KundaliPage() {
             );
           })()}
 
+          {/* Manglik Dosha Banner — visible on ALL tabs */}
+          {tip?.doshas?.some(d => d.present && d.name.toLowerCase().includes('manglik')) && (() => {
+            const manglik = tip.doshas.find(d => d.present && d.name.toLowerCase().includes('manglik'));
+            if (!manglik) return null;
+            const isCancelled = manglik.effectiveSeverity === 'cancelled';
+            const isPartial = manglik.effectiveSeverity === 'partial';
+            return (
+              <div className={`mb-6 rounded-2xl border ${isCancelled ? 'border-green-500/30 bg-gradient-to-br from-green-900/20 to-[#0a0e27]' : 'border-red-500/30 bg-gradient-to-br from-red-900/20 via-[#1a1040]/30 to-[#0a0e27]'} p-5`}>
+                <div className="flex items-start gap-3">
+                  <div className={`w-10 h-10 rounded-full ${isCancelled ? 'bg-green-500/20' : 'bg-red-500/20'} flex items-center justify-center shrink-0`}>
+                    <span className="text-lg">{'\u2642'}</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className={`font-bold text-sm ${isCancelled ? 'text-green-400' : 'text-red-400'}`}>
+                      {manglik.name}
+                      {isCancelled && <span className="ml-2 text-green-400/70 text-xs font-normal">(Cancelled)</span>}
+                      {isPartial && <span className="ml-2 text-amber-400/70 text-xs font-normal">(Partially Mitigated)</span>}
+                    </h3>
+                    <p className="text-text-secondary text-xs mt-1 leading-relaxed">{manglik.description}</p>
+
+                    {/* Cancellation conditions */}
+                    {manglik.cancellationConditions && manglik.cancellationConditions.length > 0 && (
+                      <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {manglik.cancellationConditions.map((c, i) => (
+                          <div key={i} className={`text-xs px-3 py-1.5 rounded-lg border ${c.met ? 'border-green-500/20 bg-green-500/5 text-green-400' : 'border-white/[0.06] text-text-secondary'}`}>
+                            {c.met ? '\u2713' : '\u2717'} {c.condition}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Remedies */}
+                    {manglik.remedies && (
+                      <div className="mt-3 text-xs text-[#d4a853]/80 bg-[#d4a853]/5 rounded-lg px-3 py-2 border border-[#d4a853]/10">
+                        <span className="font-semibold text-[#d4a853]">Remedies: </span>{manglik.remedies}
+                      </div>
+                    )}
+
+                    {/* Active dasha warning */}
+                    {manglik.activeDasha && (
+                      <p className="text-xs text-amber-400/70 mt-2 italic">{manglik.activeDasha}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+
+          {/* Kaal Sarpa Dosha Banner — visible on ALL tabs */}
+          {tip?.doshas?.some(d => d.present && d.name.toLowerCase().includes('kaal sarp')) && (() => {
+            const kaalSarp = tip.doshas.find(d => d.present && d.name.toLowerCase().includes('kaal sarp'));
+            if (!kaalSarp) return null;
+            const isCancelled = kaalSarp.effectiveSeverity === 'cancelled';
+            const isPartial = kaalSarp.effectiveSeverity === 'partial';
+
+            return (
+              <div className={`mb-6 rounded-2xl border ${isCancelled ? 'border-green-500/30 bg-gradient-to-br from-green-900/20 to-[#0a0e27]' : 'border-purple-500/30 bg-gradient-to-br from-purple-900/20 via-[#1a1040]/30 to-[#0a0e27]'} p-5`}>
+                <div className="flex items-start gap-3">
+                  <div className={`w-10 h-10 rounded-full ${isCancelled ? 'bg-green-500/20' : 'bg-purple-500/20'} flex items-center justify-center shrink-0`}>
+                    <span className="text-lg">{'\u260A'}</span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h3 className={`font-bold text-sm ${isCancelled ? 'text-green-400' : 'text-purple-400'}`}>
+                        {kaalSarp.name}
+                      </h3>
+                      {isCancelled && <span className="text-green-400/70 text-xs bg-green-500/10 px-2 py-0.5 rounded-full">Cancelled</span>}
+                      {isPartial && <span className="text-amber-400/70 text-xs bg-amber-500/10 px-2 py-0.5 rounded-full">Partially Mitigated</span>}
+                      {!isCancelled && !isPartial && <span className="text-red-400/70 text-xs bg-red-500/10 px-2 py-0.5 rounded-full">Active</span>}
+                    </div>
+
+                    <p className="text-text-secondary text-xs mt-2 leading-relaxed">{kaalSarp.description}</p>
+
+                    {/* Cancellation conditions */}
+                    {kaalSarp.cancellationConditions && kaalSarp.cancellationConditions.length > 0 && (
+                      <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {kaalSarp.cancellationConditions.map((c, i) => (
+                          <div key={i} className={`text-xs px-3 py-1.5 rounded-lg border ${c.met ? 'border-green-500/20 bg-green-500/5 text-green-400' : 'border-white/[0.06] text-text-secondary'}`}>
+                            {c.met ? '\u2713' : '\u2717'} {c.condition} {c.source && <span className="text-text-secondary/50 ml-1">({c.source})</span>}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Remedies */}
+                    {kaalSarp.remedies && (
+                      <div className="mt-3 text-xs text-[#d4a853]/80 bg-[#d4a853]/5 rounded-lg px-3 py-2 border border-[#d4a853]/10">
+                        <span className="font-semibold text-[#d4a853]">Remedies: </span>{kaalSarp.remedies}
+                      </div>
+                    )}
+
+                    {/* Active dasha warning */}
+                    {kaalSarp.activeDasha && (
+                      <p className="text-xs text-amber-400/70 mt-2 italic">{kaalSarp.activeDasha}</p>
+                    )}
+
+                    {/* Link to learn more */}
+                    <Link href="/learn/modules/24-1" className="inline-flex items-center gap-1 mt-3 text-xs text-purple-400 hover:text-purple-300 transition-colors">
+                      Learn more about Kaal Sarpa Dosha →
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+
           {/* ===== LAYER 0: QUESTION ENTRY OVERLAY ===== */}
           {personalReading && view === 'questionEntry' && (
             <QuestionEntry

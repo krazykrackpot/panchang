@@ -692,6 +692,27 @@ function MemberStatusCard({
         </div>
       )}
 
+      {/* Dosha flags */}
+      {status.doshaFlags && (
+        <div className="flex flex-wrap gap-1.5 mt-2">
+          {status.doshaFlags.manglik && (
+            <span className={`text-[10px] px-2 py-0.5 rounded-full border ${status.doshaFlags.manglikCancelled ? 'border-green-500/20 text-green-400 bg-green-500/10' : 'border-red-500/20 text-red-400 bg-red-500/10'}`}>
+              ♂ Manglik{status.doshaFlags.manglikCancelled ? ' ✓' : ''}
+            </span>
+          )}
+          {status.doshaFlags.kaalSarpa && (
+            <span className="text-[10px] px-2 py-0.5 rounded-full border border-purple-500/20 text-purple-400 bg-purple-500/10">
+              ☊ Kaal Sarpa{status.doshaFlags.kaalSarpaType ? ` (${status.doshaFlags.kaalSarpaType})` : ''}
+            </span>
+          )}
+          {status.doshaFlags.moolaNakshatra && (
+            <span className="text-[10px] px-2 py-0.5 rounded-full border border-amber-500/20 text-amber-400 bg-amber-500/10">
+              ✦ Ganda Mula
+            </span>
+          )}
+        </div>
+      )}
+
       {/* Transit alerts (top 2) */}
       {status.transitAlerts.length > 0 && (
         <div className="mt-2 pt-2 border-t border-white/[0.04] space-y-1">

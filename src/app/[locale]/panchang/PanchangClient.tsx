@@ -35,6 +35,7 @@ import type { PersonalizedDay, UserSnapshot } from '@/lib/personalization/types'
 import AdUnit from '@/components/ads/AdUnit';
 import NakshatraActivityGuide from '@/components/panchang/NakshatraActivityGuide';
 import DayTimeline from '@/components/panchang/DayTimeline';
+import TarotCard from '@/components/ui/TarotCard';
 import LearnLink from '@/components/ui/LearnLink';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl as _tl } from '@/lib/utils/trilingual';
@@ -1233,8 +1234,9 @@ export default function PanchangClient() {
                 subtitle: isDevanagari ? 'मुहूर्त एवं निषिद्ध काल' : 'Auspicious & Inauspicious',
                 preview: isDevanagari ? 'अभिजित · अमृत काल · राहु काल · वर्ज्यम' : 'Abhijit · Amrit Kalam · Rahu Kaal · Varjyam',
                 color: 'emerald',
+                glowColor: '#34d399',
                 // Tarot: Radiant sun with rays (auspicious light)
-                svg: <svg viewBox="0 0 64 64" className="w-20 h-20"><defs><linearGradient id="tc1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a"/><stop offset="100%" stopColor="#d4a853"/></linearGradient></defs><circle cx="32" cy="32" r="12" fill="none" stroke="url(#tc1)" strokeWidth="1.5"/><circle cx="32" cy="32" r="6" fill="url(#tc1)" opacity="0.3"/>{Array.from({length:12},(_,i)=>{const a=Math.PI*2*i/12;return <line key={i} x1={r2(32+16*Math.cos(a))} y1={r2(32+16*Math.sin(a))} x2={r2(32+24*Math.cos(a))} y2={r2(32+24*Math.sin(a))} stroke="url(#tc1)" strokeWidth={i%2===0?"1.5":"0.8"} opacity={i%2===0?0.9:0.4}/>})}</svg>,
+                svg: <svg viewBox="0 0 64 64" width={128} height={128}><defs><linearGradient id="tc1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a"/><stop offset="100%" stopColor="#d4a853"/></linearGradient></defs><circle cx="32" cy="32" r="12" fill="none" stroke="url(#tc1)" strokeWidth="1.5"/><circle cx="32" cy="32" r="6" fill="url(#tc1)" opacity="0.3"/>{Array.from({length:12},(_,i)=>{const a=Math.PI*2*i/12;return <line key={i} x1={r2(32+16*Math.cos(a))} y1={r2(32+16*Math.sin(a))} x2={r2(32+24*Math.cos(a))} y2={r2(32+24*Math.sin(a))} stroke="url(#tc1)" strokeWidth={i%2===0?"1.5":"0.8"} opacity={i%2===0?0.9:0.4}/>})}</svg>,
               },
               {
                 href: '/choghadiya',
@@ -1242,8 +1244,9 @@ export default function PanchangClient() {
                 subtitle: isDevanagari ? 'आठ-पहर पद्धति' : '8-fold Day & Night',
                 preview: isDevanagari ? 'शुभ · लाभ · अमृत' : 'Shubh · Labh · Amrit',
                 color: 'amber',
+                glowColor: '#d4a853',
                 // Tarot: Octagon (8 divisions)
-                svg: <svg viewBox="0 0 64 64" className="w-20 h-20"><defs><linearGradient id="tc2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a"/><stop offset="100%" stopColor="#8a6d2b"/></linearGradient></defs><polygon points={Array.from({length:8},(_,i)=>`${r2(32+22*Math.cos(Math.PI*2*i/8-Math.PI/8))},${r2(32+22*Math.sin(Math.PI*2*i/8-Math.PI/8))}`).join(' ')} fill="none" stroke="url(#tc2)" strokeWidth="1.2"/><polygon points={Array.from({length:8},(_,i)=>`${r2(32+12*Math.cos(Math.PI*2*i/8))},${r2(32+12*Math.sin(Math.PI*2*i/8))}`).join(' ')} fill="url(#tc2)" opacity="0.15"/><circle cx="32" cy="32" r="4" fill="url(#tc2)" opacity="0.4"/></svg>,
+                svg: <svg viewBox="0 0 64 64" width={128} height={128}><defs><linearGradient id="tc2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a"/><stop offset="100%" stopColor="#8a6d2b"/></linearGradient></defs><polygon points={Array.from({length:8},(_,i)=>`${r2(32+22*Math.cos(Math.PI*2*i/8-Math.PI/8))},${r2(32+22*Math.sin(Math.PI*2*i/8-Math.PI/8))}`).join(' ')} fill="none" stroke="url(#tc2)" strokeWidth="1.2"/><polygon points={Array.from({length:8},(_,i)=>`${r2(32+12*Math.cos(Math.PI*2*i/8))},${r2(32+12*Math.sin(Math.PI*2*i/8))}`).join(' ')} fill="url(#tc2)" opacity="0.15"/><circle cx="32" cy="32" r="4" fill="url(#tc2)" opacity="0.4"/></svg>,
               },
               {
                 href: '/hora',
@@ -1251,8 +1254,9 @@ export default function PanchangClient() {
                 subtitle: isDevanagari ? 'ग्रहीय प्रहर' : 'Planetary Hours',
                 preview: isDevanagari ? '24 होरा चक्र' : '24-Hour Cycle',
                 color: 'gold',
+                glowColor: '#8b5cf6',
                 // Tarot: Clock face with 7 segments
-                svg: <svg viewBox="0 0 64 64" className="w-20 h-20"><defs><linearGradient id="tc3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a"/><stop offset="100%" stopColor="#d4a853"/></linearGradient></defs><circle cx="32" cy="32" r="22" fill="none" stroke="url(#tc3)" strokeWidth="1"/>{Array.from({length:7},(_,i)=>{const a=Math.PI*2*i/7-Math.PI/2;return <line key={i} x1="32" y1="32" x2={r2(32+22*Math.cos(a))} y2={r2(32+22*Math.sin(a))} stroke="url(#tc3)" strokeWidth="0.6" opacity="0.4"/>})}<circle cx="32" cy="32" r="3" fill="url(#tc3)" opacity="0.5"/><line x1="32" y1="32" x2="32" y2="14" stroke="url(#tc3)" strokeWidth="1.5" strokeLinecap="round"/><line x1="32" y1="32" x2="44" y2="32" stroke="url(#tc3)" strokeWidth="1" strokeLinecap="round"/></svg>,
+                svg: <svg viewBox="0 0 64 64" width={128} height={128}><defs><linearGradient id="tc3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a"/><stop offset="100%" stopColor="#d4a853"/></linearGradient></defs><circle cx="32" cy="32" r="22" fill="none" stroke="url(#tc3)" strokeWidth="1"/>{Array.from({length:7},(_,i)=>{const a=Math.PI*2*i/7-Math.PI/2;return <line key={i} x1="32" y1="32" x2={r2(32+22*Math.cos(a))} y2={r2(32+22*Math.sin(a))} stroke="url(#tc3)" strokeWidth="0.6" opacity="0.4"/>})}<circle cx="32" cy="32" r="3" fill="url(#tc3)" opacity="0.5"/><line x1="32" y1="32" x2="32" y2="14" stroke="url(#tc3)" strokeWidth="1.5" strokeLinecap="round"/><line x1="32" y1="32" x2="44" y2="32" stroke="url(#tc3)" strokeWidth="1" strokeLinecap="round"/></svg>,
               },
               {
                 href: '/panchang/muhurta',
@@ -1260,8 +1264,9 @@ export default function PanchangClient() {
                 subtitle: isDevanagari ? 'दैनिक 30 मुहूर्त' : '30 Daily Periods',
                 preview: isDevanagari ? 'अभिजित · विजय · ब्रह्म' : 'Abhijit · Vijaya · Brahma',
                 color: 'violet',
+                glowColor: '#d4a853',
                 // Tarot: Crescent moon with stars
-                svg: <svg viewBox="0 0 64 64" className="w-20 h-20"><defs><linearGradient id="tc4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#c084fc"/><stop offset="100%" stopColor="#8b5cf6"/></linearGradient></defs><path d="M 38 12 A 20 20 0 1 0 38 52 A 16 16 0 1 1 38 12" fill="none" stroke="url(#tc4)" strokeWidth="1.2"/><circle cx="46" cy="18" r="1.5" fill="url(#tc4)" opacity="0.8"/><circle cx="50" cy="28" r="1" fill="url(#tc4)" opacity="0.6"/><circle cx="48" cy="40" r="1.2" fill="url(#tc4)" opacity="0.7"/></svg>,
+                svg: <svg viewBox="0 0 64 64" width={128} height={128}><defs><linearGradient id="tc4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#c084fc"/><stop offset="100%" stopColor="#8b5cf6"/></linearGradient></defs><path d="M 38 12 A 20 20 0 1 0 38 52 A 16 16 0 1 1 38 12" fill="none" stroke="url(#tc4)" strokeWidth="1.2"/><circle cx="46" cy="18" r="1.5" fill="url(#tc4)" opacity="0.8"/><circle cx="50" cy="28" r="1" fill="url(#tc4)" opacity="0.6"/><circle cx="48" cy="40" r="1.2" fill="url(#tc4)" opacity="0.7"/></svg>,
               },
               {
                 href: '/panchang/nivas',
@@ -1269,36 +1274,21 @@ export default function PanchangClient() {
                 subtitle: isDevanagari ? 'दिशा एवं देव निवास' : 'Directions & Abodes',
                 preview: `${isDevanagari ? 'शूल' : 'Shool'}: ${panchang.dishaShool?.direction?.[locale] || panchang.dishaShool?.direction?.en || '—'}`,
                 color: 'indigo',
+                glowColor: '#f43f5e',
                 // Tarot: Compass rose
-                svg: <svg viewBox="0 0 64 64" className="w-20 h-20"><defs><linearGradient id="tc5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#a5b4fc"/><stop offset="100%" stopColor="#6366f1"/></linearGradient></defs><circle cx="32" cy="32" r="22" fill="none" stroke="url(#tc5)" strokeWidth="0.8"/><polygon points="32,10 36,28 32,32 28,28" fill="url(#tc5)" opacity="0.6"/><polygon points="54,32 36,36 32,32 36,28" fill="url(#tc5)" opacity="0.3"/><polygon points="32,54 28,36 32,32 36,36" fill="url(#tc5)" opacity="0.3"/><polygon points="10,32 28,28 32,32 28,36" fill="url(#tc5)" opacity="0.3"/><circle cx="32" cy="32" r="3" fill="url(#tc5)" opacity="0.5"/></svg>,
+                svg: <svg viewBox="0 0 64 64" width={128} height={128}><defs><linearGradient id="tc5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#a5b4fc"/><stop offset="100%" stopColor="#6366f1"/></linearGradient></defs><circle cx="32" cy="32" r="22" fill="none" stroke="url(#tc5)" strokeWidth="0.8"/><polygon points="32,10 36,28 32,32 28,28" fill="url(#tc5)" opacity="0.6"/><polygon points="54,32 36,36 32,32 36,28" fill="url(#tc5)" opacity="0.3"/><polygon points="32,54 28,36 32,32 36,36" fill="url(#tc5)" opacity="0.3"/><polygon points="10,32 28,28 32,32 28,36" fill="url(#tc5)" opacity="0.3"/><circle cx="32" cy="32" r="3" fill="url(#tc5)" opacity="0.5"/></svg>,
               },
-            ] as const).map((card, i) => (
-              <motion.div
+            ] as { href: string; title: string; subtitle: string; preview: string; color: string; glowColor: string; svg: React.ReactNode }[]).map((card) => (
+              <TarotCard
                 key={card.href}
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: i * 0.06, type: 'spring' as const, stiffness: 200 }}
-                whileHover={{ scale: 1.05, y: -6 }}
-              >
-                <Link href={card.href}
-                  className="aspect-[2/3] rounded-xl bg-gradient-to-b from-[#1a0a3e] via-[#0f0825] to-[#0a0520] border border-[#d4a853]/30 text-center hover:border-[#d4a853]/50 transition-all cursor-pointer block h-full relative overflow-hidden">
-                  {/* Inner frame */}
-                  <div className="absolute inset-[5px] rounded-lg border border-[#d4a853]/12 pointer-events-none" />
-                  {/* Corner flourishes */}
-                  <div className="absolute top-[2px] left-[2px] w-2 h-2 border-t border-l border-[#d4a853]/30 rounded-tl pointer-events-none" />
-                  <div className="absolute top-[2px] right-[2px] w-2 h-2 border-t border-r border-[#d4a853]/30 rounded-tr pointer-events-none" />
-                  <div className="absolute bottom-[2px] left-[2px] w-2 h-2 border-b border-l border-[#d4a853]/30 rounded-bl pointer-events-none" />
-                  <div className="absolute bottom-[2px] right-[2px] w-2 h-2 border-b border-r border-[#d4a853]/30 rounded-br pointer-events-none" />
-                  {/* Content — vertically centered */}
-                  <div className="relative z-10 flex flex-col items-center justify-center h-full px-2 py-3 gap-2">
-                    <div className="text-[#8a6d2b] text-[9px] uppercase tracking-[0.15em] font-semibold">{card.subtitle}</div>
-                    <div className="flex justify-center my-2">{card.svg}</div>
-                    <div className="flex items-center gap-1.5 text-[#d4a853]/25 text-[7px]">✦ · ✦ · ✦</div>
-                    <div className="text-[#f0d48a] text-base font-bold leading-tight" style={headingFont}>{card.title}</div>
-                    <div className="text-[#8a8478] text-[10px] mt-0.5 line-clamp-2 px-1">{card.preview}</div>
-                  </div>
-                </Link>
-              </motion.div>
+                size="full"
+                href={card.href}
+                subtitle={card.subtitle}
+                icon={card.svg}
+                title={card.title}
+                description={card.preview}
+                glowColor={card.glowColor}
+              />
             ))}
           </div>
 
@@ -1311,8 +1301,9 @@ export default function PanchangClient() {
                 subtitle: isDevanagari ? 'ग्रह स्थिति' : 'Planetary Positions',
                 preview: isDevanagari ? 'नवग्रह देशांतर' : '9 Planet Longitudes',
                 color: 'sky',
+                glowColor: '#38bdf8',
                 // Tarot: Ringed planet (Saturn-like)
-                svg: <svg viewBox="0 0 64 64" className="w-20 h-20"><defs><linearGradient id="tc6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#7dd3fc"/><stop offset="100%" stopColor="#0ea5e9"/></linearGradient></defs><circle cx="32" cy="32" r="10" fill="none" stroke="url(#tc6)" strokeWidth="1.2"/><ellipse cx="32" cy="32" rx="22" ry="8" fill="none" stroke="url(#tc6)" strokeWidth="0.8" transform="rotate(-20 32 32)"/><circle cx="32" cy="32" r="4" fill="url(#tc6)" opacity="0.2"/></svg>,
+                svg: <svg viewBox="0 0 64 64" width={128} height={128}><defs><linearGradient id="tc6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#7dd3fc"/><stop offset="100%" stopColor="#0ea5e9"/></linearGradient></defs><circle cx="32" cy="32" r="10" fill="none" stroke="url(#tc6)" strokeWidth="1.2"/><ellipse cx="32" cy="32" rx="22" ry="8" fill="none" stroke="url(#tc6)" strokeWidth="0.8" transform="rotate(-20 32 32)"/><circle cx="32" cy="32" r="4" fill="url(#tc6)" opacity="0.2"/></svg>,
               },
               {
                 href: '/panchang/remedies',
@@ -1320,8 +1311,9 @@ export default function PanchangClient() {
                 subtitle: isDevanagari ? 'आज के उपचार' : "Today's Prescriptions",
                 preview: `${tl(panchang.vara?.name) || ''} · ${['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn'][panchang.vara?.day ?? 0] || ''}`,
                 color: 'amber',
+                glowColor: '#f59e0b',
                 // Tarot: Gemstone
-                svg: <svg viewBox="0 0 64 64" className="w-20 h-20"><defs><linearGradient id="tc7" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a"/><stop offset="100%" stopColor="#d4a853"/></linearGradient></defs><polygon points="32,10 48,25 44,50 20,50 16,25" fill="none" stroke="url(#tc7)" strokeWidth="1.2" strokeLinejoin="round"/><line x1="32" y1="10" x2="32" y2="50" stroke="url(#tc7)" strokeWidth="0.6" opacity="0.3"/><line x1="16" y1="25" x2="48" y2="25" stroke="url(#tc7)" strokeWidth="0.6" opacity="0.3"/><polygon points="32,10 48,25 44,50 20,50 16,25" fill="url(#tc7)" opacity="0.08"/></svg>,
+                svg: <svg viewBox="0 0 64 64" width={128} height={128}><defs><linearGradient id="tc7" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a"/><stop offset="100%" stopColor="#d4a853"/></linearGradient></defs><polygon points="32,10 48,25 44,50 20,50 16,25" fill="none" stroke="url(#tc7)" strokeWidth="1.2" strokeLinejoin="round"/><line x1="32" y1="10" x2="32" y2="50" stroke="url(#tc7)" strokeWidth="0.6" opacity="0.3"/><line x1="16" y1="25" x2="48" y2="25" stroke="url(#tc7)" strokeWidth="0.6" opacity="0.3"/><polygon points="32,10 48,25 44,50 20,50 16,25" fill="url(#tc7)" opacity="0.08"/></svg>,
               },
               {
                 href: '/panchang/masa',
@@ -1329,8 +1321,9 @@ export default function PanchangClient() {
                 subtitle: isDevanagari ? 'मास पंचांग' : 'Lunar Calendar',
                 preview: `${tl(panchang.amantMasa || panchang.masa)}`,
                 color: 'gold',
+                glowColor: '#d4a853',
                 // Tarot: Waxing/waning moon cycle
-                svg: <svg viewBox="0 0 64 64" className="w-20 h-20"><defs><linearGradient id="tc8" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a"/><stop offset="100%" stopColor="#8a6d2b"/></linearGradient></defs><circle cx="20" cy="32" r="8" fill="none" stroke="url(#tc8)" strokeWidth="0.8" opacity="0.4"/><circle cx="32" cy="32" r="10" fill="none" stroke="url(#tc8)" strokeWidth="1.2"/><circle cx="32" cy="32" r="10" fill="url(#tc8)" opacity="0.15"/><circle cx="44" cy="32" r="8" fill="none" stroke="url(#tc8)" strokeWidth="0.8" opacity="0.4"/></svg>,
+                svg: <svg viewBox="0 0 64 64" width={128} height={128}><defs><linearGradient id="tc8" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a"/><stop offset="100%" stopColor="#8a6d2b"/></linearGradient></defs><circle cx="20" cy="32" r="8" fill="none" stroke="url(#tc8)" strokeWidth="0.8" opacity="0.4"/><circle cx="32" cy="32" r="10" fill="none" stroke="url(#tc8)" strokeWidth="1.2"/><circle cx="32" cy="32" r="10" fill="url(#tc8)" opacity="0.15"/><circle cx="44" cy="32" r="8" fill="none" stroke="url(#tc8)" strokeWidth="0.8" opacity="0.4"/></svg>,
               },
               {
                 href: '/sky',
@@ -1338,8 +1331,9 @@ export default function PanchangClient() {
                 subtitle: isDevanagari ? 'नक्षत्र मानचित्र' : 'Sky Map',
                 preview: isDevanagari ? 'वास्तविक समय आकाश' : 'Real-time Positions',
                 color: 'sky',
+                glowColor: '#38bdf8',
                 // Tarot: Stars constellation
-                svg: <svg viewBox="0 0 64 64" className="w-20 h-20"><defs><linearGradient id="tc9" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#7dd3fc"/><stop offset="100%" stopColor="#38bdf8"/></linearGradient></defs><circle cx="20" cy="20" r="2" fill="url(#tc9)"/><circle cx="44" cy="16" r="1.5" fill="url(#tc9)" opacity="0.7"/><circle cx="32" cy="32" r="2.5" fill="url(#tc9)"/><circle cx="18" cy="44" r="1.5" fill="url(#tc9)" opacity="0.6"/><circle cx="46" cy="42" r="2" fill="url(#tc9)" opacity="0.8"/><line x1="20" y1="20" x2="32" y2="32" stroke="url(#tc9)" strokeWidth="0.5" opacity="0.3"/><line x1="44" y1="16" x2="32" y2="32" stroke="url(#tc9)" strokeWidth="0.5" opacity="0.3"/><line x1="32" y1="32" x2="46" y2="42" stroke="url(#tc9)" strokeWidth="0.5" opacity="0.3"/><line x1="32" y1="32" x2="18" y2="44" stroke="url(#tc9)" strokeWidth="0.5" opacity="0.3"/></svg>,
+                svg: <svg viewBox="0 0 64 64" width={128} height={128}><defs><linearGradient id="tc9" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#7dd3fc"/><stop offset="100%" stopColor="#38bdf8"/></linearGradient></defs><circle cx="20" cy="20" r="2" fill="url(#tc9)"/><circle cx="44" cy="16" r="1.5" fill="url(#tc9)" opacity="0.7"/><circle cx="32" cy="32" r="2.5" fill="url(#tc9)"/><circle cx="18" cy="44" r="1.5" fill="url(#tc9)" opacity="0.6"/><circle cx="46" cy="42" r="2" fill="url(#tc9)" opacity="0.8"/><line x1="20" y1="20" x2="32" y2="32" stroke="url(#tc9)" strokeWidth="0.5" opacity="0.3"/><line x1="44" y1="16" x2="32" y2="32" stroke="url(#tc9)" strokeWidth="0.5" opacity="0.3"/><line x1="32" y1="32" x2="46" y2="42" stroke="url(#tc9)" strokeWidth="0.5" opacity="0.3"/><line x1="32" y1="32" x2="18" y2="44" stroke="url(#tc9)" strokeWidth="0.5" opacity="0.3"/></svg>,
               },
               {
                 href: '/panchang/activity-guide',
@@ -1347,36 +1341,21 @@ export default function PanchangClient() {
                 subtitle: isDevanagari ? 'नक्षत्र गतिविधि' : 'Nakshatra Activities',
                 preview: `${tl(panchang.nakshatra?.name) || '—'} — ${isDevanagari ? 'अनुकूल कार्य' : 'Favorable actions'}`,
                 color: 'gold',
+                glowColor: '#d4a853',
                 // Tarot: Star with activity rays
-                svg: <svg viewBox="0 0 64 64" className="w-20 h-20"><defs><linearGradient id="tc10" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a"/><stop offset="100%" stopColor="#d4a853"/></linearGradient></defs><polygon points="32,8 36,24 52,24 39,34 43,50 32,40 21,50 25,34 12,24 28,24" fill="none" stroke="url(#tc10)" strokeWidth="1.2"/><polygon points="32,8 36,24 52,24 39,34 43,50 32,40 21,50 25,34 12,24 28,24" fill="url(#tc10)" opacity="0.1"/><circle cx="32" cy="30" r="6" fill="none" stroke="url(#tc10)" strokeWidth="0.8" opacity="0.5"/></svg>,
+                svg: <svg viewBox="0 0 64 64" width={128} height={128}><defs><linearGradient id="tc10" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a"/><stop offset="100%" stopColor="#d4a853"/></linearGradient></defs><polygon points="32,8 36,24 52,24 39,34 43,50 32,40 21,50 25,34 12,24 28,24" fill="none" stroke="url(#tc10)" strokeWidth="1.2"/><polygon points="32,8 36,24 52,24 39,34 43,50 32,40 21,50 25,34 12,24 28,24" fill="url(#tc10)" opacity="0.1"/><circle cx="32" cy="30" r="6" fill="none" stroke="url(#tc10)" strokeWidth="0.8" opacity="0.5"/></svg>,
               },
-            ] as const).map((card, i) => (
-              <motion.div
+            ] as { href: string; title: string; subtitle: string; preview: string; color: string; glowColor: string; svg: React.ReactNode }[]).map((card) => (
+              <TarotCard
                 key={card.href}
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: 0.3 + i * 0.06, type: 'spring' as const, stiffness: 200 }}
-                whileHover={{ scale: 1.05, y: -6 }}
-              >
-                <Link href={card.href}
-                  className="aspect-[2/3] rounded-xl bg-gradient-to-b from-[#1a0a3e] via-[#0f0825] to-[#0a0520] border border-[#d4a853]/30 text-center hover:border-[#d4a853]/50 transition-all cursor-pointer block h-full relative overflow-hidden">
-                  {/* Inner frame */}
-                  <div className="absolute inset-[5px] rounded-lg border border-[#d4a853]/12 pointer-events-none" />
-                  {/* Corner flourishes */}
-                  <div className="absolute top-[2px] left-[2px] w-2 h-2 border-t border-l border-[#d4a853]/30 rounded-tl pointer-events-none" />
-                  <div className="absolute top-[2px] right-[2px] w-2 h-2 border-t border-r border-[#d4a853]/30 rounded-tr pointer-events-none" />
-                  <div className="absolute bottom-[2px] left-[2px] w-2 h-2 border-b border-l border-[#d4a853]/30 rounded-bl pointer-events-none" />
-                  <div className="absolute bottom-[2px] right-[2px] w-2 h-2 border-b border-r border-[#d4a853]/30 rounded-br pointer-events-none" />
-                  {/* Content — vertically centered */}
-                  <div className="relative z-10 flex flex-col items-center justify-center h-full px-2 py-3 gap-2">
-                    <div className="text-[#8a6d2b] text-[9px] uppercase tracking-[0.15em] font-semibold">{card.subtitle}</div>
-                    <div className="flex justify-center my-2">{card.svg}</div>
-                    <div className="flex items-center gap-1.5 text-[#d4a853]/25 text-[7px]">✦ · ✦ · ✦</div>
-                    <div className="text-[#f0d48a] text-base font-bold leading-tight" style={headingFont}>{card.title}</div>
-                    <div className="text-[#8a8478] text-[10px] mt-0.5 line-clamp-2 px-1">{card.preview}</div>
-                  </div>
-                </Link>
-              </motion.div>
+                size="full"
+                href={card.href}
+                subtitle={card.subtitle}
+                icon={card.svg}
+                title={card.title}
+                description={card.preview}
+                glowColor={card.glowColor}
+              />
             ))}
           </div>
 

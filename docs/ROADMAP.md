@@ -1,11 +1,33 @@
 # Dekho Panchang — Master Product Roadmap
 
-**Last updated:** 2026-04-06
+**Last updated:** 2026-04-27
 **Reference:** See `docs/CLASSICAL_JYOTISH_GAP_ANALYSIS.md` for full classical text analysis.
 
 ---
 
 ## ✅ Completed
+
+### Audit & Hardening (2026-04-26/27 Session)
+- [x] Festival masa regression fix — 20/20 exact match vs Prokerala 2026
+- [x] Kala-Vyapti engine — 9 muhurta rules (madhyahna, pradosh, nishita, arunodaya, aparahna, chandrodaya, pratah, sunrise), getKalaWindow + getOverlap, Dharmasindhu tie-breaking
+- [x] Astronomical Adhika detection — decoupled NM scan, sunrise alignment, isAdhika from Amant only. Verified: 2026 Jyeshtha, 2027 none, 2029 Chaitra.
+- [x] Adhika naming — classical map (Mesha→Vaishakha, Meena→Chaitra), sign1-based
+- [x] Makar Sankranti — binary search + Punya Kala sunset rule
+- [x] Varjyam ghati table — 4 values corrected (Ardra, Punarvasu, Pushya, U.Phalguni)
+- [x] Combustion retrograde orbs — Mercury 14→12°, Venus 10→8° per BPHS
+- [x] API + client error logging — 8 silent catches fixed
+- [x] Graduated Cheshta Bala mode — configurable BPHS strict vs graduated
+- [x] India WWII historical timezone — 1941-1945 UTC+6:30 auto-applied
+- [x] Festival × City × Year programmatic SEO — 3,000+ URLs with JSON-LD (Event + FAQ + Breadcrumb)
+- [x] Calculation Proof toggle — transparent audit trail on /panchang/[city] and festival pages
+- [x] Planet-in-House verse data — 84 BPHS-cited entries with en/hi
+- [x] 6 missing FESTIVAL_DETAILS entries (holika-dahan, durga-ashtami, maha-navami, hartalika-teej, chhath-puja, tulsi-vivah)
+- [x] Learn pages 27-1 (Festival Timing Rules) + 27-2 (Adhika Masa) + standalone topic pages
+- [x] Learn nav dropdown with direct topic access, no sequential locking
+- [x] Competitor references removed from all user-facing content
+- [x] Dashboard TransitCountdown empty state fix
+- [x] Samvat year boundary correction
+- [x] Moonrise parallax verified (already implemented, ±2 min of IMD/timeanddate)
 
 ### Platform Core
 - [x] Daily Panchang — location-aware, 90+ fields, DST-safe
@@ -13,7 +35,7 @@
 - [x] 10-page PDF export
 - [x] Trilingual support (EN / HI / SA) — 612 pages across 3 locales
 - [x] Global location store — auto-detect, no Delhi fallback
-- [x] Timezone handling — IANA per-date with DST awareness
+- [x] Timezone handling — IANA per-date with DST awareness + India WWII correction
 - [x] Life Timeline — 90-year synthesis of all kundali elements
 
 ### Calculations Implemented
@@ -124,59 +146,90 @@
 
 ---
 
-## 🔴 NOW — High Impact, Medium Effort
+## 🔴 NOW — Current Sprint (Execute in Order)
 
-These are the next three items in execution order.
+### NOW-1: Smarta vs Vaishnava System
+**Priority:** Critical | **Impact:** Eliminates ±1 day festival disagreements + educational authority
+- Learn page explaining the difference (Smarta = Udaya Tithi default, Vaishnava = Viddha rejection + Parana stricter)
+- Tooltips on festival pages where the two systems disagree (e.g., Janmashtami, Ekadashi)
+- Dedicated `/learn/smarta-vaishnava` standalone page + curriculum module 27-3
+- Eventually: settings toggle to switch between systems
 
-### PROD-04: SEO + Structured Data ← START HERE
-**Priority:** Critical | **Impact:** Organic discovery — 612 pages with zero JSON-LD
+### NOW-2: Technical Breakdown on Main Panchang Page
+**Priority:** High | **Impact:** Trust builder on #1 traffic page
+- Expandable "Calculation Proof" on interactive `/panchang` page (already done on /panchang/[city] and festival pages)
+- Show coordinates, ayanamsha, tithi formula, binary search precision, Rahu Kaal derivation
 
-- JSON-LD per page type:
-  - `HowTo` for puja vidhi pages
-  - `Event` for festival pages
-  - `FAQPage` for learn pages
-  - `SoftwareApplication` on home
-  - `BreadcrumbList` on all deep pages
-- Dynamic OG images via `opengraph-image.tsx` (festival, chart, nakshatra — currently generic)
-- `sitemap.xml` — update with all 612 pages, correct `changefreq` + `priority`
-- Google Search Console setup instructions
-- Core Web Vitals — ensure LCP < 2.5s, CLS < 0.1 on key pages
-- Analytics events: `kundali_generated`, `chart_exported`, `subscription_started`, `tab_viewed`
+### NOW-3: Planet-in-House SEO Pages (84 URLs)
+**Priority:** High | **Impact:** Evergreen traffic for "Sun in 10th house" queries
+- Data file ready (`src/lib/constants/planet-in-house-verses.ts` — 84 BPHS-cited entries)
+- Create `/learn/[planet]-in-[house]` pages with classical verse, modern interpretation, "View Source" shloka
+- JSON-LD Article schema per page
 
-### PROD-01: Email Notifications (Resend)
-**Priority:** High | **Impact:** Retention — users who sign up but never return
+### NOW-4: Regional Specialization (Locale-Aware UX)
+**Priority:** High | **Impact:** Differentiation — Prokerala can't do this
+- Tamil locale: elevate Pancha-Pakshi, Gowri Panchangam to primary view
+- Hindi locale: prioritize Choghadiya, Vrat details
+- Reorder panchang widgets per locale
 
-**Transactional:**
-- Welcome email with birth chart summary after signup
-- Subscription confirmation / upgrade receipt
+### NOW-5: Astrological Journal
+**Priority:** High | **Impact:** #1 retention feature — creates daily habit
+- Daily mood/event logging correlated with transits
+- Pattern detection after 3-6 months ("You feel anxious when Moon transits 8th house")
+- Schema exists at `src/lib/journal/snapshot.ts`
 
-**Weekly Digest (Monday 6 AM, personalised):**
-- Day quality forecast for the week (Tarabala + Chandra Bala per day)
-- Current dasha period with one-paragraph interpretation
-- Upcoming festivals with personal relevance
-- 3 transit alerts for the week
+---
 
-**Event Alerts:**
-- Dasha transition warning — 30 days before Antardasha change
-- Sade Sati onset / phase change
-- Festival reminders — 3 days before relevant festivals
+## 🟡 NEXT — Differentiation Sprint
 
-**Technical:**
-- `src/lib/email/templates/` — React Email templates
-- `src/app/api/cron/weekly-digest/route.ts`
-- `src/app/api/cron/email-alerts/route.ts`
-- Unsubscribe per category via existing notification_prefs JSONB
+### NEXT-1: Dasha-Transit Unified Timeline
+- Single scrollable timeline: current dasha + transits overlaid
+- "You're in Moon-Mars dasha and Saturn is transiting your 8th house"
+
+### NEXT-2: "Explain Like I'm 5" Mode
+- Toggle converting kundali analysis into plain-language narrative
+- 106 learn modules linked contextually to chart features
+
+### NEXT-3: Chandrodaya muhurtaRule
+- Add moonrise case to getKalaWindow. Apply to Karwa Chauth, Sankashti Chaturthi.
+- Moonrise computation already exists. Small effort.
+
+### NEXT-4: Muhurta Month Calendar (Color-Coded Grid)
+- Month-view grid color-coded by auspiciousness per activity (20 types)
+- Drik has shubh dates for marriage only; we do 20 activities
+
+### NEXT-5: Composite/Synastry Charts
+- Overlay two charts. Conjunctions, aspects, house overlaps.
+- Beyond 36-point Ashta Kuta score.
+
+### NEXT-6: Email Notifications (Resend)
+- Welcome email, weekly digest, dasha transition alerts, festival reminders
+- `src/lib/email/templates/` + cron routes
 - Rate limit: max 3 emails/user/week
 
-### PROD-05: Kundali Comparison (Synastry)
-**Priority:** Medium | **Impact:** Professional users, couples, parent–child
+---
 
-- Side-by-side D1 dual display (both charts rendered together)
-- Planet position overlay — see where Person B's planets fall in Person A's chart
-- Dasha compatibility matrix — whose dasha supports the relationship right now
-- Composite chart midpoint analysis
-- Compatibility score beyond Guna Milan (house overlays, nakshatra synastry)
-- PDF comparison report
+## 🟠 CONTENT MOAT — Ongoing
+
+### CM-1: Panchang City Article Enrichment
+- Add `generateDailyArticle` prose to `/panchang/[city]` pages (currently data-only)
+- Unique narrative per city per day prevents thin-content penalty
+
+### CM-2: Special Panchang Yogas
+- Dwipushkar, Tripushkar, Sarvartha Siddhi, Amrit Siddhi, Ravi Yoga, Guru Pushya Yoga
+- Drik Panchang shows these daily — our panchang is incomplete without them
+
+### CM-3: Bhava Chalit Chart
+- Show planets in Bhava houses (may differ from Rashi houses)
+- Table-stakes feature — every competitor has this
+
+### CM-4: Duplicate Constants Consolidation
+- 17 files with exaltation tables, all currently consistent
+- Canonical source at `tippanni/dignity.ts`. AST-based migration needed.
+
+### CM-5: Dashakoota (10-Point Matching)
+- South Indian matching system. Tamil users expect this.
+- Bhakut Dosha exceptions also missing.
 
 ---
 

@@ -56,6 +56,7 @@ export async function GET(request: Request) {
       headers: { 'Cache-Control': 'public, s-maxage=3600' },
     });
   } catch (err) {
+    console.error('[tithi-table] error:', err);
     return NextResponse.json({ error: String(err) }, { status: 500 });
   }
 }

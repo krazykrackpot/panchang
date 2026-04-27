@@ -54,6 +54,7 @@ export async function GET(request: Request) {
       headers: { 'Cache-Control': 'public, s-maxage=86400' },
     });
   } catch (err) {
+    console.error('[festival-compare] error:', err);
     return NextResponse.json({ error: String(err) }, { status: 500 });
   }
 }

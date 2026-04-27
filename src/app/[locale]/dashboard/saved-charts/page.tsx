@@ -40,9 +40,9 @@ export default function SavedChartsPage() {
   const [placeLng, setPlaceLng] = useState<number | null>(null);
 
   const fetchCharts = () => {
-    if (!user) return;
+    if (!user) { setLoading(false); return; }
     const supabase = getSupabase();
-    if (!supabase) return;
+    if (!supabase) { setLoading(false); return; }
     supabase.from('saved_charts')
       .select('id, label, birth_data, is_primary, created_at')
       .eq('user_id', user.id)

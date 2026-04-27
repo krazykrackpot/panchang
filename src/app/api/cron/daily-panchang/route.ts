@@ -106,13 +106,15 @@ export async function GET(request: Request) {
         const result = await sendEmail({ to: email, subject, html });
         if (result.success) sent++;
         else errors++;
-      } catch {
+      } catch (err) {
+        console.error('[daily-panchang] email send failed:', err);
         errors++;
       }
     }
 
     return NextResponse.json({ sent, errors, total: subscribers.length });
   } catch (e) {
+    console.error('[daily-panchang] cron failed:', e);
     return NextResponse.json({ error: String(e) }, { status: 500 });
   }
 }
@@ -122,7 +124,8 @@ function getTimezoneOffset(timezone: string, date: Date): number {
     const utc = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
     const local = new Date(date.toLocaleString('en-US', { timeZone: timezone }));
     return (local.getTime() - utc.getTime()) / (3600 * 1000);
-  } catch {
-    return 5.5;
+  } catch (err) {
+    console.error('[daily-panchang] TZ resolution failed for:', timezone, '- defaulting to UTC');
+    return 0; // Default to UTC, not IST — serves global users correctly
   }
 }

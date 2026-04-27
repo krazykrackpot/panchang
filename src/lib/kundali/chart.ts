@@ -178,7 +178,8 @@ export function calculateKundali(input: KundaliInput): KundaliData {
   // Calculate Dashas
   const moonNakIndex = grahas.find(g => g.id === 'moon')!.nakshatraIndex;
   const moonDegInNak = grahas.find(g => g.id === 'moon')!.longitude % (360 / 27);
-  const birthDate = new Date(year, month - 1, day, hour, minute);
+  // Lesson L: use Date.UTC — birth time components are UT-based from the computation.
+  const birthDate = new Date(Date.UTC(year, month - 1, day, hour, minute));
   const dashas = calculateDashas(moonNakIndex, moonDegInNak, birthDate);
 
   // Detect yogas

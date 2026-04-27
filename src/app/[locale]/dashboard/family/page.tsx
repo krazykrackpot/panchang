@@ -696,29 +696,63 @@ function MemberStatusCard({
       )}
 
       {/* Sade Sati */}
-      {status.sadeSati.isActive && phaseKey && (
-        <div className="mb-2">
-          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-300 text-[11px] font-medium">
-            {L('sadeSatiLabel', locale)} ({L(phaseKey, locale)})
-          </span>
-        </div>
-      )}
+      {status.sadeSati.isActive && phaseKey && (() => {
+        const SADE_SATI_DESC: Record<string, string> = {
+          rising: 'initial phase \u2014 Saturn enters the sign before your Moon',
+          peak: 'most intense phase \u2014 Saturn is on your Moon sign',
+          setting: 'final phase \u2014 Saturn is in the sign after your Moon, intensity decreasing',
+        };
+        const desc = SADE_SATI_DESC[phaseKey] ?? '';
+        return (
+          <div className="mb-2">
+            <span
+              className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-300 text-[11px] font-medium"
+              title={`Sade Sati (${phaseKey} phase): Saturn is transiting near the natal Moon sign. This 7.5-year period brings karmic lessons, discipline, and transformation. ${phaseKey} phase is the ${desc}.`}
+            >
+              {L('sadeSatiLabel', locale)} ({L(phaseKey, locale)})
+            </span>
+          </div>
+        );
+      })()}
 
       {/* Dosha flags */}
       {status.doshaFlags && (
         <div className="flex flex-wrap gap-1.5 mt-2">
           {status.doshaFlags.manglik && (
-            <span className={`text-[10px] px-2 py-0.5 rounded-full border ${status.doshaFlags.manglikCancelled ? 'border-green-500/20 text-green-400 bg-green-500/10' : 'border-red-500/20 text-red-400 bg-red-500/10'}`}>
+            <span
+              className={`text-[10px] px-2 py-0.5 rounded-full border ${status.doshaFlags.manglikCancelled ? 'border-green-500/20 text-green-400 bg-green-500/10' : 'border-red-500/20 text-red-400 bg-red-500/10'}`}
+              title={status.doshaFlags.manglikCancelled
+                ? 'Manglik Dosha (Cancelled): Mars is in a Manglik house but cancellation conditions are met (e.g., Mars in own sign, Jupiter\'s aspect, benefic conjunction). The dosha is effectively neutralized \u2014 no special remedies needed.'
+                : 'Manglik Dosha: Mars is in a marital house (1st, 2nd, 4th, 7th, 8th, or 12th). This can cause delays or conflicts in marriage. Remedies include Kumbh Vivah, Mangal Shanti Puja, and marrying another Manglik.'}
+            >
               ♂ Manglik{status.doshaFlags.manglikCancelled ? ' ✓' : ''}
             </span>
           )}
-          {status.doshaFlags.kaalSarpa && (
-            <span className="text-[10px] px-2 py-0.5 rounded-full border border-purple-500/20 text-purple-400 bg-purple-500/10">
-              ☊ Kaal Sarpa{status.doshaFlags.kaalSarpaType ? ` (${status.doshaFlags.kaalSarpaType})` : ''}
-            </span>
-          )}
+          {status.doshaFlags.kaalSarpa && (() => {
+            const ksType = status.doshaFlags.kaalSarpaType ?? '';
+            const KS_THEMES: Record<string, string> = {
+              'Anant': 'self-identity and health', 'Kulika': 'wealth and family',
+              'Vasuki': 'courage and communication', 'Shankhapala': 'home and emotional security',
+              'Padma': 'children and creativity', 'Mahapadma': 'enemies and health',
+              'Takshaka': 'marriage and partnerships', 'Karkotak': 'longevity and transformation',
+              'Shankhachud': 'luck and dharma', 'Ghatak': 'career and reputation',
+              'Vishdhar': 'gains and ambitions', 'Sheshnag': 'foreign lands and liberation',
+            };
+            const theme = KS_THEMES[ksType] ?? 'various life areas';
+            return (
+              <span
+                className="text-[10px] px-2 py-0.5 rounded-full border border-purple-500/20 text-purple-400 bg-purple-500/10"
+                title={`Kaal Sarpa Dosha${ksType ? ` (${ksType})` : ''}: All planets are hemmed between Rahu and Ketu. This karmic pattern causes periodic obstacles and delays.${ksType ? ` The ${ksType} type specifically affects ${theme}.` : ''} Remedies: Kaal Sarp Nivaran Puja at Trimbakeshwar, Maha Mrityunjaya Mantra.`}
+              >
+                ☊ Kaal Sarpa{ksType ? ` (${ksType})` : ''}
+              </span>
+            );
+          })()}
           {status.doshaFlags.moolaNakshatra && (
-            <span className="text-[10px] px-2 py-0.5 rounded-full border border-amber-500/20 text-amber-400 bg-amber-500/10">
+            <span
+              className="text-[10px] px-2 py-0.5 rounded-full border border-amber-500/20 text-amber-400 bg-amber-500/10"
+              title="Ganda Mula Nakshatra: Born in a junction nakshatra at the border between water and fire signs. Traditionally requires Mula Shanti puja for the child's wellbeing."
+            >
               ✦ Ganda Mula
             </span>
           )}

@@ -135,22 +135,38 @@ export default function FamilyDoshaStrip({ locale }: { locale: string }) {
 
   // Build badge list per member
   const rows = statuses.map((m) => {
-    const badges: { key: string; label: string; style: typeof BADGE['manglik'] }[] = [];
+    const badges: { key: string; label: string; style: typeof BADGE['manglik']; tooltip: string }[] = [];
     const d = m.doshaFlags;
 
     if (d.manglik && !d.manglikCancelled) {
-      badges.push({ key: 'manglik', label: 'Manglik', style: BADGE.manglik });
+      badges.push({ key: 'manglik', label: 'Manglik', style: BADGE.manglik, tooltip: 'Manglik Dosha: Mars is in a marital house (1st, 2nd, 4th, 7th, 8th, or 12th). This can cause delays or conflicts in marriage. Remedies include Kumbh Vivah, Mangal Shanti Puja, and marrying another Manglik.' });
     } else if (d.manglik && d.manglikCancelled) {
-      badges.push({ key: 'manglikOk', label: 'Manglik (cancelled)', style: BADGE.manglikOk });
+      badges.push({ key: 'manglikOk', label: 'Manglik (cancelled)', style: BADGE.manglikOk, tooltip: 'Manglik Dosha (Cancelled): Mars is in a Manglik house but cancellation conditions are met (e.g., Mars in own sign, Jupiter\'s aspect, benefic conjunction). The dosha is effectively neutralized \u2014 no special remedies needed.' });
     }
     if (d.kaalSarpa) {
-      badges.push({ key: 'kaalSarpa', label: `Kaal Sarpa${d.kaalSarpaType ? ` (${d.kaalSarpaType})` : ''}`, style: BADGE.kaalSarpa });
+      const ksType = d.kaalSarpaType ?? '';
+      const KS_THEMES: Record<string, string> = {
+        'Anant': 'self-identity and health', 'Kulika': 'wealth and family',
+        'Vasuki': 'courage and communication', 'Shankhapala': 'home and emotional security',
+        'Padma': 'children and creativity', 'Mahapadma': 'enemies and health',
+        'Takshaka': 'marriage and partnerships', 'Karkotak': 'longevity and transformation',
+        'Shankhachud': 'luck and dharma', 'Ghatak': 'career and reputation',
+        'Vishdhar': 'gains and ambitions', 'Sheshnag': 'foreign lands and liberation',
+      };
+      const theme = KS_THEMES[ksType] ?? 'various life areas';
+      badges.push({ key: 'kaalSarpa', label: `Kaal Sarpa${ksType ? ` (${ksType})` : ''}`, style: BADGE.kaalSarpa, tooltip: `Kaal Sarpa Dosha${ksType ? ` (${ksType})` : ''}: All planets are hemmed between Rahu and Ketu. This karmic pattern causes periodic obstacles and delays.${ksType ? ` The ${ksType} type specifically affects ${theme}.` : ''} Remedies: Kaal Sarp Nivaran Puja at Trimbakeshwar, Maha Mrityunjaya Mantra.` });
     }
     if (d.moolaNakshatra) {
-      badges.push({ key: 'gandaMula', label: `Ganda Mula${d.moolaNakshatraName ? ` (${d.moolaNakshatraName})` : ''}`, style: BADGE.gandaMula });
+      badges.push({ key: 'gandaMula', label: `Ganda Mula${d.moolaNakshatraName ? ` (${d.moolaNakshatraName})` : ''}`, style: BADGE.gandaMula, tooltip: 'Ganda Mula Nakshatra: Born in a junction nakshatra at the border between water and fire signs. Traditionally requires Mula Shanti puja for the child\'s wellbeing.' });
     }
     if (m.sadeSati.isActive && m.sadeSati.phase) {
-      badges.push({ key: 'sadeSati', label: `Sade Sati (${m.sadeSati.phase})`, style: BADGE.sadeSati });
+      const SADE_SATI_DESC: Record<string, string> = {
+        rising: 'initial phase \u2014 Saturn enters the sign before your Moon',
+        peak: 'most intense phase \u2014 Saturn is on your Moon sign',
+        setting: 'final phase \u2014 Saturn is in the sign after your Moon, intensity decreasing',
+      };
+      const desc = SADE_SATI_DESC[m.sadeSati.phase] ?? '';
+      badges.push({ key: 'sadeSati', label: `Sade Sati (${m.sadeSati.phase})`, style: BADGE.sadeSati, tooltip: `Sade Sati (${m.sadeSati.phase} phase): Saturn is transiting near the natal Moon sign. This 7.5-year period brings karmic lessons, discipline, and transformation. ${m.sadeSati.phase} phase is the ${desc}.` });
     }
     return { ...m, badges };
   });
@@ -181,7 +197,7 @@ export default function FamilyDoshaStrip({ locale }: { locale: string }) {
                   <span className="text-[11px] text-text-secondary italic">no active doshas</span>
                 ) : (
                   r.badges.map((b) => (
-                    <span key={b.key} className={`text-[10px] px-2 py-0.5 rounded-full border ${b.style.border} ${b.style.text} ${b.style.bg}`}>
+                    <span key={b.key} className={`text-[10px] px-2 py-0.5 rounded-full border ${b.style.border} ${b.style.text} ${b.style.bg}`} title={b.tooltip}>
                       {b.label}
                     </span>
                   ))

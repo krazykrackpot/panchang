@@ -53,7 +53,7 @@ export async function GET(request: Request) {
       ekadashis: ekadashiDetails,
       ekadashiCount: ekadashiDetails.length,
     }, {
-      headers: { 'Cache-Control': 'public, s-maxage=3600' },
+      headers: { 'Cache-Control': 'public, s-maxage=604800, stale-while-revalidate=86400' },
     });
   } catch (err) {
     console.error('[tithi-table] error:', err);

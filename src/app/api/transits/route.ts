@@ -12,7 +12,7 @@ export async function GET(request: Request) {
   try {
     const events = generateTransitCalendar(year);
     return NextResponse.json({ year, events }, {
-      headers: { 'Cache-Control': 'public, s-maxage=3600' },
+      headers: { 'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=43200' },
     });
   } catch (err) {
     console.error('[transits] computation error:', err);

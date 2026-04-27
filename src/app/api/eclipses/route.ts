@@ -85,6 +85,6 @@ export async function GET(req: NextRequest) {
   }
 
   return NextResponse.json({ year, eclipses, nextSignificant }, {
-    headers: { 'Cache-Control': 'public, s-maxage=3600' },
+    headers: { 'Cache-Control': 'public, s-maxage=604800, stale-while-revalidate=86400' },
   });
 }

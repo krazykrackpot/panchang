@@ -19,7 +19,7 @@ export async function GET(request: Request) {
   try {
     const festivals = generateFestivalCalendarV2(year, lat, lon, timezoneParam);
     return NextResponse.json({ year, festivals }, {
-      headers: { 'Cache-Control': 'public, s-maxage=3600' },
+      headers: { 'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=43200' },
     });
   } catch (err) {
     console.error('[calendar] computation error:', err);

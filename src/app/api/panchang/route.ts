@@ -113,7 +113,7 @@ export async function GET(request: Request) {
       ...(tithiTableData ? { tithiTable: tithiTableData } : {}),
       ...(festivals ? { festivals } : {}),
     }, {
-      headers: { 'X-RateLimit-Remaining': remaining.toString(), 'Cache-Control': 'public, s-maxage=300' },
+      headers: { 'X-RateLimit-Remaining': remaining.toString(), 'Cache-Control': 'public, s-maxage=43200, stale-while-revalidate=43200' },
     });
   } catch (err) {
     console.error('[API/panchang] Computation error:', err);

@@ -253,7 +253,7 @@ export default function ChoghadiyaPage() {
               className={`px-3 py-1.5 rounded-full text-sm transition-all ${
                 selectedCity.slug === city.slug
                   ? 'bg-gold-primary/20 border border-gold-primary text-gold-light'
-                  : 'bg-bg-secondary border border-white/10 text-text-secondary hover:border-gold-primary/40 hover:text-text-primary'
+                  : 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-white/10 text-text-secondary hover:border-gold-primary/40 hover:text-text-primary'
               }`}
             >
               {tl(city.name, locale)}
@@ -318,7 +318,7 @@ export default function ChoghadiyaPage() {
             </h2>
             <div className="space-y-3">
               {typeEntries.map((entry) => (
-                <div key={entry.name} className="rounded-lg border border-white/10 bg-bg-secondary p-4">
+                <div key={entry.name} className="rounded-lg border border-white/10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-4">
                   <h3 className="font-semibold text-gold-light mb-1" style={headingFont}>
                     {entry.name}
                   </h3>
@@ -352,13 +352,13 @@ export default function ChoghadiyaPage() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/rahu-kaal"
-              className="px-4 py-2 rounded-lg bg-bg-secondary border border-white/10 text-text-primary hover:border-gold-primary/40 hover:text-gold-light transition-all text-sm"
+              className="px-4 py-2 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-white/10 text-text-primary hover:border-gold-primary/40 hover:text-gold-light transition-all text-sm"
             >
               Rahu Kaal
             </Link>
             <Link
               href="/panchang"
-              className="px-4 py-2 rounded-lg bg-bg-secondary border border-white/10 text-text-primary hover:border-gold-primary/40 hover:text-gold-light transition-all text-sm"
+              className="px-4 py-2 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-white/10 text-text-primary hover:border-gold-primary/40 hover:text-gold-light transition-all text-sm"
             >
               {L.back}
             </Link>

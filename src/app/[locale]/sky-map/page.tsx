@@ -113,7 +113,7 @@ function PlanetInfoPanel({ planet, sidereal, locale }: PlanetInfoProps) {
   const degInSign = normalizeDeg(longitude) % 30;
 
   return (
-    <div className="bg-[#111633] border border-[#8a6d2b]/30 rounded-xl p-5 max-w-[400px] mx-auto">
+    <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-[#8a6d2b]/30 rounded-xl p-5 max-w-[400px] mx-auto">
       <div className="flex items-center gap-3 mb-3">
         <div className="text-xl font-bold text-gold-light">
           {GRAHAS[planet.id]?.symbol ?? ''} {planet.name}
@@ -270,7 +270,7 @@ export default function SkyMapPage() {
         </div>
 
         {/* Controls */}
-        <div className="bg-[#111633]/80 border border-[#8a6d2b]/20 rounded-xl p-4 mb-4 space-y-3">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]/80 border border-[#8a6d2b]/20 rounded-xl p-4 mb-4 space-y-3">
           {/* Time slider */}
           <div className="flex items-center gap-3">
             <label className="text-text-secondary text-xs min-w-[50px]">Time</label>

@@ -236,7 +236,7 @@ export default function SkyPage() {
         {/* Planet positions table */}
         <section className="mb-8">
           <h2 className="text-xl font-semibold text-[#d4a853] mb-4">{t('tableTitle')}</h2>
-          <div className="bg-[#111633] border border-[#8a6d2b]/25 rounded-xl overflow-hidden">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-[#8a6d2b]/25 rounded-xl overflow-hidden">
             {loadingTable ? (
               <p className="text-[#8a8478] text-sm p-6 text-center animate-pulse">{t('loading')}</p>
             ) : (

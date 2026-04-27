@@ -252,7 +252,7 @@ function DomainCard({ d, locale }: { d: DomainForecast; locale: string }) {
   const style = TONE_STYLES[d.tone] ?? TONE_STYLES.neutral;
 
   return (
-    <div className="bg-[#111633] border border-white/10 rounded-xl p-4">
+    <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-white/10 rounded-xl p-4">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
           <span className="text-xs text-text-secondary font-mono">H{d.house}</span>
@@ -386,7 +386,7 @@ export default function MundanePage() {
       <div className="max-w-5xl mx-auto px-4 space-y-10">
 
         {/* ── Nation Selector ── */}
-        <section className="bg-[#111633] border border-white/10 rounded-2xl p-6">
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-white/10 rounded-2xl p-6">
           <label className="block text-sm font-semibold text-gold-light mb-3">
             {L(locale, 'selectNation')}
           </label>
@@ -401,7 +401,7 @@ export default function MundanePage() {
                   className={`text-left px-3 py-2.5 rounded-lg text-sm transition-all border ${
                     active
                       ? 'bg-gold-primary/20 border-gold-primary/50 text-gold-light font-semibold'
-                      : 'bg-white/5 border-white/10 text-text-secondary hover:bg-white/10 hover:text-text-primary'
+                      : 'bg-white/[0.06] border-white/10 text-text-secondary hover:bg-white/10 hover:text-text-primary'
                   }`}
                 >
                   <span className="mr-1.5">{n.flagEmoji}</span>
@@ -433,7 +433,7 @@ export default function MundanePage() {
         {!loading && forecast && selectedNation && (
           <>
             {/* Chart Summary */}
-            <section className="bg-[#111633] border border-white/10 rounded-2xl p-6">
+            <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-white/10 rounded-2xl p-6">
               <div className="flex items-start justify-between gap-4 mb-4">
                 <div>
                   <h2 className="text-xl font-bold text-gold-light flex items-center gap-2">
@@ -444,19 +444,19 @@ export default function MundanePage() {
                 </div>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-                <div className="bg-white/5 rounded-xl p-3">
+                <div className="bg-white/[0.06] rounded-xl p-3">
                   <div className="text-xs text-text-secondary mb-1">{L(locale, 'foundingDate')}</div>
                   <div className="text-sm font-semibold text-text-primary">{selectedNation.date}</div>
                 </div>
-                <div className="bg-white/5 rounded-xl p-3">
+                <div className="bg-white/[0.06] rounded-xl p-3">
                   <div className="text-xs text-text-secondary mb-1">{L(locale, 'capital')}</div>
                   <div className="text-sm font-semibold text-text-primary">{selectedNation.capitalCity}</div>
                 </div>
-                <div className="bg-white/5 rounded-xl p-3">
+                <div className="bg-white/[0.06] rounded-xl p-3">
                   <div className="text-xs text-text-secondary mb-1">{L(locale, 'lagna')}</div>
                   <div className="text-sm font-semibold text-gold-light">{forecast.lagnaSignName}</div>
                 </div>
-                <div className="bg-white/5 rounded-xl p-3">
+                <div className="bg-white/[0.06] rounded-xl p-3">
                   <div className="text-xs text-text-secondary mb-1">{L(locale, 'source')}</div>
                   <div className="text-xs text-text-secondary leading-snug">{selectedNation.source.split('—')[0]}</div>
                 </div>
@@ -468,7 +468,7 @@ export default function MundanePage() {
                   const pnames = L(locale, 'planetNames') as Record<number, string>;
                   const name = pnames[p.planetId] ?? p.planetName;
                   return (
-                    <span key={p.planetId} className="text-xs px-2.5 py-1 bg-white/5 border border-white/10 rounded-full text-text-secondary">
+                    <span key={p.planetId} className="text-xs px-2.5 py-1 bg-white/[0.06] border border-white/10 rounded-full text-text-secondary">
                       {name} <span className="text-gold-light font-semibold">H{p.house}</span>
                     </span>
                   );
@@ -502,7 +502,7 @@ export default function MundanePage() {
 
             {/* Active Transits */}
             {forecast.currentTransits.length > 0 && (
-              <section className="bg-[#111633] border border-white/10 rounded-2xl p-6">
+              <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-white/10 rounded-2xl p-6">
                 <h2 className="text-lg font-bold text-gold-light mb-1">{L(locale, 'currentTransits')}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
                   {forecast.currentTransits.map((t) => (
@@ -587,7 +587,7 @@ export default function MundanePage() {
         </section>
 
         {/* ── Educational section ── */}
-        <section className="bg-[#111633] border border-white/10 rounded-2xl p-6">
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-white/10 rounded-2xl p-6">
           <h2 className="text-lg font-bold text-gold-light mb-4">{L(locale, 'learnTitle')}</h2>
           <p className="text-sm text-text-secondary leading-relaxed mb-4">{L(locale, 'learnText')}</p>
           <p className="text-sm text-text-secondary leading-relaxed">{L(locale, 'learnText2')}</p>

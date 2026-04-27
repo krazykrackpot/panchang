@@ -239,7 +239,7 @@ export default function HoraPage() {
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="bg-bg-secondary border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:outline-none focus:border-gold-primary/50"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:outline-none focus:border-gold-primary/50"
             />
           </div>
           {confirmed && locationName && (
@@ -309,7 +309,7 @@ export default function HoraPage() {
                   <Sparkles className="w-5 h-5" />
                   {L('bestFor', locale)}
                 </h2>
-                <div className="bg-bg-secondary/60 border border-gold-primary/10 rounded-xl overflow-hidden">
+                <div className="bg-gradient-to-br from-[#2d1b69]/35 via-[#1a1040]/45 to-[#0a0e27] border border-gold-primary/10 rounded-xl overflow-hidden">
                   <div className="grid grid-cols-3 text-xs font-medium text-text-secondary uppercase tracking-wider px-4 py-2.5 border-b border-gold-primary/10">
                     <span>{L('activity', locale)}</span>
                     <span>{L('planet', locale)}</span>
@@ -355,7 +355,7 @@ export default function HoraPage() {
 
 function InfoCard({ label, value, color }: { label: string; value: string; color?: string }) {
   return (
-    <div className="bg-bg-secondary/60 border border-gold-primary/10 rounded-xl px-4 py-3">
+    <div className="bg-gradient-to-br from-[#2d1b69]/35 via-[#1a1040]/45 to-[#0a0e27] border border-gold-primary/10 rounded-xl px-4 py-3">
       <div className="text-xs text-text-secondary mb-1">{label}</div>
       <div className="text-base font-semibold text-text-primary" style={color ? { color } : undefined}>{value}</div>
     </div>

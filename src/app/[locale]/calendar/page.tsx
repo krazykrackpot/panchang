@@ -416,7 +416,7 @@ export default function CalendarPage() {
         <div className="flex flex-col items-center gap-2 mb-6">
           <button
             onClick={() => setShowLocationSearch(v => !v)}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-gold-primary/20 bg-bg-secondary/50 hover:bg-gold-primary/10 transition-all text-sm"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] hover:bg-gold-primary/10 transition-all text-sm"
           >
             <MapPin className="w-4 h-4 text-gold-primary" />
             <span className="text-text-primary font-medium">{location.name}</span>

@@ -137,12 +137,12 @@ function PlanetCard({ reading, labels, locale }: { reading: BNNPlanetReading; la
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-[#111633] border border-[#d4a853]/20 rounded-xl overflow-hidden"
+      className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-[#d4a853]/20 rounded-xl overflow-hidden"
     >
       {/* Header */}
       <button
         onClick={() => setExpanded(v => !v)}
-        className="w-full text-left p-4 flex items-center gap-3 hover:bg-white/[0.02] transition-colors"
+        className="w-full text-left p-4 flex items-center gap-3 hover:bg-white/[0.04] transition-colors"
       >
         <div className="w-10 h-10 rounded-full bg-[#d4a853]/10 border border-[#d4a853]/30 flex items-center justify-center shrink-0">
           <GrahaIconById id={reading.planetId} size={22} />
@@ -195,7 +195,7 @@ function PlanetCard({ reading, labels, locale }: { reading: BNNPlanetReading; la
                   {reading.modifiers.map((mod, i) => (
                     <div
                       key={i}
-                      className={`rounded-lg border p-3 ${MODIFIER_COLORS[mod.type] ?? 'text-[#e6e2d8] bg-white/5 border-white/10'}`}
+                      className={`rounded-lg border p-3 ${MODIFIER_COLORS[mod.type] ?? 'text-[#e6e2d8] bg-white/[0.06] border-white/10'}`}
                     >
                       <span className="text-xs font-semibold uppercase tracking-wide block mb-1">
                         {mod.type === 'aspect' ? labels.aspectLabel :
@@ -228,7 +228,7 @@ function PlanetCard({ reading, labels, locale }: { reading: BNNPlanetReading; la
 
 function KarmicCard({ profile, labels }: { profile: KarmicProfile; labels: typeof LABELS['en'] }) {
   return (
-    <div className="bg-[#111633] border border-[#d4a853]/30 rounded-xl p-5 space-y-4">
+    <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-[#d4a853]/30 rounded-xl p-5 space-y-4">
       <div className="flex items-start gap-3">
         <div className="w-10 h-10 rounded-full bg-[#d4a853]/15 border border-[#d4a853]/30 flex items-center justify-center shrink-0 text-lg">
           🌀
@@ -328,7 +328,7 @@ export default function NadiJyotishPage() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-[#111633] border border-[#d4a853]/20 rounded-2xl p-6"
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-[#d4a853]/20 rounded-2xl p-6"
         >
           <BirthForm
             onSubmit={handleSubmit}
@@ -368,7 +368,7 @@ export default function NadiJyotishPage() {
 
               {/* Life Themes */}
               {bnnReading.lifeThemes.length > 0 && (
-                <div className="bg-[#111633] border border-[#d4a853]/20 rounded-xl p-5">
+                <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-[#d4a853]/20 rounded-xl p-5">
                   <h3 className="text-[#f0d48a] font-semibold text-lg mb-1">{lk.lifeThemesTitle}</h3>
                   <p className="text-[#8a8478] text-sm mb-4">{lk.lifeThemesDesc}</p>
                   <ul className="space-y-2">

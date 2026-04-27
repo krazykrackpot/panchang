@@ -352,7 +352,7 @@ export default function SarvatobhadraPage() {
             <select
               value={birthNakId}
               onChange={(e) => setBirthNakId(Number(e.target.value))}
-              className="w-full rounded-lg border border-gold-primary/20 bg-bg-secondary px-3 py-2.5 text-sm text-text-primary focus:border-gold-primary focus:outline-none focus:ring-1 focus:ring-gold-primary/50"
+              className="w-full rounded-lg border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] px-3 py-2.5 text-sm text-text-primary focus:border-gold-primary focus:outline-none focus:ring-1 focus:ring-gold-primary/50"
             >
               <option value={0}>{l('selectNakshatra')}</option>
               {NAKSHATRAS.map((n) => (
@@ -390,7 +390,7 @@ export default function SarvatobhadraPage() {
               </div>
 
               {/* Hover info bar */}
-              <div className="mt-3 h-8 rounded-lg bg-bg-secondary/50 border border-gold-primary/10 px-3 flex items-center justify-center text-xs text-text-secondary">
+              <div className="mt-3 h-8 rounded-lg bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 px-3 flex items-center justify-center text-xs text-text-secondary">
                 {hoveredCell ? (
                   <span className="text-text-primary">
                     {getTooltipContent(hoveredCell)}
@@ -404,7 +404,7 @@ export default function SarvatobhadraPage() {
               </div>
 
               {/* Legend */}
-              <div className="mt-4 rounded-lg bg-bg-secondary/30 border border-gold-primary/10 p-3">
+              <div className="mt-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/10 p-3">
                 <h3 className="mb-2 text-xs font-semibold text-gold-light uppercase tracking-wider">
                   {l('legend')}
                 </h3>
@@ -423,7 +423,7 @@ export default function SarvatobhadraPage() {
           {/* Vedha Panel */}
           <div className="flex-1 min-w-0">
             {!analysis ? (
-              <div className="flex h-64 items-center justify-center rounded-xl border border-gold-primary/10 bg-bg-secondary/30">
+              <div className="flex h-64 items-center justify-center rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27]">
                 <p className="text-text-secondary text-sm">{l('noTransits')}</p>
               </div>
             ) : (

@@ -105,7 +105,7 @@ export default function MuhurtaAIPage() {
 
         <div className="grid md:grid-cols-2 gap-4">
           {/* Five Elements card */}
-          <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+          <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
             <h3 className="text-base font-semibold text-gold-light" style={headingFont}>
               {t.edElementsTitle || L.en.edElementsTitle}
             </h3>
@@ -115,7 +115,7 @@ export default function MuhurtaAIPage() {
           </div>
 
           {/* Classical Basis card */}
-          <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+          <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
             <h3 className="text-base font-semibold text-gold-light" style={headingFont}>
               {t.edClassicalTitle || L.en.edClassicalTitle}
             </h3>
@@ -125,7 +125,7 @@ export default function MuhurtaAIPage() {
           </div>
 
           {/* AI Scoring card */}
-          <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+          <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
             <h3 className="text-base font-semibold text-gold-light" style={headingFont}>
               {t.edScoringTitle || L.en.edScoringTitle}
             </h3>
@@ -135,7 +135,7 @@ export default function MuhurtaAIPage() {
           </div>
 
           {/* Good Muhurta card */}
-          <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+          <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
             <h3 className="text-base font-semibold text-gold-light" style={headingFont}>
               {t.edAvoidTitle || L.en.edAvoidTitle}
             </h3>

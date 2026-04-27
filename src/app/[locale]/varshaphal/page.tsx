@@ -508,7 +508,7 @@ export default function VarshaphalPage() {
                           d.relationship === 'self' ? 'bg-gold-primary/20 border-gold-primary/30 text-gold-light' :
                           d.relationship === 'friend' ? 'bg-green-500/10 border-green-500/30 text-green-400' :
                           d.relationship === 'enemy' ? 'bg-red-500/10 border-red-500/30 text-red-400' :
-                          'bg-white/5 border-white/10 text-text-secondary'
+                          'bg-white/[0.06] border-white/10 text-text-secondary'
                         }`}>{d.relationship}</span>
                       </td>
                       <td className="py-2 px-2 text-text-secondary font-mono text-xs">{d.startDate}</td>
@@ -552,7 +552,7 @@ export default function VarshaphalPage() {
                 {data.maasaphal && (
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                     {data.maasaphal.map((mc) => (
-                      <div key={mc.month} className="rounded-xl bg-bg-secondary/60 border border-gold-primary/15 p-3 hover:border-gold-primary/30 transition-colors">
+                      <div key={mc.month} className="rounded-xl bg-gradient-to-br from-[#2d1b69]/35 via-[#1a1040]/45 to-[#0a0e27] border border-gold-primary/15 p-3 hover:border-gold-primary/30 transition-colors">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-gold-primary text-xs font-bold uppercase">{t.monthLabel} {mc.month}</span>
                           <RashiIconById id={mc.lagnaSign} size={20} />

@@ -421,7 +421,7 @@ export default function MedicalAstrologyPage() {
 
           <div className="grid md:grid-cols-2 gap-4">
             {/* Doshas card */}
-            <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+            <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
               <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                 {L(locale, 'editorialDoshaTitle')}
               </h3>
@@ -431,7 +431,7 @@ export default function MedicalAstrologyPage() {
             </div>
 
             {/* Houses card */}
-            <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+            <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
               <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                 {L(locale, 'editorialHousesTitle')}
               </h3>
@@ -441,7 +441,7 @@ export default function MedicalAstrologyPage() {
             </div>
 
             {/* Prakriti card */}
-            <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+            <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
               <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                 {L(locale, 'editorialPrakritiTitle')}
               </h3>
@@ -451,7 +451,7 @@ export default function MedicalAstrologyPage() {
             </div>
 
             {/* Dasha card */}
-            <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+            <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
               <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                 {L(locale, 'editorialDashaTitle')}
               </h3>
@@ -462,7 +462,7 @@ export default function MedicalAstrologyPage() {
           </div>
 
           {/* Method — full-width */}
-          <div className="p-5 bg-bg-secondary/50 border border-gold-primary/10 rounded-xl space-y-2">
+          <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
             <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
               {L(locale, 'editorialMethodTitle')}
             </h3>
@@ -541,7 +541,7 @@ export default function MedicalAstrologyPage() {
                 {locale === 'hi' ? 'या नए विवरण दर्ज करें' : locale === 'ta' ? 'அல்லது புதிய விவரங்களை உள்ளிடவும்' : locale === 'bn' ? 'অথবা নতুন বিবরণ লিখুন' : 'Or enter new details'}
               </div>
             )}
-            <div className="bg-bg-secondary border border-gold-primary/15 rounded-2xl p-6">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 rounded-2xl p-6">
               <BirthForm
                 onSubmit={(data) => handleSubmit(data)}
                 loading={loading}
@@ -576,7 +576,7 @@ export default function MedicalAstrologyPage() {
 
               {/* ── 1. Prakriti Card ──────────────────────────────────── */}
               {prakriti && (
-                <section className="bg-bg-secondary border border-gold-primary/15 rounded-2xl p-6">
+                <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 rounded-2xl p-6">
                   <h2 className="text-xl font-bold text-gold-light mb-1">
                     {L(locale, 'prakritiTitle')}
                   </h2>
@@ -635,7 +635,7 @@ export default function MedicalAstrologyPage() {
                           {prakriti.primaryDosha}
                         </p>
                       </div>
-                      <div className="p-4 bg-white/5 border border-white/10 rounded-xl">
+                      <div className="p-4 bg-white/[0.06] border border-white/10 rounded-xl">
                         <p className="text-text-secondary text-xs uppercase tracking-widest mb-1">
                           {L(locale, 'secondary')}
                         </p>
@@ -653,7 +653,7 @@ export default function MedicalAstrologyPage() {
 
               {/* ── 2. Body Vulnerability Map ────────────────────────── */}
               {bodyMap.length > 0 && (
-                <section className="bg-bg-secondary border border-gold-primary/15 rounded-2xl p-6">
+                <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 rounded-2xl p-6">
                   <h2 className="text-xl font-bold text-gold-light mb-1">
                     {L(locale, 'bodyMapTitle')}
                   </h2>
@@ -714,7 +714,7 @@ export default function MedicalAstrologyPage() {
               )}
 
               {/* ── 3. Health Timeline ───────────────────────────────── */}
-              <section className="bg-bg-secondary border border-gold-primary/15 rounded-2xl p-6">
+              <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 rounded-2xl p-6">
                 <h2 className="text-xl font-bold text-gold-light mb-1">
                   {L(locale, 'timelineTitle')}
                 </h2>
@@ -757,7 +757,7 @@ export default function MedicalAstrologyPage() {
 
               {/* ── 4. Disease Profile ───────────────────────────────── */}
               {diseaseProfile && (
-                <section className="bg-bg-secondary border border-gold-primary/15 rounded-2xl p-6">
+                <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 rounded-2xl p-6">
                   <h2 className="text-xl font-bold text-gold-light mb-6">
                     {L(locale, 'diseaseTitle')}
                   </h2>
@@ -842,7 +842,7 @@ export default function MedicalAstrologyPage() {
                 const recLabelKey: Record<string, keyof typeof LABELS.en> = { do: 'doLabel', avoid: 'avoidLabel', watch: 'watchLabel' };
 
                 return (
-                  <section className="bg-bg-secondary border border-gold-primary/15 rounded-2xl p-6">
+                  <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 rounded-2xl p-6">
                     {/* Header + tone badge */}
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
                       <div>
@@ -947,7 +947,7 @@ export default function MedicalAstrologyPage() {
                           <div className="space-y-2">
                             {prog.recommendations.map((r, i) => (
                               <div key={i} className="flex items-start gap-3 p-3 bg-bg-primary/60 border border-white/5 rounded-xl">
-                                <span className={`text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full ${recColor[r.type] ?? 'text-text-secondary'} bg-white/5 shrink-0 mt-0.5`}>
+                                <span className={`text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full ${recColor[r.type] ?? 'text-text-secondary'} bg-white/[0.06] shrink-0 mt-0.5`}>
                                   {recIcon[r.type] ?? '?'}
                                 </span>
                                 <div className="flex-1 min-w-0">

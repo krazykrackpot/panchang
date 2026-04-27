@@ -61,7 +61,7 @@ const DOSHA_COLORS: Record<string, { bg: string; border: string; text: string }>
 };
 
 function getDoshaColor(label: string) {
-  return DOSHA_COLORS[label] ?? { bg: 'bg-white/5', border: 'border-white/10', text: 'text-[#e6e2d8]' };
+  return DOSHA_COLORS[label] ?? { bg: 'bg-white/[0.06]', border: 'border-white/10', text: 'text-[#e6e2d8]' };
 }
 
 // ── Current time helpers ──
@@ -916,7 +916,7 @@ function PrakritiSection({
           className={`px-4 py-2 rounded-lg text-xs transition-all ${
             allAnswered
               ? 'bg-[#d4a853]/20 text-[#f0d48a] border border-[#d4a853]/40 hover:bg-[#d4a853]/30'
-              : 'bg-white/5 text-[#8a8478]/50 border border-white/[0.04] cursor-not-allowed'
+              : 'bg-white/[0.06] text-[#8a8478]/50 border border-white/[0.04] cursor-not-allowed'
           }`}
         >
           See my protocol

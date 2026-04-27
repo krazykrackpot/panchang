@@ -333,7 +333,7 @@ export default function SignCalculatorPage() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="mt-10 p-6 rounded-xl bg-bg-secondary border border-gold-primary/20"
+                className="mt-10 p-6 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20"
               >
                 <h3 className="text-gold-light text-lg font-bold mb-2" style={headingFont}>
                   {locale === 'en'

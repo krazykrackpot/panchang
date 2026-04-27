@@ -267,7 +267,7 @@ export default function KaalSarpPage() {
       <GoldDivider className="my-10" />
 
       {/* Birth Input Form */}
-      <motion.div {...fadeUp} className="bg-bg-secondary/60 rounded-2xl border border-gold-dark/20 p-6 sm:p-8 mb-10">
+      <motion.div {...fadeUp} className="bg-gradient-to-br from-[#2d1b69]/35 via-[#1a1040]/45 to-[#0a0e27] rounded-2xl border border-gold-dark/20 p-6 sm:p-8 mb-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
             <label className="block text-text-secondary text-sm mb-1.5" style={bodyFont}>{t(LABELS.date, locale)}</label>
@@ -328,7 +328,7 @@ export default function KaalSarpPage() {
             {result.present && (
               <>
                 {/* Rahu-Ketu Placement */}
-                <div className="bg-bg-secondary/60 rounded-2xl border border-gold-dark/20 p-6 mb-6">
+                <div className="bg-gradient-to-br from-[#2d1b69]/35 via-[#1a1040]/45 to-[#0a0e27] rounded-2xl border border-gold-dark/20 p-6 mb-6">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-purple-500/10 border border-purple-500/20 rounded-xl p-4 text-center">
                       <GrahaIconById id={7} size={40} />
@@ -345,7 +345,7 @@ export default function KaalSarpPage() {
 
                 {/* Effects */}
                 {result.typeEffects && (
-                  <div className="bg-bg-secondary/60 rounded-2xl border border-gold-dark/20 p-6 mb-6">
+                  <div className="bg-gradient-to-br from-[#2d1b69]/35 via-[#1a1040]/45 to-[#0a0e27] rounded-2xl border border-gold-dark/20 p-6 mb-6">
                     <h2 className="text-xl font-bold text-gold-light mb-3" style={headingFont}>{t(LABELS.effects, locale)}</h2>
                     <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>{result.typeEffects}</p>
                   </div>
@@ -365,7 +365,7 @@ export default function KaalSarpPage() {
                 )}
 
                 {/* Remedies */}
-                <div className="bg-bg-secondary/60 rounded-2xl border border-gold-dark/20 p-6 mb-6">
+                <div className="bg-gradient-to-br from-[#2d1b69]/35 via-[#1a1040]/45 to-[#0a0e27] rounded-2xl border border-gold-dark/20 p-6 mb-6">
                   <h2 className="text-xl font-bold text-gold-light mb-4" style={headingFont}>{t(LABELS.remedies, locale)}</h2>
                   <div className="space-y-4">
                     {REMEDIES.map((r, i) => (

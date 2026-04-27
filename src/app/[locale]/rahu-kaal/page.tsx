@@ -247,7 +247,7 @@ export default function RahuKaalPage() {
               className={`px-3 py-1.5 rounded-full text-sm transition-all ${
                 selectedCity.slug === city.slug
                   ? 'bg-gold-primary/20 border border-gold-primary text-gold-light'
-                  : 'bg-bg-secondary border border-white/10 text-text-secondary hover:border-gold-primary/40 hover:text-text-primary'
+                  : 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-white/10 text-text-secondary hover:border-gold-primary/40 hover:text-text-primary'
               }`}
             >
               {tl(city.name, locale)}
@@ -293,7 +293,7 @@ export default function RahuKaalPage() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="rounded-xl border border-white/10 bg-bg-secondary p-5 mb-8"
+          className="rounded-xl border border-white/10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-5 mb-8"
         >
           <h2 className="text-sm font-medium text-text-secondary mb-4 flex items-center gap-2">
             <Clock size={14} className="text-gold-primary" />
@@ -389,13 +389,13 @@ export default function RahuKaalPage() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/choghadiya"
-              className="px-4 py-2 rounded-lg bg-bg-secondary border border-white/10 text-text-primary hover:border-gold-primary/40 hover:text-gold-light transition-all text-sm"
+              className="px-4 py-2 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-white/10 text-text-primary hover:border-gold-primary/40 hover:text-gold-light transition-all text-sm"
             >
               Choghadiya
             </Link>
             <Link
               href="/panchang"
-              className="px-4 py-2 rounded-lg bg-bg-secondary border border-white/10 text-text-primary hover:border-gold-primary/40 hover:text-gold-light transition-all text-sm"
+              className="px-4 py-2 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-white/10 text-text-primary hover:border-gold-primary/40 hover:text-gold-light transition-all text-sm"
             >
               {L.back}
             </Link>

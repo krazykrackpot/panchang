@@ -647,7 +647,7 @@ export default function VedicTimePage() {
                     <div key={i} className={`text-center p-2 rounded-lg text-xs transition-all ${
                       isActive
                         ? 'bg-gold-primary/15 border border-gold-primary/30 text-gold-light'
-                        : 'bg-bg-secondary/30 border border-gold-primary/5 text-text-secondary/70'
+                        : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/5 text-text-secondary/70'
                     }`}>
                       <div className="font-semibold" style={bodyFont}>
                         {locale === 'sa' ? kala.sa : isDevanagariLocale(locale) ? kala.hi : kala.en}

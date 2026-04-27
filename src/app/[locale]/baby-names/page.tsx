@@ -127,7 +127,7 @@ export default function BabyNamesPage() {
       {/* Educational sub-cards */}
       <div className="max-w-4xl mx-auto px-4 mb-8">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5">
+          <div className="bg-white/[0.04] border border-gold-primary/10 rounded-xl p-5">
             <h3 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
               {locale === 'en' ? 'Why Nakshatra Syllables?' : 'नक्षत्र अक्षर क्यों?'}
             </h3>
@@ -137,7 +137,7 @@ export default function BabyNamesPage() {
                 : 'प्रत्येक नक्षत्र राशिचक्र के 13\u00B020\u2032 में फैला है और इसके 4 पाद हैं। प्रत्येक पाद का संस्कृत ध्वनि विज्ञान में निहित एक निर्धारित प्रारम्भिक अक्षर है। पहले अक्षर का ध्वनि कम्पन नाम की ऊर्जा का स्वर निर्धारित करता है।'}
             </p>
           </div>
-          <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5">
+          <div className="bg-white/[0.04] border border-gold-primary/10 rounded-xl p-5">
             <h3 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
               {locale === 'en' ? 'How It Works' : 'यह कैसे काम करता है'}
             </h3>
@@ -147,7 +147,7 @@ export default function BabyNamesPage() {
                 : 'जन्म के समय चन्द्रमा का नक्षत्र ज्ञात करें \u2192 पाद (1\u20134) पहचानें \u2192 बच्चे के नाम के लिए संबंधित अक्षर का उपयोग करें। चन्द्रमा का सटीक अंश निर्धारित करता है कि 108 पादों में से कौन सा लागू होता है।'}
             </p>
           </div>
-          <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5">
+          <div className="bg-white/[0.04] border border-gold-primary/10 rounded-xl p-5">
             <h3 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
               {locale === 'en' ? 'Modern Practice' : 'आधुनिक अभ्यास'}
             </h3>

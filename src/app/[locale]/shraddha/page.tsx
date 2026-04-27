@@ -124,7 +124,7 @@ export default function ShraddhaPage() {
 
       {/* Educational sub-cards */}
       <div className="mb-8">
-        <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5 mb-4">
+        <div className="bg-white/[0.04] border border-gold-primary/10 rounded-xl p-5 mb-4">
           <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
             {locale === 'en'
               ? 'Shraddha is the sacred Vedic ceremony of honoring departed ancestors (Pitru). The word comes from \u201Cshraddha\u201D (faith/devotion) \u2014 it is an act of grateful remembrance performed on specific tithis each month and during the annual Pitru Paksha period. Performing Shraddha on the correct tithi \u2014 matching the tithi on which the ancestor departed \u2014 is considered essential for the offerings to reach them.'
@@ -132,7 +132,7 @@ export default function ShraddhaPage() {
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5">
+          <div className="bg-white/[0.04] border border-gold-primary/10 rounded-xl p-5">
             <h3 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
               {locale === 'en' ? 'Why Specific Tithis?' : 'विशिष्ट तिथि क्यों?'}
             </h3>
@@ -142,7 +142,7 @@ export default function ShraddhaPage() {
                 : '\u092A\u094D\u0930\u0924\u094D\u092F\u0947\u0915 \u092A\u0942\u0930\u094D\u0935\u091C \u0915\u094B \u0909\u0928\u0915\u0947 \u0928\u093F\u0927\u0928 \u0915\u0940 \u0924\u093F\u0925\u093F \u092A\u0930 \u0938\u094D\u092E\u0930\u0923 \u0915\u093F\u092F\u093E \u091C\u093E\u0924\u093E \u0939\u0948\u0964 \u092F\u0926\u093F \u092E\u0943\u0924\u094D\u092F\u0941 \u0924\u093F\u0925\u093F \u092A\u0902\u091A\u092E\u0940 \u0939\u0948, \u0924\u094B \u0915\u0943\u0937\u094D\u0923 \u092A\u0915\u094D\u0937 \u0915\u0940 \u092A\u094D\u0930\u0924\u094D\u092F\u0947\u0915 \u092A\u0902\u091A\u092E\u0940 \u092A\u0930, \u0935\u093F\u0936\u0947\u0937\u0915\u0930 \u092A\u093F\u0924\u0943 \u092A\u0915\u094D\u0937 \u2014 \u092D\u093E\u0926\u094D\u0930\u092A\u0926 \u092E\u093E\u0938 \u092E\u0947\u0902 16 \u0926\u093F\u0935\u0938\u0940\u092F \u092A\u0942\u0930\u094D\u0935\u091C \u0915\u093E\u0932 \u092E\u0947\u0902 \u0936\u094D\u0930\u093E\u0926\u094D\u0927 \u0915\u093F\u092F\u093E \u091C\u093E\u0924\u093E \u0939\u0948\u0964'}
             </p>
           </div>
-          <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5">
+          <div className="bg-white/[0.04] border border-gold-primary/10 rounded-xl p-5">
             <h3 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
               {locale === 'en' ? 'Pitru Paksha' : '\u092A\u093F\u0924\u0943 \u092A\u0915\u094D\u0937'}
             </h3>
@@ -152,7 +152,7 @@ export default function ShraddhaPage() {
                 : '\u092D\u093E\u0926\u094D\u0930\u092A\u0926 (\u0938\u093F\u0924\u0902\u092C\u0930-\u0905\u0915\u094D\u091F\u0942\u092C\u0930) \u092E\u0947\u0902 \u092A\u0942\u0930\u094D\u0923\u093F\u092E\u093E \u0938\u0947 \u0905\u092E\u093E\u0935\u0938\u094D\u092F\u093E \u0924\u0915 16 \u0926\u093F\u0928 \u0915\u093E \u0915\u093E\u0932, \u091C\u092C \u092A\u0942\u0930\u094D\u0935\u091C \u0914\u0930 \u092D\u0942-\u0932\u094B\u0915 \u0915\u0947 \u092C\u0940\u091A \u0915\u0940 \u0938\u0940\u092E\u093E \u0938\u092C\u0938\u0947 \u092A\u0924\u0932\u0940 \u0939\u094B\u0924\u0940 \u0939\u0948\u0964 \u092F\u0939 \u0936\u094D\u0930\u093E\u0926\u094D\u0927 \u0905\u0928\u0941\u0937\u094D\u0920\u093E\u0928\u094B\u0902 \u0915\u0947 \u0932\u093F\u090F \u0938\u092C\u0938\u0947 \u0936\u0915\u094D\u0924\u093F\u0936\u093E\u0932\u0940 \u0938\u092E\u092F \u0939\u0948\u0964'}
             </p>
           </div>
-          <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-5">
+          <div className="bg-white/[0.04] border border-gold-primary/10 rounded-xl p-5">
             <h3 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
               {locale === 'en' ? 'What to Do' : '\u0915\u094D\u092F\u093E \u0915\u0930\u0947\u0902'}
             </h3>

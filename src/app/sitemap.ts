@@ -68,6 +68,9 @@ const routes = [
   '/learn/gochar',
   '/learn/lagna',
   '/learn/masa',
+  '/learn/adhika-masa',
+  '/learn/festival-rules',
+  '/learn/smarta-vaishnava',
   '/learn/matching',
   '/learn/vara',
   '/learn/vargas',
@@ -143,6 +146,7 @@ const routes = [
   '/calendar/regional/bengali',
   '/calendar/regional/mithila',
   // Tools
+  '/tools',
   '/medical-astrology',
   '/financial-astrology',
   '/nadi-jyotish',
@@ -224,6 +228,7 @@ const routes = [
   '/learn/modules/25-1', '/learn/modules/25-2', '/learn/modules/25-3', '/learn/modules/25-4', '/learn/modules/25-5',
   '/learn/modules/25-6', '/learn/modules/25-7', '/learn/modules/25-8', '/learn/modules/25-9',
   '/learn/modules/26-1', '/learn/modules/26-2', '/learn/modules/26-3', '/learn/modules/26-4',
+  '/learn/modules/27-1', '/learn/modules/27-2', '/learn/modules/27-3',
   // Interactive Labs
   '/learn/labs/panchang',
   '/learn/labs/moon',

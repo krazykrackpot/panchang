@@ -1224,6 +1224,55 @@ export default function PanchangClient() {
             );
           })()}
 
+          {/* ═══ REGIONAL QUICK-ACCESS — locale-aware featured tools ═══ */}
+          {(() => {
+            // Regional specialization: surface the most-used tools for each locale.
+            // Tamil: Pancha-Pakshi + Gowri Panchangam are the primary daily systems.
+            // Hindi/North India: Choghadiya + Vrat calendar dominate daily practice.
+            // Bengali: Tithi + Rashi are the primary reference points.
+            // Others: default panchang tools.
+            type QuickLink = { href: string; label: string; desc: string };
+            const regionalLinks: QuickLink[] =
+              locale === 'ta' ? [
+                { href: '/pancha-pakshi', label: 'பஞ்ச பக்ஷி', desc: 'Today\'s ruling bird & activity' },
+                { href: '/panchang/auspicious', label: 'கௌரி பஞ்சாங்கம்', desc: 'Gowri timings for today' },
+                { href: '/hora', label: 'ஹோரை', desc: 'Current planetary hour' },
+              ] : locale === 'te' ? [
+                { href: '/pancha-pakshi', label: 'పంచ పక్షి', desc: 'Today\'s ruling bird' },
+                { href: '/panchang/auspicious', label: 'శుభ సమయాలు', desc: 'Auspicious windows' },
+                { href: '/hora', label: 'హోర', desc: 'Planetary hours' },
+              ] : locale === 'bn' ? [
+                { href: '/panchang/tithi', label: 'তিথি বিশদ', desc: 'Today\'s tithi analysis' },
+                { href: '/panchang/auspicious', label: 'শুভ সময়', desc: 'Auspicious timings' },
+                { href: '/calendar', label: 'পঞ্জিকা', desc: 'Festival calendar' },
+              ] : (locale === 'hi' || locale === 'mai' || locale === 'mr' || locale === 'gu') ? [
+                { href: '/choghadiya', label: isDevanagari ? 'चौघड़िया' : 'Choghadiya', desc: isDevanagari ? 'आज के शुभ-अशुभ चौघड़िया' : 'Today\'s auspicious periods' },
+                { href: '/panchang/auspicious', label: isDevanagari ? 'व्रत एवं शुभ काल' : 'Vrat & Timings', desc: isDevanagari ? 'अमृत काल · राहु काल · वर्ज्यम' : 'Amrit Kalam · Rahu Kaal · Varjyam' },
+                { href: '/hora', label: isDevanagari ? 'होरा' : 'Hora', desc: isDevanagari ? 'वर्तमान ग्रहीय होरा' : 'Current planetary hour' },
+              ] : []; // English/default: no regional banner, mega grid is sufficient
+
+            if (regionalLinks.length === 0) return null;
+            return (
+              <div className="mb-6">
+                <p className="text-text-secondary/60 text-xs uppercase tracking-widest font-bold mb-3 text-center">
+                  {locale === 'ta' ? 'இன்றைக்கு' : locale === 'te' ? 'ఈ రోజు' : locale === 'bn' ? 'আজকের জন্য' : isDevanagari ? 'आज आपके लिए' : 'For You Today'}
+                </p>
+                <div className="grid grid-cols-3 gap-3">
+                  {regionalLinks.map(link => (
+                    <a key={link.href} href={`/${locale}${link.href}`}
+                      className="rounded-xl border border-gold-primary/15 bg-gradient-to-br from-gold-primary/5 to-transparent px-4 py-3 text-center hover:border-gold-primary/40 hover:bg-gold-primary/8 transition-all group">
+                      <div className="text-gold-light text-sm font-bold group-hover:text-gold-primary transition-colors"
+                        style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                        {link.label}
+                      </div>
+                      <div className="text-text-secondary/60 text-xs mt-0.5">{link.desc}</div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
+
           {/* ═══ MEGA CARD GRID — tarot-style cards linking to subpages ═══ */}
           {/* Row 1: 5 cards */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5 my-14 auto-rows-fr">

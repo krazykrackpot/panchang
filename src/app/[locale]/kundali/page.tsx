@@ -97,6 +97,7 @@ const TrajectoryCard = dynamic(() => import('@/components/kundali/TrajectoryCard
 const VedicProfileComponent = dynamic(() => import('@/components/kundali/VedicProfile'), { ssr: false });
 const BirthPosterCard = dynamic(() => import('@/components/shareable/BirthPosterCard'), { ssr: false });
 const BlueprintTab = dynamic(() => import('@/components/kundali/BlueprintTab'), { ssr: false });
+const UnifiedTimeline = dynamic(() => import('@/components/kundali/UnifiedTimeline'), { ssr: false });
 const AyanamshaComparison = dynamic(() => import('@/components/kundali/AyanamshaComparison'), { ssr: false });
 
 // Planet colors for table highlights
@@ -450,6 +451,7 @@ export default function KundaliPage() {
   const [activeDomain, setActiveDomain] = useState<DomainType | null>(null);
   const [personalReading, setPersonalReading] = useState<PersonalReading | null>(null);
   const [keyDates, setKeyDates] = useState<KeyDate[]>([]);
+  const [dashaViewMode, setDashaViewMode] = useState<'dashas' | 'unified'>('unified');
   const [questionAnswered, setQuestionAnswered] = useState<boolean>(false);
 
   // AI Reading hook — manages comprehensive single-call AI readings with Supabase caching
@@ -2042,13 +2044,46 @@ export default function KundaliPage() {
           {/* ===== DASHA TAB ===== */}
           {activeTab === 'dasha' && (
             <div className="space-y-3">
-              {/* Animated D3 interactive dasha timeline — rendered above the textual content */}
+              {/* Timeline mode toggle: Dashas Only vs Unified (Dashas + Transits) */}
               {kundali.dashas && kundali.dashas.length > 0 && (
-                <DashaTimeline
-                  dashas={kundali.dashas}
-                  birthDate={kundali.birthData.date}
-                  locale={locale}
-                />
+                <>
+                  <div className="flex items-center gap-1 p-0.5 rounded-lg bg-white/5 w-fit">
+                    <button
+                      onClick={() => setDashaViewMode('dashas')}
+                      className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                        dashaViewMode === 'dashas'
+                          ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30'
+                          : 'text-text-secondary hover:text-text-primary'
+                      }`}
+                    >
+                      {locale === 'en' || isTamil ? 'Dashas Only' : 'केवल दशा'}
+                    </button>
+                    <button
+                      onClick={() => setDashaViewMode('unified')}
+                      className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                        dashaViewMode === 'unified'
+                          ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30'
+                          : 'text-text-secondary hover:text-text-primary'
+                      }`}
+                    >
+                      {locale === 'en' || isTamil ? 'Unified (Dashas + Transits)' : 'एकीकृत (दशा + गोचर)'}
+                    </button>
+                  </div>
+
+                  {dashaViewMode === 'dashas' ? (
+                    <DashaTimeline
+                      dashas={kundali.dashas}
+                      birthDate={kundali.birthData.date}
+                      locale={locale}
+                    />
+                  ) : (
+                    <UnifiedTimeline
+                      dashas={kundali.dashas}
+                      keyDates={keyDates}
+                      locale={locale}
+                    />
+                  )}
+                </>
               )}
               <a href={`/${locale}/learn/dashas`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1">
                 {locale === 'en' || isTamil ? 'Learn about Dashas \u2192' : 'दशा के बारे में जानें \u2192'}

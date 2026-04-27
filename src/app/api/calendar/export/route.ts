@@ -2,8 +2,10 @@ import { NextResponse } from 'next/server';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
 import { getEclipsesForYear, type EclipseData } from '@/lib/calendar/eclipse-data';
 import { generateICal, type ICalEvent } from '@/lib/calendar/ical-generator';
+import { computePanchang } from '@/lib/ephem/panchang-calc';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 
-type Category = 'all' | 'major' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham' | 'vrat' | 'eclipse';
+type Category = 'all' | 'major' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham' | 'vrat' | 'eclipse' | 'rahukaal';
 
 const CALENDAR_NAMES: Record<Category, (year: number) => string> = {
   all: (y) => `Vedic Calendar ${y} — Dekho Panchang`,
@@ -15,9 +17,10 @@ const CALENDAR_NAMES: Record<Category, (year: number) => string> = {
   pradosham: (y) => `Pradosham Vrats ${y}`,
   vrat: (y) => `Hindu Vrats ${y}`,
   eclipse: (y) => `Solar & Lunar Eclipses ${y}`,
+  rahukaal: (y) => `Rahu Kaal ${y}`,
 };
 
-const VALID_CATEGORIES: Category[] = ['all', 'major', 'ekadashi', 'purnima', 'amavasya', 'chaturthi', 'pradosham', 'vrat', 'eclipse'];
+const VALID_CATEGORIES: Category[] = ['all', 'major', 'ekadashi', 'purnima', 'amavasya', 'chaturthi', 'pradosham', 'vrat', 'eclipse', 'rahukaal'];
 
 /**
  * GET /api/calendar/export
@@ -88,6 +91,39 @@ export async function GET(request: Request) {
           url: `https://dekhopanchang.com/en/calendar/${slug}`,
           alarm: { trigger: '-P1D', description: `Tomorrow: ${name}` },
         });
+      }
+    }
+
+    // ── Generate Rahu Kaal events for each day ──
+    if (category === 'all' || category === 'rahukaal') {
+      const daysInYear = (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) ? 366 : 365;
+      for (let dayOfYear = 1; dayOfYear <= daysInYear; dayOfYear++) {
+        const d = new Date(Date.UTC(year, 0, dayOfYear));
+        const m = d.getUTCMonth() + 1; // 1-based
+        const dd = d.getUTCDate();
+        try {
+          const tz = getUTCOffsetForDate(year, m, dd, timezoneParam);
+          const panchang = computePanchang({ year, month: m, day: dd, lat, lng: lon, tzOffset: tz, timezone: timezoneParam });
+
+          if (panchang.rahuKaal) {
+            const rahuStart = parseTimeToDate(year, m, dd, panchang.rahuKaal.start, tz);
+            const rahuEnd = parseTimeToDate(year, m, dd, panchang.rahuKaal.end, tz);
+            if (rahuStart && rahuEnd) {
+              const dateStr = `${year}${String(m).padStart(2, '0')}${String(dd).padStart(2, '0')}`;
+              icalEvents.push({
+                uid: `rahu-${dateStr}@dekhopanchang.com`,
+                dtstart: `${rahuStart}`,
+                summary: 'Rahu Kaal — Avoid Initiations',
+                description: `Rahu Kaal from ${panchang.rahuKaal.start} to ${panchang.rahuKaal.end}. Avoid starting important activities during this inauspicious window.`,
+                categories: ['Rahu Kaal', 'Inauspicious'],
+                dtend: `${rahuEnd}`,
+              });
+            }
+          }
+        } catch (err) {
+          console.error(`[calendar/export] Failed to compute Rahu Kaal for ${year}-${m}-${dd}:`, err);
+          // Continue to next day — don't fail the whole export
+        }
       }
     }
 
@@ -201,4 +237,31 @@ function eclipseToICalEvent(ecl: EclipseData): ICalEvent {
 
 function slugify(text: string): string {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+/**
+ * Parse "HH:MM" local time string to an iCal UTC datetime string (YYYYMMDDTHHMMSSZ).
+ * Converts local time to UTC by subtracting the timezone offset.
+ */
+function parseTimeToDate(
+  year: number, month: number, day: number,
+  time: string, tzOffsetHours: number,
+): string | null {
+  if (!time) return null;
+  const parts = time.split(':');
+  if (parts.length < 2) return null;
+  const h = parseInt(parts[0], 10);
+  const m = parseInt(parts[1], 10);
+  if (isNaN(h) || isNaN(m)) return null;
+  // Convert local time to UTC using Date.UTC to handle day rollovers correctly
+  const localMs = Date.UTC(year, month - 1, day, h, m, 0);
+  const utcMs = localMs - tzOffsetHours * 3_600_000;
+  const utcDate = new Date(utcMs);
+  const yy = utcDate.getUTCFullYear();
+  const mm = String(utcDate.getUTCMonth() + 1).padStart(2, '0');
+  const dd = String(utcDate.getUTCDate()).padStart(2, '0');
+  const hh = String(utcDate.getUTCHours()).padStart(2, '0');
+  const mi = String(utcDate.getUTCMinutes()).padStart(2, '0');
+  const ss = String(utcDate.getUTCSeconds()).padStart(2, '0');
+  return `${yy}${mm}${dd}T${hh}${mi}${ss}Z`;
 }

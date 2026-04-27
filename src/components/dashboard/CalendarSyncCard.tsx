@@ -39,14 +39,15 @@ export default function CalendarSyncCard({ locale }: Props) {
   const L = LABELS[loc] || LABELS.en;
   const isHi = isDevanagariLocale(loc);
 
-  const { lat, lng, timezone } = useLocationStore();
+  const { lat, lng, timezone, name: locationName } = useLocationStore();
 
   // Build the export URL with user's location
-  const exportUrl = `/api/calendar/export?year=2026&category=all${
+  const currentYear = new Date().getFullYear();
+  const exportUrl = `/api/calendar/export?year=${currentYear}&category=all${
     lat != null ? `&lat=${lat}` : ''
   }${lng != null ? `&lon=${lng}` : ''}${
     timezone ? `&timezone=${encodeURIComponent(timezone)}` : ''
-  }`;
+  }${locationName ? `&location=${encodeURIComponent(locationName)}` : ''}`;
 
   return (
     <motion.div {...fadeUp} transition={{ delay: 0.42, ease: 'easeOut' as const }}>

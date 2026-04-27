@@ -46,8 +46,8 @@ export default function ActivityGuidePage() {
           fetchPanchang(pos.coords.latitude, pos.coords.longitude);
         },
         () => {
-          // Fallback to IP-based (Vercel geo headers won't work client-side, use default)
-          fetchPanchang(28.6139, 77.2090); // Delhi fallback
+          // Geolocation denied — show error, don't hardcode a location
+          setLoading(false);
         }
       );
     }

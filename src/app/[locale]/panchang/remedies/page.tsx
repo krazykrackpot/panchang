@@ -79,6 +79,7 @@ export default function RemediesPage() {
             }
           } catch (err) {
             console.error('[remedies] IP geolocation fallback failed:', err);
+            setLoading(false);
           }
         },
         { timeout: 5000 }

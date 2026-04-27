@@ -78,6 +78,7 @@ export default function PlanetsPage() {
             }
           } catch (err) {
             console.error('[planets] IP geolocation fallback failed:', err);
+            setLoading(false);
           }
         },
         { timeout: 5000 }

@@ -164,6 +164,7 @@ export default function NivasShoolPage() {
             }
           } catch (err) {
             console.error('[nivas] IP geolocation fallback failed:', err);
+            setLoading(false);
           }
         },
         { timeout: 5000 }

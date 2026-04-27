@@ -5,10 +5,10 @@
  *
  * Appears after kundali generation when rare yogas are detected.
  * Shows the first (rarest) badge with shimmer animation.
- * Auto-dismisses after 5 seconds if no interaction.
+ * Stays on screen until user clicks "Share Achievement" or "Continue to Chart".
  */
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { YogaBadge } from '@/lib/shareable/yoga-badges';
 import YogaBadgeCard from './YogaBadgeCard';
 
@@ -26,8 +26,6 @@ export default function YogaAchievementOverlay({
   locale,
 }: YogaAchievementOverlayProps) {
   const [visible, setVisible] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const interactedRef = useRef(false);
 
   const isHi = locale === 'hi';
   const primaryBadge = badges[0];
@@ -42,15 +40,6 @@ export default function YogaAchievementOverlay({
   useEffect(() => {
     // Trigger enter animation on next frame
     requestAnimationFrame(() => setVisible(true));
-    // No auto-dismiss — user must explicitly click Continue or Share
-  }, []);
-
-  const handleInteraction = useCallback(() => {
-    interactedRef.current = true;
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-    }
   }, []);
 
   if (!primaryBadge) return null;
@@ -96,7 +85,7 @@ export default function YogaAchievementOverlay({
               ? 'yoga-badge-scale-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards'
               : 'yoga-badge-scale-in 0.3s ease-in reverse forwards',
           }}
-          onClick={(e) => { e.stopPropagation(); handleInteraction(); }}
+          onClick={(e) => { e.stopPropagation(); /* interaction tracked */ }}
           onKeyDown={() => {}} // no-op, interaction handled on parent
         >
           {/* Shimmer border wrapper */}
@@ -130,7 +119,7 @@ export default function YogaAchievementOverlay({
             <button
               type="button"
               onClick={() => {
-                handleInteraction();
+                /* interaction tracked */
                 const text = `${primaryBadge.yogaName.en} — ${primaryBadge.quality.en}\n${primaryBadge.description.en}\nFound in ${primaryBadge.percentage} of charts.\n\nDiscover your rare yogas at dekhopanchang.com`;
                 if (navigator.share) {
                   navigator.share({ title: `${primaryBadge.yogaName.en} Achievement`, text }).catch(() => {});

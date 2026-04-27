@@ -563,6 +563,19 @@ export default function AuspiciousTimingsPage() {
           </div>
 
           <GoldDivider />
+
+          {/* Cross-link to inauspicious timings */}
+          <div className="mt-8">
+            <Link href="/panchang/inauspicious"
+              className="block rounded-2xl bg-gradient-to-br from-red-500/5 to-[#0a0e27] border border-red-500/20 p-6 text-center hover:border-red-500/40 transition-all">
+              <div className="text-red-400 text-lg font-bold mb-1" style={headingFont}>
+                {isDevanagari ? 'अशुभ काल देखें →' : 'View Inauspicious Timings →'}
+              </div>
+              <div className="text-text-secondary text-sm">
+                {isDevanagari ? 'राहु काल, यमगण्ड, वर्ज्यम, भद्रा, गण्ड मूल' : 'Rahu Kaal, Yamaganda, Varjyam, Bhadra, Ganda Moola'}
+              </div>
+            </Link>
+          </div>
         </div>
       )}
     </div>

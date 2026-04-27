@@ -1368,7 +1368,7 @@ export default function PanchangClient() {
                 svg: <svg viewBox="0 0 64 64" className="w-14 h-14"><defs><linearGradient id="tc9" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#7dd3fc"/><stop offset="100%" stopColor="#38bdf8"/></linearGradient></defs><circle cx="20" cy="20" r="2" fill="url(#tc9)"/><circle cx="44" cy="16" r="1.5" fill="url(#tc9)" opacity="0.7"/><circle cx="32" cy="32" r="2.5" fill="url(#tc9)"/><circle cx="18" cy="44" r="1.5" fill="url(#tc9)" opacity="0.6"/><circle cx="46" cy="42" r="2" fill="url(#tc9)" opacity="0.8"/><line x1="20" y1="20" x2="32" y2="32" stroke="url(#tc9)" strokeWidth="0.5" opacity="0.3"/><line x1="44" y1="16" x2="32" y2="32" stroke="url(#tc9)" strokeWidth="0.5" opacity="0.3"/><line x1="32" y1="32" x2="46" y2="42" stroke="url(#tc9)" strokeWidth="0.5" opacity="0.3"/><line x1="32" y1="32" x2="18" y2="44" stroke="url(#tc9)" strokeWidth="0.5" opacity="0.3"/></svg>,
               },
               {
-                href: '/panchang/nakshatra',
+                href: '/panchang/activity-guide',
                 title: isDevanagari ? 'नक्षत्र मार्गदर्शन' : 'Activity Guide',
                 subtitle: isDevanagari ? 'नक्षत्र गतिविधि' : 'Nakshatra Activities',
                 preview: `${tl(panchang.nakshatra?.name) || '—'} — ${isDevanagari ? 'अनुकूल कार्य' : 'Favorable actions'}`,

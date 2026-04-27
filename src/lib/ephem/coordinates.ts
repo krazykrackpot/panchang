@@ -243,3 +243,96 @@ export function computeCombust(
 
   return angularDistance < orb;
 }
+
+// ---------------------------------------------------------------------------
+// Greenwich Mean Sidereal Time (GMST)
+// ---------------------------------------------------------------------------
+
+/**
+ * Compute Greenwich Mean Sidereal Time for a given Julian Day.
+ * Formula from Meeus, Astronomical Algorithms, Ch. 12.
+ *
+ * @param jd - Julian Day number
+ * @returns GMST in degrees (0-360)
+ */
+export function computeGMST(jd: number): number {
+  const T = (jd - 2451545.0) / 36525.0;
+  let gmst =
+    280.46061837 +
+    360.98564736629 * (jd - 2451545.0) +
+    0.000387933 * T * T -
+    (T * T * T) / 38710000.0;
+  return normalizeDeg(gmst);
+}
+
+// ---------------------------------------------------------------------------
+// Local Sidereal Time (LST)
+// ---------------------------------------------------------------------------
+
+/**
+ * Compute Local Sidereal Time.
+ *
+ * @param jd  - Julian Day number
+ * @param lng - Observer longitude in degrees (east positive)
+ * @returns LST in degrees (0-360)
+ */
+export function computeLST(jd: number, lng: number): number {
+  return normalizeDeg(computeGMST(jd) + lng);
+}
+
+// ---------------------------------------------------------------------------
+// Equatorial → Horizontal (Alt/Az)
+// ---------------------------------------------------------------------------
+
+/**
+ * Convert equatorial coordinates (RA/Dec) to horizontal coordinates (Alt/Az).
+ *
+ * @param ra  - Right Ascension in DEGREES (0-360)
+ * @param dec - Declination in DEGREES (-90 to +90)
+ * @param lat - Observer latitude in DEGREES
+ * @param lng - Observer longitude in DEGREES
+ * @param jd  - Julian Day (for computing Local Sidereal Time)
+ * @returns { altitude, azimuth } in DEGREES
+ *   altitude: -90 to +90 (negative = below horizon)
+ *   azimuth: 0-360 (0=North, 90=East, 180=South, 270=West)
+ */
+export function equatorialToHorizontal(
+  ra: number,
+  dec: number,
+  lat: number,
+  lng: number,
+  jd: number,
+): { altitude: number; azimuth: number } {
+  const lst = computeLST(jd, lng);
+  const ha = toRad(lst - ra); // Hour Angle in radians
+
+  const decR = toRad(dec);
+  const latR = toRad(lat);
+
+  // Altitude
+  const sinAlt =
+    Math.sin(decR) * Math.sin(latR) +
+    Math.cos(decR) * Math.cos(latR) * Math.cos(ha);
+  const altitude = toDeg(Math.asin(sinAlt));
+
+  // Azimuth
+  const altR = Math.asin(sinAlt);
+  const cosAltTimescosLat = Math.cos(altR) * Math.cos(latR);
+
+  // Guard against division by zero at the poles or zenith
+  let azimuth: number;
+  if (Math.abs(cosAltTimescosLat) < 1e-10) {
+    azimuth = 0;
+  } else {
+    const cosAz = (Math.sin(decR) - sinAlt * Math.sin(latR)) / cosAltTimescosLat;
+    // Clamp for numerical safety (floating point can push slightly outside [-1, 1])
+    const clampedCosAz = Math.max(-1, Math.min(1, cosAz));
+    azimuth = toDeg(Math.acos(clampedCosAz));
+    // If HA > 0 (west of meridian), azimuth is in the western half (> 180)
+    if (Math.sin(ha) > 0) {
+      azimuth = 360 - azimuth;
+    }
+  }
+
+  return { altitude, azimuth: normalizeDeg(azimuth) };
+}

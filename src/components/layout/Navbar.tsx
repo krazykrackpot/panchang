@@ -159,12 +159,14 @@ export default function Navbar() {
         { href: '/dinacharya', label: locale === 'hi' ? 'दिनचर्या' : 'Dinacharya' },
         { href: '/sarvatobhadra', label: locale === 'sa' ? 'सर्वतोभद्रचक्रम्' : locale === 'hi' ? 'सर्वतोभद्र चक्र' : 'Sarvatobhadra' },
         { href: '/cosmic-blueprint', label: t('cosmicBlueprint') },
+        { href: '/lunar-calendar', label: t('lunarCalendar') },
         { href: '/sky', label: t('liveSky') },
       ],
     },
     {
       label: t('learn'),
       children: [
+        { href: '/glossary', label: locale === 'hi' ? 'शब्दावली' : 'Glossary' },
         { href: '/learn', label: locale === 'hi' ? 'पूर्ण पाठ्यक्रम' : 'Full Curriculum' },
         { href: '/learn/foundations', label: locale === 'hi' ? '0 · पूर्व-आधार' : '0 · Pre-Foundation' },
         { href: '/learn/grahas', label: locale === 'hi' ? '1 · आकाश' : '1 · The Sky' },
@@ -225,7 +227,7 @@ export default function Navbar() {
                       {locale === 'sa' ? 'मम पटलम्' : msg('dashboard', locale)}
                     </Link>
                     <Link
-                      href="/family"
+                      href="/dashboard/family"
                       className={`text-gold-light hover:text-gold-primary transition-all duration-200 text-sm font-semibold whitespace-nowrap ${hydrated && user ? 'opacity-100' : 'opacity-0 pointer-events-none w-0 overflow-hidden'}`}
                     >
                       {locale === 'hi' ? 'परिवार' : locale === 'sa' ? 'परिवारः' : 'Family'}
@@ -286,7 +288,7 @@ export default function Navbar() {
               )}
               {hydrated && user && (
                 <Link
-                  href="/family"
+                  href="/dashboard/family"
                   className="text-gold-light hover:text-gold-primary transition-colors px-3 py-2 text-sm font-semibold"
                   onClick={() => setIsOpen(false)}
                 >

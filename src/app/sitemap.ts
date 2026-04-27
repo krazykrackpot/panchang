@@ -166,9 +166,10 @@ const routes = [
   '/sarvatobhadra',
   '/dinacharya',
   '/cosmic-blueprint',
+  '/lunar-calendar',
   '/sky',
   '/matching/report',
-  '/family',
+  '/dashboard/family',
   // Date listing pages
   '/dates/ekadashi',
   '/dates/purnima',

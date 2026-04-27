@@ -8,114 +8,82 @@ import { NakshatraIconById } from '@/components/icons/NakshatraIcons';
 // Inline SVG symbol components (gold gradient palette)
 // ---------------------------------------------------------------------------
 
-function YogaSymbol({ number, size = 128 }: { number: number; size?: number }) {
-  const isAuspicious = [1, 2, 3, 5, 6, 7, 10, 11, 13, 14, 16, 17, 20, 21, 24, 25, 27].includes(number);
-  const primary = isAuspicious ? '#f0d48a' : '#d4a853';
-  const secondary = isAuspicious ? '#d4a853' : '#8a6d2b';
-
+function YogaSymbol({ size = 128 }: { number: number; size?: number }) {
+  // Custom dramatic Sri Yantra / sacred geometry — interlocking triangles with lotus petals
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
-        <linearGradient id={`yg-${number}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={primary} />
-          <stop offset="100%" stopColor={secondary} />
+        <linearGradient id="yg-main" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#f0d48a" />
+          <stop offset="100%" stopColor="#d4a853" />
         </linearGradient>
-        <radialGradient id={`yg-glow-${number}`} cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor={primary} stopOpacity="0.4" />
-          <stop offset="60%" stopColor={secondary} stopOpacity="0.15" />
-          <stop offset="100%" stopColor={secondary} stopOpacity="0" />
+        <radialGradient id="yg-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#f0d48a" stopOpacity="0.35" />
+          <stop offset="60%" stopColor="#d4a853" stopOpacity="0.1" />
+          <stop offset="100%" stopColor="#8a6d2b" stopOpacity="0" />
         </radialGradient>
       </defs>
-      {/* Strong background glow */}
-      <circle cx="32" cy="32" r="31" fill={`url(#yg-glow-${number})`} />
-      {/* Filled ring band between outer and middle */}
-      <path d="M32 2 A30 30 0 1 1 31.99 2 Z" fill={primary} opacity="0.08" />
-      {/* Outer ring — very thick */}
-      <circle cx="32" cy="32" r="30" stroke={primary} strokeWidth="3.5" opacity="0.85" />
-      {/* Middle ring — thick */}
-      <circle cx="32" cy="32" r="22" stroke={primary} strokeWidth="3" opacity="0.75" />
-      {/* Inner ring — thick */}
-      <circle cx="32" cy="32" r="14" stroke={primary} strokeWidth="3" opacity="0.9" />
-      {/* Bold radiating spokes */}
-      {Array.from({ length: 12 }, (_, i) => {
-        const a = (Math.PI * 2 * i) / 12;
-        return (
-          <line
-            key={i}
-            x1={32 + 14 * Math.cos(a)}
-            y1={32 + 14 * Math.sin(a)}
-            x2={32 + 30 * Math.cos(a)}
-            y2={32 + 30 * Math.sin(a)}
-            stroke={primary}
-            strokeWidth={i % 3 === 0 ? 4 : 2.5}
-            strokeLinecap="round"
-            opacity={i % 3 === 0 ? 0.9 : 0.6}
-          />
-        );
-      })}
-      {/* Large filled petals at cardinals */}
-      {[0, 90, 180, 270].map((deg) => (
-        <ellipse
-          key={deg}
-          cx="32"
-          cy="7"
-          rx="6"
-          ry="11"
-          fill={primary}
-          opacity="0.6"
-          transform={`rotate(${deg} 32 32)`}
-        />
+      {/* Background glow */}
+      <circle cx="32" cy="32" r="31" fill="url(#yg-glow)" />
+      {/* Outer circle — thick */}
+      <circle cx="32" cy="32" r="30" stroke="#f0d48a" strokeWidth="2.5" opacity="0.7" />
+      {/* 8 lotus petals — large, bold fills */}
+      {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
+        <ellipse key={deg} cx="32" cy="6" rx="7" ry="13" fill="#f0d48a" opacity="0.5" stroke="#f0d48a" strokeWidth="1.5" transform={`rotate(${deg} 32 32)`} />
       ))}
-      {/* Large solid center */}
-      <circle cx="32" cy="32" r="9" fill={`url(#yg-${number})`} opacity="0.85" />
-      <circle cx="32" cy="32" r="5" fill={primary} opacity="1" />
+      {/* Upward triangle — large, bold */}
+      <polygon points="32,6 54,48 10,48" stroke="#f0d48a" strokeWidth="3" fill="#f0d48a" fillOpacity="0.15" strokeLinejoin="round" />
+      {/* Downward triangle — large, bold */}
+      <polygon points="32,58 10,16 54,16" stroke="#d4a853" strokeWidth="3" fill="#d4a853" fillOpacity="0.15" strokeLinejoin="round" />
+      {/* Inner upward triangle */}
+      <polygon points="32,18 44,42 20,42" stroke="#f0d48a" strokeWidth="2" fill="#f0d48a" fillOpacity="0.2" strokeLinejoin="round" />
+      {/* Inner downward triangle */}
+      <polygon points="32,46 20,22 44,22" stroke="#d4a853" strokeWidth="2" fill="#d4a853" fillOpacity="0.2" strokeLinejoin="round" />
+      {/* Central bindu — bright solid */}
+      <circle cx="32" cy="32" r="5" fill="url(#yg-main)" opacity="0.9" />
+      <circle cx="32" cy="32" r="3" fill="#f0d48a" opacity="1" />
     </svg>
   );
 }
 
-function EnergySymbol({ score, size = 128 }: { score: number; size?: number }) {
-  const intensity = Math.max(0.6, score / 100);
-  const rays = score >= 60 ? 16 : score >= 40 ? 12 : 10;
-
+function EnergySymbol({ size = 128 }: { score: number; size?: number }) {
+  // Custom dramatic sun with corona — solar eclipse style
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
-        <radialGradient id={`eg-glow-${score}`} cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#f0d48a" stopOpacity={intensity * 0.5} />
-          <stop offset="50%" stopColor="#d4a853" stopOpacity={intensity * 0.2} />
+        <radialGradient id="eg-corona" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#f0d48a" stopOpacity="0.5" />
+          <stop offset="40%" stopColor="#d4a853" stopOpacity="0.25" />
           <stop offset="100%" stopColor="#8a6d2b" stopOpacity="0" />
         </radialGradient>
-        <radialGradient id={`eg-core-${score}`} cx="50%" cy="50%" r="50%">
+        <linearGradient id="eg-sun" x1="30%" y1="0%" x2="70%" y2="100%">
           <stop offset="0%" stopColor="#f0d48a" />
           <stop offset="100%" stopColor="#d4a853" />
-        </radialGradient>
+        </linearGradient>
       </defs>
-      {/* Strong background glow */}
-      <circle cx="32" cy="32" r="31" fill={`url(#eg-glow-${score})`} />
-      {/* Very thick bold rays */}
-      {Array.from({ length: rays }, (_, i) => {
-        const a = (Math.PI * 2 * i) / rays;
-        const isLong = i % 2 === 0;
-        const outerR = isLong ? 31 : 26;
+      {/* Corona glow — fills entire space */}
+      <circle cx="32" cy="32" r="31" fill="url(#eg-corona)" />
+      {/* 12 dramatic corona flares — thick, tapering outward */}
+      {Array.from({ length: 12 }, (_, i) => {
+        const a = (Math.PI * 2 * i) / 12;
+        const isCardinal = i % 3 === 0;
         return (
-          <line
+          <path
             key={i}
-            x1={32 + 15 * Math.cos(a)}
-            y1={32 + 15 * Math.sin(a)}
-            x2={32 + outerR * Math.cos(a)}
-            y2={32 + outerR * Math.sin(a)}
-            stroke="#f0d48a"
-            strokeWidth={isLong ? 4.5 : 3}
-            strokeLinecap="round"
-            opacity={intensity * 0.9}
+            d={`M${32 + 16 * Math.cos(a - 0.12)},${32 + 16 * Math.sin(a - 0.12)} L${32 + (isCardinal ? 31 : 27) * Math.cos(a)},${32 + (isCardinal ? 31 : 27) * Math.sin(a)} L${32 + 16 * Math.cos(a + 0.12)},${32 + 16 * Math.sin(a + 0.12)} Z`}
+            fill="#f0d48a"
+            opacity={isCardinal ? 0.85 : 0.6}
           />
         );
       })}
-      {/* Large solid center disc — very visible */}
-      <circle cx="32" cy="32" r="14" fill={`url(#eg-core-${score})`} opacity={intensity * 0.85} />
-      <circle cx="32" cy="32" r="14" stroke="#f0d48a" strokeWidth="3" opacity={intensity * 0.7} />
-      {/* Bright solid core */}
-      <circle cx="32" cy="32" r="8" fill="#f0d48a" opacity="1" />
+      {/* Sun disc — large, solid, bold */}
+      <circle cx="32" cy="32" r="15" fill="url(#eg-sun)" opacity="0.9" />
+      <circle cx="32" cy="32" r="15" stroke="#f0d48a" strokeWidth="2.5" opacity="0.8" />
+      {/* Face detail — inner circle pattern */}
+      <circle cx="32" cy="32" r="10" stroke="#f0d48a" strokeWidth="1.5" opacity="0.4" />
+      {/* Bright core */}
+      <circle cx="32" cy="32" r="6" fill="#f0d48a" opacity="1" />
+      <circle cx="32" cy="32" r="3" fill="#fff" opacity="0.3" />
     </svg>
   );
 }
@@ -124,6 +92,7 @@ function DoshaSymbol({ dosha, size = 128 }: { dosha: string; size?: number }) {
   const d = dosha.toLowerCase();
 
   if (d === 'vata') {
+    // Custom: Aeolus spiral — bold double spiral with flowing ribbons
     return (
       <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
         <defs>
@@ -137,21 +106,24 @@ function DoshaSymbol({ dosha, size = 128 }: { dosha: string; size?: number }) {
           </radialGradient>
         </defs>
         <circle cx="32" cy="32" r="31" fill="url(#dg-vata-glow)" />
-        {/* Very thick primary wind curve */}
-        <path d="M6 42 C16 24, 32 20, 42 30 C52 40, 58 22, 58 12" stroke="url(#dg-vata)" strokeWidth="5" strokeLinecap="round" fill="none" opacity="0.9" />
-        {/* Thick secondary */}
-        <path d="M4 54 C14 38, 30 34, 40 42 C50 50, 58 34, 60 22" stroke="url(#dg-vata)" strokeWidth="4" strokeLinecap="round" fill="none" opacity="0.7" />
-        {/* Third curve */}
-        <path d="M12 34 C20 20, 36 16, 46 24 C54 32, 56 16, 52 8" stroke="url(#dg-vata)" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.55" />
-        {/* Bold spiral endpoints */}
-        <circle cx="58" cy="12" r="5" fill="#f0d48a" opacity="0.7" />
-        <circle cx="52" cy="8" r="4" fill="#f0d48a" opacity="0.5" />
-        <circle cx="60" cy="22" r="3.5" fill="#d4a853" opacity="0.6" />
+        {/* Outer boundary ring */}
+        <circle cx="32" cy="32" r="30" stroke="#f0d48a" strokeWidth="2" opacity="0.5" />
+        {/* Primary spiral — thick, sweeping across entire card */}
+        <path d="M8 52 C8 36, 18 20, 32 20 C46 20, 52 32, 44 40 C36 48, 24 44, 24 36 C24 28, 32 26, 36 30" stroke="url(#dg-vata)" strokeWidth="4.5" strokeLinecap="round" fill="none" opacity="0.9" />
+        {/* Secondary spiral — offset, bold */}
+        <path d="M56 12 C56 24, 48 38, 36 42 C24 46, 14 38, 20 28 C26 18, 38 16, 42 24" stroke="#d4a853" strokeWidth="3.5" strokeLinecap="round" fill="none" opacity="0.7" />
+        {/* Wind streaks */}
+        <path d="M4 16 C12 14, 20 10, 30 12" stroke="#f0d48a" strokeWidth="2.5" strokeLinecap="round" opacity="0.5" />
+        <path d="M50 56 C42 54, 36 58, 28 56" stroke="#f0d48a" strokeWidth="2" strokeLinecap="round" opacity="0.4" />
+        {/* Spiral centers — solid filled */}
+        <circle cx="36" cy="30" r="4" fill="#f0d48a" opacity="0.85" />
+        <circle cx="42" cy="24" r="3" fill="#d4a853" opacity="0.7" />
       </svg>
     );
   }
 
   if (d === 'pitta') {
+    // Custom: Sacred flame — upward triangle of fire with inner eye
     return (
       <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
         <defs>
@@ -166,18 +138,22 @@ function DoshaSymbol({ dosha, size = 128 }: { dosha: string; size?: number }) {
           </radialGradient>
         </defs>
         <circle cx="32" cy="36" r="31" fill="url(#dg-pitta-glow)" />
-        {/* Massive flame — fills viewBox */}
-        <path d="M32 2 C24 18, 10 28, 10 42 C10 54, 20 62, 32 62 C44 62, 54 54, 54 42 C54 28, 40 18, 32 2Z" fill="url(#dg-pitta)" fillOpacity="0.7" stroke="#f0d48a" strokeWidth="3" />
-        {/* Inner flame — bold */}
-        <path d="M32 14 C28 26, 18 34, 18 44 C18 52, 24 58, 32 58 C40 58, 46 52, 46 44 C46 34, 36 26, 32 14Z" fill="#f0d48a" fillOpacity="0.5" stroke="#f0d48a" strokeWidth="2" opacity="0.9" />
-        {/* Bright core */}
-        <ellipse cx="32" cy="46" rx="9" ry="11" fill="#f0d48a" opacity="0.7" />
-        <ellipse cx="32" cy="48" rx="5" ry="6" fill="#f0d48a" opacity="1" />
+        {/* Outer flame silhouette — fills most of viewBox */}
+        <path d="M32 2 C22 16, 6 26, 6 44 C6 56, 18 62, 32 62 C46 62, 58 56, 58 44 C58 26, 42 16, 32 2Z" fill="url(#dg-pitta)" fillOpacity="0.65" stroke="#f0d48a" strokeWidth="3" strokeLinejoin="round" />
+        {/* Inner flame */}
+        <path d="M32 16 C26 26, 16 34, 16 46 C16 54, 24 58, 32 58 C40 58, 48 54, 48 46 C48 34, 38 26, 32 16Z" fill="#f0d48a" fillOpacity="0.45" stroke="#f0d48a" strokeWidth="2" />
+        {/* Third flame */}
+        <path d="M32 28 C28 34, 22 38, 22 46 C22 52, 26 54, 32 54 C38 54, 42 52, 42 46 C42 38, 36 34, 32 28Z" fill="#f0d48a" fillOpacity="0.6" />
+        {/* Inner eye — almond shape */}
+        <ellipse cx="32" cy="44" rx="8" ry="5" fill="none" stroke="#f0d48a" strokeWidth="2" opacity="0.8" />
+        <circle cx="32" cy="44" r="3" fill="#f0d48a" opacity="1" />
+        {/* Tip spark */}
+        <circle cx="32" cy="6" r="2.5" fill="#f0d48a" opacity="0.8" />
       </svg>
     );
   }
 
-  // Kapha
+  // Kapha — Custom: Lotus on water — layered petals above wave lines
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
@@ -191,21 +167,30 @@ function DoshaSymbol({ dosha, size = 128 }: { dosha: string; size?: number }) {
         </radialGradient>
       </defs>
       <circle cx="32" cy="30" r="31" fill="url(#dg-kapha-glow)" />
-      {/* Large solid earth circle */}
-      <circle cx="32" cy="24" r="18" stroke="#f0d48a" strokeWidth="3.5" fill="#d4a853" fillOpacity="0.5" />
-      <circle cx="32" cy="24" r="11" stroke="#f0d48a" strokeWidth="2.5" fill="#f0d48a" fillOpacity="0.35" />
-      <circle cx="32" cy="24" r="5" fill="#f0d48a" opacity="0.7" />
-      {/* Very thick water waves */}
-      <path d="M4 48 C12 40, 22 54, 30 46 C38 38, 48 54, 58 46" stroke="url(#dg-kapha)" strokeWidth="4.5" strokeLinecap="round" fill="none" opacity="0.85" />
-      <path d="M6 57 C14 50, 24 60, 32 54 C40 48, 50 60, 58 54" stroke="url(#dg-kapha)" strokeWidth="3.5" strokeLinecap="round" fill="none" opacity="0.65" />
+      {/* Lotus petals — 5 large, overlapping */}
+      <ellipse cx="32" cy="16" rx="6" ry="16" fill="#f0d48a" opacity="0.55" stroke="#f0d48a" strokeWidth="1.5" transform="rotate(0 32 30)" />
+      <ellipse cx="32" cy="16" rx="6" ry="16" fill="#f0d48a" opacity="0.45" stroke="#f0d48a" strokeWidth="1.5" transform="rotate(30 32 30)" />
+      <ellipse cx="32" cy="16" rx="6" ry="16" fill="#f0d48a" opacity="0.45" stroke="#f0d48a" strokeWidth="1.5" transform="rotate(-30 32 30)" />
+      <ellipse cx="32" cy="16" rx="6" ry="16" fill="#d4a853" opacity="0.35" stroke="#d4a853" strokeWidth="1.5" transform="rotate(60 32 30)" />
+      <ellipse cx="32" cy="16" rx="6" ry="16" fill="#d4a853" opacity="0.35" stroke="#d4a853" strokeWidth="1.5" transform="rotate(-60 32 30)" />
+      {/* Lotus center */}
+      <circle cx="32" cy="30" r="6" fill="url(#dg-kapha)" opacity="0.8" />
+      <circle cx="32" cy="30" r="3" fill="#f0d48a" opacity="1" />
+      {/* Bold water waves below lotus */}
+      <path d="M2 50 C10 44, 20 56, 30 48 C40 40, 50 56, 62 48" stroke="url(#dg-kapha)" strokeWidth="4" strokeLinecap="round" fill="none" opacity="0.85" />
+      <path d="M4 58 C12 52, 22 62, 32 56 C42 50, 52 62, 60 56" stroke="url(#dg-kapha)" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.6" />
     </svg>
   );
 }
 
 function TithiSymbol({ number, size = 128 }: { number: number; size?: number }) {
+  // Custom: Dramatic crescent moon with stars — always bold regardless of phase
   const isShukla = number <= 15;
-  const phase = isShukla ? number : 30 - number;
-  const illumination = Math.max(0.3, phase / 15); // Never fully invisible
+
+  // Bold crescent with scattered stars — always dramatic regardless of phase
+  // Crescent faces right for Shukla (waxing), left for Krishna (waning)
+  const cx = isShukla ? 26 : 38;
+  const shadowCx = isShukla ? 42 : 22;
 
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
@@ -215,39 +200,31 @@ function TithiSymbol({ number, size = 128 }: { number: number; size?: number }) 
           <stop offset="100%" stopColor="#d4a853" />
         </linearGradient>
         <radialGradient id={`tg-glow-${number}`} cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#f0d48a" stopOpacity={0.25 + illumination * 0.25} />
-          <stop offset="50%" stopColor="#d4a853" stopOpacity={0.1 + illumination * 0.1} />
+          <stop offset="0%" stopColor="#f0d48a" stopOpacity="0.35" />
+          <stop offset="60%" stopColor="#d4a853" stopOpacity="0.1" />
           <stop offset="100%" stopColor="#8a6d2b" stopOpacity="0" />
         </radialGradient>
         <mask id={`tm-${number}`}>
           <rect width="64" height="64" fill="white" />
-          <ellipse
-            cx={isShukla ? 32 - (1 - illumination) * 34 : 32 + (1 - illumination) * 34}
-            cy="32"
-            rx={Math.max(1, (1 - illumination) * 28)}
-            ry="28"
-            fill="black"
-          />
+          <circle cx={shadowCx} cy="32" r="20" fill="black" />
         </mask>
       </defs>
-      {/* Strong background glow */}
+      {/* Background glow */}
       <circle cx="32" cy="32" r="31" fill={`url(#tg-glow-${number})`} />
-      {/* Very thick outer glow ring */}
-      <circle cx="32" cy="32" r="29" stroke="#f0d48a" strokeWidth="3.5" opacity={0.4 + illumination * 0.5} />
-      {/* Large bold moon disc — r=26, high opacity */}
-      <circle
-        cx="32"
-        cy="32"
-        r="26"
-        fill={`url(#tg-${number})`}
-        opacity={0.7 + illumination * 0.3}
-        mask={illumination < 0.95 ? `url(#tm-${number})` : undefined}
-      />
-      {/* Bold surface detail dots */}
-      <circle cx="24" cy="24" r="5" fill="#f0d48a" opacity={illumination * 0.35} mask={illumination < 0.95 ? `url(#tm-${number})` : undefined} />
-      <circle cx="38" cy="34" r="4" fill="#f0d48a" opacity={illumination * 0.25} mask={illumination < 0.95 ? `url(#tm-${number})` : undefined} />
-      <circle cx="28" cy="40" r="3.5" fill="#f0d48a" opacity={illumination * 0.3} mask={illumination < 0.95 ? `url(#tm-${number})` : undefined} />
-      <circle cx="36" cy="22" r="3" fill="#f0d48a" opacity={illumination * 0.2} mask={illumination < 0.95 ? `url(#tm-${number})` : undefined} />
+      {/* Outer halo ring */}
+      <circle cx={cx} cy="32" r="26" stroke="#f0d48a" strokeWidth="2.5" opacity="0.4" />
+      {/* Bold crescent moon — large, solid fill */}
+      <circle cx={cx} cy="32" r="24" fill={`url(#tg-${number})`} opacity="0.85" mask={`url(#tm-${number})`} />
+      <circle cx={cx} cy="32" r="24" stroke="#f0d48a" strokeWidth="3" opacity="0.7" mask={`url(#tm-${number})`} />
+      {/* Surface craters on crescent */}
+      <circle cx={isShukla ? 18 : 44} cy="28" r="3.5" fill="#f0d48a" opacity="0.3" mask={`url(#tm-${number})`} />
+      <circle cx={isShukla ? 22 : 40} cy="38" r="2.5" fill="#f0d48a" opacity="0.25" mask={`url(#tm-${number})`} />
+      {/* Scattered stars — bold, filled */}
+      <polygon points={`${isShukla ? 50 : 14},12 ${isShukla ? 51.5 : 15.5},15.5 ${isShukla ? 55 : 18},16 ${isShukla ? 52 : 16},18.5 ${isShukla ? 53 : 17},22 ${isShukla ? 50 : 14},20 ${isShukla ? 47 : 11},22 ${isShukla ? 48 : 12},18.5 ${isShukla ? 45 : 10},16 ${isShukla ? 48.5 : 12.5},15.5`} fill="#f0d48a" opacity="0.9" />
+      <circle cx={isShukla ? 54 : 10} cy="28" r="2" fill="#f0d48a" opacity="0.7" />
+      <circle cx={isShukla ? 48 : 16} cy="48" r="1.5" fill="#f0d48a" opacity="0.6" />
+      <circle cx={isShukla ? 56 : 8} cy="42" r="1.8" fill="#d4a853" opacity="0.5" />
+      <circle cx={isShukla ? 44 : 20} cy="8" r="1.2" fill="#f0d48a" opacity="0.5" />
     </svg>
   );
 }

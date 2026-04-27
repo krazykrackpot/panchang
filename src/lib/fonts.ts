@@ -1,10 +1,17 @@
-import { Cormorant_Garamond, Inter, Noto_Sans_Devanagari, Noto_Sans_Tamil, Noto_Sans_Telugu, Noto_Sans_Bengali, Noto_Sans_Kannada, Noto_Sans_Gujarati } from 'next/font/google';
+import { Cinzel, Cormorant_Garamond, Inter, Noto_Sans_Devanagari, Noto_Sans_Tamil, Noto_Sans_Telugu, Noto_Sans_Bengali, Noto_Sans_Kannada, Noto_Sans_Gujarati } from 'next/font/google';
 
 export const inter = Inter({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
   variable: '--font-inter',
+});
+
+export const cinzel = Cinzel({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-cinzel',
 });
 
 export const cormorant = Cormorant_Garamond({

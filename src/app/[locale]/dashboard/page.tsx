@@ -50,6 +50,8 @@ import JournalCheckinCard from '@/components/journal/JournalCheckinCard';
 import TodaysReading from '@/components/dashboard/TodaysReading';
 import { computeDailyEnergy } from '@/lib/panchang/energy-score';
 import { usePrakritiStore } from '@/stores/prakriti-store';
+import AtAGlance from '@/components/dashboard/AtAGlance';
+import DashboardTabs from '@/components/dashboard/DashboardTabs';
 
 interface SavedChart {
   id: string;
@@ -119,6 +121,11 @@ const LABELS = {
     todayVisitLearn: 'Visit Learn to keep your streak!',
     goToLearn: 'Go to Learn',
     startStreak: 'Start a learning streak today!',
+    tabToday: 'Today',
+    tabTransits: 'Dashas & Transits',
+    tabCalendar: 'Calendar',
+    tabChart: 'Chart & Family',
+    tabWellness: 'Wellness',
   },
   hi: {
     title: 'मेरा डैशबोर्ड',
@@ -174,6 +181,11 @@ const LABELS = {
     todayVisitLearn: 'अपनी लय बनाए रखने के लिए शिक्षा पर जाएँ!',
     goToLearn: 'शिक्षा पर जाएँ',
     startStreak: 'आज शिक्षा लय शुरू करें!',
+    tabToday: 'आज',
+    tabTransits: 'दशा और गोचर',
+    tabCalendar: 'कैलेंडर',
+    tabChart: 'कुण्डली और परिवार',
+    tabWellness: 'कल्याण',
   },
   sa: {
     title: 'मम पटलम्',
@@ -229,6 +241,11 @@ const LABELS = {
     todayVisitLearn: 'स्वलयं रक्षितुं शिक्षां गच्छतु!',
     goToLearn: 'शिक्षां गच्छतु',
     startStreak: 'अद्य शिक्षालयं आरभतु!',
+    tabToday: 'अद्य',
+    tabTransits: 'दशा-गोचरः',
+    tabCalendar: 'पञ्चाङ्गम्',
+    tabChart: 'कुण्डली-परिवारः',
+    tabWellness: 'कल्याणम्',
   },
   ta: {
     title: 'எனது டாஷ்போர்டு',
@@ -284,6 +301,11 @@ const LABELS = {
     todayVisitLearn: 'உங்கள் தொடரைத் தொடர கற்றலுக்குச் செல்லுங்கள்!',
     goToLearn: 'கற்றலுக்குச் செல்',
     startStreak: 'இன்று கற்றல் தொடரைத் தொடங்குங்கள்!',
+    tabToday: 'இன்று',
+    tabTransits: 'தசா & பெயர்ச்சி',
+    tabCalendar: 'நாட்காட்டி',
+    tabChart: 'ஜாதகம் & குடும்பம்',
+    tabWellness: 'நலம்',
   },
   te: {
     title: 'నా డాష్‌బోర్డ్',
@@ -339,6 +361,11 @@ const LABELS = {
     todayVisitLearn: 'మీ స్ట్రీక్ కొనసాగించడానికి Learn కి వెళ్ళండి!',
     goToLearn: 'Learn కి వెళ్ళు',
     startStreak: 'ఈరోజు అభ్యాస స్ట్రీక్ ప్రారంభించండి!',
+    tabToday: 'ఈరోజు',
+    tabTransits: 'దశ & గోచారం',
+    tabCalendar: 'క్యాలెండర్',
+    tabChart: 'చార్ట్ & కుటుంబం',
+    tabWellness: 'ఆరోగ్యం',
   },
   bn: {
     title: 'আমার ড্যাশবোর্ড',
@@ -394,6 +421,11 @@ const LABELS = {
     todayVisitLearn: 'আপনার ধারা বজায় রাখতে শেখায় যান!',
     goToLearn: 'শেখায় যান',
     startStreak: 'আজ শেখার ধারা শুরু করুন!',
+    tabToday: 'আজ',
+    tabTransits: 'দশা & গোচর',
+    tabCalendar: 'ক্যালেন্ডার',
+    tabChart: 'চার্ট & পরিবার',
+    tabWellness: 'সুস্থতা',
   },
   kn: {
     title: 'ನನ್ನ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
@@ -449,6 +481,11 @@ const LABELS = {
     todayVisitLearn: 'ನಿಮ್ಮ ಸ್ಟ್ರೀಕ್ ಮುಂದುವರಿಸಲು Learn ಗೆ ಹೋಗಿ!',
     goToLearn: 'Learn ಗೆ ಹೋಗಿ',
     startStreak: 'ಇಂದು ಕಲಿಕೆ ಸ್ಟ್ರೀಕ್ ಪ್ರಾರಂಭಿಸಿ!',
+    tabToday: 'ಇಂದು',
+    tabTransits: 'ದಶಾ & ಗೋಚಾರ',
+    tabCalendar: 'ಕ್ಯಾಲೆಂಡರ್',
+    tabChart: 'ಚಾರ್ಟ್ & ಕುಟುಂಬ',
+    tabWellness: 'ಆರೋಗ್ಯ',
   },
   mr: {
     title: 'माझे डॅशबोर्ड',
@@ -504,6 +541,11 @@ const LABELS = {
     todayVisitLearn: 'आपली लय कायम ठेवण्यासाठी शिक्षणाला भेट द्या!',
     goToLearn: 'शिक्षणाला जा',
     startStreak: 'आज शिक्षण लय सुरू करा!',
+    tabToday: 'आज',
+    tabTransits: 'दशा & गोचर',
+    tabCalendar: 'कॅलेंडर',
+    tabChart: 'कुंडली & कुटुंब',
+    tabWellness: 'कल्याण',
   },
   gu: {
     title: 'મારું ડૅશબોર્ડ',
@@ -559,6 +601,11 @@ const LABELS = {
     todayVisitLearn: 'તમારી લય જાળવવા શીખો પર જાઓ!',
     goToLearn: 'શીખો પર જાઓ',
     startStreak: 'આજે શીખવાની લય શરૂ કરો!',
+    tabToday: 'આજે',
+    tabTransits: 'દશા & ગોચર',
+    tabCalendar: 'કૅલેન્ડર',
+    tabChart: 'ચાર્ટ & પરિવાર',
+    tabWellness: 'સુખાકારી',
   },
   mai: {
     title: 'हमर डैशबोर्ड',
@@ -614,6 +661,11 @@ const LABELS = {
     todayVisitLearn: 'अपन लय बनाए रखबाक लेल शिक्षा पर जाउ!',
     goToLearn: 'शिक्षा पर जाउ',
     startStreak: 'आइ शिक्षा लय शुरू करू!',
+    tabToday: 'आइ',
+    tabTransits: 'दशा & गोचर',
+    tabCalendar: 'कैलेंडर',
+    tabChart: 'कुंडली & परिवार',
+    tabWellness: 'कल्याण',
   },
 };
 
@@ -1101,27 +1153,678 @@ export default function DashboardPage() {
     return g?.name?.[locale] || key;
   };
 
+  // -------------------------------------------------------------------------
+  // AtAGlance data extraction
+  // -------------------------------------------------------------------------
+  // Current hora — find the hora slot whose time range includes now
+  const currentHoraData = (() => {
+    if (!panchangData?.hora) return null;
+    const horaList = panchangData.hora;
+    const nowMin = new Date().getHours() * 60 + new Date().getMinutes();
+    for (const h of horaList) {
+      const [sh, sm] = (h.startTime || '').split(':').map(Number);
+      const [eh, em] = (h.endTime || '').split(':').map(Number);
+      if (!isNaN(sh) && !isNaN(sm) && !isNaN(eh) && !isNaN(em)) {
+        const startMin = sh * 60 + sm;
+        const endMin = eh * 60 + em;
+        // Handle midnight wrap: if end < start, match if now >= start OR now < end
+        const planetLabel = tl(h.planet, locale) || '';
+        if (endMin < startMin) {
+          if (nowMin >= startMin || nowMin < endMin) {
+            return { planetName: planetLabel, endTime: h.endTime || '', activity: '' };
+          }
+        } else if (nowMin >= startMin && nowMin < endMin) {
+          return { planetName: planetLabel, endTime: h.endTime || '', activity: '' };
+        }
+      }
+    }
+    return null;
+  })();
+
+  // Next dead zone (Rahu Kaal or Yamaganda that hasn't started yet)
+  const nextDeadZoneData = (() => {
+    const nowMin = new Date().getHours() * 60 + new Date().getMinutes();
+    const zones: Array<{ name: string; startTime: string }> = [];
+    if (panchangData?.rahuKaal) {
+      const [rh, rm] = (panchangData.rahuKaal.start || '').split(':').map(Number);
+      if (!isNaN(rh) && !isNaN(rm) && rh * 60 + rm > nowMin) {
+        zones.push({ name: locale === 'hi' || locale === 'sa' ? 'राहु काल' : 'Rahu Kaal', startTime: panchangData.rahuKaal.start });
+      }
+    }
+    if (panchangData?.yamaganda) {
+      const [yh, ym] = ((panchangData.yamaganda as { start?: string })?.start || '').split(':').map(Number);
+      if (!isNaN(yh) && !isNaN(ym) && yh * 60 + ym > nowMin) {
+        zones.push({ name: locale === 'hi' || locale === 'sa' ? 'यमगण्ड' : 'Yamaganda', startTime: (panchangData.yamaganda as { start?: string })?.start || '' });
+      }
+    }
+    // Return the earliest upcoming one
+    zones.sort((a, b) => {
+      const [ah, am] = a.startTime.split(':').map(Number);
+      const [bh, bm] = b.startTime.split(':').map(Number);
+      return (ah * 60 + am) - (bh * 60 + bm);
+    });
+    return zones[0] || null;
+  })();
+
+  // Day quality for AtAGlance
+  const dayQualityLabel = ql[locale] || ql.en;
+
+  // -------------------------------------------------------------------------
+  // Tab content definitions
+  // -------------------------------------------------------------------------
+
+  // TAB 1: Today
+  const todayTabContent = (
+    <>
+      {panchangData && <DailyPanchangInsightCard panchang={panchangData} locale={locale} />}
+
+      {panchangData && (
+        <MorningBriefing
+          panchangData={panchangData}
+          personalizedDay={pd}
+          locale={locale}
+        />
+      )}
+
+      {/* Day Quality Card */}
+      <motion.div
+        {...fadeUp}
+        transition={{ delay: 0.15 }}
+        className={`mb-8 p-6 md:p-8 rounded-2xl border ${qc.border} bg-gradient-to-br ${qc.bg} backdrop-blur-sm shadow-lg ${qc.glow}`}
+      >
+        <div className="flex items-center gap-3 mb-3">
+          <Star className={`w-6 h-6 ${qc.text}`} />
+          <h3 className="text-lg font-semibold text-text-secondary">{L.todayQuality}</h3>
+        </div>
+        <p className={`text-3xl md:text-4xl font-bold ${qc.text} mb-2`} style={{ fontFamily: 'var(--font-heading)' }}>
+          {ql[locale] || ql.en}
+        </p>
+        <p className="text-text-secondary text-sm md:text-base">
+          {pd.dayQualityDescription[locale] || pd.dayQualityDescription.en}
+        </p>
+      </motion.div>
+
+      {/* Tara Bala + Chandra Bala — side by side */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        {/* Tara Bala */}
+        <motion.div
+          {...fadeUp}
+          transition={{ delay: 0.2 }}
+          className="p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <Star className="w-5 h-5 text-gold-primary" />
+            <h3 className="text-lg font-semibold text-text-primary">{L.taraBala}</h3>
+          </div>
+          <div className="flex items-center gap-4 mb-3">
+            <div className="w-14 h-14 rounded-xl bg-bg-secondary/60 border border-gold-primary/10 flex items-center justify-center">
+              <span className="text-2xl font-bold text-gold-light">{pd.taraBala.taraNumber}</span>
+            </div>
+            <div>
+              <p className="text-gold-light font-semibold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
+                {pd.taraBala.taraName[locale] || pd.taraBala.taraName.en}
+              </p>
+              <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mt-1 ${pd.taraBala.isFavorable ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
+                {pd.taraBala.isFavorable ? L.favorable : L.unfavorable}
+              </span>
+            </div>
+          </div>
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {pd.taraBala.description[locale] || pd.taraBala.description.en}
+          </p>
+        </motion.div>
+
+        {/* Chandra Bala */}
+        <motion.div
+          {...fadeUp}
+          transition={{ delay: 0.25 }}
+          className="p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <Moon className="w-5 h-5 text-gold-primary" />
+            <h3 className="text-lg font-semibold text-text-primary">{L.chandraBala}</h3>
+          </div>
+          <div className="flex items-center gap-4 mb-3">
+            <div className="w-14 h-14 rounded-xl bg-bg-secondary/60 border border-gold-primary/10 flex items-center justify-center">
+              <span className="text-2xl font-bold text-gold-light">{pd.chandraBala.houseFromMoon || '—'}</span>
+            </div>
+            <div>
+              <p className="text-text-secondary/75 text-xs">{L.houseFromMoon}</p>
+              <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mt-1 ${pd.chandraBala.isFavorable ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
+                {pd.chandraBala.isFavorable ? L.favorable : L.unfavorable}
+              </span>
+            </div>
+          </div>
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {pd.chandraBala.description[locale] || pd.chandraBala.description.en}
+          </p>
+        </motion.div>
+      </div>
+
+      {/* Personalized Daily Horoscope */}
+      <PersonalizedHoroscope
+        locale={locale}
+        lat={birthLat ?? undefined}
+        lng={birthLng ?? undefined}
+      />
+
+      {/* Daily Horoscope Widget — transit-based, no LLM */}
+      {userMoonSign > 0 && (
+        <motion.div {...fadeUp} transition={{ delay: 0.15 }} className="mb-6">
+          <DailyHoroscopeWidget
+            moonSign={userMoonSign}
+            nakshatra={userMoonNakshatra || undefined}
+            locale={locale}
+          />
+        </motion.div>
+      )}
+    </>
+  );
+
+  // TAB 2: Dashas & Transits
+  const transitsTabContent = (
+    <>
+      {/* Current Dasha Card */}
+      {pd.currentDasha && (
+        <motion.div
+          {...fadeUp}
+          transition={{ delay: 0.3 }}
+          className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
+        >
+          <div className="flex items-center gap-2 mb-5">
+            <TrendingUp className="w-5 h-5 text-gold-primary" />
+            <h3 className="text-lg font-semibold text-text-primary">{L.currentDasha}</h3>
+          </div>
+
+          {/* Mahadasha */}
+          <div className="mb-5">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-medium text-text-secondary uppercase tracking-wide">{L.mahadashaLabel}</span>
+                <span className="text-lg font-bold text-gold-light">
+                  {getPlanetName(pd.currentDasha.maha.planet)}
+                </span>
+              </div>
+              <span className="text-xs text-text-secondary">
+                {new Date(pd.currentDasha.maha.startDate).toLocaleDateString()} - {new Date(pd.currentDasha.maha.endDate).toLocaleDateString()}
+              </span>
+            </div>
+            <div className="w-full h-2 bg-bg-primary/60 rounded-full overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${mahaProgress}%` }}
+                transition={{ duration: 1, ease: 'easeOut' as const }}
+                className="h-full bg-gradient-to-r from-gold-primary to-gold-light rounded-full"
+              />
+            </div>
+            <p className="text-xs text-text-secondary mt-1">{L.progress}: {mahaProgress.toFixed(1)}%</p>
+          </div>
+
+          {/* Antardasha */}
+          {pd.currentDasha.antar && (
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-medium text-text-secondary uppercase tracking-wide">{L.antardashaLabel}</span>
+                  <span className="text-lg font-bold text-gold-light">
+                    {getPlanetName(pd.currentDasha.antar.planet)}
+                  </span>
+                </div>
+                <span className="text-xs text-text-secondary">
+                  {new Date(pd.currentDasha.antar.startDate).toLocaleDateString()} - {new Date(pd.currentDasha.antar.endDate).toLocaleDateString()}
+                </span>
+              </div>
+              <div className="w-full h-2 bg-bg-primary/60 rounded-full overflow-hidden">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${antarProgress}%` }}
+                  transition={{ duration: 1, delay: 0.3, ease: 'easeOut' as const }}
+                  className="h-full bg-gradient-to-r from-gold-primary/70 to-gold-light/70 rounded-full"
+                />
+              </div>
+              <p className="text-xs text-text-secondary mt-1">{L.progress}: {antarProgress.toFixed(1)}%</p>
+            </div>
+          )}
+        </motion.div>
+      )}
+
+      {/* Dasha Transition Alert */}
+      {dashaTimeline.length > 0 && (
+        <DashaTransitionAlert
+          dashaTimeline={dashaTimeline}
+          locale={locale}
+        />
+      )}
+
+      {/* Gochar (Transit Overlay) */}
+      {gocharResults.length > 0 && (
+        <motion.div
+          {...fadeUp}
+          transition={{ delay: 0.33 }}
+          className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
+        >
+          <div className="flex items-center gap-2 mb-2">
+            <Compass className="w-5 h-5 text-gold-primary" />
+            <h3 className="text-lg font-semibold text-text-primary">{L.gocharTitle}</h3>
+          </div>
+          <p className="text-text-secondary text-xs mb-4">{L.gocharSubtitle}</p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-gold-primary/15">
+                  <th className="text-left text-gold-dark text-xs uppercase tracking-wider py-2 pr-3">{L.planet}</th>
+                  <th className="text-left text-gold-dark text-xs uppercase tracking-wider py-2 pr-3">{L.transitSignCol}</th>
+                  <th className="text-center text-gold-dark text-xs uppercase tracking-wider py-2 pr-3">{L.yourHouse}</th>
+                  <th className="text-left text-gold-dark text-xs uppercase tracking-wider py-2">{L.effectCol}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {gocharResults.map((g) => (
+                  <tr key={g.planetId} className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors">
+                    <td className="py-2.5 pr-3">
+                      <span className="text-text-primary font-medium">{g.planetName[locale] || g.planetName.en}</span>
+                      {g.isRetrograde && <span className="ml-1 text-red-400 text-xs font-bold">({L.retrograde})</span>}
+                    </td>
+                    <td className="py-2.5 pr-3 text-gold-light">{g.transitSignName[locale] || g.transitSignName.en}</td>
+                    <td className="py-2.5 pr-3 text-center">
+                      <span className={`inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold ${g.isPositive ? 'bg-emerald-500/15 text-emerald-400' : 'bg-amber-500/15 text-amber-400'}`}>
+                        {g.natalHouse}
+                      </span>
+                    </td>
+                    <td className="py-2.5 text-text-secondary text-xs">{g.effect[locale] || g.effect.en}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Enhanced Transit Alerts */}
+      {(enhancedAlerts.length > 0 || pd.transitAlerts.length > 0) && (
+        <motion.div
+          {...fadeUp}
+          transition={{ delay: 0.35 }}
+          className="mb-8 p-6 rounded-2xl border border-amber-500/20 bg-amber-500/5 backdrop-blur-sm"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <AlertTriangle className="w-5 h-5 text-amber-400" />
+            <h3 className="text-lg font-semibold text-text-primary">{L.enhancedAlerts}</h3>
+          </div>
+          <div className="space-y-3">
+            {(enhancedAlerts.length > 0 ? enhancedAlerts : pd.transitAlerts).map((alert, i) => (
+              <div
+                key={i}
+                className={`p-3 rounded-xl border ${
+                  alert.severity === 'significant' ? 'border-red-500/30 bg-red-500/10' :
+                  alert.severity === 'notable' ? 'border-amber-500/30 bg-amber-500/10' :
+                  'border-blue-500/20 bg-blue-500/5'
+                }`}
+              >
+                <div className="flex items-start gap-2">
+                  <span className={`mt-0.5 w-2 h-2 rounded-full shrink-0 ${
+                    alert.severity === 'significant' ? 'bg-red-400' :
+                    alert.severity === 'notable' ? 'bg-amber-400' :
+                    'bg-blue-400'
+                  }`} />
+                  <p className="text-sm text-text-primary">
+                    {alert.description[locale] || alert.description.en}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      )}
+
+      {/* Transit Countdown */}
+      {hasBirthData && ascendantSign > 0 && savTable.length === 12 && (
+        <TransitCountdown
+          ascendantSign={ascendantSign}
+          savTable={savTable}
+          locale={locale}
+        />
+      )}
+
+      {/* Your Week Ahead */}
+      <WeekAhead
+        ascendantSign={ascendantSign}
+        locale={locale}
+        hasBirthData={hasBirthData}
+      />
+    </>
+  );
+
+  // TAB 3: Calendar
+  const calendarTabContent = (
+    <>
+      {/* Key Dates Timeline */}
+      {keyDates.length > 0 && (
+        <div className="mb-8 p-4 rounded-2xl bg-gradient-to-br from-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/10">
+          <KeyDatesTimeline dates={keyDates} locale={locale} compact />
+        </div>
+      )}
+
+      {/* Festival Countdown */}
+      <FestivalCountdown />
+
+      {/* Recommended Festivals */}
+      {recommendedFestivals.length > 0 && (
+        <motion.div
+          {...fadeUp}
+          transition={{ delay: 0.37 }}
+          className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
+        >
+          <div className="flex items-center gap-2 mb-2">
+            <Calendar className="w-5 h-5 text-gold-primary" />
+            <h3 className="text-lg font-semibold text-text-primary">{L.recommendedFestivals}</h3>
+          </div>
+          <p className="text-text-secondary text-xs mb-4">{L.recommendedFestivalsSubtitle}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {recommendedFestivals.map((f) => (
+              <div
+                key={f.festivalSlug}
+                className={`p-4 rounded-xl border ${f.isRecommended ? 'border-emerald-500/25 bg-emerald-500/5' : 'border-gold-primary/10 bg-bg-primary/30'} transition-colors`}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-text-primary font-semibold text-sm capitalize">
+                    {f.festivalSlug.replace(/-/g, ' ')}
+                  </span>
+                  <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
+                    f.relevanceScore >= 70 ? 'bg-emerald-500/20 text-emerald-400' :
+                    f.relevanceScore >= 50 ? 'bg-gold-primary/20 text-gold-light' :
+                    'bg-slate-500/15 text-text-secondary'
+                  }`}>
+                    {f.relevanceScore}%
+                  </span>
+                </div>
+                <p className="text-text-secondary text-xs leading-relaxed">
+                  {f.relevanceReason[locale] || f.relevanceReason.en}
+                </p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      )}
+
+      {/* Eclipse Alert */}
+      <EclipseAlert />
+
+      {/* Eclipse Watch Card */}
+      {hasBirthData && ascendantSign > 0 && (
+        <div className="mb-8">
+          <EclipseWatchCard ascendantSign={ascendantSign} locale={locale} />
+        </div>
+      )}
+    </>
+  );
+
+  // TAB 4: Chart & Family
+  const chartTabContent = (
+    <>
+      {/* Birth Chart */}
+      {chartData && (
+        <motion.div
+          {...fadeUp}
+          transition={{ delay: 0.4 }}
+          className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <Eye className="w-5 h-5 text-gold-primary" />
+            <h3 className="text-lg font-semibold text-text-primary">{L.birthChart}</h3>
+          </div>
+          <div className="flex justify-center">
+            <div className="w-full max-w-md">
+              <ChartNorth data={chartData} title={L.birthChart} size={400} />
+            </div>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Saved Kundalis */}
+      <motion.div
+        {...fadeUp}
+        transition={{ delay: 0.42 }}
+        className="mb-8"
+      >
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <Star className="w-5 h-5 text-gold-primary" />
+            <h3 className="text-lg font-semibold text-text-primary">
+              {tl({ en: 'My Saved Kundalis', hi: 'मेरी सहेजी कुण्डलियाँ', sa: 'मम सञ्चितानि चक्राणि', mr: 'माझ्या जतन केलेल्या कुण्डल्या', mai: 'हमर सहेजल कुण्डली', ta: 'எனது சேமித்த ஜாதகங்கள்', te: 'నా సేవ్ చేసిన కుండలులు', bn: 'আমার সংরক্ষিত কুণ্ডলী', kn: 'ನನ್ನ ಉಳಿಸಿದ ಕುಂಡಲಿಗಳು', gu: 'મારી સાચવેલ કુંડળીઓ' }, locale)}
+            </h3>
+            {savedCharts.length > 0 && (
+              <span className="text-xs px-2 py-0.5 rounded-full bg-gold-primary/15 text-gold-primary font-semibold">
+                {savedCharts.length}
+              </span>
+            )}
+          </div>
+          <Link
+            href={'/kundali' as const}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gold-primary/20 border border-gold-primary/30 text-gold-light text-xs font-bold hover:bg-gold-primary/30 transition-all"
+          >
+            <Plus className="w-3.5 h-3.5" />
+            {tl({ en: 'New', hi: 'नया', sa: 'नवीन', mr: 'नवीन', mai: 'नव', ta: 'புதியது', te: 'కొత్తది', bn: 'নতুন', kn: 'ಹೊಸದು', gu: 'નવું' }, locale)}
+          </Link>
+        </div>
+
+        {savedCharts.length === 0 ? (
+          <div className="rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-8 text-center">
+            <Star className="w-10 h-10 text-gold-primary/30 mx-auto mb-3" />
+            <p className="text-text-secondary text-sm mb-3">
+              {tl({ en: 'No saved kundalis yet. Generate a kundali and press Save Chart to see it here.', hi: 'अभी तक कोई कुण्डली सहेजी नहीं है। कुण्डली बनाएँ और "Save Chart" दबाएँ।', sa: 'अद्य यावत् न किमपि चक्रं सञ्चितम्। चक्रं सृष्ट्वा "Save Chart" नोद्यताम्।', mr: 'अजून कोणतीही पत्रिका जतन केलेली नाही. पत्रिका बनवा आणि Save Chart दाबा.', mai: 'आबतक कोनो कुण्डली सहेजल नहि। कुण्डली बनाऊ आ Save Chart दबाऊ।', ta: 'இதுவரை எந்த ஜாதகமும் சேமிக்கப்படவில்லை. ஒரு ஜாதகத்தை உருவாக்கி Save Chart அழுத்தவும்.', te: 'ఇంకా ఏ కుండలి సేవ్ చేయలేదు. కుండలిని రూపొందించి Save Chart నొక్కండి.', bn: 'এখনো কোন কুণ্ডলী সংরক্ষণ করা হয়নি। একটি কুণ্ডলী তৈরি করে Save Chart চাপুন।', kn: 'ಇಲ್ಲಿಯವರೆಗೆ ಯಾವುದೇ ಕುಂಡಲಿ ಉಳಿಸಿಲ್ಲ. ಒಂದು ಕುಂಡಲಿ ರಚಿಸಿ Save Chart ಒತ್ತಿರಿ.', gu: 'હજુ સુધી કોઈ કુંડળી સાચવેલી નથી. કુંડળી બનાવો અને Save Chart દબાવો.' }, locale)}
+            </p>
+            <Link
+              href={'/kundali' as const}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gold-primary/20 border border-gold-primary/30 text-gold-light text-sm font-bold hover:bg-gold-primary/30 transition-all"
+            >
+              <Plus className="w-4 h-4" />
+              {tl({ en: 'Create Kundali', hi: 'कुण्डली बनाएँ', sa: 'चक्रं सृजतु', mr: 'पत्रिका बनवा', mai: 'कुण्डली बनाऊ', ta: 'ஜாதகம் உருவாக்கு', te: 'కుండలి సృష్టించండి', bn: 'কুণ্ডলী তৈরি করুন', kn: 'ಕುಂಡಲಿ ರಚಿಸಿ', gu: 'કુંડળી બનાવો' }, locale)}
+            </Link>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {savedCharts.map((c) => {
+              const name = c.birth_data.name || c.label;
+              const rel = c.birth_data.relationship || 'self';
+              const viewHref = `/kundali?n=${encodeURIComponent(name)}&d=${c.birth_data.date}&t=${c.birth_data.time}&la=${c.birth_data.lat}&lo=${c.birth_data.lng}&p=${encodeURIComponent(c.birth_data.place)}`;
+              const editHref = `/kundali?n=${encodeURIComponent(name)}&d=${c.birth_data.date}&t=${c.birth_data.time}&la=${c.birth_data.lat}&lo=${c.birth_data.lng}&p=${encodeURIComponent(c.birth_data.place)}&edit=1`;
+              return (
+                <div
+                  key={c.id}
+                  className="relative rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-4 hover:border-gold-primary/40 transition-all group"
+                >
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-gold-light font-bold text-sm truncate" style={isDevanagariLocale(locale) ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                        {name}
+                      </h4>
+                      <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+                        {c.is_primary && (
+                          <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-gold-primary/20 text-gold-primary font-bold uppercase tracking-wide">
+                            {tl({ en: 'Primary', hi: 'मुख्य', sa: 'मुख्यम्', mr: 'मुख्य', mai: 'मुख्य', ta: 'முதன்மை', te: 'ప్రాథమిక', bn: 'প্রধান', kn: 'ಮುಖ್ಯ', gu: 'મુખ્ય' }, locale)}
+                          </span>
+                        )}
+                        <select
+                          value={rel}
+                          onChange={(e) => handleUpdateRelationship(c.id, e.target.value)}
+                          className="text-[10px] px-1.5 py-0.5 rounded-full border border-gold-primary/20 bg-bg-secondary/80 text-text-secondary hover:text-text-primary hover:border-gold-primary/40 transition-colors cursor-pointer appearance-none pr-4 focus:outline-none focus:border-gold-primary/50"
+                          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 24 24' fill='none' stroke='%238a8478' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 4px center' }}
+                        >
+                          <option value="self">{tl({ en: 'Self', hi: 'स्वयं', ta: 'சுய', bn: 'নিজ' }, locale)}</option>
+                          <option value="spouse">{tl({ en: 'Spouse', hi: 'जीवनसाथी', ta: 'வாழ்க்கைத்துணை', bn: 'স্বামী/স্ত্রী' }, locale)}</option>
+                          <option value="child">{tl({ en: 'Child', hi: 'संतान', ta: 'குழந்தை', bn: 'সন্তান' }, locale)}</option>
+                          <option value="parent">{tl({ en: 'Parent', hi: 'माता-पिता', ta: 'பெற்றோர்', bn: 'পিতা-মাতা' }, locale)}</option>
+                          <option value="sibling">{tl({ en: 'Sibling', hi: 'भाई-बहन', ta: 'உடன்பிறப்பு', bn: 'ভাইবোন' }, locale)}</option>
+                          <option value="friend">{tl({ en: 'Friend', hi: 'मित्र', ta: 'நண்பர்', bn: 'বন্ধু' }, locale)}</option>
+                          <option value="other">{tl({ en: 'Other', hi: 'अन्य', ta: 'மற்றவை', bn: 'অন্যান্য' }, locale)}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => handleDeleteSavedChart(c.id)}
+                      className="text-text-secondary/50 hover:text-red-400 transition-colors p-1 -mr-1 -mt-1"
+                      aria-label="Delete"
+                      title={tl({ en: 'Delete', hi: 'हटाएँ', sa: 'विलोपयतु', mr: 'हटवा', mai: 'हटाऊ', ta: 'நீக்கு', te: 'తొలగించు', bn: 'মুছুন', kn: 'ಅಳಿಸಿ', gu: 'કાઢી નાખો' }, locale)}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                  <p className="text-text-secondary text-xs font-mono mb-1">{c.birth_data.date} | {c.birth_data.time}</p>
+                  <p className="text-text-secondary/70 text-xs mb-3 truncate">{c.birth_data.place}</p>
+                  <div className="flex items-center gap-3">
+                    <Link
+                      href={viewHref as '/kundali'}
+                      className="inline-flex items-center gap-1.5 text-gold-primary text-xs font-bold hover:text-gold-light transition-colors"
+                    >
+                      <Eye className="w-3.5 h-3.5" />
+                      {tl({ en: 'Open', hi: 'खोलें', ta: 'திற', bn: 'খুলুন' }, locale)}
+                    </Link>
+                    <Link
+                      href={editHref as '/kundali'}
+                      className="inline-flex items-center gap-1.5 text-text-secondary text-xs font-medium hover:text-gold-light transition-colors"
+                    >
+                      <Pencil className="w-3 h-3" />
+                      {tl({ en: 'Edit', hi: 'संपादन', ta: 'திருத்து', bn: 'সম্পাদনা' }, locale)}
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </motion.div>
+
+      {/* Family Card */}
+      {user && hasBirthData && (
+        <div className="mb-8">
+          <FamilyCard locale={locale} />
+        </div>
+      )}
+    </>
+  );
+
+  // TAB 5: Wellness
+  const wellnessTabContent = (
+    <>
+      {/* Journal Check-in */}
+      <JournalCheckinCard locale={locale} />
+
+      {/* Remedy Spotlight */}
+      {hasBirthData && planetPositions.length > 0 && (
+        <div className="mb-8">
+          <RemedySpotlightCard planetPositions={planetPositions} locale={locale} />
+        </div>
+      )}
+
+      {/* Learning Streak Card */}
+      {learnHydrated && (streak.streakDays > 0 || streak.longestStreak > 0) && (() => {
+        const learnOverall = getLearnOverall();
+        const { earned: earnedBadges } = checkBadges(learnProgress, streak);
+        return (
+          <motion.div
+            {...fadeUp}
+            transition={{ delay: 0.12 }}
+            className="mb-6 p-5 rounded-2xl border border-amber-500/20 bg-gradient-to-r from-amber-500/[0.06] via-transparent to-amber-500/[0.06] backdrop-blur-sm"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-0.5">
+                  {Array.from({ length: Math.min(3, streak.streakDays >= 14 ? 3 : streak.streakDays >= 7 ? 2 : 1) }, (_, i) => (
+                    <Flame key={i} className={`w-5 h-5 ${streak.streakDays > 0 ? 'text-amber-400 fill-amber-400/60' : 'text-text-secondary/30'}`} />
+                  ))}
+                </div>
+                <div>
+                  <span className="text-xl font-bold text-amber-400">
+                    {streak.streakDays}
+                  </span>
+                  <span className="text-sm text-text-secondary ml-1.5">{L.dayStreak}</span>
+                  {streak.longestStreak > streak.streakDays && (
+                    <span className="text-xs text-text-secondary/60 ml-3">
+                      {L.longestStreak}: {streak.longestStreak} {L.days}
+                    </span>
+                  )}
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                {isActiveToday() ? (
+                  <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-400">
+                    {L.todayActive}
+                  </span>
+                ) : (
+                  <Link
+                    href="/learn"
+                    className="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-400 hover:bg-amber-500/25 transition-colors"
+                  >
+                    {L.todayVisitLearn}
+                  </Link>
+                )}
+              </div>
+            </div>
+
+            {/* Level badge */}
+            {learnOverall.mastered > 0 && (
+              <div className="mt-4 pt-3 border-t border-amber-500/10">
+                <LevelBadge masteredCount={learnOverall.mastered} locale={locale} variant="full" />
+              </div>
+            )}
+
+            {/* Recently earned badges */}
+            {earnedBadges.length > 0 && (
+              <div className="mt-3 pt-3 border-t border-amber-500/10">
+                <p className="text-[10px] text-text-secondary uppercase tracking-widest font-bold mb-2">
+                  {tl({ en: 'Badges Earned', hi: 'अर्जित बैज', sa: 'अर्जिताः चिह्नाः', ta: 'பெற்ற பதக்கங்கள்', te: 'సాధించిన బ్యాడ్జులు', bn: 'অর্জিত ব্যাজ', kn: 'ಗಳಿಸಿದ ಬ್ಯಾಡ್ಜ್‌ಗಳು', gu: 'મેળવેલ બેજ', mai: 'अर्जित बैज', mr: 'मिळवलेले बॅज' }, locale)}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {earnedBadges.map(badge => (
+                    <div
+                      key={badge.id}
+                      className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gold-primary/8 border border-gold-primary/15"
+                      title={tl(badge.description, locale)}
+                    >
+                      <span className="text-sm">{badge.icon}</span>
+                      <span className="text-[11px] text-text-primary font-medium">
+                        {tl(badge.label, locale)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <Link
+                  href="/learn#badges"
+                  className="inline-block mt-2 text-[11px] text-gold-primary hover:text-gold-light transition-colors font-medium"
+                >
+                  {tl({ en: 'View All Badges \u2192', hi: 'सभी बैज देखें \u2192', sa: 'सर्वान् बैजान् पश्यतु \u2192', ta: 'அனைத்து பேட்ஜ்களையும் காண \u2192', te: 'అన్ని బ్యాడ్జ్‌లు చూడండి \u2192', bn: 'সব ব্যাজ দেখুন \u2192', kn: 'ಎಲ್ಲಾ ಬ್ಯಾಡ್ಜ್‌ಗಳನ್ನು ನೋಡಿ \u2192', gu: 'બધા બેજ જુઓ \u2192', mai: 'सभी बैज देखू \u2192', mr: 'सर्व बॅज पहा \u2192' }, locale)}
+                </Link>
+              </div>
+            )}
+          </motion.div>
+        );
+      })()}
+
+      {/* Calendar Sync */}
+      <div className="mb-8">
+        <CalendarSyncCard locale={locale} />
+      </div>
+    </>
+  );
+
+  // Build tabs array
+  const tabs = [
+    { id: 'today', label: L.tabToday, content: todayTabContent },
+    { id: 'transits', label: L.tabTransits, content: transitsTabContent },
+    { id: 'calendar', label: L.tabCalendar, content: calendarTabContent },
+    { id: 'chart', label: L.tabChart, content: chartTabContent },
+    { id: 'wellness', label: L.tabWellness, content: wellnessTabContent },
+  ];
+
   return (
     <main className="min-h-screen pt-24 pb-16 px-4">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <motion.div {...fadeUp} className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gold-gradient mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-            {L.title}
+        {/* Compact Header */}
+        <motion.div {...fadeUp} className="mb-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-gold-gradient" style={{ fontFamily: 'var(--font-heading)' }}>
+            {L.welcome}, {displayName || user?.email?.split('@')[0] || ''}
           </h1>
-          <p className="text-text-secondary">{L.subtitle}</p>
-        </motion.div>
-
-        {/* Welcome Banner */}
-        <motion.div
-          {...fadeUp}
-          transition={{ delay: 0.1 }}
-          className="mb-6 px-6 py-4 rounded-2xl border border-gold-primary/15 bg-gradient-to-r from-gold-primary/[0.04] via-transparent to-gold-primary/[0.04] backdrop-blur-sm"
-        >
-          <p className="text-xs uppercase tracking-widest text-text-secondary/70 mb-1">{L.welcome}</p>
-          <h2 className="text-xl font-bold text-gold-light" style={{ fontFamily: 'var(--font-heading)' }}>
-            {displayName || user?.email?.split('@')[0] || ''}
-          </h2>
           {pd.currentDasha && (
             <p className="text-text-secondary/70 text-sm mt-1">
               {L.mahadasha}{' '}
@@ -1133,15 +1836,12 @@ export default function DashboardPage() {
           )}
         </motion.div>
 
-        {/* Push Notification Permission */}
-        <PushPermission locale={locale} />
-
         {/* Location prompt — shown when location store is empty (no panchang data) */}
         {!panchangData && !loading && (
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-8 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20 p-6"
+            className="mb-6 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20 p-6"
           >
             <div className="flex items-start gap-3 mb-4">
               <Globe className="w-6 h-6 text-amber-400 shrink-0 mt-0.5" />
@@ -1168,7 +1868,7 @@ export default function DashboardPage() {
 
         {/* TODAY'S READING — Hero tarot cards */}
         {panchangData && dayEnergy && (
-          <div className="mb-10">
+          <div className="mb-6">
             <TodaysReading
               yoga={{
                 number: panchangData.yoga?.number ?? 1,
@@ -1198,613 +1898,60 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {/* Family strip — moved up for above-the-fold prominence */}
-        {user && hasBirthData && (
-          <div className="mb-8">
-            <FamilyCard locale={locale} />
-          </div>
-        )}
-
-        {/* Today's Guidance — lightweight panchang insight card */}
-        {panchangData && <DailyPanchangInsightCard panchang={panchangData} locale={locale} />}
-
-        {/* Morning Briefing — today's cosmic weather at a glance */}
+        {/* At A Glance strip */}
         {panchangData && (
-          <MorningBriefing
-            panchangData={panchangData}
-            personalizedDay={pd}
+          <AtAGlance
+            currentHora={currentHoraData}
+            nextDeadZone={nextDeadZoneData}
+            dayQuality={dayQualityLabel}
+            dayQualityColor={qc.text}
+            sunrise={panchangData.sunrise}
+            sunset={panchangData.sunset}
             locale={locale}
           />
         )}
 
-        {/* Daily Check-in — journal mood/energy widget */}
-        <JournalCheckinCard locale={locale} />
+        {/* Push Notification Permission — compact, above tabs */}
+        <PushPermission locale={locale} />
 
-        {/* Personalized Daily Horoscope */}
-        <PersonalizedHoroscope
-          locale={locale}
-          lat={birthLat ?? undefined}
-          lng={birthLng ?? undefined}
-        />
+        {/* ================================================================= */}
+        {/* TABBED SECTIONS — the main content area                           */}
+        {/* ================================================================= */}
+        <DashboardTabs tabs={tabs} defaultTab="today" />
 
-        {/* Daily Horoscope Widget — transit-based, no LLM */}
-        {userMoonSign > 0 && (
-          <motion.div {...fadeUp} transition={{ delay: 0.15 }} className="mb-6">
-            <DailyHoroscopeWidget
-              moonSign={userMoonSign}
-              nakshatra={userMoonNakshatra || undefined}
-              locale={locale}
-            />
-          </motion.div>
-        )}
-
-        {/* Key Dates — upcoming significant astrological events */}
-        {keyDates.length > 0 && (
-          <div className="p-4 rounded-2xl bg-gradient-to-br from-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/10">
-            <KeyDatesTimeline dates={keyDates} locale={locale} compact />
-          </div>
-        )}
-
-        {/* Transit Countdown — upcoming major sign changes personalized to birth chart */}
-        {hasBirthData && ascendantSign > 0 && savTable.length === 12 && (
-          <TransitCountdown
-            ascendantSign={ascendantSign}
-            savTable={savTable}
-            locale={locale}
-          />
-        )}
-
-        {/* Your Week Ahead — 7-day Moon transit forecast */}
-        <WeekAhead
-          ascendantSign={ascendantSign}
-          locale={locale}
-          hasBirthData={hasBirthData}
-        />
-
-        {/* Learning Streak Card */}
-        {learnHydrated && (streak.streakDays > 0 || streak.longestStreak > 0) && (() => {
-          const learnOverall = getLearnOverall();
-          const { earned: earnedBadges } = checkBadges(learnProgress, streak);
-          return (
-            <motion.div
-              {...fadeUp}
-              transition={{ delay: 0.12 }}
-              className="mb-6 p-5 rounded-2xl border border-amber-500/20 bg-gradient-to-r from-amber-500/[0.06] via-transparent to-amber-500/[0.06] backdrop-blur-sm"
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-0.5">
-                    {Array.from({ length: Math.min(3, streak.streakDays >= 14 ? 3 : streak.streakDays >= 7 ? 2 : 1) }, (_, i) => (
-                      <Flame key={i} className={`w-5 h-5 ${streak.streakDays > 0 ? 'text-amber-400 fill-amber-400/60' : 'text-text-secondary/30'}`} />
-                    ))}
-                  </div>
-                  <div>
-                    <span className="text-xl font-bold text-amber-400">
-                      {streak.streakDays}
-                    </span>
-                    <span className="text-sm text-text-secondary ml-1.5">{L.dayStreak}</span>
-                    {streak.longestStreak > streak.streakDays && (
-                      <span className="text-xs text-text-secondary/60 ml-3">
-                        {L.longestStreak}: {streak.longestStreak} {L.days}
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  {isActiveToday() ? (
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-400">
-                      {L.todayActive}
-                    </span>
-                  ) : (
-                    <Link
-                      href="/learn"
-                      className="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-400 hover:bg-amber-500/25 transition-colors"
-                    >
-                      {L.todayVisitLearn}
-                    </Link>
-                  )}
-                </div>
-              </div>
-
-              {/* Level badge */}
-              {learnOverall.mastered > 0 && (
-                <div className="mt-4 pt-3 border-t border-amber-500/10">
-                  <LevelBadge masteredCount={learnOverall.mastered} locale={locale} variant="full" />
-                </div>
-              )}
-
-              {/* Recently earned badges */}
-              {earnedBadges.length > 0 && (
-                <div className="mt-3 pt-3 border-t border-amber-500/10">
-                  <p className="text-[10px] text-text-secondary uppercase tracking-widest font-bold mb-2">
-                    {tl({ en: 'Badges Earned', hi: 'अर्जित बैज', sa: 'अर्जिताः चिह्नाः', ta: 'பெற்ற பதக்கங்கள்', te: 'సాధించిన బ్యాడ్జులు', bn: 'অর্জিত ব্যাজ', kn: 'ಗಳಿಸಿದ ಬ್ಯಾಡ್ಜ್‌ಗಳು', gu: 'મેળવેલ બેજ', mai: 'अर्जित बैज', mr: 'मिळवलेले बॅज' }, locale)}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {earnedBadges.map(badge => (
-                      <div
-                        key={badge.id}
-                        className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gold-primary/8 border border-gold-primary/15"
-                        title={tl(badge.description, locale)}
-                      >
-                        <span className="text-sm">{badge.icon}</span>
-                        <span className="text-[11px] text-text-primary font-medium">
-                          {tl(badge.label, locale)}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                  <Link
-                    href="/learn#badges"
-                    className="inline-block mt-2 text-[11px] text-gold-primary hover:text-gold-light transition-colors font-medium"
-                  >
-                    {tl({ en: 'View All Badges \u2192', hi: 'सभी बैज देखें \u2192', sa: 'सर्वान् बैजान् पश्यतु \u2192', ta: 'அனைத்து பேட்ஜ்களையும் காண \u2192', te: 'అన్ని బ్యాడ్జ్‌లు చూడండి \u2192', bn: 'সব ব্যাজ দেখুন \u2192', kn: 'ಎಲ್ಲಾ ಬ್ಯಾಡ್ಜ್‌ಗಳನ್ನು ನೋಡಿ \u2192', gu: 'બધા બેજ જુઓ \u2192', mai: 'सभी बैज देखू \u2192', mr: 'सर्व बॅज पहा \u2192' }, locale)}
-                  </Link>
-                </div>
-              )}
-            </motion.div>
-          );
-        })()}
-
-        {/* Day Quality Card */}
-        <motion.div
-          {...fadeUp}
-          transition={{ delay: 0.15 }}
-          className={`mb-8 p-6 md:p-8 rounded-2xl border ${qc.border} bg-gradient-to-br ${qc.bg} backdrop-blur-sm shadow-lg ${qc.glow}`}
-        >
-          <div className="flex items-center gap-3 mb-3">
-            <Star className={`w-6 h-6 ${qc.text}`} />
-            <h3 className="text-lg font-semibold text-text-secondary">{L.todayQuality}</h3>
-          </div>
-          <p className={`text-3xl md:text-4xl font-bold ${qc.text} mb-2`} style={{ fontFamily: 'var(--font-heading)' }}>
-            {ql[locale] || ql.en}
-          </p>
-          <p className="text-text-secondary text-sm md:text-base">
-            {pd.dayQualityDescription[locale] || pd.dayQualityDescription.en}
-          </p>
-        </motion.div>
-
-        {/* Tara Bala + Chandra Bala — side by side */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          {/* Tara Bala */}
-          <motion.div
-            {...fadeUp}
-            transition={{ delay: 0.2 }}
-            className="p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <Star className="w-5 h-5 text-gold-primary" />
-              <h3 className="text-lg font-semibold text-text-primary">{L.taraBala}</h3>
-            </div>
-            <div className="flex items-center gap-4 mb-3">
-              <div className="w-14 h-14 rounded-xl bg-bg-secondary/60 border border-gold-primary/10 flex items-center justify-center">
-                <span className="text-2xl font-bold text-gold-light">{pd.taraBala.taraNumber}</span>
-              </div>
-              <div>
-                <p className="text-gold-light font-semibold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-                  {pd.taraBala.taraName[locale] || pd.taraBala.taraName.en}
-                </p>
-                <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mt-1 ${pd.taraBala.isFavorable ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
-                  {pd.taraBala.isFavorable ? L.favorable : L.unfavorable}
-                </span>
-              </div>
-            </div>
-            <p className="text-text-secondary text-sm leading-relaxed">
-              {pd.taraBala.description[locale] || pd.taraBala.description.en}
-            </p>
-          </motion.div>
-
-          {/* Chandra Bala */}
-          <motion.div
-            {...fadeUp}
-            transition={{ delay: 0.25 }}
-            className="p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <Moon className="w-5 h-5 text-gold-primary" />
-              <h3 className="text-lg font-semibold text-text-primary">{L.chandraBala}</h3>
-            </div>
-            <div className="flex items-center gap-4 mb-3">
-              <div className="w-14 h-14 rounded-xl bg-bg-secondary/60 border border-gold-primary/10 flex items-center justify-center">
-                <span className="text-2xl font-bold text-gold-light">{pd.chandraBala.houseFromMoon || '—'}</span>
-              </div>
-              <div>
-                <p className="text-text-secondary/75 text-xs">{L.houseFromMoon}</p>
-                <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mt-1 ${pd.chandraBala.isFavorable ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
-                  {pd.chandraBala.isFavorable ? L.favorable : L.unfavorable}
-                </span>
-              </div>
-            </div>
-            <p className="text-text-secondary text-sm leading-relaxed">
-              {pd.chandraBala.description[locale] || pd.chandraBala.description.en}
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Current Dasha Card */}
-        {pd.currentDasha && (
-          <motion.div
-            {...fadeUp}
-            transition={{ delay: 0.3 }}
-            className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
-          >
-            <div className="flex items-center gap-2 mb-5">
-              <TrendingUp className="w-5 h-5 text-gold-primary" />
-              <h3 className="text-lg font-semibold text-text-primary">{L.currentDasha}</h3>
-            </div>
-
-            {/* Mahadasha */}
-            <div className="mb-5">
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-medium text-text-secondary uppercase tracking-wide">{L.mahadashaLabel}</span>
-                  <span className="text-lg font-bold text-gold-light">
-                    {getPlanetName(pd.currentDasha.maha.planet)}
-                  </span>
-                </div>
-                <span className="text-xs text-text-secondary">
-                  {new Date(pd.currentDasha.maha.startDate).toLocaleDateString()} - {new Date(pd.currentDasha.maha.endDate).toLocaleDateString()}
-                </span>
-              </div>
-              <div className="w-full h-2 bg-bg-primary/60 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${mahaProgress}%` }}
-                  transition={{ duration: 1, ease: 'easeOut' as const }}
-                  className="h-full bg-gradient-to-r from-gold-primary to-gold-light rounded-full"
-                />
-              </div>
-              <p className="text-xs text-text-secondary mt-1">{L.progress}: {mahaProgress.toFixed(1)}%</p>
-            </div>
-
-            {/* Antardasha */}
-            {pd.currentDasha.antar && (
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-medium text-text-secondary uppercase tracking-wide">{L.antardashaLabel}</span>
-                    <span className="text-lg font-bold text-gold-light">
-                      {getPlanetName(pd.currentDasha.antar.planet)}
-                    </span>
-                  </div>
-                  <span className="text-xs text-text-secondary">
-                    {new Date(pd.currentDasha.antar.startDate).toLocaleDateString()} - {new Date(pd.currentDasha.antar.endDate).toLocaleDateString()}
-                  </span>
-                </div>
-                <div className="w-full h-2 bg-bg-primary/60 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${antarProgress}%` }}
-                    transition={{ duration: 1, delay: 0.3, ease: 'easeOut' as const }}
-                    className="h-full bg-gradient-to-r from-gold-primary/70 to-gold-light/70 rounded-full"
-                  />
-                </div>
-                <p className="text-xs text-text-secondary mt-1">{L.progress}: {antarProgress.toFixed(1)}%</p>
-              </div>
-            )}
-          </motion.div>
-        )}
-
-        {/* Gochar (Transit Overlay) */}
-        {gocharResults.length > 0 && (
-          <motion.div
-            {...fadeUp}
-            transition={{ delay: 0.33 }}
-            className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
-          >
-            <div className="flex items-center gap-2 mb-2">
-              <Compass className="w-5 h-5 text-gold-primary" />
-              <h3 className="text-lg font-semibold text-text-primary">{L.gocharTitle}</h3>
-            </div>
-            <p className="text-text-secondary text-xs mb-4">{L.gocharSubtitle}</p>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-gold-primary/15">
-                    <th className="text-left text-gold-dark text-xs uppercase tracking-wider py-2 pr-3">{L.planet}</th>
-                    <th className="text-left text-gold-dark text-xs uppercase tracking-wider py-2 pr-3">{L.transitSignCol}</th>
-                    <th className="text-center text-gold-dark text-xs uppercase tracking-wider py-2 pr-3">{L.yourHouse}</th>
-                    <th className="text-left text-gold-dark text-xs uppercase tracking-wider py-2">{L.effectCol}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {gocharResults.map((g) => (
-                    <tr key={g.planetId} className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors">
-                      <td className="py-2.5 pr-3">
-                        <span className="text-text-primary font-medium">{g.planetName[locale] || g.planetName.en}</span>
-                        {g.isRetrograde && <span className="ml-1 text-red-400 text-xs font-bold">({L.retrograde})</span>}
-                      </td>
-                      <td className="py-2.5 pr-3 text-gold-light">{g.transitSignName[locale] || g.transitSignName.en}</td>
-                      <td className="py-2.5 pr-3 text-center">
-                        <span className={`inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold ${g.isPositive ? 'bg-emerald-500/15 text-emerald-400' : 'bg-amber-500/15 text-amber-400'}`}>
-                          {g.natalHouse}
-                        </span>
-                      </td>
-                      <td className="py-2.5 text-text-secondary text-xs">{g.effect[locale] || g.effect.en}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </motion.div>
-        )}
-
-        {/* Dasha Transition Alert — upcoming maha/antar dasha changes */}
-        {dashaTimeline.length > 0 && (
-          <DashaTransitionAlert
-            dashaTimeline={dashaTimeline}
-            locale={locale}
-          />
-        )}
-
-        {/* Upcoming Eclipse Alert */}
-        <EclipseAlert />
-
-        {/* Upcoming Festival Countdown */}
-        <FestivalCountdown />
-
-        {/* Enhanced Transit Alerts */}
-        {(enhancedAlerts.length > 0 || pd.transitAlerts.length > 0) && (
-          <motion.div
-            {...fadeUp}
-            transition={{ delay: 0.35 }}
-            className="mb-8 p-6 rounded-2xl border border-amber-500/20 bg-amber-500/5 backdrop-blur-sm"
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <AlertTriangle className="w-5 h-5 text-amber-400" />
-              <h3 className="text-lg font-semibold text-text-primary">{L.enhancedAlerts}</h3>
-            </div>
-            <div className="space-y-3">
-              {/* Show enhanced alerts first, then fall back to basic ones */}
-              {(enhancedAlerts.length > 0 ? enhancedAlerts : pd.transitAlerts).map((alert, i) => (
-                <div
-                  key={i}
-                  className={`p-3 rounded-xl border ${
-                    alert.severity === 'significant' ? 'border-red-500/30 bg-red-500/10' :
-                    alert.severity === 'notable' ? 'border-amber-500/30 bg-amber-500/10' :
-                    'border-blue-500/20 bg-blue-500/5'
-                  }`}
-                >
-                  <div className="flex items-start gap-2">
-                    <span className={`mt-0.5 w-2 h-2 rounded-full shrink-0 ${
-                      alert.severity === 'significant' ? 'bg-red-400' :
-                      alert.severity === 'notable' ? 'bg-amber-400' :
-                      'bg-blue-400'
-                    }`} />
-                    <p className="text-sm text-text-primary">
-                      {alert.description[locale] || alert.description.en}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-
-        {/* Recommended Festivals */}
-        {recommendedFestivals.length > 0 && (
-          <motion.div
-            {...fadeUp}
-            transition={{ delay: 0.37 }}
-            className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
-          >
-            <div className="flex items-center gap-2 mb-2">
-              <Calendar className="w-5 h-5 text-gold-primary" />
-              <h3 className="text-lg font-semibold text-text-primary">{L.recommendedFestivals}</h3>
-            </div>
-            <p className="text-text-secondary text-xs mb-4">{L.recommendedFestivalsSubtitle}</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {recommendedFestivals.map((f) => (
-                <div
-                  key={f.festivalSlug}
-                  className={`p-4 rounded-xl border ${f.isRecommended ? 'border-emerald-500/25 bg-emerald-500/5' : 'border-gold-primary/10 bg-bg-primary/30'} transition-colors`}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-text-primary font-semibold text-sm capitalize">
-                      {f.festivalSlug.replace(/-/g, ' ')}
-                    </span>
-                    <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
-                      f.relevanceScore >= 70 ? 'bg-emerald-500/20 text-emerald-400' :
-                      f.relevanceScore >= 50 ? 'bg-gold-primary/20 text-gold-light' :
-                      'bg-slate-500/15 text-text-secondary'
-                    }`}>
-                      {f.relevanceScore}%
-                    </span>
-                  </div>
-                  <p className="text-text-secondary text-xs leading-relaxed">
-                    {f.relevanceReason[locale] || f.relevanceReason.en}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-
-        {/* Birth Chart */}
-        {chartData && (
-          <motion.div
-            {...fadeUp}
-            transition={{ delay: 0.4 }}
-            className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <Eye className="w-5 h-5 text-gold-primary" />
-              <h3 className="text-lg font-semibold text-text-primary">{L.birthChart}</h3>
-            </div>
-            <div className="flex justify-center">
-              <div className="w-full max-w-md">
-                <ChartNorth data={chartData} title={L.birthChart} size={400} />
-              </div>
-            </div>
-          </motion.div>
-        )}
-
-        {/* Family Insights — moved above the fold, after TodaysReading hero */}
-
-        {/* Saved Kundalis — inline list so users don't have to drill into a
-             separate page to find their charts. Visible on every dashboard load. */}
-        <motion.div
-          {...fadeUp}
-          transition={{ delay: 0.42 }}
-          className="mb-8"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <Star className="w-5 h-5 text-gold-primary" />
-              <h3 className="text-lg font-semibold text-text-primary">
-                {tl({ en: 'My Saved Kundalis', hi: 'मेरी सहेजी कुण्डलियाँ', sa: 'मम सञ्चितानि चक्राणि', mr: 'माझ्या जतन केलेल्या कुण्डल्या', mai: 'हमर सहेजल कुण्डली', ta: 'எனது சேமித்த ஜாதகங்கள்', te: 'నా సేవ్ చేసిన కుండలులు', bn: 'আমার সংরক্ষিত কুণ্ডলী', kn: 'ನನ್ನ ಉಳಿಸಿದ ಕುಂಡಲಿಗಳು', gu: 'મારી સાચવેલ કુંડળીઓ' }, locale)}
-              </h3>
-              {savedCharts.length > 0 && (
-                <span className="text-xs px-2 py-0.5 rounded-full bg-gold-primary/15 text-gold-primary font-semibold">
-                  {savedCharts.length}
-                </span>
-              )}
-            </div>
-            <Link
-              href={'/kundali' as const}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gold-primary/20 border border-gold-primary/30 text-gold-light text-xs font-bold hover:bg-gold-primary/30 transition-all"
-            >
-              <Plus className="w-3.5 h-3.5" />
-              {tl({ en: 'New', hi: 'नया', sa: 'नवीन', mr: 'नवीन', mai: 'नव', ta: 'புதியது', te: 'కొత్తది', bn: 'নতুন', kn: 'ಹೊಸದು', gu: 'નવું' }, locale)}
-            </Link>
-          </div>
-
-          {savedCharts.length === 0 ? (
-            <div className="rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-8 text-center">
-              <Star className="w-10 h-10 text-gold-primary/30 mx-auto mb-3" />
-              <p className="text-text-secondary text-sm mb-3">
-                {tl({ en: 'No saved kundalis yet. Generate a kundali and press Save Chart to see it here.', hi: 'अभी तक कोई कुण्डली सहेजी नहीं है। कुण्डली बनाएँ और "Save Chart" दबाएँ।', sa: 'अद्य यावत् न किमपि चक्रं सञ्चितम्। चक्रं सृष्ट्वा "Save Chart" नोद्यताम्।', mr: 'अजून कोणतीही पत्रिका जतन केलेली नाही. पत्रिका बनवा आणि Save Chart दाबा.', mai: 'आबतक कोनो कुण्डली सहेजल नहि। कुण्डली बनाऊ आ Save Chart दबाऊ।', ta: 'இதுவரை எந்த ஜாதகமும் சேமிக்கப்படவில்லை. ஒரு ஜாதகத்தை உருவாக்கி Save Chart அழுத்தவும்.', te: 'ఇంకా ఏ కుండలి సేవ్ చేయలేదు. కుండలిని రూపొందించి Save Chart నొక్కండి.', bn: 'এখনো কোন কুণ্ডলী সংরক্ষণ করা হয়নি। একটি কুণ্ডলী তৈরি করে Save Chart চাপুন।', kn: 'ಇಲ್ಲಿಯವರೆಗೆ ಯಾವುದೇ ಕುಂಡಲಿ ಉಳಿಸಿಲ್ಲ. ಒಂದು ಕುಂಡಲಿ ರಚಿಸಿ Save Chart ಒತ್ತಿರಿ.', gu: 'હજુ સુધી કોઈ કુંડળી સાચવેલી નથી. કુંડળી બનાવો અને Save Chart દબાવો.' }, locale)}
-              </p>
-              <Link
-                href={'/kundali' as const}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gold-primary/20 border border-gold-primary/30 text-gold-light text-sm font-bold hover:bg-gold-primary/30 transition-all"
-              >
-                <Plus className="w-4 h-4" />
-                {tl({ en: 'Create Kundali', hi: 'कुण्डली बनाएँ', sa: 'चक्रं सृजतु', mr: 'पत्रिका बनवा', mai: 'कुण्डली बनाऊ', ta: 'ஜாதகம் உருவாக்கு', te: 'కుండలి సృష్టించండి', bn: 'কুণ্ডলী তৈরি করুন', kn: 'ಕುಂಡಲಿ ರಚಿಸಿ', gu: 'કુંડળી બનાવો' }, locale)}
-              </Link>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {savedCharts.map((c) => {
-                const name = c.birth_data.name || c.label;
-                const rel = c.birth_data.relationship || 'self';
-                const viewHref = `/kundali?n=${encodeURIComponent(name)}&d=${c.birth_data.date}&t=${c.birth_data.time}&la=${c.birth_data.lat}&lo=${c.birth_data.lng}&p=${encodeURIComponent(c.birth_data.place)}`;
-                const editHref = `/kundali?n=${encodeURIComponent(name)}&d=${c.birth_data.date}&t=${c.birth_data.time}&la=${c.birth_data.lat}&lo=${c.birth_data.lng}&p=${encodeURIComponent(c.birth_data.place)}&edit=1`;
-                return (
-                  <div
-                    key={c.id}
-                    className="relative rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-4 hover:border-gold-primary/40 transition-all group"
-                  >
-                    <div className="flex items-start justify-between gap-2 mb-2">
-                      <div className="min-w-0 flex-1">
-                        <h4 className="text-gold-light font-bold text-sm truncate" style={isDevanagariLocale(locale) ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                          {name}
-                        </h4>
-                        <div className="flex items-center gap-1.5 mt-1 flex-wrap">
-                          {c.is_primary && (
-                            <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-gold-primary/20 text-gold-primary font-bold uppercase tracking-wide">
-                              {tl({ en: 'Primary', hi: 'मुख्य', sa: 'मुख्यम्', mr: 'मुख्य', mai: 'मुख्य', ta: 'முதன்மை', te: 'ప్రాథమిక', bn: 'প্রধান', kn: 'ಮುಖ್ಯ', gu: 'મુખ્ય' }, locale)}
-                            </span>
-                          )}
-                          <select
-                            value={rel}
-                            onChange={(e) => handleUpdateRelationship(c.id, e.target.value)}
-                            className="text-[10px] px-1.5 py-0.5 rounded-full border border-gold-primary/20 bg-bg-secondary/80 text-text-secondary hover:text-text-primary hover:border-gold-primary/40 transition-colors cursor-pointer appearance-none pr-4 focus:outline-none focus:border-gold-primary/50"
-                            style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 24 24' fill='none' stroke='%238a8478' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 4px center' }}
-                          >
-                            <option value="self">{tl({ en: 'Self', hi: 'स्वयं', ta: 'சுய', bn: 'নিজ' }, locale)}</option>
-                            <option value="spouse">{tl({ en: 'Spouse', hi: 'जीवनसाथी', ta: 'வாழ்க்கைத்துணை', bn: 'স্বামী/স্ত্রী' }, locale)}</option>
-                            <option value="child">{tl({ en: 'Child', hi: 'संतान', ta: 'குழந்தை', bn: 'সন্তান' }, locale)}</option>
-                            <option value="parent">{tl({ en: 'Parent', hi: 'माता-पिता', ta: 'பெற்றோர்', bn: 'পিতা-মাতা' }, locale)}</option>
-                            <option value="sibling">{tl({ en: 'Sibling', hi: 'भाई-बहन', ta: 'உடன்பிறப்பு', bn: 'ভাইবোন' }, locale)}</option>
-                            <option value="friend">{tl({ en: 'Friend', hi: 'मित्र', ta: 'நண்பர்', bn: 'বন্ধু' }, locale)}</option>
-                            <option value="other">{tl({ en: 'Other', hi: 'अन्य', ta: 'மற்றவை', bn: 'অন্যান্য' }, locale)}</option>
-                          </select>
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => handleDeleteSavedChart(c.id)}
-                        className="text-text-secondary/50 hover:text-red-400 transition-colors p-1 -mr-1 -mt-1"
-                        aria-label="Delete"
-                        title={tl({ en: 'Delete', hi: 'हटाएँ', sa: 'विलोपयतु', mr: 'हटवा', mai: 'हटाऊ', ta: 'நீக்கு', te: 'తొలగించు', bn: 'মুছুন', kn: 'ಅಳಿಸಿ', gu: 'કાઢી નાખો' }, locale)}
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                    <p className="text-text-secondary text-xs font-mono mb-1">{c.birth_data.date} | {c.birth_data.time}</p>
-                    <p className="text-text-secondary/70 text-xs mb-3 truncate">{c.birth_data.place}</p>
-                    <div className="flex items-center gap-3">
-                      <Link
-                        href={viewHref as '/kundali'}
-                        className="inline-flex items-center gap-1.5 text-gold-primary text-xs font-bold hover:text-gold-light transition-colors"
-                      >
-                        <Eye className="w-3.5 h-3.5" />
-                        {tl({ en: 'Open', hi: 'खोलें', ta: 'திற', bn: 'খুলুন' }, locale)}
-                      </Link>
-                      <Link
-                        href={editHref as '/kundali'}
-                        className="inline-flex items-center gap-1.5 text-text-secondary text-xs font-medium hover:text-gold-light transition-colors"
-                      >
-                        <Pencil className="w-3 h-3" />
-                        {tl({ en: 'Edit', hi: 'संपादन', ta: 'திருத்து', bn: 'সম্পাদনা' }, locale)}
-                      </Link>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </motion.div>
-
-        {/* Eclipse Watch — next eclipse + house impact */}
-        {hasBirthData && ascendantSign > 0 && (
-          <div className="mb-8">
-            <EclipseWatchCard ascendantSign={ascendantSign} locale={locale} />
-          </div>
-        )}
-
-        {/* Remedy Spotlight — weakest planet + gemstone */}
-        {hasBirthData && planetPositions.length > 0 && (
-          <div className="mb-8">
-            <RemedySpotlightCard planetPositions={planetPositions} locale={locale} />
-          </div>
-        )}
-
-        {/* Calendar Sync — download .ics */}
-        <div className="mb-8">
-          <CalendarSyncCard locale={locale} />
-        </div>
-
-        {/* Quick Links */}
+        {/* ================================================================= */}
+        {/* Quick Links — subtle footer section below tabs                    */}
+        {/* ================================================================= */}
         <motion.div
           {...fadeUp}
           transition={{ delay: 0.45 }}
-          className="mb-8"
+          className="mt-12 mb-8"
         >
-          <h3 className="text-lg font-semibold text-text-primary mb-4">{L.quickLinks}</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <h3 className="text-sm font-semibold text-text-secondary/60 uppercase tracking-widest mb-4">{L.quickLinks}</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {[
               { href: '/dashboard/chart' as const, label: tl({ en: 'Birth Chart', hi: 'जन्म कुण्डली', sa: 'जन्म-कुण्डली', ta: 'ஜன்ம ஜாதகம்', te: 'జన్మ కుండలి', bn: 'জন্ম কুণ্ডলী', kn: 'ಜನ್ಮ ಕುಂಡಲಿ', gu: 'જન્મ કુંડળી', mai: 'जन्म-कुण्डली', mr: 'जन्मकुंडली' }, locale), icon: Eye },
               { href: '/dashboard/dashas' as const, label: tl({ en: 'Dasha Timeline', hi: 'दशा समयरेखा', sa: 'दशा-कालरेखा', ta: 'தசா காலவரிசை', te: 'దశా కాలరేఖ', bn: 'দশা সময়রেখা', kn: 'ದಶಾ ಕಾಲಮಾಲೆ', gu: 'દશા સમયરેખા', mai: 'दशा समयरेखा', mr: 'दशा कालरेखा' }, locale), icon: TrendingUp },
               { href: '/dashboard/muhurta' as const, label: tl({ en: 'Personal Muhurta', hi: 'व्यक्तिगत मुहूर्त', sa: 'व्यक्तिगतः मुहूर्तः', ta: 'தனிப்பட்ட முஹூர்த்தம்', te: 'వ్యక్తిగత ముహూర్తం', bn: 'ব্যক্তিগত মুহূর্ত', kn: 'ವ್ಯಕ್ತಿಗತ ಮುಹೂರ್ತ', gu: 'વ્યક્તિગત મુહૂર્ત', mai: 'व्यक्तिगत मुहूर्त', mr: 'वैयक्तिक मुहूर्त' }, locale), icon: Clock },
               { href: '/dashboard/transits' as const, label: L.transitAnalysis, icon: Globe },
               { href: '/dashboard/transit-replay' as const, label: tl({ en: 'Transit Replay', hi: 'गोचर रिप्ले', sa: 'गोचर-पुनरावृत्तिः', ta: 'கோசார ரீப்ளே', te: 'గోచర రీప్లే', bn: 'গোচর রিপ্লে', kn: 'ಗೋಚರ ರೀಪ್ಲೇ', gu: 'ગોચર રીપ્લે', mai: 'गोचर रिप्ले', mr: 'गोचर रिप्ले' }, locale), icon: RotateCcw },
-              { href: '/dashboard/dasha-diary' as const, label: tl({ en: 'Dasha Diary', hi: 'दशा डायरी', sa: 'दशा-दैनिकी', ta: 'தசா டைரி', te: 'దశా డైరీ', bn: 'দশা ডায়েরি', kn: 'ದಶಾ ಡೈರಿ', gu: 'દशा ડायरी', mai: 'दशा डायरी', mr: 'दशा डायरी' }, locale), icon: BookOpen },
+              { href: '/dashboard/dasha-diary' as const, label: tl({ en: 'Dasha Diary', hi: 'दशा डायरी', sa: 'दशा-दैनिकी', ta: 'தசா டைரி', te: 'దశా డైరీ', bn: 'দশা ডায়েরি', kn: 'ದಶಾ ಡೈರಿ', gu: 'દশા ડायરી', mai: 'दशा डायरी', mr: 'दशा डायरी' }, locale), icon: BookOpen },
               { href: '/dashboard/almanac' as const, label: tl({ en: 'Year in the Stars', hi: 'सितारों में वर्ष', sa: 'सितारों में वर्ष', ta: 'நட்சத்திரங்களில் ஆண்டு', te: 'నక్షత్రాలలో సంవత్సరం', bn: 'তারাদের মধ্যে বছর', kn: 'ತಾರೆಗಳಲ್ಲಿ ವರ್ಷ', gu: 'સિતારાઓ માં વર્ષ', mai: 'सितारों में वर्ष', mr: 'ताऱ्यांमध्ये वर्ष' }, locale), icon: Star },
               { href: '/dashboard/remedies' as const, label: L.yourRemedies, icon: Shield },
               { href: '/dashboard/saved-charts' as const, label: tl({ en: 'Saved Charts', hi: 'सहेजे गए चार्ट', sa: 'सञ्चितानि चक्राणि', ta: 'சேமித்த விளக்கப்படங்கள்', te: 'సేవ్ చేసిన చార్ట్‌లు', bn: 'সংরক্ষিত চার্ট', kn: 'ಉಳಿಸಿದ ಚಾರ್ಟ್‌ಗಳು', gu: 'સાચવેલ ચાર્ટ', mai: 'सहेजल चार्ट', mr: 'जतन केलेले चार्ट' }, locale), icon: Star },
               { href: '/sade-sati' as const, label: L.sadeSati, icon: TrendingUp },
               { href: '/settings' as const, label: L.settings, icon: Settings },
+              { href: '/learn' as const, label: tl({ en: 'Learn', hi: 'सीखें', sa: 'शिक्षा', ta: 'கற்றல்', bn: 'শেখা' }, locale), icon: BookOpen },
             ].map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="flex items-center gap-3 p-4 rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] hover:bg-gold-primary/10 hover:border-gold-primary/30 transition-all group"
+                className="flex items-center gap-2.5 p-3 rounded-xl border border-white/[0.04] hover:bg-gold-primary/5 hover:border-gold-primary/20 transition-all group"
               >
-                <link.icon className="w-5 h-5 text-gold-primary" />
-                <span className="text-text-secondary group-hover:text-gold-light transition-colors text-sm font-medium">
+                <link.icon className="w-4 h-4 text-text-secondary/50 group-hover:text-gold-primary transition-colors" />
+                <span className="text-text-secondary/70 group-hover:text-gold-light transition-colors text-xs font-medium">
                   {link.label}
                 </span>
-                <ArrowRight className="w-4 h-4 text-text-secondary/65 group-hover:text-gold-light ml-auto transition-colors" />
               </Link>
             ))}
           </div>

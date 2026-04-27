@@ -2,6 +2,7 @@ import { headers } from 'next/headers';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/lib/i18n/navigation';
 import GoldDivider from '@/components/ui/GoldDivider';
+import TarotCard from '@/components/ui/TarotCard';
 import AdUnit from '@/components/ads/AdUnit';
 import HomeClientWidgets from '@/components/home/HomeClientWidgets';
 import ProfileBanner from '@/components/home/ProfileBanner';
@@ -120,10 +121,10 @@ function JyotishPillarIcon() {
   );
 }
 
-// Legacy SVG icons for hero cards
+// Legacy SVG icons for hero cards (scaled to 128 for TarotCard)
 function KundaliSVG() {
   return (
-    <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+    <svg width="128" height="128" viewBox="0 0 72 72" fill="none">
       <rect x="6" y="6" width="60" height="60" rx="3" stroke="#f0d48a" strokeWidth="1.5" />
       <line x1="36" y1="6" x2="36" y2="66" stroke="rgba(240,212,138,0.2)" strokeWidth="0.8" />
       <line x1="6" y1="36" x2="66" y2="36" stroke="rgba(240,212,138,0.2)" strokeWidth="0.8" />
@@ -140,7 +141,7 @@ function KundaliSVG() {
 
 function MuhurtaSVG() {
   return (
-    <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+    <svg width="128" height="128" viewBox="0 0 72 72" fill="none">
       <circle cx="36" cy="36" r="30" stroke="#4ade80" strokeWidth="1" strokeDasharray="4 3" />
       <circle cx="36" cy="36" r="18" stroke="rgba(74,222,128,0.3)" strokeWidth="0.8" />
       <path d="M36 10 L40 26 L56 26 L44 36 L48 52 L36 44 L24 52 L28 36 L16 26 L32 26Z" stroke="#4ade80" strokeWidth="1.3" fill="none" />
@@ -152,7 +153,7 @@ function MuhurtaSVG() {
 
 function CalendarSVG() {
   return (
-    <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+    <svg width="128" height="128" viewBox="0 0 72 72" fill="none">
       <rect x="10" y="8" width="52" height="56" rx="5" stroke="#fb923c" strokeWidth="1.3" />
       <line x1="10" y1="24" x2="62" y2="24" stroke="rgba(251,146,60,0.4)" strokeWidth="0.8" />
       <circle cx="22" cy="16" r="2.5" fill="#fb923c" opacity={0.6} />
@@ -168,7 +169,7 @@ function CalendarSVG() {
 
 function TransitSVG() {
   return (
-    <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+    <svg width="128" height="128" viewBox="0 0 72 72" fill="none">
       <circle cx="36" cy="36" r="28" stroke="rgba(96,165,250,0.3)" strokeWidth="1" />
       <circle cx="36" cy="36" r="18" stroke="rgba(96,165,250,0.15)" strokeWidth="0.8" />
       <circle cx="36" cy="36" r="8" stroke="rgba(96,165,250,0.1)" strokeWidth="0.8" />
@@ -183,7 +184,7 @@ function TransitSVG() {
 
 function MatchingSVG() {
   return (
-    <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+    <svg width="128" height="128" viewBox="0 0 72 72" fill="none">
       <circle cx="26" cy="36" r="18" stroke="#f472b6" strokeWidth="1" opacity={0.5} />
       <circle cx="46" cy="36" r="18" stroke="#f472b6" strokeWidth="1" opacity={0.5} />
       <path d="M36 22 A18 18 0 0 1 36 50 A18 18 0 0 1 36 22" fill="#f472b6" opacity={0.08} />
@@ -196,7 +197,7 @@ function MatchingSVG() {
 
 function SadeSatiSVG() {
   return (
-    <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+    <svg width="128" height="128" viewBox="0 0 72 72" fill="none">
       <circle cx="36" cy="36" r="26" stroke="rgba(96,165,250,0.2)" strokeWidth="0.8" />
       <circle cx="36" cy="36" r="12" stroke="rgba(96,165,250,0.15)" strokeWidth="0.8" />
       <circle cx="36" cy="10" r="6" fill="none" stroke="#60a5fa" strokeWidth="1.5" />
@@ -210,7 +211,7 @@ function SadeSatiSVG() {
 
 function LearnSVG() {
   return (
-    <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+    <svg width="128" height="128" viewBox="0 0 72 72" fill="none">
       <rect x="14" y="10" width="36" height="48" rx="3" stroke="#d4a853" strokeWidth="1.2" />
       <rect x="22" y="14" width="36" height="48" rx="3" stroke="#d4a853" strokeWidth="1.2" opacity={0.4} />
       <line x1="22" y1="24" x2="42" y2="24" stroke="rgba(212,168,83,0.3)" strokeWidth="1.5" strokeLinecap="round" />
@@ -224,7 +225,7 @@ function LearnSVG() {
 
 function PrashnaSVG() {
   return (
-    <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+    <svg width="128" height="128" viewBox="0 0 72 72" fill="none">
       <circle cx="36" cy="36" r="26" stroke="#a78bfa" strokeWidth="1" opacity={0.4} />
       <text x="28" y="46" fill="#a78bfa" fontSize="28" fontWeight="bold" opacity={0.6}>?</text>
       <circle cx="16" cy="20" r="2" fill="#a78bfa" opacity={0.3} />
@@ -236,61 +237,62 @@ function PrashnaSVG() {
 }
 
 // Card data with unique gradient colors and SVGs
-const HERO_CARDS: { href: string; gradient: string; border: string; titleColor: string; svg: React.ReactNode;
-  label: { en: string; hi: string; sa?: string; ta?: string; te?: string; bn?: string; kn?: string; mr?: string; gu?: string; mai?: string }; desc: { en: string; hi: string; sa?: string; ta?: string; te?: string; bn?: string; kn?: string; mr?: string; gu?: string; mai?: string } }[] = [
+type LocaleText = { en: string; hi: string; sa?: string; ta?: string; te?: string; bn?: string; kn?: string; mr?: string; gu?: string; mai?: string };
+const HERO_CARDS: { href: string; glowColor: string; svg: React.ReactNode; subtitle: LocaleText;
+  label: LocaleText; desc: LocaleText }[] = [
   {
-    href: '/kundali', gradient: 'from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27]',
-    border: 'border-gold-primary/12 hover:border-gold-primary/35', titleColor: 'text-[#f0d48a]',
+    href: '/kundali', glowColor: '#f0d48a',
     svg: <KundaliSVG />,
+    subtitle: { en: 'Birth Chart', hi: 'जन्म कुण्डली', ta: 'ஜாதக வரைபடம்', bn: 'জাতক চার্ট' },
     label: { en: 'Birth Chart', hi: 'जन्म कुण्डली', sa: 'जन्मकुण्डली', ta: 'ஜாதக வரைபடம்', te: 'జాతక చార్ట్', bn: 'জাতক চার্ট', kn: 'ಜಾತಕ ನಕ್ಷೆ', mr: 'जन्म कुंडली', gu: 'જન્મ કુંડળી', mai: 'जन्म कुंडली' },
     desc: { en: 'Generate Kundali with Dasha, Yogas & AI insights', hi: 'दशा, योग और AI अंतर्दृष्टि के साथ कुण्डली बनाएं', sa: 'दशा-योग-AI-अन्तर्दृष्ट्या कुण्डलीं रचयतु', ta: 'தசா, யோகம் & AI நுண்ணறிவுடன் ஜாதகம் உருவாக்குங்கள்', te: 'దశ, యోగాలు & AI అంతర్దృష్టితో జాతకం రూపొందించండి', bn: 'দশা, যোগ ও AI অন্তর্দৃষ্টি সহ জাতক তৈরি করুন', kn: 'ದಶಾ, ಯೋಗ ಮತ್ತು AI ಒಳನೋಟಗಳೊಂದಿಗೆ ಜಾತಕ ರಚಿಸಿ', mr: 'दशा, योग आणि AI अंतर्दृष्टीसह कुंडली तयार करा', gu: 'દશા, યોગ અને AI આંતરદૃષ્ટિ સાથે કુંડળી બનાવો', mai: 'दशा, योग आ AI अंतर्दृष्टिक संग कुंडली बनाउ' },
   },
   {
-    href: '/muhurta-ai', gradient: 'from-[#1a4a3a]/40 via-[#0a2520]/50 to-[#0a0e27]',
-    border: 'border-emerald-500/10 hover:border-emerald-500/30', titleColor: 'text-emerald-400',
+    href: '/muhurta-ai', glowColor: '#4ade80',
     svg: <MuhurtaSVG />,
+    subtitle: { en: 'Auspicious Timing', hi: 'शुभ मुहूर्त', ta: 'சுப நேரம்', bn: 'শুভ মুহূর্ত' },
     label: { en: 'Muhurta AI', hi: 'मुहूर्त AI', sa: 'मुहूर्तं AI', ta: 'முகூர்த்தம் AI', te: 'ముహూర్తం AI', bn: 'মুহূর্ত AI', kn: 'ಮುಹೂರ್ತ AI', mr: 'मुहूर्त AI', gu: 'મુહૂર્ત AI', mai: 'मुहूर्त AI' },
     desc: { en: 'AI-scored auspicious timing for 20 activities', hi: '20 गतिविधियों के लिए AI-अंकित शुभ समय', sa: '20 कार्येषु AI-मूल्यांकितं शुभमुहूर्तम्', ta: '20 நடவடிக்கைகளுக்கான AI-மதிப்பிட்ட சுப நேரம்', te: '20 కార్యకలాపాలకు AI-స్కోర్ శుభ సమయాలు', bn: '20টি কর্মকাণ্ডের জন্য AI-মূল্যায়িত শুভ সময়', kn: '20 ಚಟುವಟಿಕೆಗಳಿಗೆ AI-ಮೌಲ್ಯಮಾಪನ ಶುಭ ಸಮಯ', mr: '20 कार्यांसाठी AI-मूल्यांकित शुभ मुहूर्त', gu: '20 પ્રવૃત્તિઓ માટે AI-મૂલ્યાંકિત શુભ સમય', mai: '20 कार्यक लेल AI-अंकित शुभ समय' },
   },
   {
-    href: '/calendar', gradient: 'from-[#4a2a10]/40 via-[#2a1a0a]/50 to-[#0a0e27]',
-    border: 'border-orange-500/10 hover:border-orange-500/30', titleColor: 'text-orange-400',
+    href: '/calendar', glowColor: '#fb923c',
     svg: <CalendarSVG />,
+    subtitle: { en: 'Hindu Calendar', hi: 'हिन्दू पंचांग', ta: 'இந்து நாள்காட்டி', bn: 'হিন্দু পঞ্চাঙ্গ' },
     label: { en: 'Festivals & Vrat', hi: 'त्योहार और व्रत', sa: 'उत्सवाः व्रतानि च', ta: 'திருவிழாக்கள் & விரதம்', te: 'పండుగలు & వ్రతాలు', bn: 'উৎসব ও ব্রত', kn: 'ಹಬ್ಬಗಳು & ವ್ರತಗಳು', mr: 'सण आणि व्रत', gu: 'તહેવાર અને વ્રત', mai: 'पर्व आ व्रत' },
     desc: { en: 'Hindu calendar with regional events & Ekadashi', hi: 'क्षेत्रीय त्योहार और एकादशी के साथ हिन्दू पंचांग', sa: 'प्रादेशिकोत्सवैः एकादश्या च हिन्दूपञ्चाङ्गम्', ta: 'பிராந்திய நிகழ்வுகள் & ஏகாதசியுடன் இந்து நாள்காட்டி', te: 'ప్రాంతీయ ఈవెంట్లు & ఏకాదశితో హిందూ పంచాంగం', bn: 'আঞ্চলিক অনুষ্ঠান ও একাদশী সহ হিন্দু পঞ্চাঙ্গ', kn: 'ಪ್ರಾದೇಶಿಕ ಕಾರ್ಯಕ್ರಮಗಳು & ಏಕಾದಶಿಯೊಂದಿಗೆ ಹಿಂದೂ ಪಂಚಾಂಗ', mr: 'प्रादेशिक सण आणि एकादशीसह हिंदू पंचांग', gu: 'પ્રાદેશિક ઘટનાઓ અને એકાદશી સાથે હિંદુ પંચાંગ', mai: 'क्षेत्रीय पर्व आ एकादशीक संग हिन्दू पंचांग' },
   },
   {
-    href: '/transits', gradient: 'from-[#1a2a5a]/40 via-[#0a1530]/50 to-[#0a0e27]',
-    border: 'border-blue-500/10 hover:border-blue-500/30', titleColor: 'text-blue-400',
+    href: '/transits', glowColor: '#60a5fa',
     svg: <TransitSVG />,
+    subtitle: { en: 'Gochar', hi: 'गोचर', ta: 'கோசாரம்', bn: 'গোচর' },
     label: { en: 'Planet Transits', hi: 'ग्रह गोचर', sa: 'ग्रहगोचरः', ta: 'கிரக பெயர்ச்சி', te: 'గ్రహ గోచారం', bn: 'গ্রহ গোচর', kn: 'ಗ್ರಹ ಗೋಚಾರ', mr: 'ग्रह गोचर', gu: 'ગ્રહ ગોચર', mai: 'ग्रह गोचर' },
     desc: { en: 'Track planetary movements & Gochar predictions', hi: 'ग्रहों की चाल और गोचर फल ट्रैक करें', sa: 'ग्रहचलनं गोचरफलं च अनुसरतु', ta: 'கிரக நகர்வுகள் & கோசார கணிப்புகளைக் கண்காணிக்கவும்', te: 'గ్రహ చలనాలు & గోచార ఫలాలను ట్రాక్ చేయండి', bn: 'গ্রহের গতিবিধি ও গোচর ফল ট্র্যাক করুন', kn: 'ಗ್ರಹ ಚಲನೆಗಳು & ಗೋಚಾರ ಫಲಗಳನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ', mr: 'ग्रहांची गती आणि गोचर फल ट्रॅक करा', gu: 'ગ્રહોની ગતિ અને ગોચર ફળ ટ્રેક કરો', mai: 'ग्रहक चाल आ गोचर फल ट्रैक करू' },
   },
   {
-    href: '/matching', gradient: 'from-[#4a1a3a]/35 via-[#2a0a20]/45 to-[#0a0e27]',
-    border: 'border-pink-500/10 hover:border-pink-500/30', titleColor: 'text-pink-400',
+    href: '/matching', glowColor: '#f472b6',
     svg: <MatchingSVG />,
+    subtitle: { en: 'Compatibility', hi: 'अनुकूलता', ta: 'பொருத்தம்', bn: 'সামঞ্জস্য' },
     label: { en: 'Kundali Matching', hi: 'कुण्डली मिलान', sa: 'कुण्डलीमेलनम्', ta: 'ஜாதக பொருத்தம்', te: 'జాతక పొంతన', bn: 'জাতক মিলন', kn: 'ಜಾತಕ ಹೊಂದಾಣಿಕೆ', mr: 'कुंडली जुळवणी', gu: 'કુંડળી મિલાન', mai: 'कुंडली मिलान' },
     desc: { en: 'Ashta Kuta 36-Guna compatibility analysis', hi: 'अष्ट कूट 36-गुण अनुकूलता विश्लेषण', sa: 'अष्टकूट-षट्त्रिंशद्गुण-अनुकूलताविश्लेषणम्', ta: 'அஷ்ட கூட 36-குண பொருத்த பகுப்பாய்வு', te: 'అష్ట కూట 36-గుణ అనుకూలత విశ్లేషణ', bn: 'অষ্ট কূট ৩৬-গুণ সামঞ্জস্য বিশ্লেষণ', kn: 'ಅಷ್ಟ ಕೂಟ 36-ಗುಣ ಹೊಂದಾಣಿಕೆ ವಿಶ್ಲೇಷಣೆ', mr: 'अष्टकूट ३६-गुण अनुकूलता विश्लेषण', gu: 'અષ્ટ કૂટ 36-ગુણ અનુકૂળતા વિશ્લેષણ', mai: 'अष्टकूट 36-गुण अनुकूलता विश्लेषण' },
   },
   {
-    href: '/sade-sati', gradient: 'from-[#1a2040]/40 via-[#0a1025]/50 to-[#0a0e27]',
-    border: 'border-blue-400/10 hover:border-blue-400/30', titleColor: 'text-blue-300',
+    href: '/sade-sati', glowColor: '#60a5fa',
     svg: <SadeSatiSVG />,
+    subtitle: { en: 'Saturn Cycle', hi: 'शनि चक्र', ta: 'சனி சுழற்சி', bn: 'শনি চক্র' },
     label: { en: 'Sade Sati', hi: 'साढ़े साती', sa: 'साढेसप्तवर्षम्', ta: 'சனிப்பெயர்ச்சி', te: 'సాడే సాతి', bn: 'সাড়ে সাতি', kn: 'ಸಾಡೆ ಸಾತಿ', mr: 'साडेसाती', gu: 'સાડાસાતી', mai: 'साढ़ेसाती' },
     desc: { en: "Saturn's 7.5 year cycle — phase & remedies", hi: 'शनि की साढ़े साती — चरण और उपाय', sa: 'शनेः साढेसप्तवर्षचक्रम् — चरणाः उपचाराश्च', ta: 'சனியின் 7.5 ஆண்டு சுழற்சி — கட்டம் & பரிகாரங்கள்', te: 'శని 7.5 సంవత్సరాల చక్రం — దశ & పరిహారాలు', bn: 'শনির ৭.৫ বছরের চক্র — পর্ব ও প্রতিকার', kn: 'ಶನಿ 7.5 ವರ್ಷಗಳ ಚಕ್ರ — ಹಂತ & ಪರಿಹಾರಗಳು', mr: 'शनीची साडेसाती — टप्पे आणि उपाय', gu: 'શનિની સાડાસાતી — તબક્કા અને ઉપાય', mai: 'शनिक साढ़ेसाती — चरण आ उपाय' },
   },
   {
-    href: '/prashna', gradient: 'from-[#2a1a4a]/35 via-[#1a0a30]/45 to-[#0a0e27]',
-    border: 'border-violet-500/10 hover:border-violet-500/30', titleColor: 'text-violet-400',
+    href: '/prashna', glowColor: '#a78bfa',
     svg: <PrashnaSVG />,
+    subtitle: { en: 'Horary', hi: 'होरेरी', ta: 'ஹோரேரி', bn: 'হোরারি' },
     label: { en: 'Prashna Kundali', hi: 'प्रश्न कुण्डली', sa: 'प्रश्नकुण्डली', ta: 'பிரச்ன ஜாதகம்', te: 'ప్రశ్న జాతకం', bn: 'প্রশ্ন জাতক', kn: 'ಪ್ರಶ್ನ ಜಾತಕ', mr: 'प्रश्न कुंडली', gu: 'પ્રશ્ન કુંડળી', mai: 'प्रश्न कुंडली' },
     desc: { en: 'Horary astrology — instant answers to questions', hi: 'होरेरी ज्योतिष — प्रश्नों के तत्काल उत्तर', sa: 'होराज्योतिषम् — प्रश्नानां तात्कालिकोत्तराणि', ta: 'ஹோரேரி ஜோதிடம் — கேள்விகளுக்கு உடனடி பதில்கள்', te: 'హోరరీ జ్యోతిషం — ప్రశ్నలకు తక్షణ సమాధానాలు', bn: 'হোরারি জ্যোতিষ — প্রশ্নের তাৎক্ষণিক উত্তর', kn: 'ಹೋರರಿ ಜ್ಯೋತಿಷ — ಪ್ರಶ್ನೆಗಳಿಗೆ ತಕ್ಷಣದ ಉತ್ತರಗಳು', mr: 'होरारी ज्योतिष — प्रश्नांची तात्काळ उत्तरे', gu: 'હોરરી જ્યોતિષ — પ્રશ્નોના તાત્કાલિક જવાબો', mai: 'होरेरी ज्योतिष — प्रश्नक तत्काल उत्तर' },
   },
   {
-    href: '/learn', gradient: 'from-[#3a2a10]/35 via-[#1a1508]/45 to-[#0a0e27]',
-    border: 'border-gold-primary/10 hover:border-gold-primary/30', titleColor: 'text-gold-light',
+    href: '/learn', glowColor: '#d4a853',
     svg: <LearnSVG />,
+    subtitle: { en: 'Vedic Wisdom', hi: 'वैदिक ज्ञान', ta: 'வேத ஞானம்', bn: 'বৈদিক জ্ঞান' },
     label: { en: 'Learn Jyotish', hi: 'ज्योतिष सीखें', sa: 'ज्योतिषं पठतु', ta: 'ஜோதிடம் கற்க', te: 'జ్యోతిషం నేర్చుకోండి', bn: 'জ্যোতিষ শিখুন', kn: 'ಜ್ಯೋತಿಷ ಕಲಿಯಿರಿ', mr: 'ज्योतिष शिका', gu: 'જ્યોતિષ શીખો', mai: 'ज्योतिष सीखू' },
     desc: { en: 'Grahas, Rashis, Nakshatras, Dashas & more', hi: 'ग्रह, राशि, नक्षत्र, दशा और बहुत कुछ', sa: 'ग्रहाः, राशयः, नक्षत्राणि, दशाः, अन्यच्च', ta: 'கிரகங்கள், ராசிகள், நட்சத்திரங்கள், தசைகள் & மேலும்', te: 'గ్రహాలు, రాశులు, నక్షత్రాలు, దశలు & మరిన్ని', bn: 'গ্রহ, রাশি, নক্ষত্র, দশা ও আরও অনেক কিছু', kn: 'ಗ್ರಹಗಳು, ರಾಶಿಗಳು, ನಕ್ಷತ್ರಗಳು, ದಶೆಗಳು & ಇನ್ನಷ್ಟು', mr: 'ग्रह, राशी, नक्षत्रे, दशा आणि बरेच काही', gu: 'ગ્રહ, રાશિ, નક્ષત્ર, દશા અને વધુ', mai: 'ग्रह, राशि, नक्षत्र, दशा आ आओर बहुत किछु' },
   },
@@ -564,19 +566,18 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             {t('exploreToolsDesc')}
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 stagger-children">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 stagger-children">
           {HERO_CARDS.map((card) => (
-            <Link key={card.href} href={card.href} className="block group">
-              <div className={`relative rounded-2xl bg-gradient-to-br ${card.gradient} border ${card.border} p-5 h-full transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-lg overflow-hidden`}>
-                <div className="mb-3 opacity-60 group-hover:opacity-80 transition-opacity">{card.svg}</div>
-                <h3 className={`${card.titleColor} text-lg font-bold mb-1`} style={hf}>
-                  {L(card.label, locale)}
-                </h3>
-                <p className="text-text-secondary/70 text-sm leading-relaxed" style={bf}>
-                  {L(card.desc, locale)}
-                </p>
-              </div>
-            </Link>
+            <TarotCard
+              key={card.href}
+              size="full"
+              href={card.href}
+              subtitle={L(card.subtitle, locale)}
+              icon={card.svg}
+              title={L(card.label, locale)}
+              description={L(card.desc, locale)}
+              glowColor={card.glowColor}
+            />
           ))}
         </div>
       </section>

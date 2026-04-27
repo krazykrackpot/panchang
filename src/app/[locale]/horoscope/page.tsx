@@ -8,6 +8,7 @@ import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { Link } from '@/lib/i18n/navigation';
 import ShareButton from '@/components/ui/ShareButton';
+import TarotCard from '@/components/ui/TarotCard';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
@@ -419,20 +420,22 @@ export default function HoroscopePage() {
           {/* Sign grid */}
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mb-8">
             {RASHIS.map((r) => (
-              <motion.button key={r.id} onClick={() => handleSelect(r.id)}
-                whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
-                className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border rounded-xl p-4 text-center transition-all ${
+              <div
+                key={r.id}
+                className={`transition-all rounded-xl ${
                   selectedSign === r.id
-                    ? 'border-gold-primary/50 ring-1 ring-gold-primary/30 bg-gold-primary/10'
-                    : 'border-gold-primary/12 hover:border-gold-primary/25'
-                }`}>
-                <div className="flex justify-center mb-2"><RashiIconById id={r.id} size={36} /></div>
-                <div className="text-gold-light text-xs font-bold" style={headingFont}>{r.name[lk]}</div>
-                <Link href={`/horoscope/${r.slug}` as '/horoscope'} onClick={(e) => e.stopPropagation()}
-                  className="text-[10px] text-gold-dark hover:text-gold-primary mt-1 block transition-colors">
-                  {r.name.en}
-                </Link>
-              </motion.button>
+                    ? 'ring-2 ring-gold-primary/60 ring-offset-2 ring-offset-[#0a0e27]'
+                    : ''
+                }`}
+              >
+                <TarotCard
+                  size="full"
+                  icon={<RashiIconById id={r.id} size={64} />}
+                  title={(r.name[lk] ?? r.name.en) as string}
+                  subtitle={(r.element[lk] ?? r.element.en) as string}
+                  onClick={() => handleSelect(r.id)}
+                />
+              </div>
             ))}
           </div>
 

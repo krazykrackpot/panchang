@@ -42,6 +42,12 @@ const routes = [
   '/panchang/masa',
   '/panchang/samvatsara',
   '/panchang/yearly',
+  '/panchang/auspicious',
+  '/panchang/inauspicious',
+  '/panchang/nivas',
+  '/panchang/planets',
+  '/panchang/remedies',
+  '/panchang/activity-guide',
   // Learn
   '/learn',
   '/learn/grahas',
@@ -104,6 +110,10 @@ const routes = [
   '/learn/patrika',
   '/learn/library',
   '/learn/eclipses',
+  '/learn/dasha-sandhi',
+  '/learn/nadi-amsha',
+  '/learn/pancha-pakshi',
+  '/learn/doshas-detailed',
   // Learn Contributions (India's mathematical & astronomical heritage)
   '/learn/contributions/zero',
   '/learn/contributions/pi',

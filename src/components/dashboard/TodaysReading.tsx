@@ -1,5 +1,8 @@
 'use client';
 
+import { useRef, useState, useCallback } from 'react';
+import { toPng } from 'html-to-image';
+import { Share2, Loader2 } from 'lucide-react';
 import TarotCard, { TAROT_ICON_SIZES } from '@/components/ui/TarotCard';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { NakshatraIconById } from '@/components/icons/NakshatraIcons';
@@ -277,9 +280,48 @@ export default function TodaysReading({
 }: TodaysReadingProps) {
   const iconSize = TAROT_ICON_SIZES.full;
   const insight = generateDayInsight(dayEnergy.score, dayEnergy.bestFor, dashaLord.planetName);
+  const readingRef = useRef<HTMLDivElement>(null);
+  const [sharing, setSharing] = useState(false);
+
+  const handleShare = useCallback(async () => {
+    if (!readingRef.current) return;
+    setSharing(true);
+    try {
+      const dataUrl = await toPng(readingRef.current, {
+        pixelRatio: 2,
+        backgroundColor: '#0a0e27',
+      });
+      const res = await fetch(dataUrl);
+      const blob = await res.blob();
+
+      if (typeof navigator !== 'undefined' && navigator.share) {
+        const file = new File([blob], 'todays-reading.png', { type: 'image/png' });
+        const shareData: ShareData = {
+          title: "Today's Cosmic Reading",
+          text: `My cosmic reading for today — ${new Date().toLocaleDateString()}`,
+        };
+        if (navigator.canShare?.({ files: [file] })) {
+          shareData.files = [file];
+        }
+        await navigator.share(shareData);
+      } else {
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = `todays-reading-${new Date().toISOString().slice(0, 10)}.png`;
+        link.click();
+      }
+    } catch (err) {
+      if ((err as Error).name !== 'AbortError') {
+        console.error('[TodaysReading] Share failed:', err);
+      }
+    } finally {
+      setSharing(false);
+    }
+  }, []);
 
   return (
     <section className="py-8 px-4">
+      <div ref={readingRef}>
       {/* Header — "The Lens" */}
       <div className="text-center mb-8">
         <h2 className="font-[var(--font-cinzel)] text-2xl md:text-3xl text-[#f0d48a] mb-2">
@@ -358,6 +400,23 @@ export default function TodaysReading({
           title={prakriti ? prakriti.dominant : tithi.name}
           description={prakriti ? `${prakriti.dominant}-${prakriti.secondary}` : tithi.paksha}
         />
+      </div>
+      </div>{/* close readingRef */}
+
+      {/* Share button */}
+      <div className="flex justify-center mt-6">
+        <button
+          onClick={handleShare}
+          disabled={sharing}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#d4a853]/15 border border-[#d4a853]/30 text-[#f0d48a] text-sm font-medium hover:bg-[#d4a853]/25 hover:border-[#d4a853]/50 transition-all disabled:opacity-50"
+        >
+          {sharing ? (
+            <Loader2 className="w-4 h-4 animate-spin" />
+          ) : (
+            <Share2 className="w-4 h-4" />
+          )}
+          {sharing ? 'Generating...' : "Share Today's Reading"}
+        </button>
       </div>
     </section>
   );

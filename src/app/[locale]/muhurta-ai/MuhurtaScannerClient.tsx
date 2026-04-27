@@ -1,6 +1,8 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
+import { toPng } from 'html-to-image';
+import { Share2, Loader2 } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { useLocationStore } from '@/stores/location-store';
 import { useBirthDataStore } from '@/stores/birth-data-store';
@@ -69,6 +71,37 @@ export default function MuhurtaScannerClient() {
     }
   }, [hasBirthData, storeBirthNak, storeBirthRashi]);
 
+  // Share
+  const peaksRef = useRef<HTMLDivElement>(null);
+  const [sharing, setSharing] = useState(false);
+  const activityLabel = tl(getExtendedActivity(activity).label, locale);
+
+  const handleShareResults = useCallback(async () => {
+    if (!peaksRef.current) return;
+    setSharing(true);
+    try {
+      const dataUrl = await toPng(peaksRef.current, { pixelRatio: 2, backgroundColor: '#0a0e27' });
+      const res = await fetch(dataUrl);
+      const blob = await res.blob();
+      if (typeof navigator !== 'undefined' && navigator.share) {
+        const file = new File([blob], 'muhurta-results.png', { type: 'image/png' });
+        const shareLabel = tl(getExtendedActivity(activity).label, locale);
+        const shareData: ShareData = { title: 'Best Muhurta Windows', text: `Top auspicious times for ${shareLabel}` };
+        if (navigator.canShare?.({ files: [file] })) shareData.files = [file];
+        await navigator.share(shareData);
+      } else {
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = `muhurta-${activity}-${new Date().toISOString().slice(0, 10)}.png`;
+        link.click();
+      }
+    } catch (err) {
+      if ((err as Error).name !== 'AbortError') console.error('[muhurta-scanner] Share failed:', err);
+    } finally {
+      setSharing(false);
+    }
+  }, [activity, locale]);
+
   // Results
   const [overviewCells, setOverviewCells] = useState<HeatmapCell[]>([]);
   const [detailWindows, setDetailWindows] = useState<DetailWindow[]>([]);
@@ -83,7 +116,6 @@ export default function MuhurtaScannerClient() {
 
   // Derived
   const todayStr = new Date().toISOString().slice(0, 10);
-  const activityLabel = tl(getExtendedActivity(activity).label, locale);
   const [viewYear, viewMonth] = startDate.split('-').map(Number);
 
   // --- Handlers ---
@@ -333,7 +365,19 @@ export default function MuhurtaScannerClient() {
               {sl('bestWindowsFor', locale)} &ldquo;{activityLabel}&rdquo;
             </h2>
           </div>
-          <PeakCards peaks={peaks} onCardClick={(w) => handleDaySelect(w.date)} />
+          <div ref={peaksRef}>
+            <PeakCards peaks={peaks} onCardClick={(w) => handleDaySelect(w.date)} />
+          </div>
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={handleShareResults}
+              disabled={sharing}
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#d4a853]/15 border border-[#d4a853]/30 text-[#f0d48a] text-xs font-medium hover:bg-[#d4a853]/25 transition-all disabled:opacity-50"
+            >
+              {sharing ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Share2 className="w-3.5 h-3.5" />}
+              {sharing ? 'Generating...' : 'Share Results'}
+            </button>
+          </div>
         </>
       )}
 

@@ -3,8 +3,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, LogIn } from 'lucide-react';
+import { BookOpen, ChevronLeft, ChevronRight, LogIn } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
+import { usePathname } from 'next/navigation';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { useAuthStore } from '@/stores/auth-store';
 import { PHASE_INFO, getPhaseModules, getModuleRef } from '@/lib/learn/module-sequence';
@@ -269,7 +270,7 @@ export default function LearnSidebar() {
   // ── Expanded panel ──────────────────────────────────────────────────────────
   return (
     <aside
-      className="flex flex-col bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] rounded-xl border border-gold-primary/12 overflow-hidden transition-all duration-200"
+      className="flex flex-col h-full bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] rounded-xl border border-gold-primary/12 overflow-hidden transition-all duration-200"
       style={{ width: 260, minHeight: 320 }}
     >
       {/* ── Header ── */}
@@ -449,24 +450,30 @@ export default function LearnSidebar() {
                   >
                     <ul className="pl-7 pr-1 pb-1 space-y-0.5">
                       {phaseModules.map(mod => {
-                        const status = getModuleStatus(mod.id);
+                        const isRef = mod.id.startsWith('ref:');
+                        const status = isRef ? 'not_started' : getModuleStatus(mod.id);
                         const isNext = mod.id === nextModuleId;
-                        const modTitle = isHi ? mod.title.hi : mod.title.en;
+                        const modTitle = isHi ? (mod.title.hi || mod.title.en) : mod.title.en;
 
                         return (
                           <li key={mod.id}>
                             <Link
-                              href={`/learn/modules/${mod.id}`}
+                              href={mod.href ?? `/learn/modules/${mod.id}`}
                               className={[
                                 'flex items-center gap-2 px-2 py-1.5 rounded-md text-xs transition-colors group/mod',
-                                isNext
-                                  ? 'bg-gold-primary/10 text-gold-light hover:bg-gold-primary/20'
-                                  : status === 'mastered'
-                                    ? 'text-emerald-400 hover:bg-gold-primary/5'
-                                    : 'text-text-secondary hover:text-text-primary hover:bg-gold-primary/5',
+                                isRef
+                                  ? 'text-gold-primary/70 hover:text-gold-light hover:bg-gold-primary/5'
+                                  : isNext
+                                    ? 'bg-gold-primary/10 text-gold-light hover:bg-gold-primary/20'
+                                    : status === 'mastered'
+                                      ? 'text-emerald-400 hover:bg-gold-primary/5'
+                                      : 'text-text-secondary hover:text-text-primary hover:bg-gold-primary/5',
                               ].join(' ')}
                             >
-                              <ProgressIndicator status={status} size={12} />
+                              {isRef
+                                ? <BookOpen size={12} className="shrink-0 opacity-60" />
+                                : <ProgressIndicator status={status} size={12} />
+                              }
                               <span
                                 className="leading-snug"
                                 style={{ fontFamily: isHi ? 'var(--font-devanagari-body)' : undefined }}

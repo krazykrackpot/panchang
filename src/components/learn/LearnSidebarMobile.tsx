@@ -204,25 +204,28 @@ export default function LearnSidebarMobile() {
                       {/* Module links */}
                       <div className="space-y-1">
                         {modules.map((mod) => {
-                          const status = getModuleStatus(mod.id);
+                          const isRef = mod.id.startsWith('ref:');
+                          const status = isRef ? 'not_started' : getModuleStatus(mod.id);
                           return (
                             <Link
                               key={mod.id}
-                              href={`/learn/modules/${mod.id}`}
+                              href={mod.href ?? `/learn/modules/${mod.id}`}
                               onClick={() => setOpen(false)}
                               className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gold-primary/5 transition-colors group"
                             >
                               <ProgressIndicator status={status} size={14} />
                               <span
                                 className={`text-sm leading-snug ${
-                                  status === 'mastered'
+                                  isRef
+                                    ? 'text-gold-primary/70 group-hover:text-gold-light'
+                                    : status === 'mastered'
                                     ? 'text-emerald-400'
                                     : status === 'in_progress'
                                     ? 'text-gold-light'
                                     : 'text-text-secondary group-hover:text-text-primary'
                                 }`}
                               >
-                                {isHi ? mod.title.hi : mod.title.en}
+                                {isHi ? (mod.title.hi || mod.title.en) : mod.title.en}
                               </span>
                             </Link>
                           );

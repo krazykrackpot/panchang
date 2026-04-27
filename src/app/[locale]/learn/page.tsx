@@ -31,7 +31,7 @@ export default function LearnPage() {
   const tri = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
 
   // Item 3: Reference library toggle
-  const [showRefs, setShowRefs] = useState(false);
+  const [showRefs, setShowRefs] = useState(true);
 
   // Item 4: Streak counter from learning progress store
   const { streak, hydrated, hydrateFromStorage } = useLearningProgressStore();

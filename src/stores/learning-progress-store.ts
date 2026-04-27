@@ -3,7 +3,7 @@
 import { create } from 'zustand';
 import { getSupabase } from '@/lib/supabase/client';
 import { useAuthStore } from '@/stores/auth-store';
-import { MODULE_SEQUENCE, getPhaseModules } from '@/lib/learn/module-sequence';
+import { MODULE_SEQUENCE, CURRICULUM_MODULES, getPhaseModules } from '@/lib/learn/module-sequence';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -522,7 +522,8 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
 
   getNextModule: () => {
     const { progress } = get();
-    for (const mod of MODULE_SEQUENCE) {
+    // Only curriculum modules (not ref: articles) count for progression
+    for (const mod of CURRICULUM_MODULES) {
       if (progress[mod.id]?.status !== 'mastered') {
         return mod.id;
       }
@@ -532,7 +533,8 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
 
   getPhaseProgress: (phase: number) => {
     const { progress } = get();
-    const modules = getPhaseModules(phase);
+    // Only curriculum modules count toward phase progress
+    const modules = getPhaseModules(phase).filter(m => !m.id.startsWith('ref:'));
     const total = modules.length;
     const mastered = modules.filter((m) => progress[m.id]?.status === 'mastered').length;
     const percent = total > 0 ? Math.round((mastered / total) * 100) : 0;
@@ -541,8 +543,8 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
 
   getOverallProgress: () => {
     const { progress } = get();
-    const total = MODULE_SEQUENCE.length;
-    const mastered = MODULE_SEQUENCE.filter((m) => progress[m.id]?.status === 'mastered').length;
+    const total = CURRICULUM_MODULES.length;
+    const mastered = CURRICULUM_MODULES.filter((m) => progress[m.id]?.status === 'mastered').length;
     const percent = total > 0 ? Math.round((mastered / total) * 100) : 0;
     return { mastered, total, percent };
   },

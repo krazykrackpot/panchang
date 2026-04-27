@@ -9,6 +9,8 @@ export interface ModuleRef {
   phase: number;
   topic: string;
   title: Record<string, string>;
+  /** If set, links to this path instead of /learn/modules/[id]. Used for reference articles. */
+  href?: string;
 }
 
 export const MODULE_SEQUENCE: ModuleRef[] = [
@@ -19,6 +21,11 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: '0-4', phase: 0, topic: 'Getting Started', title: { en: "Reading Today's Panchang", hi: 'आज का पंचांग पढ़ना', sa: 'आज का पंचांग पढ़ना', mai: 'आज का पंचांग पढ़ना', mr: 'आज का पंचांग पढ़ना', ta: "இன்றைய பஞ்சாங்கம் படிக்க", te: "నేటి పంచాంగం చదవడం", bn: "আজকের পঞ্চাঙ্গ পড়া", kn: "ಇಂದಿನ ಪಂಚಾಂಗ ಓದುವುದು", gu: "આજનું પંચાંગ વાંચવું" } },
   { id: '0-5', phase: 0, topic: 'Getting Started', title: { en: 'What is a Kundali?', hi: 'कुण्डली क्या है?', sa: 'कुण्डली क्या है?', mai: 'कुण्डली क्या है?', mr: 'कुण्डली क्या है?', ta: 'ஜாதகம் என்றால் என்ன?', te: 'జాతకం అంటే ఏమిటి?', bn: 'জাতক কী?', kn: 'ಜಾತಕ ಎಂದರೇನು?', gu: 'જાતક શું છે?' } },
   { id: '0-6', phase: 0, topic: 'Foundations',     title: { en: 'Rituals & Astronomy', hi: 'कर्मकाण्ड और खगोल', sa: 'कर्मकाण्ड और खगोल', mai: 'कर्मकाण्ड और खगोल', mr: 'कर्मकाण्ड और खगोल', ta: 'சடங்குகள் & வானியல்', te: 'కర్మకాండ & ఖగోళశాస్త్రం', bn: 'কর্মকাণ্ড ও জ্যোতির্বিদ্যা', kn: 'ಕರ್ಮಕಾಂಡ ಮತ್ತು ಖಗೋಳಶಾಸ್ತ್ರ', gu: 'કર્મકાંડ અને ખગોળશાસ્ત્ર' } },
+
+  // Reference: Foundations
+  { id: 'ref:cosmology', phase: 0, topic: 'Reference', href: '/learn/cosmology', title: { en: 'Cosmology — Deep Dive', hi: 'ब्रह्माण्ड — विस्तृत', ta: 'பிரபஞ்ச ஆய்வு', te: 'బ్రహ్మాండం', bn: 'ব্রহ্মাণ্ড' } },
+  { id: 'ref:vedanga', phase: 0, topic: 'Reference', href: '/learn/vedanga', title: { en: 'Vedanga Heritage', hi: 'वेदांग विरासत', ta: 'வேதாங்க பாரம்பரியம்', te: 'వేదాంగ వారసత్వం', bn: 'বেদাঙ্গ ঐতিহ্য' } },
+  { id: 'ref:observatories', phase: 0, topic: 'Reference', href: '/learn/observatories', title: { en: 'Indian Observatories (Jantar Mantar)', hi: 'भारतीय वेधशालाएं', ta: 'இந்திய வேதசாலைகள்', te: 'భారతీయ వేధశాలలు', bn: 'ভারতীয় বেধশালা' } },
 
   // ── Phase 1: The Sky ─────────────────────────────────────────────────────
   // Foundations
@@ -39,6 +46,15 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: '4-2', phase: 1, topic: 'Ayanamsha',   title: { en: 'Two Zodiacs', hi: 'दो राशिचक्र', sa: 'दो राशिचक्र', mai: 'दो राशिचक्र', mr: 'दो राशिचक्र', ta: 'இரு ராசிச்சக்கரங்கள்', te: 'రెండు రాశి చక్రాలు', bn: 'দুই রাশিচক্র', kn: 'ಎರಡು ರಾಶಿಚಕ್ರ', gu: 'બે રાશિચક્ર' } },
   { id: '4-3', phase: 1, topic: 'Ayanamsha',   title: { en: 'Ayanamsha Systems', hi: 'अयनांश पद्धतियाँ', sa: 'अयनांश पद्धतियाँ', mai: 'अयनांश पद्धतियाँ', mr: 'अयनांश पद्धतियाँ', ta: 'அயனாம்ச முறைகள்', te: 'అయనాంశ పద్ధతులు', bn: 'অয়নাংশ পদ্ধতি', kn: 'ಅಯನಾಂಶ ಪದ್ಧತಿಗಳು', gu: 'અયનાંશ પદ્ધતિઓ' } },
 
+  // Reference: The Sky
+  { id: 'ref:grahas', phase: 1, topic: 'Reference', href: '/learn/grahas', title: { en: 'Grahas — Complete Guide', hi: 'ग्रह — सम्पूर्ण मार्गदर्शक', ta: 'கிரகங்கள் வழிகாட்டி', te: 'గ్రహాలు మార్గదర్శి', bn: 'গ্রহ সম্পূর্ণ নির্দেশিকা' } },
+  { id: 'ref:rashis', phase: 1, topic: 'Reference', href: '/learn/rashis', title: { en: 'Rashis — Complete Guide', hi: 'राशियाँ — विस्तृत', ta: 'ராசிகள் வழிகாட்டி', te: 'రాశులు మార్గదర్శి', bn: 'রাশি সম্পূর্ণ নির্দেশিকা' } },
+  { id: 'ref:nakshatras', phase: 1, topic: 'Reference', href: '/learn/nakshatras', title: { en: 'Nakshatras — Complete Guide', hi: 'नक्षत्र — विस्तृत', ta: 'நட்சத்திரங்கள் வழிகாட்டி', te: 'నక్షత్రాలు మార్గదర్శి', bn: 'নক্ষত্র সম্পূর্ণ নির্দেশিকা' } },
+  { id: 'ref:ayanamsha', phase: 1, topic: 'Reference', href: '/learn/ayanamsha', title: { en: 'Ayanamsha — Deep Dive', hi: 'अयनांश — विस्तृत', ta: 'அயனாம்ச ஆய்வு', te: 'అయనాంశ ఆఴంగా', bn: 'অযনাংশ গভীর আলোচনা' } },
+  { id: 'ref:aspects', phase: 1, topic: 'Reference', href: '/learn/aspects', title: { en: 'Aspects — Graha Drishti', hi: 'दृष्टि — विस्तृत', ta: 'திருஷ்டி வழிகாட்டி', te: 'దృష్టి మార్గదర్శి', bn: 'দৃষ্টি নির্দেশিকা' } },
+  { id: 'ref:retrograde-effects', phase: 1, topic: 'Reference', href: '/learn/retrograde-effects', title: { en: 'Retrograde Effects', hi: 'वक्री प्रभाव', ta: 'வக்கிர பாதிப்புகள்', te: 'వక్రి ప్రభావాలు', bn: 'বক্রী প্রভাব' } },
+  { id: 'ref:combustion', phase: 1, topic: 'Reference', href: '/learn/combustion', title: { en: 'Combustion (Asta)', hi: 'अस्त — विस्तृत', ta: 'அஸ்தமனம்', te: 'అస్తం', bn: 'অস্ত' } },
+
   // ── Phase 2: Pancha Anga ─────────────────────────────────────────────────
   // Tithi
   { id: '5-1', phase: 2, topic: 'Tithi',                 title: { en: 'What Is a Tithi?', hi: 'तिथि क्या है?', sa: 'तिथि क्या है?', mai: 'तिथि क्या है?', mr: 'तिथि क्या है?', ta: 'திதி என்றால் என்ன?', te: 'తిథి అంటే ఏమిటి?', bn: 'তিথি কী?', kn: 'ತಿಥಿ ಎಂದರೇನು?', gu: 'તિથિ શું છે?' } },
@@ -56,6 +72,16 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: '7-4', phase: 2, topic: 'Yoga, Karana & Vara',   title: { en: 'Why 7 Days? — Chaldean Order', hi: '7 दिन क्यों? — कैल्डियन क्रम', sa: '7 दिन क्यों? — कैल्डियन क्रम', mai: '7 दिन क्यों? — कैल्डियन क्रम', mr: '7 दिन क्यों? — कैल्डियन क्रम', ta: '7 நாட்கள் ஏன்? — கால்டியன் வரிசை', te: '7 రోజులు ఎందుకు? — కాల్డియన్ క్రమం', bn: '7 দিন কেন? — ক্যালডীয় ক্রম', kn: '7 ದಿನಗಳು ಏಕೆ? — ಕಾಲ್ಡಿಯನ್ ಕ್ರಮ', gu: '7 દિવસ શા માટે? — કેલ્ડિયન ક્રમ' } },
   // Muhurta
   { id: '8-1', phase: 2, topic: 'Muhurta',               title: { en: '30 Muhurtas Per Day', hi: '30 मुहूर्त', sa: '30 मुहूर्त', mai: '30 मुहूर्त', mr: '30 मुहूर्त', ta: 'நாளொன்றுக்கு 30 முகூர்த்தங்கள்', te: 'రోజుకు 30 ముహూర్తాలు', bn: 'প্রতিদিন 30 মুহূর্ত', kn: 'ದಿನಕ್ಕೆ 30 ಮುಹೂರ್ತ', gu: 'દિવસ દીઠ 30 મુહૂર્ત' } },
+
+  // Reference: Pancha Anga
+  { id: 'ref:tithis', phase: 2, topic: 'Reference', href: '/learn/tithis', title: { en: 'Tithis — Complete Reference', hi: 'तिथियाँ — विस्तृत', ta: 'திதிகள் கையேடு', te: 'తిథులు మార్గదర్శి', bn: 'তিথি নির্দেশিকা' } },
+  { id: 'ref:yogas', phase: 2, topic: 'Reference', href: '/learn/yogas', title: { en: 'Yogas — Complete Reference', hi: 'योग — विस्तृत', ta: 'யோகங்கள் கையேடு', te: 'యోగాలు మార్గదర్శి', bn: 'যোগ নির্দেশিকা' } },
+  { id: 'ref:karanas', phase: 2, topic: 'Reference', href: '/learn/karanas', title: { en: 'Karanas — Complete Reference', hi: 'करण — विस्तृत', ta: 'கரணங்கள் கையேடு', te: 'కరణాలు మార్గదర్శి', bn: 'করণ নির্দেশিকা' } },
+  { id: 'ref:vara', phase: 2, topic: 'Reference', href: '/learn/vara', title: { en: 'Vara — Weekdays & Lords', hi: 'वार — विस्तृत', ta: 'வாரம் வழிகாட்டி', te: 'వారం మార్గదర్శి', bn: 'বার নির্দেশিকা' } },
+  { id: 'ref:hora', phase: 2, topic: 'Reference', href: '/learn/hora', title: { en: 'Hora — Why 7 Days & Ahoratra', hi: 'होरा — 7 दिन और अहोरात्र', ta: 'ஹோரை — 7 நாட்கள் என்', te: 'హోరా — 7 రోజులు ఎందుకు', bn: 'হোরা — 7 দিন কেন' } },
+  { id: 'ref:muhurtas', phase: 2, topic: 'Reference', href: '/learn/muhurtas', title: { en: 'Muhurtas — Complete Reference', hi: 'मुहूर्त — विस्तृत', ta: 'முகூர்த்தங்கள் கையேடு', te: 'ముహూర్తాలు మార్గదర్శి', bn: 'মুহূর্ত নির্দেশিকা' } },
+  { id: 'ref:masa', phase: 2, topic: 'Reference', href: '/learn/masa', title: { en: 'Masa — Lunar Months', hi: 'मास — चान्द्र मास', ta: 'மாதம் வழிகாட்டி', te: 'మాసం మార్గదర్శి', bn: 'মাস নির্দেশিকা' } },
+  { id: 'ref:eclipses', phase: 2, topic: 'Reference', href: '/learn/eclipses', title: { en: 'Eclipses (Grahan) — Deep Dive', hi: 'ग्रहण — विस्तृत', ta: 'கிரகணம் ஆய்வு', te: 'గ్రహణం ఆఴంగా', bn: 'গ্রহণ গভীর' } },
 
   // ── Phase 3: The Chart ───────────────────────────────────────────────────
   // Kundali
@@ -81,6 +107,13 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: '13-3', phase: 3, topic: 'Transits',  title: { en: 'Ashtakavarga Transit Scoring', hi: 'अष्टकवर्ग गोचर', sa: 'अष्टकवर्ग गोचर', mai: 'अष्टकवर्ग गोचर', mr: 'अष्टकवर्ग गोचर', ta: 'அஷ்டகவர்க கோசார மதிப்பீடு', te: 'అష్టకవర్గ గోచార స్కోరింగ్', bn: 'অষ্টকবর্গ গোচর স্কোরিং', kn: 'ಅಷ್ಟಕವರ್ಗ ಗೋಚಾರ ಅಂಕ', gu: 'અષ્ટકવર્ગ ગોચર સ્કોરિંગ' } },
   { id: '13-4', phase: 3, topic: 'Transits',  title: { en: 'Eclipses — Grahan & Rahu-Ketu Axis', hi: 'ग्रहण — राहु-केतु अक्ष', sa: 'ग्रहण — राहु-केतु अक्ष', mai: 'ग्रहण — राहु-केतु अक्ष', mr: 'ग्रहण — राहु-केतु अक्ष', ta: 'கிரகணம் — கிரகண & ராகு-கேது அச்சு', te: 'గ్రహణాలు — గ్రహణం & రాహు-కేతు అక్షం', bn: 'গ্রহণ — গ্রহণ ও রাহু-কেতু অক্ষ', kn: 'ಗ್ರಹಣ — ಗ್ರಹಣ & ರಾಹು-ಕೇತು ಅಕ್ಷ', gu: 'ગ્રહણ — ગ્રહણ અને રાહુ-કેતુ અક્ષ' } },
 
+  // Reference: The Chart
+  { id: 'ref:planets', phase: 3, topic: 'Reference', href: '/learn/planets', title: { en: 'Planets in Houses', hi: 'भावों में ग्रह', ta: 'பாவங்களில் கிரகங்கள்', te: 'భావాలలో గ్రహాలు', bn: 'ভাবে গ্রহ' } },
+  { id: 'ref:planet-in-house', phase: 3, topic: 'Reference', href: '/learn/planet-in-house', title: { en: 'Planet-in-House — 84 Interpretations', hi: 'ग्रह-भाव — 84 फल', ta: 'கிரகம்-பாவம் 84 பலன்கள்', te: 'గ్రహ-భావ 84 ఫలాలు', bn: 'গ্রহ-ভাব 84 ফল' } },
+  { id: 'ref:dashas', phase: 3, topic: 'Reference', href: '/learn/dashas', title: { en: 'Dashas — Complete Reference', hi: 'दशाएँ — विस्तृत', ta: 'தசைகள் கையேடு', te: 'దశలు మార్గదర్శి', bn: 'দশা নির্দেশিকা' } },
+  { id: 'ref:transit-guide', phase: 3, topic: 'Reference', href: '/learn/transit-guide', title: { en: 'Transit Guide', hi: 'गोचर मार्गदर्शक', ta: 'கோசார வழிகாட்டி', te: 'గోచార మార్గదర్శి', bn: 'গোচর নির্দেশিকা' } },
+  { id: 'ref:sade-sati', phase: 3, topic: 'Reference', href: '/learn/sade-sati', title: { en: 'Sade Sati — Deep Dive', hi: 'साढ़े साती — विस्तृत', ta: 'சாடே சாதி ஆய்வு', te: 'సాడే సాతి ఆఴంగా', bn: 'সাড়ে সাতি গভীর' } },
+
   // ── Phase 4: Applied Jyotish ─────────────────────────────────────────────
   // Compatibility
   { id: '14-1', phase: 4, topic: 'Compatibility',    title: { en: 'Ashta Kuta', hi: 'अष्ट कूट', sa: 'अष्ट कूट', mai: 'अष्ट कूट', mr: 'अष्ट कूट', ta: 'அஷ்ட கூடம்', te: 'అష్ట కూట', bn: 'অষ্ট কূট', kn: 'ಅಷ್ಟ ಕೂಟ', gu: 'અષ્ટ કૂટ' } },
@@ -91,6 +124,16 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: '15-2', phase: 4, topic: 'Yogas & Doshas',   title: { en: 'Raja & Dhana Yogas', hi: 'राज एवं धन योग', sa: 'राज एवं धन योग', mai: 'राज एवं धन योग', mr: 'राज एवं धन योग', ta: 'ராஜ & தன யோகங்கள்', te: 'రాజ & ధన యోగాలు', bn: 'রাজ ও ধন যোগ', kn: 'ರಾಜ ಮತ್ತು ಧನ ಯೋಗ', gu: 'રાજ અને ધન યોગ' } },
   { id: '15-3', phase: 4, topic: 'Yogas & Doshas',   title: { en: 'Common Doshas', hi: 'प्रमुख दोष', sa: 'प्रमुख दोष', mai: 'प्रमुख दोष', mr: 'प्रमुख दोष', ta: 'பொதுவான தோஷங்கள்', te: 'సాధారణ దోషాలు', bn: 'সাধারণ দোষ', kn: 'ಸಾಮಾನ್ಯ ದೋಷಗಳು', gu: 'સામાન્ય દોષો' } },
   { id: '15-4', phase: 4, topic: 'Yogas & Doshas',   title: { en: 'Remedial Measures', hi: 'उपाय', sa: 'उपाय', mai: 'उपाय', mr: 'उपाय', ta: 'பரிகாரங்கள்', te: 'ఉపాయాలు', bn: 'উপায়', kn: 'ಉಪಾಯಗಳು', gu: 'ઉપાયો' } },
+
+  // Reference: Applied Jyotish
+  { id: 'ref:matching', phase: 4, topic: 'Reference', href: '/learn/matching', title: { en: 'Matching — Complete Guide', hi: 'मिलान — विस्तृत', ta: 'பொருத்தம் வழிகாட்டி', te: 'మేళనం మార్గదర్శి', bn: 'মেলানো নির্দেশিকা' } },
+  { id: 'ref:compatibility', phase: 4, topic: 'Reference', href: '/learn/compatibility', title: { en: 'Compatibility — Beyond Kuta', hi: 'अनुकूलता — कूट से परे', ta: 'பொருத்தம் கூடத்தை தாண்டி', te: 'అనుకూలత కూటదాటి', bn: 'অনুকূলতা কূটের বাইরে' } },
+  { id: 'ref:remedies', phase: 4, topic: 'Reference', href: '/learn/remedies', title: { en: 'Remedies — Deep Dive', hi: 'उपाय — विस्तृत', ta: 'பரிகாரங்கள் ஆய்வு', te: 'ఉపాయాలు ఆఴంగా', bn: 'উপায় গভীর' } },
+  { id: 'ref:career', phase: 4, topic: 'Reference', href: '/learn/career', title: { en: 'Career Astrology', hi: 'कैरियर ज्योतिष', ta: 'தொழில் ஜோதிடம்', te: 'వృత్తి జ్యోతిష్యం', bn: 'ক্যারিয়ার জ্যোতিষ' } },
+  { id: 'ref:marriage', phase: 4, topic: 'Reference', href: '/learn/marriage', title: { en: 'Marriage Astrology', hi: 'विवाह ज्योतिष', ta: 'திருமண ஜோதிடம்', te: 'వివాహ జ్యోతిష్యం', bn: 'বিবাহ জ্যোতিষ' } },
+  { id: 'ref:wealth', phase: 4, topic: 'Reference', href: '/learn/wealth', title: { en: 'Wealth Astrology', hi: 'धन ज्योतिष', ta: 'செல்வ ஜோதிடம்', te: 'ధన జ్యోతిష్యం', bn: 'ধন জ্যোতিষ' } },
+  { id: 'ref:health', phase: 4, topic: 'Reference', href: '/learn/health', title: { en: 'Health Astrology', hi: 'स्वास्थ्य ज्योतिष', ta: 'நலம் ஜோதிடம்', te: 'ఆరోగ్య జ్యోతిష్యం', bn: 'স্বাস্থ্য জ্যোতিষ' } },
+  { id: 'ref:grahan-yoga', phase: 4, topic: 'Reference', href: '/learn/grahan-yoga', title: { en: 'Grahan Yoga', hi: 'ग्रहण योग', ta: 'கிரகண யோகம்', te: 'గ్రహణ యోగం', bn: 'গ্রহণ যোগ' } },
 
   // ── Phase 5: Classical Knowledge ─────────────────────────────────────────
   { id: '16-1', phase: 5, topic: 'Classical Texts',  title: { en: 'Astronomical Texts', hi: 'खगोलशास्त्रीय', sa: 'खगोलशास्त्रीय', mai: 'खगोलशास्त्रीय', mr: 'खगोलशास्त्रीय', ta: 'வானியல் நூல்கள்', te: 'ఖగోళశాస్త్ర గ్రంథాలు', bn: 'জ্যোতির্বিদ্যা গ্রন্থ', kn: 'ಖಗೋಳ ಗ್ರಂಥಗಳು', gu: 'ખગોળશાસ્ત્રીય ગ્રંથો' } },
@@ -108,11 +151,26 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: '18-4', phase: 5, topic: 'Strength',         title: { en: 'Avasthas — Planetary States', hi: 'अवस्थाएँ', sa: 'अवस्थाएँ', mai: 'अवस्थाएँ', mr: 'अवस्थाएँ', ta: 'அவஸ்தைகள் — கிரக நிலைகள்', te: 'అవస్థలు — గ్రహ స్థితులు', bn: 'অবস্থা — গ্রহ অবস্থা', kn: 'ಅವಸ್ಥೆಗಳು — ಗ್ರಹ ಸ್ಥಿತಿ', gu: 'અવસ્થાઓ — ગ્રહ સ્થિતિ' } },
   { id: '18-5', phase: 5, topic: 'Strength',         title: { en: 'Vimshopaka — Varga Strength', hi: 'विंशोपक बल', sa: 'विंशोपक बल', mai: 'विंशोपक बल', mr: 'विंशोपक बल', ta: 'விம்சோபக — வர்க வலிமை', te: 'విమ్శోపక — వర్గ బలం', bn: 'বিংশোপক — বর্গ শক্তি', kn: 'ವಿಂಶೋಪಕ — ವರ್ಗ ಬಲ', gu: 'વિંશોપક — વર્ગ શક્તિ' } },
 
+  // Reference: Classical Knowledge
+  { id: 'ref:shadbala', phase: 5, topic: 'Reference', href: '/learn/shadbala', title: { en: 'Shadbala — Deep Dive', hi: 'षड्बल — विस्तृत', ta: 'ஷட்பலம் ஆய்வு', te: 'షడ్బలం ఆఴంగా', bn: 'ষড্বল গভীর' } },
+  { id: 'ref:bhavabala', phase: 5, topic: 'Reference', href: '/learn/bhavabala', title: { en: 'Bhavabala — Deep Dive', hi: 'भावबल — विस्तृत', ta: 'பாவபலம் ஆய்வு', te: 'భావబలం ఆఴంగా', bn: 'ভাববল গভীর' } },
+  { id: 'ref:avasthas', phase: 5, topic: 'Reference', href: '/learn/avasthas', title: { en: 'Avasthas — Planetary States', hi: 'अवस्थाएँ — विस्तृत', ta: 'அவஸ்தைகள் ஆய்வு', te: 'అవస్థలు ఆఴంగా', bn: 'অবস্থা গভীর' } },
+  { id: 'ref:sphutas', phase: 5, topic: 'Reference', href: '/learn/sphutas', title: { en: 'Sphutas — Sensitive Points', hi: 'स्फुट — विस्तृत', ta: 'ஸ்புடங்கள் ஆய்வு', te: 'స్ఫుటాలు ఆఴంగా', bn: 'স্ফুট গভীর' } },
+  { id: 'ref:ashtakavarga', phase: 5, topic: 'Reference', href: '/learn/ashtakavarga', title: { en: 'Ashtakavarga — Deep Dive', hi: 'अष्टकवर्ग — विस्तृत', ta: 'அஷ்டகவர்கம் ஆய்வு', te: 'అష్టకవర్గ ఆఴంగా', bn: 'অষ্টকবর্গ গভীর' } },
+  { id: 'ref:ashtakavarga-dasha', phase: 5, topic: 'Reference', href: '/learn/ashtakavarga-dasha', title: { en: 'Ashtakavarga Dasha', hi: 'अष्टकवर्ग दशा', ta: 'அஷ்டகவர்க தசை', te: 'అష్టకవర్గ దశ', bn: 'অষ্টকবর্গ দশা' } },
+  { id: 'ref:classical-texts', phase: 5, topic: 'Reference', href: '/learn/classical-texts', title: { en: 'Classical Texts — Guide', hi: 'शास्त्रीय ग्रन्थ', ta: 'சாஸ்திர நூல்கள்', te: 'శాస్త్రీయ గ్రంథాలు', bn: 'শাস্ত্রীয় গ্রন্থ' } },
+  { id: 'ref:library', phase: 5, topic: 'Reference', href: '/learn/library', title: { en: 'Text Library', hi: 'ग्रंथागार', ta: 'நூலகம்', te: 'గ్రంథాలయం', bn: 'গ্রন্থাগার' } },
+  { id: 'ref:advanced-houses', phase: 5, topic: 'Reference', href: '/learn/advanced-houses', title: { en: 'Advanced Houses', hi: 'उन्नत भाव', ta: 'உயர்நிலை பாவங்கள்', te: 'ఉన్నత భావాలు', bn: 'উন্নত ভাব' } },
+
   // ── Phase 6: Jaimini ──────────────────────────────────────────────────────
   { id: '19-1', phase: 6, topic: 'Jaimini',          title: { en: 'Chara Karakas', hi: 'चर कारक', sa: 'चर कारक', mai: 'चर कारक', mr: 'चर कारक', ta: 'சர காரகங்கள்', te: 'చర కారకాలు', bn: 'চর কারক', kn: 'ಚರ ಕಾರಕ', gu: 'ચર કારક' } },
   { id: '19-2', phase: 6, topic: 'Jaimini',          title: { en: 'Rashi Drishti', hi: 'राशि दृष्टि', sa: 'राशि दृष्टि', mai: 'राशि दृष्टि', mr: 'राशि दृष्टि', ta: 'ராசி திருஷ்டி', te: 'రాశి దృష్టి', bn: 'রাশি দৃষ্টি', kn: 'ರಾಶಿ ದೃಷ್ಟಿ', gu: 'રાશિ દ્રષ્ટિ' } },
   { id: '19-3', phase: 6, topic: 'Jaimini',          title: { en: 'Argala', hi: 'अर्गला', sa: 'अर्गला', mai: 'अर्गला', mr: 'अर्गला', ta: 'அர்கலா', te: 'అర్గళ', bn: 'অর্গলা', kn: 'ಅರ್ಗಳ', gu: 'અર્ગલા' } },
   { id: '19-4', phase: 6, topic: 'Jaimini',          title: { en: 'Special Lagnas', hi: 'विशेष लग्न', sa: 'विशेष लग्न', mai: 'विशेष लग्न', mr: 'विशेष लग्न', ta: 'சிறப்பு லக்னங்கள்', te: 'ప్రత్యేక లగ్నాలు', bn: 'বিশেষ লগ্ন', kn: 'ವಿಶೇಷ ಲಗ್ನ', gu: 'વિશેષ લગ્ન' } },
+
+  // Reference: Jaimini
+  { id: 'ref:jaimini', phase: 6, topic: 'Reference', href: '/learn/jaimini', title: { en: 'Jaimini — Complete Reference', hi: 'जैमिनी — विस्तृत', ta: 'ஜைமினி கையேடு', te: 'జైమిని మార్గదర్శి', bn: 'জৈমিনী নির্দেশিকা' } },
+  { id: 'ref:argala', phase: 6, topic: 'Reference', href: '/learn/argala', title: { en: 'Argala — Deep Dive', hi: 'अर्गला — विस्तृत', ta: 'அர்கலா ஆய்வு', te: 'అర్గళ ఆఴంగా', bn: 'অর্গলা গভীর' } },
 
   // ── Phase 7: KP System ────────────────────────────────────────────────────
   { id: '20-1', phase: 7, topic: 'KP System',        title: { en: 'Placidus Houses', hi: 'प्लेसिडस भाव', sa: 'प्लेसिडस भाव', mai: 'प्लेसिडस भाव', mr: 'प्लेसिडस भाव', ta: 'பிளாசிடஸ் பாவங்கள்', te: 'ప్లాసిడస్ భావాలు', bn: 'প্লেসিডাস ভাব', kn: 'ಪ್ಲೆಸಿಡಸ್ ಭಾವ', gu: 'પ્લેસિડસ ભાવ' } },
@@ -164,6 +222,11 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: '27-2', phase: 12, topic: 'Festival Calendar Science', title: { en: 'Adhika Masa — The Intercalary Month', hi: 'अधिक मास — अन्तर्वेशी मास', sa: 'अधिकमासः', mai: 'अधिक मास', mr: 'अधिक मास', ta: 'அதிக மாசம்', te: 'అధిక మాసం', bn: 'অধিক মাস', kn: 'ಅಧಿಕ ಮಾಸ', gu: 'અધிક માસ' } },
   { id: '27-3', phase: 12, topic: 'Festival Calendar Science', title: { en: 'Smarta & Vaishnava Calendar Systems', hi: 'स्मार्त और वैष्णव पंचांग पद्धतियाँ', sa: 'स्मार्तवैष्णवपञ्चाङ्गपद्धतयः', mai: 'स्मार्त और वैष्णव पंचांग', mr: 'स्मार्त आणि वैष्णव पंचांग', ta: 'ஸ்மார்த & வைஷ்ணவ நாள்காட்டி', te: 'స్మార్త & వైష్ణవ క్యాలెండర్', bn: 'স্মার্ত ও বৈষ্ণব পঞ্জিকা', kn: 'ಸ್ಮಾರ್ತ ಮತ್ತು ವೈಷ್ಣವ ಪಂಚಾಂಗ', gu: 'સ્માર્ત અને વૈષ્ણવ પંચાંગ' } },
 
+  // Reference: Festival Calendar Science
+  { id: 'ref:adhika-masa', phase: 12, topic: 'Reference', href: '/learn/adhika-masa', title: { en: 'Adhika Masa — Deep Dive', hi: 'अधिक मास — विस्तृत', ta: 'அதிக மாசம் ஆய்வு', te: 'అధిక మాసం ఆఴంగా', bn: 'অধিক মাস গভীর' } },
+  { id: 'ref:festival-rules', phase: 12, topic: 'Reference', href: '/learn/festival-rules', title: { en: 'Festival Timing Rules', hi: 'त्योहार नियम', ta: 'திருவிழா விதிகள்', te: 'పండుగ నియమాలు', bn: 'উৎসব নিয়ম' } },
+  { id: 'ref:smarta-vaishnava', phase: 12, topic: 'Reference', href: '/learn/smarta-vaishnava', title: { en: 'Smarta & Vaishnava Systems', hi: 'स्मार्त और वैष्णव', ta: 'ஸ்மார்த & வைஷ்ணவ', te: 'స్మార్త & వైష్ణవ', bn: 'স্মার্ত ও বৈষ্ণব' } },
+
   // ── Phase 13: Prashna & Medical Jyotish ───────────────────────────────────
   { id: '28-1', phase: 13, topic: 'Prashna', title: { en: 'Introduction to Prashna Jyotish', hi: 'प्रश्न ज्योतिष का परिचय', sa: 'प्रश्नज्योतिषपरिचयः', mai: 'प्रश्न ज्योतिष परिचय', mr: 'प्रश्न ज्योतिष परिचय', ta: 'பிரஷ்ன ஜோதிடம் அறிமுகம்', te: 'ప్రశ్న జ్యోతిష్యం పరిచయం', bn: 'প্রশ্ন জ্যোতিষ পরিচিতি', kn: 'ಪ್ರಶ್ನ ಜ್ಯೋತಿಷ್ಯ ಪರಿಚಯ', gu: 'પ્રશ્ન જ્યોતિષ પરિચય' } },
   { id: '28-2', phase: 13, topic: 'Prashna', title: { en: 'Ashtamangala Prashna', hi: 'अष्टमंगल प्रश्न', sa: 'अष्टमङ्गलप्रश्नम्', mai: 'अष्टमंगल प्रश्न', mr: 'अष्टमंगल प्रश्न', ta: 'அஷ்டமங்கல பிரஷ்னம்', te: 'అష్టమంగళ ప్రశ్నం', bn: 'অষ্টমঙ্গল প্রশ্ন', kn: 'ಅಷ್ಟಮಂಗಳ ಪ್ರಶ್ನ', gu: 'અષ્ટમંગલ પ્રશ્ન' } },
@@ -177,7 +240,9 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: '31-1', phase: 14, topic: 'Muhurta', title: { en: 'Muhurta Mastery — Beyond the Basics', hi: 'मुहूर्त निपुणता — मूल बातों से आगे', sa: 'मुहूर्तनैपुण्यम् — मूलातः परम्', mai: 'मुहूर्त निपुणता — मूल बातों से आगे', mr: 'मुहूर्त प्रावीण्य — मूलभूत गोष्टींपलीकडे', ta: 'முகூர்த்த தேர்ச்சி — அடிப்படைக்கு அப்பால்', te: 'ముహూర్త ప్రావీణ్యం — ప్రాథమికాలకు అతీతం', bn: 'মুহূর্ত দক্ষতা — মৌলিক বিষয়ের বাইরে', kn: 'ಮುಹೂರ್ತ ಪ್ರಾವೀಣ್ಯ — ಮೂಲ ವಿಷಯಗಳ ಆಚೆ', gu: 'મુહૂર્ત નિપુણતા — મૂળ બાબતોથી આગળ' } },
 ];
 
-export const TOTAL_MODULES = MODULE_SEQUENCE.length;
+/** Only curriculum modules count toward progress — not reference articles */
+export const CURRICULUM_MODULES = MODULE_SEQUENCE.filter(m => !m.id.startsWith('ref:'));
+export const TOTAL_MODULES = CURRICULUM_MODULES.length;
 
 // ── Phase metadata ────────────────────────────────────────────────────────────
 
@@ -188,21 +253,21 @@ interface PhaseInfo {
 }
 
 export const PHASE_INFO: PhaseInfo[] = [
-  { phase: 0, title: { en: 'Pre-Foundation', hi: 'पूर्व-आधार', sa: 'पूर्व-आधार', mai: 'पूर्व-आधार', mr: 'पूर्व-आधार', ta: 'முன்-அடித்தளம்', te: 'ప్రాథమిక-పూర్వం', bn: 'প্রাক-ভিত্তি', kn: 'ಪೂರ್ವ-ಅಡಿಪಾಯ', gu: 'પૂર્વ-પાયો' },         count: MODULE_SEQUENCE.filter(m => m.phase === 0).length },
-  { phase: 1, title: { en: 'The Sky', hi: 'आकाश', sa: 'आकाश', mai: 'आकाश', mr: 'आकाश', ta: 'வானம்', te: 'ఆకాశం', bn: 'আকাশ', kn: 'ಆಕಾಶ', gu: 'આકાશ' },               count: MODULE_SEQUENCE.filter(m => m.phase === 1).length },
-  { phase: 2, title: { en: 'Pancha Anga', hi: 'पंच अंग', sa: 'पंच अंग', mai: 'पंच अंग', mr: 'पंच अंग', ta: 'பஞ்ச அங்கம்', te: 'పంచ అంగం', bn: 'পঞ্চ অঙ্গ', kn: 'ಪಂಚ ಅಂಗ', gu: 'પંચ અંગ' },            count: MODULE_SEQUENCE.filter(m => m.phase === 2).length },
-  { phase: 3, title: { en: 'The Chart', hi: 'कुण्डली', sa: 'कुण्डली', mai: 'कुण्डली', mr: 'कुण्डली', ta: 'ஜாதகம்', te: 'జాతకం', bn: 'জাতক', kn: 'ಜಾತಕ', gu: 'જાતક' },            count: MODULE_SEQUENCE.filter(m => m.phase === 3).length },
-  { phase: 4, title: { en: 'Applied Jyotish', hi: 'व्यावहारिक ज्योतिष', sa: 'व्यावहारिक ज्योतिष', mai: 'व्यावहारिक ज्योतिष', mr: 'व्यावहारिक ज्योतिष', ta: 'பயன்பாட்டு ஜோதிடம்', te: 'అనువర్తిత జ్యోతిష్యం', bn: 'ব্যবহারিক জ্যোতিষ', kn: 'ಅನ್ವಯಿಕ ಜ್ಯೋತಿಷ್ಯ', gu: 'વ્યવહારિક જ્યોતિષ' }, count: MODULE_SEQUENCE.filter(m => m.phase === 4).length },
-  { phase: 5, title: { en: 'Classical Knowledge', hi: 'शास्त्रीय ज्ञान', sa: 'शास्त्रीय ज्ञान', mai: 'शास्त्रीय ज्ञान', mr: 'शास्त्रीय ज्ञान', ta: 'சாஸ்திர ஞானம்', te: 'శాస్త్రీయ జ్ఞానం', bn: 'শাস্ত্রীয় জ্ঞান', kn: 'ಶಾಸ್ತ್ರೀಯ ಜ್ಞಾನ', gu: 'શાસ્ત્રીય જ્ઞાન' },   count: MODULE_SEQUENCE.filter(m => m.phase === 5).length },
-  { phase: 6, title: { en: 'Jaimini System', hi: 'जैमिनी पद्धति', sa: 'जैमिनी पद्धति', mai: 'जैमिनी पद्धति', mr: 'जैमिनी पद्धति', ta: 'ஜைமினி முறை', te: 'జైమిని పద్ధతి', bn: 'জৈমিনী পদ্ধতি', kn: 'ಜೈಮಿನಿ ಪದ್ಧತಿ', gu: 'જૈમિની પદ્ધતિ' },     count: MODULE_SEQUENCE.filter(m => m.phase === 6).length },
-  { phase: 7, title: { en: 'KP System', hi: 'केपी पद्धति', sa: 'केपी पद्धति', mai: 'केपी पद्धति', mr: 'केपी पद्धति', ta: 'கேபி முறை', te: 'కేపీ పద్ధతి', bn: 'কেপি পদ্ধতি', kn: 'ಕೆಪಿ ಪದ್ಧತಿ', gu: 'કેપી પદ્ધતિ' },        count: MODULE_SEQUENCE.filter(m => m.phase === 7).length },
-  { phase: 8, title: { en: 'Varshaphal', hi: 'वर्षफल', sa: 'वर्षफल', mai: 'वर्षफल', mr: 'वर्षफल', ta: 'வர்ஷபலன்', te: 'వర్షఫలం', bn: 'বর্ষফল', kn: 'ವರ್ಷಫಲ', gu: 'વર્ષફળ' },             count: MODULE_SEQUENCE.filter(m => m.phase === 8).length },
-  { phase: 9, title: { en: 'Astronomy Engine', hi: 'खगोलीय गणना', sa: 'खगोलीय गणना', mai: 'खगोलीय गणना', mr: 'खगोलीय गणना', ta: 'வானியல் கணிதம்', te: 'ఖగోళ గణన', bn: 'জ্যোতির্বিদ্যা গণনা', kn: 'ಖಗೋಳ ಗಣನೆ', gu: 'ખગોળીય ગણતરી' },       count: MODULE_SEQUENCE.filter(m => m.phase === 9).length },
-  { phase: 10, title: { en: 'Advanced Prediction', hi: 'उन्नत भविष्यवाणी', sa: 'उन्नत भविष्यवाणी', mai: 'उन्नत भविष्यवाणी', mr: 'उन्नत भविष्यवाणी', ta: 'உயர்நிலை கணிப்பு', te: 'ఉన్నత అంచనా', bn: 'উন্নত ভবিষ্যদ্বাণী', kn: 'ಉನ್ನತ ಮುನ್ಸೂಚನೆ', gu: 'ઉન્નત ભવિષ્યવાણી' },  count: MODULE_SEQUENCE.filter(m => m.phase === 10).length },
-  { phase: 11, title: { en: "India's Contributions", hi: 'भारत का योगदान', sa: 'भारत का योगदान', mai: 'भारत का योगदान', mr: 'भारत का योगदान', ta: "இந்தியாவின் பங்களிப்புகள்", te: "భారతదేశ సహకారాలు", bn: "ভারতের অবদান", kn: "ಭಾರತದ ಕೊಡುಗೆಗಳು", gu: "ભારતনું યોગદાન" },    count: MODULE_SEQUENCE.filter(m => m.phase === 11).length },
-  { phase: 12, title: { en: 'Festival Calendar Science', hi: 'त्योहार कैलेंडर विज्ञान', sa: 'उत्सवपञ्चाङ्गविज्ञानम्', mai: 'त्योहार कैलेंडर विज्ञान', mr: 'सण दिनदर्शिका विज्ञान', ta: 'திருவிழா நாட்காட்டி அறிவியல்', te: 'పండుగ క్యాలెండర్ శాస్త్రం', bn: 'উৎসব পঞ্জিকা বিজ্ঞান', kn: 'ಹಬ್ಬ ಕ್ಯಾಲೆಂಡರ್ ವಿಜ್ಞಾನ', gu: 'તહેવાર કૅલેન્ડર વિજ્ઞાન' }, count: MODULE_SEQUENCE.filter(m => m.phase === 12).length },
-  { phase: 13, title: { en: 'Prashna & Medical Jyotish', hi: 'प्रश्न और चिकित्सा ज्योतिष', sa: 'प्रश्नचिकित्साज्योतिषम्', mai: 'प्रश्न और चिकित्सा ज्योतिष', mr: 'प्रश्न आणि वैद्यकीय ज्योतिष', ta: 'பிரஷ்னம் & மருத்துவ ஜோதிடம்', te: 'ప్రశ్నం & వైద్య జ్యోతిష్యం', bn: 'প্রশ্ন ও চিকিৎসা জ্যোতিষ', kn: 'ಪ್ರಶ್ನ ಮತ್ತು ವೈದ್ಯ ಜ್ಯೋತಿಷ್ಯ', gu: 'પ્રશ્ન અને ચિકિત્સા જ્યોતિષ' }, count: MODULE_SEQUENCE.filter(m => m.phase === 13).length },
-  { phase: 14, title: { en: 'Classical Mastery', hi: 'शास्त्रीय प्रवीणता', sa: 'शास्त्रीयप्रावीण्यम्', mai: 'शास्त्रीय प्रवीणता', mr: 'शास्त्रीय प्रावीण्य', ta: 'சாஸ்திர தேர்ச்சி', te: 'శాస్త్రీయ ప్రావీణ్యం', bn: 'শাস্ত্রীয় দক্ষতা', kn: 'ಶಾಸ್ತ್ರೀಯ ಪ್ರಾವೀಣ್ಯ', gu: 'શાસ્ત્રીય પ્રાવીણ્ય' }, count: MODULE_SEQUENCE.filter(m => m.phase === 14).length },
+  { phase: 0, title: { en: 'Pre-Foundation', hi: 'पूर्व-आधार', sa: 'पूर्व-आधार', mai: 'पूर्व-आधार', mr: 'पूर्व-आधार', ta: 'முன்-அடித்தளம்', te: 'ప్రాథమిక-పూర్వం', bn: 'প্রাক-ভিত্তি', kn: 'ಪೂರ್ವ-ಅಡಿಪಾಯ', gu: 'પૂર્વ-પાયો' },         count: CURRICULUM_MODULES.filter(m => m.phase === 0).length },
+  { phase: 1, title: { en: 'The Sky', hi: 'आकाश', sa: 'आकाश', mai: 'आकाश', mr: 'आकाश', ta: 'வானம்', te: 'ఆకాశం', bn: 'আকাশ', kn: 'ಆಕಾಶ', gu: 'આકાશ' },               count: CURRICULUM_MODULES.filter(m => m.phase === 1).length },
+  { phase: 2, title: { en: 'Pancha Anga', hi: 'पंच अंग', sa: 'पंच अंग', mai: 'पंच अंग', mr: 'पंच अंग', ta: 'பஞ்ச அங்கம்', te: 'పంచ అంగం', bn: 'পঞ্চ অঙ্গ', kn: 'ಪಂಚ ಅಂಗ', gu: 'પંચ અંગ' },            count: CURRICULUM_MODULES.filter(m => m.phase === 2).length },
+  { phase: 3, title: { en: 'The Chart', hi: 'कुण्डली', sa: 'कुण्डली', mai: 'कुण्डली', mr: 'कुण्डली', ta: 'ஜாதகம்', te: 'జాతకం', bn: 'জাতক', kn: 'ಜಾತಕ', gu: 'જાતક' },            count: CURRICULUM_MODULES.filter(m => m.phase === 3).length },
+  { phase: 4, title: { en: 'Applied Jyotish', hi: 'व्यावहारिक ज्योतिष', sa: 'व्यावहारिक ज्योतिष', mai: 'व्यावहारिक ज्योतिष', mr: 'व्यावहारिक ज्योतिष', ta: 'பயன்பாட்டு ஜோதிடம்', te: 'అనువర్తిత జ్యోతిష్యం', bn: 'ব্যবহারিক জ্যোতিষ', kn: 'ಅನ್ವಯಿಕ ಜ್ಯೋತಿಷ್ಯ', gu: 'વ્યવહારિક જ્યોતિષ' }, count: CURRICULUM_MODULES.filter(m => m.phase === 4).length },
+  { phase: 5, title: { en: 'Classical Knowledge', hi: 'शास्त्रीय ज्ञान', sa: 'शास्त्रीय ज्ञान', mai: 'शास्त्रीय ज्ञान', mr: 'शास्त्रीय ज्ञान', ta: 'சாஸ்திர ஞானம்', te: 'శాస్త్రీయ జ్ఞానం', bn: 'শাস্ত্রীয় জ্ঞান', kn: 'ಶಾಸ್ತ್ರೀಯ ಜ್ಞಾನ', gu: 'શાસ્ત્રીય જ્ઞાન' },   count: CURRICULUM_MODULES.filter(m => m.phase === 5).length },
+  { phase: 6, title: { en: 'Jaimini System', hi: 'जैमिनी पद्धति', sa: 'जैमिनी पद्धति', mai: 'जैमिनी पद्धति', mr: 'जैमिनी पद्धति', ta: 'ஜைமினி முறை', te: 'జైమిని పద్ధతి', bn: 'জৈমিনী পদ্ধতি', kn: 'ಜೈಮಿನಿ ಪದ್ಧತಿ', gu: 'જૈમિની પદ્ધતિ' },     count: CURRICULUM_MODULES.filter(m => m.phase === 6).length },
+  { phase: 7, title: { en: 'KP System', hi: 'केपी पद्धति', sa: 'केपी पद्धति', mai: 'केपी पद्धति', mr: 'केपी पद्धति', ta: 'கேபி முறை', te: 'కేపీ పద్ధతి', bn: 'কেপি পদ্ধতি', kn: 'ಕೆಪಿ ಪದ್ಧತಿ', gu: 'કેપી પદ્ધતિ' },        count: CURRICULUM_MODULES.filter(m => m.phase === 7).length },
+  { phase: 8, title: { en: 'Varshaphal', hi: 'वर्षफल', sa: 'वर्षफल', mai: 'वर्षफल', mr: 'वर्षफल', ta: 'வர்ஷபலன்', te: 'వర్షఫలం', bn: 'বর্ষফল', kn: 'ವರ್ಷಫಲ', gu: 'વર્ષફળ' },             count: CURRICULUM_MODULES.filter(m => m.phase === 8).length },
+  { phase: 9, title: { en: 'Astronomy Engine', hi: 'खगोलीय गणना', sa: 'खगोलीय गणना', mai: 'खगोलीय गणना', mr: 'खगोलीय गणना', ta: 'வானியல் கணிதம்', te: 'ఖగోళ గణన', bn: 'জ্যোতির্বিদ্যা গণনা', kn: 'ಖಗೋಳ ಗಣನೆ', gu: 'ખગોળીય ગણતરી' },       count: CURRICULUM_MODULES.filter(m => m.phase === 9).length },
+  { phase: 10, title: { en: 'Advanced Prediction', hi: 'उन्नत भविष्यवाणी', sa: 'उन्नत भविष्यवाणी', mai: 'उन्नत भविष्यवाणी', mr: 'उन्नत भविष्यवाणी', ta: 'உயர்நிலை கணிப்பு', te: 'ఉన్నత అంచనా', bn: 'উন্নত ভবিষ্যদ্বাণী', kn: 'ಉನ್ನತ ಮುನ್ಸೂಚನೆ', gu: 'ઉન્નત ભવિષ્યવાણી' },  count: CURRICULUM_MODULES.filter(m => m.phase === 10).length },
+  { phase: 11, title: { en: "India's Contributions", hi: 'भारत का योगदान', sa: 'भारत का योगदान', mai: 'भारत का योगदान', mr: 'भारत का योगदान', ta: "இந்தியாவின் பங்களிப்புகள்", te: "భారతదేశ సహకారాలు", bn: "ভারতের অবদান", kn: "ಭಾರತದ ಕೊಡುಗೆಗಳು", gu: "ભારતনું યોગદાન" },    count: CURRICULUM_MODULES.filter(m => m.phase === 11).length },
+  { phase: 12, title: { en: 'Festival Calendar Science', hi: 'त्योहार कैलेंडर विज्ञान', sa: 'उत्सवपञ्चाङ्गविज्ञानम्', mai: 'त्योहार कैलेंडर विज्ञान', mr: 'सण दिनदर्शिका विज्ञान', ta: 'திருவிழா நாட்காட்டி அறிவியல்', te: 'పండుగ క్యాలెండర్ శాస్త్రం', bn: 'উৎসব পঞ্জিকা বিজ্ঞান', kn: 'ಹಬ್ಬ ಕ್ಯಾಲೆಂಡರ್ ವಿಜ್ಞಾನ', gu: 'તહેવાર કૅલેન્ડર વિજ્ઞાન' }, count: CURRICULUM_MODULES.filter(m => m.phase === 12).length },
+  { phase: 13, title: { en: 'Prashna & Medical Jyotish', hi: 'प्रश्न और चिकित्सा ज्योतिष', sa: 'प्रश्नचिकित्साज्योतिषम्', mai: 'प्रश्न और चिकित्सा ज्योतिष', mr: 'प्रश्न आणि वैद्यकीय ज्योतिष', ta: 'பிரஷ்னம் & மருத்துவ ஜோதிடம்', te: 'ప్రశ్నం & వైద్య జ్యోతిష్యం', bn: 'প্রশ্ন ও চিকিৎসা জ্যোতিষ', kn: 'ಪ್ರಶ್ನ ಮತ್ತು ವೈದ್ಯ ಜ್ಯೋತಿಷ್ಯ', gu: 'પ્રશ્ન અને ચિકિત્સા જ્યોતિષ' }, count: CURRICULUM_MODULES.filter(m => m.phase === 13).length },
+  { phase: 14, title: { en: 'Classical Mastery', hi: 'शास्त्रीय प्रवीणता', sa: 'शास्त्रीयप्रावीण्यम्', mai: 'शास्त्रीय प्रवीणता', mr: 'शास्त्रीय प्रावीण्य', ta: 'சாஸ்திர தேர்ச்சி', te: 'శాస్త్రీయ ప్రావీణ్యం', bn: 'শাস্ত্রীয় দক্ষতা', kn: 'ಶಾಸ್ತ್ರೀಯ ಪ್ರಾವೀಣ್ಯ', gu: 'શાસ્ત્રીય પ્રાવીણ્ય' }, count: CURRICULUM_MODULES.filter(m => m.phase === 14).length },
 ];
 
 // ── Internal index map for O(1) lookups ───────────────────────────────────────
@@ -234,7 +299,7 @@ export function getPrevModuleId(currentId: string): string | null {
   return MODULE_SEQUENCE[idx - 1].id;
 }
 
-/** Returns all modules belonging to a given phase number. */
+/** Returns all modules belonging to a given phase number (including reference articles). */
 export function getPhaseModules(phase: number): ModuleRef[] {
   return MODULE_SEQUENCE.filter(m => m.phase === phase);
 }

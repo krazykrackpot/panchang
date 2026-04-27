@@ -215,7 +215,7 @@ export default function Navbar() {
                   {item.label}
                 </Link>
               );
-              // Insert Dashboard + Family links after Home (index 0)
+              // Insert Dashboard link after Home (index 0)
               if (i === 0) {
                 return (
                   <span key="__home_dash" className="contents">
@@ -225,12 +225,6 @@ export default function Navbar() {
                       className={`text-gold-light hover:text-gold-primary transition-all duration-200 text-sm font-semibold whitespace-nowrap ${hydrated && user ? 'opacity-100' : 'opacity-0 pointer-events-none w-0 overflow-hidden'}`}
                     >
                       {locale === 'sa' ? 'मम पटलम्' : msg('dashboard', locale)}
-                    </Link>
-                    <Link
-                      href="/dashboard/family"
-                      className={`text-gold-light hover:text-gold-primary transition-all duration-200 text-sm font-semibold whitespace-nowrap ${hydrated && user ? 'opacity-100' : 'opacity-0 pointer-events-none w-0 overflow-hidden'}`}
-                    >
-                      {locale === 'hi' ? 'परिवार' : locale === 'sa' ? 'परिवारः' : 'Family'}
                     </Link>
                   </span>
                 );
@@ -284,15 +278,6 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                 >
                   {locale === 'sa' ? 'मम पटलम्' : msg('myDashboard', locale)}
-                </Link>
-              )}
-              {hydrated && user && (
-                <Link
-                  href="/dashboard/family"
-                  className="text-gold-light hover:text-gold-primary transition-colors px-3 py-2 text-sm font-semibold"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {locale === 'hi' ? 'परिवार' : locale === 'sa' ? 'परिवारः' : 'Family'}
                 </Link>
               )}
               {navItems.map((item, i) => {

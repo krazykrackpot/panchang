@@ -1,0 +1,109 @@
+{
+  "title": {
+    "en": "Phaladeepika — The Lamp of Results",
+    "hi": "फलदीपिका — फलों का दीप",
+    "sa": "फलदीपिका — फलप्रदीपः",
+    "mai": "फलदीपिका — फलों का दीप",
+    "mr": "फलदीपिका — फलांचा दीप",
+    "ta": "பலதீபிகா — பலன்களின் தீபம்",
+    "te": "ఫలదీపిక — ఫలాల దీపం",
+    "bn": "ফলদীপিকা — ফলের দীপ",
+    "kn": "ಫಲದೀಪಿಕಾ — ಫಲಗಳ ದೀಪ",
+    "gu": "ફળદીપિકા — ફળનો દીપ"
+  },
+  "subtitle": {
+    "en": "Mantreshwara's 13th-century masterpiece — planet-in-house results, yoga descriptions, and why this text remains the most practical reference for chart interpretation",
+    "hi": "मन्त्रेश्वर की 13वीं शताब्दी की उत्कृष्ट कृति — ग्रह-भाव फल, योग वर्णन, और यह ग्रन्थ कुण्डली व्याख्या के लिए सबसे व्यावहारिक सन्दर्भ क्यों बना हुआ है"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "Module 30-1: Reading BPHS",
+        "hi": "मॉड्यूल 30-1: BPHS पढ़ना",
+        "sa": "मॉड्यूल 30-1: BPHS पढ़ना",
+        "mai": "मॉड्यूल 30-1: BPHS पढ़ना",
+        "mr": "मॉड्यूल 30-1: BPHS पढ़ना",
+        "ta": "Module 30-1: Reading BPHS",
+        "te": "Module 30-1: Reading BPHS",
+        "bn": "Module 30-1: Reading BPHS",
+        "kn": "Module 30-1: Reading BPHS",
+        "gu": "Module 30-1: Reading BPHS"
+      },
+      "href": "/learn/modules/30-1"
+    },
+    {
+      "label": {
+        "en": "Module 30-3: Saravali & Jataka Parijata",
+        "hi": "मॉड्यूल 30-3: सारावली और जातक पारिजात",
+        "sa": "मॉड्यूल 30-3: सारावली और जातक पारिजात",
+        "mai": "मॉड्यूल 30-3: सारावली और जातक पारिजात",
+        "mr": "मॉड्यूल 30-3: सारावली और जातक पारिजात",
+        "ta": "Module 30-3: Saravali & Jataka Parijata",
+        "te": "Module 30-3: Saravali & Jataka Parijata",
+        "bn": "Module 30-3: Saravali & Jataka Parijata",
+        "kn": "Module 30-3: Saravali & Jataka Parijata",
+        "gu": "Module 30-3: Saravali & Jataka Parijata"
+      },
+      "href": "/learn/modules/30-3"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q30_2_01",
+      "type": "mcq",
+      "question": {
+        "en": "Who wrote Phaladeepika?",
+        "hi": "फलदीपिका किसने लिखी?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Mantreshwara wrote Phaladeepika in the 13th century CE. The title means 'The Lamp of Results' (Phala = result, Deepika = lamp). It is written in elegant Sanskrit verse and is praised for its clarity and practical applicability. Unlike BPHS which is encyclopedic, Phaladeepika is concise (28 chapters) and focused on prediction.",
+        "hi": "मन्त्रेश्वर ने 13वीं शताब्दी में फलदीपिका लिखी। शीर्षक का अर्थ है 'फलों का दीप' (फल = परिणाम, दीपिका = दीप)।"
+      },
+      "options": [
+        { "en": "Varahamihira", "hi": "वराहमिहिर" },
+        { "en": "Mantreshwara", "hi": "मन्त्रेश्वर" },
+        { "en": "Parashara", "hi": "पाराशर" },
+        { "en": "Kalyana Varma", "hi": "कल्याण वर्मा" }
+      ]
+    },
+    {
+      "id": "q30_2_02",
+      "type": "mcq",
+      "question": {
+        "en": "What is the primary focus of Phaladeepika compared to BPHS?",
+        "hi": "BPHS की तुलना में फलदीपिका का प्राथमिक ध्यान किस पर है?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Phaladeepika focuses on practical prediction — giving clear, concise results for planet-in-sign and planet-in-house combinations. While BPHS is encyclopedic and covers computation, vargas, and dashas in detail, Phaladeepika distills the prediction art into actionable interpretations. Many practicing astrologers consider it their go-to daily reference.",
+        "hi": "फलदीपिका व्यावहारिक भविष्यवाणी पर केन्द्रित है — ग्रह-राशि और ग्रह-भाव संयोजनों के लिए स्पष्ट, संक्षिप्त फल देती है।"
+      },
+      "options": [
+        { "en": "Mathematical computation", "hi": "गणितीय गणना" },
+        { "en": "Muhurta selection", "hi": "मुहूर्त चयन" },
+        { "en": "Practical prediction and interpretation", "hi": "व्यावहारिक भविष्यवाणी और व्याख्या" },
+        { "en": "Temple rituals", "hi": "मन्दिर अनुष्ठान" }
+      ]
+    },
+    {
+      "id": "q30_2_03",
+      "type": "mcq",
+      "question": {
+        "en": "How many chapters does Phaladeepika contain?",
+        "hi": "फलदीपिका में कितने अध्याय हैं?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Phaladeepika has 28 chapters (Adhyayas). Key chapters include: Ch.2 — Signs and their nature, Ch.3-4 — Planets in houses, Ch.6 — Rajayogas, Ch.7 — Arishta (bad yogas), Ch.15 — Dashas, Ch.24 — Ashtakavarga, Ch.25 — Female horoscopy, Ch.27 — Nisheka (conception). Its compact structure makes it ideal for focused study.",
+        "hi": "फलदीपिका में 28 अध्याय हैं। प्रमुख अध्यायों में शामिल हैं: अ.2 — राशियाँ, अ.3-4 — भाव में ग्रह, अ.6 — राजयोग, अ.7 — अरिष्ट, अ.15 — दशाएँ।"
+      },
+      "options": [
+        { "en": "14 chapters", "hi": "14 अध्याय" },
+        { "en": "28 chapters", "hi": "28 अध्याय" },
+        { "en": "50 chapters", "hi": "50 अध्याय" },
+        { "en": "100 chapters", "hi": "100 अध्याय" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "title": {
+    "en": "Reading BPHS — Structure & Method",
+    "hi": "BPHS पढ़ना — संरचना और पद्धति",
+    "sa": "बृहत्पाराशरहोराशास्त्रपठनम्",
+    "mai": "BPHS पढ़ना — संरचना और पद्धति",
+    "mr": "BPHS वाचन — रचना आणि पद्धती",
+    "ta": "BPHS படித்தல் — அமைப்பு & முறை",
+    "te": "BPHS చదవడం — నిర్మాణం & పద్ధతి",
+    "bn": "BPHS পড়া — গঠন ও পদ্ধতি",
+    "kn": "BPHS ಓದುವಿಕೆ — ರಚನೆ ಮತ್ತು ವಿಧಾನ",
+    "gu": "BPHS વાંચન — રચના અને પદ્ધતિ"
+  },
+  "subtitle": {
+    "en": "How Brihat Parashara Hora Shastra is organized across 100 chapters, the key reference chapters every student must know, and practical methods for looking up classical rules",
+    "hi": "बृहत् पाराशर होरा शास्त्र 100 अध्यायों में कैसे व्यवस्थित है, प्रमुख सन्दर्भ अध्याय जो हर विद्यार्थी को जानने चाहिए, और शास्त्रीय नियमों को खोजने की व्यावहारिक विधियाँ"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "Module 16-2: Hora Texts",
+        "hi": "मॉड्यूल 16-2: होरा ग्रन्थ",
+        "sa": "मॉड्यूल 16-2: होरा ग्रन्थ",
+        "mai": "मॉड्यूल 16-2: होरा ग्रन्थ",
+        "mr": "मॉड्यूल 16-2: होरा ग्रन्थ",
+        "ta": "Module 16-2: Hora Texts",
+        "te": "Module 16-2: Hora Texts",
+        "bn": "Module 16-2: Hora Texts",
+        "kn": "Module 16-2: Hora Texts",
+        "gu": "Module 16-2: Hora Texts"
+      },
+      "href": "/learn/modules/16-2"
+    },
+    {
+      "label": {
+        "en": "Module 30-2: Phaladeepika",
+        "hi": "मॉड्यूल 30-2: फलदीपिका",
+        "sa": "मॉड्यूल 30-2: फलदीपिका",
+        "mai": "मॉड्यूल 30-2: फलदीपिका",
+        "mr": "मॉड्यूल 30-2: फलदीपिका",
+        "ta": "Module 30-2: Phaladeepika",
+        "te": "Module 30-2: Phaladeepika",
+        "bn": "Module 30-2: Phaladeepika",
+        "kn": "Module 30-2: Phaladeepika",
+        "gu": "Module 30-2: Phaladeepika"
+      },
+      "href": "/learn/modules/30-2"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q30_1_01",
+      "type": "mcq",
+      "question": {
+        "en": "Who is traditionally credited as the author of Brihat Parashara Hora Shastra?",
+        "hi": "बृहत् पाराशर होरा शास्त्र के रचयिता परम्परागत रूप से किसे माना जाता है?"
+      },
+      "correctAnswer": 0,
+      "explanation": {
+        "en": "Maharishi Parashara is traditionally credited as the author. The text is structured as a dialogue between Parashara and his student Maitreya. While modern scholars debate the compilation date (estimates range from 7th-8th century CE for the current version), the text is universally regarded as the foundational work of Parashari Jyotish.",
+        "hi": "महर्षि पाराशर को परम्परागत रूप से रचयिता माना जाता है। ग्रन्थ पाराशर और उनके शिष्य मैत्रेय के बीच संवाद के रूप में संरचित है।"
+      },
+      "options": [
+        { "en": "Maharishi Parashara", "hi": "महर्षि पाराशर" },
+        { "en": "Varahamihira", "hi": "वराहमिहिर" },
+        { "en": "Mantreshwara", "hi": "मन्त्रेश्वर" },
+        { "en": "Kalyana Varma", "hi": "कल्याण वर्मा" }
+      ]
+    },
+    {
+      "id": "q30_1_02",
+      "type": "mcq",
+      "question": {
+        "en": "Which BPHS chapter covers the crucial topic of planetary dignities (Uccha, Neecha, Moolatrikona)?",
+        "hi": "BPHS का कौन सा अध्याय ग्रहीय गरिमा (उच्च, नीच, मूलत्रिकोण) के महत्वपूर्ण विषय को कवर करता है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Chapters 3-4 of BPHS cover planetary characteristics and dignities. Chapter 3 (Graha Guna Swarupa) defines natural relationships, while Chapter 4 (Rashi Swarupa) gives exaltation, debilitation, and moolatrikona degrees. These are the most referenced chapters in all of Jyotish — every kundali analysis begins with dignity assessment.",
+        "hi": "BPHS के अध्याय 3-4 ग्रहीय विशेषताओं और गरिमा को कवर करते हैं। अध्याय 3 प्राकृतिक सम्बन्ध परिभाषित करता है, जबकि अध्याय 4 उच्च, नीच और मूलत्रिकोण अंश देता है।"
+      },
+      "options": [
+        { "en": "Chapter 1-2", "hi": "अध्याय 1-2" },
+        { "en": "Chapter 3-4", "hi": "अध्याय 3-4" },
+        { "en": "Chapter 15-16", "hi": "अध्याय 15-16" },
+        { "en": "Chapter 50", "hi": "अध्याय 50" }
+      ]
+    },
+    {
+      "id": "q30_1_03",
+      "type": "mcq",
+      "question": {
+        "en": "BPHS is structured as a dialogue between which two figures?",
+        "hi": "BPHS किन दो व्यक्तियों के बीच संवाद के रूप में संरचित है?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "BPHS is a dialogue between the sage Parashara (teacher) and Maitreya (student). Maitreya asks questions and Parashara responds with detailed explanations. This guru-shishya format is common in Indian classical texts (like the Bhagavad Gita's Krishna-Arjuna dialogue) and allows systematic coverage of topics from basic to advanced.",
+        "hi": "BPHS ऋषि पाराशर (गुरु) और मैत्रेय (शिष्य) के बीच संवाद है। मैत्रेय प्रश्न पूछते हैं और पाराशर विस्तृत व्याख्या देते हैं।"
+      },
+      "options": [
+        { "en": "Shiva and Parvati", "hi": "शिव और पार्वती" },
+        { "en": "Vyasa and Shuka", "hi": "व्यास और शुक" },
+        { "en": "Parashara and Maitreya", "hi": "पाराशर और मैत्रेय" },
+        { "en": "Jaimini and Vyasa", "hi": "जैमिनी और व्यास" }
+      ]
+    },
+    {
+      "id": "q30_1_04",
+      "type": "true_false",
+      "question": {
+        "en": "BPHS covers only natal astrology and does not discuss muhurta (electional astrology) or prashna (horary astrology).",
+        "hi": "BPHS केवल जन्म ज्योतिष को कवर करता है और मुहूर्त या प्रश्न ज्योतिष की चर्चा नहीं करता।"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "False. While BPHS is primarily a hora (natal) text, it contains chapters on muhurta and remedial measures as well. However, it does not cover prashna in depth — for that, texts like Prashna Marga and Tajika Nilakanthi are the primary references. BPHS's scope is broader than just natal: it covers dashas, transits, yogas, vargas, strengths, and remedies.",
+        "hi": "असत्य। यद्यपि BPHS मुख्य रूप से होरा (जन्म) ग्रन्थ है, इसमें मुहूर्त और उपचारात्मक उपायों पर भी अध्याय हैं। हालाँकि, यह प्रश्न ज्योतिष को विस्तार से कवर नहीं करता।"
+      }
+    }
+  ]
+}

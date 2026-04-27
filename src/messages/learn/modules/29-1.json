@@ -1,0 +1,122 @@
+{
+  "title": {
+    "en": "Medical Jyotish — Body & Planets",
+    "hi": "चिकित्सा ज्योतिष — शरीर और ग्रह",
+    "sa": "चिकित्साज्योतिषम् — शरीरं ग्रहाश्च",
+    "mai": "चिकित्सा ज्योतिष — शरीर और ग्रह",
+    "mr": "वैद्यकीय ज्योतिष — शरीर आणि ग्रह",
+    "ta": "மருத்துவ ஜோதிடம் — உடல் & கிரகங்கள்",
+    "te": "వైద్య జ్యోతిష్యం — శరీరం & గ్రహాలు",
+    "bn": "চিকিৎসা জ্যোতিষ — শরীর ও গ্রহ",
+    "kn": "ವೈದ್ಯ ಜ್ಯೋತಿಷ್ಯ — ದೇಹ ಮತ್ತು ಗ್ರಹ",
+    "gu": "ચિકિત્સા જ્યોતિષ — શરીર અને ગ્રહ"
+  },
+  "subtitle": {
+    "en": "How planets map to body parts and organ systems, disease indicators in the birth chart, and analysis of the 6th and 8th houses for health prediction",
+    "hi": "ग्रहों का शरीर के अंगों और अंग प्रणालियों से सम्बन्ध, जन्म कुण्डली में रोग सूचक, और स्वास्थ्य भविष्यवाणी के लिए 6वें और 8वें भाव का विश्लेषण"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "Module 10-1: 12 Houses",
+        "hi": "मॉड्यूल 10-1: 12 भाव",
+        "sa": "मॉड्यूल 10-1: 12 भाव",
+        "mai": "मॉड्यूल 10-1: 12 भाव",
+        "mr": "मॉड्यूल 10-1: 12 भाव",
+        "ta": "Module 10-1: 12 Houses",
+        "te": "Module 10-1: 12 Houses",
+        "bn": "Module 10-1: 12 Houses",
+        "kn": "Module 10-1: 12 Houses",
+        "gu": "Module 10-1: 12 Houses"
+      },
+      "href": "/learn/modules/10-1"
+    },
+    {
+      "label": {
+        "en": "Module 29-2: Ayurvedic Timing",
+        "hi": "मॉड्यूल 29-2: आयुर्वेदिक समय",
+        "sa": "मॉड्यूल 29-2: आयुर्वेदिक समय",
+        "mai": "मॉड्यूल 29-2: आयुर्वेदिक समय",
+        "mr": "मॉड्यूल 29-2: आयुर्वेदिक समय",
+        "ta": "Module 29-2: Ayurvedic Timing",
+        "te": "Module 29-2: Ayurvedic Timing",
+        "bn": "Module 29-2: Ayurvedic Timing",
+        "kn": "Module 29-2: Ayurvedic Timing",
+        "gu": "Module 29-2: Ayurvedic Timing"
+      },
+      "href": "/learn/modules/29-2"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q29_1_01",
+      "type": "mcq",
+      "question": {
+        "en": "Which house is the primary house of disease and illness in Vedic astrology?",
+        "hi": "वैदिक ज्योतिष में रोग और बीमारी का प्राथमिक भाव कौन सा है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "The 6th house (Shatru Bhava) is the primary house of disease, enemies, and debts. Its lord, planets placed in it, and aspects on it indicate the type and timing of health issues. The 8th house relates to chronic illness and surgery, while the 12th relates to hospitalization.",
+        "hi": "छठा भाव (शत्रु भाव) रोग, शत्रु और ऋण का प्राथमिक भाव है। इसका स्वामी, इसमें स्थित ग्रह, और इस पर दृष्टि स्वास्थ्य समस्याओं के प्रकार और समय को इंगित करते हैं।"
+      },
+      "options": [
+        { "en": "The 5th house", "hi": "पंचम भाव" },
+        { "en": "The 6th house", "hi": "षष्ठ भाव" },
+        { "en": "The 8th house", "hi": "अष्टम भाव" },
+        { "en": "The 12th house", "hi": "द्वादश भाव" }
+      ]
+    },
+    {
+      "id": "q29_1_02",
+      "type": "mcq",
+      "question": {
+        "en": "Which planet governs bones, joints, and the skeletal system in medical astrology?",
+        "hi": "चिकित्सा ज्योतिष में हड्डियों, जोड़ों और कंकाल तन्त्र का शासक ग्रह कौन है?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Saturn (Shani) governs the skeletal system, bones, joints, teeth, and all slow-degenerating tissues. Saturn also rules chronic diseases, arthritis, and conditions that worsen with age. An afflicted Saturn often indicates skeletal problems, especially during Sade Sati or Saturn dasha.",
+        "hi": "शनि कंकाल तन्त्र, हड्डियों, जोड़ों, दाँतों और सभी धीरे-धीरे क्षीण होने वाले ऊतकों का शासक है। शनि दीर्घकालिक रोगों, गठिया और उम्र के साथ बढ़ने वाली स्थितियों पर भी शासन करता है।"
+      },
+      "options": [
+        { "en": "Sun", "hi": "सूर्य" },
+        { "en": "Mars", "hi": "मंगल" },
+        { "en": "Saturn", "hi": "शनि" },
+        { "en": "Jupiter", "hi": "बृहस्पति" }
+      ]
+    },
+    {
+      "id": "q29_1_03",
+      "type": "mcq",
+      "question": {
+        "en": "In medical astrology, what does the Sun primarily represent in the body?",
+        "hi": "चिकित्सा ज्योतिष में सूर्य शरीर में प्राथमिक रूप से क्या दर्शाता है?"
+      },
+      "correctAnswer": 0,
+      "explanation": {
+        "en": "The Sun represents the heart, spine, right eye (in males), overall vitality (prana), and the body's core energy. A strong Sun gives robust health and immunity; an afflicted Sun can indicate heart problems, eye issues, or low vitality. The Sun also represents the father's health in a native's chart.",
+        "hi": "सूर्य हृदय, रीढ़, दाहिनी आँख (पुरुषों में), समग्र जीवन शक्ति (प्राण), और शरीर की मूल ऊर्जा का प्रतिनिधित्व करता है।"
+      },
+      "options": [
+        { "en": "Heart, spine, and vitality", "hi": "हृदय, रीढ़ और जीवन शक्ति" },
+        { "en": "Kidneys and reproductive system", "hi": "गुर्दे और प्रजनन तन्त्र" },
+        { "en": "Digestive system", "hi": "पाचन तन्त्र" },
+        { "en": "Nervous system", "hi": "तन्त्रिका तन्त्र" }
+      ]
+    },
+    {
+      "id": "q29_1_04",
+      "type": "true_false",
+      "question": {
+        "en": "The 8th house in medical astrology is associated with chronic diseases, surgery, and longevity.",
+        "hi": "चिकित्सा ज्योतिष में अष्टम भाव दीर्घकालिक रोगों, शल्य चिकित्सा और आयु से सम्बन्धित है।"
+      },
+      "correctAnswer": 0,
+      "explanation": {
+        "en": "True. The 8th house (Ayu Bhava) governs longevity, chronic diseases, surgery, accidents, and transformative health events. While the 6th house shows acute illness, the 8th shows deep-seated conditions that transform life. The 8th lord's placement and aspects reveal the nature of chronic health challenges.",
+        "hi": "सत्य। अष्टम भाव (आयु भाव) आयु, दीर्घकालिक रोग, शल्य चिकित्सा, दुर्घटनाओं और जीवन बदलने वाली स्वास्थ्य घटनाओं पर शासन करता है।"
+      }
+    }
+  ]
+}

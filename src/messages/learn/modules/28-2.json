@@ -1,0 +1,109 @@
+{
+  "title": {
+    "en": "Ashtamangala Prashna",
+    "hi": "अष्टमंगल प्रश्न",
+    "sa": "अष्टमङ्गलप्रश्नम्",
+    "mai": "अष्टमंगल प्रश्न",
+    "mr": "अष्टमंगल प्रश्न",
+    "ta": "அஷ்டமங்கல பிரஷ்னம்",
+    "te": "అష్టమంగళ ప్రశ్నం",
+    "bn": "অষ্টমঙ্গল প্রশ্ন",
+    "kn": "ಅಷ್ಟಮಂಗಳ ಪ್ರಶ್ನ",
+    "gu": "અષ્ટમંગલ પ્રશ્ન"
+  },
+  "subtitle": {
+    "en": "The Kerala tradition of horary divination using 8 auspicious objects — cowrie shells cast thrice to build a chart from Deva Prashna methodology",
+    "hi": "8 शुभ वस्तुओं का उपयोग करके होरारी भविष्यवाणी की केरल परम्परा — देव प्रश्न पद्धति से कुण्डली बनाने के लिए तीन बार कौड़ियाँ फेंकना"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "Module 28-1: Introduction to Prashna",
+        "hi": "मॉड्यूल 28-1: प्रश्न ज्योतिष परिचय",
+        "sa": "मॉड्यूल 28-1: प्रश्न ज्योतिष परिचय",
+        "mai": "मॉड्यूल 28-1: प्रश्न ज्योतिष परिचय",
+        "mr": "मॉड्यूल 28-1: प्रश्न ज्योतिष परिचय",
+        "ta": "Module 28-1: Introduction to Prashna",
+        "te": "Module 28-1: Introduction to Prashna",
+        "bn": "Module 28-1: Introduction to Prashna",
+        "kn": "Module 28-1: Introduction to Prashna",
+        "gu": "Module 28-1: Introduction to Prashna"
+      },
+      "href": "/learn/modules/28-1"
+    },
+    {
+      "label": {
+        "en": "Ashtamangala Prashna Tool",
+        "hi": "अष्टमंगल प्रश्न उपकरण",
+        "sa": "अष्टमंगल प्रश्न उपकरण",
+        "mai": "अष्टमंगल प्रश्न उपकरण",
+        "mr": "अष्टमंगल प्रश्न उपकरण",
+        "ta": "Ashtamangala Prashna Tool",
+        "te": "Ashtamangala Prashna Tool",
+        "bn": "Ashtamangala Prashna Tool",
+        "kn": "Ashtamangala Prashna Tool",
+        "gu": "Ashtamangala Prashna Tool"
+      },
+      "href": "/prashna-ashtamangala"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q28_2_01",
+      "type": "mcq",
+      "question": {
+        "en": "How many auspicious objects (Mangala Dravyas) are used in Ashtamangala Prashna?",
+        "hi": "अष्टमंगल प्रश्न में कितनी शुभ वस्तुओं (मंगल द्रव्य) का उपयोग किया जाता है?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "Ashtamangala means 'eight auspicious' — eight sacred objects are used: Mirror (Darpana), Gold (Kanaka), Turmeric/Kumkuma, Full Vessel (Purna Kumbha), Lamp (Deepa), Book/Scripture (Grantha), Bull (Vrishabha), and Fan (Vyajana). These eight items are placed before the deity and the querent selects cowrie shells from among them.",
+        "hi": "अष्टमंगल का अर्थ 'आठ शुभ' है — आठ पवित्र वस्तुओं का उपयोग होता है: दर्पण, कनक (स्वर्ण), कुंकुम/हल्दी, पूर्ण कुम्भ, दीप, ग्रन्थ, वृषभ, और व्यजन (पंखा)।"
+      },
+      "options": [
+        { "en": "5", "hi": "5" },
+        { "en": "7", "hi": "7" },
+        { "en": "8", "hi": "8" },
+        { "en": "9", "hi": "9" }
+      ]
+    },
+    {
+      "id": "q28_2_02",
+      "type": "mcq",
+      "question": {
+        "en": "In Ashtamangala Prashna, how many times are cowrie shells (kavadis) cast?",
+        "hi": "अष्टमंगल प्रश्न में कौड़ियाँ (कवड़ी) कितनी बार फेंकी जाती हैं?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "Cowrie shells are cast three times. The first cast determines the Lagna (Ascendant), the second determines the position of the Moon, and the third gives additional planetary information. The number of upright shells in each cast is divided by 12 — the remainder gives the rashi (sign) number.",
+        "hi": "कौड़ियाँ तीन बार फेंकी जाती हैं। पहली बार लग्न निर्धारित होता है, दूसरी बार चन्द्रमा की स्थिति, और तीसरी बार अतिरिक्त ग्रहीय जानकारी मिलती है।"
+      },
+      "options": [
+        { "en": "Once", "hi": "एक बार" },
+        { "en": "Three times", "hi": "तीन बार" },
+        { "en": "Seven times", "hi": "सात बार" },
+        { "en": "Nine times", "hi": "नौ बार" }
+      ]
+    },
+    {
+      "id": "q28_2_03",
+      "type": "mcq",
+      "question": {
+        "en": "Which regional tradition is Ashtamangala Prashna most strongly associated with?",
+        "hi": "अष्टमंगल प्रश्न किस क्षेत्रीय परम्परा से सबसे अधिक जुड़ा है?"
+      },
+      "correctAnswer": 0,
+      "explanation": {
+        "en": "Ashtamangala Prashna is a distinctly Kerala tradition, rooted in the Deva Prashna system used extensively in Kerala temples. The practice is documented in texts like Prashna Marga (written by a Kerala astrologer) and is intimately connected with temple astrology (Deva Prashna) where the deity's 'will' is divined through this method.",
+        "hi": "अष्टमंगल प्रश्न विशिष्ट रूप से केरल परम्परा है, जो केरल मन्दिरों में व्यापक रूप से प्रयुक्त देव प्रश्न पद्धति में निहित है।"
+      },
+      "options": [
+        { "en": "Kerala", "hi": "केरल" },
+        { "en": "Tamil Nadu", "hi": "तमिलनाडु" },
+        { "en": "Rajasthan", "hi": "राजस्थान" },
+        { "en": "Bengal", "hi": "बंगाल" }
+      ]
+    }
+  ]
+}

@@ -74,6 +74,8 @@ export interface MemberStatusParams {
   currentJupiterSign: number;
   /** Reference date for "now" — use Date.UTC-constructed dates */
   today: Date;
+  /** Authoritative dosha data from tippanni engine (preferred over re-detection) */
+  tippanniDoshas?: { name: string; present: boolean; severity: string; effectiveSeverity?: string }[];
 }
 
 // ---------------------------------------------------------------------------
@@ -324,15 +326,8 @@ function computeAttention(
 }
 
 // ---------------------------------------------------------------------------
-// Dosha detection (lightweight, from natal chart only)
+// Dosha flags — extracted from tippanni engine (single source of truth)
 // ---------------------------------------------------------------------------
-
-/** Kaal Sarpa sub-type names keyed by Rahu's house (1-12). */
-const KS_NAMES: Record<number, string> = {
-  1: 'Anant', 2: 'Kulika', 3: 'Vasuki', 4: 'Shankhapala',
-  5: 'Padma', 6: 'Mahapadma', 7: 'Takshaka', 8: 'Karkotak',
-  9: 'Shankhachud', 10: 'Ghatak', 11: 'Vishdhar', 12: 'Sheshnag',
-};
 
 /** 6 Ganda Mula nakshatras: junction nakshatras between elements. */
 const GANDA_MULA_NAK_IDS = [1, 9, 10, 18, 19, 27];
@@ -344,60 +339,49 @@ const GANDA_MULA_NAK_NAMES: Record<number, string> = {
 };
 
 /**
- * Check if house `h` lies between `from` and `to` going clockwise (exclusive).
- * Houses are 1-12. "Between" means strictly between, not equal to endpoints.
+ * Extract dosha flags from authoritative tippanni dosha data.
+ * Falls back to minimal Ganda Mula check from planet positions (Ganda Mula
+ * is not a tippanni dosha — it's a birth nakshatra check).
+ *
+ * IMPORTANT: Manglik and Kaal Sarpa detection is done ONLY via the tippanni
+ * engine (generateDoshas in tippanni-engine.ts). No parallel logic here.
  */
-function isBetweenHouses(h: number, from: number, to: number): boolean {
-  if (from === to) return false;
-  if (from < to) {
-    return h > from && h < to;
-  }
-  // Wraps around 12→1
-  return h > from || h < to;
-}
-
-function computeDoshaFlags(kundali: KundaliData): DoshaFlags {
-  const planets = kundali.planets;
-
-  // --- Manglik: Mars (id=2) in houses 1, 2, 4, 7, 8, 12 from Lagna ---
-  const mars = planets.find(p => p.planet.id === 2);
-  const marsHouse = mars?.house ?? 0;
-  const isManglik = [1, 2, 4, 7, 8, 12].includes(marsHouse);
-  // Basic cancellation: Mars in own sign (Aries=1, Scorpio=8)
-  const marsInOwnSign = mars ? [1, 8].includes(mars.sign) : false;
-  const manglikCancelled = isManglik && marsInOwnSign;
-
-  // --- Kaal Sarpa: all 7 planets (Sun–Saturn, ids 0–6) between Rahu and Ketu ---
-  const rahuP = planets.find(p => p.planet.id === 7);
-  const ketuP = planets.find(p => p.planet.id === 8);
-  let isKaalSarpa = false;
+function extractDoshaFlags(
+  tippanniDoshas: { name: string; present: boolean; severity: string; effectiveSeverity?: string }[] | undefined,
+  kundali: KundaliData,
+): DoshaFlags {
+  let manglik = false;
+  let manglikCancelled = false;
+  let kaalSarpa = false;
   let kaalSarpaType: string | null = null;
-  if (rahuP && ketuP) {
-    const others = planets.filter(p => p.planet.id >= 0 && p.planet.id <= 6);
-    // Check if all 7 planets fall between Rahu→Ketu or Ketu→Rahu arc
-    const allBetweenRK = others.every(p => isBetweenHouses(p.house, rahuP.house, ketuP.house));
-    const allBetweenKR = others.every(p => isBetweenHouses(p.house, ketuP.house, rahuP.house));
-    isKaalSarpa = allBetweenRK || allBetweenKR;
-    if (isKaalSarpa) {
-      kaalSarpaType = KS_NAMES[rahuP.house] ?? null;
+
+  if (tippanniDoshas) {
+    // Manglik from tippanni
+    const manglikDosha = tippanniDoshas.find(d => d.name.toLowerCase().includes('manglik') || d.name.toLowerCase().includes('kuja'));
+    if (manglikDosha && manglikDosha.present) {
+      manglik = true;
+      manglikCancelled = manglikDosha.effectiveSeverity === 'cancelled';
+    }
+
+    // Kaal Sarpa from tippanni
+    const kaalSarpDosha = tippanniDoshas.find(d => d.name.toLowerCase().includes('kaal sarp') || d.name.toLowerCase().includes('kala sarp'));
+    if (kaalSarpDosha && kaalSarpDosha.present) {
+      kaalSarpa = true;
+      // Extract sub-type from name: "Kaal Sarp Dosha — Takshaka"
+      const subMatch = kaalSarpDosha.name.match(/[—–-]\s*(.+)/);
+      kaalSarpaType = subMatch ? subMatch[1].trim() : null;
     }
   }
 
-  // --- Ganda Mula Nakshatra: Moon's nakshatra in junction set ---
-  const moonNakId = planets.find(p => p.planet.id === 1)?.nakshatra?.id ?? 0;
+  // Ganda Mula: always from natal chart (not a tippanni dosha)
+  const moonNakId = kundali.planets.find(p => p.planet.id === 1)?.nakshatra?.id ?? 0;
   const isMoola = GANDA_MULA_NAK_IDS.includes(moonNakId);
   const moolaNakshatraName = isMoola ? (GANDA_MULA_NAK_NAMES[moonNakId] ?? null) : null;
 
-  return {
-    manglik: isManglik,
-    manglikCancelled,
-    kaalSarpa: isKaalSarpa,
-    kaalSarpaType,
-    moolaNakshatra: isMoola,
-    moolaNakshatraName,
-  };
+  return { manglik, manglikCancelled, kaalSarpa, kaalSarpaType, moolaNakshatra: isMoola, moolaNakshatraName };
 }
 
+  // --- Ganda Mula Nakshatra: Moon's nakshatra in junction set ---
 // ---------------------------------------------------------------------------
 // Main export
 // ---------------------------------------------------------------------------
@@ -440,8 +424,8 @@ export function computeMemberStatus(params: MemberStatusParams): MemberStatus {
     ascendantSign,
   );
 
-  // --- Dosha flags (lightweight detection from natal chart) ---
-  const doshaFlags = computeDoshaFlags(kundali);
+  // --- Dosha flags (from tippanni engine — single source of truth) ---
+  const doshaFlags = extractDoshaFlags(params.tippanniDoshas, kundali);
 
   // --- Attention level ---
   const { attention, attentionReason } = computeAttention(

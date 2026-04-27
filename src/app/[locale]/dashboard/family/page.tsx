@@ -11,6 +11,8 @@ import { useAuthStore } from '@/stores/auth-store';
 import { useLocationStore } from '@/stores/location-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
+import { generateTippanni } from '@/lib/kundali/tippanni-engine';
+import type { DoshaInsight } from '@/lib/kundali/tippanni-types';
 import { computeMemberStatus, type MemberStatus } from '@/lib/kundali/family-synthesis/member-status';
 import { findCollectiveMuhurta, type CollectiveMuhurtaWindow, type FamilyMemberInput } from '@/lib/kundali/family-synthesis/collective-muhurta';
 import { getAllExtendedActivities } from '@/lib/muhurta/activity-rules-extended';
@@ -224,6 +226,15 @@ export default function FamilyCommandCenter() {
             relationship: bd.relationship,
           });
 
+          // Generate tippanni for authoritative dosha detection (single source of truth)
+          const tippanni = generateTippanni(kundali, locale as 'en' | 'hi' | 'sa');
+          const tippanniDoshas = tippanni.doshas.map((d: DoshaInsight) => ({
+            name: d.name,
+            present: d.present,
+            severity: d.severity,
+            effectiveSeverity: d.effectiveSeverity,
+          }));
+
           const status = computeMemberStatus({
             name: bd.name ?? chart.label,
             relationship: bd.relationship ?? (chart.is_primary ? 'self' : 'other'),
@@ -232,6 +243,7 @@ export default function FamilyCommandCenter() {
             currentSaturnSign: saturnSign,
             currentJupiterSign: jupiterSign,
             today,
+            tippanniDoshas,
           });
           statuses.push(status);
         } catch (err) {

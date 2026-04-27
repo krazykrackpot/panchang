@@ -5,6 +5,8 @@ import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
+import { generateTippanni } from '@/lib/kundali/tippanni-engine';
+import type { DoshaInsight } from '@/lib/kundali/tippanni-types';
 import { computeMemberStatus, type MemberStatus } from '@/lib/kundali/family-synthesis/member-status';
 import { getPlanetaryPositions, toSidereal, getRashiNumber, dateToJD } from '@/lib/ephem/astronomical';
 import type { BirthData, KundaliData } from '@/types/kundali';
@@ -87,6 +89,11 @@ export default function FamilyDoshaStrip({ locale }: { locale: string }) {
             ayanamsha: bd.ayanamsha ?? 'lahiri',
             relationship: bd.relationship,
           });
+          // Use tippanni engine for authoritative dosha detection (single source of truth)
+          const tippanni = generateTippanni(kundali, 'en');
+          const tippanniDoshas = tippanni.doshas.map((d: DoshaInsight) => ({
+            name: d.name, present: d.present, severity: d.severity, effectiveSeverity: d.effectiveSeverity,
+          }));
           results.push(computeMemberStatus({
             name: bd.name ?? chart.label,
             relationship: bd.relationship ?? (chart.is_primary ? 'self' : 'other'),
@@ -95,6 +102,7 @@ export default function FamilyDoshaStrip({ locale }: { locale: string }) {
             currentSaturnSign: saturnSign,
             currentJupiterSign: jupiterSign,
             today,
+            tippanniDoshas,
           }));
         } catch (err) {
           console.error(`[FamilyDoshaStrip] kundali error for ${chart.id}:`, err);

@@ -1,0 +1,122 @@
+{
+  "title": {
+    "en": "Kaal Sarpa Dosha — The Serpent's Embrace",
+    "hi": "काल सर्प दोष — सर्प का आलिंगन",
+    "sa": "कालसर्पदोषः — सर्पालिंगनम्",
+    "mai": "काल सर्प दोष — सर्प का आलिंगन",
+    "mr": "काल सर्प दोष — सर्पाचे आलिंगन",
+    "ta": "கால சர்ப்ப தோஷம் — பாம்பின் அணைப்பு",
+    "te": "కాల సర్ప దోషం — సర్పం ఆలింగనం",
+    "bn": "কাল সর্প দোষ — সর্পের আলিঙ্গন",
+    "kn": "ಕಾಲ ಸರ್ಪ ದೋಷ — ಸರ್ಪದ ಆಲಿಂಗನ",
+    "gu": "કાળ સર્પ દોષ — સર્પનું આલિંગન"
+  },
+  "subtitle": {
+    "en": "Understanding the 12 types and their remedies",
+    "hi": "12 प्रकारों और उनके उपायों को समझना"
+  },
+  "crossRefs": [
+    {
+      "label": {
+        "en": "Module 15-3: Common Doshas",
+        "hi": "मॉड्यूल 15-3: प्रमुख दोष",
+        "sa": "मॉड्यूल 15-3: प्रमुख दोष",
+        "mai": "मॉड्यूल 15-3: प्रमुख दोष",
+        "mr": "मॉड्यूल 15-3: प्रमुख दोष",
+        "ta": "Module 15-3: Common Doshas",
+        "te": "Module 15-3: Common Doshas",
+        "bn": "Module 15-3: Common Doshas",
+        "kn": "Module 15-3: Common Doshas",
+        "gu": "Module 15-3: Common Doshas"
+      },
+      "href": "/learn/modules/15-3"
+    },
+    {
+      "label": {
+        "en": "Module 15-4: Remedial Measures",
+        "hi": "मॉड्यूल 15-4: उपाय",
+        "sa": "मॉड्यूल 15-4: उपाय",
+        "mai": "मॉड्यूल 15-4: उपाय",
+        "mr": "मॉड्यूल 15-4: उपाय",
+        "ta": "Module 15-4: Remedial Measures",
+        "te": "Module 15-4: Remedial Measures",
+        "bn": "Module 15-4: Remedial Measures",
+        "kn": "Module 15-4: Remedial Measures",
+        "gu": "Module 15-4: Remedial Measures"
+      },
+      "href": "/learn/modules/15-4"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q32_1_01",
+      "type": "mcq",
+      "question": {
+        "en": "How many types of Kaal Sarpa Dosha are there?",
+        "hi": "काल सर्प दोष के कितने प्रकार हैं?"
+      },
+      "correctAnswer": 2,
+      "explanation": {
+        "en": "There are 12 types of Kaal Sarpa Dosha, each named after a mythological serpent (Naga) and determined by which house Rahu occupies in the chart (houses 1 through 12).",
+        "hi": "काल सर्प दोष के 12 प्रकार हैं, प्रत्येक एक पौराणिक सर्प (नाग) के नाम पर, जो कुण्डली में राहु किस भाव में है (1 से 12) उसके आधार पर निर्धारित होता है।"
+      },
+      "options": [
+        { "en": "7", "hi": "7" },
+        { "en": "9", "hi": "9" },
+        { "en": "12", "hi": "12" },
+        { "en": "27", "hi": "27" }
+      ]
+    },
+    {
+      "id": "q32_1_02",
+      "type": "mcq",
+      "question": {
+        "en": "Which type of Kaal Sarpa Dosha has Rahu in the 7th house?",
+        "hi": "कौन से प्रकार के काल सर्प दोष में राहु सप्तम भाव में होता है?"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "When Rahu occupies the 7th house (and Ketu the 1st), it forms the Takshaka type of Kaal Sarpa Dosha, which primarily affects marriage and partnerships.",
+        "hi": "जब राहु सप्तम भाव में (और केतु प्रथम भाव में) होता है, तो तक्षक प्रकार का काल सर्प दोष बनता है, जो मुख्यतः विवाह और साझेदारी को प्रभावित करता है।"
+      },
+      "options": [
+        { "en": "Vasuki", "hi": "वासुकी" },
+        { "en": "Takshaka", "hi": "तक्षक" },
+        { "en": "Padma", "hi": "पद्म" },
+        { "en": "Anant", "hi": "अनन्त" }
+      ]
+    },
+    {
+      "id": "q32_1_03",
+      "type": "true_false",
+      "question": {
+        "en": "Kaal Sarpa Dosha is described in Brihat Parashara Hora Shastra (BPHS).",
+        "hi": "काल सर्प दोष का वर्णन बृहत् पाराशर होरा शास्त्र (BPHS) में है।"
+      },
+      "correctAnswer": 1,
+      "explanation": {
+        "en": "False. Kaal Sarpa Dosha is NOT found in classical texts like BPHS or Phaladeepika. It is a post-classical concept that emerged in the 18th-19th century tradition. Some scholars reject its validity entirely, while others consider it significant in practice.",
+        "hi": "असत्य। काल सर्प दोष BPHS या फलदीपिका जैसे शास्त्रीय ग्रन्थों में नहीं मिलता। यह 18वीं-19वीं शताब्दी की परम्परा में उत्पन्न एक उत्तर-शास्त्रीय अवधारणा है।"
+      }
+    },
+    {
+      "id": "q32_1_04",
+      "type": "mcq",
+      "question": {
+        "en": "Which of the following cancels a Kaal Sarpa Dosha?",
+        "hi": "निम्नलिखित में से कौन काल सर्प दोष को निरस्त करता है?"
+      },
+      "correctAnswer": 0,
+      "explanation": {
+        "en": "When any planet is conjunct (in the same house as) Rahu or Ketu, it breaks the Rahu-Ketu axis and cancels the Kaal Sarpa formation. Other cancellation conditions include Jupiter aspecting the nodes and Rahu/Ketu being in upachaya houses (3/6/11).",
+        "hi": "जब कोई ग्रह राहु या केतु के साथ (एक ही भाव में) होता है, तो यह राहु-केतु अक्ष को तोड़ता है और काल सर्प योग को निरस्त करता है। अन्य निरसन शर्तों में गुरु की नोड्स पर दृष्टि और राहु/केतु का उपचय भावों (3/6/11) में होना शामिल है।"
+      },
+      "options": [
+        { "en": "A planet conjunct Rahu or Ketu", "hi": "कोई ग्रह राहु या केतु के साथ" },
+        { "en": "Moon in exaltation", "hi": "चन्द्रमा उच्च में" },
+        { "en": "Sun in the 10th house", "hi": "सूर्य दशम भाव में" },
+        { "en": "Mars aspecting the ascendant", "hi": "मंगल की लग्न पर दृष्टि" }
+      ]
+    }
+  ]
+}

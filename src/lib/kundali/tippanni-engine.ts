@@ -546,6 +546,23 @@ function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
     kaalSarpPresent = between1 || between2;
   }
 
+  // Identify the specific Kaal Sarp sub-type from Rahu's house position
+  const KS_SUBTYPES: Record<number, { en: string; hi: string; theme: string; themeHi: string }> = {
+    1:  { en: 'Anant', hi: 'अनन्त', theme: 'Self-identity and health challenged by karmic debt', themeHi: 'स्वास्थ्य और पहचान में कर्मऋण से बाधा' },
+    2:  { en: 'Kulika', hi: 'कुलिक', theme: 'Wealth and family lineage carry karmic burdens', themeHi: 'धन और परिवार पर कर्म का बोझ' },
+    3:  { en: 'Vasuki', hi: 'वासुकी', theme: 'Courage and communication face karmic obstacles', themeHi: 'साहस और संचार में बाधा' },
+    4:  { en: 'Shankhapala', hi: 'शंखपाल', theme: 'Home and emotional security are karmically tested', themeHi: 'घर और भावनात्मक सुरक्षा में चुनौती' },
+    5:  { en: 'Padma', hi: 'पद्म', theme: 'Children and creativity bear karmic restrictions', themeHi: 'संतान और रचनात्मकता में बाधा' },
+    6:  { en: 'Mahapadma', hi: 'महापद्म', theme: 'Enemies, debts, and diseases carry deep karmic patterns', themeHi: 'शत्रु, ऋण और रोग में गहरा कर्म' },
+    7:  { en: 'Takshaka', hi: 'तक्षक', theme: 'Marriage and partnerships are karmically tested', themeHi: 'विवाह और साझेदारी में कर्म की परीक्षा' },
+    8:  { en: 'Karkotak', hi: 'कर्कोटक', theme: 'Longevity and transformation carry karmic intensity', themeHi: 'आयु और परिवर्तन में तीव्रता' },
+    9:  { en: 'Shankhachud', hi: 'शंखचूड', theme: 'Luck and dharma challenged by past-life karma', themeHi: 'भाग्य और धर्म में पूर्वजन्म का कर्म' },
+    10: { en: 'Ghatak', hi: 'घातक', theme: 'Career and reputation face karmic tests', themeHi: 'करियर में कर्मिक परीक्षा' },
+    11: { en: 'Vishdhar', hi: 'विषधर', theme: 'Gains and ambitions delayed by karmic poison', themeHi: 'लाभ और महत्वाकांक्षा में विलंब' },
+    12: { en: 'Sheshnag', hi: 'शेषनाग', theme: 'Foreign lands and liberation carry intense karma', themeHi: 'विदेश और मोक्ष में गहरा कर्म' },
+  };
+  const ksSubType = kaalSarpPresent && rahu ? KS_SUBTYPES[rahu.house] : null;
+
   // Kaal Sarp cancellation conditions
   const ksCancellations: import('./tippanni-types').CancellationCondition[] = kaalSarpPresent ? [
     { condition: t(locale, 'Any planet conjunct Rahu or Ketu (breaks the axis)', 'कोई ग्रह राहु या केतु के साथ (अक्ष तोड़ता है)'), met: planets.some(p => p.planet.id >= 0 && p.planet.id <= 6 && (p.house === rahu!.house || p.house === ketu!.house)), source: 'BPHS' },
@@ -557,7 +574,9 @@ function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
   const ksEffective = !kaalSarpPresent ? undefined : ksMetCount >= 2 ? 'cancelled' as const : ksMetCount === 1 ? 'partial' as const : 'full' as const;
 
   doshas.push({
-    name: t(locale, 'Kaal Sarp Dosha', 'काल सर्प दोष', 'कालसर्पदोषः'),
+    name: kaalSarpPresent && ksSubType
+      ? t(locale, `Kaal Sarp Dosha — ${ksSubType.en}`, `काल सर्प दोष — ${ksSubType.hi}`)
+      : t(locale, 'Kaal Sarp Dosha', 'काल सर्प दोष', 'कालसर्पदोषः'),
     present: kaalSarpPresent,
     severity: kaalSarpPresent ? 'moderate' : 'none',
     effectiveSeverity: ksEffective,
@@ -565,8 +584,8 @@ function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
     activeDasha: kaalSarpPresent ? t(locale, 'Intensifies during Rahu or Ketu Mahadasha/Antardasha', 'राहु या केतु महादशा/अंतर्दशा में तीव्र') : undefined,
     description: kaalSarpPresent
       ? t(locale,
-          `All planets hemmed between Rahu (house ${rahu!.house}) and Ketu (house ${ketu!.house}). ${ksEffective === 'cancelled' ? 'Multiple cancellation conditions met — dosha is effectively neutralized.' : ksEffective === 'partial' ? 'One cancellation condition met — dosha is partially mitigated.' : ''} This karmic pattern causes periodic obstacles and delays but also grants resilience and depth of character.`,
-          `सभी ग्रह राहु (भाव ${rahu!.house}) और केतु (भाव ${ketu!.house}) के बीच। ${ksEffective === 'cancelled' ? 'अनेक निरसन शर्तें पूर्ण — दोष निष्प्रभावित।' : ksEffective === 'partial' ? 'एक निरसन शर्त पूर्ण — दोष आंशिक कम।' : ''} यह कार्मिक पैटर्न बाधाएँ लाता है पर लचीलापन भी देता है।`)
+          `${ksSubType ? ksSubType.en + ' type: ' + ksSubType.theme + '. ' : ''}All planets hemmed between Rahu (house ${rahu!.house}) and Ketu (house ${ketu!.house}). ${ksEffective === 'cancelled' ? 'Multiple cancellation conditions met — dosha is effectively neutralized.' : ksEffective === 'partial' ? 'One cancellation condition met — dosha is partially mitigated.' : ''} This karmic pattern causes periodic obstacles and delays but also grants resilience and depth of character.`,
+          `${ksSubType ? ksSubType.hi + ' प्रकार: ' + ksSubType.themeHi + '। ' : ''}सभी ग्रह राहु (भाव ${rahu!.house}) और केतु (भाव ${ketu!.house}) के बीच। ${ksEffective === 'cancelled' ? 'अनेक निरसन शर्तें पूर्ण — दोष निष्प्रभावित।' : ksEffective === 'partial' ? 'एक निरसन शर्त पूर्ण — दोष आंशिक कम।' : ''} यह कार्मिक पैटर्न बाधाएँ लाता है पर लचीलापन भी देता है।`)
       : t(locale, 'No Kaal Sarp Dosha. Planets are not hemmed between Rahu-Ketu axis.', 'काल सर्प दोष नहीं। ग्रह राहु-केतु अक्ष के बीच नहीं।'),
     remedies: kaalSarpPresent
       ? t(locale, 'Remedies: 1) Kaal Sarp Nivaran Puja at Trimbakeshwar. 2) Nag Panchami worship. 3) Donate to snake conservation. 4) Maha Mrityunjaya Mantra daily. 5) Visit Rahu-Ketu temples.', 'उपाय: 1) त्र्यम्बकेश्वर में काल सर्प निवारण पूजा। 2) नाग पंचमी पूजा। 3) सर्प संरक्षण दान। 4) महामृत्युंजय मन्त्र। 5) राहु-केतु मन्दिर।')

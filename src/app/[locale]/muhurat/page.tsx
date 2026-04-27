@@ -13,6 +13,8 @@ import { lt } from '@/lib/learn/translations';
 import MSG from '@/messages/pages/muhurat.json';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { useBirthDataStore } from '@/stores/birth-data-store';
+import { useLocationStore } from '@/stores/location-store';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 
 const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -78,6 +80,7 @@ export default function MuhuratPage() {
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const birthNakshatra = useBirthDataStore((s) => s.birthNakshatra);
   const birthRashi = useBirthDataStore((s) => s.birthRashi);
+  const locationStore = useLocationStore();
 
   const now = new Date();
   const [year, setYear] = useState(now.getFullYear());
@@ -98,9 +101,11 @@ export default function MuhuratPage() {
       year: String(year),
       month: String(month),
       activity,
-      lat: '28.6139',
-      lng: '77.209',
-      tz: '5.5',
+      lat: String(locationStore.lat ?? 28.6139),
+      lng: String(locationStore.lng ?? 77.209),
+      tz: String(locationStore.timezone
+        ? getUTCOffsetForDate(year, month, 1, locationStore.timezone)
+        : 5.5),
     });
     if (birthNakshatra > 0) params.set('birthNak', String(birthNakshatra));
     if (birthRashi > 0) params.set('birthRashi', String(birthRashi));

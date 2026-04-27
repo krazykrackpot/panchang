@@ -6,7 +6,6 @@ import { authedFetch } from '@/lib/api/authed-fetch';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import BirthForm from '@/components/kundali/BirthForm';
-import ChartNorth from '@/components/kundali/ChartNorth';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
@@ -24,7 +23,8 @@ import {
 import type { SynastryAspect } from '@/lib/comparison/synastry-engine';
 import { compareDashas } from '@/lib/matching/dasha-comparison';
 import DashaComparisonTimeline from '@/components/kundali/DashaComparisonTimeline';
-import type { KundaliData, BirthData, ChartStyle, ChartData } from '@/types/kundali';
+import SynastryOverlay from '@/components/kundali/SynastryOverlay';
+import type { KundaliData, BirthData, ChartStyle } from '@/types/kundali';
 import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
@@ -189,7 +189,7 @@ export default function ComparePage() {
   const [errorB, setErrorB] = useState('');
   const [formsCollapsed, setFormsCollapsed] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>('overlay');
-  const [overlaySwapped, setOverlaySwapped] = useState(false);
+  // overlaySwapped state moved to SynastryOverlay component
 
   const user = useAuthStore(s => s.user);
   const [savedCharts, setSavedCharts] = useState<Array<{ id: string; label: string; birth_data: { name?: string; date: string; time: string; place: string; lat: number; lng: number; relationship?: string } }>>([]);
@@ -391,38 +391,16 @@ export default function ComparePage() {
             <AnimatePresence mode="wait">
               <motion.div key={activeTab} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.2 }}>
 
-                {/* ═══ TAB 1: Chart Overlay ═══ */}
+                {/* ═══ TAB 1: Synastry Overlay ═══ */}
                 {activeTab === 'overlay' && (
-                  <div className="space-y-6">
-                    {/* Names + swap toggle */}
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                      <div className="text-center">
-                        <span className="text-gold-light font-semibold text-sm">{nameA}</span>
-                        <span className="text-text-tertiary mx-2">&</span>
-                        <span className="text-gold-light font-semibold text-sm">{nameB}</span>
-                      </div>
-                      <button onClick={() => setOverlaySwapped(!overlaySwapped)}
-                        className="px-4 py-1.5 rounded-lg border border-gold-primary/20 text-gold-primary text-xs hover:bg-gold-primary/10 transition-colors">
-                        {overlaySwapped ? t(L.showAonB, locale) : t(L.showBonA, locale)}
-                      </button>
-                    </div>
-
-                    {/* Chart overlay */}
-                    <div className="flex justify-center">
-                      <ChartNorth
-                        data={overlaySwapped ? chartB.chart : chartA.chart}
-                        transitData={overlaySwapped ? chartA.chart : chartB.chart}
-                        title=""
-                        size={480}
-                      />
-                    </div>
-
-                    {/* Legend */}
-                    <div className="flex items-center justify-center gap-6 text-xs text-text-secondary">
-                      <span>{t(L.solidA, locale)}</span>
-                      <span>{t(L.outlinedB, locale)}</span>
-                    </div>
-                  </div>
+                  <SynastryOverlay
+                    chartA={chartA}
+                    chartB={chartB}
+                    nameA={nameA}
+                    nameB={nameB}
+                    locale={locale}
+                    chartStyle="north"
+                  />
                 )}
 
                 {/* ═══ TAB 2: Planets & Aspects ═══ */}
@@ -832,7 +810,7 @@ export default function ComparePage() {
 
             {/* Reset button */}
             <div className="text-center mt-10">
-              <button onClick={() => { setChartA(null); setChartB(null); setFormsCollapsed(false); setActiveTab('overlay'); setOverlaySwapped(false); }}
+              <button onClick={() => { setChartA(null); setChartB(null); setFormsCollapsed(false); setActiveTab('overlay'); }}
                 className="px-6 py-2.5 rounded-xl border border-gold-primary/20 text-gold-primary text-sm hover:bg-gold-primary/10 transition-colors">
                 {t(L.reset, locale)}
               </button>

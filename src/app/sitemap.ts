@@ -86,6 +86,7 @@ const routes = [
   '/learn/sade-sati',
   '/learn/grahan-yoga',
   '/learn/planet-in-house',
+  '/learn/nakshatra-pada',
   '/learn/aspects',
   '/learn/remedies',
   '/learn/cosmology',
@@ -464,6 +465,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const pSlug of planetSlugs) {
     for (const hSuffix of houseSuffixes) {
       addEntries(entries, `/learn/planet-in-house/${pSlug}-in-${hSuffix}-house`, {
+        changeFrequency: 'monthly',
+        priority: 0.6,
+      });
+    }
+  }
+
+  // Nakshatra Pada pages (27 nakshatras × 4 padas = 108 pages)
+  const nakSlugs = ['ashwini','bharani','krittika','rohini','mrigashira','ardra','punarvasu','pushya','ashlesha','magha','purva-phalguni','uttara-phalguni','hasta','chitra','swati','vishakha','anuradha','jyeshtha','mula','purva-ashadha','uttara-ashadha','shravana','dhanishta','shatabhisha','purva-bhadrapada','uttara-bhadrapada','revati'];
+  for (const nak of nakSlugs) {
+    for (let pada = 1; pada <= 4; pada++) {
+      addEntries(entries, `/learn/nakshatra-pada/${nak}-pada-${pada}`, {
         changeFrequency: 'monthly',
         priority: 0.6,
       });

@@ -14,34 +14,35 @@ function YogaSymbol({ size = 128 }: { number: number; size?: number }) {
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
         <linearGradient id="yg-main" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#f0d48a" />
-          <stop offset="100%" stopColor="#d4a853" />
+          <stop offset="0%" stopColor="#e85d4a" />
+          <stop offset="100%" stopColor="#c23a2a" />
         </linearGradient>
         <radialGradient id="yg-glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#f0d48a" stopOpacity="0.35" />
-          <stop offset="60%" stopColor="#d4a853" stopOpacity="0.1" />
-          <stop offset="100%" stopColor="#8a6d2b" stopOpacity="0" />
+          <stop offset="0%" stopColor="#e85d4a" stopOpacity="0.35" />
+          <stop offset="60%" stopColor="#c23a2a" stopOpacity="0.1" />
+          <stop offset="100%" stopColor="#7a1a10" stopOpacity="0" />
         </radialGradient>
       </defs>
       {/* Background glow */}
       <circle cx="32" cy="32" r="31" fill="url(#yg-glow)" />
-      {/* Outer circle — thick */}
-      <circle cx="32" cy="32" r="30" stroke="#f0d48a" strokeWidth="2.5" opacity="0.7" />
-      {/* 8 lotus petals — large, bold fills */}
-      {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
-        <ellipse key={deg} cx="32" cy="6" rx="7" ry="13" fill="#f0d48a" opacity="0.5" stroke="#f0d48a" strokeWidth="1.5" transform={`rotate(${deg} 32 32)`} />
-      ))}
-      {/* Upward triangle — large, bold */}
-      <polygon points="32,6 54,48 10,48" stroke="#f0d48a" strokeWidth="3" fill="#f0d48a" fillOpacity="0.15" strokeLinejoin="round" />
-      {/* Downward triangle — large, bold */}
-      <polygon points="32,58 10,16 54,16" stroke="#d4a853" strokeWidth="3" fill="#d4a853" fillOpacity="0.15" strokeLinejoin="round" />
-      {/* Inner upward triangle */}
-      <polygon points="32,18 44,42 20,42" stroke="#f0d48a" strokeWidth="2" fill="#f0d48a" fillOpacity="0.2" strokeLinejoin="round" />
-      {/* Inner downward triangle */}
-      <polygon points="32,46 20,22 44,22" stroke="#d4a853" strokeWidth="2" fill="#d4a853" fillOpacity="0.2" strokeLinejoin="round" />
-      {/* Central bindu — bright solid */}
-      <circle cx="32" cy="32" r="5" fill="url(#yg-main)" opacity="0.9" />
-      <circle cx="32" cy="32" r="3" fill="#f0d48a" opacity="1" />
+      {/* Outer circle — bold, reddish gold */}
+      <circle cx="32" cy="32" r="30" stroke="#e85d4a" strokeWidth="2.5" opacity="0.7" />
+      {/* Inner circle */}
+      <circle cx="32" cy="32" r="22" stroke="#c23a2a" strokeWidth="1.5" opacity="0.4" />
+      {/* Sri Yantra — 4 upward triangles (Shiva) */}
+      <polygon points="32,4 56,50 8,50" stroke="#e85d4a" strokeWidth="2.5" fill="#e85d4a" fillOpacity="0.08" strokeLinejoin="round" />
+      <polygon points="32,12 48,44 16,44" stroke="#e85d4a" strokeWidth="2" fill="#e85d4a" fillOpacity="0.1" strokeLinejoin="round" />
+      <polygon points="32,18 44,40 20,40" stroke="#e85d4a" strokeWidth="1.8" fill="#e85d4a" fillOpacity="0.12" strokeLinejoin="round" />
+      <polygon points="32,22 40,38 24,38" stroke="#e85d4a" strokeWidth="1.5" fill="#e85d4a" fillOpacity="0.15" strokeLinejoin="round" />
+      {/* Sri Yantra — 5 downward triangles (Shakti) */}
+      <polygon points="32,60 8,14 56,14" stroke="#c23a2a" strokeWidth="2.5" fill="#c23a2a" fillOpacity="0.08" strokeLinejoin="round" />
+      <polygon points="32,54 14,18 50,18" stroke="#c23a2a" strokeWidth="2" fill="#c23a2a" fillOpacity="0.1" strokeLinejoin="round" />
+      <polygon points="32,48 18,22 46,22" stroke="#c23a2a" strokeWidth="1.8" fill="#c23a2a" fillOpacity="0.12" strokeLinejoin="round" />
+      <polygon points="32,44 22,24 42,24" stroke="#c23a2a" strokeWidth="1.5" fill="#c23a2a" fillOpacity="0.15" strokeLinejoin="round" />
+      <polygon points="32,40 26,26 38,26" stroke="#c23a2a" strokeWidth="1.2" fill="#c23a2a" fillOpacity="0.18" strokeLinejoin="round" />
+      {/* Central bindu — vermillion red */}
+      <circle cx="32" cy="32" r="4" fill="url(#yg-main)" opacity="0.95" />
+      <circle cx="32" cy="32" r="2.5" fill="#e85d4a" opacity="1" />
     </svg>
   );
 }

@@ -190,19 +190,10 @@ export default function TransitCountdown({ ascendantSign, savTable, reducedSavTa
     return scored.slice(0, 3);
   }, [ascendantSign, savTable, locale, L]);
 
-  if (scoredTransits.length === 0) {
-    return (
-      <div className="mb-6 p-5 rounded-2xl border border-gold-primary/15 bg-bg-secondary">
-        <div className="flex items-center gap-2 mb-3">
-          <Clock className="w-5 h-5 text-gold-primary" />
-          <h3 className={`text-gold-light text-lg font-bold ${isDeva ? 'font-devanagari-heading' : ''}`}>
-            {L.title}
-          </h3>
-        </div>
-        <p className="text-text-secondary text-sm">{L.noTransits}</p>
-      </div>
-    );
-  }
+  // Don't render empty state — the KeyDatesTimeline component on the dashboard
+  // already shows upcoming events (dasha transitions, solar return, etc.).
+  // Showing "No major transits" alongside those events is contradictory.
+  if (scoredTransits.length === 0) return null;
 
   return (
     <motion.div

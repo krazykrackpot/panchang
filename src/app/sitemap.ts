@@ -440,5 +440,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
+  // Planet-in-House programmatic SEO pages (7 planets x 12 houses = 84 entries)
+  const planetSlugs = ['sun', 'moon', 'mars', 'mercury', 'jupiter', 'venus', 'saturn'];
+  const houseSuffixes = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
+  for (const pSlug of planetSlugs) {
+    for (const hSuffix of houseSuffixes) {
+      addEntries(entries, `/learn/planet-in-house/${pSlug}-in-${hSuffix}-house`, {
+        changeFrequency: 'monthly',
+        priority: 0.6,
+      });
+    }
+  }
+
   return entries;
 }

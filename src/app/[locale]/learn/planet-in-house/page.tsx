@@ -6,8 +6,9 @@ import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/planet-in-house.json';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Star } from 'lucide-react';
+import { Home, Star, ChevronRight } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
+import NextLink from 'next/link';
 
 /* ── Planet & House Data ──────────────────────────────────────────── */
 const PLANETS = [
@@ -175,6 +176,14 @@ const CLASSIFICATIONS = [
   { name: 'Maraka', houses: [2, 7], color: '#e67e22', desc: 'Can indicate health crises during that planet\'s dasha period.' },
 ];
 
+/* ── Slug helpers ────────────────────────────────────────────────── */
+const HOUSE_SUFFIXES = ['1st','2nd','3rd','4th','5th','6th','7th','8th','9th','10th','11th','12th'];
+function makeSlug(planetId: number, house: number): string {
+  const planet = PLANETS[planetId];
+  if (!planet) return '';
+  return `${planet.name.toLowerCase()}-in-${HOUSE_SUFFIXES[house - 1]}-house`;
+}
+
 /* ── Component ───────────────────────────────────────────────────── */
 export default function PlanetInHousePage() {
   const locale = useLocale() as string;
@@ -305,6 +314,14 @@ export default function PlanetInHousePage() {
                   </span>
                 </div>
                 <p className="text-base leading-relaxed text-text-primary">{interp}</p>
+                {/* Link to full BPHS detail page */}
+                <NextLink
+                  href={`/${locale}/learn/planet-in-house/${makeSlug(selPlanet!, selHouse!)}`}
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[#d4a853] hover:text-[#f0d48a] transition-colors"
+                >
+                  Read full BPHS analysis
+                  <ChevronRight className="w-4 h-4" />
+                </NextLink>
               </div>
             </motion.div>
           ) : (
@@ -396,6 +413,53 @@ export default function PlanetInHousePage() {
                 {t('chakra')}
               </text>
             </svg>
+          </div>
+        </section>
+
+        {/* ── Full 7x12 Grid (SEO + navigation) ── */}
+        <section className="mt-16">
+          <h2 className="mb-2 text-2xl font-bold text-[#d4a853]">
+            All 84 Combinations
+          </h2>
+          <p className="mb-6 text-sm text-text-secondary">
+            Classical BPHS interpretations for every planet-house placement.
+          </p>
+
+          <div className="space-y-6">
+            {PLANETS.filter(p => p.id <= 6).map(p => (
+              <div key={p.id}>
+                <h3
+                  className="mb-2 flex items-center gap-2 text-sm font-bold uppercase tracking-wider"
+                  style={{ color: p.color }}
+                >
+                  <span
+                    className="inline-block h-2.5 w-2.5 rounded-full"
+                    style={{ backgroundColor: p.color }}
+                  />
+                  {p.name} <span className="font-normal opacity-50">{p.sa}</span>
+                </h3>
+                <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12">
+                  {HOUSES.map(h => (
+                    <NextLink
+                      key={h.num}
+                      href={`/${locale}/learn/planet-in-house/${makeSlug(p.id, h.num)}`}
+                      className="rounded-lg border px-2 py-2 text-center text-xs transition-all hover:scale-105"
+                      style={{
+                        backgroundColor: p.color + '08',
+                        borderColor: p.color + '20',
+                      }}
+                    >
+                      <span className="block font-bold" style={{ color: p.color }}>
+                        H{h.num}
+                      </span>
+                      <span className="block text-[10px] text-text-secondary/60 mt-0.5">
+                        {h.sign}
+                      </span>
+                    </NextLink>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </section>
       </div>

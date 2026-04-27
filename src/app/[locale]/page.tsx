@@ -208,37 +208,35 @@ function CalendarSVG() {
 }
 
 function TransitSVG() {
-  // Gochar — zodiac wheel with arrow showing planetary movement across signs
+  // Gochar — a blazing comet/meteor streaking across space, trailing fire
   return (
     <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
-        <linearGradient id="ht1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#93c5fd" /><stop offset="100%" stopColor="#3b82f6" /></linearGradient>
-        <radialGradient id="ht1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#60a5fa" stopOpacity="0.3" /><stop offset="100%" stopColor="#1e3a5f" stopOpacity="0" /></radialGradient>
+        <linearGradient id="ht1" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stopColor="#93c5fd" /><stop offset="100%" stopColor="#3b82f6" /></linearGradient>
+        <radialGradient id="ht1g" cx="70%" cy="30%" r="60%"><stop offset="0%" stopColor="#93c5fd" stopOpacity="0.4" /><stop offset="100%" stopColor="#1e3a5f" stopOpacity="0" /></radialGradient>
+        <linearGradient id="ht1t" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stopColor="#93c5fd" stopOpacity="0.8" /><stop offset="40%" stopColor="#60a5fa" stopOpacity="0.3" /><stop offset="100%" stopColor="#3b82f6" stopOpacity="0" /></linearGradient>
       </defs>
-      <circle cx="32" cy="32" r="31" fill="url(#ht1g)" />
-      {/* Outer zodiac ring — bold, thick */}
-      <circle cx="32" cy="32" r="29" stroke="#60a5fa" strokeWidth="3" opacity="0.8" />
-      <circle cx="32" cy="32" r="22" stroke="#60a5fa" strokeWidth="2" opacity="0.5" />
-      {/* 12 sign division lines */}
-      {Array.from({ length: 12 }, (_, i) => {
-        const a = (Math.PI * 2 * i) / 12;
-        return <line key={i} x1={32 + 22 * Math.cos(a)} y1={32 + 22 * Math.sin(a)} x2={32 + 29 * Math.cos(a)} y2={32 + 29 * Math.sin(a)} stroke="#60a5fa" strokeWidth="2" opacity="0.6" />;
-      })}
-      {/* Transit arrow — sweeping curved path showing movement */}
-      <path d="M14 48 C18 30, 28 16, 50 14" stroke="#93c5fd" strokeWidth="3.5" strokeLinecap="round" fill="none" opacity="0.9" />
-      {/* Arrowhead at end of transit */}
-      <polygon points="50,14 44,10 46,18" fill="#93c5fd" opacity="0.9" />
-      {/* Planet at start of transit */}
-      <circle cx="14" cy="48" r="5" fill="url(#ht1)" opacity="0.85" stroke="#93c5fd" strokeWidth="2" />
-      {/* Planet at destination */}
-      <circle cx="50" cy="14" r="4" fill="#93c5fd" opacity="0.6" />
-      {/* Trail sparkles along the path */}
-      <circle cx="20" cy="38" r="2" fill="#60a5fa" opacity="0.5" />
-      <circle cx="30" cy="24" r="2.5" fill="#93c5fd" opacity="0.6" />
-      <circle cx="42" cy="18" r="1.5" fill="#93c5fd" opacity="0.4" />
-      {/* Central point */}
-      <circle cx="32" cy="32" r="4" fill="url(#ht1)" opacity="0.7" />
-      <circle cx="32" cy="32" r="2" fill="#93c5fd" opacity="1" />
+      {/* Deep space glow behind the comet */}
+      <circle cx="42" cy="22" r="28" fill="url(#ht1g)" />
+      {/* Wide comet tail — dramatic sweep filling the card diagonally */}
+      <path d="M50 12 C42 16, 30 22, 4 58" stroke="url(#ht1t)" strokeWidth="8" strokeLinecap="round" fill="none" />
+      <path d="M50 12 C44 14, 34 18, 8 52" stroke="url(#ht1t)" strokeWidth="5" strokeLinecap="round" fill="none" opacity="0.7" />
+      <path d="M50 12 C46 12, 38 14, 12 46" stroke="#93c5fd" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.5" />
+      {/* Secondary tail wisps */}
+      <path d="M48 14 C40 20, 28 30, 10 56" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.3" />
+      <path d="M50 14 C44 18, 36 26, 18 48" stroke="#818cf8" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.25" />
+      {/* Comet head — blazing bright orb at top-right */}
+      <circle cx="50" cy="12" r="10" fill="url(#ht1)" opacity="0.5" />
+      <circle cx="50" cy="12" r="7" fill="#93c5fd" opacity="0.7" />
+      <circle cx="50" cy="12" r="4.5" fill="#bfdbfe" opacity="0.9" />
+      <circle cx="50" cy="12" r="2.5" fill="#fff" opacity="1" />
+      {/* Scattered star-field — background context */}
+      <circle cx="8" cy="8" r="1.5" fill="#60a5fa" opacity="0.6" />
+      <circle cx="20" cy="6" r="1" fill="#93c5fd" opacity="0.5" />
+      <circle cx="60" cy="36" r="1.5" fill="#60a5fa" opacity="0.4" />
+      <circle cx="56" cy="54" r="1" fill="#818cf8" opacity="0.35" />
+      <circle cx="4" cy="30" r="1.2" fill="#93c5fd" opacity="0.4" />
+      <circle cx="36" cy="58" r="1" fill="#60a5fa" opacity="0.3" />
     </svg>
   );
 }

@@ -10,6 +10,7 @@ import type { VoiceMode, DailyProtocol, HoraSlot, EnergyPhase, DeadZone } from '
 import { PRAKRITI_QUESTIONS, scorePrakriti } from '@/lib/dinacharya/prakriti-quiz';
 import type { Dosha } from '@/lib/dinacharya/prakriti-quiz';
 import { tl } from '@/lib/utils/trilingual';
+import DayTimeline from '@/components/panchang/DayTimeline';
 import type { PanchangData, HoraSlot as PanchangHoraSlot } from '@/types/panchang';
 
 // ── Planet symbols for hora display ──
@@ -114,6 +115,7 @@ export default function DinacharyaPage() {
 
   const [voice, setVoice] = useState<VoiceMode>('modern');
   const [protocol, setProtocol] = useState<DailyProtocol | null>(null);
+  const [rawPanchang, setRawPanchang] = useState<PanchangData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showQuiz, setShowQuiz] = useState(false);
@@ -141,6 +143,7 @@ export default function DinacharyaPage() {
           throw new Error(`Panchang API error: ${res.status}`);
         }
         const panchang: PanchangData = await res.json();
+        setRawPanchang(panchang);
 
         // Transform panchang hora slots to protocol engine format
         const nowMinutes = currentMinutes();
@@ -293,6 +296,20 @@ export default function DinacharyaPage() {
         >
           <EnergyTimeline phases={protocol.energyPhases} voice={voice} />
         </SectionCard>
+
+        {/* ── Day Timeline — auspicious/inauspicious windows ── */}
+        {rawPanchang && (
+          <SectionCard
+            title={voice === 'traditional' ? 'Shubha-Ashubha Kala' : 'Sacred Timings'}
+          >
+            <DayTimeline
+              panchang={rawPanchang}
+              sunrise={rawPanchang.sunrise}
+              sunset={rawPanchang.sunset}
+              locale={locale}
+            />
+          </SectionCard>
+        )}
 
         {/* ── Hora Schedule ── */}
         <SectionCard

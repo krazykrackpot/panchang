@@ -1279,7 +1279,7 @@ export default function PanchangClient() {
                 href: '/panchang/auspicious',
                 title: isDevanagari ? 'शुभ-अशुभ काल' : 'Sacred Timings',
                 subtitle: isDevanagari ? 'मुहूर्त एवं निषिद्ध काल' : 'Auspicious & Inauspicious',
-                preview: `${panchang.abhijitMuhurta?.start || '—'} · ${panchang.rahuKaal?.start || '—'}`,
+                preview: isDevanagari ? 'अभिजित · अमृत काल · राहु काल · वर्ज्यम' : 'Abhijit · Amrit Kalam · Rahu Kaal · Varjyam',
                 color: 'emerald',
                 // Tarot: Radiant sun with rays (auspicious light)
                 svg: <svg viewBox="0 0 64 64" className="w-14 h-14"><defs><linearGradient id="tc1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a"/><stop offset="100%" stopColor="#d4a853"/></linearGradient></defs><circle cx="32" cy="32" r="12" fill="none" stroke="url(#tc1)" strokeWidth="1.5"/><circle cx="32" cy="32" r="6" fill="url(#tc1)" opacity="0.3"/>{Array.from({length:12},(_,i)=>{const a=Math.PI*2*i/12;return <line key={i} x1={r2(32+16*Math.cos(a))} y1={r2(32+16*Math.sin(a))} x2={r2(32+24*Math.cos(a))} y2={r2(32+24*Math.sin(a))} stroke="url(#tc1)" strokeWidth={i%2===0?"1.5":"0.8"} opacity={i%2===0?0.9:0.4}/>})}</svg>,

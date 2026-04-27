@@ -176,6 +176,12 @@ export interface PanchangData {
   aadalYoga?: { start: string; end: string; endDate?: string };
   vidaalYoga?: { start: string; end: string; endDate?: string };
   raviYogaWindow?: { active: boolean; start?: string; end?: string; endDate?: string };
+  // Special daily yogas (Dwipushkar, Tripushkar, Sarvartha Siddhi, Amrit Siddhi, Ravi, Guru Pushya)
+  specialYogas?: {
+    name: LocaleText;
+    isActive: boolean;
+    description: LocaleText;
+  }[];
   // Festivals & Vrats for this date
   festivals?: {
     name: LocaleText;

@@ -6,6 +6,7 @@ import Script from 'next/script';
 import { Sunrise, Sunset, Clock, MapPin, Calendar, ArrowRight, ChevronRight } from 'lucide-react';
 import { getCityBySlug, getAllCitySlugs, getPopularCities } from '@/lib/constants/cities';
 import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
+import { generateDailyArticle, type ArticleCityConfig } from '@/lib/horoscope/daily-article';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { Locale, TransitionInfo } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -126,6 +127,18 @@ export default async function CityPanchangPage({
   };
 
   const panchang = computePanchang(input);
+
+  // Generate daily narrative article for unique content
+  const articleCityConfig: ArticleCityConfig = {
+    name: city.name.en,
+    nameHi: city.name.hi || '',
+    lat: city.lat,
+    lng: city.lng,
+    timezone: city.timezone,
+  };
+  const dailyArticle = generateDailyArticle(now, articleCityConfig);
+  const articleLoc = (isDevanagariLocale(loc) ? 'hi' : 'en') as 'en' | 'hi';
+  const articleBody = dailyArticle.body[articleLoc];
 
   // Date display
   const dateDisplay = now.toLocaleDateString(msg('localeId', locale), {
@@ -360,6 +373,33 @@ export default async function CityPanchangPage({
         </details>
       </div>
 
+      {/* ═══ SPECIAL YOGAS (Dwipushkar, Tripushkar, Sarvartha Siddhi, etc.) ═══ */}
+      {panchang.specialYogas && panchang.specialYogas.filter(y => y.isActive).length > 0 && (
+        <div className="mb-10">
+          <h2 className="text-2xl font-bold text-gold-light mb-5 text-center">
+            {isHi ? 'आज के विशेष योग' : 'Special Yogas Today'}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {panchang.specialYogas.filter(y => y.isActive).map((yoga, i) => (
+              <div
+                key={i}
+                className="rounded-2xl bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-transparent border border-emerald-500/20 p-5"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-lg font-bold text-emerald-300">
+                    {yoga.name[loc] || yoga.name.en}
+                  </span>
+                </div>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  {yoga.description[loc] || yoga.description.en}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* ═══ MUHURTA TABLE ═══ */}
       {panchang.muhurtas && panchang.muhurtas.length > 0 && (
         <div className="mb-10">
@@ -430,6 +470,23 @@ export default async function CityPanchangPage({
             </>
           )}
         </div>
+
+        {/* ═══ DAILY NARRATIVE ARTICLE ═══ */}
+        {articleBody && (
+          <div className="mt-8 border-t border-gold-primary/15 pt-8">
+            <div className="space-y-4 text-text-secondary text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+              {articleBody.split('\n').map((line, i) => {
+                if (line.startsWith('### ')) return <h3 key={i} className="text-gold-light font-bold text-lg mt-6 mb-2">{line.slice(4)}</h3>;
+                if (line.startsWith('## ')) return <h2 key={i} className="text-gold-primary text-xs uppercase tracking-widest font-bold mt-8 mb-3">{line.slice(3)}</h2>;
+                if (line.startsWith('- **')) return <div key={i} className="flex gap-2"><span className="text-gold-dark">&#9670;</span><span dangerouslySetInnerHTML={{ __html: line.slice(2).replace(/\*\*(.*?)\*\*/g, '<strong class="text-gold-light">$1</strong>') }} /></div>;
+                if (line.startsWith('**')) return <p key={i} dangerouslySetInnerHTML={{ __html: line.replace(/\*\*(.*?)\*\*/g, '<strong class="text-gold-light">$1</strong>') }} />;
+                if (line.startsWith('*') && line.endsWith('*')) return <p key={i} className="text-text-secondary/60 text-xs italic mt-4" dangerouslySetInnerHTML={{ __html: line.slice(1, -1).replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-gold-primary hover:text-gold-light">$1</a>') }} />;
+                if (line.trim() === '') return null;
+                return <p key={i}>{line}</p>;
+              })}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* ═══ OTHER CITIES ═══ */}

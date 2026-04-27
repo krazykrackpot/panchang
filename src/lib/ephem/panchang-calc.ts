@@ -570,13 +570,13 @@ const DISHA_SHOOL_DATA: Record<number, DishaShoolInfo> = {
 // Source: Muhurta Chintamani, Nirṇaya Sindhu (standard Choghadiya table)
 // Key: weekday (0-6) → set of nakshatra numbers that form Sarvartha Siddhi
 const SARVARTHA_SIDDHI: Record<number, Set<number>> = {
-  0: new Set([8, 9, 12, 13, 19, 21, 26]),  // Sunday: Pushya, Ashlesha, U.Phalguni, Hasta, Mula, U.Ashadha, U.Bhadra
-  1: new Set([4, 5, 8, 17, 22]),            // Monday: Rohini, Mrigashira, Pushya, Anuradha, Shravana
-  2: new Set([1, 3, 9, 26]),                // Tuesday: Ashwini, Krittika, Ashlesha, U.Bhadra
-  3: new Set([3, 4, 5, 13, 17]),            // Wednesday: Krittika, Rohini, Mrigashira, Hasta, Anuradha
-  4: new Set([1, 7, 8, 17, 27]),            // Thursday: Ashwini, Punarvasu, Pushya, Anuradha, Revati
-  5: new Set([1, 7, 17, 22, 27]),           // Friday: Ashwini, Punarvasu, Anuradha, Shravana, Revati
-  6: new Set([4, 15, 22]),                  // Saturday: Rohini, Swati, Shravana
+  0: new Set([8, 13, 12, 21, 26, 1, 19]),   // Sunday: Pushya(8), Hasta(13), U.Phalguni(12), U.Ashadha(21), U.Bhadrapada(26), Ashwini(1), Mula(19)
+  1: new Set([4, 5, 8, 17, 13, 22]),         // Monday: Rohini(4), Mrigashira(5), Pushya(8), Anuradha(17), Hasta(13), Shravana(22)
+  2: new Set([1, 12, 3, 21, 26]),            // Tuesday: Ashwini(1), U.Phalguni(12), Krittika(3), U.Ashadha(21), U.Bhadrapada(26)
+  3: new Set([4, 17, 13, 5, 18, 27]),        // Wednesday: Rohini(4), Anuradha(17), Hasta(13), Mrigashira(5), Jyeshtha(18), Revati(27)
+  4: new Set([1, 8, 17, 22, 27, 7]),         // Thursday: Ashwini(1), Pushya(8), Anuradha(17), Shravana(22), Revati(27), Punarvasu(7)
+  5: new Set([1, 17, 7, 22, 27, 8]),         // Friday: Ashwini(1), Anuradha(17), Punarvasu(7), Shravana(22), Revati(27), Pushya(8)
+  6: new Set([4, 22, 15, 27]),               // Saturday: Rohini(4), Shravana(22), Swati(15), Revati(27)
 };
 
 // ──────────────────────────────────────────────────────────────
@@ -1698,6 +1698,92 @@ export function computePanchang(input: PanchangInput): PanchangData {
     endDate: nakshatraTransition?.endDate,
   } : { active: false };
 
+  // ── Special Daily Yogas ──
+  // These are distinct from the 27 Nitya Yogas. They arise from specific
+  // vara + nakshatra + tithi combinations and are shown by Drik Panchang daily.
+  //
+  // Tithi number for Dwipushkar/Tripushkar uses the 1-15 cycle (both pakshas):
+  //   Tithi 2/7/12 in either Shukla or Krishna paksha qualify.
+  const tithiMod15 = tithiResult.number > 15 ? tithiResult.number - 15 : tithiResult.number;
+  const isDwipushkarTithiMatch = [2, 7, 12].includes(tithiMod15);
+  // Vara check: Sunday(0), Tuesday(2), Saturday(6)
+  const isDwipushkarVara = weekday === 0 || weekday === 2 || weekday === 6;
+
+  // 1. Dwipushkar Yoga: tithi 2/7/12 + Mrigashira(5)/Chitra(14)/Dhanishta(23) + Sun/Tue/Sat
+  const DWIPUSHKAR_NAKSHATRAS = new Set([5, 14, 23]);
+  const isDwipushkar = isDwipushkarTithiMatch && DWIPUSHKAR_NAKSHATRAS.has(nakshatraNum) && isDwipushkarVara;
+
+  // 2. Tripushkar Yoga: tithi 2/7/12 + Krittika(3)/Punarvasu(7)/Vishakha(16)/U.Bhadrapada(26) + Sun/Tue/Sat
+  const TRIPUSHKAR_NAKSHATRAS = new Set([3, 7, 16, 26]);
+  const isTripushkar = isDwipushkarTithiMatch && TRIPUSHKAR_NAKSHATRAS.has(nakshatraNum) && isDwipushkarVara;
+
+  // 3. Sarvartha Siddhi — already computed above as `sarvarthaSiddhi`
+
+  // 4. Amrit Siddhi — already computed above as `amritSiddhiYoga`
+
+  // 5. Ravi Yoga: Sunday + Pushya(8) nakshatra (Moon's nakshatra)
+  const isRaviPushya = weekday === 0 && nakshatraNum === 8;
+
+  // 6. Guru Pushya Yoga: Thursday(4) + Pushya(8) nakshatra
+  const isGuruPushya = weekday === 4 && nakshatraNum === 8;
+
+  const specialYogas: { name: LocaleText; isActive: boolean; description: LocaleText }[] = [
+    {
+      name: { en: 'Dwipushkar Yoga', hi: 'द्विपुष्कर योग', sa: 'द्विपुष्करयोगः' },
+      isActive: isDwipushkar,
+      description: {
+        en: 'Results of actions are doubled — extremely auspicious for new ventures',
+        hi: 'कार्यों का फल दोगुना होता है — नए कार्यों के लिए अत्यंत शुभ',
+        sa: 'कर्मफलं द्विगुणं भवति — नूतनकार्येषु अत्यन्तशुभम्',
+      },
+    },
+    {
+      name: { en: 'Tripushkar Yoga', hi: 'त्रिपुष्कर योग', sa: 'त्रिपुष्करयोगः' },
+      isActive: isTripushkar,
+      description: {
+        en: 'Results of actions are tripled — highly auspicious for important undertakings',
+        hi: 'कार्यों का फल तीन गुना होता है — महत्वपूर्ण कार्यों के लिए अत्यंत शुभ',
+        sa: 'कर्मफलं त्रिगुणं भवति — महत्कार्येषु अत्यन्तशुभम्',
+      },
+    },
+    {
+      name: { en: 'Sarvartha Siddhi Yoga', hi: 'सर्वार्थ सिद्धि योग', sa: 'सर्वार्थसिद्धियोगः' },
+      isActive: sarvarthaSiddhi,
+      description: {
+        en: 'All endeavors succeed — auspicious vara-nakshatra combination',
+        hi: 'सभी कार्यों में सफलता — शुभ वार-नक्षत्र संयोग',
+        sa: 'सर्वकार्येषु सिद्धिः — शुभवारनक्षत्रयोगः',
+      },
+    },
+    {
+      name: { en: 'Amrit Siddhi Yoga', hi: 'अमृत सिद्धि योग', sa: 'अमृतसिद्धियोगः' },
+      isActive: amritSiddhiYoga,
+      description: {
+        en: 'Supreme auspiciousness — the best vara-nakshatra combination for success',
+        hi: 'परम शुभ — सफलता के लिए सर्वोत्तम वार-नक्षत्र संयोग',
+        sa: 'परमशुभम् — सिद्ध्यर्थं सर्वोत्तमवारनक्षत्रयोगः',
+      },
+    },
+    {
+      name: { en: 'Ravi Yoga', hi: 'रवि योग', sa: 'रवियोगः' },
+      isActive: isRaviPushya,
+      description: {
+        en: 'Sunday + Pushya nakshatra — extremely auspicious for new beginnings',
+        hi: 'रविवार + पुष्य नक्षत्र — नई शुरुआत के लिए अत्यंत शुभ',
+        sa: 'रविवारः + पुष्यनक्षत्रम् — नूतनारम्भेषु अत्यन्तशुभम्',
+      },
+    },
+    {
+      name: { en: 'Guru Pushya Yoga', hi: 'गुरु पुष्य योग', sa: 'गुरुपुष्ययोगः' },
+      isActive: isGuruPushya,
+      description: {
+        en: 'Thursday + Pushya nakshatra — most auspicious for buying gold and starting business',
+        hi: 'गुरुवार + पुष्य नक्षत्र — सोना खरीदने और व्यापार शुरू करने के लिए सर्वोत्तम',
+        sa: 'गुरुवारः + पुष्यनक्षत्रम् — स्वर्णक्रयणे वाणिज्यारम्भे च सर्वोत्तमम्',
+      },
+    },
+  ];
+
   return {
     date: `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`,
     location: { lat, lng, name: locationName || `${lat.toFixed(2)}°N, ${lng.toFixed(2)}°E` },
@@ -1777,5 +1863,6 @@ export function computePanchang(input: PanchangInput): PanchangData {
     aadalYoga,
     vidaalYoga,
     raviYogaWindow,
+    specialYogas,
   };
 }

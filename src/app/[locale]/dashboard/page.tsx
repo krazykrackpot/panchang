@@ -47,6 +47,9 @@ import KeyDatesTimeline from '@/components/kundali/KeyDatesTimeline';
 import { Trash2, Plus, Pencil } from 'lucide-react';
 import FamilyCard from '@/components/dashboard/FamilyCard';
 import JournalCheckinCard from '@/components/journal/JournalCheckinCard';
+import TodaysReading from '@/components/dashboard/TodaysReading';
+import { computeDailyEnergy } from '@/lib/panchang/energy-score';
+import { usePrakritiStore } from '@/stores/prakriti-store';
 
 interface SavedChart {
   id: string;
@@ -756,6 +759,9 @@ export default function DashboardPage() {
   // Learning streak & badges
   const { streak, isActiveToday, hydrateFromStorage: hydrateLearn, hydrated: learnHydrated, progress: learnProgress, getOverallProgress: getLearnOverall } = useLearningProgressStore();
 
+  // Prakriti profile (Ayurvedic dosha quiz result, if available)
+  const prakritiProfile = usePrakritiStore(s => s.profile);
+
   useEffect(() => { hydrateLearn(); }, [hydrateLearn]);
 
   const [loading, setLoading] = useState(true);
@@ -1075,6 +1081,20 @@ export default function DashboardPage() {
     }
   }
 
+  // Compute daily energy score from panchang data (for TodaysReading hero)
+  const dayEnergy = panchangData ? computeDailyEnergy(panchangData) : null;
+
+  // Resolve current mahadasha planet ID from GRAHAS constant (0-based: 0=Sun..8=Ketu)
+  const mahaDashaPlanetId = pd.currentDasha
+    ? (GRAHAS.findIndex(g => g.name.en.toLowerCase() === pd.currentDasha!.maha.planet.toLowerCase()))
+    : 0;
+  const mahaDashaPlanetName = pd.currentDasha
+    ? (pd.currentDasha.maha.planetName[locale] || pd.currentDasha.maha.planetName.en)
+    : 'Sun';
+  const antarDashaName = pd.currentDasha?.antar
+    ? (pd.currentDasha.antar.planetName[locale] || pd.currentDasha.antar.planetName.en)
+    : undefined;
+
   // Helper to find planet name by key
   const getPlanetName = (key: string) => {
     const g = GRAHAS.find((g) => g.name.en.toLowerCase() === key.toLowerCase());
@@ -1144,6 +1164,45 @@ export default function DashboardPage() {
               placeholder={tl({ en: 'Search your city...', hi: 'अपना शहर खोजें...', ta: 'உங்கள் நகரத்தைத் தேடுங்கள்...', bn: 'আপনার শহর খুঁজুন...' }, locale)}
             />
           </motion.div>
+        )}
+
+        {/* TODAY'S READING — Hero tarot cards */}
+        {panchangData && dayEnergy && (
+          <div className="mb-10">
+            <TodaysReading
+              yoga={{
+                number: panchangData.yoga?.number ?? 1,
+                name: tl(panchangData.yoga?.name, locale) || 'Vishkambha',
+              }}
+              nakshatra={{
+                number: panchangData.nakshatra?.id ?? 1,
+                name: tl(panchangData.nakshatra?.name, locale) || 'Ashwini',
+              }}
+              tithi={{
+                number: panchangData.tithi?.number ?? 1,
+                name: tl(panchangData.tithi?.name, locale) || 'Pratipada',
+                paksha: (panchangData.tithi?.number ?? 1) <= 15 ? 'Shukla' : 'Krishna',
+              }}
+              dashaLord={{
+                planetId: mahaDashaPlanetId >= 0 ? mahaDashaPlanetId : 0,
+                planetName: mahaDashaPlanetName,
+                antarLord: antarDashaName,
+              }}
+              dayEnergy={dayEnergy}
+              prakriti={prakritiProfile ? {
+                dominant: prakritiProfile.dominant,
+                secondary: prakritiProfile.secondary,
+              } : null}
+              locale={locale}
+            />
+          </div>
+        )}
+
+        {/* Family strip — moved up for above-the-fold prominence */}
+        {user && hasBirthData && (
+          <div className="mb-8">
+            <FamilyCard locale={locale} />
+          </div>
         )}
 
         {/* Today's Guidance — lightweight panchang insight card */}
@@ -1579,12 +1638,7 @@ export default function DashboardPage() {
           </motion.div>
         )}
 
-        {/* Family Insights — shows only when spouse/child charts exist */}
-        {user && hasBirthData && (
-          <div className="mb-8">
-            <FamilyCard locale={locale} />
-          </div>
-        )}
+        {/* Family Insights — moved above the fold, after TodaysReading hero */}
 
         {/* Saved Kundalis — inline list so users don't have to drill into a
              separate page to find their charts. Visible on every dashboard load. */}

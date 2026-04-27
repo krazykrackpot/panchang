@@ -564,17 +564,180 @@ export default function AuspiciousTimingsPage() {
 
           <GoldDivider />
 
-          {/* Cross-link to inauspicious timings */}
-          <div className="mt-8">
-            <Link href="/panchang/inauspicious"
-              className="block rounded-2xl bg-gradient-to-br from-red-500/5 to-[#0a0e27] border border-red-500/20 p-6 text-center hover:border-red-500/40 transition-all">
-              <div className="text-red-400 text-lg font-bold mb-1" style={headingFont}>
-                {isDevanagari ? 'अशुभ काल देखें →' : 'View Inauspicious Timings →'}
-              </div>
-              <div className="text-text-secondary text-sm">
-                {isDevanagari ? 'राहु काल, यमगण्ड, वर्ज्यम, भद्रा, गण्ड मूल' : 'Rahu Kaal, Yamaganda, Varjyam, Bhadra, Ganda Moola'}
-              </div>
-            </Link>
+          {/* ═══════════════════════════════════════════════════
+              INAUSPICIOUS TIMINGS (combined on same page)
+          ═══════════════════════════════════════════════════ */}
+          <div className="mt-12">
+            <SectionHeading
+              icon={
+                <svg width={56} height={56} viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="red-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#fca5a5" />
+                      <stop offset="100%" stopColor="#ef4444" />
+                    </linearGradient>
+                  </defs>
+                  <circle cx="32" cy="32" r="26" stroke="url(#red-grad)" strokeWidth="2" fill="none" opacity="0.4" />
+                  <path d="M32 12v24M32 42v4" stroke="url(#red-grad)" strokeWidth="3" strokeLinecap="round" />
+                  <circle cx="32" cy="50" r="3" fill="#ef4444" />
+                </svg>
+              }
+              title={msg('inauspiciousTimings', locale)}
+              subtitle={msg('inauspiciousTimingsDesc', locale)}
+              accentClass="text-red-400"
+            />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+              {/* Rahu Kalam */}
+              <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.05 }}
+                className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/30 p-3 sm:p-4 md:p-6 text-center">
+                <div className="text-red-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('rahuKaal')}</div>
+                <div className="font-mono text-2xl font-bold text-red-300">{panchang.rahuKaal.start} — {panchang.rahuKaal.end}</div>
+                <div className="text-text-secondary text-xs mt-2">{msg('rahuKaalDesc', locale)}</div>
+              </motion.div>
+
+              {/* Yamaganda */}
+              <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.08 }}
+                className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-orange-500/30 p-3 sm:p-4 md:p-6 text-center">
+                <div className="text-orange-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('yamaganda')}</div>
+                <div className="font-mono text-2xl font-bold text-orange-300">{panchang.yamaganda.start} — {panchang.yamaganda.end}</div>
+                <div className="text-text-secondary text-xs mt-2">{msg('yamagandaDesc', locale)}</div>
+              </motion.div>
+
+              {/* Gulika Kaal */}
+              <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.11 }}
+                className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-yellow-500/30 p-3 sm:p-4 md:p-6 text-center">
+                <div className="text-yellow-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('gulikaKaal')}</div>
+                <div className="font-mono text-2xl font-bold text-yellow-300">{panchang.gulikaKaal.start} — {panchang.gulikaKaal.end}</div>
+                <div className="text-text-secondary text-xs mt-2">{msg('gulikaKaalDesc', locale)}</div>
+              </motion.div>
+
+              {/* Dur Muhurtam */}
+              {panchang.durMuhurtam && panchang.durMuhurtam.length > 0 && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.14 }}
+                  className="rounded-xl border border-red-600/30 bg-gradient-to-br from-red-600/5 to-transparent p-3 sm:p-4 md:p-6 text-center">
+                  <div className="text-red-500 text-xs uppercase tracking-widest mb-2 font-bold">{msg('durMuhurtam', locale)}</div>
+                  <div className="text-text-secondary/50 text-[10px] mb-2">{msg('kaalaPrakashika', locale)}</div>
+                  {panchang.durMuhurtam.map((w: { start: string; end: string }, i: number) => (
+                    <div key={i} className="font-mono text-lg font-bold text-red-400 leading-tight">{w.start} — {w.end}</div>
+                  ))}
+                  {panchang.durMuhurtamAlt && panchang.durMuhurtamAlt.length > 0 && (
+                    <details className="mt-3">
+                      <summary className="text-text-tertiary/50 text-[10px] cursor-pointer hover:text-text-secondary transition-colors text-center">
+                        {'▸ ' + msg('nirnayaSindhu', locale)}
+                      </summary>
+                      <div className="mt-2 text-center">
+                        {panchang.durMuhurtamAlt.map((w: { start: string; end: string }, i: number) => (
+                          <div key={i} className="font-mono text-sm text-red-400/60 leading-tight">{w.start} — {w.end}</div>
+                        ))}
+                      </div>
+                    </details>
+                  )}
+                  <div className="text-text-secondary text-xs mt-2">{msg('inauspiciousAvoidAll', locale)}</div>
+                </motion.div>
+              )}
+
+              {/* Visha Ghatika */}
+              {panchang.vishaGhatika && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.15 }}
+                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-700/30 p-3 sm:p-4 md:p-6 text-center">
+                  <div className="text-red-500 text-xs uppercase tracking-widest mb-2 font-bold">{msg('vishaGhatika', locale)}</div>
+                  <div className="font-mono text-lg font-bold text-red-400">{panchang.vishaGhatika.start} — {panchang.vishaGhatika.end}</div>
+                  <div className="text-text-secondary text-xs mt-2">{msg('vishaGhatikaDesc', locale)}</div>
+                </motion.div>
+              )}
+
+              {/* Varjyam */}
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+              {((panchang as any).varjyamAll?.length || panchang.varjyam) && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.17 }}
+                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-400/25 p-3 sm:p-4 md:p-6 text-center">
+                  <div className="text-red-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('varjyam')}</div>
+                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                  {((panchang as any).varjyamAll || [panchang.varjyam]).map((v: { start: string; end: string }, i: number) => (
+                    <div key={i} className="font-mono text-xl font-bold text-red-300">{v.start} — {v.end}</div>
+                  ))}
+                  <div className="text-text-secondary text-xs mt-2">{t('varjyamDesc')}</div>
+                </motion.div>
+              )}
+
+              {/* Bhadra (Vishti) */}
+              {panchang.bhadra && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.18 }}
+                  className="rounded-xl border border-orange-500/30 bg-gradient-to-br from-orange-500/8 to-transparent p-3 sm:p-4 md:p-6 text-center">
+                  <div className="text-orange-400 text-xs uppercase tracking-widest mb-2 font-bold">{msg('bhadraVishti', locale)}</div>
+                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                  {((panchang as any).bhadraAll || [panchang.bhadra]).map((b: { start: string; end: string; endDate?: string }, i: number) => (
+                    <div key={i} className="font-mono text-xl font-bold text-orange-300">
+                      {b.start} — {b.end}{b.endDate ? `, ${b.endDate.split('-').reverse().join('/')}` : ''}
+                    </div>
+                  ))}
+                  <div className="text-text-secondary text-xs mt-2">{msg('inauspiciousKarana', locale)}</div>
+                </motion.div>
+              )}
+
+              {/* Ganda Moola */}
+              {panchang.gandaMoola?.active && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.20 }}
+                  className="rounded-xl p-3 sm:p-4 md:p-6 text-center border-2 border-red-500/50 bg-gradient-to-br from-red-500/10 to-transparent">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+                    <div className="text-red-400 text-xs uppercase tracking-widest font-bold">{msg('gandaMoola', locale)}</div>
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+                  </div>
+                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                  {(panchang.gandaMoola as any).start && (
+                    <div className="font-mono text-lg font-bold text-red-300 mt-1">
+                      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                      {(panchang.gandaMoola as any).start} — {(panchang.gandaMoola as any).end}
+                    </div>
+                  )}
+                  <div className="text-text-secondary text-xs mt-2">{msg('inauspiciousNakshatraJunction', locale)}</div>
+                </motion.div>
+              )}
+
+              {/* Aadal Yoga */}
+              {panchang.aadalYoga && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.21 }}
+                  className="rounded-xl border border-amber-500/25 bg-gradient-to-br from-amber-500/5 to-transparent p-3 sm:p-4 md:p-6 text-center">
+                  <div className="text-amber-400 text-xs uppercase tracking-widest mb-2 font-bold">{msg('aadalYoga', locale)}</div>
+                  <div className="font-mono text-xl font-bold text-amber-300">
+                    {panchang.aadalYoga.start} — {panchang.aadalYoga.end}
+                  </div>
+                  <div className="text-text-secondary text-xs mt-2">{msg('aadalYogaDesc', locale)}</div>
+                </motion.div>
+              )}
+
+              {/* Vidaal Yoga */}
+              {panchang.vidaalYoga && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.22 }}
+                  className="rounded-xl border border-rose-500/25 bg-gradient-to-br from-rose-500/5 to-transparent p-3 sm:p-4 md:p-6 text-center">
+                  <div className="text-rose-400 text-xs uppercase tracking-widest mb-2 font-bold">{msg('vidaalYoga', locale)}</div>
+                  <div className="font-mono text-xl font-bold text-rose-300">
+                    {panchang.vidaalYoga.start} — {panchang.vidaalYoga.end}
+                  </div>
+                  <div className="text-text-secondary text-xs mt-2">{msg('vidaalYogaDesc', locale)}</div>
+                </motion.div>
+              )}
+
+              {/* Panchaka */}
+              {panchang.panchaka?.active && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.23 }}
+                  className="rounded-xl p-3 sm:p-4 md:p-6 text-center border-2 border-purple-500/50 bg-gradient-to-br from-purple-500/10 to-transparent">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse" />
+                    <div className="text-purple-400 text-xs uppercase tracking-widest font-bold">{msg('panchaka', locale)}</div>
+                    <span className="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse" />
+                  </div>
+                  {panchang.panchaka.type && (
+                    <div className="text-purple-300 font-bold text-base" style={headingFont}>
+                      {tl(panchang.panchaka.type)}
+                    </div>
+                  )}
+                  <div className="text-text-secondary text-xs mt-2">{msg('panchakaDesc', locale)}</div>
+                </motion.div>
+              )}
+            </div>
           </div>
         </div>
       )}

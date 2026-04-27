@@ -494,6 +494,15 @@ export default async function FestivalCityPage({
                 hi: 'पूर्ण पूजा विधि देखें',
               }, locale)} <ChevronRight className="w-4 h-4" />
             </Link>
+            <Link
+              href={`/${locale}/puja/${slug}#start-puja`}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary/20 border border-gold-primary/40 text-gold-light font-bold text-sm hover:bg-gold-primary/30 hover:border-gold-primary/60 transition-all"
+            >
+              {tl({
+                en: '✦ Start Interactive Puja',
+                hi: '✦ इंटरैक्टिव पूजा शुरू करें',
+              }, locale)}
+            </Link>
           </div>
         )}
 

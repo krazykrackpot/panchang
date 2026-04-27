@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, lazy, Suspense } from 'react';
 import { tl } from '@/lib/utils/trilingual';
 import { GRAHAS } from '@/lib/constants/grahas';
 import {
@@ -13,6 +13,9 @@ import { computeHoraTable, getHoraWindowsForPlanet, type HoraSlot } from '@/lib/
 import { PLANET_REMEDIES_FULL } from '@/lib/tippanni/remedies-enhanced';
 import type { KundaliData } from '@/types/kundali';
 import type { LocaleText } from '@/types/panchang';
+
+const ContextualRemediesPanel = lazy(() => import('./ContextualRemediesPanel'));
+const GrahaShantiAllLazy = lazy(() => import('./GrahaShanti').then(m => ({ default: m.GrahaShantiAll })));
 
 interface RemediesTabProps {
   kundali: KundaliData;
@@ -190,23 +193,109 @@ export default function RemediesTab({ kundali, locale }: RemediesTabProps) {
   }, [recommendations]);
 
   const [expandNotNeeded, setExpandNotNeeded] = useState(false);
+  const [remediesView, setRemediesView] = useState<'contextual' | 'gemstones' | 'shanti'>('contextual');
+
+  // Prepare data for contextual remedies engine
+  const contextualPlanets = useMemo(() =>
+    kundali.planets.map(p => ({
+      id: p.planet.id,
+      longitude: p.longitude,
+      sign: p.sign,
+      house: p.house,
+      isRetrograde: p.isRetrograde,
+      isDebilitated: p.isDebilitated ?? false,
+      isCombust: p.isCombust ?? false,
+    })),
+    [kundali.planets],
+  );
+
+  const contextualDashas = useMemo(() =>
+    kundali.dashas?.map(d => ({
+      planet: d.planet,
+      startDate: d.startDate,
+      endDate: d.endDate,
+    })) ?? [],
+    [kundali.dashas],
+  );
+
+  const contextualYogas = useMemo(() =>
+    kundali.yogasComplete?.map(y => ({
+      name: typeof y.name === 'string' ? y.name : y.name?.en ?? '',
+      present: y.present ?? true,
+      type: y.category,
+    })) ?? [],
+    [kundali.yogasComplete],
+  );
+
+  const sadeSatiPhase = kundali.sadeSati?.isActive
+    ? (kundali.sadeSati.currentPhase ?? 'peak')
+    : null;
 
   return (
     <div className="space-y-8">
       {/* Header */}
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold text-gold-light mb-2">
-          {isEn ? 'Gemstone & Mantra Remedies' : 'रत्न एवं मन्त्र उपाय'}
+          {isEn ? 'Personalized Remedies' : 'व्यक्तिगत उपाय'}
         </h2>
         <p className="text-text-secondary text-sm max-w-2xl mx-auto">
           {isEn
-            ? 'Personalized recommendations based on planetary strength, dignity, and placement in your birth chart. Always consult a qualified jyotishi before wearing gemstones.'
-            : 'आपकी जन्मकुण्डली में ग्रहों की स्थिति, बल और गरिमा के आधार पर व्यक्तिगत अनुशंसाएँ। रत्न धारण करने से पहले सदैव किसी योग्य ज्योतिषी से परामर्श करें।'}
+            ? 'Comprehensive remedy recommendations based on chart afflictions, planetary strength, and classical prescriptions. Always consult a qualified jyotishi before wearing gemstones.'
+            : 'कुंडली दोषों, ग्रह बल और शास्त्रीय निर्देशों के आधार पर व्यापक उपाय अनुशंसाएँ। रत्न धारण करने से पहले सदैव किसी योग्य ज्योतिषी से परामर्श करें।'}
         </p>
       </div>
 
-      {/* Grouped sections */}
-      {NEED_ORDER.map((level) => {
+      {/* View toggle */}
+      <div className="flex gap-2 overflow-x-auto pb-2">
+        {([
+          { key: 'contextual' as const, en: 'Afflictions & Remedies', hi: 'दोष एवं उपाय' },
+          { key: 'gemstones' as const, en: 'Gemstone Prescriptions', hi: 'रत्न निर्देश' },
+          { key: 'shanti' as const, en: 'Graha Shanti Vidhi', hi: 'ग्रह शान्ति विधि' },
+        ]).map(({ key, en, hi }) => (
+          <button
+            key={key}
+            onClick={() => setRemediesView(key)}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
+              remediesView === key
+                ? 'bg-gold-primary/15 text-gold-light border border-gold-primary/30'
+                : 'bg-white/[0.03] text-text-secondary hover:text-text-primary border border-white/5 hover:border-white/10'
+            }`}
+          >
+            {isEn ? en : hi}
+          </button>
+        ))}
+      </div>
+
+      {/* Contextual Remedies view */}
+      {remediesView === 'contextual' && (
+        <Suspense fallback={<div className="text-center py-8 text-text-secondary">{isEn ? 'Analyzing chart...' : 'कुंडली विश्लेषण...'}</div>}>
+          <ContextualRemediesPanel
+            planets={contextualPlanets}
+            ascendantSign={kundali.ascendant.sign}
+            yogas={contextualYogas}
+            dashas={contextualDashas}
+            sadeSatiPhase={sadeSatiPhase}
+            locale={locale}
+          />
+        </Suspense>
+      )}
+
+      {/* Graha Shanti view */}
+      {remediesView === 'shanti' && (
+        <Suspense fallback={<div className="text-center py-8 text-text-secondary">{isEn ? 'Loading...' : 'लोड हो रहा है...'}</div>}>
+          <div className="text-center mb-4">
+            <p className="text-text-secondary text-sm">
+              {isEn
+                ? 'Classical Navagraha Shanti procedures for all 9 planets. Click any planet to see its complete puja vidhi.'
+                : 'सभी 9 ग्रहों की शास्त्रीय नवग्रह शान्ति विधि। पूर्ण पूजा विधि देखने के लिए किसी भी ग्रह पर क्लिक करें।'}
+            </p>
+          </div>
+          <GrahaShantiAllLazy locale={locale} />
+        </Suspense>
+      )}
+
+      {/* Gemstone Prescriptions view */}
+      {remediesView === 'gemstones' && NEED_ORDER.map((level) => {
         const items = grouped[level];
         if (items.length === 0) return null;
 

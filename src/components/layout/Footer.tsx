@@ -22,6 +22,7 @@ const SECTIONS = [
       { href: '/sade-sati', label: { en: 'Sade Sati', hi: 'साढ़े साती', ta: 'சனிப்பெயர்ச்சி', bn: 'সাড়ে সাতি' } },
       { href: '/cosmic-blueprint', label: { en: 'Cosmic Blueprint', hi: 'ब्रह्मांडीय नक्शा', ta: 'கோள வரைபடம்', bn: 'মহাজাগতিক ব্লুপ্রিন্ট' } },
       { href: '/tropical-compare', label: { en: 'Vedic vs Tropical', hi: 'वैदिक vs उष्णकटिबंधीय', ta: 'வேதம் vs வெப்பமண்டலம்', bn: 'বৈদিক vs ট্রপিক্যাল' } },
+      { href: '/sign-shift', label: { en: 'Sign Shift', hi: 'राशि परिवर्तन', ta: 'ராசி மாற்றம்', bn: 'রাশি পরিবর্তন' } },
     ],
   },
   {
@@ -32,6 +33,7 @@ const SECTIONS = [
       { href: '/transits', label: { en: 'Transit Calendar', hi: 'गोचर कैलेंडर', ta: 'கோசார நாள்காட்டி', bn: 'গোচর ক্যালেন্ডার' } },
       { href: '/retrograde', label: { en: 'Retrograde Calendar', hi: 'वक्री कैलेंडर', ta: 'வக்கிர நாள்காட்டி', bn: 'বক্র ক্যালেন্ডার' } },
       { href: '/eclipses', label: { en: 'Eclipse Calendar', hi: 'ग्रहण कैलेंडर', ta: 'கிரகண நாள்காட்டி', bn: 'গ্রহণ ক্যালেন্ডার' } },
+      { href: '/events', label: { en: 'Celestial Events', hi: 'खगोलीय घटनाएँ', ta: 'வான் நிகழ்வுகள்', bn: 'জ্যোতির্বিদ্যা ঘটনা' } },
       { href: '/muhurat', label: { en: 'Muhurat Calendar', hi: 'मुहूर्त कैलेंडर', ta: 'முகூர்த்த நாள்காட்டி', bn: 'মুহূর্ত ক্যালেন্ডার' } },
       { href: '/choghadiya', label: { en: 'Choghadiya', hi: 'चौघड़िया', ta: 'சோகடியா', bn: 'চৌঘড়িয়া' } },
       { href: '/rahu-kaal', label: { en: 'Rahu Kaal', hi: 'राहु काल', ta: 'ராகு காலம்', bn: 'রাহু কাল' } },

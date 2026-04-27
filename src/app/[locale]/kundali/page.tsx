@@ -19,7 +19,7 @@ import ConvergenceSummary from '@/components/kundali/ConvergenceSummary';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ShareButton from '@/components/ui/ShareButton';
 import PrintButton from '@/components/ui/PrintButton';
-import { Download, Save, Check, ScrollText, Sparkles, X } from 'lucide-react';
+import { Download, Save, Check, ScrollText, Sparkles, X, ArrowRightLeft } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { generateKundaliPrintHtml } from '@/lib/pdf/kundali-pdf';
@@ -34,6 +34,7 @@ import { trackKundaliGenerated, trackTabViewed } from '@/lib/analytics';
 import type { TippanniContent, PlanetInsight } from '@/lib/kundali/tippanni-types';
 import type { MahadashaOverview, AntardashaSynthesis, PratyantardashaSynthesis, PeriodAssessment } from '@/lib/tippanni/dasha-synthesis-types';
 import { detectAfflictedPlanets, type AfflictedPlanet } from '@/lib/puja/affliction-detector';
+import { computeSignShift, encodeSignShiftParams } from '@/lib/shareable/sign-shift';
 import type { KundaliData, BirthData, ChartStyle, PlanetPosition, AshtakavargaData, DivisionalChart, GrahaDetail, UpagrahaPosition } from '@/types/kundali';
 import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
 import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
@@ -1020,6 +1021,17 @@ export default function KundaliPage() {
                 <Sparkles className="w-4 h-4" />
                 {locale === 'en' || isTamil ? 'Birth Poster' : 'जन्म पोस्टर'}
               </button>
+              <Link
+                href={(() => {
+                  const shiftData = computeSignShift(kundali);
+                  const encoded = encodeSignShiftParams(shiftData);
+                  return `/${locale}/sign-shift?data=${encodeURIComponent(encoded)}`;
+                })()}
+                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-amber-500/30 text-amber-400 hover:bg-amber-500/10 hover:border-amber-500/50 transition-all duration-300"
+              >
+                <ArrowRightLeft className="w-4 h-4" />
+                {locale === 'en' || isTamil ? 'Western vs Vedic' : 'पश्चिमी बनाम वैदिक'}
+              </Link>
             </div>
           </div>
 

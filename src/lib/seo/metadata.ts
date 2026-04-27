@@ -218,6 +218,19 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     keywords: ['sidereal vs tropical', 'vedic vs western astrology', 'precession of equinoxes', 'real zodiac sign'],
   },
+  '/sign-shift': {
+    title: {
+      en: 'Why Your Western Horoscope Might Be Wrong — Sign Shift Calculator',
+      hi: 'आपकी पश्चिमी राशि गलत क्यों हो सकती है — राशि परिवर्तन',
+      sa: 'पाश्चात्यराशिः कुतः भ्रान्ता स्यात् — राशिपरिवर्तनम्',
+    },
+    description: {
+      en: 'See how the 24° ayanamsha shift between tropical and sidereal zodiacs changes your entire birth chart. Compare all 9 planets side by side and discover your true Vedic signs.',
+      hi: 'देखें कि सायन और निरयन राशिचक्र के बीच 24° अयनांश अंतर आपकी पूरी जन्म कुण्डली कैसे बदलता है। सभी 9 ग्रहों की तुलना करें और अपनी असली वैदिक राशि जानें।',
+      sa: 'सायननिरयनराशिचक्रयोर्मध्ये २४° अयनांशभेदेन जन्मकुण्डली कथं परिवर्तते इति पश्यतु।',
+    },
+    keywords: ['vedic vs western astrology', 'sign shift', 'sidereal vs tropical zodiac', 'ayanamsha', 'real zodiac sign', 'why western horoscope wrong', 'precession of equinoxes'],
+  },
   '/sign-calculator': {
     title: {
       en: 'Sun & Moon Sign Calculator — Find Your Rashi',
@@ -269,6 +282,19 @@ export const PAGE_META: Record<string, PageMeta> = {
       sa: 'वैदिकज्योतिषाधारितव्यक्तित्वम्',
     },
     keywords: ['cosmic blueprint', 'vedic personality', 'birth chart archetype', 'dasha life chapters'],
+  },
+  '/vrat-calendar': {
+    title: {
+      en: 'Vrat Calendar — Follow & Track Your Vrats',
+      hi: 'व्रत कैलेंडर — अपने व्रतों का अनुसरण करें',
+      sa: 'व्रतपञ्चाङ्गम् — व्रतानि अनुसरतु',
+    },
+    description: {
+      en: 'Follow Ekadashi, Pradosham, Purnima, Sankashti Chaturthi, and more. Get personalized reminders before each vrat.',
+      hi: 'एकादशी, प्रदोष, पूर्णिमा, संकष्टी चतुर्थी आदि व्रतों का अनुसरण करें। प्रत्येक व्रत से पहले स्मरण प्राप्त करें।',
+      sa: 'एकादशीप्रदोषपूर्णिमासङ्कष्टचतुर्थ्यादिव्रतानि अनुसरतु। प्रत्येकव्रतात् पूर्वं स्मारणं प्राप्नोतु।',
+    },
+    keywords: ['vrat calendar', 'ekadashi dates', 'pradosham dates', 'purnima dates', 'fasting calendar', 'hindu vrat tracker'],
   },
   '/lunar-calendar': {
     title: {

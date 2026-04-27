@@ -126,6 +126,7 @@ const routes = [
   '/transits/graphic',
   '/retrograde',
   '/eclipses',
+  '/events',
   '/muhurat',
   '/regional',
   '/calendar/regional/tamil',
@@ -138,6 +139,7 @@ const routes = [
   '/mundane',
   '/glossary',
   '/tropical-compare',
+  '/sign-shift',
   '/sign-calculator',
   '/sade-sati',
   '/prashna',
@@ -171,6 +173,7 @@ const routes = [
   '/sky-map',
   '/matching/report',
   '/dashboard/family',
+  '/vrat-calendar',
   // Date listing pages
   '/dates/ekadashi',
   '/dates/purnima',

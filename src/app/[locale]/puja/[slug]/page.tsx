@@ -21,6 +21,8 @@ import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
+import VratFollowButton from '@/components/vrat/VratFollowButton';
+import { TRACKABLE_VRATS } from '@/lib/vrat/trackable-vrats';
 
 type DisplayMode = 'devanagari' | 'iast' | 'both';
 
@@ -525,6 +527,17 @@ export default function PujaVidhiPage() {
           locationName={userLocationName}
           timezone={userTimezone}
         />
+
+        {/* Follow button for trackable vrats */}
+        {(() => {
+          const trackable = TRACKABLE_VRATS.find(v => v.calendarSlug === slug || v.slug === slug);
+          if (!trackable) return null;
+          return (
+            <div className="flex justify-center">
+              <VratFollowButton slug={trackable.slug} name={tl(trackable.name, 'en')} size="md" />
+            </div>
+          );
+        })()}
 
         {/* Parana display for vrats */}
         {ekadashiParana ? (

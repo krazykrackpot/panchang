@@ -114,6 +114,7 @@ export default function Navbar() {
       label: ritualsLabel,
       children: [
         { href: '/puja', label: msg('pujaVidhi', locale) },
+        { href: '/vrat-calendar', label: locale === 'hi' ? 'व्रत कैलेंडर' : locale === 'sa' ? 'व्रतपञ्चाङ्गम्' : 'Vrat Calendar' },
         { href: '/sankalpa', label: msg('sankalpa', locale) },
         { href: '/devotional', label: t('devotional') },
         { href: '/shraddha', label: t('shraddha') },
@@ -128,6 +129,7 @@ export default function Navbar() {
         { href: '/transits', label: t('transits') },
         { href: '/retrograde', label: t('retrograde') },
         { href: '/eclipses', label: t('eclipses') },
+        { href: '/events', label: locale === 'hi' ? 'खगोलीय घटनाएँ' : 'Celestial Events' },
         { href: '/muhurat', label: t('muhuratCalendar') },
         { href: '/regional', label: t('regional') },
         { href: '/dates/ekadashi', label: locale === 'sa' ? 'एकादशीतिथयः' : msg('ekadashiDates', locale) },
@@ -142,6 +144,7 @@ export default function Navbar() {
       children: [
         { href: '/sign-calculator', label: t('signCalculator') },
         { href: '/tropical-compare', label: t('tropicalCompare') },
+        { href: '/sign-shift', label: t('signShift') },
         { href: '/medical-astrology', label: t('medicalAstrology') },
         { href: '/financial-astrology', label: t('financialAstrology') },
         { href: '/nadi-jyotish', label: t('nadiJyotish') },

@@ -14,6 +14,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { useLocationStore } from '@/stores/location-store';
 import AuthorByline from '@/components/ui/AuthorByline';
+import VratFollowButton from '@/components/vrat/VratFollowButton';
 
 // ─── Types ──────────────────────────────────────────────────────
 // Festival entry from /api/calendar — single source of truth
@@ -446,6 +447,8 @@ export default function DateCategoryPage() {
                   </span>
                 </div>
               )}
+              {/* Follow button for this vrat category */}
+              <VratFollowButton slug={category as string} name={catLabel} size="sm" />
             </motion.div>
 
             {/* Month Quick Nav */}

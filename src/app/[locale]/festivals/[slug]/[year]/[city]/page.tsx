@@ -12,6 +12,7 @@ import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Calendar, Clock, MapPin, Sun, Moon, ChevronDown, ChevronRight, Info, BookOpen, Sparkles, Leaf, CheckCircle } from 'lucide-react';
+import VratFollowButton from '@/components/vrat/VratFollowButton';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -301,6 +302,12 @@ export default async function FestivalCityPage({
               hi: `${cityNameLocale} के निर्देशांकों (${cityData.lat.toFixed(2)}°N, ${cityData.lng.toFixed(2)}°E) के लिए सटीक पूजा समय`,
             }, locale)}
           </p>
+          {/* Follow button for vrat/ekadashi festivals */}
+          {(festivalDef.type === 'vrat' || festivalDef.category === 'ekadashi') && (
+            <div className="pt-2">
+              <VratFollowButton slug={slug} name={festivalNameEn} size="md" />
+            </div>
+          )}
         </div>
 
         <div className="border-t border-gold-primary/15" />

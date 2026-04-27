@@ -460,8 +460,8 @@ function EnergyTimeline({
 }) {
   return (
     <div className="space-y-3">
-      {/* Horizontal bar visualization */}
-      <div className="flex h-8 rounded-lg overflow-hidden gap-0.5">
+      {/* Horizontal bar visualization — shows time ranges */}
+      <div className="flex h-10 rounded-lg overflow-hidden gap-0.5">
         {phases.map((phase, i) => {
           const isCurrent = isInTimeRange(phase.startTime, phase.endTime);
           const label = phase.label[voice];
@@ -469,14 +469,14 @@ function EnergyTimeline({
           return (
             <div
               key={i}
-              className={`flex-1 relative flex items-center justify-center text-[10px] font-medium transition-all ${colors.bg} ${
+              className={`flex-1 relative flex flex-col items-center justify-center text-[9px] font-medium transition-all ${colors.bg} ${
                 isCurrent
                   ? 'ring-1 ring-[#d4a853]/60 z-10'
                   : 'opacity-60'
               }`}
             >
-              <span className={colors.text}>
-                {phase.startTime}
+              <span className={`${colors.text} leading-tight`}>
+                {phase.startTime}–{phase.endTime}
               </span>
               {isCurrent && (
                 <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#d4a853]" />
@@ -486,31 +486,37 @@ function EnergyTimeline({
         })}
       </div>
 
-      {/* Phase cards */}
+      {/* Phase cards — show both traditional and modern names + time ranges + explanation */}
       {phases.map((phase, i) => {
         const isCurrent = isInTimeRange(phase.startTime, phase.endTime);
         const label = phase.label[voice];
+        const altLabel = phase.label[voice === 'traditional' ? 'modern' : 'traditional'];
         const colors = getDoshaColor(label);
         return (
           <div
             key={i}
-            className={`rounded-lg p-3 border transition-all ${
+            className={`rounded-xl p-4 border transition-all ${
               isCurrent
                 ? `${colors.bg} ${colors.border} border`
                 : 'bg-[#161b42]/50 border-transparent'
             }`}
           >
-            <div className="flex items-center justify-between mb-1">
-              <span className={`text-sm font-medium ${isCurrent ? colors.text : 'text-[#e6e2d8]/70'}`}>
-                {label}
-                {isCurrent && (
-                  <span className="ml-2 text-[10px] bg-[#d4a853]/20 text-[#f0d48a] px-1.5 py-0.5 rounded-full">
-                    NOW
-                  </span>
-                )}
-              </span>
-              <span className="text-[#8a8478] text-xs">
-                {phase.startTime} - {phase.endTime}
+            <div className="flex items-start justify-between mb-1.5">
+              <div>
+                <span className={`text-sm font-semibold ${isCurrent ? colors.text : 'text-[#e6e2d8]/70'}`}>
+                  {label}
+                  {isCurrent && (
+                    <span className="ml-2 text-[10px] bg-[#d4a853]/20 text-[#f0d48a] px-1.5 py-0.5 rounded-full">
+                      NOW
+                    </span>
+                  )}
+                </span>
+                <span className="block text-[#8a8478] text-[11px] mt-0.5">
+                  {altLabel}
+                </span>
+              </div>
+              <span className="text-[#f0d48a]/80 text-xs font-medium whitespace-nowrap">
+                {phase.startTime} – {phase.endTime}
               </span>
             </div>
             <p className="text-[#8a8478] text-xs leading-relaxed">

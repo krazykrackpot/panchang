@@ -177,56 +177,68 @@ function MuhurtaSVG() {
 }
 
 function CalendarSVG() {
-  // Dramatic calendar with moon phases — bold frame + phase arc
+  // Sacred fire altar (Havan Kund) — pyramid fire with festival garland
   return (
     <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
-        <linearGradient id="hc1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#fb923c" /><stop offset="100%" stopColor="#ea580c" /></linearGradient>
-        <radialGradient id="hc1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#fb923c" stopOpacity="0.25" /><stop offset="100%" stopColor="#7c2d12" stopOpacity="0" /></radialGradient>
+        <linearGradient id="hc1" x1="50%" y1="100%" x2="50%" y2="0%"><stop offset="0%" stopColor="#ea580c" /><stop offset="40%" stopColor="#fb923c" /><stop offset="100%" stopColor="#fbbf24" /></linearGradient>
+        <radialGradient id="hc1g" cx="50%" cy="55%" r="50%"><stop offset="0%" stopColor="#fb923c" stopOpacity="0.35" /><stop offset="100%" stopColor="#7c2d12" stopOpacity="0" /></radialGradient>
       </defs>
-      <circle cx="32" cy="32" r="31" fill="url(#hc1g)" />
-      {/* Calendar frame — bold */}
-      <rect x="6" y="8" width="52" height="50" rx="4" stroke="#fb923c" strokeWidth="3" opacity="0.85" />
-      {/* Header bar */}
-      <rect x="6" y="8" width="52" height="14" rx="4" fill="#fb923c" fillOpacity="0.25" />
-      <line x1="6" y1="22" x2="58" y2="22" stroke="#fb923c" strokeWidth="2" opacity="0.7" />
-      {/* Calendar pins */}
-      <line x1="20" y1="4" x2="20" y2="14" stroke="#fb923c" strokeWidth="3" strokeLinecap="round" opacity="0.9" />
-      <line x1="44" y1="4" x2="44" y2="14" stroke="#fb923c" strokeWidth="3" strokeLinecap="round" opacity="0.9" />
-      {/* Moon phases across the calendar */}
-      <circle cx="16" cy="32" r="4" fill="#fb923c" opacity="0.3" />{/* new */}
-      <circle cx="26" cy="32" r="4" fill="#fb923c" opacity="0.5" />{/* quarter */}
-      <circle cx="36" cy="32" r="5" fill="#fb923c" opacity="0.9" />{/* full — highlighted */}
-      <circle cx="46" cy="32" r="4" fill="#fb923c" opacity="0.5" />
-      <circle cx="54" cy="32" r="3" fill="#fb923c" opacity="0.3" />
-      {/* Date dots below */}
-      {[0,1,2,3,4].map(c => <circle key={c} cx={16 + c * 10} cy="44" r="2.5" fill="#fb923c" opacity={c === 2 ? 0.8 : 0.2} />)}
-      {[0,1,2,3,4].map(c => <circle key={c} cx={16 + c * 10} cy="52" r="2" fill="#fb923c" opacity="0.15" />)}
+      <circle cx="32" cy="36" r="31" fill="url(#hc1g)" />
+      {/* Festival garland arc — draped at top with hanging tassels */}
+      <path d="M6 14 Q18 22 32 14 Q46 22 58 14" stroke="#fb923c" strokeWidth="2.5" fill="none" opacity="0.7" />
+      <path d="M6 14 Q18 24 32 16 Q46 24 58 14" stroke="#fbbf24" strokeWidth="1.5" fill="none" opacity="0.4" />
+      {/* Tassels hanging from garland */}
+      {[12, 22, 32, 42, 52].map(x => <line key={x} x1={x} y1={x === 32 ? 14 : 18} x2={x} y2={x === 32 ? 20 : 24} stroke="#fb923c" strokeWidth="2" strokeLinecap="round" opacity="0.6" />)}
+      {/* Sacred fire — large, dramatic, 3 layers */}
+      <path d="M32 18 C24 28, 14 36, 14 46 C14 54, 22 58, 32 58 C42 58, 50 54, 50 46 C50 36, 40 28, 32 18Z" fill="url(#hc1)" fillOpacity="0.6" stroke="#fbbf24" strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M32 26 C28 32, 20 38, 20 46 C20 52, 26 56, 32 56 C38 56, 44 52, 44 46 C44 38, 36 32, 32 26Z" fill="#fbbf24" fillOpacity="0.4" />
+      <path d="M32 34 C30 38, 26 42, 26 46 C26 50, 28 52, 32 52 C36 52, 38 50, 38 46 C38 42, 34 38, 32 34Z" fill="#fbbf24" fillOpacity="0.65" />
+      {/* Bright core */}
+      <ellipse cx="32" cy="48" rx="4" ry="5" fill="#fbbf24" opacity="0.9" />
+      <ellipse cx="32" cy="49" rx="2" ry="3" fill="#fef3c7" opacity="1" />
+      {/* Base platform — altar */}
+      <rect x="10" y="58" width="44" height="4" rx="1" fill="#fb923c" fillOpacity="0.5" stroke="#fb923c" strokeWidth="2" />
+      {/* Sparkle dots */}
+      <circle cx="12" cy="8" r="1.5" fill="#fbbf24" opacity="0.7" />
+      <circle cx="52" cy="10" r="1.5" fill="#fbbf24" opacity="0.6" />
+      <circle cx="32" cy="6" r="2" fill="#fbbf24" opacity="0.8" />
     </svg>
   );
 }
 
 function TransitSVG() {
-  // Planetary orbits — bold concentric ellipses with planet orbs
+  // Gochar — zodiac wheel with arrow showing planetary movement across signs
   return (
     <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
-        <radialGradient id="ht1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#60a5fa" stopOpacity="0.3" /><stop offset="100%" stopColor="#1e3a5f" stopOpacity="0" /></radialGradient>
         <linearGradient id="ht1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#93c5fd" /><stop offset="100%" stopColor="#3b82f6" /></linearGradient>
+        <radialGradient id="ht1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#60a5fa" stopOpacity="0.3" /><stop offset="100%" stopColor="#1e3a5f" stopOpacity="0" /></radialGradient>
       </defs>
       <circle cx="32" cy="32" r="31" fill="url(#ht1g)" />
-      {/* 3 orbital ellipses — thick, tilted */}
-      <ellipse cx="32" cy="32" rx="28" ry="12" stroke="#60a5fa" strokeWidth="2" opacity="0.6" transform="rotate(-20 32 32)" />
-      <ellipse cx="32" cy="32" rx="22" ry="10" stroke="#60a5fa" strokeWidth="2" opacity="0.5" transform="rotate(15 32 32)" />
-      <ellipse cx="32" cy="32" rx="16" ry="8" stroke="#60a5fa" strokeWidth="1.5" opacity="0.4" transform="rotate(-40 32 32)" />
-      {/* Planet orbs — bold, varying sizes */}
-      <circle cx="14" cy="20" r="5" fill="url(#ht1)" opacity="0.9" />
-      <circle cx="54" cy="26" r="4" fill="#a78bfa" opacity="0.85" />
-      <circle cx="22" cy="54" r="3.5" fill="#60a5fa" opacity="0.8" />
-      <circle cx="50" cy="48" r="3" fill="#818cf8" opacity="0.7" />
-      {/* Central sun */}
-      <circle cx="32" cy="32" r="6" fill="url(#ht1)" opacity="0.85" />
-      <circle cx="32" cy="32" r="3" fill="#93c5fd" opacity="1" />
+      {/* Outer zodiac ring — bold, thick */}
+      <circle cx="32" cy="32" r="29" stroke="#60a5fa" strokeWidth="3" opacity="0.8" />
+      <circle cx="32" cy="32" r="22" stroke="#60a5fa" strokeWidth="2" opacity="0.5" />
+      {/* 12 sign division lines */}
+      {Array.from({ length: 12 }, (_, i) => {
+        const a = (Math.PI * 2 * i) / 12;
+        return <line key={i} x1={32 + 22 * Math.cos(a)} y1={32 + 22 * Math.sin(a)} x2={32 + 29 * Math.cos(a)} y2={32 + 29 * Math.sin(a)} stroke="#60a5fa" strokeWidth="2" opacity="0.6" />;
+      })}
+      {/* Transit arrow — sweeping curved path showing movement */}
+      <path d="M14 48 C18 30, 28 16, 50 14" stroke="#93c5fd" strokeWidth="3.5" strokeLinecap="round" fill="none" opacity="0.9" />
+      {/* Arrowhead at end of transit */}
+      <polygon points="50,14 44,10 46,18" fill="#93c5fd" opacity="0.9" />
+      {/* Planet at start of transit */}
+      <circle cx="14" cy="48" r="5" fill="url(#ht1)" opacity="0.85" stroke="#93c5fd" strokeWidth="2" />
+      {/* Planet at destination */}
+      <circle cx="50" cy="14" r="4" fill="#93c5fd" opacity="0.6" />
+      {/* Trail sparkles along the path */}
+      <circle cx="20" cy="38" r="2" fill="#60a5fa" opacity="0.5" />
+      <circle cx="30" cy="24" r="2.5" fill="#93c5fd" opacity="0.6" />
+      <circle cx="42" cy="18" r="1.5" fill="#93c5fd" opacity="0.4" />
+      {/* Central point */}
+      <circle cx="32" cy="32" r="4" fill="url(#ht1)" opacity="0.7" />
+      <circle cx="32" cy="32" r="2" fill="#93c5fd" opacity="1" />
     </svg>
   );
 }

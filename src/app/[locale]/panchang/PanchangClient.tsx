@@ -1260,17 +1260,6 @@ export default function PanchangClient() {
             );
           })()}
 
-          {/* ═══ NAKSHATRA ACTIVITY GUIDE ═══ */}
-          {panchang.nakshatra?.id && (
-            <div className="my-10">
-              <NakshatraActivityGuide
-                nakshatraId={panchang.nakshatra.id}
-                moonSignId={panchang.moonSign?.rashi || 1}
-                locale={locale}
-              />
-            </div>
-          )}
-
           {/* ═══ MEGA CARD GRID — tarot-style cards linking to subpages ═══ */}
           {/* Row 1: 5 cards */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5 my-14">
@@ -1379,13 +1368,13 @@ export default function PanchangClient() {
                 svg: <svg viewBox="0 0 64 64" className="w-14 h-14"><defs><linearGradient id="tc9" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#7dd3fc"/><stop offset="100%" stopColor="#38bdf8"/></linearGradient></defs><circle cx="20" cy="20" r="2" fill="url(#tc9)"/><circle cx="44" cy="16" r="1.5" fill="url(#tc9)" opacity="0.7"/><circle cx="32" cy="32" r="2.5" fill="url(#tc9)"/><circle cx="18" cy="44" r="1.5" fill="url(#tc9)" opacity="0.6"/><circle cx="46" cy="42" r="2" fill="url(#tc9)" opacity="0.8"/><line x1="20" y1="20" x2="32" y2="32" stroke="url(#tc9)" strokeWidth="0.5" opacity="0.3"/><line x1="44" y1="16" x2="32" y2="32" stroke="url(#tc9)" strokeWidth="0.5" opacity="0.3"/><line x1="32" y1="32" x2="46" y2="42" stroke="url(#tc9)" strokeWidth="0.5" opacity="0.3"/><line x1="32" y1="32" x2="18" y2="44" stroke="url(#tc9)" strokeWidth="0.5" opacity="0.3"/></svg>,
               },
               {
-                href: '/learn',
-                title: isDevanagari ? 'ज्योतिष सीखें' : 'Learn Jyotish',
-                subtitle: isDevanagari ? '106 मॉड्यूल' : '106 Modules',
-                preview: isDevanagari ? 'निःशुल्क पाठ्यक्रम' : 'Free Curriculum',
+                href: '/panchang/nakshatra',
+                title: isDevanagari ? 'नक्षत्र मार्गदर्शन' : 'Activity Guide',
+                subtitle: isDevanagari ? 'नक्षत्र गतिविधि' : 'Nakshatra Activities',
+                preview: `${tl(panchang.nakshatra?.name) || '—'} — ${isDevanagari ? 'अनुकूल कार्य' : 'Favorable actions'}`,
                 color: 'gold',
-                // Tarot: Open book with light
-                svg: <svg viewBox="0 0 64 64" className="w-14 h-14"><defs><linearGradient id="tc10" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a"/><stop offset="100%" stopColor="#d4a853"/></linearGradient></defs><path d="M 12 48 L 12 18 Q 12 14 16 14 L 30 14 Q 32 14 32 16 L 32 48" fill="none" stroke="url(#tc10)" strokeWidth="1"/><path d="M 52 48 L 52 18 Q 52 14 48 14 L 34 14 Q 32 14 32 16 L 32 48" fill="none" stroke="url(#tc10)" strokeWidth="1"/><line x1="12" y1="48" x2="52" y2="48" stroke="url(#tc10)" strokeWidth="1"/><circle cx="32" cy="10" r="3" fill="url(#tc10)" opacity="0.3"/>{[0,1,2].map(i=><line key={i} x1={r2(32+6*Math.cos(-Math.PI/2+Math.PI*i/4-Math.PI/4))} y1={r2(10+6*Math.sin(-Math.PI/2+Math.PI*i/4-Math.PI/4))} x2={r2(32+10*Math.cos(-Math.PI/2+Math.PI*i/4-Math.PI/4))} y2={r2(10+10*Math.sin(-Math.PI/2+Math.PI*i/4-Math.PI/4))} stroke="url(#tc10)" strokeWidth="0.6" opacity="0.4"/>)}</svg>,
+                // Tarot: Star with activity rays
+                svg: <svg viewBox="0 0 64 64" className="w-14 h-14"><defs><linearGradient id="tc10" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a"/><stop offset="100%" stopColor="#d4a853"/></linearGradient></defs><polygon points="32,8 36,24 52,24 39,34 43,50 32,40 21,50 25,34 12,24 28,24" fill="none" stroke="url(#tc10)" strokeWidth="1.2"/><polygon points="32,8 36,24 52,24 39,34 43,50 32,40 21,50 25,34 12,24 28,24" fill="url(#tc10)" opacity="0.1"/><circle cx="32" cy="30" r="6" fill="none" stroke="url(#tc10)" strokeWidth="0.8" opacity="0.5"/></svg>,
               },
             ] as const).map((card, i) => (
               <motion.div

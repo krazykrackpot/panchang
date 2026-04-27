@@ -21,7 +21,8 @@ async function getWebPush() {
       webpush.setVapidDetails(vapidEmail, vapidPublic, vapidPrivate);
     }
     return webpush;
-  } catch {
+  } catch (err) {
+    console.error('[send-push] web-push init failed:', err);
     return null;
   }
 }

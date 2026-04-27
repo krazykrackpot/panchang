@@ -253,6 +253,13 @@ function computeVedha(boy: DashaKootaInput, girl: DashaKootaInput): number {
 // ──────────────────────────────────────────────────────────────
 
 export function calculateDashaKoota(boy: DashaKootaInput, girl: DashaKootaInput): DashaKootaMatchResult {
+  // Input validation — prevent silently wrong scores from out-of-range lookups
+  if (boy.moonNakshatra < 1 || boy.moonNakshatra > 27 || girl.moonNakshatra < 1 || girl.moonNakshatra > 27) {
+    throw new Error(`moonNakshatra must be 1-27, got boy=${boy.moonNakshatra} girl=${girl.moonNakshatra}`);
+  }
+  if (boy.moonRashi < 1 || boy.moonRashi > 12 || girl.moonRashi < 1 || girl.moonRashi > 12) {
+    throw new Error(`moonRashi must be 1-12, got boy=${boy.moonRashi} girl=${girl.moonRashi}`);
+  }
   const kutas: DashaKootaResult[] = [
     {
       name: { en: 'Dina', hi: 'दिन' },

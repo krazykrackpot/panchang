@@ -193,8 +193,8 @@ export function runConvergenceEngine(input: ConvergenceInput): ConvergenceResult
         const insight = rule.generate(patterns, input, 'en');
         if (insight) metaInsights.push(insight);
       }
-    } catch {
-      // Non-fatal — skip broken rules
+    } catch (err) {
+      console.error('[convergence] rule evaluation failed:', err);
     }
   }
 

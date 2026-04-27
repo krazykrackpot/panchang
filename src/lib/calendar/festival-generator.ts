@@ -677,7 +677,7 @@ export function generateFestivalCalendarV2(
     const eclipses = generateEclipseCalendar(year);
     // ... eclipse handling (keep existing logic)
     // For now, skip eclipse integration — can be added later
-  } catch { /* eclipses optional */ }
+  } catch (err) { console.error('[festival-generator] eclipse computation failed:', err); }
 
   // ── Sort, deduplicate, filter to year ───
   festivals.sort((a, b) => a.date.localeCompare(b.date));

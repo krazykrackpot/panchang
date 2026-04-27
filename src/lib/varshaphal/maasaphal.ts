@@ -105,8 +105,8 @@ export function computeMaasaphal(
     try {
       const yogas: TajikaYoga[] = detectTajikaYogas(pseudoPositions, lagnaSign);
       tajikYogas = yogas.map(y => y.name.en);
-    } catch {
-      // detectTajikaYogas can throw if positions are degenerate
+    } catch (err) {
+      console.error('[maasaphal] Tajika yoga detection failed:', err);
       tajikYogas = [];
     }
 

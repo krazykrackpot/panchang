@@ -130,8 +130,9 @@ export async function GET(req: NextRequest) {
             url: '/en/dashboard',
             tag: pushItem.type,
           });
-        } catch {
-          // Push delivery is best-effort — don't fail the cron
+        } catch (err) {
+          // Push delivery is best-effort — don't fail the cron, but log for debugging
+          console.error('[generate-notifications] push delivery failed:', err);
         }
       }
     }

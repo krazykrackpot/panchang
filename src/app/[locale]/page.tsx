@@ -121,117 +121,222 @@ function JyotishPillarIcon() {
   );
 }
 
-// Legacy SVG icons for hero cards (scaled to 128 for TarotCard)
+// Dramatic custom SVG icons for hero cards (128px, bold tarot style)
 function KundaliSVG() {
+  // North Indian diamond chart — bold strokes, filled houses, planet dots
   return (
-    <svg width="128" height="128" viewBox="0 0 72 72" fill="none">
-      <rect x="6" y="6" width="60" height="60" rx="3" stroke="#f0d48a" strokeWidth="1.5" />
-      <line x1="36" y1="6" x2="36" y2="66" stroke="rgba(240,212,138,0.2)" strokeWidth="0.8" />
-      <line x1="6" y1="36" x2="66" y2="36" stroke="rgba(240,212,138,0.2)" strokeWidth="0.8" />
-      <line x1="6" y1="6" x2="66" y2="66" stroke="rgba(240,212,138,0.12)" strokeWidth="0.8" />
-      <line x1="66" y1="6" x2="6" y2="66" stroke="rgba(240,212,138,0.12)" strokeWidth="0.8" />
-      <circle cx="22" cy="18" r="3.5" fill="#f0d48a" />
-      <circle cx="52" cy="14" r="2.5" fill="#d4a853" />
-      <circle cx="44" cy="48" r="3" fill="#f0d48a" opacity={0.7} />
-      <circle cx="16" cy="52" r="2" fill="#d4a853" opacity={0.5} />
-      <circle cx="36" cy="36" r="4" fill="none" stroke="#f0d48a" strokeWidth="1" opacity={0.3} />
+    <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="hk1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#f0d48a" /><stop offset="100%" stopColor="#d4a853" /></linearGradient>
+        <radialGradient id="hk1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#f0d48a" stopOpacity="0.3" /><stop offset="100%" stopColor="#8a6d2b" stopOpacity="0" /></radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="31" fill="url(#hk1g)" />
+      {/* Outer square */}
+      <rect x="4" y="4" width="56" height="56" rx="2" stroke="#f0d48a" strokeWidth="3" opacity="0.85" />
+      {/* Inner diamond */}
+      <polygon points="32,4 60,32 32,60 4,32" stroke="#f0d48a" strokeWidth="2.5" fill="#f0d48a" fillOpacity="0.08" />
+      {/* Cross lines */}
+      <line x1="32" y1="4" x2="32" y2="60" stroke="#f0d48a" strokeWidth="2" opacity="0.5" />
+      <line x1="4" y1="32" x2="60" y2="32" stroke="#f0d48a" strokeWidth="2" opacity="0.5" />
+      {/* Diagonal lines */}
+      <line x1="4" y1="4" x2="60" y2="60" stroke="#f0d48a" strokeWidth="1.5" opacity="0.35" />
+      <line x1="60" y1="4" x2="4" y2="60" stroke="#f0d48a" strokeWidth="1.5" opacity="0.35" />
+      {/* Planet dots — bold, scattered in houses */}
+      <circle cx="20" cy="14" r="4" fill="url(#hk1)" opacity="0.9" />
+      <circle cx="50" cy="12" r="3.5" fill="#d4a853" opacity="0.8" />
+      <circle cx="14" cy="48" r="3" fill="#f0d48a" opacity="0.7" />
+      <circle cx="46" cy="46" r="3.5" fill="url(#hk1)" opacity="0.75" />
+      <circle cx="32" cy="32" r="5" fill="url(#hk1)" opacity="0.85" />
+      <circle cx="32" cy="32" r="2.5" fill="#f0d48a" opacity="1" />
     </svg>
   );
 }
 
 function MuhurtaSVG() {
+  // Auspicious star with clock — bold pentagram + thick hour markers
   return (
-    <svg width="128" height="128" viewBox="0 0 72 72" fill="none">
-      <circle cx="36" cy="36" r="30" stroke="#4ade80" strokeWidth="1" strokeDasharray="4 3" />
-      <circle cx="36" cy="36" r="18" stroke="rgba(74,222,128,0.3)" strokeWidth="0.8" />
-      <path d="M36 10 L40 26 L56 26 L44 36 L48 52 L36 44 L24 52 L28 36 L16 26 L32 26Z" stroke="#4ade80" strokeWidth="1.3" fill="none" />
-      <circle cx="36" cy="36" r="4" fill="#4ade80" opacity={0.25} />
-      <circle cx="36" cy="36" r="1.5" fill="#4ade80" />
+    <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="hm1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#4ade80" /><stop offset="100%" stopColor="#22c55e" /></linearGradient>
+        <radialGradient id="hm1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#4ade80" stopOpacity="0.3" /><stop offset="100%" stopColor="#166534" stopOpacity="0" /></radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="31" fill="url(#hm1g)" />
+      {/* Outer ring — thick */}
+      <circle cx="32" cy="32" r="30" stroke="#4ade80" strokeWidth="2.5" opacity="0.7" />
+      {/* 12 hour markers — bold ticks */}
+      {Array.from({ length: 12 }, (_, i) => { const a = (Math.PI * 2 * i) / 12 - Math.PI / 2; return <line key={i} x1={32 + 24 * Math.cos(a)} y1={32 + 24 * Math.sin(a)} x2={32 + 30 * Math.cos(a)} y2={32 + 30 * Math.sin(a)} stroke="#4ade80" strokeWidth={i % 3 === 0 ? 3.5 : 2} strokeLinecap="round" opacity={i % 3 === 0 ? 0.9 : 0.5} />; })}
+      {/* Bold 5-pointed star */}
+      <polygon points="32,6 38,24 56,24 42,34 47,52 32,42 17,52 22,34 8,24 26,24" stroke="#4ade80" strokeWidth="2.5" fill="#4ade80" fillOpacity="0.2" strokeLinejoin="round" />
+      {/* Inner star */}
+      <polygon points="32,16 36,28 48,28 38,36 42,46 32,38 22,46 26,36 16,28 28,28" fill="#4ade80" fillOpacity="0.15" />
+      {/* Bright center */}
+      <circle cx="32" cy="32" r="5" fill="url(#hm1)" opacity="0.85" />
+      <circle cx="32" cy="32" r="2.5" fill="#4ade80" opacity="1" />
     </svg>
   );
 }
 
 function CalendarSVG() {
+  // Dramatic calendar with moon phases — bold frame + phase arc
   return (
-    <svg width="128" height="128" viewBox="0 0 72 72" fill="none">
-      <rect x="10" y="8" width="52" height="56" rx="5" stroke="#fb923c" strokeWidth="1.3" />
-      <line x1="10" y1="24" x2="62" y2="24" stroke="rgba(251,146,60,0.4)" strokeWidth="0.8" />
-      <circle cx="22" cy="16" r="2.5" fill="#fb923c" opacity={0.6} />
-      <circle cx="50" cy="16" r="2.5" fill="#fb923c" opacity={0.6} />
-      <line x1="22" y1="4" x2="22" y2="12" stroke="#fb923c" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="50" y1="4" x2="50" y2="12" stroke="#fb923c" strokeWidth="1.5" strokeLinecap="round" />
-      {[0,1,2,3,4].map(r => [0,1,2,3,4,5].map(c => (
-        <rect key={`${r}${c}`} x={16 + c * 7} y={30 + r * 7} width="4" height="4" rx="1" fill="#fb923c" opacity={r === 2 && c === 3 ? 0.8 : 0.12} />
-      )))}
+    <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="hc1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#fb923c" /><stop offset="100%" stopColor="#ea580c" /></linearGradient>
+        <radialGradient id="hc1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#fb923c" stopOpacity="0.25" /><stop offset="100%" stopColor="#7c2d12" stopOpacity="0" /></radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="31" fill="url(#hc1g)" />
+      {/* Calendar frame — bold */}
+      <rect x="6" y="8" width="52" height="50" rx="4" stroke="#fb923c" strokeWidth="3" opacity="0.85" />
+      {/* Header bar */}
+      <rect x="6" y="8" width="52" height="14" rx="4" fill="#fb923c" fillOpacity="0.25" />
+      <line x1="6" y1="22" x2="58" y2="22" stroke="#fb923c" strokeWidth="2" opacity="0.7" />
+      {/* Calendar pins */}
+      <line x1="20" y1="4" x2="20" y2="14" stroke="#fb923c" strokeWidth="3" strokeLinecap="round" opacity="0.9" />
+      <line x1="44" y1="4" x2="44" y2="14" stroke="#fb923c" strokeWidth="3" strokeLinecap="round" opacity="0.9" />
+      {/* Moon phases across the calendar */}
+      <circle cx="16" cy="32" r="4" fill="#fb923c" opacity="0.3" />{/* new */}
+      <circle cx="26" cy="32" r="4" fill="#fb923c" opacity="0.5" />{/* quarter */}
+      <circle cx="36" cy="32" r="5" fill="#fb923c" opacity="0.9" />{/* full — highlighted */}
+      <circle cx="46" cy="32" r="4" fill="#fb923c" opacity="0.5" />
+      <circle cx="54" cy="32" r="3" fill="#fb923c" opacity="0.3" />
+      {/* Date dots below */}
+      {[0,1,2,3,4].map(c => <circle key={c} cx={16 + c * 10} cy="44" r="2.5" fill="#fb923c" opacity={c === 2 ? 0.8 : 0.2} />)}
+      {[0,1,2,3,4].map(c => <circle key={c} cx={16 + c * 10} cy="52" r="2" fill="#fb923c" opacity="0.15" />)}
     </svg>
   );
 }
 
 function TransitSVG() {
+  // Planetary orbits — bold concentric ellipses with planet orbs
   return (
-    <svg width="128" height="128" viewBox="0 0 72 72" fill="none">
-      <circle cx="36" cy="36" r="28" stroke="rgba(96,165,250,0.3)" strokeWidth="1" />
-      <circle cx="36" cy="36" r="18" stroke="rgba(96,165,250,0.15)" strokeWidth="0.8" />
-      <circle cx="36" cy="36" r="8" stroke="rgba(96,165,250,0.1)" strokeWidth="0.8" />
-      <ellipse cx="36" cy="36" rx="28" ry="11" stroke="rgba(96,165,250,0.2)" strokeWidth="0.8" transform="rotate(-28 36 36)" />
-      <circle cx="18" cy="18" r="4.5" fill="#60a5fa" opacity={0.6} />
-      <circle cx="56" cy="28" r="3.5" fill="#a78bfa" opacity={0.5} />
-      <circle cx="36" cy="60" r="3" fill="#60a5fa" opacity={0.4} />
-      <circle cx="48" cy="48" r="2" fill="#818cf8" opacity={0.4} />
+    <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <defs>
+        <radialGradient id="ht1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#60a5fa" stopOpacity="0.3" /><stop offset="100%" stopColor="#1e3a5f" stopOpacity="0" /></radialGradient>
+        <linearGradient id="ht1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#93c5fd" /><stop offset="100%" stopColor="#3b82f6" /></linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="31" fill="url(#ht1g)" />
+      {/* 3 orbital ellipses — thick, tilted */}
+      <ellipse cx="32" cy="32" rx="28" ry="12" stroke="#60a5fa" strokeWidth="2" opacity="0.6" transform="rotate(-20 32 32)" />
+      <ellipse cx="32" cy="32" rx="22" ry="10" stroke="#60a5fa" strokeWidth="2" opacity="0.5" transform="rotate(15 32 32)" />
+      <ellipse cx="32" cy="32" rx="16" ry="8" stroke="#60a5fa" strokeWidth="1.5" opacity="0.4" transform="rotate(-40 32 32)" />
+      {/* Planet orbs — bold, varying sizes */}
+      <circle cx="14" cy="20" r="5" fill="url(#ht1)" opacity="0.9" />
+      <circle cx="54" cy="26" r="4" fill="#a78bfa" opacity="0.85" />
+      <circle cx="22" cy="54" r="3.5" fill="#60a5fa" opacity="0.8" />
+      <circle cx="50" cy="48" r="3" fill="#818cf8" opacity="0.7" />
+      {/* Central sun */}
+      <circle cx="32" cy="32" r="6" fill="url(#ht1)" opacity="0.85" />
+      <circle cx="32" cy="32" r="3" fill="#93c5fd" opacity="1" />
     </svg>
   );
 }
 
 function MatchingSVG() {
+  // Interlocking hearts/circles — bold Venn with spark at intersection
   return (
-    <svg width="128" height="128" viewBox="0 0 72 72" fill="none">
-      <circle cx="26" cy="36" r="18" stroke="#f472b6" strokeWidth="1" opacity={0.5} />
-      <circle cx="46" cy="36" r="18" stroke="#f472b6" strokeWidth="1" opacity={0.5} />
-      <path d="M36 22 A18 18 0 0 1 36 50 A18 18 0 0 1 36 22" fill="#f472b6" opacity={0.08} />
-      <circle cx="26" cy="30" r="2" fill="#f472b6" opacity={0.6} />
-      <circle cx="46" cy="30" r="2" fill="#f472b6" opacity={0.6} />
-      <circle cx="36" cy="36" r="3" fill="#f472b6" opacity={0.3} />
+    <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <defs>
+        <radialGradient id="hmm1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#f472b6" stopOpacity="0.25" /><stop offset="100%" stopColor="#831843" stopOpacity="0" /></radialGradient>
+        <linearGradient id="hmm1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#f9a8d4" /><stop offset="100%" stopColor="#ec4899" /></linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="31" fill="url(#hmm1g)" />
+      {/* Left circle — bold */}
+      <circle cx="22" cy="32" r="18" stroke="#f472b6" strokeWidth="3" opacity="0.8" />
+      <circle cx="22" cy="32" r="18" fill="#f472b6" fillOpacity="0.1" />
+      {/* Right circle — bold */}
+      <circle cx="42" cy="32" r="18" stroke="#f472b6" strokeWidth="3" opacity="0.8" />
+      <circle cx="42" cy="32" r="18" fill="#f472b6" fillOpacity="0.1" />
+      {/* Intersection fill — bright */}
+      <path d="M32 17 A18 18 0 0 1 32 47 A18 18 0 0 1 32 17" fill="#f472b6" opacity="0.35" />
+      {/* Spark at center of intersection */}
+      <circle cx="32" cy="32" r="5" fill="url(#hmm1)" opacity="0.9" />
+      <circle cx="32" cy="32" r="2.5" fill="#f9a8d4" opacity="1" />
+      {/* Person dots */}
+      <circle cx="16" cy="28" r="3" fill="#f472b6" opacity="0.7" />
+      <circle cx="48" cy="28" r="3" fill="#f472b6" opacity="0.7" />
     </svg>
   );
 }
 
 function SadeSatiSVG() {
+  // Saturn with rings — dramatic ringed planet + "7.5" badge
   return (
-    <svg width="128" height="128" viewBox="0 0 72 72" fill="none">
-      <circle cx="36" cy="36" r="26" stroke="rgba(96,165,250,0.2)" strokeWidth="0.8" />
-      <circle cx="36" cy="36" r="12" stroke="rgba(96,165,250,0.15)" strokeWidth="0.8" />
-      <circle cx="36" cy="10" r="6" fill="none" stroke="#60a5fa" strokeWidth="1.5" />
-      <line x1="30" y1="10" x2="42" y2="10" stroke="#60a5fa" strokeWidth="1" opacity={0.4} />
-      <circle cx="36" cy="36" r="3" fill="#60a5fa" opacity={0.3} />
-      <path d="M20 56 Q36 44 52 56" stroke="#60a5fa" strokeWidth="1" fill="none" opacity={0.3} />
-      <text x="30" y="40" fill="#60a5fa" fontSize="12" fontWeight="bold" opacity={0.5}>7.5</text>
-    </svg>
-  );
-}
-
-function LearnSVG() {
-  return (
-    <svg width="128" height="128" viewBox="0 0 72 72" fill="none">
-      <rect x="14" y="10" width="36" height="48" rx="3" stroke="#d4a853" strokeWidth="1.2" />
-      <rect x="22" y="14" width="36" height="48" rx="3" stroke="#d4a853" strokeWidth="1.2" opacity={0.4} />
-      <line x1="22" y1="24" x2="42" y2="24" stroke="rgba(212,168,83,0.3)" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="22" y1="32" x2="38" y2="32" stroke="rgba(212,168,83,0.2)" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="22" y1="40" x2="40" y2="40" stroke="rgba(212,168,83,0.2)" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="22" y1="48" x2="34" y2="48" stroke="rgba(212,168,83,0.15)" strokeWidth="1.5" strokeLinecap="round" />
-      <circle cx="30" cy="16" r="1.5" fill="#d4a853" opacity={0.4} />
+    <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <defs>
+        <radialGradient id="hs1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#60a5fa" stopOpacity="0.3" /><stop offset="100%" stopColor="#1e3a5f" stopOpacity="0" /></radialGradient>
+        <linearGradient id="hs1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#93c5fd" /><stop offset="100%" stopColor="#3b82f6" /></linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="31" fill="url(#hs1g)" />
+      {/* Saturn body — large, bold */}
+      <circle cx="32" cy="30" r="14" fill="url(#hs1)" opacity="0.7" stroke="#60a5fa" strokeWidth="2.5" />
+      <circle cx="32" cy="30" r="8" fill="#93c5fd" opacity="0.3" />
+      {/* Rings — thick, dramatic tilt */}
+      <ellipse cx="32" cy="30" rx="26" ry="8" stroke="#60a5fa" strokeWidth="3" opacity="0.7" transform="rotate(-15 32 30)" fill="none" />
+      <ellipse cx="32" cy="30" rx="22" ry="6" stroke="#93c5fd" strokeWidth="2" opacity="0.4" transform="rotate(-15 32 30)" fill="none" />
+      {/* 7.5 text — bold */}
+      <text x="22" y="56" fill="#60a5fa" fontSize="14" fontWeight="bold" opacity="0.9" fontFamily="var(--font-cinzel)">7.5</text>
+      {/* Year arc */}
+      <path d="M14 58 Q32 50 50 58" stroke="#60a5fa" strokeWidth="2" fill="none" opacity="0.5" />
     </svg>
   );
 }
 
 function PrashnaSVG() {
+  // Crystal ball with stars — bold sphere + question energy
   return (
-    <svg width="128" height="128" viewBox="0 0 72 72" fill="none">
-      <circle cx="36" cy="36" r="26" stroke="#a78bfa" strokeWidth="1" opacity={0.4} />
-      <text x="28" y="46" fill="#a78bfa" fontSize="28" fontWeight="bold" opacity={0.6}>?</text>
-      <circle cx="16" cy="20" r="2" fill="#a78bfa" opacity={0.3} />
-      <circle cx="56" cy="24" r="2.5" fill="#a78bfa" opacity={0.25} />
-      <circle cx="52" cy="52" r="2" fill="#a78bfa" opacity={0.2} />
-      <circle cx="18" cy="50" r="1.5" fill="#a78bfa" opacity={0.2} />
+    <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <defs>
+        <radialGradient id="hp1g" cx="50%" cy="45%" r="50%"><stop offset="0%" stopColor="#a78bfa" stopOpacity="0.4" /><stop offset="100%" stopColor="#4c1d95" stopOpacity="0" /></radialGradient>
+        <linearGradient id="hp1" x1="30%" y1="0%" x2="70%" y2="100%"><stop offset="0%" stopColor="#c4b5fd" /><stop offset="100%" stopColor="#7c3aed" /></linearGradient>
+        <radialGradient id="hp1s" cx="35%" cy="30%" r="50%"><stop offset="0%" stopColor="#c4b5fd" stopOpacity="0.6" /><stop offset="100%" stopColor="#7c3aed" stopOpacity="0.1" /></radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="31" fill="url(#hp1g)" />
+      {/* Crystal ball — large, bold, filled */}
+      <circle cx="32" cy="28" r="22" fill="url(#hp1s)" stroke="#a78bfa" strokeWidth="3" />
+      {/* Shine highlight */}
+      <ellipse cx="24" cy="20" rx="6" ry="4" fill="#c4b5fd" opacity="0.3" transform="rotate(-20 24 20)" />
+      {/* Inner stars */}
+      <polygon points="28,22 29.5,26 34,26 30.5,29 32,33 28,30 24,33 25.5,29 22,26 26.5,26" fill="#c4b5fd" opacity="0.7" />
+      <polygon points="38,30 39,32.5 42,32.5 39.5,34.5 40.5,37 38,35 35.5,37 36.5,34.5 34,32.5 37,32.5" fill="#a78bfa" opacity="0.5" />
+      {/* Base pedestal */}
+      <path d="M20 50 Q26 46 32 48 Q38 46 44 50" stroke="#a78bfa" strokeWidth="2.5" fill="none" opacity="0.7" />
+      <line x1="22" y1="54" x2="42" y2="54" stroke="#a78bfa" strokeWidth="3" strokeLinecap="round" opacity="0.6" />
+      {/* Mystical sparkles around */}
+      <circle cx="10" cy="16" r="2" fill="#a78bfa" opacity="0.6" />
+      <circle cx="54" cy="20" r="2.5" fill="#c4b5fd" opacity="0.5" />
+      <circle cx="52" cy="44" r="1.5" fill="#a78bfa" opacity="0.4" />
+    </svg>
+  );
+}
+
+function LearnSVG() {
+  // Open book with light rays — bold tome emanating knowledge
+  return (
+    <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="hl1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#f0d48a" /><stop offset="100%" stopColor="#d4a853" /></linearGradient>
+        <radialGradient id="hl1g" cx="50%" cy="40%" r="50%"><stop offset="0%" stopColor="#f0d48a" stopOpacity="0.35" /><stop offset="100%" stopColor="#8a6d2b" stopOpacity="0" /></radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="31" fill="url(#hl1g)" />
+      {/* Knowledge rays — emanating upward from book */}
+      {[-40, -20, 0, 20, 40].map((deg, i) => (
+        <line key={i} x1="32" y1="36" x2={32 + 24 * Math.sin(deg * Math.PI / 180)} y2={36 - 24 * Math.cos(deg * Math.PI / 180)} stroke="#f0d48a" strokeWidth={i === 2 ? 3 : 2} strokeLinecap="round" opacity={i === 2 ? 0.7 : 0.4} />
+      ))}
+      {/* Left page — bold */}
+      <path d="M32 36 L32 56 L8 52 L8 32 Z" fill="#f0d48a" fillOpacity="0.25" stroke="#f0d48a" strokeWidth="2.5" strokeLinejoin="round" />
+      {/* Right page — bold */}
+      <path d="M32 36 L32 56 L56 52 L56 32 Z" fill="#d4a853" fillOpacity="0.2" stroke="#f0d48a" strokeWidth="2.5" strokeLinejoin="round" />
+      {/* Page lines — left */}
+      <line x1="14" y1="38" x2="28" y2="40" stroke="#f0d48a" strokeWidth="2" strokeLinecap="round" opacity="0.5" />
+      <line x1="14" y1="44" x2="28" y2="46" stroke="#f0d48a" strokeWidth="2" strokeLinecap="round" opacity="0.35" />
+      {/* Page lines — right */}
+      <line x1="36" y1="40" x2="50" y2="38" stroke="#f0d48a" strokeWidth="2" strokeLinecap="round" opacity="0.5" />
+      <line x1="36" y1="46" x2="50" y2="44" stroke="#f0d48a" strokeWidth="2" strokeLinecap="round" opacity="0.35" />
+      {/* Spine highlight */}
+      <line x1="32" y1="34" x2="32" y2="58" stroke="#f0d48a" strokeWidth="3" opacity="0.8" />
+      {/* Top sparkle */}
+      <circle cx="32" cy="10" r="3" fill="#f0d48a" opacity="0.8" />
+      <circle cx="32" cy="10" r="1.5" fill="#f0d48a" opacity="1" />
     </svg>
   );
 }

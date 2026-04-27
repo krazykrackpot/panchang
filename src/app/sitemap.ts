@@ -168,6 +168,7 @@ const routes = [
   '/cosmic-blueprint',
   '/lunar-calendar',
   '/sky',
+  '/sky-map',
   '/matching/report',
   '/dashboard/family',
   // Date listing pages

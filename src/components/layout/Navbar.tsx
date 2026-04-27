@@ -161,6 +161,7 @@ export default function Navbar() {
         { href: '/cosmic-blueprint', label: t('cosmicBlueprint') },
         { href: '/lunar-calendar', label: t('lunarCalendar') },
         { href: '/sky', label: t('liveSky') },
+        { href: '/sky-map', label: t('skyMap') },
       ],
     },
     {

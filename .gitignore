@@ -48,3 +48,4 @@ ephe/
 
 # Playwright test artifacts
 test-results/
+.playwright-mcp/

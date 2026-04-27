@@ -231,30 +231,37 @@ function TransitSVG() {
       {/* Stinger */}
       <line x1="44" y1="54" x2="40" y2="50" stroke="#93c5fd" strokeWidth="2.5" strokeLinecap="round" opacity="0.9" />
       <line x1="44" y1="54" x2="42" y2="58" stroke="#93c5fd" strokeWidth="2.5" strokeLinecap="round" opacity="0.9" />
-      {/* Constellation stars — bold filled circles with glow */}
-      <circle cx="10" cy="14" r="4" fill="url(#ht1)" opacity="0.9" />
-      <circle cx="10" cy="14" r="2" fill="#bfdbfe" opacity="1" />
-      <circle cx="22" cy="22" r="5" fill="url(#ht1)" opacity="0.9" />
-      <circle cx="22" cy="22" r="2.5" fill="#bfdbfe" opacity="1" />
-      <circle cx="18" cy="36" r="4" fill="url(#ht1)" opacity="0.85" />
-      <circle cx="18" cy="36" r="2" fill="#bfdbfe" opacity="1" />
-      <circle cx="30" cy="40" r="3.5" fill="url(#ht1)" opacity="0.8" />
-      <circle cx="30" cy="40" r="1.8" fill="#bfdbfe" opacity="1" />
-      <circle cx="54" cy="38" r="4.5" fill="url(#ht1)" opacity="0.9" />
-      <circle cx="54" cy="38" r="2.2" fill="#bfdbfe" opacity="1" />
-      <circle cx="56" cy="50" r="3" fill="url(#ht1)" opacity="0.75" />
+      {/* Constellation stars — 4-pointed star shapes with glow halos */}
+      {/* Star at (10,14) — medium */}
+      <circle cx="10" cy="14" r="5" fill="url(#ht1)" opacity="0.3" />
+      <polygon points="10,8 11.5,12 16,14 11.5,16 10,20 8.5,16 4,14 8.5,12" fill="#bfdbfe" opacity="0.95" />
+      {/* Star at (22,22) — large, bright */}
+      <circle cx="22" cy="22" r="7" fill="url(#ht1)" opacity="0.3" />
+      <polygon points="22,14 24,19.5 30,22 24,24.5 22,30 20,24.5 14,22 20,19.5" fill="#bfdbfe" opacity="1" />
+      {/* Star at (18,36) — medium */}
+      <circle cx="18" cy="36" r="5" fill="url(#ht1)" opacity="0.25" />
+      <polygon points="18,30.5 19.5,34 24,36 19.5,38 18,41.5 16.5,38 12,36 16.5,34" fill="#bfdbfe" opacity="0.9" />
+      {/* Star at (30,40) — small */}
+      <circle cx="30" cy="40" r="4" fill="url(#ht1)" opacity="0.2" />
+      <polygon points="30,35.5 31.2,38.5 34.5,40 31.2,41.5 30,44.5 28.8,41.5 25.5,40 28.8,38.5" fill="#bfdbfe" opacity="0.85" />
+      {/* Star at (54,38) — large */}
+      <circle cx="54" cy="38" r="6" fill="url(#ht1)" opacity="0.3" />
+      <polygon points="54,31 56,35.5 61,38 56,40.5 54,45 52,40.5 47,38 52,35.5" fill="#bfdbfe" opacity="0.95" />
+      {/* Star at (56,50) — small */}
+      <circle cx="56" cy="50" r="4" fill="url(#ht1)" opacity="0.2" />
+      <polygon points="56,46 57.2,48.5 60,50 57.2,51.5 56,54 54.8,51.5 52,50 54.8,48.5" fill="#bfdbfe" opacity="0.8" />
       {/* The TRANSITING PLANET — golden, glowing, moving along the constellation */}
       <circle cx="42" cy="32" r="8" fill="url(#ht1p)" />
       <circle cx="42" cy="32" r="5.5" fill="#fbbf24" opacity="0.8" />
       <circle cx="42" cy="32" r="3" fill="#fef3c7" opacity="1" />
       {/* Motion trail behind the planet */}
       <path d="M30 40 Q34 38 42 32" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.4" strokeDasharray="3 2" />
-      {/* Background star dust */}
-      <circle cx="48" cy="10" r="1.2" fill="#93c5fd" opacity="0.5" />
-      <circle cx="6" cy="48" r="1" fill="#60a5fa" opacity="0.4" />
-      <circle cx="36" cy="8" r="1.5" fill="#818cf8" opacity="0.45" />
-      <circle cx="58" cy="20" r="1" fill="#93c5fd" opacity="0.35" />
-      <circle cx="14" cy="56" r="1.3" fill="#60a5fa" opacity="0.3" />
+      {/* Background star dust — tiny 4-pointed twinkles */}
+      <polygon points="48,8.5 48.6,9.7 50,10 48.6,10.3 48,11.5 47.4,10.3 46,10 47.4,9.7" fill="#93c5fd" opacity="0.55" />
+      <polygon points="6,46.5 6.5,47.5 8,48 6.5,48.5 6,49.5 5.5,48.5 4,48 5.5,47.5" fill="#60a5fa" opacity="0.45" />
+      <polygon points="36,6 36.7,7.5 38.5,8 36.7,8.5 36,10 35.3,8.5 33.5,8 35.3,7.5" fill="#818cf8" opacity="0.5" />
+      <polygon points="58,19 58.5,20 60,20.5 58.5,21 58,22 57.5,21 56,20.5 57.5,20" fill="#93c5fd" opacity="0.4" />
+      <polygon points="14,54.5 14.5,55.5 16,56 14.5,56.5 14,57.5 13.5,56.5 12,56 13.5,55.5" fill="#60a5fa" opacity="0.35" />
     </svg>
   );
 }

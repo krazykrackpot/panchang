@@ -1174,6 +1174,11 @@ export default function KundaliPage() {
                     {manglik.activeDasha && (
                       <p className="text-xs text-amber-400/70 mt-2 italic">{manglik.activeDasha}</p>
                     )}
+
+                    {/* Learn more link */}
+                    <Link href="/learn/modules/33-1" className="inline-flex items-center gap-1 mt-3 text-xs text-red-400 hover:text-red-300 transition-colors">
+                      Learn more about Manglik Dosha →
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -1229,7 +1234,7 @@ export default function KundaliPage() {
                     )}
 
                     {/* Link to learn more */}
-                    <Link href="/learn/modules/24-1" className="inline-flex items-center gap-1 mt-3 text-xs text-purple-400 hover:text-purple-300 transition-colors">
+                    <Link href="/learn/modules/32-1" className="inline-flex items-center gap-1 mt-3 text-xs text-purple-400 hover:text-purple-300 transition-colors">
                       Learn more about Kaal Sarpa Dosha →
                     </Link>
                   </div>

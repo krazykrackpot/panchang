@@ -1595,9 +1595,11 @@ export default function KundaliPage() {
                 const posterData = assembleBirthPosterData(kundali, locale);
                 return (
                   <div className="my-8 flex flex-col lg:flex-row gap-6 items-start">
-                    {/* Poster card — compact square format */}
-                    <div className="w-full lg:w-80 shrink-0 rounded-2xl overflow-hidden border border-gold-primary/15">
-                      <BirthPosterCard data={posterData} format="square" locale={locale} />
+                    {/* Poster card — square format scaled to fit */}
+                    <div className="w-full lg:w-80 shrink-0 rounded-2xl overflow-hidden border border-gold-primary/15" style={{ aspectRatio: '1/1' }}>
+                      <div style={{ transform: 'scale(0.296)', transformOrigin: 'top left', width: 1080, height: 1080 }}>
+                        <BirthPosterCard data={posterData} format="square" locale={locale} />
+                      </div>
                     </div>
                     {/* Summary + share */}
                     <div className="flex-1 space-y-4">

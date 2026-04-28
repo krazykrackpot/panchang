@@ -113,20 +113,24 @@ export function swissAyanamsha(jd: number, sidMode?: string): number {
  * Get tropical longitude for a planet at a given JD
  * Returns degrees (0-360)
  */
-export function swissPlanetLongitude(jd: number, planetId: number): {
+export function swissPlanetLongitude(jd: number, planetId: number, useTrueNode?: boolean): {
   longitude: number;
   latitude: number;
   distance: number;
   speed: number;
 } {
-  // Check memoization cache
-  const key = cacheKey(jd, planetId);
+  // Check memoization cache — include useTrueNode flag to prevent mean-node
+  // results being served for true-node requests (or vice versa)
+  const key = `${jd.toFixed(6)}_${planetId}${useTrueNode ? '_T' : ''}`;
   const cached = planetCache.get(key);
   if (cached) return cached;
 
   const se = getSweph();
   if (!se) return { longitude: 0, latitude: 0, distance: 0, speed: 0 };
 
+  // SE_TRUE_NODE includes nutation oscillation (±1.5°); SE_MEAN_NODE is the
+  // smooth average path. Most traditional Indian systems use mean node.
+  const nodeConstant = useTrueNode ? se.constants.SE_TRUE_NODE : se.constants.SE_MEAN_NODE;
   const PLANET_MAP: Record<number, number> = {
     0: se.constants.SE_SUN,
     1: se.constants.SE_MOON,
@@ -135,8 +139,8 @@ export function swissPlanetLongitude(jd: number, planetId: number): {
     4: se.constants.SE_JUPITER,
     5: se.constants.SE_VENUS,
     6: se.constants.SE_SATURN,
-    7: se.constants.SE_MEAN_NODE,  // Rahu (mean node)
-    8: se.constants.SE_MEAN_NODE,  // Ketu (calculated as Rahu + 180)
+    7: nodeConstant,  // Rahu (node — mean or true per user preference)
+    8: nodeConstant,  // Ketu (calculated as Rahu + 180)
   };
 
   const sePlanet = PLANET_MAP[planetId];
@@ -181,12 +185,12 @@ export function swissSiderealLongitude(jd: number, planetId: number): number {
 /**
  * Get all planetary positions at once (optimized: single ayanamsha calc)
  */
-export function swissAllPlanets(jd: number): {
+export function swissAllPlanets(jd: number, useTrueNode?: boolean): {
   planets: { id: number; tropical: number; sidereal: number; latitude: number; distance: number; speed: number; isRetrograde: boolean }[];
   ayanamsha: number;
 } | null {
-  // Check memoization cache
-  const key = cacheKey(jd);
+  // Check memoization cache — include useTrueNode flag to avoid cross-contamination
+  const key = `${jd.toFixed(6)}${useTrueNode ? '_T' : ''}`;
   const cached = allPlanetsCache.get(key);
   if (cached) return cached;
 
@@ -197,7 +201,7 @@ export function swissAllPlanets(jd: number): {
   const planets: { id: number; tropical: number; sidereal: number; latitude: number; distance: number; speed: number; isRetrograde: boolean }[] = [];
 
   for (let id = 0; id <= 8; id++) {
-    const pos = swissPlanetLongitude(jd, id);
+    const pos = swissPlanetLongitude(jd, id, useTrueNode);
     const sidereal = ((pos.longitude - ayan) % 360 + 360) % 360;
     planets.push({
       id,

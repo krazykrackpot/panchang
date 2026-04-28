@@ -511,12 +511,12 @@ export function calculateRahuKaal(sunrise: number, sunset: number, weekday: numb
  * for Jupiter and Saturn. Swiss Ephemeris path is accurate. This is a known limitation
  * of the truncated orbital elements — VSOP87 theory would fix but adds significant complexity.
  */
-export function getPlanetaryPositions(jd: number): {
+export function getPlanetaryPositions(jd: number, useTrueNode?: boolean): {
   id: number; longitude: number; latitude: number; distance: number; speed: number; isRetrograde: boolean
 }[] {
   // Try Swiss Ephemeris first
   if (isSwissEphAvailable()) {
-    const result = swissAllPlanets(jd);
+    const result = swissAllPlanets(jd, useTrueNode);
     if (result) {
       return result.planets.map(p => ({
         id: p.id,
@@ -535,10 +535,10 @@ export function getPlanetaryPositions(jd: number): {
   // Those Meeus-derived latitudes are less precise than Swiss Ephemeris (~0.5°
   // error possible), which can affect Graha Yuddha (planetary war) winner
   // detection since it depends on absolute ecliptic latitude.
-  return _meeusPlanetaryPositions(jd).map(p => ({ ...p, latitude: 0, distance: 0 }));
+  return _meeusPlanetaryPositions(jd, useTrueNode).map(p => ({ ...p, latitude: 0, distance: 0 }));
 }
 
-function _meeusPlanetaryPositions(jd: number): {
+function _meeusPlanetaryPositions(jd: number, useTrueNode?: boolean): {
   id: number; longitude: number; speed: number; isRetrograde: boolean
 }[] {
   // We compute positions at jd AND at jd+1 day so we can derive the actual
@@ -626,13 +626,16 @@ function _meeusPlanetaryPositions(jd: number): {
   const nF  = normalizeDeg(93.2720950 + 483202.0175233 * t
     - 0.0036539 * t * t - t * t * t / 3526000 + t * t * t * t / 863310000);
   // Five principal perturbation terms for the true node (Meeus Table 47.C /
-  // Explanatory Supplement).  Amplitude is in degrees.
-  const trueNodeCorr =
-    - 1.4979 * Math.sin(toRad(2 * (nD - nF)))
-    - 0.1500 * Math.sin(toRad(nM))
-    - 0.1226 * Math.sin(toRad(2 * nD))
-    + 0.1176 * Math.sin(toRad(2 * nF))
-    - 0.0801 * Math.sin(toRad(2 * (nMp - nF)));
+  // Explanatory Supplement).  Amplitude is in degrees.  Only applied when
+  // useTrueNode is explicitly true; mean node is the default for backwards
+  // compatibility with traditional Indian astrology systems.
+  const trueNodeCorr = useTrueNode
+    ? (- 1.4979 * Math.sin(toRad(2 * (nD - nF)))
+       - 0.1500 * Math.sin(toRad(nM))
+       - 0.1226 * Math.sin(toRad(2 * nD))
+       + 0.1176 * Math.sin(toRad(2 * nF))
+       - 0.0801 * Math.sin(toRad(2 * (nMp - nF))))
+    : 0;
   const rahu = normalizeDeg(meanNode + trueNodeCorr);
   const ketu = normalizeDeg(rahu + 180);
 

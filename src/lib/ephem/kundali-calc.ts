@@ -552,8 +552,9 @@ export function generateKundali(birthData: BirthData): KundaliData {
     };
   });
 
-  // Planetary positions
-  const rawPlanets = getPlanetaryPositions(jd);
+  // Planetary positions — pass through user's node type preference (mean vs true)
+  const useTrueNode = birthData.node_type === 'true';
+  const rawPlanets = getPlanetaryPositions(jd, useTrueNode);
   // Use selected ayanamsha for all sidereal conversions
   const toSid = (tropLong: number) => normalizeDeg(tropLong - ayanamshaValue);
   const sunRawLong = toSid(rawPlanets.find(p => p.id === 0)!.longitude);

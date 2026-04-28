@@ -26,6 +26,7 @@ interface ProfileData {
   default_location: string;
   ayanamsha: string;
   chart_style: string;
+  node_type: 'mean' | 'true';
 }
 
 const NOTIF_TYPES = [
@@ -56,6 +57,11 @@ const LABELS = {
     chartStyle: 'Chart Style',
     northIndian: 'North Indian',
     southIndian: 'South Indian',
+    nodeType: 'Node Type (Rahu/Ketu)',
+    meanNode: 'Mean Node',
+    trueNode: 'True Node',
+    meanNodeDesc: 'Mean node — smooth average path (most traditional systems)',
+    trueNodeDesc: 'True node — includes nutation oscillation (±1.5°, preferred by some modern astrologers)',
     language: 'Language',
     notifications: 'Notification Preferences',
     notifDesc: 'Choose which alerts you receive in the app and by email.',
@@ -90,6 +96,11 @@ const LABELS = {
     chartStyle: 'चार्ट शैली',
     northIndian: 'उत्तर भारतीय',
     southIndian: 'दक्षिण भारतीय',
+    nodeType: 'नोड प्रकार (राहु/केतु)',
+    meanNode: 'मध्य नोड',
+    trueNode: 'वास्तविक नोड',
+    meanNodeDesc: 'मध्य नोड — सम औसत पथ (अधिकांश पारंपरिक पद्धतियाँ)',
+    trueNodeDesc: 'वास्तविक नोड — अयन दोलन सहित (±1.5°, कुछ आधुनिक ज्योतिषी पसंद करते हैं)',
     language: 'भाषा',
     notifications: 'सूचना प्राथमिकताएँ',
     notifDesc: 'चुनें कि आप ऐप और ईमेल में कौन-से अलर्ट प्राप्त करना चाहते हैं।',
@@ -124,6 +135,11 @@ const LABELS = {
     chartStyle: 'चार्टशैली',
     northIndian: 'उत्तरभारतीय',
     southIndian: 'दक्षिणभारतीय',
+    nodeType: 'पातप्रकारः (राहु/केतु)',
+    meanNode: 'मध्यपातः',
+    trueNode: 'स्फुटपातः',
+    meanNodeDesc: 'मध्यपातः — समसरणपथः (बहुपारम्परिकपद्धतयः)',
+    trueNodeDesc: 'स्फुटपातः — अयनचलनसहितः (±1.5°, केचन आधुनिकज्योतिषिणः पसन्दयन्ति)',
     language: 'भाषा',
     notifications: 'सूचनाप्राथमिकताः',
     notifDesc: 'ऐप तथा ईमेल-सूचनाः चिनोतु।',
@@ -158,6 +174,11 @@ const LABELS = {
     chartStyle: 'குண்டலி பாணி',
     northIndian: 'வட இந்திய',
     southIndian: 'தென் இந்திய',
+    nodeType: 'நோட் வகை (ராகு/கேது)',
+    meanNode: 'சராசரி நோட்',
+    trueNode: 'உண்மை நோட்',
+    meanNodeDesc: 'சராசரி நோட் — மென்மையான சராசரி பாதை (பெரும்பாலான பாரம்பரிய முறைகள்)',
+    trueNodeDesc: 'உண்மை நோட் — நியூட்டேஷன் அலைவு உள்ளடக்கியது (±1.5°, சில நவீன ஜோதிடர்கள் விரும்புவது)',
     language: 'மொழி',
     notifications: 'அறிவிப்பு விருப்பத்தேர்வுகள்',
     notifDesc: 'செயலி மற்றும் மின்னஞ்சல் மூலம் எந்த எச்சரிக்கைகளைப் பெற விரும்புகிறீர்கள் என்பதைத் தேர்ந்தெடுக்கவும்.',
@@ -192,6 +213,11 @@ const LABELS = {
     chartStyle: 'చార్ట్ శైలి',
     northIndian: 'ఉత్తర భారతీయ',
     southIndian: 'దక్షిణ భారతీయ',
+    nodeType: 'నోడ్ రకం (రాహు/కేతు)',
+    meanNode: 'సగటు నోడ్',
+    trueNode: 'నిజమైన నోడ్',
+    meanNodeDesc: 'సగటు నోడ్ — సున్నితమైన సగటు మార్గం (చాలా సాంప్రదాయ పద్ధతులు)',
+    trueNodeDesc: 'నిజమైన నోడ్ — న్యూటేషన్ డోలనం కలిగి ఉంటుంది (±1.5°, కొందరు ఆధునిక జ్యోతిషులు ఇష్టపడతారు)',
     language: 'భాష',
     notifications: 'నోటిఫికేషన్ ప్రాధాన్యతలు',
     notifDesc: 'యాప్ మరియు ఇమెయిల్ ద్వారా ఏ అలర్ట్‌లను అందుకోవాలో ఎంచుకోండి.',
@@ -226,6 +252,11 @@ const LABELS = {
     chartStyle: 'চার্ট শৈলী',
     northIndian: 'উত্তর ভারতীয়',
     southIndian: 'দক্ষিণ ভারতীয়',
+    nodeType: 'নোড প্রকার (রাহু/কেতু)',
+    meanNode: 'গড় নোড',
+    trueNode: 'প্রকৃত নোড',
+    meanNodeDesc: 'গড় নোড — মসৃণ গড় পথ (বেশিরভাগ ঐতিহ্যবাহী পদ্ধতি)',
+    trueNodeDesc: 'প্রকৃত নোড — অয়ন দোলন সহ (±1.5°, কিছু আধুনিক জ্যোতিষী পছন্দ করেন)',
     language: 'ভাষা',
     notifications: 'বিজ্ঞপ্তি পছন্দসমূহ',
     notifDesc: 'অ্যাপ এবং ইমেলে কোন সতর্কতা পেতে চান তা বেছে নিন।',
@@ -260,6 +291,11 @@ const LABELS = {
     chartStyle: 'ಚಾರ್ಟ್ ಶೈಲಿ',
     northIndian: 'ಉತ್ತರ ಭಾರತೀಯ',
     southIndian: 'ದಕ್ಷಿಣ ಭಾರತೀಯ',
+    nodeType: 'ನೋಡ್ ಪ್ರಕಾರ (ರಾಹು/ಕೇತು)',
+    meanNode: 'ಸರಾಸರಿ ನೋಡ್',
+    trueNode: 'ನಿಜವಾದ ನೋಡ್',
+    meanNodeDesc: 'ಸರಾಸರಿ ನೋಡ್ — ಮೃದು ಸರಾಸರಿ ಮಾರ್ಗ (ಹೆಚ್ಚಿನ ಸಾಂಪ್ರದಾಯಿಕ ಪದ್ಧತಿಗಳು)',
+    trueNodeDesc: 'ನಿಜವಾದ ನೋಡ್ — ನ್ಯೂಟೇಶನ್ ಆಂದೋಲನ ಒಳಗೊಂಡಿದೆ (±1.5°, ಕೆಲವು ಆಧುನಿಕ ಜ್ಯೋತಿಷಿಗಳು ಆದ್ಯತೆ ನೀಡುತ್ತಾರೆ)',
     language: 'ಭಾಷೆ',
     notifications: 'ನೋಟಿಫಿಕೇಶನ್ ಆದ್ಯತೆಗಳು',
     notifDesc: 'ಅಪ್ಲಿಕೇಶನ್ ಮತ್ತು ಇಮೇಲ್ ಮೂಲಕ ಯಾವ ಎಚ್ಚರಿಕೆಗಳನ್ನು ಪಡೆಯಬೇಕೆಂದು ಆಯ್ಕೆ ಮಾಡಿ.',
@@ -294,6 +330,11 @@ const LABELS = {
     chartStyle: 'चार्ट शैली',
     northIndian: 'उत्तर भारतीय',
     southIndian: 'दक्षिण भारतीय',
+    nodeType: 'नोड प्रकार (राहु/केतु)',
+    meanNode: 'मध्य नोड',
+    trueNode: 'वास्तविक नोड',
+    meanNodeDesc: 'मध्य नोड — सम सरासरी मार्ग (बहुतांश पारंपरिक पद्धती)',
+    trueNodeDesc: 'वास्तविक नोड — अयन दोलनासह (±1.5°, काही आधुनिक ज्योतिषी पसंत करतात)',
     language: 'भाषा',
     notifications: 'सूचना प्राधान्ये',
     notifDesc: 'ॲप आणि ईमेलद्वारे कोणत्या सूचना प्राप्त करायच्या ते निवडा.',
@@ -328,6 +369,11 @@ const LABELS = {
     chartStyle: 'ચાર્ટ શૈલી',
     northIndian: 'ઉત્તર ભારતીય',
     southIndian: 'દક્ષિણ ભારતીય',
+    nodeType: 'નોડ પ્રકાર (રાહુ/કેતુ)',
+    meanNode: 'સરેરાશ નોડ',
+    trueNode: 'વાસ્તવિક નોડ',
+    meanNodeDesc: 'સરેરાશ નોડ — સરળ સરેરાશ માર્ગ (મોટાભાગની પરંપરાગત પદ્ધતિઓ)',
+    trueNodeDesc: 'વાસ્તવિક નોડ — અયન દોલન સહિત (±1.5°, કેટલાક આધુનિક જ્યોતિષીઓ પસંદ કરે છે)',
     language: 'ભાષા',
     notifications: 'સૂચના પસંદગીઓ',
     notifDesc: 'એપ અને ઇમેલ દ્વારા કઈ સૂચનાઓ મેળવવી તે પસંદ કરો.',
@@ -362,6 +408,11 @@ const LABELS = {
     chartStyle: 'चार्ट शैली',
     northIndian: 'उत्तर भारतीय',
     southIndian: 'दक्षिण भारतीय',
+    nodeType: 'नोड प्रकार (राहु/केतु)',
+    meanNode: 'मध्य नोड',
+    trueNode: 'वास्तविक नोड',
+    meanNodeDesc: 'मध्य नोड — सम औसत पथ (अधिकांश पारंपरिक पद्धति)',
+    trueNodeDesc: 'वास्तविक नोड — अयन दोलन सहित (±1.5°, किछ आधुनिक ज्योतिषी पसंद करैत छथि)',
     language: 'भाषा',
     notifications: 'सूचना प्राथमिकता',
     notifDesc: 'ऐप आ ईमेलसँ कोन सूचना प्राप्त करबाक चाही से चुनू.',
@@ -426,6 +477,7 @@ export default function SettingsPage() {
     default_location: '',
     ayanamsha: 'lahiri',
     chart_style: 'north',
+    node_type: 'mean',
   });
 
   // Original values for comparison
@@ -455,6 +507,7 @@ export default function SettingsPage() {
             default_location: data.default_location || '',
             ayanamsha: data.ayanamsha || 'lahiri',
             chart_style: data.chart_style || 'north',
+            node_type: data.node_type === 'true' ? 'true' : 'mean',
           };
           setProfile(loaded);
           setOriginalProfile({ ...loaded });
@@ -475,6 +528,7 @@ export default function SettingsPage() {
             default_location: '',
             ayanamsha: 'lahiri',
             chart_style: 'north',
+            node_type: 'mean',
           };
           setProfile(defaults);
           setOriginalProfile({ ...defaults });
@@ -545,6 +599,7 @@ export default function SettingsPage() {
         birth_timezone: profile.birth_timezone || null,
         ayanamsha: profile.ayanamsha,
         chart_style: profile.chart_style,
+        node_type: profile.node_type,
         notification_prefs: notifPrefs,
         daily_panchang_email: !!notifPrefs.daily_panchang,
         updated_at: new Date().toISOString(),
@@ -823,6 +878,36 @@ export default function SettingsPage() {
                   {L.southIndian}
                 </button>
               </div>
+            </div>
+
+            {/* Node Type (Rahu/Ketu) */}
+            <div>
+              <label className="block text-sm text-text-secondary mb-1.5">{L.nodeType}</label>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setProfile({ ...profile, node_type: 'mean' })}
+                  className={`flex-1 px-4 py-3 rounded-xl text-sm font-medium border transition-all ${
+                    profile.node_type === 'mean'
+                      ? 'border-gold-primary/60 bg-gold-primary/15 text-gold-light'
+                      : 'border-gold-primary/15 bg-bg-secondary/50 text-text-secondary hover:border-gold-primary/30'
+                  }`}
+                >
+                  {L.meanNode}
+                </button>
+                <button
+                  onClick={() => setProfile({ ...profile, node_type: 'true' })}
+                  className={`flex-1 px-4 py-3 rounded-xl text-sm font-medium border transition-all ${
+                    profile.node_type === 'true'
+                      ? 'border-gold-primary/60 bg-gold-primary/15 text-gold-light'
+                      : 'border-gold-primary/15 bg-bg-secondary/50 text-text-secondary hover:border-gold-primary/30'
+                  }`}
+                >
+                  {L.trueNode}
+                </button>
+              </div>
+              <p className="text-xs text-text-secondary/60 mt-1.5">
+                {profile.node_type === 'mean' ? L.meanNodeDesc : L.trueNodeDesc}
+              </p>
             </div>
 
             {/* Language */}

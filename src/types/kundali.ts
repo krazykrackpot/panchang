@@ -14,6 +14,8 @@ export interface BirthData {
   ayanamsha: string; // AyanamshaType from astronomical.ts
   /** Who this chart is for — defaults to 'self'. */
   relationship?: ChartRelationship;
+  /** Rahu/Ketu node type — 'mean' (default, traditional) or 'true' (includes nutation ±1.5°). */
+  node_type?: 'mean' | 'true';
 }
 
 export interface HouseCusp {

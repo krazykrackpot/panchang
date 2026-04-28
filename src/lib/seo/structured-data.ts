@@ -230,13 +230,26 @@ export function generateEventLD(opts: {
     name: opts.name,
     startDate: opts.startDate,
     description: opts.description,
+    image: `${BASE_URL}/icon-512.png`,
     eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
     eventStatus: 'https://schema.org/EventScheduled',
     ...(opts.url ? { url: opts.url } : {}),
+    location: {
+      '@type': 'VirtualLocation',
+      url: opts.url || BASE_URL,
+    },
     organizer: {
       '@type': 'Organization',
       name: 'Dekho Panchang',
       url: BASE_URL,
+    },
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      url: opts.url || BASE_URL,
+      validFrom: opts.startDate,
     },
   };
 }

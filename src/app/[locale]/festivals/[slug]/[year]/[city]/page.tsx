@@ -220,13 +220,35 @@ export default async function FestivalCityPage({
     name: `${festivalNameEn} ${year} in ${cityNameEn}`,
     startDate: festivalDate,
     endDate: festivalDate,
+    image: `${BASE_URL}/icon-512.png`,
     location: {
-      '@type': 'City',
+      '@type': 'Place',
       name: cityNameEn,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: cityNameEn,
+        ...(cityData.state ? { addressRegion: cityData.state } : {}),
+        addressCountry: cityData.timezone.startsWith('Asia/Kolkata') ? 'IN'
+          : cityData.timezone.startsWith('America/') ? 'US' : undefined,
+      },
       geo: { '@type': 'GeoCoordinates', latitude: cityData.lat, longitude: cityData.lng },
     },
     description: eventDescription,
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    eventStatus: 'https://schema.org/EventScheduled',
+    organizer: {
+      '@type': 'Organization',
+      name: 'Dekho Panchang',
+      url: BASE_URL,
+    },
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      url: `${BASE_URL}/${locale}/festivals/${slug}/${year}/${citySlug}`,
+      validFrom: festivalDate,
+    },
   };
 
   // ── JSON-LD: BreadcrumbList ──

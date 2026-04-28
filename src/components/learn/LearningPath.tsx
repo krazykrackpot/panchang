@@ -110,8 +110,27 @@ export default function LearningPath() {
           const isCompleted = phase.status === 'completed';
           const isInProgress = phase.status === 'in-progress';
 
+          // Tier labels at phase boundaries to break up the long list
+          const TIER_BREAKS: Record<number, { en: string; hi: string; ta: string; bn: string }> = {
+            0: { en: 'Foundations', hi: 'आधार', ta: 'அடிப்படை', bn: 'ভিত্তি' },
+            3: { en: 'Chart Reading', hi: 'कुण्डली पठन', ta: 'சார்ட் வாசிப்பு', bn: 'চার্ট পাঠ' },
+            6: { en: 'Advanced Systems', hi: 'उन्नत पद्धतियाँ', ta: 'மேம்பட்ட முறைகள்', bn: 'উন্নত পদ্ধতি' },
+            10: { en: 'Mastery', hi: 'दक्षता', ta: 'தேர்ச்சி', bn: 'দক্ষতা' },
+          };
+          const tier = TIER_BREAKS[phase.phase];
+
           return (
-            <div key={phase.phase} className="relative flex items-start gap-4 sm:gap-5">
+            <div key={phase.phase}>
+              {tier && (
+                <div className={`flex items-center gap-3 ${i > 0 ? 'mt-6 mb-3' : 'mb-3'} ml-14 sm:ml-[4.5rem]`}>
+                  <div className="h-px flex-1 max-w-16 bg-gradient-to-r from-gold-primary/25 to-transparent" />
+                  <span className="text-gold-dark text-[10px] uppercase tracking-[3px] font-bold">
+                    {locale === 'hi' ? tier.hi : locale === 'ta' ? tier.ta : locale === 'bn' ? tier.bn : tier.en}
+                  </span>
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gold-primary/15 to-transparent" />
+                </div>
+              )}
+            <div className="relative flex items-start gap-4 sm:gap-5">
               {/* ── Node dot ── */}
               <div className="relative z-10 flex-shrink-0 mt-1">
                 {isCompleted ? (
@@ -227,6 +246,7 @@ export default function LearningPath() {
                   </div>
                 </div>
               </div>
+            </div>
             </div>
           );
         })}

@@ -86,21 +86,24 @@ export default function Footer() {
   const locale = useLocale();
 
   return (
-    <footer className="relative z-10 mt-16 border-t border-gold-primary/8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <footer className="relative z-10 mt-16 border-t border-gold-primary/15 bg-gradient-to-b from-[#0d1130] to-[#080b1e]">
+      {/* Subtle top texture line */}
+      <div className="h-px bg-gradient-to-r from-transparent via-gold-primary/20 to-transparent" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* 4-column link grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-10">
           {SECTIONS.map((section) => (
             <div key={t(section.title, 'en')}>
-              <h3 className="text-gold-primary/80 text-xs font-semibold uppercase tracking-wider mb-3">
+              <h3 className="text-gold-primary text-xs font-bold uppercase tracking-widest mb-4">
                 {t(section.title, locale)}
               </h3>
-              <ul className="space-y-1.5">
+              <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-text-secondary/70 text-xs hover:text-gold-light transition-colors"
+                      className="text-text-secondary text-xs hover:text-gold-light transition-colors"
                     >
                       {t(link.label, locale)}
                     </Link>
@@ -112,15 +115,15 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-gold-primary/8 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="border-t border-gold-primary/12 pt-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <span className="text-gold-primary/60 text-sm font-semibold" style={{ fontFamily: 'var(--font-heading)' }}>
+            <span className="text-gold-primary text-sm font-semibold" style={{ fontFamily: 'var(--font-heading)' }}>
               Dekho Panchang
             </span>
-            <span className="text-text-secondary/55 text-xs">&copy; 2026</span>
+            <span className="text-text-secondary text-xs">&copy; 2026</span>
           </div>
 
-          <div className="flex items-center gap-4 text-xs text-text-secondary/60">
+          <div className="flex items-center gap-4 text-xs text-text-secondary">
             <Link href="/about" className="hover:text-gold-light transition-colors">
               {locale === 'hi' ? 'परिचय' : 'About'}
             </Link>
@@ -132,7 +135,7 @@ export default function Footer() {
             </Link>
           </div>
 
-          <p className="text-gold-dark/40 text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
+          <p className="text-gold-dark/60 text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
             ॐ ज्योतिषां ज्योतिः
           </p>
         </div>

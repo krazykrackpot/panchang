@@ -229,12 +229,26 @@ export default function LearnPage() {
           </div>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-          {LABS.map(lab => (
-            <Link key={lab.href} href={lab.href}
-              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10 hover:border-gold-primary/30 transition-all group text-center">
-              <h3 className="text-gold-light font-bold text-sm mb-1 group-hover:text-gold-primary" style={bf}>{tri(lab.title)}</h3>
-            </Link>
-          ))}
+          {LABS.map(lab => {
+            const colorMap: Record<string, string> = {
+              amber: 'border-amber-500/20 hover:border-amber-500/40 hover:shadow-amber-500/5',
+              indigo: 'border-indigo-500/20 hover:border-indigo-500/40 hover:shadow-indigo-500/5',
+              violet: 'border-violet-500/20 hover:border-violet-500/40 hover:shadow-violet-500/5',
+              emerald: 'border-emerald-500/20 hover:border-emerald-500/40 hover:shadow-emerald-500/5',
+              cyan: 'border-cyan-500/20 hover:border-cyan-500/40 hover:shadow-cyan-500/5',
+            };
+            const dotColor: Record<string, string> = {
+              amber: 'bg-amber-400', indigo: 'bg-indigo-400', violet: 'bg-violet-400',
+              emerald: 'bg-emerald-400', cyan: 'bg-cyan-400',
+            };
+            return (
+              <Link key={lab.href} href={lab.href}
+                className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] rounded-xl p-4 ${colorMap[lab.color] || colorMap.amber} hover:shadow-lg transition-all group text-center`}>
+                <div className={`w-2 h-2 rounded-full ${dotColor[lab.color] || dotColor.amber} mx-auto mb-2 opacity-60 group-hover:opacity-100 transition-opacity`} />
+                <h3 className="text-gold-light font-bold text-sm mb-1 group-hover:text-gold-primary" style={bf}>{tri(lab.title)}</h3>
+              </Link>
+            );
+          })}
         </div>
       </div>
 
@@ -343,9 +357,9 @@ export default function LearnPage() {
         </button>
 
         {showRefs && (
-          <div className="space-y-6">
+          <div className="space-y-5">
             {REF_GROUPS.map(group => (
-              <div key={group.label.en}>
+              <div key={group.label.en} className="rounded-xl bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 p-5">
                 <h3 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3" style={bf}>{tri(group.label)}</h3>
                 <div className="flex flex-wrap gap-2">
                   {group.refs.map(ref => (

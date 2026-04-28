@@ -14,6 +14,7 @@ import {
   swissSunrise,
   swissSunset,
 } from './swiss-ephemeris';
+import { RAHU_ORDER } from '@/lib/constants/inauspicious-orders';
 
 // Julian Day Number from calendar date
 export function dateToJD(year: number, month: number, day: number, hour: number = 0): number {
@@ -493,11 +494,9 @@ export function formatTime(decimalHours: number, tzOffsetHours: number = 0): str
  * Calculate Rahu Kaal based on weekday and sunrise/sunset
  */
 export function calculateRahuKaal(sunrise: number, sunset: number, weekday: number): { start: number; end: number } {
-  // Rahu Kaal order for each weekday (Sun=0 through Sat=6)
-  // Each day is divided into 8 parts, Rahu Kaal is at position:
-  const rahuOrder = [8, 2, 7, 5, 6, 4, 3]; // Sun through Sat
+  // Segment order imported from shared constants (Lesson Q — single source of truth)
   const duration = (sunset - sunrise) / 8;
-  const segment = rahuOrder[weekday] - 1;
+  const segment = RAHU_ORDER[weekday] - 1;
   return {
     start: sunrise + segment * duration,
     end: sunrise + (segment + 1) * duration,

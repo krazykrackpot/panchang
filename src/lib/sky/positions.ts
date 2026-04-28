@@ -12,6 +12,7 @@ import {
   lahiriAyanamsha,
   toSidereal,
   normalizeDeg,
+  getNakshatraPada,
 } from '@/lib/ephem/astronomical';
 import { dateToJD } from '@/lib/astronomy/julian';
 
@@ -54,15 +55,7 @@ function dateToJDSafe(date: Date): number {
   );
 }
 
-/**
- * Compute nakshatra pada (1-4) for a given sidereal longitude.
- * Each nakshatra spans 360/27 ≈ 13.333°, divided into 4 padas of ~3.333° each.
- */
-function getNakshatraPada(sidLong: number): number {
-  const nakshatraSpan = 360 / 27; // 13.333...
-  const posInNakshatra = sidLong % nakshatraSpan;
-  return Math.floor(posInNakshatra / (nakshatraSpan / 4)) + 1;
-}
+// getNakshatraPada imported from @/lib/ephem/astronomical (Lesson Q — single source of truth)
 
 /**
  * Get current sidereal planetary positions using Lahiri ayanamsha.

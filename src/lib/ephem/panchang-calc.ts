@@ -8,6 +8,7 @@ import {
   getSamvatsara, getRitu, getAyana, lahiriAyanamsha, normalizeDeg,
 } from './astronomical';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
+import { YAMA_ORDER, GULIKA_ORDER } from '@/lib/constants/inauspicious-orders';
 import { TITHIS } from '@/lib/constants/tithis';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -912,17 +913,16 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // The segment number is 1-based: segment N occupies
   //   [sunrise + (N-1) * 1/8 day, sunrise + N * 1/8 day].
   // Descending pattern Sun=5→Thu=1, then Fri=7, Sat=6.
-  const yamaOrder = [5, 4, 3, 2, 1, 7, 6]; // Sun Mon Tue Wed Thu Fri Sat
+  // Segment orders imported from shared constants (Lesson Q — single source of truth)
   const yamaDuration = (sunsetUT - sunriseUT) / 8;
-  const yamaSegment = yamaOrder[weekday] - 1;
+  const yamaSegment = YAMA_ORDER[weekday] - 1;
   const yamaganda = {
     start: sunriseUT + yamaSegment * yamaDuration,
     end: sunriseUT + (yamaSegment + 1) * yamaDuration,
   };
 
   // Gulika Kaal
-  const gulikaOrder = [7, 6, 5, 4, 3, 2, 1];
-  const gulikaSegment = gulikaOrder[weekday] - 1;
+  const gulikaSegment = GULIKA_ORDER[weekday] - 1;
   const gulikaKaal = {
     start: sunriseUT + gulikaSegment * yamaDuration,
     end: sunriseUT + (gulikaSegment + 1) * yamaDuration,

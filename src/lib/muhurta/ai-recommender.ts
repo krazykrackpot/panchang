@@ -13,6 +13,7 @@ import {
 import type { ExtendedActivity } from '@/types/muhurta-ai';
 import type { LocaleText,} from '@/types/panchang';
 import { PUSHKAR_BHAGA, PUSHKAR_NAVAMSHA_SET } from '@/lib/constants/pushkar-bhaga';
+import { RAHU_ORDER } from '@/lib/constants/inauspicious-orders';
 
 export interface PanchangSnapshot {
   tithi: number;
@@ -257,9 +258,8 @@ export function scoreTimingFactors(
   }
 
   // Outside Rahu Kaal: +3
-  const rahuOrder = [8, 2, 7, 5, 6, 4, 3];
   const rahuDuration = dayDuration / 8;
-  const rahuStartLocal = sunriseLocal + (rahuOrder[weekday] - 1) * rahuDuration;
+  const rahuStartLocal = sunriseLocal + (RAHU_ORDER[weekday] - 1) * rahuDuration;
   const rahuEndLocal = rahuStartLocal + rahuDuration;
   if (hourOfDay < rahuStartLocal || hourOfDay > rahuEndLocal) {
     score += 3;

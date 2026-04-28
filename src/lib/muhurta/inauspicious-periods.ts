@@ -10,12 +10,8 @@
  */
 
 import { calculateKarana } from '@/lib/ephem/astronomical';
+import { RAHU_ORDER, YAMA_ORDER, GULIKA_ORDER } from '@/lib/constants/inauspicious-orders';
 import type { InauspiciousPeriod } from '@/types/muhurta-ai';
-
-// Segment orders — 1-based segment index for each weekday (0=Sun through 6=Sat)
-const RAHU_ORDER = [8, 2, 7, 5, 6, 4, 3];
-const YAMA_ORDER = [5, 4, 3, 2, 1, 7, 6];
-const GULIKA_ORDER = [7, 6, 5, 4, 3, 2, 1];
 
 interface TimeRange {
   start: number; // hours UT

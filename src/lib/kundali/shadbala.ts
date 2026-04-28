@@ -1,5 +1,6 @@
 import { normalizeDeg, lahiriAyanamsha } from '@/lib/ephem/astronomical';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
+import { MOOLATRIKONA } from '@/lib/constants/dignities';
 
 // ---------------------------------------------------------------------------
 // Input types (local — not imported)
@@ -176,31 +177,8 @@ const DEBILITATION_SIGN_SB: Record<number, number> = {
   0: 7, 1: 8, 2: 4, 3: 12, 4: 10, 5: 6, 6: 1,
 };
 
-const MOOLATRIKONA_SIGN_SB: Record<number, number> = {
-  0: 5, 1: 2, 2: 1, 3: 6, 4: 9, 5: 7, 6: 11,
-};
-
-/**
- * Classical Moolatrikona degree ranges per BPHS / Laghu Parashari.
- * Outside these ranges within the sign the planet is treated as own-sign only.
- *   Sun   : Leo  0°-20°
- *   Moon  : Taurus 4°-20° (BPHS Ch.4)
- *   Mars  : Aries 0°-12°
- *   Mercury: Virgo 16°-20° (BPHS Ch.4)
- *   Jupiter: Sagittarius 0°-10°
- *   Venus  : Libra 0°-5° (BPHS Ch.4)
- *   Saturn : Aquarius 0°-20°
- */
-// Canonical BPHS Ch.4 Moolatrikona ranges — aligned with dignity.ts
-const MOOLATRIKONA_RANGES: Record<number, { sign: number; minDeg: number; maxDeg: number }> = {
-  0: { sign: 5,  minDeg: 0,  maxDeg: 20 }, // Sun: Leo 0°-20°
-  1: { sign: 2,  minDeg: 4,  maxDeg: 20 }, // Moon: Taurus 4°-20° (NOT 0-3.33)
-  2: { sign: 1,  minDeg: 0,  maxDeg: 12 }, // Mars: Aries 0°-12°
-  3: { sign: 6,  minDeg: 16, maxDeg: 20 }, // Mercury: Virgo 16°-20° (NOT 15-20)
-  4: { sign: 9,  minDeg: 0,  maxDeg: 10 }, // Jupiter: Sagittarius 0°-10°
-  5: { sign: 7,  minDeg: 0,  maxDeg: 5  }, // Venus: Libra 0°-5° (NOT 0-10)
-  6: { sign: 11, minDeg: 0,  maxDeg: 20 }, // Saturn: Aquarius 0°-20°
-};
+// MOOLATRIKONA_SIGN and MOOLATRIKONA ranges imported from @/lib/constants/dignities
+// (Lesson Q — single source of truth for Jyotish constants)
 
 const OWN_SIGNS_SB: Record<number, number[]> = {
   0: [5], 1: [4], 2: [1, 8], 3: [3, 6], 4: [9, 12], 5: [2, 7], 6: [10, 11],
@@ -228,11 +206,12 @@ function vargaDignityPoints(planetId: number, sign: number, degInSign?: number):
   if (DEBILITATION_SIGN_SB[planetId] === sign) return 1.875;
 
   // Moolatrikona: for D1 use exact degree bounds; for other vargas use sign-level
-  const mt = MOOLATRIKONA_RANGES[planetId];
+  // MOOLATRIKONA imported from @/lib/constants/dignities (fields: sign, startDeg, endDeg)
+  const mt = MOOLATRIKONA[planetId];
   if (mt?.sign === sign) {
     if (degInSign !== undefined) {
       // D1: check actual degree — outside range falls through to own-sign check
-      if (degInSign >= mt.minDeg && degInSign < mt.maxDeg) return 45;
+      if (degInSign >= mt.startDeg && degInSign < mt.endDeg) return 45;
     } else {
       // Non-D1 vargas: grant Moolatrikona at sign level (no degree info available)
       return 45;

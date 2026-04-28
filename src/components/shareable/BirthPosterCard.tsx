@@ -13,6 +13,95 @@ import type { BirthPosterData } from '@/lib/shareable/birth-poster';
    Supports story (1080x1920), square (1080x1080), og (1200x630).
    ════════════════════════════════════════════════════════════════ */
 
+/* ── Planet abbreviations for the mini chart ── */
+const PLANET_ABBR: Record<number, string> = {
+  0: 'Su', 1: 'Mo', 2: 'Ma', 3: 'Me', 4: 'Ju', 5: 'Ve', 6: 'Sa', 7: 'Ra', 8: 'Ke',
+};
+
+/**
+ * North Indian diamond chart house geometry, scaled to a given size.
+ * ViewBox is 0..size, diamond centered, 12 triangular/rhombus houses.
+ * Returns: { path, cx, cy } for each house (1-indexed).
+ */
+function getHouseGeometry(s: number): Record<number, { path: string; cx: number; cy: number }> {
+  // Key points on the diamond (padded 6% from edge)
+  const p = Math.round(s * 0.06); // padding
+  const m = Math.round(s / 2);    // midpoint
+  const q1 = Math.round(s * 0.28);// 1/4-ish
+  const q3 = Math.round(s * 0.72);// 3/4-ish
+
+  // Corners: top=T, left=L, bottom=B, right=R
+  const T = `${m} ${p}`;
+  const L = `${p} ${m}`;
+  const B = `${m} ${s - p}`;
+  const R = `${s - p} ${m}`;
+  const C = `${m} ${m}`;
+
+  // Mid-edge points
+  const TL = `${q1} ${q1}`;
+  const TR = `${q3} ${q1}`;
+  const BL = `${q1} ${q3}`;
+  const BR = `${q3} ${q3}`;
+
+  return {
+    1:  { path: `M ${T} L ${TL} L ${C} L ${TR} Z`, cx: m, cy: Math.round(m * 0.52) },
+    2:  { path: `M ${p} ${p} L ${TL} L ${T} Z`, cx: Math.round(m * 0.55), cy: Math.round(m * 0.42) },
+    3:  { path: `M ${p} ${p} L ${p} ${m} L ${TL} Z`, cx: Math.round(m * 0.35), cy: Math.round(m * 0.55) },
+    4:  { path: `M ${L} L ${TL} L ${C} L ${BL} Z`, cx: Math.round(m * 0.52), cy: m },
+    5:  { path: `M ${L} L ${BL} L ${p} ${s - p} Z`, cx: Math.round(m * 0.35), cy: Math.round(m * 1.45) },
+    6:  { path: `M ${p} ${s - p} L ${BL} L ${B} Z`, cx: Math.round(m * 0.55), cy: Math.round(m * 1.58) },
+    7:  { path: `M ${B} L ${BL} L ${C} L ${BR} Z`, cx: m, cy: Math.round(m * 1.48) },
+    8:  { path: `M ${B} L ${BR} L ${s - p} ${s - p} Z`, cx: Math.round(m * 1.45), cy: Math.round(m * 1.58) },
+    9:  { path: `M ${s - p} ${s - p} L ${BR} L ${R} Z`, cx: Math.round(m * 1.65), cy: Math.round(m * 1.45) },
+    10: { path: `M ${R} L ${BR} L ${C} L ${TR} Z`, cx: Math.round(m * 1.48), cy: m },
+    11: { path: `M ${R} L ${TR} L ${s - p} ${p} Z`, cx: Math.round(m * 1.65), cy: Math.round(m * 0.55) },
+    12: { path: `M ${s - p} ${p} L ${TR} L ${T} Z`, cx: Math.round(m * 1.45), cy: Math.round(m * 0.42) },
+  };
+}
+
+/** Render a mini North Indian diamond chart as pure inline SVG (Satori-compatible). */
+function MiniNorthChart({ houses, size }: { houses: number[][]; size: number }) {
+  const geo = getHouseGeometry(size);
+  const fontSize = Math.max(7, Math.round(size * 0.033));
+  const lineHeight = fontSize + 2;
+
+  return (
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+      {/* Background */}
+      <rect x="0" y="0" width={size} height={size} fill="#0a0e27" rx={Math.round(size * 0.03)} />
+      {/* House paths and planet labels */}
+      {[1,2,3,4,5,6,7,8,9,10,11,12].map((h) => {
+        const g = geo[h];
+        const planetIds = houses[h - 1] || [];
+        const labels = planetIds.map(id => PLANET_ABBR[id] || '').filter(Boolean);
+        return (
+          <g key={h}>
+            <path d={g.path} fill="none" stroke="#d4a853" strokeWidth={1} opacity={0.7} />
+            {labels.map((lbl, i) => {
+              // Stack labels vertically centered around cx, cy
+              const yOffset = (i - (labels.length - 1) / 2) * lineHeight;
+              return (
+                <text
+                  key={i}
+                  x={g.cx}
+                  y={g.cy + yOffset}
+                  fill="#e6e2d8"
+                  fontSize={fontSize}
+                  fontFamily="monospace"
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                >
+                  {lbl}
+                </text>
+              );
+            })}
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
 const ELEMENT_COLORS: Record<number, string> = {
   0: '#f59e0b', // fire  — amber
   1: '#10b981', // earth — emerald
@@ -20,12 +109,6 @@ const ELEMENT_COLORS: Record<number, string> = {
   3: '#818cf8', // water — indigo
 };
 
-const ELEMENT_COLORS_DIM: Record<number, string> = {
-  0: '#78500d', // fire dim
-  1: '#065f46', // earth dim
-  2: '#0c4a6e', // air dim
-  3: '#3730a3', // water dim
-};
 
 const ELEMENT_LABELS: Record<string, string> = {
   fire: 'FIRE',
@@ -42,25 +125,6 @@ const FORMAT_DIMS: Record<string, { w: number; h: number }> = {
   og:     { w: 1200, h: 630 },
 };
 
-/**
- * Generate 12 SVG pie-slice paths for the geometric mandala.
- * Each slice is a 30-degree wedge.
- */
-function generateWedgePath(index: number, innerR: number, outerR: number, cx: number, cy: number): string {
-  const startAngle = (index * 30 - 90) * (Math.PI / 180);
-  const endAngle = ((index + 1) * 30 - 90) * (Math.PI / 180);
-
-  const x1 = cx + outerR * Math.cos(startAngle);
-  const y1 = cy + outerR * Math.sin(startAngle);
-  const x2 = cx + outerR * Math.cos(endAngle);
-  const y2 = cy + outerR * Math.sin(endAngle);
-  const x3 = cx + innerR * Math.cos(endAngle);
-  const y3 = cy + innerR * Math.sin(endAngle);
-  const x4 = cx + innerR * Math.cos(startAngle);
-  const y4 = cy + innerR * Math.sin(startAngle);
-
-  return `M ${x1} ${y1} A ${outerR} ${outerR} 0 0 1 ${x2} ${y2} L ${x3} ${y3} A ${innerR} ${innerR} 0 0 0 ${x4} ${y4} Z`;
-}
 
 interface BirthPosterCardProps {
   data: BirthPosterData;
@@ -72,14 +136,6 @@ export default function BirthPosterCard({ data, format, locale }: BirthPosterCar
   const dims = FORMAT_DIMS[format] || FORMAT_DIMS.story;
   const isCompact = format === 'og' || format === 'square';
   const isOg = format === 'og';
-
-  // Scale factor relative to story format
-  const scale = dims.w / 1080;
-  const mandalaSize = isOg ? 180 : isCompact ? 260 : 340;
-  const cx = mandalaSize / 2;
-  const cy = mandalaSize / 2;
-  const outerR = mandalaSize / 2 - 4;
-  const innerR = outerR * 0.45;
 
   const elementLabel = ELEMENT_LABELS[data.elementDist.dominant] || 'BALANCED';
   const archLabel = locale === 'hi' ? data.elementDist.archetype.hi : data.elementDist.archetype.en;
@@ -113,25 +169,9 @@ export default function BirthPosterCard({ data, format, locale }: BirthPosterCar
           borderRadius: 24,
         }}
       >
-        {/* Left: mandala */}
+        {/* Left: mini North Indian chart */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginRight: 40, flexShrink: 0 }}>
-          <svg width={mandalaSize} height={mandalaSize} viewBox={`0 0 ${mandalaSize} ${mandalaSize}`}>
-            {data.houseLordElements.map((elIdx, i) => {
-              const bright = data.occupiedHouses[i];
-              const color = bright ? ELEMENT_COLORS[elIdx] : ELEMENT_COLORS_DIM[elIdx];
-              return (
-                <path
-                  key={i}
-                  d={generateWedgePath(i, innerR, outerR, cx, cy)}
-                  fill={color}
-                  opacity={bright ? 0.9 : 0.4}
-                  stroke="#0a0e27"
-                  strokeWidth={1.5}
-                />
-              );
-            })}
-            <circle cx={cx} cy={cy} r={4} fill="#d4a853" />
-          </svg>
+          <MiniNorthChart houses={data.chartHouses} size={150} />
         </div>
 
         {/* Right: content */}
@@ -235,37 +275,17 @@ export default function BirthPosterCard({ data, format, locale }: BirthPosterCar
         {data.place}
       </div>
 
-      {/* Geometric Mandala */}
+      {/* North Indian Diamond Chart */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: isCompact ? 20 : 40,
       }}>
-        <svg width={mandalaSize} height={mandalaSize} viewBox={`0 0 ${mandalaSize} ${mandalaSize}`}>
-          {/* Outer decorative ring */}
-          <circle cx={cx} cy={cy} r={outerR + 2} fill="none" stroke="rgba(212, 168, 83, 0.15)" strokeWidth={1} />
-          {/* 12 house wedges */}
-          {data.houseLordElements.map((elIdx, i) => {
-            const bright = data.occupiedHouses[i];
-            const color = bright ? ELEMENT_COLORS[elIdx] : ELEMENT_COLORS_DIM[elIdx];
-            return (
-              <path
-                key={i}
-                d={generateWedgePath(i, innerR, outerR, cx, cy)}
-                fill={color}
-                opacity={bright ? 0.9 : 0.35}
-                stroke="#0a0e27"
-                strokeWidth={2}
-              />
-            );
-          })}
-          {/* Inner decorative ring */}
-          <circle cx={cx} cy={cy} r={innerR - 2} fill="none" stroke="rgba(212, 168, 83, 0.12)" strokeWidth={1} />
-          {/* Lagna dot at center */}
-          <circle cx={cx} cy={cy} r={5} fill="#d4a853" />
-          <circle cx={cx} cy={cy} r={2} fill="#f0d48a" />
-        </svg>
+        <MiniNorthChart
+          houses={data.chartHouses}
+          size={isCompact ? 200 : 300}
+        />
       </div>
 
       {/* Rising, Moon, Sun signs */}

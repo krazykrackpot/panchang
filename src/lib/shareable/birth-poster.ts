@@ -31,6 +31,10 @@ export interface BirthPosterData {
   houseLordElements: number[];
   /** Which houses contain at least one planet (1-indexed, stored as 0-indexed booleans) */
   occupiedHouses: boolean[];
+  /** 12 arrays of planet IDs per house (0-indexed houses), for mini chart rendering */
+  chartHouses: number[][];
+  /** Ascendant sign (1-based rashi ID) */
+  ascendantSign: number;
 }
 
 /* ── Element mapping ── */
@@ -206,5 +210,7 @@ export function assembleBirthPosterData(
     standoutYoga: getStandoutYoga(kundali, locale),
     houseLordElements: computeHouseLordElements(kundali),
     occupiedHouses: computeOccupiedHouses(kundali),
+    chartHouses: kundali.chart.houses,
+    ascendantSign: kundali.chart.ascendantSign,
   };
 }

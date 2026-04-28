@@ -3,15 +3,33 @@
 import { tl } from '@/lib/utils/trilingual';
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Loader2, Bot, User } from 'lucide-react';
+import { Send, Loader2, Bot, User, Clock, Star } from 'lucide-react';
 import { authedFetch } from '@/lib/api/authed-fetch';
+import { useLocationStore } from '@/stores/location-store';
 import type { KundaliData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
+interface MuhurtaWindowData {
+  date: string;
+  startTime: string;
+  endTime: string;
+  score: number;
+  proof: {
+    tithi: { name: string; quality: string };
+    nakshatra: { name: string; quality: string };
+    yoga: { name: string; quality: string };
+    lagna: { sign: string; quality: string };
+    hora: { planet: string; match: boolean };
+    specialYogas: string[];
+    dashaHarmony?: string;
+  };
+}
+
 interface ChatMessage {
   role: 'user' | 'assistant';
   content: string;
+  muhurtaWindows?: MuhurtaWindowData[];
 }
 
 interface ChartChatTabProps {
@@ -27,7 +45,7 @@ const SUGGESTED_QUESTIONS = {
     'What does my current dasha period mean for me?',
     'Are there any yogas in my chart?',
     'What remedies would help strengthen my chart?',
-    'How is my financial outlook?',
+    'When should I buy a house?',
   ],
   hi: [
     'मेरे करियर के सबसे मजबूत संकेत क्या हैं?',
@@ -35,7 +53,7 @@ const SUGGESTED_QUESTIONS = {
     'वर्तमान दशा काल का मेरे लिए क्या अर्थ है?',
     'मेरी कुण्डली में कौन से योग हैं?',
     'कौन से उपाय मेरी कुण्डली को मजबूत करेंगे?',
-    'मेरी आर्थिक स्थिति कैसी रहेगी?',
+    'मुझे घर कब खरीदना चाहिए?',
   ],
 };
 
@@ -45,6 +63,7 @@ export default function ChartChatTab({ kundali, locale, headingFont }: ChartChat
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { lat, lng } = useLocationStore();
   const isHi = isDevanagariLocale(locale);
   const suggestions = SUGGESTED_QUESTIONS[tl({ en: 'en', hi: 'hi', sa: 'hi' }, locale) as keyof typeof SUGGESTED_QUESTIONS];
 
@@ -69,6 +88,8 @@ export default function ChartChatTab({ kundali, locale, headingFont }: ChartChat
           kundali,
           history: newMessages.slice(-10),
           locale,
+          lat,
+          lng,
         }),
       });
 
@@ -78,7 +99,11 @@ export default function ChartChatTab({ kundali, locale, headingFont }: ChartChat
       }
 
       const data = await res.json();
-      setMessages([...newMessages, { role: 'assistant', content: data.response }]);
+      setMessages([...newMessages, {
+        role: 'assistant',
+        content: data.response,
+        muhurtaWindows: data.muhurtaWindows,
+      }]);
     } catch (err) {
       setError(tl({ en: 'Error getting response. Please try again.', hi: 'उत्तर प्राप्त करने में त्रुटि। पुनः प्रयास करें।', sa: 'उत्तर प्राप्त करने में त्रुटि। पुनः प्रयास करें।' }, locale));
     } finally {
@@ -121,12 +146,54 @@ export default function ChartChatTab({ kundali, locale, headingFont }: ChartChat
                 <Bot className="w-4 h-4 text-gold-primary" />
               </div>
             )}
-            <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
-              msg.role === 'user'
-                ? 'bg-gold-primary/15 text-gold-light border border-gold-primary/20 rounded-br-md'
-                : 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 text-text-primary rounded-bl-md'
-            }`} style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-              {msg.content}
+            <div className="max-w-[80%] flex flex-col">
+              <div className={`rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                msg.role === 'user'
+                  ? 'bg-gold-primary/15 text-gold-light border border-gold-primary/20 rounded-br-md'
+                  : 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 text-text-primary rounded-bl-md'
+              }`} style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {msg.content}
+              </div>
+
+              {/* Muhurta windows card — rendered below the assistant text */}
+              {msg.muhurtaWindows && msg.muhurtaWindows.length > 0 && (
+                <div className="mt-3 space-y-2">
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5 text-gold-primary" />
+                    <span className="text-xs text-gold-primary font-semibold uppercase tracking-wider">
+                      {tl({ en: 'Recommended Windows', hi: 'अनुशंसित मुहूर्त', sa: 'अनुशंसित मुहूर्तम्' }, locale)}
+                    </span>
+                  </div>
+                  {msg.muhurtaWindows.slice(0, 3).map((w, wi) => (
+                    <div key={`${w.date}-${w.startTime}`}
+                      className="flex items-center gap-3 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-lg p-3">
+                      <div className="w-7 h-7 rounded-full bg-gold-primary/10 flex items-center justify-center shrink-0">
+                        <span className="text-gold-primary text-xs font-bold">{wi + 1}</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-text-primary text-sm font-semibold">
+                          {w.date} &middot; {w.startTime}&ndash;{w.endTime}
+                        </div>
+                        <div className="text-text-secondary text-xs truncate">
+                          {w.proof.tithi.name} &middot; {w.proof.nakshatra.name}
+                          {w.proof.hora.planet ? ` \u00b7 ${w.proof.hora.planet} Hora` : ''}
+                        </div>
+                        {w.proof.specialYogas.length > 0 && (
+                          <div className="flex items-center gap-1 mt-0.5">
+                            <Star className="w-3 h-3 text-gold-primary" />
+                            <span className="text-gold-primary/80 text-xs">{w.proof.specialYogas.join(', ')}</span>
+                          </div>
+                        )}
+                      </div>
+                      <div className={`text-sm font-bold shrink-0 ${
+                        w.score >= 75 ? 'text-green-400' : w.score >= 50 ? 'text-amber-400' : 'text-red-400'
+                      }`}>
+                        {w.score}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
             {msg.role === 'user' && (
               <div className="w-7 h-7 rounded-full bg-bg-tertiary flex items-center justify-center shrink-0 mt-0.5">

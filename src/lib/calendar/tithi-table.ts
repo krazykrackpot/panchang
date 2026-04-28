@@ -17,6 +17,7 @@ import {
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { getHinduMonth, getNextHinduMonth } from '@/lib/constants/festival-details';
 import { TITHIS } from '@/lib/constants/tithis';
+import { CITIES } from '@/lib/constants/cities';
 import type { LocaleText} from '@/types/panchang';
 
 // ─── Types ───
@@ -71,6 +72,60 @@ const MAX_CACHE = 5;
 
 function cacheKey(year: number, lat: number, lon: number, timezone: string): string {
   return `${year}:${lat.toFixed(2)}:${lon.toFixed(2)}:${timezone}`;
+}
+
+// ─── Pre-computed Table Loader ───
+
+/**
+ * Match coordinates to a known city slug (within 0.1° tolerance).
+ * Returns 'utc' for coordinates near (0, 0).
+ */
+function findCitySlugByCoords(lat: number, lon: number): string | null {
+  for (const city of CITIES) {
+    if (Math.abs(city.lat - lat) < 0.1 && Math.abs(city.lng - lon) < 0.1) {
+      return city.slug;
+    }
+  }
+  if (Math.abs(lat) < 0.1 && Math.abs(lon) < 0.1) return 'utc';
+  return null;
+}
+
+/**
+ * Load a pre-computed tithi table from public/data/tithi-tables/{year}/{slug}.json.
+ * Returns null if no pre-computed file exists for these coordinates/year.
+ * Node.js fs — only works server-side (tithi-table.ts is only imported server-side).
+ */
+function loadPrecomputedTable(year: number, lat: number, lon: number): YearlyTithiTable | null {
+  try {
+    // Dynamic require — fs/path are Node.js only. This file is also imported
+    // in client component bundles (via festival-generator.ts), where 'fs' does
+    // not exist. The typeof check ensures the require is never reached in
+    // browser contexts.
+    if (typeof window !== 'undefined') return null;
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const fs = require('fs') as typeof import('fs');
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const path = require('path') as typeof import('path');
+
+    const slug = findCitySlugByCoords(lat, lon);
+    if (!slug) return null;
+    const filePath = path.join(process.cwd(), 'public', 'data', 'tithi-tables', String(year), `${slug}.json`);
+    if (!fs.existsSync(filePath)) return null;
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf-8')) as YearlyTithiTable;
+    // Also populate the in-memory cache so subsequent calls skip disk I/O
+    const key = cacheKey(year, lat, lon, data.timezone);
+    if (!tableCache.has(key)) {
+      if (tableCache.size >= MAX_CACHE) {
+        const firstKey = tableCache.keys().next().value;
+        if (firstKey) tableCache.delete(firstKey);
+      }
+      tableCache.set(key, data);
+    }
+    return data;
+  } catch {
+    // Fallback to live computation on any error — never block panchang
+    return null;
+  }
 }
 
 // ─── Helpers ───
@@ -241,7 +296,11 @@ export function buildYearlyTithiTable(
   lon: number,
   timezone: string,
 ): YearlyTithiTable {
-  // Check cache
+  // 1. Check pre-computed JSON (filesystem) — near-zero CPU
+  const precomputed = loadPrecomputedTable(year, lat, lon);
+  if (precomputed) return precomputed;
+
+  // 2. Check in-memory cache
   const key = cacheKey(year, lat, lon, timezone);
   const cached = tableCache.get(key);
   if (cached) return cached;

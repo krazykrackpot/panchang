@@ -54,6 +54,7 @@ export default function LearnPage() {
       { name: { en: 'Grahas', hi: 'ग्रह', sa: 'ग्रहाः' }, href: '/learn/grahas' },
       { name: { en: 'Rashis', hi: 'राशियाँ', sa: 'राशयः' }, href: '/learn/rashis' },
       { name: { en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्राणि' }, href: '/learn/nakshatras' },
+      { name: { en: 'Nakshatra Pada', hi: 'नक्षत्र पद', sa: 'नक्षत्रपादः' }, href: '/learn/nakshatra-pada' },
       { name: { en: 'Ayanamsha', hi: 'अयनांश', sa: 'अयनांशः' }, href: '/learn/ayanamsha' },
       { name: { en: 'Aspects', hi: 'दृष्टि', sa: 'दृष्टिः' }, href: '/learn/aspects' },
       { name: { en: 'Retrograde', hi: 'वक्री', sa: 'वक्री' }, href: '/learn/retrograde-effects' },

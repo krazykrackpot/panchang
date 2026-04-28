@@ -125,13 +125,16 @@ export default function Footer() {
 
           <div className="flex items-center gap-4 text-xs text-text-secondary">
             <Link href="/about" className="hover:text-gold-light transition-colors">
-              {locale === 'hi' ? 'परिचय' : 'About'}
+              {t({ en: 'About', hi: 'परिचय', ta: 'பற்றி', bn: 'সম্পর্কে' }, locale)}
+            </Link>
+            <Link href="/about#contact" className="hover:text-gold-light transition-colors">
+              {t({ en: 'Contact', hi: 'संपर्क', ta: 'தொடர்பு', bn: 'যোগাযোগ' }, locale)}
             </Link>
             <Link href="/privacy" className="hover:text-gold-light transition-colors">
-              {locale === 'hi' ? 'गोपनीयता' : 'Privacy'}
+              {t({ en: 'Privacy', hi: 'गोपनीयता', ta: 'தனியுரிமை', bn: 'গোপনীয়তা' }, locale)}
             </Link>
             <Link href="/terms" className="hover:text-gold-light transition-colors">
-              {locale === 'hi' ? 'शर्तें' : 'Terms'}
+              {t({ en: 'Terms', hi: 'शर्तें', ta: 'விதிமுறைகள்', bn: 'শর্তাবলী' }, locale)}
             </Link>
           </div>
 

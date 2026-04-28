@@ -1,6 +1,8 @@
 import type { MetadataRoute } from 'next';
-import { getAllCitySlugs } from '@/lib/constants/cities';
-import { getAllPairSlugs, getWesternPairSlugs, WESTERN_SLUGS } from '@/lib/constants/rashi-slugs';
+// getAllCitySlugs removed — only top 15 cities submitted to sitemap now (see SITEMAP_CITY_SLUGS below).
+// All 55 city panchang pages remain functional; we just stop asking Google to crawl
+// the long tail until the domain earns more crawl authority.
+import { getAllPairSlugs } from '@/lib/constants/rashi-slugs';
 import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
@@ -386,17 +388,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // Western-name horoscope aliases (/horoscope/aries etc.) — 301 redirects
-  // Listed in sitemap to accelerate search engine discovery of the redirect chain.
-  for (const western of WESTERN_SLUGS) {
-    addEntries(entries, `/horoscope/${western}`, {
-      changeFrequency: 'daily',
-      priority: 0.5,
-    });
-  }
+  // Western-name horoscope aliases (/horoscope/aries etc.) are 301 redirects.
+  // Removed from sitemap — redirects burn crawl budget without adding indexable content.
+  // Google discovers these via internal links and follows the redirect chain naturally.
 
-  // City panchang pages (/panchang/{city-slug})
-  for (const slug of getAllCitySlugs()) {
+  // City panchang pages — top 15 only (same set as festival SEO cities).
+  // All 55 city pages remain live; we just stop submitting the long tail to sitemap.
+  const SITEMAP_CITY_SLUGS = [
+    'delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad',
+    'pune', 'ahmedabad', 'jaipur', 'lucknow', 'varanasi', 'patna',
+    'bhopal', 'chandigarh', 'new-york',
+  ];
+  for (const slug of SITEMAP_CITY_SLUGS) {
     addEntries(entries, `/panchang/${slug}`, {
       changeFrequency: 'daily',
       priority: 0.8,
@@ -417,14 +420,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // Western-name matching pair aliases (/matching/aries-and-leo etc.) — 301 redirects
-  // Listed in sitemap to accelerate search engine discovery of the redirect chain.
-  for (const westernPair of getWesternPairSlugs()) {
-    addEntries(entries, `/matching/${westernPair}`, {
-      changeFrequency: 'monthly',
-      priority: 0.3,
-    });
-  }
+  // Western-name matching pair aliases (/matching/aries-and-leo etc.) are 301 redirects.
+  // Removed from sitemap — redirects burn crawl budget. Google follows them via internal links.
 
   // Muhurta type landing pages (/muhurta/{type})
   for (const slug of getMuhurtaTypeSlugs()) {
@@ -447,7 +444,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'pune', 'ahmedabad', 'jaipur', 'lucknow', 'varanasi', 'patna',
     'bhopal', 'chandigarh', 'new-york',
   ];
-  const festivalSeoYears = [2025, 2026, 2027, 2028, 2029];
+  // Only current + next year — 2025 is past, 2028/2029 are too far out.
+  // Expand yearly as time passes.
+  const festivalSeoYears = [2026, 2027];
   for (const fSlug of festivalSeoSlugs) {
     for (const fYear of festivalSeoYears) {
       for (const fCity of festivalSeoCities) {
@@ -479,6 +478,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
         changeFrequency: 'monthly',
         priority: 0.6,
       });
+    }
+  }
+
+  // Muhurta × Activity × Month × Year × City programmatic SEO pages
+  // 10 activities × 12 months × 2 years × 10 cities = 2,400 URLs
+  const muhurtaActivitySlugs = [
+    'marriage', 'griha-pravesh', 'mundan', 'property', 'business',
+    'vehicle', 'travel', 'education', 'gold-purchase', 'spiritual',
+  ];
+  const muhurtaMonths = [
+    'january', 'february', 'march', 'april', 'may', 'june',
+    'july', 'august', 'september', 'october', 'november', 'december',
+  ];
+  const muhurtaYears = [2026, 2027];
+  const muhurtaCities = [
+    'delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata',
+    'hyderabad', 'pune', 'ahmedabad', 'jaipur', 'new-york',
+  ];
+  for (const mActivity of muhurtaActivitySlugs) {
+    for (const mYear of muhurtaYears) {
+      for (const mMonth of muhurtaMonths) {
+        for (const mCity of muhurtaCities) {
+          addEntries(entries, `/muhurta/${mActivity}/${mYear}/${mMonth}/${mCity}`, {
+            changeFrequency: 'monthly',
+            priority: 0.6,
+          });
+        }
+      }
     }
   }
 

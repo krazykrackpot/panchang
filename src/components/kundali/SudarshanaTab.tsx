@@ -13,19 +13,48 @@ interface SudarshanaTabProps {
   locale: string;
 }
 
-// Sign abbreviations for the SVG (English only for compactness)
-const SIGN_ABBR: Record<number, string> = {
-  1: 'Ar', 2: 'Ta', 3: 'Ge', 4: 'Ca', 5: 'Le', 6: 'Vi',
-  7: 'Li', 8: 'Sc', 9: 'Sg', 10: 'Cp', 11: 'Aq', 12: 'Pi',
+// Full locale-aware sign names for the SVG
+const SIGN_NAMES: Record<number, Record<string, string>> = {
+  1:  { en: 'Aries',    hi: 'मेष',     ta: 'மேஷம்',    bn: 'মেষ' },
+  2:  { en: 'Taurus',   hi: 'वृषभ',    ta: 'ரிஷபம்',   bn: 'বৃষ' },
+  3:  { en: 'Gemini',   hi: 'मिथुन',   ta: 'மிதுனம்',   bn: 'মিথুন' },
+  4:  { en: 'Cancer',   hi: 'कर्क',    ta: 'கடகம்',    bn: 'কর্কট' },
+  5:  { en: 'Leo',      hi: 'सिंह',    ta: 'சிம்மம்',   bn: 'সিংহ' },
+  6:  { en: 'Virgo',    hi: 'कन्या',   ta: 'கன்னி',    bn: 'কন্যা' },
+  7:  { en: 'Libra',    hi: 'तुला',    ta: 'துலாம்',    bn: 'তুলা' },
+  8:  { en: 'Scorpio',  hi: 'वृश्चिक',  ta: 'விருச்சிகம்', bn: 'বৃশ্চিক' },
+  9:  { en: 'Sagitt.',  hi: 'धनु',     ta: 'தனுசு',    bn: 'ধনু' },
+  10: { en: 'Capri.',   hi: 'मकर',     ta: 'மகரம்',    bn: 'মকর' },
+  11: { en: 'Aquarius', hi: 'कुम्भ',   ta: 'கும்பம்',   bn: 'কুম্ভ' },
+  12: { en: 'Pisces',   hi: 'मीन',     ta: 'மீனம்',    bn: 'মீன' },
 };
 
-// Ring configuration
-const OUTER_R = 195;
-const MID_R = 145;
-const INNER_R = 95;
-const CENTER_R = 45;
+// Planet colors keyed by planet id (0=Sun through 8=Ketu)
+const PLANET_COLORS: Record<number, string> = {
+  0: '#e67e22', 1: '#c0c0c0', 2: '#e74c3c', 3: '#2ecc71',
+  4: '#f1c40f', 5: '#e91e9f', 6: '#95a5a6', 7: '#3498db', 8: '#9b59b6',
+};
 
-const SVG_SIZE = 440;
+// Full locale-aware planet names
+const PLANET_NAMES: Record<number, Record<string, string>> = {
+  0: { en: 'Sun',     hi: 'सूर्य',    ta: 'சூரியன்',  bn: 'সূর্য' },
+  1: { en: 'Moon',    hi: 'चन्द्र',   ta: 'சந்திரன்', bn: 'চন্দ্র' },
+  2: { en: 'Mars',    hi: 'मंगल',    ta: 'செவ்வாய்', bn: 'মঙ্গল' },
+  3: { en: 'Mercury', hi: 'बुध',     ta: 'புதன்',   bn: 'বুধ' },
+  4: { en: 'Jupiter', hi: 'बृहस्पति', ta: 'வியாழன்', bn: 'বৃহস্পতি' },
+  5: { en: 'Venus',   hi: 'शुक्र',   ta: 'சுக்கிரன்', bn: 'শুক্র' },
+  6: { en: 'Saturn',  hi: 'शनि',    ta: 'சனி',     bn: 'শনি' },
+  7: { en: 'Rahu',    hi: 'राहु',    ta: 'ராகு',    bn: 'রাহু' },
+  8: { en: 'Ketu',    hi: 'केतु',    ta: 'கேது',    bn: 'কেতু' },
+};
+
+// Ring configuration — large, bold visualization
+const OUTER_R = 400;
+const MID_R = 300;
+const INNER_R = 200;
+const CENTER_R = 100;
+
+const SVG_SIZE = 900;
 const CX = SVG_SIZE / 2;
 const CY = SVG_SIZE / 2;
 
@@ -364,22 +393,40 @@ function SudarshanaChakra({
     >
       <defs>
         <filter id="glow-gold">
-          <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+          <feGaussianBlur stdDeviation="3" result="coloredBlur" />
           <feMerge>
             <feMergeNode in="coloredBlur" />
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
+        <filter id="pl-glow">
+          <feGaussianBlur stdDeviation="8" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <radialGradient id="sc-bg-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#1a0a3e" stopOpacity={0.6} />
+          <stop offset="60%" stopColor="#0a0e27" stopOpacity={0.3} />
+          <stop offset="100%" stopColor="#0a0e27" stopOpacity={0} />
+        </radialGradient>
       </defs>
 
-      {/* Background */}
-      <circle cx={CX} cy={CY} r={OUTER_R + 10} fill="rgba(10, 14, 39, 0.3)" />
+      {/* Background radial glow */}
+      <circle cx={CX} cy={CY} r={OUTER_R + 40} fill="url(#sc-bg-glow)" />
 
-      {/* Ring borders */}
-      <circle cx={CX} cy={CY} r={OUTER_R} fill="none" stroke="rgba(212, 168, 83, 0.3)" strokeWidth={1} />
-      <circle cx={CX} cy={CY} r={MID_R} fill="none" stroke="rgba(236, 240, 241, 0.2)" strokeWidth={1} />
-      <circle cx={CX} cy={CY} r={INNER_R} fill="none" stroke="rgba(230, 126, 34, 0.25)" strokeWidth={1} />
-      <circle cx={CX} cy={CY} r={CENTER_R} fill="none" stroke="rgba(212, 168, 83, 0.15)" strokeWidth={1} />
+      {/* Ring borders — Lagna (outer) */}
+      <circle cx={CX} cy={CY} r={OUTER_R} fill="none" stroke="rgba(212,168,83,0.5)" strokeWidth={3} />
+      <circle cx={CX} cy={CY} r={MID_R} fill="none" stroke="rgba(212,168,83,0.25)" strokeWidth={2} />
+      {/* Ring borders — Chandra (middle) */}
+      <circle cx={CX} cy={CY} r={MID_R} fill="none" stroke="rgba(236,240,241,0.35)" strokeWidth={2.5} />
+      <circle cx={CX} cy={CY} r={INNER_R} fill="none" stroke="rgba(236,240,241,0.2)" strokeWidth={2} />
+      {/* Ring borders — Surya (inner) */}
+      <circle cx={CX} cy={CY} r={INNER_R} fill="none" stroke="rgba(230,126,34,0.4)" strokeWidth={2.5} />
+      <circle cx={CX} cy={CY} r={CENTER_R} fill="none" stroke="rgba(230,126,34,0.25)" strokeWidth={2} />
+      {/* Center fill */}
+      <circle cx={CX} cy={CY} r={CENTER_R} fill="rgba(26,10,62,0.5)" stroke="rgba(212,168,83,0.15)" strokeWidth={1.5} />
 
       {/* Segment divider lines */}
       {Array.from({ length: 12 }, (_, i) => {
@@ -388,6 +435,7 @@ function SudarshanaChakra({
         const y2 = CY + OUTER_R * Math.sin(angle);
         const x1 = CX + CENTER_R * Math.cos(angle);
         const y1 = CY + CENTER_R * Math.sin(angle);
+        const isCardinal = i % 3 === 0;
         return (
           <line
             key={`div-${i}`}
@@ -396,7 +444,7 @@ function SudarshanaChakra({
             x2={x2}
             y2={y2}
             stroke="rgba(212, 168, 83, 0.12)"
-            strokeWidth={0.5}
+            strokeWidth={isCardinal ? 1 : 0.7}
           />
         );
       })}
@@ -411,11 +459,28 @@ function SudarshanaChakra({
       <RingLabels ring={chandraRing} outerR={MID_R} innerR={INNER_R} color="rgba(236, 240, 241, 0.55)" locale={locale} />
       <RingLabels ring={suryaRing} outerR={INNER_R} innerR={CENTER_R} color="rgba(230, 126, 34, 0.6)" locale={locale} />
 
+      {/* Ring labels near top of each band */}
+      <text x={CX} y={CY - OUTER_R + 18} textAnchor="middle" fill="rgba(212,168,83,0.5)" fontSize={10} fontWeight="bold" letterSpacing={3}>LAGNA</text>
+      <text x={CX} y={CY - MID_R + 18} textAnchor="middle" fill="rgba(236,240,241,0.4)" fontSize={10} fontWeight="bold" letterSpacing={3}>CHANDRA</text>
+      <text x={CX} y={CY - INNER_R + 18} textAnchor="middle" fill="rgba(230,126,34,0.4)" fontSize={10} fontWeight="bold" letterSpacing={3}>SURYA</text>
+
+      {/* House numbers at cardinal positions outside outer ring */}
+      {[0, 3, 6, 9].map(i => {
+        const angle = (i * 30 + 15 - 90) * (Math.PI / 180);
+        const r = OUTER_R + 25;
+        return (
+          <text key={`h${i}`} x={CX + r * Math.cos(angle)} y={CY + r * Math.sin(angle) + 4}
+            textAnchor="middle" fill="rgba(212,168,83,0.35)" fontSize={13} fontWeight="bold">
+            H{i + 1}
+          </text>
+        );
+      })}
+
       {/* Center label */}
-      <text x={CX} y={CY - 6} textAnchor="middle" fill="rgba(212, 168, 83, 0.5)" fontSize={9} fontWeight="bold">
+      <text x={CX} y={CY - 12} textAnchor="middle" fill="rgba(212,168,83,0.7)" fontSize={18} fontWeight="bold" letterSpacing={4}>
         SUDARSHANA
       </text>
-      <text x={CX} y={CY + 8} textAnchor="middle" fill="rgba(212, 168, 83, 0.35)" fontSize={7}>
+      <text x={CX} y={CY + 8} textAnchor="middle" fill="rgba(212,168,83,0.4)" fontSize={12} letterSpacing={4}>
         CHAKRA
       </text>
     </svg>
@@ -458,7 +523,7 @@ function HighlightSegment({
   return <path d={d} fill={color} />;
 }
 
-// ─── Ring labels (sign abbreviations + planet glyphs) ───────────────────────
+// ─── Ring labels (full sign names + colored planet dots) ────────────────────
 
 function RingLabels({
   ring,
@@ -480,42 +545,56 @@ function RingLabels({
     <g>
       {ring.segments.map((seg, i) => {
         const midAngle = ((i + 0.5) * 30 - 90) * (Math.PI / 180);
-        const labelR = midR + 2; // slightly outward for sign name
-        const planetR = midR - 8; // slightly inward for planet glyphs
+        const labelR = midR + (outerR - innerR) * 0.22; // sign name slightly outward
+        const planetR = midR - (outerR - innerR) * 0.15; // planets in mid-band
         const x = CX + labelR * Math.cos(midAngle);
         const y = CY + labelR * Math.sin(midAngle);
-        const px = CX + planetR * Math.cos(midAngle);
-        const py = CY + planetR * Math.sin(midAngle);
         const active = isActive(i);
+
+        const signName = SIGN_NAMES[seg.signId]?.[locale] || SIGN_NAMES[seg.signId]?.en || '?';
 
         return (
           <g key={`${ring.label}-${i}`}>
-            {/* Sign abbreviation */}
+            {/* Full sign name */}
             <text
               x={x}
               y={y}
               textAnchor="middle"
               dominantBaseline="central"
               fill={active ? '#f0d48a' : color}
-              fontSize={active ? 9 : 7.5}
-              fontWeight={active ? 'bold' : 'normal'}
+              fontSize={active ? 15 : 13}
+              fontWeight={active ? 'bold' : '600'}
               filter={active ? 'url(#glow-gold)' : undefined}
+              opacity={active ? 1 : 0.65}
             >
-              {SIGN_ABBR[seg.signId] ?? '?'}
+              {signName}
             </text>
-            {/* Planet glyphs */}
-            {seg.planets.length > 0 && (
-              <text
-                x={px}
-                y={py + (outerR - innerR > 60 ? 0 : 2)}
-                textAnchor="middle"
-                dominantBaseline="central"
-                fill={active ? '#e6e2d8' : 'rgba(230, 226, 216, 0.4)'}
-                fontSize={6}
-              >
-                {seg.planets.map(p => p.abbr).join(' ')}
-              </text>
-            )}
+            {/* Colored planet dots + names */}
+            {seg.planets.map((p, pi) => {
+              const planetColor = PLANET_COLORS[p.id] || '#f0d48a';
+              const name = PLANET_NAMES[p.id]?.[locale] || PLANET_NAMES[p.id]?.en || p.abbr;
+              const offsetAngle = midAngle + (pi - (seg.planets.length - 1) / 2) * 0.15;
+              const dx = CX + planetR * Math.cos(offsetAngle);
+              const dy = CY + planetR * Math.sin(offsetAngle);
+              const dotSize = (p.id === 0 || p.id === 1) ? 10 : 8;
+
+              return (
+                <g key={`${ring.label}-p-${p.id}`}>
+                  {/* Glow halo */}
+                  <circle cx={dx} cy={dy} r={dotSize * 2} fill={planetColor} opacity={0.12} filter="url(#pl-glow)" />
+                  {/* Main dot */}
+                  <circle cx={dx} cy={dy} r={dotSize} fill={planetColor} opacity={0.9} />
+                  {/* Inner bright core for Sun/Moon */}
+                  {(p.id === 0 || p.id === 1) && (
+                    <circle cx={dx} cy={dy} r={dotSize * 0.45} fill="#fff" opacity={0.4} />
+                  )}
+                  {/* Full name label below */}
+                  <text x={dx} y={dy + dotSize + 14} textAnchor="middle" fill={planetColor} fontSize={13} fontWeight="bold">
+                    {name}
+                  </text>
+                </g>
+              );
+            })}
           </g>
         );
       })}

@@ -212,7 +212,7 @@ function EclipsesSVG() {
 /* 6. Celestial Events — Dramatic starburst with concentric explosion rings */
 function CelestialEventsSVG() {
   return (
-    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+    <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
       <defs>
         <radialGradient id="ce1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#38bdf8" stopOpacity="0.4" /><stop offset="100%" stopColor="#38bdf8" stopOpacity="0" /></radialGradient>
         <linearGradient id="ce1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
@@ -248,7 +248,7 @@ function CelestialEventsSVG() {
 /* 7. Muhurat Calendar — Bold 12-segment auspicious wheel with glowing sectors */
 function MuhuratCalendarSVG() {
   return (
-    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+    <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
       <defs>
         <radialGradient id="mc1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#d4a853" stopOpacity="0.35" /><stop offset="100%" stopColor="#d4a853" stopOpacity="0" /></radialGradient>
         <linearGradient id="mc1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
@@ -289,7 +289,7 @@ function MuhuratCalendarSVG() {
 /* 8. Regional — Bold compass rose with directional spokes and region dots */
 function RegionalSVG() {
   return (
-    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+    <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
       <defs>
         <radialGradient id="rg1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#34d399" stopOpacity="0.35" /><stop offset="100%" stopColor="#34d399" stopOpacity="0" /></radialGradient>
         <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>

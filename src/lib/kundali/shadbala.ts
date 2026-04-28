@@ -1,6 +1,12 @@
 import { normalizeDeg, lahiriAyanamsha } from '@/lib/ephem/astronomical';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
-import { MOOLATRIKONA } from '@/lib/constants/dignities';
+import {
+  MOOLATRIKONA,
+  EXALTATION_SIGNS,
+  DEBILITATION_SIGNS,
+  OWN_SIGNS,
+  SIGN_LORDS_ARRAY,
+} from '@/lib/constants/dignities';
 
 // ---------------------------------------------------------------------------
 // Input types (local — not imported)
@@ -167,22 +173,12 @@ function ucchaBala(p: PlanetInput): number {
 // Each varga contributes dignity points per BPHS:
 //   Uccha/Moolatrikona=45, Own=30, Friend=15, Neutral=7.5, Enemy=3.75, Neecha=1.875
 
-const SIGN_LORDS_SB: number[] = [2, 5, 3, 1, 0, 3, 5, 2, 4, 6, 6, 4]; // 0=Aries lord
-
-const EXALTATION_SIGN_SB: Record<number, number> = {
-  0: 1, 1: 2, 2: 10, 3: 6, 4: 4, 5: 12, 6: 7,
-};
-
-const DEBILITATION_SIGN_SB: Record<number, number> = {
-  0: 7, 1: 8, 2: 4, 3: 12, 4: 10, 5: 6, 6: 1,
-};
-
-// MOOLATRIKONA_SIGN and MOOLATRIKONA ranges imported from @/lib/constants/dignities
-// (Lesson Q — single source of truth for Jyotish constants)
-
-const OWN_SIGNS_SB: Record<number, number[]> = {
-  0: [5], 1: [4], 2: [1, 8], 3: [3, 6], 4: [9, 12], 5: [2, 7], 6: [10, 11],
-};
+// Dignity constants imported from @/lib/constants/dignities (Lesson Q — single source of truth)
+// Aliases for backward compatibility with _SB suffixed references below
+const SIGN_LORDS_SB = SIGN_LORDS_ARRAY;
+const EXALTATION_SIGN_SB = EXALTATION_SIGNS;
+const DEBILITATION_SIGN_SB = DEBILITATION_SIGNS;
+const OWN_SIGNS_SB = OWN_SIGNS;
 
 // Natural friendships (BPHS standard)
 const NAT_FRIENDS_SB: Record<number, number[]> = {

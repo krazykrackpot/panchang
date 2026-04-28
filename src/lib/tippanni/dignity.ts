@@ -35,49 +35,31 @@ export interface MoolatrikonaInfo {
 
 // Planet IDs: 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter, 5=Venus, 6=Saturn
 
-/** Exaltation signs and exact degrees (BPHS Ch.3) */
-export const EXALTATION_SIGNS: Record<number, DignityInfo> = {
-  0: { sign: 1, degree: 10 },   // Sun exalted in Aries at 10deg
-  1: { sign: 2, degree: 3 },    // Moon exalted in Taurus at 3deg
-  2: { sign: 10, degree: 28 },  // Mars exalted in Capricorn at 28deg
-  3: { sign: 6, degree: 15 },   // Mercury exalted in Virgo at 15deg
-  4: { sign: 4, degree: 5 },    // Jupiter exalted in Cancer at 5deg
-  5: { sign: 12, degree: 27 },  // Venus exalted in Pisces at 27deg
-  6: { sign: 7, degree: 20 },   // Saturn exalted in Libra at 20deg
-};
+// Canonical dignity constants — single source of truth (Lesson Q)
+import {
+  EXALTATION_SIGNS as CANONICAL_EXALTATION,
+  EXALTATION_DEGREES,
+  DEBILITATION_SIGNS as CANONICAL_DEBILITATION,
+  OWN_SIGNS,
+  MOOLATRIKONA,
+  SIGN_LORDS,
+} from '@/lib/constants/dignities';
 
-/** Debilitation signs (exactly opposite to exaltation) */
-export const DEBILITATION_SIGNS: Record<number, DignityInfo> = {
-  0: { sign: 7, degree: 10 },   // Sun debilitated in Libra at 10deg
-  1: { sign: 8, degree: 3 },    // Moon debilitated in Scorpio at 3deg
-  2: { sign: 4, degree: 28 },   // Mars debilitated in Cancer at 28deg
-  3: { sign: 12, degree: 15 },  // Mercury debilitated in Pisces at 15deg
-  4: { sign: 10, degree: 5 },   // Jupiter debilitated in Capricorn at 5deg
-  5: { sign: 6, degree: 27 },   // Venus debilitated in Virgo at 27deg
-  6: { sign: 1, degree: 20 },   // Saturn debilitated in Aries at 20deg
-};
+/** Exaltation signs with exact degrees — derived from canonical dignities.ts */
+export const EXALTATION_SIGNS: Record<number, DignityInfo> = Object.fromEntries(
+  Object.entries(CANONICAL_EXALTATION)
+    .filter(([id]) => Number(id) <= 6)
+    .map(([id, sign]) => [Number(id), { sign, degree: EXALTATION_DEGREES[Number(id)] ?? 0 }])
+);
 
-/** Own signs for each planet (1-based sign indices) */
-export const OWN_SIGNS: Record<number, number[]> = {
-  0: [5],        // Sun: Leo
-  1: [4],        // Moon: Cancer
-  2: [1, 8],     // Mars: Aries, Scorpio
-  3: [3, 6],     // Mercury: Gemini, Virgo
-  4: [9, 12],    // Jupiter: Sagittarius, Pisces
-  5: [2, 7],     // Venus: Taurus, Libra
-  6: [10, 11],   // Saturn: Capricorn, Aquarius
-};
+/** Debilitation signs with exact degrees (opposite of exaltation) — derived from canonical dignities.ts */
+export const DEBILITATION_SIGNS: Record<number, DignityInfo> = Object.fromEntries(
+  Object.entries(CANONICAL_DEBILITATION)
+    .filter(([id]) => Number(id) <= 6)
+    .map(([id, sign]) => [Number(id), { sign, degree: EXALTATION_DEGREES[Number(id)] ?? 0 }])
+);
 
-/** Moolatrikona signs and degree ranges (BPHS Ch.4 — canonical values) */
-export const MOOLATRIKONA: Record<number, MoolatrikonaInfo> = {
-  0: { sign: 5, startDeg: 0, endDeg: 20 },    // Sun: Leo 0-20°
-  1: { sign: 2, startDeg: 4, endDeg: 20 },     // Moon: Taurus 4-20° (NOT 3-30)
-  2: { sign: 1, startDeg: 0, endDeg: 12 },     // Mars: Aries 0-12°
-  3: { sign: 6, startDeg: 16, endDeg: 20 },    // Mercury: Virgo 16-20°
-  4: { sign: 9, startDeg: 0, endDeg: 10 },     // Jupiter: Sagittarius 0-10°
-  5: { sign: 7, startDeg: 0, endDeg: 5 },      // Venus: Libra 0-5° (NOT 0-15)
-  6: { sign: 11, startDeg: 0, endDeg: 20 },    // Saturn: Aquarius 0-20°
-};
+export { OWN_SIGNS, MOOLATRIKONA };
 
 /** Natural friendship table (BPHS Ch.3, Brihat Jataka)
  *  Each planet has natural friends, neutrals, and enemies */
@@ -128,11 +110,8 @@ export function getPlanetDignity(
   if (own && own.includes(signIndex)) return 'own';
 
   // Determine through natural friendship with sign lord
-  const signLords: Record<number, number> = {
-    1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3,
-    7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
-  };
-  const signLord = signLords[signIndex];
+  // SIGN_LORDS imported from @/lib/constants/dignities (Lesson Q — single source of truth)
+  const signLord = SIGN_LORDS[signIndex];
   if (signLord === undefined) return 'neutral';
 
   const friendship = NATURAL_FRIENDSHIP[planetId];

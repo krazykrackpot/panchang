@@ -4,6 +4,12 @@
  */
 
 import type { GrahaPosition, HouseData, YogaDetection, GrahaId } from './types';
+import { EXALTATION_SIGNS, OWN_SIGNS } from '@/lib/constants/dignities';
+
+// Map string-based GrahaId to numeric planet ID for canonical constant lookups
+const GRAHA_ID_TO_NUM: Record<string, number> = {
+  sun: 0, moon: 1, mars: 2, mercury: 3, jupiter: 4, venus: 5, saturn: 6, rahu: 7, ketu: 8,
+};
 
 const KENDRA_HOUSES = [1, 4, 7, 10];
 const TRIKONA_HOUSES = [1, 5, 9];
@@ -52,20 +58,8 @@ export function detectYogas(
 
   // --- Pancha Mahapurusha Yogas ---
   // These occur when Mars, Mercury, Jupiter, Venus, or Saturn are in their own sign or exalted, and in a Kendra
-  const ownSigns: Record<string, number[]> = {
-    mars: [0, 7],        // Aries, Scorpio
-    mercury: [2, 5],     // Gemini, Virgo
-    jupiter: [8, 11],    // Sagittarius, Pisces
-    venus: [1, 6],       // Taurus, Libra
-    saturn: [9, 10],     // Capricorn, Aquarius
-  };
-  const exaltedSigns: Record<string, number> = {
-    mars: 9,       // Capricorn
-    mercury: 5,    // Virgo
-    jupiter: 3,    // Cancer
-    venus: 11,     // Pisces
-    saturn: 6,     // Libra
-  };
+  // Dignity constants from canonical @/lib/constants/dignities (Lesson Q — single source of truth)
+  // Note: canonical uses 1-based signs; this file uses 0-based signIndex, so we convert with +1
   const mahapurushaNames: Record<string, string> = {
     mars: 'Ruchaka',
     mercury: 'Bhadra',
@@ -83,8 +77,10 @@ export function detectYogas(
 
   for (const planet of [mars, mercury, jupiter, venus, saturn]) {
     const id = planet.id as string;
-    const isOwn = ownSigns[id]?.includes(planet.signIndex);
-    const isExalted = exaltedSigns[id] === planet.signIndex;
+    const numId = GRAHA_ID_TO_NUM[id] ?? -1;
+    const sign1 = planet.signIndex + 1; // convert 0-based signIndex to 1-based for canonical constants
+    const isOwn = (OWN_SIGNS[numId] || []).includes(sign1);
+    const isExalted = EXALTATION_SIGNS[numId] === sign1;
     if ((isOwn || isExalted) && isInHouses(planet.house, KENDRA_HOUSES)) {
       yogas.push({
         name: `${mahapurushaNames[id]} Yoga`,

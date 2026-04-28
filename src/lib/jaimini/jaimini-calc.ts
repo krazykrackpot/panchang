@@ -9,7 +9,7 @@ import type { LocaleText } from '@/types/panchang';
  */
 
 import { normalizeDeg } from '@/lib/ephem/astronomical';
-import { EXALTATION_SIGNS } from '@/lib/constants/dignities';
+import { EXALTATION_SIGNS, SIGN_LORDS } from '@/lib/constants/dignities';
 import type { PlanetPosition } from '@/types/kundali';
 
 export interface CharaKaraka {
@@ -90,11 +90,8 @@ const PLANET_NAMES: Record<number, LocaleText> = {
   8: { en: 'Ketu', hi: 'केतु', sa: 'केतुः' },
 };
 
-// Sign lord mapping (1-12)
-const SIGN_LORD: Record<number, number> = {
-  1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3,
-  7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
-};
+// Sign lord mapping — canonical source: @/lib/constants/dignities (Lesson Q)
+const SIGN_LORD = SIGN_LORDS;
 
 /**
  * Calculate Chara Karakas — planets sorted by degree within sign (highest = AK)

@@ -10,6 +10,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { PUSHKAR_BHAGA, PUSHKAR_NAVAMSHA_SET } from '@/lib/constants/pushkar-bhaga';
+import { EXALTATION_SIGNS as EXALTATION, DEBILITATION_SIGNS as DEBILITATION, OWN_SIGNS } from '@/lib/constants/dignities';
 import type { KundaliData, BirthData, PlanetPosition, HouseCusp, ChartData, DashaEntry, ShadBala, DivisionalChart, AshtakavargaData, GrahaDetail, UpagrahaPosition } from '@/types/kundali';
 import { resolveTimezone } from '@/lib/utils/timezone';
 import { calculateJaimini } from '@/lib/jaimini/jaimini-calc';
@@ -87,13 +88,8 @@ function getHouse(planetDeg: number, cusps: number[]): number {
 }
 
 /**
- * Check planet dignity states
+ * Check planet dignity states — imported from canonical @/lib/constants/dignities
  */
-const EXALTATION: Record<number, number> = { 0: 1, 1: 2, 2: 10, 3: 6, 4: 4, 5: 12, 6: 7 };
-const DEBILITATION: Record<number, number> = { 0: 7, 1: 8, 2: 4, 3: 12, 4: 10, 5: 6, 6: 1 };
-const OWN_SIGNS: Record<number, number[]> = {
-  0: [5], 1: [4], 2: [1, 8], 3: [3, 6], 4: [9, 12], 5: [2, 7], 6: [10, 11],
-};
 
 /**
  * Vimshottari Dasha calculation

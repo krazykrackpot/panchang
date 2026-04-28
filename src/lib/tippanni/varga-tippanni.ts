@@ -11,6 +11,7 @@ import { generateDashaPrognosis } from './dasha-prognosis';
 import type { DeepVargaResult } from './varga-tippanni-types-v2';
 import { buildDeepVargaAnalysis } from './varga-deep-analysis';
 import { buildVargaNarrative } from './varga-narrative';
+import { getSignLord } from '@/lib/constants/dignities';
 
 type Bi = LocaleText;
 

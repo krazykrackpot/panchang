@@ -18,14 +18,8 @@ export function triLocale(t: LocaleText, locale: Locale): string {
   return tl(t, locale);
 }
 
-// Sign lords: 1-based sign index -> planet ID (0-based)
-// 1=Aries(Mars), 2=Taurus(Venus), 3=Gemini(Mercury), 4=Cancer(Moon),
-// 5=Leo(Sun), 6=Virgo(Mercury), 7=Libra(Venus), 8=Scorpio(Mars),
-// 9=Sagittarius(Jupiter), 10=Capricorn(Saturn), 11=Aquarius(Saturn), 12=Pisces(Jupiter)
-const SIGN_LORDS: Record<number, number> = {
-  1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3,
-  7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
-};
+// Sign lords — canonical source: @/lib/constants/dignities
+import { SIGN_LORDS } from '@/lib/constants/dignities';
 
 /** Get the ruling planet ID for a sign (1-based sign index) */
 export function getSignLord(signNumber: number): number {

@@ -36,26 +36,13 @@ import { CHART_DOMAIN_MAP as DOMAIN_MAP } from './varga-tippanni-types-v2';
 // Constants
 // ---------------------------------------------------------------------------
 
-const SIGN_LORD: Record<number, number> = {
-  1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3,
-  7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
-};
-
-const EXALTATION: Record<number, number> = {
-  0: 1, 1: 2, 2: 10, 3: 6, 4: 4, 5: 12, 6: 7,
-};
-
-const DEBILITATION: Record<number, number> = {
-  0: 7, 1: 8, 2: 4, 3: 12, 4: 10, 5: 6, 6: 1,
-};
-
-const OWN_SIGNS: Record<number, number[]> = {
-  0: [5], 1: [4], 2: [1, 8], 3: [3, 6], 4: [9, 12], 5: [2, 7], 6: [10, 11],
-};
-
-const MOOLATRIKONA: Record<number, number> = {
-  0: 5, 1: 2, 2: 1, 3: 6, 4: 9, 5: 7, 6: 11,
-};
+import {
+  SIGN_LORDS as SIGN_LORD,
+  EXALTATION_SIGNS as EXALTATION,
+  DEBILITATION_SIGNS as DEBILITATION,
+  OWN_SIGNS,
+  MOOLATRIKONA_SIGN as MOOLATRIKONA,
+} from '@/lib/constants/dignities';
 
 const FRIENDS: Record<number, Set<number>> = {
   0: new Set([1, 2, 4]),

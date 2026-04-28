@@ -9,6 +9,7 @@ import type { LocaleText } from '@/types/panchang';
  */
 
 import { normalizeDeg } from '@/lib/ephem/astronomical';
+import { EXALTATION_SIGNS } from '@/lib/constants/dignities';
 import type { PlanetPosition } from '@/types/kundali';
 
 export interface CharaKaraka {
@@ -373,7 +374,7 @@ export function calculateJaiminiRajayogas(
   }
 
   // 2. Exalted planet in Karakamsha (Swamsha) — career specialty
-  const EXALTATION: Record<number, number> = { 0:1, 1:2, 2:10, 3:6, 4:4, 5:12, 6:7 };
+  // Uses EXALTATION_SIGNS from @/lib/constants/dignities
   const EXALT_CAREER: Record<number, LocaleText> = {
     0: { en: 'government service, authority, administration', hi: 'सरकारी सेवा, अधिकार, प्रशासन', sa: 'सरकारी सेवा, अधिकार, प्रशासन', mai: 'सरकारी सेवा, अधिकार, प्रशासन', mr: 'सरकारी सेवा, अधिकार, प्रशासन', ta: 'அரசுப் பணி, அதிகாரம், நிர்வாகம்', te: 'ప్రభుత్వ సేవ, అధికారం, పరిపాలన', bn: 'সরকারি চাকরি, কর্তৃত্ব, প্রশাসন', kn: 'ಸರ್ಕಾರಿ ಸೇವೆ, ಅಧಿಕಾರ, ಆಡಳಿತ', gu: 'સરકારી સેવા, અધિકાર, વહીવટ' },
     1: { en: 'agriculture, food, water management, psychology', hi: 'कृषि, खाद्य, जल प्रबन्धन, मनोविज्ञान', sa: 'कृषि, खाद्य, जल प्रबन्धन, मनोविज्ञान', mai: 'कृषि, खाद्य, जल प्रबन्धन, मनोविज्ञान', mr: 'कृषि, खाद्य, जल प्रबन्धन, मनोविज्ञान', ta: 'விவசாயம், உணவு, நீர் மேலாண்மை, உளவியல்', te: 'వ్యవసాయం, ఆహారం, జల నిర్వహణ, మనోవిజ్ఞానం', bn: 'কৃষি, খাদ্য, জল ব্যবস্থাপনা, মনোবিজ্ঞান', kn: 'ಕೃಷಿ, ಆಹಾರ, ಜಲ ನಿರ್ವಹಣೆ, ಮನೋವಿಜ್ಞಾನ', gu: 'કૃષિ, ખાદ્ય, જળ વ્યવસ્થાપન, મનોવિજ્ઞાન' },
@@ -388,7 +389,7 @@ export function calculateJaiminiRajayogas(
     const ps = pSign(p.planet.id);
     if (!ps) continue;
     const posFromKm = fromKarakamsha(km, ps);
-    const isExalted = p.isExalted || EXALTATION[p.planet.id] === ps;
+    const isExalted = p.isExalted || EXALTATION_SIGNS[p.planet.id] === ps;
     if (isExalted && (posFromKm === 1 || posFromKm === 5 || posFromKm === 9)) {
       const career = EXALT_CAREER[p.planet.id];
       yogas.push({

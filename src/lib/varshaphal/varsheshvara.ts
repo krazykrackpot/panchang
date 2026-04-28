@@ -5,6 +5,7 @@
 
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
+import { OWN_SIGNS } from '@/lib/constants/dignities';
 import type { PlanetPosition } from '@/types/kundali';
 import type { VarsheshvaraInfo } from '@/types/varshaphal';
 import type { LocaleText,} from '@/types/panchang';
@@ -63,17 +64,7 @@ const VARSHESHVARA_DESCRIPTIONS: Record<number, LocaleText> = {
   },
 };
 
-// Sign ownership map: planet id → signs owned (1-based, 1-12)
-// Used for Parivartana tiebreaker only.
-const OWN_SIGNS: Record<number, number[]> = {
-  0: [5],          // Sun owns Leo (5)
-  1: [4],          // Moon owns Cancer (4)
-  2: [1, 8],       // Mars owns Aries (1) & Scorpio (8)
-  3: [3, 6],       // Mercury owns Gemini (3) & Virgo (6)
-  4: [9, 12],      // Jupiter owns Sagittarius (9) & Pisces (12)
-  5: [2, 7],       // Venus owns Taurus (2) & Libra (7)
-  6: [10, 11],     // Saturn owns Capricorn (10) & Aquarius (11)
-};
+// Sign ownership — imported from @/lib/constants/dignities (see import block above)
 
 /**
  * Returns true if planetA is in a sign owned by planetB AND

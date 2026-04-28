@@ -465,6 +465,26 @@ These shipped to production and affected real users. 6 rounds of auditing were n
 - Jupiter retrograde stations ~40 days late, Saturn ~13 days late with Meeus simplified series. Not a code bug, but users see wrong retrograde dates.
 - Rule: When Meeus fallback is active (no Swiss Ephemeris), add a warning to `KundaliData.warnings[]`. Surface this to users. Never claim accuracy without testing against Swiss Ephemeris.
 
+## NEVER Duplicate Logic or Constants (Hard Rule)
+
+Before writing ANY constant table, computation function, or detection logic:
+1. **GREP FIRST**: `grep -rn "CONSTANT_NAME" src/lib/` — if it exists ANYWHERE, import it. Do NOT create a local copy.
+2. **Canonical constant files** (ALWAYS import from these, NEVER redefine):
+   - Dignities (exaltation, debilitation, moolatrikona, sign lords): `src/lib/constants/dignities.ts`
+   - Planet data (names, ids, symbols): `src/lib/constants/grahas.ts`
+   - Nakshatra data: `src/lib/constants/nakshatras.ts`
+   - Rashi data: `src/lib/constants/rashis.ts`
+   - Inauspicious period orders (Rahu, Yama, Gulika): `src/lib/muhurta/inauspicious-periods.ts`
+3. **Computation functions** — use the authoritative engine, never re-implement:
+   - Tithi/Yoga/Karana: `src/lib/ephem/astronomical.ts`
+   - Doshas (Manglik, Kaal Sarpa, Pitru): `src/lib/kundali/tippanni-engine.ts` → `generateTippanni()`
+   - Rahu Kaal: `src/lib/ephem/astronomical.ts` → `calculateRahuKaal()`
+   - Hora: `src/lib/hora/hora-calculator.ts` → `calculateHoras()`
+4. **If you need a constant that doesn't exist**: create it in the appropriate `src/lib/constants/` file and export it. Never inline it in a feature file.
+5. **Known tech debt**: see `docs/tech-debt/duplicate-code-audit.md` for tracked violations being cleaned up incrementally.
+
+This rule exists because we had 12+ copies of the EXALTATION table, 40+ copies of PLANET_NAMES, and duplicate dosha detection that produced different answers for the same chart. Every duplicate is a future bug.
+
 ## Proactive Bug Prevention Checklist
 
 Run this checklist BEFORE shipping any change to computation code:

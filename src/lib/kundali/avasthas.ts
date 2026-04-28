@@ -18,8 +18,12 @@ export interface PlanetAvasthas {
   shayanadi: { state: string; name: Tri; activity: string }; // Activity
 }
 
-// ─── Sign lordship ──────────────────────────────────────────────────────────
-const SIGN_LORD: Record<number, number> = { 1:2,2:5,3:3,4:1,5:0,6:3,7:5,8:2,9:4,10:6,11:6,12:4 };
+// ─── Sign lordship — canonical source: @/lib/constants/dignities ────────────
+import {
+  SIGN_LORDS as SIGN_LORD,
+  EXALTATION_SIGNS as EXALTATION,
+  OWN_SIGNS as OWN,
+} from '@/lib/constants/dignities';
 const FRIENDS: Record<number, Set<number>> = {
   0: new Set([1,2,4]), 1: new Set([0,3]), 2: new Set([0,1,4]),
   3: new Set([0,5]), 4: new Set([0,1,2]), 5: new Set([3,6]), 6: new Set([3,5]),
@@ -28,8 +32,6 @@ const ENEMIES: Record<number, Set<number>> = {
   0: new Set([5,6]), 1: new Set([]), 2: new Set([3]),
   3: new Set([1]), 4: new Set([3,5]), 5: new Set([0,1]), 6: new Set([0,1,2]),
 };
-const EXALTATION: Record<number, number> = { 0:1,1:2,2:10,3:6,4:4,5:12,6:7 };
-const OWN: Record<number, number[]> = { 0:[5],1:[4],2:[1,8],3:[3,6],4:[9,12],5:[2,7],6:[10,11] };
 
 // ─── 1. BALADI AVASTHA (Age-Based) — BPHS Ch.44 ─────────────────────────────
 // Each sign divided into 5 sectors of 6° each.

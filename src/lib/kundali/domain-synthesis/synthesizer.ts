@@ -43,27 +43,12 @@ import { detectCrossDomainLinks, type CrossDomainInput } from './cross-domain';
 import { computeCurrentTransits, type TransitEntry } from './transit-activation';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
+import {
+  SIGN_LORDS as SIGN_LORD,
+  EXALTATION_SIGNS as EXALTATION_SIGN,
+  DEBILITATION_SIGNS as DEBILITATION_SIGN,
+} from '@/lib/constants/dignities';
 import type { DignityLevel } from '@/lib/tippanni/varga-tippanni-types-v2';
-
-// ---------------------------------------------------------------------------
-// Sign → Lord mapping (standard Vedic rulership)
-// ---------------------------------------------------------------------------
-
-/** Sign number (1-12) → planet ID of the lord. */
-const SIGN_LORD: Record<number, number> = {
-  1:  2, // Aries    → Mars
-  2:  5, // Taurus   → Venus
-  3:  3, // Gemini   → Mercury
-  4:  1, // Cancer   → Moon
-  5:  0, // Leo      → Sun
-  6:  3, // Virgo    → Mercury
-  7:  5, // Libra    → Venus
-  8:  2, // Scorpio  → Mars
-  9:  4, // Sagittarius → Jupiter
-  10: 6, // Capricorn   → Saturn
-  11: 6, // Aquarius    → Saturn
-  12: 4, // Pisces      → Jupiter
-};
 
 // ---------------------------------------------------------------------------
 // Natural benefic / malefic classification
@@ -79,34 +64,7 @@ function isBenefic(pid: number): boolean {
   return NATURAL_BENEFICS.has(pid);
 }
 
-// ---------------------------------------------------------------------------
-// Exaltation / debilitation mapping for dignity assessment
-// ---------------------------------------------------------------------------
-
-/** Planet ID → sign of exaltation (1-based). */
-const EXALTATION_SIGN: Record<number, number> = {
-  0: 1,  // Sun exalted in Aries
-  1: 2,  // Moon in Taurus
-  2: 10, // Mars in Capricorn
-  3: 6,  // Mercury in Virgo
-  4: 4,  // Jupiter in Cancer
-  5: 12, // Venus in Pisces
-  6: 7,  // Saturn in Libra
-  7: 3,  // Rahu in Gemini (traditional)
-  8: 9,  // Ketu in Sagittarius
-};
-
-const DEBILITATION_SIGN: Record<number, number> = {
-  0: 7,  // Sun debilitated in Libra
-  1: 8,  // Moon in Scorpio
-  2: 4,  // Mars in Cancer
-  3: 12, // Mercury in Pisces
-  4: 10, // Jupiter in Capricorn
-  5: 6,  // Venus in Virgo
-  6: 1,  // Saturn in Aries
-  7: 9,  // Rahu in Sagittarius
-  8: 3,  // Ketu in Gemini
-};
+// Exaltation / debilitation imported from @/lib/constants/dignities (see import block above)
 
 // ---------------------------------------------------------------------------
 // Natural friendship (simplified)

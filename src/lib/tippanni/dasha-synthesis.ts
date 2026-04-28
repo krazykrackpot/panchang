@@ -32,10 +32,7 @@ const NAME_TO_ID: Record<string, number> = {
   Venus: 5, Saturn: 6, Rahu: 7, Ketu: 8,
 };
 
-const SIGN_LORDS: Record<number, number> = {
-  1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3,
-  7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
-};
+import { SIGN_LORDS } from '@/lib/constants/dignities';
 
 const HOUSE_THEMES: Record<number, LocaleText> = {
   1:  { en: 'Self, personality, health', hi: 'स्वयं, व्यक्तित्व, स्वास्थ्य', sa: 'स्वयं, व्यक्तित्व, स्वास्थ्य', mai: 'स्वयं, व्यक्तित्व, स्वास्थ्य', mr: 'स्वयं, व्यक्तित्व, स्वास्थ्य', ta: 'சுயம், ஆளுமை, உடல்நலம்', te: 'ఆత్మ, వ్యక్తిత్వం, ఆరోగ్యం', bn: 'আত্মা, ব্যক্তিত্ব, স্বাস্থ্য', kn: 'ಆತ್ಮ, ವ್ಯಕ್ತಿತ್ವ, ಆರೋಗ್ಯ', gu: 'સ્વયં, વ્યક્તિત્વ, સ્વાસ્થ્ય' },

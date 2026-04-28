@@ -143,32 +143,8 @@ export const PLANET_NAMES_EN: Record<number, string> = {
   4: 'Jupiter', 5: 'Venus', 6: 'Saturn', 7: 'Rahu', 8: 'Ketu',
 };
 
-// ─── Sign lord (Rashi 1-based) ────────────────────────────────────────────────
-// Duplicate-free canonical — defined once here, imported by financial engines.
-// Canonical BPHS source. Rahu/Ketu have no classical rulership.
-export const SIGN_LORD_FINANCIAL: Record<number, number> = {
-  1: 2,   // Aries → Mars
-  2: 5,   // Taurus → Venus
-  3: 3,   // Gemini → Mercury
-  4: 1,   // Cancer → Moon
-  5: 0,   // Leo → Sun
-  6: 3,   // Virgo → Mercury
-  7: 5,   // Libra → Venus
-  8: 2,   // Scorpio → Mars
-  9: 4,   // Sagittarius → Jupiter
-  10: 6,  // Capricorn → Saturn
-  11: 6,  // Aquarius → Saturn
-  12: 4,  // Pisces → Jupiter
-};
-
-// ─── Planet exaltation signs (1-based) ──────────────────────────────────────
-// Canonical BPHS Ch.3
-export const EXALTATION_SIGN: Record<number, number> = {
-  0: 1,   // Sun exalted in Aries
-  1: 2,   // Moon exalted in Taurus
-  2: 10,  // Mars exalted in Capricorn
-  3: 6,   // Mercury exalted in Virgo
-  4: 4,   // Jupiter exalted in Cancer
-  5: 12,  // Venus exalted in Pisces
-  6: 7,   // Saturn exalted in Libra
-};
+// ─── Sign lord & exaltation — re-exported from canonical dignities ────────────
+// Canonical BPHS source. See @/lib/constants/dignities for the single definition.
+import { SIGN_LORDS, EXALTATION_SIGNS } from '@/lib/constants/dignities';
+export const SIGN_LORD_FINANCIAL = SIGN_LORDS;
+export const EXALTATION_SIGN = EXALTATION_SIGNS;

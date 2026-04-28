@@ -656,46 +656,50 @@ interface RowDef {
   cards: CardDef[];
 }
 
-function buildRows(isDevanagari: boolean): RowDef[] {
+function buildRows(locale: Locale, isDevanagari: boolean): RowDef[] {
+  /** Locale-aware string picker: en / hi (+ other Devanagari) / ta / bn */
+  const loc = (en: string, hi: string, ta?: string, bn?: string): string =>
+    locale === 'ta' ? (ta || en) : locale === 'bn' ? (bn || en) : isDevanagari ? hi : en;
+
   return [
     {
-      label: isDevanagari ? 'दैनिक समय' : 'Daily Timing',
+      label: loc('Daily Timing', 'दैनिक समय', 'தினசரி நேரம்', 'দৈনিক সময়'),
       cards: [
-        { href: '/rahu-kaal', title: 'Rahu Kaal', subtitle: 'Inauspicious Period', description: 'Daily inauspicious window', glowColor: '#ef4444', svg: <RahuKaalSVG /> },
-        { href: '/choghadiya', title: 'Choghadiya', subtitle: '8-fold Day & Night', description: 'Shubh \u00b7 Labh \u00b7 Amrit', glowColor: '#d4a853', svg: <ChoghadiyaSVG /> },
-        { href: '/hora', title: 'Hora', subtitle: 'Planetary Hours', description: '24-hour planetary cycle', glowColor: '#8b5cf6', svg: <HoraSVG /> },
-        { href: '/dinacharya', title: 'Dinacharya', subtitle: 'Ayurvedic Routine', description: 'Dosha \u00b7 Prahara \u00b7 Routine', glowColor: '#22d3ee', svg: <DinacharyaSVG /> },
-        { href: '/vedic-time', title: 'Vedic Time', subtitle: 'Ancient Time Units', description: 'Ghati \u00b7 Pala \u00b7 Vipala', glowColor: '#fb923c', svg: <VedicTimeSVG /> },
+        { href: '/rahu-kaal', title: loc('Rahu Kaal', 'राहु काल', 'ராகு காலம்', 'রাহু কাল'), subtitle: loc('Inauspicious Period', 'अशुभ काल', 'தீய காலம்', 'অশুভ কাল'), description: loc('Daily inauspicious window', 'दैनिक अशुभ अवधि', 'தினசரி தீய நேரம்', 'দৈনিক অশুভ সময়'), glowColor: '#ef4444', svg: <RahuKaalSVG /> },
+        { href: '/choghadiya', title: loc('Choghadiya', 'चौघड़िया', 'சோகடியா', 'চৌঘড়িয়া'), subtitle: loc('8-fold Day & Night', 'आठ-पहर पद्धति', '8 பகுதி பகல் & இரவு', 'আট প্রহর পদ্ধতি'), description: loc('Shubh \u00b7 Labh \u00b7 Amrit', 'शुभ \u00b7 लाभ \u00b7 अमृत', 'சுபம் \u00b7 லாபம் \u00b7 அமிர்தம்', 'শুভ \u00b7 লাভ \u00b7 অমৃত'), glowColor: '#d4a853', svg: <ChoghadiyaSVG /> },
+        { href: '/hora', title: loc('Hora', 'होरा', 'ஹோரை', 'হোরা'), subtitle: loc('Planetary Hours', 'ग्रहीय प्रहर', 'கிரக மணிகள்', 'গ্রহীয় প্রহর'), description: loc('24-hour planetary cycle', '24-होरा ग्रह चक्र', '24 மணி கிரக சுழற்சி', '২৪-ঘণ্টা গ্রহ চক্র'), glowColor: '#8b5cf6', svg: <HoraSVG /> },
+        { href: '/dinacharya', title: loc('Dinacharya', 'दिनचर्या', 'தினசரி', 'দিনচর্যা'), subtitle: loc('Ayurvedic Routine', 'आयुर्वेदिक दिनचर्या', 'ஆயுர்வேத வழக்கம்', 'আয়ুর্বেদিক রুটিন'), description: loc('Dosha \u00b7 Prahara \u00b7 Routine', 'दोष \u00b7 प्रहर \u00b7 दिनचर्या', 'தோஷம் \u00b7 பிரகாரம் \u00b7 வழக்கம்', 'দোষ \u00b7 প্রহর \u00b7 রুটিন'), glowColor: '#22d3ee', svg: <DinacharyaSVG /> },
+        { href: '/vedic-time', title: loc('Vedic Time', 'वैदिक समय', 'வேத காலம்', 'বৈদিক সময়'), subtitle: loc('Ancient Time Units', 'प्राचीन समय इकाई', 'பண்டைய கால அலகுகள்', 'প্রাচীন সময় একক'), description: loc('Ghati \u00b7 Pala \u00b7 Vipala', 'घटी \u00b7 पल \u00b7 विपल', 'கடிகை \u00b7 பலம் \u00b7 விபலம்', 'ঘটি \u00b7 পল \u00b7 বিপল'), glowColor: '#fb923c', svg: <VedicTimeSVG /> },
       ],
     },
     {
-      label: isDevanagari ? 'कुण्डली एवं दोष' : 'Chart & Doshas',
+      label: loc('Chart & Doshas', 'कुण्डली एवं दोष', 'ஜாதகம் & தோஷங்கள்', 'জাতক ও দোষ'),
       cards: [
-        { href: '/sign-calculator', title: 'Rashi Calculator', subtitle: 'Sign \u00b7 Tropical \u00b7 Shift', description: 'Find your Vedic sign', glowColor: '#d4a853', svg: <RashiCalcSVG /> },
-        { href: '/sade-sati', title: 'Sade Sati', subtitle: "Saturn\u2019s 7\u00bd Year Transit", description: 'Saturn over your Moon', glowColor: '#60a5fa', svg: <SadeSatiSVG /> },
-        { href: '/kaal-sarp', title: 'Kaal Sarpa', subtitle: 'Rahu-Ketu Axis Dosha', description: '12 serpent formations', glowColor: '#f43f5e', svg: <KaalSarpaSVG /> },
-        { href: '/mangal-dosha', title: 'Mangal Dosha', subtitle: 'Mars Affliction', description: 'Marriage compatibility check', glowColor: '#f43f5e', svg: <MangalDoshaSVG /> },
-        { href: '/cosmic-blueprint', title: 'Cosmic Blueprint', subtitle: 'Celestial Signature', description: 'Your celestial DNA', glowColor: '#6366f1', svg: <CosmicBlueprintSVG /> },
+        { href: '/sign-calculator', title: loc('Rashi Calculator', 'राशि गणक', 'ராசி கணிப்பான்', 'রাশি গণক'), subtitle: loc('Sign \u00b7 Tropical \u00b7 Shift', 'राशि \u00b7 उष्णकटिबंधीय \u00b7 परिवर्तन', 'ராசி \u00b7 வெப்பமண்டல \u00b7 மாற்றம்', 'রাশি \u00b7 ক্রান্তীয় \u00b7 পরিবর্তন'), description: loc('Find your Vedic sign', 'अपनी वैदिक राशि जानें', 'உங்கள் வேத ராசி அறியுங்கள்', 'আপনার বৈদিক রাশি জানুন'), glowColor: '#d4a853', svg: <RashiCalcSVG /> },
+        { href: '/sade-sati', title: loc('Sade Sati', 'साढ़े साती', 'சாடே சாதி', 'সাড়ে সাতি'), subtitle: loc("Saturn\u2019s 7\u00bd Year Transit", 'शनि का साढ़े सात वर्ष', 'சனியின் 7½ வருட பெயர்ச்சி', 'শনির ৭½ বছর গোচর'), description: loc('Saturn over your Moon', 'शनि आपके चन्द्र पर', 'சனி உங்கள் சந்திரனின் மீது', 'শনি আপনার চন্দ্রের উপর'), glowColor: '#60a5fa', svg: <SadeSatiSVG /> },
+        { href: '/kaal-sarp', title: loc('Kaal Sarpa', 'काल सर्प', 'கால சர்ப்பம்', 'কাল সর্প'), subtitle: loc('Rahu-Ketu Axis Dosha', 'राहु-केतु अक्ष दोष', 'ராகு-கேது அச்சு தோஷம்', 'রাহু-কেতু অক্ষ দোষ'), description: loc('12 serpent formations', '12 सर्प योग', '12 சர்ப்ப அமைப்புகள்', '১২ সর্প যোগ'), glowColor: '#f43f5e', svg: <KaalSarpaSVG /> },
+        { href: '/mangal-dosha', title: loc('Mangal Dosha', 'मांगलिक दोष', 'செவ்வாய் தோஷம்', 'মঙ্গল দোষ'), subtitle: loc('Mars Affliction', 'मंगल पीड़ा', 'செவ்வாய் பாதிப்பு', 'মঙ্গল পীড়া'), description: loc('Marriage compatibility check', 'विवाह अनुकूलता जाँच', 'திருமண பொருத்தம் சரிபார்ப்பு', 'বিবাহ সামঞ্জস্য যাচাই'), glowColor: '#f43f5e', svg: <MangalDoshaSVG /> },
+        { href: '/cosmic-blueprint', title: loc('Cosmic Blueprint', 'ब्रह्माण्डीय रेखाचित्र', 'அண்ட வரைபடம்', 'মহাজাগতিক নকশা'), subtitle: loc('Celestial Signature', 'आकाशीय हस्ताक्षर', 'வான கையொப்பம்', 'আকাশীয় স্বাক্ষর'), description: loc('Your celestial DNA', 'आपका खगोलीय DNA', 'உங்கள் வானியல் DNA', 'আপনার মহাকাশীয় DNA'), glowColor: '#6366f1', svg: <CosmicBlueprintSVG /> },
       ],
     },
     {
-      label: isDevanagari ? 'प्रश्न एवं विशेष' : 'Divination & Specialized',
+      label: loc('Divination & Specialized', 'प्रश्न एवं विशेष', 'குறி & சிறப்பு', 'প্রশ্ন ও বিশেষ'),
       cards: [
-        { href: '/prashna', title: 'Prashna', subtitle: 'Horary + Ashtamangala', description: 'Ask the stars a question', glowColor: '#8b5cf6', svg: <PrashnaSVG /> },
-        { href: '/sarvatobhadra', title: 'Sarvatobhadra', subtitle: '28-Nakshatra Chakra', description: 'Vedic transit analysis', glowColor: '#2dd4bf', svg: <SarvatobhadraSVG /> },
-        { href: '/medical-astrology', title: 'Medical Jyotish', subtitle: 'Health & Planets', description: 'Body \u00b7 Planet \u00b7 Disease links', glowColor: '#ec4899', svg: <MedicalSVG /> },
-        { href: '/financial-astrology', title: 'Financial Jyotish', subtitle: 'Markets & Cycles', description: 'Planetary market cycles', glowColor: '#34d399', svg: <FinancialSVG /> },
-        { href: '/mundane', title: 'Mundane Jyotish', subtitle: 'World Events', description: 'Nations \u00b7 Weather \u00b7 Fate', glowColor: '#fb923c', svg: <MundaneSVG /> },
+        { href: '/prashna', title: loc('Prashna', 'प्रश्न', 'பிரச்னம்', 'প্রশ্ন'), subtitle: loc('Horary + Ashtamangala', 'होरारी + अष्टमंगल', 'ஹோரரி + அஷ்டமங்கலம்', 'হোরারি + অষ্টমঙ্গল'), description: loc('Ask the stars a question', 'तारों से प्रश्न पूछें', 'நட்சத்திரங்களிடம் கேளுங்கள்', 'তারাদের প্রশ্ন করুন'), glowColor: '#8b5cf6', svg: <PrashnaSVG /> },
+        { href: '/sarvatobhadra', title: loc('Sarvatobhadra', 'सर्वतोभद्र', 'சர்வதோபத்ரம்', 'সর্বতোভদ্র'), subtitle: loc('28-Nakshatra Chakra', '28-नक्षत्र चक्र', '28-நட்சத்திர சக்கரம்', '২৮-নক্ষত্র চক্র'), description: loc('Vedic transit analysis', 'वैदिक गोचर विश्लेषण', 'வேத கோசார பகுப்பாய்வு', 'বৈদিক গোচর বিশ্লেষণ'), glowColor: '#2dd4bf', svg: <SarvatobhadraSVG /> },
+        { href: '/medical-astrology', title: loc('Medical Jyotish', 'चिकित्सा ज्योतिष', 'மருத்துவ ஜோதிடம்', 'চিকিৎসা জ্যোতিষ'), subtitle: loc('Health & Planets', 'स्वास्थ्य एवं ग्रह', 'உடல்நலம் & கிரகங்கள்', 'স্বাস্থ্য ও গ্রহ'), description: loc('Body \u00b7 Planet \u00b7 Disease links', 'शरीर \u00b7 ग्रह \u00b7 रोग संबंध', 'உடல் \u00b7 கிரகம் \u00b7 நோய்', 'শরীর \u00b7 গ্রহ \u00b7 রোগ সংযোগ'), glowColor: '#ec4899', svg: <MedicalSVG /> },
+        { href: '/financial-astrology', title: loc('Financial Jyotish', 'वित्तीय ज्योतिष', 'நிதி ஜோதிடம்', 'আর্থিক জ্যোতিষ'), subtitle: loc('Markets & Cycles', 'बाज़ार एवं चक्र', 'சந்தைகள் & சுழற்சிகள்', 'বাজার ও চক্র'), description: loc('Planetary market cycles', 'ग्रहीय बाज़ार चक्र', 'கிரக சந்தை சுழற்சிகள்', 'গ্রহীয় বাজার চক্র'), glowColor: '#34d399', svg: <FinancialSVG /> },
+        { href: '/mundane', title: loc('Mundane Jyotish', 'मुण्डेन ज्योतिष', 'உலக ஜோதிடம்', 'মুণ্ডেন জ্যোতিষ'), subtitle: loc('World Events', 'विश्व घटनाएँ', 'உலக நிகழ்வுகள்', 'বিশ্ব ঘটনা'), description: loc('Nations \u00b7 Weather \u00b7 Fate', 'राष्ट्र \u00b7 मौसम \u00b7 भाग्य', 'நாடுகள் \u00b7 வானிலை \u00b7 விதி', 'রাষ্ট্র \u00b7 আবহাওয়া \u00b7 ভাগ্য'), glowColor: '#fb923c', svg: <MundaneSVG /> },
       ],
     },
     {
-      label: isDevanagari ? 'जीवन एवं आकाश' : 'Life Events & Sky',
+      label: loc('Life Events & Sky', 'जीवन एवं आकाश', 'வாழ்க்கை & வானம்', 'জীবন ও আকাশ'),
       cards: [
-        { href: '/baby-names', title: 'Baby Names', subtitle: 'Nakshatra Syllables', description: 'Names by birth nakshatra', glowColor: '#d4a853', svg: <BabyNamesSVG /> },
-        { href: '/kaal-nirnaya', title: 'Kaal Nirnaya', subtitle: 'Auspicious Timing', description: 'Right time for everything', glowColor: '#8b5cf6', svg: <KaalNirnayaSVG /> },
-        { href: '/nadi-jyotish', title: 'Nadi Jyotish', subtitle: 'Palm-Leaf Traditions', description: 'Ancient leaf inscriptions', glowColor: '#2dd4bf', svg: <NadiSVG /> },
-        { href: '/lunar-calendar', title: 'Lunar Calendar', subtitle: 'Tithi \u00b7 Masa \u00b7 Paksha', description: 'Moon phase panchang', glowColor: '#d4a853', svg: <LunarCalendarSVG /> },
-        { href: '/sky', title: 'Live Sky', subtitle: 'Real-time Positions', description: 'Graha positions now', glowColor: '#38bdf8', svg: <LiveSkySVG /> },
+        { href: '/baby-names', title: loc('Baby Names', 'शिशु नाम', 'குழந்தை பெயர்கள்', 'শিশু নাম'), subtitle: loc('Nakshatra Syllables', 'नक्षत्र अक्षर', 'நட்சத்திர எழுத்துகள்', 'নক্ষত্র অক্ষর'), description: loc('Names by birth nakshatra', 'जन्म नक्षत्र अनुसार नाम', 'பிறப்பு நட்சத்திரப்படி பெயர்கள்', 'জন্ম নক্ষত্র অনুযায়ী নাম'), glowColor: '#d4a853', svg: <BabyNamesSVG /> },
+        { href: '/kaal-nirnaya', title: loc('Kaal Nirnaya', 'काल निर्णय', 'கால நிர்ணயம்', 'কাল নির্ণয়'), subtitle: loc('Auspicious Timing', 'शुभ समय', 'நல்ல நேரம்', 'শুভ সময়'), description: loc('Right time for everything', 'हर कार्य का सही समय', 'எல்லாவற்றிற்கும் சரியான நேரம்', 'সব কাজের সঠিক সময়'), glowColor: '#8b5cf6', svg: <KaalNirnayaSVG /> },
+        { href: '/nadi-jyotish', title: loc('Nadi Jyotish', 'नाडी ज्योतिष', 'நாடி ஜோதிடம்', 'নাড়ী জ্যোতিষ'), subtitle: loc('Palm-Leaf Traditions', 'ताड़पत्र परम्परा', 'ஓலைச்சுவடி மரபு', 'তালপাতা ঐতিহ্য'), description: loc('Ancient leaf inscriptions', 'प्राचीन पत्र लिपि', 'பண்டைய ஓலைச்சுவடிகள்', 'প্রাচীন পত্র লিপি'), glowColor: '#2dd4bf', svg: <NadiSVG /> },
+        { href: '/lunar-calendar', title: loc('Lunar Calendar', 'चान्द्र पंचांग', 'சந்திர நாள்காட்டி', 'চান্দ্র পঞ্জিকা'), subtitle: loc('Tithi \u00b7 Masa \u00b7 Paksha', 'तिथि \u00b7 मास \u00b7 पक्ष', 'திதி \u00b7 மாதம் \u00b7 பக்ஷம்', 'তিথি \u00b7 মাস \u00b7 পক্ষ'), description: loc('Moon phase panchang', 'चन्द्र कला पंचांग', 'நிலவு நிலை பஞ்சாங்கம்', 'চন্দ্র কলা পঞ্চাঙ্গ'), glowColor: '#d4a853', svg: <LunarCalendarSVG /> },
+        { href: '/sky', title: loc('Live Sky', 'आकाश दर्शन', 'வான காட்சி', 'আকাশ দর্শন'), subtitle: loc('Real-time Positions', 'वास्तविक समय स्थिति', 'நேரடி நிலைகள்', 'রিয়েল-টাইম অবস্থান'), description: loc('Graha positions now', 'ग्रह स्थिति अभी', 'கிரக நிலைகள் இப்போது', 'গ্রহ অবস্থান এখন'), glowColor: '#38bdf8', svg: <LiveSkySVG /> },
       ],
     },
   ];
@@ -708,7 +712,7 @@ function buildRows(isDevanagari: boolean): RowDef[] {
 export default function ToolsPage() {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
-  const ROWS = buildRows(isDevanagari);
+  const ROWS = buildRows(locale, isDevanagari);
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -722,12 +726,16 @@ export default function ToolsPage() {
           className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[#f0d48a] via-[#d4a853] to-[#8a6d2b] bg-clip-text text-transparent mb-3"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
-          {isDevanagari ? 'ज्योतिष उपकरण' : 'Jyotish Tools'}
+          {locale === 'ta' ? 'ஜோதிட கருவிகள்' : locale === 'bn' ? 'জ্যোতিষ সরঞ্জাম' : isDevanagari ? 'ज्योतिष उपकरण' : 'Jyotish Tools'}
         </h1>
         <p className="text-text-secondary text-sm">
-          {isDevanagari
-            ? '20 शक्तिशाली वैदिक ज्योतिष गणक — अपना कार्ड चुनें'
-            : '20 powerful Vedic astrology calculators — pick your card'}
+          {locale === 'ta'
+            ? '20 சக்திவாய்ந்த வேத ஜோதிட கணிப்பான்கள் — உங்கள் அட்டையைத் தேர்ந்தெடுங்கள்'
+            : locale === 'bn'
+              ? '20টি শক্তিশালী বৈদিক জ্যোতিষ গণক — আপনার কার্ড বেছে নিন'
+              : isDevanagari
+                ? '20 शक्तिशाली वैदिक ज्योतिष गणक — अपना कार्ड चुनें'
+                : '20 powerful Vedic astrology calculators — pick your card'}
         </p>
       </motion.div>
 

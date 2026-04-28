@@ -20,7 +20,7 @@ const r2 = (n: number) => Math.round(n * 100) / 100;
 /* 1. Puja Vidhi — Ornate brass diya with flame and floating petals */
 function PujaVidhiSVG() {
   return (
-    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+    <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
       <defs>
         <radialGradient id="pv1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#d4a853" stopOpacity="0.3" /><stop offset="100%" stopColor="#d4a853" stopOpacity="0" /></radialGradient>
         <linearGradient id="pv1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
@@ -69,7 +69,7 @@ function PujaVidhiSVG() {
 /* 2. Vrat Calendar — Calendar page with Om and crescent moon */
 function VratCalendarSVG() {
   return (
-    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+    <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
       <defs>
         <radialGradient id="vc1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.3" /><stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" /></radialGradient>
         <linearGradient id="vc1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
@@ -112,7 +112,7 @@ function VratCalendarSVG() {
 /* 3. Sankalpa — Namaskar hands with water drops */
 function SankalpaSVG() {
   return (
-    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+    <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
       <defs>
         <radialGradient id="sk1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#22d3ee" stopOpacity="0.3" /><stop offset="100%" stopColor="#22d3ee" stopOpacity="0" /></radialGradient>
         <linearGradient id="sk1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
@@ -163,7 +163,7 @@ function SankalpaSVG() {
 /* 4. Devotional — Om with radiating sound waves */
 function DevotionalSVG() {
   return (
-    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+    <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
       <defs>
         <radialGradient id="dv1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#fb923c" stopOpacity="0.3" /><stop offset="100%" stopColor="#fb923c" stopOpacity="0" /></radialGradient>
         <linearGradient id="dv1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
@@ -207,7 +207,7 @@ function DevotionalSVG() {
 /* 5. Shraddha — Ritual fire with rising smoke and offering bowl */
 function ShraddhaSVG() {
   return (
-    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+    <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
       <defs>
         <radialGradient id="sh1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#6366f1" stopOpacity="0.3" /><stop offset="100%" stopColor="#6366f1" stopOpacity="0" /></radialGradient>
         <linearGradient id="sh1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
@@ -254,7 +254,7 @@ function ShraddhaSVG() {
 /* 6. Muhurta AI — Circuit pattern with clock center and cosmic sparkles */
 function MuhurtaAiSVG() {
   return (
-    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+    <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
       <defs>
         <radialGradient id="ma1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#34d399" stopOpacity="0.3" /><stop offset="100%" stopColor="#34d399" stopOpacity="0" /></radialGradient>
         <linearGradient id="ma1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>

@@ -209,117 +209,132 @@ function EclipsesSVG() {
   );
 }
 
-/* 6. Celestial Events -- Shooting star/comet with trail */
+/* 6. Celestial Events — Grand conjunction: two planets converging with starburst */
 function CelestialEventsSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
       <defs>
-        <radialGradient id="ce1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#38bdf8" stopOpacity="0.25" /><stop offset="100%" stopColor="#38bdf8" stopOpacity="0" /></radialGradient>
+        <radialGradient id="ce1g" cx="50%" cy="40%" r="55%"><stop offset="0%" stopColor="#38bdf8" stopOpacity="0.35" /><stop offset="100%" stopColor="#38bdf8" stopOpacity="0" /></radialGradient>
         <linearGradient id="ce1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
-        <linearGradient id="ce1t" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#f0d48a" stopOpacity="0" /><stop offset="80%" stopColor="#f0d48a" stopOpacity="0.5" /><stop offset="100%" stopColor="#f0d48a" stopOpacity="0.8" /></linearGradient>
+        <radialGradient id="ce1b" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#f0d48a" stopOpacity="0.5" /><stop offset="100%" stopColor="#d4a853" stopOpacity="0" /></radialGradient>
       </defs>
       <circle cx="32" cy="32" r="28" fill="url(#ce1g)" />
-      {/* Comet tail -- wide fading trail */}
-      <path d="M 6 10 Q 20 14, 38 24" fill="none" stroke="url(#ce1t)" strokeWidth="8" opacity="0.15" strokeLinecap="round" />
-      <path d="M 10 12 Q 22 16, 38 24" fill="none" stroke="url(#ce1t)" strokeWidth="4" opacity="0.25" strokeLinecap="round" />
-      <path d="M 16 14 Q 26 18, 38 24" fill="none" stroke="url(#ce1t)" strokeWidth="2" opacity="0.4" strokeLinecap="round" />
-      {/* Comet head */}
-      <circle cx="40" cy="24" r="6" fill="url(#ce1)" opacity="0.25" stroke="url(#ce1)" strokeWidth="2.5" />
-      <circle cx="40" cy="24" r="3" fill="#f0d48a" opacity="0.5" />
-      <circle cx="40" cy="24" r="1.2" fill="#f0d48a" opacity="0.8" />
-      {/* Glow around head */}
-      <circle cx="40" cy="24" r="10" fill="url(#ce1)" opacity="0.06" />
-      {/* Conjunction — two planets close */}
-      <circle cx="48" cy="44" r="4" fill="url(#ce1)" opacity="0.2" stroke="url(#ce1)" strokeWidth="2" />
-      <circle cx="48" cy="44" r="1.5" fill="#f0d48a" opacity="0.4" />
-      <circle cx="54" cy="40" r="3" fill="url(#ce1)" opacity="0.15" stroke="url(#ce1)" strokeWidth="1.5" />
-      <circle cx="54" cy="40" r="1" fill="#f0d48a" opacity="0.35" />
-      {/* Dotted connection line */}
-      <line x1="50" y1="43" x2="53" y2="41" stroke="url(#ce1)" strokeWidth="1" opacity="0.3" strokeDasharray="1 1" />
-      {/* Trail particles */}
-      <circle cx="14" cy="13" r="1.2" fill="#f0d48a" opacity="0.2" />
-      <circle cx="22" cy="16" r="0.8" fill="#f0d48a" opacity="0.25" />
-      <circle cx="28" cy="19" r="0.6" fill="#f0d48a" opacity="0.3" />
-      {/* Background stars */}
-      <circle cx="8" cy="44" r="0.8" fill="#f0d48a" opacity="0.2" />
-      <circle cx="20" cy="52" r="1" fill="#f0d48a" opacity="0.25" />
-      <circle cx="36" cy="54" r="0.7" fill="#f0d48a" opacity="0.2" />
-      <circle cx="56" cy="16" r="0.9" fill="#f0d48a" opacity="0.2" />
-      <circle cx="16" cy="36" r="0.6" fill="#f0d48a" opacity="0.15" />
+      {/* Starburst — dramatic rays from conjunction point */}
+      {Array.from({ length: 12 }, (_, i) => {
+        const a = (Math.PI * 2 * i) / 12;
+        const len = i % 2 === 0 ? 26 : 18;
+        return <line key={i} x1={r2(32 + 6 * Math.cos(a))} y1={r2(28 + 6 * Math.sin(a))} x2={r2(32 + len * Math.cos(a))} y2={r2(28 + len * Math.sin(a))} stroke="url(#ce1)" strokeWidth={i % 2 === 0 ? '2' : '1'} opacity={i % 2 === 0 ? 0.35 : 0.18} strokeLinecap="round" />;
+      })}
+      {/* Planet 1 — large */}
+      <circle cx="24" cy="26" r="10" fill="url(#ce1)" opacity="0.08" />
+      <circle cx="24" cy="26" r="7" fill="url(#ce1)" opacity="0.15" stroke="url(#ce1)" strokeWidth="2.5" />
+      <circle cx="24" cy="26" r="3.5" fill="url(#ce1)" opacity="0.3" />
+      <circle cx="24" cy="26" r="1.5" fill="#f0d48a" opacity="0.6" />
+      {/* Planet 2 — converging */}
+      <circle cx="40" cy="30" r="8" fill="url(#ce1)" opacity="0.06" />
+      <circle cx="40" cy="30" r="5.5" fill="url(#ce1)" opacity="0.12" stroke="url(#ce1)" strokeWidth="2" />
+      <circle cx="40" cy="30" r="2.5" fill="url(#ce1)" opacity="0.25" />
+      <circle cx="40" cy="30" r="1" fill="#f0d48a" opacity="0.55" />
+      {/* Conjunction glow */}
+      <circle cx="32" cy="28" r="5" fill="url(#ce1b)" />
+      {/* Comet streak */}
+      <path d="M 48 14 Q 40 20 32 28" fill="none" stroke="url(#ce1)" strokeWidth="2.5" opacity="0.45" strokeLinecap="round" />
+      <path d="M 54 10 Q 46 16 38 22" fill="none" stroke="url(#ce1)" strokeWidth="1.5" opacity="0.25" strokeLinecap="round" />
+      {/* Orbital arcs */}
+      <path d="M 8 40 Q 20 48 40 44 Q 56 40 58 30" fill="none" stroke="url(#ce1)" strokeWidth="1.5" opacity="0.2" strokeDasharray="4 3" />
+      <path d="M 6 34 Q 16 20 32 16 Q 50 12 58 22" fill="none" stroke="url(#ce1)" strokeWidth="1" opacity="0.12" strokeDasharray="3 4" />
+      {/* Scattered stars */}
+      <circle cx="8" cy="10" r="1.2" fill="#f0d48a" opacity="0.3" />
+      <circle cx="56" cy="52" r="1" fill="#f0d48a" opacity="0.25" />
+      <circle cx="12" cy="52" r="0.8" fill="#f0d48a" opacity="0.22" />
+      <circle cx="52" cy="42" r="0.9" fill="#f0d48a" opacity="0.2" />
     </svg>
   );
 }
 
-/* 7. Muhurat Calendar -- Clock face with auspicious marks */
+/* 7. Muhurat Calendar — Grand hourglass with cosmic sand and auspicious markings */
 function MuhuratCalendarSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
       <defs>
-        <radialGradient id="mc1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#d4a853" stopOpacity="0.25" /><stop offset="100%" stopColor="#d4a853" stopOpacity="0" /></radialGradient>
+        <radialGradient id="mc1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#d4a853" stopOpacity="0.3" /><stop offset="100%" stopColor="#d4a853" stopOpacity="0" /></radialGradient>
         <linearGradient id="mc1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
       </defs>
       <circle cx="32" cy="32" r="28" fill="url(#mc1g)" />
-      {/* Outer ring */}
-      <circle cx="32" cy="32" r="26" fill="none" stroke="url(#mc1)" strokeWidth="2.5" opacity="0.6" />
-      <circle cx="32" cy="32" r="22" fill="none" stroke="url(#mc1)" strokeWidth="1" opacity="0.25" />
-      <circle cx="32" cy="32" r="22" fill="url(#mc1)" opacity="0.05" />
-      {/* Hour marks */}
-      {Array.from({ length: 12 }, (_, i) => {
-        const a = (Math.PI * 2 * i) / 12 - Math.PI / 2;
-        const isAuspicious = [0, 2, 5, 8, 10].includes(i);
-        return (
-          <g key={i}>
-            <line x1={r2(32 + 22 * Math.cos(a))} y1={r2(32 + 22 * Math.sin(a))} x2={r2(32 + 26 * Math.cos(a))} y2={r2(32 + 26 * Math.sin(a))} stroke="url(#mc1)" strokeWidth={i % 3 === 0 ? '2.5' : '1.5'} strokeLinecap="round" opacity={i % 3 === 0 ? 0.7 : 0.4} />
-            {isAuspicious && (
-              <circle cx={r2(32 + 19 * Math.cos(a))} cy={r2(32 + 19 * Math.sin(a))} r="2" fill="#f0d48a" opacity="0.4" />
-            )}
-          </g>
-        );
-      })}
-      {/* Auspicious arc highlights */}
-      <path d={`M ${r2(32 + 24 * Math.cos(-Math.PI / 2))} ${r2(32 + 24 * Math.sin(-Math.PI / 2))} A 24 24 0 0 1 ${r2(32 + 24 * Math.cos(-Math.PI / 6))} ${r2(32 + 24 * Math.sin(-Math.PI / 6))}`} fill="none" stroke="#f0d48a" strokeWidth="3" opacity="0.15" strokeLinecap="round" />
-      <path d={`M ${r2(32 + 24 * Math.cos(Math.PI / 3))} ${r2(32 + 24 * Math.sin(Math.PI / 3))} A 24 24 0 0 1 ${r2(32 + 24 * Math.cos(2 * Math.PI / 3))} ${r2(32 + 24 * Math.sin(2 * Math.PI / 3))}`} fill="none" stroke="#f0d48a" strokeWidth="3" opacity="0.12" strokeLinecap="round" />
-      {/* Clock hands */}
-      <line x1="32" y1="32" x2="32" y2="12" stroke="url(#mc1)" strokeWidth="2.5" strokeLinecap="round" opacity="0.8" />
-      <line x1="32" y1="32" x2="44" y2="26" stroke="url(#mc1)" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
-      {/* Center jewel */}
-      <circle cx="32" cy="32" r="4" fill="url(#mc1)" opacity="0.2" stroke="url(#mc1)" strokeWidth="2" />
-      <circle cx="32" cy="32" r="1.5" fill="#f0d48a" opacity="0.75" />
+      {/* Hourglass frame — ornate */}
+      <line x1="16" y1="6" x2="48" y2="6" stroke="url(#mc1)" strokeWidth="3" opacity="0.6" strokeLinecap="round" />
+      <line x1="16" y1="58" x2="48" y2="58" stroke="url(#mc1)" strokeWidth="3" opacity="0.6" strokeLinecap="round" />
+      {/* Hourglass body */}
+      <path d="M 18 8 C 18 20 28 28 32 32 C 28 36 18 44 18 56" fill="none" stroke="url(#mc1)" strokeWidth="2.5" opacity="0.55" />
+      <path d="M 46 8 C 46 20 36 28 32 32 C 36 36 46 44 46 56" fill="none" stroke="url(#mc1)" strokeWidth="2.5" opacity="0.55" />
+      {/* Glass fill — top */}
+      <path d="M 20 10 C 20 18 28 26 32 30 L 32 32 C 28 28 22 22 20 10 Z" fill="url(#mc1)" opacity="0.08" />
+      <path d="M 44 10 C 44 18 36 26 32 30 L 32 32 C 36 28 42 22 44 10 Z" fill="url(#mc1)" opacity="0.08" />
+      {/* Glass fill — bottom (sand collected) */}
+      <path d="M 22 50 Q 27 44 32 42 Q 37 44 42 50 Q 38 54 32 54 Q 26 54 22 50 Z" fill="url(#mc1)" opacity="0.15" />
+      {/* Sand stream */}
+      <line x1="32" y1="32" x2="32" y2="42" stroke="#f0d48a" strokeWidth="1.5" opacity="0.4" />
+      {/* Falling sand particles */}
+      {[[30, 35, 0.8], [34, 37, 0.6], [31, 39, 0.7], [33, 34, 0.5], [32, 36, 0.9]].map(([cx, cy, rr], i) => (
+        <circle key={i} cx={cx} cy={cy} r={rr} fill="#f0d48a" opacity={0.25 + i * 0.05} />
+      ))}
+      {/* Auspicious symbols */}
+      <text x="10" y="34" textAnchor="middle" fill="#f0d48a" fontSize="6" opacity="0.35">&#10022;</text>
+      <text x="54" y="34" textAnchor="middle" fill="#f0d48a" fontSize="6" opacity="0.35">&#10022;</text>
+      {/* Frame corner dots */}
+      {[[16, 6], [48, 6], [16, 58], [48, 58]].map(([cx, cy], i) => (
+        <circle key={i} cx={cx} cy={cy} r="2" fill="url(#mc1)" opacity="0.3" />
+      ))}
+      {/* Frame ornaments */}
+      <path d="M 32 4 L 34 6 L 32 8 L 30 6 Z" fill="url(#mc1)" opacity="0.35" />
+      <path d="M 32 56 L 34 58 L 32 60 L 30 58 Z" fill="url(#mc1)" opacity="0.35" />
       {/* Stars */}
-      <circle cx="8" cy="8" r="0.8" fill="#f0d48a" opacity="0.25" />
-      <circle cx="56" cy="56" r="1" fill="#f0d48a" opacity="0.3" />
+      <circle cx="8" cy="14" r="1" fill="#f0d48a" opacity="0.25" />
+      <circle cx="56" cy="14" r="0.8" fill="#f0d48a" opacity="0.22" />
+      <circle cx="8" cy="50" r="1.1" fill="#f0d48a" opacity="0.28" />
+      <circle cx="56" cy="50" r="0.9" fill="#f0d48a" opacity="0.2" />
     </svg>
   );
 }
 
-/* 8. Regional -- Map outline with region markers */
+/* 8. Regional — Globe with lat/long grid and glowing region markers */
 function RegionalSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
       <defs>
-        <radialGradient id="rg1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#34d399" stopOpacity="0.25" /><stop offset="100%" stopColor="#34d399" stopOpacity="0" /></radialGradient>
+        <radialGradient id="rg1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#34d399" stopOpacity="0.3" /><stop offset="100%" stopColor="#34d399" stopOpacity="0" /></radialGradient>
         <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
       </defs>
       <circle cx="32" cy="32" r="28" fill="url(#rg1g)" />
-      {/* India outline — simplified iconic shape */}
-      <path d="M 30 6 C 22 8, 16 14, 14 20 C 12 26, 14 30, 16 34 C 14 36, 12 40, 16 44 C 18 46, 22 48, 26 52 C 28 56, 32 58, 34 56 C 36 54, 40 48, 42 44 C 46 38, 48 32, 46 26 C 44 20, 40 14, 38 10 C 36 8, 32 6, 30 6 Z" fill="url(#rg1)" opacity="0.1" stroke="url(#rg1)" strokeWidth="2.5" />
-      {/* Internal region divisions */}
-      <line x1="20" y1="26" x2="42" y2="24" stroke="url(#rg1)" strokeWidth="1" opacity="0.25" />
-      <line x1="18" y1="36" x2="44" y2="34" stroke="url(#rg1)" strokeWidth="1" opacity="0.25" />
-      <line x1="22" y1="44" x2="40" y2="44" stroke="url(#rg1)" strokeWidth="0.8" opacity="0.2" />
-      <path d="M 30 10 L 28 34 L 34 54" fill="none" stroke="url(#rg1)" strokeWidth="0.8" opacity="0.2" />
-      {/* Region marker dots — pulsing capitals */}
-      {[[28, 18, 2.5], [36, 22, 2], [22, 30, 2.2], [38, 32, 1.8], [26, 40, 2], [34, 42, 2.3], [30, 50, 1.8]].map(([cx, cy, r], i) => (
+      {/* Globe sphere */}
+      <circle cx="32" cy="32" r="24" fill="url(#rg1)" opacity="0.04" stroke="url(#rg1)" strokeWidth="3" />
+      {/* Latitude lines */}
+      <ellipse cx="32" cy="20" rx="22" ry="3" fill="none" stroke="url(#rg1)" strokeWidth="1" opacity="0.2" />
+      <ellipse cx="32" cy="32" rx="24" ry="4" fill="none" stroke="url(#rg1)" strokeWidth="1.5" opacity="0.25" />
+      <ellipse cx="32" cy="44" rx="22" ry="3" fill="none" stroke="url(#rg1)" strokeWidth="1" opacity="0.2" />
+      {/* Longitude curves */}
+      <ellipse cx="32" cy="32" rx="8" ry="24" fill="none" stroke="url(#rg1)" strokeWidth="1" opacity="0.2" />
+      <ellipse cx="32" cy="32" rx="16" ry="24" fill="none" stroke="url(#rg1)" strokeWidth="1" opacity="0.15" />
+      <line x1="32" y1="8" x2="32" y2="56" stroke="url(#rg1)" strokeWidth="1" opacity="0.15" />
+      {/* India landmass — bold triangular shape */}
+      <path d="M 34 22 C 30 24 28 28 26 32 C 24 36 28 42 32 46 C 34 42 38 36 38 30 C 38 26 36 24 34 22 Z" fill="url(#rg1)" opacity="0.2" stroke="url(#rg1)" strokeWidth="2" />
+      {/* Glowing region markers */}
+      {[[30, 26, 2.5, 0.5], [34, 30, 2.2, 0.45], [28, 34, 2, 0.4], [33, 38, 2.3, 0.48], [36, 28, 1.8, 0.38], [30, 42, 2, 0.42], [32, 34, 2.8, 0.55]].map(([cx, cy, rr, op], i) => (
         <g key={i}>
-          <circle cx={cx} cy={cy} r={r as number + 2} fill="url(#rg1)" opacity="0.06" />
-          <circle cx={cx} cy={cy} r={r as number} fill="url(#rg1)" opacity={0.3 + i * 0.04} stroke="url(#rg1)" strokeWidth="1.2" />
-          <circle cx={cx} cy={cy} r={(r as number) * 0.4} fill="#f0d48a" opacity="0.5" />
+          <circle cx={cx} cy={cy} r={(rr as number) + 3} fill="url(#rg1)" opacity="0.05" />
+          <circle cx={cx} cy={cy} r={rr as number} fill="url(#rg1)" opacity={op as number} stroke="url(#rg1)" strokeWidth="1.5" />
+          <circle cx={cx} cy={cy} r={(rr as number) * 0.35} fill="#f0d48a" opacity="0.6" />
         </g>
       ))}
-      {/* Scattered stars */}
-      <circle cx="8" cy="12" r="0.8" fill="#f0d48a" opacity="0.2" />
-      <circle cx="56" cy="10" r="1" fill="#f0d48a" opacity="0.25" />
-      <circle cx="54" cy="54" r="0.7" fill="#f0d48a" opacity="0.2" />
+      {/* Connecting lines */}
+      <line x1="30" y1="26" x2="34" y2="30" stroke="url(#rg1)" strokeWidth="0.8" opacity="0.2" />
+      <line x1="34" y1="30" x2="33" y2="38" stroke="url(#rg1)" strokeWidth="0.8" opacity="0.18" />
+      <line x1="28" y1="34" x2="32" y2="34" stroke="url(#rg1)" strokeWidth="0.8" opacity="0.15" />
+      {/* Stars */}
+      <circle cx="8" cy="10" r="1" fill="#f0d48a" opacity="0.25" />
+      <circle cx="56" cy="12" r="1.2" fill="#f0d48a" opacity="0.28" />
+      <circle cx="10" cy="52" r="0.8" fill="#f0d48a" opacity="0.22" />
+      <circle cx="54" cy="52" r="1" fill="#f0d48a" opacity="0.25" />
     </svg>
   );
 }
@@ -436,86 +451,116 @@ function AmavasyaSVG() {
   );
 }
 
-/* 12. Pradosham -- Trishul (trident) silhouette */
+/* 12. Pradosham — Shiva's cosmic dance (Nataraja) with trishul, crescent, third eye */
 function PradoshamSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
       <defs>
-        <radialGradient id="pd1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#ec4899" stopOpacity="0.25" /><stop offset="100%" stopColor="#ec4899" stopOpacity="0" /></radialGradient>
+        <radialGradient id="pd1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#ec4899" stopOpacity="0.35" /><stop offset="100%" stopColor="#ec4899" stopOpacity="0" /></radialGradient>
         <linearGradient id="pd1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
+        <radialGradient id="pd1f" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#f0d48a" stopOpacity="0.6" /><stop offset="100%" stopColor="#d4a853" stopOpacity="0" /></radialGradient>
       </defs>
       <circle cx="32" cy="32" r="28" fill="url(#pd1g)" />
-      {/* Trishul central shaft */}
-      <line x1="32" y1="14" x2="32" y2="58" stroke="url(#pd1)" strokeWidth="2.5" strokeLinecap="round" opacity="0.7" />
-      {/* Center prong — tallest */}
-      <path d="M 32 6 C 30 10 28 14 32 18 C 36 14 34 10 32 6 Z" fill="url(#pd1)" opacity="0.5" stroke="url(#pd1)" strokeWidth="1.5" />
-      <circle cx="32" cy="12" r="1" fill="#f0d48a" opacity="0.6" />
-      {/* Left prong */}
-      <path d="M 20 12 C 20 16, 24 18, 26 20 C 26 16, 22 14, 20 12 Z" fill="url(#pd1)" opacity="0.4" stroke="url(#pd1)" strokeWidth="1.5" />
-      <path d="M 26 20 C 28 18, 30 16, 32 18" fill="none" stroke="url(#pd1)" strokeWidth="2" opacity="0.5" strokeLinecap="round" />
+      {/* Cosmic fire ring — Nataraja's prabha mandala */}
+      <circle cx="32" cy="32" r="27" fill="none" stroke="url(#pd1)" strokeWidth="3" opacity="0.5" />
+      <circle cx="32" cy="32" r="25" fill="none" stroke="url(#pd1)" strokeWidth="1" opacity="0.2" />
+      {/* Fire tongues around the ring */}
+      {Array.from({ length: 16 }, (_, i) => {
+        const a = (Math.PI * 2 * i) / 16;
+        const inner = 25;
+        const outer = i % 2 === 0 ? 30 : 28;
+        return (
+          <line key={i} x1={r2(32 + inner * Math.cos(a))} y1={r2(32 + inner * Math.sin(a))} x2={r2(32 + outer * Math.cos(a))} y2={r2(32 + outer * Math.sin(a))} stroke="url(#pd1)" strokeWidth={i % 2 === 0 ? '2.5' : '1.5'} strokeLinecap="round" opacity={i % 2 === 0 ? 0.6 : 0.3} />
+        );
+      })}
+      {/* Trishul — bold central weapon */}
+      <line x1="32" y1="8" x2="32" y2="56" stroke="url(#pd1)" strokeWidth="3" opacity="0.7" strokeLinecap="round" />
+      {/* Center prong — large leaf blade */}
+      <path d="M 32 4 Q 28 10 32 18 Q 36 10 32 4 Z" fill="url(#pd1)" opacity="0.6" stroke="url(#pd1)" strokeWidth="1.5" />
+      {/* Left prong — sweeping curve */}
+      <path d="M 18 8 Q 20 14 26 18 Q 28 16 32 18" fill="none" stroke="url(#pd1)" strokeWidth="2.5" opacity="0.55" strokeLinecap="round" />
+      <path d="M 18 8 Q 16 12 20 16" fill="url(#pd1)" opacity="0.4" />
       {/* Right prong */}
-      <path d="M 44 12 C 44 16, 40 18, 38 20 C 38 16, 42 14 44 12 Z" fill="url(#pd1)" opacity="0.4" stroke="url(#pd1)" strokeWidth="1.5" />
-      <path d="M 38 20 C 36 18, 34 16, 32 18" fill="none" stroke="url(#pd1)" strokeWidth="2" opacity="0.5" strokeLinecap="round" />
-      {/* Cross guard */}
-      <line x1="24" y1="22" x2="40" y2="22" stroke="url(#pd1)" strokeWidth="2" opacity="0.4" strokeLinecap="round" />
-      {/* Crescent moon on trishul — Shiva's symbol */}
-      <path d="M 22 28 A 6 6 0 1 1 22 38 A 4 4 0 1 0 22 28" fill="url(#pd1)" opacity="0.2" stroke="url(#pd1)" strokeWidth="1.5" />
-      {/* Twilight glow — horizontal gradient band */}
-      <rect x="4" y="46" width="56" height="8" rx="4" fill="url(#pd1)" opacity="0.06" />
-      <line x1="8" y1="50" x2="56" y2="50" stroke="url(#pd1)" strokeWidth="0.8" opacity="0.15" />
-      {/* Stars — twilight sky */}
-      <circle cx="10" cy="10" r="1" fill="#f0d48a" opacity="0.3" />
-      <circle cx="52" cy="8" r="0.8" fill="#f0d48a" opacity="0.25" />
-      <circle cx="8" cy="28" r="1.2" fill="#f0d48a" opacity="0.25" />
-      <circle cx="54" cy="32" r="0.7" fill="#f0d48a" opacity="0.2" />
-      <circle cx="50" cy="18" r="0.9" fill="#f0d48a" opacity="0.2" />
-      <circle cx="14" cy="18" r="0.6" fill="#f0d48a" opacity="0.2" />
+      <path d="M 46 8 Q 44 14 38 18 Q 36 16 32 18" fill="none" stroke="url(#pd1)" strokeWidth="2.5" opacity="0.55" strokeLinecap="round" />
+      <path d="M 46 8 Q 48 12 44 16" fill="url(#pd1)" opacity="0.4" />
+      {/* Crescent moon — Chandrashekhara */}
+      <path d="M 16 24 A 8 8 0 1 1 16 38 A 5 5 0 1 0 16 24" fill="url(#pd1)" opacity="0.3" stroke="url(#pd1)" strokeWidth="2" />
+      {/* Third eye — blazing */}
+      <ellipse cx="32" cy="26" rx="3" ry="1.5" fill="url(#pd1f)" opacity="0.7" />
+      <ellipse cx="32" cy="26" rx="5" ry="2.5" fill="none" stroke="url(#pd1)" strokeWidth="1.5" opacity="0.35" />
+      {/* Damaru drum */}
+      <path d="M 44 28 L 48 24 L 52 28 L 48 32 Z" fill="url(#pd1)" opacity="0.25" stroke="url(#pd1)" strokeWidth="1.5" />
+      <line x1="48" y1="22" x2="48" y2="34" stroke="url(#pd1)" strokeWidth="1" opacity="0.2" />
+      {/* Twilight glow band — Pradosham kala */}
+      <rect x="4" y="48" width="56" height="10" rx="5" fill="url(#pd1)" opacity="0.08" />
+      <line x1="6" y1="53" x2="58" y2="53" stroke="url(#pd1)" strokeWidth="1.5" opacity="0.15" />
+      {/* Cosmic sparkles */}
+      <circle cx="8" cy="10" r="1.2" fill="#f0d48a" opacity="0.35" />
+      <circle cx="56" cy="12" r="1" fill="#f0d48a" opacity="0.3" />
+      <circle cx="10" cy="44" r="0.8" fill="#f0d48a" opacity="0.25" />
+      <circle cx="54" cy="42" r="1.1" fill="#f0d48a" opacity="0.28" />
+      <circle cx="24" cy="46" r="0.7" fill="#f0d48a" opacity="0.2" />
+      <circle cx="42" cy="48" r="0.9" fill="#f0d48a" opacity="0.22" />
     </svg>
   );
 }
 
-/* 13. Chaturthi -- Modak (sweet dumpling) with Ganesha symbolism */
+/* 13. Chaturthi — Bold Ganesha with ornate crown, large ears, curved trunk, modak, divine aura */
 function ChaturthiSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
       <defs>
-        <radialGradient id="ct1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#fb923c" stopOpacity="0.25" /><stop offset="100%" stopColor="#fb923c" stopOpacity="0" /></radialGradient>
+        <radialGradient id="ct1g" cx="50%" cy="45%" r="55%"><stop offset="0%" stopColor="#fb923c" stopOpacity="0.35" /><stop offset="100%" stopColor="#fb923c" stopOpacity="0" /></radialGradient>
         <linearGradient id="ct1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
+        <radialGradient id="ct1h" cx="50%" cy="40%" r="40%"><stop offset="0%" stopColor="#f0d48a" stopOpacity="0.15" /><stop offset="100%" stopColor="#f0d48a" stopOpacity="0" /></radialGradient>
       </defs>
       <circle cx="32" cy="32" r="28" fill="url(#ct1g)" />
-      {/* Elephant head silhouette — iconic Ganesha profile */}
-      {/* Head — round */}
-      <circle cx="32" cy="24" r="14" fill="url(#ct1)" opacity="0.12" stroke="url(#ct1)" strokeWidth="2.5" />
-      {/* Left ear */}
-      <ellipse cx="16" cy="22" rx="6" ry="10" fill="url(#ct1)" opacity="0.1" stroke="url(#ct1)" strokeWidth="2" />
-      <ellipse cx="16" cy="22" rx="3" ry="6" fill="url(#ct1)" opacity="0.08" />
-      {/* Right ear */}
-      <ellipse cx="48" cy="22" rx="6" ry="10" fill="url(#ct1)" opacity="0.1" stroke="url(#ct1)" strokeWidth="2" />
-      <ellipse cx="48" cy="22" rx="3" ry="6" fill="url(#ct1)" opacity="0.08" />
-      {/* Trunk — curving left */}
-      <path d="M 32 32 C 32 38, 28 44, 22 48 C 20 50, 18 50, 18 48" fill="none" stroke="url(#ct1)" strokeWidth="3" opacity="0.5" strokeLinecap="round" />
-      <path d="M 32 32 C 32 36, 30 40, 26 44" fill="none" stroke="url(#ct1)" strokeWidth="1.5" opacity="0.25" strokeLinecap="round" />
-      {/* Eyes */}
-      <circle cx="26" cy="22" r="2" fill="url(#ct1)" opacity="0.4" />
-      <circle cx="26" cy="22" r="0.8" fill="#f0d48a" opacity="0.7" />
-      <circle cx="38" cy="22" r="2" fill="url(#ct1)" opacity="0.4" />
-      <circle cx="38" cy="22" r="0.8" fill="#f0d48a" opacity="0.7" />
-      {/* Crown/tilak */}
-      <circle cx="32" cy="12" r="3" fill="url(#ct1)" opacity="0.25" stroke="url(#ct1)" strokeWidth="1.5" />
-      <circle cx="32" cy="12" r="1.2" fill="#f0d48a" opacity="0.5" />
-      {/* Tusks */}
-      <path d="M 28 30 L 26 36" stroke="url(#ct1)" strokeWidth="2" opacity="0.4" strokeLinecap="round" />
-      <path d="M 36 30 L 38 36" stroke="url(#ct1)" strokeWidth="2" opacity="0.4" strokeLinecap="round" />
-      {/* Modak in trunk */}
-      <circle cx="18" cy="48" r="3" fill="url(#ct1)" opacity="0.3" stroke="url(#ct1)" strokeWidth="1.5" />
-      <circle cx="18" cy="48" r="1.2" fill="#f0d48a" opacity="0.4" />
-      {/* Halo */}
-      <circle cx="32" cy="24" r="20" fill="none" stroke="url(#ct1)" strokeWidth="0.8" opacity="0.12" strokeDasharray="3 3" />
-      {/* Stars */}
-      <circle cx="8" cy="50" r="0.8" fill="#f0d48a" opacity="0.2" />
-      <circle cx="56" cy="48" r="1" fill="#f0d48a" opacity="0.25" />
-      <circle cx="54" cy="8" r="1.2" fill="#f0d48a" opacity="0.3" />
-      <circle cx="8" cy="8" r="0.7" fill="#f0d48a" opacity="0.2" />
+      {/* Divine aura — concentric rings */}
+      <circle cx="32" cy="28" r="26" fill="none" stroke="url(#ct1)" strokeWidth="1.5" opacity="0.15" />
+      <circle cx="32" cy="28" r="22" fill="url(#ct1h)" />
+      {/* Large fan ears — bold, dramatic */}
+      <ellipse cx="10" cy="24" rx="8" ry="14" fill="url(#ct1)" opacity="0.12" stroke="url(#ct1)" strokeWidth="2.5" />
+      <ellipse cx="10" cy="24" rx="5" ry="9" fill="url(#ct1)" opacity="0.08" stroke="url(#ct1)" strokeWidth="1" />
+      <ellipse cx="54" cy="24" rx="8" ry="14" fill="url(#ct1)" opacity="0.12" stroke="url(#ct1)" strokeWidth="2.5" />
+      <ellipse cx="54" cy="24" rx="5" ry="9" fill="url(#ct1)" opacity="0.08" stroke="url(#ct1)" strokeWidth="1" />
+      {/* Head — large, round, commanding */}
+      <circle cx="32" cy="24" r="16" fill="url(#ct1)" opacity="0.1" stroke="url(#ct1)" strokeWidth="3" />
+      <circle cx="32" cy="24" r="12" fill="url(#ct1)" opacity="0.06" />
+      {/* Ornate crown — mukut with 5 points */}
+      <path d="M 22 12 L 24 4 L 28 10 L 32 2 L 36 10 L 40 4 L 42 12" fill="url(#ct1)" opacity="0.35" stroke="url(#ct1)" strokeWidth="1.5" strokeLinejoin="round" />
+      <line x1="22" y1="12" x2="42" y2="12" stroke="url(#ct1)" strokeWidth="2" opacity="0.5" />
+      {/* Crown jewels */}
+      <circle cx="32" cy="6" r="1.5" fill="#f0d48a" opacity="0.7" />
+      <circle cx="25" cy="8" r="1" fill="#f0d48a" opacity="0.5" />
+      <circle cx="39" cy="8" r="1" fill="#f0d48a" opacity="0.5" />
+      {/* Tilak — vertical mark */}
+      <line x1="32" y1="14" x2="32" y2="18" stroke="#f0d48a" strokeWidth="2" opacity="0.5" strokeLinecap="round" />
+      <circle cx="32" cy="16" r="1" fill="#f0d48a" opacity="0.6" />
+      {/* Eyes — bright, wise */}
+      <ellipse cx="26" cy="22" rx="2.5" ry="2" fill="url(#ct1)" opacity="0.45" />
+      <circle cx="26" cy="22" r="1" fill="#f0d48a" opacity="0.8" />
+      <ellipse cx="38" cy="22" rx="2.5" ry="2" fill="url(#ct1)" opacity="0.45" />
+      <circle cx="38" cy="22" r="1" fill="#f0d48a" opacity="0.8" />
+      {/* Trunk — thick, curving leftward with grace */}
+      <path d="M 32 30 C 32 36, 30 42, 26 46 C 22 50, 18 52, 16 50" fill="none" stroke="url(#ct1)" strokeWidth="4" opacity="0.55" strokeLinecap="round" />
+      <path d="M 32 30 C 32 34, 30 38, 28 42" fill="none" stroke="url(#ct1)" strokeWidth="2" opacity="0.25" strokeLinecap="round" />
+      {/* Tusks — bold white crescents */}
+      <path d="M 27 30 Q 24 36 26 40" stroke="url(#ct1)" strokeWidth="2.5" opacity="0.5" strokeLinecap="round" fill="none" />
+      <path d="M 37 30 Q 40 36 38 40" stroke="url(#ct1)" strokeWidth="2.5" opacity="0.5" strokeLinecap="round" fill="none" />
+      {/* Modak — large, prominent in trunk's curl */}
+      <circle cx="16" cy="50" r="4" fill="url(#ct1)" opacity="0.3" stroke="url(#ct1)" strokeWidth="2" />
+      <circle cx="16" cy="50" r="1.8" fill="#f0d48a" opacity="0.5" />
+      {/* Lines on modak */}
+      <path d="M 13 48 Q 16 52 19 48" fill="none" stroke="url(#ct1)" strokeWidth="0.8" opacity="0.3" />
+      {/* Om symbol — small, floating */}
+      <text x="50" y="50" textAnchor="middle" fill="#f0d48a" fontSize="8" opacity="0.35" style={{ fontFamily: 'serif' }}>ॐ</text>
+      {/* Cosmic sparkles */}
+      <circle cx="6" cy="52" r="1" fill="#f0d48a" opacity="0.3" />
+      <circle cx="58" cy="50" r="1.2" fill="#f0d48a" opacity="0.28" />
+      <circle cx="56" cy="8" r="1.3" fill="#f0d48a" opacity="0.32" />
+      <circle cx="6" cy="6" r="0.9" fill="#f0d48a" opacity="0.25" />
+      <circle cx="48" cy="38" r="0.7" fill="#f0d48a" opacity="0.2" />
+      <circle cx="8" cy="38" r="0.8" fill="#f0d48a" opacity="0.22" />
     </svg>
   );
 }

@@ -109,11 +109,15 @@ export default function TarotCard({
 
           {/* Title + Description */}
           <div className="text-center pb-1">
-            <div className="font-[var(--font-cinzel)] text-sm font-bold text-[#f0d48a] leading-tight">
+            <div className={`font-[var(--font-cinzel)] font-black text-[#f0d48a] leading-tight tracking-wide ${
+              size === 'full' ? 'text-lg' : size === 'lg' ? 'text-base' : 'text-sm'
+            }`}>
               {title}
             </div>
             {description && (
-              <div className="text-[10px] text-[#8a8478] mt-0.5 leading-tight">
+              <div className={`text-[#8a8478] mt-0.5 leading-tight ${
+                size === 'full' ? 'text-xs' : 'text-[10px]'
+              }`}>
                 {description}
               </div>
             )}

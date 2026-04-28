@@ -313,6 +313,9 @@ export default function DateCategoryPage() {
   // Single source of truth — no separate tithi table computation.
   useEffect(() => {
     setLoading(true);
+    // Fallback to Delhi when location store is empty (first visit, no geolocation).
+    // Festival dates vary by ~1 day with location; Delhi is a reasonable default for
+    // the majority Indian user base. The user can set their location to get precise times.
     const lat = storeLat ?? 28.6139;
     const lng = storeLng ?? 77.209;
     const tz = storeTz ?? 'Asia/Kolkata';

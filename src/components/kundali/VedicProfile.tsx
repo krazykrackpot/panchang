@@ -165,7 +165,9 @@ export default function VedicProfile({ profile, locale }: VedicProfileProps) {
   );
 }
 
-/** Convert **bold** markdown to <strong> tags for inline rendering */
+/** Convert **bold** markdown to <strong> tags for inline rendering.
+ * Escapes HTML entities first to prevent XSS if upstream ever includes user text. */
 function markdownBold(text: string): string {
-  return text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-gold-light">$1</strong>');
+  const escaped = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return escaped.replace(/\*\*(.*?)\*\*/g, '<strong class="text-gold-light">$1</strong>');
 }

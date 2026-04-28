@@ -209,8 +209,9 @@ function analyzeRahuKetuTransit(rahuSign: number, ketuSign: number, ascSign: num
 function findDashaTransitions(dashas: DashaEntry[], locale: Locale): YearEvent[] {
   const events: YearEvent[] = [];
   const year = new Date().getFullYear();
-  const yearStart = new Date(year, 0, 1);
-  const yearEnd = new Date(year, 11, 31);
+  // Lesson L: use Date.UTC for year boundaries to avoid timezone edge cases near Dec 31/Jan 1
+  const yearStart = new Date(Date.UTC(year, 0, 1));
+  const yearEnd = new Date(Date.UTC(year, 11, 31));
 
   // Planet effect summaries for dasha transitions
   const planetEffects: Record<string, LocaleText> = {

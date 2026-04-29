@@ -38,6 +38,42 @@ const KARAKA_INFO: Record<string, { full: LocaleText; meaning: LocaleText; gover
   Darakaraka: { full: { en: 'Darakaraka', hi: 'दारकारक', sa: 'दारकारक', mai: 'दारकारक', mr: 'दारकारक', ta: 'தாரகாரகன்', te: 'దారకారకుడు', bn: 'দারকারক', kn: 'ದಾರಕಾರಕ', gu: 'દારકારક' }, meaning: { en: 'Spouse Significator', hi: 'जीवनसाथी कारक', sa: 'दारकारकम्', mai: 'जीवनसाथी कारक', mr: 'जीवनसाथी कारक', ta: 'வாழ்க்கைத்துணை காரகம்', te: 'జీవిత భాగస్వామి కారకం', bn: 'জীবনসঙ্গী কারক', kn: 'ಜೀವನ ಸಂಗಾತಿ ಕಾರಕ', gu: 'જીવનસાથી કારક' }, governs: { en: 'Spouse and partnerships.', hi: 'जीवनसाथी और साझेदारी।', sa: 'दारकः च साझेदारी।', mai: 'जीवनसाथी आ साझेदारी।', mr: 'जीवनसाथी आणि भागीदारी।', ta: 'வாழ்க்கைத்துணை மற்றும் கூட்டாண்மை.', te: 'భాగస్వామి మరియు భాగస్వామ్యాలు.', bn: 'জীবনসঙ্গী ও অংশীদারিত্ব।', kn: 'ಸಂಗಾತಿ ಮತ್ತು ಸಹಭಾಗಿತ್ವ.', gu: 'જીવનસાથી અને ભાગીદારી.' } },
 };
 
+// Practical life advice per karaka — what it concretely means for daily decisions
+const KARAKA_LIFE_ADVICE: Record<string, { en: string; hi: string }> = {
+  AK: { en: 'This is your MOST IMPORTANT planet. Its sign, house, and aspects define your soul\'s purpose this lifetime. Every major life decision should consider this planet. Ask yourself: "Am I living in alignment with what this planet represents?"', hi: 'यह आपका सबसे महत्वपूर्ण ग्रह है। इसकी राशि, भाव और दृष्टि आपकी आत्मा का उद्देश्य निर्धारित करती है। हर बड़ा जीवन निर्णय इस ग्रह को ध्यान में रखकर लें। स्वयं पूछें: "क्या मैं इस ग्रह के अनुरूप जी रहा हूँ?"' },
+  Atmakaraka: { en: 'This is your MOST IMPORTANT planet. Its sign, house, and aspects define your soul\'s purpose this lifetime. Every major life decision should consider this planet.', hi: 'यह आपका सबसे महत्वपूर्ण ग्रह है। इसकी राशि, भाव और दृष्टि आपकी आत्मा का उद्देश्य निर्धारित करती है।' },
+  AmK: { en: 'This planet determines your ideal career path and professional nature. When choosing jobs, projects, or business directions, align with the qualities of this planet. Career dissatisfaction often stems from ignoring this karaka.', hi: 'यह ग्रह आपके आदर्श करियर पथ और पेशेवर स्वभाव को निर्धारित करता है। नौकरी या व्यवसाय चुनते समय इस ग्रह के गुणों से मिलान करें। करियर असंतोष प्रायः इस कारक की उपेक्षा से होता है।' },
+  Amatyakaraka: { en: 'This planet determines your ideal career path and professional nature. Align career choices with this planet\'s qualities.', hi: 'यह ग्रह आपके आदर्श करियर पथ और पेशेवर स्वभाव को निर्धारित करता है।' },
+  BK: { en: 'This planet governs your relationship with siblings and your courage/initiative. Strong BK = reliable sibling support and bold action capacity. Weak BK = sibling tensions or hesitancy in taking initiative.', hi: 'यह ग्रह भाई-बहनों से सम्बन्ध और आपके साहस/पहल को नियंत्रित करता है। बलवान BK = विश्वसनीय भाई-बहन सहायता। दुर्बल BK = भ्रातृ तनाव या पहल में हिचकिचाहट।' },
+  Bhratrikaraka: { en: 'This planet governs sibling relationships and your courage/initiative.', hi: 'यह ग्रह भाई-बहनों से सम्बन्ध और साहस/पहल को नियंत्रित करता है।' },
+  MK: { en: 'Mother, emotional nurturing, property — all governed by this planet. Your relationship with your mother and sense of emotional security are colored by this planet\'s condition. Property decisions should consider MK\'s strength.', hi: 'माता, भावनात्मक पोषण, सम्पत्ति — सब इस ग्रह द्वारा शासित। माता से सम्बन्ध और भावनात्मक सुरक्षा इस ग्रह की स्थिति पर निर्भर। सम्पत्ति निर्णय MK की शक्ति देखकर लें।' },
+  Matrikaraka: { en: 'Mother, emotional nurturing, and property are governed by this planet.', hi: 'माता, भावनात्मक पोषण और सम्पत्ति इस ग्रह से शासित।' },
+  PK: { en: 'Children, creativity, and your ability to create — shaped by this planet. If planning children, this planet\'s dasha timing matters most. Creative blocks often correlate with PK being afflicted in transit.', hi: 'सन्तान, सृजनशीलता और सृजन क्षमता — इस ग्रह द्वारा आकारित। सन्तान नियोजन में इस ग्रह की दशा का समय सर्वाधिक महत्वपूर्ण। रचनात्मक अवरोध प्रायः गोचर में PK पीड़ित होने से जुड़ा।' },
+  Putrakaraka: { en: 'Children, creativity, and your ability to create are shaped by this planet.', hi: 'सन्तान, सृजनशीलता और सृजन क्षमता इस ग्रह द्वारा आकारित।' },
+  GK: { en: 'Enemies, obstacles, and disease — this planet shows where your struggles lie. Health issues tend to manifest through the body systems ruled by GK. Legal or competitive challenges activate during GK\'s dasha.', hi: 'शत्रु, बाधाएँ और रोग — यह ग्रह दर्शाता है कि संघर्ष कहाँ है। स्वास्थ्य समस्याएँ GK द्वारा शासित शरीर अंगों से प्रकट होती हैं। कानूनी या प्रतिस्पर्धी चुनौतियाँ GK की दशा में सक्रिय होती हैं।' },
+  Gnatikaraka: { en: 'Enemies, obstacles, and disease — this planet shows where your struggles lie.', hi: 'शत्रु, बाधाएँ और रोग — यह ग्रह दर्शाता है कि संघर्ष कहाँ है।' },
+  DK: { en: 'This planet describes your spouse\'s nature and your marriage experience. Its sign reveals what kind of partner you attract. Relationship timing is strongly influenced by DK\'s dasha and transit cycles.', hi: 'यह ग्रह जीवनसाथी के स्वभाव और विवाह अनुभव का वर्णन करता है। इसकी राशि बताती है कि आप किस प्रकार के साथी को आकर्षित करते हैं। सम्बन्ध समय DK की दशा और गोचर चक्रों से प्रभावित।' },
+  Darakaraka: { en: 'This planet describes your spouse\'s nature and your marriage experience.', hi: 'यह ग्रह जीवनसाथी के स्वभाव और विवाह अनुभव का वर्णन करता है।' },
+};
+
+// Dasha timing note per karaka
+const KARAKA_DASHA_NOTE: Record<string, { en: string; hi: string }> = {
+  AK: { en: 'During Atmakaraka\'s dasha/antardasha, soul-level transformation and life-defining events occur. This is when you come closest to your life purpose — or furthest from it.', hi: 'आत्मकारक की दशा/अन्तर्दशा में आत्मा-स्तरीय परिवर्तन और जीवन-निर्णायक घटनाएँ होती हैं। तब आप जीवन उद्देश्य के सबसे निकट — या सबसे दूर — होते हैं।' },
+  Atmakaraka: { en: 'During this planet\'s dasha, soul-level transformation and life-defining events occur.', hi: 'इस ग्रह की दशा में आत्मा-स्तरीय परिवर्तन और जीवन-निर्णायक घटनाएँ होती हैं।' },
+  AmK: { en: 'During Amatyakaraka\'s dasha, career becomes the focal point — expect major professional shifts, promotions, or career re-evaluation.', hi: 'अमात्यकारक की दशा में करियर केन्द्रबिन्दु बनता है — प्रमुख पेशेवर बदलाव, पदोन्नति या करियर पुनर्मूल्यांकन की अपेक्षा।' },
+  Amatyakaraka: { en: 'During this planet\'s dasha, career becomes the focal point of life.', hi: 'इस ग्रह की दशा में करियर जीवन का केन्द्रबिन्दु बनता है।' },
+  BK: { en: 'During Bhratrikaraka\'s dasha, sibling relationships and matters of courage/initiative dominate your life narrative.', hi: 'भ्रातृकारक की दशा में भाई-बहन सम्बन्ध और साहस/पहल आपकी जीवन कथा पर हावी होते हैं।' },
+  Bhratrikaraka: { en: 'During this planet\'s dasha, sibling matters and courage dominate.', hi: 'इस ग्रह की दशा में भ्रातृ विषय और साहस प्रधान।' },
+  MK: { en: 'During Matrikaraka\'s dasha, themes of mother, home, and emotional security dominate — property transactions, domestic changes, or mother\'s health become central.', hi: 'मातृकारक की दशा में माता, गृह और भावनात्मक सुरक्षा के विषय प्रमुख — सम्पत्ति लेन-देन, घरेलू परिवर्तन या माता का स्वास्थ्य केन्द्रीय।' },
+  Matrikaraka: { en: 'During this planet\'s dasha, mother, home, and property themes become central.', hi: 'इस ग्रह की दशा में माता, गृह और सम्पत्ति विषय केन्द्रीय।' },
+  PK: { en: 'During Putrakaraka\'s dasha, children, creativity, and past-life merit become the focal point — births, creative breakthroughs, or educational milestones.', hi: 'पुत्रकारक की दशा में सन्तान, सृजनशीलता और पूर्व पुण्य केन्द्रबिन्दु — जन्म, रचनात्मक सफलताएँ या शैक्षिक उपलब्धियाँ।' },
+  Putrakaraka: { en: 'During this planet\'s dasha, children and creative breakthroughs become focal.', hi: 'इस ग्रह की दशा में सन्तान और रचनात्मक सफलताएँ केन्द्रीय।' },
+  GK: { en: 'During Gnatikaraka\'s dasha, conflicts, health challenges, and obstacle-overcoming become the life theme — legal battles, surgeries, or competitive tests.', hi: 'ज्ञातिकारक की दशा में संघर्ष, स्वास्थ्य चुनौतियाँ और बाधा-निवारण जीवन विषय — कानूनी लड़ाइयाँ, शल्य या प्रतिस्पर्धी परीक्षाएँ।' },
+  Gnatikaraka: { en: 'During this planet\'s dasha, conflicts and health challenges become focal.', hi: 'इस ग्रह की दशा में संघर्ष और स्वास्थ्य चुनौतियाँ केन्द्रीय।' },
+  DK: { en: 'During Darakaraka\'s dasha, marriage, partnerships, and significant relationships become the focal point — wedding, divorce, major business partnerships.', hi: 'दारकारक की दशा में विवाह, साझेदारी और महत्वपूर्ण सम्बन्ध केन्द्रबिन्दु — शादी, तलाक, प्रमुख व्यापार साझेदारी।' },
+  Darakaraka: { en: 'During this planet\'s dasha, marriage and partnerships become focal.', hi: 'इस ग्रह की दशा में विवाह और साझेदारी केन्द्रीय।' },
+};
+
 const KARAKAMSHA_MEANING: Record<number, LocaleText> = {
   1: { en: 'Aries — Independent, pioneering soul. Drawn to leadership, military, sports, or entrepreneurship. Must learn patience.', hi: 'मेष — स्वतन्त्र, अग्रणी आत्मा। नेतृत्व, सेना, खेल या उद्यमिता की ओर। धैर्य सीखना आवश्यक।', sa: 'मेषः — स्वतन्त्रा, अग्रणी आत्मा। नेतृत्वं, सैन्यं, क्रीडा वा उद्यमिता। धैर्यं शिक्षणीयम्।', mai: 'मेष — स्वतन्त्र, अग्रणी आत्मा। नेतृत्व, सेना, खेल या उद्यमिता दिस। धैर्य सीखब आवश्यक।', mr: 'मेष — स्वतंत्र, अग्रगण्य आत्मा। नेतृत्व, सैन्य, खेळ किंवा उद्योजकतेकडे। संयम शिकणे आवश्यक।', ta: 'மேஷம் — சுதந்திரமான, முன்னோடி ஆன்மா. தலைமை, இராணுவம், விளையாட்டு அல்லது தொழில்முனைவுக்கு ஈர்க்கப்படும். பொறுமை கற்றுக்கொள்ள வேண்டும்.', te: 'మేషం — స్వతంత్ర, ముందుచూపు ఆత్మ. నాయకత్వం, సైన్యం, క్రీడలు లేదా వ్యాపారవేత్తగా ఆకర్షితమవుతుంది. ఓపిక నేర్చుకోవాలి.', bn: 'মেষ — স্বাধীন, অগ্রগামী আত্মা। নেতৃত্ব, সেনা, খেলা বা উদ্যোক্তার দিকে আকৃষ্ট। ধৈর্য শিখতে হবে।', kn: 'ಮೇಷ — ಸ್ವತಂತ್ರ, ಪ್ರವರ್ತಕ ಆತ್ಮ. ನಾಯಕತ್ವ, ಸೈನ್ಯ, ಕ್ರೀಡೆ ಅಥವಾ ಉದ್ಯಮಶೀಲತೆಗೆ ಆಕರ್ಷಿತ. ತಾಳ್ಮೆ ಕಲಿಯಬೇಕು.', gu: 'મેષ — સ્વતંત્ર, અગ્રણી આત્મા. નેતૃત્વ, સેના, રમત કે ઉદ્યોગસાહસ તરફ આકર્ષિત. ધીરજ શીખવું જરૂરી.' },
   2: { en: 'Taurus — Soul seeks stability, beauty, and material comfort. Drawn to arts, finance, agriculture, and luxury.', hi: 'वृषभ — स्थिरता, सौन्दर्य और भौतिक सुख की खोज। कला, वित्त, कृषि और विलासिता।', sa: 'वृषभः — स्थैर्यं, सौन्दर्यं च भौतिकसुखस्य अन्वेषणम्। कला, वित्तं, कृषिः च विलासिता।', mai: 'वृषभ — स्थिरता, सौन्दर्य आ भौतिक सुखक खोज। कला, वित्त, कृषि आ विलासिता।', mr: 'वृषभ — स्थिरता, सौंदर्य आणि भौतिक सुखाचा शोध। कला, वित्त, शेती आणि ऐश्वर्य।', ta: 'ரிஷபம் — ஆன்மா நிலைத்தன்மை, அழகு மற்றும் பொருள் வசதியைத் தேடுகிறது. கலைகள், நிதி, விவசாயம் மற்றும் ஆடம்பரத்திற்கு ஈர்க்கப்படும்.', te: 'వృషభం — ఆత్మ స్థిరత్వం, అందం మరియు భౌతిక సౌకర్యాన్ని కోరుతుంది. కళలు, ఆర్థికం, వ్యవసాయం మరియు విలాసానికి ఆకర్షితమవుతుంది.', bn: 'বৃষ — আত্মা স্থিতিশীলতা, সৌন্দর্য ও বৈষয়িক আরাম খোঁজে। কলা, অর্থ, কৃষি ও বিলাসিতার দিকে আকৃষ্ট।', kn: 'ವೃಷಭ — ಆತ್ಮ ಸ್ಥಿರತೆ, ಸೌಂದರ್ಯ ಮತ್ತು ಭೌತಿಕ ಸೌಕರ್ಯವನ್ನು ಬಯಸುತ್ತದೆ. ಕಲೆಗಳು, ಹಣಕಾಸು, ಕೃಷಿ ಮತ್ತು ವೈಭಕ್ಕೆ ಆಕರ್ಷಿತ.', gu: 'વૃષભ — આત્મા સ્થિરતા, સૌંદર્ય અને ભૌતિક આરામ શોધે. કળા, નાણાં, ખેતી અને વૈભવ તરફ આકર્ષિત.' },
@@ -249,6 +285,20 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
                       {info.governs[tl({ en: 'en', hi: 'hi', sa: 'hi', ta: 'en', te: 'en', bn: 'en', kn: 'en', gu: 'en', mai: 'hi', mr: 'hi' }, locale)]}
                     </p>
                   )}
+                  {/* Practical life advice */}
+                  {KARAKA_LIFE_ADVICE[ck.karaka] && (
+                    <div className="mt-2 p-2.5 rounded-lg bg-gold-primary/[0.04] border border-gold-primary/10">
+                      <p className="text-gold-light/90 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                        {isDevanagari ? KARAKA_LIFE_ADVICE[ck.karaka].hi : KARAKA_LIFE_ADVICE[ck.karaka].en}
+                      </p>
+                    </div>
+                  )}
+                  {/* Dasha timing note */}
+                  {KARAKA_DASHA_NOTE[ck.karaka] && (
+                    <p className="mt-1.5 text-purple-300/80 text-[11px] leading-relaxed italic" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {isDevanagari ? KARAKA_DASHA_NOTE[ck.karaka].hi : KARAKA_DASHA_NOTE[ck.karaka].en}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -361,21 +411,51 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
         <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
           {msg('charaDasha', locale)}
         </h3>
-        <div className="space-y-2">
+        <div className="space-y-3">
           {jaimini.charaDasha.map((cd, i) => {
             const now = new Date();
             const start = new Date(cd.startDate);
             const end = new Date(cd.endDate);
             const isCurrent = now >= start && now <= end;
             const isPast = now > end;
+            const isEn = locale === 'en' || String(locale) === 'ta';
+            // House from lagna for interpretation
+            const ascSign = kundali.chart.ascendantSign; // 1-based
+            const signId = cd.sign;
+            const houseFromLagna = ((signId - ascSign + 12) % 12) + 1;
+            const HOUSE_FOCUS: Record<number, { en: string; hi: string }> = {
+              1: { en: 'self-development, health, and new beginnings', hi: 'आत्म-विकास, स्वास्थ्य, नई शुरुआत' },
+              2: { en: 'finances, family dynamics, and speech', hi: 'वित्त, परिवार, वाणी' },
+              3: { en: 'courage, short travels, and skill-building', hi: 'साहस, लघु यात्रा, कौशल' },
+              4: { en: 'home, property, emotional peace, and mother', hi: 'गृह, सम्पत्ति, शान्ति, माता' },
+              5: { en: 'creativity, children, romance, and speculative ventures', hi: 'रचनात्मकता, सन्तान, प्रेम' },
+              6: { en: 'health challenges, competition, and service', hi: 'स्वास्थ्य चुनौती, प्रतिस्पर्धा, सेवा' },
+              7: { en: 'marriage, partnerships, and public dealings', hi: 'विवाह, साझेदारी, सार्वजनिक व्यवहार' },
+              8: { en: 'transformation, hidden matters, and inheritance', hi: 'परिवर्तन, गूढ़ विषय, विरासत' },
+              9: { en: 'fortune, higher education, and long-distance travel', hi: 'भाग्य, उच्च शिक्षा, दीर्घ यात्रा' },
+              10: { en: 'career advancement, reputation, and authority', hi: 'कैरियर उन्नति, प्रतिष्ठा, सत्ता' },
+              11: { en: 'income growth, social network, and fulfilled wishes', hi: 'आय वृद्धि, मित्र-मण्डल, इच्छा-पूर्ति' },
+              12: { en: 'spiritual growth, foreign connections, and letting go', hi: 'आध्यात्मिक विकास, विदेश, समर्पण' },
+            };
+            const focus = HOUSE_FOCUS[houseFromLagna];
             return (
-              <div key={i} className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/18 p-4 flex items-center justify-between ${isCurrent ? 'border border-gold-primary/40 bg-gold-primary/5' : ''} ${isPast ? 'opacity-40' : ''}`}>
-                <div className="flex items-center gap-3">
-                  <span className={`w-2.5 h-2.5 rounded-full ${isCurrent ? 'bg-gold-primary animate-pulse' : isPast ? 'bg-text-secondary/30' : 'bg-gold-dark/50'}`} />
-                  <span className="text-gold-light font-bold" style={headingFont}>{tl(cd.signName, locale)}</span>
-                  <span className="text-text-tertiary text-xs">{cd.years} {msg('years', locale)}</span>
+              <div key={i} className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border p-4 ${isCurrent ? 'border-gold-primary/40 bg-gold-primary/5' : 'border-gold-primary/18'} ${isPast ? 'opacity-40' : ''}`}>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <span className={`w-2.5 h-2.5 rounded-full ${isCurrent ? 'bg-gold-primary animate-pulse' : isPast ? 'bg-text-secondary/30' : 'bg-gold-dark/50'}`} />
+                    <span className="text-gold-light font-bold" style={headingFont}>{tl(cd.signName, locale)}</span>
+                    {isCurrent && <span className="text-xs px-2 py-0.5 rounded-full bg-gold-primary/20 border border-gold-primary/30 text-gold-light font-medium">{isEn ? 'NOW' : 'अभी'}</span>}
+                    <span className="text-text-tertiary text-xs">{cd.years} {isEn ? 'yrs' : 'वर्ष'}</span>
+                  </div>
+                  <span className="text-text-secondary text-xs font-mono">{cd.startDate} → {cd.endDate}</span>
                 </div>
-                <span className="text-text-secondary text-xs font-mono">{cd.startDate} → {cd.endDate}</span>
+                {!isPast && focus && (
+                  <p className="text-text-secondary text-xs leading-relaxed mt-2 ml-6">
+                    {isEn
+                      ? `Activates your ${houseFromLagna === 1 ? '1st' : houseFromLagna === 2 ? '2nd' : houseFromLagna === 3 ? '3rd' : `${houseFromLagna}th`} house — a period focused on ${focus.en}.${isCurrent ? ' This is your active Jaimini chapter right now.' : ''}`
+                      : `${houseFromLagna}वाँ भाव सक्रिय — ${focus.hi} पर केन्द्रित अवधि।${isCurrent ? ' यह अभी आपका सक्रिय जैमिनी अध्याय है।' : ''}`}
+                  </p>
+                )}
               </div>
             );
           })}
@@ -666,7 +746,27 @@ function RashiDrishtiSection({ kundali, locale, isDevanagari, headingFont }: Jai
   );
 }
 
+// House life-domain descriptions for argala implications
+const HOUSE_LIFE_DOMAIN: Record<number, { en: string; hi: string }> = {
+  1: { en: 'personality, health, and self-image', hi: 'व्यक्तित्व, स्वास्थ्य और आत्म-छवि' },
+  2: { en: 'wealth, family, and speech', hi: 'धन, परिवार और वाणी' },
+  3: { en: 'courage, siblings, and communication', hi: 'साहस, भाई-बहन और संवाद' },
+  4: { en: 'home, mother, and emotional peace', hi: 'घर, माता और भावनात्मक शान्ति' },
+  5: { en: 'children, creativity, and intelligence', hi: 'सन्तान, सृजनशीलता और बुद्धि' },
+  6: { en: 'enemies, health challenges, and competition', hi: 'शत्रु, स्वास्थ्य चुनौती और प्रतिस्पर्धा' },
+  7: { en: 'marriage, partnerships, and business', hi: 'विवाह, साझेदारी और व्यापार' },
+  8: { en: 'transformation, longevity, and hidden matters', hi: 'परिवर्तन, दीर्घायु और गुप्त विषय' },
+  9: { en: 'luck, dharma, and father', hi: 'भाग्य, धर्म और पिता' },
+  10: { en: 'career, reputation, and public standing', hi: 'करियर, प्रतिष्ठा और सार्वजनिक स्थिति' },
+  11: { en: 'gains, income, and aspirations', hi: 'लाभ, आय और आकांक्षाएँ' },
+  12: { en: 'spirituality, expenses, and foreign lands', hi: 'आध्यात्मिकता, व्यय और विदेश' },
+};
+
 function ArgalaSection({ kundali, locale, isDevanagari, headingFont }: JaiminiTabProps) {
+  // Find the most notable argala patterns for self-assessment
+  const supportedHouses = kundali.argala!.filter(a => a.netEffect === 'supported');
+  const obstructedHouses = kundali.argala!.filter(a => a.netEffect === 'obstructed');
+
   return (
     <div>
       <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
@@ -684,6 +784,7 @@ function ArgalaSection({ kundali, locale, isDevanagari, headingFont }: JaiminiTa
           const houseLabel = HOUSE_LABELS[ar.house];
           const strongArgalas = ar.argalas.filter(a => a.strength === 'strong');
           const strongVirodha = ar.virodha.filter(v => v.strength === 'strong');
+          const domain = HOUSE_LIFE_DOMAIN[ar.house];
           return (
             <div key={ar.house} className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border p-3 ${
               ar.netEffect === 'supported' ? 'border-emerald-500/25' :
@@ -735,10 +836,84 @@ function ArgalaSection({ kundali, locale, isDevanagari, headingFont }: JaiminiTa
               {strongArgalas.length === 0 && strongVirodha.length === 0 && (
                  <p className="text-text-secondary/85 text-[10px]">{msg('noStrongInterventions', locale)}</p>
               )}
+
+              {/* Concrete life implication */}
+              {domain && (strongArgalas.length > 0 || strongVirodha.length > 0) && (
+                <div className="mt-1.5 pt-1.5 border-t border-white/[0.04]">
+                  <p className="text-text-secondary/70 text-[10px] leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                    {ar.netEffect === 'supported'
+                      ? (isDevanagari
+                        ? `${domain.hi} को ग्रहीय बल — यह क्षेत्र स्वाभाविक रूप से समर्थित`
+                        : `Your ${domain.en} receive active planetary support — this area flows naturally`)
+                      : ar.netEffect === 'obstructed'
+                      ? (isDevanagari
+                        ? `${domain.hi} में बाधा — इस क्षेत्र में अतिरिक्त प्रयास आवश्यक`
+                        : `Your ${domain.en} face planetary resistance — extra effort needed here`)
+                      : (isDevanagari
+                        ? `${domain.hi} में सन्तुलित शक्तियाँ — न सहज, न अवरुद्ध`
+                        : `Balanced forces on ${domain.en} — neither easy nor blocked`)}
+                  </p>
+                </div>
+              )}
             </div>
           );
         })}
       </div>
+
+      {/* Self-Assessment Questions based on Argala patterns */}
+      {(supportedHouses.length > 0 || obstructedHouses.length > 0) && (
+        <div className="mt-6 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 p-5">
+          <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3" style={headingFont}>
+            {isDevanagari ? 'आत्म-मूल्यांकन प्रश्न' : 'Self-Assessment Questions'}
+          </div>
+          <div className="space-y-2.5">
+            {/* Career-partnership connection */}
+            {supportedHouses.some(h => h.house === 10) && supportedHouses.some(h => h.house === 7) && (
+              <div className="flex gap-2 text-xs text-text-secondary/80">
+                <span className="text-gold-primary shrink-0 mt-0.5">?</span>
+                <span style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {isDevanagari
+                    ? 'क्या आपका करियर आपकी साझेदारियों से आकार लेता है? आपके 7वें और 10वें दोनों भाव समर्थित हैं — जीवनसाथी या व्यापार साझेदार करियर निर्णयों में महत्वपूर्ण भूमिका निभा सकते हैं।'
+                    : 'Is your career shaped by your partnerships? Both your 7th and 10th houses are supported — your spouse or business partners may play a key role in career decisions.'}
+                </span>
+              </div>
+            )}
+            {/* Wealth-happiness connection */}
+            {supportedHouses.some(h => h.house === 2) && supportedHouses.some(h => h.house === 4) && (
+              <div className="flex gap-2 text-xs text-text-secondary/80">
+                <span className="text-gold-primary shrink-0 mt-0.5">?</span>
+                <span style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {isDevanagari
+                    ? 'क्या आप पाते हैं कि आपका धन सीधे आपके सुख को प्रभावित करता है? 2रा भाव (धन) 4थे भाव (सुख) को अर्गल देता है — वित्तीय स्थिरता आपकी भावनात्मक शान्ति का सीधा स्रोत है।'
+                    : 'Do you find that your wealth directly impacts your happiness? 2nd house (wealth) provides argala on 4th (happiness) — financial stability is a direct source of your emotional peace.'}
+                </span>
+              </div>
+            )}
+            {/* Blocked areas */}
+            {obstructedHouses.length > 0 && (
+              <div className="flex gap-2 text-xs text-text-secondary/80">
+                <span className="text-gold-primary shrink-0 mt-0.5">?</span>
+                <span style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {isDevanagari
+                    ? `आपके ${obstructedHouses.map(h => h.house + 'वें').join(', ')} भाव अवरुद्ध हैं। क्या ${obstructedHouses.slice(0, 2).map(h => HOUSE_LIFE_DOMAIN[h.house]?.hi || '').join(' और ')} में आपको जीवन में अतिरिक्त प्रयास करना पड़ता है? इन विरोधार्गलों को उपायों या सचेत प्रयास से दूर किया जा सकता है।`
+                    : `Your houses ${obstructedHouses.map(h => h.house).join(', ')} face obstruction. Do you find that ${obstructedHouses.slice(0, 2).map(h => HOUSE_LIFE_DOMAIN[h.house]?.en || '').join(' and ')} require extra effort in life? These virodha argalas can be mitigated through remedies or conscious effort.`}
+                </span>
+              </div>
+            )}
+            {/* Supported areas — leverage them */}
+            {supportedHouses.length > 0 && (
+              <div className="flex gap-2 text-xs text-text-secondary/80">
+                <span className="text-emerald-400 shrink-0 mt-0.5">+</span>
+                <span style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {isDevanagari
+                    ? `आपकी प्राकृतिक शक्ति: ${supportedHouses.slice(0, 3).map(h => HOUSE_LIFE_DOMAIN[h.house]?.hi || '').join(', ')}। ये क्षेत्र ग्रहीय सहयोग से समर्थित हैं — इन पर भरोसा करें और इनका अधिकतम लाभ उठाएँ।`
+                    : `Your natural strengths: ${supportedHouses.slice(0, 3).map(h => HOUSE_LIFE_DOMAIN[h.house]?.en || '').join(', ')}. These areas have planetary support — lean into them and maximize their potential.`}
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

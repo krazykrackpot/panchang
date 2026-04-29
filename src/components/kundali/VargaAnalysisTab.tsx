@@ -660,6 +660,186 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
         );
       })()}
 
+      {/* ─── Varga Life Quality Verdicts & Remedial Guidance ─── */}
+      {(() => {
+        const KEY_VARGAS = ['D9', 'D10', 'D7', 'D4', 'D3'] as const;
+        const VARGA_DOMAIN: Record<string, { en: string; hi: string }> = {
+          D9: { en: 'Marriage & Dharma', hi: 'विवाह और धर्म' },
+          D10: { en: 'Career & Professional Success', hi: 'करियर और व्यावसायिक सफलता' },
+          D7: { en: 'Children & Progeny', hi: 'सन्तान और वंश' },
+          D4: { en: 'Property & Vehicles', hi: 'सम्पत्ति और वाहन' },
+          D3: { en: 'Siblings & Courage', hi: 'भाई-बहन और साहस' },
+        };
+        const REMEDIES_BY_PLANET: Record<number, { en: string; hi: string }> = {
+          0: { en: 'Surya Namaskar at sunrise, recite Aditya Hridayam, ruby gemstone consultation, donate wheat on Sundays', hi: 'सूर्योदय पर सूर्य नमस्कार, आदित्य हृदयम् पाठ, माणिक्य रत्न परामर्श, रविवार को गेहूँ दान' },
+          1: { en: 'Monday fasting, white clothing, pearl gemstone consultation, offer milk to Shiva, recite Chandra mantras', hi: 'सोमवार व्रत, श्वेत वस्त्र, मोती रत्न परामर्श, शिव को दुग्ध अर्पण, चन्द्र मन्त्र पाठ' },
+          2: { en: 'Hanuman Chalisa on Tuesdays, red coral consultation, donate red lentils, physical exercise discipline', hi: 'मंगलवार को हनुमान चालीसा, मूँगा रत्न परामर्श, मसूर दान, शारीरिक व्यायाम अनुशासन' },
+          3: { en: 'Wednesday fasting, emerald consultation, recite Vishnu Sahasranama, donate green moong on Wednesdays', hi: 'बुधवार व्रत, पन्ना रत्न परामर्श, विष्णु सहस्रनाम पाठ, बुधवार को हरी मूँग दान' },
+          4: { en: 'Thursday fasting, yellow sapphire consultation, recite Guru mantras, donate turmeric or yellow items', hi: 'गुरुवार व्रत, पुखराज रत्न परामर्श, गुरु मन्त्र पाठ, हल्दी या पीली वस्तुएँ दान' },
+          5: { en: 'Friday fasting, diamond/white sapphire consultation, recite Lakshmi mantras, donate white items on Fridays', hi: 'शुक्रवार व्रत, हीरा/सफेद पुखराज परामर्श, लक्ष्मी मन्त्र पाठ, शुक्रवार को श्वेत वस्तुएँ दान' },
+          6: { en: 'Saturday fasting, blue sapphire consultation, Hanuman Chalisa on Saturdays, donate black sesame/oil, charitable work', hi: 'शनिवार व्रत, नीलम रत्न परामर्श, शनिवार को हनुमान चालीसा, काले तिल/तेल दान, सेवा कार्य' },
+          7: { en: 'Rahu mantra recitation, hessonite garnet consultation, donate black blankets on Saturdays, avoid intoxicants', hi: 'राहु मन्त्र पाठ, गोमेद रत्न परामर्श, शनिवार को काला कम्बल दान, नशा वर्जित' },
+          8: { en: 'Ketu mantra recitation, cat\'s eye consultation, donate bananas on Tuesdays, meditation and spiritual practices', hi: 'केतु मन्त्र पाठ, लहसुनिया रत्न परामर्श, मंगलवार को केला दान, ध्यान और आध्यात्मिक साधना' },
+        };
+        const VARGA_WEAK_REMEDY_DOMAIN: Record<string, { en: string; hi: string }> = {
+          D9: { en: 'Marriage may face challenges. Strengthen this planet to improve marital harmony and dharmic alignment.', hi: 'विवाह में चुनौतियाँ सम्भव। वैवाहिक सद्भाव और धार्मिक संरेखण सुधारने हेतु इस ग्रह को बलवान करें।' },
+          D10: { en: 'Career growth faces resistance. Strengthen this planet to unlock professional potential and recognition.', hi: 'करियर विकास में अवरोध। व्यावसायिक क्षमता और मान्यता प्राप्त करने हेतु इस ग्रह को बलवान करें।' },
+          D7: { en: 'Delays or challenges regarding children possible. Strengthen this planet for progeny happiness.', hi: 'सन्तान विषय में विलम्ब या चुनौती सम्भव। सन्तान सुख हेतु इस ग्रह को बलवान करें।' },
+          D4: { en: 'Property and vehicle matters face hurdles. Strengthen this planet for fixed asset accumulation.', hi: 'सम्पत्ति और वाहन विषय में बाधाएँ। स्थिर सम्पत्ति संचय हेतु इस ग्रह को बलवान करें।' },
+          D3: { en: 'Sibling relationships or courage may be tested. Strengthen this planet for initiative and peer harmony.', hi: 'भ्रातृ सम्बन्ध या साहस की परीक्षा सम्भव। पहल और सहकर्मी सद्भाव हेतु इस ग्रह को बलवान करें।' },
+        };
+
+        const keyVargaInsights = synthesis.vargaInsights.filter(v => (KEY_VARGAS as readonly string[]).includes(v.chart));
+        const strongCount = keyVargaInsights.filter(v => v.strength === 'strong').length;
+        const weakCount = keyVargaInsights.filter(v => v.strength === 'weak').length;
+        const strongestArea = keyVargaInsights.find(v => v.strength === 'strong');
+        const weakestArea = keyVargaInsights.find(v => v.strength === 'weak');
+
+        // Find weak planets in key vargas from dignity shifts in deep analysis
+        const weakPlanetRemedies: { varga: string; planetId: number; planetName: string }[] = [];
+        for (const vi of keyVargaInsights) {
+          if (vi.strength === 'weak' && vi.deepAnalysis) {
+            const debilShifts = vi.deepAnalysis.crossCorrelation.dignityShifts.filter(ds => ds.dxxDignity === 'debilitated');
+            for (const ds of debilShifts.slice(0, 1)) {
+              weakPlanetRemedies.push({ varga: vi.chart, planetId: ds.planetId, planetName: isHi ? (PLANET_NAMES_HI[ds.planetId] ?? '') : (PLANET_NAMES_EN[ds.planetId] ?? '') });
+            }
+          }
+        }
+
+        return (
+          <div className="space-y-6">
+            {/* Life Quality Verdicts */}
+            <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6">
+              <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
+                {isHi ? 'जीवन क्षेत्र निदान' : 'Life Area Verdicts'}
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-5">
+                {keyVargaInsights.map((vi, idx) => {
+                  const domain = VARGA_DOMAIN[vi.chart];
+                  return (
+                    <div key={idx} className={`rounded-xl p-3.5 border ${
+                      vi.strength === 'strong' ? 'border-emerald-500/20 bg-emerald-500/5' :
+                      vi.strength === 'weak' ? 'border-red-500/20 bg-red-500/5' :
+                      'border-amber-500/20 bg-amber-500/5'
+                    }`}>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-gold-light font-bold text-sm" style={headingFont}>{vi.chart}</span>
+                        <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full border ${sC[vi.strength]}`}>
+                          {isHi ? sL[vi.strength].hi : sL[vi.strength].en}
+                        </span>
+                      </div>
+                      <div className="text-text-secondary/90 text-xs font-medium mb-1">{isHi ? domain?.hi : domain?.en}</div>
+                      <p className={`text-xs leading-relaxed ${
+                        vi.strength === 'strong' ? 'text-emerald-300/80' :
+                        vi.strength === 'weak' ? 'text-red-300/80' : 'text-amber-300/80'
+                      }`} style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                        {vi.strength === 'strong'
+                          ? (isHi ? `${domain?.hi} की संभावनाएँ अच्छी तरह समर्थित` : `${domain?.en} prospects are well-supported`)
+                          : vi.strength === 'weak'
+                          ? (isHi ? `${domain?.hi} क्षेत्र में ध्यान आवश्यक — नीचे उपाय देखें` : `${domain?.en} area needs attention — see remedies below`)
+                          : (isHi ? `${domain?.hi} में मध्यम संभावनाएँ — सचेत प्रयास से सुधार संभव` : `${domain?.en} shows moderate potential — improvement possible with conscious effort`)}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Overall Synthesis */}
+              <div className="rounded-xl bg-gold-primary/[0.04] border border-gold-primary/12 p-4">
+                <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2" style={headingFont}>
+                  {isHi ? 'समग्र संश्लेषण' : 'Overall Synthesis'}
+                </div>
+                <p className="text-text-secondary/85 text-xs leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {isHi
+                    ? `विश्लेषित ${keyVargaInsights.length} प्रमुख वर्गों में से ${strongCount} बलवान और ${weakCount} दुर्बल। ${strongestArea ? `आपका सबसे बलवान क्षेत्र: ${VARGA_DOMAIN[strongestArea.chart]?.hi || strongestArea.chart}।` : ''} ${weakestArea ? `उपायात्मक प्रयास ${VARGA_DOMAIN[weakestArea.chart]?.hi || weakestArea.chart} पर केन्द्रित करें।` : 'सभी प्रमुख क्षेत्र सन्तुलित हैं।'}`
+                    : `Out of ${keyVargaInsights.length} key vargas analyzed, ${strongCount} show strong placements and ${weakCount} show areas needing attention. ${strongestArea ? `Your strongest life area is ${VARGA_DOMAIN[strongestArea.chart]?.en || strongestArea.chart}.` : ''} ${weakestArea ? `Focus remedial effort on ${VARGA_DOMAIN[weakestArea.chart]?.en || weakestArea.chart}.` : 'All key areas are well-balanced.'}`}
+                </p>
+              </div>
+            </div>
+
+            {/* Remedial Suggestions for Weak Placements */}
+            {weakPlanetRemedies.length > 0 && (
+              <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 p-6">
+                <h3 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
+                  {isHi ? 'वर्ग-आधारित उपाय' : 'Varga-Based Remedial Guidance'}
+                </h3>
+                <p className="text-text-secondary/70 text-xs text-center mb-4" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {isHi ? 'दुर्बल वर्ग स्थितियों के लिए विशिष्ट उपाय' : 'Specific remedies for weak varga placements'}
+                </p>
+                <div className="space-y-3">
+                  {weakPlanetRemedies.map((wr, idx) => {
+                    const remedy = REMEDIES_BY_PLANET[wr.planetId];
+                    const domainAdvice = VARGA_WEAK_REMEDY_DOMAIN[wr.varga];
+                    return (
+                      <div key={idx} className="rounded-xl border border-amber-500/15 bg-amber-500/[0.03] p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-amber-300 font-bold text-sm" style={headingFont}>{wr.planetName}</span>
+                          <span className="text-text-secondary/70 text-xs">{isHi ? 'नीच' : 'debilitated'} {isHi ? 'में' : 'in'} {wr.varga}</span>
+                        </div>
+                        {domainAdvice && (
+                          <p className="text-text-secondary/80 text-xs leading-relaxed mb-2" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                            {isHi ? domainAdvice.hi : domainAdvice.en}
+                          </p>
+                        )}
+                        {remedy && (
+                          <div className="p-2.5 rounded-lg bg-gold-primary/[0.04] border border-gold-primary/10">
+                            <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-1">
+                              {isHi ? 'अनुशंसित उपाय' : 'Recommended Remedies'}
+                            </div>
+                            <p className="text-gold-light/80 text-xs leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                              {isHi ? remedy.hi : remedy.en}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Self-assessment questions for varga analysis */}
+            <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 p-5">
+              <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3" style={headingFont}>
+                {isHi ? 'आत्म-परीक्षण प्रश्न' : 'Self-Assessment Questions'}
+              </div>
+              <div className="space-y-2.5">
+                {keyVargaInsights.find(v => v.chart === 'D9') && (
+                  <div className="flex gap-2 text-xs text-text-secondary/80">
+                    <span className="text-gold-primary shrink-0 mt-0.5">?</span>
+                    <span style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {isHi
+                        ? `आपका D9 ${keyVargaInsights.find(v => v.chart === 'D9')?.strength === 'strong' ? 'बलवान है — क्या आप अपने विवाह/साझेदारी में गहरी पूर्णता अनुभव करते हैं? यह ग्रहीय पुष्टि है।' : keyVargaInsights.find(v => v.chart === 'D9')?.strength === 'weak' ? 'दुर्बल है — क्या विवाह या गम्भीर सम्बन्धों में बार-बार चुनौतियाँ आती हैं? D9 उपायों पर ध्यान दें।' : 'मध्यम है — विवाह क्षेत्र में सचेत प्रयास से सुधार सम्भव।'}`
+                        : `Your D9 is ${keyVargaInsights.find(v => v.chart === 'D9')?.strength === 'strong' ? 'strong — do you experience deep fulfillment in your marriage/partnerships? This is planetary confirmation.' : keyVargaInsights.find(v => v.chart === 'D9')?.strength === 'weak' ? 'weak — do you face recurring challenges in marriage or serious relationships? Focus on D9 remedies.' : 'moderate — conscious effort in the relationship domain can yield improvement.'}`}
+                    </span>
+                  </div>
+                )}
+                {keyVargaInsights.find(v => v.chart === 'D10') && (
+                  <div className="flex gap-2 text-xs text-text-secondary/80">
+                    <span className="text-gold-primary shrink-0 mt-0.5">?</span>
+                    <span style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {isHi
+                        ? `आपका D10 ${keyVargaInsights.find(v => v.chart === 'D10')?.strength === 'strong' ? 'बलवान है — क्या आपको करियर में स्वाभाविक सफलता मिलती है? अपनी व्यावसायिक शक्तियों का अधिकतम लाभ उठाएँ।' : keyVargaInsights.find(v => v.chart === 'D10')?.strength === 'weak' ? 'दुर्बल है — क्या करियर में उन्नति कठिन लगती है? D10 उपायों से पेशेवर अवरोध दूर करें।' : 'मध्यम है — करियर में धैर्य और रणनीतिक प्रयास से सफलता सम्भव।'}`
+                        : `Your D10 is ${keyVargaInsights.find(v => v.chart === 'D10')?.strength === 'strong' ? 'strong — do you find natural career success? Maximize your professional strengths.' : keyVargaInsights.find(v => v.chart === 'D10')?.strength === 'weak' ? 'weak — does career advancement feel difficult? D10 remedies can help remove professional blocks.' : 'moderate — patience and strategic effort can unlock career success.'}`}
+                    </span>
+                  </div>
+                )}
+                {strongestArea && weakestArea && strongestArea.chart !== weakestArea.chart && (
+                  <div className="flex gap-2 text-xs text-text-secondary/80">
+                    <span className="text-emerald-400 shrink-0 mt-0.5">+</span>
+                    <span style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {isHi
+                        ? `रणनीति: अपनी शक्ति (${VARGA_DOMAIN[strongestArea.chart]?.hi}) का उपयोग दुर्बल क्षेत्र (${VARGA_DOMAIN[weakestArea.chart]?.hi}) को सहारा देने में करें। उदाहरण: यदि करियर बलवान लेकिन विवाह दुर्बल, तो पेशेवर स्थिरता का उपयोग सम्बन्ध निवेश में करें।`
+                        : `Strategy: Use your strength in ${VARGA_DOMAIN[strongestArea.chart]?.en} to support your weaker area of ${VARGA_DOMAIN[weakestArea.chart]?.en}. Example: if career is strong but marriage is weak, use professional stability to invest in relationship quality.`}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
     </div>
   );
 }

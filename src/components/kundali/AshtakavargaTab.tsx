@@ -408,8 +408,16 @@ export default function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, he
                 const weak = val < 22;
                 const pct = Math.round((val / 56) * 100);
                 const barColor = strong ? 'bg-emerald-500/60' : weak ? 'bg-red-500/50' : 'bg-gold-primary/40';
-                const borderColor = strong ? 'border-emerald-500/40' : weak ? 'border-red-500/30' : 'border-gold-primary/15';
-                const bgColor = strong ? 'bg-emerald-500/8' : weak ? 'bg-red-500/5' : 'bg-bg-tertiary/30';
+                // — 3-tier heatmap: vivid backgrounds so the tier is INSTANT to read
+                const borderColor = strong ? 'border-emerald-500/50' : weak ? 'border-red-500/40' : 'border-gold-primary/20';
+                const bgColor = strong ? 'bg-emerald-500/15' : weak ? 'bg-red-500/15' : 'bg-white/5';
+                const tierLabel = strong
+                  ? (isEn ? 'Strong' : 'बलवान')
+                  : weak
+                  ? (isEn ? 'Low' : 'दुर्बल')
+                  : (isEn ? 'Neutral' : 'सामान्य');
+                const tierDotColor = strong ? 'bg-emerald-400' : weak ? 'bg-red-400' : 'bg-gold-primary/60';
+                const tierTextColor = strong ? 'text-emerald-400' : weak ? 'text-red-400' : 'text-text-secondary';
                 return (
                   <motion.div key={r.id}
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -422,15 +430,20 @@ export default function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, he
                       <RashiIconById id={r.id} size={32} />
                       <div className="text-sm font-semibold text-text-secondary mt-1.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(r.name, locale)}</div>
                       <div className={`text-2xl font-bold mt-1 ${strong ? 'text-emerald-300' : weak ? 'text-red-300' : 'text-gold-light'}`}>{val}</div>
+                      {/* Tier badge — instant visual signal */}
+                      <div className={`flex items-center justify-center gap-1 mt-1.5`}>
+                        <span className={`w-1.5 h-1.5 rounded-full ${tierDotColor}`} />
+                        <span className={`text-[10px] font-bold ${tierTextColor}`}>{tierLabel}</span>
+                      </div>
                     </div>
                   </motion.div>
                 );
               })}
             </div>
             <div className="flex items-center justify-center gap-6 mt-5 text-xs">
-              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-emerald-500/60" />{locale === 'en' || isTamil ? '≥28 Strong' : '≥28 बलवान'}</span>
-              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-gold-primary/40" />{locale === 'en' || isTamil ? '22–27 Average' : '22–27 औसत'}</span>
-              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-red-500/50" />{locale === 'en' || isTamil ? '<22 Weak' : '<22 दुर्बल'}</span>
+              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-emerald-500/60 border border-emerald-500/50" />{locale === 'en' || isTamil ? '≥28 Strong' : '≥28 बलवान'}</span>
+              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-white/5 border border-gold-primary/20" />{locale === 'en' || isTamil ? '22–27 Neutral' : '22–27 सामान्य'}</span>
+              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-red-500/50 border border-red-500/40" />{locale === 'en' || isTamil ? '<22 Low' : '<22 दुर्बल'}</span>
             </div>
             <div className="text-center text-text-secondary text-sm font-semibold mt-3">
               {t('totalBindu')}: {ashtakavarga.savTable.reduce((a, b) => a + b, 0)}

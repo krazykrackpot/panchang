@@ -194,6 +194,43 @@ export default function ShadbalaTab({ shadbala, locale, isDevanagari, headingFon
           : 'शास्त्रीय षड्बल गणना। मान षष्ट्यंशों में। बल अनुपात 1.0 से अधिक पर्याप्त बल दर्शाता है।'}
       </p>
 
+      {/* Strength Overview — instant visual via progress bars */}
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
+        <h4 className="text-gold-light font-bold text-sm mb-4" style={headingFont}>
+          {isEn ? 'Strength at a Glance' : 'एक नज़र में बल'}
+        </h4>
+        <div className="space-y-2.5">
+          {shadbala.map(s => {
+            const label = PLANET_LABELS[s.planet] || { en: s.planet, hi: s.planet };
+            const ratio = s.strengthRatio;
+            const barPct = Math.min(ratio * 50, 100); // 2.0x = 100%
+            const barColor = ratio >= 1.5 ? '#34d399' : ratio >= 1.0 ? '#d4a853' : '#ef4444';
+            return (
+              <div key={s.planetId} className="flex items-center gap-3">
+                <div className="flex items-center gap-2 w-20 shrink-0">
+                  <GrahaIconById id={s.planetId} size={16} />
+                  <span className="text-text-primary text-xs font-medium truncate" style={bodyFont}>{tl(label, locale)}</span>
+                </div>
+                <div className="flex-1 h-3 rounded-full bg-white/5 overflow-hidden">
+                  <div
+                    className="h-full rounded-full transition-all duration-500"
+                    style={{ width: `${barPct}%`, backgroundColor: barColor }}
+                  />
+                </div>
+                <span className="w-12 text-right text-xs font-mono font-bold" style={{ color: barColor }}>
+                  {ratio.toFixed(1)}x
+                </span>
+              </div>
+            );
+          })}
+        </div>
+        <div className="flex items-center gap-4 mt-3 pt-3 border-t border-gold-primary/10 text-[10px] text-text-secondary/50">
+          <div className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-red-500/60" />{isEn ? '< 1.0x Weak' : '< 1.0x कमजोर'}</div>
+          <div className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-gold-primary/60" />{isEn ? '1.0-1.5x Adequate' : '1.0-1.5x पर्याप्त'}</div>
+          <div className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500/60" />{isEn ? '≥ 1.5x Strong' : '≥ 1.5x शक्तिशाली'}</div>
+        </div>
+      </div>
+
       {/* Strength Radar — interactive spider chart with drill-down */}
       <div className="rounded-xl bg-gradient-to-b from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-6">
         <ShadbalaRadar shadbala={shadbala} locale={locale} />

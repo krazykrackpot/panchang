@@ -101,24 +101,7 @@ export default function Navbar() {
     { href: '/rituals', label: ritualsLabel },
     { href: '/calendars', label: t('calendars') },
     { href: '/tools', label: t('tools') },
-    {
-      label: t('learn'),
-      children: [
-        { href: '/glossary', label: locale === 'hi' ? 'शब्दावली' : 'Glossary' },
-        { href: '/learn', label: locale === 'hi' ? 'पूर्ण पाठ्यक्रम' : 'Full Curriculum' },
-        { href: '/learn/foundations', label: locale === 'hi' ? '0 · पूर्व-आधार' : '0 · Pre-Foundation' },
-        { href: '/learn/grahas', label: locale === 'hi' ? '1 · आकाश' : '1 · The Sky' },
-        { href: '/learn/tithis', label: locale === 'hi' ? '2 · पंच अंग' : '2 · Pancha Anga' },
-        { href: '/learn/kundali', label: locale === 'hi' ? '3 · कुण्डली' : '3 · The Chart' },
-        { href: '/learn/dashas', label: locale === 'hi' ? '4 · व्यावहारिक ज्योतिष' : '4 · Applied Jyotish' },
-        { href: '/learn/library', label: locale === 'hi' ? '5 · शास्त्रीय ज्ञान' : '5 · Classical Knowledge' },
-        { href: '/learn/jaimini', label: locale === 'hi' ? '6 · जैमिनी पद्धति' : '6 · Jaimini System' },
-        { href: '/learn/kp', label: locale === 'hi' ? '7 · केपी पद्धति' : '7 · KP System' },
-        { href: '/learn/varshaphal', label: locale === 'hi' ? '8 · वर्षफल' : '8 · Varshaphal' },
-        { href: '/learn/shadbala', label: locale === 'hi' ? '10 · उन्नत भविष्यवाणी' : '10 · Advanced Prediction' },
-        { href: '/learn/masa', label: locale === 'hi' ? '12 · त्योहार कैलेंडर' : '12 · Festival Calendar' },
-      ],
-    },
+    { href: '/learn', label: t('learn') },
   ];
 
   return (

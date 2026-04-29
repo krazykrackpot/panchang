@@ -536,7 +536,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-gold-primary/5 via-transparent to-gold-dark/3 blur-3xl" />
 
         {/* Slow-orbiting zodiac ring behind hero — visible gold with element colors */}
-        <div className="absolute top-1/2 left-1/2 w-[650px] h-[650px] cosmic-orbit" aria-hidden="true">
+        <div className="absolute top-1/2 left-1/2 w-[500px] h-[500px] cosmic-orbit -z-10" aria-hidden="true">
           <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none">
             <defs>
               <linearGradient id="orbit-gold" x1="0%" y1="0%" x2="100%" y2="100%">

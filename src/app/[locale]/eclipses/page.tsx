@@ -318,24 +318,26 @@ export default function EclipsesPage() {
                     </div>
                     <div className="text-gold-light text-base font-mono mb-2">{formatDate(eclipse.date)}</div>
 
-                    {/* Quick stats row */}
+                    {/* Quick stat pills — visible without expanding */}
                     {local && isVisible && (
-                      <div className="flex flex-wrap gap-x-5 gap-y-1 text-xs text-text-secondary/70">
+                      <div className="flex flex-wrap gap-2 mt-2">
                         {local.maximum && (
-                          <span className="flex items-center gap-1">
-                            <Clock className="w-3 h-3 text-gold-dark" />
-                            {msg('max', locale)}: <span className="text-gold-light font-mono">{local.maximum}</span>
-                          </span>
+                          <div className="bg-[#1a1040]/60 rounded-lg px-3 py-1.5 text-center">
+                            <div className="text-[8px] text-text-secondary/50 uppercase tracking-wider">{msg('max', locale)}</div>
+                            <div className="text-sm font-mono font-bold text-gold-light">{local.maximum}</div>
+                          </div>
                         )}
                         {local.maxMagnitude > 0 && (
-                          <span>
-                            {msg('mag', locale)}: <span className="text-gold-light font-mono">{local.maxMagnitude.toFixed(2)}</span>
-                          </span>
+                          <div className="bg-[#1a1040]/60 rounded-lg px-3 py-1.5 text-center">
+                            <div className="text-[8px] text-text-secondary/50 uppercase tracking-wider">{msg('mag', locale)}</div>
+                            <div className="text-sm font-mono font-bold text-gold-light">{local.maxMagnitude.toFixed(2)}</div>
+                          </div>
                         )}
                         {local.durationFormatted && (
-                          <span>
-                            {msg('duration', locale)}: <span className="text-gold-light font-mono">{local.durationFormatted}</span>
-                          </span>
+                          <div className="bg-[#1a1040]/60 rounded-lg px-3 py-1.5 text-center">
+                            <div className="text-[8px] text-text-secondary/50 uppercase tracking-wider">{msg('duration', locale)}</div>
+                            <div className="text-sm font-mono font-bold text-gold-light">{local.durationFormatted}</div>
+                          </div>
                         )}
                       </div>
                     )}

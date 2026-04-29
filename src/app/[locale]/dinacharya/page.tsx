@@ -10,42 +10,41 @@ import type { VoiceMode, DailyProtocol, HoraSlot, EnergyPhase, DeadZone } from '
 import { PRAKRITI_QUESTIONS, scorePrakriti } from '@/lib/dinacharya/prakriti-quiz';
 import type { Dosha } from '@/lib/dinacharya/prakriti-quiz';
 import { tl } from '@/lib/utils/trilingual';
+import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import DayTimeline from '@/components/panchang/DayTimeline';
 import type { PanchangData, HoraSlot as PanchangHoraSlot } from '@/types/panchang';
 
-// ── Planet symbols for hora display ──
-const PLANET_SYMBOLS: Record<number, string> = {
-  0: '\u2609', // Sun
-  1: '\u263D', // Moon
-  2: '\u2642', // Mars
-  3: '\u263F', // Mercury
-  4: '\u2643', // Jupiter
-  5: '\u2640', // Venus
-  6: '\u2644', // Saturn
-};
-
-// ── Moon phase icons by approximate phase ──
-const MOON_PHASE_ICONS = [
-  '\uD83C\uDF11', // new
-  '\uD83C\uDF12', // waxing crescent
-  '\uD83C\uDF13', // first quarter
-  '\uD83C\uDF14', // waxing gibbous
-  '\uD83C\uDF15', // full
-  '\uD83C\uDF16', // waning gibbous
-  '\uD83C\uDF17', // last quarter
-  '\uD83C\uDF18', // waning crescent
+// ── Moon phase SVG icons (replacing emoji) ──
+// Each returns a small SVG node; index matches the 8 canonical phases
+const MOON_PHASE_SVGS: React.ReactNode[] = [
+  // 0: new moon
+  <svg key="new" width="20" height="20" viewBox="0 0 20 20" aria-label="New Moon"><circle cx="10" cy="10" r="8" fill="#1a1040" stroke="#8a6d2b" strokeWidth="1.5" /></svg>,
+  // 1: waxing crescent
+  <svg key="wax-cres" width="20" height="20" viewBox="0 0 20 20" aria-label="Waxing Crescent"><circle cx="10" cy="10" r="8" fill="#1a1040" stroke="#8a6d2b" strokeWidth="1" /><path d="M10 2a8 8 0 0 1 0 16A5 5 0 0 0 10 2z" fill="#f0d48a" /></svg>,
+  // 2: first quarter
+  <svg key="first-q" width="20" height="20" viewBox="0 0 20 20" aria-label="First Quarter"><circle cx="10" cy="10" r="8" fill="#1a1040" stroke="#8a6d2b" strokeWidth="1" /><path d="M10 2a8 8 0 0 1 0 16V2z" fill="#f0d48a" /></svg>,
+  // 3: waxing gibbous
+  <svg key="wax-gib" width="20" height="20" viewBox="0 0 20 20" aria-label="Waxing Gibbous"><circle cx="10" cy="10" r="8" fill="#f0d48a" stroke="#8a6d2b" strokeWidth="1" /><path d="M10 2a8 8 0 0 0 0 16A5 5 0 0 1 10 2z" fill="#1a1040" /></svg>,
+  // 4: full moon
+  <svg key="full" width="20" height="20" viewBox="0 0 20 20" aria-label="Full Moon"><circle cx="10" cy="10" r="8" fill="#f0d48a" /></svg>,
+  // 5: waning gibbous
+  <svg key="wan-gib" width="20" height="20" viewBox="0 0 20 20" aria-label="Waning Gibbous"><circle cx="10" cy="10" r="8" fill="#f0d48a" stroke="#8a6d2b" strokeWidth="1" /><path d="M10 2a8 8 0 0 1 0 16A5 5 0 0 0 10 2z" fill="#1a1040" /></svg>,
+  // 6: last quarter
+  <svg key="last-q" width="20" height="20" viewBox="0 0 20 20" aria-label="Last Quarter"><circle cx="10" cy="10" r="8" fill="#1a1040" stroke="#8a6d2b" strokeWidth="1" /><path d="M10 2a8 8 0 0 0 0 16V2z" fill="#f0d48a" /></svg>,
+  // 7: waning crescent
+  <svg key="wan-cres" width="20" height="20" viewBox="0 0 20 20" aria-label="Waning Crescent"><circle cx="10" cy="10" r="8" fill="#1a1040" stroke="#8a6d2b" strokeWidth="1" /><path d="M10 2a8 8 0 0 0 0 16A5 5 0 0 1 10 2z" fill="#f0d48a" /></svg>,
 ];
 
-function getMoonPhaseIcon(tithiNumber: number): string {
-  // Map tithi 1-30 to 8 phase icons
-  if (tithiNumber <= 2) return MOON_PHASE_ICONS[1];
-  if (tithiNumber <= 7) return MOON_PHASE_ICONS[2];
-  if (tithiNumber <= 10) return MOON_PHASE_ICONS[3];
-  if (tithiNumber <= 15) return MOON_PHASE_ICONS[4]; // full at 15
-  if (tithiNumber <= 17) return MOON_PHASE_ICONS[5];
-  if (tithiNumber <= 22) return MOON_PHASE_ICONS[6];
-  if (tithiNumber <= 25) return MOON_PHASE_ICONS[7];
-  return MOON_PHASE_ICONS[0]; // new moon approaching
+function getMoonPhaseIcon(tithiNumber: number): React.ReactNode {
+  // Map tithi 1-30 to 8 phase SVGs
+  if (tithiNumber <= 2) return MOON_PHASE_SVGS[1];
+  if (tithiNumber <= 7) return MOON_PHASE_SVGS[2];
+  if (tithiNumber <= 10) return MOON_PHASE_SVGS[3];
+  if (tithiNumber <= 15) return MOON_PHASE_SVGS[4]; // full at 15
+  if (tithiNumber <= 17) return MOON_PHASE_SVGS[5];
+  if (tithiNumber <= 22) return MOON_PHASE_SVGS[6];
+  if (tithiNumber <= 25) return MOON_PHASE_SVGS[7];
+  return MOON_PHASE_SVGS[0]; // new moon approaching
 }
 
 // ── Energy phase dosha colors ──
@@ -94,14 +93,34 @@ function isPastTimeRange(endTime: string): boolean {
 }
 
 // ── Agni visualization ──
+function FlameSVG({ dim }: { dim?: boolean }) {
+  return (
+    <svg
+      width="16"
+      height="20"
+      viewBox="0 0 16 20"
+      fill="none"
+      aria-hidden="true"
+      className={dim ? 'opacity-20' : 'opacity-100'}
+    >
+      <path
+        d="M8 0C8 0 3 5 3 10a5 5 0 0 0 10 0C13 6.5 10 4 10 4S9.5 7 8 8C6.5 9 5 8 5 6.5 5 4.5 8 0 8 0Z"
+        fill="#d4a853"
+      />
+      <path
+        d="M8 10c0 0-2 1-2 3a2 2 0 0 0 4 0C10 11.5 8 10 8 10Z"
+        fill="#f0d48a"
+      />
+    </svg>
+  );
+}
+
 function AgniLevel({ level }: { level: 'strong' | 'moderate' | 'low' }) {
   const count = level === 'strong' ? 3 : level === 'moderate' ? 2 : 1;
   return (
-    <span className="inline-flex gap-0.5">
+    <span className="inline-flex gap-0.5 items-end">
       {Array.from({ length: 3 }, (_, i) => (
-        <span key={i} className={i < count ? 'opacity-100' : 'opacity-20'}>
-          \uD83D\uDD25
-        </span>
+        <FlameSVG key={i} dim={i >= count} />
       ))}
     </span>
   );
@@ -332,6 +351,7 @@ export default function DinacharyaPage() {
         {/* ── Energy Timeline ── */}
         <SectionCard
           title={voice === 'traditional' ? 'Dosha Kala' : 'Energy Timeline'}
+          accent="teal"
         >
           <EnergyTimeline phases={protocol.energyPhases} voice={voice} />
         </SectionCard>
@@ -340,6 +360,7 @@ export default function DinacharyaPage() {
         {rawPanchang && (
           <SectionCard
             title={voice === 'traditional' ? 'Shubha-Ashubha Kala' : 'Sacred Timings'}
+            accent="gold"
           >
             <DayTimeline
               panchang={rawPanchang}
@@ -353,6 +374,7 @@ export default function DinacharyaPage() {
         {/* ── Hora Schedule ── */}
         <SectionCard
           title={voice === 'traditional' ? 'Hora Chakra' : 'Hora Schedule'}
+          accent="amber"
         >
           <HoraGrid slots={protocol.horaSchedule} voice={voice} />
         </SectionCard>
@@ -362,6 +384,7 @@ export default function DinacharyaPage() {
           title={
             voice === 'traditional' ? 'Ahara Vidhi' : 'Nutrition Window'
           }
+          accent="orange"
         >
           <NutritionCard nutrition={protocol.nutrition} voice={voice} />
         </SectionCard>
@@ -373,6 +396,7 @@ export default function DinacharyaPage() {
               ? 'Karma Nirdesh'
               : 'Practice Focus'
           }
+          accent="purple"
         >
           <PracticeFocus practice={protocol.practice} voice={voice} />
         </SectionCard>
@@ -383,6 +407,7 @@ export default function DinacharyaPage() {
             title={
               voice === 'traditional' ? 'Ashubha Kala' : 'Dead Zones'
             }
+            accent="red"
           >
             <DeadZoneList zones={protocol.deadZones} voice={voice} />
           </SectionCard>
@@ -395,6 +420,7 @@ export default function DinacharyaPage() {
               ? 'Prakriti Pariksha'
               : 'Your Constitution'
           }
+          accent="gold"
         >
           <PrakritiSection
             profile={prakritiStore.profile}
@@ -450,17 +476,31 @@ function VoiceToggle({
   );
 }
 
+const SECTION_ACCENT_CLASSES: Record<string, { border: string; fromClass: string }> = {
+  teal:   { border: 'border-l-4 border-l-teal-500/40',   fromClass: 'from-teal-900/10' },
+  gold:   { border: 'border-l-4 border-l-gold-primary/40', fromClass: 'from-[#2d1b69]/40' },
+  amber:  { border: 'border-l-4 border-l-amber-500/40',  fromClass: 'from-amber-900/10' },
+  orange: { border: 'border-l-4 border-l-orange-500/40', fromClass: 'from-orange-900/10' },
+  purple: { border: 'border-l-4 border-l-purple-500/40', fromClass: 'from-purple-900/10' },
+  red:    { border: 'border-l-4 border-l-red-500/40',    fromClass: 'from-red-900/10' },
+};
+
 function SectionCard({
   title,
   children,
+  accent,
 }: {
   title: string;
   children: React.ReactNode;
+  accent?: keyof typeof SECTION_ACCENT_CLASSES;
 }) {
+  const accentClasses = accent ? SECTION_ACCENT_CLASSES[accent] : null;
+  const fromClass = accentClasses ? accentClasses.fromClass : 'from-[#2d1b69]/40';
+  const borderAccent = accentClasses ? accentClasses.border : '';
   return (
     <section className="mb-5">
       <h2 className="font-[Cinzel] text-base text-[#f0d48a] mb-3">{title}</h2>
-      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 hover:border-gold-primary/40 transition-all">
+      <div className={`bg-gradient-to-br ${fromClass} via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 hover:border-gold-primary/40 transition-all ${borderAccent}`}>
         {children}
       </div>
     </section>
@@ -484,7 +524,7 @@ function MoonPhaseBanner({
 
   return (
     <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 mb-5 flex items-center gap-4 hover:border-gold-primary/40 transition-all">
-      <span className="text-4xl flex-shrink-0">{icon}</span>
+      <span className="flex-shrink-0 w-10 h-10 flex items-center justify-center [&_svg]:w-9 [&_svg]:h-9">{icon}</span>
       <div className="flex-1 min-w-0">
         <p className="text-[#e6e2d8] text-sm">
           {voice === 'traditional'
@@ -617,8 +657,10 @@ function HoraGrid({
               : 'bg-[#161b42] border border-transparent'
           }`}
         >
-          <span className="text-xl leading-none mt-0.5">
-            {PLANET_SYMBOLS[slot.planetId] ?? '?'}
+          <span className="leading-none mt-0.5 flex-shrink-0">
+            {slot.planetId >= 0 && slot.planetId <= 6
+              ? <GrahaIconById id={slot.planetId} size={18} />
+              : <span className="text-xl">?</span>}
           </span>
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between">

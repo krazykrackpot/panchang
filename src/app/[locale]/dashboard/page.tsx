@@ -39,6 +39,7 @@ import LevelBadge from '@/components/learn/LevelBadge';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import ChartNorth from '@/components/kundali/ChartNorth';
+import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import type { Locale, PanchangData , LocaleText} from '@/types/panchang';
 import type { PersonalizedDay, UserSnapshot, TransitAlert } from '@/lib/personalization/types';
 import type { ChartData, DashaEntry } from '@/types/kundali';
@@ -1421,14 +1422,20 @@ export default function DashboardPage() {
               </thead>
               <tbody>
                 {gocharResults.map((g) => (
-                  <tr key={g.planetId} className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors">
+                  <tr
+                    key={g.planetId}
+                    className={`border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors border-l-3 ${g.isPositive ? 'border-l-emerald-500/40' : 'border-l-amber-500/40'}`}
+                  >
                     <td className="py-2.5 pr-3">
-                      <span className="text-text-primary font-medium">{tl(g.planetName, locale)}</span>
+                      <span className="inline-flex items-center gap-1.5 text-text-primary font-medium">
+                        <GrahaIconById id={g.planetId} size={18} className="inline-block flex-shrink-0" />
+                        {tl(g.planetName, locale)}
+                      </span>
                       {g.isRetrograde && <span className="ml-1 text-red-400 text-xs font-bold">({L.retrograde})</span>}
                     </td>
                     <td className="py-2.5 pr-3 text-gold-light">{g.transitSignName[locale] || g.transitSignName.en}</td>
                     <td className="py-2.5 pr-3 text-center">
-                      <span className={`inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold ${g.isPositive ? 'bg-emerald-500/15 text-emerald-400' : 'bg-amber-500/15 text-amber-400'}`}>
+                      <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold ${g.isPositive ? 'bg-emerald-500/15 text-emerald-400' : 'bg-amber-500/15 text-amber-400'}`}>
                         {g.natalHouse}
                       </span>
                     </td>

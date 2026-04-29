@@ -401,29 +401,71 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
         <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-gold-primary/5 blur-3xl" />
         <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-indigo-500/5 blur-3xl" />
 
-        {/* Top strip — key metrics with descriptors */}
-        <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 border-b border-gold-primary/10">
+        {/* Top strip — element ring + metrics */}
+        <div className="relative z-10 flex flex-col sm:flex-row border-b border-gold-primary/10">
+          {/* Element distribution ring */}
           {(() => {
             const ELEMENT_KEYWORDS_EN = ['passion · drive · action', 'stability · patience · material', 'intellect · communication · ideas', 'intuition · emotion · depth'];
             const ELEMENT_KEYWORDS_HI = ['उत्साह · प्रेरणा · कर्म', 'स्थिरता · धैर्य · भौतिक', 'बुद्धि · संवाद · विचार', 'अन्तर्ज्ञान · भावना · गहराई'];
+            const elPcts = elementCounts.map(c => Math.round((c / totalPlanets) * 100));
+            // Build SVG donut arcs
+            let cumAngle = -90; // start at top
+            const arcs = elPcts.map((pct, idx) => {
+              const angle = (pct / 100) * 360;
+              const startRad = (cumAngle * Math.PI) / 180;
+              const endRad = ((cumAngle + angle) * Math.PI) / 180;
+              const r = 38;
+              const cx = 50, cy = 50;
+              const x1 = cx + r * Math.cos(startRad);
+              const y1 = cy + r * Math.sin(startRad);
+              const x2 = cx + r * Math.cos(endRad);
+              const y2 = cy + r * Math.sin(endRad);
+              const large = angle > 180 ? 1 : 0;
+              cumAngle += angle;
+              if (pct === 0) return null;
+              return <path key={idx} d={`M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2}`} fill="none" stroke={ELEMENT_COLORS_HERO[idx]} strokeWidth={10} opacity={0.7} />;
+            });
             return (
-              <div className="text-center py-4 px-3 border-r border-b sm:border-b-0 border-gold-primary/10">
-                <div className="text-xl font-bold font-mono" style={{ color: ELEMENT_COLORS_HERO[dominantElIdx] }}>{dominantElPct}% {dominantElName}</div>
-                <div className="text-[9px] text-text-secondary/50 mt-0.5">{isEn ? ELEMENT_KEYWORDS_EN[dominantElIdx] : ELEMENT_KEYWORDS_HI[dominantElIdx]}</div>
+              <div className="flex items-center gap-4 px-4 py-4 border-b sm:border-b-0 sm:border-r border-gold-primary/10 sm:w-64 shrink-0">
+                <svg viewBox="0 0 100 100" className="w-20 h-20 shrink-0">
+                  <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth={10} />
+                  {arcs}
+                </svg>
+                <div className="flex-1 min-w-0">
+                  <div className="text-sm font-bold" style={{ color: ELEMENT_COLORS_HERO[dominantElIdx] }}>{dominantElPct}% {dominantElName}</div>
+                  <div className="text-[8px] text-text-secondary/50 mt-0.5">{isEn ? ELEMENT_KEYWORDS_EN[dominantElIdx] : ELEMENT_KEYWORDS_HI[dominantElIdx]}</div>
+                  <div className="flex flex-wrap gap-x-2 gap-y-0.5 mt-1.5">
+                    {[0, 1, 2, 3].filter(i => i !== dominantElIdx && elPcts[i] > 0).map(i => (
+                      <span key={i} className="text-[8px]" style={{ color: `${ELEMENT_COLORS_HERO[i]}99` }}>
+                        {elPcts[i]}% {isEn ? ELEMENT_NAMES_EN[i] : ELEMENT_NAMES_HI[i]}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             );
           })()}
-          <div className="text-center py-4 px-3 border-b sm:border-b-0 sm:border-r border-gold-primary/10">
-            <div className="text-sm font-bold text-gold-light truncate">{strongestPlanet?.planetName || '—'}</div>
-            <div className="text-[9px] text-text-secondary/50 mt-0.5">{isEn ? 'most influential planet in your chart' : 'कुण्डली में सर्वाधिक प्रभावशाली ग्रह'}</div>
-          </div>
-          <div className="text-center py-4 px-3 border-r border-gold-primary/10">
-            <div className="text-xl font-bold text-emerald-400 font-mono">{yogasActive}</div>
-            <div className="text-[9px] text-text-secondary/50 mt-0.5">{isEn ? `special combination${yogasActive !== 1 ? 's' : ''} active` : `विशेष योग सक्रिय`}</div>
-          </div>
-          <div className="text-center py-4 px-3">
-            <div className="text-sm font-bold text-gold-light truncate">{tip.dashaInsight.currentMaha || '—'}</div>
-            <div className="text-[9px] text-text-secondary/50 mt-0.5">{isEn ? 'ruling your current life chapter' : 'वर्तमान जीवन-अध्याय का शासक'}</div>
+
+          {/* 3 other metrics */}
+          <div className="flex-1 grid grid-cols-3">
+            <div className="text-center py-4 px-2 border-r border-gold-primary/10">
+              <div className="text-sm font-bold text-gold-light truncate">{strongestPlanet?.planetName || '—'}</div>
+              <div className="text-[8px] text-text-secondary/50 mt-0.5 leading-tight">
+                {isEn ? `strongest — ${Math.round(strongestPlanet?.strength || 0)}% Shadbala` : `शक्तिशाली — ${Math.round(strongestPlanet?.strength || 0)}% षड्बल`}
+              </div>
+            </div>
+            <div className="text-center py-4 px-2 border-r border-gold-primary/10">
+              <div className="text-xl font-bold text-emerald-400 font-mono">{yogasActive}</div>
+              <div className="text-[8px] text-text-secondary/50 mt-0.5 leading-tight">
+                {isEn ? 'Yogas (cosmic combos)' : 'योग (ब्रह्माण्डीय संयोजन)'}
+              </div>
+            </div>
+            <div className="text-center py-4 px-2">
+              <div className="text-sm font-bold text-gold-light truncate">{tip.dashaInsight.currentMaha || '—'}</div>
+              <div className="text-[8px] text-text-secondary/50 mt-0.5 leading-tight">
+                {isEn ? 'ruling your current life chapter' : 'वर्तमान जीवन-अध्याय का शासक'}
+              </div>
+            </div>
           </div>
         </div>
 

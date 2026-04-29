@@ -794,13 +794,17 @@ export default function PanchangClient() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ delay: 0, type: 'spring', stiffness: 200 }}
                   whileHover={{ scale: 1.05, y: -6 }}
-                  className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center hover:border-gold-primary/40 transition-all cursor-default"
+                  className="relative rounded-2xl bg-gradient-to-br from-amber-900/15 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20 p-3 sm:p-4 md:p-6 text-center hover:border-amber-500/40 transition-all cursor-default"
                 >
+                  {/* Auspiciousness badge */}
+                  <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[9px] font-bold border ${getNatureBg(panchang.tithi.paksha === 'shukla' ? 'auspicious' : 'neutral')} ${getNatureColor(panchang.tithi.paksha === 'shukla' ? 'auspicious' : 'neutral')}`}>
+                    {getNatureLabel(panchang.tithi.paksha === 'shukla' ? 'auspicious' : 'neutral')}
+                  </div>
                   <div className="flex justify-center mb-3"><TithiIcon size={56} /></div>
                   <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('tithi')}</div>
                   {/* First tithi (at sunrise) */}
                   <div className={`rounded-lg p-2.5 mb-2 border ${tithiPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
-                    <div className="text-gold-light text-lg font-bold leading-tight" style={headingFont}>
+                    <div className="text-gold-light text-xl sm:text-2xl font-black leading-tight" style={headingFont}>
                       {tl(panchang.tithi.name)}
                     </div>
                     <div className="text-text-secondary text-xs mt-0.5">
@@ -819,7 +823,7 @@ export default function PanchangClient() {
                   {/* Second tithi (after transition) */}
                   {nextTithiData && tithiTr && (
                     <div className={`rounded-lg p-2.5 border ${tithiPassed ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10 opacity-60'}`}>
-                      <div className="text-gold-light text-lg font-bold leading-tight" style={headingFont}>
+                      <div className="text-gold-light text-xl sm:text-2xl font-black leading-tight" style={headingFont}>
                         {tl(nextTithiData.name)}
                       </div>
                       <div className="text-text-secondary text-xs mt-0.5">
@@ -880,13 +884,28 @@ export default function PanchangClient() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
                   whileHover={{ scale: 1.05, y: -6 }}
-                  className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center hover:border-gold-primary/40 transition-all cursor-default"
+                  className="relative rounded-2xl bg-gradient-to-br from-indigo-900/20 via-[#1a1040]/50 to-[#0a0e27] border border-indigo-400/20 p-3 sm:p-4 md:p-6 text-center hover:border-indigo-400/40 transition-all cursor-default"
                 >
+                  {/* Auspiciousness badge — nakshatra.nature is a descriptive LocaleText (e.g. "Soft, Tender", "Sharp, Fierce").
+                      Map to auspicious/inauspicious/neutral using classical gana categories. */}
+                  {(() => {
+                    const natEn = (panchang.nakshatra.nature?.en || '').toLowerCase();
+                    const naksNature = natEn.includes('soft') || natEn.includes('tender') || natEn.includes('movable') || natEn.includes('light') || natEn.includes('swift')
+                      ? 'auspicious'
+                      : natEn.includes('fierce') || natEn.includes('sharp') || natEn.includes('severe')
+                        ? 'inauspicious'
+                        : 'neutral';
+                    return (
+                      <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[9px] font-bold border ${getNatureBg(naksNature)} ${getNatureColor(naksNature)}`}>
+                        {getNatureLabel(naksNature)}
+                      </div>
+                    );
+                  })()}
                   <div className="flex justify-center mb-3"><NakshatraIcon size={56} /></div>
                   <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('nakshatra')}</div>
                   {/* First nakshatra (at sunrise) */}
                   <div className={`rounded-lg p-2.5 mb-2 border ${nakPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
-                    <div className="text-gold-light text-lg font-bold leading-tight" style={headingFont}>
+                    <div className="text-gold-light text-xl sm:text-2xl font-black leading-tight" style={headingFont}>
                       {tl(panchang.nakshatra.name)}
                     </div>
                     <div className="text-text-secondary text-xs mt-0.5">
@@ -904,7 +923,7 @@ export default function PanchangClient() {
                   {/* Second nakshatra (after transition) */}
                   {nextNakData && nakTr && (
                     <div className={`rounded-lg p-2.5 border ${nakPassed ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10 opacity-60'}`}>
-                      <div className="text-gold-light text-lg font-bold leading-tight" style={headingFont}>
+                      <div className="text-gold-light text-xl sm:text-2xl font-black leading-tight" style={headingFont}>
                         {tl(nextNakData.name)}
                       </div>
                       <div className="text-text-secondary text-xs mt-0.5">
@@ -929,13 +948,17 @@ export default function PanchangClient() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
                   whileHover={{ scale: 1.05, y: -6 }}
-                  className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center hover:border-gold-primary/40 transition-all cursor-default"
+                  className="relative rounded-2xl bg-gradient-to-br from-purple-900/20 via-[#1a1040]/50 to-[#0a0e27] border border-purple-400/20 p-3 sm:p-4 md:p-6 text-center hover:border-purple-400/40 transition-all cursor-default"
                 >
+                  {/* Auspiciousness badge */}
+                  <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[9px] font-bold border ${getNatureBg(activeYoga.nature)} ${getNatureColor(activeYoga.nature)}`}>
+                    {getNatureLabel(activeYoga.nature)}
+                  </div>
                   <div className="flex justify-center mb-3"><YogaIcon size={56} /></div>
                   <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('yoga')}</div>
                   {/* First yoga (at sunrise) */}
                   <div className={`rounded-lg p-2.5 mb-2 border ${yogaPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
-                    <div className="text-gold-light text-lg font-bold leading-tight" style={headingFont}>{tl(panchang.yoga.name)}</div>
+                    <div className="text-gold-light text-xl sm:text-2xl font-black leading-tight" style={headingFont}>{tl(panchang.yoga.name)}</div>
                     <div className="text-text-secondary text-xs mt-0.5">{tl(panchang.yoga.meaning)}</div>
                     {panchang.yogaTransition && (
                       <div className="mt-2 pt-2 border-t border-gold-primary/10">
@@ -948,7 +971,7 @@ export default function PanchangClient() {
                   {/* Second yoga (after transition) */}
                   {panchang.yogaTransition && (
                     <div className={`rounded-lg p-2.5 border ${yogaPassed ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10 opacity-60'}`}>
-                      <div className="text-gold-light text-lg font-bold leading-tight" style={headingFont}>{tl(panchang.yogaTransition.nextName)}</div>
+                      <div className="text-gold-light text-xl sm:text-2xl font-black leading-tight" style={headingFont}>{tl(panchang.yogaTransition.nextName)}</div>
                       <div className="text-text-secondary text-xs mt-0.5">{tl(YOGAS[panchang.yogaTransition.nextNumber - 1]?.meaning)}</div>
                       <div className="font-mono text-sm text-amber-300 font-bold mt-1.5">
                         {fmt(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate)} {onwards}
@@ -974,13 +997,17 @@ export default function PanchangClient() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
                   whileHover={{ scale: 1.05, y: -6 }}
-                  className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center hover:border-gold-primary/40 transition-all cursor-default"
+                  className="relative rounded-2xl bg-gradient-to-br from-teal-900/15 via-[#1a1040]/50 to-[#0a0e27] border border-teal-400/15 p-3 sm:p-4 md:p-6 text-center hover:border-teal-400/35 transition-all cursor-default"
                 >
+                  {/* Auspiciousness badge — derived from karana type: chara=auspicious, sthira=inauspicious, special=neutral */}
+                  <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[9px] font-bold border ${getNatureBg(activeKarana.type === 'chara' ? 'auspicious' : activeKarana.type === 'sthira' ? 'inauspicious' : 'neutral')} ${getNatureColor(activeKarana.type === 'chara' ? 'auspicious' : activeKarana.type === 'sthira' ? 'inauspicious' : 'neutral')}`}>
+                    {getNatureLabel(activeKarana.type === 'chara' ? 'auspicious' : activeKarana.type === 'sthira' ? 'inauspicious' : 'neutral')}
+                  </div>
                   <div className="flex justify-center mb-3"><KaranaIcon size={56} /></div>
                   <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('karana')}</div>
                   {/* First karana (at sunrise) */}
                   <div className={`rounded-lg p-2.5 mb-2 border ${karanaPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
-                    <div className="text-gold-light text-lg font-bold leading-tight" style={headingFont}>{tl(panchang.karana.name)}</div>
+                    <div className="text-gold-light text-xl sm:text-2xl font-black leading-tight" style={headingFont}>{tl(panchang.karana.name)}</div>
                     <div className="text-text-secondary text-xs mt-0.5">
                       {panchang.karana.type === 'chara' ? msg('movable', locale) : panchang.karana.type === 'sthira' ? msg('fixed', locale) : msg('special', locale)}
                     </div>
@@ -995,7 +1022,7 @@ export default function PanchangClient() {
                   {/* Second karana (after transition) */}
                   {panchang.karanaTransition && (
                     <div className={`rounded-lg p-2.5 border ${karanaPassed ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10 opacity-60'}`}>
-                      <div className="text-gold-light text-lg font-bold leading-tight" style={headingFont}>{tl(panchang.karanaTransition.nextName)}</div>
+                      <div className="text-gold-light text-xl sm:text-2xl font-black leading-tight" style={headingFont}>{tl(panchang.karanaTransition.nextName)}</div>
                       <div className="text-text-secondary text-xs mt-0.5">
                         {(() => { const nk = KARANAS[panchang.karanaTransition!.nextNumber - 1]; return nk?.type === 'chara' ? msg('movable', locale) : nk?.type === 'sthira' ? msg('fixed', locale) : msg('special', locale); })()}
                       </div>
@@ -1023,11 +1050,20 @@ export default function PanchangClient() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ delay: 0.4, type: 'spring', stiffness: 200 }}
                   whileHover={{ scale: 1.05, y: -6 }}
-                  className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center hover:border-gold-primary/40 transition-all cursor-default"
+                  className="relative rounded-2xl bg-gradient-to-br from-orange-900/15 via-[#1a1040]/50 to-[#0a0e27] border border-orange-400/15 p-3 sm:p-4 md:p-6 text-center hover:border-orange-400/35 transition-all cursor-default"
                 >
+                  {/* Auspiciousness badge — derived from weekday lord: Sun/Mon/Thu/Fri=auspicious, Tue/Sat=inauspicious, Wed=neutral */}
+                  {(() => {
+                    const varaNature = [0, 1, 4, 5].includes(panchang.vara.day) ? 'auspicious' : [2, 6].includes(panchang.vara.day) ? 'inauspicious' : 'neutral';
+                    return (
+                      <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[9px] font-bold border ${getNatureBg(varaNature)} ${getNatureColor(varaNature)}`}>
+                        {getNatureLabel(varaNature)}
+                      </div>
+                    );
+                  })()}
                   <div className="flex justify-center mb-3"><VaraIcon size={56} /></div>
                   <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('vara')}</div>
-                  <div className="text-gold-light text-2xl font-bold leading-tight" style={headingFont}>{tl(panchang.vara.name)}</div>
+                  <div className="text-gold-light text-xl sm:text-2xl font-black leading-tight" style={headingFont}>{tl(panchang.vara.name)}</div>
                   <div className="text-text-secondary text-xs mt-2">{tl(panchang.vara.ruler)}</div>
                   {/* Vara contextual tip */}
                   <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">

@@ -3,7 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Loader2, Calendar } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import PrintButton from '@/components/ui/PrintButton';
 import LocationSearch from '@/components/ui/LocationSearch';
@@ -219,13 +219,6 @@ export default function MatchingPage() {
         </div>
       </motion.div>
 
-      {/* Birth details mode only — enter exact birth data for accurate matching */}
-      <div className="flex justify-center mb-8">
-        <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-gold-primary/20 bg-gold-primary/10 text-gold-light text-sm font-bold">
-          <Calendar className="w-4 h-4" />
-          {lbl.birthMode}
-        </div>
-      </div>
 
       {/* Input Form */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-12">
@@ -581,29 +574,34 @@ export default function MatchingPage() {
                 {tl(result.verdictText, locale)}
               </div>
               <div className="text-text-secondary text-sm mt-3">{result.percentage}% {t('compatibility')}</div>
-              {/* Overall score interpretation */}
-              {(() => {
-                const verdict = getOverallVerdict(result.totalScore);
-                const verdictBorder: Record<string, string> = {
-                  excellent: 'border-emerald-500/25 bg-emerald-500/5',
-                  good: 'border-green-500/25 bg-green-500/5',
-                  average: 'border-amber-500/25 bg-amber-500/5',
-                  caution: 'border-red-500/25 bg-red-500/5',
-                };
-                const verdictText: Record<string, string> = {
-                  excellent: 'text-emerald-400',
-                  good: 'text-green-400',
-                  average: 'text-amber-400',
-                  caution: 'text-red-400',
-                };
-                return (
-                  <div className={`mt-5 rounded-xl border p-4 max-w-lg mx-auto text-left ${verdictBorder[verdict.tier]}`}>
-                    <div className={`font-bold text-sm mb-1 ${verdictText[verdict.tier]}`} style={headingFont}>{verdict.headline}</div>
-                    <p className="text-text-secondary text-xs leading-relaxed">{verdict.body}</p>
-                  </div>
-                );
-              })()}
             </div>
+
+            {/* Narrative verdict — shown before the kuta breakdown */}
+            {(() => {
+              const verdict = getOverallVerdict(result.totalScore);
+              const verdictBorder: Record<string, string> = {
+                excellent: 'border-emerald-500/25 bg-emerald-500/5',
+                good: 'border-green-500/25 bg-green-500/5',
+                average: 'border-amber-500/25 bg-amber-500/5',
+                caution: 'border-red-500/25 bg-red-500/5',
+              };
+              const verdictTextColor: Record<string, string> = {
+                excellent: 'text-emerald-400',
+                good: 'text-green-400',
+                average: 'text-amber-400',
+                caution: 'text-red-400',
+              };
+              const boyName = boyBirth.name || (isTamil ? 'மணமகன்' : locale === 'en' ? 'Groom' : 'वर');
+              const girlName = girlBirth.name || (isTamil ? 'மணமகள்' : locale === 'en' ? 'Bride' : 'वधू');
+              return (
+                <div className={`mt-6 mb-8 rounded-xl border p-5 max-w-lg mx-auto text-left ${verdictBorder[verdict.tier]}`}>
+                  <div className={`font-bold text-lg mb-2 ${verdictTextColor[verdict.tier]}`} style={headingFont}>
+                    {boyName} &amp; {girlName} — {verdict.headline}
+                  </div>
+                  <p className="text-text-secondary text-sm leading-relaxed">{verdict.body}</p>
+                </div>
+              );
+            })()}
 
             {/* Nadi Dosha Warning */}
             {result.nadiDoshaPresent && (
@@ -661,26 +659,32 @@ export default function MatchingPage() {
               {result.kutas.map((kuta, i) => {
                 const insight = getKutaInsight(kuta.name.en, kuta.scored, kuta.maxPoints);
                 const pct = kuta.maxPoints > 0 ? kuta.scored / kuta.maxPoints : 0;
+                // Major kutas: Nadi (8), Bhakut (7), Gana (6) — maxPoints >= 6
+                const isMajor = kuta.maxPoints >= 6;
+                const verdictColorForBorder = pct >= 0.75 ? 'border-emerald-500' : pct >= 0.5 ? 'border-amber-500' : pct >= 0.25 ? 'border-orange-500' : 'border-red-500';
                 return (
                   <motion.div
                     key={kuta.name.en}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.08 }}
-                    className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5"
+                    className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl ${isMajor ? `border-l-4 ${verdictColorForBorder} p-6` : 'p-4'}`}
                   >
                     <div className="flex items-center justify-between mb-3">
                       <div>
-                        <span className="text-gold-light font-bold text-lg" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                        <span className={`text-gold-light font-bold ${isMajor ? 'text-lg' : 'text-base'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                           {tl(kuta.name, locale)}
                         </span>
-                        <span className="text-text-secondary text-xs ml-3">{tl(kuta.description, locale)}</span>
+                        {isMajor && <span className="ml-2 text-[10px] uppercase tracking-wider text-gold-primary/50 font-bold border border-gold-primary/20 px-1.5 py-0.5 rounded">
+                          {locale === 'en' ? 'Major' : locale === 'hi' ? 'प्रमुख' : locale === 'ta' ? 'முக்கிய' : 'Major'}
+                        </span>}
+                        <span className="text-text-secondary text-xs ml-3 block sm:inline mt-0.5 sm:mt-0">{tl(kuta.description, locale)}</span>
                       </div>
-                      <span className="font-mono text-lg font-bold text-gold-primary">
-                        {kuta.scored} <span className="text-text-secondary text-sm">/ {kuta.maxPoints}</span>
+                      <span className={`font-mono font-black text-gold-primary ${isMajor ? 'text-xl' : 'text-base'}`}>
+                        {kuta.scored} <span className="text-text-secondary text-sm font-normal">/ {kuta.maxPoints}</span>
                       </span>
                     </div>
-                    <div className="w-full bg-bg-tertiary rounded-full h-2.5 overflow-hidden mb-3">
+                    <div className={`w-full bg-bg-tertiary rounded-full overflow-hidden ${isMajor ? 'h-3' : 'h-2'} mb-3`}>
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${pct * 100}%` }}
@@ -689,7 +693,7 @@ export default function MatchingPage() {
                       />
                     </div>
                     {/* Relationship interpretation for this kuta */}
-                    <p className={`text-xs leading-relaxed ${pct >= 0.75 ? 'text-emerald-300/80' : pct >= 0.5 ? 'text-amber-300/80' : pct >= 0.25 ? 'text-orange-300/80' : 'text-red-300/80'}`}>
+                    <p className={`leading-relaxed ${isMajor ? 'text-sm' : 'text-xs'} ${pct >= 0.75 ? 'text-emerald-300/80' : pct >= 0.5 ? 'text-amber-300/80' : pct >= 0.25 ? 'text-orange-300/80' : 'text-red-300/80'}`}>
                       {insight}
                     </p>
                   </motion.div>

@@ -9,6 +9,7 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import type { PanchangData, Locale, LocaleText } from '@/types/panchang';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { useLocationStore } from '@/stores/location-store';
 import { tl as _tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import PMSG from '@/messages/pages/panchang-inline.json';
@@ -123,7 +124,8 @@ export default function InauspiciousTimingsPage() {
     if (location.lat === 0 && location.lng === 0) return;
     setLoading(true);
     const [year, month, day] = selectedDate.split('-').map(Number);
-    const ianaTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    // Location store timezone takes priority over browser timezone
+    const ianaTimezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
     fetch(`/api/panchang?year=${year}&month=${month}&day=${day}&lat=${location.lat}&lng=${location.lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(location.name)}`)
       .then(res => res.json())
       .then(data => { setPanchang(data); setLoading(false); })
@@ -143,7 +145,8 @@ export default function InauspiciousTimingsPage() {
       const data = await res.json();
       if (data.length > 0) {
         const lng = parseFloat(data[0].lon);
-        const ianaTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        // Location store timezone takes priority over browser timezone
+        const ianaTimezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
         const now = new Date();
         const approxTz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTimezone);
         setLocation({ lat: parseFloat(data[0].lat), lng, name: data[0].display_name.split(',').slice(0, 3).join(', '), tz: approxTz });

@@ -23,7 +23,8 @@ export default function ActivityGuidePage() {
     try {
       const now = new Date();
       const y = now.getFullYear(), m = now.getMonth() + 1, d = now.getDate();
-      const tzName = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      // Location store timezone takes priority over browser timezone
+      const tzName = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
       const res = await fetch(`/api/panchang?year=${y}&month=${m}&day=${d}&lat=${lt}&lng=${ln}&timezone=${encodeURIComponent(tzName)}&location=${encodeURIComponent(locationName || '')}`);
       if (res.ok) {
         const data = await res.json();

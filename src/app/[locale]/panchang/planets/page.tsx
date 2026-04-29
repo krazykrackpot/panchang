@@ -12,6 +12,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import type { PanchangData, Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { useLocationStore } from '@/stores/location-store';
 
 interface LocationData {
   lat: number;
@@ -91,7 +92,8 @@ export default function PlanetsPage() {
     if (location.lat === 0 && location.lng === 0) return;
     setLoading(true);
     const [year, month, day] = selectedDate.split('-').map(Number);
-    const ianaTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    // Location store timezone takes priority over browser timezone
+    const ianaTimezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
     fetch(`/api/panchang?year=${year}&month=${month}&day=${day}&lat=${location.lat}&lng=${location.lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(location.name)}`)
       .then(res => res.json())
       .then(data => { setPanchang(data); setLoading(false); })

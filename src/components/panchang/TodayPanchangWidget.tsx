@@ -64,7 +64,8 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
     usedServerData.current = false;
     setLoading(true);
     const now = new Date();
-    const ianaTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    // Location store timezone takes priority over browser timezone
+    const ianaTimezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
     fetch(`/api/panchang?year=${now.getFullYear()}&month=${now.getMonth() + 1}&day=${now.getDate()}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(name)}`)
       .then((res) => res.json())
       .then((data) => { setPanchang(data); setLoading(false); })

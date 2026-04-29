@@ -74,7 +74,8 @@ export default function DinachariyaWidget() {
     setError(false);
 
     const now = new Date();
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    // Location store timezone takes priority over browser timezone
+    const tz = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
     const url =
       `/api/panchang?year=${now.getFullYear()}&month=${now.getMonth() + 1}&day=${now.getDate()}` +
       `&lat=${locationStore.lat}&lng=${locationStore.lng}&timezone=${encodeURIComponent(tz)}`;

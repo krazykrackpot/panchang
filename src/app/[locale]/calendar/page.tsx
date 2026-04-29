@@ -8,6 +8,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ChevronDown, MapPin, Search, Loader2, Download, Sparkles } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
+import { useLocationStore } from '@/stores/location-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { scoreFestivalRelevance } from '@/lib/personalization/festival-relevance';
 import PersonalRelevanceBadge, { computeRelevance, type PersonalRelevanceData, type RelevanceMatch } from '@/components/calendar/PersonalRelevanceBadge';
@@ -183,7 +184,8 @@ export default function CalendarPage() {
   // Auto-detect location on mount — NO hardcoded defaults. User MUST have a location.
   useEffect(() => {
     const browserTz = -new Date().getTimezoneOffset() / 60;
-    const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    // Location store timezone takes priority over browser timezone
+    const browserTimezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
 
     const tryIPLookup = () => {
       fetch('https://ipapi.co/json/')
@@ -233,7 +235,8 @@ export default function CalendarPage() {
         const lat = parseFloat(data[0].lat);
         const lng = parseFloat(data[0].lon);
         const approxTz = -new Date().getTimezoneOffset() / 60;
-        const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+        // Location store timezone takes priority over browser timezone
+        const browserTimezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
         setLocation({ lat, lng, name: data[0].display_name.split(',').slice(0, 3).join(', '), tz: approxTz, timezone: browserTimezone });
         setShowLocationSearch(false);
         setLocationInput('');

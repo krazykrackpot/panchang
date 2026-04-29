@@ -220,8 +220,9 @@ export default function KaalNirnayaPage() {
     const year = d.getFullYear();
     const month = d.getMonth() + 1;
     const day = d.getDate();
-    const ianaTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-    const { lat: uLat, lng: uLng, name: uName } = useLocationStore.getState();
+    // Location store timezone takes priority over browser timezone
+    const { lat: uLat, lng: uLng, name: uName, timezone: storeTz } = useLocationStore.getState();
+    const ianaTimezone = storeTz || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
     const lat = uLat ?? 0;
     const lng = uLng ?? 0;
     const locName = uName || 'Current Location';

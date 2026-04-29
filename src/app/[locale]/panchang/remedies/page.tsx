@@ -10,6 +10,7 @@ import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import type { PanchangData, Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { useAuthStore } from '@/stores/auth-store';
+import { useLocationStore } from '@/stores/location-store';
 import { computeHoraTable } from '@/lib/panchang/hora-engine';
 import { getVaraRemedies } from '@/lib/remedies/prescription-engine';
 import type { VaraRemedy } from '@/lib/remedies/prescription-engine';
@@ -92,7 +93,8 @@ export default function RemediesPage() {
     if (location.lat === 0 && location.lng === 0) return;
     setLoading(true);
     const [year, month, day] = selectedDate.split('-').map(Number);
-    const ianaTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    // Location store timezone takes priority over browser timezone
+    const ianaTimezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
     fetch(`/api/panchang?year=${year}&month=${month}&day=${day}&lat=${location.lat}&lng=${location.lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(location.name)}`)
       .then(res => res.json())
       .then(data => { setPanchang(data); setLoading(false); })

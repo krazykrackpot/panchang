@@ -613,7 +613,7 @@ export default function DetailedReportPage() {
                   </h3>
                   {report.ashtaKuta.kutas.map((kuta, i) => {
                     const pct = kuta.maxPoints > 0 ? kuta.scored / kuta.maxPoints : 0;
-                    const insight = getKutaInsight(kuta.name.en, kuta.scored, kuta.maxPoints);
+                    const insight = getKutaInsight(kuta.name.en, kuta.scored, kuta.maxPoints, kuta.boyDetail, kuta.girlDetail);
                     return (
                       <div key={kuta.name.en} className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl p-4">
                         <div className="flex items-center justify-between mb-2">

@@ -1114,6 +1114,503 @@ export async function GET(
     );
   }
 
+  // ── Birth Poster Card ─────────────────────────────────────────────────────
+  // Personalized Vedic birth chart card with mini North Indian diamond chart
+  if (type === 'birth-poster') {
+    const name = searchParams.get('name') ?? 'Birth Chart';
+    const date = searchParams.get('date') ?? '';
+    const time = searchParams.get('time') ?? '';
+    const place = searchParams.get('place') ?? '';
+    const rising = searchParams.get('rising') ?? '';
+    const moon = searchParams.get('moon') ?? '';
+    const sun = searchParams.get('sun') ?? '';
+    const dasha = searchParams.get('dasha') ?? '';
+
+    // Parse houses: JSON array of 12 arrays of planet IDs
+    let houses: number[][] = Array.from({ length: 12 }, () => []);
+    try {
+      const housesParam = searchParams.get('houses');
+      if (housesParam) {
+        const parsed = JSON.parse(housesParam);
+        if (Array.isArray(parsed) && parsed.length === 12) {
+          houses = parsed;
+        }
+      }
+    } catch {
+      // Silently use empty houses if JSON parsing fails — not a critical error
+      // for image generation; the chart will just show empty houses
+    }
+
+    const isStory = format === 'story';
+    const isOg = format === 'og';
+
+    // Planet abbreviations for the mini chart
+    const PLANET_ABBR: Record<number, string> = {
+      0: 'Su', 1: 'Mo', 2: 'Ma', 3: 'Me', 4: 'Ju', 5: 'Ve', 6: 'Sa', 7: 'Ra', 8: 'Ke',
+    };
+
+    // North Indian diamond chart geometry — key points
+    const chartSize = isOg ? 220 : isStory ? 380 : 300;
+    const p = Math.round(chartSize * 0.06);
+    const m = Math.round(chartSize / 2);
+    const q1 = Math.round(chartSize * 0.28);
+    const q3 = Math.round(chartSize * 0.72);
+
+    // Diamond corners
+    const T = { x: m, y: p };
+    const L = { x: p, y: m };
+    const B = { x: m, y: chartSize - p };
+    const R = { x: chartSize - p, y: m };
+    const C = { x: m, y: m };
+    const TL = { x: q1, y: q1 };
+    const TR = { x: q3, y: q1 };
+    const BL = { x: q1, y: q3 };
+    const BR = { x: q3, y: q3 };
+
+    // House geometry: { path, cx, cy } for each house (1-indexed)
+    const houseGeo: Record<number, { path: string; cx: number; cy: number }> = {
+      1:  { path: `M ${T.x} ${T.y} L ${TL.x} ${TL.y} L ${C.x} ${C.y} L ${TR.x} ${TR.y} Z`, cx: m, cy: Math.round(m * 0.52) },
+      2:  { path: `M ${p} ${p} L ${TL.x} ${TL.y} L ${T.x} ${T.y} Z`, cx: Math.round(m * 0.55), cy: Math.round(m * 0.42) },
+      3:  { path: `M ${p} ${p} L ${p} ${m} L ${TL.x} ${TL.y} Z`, cx: Math.round(m * 0.35), cy: Math.round(m * 0.55) },
+      4:  { path: `M ${L.x} ${L.y} L ${TL.x} ${TL.y} L ${C.x} ${C.y} L ${BL.x} ${BL.y} Z`, cx: Math.round(m * 0.52), cy: m },
+      5:  { path: `M ${L.x} ${L.y} L ${BL.x} ${BL.y} L ${p} ${chartSize - p} Z`, cx: Math.round(m * 0.35), cy: Math.round(m * 1.45) },
+      6:  { path: `M ${p} ${chartSize - p} L ${BL.x} ${BL.y} L ${B.x} ${B.y} Z`, cx: Math.round(m * 0.55), cy: Math.round(m * 1.58) },
+      7:  { path: `M ${B.x} ${B.y} L ${BL.x} ${BL.y} L ${C.x} ${C.y} L ${BR.x} ${BR.y} Z`, cx: m, cy: Math.round(m * 1.48) },
+      8:  { path: `M ${B.x} ${B.y} L ${BR.x} ${BR.y} L ${chartSize - p} ${chartSize - p} Z`, cx: Math.round(m * 1.45), cy: Math.round(m * 1.58) },
+      9:  { path: `M ${chartSize - p} ${chartSize - p} L ${BR.x} ${BR.y} L ${R.x} ${R.y} Z`, cx: Math.round(m * 1.65), cy: Math.round(m * 1.45) },
+      10: { path: `M ${R.x} ${R.y} L ${BR.x} ${BR.y} L ${C.x} ${C.y} L ${TR.x} ${TR.y} Z`, cx: Math.round(m * 1.48), cy: m },
+      11: { path: `M ${R.x} ${R.y} L ${TR.x} ${TR.y} L ${chartSize - p} ${p} Z`, cx: Math.round(m * 1.65), cy: Math.round(m * 0.55) },
+      12: { path: `M ${chartSize - p} ${p} L ${TR.x} ${TR.y} L ${T.x} ${T.y} Z`, cx: Math.round(m * 1.45), cy: Math.round(m * 0.42) },
+    };
+
+    const planetFontSize = isOg ? 9 : isStory ? 14 : 11;
+    const planetLineHeight = planetFontSize + 3;
+
+    // OG format: horizontal layout (chart left, info right)
+    // Story/Square: vertical layout (info top, chart middle, details bottom)
+    if (isOg) {
+      return new ImageResponse(
+        (
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              backgroundColor: CARD_COLORS.navy,
+              backgroundImage: `radial-gradient(ellipse at 30% 40%, #1a1f4d 0%, ${CARD_COLORS.navy} 65%)`,
+              padding: '40px 56px',
+              fontFamily: 'sans-serif',
+            }}
+          >
+            {/* Gold border frame */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '16px',
+                left: '16px',
+                right: '16px',
+                bottom: '16px',
+                border: `1px solid ${CARD_COLORS.goldDark}44`,
+                borderRadius: '24px',
+                display: 'flex',
+              }}
+            />
+
+            {/* Corner ornaments — top left */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '28px',
+                left: '28px',
+                width: '28px',
+                height: '28px',
+                borderTop: `2px solid ${CARD_COLORS.gold}88`,
+                borderLeft: `2px solid ${CARD_COLORS.gold}88`,
+                display: 'flex',
+              }}
+            />
+            {/* Corner ornaments — bottom right */}
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '28px',
+                right: '28px',
+                width: '28px',
+                height: '28px',
+                borderBottom: `2px solid ${CARD_COLORS.gold}88`,
+                borderRight: `2px solid ${CARD_COLORS.gold}88`,
+                display: 'flex',
+              }}
+            />
+
+            {/* Left: Mini North Indian Chart */}
+            <div style={{ display: 'flex', flexShrink: 0, marginRight: '40px' }}>
+              <svg width={chartSize} height={chartSize} viewBox={`0 0 ${chartSize} ${chartSize}`}>
+                <rect x="0" y="0" width={chartSize} height={chartSize} fill="#0a0e1a" rx={Math.round(chartSize * 0.03)} />
+                {/* House paths */}
+                {[1,2,3,4,5,6,7,8,9,10,11,12].map((h) => {
+                  const g = houseGeo[h];
+                  return (
+                    <path key={`h${h}`} d={g.path} fill="none" stroke={CARD_COLORS.gold} strokeWidth={1.2} opacity={0.6} />
+                  );
+                })}
+              </svg>
+              {/* Planet labels overlaid using positioned divs (Satori doesn't support SVG <text>) */}
+              <div style={{ position: 'absolute', width: `${chartSize}px`, height: `${chartSize}px`, display: 'flex' }}>
+                {[1,2,3,4,5,6,7,8,9,10,11,12].map((h) => {
+                  const g = houseGeo[h];
+                  const planetIds = houses[h - 1] || [];
+                  const labels = planetIds.map(id => PLANET_ABBR[id] || '').filter(Boolean);
+                  if (labels.length === 0) return null;
+                  const totalHeight = labels.length * planetLineHeight;
+                  const topY = g.cy - totalHeight / 2;
+                  return labels.map((lbl, i) => (
+                    <div
+                      key={`p${h}-${i}`}
+                      style={{
+                        position: 'absolute',
+                        left: `${g.cx}px`,
+                        top: `${topY + i * planetLineHeight}px`,
+                        transform: 'translateX(-50%)',
+                        fontSize: `${planetFontSize}px`,
+                        color: CARD_COLORS.text,
+                        fontFamily: 'monospace',
+                        display: 'flex',
+                        lineHeight: 1,
+                      }}
+                    >
+                      {lbl}
+                    </div>
+                  ));
+                })}
+              </div>
+            </div>
+
+            {/* Right: Content */}
+            <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'center' }}>
+              {/* Tag */}
+              <div
+                style={{
+                  fontSize: '10px',
+                  letterSpacing: '4px',
+                  textTransform: 'uppercase' as const,
+                  color: CARD_COLORS.gold,
+                  marginBottom: '10px',
+                  display: 'flex',
+                }}
+              >
+                VEDIC BIRTH CHART
+              </div>
+
+              {/* Name */}
+              <div
+                style={{
+                  fontSize: '36px',
+                  fontWeight: 800,
+                  color: CARD_COLORS.goldLight,
+                  lineHeight: 1.1,
+                  marginBottom: '8px',
+                  display: 'flex',
+                  letterSpacing: '-0.5px',
+                }}
+              >
+                {name}
+              </div>
+
+              {/* Date / Time / Place */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', marginBottom: '16px' }}>
+                {(date || time) && (
+                  <div style={{ fontSize: '13px', color: '#8a8478', fontFamily: 'monospace', display: 'flex' }}>
+                    {date}{date && time ? ' · ' : ''}{time}
+                  </div>
+                )}
+                {place && (
+                  <div style={{ fontSize: '12px', color: '#6b6560', display: 'flex' }}>
+                    {place}
+                  </div>
+                )}
+              </div>
+
+              {/* Rising / Moon / Sun pills */}
+              <div style={{ display: 'flex', gap: '12px', marginBottom: '14px', flexWrap: 'wrap' as const }}>
+                {rising && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                    <div style={{ fontSize: '12px', color: CARD_COLORS.gold, fontWeight: 700, display: 'flex' }}>{rising}</div>
+                    <div style={{ fontSize: '11px', color: CARD_COLORS.text, opacity: 0.6, display: 'flex' }}>Rising</div>
+                  </div>
+                )}
+                {moon && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                    <div style={{ fontSize: '11px', color: CARD_COLORS.text, opacity: 0.6, display: 'flex' }}>Moon in</div>
+                    <div style={{ fontSize: '12px', color: CARD_COLORS.gold, fontWeight: 700, display: 'flex' }}>{moon}</div>
+                  </div>
+                )}
+                {sun && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                    <div style={{ fontSize: '11px', color: CARD_COLORS.text, opacity: 0.6, display: 'flex' }}>Sun in</div>
+                    <div style={{ fontSize: '12px', color: CARD_COLORS.gold, fontWeight: 700, display: 'flex' }}>{sun}</div>
+                  </div>
+                )}
+              </div>
+
+              {/* Dasha */}
+              {dasha && (
+                <div style={{ fontSize: '12px', color: '#8a8478', display: 'flex', marginBottom: '8px' }}>
+                  {dasha}
+                </div>
+              )}
+
+              {/* Watermark */}
+              <div style={{ fontSize: '10px', color: `${CARD_COLORS.gold}88`, marginTop: '12px', display: 'flex' }}>
+                {WATERMARK_URL}
+              </div>
+            </div>
+          </div>
+        ),
+        {
+          width,
+          height,
+          headers: {
+            'Cache-Control': 'public, max-age=2592000, s-maxage=2592000',
+          },
+        }
+      );
+    }
+
+    // Story / Square layout — vertical
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: CARD_COLORS.navy,
+            backgroundImage: `radial-gradient(ellipse at 50% 30%, #1a1f4d 0%, ${CARD_COLORS.navy} 65%)`,
+            padding: isStory ? '80px 72px' : '56px 64px',
+            fontFamily: 'sans-serif',
+          }}
+        >
+          {/* Gold border frame */}
+          <div
+            style={{
+              position: 'absolute',
+              top: '20px',
+              left: '20px',
+              right: '20px',
+              bottom: '20px',
+              border: `1px solid ${CARD_COLORS.goldDark}44`,
+              borderRadius: '28px',
+              display: 'flex',
+            }}
+          />
+
+          {/* Corner ornaments */}
+          <div
+            style={{
+              position: 'absolute',
+              top: '36px',
+              left: '36px',
+              width: '48px',
+              height: '48px',
+              borderTop: `2px solid ${CARD_COLORS.gold}88`,
+              borderLeft: `2px solid ${CARD_COLORS.gold}88`,
+              display: 'flex',
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '36px',
+              right: '36px',
+              width: '48px',
+              height: '48px',
+              borderBottom: `2px solid ${CARD_COLORS.gold}88`,
+              borderRight: `2px solid ${CARD_COLORS.gold}88`,
+              display: 'flex',
+            }}
+          />
+
+          {/* Top tag */}
+          <div
+            style={{
+              position: 'absolute',
+              top: isStory ? '72px' : '56px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+            }}
+          >
+            <div style={{ width: '32px', height: '1px', backgroundColor: CARD_COLORS.gold, opacity: 0.5, display: 'flex' }} />
+            <div
+              style={{
+                fontSize: isStory ? '14px' : '12px',
+                letterSpacing: '5px',
+                textTransform: 'uppercase' as const,
+                color: CARD_COLORS.gold,
+                display: 'flex',
+              }}
+            >
+              VEDIC BIRTH CHART
+            </div>
+            <div style={{ width: '32px', height: '1px', backgroundColor: CARD_COLORS.gold, opacity: 0.5, display: 'flex' }} />
+          </div>
+
+          {/* Name */}
+          <div
+            style={{
+              fontSize: isStory ? '52px' : '40px',
+              fontWeight: 800,
+              color: CARD_COLORS.goldLight,
+              lineHeight: 1.1,
+              marginBottom: '8px',
+              display: 'flex',
+              letterSpacing: '-1px',
+              textAlign: 'center',
+            }}
+          >
+            {name}
+          </div>
+
+          {/* Date / Time */}
+          {(date || time) && (
+            <div style={{ fontSize: isStory ? '18px' : '15px', color: '#8a8478', fontFamily: 'monospace', marginBottom: '4px', display: 'flex' }}>
+              {date}{date && time ? ' · ' : ''}{time}
+            </div>
+          )}
+          {place && (
+            <div style={{ fontSize: isStory ? '16px' : '14px', color: '#6b6560', marginBottom: isStory ? '40px' : '28px', display: 'flex' }}>
+              {place}
+            </div>
+          )}
+
+          {/* North Indian Diamond Chart */}
+          <div style={{ display: 'flex', position: 'relative', marginBottom: isStory ? '40px' : '28px' }}>
+            <svg width={chartSize} height={chartSize} viewBox={`0 0 ${chartSize} ${chartSize}`}>
+              <rect x="0" y="0" width={chartSize} height={chartSize} fill="#0a0e1a" rx={Math.round(chartSize * 0.03)} />
+              {[1,2,3,4,5,6,7,8,9,10,11,12].map((h) => {
+                const g = houseGeo[h];
+                return (
+                  <path key={`h${h}`} d={g.path} fill="none" stroke={CARD_COLORS.gold} strokeWidth={1.2} opacity={0.6} />
+                );
+              })}
+            </svg>
+            {/* Planet labels */}
+            {[1,2,3,4,5,6,7,8,9,10,11,12].map((h) => {
+              const g = houseGeo[h];
+              const planetIds = houses[h - 1] || [];
+              const labels = planetIds.map(id => PLANET_ABBR[id] || '').filter(Boolean);
+              if (labels.length === 0) return null;
+              const totalHeight = labels.length * planetLineHeight;
+              const topY = g.cy - totalHeight / 2;
+              return labels.map((lbl, i) => (
+                <div
+                  key={`p${h}-${i}`}
+                  style={{
+                    position: 'absolute',
+                    left: `${g.cx}px`,
+                    top: `${topY + i * planetLineHeight}px`,
+                    transform: 'translateX(-50%)',
+                    fontSize: `${planetFontSize}px`,
+                    color: CARD_COLORS.text,
+                    fontFamily: 'monospace',
+                    display: 'flex',
+                    lineHeight: 1,
+                  }}
+                >
+                  {lbl}
+                </div>
+              ));
+            })}
+          </div>
+
+          {/* Rising / Moon / Sun */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isStory ? '12px' : '8px', marginBottom: isStory ? '28px' : '20px' }}>
+            {rising && (
+              <div
+                style={{
+                  fontSize: isStory ? '28px' : '22px',
+                  color: CARD_COLORS.goldLight,
+                  fontWeight: 700,
+                  letterSpacing: '2px',
+                  textTransform: 'uppercase' as const,
+                  display: 'flex',
+                }}
+              >
+                {rising} Rising
+              </div>
+            )}
+            <div style={{ display: 'flex', gap: isStory ? '24px' : '16px' }}>
+              {moon && (
+                <div style={{ fontSize: isStory ? '16px' : '14px', color: CARD_COLORS.text, display: 'flex' }}>
+                  Moon in <span style={{ color: CARD_COLORS.gold, fontWeight: 600, marginLeft: '4px', display: 'flex' }}>{moon}</span>
+                </div>
+              )}
+              {sun && (
+                <div style={{ fontSize: isStory ? '16px' : '14px', color: CARD_COLORS.text, display: 'flex' }}>
+                  Sun in <span style={{ color: CARD_COLORS.gold, fontWeight: 600, marginLeft: '4px', display: 'flex' }}>{sun}</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Dasha */}
+          {dasha && (
+            <div style={{ fontSize: isStory ? '16px' : '14px', color: '#8a8478', marginBottom: '16px', display: 'flex' }}>
+              {dasha}
+            </div>
+          )}
+
+          {/* Bottom CTA */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: isStory ? '72px' : '56px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '8px',
+            }}
+          >
+            <div
+              style={{
+                fontSize: isStory ? '22px' : '18px',
+                fontWeight: 600,
+                color: CARD_COLORS.goldLight,
+                display: 'flex',
+              }}
+            >
+              Generate YOUR birth chart
+            </div>
+            <div
+              style={{
+                fontSize: isStory ? '16px' : '13px',
+                color: CARD_COLORS.gold,
+                opacity: 0.6,
+                letterSpacing: '1px',
+                display: 'flex',
+              }}
+            >
+              {WATERMARK_URL}
+            </div>
+          </div>
+        </div>
+      ),
+      {
+        width,
+        height,
+        headers: {
+          'Cache-Control': 'public, max-age=2592000, s-maxage=2592000',
+        },
+      }
+    );
+  }
+
   // ── Placeholder for other card types ────────────────────────────────────────
 
   // Human-readable type label for the placeholder

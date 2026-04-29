@@ -1638,9 +1638,37 @@ export default function KundaliPage() {
                         </button>
                         <button
                           onClick={() => {
-                            const text = `${posterData.name} — ${posterData.risingSign} Rising, ${posterData.moonSign} Moon, ${posterData.sunSign} Sun\n${posterData.elementDist.percentage}% ${posterData.elementDist.dominant} — "${locale === 'hi' ? posterData.elementDist.archetype.hi : posterData.elementDist.archetype.en}"\n\nCreate yours at dekhopanchang.com`;
-                            if (navigator.share) { navigator.share({ title: `${posterData.name}'s Vedic Birth Chart`, text }).catch(() => {}); }
-                            else { navigator.clipboard.writeText(text).catch(() => {}); }
+                            // Build shareable card URL with birth chart data for rich link previews
+                            const cardParams = new URLSearchParams({
+                              name: posterData.name,
+                              date: posterData.date,
+                              time: posterData.time,
+                              place: posterData.place,
+                              rising: posterData.risingSign,
+                              moon: posterData.moonSign,
+                              sun: posterData.sunSign,
+                              dasha: posterData.currentDasha,
+                              houses: JSON.stringify(posterData.chartHouses),
+                              format: 'og',
+                            });
+                            const cardUrl = `${window.location.origin}/api/card/birth-poster?${cardParams.toString()}`;
+                            const text = `${posterData.name} — ${posterData.risingSign} Rising, ${posterData.moonSign} Moon, ${posterData.sunSign} Sun\n\nSee my Vedic birth chart: ${cardUrl}\n\nCreate yours at dekhopanchang.com`;
+                            if (navigator.share) {
+                              navigator.share({
+                                title: `${posterData.name}'s Vedic Birth Chart`,
+                                text,
+                                url: cardUrl,
+                              }).catch((err) => {
+                                // User cancelled share — not a real error
+                                if (err instanceof Error && err.name !== 'AbortError') {
+                                  console.error('[kundali] share failed:', err);
+                                }
+                              });
+                            } else {
+                              navigator.clipboard.writeText(text).catch((err) => {
+                                console.error('[kundali] clipboard write failed:', err);
+                              });
+                            }
                           }}
                           className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/15 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all"
                         >

@@ -289,6 +289,16 @@ export default async function FestivalCityPage({
       },
       {
         '@type': 'Question',
+        name: `What Tithi is ${festivalNameEn} observed on?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: tithiStr
+            ? `${festivalNameEn} is observed on ${tithiStr}.`
+            : `${festivalNameEn} follows the ${ruleLabel} rule for Tithi determination.`,
+        },
+      },
+      {
+        '@type': 'Question',
         name: `Why is ${festivalNameEn} on this date?`,
         acceptedAnswer: { '@type': 'Answer', text: kalaExplanation },
       },

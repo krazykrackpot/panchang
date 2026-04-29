@@ -556,9 +556,9 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['ashtamangala prashna', 'kerala astrology', 'horary divination'],
   },
   '/rahu-kaal': {
-    title: { en: 'Rahu Kaal Today — Accurate Rahu Kalam Timings', hi: 'आज का राहु काल — सटीक राहु कालम समय', sa: 'अद्य राहुकालः — यथार्थ समयः' },
-    description: { en: 'Check today\'s Rahu Kaal timings for your city. Know the exact inauspicious period with Yamaganda and Gulika Kaal. Updated daily.', hi: 'अपने शहर के लिए आज का राहु काल समय जानें। यमगण्ड और गुलिक काल के साथ सटीक अशुभ अवधि।', sa: 'स्वनगरस्य अद्यतन राहुकालं जानीयात्। यमगण्ड-गुलिककालसहितम् अशुभकालम्।' },
-    keywords: ['rahu kaal today', 'rahu kalam', 'rahukaal timings', 'inauspicious time today'],
+    title: { en: 'Rahu Kaal Today — Exact Time for Your City | Dekho Panchang', hi: 'आज का राहु काल — आपके शहर का सटीक समय | Dekho Panchang', sa: 'अद्य राहुकालः — स्वनगरस्य यथार्थ समयः' },
+    description: { en: 'Today\'s Rahu Kaal start and end times for 55 cities worldwide. Computed from precise sunrise/sunset calculations, not fixed tables.', hi: 'आज का राहु काल 55 शहरों के लिए सटीक समय — सूर्योदय/सूर्यास्त पर आधारित गणना, न कि निश्चित तालिका।', sa: 'विश्वस्य पञ्चपञ्चाशत्नगरेषु अद्यतनराहुकालस्य आरम्भ-समाप्तिसमयौ। सटीकसूर्योदय-सूर्यास्तगणनाभिः, न निश्चिततालिकाभिः।' },
+    keywords: ['rahu kaal today', 'rahu kalam', 'rahukaal timings', 'inauspicious time today', 'rahu kaal by city'],
   },
   '/choghadiya': {
     title: { en: 'Choghadiya Today — Auspicious & Inauspicious Time Slots', hi: 'आज का चौघड़िया — शुभ और अशुभ समय', sa: 'अद्य चौघड़िया — शुभाशुभकालः' },

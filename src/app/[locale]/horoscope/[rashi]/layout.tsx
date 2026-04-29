@@ -24,9 +24,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   const isHi = isDevanagariLocale(locale);
 
-  const title = tl({ en: `${vedicName} (${westernName}) Horoscope Today | Daily Vedic Predictions`, hi: `${hindiName} (${westernName}) राशिफल आज | दैनिक वैदिक भविष्यवाणी`, sa: `${hindiName} (${westernName}) राशिफल आज | दैनिक वैदिक भविष्यवाणी` }, locale);
+  const title = tl({ en: `${vedicName} (${hindiName}) Today — ${westernName} Vedic Horoscope | Dekho Panchang`, hi: `${hindiName} (${westernName}) राशिफल आज — वैदिक दैनिक भविष्यवाणी | Dekho Panchang`, sa: `${hindiName} (${westernName}) राशिफल आज — वैदिक दैनिक भविष्यवाणी | Dekho Panchang` }, locale);
 
-  const description = tl({ en: `Today's ${westernName} (${vedicName}) horoscope with career, love, health, finance & spirituality scores. Daily Vedic predictions based on actual planetary transits.`, hi: `${hindiName} राशि का आज का राशिफल। करियर, प्रेम, स्वास्थ्य, वित्त और आध्यात्म स्कोर। वैदिक ग्रह गोचर पर आधारित दैनिक भविष्यवाणी।`, sa: `${hindiName} राशि का आज का राशिफल। करियर, प्रेम, स्वास्थ्य, वित्त और आध्यात्म स्कोर। वैदिक ग्रह गोचर पर आधारित दैनिक भविष्यवाणी।` }, locale);
+  const description = tl({ en: `Today's ${vedicName} horoscope based on actual planetary transits (Swiss Ephemeris precision), not generic predictions. Transit-based daily guidance for career, love, health & finance.`, hi: `${hindiName} राशि का आज का राशिफल वास्तविक ग्रह गोचर पर आधारित — करियर, प्रेम, स्वास्थ्य, वित्त। सटीक वैदिक गणना, न कि सामान्य भविष्यवाणी।`, sa: `${hindiName} राशि का आज का राशिफल वास्तविक ग्रह गोचर पर आधारित — करियर, प्रेम, स्वास्थ्य, वित्त। सटीक वैदिक गणना, न कि सामान्य भविष्यवाणी।` }, locale);
 
   const url = `${BASE_URL}/${locale}/horoscope/${rashi}`;
 

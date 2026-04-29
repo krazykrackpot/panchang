@@ -45,13 +45,28 @@ export async function generateMetadata({
   const isHi = isDevanagariLocale(locale);
   const cityName = isHi ? city.name.hi : city.name.en;
   const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth() + 1;
+  const day = today.getDate();
   const dateStr = today.toLocaleDateString(msg('localeId', locale), {
     day: 'numeric', month: 'long', year: 'numeric',
   });
 
-  const title = tl({ en: `${cityName} Panchang Today — ${dateStr} | Tithi, Nakshatra, Yoga, Karana`, hi: `${cityName} पंचांग आज — ${dateStr} | तिथि, नक्षत्र, योग, करण`, sa: `${cityName} पंचांग आज — ${dateStr} | तिथि, नक्षत्र, योग, करण` }, locale);
+  // Compute actual Tithi and Nakshatra for the dynamic meta title
+  // This gives users a preview of today's panchang right in the search result
+  const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
+  const metaPanchang = computePanchang({
+    year, month, day,
+    lat: city.lat, lng: city.lng,
+    tzOffset, timezone: city.timezone,
+    locationName: city.name.en,
+  });
+  const metaTithi = metaPanchang.tithi.name[locale as 'en' | 'hi'] || metaPanchang.tithi.name.en;
+  const metaNakshatra = metaPanchang.nakshatra.name[locale as 'en' | 'hi'] || metaPanchang.nakshatra.name.en;
 
-  const description = tl({ en: `Today's Panchang for ${cityName}, ${city.state} — accurate sunrise, sunset, tithi, nakshatra, yoga, karana, Rahu Kaal, Yamaganda & Gulika timings. Vedic calculations using Lahiri Ayanamsha.`, hi: `${cityName}, ${city.state} का आज का पंचांग — सटीक सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, करण, राहुकाल, यमगण्ड और गुलिक काल। लाहिरी अयनांश पर आधारित वैदिक गणना।`, sa: `${cityName}, ${city.state} का आज का पंचांग — सटीक सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, करण, राहुकाल, यमगण्ड और गुलिक काल। लाहिरी अयनांश पर आधारित वैदिक गणना।` }, locale);
+  const title = tl({ en: `${city.name.en} Panchang Today — ${metaTithi}, ${metaNakshatra} | ${dateStr} | Dekho Panchang`, hi: `${cityName} पंचांग आज — ${metaTithi}, ${metaNakshatra} | ${dateStr} | Dekho Panchang`, sa: `${cityName} पंचांग आज — ${metaTithi}, ${metaNakshatra} | ${dateStr} | Dekho Panchang` }, locale);
+
+  const description = tl({ en: `Today's Panchang for ${city.name.en}, ${city.state} — accurate sunrise, sunset, tithi, nakshatra, yoga, karana, Rahu Kaal, Yamaganda & Gulika timings. Vedic calculations using Lahiri Ayanamsha.`, hi: `${cityName}, ${city.state} का आज का पंचांग — सटीक सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, करण, राहुकाल, यमगण्ड और गुलिक काल। लाहिरी अयनांश पर आधारित वैदिक गणना।`, sa: `${cityName}, ${city.state} का आज का पंचांग — सटीक सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, करण, राहुकाल, यमगण्ड और गुलिक काल। लाहिरी अयनांश पर आधारित वैदिक गणना।` }, locale);
 
   const url = `${BASE_URL}/${locale}/panchang/${citySlug}`;
 

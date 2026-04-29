@@ -27,8 +27,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const cityName = tl(cityData.name, locale) || cityData.name.en;
   const cityNameEn = cityData.name.en;
 
-  const title = `${festivalName} ${year} in ${cityName} — Date, Puja Time & Muhurta | Dekho Panchang`;
-  const description = `${festivalNameEn} ${year} in ${cityNameEn}. Exact puja muhurta, sunrise/sunset times, and tithi details computed for ${cityNameEn} coordinates. Kala-Vyapti date explanation included.`.slice(0, 160);
+  const title = `${festivalNameEn} ${year} — Exact Date & Puja Time in ${cityNameEn} | Dekho Panchang`;
+  const description = `${festivalNameEn} ${year} in ${cityNameEn}: exact Tithi, Muhurta, Lakshmi Puja timing computed from Vedic algorithms. City-specific accuracy for ${cityNameEn}${cityData.state ? `, ${cityData.state}` : ''}.`.slice(0, 155);
 
   const url = `${BASE_URL}/${locale}/festivals/${slug}/${year}/${city}`;
 

@@ -212,6 +212,10 @@ export default function MatchingPage() {
           <Link href="/matching/report" className="text-gold-primary hover:text-gold-light text-sm transition-colors">
             {isTamil ? 'விரிவான பொருத்த அறிக்கை →' : isDevanagari ? 'विस्तृत अनुकूलता रिपोर्ट →' : 'Get Detailed Compatibility Report →'}
           </Link>
+          <span className="text-text-secondary hidden sm:inline">|</span>
+          <Link href="/learn/matching" className="text-gold-primary/60 text-sm hover:text-gold-light transition-colors">
+            {isTamil ? 'குண பொருத்தம் பற்றி அறிக →' : isDevanagari ? 'गुण मिलान के बारे में जानें →' : 'Learn about Kundali Matching →'}
+          </Link>
         </div>
       </motion.div>
 

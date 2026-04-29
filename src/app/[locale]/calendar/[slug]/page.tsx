@@ -403,6 +403,35 @@ export default function FestivalDetailPage() {
           )}
 
           {/* Ekadashi Parana card moved to top — see after title */}
+
+          {/* ═══ Learn More Links ═══ */}
+          <motion.div {...fadeInUp} className="mt-6 flex flex-wrap items-center gap-2">
+            <span className="text-text-secondary text-xs">{l({ en: 'Learn more', hi: 'और जानें', sa: 'अधिकं जानीयात्', ta: 'மேலும் அறிக', te: 'మరింత తెలుసుకోండి', bn: 'আরও জানুন', kn: 'ಮತ್ತಷ್ಟು ತಿಳಿಯಿರಿ', mr: 'अधिक जाणा', gu: 'વધુ જાણો', mai: 'आओर जानू' }, locale)}:</span>
+            <Link
+              href={`/${locale}/learn/festival-rules`}
+              className="text-xs text-gold-primary/70 hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg px-3 py-1 transition-colors"
+            >
+              {l({ en: 'Festival Timing Rules', hi: 'उत्सव काल नियम', sa: 'उत्सवकालनियमाः', ta: 'பண்டிகை நேர விதிகள்' }, locale)}
+            </Link>
+            <Link
+              href={`/${locale}/learn/tithis`}
+              className="text-xs text-gold-primary/70 hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg px-3 py-1 transition-colors"
+            >
+              {l({ en: 'Understanding Tithis', hi: 'तिथि को समझें', sa: 'तिथीनां ज्ञानम्', ta: 'திதிகளைப் புரிந்துகொள்ளுங்கள்' }, locale)}
+            </Link>
+            <Link
+              href={`/${locale}/learn/masa`}
+              className="text-xs text-gold-primary/70 hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg px-3 py-1 transition-colors"
+            >
+              {l({ en: 'Lunar Months Explained', hi: 'चंद्र मास विवरण', sa: 'चन्द्रमासव्याख्या', ta: 'சந்திர மாதங்கள் விளக்கம்' }, locale)}
+            </Link>
+            <Link
+              href={`/${locale}/learn/smarta-vaishnava`}
+              className="text-xs text-gold-primary/70 hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg px-3 py-1 transition-colors"
+            >
+              {l({ en: 'Smarta & Vaishnava Calendars', hi: 'स्मार्त और वैष्णव पंचांग', sa: 'स्मार्तवैष्णवपञ्चाङ्गम्', ta: 'ஸ்மார்த்த & வைஷ்ணவ நாட்காட்டிகள்' }, locale)}
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
 

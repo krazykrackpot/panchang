@@ -717,6 +717,35 @@ export default async function FestivalCityPage({
           </div>
         </div>
 
+        {/* ── Learn More Links ── */}
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-text-secondary text-xs">{tl({ en: 'Learn more', hi: 'और जानें' }, locale)}:</span>
+          <Link
+            href={`/${locale}/learn/festival-rules`}
+            className="text-xs text-gold-primary/70 hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg px-3 py-1 transition-colors"
+          >
+            {tl({ en: 'Festival Timing Rules', hi: 'उत्सव काल नियम' }, locale)}
+          </Link>
+          <Link
+            href={`/${locale}/learn/tithis`}
+            className="text-xs text-gold-primary/70 hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg px-3 py-1 transition-colors"
+          >
+            {tl({ en: 'Understanding Tithis', hi: 'तिथि को समझें' }, locale)}
+          </Link>
+          <Link
+            href={`/${locale}/learn/masa`}
+            className="text-xs text-gold-primary/70 hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg px-3 py-1 transition-colors"
+          >
+            {tl({ en: 'Lunar Months Explained', hi: 'चंद्र मास विवरण' }, locale)}
+          </Link>
+          <Link
+            href={`/${locale}/learn/smarta-vaishnava`}
+            className="text-xs text-gold-primary/70 hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg px-3 py-1 transition-colors"
+          >
+            {tl({ en: 'Smarta & Vaishnava Calendars', hi: 'स्मार्त और वैष्णव पंचांग' }, locale)}
+          </Link>
+        </div>
+
         {/* ── CTA ── */}
         <div className="text-center space-y-3 pt-4">
           <Link

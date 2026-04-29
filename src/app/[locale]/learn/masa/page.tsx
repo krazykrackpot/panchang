@@ -8,6 +8,7 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/masa.json';
 import { getHeadingFont } from '@/lib/utils/locale-fonts';
+import { Link } from '@/lib/i18n/navigation';
 
 const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -252,6 +253,16 @@ export default function MasaPage() {
             );
           })}
         </div>
+      </div>
+
+      {/* CTA: Try the Calendar Tool */}
+      <div className="text-center pt-4">
+        <Link
+          href="/calendar"
+          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
+        >
+          {locale === 'hi' ? 'त्योहार कैलेंडर देखें' : locale === 'ta' ? 'பண்டிகை நாட்காட்டியைக் காண்க' : 'Explore the Festival Calendar'} &rarr;
+        </Link>
       </div>
     </div>
   );

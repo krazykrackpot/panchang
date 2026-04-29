@@ -62,6 +62,8 @@ const ARTICLE_META: Record<string, { datePublished: string; dateModified: string
   '/learn/masa': { datePublished: '2026-04-05', dateModified: '2026-04-15' },
   '/learn/vara': { datePublished: '2026-04-05', dateModified: '2026-04-15' },
   '/learn/ayanamsha': { datePublished: '2026-04-05', dateModified: '2026-04-15' },
+  '/learn/festival-rules': { datePublished: '2026-04-15', dateModified: '2026-04-29' },
+  '/learn/smarta-vaishnava': { datePublished: '2026-04-15', dateModified: '2026-04-29' },
 };
 
 /**

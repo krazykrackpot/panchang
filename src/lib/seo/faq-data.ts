@@ -1176,6 +1176,91 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
  * Generate FAQ JSON-LD structured data for a given route and locale.
  * Returns null if no FAQ data exists for the route.
  */
+/**
+ * Generate FAQPage JSON-LD for per-rashi horoscope pages.
+ * Answers are EN-only — Google processes the English version for rich snippets.
+ * @param rashiName  Vedic rashi name in the page locale (e.g. "Mesh" / "मेष")
+ * @param westernName  Western zodiac name in English (e.g. "Aries")
+ * @param period  Which page type: daily, weekly, or monthly
+ */
+export function generateHoroscopeFAQ(
+  rashiName: string,
+  westernName: string,
+  period: 'daily' | 'weekly' | 'monthly'
+): Record<string, unknown> {
+  const qaMap: Record<typeof period, Array<{ q: string; a: string }>> = {
+    daily: [
+      {
+        q: `What is today's horoscope for ${rashiName} (${westernName})?`,
+        a: `Today's ${westernName} (${rashiName}) horoscope is based on the actual sidereal positions of the Sun, Moon, and planets computed in real time. Our Vedic horoscope analyses how transiting planets interact with your Moon sign to provide scores and insights for career, love, health, finance, and spirituality.`,
+      },
+      {
+        q: `What are the lucky colors and numbers for ${rashiName} today?`,
+        a: `Lucky colors and numbers for ${westernName} (${rashiName}) are derived from the ruling planet of your Nakshatra and the current planetary transits. These shift daily as the Moon moves through different lunar mansions. Check today's ${westernName} daily horoscope on Dekho Panchang for the updated lucky color, number, and auspicious time for your sign.`,
+      },
+      {
+        q: `Is ${westernName} (${rashiName}) a Moon sign or Sun sign in Vedic astrology?`,
+        a: `In Vedic astrology, ${rashiName} (${westernName}) is your Moon sign — determined by the sidereal position of the Moon at the time of your birth. Unlike Western astrology which uses the Sun sign for horoscopes, Vedic daily predictions are based on the Moon sign because the Moon governs the mind, emotions, and daily experiences.`,
+      },
+      {
+        q: `How accurate are Vedic daily horoscope predictions for ${westernName}?`,
+        a: `Vedic horoscope predictions on Dekho Panchang are grounded in real planetary transit data computed using classical Meeus astronomical algorithms. While no astrological prediction is guaranteed, our system analyses the actual positions of Jupiter, Saturn, Rahu, Ketu, and other planets relative to ${rashiName} to deliver transit-based insights rather than generic templates.`,
+      },
+    ],
+    weekly: [
+      {
+        q: `Is this week good for ${rashiName} (${westernName})?`,
+        a: `The weekly outlook for ${westernName} (${rashiName}) depends on the planets transiting through or aspecting your Moon sign this week. Our Vedic weekly horoscope evaluates day-by-day planetary positions to identify the best days for career moves, relationship discussions, financial decisions, and health care. Check the current week's horoscope for a detailed breakdown.`,
+      },
+      {
+        q: `What should ${westernName} (${rashiName}) focus on this week?`,
+        a: `The weekly ${rashiName} horoscope highlights key themes for the week based on active planetary transits. Typically, the Moon's movement through different signs each day, combined with the slower transits of Jupiter, Saturn, and Rahu-Ketu, shapes your weekly priorities across career, relationships, health, and finances.`,
+      },
+      {
+        q: `Which days of the week are luckiest for ${westernName} this week?`,
+        a: `The luckiest days for ${westernName} (${rashiName}) each week vary based on when the Moon transits into supportive lunar mansions and when planets like Jupiter and Venus form favourable angles. Our weekly horoscope provides a day-by-day auspiciousness score so you can plan important activities on your strongest days.`,
+      },
+      {
+        q: `How is the Vedic weekly horoscope for ${westernName} calculated?`,
+        a: `The weekly Vedic horoscope for ${rashiName} (${westernName}) is computed from the sidereal positions of all planets across each day of the week. We analyse transiting planets' house positions relative to your Moon sign, their mutual aspects, and key panchang elements like Tithi and Nakshatra to generate career, love, health, and finance scores for every day.`,
+      },
+    ],
+    monthly: [
+      {
+        q: `What should ${rashiName} (${westernName}) expect this month?`,
+        a: `The monthly horoscope for ${westernName} (${rashiName}) summarises the major planetary influences active during the month, including Jupiter and Saturn's ongoing transits, Rahu-Ketu axis effects, and any significant ingresses or retrograde periods. It highlights the best weeks for career advancement, relationship growth, financial decisions, and health management.`,
+      },
+      {
+        q: `What are the best and worst weeks for ${westernName} this month?`,
+        a: `The best weeks for ${rashiName} (${westernName}) are when benefic planets like Jupiter, Venus, or a waxing Moon form supportive angles to your Moon sign. Challenging weeks typically coincide with Saturn aspects, Rahu-Ketu transits, or eclipses. Our monthly horoscope calendar heatmap marks each day's auspiciousness so you can identify strong and weak periods at a glance.`,
+      },
+      {
+        q: `How is the monthly Vedic horoscope for ${westernName} (${rashiName}) calculated?`,
+        a: `The monthly Vedic horoscope is derived from a day-by-day analysis of planetary transits for the entire month. We compute the sidereal positions of the Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, and Ketu and evaluate how each planet's movement affects ${rashiName} across five life areas — career, love, health, finance, and spirituality.`,
+      },
+      {
+        q: `How accurate are Vedic monthly horoscope predictions?`,
+        a: `Vedic monthly horoscope predictions on Dekho Panchang are grounded in classical Jyotish methodology — transit-based analysis using real sidereal planetary positions. Slower planets like Saturn, Jupiter, and Rahu-Ketu have the most reliable and measurable long-term influence on a Moon sign. Fast-moving planets like the Moon add daily nuance. We present these as directional insights, not deterministic forecasts.`,
+      },
+    ],
+  };
+
+  const qaList = qaMap[period];
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: qaList.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: a,
+      },
+    })),
+  };
+}
+
 export function generateFAQLD(route: string, locale: string): Record<string, unknown> | null {
   const faqs = FAQ_DATA[route];
   if (!faqs || faqs.length === 0) return null;

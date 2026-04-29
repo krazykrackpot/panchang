@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { RASHIS } from '@/lib/constants/rashis';
 import { getRashiBySlug } from '@/lib/constants/rashi-slugs';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
+import { generateHoroscopeFAQ } from '@/lib/seo/faq-data';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
@@ -64,6 +65,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   const vedicName = r ? tl(r.name, locale) : rashi;
 
   const breadcrumbLD = generateBreadcrumbLD(`/${locale}/horoscope/${rashi}`, locale);
+  const faqLD = generateHoroscopeFAQ(vedicName, name, 'daily');
 
   const today = new Date().toISOString().split('T')[0];
 
@@ -90,6 +92,7 @@ export default async function Layout({ children, params }: { children: React.Rea
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleLD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
       {children}
     </>
   );

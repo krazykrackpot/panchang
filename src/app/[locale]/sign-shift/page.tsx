@@ -27,6 +27,8 @@ import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import LocationSearch from '@/components/ui/LocationSearch';
 import GoldDivider from '@/components/ui/GoldDivider';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import type { Locale, LocaleText } from '@/types/panchang';
 
@@ -567,6 +569,8 @@ function SignShiftPageInner() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        <RelatedLinks type="learn" links={getLearnLinksForTool('/sign-shift')} locale={locale} />
       </div>
     </div>
   );

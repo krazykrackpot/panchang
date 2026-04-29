@@ -17,6 +17,8 @@ import { tl } from '@/lib/utils/trilingual';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import type { Locale } from '@/types/panchang';
 
 /* ─── Tithi Lord mapping (1-indexed tithi within a paksha) ─── */
@@ -96,6 +98,7 @@ const currentYear = new Date().getFullYear();
 
 export default function TithiPraveshaPage() {
   const locale = useLocale() as Locale;
+  const learnLinks = getLearnLinksForTool('/tithi-pravesha');
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
@@ -499,6 +502,8 @@ export default function TithiPraveshaPage() {
           </motion.section>
         )}
       </AnimatePresence>
+
+      <RelatedLinks type="learn" links={learnLinks} locale={locale} />
     </main>
   );
 }

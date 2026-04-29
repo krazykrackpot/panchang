@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Offline — Dekho Panchang</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #0a0e27; color: #e6e2d8; font-family: -apple-system, system-ui, serif; padding: 32px; }
+    h1 { font-size: 1.5rem; color: #f0d48a; margin: 16px 0 8px; }
+    p { color: #8a8478; text-align: center; max-width: 400px; line-height: 1.6; font-size: 0.95rem; }
+    .icon { font-size: 3rem; }
+    button { margin-top: 24px; padding: 12px 32px; background: rgba(212,168,83,0.15); border: 1px solid rgba(212,168,83,0.3); border-radius: 12px; color: #f0d48a; cursor: pointer; font-size: 0.9rem; }
+    button:hover { background: rgba(212,168,83,0.25); }
+    .cached { margin-top: 32px; padding: 16px 24px; background: rgba(212,168,83,0.05); border: 1px solid rgba(212,168,83,0.1); border-radius: 12px; text-align: center; }
+    .cached a { color: #d4a853; text-decoration: none; display: block; padding: 8px; }
+    .cached a:hover { color: #f0d48a; }
+  </style>
+</head>
+<body>
+  <div class="icon">🙏</div>
+  <h1>You're Offline</h1>
+  <p>Dekho Panchang needs an internet connection for live astronomical calculations. Please check your connection and try again.</p>
+  <button onclick="window.location.reload()">Try Again</button>
+  <div class="cached">
+    <p style="font-size:0.75rem;color:#8a8478;margin-bottom:8px;">Previously visited pages may still work:</p>
+    <a href="/en/panchang">Today's Panchang</a>
+    <a href="/en/kundali">Birth Chart</a>
+    <a href="/en/calendar">Festival Calendar</a>
+  </div>
+</body>
+</html>

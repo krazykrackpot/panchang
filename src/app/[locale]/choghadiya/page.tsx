@@ -5,6 +5,8 @@ import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Clock, Sun, Moon, MapPin, ArrowLeft, Sparkles } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import { Link } from '@/lib/i18n/navigation';
 import { tl } from '@/lib/utils/trilingual';
 import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
@@ -336,6 +338,8 @@ export default function ChoghadiyaPage() {
             <p className="text-text-primary leading-relaxed">{L.bestText}</p>
           </div>
         </motion.section>
+
+        <RelatedLinks type="learn" links={getLearnLinksForTool('/choghadiya')} locale={locale} className="mt-8" />
 
         <GoldDivider className="mt-8" />
 

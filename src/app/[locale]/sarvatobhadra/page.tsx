@@ -11,6 +11,8 @@ import { analyzeSarvatobhadra, type SBCAnalysis, type TransitVedha } from '@/lib
 import { dateToJD, getPlanetaryPositions, toSidereal, getNakshatraNumber } from '@/lib/ephem/astronomical';
 import { tl } from '@/lib/utils/trilingual';
 import GoldDivider from '@/components/ui/GoldDivider';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 
 // --------------- i18n labels ---------------
 
@@ -141,6 +143,7 @@ const LEGEND_ITEMS: { key: string; bg: string; border: string }[] = [
 
 export default function SarvatobhadraPage() {
   const locale = useLocale();
+  const learnLinks = getLearnLinksForTool('/sarvatobhadra');
   const l = useCallback((key: string) => tl(LABELS[key], locale), [locale]);
 
   const searchParams = useSearchParams();
@@ -653,6 +656,8 @@ export default function SarvatobhadraPage() {
             </div>
           </div>
         )}
+
+      <RelatedLinks type="learn" links={learnLinks} locale={locale} />
     </div>
   );
 }

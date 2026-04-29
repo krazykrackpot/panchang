@@ -1,9 +1,9 @@
 /**
  * Service Worker — Dekho Panchang PWA
- * v3: Multi-locale precache, offline fallback page, cache limits, update signaling
- * Strategies: Static=CacheFirst, Learn=StaleWhileRevalidate, API=NetworkFirst
+ * v4: Offline HTML page, Rahu Kaal shortcut, panchang API SWR, stronger precache
+ * Strategies: Static=CacheFirst, Learn=StaleWhileRevalidate, API=NetworkFirst, Panchang=SWR
  */
-var CV = 'dp-v3';
+var CV = 'dp-v4';
 var CS = CV + '-static', CP = CV + '-pages', CA = CV + '-api';
 
 // Max entries per cache to prevent unbounded growth
@@ -13,7 +13,7 @@ var MAX_PAGES = 80, MAX_API = 40;
 var PRECACHE_LOCALES = ['en', 'hi', 'ta', 'bn'];
 
 self.addEventListener('install', function(e) {
-  var urls = ['/manifest.json', '/favicon.svg', '/offline'];
+  var urls = ['/manifest.json', '/favicon.svg', '/offline.html'];
   PRECACHE_LOCALES.forEach(function(l) {
     urls.push('/' + l);
     urls.push('/' + l + '/panchang');
@@ -45,8 +45,24 @@ self.addEventListener('message', function(event) {
 self.addEventListener('fetch', function(e) {
   var r = e.request, u = new URL(r.url);
   if (r.method !== 'GET' || !u.protocol.startsWith('http')) return;
-  // Don't cache panchang/kundali API responses — they're date/person-specific and should never be stale
-  if (u.pathname.startsWith('/api/panchang') || u.pathname.startsWith('/api/kundali')) {
+  // Panchang API — StaleWhileRevalidate: show cached today's data instantly, refresh in background
+  // Daily panchang data is safe to serve stale (same day); kundali is person-specific so stays network-only
+  if (u.pathname === '/api/panchang') {
+    e.respondWith(
+      caches.open(CA).then(function(cache) {
+        return cache.match(r).then(function(cached) {
+          var fetchPromise = fetch(r).then(function(response) {
+            if (response.ok) cache.put(r, response.clone());
+            return response;
+          }).catch(function() { return cached || new Response('{"error":"offline"}', {status:503, headers:{'Content-Type':'application/json'}}); });
+          return cached || fetchPromise;
+        });
+      })
+    );
+    return;
+  }
+  // Kundali API — network-only (person-specific, must never be stale)
+  if (u.pathname.startsWith('/api/kundali')) {
     e.respondWith(fetch(r).catch(function() {
       return new Response('{"error":"offline"}', {status:503, headers:{'Content-Type':'application/json'}});
     }));
@@ -78,7 +94,7 @@ function htmlFetch(r) {
     return res;
   }).catch(function() {
     return caches.match(r).then(function(c) {
-      return c || caches.match('/offline');
+      return c || caches.match('/offline.html');
     });
   });
 }
@@ -92,7 +108,7 @@ function cacheFirst(r, n) {
       caches.open(n).then(function(ca) { ca.put(r, clone); });
       return res;
     }).catch(function() {
-      return caches.match('/offline') || new Response('Offline', {status: 503});
+      return caches.match('/offline.html') || new Response('Offline', {status: 503});
     });
   });
 }
@@ -109,7 +125,7 @@ function swr(r, n) {
         return res;
       }).catch(function() { return null; });
       return c || fp.then(function(res) {
-        return res || caches.match('/offline');
+        return res || caches.match('/offline.html');
       });
     });
   });

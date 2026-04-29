@@ -536,7 +536,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-gold-primary/5 via-transparent to-gold-dark/3 blur-3xl" />
 
         {/* Slow-orbiting zodiac ring behind hero — visible gold with element colors */}
-        <div className="absolute top-1/2 left-1/2 w-[700px] h-[700px] sm:w-[800px] sm:h-[800px] cosmic-orbit -z-10" aria-hidden="true">
+        <div className="absolute top-1/2 left-1/2 w-[630px] h-[630px] sm:w-[720px] sm:h-[720px] cosmic-orbit -z-10" aria-hidden="true">
           <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none">
             <defs>
               <linearGradient id="orbit-gold" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -546,7 +546,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               </linearGradient>
             </defs>
             {/* Outer rashi ring — bold gold */}
-            <circle cx="100" cy="100" r="92" stroke="#d4a853" strokeWidth="1.5" strokeOpacity="0.35" />
+            <circle cx="100" cy="100" r="92" stroke="#f0d48a" strokeWidth="2" strokeOpacity="0.55" />
             <circle cx="100" cy="100" r="72" stroke="#d4a853" strokeWidth="0.5" strokeOpacity="0.1" />
             {/* 12 rashi segments with element-colored fills */}
             {Array.from({ length: 12 }, (_, i) => {

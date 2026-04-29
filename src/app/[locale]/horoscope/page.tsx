@@ -15,6 +15,8 @@ import { getSupabase } from '@/lib/supabase/client';
 import type { Locale } from '@/types/panchang';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 
 /** Saved chart with optional moonSign in birth_data. */
 interface SavedPerson {

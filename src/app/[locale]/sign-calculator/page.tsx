@@ -16,6 +16,8 @@ import { formatDegrees, dateToJD } from '@/lib/ephem/astronomical';
 import { computeBirthSignsAction } from '@/app/actions/birth-signs';
 import { computeComparison, type PlanetComparison } from '@/lib/ephem/comparison-engine';
 import JyotishTerm from '@/components/ui/JyotishTerm';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import type { Locale , LocaleText} from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -415,6 +417,8 @@ export default function SignCalculatorPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <RelatedLinks type="learn" links={getLearnLinksForTool('/sign-calculator')} locale={locale} className="mt-8" />
     </div>
   );
 }

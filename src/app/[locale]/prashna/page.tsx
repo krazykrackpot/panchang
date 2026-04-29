@@ -23,6 +23,8 @@ import type { Locale, LocaleText } from '@/types/panchang';
 import type { KundaliData, ChartStyle } from '@/types/kundali';
 import MSG from '@/messages/pages/prashna.json';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 
 const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -95,6 +97,7 @@ const CATEGORY_ICONS: Record<PrashnaCategory, string> = {
 
 export default function PrashnaPage() {
   const locale = useLocale() as Locale;
+  const learnLinks = getLearnLinksForTool('/prashna');
   const isDevanagari = isDevanagariLocale(locale);
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
@@ -454,6 +457,8 @@ export default function PrashnaPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <RelatedLinks type="learn" links={learnLinks} locale={locale} />
     </div>
   );
 }

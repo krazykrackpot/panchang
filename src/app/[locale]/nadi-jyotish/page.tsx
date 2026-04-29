@@ -11,6 +11,8 @@ import type { BirthData, ChartStyle } from '@/types/kundali';
 import type { BNNReading, BNNPlanetReading } from '@/lib/nadi/bnn-engine';
 import type { KarmicProfile } from '@/lib/nadi/karmic-profile';
 import type { Locale } from '@/types/panchang';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 
 // ─── Inline labels (4 active locales: en, hi, ta, bn) ─────────────────────
 const LABELS = {
@@ -265,6 +267,7 @@ function KarmicCard({ profile, labels }: { profile: KarmicProfile; labels: typeo
 
 export default function NadiJyotishPage() {
   const locale = useLocale() as Locale;
+  const learnLinks = getLearnLinksForTool('/nadi-jyotish');
   const lk = (LABELS[locale as L] ?? LABELS.en);
 
   const [loading, setLoading] = useState(false);
@@ -414,6 +417,8 @@ export default function NadiJyotishPage() {
           )}
         </AnimatePresence>
       </div>
+
+      <RelatedLinks type="learn" links={learnLinks} locale={locale} />
     </div>
   );
 }

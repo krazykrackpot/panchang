@@ -7,6 +7,8 @@ import { useState, useEffect, useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import InfoBlock from '@/components/ui/InfoBlock';
 import { useLocationStore } from '@/stores/location-store';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
@@ -685,6 +687,8 @@ export default function VedicTimePage() {
             </div>
           ))}
         </div>
+
+        <RelatedLinks type="learn" links={getLearnLinksForTool('/vedic-time')} locale={locale} className="mt-8" />
       </div>
     </div>
   );

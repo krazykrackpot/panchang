@@ -10,6 +10,8 @@ import type { VoiceMode, DailyProtocol, HoraSlot, EnergyPhase, DeadZone } from '
 import { PRAKRITI_QUESTIONS, scorePrakriti } from '@/lib/dinacharya/prakriti-quiz';
 import type { Dosha } from '@/lib/dinacharya/prakriti-quiz';
 import { tl } from '@/lib/utils/trilingual';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import DayTimeline from '@/components/panchang/DayTimeline';
 import type { PanchangData, HoraSlot as PanchangHoraSlot } from '@/types/panchang';
@@ -434,6 +436,8 @@ export default function DinacharyaPage() {
             locale={locale}
           />
         </SectionCard>
+
+        <RelatedLinks type="learn" links={getLearnLinksForTool('/dinacharya')} locale={locale} className="mt-8" />
       </div>
     </div>
   );

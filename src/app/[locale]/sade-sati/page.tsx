@@ -21,6 +21,8 @@ import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import InfoBlock from '@/components/ui/InfoBlock';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ---------------------------------------------------------------------------
@@ -670,6 +672,8 @@ export default function SadeSatiPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <RelatedLinks type="learn" links={getLearnLinksForTool('/sade-sati')} locale={locale} className="mt-8" />
     </div>
   );
 }

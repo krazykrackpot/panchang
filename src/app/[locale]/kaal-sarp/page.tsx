@@ -13,6 +13,8 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import InfoBlock from '@/components/ui/InfoBlock';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import Link from 'next/link';
 
 // ---------------------------------------------------------------------------
@@ -391,6 +393,8 @@ export default function KaalSarpPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <RelatedLinks type="learn" links={getLearnLinksForTool('/kaal-sarp')} locale={locale} className="mt-8" />
     </div>
   );
 }

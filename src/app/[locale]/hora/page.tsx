@@ -5,6 +5,8 @@ import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Clock, ArrowLeft, Sparkles, Timer, CalendarDays } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import { Link } from '@/lib/i18n/navigation';
 import { useLocationStore } from '@/stores/location-store';
 import { dateToJD, approximateSunriseSafe, approximateSunsetSafe, formatTime } from '@/lib/ephem/astronomical';
@@ -344,6 +346,8 @@ export default function HoraPage() {
                 <p className="text-text-secondary text-sm leading-relaxed">{L('howToUseText', locale)}</p>
               </div>
             </section>
+
+            <RelatedLinks type="learn" links={getLearnLinksForTool('/hora')} locale={locale} className="mt-8" />
           </motion.div>
         )}
       </div>

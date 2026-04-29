@@ -15,6 +15,8 @@ import BirthForm from '@/components/kundali/BirthForm';
 import type { BirthData, ChartStyle, KundaliData } from '@/types/kundali';
 import type { SkyPlanetPosition } from '@/lib/sky/positions';
 import { tl } from '@/lib/utils/trilingual';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 
 const TransitPlayground = dynamic(
   () => import('@/components/transit/TransitPlayground'),
@@ -254,6 +256,8 @@ export default function TransitPlaygroundPage() {
             </div>
           </div>
         </div>
+
+        <RelatedLinks type="learn" links={getLearnLinksForTool('/transit-playground')} locale={locale} />
       </div>
     </main>
   );

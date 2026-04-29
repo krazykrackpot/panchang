@@ -15,6 +15,8 @@ import type { Locale } from '@/types/panchang';
 import type { AshtamangalaPrashnaData, QuestionCategory } from '@/types/prashna';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 
 const CATEGORIES: { id: QuestionCategory; label: Record<string, string>; house: number }[] = [
   { id: 'health', label: { en: 'Health', hi: 'स्वास्थ्य', sa: 'स्वास्थ्यम्', ta: 'உடல்நலம்' }, house: 1 },
@@ -156,6 +158,7 @@ const T = {
 
 export default function PrashnaAshtamangalaPage() {
   const locale = useLocale() as Locale;
+  const learnLinks = getLearnLinksForTool('/prashna-ashtamangala');
   const isTamil = String(locale) === 'ta';
   const t = (T as Record<string, typeof T.en>)[locale] || T.en;
   const isDevanagari = isDevanagariLocale(locale);
@@ -340,6 +343,8 @@ export default function PrashnaAshtamangalaPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <RelatedLinks type="learn" links={learnLinks} locale={locale} />
     </div>
   );
 }

@@ -153,21 +153,13 @@ vercel logs                  # View production logs
 
 ## Deployment Workflow
 
-1. `npx next build` — verify build passes locally
-2. `git push origin main` — triggers Vercel auto-deploy
-3. `vercel ls` — confirm deployment is Ready (not Error)
-4. **Verify after deploy**: Test auth signup, checkout, and any modified API endpoints
-5. `vercel logs` — check for runtime errors
+1. `npx next build` → 2. `git push origin main` (Vercel auto-deploy) → 3. `vercel ls` (confirm Ready) → 4. Test auth/checkout/modified endpoints → 5. `vercel logs` (check runtime errors)
 
 ## Key Design Decisions
-- Lahiri Ayanamsa by default (most widely used in India)
-- North Indian diamond chart style (South Indian toggle available)
-- Meeus algorithms (~0.01° Sun, ~0.5° Moon accuracy)
-- All panchang values verified within 1-2 min of reference panchang sources (Prokerala/Shubh)
-- All computation server-side via Next.js route handlers
-- No external astrology API dependencies — pure math
-- All constant data uses `Trilingual` type: `{ en: string; hi: string; sa: string }`
-- Rashi IDs 1-based (1-12), Planet IDs 0-based (0=Sun through 8=Ketu)
+- Lahiri Ayanamsa default; North Indian diamond chart (South toggle available)
+- Meeus algorithms (~0.01° Sun, ~0.5° Moon); all panchang within 1-2 min of Prokerala/Shubh
+- All computation server-side via route handlers; no external astrology APIs
+- `Trilingual` type: `{ en: string; hi: string; sa: string }`; Rashi IDs 1-based (1-12), Planet IDs 0-based (0=Sun..8=Ketu)
 
 ## Environment Variables
 
@@ -205,55 +197,20 @@ Required in `.env.local`:
 - Regression tests cover: auth config, checkout env trimming, panchang accuracy vs Prokerala/Shubh, vedic time, signup trigger safety
 - Panchang accuracy target: within 2 min of reference panchang sources for all elements
 
-## Lessons from Real Incidents (Apr 2026)
+## Lessons from Real Incidents (Apr 2026) — A through J
 
-These were learned from bugs that shipped. Treat as hard rules:
+Hard rules from bugs that shipped. See also global CLAUDE.md for universal versions.
 
-### A. Never silently swallow errors
-- `catch { /* silent */ }` in `handleSaveChart` hid RLS failures as a "Saved" indicator that never actually saved.
-- `saved-charts` fetch ignored the `error` field of Supabase responses — auth failures rendered as "No saved charts."
-- Rule: destructure `{ data, error }`, branch on `error`, log with `console.error('[module] X failed:', err)`, show user-visible feedback.
-
-### B. Single source of truth for shared data
-- `layout.tsx` imported a stale flat `messages/en.json` while `request.ts` loaded per-locale dirs. Server translations worked, client ones didn't. Dashboard showed `pages.dashboard.title` as a literal string.
-- Rule: if two paths load "the same thing," share one loader.
-
-### C. Every link-to-destination contract must be explicit
-- Dashboard saved-chart cards passed `/kundali?n=...&d=...` but the kundali page only read `sessionStorage.kundali_last_result`. Every card opened the last-generated chart.
-- Rule: mount effects that read local state must check the URL first and comment the precedence.
-
-### D. Features built but not integrated are dead
-- `/dashboard/saved-charts` worked perfectly but was buried behind a Quick Link tile. Users couldn't find it.
-- Rule (restated): "An unlinked page is a dead page." Integrate the moment it's built.
-
-### E. Document library limits at the call site
-- jsPDF built-in fonts are Latin-1 only; Devanagari strings printed as `A.M-` / `8B0M/` gibberish. No comment, no guard.
-- `setTimeout(() => printWindow.print(), 500)` was a blind bet on async Google Font loading. Use `document.fonts.ready`.
-- CSS `print-color-adjust: exact` applied globally turned translucent gradients into washed-out purple on white paper.
-- Rule: when using an API with a known quirk, either guard in code or comment the limit right above the call.
-
-### F. Loading state must always terminate
-- `fetchCharts` had `if (!user) return;` that never flipped `loading=false` — spinner spun forever during auth restore.
-- Rule: every branch of a data fetch (including early returns) must set loading to false.
-
-### G. User writes must be idempotent
-- No duplicate detection on Save Chart meant repeat clicks / refreshes / tab reopens created dupe rows.
-- Rule: dedupe by natural key (trimmed lowercase name + date + time + lat/lng rounded to 4dp) before insert.
-
-### H. Never bulk find/replace `t(...)` calls with regex/sed
-- A `tl(` → `t(` sweep broke 3,343 call sites — matched Tailwind arbitrary values (`t-*`), plain `t()` functions, and other things.
-- A sed double-escape broke Tailwind bracket syntax across 128 files.
-- Rule: for bulk transformations in TypeScript, use AST tools (ts-morph, jscodeshift) or Claude with a verified 2-3 file dry run + `npx next build` gate before proceeding.
-- Rule: if you MUST regex, print match count + 5 sample before/afters and get confirmation before applying globally.
-
-### I. When migrating translation calls, verify both sides
-- `panchang/page.tsx` was migrated from `msg('todaysMuhurtas', locale)` + JSON import to `useTranslations('pages.panchangInline')` — but the `panchangInline` namespace was never added to any locale's `pages.json`. Result: 6 runtime `MISSING_MESSAGE` errors + a TypeError cascade.
-- Rule: any PR that changes how translation keys are referenced MUST grep the new keys against every locale's message JSON and fail if any are missing.
-- Rule: `next-intl` should be configured with `onError` to log (not swallow) missing keys so they surface in dev.
-
-### J. Locale fallback is non-negotiable
-- Several locale JSONs had English-copied placeholders for regional languages; a later migration that assumed "real translations everywhere" broke at runtime.
-- Rule: every locale file must have an English fallback safety net. If a regional translation is missing, render English — never render `undefined` or the key path.
+- **A. Never silently swallow errors**: destructure `{ data, error }`, branch on `error`, log with `console.error('[module] X failed:', err)`, show user-visible feedback.
+- **B. Single source of truth**: if two paths load "the same thing," share one loader.
+- **C. Link-to-destination contracts must be explicit**: mount effects that read local state must check the URL first and comment the precedence.
+- **D. Unlinked pages are dead**: integrate the moment it's built (see Feature Integration).
+- **E. Document library limits at the call site**: guard in code or comment the quirk. Never `setTimeout` as a substitute for a readiness event.
+- **F. Loading state must always terminate**: every branch of a data fetch (including early returns) must set loading to false.
+- **G. User writes must be idempotent**: dedupe by natural key (trimmed lowercase name + date + time + lat/lng rounded to 4dp) before insert.
+- **H. Never bulk find/replace with regex/sed**: use AST tools or dry-run 2-3 files + `npx next build` gate. If you MUST regex, print match count + 5 samples and get confirmation.
+- **I. Translation migration — verify both sides**: grep new keys against every locale's JSON. Configure `next-intl` `onError` to log missing keys.
+- **J. Locale fallback is non-negotiable**: render English if regional translation is missing — never `undefined` or key path.
 
 ## i18n Conventions (next-intl)
 
@@ -333,18 +290,12 @@ After every `git push`:
 - Pre-push hook runs `tsc --noEmit -p tsconfig.build-check.json` — if it fails, fix it, don't bypass it.
 
 ### SELF-REVIEW EVERY DESIGN SECTION
-- After presenting any design section, immediately review it with fresh eyes before moving on.
-- Identify flaws, gaps, missing edge cases, and enhancement opportunities.
-- Address them in the same message — don't wait for the user to find problems.
-- This applies to: architecture proposals, API designs, data models, UI layouts, pattern definitions, and any non-trivial technical decision.
+- After presenting any design section, review with fresh eyes. Identify flaws, gaps, edge cases. Address in the same message.
 
 ### GENERAL
-- Prefer editing existing files over creating new ones when possible.
-- Compare astronomical calculations with Prokerala/Shubh Panchang for same location (NOT Drik — removed all Drik references).
-- Never default location to Delhi/India — require user location.
-- When asked for analysis or assessment: explore code first, don't ask clarifying questions.
-- For multi-step work: save task list, don't rely on conversation history.
-- After any refactoring: search for ALL references to changed variables/functions.
+- Prefer editing existing files over creating new ones.
+- Compare astronomical calculations with Prokerala/Shubh Panchang (NOT Drik). Never default to Delhi/India.
+- Explore code first when asked for analysis. Save task lists for multi-step work. After refactoring, grep ALL references.
 
 ## Lessons from Full Audit (Apr 24, 2026) — 63+ bugs found across 6 rounds
 
@@ -532,24 +483,14 @@ Run this checklist BEFORE shipping any change to computation code:
 - Check overlap: `startA < endB && startB < endA` for time ranges.
 
 ### Kundali Page Architecture
-- The page was 7100 lines — extracted to ~5500 via lazy-loaded tab components:
-  - `PatrikaTab.tsx` (3400 lines) — lazy loaded
-  - `SphutasTab.tsx` (664 lines) — direct import
-  - `JaiminiTab.tsx` (728 lines) — direct import
-  - `TransitRadar`, `ChartChatTab`, `LifeTimeline` — lazy loaded
-- Module-level constants (HOUSE_THEMES, NARAYANA_SIGN_PROFILES, etc.) extracted from render path.
+- Lazy-loaded tabs: `PatrikaTab`, `TransitRadar`, `ChartChatTab`, `LifeTimeline`. Direct: `SphutasTab`, `JaiminiTab`.
 - Inline data structures inside `.map()` loops are a **critical performance bug** — always hoist to module level.
 
 ### Subscription Model (Current)
-- **All features are FREE** — no paywall gates, no usage limits (except AI calls).
-- AI calls restricted: `ai_chat` (2/day free), `muhurta_ai` (2/month free).
-- PaywallGate component still exists but is not used on any page.
-- Navbar "Upgrade" button removed. Pricing page still exists but is informational.
+- All features FREE. AI calls restricted: `ai_chat` (2/day), `muhurta_ai` (2/month). PaywallGate exists but unused.
 
 ### Chart Components (Transit Overlay)
-- `ChartNorth` and `ChartSouth` accept optional `transitData?: ChartData` prop.
-- Transit planets rendered with distinct style: outlined dots, 65% opacity, smaller text.
-- Only slow planets (Jupiter, Saturn, Rahu, Ketu) overlaid — fast planets change too quickly.
+- `ChartNorth`/`ChartSouth` accept `transitData?: ChartData`. Only slow planets (Jup/Sat/Rahu/Ketu) overlaid.
 
 ### SEO Checklist for New Pages
 1. Add route to `PAGE_META` in `/lib/seo/metadata.ts`
@@ -566,10 +507,6 @@ Run this checklist BEFORE shipping any change to computation code:
 - Template in `/lib/email/templates/daily-panchang.ts`
 
 ### Performance Optimizations (Done)
-- Home page Framer Motion replaced with CSS animations (`animate-fade-in-up`, `stagger-children`)
-- Heavy widgets lazy-loaded via `next/dynamic` with `ssr: false` (TodayPanchangWidget, TransitForecastWidget, EclipseAlert)
-- Suspense boundaries around each dynamic widget with meaningful fallbacks
-- `optimizePackageImports` for `framer-motion` + `lucide-react` in `next.config.ts`
-- All 8 font families use `next/font/google` with `display: 'swap'`
-- Server-side panchang computation using Vercel geo headers (eliminates client-side fetch waterfall for LCP)
-- Home page panchang widget uses CSS stagger animations instead of framer-motion
+- Heavy widgets lazy-loaded via `next/dynamic` with `ssr: false`; Suspense boundaries with meaningful fallbacks
+- `optimizePackageImports` for `framer-motion` + `lucide-react`; all fonts use `next/font/google` with `display: 'swap'`
+- Server-side panchang via Vercel geo headers; home page uses CSS stagger animations (no framer-motion)

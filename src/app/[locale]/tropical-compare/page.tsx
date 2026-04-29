@@ -12,6 +12,8 @@ import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import JyotishTerm from '@/components/ui/JyotishTerm';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import LocationSearch from '@/components/ui/LocationSearch';
 import GoldDivider from '@/components/ui/GoldDivider';
 import PrecessionSlider from '@/components/comparison/PrecessionSlider';
@@ -541,6 +543,8 @@ export default function TropicalComparePage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <RelatedLinks type="learn" links={getLearnLinksForTool('/tropical-compare')} locale={locale} />
     </div>
   );
 }

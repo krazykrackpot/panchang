@@ -10,6 +10,8 @@ import { authedFetch } from '@/lib/api/authed-fetch';
 import { generateCosmicBlueprint, type CosmicBlueprint } from '@/lib/kundali/archetype-engine';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { Sparkles, ArrowRight, Loader2 } from 'lucide-react';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import type { BirthData, ChartStyle, KundaliData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale, getHeadingFont } from '@/lib/utils/locale-fonts';
@@ -216,6 +218,8 @@ export default function CosmicBlueprintPage() {
           </div>
         )}
       </div>
+
+      <RelatedLinks type="learn" links={getLearnLinksForTool('/cosmic-blueprint')} locale={locale} className="mt-8" />
     </main>
   );
 }

@@ -16,6 +16,8 @@ import type { BodyRegion } from '@/lib/medical/constants';
 import type { HealthPrognosis } from '@/lib/medical/health-prognosis';
 import type { Locale, LocaleText } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 
 // ─── Inline labels (4 active locales: en, hi, ta, bn) ────────────────────────
 const LABELS = {

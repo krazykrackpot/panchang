@@ -8,6 +8,8 @@ import type { SkyPlanetPosition } from '@/lib/sky/positions';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 
 const CelestialSphere3D = dynamic(
   () => import('@/components/3d/CelestialSphere').then(m => m.CelestialSphere),
@@ -249,6 +251,8 @@ export default function SkyPage() {
         <p className="text-[#6a5a28] text-xs leading-relaxed max-w-3xl">
           {t('disclaimer')}
         </p>
+
+        <RelatedLinks type="learn" links={getLearnLinksForTool('/sky')} locale={locale} />
       </div>
     </main>
   );

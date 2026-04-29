@@ -15,6 +15,8 @@ import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import MSG from '@/messages/pages/upagraha.json';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 
 const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -726,6 +728,8 @@ export default function UpagrahaPage() {
           ))}
         </div>
       </div>
+
+      <RelatedLinks type="learn" links={getLearnLinksForTool('/upagraha')} locale={locale} />
     </div>
   );
 }

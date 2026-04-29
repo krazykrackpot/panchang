@@ -10,7 +10,7 @@ export function getResend(): Resend | null {
   return _resend;
 }
 
-export const EMAIL_FROM = process.env.EMAIL_FROM || 'Dekho Panchang <noreply@dekhopanchang.com>';
+export const EMAIL_FROM = process.env.EMAIL_FROM || 'Dekho Panchang <namaste@dekhopanchang.com>';
 
 export async function sendEmail({
   to,

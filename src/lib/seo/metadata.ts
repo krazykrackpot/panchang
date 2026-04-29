@@ -664,6 +664,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Dekho Panchang brings the precision of Vedic astronomical calculations to the modern web. Built with pure mathematics, no external APIs.', hi: 'देखो पंचांग वैदिक खगोलीय गणनाओं की सटीकता को आधुनिक वेब पर लाता है।', sa: 'देखोपञ्चाङ्गं वैदिकखगोलगणनानां सम्यक्तां आधुनिकजालपृष्ठे आनयति।' },
     keywords: ['about dekho panchang', 'vedic astronomy', 'panchang calculator'],
   },
+  '/vs/drik-panchang': {
+    title: { en: 'Dekho Panchang vs Drik Panchang — Feature Comparison 2026', hi: 'देखो पंचांग vs दृक् पंचांग — सुविधा तुलना 2026', sa: 'देखोपञ्चाङ्गं विरुद्ध दृक्पञ्चाङ्गम् — सुविधातुलना' },
+    description: { en: 'Objective feature comparison between Dekho Panchang and Drik Panchang. AI interpretation, Muhurta AI, 10 languages, 106-module learning path, modern UI vs legacy platform.', hi: 'देखो पंचांग और दृक् पंचांग के बीच निष्पक्ष सुविधा तुलना। AI व्याख्या, मुहूर्त AI, 10 भाषाएँ, 106-मॉड्यूल शिक्षण पथ, आधुनिक UI।', sa: 'देखोपञ्चाङ्गस्य दृक्पञ्चाङ्गस्य च सुविधातुलना।' },
+    keywords: ['dekho panchang vs drik panchang', 'panchang comparison', 'best panchang app', 'vedic astrology platform comparison', 'drik panchang alternative'],
+  },
   '/pricing': {
     title: { en: 'Pricing — Dekho Panchang Plans', hi: 'मूल्य — देखो पंचांग योजनाएं', sa: 'मूल्यम् — देखोपञ्चाङ्गयोजनाः' },
     description: { en: 'Choose your plan. Free tier with full Panchang and basic Kundali. Pro and Jyotishi tiers for advanced features.', hi: 'अपनी योजना चुनें। पूर्ण पंचांग और मूल कुण्डली के साथ निःशुल्क स्तर।', sa: 'स्वयोजनां चिनुत। पूर्णपञ्चाङ्गमूलकुण्डल्या सह निःशुल्कस्तरः।' },

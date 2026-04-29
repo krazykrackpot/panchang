@@ -15,6 +15,8 @@ import { computeBirthSignsAction } from '@/app/actions/birth-signs';
 import type { Locale } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 
 export default function BabyNamesPage() {
   const locale = useLocale() as Locale;
@@ -366,6 +368,8 @@ export default function BabyNamesPage() {
           })}
         </div>
       </div>
+
+      <RelatedLinks type="learn" links={getLearnLinksForTool('/baby-names')} locale={locale} />
     </div>
   );
 }

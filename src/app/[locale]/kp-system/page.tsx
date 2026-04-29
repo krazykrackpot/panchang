@@ -19,6 +19,8 @@ import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import MSG from '@/messages/pages/kp-system.json';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 
 const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -484,6 +486,7 @@ const T = {
 
 export default function KPSystemPage() {
   const locale = useLocale() as Locale;
+  const learnLinks = getLearnLinksForTool('/kp-system');
   const isTamil = String(locale) === 'ta';
   const t = (T as Record<string, typeof T.en>)[locale] || T.en;
   const isDevanagari = isDevanagariLocale(locale);
@@ -876,6 +879,8 @@ export default function KPSystemPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <RelatedLinks type="learn" links={learnLinks} locale={locale} />
     </div>
   );
 }

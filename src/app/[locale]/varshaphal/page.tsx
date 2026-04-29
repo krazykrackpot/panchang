@@ -23,6 +23,8 @@ import type { ChartStyle } from '@/types/kundali';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import TajikaYogaCard from '@/components/varshaphal/TajikaYogaCard';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 
 const LABELS = {
   en: {
@@ -210,6 +212,7 @@ const LABELS = {
 
 export default function VarshaphalPage() {
   const locale = useLocale() as Locale;
+  const learnLinks = getLearnLinksForTool('/varshaphal');
   const isTamil = String(locale) === 'ta';
   const t = (LABELS as Record<string, typeof LABELS.en>)[locale] || LABELS.en;
   const isDevanagari = isDevanagariLocale(locale);
@@ -586,6 +589,8 @@ export default function VarshaphalPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <RelatedLinks type="learn" links={learnLinks} locale={locale} />
     </div>
   );
 }

@@ -37,25 +37,29 @@
     {
       "name": "Today's Panchang",
       "short_name": "Panchang",
-      "url": "/panchang",
+      "description": "View today's Tithi, Nakshatra, Muhurta and Rahu Kaal",
+      "url": "/en/panchang",
       "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
     },
     {
-      "name": "My Dashboard",
-      "short_name": "Dashboard",
-      "url": "/dashboard",
+      "name": "Rahu Kaal Now",
+      "short_name": "Rahu Kaal",
+      "description": "Check today's Rahu Kaal timing for your location",
+      "url": "/en/rahu-kaal",
       "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
     },
     {
       "name": "Generate Kundali",
       "short_name": "Kundali",
-      "url": "/kundali",
+      "description": "Create a Vedic birth chart with 20+ analysis tabs",
+      "url": "/en/kundali",
       "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
     },
     {
       "name": "Festival Calendar",
-      "short_name": "Calendar",
-      "url": "/calendar",
+      "short_name": "Festivals",
+      "description": "Browse Hindu festivals, vrats and auspicious dates",
+      "url": "/en/calendar",
       "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
     }
   ],
@@ -68,7 +72,14 @@
       "sizes": "512x512",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Dekho Panchang — Daily Vedic Astrology"
+      "label": "Daily Vedic Panchang with Tithi, Nakshatra & Muhurta"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Birth Chart Generator with 20+ Analysis Tabs"
     }
   ],
   "prefer_related_applications": false

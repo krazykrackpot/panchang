@@ -34,6 +34,7 @@ const routes = [
   '/matching',
   '/about',
   '/about/methodology',
+  '/vs/drik-panchang',
   '/festivals',
   '/pricing',
   // Deep dives

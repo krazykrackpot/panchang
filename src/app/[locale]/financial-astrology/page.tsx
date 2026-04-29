@@ -10,6 +10,8 @@ import type { AnnualFinancialReport } from '@/lib/financial/annual-financial';
 import type { MonthlyWindow } from '@/lib/financial/financial-windows';
 import type { DhanaActivation } from '@/lib/financial/dhana-activation';
 import type { FinancialHora } from '@/lib/financial/hora-finance';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 
 // ─── Inline labels ───────────────────────────────────────────────────────────
 const LABELS = {

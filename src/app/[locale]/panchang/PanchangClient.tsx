@@ -234,7 +234,30 @@ export default function PanchangClient() {
     return { ianaTimezone, tz };
   }
 
+  // Location detection: URL params take priority over geolocation (Lesson C).
+  // When a link passes ?lat=...&lng=...&name=..., use those coordinates.
+  // Only fall back to browser geolocation / IP when no URL params are present.
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlLat = params.get('lat');
+    const urlLng = params.get('lng');
+    const urlName = params.get('name');
+
+    if (urlLat && urlLng) {
+      // URL params provided — use them, resolve timezone from coordinates
+      const lat = parseFloat(urlLat);
+      const lng = parseFloat(urlLng);
+      if (!isNaN(lat) && !isNaN(lng)) {
+        setDetectingLocation(true);
+        resolveLocationTimezone(lat, lng).then(({ ianaTimezone, tz }) => {
+          setLocation({ lat, lng, name: urlName || `${lat.toFixed(2)}°, ${lng.toFixed(2)}°`, tz, ianaTimezone });
+          setDetectingLocation(false);
+        });
+        return; // skip geolocation
+      }
+    }
+
+    // No URL params — detect from browser geolocation / IP
     if ('geolocation' in navigator) {
       setDetectingLocation(true);
       navigator.geolocation.getCurrentPosition(

@@ -284,6 +284,123 @@ function SignShiftCommentary({ planets, locale }: { planets: PlanetRow[]; locale
   );
 }
 
+/** Planet names for English commentary */
+const PLANET_EN: Record<number, string> = { 0:'Sun',1:'Moon',2:'Mars',3:'Mercury',4:'Jupiter',5:'Venus',6:'Saturn',7:'Rahu',8:'Ketu' };
+const PLANET_HI: Record<number, string> = { 0:'सूर्य',1:'चन्द्र',2:'मंगल',3:'बुध',4:'बृहस्पति',5:'शुक्र',6:'शनि',7:'राहु',8:'केतु' };
+
+/** House lordship by sign (0-indexed sign → planet that rules it) */
+const SIGN_LORD: Record<number, number> = { 0:2, 1:5, 2:3, 3:1, 4:0, 5:3, 6:5, 7:2, 8:4, 9:6, 10:6, 11:4 };
+
+/** House themes for impact analysis */
+const HOUSE_THEME_EN: Record<number, string> = {
+  1:'personality & health', 2:'wealth & speech', 3:'courage & siblings',
+  4:'home & mother', 5:'children & creativity', 6:'enemies & disease',
+  7:'marriage & partnerships', 8:'longevity & transformation', 9:'fortune & dharma',
+  10:'career & status', 11:'gains & aspirations', 12:'losses & liberation',
+};
+const HOUSE_THEME_HI: Record<number, string> = {
+  1:'व्यक्तित्व एवं स्वास्थ्य', 2:'धन एवं वाणी', 3:'पराक्रम एवं भ्रातृ',
+  4:'गृह एवं मातृ', 5:'सन्तान एवं रचनात्मकता', 6:'शत्रु एवं रोग',
+  7:'विवाह एवं साझेदारी', 8:'आयु एवं रूपान्तरण', 9:'भाग्य एवं धर्म',
+  10:'कैरियर एवं यश', 11:'लाभ एवं आकांक्षा', 12:'हानि एवं मोक्ष',
+};
+
+/** Holistic summary of what all sign shifts mean together for the native's chart. */
+function HolisticImpactSummary({ planets, locale, kundali }: { planets: PlanetRow[]; locale: string; kundali: KundaliData }) {
+  const shifted = planets.filter(p => p.hasSignChange && p.id >= 0);
+  if (shifted.length === 0) return null;
+
+  const isHi = isDevanagariLocale(locale);
+  const ascSign = kundali.chart.ascendantSign; // 1-based
+
+  // Build impact analysis
+  const impacts: string[] = [];
+
+  // 1. Count how many planets shift
+  const count = shifted.length;
+  if (isHi) {
+    impacts.push(`इस कुण्डली में ${count} ग्रह अयनांश के अनुसार राशि बदलते हैं। यह एक महत्वपूर्ण अन्तर है — भिन्न अयनांश पद्धतियाँ भिन्न व्याख्या देंगी।`);
+  } else {
+    impacts.push(`${count} planet${count > 1 ? 's' : ''} in this chart ${count > 1 ? 'shift' : 'shifts'} signs depending on the ayanamsha system used. This is significant — different ayanamsha systems will produce different interpretations.`);
+  }
+
+  // 2. Check if Lagna shifts
+  const lagnaRow = planets.find(p => p.id === -1);
+  if (lagnaRow?.hasSignChange) {
+    if (isHi) {
+      impacts.push('लग्न स्वयं राशि बदलता है — यह सबसे गम्भीर अन्तर है। लग्न परिवर्तन से सभी भाव स्वामित्व, योग, और दशा व्याख्या पूर्णतः बदल जाती है। यदि आपके लग्न में अन्तर है तो आपको दोनों पद्धतियों में कुण्डली का मूल्यांकन करवाना चाहिए।');
+    } else {
+      impacts.push('The Lagna (ascendant) itself shifts signs — this is the most consequential difference. A Lagna sign change means ALL house lordships, yogas, and dasha interpretations change fundamentally. If your Lagna differs across systems, you should evaluate your chart under both to see which resonates more with your life experience.');
+    }
+  }
+
+  // 3. Analyze specific planet shifts and their house implications
+  for (const row of shifted) {
+    if (row.id < 0) continue;
+    const lahiriSign = Math.floor(((row.positions.lahiri % 360) + 360) % 360 / 30); // 0-indexed
+    const ramanSign = Math.floor(((row.positions.raman % 360) + 360) % 360 / 30);
+
+    // Which house is this planet in from lagna?
+    const houseFromLagna = ((lahiriSign - (ascSign - 1) + 12) % 12) + 1;
+    const altHouse = ((ramanSign - (ascSign - 1) + 12) % 12) + 1;
+
+    if (houseFromLagna !== altHouse) {
+      const pName = isHi ? (PLANET_HI[row.id] || row.name) : (PLANET_EN[row.id] || row.name);
+      const theme1 = isHi ? HOUSE_THEME_HI[houseFromLagna] : HOUSE_THEME_EN[houseFromLagna];
+      const theme2 = isHi ? HOUSE_THEME_HI[altHouse] : HOUSE_THEME_EN[altHouse];
+      if (isHi) {
+        impacts.push(`${pName} लाहिरी में ${houseFromLagna}वें भाव (${theme1}) में, रमन में ${altHouse}वें भाव (${theme2}) में। भाव परिवर्तन से ${pName} का जीवन-क्षेत्र बदलता है।`);
+      } else {
+        impacts.push(`${pName} moves from the ${ordinal(houseFromLagna)} house (${theme1}) in Lahiri to the ${ordinal(altHouse)} house (${theme2}) in Raman. This shifts which life area ${pName} primarily influences.`);
+      }
+    }
+
+    // Check if lordship changes matter
+    const lahiriLord = SIGN_LORD[lahiriSign];
+    const ramanLord = SIGN_LORD[ramanSign];
+    if (lahiriLord !== ramanLord && row.id === 4) { // Jupiter is the most impactful
+      const lordName1 = isHi ? PLANET_HI[lahiriLord] : PLANET_EN[lahiriLord];
+      const lordName2 = isHi ? PLANET_HI[ramanLord] : PLANET_EN[ramanLord];
+      if (isHi) {
+        impacts.push(`बृहस्पति ${lordName1}-शासित राशि (लाहिरी) से ${lordName2}-शासित राशि (रमन) में जाता है। बृहस्पति ज्ञान, सन्तान, और भाग्य का कारक है — यह परिवर्तन इन सभी क्षेत्रों की व्याख्या को प्रभावित करता है।`);
+      } else {
+        impacts.push(`Jupiter shifts from a ${lordName1}-ruled sign (Lahiri) to a ${lordName2}-ruled sign (Raman). Since Jupiter is the karaka for wisdom, children, and fortune, this changes the dispositorship chain for all Jupiter-related readings.`);
+      }
+    }
+  }
+
+  // 4. Practical recommendation
+  if (isHi) {
+    impacts.push('व्यावहारिक सलाह: अधिकांश भारतीय ज्योतिषी लाहिरी का उपयोग करते हैं और यही सर्वाधिक प्रामाणिक माना जाता है। यदि आपके ग्रह राशि सन्धि पर हैं, तो अपने ज्योतिषी से पूछें कि वे कौन-सी पद्धति उपयोग करते हैं, और दोनों पद्धतियों में अपने जीवन-अनुभव से मिलान करें।');
+  } else {
+    impacts.push('Practical advice: Most Indian astrologers use Lahiri (Chitrapaksha), which is the government-adopted standard. If your planets are near sign boundaries, ask your astrologer which system they use. The best validation is matching predictions against your actual life experience — try both systems and see which describes your reality more accurately.');
+  }
+
+  return (
+    <div className="mt-5 rounded-xl bg-gradient-to-br from-amber-500/5 via-[#1a1040]/30 to-[#0a0e27] border border-amber-400/15 p-4 sm:p-5">
+      <h4 className="text-amber-300 text-sm font-bold mb-3">
+        {isHi ? 'समग्र प्रभाव विश्लेषण' : 'Holistic Impact Analysis'}
+      </h4>
+      <div className="space-y-3">
+        {impacts.map((text, i) => (
+          <p key={i} className="text-text-secondary text-xs sm:text-sm leading-relaxed">
+            {i === 0 && <span className="text-amber-400 font-bold mr-1">●</span>}
+            {i > 0 && i < impacts.length - 1 && <span className="text-gold-primary/50 font-bold mr-1">▸</span>}
+            {i === impacts.length - 1 && <span className="text-emerald-400/70 font-bold mr-1">✦</span>}
+            {text}
+          </p>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ordinal(n: number): string {
+  const s = ['th', 'st', 'nd', 'rd'];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
 export default function AyanamshaComparison({ kundali, locale }: AyanamshaComparisonProps) {
   const rows = useMemo(() => {
     const jd = kundali.julianDay;
@@ -413,8 +530,11 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
         </table>
       </div>
 
-      {/* Sign Shift Commentary */}
+      {/* Sign Shift Commentary — per-planet */}
       <SignShiftCommentary planets={rows.planets} locale={locale} />
+
+      {/* Holistic Impact Summary — what all shifts mean together */}
+      <HolisticImpactSummary planets={rows.planets} locale={locale} kundali={kundali} />
 
       {/* Legend */}
       <div className="mt-4 flex items-center gap-2 justify-center">

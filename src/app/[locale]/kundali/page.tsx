@@ -440,7 +440,7 @@ export default function KundaliPage() {
     }
     setSaving(false);
   };
-  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati' | 'patrika' | 'timeline' | 'remedies' | 'sudarshana' | 'nadi' | 'blueprint' | 'bhavachalit'>('chart');
+  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati' | 'patrika' | 'timeline' | 'remedies' | 'sudarshana' | 'nadi' | 'blueprint' | 'bhavachalit' | 'ayanamsha'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
   const [activeChart, setActiveChart] = useState<string>('D1');
@@ -1401,6 +1401,7 @@ export default function KundaliPage() {
                   { key: 'shadbala' as const, label: locale === 'en' || isTamil ? 'Shadbala' : 'षड्बल' },
                   { key: 'bhavabala' as const, label: locale === 'en' || isTamil ? 'Bhavabala' : 'भावबल' },
                   { key: 'bhavachalit' as const, label: locale === 'en' || isTamil ? 'Bhava Chalit' : 'भाव चलित' },
+                  { key: 'ayanamsha' as const, label: locale === 'en' || isTamil ? 'Ayanamsha' : 'अयनांश' },
                   { key: 'sadesati' as const, label: locale === 'en' || isTamil ? 'Sade Sati' : 'साढ़े साती' },
                   { key: 'jaimini' as const, label: locale === 'en' || isTamil ? 'Jaimini' : 'जैमिनी' },
                   { key: 'timeline' as const, label: locale === 'en' || isTamil ? 'Life Timeline' : 'जीवन-रेखा' },
@@ -3326,6 +3327,16 @@ export default function KundaliPage() {
                 locale={locale}
               />
             </Suspense>
+          )}
+
+          {/* ===== AYANAMSHA TAB ===== */}
+          {activeTab === 'ayanamsha' && kundali && (
+            <div>
+              <a href={`/${locale}/learn/ayanamsha`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">
+                {locale === 'en' || isTamil ? 'Learn about Ayanamsha →' : 'अयनांश के बारे में जानें →'}
+              </a>
+              <AyanamshaComparison kundali={kundali} locale={locale} />
+            </div>
           )}
 
           {/* ===== PATRIKA TAB ===== */}

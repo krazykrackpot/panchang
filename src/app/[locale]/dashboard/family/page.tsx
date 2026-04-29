@@ -20,6 +20,8 @@ import { getPlanetaryPositions, toSidereal, getRashiNumber, dateToJD } from '@/l
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
+import { findArticleSlug, getMoonSignEffect, TRANSIT_ARTICLES } from '@/lib/content/transit-articles';
+import { RASHIS } from '@/lib/constants/rashis';
 import FamilyCard from '@/components/dashboard/FamilyCard';
 import type { Locale } from '@/types/panchang';
 import type { BirthData, KundaliData } from '@/types/kundali';
@@ -777,6 +779,45 @@ function MemberStatusCard({
           })}
         </div>
       )}
+
+      {/* Upcoming transit article links — personalized to this member's Moon sign */}
+      {(() => {
+        const moonSign = status.sadeSati.moonSign;
+        if (!moonSign || moonSign < 1 || moonSign > 12) return null;
+        const moonRashi = RASHIS[moonSign - 1];
+        // Find upcoming transit articles that are relevant
+        const articleLinks = Object.values(TRANSIT_ARTICLES)
+          .filter(a => new Date(a.endDate) > new Date()) // not expired
+          .slice(0, 2) // max 2
+          .map(a => {
+            const effect = getMoonSignEffect(a.slug, moonSign);
+            if (!effect) return null;
+            const house = effect.house;
+            return { slug: a.slug, planetId: a.planetId, title: a.title, headline: effect.headline, house };
+          })
+          .filter(Boolean);
+
+        if (articleLinks.length === 0) return null;
+        return (
+          <div className="mt-2 pt-2 border-t border-white/[0.04] space-y-1.5">
+            {articleLinks.map((link) => link && (
+              <Link
+                key={link.slug}
+                href={`/learn/transits/${link.slug}` as '/learn/transits/jupiter-in-cancer-2026'}
+                className="flex items-start gap-2 text-xs text-gold-primary/60 hover:text-gold-light transition-colors group"
+              >
+                <ArrowRight className="w-3 h-3 mt-0.5 shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                <span style={bodyStyle}>
+                  <span className="text-gold-primary/80 font-medium">{link.title.en.split(':')[0]}</span>
+                  {' — '}
+                  {link.house}{locale === 'en' ? (link.house === 1 ? 'st' : link.house === 2 ? 'nd' : link.house === 3 ? 'rd' : 'th') : ''} {locale === 'hi' ? 'भाव' : 'house'}
+                  {': '}{link.headline}
+                </span>
+              </Link>
+            ))}
+          </div>
+        );
+      })()}
 
       {/* Attention reason */}
       <p className="mt-2 text-text-secondary text-[11px] italic" style={bodyStyle}>

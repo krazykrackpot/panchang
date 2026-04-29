@@ -351,3 +351,18 @@ Speculative investments and calculated risks tend to pay off during this period,
 export function getTransitArticleSlugs(): string[] {
   return Object.keys(TRANSIT_ARTICLES);
 }
+
+/** Find article slug for a specific planet → sign transit (if published) */
+export function findArticleSlug(planetId: number, toSignId: number): string | null {
+  for (const [slug, article] of Object.entries(TRANSIT_ARTICLES)) {
+    if (article.planetId === planetId && article.toSignId === toSignId) return slug;
+  }
+  return null;
+}
+
+/** Get the Moon-sign effect for a specific rashi from an article */
+export function getMoonSignEffect(slug: string, rashiId: number): MoonSignEffect | null {
+  const article = TRANSIT_ARTICLES[slug];
+  if (!article) return null;
+  return article.moonSignEffects.find(e => e.rashiId === rashiId) || null;
+}

@@ -2,9 +2,10 @@
 
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock } from 'lucide-react';
+import { ArrowRight, Clock, BookOpen } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { computeUpcomingTransitions } from '@/lib/transit/personal-transits';
+import { findArticleSlug } from '@/lib/content/transit-articles';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
@@ -75,6 +76,7 @@ interface ScoredTransit {
   qualityLabel: string;
   daysUntil: number;
   approximateDate: string;
+  articleSlug: string | null;
 }
 
 // Thresholds: reduced SAV (post-Shodhana) averages ~8 per sign vs raw ~28.
@@ -170,6 +172,7 @@ export default function TransitCountdown({ ascendantSign, savTable, reducedSavTa
         qualityLabel: getQualityLabel(quality, L),
         daysUntil: t.daysUntil,
         approximateDate: t.approximateDate,
+        articleSlug: findArticleSlug(t.planetId, t.toSignId),
       };
     });
 
@@ -282,6 +285,18 @@ export default function TransitCountdown({ ascendantSign, savTable, reducedSavTa
                   {t.qualityLabel}
                 </span>
               </div>
+
+              {/* Link to transit article if published */}
+              {t.articleSlug && (
+                <Link
+                  href={`/learn/transits/${t.articleSlug}` as '/learn/transits/jupiter-in-cancer-2026'}
+                  className="mt-2 flex items-center gap-1.5 text-xs text-gold-primary/70 hover:text-gold-light transition-colors"
+                >
+                  <BookOpen className="w-3 h-3" />
+                  {locale === 'hi' ? 'विस्तृत विश्लेषण पढ़ें' : 'Read detailed analysis'}
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              )}
             </motion.div>
           );
         })}

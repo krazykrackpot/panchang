@@ -703,89 +703,217 @@ function NextSignificantCard({
   );
 }
 
-/** Visual phase diagram showing eclipse progression */
+/** Visual phase diagram — SVG eclipse geometry visualization */
 function EclipsePhaseDiagram({ local, isSolar, locale }: { local: LocalEclipseResult; isSolar: boolean; locale: string }) {
+  const magnitude = Math.min(local.maxMagnitude, 1.05);
+
   if (isSolar) {
-    // Solar: C1 → Max → C4 (or sunset)
+    // Moon sweeps right-to-left; at magnitude=0 Moon is fully to the right (no overlap),
+    // at magnitude=1 Moon is centered over the Sun (total eclipse).
+    // moonCx target = 150 + (1 - magnitude) * 70
+    const moonCxTarget = 150 + (1 - magnitude) * 70;
+    const isTotality = magnitude >= 0.95;
+
     const phases = [
-      { time: local.eclipseStart, label: 'C1', color: '#f59e0b' },
-      { time: local.maximum, label: msg('max', locale), color: '#f0d48a' },
-      { time: local.eclipseEnd, label: local.endsAtSunset ? '☀↓' : 'C4', color: '#f59e0b' },
+      { label: 'C1', time: local.eclipseStart },
+      { label: 'C2', time: local.partialStart },
+      { label: msg('max', locale), time: local.maximum },
+      { label: 'C3', time: local.partialEnd },
+      { label: local.endsAtSunset ? '☀↓' : 'C4', time: local.eclipseEnd },
     ].filter(p => p.time);
 
     return (
       <div className="mb-4">
-        {/* Progress bar */}
-        <div className="relative h-3 rounded-full overflow-hidden bg-white/5">
-          {/* Partial phase — full bar */}
-          <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 via-amber-500/40 to-amber-500/20 rounded-full" />
-          {/* Max point indicator */}
-          <div className="absolute top-0 bottom-0 w-1 bg-amber-400 rounded-full" style={{ left: '50%', transform: 'translateX(-50%)' }} />
-        </div>
-        {/* Labels */}
-        <div className="flex justify-between mt-1.5">
-          {phases.map((p, i) => (
-            <div key={i} className={`text-center ${i === 1 ? 'flex-1' : ''}`}>
-              <div className="text-[9px] font-bold" style={{ color: p.color }}>{p.label}</div>
-              <div className="text-[10px] text-text-secondary/50 font-mono">{p.time}</div>
-            </div>
-          ))}
-        </div>
-        {/* Phase label */}
-        <div className="text-center text-[9px] text-amber-400/40 mt-1">
-          {msg('partialPhaseArrow', locale)}
-        </div>
+        <svg
+          viewBox="0 0 300 140"
+          className="w-full max-w-md mx-auto"
+          suppressHydrationWarning
+        >
+          <defs>
+            {/* Sun warm radial gradient */}
+            <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#f0d48a" />
+              <stop offset="60%" stopColor="#d4a853" />
+              <stop offset="100%" stopColor="#8a6d2b" />
+            </radialGradient>
+            {/* Corona glow gradient — visible during totality */}
+            <radialGradient id="coronaGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#f0d48a" stopOpacity="0.25" />
+              <stop offset="50%" stopColor="#d4a853" stopOpacity="0.08" />
+              <stop offset="100%" stopColor="#d4a853" stopOpacity="0" />
+            </radialGradient>
+            {/* Moon edge glow */}
+            <radialGradient id="moonEdgeGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="75%" stopColor="#0d0820" stopOpacity="0" />
+              <stop offset="100%" stopColor="#4a3580" stopOpacity="0.6" />
+            </radialGradient>
+          </defs>
+
+          {/* Corona — only during totality */}
+          {isTotality && (
+            <circle cx={150} cy={70} r={60} fill="url(#coronaGrad)" />
+          )}
+
+          {/* Sun */}
+          <circle cx={150} cy={70} r={35} fill="url(#sunGrad)" />
+
+          {/* Animated Moon sweeping into position */}
+          <motion.circle
+            cx={300}
+            cy={70}
+            r={33}
+            fill="#0d0820"
+            animate={{ cx: moonCxTarget }}
+            transition={{ duration: 2, ease: 'easeOut' }}
+          />
+          {/* Moon edge glow overlay (animated with moon) */}
+          <motion.circle
+            cx={300}
+            cy={70}
+            r={33}
+            fill="url(#moonEdgeGrad)"
+            animate={{ cx: moonCxTarget }}
+            transition={{ duration: 2, ease: 'easeOut' }}
+          />
+
+          {/* Phase labels row */}
+          {phases.length > 0 && (() => {
+            const spacing = 300 / (phases.length + 1);
+            return phases.map((p, i) => (
+              <g key={i} transform={`translate(${spacing * (i + 1)}, 118)`}>
+                <text
+                  textAnchor="middle"
+                  fontSize="8"
+                  fontWeight="bold"
+                  fill="#f0d48a"
+                  dy={0}
+                >
+                  {p.label}
+                </text>
+                <text
+                  textAnchor="middle"
+                  fontSize="7.5"
+                  fill="#8a8478"
+                  dy={11}
+                  fontFamily="monospace"
+                >
+                  {p.time}
+                </text>
+              </g>
+            ));
+          })()}
+        </svg>
       </div>
     );
   }
 
-  // Lunar: P1 → U1 → Max → U2 → P4
+  // ── Lunar Eclipse ─────────────────────────────────────────────────
   const hasUmbral = local.partialStart && local.partialEnd;
+  const isTotalLunar = local.maxMagnitude >= 1.0;
+  // Shadow circle center: moves from far right to overlap the Moon
+  // magnitude=0 → shadow far right (no overlap), magnitude=1 → shadow centered
+  const shadowCxTarget = 150 + (1 - Math.min(magnitude, 1)) * 80;
+
   const phases = [
-    { time: local.eclipseStart, label: 'P1', desc: msg('penumbralLabel', locale) },
-    ...(hasUmbral ? [{ time: local.partialStart!, label: 'U1', desc: msg('umbralLabel', locale) }] : []),
-    { time: local.maximum, label: msg('max', locale), desc: '' },
-    ...(hasUmbral ? [{ time: local.partialEnd!, label: 'U2', desc: '' }] : []),
-    { time: local.eclipseEnd, label: local.endsAtMoonset ? '☽↓' : 'P4', desc: '' },
+    { label: 'P1', time: local.eclipseStart },
+    ...(hasUmbral ? [{ label: 'U1', time: local.partialStart! }] : []),
+    { label: msg('max', locale), time: local.maximum },
+    ...(hasUmbral ? [{ label: 'U2', time: local.partialEnd! }] : []),
+    { label: local.endsAtMoonset ? '☽↓' : 'P4', time: local.eclipseEnd },
   ].filter(p => p.time);
 
   return (
     <div className="mb-4">
-      {/* Multi-phase bar */}
-      <div className="relative h-3 rounded-full overflow-hidden bg-white/5">
-        {hasUmbral ? (
-          <>
-            {/* Penumbral phase — lighter */}
-            <div className="absolute inset-0 bg-indigo-500/15 rounded-full" />
-            {/* Umbral phase — darker, centered */}
-            <div className="absolute top-0 bottom-0 bg-indigo-500/40 rounded-full" style={{ left: '25%', right: '25%' }} />
-            {/* Totality point if applicable */}
-            {local.maxMagnitude >= 1.0 && (
-              <div className="absolute top-0 bottom-0 bg-red-500/50 rounded-full" style={{ left: '40%', right: '40%' }} />
-            )}
-          </>
-        ) : (
-          /* Penumbral only */
-          <div className="absolute inset-0 bg-indigo-500/15 rounded-full" />
+      <svg
+        viewBox="0 0 300 140"
+        className="w-full max-w-md mx-auto"
+        suppressHydrationWarning
+      >
+        <defs>
+          {/* Moon gradient: silver on lit side → coppery red on shadow side */}
+          <linearGradient id="moonLunarGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#e8e8e8" />
+            <stop offset="50%" stopColor="#c0b090" />
+            <stop offset="100%" stopColor={isTotalLunar ? '#8b3000' : '#7a5030'} />
+          </linearGradient>
+          {/* Penumbral shadow — very faint */}
+          <radialGradient id="penumbraGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="60%" stopColor="#0d0820" stopOpacity="0" />
+            <stop offset="100%" stopColor="#0d0820" stopOpacity={0.35 * Math.min(magnitude, 1)} />
+          </radialGradient>
+          {/* Umbral shadow — darker */}
+          <radialGradient id="umbraGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#050510" stopOpacity={0.9 * Math.min(magnitude, 1)} />
+            <stop offset="100%" stopColor="#050510" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+
+        {/* Moon (static center) */}
+        <circle cx={150} cy={70} r={30} fill="url(#moonLunarGrad)" />
+        {/* Moon subtle rim */}
+        <circle cx={150} cy={70} r={30} fill="none" stroke="#c0c0c0" strokeWidth="0.5" strokeOpacity="0.4" />
+
+        {/* Penumbral shadow — animated large circle */}
+        <motion.circle
+          cx={300}
+          cy={70}
+          r={65}
+          fill="url(#penumbraGrad)"
+          animate={{ cx: shadowCxTarget }}
+          transition={{ duration: 2, ease: 'easeOut' }}
+        />
+
+        {/* Umbral shadow — animated tighter circle (only if umbral eclipse) */}
+        {hasUmbral && (
+          <motion.circle
+            cx={300}
+            cy={70}
+            r={50}
+            fill="url(#umbraGrad)"
+            animate={{ cx: shadowCxTarget }}
+            transition={{ duration: 2, ease: 'easeOut' }}
+          />
         )}
-        {/* Max indicator */}
-        <div className="absolute top-0 bottom-0 w-1 bg-indigo-400 rounded-full" style={{ left: '50%', transform: 'translateX(-50%)' }} />
-      </div>
-      {/* Labels */}
-      <div className="flex justify-between mt-1.5">
-        {phases.map((p, i) => (
-          <div key={i} className="text-center">
-            <div className="text-[9px] font-bold text-indigo-300">{p.label}</div>
-            <div className="text-[10px] text-text-secondary/50 font-mono">{p.time}</div>
-          </div>
-        ))}
-      </div>
-      {/* Phase labels */}
+
+        {/* Blood-moon tint overlay during totality */}
+        {isTotalLunar && (
+          <circle cx={150} cy={70} r={30} fill="#8b2000" fillOpacity="0.45" />
+        )}
+
+        {/* Phase labels */}
+        {phases.length > 0 && (() => {
+          const spacing = 300 / (phases.length + 1);
+          return phases.map((p, i) => (
+            <g key={i} transform={`translate(${spacing * (i + 1)}, 118)`}>
+              <text
+                textAnchor="middle"
+                fontSize="8"
+                fontWeight="bold"
+                fill={hasUmbral ? '#a5b4fc' : '#818cf8'}
+                dy={0}
+              >
+                {p.label}
+              </text>
+              <text
+                textAnchor="middle"
+                fontSize="7.5"
+                fill="#8a8478"
+                dy={11}
+                fontFamily="monospace"
+              >
+                {p.time}
+              </text>
+            </g>
+          ));
+        })()}
+      </svg>
+
+      {/* Legend */}
       {hasUmbral && (
         <div className="flex justify-center gap-4 mt-1 text-[9px]">
-          <span className="text-indigo-400/30">{msg('penumbralLabel', locale)}</span>
-          <span className="text-indigo-400/60">{msg('umbralShadowLegend', locale)}</span>
-          {local.maxMagnitude >= 1.0 && <span className="text-red-400/50">{msg('totalBloodMoon', locale)}</span>}
+          <span className="text-indigo-400/50">{msg('penumbralLabel', locale)}</span>
+          <span className="text-indigo-400/80">{msg('umbralShadowLegend', locale)}</span>
+          {isTotalLunar && <span className="text-red-400/70">{msg('totalBloodMoon', locale)}</span>}
         </div>
       )}
     </div>

@@ -127,6 +127,9 @@ export default function Footer() {
             <Link href="/about" className="hover:text-gold-light transition-colors">
               {t({ en: 'About', hi: 'परिचय', ta: 'பற்றி', bn: 'সম্পর্কে' }, locale)}
             </Link>
+            <Link href="/about/methodology" className="hover:text-gold-light transition-colors">
+              {t({ en: 'Methodology', hi: 'गणना पद्धति', ta: 'முறையியல்', bn: 'পদ্ধতি' }, locale)}
+            </Link>
             <Link href="/about#contact" className="hover:text-gold-light transition-colors">
               {t({ en: 'Contact', hi: 'संपर्क', ta: 'தொடர்பு', bn: 'যোগাযোগ' }, locale)}
             </Link>

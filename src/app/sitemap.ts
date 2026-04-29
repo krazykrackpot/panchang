@@ -32,6 +32,8 @@ const routes = [
   '/kundali',
   '/matching',
   '/about',
+  '/about/methodology',
+  '/festivals',
   '/pricing',
   // Deep dives
   '/panchang/tithi',
@@ -50,6 +52,7 @@ const routes = [
   '/panchang/planets',
   '/panchang/remedies',
   '/panchang/activity-guide',
+  '/panchang/locations',
   // Learn
   '/learn',
   '/learn/grahas',

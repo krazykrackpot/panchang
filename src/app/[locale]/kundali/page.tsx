@@ -1428,13 +1428,20 @@ export default function KundaliPage() {
 
           {/* ===== BLUEPRINT TAB ===== */}
           {activeTab === 'blueprint' && cosmicBlueprint && (
-            <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
-              <BlueprintTab
-                blueprint={cosmicBlueprint}
-                locale={locale}
-                onNavigateToDasha={() => { setActiveTab('dasha'); trackTabViewed({ tab: 'dasha' }); }}
-              />
-            </Suspense>
+            <div className="space-y-5">
+              <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
+                <BlueprintTab
+                  blueprint={cosmicBlueprint}
+                  locale={locale}
+                  onNavigateToDasha={() => { setActiveTab('dasha'); trackTabViewed({ tab: 'dasha' }); }}
+                />
+              </Suspense>
+              <div className="text-center">
+                <a href={`/${locale}/learn/birth-chart`} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-sm font-medium hover:bg-gold-primary/20 transition-colors">
+                  {locale === 'en' || isTamil ? 'Learn More: Reading Your Birth Chart →' : 'और जानें: जन्म कुण्डली पठन →'}
+                </a>
+              </div>
+            </div>
           )}
 
           {/* ===== CHART TAB ===== */}
@@ -2772,12 +2779,24 @@ export default function KundaliPage() {
 
           {/* ===== TIPPANNI TAB ===== */}
           {activeTab === 'tippanni' && (
-            <>
-              <a href={`/${locale}/learn/tippanni`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">
-                {locale === 'en' || isTamil ? 'Learn about Tippanni \u2192' : 'टिप्पणी के बारे में जानें \u2192'}
-              </a>
+            <div className="space-y-5">
+              <div className="rounded-2xl bg-gradient-to-br from-gold-primary/8 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 p-5 sm:p-6">
+                <h3 className="text-gold-light text-lg font-bold mb-3" style={headingFont}>
+                  {locale === 'en' || isTamil ? 'Tippanni: Your Chart\'s Story in Plain Language' : 'टिप्पणी: सरल भाषा में आपकी कुण्डली की कहानी'}
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  {locale === 'en' || isTamil
+                    ? 'Tippanni is the interpretive commentary — what all those planetary positions, yogas, and dashas actually mean for your personality, relationships, career, and spiritual path. Instead of reading raw numbers, this section translates your chart into a narrative: who you are, what drives you, where your strengths lie, and what challenges you\'re likely to face. Everything below is generated from YOUR specific chart — no generic horoscope filler.'
+                    : 'टिप्पणी व्याख्यात्मक टीका है — वे सब ग्रह स्थितियाँ, योग और दशाएँ आपके व्यक्तित्व, सम्बन्धों, कैरियर और आध्यात्मिक मार्ग के लिए वास्तव में क्या अर्थ रखती हैं। कच्चे आँकड़ों के बजाय, यह खण्ड आपकी कुण्डली को कथा में अनुवादित करता है। नीचे सब कुछ आपकी विशिष्ट कुण्डली से उत्पन्न है — कोई सामान्य राशिफल नहीं।'}
+                </p>
+              </div>
               <TippanniTab kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tTip={tTip} />
-            </>
+              <div className="text-center">
+                <a href={`/${locale}/learn/tippanni`} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-sm font-medium hover:bg-gold-primary/20 transition-colors">
+                  {locale === 'en' || isTamil ? 'Deep Dive: How Tippanni Works →' : 'विस्तृत अध्ययन: टिप्पणी कैसे कार्य करती है →'}
+                </a>
+              </div>
+            </div>
           )}
 
           {/* ===== VARGA ANALYSIS TAB ===== */}
@@ -3272,9 +3291,21 @@ export default function KundaliPage() {
 
           {/* ===== CHAT TAB ===== */}
           {activeTab === 'chat' && (
-            <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
-              <ChartChatTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
-            </Suspense>
+            <div className="space-y-4">
+              <div className="rounded-xl bg-gradient-to-br from-cyan-500/8 via-[#1a1040]/40 to-[#0a0e27] border border-cyan-500/15 p-4">
+                <h3 className="text-cyan-300 text-sm font-bold mb-2" style={headingFont}>
+                  {locale === 'en' || isTamil ? 'Ask the Rishi: AI Chart Consultation' : 'ऋषि से पूछें: AI कुण्डली परामर्श'}
+                </h3>
+                <p className="text-text-secondary text-xs leading-relaxed">
+                  {locale === 'en' || isTamil
+                    ? 'Ask any question about YOUR chart — the AI reads your actual planetary positions, dashas, and yogas to give personalized answers. Try: "When is my best period for career growth?", "What does my Moon-Jupiter conjunction mean?", or "Is this year good for starting a business?"'
+                    : 'अपनी कुण्डली के बारे में कोई भी प्रश्न पूछें — AI आपकी वास्तविक ग्रह स्थितियों, दशाओं और योगों को पढ़कर व्यक्तिगत उत्तर देता है। "कैरियर वृद्धि के लिए सर्वश्रेष्ठ अवधि कब है?", "मेरे चन्द्र-गुरु युति का क्या अर्थ है?" जैसे प्रश्न पूछें।'}
+                </p>
+              </div>
+              <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
+                <ChartChatTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
+              </Suspense>
+            </div>
           )}
 
           {/* ===== SADE SATI TAB ===== */}
@@ -3320,39 +3351,105 @@ export default function KundaliPage() {
 
           {/* ===== LIFE TIMELINE TAB ===== */}
           {activeTab === 'timeline' && (
-            <>
-              <a href={`/${locale}/learn/dashas`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">
-                {locale === 'en' || isTamil ? 'Learn about Dashas \u2192' : 'दशा के बारे में जानें \u2192'}
-              </a>
+            <div className="space-y-5">
+              <div className="rounded-2xl bg-gradient-to-br from-violet-500/10 via-[#1a1040]/50 to-[#0a0e27] border border-violet-500/20 p-5 sm:p-6">
+                <h3 className="text-violet-300 text-lg font-bold mb-3" style={headingFont}>
+                  {locale === 'en' || isTamil ? 'Your Life Timeline: The Map of Your Decades' : 'आपकी जीवन-रेखा: दशकों का मानचित्र'}
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed mb-3">
+                  {locale === 'en' || isTamil
+                    ? 'This timeline visualizes the Vimshottari Dasha — a 120-year planetary cycle that divides your life into chapters, each ruled by a different planet. Think of it as your life\'s screenplay: each planet brings its own themes, opportunities, and challenges when its period is active.'
+                    : 'यह समय-रेखा विंशोत्तरी दशा का दृश्य है — एक 120 वर्ष का ग्रह-चक्र जो आपके जीवन को अध्यायों में बाँटता है, प्रत्येक एक भिन्न ग्रह द्वारा शासित। इसे अपने जीवन की पटकथा समझें।'}
+                </p>
+                <div className="grid sm:grid-cols-3 gap-3 text-xs">
+                  <div className="rounded-lg bg-bg-secondary/40 border border-gold-primary/10 p-3">
+                    <div className="text-gold-light font-bold mb-1">{locale === 'en' || isTamil ? 'How to Read It' : 'कैसे पढ़ें'}</div>
+                    <p className="text-text-secondary">{locale === 'en' || isTamil ? 'The top band shows Maha Dasha (major periods of 6-20 years). The bottom band shows Antar Dasha (sub-periods within each major period). The gold "NOW" marker shows where you are today.' : 'ऊपरी पट्टी महादशा (6-20 वर्ष की प्रमुख अवधि) दिखाती है। निचली पट्टी अन्तर्दशा दिखाती है। सुनहरा "अभी" चिह्न आज की स्थिति दिखाता है।'}</p>
+                  </div>
+                  <div className="rounded-lg bg-bg-secondary/40 border border-gold-primary/10 p-3">
+                    <div className="text-gold-light font-bold mb-1">{locale === 'en' || isTamil ? 'What Changes at Transitions' : 'संक्रमण पर क्या बदलता है'}</div>
+                    <p className="text-text-secondary">{locale === 'en' || isTamil ? 'When a new Maha Dasha begins, the dominant themes of your life shift. Career focus may give way to spiritual seeking, or a period of struggle may resolve into abundance. The transition itself (Dasha Sandhi) can feel turbulent.' : 'जब नई महादशा आरम्भ होती है, जीवन के प्रमुख विषय बदलते हैं। कैरियर से आध्यात्मिक खोज, या संघर्ष से समृद्धि। संक्रमण (दशा सन्धि) अशान्त अनुभव हो सकता है।'}</p>
+                  </div>
+                  <div className="rounded-lg bg-bg-secondary/40 border border-gold-primary/10 p-3">
+                    <div className="text-gold-light font-bold mb-1">{locale === 'en' || isTamil ? 'Why This Matters for You' : 'आपके लिए क्यों महत्वपूर्ण'}</div>
+                    <p className="text-text-secondary">{locale === 'en' || isTamil ? 'Look at which planet rules your current period and which one is coming next. Your current planet shapes what\'s happening now. The next planet previews the upcoming chapter — you can prepare for it.' : 'देखें कि कौन-सा ग्रह आपकी वर्तमान अवधि पर शासन कर रहा है और अगला कौन-सा है। वर्तमान ग्रह अभी की घटनाओं को आकार देता है। अगला ग्रह आगामी अध्याय की झलक देता है।'}</p>
+                  </div>
+                </div>
+              </div>
               <Suspense fallback={<div className="text-center py-8 text-text-secondary">Loading timeline...</div>}>
-                <LifeTimeline
-                  kundali={kundali}
-                  locale={locale}
-                  isDevanagari={isDevanagari}
-                  headingFont={headingFont}
-                />
+                <LifeTimeline kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
               </Suspense>
-            </>
+              <div className="text-center">
+                <a href={`/${locale}/learn/dashas`} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-300 text-sm font-medium hover:bg-violet-500/20 transition-colors">
+                  {locale === 'en' || isTamil ? 'Deep Dive: Understanding Dashas →' : 'विस्तृत अध्ययन: दशा को समझें →'}
+                </a>
+              </div>
+            </div>
           )}
 
           {/* ===== REMEDIES TAB ===== */}
           {activeTab === 'remedies' && kundali && (
-            <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
-              <RemediesTab kundali={kundali} locale={locale} />
-            </Suspense>
+            <div className="space-y-5">
+              <div className="rounded-2xl bg-gradient-to-br from-emerald-500/10 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/20 p-5 sm:p-6">
+                <h3 className="text-emerald-300 text-lg font-bold mb-3" style={headingFont}>
+                  {locale === 'en' || isTamil ? 'Personalized Remedies: Strengthening Your Chart' : 'व्यक्तिगत उपाय: अपनी कुण्डली को सशक्त बनाना'}
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed mb-3">
+                  {locale === 'en' || isTamil
+                    ? 'Vedic remedies work by strengthening weak planets or pacifying afflicted ones in your specific chart. They are NOT one-size-fits-all — the remedies below are generated from YOUR planetary positions, dignities, and afflictions. A planet that is debilitated or combust in your chart needs different treatment than one that is simply in an enemy sign.'
+                    : 'वैदिक उपाय आपकी विशिष्ट कुण्डली में कमज़ोर ग्रहों को सशक्त करने या पीड़ित ग्रहों को शान्त करने का कार्य करते हैं। ये सबके लिए एक जैसे नहीं हैं — नीचे दिए गए उपाय आपकी ग्रह स्थितियों, बलाबल और पीड़ाओं से उत्पन्न हैं।'}
+                </p>
+                <div className="grid sm:grid-cols-3 gap-3 text-xs">
+                  <div className="rounded-lg bg-bg-secondary/40 border border-gold-primary/10 p-3">
+                    <div className="text-gold-light font-bold mb-1">{locale === 'en' || isTamil ? 'Gemstones' : 'रत्न'}</div>
+                    <p className="text-text-secondary">{locale === 'en' || isTamil ? 'Worn on specific fingers on specific days, gemstones amplify a planet\'s energy. Only recommended for planets that are benefic lords in your chart — wearing a gemstone for a malefic lord can intensify problems.' : 'विशिष्ट उँगलियों पर विशिष्ट दिनों में पहने जाने वाले रत्न ग्रह की ऊर्जा को बढ़ाते हैं। केवल शुभ स्वामी ग्रहों के लिए — अशुभ स्वामी का रत्न समस्याएँ बढ़ा सकता है।'}</p>
+                  </div>
+                  <div className="rounded-lg bg-bg-secondary/40 border border-gold-primary/10 p-3">
+                    <div className="text-gold-light font-bold mb-1">{locale === 'en' || isTamil ? 'Mantras & Rituals' : 'मन्त्र और अनुष्ठान'}</div>
+                    <p className="text-text-secondary">{locale === 'en' || isTamil ? 'Planetary mantras and specific pujas pacify afflicted planets. These are especially effective during difficult dasha periods or when a planet is combust, debilitated, or in a planetary war in your chart.' : 'ग्रह मन्त्र और विशिष्ट पूजाएँ पीड़ित ग्रहों को शान्त करती हैं। कठिन दशा या जब ग्रह अस्त, नीच या ग्रह युद्ध में हो, तब ये विशेष प्रभावी हैं।'}</p>
+                  </div>
+                  <div className="rounded-lg bg-bg-secondary/40 border border-gold-primary/10 p-3">
+                    <div className="text-gold-light font-bold mb-1">{locale === 'en' || isTamil ? 'Lifestyle & Charity' : 'जीवनशैली और दान'}</div>
+                    <p className="text-text-secondary">{locale === 'en' || isTamil ? 'Fasting on specific weekdays, donating items associated with a planet, and behavioral adjustments. Often the most practical and immediately actionable remedies.' : 'विशिष्ट वारों पर उपवास, ग्रह से सम्बन्धित वस्तुओं का दान, और व्यवहारिक समायोजन। अक्सर सबसे व्यावहारिक और तुरन्त करने योग्य उपाय।'}</p>
+                  </div>
+                </div>
+              </div>
+              <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
+                <RemediesTab kundali={kundali} locale={locale} />
+              </Suspense>
+              <div className="text-center">
+                <a href={`/${locale}/learn/remedies`} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-sm font-medium hover:bg-emerald-500/20 transition-colors">
+                  {locale === 'en' || isTamil ? 'Deep Dive: Understanding Vedic Remedies →' : 'विस्तृत अध्ययन: वैदिक उपाय समझें →'}
+                </a>
+              </div>
+            </div>
           )}
 
           {/* ===== SUDARSHANA TAB ===== */}
           {activeTab === 'sudarshana' && kundali && (
-            <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
-              <SudarshanaTab kundali={kundali} locale={locale} />
-            </Suspense>
+            <div className="space-y-5">
+              <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
+                <SudarshanaTab kundali={kundali} locale={locale} />
+              </Suspense>
+              <div className="text-center">
+                <a href={`/${locale}/learn/kundali`} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-sm font-medium hover:bg-gold-primary/20 transition-colors">
+                  {locale === 'en' || isTamil ? 'Learn More: Chart Reading Techniques →' : 'और जानें: कुण्डली पठन तकनीक →'}
+                </a>
+              </div>
+            </div>
           )}
 
           {activeTab === 'nadi' && kundali && (
-            <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
-              <NadiAmshaTab kundali={kundali} locale={locale} />
-            </Suspense>
+            <div className="space-y-5">
+              <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
+                <NadiAmshaTab kundali={kundali} locale={locale} />
+              </Suspense>
+              <div className="text-center">
+                <a href={`/${locale}/learn/nadi-amsha`} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-sm font-medium hover:bg-gold-primary/20 transition-colors">
+                  {locale === 'en' || isTamil ? 'Deep Dive: Nadi Amsha System →' : 'विस्तृत अध्ययन: नाडी अंश पद्धति →'}
+                </a>
+              </div>
+            </div>
           )}
 
           {/* ===== BHAVA CHALIT TAB ===== */}
@@ -3420,11 +3517,41 @@ export default function KundaliPage() {
           )}
 
           {/* ===== PATRIKA TAB ===== */}
-          {activeTab === 'patrika' && (<a href={`/${locale}/learn/patrika`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">{locale === 'en' || isTamil ? 'Learn about Patrika \u2192' : 'पत्रिका के बारे में जानें \u2192'}</a>)}
           {activeTab === 'patrika' && (
-            <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
-              <PatrikaTab kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tip={tip} chartStyle={chartStyle} retrogradeIds={retrogradeIds} combustIds={combustIds} />
-            </Suspense>
+            <div className="space-y-5">
+              <div className="rounded-2xl bg-gradient-to-br from-amber-500/10 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20 p-5 sm:p-6">
+                <h3 className="text-amber-300 text-lg font-bold mb-3" style={headingFont}>
+                  {locale === 'en' || isTamil ? 'Patrika: Your Traditional Kundali Document' : 'पत्रिका: आपकी पारम्परिक कुण्डली दस्तावेज़'}
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed mb-3">
+                  {locale === 'en' || isTamil
+                    ? 'A Patrika is the traditional format of a Kundali — the document an astrologer would prepare by hand for a newborn. It contains the birth chart, Vimshottari Dasha periods, and dosha analysis (Mangal Dosha, Kaal Sarpa, Pitru Dosha). This is what families exchange during marriage discussions for Kundali matching. Below is your complete Patrika with dosha assessment and their significance for your life.'
+                    : 'पत्रिका कुण्डली का पारम्परिक प्रारूप है — वह दस्तावेज़ जो ज्योतिषी नवजात के लिए हाथ से बनाते थे। इसमें जन्म कुण्डली, विंशोत्तरी दशा अवधि, और दोष विश्लेषण (मंगल दोष, काल सर्प, पितृ दोष) होता है। यही परिवार विवाह चर्चा में कुण्डली मिलान के लिए आदान-प्रदान करते हैं।'}
+                </p>
+                <div className="grid sm:grid-cols-3 gap-3 text-xs">
+                  <div className="rounded-lg bg-bg-secondary/40 border border-red-500/10 p-3">
+                    <div className="text-red-300 font-bold mb-1">{locale === 'en' || isTamil ? 'Mangal Dosha' : 'मंगल दोष'}</div>
+                    <p className="text-text-secondary">{locale === 'en' || isTamil ? 'Mars in houses 1, 2, 4, 7, 8, or 12 from Lagna. Affects marriage compatibility and partner\'s wellbeing. Severity varies — some placements have classical cancellation rules.' : 'लग्न से 1, 2, 4, 7, 8 या 12वें भाव में मंगल। विवाह अनुकूलता और साथी के कल्याण को प्रभावित करता है।'}</p>
+                  </div>
+                  <div className="rounded-lg bg-bg-secondary/40 border border-violet-500/10 p-3">
+                    <div className="text-violet-300 font-bold mb-1">{locale === 'en' || isTamil ? 'Kaal Sarpa' : 'काल सर्प'}</div>
+                    <p className="text-text-secondary">{locale === 'en' || isTamil ? 'All planets hemmed between Rahu and Ketu. Creates a karmic concentration — intense focus in one hemisphere of life, with the Rahu-Ketu axis defining your primary life theme.' : 'सभी ग्रह राहु-केतु के बीच। एक कर्मिक एकाग्रता — जीवन के एक गोलार्ध में तीव्र ध्यान।'}</p>
+                  </div>
+                  <div className="rounded-lg bg-bg-secondary/40 border border-amber-500/10 p-3">
+                    <div className="text-amber-300 font-bold mb-1">{locale === 'en' || isTamil ? 'Pitru Dosha' : 'पितृ दोष'}</div>
+                    <p className="text-text-secondary">{locale === 'en' || isTamil ? 'Sun conjunct/aspected by malefics, or 9th house affliction. Indicates karmic debts from paternal lineage — manifests as obstacles in father-related matters, authority, or government dealings.' : 'सूर्य पर पाप ग्रहों का प्रभाव या 9वें भाव की पीड़ा। पितृ वंश से कर्म ऋण — पिता, सत्ता या सरकारी मामलों में बाधा।'}</p>
+                  </div>
+                </div>
+              </div>
+              <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
+                <PatrikaTab kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tip={tip} chartStyle={chartStyle} retrogradeIds={retrogradeIds} combustIds={combustIds} />
+              </Suspense>
+              <div className="text-center">
+                <a href={`/${locale}/learn/patrika`} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-sm font-medium hover:bg-amber-500/20 transition-colors">
+                  {locale === 'en' || isTamil ? 'Deep Dive: Understanding Your Patrika →' : 'विस्तृत अध्ययन: पत्रिका समझें →'}
+                </a>
+              </div>
+            </div>
           )}
 
           </div>{/* end eli5Mode hide wrapper */}

@@ -584,8 +584,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {/* ═══ PROFILE BANNER — for logged-in users, above the cards ═══ */}
       <ProfileBanner locale={locale} bf={bf} />
 
-      {/* ═══ EXPLORE TOOLS — tarot card grid ═══ */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* ═══ EXPLORE TOOLS — 3×3 tarot card grid ═══ */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-10">
           <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={hf}>
             <span className="text-gold-gradient">{t('exploreTools')}</span>

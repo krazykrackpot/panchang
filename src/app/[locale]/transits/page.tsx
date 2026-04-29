@@ -221,10 +221,10 @@ export default function TransitsPage() {
 
   // Stats
   const stats = useMemo(() => {
-    const majorCount = events.filter(e => e.significance === 'major').length;
-    const uniquePlanets = new Set(events.map(e => e.planetId)).size;
-    return { total: events.length, major: majorCount, planets: uniquePlanets };
-  }, [events]);
+    const majorCount = filteredEvents.filter(e => e.significance === 'major').length;
+    const uniquePlanets = new Set(filteredEvents.map(e => e.planetId)).size;
+    return { total: filteredEvents.length, major: majorCount, planets: uniquePlanets };
+  }, [filteredEvents]);
 
   // Jupiter Vedha — 12 classical blocking pairs: Jupiter sign → Saturn sign that blocks
   // Source: Gochar classics; when Saturn is in the listed sign, Jupiter's transit is Vedha-blocked
@@ -619,7 +619,10 @@ export default function TransitsPage() {
                   )}
 
                   {swimlaneData.map((planet, idx) => {
-                    const isFiltered = planetFilter !== null && planetFilter !== planet.planetId;
+                    const isPlanetFiltered = planetFilter !== null && planetFilter !== planet.planetId;
+                    // Dim planets that have no events matching the significance filter
+                    const hasSigMatch = sigFilter === 'all' || filteredEvents.some(e => e.planetId === planet.planetId);
+                    const isFiltered = isPlanetFiltered || !hasSigMatch;
                     const gapBefore = idx > 0 && planet.isSlow !== swimlaneData[idx - 1].isSlow;
                     return (
                       <div

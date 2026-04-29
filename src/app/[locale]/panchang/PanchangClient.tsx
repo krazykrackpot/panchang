@@ -25,7 +25,7 @@ import { computeBalam } from '@/lib/panchang/balam';
 import { calculatePanchaPakshi } from '@/lib/prashna/pancha-pakshi';
 import { computeHinduMonths, computePurnimantMonths, formatMonthDate } from '@/lib/calendar/hindu-months';
 import { useBirthDataStore } from '@/stores/birth-data-store';
-import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { getUTCOffsetForDate, resolveTimezoneFromCoords } from '@/lib/utils/timezone';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { CITIES } from '@/lib/constants/cities';
@@ -103,6 +103,8 @@ interface LocationData {
   lng: number;
   name: string;
   tz: number;
+  /** IANA timezone resolved from coordinates — NEVER use browser timezone for panchang calculations */
+  ianaTimezone: string;
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -178,7 +180,7 @@ export default function PanchangClient() {
 
   const [panchang, setPanchang] = useState<PanchangData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [location, setLocation] = useState<LocationData>({ lat: 0, lng: 0, name: '', tz: 0 });
+  const [location, setLocation] = useState<LocationData>({ lat: 0, lng: 0, name: '', tz: 0, ianaTimezone: '' });
   const [locationInput, setLocationInput] = useState('');
   const [searchingLocation, setSearchingLocation] = useState(false);
   const [showLocationSearch, setShowLocationSearch] = useState(false);
@@ -224,21 +226,31 @@ export default function PanchangClient() {
     setSelectedDate(`${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`);
   }, []);
 
+  // Helper: resolve IANA timezone + numeric offset from coordinates
+  // CRITICAL: panchang calculations MUST use the location's timezone, NEVER the browser's
+  async function resolveLocationTimezone(lat: number, lng: number): Promise<{ ianaTimezone: string; tz: number }> {
+    const ianaTimezone = await resolveTimezoneFromCoords(lat, lng);
+    const now = new Date();
+    const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTimezone);
+    return { ianaTimezone, tz };
+  }
+
   useEffect(() => {
     if ('geolocation' in navigator) {
       setDetectingLocation(true);
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           const { latitude, longitude } = position.coords;
+          const { ianaTimezone, tz } = await resolveLocationTimezone(latitude, longitude);
           try {
             const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10`);
             const data = await res.json();
             const city = data.address?.city || data.address?.town || data.address?.village || data.address?.county || '';
             const country = data.address?.country || '';
             const name = [city, country].filter(Boolean).join(', ') || `${latitude.toFixed(2)}°N, ${longitude.toFixed(2)}°E`;
-            setLocation({ lat: latitude, lng: longitude, name, tz: -new Date().getTimezoneOffset() / 60 });
+            setLocation({ lat: latitude, lng: longitude, name, tz, ianaTimezone });
           } catch {
-            setLocation({ lat: latitude, lng: longitude, name: `${latitude.toFixed(2)}°N, ${longitude.toFixed(2)}°E`, tz: -new Date().getTimezoneOffset() / 60 });
+            setLocation({ lat: latitude, lng: longitude, name: `${latitude.toFixed(2)}°N, ${longitude.toFixed(2)}°E`, tz, ianaTimezone });
           }
           setDetectingLocation(false);
         },
@@ -247,8 +259,7 @@ export default function PanchangClient() {
             const res = await fetch('https://ipapi.co/json/');
             const data = await res.json();
             if (data.latitude && data.longitude) {
-              // Reverse-geocode the actual coordinates — data.city from ipapi often mismatches
-              // the lat/lng because ISP routing points can be far from the user's city
+              const { ianaTimezone, tz } = await resolveLocationTimezone(data.latitude, data.longitude);
               let name = `${data.latitude.toFixed(2)}°, ${data.longitude.toFixed(2)}°`;
               try {
                 const geo = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${data.latitude}&lon=${data.longitude}&zoom=10`);
@@ -257,15 +268,7 @@ export default function PanchangClient() {
                 const country = geoData.address?.country || '';
                 name = [city, country].filter(Boolean).join(', ') || name;
               } catch { /* use coordinate fallback */ }
-              // Parse utc_offset in HHMM format (e.g. "+0530" → 5.5, not 5.3)
-              let tz = -(new Date().getTimezoneOffset() / 60);
-              if (data.utc_offset) {
-                const sign = data.utc_offset[0] === '-' ? -1 : 1;
-                const hh = parseInt(data.utc_offset.slice(1, 3), 10);
-                const mm = parseInt(data.utc_offset.slice(3, 5), 10);
-                tz = sign * (hh + mm / 60);
-              }
-              setLocation({ lat: data.latitude, lng: data.longitude, name, tz });
+              setLocation({ lat: data.latitude, lng: data.longitude, name, tz, ianaTimezone });
             }
           } catch (err) {
             console.error('[panchang] IP geolocation fallback failed:', err);
@@ -279,12 +282,12 @@ export default function PanchangClient() {
 
   const fetchPanchang = useCallback(() => {
     if (!selectedDate) return;
-    // Don't fetch until we have a real location (avoid erroneous data at lat=0,lng=0)
     if (location.lat === 0 && location.lng === 0) return;
+    if (!location.ianaTimezone) return; // wait for timezone resolution
     setLoading(true);
     const [year, month, day] = selectedDate.split('-').map(Number);
-    const ianaTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-    fetch(`/api/panchang?year=${year}&month=${month}&day=${day}&lat=${location.lat}&lng=${location.lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(location.name)}`)
+    // CRITICAL: use the LOCATION's timezone, not the browser's (Lesson L, feedback_timezone_rule)
+    fetch(`/api/panchang?year=${year}&month=${month}&day=${day}&lat=${location.lat}&lng=${location.lng}&timezone=${encodeURIComponent(location.ianaTimezone)}&location=${encodeURIComponent(location.name)}`)
       .then(res => res.json())
       .then(data => { setPanchang(data); setLoading(false); })
       .catch(() => setLoading(false));
@@ -299,17 +302,16 @@ export default function PanchangClient() {
       const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationInput)}&limit=1`);
       const data = await res.json();
       if (data.length > 0) {
+        const lat = parseFloat(data[0].lat);
         const lng = parseFloat(data[0].lon);
-        const ianaTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        const now = new Date();
-        const approxTz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTimezone);
-        setLocation({ lat: parseFloat(data[0].lat), lng, name: data[0].display_name.split(',').slice(0, 3).join(', '), tz: approxTz });
+        // Resolve timezone from the SEARCHED location's coordinates, not the browser
+        const { ianaTimezone, tz } = await resolveLocationTimezone(lat, lng);
+        setLocation({ lat, lng, name: data[0].display_name.split(',').slice(0, 3).join(', '), tz, ianaTimezone });
         setShowLocationSearch(false);
         setLocationInput('');
       }
     } catch (err) {
       console.error('[PanchangClient] location search failed:', err);
-      // Show inline feedback so the user knows the search didn't silently fail
       alert('Location search failed. Please check your connection and try again.');
     }
     setSearchingLocation(false);

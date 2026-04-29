@@ -546,7 +546,7 @@ function MoonPhaseBanner({
   );
 }
 
-// ── Energy Timeline ──
+// ── Energy Timeline (vertical, with "YOU ARE HERE" needle) ──
 function EnergyTimeline({
   phases,
   voice,
@@ -554,73 +554,151 @@ function EnergyTimeline({
   phases: EnergyPhase[];
   voice: VoiceMode;
 }) {
-  return (
-    <div className="space-y-3">
-      {/* Horizontal bar visualization — shows time ranges */}
-      <div className="flex h-10 rounded-lg overflow-hidden gap-0.5">
-        {phases.map((phase, i) => {
-          const isCurrent = isInTimeRange(phase.startTime, phase.endTime);
-          const label = phase.label[voice];
-          const colors = getDoshaColor(label);
-          return (
-            <div
-              key={i}
-              className={`flex-1 relative flex flex-col items-center justify-center text-[9px] font-medium transition-all ${colors.bg} ${
-                isCurrent
-                  ? 'ring-1 ring-[#d4a853]/60 z-10'
-                  : 'opacity-60'
-              }`}
-            >
-              <span className={`${colors.text} leading-tight`}>
-                {phase.startTime}–{phase.endTime}
-              </span>
-              {isCurrent && (
-                <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#d4a853]" />
-              )}
-            </div>
-          );
-        })}
-      </div>
+  // Current time in minutes since midnight — recalculated client-side
+  const nowMins = currentMinutes();
+  const nowHour = Math.floor(nowMins / 60);
+  const nowMin = nowMins % 60;
+  // "HH:MM" for display
+  const nowLabel = `${String(nowHour).padStart(2, '0')}:${String(nowMin).padStart(2, '0')}`;
 
-      {/* Phase cards — show both traditional and modern names + time ranges + explanation */}
+  // Height of the full 24-hour column (px) — same on all breakpoints via inline style
+  const TOTAL_HEIGHT = 960; // px; 40px per hour, readable on all screen sizes
+
+  // Convert "HH:MM" → minutes since midnight
+  function toMins(hhmm: string): number {
+    const [h, m] = hhmm.split(':').map(Number);
+    return h * 60 + m;
+  }
+
+  // Position helpers: fraction of TOTAL_HEIGHT
+  function topPx(mins: number): number {
+    return (mins / 1440) * TOTAL_HEIGHT;
+  }
+  function heightPx(startMins: number, endMins: number): number {
+    // Handle midnight-crossing phases
+    const duration = endMins > startMins ? endMins - startMins : 1440 - startMins + endMins;
+    return (duration / 1440) * TOTAL_HEIGHT;
+  }
+
+  // Hour tick marks every 3 hours
+  const HOUR_TICKS = [0, 3, 6, 9, 12, 15, 18, 21];
+
+  return (
+    <div className="relative select-none" style={{ height: `${TOTAL_HEIGHT}px` }}>
+      {/* ── Vertical axis line ── */}
+      <div
+        className="absolute w-px bg-gold-primary/15"
+        style={{ left: '44px', top: 0, bottom: 0 }}
+      />
+
+      {/* ── Hour tick marks ── */}
+      {HOUR_TICKS.map((hour) => {
+        const yPx = topPx(hour * 60);
+        return (
+          <div
+            key={hour}
+            className="absolute flex items-center"
+            style={{ top: `${yPx}px`, left: 0, right: 0 }}
+          >
+            {/* Label */}
+            <span
+              className="text-[10px] font-mono text-text-secondary w-10 text-right pr-2 leading-none"
+              style={{ marginTop: '-0.4em' }}
+            >
+              {String(hour).padStart(2, '0')}:00
+            </span>
+            {/* Tick line across the full width */}
+            <div className="flex-1 h-px bg-white/[0.04]" />
+          </div>
+        );
+      })}
+
+      {/* ── Phase blocks ── */}
       {phases.map((phase, i) => {
         const isCurrent = isInTimeRange(phase.startTime, phase.endTime);
         const label = phase.label[voice];
         const altLabel = phase.label[voice === 'traditional' ? 'modern' : 'traditional'];
         const colors = getDoshaColor(label);
+        const startMins = toMins(phase.startTime);
+        const endMins = toMins(phase.endTime);
+        const phaseTop = topPx(startMins);
+        const phaseHeight = heightPx(startMins, endMins);
+
+        // Left border color matches dosha
+        const borderLeftClass = colors.border.replace('border-', 'border-l-');
+
         return (
           <div
             key={i}
-            className={`rounded-xl p-4 border transition-all ${
-              isCurrent
-                ? `${colors.bg} ${colors.border} border`
-                : 'bg-[#161b42]/50 border-transparent'
-            }`}
+            className="absolute"
+            style={{
+              left: '52px',
+              right: 0,
+              top: `${phaseTop}px`,
+              height: `${phaseHeight}px`,
+              paddingBottom: '3px',
+            }}
           >
-            <div className="flex items-start justify-between mb-1.5">
-              <div>
-                <span className={`text-sm font-semibold ${isCurrent ? colors.text : 'text-[#e6e2d8]/70'}`}>
-                  {label}
-                  {isCurrent && (
-                    <span className="ml-2 text-[10px] bg-[#d4a853]/20 text-[#f0d48a] px-1.5 py-0.5 rounded-full">
-                      NOW
-                    </span>
-                  )}
-                </span>
-                <span className="block text-[#8a8478] text-[11px] mt-0.5">
-                  {altLabel}
+            <div
+              className={`h-full rounded-xl px-3 py-2 border-l-4 transition-all ${colors.bg} ${borderLeftClass} ${
+                isCurrent
+                  ? 'ring-1 ring-gold-primary/40'
+                  : 'opacity-70'
+              }`}
+            >
+              {/* Header row */}
+              <div className="flex items-start justify-between gap-2">
+                <div className="min-w-0">
+                  <span
+                    className={`text-sm font-semibold leading-tight block ${
+                      isCurrent ? colors.text : 'text-[#e6e2d8]/70'
+                    }`}
+                  >
+                    {label}
+                    {isCurrent && (
+                      <span className="ml-2 text-[10px] bg-gold-primary/20 text-gold-light px-1.5 py-0.5 rounded-full align-middle">
+                        YOU ARE HERE
+                      </span>
+                    )}
+                  </span>
+                  <span className="text-[11px] text-text-secondary block leading-tight mt-0.5">
+                    {altLabel}
+                  </span>
+                </div>
+                <span className="text-[11px] text-gold-light/70 font-mono whitespace-nowrap flex-shrink-0 mt-0.5">
+                  {phase.startTime}–{phase.endTime}
                 </span>
               </div>
-              <span className="text-[#f0d48a]/80 text-xs font-medium whitespace-nowrap">
-                {phase.startTime} – {phase.endTime}
-              </span>
+
+              {/* Description — only show if the block is tall enough (≥ 70px) */}
+              {phaseHeight >= 70 && (
+                <p className="text-[#8a8478] text-[11px] leading-relaxed mt-1 line-clamp-2">
+                  {phase.description[voice]}
+                </p>
+              )}
             </div>
-            <p className="text-[#8a8478] text-xs leading-relaxed">
-              {phase.description[voice]}
-            </p>
           </div>
         );
       })}
+
+      {/* ── Current-time needle ── */}
+      <div
+        className="absolute left-0 right-0 z-20 flex items-center pointer-events-none"
+        style={{ top: `${topPx(nowMins)}px` }}
+        suppressHydrationWarning
+      >
+        {/* Dot on the axis */}
+        <div className="w-3 h-3 rounded-full bg-gold-primary animate-pulse flex-shrink-0 ml-[38px]" />
+        {/* Horizontal line */}
+        <div className="flex-1 h-[1.5px] bg-gold-primary/60" />
+        {/* Time label */}
+        <span
+          className="text-[10px] font-mono text-gold-light bg-[#0a0e27]/80 px-1.5 rounded ml-1 flex-shrink-0"
+          suppressHydrationWarning
+        >
+          {nowLabel}
+        </span>
+      </div>
     </div>
   );
 }

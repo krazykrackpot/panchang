@@ -124,6 +124,39 @@ export default function MatchingPage() {
   const [girlKundali, setGirlKundali] = useState<KundaliData | null>(null);
   const [showCharts, setShowCharts] = useState(false);
 
+  // Score counting animation state
+  const [displayScore, setDisplayScore] = useState(0);
+  const [displayDashaScore, setDisplayDashaScore] = useState(0);
+
+  // Animate score count-up when result changes
+  useEffect(() => {
+    if (!result) return;
+    const end = result.totalScore;
+    const duration = 1200;
+    const startTime = performance.now();
+    const animate = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      setDisplayScore(Math.round(end * progress));
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
+  }, [result]);
+
+  useEffect(() => {
+    if (!dashaResult) return;
+    const end = dashaResult.totalScored;
+    const duration = 1200;
+    const startTime = performance.now();
+    const animate = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      setDisplayDashaScore(Math.round(end * progress));
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
+  }, [dashaResult]);
+
   // Validation hints: tell the user which person's details are incomplete
   const boyReady = !!boyComputed;
   const girlReady = !!girlComputed;
@@ -185,6 +218,14 @@ export default function MatchingPage() {
     average: 'text-amber-400 border-amber-500/30 bg-amber-500/10',
     below_average: 'text-orange-400 border-orange-500/30 bg-orange-500/10',
     not_recommended: 'text-red-400 border-red-500/30 bg-red-500/10',
+  };
+
+  // Returns a hex color for the glow ring based on verdict tier
+  const getVerdictHex = (verdict: string): string => {
+    if (verdict === 'excellent') return '#10b981'; // emerald-500
+    if (verdict === 'good') return '#22c55e';      // green-500
+    if (verdict === 'average') return '#f59e0b';   // amber-500
+    return '#ef4444';                               // red-500
   };
 
   const scoreBarColor = (scored: number, max: number) => {
@@ -397,37 +438,60 @@ export default function MatchingPage() {
             <div ref={matchResultRef}>
 
             {/* Score Circle */}
-            <div className="my-12 text-center">
-              <div className="inline-block relative">
-                <svg className="w-36 h-36 sm:w-48 sm:h-48" viewBox="0 0 120 120">
-                  <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" strokeWidth="6" className="text-bg-tertiary" />
-                  <circle
-                    cx="60" cy="60" r="52"
-                    fill="none"
-                    strokeWidth="6"
-                    strokeLinecap="round"
-                    strokeDasharray={`${2 * Math.PI * 52}`}
-                    strokeDashoffset={`${2 * Math.PI * 52 * (1 - dashaResult.percentage / 100)}`}
-                    className={
-                      dashaResult.verdict === 'excellent' || dashaResult.verdict === 'good' ? 'stroke-emerald-500' :
-                      dashaResult.verdict === 'average' ? 'stroke-amber-500' :
-                      'stroke-red-500'
-                    }
-                    style={{ transform: 'rotate(-90deg)', transformOrigin: '60px 60px', transition: 'stroke-dashoffset 1s ease-out' }}
-                  />
-                  <text x="60" y="52" textAnchor="middle" className="fill-gold-light text-3xl font-bold" style={{ fontSize: '28px' }}>
-                    {dashaResult.totalScored}
-                  </text>
-                  <text x="60" y="72" textAnchor="middle" className="fill-text-secondary" style={{ fontSize: '11px' }}>
-                    / {dashaResult.totalMax}
-                  </text>
-                </svg>
-              </div>
-              <div className={`inline-block mt-4 px-6 py-2 rounded-xl border text-lg font-bold ${verdictColors[dashaResult.verdict]}`} style={headingFont}>
-                {tl(dashaResult.verdictText, locale)}
-              </div>
-              <div className="text-text-secondary text-sm mt-3">{dashaResult.percentage}% {t('compatibility')}</div>
-            </div>
+            {(() => {
+              const circumference = 2 * Math.PI * 52;
+              const targetOffset = circumference * (1 - dashaResult.percentage / 100);
+              const verdictHex = getVerdictHex(dashaResult.verdict);
+              return (
+                <div className="my-12 text-center">
+                  <div className="inline-block relative">
+                    {/* Pulsing glow ring */}
+                    <motion.div
+                      className="absolute inset-0 rounded-full"
+                      animate={{
+                        boxShadow: [
+                          `0 0 30px 10px ${verdictHex}20`,
+                          `0 0 60px 20px ${verdictHex}30`,
+                          `0 0 30px 10px ${verdictHex}20`,
+                        ],
+                      }}
+                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' as const }}
+                    />
+                    <svg className="w-56 h-56 sm:w-72 sm:h-72" viewBox="0 0 120 120">
+                      <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" strokeWidth="6" className="text-bg-tertiary" />
+                      <motion.circle
+                        cx="60" cy="60" r="52"
+                        fill="none"
+                        strokeWidth="6"
+                        strokeLinecap="round"
+                        strokeDasharray={circumference}
+                        stroke={verdictHex}
+                        style={{ transform: 'rotate(-90deg)', transformOrigin: '60px 60px' }}
+                        initial={{ strokeDashoffset: circumference }}
+                        animate={{ strokeDashoffset: targetOffset }}
+                        transition={{ duration: 1.5, ease: 'easeOut' as const }}
+                      />
+                      <text x="60" y="52" textAnchor="middle" className="fill-gold-light text-3xl font-bold" style={{ fontSize: '28px' }}>
+                        {displayDashaScore}
+                      </text>
+                      <text x="60" y="72" textAnchor="middle" className="fill-text-secondary" style={{ fontSize: '11px' }}>
+                        / {dashaResult.totalMax}
+                      </text>
+                    </svg>
+                  </div>
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 1.5, type: 'spring', stiffness: 200 }}
+                  >
+                    <div className={`inline-block mt-4 px-6 py-2 rounded-xl border text-lg font-bold ${verdictColors[dashaResult.verdict]}`} style={headingFont}>
+                      {tl(dashaResult.verdictText, locale)}
+                    </div>
+                  </motion.div>
+                  <div className="text-text-secondary text-sm mt-3">{dashaResult.percentage}% {t('compatibility')}</div>
+                </div>
+              );
+            })()}
 
             {/* Rajju Dosha Warning */}
             {dashaResult.kutas[8]?.scored === 0 && (
@@ -544,37 +608,60 @@ export default function MatchingPage() {
             <div ref={matchResultRef}>
 
             {/* Score Circle */}
-            <div className="my-12 text-center">
-              <div className="inline-block relative">
-                <svg className="w-36 h-36 sm:w-48 sm:h-48" viewBox="0 0 120 120">
-                  <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" strokeWidth="6" className="text-bg-tertiary" />
-                  <circle
-                    cx="60" cy="60" r="52"
-                    fill="none"
-                    strokeWidth="6"
-                    strokeLinecap="round"
-                    strokeDasharray={`${2 * Math.PI * 52}`}
-                    strokeDashoffset={`${2 * Math.PI * 52 * (1 - result.percentage / 100)}`}
-                    className={
-                      result.verdict === 'excellent' || result.verdict === 'good' ? 'stroke-emerald-500' :
-                      result.verdict === 'average' ? 'stroke-amber-500' :
-                      'stroke-red-500'
-                    }
-                    style={{ transform: 'rotate(-90deg)', transformOrigin: '60px 60px', transition: 'stroke-dashoffset 1s ease-out' }}
-                  />
-                  <text x="60" y="52" textAnchor="middle" className="fill-gold-light text-3xl font-bold" style={{ fontSize: '28px' }}>
-                    {result.totalScore}
-                  </text>
-                  <text x="60" y="72" textAnchor="middle" className="fill-text-secondary" style={{ fontSize: '11px' }}>
-                    / {result.maxScore}
-                  </text>
-                </svg>
-              </div>
-              <div className={`inline-block mt-4 px-6 py-2 rounded-xl border text-lg font-bold ${verdictColors[result.verdict]}`} style={headingFont}>
-                {tl(result.verdictText, locale)}
-              </div>
-              <div className="text-text-secondary text-sm mt-3">{result.percentage}% {t('compatibility')}</div>
-            </div>
+            {(() => {
+              const circumference = 2 * Math.PI * 52;
+              const targetOffset = circumference * (1 - result.percentage / 100);
+              const verdictHex = getVerdictHex(result.verdict);
+              return (
+                <div className="my-12 text-center">
+                  <div className="inline-block relative">
+                    {/* Pulsing glow ring */}
+                    <motion.div
+                      className="absolute inset-0 rounded-full"
+                      animate={{
+                        boxShadow: [
+                          `0 0 30px 10px ${verdictHex}20`,
+                          `0 0 60px 20px ${verdictHex}30`,
+                          `0 0 30px 10px ${verdictHex}20`,
+                        ],
+                      }}
+                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' as const }}
+                    />
+                    <svg className="w-56 h-56 sm:w-72 sm:h-72" viewBox="0 0 120 120">
+                      <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" strokeWidth="6" className="text-bg-tertiary" />
+                      <motion.circle
+                        cx="60" cy="60" r="52"
+                        fill="none"
+                        strokeWidth="6"
+                        strokeLinecap="round"
+                        strokeDasharray={circumference}
+                        stroke={verdictHex}
+                        style={{ transform: 'rotate(-90deg)', transformOrigin: '60px 60px' }}
+                        initial={{ strokeDashoffset: circumference }}
+                        animate={{ strokeDashoffset: targetOffset }}
+                        transition={{ duration: 1.5, ease: 'easeOut' as const }}
+                      />
+                      <text x="60" y="52" textAnchor="middle" className="fill-gold-light text-3xl font-bold" style={{ fontSize: '28px' }}>
+                        {displayScore}
+                      </text>
+                      <text x="60" y="72" textAnchor="middle" className="fill-text-secondary" style={{ fontSize: '11px' }}>
+                        / {result.maxScore}
+                      </text>
+                    </svg>
+                  </div>
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 1.5, type: 'spring', stiffness: 200 }}
+                  >
+                    <div className={`inline-block mt-4 px-6 py-2 rounded-xl border text-lg font-bold ${verdictColors[result.verdict]}`} style={headingFont}>
+                      {tl(result.verdictText, locale)}
+                    </div>
+                  </motion.div>
+                  <div className="text-text-secondary text-sm mt-3">{result.percentage}% {t('compatibility')}</div>
+                </div>
+              );
+            })()}
 
             {/* Narrative verdict — shown before the kuta breakdown */}
             {(() => {

@@ -1216,8 +1216,114 @@ export default function DashboardPage() {
   // -------------------------------------------------------------------------
 
   // TAB 1: Today
+  // ── Hero: compute Rahu Kaal active state inline (mirrors MorningBriefing logic)
+  const heroRahuActive = (() => {
+    const rk = panchangData?.rahuKaal;
+    if (!rk) return false;
+    const toMin = (t: string) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+    const now = new Date();
+    const n = now.getHours() * 60 + now.getMinutes();
+    const s = toMin(rk.start);
+    const e = toMin(rk.end);
+    // Handle midnight wrap
+    return e < s ? (n >= s || n < e) : (n >= s && n < e);
+  })();
+
+  const isHeroHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
+
   const todayTabContent = (
     <>
+      {/* ── COSMIC WEATHER HERO ── */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="relative mb-8 rounded-2xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] overflow-hidden shadow-xl"
+      >
+        {/* Subtle star-dust shimmer layer */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_#d4a853_0%,_transparent_55%)] opacity-[0.06] pointer-events-none" />
+
+        <div className="relative p-6 sm:p-8">
+          {/* Day quality badge — absolute top-right */}
+          <div className={`absolute top-5 right-5 px-4 py-2 rounded-xl border font-black text-xl sm:text-2xl leading-none ${qc.bg} ${qc.border} ${qc.text}`}
+            style={{ fontFamily: 'var(--font-heading)' }}>
+            {ql[locale] || ql.en}
+          </div>
+
+          {/* Eyebrow label */}
+          <p className="text-gold-primary/70 text-xs font-bold uppercase tracking-[0.2em] mb-2">
+            {isHeroHi ? 'आज का ब्रह्माण्डीय मौसम' : "Today's Cosmic Weather"}
+          </p>
+
+          {/* Main headline — nakshatra + tithi */}
+          {panchangData ? (
+            <h2
+              className="text-xl sm:text-2xl md:text-3xl font-bold text-gold-light leading-tight pr-36"
+              style={{ fontFamily: 'var(--font-heading)' }}
+            >
+              {panchangData.nakshatra?.name
+                ? (panchangData.nakshatra.name[locale as keyof typeof panchangData.nakshatra.name] || panchangData.nakshatra.name.en)
+                : '—'}
+              {' '}
+              <span className="text-text-secondary font-normal text-lg sm:text-xl">
+                {isHeroHi ? 'नक्षत्र' : 'Nakshatra'}
+              </span>
+              {panchangData.tithi?.name && (
+                <>
+                  <span className="text-gold-primary/40 mx-2">·</span>
+                  <span className="text-text-primary font-semibold text-lg sm:text-xl">
+                    {panchangData.tithi.name[locale as keyof typeof panchangData.tithi.name] || panchangData.tithi.name.en}
+                  </span>
+                  {' '}
+                  <span className="text-text-secondary font-normal text-base sm:text-lg">
+                    {isHeroHi ? 'तिथि' : 'Tithi'}
+                  </span>
+                </>
+              )}
+            </h2>
+          ) : (
+            <h2 className="text-xl sm:text-2xl font-bold text-gold-light pr-36">
+              {isHeroHi ? 'आज का विवरण लोड हो रहा है…' : "Loading today\u2019s details\u2026"}
+            </h2>
+          )}
+
+          {/* Day quality description */}
+          <p className="mt-3 text-text-secondary text-sm sm:text-base leading-relaxed max-w-2xl">
+            {pd.dayQualityDescription[locale] || pd.dayQualityDescription.en}
+          </p>
+
+          {/* Rahu Kaal warning — only when active right now */}
+          {heroRahuActive && panchangData?.rahuKaal && (
+            <div className="mt-4 flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-sm font-semibold w-fit">
+              <AlertTriangle className="w-4 h-4 shrink-0 text-red-400" />
+              {isHeroHi
+                ? `राहु काल सक्रिय: ${panchangData.rahuKaal.start}–${panchangData.rahuKaal.end} — नए कार्य शुरू न करें`
+                : `Rahu Kaal active: ${panchangData.rahuKaal.start}–${panchangData.rahuKaal.end} — avoid starting new ventures`}
+            </div>
+          )}
+
+          {/* Tara Bala + Chandra Bala mini-strip */}
+          <div className="mt-5 flex flex-wrap gap-3">
+            <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border ${pd.taraBala.isFavorable ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-300' : 'bg-red-500/10 border-red-500/25 text-red-300'}`}>
+              <Star className="w-3 h-3" />
+              {isHeroHi ? 'तारा बल' : 'Tara Bala'}:&nbsp;
+              {pd.taraBala.taraName[locale] || pd.taraBala.taraName.en}
+              &nbsp;·&nbsp;
+              {pd.taraBala.isFavorable
+                ? (isHeroHi ? 'शुभ' : 'Favorable')
+                : (isHeroHi ? 'अशुभ' : 'Unfavorable')}
+            </span>
+            <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border ${pd.chandraBala.isFavorable ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-300' : 'bg-amber-500/10 border-amber-500/25 text-amber-300'}`}>
+              <Moon className="w-3 h-3" />
+              {isHeroHi ? 'चन्द्र बल' : 'Chandra Bala'}:&nbsp;
+              {isHeroHi
+                ? (pd.chandraBala.isFavorable ? 'शुभ' : 'सामान्य')
+                : (pd.chandraBala.isFavorable ? 'Favorable' : 'Neutral')}
+            </span>
+          </div>
+        </div>
+      </motion.div>
+
       {panchangData && <DailyPanchangInsightCard panchang={panchangData} locale={locale} />}
 
       {panchangData && (

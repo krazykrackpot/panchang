@@ -65,15 +65,41 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
   // Detect key doshas
   const doshas: { name: LocaleText; present: boolean; detail: LocaleText }[] = [];
 
-  // Manglik: Mars in 1,2,4,7,8,12
+  // Manglik: Mars in 1,2,4,7,8,12 — with cancellation and severity analysis
   const mars = kundali.planets.find(p => p.planet.id === 2);
+  const jupiter = kundali.planets.find(p => p.planet.id === 4);
+  const venus = kundali.planets.find(p => p.planet.id === 5);
+  const saturn = kundali.planets.find(p => p.planet.id === 6);
   const isManglik = mars ? [1, 2, 4, 7, 8, 12].includes(mars.house) : false;
+
+  // Cancellation conditions (classical)
+  const manglikCancellations: string[] = [];
+  if (isManglik && mars) {
+    if (jupiter && jupiter.house === 7) manglikCancellations.push('Jupiter aspects/occupies 7th house');
+    if (venus && venus.house === 1) manglikCancellations.push('Venus in 1st house');
+    if (mars.sign === 1 || mars.sign === 4 || mars.sign === 8) manglikCancellations.push(`Mars in own/exaltation sign (${mars.sign === 1 ? 'Aries' : mars.sign === 4 ? 'Scorpio' : 'Capricorn'})`);
+    if (saturn && saturn.house === mars.house) manglikCancellations.push('Saturn conjunct Mars (mutual cancellation)');
+    if (mars.house === 2 && (mars.sign === 2 || mars.sign === 3)) manglikCancellations.push('Mars in 2nd in Gemini/Virgo (Mercury signs reduce aggression)');
+  }
+  const isManglikCancelled = manglikCancellations.length > 0;
+  // Severity: 7th/8th house = severe, 1st/4th = moderate, 2nd/12th = mild
+  const manglikSeverity = mars ? ([7, 8].includes(mars.house) ? 'severe' : [1, 4].includes(mars.house) ? 'moderate' : 'mild') : 'none';
+
+  const manglikDetailEn = !isManglik
+    ? 'Mars not in 1/2/4/7/8/12 — no Manglik Dosha'
+    : isManglikCancelled
+      ? `Mars in House ${mars!.house} (${manglikSeverity} severity). CANCELLED by: ${manglikCancellations.join('; ')}. The dosha is technically present but its negative effects are significantly reduced.`
+      : `Mars in House ${mars!.house} (${manglikSeverity} severity). ${manglikSeverity === 'severe' ? 'This is the strongest form — Mars directly impacts marriage and partnerships. Mangal Shanti puja and matching with another Manglik are recommended.' : manglikSeverity === 'moderate' ? 'Moderate form — affects temperament and domestic harmony more than marriage timing. Remedies help but this is not as urgent as 7th/8th house placement.' : 'Mild form — Mars here creates assertive speech or spending patterns. The weakest manifestation of Manglik Dosha.'}`;
+  const manglikDetailHi = !isManglik
+    ? 'मंगल 1/2/4/7/8/12 में नहीं — मांगलिक दोष नहीं'
+    : isManglikCancelled
+      ? `मंगल भाव ${mars!.house} में (${manglikSeverity === 'severe' ? 'गम्भीर' : manglikSeverity === 'moderate' ? 'मध्यम' : 'हल्का'})। रद्द: ${manglikCancellations.join('; ')}। दोष तकनीकी रूप से है पर नकारात्मक प्रभाव काफी कम हैं।`
+      : `मंगल भाव ${mars!.house} में (${manglikSeverity === 'severe' ? 'गम्भीर' : manglikSeverity === 'moderate' ? 'मध्यम' : 'हल्का'})। ${manglikSeverity === 'severe' ? 'यह सबसे प्रबल रूप है — विवाह और साझेदारी पर सीधा प्रभाव। मंगल शान्ति पूजा और मांगलिक मिलान अनुशंसित।' : manglikSeverity === 'moderate' ? 'मध्यम रूप — स्वभाव और घरेलू सामंजस्य पर प्रभाव।' : 'हल्का रूप — वाणी या व्यय पर प्रभाव। मांगलिक दोष का सबसे कमज़ोर रूप।'}`;
+
   doshas.push({
     name: { en: 'Manglik Dosha', hi: 'मांगलिक दोष', sa: 'मांगलिक दोष', mai: 'मांगलिक दोष', mr: 'मांगलिक दोष', ta: 'செவ்வாய் தோஷம்', te: 'కుజ దోషం', bn: 'মাঙ্গলিক দোষ', kn: 'ಮಾಂಗಲಿಕ ದೋಷ', gu: 'માંગલિક દોષ' },
-    present: isManglik,
-    detail: isManglik
-      ? { en: `Mars in House ${mars!.house}`, hi: `मंगल भाव ${mars!.house} में`, sa: `मङ्गलः भावे ${mars!.house}`, mai: `मंगल भाव ${mars!.house} में`, mr: `मंगळ भाव ${mars!.house} मध्ये`, ta: `செவ்வாய் பாவம் ${mars!.house}-இல்`, te: `కుజుడు భావం ${mars!.house}లో`, bn: `মঙ্গল ভাব ${mars!.house}-এ`, kn: `ಕುಜ ಭಾವ ${mars!.house}ರಲ್ಲಿ`, gu: `મંગળ ભાવ ${mars!.house}માં` }
-      : { en: 'Mars not in 1/2/4/7/8/12', hi: 'मंगल 1/2/4/7/8/12 में नहीं', sa: 'मङ्गलः 1/2/4/7/8/12 भावे नास्ति', mai: 'मंगल 1/2/4/7/8/12 में नहीं', mr: 'मंगळ 1/2/4/7/8/12 मध्ये नाही', ta: 'செவ்வாய் 1/2/4/7/8/12-இல் இல்லை', te: 'కుజుడు 1/2/4/7/8/12లో లేడు', bn: 'মঙ্গল 1/2/4/7/8/12-এ নেই', kn: 'ಕುಜ 1/2/4/7/8/12ರಲ್ಲಿ ಇಲ್ಲ', gu: 'મંગળ 1/2/4/7/8/12માં નથી' },
+    present: isManglik && !isManglikCancelled,
+    detail: { en: manglikDetailEn, hi: manglikDetailHi, sa: manglikDetailHi, mai: manglikDetailHi, mr: manglikDetailHi, ta: manglikDetailEn, te: manglikDetailEn, bn: manglikDetailEn, kn: manglikDetailEn, gu: manglikDetailEn },
   });
 
   // Kaal Sarp: all planets between Rahu-Ketu axis

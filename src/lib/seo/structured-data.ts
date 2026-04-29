@@ -137,10 +137,11 @@ export function generateOrganizationLD(): object {
     foundingDate: '2024',
     sameAs: [
       'https://www.wikidata.org/wiki/Q139054863',
-      // Add social profiles as you create them — each one strengthens brand signals
-      // 'https://twitter.com/dekhopanchang',
+      'https://twitter.com/dekhopanchang',
+      'https://www.instagram.com/dekhopanchang/',
+      'https://www.facebook.com/dekhopanchang',
+      // Add more as accounts are created — Google ignores dead links in sameAs
       // 'https://www.youtube.com/@dekhopanchang',
-      // 'https://www.instagram.com/dekhopanchang/',
       // 'https://github.com/dekhopanchang',
     ].filter(Boolean),
   };

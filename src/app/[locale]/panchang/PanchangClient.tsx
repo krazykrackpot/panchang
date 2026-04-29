@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
-import { MapPin, Loader2, Search, Clock, Sun, Moon, ChevronDown, ChevronUp, Compass, Calendar, Star, Bell, Sparkles, BookOpen } from 'lucide-react';
+import { MapPin, Loader2, Clock, Sun, Moon, ChevronDown, ChevronUp, Compass, Calendar, Star, Bell, Sparkles, BookOpen } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import InfoBlock from '@/components/ui/InfoBlock';
 import ShareButton from '@/components/ui/ShareButton';
@@ -26,6 +26,7 @@ import { calculatePanchaPakshi } from '@/lib/prashna/pancha-pakshi';
 import { computeHinduMonths, computePurnimantMonths, formatMonthDate } from '@/lib/calendar/hindu-months';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { getUTCOffsetForDate, resolveTimezoneFromCoords } from '@/lib/utils/timezone';
+import LocationSearch from '@/components/ui/LocationSearch';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { CITIES } from '@/lib/constants/cities';
@@ -181,8 +182,6 @@ export default function PanchangClient() {
   const [panchang, setPanchang] = useState<PanchangData | null>(null);
   const [loading, setLoading] = useState(true);
   const [location, setLocation] = useState<LocationData>({ lat: 0, lng: 0, name: '', tz: 0, ianaTimezone: '' });
-  const [locationInput, setLocationInput] = useState('');
-  const [searchingLocation, setSearchingLocation] = useState(false);
   const [showLocationSearch, setShowLocationSearch] = useState(false);
   const [detectingLocation, setDetectingLocation] = useState(false);
 
@@ -294,28 +293,6 @@ export default function PanchangClient() {
   }, [selectedDate, location]);
 
   useEffect(() => { fetchPanchang(); }, [fetchPanchang]);
-
-  const handleLocationSearch = async () => {
-    if (!locationInput.trim()) return;
-    setSearchingLocation(true);
-    try {
-      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationInput)}&limit=1`);
-      const data = await res.json();
-      if (data.length > 0) {
-        const lat = parseFloat(data[0].lat);
-        const lng = parseFloat(data[0].lon);
-        // Resolve timezone from the SEARCHED location's coordinates, not the browser
-        const { ianaTimezone, tz } = await resolveLocationTimezone(lat, lng);
-        setLocation({ lat, lng, name: data[0].display_name.split(',').slice(0, 3).join(', '), tz, ianaTimezone });
-        setShowLocationSearch(false);
-        setLocationInput('');
-      }
-    } catch (err) {
-      console.error('[PanchangClient] location search failed:', err);
-      alert('Location search failed. Please check your connection and try again.');
-    }
-    setSearchingLocation(false);
-  };
 
   const deepDiveLinks = [
     { key: 'tithi', Icon: TithiIcon },
@@ -432,19 +409,20 @@ export default function PanchangClient() {
           </div>
         </div>
 
-        {/* Location search expand */}
+        {/* Location search with autocomplete — uses shared LocationSearch component */}
         {showLocationSearch && (
           <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-center mt-3">
-            <div className="rounded-lg border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-2 flex gap-2 w-full max-w-sm">
-              <input type="text" value={locationInput} onChange={(e) => setLocationInput(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && handleLocationSearch()}
-                placeholder={msg('searchCity', locale)}
-                className="flex-1 bg-transparent border border-gold-primary/15 rounded-md px-3 py-2 sm:py-1.5 text-text-primary text-sm focus:outline-none focus:border-gold-primary/40" />
-              <button onClick={handleLocationSearch} disabled={searchingLocation}
-                className="px-3 py-2 sm:py-1.5 bg-gold-primary/15 border border-gold-primary/20 rounded-md text-gold-light hover:bg-gold-primary/25 transition-all disabled:opacity-50">
-                {searchingLocation ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
-              </button>
-            </div>
+            <LocationSearch
+              value=""
+              placeholder={msg('searchCity', locale)}
+              className="w-full max-w-sm"
+              onSelect={(loc) => {
+                const now = new Date();
+                const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), loc.timezone);
+                setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, tz, ianaTimezone: loc.timezone });
+                setShowLocationSearch(false);
+              }}
+            />
           </motion.div>
         )}
       </div>

@@ -259,6 +259,7 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
   headingFont: React.CSSProperties; tTip: (key: string) => string;
 }) {
   const isTamil = String(locale) === 'ta';
+  const isEn = locale === 'en' || isTamil;
   const [expandedPlanet, setExpandedPlanet] = useState<number | null>(null);
   const [expandedYoga, setExpandedYoga] = useState<number | null>(null);
   const [expandedAntar, setExpandedAntar] = useState<number | null>(null);
@@ -335,16 +336,112 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
   // Convergence synthesis — only available from server-side API response
   const convergence = (ragTip || tip)?.convergence || null;
 
-  return (
-    <div className="space-y-8">
-      <h2 className="text-2xl font-bold text-gold-gradient text-center" style={headingFont}>{tTip('title')}</h2>
+  // ── Derived data for hero card ──
+  const yogasActive = tip.yogas.filter(y => y.present).length;
+  const strongPlanets = tip.strengthOverview.filter(s => s.strength >= 100);
+  const weakPlanets = tip.strengthOverview.filter(s => s.strength < 80);
+  const strongestPlanet = tip.strengthOverview.reduce((a, b) => a.strength > b.strength ? a : b, tip.strengthOverview[0]);
+  const presentDoshas = tip.doshas.filter(d => d.present);
 
-      {/* ===== CONVERGENCE SYNTHESIS (hero card) ===== */}
+  // Element distribution from kundali
+  const elementCounts = [0, 0, 0, 0]; // fire, earth, air, water
+  const SIGN_ELEMENTS = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]; // Aries=fire, Taurus=earth...
+  kundali.planets.forEach(p => { if (p.sign >= 1 && p.sign <= 12) elementCounts[SIGN_ELEMENTS[p.sign - 1]]++; });
+  const totalPlanets = kundali.planets.length || 1;
+  const dominantElIdx = elementCounts.indexOf(Math.max(...elementCounts));
+  const ELEMENT_NAMES_EN = ['Fire', 'Earth', 'Air', 'Water'];
+  const ELEMENT_NAMES_HI = ['अग्नि', 'पृथ्वी', 'वायु', 'जल'];
+  const dominantElName = isEn ? ELEMENT_NAMES_EN[dominantElIdx] : ELEMENT_NAMES_HI[dominantElIdx];
+  const dominantElPct = Math.round((elementCounts[dominantElIdx] / totalPlanets) * 100);
+  const ELEMENT_COLORS_HERO = ['#f59e0b', '#10b981', '#38bdf8', '#818cf8'];
+
+  // "Right Now" insight
+  const rightNowInsight = tip.yearPredictions?.keyAdvice
+    || (tip.dashaInsight?.currentMahaAnalysis?.slice(0, 200))
+    || '';
+
+  // Action items aggregation
+  const actionItems: string[] = [];
+  if (presentDoshas.length > 0) {
+    const topDosha = presentDoshas.sort((a, b) => (b.severity === 'severe' ? 3 : b.severity === 'moderate' ? 2 : 1) - (a.severity === 'severe' ? 3 : a.severity === 'moderate' ? 2 : 1))[0];
+    actionItems.push(isEn ? `Address ${topDosha.name} (${topDosha.severity}) — ${topDosha.remedies.split('.')[0]}.` : `${topDosha.name} (${topDosha.severity}) का उपचार करें — ${topDosha.remedies.split('.')[0]}।`);
+  }
+  if (tip.remedies.gemstones.length > 0) {
+    const gem = tip.remedies.gemstones[0];
+    actionItems.push(isEn ? `Consider ${gem.name} for ${gem.planet} — ${gem.description.split('.')[0]}.` : `${gem.planet} के लिए ${gem.name} विचार करें — ${gem.description.split('.')[0]}।`);
+  }
+  if (tip.remedies.mantras.length > 0) {
+    const mantra = tip.remedies.mantras[0];
+    actionItems.push(isEn ? `Daily mantra: ${mantra.name} for ${mantra.planet}.` : `दैनिक मन्त्र: ${mantra.planet} के लिए ${mantra.name}।`);
+  }
+  if (tip.yearPredictions?.events?.length > 0) {
+    const nextEvent = tip.yearPredictions.events.find(e => e.impact === 'favorable') || tip.yearPredictions.events[0];
+    actionItems.push(isEn ? `Watch for: ${nextEvent.title} (${nextEvent.period}).` : `ध्यान दें: ${nextEvent.title} (${nextEvent.period})।`);
+  }
+  if (weakPlanets.length > 0) {
+    actionItems.push(isEn ? `Strengthen ${weakPlanets[0].planetName} — currently your weakest planet.` : `${weakPlanets[0].planetName} को शक्तिशाली करें — वर्तमान में सबसे कमजोर ग्रह।`);
+  }
+
+  let sectionNum = 0;
+  const SectionDivider = () => { sectionNum++; return (
+    <div className="flex items-center gap-4 my-8">
+      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gold-primary/20 to-transparent" />
+      <span className="text-gold-primary/30 text-[10px] font-bold tracking-widest">{String(sectionNum).padStart(2, '0')}</span>
+      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gold-primary/20 to-transparent" />
+    </div>
+  ); };
+
+  return (
+    <div className="space-y-6">
+      {/* ═══ HERO SUMMARY CARD ═══ */}
+      <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] border border-gold-primary/20 p-6 sm:p-8 overflow-hidden">
+        <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-gold-primary/5 blur-3xl" />
+        <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-indigo-500/5 blur-3xl" />
+        <div className="relative z-10 text-center mb-6">
+          <div className="text-gold-dark text-[10px] uppercase tracking-[4px] mb-2">{isEn ? 'Your Chart Reveals' : 'आपकी कुण्डली बताती है'}</div>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gold-light leading-tight" style={headingFont}>
+            {tip.personality.summary || (isEn ? 'Your Vedic Chart Commentary' : 'वैदिक कुण्डली टिप्पणी')}
+          </h2>
+        </div>
+        <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="text-center p-3 rounded-xl bg-white/[0.03] border border-gold-primary/10">
+            <div className="text-2xl font-bold" style={{ color: ELEMENT_COLORS_HERO[dominantElIdx] }}>{dominantElPct}%</div>
+            <div className="text-[10px] text-text-secondary uppercase tracking-wider">{dominantElName}</div>
+          </div>
+          <div className="text-center p-3 rounded-xl bg-white/[0.03] border border-gold-primary/10">
+            <div className="text-lg font-bold text-gold-light truncate">{strongestPlanet?.planetName || '—'}</div>
+            <div className="text-[10px] text-text-secondary uppercase tracking-wider">{isEn ? 'Strongest Planet' : 'शक्तिशाली ग्रह'}</div>
+          </div>
+          <div className="text-center p-3 rounded-xl bg-white/[0.03] border border-gold-primary/10">
+            <div className="text-2xl font-bold text-emerald-400">{yogasActive}</div>
+            <div className="text-[10px] text-text-secondary uppercase tracking-wider">{isEn ? 'Yogas Active' : 'सक्रिय योग'}</div>
+          </div>
+          <div className="text-center p-3 rounded-xl bg-white/[0.03] border border-gold-primary/10">
+            <div className="text-lg font-bold text-gold-light truncate">{tip.dashaInsight.currentMaha || '—'}</div>
+            <div className="text-[10px] text-text-secondary uppercase tracking-wider">{isEn ? 'Current Period' : 'वर्तमान दशा'}</div>
+          </div>
+        </div>
+      </div>
+
+      {/* ═══ FOR YOU RIGHT NOW ═══ */}
+      {rightNowInsight && (
+        <div className="rounded-xl bg-gradient-to-r from-amber-500/10 via-gold-primary/8 to-amber-500/10 border border-gold-primary/25 p-5">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+            <span className="text-amber-300 text-xs uppercase tracking-wider font-bold">
+              {isEn ? 'For You Right Now' : 'अभी आपके लिए'}
+            </span>
+          </div>
+          <p className="text-text-primary text-sm leading-relaxed">{rightNowInsight}</p>
+        </div>
+      )}
+
+      {/* ===== CONVERGENCE SYNTHESIS ===== */}
       {convergence && (
         <ConvergenceSummary convergence={convergence} locale={locale} headingFont={headingFont} />
       )}
 
-      {/* ===== AI READING (premium, below convergence) ===== */}
+      {/* ===== AI READING ===== */}
       <AIReadingButton kundali={kundali} locale={locale} headingFont={headingFont} />
 
       {/* RAG status indicator */}
@@ -367,6 +464,7 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
         </div>
       )}
 
+      <SectionDivider />
       {/* ===== YEAR PREDICTIONS (at top — most immediately relevant) ===== */}
       <YearPredictionsSection tip={tip} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tTip={tTip} />
 
@@ -1237,6 +1335,29 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
             })}
           </div>
         </section>
+      )}
+
+      {/* ═══ ACTION PLAN SUMMARY ═══ */}
+      {actionItems.length > 0 && (
+        <>
+          <SectionDivider />
+          <div className="rounded-2xl bg-gradient-to-br from-emerald-500/5 via-[#1a1040]/40 to-[#0a0e27] border border-emerald-500/20 p-6 sm:p-8">
+            <h3 className="text-emerald-400 text-lg font-bold mb-1" style={headingFont}>
+              {isEn ? 'Your Action Plan' : 'आपकी कार्य योजना'}
+            </h3>
+            <p className="text-text-secondary text-xs mb-5">
+              {isEn ? 'Prioritized steps based on your chart analysis' : 'कुण्डली विश्लेषण पर आधारित प्राथमिक कदम'}
+            </p>
+            <div className="space-y-3">
+              {actionItems.slice(0, 5).map((item, i) => (
+                <div key={i} className="flex gap-3">
+                  <span className="w-7 h-7 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
+                  <p className="text-text-primary text-sm leading-relaxed">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
       )}
     </div>
   );

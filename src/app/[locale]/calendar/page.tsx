@@ -6,7 +6,9 @@ import MSG from '@/messages/pages/calendar.json';
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, ChevronDown, MapPin, Search, Loader2, Download, Sparkles } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ChevronDown, MapPin, Loader2, Download, Sparkles } from 'lucide-react';
+import LocationSearch from '@/components/ui/LocationSearch';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { useAuthStore } from '@/stores/auth-store';
 import { useLocationStore } from '@/stores/location-store';
 import { getSupabase } from '@/lib/supabase/client';
@@ -35,6 +37,9 @@ import { FESTIVAL_DETAILS, CATEGORY_DETAILS, EKADASHI_NAMES, getHinduMonth } fro
 import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-details';
 import type { LocaleText, Locale} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { CalendarDays } from 'lucide-react';
+import dynamic from 'next/dynamic';
+const TithiMonthGrid = dynamic(() => import('@/components/calendar/TithiMonthGrid'), { ssr: false });
 
 const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -82,7 +87,7 @@ const HINDU_MONTHS = [
 ];
 
 type Filter = 'all' | 'major' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham' | 'vrat' | 'eclipse';
-type ViewMode = 'western' | 'lunar';
+type ViewMode = 'western' | 'lunar' | 'grid';
 
 interface LocationData { lat: number; lng: number; name: string; tz: number; timezone: string; }
 
@@ -172,8 +177,6 @@ export default function CalendarPage() {
   const [location, setLocation] = useState<LocationData | null>(null);
   const [detectingLocation, setDetectingLocation] = useState(true);
   const [showLocationSearch, setShowLocationSearch] = useState(false);
-  const [locationInput, setLocationInput] = useState('');
-  const [searchingLocation, setSearchingLocation] = useState(false);
 
   // Modal state
   const [modalOpen, setModalOpen] = useState(false);
@@ -225,25 +228,6 @@ export default function CalendarPage() {
     }
   }, []);
 
-  const handleLocationSearch = async () => {
-    if (!locationInput.trim()) return;
-    setSearchingLocation(true);
-    try {
-      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationInput)}&limit=1`);
-      const data = await res.json();
-      if (data && data[0]) {
-        const lat = parseFloat(data[0].lat);
-        const lng = parseFloat(data[0].lon);
-        const approxTz = -new Date().getTimezoneOffset() / 60;
-        // Location store timezone takes priority over browser timezone
-        const browserTimezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-        setLocation({ lat, lng, name: data[0].display_name.split(',').slice(0, 3).join(', '), tz: approxTz, timezone: browserTimezone });
-        setShowLocationSearch(false);
-        setLocationInput('');
-      }
-    } catch { /* ignore */ }
-    setSearchingLocation(false);
-  };
 
   useEffect(() => {
     if (!location) return; // Don't fetch until location is resolved
@@ -396,24 +380,17 @@ export default function CalendarPage() {
               ? 'All festival dates, tithi timings, and parana windows depend on your location. Please enter your city to see accurate data.'
               : 'सभी त्यौहार तिथियाँ, तिथि समय और पारण समय आपके स्थान पर निर्भर हैं। सटीक डेटा के लिए अपना शहर दर्ज करें।'}
           </p>
-          <div className="flex items-center gap-2 w-full">
-            <input
-              type="text"
-              value={locationInput}
-              onChange={e => setLocationInput(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && handleLocationSearch()}
-              placeholder={msg('enterCityPlaceholder', locale)}
-              className="flex-1 px-4 py-3 rounded-lg bg-bg-tertiary border border-gold-primary/30 text-text-primary text-sm placeholder:text-text-secondary/70 focus:outline-none focus:border-gold-primary/60"
-              autoFocus
-            />
-            <button
-              onClick={handleLocationSearch}
-              disabled={searchingLocation}
-              className="px-4 py-3 rounded-lg bg-gold-primary/20 hover:bg-gold-primary/30 transition-all border border-gold-primary/30"
-            >
-              {searchingLocation ? <Loader2 className="w-5 h-5 text-gold-primary animate-spin" /> : <Search className="w-5 h-5 text-gold-primary" />}
-            </button>
-          </div>
+          <LocationSearch
+            value=""
+            placeholder={msg('enterCityPlaceholder', locale)}
+            className="w-full"
+            onSelect={(loc) => {
+              const now = new Date();
+              const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), loc.timezone);
+              setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, tz, timezone: loc.timezone });
+              setShowLocationSearch(false);
+            }}
+          />
         </div>
       ) : (
         <div className="flex flex-col items-center gap-2 mb-6">
@@ -427,23 +404,17 @@ export default function CalendarPage() {
             <ChevronDown className={`w-3 h-3 text-text-secondary transition-transform ${showLocationSearch ? 'rotate-180' : ''}`} />
           </button>
           {showLocationSearch && (
-            <div className="flex items-center gap-2 w-full max-w-sm">
-              <input
-                type="text"
-                value={locationInput}
-                onChange={e => setLocationInput(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && handleLocationSearch()}
-                placeholder={msg('enterCityOrLocationPlaceholder', locale)}
-                className="flex-1 px-3 py-2 rounded-lg bg-bg-tertiary border border-gold-primary/20 text-text-primary text-sm placeholder:text-text-secondary/70 focus:outline-none focus:border-gold-primary/50"
-              />
-              <button
-                onClick={handleLocationSearch}
-                disabled={searchingLocation}
-                className="p-2 rounded-lg bg-gold-primary/20 hover:bg-gold-primary/30 transition-all"
-              >
-                {searchingLocation ? <Loader2 className="w-4 h-4 text-gold-primary animate-spin" /> : <Search className="w-4 h-4 text-gold-primary" />}
-              </button>
-            </div>
+            <LocationSearch
+              value=""
+              placeholder={msg('enterCityOrLocationPlaceholder', locale)}
+              className="w-full max-w-sm"
+              onSelect={(loc) => {
+                const now = new Date();
+                const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), loc.timezone);
+                setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, tz, timezone: loc.timezone });
+                setShowLocationSearch(false);
+              }}
+            />
           )}
         </div>
       )}
@@ -462,13 +433,24 @@ export default function CalendarPage() {
         </button>
         <button
           onClick={() => { setViewMode('lunar'); setSelectedMonth(null); }}
-          className={`px-4 py-2 rounded-r-xl text-xs font-bold transition-all border ${
+          className={`px-4 py-2 text-xs font-bold transition-all border ${
             viewMode === 'lunar'
               ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
               : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
           }`}
         >
           {msg('hinduLunarMonths', locale)}
+        </button>
+        <button
+          onClick={() => { setViewMode('grid'); setSelectedMonth(new Date().getMonth()); }}
+          className={`px-4 py-2 rounded-r-xl text-xs font-bold transition-all border flex items-center gap-1.5 ${
+            viewMode === 'grid'
+              ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
+              : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
+          }`}
+        >
+          <CalendarDays className="w-3.5 h-3.5" />
+          {locale === 'en' || String(locale) === 'ta' ? 'Tithi Grid' : 'तिथि ग्रिड'}
         </button>
       </div>
 
@@ -560,12 +542,127 @@ export default function CalendarPage() {
 
       <AdUnit placement="leaderboard" className="max-w-4xl mx-auto" />
 
+      {/* Tithi Grid View */}
+      {viewMode === 'grid' && !loading && location && selectedMonth !== null && (() => {
+        const gridMonth = selectedMonth + 1; // 0-indexed to 1-indexed
+        const todayStr = new Date().toISOString().split('T')[0];
+        const daysInGridMonth = new Date(year, gridMonth, 0).getDate();
+
+        // Build tithi data for each day from the existing festivals data
+        // Use festivals array to annotate days, and compute tithi from panchang
+        const gridDays: import('@/components/calendar/TithiMonthGrid').TithiDayData[] = [];
+        for (let d = 1; d <= daysInGridMonth; d++) {
+          const dateStr = `${year}-${String(gridMonth).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+          const dayFestivals = festivals
+            .filter(f => f.date === dateStr)
+            .map(f => ({ name: f.name, type: f.type, slug: f.slug }));
+
+          // Derive tithi from festival data if available, otherwise use a simplified computation
+          // For the grid, we use the panchang data that was already fetched with the festivals
+          const matchingFestival = festivals.find(f => f.date === dateStr);
+          const paksha = matchingFestival?.paksha || 'shukla';
+
+          // Compute tithi number from the date using basic elongation
+          // This is approximate for the grid — the exact tithi comes from the panchang engine
+          const tithiName = matchingFestival?.tithi
+            ? { en: matchingFestival.tithi, hi: matchingFestival.tithi, sa: matchingFestival.tithi }
+            : { en: '—', hi: '—', sa: '—' };
+
+          // Find tithi number from the name or derive from panchang data
+          const TITHI_NUMBERS: Record<string, number> = {
+            'Pratipada': 1, 'Dwitiya': 2, 'Tritiya': 3, 'Chaturthi': 4,
+            'Panchami': 5, 'Shashthi': 6, 'Saptami': 7, 'Ashtami': 8,
+            'Navami': 9, 'Dashami': 10, 'Ekadashi': 11, 'Dwadashi': 12,
+            'Trayodashi': 13, 'Chaturdashi': 14, 'Purnima': 15, 'Amavasya': 30,
+          };
+          let tithiNum = 1;
+          if (matchingFestival?.tithi) {
+            // Extract tithi name from the string (e.g., "Shukla Ashtami" -> "Ashtami")
+            const parts = matchingFestival.tithi.split(' ');
+            const tName = parts[parts.length - 1];
+            tithiNum = TITHI_NUMBERS[tName] || 1;
+            if (paksha === 'krishna' && tithiNum <= 15 && tithiNum !== 30) {
+              tithiNum += 15;
+            }
+          }
+
+          gridDays.push({
+            date: dateStr,
+            day: d,
+            tithiNumber: tithiNum,
+            tithiName,
+            paksha,
+            festivals: dayFestivals,
+            isToday: dateStr === todayStr,
+          });
+        }
+
+        return (
+          <div className="my-6">
+            <div className="flex items-center justify-between mb-4">
+              <button
+                onClick={() => {
+                  if (selectedMonth === 0) { setYear(year - 1); setSelectedMonth(11); }
+                  else setSelectedMonth(selectedMonth - 1);
+                }}
+                className="p-2 rounded-lg border border-gold-primary/15 text-gold-primary hover:bg-gold-primary/10 transition-colors"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <h3 className="text-gold-light text-lg font-bold" style={headingFont}>
+                {(isDevanagari ? MONTH_NAMES_HI : MONTH_NAMES)[selectedMonth]} {year}
+              </h3>
+              <button
+                onClick={() => {
+                  if (selectedMonth === 11) { setYear(year + 1); setSelectedMonth(0); }
+                  else setSelectedMonth(selectedMonth + 1);
+                }}
+                className="p-2 rounded-lg border border-gold-primary/15 text-gold-primary hover:bg-gold-primary/10 transition-colors"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Legend */}
+            <div className="flex flex-wrap items-center gap-3 mb-4 justify-center text-xs text-text-secondary">
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-amber-400/80" />
+                <span>{locale === 'en' || String(locale) === 'ta' ? 'Purnima' : 'पूर्णिमा'}</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-[#1a1040] border border-gold-dark/50" />
+                <span>{locale === 'en' || String(locale) === 'ta' ? 'Amavasya' : 'अमावस्या'}</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-2 rounded bg-gold-primary/15 border border-gold-primary/20" />
+                <span>{locale === 'en' || String(locale) === 'ta' ? 'Festival' : 'त्योहार'}</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-2 rounded bg-violet-500/15 border border-violet-500/20" />
+                <span>{locale === 'en' || String(locale) === 'ta' ? 'Vrat' : 'व्रत'}</span>
+              </div>
+            </div>
+
+            <TithiMonthGrid
+              year={year}
+              month={gridMonth}
+              days={gridDays}
+              locale={locale}
+              onDayClick={(date) => {
+                // Navigate to daily panchang for that date
+                window.location.href = `/${locale}/panchang?date=${date}`;
+              }}
+            />
+          </div>
+        );
+      })()}
+
       {/* Festival & Vrat lists — separated */}
-      {loading ? (
+      {viewMode !== 'grid' && loading ? (
         <div className="flex items-center justify-center py-20">
           <div className="animate-spin rounded-full h-12 w-12 border-2 border-gold-primary border-t-transparent" />
         </div>
-      ) : (() => {
+      ) : viewMode !== 'grid' && (() => {
         const festivalItems = filteredFestivals.filter(f => f.type === 'major' || f.type === 'eclipse');
         const vratItems = filteredFestivals.filter(f => f.type === 'vrat');
         const showFestivals = filter === 'all' || filter === 'major' || filter === 'eclipse';

@@ -4,7 +4,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
-import { ArrowLeft, MapPin, Loader2, Search, Compass } from 'lucide-react';
+import { ArrowLeft, MapPin, Loader2, Compass } from 'lucide-react';
+import LocationSearch from '@/components/ui/LocationSearch';
 import GoldDivider from '@/components/ui/GoldDivider';
 import LearnLink from '@/components/ui/LearnLink';
 import { MuhurtaIcon } from '@/components/icons/PanchangIcons';
@@ -59,8 +60,6 @@ export default function AuspiciousTimingsPage() {
   const [loading, setLoading] = useState(true);
   const [location, setLocation] = useState<LocationData>({ lat: 0, lng: 0, name: '', tz: 0 });
   const [selectedDate, setSelectedDate] = useState('');
-  const [locationInput, setLocationInput] = useState('');
-  const [searchingLocation, setSearchingLocation] = useState(false);
   const [showLocationSearch, setShowLocationSearch] = useState(false);
   const [detectingLocation, setDetectingLocation] = useState(false);
 
@@ -139,28 +138,6 @@ export default function AuspiciousTimingsPage() {
 
   useEffect(() => { fetchPanchang(); }, [fetchPanchang]);
 
-  const handleLocationSearch = async () => {
-    if (!locationInput.trim()) return;
-    setSearchingLocation(true);
-    try {
-      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationInput)}&limit=1`);
-      const data = await res.json();
-      if (data.length > 0) {
-        const lng = parseFloat(data[0].lon);
-        // Location store timezone takes priority over browser timezone
-        const ianaTimezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
-        const now = new Date();
-        const approxTz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTimezone);
-        setLocation({ lat: parseFloat(data[0].lat), lng, name: data[0].display_name.split(',').slice(0, 3).join(', '), tz: approxTz });
-        setShowLocationSearch(false);
-        setLocationInput('');
-      }
-    } catch (err) {
-      console.error('[auspicious] location search failed:', err);
-      alert('Location search failed. Please check your connection and try again.');
-    }
-    setSearchingLocation(false);
-  };
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -203,22 +180,18 @@ export default function AuspiciousTimingsPage() {
           </div>
         </div>
         {showLocationSearch && (
-          <div className="flex items-center justify-center gap-2 mt-3">
-            <input
-              type="text"
-              value={locationInput}
-              onChange={(e) => setLocationInput(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleLocationSearch()}
+          <div className="flex justify-center mt-3">
+            <LocationSearch
+              value=""
               placeholder={msg('searchCity', locale)}
-              className="bg-bg-secondary border border-gold-primary/20 rounded-lg px-3 py-2 text-sm text-text-primary w-64 focus:outline-none focus:border-gold-primary/50"
+              className="w-full max-w-sm"
+              onSelect={(loc) => {
+                const now = new Date();
+                const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), loc.timezone);
+                setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, tz });
+                setShowLocationSearch(false);
+              }}
             />
-            <button
-              onClick={handleLocationSearch}
-              disabled={searchingLocation}
-              className="bg-gold-primary/20 border border-gold-primary/30 rounded-lg px-3 py-2 text-gold-light text-sm hover:bg-gold-primary/30 transition-colors cursor-pointer"
-            >
-              {searchingLocation ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
-            </button>
           </div>
         )}
       </div>

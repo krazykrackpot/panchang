@@ -4,6 +4,7 @@ import type { MetadataRoute } from 'next';
 // the long tail until the domain earns more crawl authority.
 import { getAllPairSlugs } from '@/lib/constants/rashi-slugs';
 import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types';
+import { getTransitArticleSlugs } from '@/lib/content/transit-articles';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -482,6 +483,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.6,
       });
     }
+  }
+
+  // Transit article pages (/learn/transits/[slug])
+  for (const slug of getTransitArticleSlugs()) {
+    addEntries(entries, `/learn/transits/${slug}`, {
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    });
   }
 
   // Muhurta × Activity × Month × Year × City programmatic SEO pages

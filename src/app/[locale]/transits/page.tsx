@@ -305,7 +305,7 @@ export default function TransitsPage() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
@@ -436,7 +436,7 @@ export default function TransitsPage() {
                 <h2 className="text-lg text-gold-gradient font-bold mb-1 text-center md:text-left" style={headingFont}>
                   {msg('currentPlanetaryPositions', locale)}
                 </h2>
-                <p className="text-text-secondary text-xs mb-4 text-center md:text-left">
+                <p className="text-text-secondary text-xs mb-4 text-center md:text-left" suppressHydrationWarning>
                   {new Date().toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
                   {' — Gochara'}
                 </p>
@@ -760,10 +760,10 @@ export default function TransitsPage() {
               : 'सूर्य 0° सायन मेष में प्रवेश करता है — ज्योतिषीय नव वर्ष। यह चार्ट वर्षभर के सांसारिक विषयों का संकेत देता है।'}
           </p>
           <div className="rounded-xl bg-gold-primary/8 border border-gold-primary/20 p-4 text-center mb-5">
-            <div className="text-gold-light font-bold text-2xl font-mono" style={headingFont}>
+            <div className="text-gold-light font-bold text-2xl font-mono" style={headingFont} suppressHydrationWarning>
               {meshaSankranti.date.toLocaleDateString(msg('meshaSankrantiDateLocale', locale), { day: 'numeric', month: 'long', year: 'numeric' })}
             </div>
-            <div className="text-gold-primary/70 text-sm mt-1">
+            <div className="text-gold-primary/70 text-sm mt-1" suppressHydrationWarning>
               {meshaSankranti.date.toLocaleTimeString(msg('meshaSankrantiDateLocale', locale), { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}
             </div>
             <div className="text-text-secondary/70 text-xs mt-2" style={bodyFont}>

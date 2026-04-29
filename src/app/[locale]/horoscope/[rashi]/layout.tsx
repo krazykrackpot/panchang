@@ -33,11 +33,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title,
     description,
+    // Dual-script keywords: Latin for EN/global search, Devanagari for HI users searching in Hindi
     keywords: [
       `${westernName.toLowerCase()} horoscope today`,
       `${vedicName.toLowerCase()} rashifal`,
       `${westernName.toLowerCase()} daily horoscope`,
       `${rashi} rashi today`,
+      `${hindiName} राशि`,
+      `${hindiName} राशिफल`,
+      `${hindiName} राशिफल आज`,
       'vedic horoscope',
       'daily rashifal',
       'moon sign horoscope',

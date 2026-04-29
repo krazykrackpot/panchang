@@ -51,6 +51,8 @@ export async function generateMetadata({
   const dateStr = today.toLocaleDateString(msg('localeId', locale), {
     day: 'numeric', month: 'long', year: 'numeric',
   });
+  // Short date for compact title (e.g. "Apr 27")
+  const shortDateStr = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
   // Compute actual Tithi and Nakshatra for the dynamic meta title
   // This gives users a preview of today's panchang right in the search result
@@ -64,9 +66,43 @@ export async function generateMetadata({
   const metaTithi = metaPanchang.tithi.name[locale as 'en' | 'hi'] || metaPanchang.tithi.name.en;
   const metaNakshatra = metaPanchang.nakshatra.name[locale as 'en' | 'hi'] || metaPanchang.nakshatra.name.en;
 
-  const title = tl({ en: `${city.name.en} Panchang Today — ${metaTithi}, ${metaNakshatra} | ${dateStr} | Dekho Panchang`, hi: `${cityName} पंचांग आज — ${metaTithi}, ${metaNakshatra} | ${dateStr} | Dekho Panchang`, sa: `${cityName} पंचांग आज — ${metaTithi}, ${metaNakshatra} | ${dateStr} | Dekho Panchang` }, locale);
+  // Map IANA timezones to short abbreviations for diaspora cities.
+  // Only shown for non-Indian cities — Indian cities all share IST and don't need it.
+  const TZ_SHORT: Record<string, string> = {
+    'America/New_York':       'EST',
+    'America/Los_Angeles':    'PST',
+    'America/Chicago':        'CST',
+    'Europe/London':          'GMT',
+    'Australia/Sydney':       'AEST',
+    'Australia/Melbourne':    'AEST',
+    'America/Toronto':        'EST',
+    'Asia/Singapore':         'SGT',
+    'Asia/Dubai':             'GST',
+    'Asia/Kuala_Lumpur':      'MYT',
+    'Indian/Mauritius':       'MUT',
+    'Pacific/Fiji':           'FJT',
+    'Pacific/Auckland':       'NZST',
+    'America/Port_of_Spain':  'AST',
+  };
+  const isDiaspora = city.timezone !== 'Asia/Kolkata';
+  const tzShort = isDiaspora ? TZ_SHORT[city.timezone] : null;
 
-  const description = tl({ en: `Today's Panchang for ${city.name.en}, ${city.state} — accurate sunrise, sunset, tithi, nakshatra, yoga, karana, Rahu Kaal, Yamaganda & Gulika timings. Vedic calculations using Lahiri Ayanamsha.`, hi: `${cityName}, ${city.state} का आज का पंचांग — सटीक सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, करण, राहुकाल, यमगण्ड और गुलिक काल। लाहिरी अयनांश पर आधारित वैदिक गणना।`, sa: `${cityName}, ${city.state} का आज का पंचांग — सटीक सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, करण, राहुकाल, यमगण्ड और गुलिक काल। लाहिरी अयनांश पर आधारित वैदिक गणना।` }, locale);
+  // Diaspora title: "New York Panchang Today (EST) — Dvitiya, Ashwini | Apr 27 | Dekho Panchang"
+  // Indian title:   "Delhi Panchang Today — Dvitiya, Ashwini | Apr 27, 2026 | Dekho Panchang"
+  const titleEn = tzShort
+    ? `${city.name.en} Panchang Today (${tzShort}) — ${metaTithi}, ${metaNakshatra} | ${shortDateStr} | Dekho Panchang`
+    : `${city.name.en} Panchang Today — ${metaTithi}, ${metaNakshatra} | ${dateStr} | Dekho Panchang`;
+  const titleHi = `${cityName} पंचांग आज — ${metaTithi}, ${metaNakshatra} | ${dateStr} | Dekho Panchang`;
+
+  const title = tl({ en: titleEn, hi: titleHi, sa: titleHi }, locale);
+
+  // Diaspora descriptions mention Hindu diaspora / NRI context with timezone for relevance
+  const descriptionEn = isDiaspora
+    ? `Daily Vedic Panchang for Hindus in ${city.name.en}. Accurate Tithi, Nakshatra, Muhurta times${tzShort ? ` in ${tzShort}` : ''}. Swiss Ephemeris precision.`
+    : `Today's Panchang for ${city.name.en}, ${city.state} — accurate sunrise, sunset, tithi, nakshatra, yoga, karana, Rahu Kaal, Yamaganda & Gulika timings. Vedic calculations using Lahiri Ayanamsha.`;
+  const descriptionHi = `${cityName}, ${city.state} का आज का पंचांग — सटीक सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, करण, राहुकाल, यमगण्ड और गुलिक काल। लाहिरी अयनांश पर आधारित वैदिक गणना।`;
+
+  const description = tl({ en: descriptionEn, hi: descriptionHi, sa: descriptionHi }, locale);
 
   const url = `${BASE_URL}/${locale}/panchang/${citySlug}`;
 

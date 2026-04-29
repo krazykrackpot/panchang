@@ -27,7 +27,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const cityName = tl(cityData.name, locale) || cityData.name.en;
   const cityNameEn = cityData.name.en;
 
-  const title = `${festivalNameEn} ${year} — Exact Date & Puja Time in ${cityNameEn} | Dekho Panchang`;
+  // Diaspora users search "{festival} {city}" (city prominent), e.g. "Diwali New York"
+  // Indian users search "{festival}" first (festival prominent), e.g. "Diwali Mumbai date"
+  const isDiaspora = cityData.timezone !== 'Asia/Kolkata';
+  const title = isDiaspora
+    ? `${festivalNameEn} ${year} ${cityNameEn} — Date, Puja Time | Dekho Panchang`
+    : `${festivalNameEn} ${year} — Exact Date & Puja Time in ${cityNameEn} | Dekho Panchang`;
   const description = `${festivalNameEn} ${year} in ${cityNameEn}: exact Tithi, Muhurta, Lakshmi Puja timing computed from Vedic algorithms. City-specific accuracy for ${cityNameEn}${cityData.state ? `, ${cityData.state}` : ''}.`.slice(0, 155);
 
   const url = `${BASE_URL}/${locale}/festivals/${slug}/${year}/${city}`;

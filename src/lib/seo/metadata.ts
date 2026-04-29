@@ -648,14 +648,16 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['tamil calendar', 'telugu calendar', 'bengali calendar', 'regional panchang'],
   },
   '/calendar/regional/tamil': {
-    title: { en: 'Tamil Calendar (Panchangam) — Monthly Guide with Festivals', hi: 'तमिल कैलेंडर (पंचांगम्) — त्योहारों सहित मासिक मार्गदर्शिका', sa: 'तमिलपञ्चाङ्गम् — पर्वसहितमासिकमार्गदर्शिका' },
+    // Tamil script in title helps this result stand out for Tamil-speaking searches
+    title: { en: 'Tamil Calendar (தமிழ் நாள்காட்டி) 2026 — Panchangam & Festivals | Dekho Panchang', hi: 'तमिल कैलेंडर (தமிழ் நாள்காட்டி) 2026 — पंचांगम् और त्योहार | Dekho Panchang', sa: 'तमिलपञ्चाङ्गम् (தமிழ் நாள்காட்டி) 2026 — पर्वाणि च।' },
     description: { en: 'Complete Tamil Panchangam guide — 12 solar months from Chithirai to Panguni, festivals like Pongal, Chithirai Thiruvizha, Karthigai Deepam, and how Tamil calendar differs from North Indian systems.', hi: 'सम्पूर्ण तमिल पंचांगम् — चित्तिरै से पंगुनि तक 12 सौर मास, पोंगल, चित्तिरै तिरुविळा, कार्तिगै दीपम् जैसे त्योहार।', sa: 'सम्पूर्णतमिलपञ्चाङ्गम् — चित्तिरैतः पङ्गुनिपर्यन्तं १२ सौरमासाः पर्वाणि च।' },
-    keywords: ['tamil calendar', 'tamil panchangam', 'tamil months', 'pongal', 'puthandu', 'chithirai', 'karthigai deepam'],
+    keywords: ['tamil calendar', 'tamil panchangam', 'tamil months', 'pongal', 'puthandu', 'chithirai', 'karthigai deepam', 'தமிழ் நாள்காட்டி', 'தமிழ் பஞ்சாங்கம்'],
   },
   '/calendar/regional/bengali': {
-    title: { en: 'Bengali Calendar (Panjika) — Monthly Guide with Festivals', hi: 'बंगाली कैलेंडर (पंजिका) — त्योहारों सहित मासिक मार्गदर्शिका', sa: 'बङ्गालपञ्जिका — पर्वसहितमासिकमार्गदर्शिका' },
-    description: { en: 'Complete Bengali Panjika guide — 12 months from Boishakh to Choitro, Durga Puja schedule, Poila Boishakh, Kali Puja, Saraswati Puja, and how Bengali calendar differs from other systems.', hi: 'सम्पूर्ण बंगाली पंजिका — बैशाख से चैत्र तक 12 मास, दुर्गा पूजा, पहला बैशाख, काली पूजा, सरस्वती पूजा।', sa: 'सम्पूर्णबङ्गालपञ्जिका — बैशाखात् चैत्रपर्यन्तं १२ मासाः दुर्गापूजा च।' },
-    keywords: ['bengali calendar', 'bangla panjika', 'bengali months', 'durga puja', 'poila boishakh', 'kali puja', 'saraswati puja'],
+    // Bengali script (বাংলা) in title makes this result stand out for Bangladeshi users searching in their script
+    title: { en: 'Bengali Calendar (বাংলা পঞ্জিকা) 2026 — Tithi, Festivals & Ekadashi | Dekho Panchang', hi: 'बंगाली पंचांग (বাংলা পঞ্জিকা) 2026 — तिथि, त्योहार और एकादशी | Dekho Panchang', sa: 'বাংলা পঞ্জিকা 2026 — बङ्गालपञ्जिका पर्वाणि च।' },
+    description: { en: 'Complete Bengali Panjika guide — 12 months from Boishakh to Choitro, Durga Puja schedule, Poila Boishakh, Kali Puja, Saraswati Puja, and how Bengali calendar differs from other systems.', hi: 'सम्पूर्ण बंगाली पंजिका — बैशाख से चैत्र तक 12 मास, दुर्गा पूजा, पहला बैशाख, काली पूजा, सरस्वती पूजा।', sa: 'সম্পূর্ণ বাংলা পঞ্জিকা — বৈশাখ থেকে চৈত্র।' },
+    keywords: ['bengali calendar', 'bangla panjika', 'bengali months', 'durga puja', 'poila boishakh', 'kali puja', 'saraswati puja', 'বাংলা পঞ্জিকা', 'বাংলা ক্যালেন্ডার'],
   },
   '/about': {
     title: { en: 'About Dekho Panchang — Vedic Astronomy Made Accessible', hi: 'देखो पंचांग के बारे में', sa: 'देखोपञ्चाङ्गस्य विषये' },

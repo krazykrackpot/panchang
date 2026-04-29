@@ -77,15 +77,25 @@ export default function SudarshanaTab({ kundali, locale }: SudarshanaTabProps) {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="text-center">
+      <div className="text-center mb-6">
         <h2 className="text-2xl font-bold text-gold-light mb-2">
           {isEn ? 'Sudarshana Chakra' : 'सुदर्शन चक्र'}
         </h2>
-        <p className="text-text-secondary text-sm max-w-xl mx-auto">
+        <p className="text-text-secondary text-sm max-w-xl mx-auto mb-3">
           {isEn
-            ? 'Triple-reference annual chart. Three concentric rings show activated houses from Lagna, Moon, and Sun simultaneously for each year of life.'
-            : 'तीन संकेन्द्रित वलय लग्न, चन्द्र एवं सूर्य से प्रत्येक वर्ष के सक्रिय भावों को एक साथ दर्शाते हैं।'}
+            ? 'Three concentric rings show your chart from three perspectives — Lagna (identity), Moon (emotions), and Sun (soul purpose) — simultaneously for each year of life.'
+            : 'तीन संकेन्द्रित वलय आपकी कुण्डली को तीन दृष्टिकोणों से दर्शाते हैं — लग्न (पहचान), चन्द्र (भावनाएँ), और सूर्य (आत्म-उद्देश्य)।'}
         </p>
+        <details className="inline-block text-left bg-white/[0.02] border border-gold-primary/10 rounded-xl max-w-lg mx-auto">
+          <summary className="px-4 py-2 cursor-pointer text-xs text-gold-primary hover:text-gold-light transition-colors">
+            {isEn ? 'How to use the Sudarshana Chakra' : 'सुदर्शन चक्र का उपयोग कैसे करें'}
+          </summary>
+          <div className="px-4 pb-3 text-xs text-text-secondary leading-relaxed">
+            {isEn
+              ? 'Slide the age slider to any year. The highlighted segment in each ring shows which house (life area) is activated that year from each reference point. When multiple rings highlight the same house, that area becomes intensely important. The outer gold ring = Lagna perspective (external events), the silver middle ring = Moon (emotional experience), the amber inner ring = Sun (soul growth).'
+              : 'आयु स्लाइडर को किसी भी वर्ष पर खिसकाएँ। प्रत्येक वलय में हाइलाइट खण्ड बताता है कि उस वर्ष कौन-सा भाव सक्रिय है। जब कई वलय एक ही भाव को हाइलाइट करें, तो वह क्षेत्र अत्यन्त महत्वपूर्ण हो जाता है।'}
+          </div>
+        </details>
       </div>
 
       {/* Age slider */}

@@ -141,16 +141,17 @@ function InsightBlock({ insight }: { insight: PanchangInsight | undefined }) {
 
   return (
     <div className="mt-2">
+      {/* Always-visible headline preview */}
+      <p className="text-gold-light/70 text-[11px] text-center mb-1 leading-snug">{insight.headline}</p>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="text-text-secondary text-xs hover:text-gold-light transition-colors flex items-center gap-1 mx-auto"
       >
         <ChevronDown className={`w-3 h-3 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-        What does this mean?
+        {isOpen ? 'Hide details' : 'What does this mean?'}
       </button>
       {isOpen && (
         <div className="mt-2 p-3 rounded-lg bg-gold-primary/5 border border-gold-primary/10 text-sm text-left">
-          <p className="font-medium text-gold-light mb-1 text-xs">{insight.headline}</p>
           <p className="text-text-primary text-xs leading-relaxed mb-2">{insight.explanation}</p>
           {insight.bestFor.length > 0 && (
             <p className="text-text-secondary text-xs">
@@ -1150,6 +1151,11 @@ export default function PanchangClient() {
 
           {/* ═══ TIMES — BOLD ═══ */}
           <GoldDivider />
+          <p className="text-text-secondary/60 text-xs text-center mt-4 -mb-2 max-w-lg mx-auto">
+            {isDevanagari
+              ? 'सूर्योदय और सूर्यास्त वैदिक दिन (अहोरात्र) को परिभाषित करते हैं। सभी मुहूर्त, होरा और चौघड़िया इन्हीं क्षणों से गणित होते हैं।'
+              : 'Sunrise and sunset define the Vedic day (ahoratra). All muhurta timings, hora divisions, and choghadiya periods are calculated from these exact moments.'}
+          </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5 my-8">
             {[
               { label: t('sunrise'), value: panchang.sunrise, Icon: SunriseIcon },

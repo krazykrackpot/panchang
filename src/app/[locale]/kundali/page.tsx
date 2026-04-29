@@ -1450,6 +1450,15 @@ export default function KundaliPage() {
               <a href={`/${locale}/learn/birth-chart`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">
                 {locale === 'en' || isTamil ? 'Learn about Birth Charts \u2192' : 'जन्म कुण्डली के बारे में जानें \u2192'}
               </a>
+              <details className="mb-4 bg-white/[0.02] border border-gold-primary/10 rounded-xl group">
+                <summary className="px-5 py-3 cursor-pointer text-sm text-gold-primary hover:text-gold-light transition-colors">
+                  {locale === 'en' || isTamil ? 'What is a Birth Chart?' : 'जन्म कुण्डली क्या है?'}
+                </summary>
+                <div className="px-5 pb-4 text-sm text-text-secondary leading-relaxed space-y-2">
+                  <p>{locale === 'en' || isTamil ? 'Your birth chart (Kundali/Rashi chart/D1) is a snapshot of the sky at the exact moment and location of your birth. The 12 houses represent different life areas, and the planets placed within them reveal your innate tendencies, strengths, and challenges.' : 'जन्म कुण्डली आपके जन्म के सटीक क्षण और स्थान पर आकाश का चित्र है। 12 भाव जीवन के विभिन्न क्षेत्रों का प्रतिनिधित्व करते हैं, और उनमें स्थित ग्रह आपकी सहज प्रवृत्तियों, शक्तियों और चुनौतियों को प्रकट करते हैं।'}</p>
+                  <p>{locale === 'en' || isTamil ? 'How to read: The top diamond is House 1 (your personality). Moving clockwise: House 2 (wealth), House 3 (courage), and so on. Planet abbreviations (Su=Sun, Mo=Moon, Ma=Mars, Me=Mercury, Ju=Jupiter, Ve=Venus, Sa=Saturn, Ra=Rahu, Ke=Ketu) show where each planet was at your birth.' : 'कैसे पढ़ें: ऊपर का हीरा भाव 1 (व्यक्तित्व) है। दक्षिणावर्त: भाव 2 (धन), भाव 3 (साहस), इत्यादि। ग्रह संक्षेप बताते हैं कि आपके जन्म के समय कौन-सा ग्रह कहाँ था।'}</p>
+                </div>
+              </details>
               {/* Chart type selector — all Parashara vargas */}
               <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 mb-4">
               <div className="flex sm:flex-wrap sm:justify-center gap-1.5 min-w-max sm:min-w-0">
@@ -2240,6 +2249,16 @@ export default function KundaliPage() {
           {/* ===== DASHA TAB ===== */}
           {activeTab === 'dasha' && (
             <div className="space-y-3">
+              <details className="mb-1 bg-white/[0.02] border border-gold-primary/10 rounded-xl group" open>
+                <summary className="px-5 py-3 cursor-pointer text-sm text-gold-primary hover:text-gold-light transition-colors">
+                  {locale === 'en' || isTamil ? 'What are Dashas?' : 'दशाएँ क्या हैं?'}
+                </summary>
+                <div className="px-5 pb-4 text-sm text-text-secondary leading-relaxed">
+                  {locale === 'en' || isTamil
+                    ? 'Dashas are planetary time periods unique to your chart — a cosmic timetable showing which planet rules each phase of your life. The Vimshottari system divides life into 120 years across 9 planetary periods (Mahadasha), each subdivided into Antardasha and Pratyantardasha. During a planet\'s dasha, that planet\'s themes, houses, and significations become dominant in your life. The timeline below shows your complete dasha sequence — the highlighted band is your current period.'
+                    : 'दशाएँ आपकी कुण्डली के अनुसार ग्रहीय समय-खण्ड हैं — एक ब्रह्माण्डीय समय-सारणी जो बताती है कि जीवन के किस चरण पर कौन-सा ग्रह शासन करता है। विंशोत्तरी पद्धति जीवन को 120 वर्षों में 9 ग्रहीय महादशाओं में विभाजित करती है। किसी ग्रह की दशा में उस ग्रह के विषय प्रबल होते हैं।'}
+                </div>
+              </details>
               {/* Timeline mode toggle: Dashas Only vs Unified (Dashas + Transits) */}
               {kundali.dashas && kundali.dashas.length > 0 && (
                 <>
@@ -3502,6 +3521,15 @@ export default function KundaliPage() {
                     </p>
                   </div>
                 </div>
+              </div>
+
+              {/* Practical "why it matters" callout */}
+              <div className="rounded-xl bg-amber-500/5 border border-amber-500/15 p-4 text-center">
+                <p className="text-sm text-text-secondary leading-relaxed">
+                  {locale === 'en' || isTamil
+                    ? 'For most people, all three systems agree on sign placements. When they don\'t (shown in amber below), your chart interpretation depends on which system your astrologer uses. Planets within 1-2\u00b0 of a sign boundary are the most affected.'
+                    : 'अधिकांश लोगों के लिए, तीनों पद्धतियाँ राशि स्थानों पर सहमत होती हैं। जब वे नहीं होतीं (नीचे एम्बर में दिखाया गया), तो आपकी कुण्डली की व्याख्या इस बात पर निर्भर करती है कि आपके ज्योतिषी कौन-सी पद्धति का प्रयोग करते हैं।'}
+                </p>
               </div>
 
               {/* The comparison table + commentary */}

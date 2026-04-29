@@ -342,7 +342,8 @@ export default function AuspiciousTimingsPage() {
                 {((panchang as any).amritKalamAll as Array<{ start: string; end: string }> || [panchang.amritKalam]).map((a: { start: string; end: string }, i: number) => (
                   <div key={i} className="font-mono text-xl font-bold text-amber-300">{a.start} — {a.end}</div>
                 ))}
-                <div className="text-text-secondary text-xs mt-2 leading-relaxed">{t('amritKalamDesc')}</div>
+                <div className="text-emerald-400/60 text-[10px] mt-1.5 font-medium uppercase tracking-wider">{isDevanagari ? 'अत्यन्त शुभ' : 'Highly Auspicious'}</div>
+                <div className="text-text-secondary text-xs mt-1.5 leading-relaxed">{isDevanagari ? 'नक्षत्र-आधारित अमृत काल — दिन का सबसे शुभ खण्ड। नए कार्य, पूजा और महत्वपूर्ण निर्णयों के लिए श्रेष्ठ।' : 'The nectar period derived from the current nakshatra — the most auspicious window of the day. Ideal for new beginnings, worship, and important decisions.'}</div>
               </motion.div>
             ) : null}
 
@@ -569,7 +570,8 @@ export default function AuspiciousTimingsPage() {
                 className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/30 p-3 sm:p-4 md:p-6 text-center">
                 <div className="text-red-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('rahuKaal')}</div>
                 <div className="font-mono text-2xl font-bold text-red-300">{panchang.rahuKaal.start} — {panchang.rahuKaal.end}</div>
-                <div className="text-text-secondary text-xs mt-2">{msg('rahuKaalDesc', locale)}</div>
+                <div className="text-red-300/60 text-[10px] mt-1.5 font-medium uppercase tracking-wider">{isDevanagari ? 'अशुभ' : 'Inauspicious'}</div>
+                <div className="text-text-secondary text-xs mt-1.5 leading-relaxed">{isDevanagari ? 'राहु द्वारा शासित 90 मिनट की अशुभ अवधि। नए कार्य, यात्रा और महत्वपूर्ण निर्णय टालें। प्रत्येक वार को भिन्न समय।' : 'A 90-minute inauspicious window ruled by Rahu, the shadow planet of illusion. Avoid starting new ventures, travel, or important decisions. Rotates daily based on the weekday.'}</div>
               </motion.div>
 
               {/* Yamaganda */}
@@ -577,7 +579,8 @@ export default function AuspiciousTimingsPage() {
                 className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-orange-500/30 p-3 sm:p-4 md:p-6 text-center">
                 <div className="text-orange-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('yamaganda')}</div>
                 <div className="font-mono text-2xl font-bold text-orange-300">{panchang.yamaganda.start} — {panchang.yamaganda.end}</div>
-                <div className="text-text-secondary text-xs mt-2">{msg('yamagandaDesc', locale)}</div>
+                <div className="text-orange-300/60 text-[10px] mt-1.5 font-medium uppercase tracking-wider">{isDevanagari ? 'अशुभ' : 'Inauspicious'}</div>
+                <div className="text-text-secondary text-xs mt-1.5 leading-relaxed">{isDevanagari ? 'यम (मृत्यु के देवता) द्वारा शासित अशुभ काल। यात्रा और नए कार्यों के लिए विशेष रूप से प्रतिकूल।' : 'An inauspicious period ruled by Yama, the lord of death. Particularly unfavorable for travel and initiating new activities. Like Rahu Kaal, it rotates by weekday.'}</div>
               </motion.div>
 
               {/* Gulika Kaal */}
@@ -585,7 +588,8 @@ export default function AuspiciousTimingsPage() {
                 className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-yellow-500/30 p-3 sm:p-4 md:p-6 text-center">
                 <div className="text-yellow-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('gulikaKaal')}</div>
                 <div className="font-mono text-2xl font-bold text-yellow-300">{panchang.gulikaKaal.start} — {panchang.gulikaKaal.end}</div>
-                <div className="text-text-secondary text-xs mt-2">{msg('gulikaKaalDesc', locale)}</div>
+                <div className="text-yellow-300/60 text-[10px] mt-1.5 font-medium uppercase tracking-wider">{isDevanagari ? 'अशुभ' : 'Inauspicious'}</div>
+                <div className="text-text-secondary text-xs mt-1.5 leading-relaxed">{isDevanagari ? 'शनि-पुत्र गुलिक द्वारा शासित अवधि। यात्रा और वित्तीय निर्णयों के लिए प्रतिकूल।' : 'Ruled by Gulika, son of Saturn. Unfavorable for travel and financial decisions. Considered the weakest of the three inauspicious periods but still to be avoided for new beginnings.'}</div>
               </motion.div>
 
               {/* Dur Muhurtam */}
@@ -633,7 +637,8 @@ export default function AuspiciousTimingsPage() {
                   {((panchang as any).varjyamAll || [panchang.varjyam]).map((v: { start: string; end: string }, i: number) => (
                     <div key={i} className="font-mono text-xl font-bold text-red-300">{v.start} — {v.end}</div>
                   ))}
-                  <div className="text-text-secondary text-xs mt-2">{t('varjyamDesc')}</div>
+                  <div className="text-red-300/60 text-[10px] mt-1.5 font-medium uppercase tracking-wider">{isDevanagari ? 'अशुभ' : 'Inauspicious'}</div>
+                  <div className="text-text-secondary text-xs mt-1.5 leading-relaxed">{isDevanagari ? 'नक्षत्र-आधारित अशुभ काल। प्रत्येक नक्षत्र में एक विशिष्ट घटी-खण्ड वर्ज्य है। शुभ कार्य टालें।' : 'A nakshatra-based inauspicious period. Each nakshatra has a specific ghati span that is varjya (forbidden). Avoid auspicious activities during this window.'}</div>
                 </motion.div>
               )}
 

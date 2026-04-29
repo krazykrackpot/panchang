@@ -252,6 +252,99 @@ html.light .gold-divider {
   display: none;
 }
 
+/* ─── Cosmic Micro-Interactions ─── */
+
+/* 1. Auspicious pulse — soft gold glow for favorable elements */
+@keyframes auspicious-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 168, 83, 0); }
+  50% { box-shadow: 0 0 20px 4px rgba(212, 168, 83, 0.15); }
+}
+.auspicious-glow {
+  animation: auspicious-pulse 3s ease-in-out infinite;
+}
+
+/* 2. Gold shimmer — sweeping light effect for data transitions */
+@keyframes gold-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer-on-load {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212, 168, 83, 0.06) 25%,
+    rgba(240, 212, 138, 0.12) 50%,
+    rgba(212, 168, 83, 0.06) 75%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: gold-shimmer 2s ease-in-out;
+}
+
+/* 3. Breathing gold divider — slow opacity pulse */
+@keyframes breathe {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+.gold-divider-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+/* 4. Slow orbit — rotating background element */
+@keyframes orbit {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.cosmic-orbit {
+  animation: orbit 120s linear infinite;
+  pointer-events: none;
+}
+
+/* 5. Sacred geometry pattern — faint repeating yantra texture */
+.yantra-bg {
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(212, 168, 83, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(212, 168, 83, 0.02) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(212, 168, 83, 0.015) 1px, transparent 1px);
+  background-size: 60px 60px, 40px 40px, 80px 80px;
+}
+
+/* 6. Inauspicious subtle red pulse — for Rahu Kaal, Vishti etc */
+@keyframes caution-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+  50% { box-shadow: 0 0 12px 2px rgba(239, 68, 68, 0.1); }
+}
+.caution-glow {
+  animation: caution-pulse 3s ease-in-out infinite;
+}
+
+/* 7. Planet dot entrance — scale + glow for planet icons */
+@keyframes planet-appear {
+  0% { transform: scale(0); opacity: 0; filter: brightness(2); }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; filter: brightness(1); }
+}
+.planet-entrance {
+  animation: planet-appear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* 8. Text reveal — for sacred texts/mantras */
+@keyframes sacred-reveal {
+  0% { opacity: 0; letter-spacing: 0.5em; filter: blur(4px); }
+  100% { opacity: 1; letter-spacing: inherit; filter: blur(0); }
+}
+.sacred-text-reveal {
+  animation: sacred-reveal 1.5s ease-out both;
+}
+
+/* 9. Score ring animation — for circular score indicators */
+@keyframes score-ring-fill {
+  from { stroke-dashoffset: 283; }
+}
+.score-ring-animate {
+  animation: score-ring-fill 1.2s ease-out both;
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;

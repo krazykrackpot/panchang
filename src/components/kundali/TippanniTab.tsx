@@ -398,37 +398,47 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
         <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-gold-primary/5 blur-3xl" />
         <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-indigo-500/5 blur-3xl" />
 
-        {/* Top strip — key metrics */}
-        <div className="relative z-10 grid grid-cols-4 border-b border-gold-primary/10">
-          <div className="text-center py-4 px-2 border-r border-gold-primary/10">
-            <div className="text-xl font-bold font-mono" style={{ color: ELEMENT_COLORS_HERO[dominantElIdx] }}>{dominantElPct}%</div>
-            <div className="text-[9px] text-text-secondary/60 uppercase tracking-wider mt-0.5">{dominantElName}</div>
-          </div>
-          <div className="text-center py-4 px-2 border-r border-gold-primary/10">
+        {/* Top strip — key metrics with descriptors */}
+        <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 border-b border-gold-primary/10">
+          {(() => {
+            const ELEMENT_KEYWORDS_EN = ['passion · drive · action', 'stability · patience · material', 'intellect · communication · ideas', 'intuition · emotion · depth'];
+            const ELEMENT_KEYWORDS_HI = ['उत्साह · प्रेरणा · कर्म', 'स्थिरता · धैर्य · भौतिक', 'बुद्धि · संवाद · विचार', 'अन्तर्ज्ञान · भावना · गहराई'];
+            return (
+              <div className="text-center py-4 px-3 border-r border-b sm:border-b-0 border-gold-primary/10">
+                <div className="text-xl font-bold font-mono" style={{ color: ELEMENT_COLORS_HERO[dominantElIdx] }}>{dominantElPct}% {dominantElName}</div>
+                <div className="text-[9px] text-text-secondary/50 mt-0.5">{isEn ? ELEMENT_KEYWORDS_EN[dominantElIdx] : ELEMENT_KEYWORDS_HI[dominantElIdx]}</div>
+              </div>
+            );
+          })()}
+          <div className="text-center py-4 px-3 border-b sm:border-b-0 sm:border-r border-gold-primary/10">
             <div className="text-sm font-bold text-gold-light truncate">{strongestPlanet?.planetName || '—'}</div>
-            <div className="text-[9px] text-text-secondary/60 uppercase tracking-wider mt-0.5">{isEn ? 'Strongest' : 'शक्तिशाली'}</div>
+            <div className="text-[9px] text-text-secondary/50 mt-0.5">{isEn ? 'most influential planet in your chart' : 'कुण्डली में सर्वाधिक प्रभावशाली ग्रह'}</div>
           </div>
-          <div className="text-center py-4 px-2 border-r border-gold-primary/10">
+          <div className="text-center py-4 px-3 border-r border-gold-primary/10">
             <div className="text-xl font-bold text-emerald-400 font-mono">{yogasActive}</div>
-            <div className="text-[9px] text-text-secondary/60 uppercase tracking-wider mt-0.5">{isEn ? 'Yogas' : 'योग'}</div>
+            <div className="text-[9px] text-text-secondary/50 mt-0.5">{isEn ? `special combination${yogasActive !== 1 ? 's' : ''} active` : `विशेष योग सक्रिय`}</div>
           </div>
-          <div className="text-center py-4 px-2">
+          <div className="text-center py-4 px-3">
             <div className="text-sm font-bold text-gold-light truncate">{tip.dashaInsight.currentMaha || '—'}</div>
-            <div className="text-[9px] text-text-secondary/60 uppercase tracking-wider mt-0.5">{isEn ? 'Dasha' : 'दशा'}</div>
+            <div className="text-[9px] text-text-secondary/50 mt-0.5">{isEn ? 'ruling your current life chapter' : 'वर्तमान जीवन-अध्याय का शासक'}</div>
           </div>
         </div>
 
         {/* Life areas mini-bar — visual snapshot */}
         <div className="relative z-10 px-5 py-4">
-          <div className="flex items-end gap-1.5 justify-center h-12">
+          <div className="text-[9px] text-text-secondary/40 uppercase tracking-wider text-center mb-2">{isEn ? 'Life Areas at a Glance' : 'जीवन क्षेत्र — एक नज़र'}</div>
+          <div className="flex items-end gap-2 sm:gap-3 justify-center h-14">
             {(['career', 'wealth', 'marriage', 'health', 'education'] as const).map((key) => {
               const area = tip.lifeAreas[key];
-              const h = Math.max(12, Math.round((area.rating / 10) * 48));
+              const h = Math.max(14, Math.round((area.rating / 10) * 52));
               const color = area.rating >= 7 ? '#34d399' : area.rating >= 5 ? '#d4a853' : '#ef4444';
+              const ratingLabel = area.rating >= 8 ? (isEn ? 'strong' : 'शक्तिशाली') : area.rating >= 5 ? (isEn ? 'moderate' : 'मध्यम') : (isEn ? 'needs work' : 'प्रयास चाहिए');
               return (
                 <div key={key} className="flex flex-col items-center gap-1" title={`${area.label}: ${area.rating}/10`}>
-                  <div className="w-8 sm:w-10 rounded-t" style={{ height: h, backgroundColor: color, opacity: 0.7 }} />
-                  <span className="text-[8px] text-text-secondary/50 truncate w-10 text-center">{area.label.split(' ')[0]}</span>
+                  <span className="text-[8px] font-mono font-bold" style={{ color }}>{area.rating}</span>
+                  <div className="w-10 sm:w-12 rounded-t transition-all" style={{ height: h, backgroundColor: color, opacity: 0.6 }} />
+                  <span className="text-[8px] text-text-secondary/60 truncate w-12 text-center font-medium">{area.label.split(' ')[0]}</span>
+                  <span className="text-[7px] truncate w-12 text-center" style={{ color: `${color}99` }}>{ratingLabel}</span>
                 </div>
               );
             })}

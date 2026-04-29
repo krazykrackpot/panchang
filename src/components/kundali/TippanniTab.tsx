@@ -424,21 +424,23 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
           </div>
         </div>
 
-        {/* Life areas mini-bar — visual snapshot */}
-        <div className="relative z-10 px-5 py-4">
-          <div className="text-[9px] text-text-secondary/40 uppercase tracking-wider text-center mb-2">{isEn ? 'Life Areas at a Glance' : 'जीवन क्षेत्र — एक नज़र'}</div>
-          <div className="flex items-end gap-2 sm:gap-3 justify-center h-14">
+        {/* Life areas bar chart — full width */}
+        <div className="relative z-10 px-5 py-5">
+          <div className="text-[9px] text-text-secondary/40 uppercase tracking-wider text-center mb-4">{isEn ? 'Life Areas at a Glance' : 'जीवन क्षेत्र — एक नज़र'}</div>
+          <div className="space-y-2.5">
             {(['career', 'wealth', 'marriage', 'health', 'education'] as const).map((key) => {
               const area = tip.lifeAreas[key];
-              const h = Math.max(14, Math.round((area.rating / 10) * 52));
+              const pct = Math.max(10, area.rating * 10);
               const color = area.rating >= 7 ? '#34d399' : area.rating >= 5 ? '#d4a853' : '#ef4444';
-              const ratingLabel = area.rating >= 8 ? (isEn ? 'strong' : 'शक्तिशाली') : area.rating >= 5 ? (isEn ? 'moderate' : 'मध्यम') : (isEn ? 'needs work' : 'प्रयास चाहिए');
+              const ratingLabel = area.rating >= 8 ? (isEn ? 'Strong' : 'शक्तिशाली') : area.rating >= 5 ? (isEn ? 'Moderate' : 'मध्यम') : (isEn ? 'Needs Work' : 'प्रयास चाहिए');
               return (
-                <div key={key} className="flex flex-col items-center gap-1" title={`${area.label}: ${area.rating}/10`}>
-                  <span className="text-[8px] font-mono font-bold" style={{ color }}>{area.rating}</span>
-                  <div className="w-10 sm:w-12 rounded-t transition-all" style={{ height: h, backgroundColor: color, opacity: 0.6 }} />
-                  <span className="text-[8px] text-text-secondary/60 truncate w-12 text-center font-medium">{area.label.split(' ')[0]}</span>
-                  <span className="text-[7px] truncate w-12 text-center" style={{ color: `${color}99` }}>{ratingLabel}</span>
+                <div key={key} className="flex items-center gap-3">
+                  <span className="w-20 text-xs text-text-secondary/70 text-right shrink-0 font-medium">{area.label.split(' ')[0]}</span>
+                  <div className="flex-1 h-5 rounded-full bg-white/5 overflow-hidden">
+                    <div className="h-full rounded-full transition-all duration-500" style={{ width: `${pct}%`, backgroundColor: color, opacity: 0.7 }} />
+                  </div>
+                  <span className="w-6 text-xs font-mono font-bold text-right" style={{ color }}>{area.rating}</span>
+                  <span className="w-16 text-[9px] shrink-0" style={{ color: `${color}cc` }}>{ratingLabel}</span>
                 </div>
               );
             })}

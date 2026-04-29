@@ -394,31 +394,59 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
   return (
     <div className="space-y-6">
       {/* ═══ HERO SUMMARY CARD ═══ */}
-      <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] border border-gold-primary/20 p-6 sm:p-8 overflow-hidden">
+      <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] border border-gold-primary/20 overflow-hidden">
         <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-gold-primary/5 blur-3xl" />
         <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-indigo-500/5 blur-3xl" />
-        <div className="relative z-10 text-center mb-6">
-          <div className="text-gold-dark text-[10px] uppercase tracking-[4px] mb-2">{isEn ? 'Your Chart Reveals' : 'आपकी कुण्डली बताती है'}</div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-gold-light leading-tight" style={headingFont}>
-            {tip.personality.summary || (isEn ? 'Your Vedic Chart Commentary' : 'वैदिक कुण्डली टिप्पणी')}
-          </h2>
+
+        {/* Top strip — key metrics */}
+        <div className="relative z-10 grid grid-cols-4 border-b border-gold-primary/10">
+          <div className="text-center py-4 px-2 border-r border-gold-primary/10">
+            <div className="text-xl font-bold font-mono" style={{ color: ELEMENT_COLORS_HERO[dominantElIdx] }}>{dominantElPct}%</div>
+            <div className="text-[9px] text-text-secondary/60 uppercase tracking-wider mt-0.5">{dominantElName}</div>
+          </div>
+          <div className="text-center py-4 px-2 border-r border-gold-primary/10">
+            <div className="text-sm font-bold text-gold-light truncate">{strongestPlanet?.planetName || '—'}</div>
+            <div className="text-[9px] text-text-secondary/60 uppercase tracking-wider mt-0.5">{isEn ? 'Strongest' : 'शक्तिशाली'}</div>
+          </div>
+          <div className="text-center py-4 px-2 border-r border-gold-primary/10">
+            <div className="text-xl font-bold text-emerald-400 font-mono">{yogasActive}</div>
+            <div className="text-[9px] text-text-secondary/60 uppercase tracking-wider mt-0.5">{isEn ? 'Yogas' : 'योग'}</div>
+          </div>
+          <div className="text-center py-4 px-2">
+            <div className="text-sm font-bold text-gold-light truncate">{tip.dashaInsight.currentMaha || '—'}</div>
+            <div className="text-[9px] text-text-secondary/60 uppercase tracking-wider mt-0.5">{isEn ? 'Dasha' : 'दशा'}</div>
+          </div>
         </div>
-        <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <div className="text-center p-3 rounded-xl bg-white/[0.03] border border-gold-primary/10">
-            <div className="text-2xl font-bold" style={{ color: ELEMENT_COLORS_HERO[dominantElIdx] }}>{dominantElPct}%</div>
-            <div className="text-[10px] text-text-secondary uppercase tracking-wider">{dominantElName}</div>
+
+        {/* Life areas mini-bar — visual snapshot */}
+        <div className="relative z-10 px-5 py-4">
+          <div className="flex items-end gap-1.5 justify-center h-12">
+            {(['career', 'wealth', 'marriage', 'health', 'education'] as const).map((key) => {
+              const area = tip.lifeAreas[key];
+              const h = Math.max(12, Math.round((area.rating / 10) * 48));
+              const color = area.rating >= 7 ? '#34d399' : area.rating >= 5 ? '#d4a853' : '#ef4444';
+              return (
+                <div key={key} className="flex flex-col items-center gap-1" title={`${area.label}: ${area.rating}/10`}>
+                  <div className="w-8 sm:w-10 rounded-t" style={{ height: h, backgroundColor: color, opacity: 0.7 }} />
+                  <span className="text-[8px] text-text-secondary/50 truncate w-10 text-center">{area.label.split(' ')[0]}</span>
+                </div>
+              );
+            })}
           </div>
-          <div className="text-center p-3 rounded-xl bg-white/[0.03] border border-gold-primary/10">
-            <div className="text-lg font-bold text-gold-light truncate">{strongestPlanet?.planetName || '—'}</div>
-            <div className="text-[10px] text-text-secondary uppercase tracking-wider">{isEn ? 'Strongest Planet' : 'शक्तिशाली ग्रह'}</div>
+        </div>
+
+        {/* Bottom strip — present doshas + planet strength summary */}
+        <div className="relative z-10 flex items-center justify-between px-5 py-3 border-t border-gold-primary/10 text-[10px]">
+          <div className="flex items-center gap-3">
+            <span className="text-text-secondary/50">{isEn ? 'Planets:' : 'ग्रह:'}</span>
+            <span className="text-emerald-400">{strongPlanets.length} {isEn ? 'strong' : 'शक्तिशाली'}</span>
+            {weakPlanets.length > 0 && <span className="text-red-400">{weakPlanets.length} {isEn ? 'weak' : 'कमजोर'}</span>}
           </div>
-          <div className="text-center p-3 rounded-xl bg-white/[0.03] border border-gold-primary/10">
-            <div className="text-2xl font-bold text-emerald-400">{yogasActive}</div>
-            <div className="text-[10px] text-text-secondary uppercase tracking-wider">{isEn ? 'Yogas Active' : 'सक्रिय योग'}</div>
-          </div>
-          <div className="text-center p-3 rounded-xl bg-white/[0.03] border border-gold-primary/10">
-            <div className="text-lg font-bold text-gold-light truncate">{tip.dashaInsight.currentMaha || '—'}</div>
-            <div className="text-[10px] text-text-secondary uppercase tracking-wider">{isEn ? 'Current Period' : 'वर्तमान दशा'}</div>
+          <div className="flex items-center gap-2">
+            {presentDoshas.length === 0 && <span className="text-emerald-400/70">{isEn ? 'No doshas' : 'कोई दोष नहीं'}</span>}
+            {presentDoshas.map(d => (
+              <span key={d.name} className="px-1.5 py-0.5 rounded bg-red-500/10 text-red-400/80 border border-red-500/15">{d.name}</span>
+            ))}
           </div>
         </div>
       </div>

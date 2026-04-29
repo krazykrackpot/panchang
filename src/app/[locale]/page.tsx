@@ -595,35 +595,29 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </p>
         </div>
 
-        {/* 2 featured cards (large) + 7 regular cards */}
-        <div className="grid grid-cols-2 gap-4 mb-4 stagger-children">
-          {HERO_CARDS.slice(0, 2).map((card) => (
-            <TarotCard
-              key={card.href}
-              size="full"
-              href={card.href}
-              subtitle={L(card.subtitle, locale)}
-              icon={card.svg}
-              title={L(card.label, locale)}
-              description={L(card.desc, locale)}
-              glowColor={card.glowColor}
-            />
-          ))}
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 stagger-children">
-          {HERO_CARDS.slice(2).map((card) => (
-            <TarotCard
-              key={card.href}
-              size="full"
-              href={card.href}
-              subtitle={L(card.subtitle, locale)}
-              icon={card.svg}
-              title={L(card.label, locale)}
-              description={L(card.desc, locale)}
-              glowColor={card.glowColor}
-            />
-          ))}
-        </div>
+        {/* 3×3 mega tarot grid — Row 1: Birth Chart, Festivals, Learn. Rows 2-3: remaining 6 */}
+        {(() => {
+          // Reorder: Birth Chart (0), Festivals (2), Learn (8) first, then rest
+          const row1Indices = [0, 2, 8];
+          const restIndices = [1, 3, 4, 5, 6, 7];
+          const ordered = [...row1Indices, ...restIndices].map(i => HERO_CARDS[i]);
+          return (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 stagger-children">
+              {ordered.map((card) => (
+                <TarotCard
+                  key={card.href}
+                  size="full"
+                  href={card.href}
+                  subtitle={L(card.subtitle, locale)}
+                  icon={card.svg}
+                  title={L(card.label, locale)}
+                  description={L(card.desc, locale)}
+                  glowColor={card.glowColor}
+                />
+              ))}
+            </div>
+          );
+        })()}
       </section>
 
       <AdUnit placement="rectangle" className="max-w-2xl mx-auto" />
@@ -643,26 +637,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
-      {/* ═══ LEARN JYOTISH TEASER ═══ */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <Link href="/learn" className="block group">
-          <div className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 hover:border-gold-primary/30 rounded-2xl p-6 sm:p-8 transition-all duration-300 group-hover:-translate-y-1">
-            <div className="flex flex-col sm:flex-row items-center gap-5">
-              <div className="flex-shrink-0">
-                <LearnSVG />
-              </div>
-              <div className="text-center sm:text-left">
-                <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-2" style={hf}>
-                  {L({ en: 'Begin Your Jyotish Journey', hi: 'अपनी ज्योतिष यात्रा आरम्भ करें', ta: 'உங்கள் ஜோதிட பயணத்தை தொடங்குங்கள்', bn: 'আপনার জ্যোতিষ যাত্রা শুরু করুন' }, locale)}
-                </h3>
-                <p className="text-text-secondary text-sm leading-relaxed" style={bf}>
-                  {L({ en: '27 structured modules — from Pancha Anga foundations to Jaimini & KP systems. Learn at your own pace with interactive labs.', hi: '27 संरचित पाठ — पंच अंग की नींव से जैमिनी और केपी पद्धति तक। इंटरैक्टिव लैब के साथ अपनी गति से सीखें।', ta: '27 கட்டமைக்கப்பட்ட பாடங்கள் — பஞ்ச அங்க அடிப்படையிலிருந்து ஜைமினி & KP அமைப்புகள் வரை.', bn: '27টি কাঠামোবদ্ধ পাঠ — পঞ্চ অঙ্গের ভিত্তি থেকে জৈমিনী ও KP পদ্ধতি পর্যন্ত।' }, locale)}
-                </p>
-              </div>
-            </div>
-          </div>
-        </Link>
-      </section>
     </div>
   );
 }

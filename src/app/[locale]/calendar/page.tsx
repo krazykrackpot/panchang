@@ -103,6 +103,8 @@ export default function CalendarPage() {
   const [festivals, setFestivals] = useState<FestivalEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<Filter>('all');
+  const [tithiGridData, setTithiGridData] = useState<import('@/components/calendar/TithiMonthGrid').TithiDayData[] | null>(null);
+  const [tithiGridLoading, setTithiGridLoading] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState<number | null>(null);
 
   // Personalized festival recommendations
@@ -240,6 +242,31 @@ export default function CalendarPage() {
       })
       .catch(() => setLoading(false));
   }, [year, location]);
+
+  // Fetch tithi data for grid view
+  useEffect(() => {
+    if (viewMode !== 'grid' || !location || selectedMonth === null) return;
+    setTithiGridLoading(true);
+    setTithiGridData(null);
+    const gridMonth = selectedMonth + 1;
+    fetch(`/api/tithi-grid?year=${year}&month=${gridMonth}&lat=${location.lat}&lon=${location.lng}&timezone=${encodeURIComponent(location.timezone)}`)
+      .then(res => res.json())
+      .then(data => {
+        if (!data.days) { setTithiGridLoading(false); return; }
+        const todayStr = new Date().toISOString().split('T')[0];
+        // Merge festivals onto tithi days
+        const enriched = (data.days as { day: number; date: string; tithiNumber: number; tithiName: { en: string; hi: string; sa: string }; paksha: 'shukla' | 'krishna'; masa?: { amanta: string; purnimanta: string; isAdhika: boolean } }[]).map((td) => ({
+          ...td,
+          festivals: festivals
+            .filter(f => f.date === td.date)
+            .map(f => ({ name: f.name, type: f.type, slug: f.slug })),
+          isToday: td.date === todayStr,
+        }));
+        setTithiGridData(enriched);
+        setTithiGridLoading(false);
+      })
+      .catch(() => setTithiGridLoading(false));
+  }, [viewMode, selectedMonth, year, location, festivals]);
 
   const filteredFestivals = festivals.filter(f => {
     // Category filter
@@ -543,119 +570,75 @@ export default function CalendarPage() {
       <AdUnit placement="leaderboard" className="max-w-4xl mx-auto" />
 
       {/* Tithi Grid View */}
-      {viewMode === 'grid' && !loading && location && selectedMonth !== null && (() => {
-        const gridMonth = selectedMonth + 1; // 0-indexed to 1-indexed
-        const todayStr = new Date().toISOString().split('T')[0];
-        const daysInGridMonth = new Date(year, gridMonth, 0).getDate();
+      {viewMode === 'grid' && selectedMonth !== null && (
+        <div className="my-6">
+          <div className="flex items-center justify-between mb-5">
+            <button
+              onClick={() => {
+                if (selectedMonth === 0) { setYear(year - 1); setSelectedMonth(11); }
+                else setSelectedMonth(selectedMonth - 1);
+              }}
+              className="p-2.5 rounded-xl border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <h3 className="text-gold-light text-xl font-bold" style={headingFont}>
+              {(isDevanagari ? MONTH_NAMES_HI : MONTH_NAMES)[selectedMonth]} {year}
+            </h3>
+            <button
+              onClick={() => {
+                if (selectedMonth === 11) { setYear(year + 1); setSelectedMonth(0); }
+                else setSelectedMonth(selectedMonth + 1);
+              }}
+              className="p-2.5 rounded-xl border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
 
-        // Build tithi data for each day from the existing festivals data
-        // Use festivals array to annotate days, and compute tithi from panchang
-        const gridDays: import('@/components/calendar/TithiMonthGrid').TithiDayData[] = [];
-        for (let d = 1; d <= daysInGridMonth; d++) {
-          const dateStr = `${year}-${String(gridMonth).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-          const dayFestivals = festivals
-            .filter(f => f.date === dateStr)
-            .map(f => ({ name: f.name, type: f.type, slug: f.slug }));
-
-          // Derive tithi from festival data if available, otherwise use a simplified computation
-          // For the grid, we use the panchang data that was already fetched with the festivals
-          const matchingFestival = festivals.find(f => f.date === dateStr);
-          const paksha = matchingFestival?.paksha || 'shukla';
-
-          // Compute tithi number from the date using basic elongation
-          // This is approximate for the grid — the exact tithi comes from the panchang engine
-          const tithiName = matchingFestival?.tithi
-            ? { en: matchingFestival.tithi, hi: matchingFestival.tithi, sa: matchingFestival.tithi }
-            : { en: '—', hi: '—', sa: '—' };
-
-          // Find tithi number from the name or derive from panchang data
-          const TITHI_NUMBERS: Record<string, number> = {
-            'Pratipada': 1, 'Dwitiya': 2, 'Tritiya': 3, 'Chaturthi': 4,
-            'Panchami': 5, 'Shashthi': 6, 'Saptami': 7, 'Ashtami': 8,
-            'Navami': 9, 'Dashami': 10, 'Ekadashi': 11, 'Dwadashi': 12,
-            'Trayodashi': 13, 'Chaturdashi': 14, 'Purnima': 15, 'Amavasya': 30,
-          };
-          let tithiNum = 1;
-          if (matchingFestival?.tithi) {
-            // Extract tithi name from the string (e.g., "Shukla Ashtami" -> "Ashtami")
-            const parts = matchingFestival.tithi.split(' ');
-            const tName = parts[parts.length - 1];
-            tithiNum = TITHI_NUMBERS[tName] || 1;
-            if (paksha === 'krishna' && tithiNum <= 15 && tithiNum !== 30) {
-              tithiNum += 15;
-            }
-          }
-
-          gridDays.push({
-            date: dateStr,
-            day: d,
-            tithiNumber: tithiNum,
-            tithiName,
-            paksha,
-            festivals: dayFestivals,
-            isToday: dateStr === todayStr,
-          });
-        }
-
-        return (
-          <div className="my-6">
-            <div className="flex items-center justify-between mb-4">
-              <button
-                onClick={() => {
-                  if (selectedMonth === 0) { setYear(year - 1); setSelectedMonth(11); }
-                  else setSelectedMonth(selectedMonth - 1);
-                }}
-                className="p-2 rounded-lg border border-gold-primary/15 text-gold-primary hover:bg-gold-primary/10 transition-colors"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <h3 className="text-gold-light text-lg font-bold" style={headingFont}>
-                {(isDevanagari ? MONTH_NAMES_HI : MONTH_NAMES)[selectedMonth]} {year}
-              </h3>
-              <button
-                onClick={() => {
-                  if (selectedMonth === 11) { setYear(year + 1); setSelectedMonth(0); }
-                  else setSelectedMonth(selectedMonth + 1);
-                }}
-                className="p-2 rounded-lg border border-gold-primary/15 text-gold-primary hover:bg-gold-primary/10 transition-colors"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
+          {/* Legend */}
+          <div className="flex flex-wrap items-center gap-4 mb-5 justify-center text-xs text-text-secondary">
+            <div className="flex items-center gap-1.5">
+              <div className="w-4 h-4 rounded-full bg-amber-400/80 shadow-sm shadow-amber-400/30" />
+              <span>{locale === 'en' || isTamil ? 'Purnima' : 'पूर्णिमा'}</span>
             </div>
-
-            {/* Legend */}
-            <div className="flex flex-wrap items-center gap-3 mb-4 justify-center text-xs text-text-secondary">
-              <div className="flex items-center gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-amber-400/80" />
-                <span>{locale === 'en' || String(locale) === 'ta' ? 'Purnima' : 'पूर्णिमा'}</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-[#1a1040] border border-gold-dark/50" />
-                <span>{locale === 'en' || String(locale) === 'ta' ? 'Amavasya' : 'अमावस्या'}</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <div className="w-3 h-2 rounded bg-gold-primary/15 border border-gold-primary/20" />
-                <span>{locale === 'en' || String(locale) === 'ta' ? 'Festival' : 'त्योहार'}</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <div className="w-3 h-2 rounded bg-violet-500/15 border border-violet-500/20" />
-                <span>{locale === 'en' || String(locale) === 'ta' ? 'Vrat' : 'व्रत'}</span>
-              </div>
+            <div className="flex items-center gap-1.5">
+              <div className="w-4 h-4 rounded-full bg-[#1a1040] border-2 border-violet-400/40" />
+              <span>{locale === 'en' || isTamil ? 'Amavasya' : 'अमावस्या'}</span>
             </div>
+            <div className="flex items-center gap-1.5">
+              <div className="w-4 h-4 rounded bg-emerald-500/20 border border-emerald-500/30" />
+              <span>{locale === 'en' || isTamil ? 'Ekadashi' : 'एकादशी'}</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div className="w-4 h-3 rounded bg-gold-primary/20 border border-gold-primary/30" />
+              <span>{locale === 'en' || isTamil ? 'Festival' : 'त्योहार'}</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div className="w-4 h-3 rounded bg-violet-500/15 border border-violet-500/25" />
+              <span>{locale === 'en' || isTamil ? 'Vrat' : 'व्रत'}</span>
+            </div>
+          </div>
 
+          {tithiGridLoading ? (
+            <div className="flex items-center justify-center py-20">
+              <div className="animate-spin rounded-full h-10 w-10 border-2 border-gold-primary border-t-transparent" />
+            </div>
+          ) : tithiGridData ? (
             <TithiMonthGrid
               year={year}
-              month={gridMonth}
-              days={gridDays}
+              month={selectedMonth + 1}
+              days={tithiGridData}
               locale={locale}
               onDayClick={(date) => {
-                // Navigate to daily panchang for that date
                 window.location.href = `/${locale}/panchang?date=${date}`;
               }}
             />
-          </div>
-        );
-      })()}
+          ) : !location ? (
+            <div className="text-center py-12 text-text-secondary">{locale === 'en' || isTamil ? 'Set your location to view the tithi calendar' : 'तिथि कैलेंडर देखने के लिए अपना स्थान सेट करें'}</div>
+          ) : null}
+        </div>
+      )}
 
       {/* Festival & Vrat lists — separated */}
       {viewMode !== 'grid' && loading ? (

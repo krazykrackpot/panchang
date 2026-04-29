@@ -37,6 +37,10 @@
     {
       "path": "/api/cron/monthly-readings",
       "schedule": "0 2 1 * *"
+    },
+    {
+      "path": "/api/cron/index-urls",
+      "schedule": "5 0 * * *"
     }
   ]
 }

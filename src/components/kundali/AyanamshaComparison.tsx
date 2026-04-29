@@ -232,21 +232,32 @@ function getSignShiftCommentary(
   return `${planetName} — ${systemNote}: In ${sign1Name}, ${planetName} expresses ${f1}. In ${sign2Name}, ${planetName} channels ${f2}. This is a meaningful difference — your ${planetName} reading will vary depending on which ayanamsha system your astrologer follows.`;
 }
 
-/** Expandable commentary cards for planets with sign shifts. */
+/** Auto-expanded commentary cards for planets with sign shifts. */
 function SignShiftCommentary({ planets, locale }: { planets: PlanetRow[]; locale: string }) {
   const shifted = planets.filter(p => p.hasSignChange && p.id >= 0); // exclude Lagna (id=-1)
-  const [expandedId, setExpandedId] = useState<number | null>(null);
 
-  if (shifted.length === 0) return null;
+  if (shifted.length === 0) {
+    const isHi = isDevanagariLocale(locale);
+    return (
+      <div className="mt-5 rounded-xl bg-emerald-500/5 border border-emerald-500/15 p-4 text-center">
+        <p className="text-emerald-400 text-sm font-medium">
+          {isHi ? '✓ सभी ग्रह तीनों अयनांश पद्धतियों में एक ही राशि में हैं' : '✓ All planets remain in the same sign across all three ayanamsha systems'}
+        </p>
+        <p className="text-text-secondary text-xs mt-1">
+          {isHi ? 'आपकी कुण्डली अयनांश-स्वतन्त्र है — कोई भी पद्धति समान व्याख्या देगी।' : 'Your chart is ayanamsha-stable — any system will produce the same sign-level interpretation.'}
+        </p>
+      </div>
+    );
+  }
 
   const isHi = isDevanagariLocale(locale);
 
   return (
     <div className="mt-5">
-      <h4 className="text-gold-light text-xs font-bold mb-3 text-center">
-        {isHi ? 'राशि परिवर्तन विश्लेषण' : 'Sign Shift Analysis'}
+      <h4 className="text-amber-300 text-sm font-bold mb-3">
+        {isHi ? `⚡ ${shifted.length} ग्रह राशि सन्धि पर — विस्तृत विश्लेषण` : `⚡ ${shifted.length} Planet${shifted.length > 1 ? 's' : ''} at Sign Boundaries — Detailed Analysis`}
       </h4>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-3">
         {shifted.map((row) => {
           const lahiriSign = Math.floor(((row.positions.lahiri % 360) + 360) % 360 / 30);
           const ramanSign = Math.floor(((row.positions.raman % 360) + 360) % 360 / 30);
@@ -254,29 +265,25 @@ function SignShiftCommentary({ planets, locale }: { planets: PlanetRow[]; locale
           const commentary = getSignShiftCommentary(row.id, row.name, lahiriSign, ramanSign, kpSign, locale);
           if (!commentary) return null;
 
-          const isExpanded = expandedId === row.id;
+          const lahiriSignName = tl(RASHIS[lahiriSign]?.name, locale);
+          const ramanSignName = tl(RASHIS[ramanSign]?.name, locale);
 
           return (
-            <button
+            <div
               key={row.id}
-              type="button"
-              onClick={() => setExpandedId(isExpanded ? null : row.id)}
-              className="w-full text-left rounded-lg bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] border border-amber-400/15 hover:border-amber-400/30 p-3 transition-colors"
+              className="rounded-xl bg-gradient-to-br from-amber-500/8 via-[#1a1040]/30 to-[#0a0e27] border border-amber-400/20 p-4"
             >
-              <div className="flex items-center justify-between">
-                <span className="text-amber-300 text-xs font-bold">
-                  {row.name}
-                </span>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+                <span className="text-amber-300 text-sm font-bold">{row.name}</span>
                 <span className="text-text-secondary text-xs">
-                  {isExpanded ? '−' : '+'}
+                  {lahiriSignName} → {ramanSignName}
                 </span>
               </div>
-              {isExpanded && (
-                <p className="text-text-secondary text-xs mt-2 leading-relaxed">
-                  {commentary}
-                </p>
-              )}
-            </button>
+              <p className="text-text-primary/85 text-sm leading-relaxed">
+                {commentary}
+              </p>
+            </div>
           );
         })}
       </div>
@@ -377,18 +384,20 @@ function HolisticImpactSummary({ planets, locale, kundali }: { planets: PlanetRo
   }
 
   return (
-    <div className="mt-5 rounded-xl bg-gradient-to-br from-amber-500/5 via-[#1a1040]/30 to-[#0a0e27] border border-amber-400/15 p-4 sm:p-5">
-      <h4 className="text-amber-300 text-sm font-bold mb-3">
-        {isHi ? 'समग्र प्रभाव विश्लेषण' : 'Holistic Impact Analysis'}
+    <div className="mt-6 rounded-2xl bg-gradient-to-br from-amber-500/8 via-[#1a1040]/40 to-[#0a0e27] border border-amber-400/20 p-5 sm:p-6">
+      <h4 className="text-amber-300 text-base sm:text-lg font-bold mb-4">
+        {isHi ? 'समग्र प्रभाव विश्लेषण' : 'What This Means For Your Chart'}
       </h4>
-      <div className="space-y-3">
+      <div className="space-y-4">
         {impacts.map((text, i) => (
-          <p key={i} className="text-text-secondary text-xs sm:text-sm leading-relaxed">
-            {i === 0 && <span className="text-amber-400 font-bold mr-1">●</span>}
-            {i > 0 && i < impacts.length - 1 && <span className="text-gold-primary/50 font-bold mr-1">▸</span>}
-            {i === impacts.length - 1 && <span className="text-emerald-400/70 font-bold mr-1">✦</span>}
-            {text}
-          </p>
+          <div key={i} className={`flex gap-3 ${i === impacts.length - 1 ? 'rounded-xl bg-emerald-500/5 border border-emerald-500/15 p-3' : ''}`}>
+            <div className="shrink-0 mt-0.5">
+              {i === 0 && <span className="inline-block w-3 h-3 rounded-full bg-amber-400" />}
+              {i > 0 && i < impacts.length - 1 && <span className="inline-block w-3 h-3 rounded-full bg-gold-primary/40" />}
+              {i === impacts.length - 1 && <span className="inline-block w-3 h-3 rounded-full bg-emerald-400" />}
+            </div>
+            <p className="text-text-primary/80 text-sm leading-relaxed">{text}</p>
+          </div>
         ))}
       </div>
     </div>
@@ -455,22 +464,28 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
   }, [kundali, locale]);
 
   return (
-    <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/15 p-4 sm:p-6">
-      <h3 className="text-gold-light text-sm font-bold mb-4 text-center">
-        {locale === 'hi' ? 'अयनांश तुलना' : 'Ayanamsha Comparison'}
+    <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/15 p-5 sm:p-6">
+      <h3 className="text-gold-light text-base sm:text-lg font-bold mb-5">
+        {locale === 'hi' ? 'आपकी कुण्डली: तीन अयनांश पद्धतियों में तुलना' : 'Your Chart Across Three Ayanamsha Systems'}
       </h3>
 
       {/* Ayanamsha values */}
-      <div className="grid grid-cols-3 gap-2 mb-5">
-        {AYANAMSHA_SYSTEMS.map((sys) => (
-          <div key={sys.key} className="text-center p-2 rounded-lg bg-bg-secondary/50 border border-gold-primary/10">
-            <div className="text-gold-light text-xs font-bold">{sys.label}</div>
-            <div className="text-text-primary text-sm font-mono mt-0.5">
-              {rows.ayanamshaValues[sys.key].toFixed(4)}°
+      <div className="grid grid-cols-3 gap-3 mb-6">
+        {AYANAMSHA_SYSTEMS.map((sys) => {
+          const deg = rows.ayanamshaValues[sys.key];
+          const d = Math.floor(deg);
+          const m = Math.floor((deg - d) * 60);
+          const s = Math.round(((deg - d) * 60 - m) * 60);
+          return (
+            <div key={sys.key} className="text-center p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/25 via-[#1a1040]/35 to-[#0a0e27] border border-gold-primary/12">
+              <div className="text-gold-light text-sm font-bold">{sys.label}</div>
+              <div className="text-text-primary text-lg font-mono mt-1">
+                {d}° {m}&prime; {s}&Prime;
+              </div>
+              <div className="text-text-secondary text-xs mt-1">{sys.desc}</div>
             </div>
-            <div className="text-text-secondary text-xs mt-0.5 hidden sm:block">{sys.desc}</div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Comparison table */}

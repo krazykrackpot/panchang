@@ -446,7 +446,7 @@ export default function KundaliPage() {
   const [activeChart, setActiveChart] = useState<string>('D1');
   const [dashaSystem, setDashaSystem] = useState('vimshottari');
   const [showTransits, setShowTransits] = useState(false);
-  const [showAyanamshaCompare, setShowAyanamshaCompare] = useState(false);
+  // showAyanamshaCompare removed — ayanamsha comparison now lives in its own tab
   const [transitData, setTransitData] = useState<{ planets: { id: number; name: LocaleText; rashi: number; longitude: number; isRetrograde: boolean }[] } | null>(null);
 
   // Personal Pandit dashboard state
@@ -1514,10 +1514,10 @@ export default function KundaliPage() {
                   <span className={`w-2 h-2 rounded-full ${showTransits ? 'bg-emerald-400' : 'bg-text-secondary/30'}`} />
                   {locale === 'en' || isTamil ? 'Show Current Transits' : 'वर्तमान गोचर दिखाएं'}
                 </button>
-                <button onClick={() => setShowAyanamshaCompare(!showAyanamshaCompare)}
-                  className={`px-4 py-1.5 rounded-lg text-xs transition-all flex items-center gap-1.5 ${showAyanamshaCompare ? 'bg-violet-500/20 text-violet-300 border border-violet-500/30' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'}`}>
-                  <span className={`w-2 h-2 rounded-full ${showAyanamshaCompare ? 'bg-violet-400' : 'bg-text-secondary/30'}`} />
-                  {locale === 'en' || isTamil ? 'Compare Ayanamshas' : 'अयनांश तुलना'}
+                <button onClick={() => setActiveTab('ayanamsha')}
+                  className="px-4 py-1.5 rounded-lg text-xs transition-all flex items-center gap-1.5 text-text-secondary border border-gold-primary/10 hover:bg-violet-500/15 hover:text-violet-300 hover:border-violet-500/30">
+                  <span className="w-2 h-2 rounded-full bg-violet-400/50" />
+                  {locale === 'en' || isTamil ? 'Compare Ayanamshas →' : 'अयनांश तुलना →'}
                 </button>
               </div>
               {showTransits && (
@@ -1546,11 +1546,7 @@ export default function KundaliPage() {
                   )}
                 </div>
               )}
-              {showAyanamshaCompare && (
-                <div className="mb-4">
-                  <AyanamshaComparison kundali={kundali} locale={locale} />
-                </div>
-              )}
+              {/* Ayanamsha comparison moved to dedicated tab */}
               <p className="text-text-secondary/70 text-xs text-center mb-6">
                 {locale === 'en' || isTamil ? 'Click on any house to see details' : 'विवरण देखने के लिए किसी भाव पर क्लिक करें'}
               </p>
@@ -3372,11 +3368,54 @@ export default function KundaliPage() {
 
           {/* ===== AYANAMSHA TAB ===== */}
           {activeTab === 'ayanamsha' && kundali && (
-            <div>
-              <a href={`/${locale}/learn/ayanamsha`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">
-                {locale === 'en' || isTamil ? 'Learn about Ayanamsha →' : 'अयनांश के बारे में जानें →'}
-              </a>
+            <div className="space-y-6">
+              {/* Hero intro */}
+              <div className="rounded-2xl bg-gradient-to-br from-violet-500/10 via-[#1a1040]/50 to-[#0a0e27] border border-violet-500/20 p-5 sm:p-6">
+                <h3 className="text-violet-300 text-lg sm:text-xl font-bold mb-3" style={headingFont}>
+                  {locale === 'en' || isTamil ? 'Ayanamsha: The Hidden Variable in Your Chart' : 'अयनांश: आपकी कुण्डली का छिपा हुआ कारक'}
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed mb-3">
+                  {locale === 'en' || isTamil
+                    ? 'Ayanamsha is the angular difference between the tropical zodiac (used in Western astrology) and the sidereal zodiac (used in Vedic astrology). This single number — currently around 24° — determines where every planet falls in your chart. Different schools of Jyotish use slightly different ayanamsha values, and for planets near sign boundaries, this can mean entirely different sign placements.'
+                    : 'अयनांश उष्णकटिबन्धीय राशिचक्र (पश्चिमी ज्योतिष) और निरायन राशिचक्र (वैदिक ज्योतिष) के बीच का कोणीय अन्तर है। यह एकल संख्या — वर्तमान में लगभग 24° — निर्धारित करती है कि आपकी कुण्डली में प्रत्येक ग्रह कहाँ स्थित होगा। ज्योतिष के विभिन्न सम्प्रदाय भिन्न-भिन्न अयनांश मानों का प्रयोग करते हैं।'}
+                </p>
+                <div className="grid sm:grid-cols-3 gap-3">
+                  <div className="rounded-xl bg-bg-secondary/50 border border-gold-primary/10 p-3">
+                    <div className="text-gold-light text-xs font-bold mb-1">Lahiri (Chitrapaksha)</div>
+                    <p className="text-text-secondary text-xs leading-relaxed">
+                      {locale === 'en' || isTamil
+                        ? 'India\'s official standard, adopted by the Calendar Reform Committee in 1957. Anchored to the star Spica (Chitra) at exactly 0° Libra. Used by the vast majority of Indian astrologers.'
+                        : 'भारत सरकार का आधिकारिक मानक, 1957 में कैलेंडर सुधार समिति द्वारा अपनाया गया। चित्रा तारे पर आधारित। अधिकांश भारतीय ज्योतिषी इसका प्रयोग करते हैं।'}
+                    </p>
+                  </div>
+                  <div className="rounded-xl bg-bg-secondary/50 border border-gold-primary/10 p-3">
+                    <div className="text-gold-light text-xs font-bold mb-1">B.V. Raman</div>
+                    <p className="text-text-secondary text-xs leading-relaxed">
+                      {locale === 'en' || isTamil
+                        ? 'Developed by the legendary astrologer B.V. Raman, based on his research into the Surya Siddhanta. Differs from Lahiri by about 1.5°. Particularly popular in South India and among Raman\'s followers worldwide.'
+                        : 'प्रसिद्ध ज्योतिषी बी.वी. रमन द्वारा विकसित, सूर्य सिद्धान्त के अनुसन्धान पर आधारित। लाहिरी से लगभग 1.5° भिन्न। दक्षिण भारत में विशेष रूप से लोकप्रिय।'}
+                    </p>
+                  </div>
+                  <div className="rounded-xl bg-bg-secondary/50 border border-gold-primary/10 p-3">
+                    <div className="text-gold-light text-xs font-bold mb-1">Krishnamurti (KP)</div>
+                    <p className="text-text-secondary text-xs leading-relaxed">
+                      {locale === 'en' || isTamil
+                        ? 'Used in the Krishnamurti Paddhati (KP) system — a sub-divisional approach where nakshatra sub-lords matter more than signs. Very close to Lahiri (differs by ~6 arcminutes). Essential for KP practitioners.'
+                        : 'कृष्णमूर्ति पद्धति (KP) में प्रयुक्त — एक उप-विभाजन दृष्टिकोण जहाँ नक्षत्र उप-स्वामी राशियों से अधिक महत्वपूर्ण हैं। लाहिरी से बहुत निकट (लगभग 6 आर्क-मिनट का अन्तर)।'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* The comparison table + commentary */}
               <AyanamshaComparison kundali={kundali} locale={locale} />
+
+              {/* Learn more link */}
+              <div className="text-center">
+                <a href={`/${locale}/learn/ayanamsha`} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-300 text-sm font-medium hover:bg-violet-500/20 hover:border-violet-500/30 transition-colors">
+                  {locale === 'en' || isTamil ? 'Deep Dive: Understanding Ayanamsha →' : 'विस्तृत अध्ययन: अयनांश को समझें →'}
+                </a>
+              </div>
             </div>
           )}
 

@@ -777,42 +777,70 @@ export default function TransitsPage() {
         </>
       )}
 
-      {/* Mesha Sankranti — Sun enters 0° Aries */}
-      {meshaSankranti && meshaSankranti.date && (
+      {/* Sankranti Explorer — all 12 Sun sign ingresses */}
+      {allSankrantis.length > 0 && selectedSankranti && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
           className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6 mt-10">
           <h2 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
-            {locale === 'hi' ? 'मेष संक्रान्ति' : 'Mesha Sankranti'} {year}
+            {selectedSankranti.name ? tl(selectedSankranti.name, locale) : ''} {locale === 'hi' ? 'संक्रान्ति' : 'Sankranti'} {year}
           </h2>
           <p className="text-text-secondary/70 text-xs text-center mb-4" style={bodyFont}>
             {locale === 'en'
-              ? 'Sun enters 0° sidereal Aries — the astrological new year. Source: Brihat Samhita.'
-              : 'सूर्य 0° सायन मेष में प्रवेश — ज्योतिषीय नव वर्ष।'}
+              ? `Sun enters 0° sidereal ${selectedSankranti.name?.en || ''}${selectedSankrantiIdx === 0 ? ' — the astrological new year (Brihat Samhita)' : ''}`
+              : `सूर्य ${selectedSankranti.name?.hi || ''} राशि में प्रवेश${selectedSankrantiIdx === 0 ? ' — ज्योतिषीय नव वर्ष' : ''}`}
           </p>
+
+          {/* Sankranti selector — 12 rashi pills */}
+          <div className="flex flex-wrap justify-center gap-1.5 mb-5">
+            {allSankrantis.map((s, idx) => {
+              const isPast = s.date < new Date();
+              const isSelected = idx === selectedSankrantiIdx;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setSelectedSankrantiIdx(idx)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                    isSelected
+                      ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40'
+                      : isPast
+                        ? 'text-text-secondary/50 border border-gold-primary/5 hover:bg-gold-primary/5'
+                        : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
+                  }`}
+                >
+                  {s.name ? tl(s.name, locale) : `Sign ${idx + 1}`}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Date/time display */}
           <div className="rounded-xl bg-gold-primary/8 border border-gold-primary/20 p-4 text-center mb-5">
             <div className="text-gold-light font-bold text-2xl font-mono" style={headingFont} suppressHydrationWarning>
-              {meshaSankranti.date.toLocaleDateString(msg('meshaSankrantiDateLocale', locale), { day: 'numeric', month: 'long', year: 'numeric' })}
+              {selectedSankranti.date.toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
             </div>
             <div className="text-gold-primary/70 text-sm mt-1" suppressHydrationWarning>
-              {meshaSankranti.date.toLocaleTimeString(msg('meshaSankrantiDateLocale', locale), { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}
-            </div>
-            <div className="text-text-secondary/70 text-xs mt-2" style={bodyFont}>
-              {msg('meshaSankrantiDesc', locale)}
+              {selectedSankranti.date.toLocaleTimeString(locale === 'hi' ? 'hi-IN' : 'en-GB', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}
             </div>
           </div>
-          <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-3 text-center">
-            {msg('meshaSankrantiTitle', locale)}
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-            {meshaSankranti.houseThemes.map((theme: Record<string, string>, i: number) => (
-              <div key={i} className="rounded-lg bg-bg-primary/30 border border-gold-primary/8 p-3">
-                <div className="text-gold-primary/60 text-xs font-mono font-bold mb-0.5">{i + 1}</div>
-                <div className="text-text-secondary/70 text-xs leading-relaxed" style={bodyFont}>
-                  {!isDevanagariLocale(locale) ? theme.en : theme.hi}
-                </div>
+
+          {/* House themes — only for Mesha Sankranti (mundane astrology) */}
+          {selectedSankrantiIdx === 0 && meshaSankranti && (
+            <>
+              <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-3 text-center">
+                {msg('meshaSankrantiTitle', locale)}
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                {meshaSankranti.houseThemes.map((theme: Record<string, string>, i: number) => (
+                  <div key={i} className="rounded-lg bg-bg-primary/30 border border-gold-primary/8 p-3">
+                    <div className="text-gold-primary/60 text-xs font-mono font-bold mb-0.5">{i + 1}</div>
+                    <div className="text-text-secondary/70 text-xs leading-relaxed" style={bodyFont}>
+                      {!isDevanagariLocale(locale) ? theme.en : theme.hi}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          )}
         </motion.div>
       )}
 

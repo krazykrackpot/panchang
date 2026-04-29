@@ -167,6 +167,22 @@ export default function SudarshanaTab({ kundali, locale }: SudarshanaTabProps) {
         </div>
       )}
 
+      {/* This Year's Focus — practical convergence/divergence summary */}
+      <ThisYearFocus
+        lagnaHouse={data.interpretation.lagna.house}
+        chandraHouse={data.interpretation.chandra.house}
+        suryaHouse={data.interpretation.surya.house}
+        lagnaTheme={data.interpretation.lagna.theme}
+        chandraTheme={data.interpretation.chandra.theme}
+        suryaTheme={data.interpretation.surya.theme}
+        lagnaSign={data.interpretation.lagna.signId}
+        chandraSign={data.interpretation.chandra.signId}
+        suryaSign={data.interpretation.surya.signId}
+        age={age}
+        isEn={isEn}
+        locale={locale}
+      />
+
       {/* Detailed ring analysis */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 rounded-2xl p-6 space-y-4">
         <h3 className="text-gold-light font-semibold">
@@ -282,6 +298,96 @@ export default function SudarshanaTab({ kundali, locale }: SudarshanaTabProps) {
           </p>
         </div>
       )}
+    </div>
+  );
+}
+
+// ─── This Year's Focus — practical convergence/divergence summary ──────────
+
+// Short house theme labels for the focus summary
+const HOUSE_THEME_SHORT: Record<number, { en: string; hi: string }> = {
+  1:  { en: 'self & health', hi: 'आत्म एवं स्वास्थ्य' },
+  2:  { en: 'wealth & family', hi: 'धन एवं परिवार' },
+  3:  { en: 'courage & communication', hi: 'साहस एवं संवाद' },
+  4:  { en: 'home & emotional peace', hi: 'घर एवं मानसिक शान्ति' },
+  5:  { en: 'creativity & children', hi: 'रचनात्मकता एवं संतान' },
+  6:  { en: 'health & service', hi: 'स्वास्थ्य एवं सेवा' },
+  7:  { en: 'partnerships & marriage', hi: 'साझेदारी एवं विवाह' },
+  8:  { en: 'transformation & hidden matters', hi: 'परिवर्तन एवं गुप्त विषय' },
+  9:  { en: 'fortune & higher learning', hi: 'भाग्य एवं उच्च शिक्षा' },
+  10: { en: 'career & reputation', hi: 'करियर एवं प्रतिष्ठा' },
+  11: { en: 'gains & aspirations', hi: 'लाभ एवं आकांक्षाएँ' },
+  12: { en: 'spirituality & letting go', hi: 'आध्यात्मिकता एवं त्याग' },
+};
+
+function ThisYearFocus({
+  lagnaHouse, chandraHouse, suryaHouse,
+  lagnaTheme, chandraTheme, suryaTheme,
+  lagnaSign, chandraSign, suryaSign,
+  age, isEn, locale,
+}: {
+  lagnaHouse: number; chandraHouse: number; suryaHouse: number;
+  lagnaTheme: string; chandraTheme: string; suryaTheme: string;
+  lagnaSign: number; chandraSign: number; suryaSign: number;
+  age: number; isEn: boolean; locale: string;
+}) {
+  // Determine convergence: are 2+ rings pointing to the same house?
+  const houses = [lagnaHouse, chandraHouse, suryaHouse];
+  const uniqueHouses = new Set(houses);
+  const allSame = uniqueHouses.size === 1;
+  const twoSame = uniqueHouses.size === 2;
+
+  // Activated signs for monthly tip
+  const activatedSigns = [lagnaSign, chandraSign, suryaSign];
+  const signNames = activatedSigns.map(id => {
+    const nameObj = SIGN_NAMES[id];
+    return nameObj ? (nameObj[locale] || nameObj.en) : '?';
+  });
+  const uniqueSignNames = [...new Set(signNames)];
+
+  const lt = (h: number) => HOUSE_THEME_SHORT[h] || { en: `house ${h}`, hi: `${h} भाव` };
+
+  let summaryEn: string;
+  let summaryHi: string;
+
+  if (allSame) {
+    const theme = lt(lagnaHouse);
+    summaryEn = `Strong convergence at age ${age} — all three references (Lagna, Moon, Sun) activate the ${ordinal(lagnaHouse)} house. "${theme.en}" is THE dominant theme this year. Focus your energy here for maximum impact. This level of alignment is rare and signals a pivotal year.`;
+    summaryHi = `आयु ${age} पर तीव्र अभिसरण — तीनों संदर्भ (लग्न, चन्द्र, सूर्य) ${lagnaHouse}वाँ भाव सक्रिय करते हैं। "${theme.hi}" इस वर्ष का प्रमुख विषय है। अधिकतम प्रभाव के लिए यहाँ अपनी ऊर्जा केन्द्रित करें।`;
+  } else if (twoSame) {
+    // Find which two match and which is different
+    const matchedHouse = houses.find((h, i) => houses.indexOf(h) !== i)!;
+    const differentHouse = houses.find(h => h !== matchedHouse)!;
+    const matchTheme = lt(matchedHouse);
+    const diffTheme = lt(differentHouse);
+    summaryEn = `Partial convergence at age ${age} — two references align on the ${ordinal(matchedHouse)} house ("${matchTheme.en}"), making it your primary arena. But the third ring activates the ${ordinal(differentHouse)} house ("${diffTheme.en}"), adding a secondary thread. Prioritize "${matchTheme.en}" while keeping "${diffTheme.en}" on your radar.`;
+    summaryHi = `आयु ${age} पर आंशिक अभिसरण — दो संदर्भ ${matchedHouse}वें भाव ("${matchTheme.hi}") पर एकत्र हैं, जो प्राथमिक क्षेत्र है। तीसरा वलय ${differentHouse}वाँ भाव ("${diffTheme.hi}") सक्रिय करता है। "${matchTheme.hi}" को प्राथमिकता दें, "${diffTheme.hi}" पर भी ध्यान रखें।`;
+  } else {
+    const t1 = lt(lagnaHouse);
+    const t2 = lt(chandraHouse);
+    const t3 = lt(suryaHouse);
+    summaryEn = `Divergent focus at age ${age} — your identity (Lagna → "${t1.en}"), emotions (Moon → "${t2.en}"), and purpose (Sun → "${t3.en}") are activated in different life areas. Expect to juggle multiple priorities. This is a year of breadth rather than depth — balance is key.`;
+    summaryHi = `आयु ${age} पर विविध केन्द्र — आपकी पहचान (लग्न → "${t1.hi}"), भावनाएँ (चन्द्र → "${t2.hi}"), और उद्देश्य (सूर्य → "${t3.hi}") विभिन्न क्षेत्रों में सक्रिय हैं। अनेक प्राथमिकताओं को सँभालने की अपेक्षा करें — सन्तुलन महत्त्वपूर्ण है।`;
+  }
+
+  return (
+    <div className="bg-gradient-to-r from-emerald-500/8 via-gold-primary/8 to-emerald-500/8 border border-emerald-500/20 rounded-2xl p-5">
+      <h3 className="text-gold-light font-semibold text-sm mb-2">
+        {isEn ? `This Year's Focus (Age ${age})` : `इस वर्ष का केन्द्र (आयु ${age})`}
+      </h3>
+      <p className="text-sm text-text-primary/85 leading-relaxed mb-3">
+        {isEn ? summaryEn : summaryHi}
+      </p>
+      <div className="mt-2 px-3 py-2 rounded-lg bg-white/[0.03] border border-gold-primary/10">
+        <p className="text-xs text-gold-primary/80 font-medium mb-0.5">
+          {isEn ? 'Monthly intensity tip' : 'मासिक तीव्रता सुझाव'}
+        </p>
+        <p className="text-xs text-text-secondary/80 leading-relaxed">
+          {isEn
+            ? `When transiting Moon passes through ${uniqueSignNames.join(', ')}, the themes above intensify for a few days each month. Track these windows in your monthly panchang for optimal timing.`
+            : `जब गोचर चन्द्रमा ${uniqueSignNames.join(', ')} से गुजरे, तो उपरोक्त विषय कुछ दिनों के लिए तीव्र होते हैं। सर्वोत्तम समय के लिए मासिक पंचांग देखें।`}
+        </p>
+      </div>
     </div>
   );
 }

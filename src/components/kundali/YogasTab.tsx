@@ -6,6 +6,108 @@ import InfoBlock from '@/components/ui/InfoBlock';
 import type { YogaComplete } from '@/lib/kundali/yogas-complete';
 import type { Locale, LocaleText } from '@/types/panchang';
 
+// ---------------------------------------------------------------------------
+// Planet name extraction from formation rule (English) to generate activation
+// guidance. Maps yoga → involved planet IDs by keyword matching.
+// ---------------------------------------------------------------------------
+
+const PLANET_KEYWORDS: { keyword: string; id: number; en: string; hi: string }[] = [
+  { keyword: 'sun', id: 0, en: 'Sun', hi: 'सूर्य' },
+  { keyword: 'moon', id: 1, en: 'Moon', hi: 'चन्द्र' },
+  { keyword: 'mars', id: 2, en: 'Mars', hi: 'मंगल' },
+  { keyword: 'mercury', id: 3, en: 'Mercury', hi: 'बुध' },
+  { keyword: 'jupiter', id: 4, en: 'Jupiter', hi: 'बृहस्पति' },
+  { keyword: 'venus', id: 5, en: 'Venus', hi: 'शुक्र' },
+  { keyword: 'saturn', id: 6, en: 'Saturn', hi: 'शनि' },
+  { keyword: 'rahu', id: 7, en: 'Rahu', hi: 'राहु' },
+  { keyword: 'ketu', id: 8, en: 'Ketu', hi: 'केतु' },
+];
+
+// Well-known yoga → planet mappings (supplements keyword extraction)
+const YOGA_PLANET_MAP: Record<string, number[]> = {
+  mangala_dosha: [2],
+  kala_sarpa: [7, 8],
+  hansa: [4],
+  malavya: [5],
+  shasha: [6],
+  ruchaka: [2],
+  bhadra: [3],
+  gajakesari: [4, 1],
+  chandra_mangala: [1, 2],
+  sunafa: [1],
+  anafa: [1],
+  durudhara: [1],
+  kemadruma: [1],
+  adhi: [4, 5, 3],
+  chandradhi: [4, 5, 3],
+  vasumati: [4, 5, 3],
+  amala: [4, 5],
+  budhaditya: [0, 3],
+  veshi: [0],
+  voshi: [0],
+  ubhayachari: [0],
+  lakshmi: [5],
+  saraswati: [4, 5, 3],
+  mahabhagya: [0, 1],
+  raja_yoga: [4, 6],
+  viparita_raja: [6],
+  neechabhanga: [],
+  dhana_yoga: [4, 5],
+};
+
+/** Extract involved planets for a yoga — uses static map first, then keyword extraction */
+function getInvolvedPlanets(yoga: YogaComplete): { id: number; en: string; hi: string }[] {
+  // Check static map first
+  const mapped = YOGA_PLANET_MAP[yoga.id];
+  if (mapped && mapped.length > 0) {
+    return mapped.map(id => {
+      const pk = PLANET_KEYWORDS.find(p => p.id === id)!;
+      return { id, en: pk.en, hi: pk.hi };
+    });
+  }
+
+  // Fall back to keyword extraction from formation rule + description (English text)
+  const text = `${yoga.formationRule.en} ${yoga.description.en}`.toLowerCase();
+  const found: { id: number; en: string; hi: string }[] = [];
+  const seen = new Set<number>();
+  for (const pk of PLANET_KEYWORDS) {
+    if (!seen.has(pk.id) && text.includes(pk.keyword)) {
+      seen.add(pk.id);
+      found.push({ id: pk.id, en: pk.en, hi: pk.hi });
+    }
+  }
+  return found;
+}
+
+/** Generate activation guidance text for a present yoga */
+function getActivationNote(yoga: YogaComplete, isEn: boolean): string | null {
+  if (!yoga.present) return null;
+  const planets = getInvolvedPlanets(yoga);
+  if (planets.length === 0) return null;
+
+  const planetNames = planets.map(p => isEn ? p.en : p.hi);
+
+  if (yoga.isAuspicious) {
+    if (isEn) {
+      const dashaList = planetNames.map(n => `${n} Mahadasha`).join(', ');
+      const antarList = planetNames.map(n => `${n} Antardasha`).join(' or ');
+      return `This yoga activates most strongly during ${dashaList}, or ${antarList}. These are your peak windows to pursue its promises — plan major life moves accordingly.`;
+    } else {
+      const dashaList = planetNames.map(n => `${n} महादशा`).join(', ');
+      const antarList = planetNames.map(n => `${n} अन्तर्दशा`).join(' या ');
+      return `यह योग ${dashaList}, या ${antarList} के समय सबसे प्रभावी होता है। इन अवधियों में इसके शुभ फल चरम पर होते हैं — बड़े निर्णय इन्हीं काल में लें।`;
+    }
+  } else {
+    if (isEn) {
+      const periodList = planetNames.map(n => `${n}`).join(' or ');
+      return `The effects of this yoga are felt most during ${periodList} dasha/antardasha periods. Remedial measures (mantras, charity, gemstones) during these periods can significantly reduce negative impact.`;
+    } else {
+      const periodList = planetNames.map(n => `${n}`).join(' या ');
+      return `इस योग का प्रभाव ${periodList} दशा/अन्तर्दशा में सबसे अधिक अनुभव होता है। इन अवधियों में उपचार (मन्त्र, दान, रत्न) से नकारात्मक प्रभाव काफी कम हो सकता है।`;
+    }
+  }
+}
+
 export default function YogasTab({ yogas, locale, isDevanagari, headingFont }: {
   yogas: YogaComplete[];
   locale: Locale;
@@ -141,14 +243,27 @@ export default function YogasTab({ yogas, locale, isDevanagari, headingFont }: {
                       </span>
                     </div>
                   </div>
-                  {expandedYoga === y.id && (
-                    <div className="mt-2 pt-2 border-t border-gold-primary/10 space-y-1">
-                      <p className="text-text-secondary text-xs" style={bodyFont}>{tl(y.description, locale)}</p>
-                      <p className="text-gold-dark text-xs italic" style={bodyFont}>
-                        {locale === 'en' || isTamil ? 'Rule' : 'नियम'}: {tl(y.formationRule, locale)}
-                      </p>
-                    </div>
-                  )}
+                  {expandedYoga === y.id && (() => {
+                    const activationNote = y.present ? getActivationNote(y, locale === 'en' || isTamil) : null;
+                    return (
+                      <div className="mt-2 pt-2 border-t border-gold-primary/10 space-y-2">
+                        <p className="text-text-secondary text-xs" style={bodyFont}>{tl(y.description, locale)}</p>
+                        <p className="text-gold-dark text-xs italic" style={bodyFont}>
+                          {locale === 'en' || isTamil ? 'Rule' : 'नियम'}: {tl(y.formationRule, locale)}
+                        </p>
+                        {activationNote && (
+                          <div className="mt-1.5 px-2.5 py-2 rounded-lg bg-white/[0.03] border border-gold-primary/10">
+                            <p className="text-xs font-medium text-gold-primary/80 mb-0.5" style={bodyFont}>
+                              {locale === 'en' || isTamil ? 'When does this activate?' : 'यह कब सक्रिय होता है?'}
+                            </p>
+                            <p className="text-text-secondary/80 text-xs leading-relaxed" style={bodyFont}>
+                              {activationNote}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
                 </div>
               ))}
             </div>

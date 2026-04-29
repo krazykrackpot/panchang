@@ -12,12 +12,30 @@ import InfoBlock from '@/components/ui/InfoBlock';
 import type { AshtakavargaData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 
-export default function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }: {
+// House theme for each sign relative to lagna — used for concrete transit guidance
+// signId (1-12) mapped to lagna-relative house (computed at render time)
+const HOUSE_LIFE_THEMES: Record<number, { en: string; hi: string }> = {
+  1:  { en: 'self, health, and personal identity', hi: 'आत्म, स्वास्थ्य और व्यक्तिगत पहचान' },
+  2:  { en: 'wealth, family, and speech', hi: 'धन, परिवार और वाणी' },
+  3:  { en: 'courage, siblings, and communication', hi: 'साहस, भाई-बहन और संवाद' },
+  4:  { en: 'home, mother, and emotional peace', hi: 'घर, माता और मानसिक शान्ति' },
+  5:  { en: 'children, creativity, and intelligence', hi: 'संतान, रचनात्मकता और बुद्धि' },
+  6:  { en: 'health, enemies, and daily work', hi: 'स्वास्थ्य, शत्रु और दैनिक कार्य' },
+  7:  { en: 'marriage, partnerships, and business', hi: 'विवाह, साझेदारी और व्यापार' },
+  8:  { en: 'transformation, hidden matters, and longevity', hi: 'परिवर्तन, गुप्त विषय और आयु' },
+  9:  { en: 'fortune, dharma, and higher learning', hi: 'भाग्य, धर्म और उच्च शिक्षा' },
+  10: { en: 'career, reputation, and public life', hi: 'करियर, प्रतिष्ठा और सार्वजनिक जीवन' },
+  11: { en: 'gains, desires, and social networks', hi: 'लाभ, इच्छाएँ और सामाजिक नेटवर्क' },
+  12: { en: 'expenses, spirituality, and foreign connections', hi: 'व्यय, आध्यात्मिकता और विदेश' },
+};
+
+export default function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t, lagnaSign }: {
   ashtakavarga: AshtakavargaData; locale: Locale; isDevanagari: boolean;
-  headingFont: React.CSSProperties; t: (key: string) => string;
+  headingFont: React.CSSProperties; t: (key: string) => string; lagnaSign?: number;
 }) {
   const isTamil = String(locale) === 'ta';
   const isBengali = String(locale) === 'bn';
+  const isEn = locale === 'en' || isTamil;
   const [viewMode, setViewMode] = useState<'sav' | 'bpi' | 'reduced'>('sav');
 
   // Compute insights from SAV
@@ -135,29 +153,67 @@ export default function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, he
         )}
       </InfoBlock>
 
-      {/* Quick insight */}
+      {/* Top-level summary paragraph */}
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-5">
+        <p className="text-sm text-text-primary/85 leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+          {isEn
+            ? 'Ashtakavarga is the most reliable transit prediction tool in Vedic astrology. It tells you which signs in the zodiac are supportive for you and which are challenging. When slow-moving planets like Saturn and Jupiter transit through your strong signs, life flows more easily. When they pass through weak signs, extra caution and patience are needed. Use these scores to time major decisions — job changes, investments, and life commitments.'
+            : 'अष्टकवर्ग वैदिक ज्योतिष का सबसे विश्वसनीय गोचर भविष्यवाणी उपकरण है। यह बताता है कि राशि चक्र की कौन-सी राशियाँ आपके लिए सहायक हैं और कौन-सी चुनौतीपूर्ण। जब शनि और बृहस्पति जैसे मन्द ग्रह आपकी बलवान राशियों से गुजरते हैं, तो जीवन सुगम होता है। दुर्बल राशियों में गोचर के समय अतिरिक्त सावधानी आवश्यक है। बड़े निर्णयों — नौकरी बदलना, निवेश, जीवन के बड़े फैसले — का समय निर्धारित करने के लिए इन अंकों का उपयोग करें।'}
+        </p>
+      </div>
+
+      {/* Quick insight — with house-theme context */}
       {(strongSigns.length > 0 || weakSigns.length > 0) && (
         <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
-          <h4 className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-3">{locale === 'en' || isTamil ? 'Quick Insight' : 'संक्षिप्त अन्तर्दृष्टि'}</h4>
-          <div className="space-y-2 text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-            {strongSigns.length > 0 && (
-              <p className="text-emerald-400/80">
-                {locale === 'en' || isTamil
-                  ? `Strong signs (28+ bindu): ${strongSigns.join(', ')} — planets transiting these signs bring favorable results.`
-                  : `बलवान राशियाँ (28+ बिन्दु): ${strongSigns.join(', ')} — इन राशियों में गोचर शुभ फल देते हैं।`}
-              </p>
-            )}
-            {weakSigns.length > 0 && (
-              <div>
-                <p className="text-red-400/70">
-                  {locale === 'en' || isTamil
-                    ? `Weak signs (<22 bindu): ${weakSigns.join(', ')} — transits through these signs may bring challenges.`
-                    : `दुर्बल राशियाँ (<22 बिन्दु): ${weakSigns.join(', ')} — इन राशियों में गोचर चुनौतीपूर्ण हो सकते हैं।`}
-                </p>
-              </div>
-            )}
-            <p className="text-text-secondary/70 text-xs">
-              {locale === 'en' || isTamil
+          <h4 className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-3">{isEn ? 'Your Supportive & Challenging Zones' : 'आपके सहायक एवं चुनौतीपूर्ण क्षेत्र'}</h4>
+          <div className="space-y-3 text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+            {strongSignIds.map((signId, idx) => {
+              // Compute house from lagna: house = ((signId - lagnaSign + 12) % 12) + 1
+              const house = lagnaSign ? ((signId - lagnaSign + 12) % 12) + 1 : 0;
+              const theme = house ? HOUSE_LIFE_THEMES[house] : null;
+              return (
+                <div key={signId} className="flex items-start gap-2">
+                  <span className="text-emerald-400 mt-0.5 shrink-0">●</span>
+                  <p className="text-emerald-400/80">
+                    {isEn
+                      ? <>
+                          <strong>{strongSigns[idx]}</strong> (SAV {ashtakavarga.savTable[signId - 1]})
+                          {theme && <> — When planets transit here, you experience support and positive outcomes in <em>{theme.en}</em>.</>}
+                          {!theme && <> — planets transiting this sign bring favorable results.</>}
+                        </>
+                      : <>
+                          <strong>{strongSigns[idx]}</strong> (SAV {ashtakavarga.savTable[signId - 1]})
+                          {theme && <> — जब ग्रह यहाँ से गुजरते हैं, तो <em>{theme.hi}</em> में सहयोग और शुभ फल मिलते हैं।</>}
+                          {!theme && <> — इस राशि में गोचर शुभ फल देते हैं।</>}
+                        </>}
+                  </p>
+                </div>
+              );
+            })}
+            {weakSignIds.map((signId, idx) => {
+              const house = lagnaSign ? ((signId - lagnaSign + 12) % 12) + 1 : 0;
+              const theme = house ? HOUSE_LIFE_THEMES[house] : null;
+              return (
+                <div key={signId} className="flex items-start gap-2">
+                  <span className="text-red-400 mt-0.5 shrink-0">●</span>
+                  <p className="text-red-400/70">
+                    {isEn
+                      ? <>
+                          <strong>{weakSigns[idx]}</strong> (SAV {ashtakavarga.savTable[signId - 1]})
+                          {theme && <> — Transits here may bring challenges in <em>{theme.en}</em>. Extra caution advised during these periods.</>}
+                          {!theme && <> — transits through this sign may bring challenges.</>}
+                        </>
+                      : <>
+                          <strong>{weakSigns[idx]}</strong> (SAV {ashtakavarga.savTable[signId - 1]})
+                          {theme && <> — यहाँ गोचर <em>{theme.hi}</em> में चुनौतियाँ ला सकते हैं। इन अवधियों में अतिरिक्त सावधानी रखें।</>}
+                          {!theme && <> — इस राशि में गोचर चुनौतीपूर्ण हो सकते हैं।</>}
+                        </>}
+                  </p>
+                </div>
+              );
+            })}
+            <p className="text-text-secondary/70 text-xs mt-2">
+              {isEn
                 ? `Total SAV: ${totalBindu} (average: ${Math.round(totalBindu / 12)} per sign). Values above 28 are strong, below 22 are weak.`
                 : `कुल SAV: ${totalBindu} (औसत: ${Math.round(totalBindu / 12)} प्रति राशि)। 28 से ऊपर बलवान, 22 से नीचे दुर्बल।`}
             </p>

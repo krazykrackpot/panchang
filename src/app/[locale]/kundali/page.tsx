@@ -2773,7 +2773,7 @@ export default function KundaliPage() {
               <a href={`/${locale}/learn/ashtakavarga`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">
                 {locale === 'en' || isTamil ? 'Learn about Ashtakavarga \u2192' : 'अष्टकवर्ग के बारे में जानें \u2192'}
               </a>
-              <AshtakavargaTab ashtakavarga={kundali.ashtakavarga} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} t={t} />
+              <AshtakavargaTab ashtakavarga={kundali.ashtakavarga} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} t={t} lagnaSign={kundali.ascendant.sign} />
             </>
           )}
 

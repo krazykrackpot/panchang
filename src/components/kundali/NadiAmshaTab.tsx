@@ -80,6 +80,31 @@ export default function NadiAmshaTab({ kundali, locale }: Props) {
         </p>
       </div>
 
+      {/* Karmic synthesis card */}
+      {allPositions.length > 0 && (() => {
+        // Count D-150 signs by element (fire=0,3,4,8 earth=1,5,9 air=2,6,10 water=3,7,11)
+        const ELEMENTS = ['Fire', 'Earth', 'Air', 'Water'] as const;
+        const ELEMENTS_HI = ['अग्नि', 'पृथ्वी', 'वायु', 'जल'] as const;
+        const elCount = [0, 0, 0, 0]; // fire, earth, air, water
+        for (const p of allPositions) {
+          const signIdx = (p.nadiAmshaNumber - 1) % 12; // 0-indexed
+          elCount[signIdx % 4]++;
+        }
+        const maxEl = elCount.indexOf(Math.max(...elCount));
+        return (
+          <div className="rounded-xl bg-gradient-to-br from-violet-500/8 via-[#1a1040]/40 to-[#0a0e27] border border-violet-500/15 p-4">
+            <h4 className="text-violet-300 text-sm font-bold mb-2">
+              {isLatin ? 'Your Karmic Pattern at a Glance' : 'एक नज़र में आपका कर्म स्वरूप'}
+            </h4>
+            <p className="text-text-secondary text-sm leading-relaxed">
+              {isLatin
+                ? `Your D-150 positions cluster toward ${ELEMENTS[maxEl]} energy (${elCount[maxEl]} of ${allPositions.length} planets). This suggests your karmic lessons in this lifetime are oriented around ${maxEl === 0 ? 'initiative, identity, and courage — learning to act decisively and lead' : maxEl === 1 ? 'material stability, patience, and building lasting structures in the physical world' : maxEl === 2 ? 'communication, intellectual growth, and learning to connect ideas across domains' : 'emotional depth, intuition, and learning to navigate the inner world of feelings and compassion'}. Click any planet row below to see its specific karmic theme.`
+                : `आपकी D-150 स्थितियाँ ${ELEMENTS_HI[maxEl]} तत्व की ओर (${allPositions.length} में से ${elCount[maxEl]} ग्रह) केन्द्रित हैं। इसका अर्थ है कि इस जन्म में आपके कर्म-पाठ ${maxEl === 0 ? 'पहल, पहचान और साहस' : maxEl === 1 ? 'भौतिक स्थिरता, धैर्य और स्थायी संरचनाओं का निर्माण' : maxEl === 2 ? 'संवाद, बौद्धिक विकास और विचारों को जोड़ना' : 'भावनात्मक गहराई, अन्तर्ज्ञान और करुणा की आन्तरिक दुनिया'} से सम्बन्धित हैं। विस्तृत कर्म विषय देखने के लिए नीचे किसी भी ग्रह पंक्ति पर क्लिक करें।`}
+            </p>
+          </div>
+        );
+      })()}
+
       {/* Summary table */}
       <div className="overflow-x-auto rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
         <table className="w-full text-sm">

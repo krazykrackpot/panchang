@@ -638,6 +638,40 @@ function DashaSynthesisTable({ data, locale, headingFont }: {
       <h4 className="text-gold-light font-semibold text-base mb-3" style={headingFont}>
         {msg('synthesis')}
       </h4>
+      {/* Current period highlight card */}
+      {(() => {
+        const currentYear = new Date().getFullYear() + (new Date().getMonth() / 12);
+        const activeDasha = data.dashas.find(d => currentYear >= d.startYear && currentYear < d.endYear);
+        if (!activeDasha) return null;
+        const yearsLeft = Math.round(activeDasha.endYear - currentYear);
+        const nextDasha = data.dashas.find(d => d.startYear >= activeDasha.endYear - 0.5);
+        const color = PC[activeDasha.planet] ?? { bg: '#333', fg: '#ccc', glow: '#666' };
+        const pName = isHi ? (PLANET_HI[activeDasha.planet] ?? activeDasha.planet) : activeDasha.planet;
+        const nName = nextDasha ? (isHi ? (PLANET_HI[nextDasha.planet] ?? nextDasha.planet) : nextDasha.planet) : null;
+        const qualityDesc = activeDasha.quality === 'strong'
+          ? (isHi ? 'यह एक शक्तिशाली अवधि है — इस ग्रह का बल आपकी कुण्डली में उच्च है, जो अनुकूल परिणाम देता है।' : 'This is a strong period — this planet has high Shadbala in your chart, producing favorable outcomes.')
+          : activeDasha.quality === 'weak'
+            ? (isHi ? 'यह एक चुनौतीपूर्ण अवधि है — इस ग्रह का बल कम है। धैर्य और उपाय इस समय विशेष महत्वपूर्ण हैं।' : 'This is a challenging period — this planet has low strength in your chart. Patience and remedies are especially important during this time.')
+            : (isHi ? 'यह एक सन्तुलित अवधि है — न अत्यधिक अनुकूल, न प्रतिकूल। परिणाम आपके प्रयास पर निर्भर करेंगे।' : 'This is a balanced period — neither strongly favorable nor challenging. Results will depend largely on your own effort and choices.');
+        return (
+          <div className="mb-4 rounded-xl p-4 border" style={{ background: `${color.glow}15`, borderColor: `${color.glow}30` }}>
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-3 h-3 rounded-full animate-pulse" style={{ background: color.glow }} />
+              <span className="text-sm font-bold" style={{ color: color.fg }}>
+                {isHi ? `अभी: ${pName} महादशा` : `Now: ${pName} Mahadasha`}
+              </span>
+              <span className="text-text-secondary text-xs">~{yearsLeft} {isHi ? 'वर्ष शेष' : 'years remaining'}</span>
+            </div>
+            <p className="text-text-secondary text-xs leading-relaxed">{qualityDesc}</p>
+            {activeDasha.hasYoga && (
+              <p className="text-emerald-400 text-xs mt-1 font-medium">{isHi ? '✦ इस दशा में सक्रिय योग हैं — अतिरिक्त शुभ प्रभाव।' : '✦ Active yogas present in this dasha — additional auspicious influence.'}</p>
+            )}
+            {nName && (
+              <p className="text-text-secondary/60 text-xs mt-1">{isHi ? `अगला अध्याय: ${nName} महादशा (~${Math.round(activeDasha.endYear)} से)` : `Next chapter: ${nName} Mahadasha (from ~${Math.round(activeDasha.endYear)})`}</p>
+            )}
+          </div>
+        );
+      })()}
       {/* Clarifying note about Sade Sati independence */}
       <div className="mb-3 rounded-lg bg-amber-500/8 border border-amber-500/15 px-3 py-2 text-xs text-amber-200/70 leading-relaxed">
         <strong className="text-amber-300">{msg('noteLabel')}</strong>

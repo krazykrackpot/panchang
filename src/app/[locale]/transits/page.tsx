@@ -7,7 +7,6 @@ import { ChevronLeft, ChevronRight, Filter } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import InfoBlock from '@/components/ui/InfoBlock';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
-import { RashiIconById } from '@/components/icons/RashiIcons';
 import type { Locale,  LocaleText} from '@/types/panchang';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { sunLongitude, toSidereal, dateToJD, jdToDate, normalizeDeg } from '@/lib/ephem/astronomical';
@@ -35,6 +34,113 @@ const MONTH_NAMES_HI = ['जनवरी', 'फरवरी', 'मार्च',
 
 const PLANET_NAMES_EN = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'];
 const PLANET_NAMES_HI = ['सूर्य', 'चन्द्र', 'मंगल', 'बुध', 'गुरु', 'शुक्र', 'शनि', 'राहु', 'केतु'];
+
+// ─── Swimlane constants & computation ───
+
+/** Planet colors matching LiveSkyMap.tsx palette */
+const PLANET_COLORS: Record<number, string> = {
+  0: '#FF9500', 1: '#C0C0C0', 2: '#DC143C', 3: '#50C878',
+  4: '#FFD700', 5: '#FF69B4', 6: '#6B8DD6', 7: '#B8860B', 8: '#808080',
+};
+
+const PLANET_SHORT: Record<number, string> = {
+  0: 'Su', 1: 'Mo', 2: 'Ma', 3: 'Me', 4: 'Ju', 5: 'Ve', 6: 'Sa', 7: 'Ra', 8: 'Ke',
+};
+
+/** Planets shown in swimlane — exclude Sun(0) and Moon(1), they change signs every 1-2.5 days */
+const SWIMLANE_PLANET_IDS = [4, 6, 7, 8, 2, 5, 3]; // Jupiter, Saturn, Rahu, Ketu, Mars, Venus, Mercury
+const SLOW_PLANET_IDS = new Set([4, 6, 7, 8]);
+
+interface SwimlanePlanetBar {
+  signId: number;
+  signName: LocaleText;
+  flex: number;
+  startDate: string;
+  endDate: string;
+  isRetrograde: boolean;
+}
+
+interface SwimlanePlanet {
+  planetId: number;
+  planetName: LocaleText;
+  color: string;
+  bars: SwimlanePlanetBar[];
+  isSlow: boolean;
+}
+
+/** One-line house effect descriptions for personal insight */
+const HOUSE_EFFECTS: Record<number, string> = {
+  1: 'identity and vitality activated',
+  2: 'finances and family in focus',
+  3: 'communication and courage boosted',
+  4: 'home, comfort, and inner peace affected',
+  5: 'creativity, children, and speculation activated',
+  6: 'health challenges but enemy defeat',
+  7: 'relationships and partnerships highlighted',
+  8: 'transformation and hidden matters stirred',
+  9: 'fortune, dharma, and long journeys favored',
+  10: 'career and public standing in focus',
+  11: 'gains, social networks, and aspirations grow',
+  12: 'expenses, spirituality, and foreign lands active',
+};
+
+function daysBetween(a: string, b: string): number {
+  return Math.max(1, Math.round((new Date(b).getTime() - new Date(a).getTime()) / 86400000));
+}
+
+function daysInYear(year: number): number {
+  return (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) ? 366 : 365;
+}
+
+function buildSwimlaneBars(events: TransitEvent[], year: number): SwimlanePlanet[] {
+  const yearStart = `${year}-01-01`;
+  const yearEnd = `${year}-12-31`;
+
+  return SWIMLANE_PLANET_IDS.map(pid => {
+    const planetEvents = events
+      .filter(e => e.planetId === pid)
+      .sort((a, b) => a.date.localeCompare(b.date));
+
+    if (planetEvents.length === 0) return null;
+
+    const bars: SwimlanePlanetBar[] = [];
+    const totalDays = daysInYear(year);
+
+    // First bar: Jan 1 → first event date
+    if (planetEvents[0].date > yearStart) {
+      bars.push({
+        signId: planetEvents[0].fromSign,
+        signName: planetEvents[0].fromSignName,
+        flex: daysBetween(yearStart, planetEvents[0].date) / totalDays * 12,
+        startDate: yearStart,
+        endDate: planetEvents[0].date,
+        isRetrograde: false,
+      });
+    }
+
+    // Each event → next event (or year end)
+    for (let i = 0; i < planetEvents.length; i++) {
+      const ev = planetEvents[i];
+      const nextDate = i + 1 < planetEvents.length ? planetEvents[i + 1].date : yearEnd;
+      bars.push({
+        signId: ev.toSign,
+        signName: ev.toSignName,
+        flex: daysBetween(ev.date, nextDate) / totalDays * 12,
+        startDate: ev.date,
+        endDate: nextDate,
+        isRetrograde: false,
+      });
+    }
+
+    return {
+      planetId: pid,
+      planetName: planetEvents[0].planetName,
+      color: PLANET_COLORS[pid] || '#888',
+      bars,
+      isSlow: SLOW_PLANET_IDS.has(pid),
+    };
+  }).filter(Boolean) as SwimlanePlanet[];
+}
 
 export default function TransitsPage() {
   const t = useTranslations('transits');
@@ -82,6 +188,17 @@ export default function TransitsPage() {
     }
     return grouped;
   }, [filteredEvents]);
+
+  // Swimlane bars (always from full events, not filtered — filter dims rows instead)
+  const swimlaneData = useMemo(() => buildSwimlaneBars(events, year), [events, year]);
+
+  // TODAY line position (fraction of year elapsed)
+  const todayFraction = useMemo(() => {
+    if (year !== new Date().getFullYear()) return null;
+    const now = new Date();
+    const start = new Date(year, 0, 1);
+    return (now.getTime() - start.getTime()) / (daysInYear(year) * 86400000);
+  }, [year]);
 
   // Current transits summary — find the most recent transit for each slow planet (Mars-Ketu)
   const currentTransits = useMemo(() => {
@@ -181,18 +298,6 @@ export default function TransitsPage() {
     return null;
   }, [currentTransits, birthRashi, hasBirthData]);
 
-  const sigColors: Record<string, string> = {
-    major: 'border-gold-primary/30 bg-gold-primary/5',
-    moderate: 'border-amber-500/20 bg-amber-500/5',
-    minor: 'border-gold-primary/5 bg-bg-primary/20',
-  };
-
-  const sigBadge: Record<string, string> = {
-    major: 'text-gold-light bg-gold-primary/20',
-    moderate: 'text-amber-400 bg-amber-500/10',
-    minor: 'text-text-tertiary bg-bg-tertiary/30',
-  };
-
   const sigLabel: Record<string, LocaleText> = {
     major: { en: 'MAJOR', hi: 'प्रमुख', sa: 'प्रमुखम्', mai: 'प्रमुख', mr: 'प्रमुख', ta: 'முக்கியம்', te: 'ప్రముఖం', bn: 'প্রধান', kn: 'ಪ್ರಮುಖ', gu: 'મુખ્ય' },
     moderate: { en: 'MODERATE', hi: 'मध्यम', sa: 'मध्यमम्', mai: 'मध्यम', mr: 'मध्यम', ta: 'மிதமான', te: 'మధ్యస్థం', bn: 'মাঝারি', kn: 'ಮಧ್ಯಮ', gu: 'મધ્યમ' },
@@ -252,59 +357,147 @@ export default function TransitsPage() {
         </button>
       </div>
 
-      {/* Current transits summary */}
-      {year === new Date().getFullYear() && currentTransits.length > 0 && (
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-4 md:p-6 mb-8">
-          <h2 className="text-lg text-gold-gradient font-bold mb-4 text-center" style={headingFont}>
-            {msg('currentPlanetaryPositions', locale)}
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
-            {currentTransits.map(ct => (
-              <div key={ct.planetId} className="flex flex-col items-center p-3 bg-bg-primary/30 rounded-xl border border-gold-primary/10">
-                <GrahaIconById id={ct.planetId} size={32} />
-                <span className="text-gold-light text-xs font-semibold mt-1.5" style={headingFont}>{tl(ct.planetName, locale)}</span>
-                <div className="flex items-center gap-1 mt-1">
-                  <RashiIconById id={ct.sign} size={14} />
-                  <span className="text-text-secondary text-xs" style={bodyFont}>{tl(ct.signName, locale)}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-          {/* Jupiter Vedha warning */}
-          {jupiterVedha && (
-            <div className="mt-4 rounded-xl bg-amber-500/8 border border-amber-500/25 p-3 flex items-start gap-3">
-              <span className="text-amber-400 text-lg mt-0.5">⚠</span>
-              <div>
-                <div className="text-amber-400 font-bold text-sm mb-1" style={headingFont}>
-                  {msg('jupiterVedhaActive', locale)}
-                </div>
-                <p className="text-text-secondary/80 text-xs leading-relaxed" style={bodyFont}>
-                  {locale === 'en'
-                    ? `Jupiter transiting ${jupiterVedha.jupiterSign.en} is Vedha-blocked by Saturn in ${jupiterVedha.saturnSign.en} — Jupiter's transit benefits are reduced or negated this period. Classical Gochar texts state that Vedha negates the positive results of the transiting planet.`
-                    : `${jupiterVedha.jupiterSign.hi} में गोचर करते गुरु को ${jupiterVedha.saturnSign.hi} में शनि का वेध है — गुरु गोचर के शुभ फल इस काल में घटित अथवा निष्फल होते हैं।`}
+      {/* ═══ Hero Card: Mini Zodiac Wheel + Info Panel ═══ */}
+      {year === new Date().getFullYear() && currentTransits.length > 0 && (() => {
+        const RASHI_ABBR = ['Ari','Tau','Gem','Can','Leo','Vir','Lib','Sco','Sag','Cap','Aqu','Pis'];
+        const CX = 200, CY = 200, R_OUTER = 175, R_INNER = 130, R_TRACK = 152;
+        const polarToXY = (deg: number, r: number) => {
+          const rad = ((deg - 90) * Math.PI) / 180;
+          return { x: CX + r * Math.cos(rad), y: CY + r * Math.sin(rad) };
+        };
+        const planetDots = currentTransits.map(ct => {
+          const midDeg = (ct.sign - 1) * 30 + 15;
+          const pos = polarToXY(midDeg, R_TRACK);
+          return { ...ct, cx: pos.x, cy: pos.y };
+        });
+        const today = new Date().toISOString().split('T')[0];
+        const nextMajor = events.find(e => e.significance === 'major' && e.date > today);
+        const daysUntilNext = nextMajor ? Math.ceil((new Date(nextMajor.date).getTime() - Date.now()) / 86400000) : null;
+        const jupiterInsight = hasBirthData && birthRashi > 0
+          ? (() => {
+              const jup = currentTransits.find(c => c.planetId === 4);
+              if (!jup) return null;
+              const house = ((jup.sign - birthRashi + 12) % 12) + 1;
+              return { house, effect: HOUSE_EFFECTS[house] || '' };
+            })()
+          : null;
+
+        return (
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+            className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 sm:p-6 mb-8">
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              {/* Left: Mini zodiac wheel */}
+              <a href={`/${locale}/sky-map`} className="flex-shrink-0 w-[240px] h-[240px] md:w-[280px] md:h-[280px] hover:opacity-90 transition-opacity" title="Open Live Sky Map">
+                <svg viewBox="0 0 400 400" width="100%" height="100%">
+                  <defs>
+                    <radialGradient id="heroGlow">
+                      <stop offset="0%" stopColor="#1a1f45" stopOpacity={0.6} />
+                      <stop offset="100%" stopColor="#0a0e27" stopOpacity={0} />
+                    </radialGradient>
+                    {planetDots.map(p => (
+                      <filter key={`gf-${p.planetId}`} id={`hg-${p.planetId}`} x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+                        <feComposite in="blur" in2="SourceGraphic" operator="over" />
+                      </filter>
+                    ))}
+                  </defs>
+                  <rect width="400" height="400" fill="#0a0e27" rx="16" />
+                  <circle cx={CX} cy={CY} r={180} fill="url(#heroGlow)" />
+                  <circle cx={CX} cy={CY} r={R_OUTER} fill="none" stroke="#8a6d2b" strokeOpacity={0.25} strokeWidth={0.8} />
+                  <circle cx={CX} cy={CY} r={R_INNER} fill="none" stroke="#8a6d2b" strokeOpacity={0.15} strokeWidth={0.6} />
+                  <circle cx={CX} cy={CY} r={R_TRACK} fill="none" stroke="#d4a853" strokeOpacity={0.08} strokeWidth={1} />
+                  {RASHI_ABBR.map((name, i) => {
+                    const startDeg = i * 30;
+                    const p1 = polarToXY(startDeg, R_INNER);
+                    const p2 = polarToXY(startDeg, R_OUTER);
+                    const labelPos = polarToXY(startDeg + 15, (R_INNER + R_OUTER) / 2);
+                    return (
+                      <g key={name}>
+                        <line x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y} stroke="#8a6d2b" strokeOpacity={0.2} strokeWidth={0.5} />
+                        <text x={labelPos.x} y={labelPos.y + 3} textAnchor="middle" fontSize="9" fill="#d4a853" fillOpacity={0.6} fontWeight={600}>{name}</text>
+                      </g>
+                    );
+                  })}
+                  <circle cx={CX} cy={CY} r={18} fill="none" stroke="#d4a853" strokeOpacity={0.2} strokeWidth={0.8} />
+                  <line x1={CX} y1={CY - 15} x2={CX} y2={CY + 15} stroke="#d4a853" strokeOpacity={0.2} strokeWidth={0.6} />
+                  <line x1={CX - 15} y1={CY} x2={CX + 15} y2={CY} stroke="#d4a853" strokeOpacity={0.2} strokeWidth={0.6} />
+                  {planetDots.map(p => (
+                    <g key={p.planetId} filter={`url(#hg-${p.planetId})`}>
+                      <circle cx={p.cx} cy={p.cy} r={12} fill={PLANET_COLORS[p.planetId]} fillOpacity={0.15} />
+                      <circle cx={p.cx} cy={p.cy} r={9} fill={PLANET_COLORS[p.planetId]} stroke="#0a0e27" strokeWidth={1.5} />
+                      <text x={p.cx} y={p.cy + 3} textAnchor="middle" fontSize="7" fill="#0a0e27" fontWeight={700}>{PLANET_SHORT[p.planetId]}</text>
+                    </g>
+                  ))}
+                </svg>
+              </a>
+
+              {/* Right: Info panel */}
+              <div className="flex-1 min-w-0 w-full">
+                <h2 className="text-lg text-gold-gradient font-bold mb-1 text-center md:text-left" style={headingFont}>
+                  {msg('currentPlanetaryPositions', locale)}
+                </h2>
+                <p className="text-text-secondary text-xs mb-4 text-center md:text-left">
+                  {new Date().toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  {' — Gochara'}
                 </p>
+                <div className="grid grid-cols-2 gap-1.5 mb-4">
+                  {currentTransits.map(ct => (
+                    <div key={ct.planetId} className="flex items-center gap-2 px-2.5 py-1.5 bg-bg-primary/30 border border-gold-primary/8 rounded-lg">
+                      <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: PLANET_COLORS[ct.planetId] }} />
+                      <span className="text-xs font-semibold text-text-primary truncate" style={headingFont}>{tl(ct.planetName, locale)}</span>
+                      <span className="text-xs text-text-secondary ml-auto truncate">{tl(ct.signName, locale)}</span>
+                    </div>
+                  ))}
+                </div>
+                {nextMajor && daysUntilNext !== null && daysUntilNext > 0 && (
+                  <div className="flex items-center gap-3 bg-gold-primary/6 border border-gold-primary/18 rounded-xl p-3 mb-3">
+                    <div className="text-center">
+                      <div className="text-2xl font-extrabold text-gold-light leading-none">{daysUntilNext}</div>
+                      <div className="text-[10px] text-gold-dark font-semibold">{locale === 'hi' ? 'दिन' : 'days'}</div>
+                    </div>
+                    <div>
+                      <div className="text-[9px] text-text-secondary uppercase tracking-wider">{locale === 'hi' ? 'अगला प्रमुख गोचर' : 'Next Major Transit'}</div>
+                      <div className="text-sm text-gold-light font-bold">{tl(nextMajor.planetName, locale)} → {tl(nextMajor.toSignName, locale)}</div>
+                    </div>
+                  </div>
+                )}
+                {jupiterInsight && (
+                  <div className="bg-[#6366f1]/6 border border-[#6366f1]/15 rounded-xl p-3 mb-3">
+                    <p className="text-xs text-[#c4b5fd] leading-relaxed">
+                      <strong className="text-[#e0d4ff]">
+                        {locale === 'hi' ? `गुरु आपके ${jupiterInsight.house}वें भाव में` : `Jupiter in your ${jupiterInsight.house}${jupiterInsight.house === 1 ? 'st' : jupiterInsight.house === 2 ? 'nd' : jupiterInsight.house === 3 ? 'rd' : 'th'} house`}
+                      </strong>
+                      {' — '}{jupiterInsight.effect}
+                    </p>
+                  </div>
+                )}
+                {jupiterVedha && (
+                  <div className="rounded-xl bg-amber-500/8 border border-amber-500/25 p-3 flex items-start gap-2 mb-3">
+                    <span className="text-amber-400 text-sm mt-0.5">⚠</span>
+                    <p className="text-text-secondary/80 text-xs leading-relaxed" style={bodyFont}>
+                      <span className="text-amber-400 font-bold">{msg('jupiterVedhaActive', locale)}</span>
+                      {' '}{locale === 'en'
+                        ? `Jupiter in ${jupiterVedha.jupiterSign.en} is Vedha-blocked by Saturn in ${jupiterVedha.saturnSign.en}.`
+                        : `${jupiterVedha.jupiterSign.hi} में गुरु को ${jupiterVedha.saturnSign.hi} में शनि का वेध है।`}
+                    </p>
+                  </div>
+                )}
+                {ashtamaShani && (
+                  <div className="rounded-xl bg-red-500/8 border border-red-500/30 p-3 flex items-start gap-2">
+                    <span className="text-red-400 text-sm mt-0.5">⚠</span>
+                    <p className="text-text-secondary/80 text-xs leading-relaxed" style={bodyFont}>
+                      <span className="text-red-400 font-bold">{msg('ashtamaShaniActive', locale)}</span>
+                      {' '}{locale === 'en'
+                        ? `Saturn in ${ashtamaShani.saturnSign.en} is 8th from your Moon — intense karmic pressure.`
+                        : `शनि ${ashtamaShani.saturnSign.hi} में आपके चन्द्र से 8वें भाव में — गहन कार्मिक दबाव।`}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
-          )}
-          {/* QW-12: Ashtama Shani warning */}
-          {ashtamaShani && (
-            <div className="mt-4 rounded-xl bg-red-500/8 border border-red-500/30 p-3 flex items-start gap-3">
-              <span className="text-red-400 text-lg mt-0.5">⚠</span>
-              <div>
-                <div className="text-red-400 font-bold text-sm mb-1" style={headingFont}>
-                  {msg('ashtamaShaniActive', locale)}
-                </div>
-                <p className="text-text-secondary/80 text-xs leading-relaxed" style={bodyFont}>
-                  {locale === 'en'
-                    ? `Saturn is currently in ${ashtamaShani.saturnSign.en}, which is the 8th house from your natal Moon sign. This is Ashtama Shani — a 2.5-year period of intense karmic pressure. Often more taxing than individual Sade Sati phases. Focus on health, avoid risky financial decisions, and strengthen spiritual practice.`
-                    : `शनि अभी ${ashtamaShani.saturnSign.hi} में है, जो आपके जन्म चन्द्र से 8वाँ भाव है। यह अष्टम शनि है — 2.5 वर्ष का गहन कार्मिक दबाव। स्वास्थ्य पर ध्यान दें, जोखिम भरे वित्तीय निर्णयों से बचें, और आध्यात्मिक साधना को मजबूत करें।`}
-                </p>
-              </div>
-            </div>
-          )}
-        </motion.div>
-      )}
+          </motion.div>
+        );
+      })()}
 
       {/* Stats bar */}
       {!loading && (
@@ -373,7 +566,7 @@ export default function TransitsPage() {
 
       <GoldDivider />
 
-      {/* Content */}
+      {/* Timeline */}
       {loading ? (
         <div className="flex items-center justify-center py-20">
           <div className="animate-spin rounded-full h-12 w-12 border-2 border-gold-primary border-t-transparent" />
@@ -383,85 +576,172 @@ export default function TransitsPage() {
           {msg('noTransitEvents', locale)}
         </div>
       ) : (
-        <div className="mt-8 space-y-10">
-          {Array.from({ length: 12 }, (_, monthIdx) => {
-            const monthEvents = eventsByMonth[monthIdx];
-            if (!monthEvents || monthEvents.length === 0) return null;
-            const monthName = (!isDevanagariLocale(locale) ? MONTH_NAMES_EN : MONTH_NAMES_HI)[monthIdx];
-            const isCurrentMonth = year === new Date().getFullYear() && monthIdx === new Date().getMonth();
-
-            return (
-              <motion.div key={monthIdx}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.3 }}>
-                {/* Month header */}
-                <div className={`flex items-center gap-3 mb-4 ${isCurrentMonth ? '' : ''}`}>
-                  <h3 className={`text-xl font-bold ${isCurrentMonth ? 'text-gold-gradient' : 'text-text-primary'}`} style={headingFont}>
-                    {monthName}
-                  </h3>
-                  <span className="text-text-tertiary text-xs">{monthEvents.length} {msg('events', locale)}</span>
-                  {isCurrentMonth && (
-                    <span className="px-2 py-0.5 bg-gold-primary/20 text-gold-light text-xs rounded-full font-bold">
-                      {msg('now', locale)}
-                    </span>
-                  )}
-                  <div className="flex-1 h-px bg-gradient-to-r from-gold-primary/20 to-transparent" />
+        <>
+          {/* ═══ Desktop: Horizontal Swimlane ═══ */}
+          <div className="hidden md:block mt-8">
+            <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/10 rounded-2xl p-5 overflow-x-auto">
+              <div className="min-w-[700px]">
+                {/* Month headers */}
+                <div className="flex items-center mb-3">
+                  <div className="w-[90px] flex-shrink-0" />
+                  <div className="flex-1 flex justify-between px-1">
+                    {(isDevanagari ? MONTH_NAMES_HI : MONTH_NAMES_EN).map((m, i) => (
+                      <span key={i} className="text-[11px] text-text-secondary font-semibold" style={bodyFont}>
+                        {m.substring(0, 3)}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Events */}
-                <div className="space-y-2">
-                  {monthEvents.map((e, i) => {
-                    const dateObj = new Date(e.date + 'T00:00:00');
-                    const dayNum = dateObj.getDate();
-                    const dayName = dateObj.toLocaleDateString(msg('dayNameLocale', locale), { weekday: 'short' });
-                    const isPast = new Date(e.date) < new Date(new Date().toISOString().split('T')[0]);
+                {/* Planet rows */}
+                <div className="relative">
+                  {/* TODAY line */}
+                  {todayFraction !== null && (
+                    <>
+                      <div
+                        className="absolute top-0 bottom-0 w-[2px] z-10 pointer-events-none"
+                        style={{
+                          left: `calc(90px + (100% - 90px) * ${todayFraction})`,
+                          background: 'linear-gradient(to bottom, #f0d48a, rgba(240, 212, 138, 0))',
+                        }}
+                      />
+                      <div
+                        className="absolute z-10 text-[9px] text-gold-light bg-bg-primary border border-gold-primary/40 px-1.5 py-0.5 rounded font-bold tracking-wider pointer-events-none"
+                        style={{
+                          left: `calc(90px + (100% - 90px) * ${todayFraction})`,
+                          top: '-18px',
+                          transform: 'translateX(-50%)',
+                        }}
+                      >
+                        {locale === 'hi' ? 'आज' : 'TODAY'}
+                      </div>
+                    </>
+                  )}
 
+                  {swimlaneData.map((planet, idx) => {
+                    const isFiltered = planetFilter !== null && planetFilter !== planet.planetId;
+                    const gapBefore = idx > 0 && planet.isSlow !== swimlaneData[idx - 1].isSlow;
                     return (
                       <div
-                        key={`${e.date}-${e.planetId}`}
-                        className={`flex items-center gap-3 sm:gap-4 rounded-xl p-3 sm:p-4 border transition-all ${sigColors[e.significance]} ${isPast ? 'opacity-50' : ''}`}>
-                        {/* Date column */}
-                        <div className="flex-shrink-0 w-12 text-center">
-                          <div className="text-2xl font-bold text-gold-light leading-none">{dayNum}</div>
-                          <div className="text-xs text-text-tertiary uppercase">{dayName}</div>
+                        key={planet.planetId}
+                        className={`flex items-center ${gapBefore ? 'mt-3' : 'mt-1'} ${isFiltered ? 'opacity-20' : ''} transition-opacity`}
+                      >
+                        <div className="w-[90px] flex-shrink-0 text-right pr-4">
+                          <span className="text-[13px] font-bold" style={{ color: planet.color, ...headingFont }}>
+                            {tl(planet.planetName, locale)}
+                          </span>
                         </div>
-
-                        {/* Separator */}
-                        <div className="w-px h-10 bg-gold-primary/15 flex-shrink-0" />
-
-                        {/* Planet icon */}
-                        <div className="flex-shrink-0">
-                          <GrahaIconById id={e.planetId} size={36} />
-                        </div>
-
-                        {/* Details */}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <span className="text-gold-light font-bold" style={headingFont}>
-                              {tl(e.planetName, locale)}
-                            </span>
-                            <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${sigBadge[e.significance]}`}>
-                              {(!isDevanagariLocale(locale) ? sigLabel[e.significance].en : sigLabel[e.significance].hi)}
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-1.5 mt-1 text-sm">
-                            <RashiIconById id={e.fromSign} size={14} />
-                            <span className="text-text-tertiary" style={bodyFont}>{tl(e.fromSignName, locale)}</span>
-                            <span className="text-gold-dark mx-0.5">→</span>
-                            <RashiIconById id={e.toSign} size={14} />
-                            <span className="text-text-primary font-medium" style={bodyFont}>{tl(e.toSignName, locale)}</span>
-                          </div>
+                        <div className={`flex-1 flex gap-[2px] ${planet.isSlow ? 'h-[32px]' : 'h-[22px]'}`}>
+                          {planet.bars.map((bar, bi) => {
+                            const signLabel = tl(bar.signName, locale).substring(0, planet.isSlow ? 10 : 3);
+                            return (
+                              <div
+                                key={bi}
+                                className="flex items-center justify-center rounded-md px-1 overflow-hidden text-ellipsis whitespace-nowrap cursor-default transition-all hover:brightness-125"
+                                style={{
+                                  flex: bar.flex,
+                                  background: `${planet.color}15`,
+                                  border: `1px solid ${planet.color}30`,
+                                  color: planet.color,
+                                  fontSize: planet.isSlow ? '10px' : '9px',
+                                  fontWeight: 600,
+                                  height: '100%',
+                                }}
+                                title={`${tl(bar.signName, locale)}: ${bar.startDate} → ${bar.endDate}`}
+                              >
+                                {bar.flex > 0.8 ? signLabel : ''}
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
                     );
                   })}
                 </div>
-              </motion.div>
-            );
-          })}
-        </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ═══ Mobile: Vertical Timeline ═══ */}
+          <div className="md:hidden mt-8">
+            <div className="relative pl-10">
+              {/* Vertical line */}
+              <div className="absolute left-4 top-0 bottom-0 w-[2px]" style={{ background: 'linear-gradient(to bottom, rgba(212,168,83,0.3), rgba(212,168,83,0.05))' }} />
+
+              {Array.from({ length: 12 }, (_, monthIdx) => {
+                const monthEvents = eventsByMonth[monthIdx];
+                if (!monthEvents || monthEvents.length === 0) return null;
+                const monthName = (isDevanagari ? MONTH_NAMES_HI : MONTH_NAMES_EN)[monthIdx];
+                const isCurrentMonth = year === new Date().getFullYear() && monthIdx === new Date().getMonth();
+
+                return (
+                  <motion.div
+                    key={monthIdx}
+                    className="mb-6 relative"
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-50px' }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {/* Month dot + label */}
+                    <div className="flex items-center gap-2 mb-2 -ml-10">
+                      <div
+                        className="w-3 h-3 rounded-full border-2 border-bg-primary flex-shrink-0 relative left-[10px]"
+                        style={{ background: isCurrentMonth ? '#f0d48a' : '#8a8478' }}
+                      />
+                      <span className={`text-sm font-bold ml-2 ${isCurrentMonth ? 'text-gold-light' : 'text-text-primary'}`} style={headingFont}>
+                        {monthName}
+                      </span>
+                      {isCurrentMonth && (
+                        <span className="px-2 py-0.5 bg-gold-primary/20 text-gold-light text-[10px] rounded-full font-bold">
+                          {msg('now', locale)}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Event cards */}
+                    <div className="space-y-2">
+                      {monthEvents.map((e) => {
+                        const dateObj = new Date(e.date + 'T00:00:00');
+                        const dayNum = dateObj.getDate();
+                        const isMajor = e.significance === 'major';
+                        const isPast = e.date < new Date().toISOString().split('T')[0];
+
+                        return (
+                          <div
+                            key={`${e.date}-${e.planetId}`}
+                            className={`rounded-xl p-3 border transition-all ${
+                              isMajor
+                                ? 'bg-gradient-to-br from-[#2d1b69]/35 via-[#1a1040]/40 to-[#0a0e27] border-gold-primary/25'
+                                : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border-gold-primary/10'
+                            } ${isPast ? 'opacity-50' : ''}`}
+                          >
+                            <div className="flex items-center gap-3">
+                              <GrahaIconById id={e.planetId} size={32} />
+                              <div className="flex-1 min-w-0">
+                                <span className="text-sm font-bold" style={{ color: PLANET_COLORS[e.planetId], ...headingFont }}>
+                                  {tl(e.planetName, locale)} → {tl(e.toSignName, locale)}
+                                </span>
+                                <div className="text-xs text-text-secondary mt-0.5" style={bodyFont}>
+                                  {isDevanagari ? `${dayNum} ${monthName}` : `${monthName.substring(0, 3)} ${dayNum}`}
+                                </div>
+                              </div>
+                              {isMajor && (
+                                <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-gold-primary/20 text-gold-light flex-shrink-0">
+                                  {tl(sigLabel.major, locale)}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </>
       )}
 
       {/* JYOTISH-15: Mesha Sankranti */}
@@ -503,14 +783,6 @@ export default function TransitsPage() {
         </motion.div>
       )}
 
-      {/* Footer count */}
-      {!loading && filteredEvents.length > 0 && (
-        <div className="text-center text-text-tertiary text-sm mt-10">
-          {locale === 'en'
-            ? `Showing ${filteredEvents.length} of ${events.length} transit events for ${year}`
-            : `${year} के ${events.length} गोचर में से ${filteredEvents.length} दिखाए जा रहे हैं`}
-        </div>
-      )}
     </div>
   );
 }

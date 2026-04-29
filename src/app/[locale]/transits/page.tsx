@@ -782,12 +782,12 @@ export default function TransitsPage() {
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
           className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6 mt-10">
           <h2 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
-            {selectedSankranti.name ? tl(selectedSankranti.name, locale) : ''} {locale === 'hi' ? 'संक्रान्ति' : 'Sankranti'} {year}
+            {selectedSankranti.name ? `${selectedSankranti.name.sa || selectedSankranti.name.hi} (${selectedSankranti.name.en})` : ''} {locale === 'hi' ? 'संक्रान्ति' : 'Sankranti'} {year}
           </h2>
           <p className="text-text-secondary/70 text-xs text-center mb-4" style={bodyFont}>
             {locale === 'en'
-              ? `Sun enters 0° sidereal ${selectedSankranti.name?.en || ''}${selectedSankrantiIdx === 0 ? ' — the astrological new year (Brihat Samhita)' : ''}`
-              : `सूर्य ${selectedSankranti.name?.hi || ''} राशि में प्रवेश${selectedSankrantiIdx === 0 ? ' — ज्योतिषीय नव वर्ष' : ''}`}
+              ? `Sun enters 0° sidereal ${selectedSankranti.name?.en || ''} (${selectedSankranti.name?.sa || selectedSankranti.name?.hi || ''})${selectedSankrantiIdx === 0 ? ' — the astrological new year (Brihat Samhita)' : ''}`
+              : `सूर्य ${selectedSankranti.name?.hi || ''} (${selectedSankranti.name?.en || ''}) राशि में प्रवेश${selectedSankrantiIdx === 0 ? ' — ज्योतिषीय नव वर्ष' : ''}`}
           </p>
 
           {/* Sankranti selector — 12 rashi pills */}

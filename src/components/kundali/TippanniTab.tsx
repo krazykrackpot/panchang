@@ -261,7 +261,10 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
   const isTamil = String(locale) === 'ta';
   const isEn = locale === 'en' || isTamil;
   const [expandedPlanet, setExpandedPlanet] = useState<number | null>(null);
+  const [showAllPlanets, setShowAllPlanets] = useState(false);
   const [expandedYoga, setExpandedYoga] = useState<number | null>(null);
+  const [showAllYogas, setShowAllYogas] = useState(false);
+  const [showStrengthTable, setShowStrengthTable] = useState(false);
   const [expandedAntar, setExpandedAntar] = useState<number | null>(null);
   const [expandedPratyantar, setExpandedPratyantar] = useState<string | null>(null);
   const [selectedMahaTimeline, setSelectedMahaTimeline] = useState<number | null>(null);
@@ -538,11 +541,20 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
 
       {/* ===== PLANET PLACEMENT ANALYSIS ===== */}
       <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
-        <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>
-          {locale === 'en' || isTamil ? 'Planet Placement Analysis' : isDevanagari ? 'ग्रह स्थिति विश्लेषण' : 'ग्रहस्थितिविश्लेषणम्'}
+        <h3 className="text-xl text-gold-light font-semibold mb-2" style={headingFont}>
+          {isEn ? 'Planet Placement Analysis' : isDevanagari ? 'ग्रह स्थिति विश्लेषण' : 'ग्रहस्थितिविश्लेषणम्'}
         </h3>
+        <p className="text-text-secondary text-xs mb-5">
+          {(() => {
+            const dignified = tip.planetInsights.filter(p => p.dignity && (p.dignity.includes('exalted') || p.dignity.includes('own') || p.dignity.includes('उच्च') || p.dignity.includes('स्वगृह')));
+            const retro = tip.planetInsights.filter(p => p.retrogradeEffect);
+            return isEn
+              ? `${dignified.length} planet${dignified.length !== 1 ? 's' : ''} in strong dignity${retro.length > 0 ? `, ${retro.length} retrograde` : ''}. Tap any planet for detailed analysis.`
+              : `${dignified.length} ग्रह शक्तिशाली गरिमा में${retro.length > 0 ? `, ${retro.length} वक्री` : ''}। विस्तृत विश्लेषण के लिए किसी भी ग्रह पर टैप करें।`;
+          })()}
+        </p>
         <div className="space-y-3">
-          {tip.planetInsights.map((pi) => (
+          {(showAllPlanets ? tip.planetInsights : tip.planetInsights.slice(0, 3)).map((pi) => (
             <div key={pi.planetId}>
               <motion.div
                 onClick={() => setExpandedPlanet(expandedPlanet === pi.planetId ? null : pi.planetId)}
@@ -606,13 +618,26 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
             </div>
           ))}
         </div>
+        {!showAllPlanets && tip.planetInsights.length > 3 && (
+          <button onClick={() => setShowAllPlanets(true)} className="w-full mt-3 py-2.5 text-xs font-semibold text-gold-primary hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg transition-colors">
+            {isEn ? `Show all ${tip.planetInsights.length} planets →` : `सभी ${tip.planetInsights.length} ग्रह देखें →`}
+          </button>
+        )}
+        {showAllPlanets && tip.planetInsights.length > 3 && (
+          <button onClick={() => setShowAllPlanets(false)} className="w-full mt-3 py-2 text-[10px] text-text-secondary/50 hover:text-text-secondary transition-colors">
+            {isEn ? 'Show fewer' : 'कम दिखाएं'}
+          </button>
+        )}
       </section>
 
       {/* ===== YOGAS ===== */}
       <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
-        <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>{tTip('yogas')}</h3>
+        <h3 className="text-xl text-gold-light font-semibold mb-2" style={headingFont}>{tTip('yogas')}</h3>
+        <p className="text-text-secondary text-xs mb-5">
+          {isEn ? `${yogasActive} yoga${yogasActive !== 1 ? 's' : ''} active in your chart — special planetary combinations that shape your life trajectory.` : `${yogasActive} योग सक्रिय — विशेष ग्रहीय संयोजन जो आपके जीवन-पथ को आकार देते हैं।`}
+        </p>
         <div className="space-y-3">
-          {tip.yogas.filter(y => y.present).map((yoga, i) => {
+          {(showAllYogas ? tip.yogas.filter(y => y.present) : tip.yogas.filter(y => y.present).slice(0, 3)).map((yoga, i) => {
             const isInauspicious = yoga.type === 'Arishta' || yoga.type === 'Dosha';
             const borderColor = isInauspicious ? 'border-rose-500/20 bg-rose-500/5 hover:border-rose-500/30' : 'border-green-500/20 bg-green-500/5 hover:border-green-500/30';
             const badgeColor = isInauspicious ? 'bg-rose-500/20 text-rose-400' : 'bg-green-500/20 text-green-400';
@@ -654,6 +679,16 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
             </div>
           );})}
         </div>
+        {!showAllYogas && tip.yogas.filter(y => y.present).length > 3 && (
+          <button onClick={() => setShowAllYogas(true)} className="w-full mt-3 py-2.5 text-xs font-semibold text-gold-primary hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg transition-colors">
+            {isEn ? `Show all ${yogasActive} yogas →` : `सभी ${yogasActive} योग देखें →`}
+          </button>
+        )}
+        {showAllYogas && yogasActive > 3 && (
+          <button onClick={() => setShowAllYogas(false)} className="w-full mt-3 py-2 text-[10px] text-text-secondary/50 hover:text-text-secondary transition-colors">
+            {isEn ? 'Show fewer' : 'कम दिखाएं'}
+          </button>
+        )}
       </section>
 
       {/* ===== DOSHAS ===== */}
@@ -1236,14 +1271,24 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
       {/* ===== PLANETARY STRENGTH ===== */}
       {tip.strengthOverview.length > 0 && (
         <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
-          <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>
-            {locale === 'en' || isTamil ? 'Planetary Strength (Shadbala)' : isDevanagari ? 'ग्रह बल (षड्बल)' : 'ग्रहबलम् (षड्बलम्)'}
+          <h3 className="text-xl text-gold-light font-semibold mb-2" style={headingFont}>
+            {isEn ? 'Planetary Strength' : isDevanagari ? 'ग्रह बल' : 'ग्रहबलम्'}
           </h3>
-          <p className="text-text-secondary/60 text-xs mb-4">
-            {locale === 'en' || isTamil
-              ? 'Ratio = actual Rupas ÷ minimum required (BPHS Ch.27). ≥1.5× = Strong, ≥1.0× = Adequate, <1.0× = Weak.'
-              : 'अनुपात = वास्तविक रूपा ÷ न्यूनतम आवश्यक (BPHS अ.27)। ≥1.5× = बलवान, ≥1.0× = पर्याप्त, <1.0× = दुर्बल।'}
+          <p className="text-text-secondary text-xs mb-4">
+            {isEn
+              ? `${strongPlanets.length} strong, ${weakPlanets.length} weak. Strongest: ${strongestPlanet?.planetName || '—'}. ${showStrengthTable ? '' : 'Tap below to see full breakdown.'}`
+              : `${strongPlanets.length} शक्तिशाली, ${weakPlanets.length} कमजोर। सबसे शक्तिशाली: ${strongestPlanet?.planetName || '—'}।`}
           </p>
+          {!showStrengthTable && (
+            <button onClick={() => setShowStrengthTable(true)} className="w-full py-2.5 text-xs font-semibold text-gold-primary hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg transition-colors mb-4">
+              {isEn ? 'Show strength breakdown →' : 'बल विवरण देखें →'}
+            </button>
+          )}
+          {showStrengthTable && (
+            <>
+            <p className="text-text-secondary/60 text-[10px] mb-3">
+              {isEn ? '≥1.5× = Strong, ≥1.0× = Adequate, <1.0× = Weak (BPHS Ch.27)' : '≥1.5× = बलवान, ≥1.0× = पर्याप्त, <1.0× = दुर्बल (BPHS अ.27)'}
+            </p>
           <div className="space-y-3">
             {tip.strengthOverview.map((s, i) => {
               const ratio = (s as any).ratio as number | undefined;
@@ -1272,6 +1317,11 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
               );
             })}
           </div>
+            <button onClick={() => setShowStrengthTable(false)} className="w-full mt-3 py-2 text-[10px] text-text-secondary/50 hover:text-text-secondary transition-colors">
+              {isEn ? 'Collapse' : 'छुपाएं'}
+            </button>
+            </>
+          )}
         </section>
       )}
 

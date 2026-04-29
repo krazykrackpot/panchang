@@ -531,12 +531,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   return (
     <div className="relative">
       {/* ═══ HERO: Mantras + Mini Zodiac + Live Panchang Summary ═══ */}
-      <section className="relative pt-20 pb-8 sm:pt-24 sm:pb-10 px-4 overflow-hidden">
+      <section className="relative pt-20 pb-40 sm:pt-24 sm:pb-48 px-4">
         {/* Background: radial gold glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-gold-primary/5 via-transparent to-gold-dark/3 blur-3xl" />
 
         {/* Slow-orbiting zodiac ring behind hero — visible gold with element colors */}
-        <div className="absolute top-1/2 left-1/2 w-[500px] h-[500px] cosmic-orbit -z-10" aria-hidden="true">
+        <div className="absolute top-1/2 left-1/2 w-[700px] h-[700px] sm:w-[800px] sm:h-[800px] cosmic-orbit -z-10" aria-hidden="true">
           <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none">
             <defs>
               <linearGradient id="orbit-gold" x1="0%" y1="0%" x2="100%" y2="100%">

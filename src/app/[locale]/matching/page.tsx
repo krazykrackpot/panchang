@@ -742,51 +742,138 @@ export default function MatchingPage() {
               {t('kutaBreakdown')}
             </h2>
 
-            <div className="space-y-4 mb-12">
-              {result.kutas.map((kuta, i) => {
-                const insight = getKutaInsight(kuta.name.en, kuta.scored, kuta.maxPoints, kuta.boyDetail, kuta.girlDetail);
-                const pct = kuta.maxPoints > 0 ? kuta.scored / kuta.maxPoints : 0;
-                // Major kutas: Nadi (8), Bhakut (7), Gana (6) — maxPoints >= 6
-                const isMajor = kuta.maxPoints >= 6;
-                const verdictColorForBorder = pct >= 0.75 ? 'border-emerald-500' : pct >= 0.5 ? 'border-amber-500' : pct >= 0.25 ? 'border-orange-500' : 'border-red-500';
-                return (
-                  <motion.div
-                    key={kuta.name.en}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.08 }}
-                    className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl ${isMajor ? `border-l-4 ${verdictColorForBorder} p-6` : 'p-4'}`}
-                  >
-                    <div className="flex items-center justify-between mb-3">
-                      <div>
-                        <span className={`text-gold-light font-bold ${isMajor ? 'text-lg' : 'text-base'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                          {tl(kuta.name, locale)}
-                        </span>
-                        {isMajor && <span className="ml-2 text-[10px] uppercase tracking-wider text-gold-primary/50 font-bold border border-gold-primary/20 px-1.5 py-0.5 rounded">
-                          {locale === 'en' ? 'Major' : locale === 'hi' ? 'प्रमुख' : locale === 'ta' ? 'முக்கிய' : 'Major'}
-                        </span>}
-                        <span className="text-text-secondary text-xs ml-3 block sm:inline mt-0.5 sm:mt-0">{tl(kuta.description, locale)}</span>
-                      </div>
-                      <span className={`font-mono font-black text-gold-primary ${isMajor ? 'text-xl' : 'text-base'}`}>
-                        {kuta.scored} <span className="text-text-secondary text-sm font-normal">/ {kuta.maxPoints}</span>
-                      </span>
-                    </div>
-                    <div className={`w-full bg-bg-tertiary rounded-full overflow-hidden ${isMajor ? 'h-3' : 'h-2'} mb-3`}>
+            {/* Kuta visual scale cards */}
+            {(() => {
+              // Scale definitions for kutas that have ordinal values
+              const KUTA_SCALES: Record<string, string[]> = {
+                'Varna': ['Shudra', 'Vaishya', 'Kshatriya', 'Brahmin'],
+                'Gana': ['Deva (gentle)', 'Manushya (balanced)', 'Rakshasa (intense)'],
+                'Nadi': ['Aadi (Vata)', 'Madhya (Pitta)', 'Antya (Kapha)'],
+              };
+
+              return (
+                <div className="space-y-3 mb-12">
+                  {result.kutas.map((kuta, i) => {
+                    const insight = getKutaInsight(kuta.name.en, kuta.scored, kuta.maxPoints);
+                    const pct = kuta.maxPoints > 0 ? kuta.scored / kuta.maxPoints : 0;
+                    const isMajor = kuta.maxPoints >= 6;
+                    const scoreColor = pct >= 0.75 ? 'text-emerald-400' : pct >= 0.5 ? 'text-amber-400' : pct >= 0.25 ? 'text-orange-400' : 'text-red-400';
+                    const barColor = scoreBarColor(kuta.scored, kuta.maxPoints);
+                    const scale = KUTA_SCALES[kuta.name.en];
+                    const boyName = boyBirth.name || (locale === 'hi' ? 'वर' : 'Partner 1');
+                    const girlName = girlBirth.name || (locale === 'hi' ? 'कन्या' : 'Partner 2');
+
+                    return (
                       <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: `${pct * 100}%` }}
-                        transition={{ delay: 0.3 + i * 0.08, duration: 0.6 }}
-                        className={`h-full rounded-full ${scoreBarColor(kuta.scored, kuta.maxPoints)}`}
-                      />
-                    </div>
-                    {/* Relationship interpretation for this kuta */}
-                    <p className={`leading-relaxed ${isMajor ? 'text-sm' : 'text-xs'} ${pct >= 0.75 ? 'text-emerald-300/80' : pct >= 0.5 ? 'text-amber-300/80' : pct >= 0.25 ? 'text-orange-300/80' : 'text-red-300/80'}`}>
-                      {insight}
-                    </p>
-                  </motion.div>
-                );
-              })}
-            </div>
+                        key={kuta.name.en}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.06 }}
+                        className={`bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl p-4 sm:p-5 ${isMajor ? 'border-l-4 border-l-gold-primary/40' : ''}`}
+                      >
+                        {/* Header: kuta name + score */}
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-2">
+                            <span className={`text-gold-light font-bold ${isMajor ? 'text-base' : 'text-sm'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                              {tl(kuta.name, locale)}
+                            </span>
+                            {isMajor && <span className="text-[9px] uppercase tracking-wider text-gold-primary/50 font-bold border border-gold-primary/20 px-1.5 py-0.5 rounded">
+                              {locale === 'hi' ? 'प्रमुख' : 'Major'}
+                            </span>}
+                            <span className="text-text-secondary/60 text-[11px] hidden sm:inline">{tl(kuta.description, locale)}</span>
+                          </div>
+                          <span className={`font-mono font-black ${scoreColor} ${isMajor ? 'text-lg' : 'text-sm'}`}>
+                            {kuta.scored}<span className="text-text-secondary/50 text-xs font-normal">/{kuta.maxPoints}</span>
+                          </span>
+                        </div>
+
+                        {/* Score bar */}
+                        <div className={`w-full bg-bg-tertiary/50 rounded-full overflow-hidden ${isMajor ? 'h-2.5' : 'h-1.5'} mb-4`}>
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: `${pct * 100}%` }}
+                            transition={{ delay: 0.2 + i * 0.06, duration: 0.5 }}
+                            className={`h-full rounded-full ${barColor}`}
+                          />
+                        </div>
+
+                        {/* Partner comparison: scale or badges */}
+                        {kuta.boyDetail && kuta.girlDetail && (
+                          <div className="mb-3">
+                            {scale ? (
+                              /* Ordinal scale with dots */
+                              <div className="relative">
+                                {/* Scale track */}
+                                <div className="flex items-center justify-between px-2 mb-1">
+                                  {scale.map((label, si) => {
+                                    const isBoy = kuta.boyDetail === label;
+                                    const isGirl = kuta.girlDetail === label;
+                                    return (
+                                      <div key={si} className="flex flex-col items-center gap-1 relative">
+                                        {/* Dot markers */}
+                                        <div className="flex gap-1">
+                                          {isBoy && (
+                                            <div className="w-5 h-5 rounded-full bg-blue-500/80 border-2 border-blue-400 flex items-center justify-center" title={boyName}>
+                                              <span className="text-[8px] font-bold text-white">1</span>
+                                            </div>
+                                          )}
+                                          {isGirl && (
+                                            <div className="w-5 h-5 rounded-full bg-pink-500/80 border-2 border-pink-400 flex items-center justify-center" title={girlName}>
+                                              <span className="text-[8px] font-bold text-white">2</span>
+                                            </div>
+                                          )}
+                                          {!isBoy && !isGirl && (
+                                            <div className="w-2 h-2 rounded-full bg-gold-primary/15 mt-1.5" />
+                                          )}
+                                        </div>
+                                        <span className={`text-[9px] leading-tight text-center max-w-[70px] ${isBoy || isGirl ? 'text-text-primary font-semibold' : 'text-text-secondary/40'}`}>
+                                          {label.split(' (')[0]}
+                                        </span>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                                {/* Connecting line */}
+                                <div className="absolute top-[10px] left-4 right-4 h-[1px] bg-gold-primary/10 -z-0" />
+                              </div>
+                            ) : (
+                              /* Non-ordinal: two badges side by side */
+                              <div className="flex items-center gap-3 flex-wrap">
+                                <div className="flex items-center gap-1.5">
+                                  <div className="w-3 h-3 rounded-full bg-blue-500/70 border border-blue-400/50 flex-shrink-0" />
+                                  <span className="text-xs text-text-secondary">{boyName}:</span>
+                                  <span className="text-xs text-blue-300 font-semibold">{kuta.boyDetail}</span>
+                                </div>
+                                <div className="flex items-center gap-1.5">
+                                  <div className="w-3 h-3 rounded-full bg-pink-500/70 border border-pink-400/50 flex-shrink-0" />
+                                  <span className="text-xs text-text-secondary">{girlName}:</span>
+                                  <span className="text-xs text-pink-300 font-semibold">{kuta.girlDetail}</span>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
+
+                        {/* Interpretation */}
+                        <p className={`leading-relaxed ${isMajor ? 'text-xs' : 'text-[11px]'} text-text-secondary/70`}>
+                          {insight}
+                        </p>
+                      </motion.div>
+                    );
+                  })}
+
+                  {/* Tally */}
+                  <div className="bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] border border-gold-primary/20 rounded-xl p-4 flex items-center justify-between">
+                    <span className="text-gold-light font-bold text-sm" style={headingFont}>
+                      {locale === 'hi' ? 'कुल अंक' : 'Total Score'}
+                    </span>
+                    <span className="font-mono font-black text-gold-primary text-xl">
+                      {result.totalScore} <span className="text-text-secondary text-sm font-normal">/ 36</span>
+                    </span>
+                  </div>
+                </div>
+              );
+            })()}
             </div>
             {/* P2-03: Nakshatra Veda Pairs */}
             {(() => {

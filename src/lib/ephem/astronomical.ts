@@ -251,7 +251,9 @@ export function getAyanamsha(jd: number, type: AyanamshaType = 'lahiri'): number
     case 'true_revati':
     case 'true_pushya':
     case 'galactic_center':
-      // These need Swiss Eph for accuracy — fallback to Lahiri as approximation
+      // These need Swiss Eph for accuracy — fallback to Lahiri as approximation.
+      // Warn so developers/users know the system they requested is not being used.
+      console.warn(`[ayanamsha] ${type} requested but Swiss Ephemeris unavailable — falling back to Lahiri approximation`);
       return _meeeusLahiriAyanamsha(jd);
     default:
       return _meeeusLahiriAyanamsha(jd);

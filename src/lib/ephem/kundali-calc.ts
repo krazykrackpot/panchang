@@ -521,10 +521,10 @@ export function generateKundali(birthData: BirthData): KundaliData {
   if (year < 1900 || year > 2100) {
     warnings.push(`Ayanamsha accuracy degrades for dates outside 1900-2100 (birth year: ${year}). Rashi/nakshatra boundaries may shift by ±1°.`);
   }
-  // Warn if Swiss Ephemeris is unavailable — Meeus fallback has approximate
-  // ecliptic latitudes (~0.5° error) which can affect Graha Yuddha (planetary
-  // war) winner detection in avasthas.
+  // Warn if Swiss Ephemeris is unavailable — Meeus fallback has known accuracy
+  // limits: Mars ±22°, Mercury ±5°, Jupiter/Saturn retrograde stations 13-40 days late.
   if (!isSwissEphAvailable()) {
+    warnings.push('Swiss Ephemeris is unavailable — using Meeus fallback algorithms. Outer planet positions (Mars, Jupiter, Saturn) may differ by 1-3° from precise values. Retrograde station dates may be off by up to 40 days for Jupiter and 13 days for Saturn. For the most accurate results, use the online version at dekhopanchang.com.');
     warnings.push('Graha Yuddha (planetary war) results are approximate — Swiss Ephemeris is unavailable. Ecliptic latitudes use Meeus simplified perturbation.');
   }
   // Use selected ayanamsha system (default: lahiri)

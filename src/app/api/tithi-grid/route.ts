@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { buildYearlyTithiTable } from '@/lib/calendar/tithi-table';
+import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { TITHIS } from '@/lib/constants/tithis';
+import { RASHIS } from '@/lib/constants/rashis';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { LocaleText } from '@/types/panchang';
 
 /**
@@ -27,20 +30,24 @@ export async function GET(request: Request) {
     const table = buildYearlyTithiTable(year, lat, lon, timezone);
     const daysInMonth = new Date(year, month, 0).getDate();
 
-    const days: {
+    interface DayOut {
       day: number;
       date: string;
       tithiNumber: number;
       tithiName: LocaleText;
       paksha: 'shukla' | 'krishna';
       masa?: { amanta: string; purnimanta: string; isAdhika: boolean };
-    }[] = [];
+      nakshatra?: LocaleText;
+      moonRashi?: LocaleText;
+      yoga?: LocaleText;
+      sunrise?: string;
+      sunset?: string;
+    }
+    const days: DayOut[] = [];
 
-    // Build a map of sunriseDate → entry for O(1) lookup
+    // Tithi table for accurate tithi-at-sunrise
     const dateMap = new Map<string, typeof table.entries[0]>();
     for (const entry of table.entries) {
-      // Each entry has a sunriseDate (YYYY-MM-DD) — the date when this tithi prevails at sunrise
-      // Multiple entries can share the same sunriseDate (Vriddhi tithi), but we want the first one
       if (!dateMap.has(entry.sunriseDate)) {
         dateMap.set(entry.sunriseDate, entry);
       }
@@ -48,30 +55,30 @@ export async function GET(request: Request) {
 
     for (let d = 1; d <= daysInMonth; d++) {
       const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-      const entry = dateMap.get(dateStr);
+      const tithiEntry = dateMap.get(dateStr);
 
-      if (entry) {
-        const tithiConst = TITHIS[entry.number - 1];
-        const name: LocaleText = tithiConst?.name ?? entry.name;
-        days.push({
-          day: d,
-          date: dateStr,
-          tithiNumber: entry.number,
-          tithiName: name,
-          paksha: entry.paksha,
-          masa: entry.masa,
-        });
-      } else {
-        // Date not in this year's table (e.g., Jan 1 might belong to previous year's table)
-        // Try previous year's table for edge cases
-        days.push({
-          day: d,
-          date: dateStr,
-          tithiNumber: 0,
-          tithiName: { en: '—', hi: '—', sa: '—' },
-          paksha: 'shukla',
-        });
-      }
+      // Compute full panchang for this day
+      const tzOffset = getUTCOffsetForDate(year, month, d, timezone);
+      const panchang = computePanchang({ year, month, day: d, lat, lng: lon, tzOffset, timezone });
+
+      const tithiNumber = tithiEntry?.number ?? panchang.tithi.number;
+      const tithiConst = TITHIS[tithiNumber - 1];
+      const tithiName: LocaleText = tithiConst?.name ?? tithiEntry?.name ?? panchang.tithi.name;
+      const paksha = tithiEntry?.paksha ?? panchang.tithi.paksha;
+
+      days.push({
+        day: d,
+        date: dateStr,
+        tithiNumber,
+        tithiName,
+        paksha,
+        masa: tithiEntry?.masa,
+        nakshatra: panchang.nakshatra?.name,
+        moonRashi: panchang.moonSign ? RASHIS[panchang.moonSign.rashi - 1]?.name : undefined,
+        yoga: panchang.yoga?.name,
+        sunrise: panchang.sunrise,
+        sunset: panchang.sunset,
+      });
     }
 
     return NextResponse.json({ year, month, days });

@@ -18,6 +18,11 @@ export interface TithiDayData {
   masa?: { amanta: string; purnimanta: string; isAdhika: boolean };
   festivals: { name: LocaleText; type: string; slug?: string }[];
   isToday: boolean;
+  nakshatra?: LocaleText;
+  moonRashi?: LocaleText;
+  yoga?: LocaleText;
+  sunrise?: string;
+  sunset?: string;
 }
 
 interface TithiMonthGridProps {
@@ -234,14 +239,29 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
                   {tl(cell.tithiName, locale)}
                 </div>
 
-                {/* Paksha pill */}
-                <div className={`inline-block text-[7px] sm:text-[8px] px-1.5 py-0.5 rounded-full mb-1 ${
-                  cell.paksha === 'shukla'
-                    ? 'bg-amber-500/10 text-amber-400/60 border border-amber-500/15'
-                    : 'bg-violet-500/10 text-violet-400/60 border border-violet-500/15'
-                }`}>
-                  {cell.paksha === 'shukla' ? (isHi ? 'शुक्ल' : 'Shukla') : (isHi ? 'कृष्ण' : 'Krishna')}
+                {/* Panchang details row: sunrise/sunset + nakshatra + moon rashi */}
+                <div className="flex flex-wrap gap-x-2 gap-y-0.5 mb-1 text-[7px] sm:text-[8px]">
+                  {cell.sunrise && (
+                    <span className="text-amber-400/50" title="Sunrise">
+                      ☀ {cell.sunrise}
+                    </span>
+                  )}
+                  {cell.sunset && (
+                    <span className="text-violet-400/40" title="Sunset">
+                      ☽ {cell.sunset}
+                    </span>
+                  )}
                 </div>
+                {cell.nakshatra && (
+                  <div className="text-[7px] sm:text-[8px] text-cyan-400/50 leading-tight truncate" title={isEn ? 'Nakshatra' : 'नक्षत्र'}>
+                    ✦ {tl(cell.nakshatra, locale)}
+                  </div>
+                )}
+                {cell.moonRashi && (
+                  <div className="text-[7px] sm:text-[8px] text-slate-400/50 leading-tight truncate" title={isEn ? 'Moon Sign' : 'चन्द्र राशि'}>
+                    ☾ {tl(cell.moonRashi, locale)}
+                  </div>
+                )}
 
                 {/* Special tithi badges */}
                 {isPurnima(n) && (

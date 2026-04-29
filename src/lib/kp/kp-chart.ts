@@ -8,13 +8,13 @@
 
 import {
   dateToJD,
-  lahiriAyanamsha,
   getPlanetaryPositions,
   normalizeDeg,
   getRashiNumber,
   getNakshatraNumber,
   formatDegrees,
 } from '@/lib/ephem/astronomical';
+import { getAyanamsa } from '@/lib/astronomy/ayanamsa';
 import { computeCombust } from '@/lib/ephem/coordinates';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -34,13 +34,12 @@ import { calculateSignificators, calculateCuspalAnalysis } from './significators
 import { getRulingPlanets } from './ruling-planets';
 
 // ---------------------------------------------------------------------------
-// KP-specific ayanamsha (slightly different from standard Lahiri)
-// For now we use the same lahiriAyanamsha; a dedicated KP ayanamsha
-// offset can be added here later if needed.
+// KP-specific ayanamsha — uses the Krishnamurti variant which differs
+// from Lahiri by ~6 arcminutes. This matters for sub-lord boundaries.
 // ---------------------------------------------------------------------------
 
 function kpAyanamsha(jd: number): number {
-  return lahiriAyanamsha(jd);
+  return getAyanamsa(jd, 'krishnamurti');
 }
 
 // ---------------------------------------------------------------------------

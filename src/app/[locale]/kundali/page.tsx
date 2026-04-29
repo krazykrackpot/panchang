@@ -3537,11 +3537,17 @@ export default function KundaliPage() {
               {/* The comparison table + commentary */}
               <AyanamshaComparison kundali={kundali} locale={locale} />
 
-              {/* Learn more link */}
-              <div className="text-center">
+              {/* Learn more + cross-link to KP tab */}
+              <div className="flex flex-wrap items-center justify-center gap-3">
                 <a href={`/${locale}/learn/ayanamsha`} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-300 text-sm font-medium hover:bg-violet-500/20 hover:border-violet-500/30 transition-colors">
-                  {locale === 'en' || isTamil ? 'Deep Dive: Understanding Ayanamsha →' : 'विस्तृत अध्ययन: अयनांश को समझें →'}
+                  {locale === 'en' || isTamil ? 'Deep Dive: Understanding Ayanamsha \u2192' : '\u0935\u093f\u0938\u094d\u0924\u0943\u0924 \u0905\u0927\u094d\u092f\u092f\u0928: \u0905\u092f\u0928\u093e\u0902\u0936 \u0915\u094b \u0938\u092e\u091d\u0947\u0902 \u2192'}
                 </a>
+                <button
+                  onClick={() => { setActiveTab('kp'); trackTabViewed({ tab: 'kp' }); }}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-sm font-medium hover:bg-cyan-500/20 transition-colors"
+                >
+                  {locale === 'en' || isTamil ? 'Full KP Analysis \u2192' : '\u092a\u0942\u0930\u094d\u0923 \u0915\u0947\u092a\u0940 \u0935\u093f\u0936\u094d\u0932\u0947\u0937\u0923 \u2192'}
+                </button>
               </div>
             </div>
           )}

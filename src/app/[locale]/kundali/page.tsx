@@ -19,7 +19,7 @@ import ConvergenceSummary from '@/components/kundali/ConvergenceSummary';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ShareButton from '@/components/ui/ShareButton';
 import PrintButton from '@/components/ui/PrintButton';
-import { Download, Save, Check, ScrollText, Sparkles, X, ArrowRightLeft } from 'lucide-react';
+import { Download, Save, Check, ScrollText, Sparkles, Share2, X, ArrowRightLeft } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { generateKundaliPrintHtml } from '@/lib/pdf/kundali-pdf';
@@ -1628,17 +1628,16 @@ export default function KundaliPage() {
                         </div>
                         <div className="text-text-secondary text-sm italic">{locale === 'hi' ? posterData.elementDist.archetype.hi : posterData.elementDist.archetype.en}</div>
                       </div>
-                      <div className="flex gap-2">
+                      <div className="flex flex-col sm:flex-row gap-2">
                         <button
                           onClick={() => setShowPoster(true)}
-                          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-gold-primary/15 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/25 transition-all"
+                          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg bg-gold-primary/15 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/25 transition-all"
                         >
                           <Sparkles className="w-4 h-4" />
                           {locale === 'hi' ? 'पूरा पोस्टर देखें' : 'View Full Poster'}
                         </button>
                         <button
-                          onClick={() => {
-                            // Build shareable card URL with birth chart data for rich link previews
+                          onClick={async () => {
                             const cardParams = new URLSearchParams({
                               name: posterData.name,
                               date: posterData.date,
@@ -1649,30 +1648,44 @@ export default function KundaliPage() {
                               sun: posterData.sunSign,
                               dasha: posterData.currentDasha,
                               houses: JSON.stringify(posterData.chartHouses),
-                              format: 'og',
+                              format: 'story',
                             });
-                            const cardUrl = `${window.location.origin}/api/card/birth-poster?${cardParams.toString()}`;
-                            const text = `${posterData.name} — ${posterData.risingSign} Rising, ${posterData.moonSign} Moon, ${posterData.sunSign} Sun\n\nSee my Vedic birth chart: ${cardUrl}\n\nCreate yours at dekhopanchang.com`;
-                            if (navigator.share) {
-                              navigator.share({
-                                title: `${posterData.name}'s Vedic Birth Chart`,
-                                text,
-                                url: cardUrl,
-                              }).catch((err) => {
-                                // User cancelled share — not a real error
-                                if (err instanceof Error && err.name !== 'AbortError') {
-                                  console.error('[kundali] share failed:', err);
-                                }
-                              });
-                            } else {
-                              navigator.clipboard.writeText(text).catch((err) => {
-                                console.error('[kundali] clipboard write failed:', err);
-                              });
+                            const cardUrl = `/api/card/birth-poster?${cardParams.toString()}`;
+                            try {
+                              // Fetch the image as a blob
+                              const res = await fetch(cardUrl);
+                              if (!res.ok) throw new Error(`Card fetch failed: ${res.status}`);
+                              const blob = await res.blob();
+                              const file = new File([blob], `${posterData.name}-birth-chart.png`, { type: 'image/png' });
+
+                              // Try native share with image file (mobile)
+                              if (navigator.share && navigator.canShare?.({ files: [file] })) {
+                                await navigator.share({
+                                  title: `${posterData.name}'s Vedic Birth Chart`,
+                                  text: `${posterData.name} — ${posterData.risingSign} Rising, ${posterData.moonSign} Moon, ${posterData.sunSign} Sun\n\nCreate yours at dekhopanchang.com`,
+                                  files: [file],
+                                });
+                              } else {
+                                // Desktop fallback: download the image
+                                const url = URL.createObjectURL(blob);
+                                const a = document.createElement('a');
+                                a.href = url;
+                                a.download = `${posterData.name}-birth-chart.png`;
+                                a.click();
+                                URL.revokeObjectURL(url);
+                              }
+                            } catch (err) {
+                              if (err instanceof Error && err.name === 'AbortError') return;
+                              console.error('[kundali] share image failed:', err);
+                              // Final fallback: copy link
+                              const linkUrl = `${window.location.origin}${cardUrl.replace('format=story', 'format=og')}`;
+                              navigator.clipboard.writeText(linkUrl).catch(() => {});
                             }
                           }}
-                          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/15 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all"
+                          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-bold rounded-lg bg-gradient-to-r from-gold-primary/20 to-amber-500/20 border border-gold-primary/40 text-gold-light hover:from-gold-primary/30 hover:to-amber-500/30 hover:border-gold-primary/60 transition-all shadow-lg shadow-gold-primary/5"
                         >
-                          {locale === 'hi' ? 'शेयर करें' : 'Share'}
+                          <Share2 className="w-4 h-4" />
+                          {locale === 'hi' ? 'चार्ट शेयर करें' : 'Share Your Chart'}
                         </button>
                       </div>
                     </div>

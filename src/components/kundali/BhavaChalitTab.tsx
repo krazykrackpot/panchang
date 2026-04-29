@@ -208,6 +208,14 @@ const LABELS = {
   ofNine: { en: 'of 9 planets shifted houses in the Bhava Chalit chart', hi: 'में से 9 ग्रहों ने भाव चलित कुंडली में भाव बदला' },
   predictionGuidance: { en: 'Prediction Guidance', hi: 'भविष्यवाणी मार्गदर्शन' },
   learnMore: { en: 'Learn more about Kundali', hi: 'कुंडली के बारे में और जानें' },
+  expertDebateTitle: { en: 'Expert Perspectives & Recommendation', hi: 'विशेषज्ञ दृष्टिकोण एवं अनुशंसा' },
+  expertDebateBody: {
+    en: 'The Rashi chart uses whole-sign houses — each sign equals one house. The Bhava Chalit uses degree-based houses — the ascendant degree becomes the midpoint of House 1, and each house spans 30° centered on that cusp. This fundamental difference means planets near sign boundaries can shift houses.\n\nExperts disagree on which to trust: K.N. Rao\'s school strongly advocates Bhava Chalit for all predictive work (dashas, transits, event timing). The traditional Parashari school prefers whole-sign Rashi charts for everything. KP (Krishnamurti) practitioners use Placidus houses (similar concept, unequal houses). South Indian tradition emphasizes divisional charts over Bhava Chalit.\n\nOur recommendation: Check both. When D1 and Bhava Chalit agree (planet in same house), that is the strongest reading — trust it fully. When they disagree, use Bhava Chalit for prediction and timing, and D1 for personality and inherent nature. For yogas, use D1 (most definitions are sign-based).',
+    hi: 'राशि कुण्डली सम्पूर्ण-राशि भावों का उपयोग करती है — प्रत्येक राशि = एक भाव। भाव चलित अंश-आधारित भावों का उपयोग करती है — लग्न अंश भाव 1 का मध्य बिन्दु बनता है, और प्रत्येक भाव उस सन्धि पर केन्द्रित 30° तक फैलता है। इस मूल भेद के कारण राशि सीमाओं के निकट ग्रह भाव बदल सकते हैं।\n\nविशेषज्ञ असहमत हैं: के.एन. राव का सम्प्रदाय सभी भविष्यवाणी कार्य (दशा, गोचर, घटना समय) के लिए भाव चलित का दृढ़ समर्थन करता है। परम्परागत पराशरी सम्प्रदाय सब कुछ के लिए सम्पूर्ण-राशि कुण्डली को प्राथमिकता देता है। KP (कृष्णमूर्ति) अभ्यासी प्लेसिडस भावों का उपयोग करते हैं। दक्षिण भारतीय परम्परा वर्ग कुण्डलियों पर बल देती है।\n\nहमारी अनुशंसा: दोनों जाँचें। जब D1 और भाव चलित सहमत हों (ग्रह एक ही भाव में), तो वह सबसे मजबूत पठन है। जब वे असहमत हों, तो भविष्यवाणी के लिए भाव चलित और व्यक्तित्व के लिए D1 का उपयोग करें। योगों के लिए D1 का उपयोग करें।',
+  },
+  showExpertDebate: { en: 'Show expert perspectives', hi: 'विशेषज्ञ दृष्टिकोण दिखाएँ' },
+  hideExpertDebate: { en: 'Hide expert perspectives', hi: 'विशेषज्ञ दृष्टिकोण छिपाएँ' },
+  learnMoreBhavaChalit: { en: 'Read the full Bhava Chalit guide \u2192', hi: 'सम्पूर्ण भाव चलित गाइड पढ़ें \u2192' },
 };
 
 function l(obj: { en: string; hi: string }, locale: string): string {
@@ -231,6 +239,7 @@ function formatFullDeg(deg: number): string {
 export default function BhavaChalitTab({ ascendant, planets, locale }: BhavaChalitTabProps) {
   const [showBoundaries, setShowBoundaries] = useState(false);
   const [showUnshifted, setShowUnshifted] = useState(false);
+  const [showExpert, setShowExpert] = useState(false);
 
   const result: BhavaChalitResult = useMemo(
     () => computeBhavaChalit(ascendant, planets),
@@ -297,6 +306,38 @@ export default function BhavaChalitTab({ ascendant, planets, locale }: BhavaChal
               ) : para}
             </p>
           ))}
+        </div>
+
+        {/* Expandable expert perspectives */}
+        <button
+          onClick={() => setShowExpert(!showExpert)}
+          className="mt-3 flex items-center gap-1.5 text-xs text-gold-primary hover:text-gold-light transition-colors"
+        >
+          {showExpert
+            ? <ChevronUp className="w-3.5 h-3.5" />
+            : <ChevronDown className="w-3.5 h-3.5" />
+          }
+          {l(showExpert ? LABELS.hideExpertDebate : LABELS.showExpertDebate, locale)}
+        </button>
+        {showExpert && (
+          <div className="mt-3 rounded-lg bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/10 p-4 space-y-3">
+            <h4 className="text-gold-light font-bold text-sm">
+              {l(LABELS.expertDebateTitle, locale)}
+            </h4>
+            <div className="text-text-secondary text-sm leading-relaxed space-y-2">
+              {l(LABELS.expertDebateBody, locale).split('\n\n').map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
+          </div>
+        )}
+        <div className="mt-3">
+          <Link
+            href="/learn/bhava-chalit"
+            className="text-xs text-gold-primary hover:text-gold-light transition-colors underline underline-offset-2"
+          >
+            {l(LABELS.learnMoreBhavaChalit, locale)}
+          </Link>
         </div>
       </div>
 

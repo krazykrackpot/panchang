@@ -112,7 +112,8 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: 'ref:planet-in-house', phase: 3, topic: 'Reference', href: '/learn/planet-in-house', title: { en: 'Planet-in-House — 84 Interpretations', hi: 'ग्रह-भाव — 84 फल', ta: 'கிரகம்-பாவம் 84 பலன்கள்', te: 'గ్రహ-భావ 84 ఫలాలు', bn: 'গ্রহ-ভাব 84 ফল' } },
   { id: 'ref:dashas', phase: 3, topic: 'Reference', href: '/learn/dashas', title: { en: 'Dashas — Complete Reference', hi: 'दशाएँ — विस्तृत', ta: 'தசைகள் கையேடு', te: 'దశలు మార్గదర్శి', bn: 'দশা নির্দেশিকা' } },
   { id: 'ref:transit-guide', phase: 3, topic: 'Reference', href: '/learn/transit-guide', title: { en: 'Transit Guide', hi: 'गोचर मार्गदर्शक', ta: 'கோசார வழிகாட்டி', te: 'గోచార మార్గదర్శి', bn: 'গোচর নির্দেশিকা' } },
-  { id: 'ref:sade-sati', phase: 3, topic: 'Reference', href: '/learn/sade-sati', title: { en: 'Sade Sati — Deep Dive', hi: 'साढ़े साती — विस्तृत', ta: 'சாடே சாதி ஆய்வு', te: 'సాడే సాతి ఆఴంగా', bn: 'সাড়ে সাতি গভীর' } },
+  { id: 'ref:sade-sati', phase: 3, topic: 'Reference', href: '/learn/sade-sati', title: { en: 'Sade Sati — Deep Dive', hi: 'साढ़े साती — विस्तृत', ta: 'சாடே சாதி ஆய்வு', te: 'సాడే సాతி ఆఴంగా', bn: 'সাড়ে সাতি গভীর' } },
+  { id: 'ref:bhava-chalit', phase: 3, topic: 'Reference', href: '/learn/bhava-chalit', title: { en: 'Bhava Chalit — House System', hi: 'भाव चलित — भाव पद्धति', ta: 'பாவ சாலித் — பாவ முறை', te: 'భావ చలిత — భావ పద్ధతి', bn: 'ভাব চলিত — ভাব পদ্ধতি' } },
 
   // ── Phase 4: Applied Jyotish ─────────────────────────────────────────────
   // Compatibility

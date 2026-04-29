@@ -848,6 +848,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Marana Karaka Sthana (death places), Badhakesh (obstruction lord), Maraka (death-inflicting lords), and functional benefic/malefic per lagna.', hi: 'मारक कारक स्थान, बाधकेश, मारक ग्रह, और प्रत्येक लग्न के लिए कार्यात्मक शुभ/अशुभ।', sa: 'मारककारकस्थानम् बाधकेशः मारकग्रहाः प्रतिलग्नं कार्यात्मकशुभाशुभाश्च।' },
     keywords: ['marana karaka sthana', 'badhaka', 'maraka', 'yogakaraka', 'functional malefic'],
   },
+  '/learn/bhava-chalit': {
+    title: { en: 'Bhava Chalit — House System Explained', hi: 'भाव चलित — भाव पद्धति की व्याख्या', sa: 'भावचलितम् — भावपद्धतिव्याख्या' },
+    description: { en: 'Understand the Bhava Chalit chart: how it differs from the Rashi chart, when to use it, the expert debate on whole-sign vs house-based systems, and worked examples.', hi: 'भाव चलित कुण्डली को समझें: राशि कुण्डली से कैसे भिन्न है, कब उपयोग करें, और विशेषज्ञ बहस।', sa: 'भावचलितकुण्डलीं जानीत — राशिकुण्डल्याः भेदः, विशेषज्ञविवादश्च।' },
+    keywords: ['bhava chalit', 'house system', 'equal house', 'sripati', 'bhava madhya', 'rashi vs bhava chalit'],
+  },
   '/learn/compatibility': {
     title: { en: 'Advanced Compatibility — Beyond Ashta Kuta', hi: 'उन्नत अनुकूलता — अष्ट कूट से परे', sa: 'उन्नतमेलनम् — अष्टकूटात् परम्' },
     description: { en: 'Chart-level marriage compatibility: 7th house comparison, Venus assessment, Navamsha matching, dasha compatibility, Mangal Dosha full analysis.', hi: 'चार्ट-स्तरीय विवाह अनुकूलता: 7वां भाव, शुक्र, नवांश, दशा अनुकूलता, मंगल दोष।', sa: 'चक्रस्तरीयविवाहमेलनम् — सप्तमभावः शुक्रः नवांशः दशामेलनम् मङ्गलदोषश्च।' },

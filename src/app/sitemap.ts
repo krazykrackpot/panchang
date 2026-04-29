@@ -112,6 +112,7 @@ const routes = [
   '/learn/transit-guide',
   '/learn/hora',
   '/learn/advanced-houses',
+  '/learn/bhava-chalit',
   '/learn/compatibility',
   '/learn/compatibility-advanced',
   '/learn/birth-chart',

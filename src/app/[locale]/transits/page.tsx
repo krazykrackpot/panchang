@@ -39,7 +39,7 @@ const PLANET_NAMES_HI = ['सूर्य', 'चन्द्र', 'मंगल'
 
 /** Planet colors matching LiveSkyMap.tsx palette */
 const PLANET_COLORS: Record<number, string> = {
-  0: '#FF9500', 1: '#C0C0C0', 2: '#DC143C', 3: '#50C878',
+  0: '#FF9500', 1: '#C0C0C0', 2: '#F87171', 3: '#50C878',
   4: '#FFD700', 5: '#FF69B4', 6: '#6B8DD6', 7: '#B8860B', 8: '#808080',
 };
 

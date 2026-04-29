@@ -29,6 +29,10 @@ export interface KutaResult {
   maxPoints: number;
   scored: number;
   description: LocaleText;
+  /** Boy's value for this kuta (e.g., "Deva", "Aadi Nadi", "Aries") */
+  boyDetail?: string;
+  /** Girl's value for this kuta */
+  girlDetail?: string;
 }
 
 export interface MatchResult {
@@ -50,6 +54,10 @@ export interface MatchResult {
 // Boy's varna >= Girl's varna = 1 point
 
 const RASHI_VARNA = [2, 1, 0, 3, 2, 1, 0, 3, 2, 1, 0, 3]; // Aries..Pisces
+const VARNA_LABELS = ['Shudra', 'Vaishya', 'Kshatriya', 'Brahmin'];
+const GANA_LABELS = ['Deva (gentle)', 'Manushya (balanced)', 'Rakshasa (intense)'];
+const NADI_LABELS = ['Aadi (Vata)', 'Madhya (Pitta)', 'Antya (Kapha)'];
+const RASHI_LABELS = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 
 function computeVarna(boy: MatchInput, girl: MatchInput): number {
   const bv = RASHI_VARNA[boy.moonRashi - 1];
@@ -145,6 +153,7 @@ function computeTara(boy: MatchInput, girl: MatchInput): number {
 //   Mongoose: U.Ashadha(21) only (Abhijit not in 27-nakshatra cycle)
 //   Lion:     Dhanishtha(23) & P.Bhadrapada(25)
 const NAKSHATRA_YONI = [0, 1, 2, 3, 3, 4, 5, 2, 5, 6, 6, 7, 8, 9, 8, 9, 10, 10, 4, 11, 12, 11, 13, 0, 13, 7, 1];
+const YONI_LABELS = ['Horse', 'Elephant', 'Sheep', 'Serpent', 'Dog', 'Cat', 'Rat', 'Cow', 'Buffalo', 'Tiger', 'Deer', 'Monkey', 'Mongoose', 'Lion'];
 
 // Enemy pairs (bitter enemies get 0)
 // 7 classical enemy pairs — each animal has exactly one sworn enemy
@@ -322,48 +331,64 @@ export function computeAshtaKuta(boy: MatchInput, girl: MatchInput): MatchResult
       maxPoints: 1,
       scored: computeVarna(boy, girl),
       description: { en: 'Spiritual/ego compatibility and work nature', hi: 'आध्यात्मिक और कार्य स्वभाव अनुकूलता', sa: 'आध्यात्मिक-कार्यस्वभाव-अनुकूलता' },
+      boyDetail: VARNA_LABELS[RASHI_VARNA[boy.moonRashi - 1]],
+      girlDetail: VARNA_LABELS[RASHI_VARNA[girl.moonRashi - 1]],
     },
     {
       name: { en: 'Vashya', hi: 'वश्य', sa: 'वश्यम्' },
       maxPoints: 2,
       scored: computeVashya(boy, girl),
       description: { en: 'Mutual attraction and dominance in relationship', hi: 'परस्पर आकर्षण और सम्बन्ध में प्रभुत्व', sa: 'परस्पर-आकर्षणं सम्बन्धे प्रभुत्वं च' },
+      boyDetail: RASHI_LABELS[boy.moonRashi - 1],
+      girlDetail: RASHI_LABELS[girl.moonRashi - 1],
     },
     {
       name: { en: 'Tara', hi: 'तारा', sa: 'तारा' },
       maxPoints: 3,
       scored: computeTara(boy, girl),
       description: { en: 'Birth star compatibility and health harmony', hi: 'जन्म नक्षत्र अनुकूलता और स्वास्थ्य सामंजस्य', sa: 'जन्मनक्षत्र-अनुकूलता स्वास्थ्यसामञ्जस्यं च' },
+      boyDetail: `Nak. ${boy.moonNakshatra}`,
+      girlDetail: `Nak. ${girl.moonNakshatra}`,
     },
     {
       name: { en: 'Yoni', hi: 'योनि', sa: 'योनिः' },
       maxPoints: 4,
       scored: computeYoni(boy, girl),
       description: { en: 'Physical and intimate compatibility', hi: 'शारीरिक और अंतरंग अनुकूलता', sa: 'शारीरिक-अन्तरङ्ग-अनुकूलता' },
+      boyDetail: YONI_LABELS[NAKSHATRA_YONI[boy.moonNakshatra - 1]],
+      girlDetail: YONI_LABELS[NAKSHATRA_YONI[girl.moonNakshatra - 1]],
     },
     {
       name: { en: 'Graha Maitri', hi: 'ग्रह मैत्री', sa: 'ग्रहमैत्री' },
       maxPoints: 5,
       scored: computeGrahaMaitri(boy, girl),
       description: { en: 'Mental compatibility and friendship between sign lords', hi: 'मानसिक अनुकूलता और राशि स्वामियों की मित्रता', sa: 'मानसिक-अनुकूलता राशिस्वामिमैत्री च' },
+      boyDetail: RASHI_LABELS[boy.moonRashi - 1],
+      girlDetail: RASHI_LABELS[girl.moonRashi - 1],
     },
     {
       name: { en: 'Gana', hi: 'गण', sa: 'गणः' },
       maxPoints: 6,
       scored: computeGana(boy, girl),
       description: { en: 'Temperament and behavioral compatibility', hi: 'स्वभाव और व्यवहार अनुकूलता', sa: 'स्वभाव-व्यवहार-अनुकूलता' },
+      boyDetail: GANA_LABELS[NAKSHATRA_GANA[boy.moonNakshatra - 1]],
+      girlDetail: GANA_LABELS[NAKSHATRA_GANA[girl.moonNakshatra - 1]],
     },
     {
       name: { en: 'Bhakoot', hi: 'भकूट', sa: 'भकूटम्' },
       maxPoints: 7,
       scored: computeBhakoot(boy, girl),
       description: { en: 'Overall prosperity, health and happiness of marriage', hi: 'विवाह की समृद्धि, स्वास्थ्य और सुख', sa: 'विवाहस्य समृद्धिः स्वास्थ्यं सुखं च' },
+      boyDetail: RASHI_LABELS[boy.moonRashi - 1],
+      girlDetail: RASHI_LABELS[girl.moonRashi - 1],
     },
     {
       name: { en: 'Nadi', hi: 'नाड़ी', sa: 'नाडी' },
       maxPoints: 8,
       scored: computeNadi(boy, girl),
       description: { en: 'Health, genes and progeny compatibility', hi: 'स्वास्थ्य, वंश और सन्तान अनुकूलता', sa: 'स्वास्थ्य-वंश-सन्तान-अनुकूलता' },
+      boyDetail: NADI_LABELS[NAKSHATRA_NADI[boy.moonNakshatra - 1]],
+      girlDetail: NADI_LABELS[NAKSHATRA_NADI[girl.moonNakshatra - 1]],
     },
   ];
 

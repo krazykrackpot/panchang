@@ -124,22 +124,34 @@ export const KUTA_INSIGHTS: KutaInsight[] = KUTA_DEFINITIONS.flatMap((d) => [
 export function getKutaInsight(
   kutaName: string,
   score: number,
-  maxScore: number
+  maxScore: number,
+  boyDetail?: string,
+  girlDetail?: string,
 ): string {
   const name = kutaName.trim();
   const def = KUTA_DEFINITIONS.find((d) => d.kutaName === name);
 
   if (!def) {
-    // Unknown kuta — generic fallback
     return score >= maxScore / 2
       ? 'Strong alignment in this dimension'
       : 'This dimension invites conscious growth';
   }
 
-  if (score === maxScore) return def.full;
-  if (score === 0) return def.zero;
-  if (score >= maxScore / 2) return def.high;
-  return def.low;
+  let text = score === maxScore ? def.full
+    : score === 0 ? def.zero
+    : score >= maxScore / 2 ? def.high
+    : def.low;
+
+  // Append partner-specific details when available
+  if (boyDetail && girlDetail) {
+    if (boyDetail === girlDetail) {
+      text += ` Both partners: ${boyDetail}.`;
+    } else {
+      text += ` Partner 1: ${boyDetail}. Partner 2: ${girlDetail}.`;
+    }
+  }
+
+  return text;
 }
 
 /**

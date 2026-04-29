@@ -744,7 +744,7 @@ export default function MatchingPage() {
 
             <div className="space-y-4 mb-12">
               {result.kutas.map((kuta, i) => {
-                const insight = getKutaInsight(kuta.name.en, kuta.scored, kuta.maxPoints);
+                const insight = getKutaInsight(kuta.name.en, kuta.scored, kuta.maxPoints, kuta.boyDetail, kuta.girlDetail);
                 const pct = kuta.maxPoints > 0 ? kuta.scored / kuta.maxPoints : 0;
                 // Major kutas: Nadi (8), Bhakut (7), Gana (6) — maxPoints >= 6
                 const isMajor = kuta.maxPoints >= 6;

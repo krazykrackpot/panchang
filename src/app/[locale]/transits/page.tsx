@@ -749,7 +749,7 @@ export default function TransitsPage() {
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
           className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6 mt-10">
           <h2 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
-            {tl({ en: 'Mesha Sankranti ${year}', hi: 'मेष संक्रान्ति ${year}', sa: 'मेष संक्रान्ति ${year}', ta: 'Mesha Sankranti ${year}', te: 'Mesha Sankranti ${year}', bn: 'Mesha Sankranti ${year}', kn: 'Mesha Sankranti ${year}', gu: 'Mesha Sankranti ${year}', mai: 'मेष संक्रान्ति ${year}', mr: 'मेष संक्रान्ति ${year}' }, locale)}
+            {tl({ en: `Mesha Sankranti ${year}`, hi: `मेष संक्रान्ति ${year}`, sa: `मेष संक्रान्ति ${year}`, ta: `Mesha Sankranti ${year}`, te: `Mesha Sankranti ${year}`, bn: `Mesha Sankranti ${year}`, kn: `Mesha Sankranti ${year}`, gu: `Mesha Sankranti ${year}`, mai: `मेष संक्रान्ति ${year}`, mr: `मेष संक्रान्ति ${year}` }, locale)}
           </h2>
           <p className="text-text-secondary/70 text-xs text-center mb-5" style={bodyFont}>
             {locale === 'en'

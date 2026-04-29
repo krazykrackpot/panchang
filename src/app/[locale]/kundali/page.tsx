@@ -102,6 +102,7 @@ const UnifiedTimeline = dynamic(() => import('@/components/kundali/UnifiedTimeli
 const BhavaChalitTab = dynamic(() => import('@/components/kundali/BhavaChalitTab'), { ssr: false });
 const ELI5Panel = dynamic(() => import('@/components/kundali/ELI5Panel'), { ssr: false });
 const AyanamshaComparison = dynamic(() => import('@/components/kundali/AyanamshaComparison'), { ssr: false });
+const KPTab = dynamic(() => import('@/components/kundali/KPTab'), { ssr: false });
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
@@ -440,7 +441,7 @@ export default function KundaliPage() {
     }
     setSaving(false);
   };
-  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati' | 'patrika' | 'timeline' | 'remedies' | 'sudarshana' | 'nadi' | 'blueprint' | 'bhavachalit' | 'ayanamsha'>('chart');
+  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati' | 'patrika' | 'timeline' | 'remedies' | 'sudarshana' | 'nadi' | 'blueprint' | 'bhavachalit' | 'ayanamsha' | 'kp'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
   const [activeChart, setActiveChart] = useState<string>('D1');
@@ -1402,6 +1403,7 @@ export default function KundaliPage() {
                   { key: 'bhavabala' as const, label: locale === 'en' || isTamil ? 'Bhavabala' : 'भावबल' },
                   { key: 'bhavachalit' as const, label: locale === 'en' || isTamil ? 'Bhava Chalit' : 'भाव चलित' },
                   { key: 'ayanamsha' as const, label: locale === 'en' || isTamil ? 'Ayanamsha' : 'अयनांश' },
+                  { key: 'kp' as const, label: locale === 'en' || isTamil ? 'KP System' : 'केपी पद्धति' },
                   { key: 'sadesati' as const, label: locale === 'en' || isTamil ? 'Sade Sati' : 'साढ़े साती' },
                   { key: 'jaimini' as const, label: locale === 'en' || isTamil ? 'Jaimini' : 'जैमिनी' },
                   { key: 'timeline' as const, label: locale === 'en' || isTamil ? 'Life Timeline' : 'जीवन-रेखा' },
@@ -3539,6 +3541,44 @@ export default function KundaliPage() {
               <div className="text-center">
                 <a href={`/${locale}/learn/ayanamsha`} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-300 text-sm font-medium hover:bg-violet-500/20 hover:border-violet-500/30 transition-colors">
                   {locale === 'en' || isTamil ? 'Deep Dive: Understanding Ayanamsha →' : 'विस्तृत अध्ययन: अयनांश को समझें →'}
+                </a>
+              </div>
+            </div>
+          )}
+
+          {/* ===== KP SYSTEM TAB ===== */}
+          {activeTab === 'kp' && kundali && (
+            <div className="space-y-5">
+              <div className="rounded-2xl bg-gradient-to-br from-cyan-500/10 via-[#1a1040]/50 to-[#0a0e27] border border-cyan-500/20 p-5 sm:p-6">
+                <h3 className="text-cyan-300 text-lg font-bold mb-3" style={headingFont}>
+                  {locale === 'en' || isTamil ? 'KP System: Sub-Lord Based Prediction' : 'केपी पद्धति: उप-स्वामी आधारित भविष्यवाणी'}
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed mb-3">
+                  {locale === 'en' || isTamil
+                    ? 'The Krishnamurti Paddhati (KP) system uses Placidus house cusps instead of whole-sign houses, and the sub-lord of each cusp determines whether that house\'s promise will manifest. Unlike Parashara where the sign lord matters most, in KP the sub-lord is the deciding factor — it acts as the final "gatekeeper" for every prediction.'
+                    : 'कृष्णमूर्ति पद्धति (केपी) प्लासिडस भाव-शीर्ष का प्रयोग करती है, और प्रत्येक भाव-शीर्ष का उप-स्वामी निर्धारित करता है कि उस भाव का वादा पूरा होगा या नहीं। पराशर के विपरीत जहाँ राशि स्वामी सर्वाधिक महत्वपूर्ण है, केपी में उप-स्वामी निर्णायक कारक है।'}
+                </p>
+                <div className="grid sm:grid-cols-3 gap-3 text-xs">
+                  <div className="rounded-lg bg-bg-secondary/40 border border-gold-primary/10 p-3">
+                    <div className="text-gold-light font-bold mb-1">{locale === 'en' || isTamil ? 'Sub-Lord Chain' : 'उप-स्वामी श्रृंखला'}</div>
+                    <p className="text-text-secondary">{locale === 'en' || isTamil ? 'Every degree has a Sign Lord → Star Lord → Sub Lord → Sub-Sub Lord. The Sub Lord is the key — it determines the final outcome for any house it controls.' : 'प्रत्येक अंश में राशि स्वामी → नक्षत्र स्वामी → उप स्वामी → उप-उप स्वामी। उप स्वामी कुंजी है — वह किसी भी भाव के अन्तिम परिणाम को निर्धारित करता है।'}</p>
+                  </div>
+                  <div className="rounded-lg bg-bg-secondary/40 border border-gold-primary/10 p-3">
+                    <div className="text-gold-light font-bold mb-1">{locale === 'en' || isTamil ? 'Significators' : 'कारकत्व'}</div>
+                    <p className="text-text-secondary">{locale === 'en' || isTamil ? 'Four levels (L1-L4) identify which planets can activate a house: star-lord of occupants, occupants, star-lord of owner, and the owner itself. The combined list gives the strongest significators.' : 'चार स्तर (L1-L4) पहचानते हैं कि कौन-से ग्रह किसी भाव को सक्रिय कर सकते हैं।'}</p>
+                  </div>
+                  <div className="rounded-lg bg-bg-secondary/40 border border-gold-primary/10 p-3">
+                    <div className="text-gold-light font-bold mb-1">{locale === 'en' || isTamil ? 'Ruling Planets' : 'शासक ग्रह'}</div>
+                    <p className="text-text-secondary">{locale === 'en' || isTamil ? 'Five ruling planets at the moment of analysis (Asc sign lord, Asc star lord, Moon sign lord, Moon star lord, weekday lord) confirm or deny predictions. Events happen when dasha lords match significators AND ruling planets.' : 'विश्लेषण के क्षण के पाँच शासक ग्रह भविष्यवाणियों की पुष्टि करते हैं। घटनाएँ तब होती हैं जब दशा स्वामी कारकत्व और शासक ग्रहों दोनों से मिलते हैं।'}</p>
+                  </div>
+                </div>
+              </div>
+              <Suspense fallback={<div className="flex items-center justify-center py-12"><div className="animate-spin rounded-full h-10 w-10 border-2 border-gold-primary border-t-transparent" /></div>}>
+                <KPTab birthData={kundali.birthData} locale={locale} />
+              </Suspense>
+              <div className="text-center">
+                <a href={`/${locale}/kp-system`} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-sm font-medium hover:bg-cyan-500/20 transition-colors">
+                  {locale === 'en' || isTamil ? 'Open Full KP Analysis Page →' : 'पूर्ण केपी विश्लेषण पृष्ठ खोलें →'}
                 </a>
               </div>
             </div>

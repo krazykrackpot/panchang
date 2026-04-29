@@ -8,6 +8,9 @@ import type { KundaliData, PlanetPosition } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { getSubLordForDegree } from '@/lib/kp/sub-lords';
+import { calculatePlacidusCusps } from '@/lib/kp/placidus';
+import type { SubLordInfo } from '@/types/kp';
 
 // Ayanamsha system metadata — hoisted to module level (no inline objects in render)
 const AYANAMSHA_SYSTEMS: { key: AyanamsaType; label: string; desc: string }[] = [
@@ -32,6 +35,8 @@ interface PlanetRow {
   };
   /** true if any system puts the planet in a different sign */
   hasSignChange: boolean;
+  /** KP sub-lord chain for the KP (Krishnamurti) position */
+  kpSubLord?: SubLordInfo;
 }
 
 /** Format sidereal longitude as "Aries 11°44'" */
@@ -485,11 +490,15 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
       const ramanSign = Math.floor(ramanLong / 30);
       const kpSign = Math.floor(kpLong / 30);
 
+      // KP sub-lord chain uses the KP sidereal longitude
+      const kpSubLord = getSubLordForDegree(kpLong);
+
       return {
         id: p.planet.id,
         name: tl(p.planet.name, locale),
         positions: { lahiri: lahiriLong, raman: ramanLong, krishnamurti: kpLong },
         hasSignChange: lahiriSign !== ramanSign || lahiriSign !== kpSign,
+        kpSubLord,
       };
     });
 
@@ -507,7 +516,22 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
       name: locale === 'hi' ? 'लग्न' : 'Lagna',
       positions: { lahiri: ascLong, raman: ramanAsc, krishnamurti: kpAsc },
       hasSignChange: lahiriAscSign !== ramanAscSign || lahiriAscSign !== kpAscSign,
+      kpSubLord: getSubLordForDegree(kpAsc),
     });
+
+    // Compute Placidus cuspal sub-lords using KP ayanamsha and birth coordinates
+    // birthData.lat / birthData.lng are the birth place coordinates
+    const kpCusps = calculatePlacidusCusps(
+      jd,
+      kundali.birthData.lat,
+      kundali.birthData.lng,
+      kpAya,
+    );
+    const cuspalSubLords = kpCusps.map(cusp => ({
+      house: cusp.house,
+      degree: cusp.degree,
+      subLord: getSubLordForDegree(cusp.degree),
+    }));
 
     return {
       planets: planetRows,
@@ -516,6 +540,7 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
         raman: ramanAya,
         krishnamurti: kpAya,
       },
+      cuspalSubLords,
     };
   }, [kundali, locale]);
 
@@ -589,10 +614,19 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
                   }`}>
                     {raman.formatted}
                   </td>
-                  <td className={`py-2 px-2 text-center whitespace-nowrap ${
+                  <td className={`py-2 px-2 text-center ${
                     kp.signIndex !== lahiri.signIndex ? 'text-amber-300' : 'text-text-primary'
                   }`}>
-                    {kp.formatted}
+                    <div className="whitespace-nowrap">{kp.formatted}</div>
+                    {row.kpSubLord && (
+                      <div className="text-[10px] text-text-secondary/70 mt-0.5 whitespace-nowrap">
+                        {tl(row.kpSubLord.signLord.name, locale)}
+                        {' → '}
+                        {tl(row.kpSubLord.starLord.name, locale)}
+                        {' → '}
+                        {tl(row.kpSubLord.subLord.name, locale)}
+                      </div>
+                    )}
                   </td>
                 </tr>
               );
@@ -606,6 +640,72 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
 
       {/* Holistic Impact Summary — what all shifts mean together */}
       <HolisticImpactSummary planets={rows.planets} locale={locale} kundali={kundali} />
+
+      {/* KP Cuspal Sub-Lords (Placidus) */}
+      <div className="mt-6 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-5">
+        <h4 className="text-gold-light text-sm font-bold mb-3">
+          {locale === 'hi'
+            ? 'केपी भाव-कुशल उप-स्वामी (प्लासिडस)'
+            : 'KP Cuspal Sub-Lords (Placidus)'}
+        </h4>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="border-b border-gold-primary/15">
+                <th className="text-left py-1.5 px-2 text-text-secondary font-medium">
+                  {locale === 'hi' ? 'भाव' : 'Cusp'}
+                </th>
+                <th className="text-center py-1.5 px-2 text-text-secondary font-medium">
+                  {locale === 'hi' ? 'अंश' : 'Degree'}
+                </th>
+                <th className="text-center py-1.5 px-2 text-text-secondary font-medium">
+                  {locale === 'hi' ? 'राशि स्वामी' : 'Sign Lord'}
+                </th>
+                <th className="text-center py-1.5 px-2 text-text-secondary font-medium">
+                  {locale === 'hi' ? 'नक्षत्र स्वामी' : 'Star Lord'}
+                </th>
+                <th className="text-center py-1.5 px-2 text-text-secondary font-medium">
+                  {locale === 'hi' ? 'उप स्वामी' : 'Sub Lord'}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.cuspalSubLords.map(({ house, degree, subLord }) => {
+                const normalized = ((degree % 360) + 360) % 360;
+                const signIdx = Math.floor(normalized / 30);
+                const degInSign = normalized - signIdx * 30;
+                const d = Math.floor(degInSign);
+                const m = Math.floor((degInSign - d) * 60);
+                const signName = tl(RASHIS[signIdx]?.name, locale) || `Sign ${signIdx + 1}`;
+                return (
+                  <tr key={house} className="border-b border-gold-primary/5">
+                    <td className="py-1.5 px-2 text-text-primary font-medium">
+                      {house}
+                    </td>
+                    <td className="py-1.5 px-2 text-center text-text-secondary whitespace-nowrap">
+                      {signName} {d}°{m.toString().padStart(2, '0')}&prime;
+                    </td>
+                    <td className="py-1.5 px-2 text-center text-text-primary whitespace-nowrap">
+                      {tl(subLord.signLord.name, locale)}
+                    </td>
+                    <td className="py-1.5 px-2 text-center text-text-primary whitespace-nowrap">
+                      {tl(subLord.starLord.name, locale)}
+                    </td>
+                    <td className="py-1.5 px-2 text-center text-gold-light font-medium whitespace-nowrap">
+                      {tl(subLord.subLord.name, locale)}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-text-secondary/50 text-[10px] mt-2">
+          {locale === 'hi'
+            ? 'केपी कृष्णमूर्ति अयनांश एवं प्लासिडस भाव पद्धति पर आधारित'
+            : 'Computed using Krishnamurti ayanamsha and the Placidus house system'}
+        </p>
+      </div>
 
       {/* Legend */}
       <div className="mt-4 flex items-center gap-2 justify-center">

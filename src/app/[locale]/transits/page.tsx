@@ -10,6 +10,7 @@ import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import type { Locale,  LocaleText} from '@/types/panchang';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { sunLongitude, toSidereal, dateToJD, jdToDate, normalizeDeg } from '@/lib/ephem/astronomical';
+import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import MSG from '@/messages/pages/transits.json';
@@ -200,6 +201,35 @@ export default function TransitsPage() {
     return (now.getTime() - start.getTime()) / (daysInYear(year) * 86400000);
   }, [year]);
 
+  // All 12 Sankrantis — exact moment Sun enters 0° of each sidereal sign
+  const allSankrantis = useMemo(() => {
+    const getSidSunLon = (jd: number) => normalizeDeg(toSidereal(sunLongitude(jd), jd));
+    const approxMonths = [4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3];
+    return Array.from({ length: 12 }, (_, i) => {
+      const targetDeg = i * 30;
+      const approxJD = dateToJD(year, approxMonths[i], 14, 12);
+      let lo = approxJD - 20, hi = approxJD + 20;
+      for (let iter = 0; iter < 60; iter++) {
+        const mid = (lo + hi) / 2;
+        let diff = getSidSunLon(mid) - targetDeg;
+        if (diff > 180) diff -= 360;
+        if (diff < -180) diff += 360;
+        if (Math.abs(hi - lo) < 0.0001) break;
+        if (diff < 0) lo = mid; else hi = mid;
+      }
+      const rashi = RASHIS[i];
+      return { rashiId: i + 1, name: rashi?.name, date: jdToDate((lo + hi) / 2) };
+    });
+  }, [year]);
+
+  const [selectedSankrantiIdx, setSelectedSankrantiIdx] = useState(0);
+  useEffect(() => {
+    const now = new Date();
+    const nextIdx = allSankrantis.findIndex(s => s.date > now);
+    setSelectedSankrantiIdx(nextIdx >= 0 ? nextIdx : 0);
+  }, [allSankrantis]);
+  const selectedSankranti = allSankrantis[selectedSankrantiIdx];
+
   // Current transits summary — find the most recent transit for each slow planet (Mars-Ketu)
   const currentTransits = useMemo(() => {
     const today = new Date().toISOString().split('T')[0];
@@ -269,8 +299,8 @@ export default function TransitsPage() {
     }
     const jdResult = (lo + hi) / 2;
     const dateResult = jdToDate(jdResult);
-    // House themes for mundane astrology
-    const SANKRANTI_HOUSES = [
+    // House themes for mundane astrology — used by all Sankrantis
+    const SANKRANTI_HOUSES_DATA = [
       { en: '1H — World — Global identity, new world-era theme for the solar year', hi: '1H — विश्व — वार्षिक सौर-काल का वैश्विक विषय', sa: '1H — विश्वम् — वार्षिकसौरकालस्य वैश्विकविषयः', mai: '1H — विश्व — वार्षिक सौर-कालक वैश्विक विषय', mr: '1H — विश्व — वार्षिक सौर-कालाचा जागतिक विषय', ta: '1H — உலகம் — சூரிய ஆண்டின் உலகளாவிய அடையாளம்', te: '1H — ప్రపంచం — సౌర సంవత్సర ప్రపంచ గుర్తింపు', bn: '1H — বিশ্ব — সৌর বর্ষের বৈশ্বিক পরিচয়', kn: '1H — ವಿಶ್ವ — ಸೌರ ವರ್ಷದ ಜಾಗತಿಕ ಗುರುತು', gu: '1H — વિશ્વ — સૌર વર્ષનો વૈશ્વિક વિષય' },
       { en: '2H — Wealth — Global economy, food production, financial trends', hi: '2H — धन — वैश्विक अर्थव्यवस्था, खाद्य उत्पादन', sa: '2H — धनम् — वैश्विकार्थव्यवस्था, अन्नोत्पादनम्', mai: '2H — धन — वैश्विक अर्थव्यवस्था, खाद्य उत्पादन', mr: '2H — धन — जागतिक अर्थव्यवस्था, अन्न उत्पादन', ta: '2H — செல்வம் — உலகப் பொருளாதாரம், உணவு உற்பத்தி', te: '2H — ధనం — ప్రపంచ ఆర్థిక వ్యవస్థ, ఆహార ఉత్పత్తి', bn: '2H — ধন — বিশ্ব অর্থনীতি, খাদ্য উৎপাদন', kn: '2H — ಸಂಪತ್ತು — ಜಾಗತಿಕ ಆರ್ಥಿಕತೆ, ಆಹಾರ ಉತ್ಪಾದನೆ', gu: '2H — ધન — વૈશ્વિક અર્થતંત્ર, ખાદ્ય ઉત્પાદન' },
       { en: '3H — Communication — Media, transport, trade, neighbouring nations', hi: '3H — संचार — मीडिया, परिवहन, व्यापार', sa: '3H — सञ्चारः — माध्यमानि, परिवहनम्, वाणिज्यम्', mai: '3H — संचार — मीडिया, परिवहन, व्यापार', mr: '3H — संचार — माध्यमे, वाहतूक, व्यापार', ta: '3H — தொடர்பு — ஊடகம், போக்குவரத்து, வர்த்தகம்', te: '3H — సంవహనం — మీడియా, రవాణా, వాణిజ్యం', bn: '3H — যোগাযোগ — গণমাধ্যম, পরিবহন, বাণিজ্য', kn: '3H — ಸಂವಹನ — ಮಾಧ್ಯಮ, ಸಾರಿಗೆ, ವ್ಯಾಪಾರ', gu: '3H — સંચાર — મીડિયા, પરિવહન, વ્યાપાર' },
@@ -285,7 +315,7 @@ export default function TransitsPage() {
       { en: '12H — Liberation — Foreign influence, losses, spirituality, hidden enemies', hi: '12H — मोक्ष — विदेशी प्रभाव, हानि, आध्यात्मिकता', sa: '12H — मोक्षः — विदेशप्रभावः, हानिः, आध्यात्मिकता', mai: '12H — मोक्ष — विदेशी प्रभाव, हानि, आध्यात्मिकता', mr: '12H — मोक्ष — परदेशी प्रभाव, हानी, अध्यात्म', ta: '12H — விடுதலை — வெளிநாட்டு செல்வாக்கு, இழப்புகள், ஆன்மீகம்', te: '12H — మోక్షం — విదేశీ ప్రభావం, నష్టాలు, ఆధ్యాత్మికత', bn: '12H — মোক্ষ — বিদেশি প্রভাব, ক্ষতি, আধ্যাত্মিকতা', kn: '12H — ಮೋಕ್ಷ — ವಿದೇಶಿ ಪ್ರಭಾವ, ನಷ್ಟ, ಆಧ್ಯಾತ್ಮಿಕತೆ', gu: '12H — મોક્ષ — વિદેશી પ્રભાવ, હાનિ, આધ્યાત્મિકતા' },
     ];
     // Planets in each house at Sankranti (approximate — use current transits)
-    return { date: dateResult, jd: jdResult, houseThemes: SANKRANTI_HOUSES };
+    return { date: dateResult, houseThemes: SANKRANTI_HOUSES_DATA };
   }, [year]);
 
   // QW-12: Ashtama Shani — Saturn in 8th from natal Moon = 2.5yr of extreme difficulty
@@ -747,42 +777,70 @@ export default function TransitsPage() {
         </>
       )}
 
-      {/* JYOTISH-15: Mesha Sankranti */}
-      {meshaSankranti && (
+      {/* Sankranti Explorer — all 12 Sun sign ingresses */}
+      {allSankrantis.length > 0 && selectedSankranti && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
           className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6 mt-10">
           <h2 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
-            {tl({ en: `Mesha Sankranti ${year}`, hi: `मेष संक्रान्ति ${year}`, sa: `मेष संक्रान्ति ${year}`, ta: `Mesha Sankranti ${year}`, te: `Mesha Sankranti ${year}`, bn: `Mesha Sankranti ${year}`, kn: `Mesha Sankranti ${year}`, gu: `Mesha Sankranti ${year}`, mai: `मेष संक्रान्ति ${year}`, mr: `मेष संक्रान्ति ${year}` }, locale)}
+            {selectedSankranti.name ? tl(selectedSankranti.name, locale) : ''} {locale === 'hi' ? 'संक्रान्ति' : 'Sankranti'} {year}
           </h2>
-          <p className="text-text-secondary/70 text-xs text-center mb-5" style={bodyFont}>
+          <p className="text-text-secondary/70 text-xs text-center mb-4" style={bodyFont}>
             {locale === 'en'
-              ? 'Sun enters 0° sidereal Aries — the astrological new year. This chart governs mundane affairs for the entire solar year. Source: Brihat Samhita.'
-              : 'सूर्य 0° सायन मेष में प्रवेश करता है — ज्योतिषीय नव वर्ष। यह चार्ट वर्षभर के सांसारिक विषयों का संकेत देता है।'}
+              ? `Sun enters 0° sidereal ${selectedSankranti.name?.en || ''}${selectedSankrantiIdx === 0 ? ' — the astrological new year (Brihat Samhita)' : ''}`
+              : `सूर्य ${selectedSankranti.name?.hi || ''} राशि में प्रवेश${selectedSankrantiIdx === 0 ? ' — ज्योतिषीय नव वर्ष' : ''}`}
           </p>
+
+          {/* Sankranti selector — 12 rashi pills */}
+          <div className="flex flex-wrap justify-center gap-1.5 mb-5">
+            {allSankrantis.map((s, idx) => {
+              const isPast = s.date < new Date();
+              const isSelected = idx === selectedSankrantiIdx;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setSelectedSankrantiIdx(idx)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                    isSelected
+                      ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40'
+                      : isPast
+                        ? 'text-text-secondary/50 border border-gold-primary/5 hover:bg-gold-primary/5'
+                        : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
+                  }`}
+                >
+                  {s.name ? tl(s.name, locale) : ''}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Date/time display */}
           <div className="rounded-xl bg-gold-primary/8 border border-gold-primary/20 p-4 text-center mb-5">
             <div className="text-gold-light font-bold text-2xl font-mono" style={headingFont} suppressHydrationWarning>
-              {meshaSankranti.date.toLocaleDateString(msg('meshaSankrantiDateLocale', locale), { day: 'numeric', month: 'long', year: 'numeric' })}
+              {selectedSankranti.date.toLocaleDateString(msg('meshaSankrantiDateLocale', locale), { day: 'numeric', month: 'long', year: 'numeric' })}
             </div>
             <div className="text-gold-primary/70 text-sm mt-1" suppressHydrationWarning>
-              {meshaSankranti.date.toLocaleTimeString(msg('meshaSankrantiDateLocale', locale), { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}
-            </div>
-            <div className="text-text-secondary/70 text-xs mt-2" style={bodyFont}>
-              {msg('meshaSankrantiDesc', locale)}
+              {selectedSankranti.date.toLocaleTimeString(msg('meshaSankrantiDateLocale', locale), { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}
             </div>
           </div>
-          <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-3 text-center">
-            {msg('meshaSankrantiTitle', locale)}
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-            {meshaSankranti.houseThemes.map((theme, i) => (
-              <div key={i} className="rounded-lg bg-bg-primary/30 border border-gold-primary/8 p-3">
-                <div className="text-gold-primary/60 text-xs font-mono font-bold mb-0.5">{i + 1}</div>
-                <div className="text-text-secondary/70 text-xs leading-relaxed" style={bodyFont}>
-                  {!isDevanagariLocale(locale) ? theme.en : theme.hi}
-                </div>
+
+          {/* House themes — only shown for Mesha Sankranti (mundane astrology lagna) */}
+          {selectedSankrantiIdx === 0 && meshaSankranti && (
+            <>
+              <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-3 text-center">
+                {msg('meshaSankrantiTitle', locale)}
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                {meshaSankranti.houseThemes.map((theme: Record<string, string>, i: number) => (
+                  <div key={i} className="rounded-lg bg-bg-primary/30 border border-gold-primary/8 p-3">
+                    <div className="text-gold-primary/60 text-xs font-mono font-bold mb-0.5">{i + 1}</div>
+                    <div className="text-text-secondary/70 text-xs leading-relaxed" style={bodyFont}>
+                      {!isDevanagariLocale(locale) ? theme.en : theme.hi}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          )}
         </motion.div>
       )}
 

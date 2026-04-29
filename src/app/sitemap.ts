@@ -141,6 +141,9 @@ const routes = [
   '/learn/contributions/cosmic-time',
   '/learn/contributions/timeline',
   '/learn/contributions/al-khwarizmi',
+  // Calendars hub
+  '/calendars',
+  '/calendars/tithi',
   // Calendars
   '/calendar',
   '/transits',

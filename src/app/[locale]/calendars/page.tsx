@@ -18,6 +18,47 @@ const r2 = (n: number) => Math.round(n * 100) / 100;
    ================================================================ */
 
 /* 1. Festivals -- Ornate diya lamp with flame */
+/* 0. Tithi Calendar -- Calendar grid with moon phases */
+function TithiCalSVG() {
+  return (
+    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+      <defs>
+        <linearGradient id="tc1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
+        <radialGradient id="tc1m" cx="40%" cy="40%"><stop offset="0%" stopColor="#fff8e1" /><stop offset="100%" stopColor="#f0d48a" /></radialGradient>
+      </defs>
+      {/* Calendar frame */}
+      <rect x="8" y="12" width="48" height="44" rx="4" fill="none" stroke="url(#tc1)" strokeWidth="2" opacity="0.5" />
+      <rect x="8" y="12" width="48" height="10" rx="4" fill="url(#tc1)" opacity="0.15" />
+      {/* Header dots (day names) */}
+      {[16, 24, 32, 40, 48].map((x, i) => <circle key={i} cx={x} cy="17" r="1.5" fill="url(#tc1)" opacity="0.4" />)}
+      {/* Grid cells -- 5x4 grid */}
+      {[0,1,2,3].map(row => [0,1,2,3,4].map(col => {
+        const x = 12 + col * 9;
+        const y = 26 + row * 8;
+        return <rect key={`${row}-${col}`} x={x} y={y} width="7" height="6" rx="1" fill="url(#tc1)" opacity={0.06 + (row * 5 + col) * 0.005} stroke="url(#tc1)" strokeWidth="0.3" strokeOpacity="0.15" />;
+      }))}
+      {/* Full moon icon in one cell */}
+      <circle cx="39" cy="29" r="2.5" fill="url(#tc1m)" stroke="url(#tc1)" strokeWidth="0.5" />
+      {/* New moon icon in another cell */}
+      <circle cx="21" cy="37" r="2" fill="#1a1040" stroke="url(#tc1)" strokeWidth="0.5" opacity="0.6" />
+      {/* Half moon in another */}
+      <g>
+        <clipPath id="tc-hm"><circle cx="30" cy="45" r="2" /></clipPath>
+        <circle cx="30" cy="45" r="2" fill="#1a1040" stroke="url(#tc1)" strokeWidth="0.4" />
+        <rect x="30" y="43" width="3" height="4" fill="url(#tc1)" clipPath="url(#tc-hm)" opacity="0.8" />
+      </g>
+      {/* Festival star marker */}
+      <polygon points="48,34 49,36.5 51.5,36.5 49.5,38 50.2,40.5 48,39 45.8,40.5 46.5,38 44.5,36.5 47,36.5" fill="#f0d48a" opacity="0.5" />
+      {/* Top decorative circles (binding rings) */}
+      <circle cx="20" cy="12" r="2.5" fill="none" stroke="url(#tc1)" strokeWidth="1.5" opacity="0.4" />
+      <circle cx="44" cy="12" r="2.5" fill="none" stroke="url(#tc1)" strokeWidth="1.5" opacity="0.4" />
+      {/* Stars */}
+      <circle cx="4" cy="8" r="0.8" fill="#f0d48a" opacity="0.3" />
+      <circle cx="60" cy="6" r="0.6" fill="#f0d48a" opacity="0.25" />
+    </svg>
+  );
+}
+
 function FestivalsSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -560,6 +601,7 @@ function buildRows(isDevanagari: boolean): RowDef[] {
     {
       label: isDevanagari ? 'मुख्य पंचांग' : 'Core Calendars',
       cards: [
+        { href: '/calendars/tithi', title: 'Tithi Calendar', subtitle: 'Monthly Grid View', description: 'Daily tithi, nakshatra & moon phases', glowColor: '#f0d48a', svg: <TithiCalSVG /> },
         { href: '/calendar', title: 'Festivals', subtitle: 'Hindu Festivals', description: 'Sacred days & celebrations', glowColor: '#d4a853', svg: <FestivalsSVG /> },
         { href: '/horoscope', title: 'Horoscope', subtitle: 'Daily \u00b7 Weekly \u00b7 Monthly', description: 'Rashi-based forecasts', glowColor: '#8b5cf6', svg: <HoroscopeSVG /> },
         { href: '/transits', title: 'Transits', subtitle: 'Graha Gochara', description: 'Real-time planet movements', glowColor: '#22d3ee', svg: <TransitsSVG /> },

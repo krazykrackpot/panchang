@@ -207,6 +207,41 @@ function CalendarSVG() {
   );
 }
 
+function TithiGridSVG() {
+  return (
+    <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="tg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#c084fc" /><stop offset="50%" stopColor="#a855f7" /><stop offset="100%" stopColor="#7c3aed" /></linearGradient>
+        <radialGradient id="tg1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#c084fc" stopOpacity="0.25" /><stop offset="100%" stopColor="#7c3aed" stopOpacity="0" /></radialGradient>
+        <radialGradient id="tg1m" cx="40%" cy="40%"><stop offset="0%" stopColor="#fff8e1" /><stop offset="100%" stopColor="#f0d48a" /></radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="30" fill="url(#tg1g)" />
+      {/* Calendar frame */}
+      <rect x="8" y="14" width="48" height="42" rx="4" fill="none" stroke="url(#tg1)" strokeWidth="2" opacity="0.5" />
+      <rect x="8" y="14" width="48" height="9" rx="4" fill="url(#tg1)" opacity="0.15" />
+      {/* Binding rings */}
+      <circle cx="20" cy="14" r="2.5" fill="none" stroke="url(#tg1)" strokeWidth="1.5" opacity="0.5" />
+      <circle cx="44" cy="14" r="2.5" fill="none" stroke="url(#tg1)" strokeWidth="1.5" opacity="0.5" />
+      {/* Grid 5x4 */}
+      {[0,1,2,3].map(r => [0,1,2,3,4].map(c => (
+        <rect key={`${r}-${c}`} x={12 + c * 9} y={27 + r * 7} width="7" height="5.5" rx="1" fill="url(#tg1)" opacity={0.06} stroke="url(#tg1)" strokeWidth="0.3" strokeOpacity="0.2" />
+      )))}
+      {/* Full moon — glowing gold circle */}
+      <circle cx="39" cy="30" r="2.2" fill="url(#tg1m)" />
+      <circle cx="39" cy="30" r="3.5" fill="none" stroke="#f0d48a" strokeWidth="0.5" opacity="0.3" />
+      {/* New moon — dark circle */}
+      <circle cx="21" cy="37.5" r="2" fill="#1a1040" stroke="#c084fc" strokeWidth="0.5" opacity="0.6" />
+      {/* Half moon */}
+      <circle cx="30" cy="44.5" r="1.8" fill="#1a1040" stroke="#c084fc" strokeWidth="0.4" />
+      <rect x="30" y="42.7" width="2" height="3.6" rx="0.5" fill="#f0d48a" opacity="0.7" />
+      {/* Festival star */}
+      <polygon points="48,35 49,37 51,37 49.5,38.5 50,40.5 48,39.2 46,40.5 46.5,38.5 45,37 47,37" fill="#f0d48a" opacity="0.6" />
+      {/* Ekadashi highlight */}
+      <rect x="12" y="34" width="7" height="5.5" rx="1" fill="#34d399" opacity="0.15" stroke="#34d399" strokeWidth="0.5" strokeOpacity="0.4" />
+    </svg>
+  );
+}
+
 function TransitSVG() {
   // Gochar — dramatic Scorpio-like constellation with a planet transiting through it
   // Bold stars connected by thick lines, a glowing planet moving along the path
@@ -400,6 +435,13 @@ const HERO_CARDS: { href: string; glowColor: string; svg: React.ReactNode; subti
     subtitle: { en: 'Hindu Calendar', hi: 'हिन्दू पंचांग', ta: 'இந்து நாள்காட்டி', bn: 'হিন্দু পঞ্চাঙ্গ' },
     label: { en: 'Festivals & Vrat', hi: 'त्योहार और व्रत', sa: 'उत्सवाः व्रतानि च', ta: 'திருவிழாக்கள் & விரதம்', te: 'పండుగలు & వ్రతాలు', bn: 'উৎসব ও ব্রত', kn: 'ಹಬ್ಬಗಳು & ವ್ರತಗಳು', mr: 'सण आणि व्रत', gu: 'તહેવાર અને વ્રત', mai: 'पर्व आ व्रत' },
     desc: { en: 'Hindu calendar with regional events & Ekadashi', hi: 'क्षेत्रीय त्योहार और एकादशी के साथ हिन्दू पंचांग', sa: 'प्रादेशिकोत्सवैः एकादश्या च हिन्दूपञ्चाङ्गम्', ta: 'பிராந்திய நிகழ்வுகள் & ஏகாதசியுடன் இந்து நாள்காட்டி', te: 'ప్రాంతీయ ఈవెంట్లు & ఏకాదశితో హిందూ పంచాంగం', bn: 'আঞ্চলিক অনুষ্ঠান ও একাদশী সহ হিন্দু পঞ্চাঙ্গ', kn: 'ಪ್ರಾದೇಶಿಕ ಕಾರ್ಯಕ್ರಮಗಳು & ಏಕಾದಶಿಯೊಂದಿಗೆ ಹಿಂದೂ ಪಂಚಾಂಗ', mr: 'प्रादेशिक सण आणि एकादशीसह हिंदू पंचांग', gu: 'પ્રાદેશિક ઘટનાઓ અને એકાદશી સાથે હિંદુ પંચાંગ', mai: 'क्षेत्रीय पर्व आ एकादशीक संग हिन्दू पंचांग' },
+  },
+  {
+    href: '/calendars/tithi', glowColor: '#c084fc',
+    svg: <TithiGridSVG />,
+    subtitle: { en: 'Monthly Grid', hi: 'मासिक ग्रिड', ta: 'மாத கட்டம்', bn: 'মাসিক গ্রিড' },
+    label: { en: 'Tithi Calendar', hi: 'तिथि पंचांग', sa: 'तिथिपञ्चाङ्गम्', ta: 'திதி நாள்காட்டி', te: 'తిథి పంచాంగం', bn: 'তিথি পঞ্চাঙ্গ', kn: 'ತಿಥಿ ಪಂಚಾಂಗ', mr: 'तिथी पंचांग', gu: 'તિથિ પંચાંગ', mai: 'तिथि पंचांग' },
+    desc: { en: 'Moon phases, Nakshatra & festivals — daily grid', hi: 'चन्द्र कला, नक्षत्र और त्योहार — दैनिक ग्रिड', sa: 'चन्द्रकलाः, नक्षत्राणि, उत्सवाश्च', ta: 'சந்திர கலைகள், நட்சத்திரம் & திருவிழாக்கள்', te: 'చంద్ర కళలు, నక్షత్రం & పండుగలు', bn: 'চন্দ্র কলা, নক্ষত্র ও উৎসব', kn: 'ಚಂದ್ರ ಕಲೆ, ನಕ್ಷತ್ರ & ಹಬ್ಬಗಳು', mr: 'चंद्र कला, नक्षत्र आणि सण', gu: 'ચંદ્ર કળા, નક્ષત્ર અને તહેવાર', mai: 'चन्द्र कला, नक्षत्र आ पर्व' },
   },
   {
     href: '/transits', glowColor: '#60a5fa',

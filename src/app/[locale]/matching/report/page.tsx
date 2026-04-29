@@ -13,6 +13,7 @@ import type { Locale } from '@/types/panchang';
 import type { KundaliData } from '@/types/kundali';
 import type { DetailedMatchReport } from '@/lib/matching/detailed-report';
 import type { MatchResult } from '@/lib/matching/ashta-kuta';
+import { getKutaInsight, getOverallVerdict } from '@/lib/constants/kuta-insights';
 
 // ── Inline labels (en + hi) ──────────────────────────────────
 
@@ -541,6 +542,28 @@ export default function DetailedReportPage() {
                   {report.ashtaKuta.verdictText.en}
                 </div>
                 <div className="text-text-secondary text-sm mt-2">{report.ashtaKuta.percentage}% {lbl.compatibility}</div>
+                {/* Overall score interpretation */}
+                {(() => {
+                  const ov = getOverallVerdict(report.ashtaKuta.totalScore);
+                  const ovBorder: Record<string, string> = {
+                    excellent: 'border-emerald-500/25 bg-emerald-500/5',
+                    good: 'border-green-500/25 bg-green-500/5',
+                    average: 'border-amber-500/25 bg-amber-500/5',
+                    caution: 'border-red-500/25 bg-red-500/5',
+                  };
+                  const ovText: Record<string, string> = {
+                    excellent: 'text-emerald-400',
+                    good: 'text-green-400',
+                    average: 'text-amber-400',
+                    caution: 'text-red-400',
+                  };
+                  return (
+                    <div className={`mt-4 rounded-xl border p-3 max-w-sm mx-auto sm:mx-0 text-left ${ovBorder[ov.tier]}`}>
+                      <div className={`font-bold text-sm mb-1 ${ovText[ov.tier]}`}>{ov.headline}</div>
+                      <p className="text-text-secondary text-xs leading-relaxed">{ov.body}</p>
+                    </div>
+                  );
+                })()}
                 {/* Quick status badges */}
                 <div className="flex flex-wrap gap-2 mt-3 justify-center sm:justify-start">
                   <span className={`text-xs px-2.5 py-1 rounded-full border ${report.manglikAnalysis.chart1HasManglik || report.manglikAnalysis.chart2HasManglik ? 'text-orange-300 border-orange-500/30 bg-orange-500/10' : 'text-emerald-300 border-emerald-500/30 bg-emerald-500/10'}`}>
@@ -588,28 +611,36 @@ export default function DetailedReportPage() {
                   <h3 className="text-xl font-bold text-gold-light mb-4" style={headingFont}>
                     {lbl.ashtaKutaBreakdown}
                   </h3>
-                  {report.ashtaKuta.kutas.map((kuta, i) => (
-                    <div key={kuta.name.en} className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-gold-light font-bold" style={isDevanagariLocale(locale) ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                          {(kuta.name as Record<string, string>)[String(locale)] || kuta.name.en}
-                        </span>
-                        <span className="font-mono text-sm font-bold text-gold-primary">{kuta.scored}/{kuta.maxPoints}</span>
+                  {report.ashtaKuta.kutas.map((kuta, i) => {
+                    const pct = kuta.maxPoints > 0 ? kuta.scored / kuta.maxPoints : 0;
+                    const insight = getKutaInsight(kuta.name.en, kuta.scored, kuta.maxPoints);
+                    return (
+                      <div key={kuta.name.en} className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl p-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-gold-light font-bold" style={isDevanagariLocale(locale) ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                            {(kuta.name as Record<string, string>)[String(locale)] || kuta.name.en}
+                          </span>
+                          <span className="font-mono text-sm font-bold text-gold-primary">{kuta.scored}/{kuta.maxPoints}</span>
+                        </div>
+                        <div className="w-full bg-bg-tertiary rounded-full h-2 overflow-hidden mb-2">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: `${pct * 100}%` }}
+                            transition={{ delay: 0.1 + i * 0.06, duration: 0.5 }}
+                            className={`h-full rounded-full ${
+                              pct >= 0.75 ? 'bg-emerald-500' :
+                              pct >= 0.5 ? 'bg-amber-500' :
+                              pct >= 0.25 ? 'bg-orange-500' : 'bg-red-500'
+                            }`}
+                          />
+                        </div>
+                        {/* Relationship interpretation for this kuta */}
+                        <p className={`text-xs leading-relaxed ${pct >= 0.75 ? 'text-emerald-300/80' : pct >= 0.5 ? 'text-amber-300/80' : pct >= 0.25 ? 'text-orange-300/80' : 'text-red-300/80'}`}>
+                          {insight}
+                        </p>
                       </div>
-                      <div className="w-full bg-bg-tertiary rounded-full h-2 overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${(kuta.scored / kuta.maxPoints) * 100}%` }}
-                          transition={{ delay: 0.1 + i * 0.06, duration: 0.5 }}
-                          className={`h-full rounded-full ${
-                            kuta.scored / kuta.maxPoints >= 0.75 ? 'bg-emerald-500' :
-                            kuta.scored / kuta.maxPoints >= 0.5 ? 'bg-amber-500' :
-                            kuta.scored / kuta.maxPoints >= 0.25 ? 'bg-orange-500' : 'bg-red-500'
-                          }`}
-                        />
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </motion.div>
               )}
 

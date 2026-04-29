@@ -22,7 +22,7 @@ import { GRAHAS } from '@/lib/constants/grahas';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { ShareCardButton } from '@/components/shareable/ShareCardButton';
-import { selectHighlightKutas } from '@/lib/constants/kuta-insights';
+import { selectHighlightKutas, getKutaInsight, getOverallVerdict } from '@/lib/constants/kuta-insights';
 
 const L = {
   en: {
@@ -581,6 +581,28 @@ export default function MatchingPage() {
                 {tl(result.verdictText, locale)}
               </div>
               <div className="text-text-secondary text-sm mt-3">{result.percentage}% {t('compatibility')}</div>
+              {/* Overall score interpretation */}
+              {(() => {
+                const verdict = getOverallVerdict(result.totalScore);
+                const verdictBorder: Record<string, string> = {
+                  excellent: 'border-emerald-500/25 bg-emerald-500/5',
+                  good: 'border-green-500/25 bg-green-500/5',
+                  average: 'border-amber-500/25 bg-amber-500/5',
+                  caution: 'border-red-500/25 bg-red-500/5',
+                };
+                const verdictText: Record<string, string> = {
+                  excellent: 'text-emerald-400',
+                  good: 'text-green-400',
+                  average: 'text-amber-400',
+                  caution: 'text-red-400',
+                };
+                return (
+                  <div className={`mt-5 rounded-xl border p-4 max-w-lg mx-auto text-left ${verdictBorder[verdict.tier]}`}>
+                    <div className={`font-bold text-sm mb-1 ${verdictText[verdict.tier]}`} style={headingFont}>{verdict.headline}</div>
+                    <p className="text-text-secondary text-xs leading-relaxed">{verdict.body}</p>
+                  </div>
+                );
+              })()}
             </div>
 
             {/* Nadi Dosha Warning */}
@@ -636,35 +658,43 @@ export default function MatchingPage() {
             </h2>
 
             <div className="space-y-4 mb-12">
-              {result.kutas.map((kuta, i) => (
-                <motion.div
-                  key={kuta.name.en}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.08 }}
-                  className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5"
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <div>
-                      <span className="text-gold-light font-bold text-lg" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                        {tl(kuta.name, locale)}
+              {result.kutas.map((kuta, i) => {
+                const insight = getKutaInsight(kuta.name.en, kuta.scored, kuta.maxPoints);
+                const pct = kuta.maxPoints > 0 ? kuta.scored / kuta.maxPoints : 0;
+                return (
+                  <motion.div
+                    key={kuta.name.en}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.08 }}
+                    className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5"
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <div>
+                        <span className="text-gold-light font-bold text-lg" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                          {tl(kuta.name, locale)}
+                        </span>
+                        <span className="text-text-secondary text-xs ml-3">{tl(kuta.description, locale)}</span>
+                      </div>
+                      <span className="font-mono text-lg font-bold text-gold-primary">
+                        {kuta.scored} <span className="text-text-secondary text-sm">/ {kuta.maxPoints}</span>
                       </span>
-                      <span className="text-text-secondary text-xs ml-3">{tl(kuta.description, locale)}</span>
                     </div>
-                    <span className="font-mono text-lg font-bold text-gold-primary">
-                      {kuta.scored} <span className="text-text-secondary text-sm">/ {kuta.maxPoints}</span>
-                    </span>
-                  </div>
-                  <div className="w-full bg-bg-tertiary rounded-full h-2.5 overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${(kuta.scored / kuta.maxPoints) * 100}%` }}
-                      transition={{ delay: 0.3 + i * 0.08, duration: 0.6 }}
-                      className={`h-full rounded-full ${scoreBarColor(kuta.scored, kuta.maxPoints)}`}
-                    />
-                  </div>
-                </motion.div>
-              ))}
+                    <div className="w-full bg-bg-tertiary rounded-full h-2.5 overflow-hidden mb-3">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${pct * 100}%` }}
+                        transition={{ delay: 0.3 + i * 0.08, duration: 0.6 }}
+                        className={`h-full rounded-full ${scoreBarColor(kuta.scored, kuta.maxPoints)}`}
+                      />
+                    </div>
+                    {/* Relationship interpretation for this kuta */}
+                    <p className={`text-xs leading-relaxed ${pct >= 0.75 ? 'text-emerald-300/80' : pct >= 0.5 ? 'text-amber-300/80' : pct >= 0.25 ? 'text-orange-300/80' : 'text-red-300/80'}`}>
+                      {insight}
+                    </p>
+                  </motion.div>
+                );
+              })}
             </div>
             </div>
             {/* P2-03: Nakshatra Veda Pairs */}

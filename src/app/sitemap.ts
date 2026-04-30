@@ -122,6 +122,8 @@ const routes = [
   '/learn/dasha-sandhi',
   '/learn/nadi-amsha',
   '/learn/pancha-pakshi',
+  '/learn/panchak',
+  '/learn/holashtak',
   '/learn/doshas-detailed',
   // Learn Contributions (India's mathematical & astronomical heritage)
   '/learn/contributions/zero',
@@ -183,6 +185,8 @@ const routes = [
   '/kaal-nirnaya',
   '/nivas-shool',
   '/rahu-kaal',
+  '/panchak',
+  '/holashtak',
   '/choghadiya',
   '/hora',
   '/mangal-dosha',

@@ -1299,6 +1299,28 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Interactive timeline from Shulba Sutras (800 BCE) to Kerala School (1600 CE) — 2400 years of Indian mathematical and astronomical breakthroughs.', hi: 'शुल्ब सूत्र (800 BCE) से केरल स्कूल (1600 CE) तक — 2400 वर्षों की भारतीय गणित और खगोलशास्त्र उपलब्धियों की समयरेखा।', sa: 'शुल्बसूत्रेभ्यः (800 BCE) केरलविद्यापीठपर्यन्तम् (1600 CE) — 2400 वर्षाणां भारतीयगणितखगोलशास्त्रसिद्धीनां कालसूची।' },
     keywords: ['indian mathematics timeline', 'indian astronomy history', 'ancient indian science', 'mathematical contributions india'],
   },
+
+  // ─── Panchak & Holashtak ───────────────────────────────────
+  '/learn/panchak': {
+    title: { en: 'Panchak — The 5 Inauspicious Nakshatras | Dekho Panchang', hi: 'पंचक — 5 अशुभ नक्षत्र | Dekho Panchang', sa: 'पञ्चकम् — ५ अशुभनक्षत्राणि | Dekho Panchang' },
+    description: { en: 'Complete guide to Panchak — the inauspicious period when Moon transits Dhanishtha through Revati. Activities to avoid, cremation rules, and regional practices.', hi: 'पंचक की पूरी जानकारी — धनिष्ठा से रेवती तक चन्द्र का गोचर। वर्जित कार्य, अंत्येष्टि नियम और क्षेत्रीय प्रथाएँ।', sa: 'पञ्चकस्य सम्पूर्णमार्गदर्शनम् — धनिष्ठातः रेवतीपर्यन्तं चन्द्रगोचरः।' },
+    keywords: ['panchak', 'panchak nakshatra', 'inauspicious nakshatra', 'dhanishtha panchak', 'cremation panchak'],
+  },
+  '/learn/holashtak': {
+    title: { en: 'Holashtak — 8 Inauspicious Days Before Holi | Dekho Panchang', hi: 'होलाष्टक — होली से पूर्व 8 अशुभ दिन | Dekho Panchang', sa: 'होलाष्टकम् — होलिकापूर्वम् ८ अशुभदिनानि | Dekho Panchang' },
+    description: { en: 'Complete guide to Holashtak — the 8 inauspicious days before Holi from Phalguna Shukla Ashtami to Purnima. Activities to avoid and spiritual significance.', hi: 'होलाष्टक — होली से पहले फाल्गुन शुक्ल अष्टमी से पूर्णिमा तक 8 अशुभ दिनों की पूरी जानकारी।', sa: 'होलाष्टकम् — फाल्गुनशुक्लाष्टमीतः पूर्णिमापर्यन्तम् ८ अशुभदिनानां सम्पूर्णमार्गदर्शनम्।' },
+    keywords: ['holashtak', 'holashtak 2026', '8 days before holi', 'inauspicious days holi', 'holashtak dates'],
+  },
+  '/panchak': {
+    title: { en: 'Panchak Today — Check Inauspicious Nakshatra Period | Dekho Panchang', hi: 'आज का पंचक — अशुभ नक्षत्र काल जांचें | Dekho Panchang', sa: 'अद्य पञ्चकम् — अशुभनक्षत्रकालं परीक्षयतु | Dekho Panchang' },
+    description: { en: 'Is Panchak active today? Check current Moon nakshatra, Panchak type, activities to avoid, and upcoming Panchak dates for your location.', hi: 'क्या आज पंचक है? वर्तमान चन्द्र नक्षत्र, पंचक प्रकार, वर्जित कार्य और आगामी पंचक तिथियाँ जांचें।', sa: 'अद्य पञ्चकं किम्? वर्तमानचन्द्रनक्षत्रं पञ्चकप्रकारं वर्जितकार्याणि च परीक्षयतु।' },
+    keywords: ['panchak today', 'panchak check', 'is panchak today', 'panchak dates', 'moon nakshatra panchak'],
+  },
+  '/holashtak': {
+    title: { en: 'Holashtak 2026 — 8 Inauspicious Days Before Holi | Dekho Panchang', hi: 'होलाष्टक 2026 — होली से पूर्व 8 अशुभ दिन | Dekho Panchang', sa: 'होलाष्टकम् 2026 — होलिकापूर्वम् ८ अशुभदिनानि | Dekho Panchang' },
+    description: { en: 'Is Holashtak active today? Check which day of the 8-day inauspicious period before Holi, activities to avoid, and Holashtak dates for 2026-2027.', hi: 'क्या आज होलाष्टक है? होली से पहले 8 दिन की अशुभ अवधि, वर्जित कार्य और 2026-2027 की तिथियाँ।', sa: 'अद्य होलाष्टकं किम्? होलिकापूर्वम् ८ दिनानाम् अशुभकालः वर्जितकार्याणि 2026-2027 तिथ्यश्च।' },
+    keywords: ['holashtak 2026', 'holashtak today', 'holashtak dates', 'inauspicious days before holi', 'holashtak period'],
+  },
 };
 
 /**

@@ -1,8 +1,11 @@
 import crypto from 'crypto';
-import type { LocaleText } from '@/types/panchang';
+import type { LocaleText, PanchangData } from '@/types/panchang';
 import { NextResponse } from 'next/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
+import { NAKSHATRAS } from '@/lib/constants/nakshatras';
+import { NAKSHATRA_DETAILS } from '@/lib/constants/nakshatra-details';
+import { YOGAS } from '@/lib/constants/yogas';
 
 /**
  * Cron endpoint: posts daily panchang to Twitter/X.
@@ -67,25 +70,38 @@ export async function GET(request: Request) {
       console.error('[social-post] Festival lookup failed:', err);
     }
 
-    // Format date for display
-    const dateStr = new Date(Date.UTC(year, month - 1, day))
-      .toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+    // Day of week in IST: 0=Sunday, 1=Monday, ..., 6=Saturday
+    const istDayOfWeek = istDate.getUTCDay();
+    // Day of year for rotating through fact arrays
+    const startOfYear = Date.UTC(year, 0, 0);
+    const dayOfYear = Math.floor((Date.UTC(year, month - 1, day) - startOfYear) / 86400000);
 
-    const tweetText = composeTweet({
-      date: dateStr,
-      tithi: L(panchang.tithi.name),
-      nakshatra: L(panchang.nakshatra.name),
-      yoga: L(panchang.yoga.name),
-      vara: L(panchang.vara.name),
-      sunrise: panchang.sunrise,
-      sunset: panchang.sunset,
-      rahuKaalStart: panchang.rahuKaal.start,
-      rahuKaalEnd: panchang.rahuKaal.end,
-      festivals: festivals.map(f => ({
-        name: L(f.name),
-        type: f.type,
-      })),
-    });
+    let tweetText: string;
+
+    if (istDayOfWeek === 1) {
+      // Monday — Daily Panchang (existing logic)
+      const dateStr = new Date(Date.UTC(year, month - 1, day))
+        .toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+
+      tweetText = composeTweet({
+        date: dateStr,
+        tithi: L(panchang.tithi.name),
+        nakshatra: L(panchang.nakshatra.name),
+        yoga: L(panchang.yoga.name),
+        vara: L(panchang.vara.name),
+        sunrise: panchang.sunrise,
+        sunset: panchang.sunset,
+        rahuKaalStart: panchang.rahuKaal.start,
+        rahuKaalEnd: panchang.rahuKaal.end,
+        festivals: festivals.map(f => ({
+          name: L(f.name),
+          type: f.type,
+        })),
+      });
+    } else {
+      // All other days — educational content rotation
+      tweetText = composeEducationalTweet(istDayOfWeek, panchang, dayOfYear);
+    }
 
     const tweetResult = await postToTwitter(tweetText);
 
@@ -93,6 +109,7 @@ export async function GET(request: Request) {
       posted: !!tweetResult,
       tweetId: tweetResult?.id || null,
       date: todayStr,
+      dayOfWeek: istDayOfWeek,
       textLength: tweetText.length,
       festivals: festivals.map(f => L(f.name)),
     });
@@ -103,7 +120,225 @@ export async function GET(request: Request) {
 }
 
 // ──────────────────────────────────────────────────────────────
-// Tweet composition
+// Educational tweet content arrays
+// ──────────────────────────────────────────────────────────────
+
+const LEARN_FACTS = [
+  'Did you know? Ayanamsha is the difference between the tropical and sidereal zodiacs. Your Vedic Sun sign is usually one sign behind your Western Sun sign.',
+  'Pushya Nakshatra is considered the most auspicious nakshatra for starting new ventures — its deity is Brihaspati (Jupiter), the cosmic teacher.',
+  'The 27 Nakshatras divide the 360\u00b0 zodiac into 13\u00b020\' segments, each with a unique deity, animal symbol, and planetary ruler.',
+  'Rahu Kaal is calculated by dividing the day (sunrise to sunset) into 8 equal parts. The inauspicious segment rotates: Mon=2nd, Sat=3rd, Fri=4th...',
+  'Sade Sati is Saturn\'s 7.5-year transit over your Moon sign — not always bad! The peak phase (Saturn on Moon) is the most transformative.',
+  'Ekadashi fasting follows the Dwi-tithi rule: if Ekadashi spans two sunrises, observe on the SECOND day.',
+  'There are 27 Yogas in Panchang — not to be confused with physical yoga. Siddha Yoga is one of the most auspicious for new beginnings.',
+  'The North Indian kundali chart always has Aries in the top-left diamond. In the South Indian chart, signs are fixed and planets move.',
+  'Mangal Dosha (Mars in houses 1/2/4/7/8/12) affects ~40% of charts. But most cases are cancelled by Jupiter\'s aspect or other conditions.',
+  'Hora is a 24-hour cycle where each hour is ruled by a different planet. The sequence follows the Chaldean order: Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon.',
+  'Abhijit Muhurta — the 8th muhurta of the day — is universally auspicious, except on Wednesdays.',
+  'Vedic astrology uses the sidereal zodiac (fixed stars), while Western astrology uses the tropical zodiac (seasons). They diverged ~1,700 years ago.',
+  'Ashta Kuta matching scores compatibility on 8 dimensions (max 36 points). Nadi Kuta alone carries 8 points — the highest weight.',
+  'The 12 Bhava (houses) represent different life areas. The Kendra houses (1,4,7,10) are the strongest — planets here have maximum impact.',
+  'Vimshottari Dasha is a 120-year cycle divided among 9 planets. Your birth nakshatra determines which planet\'s dasha you\'re born into.',
+];
+
+const GURU_FACTS = [
+  'Thursday is Guruvar — ruled by Jupiter (Brihaspati). Wearing yellow, donating turmeric, and visiting temples is considered auspicious.',
+  'Jupiter changes signs approximately once every 12 months. Jupiter in Cancer is the BEST Jupiter transit — it\'s exalted!',
+  'Jupiter aspects houses 5, 7, and 9 from its position — unlike other planets which only aspect the 7th house.',
+  'Jupiter is the Karaka (significator) of wealth, wisdom, children, and spirituality. A strong Jupiter blesses all four.',
+  'Guru Chandal Yoga forms when Jupiter conjoins Rahu — it can distort wisdom and ethics, but also bring unconventional breakthroughs.',
+  'Jupiter\'s Vimshottari Dasha lasts 16 years — often the most expansive, prosperous period of life when well-placed.',
+  'In Navamsa (D-9 chart), Jupiter\'s placement reveals the spiritual nature of your marriage and dharmic path.',
+  'Jupiter retrograde occurs for ~4 months each year. It\'s a time for inner reflection on beliefs, ethics, and long-term vision.',
+];
+
+const MATCHING_FACTS = [
+  'Ashta Kuta scores 36 points across 8 dimensions. 28+ = Excellent match. But even low scores can work with mutual effort.',
+  'Nadi Kuta (8 points) checks genetic compatibility. Same Nadi = Nadi Dosha. But same nakshatra + pada cancels it.',
+  'Bhakut Kuta (7 points) checks the Moon sign relationship. 6-8 and 2-12 combinations are considered challenging.',
+  'Gana Kuta checks temperament: Deva (divine), Manushya (human), Rakshasa (demon). Cross-gana matches need understanding.',
+  'Mangal Dosha from both charts can cancel each other out — "Dosha Samya" makes the match viable.',
+  'Yoni Kuta (4 points) uses animal symbols of nakshatras to check physical and intimate compatibility.',
+  'Vashya Kuta checks mutual attraction and dominance patterns between Moon signs. Some signs naturally complement.',
+  'A low Ashta Kuta score with strong Navamsa compatibility can still indicate a deeply fulfilling relationship.',
+];
+
+const SHANI_FACTS = [
+  'Saturday is Shanivar — ruled by Saturn. Donate black sesame, mustard oil, or iron items. Avoid starting new ventures.',
+  'Sade Sati has 3 phases: Rising (Saturn enters sign before Moon), Peak (Saturn on Moon sign), Setting (Saturn enters sign after Moon).',
+  'Saturn\'s Vimshottari Dasha lasts 19 years — the longest of all planets. It teaches discipline, patience, and karmic lessons.',
+  'Saturn is exalted in Libra and debilitated in Aries. A well-placed Saturn gives longevity, discipline, and worldly success.',
+  'Shani Dev is the son of Surya (Sun) and Chhaya. Despite his fearsome reputation, he is the ultimate teacher of karma.',
+  'Saturn aspects houses 3, 7, and 10 from its position — its 3rd and 10th aspects are unique to Saturn alone.',
+  'Hanuman worship is a traditional remedy for Saturn afflictions. Reciting Hanuman Chalisa on Saturdays is widely practiced.',
+  'Saturn returns to its natal position every ~29.5 years — your "Saturn Return" is a major life transition period.',
+];
+
+// ──────────────────────────────────────────────────────────────
+// Educational tweet composer (day-of-week rotation)
+// ──────────────────────────────────────────────────────────────
+
+function composeEducationalTweet(
+  dayOfWeek: number,
+  panchang: PanchangData,
+  dayOfYear: number,
+): string {
+  const L = (obj: LocaleText) => obj.en;
+  const tags = getTempleHashtags(dayOfYear);
+
+  switch (dayOfWeek) {
+    case 0: { // Sunday — Learn Module Teaser
+      const fact = LEARN_FACTS[dayOfYear % LEARN_FACTS.length];
+      return truncateTweet([
+        '\u{1F4A1} Jyotish Insight',
+        '',
+        fact,
+        '',
+        'Learn more \u2192 dekhopanchang.com/en/learn',
+        '',
+        tags,
+      ]);
+    }
+
+    case 2: { // Tuesday — Nakshatra Spotlight
+      const nk = panchang.nakshatra;
+      const detail = NAKSHATRA_DETAILS.find(d => d.id === nk.id);
+      const meaning = detail ? L(detail.meaning) : '';
+      const nkData = NAKSHATRAS.find(n => n.id === nk.id);
+      const nature = nkData ? L(nkData.nature) : '';
+      return truncateTweet([
+        `\u2726 Nakshatra of the Day: ${L(nk.name)}`,
+        '',
+        `Deity: ${L(nk.deity)} | Ruler: ${nk.ruler}`,
+        `Nature: ${nature}`,
+        '',
+        meaning,
+        '',
+        `dekhopanchang.com/en/panchang/nakshatra/${nk.id}`,
+        '',
+        tags,
+      ]);
+    }
+
+    case 3: { // Wednesday — Yoga/Tithi
+      const yoga = panchang.yoga;
+      const yogaData = YOGAS.find(y => y.number === yoga.number);
+      const yogaMeaning = yogaData ? L(yogaData.meaning) : '';
+      const yogaNature = yogaData ? yogaData.nature : '';
+      return truncateTweet([
+        `\u{1F52E} Today's Yoga: ${L(yoga.name)} (${yogaMeaning})`,
+        '',
+        `Nature: ${yogaNature}`,
+        '',
+        `Tithi: ${L(panchang.tithi.name)}`,
+        '',
+        'dekhopanchang.com/en/panchang',
+        '',
+        tags,
+      ]);
+    }
+
+    case 4: { // Thursday — Guru's Day
+      const fact = GURU_FACTS[dayOfYear % GURU_FACTS.length];
+      return truncateTweet([
+        '\u{1FA90} Guruvar Wisdom',
+        '',
+        fact,
+        '',
+        'Transit analysis \u2192 dekhopanchang.com/en/transits',
+        '',
+        tags,
+      ]);
+    }
+
+    case 5: { // Friday — Matching/Compatibility
+      const fact = MATCHING_FACTS[dayOfYear % MATCHING_FACTS.length];
+      return truncateTweet([
+        '\u{1F495} Compatibility Insight',
+        '',
+        fact,
+        '',
+        'Try matching \u2192 dekhopanchang.com/en/matching',
+        '',
+        tags,
+      ]);
+    }
+
+    case 6: { // Saturday — Saturn/Remedy
+      const fact = SHANI_FACTS[dayOfYear % SHANI_FACTS.length];
+      return truncateTweet([
+        '\u{1FA94} Shanivar Wisdom',
+        '',
+        fact,
+        '',
+        'Check your Sade Sati \u2192 dekhopanchang.com/en/sade-sati',
+        '',
+        tags,
+      ]);
+    }
+
+    default: {
+      // Fallback (should not happen — day 1/Monday handled in GET)
+      const fact = LEARN_FACTS[dayOfYear % LEARN_FACTS.length];
+      return truncateTweet([
+        '\u{1F4A1} Jyotish Insight',
+        '',
+        fact,
+        '',
+        'Learn more \u2192 dekhopanchang.com/en/learn',
+        '',
+        tags,
+      ]);
+    }
+  }
+}
+
+function getTempleHashtags(dayOfYear: number): string {
+  const TEMPLE_TAGS = [
+    '#Mahakal #Ujjain #Panchang #Jyotish',
+    '#KashiVishwanath #Varanasi #Panchang #Jyotish',
+    '#Kamakhya #Panchang #HinduCalendar #Jyotish',
+    '#Vindhyavasini #Panchang #VedicAstrology',
+    '#Somnath #Panchang #Jyotish #HinduTemple',
+    '#Tirupati #Panchang #Jyotish #VedicAstrology',
+    '#Jagannath #Puri #Panchang #Jyotish',
+  ];
+  return TEMPLE_TAGS[dayOfYear % TEMPLE_TAGS.length];
+}
+
+/**
+ * Progressive truncation to stay under 280 chars.
+ * Drops hashtags first, then trims trailing lines.
+ */
+function truncateTweet(lines: string[]): string {
+  let tweet = lines.join('\n');
+  if (tweet.length <= 280) return tweet;
+
+  // Drop temple tags, keep minimal hashtags
+  lines[lines.length - 1] = '#Panchang #Jyotish';
+  tweet = lines.join('\n');
+  if (tweet.length <= 280) return tweet;
+
+  // Remove all hashtags
+  lines.pop();
+  tweet = lines.join('\n');
+  if (tweet.length <= 280) return tweet;
+
+  // Remove trailing empty lines + last content line until it fits
+  while (tweet.length > 280 && lines.length > 2) {
+    lines.pop();
+    // Also remove trailing empty line if present
+    if (lines.length > 0 && lines[lines.length - 1] === '') {
+      lines.pop();
+    }
+    tweet = lines.join('\n');
+  }
+
+  return tweet.slice(0, 280);
+}
+
+// ──────────────────────────────────────────────────────────────
+// Tweet composition (Monday daily panchang)
 // ──────────────────────────────────────────────────────────────
 
 function composeTweet(data: {
@@ -145,18 +380,9 @@ function composeTweet(data: {
   lines.push('');
   lines.push(`dekhopanchang.com`);
 
-  // Rotate temple/mandir tags daily — each day features a different set
-  const TEMPLE_TAGS = [
-    '#Mahakal #Ujjain #Panchang #Jyotish',
-    '#KashiVishwanath #Varanasi #Panchang #Jyotish',
-    '#Kamakhya #Panchang #HinduCalendar #Jyotish',
-    '#Vindhyavasini #Panchang #VedicAstrology',
-    '#Somnath #Panchang #Jyotish #HinduTemple',
-    '#Tirupati #Panchang #Jyotish #VedicAstrology',
-    '#Jagannath #Puri #Panchang #Jyotish',
-  ];
+  // Rotate temple/mandir tags daily — uses shared helper
   const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
-  lines.push(TEMPLE_TAGS[dayOfYear % TEMPLE_TAGS.length]);
+  lines.push(getTempleHashtags(dayOfYear));
 
   // Trim to 280 chars — progressively drop elements
   let tweet = lines.join('\n');

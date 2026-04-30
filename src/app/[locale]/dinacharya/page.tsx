@@ -588,6 +588,7 @@ function EnergyTimeline({
   const HOUR_TICKS = [0, 3, 6, 9, 12, 15, 18, 21];
 
   return (
+    <div className="overflow-y-auto max-h-[500px] sm:max-h-none rounded-xl">
     <div className="relative select-none" style={{ height: `${TOTAL_HEIGHT}px` }}>
       {/* ── Vertical axis line ── */}
       <div
@@ -703,6 +704,7 @@ function EnergyTimeline({
           {nowLabel}
         </span>
       </div>
+    </div>
     </div>
   );
 }

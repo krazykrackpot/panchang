@@ -239,7 +239,7 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
                 </div>
 
                 {/* ── Row 2: Tithi name (primary info) ── */}
-                <div className={`text-[11px] sm:text-xs leading-tight mb-1 ${style.tithiColor}`}>
+                <div className={`text-[10px] sm:text-xs leading-tight mb-1 truncate ${style.tithiColor}`}>
                   {tl(cell.tithiName, locale)}
                 </div>
 
@@ -264,7 +264,7 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
                 <div className="space-y-0.5 mb-1">
                   {/* Sunrise + Sunset on one line */}
                   {(cell.sunrise || cell.sunset) && (
-                    <div className="flex items-center gap-2 text-[8px] sm:text-[9px]">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-2 text-[8px] sm:text-[9px]">
                       {cell.sunrise && (
                         <span className="flex items-center gap-0.5 text-amber-400/60">
                           <SunriseIcon size={11} />

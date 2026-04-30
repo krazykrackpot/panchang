@@ -156,14 +156,8 @@ export default async function LocaleLayout({
           <Footer />
           <ClientShell locale={locale} />
           <Analytics />
-          {process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID && (
-            <Script
-              async
-              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}`}
-              crossOrigin="anonymous"
-              strategy="lazyOnload"
-            />
-          )}
+          {/* AdSense script removed from global layout — loaded on-demand by AdUnit component
+             only on pages that actually render ads. Saves 356KB+ on ad-free pages. */}
         </NextIntlClientProvider>
       </body>
     </html>

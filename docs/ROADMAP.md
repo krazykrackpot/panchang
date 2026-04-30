@@ -1,298 +1,134 @@
 # Dekho Panchang — Master Product Roadmap
 
-**Last updated:** 2026-04-27
+**Last updated:** 2026-04-30
 **Reference:** See `docs/CLASSICAL_JYOTISH_GAP_ANALYSIS.md` for full classical text analysis.
 
 ---
 
-## ✅ Completed
-
-### Audit & Hardening (2026-04-26/27 Session)
-- [x] Festival masa regression fix — 20/20 exact match vs Prokerala 2026
-- [x] Kala-Vyapti engine — 9 muhurta rules (madhyahna, pradosh, nishita, arunodaya, aparahna, chandrodaya, pratah, sunrise), getKalaWindow + getOverlap, Dharmasindhu tie-breaking
-- [x] Astronomical Adhika detection — decoupled NM scan, sunrise alignment, isAdhika from Amant only. Verified: 2026 Jyeshtha, 2027 none, 2029 Chaitra.
-- [x] Adhika naming — classical map (Mesha→Vaishakha, Meena→Chaitra), sign1-based
-- [x] Makar Sankranti — binary search + Punya Kala sunset rule
-- [x] Varjyam ghati table — 4 values corrected (Ardra, Punarvasu, Pushya, U.Phalguni)
-- [x] Combustion retrograde orbs — Mercury 14→12°, Venus 10→8° per BPHS
-- [x] API + client error logging — 8 silent catches fixed
-- [x] Graduated Cheshta Bala mode — configurable BPHS strict vs graduated
-- [x] India WWII historical timezone — 1941-1945 UTC+6:30 auto-applied
-- [x] Festival × City × Year programmatic SEO — 3,000+ URLs with JSON-LD (Event + FAQ + Breadcrumb)
-- [x] Calculation Proof toggle — transparent audit trail on /panchang/[city] and festival pages
-- [x] Planet-in-House verse data — 84 BPHS-cited entries with en/hi
-- [x] 6 missing FESTIVAL_DETAILS entries (holika-dahan, durga-ashtami, maha-navami, hartalika-teej, chhath-puja, tulsi-vivah)
-- [x] Learn pages 27-1 (Festival Timing Rules) + 27-2 (Adhika Masa) + standalone topic pages
-- [x] Learn nav dropdown with direct topic access, no sequential locking
-- [x] Competitor references removed from all user-facing content
-- [x] Dashboard TransitCountdown empty state fix
-- [x] Samvat year boundary correction
-- [x] Moonrise parallax verified (already implemented, ±2 min of IMD/timeanddate)
+## ✅ Completed — Everything Shipped
 
 ### Platform Core
 - [x] Daily Panchang — location-aware, 90+ fields, DST-safe
 - [x] Kundali generator — 19 divisional charts, 18 tabs
 - [x] 10-page PDF export
-- [x] Trilingual support (EN / HI / SA) — 612 pages across 3 locales
+- [x] 7-locale support (EN / HI / TA / TE / BN / GU / KN) — 600+ pages
 - [x] Global location store — auto-detect, no Delhi fallback
 - [x] Timezone handling — IANA per-date with DST awareness + India WWII correction
 - [x] Life Timeline — 90-year synthesis of all kundali elements
+- [x] ELI5 Panel — plain-language kundali explanations (eli5-engine.ts + ELI5Panel.tsx)
 
-### Calculations Implemented
-- [x] Shadbala — all 6 components + Ishta/Kashta Phala
-- [x] Bhava Bala (house strength)
-- [x] Vimshopaka Bala (20-point divisional strength)
+### Calculations (Comprehensive)
+- [x] Shadbala (6 components + Ishta/Kashta), Bhava Bala, Vimshopaka Bala
 - [x] 127 yoga detections (Raja, Dhana, Daridra, Parivartana, Nabhasa, etc.)
-- [x] Vimshottari Dasha — Maha / Antar / Pratyantar (3 levels)
-- [x] 21 additional dasha systems (Yogini, Narayana, Kalachakra, Shoola, Sthira, KP, etc.)
-- [x] Jaimini system — Chara Karakas, Karakamsha, Arudha Padas A1–A12, Chara Dasha, Graha Arudhas, Rashi Drishti, Rajayogas
-- [x] Avasthas — 50+ planetary states (Baladi, Varna, Raja-Rajya, Naisargika, Dina, Paksha, Tribhaga)
-- [x] Argala & Virodha Argala
-- [x] Sphutas (Prana, Deha, Mrityu, Tri, Yogi, Avayogi, Bija, Kshetra)
-- [x] Ashtakavarga — 7-planet bindu grid + SAV full analysis
-- [x] Special Lagnas — Hora, Ghati, Sree, Indu, Pranapada, Varnada
-- [x] KP System — Placidus houses, sub-lords, significators, ruling planets
-- [x] Varshaphal — solar return, Muntha, Varsheshvara, Sahams, Tajika aspects, Mudda Dasha, Ithasala/Ishrafa
+- [x] 22 dasha systems (Vimshottari 3-level, Yogini, Narayana, Kalachakra, Shoola, Sthira, KP, etc.)
+- [x] Jaimini system — Chara Karakas, Karakamsha, Arudha Padas, Chara Dasha, Graha Arudhas, Rashi Drishti, Swamsha profiles
+- [x] Avasthas — 50+ planetary states (Baladi, Varna, Raja-Rajya, Naisargika, etc.)
+- [x] Argala, Sphutas, Ashtakavarga (7-planet bindu + SAV), Special Lagnas
+- [x] KP System — Placidus houses, sub-lords, sub-sub lords, significators, cuspal analysis
+- [x] Varshaphal — Tajika aspects (full 7-yoga system), Muntha, Sahams, Mudda Dasha
 - [x] Prashna Horary — 8 categories + Ashtamangala Prashna
-- [x] Sade Sati — full 7.5-year cycle with sub-phases, Ashtama Shani detection
-- [x] Graha Yuddha (Planetary War) detection
-- [x] Functional Malefics/Benefics per Lagna (Laghu Parashari)
-- [x] Badhak planet per Lagna
-- [x] Maraka planet identification
-- [x] Sudarshana Chakra (3-ring concentric chart)
-- [x] Upapada Lagna full analysis (A12 vs A7 separated)
-- [x] Bhrigu Chakra Paddhati (annual house activation)
-- [x] Mesha Sankranti (annual solar ingress chart)
-- [x] Transit activation of natal promise
-- [x] Pancha Pakshi Shastra (5-bird system)
-- [x] Jupiter Vedha in transits
-- [x] Longevity — Pindayu + Amsayu
-- [x] Nakshatra Veda pairs (compatibility)
-- [x] Narayana Dasha interpretation
-- [x] Hora Chart (D2) interpretation
-- [x] Ganda Moola full procedure
+- [x] Sade Sati (full cycle + sub-phases), Graha Yuddha, Badhak/Maraka planets
+- [x] Sudarshana Chakra, Bhrigu Chakra Paddhati, Mesha Sankranti
+- [x] Pancha Pakshi Shastra, Jupiter Vedha, Longevity (Pindayu + Amsayu)
+- [x] Bhava Chalit Chart — Sripati system with planet shifting
+- [x] Shoola Dasha + Brahma/Rudra/Maheshwara lords
+- [x] Narayana Dasha with sign-level interpretations
+- [x] Drekkana (D3) 36 faces with interpretation
+- [x] Birth Time Rectification engine (candidate generator + event matcher + scorer)
 
 ### Classical Quick Wins (All 14 complete)
-- [x] QW-1: Vargottama badge + tippanni reference
-- [x] QW-2: Dasha Sandhi warning (±3 months at Mahadasha boundaries)
-- [x] QW-3: Kala Sarpa sub-types (12 named types)
-- [x] QW-4: Dagdha Tithi (7 burnt combinations)
-- [x] QW-5: Visha Ghatika (poison period)
-- [x] QW-6: Amrit Siddhi Yoga (7 supreme muhurtas)
-- [x] QW-7: Panchanga Shuddhi Score (0–5 muhurta quality)
-- [x] QW-8: Tarabala daily indicator
-- [x] QW-9: Chandra Bala daily indicator
-- [x] QW-10: Bhrigu Bindu (midpoint Rahu–Moon)
-- [x] QW-11: Ithasala & Ishrafa in Varshaphal
-- [x] QW-12: Saturn Ashtama Shani detection
-- [x] QW-13: Mrityu Bhaga (dangerous degrees)
-- [x] QW-14: Pushkar Navamsha + Pushkar Bhaga markers
+- [x] Vargottama, Dasha Sandhi, Kala Sarpa 12 types, Dagdha Tithi, Visha Ghatika
+- [x] Amrit Siddhi Yoga, Panchanga Shuddhi, Tarabala, Chandra Bala, Bhrigu Bindu
+- [x] Ithasala & Ishrafa, Ashtama Shani, Mrityu Bhaga, Pushkar Navamsha/Bhaga
 
 ### Tippanni (Interpretation Engine)
-- [x] Planet-in-sign profiles (9 × 12 = 108)
-- [x] Planet-in-house profiles (9 × 12 = 108)
-- [x] Yoga interpretations (127 yogas with classical formation rules)
-- [x] Dosha analysis (Manglik, Nadi, Kala Sarpa)
-- [x] Dasha synthesis — current + next 3 periods
-- [x] Year predictions — 12-month transit forecast
-- [x] Life area readings — Career, Wealth, Marriage, Health, Education
-- [x] Shadbala synthesis — dasha timeline, current period forecast, turning points
-- [x] Varga tippanni — per-divisional-chart commentary
+- [x] Planet-in-sign (108), Planet-in-house (108), 127 yoga interpretations
+- [x] Dosha analysis (Manglik, Nadi, Kala Sarpa), Dasha synthesis, Year predictions
+- [x] Life areas (Career, Wealth, Marriage, Health, Education), Shadbala synthesis
+- [x] Varga tippanni, Convergence engine with transit overlay
 
 ### Panchang
-- [x] 5 Panchangas (Tithi, Nakshatra, Yoga, Karana, Vara) with precise transition times
-- [x] Rahu Kaal, Yamaganda, Gulika Kaal
-- [x] Abhijit Muhurta, Brahma Muhurta, Godhuli, Sandhya Kaal, Nishita Kaal
-- [x] Hora (planetary hours), Choghadiya (8 day/night windows)
-- [x] Disha Shool, Sarvartha Siddhi, Vijaya Muhurta, Dur Muhurtam, Ganda Moola flag
-- [x] Kali Ahargana, Kaliyuga year, Panchaka flag, Shiva/Agni/Chandra/Rahu Vaas
-- [x] Amrit Kalam, Varjyam, Anandadi Yoga, Ravi Yoga, Amrit Siddhi Yoga
-- [x] Muhurta completeness — Tara Bala + Chandra Bala + Lagna check in muhurta finder
+- [x] 5 Panchangas with transition times, Rahu Kaal/Yamaganda/Gulika
+- [x] All muhurta windows (Abhijit, Brahma, Godhuli, Sandhya, Nishita, Chandrodaya)
+- [x] Hora, Choghadiya, Disha Shool, Muhurta completeness checks
+- [x] 6 Special Panchang Yogas — Dwipushkar, Tripushkar, Sarvartha Siddhi, Amrit Siddhi, Ravi Yoga, Guru Pushya
+- [x] Daily article generation per city (deterministic prose, not LLM)
+- [x] Calculation Proof toggle on interactive + city + festival pages
+- [x] Locale-aware card reordering (Tamil: nakshatra-first, Hindi: choghadiya-first)
 
 ### Muhurta
-- [x] 20-activity muhurta finder (Marriage, Griha Pravesh, Mundan, Vehicle, Travel, etc.)
-- [x] Panchanga element checks per activity
-- [x] Tara Bala + Chandra Bala integration
+- [x] 20-activity muhurta finder with Panchanga element checks
+- [x] Muhurta AI scanner — 30-day scanning with ranked results
+- [x] Month Heatmap (color-coded grid, MonthHeatmap.tsx + MobileMonthView.tsx)
+- [x] Chandrodaya rule — moonrise case in getKalaWindow (Karwa Chauth, Sankashti Chaturthi)
+- [x] Tara Bala + Chandra Bala + Lagna integration
 
 ### Matching
-- [x] 36-point Ashta Kuta Guna Milan (all 8 Kutas)
-- [x] Mangal Dosha, Nadi Dosha warnings
+- [x] 36-point Ashta Kuta Guna Milan (North Indian)
+- [x] 10-point Dashakoota (South Indian) — dasha-koota.ts + matching page tab toggle
+- [x] Mangal Dosha, Nadi Dosha, Rajju Dosha warnings
 
 ### Calendar & Festivals
 - [x] Festival calendar — 100+ festivals with puja muhurtas
-- [x] ICS export (festivals, Ekadashi, Purnima, Amavasya)
-- [x] Eclipse predictions — solar & lunar
-- [x] Retrograde & combustion calendar
-- [x] Transit calendar
+- [x] Smarta vs Vaishnava divergence tooltips on festival pages
+- [x] ICS export, Eclipse predictions, Retrograde/combustion calendar, Transit calendar
+- [x] Kala-Vyapti system — 9 muhurta rules (including chandrodaya)
+- [x] Astronomical Adhika detection, Makar Sankranti, Varjyam corrections
 
-### Auth, Personalisation & Monetization
+### Puja Vidhi
+- [x] 44+ puja vidhis (festivals + vrats + graha shanti)
+- [x] Graha Shanti Puja Vidhi — all 9 planets with samagri, mantras, vidhi steps, phala
+- [x] Affliction detector — maps kundali afflictions to specific graha shanti remedies
+- [x] Contextual Remedy Engine — affliction → multi-remedy protocols
+
+### Auth, Personalization & Monetization
 - [x] Google OAuth + Supabase, onboarding, saved charts
-- [x] Dashboard — day quality, current dasha, transit alerts
-- [x] In-app notification system with daily cron
-- [x] 3-tier subscription (Free / Pro / Jyotishi) — Stripe LIVE
-- [x] Pricing page (INR / USD toggle)
-- [x] PaywallGate + UpgradePrompt components
-- [x] Settings page — profile CRUD, kundali recompute
+- [x] Dashboard — day quality, current dasha, transit alerts, morning briefing, week ahead
+- [x] Astrological Journal — mood/energy logging, pattern engine, life events, prediction tracking
+- [x] Notification system with daily cron + email (Resend, 4 templates)
+- [x] 3-tier subscription (Stripe LIVE), settings page
 
 ### Learn
-- [x] 80+ module structured course (Phases 0–5, Classical texts)
-- [x] Interactive labs (Dasha, KP, Moon, Panchang, Shadbala)
-- [x] Deep-dive pages — Nakshatras, Yogataras, Ayanamsha, Planetary Cycles
+- [x] 106+ module structured course (Phases 0–12)
+- [x] Interactive labs (Dasha, KP, Moon, Panchang, Shadbala, Yoga Animator)
+- [x] Smarta & Vaishnava systems (learn page + module 27-3)
+- [x] Planet-in-House SEO pages (84 URLs with BPHS verses)
+- [x] Nakshatra Pada Analysis (108 profiles, dedicated pages)
+- [x] Deep-dive pages — Nakshatras, Ayanamsha, Planetary Cycles, Bhava Chalit, etc.
+
+### SEO & Growth
+- [x] Cross-link infrastructure — RelatedLinks component, 35+ tool↔learn mappings
+- [x] VS comparison page (/vs/drik-panchang)
+- [x] Schema.org — Organization, Article, FAQ, HowTo, Event, Expertise signals on dosha pages
+- [x] Festival × City × Year programmatic SEO (3,000+ URLs)
+- [x] IndexNow daily URL submission, OG images, hreflang verification
+
+### PWA & Infrastructure
+- [x] Service worker (sw.js v4, multi-strategy caching)
+- [x] Manifest with shortcuts, icons, screenshots
+- [x] Push notifications (send-push.ts + PushPermission.tsx)
+- [x] Edge caching (~90% CPU reduction)
+- [x] Swiss Ephemeris integration (sweph@2.10.3)
 
 ### Test Coverage
-- [x] 886 tests across 21 suites
-- [x] Drik Panchang validation — now tests Swiss Eph engine (computePanchang)
-- [x] Kundali accuracy across 3 locations
+- [x] 3000+ tests across 123 suites
+- [x] Prokerala/Shubh validation, kundali accuracy across 3 locations
 
 ---
 
-## 🔴 NOW — Current Sprint (Execute in Order)
+## 🟡 Remaining — Depth & Polish
 
-### NOW-1: Smarta vs Vaishnava System
-**Priority:** Critical | **Impact:** Eliminates ±1 day festival disagreements + educational authority
-- Learn page explaining the difference (Smarta = Udaya Tithi default, Vaishnava = Viddha rejection + Parana stricter)
-- Tooltips on festival pages where the two systems disagree (e.g., Janmashtami, Ekadashi)
-- Dedicated `/learn/smarta-vaishnava` standalone page + curriculum module 27-3
-- Eventually: settings toggle to switch between systems
+### Content Depth (Low effort, no new engine)
+- [ ] **Pushkar Navamsha detailed interpretation** — detection exists, needs "why it matters for this planet" profiles
+- [ ] **Swamsha profiles expansion** — 12 profiles exist, expand to 50+ combinations per Jaimini Sutras
+- [ ] **CM-4: Minor inline constant cleanup** — a few `RASHI_NAMES` duplicates remain in `additional-dashas.ts`
 
-### NOW-2: Technical Breakdown on Main Panchang Page
-**Priority:** High | **Impact:** Trust builder on #1 traffic page
-- Expandable "Calculation Proof" on interactive `/panchang` page (already done on /panchang/[city] and festival pages)
-- Show coordinates, ayanamsha, tithi formula, binary search precision, Rahu Kaal derivation
+### Product Features
+- [ ] **Muhurta Panchanga Annual View** — full-year grid (rows = activity types, columns = days, color-coded). Month view exists; annual view does not.
+- [ ] **Astrologer Marketplace** — verified profiles, booking, reviews. Significant ops work. Low priority.
+- ~~**Razorpay**~~ — Parked. Not India-registered yet.
 
-### NOW-3: Planet-in-House SEO Pages (84 URLs)
-**Priority:** High | **Impact:** Evergreen traffic for "Sun in 10th house" queries
-- Data file ready (`src/lib/constants/planet-in-house-verses.ts` — 84 BPHS-cited entries)
-- Create `/learn/[planet]-in-[house]` pages with classical verse, modern interpretation, "View Source" shloka
-- JSON-LD Article schema per page
-
-### NOW-4: Regional Specialization (Locale-Aware UX)
-**Priority:** High | **Impact:** Differentiation — Prokerala can't do this
-- Tamil locale: elevate Pancha-Pakshi, Gowri Panchangam to primary view
-- Hindi locale: prioritize Choghadiya, Vrat details
-- Reorder panchang widgets per locale
-
-### NOW-5: Astrological Journal
-**Priority:** High | **Impact:** #1 retention feature — creates daily habit
-- Daily mood/event logging correlated with transits
-- Pattern detection after 3-6 months ("You feel anxious when Moon transits 8th house")
-- Schema exists at `src/lib/journal/snapshot.ts`
-
----
-
-## 🟡 NEXT — Differentiation Sprint
-
-### NEXT-1: Dasha-Transit Unified Timeline
-- Single scrollable timeline: current dasha + transits overlaid
-- "You're in Moon-Mars dasha and Saturn is transiting your 8th house"
-
-### NEXT-2: "Explain Like I'm 5" Mode
-- Toggle converting kundali analysis into plain-language narrative
-- 106 learn modules linked contextually to chart features
-
-### NEXT-3: Chandrodaya muhurtaRule
-- Add moonrise case to getKalaWindow. Apply to Karwa Chauth, Sankashti Chaturthi.
-- Moonrise computation already exists. Small effort.
-
-### NEXT-4: Muhurta Month Calendar (Color-Coded Grid)
-- Month-view grid color-coded by auspiciousness per activity (20 types)
-- Drik has shubh dates for marriage only; we do 20 activities
-
-### NEXT-5: Composite/Synastry Charts ✅
-- Overlay two charts. Conjunctions, aspects, house overlaps.
-- Beyond 36-point Ashta Kuta score.
-
-### NEXT-6: Email Notifications ✅ (Already built)
-- 8 cron routes, 4 email templates, Vercel crons configured
-
-### NEXT-6: Email Notifications (Resend)
-- Welcome email, weekly digest, dasha transition alerts, festival reminders
-- `src/lib/email/templates/` + cron routes
-- Rate limit: max 3 emails/user/week
-
----
-
-## 🟠 CONTENT MOAT — Ongoing
-
-### CM-1: Panchang City Article Enrichment
-- Add `generateDailyArticle` prose to `/panchang/[city]` pages (currently data-only)
-- Unique narrative per city per day prevents thin-content penalty
-
-### CM-2: Special Panchang Yogas
-- Dwipushkar, Tripushkar, Sarvartha Siddhi, Amrit Siddhi, Ravi Yoga, Guru Pushya Yoga
-- Drik Panchang shows these daily — our panchang is incomplete without them
-
-### CM-3: Bhava Chalit Chart
-- Show planets in Bhava houses (may differ from Rashi houses)
-- Table-stakes feature — every competitor has this
-
-### CM-4: Duplicate Constants Consolidation
-- 17 files with exaltation tables, all currently consistent
-- Canonical source at `tippanni/dignity.ts`. AST-based migration needed.
-
-### CM-5: Dashakoota (10-Point Matching) — IN PROGRESS
-- South Indian matching system. Tamil users expect this.
-- Bhakut Dosha exceptions also missing.
-- dasha-koota.ts engine + matching page tab toggle
-
----
-
-## 🟡 PARKED — High Impact, Low Effort
-*Deferred to keep focus. Pick up after NOW items are shipped.*
-
-- **JYOTISH-10: Nakshatra Pada Analysis** — 108 profiles (4 padas × 27 nakshatras). Pure content work, no new engine.
-- **P2-04: Tajika Full 7-Yoga System** — Easarapha, Nakta, Yamaya, Manahoo, Khallasara, Dutthottha (Ithasala done). Varshaphal tab extension.
-- **P2-05: KP Sub-sub Lords + Cuspal Analysis** — KP page exists but is shallow. Needs sub-sub lord table and cuspal significator depth.
-- **P2-06: Swamsha (Karakamsha) Full Profile Library** — 50+ planetary combinations in D9 Karakamsha from Jaimini Sutras.
-- ~~**PROD-03: Razorpay**~~ — Parked. Not India-registered yet.
-
----
-
-## 🟠 MEDIUM PRIORITY — Remaining Classical Techniques
-
-- **P2-02: Drekkana (D3) Detailed Interpretation** — 36 Drekkana faces (Varahamihira)
-- **P2-07: Narayana Dasha Interpretation** — engine done, interpretation thin
-- **P2-08: Shoola Dasha + Brahma/Rudra/Maheshwara** — Jaimini-based timing system
-- **P2-11: Pushkar Navamsha Details** — calculation done, dedicated interpretation needed
-
----
-
-## 🟢 PRODUCT FEATURES (Non-Classical)
-
-### PROD-02: PWA — Offline + Push Notifications
-**Priority:** High | **Impact:** Mobile retention
-- Service worker — cache app shell, fonts, icons, learn content
-- Offline mode for: Learn, Puja Vidhi, About (static content)
-- Web Push: festival reminders, dasha transitions
-- Custom install prompt (after 2nd visit)
-- App icons (192×192, 512×512)
-- Shortcuts: "Today's Panchang", "My Dashboard", "Generate Kundali"
-
-### PROD-06: Birth Time Rectification
-**Priority:** Medium
-Input life events → test ascendants at 10-minute intervals → score each lagna → suggest most likely birth time.
-
-### PROD-07: Astrologer Marketplace
-**Priority:** Low (Future)
-Verified Vedic astrologer profiles, booking, review system, 15–20% revenue share. Significant ops work.
-
-### PROD-08: Graha Shanti Puja Vidhi (9 Planets)
-**Priority:** Medium | **Impact:** Content depth + SEO
-Full puja procedure per planet: materials, mantras with counts, auspicious timing, deity, homa items.
-
-### PROD-09: Contextual Remedy Engine
-**Priority:** Medium
-Map specific affliction → specific remedy combination (not generic per-planet).
-
-### PROD-10: Muhurta Panchanga — Graphic Annual View
-**Priority:** Medium | **Impact:** Planning tool, SEO
-Monthly/annual grid: rows = activity types, columns = days, color-coded cells.
-
----
-
-## 📊 P3 — Academic / Completeness
-
-- [ ] **Drekkana Faces** — 36 pictorial decanate descriptions (Varahamihira)
+### P3 — Academic / Completeness
 - [ ] **Sookshma Dasha (Level 4)** — 4th Vimshottari subdivision
 - [ ] **Prana Dasha (Level 5)** — Days-level precision
 - [ ] **Panchavargeya Bala** — Varahamihira's 5-chart dignity score
@@ -312,10 +148,10 @@ Monthly/annual grid: rows = activity types, columns = days, color-coded cells.
 | Web-based, zero install | ✗ | ✗ | ✅ |
 | Mobile-first design | ✗ | ✗ | ✅ |
 | LLM chart chat | ✗ | ✗ | ✅ |
-| Trilingual (EN/HI/SA) | Partial | Partial | ✅ |
+| 7+ languages | Partial | Partial | ✅ (7 locales) |
 | Divisional charts | ✅ | ✅ | ✅ (19) |
 | Vimshottari Dasha | ✅ | ✅ | ✅ |
-| Dasha systems | 40+ | 30+ | 21 |
+| Dasha systems | 40+ | 30+ | 22 |
 | Yoga detection | 184 | 1000+ | 127 |
 | Shadbala | ✅ | ✅ | ✅ |
 | Sudarshana Chakra | ✅ | ✅ | ✅ |
@@ -323,33 +159,32 @@ Monthly/annual grid: rows = activity types, columns = days, color-coded cells.
 | Muhurta (full) | ✅ | ✅ | ✅ |
 | Pancha Pakshi | ✅ | ✗ | ✅ |
 | Life Timeline synthesis | ✗ | ✗ | ✅ |
-| Email digest | ✗ | ✗ | → Roadmap |
-| Kundali comparison | ✗ | ✅ | → Roadmap |
-| Birth time rectification | ✅ | ✅ | → Roadmap |
+| Email digest | ✗ | ✗ | ✅ |
+| Kundali comparison | ✗ | ✅ | ✅ |
+| Birth time rectification | ✅ | ✅ | ✅ |
 | Subscription model | ✗ | ✗ | ✅ |
 | Location auto-detect | ✗ | ✗ | ✅ |
 | Festival calendar | ✗ | ✗ | ✅ |
 | PDF export | ✗ | ✅ | ✅ |
+| Astrological Journal | ✗ | ✗ | ✅ |
+| PWA (installable) | ✗ | ✗ | ✅ |
+| ELI5 Mode | ✗ | ✗ | ✅ |
+| Graha Shanti Puja Vidhi | ✗ | ✗ | ✅ (9 planets) |
 
 ---
 
-## Execution Sequence
+## Manual Actions (Non-Code)
 
-```
-NOW (active):
-  PROD-04 — SEO + Structured Data        ← current
-  PROD-01 — Email Notifications
-  PROD-05 — Kundali Comparison
+- [ ] Create Twitter/X account @dekhopanchang → add API keys to env vars
+- [ ] Create Instagram business account @dekhopanchang
+- [ ] Create Facebook Page
+- [ ] Create YouTube channel (authority signal)
+- [ ] Submit to 6 directories (Google Business, Product Hunt, AlternativeTo, etc.)
+- [ ] Reddit/Quora participation (genuine answers with links)
+- [ ] Temple website outreach for backlink widgets
 
-PARKED (pick up after NOW):
-  JYOTISH-10 — Nakshatra Pada Analysis
-  P2-04      — Tajika Full 7-Yoga System
-  P2-05      — KP Sub-sub Lords
-  P2-06      — Swamsha Profile Library
+## Infrastructure Decisions (Pending)
 
-NEXT WAVE:
-  PROD-02 — PWA
-  P2-02   — Drekkana interpretation
-  P2-08   — Shoola Dasha
-  PROD-06 — Birth Time Rectification
-```
+- [ ] **Hetzner + Coolify migration** — decide after May 2026 CPU monitoring
+- [ ] **GSC Performance review** — revisit ~2026-05-28 with 6 weeks of data
+- [ ] **Native app** — NOT YET (wait for 10K MAU); PWA sufficient for now

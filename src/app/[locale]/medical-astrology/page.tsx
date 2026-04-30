@@ -338,7 +338,7 @@ export default function MedicalAstrologyPage() {
   const [savedCharts, setSavedCharts] = useState<SavedChart[]>([]);
   const [selectedName, setSelectedName] = useState<string>('');
   const user = useAuthStore(s => s.user);
-  const isDevanagari = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
+  const isDevanagari = locale === 'hi';
 
   // Fetch saved charts when logged in
   useEffect(() => {

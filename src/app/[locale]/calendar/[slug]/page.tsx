@@ -253,7 +253,7 @@ export default function FestivalDetailPage() {
                       const d = dateParam || ekadashiParana?.date || '';
                       const [y, m, day] = d.split('-').map(Number);
                       const date = new Date(y, m - 1, day);
-                      const loc = locale === 'hi' ? 'hi-IN' : locale === 'sa' ? 'sa-IN' : 'en-US';
+                      const loc = locale === 'hi' ? 'hi-IN' : 'en-US';
                       try { return date.toLocaleDateString(loc, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); }
                       catch { return d; }
                     })()}

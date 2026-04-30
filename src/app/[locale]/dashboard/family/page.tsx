@@ -229,7 +229,7 @@ export default function FamilyCommandCenter() {
           });
 
           // Generate tippanni for authoritative dosha detection (single source of truth)
-          const tippanni = generateTippanni(kundali, locale as 'en' | 'hi' | 'sa');
+          const tippanni = generateTippanni(kundali, locale as 'en' | 'hi');
           const tippanniDoshas = tippanni.doshas.map((d: DoshaInsight) => ({
             name: d.name,
             present: d.present,

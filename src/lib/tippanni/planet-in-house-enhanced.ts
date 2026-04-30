@@ -85,7 +85,6 @@ export function getPlanetInHouseEnhanced(
   if (!entry) return null;
 
   const resolve = (tri: Tri): string => {
-    if (locale === 'sa') return tri.sa || tri.hi || "";
     return locale === 'hi' ? tri.hi || "" : tri.en;
   };
 

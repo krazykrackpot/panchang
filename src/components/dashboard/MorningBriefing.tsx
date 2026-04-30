@@ -552,7 +552,7 @@ export default function MorningBriefing({ panchangData, personalizedDay, locale 
             label={L.moonTransit}
             icon={<Moon className="w-4 h-4" />}
             value={`${moonHouse}${!isDevanagariLocale(locale) ? ordinalSuffix(moonHouse) : ''} ${L.houseLabel}`}
-            sub={(moonImplication as Record<string, string>)[locale === 'sa' ? 'en' : locale] || moonImplication.en}
+            sub={(moonImplication as Record<string, string>)[locale] || moonImplication.en}
             className="col-span-2 lg:col-span-1"
             personal
           />

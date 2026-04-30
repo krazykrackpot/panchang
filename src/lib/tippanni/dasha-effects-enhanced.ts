@@ -11,8 +11,7 @@ import type { Locale } from '@/types/panchang';
 import { getPlanetDignity } from './dignity';
 import { isKendra, isTrikona, isDusthana, getHouseLord, triLocale, PLANET_NAMES } from './utils';
 
-function t(locale: Locale, en: string, hi: string, sa?: string): string {
-  if (locale === 'sa') return sa || hi;
+function t(locale: Locale, en: string, hi: string, _sa?: string): string {
   return locale === 'hi' ? hi : en;
 }
 

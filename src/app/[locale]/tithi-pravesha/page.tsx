@@ -216,7 +216,7 @@ export default function TithiPraveshaPage() {
 
     const praveshaDateFormatted = (() => {
       const d = new Date(result.praveshaDate + 'T00:00:00');
-      return d.toLocaleDateString(locale === 'hi' ? 'hi-IN' : locale === 'sa' ? 'hi-IN' : 'en-US', {
+      return d.toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-US', {
         weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
       });
     })();
@@ -382,9 +382,7 @@ export default function TithiPraveshaPage() {
                     <h2 className="text-2xl md:text-3xl font-bold text-gold-light" style={headingFont}>
                       {locale === 'hi'
                         ? `${result.year} ${l(LABELS.resultHeading)}`
-                        : locale === 'sa'
-                          ? `${result.year} ${l(LABELS.resultHeading)}`
-                          : `${l(LABELS.resultHeading)} ${result.year}`
+                        : `${l(LABELS.resultHeading)} ${result.year}`
                       }
                     </h2>
                   </div>
@@ -439,7 +437,7 @@ export default function TithiPraveshaPage() {
                         </h3>
                       </div>
                       <p className="text-xl font-bold text-gold-primary mb-3" style={headingFont}>
-                        {locale === 'hi' || locale === 'sa'
+                        {locale === 'hi'
                           ? displayData.lordData.lordHi
                           : displayData.lordData.lord
                         }

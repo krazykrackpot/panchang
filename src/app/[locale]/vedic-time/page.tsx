@@ -550,7 +550,7 @@ export default function VedicTimePage() {
               {clockMode === '30' && vedic.kalaName && (
                 <div className="mt-3 inline-block px-4 py-1.5 rounded-lg bg-gold-primary/10 border border-gold-primary/15">
                   <span className="text-gold-light text-sm font-semibold" style={bodyFont}>
-                    {locale === 'sa' ? vedic.kalaName.sa : isDevanagariLocale(locale) ? vedic.kalaName.hi : vedic.kalaName.en}
+                    {isDevanagariLocale(locale) ? vedic.kalaName.hi : vedic.kalaName.en}
                   </span>
                   <span className="text-text-secondary/70 text-xs ml-2">
                     ({vedic.isDaytime
@@ -652,7 +652,7 @@ export default function VedicTimePage() {
                         : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/5 text-text-secondary/70'
                     }`}>
                       <div className="font-semibold" style={bodyFont}>
-                        {locale === 'sa' ? kala.sa : isDevanagariLocale(locale) ? kala.hi : kala.en}
+                        {isDevanagariLocale(locale) ? kala.hi : kala.en}
                       </div>
                       <div className="text-xs mt-0.5 opacity-60">{i * 6}–{(i + 1) * 6}G</div>
                     </div>

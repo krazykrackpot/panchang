@@ -97,9 +97,7 @@ function getAspectDescription(
   if (locale === 'hi') {
     return `${planetName} की दृष्टि ${aspectedHouse}वें भाव पर${isSpecial ? ' (विशेष दृष्टि)' : ''} — ${influence.hi}`;
   }
-  if (locale === 'sa') {
-    return `${planetName} ${aspectedHouse} भावं पश्यति${isSpecial ? ' (विशेषदृष्टिः)' : ''} — ${influence.sa}`;
-  }
+
   return `${planetName} aspects the ${aspectedHouse}${ordinal(aspectedHouse)} house${isSpecial ? ' (special aspect)' : ''} — ${influence.en}`;
 }
 

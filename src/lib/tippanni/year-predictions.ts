@@ -156,7 +156,7 @@ function analyzeJupiterTransit(jupiterSign: number, natalMoonSign: number, ascSi
     title: t(locale,
       `Jupiter Transit in ${rashiName(jupiterSign, 'en')} (${houseFromMoon}th from Moon, ${houseFromAsc}th from Ascendant)`,
       `बृहस्पति गोचर ${rashiName(jupiterSign, 'hi')} में (चन्द्र से ${houseFromMoon}वाँ, लग्न से ${houseFromAsc}वाँ)`,
-      `गुरुगोचरः ${rashiName(jupiterSign, 'sa')} राश्याम् (चन्द्रात् ${houseFromMoon}, लग्नात् ${houseFromAsc})`
+      `गुरुगोचरः ${rashiName(jupiterSign, 'hi')} राश्याम् (चन्द्रात् ${houseFromMoon}, लग्नात् ${houseFromAsc})`
     ),
     description: t(locale, effect.en, effect.hi || ""),
     period: t(locale, 'Ongoing this year', 'इस वर्ष जारी', 'अस्मिन् वर्षे प्रचलितम्'),
@@ -197,7 +197,7 @@ function analyzeRahuKetuTransit(rahuSign: number, ketuSign: number, ascSign: num
     title: t(locale,
       `Rahu in ${rashiName(rahuSign, 'en')} (H${rahuHouseFromAsc}) — Ketu in ${rashiName(ketuSign, 'en')} (H${ketuHouseFromAsc})`,
       `राहु ${rashiName(rahuSign, 'hi')} (भाव ${rahuHouseFromAsc}) — केतु ${rashiName(ketuSign, 'hi')} (भाव ${ketuHouseFromAsc})`,
-      `राहुः ${rashiName(rahuSign, 'sa')} (भावः ${rahuHouseFromAsc}) — केतुः ${rashiName(ketuSign, 'sa')} (भावः ${ketuHouseFromAsc})`
+      `राहुः ${rashiName(rahuSign, 'hi')} (भावः ${rahuHouseFromAsc}) — केतुः ${rashiName(ketuSign, 'hi')} (भावः ${ketuHouseFromAsc})`
     ),
     description: t(locale, effect.en, effect.hi || ""),
     period: t(locale, 'Ongoing this year', 'इस वर्ष जारी', 'अस्मिन् वर्षे प्रचलितम्'),

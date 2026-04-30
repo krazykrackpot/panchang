@@ -387,9 +387,7 @@ export default function FestivalDetailModal({
                             <p className="text-red-300 text-xs leading-relaxed" style={bodyFont}>
                               {!isDevanagariLocale(locale)
                                 ? 'Dwadashi ends very early — break fast immediately after sunrise. Hari Vasara restriction is overridden by Dwadashi deadline.'
-                                : locale !== 'sa'
-                                ? 'द्वादशी बहुत जल्दी समाप्त हो रही है — सूर्योदय के तुरंत बाद पारण करें। द्वादशी की समय सीमा के कारण हरि वासर प्रतिबंध लागू नहीं।'
-                                : 'द्वादशी शीघ्रं समाप्यते — सूर्योदयानन्तरं तूर्णं पारणं कुर्यात्।'}
+                                : 'द्वादशी बहुत जल्दी समाप्त हो रही है — सूर्योदय के तुरंत बाद पारण करें। द्वादशी की समय सीमा के कारण हरि वासर प्रतिबंध लागू नहीं।'}
                             </p>
                           </div>
                         )}

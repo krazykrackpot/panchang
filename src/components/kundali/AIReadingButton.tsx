@@ -47,7 +47,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
         body: JSON.stringify({
           kundali,
           stream: true,
-          locale: locale === 'sa' ? 'en' : locale,
+          locale: locale,
         }),
       });
 

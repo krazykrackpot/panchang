@@ -1091,7 +1091,7 @@ function renderSadeSati(doc: jsPDF, kundali: KundaliData, locale: Locale) {
   y = sectionHeading(doc, 'Sade Sati Analysis', y);
 
   const ss = kundali.sadeSati!;
-  const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
+  const lk = locale === 'hi' ? 'hi' as const : 'en' as const;
 
   // Status card
   if (ss.isActive) {
@@ -1264,7 +1264,7 @@ function renderConvergenceInsights(doc: jsPDF, convergence: ConvergenceResult, l
 
   y = sectionHeading(doc, 'Chart Synthesis — Convergence', y);
 
-  const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
+  const lk = locale === 'hi' ? 'hi' as const : 'en' as const;
   const exec = convergence.executive;
 
   // Overview card

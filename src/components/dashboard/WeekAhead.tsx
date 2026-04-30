@@ -152,7 +152,6 @@ const DAY_NAMES_SA = ['रविः', 'सोमः', 'मङ्गलः', 'ब
 
 function getDayName(date: Date, locale: Locale): string {
   const dow = date.getDay();
-  if (locale === 'sa') return DAY_NAMES_SA[dow];
   if (isDevanagariLocale(locale)) return DAY_NAMES_HI[dow];
   return DAY_NAMES_EN[dow];
 }

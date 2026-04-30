@@ -12,8 +12,7 @@ import type { YogaInsight } from '@/lib/kundali/tippanni-types';
 import { getSignLord, getHouseLord, isKendra, isTrikona, isDusthana, isUpachaya, isBenefic, houseDistance, tri, triLocale } from './utils';
 import { getPlanetaryAspects, doesPlanetAspectHouse } from './aspects';
 
-function t(locale: Locale, en: string, hi: string, sa?: string): string {
-  if (locale === 'sa') return sa || hi;
+function t(locale: Locale, en: string, hi: string, _sa?: string): string {
   return locale === 'hi' ? hi : en;
 }
 

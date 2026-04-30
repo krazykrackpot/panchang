@@ -11,8 +11,7 @@ import type { Locale , LocaleText} from '@/types/panchang';
 import type { DoshaInsight } from '@/lib/kundali/tippanni-types';
 import { getHouseLord, isKendra, isDusthana, isBenefic, houseDistance } from './utils';
 
-function t(locale: Locale, en: string, hi: string, sa?: string): string {
-  if (locale === 'sa') return sa || hi;
+function t(locale: Locale, en: string, hi: string, _sa?: string): string {
   return locale === 'hi' ? hi : en;
 }
 

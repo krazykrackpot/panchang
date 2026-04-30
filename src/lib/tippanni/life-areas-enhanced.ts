@@ -14,8 +14,7 @@ import { getHouseLord, isKendra, isTrikona, isDusthana, isBenefic, isMalefic } f
 import { getPlanetsAspectingHouse } from './aspects';
 import { getPlanetDignity } from './dignity';
 
-function t(locale: Locale, en: string, hi: string, sa?: string): string {
-  if (locale === 'sa') return sa || hi;
+function t(locale: Locale, en: string, hi: string, _sa?: string): string {
   return locale === 'hi' ? hi : en;
 }
 

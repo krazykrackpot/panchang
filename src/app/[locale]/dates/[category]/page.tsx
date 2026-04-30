@@ -633,7 +633,7 @@ export default function DateCategoryPage() {
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div>
                         <h4 className="text-sm font-semibold text-emerald-400 uppercase tracking-wider mb-3">
-                          {locale === 'hi' ? 'क्या करें' : locale === 'sa' ? 'कर्तव्यम्' : 'Do'}
+                          {locale === 'hi' ? 'क्या करें' : 'Do'}
                         </h4>
                         <ul className="space-y-2">
                           {[1, 2, 3, 4].map(n => {
@@ -649,7 +649,7 @@ export default function DateCategoryPage() {
                       </div>
                       <div>
                         <h4 className="text-sm font-semibold text-red-400 uppercase tracking-wider mb-3">
-                          {locale === 'hi' ? 'क्या न करें' : locale === 'sa' ? 'अकर्तव्यम्' : 'Don\'t'}
+                          {locale === 'hi' ? 'क्या न करें' : 'Don\'t'}
                         </h4>
                         <ul className="space-y-2">
                           {[1, 2, 3, 4].map(n => {

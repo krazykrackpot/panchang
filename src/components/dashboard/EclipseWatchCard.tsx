@@ -128,7 +128,7 @@ export default function EclipseWatchCard({ ascendantSign, locale }: Props) {
   const eclipseTypeLabel = eclipseInfo.kind === 'solar' ? L.solar : L.lunar;
 
   const formattedDate = new Date(eclipseInfo.date + 'T00:00:00').toLocaleDateString(
-    loc === 'en' ? 'en-US' : loc === 'hi' ? 'hi-IN' : loc === 'sa' ? 'hi-IN' : loc,
+    loc === 'en' ? 'en-US' : loc === 'hi' ? 'hi-IN' : loc,
     { month: 'short', day: 'numeric', year: 'numeric' },
   );
 

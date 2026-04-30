@@ -165,8 +165,7 @@ const PLANET_HOUSE_BASE: Record<number, Record<number, string>> = {
   },
 };
 
-function t(locale: Locale, en: string, hi: string, sa?: string): string {
-  if (locale === 'sa') return sa || hi;
+function t(locale: Locale, en: string, hi: string, _sa?: string): string {
   return locale === 'hi' ? hi : en;
 }
 
@@ -181,11 +180,11 @@ function generatePersonality(kundali: KundaliData, locale: Locale): PersonalityS
   const sunSign = sunPlanet ? RASHIS[sunPlanet.sign - 1] : null;
 
   const lagnaContent = lagna
-    ? `${lagna.personality[locale === 'sa' ? 'sa' : locale]}\n\n${t(locale, 'Career:', 'कैरियर:', 'जीविका:')}\n${lagna.career[locale === 'sa' ? 'sa' : locale]}\n\n${t(locale, 'Health:', 'स्वास्थ्य:', 'स्वास्थ्यम्:')}\n${lagna.health[locale === 'sa' ? 'sa' : locale]}`
+    ? `${lagna.personality[locale]}\n\n${t(locale, 'Career:', 'कैरियर:', 'जीविका:')}\n${lagna.career[locale]}\n\n${t(locale, 'Health:', 'स्वास्थ्य:', 'स्वास्थ्यम्:')}\n${lagna.health[locale]}`
     : t(locale, `${rashi.name.en} Ascendant shapes your personality.`, `${rashi.name.hi} लग्न आपके व्यक्तित्व को आकार देता है।`);
 
   const lagnaImplications = lagna
-    ? `${t(locale, 'Relationships:', 'सम्बन्ध:', 'सम्बन्धाः:')}\n${lagna.relationships[locale === 'sa' ? 'sa' : locale]}\n\n${t(locale, 'Finances:', 'वित्त:', 'वित्तम्:')}\n${lagna.finances[locale === 'sa' ? 'sa' : locale]}\n\n${t(locale, 'Spiritual Path:', 'आध्यात्मिक मार्ग:', 'आध्यात्मिकमार्गः:')}\n${lagna.spiritual[locale === 'sa' ? 'sa' : locale]}`
+    ? `${t(locale, 'Relationships:', 'सम्बन्ध:', 'सम्बन्धाः:')}\n${lagna.relationships[locale]}\n\n${t(locale, 'Finances:', 'वित्त:', 'वित्तम्:')}\n${lagna.finances[locale]}\n\n${t(locale, 'Spiritual Path:', 'आध्यात्मिक मार्ग:', 'आध्यात्मिकमार्गः:')}\n${lagna.spiritual[locale]}`
     : '';
 
   const moonContent = moonSign
@@ -401,12 +400,12 @@ function generateYogas(kundali: KundaliData, locale: Locale): YogaInsight[] {
     yogaInsights = kundali.yogasComplete
       .filter(y => y.present)
       .map(y => ({
-        name: y.name[locale === 'sa' ? 'sa' : locale] || y.name.en,
+        name: y.name[locale] || y.name.en,
         present: true,
         type: y.category === 'raja' ? 'Raja' : (y.category as string) === 'dhana' ? 'Dhana' :
               (y.category as string) === 'pancha_mahapurusha' ? 'Pancha Mahapurusha' : 'Other',
-        description: y.description[locale === 'sa' ? 'sa' : locale] || y.description.en,
-        implications: y.formationRule[locale === 'sa' ? 'sa' : locale] || y.formationRule.en,
+        description: y.description[locale] || y.description.en,
+        implications: y.formationRule[locale] || y.formationRule.en,
         strength: y.strength,
       }));
   } else {
@@ -439,7 +438,7 @@ function generateYogas(kundali: KundaliData, locale: Locale): YogaInsight[] {
   if (locale !== 'en' && kundali.yogasComplete) {
     const enNameMap = new Map<string, string>();
     for (const y of kundali.yogasComplete) {
-      const localeName = y.name[locale === 'sa' ? 'sa' : locale] || y.name.en;
+      const localeName = y.name[locale] || y.name.en;
       enNameMap.set(localeName, y.name.en);
     }
     for (const yoga of yogaInsights) {
@@ -468,11 +467,11 @@ function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
     const doshaYogas = kundali.yogasComplete.filter(y => y.category === 'dosha' && y.present);
     if (doshaYogas.length > 0) {
       return doshaYogas.map(y => ({
-        name: y.name[locale === 'sa' ? 'sa' : locale] || y.name.en,
+        name: y.name[locale] || y.name.en,
         present: true,
         severity: y.strength === 'Strong' ? 'severe' as const : y.strength === 'Moderate' ? 'moderate' as const : 'mild' as const,
-        description: (y.description[locale === 'sa' ? 'sa' : locale] || y.description.en)
-          + '\n\n' + t(locale, 'Formation: ', 'निर्माण: ') + (y.formationRule[locale === 'sa' ? 'sa' : locale] || y.formationRule.en),
+        description: (y.description[locale] || y.description.en)
+          + '\n\n' + t(locale, 'Formation: ', 'निर्माण: ') + (y.formationRule[locale] || y.formationRule.en),
         remedies: '',
       }));
     }

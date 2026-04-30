@@ -1190,13 +1190,13 @@ export default function DashboardPage() {
     if (panchangData?.rahuKaal) {
       const [rh, rm] = (panchangData.rahuKaal.start || '').split(':').map(Number);
       if (!isNaN(rh) && !isNaN(rm) && rh * 60 + rm > nowMin) {
-        zones.push({ name: locale === 'hi' || locale === 'sa' ? 'राहु काल' : 'Rahu Kaal', startTime: panchangData.rahuKaal.start });
+        zones.push({ name: locale === 'hi' ? 'राहु काल' : 'Rahu Kaal', startTime: panchangData.rahuKaal.start });
       }
     }
     if (panchangData?.yamaganda) {
       const [yh, ym] = ((panchangData.yamaganda as { start?: string })?.start || '').split(':').map(Number);
       if (!isNaN(yh) && !isNaN(ym) && yh * 60 + ym > nowMin) {
-        zones.push({ name: locale === 'hi' || locale === 'sa' ? 'यमगण्ड' : 'Yamaganda', startTime: (panchangData.yamaganda as { start?: string })?.start || '' });
+        zones.push({ name: locale === 'hi' ? 'यमगण्ड' : 'Yamaganda', startTime: (panchangData.yamaganda as { start?: string })?.start || '' });
       }
     }
     // Return the earliest upcoming one
@@ -1229,7 +1229,7 @@ export default function DashboardPage() {
     return e < s ? (n >= s || n < e) : (n >= s && n < e);
   })();
 
-  const isHeroHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
+  const isHeroHi = locale === 'hi';
 
   const todayTabContent = (
     <>

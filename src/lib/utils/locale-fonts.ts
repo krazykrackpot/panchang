@@ -40,27 +40,21 @@ export function getHeadingFont(locale: string): CSSProperties {
   return { fontFamily: 'var(--font-heading)' };
 }
 
-/** True for locales that use a non-Latin script (Devanagari, Tamil, Telugu, Bengali, Kannada). */
+/** True for locales that use a non-Latin script (Devanagari, Tamil, Telugu, Bengali, Kannada, Gujarati). */
 export function isIndicLocale(locale: string): boolean {
-  return locale === 'hi' || locale === 'sa' || locale === 'ta' || locale === 'te' || locale === 'bn' || locale === 'kn' || locale === 'mr' || locale === 'gu' || locale === 'mai';
+  return locale === 'hi' || locale === 'ta' || locale === 'te' || locale === 'bn' || locale === 'kn' || locale === 'gu';
 }
 
-/** True only for Devanagari-script locales (Hindi, Sanskrit). */
+/** True only for Devanagari-script locales. Only Hindi remains after sa/mr/mai retirement. */
 export function isDevanagariLocale(locale: string): boolean {
-  return locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
+  return locale === 'hi';
 }
 
 /**
  * Maps a UI locale to the key used for accessing Trilingual constant data.
- * - Sanskrit has no separate constant data → falls back to Hindi
- * - Hindi uses itself
- * - Tamil/Telugu/Bengali/Kannada have no constant data yet → falls back to English
- * - English uses itself
- *
- * This replaces the pattern: `const lk = locale === 'sa' ? 'hi' : locale;`
- * which does NOT handle Tamil/Telugu/Bengali/Kannada. Use this function instead.
+ * Hindi uses 'hi'; everything else falls back to 'en'.
  */
 export function dataLocale(locale: string): 'en' | 'hi' {
-  if (locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai') return 'hi';
+  if (locale === 'hi') return 'hi';
   return 'en';
 }

@@ -115,7 +115,7 @@ export default function ShadbalaRadarDetail({ selectedAxis, shadbala, locale }: 
             {/* Total row */}
             <tr className="border-t border-[#8a6d2b]/30 font-semibold">
               <td className="py-1.5 px-2 text-gold-light">
-                {locale === 'hi' || locale === 'sa' ? 'कुल' : 'Total'}
+                {locale === 'hi' ? 'कुल' : 'Total'}
               </td>
               {shadbala.map(p => (
                 <td key={p.planetId} className="py-1.5 px-2 text-center text-gold-light tabular-nums">
@@ -154,7 +154,7 @@ export default function ShadbalaRadarDetail({ selectedAxis, shadbala, locale }: 
             {/* Total row */}
             <tr className="border-t border-[#8a6d2b]/30 font-semibold">
               <td className="py-1.5 px-2 text-gold-light">
-                {locale === 'hi' || locale === 'sa' ? 'कुल' : 'Total'}
+                {locale === 'hi' ? 'कुल' : 'Total'}
               </td>
               {shadbala.map(p => (
                 <td key={p.planetId} className="py-1.5 px-2 text-center text-gold-light tabular-nums">

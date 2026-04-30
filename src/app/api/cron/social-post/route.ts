@@ -144,12 +144,29 @@ function composeTweet(data: {
   lines.push(`\u26A0\uFE0F Rahu Kaal: ${data.rahuKaalStart}\u2013${data.rahuKaalEnd}`);
   lines.push('');
   lines.push(`dekhopanchang.com`);
-  lines.push('#Panchang #Jyotish');
 
-  // Trim to 280 chars — drop hashtags if needed
+  // Rotate temple/mandir tags daily — each day features a different set
+  const TEMPLE_TAGS = [
+    '#Mahakal #Ujjain #Panchang #Jyotish',
+    '#KashiVishwanath #Varanasi #Panchang #Jyotish',
+    '#Kamakhya #Panchang #HinduCalendar #Jyotish',
+    '#Vindhyavasini #Panchang #VedicAstrology',
+    '#Somnath #Panchang #Jyotish #HinduTemple',
+    '#Tirupati #Panchang #Jyotish #VedicAstrology',
+    '#Jagannath #Puri #Panchang #Jyotish',
+  ];
+  const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
+  lines.push(TEMPLE_TAGS[dayOfYear % TEMPLE_TAGS.length]);
+
+  // Trim to 280 chars — progressively drop elements
   let tweet = lines.join('\n');
   if (tweet.length > 280) {
-    lines.pop(); // remove hashtags
+    // Drop temple tags, keep minimal hashtags
+    lines[lines.length - 1] = '#Panchang #Jyotish';
+    tweet = lines.join('\n');
+  }
+  if (tweet.length > 280) {
+    lines.pop(); // remove all hashtags
     tweet = lines.join('\n');
   }
   if (tweet.length > 280) {

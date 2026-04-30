@@ -126,6 +126,25 @@ function Page4() {
   );
 }
 
+function Page5() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Yoga and the Other Four Panchang Elements</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">The yoga provides the &ldquo;cosmic flavour&rdquo; of a time period, but it works in concert with the other four Panchang elements. A day with Siddhi yoga (favourable) but Vishti karana (unfavourable) and Vyatipata yoga simultaneously requires careful interpretation &mdash; the yoga name itself might be &ldquo;Siddhi&rdquo; but the karana penalty creates a mixed result. In our Muhurta scoring system, all five elements are weighted independently: Nakshatra (35%), Tithi (25%), Yoga (20%), Vara (12%), Karana (8%).</p>
+        <p className="text-text-secondary text-sm leading-relaxed">Understanding these weights helps explain why some &ldquo;good yoga&rdquo; days still score low in the Muhurta tool &mdash; the nakshatra or tithi might be unfavourable, overriding the yoga&rsquo;s contribution. Conversely, a neutral yoga during Pushya nakshatra and Dvitiya tithi can still produce an excellent overall Muhurta score. The five limbs are a system, not individual verdicts.</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Additional Misconceptions</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Myth:</span> &quot;Yoga changes at a fixed time every day, like sunrise.&quot; Unlike the calendar day (sunrise to sunrise), yoga transitions are governed by the combined motion of two celestial bodies. The transition time varies from 18 to 27 hours and can occur at any hour of the day or night. Always check the exact transition time, not just the yoga name.</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Myth:</span> &quot;There are only 27 yogas, so the system is too simple to be useful.&quot; While there are 27 yogas, each combines with 30 tithis, 27 nakshatras, 7 varas, and 11 karanas. The total number of unique Panchang combinations is 27 x 30 x 27 x 7 x 11 = over 5.6 million. The five-limb system encodes enormous variety in compact form.</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module7_1Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />, <Page5 key="p5" />]} questions={QUESTIONS} />;
 }

@@ -135,7 +135,33 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Yoga Activation Through Dasha', hi: 'दशा द्वारा योग सक्रियण', sa: 'दशा द्वारा योग सक्रियण' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>एक महत्त्वपूर्ण सिद्धान्त जो आरम्भकर्ता प्रायः चूकते हैं: योग केवल सम्बन्धित ग्रहों की दशा/अन्तर्दशा में सक्रिय होते हैं। लक्ष्मी योग (बलवान 9वें का स्वामी केन्द्र में) कुण्डली में विद्यमान हो सकता है, किन्तु समृद्धि केवल 9वें स्वामी या लग्नेश की दशा में प्रकट होगी। इसी प्रकार, दारिद्र योग केवल पीड़ित ग्रह की दशा में सक्रिय होता है। यह बताता है कि एक ही कुण्डली में धनवान और दरिद्र दोनों काल क्यों हो सकते हैं।</> : <>A critical principle that beginners often miss: yogas activate ONLY during the dasha/antardasha of the involved planets. A Lakshmi Yoga (strong 9th lord in Kendra) may exist in the chart, but prosperity manifests only during the dasha of the 9th lord or the Lagna lord. Similarly, a Daridra Yoga activates only during the afflicted planet&rsquo;s dasha. This explains why the same chart can experience both wealthy and impoverished periods.</>}</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example — Dhana vs Daridra', hi: 'कार्यान्वित उदाहरण — धन बनाम दारिद्र', sa: 'कार्यान्वित उदाहरण — धन बनाम दारिद्र' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'कुण्डली:' : 'Chart:'}</span> {isHi ? <>कन्या लग्न। गुरु 2रे भाव (तुला) में उच्च नहीं, किन्तु 5वें और 9वें का स्वामी (मूल त्रिकोण स्वामी)। शनि 11वें भाव (कर्क) में नीच।</> : <>Virgo Lagna. Jupiter in the 2nd house (Libra), not exalted, but lord of the 5th and 9th (mooltrikona lordship). Saturn debilitated in the 11th house (Cancer).</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'योग पहचान:' : 'Yoga identification:'}</span> {isHi ? <>धन योग: 5वें + 9वें का स्वामी (गुरु) 2रे धन भाव में = शक्तिशाली धन योग। दारिद्र संकेत: 11वें का स्वामी (चन्द्र) कहाँ है? यदि चन्द्र 8वें या 12वें में हो, तो 11वें (आय) भाव पीड़ित। शनि नीच 11वें में = लाभ अर्जित करने में बाधा।</> : <>Dhana Yoga: 5th + 9th lord (Jupiter) in 2nd wealth house = powerful Dhana Yoga. Daridra indicator: Where is the 11th lord (Moon)? If Moon is in the 8th or 12th, the 11th (income) house is afflicted. Saturn debilitated in 11th = obstacles in earning gains.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">{isHi ? 'समय निर्धारण:' : 'Timing:'}</span> {isHi ? <>गुरु महादशा (16 वर्ष) में धन योग सक्रिय: आय, निवेश, पारिवारिक सम्पत्ति में वृद्धि। शनि महादशा (19 वर्ष) में नीच शनि आय में बाधा बनाता है, विलम्ब और कठिन परिश्रम की माँग। एक ही कुण्डली, भिन्न दशाओं में भिन्न आर्थिक अनुभव।</> : <>During Jupiter Mahadasha (16 years), the Dhana Yoga activates: growth in income, investments, family wealth. During Saturn Mahadasha (19 years), debilitated Saturn creates income obstacles, demands hard work and patience. Same chart, different financial experiences in different dashas.</>}</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'भ्रान्ति:' : 'Myth:'}</span> {isHi ? <>&quot;कुण्डली में धन योग का अर्थ स्वतः धनवान होना है।&quot; योग एक सम्भावना है, गारण्टी नहीं। दशा समय, गोचर और व्यक्तिगत प्रयास सब मिलकर परिणाम उत्पन्न करते हैं। बिना प्रयास के सर्वश्रेष्ठ योग भी सोया रहता है।</> : <>&quot;Having a Dhana Yoga means automatic wealth.&quot; A yoga is a potential, not a guarantee. Dasha timing, transits, and personal effort all combine to produce results. Even the best yoga remains dormant without effort.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">{isHi ? 'भ्रान्ति:' : 'Myth:'}</span> {isHi ? <>&quot;दारिद्र योग वाला व्यक्ति सदैव गरीब रहेगा।&quot; दारिद्र योग विशिष्ट दशा अवधि में कठिनाई बताता है, सम्पूर्ण जीवन नहीं। नीच भंग (नीच निरसन), गुरु की दृष्टि और अनुकूल दशा दारिद्र प्रभाव को पूर्णतया उलट सकती हैं। मॉड्यूल 13.1 राज योग और महापुरुष योग के लिए, तथा मॉड्यूल 13.3 दोष विश्लेषण के लिए देखें।</> : <>&quot;A Daridra Yoga means lifelong poverty.&quot; Daridra Yoga indicates difficulty during specific dasha periods, not the entire life. Neecha Bhanga (debilitation cancellation), Jupiter&rsquo;s aspect, and favourable dashas can completely reverse the Daridra effect. See Module 13.1 for Raja and Mahapurusha Yogas, and Module 13.3 for dosha analysis.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module13_2Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }
 

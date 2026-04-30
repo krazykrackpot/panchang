@@ -137,6 +137,25 @@ function Page4() {
   );
 }
 
+function Page5() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Precision Considerations in JD Computation', hi: 'JD गणना में सटीकता विचार', sa: 'JD गणना में सटीकता विचार' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>JavaScript 64-बिट IEEE 754 फ्लोटिंग-पॉइंट प्रयोग करता है, जो ~15-16 दशमलव अंकों की सटीकता देता है। JD 2461132.0 जैसी बड़ी संख्या में, दशमलव के बाद ~9 अंकों की सटीकता उपलब्ध है। यह ~0.000001 दिन = ~0.086 सेकण्ड की सटीकता है &mdash; खगोलीय गणना के लिए पर्याप्त से अधिक। हमें फ्लोटिंग-पॉइंट सटीकता से कभी परेशानी नहीं होती; असली सीमा मीयस एल्गोरिदम की अन्तर्निहित सटीकता (~0.01 अंश सूर्य, ~0.3 अंश चन्द्रमा) है।</> : <>JavaScript uses 64-bit IEEE 754 floating point, providing ~15-16 decimal digits of precision. For a number like JD 2461132.0, about ~9 digits of precision remain after the decimal point. This gives ~0.000001 day = ~0.086 seconds of precision &mdash; more than sufficient for astronomical computation. We never encounter floating-point precision issues; the real limiting factor is the inherent accuracy of the Meeus algorithms (~0.01 degree Sun, ~0.3 degree Moon).</>}</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;JD में .5 का अर्थ दोपहर 12 बजे है।&quot; ठीक उलटा: JD .0 = मध्याह्न UT, JD .5 = मध्यरात्रि UT। JD 2461132.0 = 2 अप्रैल 2026 दोपहर। JD 2461132.5 = 2-3 अप्रैल 2026 मध्यरात्रि। यह प्रोग्रामरों को सबसे अधिक भ्रमित करने वाली JD विशेषता है। हमारे dateToJD() फ़ंक्शन में H/24 पद यही सम्भालता है। मॉड्यूल 22.2 (सूर्य भोगांश), 22.3 (चन्द्र भोगांश), और 22.4 (सूर्योदय/सूर्यास्त) में JD का आगे उपयोग देखें।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;JD .5 means noon.&quot; It is the opposite: JD .0 = noon UT, JD .5 = midnight UT. JD 2461132.0 = April 2, 2026 at noon. JD 2461132.5 = midnight between April 2-3, 2026. This is the most confusing JD feature for programmers. Our dateToJD() function handles this via the H/24 term. See Module 22.2 (Sun Longitude), 22.3 (Moon Longitude), and 22.4 (Sunrise/Sunset) for JD usage downstream.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module22_1Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />, <Page5 key="p5" />]} questions={QUESTIONS} />;
 }

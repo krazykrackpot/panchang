@@ -136,6 +136,25 @@ function Page4() {
   );
 }
 
+function Page5() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Practical Application — Your Annual Prediction Worksheet', hi: 'व्यावहारिक अनुप्रयोग — वार्षिक भविष्यवाणी कार्यपत्रक', sa: 'व्यावहारिक अनुप्रयोग — वार्षिक भविष्यवाणी कार्यपत्रक' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>हर नववर्ष (जन्मदिन या हिन्दू नववर्ष) पर यह कार्यपत्रक भरें: (1) वर्तमान महादशा-अन्तर्दशा और उनके विषय लिखें। (2) गुरु और शनि की वर्तमान राशि और अगले राशि परिवर्तन की तिथि नोट करें। (3) दोहरा गोचर &mdash; कौन-से भाव एक साथ प्रभावित हैं? (4) दशा विषयों और गोचर-सक्रिय भावों का मिलान करें। (5) अष्टकवर्ग बिन्दुओं से गोचर गुणवत्ता जाँचें। यह 30-मिनट का अभ्यास वर्ष का ढाँचा स्पष्ट कर देता है।</> : <>Fill out this worksheet every new year (birthday or Hindu new year): (1) Write down the current Mahadasha-Antardasha and their themes. (2) Note Jupiter&rsquo;s and Saturn&rsquo;s current signs and next sign-change dates. (3) Double transit &mdash; which houses are simultaneously influenced? (4) Match dasha themes with transit-activated houses. (5) Check Ashtakavarga bindus for transit quality. This 30-minute exercise clarifies the year&rsquo;s framework.</>}</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;गोचर स्थानीय समय पर निर्भर करता है।&quot; गोचर खगोलीय घटनाएँ हैं &mdash; ग्रह स्थितियाँ UTC में गणित होती हैं। जब गुरु मिथुन में प्रवेश करता है, यह विश्व भर में एक साथ होता है। आपका स्थानीय समय केवल प्रदर्शन उद्देश्य है, गोचर की गणना या प्रभाव पर कोई असर नहीं। मॉड्यूल 11.1 विंशोत्तरी गणना, मॉड्यूल 11.2 योगिनी/चर दशा, मॉड्यूल 12 गोचर, और मॉड्यूल 18.3 अष्टकवर्ग देखें।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Transits depend on local time.&quot; Transits are astronomical events &mdash; planetary positions are computed in UTC. When Jupiter enters Gemini, it happens simultaneously worldwide. Your local time is only for display purposes; it has no effect on transit calculation or impact. See Module 11.1 for Vimshottari calculation, Module 11.2 for Yogini/Char Dasha, Module 12 for transits, and Module 18.3 for Ashtakavarga.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module11_3Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />, <Page5 key="p5" />]} questions={QUESTIONS} />;
 }

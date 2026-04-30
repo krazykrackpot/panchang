@@ -133,6 +133,40 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Mudda Dasha Sub-Periods', hi: 'मुद्दा दशा उप-काल', sa: 'मुद्दा दशा उप-काल' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {tl({ en: 'Just as Vimshottari has sub-periods (antardasha within mahadasha), Mudda Dasha can be further divided into sub-sub-periods for even finer timing. Within a 54-day Rahu Mudda Dasha, each planet gets a proportional sub-period: Rahu gets 54 x 18/120 = 8.1 days, Jupiter gets 54 x 16/120 = 7.2 days, and so on. In practice, most astrologers use Mudda Dasha only to the first level (main periods within the year) and rely on transit triggers for day-level timing.', hi: 'जैसे विंशोत्तरी में उप-काल (महादशा के भीतर अन्तर्दशा) होते हैं, वैसे ही मुद्दा दशा को और सूक्ष्म समय-निर्धारण के लिए उप-उप-कालों में विभक्त किया जा सकता है। 54-दिवसीय राहु मुद्दा दशा में प्रत्येक ग्रह को आनुपातिक उप-काल मिलता है: राहु 8.1 दिन, गुरु 7.2 दिन, इत्यादि। व्यवहार में अधिकांश ज्योतिषी मुद्दा दशा केवल प्रथम स्तर (वर्ष के भीतर मुख्य काल) तक प्रयोग करते हैं और दैनिक समय-निर्धारण के लिए गोचर ट्रिगर पर निर्भर रहते हैं।', sa: 'जैसे विंशोत्तरी में उप-काल (महादशा के भीतर अन्तर्दशा) होते हैं, वैसे ही मुद्दा दशा को और सूक्ष्म समय-निर्धारण के लिए उप-उप-कालों में विभक्त किया जा सकता है।' }, locale)}
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
+          {tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}
+        </h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;मुद्दा दशा में शनि का 57 दिन = हमेशा कठिन काल।&quot; शनि मुद्दा दशा केवल तभी कठिन है जब शनि वर्षफल कुण्डली में दुर्बल या पीड़ित हो। वर्षफल में बलवान, सुस्थित शनि अनुशासित उपलब्धियों और ठोस प्रगति का 57-दिवसीय काल देता है। ग्रह को दोष देने से पहले उसकी वार्षिक कुण्डली में स्थिति जाँचें।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Saturn&rsquo;s 57-day Mudda Dasha is always a difficult period.&quot; Saturn Mudda Dasha is only difficult when Saturn is weak or afflicted in the Varshaphal chart. A strong, well-placed Saturn in the annual chart gives a 57-day period of disciplined achievements and concrete progress. Always check the planet&rsquo;s condition in the annual chart before predicting trouble.</>}
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;मुद्दा दशा में सबसे लम्बा काल (शुक्र, 60 दिन) सबसे महत्वपूर्ण है।&quot; अवधि शक्ति नहीं दर्शाती। छोटा सूर्य काल (18 दिन) लम्बे शुक्र काल से अधिक प्रभावशाली हो सकता है यदि सूर्य वर्ष स्वामी है या प्रमुख ताजिक योग में भाग लेता है। ताजिक योगों में ग्रह की भागीदारी अवधि से अधिक महत्वपूर्ण है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;The longest Mudda Dasha period (Venus, 60 days) is the most important.&quot; Duration does not equal importance. A shorter Sun period (18 days) can be more impactful than the longer Venus period if the Sun is the year lord or participates in a major Tajika yoga. The planet&rsquo;s involvement in Tajika yogas matters more than its duration.</>}
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
+          {tl({ en: 'Cross-References', hi: 'सम्बन्धित मॉड्यूल', sa: 'सम्बन्धित मॉड्यूल' }, locale)}
+        </h4>
+        <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <>ताजिक योगों (इत्थशाल, ईषराफ) के लिए <span className="text-gold-light">मॉड्यूल 21.1</span> देखें। सहम (अरबी भाग) के लिए <span className="text-gold-light">मॉड्यूल 21.2</span> देखें। तिथि प्रवेश (वैकल्पिक वार्षिक कुण्डली) के लिए <span className="text-gold-light">मॉड्यूल 21.4</span> देखें। जन्म विंशोत्तरी दशा के लिए <span className="text-gold-light">मॉड्यूल 11.1</span> देखें।</> : <>For Tajika yogas (Ithasala, Easarapha), see <span className="text-gold-light">Module 21.1</span>. For Sahams (Arabic Parts), see <span className="text-gold-light">Module 21.2</span>. For Tithi Pravesha (alternative annual chart), see <span className="text-gold-light">Module 21.4</span>. For the natal Vimshottari dasha, see <span className="text-gold-light">Module 11.1</span>.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module21_3Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

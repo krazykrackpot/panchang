@@ -132,6 +132,42 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Day/Night Distinction in Saham Calculation', hi: 'सहम गणना में दिन/रात भेद', sa: 'सहम गणना में दिन/रात भेद' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi ? <>एक सूक्ष्मता जो कई अभ्यासकर्ता चूकते हैं: कुछ सहम सूत्र दिन और रात की कुण्डलियों के लिए भिन्न हैं। पुण्य सहम के लिए: दिन कुण्डली (सूर्य क्षितिज से ऊपर) = चन्द्र + सूर्य - लग्न। रात्रि कुण्डली (सूर्य क्षितिज से नीचे) = सूर्य + चन्द्र - लग्न (अर्थात सूर्य और चन्द्र अदल-बदल)। क्योंकि दोनों जोड़ हैं, इस विशिष्ट सहम में परिणाम समान है। किन्तु कुछ अन्य सहम (जैसे कर्म सहम) में A और B पद भिन्न हैं, और दिन/रात उलटाव महत्वपूर्ण अन्तर बनाता है।</> : <>A subtlety many practitioners miss: some Saham formulas differ for day and night charts. For Punya Saham: day chart (Sun above horizon) = Moon + Sun - Lagna. Night chart (Sun below horizon) = Sun + Moon - Lagna (Sun and Moon swap). Since both are additions, the result is identical for this specific Saham. But for other Sahams (like Karma Saham) where the A and B terms differ, the day/night reversal creates a meaningful difference in the computed degree.</>}
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
+          {tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}
+        </h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;सहम केवल ताजिक/वर्षफल पद्धति में प्रयुक्त होते हैं।&quot; मूलतः ताजिक अवसर, सहम जन्म कुण्डली में भी प्रयोग किए जा सकते हैं। पुण्य सहम जन्म कुण्डली में जातक के &quot;भाग्य बिन्दु&quot; को दर्शाता है। उसका भाव स्थान बताता है कि भाग्य किस जीवन क्षेत्र से सर्वाधिक आएगा।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Sahams are used only in Tajika/Varshaphal.&quot; While originally a Tajika tool, Sahams can also be applied in the natal chart. The Punya Saham in the birth chart shows the native&rsquo;s &ldquo;fortune point.&rdquo; Its house placement indicates which life area will bring the most luck.</>}
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;मृत्यु सहम सक्रिय होने का अर्थ शारीरिक मृत्यु है।&quot; विशाल बहुमत में, मृत्यु सहम सक्रियता रूपान्तरक समाप्तियों को इंगित करती है: नौकरी छोड़ना, सम्बन्ध समाप्ति, स्थानान्तरण, या जीवन दृष्टिकोण में मूलभूत परिवर्तन। शारीरिक स्वास्थ्य चिन्ता केवल तभी उठती है जब जन्म कुण्डली में भी अनुरूप आयु-सम्बन्धी पीड़ा हो (8वें भाव का गम्भीर दुष्प्रभाव, मारक दशा)।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Mrityu Saham activation means physical death.&quot; In the vast majority of cases, Mrityu Saham activation indicates transformative endings: leaving a job, ending a relationship, relocation, or fundamental shift in life philosophy. Physical health concern only arises when the natal chart ALSO shows corresponding longevity affliction (severe 8th house damage, maraka dasha).</>}
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
+          {tl({ en: 'Cross-References', hi: 'सम्बन्धित मॉड्यूल', sa: 'सम्बन्धित मॉड्यूल' }, locale)}
+        </h4>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          {isHi ? <>ताजिक योगों (इत्थशाल, ईषराफ) के लिए जो सहम सक्रियण निर्धारित करते हैं, <span className="text-gold-light">मॉड्यूल 21.1</span> देखें। मुद्दा दशा के लिए जो वर्ष में &quot;कब&quot; बताता है, <span className="text-gold-light">मॉड्यूल 21.3</span> देखें। तिथि प्रवेश (चान्द्र-सौर वार्षिक कुण्डली) के लिए <span className="text-gold-light">मॉड्यूल 21.4</span> देखें।</> : <>For Tajika yogas (Ithasala, Easarapha) that determine Saham activation, see <span className="text-gold-light">Module 21.1</span>. For Mudda Dasha which provides the &ldquo;when&rdquo; within the year, see <span className="text-gold-light">Module 21.3</span>. For Tithi Pravesha (the lunisolar annual chart), see <span className="text-gold-light">Module 21.4</span>.</>}
+        </p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module21_2Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

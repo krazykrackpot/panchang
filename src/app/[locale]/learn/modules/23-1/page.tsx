@@ -130,6 +130,37 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'ग्रहण और जन्म कुण्डली — गहन विश्लेषण' : 'Eclipses and the Birth Chart — Deep Analysis'}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>ग्रहण प्रभाव सबसे तीव्र तब होता है जब ग्रहण अंश आपकी जन्म कुण्डली के किसी ग्रह या सन्धि से 3 अंश के भीतर हो। उदाहरण: यदि आपका जन्म चन्द्रमा 15 अंश सिंह पर है और सूर्य ग्रहण 13 अंश सिंह पर होता है, तो यह सीधा आघात है — अगले 6 मास में भावनात्मक क्षेत्र में गहन रूपान्तरण की अपेक्षा करें। ग्रहण लग्न, सूर्य या चन्द्र पर सबसे प्रभावी है; बाह्य ग्रहों (शनि, राहु, केतु) पर कम प्रत्यक्ष।</> : <>Eclipse impact is most intense when the eclipse degree falls within 3 degrees of a natal planet or cusp. Example: if your natal Moon is at 15 degrees Leo and a solar eclipse occurs at 13 degrees Leo, this is a direct hit &mdash; expect profound transformation in the emotional sphere over the following 6 months. Eclipses are most potent on the Lagna, Sun, or Moon; less directly impactful on outer planets (Saturn, Rahu, Ketu).</>}</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example — Eclipse Transit Analysis', hi: 'कार्यान्वित उदाहरण — ग्रहण गोचर विश्लेषण', sa: 'कार्यान्वित उदाहरण — ग्रहण गोचर विश्लेषण' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">{isHi ? 'कुण्डली:' : 'Chart:'}</span> {isHi ? <>मेष लग्न, सूर्य 10 अंश तुला (7वाँ भाव), चन्द्र 22 अंश मीन (12वाँ भाव)।</> : <>Aries Lagna, Sun at 10 degrees Libra (7th house), Moon at 22 degrees Pisces (12th house).</>}
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">{isHi ? 'ग्रहण:' : 'Eclipse:'}</span> {isHi ? <>सूर्य ग्रहण 12 अंश तुला पर — जन्म सूर्य से 2 अंश। यह 7वें भाव (साझेदारी, विवाह) में सीधा प्रभाव है।</> : <>Solar eclipse at 12 degrees Libra &mdash; within 2 degrees of natal Sun. This directly activates the 7th house (partnerships, marriage).</>}
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          <span className="text-gold-light font-medium">{isHi ? 'फलादेश:' : 'Prediction:'}</span> {isHi ? <>अगले 6 मास में साझेदारी में महत्वपूर्ण परिवर्तन: नई साझेदारी का आरम्भ, मौजूदा सम्बन्ध में मूलभूत पुनर्परिभाषा, या व्यावसायिक सहभागिता में बदलाव। क्योंकि सूर्य = अहंकार/पहचान, ग्रहण जातक की साझेदारी में भूमिका की पुनः खोज को प्रेरित करता है।</> : <>Significant partnership changes within 6 months: new partnership forming, fundamental redefinition of existing relationship, or shift in business collaboration. Since Sun = ego/identity, the eclipse triggers a rediscovery of the native&rsquo;s role within partnerships.</>}
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'भ्रान्ति:' : 'Myth:'}</span> {isHi ? <>&quot;ग्रहण के दौरान खाना नहीं खाना चाहिए।&quot; यह अन्धविश्वास है, विज्ञान नहीं। हालाँकि, ग्रहण ध्यान और आत्मचिन्तन के लिए एक शक्तिशाली अवसर है &mdash; कई साधक स्वेच्छा से उपवास रखते हैं, किन्तु यह बाध्यता नहीं बल्कि आध्यात्मिक चयन है।</> : <>&quot;You must not eat during an eclipse.&quot; This is superstition, not science. However, eclipses are powerful opportunities for meditation and introspection &mdash; many practitioners voluntarily fast, but this is a spiritual choice, not an obligation.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'भ्रान्ति:' : 'Myth:'}</span> {isHi ? <>&quot;ग्रहण केवल दृश्य होने पर प्रभावित करता है।&quot; ज्योतिषीय प्रभाव खगोलीय संरेखण पर आधारित है, दृश्यता पर नहीं। आपके स्थान से अदृश्य ग्रहण भी गोचर प्रभाव उत्पन्न करता है क्योंकि सूर्य-चन्द्र-नोड संरेखण वास्तविक है।</> : <>&quot;An eclipse only affects you if it is visible from your location.&quot; The astrological effect is based on the astronomical alignment, not visibility. An eclipse invisible from your location still produces transit effects because the Sun-Moon-Node alignment is real.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">{isHi ? 'भ्रान्ति:' : 'Myth:'}</span> {isHi ? <>&quot;ग्रहण सदैव नकारात्मक है।&quot; ग्रहण शक्तिशाली हैं, नकारात्मक नहीं। ये उस भाव को &quot;रीसेट&quot; करते हैं जिसमें पड़ते हैं। रीसेट का अर्थ पुराने प्रतिमानों का अन्त और नये का आरम्भ है &mdash; यह दर्दनाक या मुक्तिदायक हो सकता है। अनेक लोग ग्रहणों पर करियर की सबसे बड़ी छलांगें और गहनतम आध्यात्मिक अनुभव रिपोर्ट करते हैं।</> : <>&quot;Eclipses are always negative.&quot; Eclipses are powerful, not negative. They &ldquo;reset&rdquo; the house they activate. A reset means the end of old patterns and the beginning of new ones &mdash; this can be painful or liberating. Many people report their biggest career leaps and deepest spiritual experiences on eclipses.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module23_1Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

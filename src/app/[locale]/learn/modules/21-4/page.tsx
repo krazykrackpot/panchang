@@ -135,6 +135,34 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Five Key Indicators in a Tithi Pravesha Chart', hi: 'तिथि प्रवेश कुण्डली में पाँच प्रमुख सूचक', sa: 'तिथि प्रवेश कुण्डली में पाँच प्रमुख सूचक' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi ? <>तिथि प्रवेश कुण्डली की व्याख्या पाँच प्रमुख सूचकों पर केन्द्रित होती है: (1) TP लग्न और उसका स्वामी &mdash; वर्ष का सामान्य स्वर और दृष्टिकोण। (2) TP में चन्द्रमा का भाव &mdash; भावनात्मक केन्द्र बिन्दु। (3) TP में सूर्य का भाव &mdash; करियर और आत्मा की दिशा। (4) TP में जन्म लग्न स्वामी कहाँ गिरता है &mdash; जातक की व्यक्तिगत ऊर्जा कहाँ केन्द्रित होगी। (5) TP कुण्डली में योग &mdash; विशेष शुभ/अशुभ संयोग जो वर्ष की विशिष्ट घटनाओं का संकेत देते हैं।</> : <>Tithi Pravesha chart interpretation focuses on five key indicators: (1) TP Lagna and its lord &mdash; the general tone and outlook for the year. (2) Moon&rsquo;s house in TP &mdash; emotional focus point. (3) Sun&rsquo;s house in TP &mdash; career and soul direction. (4) Where the natal Lagna lord falls in TP &mdash; where the native&rsquo;s personal energy will concentrate. (5) Yogas in the TP chart &mdash; special benefic/malefic combinations indicating specific events for the year.</>}
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
+          {tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}
+        </h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;तिथि प्रवेश केवल हिन्दू जन्मतिथि के लिए कार्य करता है।&quot; TP किसी भी जन्म तिथि के लिए काम करता है। सूत्र सार्वभौमिक है: किसी भी जन्म तिथि पर सूर्य-चन्द्र विस्तार को ज्ञात करें, फिर प्रत्येक वर्ष उसकी पुनरावृत्ति का क्षण खोजें। धर्म या संस्कृति से स्वतन्त्र।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Tithi Pravesha only works for Hindu birthdays.&quot; TP works for any birth date. The formula is universal: find the Sun-Moon elongation at any birth date, then find the moment each year when it recurs. Independent of religion or culture.</>}
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;TP कुण्डली जन्म कुण्डली को प्रतिस्थापित करती है।&quot; TP केवल उस विशिष्ट वर्ष का चित्र है। जन्म कुण्डली सम्पूर्ण जीवन का नक्शा बनी रहती है। TP (और वर्षफल) वार्षिक &quot;मौसम पूर्वानुमान&quot; हैं, जबकि जन्म कुण्डली &quot;भूभाग&quot; (स्थायी जीवन संरचना) है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;The TP chart replaces the birth chart.&quot; TP is only a picture of that specific year. The birth chart remains the map of the entire life. TP (and Varshaphal) are annual &ldquo;weather forecasts,&rdquo; while the birth chart is the &ldquo;terrain&rdquo; (permanent life structure).</>}
+        </p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module21_4Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

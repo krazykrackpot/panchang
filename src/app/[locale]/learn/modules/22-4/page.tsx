@@ -126,6 +126,25 @@ function Page4() {
   );
 }
 
+function Page5() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Practical Application — Verifying Sunrise Accuracy', hi: 'व्यावहारिक अनुप्रयोग — सूर्योदय सटीकता सत्यापन', sa: 'व्यावहारिक अनुप्रयोग — सूर्योदय सटीकता सत्यापन' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>आप हमारे ऐप के सूर्योदय समय को किसी भी स्थान के लिए तीन सन्दर्भ स्रोतों से सत्यापित कर सकते हैं: (1) timeanddate.com — सबसे सुलभ ऑनलाइन सन्दर्भ, USNO डेटा पर आधारित। (2) Prokerala Panchang — भारतीय स्थानों के लिए पारम्परिक पंचांग सन्दर्भ। (3) NOAA Solar Calculator — अमेरिकी मौसम विज्ञान प्रयोगशाला का आधिकारिक उपकरण। तीनों स्रोतों से हमारा सूर्योदय 1 मिनट के भीतर मिलान करना चाहिए (और प्रायः करता है)।</> : <>You can verify our app&rsquo;s sunrise time against three reference sources for any location: (1) timeanddate.com &mdash; the most accessible online reference, based on USNO data. (2) Prokerala Panchang &mdash; traditional Panchang reference for Indian locations. (3) NOAA Solar Calculator &mdash; the official US meteorological laboratory tool. Our sunrise should match all three within 1 minute (and typically does).</>}</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;सूर्योदय विश्व भर में समान गणना से मिलता है।&quot; विभिन्न देश &quot;सूर्योदय&quot; की भिन्न परिभाषाएँ प्रयोग करते हैं। अधिकांश नागरिक सूर्योदय ऊपरी अंग = -0.8333° प्रयोग करते हैं (हमारा मानक)। कुछ समुद्री सूर्योदय (-12°) या खगोलीय सूर्योदय (-18°) प्रयोग करते हैं। इस्लामी नमाज़ समय फज्र (-18° से -15° तक भिन्न) प्रयोग करते हैं। तुलना करते समय सुनिश्चित करें कि दोनों स्रोत समान परिभाषा प्रयोग करें।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Sunrise is computed the same way worldwide.&quot; Different countries use different definitions of &ldquo;sunrise.&rdquo; Most civil sunrise uses upper limb = -0.8333° (our standard). Some use nautical sunrise (-12°) or astronomical sunrise (-18°). Islamic prayer times use Fajr (-18° to -15° depending on school). When comparing, ensure both sources use the same definition.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module22_4Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />, <Page5 key="p5" />]} questions={QUESTIONS} />;
 }

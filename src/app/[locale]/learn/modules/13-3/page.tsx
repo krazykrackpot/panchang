@@ -132,7 +132,34 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Dosha Interactions and Compound Effects', hi: 'दोष अन्तःक्रिया और यौगिक प्रभाव', sa: 'दोष अन्तःक्रिया और यौगिक प्रभाव' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>कुण्डली में एक से अधिक दोष हो सकते हैं। एक जातक में मंगल दोष (मंगल 7वें में) और काल सर्प दोष दोनों हो सकते हैं। ये स्वतन्त्र प्रतिमान हैं जो भिन्न जीवन क्षेत्रों को प्रभावित करते हैं &mdash; मंगल दोष विवाह को, काल सर्प समग्र जीवन पथ को। उपचार भी स्वतन्त्र हैं: मंगल दोष के लिए कुम्भ विवाह, काल सर्प के लिए नाग पंचमी पूजा।</> : <>A chart can contain multiple doshas simultaneously. A native may have both Mangal Dosha (Mars in the 7th) and Kala Sarpa Dosha. These are independent patterns affecting different life areas &mdash; Mangal Dosha targets marriage, Kala Sarpa affects the overall life trajectory. Remedies are also independent: Kumbha Vivah for Mangal Dosha, Naga Panchami puja for Kala Sarpa.</>}</p>
+        <p className="text-text-secondary text-sm leading-relaxed">{isHi ? <>हमारा टिप्पणी इंजन प्रत्येक दोष का स्वतन्त्र रूप से पता लगाता है और उनके संयुक्त प्रभाव का आकलन करता है। जब कई दोष उपस्थित हों, इंजन तीव्रता के क्रम में प्राथमिकता देता है और सर्वाधिक प्रभावशाली दोष के लिए उपचार को पहले सूचीबद्ध करता है। यह दृष्टिकोण जातक को भ्रमित या भयभीत किये बिना, व्यवस्थित रूप से प्रत्येक चुनौती का समाधान करने देता है।</> : <>Our tippanni engine detects each dosha independently and assesses their compound effect. When multiple doshas are present, the engine prioritizes by severity and lists remedies for the most impactful dosha first. This approach allows the native to systematically address each challenge without being overwhelmed or frightened by a list of afflictions.</>}</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example — Multiple Doshas', hi: 'कार्यान्वित उदाहरण — बहु दोष', sa: 'कार्यान्वित उदाहरण — बहु दोष' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'कुण्डली:' : 'Chart:'}</span> {isHi ? <>तुला लग्न। मंगल 7वें भाव (मेष) में। सूर्य राहु के साथ 12वें में। सभी ग्रह राहु-केतु अक्ष के एक ओर।</> : <>Libra Lagna. Mars in the 7th house (Aries). Sun conjunct Rahu in the 12th. All planets on one side of the Rahu-Ketu axis.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'दोष पहचान:' : 'Dosha Detection:'}</span> {isHi ? <>1) मंगल दोष &mdash; मंगल 7वें में (मध्यम-गम्भीर)। लेकिन मंगल स्वराशि मेष में = निरसन शर्त #1। तीव्रता: शून्य (निरस्त)। 2) पितृ दोष &mdash; सूर्य + राहु 12वें में। 9वें भाव (पिता/पूर्वज) को प्रत्यक्ष पीड़ा नहीं, किन्तु सूर्य-राहु युति पितृ कर्म दर्शाती है। तीव्रता: मध्यम। 3) काल सर्प &mdash; सभी ग्रह एक ओर। किन्तु मंगल राहु पर (7वें = राहु से 180° विपरीत) &mdash; आंशिक काल सर्प। तीव्रता: हल्की।</> : <>1) Mangal Dosha &mdash; Mars in 7th (moderate-severe). BUT Mars is in own sign Aries = cancellation condition #1. Severity: Nil (cancelled). 2) Pitra Dosha &mdash; Sun + Rahu in 12th. Not a direct affliction to 9th (father/ancestors), but Sun-Rahu conjunction indicates ancestral karma. Severity: Moderate. 3) Kala Sarpa &mdash; all planets on one side. But Mars is at the Rahu end (7th = 180 degrees from Rahu) &mdash; Partial Kala Sarpa. Severity: Mild.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">{isHi ? 'उपचार प्राथमिकता:' : 'Remedy priority:'}</span> {isHi ? <>1) पितृ दोष (मध्यम) &mdash; पितृ पक्ष में श्राद्ध, पीपल वृक्ष रोपण। 2) आंशिक काल सर्प (हल्का) &mdash; नाग पंचमी पूजा। मंगल दोष निरस्त होने से कोई विवाह-विशिष्ट उपचार आवश्यक नहीं।</> : <>1) Pitra Dosha (moderate) &mdash; Shraddha during Pitru Paksha, plant a Peepal tree. 2) Partial Kala Sarpa (mild) &mdash; Naga Panchami puja. Since Mangal Dosha is cancelled, no marriage-specific remedy needed.</>}</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'भ्रान्ति:' : 'Myth:'}</span> {isHi ? <>&quot;काल सर्प दोष का उल्लेख शास्त्रीय ग्रन्थों में नहीं है, इसलिए यह मान्य नहीं।&quot; यह सत्य है कि BPHS में इसका प्रत्यक्ष उल्लेख नहीं है। किन्तु &quot;सभी ग्रह एक अर्ध-वृत्त में&quot; का प्रतिमान अनुभवजन्य रूप से चरम जीवन पथों से सहसम्बद्ध पाया गया है। शास्त्रीय उल्लेख की अनुपस्थिति इसे अमान्य नहीं बनाती &mdash; शास्त्र ज्ञान का एकमात्र स्रोत नहीं हैं।</> : <>&quot;Kala Sarpa Dosha is not mentioned in classical texts, so it is not valid.&quot; It is true that BPHS does not directly mention it. However, the pattern of &quot;all planets in one semicircle&quot; has been empirically correlated with extreme life trajectories. Absence from classical texts does not invalidate it &mdash; texts are not the sole source of knowledge.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">{isHi ? 'भ्रान्ति:' : 'Myth:'}</span> {isHi ? <>&quot;दोष वाला व्यक्ति सफल नहीं हो सकता।&quot; इतिहास के अनेक सफलतम व्यक्तियों की कुण्डली में गम्भीर दोष हैं। अब्राहम लिंकन, महात्मा गाँधी जैसे व्यक्तित्वों में काल सर्प समान प्रतिमान देखे गए हैं। दोष बाधा है, असम्भावना नहीं। जागरूकता और उपचार के साथ, दोष को शक्ति में बदला जा सकता है।</> : <>&quot;A person with doshas cannot be successful.&quot; Many of history&rsquo;s most successful individuals had severe doshas in their charts. Figures like Abraham Lincoln and Mahatma Gandhi showed Kala Sarpa-like patterns. A dosha is a challenge, not an impossibility. With awareness and remediation, doshas can be transmuted into strengths.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module13_3Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }
 

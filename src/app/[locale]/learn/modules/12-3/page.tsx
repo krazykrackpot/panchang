@@ -132,6 +132,31 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Practical Transit Analysis — Year Ahead', hi: 'व्यावहारिक गोचर विश्लेषण — आगामी वर्ष', sa: 'व्यावहारिक गोचर विश्लेषण — आगामी वर्ष' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>वार्षिक गोचर विश्लेषण के लिए एक व्यवस्थित ढाँचा: पहले गुरु की वर्तमान राशि और अगले राशि परिवर्तन की तिथि नोट करें। फिर शनि की राशि। फिर राहु-केतु अक्ष। ये तीन धीमी गोचर वर्ष का ढाँचा तय करते हैं। तीव्र ग्रह (सूर्य, मंगल, बुध, शुक्र) विशिष्ट सप्ताह या मास में घटनाओं को ट्रिगर करते हैं।</> : <>A systematic framework for annual transit analysis: First, note Jupiter&rsquo;s current sign and next sign-change date. Then Saturn&rsquo;s sign. Then the Rahu-Ketu axis. These three slow transits establish the year&rsquo;s framework. Fast planets (Sun, Mars, Mercury, Venus) trigger specific events within the broad framework during particular weeks or months.</>}</p>
+        <p className="text-text-secondary text-sm leading-relaxed">{isHi ? <>प्रत्येक गोचर को अपनी जन्म कुण्डली पर चन्द्र से गिनकर मूल्यांकन करें। गुरु चन्द्र से 1, 5, 9 में सर्वश्रेष्ठ (त्रिकोण)। शनि चन्द्र से 3, 6, 11 में सर्वश्रेष्ठ (उपचय)। राहु 3, 6, 10, 11 में शुभ। जब गुरु और शनि दोनों एक साथ किसी भाव पर प्रभावी हों, वह दोहरा गोचर उस भाव की घटनाओं के लिए खिड़की खोलता है। हमारा गोचर रडार पृष्ठ इसे दृश्य रूप में प्रस्तुत करता है।</> : <>Evaluate each transit by counting from your natal Moon. Jupiter is best in 1, 5, 9 from Moon (trikona). Saturn is best in 3, 6, 11 from Moon (upachaya). Rahu is favourable in 3, 6, 10, 11. When both Jupiter and Saturn simultaneously influence a house, that double transit opens a window for events related to that house. Our Transit Radar page visualizes this with an interactive timeline.</>}</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'भ्रान्ति:' : 'Myth:'}</span> {isHi ? <>&quot;गोचर जन्म कुण्डली को अधिभावी कर सकता है।&quot; गोचर जन्म कुण्डली के वचनों को सक्रिय करता है, अधिभावी नहीं। यदि जन्म कुण्डली में विवाह का कोई वचन नहीं (7वाँ भाव गम्भीर रूप से पीड़ित), तो 7वें पर सर्वश्रेष्ठ दोहरा गोचर भी विवाह नहीं देगा।</> : <>&quot;Transits can override the birth chart.&quot; Transits ACTIVATE the birth chart&rsquo;s promises, they do not override them. If the birth chart has no marriage promise (7th house severely afflicted), even the best double transit over the 7th will not produce marriage.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">{isHi ? 'भ्रान्ति:' : 'Myth:'}</span> {isHi ? <>&quot;नोडल गोचर (राहु-केतु) अन्य गोचरों से कम महत्वपूर्ण है।&quot; 18-मास की अवधि और कार्मिक प्रकृति के कारण नोडल गोचर प्रायः गुरु या शनि से अधिक परिवर्तनकारी होते हैं। जिस भाव से राहु गोचर करता है वहाँ जुनून और इच्छा उभरती है; केतु का भाव विरक्ति और मोक्ष अनुभव करता है।</> : <>&quot;Nodal transits (Rahu-Ketu) are less important than other transits.&quot; Because of their 18-month duration and karmic nature, nodal transits are often MORE transformative than Jupiter or Saturn. The house Rahu transits experiences obsession and desire; the house Ketu transits experiences detachment and liberation.</>}</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Cross-References', hi: 'सम्बन्धित मॉड्यूल', sa: 'सम्बन्धित मॉड्यूल' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <>शनि गोचर (साढ़े साती) के विस्तृत विश्लेषण के लिए <span className="text-gold-light">मॉड्यूल 12.1</span> देखें। गुरु गोचर और गोचर बल के लिए <span className="text-gold-light">मॉड्यूल 12.2</span> देखें। दशा-गोचर एकीकरण के लिए <span className="text-gold-light">मॉड्यूल 11.3</span> देखें। अष्टकवर्ग बिन्दुओं से गोचर गुणवत्ता मूल्यांकन के लिए <span className="text-gold-light">मॉड्यूल 18.3</span> देखें।</> : <>For detailed Saturn transit (Sade Sati) analysis, see <span className="text-gold-light">Module 12.1</span>. For Jupiter transit and transit strength, see <span className="text-gold-light">Module 12.2</span>. For dasha-transit integration, see <span className="text-gold-light">Module 11.3</span>. For Ashtakavarga bindu-based transit quality assessment, see <span className="text-gold-light">Module 18.3</span>.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module12_3Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

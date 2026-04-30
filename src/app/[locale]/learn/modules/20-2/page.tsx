@@ -134,6 +134,35 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Practical Application — Birth Time Sensitivity', hi: 'व्यावहारिक अनुप्रयोग — जन्म समय संवेदनशीलता', sa: 'व्यावहारिक अनुप्रयोग — जन्म समय संवेदनशीलता' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {tl({ en: 'The sub-lord system makes KP astrology extraordinarily sensitive to birth time accuracy. In traditional Parashari astrology, a 10-minute birth time error might shift the Lagna but leave most house cusps unchanged. In KP, a 2-minute error can change the sub-lord of a cusp, which can flip a prediction from positive to negative. This is why KP practitioners invest heavily in birth time rectification — using known life events (marriage date, child birth, job change) to work backward to the precise birth time.', hi: 'उप-स्वामी पद्धति केपी ज्योतिष को जन्म समय सटीकता के प्रति असाधारण रूप से संवेदनशील बनाती है। पारम्परिक पाराशरी ज्योतिष में 10-मिनट की जन्म समय त्रुटि लग्न तो बदल सकती है किन्तु अधिकांश भाव सन्धियाँ अपरिवर्तित रहती हैं। केपी में 2-मिनट की त्रुटि किसी सन्धि का उप-स्वामी बदल सकती है, जो भविष्यवाणी को सकारात्मक से नकारात्मक में पलट सकता है।', sa: 'उप-स्वामी पद्धति केपी ज्योतिष को जन्म समय सटीकता के प्रति असाधारण रूप से संवेदनशील बनाती है।' }, locale)}
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
+          {tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}
+        </h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;केपी उप-स्वामी नवांश स्वामी के समान है।&quot; पूर्णतया भिन्न। नवांश राशि को 9 समान भागों (3°20&rsquo; प्रत्येक) में बाँटता है। केपी उप-स्वामी नक्षत्र को 9 असमान भागों में बाँटता है। दोनों पद्धतियाँ एक ही अंश के लिए भिन्न स्वामी दे सकती हैं। इन्हें मिलाना दोनों पद्धतियों के विश्लेषण को दूषित करता है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;KP sub-lord is the same as the Navamsha lord.&quot; Completely different. Navamsha divides each sign into 9 equal parts (3 degrees 20 minutes each). KP sub-lord divides each nakshatra into 9 unequal parts. The two systems can give different lords for the same degree. Mixing them corrupts both analyses.</>}
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Cross-References', hi: 'सम्बन्धित मॉड्यूल', sa: 'सम्बन्धित मॉड्यूल' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <>केपी प्रणाली के परिचय और प्लेसिडस भाव पद्धति के लिए <span className="text-gold-light">मॉड्यूल 20.1</span> देखें। केपी कारक और भविष्यवाणी के लिए <span className="text-gold-light">मॉड्यूल 20.3</span> देखें। नक्षत्र मूल बातें (जो उप-विभाजन का आधार हैं) के लिए <span className="text-gold-light">मॉड्यूल 6</span> देखें।</> : <>For KP system introduction and Placidus houses, see <span className="text-gold-light">Module 20.1</span>. For KP significators and prediction, see <span className="text-gold-light">Module 20.3</span>. For nakshatra fundamentals (the basis of sub-division), see <span className="text-gold-light">Module 6</span>.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module20_2Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

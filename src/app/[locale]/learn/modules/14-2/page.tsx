@@ -129,6 +129,49 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          Severity Grading &mdash; Not All Mangal Doshas Are Equal
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          Traditional practice treats Mangal Dosha as binary &mdash; present or absent. Modern practitioners grade severity from mild to severe based on the specific house and reference point. Mars in the 1st house from Lagna (aggressive personality) is milder than Mars in the 7th (direct spouse impact) or 8th (longevity concern). Mars detected only from Moon but not from Lagna is weaker than Mars detected from both. The most severe form: Mars in the 8th house from Lagna AND Moon, without any cancellation condition.
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          Our matching engine implements a 3-tier severity model: <strong className="text-gold-light">Mild</strong> (Mars in 1st or 2nd from one reference point, with cancellation), <strong className="text-gold-light">Moderate</strong> (Mars in 4th, 7th, or 12th without full cancellation), and <strong className="text-gold-light">Severe</strong> (Mars in 7th or 8th from multiple reference points without cancellation). Mild dosha is noted but does not reduce the Ashta Kuta score. Moderate reduces by 2-3 points. Severe triggers a special advisory.
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example &mdash; Matching Two Charts</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">Person A (Scorpio Lagna):</span> Mars in 4th house (Aquarius) from Lagna. Mars is the Lagna lord (Scorpio) &mdash; own-sign cancellation does not apply here since Mars is in Aquarius (Saturn&apos;s sign). Jupiter aspects Mars from the 10th house. Result: Mangal Dosha present from Lagna, but <strong className="text-gold-light">cancelled</strong> by Jupiter&apos;s aspect. Severity: Nil after cancellation.
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">Person B (Gemini Lagna):</span> Mars in 7th house (Sagittarius) from Lagna. No Jupiter aspect on Mars. Mars also in 7th from Moon (Moon in Gemini). No cancellation conditions met. Severity: <strong className="text-red-400">Severe</strong> (7th from both Lagna and Moon, no cancellation).
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          <span className="text-gold-light font-medium">Matching verdict:</span> Person A has no active dosha. Person B has severe dosha. The &ldquo;both partners Manglik&rdquo; cancellation does NOT apply because A&apos;s dosha is already cancelled. Traditional advice: proceed with caution, consider Kumbha Vivah for Person B, and prioritize communication skills in the relationship.
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Additional Misconceptions</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Myth:</span> &ldquo;Mangal Dosha disappears after age 28.&rdquo; Some traditions claim this, but it has no basis in classical texts. Mars&rsquo;s placement in the chart does not change with age. What does change is the native&rsquo;s maturity and self-awareness, which can mitigate the behavioural expressions of Mars energy.</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Myth:</span> &ldquo;A Manglik person must only marry another Manglik.&rdquo; Mutual cancellation is ONE of six conditions. Jupiter&rsquo;s aspect, Mars in own/exalted sign, or benefic conjunction can each independently cancel the dosha. Insisting on Manglik-only matching unnecessarily restricts the partner pool. See Module 14.1 for Ashta Kuta scoring and Module 14.3 for Nadi and Gana compatibility.</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Practical Application &mdash; What to Do If You Have Mangal Dosha</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Step 1:</span> Verify with our Kundali tool. Check from all three reference points (Lagna, Moon, Venus). Note which cancellation conditions, if any, apply.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Step 2:</span> If active (no cancellation), assess severity. Mars in 1st or 2nd is milder than 7th or 8th. Mars aspected by benefics is milder than unaspected.</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Step 3:</span> For severe cases, traditional remedies (Kumbha Vivah, Mangal Puja) provide psychological comfort and spiritual discipline. Modern remedies: channel Mars energy through physical activity, competitive careers, and developing conscious communication skills in relationships.</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module14_2Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

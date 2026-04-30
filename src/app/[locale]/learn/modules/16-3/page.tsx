@@ -131,6 +131,25 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Practical Application &mdash; Choosing Your Computation Level</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">Understanding the accuracy hierarchy helps you make informed choices about which tools to trust for which tasks. For daily Panchang (tithi, nakshatra, yoga, karana), even a simple almanac based on Surya Siddhanta parameters is adequate &mdash; tithis span 12 degrees and nakshatras 13.33 degrees, so 1-degree accuracy is more than sufficient. Our Meeus engine, with 0.01-degree Sun and 0.3-degree Moon accuracy, provides tithi transition times within 2 minutes of reference panchangs.</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">For Kundali analysis (lagna, planetary house placements), precision matters more. The lagna changes sign every ~2 hours, and a 5-minute birth time uncertainty can shift the lagna. Here, Meeus accuracy is borderline &mdash; which is why our app defaults to Swiss Ephemeris for kundali computations. For divisional charts (D-9 Navamsha, D-12 Dwadashamsha), where each division spans only 3.33 or 2.5 degrees, sub-arcsecond Swiss Ephemeris precision becomes essential.</p>
+        <p className="text-text-secondary text-sm leading-relaxed">The weakest link is always birth time accuracy, not astronomical computation. A birth time recorded as &ldquo;around 10:30 AM&rdquo; has ~15 minutes uncertainty, which produces ~7.5 degrees of lagna uncertainty &mdash; far larger than any astronomical error. This is why KP astrologers emphasize birth time rectification (Module 20.1) before detailed chart analysis.</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Cross-References</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">For the Julian Day system that underpins all computations, see <span className="text-gold-light">Module 22.1</span>. For the Sun longitude algorithm (Meeus implementation), see <span className="text-gold-light">Module 22.2</span>. For sunrise/sunset calculation that uses these positions, see <span className="text-gold-light">Module 22.4</span>. For KP sub-lord computation (which demands the highest precision), see <span className="text-gold-light">Module 20.2</span>.</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module16_3Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

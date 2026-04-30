@@ -131,6 +131,41 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Adhika Masa (Intercalary Month)', hi: 'अधिक मास (अधिवर्षी मास)', sa: 'अधिक मास (अधिवर्षी मास)' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {tl({ en: 'A lunar year of 12 months totals approximately 354 days, about 11 days shorter than the solar year of 365.25 days. Left uncorrected, lunar months would drift through the seasons. To keep the lunar calendar aligned with the solar year, an extra month (Adhika Masa or Purushottama Masa) is intercalated roughly every 32.5 months. An Adhika Masa occurs when a lunar month contains no Sankranti (the Sun does not enter a new zodiac sign during that month). This happens because the Sun moves ~1 degree/day while a lunar month spans ~29.5 days — occasionally the Sun stays in one sign for the entire month.', hi: '12 चान्द्र मासों का एक वर्ष लगभग 354 दिनों का होता है, सौर वर्ष के 365.25 दिनों से लगभग 11 दिन छोटा। बिना सुधार के चान्द्र मास ऋतुओं से खिसक जाएँगे। चान्द्र पंचांग को सौर वर्ष से संरेखित रखने के लिए लगभग प्रत्येक 32.5 मास में एक अतिरिक्त मास (अधिक मास या पुरुषोत्तम मास) अन्तःक्षिप्त किया जाता है। अधिक मास तब आता है जब किसी चान्द्र मास में कोई सङ्क्रान्ति न हो (उस मास में सूर्य नई राशि में प्रवेश न करे)।', sa: '12 चान्द्र मासों का एक वर्ष लगभग 354 दिनों का होता है, सौर वर्ष के 365.25 दिनों से लगभग 11 दिन छोटा। बिना सुधार के चान्द्र मास ऋतुओं से खिसक जाएँगे। चान्द्र पंचांग को सौर वर्ष से संरेखित रखने के लिए लगभग प्रत्येक 32.5 मास में एक अतिरिक्त मास (अधिक मास या पुरुषोत्तम मास) अन्तःक्षिप्त किया जाता है।' }, locale)}
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {tl({ en: 'During Adhika Masa, no auspicious ceremonies (marriage, upanayana, griha pravesh) are performed. However, it is considered supremely sacred for spiritual practices, charity, and vrat (fasting). The name Purushottama Masa comes from the belief that Lord Vishnu personally presides over this month. Any 24 Ekadashis that occur during an Adhika Masa (called Kamala Ekadashi, Padmini Ekadashi) are considered especially powerful.', hi: 'अधिक मास में कोई शुभ संस्कार (विवाह, उपनयन, गृह प्रवेश) नहीं किए जाते। किन्तु यह आध्यात्मिक साधना, दान और व्रत (उपवास) के लिए परम पवित्र माना जाता है। पुरुषोत्तम मास नाम इस विश्वास से है कि स्वयं भगवान विष्णु इस मास की अध्यक्षता करते हैं। अधिक मास में आने वाली एकादशियाँ (कमला एकादशी, पद्मिनी एकादशी) विशेष रूप से शक्तिशाली मानी जाती हैं।', sa: 'अधिक मास में कोई शुभ संस्कार (विवाह, उपनयन, गृह प्रवेश) नहीं किए जाते। किन्तु यह आध्यात्मिक साधना, दान और व्रत (उपवास) के लिए परम पवित्र माना जाता है।' }, locale)}
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;शुक्ल पक्ष सदैव कृष्ण पक्ष से श्रेष्ठ है।&quot; यह अतिसरलीकरण है। कृष्ण पक्ष की तिथियाँ विशिष्ट साधनाओं के लिए आदर्श हैं। शनि प्रदोष (कृष्ण त्रयोदशी), मास शिवरात्रि (कृष्ण चतुर्दशी), कृष्ण पक्ष एकादशी &mdash; ये सब गहन आध्यात्मिक तिथियाँ हैं।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Shukla Paksha is always better than Krishna Paksha.&quot; This is an oversimplification. Krishna Paksha tithis are ideal for specific practices. Shani Pradosh (Krishna Trayodashi), Masa Shivaratri (Krishna Chaturdashi), Krishna Paksha Ekadashi &mdash; these are all profound spiritual dates.</>}
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;अधिक मास में जन्मे बच्चे अशुभ होते हैं।&quot; यह पूर्णतया अन्धविश्वास है। अधिक मास में जन्मा शिशु पुरुषोत्तम (विष्णु) मास में जन्मा माना जाता है &mdash; कुछ परम्पराओं में यह विशेष आशीर्वाद माना जाता है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Children born in Adhika Masa are inauspicious.&quot; This is pure superstition. A child born in Adhika Masa is born in Purushottama (Vishnu) month &mdash; in some traditions this is considered a special blessing.</>}
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Cross-References', hi: 'सम्बन्धित मॉड्यूल', sa: 'सम्बन्धित मॉड्यूल' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          {isHi ? <>तिथि की गणना और प्रकार के लिए <span className="text-gold-light">मॉड्यूल 5.1</span> देखें। नक्षत्र (जो तिथि के साथ मिलकर त्योहार निर्धारित करता है) के लिए <span className="text-gold-light">मॉड्यूल 6</span> देखें। त्योहार कैलेण्डर के लिए <span className="text-gold-light">मॉड्यूल 9</span> देखें जो अमान्त/पूर्णिमान्त भेद का व्यावहारिक अनुप्रयोग है।</> : <>For tithi calculation and types, see <span className="text-gold-light">Module 5.1</span>. For nakshatra (which together with tithi determines festivals), see <span className="text-gold-light">Module 6</span>. For the festival calendar (the practical application of the Amanta/Purnimanta distinction), see <span className="text-gold-light">Module 9</span>.</>}
+        </p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module5_2Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

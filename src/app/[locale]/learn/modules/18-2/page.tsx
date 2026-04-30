@@ -134,6 +134,33 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Bhavabala in Predictive Practice', hi: 'भविष्यवाणी अभ्यास में भावबल', sa: 'भविष्यवाणी अभ्यास में भावबल' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi ? <>भावबल गोचर और दशा विश्लेषण दोनों की गुणवत्ता बढ़ाता है। जब गुरु-शनि दोहरा गोचर 7वें भाव को सक्रिय करे: यदि 7वें भाव का भावबल उच्च है, विवाह सुचारू रूप से होगा। यदि भावबल निम्न है (दुर्बल स्वामी, पापी दृष्टि), विवाह हो सकता है किन्तु चुनौतियों के साथ। भावबल बताता है कि घटना होगी या नहीं (&quot;क्या&quot;) नहीं, बल्कि कैसी होगी (&quot;कैसे&quot;)।</> : <>Bhavabala enhances both transit and dasha analysis. When Jupiter-Saturn double transit activates the 7th house: if the 7th house Bhavabala is high, marriage will proceed smoothly. If Bhavabala is low (weak lord, malefic aspects), marriage may happen but with challenges. Bhavabala tells you not WHETHER an event will happen (that&rsquo;s the &ldquo;what&rdquo;), but HOW it will unfold (the &ldquo;quality&rdquo;).</>}
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;सबसे बलवान भाव ही सबसे सक्रिय भाव होगा।&quot; शक्ति और सक्रियता अलग हैं। 10वें भाव का भावबल उच्च हो सकता है पर यदि दशा 7वें भाव का ग्रह चला रहा है तो विवाह क्षेत्र सक्रिय होगा, करियर नहीं। भावबल = क्षमता; दशा + गोचर = सक्रियण।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;The strongest Bhava will always be the most active area.&quot; Strength and activation are different. The 10th house may have the highest Bhavabala, but if the running dasha planet rules the 7th, marriage will be active, not career. Bhavabala = capacity; dasha + transit = activation.</>}
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Cross-References', hi: 'सम्बन्धित मॉड्यूल', sa: 'सम्बन्धित मॉड्यूल' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <>षड्बल (ग्रह शक्ति) के लिए <span className="text-gold-light">मॉड्यूल 18.1</span> देखें। अष्टकवर्ग (गोचर शक्ति) के लिए <span className="text-gold-light">मॉड्यूल 18.3</span> देखें। दोहरा गोचर सिद्धान्त के लिए <span className="text-gold-light">मॉड्यूल 12.3</span> देखें। दशा-गोचर भविष्यवाणी एकीकरण के लिए <span className="text-gold-light">मॉड्यूल 11.3</span> देखें।</> : <>For Shadbala (planetary strength), see <span className="text-gold-light">Module 18.1</span>. For Ashtakavarga (transit strength), see <span className="text-gold-light">Module 18.3</span>. For double transit theory, see <span className="text-gold-light">Module 12.3</span>. For dasha-transit predictive integration, see <span className="text-gold-light">Module 11.3</span>.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module18_2Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

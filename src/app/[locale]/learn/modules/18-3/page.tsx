@@ -133,6 +133,36 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Ashtakavarga for Life Assessment', hi: 'जीवन मूल्यांकन हेतु अष्टकवर्ग', sa: 'जीवन मूल्यांकन हेतु अष्टकवर्ग' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi ? <>गोचर विश्लेषण के अतिरिक्त, SAV (सर्वाष्टकवर्ग) जन्म कुण्डली का एक त्वरित &quot;शक्ति मानचित्र&quot; प्रदान करता है। प्रत्येक भाव का SAV अंक (0-56) उस जीवन क्षेत्र की अन्तर्निहित शक्ति दर्शाता है। 2रे भाव में 35+ अंक = स्वाभाविक धन संचय क्षमता। 7वें भाव में 22 अंक = साझेदारी में अन्तर्निहित चुनौतियाँ। यह एक झलक में बताता है कि कौन-से जीवन क्षेत्र सहज और कौन-से श्रमसाध्य होंगे।</> : <>Beyond transit analysis, SAV (Sarvashtakavarga) provides a quick &ldquo;strength map&rdquo; of the birth chart. Each house&rsquo;s SAV score (0-56) reveals the inherent strength of that life area. 35+ in the 2nd house = natural wealth accumulation ability. 22 in the 7th = inherent partnership challenges. This tells you at a glance which life areas will be effortless and which will require hard work.</>}
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;उच्च SAV अंक वाला भाव हमेशा शुभ परिणाम देता है।&quot; SAV शक्ति (तीव्रता) को मापता है, दिशा (शुभ/अशुभ) को नहीं। 6वें भाव में उच्च SAV शत्रुओं/प्रतिस्पर्धियों का मजबूत प्रभाव दर्शा सकता है। 8वें में उच्च SAV तीव्र परिवर्तनों का संकेत हो सकता है। शुभ/अशुभ निर्णय भाव की प्रकृति और ग्रहों पर निर्भर करता है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;A house with high SAV always gives good results.&quot; SAV measures strength (intensity), not direction (benefic/malefic). High SAV in the 6th house could mean strong enemies/competitors. High SAV in the 8th could indicate intense transformations. The benefic/malefic determination depends on the house&rsquo;s nature and the planets involved.</>}
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;अष्टकवर्ग षड्बल का विकल्प है।&quot; ये पूर्णतया भिन्न प्रणालियाँ हैं। षड्बल ग्रह की अन्तर्निहित शक्ति मापता है। अष्टकवर्ग किसी विशिष्ट राशि स्थान पर शुभ प्रभाव मापता है। एक ग्रह कम षड्बल रख सकता है किन्तु उच्च अष्टकवर्ग बिन्दुओं वाली राशि से गोचर कर अच्छे परिणाम दे सकता है — और विपरीत भी।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Ashtakavarga replaces Shadbala.&quot; These are completely different systems. Shadbala measures a planet&rsquo;s inherent potency. Ashtakavarga measures the benefic support at a specific sign location. A planet can have low Shadbala but transit through a sign with high Ashtakavarga bindus and still deliver good results — and vice versa.</>}
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Cross-References', hi: 'सम्बन्धित मॉड्यूल', sa: 'सम्बन्धित मॉड्यूल' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <>षड्बल (ग्रह शक्ति) के लिए <span className="text-gold-light">मॉड्यूल 18.1</span> देखें। भावबल (भाव शक्ति) के लिए <span className="text-gold-light">मॉड्यूल 18.2</span> देखें। शनि गोचर (साढ़े साती) में अष्टकवर्ग के प्रयोग के लिए <span className="text-gold-light">मॉड्यूल 12.1</span> देखें। गुरु-शनि दोहरा गोचर सिद्धान्त के लिए <span className="text-gold-light">मॉड्यूल 12.3</span> देखें।</> : <>For Shadbala (planetary strength), see <span className="text-gold-light">Module 18.1</span>. For Bhavabala (house strength), see <span className="text-gold-light">Module 18.2</span>. For using Ashtakavarga in Saturn transit (Sade Sati), see <span className="text-gold-light">Module 12.1</span>. For the Jupiter-Saturn double transit theory, see <span className="text-gold-light">Module 12.3</span>.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module18_3Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

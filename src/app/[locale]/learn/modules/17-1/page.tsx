@@ -125,6 +125,47 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          Nakshatra-Activity Matching in Depth
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          The 27 nakshatras classify into activity types based on their inherent nature. Dhruva (fixed) nakshatras &mdash; Rohini, Uttara Phalguni, Uttara Ashadha, Uttarabhadrapada &mdash; support permanent actions: laying foundations, planting trees, purchasing property, establishing institutions. Kshipra (swift) nakshatras &mdash; Ashwini, Pushya, Hasta, Abhijit &mdash; suit quick tasks: posting a letter, making a phone call, short trips, minor purchases.
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          Mridu (soft/gentle) nakshatras &mdash; Mrigashira, Chitra, Anuradha, Revati &mdash; favour arts, romance, friendships, learning music or dance. Tikshna (sharp) nakshatras &mdash; Ardra, Ashlesha, Jyeshtha, Mula &mdash; empower destructive or transformative acts: surgery, demolition, pest control, breaking habits. Misra (mixed) nakshatras &mdash; Krittika, Vishakha &mdash; work for activities with both constructive and destructive elements.
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          Our Muhurta scoring engine maps 20 activity types to their optimal nakshatra categories. Marriage uses Mridu + Dhruva. Business launch uses Kshipra + Dhruva. Medical procedures use Tikshna. Education uses Mridu + Kshipra. Each mapping adds or subtracts points in the Panchang Score dimension, ensuring the nakshatra recommendation is activity-appropriate.
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example &mdash; Wedding Muhurta</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">Scenario:</span> Finding a wedding date in May 2026 for a couple in Zurich. The engine scans each day, evaluating 30-minute windows from sunrise to sunset.
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">May 14 (Thursday), 10:00&ndash;10:30 AM:</span> Nakshatra = Uttara Phalguni (Dhruva, marriage-favourable). Tithi = Shukla Dvitiya (auspicious). Yoga = Shubha. Karana = Bava. No Rahu Kaal. Panchang Score: 88/100. Transit Score: Jupiter strong in Gemini. Timing: Jupiter Hora active. Combined: 84/100 &mdash; excellent.
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          <span className="text-gold-light font-medium">May 14, 2:30&ndash;3:00 PM:</span> Same day, but Rahu Kaal active (1:30&ndash;3:00 PM on Thursdays). Panchang elements identical, but Timing Score drops to 25/100. Combined: 52/100 &mdash; avoid. Same day, vastly different quality depending on the hour.
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Practical Application &mdash; Using Muhurta in Modern Life</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Job interviews:</span> Use Kshipra nakshatras (Ashwini, Pushya, Hasta) with strong Mercury (communication). Avoid Rahu Kaal. The Mercury Hora (planetary hour) adds further support for intellectual tasks.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Surgery:</span> Tikshna nakshatras (Ardra, Ashlesha, Jyeshtha, Mula) actually FAVOUR medical procedures &mdash; their cutting energy aligns with surgical goals. Avoid full Moon (bleeding risk in traditional belief). Mars should be strong, not debilitated.</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Daily routine:</span> For most people, simply avoiding Rahu Kaal for new tasks and checking the daily yoga is practical enough. Reserve full Muhurta analysis for life-changing events: marriage, business registration, house purchase, naming ceremony. See Module 17.2 for marriage-specific rules and Module 17.3 for Griha Pravesh and travel.</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module17_1Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

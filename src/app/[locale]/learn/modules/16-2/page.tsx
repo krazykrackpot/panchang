@@ -125,6 +125,56 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          Deeper Comparison — Planet-in-House Results
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          Consider Mars in the 7th house. BPHS (Ch. 17) states broadly that Mars in the 7th gives &ldquo;a quarrelsome spouse and the native will be wicked.&rdquo; Phaladeepika (Ch. 7, v. 11) refines this: &ldquo;Mars in the 7th makes the native passionate, domineering in marriage, and attracted to others&rsquo; spouses &mdash; but if Mars is in own sign (Aries or Scorpio) or exalted (Capricorn), the native is instead courageous and loyal with a strong partner.&rdquo; Jataka Parijata adds the condition that if Jupiter aspects this Mars, the negative effects are entirely cancelled and the native gains through partnership.
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          This layered analysis &mdash; BPHS for the raw indication, Phaladeepika for dignity-based nuance, Jataka Parijata for cancellation conditions &mdash; is how experienced astrologers actually work. No single text gives the complete picture. Our tippanni engine replicates this by checking Mars&rsquo;s dignity and received aspects before generating the interpretation text, following the strictest applicable rule from across all three sources.
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example &mdash; Resolving a Textual Conflict</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">Question:</span> A chart has Jupiter in the 5th house in Cancer (exalted). Is this a Hamsa Mahapurusha Yoga?
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">BPHS:</span> Yes &mdash; Hamsa Yoga forms when Jupiter is in a Kendra in its own or exalted sign. The 5th house is NOT a Kendra (Kendras are 1, 4, 7, 10).
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">Phaladeepika:</span> Agrees &mdash; explicitly limits Mahapurusha Yogas to Kendra placements only. Jupiter in the 5th (trikona, not kendra) does NOT form Hamsa Yoga regardless of dignity.
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          <span className="text-gold-light font-medium">Resolution:</span> Both texts agree: no Hamsa Yoga. However, exalted Jupiter in the 5th is still an exceptionally powerful placement &mdash; it forms other yogas (Saraswati Yoga if Mercury and Venus are also strong) and gives outstanding intelligence, children, and spiritual inclination. The lesson: failing to form one yoga does not diminish a planet&rsquo;s overall contribution.
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Additional Misconceptions</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">Myth:</span> &ldquo;Phaladeepika is just a simplified BPHS &mdash; reading BPHS covers everything.&rdquo; Reality: Phaladeepika contains original observations not found in BPHS, particularly in its treatment of planet-in-house results. Mantreshwara drew from his own experience and from texts that have since been lost. Skipping Phaladeepika means missing unique interpretive material.
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          <span className="text-gold-light font-medium">Myth:</span> &ldquo;Jataka Parijata&rsquo;s stricter yoga conditions mean fewer yogas work.&rdquo; Reality: Stricter conditions mean fewer false positives, not fewer real yogas. A yoga that passes Jataka Parijata&rsquo;s filters is more likely to manifest tangibly in the native&rsquo;s life than one identified by looser criteria alone.
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Practical Application &mdash; Building Your Reference Library</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Beginner level:</span> Start with a good translation of Phaladeepika. G.S. Kapoor&rsquo;s English translation is widely available. Read one chapter per week, applying each verse to your own chart.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Intermediate level:</span> Add BPHS (R. Santhanam translation, 2 volumes) for the foundational principles. Cross-reference the planet-in-house results between the two texts.</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Advanced level:</span> Add Jataka Parijata for yoga verification. When you identify a yoga in a chart, check all three texts to assess its strength and conditions. This triple-source verification is the gold standard of classical Jyotish scholarship.</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module16_2Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

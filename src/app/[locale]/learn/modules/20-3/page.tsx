@@ -135,6 +135,34 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'KP Ruling Planets — Quick Confirmation', hi: 'केपी शासक ग्रह — त्वरित पुष्टि', sa: 'केपी शासक ग्रह — त्वरित पुष्टि' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {tl({ en: 'Ruling Planets (RPs) are the planets governing the current moment — the day lord, Moon star lord, Moon sign lord, Lagna star lord, and Lagna sign lord at the time of judgment. KP uses RPs as a quick confirmation technique: if the significators identified through the 4-level system also appear among the current Ruling Planets, the event is very likely to happen. If none of the significators match the RPs, the timing may not be right even if the significator table is favorable.', hi: 'शासक ग्रह (RP) वर्तमान क्षण को शासित करने वाले ग्रह हैं — विचार समय पर दिन स्वामी, चन्द्र नक्षत्र स्वामी, चन्द्र राशि स्वामी, लग्न नक्षत्र स्वामी और लग्न राशि स्वामी। केपी RP को त्वरित पुष्टि तकनीक के रूप में प्रयोग करता है: यदि 4-स्तरीय पद्धति से पहचाने गए कारक वर्तमान शासक ग्रहों में भी दिखें, तो घटना होने की सम्भावना बहुत अधिक है।', sa: 'शासक ग्रह (RP) वर्तमान क्षण को शासित करने वाले ग्रह हैं।' }, locale)}
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
+          {tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}
+        </h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'भ्रान्ति:' : 'Myth:'}</span> {isHi ? <>&quot;केपी पद्धति पाराशरी से श्रेष्ठ है।&quot; दोनों पद्धतियों की अपनी शक्तियाँ हैं। पाराशरी जीवन की व्यापक कथा, चरित्र विश्लेषण और आध्यात्मिक विकास पथ दर्शाने में उत्कृष्ट है। केपी विशिष्ट घटना भविष्यवाणी (&quot;क्या विवाह होगा? कब?&quot;) में उत्कृष्ट है। अनेक अनुभवी ज्योतिषी दोनों प्रयोग करते हैं — पाराशरी जीवन पठन के लिए, केपी विशिष्ट प्रश्नों के लिए।</> : <>&quot;KP is superior to Parashari.&quot; Both systems have distinct strengths. Parashari excels at broad life narrative, character analysis, and spiritual growth paths. KP excels at specific event prediction (&ldquo;will marriage happen? when?&rdquo;). Many experienced astrologers use both — Parashari for life reading, KP for specific questions.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">{isHi ? 'भ्रान्ति:' : 'Myth:'}</span> {isHi ? <>&quot;केपी में ग्रह बल (षड्बल) अप्रासंगिक है।&quot; केपी ग्रह बल को स्पष्ट रूप से नहीं गणित करता, किन्तु ग्रह स्थिति का प्रभाव निहित है। उप-स्वामी जो नीच या अस्त है, उसी उप-स्वामी की तुलना में कमज़ोर परिणाम देगा जो स्वराशी या उच्च में है। व्यावहारिक अन्तर है।</> : <>&quot;Planetary strength (Shadbala) is irrelevant in KP.&quot; KP does not explicitly compute planetary strength, but the effect of planetary condition is implicit. A sub-lord that is debilitated or combust will deliver weaker results than the same sub-lord in own sign or exalted. The practical difference is real.</>}</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Cross-References', hi: 'सम्बन्धित मॉड्यूल', sa: 'सम्बन्धित मॉड्यूल' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <>केपी उप-स्वामी सारणी के लिए <span className="text-gold-light">मॉड्यूल 20.2</span> देखें। केपी प्रणाली के परिचय और प्लेसिडस भाव के लिए <span className="text-gold-light">मॉड्यूल 20.1</span> देखें। विंशोत्तरी दशा (जो केपी समय-निर्धारण का आधार है) के लिए <span className="text-gold-light">मॉड्यूल 11.1</span> देखें।</> : <>For the KP sub-lord table, see <span className="text-gold-light">Module 20.2</span>. For KP system introduction and Placidus houses, see <span className="text-gold-light">Module 20.1</span>. For Vimshottari Dasha (the basis of KP timing), see <span className="text-gold-light">Module 11.1</span>.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module20_3Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

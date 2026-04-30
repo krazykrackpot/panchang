@@ -133,6 +133,34 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Minimum Strength Thresholds', hi: 'न्यूनतम शक्ति सीमाएँ', sa: 'न्यूनतम शक्ति सीमाएँ' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {tl({ en: 'BPHS prescribes minimum Shadbala requirements for each planet: Sun 6.5 rupas, Moon 6.0, Mars 5.0, Mercury 7.0, Jupiter 6.5, Venus 5.5, Saturn 5.0. A planet scoring below its minimum is functionally weak regardless of dignity — even an exalted planet can fail the Shadbala threshold if other components drag it down. Conversely, a debilitated planet can exceed the threshold if strong Dig Bala, Kala Bala, and benefic aspects compensate.', hi: 'BPHS प्रत्येक ग्रह के लिए न्यूनतम षड्बल आवश्यकताएँ निर्धारित करता है: सूर्य 6.5 रूपा, चन्द्र 6.0, मंगल 5.0, बुध 7.0, गुरु 6.5, शुक्र 5.5, शनि 5.0। इस सीमा से नीचे अंकन वाला ग्रह कार्यात्मक रूप से दुर्बल है, मर्यादा की परवाह किए बिना।', sa: 'BPHS प्रत्येक ग्रह के लिए न्यूनतम षड्बल आवश्यकताएँ निर्धारित करता है: सूर्य 6.5 रूपा, चन्द्र 6.0, मंगल 5.0, बुध 7.0, गुरु 6.5, शुक्र 5.5, शनि 5.0।' }, locale)}
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Practical Application — Chart Triage', hi: 'व्यावहारिक अनुप्रयोग — कुण्डली त्रिआयाम', sa: 'व्यावहारिक अनुप्रयोग — कुण्डली त्रिआयाम' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'चरण 1:' : 'Step 1:'}</span> {isHi ? <>सभी 7 ग्रहों का षड्बल गणित करें। हमारा ऐप यह मिलीसेकण्ड में करता है।</> : <>Compute Shadbala for all 7 planets. Our app does this in milliseconds.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'चरण 2:' : 'Step 2:'}</span> {isHi ? <>सबसे बलवान ग्रह (कप्तान) पहचानें — इसके कारकत्व जातक के जीवन में प्रभुत्व रखते हैं।</> : <>Identify the strongest planet (the captain) — its significations dominate the native&rsquo;s life.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'चरण 3:' : 'Step 3:'}</span> {isHi ? <>न्यूनतम सीमा से नीचे के ग्रह चिह्नित करें — इन्हें उपचार की आवश्यकता है।</> : <>Flag planets below the minimum threshold — these need remedial attention.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">{isHi ? 'चरण 4:' : 'Step 4:'}</span> {isHi ? <>दुर्बल ग्रह की दशा/अन्तर्दशा पहचानें — ये कठिन काल होंगे। उपचार: मन्त्र, रत्न (सम्बन्धित शुभ ग्रह का), दान।</> : <>Identify when the weak planet&rsquo;s dasha/antardasha runs — these will be challenging periods. Remedies: mantras, gemstones (of the associated benefic), and charitable acts.</>}</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Cross-References', hi: 'सम्बन्धित मॉड्यूल', sa: 'सम्बन्धित मॉड्यूल' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <>भावबल (भाव शक्ति) के लिए <span className="text-gold-light">मॉड्यूल 18.2</span> देखें जो षड्बल का भाव-स्तरीय विस्तार है। अष्टकवर्ग के लिए <span className="text-gold-light">मॉड्यूल 18.3</span> देखें जो एक भिन्न शक्ति मूल्यांकन प्रणाली है। ग्रह मर्यादा (उच्च, नीच, मूलत्रिकोण) के लिए <span className="text-gold-light">मॉड्यूल 4</span> देखें।</> : <>For Bhavabala (house strength), see <span className="text-gold-light">Module 18.2</span>, which extends Shadbala to the house level. For Ashtakavarga, see <span className="text-gold-light">Module 18.3</span>, a different strength assessment system. For planetary dignity (exaltation, debilitation, moolatrikona), see <span className="text-gold-light">Module 4</span>.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module18_1Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

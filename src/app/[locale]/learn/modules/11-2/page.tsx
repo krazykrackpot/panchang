@@ -134,6 +134,25 @@ function Page4() {
   );
 }
 
+function Page5() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Practical Application — Multi-System Prediction', hi: 'व्यावहारिक अनुप्रयोग — बहु-पद्धति भविष्यवाणी', sa: 'व्यावहारिक अनुप्रयोग — बहु-पद्धति भविष्यवाणी' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>किसी भी प्रमुख प्रश्न (&quot;कब विवाह होगा?&quot; &quot;कब नौकरी बदलेगी?&quot;) के लिए, तीनों दशा पद्धतियों की जाँच करें। यह मात्र अकादमिक अभ्यास नहीं &mdash; अभिसारी प्रमाणीकरण विश्वास को नाटकीय रूप से बढ़ाता है। हमारा कुण्डली इंजन विंशोत्तरी दशा पूर्ण गणित करता है और वर्तमान काल पहचानता है। भविष्य के अपडेट में योगिनी और चर दशा का समान्तर प्रदर्शन जोड़ा जाएगा, किन्तु अभी भी उपयोगकर्ता इस मॉड्यूल के सूत्रों का उपयोग कर मैनुअली जाँच सकते हैं।</> : <>For any major question (&ldquo;When will I marry?&rdquo; &ldquo;When will my career change?&rdquo;), check all three dasha systems. This is not merely academic &mdash; convergent validation dramatically increases confidence. Our Kundali engine computes full Vimshottari Dasha and identifies the current period. Future updates will add parallel Yogini and Char Dasha display, but even now users can manually verify using the formulas from this module.</>}</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;चर दशा में सम राशि से पीछे और विषम से आगे &mdash; बस इतना ही।&quot; जैमिनी सूत्रों में अनेक विशेष नियम हैं: यदि राशि स्वामी उसी राशि में हो तो अवधि 12 वर्ष नहीं बल्कि विवादित है (कुछ विद्वान 0, कुछ 12 मानते हैं)। इसलिए चर दशा गणना में विभिन्न सॉफ्टवेयर भिन्न परिणाम दे सकते हैं &mdash; यह जैमिनी ज्योतिष के सबसे विवादित क्षेत्रों में से एक है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Char Dasha is simple &mdash; just count forward for odd, backward for even.&quot; Jaimini Sutras contain many special rules: if a sign&rsquo;s lord is IN that sign, the period is not simply 12 years but is debated (some scholars say 0, some say 12). This is why different KP/Jaimini software can give different Char Dasha results &mdash; it is one of the most contested areas in Jaimini astrology.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module11_2Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />, <Page5 key="p5" />]} questions={QUESTIONS} />;
 }

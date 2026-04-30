@@ -130,6 +130,50 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          Advanced Considerations for Life-Event Muhurtas
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          Beyond the basic rules covered on previous pages, each life-event Muhurta has subtle layers that distinguish an adequate time from an excellent one. For Griha Pravesh, the Navamsha of the Muhurta Lagna matters: if the Navamsha falls in a water sign (Cancer, Scorpio, Pisces), it indicates emotional comfort and domestic harmony in the new home. For vehicle purchase, checking the Hora lord at the moment of first ignition (not just the purchase paperwork) adds precision &mdash; Mars Hora is ideal since Mars is the karaka for machinery and engineering.
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          Travel Muhurta has an additional consideration rarely discussed: the return journey. Classical texts advise that return travel should also avoid Disha Shool. If you departed northward on Tuesday (safe, since Tuesday&rsquo;s Shool is North only for departure direction), returning south on Thursday should be fine (Thursday&rsquo;s Shool is South for departures &mdash; but you are returning, and some traditions apply Shool only to outbound journeys). Our engine currently evaluates only the outbound direction &mdash; this is a known simplification noted in the tool&rsquo;s documentation.
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example &mdash; Griha Pravesh in Zurich</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">Scenario:</span> Moving into a new apartment in Corseaux, Switzerland on May 22, 2026 (Thursday). Entrance faces East.
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">Panchang check:</span> Nakshatra = Uttarabhadrapada (Dhruva/fixed &mdash; excellent for permanent actions). Tithi = Shukla Sashti (6th, auspicious). Yoga = Shiva (auspicious). No Vishti Karana. Thursday is Jupiter&rsquo;s day &mdash; one of the preferred days for Griha Pravesh.
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">Bhoomi Dosha check:</span> May is in the Jyeshtha-Ashadha solar period. East-facing entrance during this period &mdash; no Bhoomi Dosha conflict. Safe to proceed.
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          <span className="text-gold-light font-medium">Optimal window:</span> Between 9:00&ndash;10:30 AM when Jupiter Hora is active and the Muhurta Lagna is Cancer (4th house = home, domestic comfort). Score: 79/100. The family should boil milk upon entry (traditional Griha Pravesh ritual signifying abundance).
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Additional Misconceptions</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Myth:</span> &ldquo;Griha Pravesh is only for homeowners, not renters.&rdquo; The ceremony applies to any residence where you intend to live. A rented apartment is your home for the duration of the lease. The inception chart affects your experience in that dwelling regardless of ownership status.</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Myth:</span> &ldquo;Disha Shool can be avoided by GPS navigation.&rdquo; Disha Shool is based on the compass direction of your initial departure, not the route taken. Starting your journey in the Shool direction, even if you later turn, counts as travelling in that direction. The traditional detour remedy (briefly travelling in a non-Shool direction first) works because it changes the initial direction of departure.</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Cross-References</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">For the general Muhurta scoring framework, see <span className="text-gold-light">Module 17.1</span>. For marriage-specific Muhurta rules, see <span className="text-gold-light">Module 17.2</span>. For Rahu Kaal and Choghadiya time divisions, see <span className="text-gold-light">Module 8.1</span>. For the astronomical computation behind sunrise (which anchors all Muhurta timing), see <span className="text-gold-light">Module 22.4</span>.</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module17_3Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

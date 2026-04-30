@@ -128,6 +128,25 @@ function Page4() {
   );
 }
 
+function Page5() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Practical Application — EoT Throughout the Year', hi: 'व्यावहारिक अनुप्रयोग — वर्ष भर EoT', sa: 'व्यावहारिक अनुप्रयोग — वर्ष भर EoT' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>EoT ज्ञान का सबसे प्रत्यक्ष अनुप्रयोग अभिजित मुहूर्त निर्धारण में है। अभिजित = सौर मध्याह्न पर केन्द्रित 48 मिनट। फरवरी में EoT = +14 मिनट, अतः कोर्सो में अभिजित ~12:48-13:36 CET। नवम्बर में EoT = -16 मिनट, अतः अभिजित ~13:22-14:10 CET। यह 30+ मिनट का अन्तर केवल EoT से आता है, और इसे अनदेखा करने पर अभिजित गलत घण्टे में पड़ेगा।</> : <>The most direct application of EoT knowledge is in determining Abhijit Muhurta. Abhijit = 48 minutes centered on solar noon. In February, EoT = +14 minutes, so in Corseaux, Abhijit falls around 12:48-13:36 CET. In November, EoT = -16 minutes, so Abhijit shifts to around 13:22-14:10 CET. This 30+ minute difference comes solely from EoT, and ignoring it would place Abhijit in the wrong hour.</>}</p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;EoT केवल गणितीय रुचि है &mdash; व्यावहारिक प्रभाव नगण्य है।&quot; 16 मिनट का EoT सीधे सूर्योदय, सूर्यास्त, अभिजित मुहूर्त, होरा सीमाओं और राहु काल को प्रभावित करता है। 4 मिनट की सूर्योदय त्रुटि (EoT अनदेखा करने पर) सभी समय-आधारित पंचांग तत्वों में 4 मिनट की त्रुटि प्रसारित करती है। हमारे इंजन का 2-पास एल्गोरिदम (मॉड्यूल 22.4) इसीलिए EoT को दोनों पासों में शामिल करता है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;EoT is only of mathematical interest &mdash; the practical impact is negligible.&quot; The 16-minute EoT directly affects sunrise, sunset, Abhijit Muhurta, Hora boundaries, and Rahu Kaal. A 4-minute sunrise error (from ignoring EoT) cascades into 4-minute errors in all time-based Panchang elements. Our engine&rsquo;s 2-pass algorithm (Module 22.4) includes EoT in both passes for exactly this reason.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module22_6Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />, <Page5 key="p5" />]} questions={QUESTIONS} />;
 }

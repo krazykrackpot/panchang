@@ -255,12 +255,24 @@ html.light .gold-divider {
 /* ─── Cosmic Micro-Interactions ─── */
 
 /* 1. Auspicious pulse — soft gold glow for favorable elements */
+/* Auspicious glow — uses opacity on pseudo-element for GPU compositing
+   (box-shadow animation is non-composited and triggers layout recalc) */
 @keyframes auspicious-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 168, 83, 0); }
-  50% { box-shadow: 0 0 20px 4px rgba(212, 168, 83, 0.15); }
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
 }
 .auspicious-glow {
+  position: relative;
+}
+.auspicious-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 20px 4px rgba(212, 168, 83, 0.15);
+  pointer-events: none;
   animation: auspicious-pulse 3s ease-in-out infinite;
+  will-change: opacity;
 }
 
 /* 2. Gold shimmer — sweeping light effect for data transitions */

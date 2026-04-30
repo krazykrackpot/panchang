@@ -576,7 +576,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8" style={hf}>
           <span className="text-gold-gradient">{t('todayPanchang')}</span>
         </h2>
-        <HomeClientWidgets locale={locale} serverPanchang={serverPanchang} serverLocation={serverLocation} />
+        {/* min-h prevents CLS when client widget hydrates and expands */}
+        <div className="min-h-[400px] sm:min-h-[350px]">
+          <HomeClientWidgets locale={locale} serverPanchang={serverPanchang} serverLocation={serverLocation} />
+        </div>
       </section>
 
       <GoldDivider />

@@ -140,8 +140,12 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
         />
       )}
 
-      {/* Interactive client component: takes over for full functionality */}
-      <PanchangClient />
+      {/* Interactive client component: takes over for full functionality.
+          min-h reserves space to prevent CLS (0.912 measured by Lighthouse)
+          while client JS hydrates and renders the 5 panchang cards + sections. */}
+      <div className="min-h-[800px] sm:min-h-[600px]">
+        <PanchangClient />
+      </div>
     </>
   );
 }

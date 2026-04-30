@@ -149,7 +149,7 @@ export default async function LocaleLayout({
           </a>
           <StarField />
           <Navbar />
-          <main id="main-content" className="relative z-10 pt-16 min-h-screen" role="main">
+          <main id="main-content" className="relative z-10 pt-16 min-h-screen overflow-x-hidden" role="main">
             <ScrollToTop />
             {children}
           </main>

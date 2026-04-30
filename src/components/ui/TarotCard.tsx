@@ -71,7 +71,7 @@ export default function TarotCard({
         <div className="relative z-10 flex flex-col items-center justify-between h-full px-3 py-4">
           {/* Subtitle */}
           {subtitle && (
-            <div className="text-[9px] uppercase tracking-[0.2em] text-[#8a6d2b] font-semibold mt-1">
+            <div className="text-[10px] sm:text-[9px] uppercase tracking-[0.2em] text-[#8a6d2b] font-semibold mt-1">
               {subtitle}
             </div>
           )}

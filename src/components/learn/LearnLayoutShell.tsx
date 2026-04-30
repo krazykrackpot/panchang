@@ -13,7 +13,7 @@ export default function LearnLayoutShell({ children }: { children: React.ReactNo
       </div>
 
       {/* Main content */}
-      <div className="flex-1 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="flex-1 min-w-0 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 overflow-x-hidden">
         {children}
       </div>
 

@@ -12,6 +12,7 @@ import { Link } from '@/lib/i18n/navigation';
 import ShareButton from '@/components/ui/ShareButton';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
+import { trackHoroscopeViewed } from '@/lib/analytics';
 import type { Locale } from '@/types/panchang';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
 
@@ -231,9 +232,10 @@ export default function MonthlyHoroscopePage() {
         }
       }
       setDayData(allDays);
+      trackHoroscopeViewed({ rashi: rashiSlug, period: 'monthly', personalized: false });
     })
     .finally(() => setLoading(false));
-  }, [rashi, year, month, daysInMonth, isHi]);
+  }, [rashi, rashiSlug, year, month, daysInMonth, isHi]);
 
   // Compute weekly summaries
   const weekSummaries = useMemo((): WeekSummary[] => {

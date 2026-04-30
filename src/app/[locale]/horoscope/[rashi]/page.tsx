@@ -13,6 +13,7 @@ import ShareButton from '@/components/ui/ShareButton';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
 import { useBirthDataStore } from '@/stores/birth-data-store';
+import { trackHoroscopeViewed } from '@/lib/analytics';
 import type { Locale } from '@/types/panchang';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
 import type { KundaliData } from '@/types/kundali';
@@ -231,7 +232,10 @@ export default function RashiHoroscopePage() {
         if (res.ok) return res.json();
         throw new Error('Failed');
       })
-      .then((data: DailyHoroscope) => setHoroscope(data))
+      .then((data: DailyHoroscope) => {
+        setHoroscope(data);
+        trackHoroscopeViewed({ rashi: rashiSlug, period: 'daily', personalized: birthRashi === rashi?.id && birthNakshatra > 0 });
+      })
       .catch(err => console.error('[horoscope/rashi] Failed to fetch daily horoscope:', err))
       .finally(() => setLoading(false));
   }, [rashi, birthRashi, birthNakshatra]);

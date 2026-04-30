@@ -6,6 +6,7 @@ import { Share2, Check, Copy, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { trackShareClicked } from '@/lib/analytics';
 
 /* ════════════════════════════════════════════════════════════════
    Labels
@@ -69,6 +70,7 @@ export default function ShareButton({ title, text, url, locale, variant = 'inlin
   async function nativeShare() {
     try {
       await navigator.share({ title, text, url: shareUrl });
+      trackShareClicked({ platform: 'native', page: window.location.pathname });
     } catch {
       // User cancelled or API unavailable — silently ignore
     }
@@ -97,6 +99,7 @@ export default function ShareButton({ title, text, url, locale, variant = 'inlin
       document.execCommand('copy');
       document.body.removeChild(ta);
     }
+    trackShareClicked({ platform: 'copy', page: window.location.pathname });
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }
@@ -126,6 +129,7 @@ export default function ShareButton({ title, text, url, locale, variant = 'inlin
           target="_blank"
           rel="noopener noreferrer"
           aria-label={l(LABELS.wa)}
+          onClick={() => trackShareClicked({ platform: 'whatsapp', page: window.location.pathname })}
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#25D366]/15 hover:bg-[#25D366]/30 text-[#25D366] border border-[#25D366]/20 hover:border-[#25D366]/40 transition-all duration-200 ${hasNativeShare ? 'hidden sm:inline-flex' : ''}`}
         >
           <WhatsAppIcon className="w-4 h-4" />
@@ -138,6 +142,7 @@ export default function ShareButton({ title, text, url, locale, variant = 'inlin
           target="_blank"
           rel="noopener noreferrer"
           aria-label={l(LABELS.x)}
+          onClick={() => trackShareClicked({ platform: 'twitter', page: window.location.pathname })}
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-white/8 hover:bg-white/15 text-white/80 border border-white/10 hover:border-white/20 transition-all duration-200 ${hasNativeShare ? 'hidden sm:inline-flex' : ''}`}
         >
           <XIcon className="w-3.5 h-3.5" />
@@ -185,6 +190,7 @@ export default function ShareButton({ title, text, url, locale, variant = 'inlin
                 href={waUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackShareClicked({ platform: 'whatsapp', page: window.location.pathname })}
                 className="flex items-center gap-2.5 w-full px-3 py-2.5 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 text-[#25D366] font-semibold text-sm transition-all"
               >
                 <WhatsAppIcon className="w-5 h-5" />
@@ -196,6 +202,7 @@ export default function ShareButton({ title, text, url, locale, variant = 'inlin
                 href={xUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackShareClicked({ platform: 'twitter', page: window.location.pathname })}
                 className="flex items-center gap-2.5 w-full px-3 py-2 rounded-xl bg-white/8 hover:bg-white/15 text-white/80 text-sm transition-all"
               >
                 <XIcon className="w-4 h-4" />

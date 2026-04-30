@@ -3,6 +3,7 @@
 import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import MSG from '@/messages/pages/calendar.json';
+import { trackCalendarViewed } from '@/lib/analytics';
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -449,7 +450,7 @@ export default function CalendarPage() {
       {/* View mode toggle: Western / Hindu Lunar */}
       <div className="flex justify-center gap-1 mb-4">
         <button
-          onClick={() => { setViewMode('western'); setSelectedMonth(null); }}
+          onClick={() => { setViewMode('western'); setSelectedMonth(null); trackCalendarViewed({ view: 'western', month: selectedMonth ?? 0, year }); }}
           className={`px-4 py-2 rounded-l-xl text-xs font-bold transition-all border ${
             viewMode === 'western'
               ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
@@ -459,7 +460,7 @@ export default function CalendarPage() {
           {msg('westernMonths', locale)}
         </button>
         <button
-          onClick={() => { setViewMode('lunar'); setSelectedMonth(null); }}
+          onClick={() => { setViewMode('lunar'); setSelectedMonth(null); trackCalendarViewed({ view: 'lunar', month: selectedMonth ?? 0, year }); }}
           className={`px-4 py-2 text-xs font-bold transition-all border ${
             viewMode === 'lunar'
               ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
@@ -469,7 +470,7 @@ export default function CalendarPage() {
           {msg('hinduLunarMonths', locale)}
         </button>
         <button
-          onClick={() => { setViewMode('grid'); setSelectedMonth(new Date().getMonth()); }}
+          onClick={() => { const m = new Date().getMonth(); setViewMode('grid'); setSelectedMonth(m); trackCalendarViewed({ view: 'grid', month: m, year }); }}
           className={`px-4 py-2 rounded-r-xl text-xs font-bold transition-all border flex items-center gap-1.5 ${
             viewMode === 'grid'
               ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'

@@ -15,6 +15,7 @@ import { Link } from '@/lib/i18n/navigation';
 import ShareButton from '@/components/ui/ShareButton';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
+import { trackHoroscopeViewed } from '@/lib/analytics';
 import type { Locale } from '@/types/panchang';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
 
@@ -223,7 +224,7 @@ export default function WeeklyHoroscopePage() {
   const [loading, setLoading] = useState(true);
   const [weekDates, setWeekDates] = useState<string[]>([]);
 
-  const fetchWeek = useCallback(async (id: number) => {
+  const fetchWeek = useCallback(async (id: number, slug: string) => {
     const dates = getWeekDates();
     setWeekDates(dates);
     setLoading(true);
@@ -239,6 +240,7 @@ export default function WeeklyHoroscopePage() {
         )
       );
       setHoroscopes(results);
+      trackHoroscopeViewed({ rashi: slug, period: 'weekly', personalized: false });
     } catch (err) {
       console.error('Failed to fetch weekly horoscopes:', err);
     } finally {
@@ -248,8 +250,8 @@ export default function WeeklyHoroscopePage() {
 
   useEffect(() => {
     if (!rashi) return;
-    fetchWeek(rashi.id);
-  }, [rashi, fetchWeek]);
+    fetchWeek(rashi.id, rashiSlug);
+  }, [rashi, rashiSlug, fetchWeek]);
 
   if (!rashi) {
     return (

@@ -25,6 +25,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { ShareCardButton } from '@/components/shareable/ShareCardButton';
 import { selectHighlightKutas, getKutaInsight, getOverallVerdict } from '@/lib/constants/kuta-insights';
+import { trackMatchingComputed } from '@/lib/analytics';
 
 const L = {
   en: {
@@ -187,11 +188,15 @@ export default function MatchingPage() {
       if (data.error) { setMatchError(data.error); setResult(null); setDashaResult(null); setLoading(false); return; }
       setMatchError(null);
       if (matchSystem === 'dasha-koota') {
-        setDashaResult(data as DashaKootaMatchResult);
+        const dr = data as DashaKootaMatchResult;
+        setDashaResult(dr);
         setResult(null);
+        trackMatchingComputed({ system: matchSystem, score: dr.totalScored, verdict: dr.verdict });
       } else {
-        setResult(data as MatchResult);
+        const mr = data as MatchResult;
+        setResult(mr);
         setDashaResult(null);
+        trackMatchingComputed({ system: matchSystem, score: mr.totalScore, verdict: mr.verdict });
       }
 
       // Generate kundalis for both partners in parallel (non-blocking)

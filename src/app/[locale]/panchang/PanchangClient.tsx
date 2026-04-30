@@ -1290,7 +1290,7 @@ export default function PanchangClient() {
                 { href: '/panchang/tithi', label: 'তিথি বিশদ', desc: 'Today\'s tithi analysis' },
                 { href: '/panchang/auspicious', label: 'শুভ সময়', desc: 'Auspicious timings' },
                 { href: '/calendar', label: 'পঞ্জিকা', desc: 'Festival calendar' },
-              ] : (locale === 'hi' || locale === 'mai' || locale === 'mr' || locale === 'gu') ? [
+              ] : (locale === 'hi' || locale === 'gu') ? [
                 { href: '/choghadiya', label: isDevanagari ? 'चौघड़िया' : 'Choghadiya', desc: isDevanagari ? 'आज के शुभ-अशुभ चौघड़िया' : 'Today\'s auspicious periods' },
                 { href: '/panchang/auspicious', label: isDevanagari ? 'व्रत एवं शुभ काल' : 'Vrat & Timings', desc: isDevanagari ? 'अमृत काल · राहु काल · वर्ज्यम' : 'Amrit Kalam · Rahu Kaal · Varjyam' },
                 { href: '/hora', label: isDevanagari ? 'होरा' : 'Hora', desc: isDevanagari ? 'वर्तमान ग्रहीय होरा' : 'Current planetary hour' },

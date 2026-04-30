@@ -197,17 +197,23 @@ export function generateToolLD(name: string, description: string, url: string): 
 /**
  * Generate HowTo JSON-LD for puja/ritual pages.
  * See https://schema.org/HowTo
+ * estimatedCost + totalTime increase rich result eligibility in Google Search.
  */
 export function generateHowToLD(opts: {
   name: string;
   description: string;
   steps: { name: string; text: string }[];
+  totalTimeMinutes?: number;
 }): object {
   return {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
     name: opts.name,
     description: opts.description,
+    // All pujas on Dekho Panchang are free guides — no paid service
+    estimatedCost: { '@type': 'MonetaryAmount', currency: 'USD', value: '0' },
+    // ISO 8601 duration: default 45 min if not specified
+    totalTime: `PT${opts.totalTimeMinutes ?? 45}M`,
     step: opts.steps.map((s, i) => ({
       '@type': 'HowToStep',
       position: i + 1,

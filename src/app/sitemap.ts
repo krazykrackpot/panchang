@@ -14,15 +14,12 @@ import { locales } from '@/lib/i18n/config';
 /**
  * Locales submitted to the sitemap for crawl.
  *
- * We intentionally submit only `en` and `hi` for now. The other 8 locales are
- * fully functional and linked via hreflang alternates below — users and Google
- * can still navigate to them — but we don't queue them for crawl until the
- * domain earns the authority to justify ~9,000 URL requests. Starting with a
- * lean, high-differentiation sitemap (~900 URLs × 2 locales) gets our primary
- * content indexed first; we expand later.
+ * Only en + hi are submitted as sitemap entries. The other 5 active locales
+ * (ta, te, bn, gu, kn) appear in hreflang alternates so Google groups them
+ * as a single international site — but we don't queue them for crawl until
+ * the domain earns more authority.
  *
- * All 10 locales still appear in each entry's `alternates.languages` map so
- * Google knows they exist and can group them as a single international site.
+ * sa, mr, mai were retired (Apr 2026) — middleware 301-redirects them to /en/.
  */
 const sitemapLocales: ReadonlyArray<typeof locales[number]> = ['en', 'hi'];
 

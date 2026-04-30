@@ -39,6 +39,18 @@ function Page1() {
         <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Fast Planets — Event Triggers', hi: 'तीव्र ग्रह — घटना प्रेरक', sa: 'तीव्र ग्रह — घटना प्रेरक' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>तीव्र ग्रह ट्रिगर का कार्य करते हैं जो मन्द ग्रह गोचर द्वारा प्रतिश्रुत घटनाओं के सटीक प्रकटीकरण का समय निर्धारित करते हैं। सूर्य लगभग 1 मास में एक राशि पार करता है, चन्द्रमा लगभग 2.25 दिन में, बुध 25 दिन से 2 मास में (वक्री के अनुसार), शुक्र लगभग 1 मास में और मंगल लगभग 45 दिन में। जब अनेक तीव्र ग्रह एक साथ किसी संवेदनशील बिन्दु को सक्रिय करते हैं जो पहले से मन्द ग्रह द्वारा उत्तेजित है, तब घटनाएँ साकार होती हैं।</> : <>Fast-moving planets act as triggers that time the exact manifestation of events promised by slow-planet transits. The Sun transits a sign in about 1 month, the Moon in about 2.25 days, Mercury in 25 days to 2 months (varying with retrograde), Venus in about 1 month, and Mars in about 45 days. When multiple fast planets simultaneously activate a sensitive point already stimulated by a slow planet, events crystallize.</>}</p>
       </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example — Saturn Through Houses', hi: 'उदाहरण — शनि का भाव गोचर', sa: 'उदाहरण — शनि का भाव गोचर' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">उदाहरण:</span> जन्म चन्द्रमा वृषभ में। शनि मीन (वृषभ से 11वाँ) में 2023-2025 में था — लाभ और इच्छापूर्ति का शुभ काल। जब शनि मेष (12वाँ) में प्रवेश करता है, साढ़े साती आरम्भ होती है। प्रत्येक 2.5 वर्ष में विषय नाटकीय रूप से बदलता है।</> : <><span className="text-gold-light font-medium">Example:</span> Natal Moon in Taurus. Saturn transiting Pisces (11th from Taurus, 2023-2025) was an auspicious period of gains. When Saturn enters Aries (12th from Taurus), Sade Sati begins. Every 2.5 years the theme shifts dramatically, making Saturn&apos;s ingress dates the most tracked events in Vedic astrology.</>}</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रांतियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'भ्रांति:' : 'Myth:'}</span> {isHi ? <>गोचर अकेले घटनाओं का कारण बनता है। वास्तविकता: गोचर केवल जन्म कुण्डली में प्रतिश्रुत फलों को सक्रिय करता है।</> : <>Transits alone cause events. Reality: transits only activate results promised in the birth chart. No marriage yoga in the chart means Jupiter transiting the 7th will not bring marriage.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'भ्रांति:' : 'Myth:'}</span> {isHi ? <>शनि का गोचर सदैव बुरा है। वास्तविकता: चन्द्र से 3, 6, 11 में शनि अत्यन्त शुभ है।</> : <>Saturn transit is always bad. Reality: Saturn in 3rd, 6th, 11th from Moon is highly auspicious and productive.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">{isHi ? 'भ्रांति:' : 'Myth:'}</span> {isHi ? <>सभी पर एक ही गोचर का समान प्रभाव होता है। वास्तविकता: अष्टकवर्ग, दशा, और जन्म स्थिति प्रभाव को मूलभूत रूप से बदलते हैं।</> : <>The same transit affects everyone equally. Reality: Ashtakavarga, dasha, and natal positions fundamentally alter the impact person to person.</>}</p>
+      </section>
     </div>
   );
 }
@@ -70,6 +82,18 @@ function Page2() {
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Saturn Transit Results', hi: 'शनि गोचर फल', sa: 'शनि गोचर फल' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-emerald-400 font-medium">शुभ (चन्द्र से 3, 6, 11):</span> 3वें में शनि साहस और प्रतिद्वन्द्वियों पर विजय देता है; 6वें में शत्रु पराजय और स्वास्थ्य सुधार; 11वें में आर्थिक लाभ और दीर्घकालिक लक्ष्यों की प्राप्ति। चन्द्रमा से ये शनि की एकमात्र सुखद स्थितियाँ हैं।</> : <><span className="text-emerald-400 font-medium">Favorable (3, 6, 11 from Moon):</span> Saturn in the 3rd gives courage and victory over rivals; in the 6th, defeat of enemies and improved health; in the 11th, financial gains and achievement of long-term goals. These are Saturn&apos;s only comfortable positions from the Moon.</>}</p>
       </section>
+
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Vedha — The Transit Obstruction', hi: 'वेध — गोचर बाधा', sa: 'वेध — गोचर बाधा' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>वेध गोचर फल की एक सूक्ष्म सीमा है। शुभ गोचर फल तभी मिलता है जब वेध बिन्दु रिक्त हो। उदाहरण: गुरु 2वें में शुभ है, लेकिन यदि कोई ग्रह 12वें में हो (2वें का वेध), तो शुभ फल बाधित होता है। अपवाद: शनि-सूर्य और चन्द्र-बुध एक-दूसरे का वेध नहीं करते।</> : <>Vedha is a subtle limitation on transit results. A favorable transit delivers results ONLY if the Vedha (obstruction) point is vacant. Example: Jupiter in the 2nd is auspicious, but if any planet transits the 12th (the Vedha point for 2nd), the result is blocked. Exception: Saturn-Sun and Moon-Mercury do not obstruct each other.</>}</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Practical Application', hi: 'व्यावहारिक प्रयोग', sa: 'व्यावहारिक प्रयोग' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <>गोचर विश्लेषण को चल रही दशा से अलग करके नहीं देखना चाहिए। दशा वह नदी है जिसमें गोचर तरंगें उत्पन्न करता है। अनुभवी ज्योतिषी तीन स्तरों का एक साथ मूल्यांकन करते हैं: जन्म कुण्डली का प्रतिज्ञा, दशा का सक्रियण, और गोचर का समय। मॉड्यूल 12.2 में साढ़े साती और मॉड्यूल 12.3 में दोहरा गोचर सिद्धान्त देखें।</> : <>Transit analysis must never be viewed in isolation from the running dasha. The dasha is the river; transits create ripples within it. Experienced astrologers evaluate three layers simultaneously: natal chart promise, dasha activation, and transit timing. See Module 12.2 for Sade Sati and Module 12.3 for the Double Transit theory.</>}</p>
+      </section>
     </div>
   );
 }
@@ -98,9 +122,20 @@ function Page3() {
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Practical Application', hi: 'व्यावहारिक प्रयोग', sa: 'व्यावहारिक प्रयोग' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">उदाहरण:</span> चन्द्र से 8वें भाव में शनि गोचर सामान्यतः अत्यन्त कठिन है। परन्तु यदि जातक के अष्टकवर्ग में उस राशि में शनि के 5 बिन्दु हों, तो गोचर काफी शमित होगा — चुनौतियाँ हैं परन्तु सम्भालने योग्य हैं और छिपे लाभ भी ला सकता है (8वें भाव का रूपान्तरण)।</> : <><span className="text-gold-light font-medium">Example:</span> Saturn transiting the 8th from Moon is generally very difficult. But if Saturn has 5 bindus in that sign in the native&apos;s Ashtakavarga chart, the transit will be significantly mitigated — challenges exist but are manageable and may even bring hidden gains (8th house transformation).</>}</p>
         <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरणकुण्डली' }, locale)} />
-        <p className="text-text-secondary text-xs leading-relaxed">
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Conversely:</span> Jupiter in the 5th from Moon is classically excellent. But if Jupiter has only 1-2 bindus in that sign, the promised bounty may be delayed, partial, or manifest through struggle rather than ease. Ashtakavarga reveals the hidden quality behind the surface-level transit rule.
         </p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Kaksha Transit — Sub-divisions', hi: 'कक्षा गोचर — उपविभाजन', sa: 'कक्षा गोचर — उपविभाजन' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>प्रत्येक राशि को 8 कक्षाओं (प्रत्येक 3°45&apos;) में विभाजित किया जाता है। जब गोचरी ग्रह ऐसी कक्षा से गुज़रता है जहाँ उसे बिन्दु प्राप्त है, तो उस 3-4 दिन में विशेष फल मिलते हैं। कक्षा क्रम: शनि, गुरु, मंगल, सूर्य, शुक्र, बुध, चन्द्र, लग्न (BPHS अध्याय 66)।</> : <>Each sign is divided into 8 Kakshas (each 3 degrees 45 minutes), each ruled by a planet or Lagna. When a transiting planet passes through a Kaksha where it received a bindu, those specific 3-4 days yield particularly strong results. Kaksha order: Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon, Lagna (BPHS Chapter 66).</>}</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रांतियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'भ्रांति:' : 'Myth:'}</span> {isHi ? <>&quot;अष्टकवर्ग जटिल है इसलिए छोड़ सकते हैं।&quot; वास्तविकता: इसके बिना गोचर विश्लेषण अधूरा है।</> : <>&quot;Ashtakavarga is too complex to bother with.&quot; Reality: without it, transit analysis is incomplete. It often reverses surface-level predictions entirely.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">{isHi ? 'भ्रांति:' : 'Myth:'}</span> {isHi ? <>&quot;SAV 28 से ऊपर सदैव शुभ है।&quot; वास्तविकता: व्यक्तिगत ग्रह बिन्दु (BAV) अधिक प्रासंगिक हैं। SAV और BAV दोनों का उपयोग करें।</> : <>&quot;SAV above 28 is always good.&quot; Reality: individual planet bindus (BAV) are more relevant for that specific planet&apos;s transit. Use both SAV and BAV together.</>}</p>
       </section>
     </div>
   );
@@ -109,4 +144,3 @@ function Page3() {
 export default function Module12_1Page() {
   return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
 }
-

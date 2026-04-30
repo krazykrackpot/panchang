@@ -12,8 +12,8 @@ import { getPlanetaryPositions, dateToJD, toSidereal, getRashiNumber } from '@/l
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 
-function t(locale: Locale, en: string, hi: string, sa?: string): string {
-  if (locale === 'sa') return sa || hi;
+function t(locale: Locale, en: string, hi: string, _sa?: string): string {
+  // 'sa' (Sanskrit) retired — _sa param kept for call-site compat but ignored
   return locale === 'hi' ? hi : en;
 }
 

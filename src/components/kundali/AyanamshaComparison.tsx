@@ -680,7 +680,12 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
                 return (
                   <tr key={house} className="border-b border-gold-primary/5">
                     <td className="py-1.5 px-2 text-text-primary font-medium">
-                      {house}
+                      <span>{house}</span>
+                      <span className="text-text-secondary/60 text-[9px] ml-1">{(() => {
+                        const CUSP_LIFE: Record<number, { en: string; hi: string }> = { 1: { en: 'Self', hi: 'स्वयं' }, 2: { en: 'Wealth', hi: 'धन' }, 3: { en: 'Courage', hi: 'साहस' }, 4: { en: 'Home', hi: 'गृह' }, 5: { en: 'Children', hi: 'सन्तान' }, 6: { en: 'Health', hi: 'रोग' }, 7: { en: 'Marriage', hi: 'विवाह' }, 8: { en: 'Transform', hi: 'रूपान्तर' }, 9: { en: 'Fortune', hi: 'भाग्य' }, 10: { en: 'Career', hi: 'कैरियर' }, 11: { en: 'Gains', hi: 'लाभ' }, 12: { en: 'Liberation', hi: 'मोक्ष' } };
+                        const cl = CUSP_LIFE[house];
+                        return cl ? (isDevanagariLocale(locale) ? cl.hi : cl.en) : '';
+                      })()}</span>
                     </td>
                     <td className="py-1.5 px-2 text-center text-text-secondary whitespace-nowrap">
                       {signName} {d}°{m.toString().padStart(2, '0')}&prime;

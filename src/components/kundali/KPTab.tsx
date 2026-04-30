@@ -32,6 +32,51 @@ const msg = (key: string, locale: string) =>
   lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 
 // ---------------------------------------------------------------------------
+// House meanings — translate raw house numbers to concrete life areas
+// ---------------------------------------------------------------------------
+
+const HOUSE_MEANING: Record<number, { en: string; hi: string; short: string }> = {
+  1:  { en: 'Self & Health', hi: 'स्वयं एवं स्वास्थ्य', short: 'Self' },
+  2:  { en: 'Wealth & Family', hi: 'धन एवं परिवार', short: 'Wealth' },
+  3:  { en: 'Courage & Siblings', hi: 'साहस एवं भ्रातृ', short: 'Courage' },
+  4:  { en: 'Home & Mother', hi: 'गृह एवं मातृ', short: 'Home' },
+  5:  { en: 'Children & Creativity', hi: 'सन्तान एवं रचनात्मकता', short: 'Children' },
+  6:  { en: 'Enemies & Health Issues', hi: 'शत्रु एवं रोग', short: 'Obstacles' },
+  7:  { en: 'Marriage & Partnerships', hi: 'विवाह एवं साझेदारी', short: 'Marriage' },
+  8:  { en: 'Transformation & Longevity', hi: 'रूपान्तरण एवं आयु', short: 'Transform' },
+  9:  { en: 'Fortune & Higher Learning', hi: 'भाग्य एवं उच्च शिक्षा', short: 'Fortune' },
+  10: { en: 'Career & Status', hi: 'कैरियर एवं यश', short: 'Career' },
+  11: { en: 'Gains & Aspirations', hi: 'लाभ एवं आकांक्षा', short: 'Gains' },
+  12: { en: 'Loss & Liberation', hi: 'व्यय एवं मोक्ष', short: 'Liberation' },
+};
+
+/** Render a list of house numbers as meaningful labels */
+function formatHouseList(houses: number[], locale: string, compact?: boolean): React.ReactNode {
+  const isHi = isDevanagariLocale(locale);
+  if (houses.length === 0) return <span className="text-text-secondary/50">—</span>;
+  return (
+    <span className="inline-flex flex-wrap gap-1">
+      {houses.map((h, i) => {
+        const meaning = HOUSE_MEANING[h];
+        if (!meaning) return <span key={i} className="text-gold-primary">{h}</span>;
+        return (
+          <span key={i} className="inline-flex items-center gap-0.5">
+            <span className={`px-1.5 py-0.5 rounded text-[9px] font-bold ${
+              [1,5,9].includes(h) ? 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/15' :
+              [4,7,10].includes(h) ? 'bg-amber-500/10 text-amber-300 border border-amber-500/15' :
+              [2,6,11].includes(h) ? 'bg-cyan-500/10 text-cyan-300 border border-cyan-500/15' :
+              'bg-violet-500/10 text-violet-300 border border-violet-500/15'
+            }`} title={isHi ? meaning.hi : meaning.en}>
+              {h}·{compact ? meaning.short : (isHi ? meaning.hi : meaning.en)}
+            </span>
+          </span>
+        );
+      })}
+    </span>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Static label tables (extracted from kp-system/page.tsx T object)
 // ---------------------------------------------------------------------------
 
@@ -415,11 +460,11 @@ export default function KPTab({ birthData, locale }: KPTabProps) {
                         <div className="min-w-0">
                           <p className="text-text-primary text-sm font-semibold" style={bodyFont}>{r.subLordName}</p>
                           <p className="text-text-secondary text-xs">
-                            {t.sublord} H{area.keyCusp} · {t.signifies}:{' '}
-                            <span className="text-gold-primary">
-                              {r.signifiedHouses.length > 0 ? r.signifiedHouses.join(', ') : '—'}
-                            </span>
+                            {t.sublord} H{area.keyCusp} ({isDevanagari ? (HOUSE_MEANING[area.keyCusp]?.hi || '') : (HOUSE_MEANING[area.keyCusp]?.en || '')})
                           </p>
+                          <div className="text-text-secondary text-[10px] mt-0.5">
+                            {isDevanagari ? 'प्रभावित क्षेत्र' : 'Influences'}: {formatHouseList(r.signifiedHouses, locale, true)}
+                          </div>
                         </div>
                       </div>
 
@@ -540,7 +585,10 @@ export default function KPTab({ birthData, locale }: KPTabProps) {
                     className={`rounded-lg p-3 border ${ca.favorable ? 'border-emerald-500/20 bg-emerald-500/5' : 'border-red-500/20 bg-red-500/5'}`}
                   >
                     <div className="flex items-start justify-between mb-1">
-                      <span className="text-gold-light font-bold text-sm">H{ca.house}</span>
+                      <div>
+                        <span className="text-gold-light font-bold text-sm">H{ca.house}</span>
+                        <span className="text-text-secondary text-xs ml-1.5">{isDevanagari ? (HOUSE_MEANING[ca.house]?.hi || '') : (HOUSE_MEANING[ca.house]?.en || '')}</span>
+                      </div>
                       <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${ca.favorable ? 'bg-emerald-500/15 text-emerald-400' : 'bg-red-500/15 text-red-400'}`}>
                         {ca.favorable ? t.materialises : t.denied}
                       </span>
@@ -550,11 +598,8 @@ export default function KPTab({ birthData, locale }: KPTabProps) {
                       {' → '}
                       <span className="text-amber-400/80">{tl(ca.subSubLordName, locale)}</span>
                     </div>
-                    <div className="text-xs text-text-secondary">
-                      {t.signifies}:{' '}
-                      <span className="text-gold-primary">
-                        {ca.signifiedHouses.length > 0 ? ca.signifiedHouses.join(', ') : '—'}
-                      </span>
+                    <div className="text-[10px] text-text-secondary">
+                      {isDevanagari ? 'प्रभावित क्षेत्र' : 'Influences'}: {formatHouseList(ca.signifiedHouses, locale, true)}
                     </div>
                     <p className="text-xs text-text-secondary mt-1.5 leading-relaxed" style={bodyFont}>
                       {tl(ca.interpretation, locale)}

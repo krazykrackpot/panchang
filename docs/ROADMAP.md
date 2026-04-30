@@ -1,6 +1,6 @@
 # Dekho Panchang — Master Product Roadmap
 
-**Last updated:** 2026-04-30
+**Last updated:** 2026-04-30 — ROADMAP COMPLETE. Only manual actions and infrastructure decisions remain.
 **Reference:** See `docs/CLASSICAL_JYOTISH_GAP_ANALYSIS.md` for full classical text analysis.
 
 ---
@@ -116,25 +116,24 @@
 
 ---
 
-## 🟡 Remaining — Depth & Polish
+## ✅ Remaining Items — All Complete (Apr 30, 2026)
 
-### Content Depth (Low effort, no new engine)
-- [ ] **Pushkar Navamsha detailed interpretation** — detection exists, needs "why it matters for this planet" profiles
-- [ ] **Swamsha profiles expansion** — 12 profiles exist, expand to 50+ combinations per Jaimini Sutras
-- [ ] **CM-4: Minor inline constant cleanup** — a few `RASHI_NAMES` duplicates remain in `additional-dashas.ts`
+### Content Depth
+- [x] **Pushkar Navamsha detailed interpretation** — 9 planet-specific profiles in pushkar-bhaga.ts + varga-narrative.ts
+- [x] **Swamsha profiles expansion** — 84 planet-in-sign modifiers (7 planets × 12 signs) per Jaimini Sutras
+- [x] **CM-4: Inline constant cleanup** — RASHI_NAMES in additional-dashas.ts replaced with canonical RASHIS import
 
 ### Product Features
-- [ ] **Muhurta Panchanga Annual View** — full-year grid (rows = activity types, columns = days, color-coded). Month view exists; annual view does not.
-- [ ] **Astrologer Marketplace** — verified profiles, booking, reviews. Significant ops work. Low priority.
+- [x] **Muhurta Panchanga Annual View** — /muhurta-ai/annual, 12-month color-coded grid, 8 activity types, year nav
+- [ ] **Astrologer Marketplace** — verified profiles, booking, reviews. Significant ops work. Low priority / future.
 - ~~**Razorpay**~~ — Parked. Not India-registered yet.
 
 ### P3 — Academic / Completeness
-- [ ] **Sookshma Dasha (Level 4)** — 4th Vimshottari subdivision
-- [ ] **Prana Dasha (Level 5)** — Days-level precision
-- [ ] **Panchavargeya Bala** — Varahamihira's 5-chart dignity score
-- [ ] **Planetary physique descriptions** — Body characteristics from planets
-- [ ] **Jupiter-Saturn conjunction world-era analysis** — 20-year cycle themes
-- [ ] **Classical text search** — Vector search across BPHS, Phaladeepika, Saravali verses
+- [x] **Sookshma Dasha (Level 4) + Prana Dasha (Level 5)** — recursive calculateSubPeriods() in dasha.ts, depth 5, >1 day threshold
+- [x] **Panchavargeya Bala** — panchavargeya-bala.ts, 5-chart dignity score with friendship multipliers
+- [x] **Planetary physique descriptions** — planetary-physique.ts, BPHS Ch.3 body characteristics (9 planets, en/hi)
+- [x] **Jupiter-Saturn conjunction world-era analysis** — great-conjunctions.ts (1800-2100) + /mundane page
+- [x] **Classical text search** — full RAG pipeline (embeddings, retriever, synthesizer) + /learn/library + /learn/classical-texts
 
 ---
 

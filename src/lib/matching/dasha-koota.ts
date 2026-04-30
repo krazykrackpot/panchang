@@ -20,24 +20,8 @@
 
 import type { LocaleText } from '@/types/panchang';
 
-// ── Re-use tables from ashta-kuta.ts (duplicated here to avoid coupling) ──
-// Gana: Deva=0, Manushya=1, Rakshasa=2 (indexed by nakshatra 1-27, array 0-26)
-const NAKSHATRA_GANA = [0, 1, 2, 1, 0, 1, 0, 0, 2, 2, 1, 1, 0, 2, 0, 2, 0, 2, 2, 1, 1, 0, 2, 2, 1, 1, 0];
-
-// Yoni animal for each nakshatra (1-27, indexed 0-26)
-// 0=Horse, 1=Elephant, 2=Sheep, 3=Serpent, 4=Dog, 5=Cat, 6=Rat, 7=Cow, 8=Buffalo, 9=Tiger, 10=Deer, 11=Monkey, 12=Mongoose, 13=Lion
-const NAKSHATRA_YONI = [0, 1, 2, 3, 3, 4, 5, 2, 5, 6, 6, 7, 8, 9, 8, 9, 10, 10, 4, 11, 12, 11, 13, 0, 13, 7, 1];
-
-// Yoni enemy pairs (bitter enemies)
-const YONI_ENEMIES: [number, number][] = [
-  [0, 8],   // Horse-Buffalo
-  [1, 13],  // Elephant-Lion
-  [3, 12],  // Snake-Mongoose
-  [4, 10],  // Dog-Deer
-  [5, 6],   // Cat-Rat
-  [7, 9],   // Cow-Tiger
-  [11, 2],  // Monkey-Sheep
-];
+// Single source of truth — shared with ashta-kuta.ts (Lesson Q/S: no duplicate constants)
+import { NAKSHATRA_GANA, NAKSHATRA_YONI, YONI_ENEMIES } from '@/lib/constants/matching-tables';
 
 // Rashi lord (planet IDs: 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter, 5=Venus, 6=Saturn)
 const RASHI_LORD = [2, 5, 3, 1, 0, 3, 5, 2, 4, 6, 6, 4]; // Aries..Pisces

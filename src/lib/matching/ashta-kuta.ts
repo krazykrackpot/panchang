@@ -152,20 +152,8 @@ function computeTara(boy: MatchInput, girl: MatchInput): number {
 //   Monkey:   P.Ashadha(20) & Shravana(22)
 //   Mongoose: U.Ashadha(21) only (Abhijit not in 27-nakshatra cycle)
 //   Lion:     Dhanishtha(23) & P.Bhadrapada(25)
-const NAKSHATRA_YONI = [0, 1, 2, 3, 3, 4, 5, 2, 5, 6, 6, 7, 8, 9, 8, 9, 10, 10, 4, 11, 12, 11, 13, 0, 13, 7, 1];
-const YONI_LABELS = ['Horse', 'Elephant', 'Sheep', 'Serpent', 'Dog', 'Cat', 'Rat', 'Cow', 'Buffalo', 'Tiger', 'Deer', 'Monkey', 'Mongoose', 'Lion'];
-
-// Enemy pairs (bitter enemies get 0)
-// 7 classical enemy pairs — each animal has exactly one sworn enemy
-const YONI_ENEMIES: [number, number][] = [
-  [0, 8],  // Horse-Buffalo
-  [1, 13], // Elephant-Lion
-  [3, 12], // Snake-Mongoose
-  [4, 10], // Dog-Deer
-  [5, 6],  // Cat-Rat
-  [7, 9],  // Cow-Tiger
-  [11, 2], // Monkey-Sheep
-];
+// Single source of truth — shared with dasha-koota.ts (Lesson Q/S)
+import { NAKSHATRA_YONI, YONI_LABELS, YONI_ENEMIES } from '@/lib/constants/matching-tables';
 
 function computeYoni(boy: MatchInput, girl: MatchInput): number {
   const by = NAKSHATRA_YONI[boy.moonNakshatra - 1];
@@ -229,7 +217,8 @@ function computeGrahaMaitri(boy: MatchInput, girl: MatchInput): number {
 //   Deva:     Ashwini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, Revati
 //   Manushya: Bharani, Rohini, Ardra, P.Phalguni, U.Phalguni, P.Ashadha, U.Ashadha, P.Bhadrapada, U.Bhadrapada
 //   Rakshasa: Krittika, Ashlesha, Magha, Chitra, Vishakha, Jyeshtha, Mula, Dhanishtha, Shatabhisha
-const NAKSHATRA_GANA = [0, 1, 2, 1, 0, 1, 0, 0, 2, 2, 1, 1, 0, 2, 0, 2, 0, 2, 2, 1, 1, 0, 2, 2, 1, 1, 0];
+// NAKSHATRA_GANA imported from shared constants (see import above)
+import { NAKSHATRA_GANA } from '@/lib/constants/matching-tables';
 
 function computeGana(boy: MatchInput, girl: MatchInput): number {
   const bg = NAKSHATRA_GANA[boy.moonNakshatra - 1];

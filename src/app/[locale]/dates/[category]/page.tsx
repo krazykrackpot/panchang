@@ -311,24 +311,39 @@ export default function DateCategoryPage() {
 
   // Fetch from the SAME /api/calendar endpoint used by the festival calendar page.
   // Single source of truth — no separate tithi table computation.
+  // Auto-detect location via IP if store is empty (no hardcoded Delhi fallback).
   useEffect(() => {
+    const fetchWithLocation = (lat: number, lng: number, tz: string) => {
+      setLoading(true);
+      fetch(`/api/calendar?year=${year}&lat=${lat}&lon=${lng}&timezone=${encodeURIComponent(tz)}`)
+        .then(r => r.json())
+        .then(data => {
+          const all: FestivalEntry[] = data.festivals || [];
+          const filtered = all
+            .filter(f => f.category === category)
+            .sort((a, b) => a.date.localeCompare(b.date));
+          setEntries(filtered);
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
+    };
+
+    if (storeLat && storeLng && storeTz) {
+      fetchWithLocation(storeLat, storeLng, storeTz);
+      return;
+    }
+
+    // No location in store — try IP geolocation (same pattern as calendar page)
     setLoading(true);
-    // Fallback to Delhi when location store is empty (first visit, no geolocation).
-    // Festival dates vary by ~1 day with location; Delhi is a reasonable default for
-    // the majority Indian user base. The user can set their location to get precise times.
-    const lat = storeLat ?? 28.6139;
-    const lng = storeLng ?? 77.209;
-    const tz = storeTz ?? 'Asia/Kolkata';
-    fetch(`/api/calendar?year=${year}&lat=${lat}&lon=${lng}&timezone=${encodeURIComponent(tz)}`)
+    fetch('https://ipapi.co/json/')
       .then(r => r.json())
       .then(data => {
-        const all: FestivalEntry[] = data.festivals || [];
-        // Filter by category — same data as the calendar page
-        const filtered = all
-          .filter(f => f.category === category)
-          .sort((a, b) => a.date.localeCompare(b.date));
-        setEntries(filtered);
-        setLoading(false);
+        if (data.latitude && data.longitude) {
+          const tz = data.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+          fetchWithLocation(data.latitude, data.longitude, tz);
+        } else {
+          setLoading(false);
+        }
       })
       .catch(() => setLoading(false));
   }, [year, category, storeLat, storeLng, storeTz]);

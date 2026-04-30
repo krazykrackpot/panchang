@@ -897,9 +897,11 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const karanaNum = calculateKarana(jdSunrise);
   const karanaData = KARANAS[karanaNum - 1] || KARANAS[0];
 
-  // 5. Vara
+  // 5. Vara — local timezone is intentionally correct here: weekday is a calendar
+  // concept (same date = same weekday regardless of timezone), not an astronomical one.
+  // Lesson L does NOT apply because we need the calendar weekday, not a UTC instant.
   const date = new Date(year, month - 1, day);
-  const weekday = date.getDay();
+  const weekday = date.getDay(); // 0=Sun, matches JD convention (Lesson O)
   const varaData = VARA_DATA[weekday];
 
   // Rahu Kaal

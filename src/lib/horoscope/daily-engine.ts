@@ -238,9 +238,10 @@ export function generateDailyHoroscope(input: DailyEngineInput): DailyHoroscope 
   const tithiResult = calculateTithi(jd);
   const yogaNum = calculateYoga(jd);
 
-  // Weekday
+  // Weekday — local timezone is correct: weekday is a calendar concept, not astronomical.
+  // Same date = same weekday regardless of server timezone. (See Lesson L/O in CLAUDE.md)
   const dateObj = new Date(year, month - 1, day);
-  const weekday = dateObj.getDay();
+  const weekday = dateObj.getDay(); // 0=Sun
 
   // Planetary positions (tropical -> sidereal for slow planets)
   const planets = getPlanetaryPositions(jd);

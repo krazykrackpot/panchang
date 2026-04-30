@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'Puja Vidhi — Dekho Panchang' };
   }
 
-  const loc = locale as 'en' | 'hi' | 'sa';
+  const loc = locale as 'en' | 'hi';
   const deity = puja.deity[loc] || puja.deity.en;
   const deityEn = puja.deity.en;
   const title = `${deity} Puja Vidhi — Step by Step with Mantras | Dekho Panchang`;
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url: `https://dekhopanchang.com/${locale}/puja/${slug}`,
       siteName: 'Dekho Panchang',
-      locale: locale === 'hi' ? 'hi_IN' : locale === 'sa' ? 'sa_IN' : 'en_US',
+      locale: locale === 'hi' ? 'hi_IN' : 'en_US',
       type: 'article',
     },
     twitter: {
@@ -45,7 +45,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       languages: {
         en: `/en/puja/${slug}`,
         hi: `/hi/puja/${slug}`,
-        sa: `/sa/puja/${slug}`,
       },
     },
   };

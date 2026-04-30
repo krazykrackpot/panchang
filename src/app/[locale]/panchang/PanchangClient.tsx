@@ -396,6 +396,23 @@ export default function PanchangClient() {
     }
   }, [birthNakshatra, birthRashi, panchang, birthAutoDetected]);
 
+  // ── Locale-aware card reordering for mega grid ──
+  // Tamil/Telugu: elevate Activity Guide (nakshatra-based), Muhurtas, Hora
+  // Hindi/Gujarati: Choghadiya first, then Muhurtas, Sacred Timings
+  const cardPriority: Record<string, string[]> = {
+    ta: ['/panchang/activity-guide', '/panchang/muhurta', '/hora'],
+    te: ['/panchang/activity-guide', '/panchang/muhurta', '/hora'],
+    hi: ['/choghadiya', '/panchang/muhurta', '/panchang/auspicious'],
+    gu: ['/choghadiya', '/panchang/muhurta', '/panchang/auspicious'],
+  };
+  function reorderCards<T extends { href: string }>(cards: T[]): T[] {
+    const prio = cardPriority[locale];
+    if (!prio) return cards;
+    const prioritized = prio.map(h => cards.find(c => c.href === h)).filter(Boolean) as T[];
+    const rest = cards.filter(c => !prio.includes(c.href));
+    return [...prioritized, ...rest];
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Header */}
@@ -1319,9 +1336,9 @@ export default function PanchangClient() {
           })()}
 
           {/* ═══ MEGA CARD GRID — tarot-style cards linking to subpages ═══ */}
-          {/* Row 1: 5 cards */}
+          {/* Row 1: 5 cards — reordered by locale */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5 my-14 auto-rows-fr">
-            {([
+            {reorderCards([
               {
                 href: '/panchang/auspicious',
                 title: isDevanagari ? 'शुभ-अशुभ काल' : 'Sacred Timings',
@@ -1386,9 +1403,9 @@ export default function PanchangClient() {
             ))}
           </div>
 
-          {/* Row 2: 5 cards */}
+          {/* Row 2: 5 cards — reordered by locale */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5 -mt-8 mb-14 auto-rows-fr">
-            {([
+            {reorderCards([
               {
                 href: '/panchang/planets',
                 title: isDevanagari ? 'नवग्रह' : 'Navagraha',

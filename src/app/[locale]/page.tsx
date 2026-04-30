@@ -530,45 +530,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <div className="relative">
-      {/* ═══ HERO: Mantras + Mini Zodiac + Live Panchang Summary ═══ */}
-      <section className="relative pt-20 pb-40 sm:pt-24 sm:pb-48 px-4">
+      {/* ═══ HERO: Mantras + CTAs ═══ */}
+      <section className="relative pt-16 pb-12 sm:pt-20 sm:pb-16 px-4">
         {/* Background: radial gold glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-gold-primary/5 via-transparent to-gold-dark/3 blur-3xl" />
-
-        {/* Slow-orbiting zodiac ring behind hero — visible gold with element colors */}
-        <div className="absolute top-1/2 left-1/2 w-[630px] h-[630px] sm:w-[720px] sm:h-[720px] cosmic-orbit -z-10" aria-hidden="true">
-          <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none">
-            <defs>
-              <linearGradient id="orbit-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#f0d48a" stopOpacity="0.2" />
-                <stop offset="50%" stopColor="#d4a853" stopOpacity="0.12" />
-                <stop offset="100%" stopColor="#8a6d2b" stopOpacity="0.08" />
-              </linearGradient>
-            </defs>
-            {/* Outer rashi ring — bold gold */}
-            <circle cx="100" cy="100" r="92" stroke="#d4a853" strokeWidth="1.5" strokeOpacity="0.35" />
-            <circle cx="100" cy="100" r="72" stroke="#d4a853" strokeWidth="0.5" strokeOpacity="0.1" />
-            {/* 12 rashi segments with element-colored fills */}
-            {Array.from({ length: 12 }, (_, i) => {
-              const a1 = (i * 30 - 90) * Math.PI / 180;
-              const a2 = ((i + 1) * 30 - 90) * Math.PI / 180;
-              const colors = ['#FF6B35', '#50C878', '#6B8DD6', '#B0BEC5']; // Fire Earth Air Water
-              const color = colors[i % 4];
-              const mid = ((i * 30 + 15) - 90) * Math.PI / 180;
-              return (
-                <g key={i}>
-                  <line x1={100 + 72 * Math.cos(a1)} y1={100 + 72 * Math.sin(a1)} x2={100 + 92 * Math.cos(a1)} y2={100 + 92 * Math.sin(a1)} stroke="#d4a853" strokeWidth="0.4" strokeOpacity="0.15" />
-                  {/* Element-colored dot at midpoint of each segment */}
-                  <circle cx={100 + 82 * Math.cos(mid)} cy={100 + 82 * Math.sin(mid)} r="2" fill={color} fillOpacity="0.25" />
-                </g>
-              );
-            })}
-            {/* Subtle planet dots on the inner track */}
-            <circle cx={100 + 60 * Math.cos(-45 * Math.PI / 180)} cy={100 + 60 * Math.sin(-45 * Math.PI / 180)} r="3" fill="#FFD700" fillOpacity="0.2" />
-            <circle cx={100 + 60 * Math.cos(30 * Math.PI / 180)} cy={100 + 60 * Math.sin(30 * Math.PI / 180)} r="2.5" fill="#6B8DD6" fillOpacity="0.15" />
-            <circle cx={100 + 60 * Math.cos(150 * Math.PI / 180)} cy={100 + 60 * Math.sin(150 * Math.PI / 180)} r="2" fill="#DC143C" fillOpacity="0.18" />
-          </svg>
-        </div>
 
         <div className="text-center max-w-3xl mx-auto relative z-10 stagger-children">
           {/* Gayatri Mantra — small, reverent, with sacred reveal */}

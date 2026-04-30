@@ -95,7 +95,9 @@ function findCitySlugByCoords(lat: number, lon: number): string | null {
  * Returns null if no pre-computed file exists for these coordinates/year.
  * Node.js fs — only works server-side (tithi-table.ts is only imported server-side).
  */
-function loadPrecomputedTable(year: number, lat: number, lon: number): YearlyTithiTable | null {
+/** Try to load a precomputed tithi table from public/data/tithi-tables/{year}/{slug}.json.
+ * Returns null if no file exists for these coords. Does NOT trigger computation. */
+export function loadPrecomputedTable(year: number, lat: number, lon: number): YearlyTithiTable | null {
   try {
     // Dynamic require — fs/path are Node.js only. This file is also imported
     // in client component bundles (via festival-generator.ts), where 'fs' does

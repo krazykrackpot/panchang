@@ -152,44 +152,44 @@ function getCellClasses(cell: TithiDayData): { outer: string; dayCircle: string;
   const hasEclipse = cell.festivals.some(f => f.type === 'eclipse');
 
   if (isPurnima(n)) return {
-    outer: 'bg-gradient-to-b from-amber-500/15 via-amber-400/8 to-amber-900/5 border-amber-400/35 shadow-[inset_0_0_20px_rgba(245,198,88,0.06)]',
-    dayCircle: 'bg-amber-400/20 text-amber-200 border border-amber-400/40',
+    outer: 'bg-gradient-to-b from-amber-500/15 via-amber-400/8 to-amber-900/5 border-2 border-amber-400/40 shadow-[inset_0_0_20px_rgba(245,198,88,0.06)]',
+    dayCircle: 'bg-amber-400/25 text-amber-100 border-2 border-amber-400/50',
     tithiText: 'text-amber-300 font-black',
-    accent: 'border-t-2 border-t-amber-400/50',
+    accent: 'border-t-[3px] border-t-amber-400/60',
   };
   if (isAmavasya(n)) return {
-    outer: 'bg-gradient-to-b from-violet-900/20 via-indigo-900/10 to-[#060818] border-violet-500/25 shadow-[inset_0_0_20px_rgba(139,92,246,0.05)]',
-    dayCircle: 'bg-violet-500/20 text-violet-200 border border-violet-500/40',
+    outer: 'bg-gradient-to-b from-violet-900/20 via-indigo-900/10 to-[#060818] border-2 border-violet-500/30 shadow-[inset_0_0_20px_rgba(139,92,246,0.05)]',
+    dayCircle: 'bg-violet-500/25 text-violet-100 border-2 border-violet-500/50',
     tithiText: 'text-violet-300 font-black',
-    accent: 'border-t-2 border-t-violet-500/40',
+    accent: 'border-t-[3px] border-t-violet-500/50',
   };
   if (isEkadashi(n)) return {
-    outer: 'bg-gradient-to-br from-emerald-900/12 via-emerald-800/5 to-[#0a0e27] border-emerald-500/20',
-    dayCircle: 'bg-emerald-500/15 text-emerald-200 border border-emerald-500/30',
+    outer: 'bg-gradient-to-br from-emerald-900/12 via-emerald-800/5 to-[#0a0e27] border-2 border-emerald-500/25',
+    dayCircle: 'bg-emerald-500/20 text-emerald-100 border-2 border-emerald-500/40',
     tithiText: 'text-emerald-300 font-bold',
-    accent: 'border-l-[3px] border-l-emerald-400/50',
+    accent: 'border-l-[3px] border-l-emerald-400/60',
   };
   if (hasEclipse) return {
-    outer: 'bg-gradient-to-br from-red-900/15 via-red-800/5 to-[#0a0e27] border-red-500/25',
-    dayCircle: 'bg-red-500/15 text-red-200 border border-red-500/30',
+    outer: 'bg-gradient-to-br from-red-900/15 via-red-800/5 to-[#0a0e27] border-2 border-red-500/30',
+    dayCircle: 'bg-red-500/20 text-red-100 border-2 border-red-500/40',
     tithiText: 'text-red-300 font-bold',
-    accent: 'border-t-2 border-t-red-500/40',
+    accent: 'border-t-[3px] border-t-red-500/50',
   };
   if (hasMajor) return {
-    outer: 'bg-gradient-to-br from-gold-primary/12 via-[#1a1040]/30 to-[#0a0e27] border-gold-primary/30',
-    dayCircle: 'bg-gold-primary/15 text-gold-light border border-gold-primary/30',
+    outer: 'bg-gradient-to-br from-gold-primary/12 via-[#1a1040]/30 to-[#0a0e27] border-2 border-gold-primary/35',
+    dayCircle: 'bg-gold-primary/20 text-gold-light border-2 border-gold-primary/40',
     tithiText: 'text-gold-light font-semibold',
-    accent: 'border-t-2 border-t-gold-primary/40',
+    accent: 'border-t-[3px] border-t-gold-primary/50',
   };
   if (cell.paksha === 'shukla') return {
     outer: 'bg-gradient-to-br from-amber-950/8 via-[#0e1230]/60 to-[#0a0e27] border-amber-800/10',
-    dayCircle: '',
+    dayCircle: 'bg-amber-500/5 text-text-primary/80 border border-amber-500/10',
     tithiText: 'text-amber-200/60',
     accent: '',
   };
   return {
     outer: 'bg-gradient-to-br from-indigo-950/10 via-[#0a0c22]/60 to-[#080b1e] border-indigo-800/10',
-    dayCircle: '',
+    dayCircle: 'bg-indigo-500/5 text-text-primary/70 border border-indigo-500/10',
     tithiText: 'text-indigo-300/50',
     accent: '',
   };
@@ -255,17 +255,19 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
                   cell.isToday ? 'ring-2 ring-inset ring-gold-primary/60 z-20' : ''
                 }`}
               >
-                {/* ── Header: Day number + Moon icon ── */}
+                {/* ── Header: Day number (always circled) ── */}
                 <div className="flex items-center justify-between mb-1">
-                  <div className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-black ${
-                    cell.isToday ? 'bg-gold-primary/30 text-gold-light border border-gold-primary/50' :
+                  <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[11px] sm:text-xs font-black ${
+                    cell.isToday ? 'bg-gold-primary/30 text-gold-light border-2 border-gold-primary/60 shadow-sm shadow-gold-primary/20' :
                     s.dayCircle ? s.dayCircle :
-                    ci === 0 ? 'text-red-400/70' : 'text-text-primary/80'
+                    ci === 0 ? 'bg-red-500/8 text-red-400/70 border border-red-500/15' :
+                    cell.paksha === 'shukla' ? 'bg-amber-500/5 text-text-primary/80 border border-amber-500/10' :
+                    'bg-indigo-500/5 text-text-primary/70 border border-indigo-500/10'
                   }`}>
                     {cell.day}
                   </div>
                   {cell.isToday && (
-                    <span className="text-[6px] sm:text-[7px] px-1.5 py-0.5 rounded-full bg-gold-primary/25 text-gold-light font-bold uppercase tracking-widest animate-pulse">
+                    <span className="text-[7px] sm:text-[8px] px-1.5 py-0.5 rounded-full bg-gold-primary/25 text-gold-light font-bold uppercase tracking-widest animate-pulse">
                       {isEn ? 'TODAY' : 'आज'}
                     </span>
                   )}
@@ -273,33 +275,33 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
 
                 {/* ── Moon phase — centered, prominent ── */}
                 <div className="flex justify-center my-1">
-                  <MoonIcon tithiNumber={n} paksha={cell.paksha} size={isSpecial ? 36 : 28} />
+                  <MoonIcon tithiNumber={n} paksha={cell.paksha} size={isSpecial ? 42 : 34} />
                 </div>
 
                 {/* ── Tithi name ── */}
-                <div className={`text-[10px] sm:text-[11px] leading-tight text-center truncate ${s.tithiText}`}>
+                <div className={`text-xs sm:text-sm leading-tight text-center truncate ${s.tithiText}`}>
                   {tl(cell.tithiName, locale)}
                 </div>
 
                 {/* ── Special badge ── */}
                 {isPurnima(n) && (
-                  <div className="text-[6px] sm:text-[7px] font-black text-amber-200 bg-amber-500/20 border border-amber-400/30 rounded-full px-1.5 py-0.5 mx-auto mt-0.5 w-fit uppercase tracking-widest">
+                  <div className="text-[8px] sm:text-[9px] font-black text-amber-200 bg-amber-500/20 border border-amber-400/30 rounded-full px-2 py-0.5 mx-auto mt-0.5 w-fit uppercase tracking-widest">
                     {isEn ? 'Full Moon' : 'पूर्णिमा'}
                   </div>
                 )}
                 {isAmavasya(n) && (
-                  <div className="text-[6px] sm:text-[7px] font-black text-violet-200 bg-violet-500/15 border border-violet-400/25 rounded-full px-1.5 py-0.5 mx-auto mt-0.5 w-fit uppercase tracking-widest">
+                  <div className="text-[8px] sm:text-[9px] font-black text-violet-200 bg-violet-500/15 border border-violet-400/25 rounded-full px-2 py-0.5 mx-auto mt-0.5 w-fit uppercase tracking-widest">
                     {isEn ? 'New Moon' : 'अमावस्या'}
                   </div>
                 )}
                 {isEkadashi(n) && (
-                  <div className="text-[6px] sm:text-[7px] font-black text-emerald-200 bg-emerald-500/15 border border-emerald-400/25 rounded-full px-1.5 py-0.5 mx-auto mt-0.5 w-fit uppercase tracking-widest">
+                  <div className="text-[8px] sm:text-[9px] font-black text-emerald-200 bg-emerald-500/15 border border-emerald-400/25 rounded-full px-2 py-0.5 mx-auto mt-0.5 w-fit uppercase tracking-widest">
                     {isEn ? 'Ekadashi' : 'एकादशी'}
                   </div>
                 )}
 
-                {/* ── Panchang micro-details ── */}
-                <div className="mt-1 space-y-0 text-[7px] sm:text-[8px]">
+                {/* ── Panchang details ── */}
+                <div className="mt-1 space-y-0.5 text-[9px] sm:text-[10px]">
                   {/* Sunrise / Sunset */}
                   {cell.sunrise && (
                     <div className="flex items-center gap-0.5 text-amber-400/50">
@@ -311,14 +313,16 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
                   )}
                   {/* Nakshatra */}
                   {cell.nakshatra && (
-                    <div className="text-cyan-400/45 truncate">
-                      <span className="text-cyan-300/30 mr-0.5">★</span>{tl(cell.nakshatra, locale)}
+                    <div className="flex items-center gap-1 text-cyan-400/55 truncate">
+                      <svg width="12" height="12" viewBox="0 0 16 16" className="shrink-0"><polygon points="8,1 10,6 15,6.5 11,10 12.5,15 8,12 3.5,15 5,10 1,6.5 6,6" fill="#22d3ee" opacity="0.5" /></svg>
+                      <span className="truncate">{tl(cell.nakshatra, locale)}</span>
                     </div>
                   )}
                   {/* Moon Rashi */}
                   {cell.moonRashi && (
-                    <div className="text-slate-400/40 truncate">
-                      <span className="text-slate-300/25 mr-0.5">☾</span>{tl(cell.moonRashi, locale)}
+                    <div className="flex items-center gap-1 text-slate-400/45 truncate">
+                      <svg width="11" height="11" viewBox="0 0 16 16" className="shrink-0"><circle cx="8" cy="8" r="5.5" fill="none" stroke="#94a3b8" strokeWidth="1" /><path d="M9.5 4 A4.5 4.5 0 0 0 9.5 12 A5.5 5.5 0 0 1 9.5 4Z" fill="#94a3b8" opacity="0.45" /></svg>
+                      <span className="truncate">{tl(cell.moonRashi, locale)}</span>
                     </div>
                   )}
                 </div>
@@ -329,7 +333,7 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
                     {cell.festivals.slice(0, 2).map((f, fi) => (
                       <div
                         key={fi}
-                        className={`text-[7px] sm:text-[8px] leading-tight px-1 py-0.5 rounded truncate ${
+                        className={`text-[9px] sm:text-[10px] leading-tight px-1.5 py-0.5 rounded truncate ${
                           f.type === 'major'
                             ? 'bg-gradient-to-r from-gold-primary/25 to-gold-primary/10 text-gold-light font-bold border border-gold-primary/35'
                             : f.type === 'eclipse'

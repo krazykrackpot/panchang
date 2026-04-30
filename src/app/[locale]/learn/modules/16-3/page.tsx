@@ -109,6 +109,24 @@ function Page3() {
           Our app&rsquo;s Meeus algorithms are the intellectual descendants of the Surya Siddhanta. The same fundamental approach — compute mean position, apply periodic corrections, convert to geocentric coordinates — runs through the entire lineage. What changed is the number and precision of correction terms. The Surya Siddhanta uses one epicycle per planet; Meeus uses dozens of Fourier terms. But the architecture is recognizably the same. When you check today&rsquo;s Panchang in our app, you are using a computational tradition that is at least 1,500 years old.
         </p>
       </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example — Computing Sun&rsquo;s Position</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">Surya Siddhanta method:</span> Start with the mean longitude of the Sun (mean daily motion x days since epoch). Apply the Manda correction using the Sun&rsquo;s apogee (mandocca) — this accounts for the elliptical orbit. The result is the true geocentric longitude of the Sun in the sidereal zodiac. Error: about 0.1 degrees.
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">Meeus method (our app):</span> Start with the mean longitude using refined constants. Apply ~30 periodic correction terms (Fourier series), each representing a gravitational perturbation. Apply aberration and nutation corrections. Subtract ayanamsha for sidereal position. Error: about 0.01 degrees — a 10x improvement, but the same architecture.
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          <span className="text-gold-light font-medium">Practical impact:</span> For Panchang (tithi spans 12 degrees), even Surya Siddhanta accuracy is adequate. For Kundali (lagna changes every ~2 hours), Meeus precision matters. For divisional charts (D-9 spans 3.33 degrees), sub-arcsecond Swiss Ephemeris precision is essential.
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Myth:</span> &ldquo;Ancient astronomers had no idea of heliocentric orbits.&rdquo; Reality: the Shighra correction in Surya Siddhanta is mathematically equivalent to converting from heliocentric to geocentric coordinates. They described the phenomenon correctly without naming it.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Myth:</span> &ldquo;Modern software makes learning the math unnecessary.&rdquo; Reality: understanding the algorithm lets you verify software output, detect bugs, and appreciate the precision limits. See Module 16.1 for BPHS and Module 16.2 for the interpretive texts that use these positions.</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Myth:</span> &ldquo;More precision always means better astrology.&rdquo; Reality: a sub-arcsecond Moon position is meaningless if the birth time is uncertain by 15 minutes. The weakest link in the chain is always the input data, not the astronomical computation.</p>
+      </section>
     </div>
   );
 }

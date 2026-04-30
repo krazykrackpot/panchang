@@ -18,25 +18,32 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const { data: notifications, error } = await supabase
-    .from('user_notifications')
-    .select('id, type, title, body, metadata, read, created_at')
-    .eq('user_id', user.id)
-    .order('created_at', { ascending: false })
-    .limit(20);
+  try {
+    const { data: notifications, error } = await supabase
+      .from('user_notifications')
+      .select('id, type, title, body, metadata, read, created_at')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+      .limit(20);
 
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    if (error) {
+      // Table may not exist yet — return empty instead of 500 to stop console spam
+      console.error('[notifications] query error:', error.message);
+      return NextResponse.json({ notifications: [], unreadCount: 0 });
+    }
+
+    // Also get unread count
+    const { count } = await supabase
+      .from('user_notifications')
+      .select('id', { count: 'exact', head: true })
+      .eq('user_id', user.id)
+      .eq('read', false);
+
+    return NextResponse.json({ notifications: notifications || [], unreadCount: count || 0 });
+  } catch (err) {
+    console.error('[notifications] unexpected error:', err);
+    return NextResponse.json({ notifications: [], unreadCount: 0 });
   }
-
-  // Also get unread count
-  const { count } = await supabase
-    .from('user_notifications')
-    .select('id', { count: 'exact', head: true })
-    .eq('user_id', user.id)
-    .eq('read', false);
-
-  return NextResponse.json({ notifications: notifications || [], unreadCount: count || 0 });
 }
 
 // ---------------------------------------------------------------------------

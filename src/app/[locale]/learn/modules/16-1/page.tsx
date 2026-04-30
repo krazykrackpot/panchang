@@ -122,6 +122,21 @@ function Page3() {
           There is always a gap between textual rules and practical interpretation. BPHS gives categorical statements — &ldquo;Sun in the 7th house causes late marriage&rdquo; — but experienced astrologers know these are tendencies modified by aspects, conjunctions, sign placement, and dasha timing. The text provides the grammar; chart reading provides the poetry. Our app bridges this gap by implementing the precise rules computationally while the tippanni module adds nuanced, context-aware interpretation.
         </p>
       </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example — BPHS Verse in Action</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">BPHS 3.14:</span> &ldquo;The Sun is the soul of all beings (Atmakaraka). The Moon is the mind. Mars is strength. Mercury is speech. Jupiter is knowledge and happiness. Venus is desire and beauty. Saturn is sorrow.&rdquo; This single verse defines how we read every planet in a chart. Sun in the 10th house = the soul directed toward public life. Moon in the 4th = the mind at peace (home). Saturn in the 7th = sorrow in partnerships.
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          These terse definitions power every interpretation. When our tippanni describes &ldquo;Jupiter in the 5th gives learning and children,&rdquo; it traces directly to BPHS — Jupiter (knowledge/happiness) in the 5th house (children/intellect). The classical verse is the DNA; the interpretation is its phenotypic expression.
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Myth:</span> &ldquo;BPHS is a single, unified text.&rdquo; Reality: BPHS exists in multiple recensions with varying chapter counts (70 to 100+). Some chapters are clearly later additions. Critical scholarship is essential.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Myth:</span> &ldquo;You must read BPHS in Sanskrit to understand it.&rdquo; Reality: quality English/Hindi translations with commentary (Santhanam, Girish Chand Sharma) are sufficient for practical study. Sanskrit helps for edge cases.</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Myth:</span> &ldquo;BPHS covers everything in Jyotish.&rdquo; Reality: BPHS is focused on natal astrology. Muhurta (electional), Prashna (horary), and Mundane astrology have their own foundational texts. See Module 16.2 for Phaladeepika and Module 16.3 for Surya Siddhanta.</p>
+      </section>
     </div>
   );
 }

@@ -99,11 +99,27 @@ function Page3() {
           <span className="text-gold-light font-medium">Myth:</span> &ldquo;Newer texts are improvements over older ones.&rdquo; Reality: Phaladeepika and Jataka Parijata complement BPHS, they do not supersede it. Each text has domains where it excels. A skilled astrologer draws from all three as context demands.
         </p>
       </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example — Phaladeepika Verse</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">Phaladeepika 6.1:</span> &ldquo;When Jupiter is in a Kendra from the Moon, the native is blessed with intelligence, wealth, and fame.&rdquo; This is the definition of <strong className="text-gold-light">Gajakesari Yoga</strong> — one of the most cited yogas in Jyotish. Note how Mantreshwara states the condition (Jupiter in Kendra from Moon) and the result (intelligence, wealth, fame) in a single couplet. BPHS takes several verses to establish the same concept.
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          <span className="text-gold-light font-medium">Practical check:</span> Jupiter in the 1st, 4th, 7th, or 10th from Moon forms this yoga. It occurs in roughly 25% of charts — making it common but meaningful. Our yoga engine checks for this condition and also verifies that Jupiter is not debilitated or combust, which would weaken the yoga per Jataka Parijata&rsquo;s stricter rules.
+        </p>
+      </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Our App&rsquo;s Approach</h4>
-        <p className="text-text-secondary text-xs leading-relaxed">
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
           Our yoga detection engine implements definitions from all three texts, prioritizing BPHS for foundational rules and cross-referencing Phaladeepika and Jataka Parijata for yoga classification. When texts disagree on a yoga condition, we follow the stricter definition — it is better to miss a marginal yoga than to flag a false one. The tippanni commentary notes which text supports each interpretation.
         </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Practical Application — A Study Sequence</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Step 1:</span> Read Phaladeepika for practical chart interpretation — it is the most accessible. Focus on planet-in-house results and yoga descriptions.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Step 2:</span> Read BPHS for foundational principles — planetary nature, dasha systems, and house significations. See Module 16.1.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Step 3:</span> Consult Jataka Parijata for yoga verification — its stricter conditions prevent false positives in chart analysis.</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Step 4:</span> Study Surya Siddhanta for the astronomical foundation underlying all calculations. See Module 16.3 for the mathematical legacy.</p>
       </section>
     </div>
   );

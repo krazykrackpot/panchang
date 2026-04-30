@@ -106,6 +106,21 @@ function Page3() {
           Scores above 75 indicate excellent Muhurta windows suitable for major events. Scores 50-75 are acceptable for routine activities. Scores below 50 should be avoided for important initiations. In practice, most days have a few high-scoring windows (often early morning or specific evening hours) and several low-scoring periods (particularly during Rahu Kaal and Vishti karana). The engine supports 20 activity types with activity-specific weightings.
         </p>
       </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example — Business Launch</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">Scenario:</span> You want to register a new company. The engine evaluates a Thursday morning in Pushya Nakshatra. Panchang Score: high (Pushya is the most auspicious nakshatra for new ventures; Thursday is Jupiter&rsquo;s day). Transit Score: good (Jupiter is strong, not retrograde). Timing Score: excellent (Jupiter Hora active from 7:30-8:30 AM). Personal Score: favorable (good Tara Bala from birth nakshatra). Combined: 82/100 — an excellent window.
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          <span className="text-gold-light font-medium">Contrast:</span> The same Thursday afternoon during Rahu Kaal (1:30-3:00 PM) with Vishti Karana active. Panchang Score: low (Vishti karana penalized). Timing Score: very low (Rahu Kaal active). Combined: 31/100 — avoid for important work. Same day, vastly different quality of time.
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Myth:</span> &ldquo;Any time during Rahu Kaal is bad.&rdquo; Reality: Rahu Kaal primarily affects new initiations. Routine activities already in progress are not significantly affected. However, starting anything new during Rahu Kaal is universally avoided.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Myth:</span> &ldquo;Muhurta can override a bad birth chart.&rdquo; Reality: Muhurta optimizes timing within the possibilities your chart allows. It cannot create outcomes your chart does not promise. Think of it as choosing the best weather to sail — it helps, but cannot change the ship.</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Myth:</span> &ldquo;Abhijit Muhurta is always auspicious.&rdquo; Reality: Abhijit (the 48 minutes around local noon) is NOT auspicious on Wednesdays per classical rules. Our scoring engine accounts for this exception. See Module 17.2 for marriage-specific Muhurta and Module 17.3 for travel, vehicle, and Griha Pravesh Muhurta.</p>
+      </section>
     </div>
   );
 }

@@ -111,6 +111,21 @@ function Page3() {
           If travel in the Disha Shool direction is unavoidable, the traditional remedy is a detour: first travel a short distance in a non-Shool direction (even a few kilometres), pause briefly (offering a prayer), then redirect toward the destination. This symbolically &ldquo;breaks&rdquo; the initial directional defect. Wednesday is the safest day for travel in any direction as it has no Disha Shool.
         </p>
       </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">Practical Application — Modern Context</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          In modern life, the traditional Muhurta categories map to contemporary activities. <span className="text-gold-light font-medium">Griha Pravesh</span> applies to moving into a rented apartment as well as a purchased home. <span className="text-gold-light font-medium">Vehicle Purchase</span> includes cars, motorcycles, and even leased vehicles — the key event is first possession/use. <span className="text-gold-light font-medium">Travel Muhurta</span> applies to flights and long-distance road trips; for daily commutes, only Disha Shool avoidance is practical.
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          Our Muhurta AI tool supports all three activity types discussed in this module. Enter your birth details for personalized Tara Bala and Chandrabala, specify the activity type, and the engine generates ranked time windows with scores. For Griha Pravesh, it automatically checks Bhoomi Dosha based on the entrance direction you specify.
+        </p>
+      </section>
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Myth:</span> &ldquo;Disha Shool applies to all travel, including short errands.&rdquo; Reality: classical texts mention Disha Shool primarily for long journeys. Short local errands are generally exempt. Apply it for interstate/international travel.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Myth:</span> &ldquo;Griha Pravesh must be done before any family member enters.&rdquo; Reality: construction workers, painters, and maintenance staff entering during renovation do not constitute Griha Pravesh. The ceremony applies to the family&rsquo;s FIRST formal entry with the intent to reside.</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Myth:</span> &ldquo;Tuesday is always bad for vehicle purchase.&rdquo; Reality: Tuesday is Mars&rsquo;s day. When Mars is well-placed (own sign, exalted, in Kendra), Tuesday is actually ideal — Mars is the karaka for vehicles and machinery. See Module 17.1 for the general Muhurta scoring framework and Module 17.2 for marriage-specific rules.</p>
+      </section>
     </div>
   );
 }

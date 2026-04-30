@@ -1,11 +1,14 @@
 'use client';
 
+import { useState, useMemo } from 'react';
 import { tl } from '@/lib/utils/trilingual';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { MASA_NAMES, RITU_NAMES } from '@/lib/ephem/astronomical';
+import { computeHinduMonths, computePurnimantMonths, formatMonthDate } from '@/lib/calendar/hindu-months';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { MasaIcon } from '@/components/icons/PanchangIcons';
@@ -231,6 +234,154 @@ function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
 }
 
 /* ================================================================== */
+/*  Computed Hindu Month Calendar — Amant / Purnimant toggle          */
+/* ================================================================== */
+
+function MasaCalendarTable({ locale, headingFont }: { locale: Locale; headingFont: React.CSSProperties }) {
+  const [system, setSystem] = useState<'amant' | 'purnimant'>('amant');
+  const [calYear, setCalYear] = useState(new Date().getFullYear());
+  const isEn = locale === 'en' || String(locale) === 'ta';
+
+  const amantMonths = useMemo(() => computeHinduMonths(calYear), [calYear]);
+  const purnimantMonths = useMemo(() => computePurnimantMonths(calYear), [calYear]);
+  const months = system === 'amant' ? amantMonths : purnimantMonths;
+
+  const todayStr = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(new Date().getDate()).padStart(2, '0')}`;
+
+  return (
+    <section className="my-10">
+      {/* Title + year nav */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient" style={headingFont}>
+          {isEn ? `Hindu Month Calendar ${calYear}` : `हिन्दू मास पंचांग ${calYear}`}
+        </h2>
+        <div className="flex items-center gap-3">
+          <button onClick={() => setCalYear(y => y - 1)} className="p-2 rounded-lg border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors">
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          <span className="text-gold-light font-bold text-lg font-mono">{calYear}</span>
+          <button onClick={() => setCalYear(y => y + 1)} className="p-2 rounded-lg border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors">
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* Amant / Purnimant toggle */}
+      <div className="flex justify-center gap-1 mb-6">
+        <button
+          onClick={() => setSystem('amant')}
+          className={`px-5 py-2.5 rounded-l-xl text-sm font-bold transition-all border ${
+            system === 'amant'
+              ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-blue-300 border-blue-500/35 shadow-lg shadow-blue-500/5'
+              : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
+          }`}
+        >
+          {isEn ? 'Amant (New Moon)' : 'अमान्त (अमावस्या)'}
+        </button>
+        <button
+          onClick={() => setSystem('purnimant')}
+          className={`px-5 py-2.5 rounded-r-xl text-sm font-bold transition-all border ${
+            system === 'purnimant'
+              ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-amber-300 border-amber-500/35 shadow-lg shadow-amber-500/5'
+              : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
+          }`}
+        >
+          {isEn ? 'Purnimant (Full Moon)' : 'पूर्णिमान्त (पूर्णिमा)'}
+        </button>
+      </div>
+
+      {/* System explanation */}
+      <div className="text-center text-text-secondary text-xs mb-4">
+        {system === 'amant'
+          ? (isEn ? 'Amant system: each month begins on the day after Amavasya (New Moon). Used in South India, Maharashtra, Gujarat.' : 'अमान्त पद्धति: प्रत्येक मास अमावस्या के अगले दिन से आरम्भ। दक्षिण भारत, महाराष्ट्र, गुजरात में प्रचलित।')
+          : (isEn ? 'Purnimant system: each month begins on the day after Purnima (Full Moon). Used in North India, Bihar, UP, MP. During Adhika Masa, the Shukla paksha of one month and Krishna paksha of the next share the Adhika name.' : 'पूर्णिमान्त पद्धति: प्रत्येक मास पूर्णिमा के अगले दिन से आरम्भ। उत्तर भारत, बिहार, उत्तर प्रदेश, मध्य प्रदेश में प्रचलित। अधिक मास में शुक्ल और कृष्ण पक्ष अलग-अलग मासों से आ सकते हैं।')}
+      </div>
+
+      {/* Month table */}
+      {months.length > 0 ? (
+        <div className="overflow-x-auto rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27]">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-gold-primary/20 bg-[#1a1040]/50">
+                <th className="text-left py-3 px-4 text-gold-primary/70 font-bold text-xs uppercase tracking-wider">#</th>
+                <th className="text-left py-3 px-4 text-gold-primary/70 font-bold text-xs uppercase tracking-wider">{isEn ? 'Month' : 'मास'}</th>
+                <th className="text-left py-3 px-4 text-gold-primary/70 font-bold text-xs uppercase tracking-wider">{isEn ? 'Start Date' : 'आरम्भ'}</th>
+                <th className="text-left py-3 px-4 text-gold-primary/70 font-bold text-xs uppercase tracking-wider">{isEn ? 'End Date' : 'समाप्ति'}</th>
+                <th className="text-left py-3 px-4 text-gold-primary/70 font-bold text-xs uppercase tracking-wider">{isEn ? 'Ritu' : 'ऋतु'}</th>
+                <th className="text-center py-3 px-4 text-gold-primary/70 font-bold text-xs uppercase tracking-wider">{isEn ? 'Days' : 'दिन'}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {months.map((m, i) => {
+                const start = new Date(m.startDate);
+                const end = new Date(m.endDate);
+                const days = Math.round((end.getTime() - start.getTime()) / 86400000);
+                const isCurrent = todayStr >= m.startDate && todayStr < m.endDate;
+                const monthName = locale === 'hi' ? m.hi : m.en;
+
+                return (
+                  <tr
+                    key={`${m.n}-${m.startDate}`}
+                    className={`border-b border-gold-primary/5 transition-colors hover:bg-gold-primary/5 ${
+                      isCurrent ? 'bg-gold-primary/10' : ''
+                    } ${m.isAdhika ? 'bg-violet-500/5' : ''}`}
+                  >
+                    <td className="py-3 px-4 text-text-secondary/50 text-xs">{m.n}</td>
+                    <td className="py-3 px-4" style={headingFont}>
+                      <span className={`font-bold ${m.isAdhika ? 'text-violet-300 italic' : 'text-gold-light'}`}>
+                        {m.isAdhika ? (isEn ? `Adhika ${monthName}` : `अधिक ${monthName}`) : monthName}
+                      </span>
+                      {isCurrent && (
+                        <span className="ml-2 text-[10px] px-2 py-0.5 rounded-full bg-gold-primary/25 text-gold-light font-bold uppercase tracking-wider animate-pulse">
+                          {isEn ? 'NOW' : 'अभी'}
+                        </span>
+                      )}
+                      {m.isAdhika && (
+                        <span className="ml-2 text-[10px] px-2 py-0.5 rounded-full bg-violet-500/20 text-violet-300 font-bold">
+                          {isEn ? 'ADHIKA' : 'अधिक'}
+                        </span>
+                      )}
+                    </td>
+                    <td className="py-3 px-4 text-text-primary font-mono text-xs">{formatMonthDate(m.startDate, locale)}</td>
+                    <td className="py-3 px-4 text-text-primary font-mono text-xs">{formatMonthDate(m.endDate, locale)}</td>
+                    <td className="py-3 px-4 text-text-secondary text-xs">{tl(m.ritu, locale)}</td>
+                    <td className="py-3 px-4 text-center text-text-secondary/60 text-xs">{days}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="text-center py-12 text-text-secondary">
+          {isEn ? 'Computing month boundaries...' : 'मास सीमाओं की गणना हो रही है...'}
+        </div>
+      )}
+
+      {/* Legend */}
+      <div className="flex flex-wrap items-center gap-4 mt-4 justify-center text-xs text-text-secondary">
+        <div className="flex items-center gap-1.5">
+          <div className="w-3 h-3 rounded bg-gold-primary/25" />
+          <span>{isEn ? 'Current Month' : 'वर्तमान मास'}</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <div className="w-3 h-3 rounded bg-violet-500/20 border border-violet-500/30" />
+          <span>{isEn ? 'Adhika Masa (Leap Month)' : 'अधिक मास (लौंद मास)'}</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className="text-blue-300 font-bold">{isEn ? 'Amant' : 'अमान्त'}</span>
+          <span>= {isEn ? 'New Moon → New Moon' : 'अमावस्या → अमावस्या'}</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className="text-amber-300 font-bold">{isEn ? 'Purnimant' : 'पूर्णिमान्त'}</span>
+          <span>= {isEn ? 'Full Moon → Full Moon' : 'पूर्णिमा → पूर्णिमा'}</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ================================================================== */
 /*  Page                                                              */
 /* ================================================================== */
 export default function MasaPage() {
@@ -273,6 +424,9 @@ export default function MasaPage() {
           </p>
         </div>
       </motion.div>
+
+      {/* ═══ COMPUTED MONTH TABLE — FIRST, above everything ═══ */}
+      <MasaCalendarTable locale={locale as Locale} headingFont={headingFont} />
 
       <GoldDivider />
 

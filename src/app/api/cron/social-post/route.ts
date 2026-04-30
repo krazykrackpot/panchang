@@ -109,11 +109,23 @@ export async function GET(request: Request) {
       tweetText = composeEducationalTweet(istDayOfWeek, panchang, dayOfYear);
     }
 
-    const tweetResult = await postToTwitter(tweetText);
+    // Fetch panchang card image and upload to Twitter for visual tweets
+    let mediaId: string | null = null;
+    try {
+      const imgBuffer = await fetchPanchangImage();
+      if (imgBuffer) {
+        mediaId = await uploadMediaToTwitter(imgBuffer);
+      }
+    } catch (err) {
+      console.error('[social-post] Image attach failed (posting text-only):', err);
+    }
+
+    const tweetResult = await postToTwitter(tweetText, mediaId);
 
     return NextResponse.json({
       posted: !!tweetResult,
       tweetId: tweetResult?.id || null,
+      hasImage: !!mediaId,
       date: todayStr,
       dayOfWeek: istDayOfWeek,
       textLength: tweetText.length,
@@ -424,6 +436,7 @@ function composeTweet(data: {
 // ──────────────────────────────────────────────────────────────
 
 const TWITTER_CREATE_TWEET_URL = 'https://api.twitter.com/2/tweets';
+const TWITTER_MEDIA_UPLOAD_URL = 'https://upload.twitter.com/1.1/media/upload.json';
 
 /**
  * Minimal OAuth 1.0a signature generator for Twitter API v2.
@@ -483,7 +496,72 @@ function percentEncode(str: string): string {
   return encodeURIComponent(str).replace(/[!'()*]/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`);
 }
 
-async function postToTwitter(text: string): Promise<{ id: string } | null> {
+/**
+ * Upload an image to Twitter and return the media_id_string.
+ * Uses the v1.1 media/upload endpoint (chunked not needed for images < 5MB).
+ */
+async function uploadMediaToTwitter(imageBuffer: Buffer): Promise<string | null> {
+  const apiKey = process.env.TWITTER_API_KEY?.trim();
+  const apiSecret = process.env.TWITTER_API_SECRET?.trim();
+  const accessToken = process.env.TWITTER_ACCESS_TOKEN?.trim();
+  const accessSecret = process.env.TWITTER_ACCESS_SECRET?.trim();
+  if (!apiKey || !apiSecret || !accessToken || !accessSecret) return null;
+
+  const base64Data = imageBuffer.toString('base64');
+
+  // OAuth header must be generated for the upload URL without body params in signature
+  const authHeader = generateOAuthHeader('POST', TWITTER_MEDIA_UPLOAD_URL, apiKey, apiSecret, accessToken, accessSecret);
+
+  // Use multipart/form-data with media_data (base64)
+  const boundary = '----TwitterMediaBoundary' + Date.now();
+  const body = [
+    `--${boundary}`,
+    'Content-Disposition: form-data; name="media_data"',
+    '',
+    base64Data,
+    `--${boundary}--`,
+  ].join('\r\n');
+
+  const res = await fetch(TWITTER_MEDIA_UPLOAD_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: authHeader,
+      'Content-Type': `multipart/form-data; boundary=${boundary}`,
+    },
+    body,
+  });
+
+  if (!res.ok) {
+    const errText = await res.text();
+    console.error('[social-post] Media upload failed:', res.status, errText);
+    return null;
+  }
+
+  const data = await res.json();
+  const mediaId = data?.media_id_string;
+  console.log('[social-post] Media uploaded:', mediaId);
+  return mediaId;
+}
+
+/**
+ * Fetch the panchang card image from our own Instagram image API.
+ */
+async function fetchPanchangImage(): Promise<Buffer | null> {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
+    const res = await fetch(`${baseUrl}/api/social/instagram?type=panchang`);
+    if (!res.ok) {
+      console.error('[social-post] Image fetch failed:', res.status);
+      return null;
+    }
+    return Buffer.from(await res.arrayBuffer());
+  } catch (err) {
+    console.error('[social-post] Image fetch error:', err);
+    return null;
+  }
+}
+
+async function postToTwitter(text: string, mediaId?: string | null): Promise<{ id: string } | null> {
   const TWITTER_API_KEY = process.env.TWITTER_API_KEY?.trim();
   const TWITTER_API_SECRET = process.env.TWITTER_API_SECRET?.trim();
   const TWITTER_ACCESS_TOKEN = process.env.TWITTER_ACCESS_TOKEN?.trim();
@@ -509,7 +587,10 @@ async function postToTwitter(text: string): Promise<{ id: string } | null> {
       Authorization: authHeader,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ text }),
+    body: JSON.stringify({
+      text,
+      ...(mediaId ? { media: { media_ids: [mediaId] } } : {}),
+    }),
   });
 
   if (!response.ok) {

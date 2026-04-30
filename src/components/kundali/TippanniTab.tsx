@@ -569,11 +569,19 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
             block.content && (
               <div key={i} className="border-l-2 border-gold-primary/20 pl-4">
                 <h4 className="text-gold-primary font-semibold mb-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{block.title}</h4>
-                <div className="text-text-secondary text-sm leading-relaxed whitespace-pre-line">{block.content}</div>
+                <div className="text-text-secondary text-sm leading-relaxed space-y-2">
+                  {block.content.split('\n').filter(Boolean).map((line: string, li: number) => (
+                    <p key={li}>{line}</p>
+                  ))}
+                </div>
                 {block.implications && (
                   <div className="mt-3 p-3 bg-gold-primary/5 rounded-lg border border-gold-primary/10">
                     <p className="text-gold-dark text-xs uppercase tracking-wider mb-1">{locale === 'en' || isTamil ? 'Implications & Prognosis' : 'प्रभाव और पूर्वानुमान'}</p>
-                    <div className="text-text-secondary text-sm leading-relaxed whitespace-pre-line">{block.implications}</div>
+                    <div className="text-text-secondary text-sm leading-relaxed space-y-2">
+                      {block.implications.split('\n').filter(Boolean).map((line: string, li: number) => (
+                        <p key={li}>{line}</p>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
@@ -939,7 +947,11 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
                 </div>
               </div>
 
-              <p className="text-text-secondary text-sm leading-relaxed mb-6 whitespace-pre-line">{cm.overview}</p>
+              <div className="text-text-secondary text-sm leading-relaxed mb-6 space-y-2">
+                {cm.overview.split('\n').filter(Boolean).map((line, i) => (
+                  <p key={i}>{line}</p>
+                ))}
+              </div>
 
               {/* Activated Yogas */}
               {cm.yogasActivated.length > 0 && (
@@ -1017,25 +1029,25 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
                         onClick={() => { setExpandedAntar(isExpanded ? null : ai); setExpandedPratyantar(null); }}
                         className="w-full p-4 text-left"
                       >
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="flex items-center gap-3">
+                        <div className="flex items-start justify-between gap-2 mb-2">
+                          <div className="flex items-center gap-3 min-w-0">
                             <GrahaIconById id={adPlanetId} size={28} />
-                            <div>
+                            <div className="min-w-0">
                               <span className="text-gold-light font-semibold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                                 {tl(ad.planetName, locale)}
                               </span>
                               {ad.isCurrent && <span className="ml-2 w-1.5 h-1.5 inline-block rounded-full bg-gold-primary animate-pulse" />}
-                              <p className="text-text-secondary/75 text-xs">
+                              <p className="text-text-secondary/75 text-xs break-words">
                                 {fmtDate(ad.startDate)} — {fmtDate(ad.endDate)} ({ad.durationMonths} {locale === 'en' || isTamil ? 'mo' : 'मा'})
                               </p>
                             </div>
                           </div>
-                          <span className={`px-2.5 py-1 rounded-full text-xs font-medium border ${aColors.bg} ${aColors.border} ${aColors.text}`}>
+                          <span className={`px-2.5 py-1 rounded-full text-xs font-medium border shrink-0 ${aColors.bg} ${aColors.border} ${aColors.text}`}>
                             {aLabel[loc as 'en' | 'hi']}
                           </span>
                         </div>
                         {/* Life area arrows */}
-                        <div className="flex gap-3 mt-1">
+                        <div className="flex flex-wrap gap-x-3 gap-y-1 mt-1">
                           {lifeKeys.map(k => {
                             const arrow = lifeAreaArrow(ad.lifeAreas[k]);
                             return (
@@ -1204,22 +1216,22 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
                                           className="overflow-hidden"
                                         >
                                           <div className={`mt-3 p-3 rounded-lg border ${pColors.bg} ${pColors.border}`}>
-                                            <div className="flex items-center justify-between mb-2">
-                                              <div className="flex items-center gap-2">
+                                            <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
+                                              <div className="flex items-center gap-2 min-w-0">
                                                 <GrahaIconById id={NAME_TO_ID[pd.planet] ?? 0} size={20} />
                                                 <span className="text-gold-light text-sm font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                                                   {tl(pd.planetName, locale)}
                                                 </span>
-                                                <span className="text-text-secondary/70 text-xs">{fmtDate(pd.startDate)} — {fmtDate(pd.endDate)} ({pd.durationDays}d)</span>
+                                                <span className="text-text-secondary/70 text-xs whitespace-nowrap">{fmtDate(pd.startDate)} — {fmtDate(pd.endDate)} ({pd.durationDays}d)</span>
                                               </div>
-                                              <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${pColors.text}`}>{pLabel[loc as 'en' | 'hi']}</span>
+                                              <span className={`px-2 py-0.5 rounded-full text-xs font-medium shrink-0 ${pColors.text}`}>{pLabel[loc as 'en' | 'hi']}</span>
                                             </div>
                                             <p className="text-text-secondary text-xs mb-1"><span className="text-gold-primary font-medium">{locale === 'en' || isTamil ? 'Theme' : 'विषय'}:</span> {pd.keyTheme}</p>
                                             <p className="text-text-secondary text-xs"><span className="text-gold-primary font-medium">{locale === 'en' || isTamil ? 'Advice' : 'सलाह'}:</span> {pd.advice}</p>
                                             {pd.expanded && (
                                               <div className="mt-2 pt-2 border-t border-gold-primary/10 space-y-1">
                                                 <p className="text-text-secondary text-xs">{pd.expanded.lordAnalysis}</p>
-                                                <div className="flex gap-2">
+                                                <div className="flex flex-wrap gap-2">
                                                   <span className="text-xs text-text-secondary/75"><span className="text-gold-primary">D1:</span> {pd.expanded.divisionalInsights.D1}</span>
                                                   {pd.expanded.divisionalInsights.D9 && <span className="text-xs text-text-secondary/75"><span className="text-gold-primary">D9:</span> {pd.expanded.divisionalInsights.D9}</span>}
                                                   {pd.expanded.divisionalInsights.D10 && <span className="text-xs text-text-secondary/75"><span className="text-gold-primary">D10:</span> {pd.expanded.divisionalInsights.D10}</span>}
@@ -1280,7 +1292,11 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
                 <span className="w-2.5 h-2.5 rounded-full animate-pulse" style={{ backgroundColor: mahaGraha?.color || '#d4a853' }} />
                 <span className="text-gold-light font-bold text-lg" style={headingFont}>{tip.dashaInsight.currentMaha}</span>
               </div>
-              <p className="text-text-primary/80 text-sm leading-relaxed whitespace-pre-line" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tip.dashaInsight.currentMahaAnalysis}</p>
+              <div className="text-text-primary/80 text-sm leading-relaxed space-y-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {(tip.dashaInsight.currentMahaAnalysis || '').split('\n').filter(Boolean).map((line, i) => (
+                  <p key={i}>{line}</p>
+                ))}
+              </div>
             </div>
 
             {/* Current Antardasha */}

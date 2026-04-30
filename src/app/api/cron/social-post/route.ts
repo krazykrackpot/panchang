@@ -2,11 +2,15 @@ import crypto from 'crypto';
 import type { LocaleText } from '@/types/panchang';
 import { NextResponse } from 'next/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
+import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
 
 /**
  * Cron endpoint: posts daily panchang to Twitter/X.
  * Triggered by Vercel Cron at 00:30 UTC (06:00 IST).
  * Protected by CRON_SECRET header.
+ *
+ * Location: Ujjain (historical center of Indian astronomy, first meridian of Hindu geography).
+ * Covers all of India well — within ±30 min of any Indian city's sunrise.
  *
  * Required env vars (all trimmed before use):
  * - CRON_SECRET: Bearer token for cron auth
@@ -16,10 +20,10 @@ import { computePanchang } from '@/lib/ephem/panchang-calc';
  * - TWITTER_ACCESS_SECRET: Twitter/X user access token secret
  */
 
-// Delhi coordinates for the Indian-audience daily tweet
-const DELHI_LAT = 28.6139;
-const DELHI_LNG = 77.209;
-const DELHI_TZ = 'Asia/Kolkata';
+// Ujjain — the traditional prime meridian of Hindu astronomy (Surya Siddhanta)
+const UJJAIN_LAT = 23.1765;
+const UJJAIN_LNG = 75.7885;
+const UJJAIN_TZ = 'Asia/Kolkata';
 
 export async function GET(request: Request) {
   // Verify cron secret
@@ -31,9 +35,9 @@ export async function GET(request: Request) {
 
   try {
     const now = new Date();
-    const tzOffset = getTimezoneOffset(DELHI_TZ, now);
+    const tzOffset = getTimezoneOffset(UJJAIN_TZ, now);
 
-    // Compute today's date in IST so we post the correct Indian-calendar day
+    // Compute today's date in IST
     const istMs = now.getTime() + tzOffset * 3600 * 1000;
     const istDate = new Date(istMs);
     const year = istDate.getUTCFullYear();
@@ -44,14 +48,24 @@ export async function GET(request: Request) {
       year,
       month,
       day,
-      lat: DELHI_LAT,
-      lng: DELHI_LNG,
+      lat: UJJAIN_LAT,
+      lng: UJJAIN_LNG,
       tzOffset,
-      timezone: DELHI_TZ,
-      locationName: 'Delhi',
+      timezone: UJJAIN_TZ,
+      locationName: 'Ujjain',
     });
 
     const L = (obj: LocaleText) => obj.en;
+
+    // Find today's festivals/vrats
+    const todayStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    let festivals: FestivalEntry[] = [];
+    try {
+      const allFestivals = generateFestivalCalendarV2(year, UJJAIN_LAT, UJJAIN_LNG, UJJAIN_TZ);
+      festivals = allFestivals.filter(f => f.date === todayStr);
+    } catch (err) {
+      console.error('[social-post] Festival lookup failed:', err);
+    }
 
     // Format date for display
     const dateStr = new Date(Date.UTC(year, month - 1, day))
@@ -67,6 +81,10 @@ export async function GET(request: Request) {
       sunset: panchang.sunset,
       rahuKaalStart: panchang.rahuKaal.start,
       rahuKaalEnd: panchang.rahuKaal.end,
+      festivals: festivals.map(f => ({
+        name: L(f.name),
+        type: f.type,
+      })),
     });
 
     const tweetResult = await postToTwitter(tweetText);
@@ -74,8 +92,9 @@ export async function GET(request: Request) {
     return NextResponse.json({
       posted: !!tweetResult,
       tweetId: tweetResult?.id || null,
-      date: `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
+      date: todayStr,
       textLength: tweetText.length,
+      festivals: festivals.map(f => L(f.name)),
     });
   } catch (e) {
     console.error('[social-post] cron failed:', e);
@@ -97,23 +116,50 @@ function composeTweet(data: {
   sunset: string;
   rahuKaalStart: string;
   rahuKaalEnd: string;
+  festivals: { name: string; type: string }[];
 }): string {
-  // Twitter limit: 280 chars. This template stays under 250 for safety.
-  return [
-    `\u{1F64F} Today's Panchang \u2014 ${data.date}`,
-    '',
-    `\u2600\uFE0F Tithi: ${data.tithi}`,
-    `\u{1F319} Nakshatra: ${data.nakshatra}`,
-    `\u2B50 Yoga: ${data.yoga}`,
-    `\u{1F4FF} Vara: ${data.vara}`,
-    '',
-    `\u{1F550} Sunrise: ${data.sunrise} | Sunset: ${data.sunset}`,
-    `\u26A0\uFE0F Rahu Kaal: ${data.rahuKaalStart}\u2013${data.rahuKaalEnd}`,
-    '',
-    `Full panchang \u2192 dekhopanchang.com/en/panchang`,
-    '',
-    '#Panchang #VedicAstrology #HinduCalendar',
-  ].join('\n');
+  const lines: string[] = [];
+
+  // Festival/Vrat banner — prominent, at the top
+  const majorFests = data.festivals.filter(f => f.type === 'major');
+  const vrats = data.festivals.filter(f => f.type === 'vrat');
+  if (majorFests.length > 0) {
+    lines.push(`\u{1F31F} ${majorFests.map(f => f.name).join(' \u00b7 ')}`);
+  }
+  if (vrats.length > 0) {
+    lines.push(`\u{1F4FF} ${vrats.map(f => f.name).join(' \u00b7 ')}`);
+  }
+  if (majorFests.length > 0 || vrats.length > 0) {
+    lines.push('');
+  }
+
+  lines.push(`\u{1F64F} Panchang \u2014 ${data.date}`);
+  lines.push(`\u{1F4CD} Ujjain`);
+  lines.push('');
+  lines.push(`Tithi: ${data.tithi}`);
+  lines.push(`Nakshatra: ${data.nakshatra}`);
+  lines.push(`Yoga: ${data.yoga} \u00b7 ${data.vara}`);
+  lines.push('');
+  lines.push(`\u2600\uFE0F ${data.sunrise} \u2014 \u{1F319} ${data.sunset}`);
+  lines.push(`\u26A0\uFE0F Rahu Kaal: ${data.rahuKaalStart}\u2013${data.rahuKaalEnd}`);
+  lines.push('');
+  lines.push(`dekhopanchang.com`);
+  lines.push('#Panchang #Jyotish');
+
+  // Trim to 280 chars — drop hashtags if needed
+  let tweet = lines.join('\n');
+  if (tweet.length > 280) {
+    lines.pop(); // remove hashtags
+    tweet = lines.join('\n');
+  }
+  if (tweet.length > 280) {
+    // Last resort: drop Rahu Kaal line
+    const rkIdx = lines.findIndex(l => l.includes('Rahu Kaal'));
+    if (rkIdx >= 0) lines.splice(rkIdx, 1);
+    tweet = lines.join('\n');
+  }
+
+  return tweet;
 }
 
 // ──────────────────────────────────────────────────────────────

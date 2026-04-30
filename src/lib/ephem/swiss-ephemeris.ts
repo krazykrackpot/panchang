@@ -231,47 +231,63 @@ export function swissAllPlanets(jd: number, useTrueNode?: boolean): {
  * Falls back to corrected Meeus formula if rise_trans fails.
  * Returns UT decimal hours (same format as approximateSunrise in astronomical.ts).
  */
-export function swissSunrise(jd: number, lat: number, lng: number): number | null {
+/**
+ * Compute sunrise using Swiss Ephemeris rise_trans.
+ * Returns the Julian Day of sunrise, or null if polar non-rise.
+ *
+ * @param jd - Julian Day (any time on the target date — used to find the right day)
+ * @param lat - Geographic latitude
+ * @param lng - Geographic longitude
+ * @param tzOffset - Timezone offset in hours. Required to search from LOCAL midnight
+ *   so that positive-offset zones (IST, CEST) find the right sunrise.
+ */
+export function swissSunriseJD(jd: number, lat: number, lng: number, tzOffset: number = 0): number | null {
   const se = getSweph();
-  if (!se) return 6.0;
+  if (!se) return null;
 
-  // Normalize to midnight UT of the calendar day containing jd.
-  // JD integers correspond to noon, so midnight = Math.floor(jd + 0.5) - 0.5
-  const jdMidnight = Math.floor(jd + 0.5) - 0.5;
+  // Start search from LOCAL midnight expressed in UT.
+  // For IST (5.5): local midnight = UT midnight - 5.5h
+  const jdUtMidnight = Math.floor(jd + 0.5) - 0.5;
+  const jdSearchStart = jdUtMidnight - tzOffset / 24;
 
-  const geopos = [lng, lat, 0]; // [longitude°, latitude°, altitude m]
+  const geopos = [lng, lat, 0];
   const result = se.rise_trans(
-    jdMidnight,
+    jdSearchStart,
     se.constants.SE_SUN,
     '',
     se.constants.SEFLG_SWIEPH,
     se.constants.SE_CALC_RISE,
     geopos,
-    1013.25, // standard pressure mbar
-    15,      // standard temperature °C
+    1013.25,
+    15,
   );
 
-  // Polar latitude or error: Sun never rises/sets
   if (result.flag === -1 || result.error || !result.data) return null;
+  return result.data;
+}
 
-  // Convert result JD to UT decimal hours from midnight
-  const utHours = (result.data - jdMidnight) * 24;
-  return ((utHours % 24) + 24) % 24;
+/** Backward-compatible wrapper: returns UT hours from UT midnight of the input JD's day */
+export function swissSunrise(jd: number, lat: number, lng: number, tzOffset: number = 0): number | null {
+  const riseJD = swissSunriseJD(jd, lat, lng, tzOffset);
+  if (riseJD === null) return null;
+  const jdUtMidnight = Math.floor(jd + 0.5) - 0.5;
+  return ((riseJD - jdUtMidnight) * 24 + 24) % 24;
 }
 
 /**
  * Compute sunset UT hours using Swiss Ephemeris rise_trans (sub-minute accuracy).
  * Falls back gracefully if rise_trans fails.
  */
-export function swissSunset(jd: number, lat: number, lng: number): number | null {
+export function swissSunset(jd: number, lat: number, lng: number, tzOffset: number = 0): number | null {
   const se = getSweph();
-  if (!se) return 18.0;
+  if (!se) return null;
 
-  const jdMidnight = Math.floor(jd + 0.5) - 0.5;
+  const jdUtMidnight = Math.floor(jd + 0.5) - 0.5;
+  const jdSearchStart = jdUtMidnight - tzOffset / 24;
 
   const geopos = [lng, lat, 0];
   const result = se.rise_trans(
-    jdMidnight,
+    jdSearchStart,
     se.constants.SE_SUN,
     '',
     se.constants.SEFLG_SWIEPH,
@@ -281,9 +297,58 @@ export function swissSunset(jd: number, lat: number, lng: number): number | null
     15,
   );
 
-  // Polar latitude or error: Sun never rises/sets
   if (result.flag === -1 || result.error || !result.data) return null;
 
-  const utHours = (result.data - jdMidnight) * 24;
+  const utHours = (result.data - jdUtMidnight) * 24;
+  return ((utHours % 24) + 24) % 24;
+}
+
+/**
+ * Compute moonrise UT hours using Swiss Ephemeris rise_trans.
+ * Returns UT decimal hours from midnight, or null if moon doesn't rise.
+ */
+export function swissMoonrise(jd: number, lat: number, lng: number, tzOffset: number = 0): number | null {
+  const se = getSweph();
+  if (!se) return null;
+
+  const jdUtMidnight = Math.floor(jd + 0.5) - 0.5;
+  const jdSearchStart = jdUtMidnight - tzOffset / 24;
+  const geopos = [lng, lat, 0];
+  const result = se.rise_trans(
+    jdSearchStart,
+    se.constants.SE_MOON,
+    '',
+    se.constants.SEFLG_SWIEPH,
+    se.constants.SE_CALC_RISE,
+    geopos,
+    1013.25,
+    15,
+  );
+
+  if (result.flag === -1 || result.error || !result.data) return null;
+  const utHours = (result.data - jdUtMidnight) * 24;
+  return ((utHours % 24) + 24) % 24;
+}
+
+export function swissMoonset(jd: number, lat: number, lng: number, tzOffset: number = 0): number | null {
+  const se = getSweph();
+  if (!se) return null;
+
+  const jdUtMidnight = Math.floor(jd + 0.5) - 0.5;
+  const jdSearchStart = jdUtMidnight - tzOffset / 24;
+  const geopos = [lng, lat, 0];
+  const result = se.rise_trans(
+    jdSearchStart,
+    se.constants.SE_MOON,
+    '',
+    se.constants.SEFLG_SWIEPH,
+    se.constants.SE_CALC_SET,
+    geopos,
+    1013.25,
+    15,
+  );
+
+  if (result.flag === -1 || result.error || !result.data) return null;
+  const utHours = (result.data - jdUtMidnight) * 24;
   return ((utHours % 24) + 24) % 24;
 }

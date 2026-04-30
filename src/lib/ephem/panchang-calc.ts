@@ -8,6 +8,7 @@ import {
   getSamvatsara, getRitu, getAyana, lahiriAyanamsha, normalizeDeg,
 } from './astronomical';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
+import { swissSunrise, swissSunset, swissSunriseJD, swissMoonrise, swissMoonset, isSwissEphAvailable } from './swiss-ephemeris';
 import { YAMA_ORDER, GULIKA_ORDER } from '@/lib/constants/inauspicious-orders';
 import { TITHIS } from '@/lib/constants/tithis';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -707,23 +708,26 @@ function moonAltitude(jdAt: number, latRad: number, lng: number): number {
  * Returns UT decimal hours from midnight, or null if Moon doesn't rise.
  */
 export function calculateMoonriseUT(jd: number, lat: number, lng: number): number | null {
-  // Moonrise occurs when the Moon's upper limb appears at the horizon.
-  // Since moonAltitude() returns topocentric altitude (parallax already applied),
-  // we need: h₀ = Moon_semi_diameter - atmospheric_refraction = 16'/60 - 34'/60 ≈ -0.3°
-  // (Upper limb at horizon means center is 16' below; refraction lifts by 34'; net = -18')
+  // Prefer Swiss Ephemeris (sub-minute accuracy), Meeus fallback
+  // Note: tzOffset not available here — moonrise display functions handle the window logic
+  if (isSwissEphAvailable()) {
+    const sweResult = swissMoonrise(jd, lat, lng);
+    if (sweResult !== null) return sweResult;
+  }
+
+  // Meeus fallback: 5-minute scan + binary search
   const h0 = -0.3;
   const latRad = (lat * Math.PI) / 180;
   const jdMidnight = Math.floor(jd - 0.5) + 0.5;
-  const step = 5 / (24 * 60); // 5-minute steps in JD for better precision
+  const step = 5 / (24 * 60);
 
   let prevAlt = moonAltitude(jdMidnight, latRad, lng);
 
-  for (let i = 1; i <= 288; i++) { // 288 × 5min = 24 hours
+  for (let i = 1; i <= 288; i++) {
     const jdNow = jdMidnight + i * step;
     const alt = moonAltitude(jdNow, latRad, lng);
 
     if (prevAlt < h0 && alt >= h0) {
-      // Binary search for precise crossing (15 iterations → ~0.03s precision)
       let lo = jdNow - step;
       let hi = jdNow;
       for (let j = 0; j < 15; j++) {
@@ -737,7 +741,7 @@ export function calculateMoonriseUT(jd: number, lat: number, lng: number): numbe
     prevAlt = alt;
   }
 
-  return null; // Moon doesn't rise today
+  return null;
 }
 
 /**
@@ -745,6 +749,13 @@ export function calculateMoonriseUT(jd: number, lat: number, lng: number): numbe
  * Returns UT decimal hours from midnight, or null if Moon doesn't set.
  */
 function calculateMoonsetUT(jd: number, lat: number, lng: number): number | null {
+  // Prefer Swiss Ephemeris, Meeus fallback
+  if (isSwissEphAvailable()) {
+    const sweResult = swissMoonset(jd, lat, lng);
+    if (sweResult !== null) return sweResult;
+  }
+
+  // Meeus fallback
   const h0 = -0.3;
   const latRad = (lat * Math.PI) / 180;
   const jdMidnight = Math.floor(jd - 0.5) + 0.5;
@@ -870,16 +881,43 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // Compute Julian Day at midnight UT for this date
   const jd = dateToJD(year, month, day, 12 - tzOffset); // Convert local noon to UT
 
-  // Sunrise and sunset — use 2-pass algorithm from astronomy module for accuracy
-  const sunTimes = getSunTimes(year, month, day, lat, lng, tzOffset);
-  const sunriseLocal = sunTimes.sunrise.getHours() + sunTimes.sunrise.getMinutes() / 60 + sunTimes.sunrise.getSeconds() / 3600;
-  const sunsetLocal = sunTimes.sunset.getHours() + sunTimes.sunset.getMinutes() / 60 + sunTimes.sunset.getSeconds() / 3600;
-  // Convert local time back to UT for internal calculations
-  const sunriseUT = sunriseLocal - tzOffset;
-  const sunsetUT = sunsetLocal - tzOffset;
-
-  // Compute at local sunrise time
-  const jdSunrise = dateToJD(year, month, day, sunriseUT);
+  // Sunrise and sunset — prefer Swiss Ephemeris (sub-minute accuracy), Meeus fallback.
+  //
+  // Two values needed from sunrise:
+  //   1. sunriseUT — UT decimal hours used for Rahu Kaal, Yamaganda, Hora, Muhurta timing.
+  //      This is (localSunriseHour - tzOffset) and is what the existing code expects.
+  //   2. jdSunrise — Julian Day of actual sunrise, used for tithi/nakshatra/yoga at sunrise.
+  //      CRITICAL: must use swissSunriseJD directly — NOT dateToJD(year, month, day, sunriseUT)
+  //      because for east-of-UTC zones (IST, JST), sunrise UT falls on the previous calendar
+  //      day, causing dateToJD to produce a JD one day late.
+  let sunriseUT: number;
+  let sunsetUT: number;
+  let jdSunrise: number;
+  const sweSunriseJd = isSwissEphAvailable() ? swissSunriseJD(jd, lat, lng, tzOffset) : null;
+  if (sweSunriseJd !== null && isSwissEphAvailable()) {
+    jdSunrise = sweSunriseJd;
+    // Derive local sunrise hour, then convert to UT for timing calculations
+    const sunriseLocalHour = ((sweSunriseJd - (Math.floor(jd + 0.5) - 0.5)) * 24 + tzOffset + 24) % 24;
+    sunriseUT = sunriseLocalHour - tzOffset;
+    // Sunset: may also cross UT midnight for western locations (PST sunset 16:45 = 00:45 UT next day)
+    const sweSunsetRaw = swissSunset(jd, lat, lng, tzOffset);
+    if (sweSunsetRaw !== null) {
+      sunsetUT = sweSunsetRaw;
+      // If sunset UT < sunrise UT, sunset crossed midnight UT — add 24h for correct day duration
+      if (sunsetUT < sunriseUT) sunsetUT += 24;
+    } else {
+      const st = getSunTimes(year, month, day, lat, lng, tzOffset);
+      sunsetUT = st.sunset.getHours() + st.sunset.getMinutes() / 60 + st.sunset.getSeconds() / 3600 - tzOffset;
+    }
+  } else {
+    // Meeus fallback
+    const sunTimes = getSunTimes(year, month, day, lat, lng, tzOffset);
+    const sunriseLocal = sunTimes.sunrise.getHours() + sunTimes.sunrise.getMinutes() / 60 + sunTimes.sunrise.getSeconds() / 3600;
+    const sunsetLocal = sunTimes.sunset.getHours() + sunTimes.sunset.getMinutes() / 60 + sunTimes.sunset.getSeconds() / 3600;
+    sunriseUT = sunriseLocal - tzOffset;
+    sunsetUT = sunsetLocal - tzOffset;
+    jdSunrise = dateToJD(year, month, day, sunriseUT);
+  }
 
   // 1. Tithi
   const tithiResult = calculateTithi(jdSunrise);

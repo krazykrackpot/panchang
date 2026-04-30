@@ -97,6 +97,12 @@ export async function GET(request: Request) {
           name: L(f.name),
           type: f.type,
         })),
+        panchakWarning: panchang.panchakInfo?.isActive
+          ? `Panchak active — avoid southward travel, cremation`
+          : undefined,
+        holashtakWarning: panchang.holashtak?.isActive
+          ? `Holashtak Day ${panchang.holashtak.dayNumber}/8 — avoid auspicious activities`
+          : undefined,
       });
     } else {
       // All other days — educational content rotation
@@ -352,6 +358,8 @@ function composeTweet(data: {
   rahuKaalStart: string;
   rahuKaalEnd: string;
   festivals: { name: string; type: string }[];
+  panchakWarning?: string;
+  holashtakWarning?: string;
 }): string {
   const lines: string[] = [];
 
@@ -377,6 +385,12 @@ function composeTweet(data: {
   lines.push('');
   lines.push(`\u2600\uFE0F ${data.sunrise} \u2014 \u{1F319} ${data.sunset}`);
   lines.push(`\u26A0\uFE0F Rahu Kaal: ${data.rahuKaalStart}\u2013${data.rahuKaalEnd}`);
+  if (data.panchakWarning) {
+    lines.push(`\u26A0\uFE0F ${data.panchakWarning}`);
+  }
+  if (data.holashtakWarning) {
+    lines.push(`\u26A0\uFE0F ${data.holashtakWarning}`);
+  }
   lines.push('');
   lines.push(`dekhopanchang.com`);
 

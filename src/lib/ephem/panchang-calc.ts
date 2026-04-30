@@ -19,6 +19,8 @@ import { GRAHAS, VARA_DATA } from '@/lib/constants/grahas';
 import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
 import { PanchangData, Muhurta, TransitionInfo, ChoghadiyaSlot, HoraSlot, DishaShoolInfo , LocaleText} from '@/types/panchang';
 import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
+import { checkPanchak } from '@/lib/panchang/panchak';
+import { checkHolashtak } from '@/lib/panchang/holashtak';
 
 export interface PanchangInput {
   year: number;
@@ -1372,6 +1374,13 @@ export function computePanchang(input: PanchangInput): PanchangData {
     type: panchakaActive ? (PANCHAKA_TYPE[weekday] || PANCHAKA_DEFAULT) : undefined,
   };
 
+  // 7b. Panchak (rich info) — extends basic panchaka with descriptions and avoid-activities
+  const panchakInfo = checkPanchak(nakshatraNum);
+
+  // 7c. Holashtak — 8 inauspicious days before Holi (Phalguna Shukla Ashtami to Purnima)
+  // Uses amanta masa (per Lesson ZC — festival definitions use Amant month names)
+  const holashtak = checkHolashtak(tithiResult.number, amantMasa, tithiResult.number <= 15 ? 'shukla' : 'krishna');
+
   // 8. Tamil Yoga (Chandrashtama-based) — day quality from Moon-Sun angle modulo
   // (tithiNum + weekday + nakshatraNum) mod 9 → 9 Tamil quality names
   const TAMIL_YOGA_NAMES: LocaleText[] = [
@@ -1849,6 +1858,8 @@ export function computePanchang(input: PanchangInput): PanchangData {
     kaliyugaYear,
     julianDay,
     panchaka,
+    panchakInfo,
+    holashtak,
     shivaVaas,
     agniVaas,
     chandraVaas,

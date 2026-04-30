@@ -160,6 +160,18 @@ export interface PanchangData {
   moonLongitude?: number;      // Sidereal Moon longitude (degrees)
   moonElongation?: number;     // Moon - Sun elongation (degrees), defines tithi
   panchaka?: { active: boolean; type?: LocaleText };
+  panchakInfo?: {
+    isActive: boolean;
+    nakshatraId: number | null;
+    type: string | null;
+    description: { en: string; hi: string };
+    avoidActivities: { en: string; hi: string }[];
+  };
+  holashtak?: {
+    isActive: boolean;
+    dayNumber: number | null;
+    description: { en: string; hi: string };
+  };
   shivaVaas?: { name: LocaleText; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed'; tithis: number[] };
   agniVaas?: { name: LocaleText; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed'; validUntil?: string };
   chandraVaas?: { name: LocaleText; direction: LocaleText; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed' };

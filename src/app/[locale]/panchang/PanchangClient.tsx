@@ -1495,6 +1495,39 @@ export default function PanchangClient() {
             />
           </div>
 
+          {/* ═══ PANCHAK & HOLASHTAK WARNINGS ═══ */}
+          {(panchang.panchakInfo?.isActive || panchang.holashtak?.isActive) && (
+            <div className="space-y-4 mb-10">
+              {panchang.panchakInfo?.isActive && (
+                <div className="rounded-xl bg-red-500/8 border border-red-500/20 p-4 caution-glow">
+                  <h4 className="text-red-400 font-bold text-sm mb-1" style={headingFont}>
+                    {isDevanagari ? '⚠ पंचक सक्रिय' : '⚠ Panchak Active'}
+                  </h4>
+                  <p className="text-text-secondary text-xs">
+                    {panchang.panchakInfo.description[isDevanagari ? 'hi' : 'en']}
+                  </p>
+                  <div className="mt-2 space-y-1">
+                    {panchang.panchakInfo.avoidActivities.map((act, i) => (
+                      <p key={i} className="text-red-300/60 text-xs">
+                        ✗ {act[isDevanagari ? 'hi' : 'en']}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {panchang.holashtak?.isActive && (
+                <div className="rounded-xl bg-red-500/8 border border-red-500/20 p-4 caution-glow">
+                  <h4 className="text-red-400 font-bold text-sm mb-1" style={headingFont}>
+                    {isDevanagari ? `⚠ होलाष्टक — दिवस ${panchang.holashtak.dayNumber}/8` : `⚠ Holashtak — Day ${panchang.holashtak.dayNumber}/8`}
+                  </h4>
+                  <p className="text-text-secondary text-xs">
+                    {panchang.holashtak.description[isDevanagari ? 'hi' : 'en']}
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+
           <GoldDivider />
           {/* Sections removed — now live on subpages. Mega card grid above links to them. */}
         </>

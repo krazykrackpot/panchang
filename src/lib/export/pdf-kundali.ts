@@ -414,7 +414,7 @@ function renderCoverPage(doc: jsPDF, kundali: KundaliData, locale: Locale) {
     '',
     `${bd.date}  |  ${bd.time}`,
     bd.place,
-    `${bd.lat.toFixed(4)}°N, ${bd.lng.toFixed(4)}°E`,
+    `${Math.abs(bd.lat).toFixed(4)}°${bd.lat >= 0 ? 'N' : 'S'}, ${Math.abs(bd.lng).toFixed(4)}°${bd.lng >= 0 ? 'E' : 'W'}`,
   ];
   lines.forEach(line => {
     if (line === '') { y += 3; return; }

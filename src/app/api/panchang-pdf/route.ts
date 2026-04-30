@@ -45,11 +45,11 @@ export async function GET(request: Request) {
   const parsed = pdfSchema.safeParse({
     year: searchParams.get('year') || new Date().getFullYear(),
     month: searchParams.get('month') || (new Date().getMonth() + 1),
-    city: searchParams.get('city'),
-    lat: searchParams.get('lat'),
-    lng: searchParams.get('lng'),
-    timezone: searchParams.get('timezone'),
-    locationName: searchParams.get('locationName'),
+    city: searchParams.get('city') ?? undefined,
+    lat: searchParams.get('lat') ?? undefined,
+    lng: searchParams.get('lng') ?? undefined,
+    timezone: searchParams.get('timezone') ?? undefined,
+    locationName: searchParams.get('locationName') ?? undefined,
   });
 
   if (!parsed.success) {
@@ -402,7 +402,7 @@ export async function GET(request: Request) {
     <h1>Dekho Panchang &mdash; Monthly Panchang</h1>
     <div class="subtitle">${escapeHtml(subtitle)}</div>
     <div class="city">${escapeHtml(cityName)}</div>
-    <div class="coords">${lat.toFixed(4)}° N, ${lng.toFixed(4)}° E &bull; ${escapeHtml(timezone)}</div>
+    <div class="coords">${Math.abs(lat).toFixed(4)}° ${lat >= 0 ? 'N' : 'S'}, ${Math.abs(lng).toFixed(4)}° ${lng >= 0 ? 'E' : 'W'} &bull; ${escapeHtml(timezone)}</div>
   </div>
 
   <div class="legend">
